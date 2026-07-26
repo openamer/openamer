@@ -439,7 +439,7 @@ class TestResolveActiveHost:
 
     def test_default_returns_openamer(self):
         with patch.dict(os.environ, {}, clear=True):
-            os.environ.pop("HERMES_HONCHO_HOST", None)
+            os.environ.pop("OPENAMER_HONCHO_HOST", None)
             os.environ.pop("OPENAMER_HOME", None)
             with patch(
                 "plugins.memory.honcho.client.resolve_config_path",
@@ -448,12 +448,12 @@ class TestResolveActiveHost:
                 assert resolve_active_host() == "openamer"
 
     def test_explicit_env_var_wins(self):
-        with patch.dict(os.environ, {"HERMES_HONCHO_HOST": "openamer.coder"}):
+        with patch.dict(os.environ, {"OPENAMER_HONCHO_HOST": "openamer.coder"}):
             assert resolve_active_host() == "openamer.coder"
 
     def test_profile_name_derives_host(self):
         with patch.dict(os.environ, {}, clear=False):
-            os.environ.pop("HERMES_HONCHO_HOST", None)
+            os.environ.pop("OPENAMER_HONCHO_HOST", None)
             with patch("openamer_cli.profiles.get_active_profile_name", return_value="coder"):
                 assert resolve_active_host() == "openamer_coder"
 
@@ -466,7 +466,7 @@ class TestResolveActiveHost:
         }))
 
         with patch.dict(os.environ, {}, clear=False):
-            os.environ.pop("HERMES_HONCHO_HOST", None)
+            os.environ.pop("OPENAMER_HONCHO_HOST", None)
             with patch("openamer_cli.profiles.get_active_profile_name", return_value="coder"), \
                  patch("plugins.memory.honcho.client.resolve_config_path", return_value=config_file):
                 assert resolve_active_host() == "openamer_coder"
@@ -480,14 +480,14 @@ class TestResolveActiveHost:
         }))
 
         with patch.dict(os.environ, {}, clear=False):
-            os.environ.pop("HERMES_HONCHO_HOST", None)
+            os.environ.pop("OPENAMER_HONCHO_HOST", None)
             with patch("openamer_cli.profiles.get_active_profile_name", return_value="default"), \
                  patch("plugins.memory.honcho.client.resolve_config_path", return_value=config_file):
                 assert resolve_active_host() == "local"
 
     def test_default_profile_returns_openamer(self):
         with patch.dict(os.environ, {}, clear=False):
-            os.environ.pop("HERMES_HONCHO_HOST", None)
+            os.environ.pop("OPENAMER_HONCHO_HOST", None)
             with patch("openamer_cli.profiles.get_active_profile_name", return_value="default"), \
                  patch(
                      "plugins.memory.honcho.client.resolve_config_path",
@@ -497,7 +497,7 @@ class TestResolveActiveHost:
 
     def test_custom_profile_returns_openamer(self):
         with patch.dict(os.environ, {}, clear=False):
-            os.environ.pop("HERMES_HONCHO_HOST", None)
+            os.environ.pop("OPENAMER_HONCHO_HOST", None)
             with patch("openamer_cli.profiles.get_active_profile_name", return_value="custom"), \
                  patch(
                      "plugins.memory.honcho.client.resolve_config_path",
@@ -511,7 +511,7 @@ class TestResolveActiveHost:
             "plugins.memory.honcho.client.resolve_config_path",
             return_value=Path("/nonexistent/test-honcho-config.json"),
         ):
-            os.environ.pop("HERMES_HONCHO_HOST", None)
+            os.environ.pop("OPENAMER_HONCHO_HOST", None)
             # Temporarily remove openamer_cli.profiles to simulate import failure
             saved = sys.modules.get("openamer_cli.profiles")
             sys.modules["openamer_cli.profiles"] = None  # type: ignore
@@ -794,7 +794,7 @@ class TestGetHonchoClient:
         managed_dir.mkdir()
         managed_cfg = managed_dir / "config.yaml"
         managed_cfg.write_text("honcho:\n  timeout: 88\n")
-        monkeypatch.setenv("HERMES_MANAGED_DIR", str(managed_dir))
+        monkeypatch.setenv("OPENAMER_MANAGED_DIR", str(managed_dir))
 
         fake_honcho_1 = MagicMock(name="Honcho_v1")
         fake_honcho_2 = MagicMock(name="Honcho_v2")

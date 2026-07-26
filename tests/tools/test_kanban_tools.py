@@ -156,8 +156,8 @@ def worker_env(monkeypatch, tmp_path):
     home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
-    monkeypatch.setenv("HERMES_PROFILE", "test-worker")
-    monkeypatch.delenv("HERMES_SESSION_ID", raising=False)
+    monkeypatch.setenv("OPENAMER_PROFILE", "test-worker")
+    monkeypatch.delenv("OPENAMER_SESSION_ID", raising=False)
     from pathlib import Path as _Path
     monkeypatch.setattr(_Path, "home", lambda: tmp_path)
 
@@ -343,7 +343,7 @@ def test_complete_metadata_round_trips_through_show(worker_env):
 def test_complete_stamps_worker_session_id_from_env(monkeypatch, worker_env):
     from tools import kanban_tools as kt
 
-    monkeypatch.setenv("HERMES_SESSION_ID", "session-trusted")
+    monkeypatch.setenv("OPENAMER_SESSION_ID", "session-trusted")
     metadata = {"files": 2, "worker_session_id": "user-spoof"}
 
     out = kt._handle_complete({
@@ -371,7 +371,7 @@ def test_complete_does_not_stamp_worker_session_id_without_scoped_task(
     from tools import kanban_tools as kt
 
     monkeypatch.delenv("OPENAMER_KANBAN_TASK", raising=False)
-    monkeypatch.setenv("HERMES_SESSION_ID", "session-trusted")
+    monkeypatch.setenv("OPENAMER_SESSION_ID", "session-trusted")
 
     out = kt._handle_complete({
         "task_id": worker_env,
@@ -629,8 +629,8 @@ def test_complete_goal_mode_rejected_by_judge(monkeypatch, tmp_path):
     home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
-    monkeypatch.setenv("HERMES_PROFILE", "test-worker")
-    monkeypatch.delenv("HERMES_SESSION_ID", raising=False)
+    monkeypatch.setenv("OPENAMER_PROFILE", "test-worker")
+    monkeypatch.delenv("OPENAMER_SESSION_ID", raising=False)
     monkeypatch.setattr(_Path, "home", lambda: tmp_path)
 
     kb._INITIALIZED_PATHS.clear()
@@ -687,8 +687,8 @@ def test_complete_goal_mode_allows_when_judge_unavailable(monkeypatch, tmp_path)
     home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
-    monkeypatch.setenv("HERMES_PROFILE", "test-worker")
-    monkeypatch.delenv("HERMES_SESSION_ID", raising=False)
+    monkeypatch.setenv("OPENAMER_PROFILE", "test-worker")
+    monkeypatch.delenv("OPENAMER_SESSION_ID", raising=False)
     monkeypatch.setattr(_Path, "home", lambda: tmp_path)
 
     kb._INITIALIZED_PATHS.clear()
@@ -752,8 +752,8 @@ def _make_goal_mode_worker_env(monkeypatch, tmp_path):
     home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
-    monkeypatch.setenv("HERMES_PROFILE", "test-worker")
-    monkeypatch.delenv("HERMES_SESSION_ID", raising=False)
+    monkeypatch.setenv("OPENAMER_PROFILE", "test-worker")
+    monkeypatch.delenv("OPENAMER_SESSION_ID", raising=False)
     monkeypatch.setattr(_Path, "home", lambda: tmp_path)
 
     kb._INITIALIZED_PATHS.clear()
@@ -941,7 +941,7 @@ def test_comment_happy_path(worker_env):
     try:
         comments = kb.list_comments(conn, worker_env)
         assert len(comments) == 1
-        # Author defaults to HERMES_PROFILE env we set in the fixture
+        # Author defaults to OPENAMER_PROFILE env we set in the fixture
         assert comments[0].author == "test-worker"
         assert comments[0].body == "hello thread"
     finally:
@@ -956,7 +956,7 @@ def test_comment_rejects_empty_body(worker_env):
 
 def test_comment_ignores_caller_supplied_author(worker_env):
     """``args["author"]`` is no longer honored — the author is always
-    derived from ``HERMES_PROFILE`` so a worker can't forge a comment
+    derived from ``OPENAMER_PROFILE`` so a worker can't forge a comment
     under an authoritative-looking name like ``openamer-system`` and
     poison the next worker's prompt context. Cross-task commenting
     itself remains unrestricted (see #19713); only the author override
@@ -971,7 +971,7 @@ def test_comment_ignores_caller_supplied_author(worker_env):
     conn = kb.connect()
     try:
         comments = kb.list_comments(conn, worker_env)
-        # Author comes from HERMES_PROFILE in the fixture, not the
+        # Author comes from OPENAMER_PROFILE in the fixture, not the
         # caller-supplied "openamer-system" override.
         assert comments[0].author == "test-worker"
     finally:
@@ -1270,9 +1270,9 @@ def test_create_cross_profile_project_children_keep_isolated_worktree_routing(
     shared_db = tmp_path / "shared-kanban.db"
 
     monkeypatch.setattr(_Path, "home", lambda: tmp_path)
-    monkeypatch.setenv("HERMES_KANBAN_DB", str(shared_db))
+    monkeypatch.setenv("OPENAMER_KANBAN_DB", str(shared_db))
     monkeypatch.setenv("OPENAMER_HOME", str(profile_a))
-    monkeypatch.setenv("HERMES_PROFILE", "creator")
+    monkeypatch.setenv("OPENAMER_PROFILE", "creator")
     kb._INITIALIZED_PATHS.clear()
     kb.init_db()
     with pdb.connect_closing() as project_conn:
@@ -1293,7 +1293,7 @@ def test_create_cross_profile_project_children_keep_isolated_worktree_routing(
     # Dispatcher switches to profile B but pins the shared board DB. Profile B
     # intentionally has no copy of profile A's first-class Project row.
     monkeypatch.setenv("OPENAMER_HOME", str(profile_b))
-    monkeypatch.setenv("HERMES_PROFILE", "worker")
+    monkeypatch.setenv("OPENAMER_PROFILE", "worker")
     monkeypatch.setenv("OPENAMER_KANBAN_TASK", parent_id)
     assert not (profile_b / "projects.db").exists()
 
@@ -1366,10 +1366,10 @@ def test_create_no_worker_task_stays_scratch(monkeypatch, worker_env):
 
 def test_create_stamps_session_id_from_env(monkeypatch, worker_env):
     """When the agent loop runs under ACP, the server propagates the
-    originating chat session id via HERMES_SESSION_ID. ``kanban_create``
+    originating chat session id via OPENAMER_SESSION_ID. ``kanban_create``
     reads it and stamps the new task so clients can render a per-session
     board (issue: ACP session linkage on kanban tasks)."""
-    monkeypatch.setenv("HERMES_SESSION_ID", "acp-sess-abc")
+    monkeypatch.setenv("OPENAMER_SESSION_ID", "acp-sess-abc")
     from tools import kanban_tools as kt
     from openamer_cli import kanban_db as kb
     out = kt._handle_create({
@@ -1392,7 +1392,7 @@ def test_create_session_id_arg_overrides_env(monkeypatch, worker_env):
     propagation. Edge case but exercised: a tool call could carry a
     different session id (e.g. cross-session linking) and the explicit
     arg should not be silently overwritten."""
-    monkeypatch.setenv("HERMES_SESSION_ID", "from-env")
+    monkeypatch.setenv("OPENAMER_SESSION_ID", "from-env")
     from tools import kanban_tools as kt
     from openamer_cli import kanban_db as kb
     out = kt._handle_create({
@@ -1415,7 +1415,7 @@ def test_create_session_id_absent_when_env_unset(monkeypatch, worker_env):
     """No env var, no arg → session_id stays NULL. Important for backwards
     compatibility: pre-ACP-propagation hosts and CLI-driven creates must
     not accidentally inherit a stale id."""
-    monkeypatch.delenv("HERMES_SESSION_ID", raising=False)
+    monkeypatch.delenv("OPENAMER_SESSION_ID", raising=False)
     from tools import kanban_tools as kt
     from openamer_cli import kanban_db as kb
     out = kt._handle_create({
@@ -1614,7 +1614,7 @@ def test_unblock_with_pending_parents_returns_todo(monkeypatch, tmp_path):
     home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
-    monkeypatch.setenv("HERMES_PROFILE", "orchestrator")
+    monkeypatch.setenv("OPENAMER_PROFILE", "orchestrator")
     from pathlib import Path as _Path
     monkeypatch.setattr(_Path, "home", lambda: tmp_path)
 
@@ -1908,7 +1908,7 @@ def test_worker_can_comment_on_foreign_task(worker_env):
     assert d.get("ok") is True, f"cross-task comment must succeed: {d}"
 
     # The comment lands on the foreign task, attributed to the worker's
-    # HERMES_PROFILE — never to a caller-controlled string.
+    # OPENAMER_PROFILE — never to a caller-controlled string.
     conn = kb.connect()
     try:
         comments = kb.list_comments(conn, other)
@@ -1970,13 +1970,13 @@ def test_worker_complete_rejects_stale_run_id(worker_env, monkeypatch):
     # creates the task moments before this assertion, so the grace
     # period (default 30s) would skip the liveness check. Zero it out
     # for this test — we WANT immediate reclamation here.
-    monkeypatch.setenv("HERMES_KANBAN_CRASH_GRACE_SECONDS", "0")
+    monkeypatch.setenv("OPENAMER_KANBAN_CRASH_GRACE_SECONDS", "0")
 
     conn = kb.connect()
     try:
         run1 = kb.latest_run(conn, worker_env)
         kb._set_worker_pid(conn, worker_env, 98765)
-        monkeypatch.setenv("HERMES_KANBAN_CRASH_GRACE_SECONDS", "0")
+        monkeypatch.setenv("OPENAMER_KANBAN_CRASH_GRACE_SECONDS", "0")
         monkeypatch.setattr(_kb, "_pid_alive", lambda pid: False)
         assert kb.detect_crashed_workers(conn) == [worker_env]
 
@@ -1987,7 +1987,7 @@ def test_worker_complete_rejects_stale_run_id(worker_env, monkeypatch):
         conn.close()
 
     from tools import kanban_tools as kt
-    monkeypatch.setenv("HERMES_KANBAN_RUN_ID", str(run1.id))
+    monkeypatch.setenv("OPENAMER_KANBAN_RUN_ID", str(run1.id))
     out = kt._handle_complete({"summary": "late stale completion"})
     d = json.loads(out)
     assert d.get("ok") is not True
@@ -2000,7 +2000,7 @@ def test_worker_complete_rejects_stale_run_id(worker_env, monkeypatch):
     finally:
         conn.close()
 
-    monkeypatch.setenv("HERMES_KANBAN_RUN_ID", str(run2.id))
+    monkeypatch.setenv("OPENAMER_KANBAN_RUN_ID", str(run2.id))
     out = kt._handle_complete({"summary": "current completion"})
     d = json.loads(out)
     assert d.get("ok") is True
@@ -2037,7 +2037,7 @@ def test_orchestrator_complete_any_task_allowed(monkeypatch, tmp_path):
 # Optional ``board`` parameter — per-call DB override
 # ---------------------------------------------------------------------------
 #
-# The dispatcher pins the active board via HERMES_KANBAN_BOARD env var,
+# The dispatcher pins the active board via OPENAMER_KANBAN_BOARD env var,
 # but a Telegram-side orchestrator handling multiple boards needs to be
 # able to route a single tool call to a specific board's DB without
 # restarting OpenAmer. These tests pin that ``board=<slug>`` argument
@@ -2057,12 +2057,12 @@ def multi_board_env(monkeypatch, tmp_path):
     home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
-    # Make sure neither HERMES_KANBAN_DB nor HERMES_KANBAN_BOARD pin a
+    # Make sure neither OPENAMER_KANBAN_DB nor OPENAMER_KANBAN_BOARD pin a
     # board — the test is specifically about the per-call override.
-    monkeypatch.delenv("HERMES_KANBAN_DB", raising=False)
-    monkeypatch.delenv("HERMES_KANBAN_BOARD", raising=False)
+    monkeypatch.delenv("OPENAMER_KANBAN_DB", raising=False)
+    monkeypatch.delenv("OPENAMER_KANBAN_BOARD", raising=False)
     monkeypatch.delenv("OPENAMER_KANBAN_TASK", raising=False)
-    monkeypatch.setenv("HERMES_PROFILE", "test-orchestrator")
+    monkeypatch.setenv("OPENAMER_PROFILE", "test-orchestrator")
     from pathlib import Path as _Path
     monkeypatch.setattr(_Path, "home", lambda: tmp_path)
 
@@ -2269,9 +2269,9 @@ def test_board_param_routes_heartbeat_to_alt_board(monkeypatch, tmp_path):
     home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
-    monkeypatch.setenv("HERMES_PROFILE", "alt-worker")
-    monkeypatch.delenv("HERMES_KANBAN_DB", raising=False)
-    monkeypatch.delenv("HERMES_KANBAN_BOARD", raising=False)
+    monkeypatch.setenv("OPENAMER_PROFILE", "alt-worker")
+    monkeypatch.delenv("OPENAMER_KANBAN_DB", raising=False)
+    monkeypatch.delenv("OPENAMER_KANBAN_BOARD", raising=False)
     from pathlib import Path as _Path
     monkeypatch.setattr(_Path, "home", lambda: tmp_path)
 
@@ -2384,8 +2384,8 @@ def test_board_param_in_all_schemas():
 # When a worker calls kanban_create from inside a session that has a
 # persistent delivery channel, the originating session should be
 # subscribed to the new task's completion/block events automatically.
-# - Gateway sessions: HERMES_SESSION_PLATFORM + HERMES_SESSION_CHAT_ID set.
-# - TUI sessions: HERMES_SESSION_KEY (or HERMES_SESSION_ID) set, with
+# - Gateway sessions: OPENAMER_SESSION_PLATFORM + OPENAMER_SESSION_CHAT_ID set.
+# - TUI sessions: OPENAMER_SESSION_KEY (or OPENAMER_SESSION_ID) set, with
 #   the platform/chat_id ContextVars intentionally empty.
 # - CLI / cron / test sessions: no delivery channel -> no subscription.
 # - Config gate kanban.auto_subscribe_on_create: false -> no subscription
@@ -2424,10 +2424,10 @@ def test_create_subscribes_gateway_session(monkeypatch, worker_env):
     to its own kanban_create result, and the response surfaces the
     ``subscribed`` flag so the orchestrator can react."""
     from tools import kanban_tools as kt
-    monkeypatch.setenv("HERMES_SESSION_PLATFORM", "telegram")
-    monkeypatch.setenv("HERMES_SESSION_CHAT_ID", "chat-42")
-    monkeypatch.setenv("HERMES_SESSION_THREAD_ID", "thread-7")
-    monkeypatch.setenv("HERMES_SESSION_USER_ID", "user-9")
+    monkeypatch.setenv("OPENAMER_SESSION_PLATFORM", "telegram")
+    monkeypatch.setenv("OPENAMER_SESSION_CHAT_ID", "chat-42")
+    monkeypatch.setenv("OPENAMER_SESSION_THREAD_ID", "thread-7")
+    monkeypatch.setenv("OPENAMER_SESSION_USER_ID", "user-9")
 
     out = kt._handle_create({
         "title": "auto-sub gateway",
@@ -2449,16 +2449,16 @@ def test_create_subscribes_gateway_session(monkeypatch, worker_env):
 
 def test_create_subscribes_tui_session_via_session_key(monkeypatch, worker_env):
     """TUI / desktop sessions don't have a platform/chat_id (single
-    local channel), but the parent process exports HERMES_SESSION_KEY.
+    local channel), but the parent process exports OPENAMER_SESSION_KEY.
     We should still auto-subscribe, with platform='tui' and
     chat_id=<key>."""
     from tools import kanban_tools as kt
-    monkeypatch.delenv("HERMES_SESSION_PLATFORM", raising=False)
-    monkeypatch.delenv("HERMES_SESSION_CHAT_ID", raising=False)
-    monkeypatch.delenv("HERMES_SESSION_THREAD_ID", raising=False)
-    monkeypatch.delenv("HERMES_SESSION_USER_ID", raising=False)
-    monkeypatch.setenv("HERMES_SESSION_KEY", "tui-session-abc")
-    monkeypatch.delenv("HERMES_SESSION_ID", raising=False)
+    monkeypatch.delenv("OPENAMER_SESSION_PLATFORM", raising=False)
+    monkeypatch.delenv("OPENAMER_SESSION_CHAT_ID", raising=False)
+    monkeypatch.delenv("OPENAMER_SESSION_THREAD_ID", raising=False)
+    monkeypatch.delenv("OPENAMER_SESSION_USER_ID", raising=False)
+    monkeypatch.setenv("OPENAMER_SESSION_KEY", "tui-session-abc")
+    monkeypatch.delenv("OPENAMER_SESSION_ID", raising=False)
 
     out = kt._handle_create({
         "title": "auto-sub tui",
@@ -2479,10 +2479,10 @@ def test_create_does_not_subscribe_in_cli_session(monkeypatch, worker_env):
     """CLI / cron / test sessions have no persistent delivery channel.
     _maybe_auto_subscribe returns False and no row is written."""
     from tools import kanban_tools as kt
-    monkeypatch.delenv("HERMES_SESSION_PLATFORM", raising=False)
-    monkeypatch.delenv("HERMES_SESSION_CHAT_ID", raising=False)
-    monkeypatch.delenv("HERMES_SESSION_KEY", raising=False)
-    monkeypatch.delenv("HERMES_SESSION_ID", raising=False)
+    monkeypatch.delenv("OPENAMER_SESSION_PLATFORM", raising=False)
+    monkeypatch.delenv("OPENAMER_SESSION_CHAT_ID", raising=False)
+    monkeypatch.delenv("OPENAMER_SESSION_KEY", raising=False)
+    monkeypatch.delenv("OPENAMER_SESSION_ID", raising=False)
 
     out = kt._handle_create({
         "title": "no sub cli",
@@ -2509,8 +2509,8 @@ def test_create_respects_auto_subscribe_on_create_false(monkeypatch, worker_env,
         "kanban:\n  auto_subscribe_on_create: false\n"
     )
     monkeypatch.setenv("OPENAMER_HOME", str(home))
-    monkeypatch.setenv("HERMES_SESSION_PLATFORM", "discord")
-    monkeypatch.setenv("HERMES_SESSION_CHAT_ID", "channel-1")
+    monkeypatch.setenv("OPENAMER_SESSION_PLATFORM", "discord")
+    monkeypatch.setenv("OPENAMER_SESSION_CHAT_ID", "channel-1")
 
     from tools import kanban_tools as kt
     out = kt._handle_create({
@@ -2529,10 +2529,10 @@ def test_create_partial_session_context_no_subscribe(monkeypatch, worker_env):
     Either both are set (gateway) or neither (TUI / CLI); partial is
     ambiguous and the safe default is to skip."""
     from tools import kanban_tools as kt
-    monkeypatch.setenv("HERMES_SESSION_PLATFORM", "slack")
-    monkeypatch.delenv("HERMES_SESSION_CHAT_ID", raising=False)
-    monkeypatch.delenv("HERMES_SESSION_KEY", raising=False)
-    monkeypatch.delenv("HERMES_SESSION_ID", raising=False)
+    monkeypatch.setenv("OPENAMER_SESSION_PLATFORM", "slack")
+    monkeypatch.delenv("OPENAMER_SESSION_CHAT_ID", raising=False)
+    monkeypatch.delenv("OPENAMER_SESSION_KEY", raising=False)
+    monkeypatch.delenv("OPENAMER_SESSION_ID", raising=False)
 
     out = kt._handle_create({
         "title": "no sub partial",
@@ -2549,8 +2549,8 @@ def test_maybe_auto_subscribe_swallows_add_notify_sub_failure(monkeypatch, worke
     kanban_create. The function returns False and the parent create
     still succeeds with subscribed=False."""
     from tools import kanban_tools as kt
-    monkeypatch.setenv("HERMES_SESSION_PLATFORM", "telegram")
-    monkeypatch.setenv("HERMES_SESSION_CHAT_ID", "chat-42")
+    monkeypatch.setenv("OPENAMER_SESSION_PLATFORM", "telegram")
+    monkeypatch.setenv("OPENAMER_SESSION_CHAT_ID", "chat-42")
 
     from openamer_cli import kanban_db as kb
 
@@ -2577,13 +2577,13 @@ def test_maybe_auto_subscribe_swallows_add_notify_sub_failure(monkeypatch, worke
 def allow_private_urls(monkeypatch):
     """Opt the SSRF guard into private/loopback targets for local fixtures.
 
-    Mirrors a user setting HERMES_ALLOW_PRIVATE_URLS on a private network.
+    Mirrors a user setting OPENAMER_ALLOW_PRIVATE_URLS on a private network.
     Resets the url_safety process-lifetime cache on both sides so the
     override neither leaks in nor out of the test.
     """
     from tools import url_safety
 
-    monkeypatch.setenv("HERMES_ALLOW_PRIVATE_URLS", "true")
+    monkeypatch.setenv("OPENAMER_ALLOW_PRIVATE_URLS", "true")
     url_safety._reset_allow_private_cache()
     yield
     url_safety._reset_allow_private_cache()
@@ -2824,12 +2824,12 @@ def test_attach_url_rejects_non_http_scheme(worker_env):
 def default_url_guard(monkeypatch):
     """Force the SSRF guard to its secure default for this test.
 
-    Clears HERMES_ALLOW_PRIVATE_URLS and resets url_safety's process-lifetime
+    Clears OPENAMER_ALLOW_PRIVATE_URLS and resets url_safety's process-lifetime
     cache on both sides so a prior test's opt-in can't leak in.
     """
     from tools import url_safety
 
-    monkeypatch.delenv("HERMES_ALLOW_PRIVATE_URLS", raising=False)
+    monkeypatch.delenv("OPENAMER_ALLOW_PRIVATE_URLS", raising=False)
     url_safety._reset_allow_private_cache()
     yield
     url_safety._reset_allow_private_cache()

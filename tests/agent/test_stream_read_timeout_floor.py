@@ -35,7 +35,7 @@ def _resolve_stale_timeout(base_url, est_tokens, stale_base=180.0):
 
 def _resolve_read_timeout(base_url, stale_timeout, base_timeout=1800.0):
     """Mirror of the httpx socket read-timeout builder (cloud branch)."""
-    read_timeout = float(os.getenv("HERMES_STREAM_READ_TIMEOUT", 120.0))
+    read_timeout = float(os.getenv("OPENAMER_STREAM_READ_TIMEOUT", 120.0))
     if read_timeout == 120.0 and base_url and is_local_endpoint(base_url):
         read_timeout = base_timeout
     elif (
@@ -60,7 +60,7 @@ class TestCloudReadTimeoutFloor:
     @pytest.fixture(autouse=True)
     def _clear_env(self):
         with pytest.MonkeyPatch.context() as mp:
-            mp.delenv("HERMES_STREAM_READ_TIMEOUT", raising=False)
+            mp.delenv("OPENAMER_STREAM_READ_TIMEOUT", raising=False)
             yield
 
     @pytest.mark.parametrize("base_url", CLOUD_URLS)
@@ -85,9 +85,9 @@ class TestCloudReadTimeoutFloor:
         assert _resolve_read_timeout(base_url, _resolve_stale_timeout(base_url, 150_000)) == 300.0
 
     def test_user_override_is_respected(self):
-        """An explicit HERMES_STREAM_READ_TIMEOUT is never overridden by the floor."""
+        """An explicit OPENAMER_STREAM_READ_TIMEOUT is never overridden by the floor."""
         with pytest.MonkeyPatch.context() as mp:
-            mp.setenv("HERMES_STREAM_READ_TIMEOUT", "90")
+            mp.setenv("OPENAMER_STREAM_READ_TIMEOUT", "90")
             stale = _resolve_stale_timeout("https://api.githubcopilot.com", est_tokens=0)
             assert _resolve_read_timeout("https://api.githubcopilot.com", stale) == 90.0
 
@@ -96,7 +96,7 @@ class TestLocalUnaffected:
     @pytest.fixture(autouse=True)
     def _clear_env(self):
         with pytest.MonkeyPatch.context() as mp:
-            mp.delenv("HERMES_STREAM_READ_TIMEOUT", raising=False)
+            mp.delenv("OPENAMER_STREAM_READ_TIMEOUT", raising=False)
             yield
 
     def test_local_still_raised_to_base(self):

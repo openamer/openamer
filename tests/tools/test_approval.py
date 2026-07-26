@@ -82,9 +82,9 @@ class TestSmartApproval:
         dangerous, pattern_key, _ = detect_dangerous_command(command)
         assert dangerous is True
 
-        monkeypatch.setenv("HERMES_SESSION_KEY", session_key)
-        monkeypatch.setenv("HERMES_EXEC_ASK", "1")
-        monkeypatch.delenv("HERMES_CRON_SESSION", raising=False)
+        monkeypatch.setenv("OPENAMER_SESSION_KEY", session_key)
+        monkeypatch.setenv("OPENAMER_EXEC_ASK", "1")
+        monkeypatch.delenv("OPENAMER_CRON_SESSION", raising=False)
         monkeypatch.setattr(
             approval_module,
             "_get_approval_config",
@@ -342,7 +342,7 @@ class TestSessionKeyContext:
     def test_context_session_key_overrides_process_env(self):
         token = approval_module.set_current_session_key("alice")
         try:
-            with mock_patch.dict("os.environ", {"HERMES_SESSION_KEY": "bob"}, clear=False):
+            with mock_patch.dict("os.environ", {"OPENAMER_SESSION_KEY": "bob"}, clear=False):
                 assert approval_module.get_current_session_key() == "alice"
         finally:
             approval_module.reset_current_session_key(token)
@@ -1204,7 +1204,7 @@ class TestSmartDeniedPrompt:
     def test_smart_deny_uses_locale_specific_once_deny_choices(
         self, monkeypatch, capsys, lang, once_key, deny_key, once_label, deny_label,
     ):
-        monkeypatch.setenv("HERMES_LANGUAGE", lang)
+        monkeypatch.setenv("OPENAMER_LANGUAGE", lang)
         from agent import i18n
         i18n.reset_language_cache()
         prompts = []
@@ -1233,7 +1233,7 @@ class TestSmartDeniedPrompt:
     def test_smart_deny_rejects_localized_session_or_always_shortcuts(
         self, monkeypatch, lang, forbidden,
     ):
-        monkeypatch.setenv("HERMES_LANGUAGE", lang)
+        monkeypatch.setenv("OPENAMER_LANGUAGE", lang)
         from agent import i18n
         i18n.reset_language_cache()
         try:
@@ -2259,18 +2259,18 @@ class TestApprovalTimeoutIsNotConsent:
 
         self._saved_env = {
             k: os.environ.get(k)
-            for k in ("HERMES_GATEWAY_SESSION", "HERMES_CRON_SESSION",
-                      "HERMES_YOLO_MODE",
-                      "HERMES_SESSION_KEY", "HERMES_INTERACTIVE")
+            for k in ("OPENAMER_GATEWAY_SESSION", "OPENAMER_CRON_SESSION",
+                      "OPENAMER_YOLO_MODE",
+                      "OPENAMER_SESSION_KEY", "OPENAMER_INTERACTIVE")
         }
-        os.environ.pop("HERMES_YOLO_MODE", None)
-        os.environ.pop("HERMES_INTERACTIVE", None)
-        # HERMES_CRON_SESSION takes priority over HERMES_GATEWAY_SESSION in
+        os.environ.pop("OPENAMER_YOLO_MODE", None)
+        os.environ.pop("OPENAMER_INTERACTIVE", None)
+        # OPENAMER_CRON_SESSION takes priority over OPENAMER_GATEWAY_SESSION in
         # _is_gateway_approval_context(); a leaked value from a parent cron
         # process would force the cron path and break these gateway tests.
-        os.environ.pop("HERMES_CRON_SESSION", None)
-        os.environ["HERMES_GATEWAY_SESSION"] = "1"
-        os.environ["HERMES_SESSION_KEY"] = self.SESSION_KEY
+        os.environ.pop("OPENAMER_CRON_SESSION", None)
+        os.environ["OPENAMER_GATEWAY_SESSION"] = "1"
+        os.environ["OPENAMER_SESSION_KEY"] = self.SESSION_KEY
 
     def teardown_method(self):
         from tools import approval as mod
@@ -2426,7 +2426,7 @@ class TestTirithImportErrorFailOpenPolicy:
         with _patch("builtins.__import__", side_effect=self._make_failing_import(real_import)):
             with _patch("openamer_cli.config.load_config", return_value=cfg):
                 with _patch("tools.approval.detect_dangerous_command", return_value=(False, None, None)):
-                    with mock_patch.dict("os.environ", {"HERMES_INTERACTIVE": "1"}, clear=False):
+                    with mock_patch.dict("os.environ", {"OPENAMER_INTERACTIVE": "1"}, clear=False):
                         result = check_all_command_guards("echo hello", "local")
 
         assert result.get("approved") is True
@@ -2451,7 +2451,7 @@ class TestTirithImportErrorFailOpenPolicy:
         with _patch("builtins.__import__", side_effect=self._make_failing_import(real_import)):
             with _patch("openamer_cli.config.load_config", return_value=cfg):
                 with _patch("tools.approval.detect_dangerous_command", return_value=(False, None, None)):
-                    with mock_patch.dict("os.environ", {"HERMES_INTERACTIVE": "1"}, clear=False):
+                    with mock_patch.dict("os.environ", {"OPENAMER_INTERACTIVE": "1"}, clear=False):
                         result = check_all_command_guards(
                             "echo hello",
                             "local",
@@ -2482,7 +2482,7 @@ class TestTirithImportErrorFailOpenPolicy:
         with _patch("builtins.__import__", side_effect=self._make_failing_import(real_import)):
             with _patch("openamer_cli.config.load_config", return_value=cfg):
                 with _patch("tools.approval.detect_dangerous_command", return_value=(False, None, None)):
-                    with mock_patch.dict("os.environ", {"HERMES_INTERACTIVE": "1"}, clear=False):
+                    with mock_patch.dict("os.environ", {"OPENAMER_INTERACTIVE": "1"}, clear=False):
                         result = check_all_command_guards("echo hello", "local")
 
         assert result.get("approved") is True

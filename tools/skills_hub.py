@@ -3782,8 +3782,8 @@ def check_for_skill_updates(
 # OpenAmer centralized index source
 # ---------------------------------------------------------------------------
 
-HERMES_INDEX_URL = "https://openamer-agent.nousresearch.com/docs/api/skills-index.json"
-HERMES_INDEX_TTL = 6 * 3600  # 6 hours
+OPENAMER_INDEX_URL = "https://openamer-agent.nousresearch.com/docs/api/skills-index.json"
+OPENAMER_INDEX_TTL = 6 * 3600  # 6 hours
 
 
 def _openamer_index_cache_file() -> Path:
@@ -3794,7 +3794,7 @@ def _load_openamer_index() -> Optional[dict]:
     """Fetch the centralized skills index, with local cache.
 
     The index is a JSON file hosted on the docs site, rebuilt daily by CI.
-    We cache it locally for HERMES_INDEX_TTL seconds to avoid repeated
+    We cache it locally for OPENAMER_INDEX_TTL seconds to avoid repeated
     downloads within a session.
     """
     # Check local cache
@@ -3802,7 +3802,7 @@ def _load_openamer_index() -> Optional[dict]:
     if openamer_index_cache_file.exists():
         try:
             age = time.time() - openamer_index_cache_file.stat().st_mtime
-            if age < HERMES_INDEX_TTL:
+            if age < OPENAMER_INDEX_TTL:
                 return json.loads(openamer_index_cache_file.read_text(encoding="utf-8"))
         except (OSError, json.JSONDecodeError):
             pass
@@ -3824,7 +3824,7 @@ def _load_openamer_index() -> Optional[dict]:
     for accept_encoding in ("gzip, deflate", "identity"):
         try:
             resp = httpx.get(
-                HERMES_INDEX_URL,
+                OPENAMER_INDEX_URL,
                 timeout=15,
                 follow_redirects=True,
                 headers={"Accept-Encoding": accept_encoding},

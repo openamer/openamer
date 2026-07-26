@@ -44,11 +44,11 @@ _mcp_discovery_enabled = False
 def _install_sidecar_publisher() -> None:
     """Mirror every dispatcher emit to the dashboard sidebar via WS.
 
-    Activated by `HERMES_TUI_SIDECAR_URL`, set by the dashboard's
+    Activated by `OPENAMER_TUI_SIDECAR_URL`, set by the dashboard's
     ``/api/pty`` endpoint when a chat tab passes a ``channel`` query param.
     Best-effort: connect failure or runtime drop falls back to stdio-only.
     """
-    url = os.environ.get("HERMES_TUI_SIDECAR_URL")
+    url = os.environ.get("OPENAMER_TUI_SIDECAR_URL")
 
     if not url:
         return
@@ -64,7 +64,7 @@ def _install_sidecar_publisher() -> None:
 # falling back to ``os._exit(0)`` so a wedged worker mid-flush can't
 # strand the process.  1s covers the gateway's own shutdown work
 # (thread-pool drain + session finalize) on every machine we've
-# tested; override via ``HERMES_TUI_GATEWAY_SHUTDOWN_GRACE_S`` if a
+# tested; override via ``OPENAMER_TUI_GATEWAY_SHUTDOWN_GRACE_S`` if a
 # slower environment needs more headroom (e.g. encrypted disks
 # flushing checkpoints) and accept that a longer grace also means a
 # longer wait when shutdown actually deadlocks.
@@ -72,7 +72,7 @@ _DEFAULT_SHUTDOWN_GRACE_S = 1.0
 
 
 def _shutdown_grace_seconds() -> float:
-    raw = (os.environ.get("HERMES_TUI_GATEWAY_SHUTDOWN_GRACE_S") or "").strip()
+    raw = (os.environ.get("OPENAMER_TUI_GATEWAY_SHUTDOWN_GRACE_S") or "").strip()
     if not raw:
         return _DEFAULT_SHUTDOWN_GRACE_S
     try:
@@ -96,7 +96,7 @@ def _log_signal(signum: int, frame) -> None:
     pool — a thread holding ``_stdout_lock`` mid-flush would block the
     interpreter shutdown indefinitely.  We now log the stack, give the
     process the configured shutdown grace
-    (``HERMES_TUI_GATEWAY_SHUTDOWN_GRACE_S``, default
+    (``OPENAMER_TUI_GATEWAY_SHUTDOWN_GRACE_S``, default
     ``_DEFAULT_SHUTDOWN_GRACE_S``) to drain naturally on a background
     thread, and fall back to ``os._exit(0)`` so a wedged write/flush
     can never strand the process.

@@ -300,7 +300,7 @@
     "id": "discord-synextco-openamer-hud",
     "source": "discord",
     "author": "@synextco",
-    "url": "https://github.com/teknium1/nous-discord-archive/blob/main/archives/community-projects-showcase/1489107955327570081-HERMES-TUI-Companion.txt",
+    "url": "https://github.com/teknium1/nous-discord-archive/blob/main/archives/community-projects-showcase/1489107955327570081-OPENAMER-TUI-Companion.txt",
     "date": "",
     "category": "meta",
     "headline": "Built a TUI dashboard that watches my agent think",
@@ -766,7 +766,7 @@
     "date": "",
     "category": "creative",
     "headline": "Tortured a repo with OpenAmer to build a chess blunder finder",
-    "quote": "the real purpose of blunder-lens was to see how much i can torture a repo with openamer and figure out what openamer can or can't do... and honestly HERMES CAN DO A LOT!",
+    "quote": "the real purpose of blunder-lens was to see how much i can torture a repo with openamer and figure out what openamer can or can't do... and honestly OPENAMER CAN DO A LOT!",
     "size": "sm"
   },
   {
@@ -1557,7 +1557,7 @@
     "date": "2026-05-05",
     "category": "dev-workflow",
     "headline": "Kanban multi-agent feature is game-changing",
-    "quote": "WHAT IS THE NEW KANBAN FEATURE BUILT INTO HERMES? (IT'S GAME CHANGING) — image post showing OpenAmer' new built-in Kanban board where a parent agent posts cards and child subagents pull them, work in parallel, and report back, turning the agent into a multi-agent project manager.",
+    "quote": "WHAT IS THE NEW KANBAN FEATURE BUILT INTO OPENAMER? (IT'S GAME CHANGING) — image post showing OpenAmer' new built-in Kanban board where a parent agent posts cards and child subagents pull them, work in parallel, and report back, turning the agent into a multi-agent project manager.",
     "size": "md",
     "id": "reddit-itsdodobitch-kanban-feature"
   },

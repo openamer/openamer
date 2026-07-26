@@ -550,11 +550,11 @@ def test_run_slash_missing_required_arg_friendly_error(kanban_home):
 def test_run_slash_board_override_restores_prior_env(kanban_home, monkeypatch):
     kb.create_board("alpha")
     kb.create_board("beta")
-    monkeypatch.setenv("HERMES_KANBAN_BOARD", "beta")
+    monkeypatch.setenv("OPENAMER_KANBAN_BOARD", "beta")
 
     kc.run_slash("--board alpha list")
 
-    assert os.environ.get("HERMES_KANBAN_BOARD") == "beta"
+    assert os.environ.get("OPENAMER_KANBAN_BOARD") == "beta"
 
 
 def test_run_slash_board_override_does_not_change_boards_show_current(kanban_home):

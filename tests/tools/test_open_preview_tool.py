@@ -16,11 +16,11 @@ def _reset_emitter():
 
 
 def test_gated_on_desktop(monkeypatch):
-    """Hidden unless HERMES_DESKTOP is set (mirrors read_terminal/close_terminal)."""
-    monkeypatch.delenv("HERMES_DESKTOP", raising=False)
+    """Hidden unless OPENAMER_DESKTOP is set (mirrors read_terminal/close_terminal)."""
+    monkeypatch.delenv("OPENAMER_DESKTOP", raising=False)
     assert op.check_open_preview_requirements() is False
 
-    monkeypatch.setenv("HERMES_DESKTOP", "1")
+    monkeypatch.setenv("OPENAMER_DESKTOP", "1")
     assert op.check_open_preview_requirements() is True
 
 

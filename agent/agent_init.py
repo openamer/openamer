@@ -115,9 +115,9 @@ def _provider_default_routes(provider: str) -> set[str]:
     """Return known exact default routes for a canonical provider id."""
     routes: set[str] = set()
     try:
-        from openamer_cli.providers import HERMES_OVERLAYS, get_provider
+        from openamer_cli.providers import OPENAMER_OVERLAYS, get_provider
 
-        overlay = HERMES_OVERLAYS.get(provider)
+        overlay = OPENAMER_OVERLAYS.get(provider)
         provider_def = get_provider(provider)
         for value in (
             getattr(overlay, "base_url_override", ""),
@@ -877,7 +877,7 @@ def init_agent(
     # Credits tracking (dev-only, L0 usage-aware-credits) — updated from
     # x-nous-credits-* response headers after each API call.  Session-start
     # remaining is latched the first time a header is ever seen so we can
-    # report cumulative micros spent.  Surfaced behind HERMES_DEV_CREDITS.
+    # report cumulative micros spent.  Surfaced behind OPENAMER_DEV_CREDITS.
     agent._credits_state = None
     agent._credits_session_start_micros = None
     # Threshold-notice latch (L4): active sticky-notice keys + the warn90 crossing gate.
@@ -1461,7 +1461,7 @@ def init_agent(
 
         set_current_session_id(agent.session_id)
     except Exception:
-        os.environ["HERMES_SESSION_ID"] = agent.session_id
+        os.environ["OPENAMER_SESSION_ID"] = agent.session_id
 
     # Session logs go into ~/.openamer/sessions/ alongside gateway sessions
     openamer_home = get_openamer_home()

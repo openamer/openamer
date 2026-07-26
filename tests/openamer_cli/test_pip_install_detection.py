@@ -23,7 +23,7 @@ def test_git_install_detected_when_git_dir_exists(tmp_path):
 
 
 def test_managed_install_takes_precedence(tmp_path):
-    """When HERMES_MANAGED is set, that takes precedence over git detection."""
+    """When OPENAMER_MANAGED is set, that takes precedence over git detection."""
     (tmp_path / ".git").mkdir()
     with patch("openamer_cli.config.get_managed_system", return_value="NixOS"), \
          patch("openamer_cli.config.get_openamer_home", return_value=tmp_path):
@@ -198,7 +198,7 @@ def test_recommended_update_command_nix():
 
 def test_nix_store_path_detected_as_nix(tmp_path, monkeypatch):
     """A code path under /nix/store/ (nix run / nix profile install) is detected
-    as 'nix' even without HERMES_MANAGED or a .install_method stamp."""
+    as 'nix' even without OPENAMER_MANAGED or a .install_method stamp."""
     # detect_install_method checks whether the resolved root is a descendant
     # of _NIX_STORE (Path("/nix/store")). We can't create files under the real
     # /nix/store, so patch the constant to point at a temp dir and create the

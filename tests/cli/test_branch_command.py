@@ -172,18 +172,18 @@ class TestBranchCommandCLI:
         from gateway.session_context import _UNSET, _VAR_MAP, get_session_env
 
         old_session_id = cli_instance.session_id
-        os.environ["HERMES_SESSION_ID"] = old_session_id
-        _VAR_MAP["HERMES_SESSION_ID"].set(old_session_id)
+        os.environ["OPENAMER_SESSION_ID"] = old_session_id
+        _VAR_MAP["OPENAMER_SESSION_ID"].set(old_session_id)
 
         try:
             OpenAmerCLI._handle_branch_command(cli_instance, "/branch")
 
             assert cli_instance.session_id != old_session_id
-            assert os.environ["HERMES_SESSION_ID"] == cli_instance.session_id
-            assert get_session_env("HERMES_SESSION_ID") == cli_instance.session_id
+            assert os.environ["OPENAMER_SESSION_ID"] == cli_instance.session_id
+            assert get_session_env("OPENAMER_SESSION_ID") == cli_instance.session_id
         finally:
-            os.environ.pop("HERMES_SESSION_ID", None)
-            _VAR_MAP["HERMES_SESSION_ID"].set(_UNSET)
+            os.environ.pop("OPENAMER_SESSION_ID", None)
+            _VAR_MAP["OPENAMER_SESSION_ID"].set(_UNSET)
 
     def test_branch_fires_on_session_switch_hook(self, cli_instance, session_db):
         """The /branch command must notify memory providers of the rotation.

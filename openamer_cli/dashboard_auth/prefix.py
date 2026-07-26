@@ -6,7 +6,7 @@ prefix (e.g. ``mission-control.tilos.com/openamer/*`` -> dashboard on
 reconstruct prefixed URLs (Location: headers, OAuth redirect_uri,
 cookie Path attributes, SPA asset URLs).
 
-This module is also the home of the ``HERMES_DASHBOARD_PUBLIC_URL`` /
+This module is also the home of the ``OPENAMER_DASHBOARD_PUBLIC_URL`` /
 ``dashboard.public_url`` resolution — when the operator declares a
 complete public URL (scheme + host + optional path prefix), we use
 that directly for the OAuth ``redirect_uri`` and skip the
@@ -52,7 +52,7 @@ def _warn_if_malformed(source: str, raw: str) -> None:
     A non-empty value that normalises to ``""`` is almost always a
     missing scheme (``openamer.example.com`` instead of
     ``https://openamer.example.com``) — the single most common cause of
-    "I set HERMES_DASHBOARD_PUBLIC_URL but the OAuth callback is still
+    "I set OPENAMER_DASHBOARD_PUBLIC_URL but the OAuth callback is still
     http://". Without this warning the value is silently discarded and
     the dashboard falls back to reconstructing the redirect URI from
     request headers, which behind a reverse proxy can yield the wrong
@@ -139,7 +139,7 @@ def prefix_from_request(request) -> str:
 
 
 # ---------------------------------------------------------------------------
-# HERMES_DASHBOARD_PUBLIC_URL / dashboard.public_url
+# OPENAMER_DASHBOARD_PUBLIC_URL / dashboard.public_url
 # ---------------------------------------------------------------------------
 
 
@@ -208,7 +208,7 @@ def resolve_public_url() -> str:
 
     Precedence (mirrors ``dashboard.oauth.client_id``):
 
-      1. ``HERMES_DASHBOARD_PUBLIC_URL`` env var (when non-empty after
+      1. ``OPENAMER_DASHBOARD_PUBLIC_URL`` env var (when non-empty after
          strip — empty values are treated as unset so a provisioned-but-
          not-populated Fly secret can't shadow a valid config.yaml entry).
       2. ``dashboard.public_url`` in ``config.yaml``.
@@ -220,11 +220,11 @@ def resolve_public_url() -> str:
     malformed config entry falls through to ``""``. This means a typo
     in one surface doesn't prevent the other from working.
     """
-    env_raw = os.environ.get("HERMES_DASHBOARD_PUBLIC_URL", "")
+    env_raw = os.environ.get("OPENAMER_DASHBOARD_PUBLIC_URL", "")
     env_clean = _normalise_public_url(env_raw)
     if env_clean:
         return env_clean
-    _warn_if_malformed("HERMES_DASHBOARD_PUBLIC_URL env var", env_raw)
+    _warn_if_malformed("OPENAMER_DASHBOARD_PUBLIC_URL env var", env_raw)
     cfg_raw = str(_load_dashboard_section().get("public_url", ""))
     cfg_clean = _normalise_public_url(cfg_raw)
     if not cfg_clean:

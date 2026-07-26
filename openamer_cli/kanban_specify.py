@@ -42,9 +42,9 @@ from openamer_cli import kanban_db as kb
 
 from utils import env_int
 
-HERMES_KANBAN_SPECIFY_MAX_TOKENS = max(
+OPENAMER_KANBAN_SPECIFY_MAX_TOKENS = max(
     1500,
-    env_int("HERMES_KANBAN_SPECIFY_MAX_TOKENS", 6000),
+    env_int("OPENAMER_KANBAN_SPECIFY_MAX_TOKENS", 6000),
 )
 
 logger = logging.getLogger(__name__)
@@ -133,7 +133,7 @@ def _profile_author() -> str:
     """Mirror of ``openamer_cli.kanban._profile_author``. Kept local to
     avoid a circular import when kanban.py imports this module."""
     return (
-        os.environ.get("HERMES_PROFILE")
+        os.environ.get("OPENAMER_PROFILE")
         or os.environ.get("USER")
         or "specifier"
     )
@@ -184,7 +184,7 @@ def specify_task(
                 {"role": "user", "content": user_msg},
             ],
             temperature=0.3,
-            max_tokens=HERMES_KANBAN_SPECIFY_MAX_TOKENS,
+            max_tokens=OPENAMER_KANBAN_SPECIFY_MAX_TOKENS,
             timeout=timeout or 120,
         )
     except Exception as exc:

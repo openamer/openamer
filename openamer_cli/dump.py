@@ -58,7 +58,7 @@ def _get_git_commit(project_root: Path) -> str:
     The published Docker image excludes ``.git`` from the build context, so
     that lookup always fails — we fall back to the baked-in build SHA written
     to ``<project_root>/.openamer_build_sha`` by the Dockerfile's
-    ``HERMES_GIT_SHA`` build-arg (see ``openamer_cli/build_info.py``).
+    ``OPENAMER_GIT_SHA`` build-arg (see ``openamer_cli/build_info.py``).
     The output format is identical regardless of source.
     """
     try:

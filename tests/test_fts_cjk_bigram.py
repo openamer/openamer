@@ -45,7 +45,7 @@ def cjk_so(tmp_path_factory):
 
 @pytest.fixture()
 def db(cjk_so, tmp_path, monkeypatch):
-    monkeypatch.setenv("HERMES_FTS5_CJK_SO", str(cjk_so))
+    monkeypatch.setenv("OPENAMER_FTS5_CJK_SO", str(cjk_so))
     d = SessionDB(db_path=tmp_path / "state.db")
     assert d._fts_cjk_loaded, "tokenizer must load on the writer connection"
     assert d._fts_cjk_available, "fresh DB must be born with the cjk index"
@@ -121,8 +121,8 @@ def test_rewound_rows_hidden_from_cjk_search(db):
 
 
 def test_config_toggle_disables_cjk(cjk_so, tmp_path, monkeypatch):
-    monkeypatch.setenv("HERMES_FTS5_CJK_SO", str(cjk_so))
-    monkeypatch.setenv("HERMES_CJK_FTS", "0")
+    monkeypatch.setenv("OPENAMER_FTS5_CJK_SO", str(cjk_so))
+    monkeypatch.setenv("OPENAMER_CJK_FTS", "0")
     d = SessionDB(db_path=tmp_path / "state.db")
     try:
         assert not d._fts_cjk_loaded
@@ -138,7 +138,7 @@ def test_config_toggle_disables_cjk(cjk_so, tmp_path, monkeypatch):
 
 
 def test_no_extension_no_cjk_objects(tmp_path, monkeypatch):
-    monkeypatch.setenv("HERMES_FTS5_CJK_SO", str(tmp_path / "nonexistent.so"))
+    monkeypatch.setenv("OPENAMER_FTS5_CJK_SO", str(tmp_path / "nonexistent.so"))
     d = SessionDB(db_path=tmp_path / "state.db")
     try:
         assert not d._fts_cjk_loaded
@@ -155,7 +155,7 @@ def test_tokenizer_loss_self_heals_and_optimize_rebuilds(cjk_so, tmp_path, monke
     """Full stale lifecycle: capable open → tokenizer-less open (drops
     triggers, breadcrumbs) → rows written in the gap → capable open again
     (index NOT served) → optimize-storage rebuilds → search complete."""
-    monkeypatch.setenv("HERMES_FTS5_CJK_SO", str(cjk_so))
+    monkeypatch.setenv("OPENAMER_FTS5_CJK_SO", str(cjk_so))
     db_path = tmp_path / "state.db"
 
     d1 = SessionDB(db_path=db_path)
@@ -165,7 +165,7 @@ def test_tokenizer_loss_self_heals_and_optimize_rebuilds(cjk_so, tmp_path, monke
     d1.close()
 
     # Tokenizer-less open: triggers dropped, breadcrumb set, writes fine.
-    monkeypatch.setenv("HERMES_FTS5_CJK_SO", str(tmp_path / "gone.so"))
+    monkeypatch.setenv("OPENAMER_FTS5_CJK_SO", str(tmp_path / "gone.so"))
     d2 = SessionDB(db_path=db_path)
     assert not d2._fts_cjk_loaded
     assert not d2._fts_cjk_available
@@ -182,7 +182,7 @@ def test_tokenizer_loss_self_heals_and_optimize_rebuilds(cjk_so, tmp_path, monke
     d2.close()
 
     # Capable open again: stale index must NOT be served.
-    monkeypatch.setenv("HERMES_FTS5_CJK_SO", str(cjk_so))
+    monkeypatch.setenv("OPENAMER_FTS5_CJK_SO", str(cjk_so))
     d3 = SessionDB(db_path=db_path)
     assert d3._fts_cjk_loaded
     assert not d3._fts_cjk_available, "stale index must not serve reads"
@@ -205,7 +205,7 @@ def test_tokenizer_loss_self_heals_and_optimize_rebuilds(cjk_so, tmp_path, monke
 def test_existing_v23_db_gains_cjk_via_optimize(cjk_so, tmp_path, monkeypatch):
     """A v23 DB created BEFORE the extension existed: next capable open
     creates the index with backfill markers; optimize-storage backfills."""
-    monkeypatch.setenv("HERMES_FTS5_CJK_SO", str(tmp_path / "absent.so"))
+    monkeypatch.setenv("OPENAMER_FTS5_CJK_SO", str(tmp_path / "absent.so"))
     db_path = tmp_path / "state.db"
     d1 = SessionDB(db_path=db_path)
     d1.create_session(session_id="s1", source="cli", model="m")
@@ -213,7 +213,7 @@ def test_existing_v23_db_gains_cjk_via_optimize(cjk_so, tmp_path, monkeypatch):
         d1.append_message("s1", role="user", content=f"기존 메시지 {i}")
     d1.close()
 
-    monkeypatch.setenv("HERMES_FTS5_CJK_SO", str(cjk_so))
+    monkeypatch.setenv("OPENAMER_FTS5_CJK_SO", str(cjk_so))
     d2 = SessionDB(db_path=db_path)
     assert d2._fts_cjk_loaded
     # Backfill pending — index not served yet, old rows not indexed.
@@ -245,7 +245,7 @@ def test_legacy_v22_optimize_lands_on_cjk(cjk_so, tmp_path, monkeypatch):
 
     from openamer_state import SCHEMA_SQL
 
-    monkeypatch.setenv("HERMES_FTS5_CJK_SO", str(cjk_so))
+    monkeypatch.setenv("OPENAMER_FTS5_CJK_SO", str(cjk_so))
     db_path = tmp_path / "state.db"
 
     # Hand-build a genuine legacy inline DB (single-column messages_fts).

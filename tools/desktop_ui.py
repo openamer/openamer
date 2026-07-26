@@ -5,7 +5,7 @@ The preview pane, pane focus, and friends live in the desktop renderer, so
 desktop-gated tools reach them through an emitter the desktop ``tui_gateway``
 installs at session start via :func:`set_emitter`. Everywhere else it stays
 ``None`` and the tools report "desktop only". Routing keys off
-``HERMES_UI_SESSION_ID`` so the event lands on the window that owns the turn
+``OPENAMER_UI_SESSION_ID`` so the event lands on the window that owns the turn
 (``_emit``/``write_json`` is ``_stdout_lock``-guarded, so emitting from the
 tool's thread is safe).
 """
@@ -36,5 +36,5 @@ def emit(event: str, payload: dict) -> bool:
     fn = _emit
     if fn is None:
         return False
-    fn(get_session_env("HERMES_UI_SESSION_ID", ""), event, payload)
+    fn(get_session_env("OPENAMER_UI_SESSION_ID", ""), event, payload)
     return True

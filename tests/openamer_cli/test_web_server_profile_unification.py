@@ -670,7 +670,7 @@ class TestProfileScopedChatPty:
         assert env is not None
         assert env["OPENAMER_HOME"] == str(isolated_profiles["worker_beta"])
         # Scoped chat must NOT attach to the dashboard's in-memory gateway.
-        assert "HERMES_TUI_GATEWAY_URL" not in env
+        assert "OPENAMER_TUI_GATEWAY_URL" not in env
 
     def test_chat_argv_unscoped_keeps_legacy_env(self, isolated_profiles, monkeypatch):
         import openamer_cli.web_server as web_server

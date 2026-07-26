@@ -32,9 +32,9 @@ def _make_running_kanban_task(monkeypatch, tmp_path):
     workspace = tmp_path / "parent-workspace"
     workspace.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
-    monkeypatch.setenv("HERMES_PROFILE", "parent-worker")
-    monkeypatch.setenv("HERMES_KANBAN_WORKSPACE", str(workspace))
-    monkeypatch.setenv("HERMES_KANBAN_ATTACHMENTS_ROOT", str(attachments_root))
+    monkeypatch.setenv("OPENAMER_PROFILE", "parent-worker")
+    monkeypatch.setenv("OPENAMER_KANBAN_WORKSPACE", str(workspace))
+    monkeypatch.setenv("OPENAMER_KANBAN_ATTACHMENTS_ROOT", str(attachments_root))
 
     from openamer_cli import kanban_db as kb
 
@@ -56,7 +56,7 @@ def _make_running_kanban_task(monkeypatch, tmp_path):
         conn.close()
 
     monkeypatch.setenv("OPENAMER_KANBAN_TASK", tid)
-    monkeypatch.setenv("HERMES_KANBAN_RUN_ID", str(run_id))
+    monkeypatch.setenv("OPENAMER_KANBAN_RUN_ID", str(run_id))
     return kb, tid, workspace, attachments_root
 
 
@@ -67,7 +67,7 @@ def test_delegated_child_context_suppresses_env_gated_kanban_tools(monkeypatch, 
     the child is only a subagent, not the run owner.
     """
     monkeypatch.setenv("OPENAMER_KANBAN_TASK", "t_parent")
-    monkeypatch.setenv("HERMES_KANBAN_RUN_ID", "123")
+    monkeypatch.setenv("OPENAMER_KANBAN_RUN_ID", "123")
     home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
@@ -131,9 +131,9 @@ def test_build_child_agent_strips_kanban_toolset_even_when_parent_is_worker(monk
 
 def test_delegate_child_terminal_env_scrubs_parent_kanban_keys(monkeypatch):
     monkeypatch.setenv("OPENAMER_KANBAN_TASK", "t_parent")
-    monkeypatch.setenv("HERMES_KANBAN_RUN_ID", "123")
-    monkeypatch.setenv("HERMES_KANBAN_WORKSPACE", "/tmp/parent-workspace")
-    monkeypatch.setenv("HERMES_KANBAN_CLAIM_LOCK", "lock")
+    monkeypatch.setenv("OPENAMER_KANBAN_RUN_ID", "123")
+    monkeypatch.setenv("OPENAMER_KANBAN_WORKSPACE", "/tmp/parent-workspace")
+    monkeypatch.setenv("OPENAMER_KANBAN_CLAIM_LOCK", "lock")
 
     from agent.delegation_context import delegated_child_context
     from tools.environments.local import _sanitize_subprocess_env
@@ -141,25 +141,25 @@ def test_delegate_child_terminal_env_scrubs_parent_kanban_keys(monkeypatch):
     with delegated_child_context():
         env = _sanitize_subprocess_env({
             "OPENAMER_KANBAN_TASK": "t_parent",
-            "HERMES_KANBAN_RUN_ID": "123",
-            "HERMES_KANBAN_WORKSPACE": "/tmp/parent-workspace",
-            "HERMES_KANBAN_CLAIM_LOCK": "lock",
+            "OPENAMER_KANBAN_RUN_ID": "123",
+            "OPENAMER_KANBAN_WORKSPACE": "/tmp/parent-workspace",
+            "OPENAMER_KANBAN_CLAIM_LOCK": "lock",
             "PATH": "/usr/bin",
         })
 
     assert env["PATH"] == "/usr/bin"
     assert "OPENAMER_KANBAN_TASK" not in env
-    assert "HERMES_KANBAN_RUN_ID" not in env
-    assert "HERMES_KANBAN_WORKSPACE" not in env
-    assert "HERMES_KANBAN_CLAIM_LOCK" not in env
-    assert env["HERMES_DELEGATED_CHILD_CONTEXT"] == "1"
+    assert "OPENAMER_KANBAN_RUN_ID" not in env
+    assert "OPENAMER_KANBAN_WORKSPACE" not in env
+    assert "OPENAMER_KANBAN_CLAIM_LOCK" not in env
+    assert env["OPENAMER_DELEGATED_CHILD_CONTEXT"] == "1"
 
 
 def test_delegate_child_foreground_terminal_env_scrubs_parent_kanban_keys(monkeypatch):
     monkeypatch.setenv("OPENAMER_KANBAN_TASK", "t_parent")
-    monkeypatch.setenv("HERMES_KANBAN_RUN_ID", "123")
-    monkeypatch.setenv("HERMES_KANBAN_WORKSPACE", "/tmp/parent-workspace")
-    monkeypatch.setenv("HERMES_KANBAN_CLAIM_LOCK", "lock")
+    monkeypatch.setenv("OPENAMER_KANBAN_RUN_ID", "123")
+    monkeypatch.setenv("OPENAMER_KANBAN_WORKSPACE", "/tmp/parent-workspace")
+    monkeypatch.setenv("OPENAMER_KANBAN_CLAIM_LOCK", "lock")
 
     from agent.delegation_context import delegated_child_context
     from tools.environments.local import _make_run_env
@@ -168,31 +168,31 @@ def test_delegate_child_foreground_terminal_env_scrubs_parent_kanban_keys(monkey
         env = _make_run_env({"PATH": "/usr/bin"})
 
     assert "OPENAMER_KANBAN_TASK" not in env
-    assert "HERMES_KANBAN_RUN_ID" not in env
-    assert "HERMES_KANBAN_WORKSPACE" not in env
-    assert "HERMES_KANBAN_CLAIM_LOCK" not in env
-    assert env["HERMES_DELEGATED_CHILD_CONTEXT"] == "1"
+    assert "OPENAMER_KANBAN_RUN_ID" not in env
+    assert "OPENAMER_KANBAN_WORKSPACE" not in env
+    assert "OPENAMER_KANBAN_CLAIM_LOCK" not in env
+    assert env["OPENAMER_DELEGATED_CHILD_CONTEXT"] == "1"
 
 
 def test_delegate_child_process_marker_scrubs_foreground_terminal_kanban_keys(monkeypatch):
     """A delegated child subprocess has only the env marker, not the ContextVar."""
-    monkeypatch.setenv("HERMES_DELEGATED_CHILD_CONTEXT", "1")
+    monkeypatch.setenv("OPENAMER_DELEGATED_CHILD_CONTEXT", "1")
     monkeypatch.setenv("OPENAMER_KANBAN_TASK", "t_parent")
-    monkeypatch.setenv("HERMES_KANBAN_RUN_ID", "123")
-    monkeypatch.setenv("HERMES_KANBAN_DB", "/tmp/parent-kanban.db")
-    monkeypatch.setenv("HERMES_KANBAN_WORKSPACE", "/tmp/parent-workspace")
-    monkeypatch.setenv("HERMES_KANBAN_CLAIM_LOCK", "lock")
+    monkeypatch.setenv("OPENAMER_KANBAN_RUN_ID", "123")
+    monkeypatch.setenv("OPENAMER_KANBAN_DB", "/tmp/parent-kanban.db")
+    monkeypatch.setenv("OPENAMER_KANBAN_WORKSPACE", "/tmp/parent-workspace")
+    monkeypatch.setenv("OPENAMER_KANBAN_CLAIM_LOCK", "lock")
 
     from tools.environments.local import _make_run_env
 
     env = _make_run_env({"PATH": "/usr/bin"})
 
     assert "OPENAMER_KANBAN_TASK" not in env
-    assert "HERMES_KANBAN_RUN_ID" not in env
-    assert "HERMES_KANBAN_DB" not in env
-    assert "HERMES_KANBAN_WORKSPACE" not in env
-    assert "HERMES_KANBAN_CLAIM_LOCK" not in env
-    assert env["HERMES_DELEGATED_CHILD_CONTEXT"] == "1"
+    assert "OPENAMER_KANBAN_RUN_ID" not in env
+    assert "OPENAMER_KANBAN_DB" not in env
+    assert "OPENAMER_KANBAN_WORKSPACE" not in env
+    assert "OPENAMER_KANBAN_CLAIM_LOCK" not in env
+    assert env["OPENAMER_DELEGATED_CHILD_CONTEXT"] == "1"
 
 
 def test_delegate_child_execute_code_env_preserves_process_marker(monkeypatch, tmp_path):
@@ -206,11 +206,11 @@ def test_delegate_child_execute_code_env_preserves_process_marker(monkeypatch, t
     env = _scrub_child_env(
         {
             "OPENAMER_HOME": str(home),
-            "HERMES_DELEGATED_CHILD_CONTEXT": "1",
+            "OPENAMER_DELEGATED_CHILD_CONTEXT": "1",
             "OPENAMER_KANBAN_TASK": "t_parent",
-            "HERMES_KANBAN_RUN_ID": "123",
-            "HERMES_KANBAN_DB": str(home / "kanban.db"),
-            "HERMES_KANBAN_WORKSPACE": str(tmp_path / "parent-workspace"),
+            "OPENAMER_KANBAN_RUN_ID": "123",
+            "OPENAMER_KANBAN_DB": str(home / "kanban.db"),
+            "OPENAMER_KANBAN_WORKSPACE": str(tmp_path / "parent-workspace"),
             "PATH": "/usr/bin",
         },
         is_passthrough=lambda _: False,
@@ -218,12 +218,12 @@ def test_delegate_child_execute_code_env_preserves_process_marker(monkeypatch, t
     )
 
     assert env["OPENAMER_HOME"] == str(home)
-    assert env["HERMES_DELEGATED_CHILD_CONTEXT"] == "1"
+    assert env["OPENAMER_DELEGATED_CHILD_CONTEXT"] == "1"
     assert env["PATH"] == "/usr/bin"
     assert "OPENAMER_KANBAN_TASK" not in env
-    assert "HERMES_KANBAN_RUN_ID" not in env
-    assert "HERMES_KANBAN_DB" not in env
-    assert "HERMES_KANBAN_WORKSPACE" not in env
+    assert "OPENAMER_KANBAN_RUN_ID" not in env
+    assert "OPENAMER_KANBAN_DB" not in env
+    assert "OPENAMER_KANBAN_WORKSPACE" not in env
 
 
 def test_delegate_child_execute_code_env_bridges_contextvar_and_scrubs_kanban(
@@ -234,18 +234,18 @@ def test_delegate_child_execute_code_env_bridges_contextvar_and_scrubs_kanban(
 
     Regression coverage for the vulnerable path: delegate_task marks child
     execution with a ContextVar, while execute_code used to scrub plain
-    ``os.environ`` and therefore never wrote HERMES_DELEGATED_CHILD_CONTEXT into
+    ``os.environ`` and therefore never wrote OPENAMER_DELEGATED_CHILD_CONTEXT into
     the sandbox env.
     """
     home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
     monkeypatch.setenv("OPENAMER_KANBAN_TASK", "t_parent")
-    monkeypatch.setenv("HERMES_KANBAN_RUN_ID", "123")
-    monkeypatch.setenv("HERMES_KANBAN_DB", str(home / "kanban.db"))
-    monkeypatch.setenv("HERMES_KANBAN_WORKSPACE", str(tmp_path / "parent-workspace"))
-    monkeypatch.setenv("HERMES_KANBAN_CLAIM_LOCK", "lock")
-    monkeypatch.delenv("HERMES_DELEGATED_CHILD_CONTEXT", raising=False)
+    monkeypatch.setenv("OPENAMER_KANBAN_RUN_ID", "123")
+    monkeypatch.setenv("OPENAMER_KANBAN_DB", str(home / "kanban.db"))
+    monkeypatch.setenv("OPENAMER_KANBAN_WORKSPACE", str(tmp_path / "parent-workspace"))
+    monkeypatch.setenv("OPENAMER_KANBAN_CLAIM_LOCK", "lock")
+    monkeypatch.delenv("OPENAMER_DELEGATED_CHILD_CONTEXT", raising=False)
 
     from agent.delegation_context import delegated_child_context
     from tools.code_execution_tool import _scrub_child_env
@@ -253,18 +253,18 @@ def test_delegate_child_execute_code_env_bridges_contextvar_and_scrubs_kanban(
     with delegated_child_context():
         env = _scrub_child_env(
             dict(os.environ),
-            is_passthrough=lambda k: k.startswith("HERMES_KANBAN_"),
+            is_passthrough=lambda k: k.startswith("OPENAMER_KANBAN_"),
             is_windows=False,
         )
 
-    assert os.environ.get("HERMES_DELEGATED_CHILD_CONTEXT") is None
+    assert os.environ.get("OPENAMER_DELEGATED_CHILD_CONTEXT") is None
     assert env["OPENAMER_HOME"] == str(home)
-    assert env["HERMES_DELEGATED_CHILD_CONTEXT"] == "1"
+    assert env["OPENAMER_DELEGATED_CHILD_CONTEXT"] == "1"
     assert "OPENAMER_KANBAN_TASK" not in env
-    assert "HERMES_KANBAN_RUN_ID" not in env
-    assert "HERMES_KANBAN_DB" not in env
-    assert "HERMES_KANBAN_WORKSPACE" not in env
-    assert "HERMES_KANBAN_CLAIM_LOCK" not in env
+    assert "OPENAMER_KANBAN_RUN_ID" not in env
+    assert "OPENAMER_KANBAN_DB" not in env
+    assert "OPENAMER_KANBAN_WORKSPACE" not in env
+    assert "OPENAMER_KANBAN_CLAIM_LOCK" not in env
 
 
 @pytest.mark.skipif(sys.platform == "win32", reason="execute_code UDS sandbox is POSIX-only")
@@ -287,9 +287,9 @@ def test_delegate_child_execute_code_cannot_complete_parent_by_importing_kanban_
         "from agent.delegation_context import is_delegated_child_process_context",
         "from openamer_cli import kanban_db as kb",
         "observed = {",
-        "    'marker': os.environ.get('HERMES_DELEGATED_CHILD_CONTEXT'),",
+        "    'marker': os.environ.get('OPENAMER_DELEGATED_CHILD_CONTEXT'),",
         "    'is_child': is_delegated_child_process_context(),",
-        "    'kanban_keys': sorted(k for k in os.environ if k.startswith('HERMES_KANBAN_')),",
+        "    'kanban_keys': sorted(k for k in os.environ if k.startswith('OPENAMER_KANBAN_')),",
         "}",
         "conn = sqlite3.connect(Path(os.environ['OPENAMER_HOME']) / 'kanban.db')",
         "conn.row_factory = sqlite3.Row",
@@ -338,7 +338,7 @@ def test_delegate_child_execute_code_cannot_complete_parent_by_importing_kanban_
 
 def test_delegated_child_subprocess_env_preserves_inherit_semantics_until_needed(monkeypatch):
     monkeypatch.setenv("OPENAMER_KANBAN_TASK", "t_parent")
-    monkeypatch.setenv("HERMES_KANBAN_DB", "/tmp/parent-kanban.db")
+    monkeypatch.setenv("OPENAMER_KANBAN_DB", "/tmp/parent-kanban.db")
 
     from agent.delegation_context import (
         delegated_child_context,
@@ -351,9 +351,9 @@ def test_delegated_child_subprocess_env_preserves_inherit_semantics_until_needed
         env = delegated_child_subprocess_env()
 
     assert env is not None
-    assert env["HERMES_DELEGATED_CHILD_CONTEXT"] == "1"
+    assert env["OPENAMER_DELEGATED_CHILD_CONTEXT"] == "1"
     assert "OPENAMER_KANBAN_TASK" not in env
-    assert "HERMES_KANBAN_DB" not in env
+    assert "OPENAMER_KANBAN_DB" not in env
 
 
 def test_delegate_child_local_execute_cannot_complete_parent_via_kanban_cli(

@@ -50,7 +50,7 @@ def _install_example_plugin(_isolate_openamer_home):
     isolated ``OPENAMER_HOME``.
 
     The user-plugin source is preferred over a transient
-    ``HERMES_BUNDLED_PLUGINS`` override because the bundled dir is
+    ``OPENAMER_BUNDLED_PLUGINS`` override because the bundled dir is
     resolved per-call (other tests in the suite implicitly rely on the
     real bundled plugins — kanban, openamer-achievements, model providers
     — being available, and globally swapping that root would yank them
@@ -1290,7 +1290,7 @@ class TestWebServerEndpoints:
     def test_put_honcho_updates_legacy_dot_form_host_block(self, monkeypatch, tmp_path):
         # The legacy dot-form block reads resolve is updated in place, not shadowed.
         monkeypatch.setenv("HOME", str(tmp_path))
-        monkeypatch.setenv("HERMES_HONCHO_HOST", "openamer_work")
+        monkeypatch.setenv("OPENAMER_HONCHO_HOST", "openamer_work")
 
         path = self._seed_local_honcho({"hosts": {"openamer.work": {"workspace": "w", "peerName": "eri"}}})
 
@@ -1340,9 +1340,9 @@ class TestWebServerEndpoints:
         # A ?profile= save must land in that profile's config, not the serving
         # process's — same contract as the skills/toolsets endpoints.
         monkeypatch.setenv("HOME", str(tmp_path))
-        # The suite pins HERMES_HONCHO_HOST=openamer; this test exercises
+        # The suite pins OPENAMER_HONCHO_HOST=openamer; this test exercises
         # profile-driven host resolution, so drop the override explicitly.
-        monkeypatch.delenv("HERMES_HONCHO_HOST", raising=False)
+        monkeypatch.delenv("OPENAMER_HONCHO_HOST", raising=False)
         from openamer_constants import get_openamer_home
         from openamer_cli.profiles import get_profile_dir
 
@@ -4101,7 +4101,7 @@ class TestWebServerEndpoints:
         assert seen_encodings == {"index": "utf-8", "css": "utf-8"}
 
     def test_headless_serve_disables_spa_even_with_a_dist(self, monkeypatch, tmp_path):
-        """`openamer serve` (HERMES_SERVE_HEADLESS) must NOT serve the SPA even
+        """`openamer serve` (OPENAMER_SERVE_HEADLESS) must NOT serve the SPA even
         when a built dist is present — only the API/WS surface is reachable."""
         from fastapi import FastAPI
         from starlette.testclient import TestClient
@@ -4112,7 +4112,7 @@ class TestWebServerEndpoints:
         (dist / "index.html").write_text("<html><body>UI</body></html>", encoding="utf-8")
 
         monkeypatch.setattr(ws, "WEB_DIST", dist)
-        monkeypatch.setenv("HERMES_SERVE_HEADLESS", "1")
+        monkeypatch.setenv("OPENAMER_SERVE_HEADLESS", "1")
         app_ = FastAPI()
         ws.mount_spa(app_)
 
@@ -7782,7 +7782,7 @@ class TestGatewayBusyReadout:
             "platforms": {},
             "active_agents": 0,
         })
-        monkeypatch.setenv("HERMES_RESTART_DRAIN_TIMEOUT", "90")
+        monkeypatch.setenv("OPENAMER_RESTART_DRAIN_TIMEOUT", "90")
 
         data = self.client.get("/api/status").json()
         assert "restart_drain_timeout" in data
@@ -9127,9 +9127,9 @@ class TestPtyWebSocket:
 
         _argv, _cwd, env = self.ws_module._resolve_chat_argv()
 
-        assert env["HERMES_TUI_DASHBOARD"] == "1"
-        assert env["HERMES_TUI_INLINE"] == "1"
-        assert env["HERMES_TUI_DISABLE_MOUSE"] == "1"
+        assert env["OPENAMER_TUI_DASHBOARD"] == "1"
+        assert env["OPENAMER_TUI_INLINE"] == "1"
+        assert env["OPENAMER_TUI_DISABLE_MOUSE"] == "1"
 
     def test_resolve_chat_argv_backfills_colorterm_truecolor(self, monkeypatch):
         """Headless servers (cloud/systemd) have no COLORTERM, which made
@@ -9168,9 +9168,9 @@ class TestPtyWebSocket:
         """Dashboard chat gives the Node TUI the same Python env as CLI launches."""
         import openamer_cli.main as main_mod
 
-        monkeypatch.delenv("HERMES_PYTHON_SRC_ROOT", raising=False)
-        monkeypatch.delenv("HERMES_PYTHON", raising=False)
-        monkeypatch.delenv("HERMES_CWD", raising=False)
+        monkeypatch.delenv("OPENAMER_PYTHON_SRC_ROOT", raising=False)
+        monkeypatch.delenv("OPENAMER_PYTHON", raising=False)
+        monkeypatch.delenv("OPENAMER_CWD", raising=False)
         monkeypatch.setattr(
             main_mod,
             "_make_tui_argv",
@@ -9180,17 +9180,17 @@ class TestPtyWebSocket:
         _argv, _cwd, env = self.ws_module._resolve_chat_argv()
 
         assert env is not None
-        assert env["HERMES_PYTHON_SRC_ROOT"] == str(main_mod.PROJECT_ROOT)
-        assert env["HERMES_PYTHON"] == sys.executable
-        assert env["HERMES_CWD"] == os.getcwd()
+        assert env["OPENAMER_PYTHON_SRC_ROOT"] == str(main_mod.PROJECT_ROOT)
+        assert env["OPENAMER_PYTHON"] == sys.executable
+        assert env["OPENAMER_CWD"] == os.getcwd()
 
     def test_resolve_chat_argv_replaces_invalid_tui_python_environment(self, monkeypatch):
         """Dashboard chat does not preserve unusable inherited TUI Python env."""
         import openamer_cli.main as main_mod
 
-        monkeypatch.setenv("HERMES_PYTHON_SRC_ROOT", "/definitely/missing/openamer-src")
-        monkeypatch.setenv("HERMES_PYTHON", "/definitely/missing/python")
-        monkeypatch.setenv("HERMES_CWD", "/definitely/missing/cwd")
+        monkeypatch.setenv("OPENAMER_PYTHON_SRC_ROOT", "/definitely/missing/openamer-src")
+        monkeypatch.setenv("OPENAMER_PYTHON", "/definitely/missing/python")
+        monkeypatch.setenv("OPENAMER_CWD", "/definitely/missing/cwd")
         monkeypatch.setattr(
             main_mod,
             "_make_tui_argv",
@@ -9200,9 +9200,9 @@ class TestPtyWebSocket:
         _argv, _cwd, env = self.ws_module._resolve_chat_argv()
 
         assert env is not None
-        assert env["HERMES_PYTHON_SRC_ROOT"] == str(main_mod.PROJECT_ROOT)
-        assert env["HERMES_PYTHON"] == sys.executable
-        assert env["HERMES_CWD"] == os.getcwd()
+        assert env["OPENAMER_PYTHON_SRC_ROOT"] == str(main_mod.PROJECT_ROOT)
+        assert env["OPENAMER_PYTHON"] == sys.executable
+        assert env["OPENAMER_CWD"] == os.getcwd()
 
     def test_resolve_chat_argv_keeps_relative_python_under_tui_cwd(
         self, monkeypatch, tmp_path
@@ -9216,8 +9216,8 @@ class TestPtyWebSocket:
         # copy2, not os.link: tmp_path may sit on a different filesystem than
         # the venv (tmpfs /tmp vs disk home) where hard links raise EXDEV.
         shutil.copy2(sys.executable, python_path)
-        monkeypatch.setenv("HERMES_CWD", str(tmp_path))
-        monkeypatch.setenv("HERMES_PYTHON", str(relative_python))
+        monkeypatch.setenv("OPENAMER_CWD", str(tmp_path))
+        monkeypatch.setenv("OPENAMER_PYTHON", str(relative_python))
         monkeypatch.setattr(
             main_mod,
             "_make_tui_argv",
@@ -9227,7 +9227,7 @@ class TestPtyWebSocket:
         _argv, _cwd, env = self.ws_module._resolve_chat_argv()
 
         assert env is not None
-        assert env["HERMES_PYTHON"] == str(relative_python)
+        assert env["OPENAMER_PYTHON"] == str(relative_python)
 
     def test_tui_python_command_uses_child_path(self, tmp_path):
         """Bare Python commands are resolved from the TUI child's PATH."""
@@ -9241,20 +9241,20 @@ class TestPtyWebSocket:
         # the venv (tmpfs /tmp vs disk home) where hard links raise EXDEV.
         shutil.copy2(sys.executable, executable)
         env = {
-            "HERMES_CWD": str(tmp_path),
-            "HERMES_PYTHON": command,
+            "OPENAMER_CWD": str(tmp_path),
+            "OPENAMER_PYTHON": command,
             "PATH": str(bin_dir),
         }
 
         main_mod._apply_tui_python_env(env)
 
-        assert env["HERMES_PYTHON"] == command
+        assert env["OPENAMER_PYTHON"] == command
 
     def test_resolve_chat_argv_falls_back_when_getcwd_is_missing(self, monkeypatch, tmp_path):
         """Dashboard chat still starts if the service cwd was deleted."""
         import openamer_cli.main as main_mod
 
-        monkeypatch.delenv("HERMES_CWD", raising=False)
+        monkeypatch.delenv("OPENAMER_CWD", raising=False)
         monkeypatch.setenv("PWD", str(tmp_path))
         monkeypatch.setattr(main_mod.os, "getcwd", lambda: (_ for _ in ()).throw(FileNotFoundError()))
         monkeypatch.setattr(
@@ -9266,7 +9266,7 @@ class TestPtyWebSocket:
         _argv, _cwd, env = self.ws_module._resolve_chat_argv()
 
         assert env is not None
-        assert env["HERMES_CWD"] == str(tmp_path)
+        assert env["OPENAMER_CWD"] == str(tmp_path)
 
     def test_resolve_chat_argv_applies_terminal_backend_config(
         self, monkeypatch, _isolate_openamer_home
@@ -9571,7 +9571,7 @@ class TestPtyWebSocket:
 
     def test_channel_param_propagates_sidecar_url(self, monkeypatch):
         """When /api/pty is opened with ?channel=, the PTY child gets a
-        HERMES_TUI_SIDECAR_URL env var pointing back at /api/pub on the
+        OPENAMER_TUI_SIDECAR_URL env var pointing back at /api/pub on the
         same channel — which is how tool events reach the dashboard sidebar."""
         captured: dict = {}
 
@@ -9686,7 +9686,7 @@ def test_resolve_chat_argv_injects_gateway_ws_url(monkeypatch):
     _argv, _cwd, env = ws._resolve_chat_argv()
 
     assert env is not None
-    gateway_url = env.get("HERMES_TUI_GATEWAY_URL", "")
+    gateway_url = env.get("OPENAMER_TUI_GATEWAY_URL", "")
     assert gateway_url.startswith("ws://127.0.0.1:9119/api/ws?")
     assert "token=" in gateway_url
 
@@ -9947,10 +9947,10 @@ class TestDesktopCronTicker:
 
         called = threading.Event()
         monkeypatch.setattr(sched, "tick", lambda *a, **k: called.set())
-        monkeypatch.setenv("HERMES_DESKTOP", "1")
+        monkeypatch.setenv("OPENAMER_DESKTOP", "1")
 
         with self._client():
-            assert called.wait(3.0), "expected cron tick under HERMES_DESKTOP=1"
+            assert called.wait(3.0), "expected cron tick under OPENAMER_DESKTOP=1"
 
     def test_ticker_skipped_without_desktop(self, monkeypatch, _isolate_openamer_home):
         import threading
@@ -9958,7 +9958,7 @@ class TestDesktopCronTicker:
 
         called = threading.Event()
         monkeypatch.setattr(sched, "tick", lambda *a, **k: called.set())
-        monkeypatch.delenv("HERMES_DESKTOP", raising=False)
+        monkeypatch.delenv("OPENAMER_DESKTOP", raising=False)
 
         with self._client():
             assert not called.wait(0.5), "ticker must not run outside the desktop app"
@@ -9983,7 +9983,7 @@ class TestServeIndexMissingIndex:
                 "<html><head></head><body>SPA</body></html>", encoding="utf-8"
             )
         monkeypatch.setattr(ws, "WEB_DIST", dist)
-        monkeypatch.delenv("HERMES_SERVE_HEADLESS", raising=False)
+        monkeypatch.delenv("OPENAMER_SERVE_HEADLESS", raising=False)
         spa_app = FastAPI()
         ws.mount_spa(spa_app)
         return TestClient(spa_app), dist

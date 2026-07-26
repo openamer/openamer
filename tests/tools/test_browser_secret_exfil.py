@@ -7,8 +7,8 @@ import pytest
 
 @pytest.fixture(autouse=True)
 def _ensure_redaction_enabled(monkeypatch):
-    """Ensure redaction is active regardless of host HERMES_REDACT_SECRETS."""
-    monkeypatch.delenv("HERMES_REDACT_SECRETS", raising=False)
+    """Ensure redaction is active regardless of host OPENAMER_REDACT_SECRETS."""
+    monkeypatch.delenv("OPENAMER_REDACT_SECRETS", raising=False)
     monkeypatch.setattr("agent.redact._REDACT_ENABLED", True)
 
 

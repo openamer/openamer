@@ -53,9 +53,9 @@ def test_config_migration_runs_on_boot(
 def test_config_migration_opt_out_env_var_respected(
     built_image: str, container_name: str,
 ) -> None:
-    """HERMES_SKIP_CONFIG_MIGRATION=1 must skip the migration."""
+    """OPENAMER_SKIP_CONFIG_MIGRATION=1 must skip the migration."""
     start_container(
-        built_image, container_name, "HERMES_SKIP_CONFIG_MIGRATION=1",
+        built_image, container_name, "OPENAMER_SKIP_CONFIG_MIGRATION=1",
     )
 
     # config.yaml should still be seeded (seeding is separate from migration)

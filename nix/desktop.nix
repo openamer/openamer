@@ -3,7 +3,7 @@
 # `openamerAgent` is the fully-built `.#default` package — it ships the
 # `openamer` binary with the venv, runtime PATH, bundled skills/plugins, etc.
 # already wired up.  We point the desktop at it via the existing
-# `HERMES_DESKTOP_HERMES` override env var, so the desktop's resolver
+# `OPENAMER_DESKTOP_OVERRIDE` override env var, so the desktop's resolver
 # uses our fully wrapped binary at step 4 ("existing OpenAmer CLI").
 # No reimplementation of the agent resolution in this wrapper.
 {
@@ -166,14 +166,14 @@ stdenv.mkDerivation {
       --replace-fail "process.resourcesPath" "'$out/share/openamer-desktop'"
 
     # Wrap the nixpkgs electron binary to launch our app.  Set
-    # HERMES_DESKTOP_HERMES to the absolute path of the nix-built `openamer`
+    # OPENAMER_DESKTOP_OVERRIDE to the absolute path of the nix-built `openamer`
     # binary so the desktop's resolver step 4 ("existing OpenAmer CLI on
     # PATH") uses our fully wrapped binary — venv with all deps,
     # bundled skills/plugins, runtime PATH (ripgrep/git/ffmpeg/etc).
     # No reimplementation of the agent resolver in the wrapper.
     makeWrapper ${lib.getExe electron} $out/bin/openamer-desktop \
       --add-flags "$out/share/openamer-desktop" \
-      --set HERMES_DESKTOP_HERMES "${lib.getExe openamerAgent}" \
+      --set OPENAMER_DESKTOP_OVERRIDE "${lib.getExe openamerAgent}" \
       --set ELECTRON_IS_DEV 0
 
     runHook postInstall

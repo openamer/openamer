@@ -35,9 +35,9 @@ logger = logging.getLogger(__name__)
 try:
     import openamer_cli as _openamer_cli
 
-    _HERMES_VERSION = str(_openamer_cli.__version__)
+    _OPENAMER_VERSION = str(_openamer_cli.__version__)
 except Exception:
-    _HERMES_VERSION = "0.0.0"
+    _OPENAMER_VERSION = "0.0.0"
 
 DEFAULT_GEMINI_BASE_URL = "https://generativelanguage.googleapis.com/v1beta"
 
@@ -108,7 +108,7 @@ def probe_gemini_tier(
                 json=payload,
                 headers={
                     "Content-Type": "application/json",
-                    "X-Goog-Api-Client": f"openamer-agent/{_HERMES_VERSION}",
+                    "X-Goog-Api-Client": f"openamer-agent/{_OPENAMER_VERSION}",
                 },
             )
     except Exception as exc:
@@ -918,8 +918,8 @@ class GeminiNativeClient:
             # Include OpenAmer client context following Gemini's partner
             # integration guidance.
             # See https://ai.google.dev/gemini-api/docs/partner-integration
-            "User-Agent": f"openamer-agent/{_HERMES_VERSION} (gemini-native)",
-            "X-Goog-Api-Client": f"openamer-agent/{_HERMES_VERSION}",
+            "User-Agent": f"openamer-agent/{_OPENAMER_VERSION} (gemini-native)",
+            "X-Goog-Api-Client": f"openamer-agent/{_OPENAMER_VERSION}",
         }
         headers.update(self._default_headers)
         return headers

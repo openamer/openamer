@@ -80,7 +80,7 @@ def _stored_token_scopes() -> list[str]:
 
 
 def _gws_binary() -> str | None:
-    override = os.getenv("HERMES_GWS_BIN")
+    override = os.getenv("OPENAMER_GWS_BIN")
     if override:
         return override
     return shutil.which("gws")

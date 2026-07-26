@@ -2937,7 +2937,7 @@ def test_dump_api_request_debug_redacts_request_and_error_secrets(monkeypatch, t
     import json
 
     _patch_agent_bootstrap(monkeypatch)
-    monkeypatch.setenv("HERMES_DUMP_REQUEST_STDOUT", "1")
+    monkeypatch.setenv("OPENAMER_DUMP_REQUEST_STDOUT", "1")
     agent = run_agent.AIAgent(
         model="gpt-4o",
         base_url="http://127.0.0.1:9208/v1",

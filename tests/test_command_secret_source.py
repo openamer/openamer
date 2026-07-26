@@ -7,7 +7,7 @@ OPENAMER_HOME with a config.yaml routing ``secrets.provider: command`` through
 
 Security invariants under test (ported from the desktop TS provider):
 
-* the requested key travels ONLY via the ``HERMES_SECRET_KEY`` env var —
+* the requested key travels ONLY via the ``OPENAMER_SECRET_KEY`` env var —
   never interpolated into the shell string (hostile key names are inert);
 * cross-key misroute guard: a single env-shaped line for a DIFFERENT key
   never leaks as the wanted key's value;
@@ -132,7 +132,7 @@ def test_dotenv_blob_helper_resolves_multiple_keys(tmp_path):
     # Specific keys are selectable from the blob.
     assert get_command_secret(command=str(helper), key="CMDTEST_API_KEY") == "sk-from-blob"
     assert get_command_secret(command=str(helper), key="CMDTEST_TOKEN") == "tok-quoted"
-    # And the list path (HERMES_SECRET_KEY="") sees the full map.
+    # And the list path (OPENAMER_SECRET_KEY="") sees the full map.
     listed = list_command_secrets(command=str(helper))
     assert set(listed) == {"CMDTEST_API_KEY", "CMDTEST_TOKEN"}
 
@@ -149,9 +149,9 @@ def test_cross_key_misroute_real_helper_resolves_none(tmp_path):
 
 
 def test_helper_receives_key_via_env_var(tmp_path):
-    # The helper echoes HERMES_SECRET_KEY back — proving the key arrives
+    # The helper echoes OPENAMER_SECRET_KEY back — proving the key arrives
     # as env DATA through the real /bin/sh path.
-    helper = _write_helper(tmp_path, 'printf \'%s\' "$HERMES_SECRET_KEY"')
+    helper = _write_helper(tmp_path, 'printf \'%s\' "$OPENAMER_SECRET_KEY"')
     assert (
         get_command_secret(command=str(helper), key="CMDTEST_API_KEY")
         == "CMDTEST_API_KEY"
@@ -160,9 +160,9 @@ def test_helper_receives_key_via_env_var(tmp_path):
 
 def test_hostile_key_name_is_inert_data(tmp_path):
     """A command-injection-looking key name must never execute: it travels
-    only inside HERMES_SECRET_KEY, never interpolated into the shell string."""
+    only inside OPENAMER_SECRET_KEY, never interpolated into the shell string."""
     canary = tmp_path / "pwned.canary"
-    helper = _write_helper(tmp_path, 'printf \'%s\' "$HERMES_SECRET_KEY"')
+    helper = _write_helper(tmp_path, 'printf \'%s\' "$OPENAMER_SECRET_KEY"')
     hostile_key = f'"; touch {canary}; echo "'
     value = get_command_secret(command=str(helper), key=hostile_key)
     # No shell execution of the key:

@@ -64,10 +64,10 @@ export function initWheelAccel(xtermJs = false, base = 1): WheelAccelState {
   return { burstCount: 0, base, dir: 0, frac: 0, mult: base, pendingFlip: false, time: 0, wheelMode: false, xtermJs }
 }
 
-/** HERMES_TUI_SCROLL_SPEED (or CLAUDE_CODE_SCROLL_SPEED for portability).
+/** OPENAMER_TUI_SCROLL_SPEED (or CLAUDE_CODE_SCROLL_SPEED for portability).
  *  Default 1, clamped (0, 20]. */
 export function readScrollSpeedBase(): number {
-  const n = parseFloat(process.env.HERMES_TUI_SCROLL_SPEED ?? process.env.CLAUDE_CODE_SCROLL_SPEED ?? '')
+  const n = parseFloat(process.env.OPENAMER_TUI_SCROLL_SPEED ?? process.env.CLAUDE_CODE_SCROLL_SPEED ?? '')
 
   return Number.isFinite(n) && n > 0 ? Math.min(n, 20) : 1
 }

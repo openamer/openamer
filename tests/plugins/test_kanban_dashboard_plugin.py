@@ -886,9 +886,9 @@ def test_board_auto_initializes_missing_db(tmp_path, monkeypatch):
     home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
-    monkeypatch.delenv("HERMES_KANBAN_BOARD", raising=False)
-    monkeypatch.delenv("HERMES_KANBAN_DB", raising=False)
-    monkeypatch.delenv("HERMES_KANBAN_HOME", raising=False)
+    monkeypatch.delenv("OPENAMER_KANBAN_BOARD", raising=False)
+    monkeypatch.delenv("OPENAMER_KANBAN_DB", raising=False)
+    monkeypatch.delenv("OPENAMER_KANBAN_HOME", raising=False)
     monkeypatch.setattr(Path, "home", lambda: tmp_path)
     # Deliberately DO NOT call kb.init_db().
 

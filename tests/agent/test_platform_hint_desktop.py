@@ -95,7 +95,7 @@ class TestDesktopHintEntry:
     def test_desktop_hint_does_not_inherit_tui_cron_local_only_block(self):
         """The desktop chat surface's cron delivery semantics differ from
         the standalone TUI — desktop runs its own cron ticker in-process
-        (openamer_cli/web_server.py under HERMES_DESKTOP=1). We deliberately
+        (openamer_cli/web_server.py under OPENAMER_DESKTOP=1). We deliberately
         do NOT parrot the tui "LOCAL-ONLY … no live-delivery channel" block
         into the desktop hint, since partially-correct cron guidance is
         exactly the bug class we are fixing. Cron guidance for desktop is
@@ -112,7 +112,7 @@ class TestDesktopHintBlockRemoved:
     what surface the agent is on. It must be gone."""
 
     def test_build_environment_hints_has_no_runtime_surface_line(self, monkeypatch):
-        monkeypatch.setenv("HERMES_DESKTOP", "1")
+        monkeypatch.setenv("OPENAMER_DESKTOP", "1")
         monkeypatch.delenv("OPENAMER_DESKTOP_TERMINAL", raising=False)
         from agent.prompt_builder import _clear_backend_probe_cache
         _clear_backend_probe_cache()
@@ -123,7 +123,7 @@ class TestDesktopHintBlockRemoved:
     def test_build_environment_hints_has_no_embedded_pane_clarifier(self, monkeypatch):
         """The ⌥-drag / ⌘+L embedded-pane clarifier moves to the platform-hint
         resolution site (system_prompt.py), not build_environment_hints()."""
-        monkeypatch.setenv("HERMES_DESKTOP", "1")
+        monkeypatch.setenv("OPENAMER_DESKTOP", "1")
         monkeypatch.setenv("OPENAMER_DESKTOP_TERMINAL", "1")
         from agent.prompt_builder import _clear_backend_probe_cache
         _clear_backend_probe_cache()
@@ -139,7 +139,7 @@ class TestPlatformHintResolutionInStablePrompt:
     that used to live in ``build_environment_hints()`` is gone."""
 
     def test_desktop_platform_yields_desktop_hint_no_tui_framing(self, monkeypatch):
-        monkeypatch.setenv("HERMES_DESKTOP", "1")
+        monkeypatch.setenv("OPENAMER_DESKTOP", "1")
         monkeypatch.delenv("OPENAMER_DESKTOP_TERMINAL", raising=False)
         stable = _stable_prompt(_make_agent(platform="desktop"))
         assert PLATFORM_HINTS["desktop"] in stable
@@ -148,14 +148,14 @@ class TestPlatformHintResolutionInStablePrompt:
         assert "embedded terminal pane" not in stable
 
     def test_standalone_tui_yields_plain_tui_hint_no_clarifier(self, monkeypatch):
-        monkeypatch.delenv("HERMES_DESKTOP", raising=False)
+        monkeypatch.delenv("OPENAMER_DESKTOP", raising=False)
         monkeypatch.delenv("OPENAMER_DESKTOP_TERMINAL", raising=False)
         stable = _stable_prompt(_make_agent(platform="tui"))
         assert PLATFORM_HINTS["tui"] in stable
         assert "embedded terminal pane" not in stable
 
     def test_embedded_tui_yields_tui_hint_with_clarifier(self, monkeypatch):
-        monkeypatch.setenv("HERMES_DESKTOP", "1")
+        monkeypatch.setenv("OPENAMER_DESKTOP", "1")
         monkeypatch.setenv("OPENAMER_DESKTOP_TERMINAL", "1")
         stable = _stable_prompt(_make_agent(platform="tui"))
         assert PLATFORM_HINTS["tui"] in stable
@@ -167,7 +167,7 @@ class TestPlatformHintResolutionInStablePrompt:
         desktop-tagged session must NOT get the embedded-pane clarifier —
         the clarifier describes the *embedded terminal pane*, which a
         desktop chat session is not."""
-        monkeypatch.setenv("HERMES_DESKTOP", "1")
+        monkeypatch.setenv("OPENAMER_DESKTOP", "1")
         monkeypatch.setenv("OPENAMER_DESKTOP_TERMINAL", "1")
         stable = _stable_prompt(_make_agent(platform="desktop"))
         assert "embedded terminal pane" not in stable
@@ -231,7 +231,7 @@ class TestContradictionGone:
     After the fix, no single session's prompt can carry both."""
 
     def test_desktop_chat_session_has_no_tui_framing(self, monkeypatch):
-        monkeypatch.setenv("HERMES_DESKTOP", "1")
+        monkeypatch.setenv("OPENAMER_DESKTOP", "1")
         monkeypatch.delenv("OPENAMER_DESKTOP_TERMINAL", raising=False)
         assert "tui" in PLATFORM_HINTS
         assert "desktop" in PLATFORM_HINTS

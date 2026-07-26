@@ -100,7 +100,7 @@ def _make_runner(adapter):
 
 
 def _install_fakes(monkeypatch, mode):
-    monkeypatch.setenv("HERMES_TOOL_PROGRESS_MODE", mode)
+    monkeypatch.setenv("OPENAMER_TOOL_PROGRESS_MODE", mode)
 
     fake_dotenv = types.ModuleType("dotenv")
     fake_dotenv.load_dotenv = lambda *a, **k: None

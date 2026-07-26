@@ -533,7 +533,7 @@ def _prune_completed_locked() -> None:
 def _current_origin_session_id() -> str:
     """Raw session id of the ORIGINATING api_server request, or ``""``.
 
-    The obvious source — ``HERMES_SESSION_ID`` via ``get_session_env`` — is
+    The obvious source — ``OPENAMER_SESSION_ID`` via ``get_session_env`` — is
     NOT safe to read at dispatch time: constructing a child agent
     (``agent/agent_init.py``) calls ``set_current_session_id(child.session_id)``,
     clobbering that ContextVar *and* ``os.environ`` with the subagent's
@@ -541,7 +541,7 @@ def _current_origin_session_id() -> str:
     it, so the completion wake would self-post into the subagent's own
     (unread) session instead of the spawner's.
 
-    The request-scoped ``HERMES_SESSION_CHAT_ID`` binding survives child
+    The request-scoped ``OPENAMER_SESSION_CHAT_ID`` binding survives child
     construction: ``_bind_api_server_session`` binds ``chat_id`` to the raw
     ``X-OpenAmer-Session-Id``, and its only writer is ``set_session_vars`` —
     ``set_current_session_id`` never touches it. Gate on the platform: on
@@ -551,9 +551,9 @@ def _current_origin_session_id() -> str:
     try:
         from gateway.session_context import get_session_env
 
-        if get_session_env("HERMES_SESSION_PLATFORM", "") != "api_server":
+        if get_session_env("OPENAMER_SESSION_PLATFORM", "") != "api_server":
             return ""
-        return get_session_env("HERMES_SESSION_CHAT_ID", "") or ""
+        return get_session_env("OPENAMER_SESSION_CHAT_ID", "") or ""
     except Exception:
         return ""
 

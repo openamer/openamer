@@ -2047,7 +2047,7 @@ function findSystemPython() {
   return null
 }
 
-// findGitBash — locate bash.exe on Windows. Resolves HERMES_GIT_BASH_PATH
+// findGitBash — locate bash.exe on Windows. Resolves OPENAMER_GIT_BASH_PATH
 // first (mirrors tools/environments/local.py:_find_bash), then PortableGit,
 // standard install locations, and finally PATH.
 function findGitBash() {
@@ -3719,7 +3719,7 @@ function resolveOpenAmerBackend(backendArgs) {
   //    OPENAMER_DESKTOP_IGNORE_EXISTING=1 forces the bootstrap path for testing.
   if (process.env.OPENAMER_DESKTOP_IGNORE_EXISTING !== '1') {
     let openamerCommand = null
-    const openamerOverride = process.env.OPENAMER_DESKTOP_HERMES
+    const openamerOverride = process.env.OPENAMER_DESKTOP_OVERRIDE
 
     if (openamerOverride) {
       const resolvedOverride = findOnPath(openamerOverride)
@@ -3758,7 +3758,7 @@ function resolveOpenAmerBackend(backendArgs) {
       // and lets the resolver fall through to step 6 / bootstrap.
       const shellForProbe = isCommandScript(openamerCommand)
 
-      // OPENAMER_DESKTOP_HERMES is an explicit deployment override (used by
+      // OPENAMER_DESKTOP_OVERRIDE is an explicit deployment override (used by
       // the Nix wrapper), not a discovered PATH candidate. It must not fall
       // through to the install-script bootstrap if the optional probe times
       // out under load; the pinned backend is the only valid runtime there.
@@ -6195,7 +6195,7 @@ async function freshGatewayWsUrl(profile) {
 const DEFAULT_NOUS_PORTAL_URL = 'https://portal.nousresearch.com'
 
 function resolvePortalBaseUrl() {
-  const raw = process.env.HERMES_PORTAL_BASE_URL || process.env.NOUS_PORTAL_BASE_URL || DEFAULT_NOUS_PORTAL_URL
+  const raw = process.env.OPENAMER_PORTAL_BASE_URL || process.env.NOUS_PORTAL_BASE_URL || DEFAULT_NOUS_PORTAL_URL
 
   return String(raw).trim().replace(/\/+$/, '')
 }
@@ -7868,8 +7868,8 @@ async function spawnPoolBackend(profile, entry) {
         OPENAMER_DASHBOARD_SESSION_TOKEN: token,
         // Marks this dashboard backend as desktop-spawned so it runs the cron
         // scheduler tick loop (the gateway isn't running under the app).
-        HERMES_DESKTOP: '1',
-        HERMES_WEB_DIST: webDist,
+        OPENAMER_DESKTOP: '1',
+        OPENAMER_WEB_DIST: webDist,
         ...(readyFile ? { OPENAMER_DESKTOP_READY_FILE: readyFile } : {})
       },
       shell: backend.shell,
@@ -8150,8 +8150,8 @@ async function startOpenAmer() {
           OPENAMER_DASHBOARD_SESSION_TOKEN: token,
           // Marks this dashboard backend as desktop-spawned so it runs the cron
           // scheduler tick loop (the gateway isn't running under the app).
-          HERMES_DESKTOP: '1',
-          HERMES_WEB_DIST: webDist,
+          OPENAMER_DESKTOP: '1',
+          OPENAMER_WEB_DIST: webDist,
           ...(readyFile ? { OPENAMER_DESKTOP_READY_FILE: readyFile } : {})
         },
         shell: backend.shell,
@@ -10142,7 +10142,7 @@ function terminalShellEnv() {
   env.TERM_PROGRAM_VERSION = app.getVersion()
 
   // Let a openamer/--tui launched in this pane know it's embedded in the desktop
-  // GUI (build_environment_hints surfaces this). Distinct from HERMES_DESKTOP,
+  // GUI (build_environment_hints surfaces this). Distinct from OPENAMER_DESKTOP,
   // which marks the agent *backend* and gates cron/gateway behavior.
   env.OPENAMER_DESKTOP_TERMINAL = '1'
 
@@ -10820,7 +10820,7 @@ ipcMain.handle('openamer:vscode-theme:search', async (_event, query) => searchMa
 // running app's chat composer. Three delivery paths: macOS 'open-url',
 // Win/Linux running-app 'second-instance' (argv), Win/Linux cold-start argv.
 // ---------------------------------------------------------------------------
-const HERMES_PROTOCOL = 'openamer'
+const OPENAMER_PROTOCOL = 'openamer'
 let _pendingDeepLink = null
 let _rendererReadyForDeepLink = false
 
@@ -10829,7 +10829,7 @@ function _extractDeepLink(argv) {
     return null
   }
 
-  return argv.find(a => typeof a === 'string' && a.startsWith(`${HERMES_PROTOCOL}://`)) || null
+  return argv.find(a => typeof a === 'string' && a.startsWith(`${OPENAMER_PROTOCOL}://`)) || null
 }
 
 function handleDeepLink(url) {
@@ -10884,7 +10884,7 @@ ipcMain.handle('openamer:deep-link-ready', () => {
     const queued = _pendingDeepLink
     _pendingDeepLink = null
     handleDeepLink(
-      `${HERMES_PROTOCOL}://${queued.kind}/${encodeURIComponent(queued.name)}` +
+      `${OPENAMER_PROTOCOL}://${queued.kind}/${encodeURIComponent(queued.name)}` +
         (Object.keys(queued.params).length ? '?' + new URLSearchParams(queued.params).toString() : '')
     )
   }
@@ -10897,9 +10897,9 @@ function registerDeepLinkProtocol() {
     if (process.defaultApp && process.argv.length >= 2) {
       // Dev: register with the electron exec path + entry script so the OS can
       // relaunch us with the URL.
-      app.setAsDefaultProtocolClient(HERMES_PROTOCOL, process.execPath, [path.resolve(process.argv[1])])
+      app.setAsDefaultProtocolClient(OPENAMER_PROTOCOL, process.execPath, [path.resolve(process.argv[1])])
     } else {
-      app.setAsDefaultProtocolClient(HERMES_PROTOCOL)
+      app.setAsDefaultProtocolClient(OPENAMER_PROTOCOL)
     }
   } catch (err) {
     rememberLog(`[deeplink] protocol registration failed: ${err.message}`)

@@ -7,7 +7,7 @@ from tools.skills_hub import OptionalSkillSource
 
 
 def test_recommended_update_command_defaults_to_openamer_update(monkeypatch):
-    monkeypatch.delenv("HERMES_MANAGED", raising=False)
+    monkeypatch.delenv("OPENAMER_MANAGED", raising=False)
 
     # Also short-circuit the .managed marker path — CI runners may have an
     # ambient ~/.openamer/.managed if a prior test left OPENAMER_HOME pointing
@@ -22,7 +22,7 @@ def test_recommended_update_command_defaults_to_openamer_update(monkeypatch):
 def test_optional_skill_source_honors_env_override(monkeypatch, tmp_path):
     optional_dir = tmp_path / "optional-skills"
     optional_dir.mkdir()
-    monkeypatch.setenv("HERMES_OPTIONAL_SKILLS", str(optional_dir))
+    monkeypatch.setenv("OPENAMER_OPTIONAL_SKILLS", str(optional_dir))
 
     source = OptionalSkillSource()
 

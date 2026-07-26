@@ -12,14 +12,14 @@ def test_get_managed_dir_env_override(tmp_path, monkeypatch):
 
     managed = tmp_path / "managed"
     managed.mkdir()
-    monkeypatch.setenv("HERMES_MANAGED_DIR", str(managed))
+    monkeypatch.setenv("OPENAMER_MANAGED_DIR", str(managed))
     assert managed_scope.get_managed_dir() == managed
 
 
 def test_get_managed_dir_absent_override_returns_none(tmp_path, monkeypatch):
     from openamer_cli import managed_scope
 
-    monkeypatch.setenv("HERMES_MANAGED_DIR", str(tmp_path / "nope"))
+    monkeypatch.setenv("OPENAMER_MANAGED_DIR", str(tmp_path / "nope"))
     # Override points at a non-existent dir → no managed scope.
     assert managed_scope.get_managed_dir() is None
 
@@ -27,7 +27,7 @@ def test_get_managed_dir_absent_override_returns_none(tmp_path, monkeypatch):
 def test_get_managed_dir_empty_override_falls_through(tmp_path, monkeypatch):
     from openamer_cli import managed_scope
 
-    monkeypatch.setenv("HERMES_MANAGED_DIR", "   ")  # whitespace = unset
+    monkeypatch.setenv("OPENAMER_MANAGED_DIR", "   ")  # whitespace = unset
     # Under pytest the /etc/openamer default is ignored, so this is None; the
     # assertion that matters is that it does NOT raise.
     result = managed_scope.get_managed_dir()
@@ -38,7 +38,7 @@ def test_get_managed_dir_default_ignored_under_pytest(monkeypatch):
     """The system default must be inert in the test suite (isolation guard)."""
     from openamer_cli import managed_scope
 
-    monkeypatch.delenv("HERMES_MANAGED_DIR", raising=False)
+    monkeypatch.delenv("OPENAMER_MANAGED_DIR", raising=False)
     assert managed_scope.get_managed_dir() is None
 
 
@@ -54,7 +54,7 @@ def _write_managed(tmp_path, monkeypatch, *, config=None, env=None):
         (managed / "config.yaml").write_text(textwrap.dedent(config), encoding="utf-8")
     if env is not None:
         (managed / ".env").write_text(textwrap.dedent(env), encoding="utf-8")
-    monkeypatch.setenv("HERMES_MANAGED_DIR", str(managed))
+    monkeypatch.setenv("OPENAMER_MANAGED_DIR", str(managed))
     managed_scope.invalidate_managed_cache()
     return managed
 
@@ -76,7 +76,7 @@ def test_load_managed_config(tmp_path, monkeypatch):
 def test_load_managed_config_absent_is_empty(tmp_path, monkeypatch):
     from openamer_cli import managed_scope
 
-    monkeypatch.setenv("HERMES_MANAGED_DIR", str(tmp_path / "nope"))
+    monkeypatch.setenv("OPENAMER_MANAGED_DIR", str(tmp_path / "nope"))
     managed_scope.invalidate_managed_cache()
     assert managed_scope.load_managed_config() == {}
 
@@ -139,7 +139,7 @@ def test_editing_managed_config_invalidates_cache(tmp_path, monkeypatch):
 
 
 def test_managed_dir_env_scrubbed_by_default():
-    """conftest must scrub HERMES_MANAGED_DIR so a dev-shell value can't leak in."""
+    """conftest must scrub OPENAMER_MANAGED_DIR so a dev-shell value can't leak in."""
     import os
 
-    assert "HERMES_MANAGED_DIR" not in os.environ
+    assert "OPENAMER_MANAGED_DIR" not in os.environ

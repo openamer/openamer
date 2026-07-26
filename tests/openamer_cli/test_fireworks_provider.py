@@ -71,10 +71,10 @@ class TestFireworksConfigRegistry:
 
 class TestFireworksOverlay:
     def test_overlay_exists(self):
-        from openamer_cli.providers import HERMES_OVERLAYS
+        from openamer_cli.providers import OPENAMER_OVERLAYS
 
-        assert "fireworks" in HERMES_OVERLAYS
-        overlay = HERMES_OVERLAYS["fireworks"]
+        assert "fireworks" in OPENAMER_OVERLAYS
+        overlay = OPENAMER_OVERLAYS["fireworks"]
         assert overlay.transport == "openai_chat"
         assert overlay.base_url_override == "https://api.fireworks.ai/inference/v1"
         assert not overlay.base_url_env_var

@@ -7,12 +7,12 @@ import { connectWindowsRemote } from './windows-remote-lifecycle'
 
 // Live test against a real Windows host over SSH. Opt-in: set the env trio to
 // your test rig; skipped everywhere else (CI, other machines).
-//   HERMES_WIN_SSH_HOST   ssh alias/host of the Windows box
-//   HERMES_WIN_SSH_USER   remote user
-//   HERMES_WIN_SSH_HERMES absolute path to the remote openamer.exe under test
-const liveHost = process.env.HERMES_WIN_SSH_HOST || ''
-const liveUser = process.env.HERMES_WIN_SSH_USER || ''
-const configuredOpenAmer = process.env.HERMES_WIN_SSH_HERMES || ''
+//   OPENAMER_WIN_SSH_HOST   ssh alias/host of the Windows box
+//   OPENAMER_WIN_SSH_USER   remote user
+//   OPENAMER_WIN_SSH_OVERRIDE absolute path to the remote openamer.exe under test
+const liveHost = process.env.OPENAMER_WIN_SSH_HOST || ''
+const liveUser = process.env.OPENAMER_WIN_SSH_USER || ''
+const configuredOpenAmer = process.env.OPENAMER_WIN_SSH_OVERRIDE || ''
 const ownershipId = '89abcdef0123456789abcdef01234567'
 
 function fetchJson(url, token, path) {

@@ -122,11 +122,11 @@ class TestUnifiedDashboardRouting:
         assert env.get("OPENAMER_HOME") == "/opt/data"
 
     def test_desktop_profile_backend_skips_machine_dashboard_reroute(self, main_mod, monkeypatch):
-        """A desktop-spawned named-profile backend (HERMES_DESKTOP=1) must NOT
+        """A desktop-spawned named-profile backend (OPENAMER_DESKTOP=1) must NOT
         reroute into the machine dashboard. The reroute re-execs as the default
         profile and exits, so the desktop never sees a ready backend → boot
         loop. The guard keeps desktop pool backends per-profile."""
-        monkeypatch.setenv("HERMES_DESKTOP", "1")
+        monkeypatch.setenv("OPENAMER_DESKTOP", "1")
         monkeypatch.setattr(
             "openamer_cli.profiles.get_active_profile_name", lambda: "worker_x"
         )
@@ -198,7 +198,7 @@ class TestUnifiedDashboardRouting:
         monkeypatch.setattr(
             "openamer_cli.profiles.get_active_profile_name", lambda: "default"
         )
-        monkeypatch.delenv("HERMES_WEB_DIST", raising=False)
+        monkeypatch.delenv("OPENAMER_WEB_DIST", raising=False)
         monkeypatch.setattr(main_mod, "_sync_bundled_skills_quietly", lambda: None)
         monkeypatch.setattr(main_mod, "_build_web_ui", lambda *_a, **_k: True)
         monkeypatch.setitem(sys.modules, "fastapi", types.SimpleNamespace())

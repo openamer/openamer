@@ -39,7 +39,7 @@ Configuration
 The secret is a CREDENTIAL, so it is carried via an env var (the ``.env``-is-
 for-secrets-only rule), provisioned by NAS at deploy time (Phase 3):
 
-    HERMES_DASHBOARD_DRAIN_SECRET   # the per-agent shared secret (>=43 url-safe-b64 chars)
+    OPENAMER_DASHBOARD_DRAIN_SECRET   # the per-agent shared secret (>=43 url-safe-b64 chars)
 
 Behavioural knobs live in config.yaml (canonical surface):
 
@@ -48,7 +48,7 @@ Behavioural knobs live in config.yaml (canonical surface):
         scope: drain            # capability label attached to the principal
         min_secret_chars: 43    # entropy bar (optional; default 43 ~= 256 bits)
 
-When ``HERMES_DASHBOARD_DRAIN_SECRET`` is unset, the plugin is a no-op (records
+When ``OPENAMER_DASHBOARD_DRAIN_SECRET`` is unset, the plugin is a no-op (records
 a skip reason) — agents that don't want NAS-driven drain just don't set it.
 """
 from __future__ import annotations
@@ -229,17 +229,17 @@ def _load_config_drain_auth_section() -> dict:
 def register(ctx) -> None:
     """Plugin entry — registers DrainSecretProvider when a strong secret is set.
 
-    No-op (records a skip reason) when ``HERMES_DASHBOARD_DRAIN_SECRET`` is
+    No-op (records a skip reason) when ``OPENAMER_DASHBOARD_DRAIN_SECRET`` is
     unset or fails the entropy gate. On success, also registers the
     begin/cancel-drain route as token-authable via the generic seam.
     """
     global LAST_SKIP_REASON
     LAST_SKIP_REASON = ""
 
-    secret = os.environ.get("HERMES_DASHBOARD_DRAIN_SECRET", "").strip()
+    secret = os.environ.get("OPENAMER_DASHBOARD_DRAIN_SECRET", "").strip()
     if not secret:
         LAST_SKIP_REASON = (
-            "HERMES_DASHBOARD_DRAIN_SECRET is not set. Set a per-agent "
+            "OPENAMER_DASHBOARD_DRAIN_SECRET is not set. Set a per-agent "
             ">=256-bit secret (e.g. `python -c \"import secrets; "
             "print(secrets.token_urlsafe(32))\"`) to enable NAS-driven drain "
             "coordination; leave it unset to disable the drain endpoint."
@@ -257,7 +257,7 @@ def register(ctx) -> None:
     reason = assess_secret_strength(secret, min_chars=min_chars)
     if reason is not None:
         LAST_SKIP_REASON = (
-            f"HERMES_DASHBOARD_DRAIN_SECRET rejected — {reason}. "
+            f"OPENAMER_DASHBOARD_DRAIN_SECRET rejected — {reason}. "
             "The drain endpoint stays disabled (fail-closed)."
         )
         logger.warning("dashboard-auth-drain: %s", LAST_SKIP_REASON)

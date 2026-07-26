@@ -284,7 +284,7 @@ def resolve_xai_http_credentials(
             or auth_mod.DEFAULT_XAI_OAUTH_BASE_URL
         ).strip().rstrip("/")
         override_base_url = str(
-            get_env_value("HERMES_XAI_BASE_URL")
+            get_env_value("OPENAMER_XAI_BASE_URL")
             or get_env_value("XAI_BASE_URL")
             or ""
         ).strip().rstrip("/")

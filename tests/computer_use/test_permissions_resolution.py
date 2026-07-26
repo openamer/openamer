@@ -18,7 +18,7 @@ def test_status_finds_user_local_driver_when_path_omits_it(tmp_path, monkeypatch
     driver.write_text("#!/bin/sh\nexit 0\n")
     driver.chmod(0o755)
 
-    monkeypatch.delenv("HERMES_CUA_DRIVER_CMD", raising=False)
+    monkeypatch.delenv("OPENAMER_CUA_DRIVER_CMD", raising=False)
     monkeypatch.setenv("HOME", str(tmp_path))
     monkeypatch.setenv("PATH", "/usr/bin:/bin:/usr/sbin:/sbin")
 

@@ -239,7 +239,7 @@ def run_doctor(
 ) -> int:
     """Resolve the cua-driver binary, call `health_report`, render the result.
 
-    Honors `HERMES_CUA_DRIVER_CMD` via the shared runtime resolver, so the
+    Honors `OPENAMER_CUA_DRIVER_CMD` via the shared runtime resolver, so the
     doctor diagnoses what your `computer_use` toolset will actually invoke.
     """
     # Windows ships stdout/stderr wrapped with the system ANSI codec

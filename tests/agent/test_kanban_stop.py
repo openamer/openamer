@@ -13,7 +13,7 @@ from agent.kanban_stop import (
 
 @pytest.fixture
 def clear_kanban_env(monkeypatch):
-    for var in ("OPENAMER_KANBAN_TASK", "HERMES_KANBAN_STOP_NUDGE"):
+    for var in ("OPENAMER_KANBAN_TASK", "OPENAMER_KANBAN_STOP_NUDGE"):
         monkeypatch.delenv(var, raising=False)
     return monkeypatch
 
@@ -30,7 +30,7 @@ def test_enabled_with_kanban_task(clear_kanban_env):
 
 def test_env_can_disable(clear_kanban_env):
     clear_kanban_env.setenv("OPENAMER_KANBAN_TASK", "t_abc")
-    clear_kanban_env.setenv("HERMES_KANBAN_STOP_NUDGE", "0")
+    clear_kanban_env.setenv("OPENAMER_KANBAN_STOP_NUDGE", "0")
     assert kanban_stop_nudge_enabled() is False
     assert build_kanban_stop_nudge(messages=[]) is None
 

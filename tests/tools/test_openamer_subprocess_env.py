@@ -7,7 +7,7 @@ full credential environment. Two tiers:
 
   * Tier 1 (_ALWAYS_STRIP_KEYS): gateway bot tokens, GitHub auth, infra
     secrets — stripped even when inherit_credentials=True.
-  * Tier 2 (_HERMES_PROVIDER_ENV_BLOCKLIST): LLM provider/tool keys — stripped
+  * Tier 2 (_OPENAMER_PROVIDER_ENV_BLOCKLIST): LLM provider/tool keys — stripped
     unless the caller opts into inherit_credentials=True.
 """
 
@@ -17,7 +17,7 @@ from unittest.mock import patch
 from tools.environments.local import (
     openamer_subprocess_env,
     _ALWAYS_STRIP_KEYS,
-    _HERMES_PROVIDER_ENV_FORCE_PREFIX,
+    _OPENAMER_PROVIDER_ENV_FORCE_PREFIX,
 )
 
 
@@ -70,8 +70,8 @@ class TestStripByDefault:
         assert result["MY_APP_VAR"] == "keep-me"
 
     def test_force_prefix_hints_stripped(self):
-        result = _build({f"{_HERMES_PROVIDER_ENV_FORCE_PREFIX}OPENAI_API_KEY": "sk-x"})
-        assert f"{_HERMES_PROVIDER_ENV_FORCE_PREFIX}OPENAI_API_KEY" not in result
+        result = _build({f"{_OPENAMER_PROVIDER_ENV_FORCE_PREFIX}OPENAI_API_KEY": "sk-x"})
+        assert f"{_OPENAMER_PROVIDER_ENV_FORCE_PREFIX}OPENAI_API_KEY" not in result
         assert "OPENAI_API_KEY" not in result
 
     def test_pythonutf8_set(self):
@@ -160,20 +160,20 @@ class TestDelegatedChildMarker:
             {
                 **_SAFE_SAMPLE,
                 "OPENAMER_KANBAN_TASK": "t_parent",
-                "HERMES_KANBAN_RUN_ID": "123",
-                "HERMES_KANBAN_DB": "/tmp/parent-kanban.db",
-                "HERMES_KANBAN_WORKSPACE": "/tmp/parent-workspace",
+                "OPENAMER_KANBAN_RUN_ID": "123",
+                "OPENAMER_KANBAN_DB": "/tmp/parent-kanban.db",
+                "OPENAMER_KANBAN_WORKSPACE": "/tmp/parent-workspace",
             },
             clear=True,
         ):
             with delegated_child_context():
                 env = openamer_subprocess_env(inherit_credentials=True)
 
-        assert env["HERMES_DELEGATED_CHILD_CONTEXT"] == "1"
+        assert env["OPENAMER_DELEGATED_CHILD_CONTEXT"] == "1"
         assert "OPENAMER_KANBAN_TASK" not in env
-        assert "HERMES_KANBAN_RUN_ID" not in env
-        assert "HERMES_KANBAN_DB" not in env
-        assert "HERMES_KANBAN_WORKSPACE" not in env
+        assert "OPENAMER_KANBAN_RUN_ID" not in env
+        assert "OPENAMER_KANBAN_DB" not in env
+        assert "OPENAMER_KANBAN_WORKSPACE" not in env
         assert env["MY_APP_VAR"] == "keep-me"
 
 

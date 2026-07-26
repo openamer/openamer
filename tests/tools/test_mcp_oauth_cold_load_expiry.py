@@ -230,9 +230,9 @@ async def test_initialize_seeds_token_expiry_time_from_stored_tokens(
     from pydantic import AnyUrl
 
     from tools.mcp_oauth import OpenAmerTokenStorage
-    from tools.mcp_oauth_manager import _HERMES_PROVIDER_CLS, reset_manager_for_tests
+    from tools.mcp_oauth_manager import _OPENAMER_PROVIDER_CLS, reset_manager_for_tests
 
-    assert _HERMES_PROVIDER_CLS is not None
+    assert _OPENAMER_PROVIDER_CLS is not None
     reset_manager_for_tests()
 
     storage = OpenAmerTokenStorage("srv")
@@ -260,7 +260,7 @@ async def test_initialize_seeds_token_expiry_time_from_stored_tokens(
         redirect_uris=[AnyUrl("http://127.0.0.1:12345/callback")],
         client_name="OpenAmer Agent",
     )
-    provider = _HERMES_PROVIDER_CLS(
+    provider = _OPENAMER_PROVIDER_CLS(
         server_name="srv",
         server_url="https://example.com/mcp",
         client_metadata=metadata,
@@ -295,9 +295,9 @@ async def test_initialize_flags_expired_token_as_invalid(tmp_path, monkeypatch):
     from pydantic import AnyUrl
 
     from tools.mcp_oauth import OpenAmerTokenStorage, _get_token_dir
-    from tools.mcp_oauth_manager import _HERMES_PROVIDER_CLS, reset_manager_for_tests
+    from tools.mcp_oauth_manager import _OPENAMER_PROVIDER_CLS, reset_manager_for_tests
 
-    assert _HERMES_PROVIDER_CLS is not None
+    assert _OPENAMER_PROVIDER_CLS is not None
     reset_manager_for_tests()
 
     # Write an already-expired token directly so we control the wall-clock.
@@ -330,7 +330,7 @@ async def test_initialize_flags_expired_token_as_invalid(tmp_path, monkeypatch):
         redirect_uris=[AnyUrl("http://127.0.0.1:12345/callback")],
         client_name="OpenAmer Agent",
     )
-    provider = _HERMES_PROVIDER_CLS(
+    provider = _OPENAMER_PROVIDER_CLS(
         server_name="srv",
         server_url="https://example.com/mcp",
         client_metadata=metadata,
@@ -391,9 +391,9 @@ async def test_initialize_prefetches_oauth_metadata_when_missing(
     from pydantic import AnyUrl
 
     from tools.mcp_oauth import OpenAmerTokenStorage
-    from tools.mcp_oauth_manager import _HERMES_PROVIDER_CLS, reset_manager_for_tests
+    from tools.mcp_oauth_manager import _OPENAMER_PROVIDER_CLS, reset_manager_for_tests
 
-    assert _HERMES_PROVIDER_CLS is not None
+    assert _OPENAMER_PROVIDER_CLS is not None
     reset_manager_for_tests()
 
     storage = OpenAmerTokenStorage("srv")
@@ -466,7 +466,7 @@ async def test_initialize_prefetches_oauth_metadata_when_missing(
         redirect_uris=[AnyUrl("http://127.0.0.1:12345/callback")],
         client_name="OpenAmer Agent",
     )
-    provider = _HERMES_PROVIDER_CLS(
+    provider = _OPENAMER_PROVIDER_CLS(
         server_name="srv",
         server_url="https://mcp.example.com",
         client_metadata=metadata,
@@ -502,10 +502,10 @@ async def test_initialize_skips_prefetch_when_no_tokens(tmp_path, monkeypatch):
     from mcp.shared.auth import OAuthClientMetadata
     from pydantic import AnyUrl
 
-    from tools.mcp_oauth_manager import _HERMES_PROVIDER_CLS, reset_manager_for_tests
+    from tools.mcp_oauth_manager import _OPENAMER_PROVIDER_CLS, reset_manager_for_tests
     from tools.mcp_oauth import OpenAmerTokenStorage
 
-    assert _HERMES_PROVIDER_CLS is not None
+    assert _OPENAMER_PROVIDER_CLS is not None
     reset_manager_for_tests()
 
     calls: list[str] = []
@@ -530,7 +530,7 @@ async def test_initialize_skips_prefetch_when_no_tokens(tmp_path, monkeypatch):
         redirect_uris=[AnyUrl("http://127.0.0.1:12345/callback")],
         client_name="OpenAmer Agent",
     )
-    provider = _HERMES_PROVIDER_CLS(
+    provider = _OPENAMER_PROVIDER_CLS(
         server_name="srv",
         server_url="https://mcp.example.com",
         client_metadata=metadata,

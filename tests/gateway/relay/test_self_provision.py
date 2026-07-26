@@ -112,7 +112,7 @@ def test_provision_url_maps_ws_to_http():
 # ─────────────────────────── trigger logic ───────────────────────────
 
 def test_provisions_on_nas_host_that_is_NOT_is_managed(monkeypatch):
-    """Regression: a NAS-hosted Fly agent sets neither HERMES_MANAGED nor a
+    """Regression: a NAS-hosted Fly agent sets neither OPENAMER_MANAGED nor a
     .managed marker, so is_managed() is False. Self-provision must STILL fire —
     the old is_managed() gate silently no-oped exactly this case in staging.
     """

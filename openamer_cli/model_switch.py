@@ -178,7 +178,7 @@ def _bare_custom_provider_def(current_base_url: str) -> Optional[ProviderDef]:
 # Non-agentic model warning
 # ---------------------------------------------------------------------------
 
-_HERMES_MODEL_WARNING = (
+_OPENAMER_MODEL_WARNING = (
     "Nous Research OpenAmer 3 & 4 models are NOT agentic and are not designed "
     "for use with OpenAmer Agent. They lack the tool-calling capabilities "
     "required for agent workflows. Consider using an agentic model instead "
@@ -194,7 +194,7 @@ _HERMES_MODEL_WARNING = (
 #   NousResearch/OpenAmer-3-Llama-3.1-70B, openamer-4-405b, openrouter/openamer3:70b
 # Negative examples it must NOT match:
 #   openamer-brain:qwen3-14b-ctx16k, qwen3:14b, claude-opus-4-6
-_NOUS_HERMES_NON_AGENTIC_RE = re.compile(
+_NOUS_OPENAMER_NON_AGENTIC_RE = re.compile(
     r"(?:^|[/:])openamer[-_ ]?[34](?:[-_.:]|$)",
     re.IGNORECASE,
 )
@@ -254,13 +254,13 @@ def is_nous_openamer_non_agentic(model_name: str) -> bool:
     """
     if not model_name:
         return False
-    return bool(_NOUS_HERMES_NON_AGENTIC_RE.search(model_name))
+    return bool(_NOUS_OPENAMER_NON_AGENTIC_RE.search(model_name))
 
 
 def _check_openamer_model_warning(model_name: str) -> str:
     """Return a warning string if *model_name* is a Nous OpenAmer 3/4 chat model."""
     if is_nous_openamer_non_agentic(model_name):
-        return _HERMES_MODEL_WARNING
+        return _OPENAMER_MODEL_WARNING
     return ""
 
 
@@ -1958,7 +1958,7 @@ def list_authenticated_providers(
         # minimax-cn → MINIMAX_API_KEY instead of MINIMAX_CN_API_KEY).
         pconfig = PROVIDER_REGISTRY.get(openamer_id)
         # Skip non-API-key auth providers here — they are handled in
-        # section 2 (HERMES_OVERLAYS) with proper auth store checking.
+        # section 2 (OPENAMER_OVERLAYS) with proper auth store checking.
         if pconfig and pconfig.auth_type != "api_key":
             continue
         # models.dev catalogs include providers OpenAmer may not route yet.
@@ -2036,15 +2036,15 @@ def list_authenticated_providers(
         _record_builtin_endpoint(slug)
 
     # --- 2. Check OpenAmer-only providers (nous, openai-codex, copilot, opencode-go) ---
-    from openamer_cli.providers import HERMES_OVERLAYS
+    from openamer_cli.providers import OPENAMER_OVERLAYS
     from openamer_cli.auth import PROVIDER_REGISTRY as _auth_registry
 
     # Build reverse mapping: models.dev ID → OpenAmer provider ID.
-    # HERMES_OVERLAYS keys may be models.dev IDs (e.g. "github-copilot")
+    # OPENAMER_OVERLAYS keys may be models.dev IDs (e.g. "github-copilot")
     # while _PROVIDER_MODELS and config.yaml use OpenAmer IDs ("copilot").
     _mdev_to_openamer = {v: k for k, v in PROVIDER_TO_MODELS_DEV.items()}
 
-    for pid, overlay in HERMES_OVERLAYS.items():
+    for pid, overlay in OPENAMER_OVERLAYS.items():
         if pid.lower() in seen_slugs:
             continue
 
@@ -2223,7 +2223,7 @@ def list_authenticated_providers(
 
     # --- 2b. Cross-check canonical provider list ---
     # Catches providers that are in CANONICAL_PROVIDERS but weren't found
-    # in PROVIDER_TO_MODELS_DEV or HERMES_OVERLAYS (keeps /model in sync
+    # in PROVIDER_TO_MODELS_DEV or OPENAMER_OVERLAYS (keeps /model in sync
     # with `openamer model`).
     try:
         from openamer_cli.models import CANONICAL_PROVIDERS as _canon_provs

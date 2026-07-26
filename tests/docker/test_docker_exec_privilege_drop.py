@@ -15,7 +15,7 @@ These tests verify:
    circuits and doesn't try to drop again.
 3. Files written under $OPENAMER_HOME from a ``docker exec`` session land
    as openamer:openamer — the actual user-visible invariant.
-4. The HERMES_DOCKER_EXEC_AS_ROOT opt-out lets diagnostic sessions keep
+4. The OPENAMER_DOCKER_EXEC_AS_ROOT opt-out lets diagnostic sessions keep
    running as root deliberately.
 5. The main CMD path (``docker run <image> …``) is unaffected by the
    PATH-shim ordering — no recursion, no behavior change.
@@ -180,7 +180,7 @@ def test_shim_short_circuits_for_non_root_exec(sleep_container: str) -> None:
 
 
 def test_shim_opt_out_keeps_root(sleep_container: str) -> None:
-    """HERMES_DOCKER_EXEC_AS_ROOT=1 should suppress the privilege drop.
+    """OPENAMER_DOCKER_EXEC_AS_ROOT=1 should suppress the privilege drop.
 
     Reserved for diagnostic sessions where the operator deliberately
     wants root semantics. Verified by writing a file and checking its
@@ -194,7 +194,7 @@ def test_shim_opt_out_keeps_root(sleep_container: str) -> None:
 
     r = subprocess.run(
         ["docker", "exec",
-         "-e", "HERMES_DOCKER_EXEC_AS_ROOT=1",
+         "-e", "OPENAMER_DOCKER_EXEC_AS_ROOT=1",
          sleep_container,
          "openamer", "config", "set", "_test.opt_out", "1"],
         capture_output=True, text=True, timeout=30,
@@ -207,7 +207,7 @@ def test_shim_opt_out_keeps_root(sleep_container: str) -> None:
         capture_output=True, text=True, timeout=10,
     )
     assert r.stdout.strip() == "root:root", (
-        f"With HERMES_DOCKER_EXEC_AS_ROOT=1, expected root:root, "
+        f"With OPENAMER_DOCKER_EXEC_AS_ROOT=1, expected root:root, "
         f"got {r.stdout.strip()!r}"
     )
 
@@ -218,9 +218,9 @@ def test_shim_opt_out_strict_truthiness(
 ) -> None:
     """Anything other than 1/true/yes (case-insensitive) does NOT opt out.
 
-    Strict truthiness so a typo (``HERMES_DOCKER_EXEC_AS_ROOT=0``) doesn't
+    Strict truthiness so a typo (``OPENAMER_DOCKER_EXEC_AS_ROOT=0``) doesn't
     silently keep the user as root. Mirrors the policy used by
-    ``HERMES_GATEWAY_NO_SUPERVISE`` in #33583.
+    ``OPENAMER_GATEWAY_NO_SUPERVISE`` in #33583.
     """
     subprocess.run(
         ["docker", "exec", "--user", "root", sleep_container,
@@ -230,7 +230,7 @@ def test_shim_opt_out_strict_truthiness(
 
     r = subprocess.run(
         ["docker", "exec",
-         "-e", f"HERMES_DOCKER_EXEC_AS_ROOT={falsy_value}",
+         "-e", f"OPENAMER_DOCKER_EXEC_AS_ROOT={falsy_value}",
          sleep_container,
          "openamer", "config", "set", "_test.falsy", "1"],
         capture_output=True, text=True, timeout=30,

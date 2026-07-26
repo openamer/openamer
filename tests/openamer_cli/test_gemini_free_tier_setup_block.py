@@ -16,9 +16,9 @@ def config_home(tmp_path, monkeypatch):
     monkeypatch.setenv("OPENAMER_HOME", str(home))
     # Clear any ambient env that could alter provider resolution
     for var in (
-        "HERMES_MODEL",
+        "OPENAMER_MODEL",
         "LLM_MODEL",
-        "HERMES_INFERENCE_PROVIDER",
+        "OPENAMER_INFERENCE_PROVIDER",
         "OPENAI_BASE_URL",
         "OPENAI_API_KEY",
         "GEMINI_BASE_URL",

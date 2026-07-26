@@ -110,7 +110,7 @@ def test_nonstream_wait_loop_emits_explained_notice(tmp_path, monkeypatch):
     # cadence by patching threading.Thread.join used in the poll loop is
     # overkill — instead just verify the TTFB reconnect notice, which flows
     # through the same _emit_wait_notice path.
-    monkeypatch.setenv("HERMES_CODEX_TTFB_TIMEOUT_SECONDS", "1")
+    monkeypatch.setenv("OPENAMER_CODEX_TTFB_TIMEOUT_SECONDS", "1")
 
     try:
         with pytest.raises(TimeoutError):

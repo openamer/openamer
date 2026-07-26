@@ -9,7 +9,7 @@ def homes(tmp_path, monkeypatch):
     managed = tmp_path / "managed"
     managed.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
-    monkeypatch.setenv("HERMES_MANAGED_DIR", str(managed))
+    monkeypatch.setenv("OPENAMER_MANAGED_DIR", str(managed))
     import openamer_cli.config as cfg
     from openamer_cli import managed_scope
 
@@ -61,7 +61,7 @@ def env_homes(tmp_path, monkeypatch):
     managed = tmp_path / "managed"
     managed.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
-    monkeypatch.setenv("HERMES_MANAGED_DIR", str(managed))
+    monkeypatch.setenv("OPENAMER_MANAGED_DIR", str(managed))
     (managed / ".env").write_text(
         "OPENAI_API_BASE=https://org.example/v1\n", encoding="utf-8"
     )

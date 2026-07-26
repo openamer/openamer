@@ -926,7 +926,7 @@ def test_mention_patterns_list_matches():
 
 def test_mention_patterns_case_insensitive():
     adapter = _make_adapter(mention_patterns=["hey openamer"])
-    assert adapter._slack_message_matches_mention_patterns("HEY HERMES!") is True
+    assert adapter._slack_message_matches_mention_patterns("HEY OPENAMER!") is True
 
 
 def test_mention_patterns_single_string():

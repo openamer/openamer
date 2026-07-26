@@ -137,8 +137,8 @@ def test_gateway_run_agent_codex_path_handles_internal_401_refresh(monkeypatch):
             "api_key": "codex-token",
         },
     )
-    monkeypatch.setenv("HERMES_TOOL_PROGRESS", "false")
-    monkeypatch.setenv("HERMES_MODEL", "gpt-5.3-codex")
+    monkeypatch.setenv("OPENAMER_TOOL_PROGRESS", "false")
+    monkeypatch.setenv("OPENAMER_MODEL", "gpt-5.3-codex")
 
     _Codex401ThenSuccessAgent.refresh_attempts = 0
     _Codex401ThenSuccessAgent.last_init = {}
@@ -157,7 +157,7 @@ def test_gateway_run_agent_codex_path_handles_internal_401_refresh(monkeypatch):
     runner.hooks.loaded_hooks = []
     runner._session_db = None
     # Ensure model resolution returns the codex model even if xdist
-    # leaked env vars cleared HERMES_MODEL.
+    # leaked env vars cleared OPENAMER_MODEL.
     monkeypatch.setattr(
         gateway_run.GatewayRunner,
         "_resolve_turn_agent_config",

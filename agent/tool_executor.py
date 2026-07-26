@@ -118,14 +118,14 @@ def _parse_tool_arguments(raw_arguments: Any) -> tuple[dict, Optional[str]]:
 
 
 def _resolve_concurrent_tool_timeout() -> float | None:
-    raw = os.getenv("HERMES_CONCURRENT_TOOL_TIMEOUT_S", "").strip()
+    raw = os.getenv("OPENAMER_CONCURRENT_TOOL_TIMEOUT_S", "").strip()
     if not raw:
         return _DEFAULT_CONCURRENT_TOOL_TIMEOUT_S
     try:
         value = float(raw)
     except ValueError:
         logger.warning(
-            "invalid HERMES_CONCURRENT_TOOL_TIMEOUT_S=%r; using %.0fs",
+            "invalid OPENAMER_CONCURRENT_TOOL_TIMEOUT_S=%r; using %.0fs",
             raw,
             _DEFAULT_CONCURRENT_TOOL_TIMEOUT_S,
         )

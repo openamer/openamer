@@ -768,7 +768,7 @@ def _get_runtime() -> Optional[_Runtime]:
 
 
 def _load_settings() -> _Settings:
-    plugins_toml_path = _env("HERMES_NEMO_RELAY_PLUGINS_TOML")
+    plugins_toml_path = _env("OPENAMER_NEMO_RELAY_PLUGINS_TOML")
     plugins_config = _load_plugins_config(plugins_toml_path)
     adaptive_config = _enabled_component_config(plugins_config, "adaptive")
     return _Settings(
@@ -777,17 +777,17 @@ def _load_settings() -> _Settings:
         dynamic_plugins=_dynamic_plugin_specs(plugins_config, plugins_toml_path),
         adaptive_enabled=adaptive_config is not None,
         adaptive_mode=_adaptive_mode(adaptive_config),
-        atof_enabled=_env_bool("HERMES_NEMO_RELAY_ATOF_ENABLED"),
-        atof_output_directory=_env("HERMES_NEMO_RELAY_ATOF_OUTPUT_DIRECTORY"),
-        atof_filename=_env("HERMES_NEMO_RELAY_ATOF_FILENAME") or "openamer-atof.jsonl",
-        atof_mode=_env("HERMES_NEMO_RELAY_ATOF_MODE") or "append",
-        atif_enabled=_env_bool("HERMES_NEMO_RELAY_ATIF_ENABLED"),
-        atif_output_directory=_env("HERMES_NEMO_RELAY_ATIF_OUTPUT_DIRECTORY"),
-        atif_filename_template=_env("HERMES_NEMO_RELAY_ATIF_FILENAME_TEMPLATE") or "openamer-atif-{session_id}.json",
+        atof_enabled=_env_bool("OPENAMER_NEMO_RELAY_ATOF_ENABLED"),
+        atof_output_directory=_env("OPENAMER_NEMO_RELAY_ATOF_OUTPUT_DIRECTORY"),
+        atof_filename=_env("OPENAMER_NEMO_RELAY_ATOF_FILENAME") or "openamer-atof.jsonl",
+        atof_mode=_env("OPENAMER_NEMO_RELAY_ATOF_MODE") or "append",
+        atif_enabled=_env_bool("OPENAMER_NEMO_RELAY_ATIF_ENABLED"),
+        atif_output_directory=_env("OPENAMER_NEMO_RELAY_ATIF_OUTPUT_DIRECTORY"),
+        atif_filename_template=_env("OPENAMER_NEMO_RELAY_ATIF_FILENAME_TEMPLATE") or "openamer-atif-{session_id}.json",
         atif_subagent_export_mode=_atif_subagent_export_mode(),
-        atif_agent_name=_env("HERMES_NEMO_RELAY_ATIF_AGENT_NAME") or "OpenAmer Agent",
-        atif_agent_version=_env("HERMES_NEMO_RELAY_ATIF_AGENT_VERSION") or "unknown",
-        atif_model_name=_env("HERMES_NEMO_RELAY_ATIF_MODEL_NAME") or "unknown",
+        atif_agent_name=_env("OPENAMER_NEMO_RELAY_ATIF_AGENT_NAME") or "OpenAmer Agent",
+        atif_agent_version=_env("OPENAMER_NEMO_RELAY_ATIF_AGENT_VERSION") or "unknown",
+        atif_model_name=_env("OPENAMER_NEMO_RELAY_ATIF_MODEL_NAME") or "unknown",
     )
 
 
@@ -982,7 +982,7 @@ def _env(name: str) -> str:
 
 
 def _atif_subagent_export_mode() -> str:
-    mode = _env("HERMES_NEMO_RELAY_ATIF_SUBAGENT_EXPORT_MODE").lower()
+    mode = _env("OPENAMER_NEMO_RELAY_ATIF_SUBAGENT_EXPORT_MODE").lower()
     return "all" if mode == "all" else "embedded"
 
 

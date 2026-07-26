@@ -17,8 +17,8 @@ services:
     volumes:
       - ${USERPROFILE}/.openamer:/opt/data
     environment:
-      - HERMES_UID=10000
-      - HERMES_GID=10000
+      - OPENAMER_UID=10000
+      - OPENAMER_GID=10000
     command: ["gateway", "run"]
 
   dashboard:
@@ -30,9 +30,9 @@ services:
     volumes:
       - ${USERPROFILE}/.openamer:/opt/data
     environment:
-      - HERMES_UID=10000
-      - HERMES_GID=10000
-      - HERMES_DASHBOARD_HOST=0.0.0.0
+      - OPENAMER_UID=10000
+      - OPENAMER_GID=10000
+      - OPENAMER_DASHBOARD_HOST=0.0.0.0
     ports:
       - "127.0.0.1:9119:9119"
     command: ["dashboard", "--host", "0.0.0.0", "--port", "9119", "--no-open", "--insecure"]

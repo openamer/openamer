@@ -21,7 +21,7 @@ from gateway.scale_to_zero import (
 )
 
 
-# ── scale_to_zero_enabled (the Labs HERMES_SCALE_TO_ZERO stamp, D11/Q8=A) ────
+# ── scale_to_zero_enabled (the Labs OPENAMER_SCALE_TO_ZERO stamp, D11/Q8=A) ────
 
 
 @pytest.mark.parametrize("value", ["1", "true", "TRUE", "yes", "on", " On "])

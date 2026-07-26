@@ -205,9 +205,9 @@ def _get_sudo_password_cache_scope() -> str:
     try:
         from gateway.session_context import get_session_env
 
-        session_key = get_session_env("HERMES_SESSION_KEY", "")
+        session_key = get_session_env("OPENAMER_SESSION_KEY", "")
     except Exception:
-        session_key = os.getenv("HERMES_SESSION_KEY", "")
+        session_key = os.getenv("OPENAMER_SESSION_KEY", "")
     if session_key:
         return f"session:{session_key}"
 
@@ -321,7 +321,7 @@ def _handle_sudo_failure(output: str, env_type: str) -> str:
     
     Returns enhanced output if sudo failed in messaging context, else original.
     """
-    is_gateway = env_var_enabled("HERMES_GATEWAY_SESSION")
+    is_gateway = env_var_enabled("OPENAMER_GATEWAY_SESSION")
     
     if not is_gateway:
         return output
@@ -387,7 +387,7 @@ def _prompt_for_sudo_password(timeout_seconds: int = 45) -> str:
     - Timeout expires (45s default)
     - Any error occurs
     
-    Only works in interactive mode (HERMES_INTERACTIVE=1).
+    Only works in interactive mode (OPENAMER_INTERACTIVE=1).
     If a _sudo_password_callback is registered (by the CLI), delegates to it
     so the prompt integrates with prompt_toolkit's UI.  Otherwise reads
     directly from /dev/tty with echo disabled.
@@ -453,7 +453,7 @@ def _prompt_for_sudo_password(timeout_seconds: int = 45) -> str:
             result["done"] = True
     
     try:
-        os.environ["HERMES_SPINNER_PAUSE"] = "1"
+        os.environ["OPENAMER_SPINNER_PAUSE"] = "1"
         time.sleep(0.2)
         
         print()
@@ -499,8 +499,8 @@ def _prompt_for_sudo_password(timeout_seconds: int = 45) -> str:
         sys.stdout.flush()
         return ""
     finally:
-        if "HERMES_SPINNER_PAUSE" in os.environ:
-            del os.environ["HERMES_SPINNER_PAUSE"]
+        if "OPENAMER_SPINNER_PAUSE" in os.environ:
+            del os.environ["OPENAMER_SPINNER_PAUSE"]
 
 def _safe_command_preview(command: Any, limit: int = 200) -> str:
     """Return a log-safe preview for possibly-invalid command values."""
@@ -897,7 +897,7 @@ def _transform_sudo_command(command: str | None) -> tuple[str | None, str | None
     methods for how they handle the non-None sudo_stdin case.
 
     If SUDO_PASSWORD is not set and an interactive UI is available
-    (HERMES_INTERACTIVE=1 or a registered sudo password callback):
+    (OPENAMER_INTERACTIVE=1 or a registered sudo password callback):
       Prompts user for password with 45s timeout, caches for session.
 
     If SUDO_PASSWORD is not set and NOT interactive:
@@ -927,7 +927,7 @@ def _transform_sudo_command(command: str | None) -> tuple[str | None, str | None
 
     has_sudo_prompt_callback = _get_sudo_password_callback() is not None
     should_prompt_for_sudo = (
-        env_var_enabled("HERMES_INTERACTIVE") or has_sudo_prompt_callback
+        env_var_enabled("OPENAMER_INTERACTIVE") or has_sudo_prompt_callback
     )
     if not has_configured_password and not sudo_password and should_prompt_for_sudo:
         sudo_password = _prompt_for_sudo_password(timeout_seconds=45)
@@ -2355,7 +2355,7 @@ def terminal_tool(
         # never restart. This mirrors the `openamer gateway restart` guard in
         # openamer_cli/gateway.py and the cron-path guard in openamer_cli/cron.py,
         # but applies unconditionally (force=True cannot help here).
-        if os.environ.get("_HERMES_GATEWAY") == "1":
+        if os.environ.get("_OPENAMER_GATEWAY") == "1":
             from openamer_cli.cron import _contains_gateway_lifecycle_command
             if _contains_gateway_lifecycle_command(command):
                 return json.dumps({
@@ -2635,13 +2635,13 @@ def terminal_tool(
                             proc_session.id,
                         )
                     else:
-                        _gw_platform = _gse("HERMES_SESSION_PLATFORM", "")
+                        _gw_platform = _gse("OPENAMER_SESSION_PLATFORM", "")
                         if _gw_platform:
-                            _gw_chat_id = _gse("HERMES_SESSION_CHAT_ID", "")
-                            _gw_thread_id = _gse("HERMES_SESSION_THREAD_ID", "")
-                            _gw_user_id = _gse("HERMES_SESSION_USER_ID", "")
-                            _gw_user_name = _gse("HERMES_SESSION_USER_NAME", "")
-                            _gw_message_id = _gse("HERMES_SESSION_MESSAGE_ID", "")
+                            _gw_chat_id = _gse("OPENAMER_SESSION_CHAT_ID", "")
+                            _gw_thread_id = _gse("OPENAMER_SESSION_THREAD_ID", "")
+                            _gw_user_id = _gse("OPENAMER_SESSION_USER_ID", "")
+                            _gw_user_name = _gse("OPENAMER_SESSION_USER_NAME", "")
+                            _gw_message_id = _gse("OPENAMER_SESSION_MESSAGE_ID", "")
                             proc_session.watcher_platform = _gw_platform
                             proc_session.watcher_chat_id = _gw_chat_id
                             proc_session.watcher_user_id = _gw_user_id
@@ -2785,7 +2785,7 @@ def terminal_tool(
             )
             if sudo_cache_cleared:
                 has_sudo_prompt_callback = _get_sudo_password_callback() is not None
-                if has_sudo_prompt_callback or env_var_enabled("HERMES_INTERACTIVE"):
+                if has_sudo_prompt_callback or env_var_enabled("OPENAMER_INTERACTIVE"):
                     output += (
                         "\n\n⚠️ Sudo authentication failed — cached password "
                         "cleared. You will be prompted again on the next sudo "

@@ -24,13 +24,13 @@ from unittest.mock import patch
 import pytest
 
 from openamer_cli import models as M
-from openamer_cli.providers import HERMES_OVERLAYS
+from openamer_cli.providers import OPENAMER_OVERLAYS
 
 
 # --- Bug 2: overlay no longer lists OPENAI_API_KEY --------------------------
 
 def test_openrouter_overlay_does_not_list_openai_api_key():
-    overlay = HERMES_OVERLAYS["openrouter"]
+    overlay = OPENAMER_OVERLAYS["openrouter"]
     assert "OPENAI_API_KEY" not in overlay.extra_env_vars
 
 

@@ -945,7 +945,7 @@ class TestProbeApiModelsUserAgent:
 
     def test_probe_sends_client_context_to_gemini(self):
         from unittest.mock import patch
-        from openamer_cli.models import _HERMES_VERSION
+        from openamer_cli.models import _OPENAMER_VERSION
 
         body = b'{"data":[]}'
         with patch(
@@ -958,7 +958,7 @@ class TestProbeApiModelsUserAgent:
             )
 
         req = mock_urlopen.call_args[0][0]
-        assert req.get_header("X-goog-api-client") == f"openamer-agent/{_HERMES_VERSION}"
+        assert req.get_header("X-goog-api-client") == f"openamer-agent/{_OPENAMER_VERSION}"
 
     def test_probe_omits_gemini_client_context_for_other_providers(self):
         from unittest.mock import patch

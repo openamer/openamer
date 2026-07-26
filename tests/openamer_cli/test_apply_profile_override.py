@@ -247,7 +247,7 @@ class TestSupervisedChildIgnoresStickyProfile:
 
     Inside the Docker s6 image the ``gateway-default`` service slot runs a
     bare ``openamer gateway run`` (no ``-p``) to mean "the root OPENAMER_HOME
-    profile". The run-script exports ``HERMES_S6_SUPERVISED_CHILD=1``.
+    profile". The run-script exports ``OPENAMER_S6_SUPERVISED_CHILD=1``.
     Without a guard, ``_apply_profile_override`` would read the sticky
     ``active_profile`` file (set by e.g. the dashboard profile switcher) and
     redirect the reserved default gateway into that profile — producing a
@@ -257,7 +257,7 @@ class TestSupervisedChildIgnoresStickyProfile:
     def test_supervised_child_does_not_follow_active_profile(
         self, tmp_path, monkeypatch
     ):
-        """HERMES_S6_SUPERVISED_CHILD + active_profile=briefer must NOT redirect.
+        """OPENAMER_S6_SUPERVISED_CHILD + active_profile=briefer must NOT redirect.
 
         Reproduces the Docker/profile scoping bug: the supervised default
         gateway is launched as bare ``openamer gateway run`` with
@@ -274,7 +274,7 @@ class TestSupervisedChildIgnoresStickyProfile:
         # Container root OPENAMER_HOME: parent dir is NOT "profiles", so the
         # #22502 guard does not short-circuit — step 2 (active_profile) runs.
         monkeypatch.setenv("OPENAMER_HOME", str(openamer_root))
-        monkeypatch.setenv("HERMES_S6_SUPERVISED_CHILD", "1")
+        monkeypatch.setenv("OPENAMER_S6_SUPERVISED_CHILD", "1")
         monkeypatch.setattr(sys, "argv", ["openamer", "gateway", "run"])
 
         from openamer_cli.main import _apply_profile_override
@@ -313,7 +313,7 @@ class TestSupervisedChildIgnoresStickyProfile:
 
         monkeypatch.setattr(Path, "home", lambda: tmp_path)
         monkeypatch.delenv("OPENAMER_HOME", raising=False)
-        monkeypatch.setenv("HERMES_S6_SUPERVISED_CHILD", "1")
+        monkeypatch.setenv("OPENAMER_S6_SUPERVISED_CHILD", "1")
         monkeypatch.setattr(sys, "argv", ["openamer", "-p", "coder", "gateway", "run"])
 
         from openamer_cli.main import _apply_profile_override

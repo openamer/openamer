@@ -59,7 +59,7 @@ def test_check_for_updates_invalidates_on_version_change(tmp_path, monkeypatch):
     )
 
     monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
-    monkeypatch.delenv("HERMES_REVISION", raising=False)
+    monkeypatch.delenv("OPENAMER_REVISION", raising=False)
     with patch("openamer_cli.banner.subprocess.run") as mock_run:
         result = banner.check_for_updates()
 
@@ -259,7 +259,7 @@ def test_check_for_updates_docker_returns_none(tmp_path, monkeypatch):
     """Inside the Docker image, check_for_updates() must short-circuit to None.
 
     Regression: the published image excludes .git (.dockerignore) and sets no
-    HERMES_REVISION (nix-only), so without a docker guard check_for_updates()
+    OPENAMER_REVISION (nix-only), so without a docker guard check_for_updates()
     would fall through and try to probe a non-existent git checkout. The guard
     must return None (so the > 0 render guards stay false) AND not reach the
     git probe or write a cache entry.

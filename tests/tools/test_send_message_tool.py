@@ -328,8 +328,8 @@ class TestSendMessageTool:
         with patch.dict(
             os.environ,
             {
-                "HERMES_CRON_AUTO_DELIVER_PLATFORM": "telegram",
-                "HERMES_CRON_AUTO_DELIVER_CHAT_ID": "-1001",
+                "OPENAMER_CRON_AUTO_DELIVER_PLATFORM": "telegram",
+                "OPENAMER_CRON_AUTO_DELIVER_CHAT_ID": "-1001",
             },
             clear=False,
         ), \
@@ -509,8 +509,8 @@ class TestSendMessageTool:
              patch("gateway.session_context.get_session_env") as get_session_env_mock, \
              patch("gateway.mirror.mirror_to_session", return_value=True) as mirror_mock:
             get_session_env_mock.side_effect = lambda name, default="": {
-                "HERMES_SESSION_PLATFORM": "telegram",
-                "HERMES_SESSION_USER_ID": "user-123",
+                "OPENAMER_SESSION_PLATFORM": "telegram",
+                "OPENAMER_SESSION_USER_ID": "user-123",
             }.get(name, default)
             result = json.loads(
                 send_message_tool(
@@ -538,8 +538,8 @@ class TestSendMessageTool:
         # not auto-accepted by the trust window. (Recency trust is covered
         # in test_platform_base.py. The public default flipped to non-strict
         # in 2026-05; this test pins strict on explicitly.)
-        monkeypatch.setenv("HERMES_MEDIA_DELIVERY_STRICT", "1")
-        monkeypatch.setenv("HERMES_MEDIA_TRUST_RECENT_FILES", "0")
+        monkeypatch.setenv("OPENAMER_MEDIA_DELIVERY_STRICT", "1")
+        monkeypatch.setenv("OPENAMER_MEDIA_TRUST_RECENT_FILES", "0")
         config, telegram_cfg = _make_config()
         secret = tmp_path / "secret.pdf"
         secret.write_bytes(b"%PDF secret")
@@ -3373,7 +3373,7 @@ class TestCheckSendMessage:
     1. ``OPENAMER_KANBAN_TASK`` is set (worker spawned by the kanban dispatcher
        — parent gateway is by definition running, but the worker's
        ``OPENAMER_HOME`` may be a profile dir without a ``gateway.pid``).
-    2. ``HERMES_SESSION_PLATFORM`` resolves to a non-empty, non-``local`` value
+    2. ``OPENAMER_SESSION_PLATFORM`` resolves to a non-empty, non-``local`` value
        (the session is wired to a messaging platform like Telegram).
     3. ``is_gateway_running()`` returns True (CLI / orchestrator profile with
        a live gateway colocated under the same ``OPENAMER_HOME``).
@@ -3386,7 +3386,7 @@ class TestCheckSendMessage:
         from tools.send_message_tool import _check_send_message
 
         monkeypatch.setenv("OPENAMER_KANBAN_TASK", "t_abc12345")
-        monkeypatch.delenv("HERMES_SESSION_PLATFORM", raising=False)
+        monkeypatch.delenv("OPENAMER_SESSION_PLATFORM", raising=False)
 
         with patch("gateway.session_context.get_session_env", return_value=""), \
              patch("gateway.status.is_gateway_running", return_value=False):
@@ -3420,7 +3420,7 @@ class TestCheckSendMessage:
             assert _check_send_message() is True
 
     def test_local_platform_falls_through_to_gateway_check(self, monkeypatch):
-        """``HERMES_SESSION_PLATFORM=local`` means CLI-style — must defer to
+        """``OPENAMER_SESSION_PLATFORM=local`` means CLI-style — must defer to
         is_gateway_running() rather than auto-grant."""
         from tools.send_message_tool import _check_send_message
 

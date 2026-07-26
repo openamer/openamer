@@ -159,8 +159,8 @@ _EXTRA_ENV_VARS = (
     # Base URLs / paths that influence detection but aren't api_key_env_vars.
     "LM_BASE_URL", "KIMI_BASE_URL", "STEPFUN_BASE_URL", "KILOCODE_BASE_URL",
     "GMI_BASE_URL", "OPENAI_BASE_URL",
-    "HERMES_COPILOT_ACP_COMMAND", "COPILOT_CLI_PATH",
-    "HERMES_COPILOT_ACP_ARGS", "COPILOT_ACP_BASE_URL",
+    "OPENAMER_COPILOT_ACP_COMMAND", "COPILOT_CLI_PATH",
+    "OPENAMER_COPILOT_ACP_ARGS", "COPILOT_ACP_BASE_URL",
 )
 
 PROVIDER_ENV_VARS = tuple(
@@ -392,7 +392,7 @@ class TestApiKeyProviderStatus:
         assert status["provider"] == "minimax"
 
     def test_copilot_acp_status_detects_local_cli(self, monkeypatch):
-        monkeypatch.setenv("HERMES_COPILOT_ACP_ARGS", "--acp --stdio --debug")
+        monkeypatch.setenv("OPENAMER_COPILOT_ACP_ARGS", "--acp --stdio --debug")
         monkeypatch.setattr("openamer_cli.auth.shutil.which", lambda command: f"/usr/local/bin/{command}")
 
         status = get_external_process_provider_status("copilot-acp")
@@ -507,7 +507,7 @@ class TestResolveApiKeyProviderCredentials:
         assert calls == [["/opt/homebrew/bin/gh", "auth", "token"]]
 
     def test_resolve_copilot_acp_with_local_cli(self, monkeypatch):
-        monkeypatch.setenv("HERMES_COPILOT_ACP_ARGS", "--acp --stdio")
+        monkeypatch.setenv("OPENAMER_COPILOT_ACP_ARGS", "--acp --stdio")
         monkeypatch.setattr("openamer_cli.auth.shutil.which", lambda command: f"/usr/local/bin/{command}")
 
         creds = resolve_external_process_provider_credentials("copilot-acp")
@@ -711,7 +711,7 @@ class TestRuntimeProviderResolution:
 
     def test_runtime_copilot_acp_uses_process_runtime(self, monkeypatch):
         monkeypatch.setattr("openamer_cli.auth.shutil.which", lambda command: f"/usr/local/bin/{command}")
-        monkeypatch.setenv("HERMES_COPILOT_ACP_ARGS", "--acp --stdio --debug")
+        monkeypatch.setenv("OPENAMER_COPILOT_ACP_ARGS", "--acp --stdio --debug")
 
         from openamer_cli.runtime_provider import resolve_runtime_provider
 

@@ -56,13 +56,13 @@
           export PATH="${pkgs.playwright-test}/bin:$PATH"
 
           # for the devshell to pick up the src
-          export HERMES_PYTHON_SRC_ROOT=$(git rev-parse --show-toplevel)
+          export OPENAMER_PYTHON_SRC_ROOT=$(git rev-parse --show-toplevel)
 
           # Let `uv run --active --no-sync` reuse Nix's provisioned Python
           # environment instead of creating an empty project .venv.
           export VIRTUAL_ENV="$(dirname "$(dirname "$(readlink -f "$(command -v python)")")")"
 
-          echo "OpenAmer Agent dev shell in $HERMES_PYTHON_SRC_ROOT"
+          echo "OpenAmer Agent dev shell in $OPENAMER_PYTHON_SRC_ROOT"
           echo "Ready. Run 'openamer' or 'sandbox openamer' to start."
         '';
       };

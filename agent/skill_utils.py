@@ -247,12 +247,12 @@ def _detect_environment(env: str) -> bool:
     result = True
     if env == "kanban":
         # Kanban is "active" either as a dispatcher-spawned worker (the
-        # dispatcher sets ``OPENAMER_KANBAN_TASK`` / ``HERMES_KANBAN_BOARD`` in the
+        # dispatcher sets ``OPENAMER_KANBAN_TASK`` / ``OPENAMER_KANBAN_BOARD`` in the
         # worker env) or as an orchestrator profile that has opted into the
         # kanban toolset. Mirror the same signals the kanban tools themselves
         # gate on (``tools/kanban_tools.py``) so the offer filter agrees with
         # tool availability.
-        if os.getenv("OPENAMER_KANBAN_TASK") or os.getenv("HERMES_KANBAN_BOARD"):
+        if os.getenv("OPENAMER_KANBAN_TASK") or os.getenv("OPENAMER_KANBAN_BOARD"):
             result = True
         else:
             try:
@@ -371,8 +371,8 @@ def get_disabled_skill_names(platform: str | None = None) -> Set[str]:
 
     Args:
         platform: Explicit platform name (e.g. ``"telegram"``).  When
-            *None*, resolves from ``HERMES_PLATFORM`` or
-            ``HERMES_SESSION_PLATFORM`` env vars.  Returns the global
+            *None*, resolves from ``OPENAMER_PLATFORM`` or
+            ``OPENAMER_SESSION_PLATFORM`` env vars.  Returns the global
             disabled list, unioned with the platform-specific list when a
             platform is resolved (a globally-disabled skill stays disabled
             on every platform).
@@ -391,8 +391,8 @@ def get_disabled_skill_names(platform: str | None = None) -> Set[str]:
     from gateway.session_context import get_session_env
     resolved_platform = (
         platform
-        or os.getenv("HERMES_PLATFORM")
-        or get_session_env("HERMES_SESSION_PLATFORM")
+        or os.getenv("OPENAMER_PLATFORM")
+        or get_session_env("OPENAMER_SESSION_PLATFORM")
     )
     global_disabled = _normalize_string_set(skills_cfg.get("disabled"))
     if resolved_platform:

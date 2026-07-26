@@ -42,8 +42,8 @@ def test_desktop_gate_accepts_on():
     from tools.close_terminal_tool import check_close_terminal_requirements
     from tools.read_terminal_tool import check_read_terminal_requirements
 
-    with patch.dict(os.environ, {"HERMES_DESKTOP": "on"}):
+    with patch.dict(os.environ, {"OPENAMER_DESKTOP": "on"}):
         assert check_read_terminal_requirements() is True
         assert check_close_terminal_requirements() is True
-    with patch.dict(os.environ, {"HERMES_DESKTOP": "off"}):
+    with patch.dict(os.environ, {"OPENAMER_DESKTOP": "off"}):
         assert check_read_terminal_requirements() is False

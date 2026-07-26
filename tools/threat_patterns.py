@@ -102,7 +102,7 @@ _PATTERNS: List[Tuple[str, str, str]] = [
     (rf'never\s+{_FILLER}(?:create|write)\s+{_FILLER}(?:script|file)\s+{_FILLER}disk', "anti_forensic_disk", "context"),
     # Environment-variable unsetting targeting known agent runtimes —
     # this is pure attack behavior (Brainworm sub-session bypass).
-    (r'unset\s+\w*(?:CLAUDE|CODEX|HERMES|AGENT|OPENAI|ANTHROPIC)\w*', "env_var_unset_agent", "context"),
+    (r'unset\s+\w*(?:CLAUDE|CODEX|OPENAMER|AGENT|OPENAI|ANTHROPIC)\w*', "env_var_unset_agent", "context"),
 
     # ── Known C2 / red-team framework names (near-zero false positive
     #    outside security research; warn-only by default) ─────────────

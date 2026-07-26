@@ -24,7 +24,7 @@ rate without preventing the actual foot-gun, which requires a real
 command shape.
 
 This is a defence-in-depth layer.  ``tools/terminal_tool.py`` already
-blocks these commands at *execution* time when ``_HERMES_GATEWAY=1``, and
+blocks these commands at *execution* time when ``_OPENAMER_GATEWAY=1``, and
 ``openamer gateway stop|restart`` refuse to self-target from inside the
 gateway.  Blocking at *creation* time as well means the agent gets an
 immediate, informative rejection instead of scheduling a job that will

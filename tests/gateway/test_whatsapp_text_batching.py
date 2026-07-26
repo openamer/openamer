@@ -58,8 +58,8 @@ def test_invalid_config_value_falls_back_to_default():
 
 
 def test_env_var_is_ignored(monkeypatch):
-    # Config-only path: the legacy HERMES_* env var must NOT influence delays.
-    monkeypatch.setenv("HERMES_WHATSAPP_TEXT_BATCH_DELAY_SECONDS", "99")
+    # Config-only path: the legacy OPENAMER_* env var must NOT influence delays.
+    monkeypatch.setenv("OPENAMER_WHATSAPP_TEXT_BATCH_DELAY_SECONDS", "99")
     adapter = _make_adapter()
     assert adapter._text_batch_delay_seconds == 5.0
 

@@ -1389,13 +1389,13 @@ class TestToolsConfigEndpoints:
 
 def test_spawn_openamer_action_scrubs_gateway_loop_guard_env(monkeypatch, tmp_path):
     """The dashboard runs inside the gateway, so os.environ has
-    _HERMES_GATEWAY=1. Spawned actions (e.g. `gateway restart`) must NOT inherit
+    _OPENAMER_GATEWAY=1. Spawned actions (e.g. `gateway restart`) must NOT inherit
     it, or the in-process restart-loop guard rejects the restart and it silently
     fails (#52470).
     """
     import openamer_cli.web_server as ws
 
-    monkeypatch.setenv("_HERMES_GATEWAY", "1")
+    monkeypatch.setenv("_OPENAMER_GATEWAY", "1")
     monkeypatch.setattr(ws, "_ACTION_LOG_DIR", tmp_path)
 
     captured = {}
@@ -1411,5 +1411,5 @@ def test_spawn_openamer_action_scrubs_gateway_loop_guard_env(monkeypatch, tmp_pa
 
     ws._spawn_openamer_action(["gateway", "restart"], "gateway-restart")
 
-    assert "_HERMES_GATEWAY" not in captured["env"]
-    assert captured["env"]["HERMES_NONINTERACTIVE"] == "1"
+    assert "_OPENAMER_GATEWAY" not in captured["env"]
+    assert captured["env"]["OPENAMER_NONINTERACTIVE"] == "1"

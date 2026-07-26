@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Drive the OpenAmer TUI under HERMES_DEV_PERF and summarize the pipeline.
+"""Drive the OpenAmer TUI under OPENAMER_DEV_PERF and summarize the pipeline.
 
 Usage:
   scripts/profile-tui.py [--session SID] [--hold KEY] [--seconds N] [--rate HZ]
@@ -8,17 +8,17 @@ Defaults: picks the session with the most messages, holds PageUp for 8s at
 ~30 Hz (matching xterm key-repeat), summarizes ~/.openamer/perf.log on exit.
 
 The --tui build must exist (run `npm run build` in ui-tui first). This script
-launches `node dist/entry.js` directly with HERMES_TUI_RESUME set so it
+launches `node dist/entry.js` directly with OPENAMER_TUI_RESUME set so it
 bypasses the openamer_cli wrapper — we want repeatable timing, not the CLI's
 session-picker flow.
 
 Environment overrides:
-  HERMES_PERF_LOG     (default ~/.openamer/perf.log)
-  HERMES_PERF_NODE    (default node from $PATH)
-  HERMES_TUI_DIR      (default: <repo>/ui-tui relative to this script)
+  OPENAMER_PERF_LOG     (default ~/.openamer/perf.log)
+  OPENAMER_PERF_NODE    (default node from $PATH)
+  OPENAMER_TUI_DIR      (default: <repo>/ui-tui relative to this script)
 
 Exit code is 0 if the harness ran and parsed results, 2 if the TUI crashed
-or produced no perf data (suggests HERMES_DEV_PERF wiring is broken).
+or produced no perf data (suggests OPENAMER_DEV_PERF wiring is broken).
 """
 
 from __future__ import annotations
@@ -45,10 +45,10 @@ except ImportError:
         return Path(val) if val else Path.home() / ".openamer"
 
 DEFAULT_TUI_DIR = Path(
-    os.environ.get("HERMES_TUI_DIR")
+    os.environ.get("OPENAMER_TUI_DIR")
     or str(Path(__file__).resolve().parent.parent / "ui-tui")
 )
-DEFAULT_LOG = Path(os.environ.get("HERMES_PERF_LOG", str(get_openamer_home() / "perf.log")))
+DEFAULT_LOG = Path(os.environ.get("OPENAMER_PERF_LOG", str(get_openamer_home() / "perf.log")))
 DEFAULT_STATE_DB = get_openamer_home() / "state.db"
 
 # Keystroke escape sequences.  Matches what xterm/VT220 send when the
@@ -151,7 +151,7 @@ def format_report(data: dict[str, Any]) -> str:
 
     out.append("═══ React Profiler ═══")
     if not react:
-        out.append("  (no react events — HERMES_DEV_PERF wired? threshold too high?)")
+        out.append("  (no react events — OPENAMER_DEV_PERF wired? threshold too high?)")
     else:
         by_id: dict[str, list[float]] = {}
         for r in react:
@@ -420,17 +420,17 @@ def run_once(args: argparse.Namespace) -> dict[str, Any]:
     since_ms = int(time.time() * 1000)
 
     env = os.environ.copy()
-    env["HERMES_DEV_PERF"] = "1"
-    env["HERMES_DEV_PERF_MS"] = str(args.threshold_ms)
-    env["HERMES_DEV_PERF_LOG"] = str(log)
-    env["HERMES_TUI_RESUME"] = sid
+    env["OPENAMER_DEV_PERF"] = "1"
+    env["OPENAMER_DEV_PERF_MS"] = str(args.threshold_ms)
+    env["OPENAMER_DEV_PERF_LOG"] = str(log)
+    env["OPENAMER_TUI_RESUME"] = sid
     env["COLUMNS"] = str(args.cols)
     env["LINES"] = str(args.rows)
     env["TERM"] = env.get("TERM", "xterm-256color")
 
     # Pass through extra flags the TUI wrapper recognizes (e.g. --no-fullscreen).
     # Stored on args as `extra_flags` list.
-    node = os.environ.get("HERMES_PERF_NODE", "node")
+    node = os.environ.get("OPENAMER_PERF_NODE", "node")
     node_args = [node, str(entry), *getattr(args, "extra_flags", [])]
 
     pid, fd = pty.fork()
@@ -480,7 +480,7 @@ def main() -> int:
     p.add_argument("--seconds", type=float, default=8.0, help="how long to hold the key")
     p.add_argument("--rate", type=int, default=30, help="keystrokes per second")
     p.add_argument("--warmup", type=float, default=3.0, help="seconds to wait after launch before input")
-    p.add_argument("--threshold-ms", type=float, default=0.0, help="HERMES_DEV_PERF_MS (0 = capture all)")
+    p.add_argument("--threshold-ms", type=float, default=0.0, help="OPENAMER_DEV_PERF_MS (0 = capture all)")
     p.add_argument("--cols", type=int, default=120)
     p.add_argument("--rows", type=int, default=40)
     p.add_argument("--keep-log", action="store_true", help="don't wipe perf.log before run")

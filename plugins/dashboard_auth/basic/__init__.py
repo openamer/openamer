@@ -32,11 +32,11 @@ mirroring the Nous provider's precedence convention:
 
   Environment overrides::
 
-      HERMES_DASHBOARD_BASIC_AUTH_USERNAME
-      HERMES_DASHBOARD_BASIC_AUTH_PASSWORD_HASH   # preferred
-      HERMES_DASHBOARD_BASIC_AUTH_PASSWORD        # plaintext fallback
-      HERMES_DASHBOARD_BASIC_AUTH_SECRET
-      HERMES_DASHBOARD_BASIC_AUTH_TTL_SECONDS
+      OPENAMER_DASHBOARD_BASIC_AUTH_USERNAME
+      OPENAMER_DASHBOARD_BASIC_AUTH_PASSWORD_HASH   # preferred
+      OPENAMER_DASHBOARD_BASIC_AUTH_PASSWORD        # plaintext fallback
+      OPENAMER_DASHBOARD_BASIC_AUTH_SECRET
+      OPENAMER_DASHBOARD_BASIC_AUTH_TTL_SECONDS
 
 If ``secret`` is not configured, a random per-process secret is generated
 at startup. That's fine for a single-process dashboard, but means all
@@ -369,14 +369,14 @@ def _resolve_secret(cfg_section: dict) -> bytes:
     restart or span multiple workers — logged at INFO).
     """
     raw = _resolve(
-        "HERMES_DASHBOARD_BASIC_AUTH_SECRET", cfg_section, "secret"
+        "OPENAMER_DASHBOARD_BASIC_AUTH_SECRET", cfg_section, "secret"
     )
     if not raw:
         logger.info(
             "dashboard-auth-basic: no 'secret' configured; generating a "
             "random per-process signing key. Sessions will not survive a "
             "restart or span multiple workers. Set dashboard.basic_auth."
-            "secret (or HERMES_DASHBOARD_BASIC_AUTH_SECRET) for stable "
+            "secret (or OPENAMER_DASHBOARD_BASIC_AUTH_SECRET) for stable "
             "sessions."
         )
         return secrets.token_bytes(32)
@@ -405,22 +405,22 @@ def register(ctx) -> None:
 
     section = _load_config_basic_auth_section()
     username = _resolve(
-        "HERMES_DASHBOARD_BASIC_AUTH_USERNAME", section, "username"
+        "OPENAMER_DASHBOARD_BASIC_AUTH_USERNAME", section, "username"
     )
     password_hash = _resolve(
-        "HERMES_DASHBOARD_BASIC_AUTH_PASSWORD_HASH", section, "password_hash"
+        "OPENAMER_DASHBOARD_BASIC_AUTH_PASSWORD_HASH", section, "password_hash"
     )
     plaintext = _resolve(
-        "HERMES_DASHBOARD_BASIC_AUTH_PASSWORD", section, "password"
+        "OPENAMER_DASHBOARD_BASIC_AUTH_PASSWORD", section, "password"
     )
     ttl_raw = _resolve(
-        "HERMES_DASHBOARD_BASIC_AUTH_TTL_SECONDS", section, "session_ttl_seconds"
+        "OPENAMER_DASHBOARD_BASIC_AUTH_TTL_SECONDS", section, "session_ttl_seconds"
     )
 
     if not username:
         LAST_SKIP_REASON = (
             "dashboard.basic_auth.username is not set (and "
-            "HERMES_DASHBOARD_BASIC_AUTH_USERNAME is empty). Set a username "
+            "OPENAMER_DASHBOARD_BASIC_AUTH_USERNAME is empty). Set a username "
             "and a password (or password_hash) under dashboard.basic_auth in "
             "config.yaml to enable username/password dashboard login, or use "
             "the OAuth provider, or pass --insecure to skip the auth gate."
@@ -439,7 +439,7 @@ def register(ctx) -> None:
         return
 
     # Precedence (env-wins convention): a password supplied via the
-    # HERMES_DASHBOARD_BASIC_AUTH_PASSWORD env var overrides a config.yaml
+    # OPENAMER_DASHBOARD_BASIC_AUTH_PASSWORD env var overrides a config.yaml
     # password_hash, so an operator can rotate the password by setting an
     # env var without editing config. A password_hash (precomputed) wins
     # over a config-only plaintext password at the same tier — it's the
@@ -448,7 +448,7 @@ def register(ctx) -> None:
     #   * else config password_hash set → use it
     #   * else config plaintext password → hash it in-memory
     plaintext_from_env = os.environ.get(
-        "HERMES_DASHBOARD_BASIC_AUTH_PASSWORD", ""
+        "OPENAMER_DASHBOARD_BASIC_AUTH_PASSWORD", ""
     ).strip()
     if plaintext_from_env:
         password_hash = hash_password(plaintext_from_env)

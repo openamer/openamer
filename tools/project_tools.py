@@ -6,7 +6,7 @@ sidebar groups sessions into. Creating / switching a project is a deliberate act
 expressed as explicit tools — never a side effect of a terminal ``cd``.
 
 Exposed only on GUI sessions: the tools live in the `project` toolset (kept off
-``_HERMES_CORE_TOOLS``) which the desktop/TUI gateway folds into its resolved
+``_OPENAMER_CORE_TOOLS``) which the desktop/TUI gateway folds into its resolved
 toolsets, so no CLI/messaging/cron schema carries them. The GUI also wires
 ``set_project_workspace_callback`` so a create/switch re-anchors the live
 session's cwd and the sidebar follows the move; the DB write is the durable part.

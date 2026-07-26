@@ -164,7 +164,7 @@ class TestScanSkillCommands:
         from agent.skill_commands import get_skill_commands
 
         def _disabled_skills():
-            platform = os.getenv("HERMES_PLATFORM")
+            platform = os.getenv("OPENAMER_PLATFORM")
             if platform == "telegram":
                 return {"telegram-only"}
             if platform == "discord":
@@ -181,14 +181,14 @@ class TestScanSkillCommands:
             _make_skill(tmp_path, "telegram-only")
             _make_skill(tmp_path, "discord-only")
 
-            with patch.dict(os.environ, {"HERMES_PLATFORM": "telegram"}):
+            with patch.dict(os.environ, {"OPENAMER_PLATFORM": "telegram"}):
                 telegram_commands = dict(get_skill_commands())
 
             assert "/shared" in telegram_commands
             assert "/discord-only" in telegram_commands
             assert "/telegram-only" not in telegram_commands
 
-            with patch.dict(os.environ, {"HERMES_PLATFORM": "discord"}):
+            with patch.dict(os.environ, {"OPENAMER_PLATFORM": "discord"}):
                 discord_commands = dict(get_skill_commands())
 
             assert "/shared" in discord_commands
@@ -197,19 +197,19 @@ class TestScanSkillCommands:
 
             # Switching back to telegram must also rescan — not re-serve
             # the discord view that was just cached.
-            with patch.dict(os.environ, {"HERMES_PLATFORM": "telegram"}):
+            with patch.dict(os.environ, {"OPENAMER_PLATFORM": "telegram"}):
                 telegram_again = dict(get_skill_commands())
 
             assert "/telegram-only" not in telegram_again
             assert "/discord-only" in telegram_again
 
     def test_get_skill_commands_rescans_when_session_platform_changes(self, tmp_path):
-        """``HERMES_SESSION_PLATFORM`` from the gateway session context must
-        also trigger a rescan, not just ``HERMES_PLATFORM`` (#14536).
+        """``OPENAMER_SESSION_PLATFORM`` from the gateway session context must
+        also trigger a rescan, not just ``OPENAMER_PLATFORM`` (#14536).
 
         Exercises the real ContextVar path: the gateway sets the active
         adapter via ``set_session_vars(platform=...)`` and the resolver
-        reads it via ``get_session_env``. Setting ``HERMES_SESSION_PLATFORM``
+        reads it via ``get_session_env``. Setting ``OPENAMER_SESSION_PLATFORM``
         in ``os.environ`` would only test ``get_session_env``'s legacy
         env-var fallback — a regression that swapped ``get_session_env``
         for plain ``os.getenv`` would still pass while breaking concurrent
@@ -226,8 +226,8 @@ class TestScanSkillCommands:
 
         def _disabled_skills():
             platform = (
-                os.getenv("HERMES_PLATFORM")
-                or get_session_env("HERMES_SESSION_PLATFORM")
+                os.getenv("OPENAMER_PLATFORM")
+                or get_session_env("OPENAMER_SESSION_PLATFORM")
             )
             if platform == "telegram":
                 return {"telegram-only"}
@@ -281,7 +281,7 @@ class TestScanSkillCommands:
         from agent.skill_commands import get_skill_commands
 
         def _disabled_skills():
-            if os.getenv("HERMES_PLATFORM") == "telegram":
+            if os.getenv("OPENAMER_PLATFORM") == "telegram":
                 return {"telegram-only"}
             return set()
 
@@ -294,12 +294,12 @@ class TestScanSkillCommands:
             _make_skill(tmp_path, "shared")
             _make_skill(tmp_path, "telegram-only")
 
-            monkeypatch.setenv("HERMES_PLATFORM", "telegram")
+            monkeypatch.setenv("OPENAMER_PLATFORM", "telegram")
             telegram_commands = dict(get_skill_commands())
             assert "/telegram-only" not in telegram_commands
 
             # Drop back to no platform scope — bare CLI / cron / RL rollouts.
-            monkeypatch.delenv("HERMES_PLATFORM", raising=False)
+            monkeypatch.delenv("OPENAMER_PLATFORM", raising=False)
             bare_commands = dict(get_skill_commands())
 
             assert "/telegram-only" in bare_commands
@@ -319,7 +319,7 @@ class TestScanSkillCommands:
             patch("tools.skills_tool.SKILLS_DIR", tmp_path),
             patch.object(sc_mod, "_skill_commands", {}),
             patch.object(sc_mod, "_skill_commands_platform", None),
-            patch.dict(os.environ, {"HERMES_PLATFORM": "telegram"}),
+            patch.dict(os.environ, {"OPENAMER_PLATFORM": "telegram"}),
         ):
             _make_skill(tmp_path, "shared")
             # Prime the cache.
@@ -529,7 +529,7 @@ class TestBuildPreloadedSkillsPrompt:
 
     def test_skips_disabled_skill(self, tmp_path, monkeypatch):
         """A globally-disabled skill must not be force-loaded via -s /
-        HERMES_TUI_SKILLS preloading (mirrors the bundle gate, #59156)."""
+        OPENAMER_TUI_SKILLS preloading (mirrors the bundle gate, #59156)."""
         with patch("tools.skills_tool.SKILLS_DIR", tmp_path):
             _make_skill(tmp_path, "enabled-skill", body="Enabled content.")
             _make_skill(tmp_path, "disabled-skill", body="SECRET DISABLED CONTENT.")
@@ -763,7 +763,7 @@ class TestSkillDirectoryHeader:
 
 
 class TestTemplateVarSubstitution:
-    """``${HERMES_SKILL_DIR}`` and ``${HERMES_SESSION_ID}`` in SKILL.md body
+    """``${OPENAMER_SKILL_DIR}`` and ``${OPENAMER_SESSION_ID}`` in SKILL.md body
     are replaced before the agent sees the content."""
 
     def test_substitutes_skill_dir(self, tmp_path):
@@ -771,7 +771,7 @@ class TestTemplateVarSubstitution:
             skill_dir = _make_skill(
                 tmp_path,
                 "templated",
-                body="Run: node ${HERMES_SKILL_DIR}/scripts/foo.js",
+                body="Run: node ${OPENAMER_SKILL_DIR}/scripts/foo.js",
             )
             scan_skill_commands()
             msg = build_skill_invocation_message("/templated")
@@ -779,14 +779,14 @@ class TestTemplateVarSubstitution:
         assert msg is not None
         assert f"node {skill_dir}/scripts/foo.js" in msg
         # The literal template token must not leak through.
-        assert "${HERMES_SKILL_DIR}" not in msg.split("[Skill directory:")[0]
+        assert "${OPENAMER_SKILL_DIR}" not in msg.split("[Skill directory:")[0]
 
     def test_substitutes_session_id_when_available(self, tmp_path):
         with patch("tools.skills_tool.SKILLS_DIR", tmp_path):
             _make_skill(
                 tmp_path,
                 "sess-templated",
-                body="Session: ${HERMES_SESSION_ID}",
+                body="Session: ${OPENAMER_SESSION_ID}",
             )
             scan_skill_commands()
             msg = build_skill_invocation_message(
@@ -801,14 +801,14 @@ class TestTemplateVarSubstitution:
             _make_skill(
                 tmp_path,
                 "sess-missing",
-                body="Session: ${HERMES_SESSION_ID}",
+                body="Session: ${OPENAMER_SESSION_ID}",
             )
             scan_skill_commands()
             msg = build_skill_invocation_message("/sess-missing", task_id=None)
 
         assert msg is not None
         # No session — token left intact so the author can spot it.
-        assert "Session: ${HERMES_SESSION_ID}" in msg
+        assert "Session: ${OPENAMER_SESSION_ID}" in msg
 
     def test_disable_template_vars_via_config(self, tmp_path):
         with (
@@ -821,14 +821,14 @@ class TestTemplateVarSubstitution:
             _make_skill(
                 tmp_path,
                 "no-sub",
-                body="Run: node ${HERMES_SKILL_DIR}/scripts/foo.js",
+                body="Run: node ${OPENAMER_SKILL_DIR}/scripts/foo.js",
             )
             scan_skill_commands()
             msg = build_skill_invocation_message("/no-sub")
 
         assert msg is not None
         # Template token must survive when substitution is disabled.
-        assert "${HERMES_SKILL_DIR}/scripts/foo.js" in msg
+        assert "${OPENAMER_SKILL_DIR}/scripts/foo.js" in msg
 
 
 class TestInlineShellExpansion:

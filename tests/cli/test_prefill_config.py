@@ -6,7 +6,7 @@ import cli
 
 
 def test_resolve_prefill_messages_file_uses_top_level(monkeypatch):
-    monkeypatch.delenv("HERMES_PREFILL_MESSAGES_FILE", raising=False)
+    monkeypatch.delenv("OPENAMER_PREFILL_MESSAGES_FILE", raising=False)
 
     assert cli._resolve_prefill_messages_file(
         {
@@ -17,7 +17,7 @@ def test_resolve_prefill_messages_file_uses_top_level(monkeypatch):
 
 
 def test_resolve_prefill_messages_file_accepts_legacy_agent_key(monkeypatch):
-    monkeypatch.delenv("HERMES_PREFILL_MESSAGES_FILE", raising=False)
+    monkeypatch.delenv("OPENAMER_PREFILL_MESSAGES_FILE", raising=False)
 
     assert cli._resolve_prefill_messages_file(
         {"agent": {"prefill_messages_file": "legacy.json"}}
@@ -25,7 +25,7 @@ def test_resolve_prefill_messages_file_accepts_legacy_agent_key(monkeypatch):
 
 
 def test_resolve_prefill_messages_file_prefers_env(monkeypatch):
-    monkeypatch.setenv("HERMES_PREFILL_MESSAGES_FILE", "env.json")
+    monkeypatch.setenv("OPENAMER_PREFILL_MESSAGES_FILE", "env.json")
 
     assert cli._resolve_prefill_messages_file(
         {

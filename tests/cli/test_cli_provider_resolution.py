@@ -217,7 +217,7 @@ def test_cli_turn_routing_uses_primary_when_disabled(monkeypatch):
 def test_cli_prefers_config_provider_over_stale_env_override(monkeypatch):
     cli = _import_cli()
 
-    monkeypatch.setenv("HERMES_INFERENCE_PROVIDER", "openrouter")
+    monkeypatch.setenv("OPENAMER_INFERENCE_PROVIDER", "openrouter")
     config_copy = dict(cli.CLI_CONFIG)
     model_copy = dict(config_copy.get("model", {}))
     model_copy["provider"] = "custom"
@@ -246,7 +246,7 @@ def test_cli_init_wires_moa_preset_model_to_moa_provider(monkeypatch):
     model_copy["provider"] = None
     config_copy["model"] = model_copy
     monkeypatch.setattr(cli, "CLI_CONFIG", config_copy)
-    monkeypatch.delenv("HERMES_INFERENCE_PROVIDER", raising=False)
+    monkeypatch.delenv("OPENAMER_INFERENCE_PROVIDER", raising=False)
 
     shell = cli.OpenAmerCLI(model="moa:strategy", compact=True, max_turns=1)
 
@@ -261,7 +261,7 @@ def test_cli_init_moa_prefix_overrides_explicit_provider(monkeypatch):
     # moa: prefix must win over the explicit --provider.
     cli = _import_cli()
 
-    monkeypatch.delenv("HERMES_INFERENCE_PROVIDER", raising=False)
+    monkeypatch.delenv("OPENAMER_INFERENCE_PROVIDER", raising=False)
 
     shell = cli.OpenAmerCLI(
         model="moa:strategy", provider="deepseek", compact=True, max_turns=1
@@ -952,11 +952,11 @@ def test_save_custom_provider_references_the_key_instead_of_inlining_it(monkeypa
         "http://localhost:11434/v1",
         api_key="sk-secret",
         name="Ollama",
-        key_env="HERMES_CUSTOM_LOCALHOST_11434_API_KEY",
+        key_env="OPENAMER_CUSTOM_LOCALHOST_11434_API_KEY",
     )
 
     entry = saved["custom_providers"][0]
-    assert entry["key_env"] == "HERMES_CUSTOM_LOCALHOST_11434_API_KEY"
+    assert entry["key_env"] == "OPENAMER_CUSTOM_LOCALHOST_11434_API_KEY"
     assert "api_key" not in entry
     assert "sk-secret" not in yaml.safe_dump(saved)
 
@@ -981,11 +981,11 @@ def test_save_custom_provider_migrates_an_existing_plaintext_entry(monkeypatch, 
 
     _save_custom_provider(
         "http://localhost:11434/v1",
-        key_env="HERMES_CUSTOM_LOCALHOST_11434_API_KEY",
+        key_env="OPENAMER_CUSTOM_LOCALHOST_11434_API_KEY",
     )
 
     entry = saved["custom_providers"][0]
-    assert entry["key_env"] == "HERMES_CUSTOM_LOCALHOST_11434_API_KEY"
+    assert entry["key_env"] == "OPENAMER_CUSTOM_LOCALHOST_11434_API_KEY"
     assert "api_key" not in entry
 
 

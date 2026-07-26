@@ -375,7 +375,7 @@ class TestResumePendingExpiredAutoReset:
     ):
         """Stale resume_pending triggers was_auto_reset=True with reason
         'resume_pending_expired', NOT 'idle'."""
-        monkeypatch.setenv("HERMES_AUTO_CONTINUE_FRESHNESS", "3600")
+        monkeypatch.setenv("OPENAMER_AUTO_CONTINUE_FRESHNESS", "3600")
         # The freshness gate requires an opted-in reset policy — mode "none"
         # disables it entirely (#61052). Use a huge idle window so only the
         # freshness gate (not the idle policy) can fire.
@@ -397,7 +397,7 @@ class TestResumePendingExpiredAutoReset:
         self, tmp_path, monkeypatch
     ):
         """reset_had_activity reflects whether the old session was used."""
-        monkeypatch.setenv("HERMES_AUTO_CONTINUE_FRESHNESS", "3600")
+        monkeypatch.setenv("OPENAMER_AUTO_CONTINUE_FRESHNESS", "3600")
         store = _make_store_with_db(
             tmp_path,
             policy=SessionResetPolicy(mode="idle", idle_minutes=999999),
@@ -418,7 +418,7 @@ class TestResumePendingExpiredAutoReset:
     ):
         """state.db must record end_reason='resume_pending_expired', NOT the
         generic 'session_reset', so the event is auditable (#58933 fix)."""
-        monkeypatch.setenv("HERMES_AUTO_CONTINUE_FRESHNESS", "3600")
+        monkeypatch.setenv("OPENAMER_AUTO_CONTINUE_FRESHNESS", "3600")
         db = _make_db_mock()
         store = _make_store_with_db(
             tmp_path, db,
@@ -468,7 +468,7 @@ class TestResumePendingExpiredAutoReset:
     ):
         """When gateway_auto_continue_freshness=0, resume_pending is never
         expired — the same session is returned regardless of age."""
-        monkeypatch.setenv("HERMES_AUTO_CONTINUE_FRESHNESS", "0")
+        monkeypatch.setenv("OPENAMER_AUTO_CONTINUE_FRESHNESS", "0")
         db = _make_db_mock()
         store = _make_store_with_db(tmp_path, db)
         source = _make_source()

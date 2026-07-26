@@ -38,7 +38,7 @@ def pty_keepalive_harness(monkeypatch):
 
     async def fake_argv(**kw):
         resume = "child" if kw.get("resume") == "parent" else kw.get("resume")
-        env = {"HERMES_TUI_RESUME": resume} if resume else {}
+        env = {"OPENAMER_TUI_RESUME": resume} if resume else {}
         return (["x", resume or "fresh"], "/tmp", env)
 
     monkeypatch.setattr(web_server, "_resolve_chat_argv_async", fake_argv)

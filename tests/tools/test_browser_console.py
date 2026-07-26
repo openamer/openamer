@@ -316,8 +316,8 @@ class TestBrowserConsoleToolsetWiring:
         assert "browser_console" in TOOLSETS["browser"]["tools"]
 
     def test_in_openamer_core_tools(self):
-        from toolsets import _HERMES_CORE_TOOLS
-        assert "browser_console" in _HERMES_CORE_TOOLS
+        from toolsets import _OPENAMER_CORE_TOOLS
+        assert "browser_console" in _OPENAMER_CORE_TOOLS
 
     def test_in_legacy_toolset_map(self):
         from model_tools import _LEGACY_TOOLSET_MAP

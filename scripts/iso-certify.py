@@ -12,7 +12,7 @@ What it does
    free port, with an ISOLATED ``OPENAMER_HOME`` (temp dir, minimal seeded state).
    It NEVER touches the live :9119 dashboard / ai.openamer.dashboard / live
    state.db. Loopback bind ⇒ no auth gate (web_server.should_require_auth).
-2. Arms the synthetic GIL-heavy turn seam (``HERMES_ISO_CERTIFY_SYNTH_TURN=1``,
+2. Arms the synthetic GIL-heavy turn seam (``OPENAMER_ISO_CERTIFY_SYNTH_TURN=1``,
    see ``tui_gateway/synthetic_turn.py``) so 6 concurrent turns reproduce the
    ``take_gil`` interpreter-contention regime WITHOUT real model calls. A
    network/sleep stub would release the GIL and NOT reproduce the incident, so
@@ -62,7 +62,7 @@ except Exception as exc:  # pragma: no cover - dependency guard
     raise
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
-_READY_RE = re.compile(r"HERMES_(?:DASHBOARD|BACKEND)_READY port=(\d+)")
+_READY_RE = re.compile(r"OPENAMER_(?:DASHBOARD|BACKEND)_READY port=(\d+)")
 _STALL_LOG_RE = re.compile(r"event loop stalled|ws write slow \(loop stalled")
 
 
@@ -171,7 +171,7 @@ class ScratchDashboard:
         env["HOME"] = str(self.home.parent) if str(self.home.parent) else env.get("HOME", "")
         env["OPENAMER_HOME"] = str(self.home)
         env["PYTHONPATH"] = str(REPO_ROOT) + os.pathsep + env.get("PYTHONPATH", "")
-        env["HERMES_ISO_CERTIFY_SYNTH_TURN"] = "1"
+        env["OPENAMER_ISO_CERTIFY_SYNTH_TURN"] = "1"
         cmd = [
             python, "-m", "openamer_cli.main", "dashboard",
             "--no-open", "--host", "127.0.0.1", "--port", str(self.port),

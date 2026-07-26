@@ -29,7 +29,7 @@ def _prepare(monkeypatch):
     monkeypatch.setattr(gateway_cli, "_guard_existing_gateway_process_conflict", lambda replace=False: None)
     monkeypatch.setattr(gateway_cli, "supports_systemd_services", lambda: False)
     monkeypatch.setattr(gateway_cli.sys, "stdin", types.SimpleNamespace(isatty=lambda: False))
-    monkeypatch.setenv("HERMES_GATEWAY_EXIT_DIAG", "0")
+    monkeypatch.setenv("OPENAMER_GATEWAY_EXIT_DIAG", "0")
 
     async def _start_gateway(*args, **kwargs):  # pragma: no cover - never awaited by fake run
         return True

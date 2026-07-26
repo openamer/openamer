@@ -92,9 +92,9 @@ const commitTheme = (theme: Theme) => {
   // disagrees with the background, and caching one without the other
   // recreates the multi-stage flash on the next launch (light first frame →
   // dark skin resolve against the cached background → light config pin).
-  const pin = configPinnedTheme ? process.env.HERMES_TUI_THEME : undefined
+  const pin = configPinnedTheme ? process.env.OPENAMER_TUI_THEME : undefined
 
-  writeBootTheme(theme, process.env.HERMES_TUI_BACKGROUND, pin === 'light' || pin === 'dark' ? pin : undefined)
+  writeBootTheme(theme, process.env.OPENAMER_TUI_BACKGROUND, pin === 'light' || pin === 'dark' ? pin : undefined)
 
   if (changed) {
     setTimeout(() => forceRedraw(process.stdout), 40).unref?.()
@@ -154,14 +154,14 @@ export function reapplyTheme(): void {
 
 /**
  * Apply the persisted mode pin (`display.tui_theme`). 'light'/'dark' bridge
- * to HERMES_TUI_THEME — the priority-2 signal `detectLightMode` already
- * honors (only an explicit HERMES_TUI_LIGHT env var outranks it); 'auto'
+ * to OPENAMER_TUI_THEME — the priority-2 signal `detectLightMode` already
+ * honors (only an explicit OPENAMER_TUI_LIGHT env var outranks it); 'auto'
  * clears the pin so the OSC-11 probe + env heuristics decide. The pin exists
  * because the probe cannot always be trusted: xterm.js hosts report #000000
  * regardless of the painted background when the editor theme leaves the
  * terminal background unset.
  */
-// True once CONFIG (via light/dark) owns the HERMES_TUI_THEME env pin, so an
+// True once CONFIG (via light/dark) owns the OPENAMER_TUI_THEME env pin, so an
 // 'auto' hydrate knows not to clobber a user's shell-exported pin. A pin the
 // boot cache replayed counts as config-owned — it originated from
 // display.tui_theme last session, and treating it as a shell export would
@@ -173,7 +173,7 @@ export function applyConfiguredTuiTheme(raw: unknown): void {
     .trim()
     .toLowerCase()
 
-  const current = process.env.HERMES_TUI_THEME ?? ''
+  const current = process.env.OPENAMER_TUI_THEME ?? ''
 
   if (mode === 'light' || mode === 'dark') {
     // Record config ownership BEFORE the match short-circuit — otherwise a
@@ -185,9 +185,9 @@ export function applyConfiguredTuiTheme(raw: unknown): void {
       return
     }
 
-    process.env.HERMES_TUI_THEME = mode
+    process.env.OPENAMER_TUI_THEME = mode
   } else {
-    // 'auto' clears only a pin CONFIG set — never a HERMES_TUI_THEME the user
+    // 'auto' clears only a pin CONFIG set — never a OPENAMER_TUI_THEME the user
     // exported in their shell, which is an explicit override that outranks
     // auto-detection (see detectLightMode's priority order).
     if (!current || !configPinnedTheme) {
@@ -195,7 +195,7 @@ export function applyConfiguredTuiTheme(raw: unknown): void {
     }
 
     configPinnedTheme = false
-    delete process.env.HERMES_TUI_THEME
+    delete process.env.OPENAMER_TUI_THEME
   }
 
   reapplyTheme()
@@ -208,10 +208,10 @@ let themeBackgroundSyncStarted = false
  * OSC-11 probe answers. The env heuristics `detectLightMode` runs at module
  * load are blind in xterm.js hosts (VS Code / Cursor set no COLORFGBG), so a
  * light editor terminal otherwise gets the dark fallback palette. The answer
- * is cached into HERMES_TUI_BACKGROUND — the slot `detectLightMode` already
+ * is cached into OPENAMER_TUI_BACKGROUND — the slot `detectLightMode` already
  * reads (and child processes inherit) — then the current skin (or the
  * skinless default) is re-applied against the corrected base. Explicit
- * HERMES_TUI_LIGHT / HERMES_TUI_THEME overrides still win inside
+ * OPENAMER_TUI_LIGHT / OPENAMER_TUI_THEME overrides still win inside
  * detectLightMode, so users can pin a mode regardless of the probe.
  */
 /** Infer the terminal's polarity from its reported FOREGROUND (OSC 10).
@@ -278,7 +278,7 @@ export function syncThemeToTerminalBackground(): void {
     }
 
     resolved = true
-    process.env.HERMES_TUI_BACKGROUND = hex
+    process.env.OPENAMER_TUI_BACKGROUND = hex
     reapplyTheme()
   })
 
@@ -287,7 +287,7 @@ export function syncThemeToTerminalBackground(): void {
   // the background didn't (first-writer-wins via `resolved`), and an explicit
   // user pin still outranks it inside detectLightMode.
   onTerminalForeground(hex => {
-    if (resolved || process.env.HERMES_TUI_THEME || process.env.HERMES_TUI_LIGHT) {
+    if (resolved || process.env.OPENAMER_TUI_THEME || process.env.OPENAMER_TUI_LIGHT) {
       return
     }
 
@@ -298,7 +298,7 @@ export function syncThemeToTerminalBackground(): void {
     }
 
     resolved = true
-    process.env.HERMES_TUI_BACKGROUND = inferred
+    process.env.OPENAMER_TUI_BACKGROUND = inferred
     reapplyTheme()
   })
 
@@ -311,16 +311,16 @@ export function syncThemeToTerminalBackground(): void {
     if (
       resolved ||
       process.platform !== 'darwin' ||
-      process.env.HERMES_TUI_BACKGROUND ||
-      process.env.HERMES_TUI_THEME ||
-      process.env.HERMES_TUI_LIGHT ||
+      process.env.OPENAMER_TUI_BACKGROUND ||
+      process.env.OPENAMER_TUI_THEME ||
+      process.env.OPENAMER_TUI_LIGHT ||
       process.env.COLORFGBG
     ) {
       return
     }
 
     execFile('defaults', ['read', '-g', 'AppleInterfaceStyle'], (error, stdout) => {
-      if (resolved || process.env.HERMES_TUI_BACKGROUND || process.env.HERMES_TUI_THEME) {
+      if (resolved || process.env.OPENAMER_TUI_BACKGROUND || process.env.OPENAMER_TUI_THEME) {
         return
       }
 
@@ -335,7 +335,7 @@ export function syncThemeToTerminalBackground(): void {
       // intentionally doesn't gate on `resolved` (a measurement outranks an
       // inference).
       resolved = true
-      process.env.HERMES_TUI_BACKGROUND = dark ? '#1e1e1e' : '#ffffff'
+      process.env.OPENAMER_TUI_BACKGROUND = dark ? '#1e1e1e' : '#ffffff'
       reapplyTheme()
     })
   }, 1500).unref?.()

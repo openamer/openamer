@@ -1558,7 +1558,7 @@ def test_nous_runtime_api_key_rejects_opaque_agent_key():
 
 def test_nous_pool_terminal_refresh_removes_device_code_entry(tmp_path, monkeypatch):
     monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / "openamer"))
-    monkeypatch.setenv("HERMES_SHARED_AUTH_DIR", str(tmp_path / "shared"))
+    monkeypatch.setenv("OPENAMER_SHARED_AUTH_DIR", str(tmp_path / "shared"))
     _write_auth_store(
         tmp_path,
         {

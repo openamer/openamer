@@ -21,7 +21,7 @@ Usage::
 
 Language resolution order:
     1. Explicit ``lang=`` argument passed to :func:`t`
-    2. ``HERMES_LANGUAGE`` environment variable (for tests / quick override)
+    2. ``OPENAMER_LANGUAGE`` environment variable (for tests / quick override)
     3. ``display.language`` from config.yaml
     4. ``"en"`` (baseline)
 
@@ -93,7 +93,7 @@ def _locales_dir() -> Path:
 
     Resolution order, first existing wins:
 
-    1. ``HERMES_BUNDLED_LOCALES`` env var -- set by the Nix wrapper (or any
+    1. ``OPENAMER_BUNDLED_LOCALES`` env var -- set by the Nix wrapper (or any
        sealed-packaging system) to point at the installed catalog directory.
     2. ``<repo-root>/locales`` -- source checkouts and editable installs,
        where the working tree sits next to ``agent/``.
@@ -102,13 +102,13 @@ def _locales_dir() -> Path:
     ``_load_catalog`` error messages informative -- it logs the path it
     looked at -- rather than raising.
     """
-    override = os.getenv("HERMES_BUNDLED_LOCALES", "").strip()
+    override = os.getenv("OPENAMER_BUNDLED_LOCALES", "").strip()
     if override:
         candidate = Path(override)
         if candidate.is_dir():
             return candidate
         logger.warning(
-            "HERMES_BUNDLED_LOCALES points to a non-directory path (%s); "
+            "OPENAMER_BUNDLED_LOCALES points to a non-directory path (%s); "
             "falling back to bundled/source locale resolution",
             override,
         )
@@ -220,7 +220,7 @@ def reset_language_cache() -> None:
 
 def get_language() -> str:
     """Resolve the active language using env > config > default order."""
-    env_lang = os.environ.get("HERMES_LANGUAGE")
+    env_lang = os.environ.get("OPENAMER_LANGUAGE")
     if env_lang:
         return _normalize_lang(env_lang)
     cfg_lang = _config_language_cached()

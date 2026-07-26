@@ -170,22 +170,22 @@ class TestConstruction:
 
 class TestPluginRegister:
     def test_skips_when_client_id_missing(self, monkeypatch):
-        monkeypatch.delenv("HERMES_DASHBOARD_OAUTH_CLIENT_ID", raising=False)
-        monkeypatch.delenv("HERMES_DASHBOARD_PORTAL_URL", raising=False)
+        monkeypatch.delenv("OPENAMER_DASHBOARD_OAUTH_CLIENT_ID", raising=False)
+        monkeypatch.delenv("OPENAMER_DASHBOARD_PORTAL_URL", raising=False)
         ctx = MagicMock()
         nous_plugin.register(ctx)
         ctx.register_dashboard_auth_provider.assert_not_called()
         # Skip reason is surfaced for the gate's fail-closed message.
-        assert "HERMES_DASHBOARD_OAUTH_CLIENT_ID" in nous_plugin.LAST_SKIP_REASON
+        assert "OPENAMER_DASHBOARD_OAUTH_CLIENT_ID" in nous_plugin.LAST_SKIP_REASON
 
     def test_registers_with_default_portal_url_when_only_client_id_set(
         self, monkeypatch
     ):
-        """Phase 7 follow-up: HERMES_DASHBOARD_PORTAL_URL is optional —
+        """Phase 7 follow-up: OPENAMER_DASHBOARD_PORTAL_URL is optional —
         defaults to the production Nous Portal. The user shouldn't have
         to set it for the common production deployment path."""
-        monkeypatch.setenv("HERMES_DASHBOARD_OAUTH_CLIENT_ID", "agent:inst1")
-        monkeypatch.delenv("HERMES_DASHBOARD_PORTAL_URL", raising=False)
+        monkeypatch.setenv("OPENAMER_DASHBOARD_OAUTH_CLIENT_ID", "agent:inst1")
+        monkeypatch.delenv("OPENAMER_DASHBOARD_PORTAL_URL", raising=False)
         ctx = MagicMock()
         nous_plugin.register(ctx)
         ctx.register_dashboard_auth_provider.assert_called_once()
@@ -196,8 +196,8 @@ class TestPluginRegister:
         assert nous_plugin.LAST_SKIP_REASON == ""
 
     def test_skips_when_client_id_malformed(self, monkeypatch):
-        monkeypatch.setenv("HERMES_DASHBOARD_OAUTH_CLIENT_ID", "openamer-dashboard")
-        monkeypatch.setenv("HERMES_DASHBOARD_PORTAL_URL", "https://p.example")
+        monkeypatch.setenv("OPENAMER_DASHBOARD_OAUTH_CLIENT_ID", "openamer-dashboard")
+        monkeypatch.setenv("OPENAMER_DASHBOARD_PORTAL_URL", "https://p.example")
         ctx = MagicMock()
         nous_plugin.register(ctx)
         ctx.register_dashboard_auth_provider.assert_not_called()
@@ -206,8 +206,8 @@ class TestPluginRegister:
         assert "openamer-dashboard" in nous_plugin.LAST_SKIP_REASON
 
     def test_registers_with_explicit_portal_url(self, monkeypatch):
-        monkeypatch.setenv("HERMES_DASHBOARD_OAUTH_CLIENT_ID", "agent:inst1")
-        monkeypatch.setenv("HERMES_DASHBOARD_PORTAL_URL", "https://p.example")
+        monkeypatch.setenv("OPENAMER_DASHBOARD_OAUTH_CLIENT_ID", "agent:inst1")
+        monkeypatch.setenv("OPENAMER_DASHBOARD_PORTAL_URL", "https://p.example")
         ctx = MagicMock()
         nous_plugin.register(ctx)
         ctx.register_dashboard_auth_provider.assert_called_once()
@@ -216,8 +216,8 @@ class TestPluginRegister:
         assert registered._portal_url == "https://p.example"
 
     def test_strips_whitespace_from_env_vars(self, monkeypatch):
-        monkeypatch.setenv("HERMES_DASHBOARD_OAUTH_CLIENT_ID", "  agent:x  ")
-        monkeypatch.setenv("HERMES_DASHBOARD_PORTAL_URL", "  https://p.example  ")
+        monkeypatch.setenv("OPENAMER_DASHBOARD_OAUTH_CLIENT_ID", "  agent:x  ")
+        monkeypatch.setenv("OPENAMER_DASHBOARD_PORTAL_URL", "  https://p.example  ")
         ctx = MagicMock()
         nous_plugin.register(ctx)
         ctx.register_dashboard_auth_provider.assert_called_once()
@@ -226,8 +226,8 @@ class TestPluginRegister:
         """Explicit empty string still falls back to the production
         default — same handling as 'unset' so an empty Fly secret can't
         accidentally point the dashboard at nowhere."""
-        monkeypatch.setenv("HERMES_DASHBOARD_OAUTH_CLIENT_ID", "agent:inst1")
-        monkeypatch.setenv("HERMES_DASHBOARD_PORTAL_URL", "")
+        monkeypatch.setenv("OPENAMER_DASHBOARD_OAUTH_CLIENT_ID", "agent:inst1")
+        monkeypatch.setenv("OPENAMER_DASHBOARD_PORTAL_URL", "")
         ctx = MagicMock()
         nous_plugin.register(ctx)
         registered = ctx.register_dashboard_auth_provider.call_args.args[0]
@@ -241,8 +241,8 @@ class TestPluginRegister:
 
 class TestConfigYamlSource:
     """``dashboard.oauth.{client_id,portal_url}`` in ``config.yaml`` is the
-    canonical surface for these settings. ``HERMES_DASHBOARD_OAUTH_CLIENT_ID``
-    and ``HERMES_DASHBOARD_PORTAL_URL`` are operator overrides that win when
+    canonical surface for these settings. ``OPENAMER_DASHBOARD_OAUTH_CLIENT_ID``
+    and ``OPENAMER_DASHBOARD_PORTAL_URL`` are operator overrides that win when
     set — this is the contract Fly.io's platform-secret injection relies on,
     and the contract that lets local devs experiment without setting env
     vars.
@@ -273,8 +273,8 @@ class TestConfigYamlSource:
         """No env var, only config.yaml — plugin reads from config and
         registers successfully. This is the path Teknium's review pushed
         for (".env is for secrets only")."""
-        monkeypatch.delenv("HERMES_DASHBOARD_OAUTH_CLIENT_ID", raising=False)
-        monkeypatch.delenv("HERMES_DASHBOARD_PORTAL_URL", raising=False)
+        monkeypatch.delenv("OPENAMER_DASHBOARD_OAUTH_CLIENT_ID", raising=False)
+        monkeypatch.delenv("OPENAMER_DASHBOARD_PORTAL_URL", raising=False)
         patch_config({"client_id": "agent:from-config"})
         ctx = MagicMock()
         nous_plugin.register(ctx)
@@ -286,8 +286,8 @@ class TestConfigYamlSource:
         assert registered._portal_url == "https://portal.nousresearch.com"
 
     def test_config_yaml_client_id_and_portal_url(self, patch_config, monkeypatch):
-        monkeypatch.delenv("HERMES_DASHBOARD_OAUTH_CLIENT_ID", raising=False)
-        monkeypatch.delenv("HERMES_DASHBOARD_PORTAL_URL", raising=False)
+        monkeypatch.delenv("OPENAMER_DASHBOARD_OAUTH_CLIENT_ID", raising=False)
+        monkeypatch.delenv("OPENAMER_DASHBOARD_PORTAL_URL", raising=False)
         patch_config({
             "client_id": "agent:from-config",
             "portal_url": "https://staging.portal.example",
@@ -300,9 +300,9 @@ class TestConfigYamlSource:
 
     def test_env_overrides_config_client_id(self, patch_config, monkeypatch):
         """Env wins. Critical for Fly.io: the Portal injects
-        HERMES_DASHBOARD_OAUTH_CLIENT_ID at deploy time and we MUST
+        OPENAMER_DASHBOARD_OAUTH_CLIENT_ID at deploy time and we MUST
         honour it even if a stale config.yaml ships in the image."""
-        monkeypatch.setenv("HERMES_DASHBOARD_OAUTH_CLIENT_ID", "agent:from-env")
+        monkeypatch.setenv("OPENAMER_DASHBOARD_OAUTH_CLIENT_ID", "agent:from-env")
         patch_config({"client_id": "agent:from-config"})
         ctx = MagicMock()
         nous_plugin.register(ctx)
@@ -313,9 +313,9 @@ class TestConfigYamlSource:
         )
 
     def test_env_overrides_config_portal_url(self, patch_config, monkeypatch):
-        monkeypatch.setenv("HERMES_DASHBOARD_OAUTH_CLIENT_ID", "agent:x")
+        monkeypatch.setenv("OPENAMER_DASHBOARD_OAUTH_CLIENT_ID", "agent:x")
         monkeypatch.setenv(
-            "HERMES_DASHBOARD_PORTAL_URL", "https://env.portal.example",
+            "OPENAMER_DASHBOARD_PORTAL_URL", "https://env.portal.example",
         )
         patch_config({
             "client_id": "agent:x",
@@ -329,11 +329,11 @@ class TestConfigYamlSource:
     def test_empty_env_string_does_not_shadow_config(
         self, patch_config, monkeypatch
     ):
-        """``HERMES_DASHBOARD_OAUTH_CLIENT_ID=`` (set but empty) is
+        """``OPENAMER_DASHBOARD_OAUTH_CLIENT_ID=`` (set but empty) is
         common in CI/Fly when a secret is provisioned-but-not-populated.
         It MUST NOT shadow a valid config.yaml value with an empty
         string — operators would lose the gate."""
-        monkeypatch.setenv("HERMES_DASHBOARD_OAUTH_CLIENT_ID", "")
+        monkeypatch.setenv("OPENAMER_DASHBOARD_OAUTH_CLIENT_ID", "")
         patch_config({"client_id": "agent:from-config"})
         ctx = MagicMock()
         nous_plugin.register(ctx)
@@ -347,13 +347,13 @@ class TestConfigYamlSource:
         """Neither env nor config.yaml set — skip with a reason that
         mentions BOTH surfaces so operators don't guess wrong about
         which one to populate."""
-        monkeypatch.delenv("HERMES_DASHBOARD_OAUTH_CLIENT_ID", raising=False)
+        monkeypatch.delenv("OPENAMER_DASHBOARD_OAUTH_CLIENT_ID", raising=False)
         patch_config(None)
         ctx = MagicMock()
         nous_plugin.register(ctx)
         ctx.register_dashboard_auth_provider.assert_not_called()
         # Old behaviour: skip reason mentions the env var.
-        assert "HERMES_DASHBOARD_OAUTH_CLIENT_ID" in nous_plugin.LAST_SKIP_REASON
+        assert "OPENAMER_DASHBOARD_OAUTH_CLIENT_ID" in nous_plugin.LAST_SKIP_REASON
         # New behaviour: skip reason ALSO mentions the config.yaml path
         # so the user knows it's a valid alternative.
         assert "dashboard.oauth.client_id" in nous_plugin.LAST_SKIP_REASON, (
@@ -368,7 +368,7 @@ class TestConfigYamlSource:
         plugin must not crash — it falls through to the env-only path
         and either succeeds (if env is set) or surfaces the standard
         'not set' skip reason."""
-        monkeypatch.delenv("HERMES_DASHBOARD_OAUTH_CLIENT_ID", raising=False)
+        monkeypatch.delenv("OPENAMER_DASHBOARD_OAUTH_CLIENT_ID", raising=False)
 
         def _broken_load():
             raise OSError("config.yaml not readable")
@@ -387,7 +387,7 @@ class TestConfigYamlSource:
         """cfg_get handles 'config has a string where a section was
         expected' robustly. Verify the plugin inherits that resilience
         so a malformed user config doesn't crash startup."""
-        monkeypatch.delenv("HERMES_DASHBOARD_OAUTH_CLIENT_ID", raising=False)
+        monkeypatch.delenv("OPENAMER_DASHBOARD_OAUTH_CLIENT_ID", raising=False)
         monkeypatch.setattr(
             "openamer_cli.config.load_config",
             lambda: {"dashboard": {"oauth": "wrong type"}},
@@ -699,7 +699,7 @@ class TestVerifySession:
         self, provider, rsa_keypair
     ):
         """Operators need to see the actual iss/aud the token carries to debug
-        config drift between HERMES_DASHBOARD_PORTAL_URL/CLIENT_ID and Portal."""
+        config drift between OPENAMER_DASHBOARD_PORTAL_URL/CLIENT_ID and Portal."""
         token = _mint_token(rsa_keypair, iss="https://evil.example")
         with pytest.raises(ProviderError) as excinfo:
             provider.verify_session(access_token=token)

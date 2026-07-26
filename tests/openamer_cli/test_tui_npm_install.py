@@ -374,7 +374,7 @@ def test_make_tui_argv_uses_bundled_tui_when_workspace_missing(
     runnable bundled TUI on disk. The bundled shortcut must succeed without
     ever touching the (missing) ui-tui workspace or git.
     """
-    monkeypatch.delenv("HERMES_TUI_DIR", raising=False)
+    monkeypatch.delenv("OPENAMER_TUI_DIR", raising=False)
     monkeypatch.setattr(main_mod, "_ensure_tui_node", lambda: None)
 
     bundled_entry = tmp_path / "bundled" / "entry.js"
@@ -412,7 +412,7 @@ def test_make_tui_argv_dev_mode_still_requires_workspace_even_with_bundle(
     from a bundled entry.js), so it must still hit the workspace guard when
     ui-tui/ is missing — the bundled-first reordering must not weaken --dev.
     """
-    monkeypatch.delenv("HERMES_TUI_DIR", raising=False)
+    monkeypatch.delenv("OPENAMER_TUI_DIR", raising=False)
     monkeypatch.setattr(main_mod, "_ensure_tui_node", lambda: None)
 
     bundled_entry = tmp_path / "bundled" / "entry.js"
@@ -438,7 +438,7 @@ def test_make_tui_argv_exits_with_recovery_hint_when_workspace_unrecoverable(
     tmp_path: Path, main_mod, monkeypatch, capsys
 ) -> None:
     """Missing ui-tui + no git checkout → clean error, never touches node/npm."""
-    monkeypatch.delenv("HERMES_TUI_DIR", raising=False)
+    monkeypatch.delenv("OPENAMER_TUI_DIR", raising=False)
     monkeypatch.setattr(main_mod, "_ensure_tui_node", lambda: None)
 
     # No .git beside ui-tui → _restore_tui_workspace bails, fallback message fires.
@@ -463,8 +463,8 @@ def test_make_tui_argv_restores_missing_workspace_from_git(
     tmp_path: Path, main_mod, monkeypatch, capsys
 ) -> None:
     """Missing ui-tui in a git checkout self-heals via `git restore` and continues."""
-    monkeypatch.delenv("HERMES_TUI_DIR", raising=False)
-    monkeypatch.delenv("HERMES_QUIET", raising=False)
+    monkeypatch.delenv("OPENAMER_TUI_DIR", raising=False)
+    monkeypatch.delenv("OPENAMER_QUIET", raising=False)
     monkeypatch.setattr(main_mod, "_ensure_tui_node", lambda: None)
 
     tui_dir = tmp_path / "ui-tui"

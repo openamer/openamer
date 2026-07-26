@@ -284,10 +284,10 @@ def _scan_cron_skill_assembled(assembled: str) -> tuple[str, str]:
 
 def _origin_from_env() -> Optional[Dict[str, str]]:
     from gateway.session_context import get_session_env
-    origin_platform = get_session_env("HERMES_SESSION_PLATFORM")
-    origin_chat_id = get_session_env("HERMES_SESSION_CHAT_ID")
+    origin_platform = get_session_env("OPENAMER_SESSION_PLATFORM")
+    origin_chat_id = get_session_env("OPENAMER_SESSION_CHAT_ID")
     if origin_platform and origin_chat_id:
-        thread_id = get_session_env("HERMES_SESSION_THREAD_ID") or None
+        thread_id = get_session_env("OPENAMER_SESSION_THREAD_ID") or None
         if thread_id:
             logger.debug(
                 "Cron origin captured thread_id=%s for %s:%s",
@@ -296,14 +296,14 @@ def _origin_from_env() -> Optional[Dict[str, str]]:
         return {
             "platform": origin_platform,
             "chat_id": origin_chat_id,
-            "chat_name": get_session_env("HERMES_SESSION_CHAT_NAME") or None,
+            "chat_name": get_session_env("OPENAMER_SESSION_CHAT_NAME") or None,
             "thread_id": thread_id,
             # Captured so an opt-in delivery mirror (cron.mirror_delivery /
             # attach_to_session) can resolve the exact participant's session in
             # per-user-isolated group chats — parity with interactive
-            # send_message, which passes HERMES_SESSION_USER_ID to
+            # send_message, which passes OPENAMER_SESSION_USER_ID to
             # gateway.mirror.mirror_to_session. Harmless for DMs/shared sessions.
-            "user_id": get_session_env("HERMES_SESSION_USER_ID") or None,
+            "user_id": get_session_env("OPENAMER_SESSION_USER_ID") or None,
         }
     return None
 
@@ -312,7 +312,7 @@ def _local_delivery_notice(job: Dict[str, Any], user_deliver: Optional[str]) -> 
     """Return an informational notice when a created job won't deliver anywhere.
 
     TUI/CLI sessions cannot be captured as a cron ``origin`` (no
-    ``HERMES_SESSION_PLATFORM``/``CHAT_ID`` is set for them), so a
+    ``OPENAMER_SESSION_PLATFORM``/``CHAT_ID`` is set for them), so a
     ``deliver="origin"`` request — or an omitted ``deliver`` that defaults to
     origin-or-local — produces a job that runs and saves output to
     ``last_output`` but is never delivered back into the session. This is by
@@ -1113,9 +1113,9 @@ def check_cronjob_requirements() -> bool:
     from utils import env_var_enabled
 
     return (
-        env_var_enabled("HERMES_INTERACTIVE")
-        or env_var_enabled("HERMES_GATEWAY_SESSION")
-        or env_var_enabled("HERMES_EXEC_ASK")
+        env_var_enabled("OPENAMER_INTERACTIVE")
+        or env_var_enabled("OPENAMER_GATEWAY_SESSION")
+        or env_var_enabled("OPENAMER_EXEC_ASK")
     )
 
 

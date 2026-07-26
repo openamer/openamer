@@ -14,7 +14,7 @@ from openamer_cli.commands import (
     SlashCommandCompleter,
     _CMD_NAME_LIMIT,
     _SLACK_RESERVED_COMMANDS,
-    _SLACK_VIA_HERMES_ONLY,
+    _SLACK_VIA_OPENAMER_ONLY,
     _TG_NAME_LIMIT,
     _clamp_command_names,
     _clamp_telegram_names,
@@ -384,7 +384,7 @@ class TestSlackNativeSlashes:
         reserved_norm = {_norm(n) for n in _SLACK_RESERVED_COMMANDS}
         # Commands deliberately routed through /openamer <command> on Slack only
         # (Slack's 50-slash cap) are expected to be absent from native slashes.
-        via_openamer_norm = {_norm(n) for n in _SLACK_VIA_HERMES_ONLY}
+        via_openamer_norm = {_norm(n) for n in _SLACK_VIA_OPENAMER_ONLY}
         missing = (tg_norm - slack_norm) - reserved_norm - via_openamer_norm
         assert not missing, (
             f"commands on Telegram but missing from Slack native slashes: {sorted(missing)}"

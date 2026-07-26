@@ -30,7 +30,7 @@ def resolve_httpx_verify(
     Priority:
     1. ``ssl_verify: false`` — disable verification (local dev only)
     2. explicit ``ca_bundle`` (per-provider ``ssl_ca_cert`` config field)
-    3. ``HERMES_CA_BUNDLE``, ``SSL_CERT_FILE``, ``REQUESTS_CA_BUNDLE``,
+    3. ``OPENAMER_CA_BUNDLE``, ``SSL_CERT_FILE``, ``REQUESTS_CA_BUNDLE``,
        ``CURL_CA_BUNDLE`` env vars
     4. ``True`` (httpx/certifi default)
 
@@ -47,7 +47,7 @@ def resolve_httpx_verify(
 
     effective_ca = (
         (ca_bundle or "").strip()
-        or os.getenv("HERMES_CA_BUNDLE", "").strip()
+        or os.getenv("OPENAMER_CA_BUNDLE", "").strip()
         or os.getenv("SSL_CERT_FILE", "").strip()
         or os.getenv("REQUESTS_CA_BUNDLE", "").strip()
         or os.getenv("CURL_CA_BUNDLE", "").strip()

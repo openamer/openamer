@@ -215,7 +215,7 @@ async def send_sticker(
 
     Args:
         sticker:   贴纸名称（如 "六六六"）或 sticker_id（如 "278"）。为空时随机发送一张。
-        chat_id:   目标会话；缺省时使用当前会话上下文（HERMES_SESSION_CHAT_ID）。
+        chat_id:   目标会话；缺省时使用当前会话上下文（OPENAMER_SESSION_CHAT_ID）。
                    格式：``direct:{account_id}`` / ``group:{group_code}`` / 或裸 account_id。
         reply_to:  群聊场景的引用消息 ID（可选）。
 
@@ -228,7 +228,7 @@ async def send_sticker(
         get_random_sticker,
     )
 
-    target = (chat_id or "").strip() or get_session_env("HERMES_SESSION_CHAT_ID", "")
+    target = (chat_id or "").strip() or get_session_env("OPENAMER_SESSION_CHAT_ID", "")
     if not target:
         return {
             "success": False,
@@ -421,7 +421,7 @@ def _check_yuanbao():
     """Toolset availability check — True when running in a yuanbao gateway session."""
     try:
         from gateway.session_context import get_session_env
-        if get_session_env("HERMES_SESSION_PLATFORM", "") == "yuanbao":
+        if get_session_env("OPENAMER_SESSION_PLATFORM", "") == "yuanbao":
             return True
     except Exception:
         pass
@@ -449,7 +449,7 @@ async def _handle_yb_send_dm(args, **kw):
     if not group_code:
         try:
             from gateway.session_context import get_session_env
-            chat_id = get_session_env("HERMES_SESSION_CHAT_ID", "")
+            chat_id = get_session_env("OPENAMER_SESSION_CHAT_ID", "")
             # chat_id format: "group:<code>" → extract the code part
             if chat_id.startswith("group:"):
                 group_code = chat_id.split(":", 1)[1]

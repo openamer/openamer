@@ -1034,7 +1034,7 @@ class TestGetDueJobs:
         """A claiming tick that DIED mid-run must not wedge the one-shot forever:
         once the run_claim is older than the TTL it is re-dispatched (recovered)."""
         # Pin the inactivity timeout unset so the derived TTL is deterministic.
-        monkeypatch.delenv("HERMES_CRON_TIMEOUT", raising=False)
+        monkeypatch.delenv("OPENAMER_CRON_TIMEOUT", raising=False)
         from cron.jobs import _openamer_now, _oneshot_run_claim_ttl_seconds
         ttl = _oneshot_run_claim_ttl_seconds()
         t0 = _openamer_now()
@@ -1058,7 +1058,7 @@ class TestGetDueJobs:
         assert [j["id"] for j in recovered] == ["wedged"]
 
     def test_run_claim_ttl_derived_from_cron_timeout(self, tmp_cron_dir, monkeypatch):
-        """The stale-recovery TTL tracks HERMES_CRON_TIMEOUT (3x headroom), with
+        """The stale-recovery TTL tracks OPENAMER_CRON_TIMEOUT (3x headroom), with
         the fixed constant as a floor, and falls back to the constant when runs
         are unbounded (timeout=0)."""
         from cron.jobs import (
@@ -1066,23 +1066,23 @@ class TestGetDueJobs:
             ONESHOT_RUN_CLAIM_TTL_SECONDS as FLOOR,
         )
         # Unset → default 600s inactivity → 1800s (== the historical constant).
-        monkeypatch.delenv("HERMES_CRON_TIMEOUT", raising=False)
+        monkeypatch.delenv("OPENAMER_CRON_TIMEOUT", raising=False)
         assert ttl() == 1800.0
 
         # A large custom timeout scales the TTL up (3x headroom).
-        monkeypatch.setenv("HERMES_CRON_TIMEOUT", "1200")
+        monkeypatch.setenv("OPENAMER_CRON_TIMEOUT", "1200")
         assert ttl() == 3600.0
 
         # A tiny timeout is floored so a claim can never expire mid-run.
-        monkeypatch.setenv("HERMES_CRON_TIMEOUT", "30")
+        monkeypatch.setenv("OPENAMER_CRON_TIMEOUT", "30")
         assert ttl() == float(FLOOR)
 
         # Unlimited runs (0) → no finite bound → fall back to the floor.
-        monkeypatch.setenv("HERMES_CRON_TIMEOUT", "0")
+        monkeypatch.setenv("OPENAMER_CRON_TIMEOUT", "0")
         assert ttl() == float(FLOOR)
 
         # Invalid value → treated as the default 600s → 1800s.
-        monkeypatch.setenv("HERMES_CRON_TIMEOUT", "not-a-number")
+        monkeypatch.setenv("OPENAMER_CRON_TIMEOUT", "not-a-number")
         assert ttl() == 1800.0
 
 
@@ -1118,7 +1118,7 @@ class TestGetDueJobs:
         """
         import cron.scheduler as scheduler_mod
         from cron.jobs import _openamer_now, _oneshot_run_claim_ttl_seconds
-        monkeypatch.delenv("HERMES_CRON_TIMEOUT", raising=False)
+        monkeypatch.delenv("OPENAMER_CRON_TIMEOUT", raising=False)
         ttl = _oneshot_run_claim_ttl_seconds()
         t0 = _openamer_now()
         run_at = (t0 - timedelta(seconds=ttl + 300)).isoformat()
@@ -1160,7 +1160,7 @@ class TestGetDueJobs:
         import cron.scheduler as scheduler_mod
         from cron.jobs import _openamer_now, _oneshot_run_claim_ttl_seconds
 
-        monkeypatch.delenv("HERMES_CRON_TIMEOUT", raising=False)
+        monkeypatch.delenv("OPENAMER_CRON_TIMEOUT", raising=False)
         ttl = _oneshot_run_claim_ttl_seconds()
         t0 = _openamer_now()
         run_at = (t0 - timedelta(seconds=ttl + 300)).isoformat()
@@ -1186,7 +1186,7 @@ class TestGetDueJobs:
         """#62002 cross-process leg: a heartbeat-refreshed claim never expires
         while the run is alive, so no other tick re-dispatches or stale-removes
         the job even when the run outlives the original TTL horizon."""
-        monkeypatch.delenv("HERMES_CRON_TIMEOUT", raising=False)
+        monkeypatch.delenv("OPENAMER_CRON_TIMEOUT", raising=False)
         from cron.jobs import _openamer_now, _oneshot_run_claim_ttl_seconds
         ttl = _oneshot_run_claim_ttl_seconds()
         t0 = _openamer_now()
@@ -1967,7 +1967,7 @@ class TestLateEnvRepointScopesStore:
     def test_unchanged_home_returns_import_time_constants(self, monkeypatch):
         import cron.jobs as jobs
 
-        monkeypatch.setenv("OPENAMER_HOME", str(jobs.HERMES_DIR))
+        monkeypatch.setenv("OPENAMER_HOME", str(jobs.OPENAMER_DIR))
         store = jobs._current_cron_store()
         assert store.jobs_file is jobs.JOBS_FILE
 
@@ -2010,7 +2010,7 @@ class TestLateEnvRepointScopesStore:
 
         sim_old_home = tmp_path / "import-time-home"
         sim_cron = sim_old_home / "cron"
-        monkeypatch.setattr(jobs, "HERMES_DIR", sim_old_home)
+        monkeypatch.setattr(jobs, "OPENAMER_DIR", sim_old_home)
         monkeypatch.setattr(jobs, "CRON_DIR", sim_cron)
         monkeypatch.setattr(jobs, "JOBS_FILE", sim_cron / "jobs.json")
         monkeypatch.setattr(jobs, "OUTPUT_DIR", sim_cron / "output")

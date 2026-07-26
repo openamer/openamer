@@ -386,7 +386,7 @@ class TestFormatFooter:
 
 class TestVerifierEnabled:
     def test_default_is_enabled(self, monkeypatch):
-        monkeypatch.delenv("HERMES_FILE_MUTATION_VERIFIER", raising=False)
+        monkeypatch.delenv("OPENAMER_FILE_MUTATION_VERIFIER", raising=False)
         agent = _bare_agent()
         # With no env and no config present, safe default is True.
         # load_config may surface a user config.yaml in some envs — stub it.
@@ -396,12 +396,12 @@ class TestVerifierEnabled:
 
     @pytest.mark.parametrize("value", ["0", "false", "FALSE", "no", "off"])
     def test_env_disables(self, monkeypatch, value):
-        monkeypatch.setenv("HERMES_FILE_MUTATION_VERIFIER", value)
+        monkeypatch.setenv("OPENAMER_FILE_MUTATION_VERIFIER", value)
         agent = _bare_agent()
         assert agent._file_mutation_verifier_enabled() is False
 
     def test_env_enables_over_config(self, monkeypatch):
-        monkeypatch.setenv("HERMES_FILE_MUTATION_VERIFIER", "1")
+        monkeypatch.setenv("OPENAMER_FILE_MUTATION_VERIFIER", "1")
         import openamer_cli.config as _cfg_mod
         monkeypatch.setattr(
             _cfg_mod, "load_config",
@@ -411,7 +411,7 @@ class TestVerifierEnabled:
         assert agent._file_mutation_verifier_enabled() is True
 
     def test_config_disables_when_no_env(self, monkeypatch):
-        monkeypatch.delenv("HERMES_FILE_MUTATION_VERIFIER", raising=False)
+        monkeypatch.delenv("OPENAMER_FILE_MUTATION_VERIFIER", raising=False)
         import openamer_cli.config as _cfg_mod
         monkeypatch.setattr(
             _cfg_mod, "load_config",

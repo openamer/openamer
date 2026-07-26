@@ -30,14 +30,14 @@
 # s6-overlay already reaps zombies and forwards signals as PID 1; the
 # flag semantics are intentionally no-ops here.
 #
-# Test hook: HERMES_TINI_SHIM_TARGET overrides the `/init` path (and
-# HERMES_TINI_SHIM_WRAPPER the main-wrapper path) so unit tests can
+# Test hook: OPENAMER_TINI_SHIM_TARGET overrides the `/init` path (and
+# OPENAMER_TINI_SHIM_WRAPPER the main-wrapper path) so unit tests can
 # record argv without a real s6 tree.
 
 set -e
 
-INIT_TARGET="${HERMES_TINI_SHIM_TARGET:-/init}"
-WRAPPER="${HERMES_TINI_SHIM_WRAPPER:-/opt/openamer/docker/main-wrapper.sh}"
+INIT_TARGET="${OPENAMER_TINI_SHIM_TARGET:-/init}"
+WRAPPER="${OPENAMER_TINI_SHIM_WRAPPER:-/opt/openamer/docker/main-wrapper.sh}"
 
 while [ "$#" -gt 0 ]; do
     case "$1" in

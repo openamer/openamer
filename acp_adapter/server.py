@@ -190,9 +190,9 @@ def _named_custom_provider_catalogs() -> list[tuple[str, str, list[tuple[str, st
     return catalogs
 
 try:
-    from openamer_cli import __version__ as HERMES_VERSION
+    from openamer_cli import __version__ as OPENAMER_VERSION
 except Exception:
-    HERMES_VERSION = "0.0.0"
+    OPENAMER_VERSION = "0.0.0"
 
 # Thread pool for running AIAgent (synchronous) in parallel.
 _executor = ThreadPoolExecutor(max_workers=4, thread_name_prefix="acp-agent")
@@ -1060,7 +1060,7 @@ class OpenAmerACPAgent(acp.Agent):
 
         return InitializeResponse(
             protocol_version=acp.PROTOCOL_VERSION,
-            agent_info=Implementation(name="openamer-agent", version=HERMES_VERSION),
+            agent_info=Implementation(name="openamer-agent", version=OPENAMER_VERSION),
             agent_capabilities=AgentCapabilities(
                 load_session=True,
                 prompt_capabilities=PromptCapabilities(image=True),
@@ -1735,13 +1735,13 @@ class OpenAmerACPAgent(acp.Agent):
         # thread — setting it here would write to the event-loop thread's TLS,
         # not the executor's. Interactive routing uses a contextvar in
         # tools.approval (set_openamer_interactive_context) rather than
-        # os.environ["HERMES_INTERACTIVE"], so concurrent executor workers can't
+        # os.environ["OPENAMER_INTERACTIVE"], so concurrent executor workers can't
         # race on a process-global flag — one session's restore can't drop
         # another onto the non-interactive auto-approve path mid-run
         # (GHSA-96vc-wcxf-jjff). The contextvar write is isolated by the
         # contextvars.copy_context() wrapper around the executor call below.
         # ACP's conn.request_permission maps cleanly to the interactive
-        # callback shape — not the gateway-queue HERMES_EXEC_ASK path,
+        # callback shape — not the gateway-queue OPENAMER_EXEC_ASK path,
         # which requires a notify_cb registered in _gateway_notify_cbs.
         previous_approval_cb = None
         interactive_token = None
@@ -1750,7 +1750,7 @@ class OpenAmerACPAgent(acp.Agent):
 
         def _run_agent() -> dict:
             nonlocal previous_approval_cb, interactive_token, edit_approval_token, previous_session_id
-            # Bind HERMES_SESSION_KEY for this session so per-session caches
+            # Bind OPENAMER_SESSION_KEY for this session so per-session caches
             # (e.g. the interactive sudo password cache in tools.terminal_tool)
             # scope to the ACP session rather than leaking across sessions
             # that land on the same reused executor thread. This call runs
@@ -1799,8 +1799,8 @@ class OpenAmerACPAgent(acp.Agent):
             # the new task so clients can render a per-session board). Save
             # and restore around the agent call so a re-used executor thread
             # never leaks one session's id into the next session's tools.
-            previous_session_id = os.environ.get("HERMES_SESSION_ID")
-            os.environ["HERMES_SESSION_ID"] = session_id
+            previous_session_id = os.environ.get("OPENAMER_SESSION_ID")
+            os.environ["OPENAMER_SESSION_ID"] = session_id
             try:
                 result = agent.run_conversation(
                     user_message=user_content,
@@ -1816,11 +1816,11 @@ class OpenAmerACPAgent(acp.Agent):
                 # Restore the interactive contextvar for this context.
                 if interactive_token is not None:
                     reset_openamer_interactive_context(interactive_token)
-                # Restore HERMES_SESSION_ID symmetrically.
+                # Restore OPENAMER_SESSION_ID symmetrically.
                 if previous_session_id is None:
-                    os.environ.pop("HERMES_SESSION_ID", None)
+                    os.environ.pop("OPENAMER_SESSION_ID", None)
                 else:
-                    os.environ["HERMES_SESSION_ID"] = previous_session_id
+                    os.environ["OPENAMER_SESSION_ID"] = previous_session_id
                 if approval_cb:
                     try:
                         from tools import terminal_tool as _terminal_tool
@@ -1848,7 +1848,7 @@ class OpenAmerACPAgent(acp.Agent):
             pre_turn_openamer_id = getattr(state.agent, "session_id", None)
             # Wrap the executor call in a fresh copy of the current context so
             # concurrent ACP sessions on the shared ThreadPoolExecutor don't
-            # stomp on each other's ContextVar writes (HERMES_SESSION_KEY in
+            # stomp on each other's ContextVar writes (OPENAMER_SESSION_KEY in
             # particular — used by the interactive sudo password cache scope).
             ctx = contextvars.copy_context()
             result = await loop.run_in_executor(_executor, ctx.run, _run_agent)
@@ -2330,7 +2330,7 @@ class OpenAmerACPAgent(acp.Agent):
         return f"Queued for the next turn. ({depth} queued)"
 
     def _cmd_version(self, args: str, state: SessionState) -> str:
-        return f"OpenAmer Agent v{HERMES_VERSION}"
+        return f"OpenAmer Agent v{OPENAMER_VERSION}"
 
     # ---- Model switching (ACP protocol method) -------------------------------
 

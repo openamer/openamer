@@ -4,9 +4,9 @@ Reasoning models (those that emit extended thinking blocks before their
 first content token) routinely exceed OpenAmer's default chat-model
 stale detectors:
 
-* Stream stale detector:   ``HERMES_STREAM_STALE_TIMEOUT``     default 180s
+* Stream stale detector:   ``OPENAMER_STREAM_STALE_TIMEOUT``     default 180s
                            ``agent/chat_completion_helpers.py:2544``
-* Non-stream stale detector: ``HERMES_API_CALL_STALE_TIMEOUT``  default 90s
+* Non-stream stale detector: ``OPENAMER_API_CALL_STALE_TIMEOUT``  default 90s
                            ``run_agent.py:1140``
 
 For NVIDIA Nemotron 3 Ultra on the hosted NIM gateway the empirical

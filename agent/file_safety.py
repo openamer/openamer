@@ -81,10 +81,10 @@ def build_write_denied_prefixes(home: str) -> list[str]:
 
 
 def get_safe_write_roots() -> set[str]:
-    """Return resolved HERMES_WRITE_SAFE_ROOT paths. Supports multiple directories
+    """Return resolved OPENAMER_WRITE_SAFE_ROOT paths. Supports multiple directories
     separated by ``os.pathsep`` (``:`` on Unix, ``;`` on Windows).
     E.g., ``/opt/data:/var/www/html`` on Unix, ``C:\\data;D:\\www`` on Windows."""
-    env = os.getenv("HERMES_WRITE_SAFE_ROOT", "")
+    env = os.getenv("OPENAMER_WRITE_SAFE_ROOT", "")
     if not env:
         return set()
     roots: set[str] = set()
@@ -171,7 +171,7 @@ def get_write_denied_error(path: str, *, verb: str = "Write") -> Optional[str]:
     if denial == "safe_root":
         roots_display = os.pathsep.join(sorted(get_safe_write_roots()))
         return (
-            f"{verb} denied: '{path}' is outside HERMES_WRITE_SAFE_ROOT "
+            f"{verb} denied: '{path}' is outside OPENAMER_WRITE_SAFE_ROOT "
             f"({roots_display}). Unset the variable or add this path's directory prefix."
         )
     return f"{verb} denied: '{path}' is a protected system/credential file."

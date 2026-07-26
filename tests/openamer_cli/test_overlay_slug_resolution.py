@@ -1,6 +1,6 @@
 """Test that overlay providers with mismatched models.dev keys resolve correctly.
 
-HERMES_OVERLAYS keys may be models.dev IDs (e.g. "github-copilot") while
+OPENAMER_OVERLAYS keys may be models.dev IDs (e.g. "github-copilot") while
 _PROVIDER_MODELS and config.yaml use OpenAmer IDs ("copilot").  The slug
 resolution in list_authenticated_providers() Section 2 must bridge this gap.
 

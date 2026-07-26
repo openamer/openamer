@@ -282,14 +282,14 @@ def is_noninteractive() -> bool:
     """True when no human is available to answer a prompt.
 
     The dashboard/desktop spawn CLI actions with ``stdin=DEVNULL`` and
-    ``HERMES_NONINTERACTIVE=1`` (see ``openamer_cli/web_server.py``). In that
+    ``OPENAMER_NONINTERACTIVE=1`` (see ``openamer_cli/web_server.py``). In that
     context an ``input()`` raises ``EOFError`` immediately, so a prompt that
     aborts on EOF kills the spawned action — this is what made the desktop
     "restart gateway" fail when the Windows gateway service was not yet
     installed (the start path asks "Install it now?" with no one to answer).
     Honour the explicit env flag here so callers fall back to their default.
     """
-    return os.environ.get("HERMES_NONINTERACTIVE", "").strip().lower() in {
+    return os.environ.get("OPENAMER_NONINTERACTIVE", "").strip().lower() in {
         "1",
         "true",
         "yes",
@@ -300,7 +300,7 @@ def is_noninteractive() -> bool:
 def prompt_yes_no(question: str, default: bool = True) -> bool:
     """Prompt for yes/no. Ctrl+C exits, empty input returns default.
 
-    Non-interactive callers (``HERMES_NONINTERACTIVE=1`` or a closed/redirected
+    Non-interactive callers (``OPENAMER_NONINTERACTIVE=1`` or a closed/redirected
     stdin) have no one to answer, so fall back to ``default`` instead of
     aborting the whole process.
     """
@@ -1476,10 +1476,10 @@ def _apply_default_agent_settings(config: dict):
     """Apply recommended defaults for all agent settings without prompting."""
     config.setdefault("agent", {})["max_turns"] = 150
     # config.yaml is the authoritative source for max_turns; the gateway
-    # bridges it into HERMES_MAX_ITERATIONS at startup. We no longer write
+    # bridges it into OPENAMER_MAX_ITERATIONS at startup. We no longer write
     # to .env to avoid the dual-source inconsistency that caused the
     # 60-vs-500 bug (stale .env entry silently shadowing config.yaml).
-    remove_env_value("HERMES_MAX_ITERATIONS")
+    remove_env_value("OPENAMER_MAX_ITERATIONS")
 
     config.setdefault("display", {})["tool_progress"] = "all"
 
@@ -1525,10 +1525,10 @@ def setup_agent_settings(config: dict):
             # Write to config.yaml (authoritative) only. Also clean up any
             # stale .env entry from earlier setup runs — the gateway's
             # bridge in gateway/run.py now unconditionally derives
-            # HERMES_MAX_ITERATIONS from agent.max_turns at startup.
+            # OPENAMER_MAX_ITERATIONS from agent.max_turns at startup.
             config.setdefault("agent", {})["max_turns"] = max_iter
             config.pop("max_turns", None)
-            remove_env_value("HERMES_MAX_ITERATIONS")
+            remove_env_value("OPENAMER_MAX_ITERATIONS")
             print_success(f"Max iterations set to {max_iter}")
     except ValueError:
         print_warning("Invalid number, keeping current value")

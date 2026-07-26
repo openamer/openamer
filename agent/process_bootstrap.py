@@ -165,7 +165,7 @@ def build_keepalive_http_client(
 
     ``verify`` is forwarded to httpx so auxiliary-client calls (compression,
     vision, web_extract, title generation, etc.) honor the same per-provider
-    ``ssl_ca_cert`` / ``ssl_verify`` and ``HERMES_CA_BUNDLE`` settings the main
+    ``ssl_ca_cert`` / ``ssl_verify`` and ``OPENAMER_CA_BUNDLE`` settings the main
     client uses. It is passed on the client AND on the plain no-proxy mounts
     (a mounted transport owns the SSL context for its scheme).
     """

@@ -30,7 +30,7 @@ def _no_aws(monkeypatch):
 
 def _clear_provider_env(monkeypatch):
     for var in ("OPENAI_API_KEY", "OPENROUTER_API_KEY", "GLM_API_KEY", "ZAI_API_KEY",
-                "KIMI_API_KEY", "MINIMAX_API_KEY", "HERMES_INFERENCE_PROVIDER"):
+                "KIMI_API_KEY", "MINIMAX_API_KEY", "OPENAMER_INFERENCE_PROVIDER"):
         monkeypatch.delenv(var, raising=False)
 
 

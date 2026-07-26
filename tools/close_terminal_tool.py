@@ -8,7 +8,7 @@ The output keeps buffering and the user can reopen the tab from the status stack
 
 It routes through the process registry's ``on_close`` sink, which the desktop
 gateway wires to emit a ``terminal.close`` event the renderer handles. Like
-``read_terminal`` it is gated on ``HERMES_DESKTOP`` so it never appears outside
+``read_terminal`` it is gated on ``OPENAMER_DESKTOP`` so it never appears outside
 the GUI.
 """
 
@@ -31,8 +31,8 @@ def close_terminal_tool(process_id: str) -> str:
 
 
 def check_close_terminal_requirements() -> bool:
-    """Desktop GUI only — HERMES_DESKTOP is set on the gateway the app spawns."""
-    return env_var_enabled("HERMES_DESKTOP")
+    """Desktop GUI only — OPENAMER_DESKTOP is set on the gateway the app spawns."""
+    return env_var_enabled("OPENAMER_DESKTOP")
 
 
 CLOSE_TERMINAL_SCHEMA = {

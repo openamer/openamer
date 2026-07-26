@@ -44,29 +44,29 @@ def test_set_session_env_sets_contextvars(monkeypatch):
     )
     context = SessionContext(source=source, connected_platforms=[], home_channels={})
 
-    monkeypatch.delenv("HERMES_SESSION_PLATFORM", raising=False)
+    monkeypatch.delenv("OPENAMER_SESSION_PLATFORM", raising=False)
     monkeypatch.delenv("OPENAMER_SESSION_SOURCE", raising=False)
-    monkeypatch.delenv("HERMES_SESSION_CHAT_ID", raising=False)
-    monkeypatch.delenv("HERMES_SESSION_CHAT_NAME", raising=False)
-    monkeypatch.delenv("HERMES_SESSION_USER_ID", raising=False)
-    monkeypatch.delenv("HERMES_SESSION_USER_NAME", raising=False)
-    monkeypatch.delenv("HERMES_SESSION_THREAD_ID", raising=False)
+    monkeypatch.delenv("OPENAMER_SESSION_CHAT_ID", raising=False)
+    monkeypatch.delenv("OPENAMER_SESSION_CHAT_NAME", raising=False)
+    monkeypatch.delenv("OPENAMER_SESSION_USER_ID", raising=False)
+    monkeypatch.delenv("OPENAMER_SESSION_USER_NAME", raising=False)
+    monkeypatch.delenv("OPENAMER_SESSION_THREAD_ID", raising=False)
 
     tokens = runner._set_session_env(context)
 
     # Values should be readable via get_session_env (contextvar path)
-    assert get_session_env("HERMES_SESSION_PLATFORM") == "telegram"
+    assert get_session_env("OPENAMER_SESSION_PLATFORM") == "telegram"
     assert get_session_env("OPENAMER_SESSION_SOURCE") == ""
-    assert get_session_env("HERMES_SESSION_CHAT_ID") == "-1001"
-    assert get_session_env("HERMES_SESSION_CHAT_NAME") == "Group"
-    assert get_session_env("HERMES_SESSION_USER_ID") == "123456"
-    assert get_session_env("HERMES_SESSION_USER_NAME") == "alice"
-    assert get_session_env("HERMES_SESSION_THREAD_ID") == "17585"
+    assert get_session_env("OPENAMER_SESSION_CHAT_ID") == "-1001"
+    assert get_session_env("OPENAMER_SESSION_CHAT_NAME") == "Group"
+    assert get_session_env("OPENAMER_SESSION_USER_ID") == "123456"
+    assert get_session_env("OPENAMER_SESSION_USER_NAME") == "alice"
+    assert get_session_env("OPENAMER_SESSION_THREAD_ID") == "17585"
 
     # os.environ should NOT be touched
-    assert os.getenv("HERMES_SESSION_PLATFORM") is None
+    assert os.getenv("OPENAMER_SESSION_PLATFORM") is None
     assert os.getenv("OPENAMER_SESSION_SOURCE") is None
-    assert os.getenv("HERMES_SESSION_THREAD_ID") is None
+    assert os.getenv("OPENAMER_SESSION_THREAD_ID") is None
 
     # Clean up
     runner._clear_session_env(tokens)
@@ -88,12 +88,12 @@ def test_clear_session_env_restores_previous_state(monkeypatch):
     """_clear_session_env should restore contextvars to their pre-handler values."""
     runner = object.__new__(GatewayRunner)
 
-    monkeypatch.delenv("HERMES_SESSION_PLATFORM", raising=False)
-    monkeypatch.delenv("HERMES_SESSION_CHAT_ID", raising=False)
-    monkeypatch.delenv("HERMES_SESSION_CHAT_NAME", raising=False)
-    monkeypatch.delenv("HERMES_SESSION_USER_ID", raising=False)
-    monkeypatch.delenv("HERMES_SESSION_USER_NAME", raising=False)
-    monkeypatch.delenv("HERMES_SESSION_THREAD_ID", raising=False)
+    monkeypatch.delenv("OPENAMER_SESSION_PLATFORM", raising=False)
+    monkeypatch.delenv("OPENAMER_SESSION_CHAT_ID", raising=False)
+    monkeypatch.delenv("OPENAMER_SESSION_CHAT_NAME", raising=False)
+    monkeypatch.delenv("OPENAMER_SESSION_USER_ID", raising=False)
+    monkeypatch.delenv("OPENAMER_SESSION_USER_NAME", raising=False)
+    monkeypatch.delenv("OPENAMER_SESSION_THREAD_ID", raising=False)
 
     source = SessionSource(
         platform=Platform.TELEGRAM,
@@ -107,44 +107,44 @@ def test_clear_session_env_restores_previous_state(monkeypatch):
     context = SessionContext(source=source, connected_platforms=[], home_channels={})
 
     tokens = runner._set_session_env(context)
-    assert get_session_env("HERMES_SESSION_PLATFORM") == "telegram"
-    assert get_session_env("HERMES_SESSION_USER_ID") == "123456"
+    assert get_session_env("OPENAMER_SESSION_PLATFORM") == "telegram"
+    assert get_session_env("OPENAMER_SESSION_USER_ID") == "123456"
 
     runner._clear_session_env(tokens)
 
     # After clear, contextvars should return to defaults (empty)
-    assert get_session_env("HERMES_SESSION_PLATFORM") == ""
-    assert get_session_env("HERMES_SESSION_CHAT_ID") == ""
-    assert get_session_env("HERMES_SESSION_CHAT_NAME") == ""
-    assert get_session_env("HERMES_SESSION_USER_ID") == ""
-    assert get_session_env("HERMES_SESSION_USER_NAME") == ""
-    assert get_session_env("HERMES_SESSION_THREAD_ID") == ""
+    assert get_session_env("OPENAMER_SESSION_PLATFORM") == ""
+    assert get_session_env("OPENAMER_SESSION_CHAT_ID") == ""
+    assert get_session_env("OPENAMER_SESSION_CHAT_NAME") == ""
+    assert get_session_env("OPENAMER_SESSION_USER_ID") == ""
+    assert get_session_env("OPENAMER_SESSION_USER_NAME") == ""
+    assert get_session_env("OPENAMER_SESSION_THREAD_ID") == ""
 
 
 def test_get_session_env_falls_back_to_os_environ(monkeypatch):
     """get_session_env should fall back to os.environ when contextvar is unset."""
-    monkeypatch.setenv("HERMES_SESSION_PLATFORM", "discord")
+    monkeypatch.setenv("OPENAMER_SESSION_PLATFORM", "discord")
 
     # No contextvar set — should read from os.environ
-    assert get_session_env("HERMES_SESSION_PLATFORM") == "discord"
+    assert get_session_env("OPENAMER_SESSION_PLATFORM") == "discord"
 
     # Now set a contextvar — should prefer it
     tokens = set_session_vars(platform="telegram")
-    assert get_session_env("HERMES_SESSION_PLATFORM") == "telegram"
+    assert get_session_env("OPENAMER_SESSION_PLATFORM") == "telegram"
 
     # After clear — should return "" (explicitly cleared), NOT fall back
     # to os.environ.  This is the fix for #10304: stale os.environ values
     # must not leak through after a gateway session is cleaned up.
     clear_session_vars(tokens)
-    assert get_session_env("HERMES_SESSION_PLATFORM") == ""
+    assert get_session_env("OPENAMER_SESSION_PLATFORM") == ""
 
 
 def test_get_session_env_default_when_nothing_set(monkeypatch):
     """get_session_env returns default when neither contextvar nor env is set."""
-    monkeypatch.delenv("HERMES_SESSION_PLATFORM", raising=False)
+    monkeypatch.delenv("OPENAMER_SESSION_PLATFORM", raising=False)
 
-    assert get_session_env("HERMES_SESSION_PLATFORM") == ""
-    assert get_session_env("HERMES_SESSION_PLATFORM", "fallback") == "fallback"
+    assert get_session_env("OPENAMER_SESSION_PLATFORM") == ""
+    assert get_session_env("OPENAMER_SESSION_PLATFORM", "fallback") == "fallback"
 
 
 def test_set_session_env_handles_missing_optional_fields():
@@ -161,10 +161,10 @@ def test_set_session_env_handles_missing_optional_fields():
 
     tokens = runner._set_session_env(context)
 
-    assert get_session_env("HERMES_SESSION_PLATFORM") == "telegram"
-    assert get_session_env("HERMES_SESSION_CHAT_ID") == "-1001"
-    assert get_session_env("HERMES_SESSION_CHAT_NAME") == ""
-    assert get_session_env("HERMES_SESSION_THREAD_ID") == ""
+    assert get_session_env("OPENAMER_SESSION_PLATFORM") == "telegram"
+    assert get_session_env("OPENAMER_SESSION_CHAT_ID") == "-1001"
+    assert get_session_env("OPENAMER_SESSION_CHAT_NAME") == ""
+    assert get_session_env("OPENAMER_SESSION_THREAD_ID") == ""
 
     runner._clear_session_env(tokens)
 
@@ -175,45 +175,45 @@ def test_set_session_env_handles_missing_optional_fields():
 
 
 def test_session_key_set_via_contextvars(monkeypatch):
-    """set_session_vars should set HERMES_SESSION_KEY via contextvars."""
-    monkeypatch.delenv("HERMES_SESSION_KEY", raising=False)
+    """set_session_vars should set OPENAMER_SESSION_KEY via contextvars."""
+    monkeypatch.delenv("OPENAMER_SESSION_KEY", raising=False)
 
     tokens = set_session_vars(
         platform="telegram",
         chat_id="-1001",
         session_key="tg:-1001:17585",
     )
-    assert get_session_env("HERMES_SESSION_KEY") == "tg:-1001:17585"
+    assert get_session_env("OPENAMER_SESSION_KEY") == "tg:-1001:17585"
 
     clear_session_vars(tokens)
-    assert get_session_env("HERMES_SESSION_KEY") == ""
+    assert get_session_env("OPENAMER_SESSION_KEY") == ""
 
 
 def test_session_key_falls_back_to_os_environ(monkeypatch):
     """get_session_env for SESSION_KEY should fall back to os.environ."""
-    monkeypatch.setenv("HERMES_SESSION_KEY", "env-session-123")
+    monkeypatch.setenv("OPENAMER_SESSION_KEY", "env-session-123")
 
     # No contextvar set — should read from os.environ
-    assert get_session_env("HERMES_SESSION_KEY") == "env-session-123"
+    assert get_session_env("OPENAMER_SESSION_KEY") == "env-session-123"
 
     # Set contextvar — should prefer it
     tokens = set_session_vars(session_key="ctx-session-456")
-    assert get_session_env("HERMES_SESSION_KEY") == "ctx-session-456"
+    assert get_session_env("OPENAMER_SESSION_KEY") == "ctx-session-456"
 
     # After clear — should return "" (explicitly cleared), not os.environ (#10304)
     clear_session_vars(tokens)
-    assert get_session_env("HERMES_SESSION_KEY") == ""
+    assert get_session_env("OPENAMER_SESSION_KEY") == ""
 
 
 def test_session_id_set_via_contextvars(monkeypatch):
-    """set_session_vars should set HERMES_SESSION_ID via contextvars."""
-    monkeypatch.setenv("HERMES_SESSION_ID", "stale-env-session")
+    """set_session_vars should set OPENAMER_SESSION_ID via contextvars."""
+    monkeypatch.setenv("OPENAMER_SESSION_ID", "stale-env-session")
 
     tokens = set_session_vars(session_id="ctx-session-456")
-    assert get_session_env("HERMES_SESSION_ID") == "ctx-session-456"
+    assert get_session_env("OPENAMER_SESSION_ID") == "ctx-session-456"
 
     clear_session_vars(tokens)
-    assert get_session_env("HERMES_SESSION_ID") == ""
+    assert get_session_env("OPENAMER_SESSION_ID") == ""
 
 
 def test_set_session_env_includes_session_key():
@@ -236,12 +236,12 @@ def test_set_session_env_includes_session_key():
     # Capture baseline value before setting (may be non-empty from another
     # test in the same pytest-xdist worker sharing the context).
     tokens = runner._set_session_env(context)
-    assert get_session_env("HERMES_SESSION_KEY") == "tg:-1001:17585"
+    assert get_session_env("OPENAMER_SESSION_KEY") == "tg:-1001:17585"
     runner._clear_session_env(tokens)
     # After clearing, the session key must not retain the value we just set.
     # The exact post-clear value depends on context propagation from other
     # tests, so only check that our value was removed, not what replaced it.
-    assert get_session_env("HERMES_SESSION_KEY") != "tg:-1001:17585"
+    assert get_session_env("OPENAMER_SESSION_KEY") != "tg:-1001:17585"
 
 
 def test_session_key_no_race_condition_with_contextvars(monkeypatch):
@@ -251,7 +251,7 @@ def test_session_key_no_race_condition_with_contextvars(monkeypatch):
     reads back its own value. With os.environ the second task would
     overwrite the first (the old bug).
     """
-    monkeypatch.delenv("HERMES_SESSION_KEY", raising=False)
+    monkeypatch.delenv("OPENAMER_SESSION_KEY", raising=False)
 
     results = {}
 
@@ -259,7 +259,7 @@ def test_session_key_no_race_condition_with_contextvars(monkeypatch):
         tokens = set_session_vars(session_key=key)
         try:
             await asyncio.sleep(delay)
-            read_back = get_session_env("HERMES_SESSION_KEY")
+            read_back = get_session_env("OPENAMER_SESSION_KEY")
             results[key] = read_back
         finally:
             clear_session_vars(tokens)
@@ -285,10 +285,10 @@ def test_session_key_no_race_condition_with_contextvars(monkeypatch):
 async def test_run_in_executor_with_context_preserves_session_env(monkeypatch):
     """Gateway executor work should inherit session contextvars for tool routing."""
     runner = object.__new__(GatewayRunner)
-    monkeypatch.delenv("HERMES_SESSION_PLATFORM", raising=False)
-    monkeypatch.delenv("HERMES_SESSION_CHAT_ID", raising=False)
-    monkeypatch.delenv("HERMES_SESSION_THREAD_ID", raising=False)
-    monkeypatch.delenv("HERMES_SESSION_USER_ID", raising=False)
+    monkeypatch.delenv("OPENAMER_SESSION_PLATFORM", raising=False)
+    monkeypatch.delenv("OPENAMER_SESSION_CHAT_ID", raising=False)
+    monkeypatch.delenv("OPENAMER_SESSION_THREAD_ID", raising=False)
+    monkeypatch.delenv("OPENAMER_SESSION_USER_ID", raising=False)
 
     source = SessionSource(
         platform=Platform.TELEGRAM,
@@ -309,10 +309,10 @@ async def test_run_in_executor_with_context_preserves_session_env(monkeypatch):
     try:
         result = await runner._run_in_executor_with_context(
             lambda: {
-                "platform": get_session_env("HERMES_SESSION_PLATFORM"),
-                "chat_id": get_session_env("HERMES_SESSION_CHAT_ID"),
-                "user_id": get_session_env("HERMES_SESSION_USER_ID"),
-                "session_key": get_session_env("HERMES_SESSION_KEY"),
+                "platform": get_session_env("OPENAMER_SESSION_PLATFORM"),
+                "chat_id": get_session_env("OPENAMER_SESSION_CHAT_ID"),
+                "user_id": get_session_env("OPENAMER_SESSION_USER_ID"),
+                "session_key": get_session_env("OPENAMER_SESSION_KEY"),
             }
         )
     finally:

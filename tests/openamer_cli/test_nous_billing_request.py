@@ -299,7 +299,7 @@ def test_403_remote_spending_revoked_maps_through_request(monkeypatch):
 
 def test_403_cli_billing_disabled_stays_generic_with_portal_url(monkeypatch):
     # Business denials stay generic so surfaces can branch on code/recovery.
-    monkeypatch.delenv("HERMES_PORTAL_BASE_URL", raising=False)
+    monkeypatch.delenv("OPENAMER_PORTAL_BASE_URL", raising=False)
     monkeypatch.delenv("NOUS_PORTAL_BASE_URL", raising=False)
     _sequence(
         monkeypatch,

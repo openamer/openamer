@@ -322,21 +322,21 @@ class TestHardenImportPath:
 
     def _run(self, hb, path_seed, env=None):
         original = sys.path[:]
-        original_env = os.environ.get("HERMES_PYTHON_SRC_ROOT")
+        original_env = os.environ.get("OPENAMER_PYTHON_SRC_ROOT")
         try:
             sys.path[:] = path_seed
             if env is not None:
-                os.environ["HERMES_PYTHON_SRC_ROOT"] = env
-            elif "HERMES_PYTHON_SRC_ROOT" in os.environ:
-                del os.environ["HERMES_PYTHON_SRC_ROOT"]
+                os.environ["OPENAMER_PYTHON_SRC_ROOT"] = env
+            elif "OPENAMER_PYTHON_SRC_ROOT" in os.environ:
+                del os.environ["OPENAMER_PYTHON_SRC_ROOT"]
             hb.harden_import_path(src_root="/opt/openamer")
             return sys.path[:]
         finally:
             sys.path[:] = original
             if original_env is None:
-                os.environ.pop("HERMES_PYTHON_SRC_ROOT", None)
+                os.environ.pop("OPENAMER_PYTHON_SRC_ROOT", None)
             else:
-                os.environ["HERMES_PYTHON_SRC_ROOT"] = original_env
+                os.environ["OPENAMER_PYTHON_SRC_ROOT"] = original_env
 
     def test_relative_cwd_forms_removed(self):
         hb = _fresh_import()
@@ -368,35 +368,35 @@ class TestHardenImportPath:
     def test_env_var_used_when_no_arg(self):
         hb = _fresh_import()
         original = sys.path[:]
-        original_env = os.environ.get("HERMES_PYTHON_SRC_ROOT")
+        original_env = os.environ.get("OPENAMER_PYTHON_SRC_ROOT")
         try:
             sys.path[:] = ["", "/cwd/proj", "/usr/lib"]
-            os.environ["HERMES_PYTHON_SRC_ROOT"] = "/env/openamer"
+            os.environ["OPENAMER_PYTHON_SRC_ROOT"] = "/env/openamer"
             hb.harden_import_path()
             assert sys.path[0] == "/env/openamer"
         finally:
             sys.path[:] = original
             if original_env is None:
-                os.environ.pop("HERMES_PYTHON_SRC_ROOT", None)
+                os.environ.pop("OPENAMER_PYTHON_SRC_ROOT", None)
             else:
-                os.environ["HERMES_PYTHON_SRC_ROOT"] = original_env
+                os.environ["OPENAMER_PYTHON_SRC_ROOT"] = original_env
 
     def test_defaults_to_module_dir(self):
         # With neither arg nor env var, the helper anchors on the bootstrap
         # module's own directory — the repo root for shipped entry points.
         hb = _fresh_import()
         original = sys.path[:]
-        original_env = os.environ.get("HERMES_PYTHON_SRC_ROOT")
+        original_env = os.environ.get("OPENAMER_PYTHON_SRC_ROOT")
         try:
             sys.path[:] = ["", "/somewhere/else"]
-            os.environ.pop("HERMES_PYTHON_SRC_ROOT", None)
+            os.environ.pop("OPENAMER_PYTHON_SRC_ROOT", None)
             hb.harden_import_path()
             expected = os.path.dirname(os.path.abspath(hb.__file__))
             assert sys.path[0] == expected
         finally:
             sys.path[:] = original
             if original_env is not None:
-                os.environ["HERMES_PYTHON_SRC_ROOT"] = original_env
+                os.environ["OPENAMER_PYTHON_SRC_ROOT"] = original_env
 
 
 class TestSuppressPlatformVerConsole:

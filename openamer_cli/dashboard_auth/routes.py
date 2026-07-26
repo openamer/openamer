@@ -58,7 +58,7 @@ def _redirect_uri(request: Request) -> str:
 
     Three resolution tiers:
 
-      1. ``HERMES_DASHBOARD_PUBLIC_URL`` env var or
+      1. ``OPENAMER_DASHBOARD_PUBLIC_URL`` env var or
          ``dashboard.public_url`` in config.yaml — when set, this is
          the complete authority (scheme + host + optional path prefix)
          and we append ``/auth/callback`` verbatim. ``X-Forwarded-Prefix``

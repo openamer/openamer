@@ -143,7 +143,7 @@ class TestStartupPlatformIsolation:
     ):
         """Telegram gets a larger default; other platforms stay isolated at 30s."""
         runner = _make_runner()
-        monkeypatch.delenv("HERMES_GATEWAY_PLATFORM_CONNECT_TIMEOUT", raising=False)
+        monkeypatch.delenv("OPENAMER_GATEWAY_PLATFORM_CONNECT_TIMEOUT", raising=False)
 
         assert runner._platform_connect_timeout_secs(Platform.TELEGRAM) == 180
         assert runner._platform_connect_timeout_secs(Platform.FEISHU) == 30
@@ -152,7 +152,7 @@ class TestStartupPlatformIsolation:
         self, monkeypatch
     ):
         runner = _make_runner()
-        monkeypatch.setenv("HERMES_GATEWAY_PLATFORM_CONNECT_TIMEOUT", "90")
+        monkeypatch.setenv("OPENAMER_GATEWAY_PLATFORM_CONNECT_TIMEOUT", "90")
 
         assert runner._platform_connect_timeout_secs(Platform.TELEGRAM) == 90
         assert runner._platform_connect_timeout_secs(Platform.FEISHU) == 90
@@ -168,7 +168,7 @@ class TestStartupPlatformIsolation:
             return True
 
         adapter.connect = hang
-        monkeypatch.setenv("HERMES_GATEWAY_PLATFORM_CONNECT_TIMEOUT", "0.001")
+        monkeypatch.setenv("OPENAMER_GATEWAY_PLATFORM_CONNECT_TIMEOUT", "0.001")
 
         with pytest.raises(TimeoutError, match="telegram connect timed out"):
             await runner._connect_adapter_with_timeout(adapter, Platform.TELEGRAM)

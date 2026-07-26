@@ -240,7 +240,7 @@ def _local_stt_backend_available() -> bool:
     ``apply_nous_managed_defaults`` from flipping a working local setup
     to the managed gateway.
     """
-    if get_env_value("HERMES_LOCAL_STT_COMMAND"):
+    if get_env_value("OPENAMER_LOCAL_STT_COMMAND"):
         return True
     try:
         from tools.transcription_tools import _HAS_FASTER_WHISPER
@@ -431,10 +431,10 @@ def get_nous_subscription_features(
     try:
         from tools.transcription_tools import _HAS_FASTER_WHISPER
         local_stt_available = bool(_HAS_FASTER_WHISPER) or bool(
-            get_env_value("HERMES_LOCAL_STT_COMMAND")
+            get_env_value("OPENAMER_LOCAL_STT_COMMAND")
         )
     except Exception:
-        local_stt_available = bool(get_env_value("HERMES_LOCAL_STT_COMMAND"))
+        local_stt_available = bool(get_env_value("OPENAMER_LOCAL_STT_COMMAND"))
 
     # When use_gateway is set, suppress direct credentials for managed detection
     if web_use_gateway:

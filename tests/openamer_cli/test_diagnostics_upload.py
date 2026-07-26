@@ -96,7 +96,7 @@ class TestRequestUploadUrl:
         # patched env to confirm the override is honoured.
         import importlib
 
-        monkeypatch.setenv("HERMES_DIAGNOSTICS_BASE_URL", "https://staging.example.com")
+        monkeypatch.setenv("OPENAMER_DIAGNOSTICS_BASE_URL", "https://staging.example.com")
         import openamer_cli.diagnostics_upload as mod
 
         mod = importlib.reload(mod)
@@ -114,7 +114,7 @@ class TestRequestUploadUrl:
             req = urlopen.call_args[0][0]
             assert req.full_url == "https://staging.example.com/api/diagnostics/upload-url"
         finally:
-            monkeypatch.delenv("HERMES_DIAGNOSTICS_BASE_URL", raising=False)
+            monkeypatch.delenv("OPENAMER_DIAGNOSTICS_BASE_URL", raising=False)
             importlib.reload(mod)
 
 

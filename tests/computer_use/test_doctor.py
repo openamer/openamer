@@ -293,7 +293,7 @@ class TestJsonOutput:
         assert parsed == _ok_report()
 
 
-# ── HERMES_CUA_DRIVER_CMD resolution ───────────────────────────────────────
+# ── OPENAMER_CUA_DRIVER_CMD resolution ───────────────────────────────────────
 
 
 class TestDriverCmdResolution:
@@ -315,7 +315,7 @@ class TestDriverCmdResolution:
     def test_env_var_used_when_no_arg_given(self, monkeypatch):
         from tools.computer_use import doctor
 
-        monkeypatch.setenv("HERMES_CUA_DRIVER_CMD", "/env/path/cua-driver")
+        monkeypatch.setenv("OPENAMER_CUA_DRIVER_CMD", "/env/path/cua-driver")
         proc = _fake_proc_with_responses(
             {"jsonrpc": "2.0", "id": 1, "result": {}},
             {"jsonrpc": "2.0", "id": 2, "result": {"structuredContent": _ok_report()}},
@@ -337,7 +337,7 @@ class TestDriverCmdResolution:
         driver.write_text("#!/bin/sh\nexit 0\n")
         driver.chmod(0o755)
 
-        monkeypatch.delenv("HERMES_CUA_DRIVER_CMD", raising=False)
+        monkeypatch.delenv("OPENAMER_CUA_DRIVER_CMD", raising=False)
         monkeypatch.setenv("HOME", str(tmp_path))
         monkeypatch.setenv("PATH", "/usr/bin:/bin:/usr/sbin:/sbin")
 

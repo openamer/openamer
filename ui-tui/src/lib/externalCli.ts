@@ -5,7 +5,7 @@ export interface LaunchResult {
   error?: string
 }
 
-const resolveOpenAmerBin = () => process.env.HERMES_BIN?.trim() || 'openamer'
+const resolveOpenAmerBin = () => process.env.OPENAMER_BIN?.trim() || 'openamer'
 
 export const launchOpenAmerCommand = (args: string[]): Promise<LaunchResult> =>
   new Promise(resolve => {

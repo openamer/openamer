@@ -24,7 +24,7 @@ _env_path = get_env_path()
 load_openamer_dotenv(openamer_home=_env_path.parent, project_env=PROJECT_ROOT / ".env")
 
 from openamer_cli.colors import Colors, color
-from openamer_cli.models import _HERMES_USER_AGENT
+from openamer_cli.models import _OPENAMER_USER_AGENT
 from openamer_constants import OPENROUTER_MODELS_URL
 from utils import base_url_host_matches
 
@@ -220,8 +220,8 @@ _DEPRECATED_COMPRESSION_SUMMARY_KEYS: tuple[str, ...] = (
 # Deprecated env vars (checked in the .env file, not process env, so config→env
 # bridges like terminal.cwd → TERMINAL_CWD do not false-positive).
 _DEPRECATED_ENV_VARS: tuple[tuple[str, str], ...] = (
-    ("HERMES_TOOL_PROGRESS", "display.tool_progress in config.yaml"),
-    ("HERMES_TOOL_PROGRESS_MODE", "display.tool_progress in config.yaml"),
+    ("OPENAMER_TOOL_PROGRESS", "display.tool_progress in config.yaml"),
+    ("OPENAMER_TOOL_PROGRESS_MODE", "display.tool_progress in config.yaml"),
     ("TERMINAL_CWD", "terminal.cwd in config.yaml"),
     ("MESSAGING_CWD", "terminal.cwd in config.yaml"),
     ("QQ_HOME_CHANNEL", "QQBOT_HOME_CHANNEL"),
@@ -652,7 +652,7 @@ def managed_scope_check() -> None:
     """Report the active managed scope (resolved dir + pinned key counts).
 
     Silent when no managed scope is present. When the managed directory was
-    resolved from the HERMES_MANAGED_DIR override (rather than the system
+    resolved from the OPENAMER_MANAGED_DIR override (rather than the system
     default), that is surfaced too — a redirected scope is the documented
     foot-gun (see docs/design/managed-scope.md §7) and an operator should see it.
     """
@@ -669,8 +669,8 @@ def managed_scope_check() -> None:
         f"Managed scope active: {n_cfg} config key(s), {n_env} env key(s) "
         f"pinned by {managed_dir}"
     )
-    if os.environ.get("HERMES_MANAGED_DIR", "").strip():
-        check_info(f"managed dir set via HERMES_MANAGED_DIR={managed_dir}")
+    if os.environ.get("OPENAMER_MANAGED_DIR", "").strip():
+        check_info(f"managed dir set via OPENAMER_MANAGED_DIR={managed_dir}")
 
 
 def run_doctor(args):
@@ -680,7 +680,7 @@ def run_doctor(args):
 
     # Doctor runs from the interactive CLI, so CLI-gated tool availability
     # checks (like cronjob management) should see the same context as `openamer`.
-    os.environ.setdefault("HERMES_INTERACTIVE", "1")
+    os.environ.setdefault("OPENAMER_INTERACTIVE", "1")
 
     # Handle `openamer doctor --ack <id>` as a fast path. Persist the ack and
     # return without running the rest of the diagnostics — the user has
@@ -1199,11 +1199,11 @@ def run_doctor(args):
         except Exception:
             pass
 
-        # Detect stale HERMES_MAX_ITERATIONS ghost in .env shadowing
+        # Detect stale OPENAMER_MAX_ITERATIONS ghost in .env shadowing
         # agent.max_turns in config.yaml (issue #17534). The setup wizard
         # used to dual-write the iteration budget to both stores; users who
         # later edit only config.yaml are left with a .env ghost. The gateway
-        # bridge normally derives HERMES_MAX_ITERATIONS from agent.max_turns
+        # bridge normally derives OPENAMER_MAX_ITERATIONS from agent.max_turns
         # at startup, but if that bridge bails (any earlier config-parse
         # error), the stale .env value silently wins and the agent runs at the
         # wrong budget — e.g. config says 400 but the activity line reads N/90.
@@ -1223,7 +1223,7 @@ def run_doctor(args):
             # Legacy root-level key counts too.
             if cfg_max_turns is None:
                 cfg_max_turns = raw_config.get("max_turns")
-            env_ghost = load_env().get("HERMES_MAX_ITERATIONS")
+            env_ghost = load_env().get("OPENAMER_MAX_ITERATIONS")
             drift = (
                 cfg_max_turns is not None
                 and env_ghost is not None
@@ -1231,26 +1231,26 @@ def run_doctor(args):
             )
             if drift:
                 check_warn(
-                    f"HERMES_MAX_ITERATIONS={env_ghost} in .env shadows "
+                    f"OPENAMER_MAX_ITERATIONS={env_ghost} in .env shadows "
                     f"agent.max_turns={cfg_max_turns} in config.yaml",
                     "(stale ghost from an earlier `openamer setup` run)",
                 )
                 if should_fix:
-                    if remove_env_value("HERMES_MAX_ITERATIONS"):
+                    if remove_env_value("OPENAMER_MAX_ITERATIONS"):
                         check_ok(
-                            "Removed stale HERMES_MAX_ITERATIONS from .env "
+                            "Removed stale OPENAMER_MAX_ITERATIONS from .env "
                             f"(config.yaml agent.max_turns={cfg_max_turns} is now authoritative)"
                         )
                         fixed_count += 1
                     else:
-                        check_warn("Could not remove HERMES_MAX_ITERATIONS from .env")
+                        check_warn("Could not remove OPENAMER_MAX_ITERATIONS from .env")
                         manual_issues.append(
-                            "Manually delete the HERMES_MAX_ITERATIONS line from "
+                            "Manually delete the OPENAMER_MAX_ITERATIONS line from "
                             f"{_DHH}/.env — config.yaml agent.max_turns is authoritative."
                         )
                 else:
                     issues.append(
-                        "Stale HERMES_MAX_ITERATIONS in .env shadows config.yaml — "
+                        "Stale OPENAMER_MAX_ITERATIONS in .env shadows config.yaml — "
                         "run 'openamer doctor --fix'"
                     )
         except Exception:
@@ -2160,7 +2160,7 @@ def run_doctor(args):
             url = (base.rstrip("/") + "/models") if base else default_url
             headers = {
                 "Authorization": f"Bearer {key}",
-                "User-Agent": _HERMES_USER_AGENT,
+                "User-Agent": _OPENAMER_USER_AGENT,
             }
             if base_url_host_matches(base, "api.kimi.com"):
                 headers["User-Agent"] = "claude-code/0.1.0"

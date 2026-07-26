@@ -26,9 +26,9 @@ def kanban_stop_nudge_enabled() -> bool:
     """Return whether the kanban stop-guard is active for this process.
 
     On when ``OPENAMER_KANBAN_TASK`` is set (dispatcher-spawned worker), unless
-    ``HERMES_KANBAN_STOP_NUDGE`` explicitly disables it.
+    ``OPENAMER_KANBAN_STOP_NUDGE`` explicitly disables it.
     """
-    env = os.environ.get("HERMES_KANBAN_STOP_NUDGE")
+    env = os.environ.get("OPENAMER_KANBAN_STOP_NUDGE")
     if env is not None and env.strip().lower() in {"0", "false", "no", "off"}:
         return False
     task = (os.environ.get("OPENAMER_KANBAN_TASK") or "").strip()

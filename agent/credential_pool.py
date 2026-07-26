@@ -1167,13 +1167,13 @@ class CredentialPool:
 
         Covers the configured refresh POST timeout plus a margin so a slow
         token endpoint cannot make the flock give up before the refresh
-        resolves.  Reads the provider's ``HERMES_*_REFRESH_TIMEOUT_SECONDS``
+        resolves.  Reads the provider's ``OPENAMER_*_REFRESH_TIMEOUT_SECONDS``
         override.
         """
         env_var = (
-            "HERMES_CODEX_REFRESH_TIMEOUT_SECONDS"
+            "OPENAMER_CODEX_REFRESH_TIMEOUT_SECONDS"
             if self.provider == "openai-codex"
-            else "HERMES_XAI_REFRESH_TIMEOUT_SECONDS"
+            else "OPENAMER_XAI_REFRESH_TIMEOUT_SECONDS"
         )
         refresh_timeout_seconds = auth_mod.env_float(env_var, 20)
         return max(

@@ -115,7 +115,7 @@ export function startMemoryMonitor({
   // Cooldown prevents repeated auto dumps when heap oscillates around the
   // threshold (issue #21767). `dumped` alone is not enough — it clears on
   // every transition back to `normal`.
-  const cooldownRaw = process.env.HERMES_AUTO_HEAPDUMP_COOLDOWN_MS?.trim()
+  const cooldownRaw = process.env.OPENAMER_AUTO_HEAPDUMP_COOLDOWN_MS?.trim()
   const cooldownParsed = cooldownRaw ? Number(cooldownRaw) : NaN
   const cooldownMs = Number.isFinite(cooldownParsed) && cooldownParsed >= 0 ? cooldownParsed : 600_000
   let lastAutoDumpAt = 0

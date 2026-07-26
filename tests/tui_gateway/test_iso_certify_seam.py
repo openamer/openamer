@@ -1,7 +1,7 @@
 """Tests for the AC-4 isolation certify seam + harness helpers.
 
 The synthetic heavy-turn agent (``tui_gateway/synthetic_turn.py``) is a test
-seam: dead unless ``HERMES_ISO_CERTIFY_SYNTH_TURN=1``. These tests pin (a) the
+seam: dead unless ``OPENAMER_ISO_CERTIFY_SYNTH_TURN=1``. These tests pin (a) the
 dead-when-unset contract, (b) that an armed turn holds for the requested wall
 duration and streams deltas, (c) that interrupt aborts it promptly, and (d) the
 harness percentile math.
@@ -35,13 +35,13 @@ def _load_iso_certify():
 
 
 def test_synth_seam_dead_when_env_unset(monkeypatch):
-    monkeypatch.delenv("HERMES_ISO_CERTIFY_SYNTH_TURN", raising=False)
+    monkeypatch.delenv("OPENAMER_ISO_CERTIFY_SYNTH_TURN", raising=False)
     assert synth_turn_armed() is False
     assert maybe_build_synthetic_agent("sid") is None
 
 
 def test_synth_seam_armed_builds_agent(monkeypatch):
-    monkeypatch.setenv("HERMES_ISO_CERTIFY_SYNTH_TURN", "1")
+    monkeypatch.setenv("OPENAMER_ISO_CERTIFY_SYNTH_TURN", "1")
     assert synth_turn_armed() is True
     agent = maybe_build_synthetic_agent("sid", {"model": "custom-x"})
     assert isinstance(agent, SyntheticHeavyAgent)
@@ -83,7 +83,7 @@ def test_synth_turn_interrupt_aborts_promptly():
 
 
 def test_synth_turn_non_json_prompt_uses_defaults(monkeypatch):
-    monkeypatch.setenv("HERMES_ISO_CERTIFY_DURATION_S", "0.2")
+    monkeypatch.setenv("OPENAMER_ISO_CERTIFY_DURATION_S", "0.2")
     agent = SyntheticHeavyAgent("s3")
     t0 = time.monotonic()
     agent.run_conversation("just a plain prompt, not json")

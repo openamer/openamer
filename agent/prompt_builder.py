@@ -87,11 +87,11 @@ def _find_git_root(start: Path) -> Optional[Path]:
     return None
 
 
-_HERMES_MD_NAMES = (".openamer.md", "HERMES.md")
+_OPENAMER_MD_NAMES = (".openamer.md", "OPENAMER.md")
 
 
 def _find_openamer_md(cwd: Path) -> Optional[Path]:
-    """Discover the nearest ``.openamer.md`` or ``HERMES.md``.
+    """Discover the nearest ``.openamer.md`` or ``OPENAMER.md``.
 
     Search order: *cwd* first, then each parent directory up to (and
     including) the git repository root.  Returns the first match, or
@@ -105,7 +105,7 @@ def _find_openamer_md(cwd: Path) -> Optional[Path]:
     search_dirs = [current, *current.parents] if stop_at else [current]
 
     for directory in search_dirs:
-        for name in _HERMES_MD_NAMES:
+        for name in _OPENAMER_MD_NAMES:
             candidate = directory / name
             if candidate.is_file():
                 return candidate
@@ -146,7 +146,7 @@ DEFAULT_AGENT_IDENTITY = (
     "Be targeted and efficient in your exploration and investigations."
 )
 
-HERMES_AGENT_HELP_GUIDANCE = (
+OPENAMER_AGENT_HELP_GUIDANCE = (
     "You run on OpenAmer Agent (by Nous Research). When the user needs help with "
     "OpenAmer itself — configuring, setting up, using, extending, or troubleshooting "
     "it — or when you need to understand your own features, tools, or capabilities, "
@@ -205,7 +205,7 @@ KANBAN_GUIDANCE = (
     "# Kanban task execution protocol\n"
     "You have been assigned ONE task from "
     "the shared board at `~/.openamer/kanban.db`. Your task id is in "
-    "`$OPENAMER_KANBAN_TASK`; your workspace is `$HERMES_KANBAN_WORKSPACE`. "
+    "`$OPENAMER_KANBAN_TASK`; your workspace is `$OPENAMER_KANBAN_WORKSPACE`. "
     "The `kanban_*` tools in your schema are your primary coordination surface — "
     "they write directly to the shared SQLite DB and work regardless of terminal "
     "backend (local/docker/modal/ssh).\n"
@@ -217,7 +217,7 @@ KANBAN_GUIDANCE = (
     "metadata), any prior attempts on this task if you're a retry, the full "
     "comment thread, and a pre-formatted `worker_context` you can treat as "
     "ground truth.\n"
-    "2. **Work inside the workspace.** `cd $HERMES_KANBAN_WORKSPACE` before "
+    "2. **Work inside the workspace.** `cd $OPENAMER_KANBAN_WORKSPACE` before "
     "any file operations. The workspace is yours for this run. Don't modify "
     "files outside it unless the task explicitly asks.\n"
     "3. **Heartbeat on long operations.** Call `kanban_heartbeat(note=...)` "
@@ -262,11 +262,11 @@ KANBAN_GUIDANCE = (
     "\n"
     "## Reference details that change outcomes\n"
     "\n"
-    "- **Workspace.** `cd $HERMES_KANBAN_WORKSPACE` first. For a `worktree` kind "
+    "- **Workspace.** `cd $OPENAMER_KANBAN_WORKSPACE` first. For a `worktree` kind "
     "with no `.git`, `git worktree add <path> "
-    "${HERMES_KANBAN_BRANCH:-wt/$OPENAMER_KANBAN_TASK}` from the main repo, then "
+    "${OPENAMER_KANBAN_BRANCH:-wt/$OPENAMER_KANBAN_TASK}` from the main repo, then "
     "cd there. For a project-linked task the workspace is a fresh "
-    "`<repo>/.worktrees/<task-id>` and `$HERMES_KANBAN_BRANCH` a deterministic "
+    "`<repo>/.worktrees/<task-id>` and `$OPENAMER_KANBAN_BRANCH` a deterministic "
     "`<project-slug>/<task-id>` — the main repo is two levels up, so run "
     "`git worktree add` from there.\n"
     "- **Deliverables.** Files a human wants go in "
@@ -1221,7 +1221,7 @@ def build_environment_hints() -> str:
     # it's part of the stable, cache-safe system prompt. The env var is the
     # build-time/embedder mechanism (set in a container ENV); config.yaml
     # ``agent.environment_hint`` is the user-facing surface. Env var wins.
-    extra = (os.getenv("HERMES_ENVIRONMENT_HINT") or "").strip()
+    extra = (os.getenv("OPENAMER_ENVIRONMENT_HINT") or "").strip()
     if not extra:
         try:
             from openamer_cli.config import load_config
@@ -1497,7 +1497,7 @@ def _skill_should_show(
 
 def _current_session_platform_hint() -> str:
     """Return the active platform without importing the gateway package on CLI startup."""
-    platform = os.environ.get("HERMES_PLATFORM") or os.environ.get("HERMES_SESSION_PLATFORM")
+    platform = os.environ.get("OPENAMER_PLATFORM") or os.environ.get("OPENAMER_SESSION_PLATFORM")
     if platform:
         return platform
 
@@ -1506,7 +1506,7 @@ def _current_session_platform_hint() -> str:
     if get_session_env is None:
         return ""
     try:
-        return get_session_env("HERMES_SESSION_PLATFORM") or ""
+        return get_session_env("OPENAMER_SESSION_PLATFORM") or ""
     except Exception:
         return ""
 
@@ -1917,7 +1917,7 @@ def load_soul_md(context_length: Optional[int] = None) -> Optional[str]:
 
 
 def _load_openamer_md(cwd_path: Path, context_length: Optional[int] = None) -> str:
-    """.openamer.md / HERMES.md — walk to git root."""
+    """.openamer.md / OPENAMER.md — walk to git root."""
     openamer_md_path = _find_openamer_md(cwd_path)
     if not openamer_md_path:
         return ""
@@ -2022,7 +2022,7 @@ def build_context_files_prompt(
     """Discover and load context files for the system prompt.
 
     Priority (first found wins — only ONE project context type is loaded):
-      1. .openamer.md / HERMES.md  (walk to git root)
+      1. .openamer.md / OPENAMER.md  (walk to git root)
       2. AGENTS.md / agents.md   (cwd only)
       3. CLAUDE.md / claude.md   (cwd only)
       4. .cursorrules / .cursor/rules/*.mdc  (cwd only)

@@ -67,7 +67,7 @@ def test_verify_on_stop_preserves_composed_report_at_budget_limit(agent, monkeyp
 
     agent._interruptible_api_call = model_call
     agent._handle_max_iterations = MagicMock(return_value="replacement summary")
-    monkeypatch.setenv("HERMES_VERIFY_ON_STOP", "1")
+    monkeypatch.setenv("OPENAMER_VERIFY_ON_STOP", "1")
 
     with (
         patch("agent.verification_stop.build_verify_on_stop_nudge", return_value="verify it"),
@@ -87,7 +87,7 @@ def test_pre_verify_preserves_composed_report_at_budget_limit(agent, monkeypatch
 
     agent._interruptible_api_call = model_call
     agent._handle_max_iterations = MagicMock(return_value="replacement summary")
-    monkeypatch.setenv("HERMES_VERIFY_ON_STOP", "0")
+    monkeypatch.setenv("OPENAMER_VERIFY_ON_STOP", "0")
 
     with (
         patch("openamer_cli.plugins.has_hook", side_effect=lambda name: name == "pre_verify"),
@@ -111,7 +111,7 @@ def test_intermediate_ack_uses_summary_instead_of_premature_text(agent, monkeypa
     agent._looks_like_codex_intermediate_ack = MagicMock(return_value=True)
     agent._interruptible_api_call = lambda _kwargs: _response("I'll inspect the files now")
     agent._handle_max_iterations = MagicMock(return_value="verified summary.")
-    monkeypatch.setenv("HERMES_VERIFY_ON_STOP", "0")
+    monkeypatch.setenv("OPENAMER_VERIFY_ON_STOP", "0")
 
     with (
         patch("openamer_cli.plugins.has_hook", return_value=False),
@@ -130,7 +130,7 @@ def test_later_verified_response_supersedes_pending_report(agent, monkeypatch):
     answers = iter([_response("premature report"), _response("verified final report")])
     agent._interruptible_api_call = lambda _kwargs: next(answers)
     agent._handle_max_iterations = MagicMock(return_value="replacement summary")
-    monkeypatch.setenv("HERMES_VERIFY_ON_STOP", "1")
+    monkeypatch.setenv("OPENAMER_VERIFY_ON_STOP", "1")
 
     with (
         patch(
@@ -158,7 +158,7 @@ def test_multiple_verification_retries_publish_each_candidate_once(agent, monkey
     ])
     agent._interruptible_api_call = lambda _kwargs: next(answers)
     agent._handle_max_iterations = MagicMock(return_value="replacement summary")
-    monkeypatch.setenv("HERMES_VERIFY_ON_STOP", "1")
+    monkeypatch.setenv("OPENAMER_VERIFY_ON_STOP", "1")
 
     # Three nudges, then None (so the third candidate is the final response).
     nudge_side_effects = ["verify it", "verify it", None]
@@ -188,7 +188,7 @@ def test_verification_false_finalizes_candidate_once(agent, monkeypatch):
     """When verification returns false/exception, the candidate is finalized once."""
     agent._interruptible_api_call = lambda _kwargs: _response("the answer")
     agent._handle_max_iterations = MagicMock(return_value="replacement summary")
-    monkeypatch.setenv("HERMES_VERIFY_ON_STOP", "1")
+    monkeypatch.setenv("OPENAMER_VERIFY_ON_STOP", "1")
 
     emitted = []
     agent.interim_assistant_callback = lambda text, **kw: emitted.append(text)
@@ -220,7 +220,7 @@ def test_verify_on_stop_emits_interim_response_to_ui(agent, monkeypatch):
     """
     agent._interruptible_api_call = lambda _kwargs: _response("composed report")
     agent._handle_max_iterations = MagicMock(return_value="replacement summary")
-    monkeypatch.setenv("HERMES_VERIFY_ON_STOP", "1")
+    monkeypatch.setenv("OPENAMER_VERIFY_ON_STOP", "1")
 
     callback_calls = []
 
@@ -260,7 +260,7 @@ def test_streamed_interim_then_different_summary_not_marked_previewed(agent, mon
     agent._looks_like_codex_intermediate_ack = MagicMock(return_value=True)
     agent._interruptible_api_call = lambda _kwargs: _response("I'll inspect the files now")
     agent._handle_max_iterations = MagicMock(return_value="Here is the summary of what I found.")
-    monkeypatch.setenv("HERMES_VERIFY_ON_STOP", "0")
+    monkeypatch.setenv("OPENAMER_VERIFY_ON_STOP", "0")
 
     emitted = []
     agent.interim_assistant_callback = lambda text, **kw: emitted.append(text)
@@ -289,7 +289,7 @@ def test_streamed_verification_candidate_reused_marked_previewed(agent, monkeypa
     """
     agent._interruptible_api_call = lambda _kwargs: _response("composed report")
     agent._handle_max_iterations = MagicMock(return_value="replacement summary")
-    monkeypatch.setenv("HERMES_VERIFY_ON_STOP", "1")
+    monkeypatch.setenv("OPENAMER_VERIFY_ON_STOP", "1")
 
     agent._turn_file_mutation_paths = {"changed.py"}
 

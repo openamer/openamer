@@ -22,8 +22,8 @@ def worker_env(monkeypatch, tmp_path):
     home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
-    monkeypatch.setenv("HERMES_PROFILE", "test-worker")
-    monkeypatch.delenv("HERMES_SESSION_ID", raising=False)
+    monkeypatch.setenv("OPENAMER_PROFILE", "test-worker")
+    monkeypatch.delenv("OPENAMER_SESSION_ID", raising=False)
     from pathlib import Path as _Path
     monkeypatch.setattr(_Path, "home", lambda: tmp_path)
 
@@ -152,12 +152,12 @@ def test_kanban_comment_no_secret_passthrough(worker_env):
 
 
 # ---------------------------------------------------------------------------
-# Negative test — force=True bypasses HERMES_REDACT_SECRETS=false
+# Negative test — force=True bypasses OPENAMER_REDACT_SECRETS=false
 # ---------------------------------------------------------------------------
 
 def test_scrub_respects_force_flag_regardless_of_config(worker_env, monkeypatch):
-    """force=True must fire even when HERMES_REDACT_SECRETS=false is set."""
-    monkeypatch.setenv("HERMES_REDACT_SECRETS", "false")
+    """force=True must fire even when OPENAMER_REDACT_SECRETS=false is set."""
+    monkeypatch.setenv("OPENAMER_REDACT_SECRETS", "false")
     from tools import kanban_tools as kt
     from openamer_cli import kanban_db as kb
     secret = "ghp_" + "C" * 40

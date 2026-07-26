@@ -763,7 +763,7 @@ def test_legacy_gateway_run_env_no_supervise_does_not_seed_s6_state(
 ) -> None:
     """Env opt-out matches the CLI `--no-supervise` flag."""
     scandir = tmp_path / "run-service"; scandir.mkdir()
-    monkeypatch.setenv("HERMES_GATEWAY_NO_SUPERVISE", "1")
+    monkeypatch.setenv("OPENAMER_GATEWAY_NO_SUPERVISE", "1")
 
     actions = reconcile_profile_gateways(
         openamer_home=tmp_path,
@@ -1073,7 +1073,7 @@ def test_main_ignores_removed_skip_reconcile_env_var(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    """The legacy HERMES_SKIP_PROFILE_RECONCILE flag is gone: setting it on a
+    """The legacy OPENAMER_SKIP_PROFILE_RECONCILE flag is gone: setting it on a
     gateway container must NOT suppress reconciliation. Role is decided by
     PID 1 argv alone, so a stale flag in someone's manifest is inert."""
     from openamer_cli import container_boot
@@ -1082,7 +1082,7 @@ def test_main_ignores_removed_skip_reconcile_env_var(
     _make_profile(tmp_path, "worker", state="running")
     monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     monkeypatch.setenv("S6_PROFILE_GATEWAY_SCANDIR", str(scandir))
-    monkeypatch.setenv("HERMES_SKIP_PROFILE_RECONCILE", "1")
+    monkeypatch.setenv("OPENAMER_SKIP_PROFILE_RECONCILE", "1")
     monkeypatch.setattr(
         container_boot,
         "_read_container_argv",

@@ -426,7 +426,7 @@ def _adopt_live_compression_child(
 
         set_current_session_id(child_session_id)
     except Exception:
-        os.environ["HERMES_SESSION_ID"] = child_session_id
+        os.environ["OPENAMER_SESSION_ID"] = child_session_id
     try:
         from openamer_logging import set_session_context
 
@@ -2152,7 +2152,7 @@ def compress_context(
 
                         set_current_session_id(agent.session_id)
                     except Exception:
-                        os.environ["HERMES_SESSION_ID"] = agent.session_id
+                        os.environ["OPENAMER_SESSION_ID"] = agent.session_id
                     try:
                         from openamer_logging import set_session_context
 

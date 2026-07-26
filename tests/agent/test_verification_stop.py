@@ -32,12 +32,12 @@ def clear_verify_env(monkeypatch):
     """Clear every env signal verify_on_stop_enabled consults.
 
     Tests then set only the variable they exercise, mirroring how the CLI/TUI
-    set OPENAMER_SESSION_SOURCE and the gateway sets HERMES_SESSION_PLATFORM.
+    set OPENAMER_SESSION_SOURCE and the gateway sets OPENAMER_SESSION_PLATFORM.
     """
     for var in (
-        "HERMES_VERIFY_ON_STOP",
-        "HERMES_PLATFORM",
-        "HERMES_SESSION_PLATFORM",
+        "OPENAMER_VERIFY_ON_STOP",
+        "OPENAMER_PLATFORM",
+        "OPENAMER_SESSION_PLATFORM",
         "OPENAMER_SESSION_SOURCE",
     ):
         monkeypatch.delenv(var, raising=False)
@@ -52,7 +52,7 @@ def test_verify_on_stop_default_is_auto(clear_verify_env):
 
 def test_verify_on_stop_default_auto_off_on_messaging(clear_verify_env):
     # The "auto" default resolves OFF on a conversational messaging surface.
-    clear_verify_env.setenv("HERMES_SESSION_PLATFORM", "telegram")
+    clear_verify_env.setenv("OPENAMER_SESSION_PLATFORM", "telegram")
     assert verify_on_stop_enabled({"agent": {}}) is False
 
 
@@ -64,19 +64,19 @@ def test_verify_on_stop_auto_sentinel_resolves_to_surface_default(clear_verify_e
     # The legacy "auto" sentinel is still honored when set explicitly: it falls
     # through to the surface-aware default (ON interactive, OFF messaging).
     assert verify_on_stop_enabled({"agent": {"verify_on_stop": "auto"}}) is True
-    clear_verify_env.setenv("HERMES_SESSION_PLATFORM", "telegram")
+    clear_verify_env.setenv("OPENAMER_SESSION_PLATFORM", "telegram")
     assert verify_on_stop_enabled({"agent": {"verify_on_stop": "auto"}}) is False
 
 
 def test_verify_on_stop_env_can_disable(clear_verify_env):
-    clear_verify_env.setenv("HERMES_VERIFY_ON_STOP", "0")
+    clear_verify_env.setenv("OPENAMER_VERIFY_ON_STOP", "0")
     assert verify_on_stop_enabled({"agent": {"verify_on_stop": True}}) is False
 
 
 def test_verify_on_stop_env_can_enable(clear_verify_env):
     # Env "1" forces ON regardless of surface (here a messaging platform).
-    clear_verify_env.setenv("HERMES_VERIFY_ON_STOP", "1")
-    clear_verify_env.setenv("HERMES_SESSION_PLATFORM", "telegram")
+    clear_verify_env.setenv("OPENAMER_VERIFY_ON_STOP", "1")
+    clear_verify_env.setenv("OPENAMER_SESSION_PLATFORM", "telegram")
     assert verify_on_stop_enabled({"agent": {}}) is True
 
 
@@ -90,7 +90,7 @@ def test_verify_on_stop_config_can_disable(clear_verify_env):
 
 def test_verify_on_stop_auto_off_on_gateway_messaging_platform(clear_verify_env):
     # With explicit "auto", a real Telegram turn resolves OFF.
-    clear_verify_env.setenv("HERMES_SESSION_PLATFORM", "telegram")
+    clear_verify_env.setenv("OPENAMER_SESSION_PLATFORM", "telegram")
     assert verify_on_stop_enabled({"agent": {"verify_on_stop": "auto"}}) is False
 
 
@@ -99,19 +99,19 @@ def test_verify_on_stop_auto_off_on_gateway_messaging_platform(clear_verify_env)
     ["discord", "whatsapp_cloud", "signal", "slack", "matrix", "email", "sms"],
 )
 def test_verify_on_stop_auto_off_for_each_messaging_platform(clear_verify_env, platform):
-    clear_verify_env.setenv("HERMES_SESSION_PLATFORM", platform)
+    clear_verify_env.setenv("OPENAMER_SESSION_PLATFORM", platform)
     assert verify_on_stop_enabled({"agent": {"verify_on_stop": "auto"}}) is False
 
 
 def test_verify_on_stop_auto_messaging_platform_is_case_insensitive(clear_verify_env):
-    clear_verify_env.setenv("HERMES_SESSION_PLATFORM", "  Telegram  ")
+    clear_verify_env.setenv("OPENAMER_SESSION_PLATFORM", "  Telegram  ")
     assert verify_on_stop_enabled({"agent": {"verify_on_stop": "auto"}}) is False
 
 
 def test_verify_on_stop_auto_uses_openamer_platform_override(clear_verify_env):
-    # HERMES_PLATFORM mirrors the sibling platform resolution and also flags a
+    # OPENAMER_PLATFORM mirrors the sibling platform resolution and also flags a
     # messaging surface under the "auto" sentinel.
-    clear_verify_env.setenv("HERMES_PLATFORM", "discord")
+    clear_verify_env.setenv("OPENAMER_PLATFORM", "discord")
     assert verify_on_stop_enabled({"agent": {"verify_on_stop": "auto"}}) is False
 
 
@@ -124,7 +124,7 @@ def test_verify_on_stop_auto_on_for_interactive_surfaces(clear_verify_env, sourc
 
 @pytest.mark.parametrize("platform", ["api_server", "webhook", "msgraph_webhook"])
 def test_verify_on_stop_auto_on_for_programmatic_surfaces(clear_verify_env, platform):
-    clear_verify_env.setenv("HERMES_SESSION_PLATFORM", platform)
+    clear_verify_env.setenv("OPENAMER_SESSION_PLATFORM", platform)
     assert verify_on_stop_enabled({"agent": {"verify_on_stop": "auto"}}) is True
 
 
@@ -136,13 +136,13 @@ def test_default_auto_on_for_interactive_surface(clear_verify_env):
 
 
 def test_env_forces_verify_on_stop_on_for_messaging(clear_verify_env):
-    clear_verify_env.setenv("HERMES_SESSION_PLATFORM", "telegram")
-    clear_verify_env.setenv("HERMES_VERIFY_ON_STOP", "1")
+    clear_verify_env.setenv("OPENAMER_SESSION_PLATFORM", "telegram")
+    clear_verify_env.setenv("OPENAMER_VERIFY_ON_STOP", "1")
     assert verify_on_stop_enabled({"agent": {}}) is True
 
 
 def test_config_forces_verify_on_stop_on_for_messaging(clear_verify_env):
-    clear_verify_env.setenv("HERMES_SESSION_PLATFORM", "telegram")
+    clear_verify_env.setenv("OPENAMER_SESSION_PLATFORM", "telegram")
     assert verify_on_stop_enabled({"agent": {"verify_on_stop": True}}) is True
 
 
@@ -163,7 +163,7 @@ def test_verify_on_stop_default_path_through_load_config(tmp_path, clear_verify_
     assert verify_on_stop_enabled() is True
 
     # A messaging platform resolves OFF.
-    clear_verify_env.setenv("HERMES_SESSION_PLATFORM", "telegram")
+    clear_verify_env.setenv("OPENAMER_SESSION_PLATFORM", "telegram")
     assert verify_on_stop_enabled() is False
 
 

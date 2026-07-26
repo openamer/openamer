@@ -948,7 +948,7 @@ def test_build_models_payload_keeps_static_provider_models_from_providers_dict()
     with (
         patch("openamer_cli.config.load_config", return_value=cfg),
         patch("agent.models_dev.fetch_models_dev", return_value={}),
-        patch("openamer_cli.providers.HERMES_OVERLAYS", {}),
+        patch("openamer_cli.providers.OPENAMER_OVERLAYS", {}),
         patch(
             "openamer_cli.models.fetch_api_models",
             side_effect=AssertionError("fetch_api_models must not be called"),

@@ -117,7 +117,7 @@ def test_nous_dashboard_device_flow_ignores_legacy_scope_override(monkeypatch):
         requested_scopes.append(kwargs["scope"])
         return _fake_nous_device_data()
 
-    monkeypatch.setenv("HERMES_AGENT_USE_LEGACY_SESSION_KEYS", "true")
+    monkeypatch.setenv("OPENAMER_AGENT_USE_LEGACY_SESSION_KEYS", "true")
     monkeypatch.setattr(auth_mod, "_request_device_code", fake_request_device_code)
     monkeypatch.setattr(ws, "_nous_poller", lambda sid: None)
 
@@ -205,7 +205,7 @@ def test_nous_dashboard_device_flow_does_not_retry_legacy_scope_on_invoke_refusa
         requested_scopes.append(kwargs["scope"])
         raise _invoke_scope_refusal()
 
-    monkeypatch.delenv("HERMES_AGENT_USE_LEGACY_SESSION_KEYS", raising=False)
+    monkeypatch.delenv("OPENAMER_AGENT_USE_LEGACY_SESSION_KEYS", raising=False)
     monkeypatch.setattr(auth_mod, "_request_device_code", fake_request_device_code)
     monkeypatch.setattr(ws, "_nous_poller", lambda sid: None)
 
@@ -662,7 +662,7 @@ def test_xai_dashboard_poller_seeds_single_entry_and_clears_suppression(tmp_path
     from agent.credential_pool import load_pool
 
     monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
-    monkeypatch.delenv("HERMES_XAI_BASE_URL", raising=False)
+    monkeypatch.delenv("OPENAMER_XAI_BASE_URL", raising=False)
     monkeypatch.delenv("XAI_BASE_URL", raising=False)
 
     # Prior `openamer auth remove xai-oauth` left the source suppressed.

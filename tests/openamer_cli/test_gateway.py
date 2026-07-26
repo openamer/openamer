@@ -120,7 +120,7 @@ def test_gateway_run_subprocess_preserves_daemon_exit_codes(
 
         import openamer_cli.gateway as gateway_cli
 
-        outcome = os.environ["HERMES_TEST_GATEWAY_OUTCOME"]
+        outcome = os.environ["OPENAMER_TEST_GATEWAY_OUTCOME"]
 
         async def start_gateway(*, replace, verbosity):
             if outcome == "failure":
@@ -143,8 +143,8 @@ def test_gateway_run_subprocess_preserves_daemon_exit_codes(
     env = {
         **os.environ,
         "OPENAMER_HOME": str(tmp_path),
-        "HERMES_GATEWAY_EXIT_DIAG": "0",
-        "HERMES_TEST_GATEWAY_OUTCOME": outcome,
+        "OPENAMER_GATEWAY_EXIT_DIAG": "0",
+        "OPENAMER_TEST_GATEWAY_OUTCOME": outcome,
         "INVOCATION_ID": "systemd-test",
     }
 
@@ -181,7 +181,7 @@ def test_run_gateway_refuses_root_in_official_docker(monkeypatch, tmp_path, caps
 
     monkeypatch.setattr(gateway, "PROJECT_ROOT", project_root)
     monkeypatch.setattr(gateway.os, "geteuid", lambda: 0)
-    monkeypatch.delenv("HERMES_ALLOW_ROOT_GATEWAY", raising=False)
+    monkeypatch.delenv("OPENAMER_ALLOW_ROOT_GATEWAY", raising=False)
     monkeypatch.setattr(gateway, "_is_official_docker_checkout", lambda: True)
 
     with pytest.raises(SystemExit) as exc_info:
@@ -204,7 +204,7 @@ def test_run_gateway_root_guard_has_escape_hatch(monkeypatch):
     monkeypatch.setattr(gateway.asyncio, "run", lambda coro: True)
     monkeypatch.setattr(gateway.os, "geteuid", lambda: 0)
     monkeypatch.setattr(gateway, "_is_official_docker_checkout", lambda: True)
-    monkeypatch.setenv("HERMES_ALLOW_ROOT_GATEWAY", "1")
+    monkeypatch.setenv("OPENAMER_ALLOW_ROOT_GATEWAY", "1")
 
     gateway.run_gateway(verbose=2, replace=True)
 
@@ -214,7 +214,7 @@ def test_run_gateway_root_guard_has_escape_hatch(monkeypatch):
 def _clear_supervisor_markers(monkeypatch):
     """Make ``_running_under_gateway_supervisor()`` report a plain shell."""
     monkeypatch.delenv("INVOCATION_ID", raising=False)
-    monkeypatch.delenv("HERMES_S6_SUPERVISED_CHILD", raising=False)
+    monkeypatch.delenv("OPENAMER_S6_SUPERVISED_CHILD", raising=False)
     # Interactive macOS shells inherit XPC_SERVICE_NAME="0"; launchd jobs get
     # the real label. Default to the shell sentinel so the guard can fire.
     monkeypatch.setenv("XPC_SERVICE_NAME", "0")
@@ -388,7 +388,7 @@ def test_running_under_gateway_supervisor_markers(monkeypatch):
     assert gateway._running_under_gateway_supervisor() is True
 
     monkeypatch.delenv("INVOCATION_ID", raising=False)
-    monkeypatch.setenv("HERMES_S6_SUPERVISED_CHILD", "1")
+    monkeypatch.setenv("OPENAMER_S6_SUPERVISED_CHILD", "1")
     assert gateway._running_under_gateway_supervisor() is True
 
 
@@ -430,7 +430,7 @@ def test_run_gateway_windows_foreground_keeps_ctrl_c_enabled(monkeypatch):
     monkeypatch.setattr(gateway, "is_windows", lambda: True)
     monkeypatch.setattr(gateway, "supports_systemd_services", lambda: False)
     monkeypatch.setattr(gateway.sys, "stdin", _TTY())
-    monkeypatch.delenv("HERMES_GATEWAY_DETACHED", raising=False)
+    monkeypatch.delenv("OPENAMER_GATEWAY_DETACHED", raising=False)
     monkeypatch.setattr(gateway.signal, "signal", fake_signal)
     monkeypatch.setattr(gateway.asyncio, "run", lambda coro: True)
 
@@ -460,7 +460,7 @@ def test_run_gateway_windows_detached_absorbs_console_controls(monkeypatch):
     monkeypatch.setattr(gateway, "is_windows", lambda: True)
     monkeypatch.setattr(gateway, "supports_systemd_services", lambda: False)
     monkeypatch.setattr(gateway.sys, "stdin", _TTY())
-    monkeypatch.setenv("HERMES_GATEWAY_DETACHED", "1")
+    monkeypatch.setenv("OPENAMER_GATEWAY_DETACHED", "1")
     monkeypatch.setattr(gateway.signal, "signal", fake_signal)
     monkeypatch.setattr(gateway.asyncio, "run", lambda coro: True)
 

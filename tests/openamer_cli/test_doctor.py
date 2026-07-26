@@ -247,12 +247,12 @@ def test_run_doctor_sets_interactive_env_for_tool_checks(monkeypatch, tmp_path):
 
     monkeypatch.setattr(doctor_mod, "PROJECT_ROOT", project_root)
     monkeypatch.setattr(doctor_mod, "OPENAMER_HOME", openamer_home)
-    monkeypatch.delenv("HERMES_INTERACTIVE", raising=False)
+    monkeypatch.delenv("OPENAMER_INTERACTIVE", raising=False)
 
     seen = {}
 
     def fake_check_tool_availability(*args, **kwargs):
-        seen["interactive"] = os.getenv("HERMES_INTERACTIVE")
+        seen["interactive"] = os.getenv("OPENAMER_INTERACTIVE")
         raise SystemExit(0)
 
     fake_model_tools = types.SimpleNamespace(
@@ -1363,7 +1363,7 @@ class TestDoctorCodexCliHintPlacement:
 
 
 class TestDoctorStaleMaxIterationsDrift:
-    """Regression for #17534: a stale HERMES_MAX_ITERATIONS in .env shadows
+    """Regression for #17534: a stale OPENAMER_MAX_ITERATIONS in .env shadows
     agent.max_turns in config.yaml. The repro symptom is config.yaml saying
     400 while the gateway activity line reads N/90. Doctor must detect the
     drift, and `--fix` must remove the .env ghost (config.yaml wins).
@@ -1387,7 +1387,7 @@ class TestDoctorStaleMaxIterationsDrift:
         )
         env_lines = ["OPENAI_API_KEY=sk-test\n"]
         if ghost is not None:
-            env_lines.append(f"HERMES_MAX_ITERATIONS={ghost}\n")
+            env_lines.append(f"OPENAMER_MAX_ITERATIONS={ghost}\n")
         (openamer_home / ".env").write_text("".join(env_lines), encoding="utf-8")
 
         monkeypatch.setattr(doctor_mod, "OPENAMER_HOME", openamer_home)
@@ -1396,9 +1396,9 @@ class TestDoctorStaleMaxIterationsDrift:
         monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
         if os_environ_value is not None:
             # Simulate the gateway bridge having already overridden os.environ.
-            monkeypatch.setenv("HERMES_MAX_ITERATIONS", str(os_environ_value))
+            monkeypatch.setenv("OPENAMER_MAX_ITERATIONS", str(os_environ_value))
         else:
-            monkeypatch.delenv("HERMES_MAX_ITERATIONS", raising=False)
+            monkeypatch.delenv("OPENAMER_MAX_ITERATIONS", raising=False)
 
         # Short-circuit at the Tool Availability stage — the drift check runs
         # well before it in the Configuration Files section.
@@ -1418,19 +1418,19 @@ class TestDoctorStaleMaxIterationsDrift:
             monkeypatch, tmp_path, fix=False, ghost=90, cfg_turns=400,
             os_environ_value=400,  # bridge contaminated os.environ
         )
-        assert "HERMES_MAX_ITERATIONS=90" in out
+        assert "OPENAMER_MAX_ITERATIONS=90" in out
         assert "shadows" in out
         # Warn-only must NOT mutate .env.
-        assert "HERMES_MAX_ITERATIONS=90" in (openamer_home / ".env").read_text(encoding="utf-8")
+        assert "OPENAMER_MAX_ITERATIONS=90" in (openamer_home / ".env").read_text(encoding="utf-8")
 
     def test_fix_removes_ghost(self, monkeypatch, tmp_path):
         out, openamer_home = self._run_config_section(
             monkeypatch, tmp_path, fix=True, ghost=90, cfg_turns=400,
             os_environ_value=400,
         )
-        assert "Removed stale HERMES_MAX_ITERATIONS" in out
+        assert "Removed stale OPENAMER_MAX_ITERATIONS" in out
         env_after = (openamer_home / ".env").read_text(encoding="utf-8")
-        assert "HERMES_MAX_ITERATIONS" not in env_after
+        assert "OPENAMER_MAX_ITERATIONS" not in env_after
         assert "OPENAI_API_KEY=sk-test" in env_after  # other keys preserved
 
     def test_no_drift_when_values_match(self, monkeypatch, tmp_path):
@@ -1548,19 +1548,19 @@ class TestDoctorDeprecatedConfigAndEnv:
 
     def test_collect_deprecated_env_vars(self):
         env = {
-            "HERMES_TOOL_PROGRESS": "true",
+            "OPENAMER_TOOL_PROGRESS": "true",
             "TERMINAL_CWD": "/tmp/proj",
             "QQ_HOME_CHANNEL": "12345",
             "OPENAI_API_KEY": "sk-test",  # not deprecated
         }
         findings = doctor_mod.collect_deprecated_env_vars(env)
         names = {n for n, _ in findings}
-        assert "HERMES_TOOL_PROGRESS" in names
+        assert "OPENAMER_TOOL_PROGRESS" in names
         assert "TERMINAL_CWD" in names
         assert "QQ_HOME_CHANNEL" in names
         assert "OPENAI_API_KEY" not in names
         by_name = dict(findings)
-        assert "display.tool_progress" in by_name["HERMES_TOOL_PROGRESS"]
+        assert "display.tool_progress" in by_name["OPENAMER_TOOL_PROGRESS"]
         assert "terminal.cwd" in by_name["TERMINAL_CWD"]
         assert by_name["QQ_HOME_CHANNEL"] == "QQBOT_HOME_CHANNEL"
 
@@ -1581,8 +1581,8 @@ class TestDoctorDeprecatedConfigAndEnv:
         monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
         # Clear process-level legacy env so tests only see the on-disk .env.
         for k in (
-            "HERMES_TOOL_PROGRESS",
-            "HERMES_TOOL_PROGRESS_MODE",
+            "OPENAMER_TOOL_PROGRESS",
+            "OPENAMER_TOOL_PROGRESS_MODE",
             "TERMINAL_CWD",
             "MESSAGING_CWD",
             "QQ_HOME_CHANNEL",
@@ -1632,7 +1632,7 @@ compression:
 """
         env = (
             "OPENAI_API_KEY=sk-test\n"
-            "HERMES_TOOL_PROGRESS=true\n"
+            "OPENAMER_TOOL_PROGRESS=true\n"
             "TERMINAL_CWD=/old/path\n"
             "QQ_HOME_CHANNEL=999\n"
         )
@@ -1641,7 +1641,7 @@ compression:
         )
         assert "Deprecated: compression.summary_model" in out
         assert "auxiliary.compression" in out
-        assert "Deprecated: HERMES_TOOL_PROGRESS" in out
+        assert "Deprecated: OPENAMER_TOOL_PROGRESS" in out
         assert "display.tool_progress" in out
         assert "Deprecated: TERMINAL_CWD" in out
         assert "terminal.cwd" in out
@@ -1665,7 +1665,7 @@ terminal:
         assert "Deprecated: display.tool_progress_overrides" not in out
         assert "Deprecated: delegation.max_async_children" not in out
         assert "Deprecated: compression.summary_model" not in out
-        assert "Deprecated: HERMES_TOOL_PROGRESS" not in out
+        assert "Deprecated: OPENAMER_TOOL_PROGRESS" not in out
         assert "Deprecated: TERMINAL_CWD" not in out
         assert "Deprecated: QQ_HOME_CHANNEL" not in out
         assert "No deprecated config keys or env vars" in out
@@ -1674,10 +1674,10 @@ terminal:
         """report_deprecated_config_and_env is warn-only — no issues list mutation."""
         findings = doctor_mod.report_deprecated_config_and_env(
             {"delegation": {"max_async_children": 2}},
-            {"HERMES_TOOL_PROGRESS_MODE": "verbose"},
+            {"OPENAMER_TOOL_PROGRESS_MODE": "verbose"},
         )
         out = capsys.readouterr().out
         assert len(findings) == 2
         assert "Deprecated: delegation.max_async_children" in out
-        assert "Deprecated: HERMES_TOOL_PROGRESS_MODE" in out
+        assert "Deprecated: OPENAMER_TOOL_PROGRESS_MODE" in out
         assert "⚠" in out or "Deprecated" in out

@@ -11,7 +11,7 @@ Hermetic-test invariants enforced here (see AGENTS.md for rationale):
    CI. Code using ``Path.home() / ".openamer"`` instead of the canonical
    ``get_openamer_home()`` is a bug to fix at the callsite.)
 3. **Deterministic runtime.** TZ=UTC, LANG=C.UTF-8, PYTHONHASHSEED=0.
-4. **No HERMES_SESSION_* inheritance** — the agent's current gateway
+4. **No OPENAMER_SESSION_* inheritance** — the agent's current gateway
    session must not leak into tests.
 
 These invariants make the local test run match CI closely. Gaps that
@@ -167,66 +167,66 @@ def _looks_like_credential(name: str) -> bool:
     return any(name.endswith(suf) for suf in _CREDENTIAL_SUFFIXES)
 
 
-# HERMES_* vars that change test behavior by being set. Unset all of these
+# OPENAMER_* vars that change test behavior by being set. Unset all of these
 # unconditionally — individual tests that need them set do so explicitly.
-_HERMES_BEHAVIORAL_VARS = frozenset({
-    "HERMES_YOLO_MODE",
-    "HERMES_INTERACTIVE",
-    "HERMES_QUIET",
-    "HERMES_TOOL_PROGRESS",
-    "HERMES_TOOL_PROGRESS_MODE",
-    "HERMES_MAX_ITERATIONS",
-    "HERMES_SESSION_PLATFORM",
-    "HERMES_SESSION_CHAT_ID",
-    "HERMES_SESSION_CHAT_NAME",
-    "HERMES_SESSION_THREAD_ID",
+_OPENAMER_BEHAVIORAL_VARS = frozenset({
+    "OPENAMER_YOLO_MODE",
+    "OPENAMER_INTERACTIVE",
+    "OPENAMER_QUIET",
+    "OPENAMER_TOOL_PROGRESS",
+    "OPENAMER_TOOL_PROGRESS_MODE",
+    "OPENAMER_MAX_ITERATIONS",
+    "OPENAMER_SESSION_PLATFORM",
+    "OPENAMER_SESSION_CHAT_ID",
+    "OPENAMER_SESSION_CHAT_NAME",
+    "OPENAMER_SESSION_THREAD_ID",
     "OPENAMER_SESSION_SOURCE",
-    "HERMES_SESSION_KEY",
-    "HERMES_GATEWAY_SESSION",
-    "HERMES_CRON_SESSION",
-    "_HERMES_GATEWAY",
-    "HERMES_PLATFORM",
-    "HERMES_MODEL",
-    "HERMES_INFERENCE_MODEL",
-    "HERMES_INFERENCE_PROVIDER",
-    "HERMES_TUI_PROVIDER",
-    "HERMES_MANAGED",
-    "HERMES_MANAGED_DIR",
-    "HERMES_DEV",
-    "HERMES_CONTAINER",
-    "HERMES_EPHEMERAL_SYSTEM_PROMPT",
+    "OPENAMER_SESSION_KEY",
+    "OPENAMER_GATEWAY_SESSION",
+    "OPENAMER_CRON_SESSION",
+    "_OPENAMER_GATEWAY",
+    "OPENAMER_PLATFORM",
+    "OPENAMER_MODEL",
+    "OPENAMER_INFERENCE_MODEL",
+    "OPENAMER_INFERENCE_PROVIDER",
+    "OPENAMER_TUI_PROVIDER",
+    "OPENAMER_MANAGED",
+    "OPENAMER_MANAGED_DIR",
+    "OPENAMER_DEV",
+    "OPENAMER_CONTAINER",
+    "OPENAMER_EPHEMERAL_SYSTEM_PROMPT",
     "OPENAMER_TIMEZONE",
-    "HERMES_REDACT_SECRETS",
-    "HERMES_BACKGROUND_NOTIFICATIONS",
-    "HERMES_EXEC_ASK",
+    "OPENAMER_REDACT_SECRETS",
+    "OPENAMER_BACKGROUND_NOTIFICATIONS",
+    "OPENAMER_EXEC_ASK",
     "OPENAMER_HOME_MODE",
-    "HERMES_AGENT_USE_LEGACY_SESSION_KEYS",
+    "OPENAMER_AGENT_USE_LEGACY_SESSION_KEYS",
     # Kanban path/board pins must never leak from a developer shell or
     # dispatched worker into tests; otherwise tests can write fake tasks to
     # the real ~/.openamer/kanban.db instead of the per-test OPENAMER_HOME.
-    "HERMES_KANBAN_DB",
-    "HERMES_KANBAN_BOARD",
-    "HERMES_KANBAN_HOME",
-    "HERMES_KANBAN_WORKSPACES_ROOT",
-    "HERMES_KANBAN_LOGS_ROOT",
+    "OPENAMER_KANBAN_DB",
+    "OPENAMER_KANBAN_BOARD",
+    "OPENAMER_KANBAN_HOME",
+    "OPENAMER_KANBAN_WORKSPACES_ROOT",
+    "OPENAMER_KANBAN_LOGS_ROOT",
     "OPENAMER_KANBAN_TASK",
-    "HERMES_KANBAN_WORKSPACE",
-    "HERMES_KANBAN_RUN_ID",
-    "HERMES_KANBAN_CLAIM_LOCK",
-    "HERMES_KANBAN_DISPATCH_IN_GATEWAY",
-    "HERMES_TENANT",
+    "OPENAMER_KANBAN_WORKSPACE",
+    "OPENAMER_KANBAN_RUN_ID",
+    "OPENAMER_KANBAN_CLAIM_LOCK",
+    "OPENAMER_KANBAN_DISPATCH_IN_GATEWAY",
+    "OPENAMER_TENANT",
     # Honcho host selection changes which nested config block wins. A local
     # shell override leaked "myhost" into the full suite and flipped 20
     # otherwise-unrelated config tests away from the default "openamer" host.
-    "HERMES_HONCHO_HOST",
+    "OPENAMER_HONCHO_HOST",
     # Dashboard OAuth auth gate (PR #30156). When set, the bundled
     # dashboard-auth `nous` plugin auto-registers itself on plugin discovery,
     # which is triggered by any `/api/status` call. That leaks a provider
     # into the dashboard_auth registry across tests in the same worker and
     # makes assertions like `auth_providers == []` flaky. CI never sets
     # these, so production tests must not see them either.
-    "HERMES_DASHBOARD_OAUTH_CLIENT_ID",
-    "HERMES_DASHBOARD_PORTAL_URL",
+    "OPENAMER_DASHBOARD_OAUTH_CLIENT_ID",
+    "OPENAMER_DASHBOARD_PORTAL_URL",
     "TERMINAL_CWD",
     "TERMINAL_ENV",
     "TERMINAL_CONTAINER_CPU",
@@ -349,8 +349,8 @@ def _hermetic_environment(tmp_path, monkeypatch):
         if _looks_like_credential(name):
             monkeypatch.delenv(name, raising=False)
 
-    # 2. Blank behavioral HERMES_* vars that could change test semantics.
-    for name in _HERMES_BEHAVIORAL_VARS:
+    # 2. Blank behavioral OPENAMER_* vars that could change test semantics.
+    for name in _OPENAMER_BEHAVIORAL_VARS:
         monkeypatch.delenv(name, raising=False)
 
     # Honcho's fallback host/config resolution legitimately reads the user's
@@ -358,7 +358,7 @@ def _hermetic_environment(tmp_path, monkeypatch):
     # on it), but pin the host so ordinary tests cannot inherit a developer's
     # defaultHost and silently select the wrong nested config block. Tests of
     # custom host resolution override/delete this explicitly.
-    monkeypatch.setenv("HERMES_HONCHO_HOST", "openamer")
+    monkeypatch.setenv("OPENAMER_HONCHO_HOST", "openamer")
 
     # 3. Redirect OPENAMER_HOME to a per-test tempdir. Code that reads
     #    ``~/.openamer/*`` via ``get_openamer_home()`` now gets the tempdir.
@@ -744,7 +744,7 @@ def _live_system_guard(request, monkeypatch):
         monkeypatch.setattr(_os, "killpg", _guarded_killpg)
 
     # ── Subprocess command-string inspection (whole-line) ──────────
-    _HERMES_TOKENS = (
+    _OPENAMER_TOKENS = (
         "openamer-gateway",
         "openamer.service",
         "openamer_cli.main gateway",
@@ -778,7 +778,7 @@ def _live_system_guard(request, monkeypatch):
 
     def _matches_openamer_gateway(cmd_str: str) -> bool:
         low = cmd_str.lower()
-        return any(tok in low for tok in _HERMES_TOKENS)
+        return any(tok in low for tok in _OPENAMER_TOKENS)
 
     def _is_blocked_systemctl(cmd) -> bool:
         cmd_str = _cmd_to_string(cmd)

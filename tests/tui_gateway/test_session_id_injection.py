@@ -1,12 +1,12 @@
 """Contract test: tui_gateway._set_session_context must inject the live
-session id into HERMES_SESSION_ID so terminal/execute_code subprocesses can
+session id into OPENAMER_SESSION_ID so terminal/execute_code subprocesses can
 read the current session's id.
 
 Regression for the bug where _set_session_context called set_session_vars
 WITHOUT session_id, leaving the contextvar as "" (explicitly empty). Because
 the session-context bridge treats an explicit "" as authoritative and does NOT
 fall back to os.environ, every terminal command in a dashboard/TUI/web session
-saw an empty HERMES_SESSION_ID even though agent_init had set it via
+saw an empty OPENAMER_SESSION_ID even though agent_init had set it via
 set_current_session_id().
 """
 import pytest
@@ -50,24 +50,24 @@ def _install_session(monkeypatch, *, session_key, agent_session_id, source="cli"
 
 
 def test_set_session_context_injects_agent_session_id(monkeypatch):
-    """HERMES_SESSION_ID must equal the live agent.session_id after binding."""
+    """OPENAMER_SESSION_ID must equal the live agent.session_id after binding."""
     _install_session(
         monkeypatch, session_key="skey-abc", agent_session_id="20260722_deadbeef"
     )
 
     server._set_session_context("skey-abc", ui_session_id="ui-123")
 
-    assert get_session_env("HERMES_SESSION_ID") == "20260722_deadbeef"
+    assert get_session_env("OPENAMER_SESSION_ID") == "20260722_deadbeef"
 
 
 def test_set_session_context_falls_back_to_session_key(monkeypatch):
     """When the agent has no session_id yet, fall back to the session_key
-    (never leave HERMES_SESSION_ID empty for an identified session)."""
+    (never leave OPENAMER_SESSION_ID empty for an identified session)."""
     _install_session(monkeypatch, session_key="skey-xyz", agent_session_id=None)
 
     server._set_session_context("skey-xyz")
 
-    assert get_session_env("HERMES_SESSION_ID") == "skey-xyz"
+    assert get_session_env("OPENAMER_SESSION_ID") == "skey-xyz"
 
 
 def test_set_session_context_unknown_key_uses_key(monkeypatch):
@@ -77,4 +77,4 @@ def test_set_session_context_unknown_key_uses_key(monkeypatch):
 
     server._set_session_context("ephemeral-key")
 
-    assert get_session_env("HERMES_SESSION_ID") == "ephemeral-key"
+    assert get_session_env("OPENAMER_SESSION_ID") == "ephemeral-key"

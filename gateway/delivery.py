@@ -448,11 +448,11 @@ class DeliveryRouter:
     def _filter_silence_narration_enabled(self) -> bool:
         """Whether the outbound silence-narration filter is active.
 
-        ``HERMES_FILTER_SILENCE_NARRATION`` env var overrides config when set;
+        ``OPENAMER_FILTER_SILENCE_NARRATION`` env var overrides config when set;
         otherwise the ``gateway.filter_silence_narration`` config flag wins
         (default True).
         """
-        env = os.getenv("HERMES_FILTER_SILENCE_NARRATION")
+        env = os.getenv("OPENAMER_FILTER_SILENCE_NARRATION")
         if env is not None:
             return env.strip().lower() in ("1", "true", "yes", "on")
         return bool(getattr(self.config, "filter_silence_narration", True))

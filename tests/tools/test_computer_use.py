@@ -22,7 +22,7 @@ def _reset_backend():
     from tools.computer_use.tool import reset_backend_for_tests
     reset_backend_for_tests()
     # Force the noop backend.
-    with patch.dict(os.environ, {"HERMES_COMPUTER_USE_BACKEND": "noop"}, clear=False):
+    with patch.dict(os.environ, {"OPENAMER_COMPUTER_USE_BACKEND": "noop"}, clear=False):
         yield
     reset_backend_for_tests()
 
@@ -162,7 +162,7 @@ class TestRegistration:
         driver.write_text("#!/bin/sh\nexit 0\n")
         driver.chmod(0o755)
 
-        monkeypatch.delenv("HERMES_CUA_DRIVER_CMD", raising=False)
+        monkeypatch.delenv("OPENAMER_CUA_DRIVER_CMD", raising=False)
         monkeypatch.setenv("HOME", str(tmp_path))
         monkeypatch.setenv("PATH", "/usr/bin:/bin:/usr/sbin:/sbin")
 
@@ -177,7 +177,7 @@ class TestRegistration:
         driver.write_text("#!/bin/sh\nexit 0\n")
         driver.chmod(0o755)
 
-        monkeypatch.setenv("HERMES_CUA_DRIVER_CMD", str(driver))
+        monkeypatch.setenv("OPENAMER_CUA_DRIVER_CMD", str(driver))
         monkeypatch.setenv("PATH", "/usr/bin:/bin")
 
         assert cua_backend.resolve_cua_driver_cmd() == str(driver)
@@ -2989,7 +2989,7 @@ class TestMcpInvocationResolution:
 
     def test_falls_back_when_manifest_missing_command(self):
         """If the manifest knows the args but not the command, keep our
-        resolved driver path (so HERMES_CUA_DRIVER_CMD still wins)."""
+        resolved driver path (so OPENAMER_CUA_DRIVER_CMD still wins)."""
         from unittest.mock import patch
         from tools.computer_use.cua_backend import _resolve_mcp_invocation
 

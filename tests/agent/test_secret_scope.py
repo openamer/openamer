@@ -67,9 +67,9 @@ class TestMultiplexActiveFailClosed:
         assert ss.get_secret("OPENAMER_HOME") == "/opt/data"
 
     def test_kanban_prefix_is_global(self, monkeypatch):
-        monkeypatch.setenv("HERMES_KANBAN_DB", "/x/kanban.db")
+        monkeypatch.setenv("OPENAMER_KANBAN_DB", "/x/kanban.db")
         ss.set_multiplex_active(True)
-        assert ss.get_secret("HERMES_KANBAN_DB") == "/x/kanban.db"
+        assert ss.get_secret("OPENAMER_KANBAN_DB") == "/x/kanban.db"
 
 
 class TestScopedSingleProfile:

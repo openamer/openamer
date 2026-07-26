@@ -1147,21 +1147,21 @@ class TestSyncSkills:
 
 class TestGetBundledDir:
     def test_env_var_override(self, tmp_path, monkeypatch):
-        """HERMES_BUNDLED_SKILLS env var overrides the default path resolution."""
+        """OPENAMER_BUNDLED_SKILLS env var overrides the default path resolution."""
         custom_dir = tmp_path / "custom_skills"
         custom_dir.mkdir()
-        monkeypatch.setenv("HERMES_BUNDLED_SKILLS", str(custom_dir))
+        monkeypatch.setenv("OPENAMER_BUNDLED_SKILLS", str(custom_dir))
         assert _get_bundled_dir() == custom_dir
 
     def test_default_without_env_var(self, monkeypatch):
         """Without the env var, falls back to relative path from __file__."""
-        monkeypatch.delenv("HERMES_BUNDLED_SKILLS", raising=False)
+        monkeypatch.delenv("OPENAMER_BUNDLED_SKILLS", raising=False)
         result = _get_bundled_dir()
         assert result.name == "skills"
 
     def test_env_var_empty_string_ignored(self, monkeypatch):
-        """Empty HERMES_BUNDLED_SKILLS should fall back to default."""
-        monkeypatch.setenv("HERMES_BUNDLED_SKILLS", "")
+        """Empty OPENAMER_BUNDLED_SKILLS should fall back to default."""
+        monkeypatch.setenv("OPENAMER_BUNDLED_SKILLS", "")
         result = _get_bundled_dir()
         assert result.name == "skills"
 

@@ -813,7 +813,7 @@ class TestBuildContextFilesPrompt:
         assert "Top level" in result
         assert "Src-specific" not in result
 
-    # --- .openamer.md / HERMES.md discovery ---
+    # --- .openamer.md / OPENAMER.md discovery ---
 
     def test_loads_openamer_md(self, tmp_path):
         (tmp_path / ".openamer.md").write_text("Use pytest for testing.")
@@ -822,13 +822,13 @@ class TestBuildContextFilesPrompt:
         assert "Project Context" in result
 
     def test_loads_openamer_md_uppercase(self, tmp_path):
-        (tmp_path / "HERMES.md").write_text("Always use type hints.")
+        (tmp_path / "OPENAMER.md").write_text("Always use type hints.")
         result = build_context_files_prompt(cwd=str(tmp_path))
         assert "type hints" in result
 
     def test_openamer_md_lowercase_takes_priority(self, tmp_path):
         (tmp_path / ".openamer.md").write_text("From dotfile.")
-        (tmp_path / "HERMES.md").write_text("From uppercase.")
+        (tmp_path / "OPENAMER.md").write_text("From uppercase.")
         result = build_context_files_prompt(cwd=str(tmp_path))
         assert "From dotfile" in result
         assert "From uppercase" not in result
@@ -950,12 +950,12 @@ class TestFindOpenAmerMd:
         assert _find_openamer_md(tmp_path) == tmp_path / ".openamer.md"
 
     def test_finds_uppercase(self, tmp_path):
-        (tmp_path / "HERMES.md").write_text("rules")
-        assert _find_openamer_md(tmp_path) == tmp_path / "HERMES.md"
+        (tmp_path / "OPENAMER.md").write_text("rules")
+        assert _find_openamer_md(tmp_path) == tmp_path / "OPENAMER.md"
 
     def test_prefers_lowercase(self, tmp_path):
         (tmp_path / ".openamer.md").write_text("lower")
-        (tmp_path / "HERMES.md").write_text("upper")
+        (tmp_path / "OPENAMER.md").write_text("upper")
         assert _find_openamer_md(tmp_path) == tmp_path / ".openamer.md"
 
     def test_walks_to_git_root(self, tmp_path):
@@ -1385,11 +1385,11 @@ class TestEnvironmentHints:
             )
 
     def test_environment_hint_from_env_var_is_appended(self, monkeypatch):
-        """HERMES_ENVIRONMENT_HINT lets an embedder describe the runtime env."""
+        """OPENAMER_ENVIRONMENT_HINT lets an embedder describe the runtime env."""
         import agent.prompt_builder as _pb
         monkeypatch.setattr(_pb, "is_wsl", lambda: False)
         monkeypatch.delenv("TERMINAL_ENV", raising=False)
-        monkeypatch.setenv("HERMES_ENVIRONMENT_HINT", "Running inside an OpenShell sandbox.")
+        monkeypatch.setenv("OPENAMER_ENVIRONMENT_HINT", "Running inside an OpenShell sandbox.")
         _pb._clear_backend_probe_cache()
         result = _pb.build_environment_hints()
         assert "Running inside an OpenShell sandbox." in result
@@ -1401,7 +1401,7 @@ class TestEnvironmentHints:
         import agent.prompt_builder as _pb
         monkeypatch.setattr(_pb, "is_wsl", lambda: False)
         monkeypatch.delenv("TERMINAL_ENV", raising=False)
-        monkeypatch.setenv("HERMES_ENVIRONMENT_HINT", "ENV-WINS")
+        monkeypatch.setenv("OPENAMER_ENVIRONMENT_HINT", "ENV-WINS")
         monkeypatch.setattr(
             "openamer_cli.config.load_config",
             lambda: {"agent": {"environment_hint": "CONFIG-VALUE"}},
@@ -1416,7 +1416,7 @@ class TestEnvironmentHints:
         import agent.prompt_builder as _pb
         monkeypatch.setattr(_pb, "is_wsl", lambda: False)
         monkeypatch.delenv("TERMINAL_ENV", raising=False)
-        monkeypatch.delenv("HERMES_ENVIRONMENT_HINT", raising=False)
+        monkeypatch.delenv("OPENAMER_ENVIRONMENT_HINT", raising=False)
         monkeypatch.setattr(
             "openamer_cli.config.load_config",
             lambda: {"agent": {"environment_hint": "CONFIG-VALUE"}},
@@ -1430,7 +1430,7 @@ class TestEnvironmentHints:
         import agent.prompt_builder as _pb
         monkeypatch.setattr(_pb, "is_wsl", lambda: False)
         monkeypatch.delenv("TERMINAL_ENV", raising=False)
-        monkeypatch.delenv("HERMES_ENVIRONMENT_HINT", raising=False)
+        monkeypatch.delenv("OPENAMER_ENVIRONMENT_HINT", raising=False)
         monkeypatch.setattr("openamer_cli.config.load_config", lambda: {"agent": {}})
         _pb._clear_backend_probe_cache()
         result = _pb.build_environment_hints()

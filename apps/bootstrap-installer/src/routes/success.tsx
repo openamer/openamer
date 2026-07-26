@@ -6,7 +6,7 @@ import { HackeryButton } from '../components/hackery-button'
 import { launchOpenAmerDesktop } from '../store'
 
 /*
- * Success screen. HERMES AGENT wordmark stays as the visual anchor
+ * Success screen. OPENAMER AGENT wordmark stays as the visual anchor
  * (same Collapse Bold treatment as Welcome + the desktop chat intro),
  * with a status line below.
  *

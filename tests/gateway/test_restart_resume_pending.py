@@ -906,20 +906,20 @@ class TestFreshnessHelpers:
         assert _last_transcript_timestamp(history) is None
 
     def test_auto_continue_freshness_window_reads_env(self, monkeypatch):
-        monkeypatch.setenv("HERMES_AUTO_CONTINUE_FRESHNESS", "7200")
+        monkeypatch.setenv("OPENAMER_AUTO_CONTINUE_FRESHNESS", "7200")
         assert _auto_continue_freshness_window() == 7200.0
 
     def test_auto_continue_freshness_window_default_when_unset(self, monkeypatch):
-        monkeypatch.delenv("HERMES_AUTO_CONTINUE_FRESHNESS", raising=False)
+        monkeypatch.delenv("OPENAMER_AUTO_CONTINUE_FRESHNESS", raising=False)
         # Default is 1 hour
         assert _auto_continue_freshness_window() == 3600.0
 
     def test_auto_continue_freshness_window_malformed_falls_back(self, monkeypatch):
-        monkeypatch.setenv("HERMES_AUTO_CONTINUE_FRESHNESS", "not-a-number")
+        monkeypatch.setenv("OPENAMER_AUTO_CONTINUE_FRESHNESS", "not-a-number")
         assert _auto_continue_freshness_window() == 3600.0
 
     def test_auto_continue_freshness_window_empty_falls_back(self, monkeypatch):
-        monkeypatch.setenv("HERMES_AUTO_CONTINUE_FRESHNESS", "")
+        monkeypatch.setenv("OPENAMER_AUTO_CONTINUE_FRESHNESS", "")
         assert _auto_continue_freshness_window() == 3600.0
 
 

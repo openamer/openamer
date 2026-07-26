@@ -57,12 +57,12 @@ def resolve_active_host() -> str:
     """Derive the Honcho host key from the active OpenAmer profile.
 
     Resolution order:
-      1. HERMES_HONCHO_HOST env var (explicit override)
+      1. OPENAMER_HONCHO_HOST env var (explicit override)
       2. Active profile name via profiles system -> ``openamer_<profile>``
       3. defaultHost from the active config, but only for the default profile
       4. Fallback: ``"openamer"`` (default profile)
     """
-    explicit = os.environ.get("HERMES_HONCHO_HOST", "").strip()
+    explicit = os.environ.get("OPENAMER_HONCHO_HOST", "").strip()
     if explicit:
         return explicit
 

@@ -239,7 +239,7 @@ def nous_credits_lines(*, markdown: bool = False, timeout: float = 10.0) -> list
     the same block regardless of session API-call count or resume state. Fail-open:
     any auth/portal hiccup or timeout returns [] (the caller shows nothing).
 
-    Dev override: when HERMES_DEV_CREDITS_FIXTURE selects a fixture state, /usage
+    Dev override: when OPENAMER_DEV_CREDITS_FIXTURE selects a fixture state, /usage
     renders from that fixture instead of the real portal (so the block + gauge are
     testable without a live account). Throwaway scaffolding.
     """
@@ -284,7 +284,7 @@ def _snapshot_from_credits_state(state) -> Optional[AccountUsageSnapshot]:
     """Map a header-shaped CreditsState (e.g. a dev fixture) to the /usage snapshot.
 
     Renders the same magnitudes + monthly-grant % window the portal path produces,
-    so HERMES_DEV_CREDITS_FIXTURE can exercise /usage without a live account. The
+    so OPENAMER_DEV_CREDITS_FIXTURE can exercise /usage without a live account. The
     *_usd strings are mock display values here (not server balance to compute on);
     the % comes from CreditsState.used_fraction (micros math). Fail-open → None.
     """
@@ -325,7 +325,7 @@ def _snapshot_from_credits_state(state) -> Optional[AccountUsageSnapshot]:
         if not windows and not details:
             return None
 
-        details.append("(dev fixture — HERMES_DEV_CREDITS_FIXTURE)")
+        details.append("(dev fixture — OPENAMER_DEV_CREDITS_FIXTURE)")
         return AccountUsageSnapshot(
             provider="nous",
             source="dev-fixture",

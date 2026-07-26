@@ -292,9 +292,9 @@ def build_billing_state(*, timeout: float = 15.0) -> BillingState:
     failure, returns ``logged_in=False`` with ``error`` set so the surface can show
     a clear message rather than crashing.
 
-    Dev override: ``HERMES_DEV_BILLING_FIXTURE`` short-circuits to a fixture so the
+    Dev override: ``OPENAMER_DEV_BILLING_FIXTURE`` short-circuits to a fixture so the
     card-on-file / admin / scope states are testable offline (mirrors
-    ``HERMES_DEV_CREDITS_FIXTURE`` for the usage model).
+    ``OPENAMER_DEV_CREDITS_FIXTURE`` for the usage model).
     """
     fixture = _dev_fixture_billing_state()
     if fixture is not None:
@@ -346,7 +346,7 @@ def _fallback_portal_url(base: str) -> str:
 
 
 def _dev_fixture_billing_state() -> Optional[BillingState]:
-    """Map ``HERMES_DEV_BILLING_FIXTURE`` to a :class:`BillingState` for offline UX.
+    """Map ``OPENAMER_DEV_BILLING_FIXTURE`` to a :class:`BillingState` for offline UX.
 
     Recognized names::
 
@@ -358,10 +358,10 @@ def _dev_fixture_billing_state() -> Optional[BillingState]:
         logged-out       not logged in
 
     Returns ``None`` when the env var is unset (the real portal path runs).
-    Mirrors ``HERMES_DEV_CREDITS_FIXTURE``; the usage *bar* still comes from
-    ``HERMES_DEV_CREDITS_FIXTURE`` (set both to pair a bar with a billing state).
+    Mirrors ``OPENAMER_DEV_CREDITS_FIXTURE``; the usage *bar* still comes from
+    ``OPENAMER_DEV_CREDITS_FIXTURE`` (set both to pair a bar with a billing state).
     """
-    name = (os.getenv("HERMES_DEV_BILLING_FIXTURE") or "").strip().lower()
+    name = (os.getenv("OPENAMER_DEV_BILLING_FIXTURE") or "").strip().lower()
     if not name:
         return None
 
@@ -403,7 +403,7 @@ def _dev_fixture_billing_state() -> Optional[BillingState]:
         return BillingState(logged_in=True, card=None, **opts)
 
     # Unknown name → logged-out so the misconfiguration is visible.
-    return BillingState(logged_in=False, error=f"unknown HERMES_DEV_BILLING_FIXTURE: {name}")
+    return BillingState(logged_in=False, error=f"unknown OPENAMER_DEV_BILLING_FIXTURE: {name}")
 
 
 # =============================================================================

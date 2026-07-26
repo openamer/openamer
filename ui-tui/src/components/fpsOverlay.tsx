@@ -1,4 +1,4 @@
-// FPS counter overlay (HERMES_TUI_FPS=1). Zero-cost when disabled.
+// FPS counter overlay (OPENAMER_TUI_FPS=1). Zero-cost when disabled.
 
 import { Text } from '@openamer/ink'
 import { useStore } from '@nanostores/react'

@@ -127,7 +127,7 @@ class TestAnthropicStreamPoolCleanup:
         """Stale-stream outer-poll detector → abort the request-local client's
         socket (unblocking the worker) and retry; never _replace_primary_openai
         and never rebuild the shared Anthropic client."""
-        monkeypatch.setenv("HERMES_STREAM_STALE_TIMEOUT", "0.1")
+        monkeypatch.setenv("OPENAMER_STREAM_STALE_TIMEOUT", "0.1")
 
         agent = _make_anthropic_agent()
         unblock = threading.Event()

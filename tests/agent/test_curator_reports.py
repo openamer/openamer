@@ -294,7 +294,7 @@ def curator_env_with_cron(curator_env, monkeypatch):
     import importlib
     import cron.jobs as jobs_mod
     importlib.reload(jobs_mod)
-    monkeypatch.setattr(jobs_mod, "HERMES_DIR", home)
+    monkeypatch.setattr(jobs_mod, "OPENAMER_DIR", home)
     monkeypatch.setattr(jobs_mod, "CRON_DIR", home / "cron")
     monkeypatch.setattr(jobs_mod, "JOBS_FILE", home / "cron" / "jobs.json")
     monkeypatch.setattr(jobs_mod, "OUTPUT_DIR", home / "cron" / "output")

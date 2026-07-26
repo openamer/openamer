@@ -248,7 +248,7 @@ def test_event_from_wire_sets_relay_delivery_marker():
 def test_event_from_wire_stamps_routed_profile():
     """A connector-routed profile on the wire source lands on SessionSource.
 
-    In multiplex mode the connector resolves the target HERMES profile for a
+    In multiplex mode the connector resolves the target OPENAMER profile for a
     Team-Gateway message and stamps ``profile`` on the wire source. The relay
     transport must carry it through so build_session_key namespaces the session
     and the agent turn resolves that profile's config/credentials.

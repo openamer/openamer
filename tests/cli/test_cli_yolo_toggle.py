@@ -1,12 +1,12 @@
 """Regression tests for the CLI ``/yolo`` in-chat toggle.
 
 Pre-fix bug (issue #33925): ``cli.OpenAmerCLI._toggle_yolo`` mutated only
-``os.environ["HERMES_YOLO_MODE"]``. That env var is captured once at
+``os.environ["OPENAMER_YOLO_MODE"]``. That env var is captured once at
 module-import time into ``tools.approval._YOLO_MODE_FROZEN`` (security
 hardening: stops prompt-injected skills from flipping the bypass mid-run),
 so the post-startup toggle was a silent no-op. ``/yolo`` advertised "YOLO ON"
 in the status bar while every dangerous command still hit the approval
-prompt. Only ``openamer --yolo`` (process-start env), ``HERMES_YOLO_MODE=1``,
+prompt. Only ``openamer --yolo`` (process-start env), ``OPENAMER_YOLO_MODE=1``,
 and ``openamer config set approvals.mode off`` actually bypassed.
 
 The fix routes the CLI toggle through ``enable_session_yolo`` /
@@ -39,7 +39,7 @@ SESSION_KEY = "test-cli-yolo-session"
 @pytest.fixture(autouse=True)
 def _clear_approval_state(monkeypatch):
     """Clear the YOLO bypass + env var around every test so cases are independent."""
-    monkeypatch.delenv("HERMES_YOLO_MODE", raising=False)
+    monkeypatch.delenv("OPENAMER_YOLO_MODE", raising=False)
     approval_module.clear_session(SESSION_KEY)
     approval_module.clear_session("default")
     yield
@@ -87,14 +87,14 @@ class TestToggleYoloIsSessionScoped:
             assert approval_module.is_session_yolo_enabled(SESSION_KEY) is False
 
     def test_toggle_yolo_does_not_mutate_env_var(self):
-        """Toggling /yolo must not write ``HERMES_YOLO_MODE`` — that path is
+        """Toggling /yolo must not write ``OPENAMER_YOLO_MODE`` — that path is
         frozen at import time and would mislead anyone reading the env later
         (subprocesses, status bars wired to the env, the relaunch flag list)."""
         stand_in = _make_stand_in()
         with patch("cli._cprint"):
             OpenAmerCLI._toggle_yolo(stand_in)
 
-        assert os.environ.get("HERMES_YOLO_MODE") is None
+        assert os.environ.get("OPENAMER_YOLO_MODE") is None
 
     def test_toggle_yolo_falls_back_to_default_when_session_id_missing(self):
         """An edge case during CLI bootstrap: a ``/yolo`` triggered before the
@@ -144,7 +144,7 @@ class TestIsSessionYoloActiveHelper:
         assert OpenAmerCLI._is_session_yolo_active(stand_in) is False
 
     def test_helper_honors_frozen_yolo_mode(self):
-        """``openamer --yolo`` sets ``HERMES_YOLO_MODE`` before tool imports, so
+        """``openamer --yolo`` sets ``OPENAMER_YOLO_MODE`` before tool imports, so
         ``_YOLO_MODE_FROZEN`` ends up True. The status bar should still
         reflect YOLO on in that case even when the session toggle is off."""
         stand_in = _make_stand_in()

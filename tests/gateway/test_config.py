@@ -763,8 +763,8 @@ class TestLoadGatewayConfig:
         )
         monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
         for key in (
-            "HERMES_DISCORD_LIVENESS_INTERVAL_SECONDS",
-            "HERMES_DISCORD_LIVENESS_FAILURE_THRESHOLD",
+            "OPENAMER_DISCORD_LIVENESS_INTERVAL_SECONDS",
+            "OPENAMER_DISCORD_LIVENESS_FAILURE_THRESHOLD",
         ):
             monkeypatch.delenv(key, raising=False)
 

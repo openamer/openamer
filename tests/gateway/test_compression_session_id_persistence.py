@@ -227,7 +227,7 @@ class TestCompressionSessionPropagation:
         if agent_result.get("session_id") and agent_result["session_id"] != session_entry.session_id:
             session_entry.session_id = agent_result["session_id"]
 
-        contextvar_sid = get_session_env("HERMES_SESSION_ID", "")
+        contextvar_sid = get_session_env("OPENAMER_SESSION_ID", "")
         assert contextvar_sid == new_sid, (
             f"Contextvar still holds old session_id '{contextvar_sid}' after "
             f"set_current_session_id('{new_sid}'). Tool calls in the next turn "

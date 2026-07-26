@@ -7,7 +7,7 @@ default for bare ``openamer`` / ``openamer chat``. Explicit flags always win:
     --cli                forces the classic REPL (highest precedence)
     --tui                forces the TUI
     (no TTY)             forces the classic REPL — ambient prefs don't apply
-    HERMES_TUI=1         the env default
+    OPENAMER_TUI=1         the env default
     display.interface    the configured default
     (unset)              classic REPL
 
@@ -41,9 +41,9 @@ from openamer_cli import main as m
 @pytest.fixture(autouse=True)
 def _reset_early_cache(monkeypatch):
     # The early resolver memoizes the config read; clear it so each test sees
-    # a fresh value, and make sure no stray HERMES_TUI leaks in.
+    # a fresh value, and make sure no stray OPENAMER_TUI leaks in.
     monkeypatch.setattr(m, "_EARLY_INTERFACE_CACHE", None)
-    monkeypatch.delenv("HERMES_TUI", raising=False)
+    monkeypatch.delenv("OPENAMER_TUI", raising=False)
     yield
     monkeypatch.setattr(m, "_EARLY_INTERFACE_CACHE", None)
 
@@ -80,7 +80,7 @@ class TestResolveUseTui:
 
     def test_cli_flag_beats_tui_flag_and_env(self, monkeypatch):
         _patch_config(monkeypatch, "tui")
-        monkeypatch.setenv("HERMES_TUI", "1")
+        monkeypatch.setenv("OPENAMER_TUI", "1")
         assert m._resolve_use_tui(_args(cli=True, tui=True)) is False
 
     def test_tui_flag_beats_config_cli(self, monkeypatch):
@@ -90,7 +90,7 @@ class TestResolveUseTui:
     def test_env_beats_config_cli(self, monkeypatch):
         _patch_config(monkeypatch, "cli")
         _fake_tty(monkeypatch, True)
-        monkeypatch.setenv("HERMES_TUI", "1")
+        monkeypatch.setenv("OPENAMER_TUI", "1")
         assert m._resolve_use_tui(_args()) is True
 
     def test_config_tui_with_no_flags(self, monkeypatch):
@@ -122,7 +122,7 @@ class TestResolveUseTui:
     def test_no_tty_blocks_env_tui(self, monkeypatch):
         _patch_config(monkeypatch, "cli")
         _fake_tty(monkeypatch, False)
-        monkeypatch.setenv("HERMES_TUI", "1")
+        monkeypatch.setenv("OPENAMER_TUI", "1")
         assert m._resolve_use_tui(_args()) is False
 
     def test_no_tty_blocks_config_tui(self, monkeypatch):
@@ -181,7 +181,7 @@ class TestWantsTuiEarly:
 
     def test_env_with_config_cli(self, home_with_interface, monkeypatch):
         home_with_interface("cli")
-        monkeypatch.setenv("HERMES_TUI", "1")
+        monkeypatch.setenv("OPENAMER_TUI", "1")
         assert m._wants_tui_early([]) is True
 
     def test_config_cli_bare_argv(self, home_with_interface):

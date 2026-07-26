@@ -332,7 +332,7 @@ class TestCallbackSubprocess:
         )
 
         monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / "home"))
-        monkeypatch.setenv("HERMES_ACCEPT_HOOKS", "1")
+        monkeypatch.setenv("OPENAMER_ACCEPT_HOOKS", "1")
 
         # Fresh manager
         plugins._plugin_manager = plugins.PluginManager()
@@ -534,7 +534,7 @@ class TestIdempotentRegistration:
         script = _write_script(tmp_path, "h.sh",
                                "#!/usr/bin/env bash\nprintf '{}\\n'\n")
         monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / "home"))
-        monkeypatch.setenv("HERMES_ACCEPT_HOOKS", "1")
+        monkeypatch.setenv("OPENAMER_ACCEPT_HOOKS", "1")
 
         plugins._plugin_manager = plugins.PluginManager()
 
@@ -558,7 +558,7 @@ class TestIdempotentRegistration:
         script = _write_script(tmp_path, "h.sh",
                                "#!/usr/bin/env bash\nprintf '{}\\n'\n")
         monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / "home"))
-        monkeypatch.setenv("HERMES_ACCEPT_HOOKS", "1")
+        monkeypatch.setenv("OPENAMER_ACCEPT_HOOKS", "1")
 
         plugins._plugin_manager = plugins.PluginManager()
 

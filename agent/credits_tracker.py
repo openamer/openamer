@@ -588,9 +588,9 @@ def parse_credits_headers(
         return None
 
 
-# ── Dev test fixtures (HERMES_DEV_CREDITS_FIXTURE) ───────────────────────────
+# ── Dev test fixtures (OPENAMER_DEV_CREDITS_FIXTURE) ───────────────────────────
 # Throwaway dev scaffolding: trigger any notice state on demand for testing,
-# without real spend or Redis seeding. Set HERMES_DEV_CREDITS_FIXTURE to either a
+# without real spend or Redis seeding. Set OPENAMER_DEV_CREDITS_FIXTURE to either a
 # state NAME (fixed for the session) or a FILE PATH whose contents are a state
 # name (re-read every turn → flip states live: `echo depleted > /tmp/cf`, take a
 # turn; `echo healthy > /tmp/cf`, take a turn → recovery).
@@ -600,7 +600,7 @@ def parse_credits_headers(
 # cold-start seed at session open (conversation_loop → depletion/warn90 hydrate
 # immediately), and (3) the /usage view (nous_credits_lines renders the fixture).
 # `clear` / `none` / unset → real behaviour. Delete with the rest of the
-# HERMES_DEV_CREDITS scaffolding.
+# OPENAMER_DEV_CREDITS scaffolding.
 _DEV_FIXTURES: dict[str, dict] = {
     "healthy": dict(  # used_fraction ~0.1, paid → no notice (recovery target)
         remaining_micros=30_340_000, remaining_usd="30.34",
@@ -652,20 +652,20 @@ _DEV_FIXTURES: dict[str, dict] = {
 
 
 def dev_fixture_credits_state() -> Optional[CreditsState]:
-    """Return a fixture CreditsState for HERMES_DEV_CREDITS_FIXTURE, or None.
+    """Return a fixture CreditsState for OPENAMER_DEV_CREDITS_FIXTURE, or None.
 
     The env value is a state name, OR a path to a file whose contents are a state
     name (re-read each call → flip states live without a restart). Unknown name /
     "clear" / "none" / unset → None (normal behaviour). Throwaway test scaffolding.
 
-    Hard prod-leak guard: a fixture applies ONLY when the dev flag HERMES_DEV_CREDITS
-    is also on, so a stray HERMES_DEV_CREDITS_FIXTURE (leaked into a shell profile, a
+    Hard prod-leak guard: a fixture applies ONLY when the dev flag OPENAMER_DEV_CREDITS
+    is also on, so a stray OPENAMER_DEV_CREDITS_FIXTURE (leaked into a shell profile, a
     container env, a launch plist, …) can never surface fabricated balances/notices
     on a real account.
     """
-    if not is_truthy_value(os.environ.get("HERMES_DEV_CREDITS")):
+    if not is_truthy_value(os.environ.get("OPENAMER_DEV_CREDITS")):
         return None
-    raw = os.environ.get("HERMES_DEV_CREDITS_FIXTURE", "").strip()
+    raw = os.environ.get("OPENAMER_DEV_CREDITS_FIXTURE", "").strip()
     if not raw:
         return None
     name = raw

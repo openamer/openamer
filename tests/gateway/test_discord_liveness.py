@@ -96,8 +96,8 @@ def _make_adapter(
     max_ack_age=1.0,
     max_latency=1.0,
 ) -> DiscordAdapter:
-    monkeypatch.setenv("HERMES_DISCORD_LIVENESS_INTERVAL_SECONDS", str(interval))
-    monkeypatch.setenv("HERMES_DISCORD_LIVENESS_FAILURE_THRESHOLD", str(threshold))
+    monkeypatch.setenv("OPENAMER_DISCORD_LIVENESS_INTERVAL_SECONDS", str(interval))
+    monkeypatch.setenv("OPENAMER_DISCORD_LIVENESS_FAILURE_THRESHOLD", str(threshold))
     return DiscordAdapter(
         PlatformConfig(
             enabled=True,
@@ -134,8 +134,8 @@ def test_nonfinite_liveness_config_disables_that_probe_dimension(monkeypatch, ke
 
 def test_default_liveness_bounds_trigger_timed_recovery(monkeypatch):
     for key in (
-        "HERMES_DISCORD_LIVENESS_INTERVAL_SECONDS",
-        "HERMES_DISCORD_LIVENESS_FAILURE_THRESHOLD",
+        "OPENAMER_DISCORD_LIVENESS_INTERVAL_SECONDS",
+        "OPENAMER_DISCORD_LIVENESS_FAILURE_THRESHOLD",
     ):
         monkeypatch.delenv(key, raising=False)
 
@@ -148,8 +148,8 @@ def test_default_liveness_bounds_trigger_timed_recovery(monkeypatch):
 
 
 def test_platform_config_extra_overrides_process_liveness_bridge(monkeypatch):
-    monkeypatch.setenv("HERMES_DISCORD_LIVENESS_INTERVAL_SECONDS", "99")
-    monkeypatch.setenv("HERMES_DISCORD_LIVENESS_FAILURE_THRESHOLD", "9")
+    monkeypatch.setenv("OPENAMER_DISCORD_LIVENESS_INTERVAL_SECONDS", "99")
+    monkeypatch.setenv("OPENAMER_DISCORD_LIVENESS_FAILURE_THRESHOLD", "9")
 
     adapter = DiscordAdapter(
         PlatformConfig(
@@ -429,7 +429,7 @@ async def test_liveness_recovery_keeps_websocket_fatal_when_client_task_exits(mo
 async def test_liveness_recovery_not_blocked_by_hanging_client_close(monkeypatch):
     """A wedged close must not prevent fatal notification/reconnect queueing."""
     adapter = _make_adapter(monkeypatch, interval=60, threshold=1, max_ack_age=1.0)
-    monkeypatch.setenv("HERMES_GATEWAY_ADAPTER_DISCONNECT_TIMEOUT", "0.02")
+    monkeypatch.setenv("OPENAMER_GATEWAY_ADAPTER_DISCONNECT_TIMEOUT", "0.02")
 
     def factory(**kwargs):
         bot = _LiveBot(intents=kwargs["intents"], allowed_mentions=kwargs.get("allowed_mentions"))

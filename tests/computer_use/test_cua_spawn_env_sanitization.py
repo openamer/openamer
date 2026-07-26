@@ -48,7 +48,7 @@ def _assert_sanitized(captured):
 def test_resolve_mcp_invocation_sanitizes_env(monkeypatch):
     monkeypatch.setenv("ANTHROPIC_API_KEY", SECRET)
     monkeypatch.setenv("PATH", "/usr/bin:/bin")
-    monkeypatch.delenv("HERMES_CUA_TELEMETRY", raising=False)
+    monkeypatch.delenv("OPENAMER_CUA_TELEMETRY", raising=False)
 
     from tools.computer_use import cua_backend
 
@@ -66,7 +66,7 @@ def test_resolve_mcp_invocation_sanitizes_env(monkeypatch):
 def test_update_check_sanitizes_env(monkeypatch):
     monkeypatch.setenv("ANTHROPIC_API_KEY", SECRET)
     monkeypatch.setenv("PATH", "/usr/bin:/bin")
-    monkeypatch.delenv("HERMES_CUA_TELEMETRY", raising=False)
+    monkeypatch.delenv("OPENAMER_CUA_TELEMETRY", raising=False)
 
     from tools.computer_use import cua_backend
 
@@ -92,7 +92,7 @@ def test_update_check_sanitizes_env(monkeypatch):
 def test_permissions_run_sanitizes_env(monkeypatch):
     monkeypatch.setenv("ANTHROPIC_API_KEY", SECRET)
     monkeypatch.setenv("PATH", "/usr/bin:/bin")
-    monkeypatch.delenv("HERMES_CUA_TELEMETRY", raising=False)
+    monkeypatch.delenv("OPENAMER_CUA_TELEMETRY", raising=False)
 
     from tools.computer_use import permissions
 
@@ -110,7 +110,7 @@ def test_doctor_sanitized_env_helper(monkeypatch):
     strips secrets (mocking the whole JSON-RPC handshake is not worth it)."""
     monkeypatch.setenv("ANTHROPIC_API_KEY", SECRET)
     monkeypatch.setenv("PATH", "/usr/bin:/bin")
-    monkeypatch.delenv("HERMES_CUA_TELEMETRY", raising=False)
+    monkeypatch.delenv("OPENAMER_CUA_TELEMETRY", raising=False)
 
     from tools.computer_use import doctor
     import inspect

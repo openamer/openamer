@@ -71,10 +71,10 @@ logger = logging.getLogger(__name__)
 # identify OpenAmerAgent traffic — matching other OpenAmer outbound surfaces
 # that already set ``OpenAmerAgent/<version>`` for platform-partner attribution.
 try:
-    from openamer_cli import __version__ as _HERMES_VERSION
+    from openamer_cli import __version__ as _OPENAMER_VERSION
 except Exception:
-    _HERMES_VERSION = "unknown"
-_HERMES_SLACK_USER_AGENT_PREFIX = f"OpenAmerAgent/{_HERMES_VERSION}"
+    _OPENAMER_VERSION = "unknown"
+_OPENAMER_SLACK_USER_AGENT_PREFIX = f"OpenAmerAgent/{_OPENAMER_VERSION}"
 
 _SLACK_ERROR_BODY_LIMIT_BYTES = 8 * 1024
 
@@ -1896,7 +1896,7 @@ class SlackAdapter(BasePlatformAdapter):
             primary_token = bot_tokens[0]
             primary_client = AsyncWebClient(
                 token=primary_token,
-                user_agent_prefix=_HERMES_SLACK_USER_AGENT_PREFIX,
+                user_agent_prefix=_OPENAMER_SLACK_USER_AGENT_PREFIX,
             )
             self._app = AsyncApp(token=primary_token, client=primary_client)
             _apply_slack_proxy(self._app.client, proxy_url)
@@ -1905,7 +1905,7 @@ class SlackAdapter(BasePlatformAdapter):
             for token in bot_tokens:
                 client = AsyncWebClient(
                     token=token,
-                    user_agent_prefix=_HERMES_SLACK_USER_AGENT_PREFIX,
+                    user_agent_prefix=_OPENAMER_SLACK_USER_AGENT_PREFIX,
                 )
                 _apply_slack_proxy(client, proxy_url)
                 auth_response = await client.auth_test()

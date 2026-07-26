@@ -35,7 +35,7 @@ from typing import Any, Dict, List, Optional, Tuple
 logger = logging.getLogger(__name__)
 
 DEFAULT_DATASET_NAME = "openamer-traces"
-_HERMES_VERSION = "openamer-agent"
+_OPENAMER_VERSION = "openamer-agent"
 _REDACTION_BLOCKED_MESSAGE = (
     "Trace upload blocked: secret redaction failed, so the transcript may "
     "still contain credentials or other sensitive data. Fix the redactor or "
@@ -176,7 +176,7 @@ def build_trace_jsonl(
             "userType": "external",
             "cwd": cwd or os.getcwd(),
             "sessionId": session_id,
-            "version": _HERMES_VERSION,
+            "version": _OPENAMER_VERSION,
             "gitBranch": git_branch,
             "uuid": turn_uuid,
             "timestamp": base_ts,

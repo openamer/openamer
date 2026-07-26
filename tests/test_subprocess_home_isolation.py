@@ -28,12 +28,12 @@ class TestGetSubprocessHome:
     def _host_mode(self, monkeypatch):
         monkeypatch.setattr(openamer_constants, "is_container", lambda: False)
         monkeypatch.delenv("TERMINAL_HOME_MODE", raising=False)
-        monkeypatch.delenv("HERMES_REAL_HOME", raising=False)
+        monkeypatch.delenv("OPENAMER_REAL_HOME", raising=False)
 
     def _container_mode(self, monkeypatch):
         monkeypatch.setattr(openamer_constants, "is_container", lambda: True)
         monkeypatch.delenv("TERMINAL_HOME_MODE", raising=False)
-        monkeypatch.delenv("HERMES_REAL_HOME", raising=False)
+        monkeypatch.delenv("OPENAMER_REAL_HOME", raising=False)
 
     def test_returns_none_when_openamer_home_unset(self, monkeypatch):
         monkeypatch.delenv("OPENAMER_HOME", raising=False)
@@ -91,7 +91,7 @@ class TestGetSubprocessHome:
         monkeypatch.setenv("TERMINAL_HOME_MODE", "real")
         monkeypatch.setenv("OPENAMER_HOME", str(profile_dir))
         monkeypatch.setenv("HOME", str(profile_home))
-        monkeypatch.setenv("HERMES_REAL_HOME", str(real_home))
+        monkeypatch.setenv("OPENAMER_REAL_HOME", str(real_home))
 
         from openamer_constants import get_subprocess_home, get_real_home
 
@@ -193,7 +193,7 @@ class TestMakeRunEnvHomeInjection:
         result = _make_run_env({})
 
         assert result["HOME"] == str(real_home)
-        assert result["HERMES_REAL_HOME"] == str(real_home)
+        assert result["OPENAMER_REAL_HOME"] == str(real_home)
 
     def test_profile_mode_injects_profile_home_when_profile_home_exists(self, tmp_path, monkeypatch):
         openamer_home = tmp_path / "openamer"
@@ -211,7 +211,7 @@ class TestMakeRunEnvHomeInjection:
         result = _make_run_env({})
 
         assert result["HOME"] == str(openamer_home / "home")
-        assert result["HERMES_REAL_HOME"] == str(real_home)
+        assert result["OPENAMER_REAL_HOME"] == str(real_home)
 
     def test_no_injection_when_home_dir_missing(self, tmp_path, monkeypatch):
         openamer_home = tmp_path / "openamer"
@@ -281,7 +281,7 @@ class TestSanitizeSubprocessEnvHomeInjection:
         result = _sanitize_subprocess_env(base_env)
 
         assert result["HOME"] == str(real_home)
-        assert result["HERMES_REAL_HOME"] == str(real_home)
+        assert result["OPENAMER_REAL_HOME"] == str(real_home)
 
     def test_profile_mode_injects_profile_home_when_profile_home_exists(self, tmp_path, monkeypatch):
         openamer_home = tmp_path / "openamer"
@@ -298,7 +298,7 @@ class TestSanitizeSubprocessEnvHomeInjection:
         result = _sanitize_subprocess_env(base_env)
 
         assert result["HOME"] == str(openamer_home / "home")
-        assert result["HERMES_REAL_HOME"] == str(real_home)
+        assert result["OPENAMER_REAL_HOME"] == str(real_home)
 
     def test_no_injection_when_home_dir_missing(self, tmp_path, monkeypatch):
         openamer_home = tmp_path / "openamer"

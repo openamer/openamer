@@ -96,19 +96,19 @@ def current_secret_scope() -> Optional[Mapping[str, str]]:
 # list tight: when in doubt a value is a profile secret, not a global.
 _GLOBAL_ENV_EXACT = frozenset({
     # OpenAmer runtime / deployment
-    "OPENAMER_HOME", "HERMES_PROFILE", "HERMES_GATEWAY_LOCK_DIR",
-    "HERMES_MAX_ITERATIONS", "HERMES_MAX_TOKENS", "HERMES_API_TIMEOUT",
-    "HERMES_REDACT_SECRETS", "HERMES_NOUS_TIMEOUT_SECONDS",
-    "_HERMES_GATEWAY",
+    "OPENAMER_HOME", "OPENAMER_PROFILE", "OPENAMER_GATEWAY_LOCK_DIR",
+    "OPENAMER_MAX_ITERATIONS", "OPENAMER_MAX_TOKENS", "OPENAMER_API_TIMEOUT",
+    "OPENAMER_REDACT_SECRETS", "OPENAMER_NOUS_TIMEOUT_SECONDS",
+    "_OPENAMER_GATEWAY",
     # OS / interpreter
     "PATH", "HOME", "USER", "LANG", "LC_ALL", "TZ", "PWD", "SHELL", "TMPDIR",
     "VIRTUAL_ENV", "PYTHONPATH", "SSL_CERT_FILE",
     # Kanban paths (per-board, not per-profile-secret)
-    "HERMES_KANBAN_DB", "HERMES_KANBAN_WORKSPACES_ROOT", "HERMES_KANBAN_BOARD",
+    "OPENAMER_KANBAN_DB", "OPENAMER_KANBAN_WORKSPACES_ROOT", "OPENAMER_KANBAN_BOARD",
 })
 _GLOBAL_ENV_PREFIXES = (
-    "HERMES_KANBAN_",
-    "HERMES_TELEGRAM_",   # tuning knobs (batch delays, fallback toggles) — NOT the token
+    "OPENAMER_KANBAN_",
+    "OPENAMER_TELEGRAM_",   # tuning knobs (batch delays, fallback toggles) — NOT the token
     "TERMINAL_",          # terminal/sandbox backend settings
 )
 

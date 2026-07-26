@@ -18,8 +18,8 @@ Configuration surfaces (env wins over config.yaml when set non-empty):
   Environment overrides — used by Fly.io's platform-secret injection so
   per-deploy values don't need to bake into ``config.yaml``:
 
-      HERMES_DASHBOARD_OAUTH_CLIENT_ID  — shape ``agent:{agent_instance_id}``
-      HERMES_DASHBOARD_PORTAL_URL       — defaults to
+      OPENAMER_DASHBOARD_OAUTH_CLIENT_ID  — shape ``agent:{agent_instance_id}``
+      OPENAMER_DASHBOARD_PORTAL_URL       — defaults to
                                           ``https://portal.nousresearch.com``
                                           (production Portal). Override only
                                           for staging (``portal.rewbs.uk``)
@@ -63,7 +63,7 @@ back to the cookie on every refresh.
 Skip reasons:
   The plugin exposes a module-level ``LAST_SKIP_REASON`` that the gate's
   fail-closed branch reads to surface a useful operator error message
-  ("Set HERMES_DASHBOARD_OAUTH_CLIENT_ID …") instead of the bare "no
+  ("Set OPENAMER_DASHBOARD_OAUTH_CLIENT_ID …") instead of the bare "no
   providers registered" the gate would otherwise emit.
 """
 
@@ -95,7 +95,7 @@ logger = logging.getLogger(__name__)
 # Defaults
 # ---------------------------------------------------------------------------
 
-# Production Portal URL. Override via HERMES_DASHBOARD_PORTAL_URL for
+# Production Portal URL. Override via OPENAMER_DASHBOARD_PORTAL_URL for
 # staging (portal.rewbs.uk) or a custom deployment. Contract docs name
 # this as the production issuer.
 _DEFAULT_PORTAL_URL = "https://portal.nousresearch.com"
@@ -454,7 +454,7 @@ class NousDashboardAuthProvider(DashboardAuthProvider):
         except jwt.InvalidTokenError as exc:
             # Surface the actual claim values that failed verification so
             # operators don't have to dig into the JWT to debug config drift
-            # between HERMES_DASHBOARD_PORTAL_URL / HERMES_DASHBOARD_OAUTH_CLIENT_ID
+            # between OPENAMER_DASHBOARD_PORTAL_URL / OPENAMER_DASHBOARD_OAUTH_CLIENT_ID
             # and what Portal is actually emitting. Decoding without verification
             # is safe here: we've already failed to verify, and we never trust
             # these values — they're surfaced for diagnostics only.
@@ -567,14 +567,14 @@ def _resolve_client_id() -> str:
     """Resolve the OAuth client_id with env-overrides-config precedence.
 
     Order:
-      1. ``HERMES_DASHBOARD_OAUTH_CLIENT_ID`` env var (when non-empty
+      1. ``OPENAMER_DASHBOARD_OAUTH_CLIENT_ID`` env var (when non-empty
          after strip — empty values are treated as unset so a
          provisioned-but-not-populated Fly secret can't shadow a valid
          config.yaml entry).
       2. ``dashboard.oauth.client_id`` in ``config.yaml``.
       3. Empty string — signals "no client_id configured" to the caller.
     """
-    env = os.environ.get("HERMES_DASHBOARD_OAUTH_CLIENT_ID", "").strip()
+    env = os.environ.get("OPENAMER_DASHBOARD_OAUTH_CLIENT_ID", "").strip()
     if env:
         return env
     cfg_value = _load_config_oauth_section().get("client_id", "")
@@ -585,11 +585,11 @@ def _resolve_portal_url() -> str:
     """Resolve the Portal URL with env-overrides-config precedence.
 
     Order:
-      1. ``HERMES_DASHBOARD_PORTAL_URL`` env var (non-empty after strip).
+      1. ``OPENAMER_DASHBOARD_PORTAL_URL`` env var (non-empty after strip).
       2. ``dashboard.oauth.portal_url`` in ``config.yaml``.
       3. :data:`_DEFAULT_PORTAL_URL` (production Portal).
     """
-    env = os.environ.get("HERMES_DASHBOARD_PORTAL_URL", "").strip()
+    env = os.environ.get("OPENAMER_DASHBOARD_PORTAL_URL", "").strip()
     if env:
         return env
     cfg_value = str(
@@ -602,14 +602,14 @@ def register(ctx) -> None:
     """Plugin entry — called by the plugin loader at startup.
 
     Registers ``NousDashboardAuthProvider`` only when a client_id is
-    configured (either via ``HERMES_DASHBOARD_OAUTH_CLIENT_ID`` env var
+    configured (either via ``OPENAMER_DASHBOARD_OAUTH_CLIENT_ID`` env var
     or via ``dashboard.oauth.client_id`` in ``config.yaml``). The env
     var wins when set non-empty — Fly.io's platform-secret injection
     pushes the per-deploy value through this path.
 
     When skipping, writes a short human-readable reason to the module-
     level :data:`LAST_SKIP_REASON` so the dashboard's fail-closed branch
-    can surface "Set HERMES_DASHBOARD_OAUTH_CLIENT_ID …" instead of the
+    can surface "Set OPENAMER_DASHBOARD_OAUTH_CLIENT_ID …" instead of the
     bare "no providers registered" the gate would otherwise emit. The
     reason mentions BOTH configuration surfaces so operators don't
     guess wrong about which one to populate.
@@ -628,7 +628,7 @@ def register(ctx) -> None:
 
     if not client_id:
         LAST_SKIP_REASON = (
-            "HERMES_DASHBOARD_OAUTH_CLIENT_ID is not set (and "
+            "OPENAMER_DASHBOARD_OAUTH_CLIENT_ID is not set (and "
             "dashboard.oauth.client_id in config.yaml is empty). The "
             "Nous Portal provisions this env var (shape "
             "'agent:{instance_id}') when it deploys a OpenAmer Agent "
@@ -642,7 +642,7 @@ def register(ctx) -> None:
 
     if not client_id.startswith("agent:"):
         LAST_SKIP_REASON = (
-            f"HERMES_DASHBOARD_OAUTH_CLIENT_ID={client_id!r} doesn't match "
+            f"OPENAMER_DASHBOARD_OAUTH_CLIENT_ID={client_id!r} doesn't match "
             f"the contract shape 'agent:{{instance_id}}'. The Nous Portal "
             f"provisions this value at deploy time; check your Fly app's "
             f"secrets or override with the value from the Portal admin UI."

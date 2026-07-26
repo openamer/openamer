@@ -314,7 +314,7 @@ async def test_debounce_skipped_when_busy_text_mode_not_queue():
 
 
 def test_debounce_respects_env_var_override(monkeypatch):
-    monkeypatch.setenv("HERMES_GATEWAY_BUSY_TEXT_DEBOUNCE_SECONDS", "2.5")
+    monkeypatch.setenv("OPENAMER_GATEWAY_BUSY_TEXT_DEBOUNCE_SECONDS", "2.5")
     adapter = _make_initialized_adapter()
     assert adapter._busy_text_debounce_seconds == 2.5
 
@@ -353,7 +353,7 @@ async def test_single_followup_is_stored_as_is():
 
 
 def test_adapter_defaults_to_interrupt_mode(monkeypatch):
-    monkeypatch.delenv("HERMES_GATEWAY_BUSY_TEXT_MODE", raising=False)
+    monkeypatch.delenv("OPENAMER_GATEWAY_BUSY_TEXT_MODE", raising=False)
     adapter = _make_initialized_adapter()
     assert adapter._busy_text_mode == "interrupt"
     assert not adapter._is_queue_text_debounce_candidate(_make_event("hello"))
@@ -372,7 +372,7 @@ def test_command_messages_bypass_debounce_even_in_queue_mode():
 
 
 def test_busy_text_mode_respects_env_var_override(monkeypatch):
-    monkeypatch.setenv("HERMES_GATEWAY_BUSY_TEXT_MODE", "interrupt")
+    monkeypatch.setenv("OPENAMER_GATEWAY_BUSY_TEXT_MODE", "interrupt")
     adapter = _make_initialized_adapter()
     assert adapter._busy_text_mode == "interrupt"
     assert not adapter._is_queue_text_debounce_candidate(_make_event("test"))

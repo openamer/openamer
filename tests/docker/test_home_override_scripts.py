@@ -50,14 +50,14 @@ def test_dashboard_service_resets_home(
     We check this by inspecting the environment of the dashboard service
     process if it's running, or by verifying the run script sets HOME
     before the exec. At runtime, the cleanest check is: start the
-    container with HERMES_DASHBOARD=1 and verify the dashboard process
+    container with OPENAMER_DASHBOARD=1 and verify the dashboard process
     (if it starts) has HOME=/opt/data.
 
     Since the dashboard requires an auth provider on non-loopback binds,
     we bind to 127.0.0.1 where the auth gate doesn't engage, and check
     the process env.
     """
-    start_container(built_image, container_name, "HERMES_DASHBOARD=1", "HERMES_DASHBOARD_HOST=127.0.0.1")
+    start_container(built_image, container_name, "OPENAMER_DASHBOARD=1", "OPENAMER_DASHBOARD_HOST=127.0.0.1")
 
     # Check if the dashboard process is running and inspect its HOME.
     r = docker_exec_sh(
@@ -85,7 +85,7 @@ def test_dashboard_does_not_auto_insecure_from_host(
     built_image: str, container_name: str,
 ) -> None:
     """The dashboard MUST NOT auto-add ``--insecure`` based on
-    HERMES_DASHBOARD_HOST. The auth gate is the authority now.
+    OPENAMER_DASHBOARD_HOST. The auth gate is the authority now.
 
     The auth gate is the authority on whether non-loopback binds are
     safe; ``--insecure`` must never be auto-derived from the bind host.
@@ -96,7 +96,7 @@ def test_dashboard_does_not_auto_insecure_from_host(
     gate correctly blocks an unauthenticated non-loopback bind), that's
     also acceptable — the point is no auto-insecure.
     """
-    start_container(built_image, container_name, "HERMES_DASHBOARD=1", "HERMES_DASHBOARD_HOST=0.0.0.0")
+    start_container(built_image, container_name, "OPENAMER_DASHBOARD=1", "OPENAMER_DASHBOARD_HOST=0.0.0.0")
 
     # Check the dashboard process command line for --insecure.
     r = docker_exec_sh(

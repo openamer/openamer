@@ -411,12 +411,12 @@ def test_get_charge_status_requires_id():
 
 
 def test_portal_base_url_env_override(monkeypatch):
-    monkeypatch.setenv("HERMES_PORTAL_BASE_URL", "https://preview.example.com/")
+    monkeypatch.setenv("OPENAMER_PORTAL_BASE_URL", "https://preview.example.com/")
     assert resolve_portal_base_url() == "https://preview.example.com"
 
 
 def test_portal_base_url_falls_back_to_state(monkeypatch):
-    monkeypatch.delenv("HERMES_PORTAL_BASE_URL", raising=False)
+    monkeypatch.delenv("OPENAMER_PORTAL_BASE_URL", raising=False)
     monkeypatch.delenv("NOUS_PORTAL_BASE_URL", raising=False)
     assert (
         resolve_portal_base_url({"portal_base_url": "https://stored.example.com/"})
@@ -425,7 +425,7 @@ def test_portal_base_url_falls_back_to_state(monkeypatch):
 
 
 def test_portal_base_url_default(monkeypatch):
-    monkeypatch.delenv("HERMES_PORTAL_BASE_URL", raising=False)
+    monkeypatch.delenv("OPENAMER_PORTAL_BASE_URL", raising=False)
     monkeypatch.delenv("NOUS_PORTAL_BASE_URL", raising=False)
     assert resolve_portal_base_url() == nb.DEFAULT_PORTAL_BASE_URL
 
@@ -518,13 +518,13 @@ def test_validate_amount_rejections(raw, err_substr):
 
 
 # ---------------------------------------------------------------------------
-# HERMES_DEV_BILLING_FIXTURE — offline card/scope state scaffolding (T0)
+# OPENAMER_DEV_BILLING_FIXTURE — offline card/scope state scaffolding (T0)
 # ---------------------------------------------------------------------------
 
 
 def test_billing_fixture_unset_returns_none(monkeypatch):
     """No env var → fixture is inert (the real portal path runs)."""
-    monkeypatch.delenv("HERMES_DEV_BILLING_FIXTURE", raising=False)
+    monkeypatch.delenv("OPENAMER_DEV_BILLING_FIXTURE", raising=False)
     assert bv._dev_fixture_billing_state() is None
 
 
@@ -540,7 +540,7 @@ def test_billing_fixture_unset_returns_none(monkeypatch):
 )
 def test_billing_fixture_card_and_gate_invariants(monkeypatch, name, has_card, is_admin, billing_on):
     """Each fixture state honors the card/admin/kill-switch contract the gate reads."""
-    monkeypatch.setenv("HERMES_DEV_BILLING_FIXTURE", name)
+    monkeypatch.setenv("OPENAMER_DEV_BILLING_FIXTURE", name)
     s = build_billing_state()
     assert s.logged_in is True
     assert (s.card is not None) is has_card
@@ -550,15 +550,15 @@ def test_billing_fixture_card_and_gate_invariants(monkeypatch, name, has_card, i
 
 def test_billing_fixture_autoreload_state(monkeypatch):
     """card-autoreload pairs a card with an enabled auto-reload (drives that screen)."""
-    monkeypatch.setenv("HERMES_DEV_BILLING_FIXTURE", "card-autoreload")
+    monkeypatch.setenv("OPENAMER_DEV_BILLING_FIXTURE", "card-autoreload")
     s = build_billing_state()
     assert s.card is not None
     assert s.auto_reload is not None and s.auto_reload.enabled is True
 
 
 def test_billing_fixture_logged_out_and_unknown(monkeypatch):
-    monkeypatch.setenv("HERMES_DEV_BILLING_FIXTURE", "logged-out")
+    monkeypatch.setenv("OPENAMER_DEV_BILLING_FIXTURE", "logged-out")
     assert build_billing_state().logged_in is False
-    monkeypatch.setenv("HERMES_DEV_BILLING_FIXTURE", "bogus-state")
+    monkeypatch.setenv("OPENAMER_DEV_BILLING_FIXTURE", "bogus-state")
     s = build_billing_state()
     assert s.logged_in is False and "bogus-state" in (s.error or "")

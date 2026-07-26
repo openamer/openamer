@@ -20,10 +20,10 @@
 #   scripts/dev-sandbox.sh --from ~/.openamer openamer desktop
 #
 # Override the app name (default: OpenAmerSandbox):
-#   HERMES_DEV_SANDBOX_NAME=Staging scripts/dev-sandbox.sh openamer desktop
+#   OPENAMER_DEV_SANDBOX_NAME=Staging scripts/dev-sandbox.sh openamer desktop
 #
 # Override the persistent sandbox dir name (default: .openamer-sandbox):
-#   HERMES_DEV_SANDBOX_DIR=.staging-sandbox scripts/dev-sandbox.sh --persistent openamer desktop
+#   OPENAMER_DEV_SANDBOX_DIR=.staging-sandbox scripts/dev-sandbox.sh --persistent openamer desktop
 
 set -euo pipefail
 
@@ -47,8 +47,8 @@ Options:
   -h, --help      Show this help message.
 
 Environment:
-  HERMES_DEV_SANDBOX_NAME  Override the app name (default: OpenAmerSandbox)
-  HERMES_DEV_SANDBOX_DIR   Override the persistent dir name (default: .openamer-sandbox)
+  OPENAMER_DEV_SANDBOX_NAME  Override the app name (default: OpenAmerSandbox)
+  OPENAMER_DEV_SANDBOX_DIR   Override the persistent dir name (default: .openamer-sandbox)
 
 Examples:
   dev-sandbox.sh openamer desktop
@@ -117,7 +117,7 @@ if [ "$#" -eq 0 ]; then
 fi
 
 
-SANDBOX_DIR_NAME="${HERMES_DEV_SANDBOX_DIR:-.openamer-sandbox}"
+SANDBOX_DIR_NAME="${OPENAMER_DEV_SANDBOX_DIR:-.openamer-sandbox}"
 GIT_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || echo "$SCRIPT_DIR/..")"
 GIT_ROOT="$(cd "$GIT_ROOT" && pwd)"
 PERSISTENT_SANDBOX_ROOT="$GIT_ROOT/$SANDBOX_DIR_NAME"
@@ -150,7 +150,7 @@ WORKTREE_HASH="$(printf '%s' "$WORKTREE_ROOT" | cksum | cut -d' ' -f1)"
 WORKTREE_NAME="$(basename "$WORKTREE_ROOT")"
 DEFAULT_SANDBOX_NAME="OpenAmerSandbox-${WORKTREE_NAME}-${WORKTREE_HASH}"
 
-SANDBOX_NAME="${HERMES_DEV_SANDBOX_NAME:-$DEFAULT_SANDBOX_NAME}"
+SANDBOX_NAME="${OPENAMER_DEV_SANDBOX_NAME:-$DEFAULT_SANDBOX_NAME}"
 
 if [ "$PERSISTENT" = true ]; then
   SANDBOX_ROOT="$PERSISTENT_SANDBOX_ROOT"
@@ -159,10 +159,10 @@ else
 fi
 
 export OPENAMER_HOME="$SANDBOX_ROOT/openamer-home"
-export HERMES_DESKTOP_USER_DATA_DIR="$SANDBOX_ROOT/user-data"
-export HERMES_DESKTOP_APP_NAME="$SANDBOX_NAME"
+export OPENAMER_DESKTOP_USER_DATA_DIR="$SANDBOX_ROOT/user-data"
+export OPENAMER_DESKTOP_APP_NAME="$SANDBOX_NAME"
 
-mkdir -p "$OPENAMER_HOME" "$HERMES_DESKTOP_USER_DATA_DIR"
+mkdir -p "$OPENAMER_HOME" "$OPENAMER_DESKTOP_USER_DATA_DIR"
 
 if [ -n "$SEED_DIR" ]; then
   # Only seed when the sandbox OPENAMER_HOME is empty — avoids clobbering an
@@ -176,8 +176,8 @@ if [ -n "$SEED_DIR" ]; then
 fi
 
 echo "[sandbox] OPENAMER_HOME=$OPENAMER_HOME" >&2
-echo "[sandbox] userData=$HERMES_DESKTOP_USER_DATA_DIR" >&2
-echo "[sandbox] appName=$HERMES_DESKTOP_APP_NAME" >&2
+echo "[sandbox] userData=$OPENAMER_DESKTOP_USER_DATA_DIR" >&2
+echo "[sandbox] appName=$OPENAMER_DESKTOP_APP_NAME" >&2
 if [ "$PERSISTENT" = true ]; then
   echo "[sandbox] persistent: $SANDBOX_ROOT" >&2
 else

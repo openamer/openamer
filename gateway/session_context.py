@@ -2,7 +2,7 @@
 Session-scoped context variables for the OpenAmer gateway.
 
 Replaces the previous ``os.environ``-based session state
-(``HERMES_SESSION_PLATFORM``, ``HERMES_SESSION_CHAT_ID``, etc.) with
+(``OPENAMER_SESSION_PLATFORM``, ``OPENAMER_SESSION_CHAT_ID``, etc.) with
 Python's ``contextvars.ContextVar``.
 
 **Why this matters**
@@ -10,7 +10,7 @@ Python's ``contextvars.ContextVar``.
 The gateway processes messages concurrently via ``asyncio``.  When two
 messages arrive at the same time the old code did:
 
-    os.environ["HERMES_SESSION_THREAD_ID"] = str(context.source.thread_id)
+    os.environ["OPENAMER_SESSION_THREAD_ID"] = str(context.source.thread_id)
 
 Because ``os.environ`` is *process-global*, Message A's value was
 silently overwritten by Message B before Message A's agent finished
@@ -24,16 +24,16 @@ so concurrent messages never interfere.
 **Backward compatibility**
 
 The public helper ``get_session_env(name, default="")`` mirrors the old
-``os.getenv("HERMES_SESSION_*", ...)`` calls.  Existing tool code only
+``os.getenv("OPENAMER_SESSION_*", ...)`` calls.  Existing tool code only
 needs to replace the import + call site:
 
     # before
     import os
-    platform = os.getenv("HERMES_SESSION_PLATFORM", "")
+    platform = os.getenv("OPENAMER_SESSION_PLATFORM", "")
 
     # after
     from gateway.session_context import get_session_env
-    platform = get_session_env("HERMES_SESSION_PLATFORM", "")
+    platform = get_session_env("OPENAMER_SESSION_PLATFORM", "")
 """
 
 from contextvars import ContextVar
@@ -70,28 +70,28 @@ def session_context_engaged() -> bool:
 # Per-task session variables
 # ---------------------------------------------------------------------------
 
-_SESSION_PLATFORM: ContextVar = ContextVar("HERMES_SESSION_PLATFORM", default=_UNSET)
+_SESSION_PLATFORM: ContextVar = ContextVar("OPENAMER_SESSION_PLATFORM", default=_UNSET)
 _SESSION_SOURCE: ContextVar = ContextVar("OPENAMER_SESSION_SOURCE", default=_UNSET)
-_SESSION_CHAT_ID: ContextVar = ContextVar("HERMES_SESSION_CHAT_ID", default=_UNSET)
-_SESSION_CHAT_NAME: ContextVar = ContextVar("HERMES_SESSION_CHAT_NAME", default=_UNSET)
-_SESSION_THREAD_ID: ContextVar = ContextVar("HERMES_SESSION_THREAD_ID", default=_UNSET)
-_SESSION_USER_ID: ContextVar = ContextVar("HERMES_SESSION_USER_ID", default=_UNSET)
-_SESSION_USER_NAME: ContextVar = ContextVar("HERMES_SESSION_USER_NAME", default=_UNSET)
-_SESSION_KEY: ContextVar = ContextVar("HERMES_SESSION_KEY", default=_UNSET)
-_SESSION_ID: ContextVar = ContextVar("HERMES_SESSION_ID", default=_UNSET)
+_SESSION_CHAT_ID: ContextVar = ContextVar("OPENAMER_SESSION_CHAT_ID", default=_UNSET)
+_SESSION_CHAT_NAME: ContextVar = ContextVar("OPENAMER_SESSION_CHAT_NAME", default=_UNSET)
+_SESSION_THREAD_ID: ContextVar = ContextVar("OPENAMER_SESSION_THREAD_ID", default=_UNSET)
+_SESSION_USER_ID: ContextVar = ContextVar("OPENAMER_SESSION_USER_ID", default=_UNSET)
+_SESSION_USER_NAME: ContextVar = ContextVar("OPENAMER_SESSION_USER_NAME", default=_UNSET)
+_SESSION_KEY: ContextVar = ContextVar("OPENAMER_SESSION_KEY", default=_UNSET)
+_SESSION_ID: ContextVar = ContextVar("OPENAMER_SESSION_ID", default=_UNSET)
 # In-process UI session/window id for multi-session desktop/TUI hosts. This is
-# intentionally separate from HERMES_SESSION_ID: the latter is the durable
+# intentionally separate from OPENAMER_SESSION_ID: the latter is the durable
 # conversation/session-db id, while the UI id is the live frontend tab/window
 # that commissioned a detached completion. Background completions use it as a
 # precise return address so a stale/rotated durable session key cannot be
 # consumed by whichever desktop poller wakes first.
-_SESSION_UI_SESSION_ID: ContextVar = ContextVar("HERMES_UI_SESSION_ID", default=_UNSET)
+_SESSION_UI_SESSION_ID: ContextVar = ContextVar("OPENAMER_UI_SESSION_ID", default=_UNSET)
 # ID of the message that triggered the current turn. Used as a reply anchor
 # so background-process notifications stay inside the originating Telegram
 # private-chat topic (those lanes route only with thread id + reply anchor).
-_SESSION_MESSAGE_ID: ContextVar = ContextVar("HERMES_SESSION_MESSAGE_ID", default=_UNSET)
+_SESSION_MESSAGE_ID: ContextVar = ContextVar("OPENAMER_SESSION_MESSAGE_ID", default=_UNSET)
 
-_SESSION_PROFILE: ContextVar = ContextVar("HERMES_SESSION_PROFILE", default=_UNSET)
+_SESSION_PROFILE: ContextVar = ContextVar("OPENAMER_SESSION_PROFILE", default=_UNSET)
 
 # Whether the current session's delivery channel can route an ASYNC completion
 # back to the agent AFTER the current turn ends (i.e. wake a fresh turn).
@@ -111,45 +111,45 @@ _SESSION_PROFILE: ContextVar = ContextVar("HERMES_SESSION_PROFILE", default=_UNS
 # and any contextvar-unaware path keep working. Stateless adapters opt OUT by
 # setting ``supports_async_delivery = False`` on the adapter class; the gateway
 # propagates that into this contextvar at session-bind time.
-_SESSION_ASYNC_DELIVERY: ContextVar = ContextVar("HERMES_SESSION_ASYNC_DELIVERY", default=_UNSET)
+_SESSION_ASYNC_DELIVERY: ContextVar = ContextVar("OPENAMER_SESSION_ASYNC_DELIVERY", default=_UNSET)
 
 # Cron auto-delivery vars — set per-job in run_job() so concurrent jobs
 # don't clobber each other's delivery targets.
-_CRON_AUTO_DELIVER_PLATFORM: ContextVar = ContextVar("HERMES_CRON_AUTO_DELIVER_PLATFORM", default=_UNSET)
-_CRON_AUTO_DELIVER_CHAT_ID: ContextVar = ContextVar("HERMES_CRON_AUTO_DELIVER_CHAT_ID", default=_UNSET)
-_CRON_AUTO_DELIVER_THREAD_ID: ContextVar = ContextVar("HERMES_CRON_AUTO_DELIVER_THREAD_ID", default=_UNSET)
+_CRON_AUTO_DELIVER_PLATFORM: ContextVar = ContextVar("OPENAMER_CRON_AUTO_DELIVER_PLATFORM", default=_UNSET)
+_CRON_AUTO_DELIVER_CHAT_ID: ContextVar = ContextVar("OPENAMER_CRON_AUTO_DELIVER_CHAT_ID", default=_UNSET)
+_CRON_AUTO_DELIVER_THREAD_ID: ContextVar = ContextVar("OPENAMER_CRON_AUTO_DELIVER_THREAD_ID", default=_UNSET)
 
 _VAR_MAP = {
-    "HERMES_SESSION_PLATFORM": _SESSION_PLATFORM,
+    "OPENAMER_SESSION_PLATFORM": _SESSION_PLATFORM,
     "OPENAMER_SESSION_SOURCE": _SESSION_SOURCE,
-    "HERMES_SESSION_CHAT_ID": _SESSION_CHAT_ID,
-    "HERMES_SESSION_CHAT_NAME": _SESSION_CHAT_NAME,
-    "HERMES_SESSION_THREAD_ID": _SESSION_THREAD_ID,
-    "HERMES_SESSION_USER_ID": _SESSION_USER_ID,
-    "HERMES_SESSION_USER_NAME": _SESSION_USER_NAME,
-    "HERMES_SESSION_KEY": _SESSION_KEY,
-    "HERMES_SESSION_ID": _SESSION_ID,
-    "HERMES_UI_SESSION_ID": _SESSION_UI_SESSION_ID,
-    "HERMES_SESSION_MESSAGE_ID": _SESSION_MESSAGE_ID,
-    "HERMES_SESSION_PROFILE": _SESSION_PROFILE,
-    "HERMES_CRON_AUTO_DELIVER_PLATFORM": _CRON_AUTO_DELIVER_PLATFORM,
-    "HERMES_CRON_AUTO_DELIVER_CHAT_ID": _CRON_AUTO_DELIVER_CHAT_ID,
-    "HERMES_CRON_AUTO_DELIVER_THREAD_ID": _CRON_AUTO_DELIVER_THREAD_ID,
+    "OPENAMER_SESSION_CHAT_ID": _SESSION_CHAT_ID,
+    "OPENAMER_SESSION_CHAT_NAME": _SESSION_CHAT_NAME,
+    "OPENAMER_SESSION_THREAD_ID": _SESSION_THREAD_ID,
+    "OPENAMER_SESSION_USER_ID": _SESSION_USER_ID,
+    "OPENAMER_SESSION_USER_NAME": _SESSION_USER_NAME,
+    "OPENAMER_SESSION_KEY": _SESSION_KEY,
+    "OPENAMER_SESSION_ID": _SESSION_ID,
+    "OPENAMER_UI_SESSION_ID": _SESSION_UI_SESSION_ID,
+    "OPENAMER_SESSION_MESSAGE_ID": _SESSION_MESSAGE_ID,
+    "OPENAMER_SESSION_PROFILE": _SESSION_PROFILE,
+    "OPENAMER_CRON_AUTO_DELIVER_PLATFORM": _CRON_AUTO_DELIVER_PLATFORM,
+    "OPENAMER_CRON_AUTO_DELIVER_CHAT_ID": _CRON_AUTO_DELIVER_CHAT_ID,
+    "OPENAMER_CRON_AUTO_DELIVER_THREAD_ID": _CRON_AUTO_DELIVER_THREAD_ID,
 }
 
 
 def set_current_session_id(session_id: str) -> None:
-    """Synchronize ``HERMES_SESSION_ID`` across ContextVar and ``os.environ``.
+    """Synchronize ``OPENAMER_SESSION_ID`` across ContextVar and ``os.environ``.
 
     Long-lived single-process entrypoints like the CLI can rotate sessions via
     ``/new``, ``/resume``, ``/branch``, or compression splits without
     reconstructing the entire agent. Tools still consult
-    ``get_session_env("HERMES_SESSION_ID")`` with an ``os.environ`` fallback,
+    ``get_session_env("OPENAMER_SESSION_ID")`` with an ``os.environ`` fallback,
     so both storage paths must move together when the active session changes.
     """
     import os
 
-    os.environ["HERMES_SESSION_ID"] = session_id
+    os.environ["OPENAMER_SESSION_ID"] = session_id
     _SESSION_ID.set(session_id)
 
 
@@ -268,7 +268,7 @@ def reset_session_vars() -> None:
     concurrent message A had already called :func:`set_session_vars`, B inherits
     A's **set** ContextVars.  Until B calls its own ``set_session_vars`` there is
     a window where any subprocess B spawns (e.g. a tool shelling out) reads
-    *A's* ``HERMES_SESSION_*`` identity via the subprocess-env bridge.  The
+    *A's* ``OPENAMER_SESSION_*`` identity via the subprocess-env bridge.  The
     bridge's ``_UNSET``-strip guard cannot help: the vars are not ``_UNSET``,
     they are set-to-A.  Calling ``reset_session_vars`` at the top of the
     per-message handler drops the inherited identity so the window strips safe
@@ -279,7 +279,7 @@ def reset_session_vars() -> None:
 
     Note ``_SESSION_ASYNC_DELIVERY`` lives outside ``_VAR_MAP`` (it is a bool
     capability flag read via :func:`async_delivery_supported`, not a string
-    ``HERMES_SESSION_*`` env var read via :func:`get_session_env`), so it is
+    ``OPENAMER_SESSION_*`` env var read via :func:`get_session_env`), so it is
     reset explicitly below. Without it, a task spawned from a context where a
     sibling adapter bound ``async_delivery=False`` (the stateless API server)
     inherits that ``False`` through the pre-bind window, and
@@ -301,9 +301,9 @@ def reset_session_vars() -> None:
 
 
 def get_session_env(name: str, default: str = "") -> str:
-    """Read a session context variable by its legacy ``HERMES_SESSION_*`` name.
+    """Read a session context variable by its legacy ``OPENAMER_SESSION_*`` name.
 
-    Drop-in replacement for ``os.getenv("HERMES_SESSION_*", default)``.
+    Drop-in replacement for ``os.getenv("OPENAMER_SESSION_*", default)``.
 
     Resolution order:
     1. Context variable (set by the gateway for concurrency-safe access).

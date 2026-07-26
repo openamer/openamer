@@ -42,7 +42,7 @@ def test_opencode_go_appears_when_api_key_set():
         f"Got: {opencode_go['models']}"
     )
     # opencode-go can appear as "built-in" (from PROVIDER_TO_MODELS_DEV when
-    # models.dev is reachable) or "openamer" (from HERMES_OVERLAYS fallback when
+    # models.dev is reachable) or "openamer" (from OPENAMER_OVERLAYS fallback when
     # the API is unavailable, e.g. in CI).
     assert opencode_go["source"] in {"built-in", "openamer"}
 

@@ -193,7 +193,7 @@ class FileStateRegistryUnitTests(unittest.TestCase):
 
     def test_kill_switch_env_var(self):
         p = self._mk()
-        os.environ["HERMES_DISABLE_FILE_STATE_GUARD"] = "1"
+        os.environ["OPENAMER_DISABLE_FILE_STATE_GUARD"] = "1"
         try:
             file_state.record_read("A", p)
             file_state.note_write("B", p)
@@ -204,7 +204,7 @@ class FileStateRegistryUnitTests(unittest.TestCase):
                 {},
             )
         finally:
-            del os.environ["HERMES_DISABLE_FILE_STATE_GUARD"]
+            del os.environ["OPENAMER_DISABLE_FILE_STATE_GUARD"]
 
 
 class FileToolsIntegrationTests(unittest.TestCase):

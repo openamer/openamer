@@ -28,10 +28,10 @@ from tools.interrupt import is_interrupted
 logger = logging.getLogger(__name__)
 
 # Opt-in debug tracing for the interrupt/activity/poll machinery.  Set
-# HERMES_DEBUG_INTERRUPT=1 to log loop entry/exit, periodic heartbeats, and
+# OPENAMER_DEBUG_INTERRUPT=1 to log loop entry/exit, periodic heartbeats, and
 # every is_interrupted() state change from _wait_for_process.  Off by default
 # to avoid flooding production gateway logs.
-_DEBUG_INTERRUPT = bool(os.getenv("HERMES_DEBUG_INTERRUPT"))
+_DEBUG_INTERRUPT = bool(os.getenv("OPENAMER_DEBUG_INTERRUPT"))
 
 if _DEBUG_INTERRUPT:
     # AIAgent's quiet_mode path (run_agent.py) forces the `tools` logger to
@@ -388,10 +388,10 @@ def _cwd_marker(session_id: str) -> str:
 # the shared bash session snapshot: a single long-lived backend serves many
 # concurrent sessions (the messaging gateway, TUI, desktop/web dashboard all
 # collapse the terminal to one "default" environment), so ``export -p`` dumping
-# the FIRST session's HERMES_SESSION_ID into the snapshot makes every LATER
+# the FIRST session's OPENAMER_SESSION_ID into the snapshot makes every LATER
 # session ``source`` that stale value and see a FOREIGN session's identity —
 # overriding the correct per-command Popen env (issue: cross-session
-# HERMES_SESSION_ID leak via the shared snapshot). Stripping them from the
+# OPENAMER_SESSION_ID leak via the shared snapshot). Stripping them from the
 # snapshot is safe because they are re-injected on every command; a snapshot
 # should only carry the user's own shell state (PATH, functions, exports they
 # set), not OpenAmer' per-turn session identity.
@@ -399,7 +399,7 @@ def _cwd_marker(session_id: str) -> str:
 # Kept in sync with gateway.session_context._VAR_MAP: every bridged name starts
 # with one of these prefixes.
 _SNAPSHOT_EXCLUDED_ENV_REGEX = (
-    "^declare -x (HERMES_SESSION_|HERMES_UI_SESSION_ID|HERMES_CRON_AUTO_DELIVER_)"
+    "^declare -x (OPENAMER_SESSION_|OPENAMER_UI_SESSION_ID|OPENAMER_CRON_AUTO_DELIVER_)"
 )
 
 
@@ -408,7 +408,7 @@ def _export_dump_excluding_session_vars(tmp_path: str) -> str:
     per-session bridged vars (see ``_SNAPSHOT_EXCLUDED_ENV_REGEX``).
 
     ``export -p`` emits one ``declare -x NAME="value"`` line per exported var.
-    We drop the HERMES_SESSION_* / UI / CRON_AUTO_DELIVER lines so they never
+    We drop the OPENAMER_SESSION_* / UI / CRON_AUTO_DELIVER lines so they never
     persist across sessions in the shared snapshot. ``grep -vE`` returns exit 1
     when it filters everything, so ``|| true`` keeps the pipeline's success
     contract intact for the callers that chain on it.
@@ -721,7 +721,7 @@ class BaseEnvironment(ABC):
     @staticmethod
     def _embed_stdin_heredoc(command: str, stdin_data: str) -> str:
         """Append stdin_data as a shell heredoc to the command string."""
-        delimiter = f"HERMES_STDIN_{uuid.uuid4().hex[:12]}"
+        delimiter = f"OPENAMER_STDIN_{uuid.uuid4().hex[:12]}"
         return f"{command} << '{delimiter}'\n{stdin_data}\n{delimiter}"
 
     # ------------------------------------------------------------------
@@ -901,7 +901,7 @@ class BaseEnvironment(ABC):
             "start": _now,
         }
 
-        # --- Debug tracing (opt-in via HERMES_DEBUG_INTERRUPT=1) -------------
+        # --- Debug tracing (opt-in via OPENAMER_DEBUG_INTERRUPT=1) -------------
         # Captures loop entry/exit, interrupt state changes, and periodic
         # heartbeats so we can diagnose "agent never sees the interrupt"
         # reports without reproducing locally.

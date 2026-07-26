@@ -402,7 +402,7 @@ def test_gateway_context_stages_not_prompts(openamer_home, monkeypatch):
     from tools.memory_tool import memory_tool, MemoryStore
     from tools import write_approval as wa
     _set_approval("memory", True)
-    monkeypatch.setenv("HERMES_GATEWAY_SESSION", "1")
+    monkeypatch.setenv("OPENAMER_GATEWAY_SESSION", "1")
 
     store = MemoryStore(); store.load_from_disk()
     r = json.loads(memory_tool("add", "memory", "gateway fact", store=store))

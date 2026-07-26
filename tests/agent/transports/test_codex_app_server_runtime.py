@@ -279,7 +279,7 @@ class TestSpawnEnvIsolation:
         monkeypatch.setenv("OPENAMER_HOME", "/users/alice/.openamer/profiles/backend-worker")
         monkeypatch.setenv("OPENAMER_KANBAN_TASK", "t_smoke")
         monkeypatch.setenv(
-            "HERMES_KANBAN_DB",
+            "OPENAMER_KANBAN_DB",
             "/users/alice/.openamer/kanban/boards/smoke/kanban.db",
         )
 

@@ -13,7 +13,7 @@ The contract these tests pin down:
   * Loopback bind (``127.0.0.1``) → client dials ``127.0.0.1`` (unchanged).
   * LAN / non-wildcard bind (``192.168.1.5``) → client dials that exact
     address (no rewrite to loopback — the bind was deliberate).
-  * Explicit ``HERMES_DASHBOARD_WS_HOST`` env var → wins always, regardless
+  * Explicit ``OPENAMER_DASHBOARD_WS_HOST`` env var → wins always, regardless
     of the bind host.
   * ``app.state.bound_host`` is left untouched — the bind address used by
     the listener doesn't change.
@@ -53,8 +53,8 @@ def saved_app_state():
 
 @pytest.fixture
 def clear_ws_host_env(monkeypatch):
-    """Ensure no ``HERMES_DASHBOARD_WS_HOST`` leaks in from the test shell."""
-    monkeypatch.delenv("HERMES_DASHBOARD_WS_HOST", raising=False)
+    """Ensure no ``OPENAMER_DASHBOARD_WS_HOST`` leaks in from the test shell."""
+    monkeypatch.delenv("OPENAMER_DASHBOARD_WS_HOST", raising=False)
     yield monkeypatch
 
 
@@ -106,7 +106,7 @@ class TestResolveClientWsHost:
     def test_explicit_env_wins_over_wildcard(
         self, saved_app_state, monkeypatch
     ):
-        monkeypatch.setenv("HERMES_DASHBOARD_WS_HOST", "10.0.0.7")
+        monkeypatch.setenv("OPENAMER_DASHBOARD_WS_HOST", "10.0.0.7")
         _set_bound(saved_app_state, "0.0.0.0")
         assert web_server._resolve_client_ws_host() == "10.0.0.7"
 
@@ -116,24 +116,24 @@ class TestResolveClientWsHost:
         """Even when the bind is a routable address, the explicit override
         still wins — operators may want to bypass the bind address
         altogether (e.g. to dial a different sidecar replica)."""
-        monkeypatch.setenv("HERMES_DASHBOARD_WS_HOST", "10.0.0.7")
+        monkeypatch.setenv("OPENAMER_DASHBOARD_WS_HOST", "10.0.0.7")
         _set_bound(saved_app_state, "192.168.1.5")
         assert web_server._resolve_client_ws_host() == "10.0.0.7"
 
     def test_explicit_env_wins_over_loopback(
         self, saved_app_state, monkeypatch
     ):
-        monkeypatch.setenv("HERMES_DASHBOARD_WS_HOST", "10.0.0.7")
+        monkeypatch.setenv("OPENAMER_DASHBOARD_WS_HOST", "10.0.0.7")
         _set_bound(saved_app_state, "127.0.0.1")
         assert web_server._resolve_client_ws_host() == "10.0.0.7"
 
     def test_blank_env_falls_back_to_bind(
         self, saved_app_state, monkeypatch
     ):
-        """An explicitly empty override (e.g. ``HERMES_DASHBOARD_WS_HOST=``)
+        """An explicitly empty override (e.g. ``OPENAMER_DASHBOARD_WS_HOST=``)
         must NOT silently pin to loopback — it's an unset-by-accident, not
         an intent. Treat whitespace-only as absent and fall through."""
-        monkeypatch.setenv("HERMES_DASHBOARD_WS_HOST", "   ")
+        monkeypatch.setenv("OPENAMER_DASHBOARD_WS_HOST", "   ")
         _set_bound(saved_app_state, "0.0.0.0")
         assert web_server._resolve_client_ws_host() == "127.0.0.1"
 
@@ -200,7 +200,7 @@ class TestGatewayWsUrlHost:
     def test_explicit_env_overrides_wildcard(
         self, saved_app_state, monkeypatch
     ):
-        monkeypatch.setenv("HERMES_DASHBOARD_WS_HOST", "10.0.0.7")
+        monkeypatch.setenv("OPENAMER_DASHBOARD_WS_HOST", "10.0.0.7")
         _set_bound(saved_app_state, "0.0.0.0", port=9119)
         url = web_server._build_gateway_ws_url()
         assert url is not None
@@ -210,7 +210,7 @@ class TestGatewayWsUrlHost:
     def test_explicit_env_overrides_lan(
         self, saved_app_state, monkeypatch
     ):
-        monkeypatch.setenv("HERMES_DASHBOARD_WS_HOST", "10.0.0.7")
+        monkeypatch.setenv("OPENAMER_DASHBOARD_WS_HOST", "10.0.0.7")
         _set_bound(saved_app_state, "192.168.1.5", port=9120)
         url = web_server._build_gateway_ws_url()
         assert url is not None
@@ -280,7 +280,7 @@ class TestSidecarUrlHost:
     def test_explicit_env_overrides_wildcard(
         self, saved_app_state, monkeypatch
     ):
-        monkeypatch.setenv("HERMES_DASHBOARD_WS_HOST", "10.0.0.7")
+        monkeypatch.setenv("OPENAMER_DASHBOARD_WS_HOST", "10.0.0.7")
         _set_bound(saved_app_state, "0.0.0.0", port=9119)
         url = web_server._build_sidecar_url("ch-1")
         assert url is not None
@@ -290,7 +290,7 @@ class TestSidecarUrlHost:
     def test_explicit_env_overrides_lan(
         self, saved_app_state, monkeypatch
     ):
-        monkeypatch.setenv("HERMES_DASHBOARD_WS_HOST", "10.0.0.7")
+        monkeypatch.setenv("OPENAMER_DASHBOARD_WS_HOST", "10.0.0.7")
         _set_bound(saved_app_state, "192.168.1.5", port=9120)
         url = web_server._build_sidecar_url("ch-1")
         assert url is not None
@@ -313,7 +313,7 @@ class TestSidecarUrlHost:
 
 def test_netloc_helper_handles_ipv6_bracket_form():
     """The IPv6 netloc path is exercised by the production ``[host]:port``
-    branch when ``HERMES_DASHBOARD_WS_HOST`` points at an IPv6 address.
+    branch when ``OPENAMER_DASHBOARD_WS_HOST`` points at an IPv6 address.
     Verify the helper doesn't choke on the bracket form."""
     assert _netloc("ws://[::1]:9119/api/ws?x=1") == "[::1]:9119"
     assert _netloc("ws://127.0.0.1:9119/api/ws?x=1") == "127.0.0.1:9119"

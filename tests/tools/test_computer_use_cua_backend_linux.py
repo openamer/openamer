@@ -34,7 +34,7 @@ ISSUE_58026_WINDOWS = [
         "app_name": "",
         "pid": 1877178,
         "window_id": 84065715,
-        "title": "HERMES-CU",
+        "title": "OPENAMER-CU",
         "is_on_screen": True,
         "z_index": 0,
     },

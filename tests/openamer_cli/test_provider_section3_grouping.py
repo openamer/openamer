@@ -17,7 +17,7 @@ from openamer_cli.model_switch import (
 
 def _providers(monkeypatch, user_providers):
     monkeypatch.setattr("agent.models_dev.fetch_models_dev", lambda: {})
-    monkeypatch.setattr(providers_mod, "HERMES_OVERLAYS", {})
+    monkeypatch.setattr(providers_mod, "OPENAMER_OVERLAYS", {})
     monkeypatch.setattr("openamer_cli.models.fetch_api_models", lambda *a, **k: [])
     return list_authenticated_providers(
         user_providers=user_providers,

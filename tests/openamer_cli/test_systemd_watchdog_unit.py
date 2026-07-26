@@ -112,7 +112,7 @@ def test_managed_watchdog_override_controls_generated_unit(tmp_path, monkeypatch
         encoding="utf-8",
     )
     monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
-    monkeypatch.setenv("HERMES_MANAGED_DIR", str(managed_home))
+    monkeypatch.setenv("OPENAMER_MANAGED_DIR", str(managed_home))
 
     from openamer_cli import managed_scope
 

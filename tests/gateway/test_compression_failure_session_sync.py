@@ -129,8 +129,8 @@ def _install_compression_failure_agent(monkeypatch):
     fake_run_agent = types.ModuleType("run_agent")
     fake_run_agent.AIAgent = _CompressionThenFailureAgent
     monkeypatch.setitem(sys.modules, "run_agent", fake_run_agent)
-    monkeypatch.setenv("HERMES_TOOL_PROGRESS_MODE", "off")
-    monkeypatch.setenv("HERMES_AGENT_TIMEOUT", "0")
+    monkeypatch.setenv("OPENAMER_TOOL_PROGRESS_MODE", "off")
+    monkeypatch.setenv("OPENAMER_AGENT_TIMEOUT", "0")
     monkeypatch.setattr(gateway_run, "_load_gateway_config", lambda: {})
     monkeypatch.setattr("gateway.stream_consumer.GatewayStreamConsumer", _StreamConsumer)
 

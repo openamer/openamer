@@ -2,7 +2,7 @@
 
 Regression coverage for #34619 and #41312 (same root cause): ``_default_spawn``
 launched the worker subprocess with ``cwd=workspace`` and set
-``HERMES_KANBAN_WORKSPACE``, but did NOT set ``TERMINAL_CWD``. Because
+``OPENAMER_KANBAN_WORKSPACE``, but did NOT set ``TERMINAL_CWD``. Because
 ``TERMINAL_CWD`` takes precedence over the process cwd in both
 ``tools/file_tools.py::_resolve_base_dir`` (relative ``write_file`` paths) and
 ``agent_init``'s context-file loader (``AGENTS.md`` discovery), workers inherited
@@ -74,7 +74,7 @@ def test_terminal_cwd_pinned_to_workspace(monkeypatch, tmp_path):
     assert captured["env"]["TERMINAL_CWD"] == str(workspace)
     # The subprocess cwd and TERMINAL_CWD must agree — both anchor the workspace.
     assert captured["cwd"] == str(workspace)
-    assert captured["env"]["HERMES_KANBAN_WORKSPACE"] == str(workspace)
+    assert captured["env"]["OPENAMER_KANBAN_WORKSPACE"] == str(workspace)
 
 
 def test_terminal_cwd_not_pinned_for_nonexistent_workspace(monkeypatch, tmp_path):

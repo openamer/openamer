@@ -409,8 +409,8 @@ _S6_BIN_DIR = "/command"
 # ``stage2-hook.sh`` enforces (the runtime invariant — see also
 # tests/docker/test_uid_remap.py). The container starts s6-supervise
 # under root and immediately drops to this UID via ``s6-setuidgid``.
-_HERMES_UID = 10000
-_HERMES_GID = 10000
+_OPENAMER_UID = 10000
+_OPENAMER_GID = 10000
 
 
 def _seed_supervise_skeleton(svc_dir: Path) -> None:
@@ -489,7 +489,7 @@ def _seed_supervise_skeleton(svc_dir: Path) -> None:
         path.mkdir(parents=False, exist_ok=False)
         path.chmod(mode)
         try:
-            os.chown(path, _HERMES_UID, _HERMES_GID)
+            os.chown(path, _OPENAMER_UID, _OPENAMER_GID)
         except PermissionError:
             # Running as the openamer user already — directory is openamer-
             # owned by default. The chown is a no-op in that case, so
@@ -519,7 +519,7 @@ def _seed_supervise_skeleton(svc_dir: Path) -> None:
         os.mkfifo(control, 0o660)
         control.chmod(0o660)
         try:
-            os.chown(control, _HERMES_UID, _HERMES_GID)
+            os.chown(control, _OPENAMER_UID, _OPENAMER_GID)
         except PermissionError:
             pass
 
@@ -539,7 +539,7 @@ def _seed_supervise_skeleton(svc_dir: Path) -> None:
             os.mkfifo(log_control, 0o660)
             log_control.chmod(0o660)
             try:
-                os.chown(log_control, _HERMES_UID, _HERMES_GID)
+                os.chown(log_control, _OPENAMER_UID, _OPENAMER_GID)
             except PermissionError:
                 pass
 
@@ -683,7 +683,7 @@ class S6ServiceManager:
         # `gateway run --replace` which would re-dispatch `gateway
         # start`, etc. See `_gateway_command_inner` for the matching
         # guard.
-        lines.append("export HERMES_S6_SUPERVISED_CHILD=1")
+        lines.append("export OPENAMER_S6_SUPERVISED_CHILD=1")
         # ``--replace`` makes the supervised gateway authoritative for its
         # profile's OPENAMER_HOME. Without it, a gateway started OUTSIDE s6
         # (a stray ``openamer gateway run`` from a shell, an agent action, or
@@ -694,7 +694,7 @@ class S6ServiceManager:
         # log and never binds (NS-505). ``--replace``
         # instead reaps the stale holder (hardened takeover path: marker +
         # SIGTERM→SIGKILL-with-confirmation + scoped-lock cleanup, see
-        # gateway/run.py) so s6 always wins. The HERMES_S6_SUPERVISED_CHILD
+        # gateway/run.py) so s6 always wins. The OPENAMER_S6_SUPERVISED_CHILD
         # sentinel above prevents the run→start→run redirect recursion.
         # Each profile is scoped to its own OPENAMER_HOME and s6 guarantees a
         # single supervised instance per slot, so there is no legitimate

@@ -1,7 +1,7 @@
 """Context-local state for delegate_task child execution.
 
 The parent OpenAmer process may itself be a Kanban dispatcher worker with
-HERMES_KANBAN_* variables in process env. delegate_task children run inside the
+OPENAMER_KANBAN_* variables in process env. delegate_task children run inside the
 same Python process, but they are not dispatcher-owned Kanban workers. This
 module lets code paths that resolve tool schemas or spawn subprocesses fail
 closed for delegated children without mutating global os.environ for the parent.
@@ -17,16 +17,16 @@ _DELEGATED_CHILD_CONTEXT: ContextVar[bool] = ContextVar(
     default=False,
 )
 
-DELEGATED_CHILD_ENV_MARKER = "HERMES_DELEGATED_CHILD_CONTEXT"
+DELEGATED_CHILD_ENV_MARKER = "OPENAMER_DELEGATED_CHILD_CONTEXT"
 
 KANBAN_ENV_KEYS: tuple[str, ...] = (
     "OPENAMER_KANBAN_TASK",
-    "HERMES_KANBAN_RUN_ID",
-    "HERMES_KANBAN_WORKSPACE",
-    "HERMES_KANBAN_WORKSPACES_ROOT",
-    "HERMES_KANBAN_CLAIM_LOCK",
-    "HERMES_KANBAN_BOARD",
-    "HERMES_KANBAN_DB",
+    "OPENAMER_KANBAN_RUN_ID",
+    "OPENAMER_KANBAN_WORKSPACE",
+    "OPENAMER_KANBAN_WORKSPACES_ROOT",
+    "OPENAMER_KANBAN_CLAIM_LOCK",
+    "OPENAMER_KANBAN_BOARD",
+    "OPENAMER_KANBAN_DB",
 )
 
 
@@ -70,7 +70,7 @@ def delegated_child_subprocess_env(
 
     Most subprocess call sites historically used ``env=None`` to inherit the
     process environment.  In a ``delegate_task`` child, inheriting as-is leaks
-    parent dispatcher ``HERMES_KANBAN_*`` vars while losing the ContextVar in
+    parent dispatcher ``OPENAMER_KANBAN_*`` vars while losing the ContextVar in
     the new process.  This helper preserves normal ``env=None`` semantics for
     non-delegated calls, and only materializes a scrubbed env when the lineage
     marker must be propagated across a child-process boundary.

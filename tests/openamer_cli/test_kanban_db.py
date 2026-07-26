@@ -70,7 +70,7 @@ def test_connect_honors_kanban_busy_timeout_env(kanban_home, monkeypatch):
     setup.  The timeout must be queryable via PRAGMA so CLI, gateway, and tool
     connections behave the same way.
     """
-    monkeypatch.setenv("HERMES_KANBAN_BUSY_TIMEOUT_MS", "123456")
+    monkeypatch.setenv("OPENAMER_KANBAN_BUSY_TIMEOUT_MS", "123456")
 
     with kb.connect() as conn:
         row = conn.execute("PRAGMA busy_timeout").fetchone()
@@ -111,8 +111,8 @@ def test_connect_rejects_tls_record_in_sqlite_header(tmp_path, monkeypatch):
     home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
-    monkeypatch.delenv("HERMES_KANBAN_DB", raising=False)
-    monkeypatch.delenv("HERMES_KANBAN_HOME", raising=False)
+    monkeypatch.delenv("OPENAMER_KANBAN_DB", raising=False)
+    monkeypatch.delenv("OPENAMER_KANBAN_HOME", raising=False)
     monkeypatch.setattr(Path, "home", lambda: tmp_path)
 
     corrupt = home / "kanban.db"
@@ -378,7 +378,7 @@ def test_claim_once_wins_second_loses(kanban_home):
 
 
 def test_claim_uses_env_default_ttl(kanban_home, monkeypatch):
-    monkeypatch.setenv("HERMES_KANBAN_CLAIM_TTL_SECONDS", "3600")
+    monkeypatch.setenv("OPENAMER_KANBAN_CLAIM_TTL_SECONDS", "3600")
     with kb.connect() as conn:
         t = kb.create_task(conn, title="x", assignee="a")
         kb.claim_task(conn, t, claimer="host:1")
@@ -501,7 +501,7 @@ def test_stale_claim_with_live_pid_uses_env_ttl_override(
 ):
     import openamer_cli.kanban_db as _kb
 
-    monkeypatch.setenv("HERMES_KANBAN_CLAIM_TTL_SECONDS", "3600")
+    monkeypatch.setenv("OPENAMER_KANBAN_CLAIM_TTL_SECONDS", "3600")
 
     with kb.connect() as conn:
         t = kb.create_task(conn, title="x", assignee="a")
@@ -795,7 +795,7 @@ def test_detect_crashed_workers_skips_freshly_claimed_tasks(
     import openamer_cli.kanban_db as _kb
 
     monkeypatch.setattr(_kb, "_pid_alive", lambda _pid: False)
-    monkeypatch.delenv("HERMES_KANBAN_CRASH_GRACE_SECONDS", raising=False)
+    monkeypatch.delenv("OPENAMER_KANBAN_CRASH_GRACE_SECONDS", raising=False)
 
     now = 1_000_000.0
     monkeypatch.setattr(_kb.time, "time", lambda: now)
@@ -823,11 +823,11 @@ def test_detect_crashed_workers_skips_freshly_claimed_tasks(
 def test_detect_crashed_workers_grace_period_env_override(
     kanban_home, monkeypatch,
 ):
-    """HERMES_KANBAN_CRASH_GRACE_SECONDS env var adjusts the window."""
+    """OPENAMER_KANBAN_CRASH_GRACE_SECONDS env var adjusts the window."""
     import openamer_cli.kanban_db as _kb
 
     monkeypatch.setattr(_kb, "_pid_alive", lambda _pid: False)
-    monkeypatch.setenv("HERMES_KANBAN_CRASH_GRACE_SECONDS", "5")
+    monkeypatch.setenv("OPENAMER_KANBAN_CRASH_GRACE_SECONDS", "5")
 
     now = 2_000_000.0
 
@@ -855,7 +855,7 @@ def test_resolve_crash_grace_seconds_handles_bad_env(monkeypatch):
     import openamer_cli.kanban_db as _kb
 
     for bad_val in ("notanumber", "-5", ""):
-        monkeypatch.setenv("HERMES_KANBAN_CRASH_GRACE_SECONDS", bad_val)
+        monkeypatch.setenv("OPENAMER_KANBAN_CRASH_GRACE_SECONDS", bad_val)
         result = _kb._resolve_crash_grace_seconds()
         assert result == _kb.DEFAULT_CRASH_GRACE_SECONDS, (
             f"expected default for {bad_val!r}, got {result}"
@@ -899,7 +899,7 @@ def test_rate_limit_exit_requeues_without_counting_failure(
     import openamer_cli.kanban_db as _kb
 
     monkeypatch.setattr(_kb, "_pid_alive", lambda _pid: False)
-    monkeypatch.setenv("HERMES_KANBAN_CRASH_GRACE_SECONDS", "0")
+    monkeypatch.setenv("OPENAMER_KANBAN_CRASH_GRACE_SECONDS", "0")
 
     with kb.connect() as conn:
         host = _kb._claimer_id().split(":", 1)[0]
@@ -989,7 +989,7 @@ def test_respawn_guard_defers_rate_limited_within_cooldown(
     fall into ``blocker_auth`` (which would defer forever)."""
     import openamer_cli.kanban_db as _kb
 
-    monkeypatch.setenv("HERMES_KANBAN_RATE_LIMIT_COOLDOWN_SECONDS", "300")
+    monkeypatch.setenv("OPENAMER_KANBAN_RATE_LIMIT_COOLDOWN_SECONDS", "300")
     now = 5_000_000
 
     with kb.connect() as conn:
@@ -1027,7 +1027,7 @@ def test_respawn_guard_rate_limit_cooldown_zero_allows_immediately(
     and the stamped rate-limit text does not re-trap it via blocker_auth."""
     import openamer_cli.kanban_db as _kb
 
-    monkeypatch.setenv("HERMES_KANBAN_RATE_LIMIT_COOLDOWN_SECONDS", "0")
+    monkeypatch.setenv("OPENAMER_KANBAN_RATE_LIMIT_COOLDOWN_SECONDS", "0")
     now = 6_000_000
 
     with kb.connect() as conn:
@@ -1055,7 +1055,7 @@ def test_resolve_rate_limit_cooldown_handles_bad_env(monkeypatch):
 
     for bad_val in ("notanumber", "-5", ""):
         monkeypatch.setenv(
-            "HERMES_KANBAN_RATE_LIMIT_COOLDOWN_SECONDS", bad_val
+            "OPENAMER_KANBAN_RATE_LIMIT_COOLDOWN_SECONDS", bad_val
         )
         assert (
             _kb._resolve_rate_limit_cooldown_seconds()
@@ -1126,7 +1126,7 @@ def test_heartbeat_extends_claim(kanban_home):
 
 
 def test_heartbeat_uses_env_default_ttl(kanban_home, monkeypatch):
-    monkeypatch.setenv("HERMES_KANBAN_CLAIM_TTL_SECONDS", "3600")
+    monkeypatch.setenv("OPENAMER_KANBAN_CLAIM_TTL_SECONDS", "3600")
     with kb.connect() as conn:
         t = kb.create_task(conn, title="x", assignee="a")
         claimer = "host:hb"
@@ -2564,7 +2564,7 @@ def test_cleanup_workspace_refuses_path_outside_scratch_root(kanban_home, tmp_pa
 
 
 def test_cleanup_workspace_honors_workspaces_root_env_override(tmp_path, monkeypatch):
-    """``HERMES_KANBAN_WORKSPACES_ROOT`` extends the managed-scratch set.
+    """``OPENAMER_KANBAN_WORKSPACES_ROOT`` extends the managed-scratch set.
 
     Worker subprocesses run with this env var injected by the dispatcher. The
     cleanup containment check must treat paths under it as managed even when
@@ -2576,7 +2576,7 @@ def test_cleanup_workspace_honors_workspaces_root_env_override(tmp_path, monkeyp
     monkeypatch.setattr(Path, "home", lambda: tmp_path)
     workspaces_override = tmp_path / "ext-workspaces"
     workspaces_override.mkdir()
-    monkeypatch.setenv("HERMES_KANBAN_WORKSPACES_ROOT", str(workspaces_override))
+    monkeypatch.setenv("OPENAMER_KANBAN_WORKSPACES_ROOT", str(workspaces_override))
     kb.init_db()
 
     with kb.connect() as conn:
@@ -2885,7 +2885,7 @@ class TestSharedBoardPaths:
     def _set_home(self, monkeypatch, tmp_path, openamer_home):
         monkeypatch.setattr(Path, "home", lambda: tmp_path)
         monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
-        monkeypatch.delenv("HERMES_KANBAN_HOME", raising=False)
+        monkeypatch.delenv("OPENAMER_KANBAN_HOME", raising=False)
 
     def test_default_install_anchors_at_home_dot_openamer(
         self, tmp_path, monkeypatch
@@ -2988,7 +2988,7 @@ class TestSharedBoardPaths:
     def test_explicit_override_via_openamer_kanban_home(
         self, tmp_path, monkeypatch
     ):
-        # Explicit override: HERMES_KANBAN_HOME beats every other
+        # Explicit override: OPENAMER_KANBAN_HOME beats every other
         # resolution rule.
         default_home = tmp_path / ".openamer"
         profile_home = default_home / "profiles" / "any"
@@ -2998,7 +2998,7 @@ class TestSharedBoardPaths:
 
         monkeypatch.setattr(Path, "home", lambda: tmp_path)
         monkeypatch.setenv("OPENAMER_HOME", str(profile_home))
-        monkeypatch.setenv("HERMES_KANBAN_HOME", str(override))
+        monkeypatch.setenv("OPENAMER_KANBAN_HOME", str(override))
 
         assert kb.kanban_home() == override
         assert kb.kanban_db_path() == override / "kanban.db"
@@ -3010,7 +3010,7 @@ class TestSharedBoardPaths:
         default_home.mkdir()
         monkeypatch.setattr(Path, "home", lambda: tmp_path)
         monkeypatch.setenv("OPENAMER_HOME", str(default_home))
-        monkeypatch.setenv("HERMES_KANBAN_HOME", "   ")
+        monkeypatch.setenv("OPENAMER_KANBAN_HOME", "   ")
 
         assert kb.kanban_home() == default_home
 
@@ -3041,8 +3041,8 @@ class TestSharedBoardPaths:
     def test_openamer_kanban_db_pin_beats_kanban_home(
         self, tmp_path, monkeypatch
     ):
-        # HERMES_KANBAN_DB pins the file path directly and beats both
-        # HERMES_KANBAN_HOME and the `get_default_openamer_root()` path.
+        # OPENAMER_KANBAN_DB pins the file path directly and beats both
+        # OPENAMER_KANBAN_HOME and the `get_default_openamer_root()` path.
         # This is the env the dispatcher injects into workers.
         default_home = tmp_path / ".openamer"
         default_home.mkdir()
@@ -3053,18 +3053,18 @@ class TestSharedBoardPaths:
 
         monkeypatch.setattr(Path, "home", lambda: tmp_path)
         monkeypatch.setenv("OPENAMER_HOME", str(default_home))
-        monkeypatch.setenv("HERMES_KANBAN_HOME", str(umbrella))
-        monkeypatch.setenv("HERMES_KANBAN_DB", str(pinned_db))
+        monkeypatch.setenv("OPENAMER_KANBAN_HOME", str(umbrella))
+        monkeypatch.setenv("OPENAMER_KANBAN_DB", str(pinned_db))
 
         assert kb.kanban_db_path() == pinned_db
-        # workspaces_root still follows HERMES_KANBAN_HOME -- the pins
+        # workspaces_root still follows OPENAMER_KANBAN_HOME -- the pins
         # are independent.
         assert kb.workspaces_root() == umbrella / "kanban" / "workspaces"
 
     def test_openamer_kanban_workspaces_root_pin_beats_kanban_home(
         self, tmp_path, monkeypatch
     ):
-        # HERMES_KANBAN_WORKSPACES_ROOT pins the workspaces root directly.
+        # OPENAMER_KANBAN_WORKSPACES_ROOT pins the workspaces root directly.
         default_home = tmp_path / ".openamer"
         default_home.mkdir()
         umbrella = tmp_path / "umbrella"
@@ -3074,24 +3074,24 @@ class TestSharedBoardPaths:
 
         monkeypatch.setattr(Path, "home", lambda: tmp_path)
         monkeypatch.setenv("OPENAMER_HOME", str(default_home))
-        monkeypatch.setenv("HERMES_KANBAN_HOME", str(umbrella))
-        monkeypatch.setenv("HERMES_KANBAN_WORKSPACES_ROOT", str(pinned_ws))
+        monkeypatch.setenv("OPENAMER_KANBAN_HOME", str(umbrella))
+        monkeypatch.setenv("OPENAMER_KANBAN_WORKSPACES_ROOT", str(pinned_ws))
 
         assert kb.workspaces_root() == pinned_ws
-        # kanban_db_path still follows HERMES_KANBAN_HOME.
+        # kanban_db_path still follows OPENAMER_KANBAN_HOME.
         assert kb.kanban_db_path() == umbrella / "kanban.db"
 
     def test_empty_per_path_overrides_fall_through(
         self, tmp_path, monkeypatch
     ):
         # Empty/whitespace pins are treated as unset, same as
-        # HERMES_KANBAN_HOME.
+        # OPENAMER_KANBAN_HOME.
         default_home = tmp_path / ".openamer"
         default_home.mkdir()
         monkeypatch.setattr(Path, "home", lambda: tmp_path)
         monkeypatch.setenv("OPENAMER_HOME", str(default_home))
-        monkeypatch.setenv("HERMES_KANBAN_DB", "   ")
-        monkeypatch.setenv("HERMES_KANBAN_WORKSPACES_ROOT", "")
+        monkeypatch.setenv("OPENAMER_KANBAN_DB", "   ")
+        monkeypatch.setenv("OPENAMER_KANBAN_WORKSPACES_ROOT", "")
 
         assert kb.kanban_db_path() == default_home / "kanban.db"
         assert kb.workspaces_root() == default_home / "kanban" / "workspaces"
@@ -3099,8 +3099,8 @@ class TestSharedBoardPaths:
     def test_dispatcher_spawn_injects_kanban_db_and_workspaces_root(
         self, tmp_path, monkeypatch
     ):
-        # The dispatcher's `_default_spawn` must inject HERMES_KANBAN_DB
-        # and HERMES_KANBAN_WORKSPACES_ROOT into the worker env so the
+        # The dispatcher's `_default_spawn` must inject OPENAMER_KANBAN_DB
+        # and OPENAMER_KANBAN_WORKSPACES_ROOT into the worker env so the
         # worker converges on the dispatcher's paths even when the
         # `-p <profile>` flag rewrites OPENAMER_HOME.
         default_home = tmp_path / ".openamer"
@@ -3138,12 +3138,12 @@ class TestSharedBoardPaths:
         kb._default_spawn(task, str(tmp_path / "ws"))
 
         env = captured["env"]
-        assert env["HERMES_KANBAN_DB"] == str(default_home / "kanban.db")
-        assert env["HERMES_KANBAN_WORKSPACES_ROOT"] == str(
+        assert env["OPENAMER_KANBAN_DB"] == str(default_home / "kanban.db")
+        assert env["OPENAMER_KANBAN_WORKSPACES_ROOT"] == str(
             default_home / "kanban" / "workspaces"
         )
         assert env["OPENAMER_KANBAN_TASK"] == "t_dispatch_env"
-        assert env["HERMES_KANBAN_BRANCH"] == "wt/t_dispatch_env"
+        assert env["OPENAMER_KANBAN_BRANCH"] == "wt/t_dispatch_env"
 
 
 # ---------------------------------------------------------------------------
@@ -3462,7 +3462,7 @@ def test_resolve_openamer_argv_prefers_path_shim(monkeypatch):
     import shutil
     import openamer_cli.kanban_db as kb
 
-    monkeypatch.delenv("HERMES_BIN", raising=False)
+    monkeypatch.delenv("OPENAMER_BIN", raising=False)
     monkeypatch.setattr(shutil, "which", lambda name: "/usr/local/bin/openamer")
     argv = kb._resolve_openamer_argv()
     assert argv == ["/usr/local/bin/openamer"]
@@ -3473,7 +3473,7 @@ def test_resolve_openamer_argv_absolutizes_relative_exe_shim(monkeypatch, tmp_pa
     import openamer_cli.kanban_db as kb
 
     monkeypatch.chdir(tmp_path)
-    monkeypatch.setenv("HERMES_BIN", ".\\openamer.exe")
+    monkeypatch.setenv("OPENAMER_BIN", ".\\openamer.exe")
     monkeypatch.setattr(kb, "_IS_WINDOWS", True)
 
     assert kb._resolve_openamer_argv() == [os.path.abspath(".\\openamer.exe")]
@@ -3487,7 +3487,7 @@ def test_resolve_openamer_argv_avoids_implicit_windows_batch_shim(monkeypatch, t
     bin_dir = tmp_path / "bin"
     bin_dir.mkdir()
     (bin_dir / "openamer.CMD").write_text("@echo off\n", encoding="utf-8")
-    monkeypatch.delenv("HERMES_BIN", raising=False)
+    monkeypatch.delenv("OPENAMER_BIN", raising=False)
     monkeypatch.setenv("PATH", str(bin_dir))
     monkeypatch.setenv("PATHEXT", ".CMD")
     monkeypatch.setattr(kb, "_IS_WINDOWS", True)
@@ -3496,21 +3496,21 @@ def test_resolve_openamer_argv_avoids_implicit_windows_batch_shim(monkeypatch, t
 
 
 def test_resolve_openamer_argv_honors_openamer_bin_path_override(monkeypatch, tmp_path):
-    """An explicit path-like HERMES_BIN lets service managers pin the executable."""
+    """An explicit path-like OPENAMER_BIN lets service managers pin the executable."""
     import shutil
     import openamer_cli.kanban_db as kb
 
     shim = tmp_path / "bin" / "openamer"
     shim.parent.mkdir()
     shim.write_text("#!/bin/sh\n", encoding="utf-8")
-    monkeypatch.setenv("HERMES_BIN", str(shim))
+    monkeypatch.setenv("OPENAMER_BIN", str(shim))
     monkeypatch.setattr(shutil, "which", lambda name: None)
 
     assert kb._resolve_openamer_argv() == [str(shim)]
 
 
 def test_resolve_openamer_argv_openamer_bin_bare_name_uses_path(monkeypatch, tmp_path):
-    """Bare HERMES_BIN values keep PATH semantics instead of cwd shadowing."""
+    """Bare OPENAMER_BIN values keep PATH semantics instead of cwd shadowing."""
     import stat
     import openamer_cli.kanban_db as kb
 
@@ -3523,27 +3523,27 @@ def test_resolve_openamer_argv_openamer_bin_bare_name_uses_path(monkeypatch, tmp
     path_openamer.chmod(path_openamer.stat().st_mode | stat.S_IXUSR)
     monkeypatch.chdir(tmp_path)
     monkeypatch.setenv("PATH", str(path_openamer.parent))
-    monkeypatch.setenv("HERMES_BIN", "openamer")
+    monkeypatch.setenv("OPENAMER_BIN", "openamer")
 
     assert kb._resolve_openamer_argv() == [str(path_openamer)]
 
 
 def test_resolve_openamer_argv_openamer_bin_bare_name_ignores_cwd(monkeypatch, tmp_path):
-    """Bare HERMES_BIN does not accept current-directory shadow executables."""
+    """Bare OPENAMER_BIN does not accept current-directory shadow executables."""
     import sys
     import openamer_cli.kanban_db as kb
 
     (tmp_path / "openamer.exe").write_text("wrong\n", encoding="utf-8")
     monkeypatch.chdir(tmp_path)
     monkeypatch.setenv("PATH", "")
-    monkeypatch.setenv("HERMES_BIN", "openamer")
+    monkeypatch.setenv("OPENAMER_BIN", "openamer")
     monkeypatch.setattr(kb, "_IS_WINDOWS", True)
 
     assert kb._resolve_openamer_argv() == [sys.executable, "-m", "openamer_cli.main"]
 
 
 def test_resolve_openamer_argv_openamer_bin_bare_cmd_uses_module_fallback(monkeypatch, tmp_path):
-    """A PATH-resolved HERMES_BIN batch shim is not used as worker argv[0]."""
+    """A PATH-resolved OPENAMER_BIN batch shim is not used as worker argv[0]."""
     import sys
     import openamer_cli.kanban_db as kb
 
@@ -3552,19 +3552,19 @@ def test_resolve_openamer_argv_openamer_bin_bare_cmd_uses_module_fallback(monkey
     (bin_dir / "openamer.CMD").write_text("@echo off\n", encoding="utf-8")
     monkeypatch.setenv("PATH", str(bin_dir))
     monkeypatch.setenv("PATHEXT", ".CMD")
-    monkeypatch.setenv("HERMES_BIN", "openamer")
+    monkeypatch.setenv("OPENAMER_BIN", "openamer")
     monkeypatch.setattr(kb, "_IS_WINDOWS", True)
 
     assert kb._resolve_openamer_argv() == [sys.executable, "-m", "openamer_cli.main"]
 
 
 def test_resolve_openamer_argv_openamer_bin_unresolved_bare_name_falls_back(monkeypatch):
-    """Unresolved HERMES_BIN command names do not delegate cwd search to Popen."""
+    """Unresolved OPENAMER_BIN command names do not delegate cwd search to Popen."""
     import sys
     import openamer_cli.kanban_db as kb
 
     monkeypatch.setenv("PATH", "")
-    monkeypatch.setenv("HERMES_BIN", "openamer")
+    monkeypatch.setenv("OPENAMER_BIN", "openamer")
 
     assert kb._resolve_openamer_argv() == [sys.executable, "-m", "openamer_cli.main"]
 
@@ -3581,7 +3581,7 @@ def test_resolve_openamer_argv_falls_back_to_module_form_when_no_path_shim(monke
     import sys
     import openamer_cli.kanban_db as kb
 
-    monkeypatch.delenv("HERMES_BIN", raising=False)
+    monkeypatch.delenv("OPENAMER_BIN", raising=False)
     monkeypatch.setattr(shutil, "which", lambda name: None)
     argv = kb._resolve_openamer_argv()
     assert argv == [sys.executable, "-m", "openamer_cli.main"]
@@ -3602,7 +3602,7 @@ def test_resolve_openamer_argv_module_actually_runs():
     import unittest.mock as mock
 
     with mock.patch.dict(os.environ, {}, clear=False):
-        os.environ.pop("HERMES_BIN", None)
+        os.environ.pop("OPENAMER_BIN", None)
         with mock.patch.object(shutil, "which", return_value=None):
             argv = kb._resolve_openamer_argv()
     r = subprocess.run(argv + ["--version"], capture_output=True, text=True, timeout=30)

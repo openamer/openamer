@@ -10,7 +10,7 @@ tokens from ``auth.json`` and stamps
 inference turn hard-fails with a provider-auth error until the credential is
 replaced, even though the gateway and dashboard otherwise look healthy.
 
-``stage2-hook.sh`` seeds ``auth.json`` from ``HERMES_AUTH_JSON_BOOTSTRAP`` only
+``stage2-hook.sh`` seeds ``auth.json`` from ``OPENAMER_AUTH_JSON_BOOTSTRAP`` only
 on a *blank* volume (``[ ! -f auth.json ]``) — that guard is load-bearing: it
 stops a container restart from clobbering a healthy, rotated refresh token. So a
 plain restart with a fresh seed env can NOT recover a container whose volume
@@ -18,7 +18,7 @@ already has an auth.json.
 
 This script is the narrow, safe exception. An orchestrator that manages the
 container can supply a freshly-issued bootstrap session via
-``HERMES_AUTH_JSON_REBOOTSTRAP`` (plus a restart). On boot we re-seed the Nous
+``OPENAMER_AUTH_JSON_REBOOTSTRAP`` (plus a restart). On boot we re-seed the Nous
 provider entry from that env when the on-disk entry is provably terminal, or
 when the orchestrator seed's ``obtained_at`` is newer than the local session.
 The latter matters because an orchestrator may revoke the previous session
@@ -43,10 +43,10 @@ from datetime import datetime, timezone
 from typing import Any, Optional
 
 # Env var the orchestrator sets to the re-seed payload. Deliberately DISTINCT
-# from HERMES_AUTH_JSON_BOOTSTRAP (create-only, blank-volume seed) so the two
+# from OPENAMER_AUTH_JSON_BOOTSTRAP (create-only, blank-volume seed) so the two
 # paths can never be confused: BOOTSTRAP seeds a fresh volume; REBOOTSTRAP
 # overwrites a terminally-dead Nous entry on an existing volume.
-REBOOTSTRAP_ENV = "HERMES_AUTH_JSON_REBOOTSTRAP"
+REBOOTSTRAP_ENV = "OPENAMER_AUTH_JSON_REBOOTSTRAP"
 BOOTSTRAP_CLIENT_ID = "openamer-cli-vps"
 
 
@@ -72,9 +72,9 @@ def _nous_entry_is_terminal(nous_state: Any) -> bool:
 
 
 def _extract_nous_from_seed(seed_raw: str) -> Optional[dict]:
-    """Pull the ``providers.nous`` block out of a HERMES_AUTH_JSON_REBOOTSTRAP
+    """Pull the ``providers.nous`` block out of a OPENAMER_AUTH_JSON_REBOOTSTRAP
     payload. The payload is a full auth.json document (same shape as
-    HERMES_AUTH_JSON_BOOTSTRAP). Returns None unless it carries the expected VPS
+    OPENAMER_AUTH_JSON_BOOTSTRAP). Returns None unless it carries the expected VPS
     bootstrap client plus non-empty access and refresh tokens — caller treats
     None as "nothing to do"."""
     try:
@@ -143,7 +143,7 @@ def reseed_if_terminal(auth_path: str, seed_raw: str) -> str:
       - "no_seed"          — seed env empty/absent
       - "bad_seed"         — seed present but unparseable / no nous entry
       - "no_auth_file"     — auth.json absent (blank volume → let the normal
-                             HERMES_AUTH_JSON_BOOTSTRAP path handle it)
+                             OPENAMER_AUTH_JSON_BOOTSTRAP path handle it)
       - "auth_unreadable"  — auth.json present but unparseable (leave as-is)
       - "not_terminal"     — local entry is healthy and at least as new → no-op
       - "reseeded"         — terminal entry replaced from seed

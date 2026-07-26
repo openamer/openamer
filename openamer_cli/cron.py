@@ -20,7 +20,7 @@ from openamer_cli.colors import Colors, color
 # model tool via ``cron.jobs.create_job``) without a circular import. Re-export
 # ``_contains_gateway_lifecycle_command`` here for back-compat: ``tools/
 # terminal_tool.py`` imports it from this module to hard-block the same
-# commands at execution time when ``_HERMES_GATEWAY=1``.
+# commands at execution time when ``_OPENAMER_GATEWAY=1``.
 from cron.lifecycle_guard import (  # noqa: F401  (re-exported for terminal_tool)
     contains_gateway_lifecycle_command as _contains_gateway_lifecycle_command,
 )

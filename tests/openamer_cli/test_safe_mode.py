@@ -9,7 +9,7 @@ import types
 import pytest
 
 
-_VARS = ("HERMES_SAFE_MODE", "HERMES_IGNORE_USER_CONFIG", "HERMES_IGNORE_RULES")
+_VARS = ("OPENAMER_SAFE_MODE", "OPENAMER_IGNORE_USER_CONFIG", "OPENAMER_IGNORE_RULES")
 
 
 @pytest.fixture(autouse=True)
@@ -32,9 +32,9 @@ def test_cmd_chat_safe_mode_sets_env_before_startup(monkeypatch):
     fake_cli = types.ModuleType("cli")
 
     def fake_has_provider() -> bool:
-        assert os.environ["HERMES_SAFE_MODE"] == "1"
-        assert os.environ["HERMES_IGNORE_USER_CONFIG"] == "1"
-        assert os.environ["HERMES_IGNORE_RULES"] == "1"
+        assert os.environ["OPENAMER_SAFE_MODE"] == "1"
+        assert os.environ["OPENAMER_IGNORE_USER_CONFIG"] == "1"
+        assert os.environ["OPENAMER_IGNORE_RULES"] == "1"
         return True
 
     def fake_main(**kwargs):
@@ -60,9 +60,9 @@ def test_prepare_agent_startup_applies_safe_mode_before_plugin_discovery(monkeyp
     plugins = types.ModuleType("openamer_cli.plugins")
 
     def discover_plugins() -> None:
-        assert os.environ["HERMES_SAFE_MODE"] == "1"
-        assert os.environ["HERMES_IGNORE_USER_CONFIG"] == "1"
-        assert os.environ["HERMES_IGNORE_RULES"] == "1"
+        assert os.environ["OPENAMER_SAFE_MODE"] == "1"
+        assert os.environ["OPENAMER_IGNORE_USER_CONFIG"] == "1"
+        assert os.environ["OPENAMER_IGNORE_RULES"] == "1"
 
     setattr(plugins, "discover_plugins", discover_plugins)
     monkeypatch.setitem(sys.modules, "openamer_cli.plugins", plugins)
@@ -73,7 +73,7 @@ def test_prepare_agent_startup_applies_safe_mode_before_plugin_discovery(monkeyp
 
 
 def test_plugin_discovery_skipped(monkeypatch):
-    monkeypatch.setenv("HERMES_SAFE_MODE", "1")
+    monkeypatch.setenv("OPENAMER_SAFE_MODE", "1")
     from openamer_cli.plugins import PluginManager
 
     mgr = PluginManager()
@@ -100,7 +100,7 @@ def test_plugin_discovery_runs_without_safe_mode(monkeypatch):
 
 
 def test_mcp_servers_empty(monkeypatch):
-    monkeypatch.setenv("HERMES_SAFE_MODE", "1")
+    monkeypatch.setenv("OPENAMER_SAFE_MODE", "1")
     from tools.mcp_tool import _load_mcp_config
 
     monkeypatch.setattr(
@@ -133,7 +133,7 @@ def test_parser_accepts_safe_mode_on_root_and_chat():
 
 
 def test_shell_hooks_skipped(monkeypatch):
-    monkeypatch.setenv("HERMES_SAFE_MODE", "1")
+    monkeypatch.setenv("OPENAMER_SAFE_MODE", "1")
     from agent.shell_hooks import register_from_config
 
     cfg = {

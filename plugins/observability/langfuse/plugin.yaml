@@ -3,8 +3,8 @@ version: "1.0.0"
 description: "Optional Langfuse observability for OpenAmer — traces conversations, LLM calls, and tool usage. Opt-in via `openamer plugins enable observability/langfuse` or `openamer tools → Langfuse Observability`."
 author: NousResearch
 requires_env:
-  - HERMES_LANGFUSE_PUBLIC_KEY
-  - HERMES_LANGFUSE_SECRET_KEY
+  - OPENAMER_LANGFUSE_PUBLIC_KEY
+  - OPENAMER_LANGFUSE_SECRET_KEY
 hooks:
   - pre_api_request
   - post_api_request

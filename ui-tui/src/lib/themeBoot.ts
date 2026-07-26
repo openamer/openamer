@@ -134,7 +134,7 @@ export function writeBootTheme(theme: Theme, background?: string, mode?: 'dark' 
 export interface BootSeedResult {
   /** The background hex this boot seeded into env, or null. */
   seededBackground: null | string
-  /** True when the cached config pin was seeded into HERMES_TUI_THEME. */
+  /** True when the cached config pin was seeded into OPENAMER_TUI_THEME. */
   seededPin: boolean
 }
 
@@ -150,7 +150,7 @@ export function seedBootEnvironment(boot: BootTheme | null, env: NodeJS.ProcessE
 
   seeded = result
 
-  if (!boot || env.HERMES_TUI_THEME || env.HERMES_TUI_LIGHT) {
+  if (!boot || env.OPENAMER_TUI_THEME || env.OPENAMER_TUI_LIGHT) {
     return result
   }
 
@@ -159,7 +159,7 @@ export function seedBootEnvironment(boot: BootTheme | null, env: NodeJS.ProcessE
   // background, and without the pin the first skin resolution flips to the
   // physical pole before config hydration flips it back (multi-stage flash).
   if (boot.mode) {
-    env.HERMES_TUI_THEME = boot.mode
+    env.OPENAMER_TUI_THEME = boot.mode
     result.seededPin = true
   }
 
@@ -169,9 +169,9 @@ export function seedBootEnvironment(boot: BootTheme | null, env: NodeJS.ProcessE
     // before the distrust rule existed must not poison this session's
     // detection (it would also suppress the macOS-appearance fallback).
     boot.background.toLowerCase() !== '#000000' &&
-    !env.HERMES_TUI_BACKGROUND
+    !env.OPENAMER_TUI_BACKGROUND
   ) {
-    env.HERMES_TUI_BACKGROUND = boot.background
+    env.OPENAMER_TUI_BACKGROUND = boot.background
     result.seededBackground = boot.background
   }
 
@@ -187,11 +187,11 @@ export function seedBootEnvironment(boot: BootTheme | null, env: NodeJS.ProcessE
  * Returns true when the slot was cleared.
  */
 export function invalidateBootBackground(env: NodeJS.ProcessEnv = process.env): boolean {
-  if (!seeded.seededBackground || env.HERMES_TUI_BACKGROUND !== seeded.seededBackground) {
+  if (!seeded.seededBackground || env.OPENAMER_TUI_BACKGROUND !== seeded.seededBackground) {
     return false
   }
 
-  delete env.HERMES_TUI_BACKGROUND
+  delete env.OPENAMER_TUI_BACKGROUND
   seeded.seededBackground = null
 
   return true
@@ -199,7 +199,7 @@ export function invalidateBootBackground(env: NodeJS.ProcessEnv = process.env): 
 
 const boot = readBootTheme()
 
-/** True when this boot replayed a cached config pin into HERMES_TUI_THEME.
+/** True when this boot replayed a cached config pin into OPENAMER_TUI_THEME.
  *  applyConfiguredTuiTheme treats it as config-owned so a later 'auto' can
  *  clear it — otherwise a stale cached pin masquerades as a user shell
  *  export and becomes unclearable. */

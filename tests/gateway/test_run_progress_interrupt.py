@@ -154,7 +154,7 @@ def _make_runner(adapter):
 
 
 async def _run_once(monkeypatch, tmp_path, agent_cls, session_id):
-    monkeypatch.setenv("HERMES_TOOL_PROGRESS_MODE", "all")
+    monkeypatch.setenv("OPENAMER_TOOL_PROGRESS_MODE", "all")
 
     fake_dotenv = types.ModuleType("dotenv")
     fake_dotenv.load_dotenv = lambda *args, **kwargs: None

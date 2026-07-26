@@ -292,10 +292,10 @@ class TestExecute:
 
         env.execute("python3", stdin_data="print('hi')")
         # Check that the command passed to exec contains heredoc markers
-        # Base class uses HERMES_STDIN_ prefix for heredoc delimiters
+        # Base class uses OPENAMER_STDIN_ prefix for heredoc delimiters
         call_args = sb.process.exec.call_args_list[-1]
         cmd = call_args[0][0]
-        assert "HERMES_STDIN_" in cmd
+        assert "OPENAMER_STDIN_" in cmd
         assert "print" in cmd
         assert "hi" in cmd
 

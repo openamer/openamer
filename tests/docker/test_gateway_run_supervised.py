@@ -5,15 +5,15 @@ run`` was the standard pattern — the gateway ran as the container's
 main process, container exit code matched gateway exit code, no
 supervision. With s6 as PID 1, the same invocation now auto-redirects
 to the supervised path (`gateway start`) so users get auto-restart on
-crash and a supervised dashboard alongside (when ``HERMES_DASHBOARD=1``).
+crash and a supervised dashboard alongside (when ``OPENAMER_DASHBOARD=1``).
 
 These tests verify the three load-bearing properties of that redirect:
 
   1. The default invocation **does** redirect (container stays up via
      ``sleep infinity`` while s6 supervises ``gateway-default``).
-  2. ``--no-supervise`` / ``HERMES_GATEWAY_NO_SUPERVISE=1`` opts out.
+  2. ``--no-supervise`` / ``OPENAMER_GATEWAY_NO_SUPERVISE=1`` opts out.
   3. The supervised process itself does NOT recurse — the
-     ``HERMES_S6_SUPERVISED_CHILD`` sentinel breaks the loop.
+     ``OPENAMER_S6_SUPERVISED_CHILD`` sentinel breaks the loop.
 
 Every ``docker exec`` runs as ``openamer`` per the conftest module
 docstring; see ``tests/docker/conftest.py`` for rationale.
@@ -248,7 +248,7 @@ def test_gateway_run_no_supervise_env_var(
     """
     start_container(
         built_image, container_name,
-        "HERMES_GATEWAY_NO_SUPERVISE=1",
+        "OPENAMER_GATEWAY_NO_SUPERVISE=1",
         cmd="gateway run",
     )
 
@@ -270,7 +270,7 @@ def test_gateway_run_no_supervise_env_var(
     # it) but should not have want-state up.
     if status == "running":
         assert not _svstat_wants_up(container_name, "gateway-default"), (
-            "HERMES_GATEWAY_NO_SUPERVISE=1: gateway-default has "
+            "OPENAMER_GATEWAY_NO_SUPERVISE=1: gateway-default has "
             "want-state up, implying the redirect dispatched `start` "
             f"despite the env-var opt-out. svstat:\n{_svstat(container_name)!r}"
         )
@@ -279,7 +279,7 @@ def test_gateway_run_no_supervise_env_var(
 def test_supervised_gateway_does_not_recurse(
     built_image: str, container_name: str,
 ) -> None:
-    """The HERMES_S6_SUPERVISED_CHILD sentinel must prevent the
+    """The OPENAMER_S6_SUPERVISED_CHILD sentinel must prevent the
     supervised ``openamer gateway run`` from re-entering the redirect.
 
     If recursion happened, every supervised gateway start would itself
@@ -346,7 +346,7 @@ def test_supervised_gateway_does_not_recurse(
 def test_dashboard_supervised_when_env_set(
     built_image: str, container_name: str,
 ) -> None:
-    """When ``HERMES_DASHBOARD=1`` is set, ``docker run <image> gateway
+    """When ``OPENAMER_DASHBOARD=1`` is set, ``docker run <image> gateway
     run`` should result in BOTH the gateway and the dashboard being
     supervised by s6 — the dashboard slot was always there but only
     activates with the env var. This is the headline benefit of the
@@ -355,7 +355,7 @@ def test_dashboard_supervised_when_env_set(
     """
     start_container(
         built_image, container_name,
-        "HERMES_DASHBOARD=1",
+        "OPENAMER_DASHBOARD=1",
         cmd="gateway run",
     )
 

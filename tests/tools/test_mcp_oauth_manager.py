@@ -177,11 +177,11 @@ def test_manager_remove_evicts_cache(tmp_path, monkeypatch):
 
 def test_openamer_provider_subclass_exists():
     """OpenAmerMCPOAuthProvider is defined and subclasses OAuthClientProvider."""
-    from tools.mcp_oauth_manager import _HERMES_PROVIDER_CLS
+    from tools.mcp_oauth_manager import _OPENAMER_PROVIDER_CLS
     from mcp.client.auth.oauth2 import OAuthClientProvider
 
-    assert _HERMES_PROVIDER_CLS is not None
-    assert issubclass(_HERMES_PROVIDER_CLS, OAuthClientProvider)
+    assert _OPENAMER_PROVIDER_CLS is not None
+    assert issubclass(_OPENAMER_PROVIDER_CLS, OAuthClientProvider)
 
 
 @pytest.mark.asyncio
@@ -333,7 +333,7 @@ async def test_handle_401_dedup_survives_even_if_task_reference_dropped(tmp_path
 def test_manager_builds_openamer_provider_subclass(tmp_path, monkeypatch):
     """get_or_build_provider returns OpenAmerMCPOAuthProvider, not plain OAuthClientProvider."""
     from tools.mcp_oauth_manager import (
-        MCPOAuthManager, _HERMES_PROVIDER_CLS, reset_manager_for_tests,
+        MCPOAuthManager, _OPENAMER_PROVIDER_CLS, reset_manager_for_tests,
     )
     reset_manager_for_tests()
     monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
@@ -342,8 +342,8 @@ def test_manager_builds_openamer_provider_subclass(tmp_path, monkeypatch):
     mgr = MCPOAuthManager()
     provider = mgr.get_or_build_provider("srv", "https://example.com/mcp", None)
 
-    assert _HERMES_PROVIDER_CLS is not None
-    assert isinstance(provider, _HERMES_PROVIDER_CLS)
+    assert _OPENAMER_PROVIDER_CLS is not None
+    assert isinstance(provider, _OPENAMER_PROVIDER_CLS)
     assert provider._openamer_server_name == "srv"
 
 

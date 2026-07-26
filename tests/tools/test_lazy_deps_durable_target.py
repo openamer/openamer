@@ -46,12 +46,12 @@ class TestTargetResolution:
 
 
 class TestGatingWithTarget:
-    """``HERMES_DISABLE_LAZY_INSTALLS=1`` must STOP blocking once a durable
+    """``OPENAMER_DISABLE_LAZY_INSTALLS=1`` must STOP blocking once a durable
     target is configured — the redirect is the safe path — but the config
     kill switch still wins in every mode."""
 
     def test_disable_env_blocks_without_target(self, monkeypatch):
-        monkeypatch.setenv("HERMES_DISABLE_LAZY_INSTALLS", "1")
+        monkeypatch.setenv("OPENAMER_DISABLE_LAZY_INSTALLS", "1")
         monkeypatch.delenv(ld._LAZY_TARGET_ENV, raising=False)
         # config unreadable → fails open on the config check, but the sealed
         # env var with no target still blocks.
@@ -61,7 +61,7 @@ class TestGatingWithTarget:
         assert ld._allow_lazy_installs() is False
 
     def test_disable_env_allows_with_target(self, monkeypatch, tmp_path):
-        monkeypatch.setenv("HERMES_DISABLE_LAZY_INSTALLS", "1")
+        monkeypatch.setenv("OPENAMER_DISABLE_LAZY_INSTALLS", "1")
         monkeypatch.setenv(ld._LAZY_TARGET_ENV, str(tmp_path))
         monkeypatch.setattr(
             "openamer_cli.config.load_config", lambda: {}, raising=False
@@ -70,7 +70,7 @@ class TestGatingWithTarget:
 
     def test_config_killswitch_wins_even_with_target(self, monkeypatch, tmp_path):
         # Explicit opt-out must disable installs even when a target exists.
-        monkeypatch.setenv("HERMES_DISABLE_LAZY_INSTALLS", "1")
+        monkeypatch.setenv("OPENAMER_DISABLE_LAZY_INSTALLS", "1")
         monkeypatch.setenv(ld._LAZY_TARGET_ENV, str(tmp_path))
         monkeypatch.setattr(
             "openamer_cli.config.load_config",
@@ -81,7 +81,7 @@ class TestGatingWithTarget:
 
     def test_normal_mode_unaffected(self, monkeypatch):
         # No sealed env, no target → default allow (unchanged behaviour).
-        monkeypatch.delenv("HERMES_DISABLE_LAZY_INSTALLS", raising=False)
+        monkeypatch.delenv("OPENAMER_DISABLE_LAZY_INSTALLS", raising=False)
         monkeypatch.delenv(ld._LAZY_TARGET_ENV, raising=False)
         monkeypatch.setattr(
             "openamer_cli.config.load_config", lambda: {}, raising=False
@@ -235,8 +235,8 @@ class TestInstallArgConstruction:
 
 
 @pytest.mark.skipif(
-    os.environ.get("HERMES_RUN_NETWORK_TESTS") != "1",
-    reason="opt-in real-install test (set HERMES_RUN_NETWORK_TESTS=1); CI runs "
+    os.environ.get("OPENAMER_RUN_NETWORK_TESTS") != "1",
+    reason="opt-in real-install test (set OPENAMER_RUN_NETWORK_TESTS=1); CI runs "
     "the network-free arg-construction + synthetic-shadow tests instead",
 )
 class TestRealInstallCoreWins:

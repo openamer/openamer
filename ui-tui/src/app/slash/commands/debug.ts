@@ -45,7 +45,7 @@ export const debugCommands: SlashCommand[] = [
   },
 
   {
-    help: 'write a V8 heap snapshot + memory diagnostics (see HERMES_HEAPDUMP_DIR)',
+    help: 'write a V8 heap snapshot + memory diagnostics (see OPENAMER_HEAPDUMP_DIR)',
     name: 'heapdump',
     run: (_arg, ctx) => {
       const { heapUsed, rss } = process.memoryUsage()
@@ -77,8 +77,8 @@ export const debugCommands: SlashCommand[] = [
         {
           rows: [
             ['OSC-11 background', terminalBackgroundHex() ?? '(no reply)'],
-            ['HERMES_TUI_BACKGROUND', process.env.HERMES_TUI_BACKGROUND ?? '(unset)'],
-            ['HERMES_TUI_THEME', process.env.HERMES_TUI_THEME ?? '(unset)'],
+            ['OPENAMER_TUI_BACKGROUND', process.env.OPENAMER_TUI_BACKGROUND ?? '(unset)'],
+            ['OPENAMER_TUI_THEME', process.env.OPENAMER_TUI_THEME ?? '(unset)'],
             ['COLORFGBG', process.env.COLORFGBG ?? '(unset)'],
             ['TERM_PROGRAM', process.env.TERM_PROGRAM ?? '(unset)'],
             ['detected mode', detectLightMode() ? 'light' : 'dark'],

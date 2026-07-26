@@ -43,7 +43,7 @@ class OpenAmerOverlay:
     base_url_env_var: str = ""            # env var for user-custom base URL
 
 
-HERMES_OVERLAYS: Dict[str, OpenAmerOverlay] = {
+OPENAMER_OVERLAYS: Dict[str, OpenAmerOverlay] = {
     "moa": OpenAmerOverlay(
         transport="openai_chat",
         auth_type="virtual",
@@ -454,7 +454,7 @@ def get_provider(name: str) -> Optional[ProviderDef]:
     except Exception:
         mdev_info = None
 
-    overlay = HERMES_OVERLAYS.get(canonical)
+    overlay = OPENAMER_OVERLAYS.get(canonical)
 
     if mdev_info is not None:
         # Merge models.dev + overlay
@@ -614,7 +614,7 @@ def determine_api_mode(provider: str, base_url: str = "") -> str:
     if pdef is not None:
         return TRANSPORT_TO_API_MODE.get(pdef.transport, "chat_completions")
 
-    # Direct provider checks for providers not in HERMES_OVERLAYS
+    # Direct provider checks for providers not in OPENAMER_OVERLAYS
     if provider == "bedrock":
         return "bedrock_converse"
 

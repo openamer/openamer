@@ -10,7 +10,7 @@ def env_homes(tmp_path, monkeypatch):
     home.mkdir()
     managed = tmp_path / "managed"
     managed.mkdir()
-    monkeypatch.setenv("HERMES_MANAGED_DIR", str(managed))
+    monkeypatch.setenv("OPENAMER_MANAGED_DIR", str(managed))
     from openamer_cli import managed_scope
 
     managed_scope.invalidate_managed_cache()

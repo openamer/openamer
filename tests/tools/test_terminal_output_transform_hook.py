@@ -116,7 +116,7 @@ def test_terminal_output_transform_still_truncates_long_replacement(monkeypatch,
 
 
 def test_terminal_output_transform_still_runs_strip_and_redact(monkeypatch, tmp_path):
-    # Ensure redaction is active regardless of host HERMES_REDACT_SECRETS state
+    # Ensure redaction is active regardless of host OPENAMER_REDACT_SECRETS state
     # or collection-time import order (the module snapshots env at import).
     monkeypatch.setattr("agent.redact._REDACT_ENABLED", True)
 

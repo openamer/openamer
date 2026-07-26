@@ -516,10 +516,10 @@ function adaptColorsToBackground(colors: ThemeColors, isLight: boolean, base: Th
 }
 
 /** The background hex adaptation measures contrast against: the OSC-11
- *  answer when known (cached in HERMES_TUI_BACKGROUND), else the mode's
+ *  answer when known (cached in OPENAMER_TUI_BACKGROUND), else the mode's
  *  assumed pole. */
 function referenceBackground(isLight: boolean, env: NodeJS.ProcessEnv = process.env): string {
-  const cached = (env.HERMES_TUI_BACKGROUND ?? '').trim()
+  const cached = (env.OPENAMER_TUI_BACKGROUND ?? '').trim()
 
   if (cached && backgroundLuminance(cached) !== null) {
     return cached.startsWith('#') ? cached : `#${cached}`
@@ -616,13 +616,13 @@ const FALSE_RE = /^(?:0|false|no|off)$/
 
 // TERM_PROGRAM fallback allow-list for terminals whose default profile is
 // light and which may not expose COLORFGBG. This currently includes Apple
-// Terminal. Explicit HERMES_TUI_THEME / COLORFGBG signals above still win,
+// Terminal. Explicit OPENAMER_TUI_THEME / COLORFGBG signals above still win,
 // so dark Apple Terminal profiles that advertise a dark background stay dark.
 const LIGHT_DEFAULT_TERM_PROGRAMS = new Set<string>(['Apple_Terminal'])
 
 // Best-effort RGB → luminance check.  Currently only accepts a 3- or
 // 6-digit hex value (with or without a leading `#`); the env var name
-// `HERMES_TUI_BACKGROUND` is intentionally generic so a future OSC11
+// `OPENAMER_TUI_BACKGROUND` is intentionally generic so a future OSC11
 // query helper can cache its answer there too, but additional formats
 // (rgb()/hsl()/named colours) would need explicit parsing here first.
 const LUMA_LIGHT_THRESHOLD = 0.6
@@ -659,12 +659,12 @@ function backgroundLuminance(raw: string): null | number {
 
 // Pick light vs dark with ordered, explainable signals (#11300):
 //
-//   1. `HERMES_TUI_LIGHT` boolean — `1`/`true`/`yes`/`on` → light;
+//   1. `OPENAMER_TUI_LIGHT` boolean — `1`/`true`/`yes`/`on` → light;
 //      `0`/`false`/`no`/`off` → dark.  Either explicit value wins
 //      regardless of any later signal.
-//   2. `HERMES_TUI_THEME` named override — `light` / `dark` win over
+//   2. `OPENAMER_TUI_THEME` named override — `light` / `dark` win over
 //      every signal below.
-//   3. `HERMES_TUI_BACKGROUND` hex hint (3- or 6-digit) — luminance
+//   3. `OPENAMER_TUI_BACKGROUND` hex hint (3- or 6-digit) — luminance
 //      ≥ LUMA_LIGHT_THRESHOLD → light.
 //   4. `COLORFGBG` last field — XFCE / rxvt / Terminal.app emit
 //      slot 7 or 15 on light profiles; 0–15 ranges are otherwise
@@ -680,7 +680,7 @@ export function detectLightMode(
   // precedence rule even though the production allow-list is empty.
   lightDefaultTermPrograms: ReadonlySet<string> = LIGHT_DEFAULT_TERM_PROGRAMS
 ): boolean {
-  const lightFlag = (env.HERMES_TUI_LIGHT ?? '').trim().toLowerCase()
+  const lightFlag = (env.OPENAMER_TUI_LIGHT ?? '').trim().toLowerCase()
 
   if (TRUE_RE.test(lightFlag)) {
     return true
@@ -690,7 +690,7 @@ export function detectLightMode(
     return false
   }
 
-  const themeFlag = (env.HERMES_TUI_THEME ?? '').trim().toLowerCase()
+  const themeFlag = (env.OPENAMER_TUI_THEME ?? '').trim().toLowerCase()
 
   if (themeFlag === 'light') {
     return true
@@ -700,7 +700,7 @@ export function detectLightMode(
     return false
   }
 
-  const bgHint = backgroundLuminance(env.HERMES_TUI_BACKGROUND ?? '')
+  const bgHint = backgroundLuminance(env.OPENAMER_TUI_BACKGROUND ?? '')
 
   if (bgHint !== null) {
     return bgHint >= LUMA_LIGHT_THRESHOLD
@@ -776,7 +776,7 @@ export const DEFAULT_THEME: Theme = normalizeThemeForAnsiLightTerminal(
 /**
  * The skinless theme for the CURRENT light-mode signals. Unlike the frozen
  * module-load DEFAULT_THEME, this re-reads the environment — so it picks up
- * the OSC-11 background answer cached into HERMES_TUI_BACKGROUND after
+ * the OSC-11 background answer cached into OPENAMER_TUI_BACKGROUND after
  * startup. Used when the terminal background arrives before (or without) a
  * gateway skin.
  */
@@ -821,7 +821,7 @@ export function fromSkin(
   // Polarity: the skin's own canvas when it authors one (see skinIsLight);
   // otherwise live host detection (not the module-load snapshot — by the time
   // the gateway skin arrives, the OSC-11 probe has usually answered and cached
-  // itself into HERMES_TUI_BACKGROUND. See #applySkin / syncThemeToTerminalBackground).
+  // itself into OPENAMER_TUI_BACKGROUND. See #applySkin / syncThemeToTerminalBackground).
   const skinBg = authoredBackground(colors['background'])
   const isLight = skinIsLight(colors)
   const bg = skinBg ?? referenceBackground(isLight)

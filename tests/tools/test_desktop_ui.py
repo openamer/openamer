@@ -20,7 +20,7 @@ def test_unavailable_without_emitter():
 def test_routes_event_to_owning_window(monkeypatch):
     monkeypatch.setattr(
         desktop_ui, "get_session_env",
-        lambda name, default="": "win-7" if name == "HERMES_UI_SESSION_ID" else default,
+        lambda name, default="": "win-7" if name == "OPENAMER_UI_SESSION_ID" else default,
     )
     seen = []
     desktop_ui.set_emitter(lambda sid, event, payload: seen.append((sid, event, payload)))

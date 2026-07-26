@@ -62,14 +62,14 @@ def _resolve_origin(explicit: Optional[Dict[str, Any]]) -> Optional[Dict[str, An
     try:
         from gateway.session_context import get_session_env
 
-        platform = get_session_env("HERMES_SESSION_PLATFORM")
-        chat_id = get_session_env("HERMES_SESSION_CHAT_ID")
+        platform = get_session_env("OPENAMER_SESSION_PLATFORM")
+        chat_id = get_session_env("OPENAMER_SESSION_CHAT_ID")
         if platform and chat_id:
             return {
                 "platform": platform,
                 "chat_id": chat_id,
-                "chat_name": get_session_env("HERMES_SESSION_CHAT_NAME") or None,
-                "thread_id": get_session_env("HERMES_SESSION_THREAD_ID") or None,
+                "chat_name": get_session_env("OPENAMER_SESSION_CHAT_NAME") or None,
+                "thread_id": get_session_env("OPENAMER_SESSION_THREAD_ID") or None,
             }
     except Exception:
         pass

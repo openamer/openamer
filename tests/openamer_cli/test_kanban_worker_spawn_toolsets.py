@@ -90,16 +90,16 @@ agent:
 
 
 def test_default_spawn_never_boots_the_tui(monkeypatch, tmp_path):
-    """Workers are headless: an inherited HERMES_TUI=1 (or a TUI-default
+    """Workers are headless: an inherited OPENAMER_TUI=1 (or a TUI-default
     config) must not send the quiet chat run into the Ink TUI, whose no-TTY
     bail-out exits 0 without doing the task — every attempt then ends in
     "protocol violation". The spawn pins --cli (highest-precedence interface
-    flag) and strips HERMES_TUI from the child env."""
+    flag) and strips OPENAMER_TUI from the child env."""
     root = tmp_path / ".openamer"
     (root / "profiles" / "elias").mkdir(parents=True)
     root.joinpath("config.yaml").write_text("display:\n  interface: tui\n", encoding="utf-8")
     monkeypatch.setenv("OPENAMER_HOME", str(root))
-    monkeypatch.setenv("HERMES_TUI", "1")
+    monkeypatch.setenv("OPENAMER_TUI", "1")
 
     from openamer_cli import kanban_db as kb
 
@@ -122,7 +122,7 @@ def test_default_spawn_never_boots_the_tui(monkeypatch, tmp_path):
     kb._default_spawn(_make_task(kb, assignee="elias"), str(workspace))
 
     assert "--cli" in captured["cmd"]
-    assert "HERMES_TUI" not in captured["env"]
+    assert "OPENAMER_TUI" not in captured["env"]
 
 
 def test_default_spawn_model_override_survives_real_cli_parse(monkeypatch, tmp_path):

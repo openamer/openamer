@@ -11,7 +11,7 @@ from agent.ssl_guard import verify_ca_bundle, verify_ca_bundle_with_fallback
 
 def test_healthy_bundle_passes(monkeypatch):
     """A real, non-empty certifi bundle must verify without raising."""
-    for key in ("HERMES_CA_BUNDLE", "SSL_CERT_FILE", "REQUESTS_CA_BUNDLE", "CURL_CA_BUNDLE"):
+    for key in ("OPENAMER_CA_BUNDLE", "SSL_CERT_FILE", "REQUESTS_CA_BUNDLE", "CURL_CA_BUNDLE"):
         monkeypatch.delenv(key, raising=False)
     bundle = Path(certifi.where())
     assert bundle.exists()
@@ -41,7 +41,7 @@ def test_empty_certifi_bundle_raises_ssl_error(monkeypatch, tmp_path):
     assert "too small" in str(exc.value).lower()
 
 
-@pytest.mark.parametrize("env_var", ["HERMES_CA_BUNDLE", "SSL_CERT_FILE", "REQUESTS_CA_BUNDLE", "CURL_CA_BUNDLE"])
+@pytest.mark.parametrize("env_var", ["OPENAMER_CA_BUNDLE", "SSL_CERT_FILE", "REQUESTS_CA_BUNDLE", "CURL_CA_BUNDLE"])
 def test_missing_explicit_ca_bundle_env_raises_before_httpx(monkeypatch, tmp_path, env_var):
     """Bad CA-bundle env vars should be reported before OpenAI/httpx init."""
     fake = tmp_path / "missing.pem"
@@ -74,9 +74,9 @@ def test_verify_ca_bundle_with_fallback_keeps_same_contract(monkeypatch, tmp_pat
 
 @pytest.mark.parametrize("value", ["1", "true", "TRUE", "yes", "on"])
 def test_skip_env_var_bypasses_guard(monkeypatch, tmp_path, value):
-    """HERMES_SKIP_SSL_GUARD is an intentional escape hatch for managed trust stores."""
+    """OPENAMER_SKIP_SSL_GUARD is an intentional escape hatch for managed trust stores."""
     fake = tmp_path / "missing.pem"
-    monkeypatch.setenv("HERMES_SKIP_SSL_GUARD", value)
+    monkeypatch.setenv("OPENAMER_SKIP_SSL_GUARD", value)
     monkeypatch.setenv("SSL_CERT_FILE", str(fake))
     verify_ca_bundle()
     verify_ca_bundle_with_fallback()

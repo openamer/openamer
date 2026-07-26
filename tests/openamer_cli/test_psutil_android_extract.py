@@ -89,11 +89,11 @@ def test_install_psutil_android_compat_uses_patched_tree(tmp_path):
          patch.object(openamer_main, "_run_install_with_heartbeat", side_effect=fake_run_install):
         openamer_main._install_psutil_android_compat(
             ["uv", "pip"],
-            env={"HERMES_TEST": "1"},
+            env={"OPENAMER_TEST": "1"},
         )
 
     assert captured["cmd"][:4] == ["uv", "pip", "install", "--no-build-isolation"]
-    assert captured["env"] == {"HERMES_TEST": "1"}
+    assert captured["env"] == {"OPENAMER_TEST": "1"}
     assert REPLACEMENT in str(captured["common_py"])
 
 

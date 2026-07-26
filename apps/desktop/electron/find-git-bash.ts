@@ -10,7 +10,7 @@ export interface GitBashOptions {
 /**
  * Locate bash.exe on Windows.
  * Resolution order (first match wins):
- *   1. HERMES_GIT_BASH_PATH env var override
+ *   1. OPENAMER_GIT_BASH_PATH env var override
  *   2. PortableGit under %LOCALAPPDATA%\openamer\git\ (install.ps1)
  *   3. Standard Git for Windows install locations
  *   4. %LOCALAPPDATA%\Programs\Git\ (user-scoped)
@@ -23,8 +23,8 @@ export function findGitBash(opts: GitBashOptions): string | null {
     return findOnPath ? findOnPath('bash') : null
   }
 
-  // Respect HERMES_GIT_BASH_PATH if set (mirrors tools/environments/local.py:_find_bash).
-  const gitBashPath = env.HERMES_GIT_BASH_PATH
+  // Respect OPENAMER_GIT_BASH_PATH if set (mirrors tools/environments/local.py:_find_bash).
+  const gitBashPath = env.OPENAMER_GIT_BASH_PATH
 
   if (gitBashPath && fileExists(gitBashPath)) {
     return gitBashPath

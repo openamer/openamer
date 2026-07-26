@@ -11,7 +11,7 @@ Security model (mirrors the TS provider line-for-line where it matters):
 
 * The command string is the USER'S OWN configuration (same trust level as
   the ``.env`` file they control), so it is run via ``/bin/sh -c <command>``.
-* The requested key is passed to the child ONLY via the ``HERMES_SECRET_KEY``
+* The requested key is passed to the child ONLY via the ``OPENAMER_SECRET_KEY``
   environment variable — it is NEVER interpolated into the shell string, so
   a hostile key name (e.g. ``"; rm -rf ~``) is inert data, not code.
 * Hard timeout (default 3s) + output cap (default 1 MiB); any failure
@@ -22,7 +22,7 @@ Security model (mirrors the TS provider line-for-line where it matters):
   value.  The helper's stderr is captured via a pipe and DISCARDED so its
   diagnostics (which can carry secret material) never reach our stderr.
 * The startup/apply path runs the helper exactly ONCE (with an empty
-  ``HERMES_SECRET_KEY``) — it is never called per-key in a loop, so a
+  ``OPENAMER_SECRET_KEY``) — it is never called per-key in a loop, so a
   helper that blocks (e.g. on a vault unlock prompt) can't be spawned
   dozens of times.
 * PLATFORM: the provider is POSIX-only (needs ``/bin/sh``).  On Windows it
@@ -166,7 +166,7 @@ def _run_helper(
 ) -> Optional[str]:
     """Run the helper via ``/bin/sh -c`` and return its stdout, or None.
 
-    The key is passed as DATA via ``HERMES_SECRET_KEY`` — never interpolated
+    The key is passed as DATA via ``OPENAMER_SECRET_KEY`` — never interpolated
     into the command string.  Both stdout and stderr are captured via pipes
     (never inherited); stderr is discarded.  Any failure logs structured
     fields only and returns None — never raises.
@@ -180,7 +180,7 @@ def _run_helper(
         return None
 
     env = os.environ.copy()
-    env["HERMES_SECRET_KEY"] = secret_key
+    env["OPENAMER_SECRET_KEY"] = secret_key
 
     try:
         proc = subprocess.Popen(  # noqa: S602 — command is the user's own config
@@ -277,7 +277,7 @@ def get_command_secret(
     max_output_bytes: int = _MAX_OUTPUT_BYTES,
 ) -> Optional[str]:
     """Resolve a single secret by running the helper with the key in
-    ``HERMES_SECRET_KEY``.  Returns None on any failure — never raises."""
+    ``OPENAMER_SECRET_KEY``.  Returns None on any failure — never raises."""
     command = (command or "").strip()
     if not command:
         return None
@@ -345,7 +345,7 @@ def apply_command_secrets(
         return result
 
     # The list/enumerate path: run the helper exactly ONCE with an empty
-    # HERMES_SECRET_KEY and parse its stdout as a dotenv blob.
+    # OPENAMER_SECRET_KEY and parse its stdout as a dotenv blob.
     stdout = _run_helper(command, "", timeout_seconds, max_output_bytes)
     if stdout is None:
         # _run_helper already logged structured fields to stderr.

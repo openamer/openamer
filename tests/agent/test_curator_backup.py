@@ -336,7 +336,7 @@ def _write_cron_jobs(home: Path, jobs: list) -> Path:
 
 
 def _reload_cron_jobs(home: Path):
-    """Reload cron.jobs so its module-level HERMES_DIR picks up the tmp HOME."""
+    """Reload cron.jobs so its module-level OPENAMER_DIR picks up the tmp HOME."""
     import openamer_constants
     importlib.reload(openamer_constants)
     if "cron.jobs" in sys.modules:

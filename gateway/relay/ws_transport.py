@@ -204,7 +204,7 @@ def _event_from_wire(raw: Dict[str, Any]) -> MessageEvent:
         scope_id=src.get("scope_id"),
         parent_chat_id=src.get("parent_chat_id"),
         message_id=src.get("message_id"),
-        # The HERMES profile this event is routed to (multiplex mode). The
+        # The OPENAMER profile this event is routed to (multiplex mode). The
         # connector stamps it on the wire source when NAS resolves the target
         # profile for a Team-Gateway message; absent for a single-profile
         # gateway, where it stays None and session keys keep the legacy

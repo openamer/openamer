@@ -25,13 +25,13 @@ from acp.schema import (
 # ---------------------------------------------------------------------------
 
 
-COMMON_HERMES_TOOLS = ["read_file", "search_files", "terminal", "patch", "write_file", "process"]
+COMMON_OPENAMER_TOOLS = ["read_file", "search_files", "terminal", "patch", "write_file", "process"]
 
 
 class TestToolKindMap:
     def test_all_openamer_tools_have_kind(self):
         """Every common openamer tool should appear in TOOL_KIND_MAP."""
-        for tool in COMMON_HERMES_TOOLS:
+        for tool in COMMON_OPENAMER_TOOLS:
             assert tool in TOOL_KIND_MAP, f"{tool} missing from TOOL_KIND_MAP"
 
     def test_tool_kind_read_file(self):

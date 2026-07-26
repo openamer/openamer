@@ -287,7 +287,7 @@ def _make_execute_only_env(forward_env=None):
 
 def test_init_env_args_uses_openamer_dotenv_for_allowlisted_env(monkeypatch):
     """_build_init_env_args picks up forwarded env vars from .env file at init time."""
-    # Use a var that is NOT in _HERMES_PROVIDER_ENV_BLOCKLIST (GITHUB_TOKEN
+    # Use a var that is NOT in _OPENAMER_PROVIDER_ENV_BLOCKLIST (GITHUB_TOKEN
     # is in the copilot provider's api_key_env_vars and gets stripped).
     env = _make_execute_only_env(["DATABASE_URL"])
 
@@ -383,7 +383,7 @@ def test_egress_node_options_overrides_conflicting_ca_flag(monkeypatch):
     monkeypatch.setattr(docker_env, "find_docker", lambda: "/usr/bin/docker")
     monkeypatch.setattr(
         docker_env, "_egress_proxy_args_for_docker",
-        lambda: ([], {"_HERMES_EGRESS_NODE_OPTIONS_APPEND": "--use-openssl-ca"}, []),
+        lambda: ([], {"_OPENAMER_EGRESS_NODE_OPTIONS_APPEND": "--use-openssl-ca"}, []),
     )
     calls = _mock_subprocess_run(monkeypatch)
 
@@ -401,7 +401,7 @@ def test_egress_node_options_preserves_operator_tuning(monkeypatch):
     monkeypatch.setattr(docker_env, "find_docker", lambda: "/usr/bin/docker")
     monkeypatch.setattr(
         docker_env, "_egress_proxy_args_for_docker",
-        lambda: ([], {"_HERMES_EGRESS_NODE_OPTIONS_APPEND": "--use-openssl-ca"}, []),
+        lambda: ([], {"_OPENAMER_EGRESS_NODE_OPTIONS_APPEND": "--use-openssl-ca"}, []),
     )
     calls = _mock_subprocess_run(monkeypatch)
 
@@ -868,7 +868,7 @@ def test_forward_env_provider_key_collision_refuses_under_egress(monkeypatch):
             {
                 "HTTPS_PROXY": "http://host.docker.internal:9090",
                 "OPENROUTER_API_KEY": "openamer-proxy-openrouter-token",
-                "HERMES_PROXY_TOKEN_OPENROUTER_API_KEY": "openamer-proxy-openrouter-token",
+                "OPENAMER_PROXY_TOKEN_OPENROUTER_API_KEY": "openamer-proxy-openrouter-token",
             },
             [],
         ),

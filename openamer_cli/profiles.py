@@ -249,7 +249,7 @@ _RESERVED_NAMES = frozenset({
 })
 
 # OpenAmer subcommands that cannot be used as profile names/aliases
-_HERMES_SUBCOMMANDS = frozenset({
+_OPENAMER_SUBCOMMANDS = frozenset({
     "chat", "model", "gateway", "setup", "whatsapp", "login", "logout",
     "status", "cron", "doctor", "dump", "config", "pairing", "skills", "tools",
     "mcp", "sessions", "insights", "version", "update", "uninstall",
@@ -397,7 +397,7 @@ def check_alias_collision(name: str) -> Optional[str]:
         return str(exc)
     if canon in _RESERVED_NAMES:
         return f"'{canon}' is a reserved name"
-    if canon in _HERMES_SUBCOMMANDS:
+    if canon in _OPENAMER_SUBCOMMANDS:
         return f"'{canon}' conflicts with a openamer subcommand"
 
     # Check existing commands in PATH

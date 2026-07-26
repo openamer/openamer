@@ -180,14 +180,14 @@ _ENV_VAR_NAME_RE = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
 #   ``$EDITOR``.
 # * ``SHELL`` — what subprocess uses with ``shell=True`` (we try to
 #   avoid that, but defense in depth).
-# * ``OPENAMER_HOME`` / ``HERMES_PROFILE`` / ``HERMES_CONFIG`` /
-#   ``HERMES_ENV`` — OpenAmer runtime location flags. Writing these into
+# * ``OPENAMER_HOME`` / ``OPENAMER_PROFILE`` / ``OPENAMER_CONFIG`` /
+#   ``OPENAMER_ENV`` — OpenAmer runtime location flags. Writing these into
 #   ``.env`` would relocate state in ways the user did not request from
 #   the dashboard. ``config.yaml`` is the supported surface for these.
 #
-# IMPORTANT: ``HERMES_*`` overall is NOT blocked. Many legitimate
-# integration credentials follow that prefix (HERMES_LANGFUSE_PUBLIC_KEY,
-# HERMES_SPOTIFY_CLIENT_ID, ...). The
+# IMPORTANT: ``OPENAMER_*`` overall is NOT blocked. Many legitimate
+# integration credentials follow that prefix (OPENAMER_LANGFUSE_PUBLIC_KEY,
+# OPENAMER_SPOTIFY_CLIENT_ID, ...). The
 # denylist is name-by-name on purpose so the gate stays narrow and
 # doesn't accidentally break provider setup wizards.
 #
@@ -210,9 +210,9 @@ _ENV_VAR_NAME_DENYLIST: frozenset[str] = frozenset({
     # Git
     "GIT_SSH_COMMAND", "GIT_EXEC_PATH", "GIT_SHELL",
     # OpenAmer runtime location — never via dashboard env writer.
-    # NOT a HERMES_* blanket: integration credentials (HERMES_GEMINI_*,
-    # HERMES_LANGFUSE_*, HERMES_SPOTIFY_*, ...) ARE allowed.
-    "OPENAMER_HOME", "HERMES_PROFILE", "HERMES_CONFIG", "HERMES_ENV",
+    # NOT a OPENAMER_* blanket: integration credentials (OPENAMER_GEMINI_*,
+    # OPENAMER_LANGFUSE_*, OPENAMER_SPOTIFY_*, ...) ARE allowed.
+    "OPENAMER_HOME", "OPENAMER_PROFILE", "OPENAMER_CONFIG", "OPENAMER_ENV",
 })
 
 
@@ -227,7 +227,7 @@ def _reject_denylisted_env_var(key: str) -> None:
             f"Environment variable {key!r} is on the writer denylist. "
             "Names that influence subprocess execution (LD_PRELOAD, "
             "PYTHONPATH, PATH, EDITOR, ...) or OpenAmer runtime location "
-            "(OPENAMER_HOME, HERMES_PROFILE, ...) cannot be persisted via "
+            "(OPENAMER_HOME, OPENAMER_PROFILE, ...) cannot be persisted via "
             "the env writer. If you really need this, edit "
             "~/.openamer/.env directly."
         )
@@ -296,7 +296,7 @@ _EXTRA_ENV_KEYS = frozenset({
     # config.yaml. Kept known here so reload and compatibility paths still
     # handle them for existing users (gateway reads them as a back-compat fallback),
     # without surfacing them in user-facing OPTIONAL_ENV_VARS listings.
-    "HERMES_TOOL_PROGRESS", "HERMES_TOOL_PROGRESS_MODE",
+    "OPENAMER_TOOL_PROGRESS", "OPENAMER_TOOL_PROGRESS_MODE",
     "WHATSAPP_MODE", "WHATSAPP_ENABLED",
     "MATTERMOST_HOME_CHANNEL", "MATTERMOST_HOME_CHANNEL_NAME", "MATTERMOST_REPLY_MODE",
     "MATRIX_PASSWORD", "MATRIX_ENCRYPTION", "MATRIX_DEVICE_ID", "MATRIX_HOME_ROOM",
@@ -306,11 +306,11 @@ _EXTRA_ENV_KEYS = frozenset({
     # Activation is via plugins.enabled (opt-in through `openamer plugins enable
     # observability/langfuse` or `openamer tools → Langfuse`); credentials gate
     # the plugin at runtime.
-    "HERMES_LANGFUSE_ENV",
-    "HERMES_LANGFUSE_RELEASE",
-    "HERMES_LANGFUSE_SAMPLE_RATE",
-    "HERMES_LANGFUSE_MAX_CHARS",
-    "HERMES_LANGFUSE_DEBUG",
+    "OPENAMER_LANGFUSE_ENV",
+    "OPENAMER_LANGFUSE_RELEASE",
+    "OPENAMER_LANGFUSE_SAMPLE_RATE",
+    "OPENAMER_LANGFUSE_MAX_CHARS",
+    "OPENAMER_LANGFUSE_DEBUG",
     "LANGFUSE_PUBLIC_KEY",
     "LANGFUSE_SECRET_KEY",
     "LANGFUSE_BASE_URL",
@@ -331,7 +331,7 @@ _MANAGED_SYSTEM_NAMES = {
     "nixos": "NixOS",
 }
 # The Nix store root. Used by detect_install_method to identify installs
-# from `nix run` / `nix profile install` (which don't set HERMES_MANAGED).
+# from `nix run` / `nix profile install` (which don't set OPENAMER_MANAGED).
 # A module-level constant so tests can patch it without creating files
 # under the real /nix/store.
 _NIX_STORE = Path("/nix/store")
@@ -344,7 +344,7 @@ _IGNORED_MANAGED_VALUES = frozenset({"brew", "homebrew"})
 
 def get_managed_system() -> Optional[str]:
     """Return the package manager owning this install, if any."""
-    raw = os.getenv("HERMES_MANAGED", "").strip()
+    raw = os.getenv("OPENAMER_MANAGED", "").strip()
     if raw:
         normalized = raw.lower()
         if normalized in _IGNORED_MANAGED_VALUES:
@@ -362,7 +362,7 @@ def get_managed_system() -> Optional[str]:
 def is_managed() -> bool:
     """Check if OpenAmer is running in package-manager-managed mode.
 
-    Two signals: the HERMES_MANAGED env var (set by the systemd service),
+    Two signals: the OPENAMER_MANAGED env var (set by the systemd service),
     or a .managed marker file in OPENAMER_HOME (set by the NixOS activation
     script, so interactive shells also see it).
     """
@@ -406,7 +406,7 @@ def detect_install_method(project_root: Optional[Path] = None) -> str:
     2. Legacy home-scoped stamp ``$OPENAMER_HOME/.install_method`` — read for
        backward compatibility, but a ``docker`` value is IGNORED when we are
        not actually running inside a container (see below).
-    3. HERMES_MANAGED env / .managed marker (NixOS managed mode)
+    3. OPENAMER_MANAGED env / .managed marker (NixOS managed mode)
     4. /nix/store/ path detection -> 'nix' (nix run / nix profile install)
     5. .git directory presence -> 'git'
     6. Fallback -> 'unknown'
@@ -472,7 +472,7 @@ def detect_install_method(project_root: Optional[Path] = None) -> str:
     if managed:
         return managed.lower().replace(" ", "-")
 
-    # detect Nix installs that don't set HERMES_MANAGED (e.g. ``nix run``,
+    # detect Nix installs that don't set OPENAMER_MANAGED (e.g. ``nix run``,
     # ``nix profile install``). The code lives under /nix/store/ which is the
     # hallmark of a nix-built install — no other supported install path puts
     # code there.
@@ -603,13 +603,13 @@ def format_docker_update_message() -> str:
 def format_managed_message(action: str = "modify this OpenAmer installation") -> str:
     """Build a user-facing error for managed installs."""
     managed_system = get_managed_system() or "a package manager"
-    raw = os.getenv("HERMES_MANAGED", "").strip().lower()
+    raw = os.getenv("OPENAMER_MANAGED", "").strip().lower()
 
     if managed_system == "NixOS":
         env_hint = "true" if raw in _MANAGED_TRUE_VALUES else raw or "true"
         return (
             f"Cannot {action}: this OpenAmer installation is managed by NixOS "
-            f"(HERMES_MANAGED={env_hint}).\n"
+            f"(OPENAMER_MANAGED={env_hint}).\n"
             "Edit services.openamer-agent.settings in your configuration.nix and run:\n"
             "  sudo nixos-rebuild switch"
         )
@@ -633,13 +633,13 @@ def get_container_exec_info() -> Optional[dict]:
 
     Returns a dict with keys: backend, container_name, exec_user, openamer_bin
     or None if container mode is not active, we're already inside the
-    container, or HERMES_DEV=1 is set.
+    container, or OPENAMER_DEV=1 is set.
 
     The .container-mode file is written by the NixOS activation script when
     container.enable = true. It tells the host CLI to exec into the container
     instead of running locally.
     """
-    if os.environ.get("HERMES_DEV") == "1":
+    if os.environ.get("OPENAMER_DEV") == "1":
         return None
 
     from openamer_constants import is_container
@@ -694,7 +694,7 @@ def get_project_root() -> Path:
     return Path(__file__).parent.parent.resolve()
 
 def _resolve_openamer_uid_gid() -> tuple[Optional[int], Optional[int]]:
-    """Read the HERMES_UID / HERMES_GID env vars set by Docker deployments.
+    """Read the OPENAMER_UID / OPENAMER_GID env vars set by Docker deployments.
 
     Docker containers running OpenAmer commonly set these to map the in-container
     user to a host user so volume-mounted state files end up with the right
@@ -710,8 +710,8 @@ def _resolve_openamer_uid_gid() -> tuple[Optional[int], Optional[int]]:
     """
     if sys.platform == "win32":
         return None, None
-    uid_str = os.environ.get("HERMES_UID", "").strip()
-    gid_str = os.environ.get("HERMES_GID", "").strip()
+    uid_str = os.environ.get("OPENAMER_UID", "").strip()
+    gid_str = os.environ.get("OPENAMER_GID", "").strip()
     try:
         uid = int(uid_str) if uid_str else None
     except ValueError:
@@ -724,7 +724,7 @@ def _resolve_openamer_uid_gid() -> tuple[Optional[int], Optional[int]]:
 
 
 def _chown_to_openamer_uid(path) -> None:
-    """Chown ``path`` to ``HERMES_UID:HERMES_GID`` if those env vars are set.
+    """Chown ``path`` to ``OPENAMER_UID:OPENAMER_GID`` if those env vars are set.
 
     No-op when:
       - Either env var is unset/invalid
@@ -765,7 +765,7 @@ def _secure_dir(path):
     The execute-only bit on a directory permits cd-through without exposing
     directory listings.
 
-    Also applies ``HERMES_UID``/``HERMES_GID``-based ownership when those env
+    Also applies ``OPENAMER_UID``/``OPENAMER_GID``-based ownership when those env
     vars are set (#34107 — Docker deployments need this so profile subdirs
     created at runtime by kanban workers don't land as root:root and block
     subsequent uid-mapped workers).
@@ -793,7 +793,7 @@ def _is_container() -> bool:
     permissions.
     """
     # Explicit opt-out
-    if os.environ.get("HERMES_CONTAINER") or os.environ.get("HERMES_SKIP_CHMOD"):
+    if os.environ.get("OPENAMER_CONTAINER") or os.environ.get("OPENAMER_SKIP_CHMOD"):
         return True
     # Docker / Podman marker file
     if os.path.exists("/.dockerenv"):
@@ -816,7 +816,7 @@ def _secure_file(path):
     group-readable permissions (0640) on config files.
 
     Skipped in containers — Docker/Podman volume mounts often need broader
-    permissions.  Set HERMES_SKIP_CHMOD=1 to force-skip on other systems.
+    permissions.  Set OPENAMER_SKIP_CHMOD=1 to force-skip on other systems.
     """
     if is_managed() or _is_container():
         return
@@ -1027,7 +1027,7 @@ DEFAULT_CONFIG = {
         # prompt's environment-hints block. Lets a host that wraps OpenAmer
         # (sandbox runner, managed platform) explain the runtime environment
         # — proxy, credential handling, mount layout — without editing the
-        # identity slot (SOUL.md). Empty by default. The HERMES_ENVIRONMENT_HINT
+        # identity slot (SOUL.md). Empty by default. The OPENAMER_ENVIRONMENT_HINT
         # env var overrides this (build-time/container mechanism).
         "environment_hint": "",
         # Coding posture — on interactive coding surfaces (CLI, TUI, desktop
@@ -1113,7 +1113,7 @@ DEFAULT_CONFIG = {
         # local endpoint is detected, this finite ceiling replaces the former
         # infinite disable so a wedged local server eventually trips the
         # detector instead of hanging forever. The env var
-        # ``HERMES_LOCAL_STREAM_STALE_TIMEOUT`` overrides for escape-hatch use.
+        # ``OPENAMER_LOCAL_STREAM_STALE_TIMEOUT`` overrides for escape-hatch use.
         "local_stream_stale_timeout": 900,
         # How user-attached images are presented to the main model on each turn.
         #   "auto"   — attach natively when the active model reports
@@ -1903,12 +1903,12 @@ DEFAULT_CONFIG = {
         #   "cli" — the classic prompt_toolkit REPL (default, preserves prior behavior)
         #   "tui" — the modern Ink TUI (same as passing `--tui`)
         # Explicit flags always win over this setting: `--cli` forces the classic
-        # REPL and `--tui` (or HERMES_TUI=1) forces the TUI regardless of config.
+        # REPL and `--tui` (or OPENAMER_TUI=1) forces the TUI regardless of config.
         "interface": "cli",
         # When true, `openamer --tui` auto-resumes the most recent human-
         # facing session on launch instead of forging a fresh one.
         # Mirrors `openamer -c` muscle memory.  Default off so existing
-        # users aren't surprised.  HERMES_TUI_RESUME=<id> always wins.
+        # users aren't surprised.  OPENAMER_TUI_RESUME=<id> always wins.
         "tui_auto_resume_recent": False,
         # When true (default), `openamer --tui` drops a one-time hint
         # ("subagents working · /agents to watch live") the first time a turn
@@ -2119,8 +2119,8 @@ DEFAULT_CONFIG = {
         # ``--insecure`` is not). The bundled Nous Portal plugin reads
         # both keys at startup; they are the canonical surface for these
         # settings. Each can be overridden by an environment variable —
-        # ``HERMES_DASHBOARD_OAUTH_CLIENT_ID`` and
-        # ``HERMES_DASHBOARD_PORTAL_URL`` respectively — and the env var
+        # ``OPENAMER_DASHBOARD_OAUTH_CLIENT_ID`` and
+        # ``OPENAMER_DASHBOARD_PORTAL_URL`` respectively — and the env var
         # wins when set to a non-empty value. The override path is what
         # Fly.io's platform-secret injection uses to push the per-deploy
         # client_id at provisioning time without operators needing to
@@ -2139,7 +2139,7 @@ DEFAULT_CONFIG = {
         # either ``password_hash`` (preferred — no plaintext at rest) or
         # ``password`` (plaintext, hashed in-memory at load) are set. Each
         # key is overridable by an env var
-        # (``HERMES_DASHBOARD_BASIC_AUTH_USERNAME`` /
+        # (``OPENAMER_DASHBOARD_BASIC_AUTH_USERNAME`` /
         # ``_PASSWORD_HASH`` / ``_PASSWORD`` / ``_SECRET`` /
         # ``_TTL_SECONDS``), env winning when non-empty. Leave ``username``
         # empty (the default) to keep the plugin a no-op — loopback /
@@ -2165,7 +2165,7 @@ DEFAULT_CONFIG = {
         # generic non-interactive token-auth capability). The SECRET itself
         # is a credential and is NOT configured here: it is provisioned by
         # nous-account-service at deploy time via the
-        # ``HERMES_DASHBOARD_DRAIN_SECRET`` env var (the .env-is-for-secrets
+        # ``OPENAMER_DASHBOARD_DRAIN_SECRET`` env var (the .env-is-for-secrets
         # rule). These are the behavioural knobs only. The plugin is a no-op
         # unless that env var is set to a >=256-bit secret; a weak secret is
         # rejected at registration (fail-closed) and the drain endpoint stays
@@ -2176,7 +2176,7 @@ DEFAULT_CONFIG = {
             "scope": "drain",
             "min_secret_chars": 43,
         },
-        # Public URL override (env: ``HERMES_DASHBOARD_PUBLIC_URL``).
+        # Public URL override (env: ``OPENAMER_DASHBOARD_PUBLIC_URL``).
         # When set, this is the complete authority — scheme + host +
         # optional path prefix (e.g. ``https://example.com/openamer``) —
         # the OAuth ``redirect_uri`` is built from. Set this for deploys
@@ -2497,7 +2497,7 @@ DEFAULT_CONFIG = {
     # always goes to ~/.openamer/skills/.
     "skills": {
         "external_dirs": [],   # e.g. ["~/.agents/skills", "/shared/team-skills"]
-        # Substitute ${HERMES_SKILL_DIR} and ${HERMES_SESSION_ID} in SKILL.md
+        # Substitute ${OPENAMER_SKILL_DIR} and ${OPENAMER_SESSION_ID} in SKILL.md
         # content with the absolute skill directory and the active session id
         # before the agent sees it.  Lets skill authors reference bundled
         # scripts without the agent having to join paths.
@@ -2769,7 +2769,7 @@ DEFAULT_CONFIG = {
         # through tools.slash_confirm — native yes/no buttons on Telegram,
         # Discord, and Slack; text fallback elsewhere.  Users click "Always
         # Approve" to silence the prompt permanently; that flips this key to
-        # false.  TUI has its own modal overlay (HERMES_TUI_NO_CONFIRM=1 to
+        # false.  TUI has its own modal overlay (OPENAMER_TUI_NO_CONFIRM=1 to
         # opt out there).
         "destructive_slash_confirm": True,
     },
@@ -2805,7 +2805,7 @@ DEFAULT_CONFIG = {
     "hooks": {},
 
     # Auto-accept shell-hook registrations without a TTY prompt.  Also
-    # toggleable per-invocation via --accept-hooks or HERMES_ACCEPT_HOOKS=1.
+    # toggleable per-invocation via --accept-hooks or OPENAMER_ACCEPT_HOOKS=1.
     # Gateway / cron / non-interactive runs need this (or one of the other
     # channels) to pick up newly-added hooks.
     "hooks_auto_accept": False,
@@ -2899,7 +2899,7 @@ DEFAULT_CONFIG = {
         # Maximum number of due jobs to run in parallel per tick.
         # null/0 = unbounded (limited only by thread count).
         # 1 = serial (pre-v0.9 behaviour).
-        # Also overridable via HERMES_CRON_MAX_PARALLEL env var.
+        # Also overridable via OPENAMER_CRON_MAX_PARALLEL env var.
         "max_parallel_jobs": None,
         # Per-job output-file retention: save_job_output keeps the N most
         # recent .md files and prunes older ones. 0 or negative disables
@@ -2909,7 +2909,7 @@ DEFAULT_CONFIG = {
         # SessionDB opens/migrates state.db synchronously and has no timeout
         # of its own against a wedged sqlite3.connect. An unbounded hang here
         # wedges the job's dispatch guard forever. Also overridable via
-        # HERMES_CRON_SESSION_DB_TIMEOUT env var. 0 = unlimited (skip the bound).
+        # OPENAMER_CRON_SESSION_DB_TIMEOUT env var. 0 = unlimited (skip the bound).
         "session_db_timeout_seconds": 10,
     },
 
@@ -3076,7 +3076,7 @@ DEFAULT_CONFIG = {
         # if your gateway hits "discord connect timed out" / "Timeout waiting
         # for connection to Discord" restart loops. ``0`` or negative disables
         # the timeout entirely (wait indefinitely). Bridged at startup to the
-        # internal HERMES_GATEWAY_PLATFORM_CONNECT_TIMEOUT env var, which still
+        # internal OPENAMER_GATEWAY_PLATFORM_CONNECT_TIMEOUT env var, which still
         # works as a manual override and wins if set explicitly.
         "platform_connect_timeout": 30,
 
@@ -3096,7 +3096,7 @@ DEFAULT_CONFIG = {
 
         # Scale-to-zero idle detection (Phase 0). The gateway watches for idle
         # and, when an instance is opted in via the NAS "Labs" toggle (carried as
-        # the HERMES_SCALE_TO_ZERO env stamp) AND messaging is relay-only/absent
+        # the OPENAMER_SCALE_TO_ZERO env stamp) AND messaging is relay-only/absent
         # AND a wakeUrl is registered, drives the relay transport dormant so the
         # platform (e.g. Fly autostop:"suspend") can suspend the now-idle machine;
         # it wakes on the connector's wakeUrl poke. This is the idle TIMEOUT only
@@ -3129,7 +3129,7 @@ DEFAULT_CONFIG = {
         # booting so a crash-looping supervisor (launchd KeepAlive, systemd
         # Restart=always) can't hammer the process into a respawn storm.
         # ``max_starts <= 0`` disables the breaker. The env vars
-        # ``HERMES_GATEWAY_MAX_STARTS`` / ``HERMES_GATEWAY_START_WINDOW_S``
+        # ``OPENAMER_GATEWAY_MAX_STARTS`` / ``OPENAMER_GATEWAY_START_WINDOW_S``
         # override these defaults for escape-hatch use.
         "respawn_storm": {
             "max_starts": 5,
@@ -3170,7 +3170,7 @@ DEFAULT_CONFIG = {
         # ``trust_recent_files_seconds`` window. Recommended for
         # public-facing gateways where prompt injection from one user
         # shouldn't be able to exfiltrate the host's secrets to that same
-        # user. Bridged to HERMES_MEDIA_DELIVERY_STRICT.
+        # user. Bridged to OPENAMER_MEDIA_DELIVERY_STRICT.
         "strict": False,
         # Extra directories from which model-emitted bare file paths may be
         # uploaded as native gateway attachments. Files inside the OpenAmer
@@ -3178,7 +3178,7 @@ DEFAULT_CONFIG = {
         # are always trusted; this list adds operator-controlled roots
         # (project dirs, scratch dirs, mounted shares). Accepts a list of
         # absolute paths or a single os.pathsep-separated string. Bridged
-        # to HERMES_MEDIA_ALLOW_DIRS at gateway startup. Tilde paths are
+        # to OPENAMER_MEDIA_ALLOW_DIRS at gateway startup. Tilde paths are
         # expanded. Honored in both default and strict mode.
         "media_delivery_allow_dirs": [],
         # When true, files whose mtime is within ``trust_recent_files_seconds``
@@ -3187,11 +3187,11 @@ DEFAULT_CONFIG = {
         # PDFs the agent writes into a working directory. System paths
         # (/etc, /proc, ~/.ssh, ~/.aws, etc.) remain blocked regardless.
         # Disable to fall back to pure-allowlist mode. Bridged to
-        # HERMES_MEDIA_TRUST_RECENT_FILES. Only consulted when ``strict``
+        # OPENAMER_MEDIA_TRUST_RECENT_FILES. Only consulted when ``strict``
         # is true; in default mode the denylist alone gates delivery.
         "trust_recent_files": True,
         # Recency window in seconds. 600 (10 min) comfortably covers a
-        # multi-tool agent turn. Bridged to HERMES_MEDIA_TRUST_RECENT_SECONDS.
+        # multi-tool agent turn. Bridged to OPENAMER_MEDIA_TRUST_RECENT_SECONDS.
         # Only consulted when ``strict`` is true.
         "trust_recent_files_seconds": 600,
 
@@ -3314,13 +3314,13 @@ DEFAULT_CONFIG = {
         # get index-speed exact matching instead of LIKE full-table scans.
         # True (default): use the index when the extension is present; the
         # setting is inert when it isn't. False: never load the extension or
-        # serve the cjk index. Bridged to HERMES_CJK_FTS (internal carrier).
+        # serve the cjk index. Bridged to OPENAMER_CJK_FTS (internal carrier).
         "cjk_fts": True,
         # Slow session-search log threshold in milliseconds: searches at or
         # above it log one INFO line with the routing path taken (fts_cjk /
         # fts5 / trigram / like_scan) so latency regressions stay
         # attributable per query shape. 0 logs every search. Bridged to
-        # HERMES_SEARCH_SLOW_MS (internal carrier).
+        # OPENAMER_SEARCH_SLOW_MS (internal carrier).
         "search_slow_ms": 1000,
     },
 
@@ -3666,7 +3666,7 @@ DEFAULT_CONFIG = {
         #   true    - always disable GPU acceleration (software rendering).
         #             Use on no-GPU VMs / Proxmox hosts where the GPU path hangs.
         #   false   - always keep GPU acceleration on, even over a remote display.
-        # Bridged to the HERMES_DESKTOP_DISABLE_GPU env var the Electron app reads.
+        # Bridged to the OPENAMER_DESKTOP_DISABLE_GPU env var the Electron app reads.
         "disable_gpu": "auto",
         # Auto-continue a turn that was killed mid-run by an app/backend/machine
         # crash: resuming that session re-submits the interrupted prompt (shown
@@ -4458,21 +4458,21 @@ OPTIONAL_ENV_VARS = {
     },
 
     # ── Langfuse observability ──
-    "HERMES_LANGFUSE_PUBLIC_KEY": {
+    "OPENAMER_LANGFUSE_PUBLIC_KEY": {
         "description": "Langfuse project public key (pk-lf-...)",
         "prompt": "Langfuse public key",
         "url": "https://cloud.langfuse.com",
         "password": False,
         "category": "tool",
     },
-    "HERMES_LANGFUSE_SECRET_KEY": {
+    "OPENAMER_LANGFUSE_SECRET_KEY": {
         "description": "Langfuse project secret key (sk-lf-...)",
         "prompt": "Langfuse secret key",
         "url": "https://cloud.langfuse.com",
         "password": True,
         "category": "tool",
     },
-    "HERMES_LANGFUSE_BASE_URL": {
+    "OPENAMER_LANGFUSE_BASE_URL": {
         "description": "Langfuse server URL (default: https://cloud.langfuse.com)",
         "prompt": "Langfuse server URL (leave empty for cloud.langfuse.com)",
         "url": None,
@@ -4647,7 +4647,7 @@ OPTIONAL_ENV_VARS = {
         "advanced": True,
     },
     "MATRIX_DEVICE_ID": {
-        "description": "Stable Matrix device ID for E2EE persistence across restarts (e.g. HERMES_BOT)",
+        "description": "Stable Matrix device ID for E2EE persistence across restarts (e.g. OPENAMER_BOT)",
         "prompt": "Matrix device ID (stable across restarts)",
         "url": None,
         "password": False,
@@ -4863,21 +4863,21 @@ OPTIONAL_ENV_VARS = {
         "password": True,
         "category": "setting",
     },
-    # HERMES_TOOL_PROGRESS and HERMES_TOOL_PROGRESS_MODE are deprecated —
+    # OPENAMER_TOOL_PROGRESS and OPENAMER_TOOL_PROGRESS_MODE are deprecated —
     # now configured via display.tool_progress in config.yaml (off|new|all|verbose|log).
     # The gateway still falls back to these env vars for backward compatibility,
     # so they live in _EXTRA_ENV_KEYS (known to reload and compatibility paths) but
     # are intentionally NOT listed here: OPTIONAL_ENV_VARS feeds user-facing
     # surfaces (dashboard keys page, setup checklists) and deprecated knobs
     # shouldn't be offered there.
-    "HERMES_PREFILL_MESSAGES_FILE": {
+    "OPENAMER_PREFILL_MESSAGES_FILE": {
         "description": "Path to JSON file with ephemeral prefill messages for few-shot priming",
         "prompt": "Prefill messages file path",
         "url": None,
         "password": False,
         "category": "setting",
     },
-    "HERMES_EPHEMERAL_SYSTEM_PROMPT": {
+    "OPENAMER_EPHEMERAL_SYSTEM_PROMPT": {
         "description": "Ephemeral system prompt injected at API-call time (never persisted to sessions)",
         "prompt": "Ephemeral system prompt",
         "url": None,
@@ -6065,14 +6065,14 @@ def migrate_config(interactive: bool = True, quiet: bool = False) -> Dict[str, A
         if not isinstance(display, dict):
             display = {}
         if "tool_progress" not in display:
-            old_enabled = get_env_value("HERMES_TOOL_PROGRESS")
-            old_mode = get_env_value("HERMES_TOOL_PROGRESS_MODE")
+            old_enabled = get_env_value("OPENAMER_TOOL_PROGRESS")
+            old_mode = get_env_value("OPENAMER_TOOL_PROGRESS_MODE")
             if old_enabled and old_enabled.lower() in {"false", "0", "no"}:
                 display["tool_progress"] = "off"
-                results["config_added"].append("display.tool_progress=off (from HERMES_TOOL_PROGRESS=false)")
+                results["config_added"].append("display.tool_progress=off (from OPENAMER_TOOL_PROGRESS=false)")
             elif old_mode and old_mode.lower() in {"new", "all", "verbose"}:
                 display["tool_progress"] = old_mode.lower()
-                results["config_added"].append(f"display.tool_progress={old_mode.lower()} (from HERMES_TOOL_PROGRESS_MODE)")
+                results["config_added"].append(f"display.tool_progress={old_mode.lower()} (from OPENAMER_TOOL_PROGRESS_MODE)")
             else:
                 display["tool_progress"] = "all"
                 results["config_added"].append("display.tool_progress=all (default)")
@@ -8252,13 +8252,13 @@ def custom_endpoint_key_env(identity: str) -> str:
     - It keys off the endpoint's own identity, not just its hostname, so two
       endpoints on one host (``127.0.0.1:8000`` and ``:8001``) get separate
       slots instead of the second save clobbering the first's credential.
-    - The fixed ``HERMES_CUSTOM_`` prefix keeps the result a valid POSIX name
+    - The fixed ``OPENAMER_CUSTOM_`` prefix keeps the result a valid POSIX name
       even when the slug starts with a digit, which every IP-based local
       endpoint does (``127.0.0.1`` → ``127_0_0_1``). ``save_env_value``
       rejects digit-leading names outright.
     """
     slug = re.sub(r"[^A-Z0-9]+", "_", str(identity or "").upper()).strip("_")
-    return f"HERMES_CUSTOM_{slug}_API_KEY" if slug else "HERMES_CUSTOM_API_KEY"
+    return f"OPENAMER_CUSTOM_{slug}_API_KEY" if slug else "OPENAMER_CUSTOM_API_KEY"
 
 
 def remove_env_value(key: str) -> bool:
@@ -8576,14 +8576,14 @@ def show_config():
     print(f"  Model:        {redact_config_value(config.get('model', 'not set'))}")
     _cfg_max_turns = config.get('agent', {}).get('max_turns', DEFAULT_CONFIG['agent']['max_turns'])
     print(f"  Max turns:    {_cfg_max_turns}")
-    # Warn on stale HERMES_MAX_ITERATIONS ghost in .env that disagrees with
+    # Warn on stale OPENAMER_MAX_ITERATIONS ghost in .env that disagrees with
     # config.yaml (issue #17534). Read the .env FILE directly so we catch the
     # ghost even when the gateway bridge already overrode os.environ.
     try:
-        _env_ghost = load_env().get("HERMES_MAX_ITERATIONS")
+        _env_ghost = load_env().get("OPENAMER_MAX_ITERATIONS")
         if _env_ghost is not None and str(_env_ghost).strip() != str(_cfg_max_turns).strip():
             print(color(
-                f"                ⚠ .env has stale HERMES_MAX_ITERATIONS={_env_ghost} "
+                f"                ⚠ .env has stale OPENAMER_MAX_ITERATIONS={_env_ghost} "
                 f"(run 'openamer doctor --fix' to remove)",
                 Colors.YELLOW,
             ))

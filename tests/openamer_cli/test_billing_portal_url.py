@@ -18,7 +18,7 @@ from openamer_cli.nous_billing import (
 
 @pytest.fixture
 def _preview(monkeypatch):
-    monkeypatch.setenv("HERMES_PORTAL_BASE_URL", "https://nas-pr-412.nousresearch.wtf")
+    monkeypatch.setenv("OPENAMER_PORTAL_BASE_URL", "https://nas-pr-412.nousresearch.wtf")
 
 
 def test_absolutize_resolves_relative(_preview):

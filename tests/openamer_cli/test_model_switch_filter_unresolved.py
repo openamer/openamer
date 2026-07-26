@@ -18,7 +18,7 @@ def _rows_with_env(monkeypatch, env_name: str, provider: str) -> list[dict]:
             {provider: provider},
         ),
         patch("openamer_cli.models.cached_provider_model_ids", return_value=["model-a"]),
-        patch("openamer_cli.providers.HERMES_OVERLAYS", {}),
+        patch("openamer_cli.providers.OPENAMER_OVERLAYS", {}),
     ):
         return list_authenticated_providers(max_models=5)
 

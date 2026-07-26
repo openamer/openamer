@@ -130,10 +130,10 @@ class TestGmiModelCatalog:
 
 class TestGmiProvidersModule:
     def test_overlay_exists(self):
-        from openamer_cli.providers import HERMES_OVERLAYS
+        from openamer_cli.providers import OPENAMER_OVERLAYS
 
-        assert "gmi" in HERMES_OVERLAYS
-        overlay = HERMES_OVERLAYS["gmi"]
+        assert "gmi" in OPENAMER_OVERLAYS
+        overlay = OPENAMER_OVERLAYS["gmi"]
         assert overlay.transport == "openai_chat"
         assert overlay.extra_env_vars == ("GMI_API_KEY",)
         assert overlay.base_url_override == "https://api.gmi-serving.com/v1"

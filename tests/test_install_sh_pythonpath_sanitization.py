@@ -27,4 +27,4 @@ def test_openamer_launcher_wrapper_clears_python_env_before_exec() -> None:
     assert 'cat > "$command_link_dir/openamer" <<EOF' in text
     assert 'unset PYTHONPATH' in text
     assert 'unset PYTHONHOME' in text
-    assert 'exec "$HERMES_BIN" "\\$@"' in text
+    assert 'exec "$OPENAMER_BIN" "\\$@"' in text

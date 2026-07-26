@@ -4,12 +4,12 @@ Regression guard for the hosted-chat failure where the embedded dashboard
 Chat tab died with a 502 / "[session ended]". Root cause: the image installs
 only a subset of the npm monorepo workspaces (root/web/ui-tui, never apps/*),
 so the actualized node_modules permanently disagrees with the canonical
-package-lock.json. Without HERMES_TUI_DIR set, ``_make_tui_argv`` falls
+package-lock.json. Without OPENAMER_TUI_DIR set, ``_make_tui_argv`` falls
 through to ``_tui_need_npm_install`` (which returns True forever) and tries a
 runtime ``npm install`` that can never converge and races itself across
 concurrent /api/pty connections → ENOTEMPTY.
 
-The fix is ``ENV HERMES_TUI_DIR=/opt/openamer/ui-tui`` in the Dockerfile, which
+The fix is ``ENV OPENAMER_TUI_DIR=/opt/openamer/ui-tui`` in the Dockerfile, which
 makes the launcher take the prebuilt-bundle fast path (``node --expose-gc
 .../dist/entry.js``) and skip the install check entirely. These tests assert
 that invariant holds in the built image.
@@ -40,15 +40,15 @@ def _exec_py(image: str, py: str) -> str:
 
 
 def test_openamer_tui_dir_env_is_set(built_image: str) -> None:
-    """HERMES_TUI_DIR must point at the prebuilt bundle dir in the image."""
+    """OPENAMER_TUI_DIR must point at the prebuilt bundle dir in the image."""
     r = subprocess.run(
         ["docker", "run", "--rm", "--entrypoint", "sh", built_image,
-         "-c", 'printf "%s" "$HERMES_TUI_DIR"'],
+         "-c", 'printf "%s" "$OPENAMER_TUI_DIR"'],
         capture_output=True, text=True, timeout=60,
     )
     assert r.returncode == 0, r.stderr[-2000:]
     assert r.stdout.strip() == "/opt/openamer/ui-tui", (
-        f"HERMES_TUI_DIR={r.stdout.strip()!r} (expected /opt/openamer/ui-tui)"
+        f"OPENAMER_TUI_DIR={r.stdout.strip()!r} (expected /opt/openamer/ui-tui)"
     )
 
 
@@ -71,7 +71,7 @@ def test_prebuilt_bundle_present_and_no_runtime_install(built_image: str) -> Non
     )
     out = json.loads(_exec_py(built_image, py))
     assert out["dist_entry_exists"], "prebuilt ui-tui/dist/entry.js missing from image"
-    # With HERMES_TUI_DIR set, _make_tui_argv returns the prebuilt path BEFORE
+    # With OPENAMER_TUI_DIR set, _make_tui_argv returns the prebuilt path BEFORE
     # ever reaching the install check — so the resolved argv is what matters.
     assert out["uses_prebuilt"], f"launcher did not take prebuilt path: argv={out['argv']!r}"
     assert "npm" not in out["argv"][0].lower(), (

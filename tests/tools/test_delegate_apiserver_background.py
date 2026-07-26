@@ -8,8 +8,8 @@ turn (raw session id bound as the api_server chat_id) dispatches async; only
 session-id-less one-shot requests keep the sync fallback.
 
 The wake target must be captured from the request-scoped chat_id binding,
-NOT from HERMES_SESSION_ID: constructing a child agent calls
-set_current_session_id(child.session_id), clobbering the HERMES_SESSION_ID
+NOT from OPENAMER_SESSION_ID: constructing a child agent calls
+set_current_session_id(child.session_id), clobbering the OPENAMER_SESSION_ID
 ContextVar and os.environ with the subagent's internal id before the
 dispatch code reads it — the fake child build below reproduces that clobber.
 """
@@ -26,7 +26,7 @@ from tools.process_registry import process_registry
 
 @pytest.fixture(autouse=True)
 def _clean_queue_and_context(monkeypatch):
-    monkeypatch.delenv("HERMES_SESSION_ID", raising=False)
+    monkeypatch.delenv("OPENAMER_SESSION_ID", raising=False)
     while not process_registry.completion_queue.empty():
         try:
             process_registry.completion_queue.get_nowait()
@@ -46,7 +46,7 @@ def _clean_queue_and_context(monkeypatch):
     # other test modules.
     import os
 
-    os.environ.pop("HERMES_SESSION_ID", None)
+    os.environ.pop("OPENAMER_SESSION_ID", None)
     while not process_registry.completion_queue.empty():
         try:
             process_registry.completion_queue.get_nowait()
@@ -94,7 +94,7 @@ def _patch_delegate(monkeypatch):
     def clobbering_build_child(**kw):
         # Reproduce what the real _build_child_agent -> AIAgent -> agent_init
         # path does: it synchronizes the child's internal session id into the
-        # HERMES_SESSION_ID ContextVar + os.environ, clobbering the spawner's
+        # OPENAMER_SESSION_ID ContextVar + os.environ, clobbering the spawner's
         # id ~milliseconds before delegate_tool dispatches the batch.
         from gateway.session_context import set_current_session_id
 
@@ -108,11 +108,11 @@ def _patch_delegate(monkeypatch):
 
 
 def test_apiserver_session_with_id_dispatches_background(monkeypatch):
-    """async_delivery=False + a raw session id (HERMES_SESSION_ID) →
+    """async_delivery=False + a raw session id (OPENAMER_SESSION_ID) →
     background dispatch (the completion wakes the session via the
     api_server self-post), NOT the forced-sync fallback."""
     dt = _patch_delegate(monkeypatch)
-    monkeypatch.setenv("HERMES_SESSION_ID", "raw-sid-7")
+    monkeypatch.setenv("OPENAMER_SESSION_ID", "raw-sid-7")
     set_session_vars(
         platform="api_server",
         chat_id="raw-sid-7",
@@ -136,7 +136,7 @@ def test_apiserver_session_with_id_dispatches_background(monkeypatch):
     # wake to the REAL session (session_key alone is the raw id here, which
     # carries no parseable routing metadata). Crucially this is the SPAWNER's
     # id, not the subagent-internal id the child build clobbered
-    # HERMES_SESSION_ID with (see clobbering_build_child).
+    # OPENAMER_SESSION_ID with (see clobbering_build_child).
     assert evt["origin_session_id"] == "raw-sid-7"
 
 
@@ -147,7 +147,7 @@ def test_apiserver_session_with_id_dispatches_background(monkeypatch):
 
 def test_origin_helper_survives_child_session_clobber(monkeypatch):
     """set_current_session_id (child agent construction) rewrites the
-    HERMES_SESSION_ID ContextVar + env, but the request-scoped chat_id
+    OPENAMER_SESSION_ID ContextVar + env, but the request-scoped chat_id
     binding is untouched — the helper must keep returning the spawner's id."""
     from gateway.session_context import set_current_session_id
     from tools.async_delegation import _current_origin_session_id

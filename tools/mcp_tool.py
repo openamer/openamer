@@ -1751,7 +1751,7 @@ class ElicitationHandler:
         # normalizes the answer to one of accept / decline / cancel.
         #
         # The recv-loop task that fires this callback does NOT inherit
-        # the agent's contextvars (HERMES_SESSION_PLATFORM etc.). When
+        # the agent's contextvars (OPENAMER_SESSION_PLATFORM etc.). When
         # the MCP tool wrapper captured the agent's context onto
         # owner._pending_call_context we replay it here via
         # contextvars.Context.run so the gateway-platform detection in
@@ -1879,7 +1879,7 @@ class MCPServerTask:
         # contextvars snapshot of the agent task that's currently in
         # session.call_tool(). The MCP recv loop dispatches incoming
         # elicitation/create requests on a SEPARATE asyncio task whose
-        # context doesn't inherit HERMES_SESSION_PLATFORM, so the
+        # context doesn't inherit OPENAMER_SESSION_PLATFORM, so the
         # elicitation handler has no way to detect the gateway session
         # that triggered the call. Capturing the agent's context here
         # and replaying it inside the elicitation callback restores
@@ -4436,7 +4436,7 @@ def _load_mcp_config() -> Dict[str, dict]:
         from openamer_cli.config import load_config
         from utils import env_var_enabled as _env_enabled
 
-        if _env_enabled("HERMES_SAFE_MODE"):
+        if _env_enabled("OPENAMER_SAFE_MODE"):
             return {}
         config = load_config()
         servers = config.get("mcp_servers")

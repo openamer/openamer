@@ -549,7 +549,7 @@ export async function setupPackagedApp(): Promise<PackagedAppFixture> {
   // Clear dev-server + openamer-root overrides — the packaged binary
   // should use its own bundled renderer, not the dev checkout.
   delete (env as Record<string, string | undefined>).OPENAMER_DESKTOP_DEV_SERVER
-  delete (env as Record<string, string | undefined>).OPENAMER_DESKTOP_HERMES
+  delete (env as Record<string, string | undefined>).OPENAMER_DESKTOP_OVERRIDE
   delete (env as Record<string, string | undefined>).OPENAMER_DESKTOP_OPENAMER_ROOT
 
   const app = await _electron.launch({

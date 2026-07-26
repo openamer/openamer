@@ -421,7 +421,7 @@ def test_get_platform_tools_preserves_explicit_empty_selection():
     # An explicit empty list disables every CONFIGURABLE toolset (web,
     # terminal, memory, …). Non-configurable platform toolsets that ride
     # along on the platform's default composite (e.g. `kanban`, whose tools
-    # live in _HERMES_CORE_TOOLS but aren't user-toggleable) are still
+    # live in _OPENAMER_CORE_TOOLS but aren't user-toggleable) are still
     # auto-recovered by _get_platform_tools so saving via `openamer tools`
     # doesn't silently drop them. The contract this test guards is the
     # configurable side: nothing the user could have checked in the TUI
@@ -1208,11 +1208,11 @@ def test_computer_use_skips_configuration_when_cua_driver_already_installed():
 
 
 def test_computer_use_respects_custom_cua_driver_command():
-    """The setup gate should match runtime's HERMES_CUA_DRIVER_CMD override."""
+    """The setup gate should match runtime's OPENAMER_CUA_DRIVER_CMD override."""
     def fake_which(name: str):
         return "/opt/bin/custom-cua" if name == "custom-cua" else None
 
-    with patch.dict("os.environ", {"HERMES_CUA_DRIVER_CMD": "custom-cua"}), \
+    with patch.dict("os.environ", {"OPENAMER_CUA_DRIVER_CMD": "custom-cua"}), \
          patch("shutil.which", side_effect=fake_which):
         assert _toolset_needs_configuration_prompt("computer_use", {}) is False
 
@@ -1222,7 +1222,7 @@ def test_computer_use_blank_custom_driver_command_falls_back_to_default():
     def fake_which(name: str):
         return "/usr/local/bin/cua-driver" if name == "cua-driver" else None
 
-    with patch.dict("os.environ", {"HERMES_CUA_DRIVER_CMD": "   "}), \
+    with patch.dict("os.environ", {"OPENAMER_CUA_DRIVER_CMD": "   "}), \
          patch("shutil.which", side_effect=fake_which):
         assert _toolset_needs_configuration_prompt("computer_use", {}) is False
 
@@ -1232,7 +1232,7 @@ def test_computer_use_post_setup_respects_custom_driver_command_when_installed()
     def fake_which(name: str):
         return "/opt/bin/custom-cua" if name == "custom-cua" else None
 
-    with patch.dict("os.environ", {"HERMES_CUA_DRIVER_CMD": "custom-cua"}), \
+    with patch.dict("os.environ", {"OPENAMER_CUA_DRIVER_CMD": "custom-cua"}), \
          patch("platform.system", return_value="Darwin"), \
          patch("shutil.which", side_effect=fake_which), \
          patch("subprocess.run") as run:
@@ -1242,7 +1242,7 @@ def test_computer_use_post_setup_respects_custom_driver_command_when_installed()
 
     run.assert_called_once()
     # Probe the resolved absolute path so thin GUI PATHs cannot reintroduce a
-    # bare-command miss after HERMES_CUA_DRIVER_CMD was looked up via which().
+    # bare-command miss after OPENAMER_CUA_DRIVER_CMD was looked up via which().
     assert run.call_args.args[0] == ["/opt/bin/custom-cua", "--version"]
 
 
@@ -1258,7 +1258,7 @@ def test_computer_use_post_setup_missing_override_does_not_accept_default_binary
             return None
         return None
 
-    with patch.dict("os.environ", {"HERMES_CUA_DRIVER_CMD": "custom-cua"}), \
+    with patch.dict("os.environ", {"OPENAMER_CUA_DRIVER_CMD": "custom-cua"}), \
          patch("platform.system", return_value="Darwin"), \
          patch("shutil.which", side_effect=fake_which), \
          patch("subprocess.run") as run:

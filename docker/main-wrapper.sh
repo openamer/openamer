@@ -36,7 +36,7 @@ if [ "$cur_uid" != 0 ] && [ "$cur_uid" != "$(id -u openamer)" ]; then
 To make container-written files match your HOST user, don't use --user.
 Start as root (the default) and pass your host UID/GID instead:
 
-    docker run -e HERMES_UID=\$(id -u) -e HERMES_GID=\$(id -g) ...
+    docker run -e OPENAMER_UID=\$(id -u) -e OPENAMER_GID=\$(id -g) ...
 
 NAS users (Synology / unRAID / UGOS) can use the PUID/PGID aliases:
 
@@ -58,7 +58,7 @@ export HOME=/opt/data
 # Save the Docker -w (or default) working directory before init
 # scripts cd to /opt/data, so the container starts in the
 # directory the user requested.
-_openamer_orig_cwd="${HERMES_ORIG_CWD:-$PWD}"
+_openamer_orig_cwd="${OPENAMER_ORIG_CWD:-$PWD}"
 
 cd /opt/data
 # shellcheck disable=SC1091

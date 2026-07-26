@@ -71,7 +71,7 @@ def test_resolve_chat_argv_sets_active_session_file_env(monkeypatch):
         active_session_file="/tmp/openamer-active-session.json"
     )
 
-    assert env["HERMES_TUI_ACTIVE_SESSION_FILE"] == "/tmp/openamer-active-session.json"
+    assert env["OPENAMER_TUI_ACTIVE_SESSION_FILE"] == "/tmp/openamer-active-session.json"
 
 
 def test_channel_reconnect_resumes_active_session_file(pty_client, monkeypatch):

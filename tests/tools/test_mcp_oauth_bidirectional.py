@@ -48,9 +48,9 @@ async def test_openamer_provider_forwards_asend_values(tmp_path, monkeypatch):
     from pydantic import AnyUrl
 
     from tools.mcp_oauth import OpenAmerTokenStorage
-    from tools.mcp_oauth_manager import _HERMES_PROVIDER_CLS, reset_manager_for_tests
+    from tools.mcp_oauth_manager import _OPENAMER_PROVIDER_CLS, reset_manager_for_tests
 
-    assert _HERMES_PROVIDER_CLS is not None, "SDK OAuth types must be available"
+    assert _OPENAMER_PROVIDER_CLS is not None, "SDK OAuth types must be available"
 
     monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     reset_manager_for_tests()
@@ -84,7 +84,7 @@ async def test_openamer_provider_forwards_asend_values(tmp_path, monkeypatch):
         redirect_uris=[AnyUrl("http://127.0.0.1:12345/callback")],
         client_name="OpenAmer Agent",
     )
-    provider = _HERMES_PROVIDER_CLS(
+    provider = _OPENAMER_PROVIDER_CLS(
         server_name="srv",
         server_url="https://example.com/mcp",
         client_metadata=metadata,
@@ -130,9 +130,9 @@ async def test_openamer_provider_forwards_401_triggers_refresh(tmp_path, monkeyp
     from pydantic import AnyUrl
 
     from tools.mcp_oauth import OpenAmerTokenStorage
-    from tools.mcp_oauth_manager import _HERMES_PROVIDER_CLS, reset_manager_for_tests
+    from tools.mcp_oauth_manager import _OPENAMER_PROVIDER_CLS, reset_manager_for_tests
 
-    assert _HERMES_PROVIDER_CLS is not None
+    assert _OPENAMER_PROVIDER_CLS is not None
 
     monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     reset_manager_for_tests()
@@ -160,7 +160,7 @@ async def test_openamer_provider_forwards_401_triggers_refresh(tmp_path, monkeyp
         redirect_uris=[AnyUrl("http://127.0.0.1:12345/callback")],
         client_name="OpenAmer Agent",
     )
-    provider = _HERMES_PROVIDER_CLS(
+    provider = _OPENAMER_PROVIDER_CLS(
         server_name="srv",
         server_url="https://example.com/mcp",
         client_metadata=metadata,

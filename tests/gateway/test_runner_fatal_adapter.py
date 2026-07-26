@@ -135,7 +135,7 @@ async def test_retryable_fatal_queues_reconnect_after_cancellation_swallowing_di
     monkeypatch, tmp_path
 ):
     """A wedged old adapter cannot block runner-owned reconnect recovery."""
-    monkeypatch.setenv("HERMES_GATEWAY_ADAPTER_DISCONNECT_TIMEOUT", "0.01")
+    monkeypatch.setenv("OPENAMER_GATEWAY_ADAPTER_DISCONNECT_TIMEOUT", "0.01")
     config = GatewayConfig(
         platforms={Platform.WHATSAPP: PlatformConfig(enabled=True, token="token")},
         sessions_dir=tmp_path / "sessions",

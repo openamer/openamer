@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
 
-const BACKEND = process.env.HERMES_DASHBOARD_URL ?? "http://127.0.0.1:9119";
+const BACKEND = process.env.OPENAMER_DASHBOARD_URL ?? "http://127.0.0.1:9119";
 
 /**
  * In production the Python `openamer dashboard` server injects a one-shot
@@ -49,7 +49,7 @@ function openamerDevToken(): Plugin {
       } catch (err) {
         console.warn(
           `[openamer] Dashboard at ${BACKEND} unreachable — ` +
-            `start it with \`openamer dashboard\` or set HERMES_DASHBOARD_URL. ` +
+            `start it with \`openamer dashboard\` or set OPENAMER_DASHBOARD_URL. ` +
             `(${(err as Error).message})`,
         );
       }

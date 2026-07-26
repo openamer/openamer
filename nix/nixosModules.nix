@@ -75,7 +75,7 @@
         lib.mapAttrsToList (name: value:
           if builtins.isPath value || lib.isStorePath value
           then "cp ${value} $out/${name}"
-          else "cat > $out/${name} <<'HERMES_DOC_EOF'\n${value}\nHERMES_DOC_EOF"
+          else "cat > $out/${name} <<'OPENAMER_DOC_EOF'\n${value}\nOPENAMER_DOC_EOF"
         ) cfg.documents
       )
     );
@@ -95,26 +95,26 @@
     containerEntrypoint = pkgs.writeShellScript "openamer-container-entrypoint" ''
       set -eu
 
-      HERMES_UID="''${HERMES_UID:?HERMES_UID must be set}"
-      HERMES_GID="''${HERMES_GID:?HERMES_GID must be set}"
+      OPENAMER_UID="''${OPENAMER_UID:?OPENAMER_UID must be set}"
+      OPENAMER_GID="''${OPENAMER_GID:?OPENAMER_GID must be set}"
 
-      # ── Group: ensure a group with GID=$HERMES_GID exists ──
+      # ── Group: ensure a group with GID=$OPENAMER_GID exists ──
       # Check by GID (not name) to avoid collisions with pre-existing groups
       # (e.g. GID 100 = "users" on Ubuntu)
-      EXISTING_GROUP=$(getent group "$HERMES_GID" 2>/dev/null | cut -d: -f1 || true)
+      EXISTING_GROUP=$(getent group "$OPENAMER_GID" 2>/dev/null | cut -d: -f1 || true)
       if [ -n "$EXISTING_GROUP" ]; then
         GROUP_NAME="$EXISTING_GROUP"
       else
         GROUP_NAME="openamer"
         if command -v groupadd >/dev/null 2>&1; then
-          groupadd -g "$HERMES_GID" "$GROUP_NAME"
+          groupadd -g "$OPENAMER_GID" "$GROUP_NAME"
         elif command -v addgroup >/dev/null 2>&1; then
-          addgroup -g "$HERMES_GID" "$GROUP_NAME" 2>/dev/null || true
+          addgroup -g "$OPENAMER_GID" "$GROUP_NAME" 2>/dev/null || true
         fi
       fi
 
-      # ── User: ensure a user with UID=$HERMES_UID exists ──
-      PASSWD_ENTRY=$(getent passwd "$HERMES_UID" 2>/dev/null || true)
+      # ── User: ensure a user with UID=$OPENAMER_UID exists ──
+      PASSWD_ENTRY=$(getent passwd "$OPENAMER_UID" 2>/dev/null || true)
       if [ -n "$PASSWD_ENTRY" ]; then
         TARGET_USER=$(echo "$PASSWD_ENTRY" | cut -d: -f1)
         TARGET_HOME=$(echo "$PASSWD_ENTRY" | cut -d: -f6)
@@ -122,13 +122,13 @@
         TARGET_USER="openamer"
         TARGET_HOME="/home/openamer"
         if command -v useradd >/dev/null 2>&1; then
-          useradd -u "$HERMES_UID" -g "$HERMES_GID" -m -d "$TARGET_HOME" -s /bin/bash "$TARGET_USER"
+          useradd -u "$OPENAMER_UID" -g "$OPENAMER_GID" -m -d "$TARGET_HOME" -s /bin/bash "$TARGET_USER"
         elif command -v adduser >/dev/null 2>&1; then
-          adduser -u "$HERMES_UID" -D -h "$TARGET_HOME" -s /bin/sh -G "$GROUP_NAME" "$TARGET_USER" 2>/dev/null || true
+          adduser -u "$OPENAMER_UID" -D -h "$TARGET_HOME" -s /bin/sh -G "$GROUP_NAME" "$TARGET_USER" 2>/dev/null || true
         fi
       fi
       mkdir -p "$TARGET_HOME"
-      chown "$HERMES_UID:$HERMES_GID" "$TARGET_HOME"
+      chown "$OPENAMER_UID:$OPENAMER_GID" "$TARGET_HOME"
       chmod 0750 "$TARGET_HOME"
 
       # Ensure OPENAMER_HOME is owned by the target user.
@@ -137,7 +137,7 @@
       # script sets for group access by hostUsers.  Only touch files with
       # wrong ownership so correctly-owned dirs keep their permission bits.
       if [ -n "''${OPENAMER_HOME:-}" ] && [ -d "$OPENAMER_HOME" ]; then
-        find "$OPENAMER_HOME" \! -user "$HERMES_UID" -exec chown "$HERMES_UID:$HERMES_GID" {} +
+        find "$OPENAMER_HOME" \! -user "$OPENAMER_UID" -exec chown "$OPENAMER_UID:$OPENAMER_GID" {} +
       fi
 
       # ── Provision apt packages (first boot only, cached in writable layer) ──
@@ -187,7 +187,7 @@
       fi
 
       if command -v setpriv >/dev/null 2>&1; then
-        exec setpriv --reuid="$HERMES_UID" --regid="$HERMES_GID" --init-groups "$@"
+        exec setpriv --reuid="$OPENAMER_UID" --regid="$OPENAMER_GID" --init-groups "$@"
       elif command -v su >/dev/null 2>&1; then
         exec su -s /bin/sh "$TARGET_USER" -c 'exec "$0" "$@"' -- "$@"
       else
@@ -767,13 +767,13 @@
           # container instead of running locally. Removed when container mode
           # is disabled so the host CLI falls back to native execution.
           ${if cfg.container.enable then ''
-            cat > ${cfg.stateDir}/.openamer/.container-mode <<'HERMES_CONTAINER_MODE_EOF'
+            cat > ${cfg.stateDir}/.openamer/.container-mode <<'OPENAMER_CONTAINER_MODE_EOF'
     # Written by NixOS activation script. Do not edit manually.
     backend=${cfg.container.backend}
     container_name=${containerName}
     exec_user=${cfg.user}
     openamer_bin=${containerDataDir}/current-package/bin/openamer
-    HERMES_CONTAINER_MODE_EOF
+    OPENAMER_CONTAINER_MODE_EOF
             chown ${cfg.user}:${cfg.group} ${cfg.stateDir}/.openamer/.container-mode
             chmod 0644 ${cfg.stateDir}/.openamer/.container-mode
           '' else ''
@@ -833,9 +833,9 @@
           ${lib.optionalString (cfg.environment != {} || cfg.environmentFiles != []) ''
             ENV_FILE="${cfg.stateDir}/.openamer/.env"
             install -o ${cfg.user} -g ${cfg.group} -m 0640 /dev/null "$ENV_FILE"
-            cat > "$ENV_FILE" <<'HERMES_NIX_ENV_EOF'
+            cat > "$ENV_FILE" <<'OPENAMER_NIX_ENV_EOF'
     ${envFileContent}
-    HERMES_NIX_ENV_EOF
+    OPENAMER_NIX_ENV_EOF
             ${lib.concatStringsSep "\n" (map (f: ''
               if [ -f "${f}" ]; then
                 echo "" >> "$ENV_FILE"
@@ -880,7 +880,7 @@
           environment = {
             HOME = cfg.stateDir;
             OPENAMER_HOME = "${cfg.stateDir}/.openamer";
-            HERMES_MANAGED = "true";
+            OPENAMER_MANAGED = "true";
             # Working directory is declared via terminal.cwd in the merged
             # config.yaml (see configJson above) — MESSAGING_CWD is deprecated.
           };
@@ -962,8 +962,8 @@
 
             if [ "$NEED_CREATE" = "true" ]; then
               # Resolve numeric UID/GID — passed to entrypoint for in-container user setup
-              HERMES_UID=$(${pkgs.coreutils}/bin/id -u ${cfg.user})
-              HERMES_GID=$(${pkgs.coreutils}/bin/id -g ${cfg.user})
+              OPENAMER_UID=$(${pkgs.coreutils}/bin/id -u ${cfg.user})
+              OPENAMER_GID=$(${pkgs.coreutils}/bin/id -g ${cfg.user})
 
               echo "Creating container..."
               ${containerBin} create \
@@ -974,10 +974,10 @@
                 --volume ${cfg.stateDir}:${containerDataDir} \
                 --volume ${cfg.stateDir}/home:${containerHomeDir} \
                 ${lib.concatStringsSep " " (map (v: "--volume ${v}") cfg.container.extraVolumes)} \
-                --env HERMES_UID="$HERMES_UID" \
-                --env HERMES_GID="$HERMES_GID" \
+                --env OPENAMER_UID="$OPENAMER_UID" \
+                --env OPENAMER_GID="$OPENAMER_GID" \
                 --env OPENAMER_HOME=${containerDataDir}/.openamer \
-                --env HERMES_MANAGED=true \
+                --env OPENAMER_MANAGED=true \
                 --env HOME=${containerHomeDir} \
                 ${lib.concatStringsSep " " cfg.container.extraOptions} \
                 ${cfg.container.image} \

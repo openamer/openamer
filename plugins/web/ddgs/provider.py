@@ -160,7 +160,7 @@ def _run_ddgs_search_bounded(query: str, safe_limit: int) -> list[dict[str, Any]
 
     env = _sanitize_subprocess_env(dict(os.environ))
     if _test_hook:
-        env["HERMES_DDGS_ALLOW_TEST_HOOKS"] = "1"
+        env["OPENAMER_DDGS_ALLOW_TEST_HOOKS"] = "1"
 
     # Running the worker as a script puts ``plugins/web/ddgs/`` on ``sys.path[0]``,
     # which breaks ``import plugins...``. Prepend the path entry that makes the

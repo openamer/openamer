@@ -41,7 +41,7 @@ def cron_env(tmp_path, monkeypatch):
     (openamer_home / "cron").mkdir()
     (openamer_home / "cron" / "output").mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
-    monkeypatch.setenv("HERMES_BUNDLES_DIR", str(openamer_home / "skill-bundles"))
+    monkeypatch.setenv("OPENAMER_BUNDLES_DIR", str(openamer_home / "skill-bundles"))
 
     # Patch the module-level SKILLS_DIR snapshots that `skill_view()`
     # uses. Without this, the tool resolves against the real

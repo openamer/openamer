@@ -11,7 +11,7 @@ Envelope::
     {"ok": true, "results": [...]}
     {"ok": false, "error": str}
 
-Optional test hooks (only when ``HERMES_DDGS_ALLOW_TEST_HOOKS=1``)::
+Optional test hooks (only when ``OPENAMER_DDGS_ALLOW_TEST_HOOKS=1``)::
     {"query": ..., "safe_limit": ..., "test_hook": "sleep"|"gil"|"success"|"error"|"empty"}
 """
 
@@ -86,7 +86,7 @@ def main() -> int:
 
     hook = request.get("test_hook")
     if hook:
-        if os.environ.get("HERMES_DDGS_ALLOW_TEST_HOOKS") != "1":
+        if os.environ.get("OPENAMER_DDGS_ALLOW_TEST_HOOKS") != "1":
             _write_envelope(
                 {"ok": False, "error": "test_hook refused (hooks not enabled)"}
             )

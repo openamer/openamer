@@ -740,7 +740,7 @@ class TestXAIProviderOAuthPath:
         # Force the env-var fallback to fail so resolution must go via OAuth.
         monkeypatch.delenv("XAI_API_KEY", raising=False)
         monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
-        monkeypatch.setenv("HERMES_XAI_BASE_URL", "https://proxy.x.ai/v1/")
+        monkeypatch.setenv("OPENAMER_XAI_BASE_URL", "https://proxy.x.ai/v1/")
         (tmp_path / "auth.json").write_text(json.dumps({
             "version": 1,
             "active_provider": "xai-oauth",

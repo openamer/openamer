@@ -10,7 +10,7 @@ atexit PID-file cleanup, so the next start dies with "PID file race lost"
 
 The fix routes both teardown loops through `_bounded_adapter_teardown`,
 which wraps each await in the existing per-adapter timeout budget
-(HERMES_GATEWAY_ADAPTER_DISCONNECT_TIMEOUT) and always returns.
+(OPENAMER_GATEWAY_ADAPTER_DISCONNECT_TIMEOUT) and always returns.
 """
 
 import asyncio
@@ -49,7 +49,7 @@ async def test_teardown_calls_both_methods(bare_runner):
 @pytest.mark.asyncio
 async def test_teardown_bounds_hanging_disconnect(bare_runner, monkeypatch, caplog):
     """A wedged disconnect() must time out instead of hanging the loop."""
-    monkeypatch.setenv("HERMES_GATEWAY_ADAPTER_DISCONNECT_TIMEOUT", "0.01")
+    monkeypatch.setenv("OPENAMER_GATEWAY_ADAPTER_DISCONNECT_TIMEOUT", "0.01")
     adapter = MagicMock()
     adapter.cancel_background_tasks = AsyncMock(return_value=None)
 
@@ -71,7 +71,7 @@ async def test_teardown_bounds_hanging_disconnect(bare_runner, monkeypatch, capl
 @pytest.mark.asyncio
 async def test_teardown_bounds_hanging_cancel(bare_runner, monkeypatch, caplog):
     """A wedged cancel_background_tasks() must time out, then disconnect runs."""
-    monkeypatch.setenv("HERMES_GATEWAY_ADAPTER_DISCONNECT_TIMEOUT", "0.01")
+    monkeypatch.setenv("OPENAMER_GATEWAY_ADAPTER_DISCONNECT_TIMEOUT", "0.01")
     adapter = MagicMock()
 
     async def hang():
@@ -101,7 +101,7 @@ async def test_teardown_continues_after_cancellation_swallowing_background_cance
     unwinding.  The teardown deadline must release runner ownership promptly,
     then proceed to disconnect instead of waiting for that old task forever.
     """
-    monkeypatch.setenv("HERMES_GATEWAY_ADAPTER_DISCONNECT_TIMEOUT", "0.01")
+    monkeypatch.setenv("OPENAMER_GATEWAY_ADAPTER_DISCONNECT_TIMEOUT", "0.01")
     adapter = MagicMock()
     started = asyncio.Event()
     release = asyncio.Event()
@@ -165,7 +165,7 @@ async def test_teardown_profile_suffix_in_logs(bare_runner, caplog):
 @pytest.mark.asyncio
 async def test_teardown_timeout_zero_disables_bound(bare_runner, monkeypatch):
     """timeout=0 disables the wait_for wrapper but still calls through."""
-    monkeypatch.setenv("HERMES_GATEWAY_ADAPTER_DISCONNECT_TIMEOUT", "0")
+    monkeypatch.setenv("OPENAMER_GATEWAY_ADAPTER_DISCONNECT_TIMEOUT", "0")
     adapter = MagicMock()
     adapter.cancel_background_tasks = AsyncMock(return_value=None)
     adapter.disconnect = AsyncMock(return_value=None)

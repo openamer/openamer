@@ -1,7 +1,7 @@
 """Tests for _snapshot_from_credits_state — the dev-fixture /usage renderer.
 
 ``build_nous_credits_snapshot`` maps a live portal account; ``_snapshot_from_credits_state``
-maps a header-shaped CreditsState (e.g. a HERMES_DEV_CREDITS_FIXTURE) into the SAME
+maps a header-shaped CreditsState (e.g. a OPENAMER_DEV_CREDITS_FIXTURE) into the SAME
 /usage snapshot shape, so the gauge + magnitudes are exercisable offline. These lock
 the gauge math, the verbatim *_usd magnitudes (never parseFloat'd), the depletion line,
 and the dev-fixture marker.

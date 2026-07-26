@@ -19,7 +19,7 @@ def _provider_row(configured_models, *, max_models=None):
             "openamer_cli.models.cached_provider_model_ids",
             return_value=["live-a", "shared"],
         ),
-        patch("openamer_cli.providers.HERMES_OVERLAYS", {}),
+        patch("openamer_cli.providers.OPENAMER_OVERLAYS", {}),
         patch.dict("os.environ", {"DEEPSEEK_API_KEY": "test-key"}),
     ):
         rows = list_authenticated_providers(

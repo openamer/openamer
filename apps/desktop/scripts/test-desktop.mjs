@@ -261,7 +261,7 @@ function launchFresh() {
   env.OPENAMER_DESKTOP_TEST_MODE = 'fresh-install'
   env.OPENAMER_DESKTOP_USER_DATA_DIR = userDataDir
   env.OPENAMER_HOME = openamerHome
-  delete env.OPENAMER_DESKTOP_HERMES
+  delete env.OPENAMER_DESKTOP_OVERRIDE
   delete env.OPENAMER_DESKTOP_OPENAMER_ROOT
 
   const child = spawn(APP.binary, [], {

@@ -294,7 +294,7 @@ def uninstall_gateway_service():
 # The installer (``scripts/install.ps1``) does four Windows-only things that
 # ``remove_path_from_shell_configs`` / ``remove_wrapper_script`` don't cover:
 #
-#   1. Sets User-scope env vars ``OPENAMER_HOME`` and ``HERMES_GIT_BASH_PATH``
+#   1. Sets User-scope env vars ``OPENAMER_HOME`` and ``OPENAMER_GIT_BASH_PATH``
 #      via ``[Environment]::SetEnvironmentVariable(..., "User")``.  These
 #      don't live in ~/.bashrc — they're in the Windows registry at
 #      HKCU\Environment.
@@ -372,7 +372,7 @@ def remove_path_from_windows_registry(openamer_home: Path) -> list[str]:
 
 
 def remove_openamer_env_vars_windows() -> list[str]:
-    """Delete OPENAMER_HOME and HERMES_GIT_BASH_PATH from User-scope env vars."""
+    """Delete OPENAMER_HOME and OPENAMER_GIT_BASH_PATH from User-scope env vars."""
     try:
         import winreg
     except ImportError:
@@ -382,7 +382,7 @@ def remove_openamer_env_vars_windows() -> list[str]:
     try:
         with winreg.OpenKey(winreg.HKEY_CURRENT_USER, "Environment", 0,
                             winreg.KEY_READ | winreg.KEY_WRITE) as key:
-            for name in ("OPENAMER_HOME", "HERMES_GIT_BASH_PATH"):
+            for name in ("OPENAMER_HOME", "OPENAMER_GIT_BASH_PATH"):
                 try:
                     winreg.QueryValueEx(key, name)
                 except FileNotFoundError:
@@ -784,7 +784,7 @@ def _perform_uninstall(
         else:
             log_info("No OpenAmer-owned PATH entries in User environment")
 
-        log_info("Removing OPENAMER_HOME / HERMES_GIT_BASH_PATH User env vars...")
+        log_info("Removing OPENAMER_HOME / OPENAMER_GIT_BASH_PATH User env vars...")
         removed_env = remove_openamer_env_vars_windows()
         if removed_env:
             for name in removed_env:

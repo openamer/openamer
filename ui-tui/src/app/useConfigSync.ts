@@ -306,7 +306,7 @@ export function useConfigSync({
     // can run long enough to delay prompt.submit on the single stdio RPC pipe.
     // Environment flags are enough to initialize the UI bit; the heavier status
     // check still runs when the user opens /voice.
-    setVoiceEnabled(process.env.HERMES_VOICE === '1')
+    setVoiceEnabled(process.env.OPENAMER_VOICE === '1')
     quietRpc<ConfigMtimeResponse>(gw, 'config.get', { key: 'mtime' }).then(r => {
       mtimeRef.current = Number(r?.mtime ?? 0)
       // Seed the MCP revision baseline too: after a normal boot mtime is

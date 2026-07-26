@@ -80,11 +80,11 @@ const SESSION_DIR = getArg('session', path.join(process.env.HOME || '~', '.opena
 // Cache directories: the Python gateway passes the profile-aware paths via
 // env (OPENAMER_HOME-aware, new cache/ layout).  Fall back to the legacy
 // hardcoded locations for bridges launched outside the gateway.
-const IMAGE_CACHE_DIR = process.env.HERMES_IMAGE_CACHE_DIR
+const IMAGE_CACHE_DIR = process.env.OPENAMER_IMAGE_CACHE_DIR
   || path.join(process.env.HOME || '~', '.openamer', 'image_cache');
-const DOCUMENT_CACHE_DIR = process.env.HERMES_DOCUMENT_CACHE_DIR
+const DOCUMENT_CACHE_DIR = process.env.OPENAMER_DOCUMENT_CACHE_DIR
   || path.join(process.env.HOME || '~', '.openamer', 'document_cache');
-const AUDIO_CACHE_DIR = process.env.HERMES_AUDIO_CACHE_DIR
+const AUDIO_CACHE_DIR = process.env.OPENAMER_AUDIO_CACHE_DIR
   || path.join(process.env.HOME || '~', '.openamer', 'audio_cache');
 
 // Self-hash of this script file.  Reported in /health so the Python gateway

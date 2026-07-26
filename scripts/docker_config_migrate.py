@@ -51,8 +51,8 @@ def _restore_backups(backups: dict[Path, Path]) -> list[Path]:
 
 
 def main() -> int:
-    if env_var_enabled("HERMES_SKIP_CONFIG_MIGRATION"):
-        print("[config-migrate] HERMES_SKIP_CONFIG_MIGRATION is set; skipping config migration")
+    if env_var_enabled("OPENAMER_SKIP_CONFIG_MIGRATION"):
+        print("[config-migrate] OPENAMER_SKIP_CONFIG_MIGRATION is set; skipping config migration")
         return 0
 
     current_ver, latest_ver = check_config_version()

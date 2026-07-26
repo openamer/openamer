@@ -21,7 +21,7 @@ def kanban_home(tmp_path, monkeypatch):
     # tests write under ``tmp_path``. Without this, every artifact-delivery
     # test silently drops files because ``tmp_path`` isn't inside the
     # default ``MEDIA_DELIVERY_SAFE_ROOTS`` cache dirs.
-    monkeypatch.setenv("HERMES_MEDIA_ALLOW_DIRS", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_MEDIA_ALLOW_DIRS", str(tmp_path))
     kb.init_db()
     return home
 
@@ -505,9 +505,9 @@ async def test_notifier_uploads_artifacts_on_completion(kanban_home, tmp_path, m
     # ``_deliver_kanban_artifacts`` routes candidates through
     # ``BasePlatformAdapter.filter_local_delivery_paths``, which only accepts
     # paths under ``MEDIA_DELIVERY_SAFE_ROOTS`` or roots explicitly allowlisted
-    # via ``HERMES_MEDIA_ALLOW_DIRS``. Test fixtures live under ``tmp_path``,
+    # via ``OPENAMER_MEDIA_ALLOW_DIRS``. Test fixtures live under ``tmp_path``,
     # so allowlist it for the duration of the test.
-    monkeypatch.setenv("HERMES_MEDIA_ALLOW_DIRS", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_MEDIA_ALLOW_DIRS", str(tmp_path))
 
     # Materialize real files so os.path.isfile passes inside the helper.
     chart_path = tmp_path / "q3-revenue.png"
@@ -598,7 +598,7 @@ async def test_notifier_artifact_delivery_skips_missing_files(kanban_home, tmp_p
 
     # Allow ``tmp_path`` through the media-delivery safety filter. See the
     # companion test for the full explanation.
-    monkeypatch.setenv("HERMES_MEDIA_ALLOW_DIRS", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_MEDIA_ALLOW_DIRS", str(tmp_path))
 
     real_pdf = tmp_path / "real.pdf"
     real_pdf.write_bytes(b"%PDF-fake")

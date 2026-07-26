@@ -255,7 +255,7 @@ def _reset_stale_streak(agent) -> None:
 def _check_stale_giveup(agent) -> None:
     """Raise immediately when the consecutive-stale streak is past the
     give-up threshold — no network attempt, no stale-timeout wait."""
-    _giveup = env_int("HERMES_STREAM_STALE_GIVEUP", 5)
+    _giveup = env_int("OPENAMER_STREAM_STALE_GIVEUP", 5)
     _streak = _stale_streak(agent)
     if _giveup > 0 and _streak >= _giveup:
         raise RuntimeError(
@@ -280,7 +280,7 @@ def _derive_stream_stale_timeout(agent, api_kwargs: dict) -> float:
     if _cfg_stale is not None:
         _base = _cfg_stale
     else:
-        _base = env_float("HERMES_STREAM_STALE_TIMEOUT", 180.0)
+        _base = env_float("OPENAMER_STREAM_STALE_TIMEOUT", 180.0)
     _est_tokens = estimate_request_context_tokens(api_kwargs)
     if _est_tokens > 100_000:
         _timeout = max(_base, 300.0)
@@ -454,7 +454,7 @@ def direct_api_call(agent, api_kwargs: dict):
     (whose only job is interactive-interrupt responsiveness, which this context
     does not have) so the nested-pool deadlock (#62151) cannot occur. Because the
     request runs in-flight normally, the per-request OpenAI client's own httpx
-    timeout (provider ``request_timeout_seconds`` / ``HERMES_API_TIMEOUT``) bounds
+    timeout (provider ``request_timeout_seconds`` / ``OPENAMER_API_TIMEOUT``) bounds
     a genuinely hung provider — the same bound interactive calls already rely on.
     """
     _check_stale_giveup(agent)
@@ -652,8 +652,8 @@ def interruptible_api_call(agent, api_kwargs: dict):
     # failure mode emits an opening SSE frame and then stalls forever in SSL
     # read; for that we watch the gap since the last Codex stream event. This
     # matches Codex CLI's stream_idle_timeout model: any valid SSE event is
-    # activity. Operators can tune via HERMES_CODEX_TTFB_TIMEOUT_SECONDS and
-    # HERMES_CODEX_EVENT_STALE_TIMEOUT_SECONDS (0 disables each).
+    # activity. Operators can tune via OPENAMER_CODEX_TTFB_TIMEOUT_SECONDS and
+    # OPENAMER_CODEX_EVENT_STALE_TIMEOUT_SECONDS (0 disables each).
     _codex_watchdog_enabled = agent.api_mode == "codex_responses"
     _openai_codex_backend = _is_openai_codex_backend(agent)
     _est_tokens_for_codex_watchdog = estimate_request_context_tokens(api_kwargs)
@@ -675,9 +675,9 @@ def interruptible_api_call(agent, api_kwargs: dict):
     # indefinitely. The default sits ABOVE the maximum stale floor (1200s) so
     # it never clamps an intentionally-raised timeout for healthy large
     # requests — it is a backstop against unbounded growth, not a tighter
-    # limit. Tunable via HERMES_CODEX_HARD_TIMEOUT_SECONDS (set to 0 to
+    # limit. Tunable via OPENAMER_CODEX_HARD_TIMEOUT_SECONDS (set to 0 to
     # disable the ceiling entirely; that restores the pre-fix behavior).
-    _codex_hard_timeout = _env_float("HERMES_CODEX_HARD_TIMEOUT_SECONDS", 1500.0)
+    _codex_hard_timeout = _env_float("OPENAMER_CODEX_HARD_TIMEOUT_SECONDS", 1500.0)
     if (
         _codex_watchdog_enabled
         and _openai_codex_backend
@@ -700,14 +700,14 @@ def interruptible_api_call(agent, api_kwargs: dict):
     # had a chance to emit its first SSE event. Default to 120s — long enough to
     # clear normal backend admission / prompt prefill, short enough to still
     # reconnect promptly when the socket is genuinely wedged. Set
-    # HERMES_CODEX_TTFB_TIMEOUT_SECONDS=0 to disable this watchdog entirely.
+    # OPENAMER_CODEX_TTFB_TIMEOUT_SECONDS=0 to disable this watchdog entirely.
     _ttfb_enabled = _codex_watchdog_enabled
-    _ttfb_timeout = _env_float("HERMES_CODEX_TTFB_TIMEOUT_SECONDS", 120.0)
+    _ttfb_timeout = _env_float("OPENAMER_CODEX_TTFB_TIMEOUT_SECONDS", 120.0)
     if _ttfb_timeout <= 0:
         _ttfb_enabled = False
     elif _openai_codex_backend:
-        _ttfb_disable_above = _env_float("HERMES_CODEX_TTFB_DISABLE_ABOVE_TOKENS", 10_000.0)
-        _ttfb_strict = os.environ.get("HERMES_CODEX_TTFB_STRICT", "").strip().lower() in {
+        _ttfb_disable_above = _env_float("OPENAMER_CODEX_TTFB_DISABLE_ABOVE_TOKENS", 10_000.0)
+        _ttfb_strict = os.environ.get("OPENAMER_CODEX_TTFB_STRICT", "").strip().lower() in {
             "1", "true", "yes", "on"
         }
         if (
@@ -720,18 +720,18 @@ def interruptible_api_call(agent, api_kwargs: dict):
                 logger.info(
                     "Scaling openai-codex no-byte TTFB watchdog from %.0fs to %.0fs "
                     "for large request (context=~%s tokens >= %.0f). "
-                    "Set HERMES_CODEX_TTFB_STRICT=1 to keep the smaller cutoff.",
+                    "Set OPENAMER_CODEX_TTFB_STRICT=1 to keep the smaller cutoff.",
                     _ttfb_timeout,
                     _large_request_ttfb_timeout,
                     f"{_est_tokens_for_codex_watchdog:,}",
                     _ttfb_disable_above,
                 )
                 _ttfb_timeout = _large_request_ttfb_timeout
-        _ttfb_cap = _env_float("HERMES_CODEX_TTFB_MAX_SECONDS", 120.0)
+        _ttfb_cap = _env_float("OPENAMER_CODEX_TTFB_MAX_SECONDS", 120.0)
         if _ttfb_cap > 0 and _ttfb_timeout > _ttfb_cap:
             logger.info(
                 "Capping openai-codex no-byte TTFB timeout from %.0fs to %.0fs "
-                "(context=~%s tokens). Set HERMES_CODEX_TTFB_MAX_SECONDS to tune.",
+                "(context=~%s tokens). Set OPENAMER_CODEX_TTFB_MAX_SECONDS to tune.",
                 _ttfb_timeout,
                 _ttfb_cap,
                 f"{_est_tokens_for_codex_watchdog:,}",
@@ -740,7 +740,7 @@ def interruptible_api_call(agent, api_kwargs: dict):
 
     _codex_idle_enabled = _codex_watchdog_enabled
     _codex_idle_timeout = _env_float(
-        "HERMES_CODEX_EVENT_STALE_TIMEOUT_SECONDS",
+        "OPENAMER_CODEX_EVENT_STALE_TIMEOUT_SECONDS",
         _codex_idle_timeout_default,
     )
     if _codex_idle_timeout <= 0:
@@ -1306,7 +1306,7 @@ def build_assistant_message(agent, assistant_message, finish_reason: str) -> dic
     # If the model accidentally inlines a secret in its natural-language
     # response, catch it here at the persistence boundary so it never
     # reaches state.db, session_*.json, gateway delivery, or compression.
-    # Respects HERMES_REDACT_SECRETS via redact_sensitive_text — no-op
+    # Respects OPENAMER_REDACT_SECRETS via redact_sensitive_text — no-op
     # when disabled. (#19798)
     if isinstance(_san_content, str) and _san_content:
         from agent.redact import redact_sensitive_text
@@ -2479,7 +2479,7 @@ def interruptible_streaming_api_call(agent, api_kwargs: dict, *, on_first_delta=
                 # survive) waits a fresh interval rather than re-firing instantly.
                 _bedrock_last_event["t"] = time.time()
                 # Escalate across turns: raises RuntimeError once the streak
-                # crosses HERMES_STREAM_STALE_GIVEUP, so a persistently wedged
+                # crosses OPENAMER_STREAM_STALE_GIVEUP, so a persistently wedged
                 # Bedrock provider aborts fast instead of re-waiting the timeout.
                 _check_stale_giveup(agent)
                 # Streak still under the give-up threshold: end THIS call with a
@@ -2708,23 +2708,23 @@ def interruptible_streaming_api_call(agent, api_kwargs: dict, *, on_first_delta=
         """Stream a chat completions response."""
         import httpx as _httpx
         # Per-provider / per-model request_timeout_seconds (from config.yaml)
-        # wins over the HERMES_API_TIMEOUT env default if the user set it.
+        # wins over the OPENAMER_API_TIMEOUT env default if the user set it.
         _provider_timeout_cfg = get_provider_request_timeout(agent.provider, agent.model)
         _base_timeout = (
             _provider_timeout_cfg
             if _provider_timeout_cfg is not None
-            else env_float("HERMES_API_TIMEOUT", 1800.0)
+            else env_float("OPENAMER_API_TIMEOUT", 1800.0)
         )
         # Read timeout: config wins here too.  Otherwise use
-        # HERMES_STREAM_READ_TIMEOUT (default 120s) for cloud providers.
+        # OPENAMER_STREAM_READ_TIMEOUT (default 120s) for cloud providers.
         if _provider_timeout_cfg is not None:
             _stream_read_timeout = _provider_timeout_cfg
         else:
-            _stream_read_timeout = env_float("HERMES_STREAM_READ_TIMEOUT", 120.0)
+            _stream_read_timeout = env_float("OPENAMER_STREAM_READ_TIMEOUT", 120.0)
             # Local providers (Ollama, llama.cpp, vLLM) can take minutes for
             # prefill on large contexts before producing the first token.
             # Auto-increase the httpx read timeout unless the user explicitly
-            # overrode HERMES_STREAM_READ_TIMEOUT.
+            # overrode OPENAMER_STREAM_READ_TIMEOUT.
             if _stream_read_timeout == 120.0 and agent.base_url and is_local_endpoint(agent.base_url):
                 _stream_read_timeout = _base_timeout
                 logger.debug(
@@ -3337,7 +3337,7 @@ def interruptible_streaming_api_call(agent, api_kwargs: dict, *, on_first_delta=
     def _call():
         import httpx as _httpx
 
-        _max_stream_retries = env_int("HERMES_STREAM_RETRIES", 2)
+        _max_stream_retries = env_int("OPENAMER_STREAM_RETRIES", 2)
 
         try:
             for _stream_attempt in range(_max_stream_retries + 1):
@@ -3662,19 +3662,19 @@ def interruptible_streaming_api_call(agent, api_kwargs: dict, *, on_first_delta=
     if _cfg_stale is not None:
         _stream_stale_timeout_base = _cfg_stale
     else:
-        _stream_stale_timeout_base = env_float("HERMES_STREAM_STALE_TIMEOUT", 180.0)
+        _stream_stale_timeout_base = env_float("OPENAMER_STREAM_STALE_TIMEOUT", 180.0)
     # Local providers (Ollama, oMLX, llama-cpp) can take 300+ seconds
     # for prefill on large contexts, so tolerate far longer silence than
     # the cloud default — but a wedged local server must EVENTUALLY trip the
     # detector rather than hang forever (an infinite timeout meant a crashed
     # or deadlocked local endpoint stalled the session indefinitely).  900s
     # tolerates slow prefill while still bounding a hung endpoint.  Applies
-    # unless the user explicitly set HERMES_STREAM_STALE_TIMEOUT; override the
-    # local ceiling with HERMES_LOCAL_STREAM_STALE_TIMEOUT (documented in
+    # unless the user explicitly set OPENAMER_STREAM_STALE_TIMEOUT; override the
+    # local ceiling with OPENAMER_LOCAL_STREAM_STALE_TIMEOUT (documented in
     # website/docs/reference/environment-variables.md).
     if _stream_stale_timeout_base == 180.0 and agent.base_url and is_local_endpoint(agent.base_url):
         # Read config.yaml ``agent.local_stream_stale_timeout`` (default 900),
-        # env var ``HERMES_LOCAL_STREAM_STALE_TIMEOUT`` overrides for escape-hatch.
+        # env var ``OPENAMER_LOCAL_STREAM_STALE_TIMEOUT`` overrides for escape-hatch.
         _local_default = 900.0
         try:
             from openamer_cli.config import load_config
@@ -3687,7 +3687,7 @@ def interruptible_streaming_api_call(agent, api_kwargs: dict, *, on_first_delta=
                     _local_default = float(_v)
         except Exception:
             pass
-        _stream_stale_timeout = env_float("HERMES_LOCAL_STREAM_STALE_TIMEOUT", _local_default)
+        _stream_stale_timeout = env_float("OPENAMER_LOCAL_STREAM_STALE_TIMEOUT", _local_default)
         logger.debug(
             "Local provider detected (%s) — stale stream timeout set to %.0fs",
             agent.base_url, _stream_stale_timeout,

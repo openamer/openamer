@@ -11,7 +11,7 @@ reproduction against a real provider so we have a true end-to-end smoke test
 for any future keepalive / transport plumbing.
 
 Opt-in — not part of default CI:
-    HERMES_LIVE_TESTS=1 pytest tests/run_agent/test_sequential_chats_live.py -v
+    OPENAMER_LIVE_TESTS=1 pytest tests/run_agent/test_sequential_chats_live.py -v
 
 Requires ``OPENROUTER_API_KEY`` to be set (or sourced via ~/.openamer/.env).
 """
@@ -43,11 +43,11 @@ def _load_user_env() -> None:
 _load_user_env()
 
 
-LIVE = os.environ.get("HERMES_LIVE_TESTS") == "1"
+LIVE = os.environ.get("OPENAMER_LIVE_TESTS") == "1"
 OR_KEY = os.environ.get("OPENROUTER_API_KEY", "")
 
 pytestmark = [
-    pytest.mark.skipif(not LIVE, reason="live-only — set HERMES_LIVE_TESTS=1"),
+    pytest.mark.skipif(not LIVE, reason="live-only — set OPENAMER_LIVE_TESTS=1"),
     pytest.mark.skipif(not OR_KEY, reason="OPENROUTER_API_KEY not configured"),
 ]
 

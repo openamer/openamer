@@ -9,7 +9,7 @@ import openamer_cli.gateway as gateway
 
 def _clear_native_supervisor_markers(monkeypatch):
     monkeypatch.delenv("INVOCATION_ID", raising=False)
-    monkeypatch.delenv("HERMES_S6_SUPERVISED_CHILD", raising=False)
+    monkeypatch.delenv("OPENAMER_S6_SUPERVISED_CHILD", raising=False)
     monkeypatch.setenv("XPC_SERVICE_NAME", "0")
 
 

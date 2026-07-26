@@ -31,7 +31,7 @@ def test_arbitrary_user_uid_rejected(
         f"rejection message missing 'not supported': {combined[-500:]}"
     )
     # Must mention the remediation env vars
-    assert "HERMES_UID" in combined or "PUID" in combined, (
+    assert "OPENAMER_UID" in combined or "PUID" in combined, (
         f"rejection message missing remediation guidance: {combined[-500:]}"
     )
 

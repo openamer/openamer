@@ -59,7 +59,7 @@ def test_cli_fallback_strips_provider_secret_from_subprocess_env(monkeypatch):
 def test_cli_fallback_applies_telemetry_policy(monkeypatch):
     """The env should also go through cua_driver_child_env(), like every
     other cua-driver spawn site, not just _sanitize_subprocess_env alone."""
-    monkeypatch.delenv("HERMES_CUA_TELEMETRY", raising=False)
+    monkeypatch.delenv("OPENAMER_CUA_TELEMETRY", raising=False)
     monkeypatch.setattr(
         "tools.computer_use.cua_backend.resolve_cua_driver_cmd",
         lambda: "/resolved/cua-driver",

@@ -415,14 +415,14 @@ class TestSkillView:
             skill_dir = _make_skill(
                 tmp_path,
                 "templated",
-                body="Run ${HERMES_SKILL_DIR}/scripts/do.sh in ${HERMES_SESSION_ID}",
+                body="Run ${OPENAMER_SKILL_DIR}/scripts/do.sh in ${OPENAMER_SESSION_ID}",
             )
             raw = skill_view("templated", task_id="session-123")
 
         result = json.loads(raw)
         assert result["success"] is True
         assert f"Run {skill_dir}/scripts/do.sh in session-123" in result["content"]
-        assert "${HERMES_SKILL_DIR}" not in result["content"]
+        assert "${OPENAMER_SKILL_DIR}" not in result["content"]
 
     def test_skill_view_applies_inline_shell_when_enabled(self, tmp_path):
         with (

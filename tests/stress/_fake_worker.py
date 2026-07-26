@@ -14,7 +14,7 @@ import time
 
 def main():
     tid = os.environ["OPENAMER_KANBAN_TASK"]
-    workspace = os.environ.get("HERMES_KANBAN_WORKSPACE", "")
+    workspace = os.environ.get("OPENAMER_KANBAN_WORKSPACE", "")
 
     # Announce via CLI (goes through real argparse + init_db + etc)
     subprocess.run(

@@ -372,7 +372,7 @@ def test_preview_parser_missing_effect_fails_safe_to_blocked():
 
 
 def test_no_fixture_when_env_unset(monkeypatch):
-    monkeypatch.delenv("HERMES_DEV_SUBSCRIPTION_FIXTURE", raising=False)
+    monkeypatch.delenv("OPENAMER_DEV_SUBSCRIPTION_FIXTURE", raising=False)
     assert dev_fixture_subscription_state() is None
 
 
@@ -390,7 +390,7 @@ def test_no_fixture_when_env_unset(monkeypatch):
     ],
 )
 def test_dev_fixture_states(monkeypatch, name, checker):
-    monkeypatch.setenv("HERMES_DEV_SUBSCRIPTION_FIXTURE", name)
+    monkeypatch.setenv("OPENAMER_DEV_SUBSCRIPTION_FIXTURE", name)
     s = dev_fixture_subscription_state()
     assert s is not None
     assert checker(s)
@@ -398,7 +398,7 @@ def test_dev_fixture_states(monkeypatch, name, checker):
 
 def test_dev_fixture_exposes_tier_catalog(monkeypatch):
     # A picker needs a catalog: the mid fixture lists tiers with the active one flagged.
-    monkeypatch.setenv("HERMES_DEV_SUBSCRIPTION_FIXTURE", "mid")
+    monkeypatch.setenv("OPENAMER_DEV_SUBSCRIPTION_FIXTURE", "mid")
     s = dev_fixture_subscription_state()
     assert s is not None and len(s.tiers) >= 2
     current = [t for t in s.tiers if t.is_current]
@@ -406,7 +406,7 @@ def test_dev_fixture_exposes_tier_catalog(monkeypatch):
 
 
 def test_dev_fixture_unknown_name_fails_safe(monkeypatch):
-    monkeypatch.setenv("HERMES_DEV_SUBSCRIPTION_FIXTURE", "bogus")
+    monkeypatch.setenv("OPENAMER_DEV_SUBSCRIPTION_FIXTURE", "bogus")
     s = dev_fixture_subscription_state()
     assert s is not None
     assert s.logged_in is False
@@ -415,7 +415,7 @@ def test_dev_fixture_unknown_name_fails_safe(monkeypatch):
 
 def test_build_subscription_state_uses_fixture(monkeypatch):
     # build_subscription_state must short-circuit to the fixture (no portal call).
-    monkeypatch.setenv("HERMES_DEV_SUBSCRIPTION_FIXTURE", "mid")
+    monkeypatch.setenv("OPENAMER_DEV_SUBSCRIPTION_FIXTURE", "mid")
     s = build_subscription_state()
     assert s.logged_in is True
     assert s.current is not None and s.current.tier_id == "plus"

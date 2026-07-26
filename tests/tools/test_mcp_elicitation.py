@@ -188,7 +188,7 @@ class TestElicitationHandlerWiring:
 
 class TestElicitationHandlerContextBridge:
     """The MCP recv-loop task that fires elicitation callbacks does NOT
-    inherit the agent's contextvars (HERMES_SESSION_PLATFORM etc.). The
+    inherit the agent's contextvars (OPENAMER_SESSION_PLATFORM etc.). The
     handler reads ``owner._pending_call_context`` -- a snapshot captured
     by the MCP tool wrapper around ``session.call_tool`` -- and replays
     it before invoking the approval router so gateway-session detection
@@ -238,7 +238,7 @@ class TestElicitationHandlerContextBridge:
         """Without an owner (or with an owner that hasn't entered a tool
         call) the handler must still invoke the consent router -- just
         without the contextvar replay. Otherwise CLI/TUI sessions, which
-        don't set HERMES_SESSION_PLATFORM, would break."""
+        don't set OPENAMER_SESSION_PLATFORM, would break."""
         handler = ElicitationHandler("pay", {"timeout": 5}, owner=None)
         params = _form_params()
 

@@ -1172,7 +1172,7 @@ _SLACK_PRIORITY_ALIASES = ("btw", "bg")
 #     displacing existing native Slack slash commands at the 50-command cap.
 #   - debug: the log/report upload surface; reached via /openamer debug on Slack.
 #   - egress: Docker-only proxy status; reachable as /openamer egress on Slack.
-_SLACK_VIA_HERMES_ONLY = frozenset({"topup", "moa", "debug", "egress"})
+_SLACK_VIA_OPENAMER_ONLY = frozenset({"topup", "moa", "debug", "egress"})
 
 
 def _sanitize_slack_name(raw: str) -> str:
@@ -1222,8 +1222,8 @@ def slack_native_slashes() -> list[tuple[str, str, str]]:
             return
         if slack_name in _SLACK_RESERVED_COMMANDS:
             return
-        if slack_name in _SLACK_VIA_HERMES_ONLY:
-            # Intentionally Slack-via-/openamer only (see _SLACK_VIA_HERMES_ONLY).
+        if slack_name in _SLACK_VIA_OPENAMER_ONLY:
+            # Intentionally Slack-via-/openamer only (see _SLACK_VIA_OPENAMER_ONLY).
             return
         if len(entries) >= _SLACK_MAX_SLASH_COMMANDS:
             return

@@ -1033,7 +1033,7 @@ class TestResolveXaiOAuthForAux:
             "providers": {},
         }))
         monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
-        monkeypatch.delenv("HERMES_XAI_BASE_URL", raising=False)
+        monkeypatch.delenv("OPENAMER_XAI_BASE_URL", raising=False)
         monkeypatch.delenv("XAI_BASE_URL", raising=False)
 
         pool = load_pool("xai-oauth")
@@ -1065,7 +1065,7 @@ class TestResolveXaiOAuthForAux:
             "providers": {},
         }))
         monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
-        monkeypatch.setenv("HERMES_XAI_BASE_URL", "https://example.x.ai/v1/")
+        monkeypatch.setenv("OPENAMER_XAI_BASE_URL", "https://example.x.ai/v1/")
 
         pool = load_pool("xai-oauth")
         pool.add_entry(PooledCredential(
@@ -4385,7 +4385,7 @@ class TestAuxiliaryAuthRefreshRetry:
     def test_resolve_provider_client_vertex_builds_client_from_minted_token(self):
         """End-to-end: resolve_provider_client("vertex", ...) must reach the
         auth_type == "vertex" branch and build a working client, not die at
-        the PROVIDER_REGISTRY lookup (a plain HERMES_OVERLAYS-only fix would
+        the PROVIDER_REGISTRY lookup (a plain OPENAMER_OVERLAYS-only fix would
         leave this branch dead code — PROVIDER_REGISTRY is what
         resolve_provider_client actually gates on)."""
         with (

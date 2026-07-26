@@ -336,6 +336,6 @@ class TestCacheDirEnvPassthrough:
             get_document_cache_dir,
             get_image_cache_dir,
         )
-        assert env["HERMES_IMAGE_CACHE_DIR"] == str(get_image_cache_dir())
-        assert env["HERMES_AUDIO_CACHE_DIR"] == str(get_audio_cache_dir())
-        assert env["HERMES_DOCUMENT_CACHE_DIR"] == str(get_document_cache_dir())
+        assert env["OPENAMER_IMAGE_CACHE_DIR"] == str(get_image_cache_dir())
+        assert env["OPENAMER_AUDIO_CACHE_DIR"] == str(get_audio_cache_dir())
+        assert env["OPENAMER_DOCUMENT_CACHE_DIR"] == str(get_document_cache_dir())

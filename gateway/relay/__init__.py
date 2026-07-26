@@ -154,7 +154,7 @@ def relay_endpoint() -> Optional[str]:
     verified tenant, so a dishonest gateway can only misdirect its OWN inbound).
     The *source* of the value differs by deployment but the code path is uniform:
     a self-hosted operator sets ``GATEWAY_RELAY_ENDPOINT`` (mirrors how they set
-    ``HERMES_DASHBOARD_PUBLIC_URL``); a hosted/NAS container has the same var
+    ``OPENAMER_DASHBOARD_PUBLIC_URL``); a hosted/NAS container has the same var
     stamped in (NAS knows the public URL only in that case). Absent -> the
     gateway provisions outbound-only (no inbound routes written).
 
@@ -576,7 +576,7 @@ def self_provision_relay() -> bool:
 
     The trigger is deliberately NOT ``is_managed()``: that means
     "package-manager/NixOS-managed" and is False on a NAS-hosted Fly agent (which
-    sets neither ``HERMES_MANAGED`` nor a ``.managed`` marker), so gating on it
+    sets neither ``OPENAMER_MANAGED`` nor a ``.managed`` marker), so gating on it
     blocked the exact hosted case this is for. The real signal is "you pointed me
     at a connector and didn't pin a secret" — which is both NAS-independent and
     self-guarding:

@@ -351,7 +351,7 @@ class TestDockerHostBindApproval:
         """Isolated Docker still bypasses dangerous-command approval."""
         import tools.approval as A
         self._isolate_approval_state(monkeypatch)
-        monkeypatch.setenv("HERMES_EXEC_ASK", "1")
+        monkeypatch.setenv("OPENAMER_EXEC_ASK", "1")
         monkeypatch.setattr(
             "tools.tirith_security.check_command_security",
             lambda _c: {"action": "allow", "findings": [], "summary": ""})
@@ -379,7 +379,7 @@ class TestDockerHostBindApproval:
         """Host-bound Docker dangerous command escalates instead of bypassing."""
         import tools.approval as A
         self._isolate_approval_state(monkeypatch)
-        monkeypatch.setenv("HERMES_EXEC_ASK", "1")
+        monkeypatch.setenv("OPENAMER_EXEC_ASK", "1")
         monkeypatch.setattr(
             "tools.tirith_security.check_command_security",
             lambda _c: {"action": "allow", "findings": [], "summary": ""})
@@ -393,7 +393,7 @@ class TestDockerHostBindApproval:
         """Isolated Docker execute_code still bypasses the guard."""
         import tools.approval as A
         self._isolate_approval_state(monkeypatch)
-        monkeypatch.setenv("HERMES_EXEC_ASK", "1")
+        monkeypatch.setenv("OPENAMER_EXEC_ASK", "1")
         res = A.check_execute_code_guard("import os", "docker",
                                          has_host_access=False)
         assert res["approved"] is True
@@ -402,7 +402,7 @@ class TestDockerHostBindApproval:
         """Host-bound Docker execute_code does not get the container fast-path."""
         import tools.approval as A
         self._isolate_approval_state(monkeypatch)
-        monkeypatch.setenv("HERMES_EXEC_ASK", "1")
+        monkeypatch.setenv("OPENAMER_EXEC_ASK", "1")
         res = A.check_execute_code_guard(
             "import os; os.system('rm -rf /workspace')", "docker",
             has_host_access=True)
@@ -412,7 +412,7 @@ class TestDockerHostBindApproval:
     def test_execute_code_vercel_sandbox_always_skips(self, monkeypatch):
         """vercel_sandbox has no host-bind concept and stays always-skipped."""
         import tools.approval as A
-        monkeypatch.setenv("HERMES_EXEC_ASK", "1")
+        monkeypatch.setenv("OPENAMER_EXEC_ASK", "1")
         res = A.check_execute_code_guard("import os", "vercel_sandbox",
                                          has_host_access=True)
         assert res["approved"] is True

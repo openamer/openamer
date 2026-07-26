@@ -37,7 +37,7 @@ as_openamer() { [ "$(id -u)" = 0 ] || { "$@"; return; }; s6-setuidgid openamer "
 # supervision-tree side of this.
 #
 # The supported way to match host-side ownership is to start as root (the image
-# default) and pass HERMES_UID/HERMES_GID — or the PUID/PGID aliases — which the
+# default) and pass OPENAMER_UID/OPENAMER_GID — or the PUID/PGID aliases — which the
 # remap block below consumes via usermod/groupmod + targeted chown. That gives
 # the exact same outcome (files owned by your host UID) without breaking s6.
 #
@@ -60,7 +60,7 @@ will fail.
 To make container-written files match your HOST user, DON'T use --user.
 Start the container as root (the default) and pass your host UID/GID instead:
 
-    docker run -e HERMES_UID=\$(id -u) -e HERMES_GID=\$(id -g) ...
+    docker run -e OPENAMER_UID=\$(id -u) -e OPENAMER_GID=\$(id -g) ...
 
 NAS users (Synology / unRAID / UGOS) can use the PUID/PGID aliases:
 
@@ -95,24 +95,24 @@ validate_uid_gid() {
 }
 
 # --- UID/GID remap ---
-# Accept PUID/PGID as aliases for HERMES_UID/HERMES_GID.  NAS users (UGOS,
+# Accept PUID/PGID as aliases for OPENAMER_UID/OPENAMER_GID.  NAS users (UGOS,
 # Synology, unRAID) expect the LinuxServer.io PUID/PGID convention and
 # bind-mount /opt/data from a host directory owned by their own UID; without
 # this alias those vars are silently ignored and the s6-setuidgid drop to
-# UID 10000 leaves the runtime unable to read the volume.  HERMES_UID/
-# HERMES_GID still win when both are set.  See #15290, salvages #25872.
-HERMES_UID="${HERMES_UID:-${PUID:-}}"
-HERMES_GID="${HERMES_GID:-${PGID:-}}"
+# UID 10000 leaves the runtime unable to read the volume.  OPENAMER_UID/
+# OPENAMER_GID still win when both are set.  See #15290, salvages #25872.
+OPENAMER_UID="${OPENAMER_UID:-${PUID:-}}"
+OPENAMER_GID="${OPENAMER_GID:-${PGID:-}}"
 
-if [ -n "${HERMES_UID:-}" ] && validate_uid_gid "$HERMES_UID" && [ "$HERMES_UID" != "$(id -u openamer)" ]; then
-    echo "[stage2] Changing openamer UID to $HERMES_UID"
-    usermod -u "$HERMES_UID" openamer
+if [ -n "${OPENAMER_UID:-}" ] && validate_uid_gid "$OPENAMER_UID" && [ "$OPENAMER_UID" != "$(id -u openamer)" ]; then
+    echo "[stage2] Changing openamer UID to $OPENAMER_UID"
+    usermod -u "$OPENAMER_UID" openamer
 fi
-if [ -n "${HERMES_GID:-}" ] && validate_uid_gid "$HERMES_GID" && [ "$HERMES_GID" != "$(id -g openamer)" ]; then
-    echo "[stage2] Changing openamer GID to $HERMES_GID"
+if [ -n "${OPENAMER_GID:-}" ] && validate_uid_gid "$OPENAMER_GID" && [ "$OPENAMER_GID" != "$(id -g openamer)" ]; then
+    echo "[stage2] Changing openamer GID to $OPENAMER_GID"
     # -o allows non-unique GID (e.g. macOS GID 20 "staff" may already
     # exist as "dialout" in the Debian-based container image).
-    groupmod -o -g "$HERMES_GID" openamer 2>/dev/null || true
+    groupmod -o -g "$OPENAMER_GID" openamer 2>/dev/null || true
 fi
 
 # --- Docker socket group membership (docker-in-docker / DooD) ---
@@ -172,7 +172,7 @@ for sock in /var/run/docker.sock /run/docker.sock; do
 done
 
 # --- Fix ownership of data volume ---
-# When HERMES_UID is remapped or the top-level $OPENAMER_HOME isn't owned by
+# When OPENAMER_UID is remapped or the top-level $OPENAMER_HOME isn't owned by
 # the runtime openamer UID, restore ownership to openamer — but ONLY for the
 # directories openamer actually writes to. The full $OPENAMER_HOME may be a
 # host-mounted bind containing unrelated user files; `chown -R` would
@@ -253,14 +253,14 @@ fi
 # Do not chown runtime code or dependency trees under $INSTALL_DIR back to the
 # openamer user. Hosted/container instances keep mutable state under
 # $OPENAMER_HOME (/opt/data) and run with PYTHONDONTWRITEBYTECODE plus
-# HERMES_DISABLE_LAZY_INSTALLS=1. Keeping /opt/openamer root-owned and
+# OPENAMER_DISABLE_LAZY_INSTALLS=1. Keeping /opt/openamer root-owned and
 # non-writable prevents an agent session from self-modifying the installed
 # source, venv, TUI bundle, or node_modules and bricking the gateway.
 #
 # Lazy-installable optional backends (Firecrawl, Exa, Feishu, etc.) cannot
 # install into the sealed venv, so they are redirected to the writable
 # $OPENAMER_HOME/lazy-packages dir on the data volume (Dockerfile sets
-# HERMES_LAZY_INSTALL_TARGET). That dir is appended to the END of sys.path,
+# OPENAMER_LAZY_INSTALL_TARGET). That dir is appended to the END of sys.path,
 # so a package installed there can only ADD modules — it can never shadow or
 # break a core module, which is what keeps the sealed-venv guarantee intact
 # even though installs are re-enabled. The dir is seeded + chowned to openamer
@@ -424,7 +424,7 @@ fi
 # $OPENAMER_HOME on the mounted volume. Run the same safe, non-interactive
 # config-schema migrations that `openamer update` runs for non-Docker installs,
 # after first-boot seeding and before supervised gateway services start.
-# Set HERMES_SKIP_CONFIG_MIGRATION=1 for controlled/manual migrations.
+# Set OPENAMER_SKIP_CONFIG_MIGRATION=1 for controlled/manual migrations.
 if [ -f "$OPENAMER_HOME/config.yaml" ]; then
     s6-setuidgid openamer "$INSTALL_DIR/.venv/bin/python" "$INSTALL_DIR/scripts/docker_config_migrate.py" \
         || echo "[stage2] Warning: docker_config_migrate.py failed; continuing"
@@ -433,11 +433,11 @@ fi
 # auth.json: bootstrap from env on first boot only. Same semantics as the
 # pre-s6 entrypoint — the [ ! -f ] guard is critical to avoid clobbering
 # rotated refresh tokens on container restart.
-if [ ! -f "$OPENAMER_HOME/auth.json" ] && [ -n "${HERMES_AUTH_JSON_BOOTSTRAP:-}" ]; then
+if [ ! -f "$OPENAMER_HOME/auth.json" ] && [ -n "${OPENAMER_AUTH_JSON_BOOTSTRAP:-}" ]; then
     if refuse_symlinked_path "seed" "$OPENAMER_HOME/auth.json"; then
         :
     else
-        printf '%s' "$HERMES_AUTH_JSON_BOOTSTRAP" > "$OPENAMER_HOME/auth.json"
+        printf '%s' "$OPENAMER_AUTH_JSON_BOOTSTRAP" > "$OPENAMER_HOME/auth.json"
         chown openamer:openamer "$OPENAMER_HOME/auth.json" 2>/dev/null || true
         chmod 600 "$OPENAMER_HOME/auth.json"
     fi
@@ -450,7 +450,7 @@ fi
 # invalid_grant (tokens cleared, providers.nous.last_auth_error.relogin_required
 # stamped) can NOT recover from a plain restart — it stays unauthenticated until
 # the credential is replaced. An orchestrator that manages the container can
-# supply a freshly-issued session via HERMES_AUTH_JSON_REBOOTSTRAP (distinct
+# supply a freshly-issued session via OPENAMER_AUTH_JSON_REBOOTSTRAP (distinct
 # from the create-only *_BOOTSTRAP var); this helper swaps ONLY the
 # providers.nous entry when the on-disk entry is provably terminal OR the
 # orchestrator seed has a later obtained_at timestamp. The latter covers the
@@ -458,7 +458,7 @@ fi
 # local session. Older/incomparable seeds remain no-ops, so leaving the env set
 # cannot roll a healthy rotated token backward. Runs as its own stdlib-only
 # subprocess (no app imports) and always exits 0.
-if [ -f "$OPENAMER_HOME/auth.json" ] && [ -n "${HERMES_AUTH_JSON_REBOOTSTRAP:-}" ]; then
+if [ -f "$OPENAMER_HOME/auth.json" ] && [ -n "${OPENAMER_AUTH_JSON_REBOOTSTRAP:-}" ]; then
     if refuse_symlinked_path "reseed" "$OPENAMER_HOME/auth.json"; then
         :
     else
@@ -479,14 +479,14 @@ fi
 # freshly-provisioned container comes up with the gateway down until
 # someone starts it (e.g. from the dashboard). An orchestrator that
 # provisions a fresh volume and wants the gateway running from first boot
-# can set HERMES_GATEWAY_BOOTSTRAP_STATE=running; we seed the state file
+# can set OPENAMER_GATEWAY_BOOTSTRAP_STATE=running; we seed the state file
 # here, BEFORE 02-reconcile-profiles runs (cont-init.d scripts run in
 # lexicographic order), so the reconciler sees prior_state=running and
 # brings the supervised slot up on the very first boot.
 #
 # This is a generic container contract, not specific to any host: it seeds
 # the SAME gateway_state.json the reconciler already consults, exactly as
-# HERMES_AUTH_JSON_BOOTSTRAP seeds auth.json. The [ ! -f ] guard is the
+# OPENAMER_AUTH_JSON_BOOTSTRAP seeds auth.json. The [ ! -f ] guard is the
 # load-bearing part — on every subsequent boot the persisted state wins,
 # so a gateway the operator deliberately stopped stays stopped across
 # restarts and we never clobber real runtime state.
@@ -495,7 +495,7 @@ fi
 # _AUTOSTART_STATES); any other value is ignored so a typo can't write a
 # bogus state the reconciler would treat as "no prior state" anyway.
 if [ ! -f "$OPENAMER_HOME/gateway_state.json" ] && \
-        [ "${HERMES_GATEWAY_BOOTSTRAP_STATE:-}" = "running" ]; then
+        [ "${OPENAMER_GATEWAY_BOOTSTRAP_STATE:-}" = "running" ]; then
     if refuse_symlinked_path "seed" "$OPENAMER_HOME/gateway_state.json"; then
         :
     else

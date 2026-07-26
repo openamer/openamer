@@ -1,6 +1,6 @@
 """Regression tests for the config.yaml → env var bridge in gateway/run.py.
 
-Guards against the 60-vs-500 bug where a stale `.env HERMES_MAX_ITERATIONS=60`
+Guards against the 60-vs-500 bug where a stale `.env OPENAMER_MAX_ITERATIONS=60`
 entry silently shadowed `agent.max_turns: 500` in config.yaml because the
 bridge used `if X not in os.environ` guards. After PR#18413 the bridge
 treats config.yaml as authoritative and unconditionally overwrites .env
@@ -41,12 +41,12 @@ def _run_gateway_import(openamer_home: Path, initial_env: dict[str, str]) -> dic
             sys.exit(2)
 
         for k in (
-            "HERMES_MAX_ITERATIONS",
-            "HERMES_AGENT_TIMEOUT",
-            "HERMES_AGENT_TIMEOUT_WARNING",
-            "HERMES_GATEWAY_BUSY_INPUT_MODE",
-            "HERMES_GATEWAY_BUSY_TEXT_MODE",
-            "HERMES_GATEWAY_PLATFORM_CONNECT_TIMEOUT",
+            "OPENAMER_MAX_ITERATIONS",
+            "OPENAMER_AGENT_TIMEOUT",
+            "OPENAMER_AGENT_TIMEOUT_WARNING",
+            "OPENAMER_GATEWAY_BUSY_INPUT_MODE",
+            "OPENAMER_GATEWAY_BUSY_TEXT_MODE",
+            "OPENAMER_GATEWAY_PLATFORM_CONNECT_TIMEOUT",
             "OPENAMER_TIMEZONE",
         ):
             v = os.environ.get(k)
@@ -111,12 +111,12 @@ def openamer_home(tmp_path: Path) -> Path:
 def test_config_max_turns_wins_over_stale_env(openamer_home: Path) -> None:
     """Regression: config.yaml:agent.max_turns=500 must beat .env=60."""
     _write_config(openamer_home, agent_cfg={"max_turns": 500})
-    _write_env(openamer_home, {"HERMES_MAX_ITERATIONS": "60"})
+    _write_env(openamer_home, {"OPENAMER_MAX_ITERATIONS": "60"})
 
     env = _run_gateway_import(openamer_home, initial_env={})
 
-    assert env.get("HERMES_MAX_ITERATIONS") == "500", (
-        f"expected config.yaml max_turns=500 to win; got {env.get('HERMES_MAX_ITERATIONS')!r}. "
+    assert env.get("OPENAMER_MAX_ITERATIONS") == "500", (
+        f"expected config.yaml max_turns=500 to win; got {env.get('OPENAMER_MAX_ITERATIONS')!r}. "
         "Stale .env value is shadowing config — the bridge lost its override."
     )
 
@@ -128,32 +128,32 @@ def test_config_gateway_timeout_wins_over_stale_env(openamer_home: Path) -> None
         "gateway_timeout_warning": 900,
     })
     _write_env(openamer_home, {
-        "HERMES_AGENT_TIMEOUT": "60",
-        "HERMES_AGENT_TIMEOUT_WARNING": "30",
+        "OPENAMER_AGENT_TIMEOUT": "60",
+        "OPENAMER_AGENT_TIMEOUT_WARNING": "30",
     })
 
     env = _run_gateway_import(openamer_home, initial_env={})
 
-    assert env.get("HERMES_AGENT_TIMEOUT") == "1800"
-    assert env.get("HERMES_AGENT_TIMEOUT_WARNING") == "900"
+    assert env.get("OPENAMER_AGENT_TIMEOUT") == "1800"
+    assert env.get("OPENAMER_AGENT_TIMEOUT_WARNING") == "900"
 
 
 def test_config_display_busy_input_mode_wins_over_stale_env(openamer_home: Path) -> None:
     _write_config(openamer_home, display_cfg={"busy_input_mode": "interrupt"})
-    _write_env(openamer_home, {"HERMES_GATEWAY_BUSY_INPUT_MODE": "queue"})
+    _write_env(openamer_home, {"OPENAMER_GATEWAY_BUSY_INPUT_MODE": "queue"})
 
     env = _run_gateway_import(openamer_home, initial_env={})
 
-    assert env.get("HERMES_GATEWAY_BUSY_INPUT_MODE") == "interrupt"
+    assert env.get("OPENAMER_GATEWAY_BUSY_INPUT_MODE") == "interrupt"
 
 
 def test_config_display_busy_text_mode_wins_over_stale_env(openamer_home: Path) -> None:
     _write_config(openamer_home, display_cfg={"busy_text_mode": "queue"})
-    _write_env(openamer_home, {"HERMES_GATEWAY_BUSY_TEXT_MODE": "interrupt"})
+    _write_env(openamer_home, {"OPENAMER_GATEWAY_BUSY_TEXT_MODE": "interrupt"})
 
     env = _run_gateway_import(openamer_home, initial_env={})
 
-    assert env.get("HERMES_GATEWAY_BUSY_TEXT_MODE") == "queue"
+    assert env.get("OPENAMER_GATEWAY_BUSY_TEXT_MODE") == "queue"
 
 
 def test_config_timezone_wins_over_stale_env(openamer_home: Path) -> None:
@@ -172,11 +172,11 @@ def test_env_value_survives_when_config_omits_key(openamer_home: Path) -> None:
     config key should NOT clobber the .env value.
     """
     _write_config(openamer_home, agent_cfg={})  # no max_turns
-    _write_env(openamer_home, {"HERMES_MAX_ITERATIONS": "123"})
+    _write_env(openamer_home, {"OPENAMER_MAX_ITERATIONS": "123"})
 
     env = _run_gateway_import(openamer_home, initial_env={})
 
-    assert env.get("HERMES_MAX_ITERATIONS") == "123"
+    assert env.get("OPENAMER_MAX_ITERATIONS") == "123"
 
 
 def test_config_platform_connect_timeout_supplies_env_when_unset(openamer_home: Path) -> None:
@@ -187,19 +187,19 @@ def test_config_platform_connect_timeout_supplies_env_when_unset(openamer_home: 
 
     env = _run_gateway_import(openamer_home, initial_env={})
 
-    assert env.get("HERMES_GATEWAY_PLATFORM_CONNECT_TIMEOUT") == "90"
+    assert env.get("OPENAMER_GATEWAY_PLATFORM_CONNECT_TIMEOUT") == "90"
 
 
 def test_env_platform_connect_timeout_wins_over_config(openamer_home: Path) -> None:
     """Unlike the agent.*/display.*/timezone bridges (config-authoritative),
-    HERMES_GATEWAY_PLATFORM_CONNECT_TIMEOUT is the manual-override escape hatch:
+    OPENAMER_GATEWAY_PLATFORM_CONNECT_TIMEOUT is the manual-override escape hatch:
     an explicitly-set env var WINS over config.yaml. This divergence is
     intentional (#19776) — the env var is the operator's emergency knob."""
     _write_config(openamer_home, gateway_cfg={"platform_connect_timeout": 90})
 
     env = _run_gateway_import(
         openamer_home,
-        initial_env={"HERMES_GATEWAY_PLATFORM_CONNECT_TIMEOUT": "120"},
+        initial_env={"OPENAMER_GATEWAY_PLATFORM_CONNECT_TIMEOUT": "120"},
     )
 
-    assert env.get("HERMES_GATEWAY_PLATFORM_CONNECT_TIMEOUT") == "120"
+    assert env.get("OPENAMER_GATEWAY_PLATFORM_CONNECT_TIMEOUT") == "120"

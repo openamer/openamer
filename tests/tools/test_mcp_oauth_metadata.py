@@ -27,7 +27,7 @@ import pytest
 from mcp.shared.auth import OAuthMetadata
 
 from tools.mcp_oauth import OpenAmerTokenStorage
-from tools.mcp_oauth_manager import _HERMES_PROVIDER_CLS
+from tools.mcp_oauth_manager import _OPENAMER_PROVIDER_CLS
 
 
 def _make_metadata(token_endpoint: str = "https://auth.example.com/oauth/token") -> OAuthMetadata:
@@ -100,9 +100,9 @@ def _manager_provider_with_context(storage: OpenAmerTokenStorage, **context_attr
     Bypasses the full OAuthClientProvider init so we can exercise the
     override logic in isolation.
     """
-    if _HERMES_PROVIDER_CLS is None:
+    if _OPENAMER_PROVIDER_CLS is None:
         pytest.skip("MCP SDK auth not available")
-    provider = _HERMES_PROVIDER_CLS.__new__(_HERMES_PROVIDER_CLS)
+    provider = _OPENAMER_PROVIDER_CLS.__new__(_OPENAMER_PROVIDER_CLS)
     provider._openamer_server_name = context_attrs.get("server_name", "srv")
     context = MagicMock()
     context.storage = storage
@@ -123,7 +123,7 @@ class TestManagerOAuthProviderMetadata:
         provider = _manager_provider_with_context(storage, oauth_metadata=None)
 
         with patch.object(
-            _HERMES_PROVIDER_CLS.__bases__[0], "_initialize", new=AsyncMock()
+            _OPENAMER_PROVIDER_CLS.__bases__[0], "_initialize", new=AsyncMock()
         ):
             asyncio.run(provider._initialize())
 
@@ -141,7 +141,7 @@ class TestManagerOAuthProviderMetadata:
         provider = _manager_provider_with_context(storage, oauth_metadata=in_memory)
 
         with patch.object(
-            _HERMES_PROVIDER_CLS.__bases__[0], "_initialize", new=AsyncMock()
+            _OPENAMER_PROVIDER_CLS.__bases__[0], "_initialize", new=AsyncMock()
         ):
             asyncio.run(provider._initialize())
 
@@ -197,7 +197,7 @@ class TestManagerOAuthProviderMetadata:
         manager.invalidate_if_disk_changed = AsyncMock(return_value=False)
 
         with patch.object(
-            _HERMES_PROVIDER_CLS.__bases__[0],
+            _OPENAMER_PROVIDER_CLS.__bases__[0],
             "async_auth_flow",
             new=fake_parent_flow,
         ), patch("tools.mcp_oauth_manager.get_manager", return_value=manager):

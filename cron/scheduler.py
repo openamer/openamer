@@ -2121,14 +2121,14 @@ def _get_script_timeout() -> int:
         except Exception:
             logger.warning("Invalid patched _SCRIPT_TIMEOUT=%r; using env/config/default", _SCRIPT_TIMEOUT)
 
-    env_value = os.getenv("HERMES_CRON_SCRIPT_TIMEOUT", "").strip()
+    env_value = os.getenv("OPENAMER_CRON_SCRIPT_TIMEOUT", "").strip()
     if env_value:
         try:
             timeout = int(float(env_value))
             if timeout > 0:
                 return timeout
         except Exception:
-            logger.warning("Invalid HERMES_CRON_SCRIPT_TIMEOUT=%r; using config/default", env_value)
+            logger.warning("Invalid OPENAMER_CRON_SCRIPT_TIMEOUT=%r; using config/default", env_value)
 
     try:
         cfg = load_config() or {}
@@ -2899,7 +2899,7 @@ def run_job(
     # Initialize SQLite session store so cron job messages are persisted
     # and discoverable via session_search (same pattern as gateway/run.py).
     #
-    # Bounded with its own timeout (separate from HERMES_CRON_TIMEOUT, which
+    # Bounded with its own timeout (separate from OPENAMER_CRON_TIMEOUT, which
     # only watches the agent's run_conversation below): SessionDB.__init__
     # opens/migrates state.db synchronously and has no timeout of its own
     # against a wedged sqlite3.connect (e.g. a stale flock left by a crashed
@@ -2916,13 +2916,13 @@ def run_job(
         # Resolve timeout: env override → config.yaml → default 10s.
         # Mirrors the script_timeout_seconds resolution pattern.
         _session_db_timeout: float | None = None
-        _raw_env_timeout = os.getenv("HERMES_CRON_SESSION_DB_TIMEOUT", "").strip()
+        _raw_env_timeout = os.getenv("OPENAMER_CRON_SESSION_DB_TIMEOUT", "").strip()
         if _raw_env_timeout:
             try:
                 _session_db_timeout = float(_raw_env_timeout)
             except (ValueError, TypeError):
                 logger.warning(
-                    "Invalid HERMES_CRON_SESSION_DB_TIMEOUT=%r; using config/default",
+                    "Invalid OPENAMER_CRON_SESSION_DB_TIMEOUT=%r; using config/default",
                     _raw_env_timeout,
                 )
         if _session_db_timeout is None:
@@ -3024,33 +3024,33 @@ def run_job(
     # Mark this as a cron session so the approval system can apply cron_mode.
     # This env var is process-wide and persists for the lifetime of the
     # scheduler process — every job this process runs is a cron job.
-    os.environ["HERMES_CRON_SESSION"] = "1"
+    os.environ["OPENAMER_CRON_SESSION"] = "1"
 
     # Use ContextVars for per-job session/delivery state so parallel jobs
     # don't clobber each other's targets (os.environ is process-global).
     from gateway.session_context import set_session_vars, clear_session_vars, _VAR_MAP
 
     # Cron execution is an internal scheduler context, not a live inbound
-    # gateway message. Do not seed HERMES_SESSION_* contextvars from the
+    # gateway message. Do not seed OPENAMER_SESSION_* contextvars from the
     # stored ``origin`` (which is delivery routing metadata, not a sender
     # identity). Several tool consumers branch on these vars during job
     # execution and would otherwise behave as if a real user from the
     # origin chat was driving the agent:
     #   - tools/terminal_tool.py: background-process notification routing
-    #     (notify_on_complete / watch_patterns) reads HERMES_SESSION_PLATFORM
-    #     and HERMES_SESSION_CHAT_ID to populate watcher_platform / chat_id,
+    #     (notify_on_complete / watch_patterns) reads OPENAMER_SESSION_PLATFORM
+    #     and OPENAMER_SESSION_CHAT_ID to populate watcher_platform / chat_id,
     #     which would route completion notifications to the origin chat
-    #     instead of via HERMES_CRON_AUTO_DELIVER_* below.
+    #     instead of via OPENAMER_CRON_AUTO_DELIVER_* below.
     #   - tools/tts_tool.py: picks Opus vs MP3 based on
-    #     HERMES_SESSION_PLATFORM == "telegram".
+    #     OPENAMER_SESSION_PLATFORM == "telegram".
     #   - tools/skills_tool.py + agent/prompt_builder.py: per-platform
     #     skill-disable lists and the system-prompt cache key both consume
-    #     HERMES_SESSION_PLATFORM.
+    #     OPENAMER_SESSION_PLATFORM.
     #   - tools/send_message_tool.py: mirror source labelling and the
-    #     send_message gate read HERMES_SESSION_PLATFORM.
+    #     send_message gate read OPENAMER_SESSION_PLATFORM.
     # Cron output delivery itself reads job["origin"] directly via
-    # _resolve_origin(job) and the HERMES_CRON_AUTO_DELIVER_* vars set
-    # below, so clearing HERMES_SESSION_* here does not affect delivery.
+    # _resolve_origin(job) and the OPENAMER_CRON_AUTO_DELIVER_* vars set
+    # below, so clearing OPENAMER_SESSION_* here does not affect delivery.
     # Resolve workdir BEFORE set_session_vars so we can pass it as cwd=,
     # letting set_session_vars handle the _SESSION_CWD ContextVar set/clear
     # via its existing machinery (clear_session_vars calls clear_session_cwd
@@ -3068,13 +3068,13 @@ def run_job(
         chat_id="",
         chat_name="",
         # A cron job cannot receive a completion after its turn ends. We clear the
-        # HERMES_SESSION_* routing keys just below, so an async delegation's
+        # OPENAMER_SESSION_* routing keys just below, so an async delegation's
         # completion event carries session_key="" — _enrich_async_delegation_routing
         # cannot resolve it and _inject_watch_notification drops it ("no routing
         # metadata"). And by the time a child finishes, run_job has already shipped
         # the job's final response via _deliver_result; there is no turn left to
         # re-enter. (Worse, get_current_session_key() can fall back to the ambient
-        # os.environ HERMES_SESSION_KEY, which risks routing a cron subagent's output
+        # os.environ OPENAMER_SESSION_KEY, which risks routing a cron subagent's output
         # into an unrelated user chat.)
         #
         # Declaring the channel stateless routes delegate_task to its existing
@@ -3084,9 +3084,9 @@ def run_job(
         cwd=_job_workdir or "",
     )
     _cron_delivery_vars = (
-        "HERMES_CRON_AUTO_DELIVER_PLATFORM",
-        "HERMES_CRON_AUTO_DELIVER_CHAT_ID",
-        "HERMES_CRON_AUTO_DELIVER_THREAD_ID",
+        "OPENAMER_CRON_AUTO_DELIVER_PLATFORM",
+        "OPENAMER_CRON_AUTO_DELIVER_CHAT_ID",
+        "OPENAMER_CRON_AUTO_DELIVER_THREAD_ID",
     )
     for _var_name in _cron_delivery_vars:
         _VAR_MAP[_var_name].set("")
@@ -3154,20 +3154,20 @@ def run_job(
 
         delivery_target = _resolve_delivery_target(job)
         if delivery_target:
-            _VAR_MAP["HERMES_CRON_AUTO_DELIVER_PLATFORM"].set(delivery_target["platform"])
-            _VAR_MAP["HERMES_CRON_AUTO_DELIVER_CHAT_ID"].set(str(delivery_target["chat_id"]))
-            _VAR_MAP["HERMES_CRON_AUTO_DELIVER_THREAD_ID"].set(
+            _VAR_MAP["OPENAMER_CRON_AUTO_DELIVER_PLATFORM"].set(delivery_target["platform"])
+            _VAR_MAP["OPENAMER_CRON_AUTO_DELIVER_CHAT_ID"].set(str(delivery_target["chat_id"]))
+            _VAR_MAP["OPENAMER_CRON_AUTO_DELIVER_THREAD_ID"].set(
                 ""
                 if delivery_target.get("thread_id") is None
                 else str(delivery_target["thread_id"])
             )
 
-        # Model resolution precedence: per-job override > HERMES_MODEL env >
+        # Model resolution precedence: per-job override > OPENAMER_MODEL env >
         # config.yaml ``model:`` (string or ``{default: ...}``). The per-job
         # value is intentionally re-read from storage every tick so a
         # ``cronjob action=update model=...`` after a failed run takes effect
         # on the next tick — there is no in-memory cache.
-        model = job.get("model") or os.getenv("HERMES_MODEL") or ""
+        model = job.get("model") or os.getenv("OPENAMER_MODEL") or ""
 
         # Load config.yaml for model, reasoning, prefill, toolsets, provider routing
         _cfg = {}
@@ -3209,7 +3209,7 @@ def run_job(
             raise RuntimeError(
                 f"Cron job '{job_name}' has no model configured "
                 f"(job.model={job.get('model')!r}, "
-                f"HERMES_MODEL={os.getenv('HERMES_MODEL', '')!r}, "
+                f"OPENAMER_MODEL={os.getenv('OPENAMER_MODEL', '')!r}, "
                 "config.yaml model.default missing or empty). "
                 f"Set a per-job model via "
                 f"`cronjob action=update job_id={job_id} model=<name>` or set a "
@@ -3235,7 +3235,7 @@ def run_job(
         prefill_messages = None
         agent_cfg = _cfg.get("agent", {}) if isinstance(_cfg.get("agent", {}), dict) else {}
         prefill_file = (
-            os.getenv("HERMES_PREFILL_MESSAGES_FILE", "")
+            os.getenv("OPENAMER_PREFILL_MESSAGES_FILE", "")
             or _cfg.get("prefill_messages_file", "")
             or agent_cfg.get("prefill_messages_file", "")
         )
@@ -3285,7 +3285,7 @@ def run_job(
             or None
         )
         try:
-            # Do not inject HERMES_INFERENCE_PROVIDER here. resolve_runtime_provider()
+            # Do not inject OPENAMER_INFERENCE_PROVIDER here. resolve_runtime_provider()
             # already prefers persisted config over stale shell/env overrides when
             # no explicit provider is requested. Passing the env var here short-
             # circuits that precedence and can resurrect old providers (for
@@ -3489,17 +3489,17 @@ def run_job(
         # for hours if it's actively calling tools / receiving stream tokens,
         # but a hung API call or stuck tool with no activity for the configured
         # duration is caught and killed.  Default 600s (10 min inactivity);
-        # override via HERMES_CRON_TIMEOUT env var.  0 = unlimited.
+        # override via OPENAMER_CRON_TIMEOUT env var.  0 = unlimited.
         #
         # Uses the agent's built-in activity tracker (updated by
         # _touch_activity() on every tool call, API call, and stream delta).
-        _raw_cron_timeout = os.getenv("HERMES_CRON_TIMEOUT", "").strip()
+        _raw_cron_timeout = os.getenv("OPENAMER_CRON_TIMEOUT", "").strip()
         if _raw_cron_timeout:
             try:
                 _cron_timeout = float(_raw_cron_timeout)
             except (ValueError, TypeError):
                 logger.warning(
-                    "Invalid HERMES_CRON_TIMEOUT=%r; using default 600s",
+                    "Invalid OPENAMER_CRON_TIMEOUT=%r; using default 600s",
                     _raw_cron_timeout,
                 )
                 _cron_timeout = 600.0
@@ -4094,14 +4094,14 @@ def tick(
             advance_next_run(job["id"])
 
         # Resolve max parallel workers: env var > config.yaml > unbounded.
-        # Set HERMES_CRON_MAX_PARALLEL=1 to restore old serial behaviour.
+        # Set OPENAMER_CRON_MAX_PARALLEL=1 to restore old serial behaviour.
         _max_workers: Optional[int] = None
         try:
-            _env_par = os.getenv("HERMES_CRON_MAX_PARALLEL", "").strip()
+            _env_par = os.getenv("OPENAMER_CRON_MAX_PARALLEL", "").strip()
             if _env_par:
                 _max_workers = int(_env_par) or None
         except (ValueError, TypeError):
-            logger.warning("Invalid HERMES_CRON_MAX_PARALLEL value; defaulting to unbounded")
+            logger.warning("Invalid OPENAMER_CRON_MAX_PARALLEL value; defaulting to unbounded")
         if _max_workers is None:
             try:
                 _ucfg = load_config() or {}

@@ -1,6 +1,6 @@
-"""Regression tests: `openamer dashboard` validates HERMES_WEB_DIST before serving.
+"""Regression tests: `openamer dashboard` validates OPENAMER_WEB_DIST before serving.
 
-A custom HERMES_WEB_DIST without --skip-build previously skipped BOTH the
+A custom OPENAMER_WEB_DIST without --skip-build previously skipped BOTH the
 build and any validation, so the server started and served 404s with no
 obvious cause (same failure mode as issue #23817, reached via the env-var
 path instead of --skip-build). The env-var branch must now fail fast when
@@ -59,12 +59,12 @@ def _wire_common(main_mod, monkeypatch):
 
 
 def test_env_dist_without_index_exits(main_mod, monkeypatch, tmp_path, capsys):
-    """HERMES_WEB_DIST pointing at a dist with no index.html must exit 1,
+    """OPENAMER_WEB_DIST pointing at a dist with no index.html must exit 1,
     not start a server that 404s."""
     _wire_common(main_mod, monkeypatch)
     empty_dist = tmp_path / "empty_dist"
     empty_dist.mkdir()
-    monkeypatch.setenv("HERMES_WEB_DIST", str(empty_dist))
+    monkeypatch.setenv("OPENAMER_WEB_DIST", str(empty_dist))
 
     started = []
     monkeypatch.setitem(
@@ -84,17 +84,17 @@ def test_env_dist_without_index_exits(main_mod, monkeypatch, tmp_path, capsys):
     assert started == []
     assert builds == []  # env var set -> build skipped, validation is the gate
     out = capsys.readouterr().out
-    assert "HERMES_WEB_DIST" in out and str(empty_dist) in out
+    assert "OPENAMER_WEB_DIST" in out and str(empty_dist) in out
 
 
 def test_env_dist_with_index_starts_server(main_mod, monkeypatch, tmp_path):
-    """A valid HERMES_WEB_DIST (has index.html) proceeds to start_server
+    """A valid OPENAMER_WEB_DIST (has index.html) proceeds to start_server
     without building."""
     _wire_common(main_mod, monkeypatch)
     dist = tmp_path / "dist"
     dist.mkdir()
     (dist / "index.html").write_text("<html></html>", encoding="utf-8")
-    monkeypatch.setenv("HERMES_WEB_DIST", str(dist))
+    monkeypatch.setenv("OPENAMER_WEB_DIST", str(dist))
 
     started = []
     monkeypatch.setitem(
@@ -114,7 +114,7 @@ def test_env_dist_with_index_starts_server(main_mod, monkeypatch, tmp_path):
 
 
 def test_env_dist_tilde_expanded_for_web_server(main_mod, monkeypatch, tmp_path):
-    """A '~/...' HERMES_WEB_DIST must be written back expanded so
+    """A '~/...' OPENAMER_WEB_DIST must be written back expanded so
     web_server's raw os.environ read serves the validated path."""
     _wire_common(main_mod, monkeypatch)
     home = tmp_path / "home"
@@ -122,7 +122,7 @@ def test_env_dist_tilde_expanded_for_web_server(main_mod, monkeypatch, tmp_path)
     dist.mkdir(parents=True)
     (dist / "index.html").write_text("<html></html>", encoding="utf-8")
     monkeypatch.setenv("HOME", str(home))
-    monkeypatch.setenv("HERMES_WEB_DIST", "~/mydist")
+    monkeypatch.setenv("OPENAMER_WEB_DIST", "~/mydist")
 
     monkeypatch.setitem(
         sys.modules,
@@ -133,7 +133,7 @@ def test_env_dist_tilde_expanded_for_web_server(main_mod, monkeypatch, tmp_path)
     main_mod.cmd_dashboard(_args())
 
     import os
-    assert os.environ["HERMES_WEB_DIST"] == str(dist)
+    assert os.environ["OPENAMER_WEB_DIST"] == str(dist)
 
 
 # ---------------------------------------------------------------------------
@@ -149,7 +149,7 @@ def test_skip_build_missing_dist_attempts_one_recovery_build(
     """--skip-build + missing index.html triggers exactly one recovery build;
     when the build produces a dist, the server starts."""
     _wire_common(main_mod, monkeypatch)
-    monkeypatch.delenv("HERMES_WEB_DIST", raising=False)
+    monkeypatch.delenv("OPENAMER_WEB_DIST", raising=False)
     project_root = tmp_path / "proj"
     dist = project_root / "openamer_cli" / "web_dist"
     dist.mkdir(parents=True)
@@ -186,7 +186,7 @@ def test_skip_build_recovery_build_failure_preserves_fatal_exit(
     """When the recovery build also fails to produce a dist, the original
     fatal path is preserved: exit 1, clear message, server never starts."""
     _wire_common(main_mod, monkeypatch)
-    monkeypatch.delenv("HERMES_WEB_DIST", raising=False)
+    monkeypatch.delenv("OPENAMER_WEB_DIST", raising=False)
     project_root = tmp_path / "proj"
     (project_root / "openamer_cli" / "web_dist").mkdir(parents=True)
     monkeypatch.setattr(main_mod, "PROJECT_ROOT", project_root)
@@ -219,13 +219,13 @@ def test_skip_build_recovery_build_failure_preserves_fatal_exit(
 def test_skip_build_custom_env_dist_missing_does_not_attempt_recovery(
     main_mod, monkeypatch, tmp_path, capsys
 ):
-    """A custom HERMES_WEB_DIST is caller-managed: the recovery build writes
+    """A custom OPENAMER_WEB_DIST is caller-managed: the recovery build writes
     to the default dist location and cannot populate it, so the env-var +
     --skip-build combination keeps the immediate fatal exit with no build."""
     _wire_common(main_mod, monkeypatch)
     empty_dist = tmp_path / "custom_dist"
     empty_dist.mkdir()
-    monkeypatch.setenv("HERMES_WEB_DIST", str(empty_dist))
+    monkeypatch.setenv("OPENAMER_WEB_DIST", str(empty_dist))
 
     started = []
     monkeypatch.setitem(
@@ -273,9 +273,9 @@ def test_standalone_dashboard_drops_electron_packaged_web_dist(
     """Inherited app.asar WEB_DIST must be stripped so the bundled web UI
     is built/served instead of the desktop renderer."""
     _wire_common(main_mod, monkeypatch)
-    monkeypatch.delenv("HERMES_DESKTOP", raising=False)
+    monkeypatch.delenv("OPENAMER_DESKTOP", raising=False)
     packaged = "/Applications/OpenAmer.app/Contents/Resources/app.asar/dist"
-    monkeypatch.setenv("HERMES_WEB_DIST", packaged)
+    monkeypatch.setenv("OPENAMER_WEB_DIST", packaged)
 
     started = []
     monkeypatch.setitem(
@@ -292,7 +292,7 @@ def test_standalone_dashboard_drops_electron_packaged_web_dist(
 
     import os
 
-    assert "HERMES_WEB_DIST" not in os.environ
+    assert "OPENAMER_WEB_DIST" not in os.environ
     assert len(builds) == 1
     assert len(started) == 1
 
@@ -300,13 +300,13 @@ def test_standalone_dashboard_drops_electron_packaged_web_dist(
 def test_standalone_dashboard_keeps_caller_managed_web_dist(
     main_mod, monkeypatch, tmp_path
 ):
-    """A non-Electron custom HERMES_WEB_DIST override must survive."""
+    """A non-Electron custom OPENAMER_WEB_DIST override must survive."""
     _wire_common(main_mod, monkeypatch)
-    monkeypatch.delenv("HERMES_DESKTOP", raising=False)
+    monkeypatch.delenv("OPENAMER_DESKTOP", raising=False)
     dist = tmp_path / "my-custom-dist"
     dist.mkdir()
     (dist / "index.html").write_text("<html></html>", encoding="utf-8")
-    monkeypatch.setenv("HERMES_WEB_DIST", str(dist))
+    monkeypatch.setenv("OPENAMER_WEB_DIST", str(dist))
 
     started = []
     monkeypatch.setitem(
@@ -323,7 +323,7 @@ def test_standalone_dashboard_keeps_caller_managed_web_dist(
 
     import os
 
-    assert os.environ["HERMES_WEB_DIST"] == str(dist)
+    assert os.environ["OPENAMER_WEB_DIST"] == str(dist)
     assert builds == []
     assert len(started) == 1
 
@@ -331,13 +331,13 @@ def test_standalone_dashboard_keeps_caller_managed_web_dist(
 def test_desktop_spawned_backend_keeps_electron_web_dist(
     main_mod, monkeypatch, tmp_path
 ):
-    """HERMES_DESKTOP=1 legitimately points at the packaged dist — do not strip."""
+    """OPENAMER_DESKTOP=1 legitimately points at the packaged dist — do not strip."""
     _wire_common(main_mod, monkeypatch)
     packaged_root = tmp_path / "app.asar" / "dist"
     packaged_root.mkdir(parents=True)
     (packaged_root / "index.html").write_text("<html></html>", encoding="utf-8")
-    monkeypatch.setenv("HERMES_DESKTOP", "1")
-    monkeypatch.setenv("HERMES_WEB_DIST", str(packaged_root))
+    monkeypatch.setenv("OPENAMER_DESKTOP", "1")
+    monkeypatch.setenv("OPENAMER_WEB_DIST", str(packaged_root))
 
     started = []
     monkeypatch.setitem(
@@ -354,7 +354,7 @@ def test_desktop_spawned_backend_keeps_electron_web_dist(
 
     import os
 
-    assert os.environ["HERMES_WEB_DIST"] == str(packaged_root)
+    assert os.environ["OPENAMER_WEB_DIST"] == str(packaged_root)
     assert builds == []
     assert len(started) == 1
 
@@ -362,11 +362,11 @@ def test_desktop_spawned_backend_keeps_electron_web_dist(
 def test_standalone_dashboard_clears_inherited_serve_headless(
     main_mod, monkeypatch
 ):
-    """Inherited HERMES_SERVE_HEADLESS must not disable the SPA for dashboard."""
+    """Inherited OPENAMER_SERVE_HEADLESS must not disable the SPA for dashboard."""
     _wire_common(main_mod, monkeypatch)
-    monkeypatch.delenv("HERMES_DESKTOP", raising=False)
-    monkeypatch.delenv("HERMES_WEB_DIST", raising=False)
-    monkeypatch.setenv("HERMES_SERVE_HEADLESS", "1")
+    monkeypatch.delenv("OPENAMER_DESKTOP", raising=False)
+    monkeypatch.delenv("OPENAMER_WEB_DIST", raising=False)
+    monkeypatch.setenv("OPENAMER_SERVE_HEADLESS", "1")
 
     started = []
     monkeypatch.setitem(
@@ -380,16 +380,16 @@ def test_standalone_dashboard_clears_inherited_serve_headless(
 
     import os
 
-    assert os.environ.get("HERMES_SERVE_HEADLESS") != "1"
+    assert os.environ.get("OPENAMER_SERVE_HEADLESS") != "1"
     assert len(started) == 1
 
 
 def test_headless_serve_reasserts_serve_headless(main_mod, monkeypatch):
-    """`openamer serve` must still set HERMES_SERVE_HEADLESS after the clear."""
+    """`openamer serve` must still set OPENAMER_SERVE_HEADLESS after the clear."""
     _wire_common(main_mod, monkeypatch)
-    monkeypatch.delenv("HERMES_DESKTOP", raising=False)
-    monkeypatch.delenv("HERMES_WEB_DIST", raising=False)
-    monkeypatch.delenv("HERMES_SERVE_HEADLESS", raising=False)
+    monkeypatch.delenv("OPENAMER_DESKTOP", raising=False)
+    monkeypatch.delenv("OPENAMER_WEB_DIST", raising=False)
+    monkeypatch.delenv("OPENAMER_SERVE_HEADLESS", raising=False)
 
     started = []
     monkeypatch.setitem(
@@ -406,6 +406,6 @@ def test_headless_serve_reasserts_serve_headless(main_mod, monkeypatch):
 
     import os
 
-    assert os.environ.get("HERMES_SERVE_HEADLESS") == "1"
+    assert os.environ.get("OPENAMER_SERVE_HEADLESS") == "1"
     assert builds == []
     assert len(started) == 1

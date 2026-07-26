@@ -1178,7 +1178,7 @@ class TestVisionCpuBurstCap:
             patch("tools.vision_tools._detect_host_cpus", return_value=64),
             patch("openamer_cli.config.load_config", side_effect=Exception),
         ):
-            os.environ.pop("HERMES_VISION_MAX_CONCURRENCY", None)
+            os.environ.pop("OPENAMER_VISION_MAX_CONCURRENCY", None)
             # No fixed ceiling: a 64-core host gets 64 encode workers. The cap
             # tracks the actual resource (cores), not a magic number.
             assert vt._resolve_vision_cpu_workers() == 64
@@ -1191,13 +1191,13 @@ class TestVisionCpuBurstCap:
             patch("tools.vision_tools._detect_host_cpus", return_value=2),
             patch("openamer_cli.config.load_config", side_effect=Exception),
         ):
-            os.environ.pop("HERMES_VISION_MAX_CONCURRENCY", None)
+            os.environ.pop("OPENAMER_VISION_MAX_CONCURRENCY", None)
             assert vt._resolve_vision_cpu_workers() == 2
 
     def test_resolver_env_override(self):
         from tools import vision_tools as vt
 
-        with patch.dict(os.environ, {"HERMES_VISION_MAX_CONCURRENCY": "16"}):
+        with patch.dict(os.environ, {"OPENAMER_VISION_MAX_CONCURRENCY": "16"}):
             # Explicit override is honored verbatim — including ABOVE core count,
             # so operators can raise it for heavy multi-image workloads.
             assert vt._resolve_vision_cpu_workers() == 16
@@ -1206,7 +1206,7 @@ class TestVisionCpuBurstCap:
         from tools import vision_tools as vt
 
         with (
-            patch.dict(os.environ, {"HERMES_VISION_MAX_CONCURRENCY": "0"}),
+            patch.dict(os.environ, {"OPENAMER_VISION_MAX_CONCURRENCY": "0"}),
             patch("tools.vision_tools._detect_host_cpus", return_value=2),
             patch("openamer_cli.config.load_config", side_effect=Exception),
         ):

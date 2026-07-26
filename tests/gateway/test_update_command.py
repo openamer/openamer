@@ -377,7 +377,7 @@ class TestUpdateCommandPlatformGate:
         blocked by the allowlist gate before any side effects fire."""
         runner = _make_runner()
         event = _make_event(platform=Platform.WEBHOOK)
-        monkeypatch.setenv("HERMES_MANAGED", "")
+        monkeypatch.setenv("OPENAMER_MANAGED", "")
 
         # Guard: platform gate must fire before any real subprocess spawn.
         with patch("subprocess.Popen") as mock_popen:
@@ -395,7 +395,7 @@ class TestUpdateCommandPlatformGate:
         """
         runner = _make_runner()
         event = _make_event(platform=Platform.API_SERVER)
-        monkeypatch.setenv("HERMES_MANAGED", "")
+        monkeypatch.setenv("OPENAMER_MANAGED", "")
 
         with patch("subprocess.Popen") as mock_popen:
             result = await runner._handle_update_command(event)
@@ -428,7 +428,7 @@ class TestUpdateCommandPlatformGate:
 
         runner = _make_runner()
         event = _make_event(platform=Platform.DISCORD)
-        monkeypatch.setenv("HERMES_MANAGED", "")
+        monkeypatch.setenv("OPENAMER_MANAGED", "")
 
         with patch("subprocess.Popen"):
             result = await runner._handle_update_command(event)
@@ -457,7 +457,7 @@ class TestUpdateCommandPlatformGate:
 
         runner = _make_runner()
         event = _make_event(platform=Platform.MATTERMOST)
-        monkeypatch.setenv("HERMES_MANAGED", "")
+        monkeypatch.setenv("OPENAMER_MANAGED", "")
 
         with patch("subprocess.Popen"):
             result = await runner._handle_update_command(event)
@@ -483,7 +483,7 @@ class TestUpdateCommandPlatformGate:
 
         runner = _make_runner()
         event = _make_event(platform=Platform.HOMEASSISTANT)
-        monkeypatch.setenv("HERMES_MANAGED", "")
+        monkeypatch.setenv("OPENAMER_MANAGED", "")
 
         with patch("subprocess.Popen"):
             result = await runner._handle_update_command(event)
@@ -501,7 +501,7 @@ class TestUpdateCommandPlatformGate:
 
         runner = _make_runner()
         event = _make_event(platform=Platform.TELEGRAM)
-        monkeypatch.setenv("HERMES_MANAGED", "")
+        monkeypatch.setenv("OPENAMER_MANAGED", "")
 
         with patch("subprocess.Popen"):
             result = await runner._handle_update_command(event)

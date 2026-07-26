@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Reveal/focus a pane in the OpenAmer desktop GUI.
 
-Gated on ``HERMES_DESKTOP`` (like the other GUI affordances). Emits
+Gated on ``OPENAMER_DESKTOP`` (like the other GUI affordances). Emits
 ``pane.reveal`` through the shared ``desktop_ui`` bridge; the renderer runs each
 pane's own reveal path and only acts on the active window (a background turn
 never moves the user's focus). To show a URL/file, use ``open_preview``.
@@ -33,8 +33,8 @@ def focus_pane_tool(pane: str) -> str:
 
 
 def check_focus_pane_requirements() -> bool:
-    """Desktop GUI only — HERMES_DESKTOP is set on the gateway the app spawns."""
-    return env_var_enabled("HERMES_DESKTOP")
+    """Desktop GUI only — OPENAMER_DESKTOP is set on the gateway the app spawns."""
+    return env_var_enabled("OPENAMER_DESKTOP")
 
 
 FOCUS_PANE_SCHEMA = {

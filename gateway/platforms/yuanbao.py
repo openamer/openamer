@@ -78,7 +78,7 @@ from gateway.platforms.yuanbao_proto import (
     _parse_fields,
     WS_HEARTBEAT_RUNNING,
     WS_HEARTBEAT_FINISH,
-    HERMES_INSTANCE_ID,
+    OPENAMER_INSTANCE_ID,
     decode_conn_msg,
     decode_inbound_push,
     decode_forward_msg_data,
@@ -103,13 +103,13 @@ logger = logging.getLogger(__name__)
 # Version / platform constants (used in AUTH_BIND and sign-token headers)
 # ---------------------------------------------------------------------------
 try:
-    from openamer_cli import __version__ as _HERMES_VERSION
+    from openamer_cli import __version__ as _OPENAMER_VERSION
 except ImportError:
-    _HERMES_VERSION = "0.0.0"
+    _OPENAMER_VERSION = "0.0.0"
 
-_APP_VERSION = _HERMES_VERSION
-_BOT_VERSION = _HERMES_VERSION
-_YUANBAO_INSTANCE_ID = str(HERMES_INSTANCE_ID)  # single source: yuanbao_proto.HERMES_INSTANCE_ID
+_APP_VERSION = _OPENAMER_VERSION
+_BOT_VERSION = _OPENAMER_VERSION
+_YUANBAO_INSTANCE_ID = str(OPENAMER_INSTANCE_ID)  # single source: yuanbao_proto.OPENAMER_INSTANCE_ID
 _OPERATION_SYSTEM = sys.platform
 
 # ---------------------------------------------------------------------------

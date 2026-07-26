@@ -28,7 +28,7 @@ def test_slash_worker_imports_from_cwd_with_colliding_utils(tmp_path):
         (tmp_path / pkg).mkdir()
         (tmp_path / pkg / "__init__.py").write_text("")  # no atomic_replace, etc.
 
-    env = {k: v for k, v in os.environ.items() if k != "HERMES_PYTHON_SRC_ROOT"}
+    env = {k: v for k, v in os.environ.items() if k != "OPENAMER_PYTHON_SRC_ROOT"}
     # Keep the source importable via PYTHONPATH; CWD ('') still precedes it on
     # sys.path for ``-c``, so the shadow (and thus the guard) is still exercised.
     env["PYTHONPATH"] = str(PROJECT_ROOT)

@@ -309,7 +309,7 @@ def test_dispatch_tick_runs_wal_checkpoint_at_interval(tmp_path, monkeypatch):
     interval elapses the next tick checkpoints again."""
     db_path = tmp_path / "kanban.db"
     _build_board_db(db_path, tasks=1)
-    monkeypatch.setenv("HERMES_KANBAN_DB", str(db_path))
+    monkeypatch.setenv("OPENAMER_KANBAN_DB", str(db_path))
     # Fresh per-path clock so previous tests can't have claimed the slot.
     monkeypatch.setattr(kb, "_LAST_WAL_CHECKPOINT", {})
 
@@ -340,7 +340,7 @@ def test_wal_checkpoint_failure_never_fails_the_tick(tmp_path, monkeypatch):
     """A busy/erroring checkpoint is best-effort: logged, never raised."""
     db_path = tmp_path / "kanban.db"
     _build_board_db(db_path, tasks=1)
-    monkeypatch.setenv("HERMES_KANBAN_DB", str(db_path))
+    monkeypatch.setenv("OPENAMER_KANBAN_DB", str(db_path))
     monkeypatch.setattr(kb, "_LAST_WAL_CHECKPOINT", {})
 
     executed: list[str] = []
@@ -361,7 +361,7 @@ def test_wal_checkpoint_truncates_wal_file(tmp_path, monkeypatch):
     """End-to-end: the checkpoint actually truncates the -wal sidecar."""
     db_path = tmp_path / "kanban.db"
     _build_board_db(db_path, tasks=1)
-    monkeypatch.setenv("HERMES_KANBAN_DB", str(db_path))
+    monkeypatch.setenv("OPENAMER_KANBAN_DB", str(db_path))
     monkeypatch.setattr(kb, "_LAST_WAL_CHECKPOINT", {})
 
     conn = kb.connect(db_path=db_path)

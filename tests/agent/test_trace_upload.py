@@ -247,7 +247,7 @@ def test_do_upload_missing_huggingface_hub(monkeypatch):
     """If huggingface_hub import fails, return a clear install hint."""
     # Disable lazy-install so the import path deterministically fails here
     # instead of attempting a real pip install in CI.
-    monkeypatch.setenv("HERMES_DISABLE_LAZY_INSTALLS", "1")
+    monkeypatch.setenv("OPENAMER_DISABLE_LAZY_INSTALLS", "1")
     import builtins
     real_import = builtins.__import__
 

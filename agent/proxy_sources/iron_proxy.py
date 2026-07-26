@@ -117,7 +117,7 @@ _STARTUP_GRACE_SECONDS = 5
 # ``<openamer_home>/proxy/management.token`` (0600), and injected into the
 # daemon's env under this name at start.  v0.39 validates at startup that
 # the named env var is non-empty when management.listen is set.
-_MGMT_API_KEY_ENV = "HERMES_IRON_PROXY_MGMT_KEY"
+_MGMT_API_KEY_ENV = "OPENAMER_IRON_PROXY_MGMT_KEY"
 # The management listener binds loopback at tunnel_port + 2 (tunnel_port
 # is CONNECT/MITM, +1 is the plain-HTTP forward listener).
 _MGMT_PORT_OFFSET = 2
@@ -846,7 +846,7 @@ def ensure_management_token(*, force: bool = False) -> str:
     """Return the management-API bearer key, minting it on first call.
 
     Stored at ``<openamer_home>/proxy/management.token`` with 0600 perms.
-    The daemon receives it via the ``HERMES_IRON_PROXY_MGMT_KEY`` env var
+    The daemon receives it via the ``OPENAMER_IRON_PROXY_MGMT_KEY`` env var
     (named in the generated config's ``management.api_key_env``);
     ``openamer egress reload`` reads the same file to authenticate.
     """
@@ -1589,7 +1589,7 @@ def _read_pid() -> Optional[int]:
 # by ``_pid_alive`` to confirm a candidate PID still refers to *our* managed
 # binary even across PID recycling (a fresh process can't inherit our
 # arbitrary env value).
-_HERMES_IRON_PROXY_NONCE_ENV = "HERMES_IRON_PROXY_NONCE"
+_OPENAMER_IRON_PROXY_NONCE_ENV = "OPENAMER_IRON_PROXY_NONCE"
 _proxy_nonce: Optional[str] = None
 
 
@@ -1718,7 +1718,7 @@ def _pid_alive(pid: int) -> bool:
         try:
             env_bytes = Path(f"/proc/{pid}/environ").read_bytes()
             for nonce in nonce_candidates:
-                needle = f"{_HERMES_IRON_PROXY_NONCE_ENV}={nonce}".encode()
+                needle = f"{_OPENAMER_IRON_PROXY_NONCE_ENV}={nonce}".encode()
                 if needle in env_bytes:
                     return True
         except OSError:
@@ -1820,7 +1820,7 @@ def start_proxy(
     # recycling.  Module-global is fine — only one managed proxy per
     # OpenAmer process.
     _proxy_nonce = hashlib.sha256(os.urandom(16)).hexdigest()
-    env[_HERMES_IRON_PROXY_NONCE_ENV] = _proxy_nonce
+    env[_OPENAMER_IRON_PROXY_NONCE_ENV] = _proxy_nonce
 
     log_path = _proxy_state_dir() / "iron-proxy.log"
     # Keep ownership of the fd tight: open with explicit 0o600 so the

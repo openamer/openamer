@@ -46,13 +46,13 @@ def test_cron_storage_anchors_at_profile_home(tmp_path, monkeypatch):
     assert openamer_constants.get_openamer_home().resolve() == profile_home.resolve()
     assert openamer_constants.get_default_openamer_root().resolve() == root.resolve()
 
-    # cron/jobs.py computes HERMES_DIR from get_openamer_home() at import, so a
+    # cron/jobs.py computes OPENAMER_DIR from get_openamer_home() at import, so a
     # fresh import under this env anchors the store at <profile>/cron.
     import cron.jobs as jobs
 
     importlib.reload(jobs)
     try:
-        assert jobs.HERMES_DIR.resolve() == profile_home.resolve()
+        assert jobs.OPENAMER_DIR.resolve() == profile_home.resolve()
         assert (
             jobs.JOBS_FILE.resolve()
             == (profile_home / "cron" / "jobs.json").resolve()
@@ -119,7 +119,7 @@ def test_cron_storage_unaffected_when_no_profile(tmp_path, monkeypatch):
 
     importlib.reload(jobs)
     try:
-        assert jobs.HERMES_DIR.resolve() == root.resolve()
+        assert jobs.OPENAMER_DIR.resolve() == root.resolve()
         assert jobs.JOBS_FILE.resolve() == (root / "cron" / "jobs.json").resolve()
     finally:
         monkeypatch.undo()

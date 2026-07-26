@@ -34,13 +34,13 @@ def _reset_arm_flag(monkeypatch):
 
 class TestSignalArmLogic:
     def test_arms_with_double_cleanup_timeout(self, monkeypatch):
-        monkeypatch.setenv("HERMES_EXIT_WATCHDOG_S", "7")
+        monkeypatch.setenv("OPENAMER_EXIT_WATCHDOG_S", "7")
         with patch.object(cli, "_arm_exit_watchdog") as arm:
             cli._arm_exit_watchdog_on_shutdown_signal()
         arm.assert_called_once_with(timeout_s=14.0)
 
     def test_idempotent_across_repeated_signals(self, monkeypatch):
-        monkeypatch.setenv("HERMES_EXIT_WATCHDOG_S", "7")
+        monkeypatch.setenv("OPENAMER_EXIT_WATCHDOG_S", "7")
         with patch.object(cli, "_arm_exit_watchdog") as arm:
             cli._arm_exit_watchdog_on_shutdown_signal()
             cli._arm_exit_watchdog_on_shutdown_signal()
@@ -48,19 +48,19 @@ class TestSignalArmLogic:
         assert arm.call_count == 1
 
     def test_disabled_via_env_zero(self, monkeypatch):
-        monkeypatch.setenv("HERMES_EXIT_WATCHDOG_S", "0")
+        monkeypatch.setenv("OPENAMER_EXIT_WATCHDOG_S", "0")
         with patch.object(cli, "_arm_exit_watchdog") as arm:
             cli._arm_exit_watchdog_on_shutdown_signal()
         arm.assert_not_called()
 
     def test_bad_env_value_falls_back_to_default(self, monkeypatch):
-        monkeypatch.setenv("HERMES_EXIT_WATCHDOG_S", "not-a-number")
+        monkeypatch.setenv("OPENAMER_EXIT_WATCHDOG_S", "not-a-number")
         with patch.object(cli, "_arm_exit_watchdog") as arm:
             cli._arm_exit_watchdog_on_shutdown_signal()
         arm.assert_called_once_with(timeout_s=60.0)
 
     def test_never_raises_even_if_arm_explodes(self, monkeypatch):
-        monkeypatch.setenv("HERMES_EXIT_WATCHDOG_S", "7")
+        monkeypatch.setenv("OPENAMER_EXIT_WATCHDOG_S", "7")
         with patch.object(cli, "_arm_exit_watchdog", side_effect=RuntimeError("boom")):
             cli._arm_exit_watchdog_on_shutdown_signal()  # must not raise
 
@@ -91,8 +91,8 @@ while True:  # the wedge: never observes any unwind
 @pytest.mark.skipif(sys.platform == "win32", reason="POSIX signals")
 def test_sigterm_on_wedged_process_forces_exit_within_leash():
     """E2E: a wedged process armed via the signal path self-exits at ~2×
-    HERMES_EXIT_WATCHDOG_S; without the signal it would live forever."""
-    env = dict(os.environ, HERMES_EXIT_WATCHDOG_S="1", PYTHONPATH=_REPO_ROOT)
+    OPENAMER_EXIT_WATCHDOG_S; without the signal it would live forever."""
+    env = dict(os.environ, OPENAMER_EXIT_WATCHDOG_S="1", PYTHONPATH=_REPO_ROOT)
     # _arm_exit_watchdog refuses to arm under pytest (it would kill the test
     # worker); the subprocess must look like a real CLI.
     env.pop("PYTEST_CURRENT_TEST", None)

@@ -35,9 +35,9 @@ class TestManifest:
             "pre_llm_call", "post_llm_call",
             "pre_tool_call", "post_tool_call",
         }
-        # Required env vars are the user-facing HERMES_ prefixed keys.
-        assert "HERMES_LANGFUSE_PUBLIC_KEY" in data["requires_env"]
-        assert "HERMES_LANGFUSE_SECRET_KEY" in data["requires_env"]
+        # Required env vars are the user-facing OPENAMER_ prefixed keys.
+        assert "OPENAMER_LANGFUSE_PUBLIC_KEY" in data["requires_env"]
+        assert "OPENAMER_LANGFUSE_SECRET_KEY" in data["requires_env"]
 
 
 # ---------------------------------------------------------------------------
@@ -83,7 +83,7 @@ class TestRuntimeGate:
 
     def test_get_langfuse_returns_none_without_credentials(self, monkeypatch):
         for k in (
-            "HERMES_LANGFUSE_PUBLIC_KEY", "HERMES_LANGFUSE_SECRET_KEY",
+            "OPENAMER_LANGFUSE_PUBLIC_KEY", "OPENAMER_LANGFUSE_SECRET_KEY",
             "LANGFUSE_PUBLIC_KEY", "LANGFUSE_SECRET_KEY",
         ):
             monkeypatch.delenv(k, raising=False)
@@ -94,7 +94,7 @@ class TestRuntimeGate:
     def test_get_langfuse_caches_failure_no_config_load(self, monkeypatch):
         """A miss must be cached — no per-hook config.yaml reads, no env re-reads."""
         for k in (
-            "HERMES_LANGFUSE_PUBLIC_KEY", "HERMES_LANGFUSE_SECRET_KEY",
+            "OPENAMER_LANGFUSE_PUBLIC_KEY", "OPENAMER_LANGFUSE_SECRET_KEY",
             "LANGFUSE_PUBLIC_KEY", "LANGFUSE_SECRET_KEY",
         ):
             monkeypatch.delenv(k, raising=False)
@@ -111,7 +111,7 @@ class TestRuntimeGate:
         real_get = os.environ.get
 
         def tracking_get(key, default=None):
-            if key.startswith(("HERMES_LANGFUSE_", "LANGFUSE_")):
+            if key.startswith(("OPENAMER_LANGFUSE_", "LANGFUSE_")):
                 called["n"] += 1
             return real_get(key, default)
 
@@ -128,7 +128,7 @@ class TestRuntimeGate:
     def test_get_langfuse_does_not_import_openamer_config(self, monkeypatch):
         """The plugin must not re-read config.yaml per hook."""
         for k in (
-            "HERMES_LANGFUSE_PUBLIC_KEY", "HERMES_LANGFUSE_SECRET_KEY",
+            "OPENAMER_LANGFUSE_PUBLIC_KEY", "OPENAMER_LANGFUSE_SECRET_KEY",
             "LANGFUSE_PUBLIC_KEY", "LANGFUSE_SECRET_KEY",
         ):
             monkeypatch.delenv(k, raising=False)
@@ -154,7 +154,7 @@ class TestHooksInert:
     def test_hooks_noop_without_client(self, monkeypatch):
         """All 6 hooks must return without raising when _get_langfuse() is None."""
         for k in (
-            "HERMES_LANGFUSE_PUBLIC_KEY", "HERMES_LANGFUSE_SECRET_KEY",
+            "OPENAMER_LANGFUSE_PUBLIC_KEY", "OPENAMER_LANGFUSE_SECRET_KEY",
             "LANGFUSE_PUBLIC_KEY", "LANGFUSE_SECRET_KEY",
         ):
             monkeypatch.delenv(k, raising=False)
@@ -419,7 +419,7 @@ class TestTurnTraceIsolation:
 # Placeholder-credential guard (#23823).
 #
 # Regression coverage for the silent-failure bug: when an operator leaves
-# HERMES_LANGFUSE_PUBLIC_KEY / SECRET_KEY at a template value like
+# OPENAMER_LANGFUSE_PUBLIC_KEY / SECRET_KEY at a template value like
 # "placeholder", "test-key", or "your-langfuse-key", the SDK accepts the
 # credentials at construction time (it does no server-side validation
 # eagerly) but drops every trace at flush time, with no signal in the
@@ -465,7 +465,7 @@ class TestPlaceholderKeyDetection:
     @staticmethod
     def _clear_env(monkeypatch):
         for k in (
-            "HERMES_LANGFUSE_PUBLIC_KEY", "HERMES_LANGFUSE_SECRET_KEY",
+            "OPENAMER_LANGFUSE_PUBLIC_KEY", "OPENAMER_LANGFUSE_SECRET_KEY",
             "LANGFUSE_PUBLIC_KEY", "LANGFUSE_SECRET_KEY",
         ):
             monkeypatch.delenv(k, raising=False)
@@ -500,27 +500,27 @@ class TestPlaceholderKeyDetection:
         self._clear_env(monkeypatch)
         plugin = self._fresh_plugin()
         assert plugin._validate_langfuse_key(
-            "HERMES_LANGFUSE_PUBLIC_KEY", "pk-lf-real-public-xyz"
+            "OPENAMER_LANGFUSE_PUBLIC_KEY", "pk-lf-real-public-xyz"
         ) is None
         assert plugin._validate_langfuse_key(
-            "HERMES_LANGFUSE_SECRET_KEY", "sk-lf-real-secret-xyz"
+            "OPENAMER_LANGFUSE_SECRET_KEY", "sk-lf-real-secret-xyz"
         ) is None
 
     def test_validate_langfuse_key_rejects_wrong_prefix(self, monkeypatch):
         self._clear_env(monkeypatch)
         plugin = self._fresh_plugin()
         msg = plugin._validate_langfuse_key(
-            "HERMES_LANGFUSE_PUBLIC_KEY", "placeholder"
+            "OPENAMER_LANGFUSE_PUBLIC_KEY", "placeholder"
         )
         assert msg is not None
-        assert "HERMES_LANGFUSE_PUBLIC_KEY" in msg
+        assert "OPENAMER_LANGFUSE_PUBLIC_KEY" in msg
         assert "pk-lf-" in msg
 
     def test_validate_langfuse_key_unknown_name_passes(self, monkeypatch):
         """Defensive: an env var with no registered prefix is trusted."""
         self._clear_env(monkeypatch)
         plugin = self._fresh_plugin()
-        assert plugin._validate_langfuse_key("HERMES_LANGFUSE_BASE_URL", "anything") is None
+        assert plugin._validate_langfuse_key("OPENAMER_LANGFUSE_BASE_URL", "anything") is None
 
     # -- end-to-end _get_langfuse() behaviour --------------------------------
     # These tests pass `monkeypatch` to _fresh_plugin() so the helper can
@@ -530,13 +530,13 @@ class TestPlaceholderKeyDetection:
 
     def test_placeholder_public_key_warns_and_skips(self, monkeypatch, caplog):
         self._clear_env(monkeypatch)
-        monkeypatch.setenv("HERMES_LANGFUSE_PUBLIC_KEY", "placeholder")
-        monkeypatch.setenv("HERMES_LANGFUSE_SECRET_KEY", "sk-lf-real-secret-xyz")
+        monkeypatch.setenv("OPENAMER_LANGFUSE_PUBLIC_KEY", "placeholder")
+        monkeypatch.setenv("OPENAMER_LANGFUSE_SECRET_KEY", "sk-lf-real-secret-xyz")
         plugin = self._fresh_plugin(monkeypatch)
         with caplog.at_level(logging.WARNING, logger=self.LOGGER_NAME):
             assert plugin._get_langfuse() is None
         text = caplog.text
-        assert "HERMES_LANGFUSE_PUBLIC_KEY" in text
+        assert "OPENAMER_LANGFUSE_PUBLIC_KEY" in text
         assert "'placeholder'" in text
         assert "pk-lf-" in text
         # The valid secret value must NOT appear (the var NAME does, in
@@ -547,13 +547,13 @@ class TestPlaceholderKeyDetection:
 
     def test_placeholder_secret_key_warns_and_skips(self, monkeypatch, caplog):
         self._clear_env(monkeypatch)
-        monkeypatch.setenv("HERMES_LANGFUSE_PUBLIC_KEY", "pk-lf-real-public-xyz")
-        monkeypatch.setenv("HERMES_LANGFUSE_SECRET_KEY", "test-key")
+        monkeypatch.setenv("OPENAMER_LANGFUSE_PUBLIC_KEY", "pk-lf-real-public-xyz")
+        monkeypatch.setenv("OPENAMER_LANGFUSE_SECRET_KEY", "test-key")
         plugin = self._fresh_plugin(monkeypatch)
         with caplog.at_level(logging.WARNING, logger=self.LOGGER_NAME):
             assert plugin._get_langfuse() is None
         text = caplog.text
-        assert "HERMES_LANGFUSE_SECRET_KEY" in text
+        assert "OPENAMER_LANGFUSE_SECRET_KEY" in text
         assert "'test-key'" in text
         assert "sk-lf-" in text
         # The valid public value must NOT appear.
@@ -562,8 +562,8 @@ class TestPlaceholderKeyDetection:
 
     def test_both_placeholders_one_warning_with_both_keys(self, monkeypatch, caplog):
         self._clear_env(monkeypatch)
-        monkeypatch.setenv("HERMES_LANGFUSE_PUBLIC_KEY", "placeholder")
-        monkeypatch.setenv("HERMES_LANGFUSE_SECRET_KEY", "placeholder")
+        monkeypatch.setenv("OPENAMER_LANGFUSE_PUBLIC_KEY", "placeholder")
+        monkeypatch.setenv("OPENAMER_LANGFUSE_SECRET_KEY", "placeholder")
         plugin = self._fresh_plugin(monkeypatch)
         with caplog.at_level(logging.WARNING, logger=self.LOGGER_NAME):
             assert plugin._get_langfuse() is None
@@ -574,8 +574,8 @@ class TestPlaceholderKeyDetection:
             + "\n".join(r.getMessage() for r in warnings)
         )
         text = warnings[0].getMessage()
-        assert "HERMES_LANGFUSE_PUBLIC_KEY" in text
-        assert "HERMES_LANGFUSE_SECRET_KEY" in text
+        assert "OPENAMER_LANGFUSE_PUBLIC_KEY" in text
+        assert "OPENAMER_LANGFUSE_SECRET_KEY" in text
 
     def test_repeated_calls_do_not_re_warn(self, monkeypatch, caplog):
         """The cached ``_INIT_FAILED`` sentinel must short-circuit
@@ -583,8 +583,8 @@ class TestPlaceholderKeyDetection:
         line — otherwise a busy gateway will spam the operator's
         terminal."""
         self._clear_env(monkeypatch)
-        monkeypatch.setenv("HERMES_LANGFUSE_PUBLIC_KEY", "placeholder")
-        monkeypatch.setenv("HERMES_LANGFUSE_SECRET_KEY", "placeholder")
+        monkeypatch.setenv("OPENAMER_LANGFUSE_PUBLIC_KEY", "placeholder")
+        monkeypatch.setenv("OPENAMER_LANGFUSE_SECRET_KEY", "placeholder")
         plugin = self._fresh_plugin(monkeypatch)
         with caplog.at_level(logging.WARNING, logger=self.LOGGER_NAME):
             for _ in range(15):
@@ -610,15 +610,15 @@ class TestPlaceholderKeyDetection:
         """A grab-bag of values that real-world ``.env.example`` templates
         use as stand-ins.  Any of them in either key must trip the guard."""
         self._clear_env(monkeypatch)
-        monkeypatch.setenv("HERMES_LANGFUSE_PUBLIC_KEY", placeholder)
-        monkeypatch.setenv("HERMES_LANGFUSE_SECRET_KEY", "sk-lf-real-secret-xyz")
+        monkeypatch.setenv("OPENAMER_LANGFUSE_PUBLIC_KEY", placeholder)
+        monkeypatch.setenv("OPENAMER_LANGFUSE_SECRET_KEY", "sk-lf-real-secret-xyz")
         plugin = self._fresh_plugin(monkeypatch)
         with caplog.at_level(logging.WARNING, logger=self.LOGGER_NAME):
             assert plugin._get_langfuse() is None
-        assert "HERMES_LANGFUSE_PUBLIC_KEY" in caplog.text
+        assert "OPENAMER_LANGFUSE_PUBLIC_KEY" in caplog.text
 
     def test_legacy_LANGFUSE_PUBLIC_KEY_also_validated(self, monkeypatch, caplog):
-        """The plugin reads both the canonical HERMES_-prefixed env var and
+        """The plugin reads both the canonical OPENAMER_-prefixed env var and
         the legacy bare ``LANGFUSE_PUBLIC_KEY``.  The validator must run on
         whichever value ``_get_langfuse()`` actually consumed."""
         self._clear_env(monkeypatch)
@@ -629,8 +629,8 @@ class TestPlaceholderKeyDetection:
             assert plugin._get_langfuse() is None
         # Warning names the canonical user-facing env var (the bare
         # LANGFUSE_PUBLIC_KEY is a backwards-compat alias for the
-        # HERMES_-prefixed one — operators set the HERMES_-prefixed one).
-        assert "HERMES_LANGFUSE_PUBLIC_KEY" in caplog.text
+        # OPENAMER_-prefixed one — operators set the OPENAMER_-prefixed one).
+        assert "OPENAMER_LANGFUSE_PUBLIC_KEY" in caplog.text
         assert "'placeholder'" in caplog.text
 
     def test_missing_credentials_still_skip_silently(self, monkeypatch, caplog):
@@ -656,8 +656,8 @@ class TestPlaceholderKeyDetection:
         ``_get_langfuse`` already handles this; this test pins that
         behaviour."""
         self._clear_env(monkeypatch)
-        monkeypatch.setenv("HERMES_LANGFUSE_PUBLIC_KEY", "placeholder")
-        monkeypatch.setenv("HERMES_LANGFUSE_SECRET_KEY", "placeholder")
+        monkeypatch.setenv("OPENAMER_LANGFUSE_PUBLIC_KEY", "placeholder")
+        monkeypatch.setenv("OPENAMER_LANGFUSE_SECRET_KEY", "placeholder")
         # NO monkeypatch on Langfuse here — falls back to whatever the
         # plugin imported at module load (None if SDK absent).
         plugin = self._fresh_plugin()
@@ -676,8 +676,8 @@ class TestPlaceholderKeyDetection:
         constructed — the latter is the success signal the bug report
         wanted."""
         self._clear_env(monkeypatch)
-        monkeypatch.setenv("HERMES_LANGFUSE_PUBLIC_KEY", "pk-lf-real-public-xyz")
-        monkeypatch.setenv("HERMES_LANGFUSE_SECRET_KEY", "sk-lf-real-secret-xyz")
+        monkeypatch.setenv("OPENAMER_LANGFUSE_PUBLIC_KEY", "pk-lf-real-public-xyz")
+        monkeypatch.setenv("OPENAMER_LANGFUSE_SECRET_KEY", "sk-lf-real-secret-xyz")
         plugin = self._fresh_plugin(monkeypatch)
         with caplog.at_level(logging.WARNING, logger=self.LOGGER_NAME):
             client = plugin._get_langfuse()

@@ -93,19 +93,19 @@ def test_main_import_applies_user_env_over_shell_values(tmp_path, monkeypatch):
     home = tmp_path / "openamer"
     home.mkdir()
     (home / ".env").write_text(
-        "OPENAI_BASE_URL=https://new.example/v1\nHERMES_INFERENCE_PROVIDER=custom\n",
+        "OPENAI_BASE_URL=https://new.example/v1\nOPENAMER_INFERENCE_PROVIDER=custom\n",
         encoding="utf-8",
     )
 
     monkeypatch.setenv("OPENAMER_HOME", str(home))
     monkeypatch.setenv("OPENAI_BASE_URL", "https://old.example/v1")
-    monkeypatch.setenv("HERMES_INFERENCE_PROVIDER", "openrouter")
+    monkeypatch.setenv("OPENAMER_INFERENCE_PROVIDER", "openrouter")
 
     sys.modules.pop("openamer_cli.main", None)
     importlib.import_module("openamer_cli.main")
 
     assert os.getenv("OPENAI_BASE_URL") == "https://new.example/v1"
-    assert os.getenv("HERMES_INFERENCE_PROVIDER") == "custom"
+    assert os.getenv("OPENAMER_INFERENCE_PROVIDER") == "custom"
 
 
 # ---------------------------------------------------------------------------
@@ -135,20 +135,20 @@ def test_utf16_le_bom_env_loads_and_rewrites_clean_utf8(tmp_path, monkeypatch):
     home = tmp_path / "openamer"
     home.mkdir()
     env_file = home / ".env"
-    content = "HERMES_TEST_KEY=hello_utf16\nSECOND_KEY=world\n"
+    content = "OPENAMER_TEST_KEY=hello_utf16\nSECOND_KEY=world\n"
     env_file.write_bytes(codecs.BOM_UTF16_LE + content.encode("utf-16-le"))
 
-    monkeypatch.delenv("HERMES_TEST_KEY", raising=False)
+    monkeypatch.delenv("OPENAMER_TEST_KEY", raising=False)
     monkeypatch.delenv("SECOND_KEY", raising=False)
-    monkeypatch.delenv("\ufffd\ufffdHERMES_TEST_KEY", raising=False)
+    monkeypatch.delenv("\ufffd\ufffdOPENAMER_TEST_KEY", raising=False)
 
     loaded = load_openamer_dotenv(openamer_home=home)
 
     assert loaded == [env_file]
-    assert os.getenv("HERMES_TEST_KEY") == "hello_utf16"
+    assert os.getenv("OPENAMER_TEST_KEY") == "hello_utf16"
     assert os.getenv("SECOND_KEY") == "world"
-    assert os.environ.get("\ufffd\ufffdHERMES_TEST_KEY") is None
-    _assert_clean_utf8_env_on_disk(env_file, first_key="HERMES_TEST_KEY")
+    assert os.environ.get("\ufffd\ufffdOPENAMER_TEST_KEY") is None
+    _assert_clean_utf8_env_on_disk(env_file, first_key="OPENAMER_TEST_KEY")
 
 
 def test_utf16_be_bom_env_loads_and_rewrites_clean_utf8(tmp_path, monkeypatch):
@@ -156,18 +156,18 @@ def test_utf16_be_bom_env_loads_and_rewrites_clean_utf8(tmp_path, monkeypatch):
     home = tmp_path / "openamer"
     home.mkdir()
     env_file = home / ".env"
-    content = "HERMES_TEST_KEY=hello_utf16\nSECOND_KEY=world\n"
+    content = "OPENAMER_TEST_KEY=hello_utf16\nSECOND_KEY=world\n"
     env_file.write_bytes(codecs.BOM_UTF16_BE + content.encode("utf-16-be"))
 
-    monkeypatch.delenv("HERMES_TEST_KEY", raising=False)
+    monkeypatch.delenv("OPENAMER_TEST_KEY", raising=False)
     monkeypatch.delenv("SECOND_KEY", raising=False)
 
     loaded = load_openamer_dotenv(openamer_home=home)
 
     assert loaded == [env_file]
-    assert os.getenv("HERMES_TEST_KEY") == "hello_utf16"
+    assert os.getenv("OPENAMER_TEST_KEY") == "hello_utf16"
     assert os.getenv("SECOND_KEY") == "world"
-    _assert_clean_utf8_env_on_disk(env_file, first_key="HERMES_TEST_KEY")
+    _assert_clean_utf8_env_on_disk(env_file, first_key="OPENAMER_TEST_KEY")
 
 
 def test_utf16_le_no_bom_still_repairs_to_utf8(tmp_path, monkeypatch):
@@ -175,18 +175,18 @@ def test_utf16_le_no_bom_still_repairs_to_utf8(tmp_path, monkeypatch):
     home = tmp_path / "openamer"
     home.mkdir()
     env_file = home / ".env"
-    content = "HERMES_TEST_KEY=hello_utf16\nSECOND_KEY=world\n"
+    content = "OPENAMER_TEST_KEY=hello_utf16\nSECOND_KEY=world\n"
     env_file.write_bytes(content.encode("utf-16-le"))  # no BOM
 
-    monkeypatch.delenv("HERMES_TEST_KEY", raising=False)
+    monkeypatch.delenv("OPENAMER_TEST_KEY", raising=False)
     monkeypatch.delenv("SECOND_KEY", raising=False)
 
     loaded = load_openamer_dotenv(openamer_home=home)
 
     assert loaded == [env_file]
-    assert os.getenv("HERMES_TEST_KEY") == "hello_utf16"
+    assert os.getenv("OPENAMER_TEST_KEY") == "hello_utf16"
     assert os.getenv("SECOND_KEY") == "world"
-    _assert_clean_utf8_env_on_disk(env_file, first_key="HERMES_TEST_KEY")
+    _assert_clean_utf8_env_on_disk(env_file, first_key="OPENAMER_TEST_KEY")
 
 
 def test_utf16_be_no_bom_still_repairs_to_utf8(tmp_path, monkeypatch):
@@ -194,18 +194,18 @@ def test_utf16_be_no_bom_still_repairs_to_utf8(tmp_path, monkeypatch):
     home = tmp_path / "openamer"
     home.mkdir()
     env_file = home / ".env"
-    content = "HERMES_TEST_KEY=hello_utf16\nSECOND_KEY=world\n"
+    content = "OPENAMER_TEST_KEY=hello_utf16\nSECOND_KEY=world\n"
     env_file.write_bytes(content.encode("utf-16-be"))  # no BOM
 
-    monkeypatch.delenv("HERMES_TEST_KEY", raising=False)
+    monkeypatch.delenv("OPENAMER_TEST_KEY", raising=False)
     monkeypatch.delenv("SECOND_KEY", raising=False)
 
     loaded = load_openamer_dotenv(openamer_home=home)
 
     assert loaded == [env_file]
-    assert os.getenv("HERMES_TEST_KEY") == "hello_utf16"
+    assert os.getenv("OPENAMER_TEST_KEY") == "hello_utf16"
     assert os.getenv("SECOND_KEY") == "world"
-    _assert_clean_utf8_env_on_disk(env_file, first_key="HERMES_TEST_KEY")
+    _assert_clean_utf8_env_on_disk(env_file, first_key="OPENAMER_TEST_KEY")
 
 
 def test_utf16_le_bom_preserves_non_ascii_values(tmp_path, monkeypatch):
@@ -249,7 +249,7 @@ def test_utf32_le_bom_leaves_file_untouched(tmp_path, caplog):
     from openamer_cli.env_loader import _sanitize_env_file_if_needed
 
     env_file = tmp_path / ".env"
-    content = "HERMES_TEST_KEY=hello_utf32\nSECOND_KEY=world\n"
+    content = "OPENAMER_TEST_KEY=hello_utf32\nSECOND_KEY=world\n"
     raw = codecs.BOM_UTF32_LE + content.encode("utf-32-le")
     env_file.write_bytes(raw)
 
@@ -267,7 +267,7 @@ def test_utf32_be_bom_leaves_file_untouched(tmp_path, caplog):
     from openamer_cli.env_loader import _sanitize_env_file_if_needed
 
     env_file = tmp_path / ".env"
-    content = "HERMES_TEST_KEY=hello_utf32\nSECOND_KEY=world\n"
+    content = "OPENAMER_TEST_KEY=hello_utf32\nSECOND_KEY=world\n"
     raw = codecs.BOM_UTF32_BE + content.encode("utf-32-be")
     env_file.write_bytes(raw)
 
@@ -293,7 +293,7 @@ def test_utf32_warning_fires_once_per_path(tmp_path, caplog, monkeypatch):
     monkeypatch.setattr(env_loader, "_WARNED_UTF32_PATHS", set())
 
     env_file = tmp_path / ".env"
-    content = "HERMES_TEST_KEY=hello_utf32\nSECOND_KEY=world\n"
+    content = "OPENAMER_TEST_KEY=hello_utf32\nSECOND_KEY=world\n"
     raw = codecs.BOM_UTF32_LE + content.encode("utf-32-le")
     env_file.write_bytes(raw)
 
@@ -317,7 +317,7 @@ def test_leading_replacement_char_does_not_rewrite(tmp_path):
     from openamer_cli.env_loader import _sanitize_env_file_if_needed
 
     env_file = tmp_path / ".env"
-    raw = b"\xffHERMES_TEST_KEY=should-not-rewrite\nSECOND_KEY=ok\n"
+    raw = b"\xffOPENAMER_TEST_KEY=should-not-rewrite\nSECOND_KEY=ok\n"
     env_file.write_bytes(raw)
 
     _sanitize_env_file_if_needed(env_file)

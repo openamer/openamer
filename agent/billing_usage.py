@@ -226,7 +226,7 @@ def usage_model_from_account(account_info: Any) -> UsageModel:
 def build_usage_model(*, timeout: float = 10.0) -> UsageModel:
     """Fetch account-info and build the shared usage model. Fail-open.
 
-    Dev override: ``HERMES_DEV_CREDITS_FIXTURE`` short-circuits to a fixture so
+    Dev override: ``OPENAMER_DEV_CREDITS_FIXTURE`` short-circuits to a fixture so
     every usage state is testable without a live account (mirrors the existing
     ``/usage`` credits-block fixture path).
     """
@@ -262,12 +262,12 @@ def build_usage_model(*, timeout: float = 10.0) -> UsageModel:
 
 
 def _dev_fixture_usage_model() -> Optional[UsageModel]:
-    """Map ``HERMES_DEV_CREDITS_FIXTURE`` to a usage model for offline UX work.
+    """Map ``OPENAMER_DEV_CREDITS_FIXTURE`` to a usage model for offline UX work.
 
     Recognized names: ``free | healthy | low | topup | depleted``. Returns
     ``None`` when the env var is unset (real portal path runs).
     """
-    name = (os.getenv("HERMES_DEV_CREDITS_FIXTURE") or "").strip().lower()
+    name = (os.getenv("OPENAMER_DEV_CREDITS_FIXTURE") or "").strip().lower()
     if not name:
         return None
 

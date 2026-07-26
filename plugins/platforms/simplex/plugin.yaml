@@ -47,7 +47,7 @@ optional_env:
     description: "Human label for the home channel (defaults to the ID)"
     prompt: "Home channel display name (or empty)"
     password: false
-  - name: HERMES_SIMPLEX_TEXT_BATCH_DELAY
+  - name: OPENAMER_SIMPLEX_TEXT_BATCH_DELAY
     description: >-
       Quiet-period seconds (default: 0.8) used to concatenate rapid-fire
       inbound text messages into a single MessageEvent — same pattern as

@@ -27,7 +27,7 @@ def container_env(tmp_path, monkeypatch):
     openamer_home = tmp_path / ".openamer"
     openamer_home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
-    monkeypatch.delenv("HERMES_DEV", raising=False)
+    monkeypatch.delenv("OPENAMER_DEV", raising=False)
 
     container_mode = openamer_home / ".container-mode"
     container_mode.write_text(
@@ -65,7 +65,7 @@ def test_get_container_exec_info_none_without_file(tmp_path, monkeypatch):
     openamer_home = tmp_path / ".openamer"
     openamer_home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
-    monkeypatch.delenv("HERMES_DEV", raising=False)
+    monkeypatch.delenv("OPENAMER_DEV", raising=False)
 
     with patch("openamer_constants.is_container", return_value=False):
         info = get_container_exec_info()
@@ -74,8 +74,8 @@ def test_get_container_exec_info_none_without_file(tmp_path, monkeypatch):
 
 
 def test_get_container_exec_info_skipped_when_openamer_dev(container_env, monkeypatch):
-    """Returns None when HERMES_DEV=1 is set (dev mode bypass)."""
-    monkeypatch.setenv("HERMES_DEV", "1")
+    """Returns None when OPENAMER_DEV=1 is set (dev mode bypass)."""
+    monkeypatch.setenv("OPENAMER_DEV", "1")
 
     with patch("openamer_constants.is_container", return_value=False):
         info = get_container_exec_info()
@@ -84,8 +84,8 @@ def test_get_container_exec_info_skipped_when_openamer_dev(container_env, monkey
 
 
 def test_get_container_exec_info_not_skipped_when_openamer_dev_zero(container_env, monkeypatch):
-    """HERMES_DEV=0 does NOT trigger bypass — only '1' does."""
-    monkeypatch.setenv("HERMES_DEV", "0")
+    """OPENAMER_DEV=0 does NOT trigger bypass — only '1' does."""
+    monkeypatch.setenv("OPENAMER_DEV", "0")
 
     with patch("openamer_constants.is_container", return_value=False):
         info = get_container_exec_info()
@@ -107,7 +107,7 @@ def test_get_container_exec_info_defaults():
         with patch("openamer_constants.is_container", return_value=False), \
              patch.dict(get_container_exec_info.__globals__, {"get_openamer_home": lambda: openamer_home}), \
              patch.dict(os.environ, {}, clear=False):
-            os.environ.pop("HERMES_DEV", None)
+            os.environ.pop("OPENAMER_DEV", None)
             info = get_container_exec_info()
 
         assert info is not None

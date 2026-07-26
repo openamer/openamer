@@ -49,8 +49,8 @@ OPENAMER_HOME="${OPENAMER_HOME:-$HOME/.openamer}"
 # INSTALL_DIR is resolved AFTER arg parsing and OS detection so we can pick an
 # FHS-style layout for root installs.  Track whether the user gave us an
 # explicit directory — if so we never override it.
-if [ -n "${HERMES_INSTALL_DIR:-}" ]; then
-    INSTALL_DIR="$HERMES_INSTALL_DIR"
+if [ -n "${OPENAMER_INSTALL_DIR:-}" ]; then
+    INSTALL_DIR="$OPENAMER_INSTALL_DIR"
     INSTALL_DIR_EXPLICIT=true
 else
     INSTALL_DIR=""
@@ -396,7 +396,7 @@ is_termux() {
 #                             (unless a legacy install already exists at
 #                              $OPENAMER_HOME/openamer-agent — then preserve it)
 #
-# Always no-op when the user set --dir or $HERMES_INSTALL_DIR.
+# Always no-op when the user set --dir or $OPENAMER_INSTALL_DIR.
 resolve_install_layout() {
     if [ "$INSTALL_DIR_EXPLICIT" = true ]; then
         log_info "Install directory: $INSTALL_DIR (explicit)"
@@ -1620,18 +1620,18 @@ setup_path() {
     log_info "Setting up openamer command..."
 
     if [ "$USE_VENV" = true ]; then
-        HERMES_BIN="$INSTALL_DIR/venv/bin/openamer"
+        OPENAMER_BIN="$INSTALL_DIR/venv/bin/openamer"
     else
-        HERMES_BIN="$(which openamer 2>/dev/null || echo "")"
-        if [ -z "$HERMES_BIN" ]; then
+        OPENAMER_BIN="$(which openamer 2>/dev/null || echo "")"
+        if [ -z "$OPENAMER_BIN" ]; then
             log_warn "openamer not found on PATH after install"
             return 0
         fi
     fi
 
     # Verify the entry point script was actually generated
-    if [ ! -x "$HERMES_BIN" ]; then
-        log_warn "openamer entry point not found at $HERMES_BIN"
+    if [ ! -x "$OPENAMER_BIN" ]; then
+        log_warn "openamer entry point not found at $OPENAMER_BIN"
         log_info "This usually means the pip install didn't complete successfully."
         if [ "$DISTRO" = "termux" ]; then
             log_info "Try: cd $INSTALL_DIR && python -m pip install -e '.[termux-all]' -c constraints-termux.txt"
@@ -1650,15 +1650,15 @@ setup_path() {
     # We intentionally clear PYTHONPATH/PYTHONHOME here so inherited env vars
     # can't make this launcher import modules from another checkout.
     mkdir -p "$command_link_dir"
-    # Older installs created this path as a symlink to $HERMES_BIN. Without
+    # Older installs created this path as a symlink to $OPENAMER_BIN. Without
     # the rm, `cat >` follows the symlink and overwrites the venv pip entry
-    # point with this shim — making `exec "$HERMES_BIN"` self-recurse. (#21454)
+    # point with this shim — making `exec "$OPENAMER_BIN"` self-recurse. (#21454)
     rm -f "$command_link_dir/openamer"
     cat > "$command_link_dir/openamer" <<EOF
 #!/usr/bin/env bash
 unset PYTHONPATH
 unset PYTHONHOME
-exec "$HERMES_BIN" "\$@"
+exec "$OPENAMER_BIN" "\$@"
 EOF
     chmod +x "$command_link_dir/openamer"
     log_success "Installed openamer launcher → $command_link_display_dir/openamer"
@@ -2328,8 +2328,8 @@ maybe_start_gateway() {
             log_info "Running 'openamer whatsapp' to pair via QR code..."
             echo ""
             if prompt_yes_no "Pair WhatsApp now?" "yes"; then
-                HERMES_CMD="$(get_openamer_command_path)"
-                $HERMES_CMD whatsapp || true
+                OPENAMER_CMD="$(get_openamer_command_path)"
+                $OPENAMER_CMD whatsapp || true
             fi
         else
             log_info "WhatsApp pairing skipped (non-interactive). Run 'openamer whatsapp' to pair."
@@ -2357,13 +2357,13 @@ maybe_start_gateway() {
     fi
 
     if [ "$should_install_gateway" = true ]; then
-        HERMES_CMD="$(get_openamer_command_path)"
+        OPENAMER_CMD="$(get_openamer_command_path)"
 
         if [ "$DISTRO" != "termux" ] && command -v systemctl &> /dev/null; then
             log_info "Installing systemd service..."
-            if $HERMES_CMD gateway install 2>/dev/null; then
+            if $OPENAMER_CMD gateway install 2>/dev/null; then
                 log_success "Gateway service installed"
-                if $HERMES_CMD gateway start 2>/dev/null; then
+                if $OPENAMER_CMD gateway start 2>/dev/null; then
                     log_success "Gateway started! Your bot is now online."
                 else
                     log_warn "Service installed but failed to start. Try: openamer gateway start"
@@ -2377,7 +2377,7 @@ maybe_start_gateway() {
             else
                 log_info "systemd not available — starting gateway in background..."
             fi
-            nohup $HERMES_CMD gateway > "$OPENAMER_HOME/logs/gateway.log" 2>&1 &
+            nohup $OPENAMER_CMD gateway > "$OPENAMER_HOME/logs/gateway.log" 2>&1 &
             GATEWAY_PID=$!
             log_success "Gateway started (PID $GATEWAY_PID). Logs: ~/.openamer/logs/gateway.log"
             log_info "To stop: kill $GATEWAY_PID"

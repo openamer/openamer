@@ -26,7 +26,7 @@ ignored:
   - DL3059
   # Last USER should not be root. /init (s6-overlay) runs as root so the
   # stage2 hook can usermod/groupmod and chown the data volume per
-  # HERMES_UID at runtime; each supervised service then drops to the
+  # OPENAMER_UID at runtime; each supervised service then drops to the
   # openamer user via `s6-setuidgid`.
   - DL3002
 

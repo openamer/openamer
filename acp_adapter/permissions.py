@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 # Maps ACP permission option ids to OpenAmer approval result strings.
 # Option ids are stable across both the ``allow_permanent=True`` and
 # ``allow_permanent=False`` paths even though the option list differs.
-_OPTION_ID_TO_HERMES = {
+_OPTION_ID_TO_OPENAMER = {
     "allow_once": "once",
     "allow_session": "session",
     "allow_always": "always",
@@ -104,7 +104,7 @@ def _map_outcome_to_openamer(outcome: object, *, allowed_option_ids: set[str]) -
     if option_id not in allowed_option_ids:
         logger.warning("Permission request returned unknown option_id: %s", option_id)
         return "deny"
-    return _OPTION_ID_TO_HERMES.get(option_id, "deny")
+    return _OPTION_ID_TO_OPENAMER.get(option_id, "deny")
 
 
 def make_approval_callback(

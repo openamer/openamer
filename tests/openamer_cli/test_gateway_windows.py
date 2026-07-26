@@ -350,7 +350,7 @@ def test_gateway_vbs_script_is_console_less(monkeypatch):
     assert "openamer_cli.main" in content
     assert "gateway run" in content
     assert ", 0, False" in content  # hidden window, detached/async
-    for var in ("OPENAMER_HOME", "PYTHONIOENCODING", "HERMES_GATEWAY_DETACHED", "VIRTUAL_ENV", "PYTHONPATH"):
+    for var in ("OPENAMER_HOME", "PYTHONIOENCODING", "OPENAMER_GATEWAY_DETACHED", "VIRTUAL_ENV", "PYTHONPATH"):
         assert var in content
     assert "--profile" in content and "work" in content
     assert content.endswith("\r\n")

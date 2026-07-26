@@ -2,7 +2,7 @@
 
 Build the real image and verify the actual runtime behavior:
 
-  1. HERMES_GATEWAY_BOOTSTRAP_STATE=running on a fresh volume seeds
+  1. OPENAMER_GATEWAY_BOOTSTRAP_STATE=running on a fresh volume seeds
      gateway_state.json with running state
   2. An existing gateway_state.json is never clobbered (first-boot-only)
   3. No env var = no seed (default down-on-first-boot preserved)
@@ -36,11 +36,11 @@ def _start_container(
 def test_seeds_running_state_on_blank_volume(
     built_image: str, container_name: str,
 ) -> None:
-    """HERMES_GATEWAY_BOOTSTRAP_STATE=running on a fresh volume must
+    """OPENAMER_GATEWAY_BOOTSTRAP_STATE=running on a fresh volume must
     seed gateway_state.json with a valid running state."""
     _start_container(
         built_image, container_name,
-        "HERMES_GATEWAY_BOOTSTRAP_STATE=running",
+        "OPENAMER_GATEWAY_BOOTSTRAP_STATE=running",
     )
 
     r = docker_exec_sh(
@@ -90,7 +90,7 @@ def test_does_not_clobber_existing_state(
     subprocess.run(
         ["docker", "run", "-d", "--name", container_name,
          "-v", f"{volume}:/opt/data",
-         "-e", "HERMES_GATEWAY_BOOTSTRAP_STATE=running",
+         "-e", "OPENAMER_GATEWAY_BOOTSTRAP_STATE=running",
          built_image, "sleep", "infinity"],
         check=True, capture_output=True, timeout=60,
     )
@@ -121,7 +121,7 @@ def test_does_not_clobber_existing_state(
 def test_no_seed_when_env_unset(
     built_image: str, container_name: str,
 ) -> None:
-    """No HERMES_GATEWAY_BOOTSTRAP_STATE = no seed file written."""
+    """No OPENAMER_GATEWAY_BOOTSTRAP_STATE = no seed file written."""
     _start_container(built_image, container_name)
 
     r = docker_exec_sh(
@@ -144,7 +144,7 @@ def test_non_running_value_ignored(
         name = f"{container_name}-{bogus}"
         _start_container(
             built_image, name,
-            f"HERMES_GATEWAY_BOOTSTRAP_STATE={bogus}",
+            f"OPENAMER_GATEWAY_BOOTSTRAP_STATE={bogus}",
         )
         r = docker_exec_sh(
             name,
@@ -222,7 +222,7 @@ def test_does_not_seed_gateway_state_through_symlink(
 
         _boot_with_bind_mount(
             built_image, container_name, host_data,
-            "HERMES_GATEWAY_BOOTSTRAP_STATE=running",
+            "OPENAMER_GATEWAY_BOOTSTRAP_STATE=running",
         )
 
         # The symlink itself must still exist (not replaced by a file)
@@ -281,7 +281,7 @@ def test_does_not_seed_auth_json_through_symlink(
 
         _boot_with_bind_mount(
             built_image, container_name, host_data,
-            'HERMES_AUTH_JSON_BOOTSTRAP={"api_key":"test"}',
+            'OPENAMER_AUTH_JSON_BOOTSTRAP={"api_key":"test"}',
         )
 
         # The symlink must still exist

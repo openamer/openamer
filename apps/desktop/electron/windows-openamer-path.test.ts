@@ -141,7 +141,7 @@ test('resolveVenvOpenAmerCommand: returns the resolved python backend descriptor
 test('resolveVenvOpenAmerCommand: is case-insensitive on openamer.exe and the Scripts dir name', () => {
   const deps = makeDeps()
 
-  assert.ok(resolveVenvOpenAmerCommand('/root/venv/Scripts/HERMES.EXE', [], deps))
+  assert.ok(resolveVenvOpenAmerCommand('/root/venv/Scripts/OPENAMER.EXE', [], deps))
   assert.ok(resolveVenvOpenAmerCommand('/root/venv/SCRIPTS/openamer.exe', [], deps))
 })
 

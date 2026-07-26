@@ -17,7 +17,7 @@ def homes(tmp_path, monkeypatch):
     managed = tmp_path / "managed"
     managed.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
-    monkeypatch.setenv("HERMES_MANAGED_DIR", str(managed))
+    monkeypatch.setenv("OPENAMER_MANAGED_DIR", str(managed))
     import openamer_cli.config as cfg
     from openamer_cli import managed_scope
 
@@ -117,7 +117,7 @@ def test_gateway_env_bridge_honors_managed(homes, monkeypatch):
     """The gateway config→env bridge must bridge MANAGED values, not user ones.
 
     gateway/run.py bridges config.yaml settings into os.environ at startup and on
-    every turn (OPENAMER_TIMEZONE, HERMES_REDACT_SECRETS, HERMES_MAX_ITERATIONS,
+    every turn (OPENAMER_TIMEZONE, OPENAMER_REDACT_SECRETS, OPENAMER_MAX_ITERATIONS,
     ...). A managed value must win at that env layer too — otherwise the bridge
     writes the user's value into the env that the whole process then reads. This
     is the regression that manual verification caught (managed timezone was

@@ -190,7 +190,7 @@ def harden_import_path(src_root: str | None = None) -> None:
     repository root for every shipped entry point, so the guard is
     self-sufficient and does not depend on the spawner exporting an env var.
     """
-    root = src_root or os.environ.get("HERMES_PYTHON_SRC_ROOT") or os.path.dirname(
+    root = src_root or os.environ.get("OPENAMER_PYTHON_SRC_ROOT") or os.path.dirname(
         os.path.abspath(__file__)
     )
 
@@ -206,7 +206,7 @@ def activate_durable_lazy_target() -> None:
 
     On immutable Docker images the agent venv is sealed and lazy installs
     are redirected to a writable dir on the data volume
-    (``HERMES_LAZY_INSTALL_TARGET``, e.g. ``/opt/data/lazy-packages``).
+    (``OPENAMER_LAZY_INSTALL_TARGET``, e.g. ``/opt/data/lazy-packages``).
     Packages installed there on a previous run must be importable on this
     run, so we activate the dir here — at the very first import, before any
     backend module imports its SDK.
@@ -215,7 +215,7 @@ def activate_durable_lazy_target() -> None:
     always wins name collisions (see ``tools.lazy_deps`` for the full
     security rationale). Never raises; a missing/empty target is a no-op.
     """
-    if not os.environ.get("HERMES_LAZY_INSTALL_TARGET", "").strip():
+    if not os.environ.get("OPENAMER_LAZY_INSTALL_TARGET", "").strip():
         return
     try:
         from tools import lazy_deps

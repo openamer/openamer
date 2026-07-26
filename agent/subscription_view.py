@@ -257,7 +257,7 @@ def build_subscription_state(*, timeout: float = 15.0) -> SubscriptionState:
     portal/HTTP failure, returns ``logged_in=False`` with ``error`` set so the
     surface can show a clear message rather than crashing.
 
-    Dev override: when ``HERMES_DEV_SUBSCRIPTION_FIXTURE`` names a fixture state,
+    Dev override: when ``OPENAMER_DEV_SUBSCRIPTION_FIXTURE`` names a fixture state,
     ``/subscription`` renders from that fixture instead of the real portal — so
     every plan/cancel/downgrade/team/not-admin state is testable on both
     the CLI and TUI without a live account. Throwaway scaffolding; see
@@ -454,7 +454,7 @@ def _dev_tiers(current_id: Optional[str]) -> tuple[SubscriptionTier, ...]:
 
 
 def dev_fixture_subscription_state() -> Optional[SubscriptionState]:
-    """Return a fixture :class:`SubscriptionState` for ``HERMES_DEV_SUBSCRIPTION_FIXTURE``.
+    """Return a fixture :class:`SubscriptionState` for ``OPENAMER_DEV_SUBSCRIPTION_FIXTURE``.
 
     Lets every CLI/TUI subscription state be exercised without a live portal:
 
@@ -462,9 +462,9 @@ def dev_fixture_subscription_state() -> Optional[SubscriptionState]:
         logged-out
 
     Returns ``None`` when the env var is unset/empty (the real portal path runs).
-    Throwaway scaffolding — mirrors ``HERMES_DEV_CREDITS_FIXTURE``.
+    Throwaway scaffolding — mirrors ``OPENAMER_DEV_CREDITS_FIXTURE``.
     """
-    name = (os.getenv("HERMES_DEV_SUBSCRIPTION_FIXTURE") or "").strip().lower()
+    name = (os.getenv("OPENAMER_DEV_SUBSCRIPTION_FIXTURE") or "").strip().lower()
     if not name:
         return None
 
@@ -503,5 +503,5 @@ def dev_fixture_subscription_state() -> Optional[SubscriptionState]:
         return SubscriptionState(logged_in=True, context="team", current=None, org_name="Acme Engineering", org_id="org_eng", role="OWNER", portal_url=_DEV_FIXTURE_PORTAL)
 
     # Unknown name → behave as logged-out so the misconfiguration is visible.
-    return SubscriptionState(logged_in=False, error=f"unknown HERMES_DEV_SUBSCRIPTION_FIXTURE: {name}")
+    return SubscriptionState(logged_in=False, error=f"unknown OPENAMER_DEV_SUBSCRIPTION_FIXTURE: {name}")
 

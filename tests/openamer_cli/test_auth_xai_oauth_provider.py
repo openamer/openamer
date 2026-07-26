@@ -325,7 +325,7 @@ def test_resolve_xai_runtime_credentials_returns_singleton_state(tmp_path, monke
     fresh = _jwt_with_exp(int(time.time()) + 2 * 60 * 60)
     _setup_openamer_auth(openamer_home, access_token=fresh)
     monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
-    monkeypatch.delenv("HERMES_XAI_BASE_URL", raising=False)
+    monkeypatch.delenv("OPENAMER_XAI_BASE_URL", raising=False)
     monkeypatch.delenv("XAI_BASE_URL", raising=False)
 
     creds = resolve_xai_oauth_runtime_credentials()
@@ -397,7 +397,7 @@ def test_resolve_xai_runtime_credentials_honours_env_base_url(tmp_path, monkeypa
     fresh = _jwt_with_exp(int(time.time()) + 2 * 60 * 60)
     _setup_openamer_auth(openamer_home, access_token=fresh)
     monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
-    monkeypatch.setenv("HERMES_XAI_BASE_URL", "https://custom.x.ai/v1/")
+    monkeypatch.setenv("OPENAMER_XAI_BASE_URL", "https://custom.x.ai/v1/")
 
     creds = resolve_xai_oauth_runtime_credentials()
     assert creds["base_url"] == "https://custom.x.ai/v1"
@@ -407,7 +407,7 @@ def test_resolve_xai_runtime_credentials_honours_env_base_url(tmp_path, monkeypa
 # Inference base-URL host guard (xai-oauth bearer leak protection)
 #
 # The xAI OAuth bearer is a high-value, long-lived SuperGrok credential.
-# ``XAI_BASE_URL`` / ``HERMES_XAI_BASE_URL`` are a credential-leak vector
+# ``XAI_BASE_URL`` / ``OPENAMER_XAI_BASE_URL`` are a credential-leak vector
 # unless the host is pinned to the xAI origin. These tests cover the
 # accept/reject matrix for `_xai_validate_inference_base_url` and confirm
 # the runtime resolver falls back to the default on rejection rather than
@@ -521,7 +521,7 @@ def test_resolve_xai_runtime_credentials_rejects_off_origin_env_base_url(tmp_pat
     _setup_openamer_auth(openamer_home, access_token=fresh)
     monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
     monkeypatch.setenv("XAI_BASE_URL", "https://attacker.example/v1")
-    monkeypatch.delenv("HERMES_XAI_BASE_URL", raising=False)
+    monkeypatch.delenv("OPENAMER_XAI_BASE_URL", raising=False)
 
     with caplog.at_level("WARNING"):
         creds = resolve_xai_oauth_runtime_credentials()
@@ -1175,7 +1175,7 @@ def test_login_xai_oauth_relogin_clears_suppression_and_reseeds(tmp_path, monkey
     openamer_home.mkdir(parents=True, exist_ok=True)
     (openamer_home / "auth.json").write_text(json.dumps({"version": 1, "providers": {}}))
     monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
-    monkeypatch.delenv("HERMES_XAI_BASE_URL", raising=False)
+    monkeypatch.delenv("OPENAMER_XAI_BASE_URL", raising=False)
     monkeypatch.delenv("XAI_BASE_URL", raising=False)
 
     # Post-remove state: singleton gone + device_code suppressed, so the
@@ -1281,7 +1281,7 @@ def test_runtime_provider_uses_pool_entry_for_xai_oauth(tmp_path, monkeypatch):
     fresh = _jwt_with_exp(int(time.time()) + 2 * 60 * 60)
     _setup_openamer_auth(openamer_home, access_token=fresh)
     monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
-    monkeypatch.delenv("HERMES_XAI_BASE_URL", raising=False)
+    monkeypatch.delenv("OPENAMER_XAI_BASE_URL", raising=False)
     monkeypatch.delenv("XAI_BASE_URL", raising=False)
 
     runtime = resolve_runtime_provider(requested="xai-oauth")
@@ -1301,7 +1301,7 @@ def test_runtime_provider_default_base_url_when_pool_entry_missing_url(tmp_path,
     openamer_home.mkdir(parents=True, exist_ok=True)
     (openamer_home / "auth.json").write_text(json.dumps({"version": 1, "providers": {}}))
     monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
-    monkeypatch.delenv("HERMES_XAI_BASE_URL", raising=False)
+    monkeypatch.delenv("OPENAMER_XAI_BASE_URL", raising=False)
     monkeypatch.delenv("XAI_BASE_URL", raising=False)
 
     fresh = _jwt_with_exp(int(time.time()) + 2 * 60 * 60)
@@ -1858,7 +1858,7 @@ def test_auxiliary_client_routes_xai_oauth_through_responses_api(tmp_path, monke
     fresh = _jwt_with_exp(int(time.time()) + 2 * 60 * 60)
     _setup_openamer_auth(openamer_home, access_token=fresh)
     monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
-    monkeypatch.delenv("HERMES_XAI_BASE_URL", raising=False)
+    monkeypatch.delenv("OPENAMER_XAI_BASE_URL", raising=False)
     monkeypatch.delenv("XAI_BASE_URL", raising=False)
 
     client, model = resolve_provider_client("xai-oauth", model="grok-4")

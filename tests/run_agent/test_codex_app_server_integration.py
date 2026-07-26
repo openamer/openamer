@@ -465,7 +465,7 @@ class TestRunConversationCodexPath:
     def test_frozen_yolo_env_auto_approves_codex_server_requests(
         self, monkeypatch
     ):
-        """--yolo / HERMES_YOLO_MODE (frozen into _YOLO_MODE_FROZEN at import
+        """--yolo / OPENAMER_YOLO_MODE (frozen into _YOLO_MODE_FROZEN at import
         time — a prompt-injection-safe process-scoped bypass) should flow
         through to codex app-server routing so gateway/cron contexts do not
         fail closed when the user launched with yolo mode."""

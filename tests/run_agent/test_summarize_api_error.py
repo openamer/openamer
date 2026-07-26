@@ -50,7 +50,7 @@ def test_empty_body_fallback_redacts_secrets(monkeypatch):
     """The surfaced provider/proxy error body must pass through the secret
     redactor — a proxy echoing an API key in the error must not leak it into
     final_response/logs (the empty-body path previously hid it as bare HTTP 400)."""
-    monkeypatch.setenv("HERMES_REDACT_SECRETS", "true")
+    monkeypatch.setenv("OPENAMER_REDACT_SECRETS", "true")
     err = _make_empty_body_error(
         '{"error": {"message": "bad key: sk-proj-ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdef"}}'
     )

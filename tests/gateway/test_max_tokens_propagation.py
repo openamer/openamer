@@ -6,7 +6,7 @@ free models, Ollama Cloud, custom OpenAI-compatible endpoints) truncated long
 generations with `finish_reason="length"`.
 
 Precedence verified here:
-    HERMES_MAX_TOKENS env  >  model.max_tokens  >  per-provider
+    OPENAMER_MAX_TOKENS env  >  model.max_tokens  >  per-provider
     max_output_tokens  >  None
 """
 
@@ -30,7 +30,7 @@ def isolated_home(tmp_path, monkeypatch):
     openamer_home = tmp_path / ".openamer"
     openamer_home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
-    monkeypatch.delenv("HERMES_MAX_TOKENS", raising=False)
+    monkeypatch.delenv("OPENAMER_MAX_TOKENS", raising=False)
 
     _saved = {
         k: v
@@ -118,9 +118,9 @@ def test_global_max_tokens_beats_per_provider(isolated_home):
 
 
 def test_env_override_beats_everything(isolated_home, monkeypatch):
-    """HERMES_MAX_TOKENS is the internal override mechanism (highest priority)."""
+    """OPENAMER_MAX_TOKENS is the internal override mechanism (highest priority)."""
     write_cfg, fresh_gateway = isolated_home
-    monkeypatch.setenv("HERMES_MAX_TOKENS", "2048")
+    monkeypatch.setenv("OPENAMER_MAX_TOKENS", "2048")
     write_cfg(
         """
         model:

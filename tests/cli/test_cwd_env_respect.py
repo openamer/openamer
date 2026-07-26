@@ -21,7 +21,7 @@ def _resolve_cwd(terminal_config: dict, defaults: dict, env: dict):
         terminal_config.pop("cwd", None)
 
     # Bridge: TERMINAL_CWD always exported in CLI, skipped in gateway
-    _is_gateway = env.get("_HERMES_GATEWAY") == "1"
+    _is_gateway = env.get("_OPENAMER_GATEWAY") == "1"
     if "cwd" in terminal_config:
         if _is_gateway:
             pass  # don't touch env
@@ -85,7 +85,7 @@ class TestGatewayLazyImport:
     """Gateway lazy import of cli.py must not clobber TERMINAL_CWD."""
 
     def test_gateway_cwd_preserved(self):
-        env = {"_HERMES_GATEWAY": "1", "TERMINAL_CWD": "/home/user/project"}
+        env = {"_OPENAMER_GATEWAY": "1", "TERMINAL_CWD": "/home/user/project"}
         tc = {"cwd": "/home/user", "env_type": "local"}
         d = {"terminal": {"cwd": "/home/user"}}
         result = _resolve_cwd(tc, d, env)

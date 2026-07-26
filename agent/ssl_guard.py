@@ -16,7 +16,7 @@ from agent.errors import SSLConfigurationError
 logger = logging.getLogger(__name__)
 
 _CA_BUNDLE_ENV_VARS = (
-    "HERMES_CA_BUNDLE",
+    "OPENAMER_CA_BUNDLE",
     "SSL_CERT_FILE",
     "REQUESTS_CA_BUNDLE",
     "CURL_CA_BUNDLE",
@@ -26,7 +26,7 @@ _SKIP_VALUES = {"1", "true", "yes", "on"}
 
 
 def _skip_ssl_guard_enabled() -> bool:
-    return os.getenv("HERMES_SKIP_SSL_GUARD", "").strip().lower() in _SKIP_VALUES
+    return os.getenv("OPENAMER_SKIP_SSL_GUARD", "").strip().lower() in _SKIP_VALUES
 
 
 def _repair_hint() -> str:
@@ -68,7 +68,7 @@ def verify_ca_bundle() -> None:
             missing/corrupt.
     """
     if _skip_ssl_guard_enabled():
-        logger.debug("SSL CA bundle guard skipped via HERMES_SKIP_SSL_GUARD")
+        logger.debug("SSL CA bundle guard skipped via OPENAMER_SKIP_SSL_GUARD")
         return
 
     for env_var in _CA_BUNDLE_ENV_VARS:

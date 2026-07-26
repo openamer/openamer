@@ -165,7 +165,7 @@ def build_dashboard_parser(
     )
     # `headless_backend` marks the lean path: desktop/remote clients speak pure
     # JSON-RPC/WS, so `serve` skips the web UI build AND never serves the SPA
-    # (cmd_dashboard exports HERMES_SERVE_HEADLESS=1). `dashboard` leaves it
+    # (cmd_dashboard exports OPENAMER_SERVE_HEADLESS=1). `dashboard` leaves it
     # unset and serves the browser UI as before.
     serve_parser.set_defaults(func=cmd_dashboard, no_open=True, headless_backend=True)
 
@@ -182,7 +182,7 @@ def build_dashboard_parser(
         description=(
             "Register this install as a self-hosted dashboard with your Nous "
             "Portal account. Creates an OAuth client, writes "
-            "HERMES_DASHBOARD_OAUTH_CLIENT_ID into ~/.openamer/.env, and prints "
+            "OPENAMER_DASHBOARD_OAUTH_CLIENT_ID into ~/.openamer/.env, and prints "
             "how to engage the login gate. Requires being logged in (openamer setup)."
         ),
     )
@@ -207,7 +207,7 @@ def build_dashboard_parser(
         help=(
             "Override the Nous Portal base URL for registration (default: the "
             "portal you logged into). The access token must be valid at this "
-            "portal. Also settable via HERMES_DASHBOARD_PORTAL_URL. Mainly for "
+            "portal. Also settable via OPENAMER_DASHBOARD_PORTAL_URL. Mainly for "
             "testing against a staging/preview portal."
         ),
     )

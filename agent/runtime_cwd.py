@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 
 _UNSET: Any = object()
 
-_SESSION_CWD: ContextVar = ContextVar("HERMES_SESSION_CWD", default=_UNSET)
+_SESSION_CWD: ContextVar = ContextVar("OPENAMER_SESSION_CWD", default=_UNSET)
 
 # The Python package/source root (this file lives at <root>/agent/runtime_cwd.py).
 # When a backend is launched from, or self-spawns into, this tree (the desktop

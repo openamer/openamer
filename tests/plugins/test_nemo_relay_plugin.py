@@ -200,7 +200,7 @@ mode = "observe_only"
 """,
         encoding="utf-8",
     )
-    monkeypatch.setenv("HERMES_NEMO_RELAY_PLUGINS_TOML", str(plugins_toml))
+    monkeypatch.setenv("OPENAMER_NEMO_RELAY_PLUGINS_TOML", str(plugins_toml))
 
 
 def _enable_dynamic_plugin(tmp_path, monkeypatch) -> Path:
@@ -219,7 +219,7 @@ mode = "test"
 """,
         encoding="utf-8",
     )
-    monkeypatch.setenv("HERMES_NEMO_RELAY_PLUGINS_TOML", str(plugins_toml))
+    monkeypatch.setenv("OPENAMER_NEMO_RELAY_PLUGINS_TOML", str(plugins_toml))
     return plugins_toml
 
 
@@ -269,10 +269,10 @@ def test_nemo_relay_plugin_uses_nemo_relay_runtime(monkeypatch):
 def test_nemo_relay_plugin_emits_llm_tool_and_exports_atif(tmp_path, monkeypatch):
     fake = _FakeNemoRelay()
     plugin = _fresh_plugin(monkeypatch, fake)
-    monkeypatch.setenv("HERMES_NEMO_RELAY_ATOF_ENABLED", "1")
-    monkeypatch.setenv("HERMES_NEMO_RELAY_ATOF_OUTPUT_DIRECTORY", str(tmp_path / "atof"))
-    monkeypatch.setenv("HERMES_NEMO_RELAY_ATIF_ENABLED", "1")
-    monkeypatch.setenv("HERMES_NEMO_RELAY_ATIF_OUTPUT_DIRECTORY", str(tmp_path / "atif"))
+    monkeypatch.setenv("OPENAMER_NEMO_RELAY_ATOF_ENABLED", "1")
+    monkeypatch.setenv("OPENAMER_NEMO_RELAY_ATOF_OUTPUT_DIRECTORY", str(tmp_path / "atof"))
+    monkeypatch.setenv("OPENAMER_NEMO_RELAY_ATIF_ENABLED", "1")
+    monkeypatch.setenv("OPENAMER_NEMO_RELAY_ATIF_OUTPUT_DIRECTORY", str(tmp_path / "atif"))
 
     base = {
         "session_id": "s1",
@@ -449,8 +449,8 @@ def test_nemo_relay_plugin_reparents_child_session_scope_for_embedded_atif(monke
 def test_nemo_relay_plugin_skips_embedded_child_atif_file_by_default(tmp_path, monkeypatch):
     fake = _FakeNemoRelay()
     plugin = _fresh_plugin(monkeypatch, fake)
-    monkeypatch.setenv("HERMES_NEMO_RELAY_ATIF_ENABLED", "1")
-    monkeypatch.setenv("HERMES_NEMO_RELAY_ATIF_OUTPUT_DIRECTORY", str(tmp_path / "atif"))
+    monkeypatch.setenv("OPENAMER_NEMO_RELAY_ATIF_ENABLED", "1")
+    monkeypatch.setenv("OPENAMER_NEMO_RELAY_ATIF_OUTPUT_DIRECTORY", str(tmp_path / "atif"))
 
     plugin.on_session_start(session_id="parent-session")
     plugin.on_subagent_start(
@@ -471,9 +471,9 @@ def test_nemo_relay_plugin_skips_embedded_child_atif_file_by_default(tmp_path, m
 def test_nemo_relay_plugin_can_write_embedded_child_atif_file_in_all_mode(tmp_path, monkeypatch):
     fake = _FakeNemoRelay()
     plugin = _fresh_plugin(monkeypatch, fake)
-    monkeypatch.setenv("HERMES_NEMO_RELAY_ATIF_ENABLED", "1")
-    monkeypatch.setenv("HERMES_NEMO_RELAY_ATIF_OUTPUT_DIRECTORY", str(tmp_path / "atif"))
-    monkeypatch.setenv("HERMES_NEMO_RELAY_ATIF_SUBAGENT_EXPORT_MODE", "all")
+    monkeypatch.setenv("OPENAMER_NEMO_RELAY_ATIF_ENABLED", "1")
+    monkeypatch.setenv("OPENAMER_NEMO_RELAY_ATIF_OUTPUT_DIRECTORY", str(tmp_path / "atif"))
+    monkeypatch.setenv("OPENAMER_NEMO_RELAY_ATIF_SUBAGENT_EXPORT_MODE", "all")
 
     plugin.on_session_start(session_id="parent-session")
     plugin.on_subagent_start(
@@ -515,7 +515,7 @@ output_directory = "{atif_dir}"
 """,
         encoding="utf-8",
     )
-    monkeypatch.setenv("HERMES_NEMO_RELAY_PLUGINS_TOML", str(plugins_toml))
+    monkeypatch.setenv("OPENAMER_NEMO_RELAY_PLUGINS_TOML", str(plugins_toml))
 
     plugin.on_session_start(session_id="s1")
 
@@ -539,7 +539,7 @@ enabled = true
 """,
         encoding="utf-8",
     )
-    monkeypatch.setenv("HERMES_NEMO_RELAY_PLUGINS_TOML", str(plugins_toml))
+    monkeypatch.setenv("OPENAMER_NEMO_RELAY_PLUGINS_TOML", str(plugins_toml))
 
     plugin.on_session_start(session_id="s1")
     plugin.on_session_finalize(session_id="s1", reason="shutdown")
@@ -554,8 +554,8 @@ def test_nemo_relay_plugin_activates_and_owns_dynamic_plugins(tmp_path, monkeypa
     fake = _FakeNemoRelay()
     plugin = _fresh_plugin(monkeypatch, fake)
     _enable_dynamic_plugin(tmp_path, monkeypatch)
-    monkeypatch.setenv("HERMES_NEMO_RELAY_ATIF_ENABLED", "1")
-    monkeypatch.setenv("HERMES_NEMO_RELAY_ATIF_OUTPUT_DIRECTORY", str(tmp_path / "atif"))
+    monkeypatch.setenv("OPENAMER_NEMO_RELAY_ATIF_ENABLED", "1")
+    monkeypatch.setenv("OPENAMER_NEMO_RELAY_ATIF_OUTPUT_DIRECTORY", str(tmp_path / "atif"))
 
     plugin.on_session_start(session_id="s1")
     runtime = plugin._get_runtime()
@@ -621,7 +621,7 @@ mode = "test"
 """,
         encoding="utf-8",
     )
-    monkeypatch.setenv("HERMES_NEMO_RELAY_PLUGINS_TOML", str(plugins_toml))
+    monkeypatch.setenv("OPENAMER_NEMO_RELAY_PLUGINS_TOML", str(plugins_toml))
 
     with caplog.at_level("ERROR"):
         plugin.on_session_start(session_id="s1")
@@ -651,7 +651,7 @@ environment_ref = "../environments/worker-fixture"
 """,
         encoding="utf-8",
     )
-    monkeypatch.setenv("HERMES_NEMO_RELAY_PLUGINS_TOML", str(plugins_toml))
+    monkeypatch.setenv("OPENAMER_NEMO_RELAY_PLUGINS_TOML", str(plugins_toml))
 
     plugin.on_session_start(session_id="s1")
 
@@ -844,7 +844,7 @@ dynamic_plugins = [{ kind = "rust_dynamic", manifest_ref = "missing-id" }]
 """,
         encoding="utf-8",
     )
-    monkeypatch.setenv("HERMES_NEMO_RELAY_PLUGINS_TOML", str(plugins_toml))
+    monkeypatch.setenv("OPENAMER_NEMO_RELAY_PLUGINS_TOML", str(plugins_toml))
 
     with caplog.at_level("WARNING"):
         plugin.on_session_start(session_id="s1")
@@ -874,7 +874,7 @@ manifest_ref = "{(tmp_path / "invalid" / "relay-plugin.toml").as_posix()}"
 """,
         encoding="utf-8",
     )
-    monkeypatch.setenv("HERMES_NEMO_RELAY_PLUGINS_TOML", str(plugins_toml))
+    monkeypatch.setenv("OPENAMER_NEMO_RELAY_PLUGINS_TOML", str(plugins_toml))
 
     with caplog.at_level("WARNING"):
         plugin.on_session_start(session_id="s1")
@@ -960,8 +960,8 @@ def test_nemo_relay_plugin_continues_shutdown_after_atif_export_failure(
     )
     plugin = _fresh_plugin(monkeypatch, fake)
     _enable_dynamic_plugin(tmp_path, monkeypatch)
-    monkeypatch.setenv("HERMES_NEMO_RELAY_ATIF_ENABLED", "1")
-    monkeypatch.setenv("HERMES_NEMO_RELAY_ATIF_OUTPUT_DIRECTORY", str(tmp_path / "atif"))
+    monkeypatch.setenv("OPENAMER_NEMO_RELAY_ATIF_ENABLED", "1")
+    monkeypatch.setenv("OPENAMER_NEMO_RELAY_ATIF_OUTPUT_DIRECTORY", str(tmp_path / "atif"))
     plugin.on_session_start(session_id="s1")
     runtime = plugin._get_runtime()
     assert runtime is not None
@@ -990,7 +990,7 @@ enabled = true
 """,
         encoding="utf-8",
     )
-    monkeypatch.setenv("HERMES_NEMO_RELAY_PLUGINS_TOML", str(plugins_toml))
+    monkeypatch.setenv("OPENAMER_NEMO_RELAY_PLUGINS_TOML", str(plugins_toml))
 
     plugin.on_session_start(session_id="parent")
     plugin.on_session_start(session_id="child")
@@ -1016,7 +1016,7 @@ enabled = true
 """,
         encoding="utf-8",
     )
-    monkeypatch.setenv("HERMES_NEMO_RELAY_PLUGINS_TOML", str(plugins_toml))
+    monkeypatch.setenv("OPENAMER_NEMO_RELAY_PLUGINS_TOML", str(plugins_toml))
 
     async def _drive() -> None:
         plugin.on_session_start(session_id="s1")
@@ -1065,7 +1065,7 @@ enabled = true
 """,
         encoding="utf-8",
     )
-    monkeypatch.setenv("HERMES_NEMO_RELAY_PLUGINS_TOML", str(plugins_toml))
+    monkeypatch.setenv("OPENAMER_NEMO_RELAY_PLUGINS_TOML", str(plugins_toml))
 
     plugin.on_session_start(session_id="s1")
     plugin.on_session_finalize(session_id="s1", reason="shutdown")
@@ -1096,9 +1096,9 @@ output_directory = "{(tmp_path / "managed-atif").as_posix()}"
 """,
         encoding="utf-8",
     )
-    monkeypatch.setenv("HERMES_NEMO_RELAY_PLUGINS_TOML", str(plugins_toml))
-    monkeypatch.setenv("HERMES_NEMO_RELAY_ATIF_ENABLED", "1")
-    monkeypatch.setenv("HERMES_NEMO_RELAY_ATIF_OUTPUT_DIRECTORY", str(tmp_path / "direct-atif"))
+    monkeypatch.setenv("OPENAMER_NEMO_RELAY_PLUGINS_TOML", str(plugins_toml))
+    monkeypatch.setenv("OPENAMER_NEMO_RELAY_ATIF_ENABLED", "1")
+    monkeypatch.setenv("OPENAMER_NEMO_RELAY_ATIF_OUTPUT_DIRECTORY", str(tmp_path / "direct-atif"))
 
     plugin.on_session_start(session_id="s1")
     plugin.on_session_finalize(session_id="s1", reason="shutdown")
@@ -1134,9 +1134,9 @@ output_directory = "{(tmp_path / "managed-atif").as_posix()}"
 """,
         encoding="utf-8",
     )
-    monkeypatch.setenv("HERMES_NEMO_RELAY_PLUGINS_TOML", str(plugins_toml))
-    monkeypatch.setenv("HERMES_NEMO_RELAY_ATIF_ENABLED", "1")
-    monkeypatch.setenv("HERMES_NEMO_RELAY_ATIF_OUTPUT_DIRECTORY", str(tmp_path / "direct-atif"))
+    monkeypatch.setenv("OPENAMER_NEMO_RELAY_PLUGINS_TOML", str(plugins_toml))
+    monkeypatch.setenv("OPENAMER_NEMO_RELAY_ATIF_ENABLED", "1")
+    monkeypatch.setenv("OPENAMER_NEMO_RELAY_ATIF_OUTPUT_DIRECTORY", str(tmp_path / "direct-atif"))
 
     plugin.on_session_start(session_id="s1")
     plugin.on_session_finalize(session_id="s1", reason="shutdown")
@@ -1180,9 +1180,9 @@ output_directory = "{(tmp_path / "managed-atof").as_posix()}"
 """,
         encoding="utf-8",
     )
-    monkeypatch.setenv("HERMES_NEMO_RELAY_PLUGINS_TOML", str(plugins_toml))
-    monkeypatch.setenv("HERMES_NEMO_RELAY_ATOF_ENABLED", "1")
-    monkeypatch.setenv("HERMES_NEMO_RELAY_ATOF_OUTPUT_DIRECTORY", str(tmp_path / "direct-atof"))
+    monkeypatch.setenv("OPENAMER_NEMO_RELAY_PLUGINS_TOML", str(plugins_toml))
+    monkeypatch.setenv("OPENAMER_NEMO_RELAY_ATOF_ENABLED", "1")
+    monkeypatch.setenv("OPENAMER_NEMO_RELAY_ATOF_OUTPUT_DIRECTORY", str(tmp_path / "direct-atof"))
 
     plugin.on_session_start(session_id="s1")
     plugin.on_session_finalize(session_id="s1", reason="shutdown")
@@ -1214,7 +1214,7 @@ mode = "observe_only"
 """,
         encoding="utf-8",
     )
-    monkeypatch.setenv("HERMES_NEMO_RELAY_PLUGINS_TOML", str(plugins_toml))
+    monkeypatch.setenv("OPENAMER_NEMO_RELAY_PLUGINS_TOML", str(plugins_toml))
 
     seen_request = {}
     raw_choice = SimpleNamespace(
@@ -1500,7 +1500,7 @@ def _adaptive_llm_execute_mode(tmp_path, monkeypatch, plugins_toml_text: str) ->
     plugin = _fresh_plugin(monkeypatch, fake)
     plugins_toml = tmp_path / "plugins.toml"
     plugins_toml.write_text(plugins_toml_text, encoding="utf-8")
-    monkeypatch.setenv("HERMES_NEMO_RELAY_PLUGINS_TOML", str(plugins_toml))
+    monkeypatch.setenv("OPENAMER_NEMO_RELAY_PLUGINS_TOML", str(plugins_toml))
 
     plugin.on_llm_execution_middleware(
         session_id="s1",
@@ -1606,7 +1606,7 @@ mode = "observe_only"
 """,
         encoding="utf-8",
     )
-    monkeypatch.setenv("HERMES_NEMO_RELAY_PLUGINS_TOML", str(plugins_toml))
+    monkeypatch.setenv("OPENAMER_NEMO_RELAY_PLUGINS_TOML", str(plugins_toml))
 
     seen_args = {}
 
@@ -1785,7 +1785,7 @@ mode = "observe_only"
 """,
         encoding="utf-8",
     )
-    monkeypatch.setenv("HERMES_NEMO_RELAY_PLUGINS_TOML", str(plugins_toml))
+    monkeypatch.setenv("OPENAMER_NEMO_RELAY_PLUGINS_TOML", str(plugins_toml))
 
     base = {
         "session_id": "s1",

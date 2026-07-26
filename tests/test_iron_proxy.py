@@ -922,7 +922,7 @@ def test_docker_egress_args_full_path(openamer_home, monkeypatch):
     # name (so existing SDKs work without egress-specific code) and the
     # introspection name.
     assert env["OPENROUTER_API_KEY"] == mapping.proxy_token
-    assert env["HERMES_PROXY_TOKEN_OPENROUTER_API_KEY"] == mapping.proxy_token
+    assert env["OPENAMER_PROXY_TOKEN_OPENROUTER_API_KEY"] == mapping.proxy_token
     # Linux host-gateway mapping
     assert host == ["--add-host", "host.docker.internal:host-gateway"]
 
@@ -1801,7 +1801,7 @@ def test_iron_proxy_version_does_not_cache_empty_output(monkeypatch, tmp_path):
 def test_docker_egress_node_options_uses_sentinel(openamer_home, monkeypatch):
     """``_egress_proxy_args_for_docker`` should NOT put NODE_OPTIONS in
     env_overrides directly; it uses a sentinel key
-    ``_HERMES_EGRESS_NODE_OPTIONS_APPEND`` so DockerEnvironment can
+    ``_OPENAMER_EGRESS_NODE_OPTIONS_APPEND`` so DockerEnvironment can
     append-merge with the operator's existing NODE_OPTIONS."""
 
     from tools.environments.docker import _egress_proxy_args_for_docker
@@ -1829,7 +1829,7 @@ def test_docker_egress_node_options_uses_sentinel(openamer_home, monkeypatch):
 
     _, env, _ = _egress_proxy_args_for_docker()
     # The egress dict should contain the sentinel, NOT a raw NODE_OPTIONS.
-    assert env.get("_HERMES_EGRESS_NODE_OPTIONS_APPEND") == "--use-openssl-ca"
+    assert env.get("_OPENAMER_EGRESS_NODE_OPTIONS_APPEND") == "--use-openssl-ca"
     assert "NODE_OPTIONS" not in env, (
         "NODE_OPTIONS in egress env_overrides would clobber the operator's "
         "docker_env NODE_OPTIONS — that's exactly the bug arshkumarsingh "

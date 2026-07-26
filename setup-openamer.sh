@@ -347,11 +347,11 @@ fi
 
 echo -e "${CYAN}→${NC} Setting up openamer command..."
 
-HERMES_BIN="$SCRIPT_DIR/venv/bin/openamer"
+OPENAMER_BIN="$SCRIPT_DIR/venv/bin/openamer"
 COMMAND_LINK_DIR="$(get_command_link_dir)"
 COMMAND_LINK_DISPLAY_DIR="$(get_command_link_display_dir)"
 mkdir -p "$COMMAND_LINK_DIR"
-ln -sf "$HERMES_BIN" "$COMMAND_LINK_DIR/openamer"
+ln -sf "$OPENAMER_BIN" "$COMMAND_LINK_DIR/openamer"
 echo -e "${GREEN}✓${NC} Symlinked openamer → $COMMAND_LINK_DISPLAY_DIR/openamer"
 
 if is_termux; then
@@ -399,8 +399,8 @@ fi
 # Seed bundled skills into ~/.openamer/skills/
 # ============================================================================
 
-HERMES_SKILLS_DIR="${OPENAMER_HOME:-$HOME/.openamer}/skills"
-mkdir -p "$HERMES_SKILLS_DIR"
+OPENAMER_SKILLS_DIR="${OPENAMER_HOME:-$HOME/.openamer}/skills"
+mkdir -p "$OPENAMER_SKILLS_DIR"
 
 echo ""
 echo "Syncing bundled skills to ~/.openamer/skills/ ..."
@@ -409,7 +409,7 @@ if "$SCRIPT_DIR/venv/bin/python" "$SCRIPT_DIR/tools/skills_sync.py" 2>/dev/null;
 else
     # Fallback: copy if sync script fails (missing deps, etc.)
     if [ -d "$SCRIPT_DIR/skills" ]; then
-        cp -rn "$SCRIPT_DIR/skills/"* "$HERMES_SKILLS_DIR/" 2>/dev/null || true
+        cp -rn "$SCRIPT_DIR/skills/"* "$OPENAMER_SKILLS_DIR/" 2>/dev/null || true
         echo -e "${GREEN}✓${NC} Skills copied"
     fi
 fi

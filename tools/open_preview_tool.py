@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Open a URL, dev server, or file in the OpenAmer desktop GUI's preview pane.
 
-Gated on ``HERMES_DESKTOP`` (like ``read_terminal`` / ``close_terminal``) so it
+Gated on ``OPENAMER_DESKTOP`` (like ``read_terminal`` / ``close_terminal``) so it
 never appears outside the GUI. Emits ``preview.open`` through the shared
 ``desktop_ui`` bridge; the renderer opens the pane beside the chat for the
 window that asked and never steals focus for a background session.
@@ -53,8 +53,8 @@ def open_preview_tool(url: str, label: str = "") -> str:
 
 
 def check_open_preview_requirements() -> bool:
-    """Desktop GUI only — HERMES_DESKTOP is set on the gateway the app spawns."""
-    return env_var_enabled("HERMES_DESKTOP")
+    """Desktop GUI only — OPENAMER_DESKTOP is set on the gateway the app spawns."""
+    return env_var_enabled("OPENAMER_DESKTOP")
 
 
 OPEN_PREVIEW_SCHEMA = {

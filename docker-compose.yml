@@ -2,9 +2,9 @@
 # docker-compose.yml for OpenAmer Agent
 #
 # Usage:
-#   HERMES_UID=$(id -u) HERMES_GID=$(id -g) docker compose up -d
+#   OPENAMER_UID=$(id -u) OPENAMER_GID=$(id -g) docker compose up -d
 #
-# Set HERMES_UID / HERMES_GID to the host user that owns ~/.openamer so
+# Set OPENAMER_UID / OPENAMER_GID to the host user that owns ~/.openamer so
 # files created inside the container stay readable/writable on the host.
 # The s6-overlay stage2 hook remaps the internal `openamer` user to these
 # values via usermod/groupmod; each supervised service then drops to that
@@ -36,8 +36,8 @@ services:
     volumes:
       - ~/.openamer:/opt/data
     environment:
-      - HERMES_UID=${HERMES_UID:-10000}
-      - HERMES_GID=${HERMES_GID:-10000}
+      - OPENAMER_UID=${OPENAMER_UID:-10000}
+      - OPENAMER_GID=${OPENAMER_GID:-10000}
       # To expose the OpenAI-compatible API server beyond localhost,
       # uncomment BOTH lines (API_SERVER_KEY is mandatory for auth):
       # - API_SERVER_HOST=0.0.0.0
@@ -70,7 +70,7 @@ services:
     volumes:
       - ~/.openamer:/opt/data
     environment:
-      - HERMES_UID=${HERMES_UID:-10000}
-      - HERMES_GID=${HERMES_GID:-10000}
+      - OPENAMER_UID=${OPENAMER_UID:-10000}
+      - OPENAMER_GID=${OPENAMER_GID:-10000}
     # Localhost-only. For remote access, tunnel via `ssh -L 9119:localhost:9119`.
     command: ["dashboard", "--host", "127.0.0.1", "--no-open"]

@@ -1,6 +1,6 @@
 """Auto-resume restart-loop breaker (#30719, defense-3).
 
-Defenses 1 and 2 (the ``_HERMES_GATEWAY`` guard on ``openamer gateway
+Defenses 1 and 2 (the ``_OPENAMER_GATEWAY`` guard on ``openamer gateway
 stop|restart`` + ``terminal_tool``, and the cron-creation lifecycle
 filter) stop the agent from scheduling its own restart via the cron and
 CLI paths.  They do NOT cover every SIGTERM source: an agent running a

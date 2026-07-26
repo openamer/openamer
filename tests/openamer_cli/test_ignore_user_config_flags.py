@@ -32,15 +32,15 @@ def _clean_env(monkeypatch):
     those writes aren't tracked by monkeypatch and won't be undone by it.
     We add explicit cleanup on yield to prevent cross-test pollution.
     """
-    for var in ("HERMES_IGNORE_USER_CONFIG", "HERMES_IGNORE_RULES"):
+    for var in ("OPENAMER_IGNORE_USER_CONFIG", "OPENAMER_IGNORE_RULES"):
         monkeypatch.delenv(var, raising=False)
     yield
-    for var in ("HERMES_IGNORE_USER_CONFIG", "HERMES_IGNORE_RULES"):
+    for var in ("OPENAMER_IGNORE_USER_CONFIG", "OPENAMER_IGNORE_RULES"):
         os.environ.pop(var, None)
 
 
 class TestIgnoreUserConfigEnvGate:
-    """``load_cli_config()`` must honour ``HERMES_IGNORE_USER_CONFIG=1``.
+    """``load_cli_config()`` must honour ``OPENAMER_IGNORE_USER_CONFIG=1``.
 
     When the env var is set, user config at ``<openamer_home>/config.yaml`` is
     skipped even if present — the function returns only the built-in defaults
@@ -49,7 +49,7 @@ class TestIgnoreUserConfigEnvGate:
 
     def _write_user_config(self, tmp_path, model_default):
         # NOTE: the model value is a sentinel that can never appear in a real
-        # config. With HERMES_IGNORE_USER_CONFIG=1, load_cli_config() falls
+        # config. With OPENAMER_IGNORE_USER_CONFIG=1, load_cli_config() falls
         # back to the repo-root ``cli-config.yaml`` (untracked, gitignored) —
         # on a dev machine that file can legitimately set the same popular
         # model this test previously used ("anthropic/claude-sonnet-4.6"),
@@ -82,13 +82,13 @@ class TestIgnoreUserConfigEnvGate:
         assert cfg["agent"]["system_prompt"] == "from user config"
 
     def test_user_config_skipped_when_flag_set(self, tmp_path, monkeypatch):
-        """With HERMES_IGNORE_USER_CONFIG=1, user config.yaml is ignored.
+        """With OPENAMER_IGNORE_USER_CONFIG=1, user config.yaml is ignored.
 
         The built-in default ``model.default`` is empty string (no user override),
         and the user's ``agent.system_prompt`` is not seen.
         """
         self._write_user_config(tmp_path, "test-vendor/ignore-user-config-sentinel")
-        monkeypatch.setenv("HERMES_IGNORE_USER_CONFIG", "1")
+        monkeypatch.setenv("OPENAMER_IGNORE_USER_CONFIG", "1")
 
         load_cli_config = self._reload_cli(monkeypatch, tmp_path)
         cfg = load_cli_config()
@@ -104,7 +104,7 @@ class TestIgnoreUserConfigEnvGate:
     def test_flag_ignored_when_set_to_other_value(self, tmp_path, monkeypatch):
         """Only the literal value "1" activates the bypass, matching the yolo pattern."""
         self._write_user_config(tmp_path, "test-vendor/ignore-user-config-sentinel")
-        monkeypatch.setenv("HERMES_IGNORE_USER_CONFIG", "true")  # not "1"
+        monkeypatch.setenv("OPENAMER_IGNORE_USER_CONFIG", "true")  # not "1"
 
         load_cli_config = self._reload_cli(monkeypatch, tmp_path)
         cfg = load_cli_config()
@@ -120,8 +120,8 @@ class TestIgnoreRulesEnvGate:
     """
 
     def test_env_var_enables_ignore_rules(self, monkeypatch):
-        """Setting HERMES_IGNORE_RULES=1 flips OpenAmerCLI.ignore_rules True."""
-        monkeypatch.setenv("HERMES_IGNORE_RULES", "1")
+        """Setting OPENAMER_IGNORE_RULES=1 flips OpenAmerCLI.ignore_rules True."""
+        monkeypatch.setenv("OPENAMER_IGNORE_RULES", "1")
 
         # Import OpenAmerCLI lazily — cli.py has heavy module-init side effects
         # that we don't want to run at test collection time.
@@ -135,24 +135,24 @@ class TestIgnoreRulesEnvGate:
         obj = object.__new__(cli.OpenAmerCLI)
         # Replicate the exact logic from cli.py OpenAmerCLI.__init__:
         ignore_rules = False  # constructor default
-        obj.ignore_rules = ignore_rules or os.environ.get("HERMES_IGNORE_RULES") == "1"
+        obj.ignore_rules = ignore_rules or os.environ.get("OPENAMER_IGNORE_RULES") == "1"
 
         assert obj.ignore_rules is True
 
     def test_constructor_flag_alone_enables_ignore_rules(self, monkeypatch):
-        monkeypatch.delenv("HERMES_IGNORE_RULES", raising=False)
+        monkeypatch.delenv("OPENAMER_IGNORE_RULES", raising=False)
         import cli
         obj = object.__new__(cli.OpenAmerCLI)
         ignore_rules = True  # constructor argument
-        obj.ignore_rules = ignore_rules or os.environ.get("HERMES_IGNORE_RULES") == "1"
+        obj.ignore_rules = ignore_rules or os.environ.get("OPENAMER_IGNORE_RULES") == "1"
         assert obj.ignore_rules is True
 
     def test_neither_flag_nor_env_leaves_rules_enabled(self, monkeypatch):
-        monkeypatch.delenv("HERMES_IGNORE_RULES", raising=False)
+        monkeypatch.delenv("OPENAMER_IGNORE_RULES", raising=False)
         import cli
         obj = object.__new__(cli.OpenAmerCLI)
         ignore_rules = False
-        obj.ignore_rules = ignore_rules or os.environ.get("HERMES_IGNORE_RULES") == "1"
+        obj.ignore_rules = ignore_rules or os.environ.get("OPENAMER_IGNORE_RULES") == "1"
         assert obj.ignore_rules is False
 
 
@@ -165,13 +165,13 @@ class TestCmdChatWiring:
     def _simulate_cmd_chat_env_setup(self, args):
         """Replicate the exact snippet from cmd_chat in main.py."""
         if getattr(args, "ignore_user_config", False):
-            os.environ["HERMES_IGNORE_USER_CONFIG"] = "1"
+            os.environ["OPENAMER_IGNORE_USER_CONFIG"] = "1"
         if getattr(args, "ignore_rules", False):
-            os.environ["HERMES_IGNORE_RULES"] = "1"
+            os.environ["OPENAMER_IGNORE_RULES"] = "1"
 
     def test_both_flags_set_both_env_vars(self, monkeypatch):
-        monkeypatch.delenv("HERMES_IGNORE_USER_CONFIG", raising=False)
-        monkeypatch.delenv("HERMES_IGNORE_RULES", raising=False)
+        monkeypatch.delenv("OPENAMER_IGNORE_USER_CONFIG", raising=False)
+        monkeypatch.delenv("OPENAMER_IGNORE_RULES", raising=False)
 
         class FakeArgs:
             ignore_user_config = True
@@ -179,12 +179,12 @@ class TestCmdChatWiring:
 
         self._simulate_cmd_chat_env_setup(FakeArgs())
 
-        assert os.environ.get("HERMES_IGNORE_USER_CONFIG") == "1"
-        assert os.environ.get("HERMES_IGNORE_RULES") == "1"
+        assert os.environ.get("OPENAMER_IGNORE_USER_CONFIG") == "1"
+        assert os.environ.get("OPENAMER_IGNORE_RULES") == "1"
 
     def test_only_ignore_user_config(self, monkeypatch):
-        monkeypatch.delenv("HERMES_IGNORE_USER_CONFIG", raising=False)
-        monkeypatch.delenv("HERMES_IGNORE_RULES", raising=False)
+        monkeypatch.delenv("OPENAMER_IGNORE_USER_CONFIG", raising=False)
+        monkeypatch.delenv("OPENAMER_IGNORE_RULES", raising=False)
 
         class FakeArgs:
             ignore_user_config = True
@@ -192,20 +192,20 @@ class TestCmdChatWiring:
 
         self._simulate_cmd_chat_env_setup(FakeArgs())
 
-        assert os.environ.get("HERMES_IGNORE_USER_CONFIG") == "1"
-        assert "HERMES_IGNORE_RULES" not in os.environ
+        assert os.environ.get("OPENAMER_IGNORE_USER_CONFIG") == "1"
+        assert "OPENAMER_IGNORE_RULES" not in os.environ
 
     def test_flags_absent_sets_nothing(self, monkeypatch):
-        monkeypatch.delenv("HERMES_IGNORE_USER_CONFIG", raising=False)
-        monkeypatch.delenv("HERMES_IGNORE_RULES", raising=False)
+        monkeypatch.delenv("OPENAMER_IGNORE_USER_CONFIG", raising=False)
+        monkeypatch.delenv("OPENAMER_IGNORE_RULES", raising=False)
 
         class FakeArgs:
             pass  # no attributes at all — getattr fallback must handle
 
         self._simulate_cmd_chat_env_setup(FakeArgs())
 
-        assert "HERMES_IGNORE_USER_CONFIG" not in os.environ
-        assert "HERMES_IGNORE_RULES" not in os.environ
+        assert "OPENAMER_IGNORE_USER_CONFIG" not in os.environ
+        assert "OPENAMER_IGNORE_RULES" not in os.environ
 
 
 class TestArgparseFlagsRegistered:
@@ -246,5 +246,5 @@ class TestArgparseFlagsRegistered:
         import inspect
         import openamer_cli.main as hm
         src = inspect.getsource(hm)
-        assert "HERMES_IGNORE_USER_CONFIG" in src
-        assert "HERMES_IGNORE_RULES" in src
+        assert "OPENAMER_IGNORE_USER_CONFIG" in src
+        assert "OPENAMER_IGNORE_RULES" in src

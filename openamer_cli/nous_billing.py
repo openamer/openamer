@@ -18,7 +18,7 @@ Design rules:
 - **Auth** = the OAuth bearer JWT OpenAmer already holds for inference
   (``get_provider_auth_state("nous")["access_token"]``). No API-key auth on these.
 - **Portal base URL** resolves with the same precedence as the device-flow login
-  (``auth.py``): ``HERMES_PORTAL_BASE_URL`` → ``NOUS_PORTAL_BASE_URL`` → the
+  (``auth.py``): ``OPENAMER_PORTAL_BASE_URL`` → ``NOUS_PORTAL_BASE_URL`` → the
   stored auth-state ``portal_base_url`` → the registry default. This is how the
   E2E run points the client at a preview deployment with zero code change.
 """
@@ -173,10 +173,10 @@ class BillingUpgradeCapExceeded(BillingTransient):
 def resolve_portal_base_url(state: Optional[dict[str, Any]] = None) -> str:
     """Resolve the portal base URL with login-time precedence.
 
-    ``HERMES_PORTAL_BASE_URL`` → ``NOUS_PORTAL_BASE_URL`` → stored auth-state
+    ``OPENAMER_PORTAL_BASE_URL`` → ``NOUS_PORTAL_BASE_URL`` → stored auth-state
     ``portal_base_url`` → registry default. Trailing slash stripped.
     """
-    env = os.getenv("HERMES_PORTAL_BASE_URL") or os.getenv("NOUS_PORTAL_BASE_URL")
+    env = os.getenv("OPENAMER_PORTAL_BASE_URL") or os.getenv("NOUS_PORTAL_BASE_URL")
     if env and env.strip():
         return env.strip().rstrip("/")
     if state:

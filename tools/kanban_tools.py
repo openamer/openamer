@@ -75,7 +75,7 @@ def _reject_delegated_child_mutation(tool_name: str) -> Optional[str]:
     """Deny Kanban mutations from delegate_task children.
 
     A delegate_task child runs in the same process as its parent, so stale or
-    inherited HERMES_KANBAN_* env vars are not proof of dispatcher ownership.
+    inherited OPENAMER_KANBAN_* env vars are not proof of dispatcher ownership.
     The child may summarize findings to its parent, but it must not complete,
     block, heartbeat, comment, create, link, or unblock board tasks directly.
     """
@@ -142,7 +142,7 @@ def _worker_run_id(task_id: str) -> Optional[int]:
     """Return this worker's dispatcher run id when it is scoped to task_id."""
     if os.environ.get("OPENAMER_KANBAN_TASK") != task_id:
         return None
-    raw = os.environ.get("HERMES_KANBAN_RUN_ID")
+    raw = os.environ.get("OPENAMER_KANBAN_RUN_ID")
     if not raw:
         return None
     try:
@@ -157,7 +157,7 @@ def _stamp_worker_session_metadata(
     """Add trusted worker session id metadata for this worker's own task."""
     if os.environ.get("OPENAMER_KANBAN_TASK") != task_id:
         return metadata
-    session_id = os.environ.get("HERMES_SESSION_ID")
+    session_id = os.environ.get("OPENAMER_SESSION_ID")
     if not session_id:
         return metadata
     stamped = dict(metadata or {})
@@ -204,7 +204,7 @@ def _connect(board: Optional[str] = None):
     When ``board`` is provided it's forwarded to :func:`kb.connect`, which
     routes the connection to that board's sqlite file. ``None`` (the
     default) preserves the legacy resolution chain
-    (``HERMES_KANBAN_DB`` → ``HERMES_KANBAN_BOARD`` env → current symlink
+    (``OPENAMER_KANBAN_DB`` → ``OPENAMER_KANBAN_BOARD`` env → current symlink
     → ``default``). Per-tool ``board`` lets a Telegram-side agent override
     the env-pinned active board without restarting OpenAmer.
     """
@@ -272,9 +272,9 @@ def heartbeat_current_worker_from_env() -> bool:
 
     Identity comes from:
       * ``OPENAMER_KANBAN_TASK`` — task id (required; absence means no-op)
-      * ``HERMES_KANBAN_RUN_ID`` — pins the run row so we don't heartbeat
+      * ``OPENAMER_KANBAN_RUN_ID`` — pins the run row so we don't heartbeat
         a stale run that may have already been reclaimed
-      * ``HERMES_KANBAN_CLAIM_LOCK`` — claim lock for ``heartbeat_claim``;
+      * ``OPENAMER_KANBAN_CLAIM_LOCK`` — claim lock for ``heartbeat_claim``;
         falls back to the default ``_claimer_id()`` for locally-driven
         workers that never went through the dispatcher path
 
@@ -294,12 +294,12 @@ def heartbeat_current_worker_from_env() -> bool:
     try:
         kb, conn = _connect()
         try:
-            claim_lock = os.environ.get("HERMES_KANBAN_CLAIM_LOCK")
+            claim_lock = os.environ.get("OPENAMER_KANBAN_CLAIM_LOCK")
             try:
                 kb.heartbeat_claim(conn, tid, claimer=claim_lock)
             except Exception:
                 logger.debug("auto-heartbeat: heartbeat_claim failed", exc_info=True)
-            run_id_raw = os.environ.get("HERMES_KANBAN_RUN_ID")
+            run_id_raw = os.environ.get("OPENAMER_KANBAN_RUN_ID")
             run_id: Optional[int]
             try:
                 run_id = int(run_id_raw) if run_id_raw else None
@@ -823,11 +823,11 @@ def _handle_heartbeat(args: dict, **kw) -> str:
         kb, conn = _connect(board=board)
         try:
             # Extend the claim TTL first. The dispatcher pins
-            # HERMES_KANBAN_CLAIM_LOCK in the worker env at spawn time
+            # OPENAMER_KANBAN_CLAIM_LOCK in the worker env at spawn time
             # (see _default_spawn in kanban_db.py); falling back to the
             # default _claimer_id() covers locally-driven workers that
             # never went through the dispatcher path.
-            claim_lock = os.environ.get("HERMES_KANBAN_CLAIM_LOCK")
+            claim_lock = os.environ.get("OPENAMER_KANBAN_CLAIM_LOCK")
             kb.heartbeat_claim(conn, tid, claimer=claim_lock)
 
             ok = kb.heartbeat_worker(
@@ -874,7 +874,7 @@ def _handle_comment(args: dict, **kw) -> str:
     # the future-worker context with what reads as a system directive.
     # Cross-task commenting itself remains unrestricted (see #19713) —
     # comments are the deliberate handoff channel between tasks.
-    author = os.environ.get("HERMES_PROFILE") or "worker"
+    author = os.environ.get("OPENAMER_PROFILE") or "worker"
     board = args.get("board")
     try:
         kb, conn = _connect(board=board)
@@ -1135,11 +1135,11 @@ def _handle_create(args: dict, **kw) -> str:
         )
     body = args.get("body")
     parents = args.get("parents") or []
-    tenant = args.get("tenant") or os.environ.get("HERMES_TENANT")
+    tenant = args.get("tenant") or os.environ.get("OPENAMER_TENANT")
     # Stamp the originating session id when the agent loop runs under
-    # ACP (which sets HERMES_SESSION_ID before invoking tools). NULL on
+    # ACP (which sets OPENAMER_SESSION_ID before invoking tools). NULL on
     # CLI / dashboard paths and on legacy hosts that don't set the env.
-    # Prefer the request-scoped api_server origin binding: HERMES_SESSION_ID
+    # Prefer the request-scoped api_server origin binding: OPENAMER_SESSION_ID
     # is clobbered with a subagent's internal id whenever a child agent is
     # constructed in-process (agent_init calls set_current_session_id), which
     # would stamp — and later wake — the wrong session.
@@ -1148,7 +1148,7 @@ def _handle_create(args: dict, **kw) -> str:
     session_id = (
         args.get("session_id")
         or _current_origin_session_id()
-        or os.environ.get("HERMES_SESSION_ID")
+        or os.environ.get("OPENAMER_SESSION_ID")
     )
     priority = args.get("priority")
     # Resolve workspace. Workspace sharing is always explicit: omitted fields
@@ -1234,7 +1234,7 @@ def _handle_create(args: dict, **kw) -> str:
                     int(goal_max_turns) if goal_max_turns is not None else None
                 ),
                 initial_status=str(initial_status),
-                created_by=os.environ.get("HERMES_PROFILE") or "worker",
+                created_by=os.environ.get("OPENAMER_PROFILE") or "worker",
                 session_id=session_id,
             )
             new_task = kb.get_task(conn, new_tid)
@@ -1272,15 +1272,15 @@ def _maybe_auto_subscribe(conn: Any, task_id: str) -> bool:
 
     Subscription paths:
 
-    - **Gateway** (telegram/discord/slack/etc): ``HERMES_SESSION_PLATFORM``
-      and ``HERMES_SESSION_CHAT_ID`` are set in ContextVars by the
+    - **Gateway** (telegram/discord/slack/etc): ``OPENAMER_SESSION_PLATFORM``
+      and ``OPENAMER_SESSION_CHAT_ID`` are set in ContextVars by the
       messaging gateway before agent dispatch. The notification poller
       already keys off these, so we just register a row.
 
     - **TUI** (herm desktop / herm TUI): the platform/chat_id ContextVars
       are intentionally cleared (TUI is a single-channel local UI, not
       a multi-tenant chat surface), but the agent subprocess inherits
-      ``HERMES_SESSION_KEY`` from the parent session. We subscribe with
+      ``OPENAMER_SESSION_KEY`` from the parent session. We subscribe with
       ``platform="tui"`` and ``chat_id=<key>``; the TUI notification
       poller (``tui_gateway/server.py``) reads ``kanban_notify_subs``
       for these rows and posts the completion message into the running
@@ -1307,35 +1307,35 @@ def _maybe_auto_subscribe(conn: Any, task_id: str) -> bool:
     chat_id = ""
     try:
         from gateway.session_context import get_session_env
-        platform = get_session_env("HERMES_SESSION_PLATFORM", "")
-        chat_id = get_session_env("HERMES_SESSION_CHAT_ID", "")
+        platform = get_session_env("OPENAMER_SESSION_PLATFORM", "")
+        chat_id = get_session_env("OPENAMER_SESSION_CHAT_ID", "")
         if not platform or not chat_id:
             # TUI / desktop fallback: platform/chat_id ContextVars are
             # cleared for TUI sessions, but the parent process exports
-            # HERMES_SESSION_KEY into the subprocess env. Treat that
+            # OPENAMER_SESSION_KEY into the subprocess env. Treat that
             # as a "tui" subscription so the TUI notification poller
             # (tui_gateway/server.py) can pick it up.
             #
-            # HERMES_SESSION_ID is intentionally NOT a fallback here:
+            # OPENAMER_SESSION_ID is intentionally NOT a fallback here:
             # it is set by ACP / the agent subprocess for telemetry
             # regardless of whether the parent is a TUI or a CLI, so
             # treating it as a notification target would auto-subscribe
             # every CLI invocation, which is exactly the over-eager
             # behaviour that got #19718 reverted upstream. The TUI
-            # poller keys on HERMES_SESSION_KEY.
+            # poller keys on OPENAMER_SESSION_KEY.
             session_key = (
-                get_session_env("HERMES_SESSION_KEY", "")
-                or os.environ.get("HERMES_SESSION_KEY", "")
+                get_session_env("OPENAMER_SESSION_KEY", "")
+                or os.environ.get("OPENAMER_SESSION_KEY", "")
             )
             if not session_key:
                 return False  # CLI / cron / test — no persistent channel
             platform = "tui"
             chat_id = session_key
-        thread_id = get_session_env("HERMES_SESSION_THREAD_ID", "") or None
-        user_id = get_session_env("HERMES_SESSION_USER_ID", "") or None
+        thread_id = get_session_env("OPENAMER_SESSION_THREAD_ID", "") or None
+        user_id = get_session_env("OPENAMER_SESSION_USER_ID", "") or None
         notifier_profile = (
-            get_session_env("HERMES_SESSION_PROFILE", "")
-            or os.environ.get("HERMES_PROFILE")
+            get_session_env("OPENAMER_SESSION_PROFILE", "")
+            or os.environ.get("OPENAMER_PROFILE")
         )
 
         # Lazy-import to keep the module-level dependency light
@@ -1423,8 +1423,8 @@ _DESC_TASK_ID_DEFAULT = (
 
 _DESC_BOARD = (
     "Kanban board slug to target. When omitted, the call resolves the "
-    "active board the usual way: HERMES_KANBAN_DB env → "
-    "HERMES_KANBAN_BOARD env → the 'current' symlink under the kanban "
+    "active board the usual way: OPENAMER_KANBAN_DB env → "
+    "OPENAMER_KANBAN_BOARD env → the 'current' symlink under the kanban "
     "home → 'default'. Pass an explicit slug only when the caller (e.g. "
     "a Telegram routing layer) needs to override the env-pinned active "
     "board for this one call."
@@ -1847,7 +1847,7 @@ KANBAN_CREATE_SCHEMA = {
                 "type": "string",
                 "description": (
                     "Optional namespace for multi-project isolation. "
-                    "Defaults to HERMES_TENANT env if set."
+                    "Defaults to OPENAMER_TENANT env if set."
                 ),
             },
             "priority": {

@@ -5,7 +5,7 @@ a curl request through it against a local fake upstream, and verifies that
 the Authorization header was swapped from a proxy token to a real secret.
 
 Gated on the network. Skipped by default in CI unless the user explicitly
-opts in with --run-e2e or HERMES_RUN_E2E=1.  This is intentional — the test
+opts in with --run-e2e or OPENAMER_RUN_E2E=1.  This is intentional — the test
 downloads ~16MB and requires both `openssl` and `curl` to be present.
 """
 
@@ -26,8 +26,8 @@ from agent.proxy_sources import iron_proxy as ip
 
 
 pytestmark = pytest.mark.skipif(
-    os.environ.get("HERMES_RUN_E2E", "0") != "1",
-    reason="E2E proxy test — set HERMES_RUN_E2E=1 to run (requires network + curl + openssl)",
+    os.environ.get("OPENAMER_RUN_E2E", "0") != "1",
+    reason="E2E proxy test — set OPENAMER_RUN_E2E=1 to run (requires network + curl + openssl)",
 )
 
 

@@ -418,7 +418,7 @@ async def test_disconnect_cancels_running_bot_task(monkeypatch):
 async def test_connect_ready_wait_uses_gateway_platform_connect_timeout(monkeypatch):
     adapter = DiscordAdapter(PlatformConfig(enabled=True, token="test-token"))
 
-    monkeypatch.setenv("HERMES_GATEWAY_PLATFORM_CONNECT_TIMEOUT", "90")
+    monkeypatch.setenv("OPENAMER_GATEWAY_PLATFORM_CONNECT_TIMEOUT", "90")
     monkeypatch.setattr("gateway.status.acquire_scoped_lock", lambda scope, identity, metadata=None: (True, None))
     monkeypatch.setattr("gateway.status.release_scoped_lock", lambda scope, identity: None)
 

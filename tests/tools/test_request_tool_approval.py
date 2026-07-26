@@ -104,7 +104,7 @@ class TestRequestToolApproval:
         monkeypatch.setattr(approval, "_is_interactive_cli", lambda: False)
         monkeypatch.setattr(approval, "_is_gateway_approval_context", lambda: False)
         monkeypatch.setattr(approval, "env_var_enabled",
-                            lambda v: v == "HERMES_CRON_SESSION")
+                            lambda v: v == "OPENAMER_CRON_SESSION")
         monkeypatch.setattr(approval, "_get_cron_approval_mode", lambda: "deny")
         res = request_tool_approval("terminal", "smtp send")
         assert res["approved"] is False
@@ -114,7 +114,7 @@ class TestRequestToolApproval:
         monkeypatch.setattr(approval, "_is_interactive_cli", lambda: False)
         monkeypatch.setattr(approval, "_is_gateway_approval_context", lambda: False)
         monkeypatch.setattr(approval, "env_var_enabled",
-                            lambda v: v == "HERMES_CRON_SESSION")
+                            lambda v: v == "OPENAMER_CRON_SESSION")
         monkeypatch.setattr(approval, "_get_cron_approval_mode", lambda: "approve")
         res = request_tool_approval("terminal", "smtp send")
         assert res["approved"] is True

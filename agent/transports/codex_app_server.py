@@ -100,12 +100,12 @@ class CodexAppServerClient:
         # root. Without this, codex-runtime workers finish their actual work
         # but crash/block when kanban_complete/kanban_block writes SQLite.
         if spawn_env.get("OPENAMER_KANBAN_TASK"):
-            kanban_db = spawn_env.get("HERMES_KANBAN_DB")
+            kanban_db = spawn_env.get("OPENAMER_KANBAN_DB")
             kanban_root = (
                 os.path.dirname(kanban_db)
                 if kanban_db
                 else spawn_env.get(
-                    "HERMES_KANBAN_ROOT",
+                    "OPENAMER_KANBAN_ROOT",
                     os.path.join(
                         spawn_env.get("OPENAMER_HOME", os.path.expanduser("~/.openamer")),
                         "kanban",

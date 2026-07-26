@@ -64,7 +64,7 @@ def test_ttfb_kills_when_no_stream_event(tmp_path, monkeypatch):
     from agent import chat_completion_helpers as h
 
     agent = _make_codex_agent(tmp_path, monkeypatch)
-    monkeypatch.setenv("HERMES_CODEX_TTFB_TIMEOUT_SECONDS", "1")
+    monkeypatch.setenv("OPENAMER_CODEX_TTFB_TIMEOUT_SECONDS", "1")
 
     closes: list = []
     dummy_client = SimpleNamespace()
@@ -111,8 +111,8 @@ def test_ttfb_default_tolerates_slow_first_event(tmp_path, monkeypatch):
 
     agent = _make_codex_agent(tmp_path, monkeypatch)
     # Default behavior: no explicit TTFB override.
-    monkeypatch.delenv("HERMES_CODEX_TTFB_TIMEOUT_SECONDS", raising=False)
-    monkeypatch.delenv("HERMES_CODEX_TTFB_MAX_SECONDS", raising=False)
+    monkeypatch.delenv("OPENAMER_CODEX_TTFB_TIMEOUT_SECONDS", raising=False)
+    monkeypatch.delenv("OPENAMER_CODEX_TTFB_MAX_SECONDS", raising=False)
 
     closes: list = []
     dummy_client = SimpleNamespace()
@@ -149,7 +149,7 @@ def test_ttfb_includes_silent_hang_hint_for_gpt_5_5(tmp_path, monkeypatch):
     from agent import chat_completion_helpers as h
 
     agent = _make_codex_agent(tmp_path, monkeypatch)
-    monkeypatch.setenv("HERMES_CODEX_TTFB_TIMEOUT_SECONDS", "1")
+    monkeypatch.setenv("OPENAMER_CODEX_TTFB_TIMEOUT_SECONDS", "1")
 
     closes: list = []
     statuses: list[str] = []
@@ -196,8 +196,8 @@ def test_ttfb_high_env_is_capped_for_openai_codex(tmp_path, monkeypatch):
     from agent import chat_completion_helpers as h
 
     agent = _make_codex_agent(tmp_path, monkeypatch)
-    monkeypatch.setenv("HERMES_CODEX_TTFB_TIMEOUT_SECONDS", "90")
-    monkeypatch.setenv("HERMES_CODEX_TTFB_MAX_SECONDS", "1")
+    monkeypatch.setenv("OPENAMER_CODEX_TTFB_TIMEOUT_SECONDS", "90")
+    monkeypatch.setenv("OPENAMER_CODEX_TTFB_MAX_SECONDS", "1")
 
     closes: list = []
     dummy_client = SimpleNamespace()
@@ -239,7 +239,7 @@ def test_ttfb_does_not_kill_when_events_flow(tmp_path, monkeypatch):
     from agent import chat_completion_helpers as h
 
     agent = _make_codex_agent(tmp_path, monkeypatch)
-    monkeypatch.setenv("HERMES_CODEX_TTFB_TIMEOUT_SECONDS", "1")
+    monkeypatch.setenv("OPENAMER_CODEX_TTFB_TIMEOUT_SECONDS", "1")
 
     closes: list = []
     dummy_client = SimpleNamespace()
@@ -278,8 +278,8 @@ def test_event_idle_kills_after_first_event_then_silence(tmp_path, monkeypatch):
     from agent import chat_completion_helpers as h
 
     agent = _make_codex_agent(tmp_path, monkeypatch)
-    monkeypatch.setenv("HERMES_CODEX_TTFB_TIMEOUT_SECONDS", "10")
-    monkeypatch.setenv("HERMES_CODEX_EVENT_STALE_TIMEOUT_SECONDS", "1")
+    monkeypatch.setenv("OPENAMER_CODEX_TTFB_TIMEOUT_SECONDS", "10")
+    monkeypatch.setenv("OPENAMER_CODEX_EVENT_STALE_TIMEOUT_SECONDS", "1")
 
     closes: list = []
     dummy_client = SimpleNamespace()
@@ -517,13 +517,13 @@ def test_wait_notice_formatting_error_does_not_abort_request(monkeypatch):
 
 
 def test_ttfb_disabled_via_env_zero(tmp_path, monkeypatch):
-    """Setting HERMES_CODEX_TTFB_TIMEOUT_SECONDS=0 disables the TTFB watchdog;
+    """Setting OPENAMER_CODEX_TTFB_TIMEOUT_SECONDS=0 disables the TTFB watchdog;
     a no-event stall then falls through to the (here, 60s) stale timeout, so a
     short hang is NOT killed by TTFB."""
     from agent import chat_completion_helpers as h
 
     agent = _make_codex_agent(tmp_path, monkeypatch)
-    monkeypatch.setenv("HERMES_CODEX_TTFB_TIMEOUT_SECONDS", "0")
+    monkeypatch.setenv("OPENAMER_CODEX_TTFB_TIMEOUT_SECONDS", "0")
 
     closes: list = []
     dummy_client = SimpleNamespace()
@@ -558,7 +558,7 @@ def test_large_codex_request_waits_instead_of_ttfb_reconnect(tmp_path, monkeypat
     from agent import chat_completion_helpers as h
 
     agent = _make_codex_agent(tmp_path, monkeypatch)
-    monkeypatch.setenv("HERMES_CODEX_TTFB_TIMEOUT_SECONDS", "1")
+    monkeypatch.setenv("OPENAMER_CODEX_TTFB_TIMEOUT_SECONDS", "1")
 
     closes: list = []
     dummy_client = SimpleNamespace()
@@ -592,8 +592,8 @@ def test_large_codex_request_can_still_ttfb_reconnect_when_capped(tmp_path, monk
     from agent import chat_completion_helpers as h
 
     agent = _make_codex_agent(tmp_path, monkeypatch)
-    monkeypatch.setenv("HERMES_CODEX_TTFB_TIMEOUT_SECONDS", "1")
-    monkeypatch.setenv("HERMES_CODEX_TTFB_MAX_SECONDS", "1")
+    monkeypatch.setenv("OPENAMER_CODEX_TTFB_TIMEOUT_SECONDS", "1")
+    monkeypatch.setenv("OPENAMER_CODEX_TTFB_MAX_SECONDS", "1")
 
     closes: list = []
     dummy_client = SimpleNamespace()
@@ -627,12 +627,12 @@ def test_large_codex_request_can_still_ttfb_reconnect_when_capped(tmp_path, monk
 
 def test_large_codex_request_strict_ttfb_env_still_reconnects(tmp_path, monkeypatch):
     """Operators can force the old early-reconnect behavior for large inputs
-    with HERMES_CODEX_TTFB_STRICT=1."""
+    with OPENAMER_CODEX_TTFB_STRICT=1."""
     from agent import chat_completion_helpers as h
 
     agent = _make_codex_agent(tmp_path, monkeypatch)
-    monkeypatch.setenv("HERMES_CODEX_TTFB_TIMEOUT_SECONDS", "1")
-    monkeypatch.setenv("HERMES_CODEX_TTFB_STRICT", "1")
+    monkeypatch.setenv("OPENAMER_CODEX_TTFB_TIMEOUT_SECONDS", "1")
+    monkeypatch.setenv("OPENAMER_CODEX_TTFB_STRICT", "1")
 
     closes: list = []
     dummy_client = SimpleNamespace()
@@ -676,9 +676,9 @@ def test_large_codex_request_hard_ceiling_reclaims_silent_stall(tmp_path, monkey
     from agent import chat_completion_helpers as h
 
     agent = _make_codex_agent(tmp_path, monkeypatch)
-    # Real default TTFB threshold (no HERMES_CODEX_TTFB_* override) → for a
+    # Real default TTFB threshold (no OPENAMER_CODEX_TTFB_* override) → for a
     # >10k-token request the no-byte TTFB watchdog is auto-disabled.
-    monkeypatch.setenv("HERMES_CODEX_HARD_TIMEOUT_SECONDS", "3")
+    monkeypatch.setenv("OPENAMER_CODEX_HARD_TIMEOUT_SECONDS", "3")
 
     closes: list = []
     dummy_client = SimpleNamespace()
@@ -719,14 +719,14 @@ def test_large_codex_request_hard_ceiling_reclaims_silent_stall(tmp_path, monkey
 
 
 def test_large_codex_request_hard_ceiling_disabled_restores_legacy(tmp_path, monkeypatch):
-    """Setting HERMES_CODEX_HARD_TIMEOUT_SECONDS=0 disables the ceiling entirely,
+    """Setting OPENAMER_CODEX_HARD_TIMEOUT_SECONDS=0 disables the ceiling entirely,
     restoring the pre-#64507 behavior (request waits out the raised stale floor
     instead of being capped). Keeps the knob for operators who must.
     """
     from agent import chat_completion_helpers as h
 
     agent = _make_codex_agent(tmp_path, monkeypatch)
-    monkeypatch.setenv("HERMES_CODEX_HARD_TIMEOUT_SECONDS", "0")
+    monkeypatch.setenv("OPENAMER_CODEX_HARD_TIMEOUT_SECONDS", "0")
 
     closes: list = []
     dummy_client = SimpleNamespace()
@@ -764,7 +764,7 @@ def test_large_codex_request_hard_ceiling_caps_raised_stale_floor(tmp_path, monk
     from agent import chat_completion_helpers as h
 
     agent = _make_codex_agent(tmp_path, monkeypatch)
-    monkeypatch.setenv("HERMES_CODEX_HARD_TIMEOUT_SECONDS", "4")
+    monkeypatch.setenv("OPENAMER_CODEX_HARD_TIMEOUT_SECONDS", "4")
     # Force the >100k-token tier so openai_codex_stale_timeout_floor returns 1200s.
     monkeypatch.setattr(
         agent, "_compute_non_stream_stale_timeout", lambda *a, **k: 1200.0

@@ -1,7 +1,7 @@
 """Unit tests for docker/tini-shim.sh argument stripping (#66679).
 
-These run without Docker: the shim's HERMES_TINI_SHIM_TARGET /
-HERMES_TINI_SHIM_WRAPPER hooks let us record the argv that would be
+These run without Docker: the shim's OPENAMER_TINI_SHIM_TARGET /
+OPENAMER_TINI_SHIM_WRAPPER hooks let us record the argv that would be
 handed to /init.
 """
 from __future__ import annotations
@@ -34,8 +34,8 @@ def _run_shim(
 ) -> subprocess.CompletedProcess[str]:
     init, wrapper = recorder
     env = os.environ.copy()
-    env["HERMES_TINI_SHIM_TARGET"] = str(init)
-    env["HERMES_TINI_SHIM_WRAPPER"] = str(wrapper)
+    env["OPENAMER_TINI_SHIM_TARGET"] = str(init)
+    env["OPENAMER_TINI_SHIM_WRAPPER"] = str(wrapper)
     return subprocess.run(
         ["sh", str(SHIM), *args],
         capture_output=True,
@@ -50,7 +50,7 @@ def test_shim_script_is_executable_bit_friendly() -> None:
     assert SHIM.is_file()
     text = SHIM.read_text()
     assert text.startswith("#!/bin/sh")
-    assert "HERMES_TINI_SHIM_TARGET" in text
+    assert "OPENAMER_TINI_SHIM_TARGET" in text
 
 
 def test_strips_g_and_double_dash(recorder: tuple[Path, Path]) -> None:
