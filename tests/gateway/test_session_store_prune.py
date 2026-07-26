@@ -349,7 +349,7 @@ class TestReadmeSentinel:
         assert next(iter(raw)) == "_README"
         # The note points users at the real store and command.
         assert "state.db" in raw["_README"]
-        assert "hermes sessions list" in raw["_README"]
+        assert "openamer sessions list" in raw["_README"]
 
     def test_readme_sentinel_skipped_on_load(self, tmp_path):
         # Write an index containing both the sentinel and a real entry.

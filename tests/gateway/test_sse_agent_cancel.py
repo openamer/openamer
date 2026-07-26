@@ -355,7 +355,7 @@ class TestSSEAgentFailureFinishReason:
 
         reason, finish, _ = self._run(failed)
         assert reason == "error"
-        assert finish.get("hermes", {}).get("failed") is True
+        assert finish.get("openamer", {}).get("failed") is True
 
     def test_truncated_result_reports_length(self):
         async def trunc():
@@ -367,7 +367,7 @@ class TestSSEAgentFailureFinishReason:
 
         reason, finish, _ = self._run(trunc)
         assert reason == "length"
-        assert finish["hermes"]["error_code"] == "output_truncated"
+        assert finish["openamer"]["error_code"] == "output_truncated"
 
     def test_successful_completion_reports_stop(self):
         async def ok():
@@ -378,6 +378,6 @@ class TestSSEAgentFailureFinishReason:
 
         reason, finish, _ = self._run(ok)
         assert reason == "stop"
-        # No error/hermes pollution on the happy path.
+        # No error/openamer pollution on the happy path.
         assert "error" not in finish
-        assert "hermes" not in finish
+        assert "openamer" not in finish

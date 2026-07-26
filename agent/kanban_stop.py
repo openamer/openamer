@@ -3,7 +3,7 @@
 Kanban workers must end with ``kanban_complete`` or ``kanban_block``. Models
 (especially GLM / Qwen families) sometimes narrate the next step
 ("Let me write the report now") and stop with ``finish_reason=stop`` and no
-tool calls. Hermes treats that as a clean exit → ``rc=0`` → dispatcher
+tool calls. OpenAmer treats that as a clean exit → ``rc=0`` → dispatcher
 ``protocol_violation``.
 
 This module is policy-only: when a kanban worker tries to finish without a
@@ -87,7 +87,7 @@ def build_kanban_stop_nudge(
 
     tid = (task_id or os.environ.get("OPENAMER_KANBAN_TASK") or "").strip() or "this task"
     return (
-        "[System: You are a Hermes kanban worker. A plain-text reply is NOT a "
+        "[System: You are a OpenAmer kanban worker. A plain-text reply is NOT a "
         "terminal state for the board.\n\n"
         f"Task `{tid}` is still `running`. Ending now without a board tool "
         "causes a protocol violation (clean exit with no "

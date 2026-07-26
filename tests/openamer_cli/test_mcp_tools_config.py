@@ -71,7 +71,7 @@ def test_disabling_tool_writes_include_list(capsys):
     """Unchecking a tool produces an include list of the still-chosen tools.
 
     Standardized on tools.include (whitelist) across the codebase — the
-    catalog flow, `hermes mcp configure`, and this UI all write the same
+    catalog flow, `openamer mcp configure`, and this UI all write the same
     shape so users don\'t see config drift across UIs.
     """
     config = {

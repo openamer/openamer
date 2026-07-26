@@ -1,11 +1,11 @@
 import type { BillingBlock, UsageModelData } from '@openamer/shared/billing'
-import type { HermesSkin } from '@openamer/shared/skin'
+import type { OpenAmerSkin } from '@openamer/shared/skin'
 
 import type { SessionInfo, SlashCategory, SubagentStatus, Usage } from './types.js'
 
 /** The cross-surface skin contract (canonical shape in `@openamer/shared`).
  *  Includes the paired light_colors/dark_colors overlays from #20379. */
-export type GatewaySkin = HermesSkin
+export type GatewaySkin = OpenAmerSkin
 
 export interface GatewayCompletionItem {
   display: string

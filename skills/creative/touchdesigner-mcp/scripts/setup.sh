@@ -8,7 +8,7 @@ OK="${GREEN}✔${NC}"; FAIL="${RED}✘${NC}"; WARN="${YELLOW}⚠${NC}"
 
 TWOZERO_URL="https://www.404zero.com/pisang/twozero.tox"
 TOX_PATH="$HOME/Downloads/twozero.tox"
-OPENAMER_HOME_DIR="${OPENAMER_HOME:-$HOME/.hermes}"
+OPENAMER_HOME_DIR="${OPENAMER_HOME:-$HOME/.openamer}"
 HERMES_CFG="${OPENAMER_HOME_DIR}/config.yaml"
 MCP_PORT=40404
 MCP_ENDPOINT="http://localhost:${MCP_PORT}/mcp"
@@ -43,14 +43,14 @@ else
     fi
 fi
 
-# ── 3. Ensure Hermes config has twozero_td MCP entry ──
+# ── 3. Ensure OpenAmer config has twozero_td MCP entry ──
 if [[ ! -f "$HERMES_CFG" ]]; then
-    echo -e " ${FAIL} Hermes config not found at ${HERMES_CFG}"
+    echo -e " ${FAIL} OpenAmer config not found at ${HERMES_CFG}"
     manual_steps+=("Create ${HERMES_CFG} with twozero_td MCP server entry")
 elif grep -q 'twozero_td' "$HERMES_CFG" 2>/dev/null; then
-    echo -e " ${OK} twozero_td MCP entry exists in Hermes config"
+    echo -e " ${OK} twozero_td MCP entry exists in OpenAmer config"
 else
-    echo -e " ${WARN} Adding twozero_td MCP entry to Hermes config..."
+    echo -e " ${WARN} Adding twozero_td MCP entry to OpenAmer config..."
     python3 -c "
 import yaml, sys, copy
 
@@ -72,7 +72,7 @@ if 'twozero_td' not in cfg['mcp_servers']:
 " 2>/dev/null && echo -e " ${OK} twozero_td MCP entry added to config" \
               || { echo -e " ${FAIL} Could not update config (is PyYAML installed?)"; \
                    manual_steps+=("Add twozero_td MCP entry to ${HERMES_CFG} manually"); }
-    manual_steps+=("Restart Hermes session to pick up config change")
+    manual_steps+=("Restart OpenAmer session to pick up config change")
 fi
 
 # ── 4. Test if MCP port is responding ──

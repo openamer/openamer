@@ -468,10 +468,10 @@ def wire_env():
     t = threading.Thread(target=srv.serve_forever, daemon=True)
     t.start()
 
-    test_home = tempfile.mkdtemp(prefix="hermes_api_content_")
-    os.makedirs(os.path.join(test_home, ".hermes"))
+    test_home = tempfile.mkdtemp(prefix="openamer_api_content_")
+    os.makedirs(os.path.join(test_home, ".openamer"))
     prev_home = os.environ.get("OPENAMER_HOME")
-    os.environ["OPENAMER_HOME"] = os.path.join(test_home, ".hermes")
+    os.environ["OPENAMER_HOME"] = os.path.join(test_home, ".openamer")
 
     from run_agent import AIAgent
 

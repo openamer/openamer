@@ -71,7 +71,7 @@ def _make_runner(adapter=None):
 class TestReasoningChoicePicker:
     @pytest.mark.asyncio
     async def test_bare_reasoning_sends_picker_when_adapter_supports_it(self, tmp_path, monkeypatch):
-        monkeypatch.setattr(gateway_run, "_hermes_home", tmp_path)
+        monkeypatch.setattr(gateway_run, "_openamer_home", tmp_path)
         adapter = _PickerAdapter()
         runner = _make_runner(adapter)
 
@@ -89,7 +89,7 @@ class TestReasoningChoicePicker:
 
     @pytest.mark.asyncio
     async def test_bare_reasoning_falls_back_to_text_without_picker(self, tmp_path, monkeypatch):
-        monkeypatch.setattr(gateway_run, "_hermes_home", tmp_path)
+        monkeypatch.setattr(gateway_run, "_openamer_home", tmp_path)
         runner = _make_runner(_NoPickerAdapter())
 
         result = await runner._handle_reasoning_command(_make_event("/reasoning"))
@@ -99,7 +99,7 @@ class TestReasoningChoicePicker:
 
     @pytest.mark.asyncio
     async def test_bare_reasoning_falls_back_to_text_when_picker_send_fails(self, tmp_path, monkeypatch):
-        monkeypatch.setattr(gateway_run, "_hermes_home", tmp_path)
+        monkeypatch.setattr(gateway_run, "_openamer_home", tmp_path)
         adapter = _PickerAdapter(success=False)
         runner = _make_runner(adapter)
 
@@ -110,7 +110,7 @@ class TestReasoningChoicePicker:
 
     @pytest.mark.asyncio
     async def test_typed_argument_never_sends_picker(self, tmp_path, monkeypatch):
-        monkeypatch.setattr(gateway_run, "_hermes_home", tmp_path)
+        monkeypatch.setattr(gateway_run, "_openamer_home", tmp_path)
         adapter = _PickerAdapter()
         runner = _make_runner(adapter)
 
@@ -123,7 +123,7 @@ class TestReasoningChoicePicker:
     async def test_picker_selection_applies_same_as_typed(self, tmp_path, monkeypatch):
         """The picker's on_choice_selected must produce the identical state
         change as typing the argument (single application path)."""
-        monkeypatch.setattr(gateway_run, "_hermes_home", tmp_path)
+        monkeypatch.setattr(gateway_run, "_openamer_home", tmp_path)
         adapter = _PickerAdapter()
         runner = _make_runner(adapter)
         event = _make_event("/reasoning")
@@ -140,7 +140,7 @@ class TestReasoningChoicePicker:
 
     @pytest.mark.asyncio
     async def test_picker_selection_of_current_level_marks_is_current(self, tmp_path, monkeypatch):
-        monkeypatch.setattr(gateway_run, "_hermes_home", tmp_path)
+        monkeypatch.setattr(gateway_run, "_openamer_home", tmp_path)
         (tmp_path / "config.yaml").write_text(
             yaml.safe_dump({"agent": {"reasoning_effort": "xhigh"}}), encoding="utf-8"
         )
@@ -154,7 +154,7 @@ class TestReasoningChoicePicker:
 
     @pytest.mark.asyncio
     async def test_picker_show_choice_toggles_display(self, tmp_path, monkeypatch):
-        monkeypatch.setattr(gateway_run, "_hermes_home", tmp_path)
+        monkeypatch.setattr(gateway_run, "_openamer_home", tmp_path)
         adapter = _PickerAdapter()
         runner = _make_runner(adapter)
         event = _make_event("/reasoning")
@@ -170,7 +170,7 @@ class TestReasoningChoicePicker:
 
 class TestFastChoicePicker:
     def _patch_fast_support(self, monkeypatch, tmp_path):
-        monkeypatch.setattr(gateway_run, "_hermes_home", tmp_path)
+        monkeypatch.setattr(gateway_run, "_openamer_home", tmp_path)
         monkeypatch.setattr(gateway_run, "_load_gateway_config", lambda: {})
         monkeypatch.setattr(gateway_run, "_resolve_gateway_model", lambda cfg: "gpt-5.6")
         import openamer_cli.models as models_mod

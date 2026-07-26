@@ -1,7 +1,7 @@
 """Unit tests for the generic-OIDC / Nous-Portal caller-identity token resolver.
 
 Covers gateway.relay._resolve_relay_identity_token() — the canonical resolver
-shared by the runtime self-provision path and the `hermes gateway enroll` CLI.
+shared by the runtime self-provision path and the `openamer gateway enroll` CLI.
 
 Two modes:
   1. Generic OAuth2 client_credentials when gateway.idp.token_url (or

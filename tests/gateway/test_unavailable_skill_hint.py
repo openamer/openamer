@@ -28,7 +28,7 @@ import pytest
 @pytest.fixture
 def tmp_skills(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> Path:
     """Isolated skills dir + OPENAMER_HOME so the real user config is untouched."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     (home / "skills").mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
@@ -61,7 +61,7 @@ def test_frontmatter_slug_matched_even_when_dir_name_differs(
 
     _write_skill(tmp_skills, "mlops/stable-diffusion", "Stable Diffusion Image Generation")
 
-    # Config disables by declared name (matches what `hermes skills config` writes).
+    # Config disables by declared name (matches what `openamer skills config` writes).
     monkeypatch.setattr(
         "gateway.run._get_disabled_skill_names",
         lambda: {"Stable Diffusion Image Generation"},
@@ -81,7 +81,7 @@ def test_frontmatter_slug_matched_even_when_dir_name_differs(
         "the old code compared the dir name 'stable-diffusion' and returned None"
     )
     assert "disabled" in msg.lower()
-    assert "hermes skills config" in msg
+    assert "openamer skills config" in msg
 
 
 def test_unknown_command_still_returns_none(

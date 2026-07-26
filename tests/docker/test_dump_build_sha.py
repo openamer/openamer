@@ -1,20 +1,20 @@
-"""Regression test: ``hermes dump`` reports a real git SHA inside the container.
+"""Regression test: ``openamer dump`` reports a real git SHA inside the container.
 
 Background: ``.dockerignore`` excludes ``.git``, so ``git rev-parse HEAD``
-fails inside the published image and ``hermes dump`` used to report
+fails inside the published image and ``openamer dump`` used to report
 ``version: ... [(unknown)]``.  The Dockerfile now writes the build-time
-``$HERMES_GIT_SHA`` build-arg to ``/opt/hermes/.hermes_build_sha`` and
+``$HERMES_GIT_SHA`` build-arg to ``/opt/openamer/.openamer_build_sha`` and
 ``openamer_cli/build_info.py`` reads it as a fallback.
 
 CI (``.github/workflows/docker.yml``) always sets the build-arg
 to ``${{ github.sha }}``.  Local ``docker build`` (the ``built_image``
 fixture in ``tests/docker/conftest.py``) does NOT — so locally the file
-is absent and ``hermes dump`` correctly falls back to ``(unknown)``.
+is absent and ``openamer dump`` correctly falls back to ``(unknown)``.
 
 This test handles both cases:
 
-* If ``/opt/hermes/.hermes_build_sha`` exists in the image, assert that
-  ``hermes dump`` surfaces its content as the version SHA (not
+* If ``/opt/openamer/.openamer_build_sha`` exists in the image, assert that
+  ``openamer dump`` surfaces its content as the version SHA (not
   ``(unknown)``).
 * If the file is absent, assert the legacy behaviour (``(unknown)``)
   still holds — defensive guard against the helper accidentally
@@ -34,7 +34,7 @@ def _run_dump(image: str) -> str:
     """Return the stdout of ``docker run <image> dump``.
 
     Relies on Docker's anonymous VOLUME for ``/opt/data`` (declared by the
-    Dockerfile) so the container's hermes user (UID 10000) can bootstrap
+    Dockerfile) so the container's openamer user (UID 10000) can bootstrap
     its config.  Anonymous volumes are auto-cleaned by ``--rm``, so unlike
     a host bind-mount we don't have to chown anything to UID 10000 (which
     would break cleanup on non-root hosts).
@@ -44,18 +44,18 @@ def _run_dump(image: str) -> str:
         capture_output=True, text=True, timeout=120,
     )
     assert r.returncode == 0, (
-        f"hermes dump exited {r.returncode}: "
+        f"openamer dump exited {r.returncode}: "
         f"stderr={r.stderr[-1000:]!r}\nstdout={r.stdout[-1000:]!r}"
     )
     return r.stdout
 
 
 def _read_baked_sha_from_image(image: str) -> str | None:
-    """Return the ``/opt/hermes/.hermes_build_sha`` content, or None if absent."""
+    """Return the ``/opt/openamer/.openamer_build_sha`` content, or None if absent."""
     r = subprocess.run(
         [
             "docker", "run", "--rm", "--entrypoint", "cat", image,
-            "/opt/hermes/.hermes_build_sha",
+            "/opt/openamer/.openamer_build_sha",
         ],
         capture_output=True, text=True, timeout=30,
     )
@@ -91,7 +91,7 @@ def test_dump_reports_baked_sha_when_present(built_image: str) -> None:
         )
         return
 
-    # CI path: build-arg was set, baked file exists.  ``hermes dump``
+    # CI path: build-arg was set, baked file exists.  ``openamer dump``
     # truncates to 8 chars via ``git rev-parse --short=8`` semantics.
     assert reported != "(unknown)", (
         "baked SHA file present in image but dump still reported "

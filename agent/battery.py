@@ -1,6 +1,6 @@
 """System-battery read-out for the CLI/TUI status bar.
 
-Reads the host battery through ``psutil`` (already a Hermes dependency) and
+Reads the host battery through ``psutil`` (already a OpenAmer dependency) and
 exposes a compact, colour-coded label.  Everything degrades to "unavailable"
 when there is no battery (desktops, servers, VMs) or when the read fails, so
 callers can render the result unconditionally and simply show nothing.

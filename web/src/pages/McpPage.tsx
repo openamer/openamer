@@ -448,7 +448,7 @@ export default function McpPage() {
                   )}
                   {httpAuth === "oauth" && (
                     <p className="text-xs text-muted-foreground">
-                      Add the server, then use Authenticate. Hermes opens the
+                      Add the server, then use Authenticate. OpenAmer opens the
                       OAuth browser on the machine running the Dashboard
                       backend.
                     </p>

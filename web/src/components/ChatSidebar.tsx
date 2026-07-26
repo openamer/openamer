@@ -225,7 +225,7 @@ export function ChatSidebar({
 
   // Event subscriber WebSocket — receives the rebroadcast of every
   // dispatcher emit from the PTY child's gateway.  See /api/pub +
-  // /api/events in hermes_cli/web_server.py for the broadcast hop.
+  // /api/events in openamer_cli/web_server.py for the broadcast hop.
   //
   // Failures (auth/loopback rejection, server too old to expose the
   // endpoint, transient drops) surface in the same banner as the

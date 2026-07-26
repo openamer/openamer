@@ -18,7 +18,7 @@ test('normalizeWhatsAppIdentifier strips jid syntax and plus prefix', () => {
 });
 
 test('expandWhatsAppIdentifiers resolves phone and lid aliases from session files', () => {
-  const sessionDir = mkdtempSync(path.join(os.tmpdir(), 'hermes-wa-allowlist-'));
+  const sessionDir = mkdtempSync(path.join(os.tmpdir(), 'openamer-wa-allowlist-'));
 
   try {
     writeFileSync(path.join(sessionDir, 'lid-mapping-19175395595.json'), JSON.stringify('267383306489914'));
@@ -32,7 +32,7 @@ test('expandWhatsAppIdentifiers resolves phone and lid aliases from session file
 });
 
 test('matchesAllowedUser accepts mapped lid sender when allowlist only contains phone number', () => {
-  const sessionDir = mkdtempSync(path.join(os.tmpdir(), 'hermes-wa-allowlist-'));
+  const sessionDir = mkdtempSync(path.join(os.tmpdir(), 'openamer-wa-allowlist-'));
 
   try {
     writeFileSync(path.join(sessionDir, 'lid-mapping-19175395595.json'), JSON.stringify('267383306489914'));
@@ -47,7 +47,7 @@ test('matchesAllowedUser accepts mapped lid sender when allowlist only contains 
 });
 
 test('matchesAllowedUser treats * as allow-all wildcard', () => {
-  const sessionDir = mkdtempSync(path.join(os.tmpdir(), 'hermes-wa-allowlist-'));
+  const sessionDir = mkdtempSync(path.join(os.tmpdir(), 'openamer-wa-allowlist-'));
 
   try {
     const allowedUsers = parseAllowedUsers('*');
@@ -63,7 +63,7 @@ test('matchesAllowedUser rejects everyone when allowlist is empty (#8389)', () =
   // which let any stranger DM the bridge and trigger a Python-side
   // pairing-code reply. Secure default is now "reject unless explicitly
   // configured"; operators who want an open bot must set `*`.
-  const sessionDir = mkdtempSync(path.join(os.tmpdir(), 'hermes-wa-allowlist-'));
+  const sessionDir = mkdtempSync(path.join(os.tmpdir(), 'openamer-wa-allowlist-'));
 
   try {
     const empty = parseAllowedUsers('');

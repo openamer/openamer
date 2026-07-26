@@ -170,7 +170,7 @@ def build_dashboard_parser(
     serve_parser.set_defaults(func=cmd_dashboard, no_open=True, headless_backend=True)
 
     # `openamer dashboard register` — register a self-hosted dashboard OAuth
-    # client with Nous Portal and write the client_id into ~/.hermes/.env.
+    # client with Nous Portal and write the client_id into ~/.openamer/.env.
     # Nested subparser so bare `openamer dashboard` keeps launching the server
     # (set_defaults(func=cmd_dashboard) above remains the default).
     dashboard_subparsers = dashboard_parser.add_subparsers(
@@ -182,7 +182,7 @@ def build_dashboard_parser(
         description=(
             "Register this install as a self-hosted dashboard with your Nous "
             "Portal account. Creates an OAuth client, writes "
-            "HERMES_DASHBOARD_OAUTH_CLIENT_ID into ~/.hermes/.env, and prints "
+            "HERMES_DASHBOARD_OAUTH_CLIENT_ID into ~/.openamer/.env, and prints "
             "how to engage the login gate. Requires being logged in (openamer setup)."
         ),
     )
@@ -197,7 +197,7 @@ def build_dashboard_parser(
         default=None,
         help=(
             "Optional public HTTPS OAuth redirect URI for the dashboard, e.g. "
-            "https://hermes.example.com/auth/callback. Omit for localhost-only use."
+            "https://openamer.example.com/auth/callback. Omit for localhost-only use."
         ),
     )
     dashboard_register_parser.add_argument(

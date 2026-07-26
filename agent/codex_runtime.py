@@ -44,17 +44,17 @@ def _coerce_usage_int(value: Any) -> int:
 
 
 def _record_codex_app_server_usage(agent, turn) -> dict[str, Any]:
-    """Translate Codex app-server token usage into Hermes accounting.
+    """Translate Codex app-server token usage into OpenAmer accounting.
 
     Codex app-server reports usage via thread/tokenUsage/updated as:
     inputTokens, cachedInputTokens, outputTokens, reasoningOutputTokens,
     totalTokens.
 
-    Hermes' canonical prompt bucket includes uncached input + cached input.
+    OpenAmer' canonical prompt bucket includes uncached input + cached input.
     The Codex app-server protocol does not currently expose cache-write tokens,
     so that bucket remains zero on this runtime.
 
-    Even when Codex omits usage for a turn, Hermes should still count that turn
+    Even when Codex omits usage for a turn, OpenAmer should still count that turn
     as one API call for session/status accounting.
     """
     agent.session_api_calls += 1
@@ -195,9 +195,9 @@ def _record_codex_app_server_compaction(
     approx_tokens: int | None = None,
     force: bool = False,
 ) -> bool:
-    """Record a Codex-native context compaction boundary in Hermes state.
+    """Record a Codex-native context compaction boundary in OpenAmer state.
 
-    The app-server owns the compacted thread context, so Hermes should not
+    The app-server owns the compacted thread context, so OpenAmer should not
     rewrite local transcript rows here; state.db records the boundary via the
     session event/usage counters while preserving the visible transcript.
     """
@@ -234,7 +234,7 @@ def _record_codex_app_server_compaction(
             type(compressor), "record_completed_compaction", None
         )
         if callable(record_boundary):
-            # Codex owns this summary. A prior Hermes deterministic-fallback
+            # Codex owns this summary. A prior OpenAmer deterministic-fallback
             # flag must not leak into the native boundary's quality verdict.
             record_boundary(compressor, used_fallback=False)
         elif hasattr(compressor, "_verify_compaction_cleared_threshold"):
@@ -271,10 +271,10 @@ def _record_codex_app_server_compaction(
 
 
 # ---------------------------------------------------------------------------
-# Codex app-server → Hermes UI bridge (#33200)
+# Codex app-server → OpenAmer UI bridge (#33200)
 #
 # The codex_app_server runtime hands the entire turn to a subprocess and
-# bypasses the normal Hermes tool loop. Without this bridge gateway
+# bypasses the normal OpenAmer tool loop. Without this bridge gateway
 # adapters (Discord, Telegram, TUI) never see live tool-progress bubbles
 # or interim assistant commentary while codex is working — the user just
 # stares at a quiet channel until the final answer lands. The bridge
@@ -285,7 +285,7 @@ def _record_codex_app_server_compaction(
 #   - _emit_interim_assistant_message({...}) for completed agentMessages
 # ---------------------------------------------------------------------------
 
-# Codex item types that map to a Hermes tool_call in the projector (and
+# Codex item types that map to a OpenAmer tool_call in the projector (and
 # therefore deserve a tool_progress bubble pair). The projector lives in
 # agent/transports/codex_event_projector.py — keep these in sync so the
 # tool name shown in the UI matches the name recorded in messages.
@@ -295,20 +295,20 @@ _CODEX_TOOL_ITEM_TYPES = frozenset(
     {"commandExecution", "fileChange", "mcpToolCall", "dynamicToolCall", "webSearch"}
 )
 
-# Internal MCP server that wraps Hermes' native tools for codex. When
+# Internal MCP server that wraps OpenAmer' native tools for codex. When
 # codex calls back through it, the inner dispatch runs in a SEPARATE
-# hermes-tools-mcp-server subprocess that has no access to the parent
+# openamer-tools-mcp-server subprocess that has no access to the parent
 # agent's tool_progress_callback — so the inner call can never surface
 # its own native progress event. The codex-level mcpToolCall event IS
-# the display event for those calls; we strip the mcp.hermes-tools.*
+# the display event for those calls; we strip the mcp.openamer-tools.*
 # namespacing and emit the bare tool name (web_search, browser_navigate,
-# vision_analyze, ...) since the user thinks of these as Hermes tools,
+# vision_analyze, ...) since the user thinks of these as OpenAmer tools,
 # not as MCP calls.
-_INTERNAL_MCP_SERVER = "hermes-tools"
+_INTERNAL_MCP_SERVER = "openamer-tools"
 
 
 def _codex_item_to_tool_name(item: dict) -> str:
-    """Synthetic Hermes tool name for a codex item. Mirrors
+    """Synthetic OpenAmer tool name for a codex item. Mirrors
     CodexEventProjector so the progress bubble and the projected
     tool_calls entry use the same identifier."""
     item_type = item.get("type") or ""
@@ -353,7 +353,7 @@ def _codex_item_to_args(item: dict) -> dict:
 
 def _codex_item_to_preview(item: dict) -> Any:
     """Short human-readable preview for the tool.started bubble. Returns
-    None when no useful preview is available (Hermes' UI tolerates None)."""
+    None when no useful preview is available (OpenAmer' UI tolerates None)."""
     item_type = item.get("type") or ""
     if item_type == "commandExecution":
         cmd = item.get("command") or ""
@@ -427,7 +427,7 @@ def _codex_item_completion_payload(item: dict) -> tuple[str, bool]:
 
 def make_codex_app_server_event_bridge(agent) -> Callable[[dict], None]:
     """Build an ``on_event`` callback that wires codex app-server JSON-RPC
-    notifications into Hermes' gateway UI callbacks.
+    notifications into OpenAmer' gateway UI callbacks.
 
     Returns a single-argument callable suitable for
     ``CodexAppServerSession(on_event=...)``.
@@ -622,7 +622,7 @@ def run_codex_app_server_turn(
     should_review_memory: bool = False,
 ) -> Dict[str, Any]:
     """Codex app-server runtime path. Hands the entire turn to a `codex
-    app-server` subprocess and projects its events back into Hermes'
+    app-server` subprocess and projects its events back into OpenAmer'
     messages list so memory/skill review keep working.
 
     Called from run_conversation() when agent.api_mode == "codex_app_server".
@@ -640,7 +640,7 @@ def run_codex_app_server_turn(
         from agent.runtime_cwd import resolve_agent_cwd
 
         cwd = getattr(agent, "session_cwd", None) or str(resolve_agent_cwd())
-        # Approval callback: defer to Hermes' standard prompt flow if a
+        # Approval callback: defer to OpenAmer' standard prompt flow if a
         # CLI thread has installed one. Gateway / cron contexts get the
         # codex-side fail-closed default.
         try:
@@ -652,11 +652,11 @@ def run_codex_app_server_turn(
         # Gateway / cron contexts have no UI to surface codex's approval
         # requests through, so codex app-server exec / apply_patch requests
         # fail closed (silently decline) by default. When the user has
-        # explicitly opted out of Hermes approvals — via `approvals.mode: off`
+        # explicitly opted out of OpenAmer approvals — via `approvals.mode: off`
         # in config, the /yolo session toggle, or --yolo / HERMES_YOLO_MODE —
         # honor that and let codex's own sandbox permission profile
         # (~/.codex/config.toml) be the policy gate instead of double-gating
-        # with a missing Hermes UI. Defaults (manual/smart/unset) preserve the
+        # with a missing OpenAmer UI. Defaults (manual/smart/unset) preserve the
         # current fail-closed behavior — this is a no-op for those users.
         auto_approve_requests = False
         try:
@@ -671,7 +671,7 @@ def run_codex_app_server_turn(
             )
 
         # Bridge codex JSON-RPC notifications (item/started, item/completed,
-        # item/agentMessage/delta, ...) into Hermes' gateway UI callbacks
+        # item/agentMessage/delta, ...) into OpenAmer' gateway UI callbacks
         # (tool_progress_callback, _fire_stream_delta,
         # _emit_interim_assistant_message). Without this, Discord/Telegram
         # users see no live tool-progress or interim commentary while

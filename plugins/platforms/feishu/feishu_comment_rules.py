@@ -3,8 +3,8 @@ Feishu document comment access-control rules.
 
 3-tier rule resolution: exact doc > wildcard "*" > top-level > code defaults.
 Each field (enabled/policy/allow_from) falls back independently.
-Config: ~/.hermes/feishu_comment_rules.json (mtime-cached, hot-reload).
-Pairing store: ~/.hermes/feishu_comment_pairing.json.
+Config: ~/.openamer/feishu_comment_rules.json (mtime-cached, hot-reload).
+Pairing store: ~/.openamer/feishu_comment_pairing.json.
 """
 
 from __future__ import annotations
@@ -351,8 +351,8 @@ def _main() -> int:
     import sys
 
     try:
-        from openamer_cli.env_loader import load_hermes_dotenv
-        load_hermes_dotenv()
+        from openamer_cli.env_loader import load_openamer_dotenv
+        load_openamer_dotenv()
     except Exception:
         pass
 

@@ -2,7 +2,7 @@
 
 ``terminal_tool._get_env_config()`` reads all settings from TERMINAL_* env
 vars, which the CLI / gateway / TUI-PTY launchers bridge from config.yaml at
-startup. Processes that skip every launcher bridge (``hermes serve`` and the
+startup. Processes that skip every launcher bridge (``openamer serve`` and the
 Desktop app's in-process agents, the desktop cron ticker, ACP) used to fall
 back silently to the local backend even when config.yaml selected
 ``terminal.backend: docker`` — commands the user intended to sandbox ran on

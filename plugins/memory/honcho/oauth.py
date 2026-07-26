@@ -46,7 +46,7 @@ def _config_refresh_lock(path: Path):
     """Machine-wide advisory lock around read-refresh-persist.
 
     The in-process ``_refresh_lock`` can't stop a second process (a sibling
-    Hermes profile or the desktop app sharing this honcho.json) from replaying
+    OpenAmer profile or the desktop app sharing this honcho.json) from replaying
     the single-use refresh token and tripping reuse-detection — which revokes
     the whole grant. An OS file lock on ``<config>.lock`` serializes rotation
     across processes; best-effort, so a platform without flock degrades to

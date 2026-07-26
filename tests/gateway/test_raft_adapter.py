@@ -167,7 +167,7 @@ class TestRaftWakeHttp:
                     "agentId": "agent-1",
                     "profile": "dev",
                     "coreSessionId": "default",
-                    "adapterInstance": "hermes",
+                    "adapterInstance": "openamer",
                     "occurredAt": "2026-06-11T08:00:00Z",
                 },
                 headers={BRIDGE_TOKEN_HEADER: "bridge-secret"},
@@ -502,7 +502,7 @@ class TestRaftConfig:
         assert os.environ["RAFT_PROFILE"] == "dev-profile"
         out = capsys.readouterr().out
         assert "Raft configuration saved" in out
-        assert "hermes gateway restart" in out
+        assert "openamer gateway restart" in out
 
     def test_interactive_setup_keeps_existing_profile_when_not_reconfigured(
         self, monkeypatch, tmp_path, capsys

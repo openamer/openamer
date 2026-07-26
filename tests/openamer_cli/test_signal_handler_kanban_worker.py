@@ -2,7 +2,7 @@
 
 The single-query signal handler in cli.py (``_signal_handler_q``) raises
 ``KeyboardInterrupt`` to unwind the main thread on SIGTERM/SIGHUP. That works
-for interactive ``hermes chat -q`` invocations, but kanban workers spawned by
+for interactive ``openamer chat -q`` invocations, but kanban workers spawned by
 the dispatcher are likely to have a non-daemon thread alive (terminal_tool's
 ``_wait_for_process``, custom plugin background workers, etc.). With
 ``KeyboardInterrupt`` only the main thread unwinds; the non-daemon thread
@@ -175,7 +175,7 @@ def test_sigterm_without_kanban_task_env_uses_keyboard_interrupt_path():
     """Without OPENAMER_KANBAN_TASK, the original KeyboardInterrupt path runs.
 
     This is the contrast case proving the fix is gated on the env var: in
-    interactive ``hermes chat -q`` (no env var), behavior is unchanged. The
+    interactive ``openamer chat -q`` (no env var), behavior is unchanged. The
     process MAY hang under non-daemon threads, but that's not a kanban-worker
     concern. We just verify the handler logs the KeyboardInterrupt branch
     rather than os._exit'ing.

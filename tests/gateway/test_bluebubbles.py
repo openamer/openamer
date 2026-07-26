@@ -137,14 +137,14 @@ class TestBlueBubblesHelpers:
         adapter = _make_adapter(monkeypatch, server_url="localhost:1234")
         assert adapter.server_url == "http://localhost:1234"
 
-    def test_default_mention_patterns_match_hermes_variants(self, monkeypatch):
+    def test_default_mention_patterns_match_openamer_variants(self, monkeypatch):
         adapter = _make_adapter(monkeypatch, require_mention=True)
 
         assert adapter.require_mention is True
-        assert adapter._message_matches_mention_patterns("Hermes, summarize this")
-        assert adapter._message_matches_mention_patterns("@Hermes agent help")
+        assert adapter._message_matches_mention_patterns("OpenAmer, summarize this")
+        assert adapter._message_matches_mention_patterns("@OpenAmer agent help")
         assert not adapter._message_matches_mention_patterns("casual family chatter")
-        assert not adapter._message_matches_mention_patterns("antihermes should not match")
+        assert not adapter._message_matches_mention_patterns("antiopenamer should not match")
 
     def test_custom_mention_patterns_override_defaults(self, monkeypatch):
         adapter = _make_adapter(
@@ -154,14 +154,14 @@ class TestBlueBubblesHelpers:
         )
 
         assert adapter._message_matches_mention_patterns("Amos what is next?")
-        assert not adapter._message_matches_mention_patterns("Hermes what is next?")
+        assert not adapter._message_matches_mention_patterns("OpenAmer what is next?")
 
     def test_clean_mention_text_strips_leading_wake_word(self, monkeypatch):
         adapter = _make_adapter(monkeypatch, require_mention=True)
 
-        assert adapter._clean_mention_text("Hermes, summarize this") == "summarize this"
-        assert adapter._clean_mention_text("Hermes agent: summarize this") == "summarize this"
-        assert adapter._clean_mention_text("please ask Hermes about this") == "please ask Hermes about this"
+        assert adapter._clean_mention_text("OpenAmer, summarize this") == "summarize this"
+        assert adapter._clean_mention_text("OpenAmer agent: summarize this") == "summarize this"
+        assert adapter._clean_mention_text("please ask OpenAmer about this") == "please ask OpenAmer about this"
 
 
 class _FakeBlueBubblesRequest:
@@ -221,7 +221,7 @@ class TestBlueBubblesMentionGating:
             "type": "new-message",
             "data": {
                 "guid": "msg-2",
-                "text": "Hermes, summarize this",
+                "text": "OpenAmer, summarize this",
                 "handle": {"address": "+15555550100"},
                 "isFromMe": False,
                 "isGroup": True,

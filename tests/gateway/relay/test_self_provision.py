@@ -401,14 +401,14 @@ def test_relay_display_name_falls_back_to_skin_branding(monkeypatch):
 
 
 def test_relay_display_name_suppresses_stock_brand(monkeypatch):
-    """The default 'Hermes Agent' brand is identical on every install — forwarding
+    """The default 'OpenAmer Agent' brand is identical on every install — forwarding
     it would shadow the connector's linked-owner fallback (which actually
     disambiguates) with a uniform label. Only customized names are forwarded."""
     monkeypatch.delenv("GATEWAY_RELAY_DISPLAY_NAME", raising=False)
 
     class _Skin:
         def get_branding(self, key, fallback=""):
-            return "Hermes Agent" if key == "agent_name" else fallback
+            return "OpenAmer Agent" if key == "agent_name" else fallback
 
     monkeypatch.setattr("openamer_cli.skin_engine.get_active_skin", lambda: _Skin())
     assert relay.relay_display_name() is None

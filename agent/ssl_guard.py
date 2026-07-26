@@ -1,4 +1,4 @@
-"""Preventive SSL CA certificate checks for Hermes Agent.
+"""Preventive SSL CA certificate checks for OpenAmer Agent.
 
 This module catches broken CA bundle paths before OpenAI/httpx turns them into
 opaque ``FileNotFoundError: [Errno 2] No such file or directory`` failures.
@@ -31,7 +31,7 @@ def _skip_ssl_guard_enabled() -> bool:
 
 def _repair_hint() -> str:
     return (
-        "Repair: run `hermes doctor --fix` (auto-reinstalls certifi), or "
+        "Repair: run `openamer doctor --fix` (auto-reinstalls certifi), or "
         "manually: python -m pip install --force-reinstall certifi openai httpx\n"
         "If you configured a custom corporate CA bundle, fix or unset the "
         "broken CA bundle environment variable."

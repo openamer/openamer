@@ -1,4 +1,4 @@
-# Catálogo de mensagens estáticas do Hermes -- Português
+# Catálogo de mensagens estáticas do OpenAmer -- Português
 # See locales/en.yaml for the source of truth; keep keys in sync.
 
 approval:
@@ -103,8 +103,8 @@ gateway:
     upload_failed:         "✗ Falha ao carregar relatório de depuração: {error}"
     header:                "**Relatório de depuração carregado:**"
     auto_delete:           "⏱ Os pastes serão eliminados automaticamente em 6 horas."
-    full_logs_hint:        "Para enviar logs completos, usa `hermes debug share` a partir da CLI."
-    share_hint:            "Partilha estes links com a equipa do Hermes para obter suporte."
+    full_logs_hint:        "Para enviar logs completos, usa `openamer debug share` a partir da CLI."
+    share_hint:            "Partilha estes links com a equipa do OpenAmer para obter suporte."
 
   deny:
     stale:                 "❌ Comando negado (a aprovação tinha expirado)."
@@ -146,7 +146,7 @@ gateway:
     set:                   "⊙ Objetivo definido (orçamento de {budget} turnos): {goal}\nVou continuar a trabalhar até o objetivo estar concluído, pausares/limpares ou o orçamento esgotar.\nControlos: /goal status · /goal pause · /goal resume · /goal clear"
 
   help:
-    header:                "📖 **Comandos do Hermes**\n"
+    header:                "📖 **Comandos do OpenAmer**\n"
     skill_header:          "\n⚡ **Comandos de skill** ({count} ativos):"
     more_use_commands:     "\n... e mais {count}. Usa `/commands` para a lista paginada completa."
 
@@ -157,7 +157,7 @@ gateway:
   kanban:
     error_prefix:          "⚠ erro do kanban: {error}"
     subscribed_suffix:     "(subscrito — receberás uma notificação quando {task_id} terminar ou bloquear)"
-    truncated_suffix:      "… (truncado; usa `hermes kanban …` no teu terminal para a saída completa)"
+    truncated_suffix:      "… (truncado; usa `openamer kanban …` no teu terminal para a saída completa)"
     no_output:             "(sem saída)"
     wake:
       completed:           "completed"
@@ -239,7 +239,7 @@ gateway:
 
   restart:
     in_progress:           "⏳ O reinício do gateway já está em curso..."
-    restarting:            "♻ A reiniciar o gateway. Se não fores notificado em 60 segundos, reinicia a partir da consola com `hermes gateway restart`."
+    restarting:            "♻ A reiniciar o gateway. Se não fores notificado em 60 segundos, reinicia a partir da consola com `openamer gateway restart`."
 
   resume:
     db_unavailable:        "Base de dados de sessões indisponível."
@@ -247,7 +247,7 @@ gateway:
 Use quotes around titles with spaces, for example: `/resume \"Project A Plan\"`."
     matrix_no_named_sessions: "No named sessions found for this Matrix room.
 Use `/title My Session` to name the current room session, `/resume --all` to list all Matrix sessions, or `/resume --cross-room <session name>` to explicitly cross room boundaries."
-    matrix_blocked_no_origin: "⚠️ Matrix /resume blocked: this named session has no recorded room origin, so Hermes will not resume it inside the current room by default. Use `/resume --cross-room {name}` if you intentionally want to cross room boundaries."
+    matrix_blocked_no_origin: "⚠️ Matrix /resume blocked: this named session has no recorded room origin, so OpenAmer will not resume it inside the current room by default. Use `/resume --cross-room {name}` if you intentionally want to cross room boundaries."
     matrix_blocked_other_room: "⚠️ Matrix /resume blocked: that session belongs to a different Matrix room ({room}). Use `/resume --cross-room {name}` if you intentionally want to resume it here."
     matrix_cross_room_success: "⚠️ Cross-room resume: resumed **{title}** inside Matrix room **{room}**.
 Future messages in this room will use that transcript until `/reset` or another `/resume`.{msg_part}"
@@ -283,7 +283,7 @@ Future messages in this room will use that transcript until `/reset` or another 
     success:               "✅ Canal principal definido como **{name}** (ID: {chat_id}).\nAs tarefas cron e mensagens entre plataformas serão entregues aqui."
 
   status:
-    header:                "📊 **Estado do Hermes Gateway**"
+    header:                "📊 **Estado do OpenAmer Gateway**"
     matrix_scope_header:   "**Matrix scope:**"
     matrix_scope_room:     "  room: {room}"
     matrix_scope_room_id:  "  room_id: {room_id}"
@@ -328,7 +328,7 @@ Future messages in this room will use that transcript until `/reset` or another 
     topics_user_disallowed:  "Os topics do Telegram estão ativados, mas os utilizadores não podem criá-los.\n\nAbre @BotFather → escolhe o teu bot → Bot Settings → Threads Settings, depois desativa 'Disallow users to create new threads'.\n\nDepois envia /topic novamente."
     enable_failed:           "Falha ao ativar o modo topic do Telegram: {error}"
     bound_status:            "Este topic está associado a:\nSessão: {label}\nID: {session_id}\n\nUsa /new para substituir este topic por uma sessão nova.\nPara trabalho paralelo, abre All Messages e envia uma mensagem aí para criar outro topic."
-    thread_ready:            "Os topics multi-sessão do Telegram estão ativados.\n\nEste topic será usado como uma sessão independente do Hermes. Usa /new para substituir a sessão atual deste topic. Para trabalho paralelo, abre All Messages e envia uma mensagem aí para criar outro topic."
+    thread_ready:            "Os topics multi-sessão do Telegram estão ativados.\n\nEste topic será usado como uma sessão independente do OpenAmer. Usa /new para substituir a sessão atual deste topic. Para trabalho paralelo, abre All Messages e envia uma mensagem aí para criar outro topic."
     untitled_session:        "Sessão sem título"
 
   undo:
@@ -337,11 +337,11 @@ Future messages in this room will use that transcript until `/reset` or another 
     invalid_count:         "Contagem inválida \"{arg}\" — usa /undo ou /undo N."
 
   update:
-    platform_not_messaging:  "✗ /update só está disponível em plataformas de mensagens. Executa `hermes update` a partir do terminal."
+    platform_not_messaging:  "✗ /update só está disponível em plataformas de mensagens. Executa `openamer update` a partir do terminal."
     not_git_repo:            "✗ Não é um repositório git — não é possível atualizar."
-    hermes_cmd_not_found:    "✗ Não foi possível localizar o comando `hermes`. O Hermes está em execução, mas o comando de atualização não conseguiu encontrar o executável no PATH nem através do interpretador Python atual. Tenta executar `hermes update` manualmente no teu terminal."
+    openamer_cmd_not_found:    "✗ Não foi possível localizar o comando `openamer`. O OpenAmer está em execução, mas o comando de atualização não conseguiu encontrar o executável no PATH nem através do interpretador Python atual. Tenta executar `openamer update` manualmente no teu terminal."
     start_failed:            "✗ Falha ao iniciar a atualização: {error}"
-    starting:                "⚕ A iniciar a atualização do Hermes… Vou transmitir o progresso aqui."
+    starting:                "⚕ A iniciar a atualização do OpenAmer… Vou transmitir o progresso aqui."
 
   usage:
     rate_limits:              "⏱️ **Limites de taxa:** {state}"
@@ -384,7 +384,7 @@ Future messages in this room will use that transcript until `/reset` or another 
     mode_new:              "⚙️ Progresso de ferramentas: **NEW** — mostrado quando a ferramenta muda (comprimento da pré-visualização: `display.tool_preview_length`, predefinição 40)."
     mode_all:              "⚙️ Progresso de ferramentas: **ALL** — cada chamada de ferramenta é mostrada (comprimento da pré-visualização: `display.tool_preview_length`, predefinição 40)."
     mode_verbose:          "⚙️ Progresso de ferramentas: **VERBOSE** — cada chamada de ferramenta com os argumentos completos."
-    mode_log:              "⚙️ Progresso de ferramentas: **LOG** — silencioso no chat; as chamadas de ferramentas são gravadas em ~/.hermes/logs/tool_calls.log."
+    mode_log:              "⚙️ Progresso de ferramentas: **LOG** — silencioso no chat; as chamadas de ferramentas são gravadas em ~/.openamer/logs/tool_calls.log."
     saved_suffix:          "_(guardado para **{platform}** — produz efeito na próxima mensagem)_"
     save_failed:           "_(não foi possível guardar na configuração: {error})_"
 

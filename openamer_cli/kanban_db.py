@@ -36,9 +36,9 @@ Board resolution order (highest precedence first, all optional):
   the "currently selected" board. Written by ``openamer kanban boards
   switch <slug>``. When absent, the active board is ``default``.
 
-In standard installs ``<root>`` is ``~/.hermes``. In Docker / custom
-deployments where ``OPENAMER_HOME`` points outside ``~/.hermes`` (e.g.
-``/opt/hermes``), ``<root>`` is ``OPENAMER_HOME``. Legacy env-var
+In standard installs ``<root>`` is ``~/.openamer``. In Docker / custom
+deployments where ``OPENAMER_HOME`` points outside ``~/.openamer`` (e.g.
+``/opt/openamer``), ``<root>`` is ``OPENAMER_HOME``. Legacy env-var
 overrides still work:
 
 * ``HERMES_KANBAN_DB`` — pin the database file path directly.
@@ -354,7 +354,7 @@ def _relative_age(ts: Optional[int], now: Optional[int] = None) -> str:
 
 DEFAULT_BOARD = "default"
 _CURRENT_BOARD_OVERRIDE: ContextVar[str | None] = ContextVar(
-    "hermes_kanban_current_board_override",
+    "openamer_kanban_current_board_override",
     default=None,
 )
 
@@ -398,7 +398,7 @@ def kanban_home() -> Path:
 
     1. ``HERMES_KANBAN_HOME`` env var when set and non-empty (explicit
        override for tests and unusual deployments).
-    2. ``get_default_hermes_root()``, which already returns ``<root>``
+    2. ``get_default_openamer_root()``, which already returns ``<root>``
        when ``OPENAMER_HOME`` is ``<root>/profiles/<name>``, and returns
        ``OPENAMER_HOME`` directly for Docker / custom deployments.
 
@@ -410,8 +410,8 @@ def kanban_home() -> Path:
     override = os.environ.get("HERMES_KANBAN_HOME", "").strip()
     if override:
         return Path(override).expanduser()
-    from openamer_constants import get_default_hermes_root
-    return get_default_hermes_root()
+    from openamer_constants import get_default_openamer_root
+    return get_default_openamer_root()
 
 
 def boards_root() -> Path:
@@ -8553,15 +8553,15 @@ def _rotate_worker_log(
         pass
 
 
-def _module_hermes_argv() -> list[str]:
+def _module_openamer_argv() -> list[str]:
     """Return the interpreter-bound OpenAmer CLI invocation."""
     # ``openamer_cli.main`` is the console-script target declared in
-    # pyproject.toml, NOT a top-level ``hermes`` package — there is no
-    # ``hermes`` package to import.
+    # pyproject.toml, NOT a top-level ``openamer`` package — there is no
+    # ``openamer`` package to import.
     return [sys.executable, "-m", "openamer_cli.main"]
 
 
-def _absolute_hermes_path(path: str) -> str:
+def _absolute_openamer_path(path: str) -> str:
     """Return an absolute filesystem path for a resolved OpenAmer shim."""
     expanded = os.path.expanduser(path)
     return expanded if os.path.isabs(expanded) else os.path.abspath(expanded)
@@ -8615,7 +8615,7 @@ def _safe_which_no_cwd(command: str) -> Optional[str]:
     return None
 
 
-def _hermes_path_argv(path: str) -> list[str]:
+def _openamer_path_argv(path: str) -> list[str]:
     """Return argv for a resolved OpenAmer executable path.
 
     Windows batch shims (`.cmd` / `.bat`) are not safe as argv[0] for
@@ -8624,31 +8624,31 @@ def _hermes_path_argv(path: str) -> list[str]:
     executable is only a shell shim.
     """
     if _IS_WINDOWS and _is_windows_batch_shim(path):
-        return _module_hermes_argv()
-    return [_absolute_hermes_path(path)]
+        return _module_openamer_argv()
+    return [_absolute_openamer_path(path)]
 
 
-def _resolve_hermes_argv() -> list[str]:
-    """Resolve the ``hermes`` invocation as argv parts for ``Popen``.
+def _resolve_openamer_argv() -> list[str]:
+    """Resolve the ``openamer`` invocation as argv parts for ``Popen``.
 
     Tries in order:
 
     1. ``$HERMES_BIN`` — explicit operator override. Path-like values are
        normalized to absolute paths; bare command names keep normal PATH
        semantics and never prefer a same-directory file before ``PATH``.
-    2. ``shutil.which("hermes")`` — the console-script shim, normalized to
+    2. ``shutil.which("openamer")`` — the console-script shim, normalized to
        an absolute path. On Windows, ``which`` can return a relative
-       ``.\\hermes.CMD`` when the current directory is on ``PATH``; directly
+       ``.\\openamer.CMD`` when the current directory is on ``PATH``; directly
        launching batch shims is also unsafe with task-derived argv. The
        dispatcher therefore falls back to the interpreter-bound module form
        for implicit ``.cmd`` / ``.bat`` shims.
     3. ``sys.executable -m openamer_cli.main`` — fallback for setups where
-       OpenAmer is launched from a venv and the ``hermes`` shim is not on
+       OpenAmer is launched from a venv and the ``openamer`` shim is not on
        the dispatcher's ``$PATH`` (cron, systemd ``User=`` services,
        launchd jobs, detached processes, etc.). Goes through the running
        interpreter so the result is independent of ``$PATH``.
 
-    Mirrors ``gateway.run._resolve_hermes_bin`` for the same reason. Kept
+    Mirrors ``gateway.run._resolve_openamer_bin`` for the same reason. Kept
     local (not imported from gateway) because ``openamer_cli`` sits below
     ``gateway`` in the dependency order.
     """
@@ -8657,16 +8657,16 @@ def _resolve_hermes_argv() -> list[str]:
     env_bin = os.environ.get("HERMES_BIN", "").strip()
     if env_bin:
         if _looks_like_path(env_bin):
-            return _hermes_path_argv(env_bin)
+            return _openamer_path_argv(env_bin)
         resolved_env_bin = _safe_which_no_cwd(env_bin)
         if resolved_env_bin:
-            return _hermes_path_argv(resolved_env_bin)
-        return _module_hermes_argv()
+            return _openamer_path_argv(resolved_env_bin)
+        return _module_openamer_argv()
 
-    hermes_bin = _safe_which_no_cwd("hermes") if _IS_WINDOWS else shutil.which("hermes")
-    if hermes_bin:
-        return _hermes_path_argv(hermes_bin)
-    return _module_hermes_argv()
+    openamer_bin = _safe_which_no_cwd("openamer") if _IS_WINDOWS else shutil.which("openamer")
+    if openamer_bin:
+        return _openamer_path_argv(openamer_bin)
+    return _module_openamer_argv()
 
 
 def _worker_terminal_timeout_env(
@@ -8699,7 +8699,7 @@ def _worker_terminal_timeout_env(
     return str(desired)
 
 
-def _resolve_worker_cli_toolsets(hermes_home: Optional[str]) -> Optional[list[str]]:
+def _resolve_worker_cli_toolsets(openamer_home: Optional[str]) -> Optional[list[str]]:
     """Return the assigned profile's effective CLI toolsets for a worker.
 
     Dispatcher-spawned workers are launched from a long-lived gateway process,
@@ -8710,14 +8710,14 @@ def _resolve_worker_cli_toolsets(hermes_home: Optional[str]) -> Optional[list[st
     is only the kanban orchestrator surface. ``model_tools`` still appends the
     task-scoped kanban lifecycle tools when ``OPENAMER_KANBAN_TASK`` is set.
     """
-    if not hermes_home:
+    if not openamer_home:
         return None
     try:
         from openamer_constants import reset_openamer_home_override, set_openamer_home_override
         from openamer_cli.config import load_config
         from openamer_cli.tools_config import _get_platform_tools
 
-        token = set_openamer_home_override(hermes_home)
+        token = set_openamer_home_override(openamer_home)
         try:
             cfg = load_config()
             toolsets = sorted(_get_platform_tools(cfg, "cli"))
@@ -8727,7 +8727,7 @@ def _resolve_worker_cli_toolsets(hermes_home: Optional[str]) -> Optional[list[st
     except Exception as exc:
         _log.debug(
             "kanban worker: could not resolve CLI toolsets for OPENAMER_HOME=%r (%s)",
-            hermes_home,
+            openamer_home,
             exc,
         )
         return None
@@ -8768,7 +8768,7 @@ def _default_spawn(
     # env, and when the child process starts `openamer -p <name>` the
     # _apply_profile_override() runs *before* openamer_constants is imported.
     # If OPENAMER_HOME is absent from the child's env, get_openamer_home() falls
-    # back to Path.home() / ".hermes" (the DEFAULT profile root), ignoring the
+    # back to Path.home() / ".openamer" (the DEFAULT profile root), ignoring the
     # profile-specific config entirely.  Fixes profile-scoped fallback_providers
     # being invisible to kanban workers.
     from openamer_cli.profiles import resolve_profile_env
@@ -8826,7 +8826,7 @@ def _default_spawn(
     # Pin the shared board + workspaces root the dispatcher resolved, so
     # that even when the worker activates a profile (`openamer -p <name>`
     # rewrites OPENAMER_HOME), its kanban paths still match the
-    # dispatcher's. Belt-and-braces with the `get_default_hermes_root()`
+    # dispatcher's. Belt-and-braces with the `get_default_openamer_root()`
     # resolution in `kanban_home()` — symmetric resolution is the norm,
     # but unusual symlink / Docker layouts are caught here too.
     env["HERMES_KANBAN_DB"] = str(kanban_db_path(board=board))
@@ -8851,7 +8851,7 @@ def _default_spawn(
     env.pop("HERMES_TUI", None)
 
     cmd = [
-        *_resolve_hermes_argv(),
+        *_resolve_openamer_argv(),
         "-p", profile_arg,
         "--cli",
         # Worker subprocesses switch to a profile-scoped OPENAMER_HOME above,
@@ -8917,7 +8917,7 @@ def _default_spawn(
     except FileNotFoundError:
         log_f.close()
         raise RuntimeError(
-            "`hermes` executable not found on PATH. "
+            "`openamer` executable not found on PATH. "
             "Install OpenAmer Agent or activate its venv before running the kanban dispatcher."
         )
     # NOTE: we intentionally do NOT close log_f here — we want Popen's
@@ -9647,8 +9647,8 @@ def list_profiles_on_disk() -> list[str]:
     path).
     """
     try:
-        from openamer_constants import get_default_hermes_root
-        default_root = get_default_hermes_root()
+        from openamer_constants import get_default_openamer_root
+        default_root = get_default_openamer_root()
         profiles_dir = default_root / "profiles"
     except Exception:
         return []

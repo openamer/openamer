@@ -2,7 +2,7 @@
 
 When enabled, every Mixture-of-Agents turn that actually runs the reference
 fan-out (a cache MISS in ``MoAChatCompletions.create``) appends one JSON line
-to ``<hermes_home>/moa-traces/<session_id>.jsonl``. The record is the TRUE
+to ``<openamer_home>/moa-traces/<session_id>.jsonl``. The record is the TRUE
 FULL turn — the exact messages array each reference model received (system
 prompt + advisory view, not the truncated display preview), each reference's
 full output, and the exact messages array the aggregator received (including
@@ -39,7 +39,7 @@ def _traces_enabled_and_dir() -> Optional[Path]:
 
     Reads config lazily per call (config is cheap to load and this only runs on
     a cache-MISS MoA turn, i.e. once per user turn, not per tool iteration).
-    ``moa.trace_dir`` overrides the default ``<hermes_home>/moa-traces/``.
+    ``moa.trace_dir`` overrides the default ``<openamer_home>/moa-traces/``.
     """
     try:
         from openamer_cli.config import load_config

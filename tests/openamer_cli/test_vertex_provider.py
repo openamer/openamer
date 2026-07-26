@@ -114,7 +114,7 @@ def test_vertex_registered_in_provider_registry():
     assert cfg.auth_type == "vertex"
 
 
-def test_vertex_registered_in_hermes_overlays():
+def test_vertex_registered_in_openamer_overlays():
     """openamer_cli.providers.get_provider("vertex") backs
     _preserve_provider_with_base_url() in agent/auxiliary_client.py, which
     decides whether a MoA slot's resolved Vertex (base_url, api_key) pair

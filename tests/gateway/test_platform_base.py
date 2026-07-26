@@ -25,11 +25,11 @@ def test_media_delivery_denies_encrypted_bitwarden_cache(tmp_path, monkeypatch):
     """Encrypted Bitwarden cache is covered by the media credential guard."""
     import gateway.platforms.base as base
 
-    hermes_home = tmp_path / ".hermes"
-    hermes_home.mkdir()
-    monkeypatch.setattr(base, "_OPENAMER_HOME", hermes_home)
-    monkeypatch.setattr(base, "_OPENAMER_ROOT", hermes_home)
-    path = hermes_home / "cache" / "bws_cache.enc.json"
+    openamer_home = tmp_path / ".openamer"
+    openamer_home.mkdir()
+    monkeypatch.setattr(base, "_OPENAMER_HOME", openamer_home)
+    monkeypatch.setattr(base, "_OPENAMER_ROOT", openamer_home)
+    path = openamer_home / "cache" / "bws_cache.enc.json"
     path.parent.mkdir()
     path.write_text("encrypted-secret-cache")
 
@@ -92,7 +92,7 @@ class TestSecretCaptureGuidance:
     def test_gateway_secret_capture_message_points_to_local_setup(self):
         message = GATEWAY_SECRET_CAPTURE_UNSUPPORTED_MESSAGE
         assert "local cli" in message.lower()
-        assert "~/.hermes/.env" in message
+        assert "~/.openamer/.env" in message
 
 
 class TestSafeUrlForLog:
@@ -560,7 +560,7 @@ class TestMediaInsideSerializedJson:
     def test_media_in_embedded_serialized_reply_not_extracted(self):
         """A serialized tool result that embeds a prior reply's MEDIA: tag."""
         content = (
-            '{"content":"previous reply MEDIA:/Users/ex/.hermes/media/'
+            '{"content":"previous reply MEDIA:/Users/ex/.openamer/media/'
             'generated/stale.png and more text"}'
         )
         media, _ = BasePlatformAdapter.extract_media(content)
@@ -908,9 +908,9 @@ class TestMediaDeliveryPathValidation:
     ):
         """Strict mode trusts durable attachments without trusting scratch."""
         self._patch_roots(monkeypatch)
-        monkeypatch.setenv("HERMES_KANBAN_HOME", str(tmp_path / "hermes"))
+        monkeypatch.setenv("HERMES_KANBAN_HOME", str(tmp_path / "openamer"))
         monkeypatch.setenv("HERMES_MEDIA_TRUST_RECENT_FILES", "0")
-        board_root = tmp_path / "hermes" / "kanban" / "boards" / "research"
+        board_root = tmp_path / "openamer" / "kanban" / "boards" / "research"
         board_root.mkdir(parents=True)
         (board_root / "kanban.db").touch()
         attachment = board_root / "attachments" / "t_12345678" / "report.pdf"
@@ -1001,7 +1001,7 @@ class TestMediaDeliveryPathValidation:
         """The motivating case: agent produces a PDF in a project directory.
 
         Reproduces the Discord-PDF-not-delivered bug. Before recency trust,
-        files outside ~/.hermes/cache/* were silently dropped, leaving the
+        files outside ~/.openamer/cache/* were silently dropped, leaving the
         user with a raw filepath in chat instead of an attachment.
         """
         self._patch_roots(monkeypatch)
@@ -1110,22 +1110,22 @@ class TestMediaDeliveryDefaultMode:
 
         assert BasePlatformAdapter.validate_media_delivery_path(str(secret)) is None
 
-    def test_denylist_blocks_hermes_credentials(self, tmp_path, monkeypatch):
-        """~/.hermes/.env and ~/.hermes/auth.json stay blocked even in
+    def test_denylist_blocks_openamer_credentials(self, tmp_path, monkeypatch):
+        """~/.openamer/.env and ~/.openamer/auth.json stay blocked even in
         default mode. They live under $HOME (not the system prefix list)
         so this exercises the home-relative denied paths.
         """
         self._patch_roots(monkeypatch)
 
         fake_home = tmp_path / "home"
-        hermes_dir = fake_home / ".hermes"
-        hermes_dir.mkdir(parents=True)
-        env_file = hermes_dir / ".env"
+        openamer_dir = fake_home / ".openamer"
+        openamer_dir.mkdir(parents=True)
+        env_file = openamer_dir / ".env"
         env_file.write_text("OPENAI_API_KEY=sk-...")
         monkeypatch.setenv("HOME", str(fake_home))
         monkeypatch.setattr(
             "gateway.platforms.base._OPENAMER_HOME",
-            hermes_dir,
+            openamer_dir,
         )
 
         assert BasePlatformAdapter.validate_media_delivery_path(str(env_file)) is None
@@ -1139,55 +1139,55 @@ class TestMediaDeliveryDefaultMode:
         ],
     )
     def test_denylist_blocks_mcp_oauth_tokens(self, tmp_path, monkeypatch, rel):
-        """Live MCP OAuth tokens/client creds under ~/.hermes/mcp-tokens/ must
+        """Live MCP OAuth tokens/client creds under ~/.openamer/mcp-tokens/ must
         never deliver as native media — same exfil class as auth.json/.env.
         Sibling to the pairing/ directory denylist entry.
         """
         self._patch_roots(monkeypatch)
 
         fake_home = tmp_path / "home"
-        hermes_dir = fake_home / ".hermes"
-        (hermes_dir / "mcp-tokens").mkdir(parents=True)
-        secret = hermes_dir / rel
+        openamer_dir = fake_home / ".openamer"
+        (openamer_dir / "mcp-tokens").mkdir(parents=True)
+        secret = openamer_dir / rel
         secret.write_text('{"access_token": "live-bearer-abc123"}')
         monkeypatch.setenv("HOME", str(fake_home))
         monkeypatch.setattr(
             "gateway.platforms.base._OPENAMER_HOME",
-            hermes_dir,
+            openamer_dir,
         )
         monkeypatch.setattr(
             "gateway.platforms.base._OPENAMER_ROOT",
-            hermes_dir,
+            openamer_dir,
         )
 
         assert BasePlatformAdapter.validate_media_delivery_path(str(secret)) is None
 
-    def test_denylist_blocks_hermes_config_in_active_profile(self, tmp_path, monkeypatch):
+    def test_denylist_blocks_openamer_config_in_active_profile(self, tmp_path, monkeypatch):
         """The active profile config stays blocked in default mode."""
         self._patch_roots(monkeypatch)
 
         fake_home = tmp_path / "home"
-        hermes_dir = fake_home / ".hermes"
-        hermes_dir.mkdir(parents=True)
-        config_file = hermes_dir / "config.yaml"
+        openamer_dir = fake_home / ".openamer"
+        openamer_dir.mkdir(parents=True)
+        config_file = openamer_dir / "config.yaml"
         config_file.write_text("model:\n  provider: openai\n")
         monkeypatch.setenv("HOME", str(fake_home))
         monkeypatch.setattr(
             "gateway.platforms.base._OPENAMER_HOME",
-            hermes_dir,
+            openamer_dir,
         )
 
         assert BasePlatformAdapter.validate_media_delivery_path(str(config_file)) is None
 
-    def test_denylist_blocks_shared_hermes_root_config_for_profiles(self, tmp_path, monkeypatch):
-        """Profile-mode gateways must still block the shared Hermes root config."""
+    def test_denylist_blocks_shared_openamer_root_config_for_profiles(self, tmp_path, monkeypatch):
+        """Profile-mode gateways must still block the shared OpenAmer root config."""
         self._patch_roots(monkeypatch)
 
         fake_home = tmp_path / "home"
-        profile_home = fake_home / ".hermes" / "profiles" / "work"
+        profile_home = fake_home / ".openamer" / "profiles" / "work"
         profile_home.mkdir(parents=True)
-        hermes_root = fake_home / ".hermes"
-        config_file = hermes_root / "config.yaml"
+        openamer_root = fake_home / ".openamer"
+        config_file = openamer_root / "config.yaml"
         config_file.write_text("profiles:\n  active: work\n")
         monkeypatch.setenv("HOME", str(fake_home))
         monkeypatch.setattr(
@@ -1196,7 +1196,7 @@ class TestMediaDeliveryDefaultMode:
         )
         monkeypatch.setattr(
             "gateway.platforms.base._OPENAMER_ROOT",
-            hermes_root,
+            openamer_root,
         )
 
         assert BasePlatformAdapter.validate_media_delivery_path(str(config_file)) is None
@@ -1211,13 +1211,13 @@ class TestMediaDeliveryDefaultMode:
         self._patch_roots(monkeypatch)
 
         fake_home = tmp_path / "home"
-        hermes_dir = fake_home / ".hermes"
-        hermes_dir.mkdir(parents=True)
-        token = hermes_dir / "google_token.json"
+        openamer_dir = fake_home / ".openamer"
+        openamer_dir.mkdir(parents=True)
+        token = openamer_dir / "google_token.json"
         token.write_text('{"access_token": "***", "refresh_token": "***"}')
         monkeypatch.setenv("HOME", str(fake_home))
-        monkeypatch.setattr("gateway.platforms.base._OPENAMER_HOME", hermes_dir)
-        monkeypatch.setattr("gateway.platforms.base._OPENAMER_ROOT", hermes_dir)
+        monkeypatch.setattr("gateway.platforms.base._OPENAMER_HOME", openamer_dir)
+        monkeypatch.setattr("gateway.platforms.base._OPENAMER_ROOT", openamer_dir)
 
         assert BasePlatformAdapter.validate_media_delivery_path(str(token)) is None
 
@@ -1233,54 +1233,54 @@ class TestMediaDeliveryDefaultMode:
         monkeypatch.setenv("HERMES_MEDIA_TRUST_RECENT_SECONDS", "600")
 
         fake_home = tmp_path / "home"
-        hermes_dir = fake_home / ".hermes"
-        hermes_dir.mkdir(parents=True)
-        token = hermes_dir / "google_token.json"
+        openamer_dir = fake_home / ".openamer"
+        openamer_dir.mkdir(parents=True)
+        token = openamer_dir / "google_token.json"
         token.write_text('{"access_token": "***"}')  # mtime = now → "recent"
         monkeypatch.setenv("HOME", str(fake_home))
-        monkeypatch.setattr("gateway.platforms.base._OPENAMER_HOME", hermes_dir)
-        monkeypatch.setattr("gateway.platforms.base._OPENAMER_ROOT", hermes_dir)
+        monkeypatch.setattr("gateway.platforms.base._OPENAMER_HOME", openamer_dir)
+        monkeypatch.setattr("gateway.platforms.base._OPENAMER_ROOT", openamer_dir)
 
         assert BasePlatformAdapter.validate_media_delivery_path(str(token)) is None
 
     def test_denylist_blocks_pairing_directory_contents(self, tmp_path, monkeypatch):
-        """Files under ~/.hermes/pairing/ (platform pairing tokens) are
+        """Files under ~/.openamer/pairing/ (platform pairing tokens) are
         credential material and must not be deliverable.
         """
         self._patch_roots(monkeypatch)
 
         fake_home = tmp_path / "home"
-        hermes_dir = fake_home / ".hermes"
-        pairing = hermes_dir / "pairing"
+        openamer_dir = fake_home / ".openamer"
+        pairing = openamer_dir / "pairing"
         pairing.mkdir(parents=True)
         token = pairing / "telegram-approved.json"
         token.write_text('{"approved": ["123"]}')
         monkeypatch.setenv("HOME", str(fake_home))
-        monkeypatch.setattr("gateway.platforms.base._OPENAMER_HOME", hermes_dir)
-        monkeypatch.setattr("gateway.platforms.base._OPENAMER_ROOT", hermes_dir)
+        monkeypatch.setattr("gateway.platforms.base._OPENAMER_HOME", openamer_dir)
+        monkeypatch.setattr("gateway.platforms.base._OPENAMER_ROOT", openamer_dir)
 
         assert BasePlatformAdapter.validate_media_delivery_path(str(token)) is None
 
-    def test_hermes_cache_still_delivers_under_denied_home(self, tmp_path, monkeypatch):
+    def test_openamer_cache_still_delivers_under_denied_home(self, tmp_path, monkeypatch):
         """The targeted credential denylist must not break legitimate cache
         deliveries: a generated artifact under the allowlisted cache root is
         matched before the denylist and still delivers.
         """
         fake_home = tmp_path / "home"
-        hermes_dir = fake_home / ".hermes"
-        cache_dir = hermes_dir / "cache" / "documents"
+        openamer_dir = fake_home / ".openamer"
+        cache_dir = openamer_dir / "cache" / "documents"
         cache_dir.mkdir(parents=True)
         artifact = cache_dir / "report.pdf"
         artifact.write_bytes(b"%PDF-1.4")
         self._patch_roots(monkeypatch, cache_dir)
         monkeypatch.setenv("HOME", str(fake_home))
-        monkeypatch.setattr("gateway.platforms.base._OPENAMER_HOME", hermes_dir)
-        monkeypatch.setattr("gateway.platforms.base._OPENAMER_ROOT", hermes_dir)
+        monkeypatch.setattr("gateway.platforms.base._OPENAMER_HOME", openamer_dir)
+        monkeypatch.setattr("gateway.platforms.base._OPENAMER_ROOT", openamer_dir)
 
         assert BasePlatformAdapter.validate_media_delivery_path(str(artifact)) == str(artifact.resolve())
 
-    def test_denylist_blocks_non_cache_file_under_hermes_home(self, tmp_path, monkeypatch):
-        """A non-credential file the agent wrote directly under ~/.hermes
+    def test_denylist_blocks_non_cache_file_under_openamer_home(self, tmp_path, monkeypatch):
+        """A non-credential file the agent wrote directly under ~/.openamer
         (not in a cache subdir) is still deliverable via recency trust — we
         did NOT blanket-deny the tree (per #32090/#34425). This guards against
         accidentally re-introducing the rejected whole-tree deny.
@@ -1290,13 +1290,13 @@ class TestMediaDeliveryDefaultMode:
         monkeypatch.setenv("HERMES_MEDIA_TRUST_RECENT_SECONDS", "600")
 
         fake_home = tmp_path / "home"
-        hermes_dir = fake_home / ".hermes"
-        hermes_dir.mkdir(parents=True)
-        artifact = hermes_dir / "adhoc_report.pdf"
+        openamer_dir = fake_home / ".openamer"
+        openamer_dir.mkdir(parents=True)
+        artifact = openamer_dir / "adhoc_report.pdf"
         artifact.write_bytes(b"%PDF-1.4")  # fresh mtime
         monkeypatch.setenv("HOME", str(fake_home))
-        monkeypatch.setattr("gateway.platforms.base._OPENAMER_HOME", hermes_dir)
-        monkeypatch.setattr("gateway.platforms.base._OPENAMER_ROOT", hermes_dir)
+        monkeypatch.setattr("gateway.platforms.base._OPENAMER_HOME", openamer_dir)
+        monkeypatch.setattr("gateway.platforms.base._OPENAMER_ROOT", openamer_dir)
 
         assert BasePlatformAdapter.validate_media_delivery_path(str(artifact)) == str(artifact.resolve())
 
@@ -1388,29 +1388,29 @@ class TestMediaDeliveryDefaultMode:
 
         assert BasePlatformAdapter.validate_media_delivery_path(str(key)) is None
 
-    def test_root_home_hermes_env_still_blocked(self, tmp_path, monkeypatch):
-        """``~/.hermes/.env`` stays blocked under the $HOME exception — it is a
+    def test_root_home_openamer_env_still_blocked(self, tmp_path, monkeypatch):
+        """``~/.openamer/.env`` stays blocked under the $HOME exception — it is a
         more-specific denied path, not reachable just because home is allowed.
         """
         self._patch_roots(monkeypatch)
 
         fake_home = tmp_path / "root"
-        hermes_dir = fake_home / ".hermes"
-        hermes_dir.mkdir(parents=True)
-        env_file = hermes_dir / ".env"
+        openamer_dir = fake_home / ".openamer"
+        openamer_dir.mkdir(parents=True)
+        env_file = openamer_dir / ".env"
         env_file.write_text("OPENROUTER_API_KEY=sk-...")
         monkeypatch.setenv("HOME", str(fake_home))
         monkeypatch.setattr(
             "gateway.platforms.base._MEDIA_DELIVERY_DENIED_PREFIXES",
             (str(fake_home),),
         )
-        monkeypatch.setattr("gateway.platforms.base._OPENAMER_HOME", hermes_dir)
+        monkeypatch.setattr("gateway.platforms.base._OPENAMER_HOME", openamer_dir)
 
         assert BasePlatformAdapter.validate_media_delivery_path(str(env_file)) is None
 
     def test_profile_scoped_cache_delivers_under_symlinked_root(self, tmp_path, monkeypatch):
         """Reopened #31733: a profile gateway whose OPENAMER_HOME is symlinked
-        under a denied prefix (e.g. /opt/data -> /root/.hermes) emits
+        under a denied prefix (e.g. /opt/data -> /root/.openamer) emits
         profile-scoped paths (``<root>/profiles/<name>/cache/images/x.png``)
         that resolve under ``/root``. ``$HOME`` is NOT that prefix, so the
         root-home exception doesn't fire, and the top-level cache allowlist
@@ -1421,8 +1421,8 @@ class TestMediaDeliveryDefaultMode:
 
         # Stand-in for the literal /root deny prefix in the deployment.
         denied_root = tmp_path / "root"
-        hermes_root = denied_root / ".hermes"
-        prof_cache = hermes_root / "profiles" / "myprof" / "cache" / "images"
+        openamer_root = denied_root / ".openamer"
+        prof_cache = openamer_root / "profiles" / "myprof" / "cache" / "images"
         prof_cache.mkdir(parents=True)
         image = prof_cache / "gen.png"
         image.write_bytes(b"\x89PNG\r\n\x1a\n")
@@ -1436,7 +1436,7 @@ class TestMediaDeliveryDefaultMode:
             (str(denied_root),),
         )
         monkeypatch.setattr(
-            "gateway.platforms.base._OPENAMER_ROOT", hermes_root
+            "gateway.platforms.base._OPENAMER_ROOT", openamer_root
         )
 
         assert (
@@ -1452,8 +1452,8 @@ class TestMediaDeliveryDefaultMode:
         self._patch_roots(monkeypatch)
 
         denied_root = tmp_path / "root"
-        hermes_root = denied_root / ".hermes"
-        prof_dir = hermes_root / "profiles" / "myprof"
+        openamer_root = denied_root / ".openamer"
+        prof_dir = openamer_root / "profiles" / "myprof"
         prof_dir.mkdir(parents=True)
         cred = prof_dir / "auth.json"
         cred.write_text("{}")
@@ -1466,7 +1466,7 @@ class TestMediaDeliveryDefaultMode:
             (str(denied_root),),
         )
         monkeypatch.setattr(
-            "gateway.platforms.base._OPENAMER_ROOT", hermes_root
+            "gateway.platforms.base._OPENAMER_ROOT", openamer_root
         )
 
         assert BasePlatformAdapter.validate_media_delivery_path(str(cred)) is None
@@ -2018,7 +2018,7 @@ class _CapturingAdapter(BasePlatformAdapter):
 
     The four media-send fallbacks (send_voice, send_video, send_document,
     send_image_file) historically forwarded their *_path argument into the
-    chat text. That argument is a host filesystem path inside the Hermes
+    chat text. That argument is a host filesystem path inside the OpenAmer
     cache, so any subclass that fell back to super() — like the Telegram
     adapter on a rejected video — would leak the host's directory layout
     into the user's chat.
@@ -2054,11 +2054,11 @@ class TestMediaFallbackDoesNotLeakHostPath:
 
     Telegram, Discord, and Slack adapters all fall back to these base
     implementations on native-send failure. When they did, the user saw
-    a chat message like ``🎬 Video: /home/.../hermes/cache/video/abc.mp4``
+    a chat message like ``🎬 Video: /home/.../openamer/cache/video/abc.mp4``
     — a host filesystem path with no actionable information.
     """
 
-    SENSITIVE_PATH = "/home/jayne/.hermes/cache/media/sensitive_host_path_abc123.bin"
+    SENSITIVE_PATH = "/home/jayne/.openamer/cache/media/sensitive_host_path_abc123.bin"
 
     @pytest.mark.asyncio
     async def test_send_voice_fallback_omits_audio_path(self):

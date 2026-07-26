@@ -308,12 +308,12 @@ class HonchoMemoryProvider(MemoryProvider):
         except Exception:
             return False
 
-    def save_config(self, values, hermes_home):
+    def save_config(self, values, openamer_home):
         """Write config to $OPENAMER_HOME/honcho.json (Honcho SDK native format)."""
         import json
         import os
         from pathlib import Path
-        config_path = Path(hermes_home) / "honcho.json"
+        config_path = Path(openamer_home) / "honcho.json"
         existing = {}
         if config_path.exists():
             try:
@@ -330,7 +330,7 @@ class HonchoMemoryProvider(MemoryProvider):
             {"key": "baseUrl", "description": "Honcho base URL (for self-hosted)"},
         ]
 
-    def post_setup(self, hermes_home: str, config: dict) -> None:
+    def post_setup(self, openamer_home: str, config: dict) -> None:
         """Run the full Honcho setup wizard after provider selection."""
         import types
         from plugins.memory.honcho.cli import cmd_setup
@@ -415,13 +415,13 @@ class HonchoMemoryProvider(MemoryProvider):
                 gateway_session_key=gateway_session_key,
             )
             or session_id
-            or "hermes-default"
+            or "openamer-default"
         )
 
     def _start_session_init_background(self, *, wait_timeout: float = 0.0) -> None:
         """Start Honcho session initialization in a daemon thread.
 
-        This keeps Hermes CLI/gateway startup responsive when Honcho is down,
+        This keeps OpenAmer CLI/gateway startup responsive when Honcho is down,
         slow, or its database is unhealthy. The thread may still take the SDK
         timeout path, but it cannot block agent construction or first prompt
         assembly. ``wait_timeout`` lets fast/mock initializations finish before
@@ -442,7 +442,7 @@ class HonchoMemoryProvider(MemoryProvider):
 
             cfg = self._config
             init_kwargs = dict(self._lazy_init_kwargs)
-            init_session_id = self._lazy_init_session_id or "hermes-default"
+            init_session_id = self._lazy_init_session_id or "openamer-default"
 
             def _run() -> None:
                 try:
@@ -488,7 +488,7 @@ class HonchoMemoryProvider(MemoryProvider):
         # not treat that partially initialized state as usable.
         session = self._manager.get_or_create(self._session_key)
 
-        # Skip under per-session strategy: every Hermes run creates a fresh
+        # Skip under per-session strategy: every OpenAmer run creates a fresh
         # Honcho session by design, so uploading MEMORY.md/USER.md/SOUL.md to
         # each one would flood the backend with short-lived duplicates instead
         # of performing a one-time migration.
@@ -566,7 +566,7 @@ class HonchoMemoryProvider(MemoryProvider):
         try:
             self._do_session_init(
                 self._config,
-                self._lazy_init_session_id or "hermes-default",
+                self._lazy_init_session_id or "openamer-default",
                 **self._lazy_init_kwargs,
             )
             # Clear lazy refs

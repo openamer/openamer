@@ -27,9 +27,9 @@ def isolated_home(tmp_path, monkeypatch):
     files in the same worker (which breaks their import-time mocks), we snapshot
     the affected modules and restore them on teardown.
     """
-    hermes_home = tmp_path / ".hermes"
-    hermes_home.mkdir()
-    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+    openamer_home = tmp_path / ".openamer"
+    openamer_home.mkdir()
+    monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
     monkeypatch.delenv("HERMES_MAX_TOKENS", raising=False)
 
     _saved = {
@@ -39,7 +39,7 @@ def isolated_home(tmp_path, monkeypatch):
     }
 
     def write_cfg(body: str) -> None:
-        (hermes_home / "config.yaml").write_text(textwrap.dedent(body))
+        (openamer_home / "config.yaml").write_text(textwrap.dedent(body))
 
     def fresh_gateway():
         for mod in list(sys.modules.keys()):

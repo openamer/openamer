@@ -46,7 +46,7 @@ def _make_payload(event_id="evt_1"):
                 "id": _user_id("ou_4398906db1bc4a2d7ed91b95ffb308d0", "on_bot", ""),
                 "user_type": 10,
                 "user_role": 0,
-                "user_name": "Hermes龙虾",
+                "user_name": "OpenAmer龙虾",
             },
             "inviter": {
                 "id": _user_id(

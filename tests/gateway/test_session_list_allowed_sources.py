@@ -6,7 +6,7 @@ History:
   sources (``acp``, ``webhook``, user-defined ``OPENAMER_SESSION_SOURCE``
   values, newly-added platforms) were silently dropped from the resume
   picker — users reported "lots of sessions are missing from browse
-  but exist in .hermes/sessions."
+  but exist in .openamer/sessions."
 - The handler now deny-lists only the internal/noisy source ``tool``
   (sub-agent runs) and surfaces every other source to the picker.
 - The default ``limit`` raised from 20 to 200 so longer-running users

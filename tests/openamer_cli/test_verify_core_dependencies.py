@@ -2,7 +2,7 @@
 
 Regression coverage for the partial-install bug where uv's incremental
 resolver silently failed to land ``pathspec`` (and similar newly-added
-base deps) during ``hermes update``, leaving the venv in a broken state
+base deps) during ``openamer update``, leaving the venv in a broken state
 that only surfaced hours later when a downstream subprocess imported the
 missing module.
 
@@ -195,11 +195,11 @@ class TestVerifyCoreDependencies:
         self, temp_pyproject, fake_venv_python
     ):
         """Regression: the ``--reinstall -e .`` repair must
-        quarantine the running ``hermes.exe`` on Windows before installing.
+        quarantine the running ``openamer.exe`` on Windows before installing.
 
         That reinstall rewrites the editable entry-point shims, and on Windows
         pip can't overwrite the live launcher — so without quarantine the shim
-        is left missing and ``hermes`` drops off PATH. Previously this path
+        is left missing and ``openamer`` drops off PATH. Previously this path
         called ``_run_install_with_heartbeat`` directly, bypassing the
         quarantine that the primary install path performs.
         """
@@ -223,14 +223,14 @@ class TestVerifyCoreDependencies:
              patch("openamer_cli.main._is_windows", return_value=True), \
              patch("openamer_cli.main._venv_scripts_dir", return_value=fake_scripts), \
              patch("openamer_cli.main._run_install_with_heartbeat"), \
-             patch("openamer_cli.main._quarantine_running_hermes_exe", return_value=[]) as mock_quar:
+             patch("openamer_cli.main._quarantine_running_openamer_exe", return_value=[]) as mock_quar:
 
             from openamer_cli.main import _verify_core_dependencies_installed
             _verify_core_dependencies_installed(["uv", "pip"], env=env)
 
             assert mock_quar.called, (
                 "the --reinstall -e . repair must quarantine the running "
-                "hermes.exe on Windows"
+                "openamer.exe on Windows"
             )
             assert mock_quar.call_args[0][0] == fake_scripts
 
@@ -238,7 +238,7 @@ class TestVerifyCoreDependencies:
 class TestResolveInstallTargetPython:
     def test_uses_virtual_env_from_environment(self, tmp_path):
         """When VIRTUAL_ENV is set, the verification step must probe THAT
-        venv's interpreter — not the outer Python that drove `hermes update`.
+        venv's interpreter — not the outer Python that drove `openamer update`.
         If we probed sys.executable instead, we'd false-positive every dep
         the outer interpreter happens to lack."""
         venv_root = tmp_path / "newvenv"

@@ -89,7 +89,7 @@ def adapter(monkeypatch, tmp_path):
     monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     config = PlatformConfig(enabled=True, token="fake-token")
     adapter = DiscordAdapter(config)
-    bot_user = SimpleNamespace(id=999, bot=True, display_name="Hermes", name="hermes")
+    bot_user = SimpleNamespace(id=999, bot=True, display_name="OpenAmer", name="openamer")
     adapter._client = SimpleNamespace(user=bot_user, get_channel=lambda _id: None)
     adapter._ready_event.set()
     adapter._handle_message = AsyncMock(return_value=True)
@@ -737,7 +737,7 @@ def test_successful_final_delivery_clears_prior_outage_state(adapter):
     adapter._record_discord_response(
         reply_to="93",
         result=SimpleNamespace(success=False, message_id="9006"),
-        content="Hermes is offline",
+        content="OpenAmer is offline",
         final=True,
     )
     assert adapter._discord_message_is_persistently_complete("93") is False

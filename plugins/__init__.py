@@ -1,1 +1,1 @@
-# Hermes plugins package
+# OpenAmer plugins package

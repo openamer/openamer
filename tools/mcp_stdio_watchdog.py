@@ -2,15 +2,15 @@
 """Parent-death watchdog supervisor for stdio MCP subprocesses.
 
 Problem this fixes (#TBD): a stdio MCP server (e.g. ``npx -y mcp-remote
-<url>``) is spawned as a direct child of the Hermes process. Hermes's own
+<url>``) is spawned as a direct child of the OpenAmer process. OpenAmer's own
 teardown path (``MCPServerTask.shutdown()`` / ``_kill_orphaned_mcp_children``
 at final exit) reaps it cleanly on a *graceful* exit. But if the spawning
-Hermes process dies hard — ``kill -9``, an OS-level crash, a force-quit of
+OpenAmer process dies hard — ``kill -9``, an OS-level crash, a force-quit of
 the TUI/desktop app — that teardown code never runs, and the child (plus any
 of its own descendants, e.g. mcp-remote's spawned ``node`` process) is
 orphaned. macOS has no direct equivalent of Linux's
 ``prctl(PR_SET_PDEATHSIG)`` to make the kernel auto-kill a child when its
-parent dies, so nothing reaps these until the next Hermes startup's opt-in
+parent dies, so nothing reaps these until the next OpenAmer startup's opt-in
 ``_kill_orphaned_mcp_children()`` sweep — which only runs if something calls
 it. Repeated ungraceful session restarts can pile up N orphaned processes,
 all racing to hold the same upstream SSE session, producing errors like

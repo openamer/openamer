@@ -1827,7 +1827,7 @@ class TestMoAContextLength:
             yaml.safe_dump(payload, f)
 
     def test_moa_resolves_from_aggregator(self, tmp_path, monkeypatch):
-        home = str(tmp_path / ".hermes")
+        home = str(tmp_path / ".openamer")
         monkeypatch.setenv("OPENAMER_HOME", home)
         self._write_moa_config(home, {"provider": "openrouter", "model": "anthropic/claude-opus-4.8"})
 
@@ -1840,7 +1840,7 @@ class TestMoAContextLength:
         assert moa_ctx == agg_ctx
 
     def test_moa_config_override_still_wins(self, tmp_path, monkeypatch):
-        home = str(tmp_path / ".hermes")
+        home = str(tmp_path / ".openamer")
         monkeypatch.setenv("OPENAMER_HOME", home)
         self._write_moa_config(home, {"provider": "openrouter", "model": "anthropic/claude-opus-4.8"})
         ctx = get_model_context_length(
@@ -1849,7 +1849,7 @@ class TestMoAContextLength:
         assert ctx == 500_000
 
     def test_moa_resolves_custom_provider_per_model_context(self, tmp_path, monkeypatch):
-        home = str(tmp_path / ".hermes")
+        home = str(tmp_path / ".openamer")
         monkeypatch.setenv("OPENAMER_HOME", home)
         self._write_moa_config(
             home,
@@ -1875,7 +1875,7 @@ class TestMoAContextLength:
     def test_moa_resolves_canonical_provider_per_model_context(
         self, tmp_path, monkeypatch
     ):
-        home = str(tmp_path / ".hermes")
+        home = str(tmp_path / ".openamer")
         monkeypatch.setenv("OPENAMER_HOME", home)
         self._write_moa_config(
             home,
@@ -1908,7 +1908,7 @@ class TestMoAContextLength:
         from agent.context_compressor import ContextCompressor
 
         configured_context = 600_000
-        home = str(tmp_path / ".hermes")
+        home = str(tmp_path / ".openamer")
         monkeypatch.setenv("OPENAMER_HOME", home)
         self._write_moa_config(
             home,
@@ -1945,7 +1945,7 @@ class TestMoAContextLength:
     def test_moa_preserves_caller_supplied_custom_provider_context(
         self, tmp_path, monkeypatch
     ):
-        home = str(tmp_path / ".hermes")
+        home = str(tmp_path / ".openamer")
         monkeypatch.setenv("OPENAMER_HOME", home)
         self._write_moa_config(
             home,

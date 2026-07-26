@@ -47,12 +47,12 @@ class TestVerboseCommand:
     @pytest.mark.asyncio
     async def test_disabled_by_default(self, tmp_path, monkeypatch):
         """When tool_progress_command is false, /verbose returns an info message."""
-        hermes_home = tmp_path / "hermes"
-        hermes_home.mkdir()
-        config_path = hermes_home / "config.yaml"
+        openamer_home = tmp_path / "openamer"
+        openamer_home.mkdir()
+        config_path = openamer_home / "config.yaml"
         config_path.write_text("display:\n  tool_progress: all\n", encoding="utf-8")
 
-        monkeypatch.setattr(gateway_run, "_hermes_home", hermes_home)
+        monkeypatch.setattr(gateway_run, "_openamer_home", openamer_home)
 
         runner = _make_runner()
         result = await runner._handle_verbose_command(_make_event())
@@ -63,15 +63,15 @@ class TestVerboseCommand:
     @pytest.mark.asyncio
     async def test_enabled_cycles_mode(self, tmp_path, monkeypatch):
         """When enabled, /verbose cycles tool_progress mode per-platform."""
-        hermes_home = tmp_path / "hermes"
-        hermes_home.mkdir()
-        config_path = hermes_home / "config.yaml"
+        openamer_home = tmp_path / "openamer"
+        openamer_home.mkdir()
+        config_path = openamer_home / "config.yaml"
         config_path.write_text(
             "display:\n  tool_progress_command: true\n  tool_progress: all\n",
             encoding="utf-8",
         )
 
-        monkeypatch.setattr(gateway_run, "_hermes_home", hermes_home)
+        monkeypatch.setattr(gateway_run, "_openamer_home", openamer_home)
 
         runner = _make_runner()
         result = await runner._handle_verbose_command(_make_event())
@@ -87,15 +87,15 @@ class TestVerboseCommand:
     @pytest.mark.asyncio
     async def test_quoted_false_keeps_command_disabled(self, tmp_path, monkeypatch):
         """Quoted false must not enable the /verbose gateway command."""
-        hermes_home = tmp_path / "hermes"
-        hermes_home.mkdir()
-        config_path = hermes_home / "config.yaml"
+        openamer_home = tmp_path / "openamer"
+        openamer_home.mkdir()
+        config_path = openamer_home / "config.yaml"
         config_path.write_text(
             'display:\n  tool_progress_command: "false"\n  tool_progress: all\n',
             encoding="utf-8",
         )
 
-        monkeypatch.setattr(gateway_run, "_hermes_home", hermes_home)
+        monkeypatch.setattr(gateway_run, "_openamer_home", openamer_home)
 
         runner = _make_runner()
         result = await runner._handle_verbose_command(_make_event())
@@ -106,15 +106,15 @@ class TestVerboseCommand:
     @pytest.mark.asyncio
     async def test_cycles_through_all_modes(self, tmp_path, monkeypatch):
         """Calling /verbose repeatedly cycles through all tool-progress visibility modes."""
-        hermes_home = tmp_path / "hermes"
-        hermes_home.mkdir()
-        config_path = hermes_home / "config.yaml"
+        openamer_home = tmp_path / "openamer"
+        openamer_home.mkdir()
+        config_path = openamer_home / "config.yaml"
         config_path.write_text(
             "display:\n  tool_progress_command: true\n  tool_progress: 'off'\n",
             encoding="utf-8",
         )
 
-        monkeypatch.setattr(gateway_run, "_hermes_home", hermes_home)
+        monkeypatch.setattr(gateway_run, "_openamer_home", openamer_home)
         runner = _make_runner()
 
         # off -> new -> all -> verbose -> log -> off
@@ -134,15 +134,15 @@ class TestVerboseCommand:
         platform stays final-answer-first by default on mobile inboxes.  The
         first ``/verbose`` invocation therefore cycles ``off → new``.
         """
-        hermes_home = tmp_path / "hermes"
-        hermes_home.mkdir()
-        config_path = hermes_home / "config.yaml"
+        openamer_home = tmp_path / "openamer"
+        openamer_home.mkdir()
+        config_path = openamer_home / "config.yaml"
         config_path.write_text(
             "display:\n  tool_progress_command: true\n",
             encoding="utf-8",
         )
 
-        monkeypatch.setattr(gateway_run, "_hermes_home", hermes_home)
+        monkeypatch.setattr(gateway_run, "_openamer_home", openamer_home)
 
         runner = _make_runner()
         result = await runner._handle_verbose_command(_make_event())
@@ -160,16 +160,16 @@ class TestVerboseCommand:
         default — Telegram = 'off' (tier-1 inbox override), Slack = 'off'
         (quiet Slack default). Both cycle to 'new' on first /verbose.
         """
-        hermes_home = tmp_path / "hermes"
-        hermes_home.mkdir()
-        config_path = hermes_home / "config.yaml"
+        openamer_home = tmp_path / "openamer"
+        openamer_home.mkdir()
+        config_path = openamer_home / "config.yaml"
         # No global tool_progress → built-in platform defaults apply
         config_path.write_text(
             "display:\n  tool_progress_command: true\n",
             encoding="utf-8",
         )
 
-        monkeypatch.setattr(gateway_run, "_hermes_home", hermes_home)
+        monkeypatch.setattr(gateway_run, "_openamer_home", openamer_home)
         runner = _make_runner()
 
         # Cycle on Telegram
@@ -191,11 +191,11 @@ class TestVerboseCommand:
     @pytest.mark.asyncio
     async def test_no_config_file_returns_disabled(self, tmp_path, monkeypatch):
         """When config.yaml doesn't exist, command reports disabled."""
-        hermes_home = tmp_path / "hermes"
-        hermes_home.mkdir()
+        openamer_home = tmp_path / "openamer"
+        openamer_home.mkdir()
         # No config.yaml
 
-        monkeypatch.setattr(gateway_run, "_hermes_home", hermes_home)
+        monkeypatch.setattr(gateway_run, "_openamer_home", openamer_home)
 
         runner = _make_runner()
         result = await runner._handle_verbose_command(_make_event())

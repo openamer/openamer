@@ -35,7 +35,7 @@ def _restore_stdout():
 @pytest.fixture()
 def server():
     with patch.dict("sys.modules", {
-        "openamer_constants": MagicMock(get_hermes_home=MagicMock(return_value="/tmp/hermes_test")),
+        "openamer_constants": MagicMock(get_openamer_home=MagicMock(return_value="/tmp/openamer_test")),
         "openamer_cli.env_loader": MagicMock(),
         "openamer_cli.banner": MagicMock(),
         "openamer_state": MagicMock(),

@@ -6,7 +6,7 @@ import pytest
 def test_unknown_install_detected_when_no_git_dir(tmp_path):
     """When PROJECT_ROOT has no .git, detect as 'unknown' (not 'pip')."""
     with patch("openamer_cli.config.get_managed_system", return_value=None), \
-         patch("openamer_cli.config.get_hermes_home", return_value=tmp_path):
+         patch("openamer_cli.config.get_openamer_home", return_value=tmp_path):
         from openamer_cli.config import detect_install_method
         method = detect_install_method(project_root=tmp_path)
         assert method == "unknown"
@@ -16,7 +16,7 @@ def test_git_install_detected_when_git_dir_exists(tmp_path):
     """When PROJECT_ROOT has .git, detect as git install."""
     (tmp_path / ".git").mkdir()
     with patch("openamer_cli.config.get_managed_system", return_value=None), \
-         patch("openamer_cli.config.get_hermes_home", return_value=tmp_path):
+         patch("openamer_cli.config.get_openamer_home", return_value=tmp_path):
         from openamer_cli.config import detect_install_method
         method = detect_install_method(project_root=tmp_path)
         assert method == "git"
@@ -26,7 +26,7 @@ def test_managed_install_takes_precedence(tmp_path):
     """When HERMES_MANAGED is set, that takes precedence over git detection."""
     (tmp_path / ".git").mkdir()
     with patch("openamer_cli.config.get_managed_system", return_value="NixOS"), \
-         patch("openamer_cli.config.get_hermes_home", return_value=tmp_path):
+         patch("openamer_cli.config.get_openamer_home", return_value=tmp_path):
         from openamer_cli.config import detect_install_method
         method = detect_install_method(project_root=tmp_path)
         assert method == "nixos"
@@ -36,7 +36,7 @@ def test_stamp_file_takes_precedence(tmp_path):
     (tmp_path / ".git").mkdir()
     (tmp_path / ".install_method").write_text("docker\n")
     with patch("openamer_cli.config.get_managed_system", return_value=None), \
-         patch("openamer_cli.config.get_hermes_home", return_value=tmp_path):
+         patch("openamer_cli.config.get_openamer_home", return_value=tmp_path):
         from openamer_cli.config import detect_install_method
         assert detect_install_method(project_root=tmp_path) == "docker"
 
@@ -46,7 +46,7 @@ def test_code_scoped_retired_stamp_falls_back_to_unknown(tmp_path, retired_metho
     """Removed install methods must not survive in an upgraded code stamp."""
     (tmp_path / ".install_method").write_text(retired_method + "\n")
     with patch("openamer_cli.config.get_managed_system", return_value=None), \
-         patch("openamer_cli.config.get_hermes_home", return_value=tmp_path):
+         patch("openamer_cli.config.get_openamer_home", return_value=tmp_path):
         from openamer_cli.config import detect_install_method
         assert detect_install_method(project_root=tmp_path) == "unknown"
 
@@ -60,7 +60,7 @@ def test_home_scoped_retired_stamp_falls_back_to_unknown(tmp_path, retired_metho
     home.mkdir()
     (home / ".install_method").write_text(retired_method + "\n")
     with patch("openamer_cli.config.get_managed_system", return_value=None), \
-         patch("openamer_cli.config.get_hermes_home", return_value=home):
+         patch("openamer_cli.config.get_openamer_home", return_value=home):
         from openamer_cli.config import detect_install_method
         assert detect_install_method(project_root=code) == "unknown"
 
@@ -70,7 +70,7 @@ def test_code_scoped_stamp_wins_over_home_stamp(tmp_path):
 
     Models a host git install whose $OPENAMER_HOME is shared with (and stamped
     'docker' by) a co-located container. The code-scoped stamp must win so the
-    host install is correctly identified as 'git' and 'hermes update' works.
+    host install is correctly identified as 'git' and 'openamer update' works.
     """
     code = tmp_path / "code"
     home = tmp_path / "home"
@@ -79,7 +79,7 @@ def test_code_scoped_stamp_wins_over_home_stamp(tmp_path):
     (code / ".install_method").write_text("git\n")
     (home / ".install_method").write_text("docker\n")  # container contamination
     with patch("openamer_cli.config.get_managed_system", return_value=None), \
-         patch("openamer_cli.config.get_hermes_home", return_value=home):
+         patch("openamer_cli.config.get_openamer_home", return_value=home):
         from openamer_cli.config import detect_install_method
         assert detect_install_method(project_root=code) == "git"
 
@@ -99,7 +99,7 @@ def test_home_docker_stamp_ignored_when_not_containerized(tmp_path):
     (code / ".git").mkdir()
     (home / ".install_method").write_text("docker\n")
     with patch("openamer_cli.config.get_managed_system", return_value=None), \
-         patch("openamer_cli.config.get_hermes_home", return_value=home), \
+         patch("openamer_cli.config.get_openamer_home", return_value=home), \
          patch("openamer_cli.config._running_in_container", return_value=False):
         from openamer_cli.config import detect_install_method
         assert detect_install_method(project_root=code) == "git"
@@ -118,7 +118,7 @@ def test_home_docker_stamp_honored_inside_container(tmp_path):
     home.mkdir()
     (home / ".install_method").write_text("docker\n")
     with patch("openamer_cli.config.get_managed_system", return_value=None), \
-         patch("openamer_cli.config.get_hermes_home", return_value=home), \
+         patch("openamer_cli.config.get_openamer_home", return_value=home), \
          patch("openamer_cli.config._running_in_container", return_value=True):
         from openamer_cli.config import detect_install_method
         assert detect_install_method(project_root=code) == "docker"
@@ -137,7 +137,7 @@ def test_home_non_docker_stamp_still_honored_for_backcompat(tmp_path):
     home.mkdir()
     (home / ".install_method").write_text("git\n")
     with patch("openamer_cli.config.get_managed_system", return_value=None), \
-         patch("openamer_cli.config.get_hermes_home", return_value=home), \
+         patch("openamer_cli.config.get_openamer_home", return_value=home), \
          patch("openamer_cli.config._running_in_container", return_value=False):
         from openamer_cli.config import detect_install_method
         assert detect_install_method(project_root=code) == "git"
@@ -149,7 +149,7 @@ def test_stamp_install_method_writes_code_scoped(tmp_path):
     home = tmp_path / "home"
     code.mkdir()
     home.mkdir()
-    with patch("openamer_cli.config.get_hermes_home", return_value=home):
+    with patch("openamer_cli.config.get_openamer_home", return_value=home):
         from openamer_cli.config import stamp_install_method
         stamp_install_method("git", project_root=code)
     assert (code / ".install_method").read_text().strip() == "git"
@@ -164,12 +164,12 @@ def test_container_without_stamp_is_not_docker(tmp_path):
     ``test_stamp_file_takes_precedence``; the published image -> ``docker``),
     so neither hits this path. An unsupported manual install dropped into a
     container has no stamp and was wrongly classified as the published Docker
-    image, so ``hermes update`` refused to run. With a ``.git`` checkout it
+    image, so ``openamer update`` refused to run. With a ``.git`` checkout it
     must resolve to ``git``.
     """
     (tmp_path / ".git").mkdir()
     with patch("openamer_cli.config.get_managed_system", return_value=None), \
-         patch("openamer_cli.config.get_hermes_home", return_value=tmp_path), \
+         patch("openamer_cli.config.get_openamer_home", return_value=tmp_path), \
          patch("openamer_constants.is_container", return_value=True):
         from openamer_cli.config import detect_install_method
         assert detect_install_method(project_root=tmp_path) == "git"
@@ -178,7 +178,7 @@ def test_container_without_stamp_is_not_docker(tmp_path):
 def test_container_unknown_install_without_stamp_is_unknown(tmp_path):
     """Container + no .git + no stamp -> unknown, not docker (issue #34397)."""
     with patch("openamer_cli.config.get_managed_system", return_value=None), \
-         patch("openamer_cli.config.get_hermes_home", return_value=tmp_path), \
+         patch("openamer_cli.config.get_openamer_home", return_value=tmp_path), \
          patch("openamer_constants.is_container", return_value=True):
         from openamer_cli.config import detect_install_method
         assert detect_install_method(project_root=tmp_path) == "unknown"
@@ -205,12 +205,12 @@ def test_nix_store_path_detected_as_nix(tmp_path, monkeypatch):
     # fake install path under it.
     fake_nix_store = tmp_path / "fake-nix-store"
     fake_nix_store.mkdir(parents=True)
-    fake_nix = fake_nix_store / "abc123-hermes-agent-0.19.0"
+    fake_nix = fake_nix_store / "abc123-openamer-agent-0.19.0"
     fake_nix.mkdir(parents=True)
 
     monkeypatch.setattr("openamer_cli.config._NIX_STORE", fake_nix_store)
 
     with patch("openamer_cli.config.get_managed_system", return_value=None), \
-         patch("openamer_cli.config.get_hermes_home", return_value=tmp_path):
+         patch("openamer_cli.config.get_openamer_home", return_value=tmp_path):
         from openamer_cli.config import detect_install_method
         assert detect_install_method(project_root=fake_nix) == "nix"

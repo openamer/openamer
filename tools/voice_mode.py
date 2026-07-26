@@ -167,7 +167,7 @@ def detect_audio_environment() -> dict:
             warnings.append(
                 "Running over SSH -- no audio devices available.\n"
                 "  If a sound server (PulseAudio/PipeWire) is running on this host,\n"
-                "  point Hermes at it, e.g.:\n"
+                "  point OpenAmer at it, e.g.:\n"
                 "    export XDG_RUNTIME_DIR=/run/user/$(id -u)\n"
                 "    # or: export PULSE_SERVER=unix:$XDG_RUNTIME_DIR/pulse/native"
             )
@@ -282,7 +282,7 @@ SILENCE_RMS_THRESHOLD = 200  # RMS below this = silence (int16 range 0-32767)
 SILENCE_DURATION_SECONDS = 3.0  # Seconds of continuous silence before auto-stop
 
 # Temp directory for voice recordings
-_TEMP_DIR = os.path.join(tempfile.gettempdir(), "hermes_voice")
+_TEMP_DIR = os.path.join(tempfile.gettempdir(), "openamer_voice")
 
 
 # ============================================================================

@@ -9,8 +9,8 @@ Defense against context-window overflow operates at three levels:
 2. **Per-result persistence** (maybe_persist_tool_result): After a tool
    returns, if its output exceeds the tool's registered threshold
    (registry.get_max_result_size), the full output is written INTO THE
-   SANDBOX temp dir (for example /tmp/hermes-results/{tool_use_id}.txt on
-   standard Linux, or $TMPDIR/hermes-results/{tool_use_id}.txt on Termux)
+   SANDBOX temp dir (for example /tmp/openamer-results/{tool_use_id}.txt on
+   standard Linux, or $TMPDIR/openamer-results/{tool_use_id}.txt on Termux)
    via env.execute(). The in-context content is replaced with a preview +
    file path reference. The model can read_file to access the full output
    on any backend.
@@ -38,7 +38,7 @@ from tools.budget_config import (
 logger = logging.getLogger(__name__)
 PERSISTED_OUTPUT_TAG = "<persisted-output>"
 PERSISTED_OUTPUT_CLOSING_TAG = "</persisted-output>"
-STORAGE_DIR = "/tmp/hermes-results"
+STORAGE_DIR = "/tmp/openamer-results"
 HEREDOC_MARKER = "HERMES_PERSIST_EOF"
 _BUDGET_TOOL_NAME = "__budget_enforcement__"
 _UNSAFE_RESULT_FILENAME_CHARS = re.compile(r"[^A-Za-z0-9_.-]+")
@@ -57,7 +57,7 @@ def _resolve_storage_dir(env) -> str:
             else:
                 if temp_dir:
                     temp_dir = temp_dir.rstrip("/") or "/"
-                    return f"{temp_dir}/hermes-results"
+                    return f"{temp_dir}/openamer-results"
     return STORAGE_DIR
 
 

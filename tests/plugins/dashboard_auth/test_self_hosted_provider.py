@@ -39,8 +39,8 @@ from openamer_cli.dashboard_auth import (
     assert_protocol_compliance,
 )
 
-_ISSUER = "https://auth.example.com/application/o/hermes"
-_CLIENT_ID = "hermes-dashboard"
+_ISSUER = "https://auth.example.com/application/o/openamer"
+_CLIENT_ID = "openamer-dashboard"
 
 _DISCOVERY_DOC = {
     "issuer": _ISSUER,
@@ -436,25 +436,25 @@ class TestStartLogin:
 
     def test_returns_login_start(self, provider):
         result = provider.start_login(
-            redirect_uri="https://hermes.example/auth/callback"
+            redirect_uri="https://openamer.example/auth/callback"
         )
         assert isinstance(result, LoginStart)
 
     def test_redirect_url_targets_authorize_endpoint(self, provider):
         result = provider.start_login(
-            redirect_uri="https://hermes.example/auth/callback"
+            redirect_uri="https://openamer.example/auth/callback"
         )
         assert result.redirect_url.startswith(f"{_ISSUER}/authorize?")
 
     def test_authorize_url_has_required_params(self, provider):
         result = provider.start_login(
-            redirect_uri="https://hermes.example/auth/callback"
+            redirect_uri="https://openamer.example/auth/callback"
         )
         parsed = urllib.parse.urlparse(result.redirect_url)
         params = dict(urllib.parse.parse_qsl(parsed.query))
         assert params["response_type"] == "code"
         assert params["client_id"] == _CLIENT_ID
-        assert params["redirect_uri"] == "https://hermes.example/auth/callback"
+        assert params["redirect_uri"] == "https://openamer.example/auth/callback"
         assert params["scope"] == "openid profile email"
         assert params["code_challenge_method"] == "S256"
         assert "state" in params
@@ -463,7 +463,7 @@ class TestStartLogin:
     def test_custom_scopes_used(self, rsa_keypair):
         provider = _make_provider(rsa_keypair, scopes="openid email groups")
         result = provider.start_login(
-            redirect_uri="https://hermes.example/auth/callback"
+            redirect_uri="https://openamer.example/auth/callback"
         )
         parsed = urllib.parse.urlparse(result.redirect_url)
         params = dict(urllib.parse.parse_qsl(parsed.query))
@@ -471,29 +471,29 @@ class TestStartLogin:
 
     def test_code_verifier_length(self, provider):
         result = provider.start_login(
-            redirect_uri="https://hermes.example/auth/callback"
+            redirect_uri="https://openamer.example/auth/callback"
         )
-        pkce = result.cookie_payload["hermes_session_pkce"]
+        pkce = result.cookie_payload["openamer_session_pkce"]
         parts = dict(seg.split("=", 1) for seg in pkce.split(";") if "=" in seg)
         assert 43 <= len(parts["verifier"]) <= 128  # RFC 7636 §4.1
 
     def test_state_in_cookie_matches_url(self, provider):
         result = provider.start_login(
-            redirect_uri="https://hermes.example/auth/callback"
+            redirect_uri="https://openamer.example/auth/callback"
         )
         parsed = urllib.parse.urlparse(result.redirect_url)
         params = dict(urllib.parse.parse_qsl(parsed.query))
-        pkce = result.cookie_payload["hermes_session_pkce"]
+        pkce = result.cookie_payload["openamer_session_pkce"]
         parts = dict(seg.split("=", 1) for seg in pkce.split(";") if "=" in seg)
         assert parts["state"] == params["state"]
 
     def test_code_challenge_is_s256_of_verifier(self, provider):
         result = provider.start_login(
-            redirect_uri="https://hermes.example/auth/callback"
+            redirect_uri="https://openamer.example/auth/callback"
         )
         parsed = urllib.parse.urlparse(result.redirect_url)
         params = dict(urllib.parse.parse_qsl(parsed.query))
-        pkce = result.cookie_payload["hermes_session_pkce"]
+        pkce = result.cookie_payload["openamer_session_pkce"]
         parts = dict(seg.split("=", 1) for seg in pkce.split(";") if "=" in seg)
         expected = (
             base64.urlsafe_b64encode(
@@ -505,11 +505,11 @@ class TestStartLogin:
         assert params["code_challenge"] == expected
 
     def test_two_calls_differ(self, provider):
-        a = provider.start_login(redirect_uri="https://hermes.example/auth/callback")
-        b = provider.start_login(redirect_uri="https://hermes.example/auth/callback")
+        a = provider.start_login(redirect_uri="https://openamer.example/auth/callback")
+        b = provider.start_login(redirect_uri="https://openamer.example/auth/callback")
         assert (
-            a.cookie_payload["hermes_session_pkce"]
-            != b.cookie_payload["hermes_session_pkce"]
+            a.cookie_payload["openamer_session_pkce"]
+            != b.cookie_payload["openamer_session_pkce"]
         )
 
     def test_rejects_wrong_callback_path(self, provider):
@@ -522,7 +522,7 @@ class TestStartLogin:
         # accepted; this client-side fast-fail must not reject self-hosted
         # dashboards reached over plain HTTP (LAN IPs, internal hostnames,
         # TLS-terminating reverse proxies). Should not raise.
-        provider.start_login(redirect_uri="http://hermes.example/auth/callback")
+        provider.start_login(redirect_uri="http://openamer.example/auth/callback")
         provider.start_login(redirect_uri="http://192.168.1.50:9119/auth/callback")
         provider.start_login(redirect_uri="http://my-internal-host/auth/callback")
 
@@ -559,7 +559,7 @@ class TestCompleteLogin:
                 code="abc",
                 state="s",
                 code_verifier="vfy",
-                redirect_uri="https://hermes.example/auth/callback",
+                redirect_uri="https://openamer.example/auth/callback",
             )
         assert isinstance(session, Session)
         assert session.user_id == "usr_abc"
@@ -582,7 +582,7 @@ class TestCompleteLogin:
                 code="abc",
                 state="s",
                 code_verifier="vfy",
-                redirect_uri="https://hermes.example/auth/callback",
+                redirect_uri="https://openamer.example/auth/callback",
             )
         assert session.refresh_token == ""
 
@@ -598,7 +598,7 @@ class TestCompleteLogin:
                     code="x",
                     state="s",
                     code_verifier="v",
-                    redirect_uri="https://hermes.example/auth/callback",
+                    redirect_uri="https://openamer.example/auth/callback",
                 )
 
     def test_400_raises_invalid_code(self, provider):
@@ -611,7 +611,7 @@ class TestCompleteLogin:
                     code="bad",
                     state="s",
                     code_verifier="v",
-                    redirect_uri="https://hermes.example/auth/callback",
+                    redirect_uri="https://openamer.example/auth/callback",
                 )
 
     def test_500_raises_provider_error(self, provider):
@@ -624,7 +624,7 @@ class TestCompleteLogin:
                     code="x",
                     state="s",
                     code_verifier="v",
-                    redirect_uri="https://hermes.example/auth/callback",
+                    redirect_uri="https://openamer.example/auth/callback",
                 )
 
     def test_network_error_raises_provider_error(self, provider):
@@ -637,7 +637,7 @@ class TestCompleteLogin:
                     code="x",
                     state="s",
                     code_verifier="v",
-                    redirect_uri="https://hermes.example/auth/callback",
+                    redirect_uri="https://openamer.example/auth/callback",
                 )
 
     def test_unexpected_token_type_raises(self, provider, rsa_keypair):
@@ -653,7 +653,7 @@ class TestCompleteLogin:
                     code="x",
                     state="s",
                     code_verifier="v",
-                    redirect_uri="https://hermes.example/auth/callback",
+                    redirect_uri="https://openamer.example/auth/callback",
                 )
 
     def test_posts_authorization_code_grant(self, provider, rsa_keypair):
@@ -666,7 +666,7 @@ class TestCompleteLogin:
                 code="the-code",
                 state="s",
                 code_verifier="the-verifier",
-                redirect_uri="https://hermes.example/auth/callback",
+                redirect_uri="https://openamer.example/auth/callback",
             )
         _, kwargs = mock_post.call_args
         assert kwargs["data"]["grant_type"] == "authorization_code"
@@ -708,7 +708,7 @@ class TestConfidentialClient:
                 code="the-code",
                 state="s",
                 code_verifier="the-verifier",
-                redirect_uri="https://hermes.example/auth/callback",
+                redirect_uri="https://openamer.example/auth/callback",
             )
         _, kwargs = mock_post.call_args
         return kwargs

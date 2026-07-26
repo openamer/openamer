@@ -1,7 +1,7 @@
 """Tests for the cua-driver telemetry opt-in policy.
 
 cua-driver ships anonymous PostHog telemetry ENABLED by default upstream.
-Hermes disables it unless the user opts in via
+OpenAmer disables it unless the user opts in via
 ``computer_use.cua_telemetry: true``. The policy is applied by injecting
 ``CUA_DRIVER_RS_TELEMETRY_ENABLED=0`` into every cua-driver child env.
 

@@ -25,11 +25,11 @@ def cli_mod(monkeypatch):
 
 
 class TestLightModeDetection:
-    def test_hermes_light_env_true_forces_light(self, cli_mod, monkeypatch):
+    def test_openamer_light_env_true_forces_light(self, cli_mod, monkeypatch):
         monkeypatch.setenv("HERMES_LIGHT", "1")
         assert cli_mod._detect_light_mode() is True
 
-    def test_hermes_light_env_false_forces_dark(self, cli_mod, monkeypatch):
+    def test_openamer_light_env_false_forces_dark(self, cli_mod, monkeypatch):
         monkeypatch.setenv("HERMES_LIGHT", "0")
         # Also blank out other signals so nothing else flips it light.
         monkeypatch.delenv("HERMES_TUI_LIGHT", raising=False)
@@ -142,7 +142,7 @@ class TestSkinConfigHook:
     def test_hook_installed(self, cli_mod):
         from openamer_cli.skin_engine import SkinConfig
 
-        assert getattr(SkinConfig, "_hermes_light_mode_hook_installed", False) is True
+        assert getattr(SkinConfig, "_openamer_light_mode_hook_installed", False) is True
 
     def test_hook_is_idempotent(self, cli_mod):
         # Calling the installer twice must not double-wrap (the marker

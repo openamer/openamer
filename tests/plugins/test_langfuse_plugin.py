@@ -52,7 +52,7 @@ class TestDiscovery:
         from openamer_cli import plugins as plugins_mod
 
         # Isolated OPENAMER_HOME so we don't read the developer's config.yaml.
-        home = tmp_path / ".hermes"
+        home = tmp_path / ".openamer"
         home.mkdir()
         monkeypatch.setenv("OPENAMER_HOME", str(home))
         monkeypatch.setattr(Path, "home", lambda: tmp_path)
@@ -125,7 +125,7 @@ class TestRuntimeGate:
             "it should short-circuit via _INIT_FAILED"
         )
 
-    def test_get_langfuse_does_not_import_hermes_config(self, monkeypatch):
+    def test_get_langfuse_does_not_import_openamer_config(self, monkeypatch):
         """The plugin must not re-read config.yaml per hook."""
         for k in (
             "HERMES_LANGFUSE_PUBLIC_KEY", "HERMES_LANGFUSE_SECRET_KEY",
@@ -423,7 +423,7 @@ class TestTurnTraceIsolation:
 # "placeholder", "test-key", or "your-langfuse-key", the SDK accepts the
 # credentials at construction time (it does no server-side validation
 # eagerly) but drops every trace at flush time, with no signal in the
-# Hermes logs.  The fix in `_get_langfuse()` validates the documented
+# OpenAmer logs.  The fix in `_get_langfuse()` validates the documented
 # `pk-lf-` / `sk-lf-` prefix Langfuse always issues, surfaces a one-shot
 # warning naming the offending env var(s), and short-circuits via the
 # same `_INIT_FAILED` path used for missing credentials so subsequent

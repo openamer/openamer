@@ -16,13 +16,13 @@ import pytest
 @pytest.fixture
 def backup_env(monkeypatch, tmp_path):
     """Isolate OPENAMER_HOME + reload modules so every test starts clean."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     (home / "skills").mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
     monkeypatch.setattr(Path, "home", lambda: tmp_path)
 
-    # Reload so get_hermes_home picks up the env var fresh.
+    # Reload so get_openamer_home picks up the env var fresh.
     import openamer_constants
     importlib.reload(openamer_constants)
     from agent import curator_backup
@@ -370,7 +370,7 @@ def test_snapshot_without_cron_jobs_file_still_succeeds(backup_env):
     """No cron/jobs.json on disk → snapshot succeeds, manifest records absence."""
     cb = backup_env["cb"]
     _write_skill(backup_env["skills"], "alpha")
-    # Deliberately do not create ~/.hermes/cron/jobs.json
+    # Deliberately do not create ~/.openamer/cron/jobs.json
 
     snap = cb.snapshot_skills(reason="test")
     assert snap is not None

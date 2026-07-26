@@ -19,7 +19,7 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = SCRIPT_DIR.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
-OPENAMER_HOME = Path(os.getenv("OPENAMER_HOME", Path.home() / ".hermes"))
+OPENAMER_HOME = Path(os.getenv("OPENAMER_HOME", Path.home() / ".openamer"))
 ENV_FILE = OPENAMER_HOME / ".env"
 
 OK = "\033[92m\u2713\033[0m"
@@ -176,10 +176,10 @@ def check_env_vars():
 
     # Load .env
     try:
-        from openamer_cli.env_loader import load_hermes_dotenv
+        from openamer_cli.env_loader import load_openamer_dotenv
 
-        load_hermes_dotenv(
-            hermes_home=ENV_FILE.parent,
+        load_openamer_dotenv(
+            openamer_home=ENV_FILE.parent,
             project_env=PROJECT_ROOT / ".env",
         )
     except ImportError:
@@ -235,7 +235,7 @@ def check_env_vars():
 
 
 def check_config(groq_key, eleven_key):
-    """Check hermes config.yaml."""
+    """Check openamer config.yaml."""
     section("Configuration")
 
     config_path = OPENAMER_HOME / "config.yaml"

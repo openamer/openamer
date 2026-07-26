@@ -45,7 +45,7 @@ def scenario(name):
     """
     def wrap(fn):
         def run():
-            home = tempfile.mkdtemp(prefix=f"hermes_atyp_{name}_")
+            home = tempfile.mkdtemp(prefix=f"openamer_atyp_{name}_")
             os.environ["OPENAMER_HOME"] = home
             os.environ["HOME"] = home
             for m in list(sys.modules.keys()):
@@ -440,7 +440,7 @@ def _(home, kb):
             if not resolved_abs.startswith(home_abs) and resolved_abs.startswith("/tmp"):
                 # This is escaping the home dir. Whether that's actually
                 # a problem depends on the threat model. Flag for attention.
-                print(f"  ⚠ workspace resolved OUTSIDE hermes_home: {resolved}")
+                print(f"  ⚠ workspace resolved OUTSIDE openamer_home: {resolved}")
                 print("    (not necessarily a bug — dir: workspaces are intentionally arbitrary, but worth documenting)")
         except Exception as e:
             print(f"  resolve_workspace rejected: {e}")
@@ -527,13 +527,13 @@ def _(home, kb):
 # FILESYSTEM WEIRDNESS
 # =============================================================================
 
-@scenario("hermes_home_with_spaces")
+@scenario("openamer_home_with_spaces")
 def _(home, kb):
     """OPENAMER_HOME at a path with spaces — should work but catches
     anyone doing string interpolation without quoting."""
     # Note: home was already created with a safe prefix. We need to
     # reset to a weird one for this test.
-    weird = tempfile.mkdtemp(prefix="hermes with spaces ")
+    weird = tempfile.mkdtemp(prefix="openamer with spaces ")
     os.environ["OPENAMER_HOME"] = weird
     os.environ["HOME"] = weird
     kb._INITIALIZED_PATHS.clear()
@@ -554,11 +554,11 @@ def _(home, kb):
         shutil.rmtree(weird, ignore_errors=True)
 
 
-@scenario("hermes_home_with_unicode")
+@scenario("openamer_home_with_unicode")
 def _(home, kb):
     """OPENAMER_HOME with non-ASCII chars."""
     # Pre-create directly since tempfile doesn't love unicode prefixes
-    weird = f"/tmp/hermes_héllo_émöji_{os.getpid()}"
+    weird = f"/tmp/openamer_héllo_émöji_{os.getpid()}"
     os.makedirs(weird, exist_ok=True)
     os.environ["OPENAMER_HOME"] = weird
     os.environ["HOME"] = weird
@@ -576,12 +576,12 @@ def _(home, kb):
         shutil.rmtree(weird, ignore_errors=True)
 
 
-@scenario("hermes_home_via_symlink")
+@scenario("openamer_home_via_symlink")
 def _(home, kb):
     """OPENAMER_HOME is a symlink to the real dir. _INITIALIZED_PATHS
     uses Path.resolve() — two different symlink names pointing at the
     same dir should NOT double-init."""
-    real = tempfile.mkdtemp(prefix="hermes_real_")
+    real = tempfile.mkdtemp(prefix="openamer_real_")
     link1 = real + "_link1"
     link2 = real + "_link2"
     os.symlink(real, link1)
@@ -685,11 +685,11 @@ def _(home, kb):
 # CONCURRENCY CORNERS
 # =============================================================================
 
-def _idempotency_race_worker(hermes_home: str, key: str, result_file: str,
+def _idempotency_race_worker(openamer_home: str, key: str, result_file: str,
                              barrier_path: str) -> None:
     """Subprocess body for the idempotency race test."""
-    os.environ["OPENAMER_HOME"] = hermes_home
-    os.environ["HOME"] = hermes_home
+    os.environ["OPENAMER_HOME"] = openamer_home
+    os.environ["HOME"] = openamer_home
     sys.path.insert(0, str(WT))
     from openamer_cli import kanban_db as kb
 

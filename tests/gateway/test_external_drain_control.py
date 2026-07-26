@@ -7,7 +7,7 @@ Task 2.2/2.3. Two layers:
     reversible state machine driven by the marker.
 
 Mocked tests are necessary-not-sufficient here (the HARD live-validation gate,
-Q-B, exercises a real `hermes gateway run`); these lock the unit contract.
+Q-B, exercises a real `openamer gateway run`); these lock the unit contract.
 """
 from __future__ import annotations
 
@@ -55,7 +55,7 @@ class TestMarkerContract:
         # idempotent: clearing again is a no-op, returns False
         assert dc.clear_drain_request() is False
 
-    def test_path_respects_hermes_home(self, home):
+    def test_path_respects_openamer_home(self, home):
         assert dc.drain_request_path() == home / ".drain_request.json"
 
     def test_corrupt_marker_reads_as_present_contentless(self, home):

@@ -88,11 +88,11 @@ def test_list_authenticated_providers_dedupes_models_when_default_in_list(monkey
 
 def test_list_authenticated_providers_enumerates_dict_format_models(monkeypatch):
     """providers: dict entries with ``models:`` as a dict keyed by model id
-    (canonical Hermes write format) should surface every key in the picker.
+    (canonical OpenAmer write format) should surface every key in the picker.
 
     Regression: the ``providers:`` dict path previously only accepted
     list-format ``models:`` and silently dropped dict-format entries,
-    even though Hermes's own writer and downstream readers use dict format.
+    even though OpenAmer's own writer and downstream readers use dict format.
     """
     monkeypatch.setattr("agent.models_dev.fetch_models_dev", lambda: {})
     monkeypatch.setattr("openamer_cli.providers.HERMES_OVERLAYS", {})
@@ -201,7 +201,7 @@ def test_user_provider_live_model_probe_uses_extra_headers(monkeypatch):
                 "base_url": "http://localhost:8081/v1",
                 "api_key": "local-key",
                 "extra_headers": {
-                    "sleeve-harness": "hermes",
+                    "sleeve-harness": "openamer",
                     "sleeve-base-url": "http://localhost:8081/v1",
                 },
             }
@@ -222,7 +222,7 @@ def test_user_provider_live_model_probe_uses_extra_headers(monkeypatch):
             "http://localhost:8081/v1",
             {
                 "headers": {
-                    "sleeve-harness": "hermes",
+                    "sleeve-harness": "openamer",
                     "sleeve-base-url": "http://localhost:8081/v1",
                 }
             },
@@ -440,12 +440,12 @@ def test_list_authenticated_providers_fallback_to_default_only(monkeypatch):
 
 
 def test_list_authenticated_providers_accepts_base_url_and_singular_model(monkeypatch):
-    """providers: dict entries written in canonical Hermes shape
+    """providers: dict entries written in canonical OpenAmer shape
     (``base_url`` + singular ``model``) should resolve the same as the
     legacy ``api`` + ``default_model`` shape.
 
     Regression: section 3 previously only read ``api``/``url`` and
-    ``default_model``, so new-shape entries written by Hermes's own writer
+    ``default_model``, so new-shape entries written by OpenAmer's own writer
     surfaced with empty ``api_url`` and no default.
     """
     monkeypatch.setattr("agent.models_dev.fetch_models_dev", lambda: {})

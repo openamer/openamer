@@ -228,8 +228,8 @@ class TestPromptApiKey:
 class TestPostSetup:
 
     def test_platform_flag_mode(self, tmp_path, monkeypatch):
-        monkeypatch.setattr("sys.argv", ["hermes", "--mode", "platform", "--api-key", "sk-test"])
-        monkeypatch.setattr("plugins.memory.mem0._setup.get_hermes_home", lambda: tmp_path)
+        monkeypatch.setattr("sys.argv", ["openamer", "--mode", "platform", "--api-key", "sk-test"])
+        monkeypatch.setattr("plugins.memory.mem0._setup.get_openamer_home", lambda: tmp_path)
         _inject_fake_openamer_cli(monkeypatch)
         config = {"memory": {}}
         post_setup(str(tmp_path), config)
@@ -246,8 +246,8 @@ class TestPostSetup:
         (tmp_path / "mem0.json").write_text(
             json.dumps({"mode": "platform", "host": "http://old-selfhosted:8888"})
         )
-        monkeypatch.setattr("sys.argv", ["hermes", "--mode", "platform", "--api-key", "sk-test"])
-        monkeypatch.setattr("plugins.memory.mem0._setup.get_hermes_home", lambda: tmp_path)
+        monkeypatch.setattr("sys.argv", ["openamer", "--mode", "platform", "--api-key", "sk-test"])
+        monkeypatch.setattr("plugins.memory.mem0._setup.get_openamer_home", lambda: tmp_path)
         _inject_fake_openamer_cli(monkeypatch)
         config = {"memory": {}}
         post_setup(str(tmp_path), config)
@@ -257,9 +257,9 @@ class TestPostSetup:
 
     def test_oss_flag_mode(self, tmp_path, monkeypatch):
         monkeypatch.setattr("sys.argv", [
-            "hermes", "--mode", "oss", "--oss-llm-key", "sk-oai",
+            "openamer", "--mode", "oss", "--oss-llm-key", "sk-oai",
         ])
-        monkeypatch.setattr("plugins.memory.mem0._setup.get_hermes_home", lambda: tmp_path)
+        monkeypatch.setattr("plugins.memory.mem0._setup.get_openamer_home", lambda: tmp_path)
         _inject_fake_openamer_cli(monkeypatch)
         monkeypatch.setattr("plugins.memory.mem0._setup._install_provider_deps", lambda l, e, v: None)
         config = {"memory": {}}
@@ -271,10 +271,10 @@ class TestPostSetup:
 
     def test_selfhosted_flag_mode(self, tmp_path, monkeypatch):
         monkeypatch.setattr("sys.argv", [
-            "hermes", "--mode", "selfhosted",
+            "openamer", "--mode", "selfhosted",
             "--host", "http://localhost:8888/", "--api-key", "admin-key",
         ])
-        monkeypatch.setattr("plugins.memory.mem0._setup.get_hermes_home", lambda: tmp_path)
+        monkeypatch.setattr("plugins.memory.mem0._setup.get_openamer_home", lambda: tmp_path)
         _inject_fake_openamer_cli(monkeypatch)
         monkeypatch.setattr("plugins.memory.mem0._setup._check_selfhosted_server", lambda h: None)
         config = {"memory": {}}
@@ -284,14 +284,14 @@ class TestPostSetup:
         assert "MEM0_API_KEY=admin-key" in env_content
         mem0_json = json.loads((tmp_path / "mem0.json").read_text())
         assert mem0_json["host"] == "http://localhost:8888"  # trailing slash stripped
-        assert mem0_json["user_id"] == "hermes-user"
+        assert mem0_json["user_id"] == "openamer-user"
 
     def test_selfhosted_no_api_key_auth_disabled(self, tmp_path, monkeypatch):
         # AUTH_DISABLED servers need no key — setup must not write one.
         monkeypatch.setattr("sys.argv", [
-            "hermes", "--mode", "self-hosted", "--host", "http://mem0.lan:8888",
+            "openamer", "--mode", "self-hosted", "--host", "http://mem0.lan:8888",
         ])
-        monkeypatch.setattr("plugins.memory.mem0._setup.get_hermes_home", lambda: tmp_path)
+        monkeypatch.setattr("plugins.memory.mem0._setup.get_openamer_home", lambda: tmp_path)
         monkeypatch.delenv("MEM0_API_KEY", raising=False)
         _inject_fake_openamer_cli(monkeypatch)
         monkeypatch.setattr("plugins.memory.mem0._setup._check_selfhosted_server", lambda h: None)
@@ -303,10 +303,10 @@ class TestPostSetup:
 
     def test_selfhosted_dry_run_no_files(self, tmp_path, monkeypatch):
         monkeypatch.setattr("sys.argv", [
-            "hermes", "--mode", "selfhosted",
+            "openamer", "--mode", "selfhosted",
             "--host", "http://localhost:8888", "--api-key", "k", "--dry-run",
         ])
-        monkeypatch.setattr("plugins.memory.mem0._setup.get_hermes_home", lambda: tmp_path)
+        monkeypatch.setattr("plugins.memory.mem0._setup.get_openamer_home", lambda: tmp_path)
         _inject_fake_openamer_cli(monkeypatch)
         monkeypatch.setattr("plugins.memory.mem0._setup._check_selfhosted_server", lambda h: None)
         config = {"memory": {}}
@@ -327,8 +327,8 @@ class TestDryRun:
         assert flags["dry_run"] is False
 
     def test_dry_run_platform_no_files(self, tmp_path, monkeypatch):
-        monkeypatch.setattr("sys.argv", ["hermes", "--mode", "platform", "--api-key", "sk-test", "--dry-run"])
-        monkeypatch.setattr("plugins.memory.mem0._setup.get_hermes_home", lambda: tmp_path)
+        monkeypatch.setattr("sys.argv", ["openamer", "--mode", "platform", "--api-key", "sk-test", "--dry-run"])
+        monkeypatch.setattr("plugins.memory.mem0._setup.get_openamer_home", lambda: tmp_path)
         _inject_fake_openamer_cli(monkeypatch)
         config = {"memory": {}}
         post_setup(str(tmp_path), config)
@@ -338,9 +338,9 @@ class TestDryRun:
 
     def test_dry_run_oss_no_files(self, tmp_path, monkeypatch):
         monkeypatch.setattr("sys.argv", [
-            "hermes", "--mode", "oss", "--oss-llm-key", "sk-oai", "--dry-run",
+            "openamer", "--mode", "oss", "--oss-llm-key", "sk-oai", "--dry-run",
         ])
-        monkeypatch.setattr("plugins.memory.mem0._setup.get_hermes_home", lambda: tmp_path)
+        monkeypatch.setattr("plugins.memory.mem0._setup.get_openamer_home", lambda: tmp_path)
         _inject_fake_openamer_cli(monkeypatch)
         monkeypatch.setattr("plugins.memory.mem0._setup._install_provider_deps", lambda l, e, v: None)
         config = {"memory": {}}

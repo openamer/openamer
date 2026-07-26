@@ -134,11 +134,11 @@ async def test_session_crud_and_message_history(adapter, session_db):
         assert create_resp.status == 201
         created = await create_resp.json()
         session_id = created["session"]["id"]
-        assert created["object"] == "hermes.session"
+        assert created["object"] == "openamer.session"
         assert created["session"]["title"] == "Mobile chat"
 
         session_db.append_message(session_id, "user", "hello from phone")
-        session_db.append_message(session_id, "assistant", "hello from hermes")
+        session_db.append_message(session_id, "assistant", "hello from openamer")
 
         list_resp = await cli.get("/api/sessions?limit=10&offset=0")
         assert list_resp.status == 200
@@ -168,7 +168,7 @@ async def test_session_crud_and_message_history(adapter, session_db):
         delete_resp = await cli.delete(f"/api/sessions/{session_id}")
         assert delete_resp.status == 200
         deleted = await delete_resp.json()
-        assert deleted == {"object": "hermes.session.deleted", "id": session_id, "deleted": True}
+        assert deleted == {"object": "openamer.session.deleted", "id": session_id, "deleted": True}
         assert session_db.get_session(session_id) is None
 
 
@@ -209,7 +209,7 @@ async def test_session_fork_uses_current_sessiondb_branch_primitives(adapter, se
         payload = await resp.json()
 
     fork = payload["session"]
-    assert payload["object"] == "hermes.session"
+    assert payload["object"] == "openamer.session"
     assert fork["id"] != source_id
     assert fork["parent_session_id"] == source_id
     assert fork["title"] == "Alternative"
@@ -231,14 +231,14 @@ async def test_session_chat_loads_history_and_preserves_session_headers(auth_ada
             resp = await cli.post(
                 f"/api/sessions/{session_id}/chat",
                 json={"message": "next", "system_message": "stay focused"},
-                headers={"Authorization": "Bearer sk-test", "X-Hermes-Session-Key": "client-42"},
+                headers={"Authorization": "Bearer sk-test", "X-OpenAmer-Session-Key": "client-42"},
             )
             assert resp.status == 200
             payload = await resp.json()
 
-    assert resp.headers["X-Hermes-Session-Id"] == session_id
-    assert resp.headers["X-Hermes-Session-Key"] == "client-42"
-    assert payload["object"] == "hermes.session.chat.completion"
+    assert resp.headers["X-OpenAmer-Session-Id"] == session_id
+    assert resp.headers["X-OpenAmer-Session-Key"] == "client-42"
+    assert payload["object"] == "openamer.session.chat.completion"
     assert payload["session_id"] == session_id
     assert payload["message"]["role"] == "assistant"
     assert payload["message"]["content"] == "fresh answer"
@@ -439,11 +439,11 @@ async def test_session_header_rejected_without_api_key(adapter, session_db):
         resp = await cli.post(
             f"/api/sessions/{session_id}/chat",
             json={"message": "hello"},
-            headers={"X-Hermes-Session-Key": "client-42"},
+            headers={"X-OpenAmer-Session-Key": "client-42"},
         )
         assert resp.status == 403
         data = await resp.json()
-        assert "X-Hermes-Session-Key requires API key" in data["error"]["message"]
+        assert "X-OpenAmer-Session-Key requires API key" in data["error"]["message"]
 
 
 # ---------------------------------------------------------------------------
@@ -537,7 +537,7 @@ async def test_run_agent_returns_controlled_response_on_provider_auth_failure(ad
     monkeypatch.setattr(
         "gateway.run._resolve_runtime_agent_kwargs",
         lambda: (_ for _ in ()).throw(
-            RuntimeError("No credentials found for provider 'nous' — run `hermes auth add nous`")
+            RuntimeError("No credentials found for provider 'nous' — run `openamer auth add nous`")
         ),
     )
 
@@ -548,7 +548,7 @@ async def test_run_agent_returns_controlled_response_on_provider_auth_failure(ad
     )
 
     assert result == {
-        "final_response": "⚠️ Provider authentication failed: No credentials found for provider 'nous' — run `hermes auth add nous`",
+        "final_response": "⚠️ Provider authentication failed: No credentials found for provider 'nous' — run `openamer auth add nous`",
         "messages": [],
         "api_calls": 0,
         "tools": [],
@@ -788,7 +788,7 @@ async def test_create_session_respects_browser_source_and_model_lock(adapter, se
             "/api/sessions",
             json={
                 "id": "browser-lock-session",
-                "source": "hermes_browser",
+                "source": "openamer_browser",
                 "provider": "nous",
                 "model": "x-ai/grok-4.5",
                 "require_model_lock": True,
@@ -799,10 +799,10 @@ async def test_create_session_respects_browser_source_and_model_lock(adapter, se
         assert resp.status == 201, await resp.text()
         payload = await resp.json()
 
-    assert payload["session"]["source"] == "hermes_browser"
+    assert payload["session"]["source"] == "openamer_browser"
     assert payload["session"]["model"] == "x-ai/grok-4.5"
     row = session_db.get_session("browser-lock-session")
-    assert row["source"] == "hermes_browser"
+    assert row["source"] == "openamer_browser"
     assert row["model"] == "x-ai/grok-4.5"
     import json as _json
     model_config = row.get("model_config")
@@ -838,7 +838,7 @@ async def test_session_model_lock_endpoint_persists_and_invalidates_prompt(adapt
             assert resp.status == 200, await resp.text()
             payload = await resp.json()
 
-    assert payload["object"] == "hermes.session.model_lock"
+    assert payload["object"] == "openamer.session.model_lock"
     assert payload["runtime"]["requested"]["provider"] == "nous"
     assert payload["runtime"]["model"] == "x-ai/grok-4.5"
     assert payload["runtime"]["model_lock"] in {"accepted", "confirmed"}
@@ -1005,7 +1005,7 @@ async def test_run_agent_reports_actual_agent_runtime_not_requested_metadata(ada
             self.session_id = "runtime-session"
             self.provider = "actual-provider"
             self.model = "actual-model"
-            self._hermes_api_runtime = {
+            self._openamer_api_runtime = {
                 "provider": "requested-provider",
                 "model": "requested-model",
                 "route_source": "raw_request",

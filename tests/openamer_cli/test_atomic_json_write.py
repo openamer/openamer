@@ -138,7 +138,7 @@ class TestAtomicJsonWrite:
         mode must not raise AttributeError when fchmod is unavailable.
 
         Simulates the Windows os module by removing fchmod from the namespace.
-        Previously this crashed in `hermes memory setup` while saving the
+        Previously this crashed in `openamer memory setup` while saving the
         Hindsight config with mode=0o600 (GitHub: Windows setup traceback).
         """
         import utils

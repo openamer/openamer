@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pytest
 
-from openamer_cli.console_engine import HermesConsoleEngine, run_console_repl
+from openamer_cli.console_engine import OpenAmerConsoleEngine, run_console_repl
 
 
 EXPECTED_CONSOLE_COMMANDS = {
@@ -214,8 +214,8 @@ MUTATING_CONFIRMATION_SMOKE_COMMANDS = [
     "mcp add demo --url https://example.com/sse",
     "mcp configure github",
     "mcp picker",
-    "backup --quick -o /tmp/hermes-console-test.zip",
-    "import /tmp/hermes-console-test.zip",
+    "backup --quick -o /tmp/openamer-console-test.zip",
+    "import /tmp/openamer-console-test.zip",
     "send --to telegram hello",
     "memory reset --target memory",
     "auth remove openrouter 1",
@@ -231,11 +231,11 @@ MUTATING_CONFIRMATION_SMOKE_COMMANDS = [
 ]
 
 
-def test_console_parses_bare_and_hermes_prefixed_commands(_isolate_hermes_home):
-    engine = HermesConsoleEngine()
+def test_console_parses_bare_and_openamer_prefixed_commands(_isolate_openamer_home):
+    engine = OpenAmerConsoleEngine()
 
     bare = engine.execute("config path")
-    prefixed = engine.execute("hermes config path")
+    prefixed = engine.execute("openamer config path")
 
     assert bare.status == "ok"
     assert prefixed.status == "ok"
@@ -245,7 +245,7 @@ def test_console_parses_bare_and_hermes_prefixed_commands(_isolate_hermes_home):
 
 def test_console_status_hides_cli_next_step_footer(
     monkeypatch: pytest.MonkeyPatch,
-    _isolate_hermes_home,
+    _isolate_openamer_home,
 ):
     import openamer_cli.status as status_mod
 
@@ -255,25 +255,25 @@ def test_console_status_hides_cli_next_step_footer(
         print()
         rule = "\u2500" * 60
         print(f"\x1b[2m{rule}\x1b[0m")
-        print("\x1b[2m  Run 'hermes doctor' for detailed diagnostics\x1b[0m")
-        print("\x1b[2m  Run 'hermes setup' to configure\x1b[0m")
+        print("\x1b[2m  Run 'openamer doctor' for detailed diagnostics\x1b[0m")
+        print("\x1b[2m  Run 'openamer setup' to configure\x1b[0m")
         print()
 
     monkeypatch.setattr(status_mod, "show_status", fake_show_status)
 
-    result = HermesConsoleEngine().execute("status")
+    result = OpenAmerConsoleEngine().execute("status")
 
     assert result.status == "ok"
     assert "Sessions" in result.output
     assert "Active: 3 session(s)" in result.output
-    assert "hermes doctor" not in result.output
-    assert "hermes setup" not in result.output
+    assert "openamer doctor" not in result.output
+    assert "openamer setup" not in result.output
     assert "\u2500" not in result.output
 
 
 def test_console_status_hides_osc_linked_cli_next_step_footer(
     monkeypatch: pytest.MonkeyPatch,
-    _isolate_hermes_home,
+    _isolate_openamer_home,
 ):
     import openamer_cli.status as status_mod
 
@@ -285,37 +285,37 @@ def test_console_status_hides_osc_linked_cli_next_step_footer(
         print("Active: 3 session(s)")
         print()
         print(osc_link("\u2500" * 60))
-        print(osc_link("  Run 'hermes doctor' for detailed diagnostics"))
-        print(osc_link("  Run 'hermes setup' to configure"))
+        print(osc_link("  Run 'openamer doctor' for detailed diagnostics"))
+        print(osc_link("  Run 'openamer setup' to configure"))
         print()
 
     monkeypatch.setattr(status_mod, "show_status", fake_show_status)
 
-    result = HermesConsoleEngine().execute("status")
+    result = OpenAmerConsoleEngine().execute("status")
 
     assert result.status == "ok"
     assert "Sessions" in result.output
     assert "Active: 3 session(s)" in result.output
-    assert "hermes doctor" not in result.output
-    assert "hermes setup" not in result.output
+    assert "openamer doctor" not in result.output
+    assert "openamer setup" not in result.output
     assert "https://example.test" not in result.output
     assert "\u2500" not in result.output
 
 
 def test_console_help_uses_cli_subcommand_summaries():
-    help_text = HermesConsoleEngine().help_text()
+    help_text = OpenAmerConsoleEngine().help_text()
 
     assert "skills list" in help_text
     assert "List installed skills" in help_text
     assert "Show all tools and their enabled/disabled status" in help_text
     assert "Remove an MCP server" in help_text
     assert "Check pet setup + terminal graphics support" in help_text
-    assert "Run `hermes skills list`" not in help_text
-    assert "Run `hermes tools list`" not in help_text
+    assert "Run `openamer skills list`" not in help_text
+    assert "Run `openamer tools list`" not in help_text
 
 
 def test_console_help_table_keeps_long_summaries_compact():
-    help_text = HermesConsoleEngine().help_text()
+    help_text = OpenAmerConsoleEngine().help_text()
 
     slack_line = next(
         line for line in help_text.splitlines() if line.strip().startswith("slack manifest")
@@ -326,13 +326,13 @@ def test_console_help_table_keeps_long_summaries_compact():
 
 
 def test_console_help_for_command_uses_cli_summary():
-    help_text = HermesConsoleEngine().help_text("skills list")
+    help_text = OpenAmerConsoleEngine().help_text("skills list")
 
     assert help_text == "skills list\nList installed skills"
 
 
 def test_console_registry_covers_non_admin_cli_surface():
-    registered = set(HermesConsoleEngine().commands)
+    registered = set(OpenAmerConsoleEngine().commands)
 
     missing = EXPECTED_CONSOLE_COMMANDS - registered
 
@@ -377,7 +377,7 @@ def test_console_registry_covers_non_admin_cli_surface():
     ],
 )
 def test_console_rejects_destructive_and_shell_like_commands(line):
-    result = HermesConsoleEngine().execute(line)
+    result = OpenAmerConsoleEngine().execute(line)
 
     assert result.status == "error"
     assert result.output
@@ -385,14 +385,14 @@ def test_console_rejects_destructive_and_shell_like_commands(line):
 
 @pytest.mark.parametrize("line", MUTATING_CONFIRMATION_SMOKE_COMMANDS)
 def test_mutating_console_commands_require_confirmation(line):
-    result = HermesConsoleEngine().execute(line)
+    result = OpenAmerConsoleEngine().execute(line)
 
     assert result.status == "confirm_required"
     assert result.confirmation_message
 
 
 def test_help_lists_supported_commands_and_not_full_cli():
-    result = HermesConsoleEngine().execute("help")
+    result = OpenAmerConsoleEngine().execute("help")
 
     assert result.status == "ok"
     assert "sessions list" in result.output
@@ -401,8 +401,8 @@ def test_help_lists_supported_commands_and_not_full_cli():
     assert "gateway restart" not in result.output
 
 
-def test_config_set_requires_confirmation_then_writes(_isolate_hermes_home):
-    engine = HermesConsoleEngine()
+def test_config_set_requires_confirmation_then_writes(_isolate_openamer_home):
+    engine = OpenAmerConsoleEngine()
 
     # Use a schema-known key path. Since #34067, `config set` refuses unknown
     # top-level keys, so this flow test must target a valid path (telegram is a
@@ -421,7 +421,7 @@ def test_config_set_requires_confirmation_then_writes(_isolate_hermes_home):
     assert read_raw_config()["telegram"]["test"] is True
 
 
-def test_sessions_list_and_stats_use_isolated_session_store(_isolate_hermes_home):
+def test_sessions_list_and_stats_use_isolated_session_store(_isolate_openamer_home):
     from openamer_state import SessionDB
 
     db = SessionDB()
@@ -431,7 +431,7 @@ def test_sessions_list_and_stats_use_isolated_session_store(_isolate_hermes_home
     finally:
         db.close()
 
-    engine = HermesConsoleEngine()
+    engine = OpenAmerConsoleEngine()
     listed = engine.execute("sessions list --limit 10")
     stats = engine.execute("sessions stats")
 
@@ -442,11 +442,11 @@ def test_sessions_list_and_stats_use_isolated_session_store(_isolate_hermes_home
     assert "Listable sessions: 1" in stats.output
 
 
-def test_cron_pause_resume_and_run_require_confirmation(_isolate_hermes_home):
+def test_cron_pause_resume_and_run_require_confirmation(_isolate_openamer_home):
     from cron.jobs import create_job, get_job
 
     job = create_job(prompt="say hello", schedule="every 1h", name="alpha")
-    engine = HermesConsoleEngine()
+    engine = OpenAmerConsoleEngine()
 
     pending = engine.execute(f"cron pause {job['id']}")
     assert pending.status == "confirm_required"
@@ -471,7 +471,7 @@ def test_cron_pause_resume_and_run_require_confirmation(_isolate_hermes_home):
     assert "Triggered job" in triggered.output
 
 
-def test_repl_runs_non_interactive_lines_without_prompts(_isolate_hermes_home):
+def test_repl_runs_non_interactive_lines_without_prompts(_isolate_openamer_home):
     stdin = io.StringIO("help\nexit\n")
     stdout = io.StringIO()
     stderr = io.StringIO()
@@ -484,12 +484,12 @@ def test_repl_runs_non_interactive_lines_without_prompts(_isolate_hermes_home):
     )
 
     assert code == 0
-    assert "Hermes Console" in stdout.getvalue()
-    assert "hermes>" not in stdout.getvalue()
+    assert "OpenAmer Console" in stdout.getvalue()
+    assert "openamer>" not in stdout.getvalue()
     assert stderr.getvalue() == ""
 
 
-def test_repl_refuses_non_interactive_confirmation(_isolate_hermes_home):
+def test_repl_refuses_non_interactive_confirmation(_isolate_openamer_home):
     stdin = io.StringIO("config set console.test true\n")
     stdout = io.StringIO()
     stderr = io.StringIO()
@@ -505,7 +505,7 @@ def test_repl_refuses_non_interactive_confirmation(_isolate_hermes_home):
     assert "Confirmation required" in stderr.getvalue()
 
 
-def test_main_console_subcommand_smoke(_isolate_hermes_home):
+def test_main_console_subcommand_smoke(_isolate_openamer_home):
     import subprocess
 
     result = subprocess.run(
@@ -519,4 +519,4 @@ def test_main_console_subcommand_smoke(_isolate_hermes_home):
     )
 
     assert result.returncode == 0
-    assert "Hermes Console" in result.stdout
+    assert "OpenAmer Console" in result.stdout

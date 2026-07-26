@@ -380,12 +380,12 @@ def _resolve_path(cwd: Path, target: str, *, allowed_root: Path | None = None) -
 def _ensure_reference_path_allowed(path: Path) -> None:
     from openamer_constants import get_openamer_home
     home = Path(os.path.expanduser("~")).resolve()
-    hermes_home = get_openamer_home().resolve()
+    openamer_home = get_openamer_home().resolve()
 
     blocked_exact = {home / rel for rel in _SENSITIVE_HOME_FILES}
-    blocked_exact.add(hermes_home / ".env")
+    blocked_exact.add(openamer_home / ".env")
     blocked_dirs = [home / rel for rel in _SENSITIVE_HOME_DIRS]
-    blocked_dirs.extend(hermes_home / rel for rel in _SENSITIVE_HERMES_DIRS)
+    blocked_dirs.extend(openamer_home / rel for rel in _SENSITIVE_HERMES_DIRS)
 
     if path in blocked_exact:
         raise ValueError("path is a sensitive credential file and cannot be attached")
@@ -395,7 +395,7 @@ def _ensure_reference_path_allowed(path: Path) -> None:
             path.relative_to(blocked_dir)
         except ValueError:
             continue
-        raise ValueError("path is a sensitive credential or internal Hermes path and cannot be attached")
+        raise ValueError("path is a sensitive credential or internal OpenAmer path and cannot be attached")
 
     # Anchor to the canonical read deny-list (agent/file_safety.get_read_block_error),
     # the single source of truth used by the file/terminal read path. The narrow
@@ -403,7 +403,7 @@ def _ensure_reference_path_allowed(path: Path) -> None:
     # provider keys (auth.json), Anthropic OAuth tokens (.anthropic_oauth.json),
     # MCP OAuth material (mcp-tokens/), webhook HMAC secrets, and project-local
     # .env files. That gap matters because the gateway feeds UNTRUSTED remote
-    # message text into reference expansion, so `@file:~/.hermes/auth.json` from a
+    # message text into reference expansion, so `@file:~/.openamer/auth.json` from a
     # chat peer would otherwise read the operator's keys straight into context.
     # Routing through the canonical guard closes the gap today and keeps this path
     # protected automatically whenever that deny-list grows.
@@ -412,7 +412,7 @@ def _ensure_reference_path_allowed(path: Path) -> None:
 
         if get_read_block_error(str(path)) is not None:
             raise ValueError(
-                "path is a sensitive credential or internal Hermes path and cannot be attached"
+                "path is a sensitive credential or internal OpenAmer path and cannot be attached"
             )
     except ValueError:
         raise

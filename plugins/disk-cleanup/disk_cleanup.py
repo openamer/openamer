@@ -1,4 +1,4 @@
-"""disk_cleanup — ephemeral file cleanup for Hermes Agent.
+"""disk_cleanup — ephemeral file cleanup for OpenAmer Agent.
 
 Library module wrapping the deterministic cleanup rules written by
 @LVT382009 in PR #12212. The plugin ``__init__.py`` wires these
@@ -15,8 +15,8 @@ Rules:
   - chrome-profile→ prompt after 14 days (deep only)
   - >500 MB files → prompt always (deep only)
 
-Scope: strictly OPENAMER_HOME and /tmp/hermes-*
-Never touches: ~/.hermes/logs/ or any system directory.
+Scope: strictly OPENAMER_HOME and /tmp/openamer-*
+Never touches: ~/.openamer/logs/ or any system directory.
 """
 
 from __future__ import annotations
@@ -35,7 +35,7 @@ except Exception:  # pragma: no cover — plugin may load before constants resol
 
     def get_openamer_home() -> Path:  # type: ignore[no-redef]
         val = (os.environ.get("OPENAMER_HOME") or "").strip()
-        return Path(val).resolve() if val else (Path.home() / ".hermes").resolve()
+        return Path(val).resolve() if val else (Path.home() / ".openamer").resolve()
 
 
 logger = logging.getLogger(__name__)
@@ -64,19 +64,19 @@ def get_log_file() -> Path:
 # ---------------------------------------------------------------------------
 
 def is_safe_path(path: Path) -> bool:
-    """Accept only paths under OPENAMER_HOME or ``/tmp/hermes-*``.
+    """Accept only paths under OPENAMER_HOME or ``/tmp/openamer-*``.
 
     Rejects Windows mounts (``/mnt/c`` etc.) and any system directory.
     """
-    hermes_home = get_openamer_home()
+    openamer_home = get_openamer_home()
     try:
-        path.resolve().relative_to(hermes_home)
+        path.resolve().relative_to(openamer_home)
         return True
     except (ValueError, OSError):
         pass
-    # Allow /tmp/hermes-* explicitly
+    # Allow /tmp/openamer-* explicitly
     parts = path.parts
-    if len(parts) >= 3 and parts[1] == "tmp" and parts[2].startswith("hermes-"):
+    if len(parts) >= 3 and parts[1] == "tmp" and parts[2].startswith("openamer-"):
         return True
     return False
 
@@ -147,7 +147,7 @@ ALLOWED_CATEGORIES = {
 _EMPTY_DIR_PROTECTED_TOP_LEVEL = frozenset({
     "logs", "memories", "sessions", "cron", "cronjobs",
     "cache", "skills", "plugins", "disk-cleanup", "optional-skills",
-    "hermes-agent", "backups", "profiles", ".worktrees",
+    "openamer-agent", "backups", "profiles", ".worktrees",
 })
 
 _EMPTY_DIR_SWEEP_PRUNE_DIRS = frozenset({
@@ -177,9 +177,9 @@ def _is_protected_cron_path(p: Path) -> bool:
     # Lazily build the set once per process so OPENAMER_HOME is resolved
     # exactly once.
     if not _PROTECTED_CRON_PATHS:
-        hermes_home = get_openamer_home()
+        openamer_home = get_openamer_home()
         for parent in ("cron", "cronjobs"):
-            base = hermes_home / parent
+            base = openamer_home / parent
             _PROTECTED_CRON_PATHS.add(str(base))
             _PROTECTED_CRON_PATHS.add(str(base / "output"))
             _PROTECTED_CRON_PATHS.add(str(base / "jobs.json"))
@@ -365,14 +365,14 @@ def quick() -> Dict[str, Any]:
             new_tracked.append(item)
 
     # Remove empty dirs under OPENAMER_HOME, but never recurse into known
-    # durable state trees.  Some installs place the Hermes checkout, venv,
+    # durable state trees.  Some installs place the OpenAmer checkout, venv,
     # and desktop build under OPENAMER_HOME; a full rglob over that tree can
     # stall the gateway event loop for minutes.
-    hermes_home = get_openamer_home()
+    openamer_home = get_openamer_home()
     empty_removed = 0
     sweep_stack: List[Tuple[Path, bool]] = []
     try:
-        for top in hermes_home.iterdir():
+        for top in openamer_home.iterdir():
             if (
                 top.is_dir()
                 and not top.is_symlink()
@@ -555,14 +555,14 @@ def guess_category(path: Path) -> Optional[str]:
         return None
 
     # Skip the state dir itself, logs, memory files, sessions, config.
-    hermes_home = get_openamer_home()
+    openamer_home = get_openamer_home()
     try:
-        rel = path.resolve().relative_to(hermes_home)
+        rel = path.resolve().relative_to(openamer_home)
         top = rel.parts[0] if rel.parts else ""
         if top in {
             "disk-cleanup", "logs", "memories", "sessions", "config.yaml",
             "skills", "plugins", ".env", "USER.md", "MEMORY.md", "SOUL.md",
-            "auth.json", "hermes-agent",
+            "auth.json", "openamer-agent",
         }:
             return None
         if top == "cron" or top == "cronjobs":
@@ -577,7 +577,7 @@ def guess_category(path: Path) -> Optional[str]:
         if top == "cache":
             return "temp"
     except ValueError:
-        # Path isn't under OPENAMER_HOME (e.g. /tmp/hermes-*) — fall through.
+        # Path isn't under OPENAMER_HOME (e.g. /tmp/openamer-*) — fall through.
         pass
 
     name = path.name

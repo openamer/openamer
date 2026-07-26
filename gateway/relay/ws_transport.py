@@ -133,10 +133,10 @@ def _normalize_slack_parent_command(
     text: str,
     message_type: MessageType,
 ) -> tuple[str, MessageType]:
-    """Mirror native Slack ``/hermes`` routing for authenticated relay text."""
+    """Mirror native Slack ``/openamer`` routing for authenticated relay text."""
     stripped = text.strip()
     parent_parts = stripped.split(maxsplit=1)
-    if not parent_parts or parent_parts[0] != "/hermes":
+    if not parent_parts or parent_parts[0] != "/openamer":
         return text, message_type
 
     from openamer_cli.commands import slack_subcommand_map
@@ -236,9 +236,9 @@ def _event_from_wire(raw: Dict[str, Any]) -> MessageEvent:
     text = raw.get("text", "")
     if platform_enum == Platform.SLACK:
         # Team Gateway carries Slack slash text over the authenticated message
-        # relay, bypassing Hermes' native Slack command callback. Normalize at
+        # relay, bypassing OpenAmer' native Slack command callback. Normalize at
         # the wire boundary so adapter-level active-session gates see the real
-        # gateway command rather than the legacy `hermes` parent name.
+        # gateway command rather than the legacy `openamer` parent name.
         text, msg_type = _normalize_slack_parent_command(text, msg_type)
 
     return MessageEvent(

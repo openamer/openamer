@@ -1,4 +1,4 @@
-"""`hermes skin set` — deterministic single-color tweak of the active skin.
+"""`openamer skin set` — deterministic single-color tweak of the active skin.
 
 The whole point is that changing one token never disturbs the rest of the look
 (background especially), which hand-authoring kept getting wrong.

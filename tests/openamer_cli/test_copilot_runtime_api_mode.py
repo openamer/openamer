@@ -44,7 +44,7 @@ def test_copilot_runtime_api_mode_still_uses_default_without_target(monkeypatch)
     ) == "codex_responses"
 
 
-@pytest.mark.parametrize("credential_source", ["pool", "explicit", "env", "hermes-auth-store"])
+@pytest.mark.parametrize("credential_source", ["pool", "explicit", "env", "openamer-auth-store"])
 @pytest.mark.parametrize(
     ("configured_model", "target_model", "expected_mode"),
     [

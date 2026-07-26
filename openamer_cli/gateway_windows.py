@@ -85,17 +85,17 @@ def _assert_windows() -> None:
         raise RuntimeError("gateway_windows is Windows-only")
 
 
-def _preserve_hermes_home_path(path: str | Path) -> str:
+def _preserve_openamer_home_path(path: str | Path) -> str:
     """Render OpenAmer-owned paths under the configured OPENAMER_HOME spelling.
 
-    Windows installs may keep ``%LOCALAPPDATA%\\hermes`` as a symlink/junction to
+    Windows installs may keep ``%LOCALAPPDATA%\\openamer`` as a symlink/junction to
     another drive. Runtime state should still identify itself by the configured
     AppData path, so launcher files must not bake in the resolved target when a
     path lives under OPENAMER_HOME.
     """
     candidate = Path(path)
     try:
-        from openamer_cli.config import get_hermes_home
+        from openamer_cli.config import get_openamer_home
 
         home = Path(get_openamer_home())
         resolved_home = home.resolve()
@@ -311,12 +311,12 @@ def _sanitize_filename(value: str) -> str:
 def get_task_script_path() -> Path:
     """The generated ``gateway.cmd`` wrapper kept beside the VBS launcher.
 
-    Lives under ``%LOCALAPPDATA%\\hermes\\gateway-service\\<task_name>.cmd``
+    Lives under ``%LOCALAPPDATA%\\openamer\\gateway-service\\<task_name>.cmd``
     (or ``<OPENAMER_HOME>/gateway-service/<task_name>.cmd`` so per-profile
     OpenAmer installs stay self-contained).
     """
     _assert_windows()
-    from openamer_cli.config import get_hermes_home
+    from openamer_cli.config import get_openamer_home
 
     script_dir = Path(get_openamer_home()) / "gateway-service"
     script_dir.mkdir(parents=True, exist_ok=True)
@@ -366,7 +366,7 @@ def _stable_gateway_working_dir(project_root: Path) -> str:
     configured spelling instead of resolving symlinks so AppData installs backed
     by a junction/symlink still identify themselves as AppData.
     """
-    from openamer_cli.config import get_hermes_home
+    from openamer_cli.config import get_openamer_home
 
     try:
         home = get_openamer_home()
@@ -386,7 +386,7 @@ def _stable_gateway_working_dir(project_root: Path) -> str:
 def _build_gateway_cmd_script(
     python_path: str,
     working_dir: str,
-    hermes_home: str,
+    openamer_home: str,
     profile_arg: str,
 ) -> str:
     """Build the ``gateway.cmd`` wrapper content (CRLF-terminated).
@@ -408,16 +408,16 @@ def _build_gateway_cmd_script(
     """
     lines = ["@echo off", f"rem {_TASK_DESCRIPTION}"]
     lines.append(f"cd /d {_quote_cmd_script_arg(working_dir)}")
-    lines.append(f'set "OPENAMER_HOME={hermes_home}"')
+    lines.append(f'set "OPENAMER_HOME={openamer_home}"')
     lines.append('set "PYTHONIOENCODING=utf-8"')
     lines.append('set "HERMES_GATEWAY_DETACHED=1"')
     python_exe_path, venv_dir, extra_pythonpath = _resolve_detached_python(python_path)
     # VIRTUAL_ENV lets the gateway's own python detection find the venv
     # if someone imports openamer_constants-based logic during startup.
-    lines.append(f'set "VIRTUAL_ENV={_preserve_hermes_home_path(venv_dir)}"')
+    lines.append(f'set "VIRTUAL_ENV={_preserve_openamer_home_path(venv_dir)}"')
     pythonpath_entries = [
-        _preserve_hermes_home_path(Path(__file__).resolve().parent.parent),
-        *[_preserve_hermes_home_path(entry) for entry in extra_pythonpath],
+        _preserve_openamer_home_path(Path(__file__).resolve().parent.parent),
+        *[_preserve_openamer_home_path(entry) for entry in extra_pythonpath],
     ]
     lines.append(f'set "PYTHONPATH={";".join([*pythonpath_entries, "%PYTHONPATH%"])}"')
 
@@ -448,7 +448,7 @@ def _quote_vbs_string(value: str) -> str:
 def _build_gateway_vbs_script(
     python_path: str,
     working_dir: str,
-    hermes_home: str,
+    openamer_home: str,
     profile_arg: str,
 ) -> str:
     """Build a hidden-console ``gateway.vbs`` launcher (CRLF-terminated).
@@ -482,9 +482,9 @@ def _build_gateway_vbs_script(
     # list2cmdline gives CreateProcess-correct quoting for WScript.Shell.Run.
     command_line = subprocess.list2cmdline(prog_args)
 
-    repo_root = _preserve_hermes_home_path(Path(__file__).resolve().parent.parent)
+    repo_root = _preserve_openamer_home_path(Path(__file__).resolve().parent.parent)
     static_pythonpath = os.pathsep.join(
-        [repo_root, *[_preserve_hermes_home_path(entry) for entry in extra_pythonpath]]
+        [repo_root, *[_preserve_openamer_home_path(entry) for entry in extra_pythonpath]]
     )
 
     lines = [
@@ -493,10 +493,10 @@ def _build_gateway_vbs_script(
         "Dim sh, env, existing_pp",
         'Set sh = CreateObject("WScript.Shell")',
         'Set env = sh.Environment("PROCESS")',
-        f"env.Item({_quote_vbs_string('OPENAMER_HOME')}) = {_quote_vbs_string(hermes_home)}",
+        f"env.Item({_quote_vbs_string('OPENAMER_HOME')}) = {_quote_vbs_string(openamer_home)}",
         f"env.Item({_quote_vbs_string('PYTHONIOENCODING')}) = {_quote_vbs_string('utf-8')}",
         f"env.Item({_quote_vbs_string('HERMES_GATEWAY_DETACHED')}) = {_quote_vbs_string('1')}",
-        f"env.Item({_quote_vbs_string('VIRTUAL_ENV')}) = {_quote_vbs_string(_preserve_hermes_home_path(venv_dir))}",
+        f"env.Item({_quote_vbs_string('VIRTUAL_ENV')}) = {_quote_vbs_string(_preserve_openamer_home_path(venv_dir))}",
         # Mirror the cmd wrapper's ``PYTHONPATH=<static>;%PYTHONPATH%``: chain onto
         # whatever PYTHONPATH the task environment already carries, at runtime.
         f"existing_pp = env.Item({_quote_vbs_string('PYTHONPATH')})",
@@ -542,19 +542,19 @@ def _write_task_script() -> Path:
     """Generate and write the gateway.cmd wrapper. Return its absolute path."""
     _assert_windows()
     # Local imports to avoid circular-init at module load time.
-    from openamer_cli.config import get_hermes_home
+    from openamer_cli.config import get_openamer_home
     from openamer_cli.gateway import (
         PROJECT_ROOT,
         _profile_arg,
         get_python_path,
     )
 
-    python_path = _preserve_hermes_home_path(get_python_path())
+    python_path = _preserve_openamer_home_path(get_python_path())
     working_dir = _stable_gateway_working_dir(PROJECT_ROOT)
-    hermes_home = str(Path(get_openamer_home()))
-    profile_arg = _profile_arg(hermes_home)
+    openamer_home = str(Path(get_openamer_home()))
+    profile_arg = _profile_arg(openamer_home)
 
-    content = _build_gateway_cmd_script(python_path, working_dir, hermes_home, profile_arg)
+    content = _build_gateway_cmd_script(python_path, working_dir, openamer_home, profile_arg)
     script_path = get_task_script_path()
     tmp = script_path.with_suffix(".tmp")
     tmp.write_text(content, encoding="utf-8", newline="")
@@ -563,7 +563,7 @@ def _write_task_script() -> Path:
     # Also render the console-less .vbs launcher used by Scheduled Task and the
     # Startup-folder fallback via wscript.exe (issue #45599 fix A). The .cmd
     # wrapper stays as a generated helper/compatibility artifact.
-    vbs_content = _build_gateway_vbs_script(python_path, working_dir, hermes_home, profile_arg)
+    vbs_content = _build_gateway_vbs_script(python_path, working_dir, openamer_home, profile_arg)
     vbs_path = script_path.with_suffix(".vbs")
     vbs_tmp = vbs_path.with_name(vbs_path.name + ".tmp")
     vbs_tmp.write_text(vbs_content, encoding="utf-8", newline="")
@@ -768,7 +768,7 @@ def _build_gateway_argv() -> tuple[list[str], str, dict[str, str]]:
     layer in between.
     """
     _assert_windows()
-    from openamer_cli.config import get_hermes_home
+    from openamer_cli.config import get_openamer_home
     from openamer_cli.gateway import (
         PROJECT_ROOT,
         _profile_arg,
@@ -776,12 +776,12 @@ def _build_gateway_argv() -> tuple[list[str], str, dict[str, str]]:
     )
 
     python_exe, venv_dir, extra_pythonpath = _resolve_detached_python(
-        _preserve_hermes_home_path(get_python_path())
+        _preserve_openamer_home_path(get_python_path())
     )
-    project_root = _preserve_hermes_home_path(PROJECT_ROOT)
+    project_root = _preserve_openamer_home_path(PROJECT_ROOT)
     working_dir = _stable_gateway_working_dir(PROJECT_ROOT)
-    hermes_home = str(Path(get_openamer_home()))
-    profile_arg = _profile_arg(hermes_home)
+    openamer_home = str(Path(get_openamer_home()))
+    profile_arg = _profile_arg(openamer_home)
 
     argv = [python_exe, "-m", "openamer_cli.main"]
     if profile_arg:
@@ -789,14 +789,14 @@ def _build_gateway_argv() -> tuple[list[str], str, dict[str, str]]:
     argv.extend(["gateway", "run"])
 
     env_overlay = {
-        "OPENAMER_HOME": hermes_home,
+        "OPENAMER_HOME": openamer_home,
         "PYTHONIOENCODING": "utf-8",
         "HERMES_GATEWAY_DETACHED": "1",
-        "VIRTUAL_ENV": _preserve_hermes_home_path(venv_dir),
+        "VIRTUAL_ENV": _preserve_openamer_home_path(venv_dir),
     }
     _prepend_pythonpath(
         env_overlay,
-        [project_root, *[_preserve_hermes_home_path(entry) for entry in extra_pythonpath]]
+        [project_root, *[_preserve_openamer_home_path(entry) for entry in extra_pythonpath]]
         if extra_pythonpath
         else [project_root],
     )
@@ -831,7 +831,7 @@ def windowless_gateway_restart_spec(
     if sys.platform != "win32":
         return run_argv, "", {}
 
-    from openamer_cli.config import get_hermes_home
+    from openamer_cli.config import get_openamer_home
     from openamer_cli.gateway import PROJECT_ROOT
 
     python_exe = run_argv[0]
@@ -852,17 +852,17 @@ def windowless_gateway_restart_spec(
     working_dir = _stable_gateway_working_dir(PROJECT_ROOT)
     project_root = str(PROJECT_ROOT)
     try:
-        hermes_home = str(Path(get_openamer_home()).resolve())
+        openamer_home = str(Path(get_openamer_home()).resolve())
     except Exception:
-        hermes_home = ""
+        openamer_home = ""
 
     env_overlay: dict[str, str] = {
         "PYTHONIOENCODING": "utf-8",
         "HERMES_GATEWAY_DETACHED": "1",
         "VIRTUAL_ENV": str(venv_dir),
     }
-    if hermes_home:
-        env_overlay["OPENAMER_HOME"] = hermes_home
+    if openamer_home:
+        env_overlay["OPENAMER_HOME"] = openamer_home
     _prepend_pythonpath(
         env_overlay,
         [project_root, *extra_pythonpath] if extra_pythonpath else [project_root],
@@ -913,7 +913,7 @@ def _spawn_detached(script_path: Path | None = None) -> int:
     # logging module writes to gateway.log through a FileHandler, so the
     # real gateway logs still land there — this just captures anything
     # that goes to print() or native stderr.
-    from openamer_cli.config import get_hermes_home
+    from openamer_cli.config import get_openamer_home
 
     log_dir = Path(get_openamer_home()) / "logs"
     log_dir.mkdir(parents=True, exist_ok=True)
@@ -1167,19 +1167,19 @@ def _report_gateway_start(via: str) -> None:
     else:
         print(f"⚠ Launched gateway via {via}, but no process detected after 6s.")
         print("  Check the log for startup errors:")
-        from openamer_cli.config import get_hermes_home
+        from openamer_cli.config import get_openamer_home
         print(f"    type {Path(get_openamer_home())}\\logs\\gateway.log")
         print(f"    type {Path(get_openamer_home())}\\logs\\gateway-stdio.log")
 
 
 def _print_next_steps() -> None:
-    from openamer_cli.config import get_hermes_home
+    from openamer_cli.config import get_openamer_home
 
-    hermes_home = Path(get_openamer_home())
+    openamer_home = Path(get_openamer_home())
     print()
     print("Next steps:")
     print("  openamer gateway status                      # Check status")
-    print(f"  type {hermes_home}\\logs\\gateway.log       # View logs")
+    print(f"  type {openamer_home}\\logs\\gateway.log       # View logs")
 
 
 def uninstall() -> None:
@@ -1296,7 +1296,7 @@ def _print_deep_probes() -> None:
     import json
     from datetime import datetime, timezone
 
-    from openamer_cli.config import get_hermes_home
+    from openamer_cli.config import get_openamer_home
 
     home = Path(get_openamer_home())
     pid_path = home / "gateway.pid"

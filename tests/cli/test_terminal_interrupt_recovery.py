@@ -6,7 +6,7 @@ reply (``ESC[<row>;<col>R``) arrives on stdin after the input parser has torn
 down. The reply then leaks as literal text (``^[[19;1R``) and the VT100 parser
 can stall, accepting no further keystrokes — the terminal appears frozen.
 
-The recovery path lives in ``HermesCLI._recover_terminal_after_interrupt()``,
+The recovery path lives in ``OpenAmerCLI._recover_terminal_after_interrupt()``,
 which is invoked from ``process_loop``'s ``finally`` block only when
 ``self._last_turn_interrupted`` is set. It must:
   1. Drain stray escape bytes from the OS input buffer (``flush_stdin``).
@@ -24,17 +24,17 @@ from unittest.mock import MagicMock, patch
 import pytest
 
 import cli as cli_mod
-from cli import HermesCLI
+from cli import OpenAmerCLI
 
 
 @pytest.fixture
 def bare_cli():
-    """A HermesCLI with no __init__ — we only exercise the recovery helper."""
-    return object.__new__(HermesCLI)
+    """A OpenAmerCLI with no __init__ — we only exercise the recovery helper."""
+    return object.__new__(OpenAmerCLI)
 
 
 class TestRecoverTerminalAfterInterrupt:
-    """Directly exercise HermesCLI._recover_terminal_after_interrupt()."""
+    """Directly exercise OpenAmerCLI._recover_terminal_after_interrupt()."""
 
     def test_drains_stdin_then_redraws(self, bare_cli):
         """Happy path: flush_stdin runs, then a full redraw is forced."""
@@ -93,7 +93,7 @@ class TestFinallyBlockWiring:
     """
 
     def test_recovery_is_invoked_behind_interrupt_guard(self):
-        src = inspect.getsource(HermesCLI.run)
+        src = inspect.getsource(OpenAmerCLI.run)
         # The recovery call must be gated on _last_turn_interrupted so it only
         # fires after an actual interrupt, not on every normal turn.
         guard = re.search(
@@ -108,5 +108,5 @@ class TestFinallyBlockWiring:
         )
 
     def test_recovery_helper_exists(self):
-        assert hasattr(HermesCLI, "_recover_terminal_after_interrupt")
-        assert callable(HermesCLI._recover_terminal_after_interrupt)
+        assert hasattr(OpenAmerCLI, "_recover_terminal_after_interrupt")
+        assert callable(OpenAmerCLI._recover_terminal_after_interrupt)

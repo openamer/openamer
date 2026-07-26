@@ -1,11 +1,11 @@
-"""Guard: every `hermes update` path that reports user-modified skills must
+"""Guard: every `openamer update` path that reports user-modified skills must
 also tell the user how to find them.
 
-`hermes update` keeps (does not overwrite) bundled skills the user edited and
+`openamer update` keeps (does not overwrite) bundled skills the user edited and
 prints a ``~ N user-modified (kept)`` count. There are two independent update
 code paths in ``openamer_cli/main.py`` that print this notice (the git-pull path
 in ``_cmd_update_impl`` and the unpack/install path). Both must point the user
-at ``hermes skills list-modified`` so the count is actionable — otherwise,
+at ``openamer skills list-modified`` so the count is actionable — otherwise,
 depending on which path a user hits, they may never learn the discovery command
 exists.
 
@@ -21,7 +21,7 @@ import openamer_cli.main as main_mod
 
 
 _COUNT_RE = re.compile(r"user-modified \(kept\)")
-_HINT_RE = re.compile(r"hermes skills list-modified")
+_HINT_RE = re.compile(r"openamer skills list-modified")
 
 
 def _source_lines() -> list[str]:
@@ -48,6 +48,6 @@ def test_every_user_modified_notice_points_at_list_modified():
         assert _HINT_RE.search(window), (
             "a 'user-modified (kept)' notice near line "
             f"{idx + 1} of main.py does not point users at "
-            "`hermes skills list-modified` within the following lines — the "
+            "`openamer skills list-modified` within the following lines — the "
             "update paths have drifted apart again:\n" + window
         )

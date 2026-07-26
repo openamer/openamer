@@ -293,7 +293,7 @@ def build_verify_on_stop_nudge(
         command_instruction = (
             "No canonical test/lint/build command was detected. Create a focused "
             f"temporary verification script under `{temp_dir}` using an OS-safe "
-            "`tempfile` path with a `hermes-verify-` filename prefix, run it "
+            "`tempfile` path with a `openamer-verify-` filename prefix, run it "
             "against the changed behavior, clean it up when possible, and "
             "summarize it explicitly as ad-hoc verification rather than suite "
             "green."

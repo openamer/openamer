@@ -5,7 +5,7 @@ endpoint (async job: ``create`` → poll → ``download_content``), so all the
 SDK plumbing lives in
 :class:`agent.video_gen_provider.OpenAICompatibleVideoGenProvider`. This
 plugin only declares DeepInfra's identity, credentials, and live model
-discovery — no hardcoded model ids, so retired models drop out of hermes the
+discovery — no hardcoded model ids, so retired models drop out of openamer the
 next time the catalog is fetched without a patch.
 
 Mirrors ``plugins/image_gen/deepinfra`` (which does the same for

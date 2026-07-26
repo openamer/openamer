@@ -8,7 +8,7 @@ def test_openamer_client_tag_includes_current_version():
     from openamer_cli import __version__
     from agent.portal_tags import openamer_client_tag
 
-    assert openamer_client_tag() == f"client=hermes-client-v{__version__}"
+    assert openamer_client_tag() == f"client=openamer-client-v{__version__}"
 
 
 def test_openamer_client_tag_format():
@@ -16,7 +16,7 @@ def test_openamer_client_tag_format():
     from agent.portal_tags import openamer_client_tag
 
     tag = openamer_client_tag()
-    assert tag.startswith("client=hermes-client-v")
+    assert tag.startswith("client=openamer-client-v")
     # No spaces, no commas — single tag value
     assert " " not in tag
     assert "," not in tag
@@ -27,7 +27,7 @@ def test_nous_portal_tags_contains_product_and_client():
     from agent.portal_tags import openamer_client_tag, nous_portal_tags
 
     tags = nous_portal_tags()
-    assert "product=hermes-agent" in tags
+    assert "product=openamer-agent" in tags
     assert openamer_client_tag() in tags
     assert len(tags) == 2
 
@@ -54,7 +54,7 @@ def test_nous_portal_tags_appends_conversation_when_session_id_given():
     from agent.portal_tags import conversation_tag, nous_portal_tags
 
     tags = nous_portal_tags(session_id="sess-42")
-    assert "product=hermes-agent" in tags
+    assert "product=openamer-agent" in tags
     assert conversation_tag("sess-42") in tags
     assert len(tags) == 3
 

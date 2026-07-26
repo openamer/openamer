@@ -8,10 +8,10 @@ source: https://github.com/ahujasid/blender-mcp
 
 # ahujasid/blender-mcp (MIT, PyPI: blender-mcp) is the de-facto standard
 # Blender MCP. It is a bridge with two halves:
-#   1. This stdio server (uvx blender-mcp), which Hermes launches.
+#   1. This stdio server (uvx blender-mcp), which OpenAmer launches.
 #   2. An addon (addon.py) running inside Blender that opens a local command
 #      socket on 127.0.0.1:9876. The stdio server relays to it.
-# There is nothing to git-clone on the Hermes side — uvx resolves the package —
+# There is nothing to git-clone on the OpenAmer side — uvx resolves the package —
 # so no install block. The in-Blender addon setup is covered in post_install.
 #
 # Why not Blender's official MCP (blender.org/lab): it requires Blender 5.1+
@@ -28,7 +28,7 @@ transport:
     - "blender-mcp==1.6.4"
   version: "1.6.4"
   env:
-    # Upstream ships anonymous telemetry, on by default. Hermes policy is
+    # Upstream ships anonymous telemetry, on by default. OpenAmer policy is
     # no outbound telemetry without explicit opt-in, so the catalog entry
     # disables it. Remove this line only if you deliberately want it on.
     DISABLE_TELEMETRY: "true"
@@ -36,7 +36,7 @@ transport:
 # The Blender addon binds 127.0.0.1 only and has no auth of its own; the
 # stdio server needs no credentials. Optional integrations (Sketchfab,
 # Hyper3D Rodin, Hunyuan3D) take API keys entered in the addon's N-panel
-# inside Blender, not via Hermes env.
+# inside Blender, not via OpenAmer env.
 auth:
   type: none
 
@@ -48,7 +48,7 @@ auth:
 # of them costs schema tokens on every API call. Default to the core surface:
 # scene/object inspection, viewport screenshots, and code execution, which is
 # the complete modeling/render capability. Users who enable an asset service
-# in the addon can opt into its tools with `hermes mcp configure blender`.
+# in the addon can opt into its tools with `openamer mcp configure blender`.
 tools:
   default_enabled:
     - get_scene_info
@@ -68,7 +68,7 @@ post_install: |
        "Connect to Claude" (starts the local socket on 127.0.0.1:9876).
 
   Blender must be RUNNING with the addon connected before the tools work —
-  start Blender first, then your Hermes session. The addon refuses to start
+  start Blender first, then your OpenAmer session. The addon refuses to start
   under `blender -b` (background mode): its command queue runs on UI timers.
   On a machine without a display, run Blender under a virtual one:
     xvfb-run blender    (or Xvfb :99 & DISPLAY=:99 blender)
@@ -80,9 +80,9 @@ post_install: |
 
   The 18 asset-service tools (PolyHaven/Sketchfab/Hyper3D/Hunyuan3D) are off
   by default. To use one: enable the service in the addon's BlenderMCP panel
-  (API key there if required), then `hermes mcp configure blender` and tick
+  (API key there if required), then `openamer mcp configure blender` and tick
   its tools. PolyHaven is free and keyless; the others need accounts.
 
-  If Hermes and Blender run on different machines, note that file paths in
+  If OpenAmer and Blender run on different machines, note that file paths in
   execute_blender_code (texture loads, exports) resolve on the BLENDER host's
-  filesystem, not where Hermes runs.
+  filesystem, not where OpenAmer runs.

@@ -2,9 +2,9 @@
 # default (config key: kanban.dispatch_in_gateway, default true). To
 # migrate:
 #
-#     systemctl --user disable --now hermes-kanban-dispatcher.service
+#     systemctl --user disable --now openamer-kanban-dispatcher.service
 #     # then make sure a gateway is running; e.g. a systemd user unit
-#     # for `hermes gateway start`. The gateway hosts the dispatcher.
+#     # for `openamer gateway start`. The gateway hosts the dispatcher.
 #
 # This unit is kept for users who truly cannot run the gateway (host
 # policy forbids long-lived services, etc.). It now invokes the
@@ -14,13 +14,13 @@
 # dispatch_in_gateway=true is NOT supported.
 
 [Unit]
-Description=Hermes Kanban dispatcher (DEPRECATED standalone daemon — prefer gateway-embedded dispatch)
-Documentation=https://hermes-agent.nousresearch.com/docs/user-guide/features/kanban
+Description=OpenAmer Kanban dispatcher (DEPRECATED standalone daemon — prefer gateway-embedded dispatch)
+Documentation=https://openamer-agent.nousresearch.com/docs/user-guide/features/kanban
 After=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/env hermes kanban daemon --force --interval 60 --pidfile %t/hermes-kanban-dispatcher.pid
+ExecStart=/usr/bin/env openamer kanban daemon --force --interval 60 --pidfile %t/openamer-kanban-dispatcher.pid
 Restart=on-failure
 RestartSec=5
 # Log to the journal via stdout/stderr; the dispatcher also writes per-task

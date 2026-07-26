@@ -29,7 +29,7 @@ def _build_zip_with_symlink_member(zip_path: str, link_name: str, target: str) -
 def _build_normal_zip(zip_path: str) -> None:
     """Write a regular ZIP with a normal file member (no symlink)."""
     with zipfile.ZipFile(zip_path, "w") as zf:
-        zf.writestr("hermes-agent-main/README.md", "ok\n")
+        zf.writestr("openamer-agent-main/README.md", "ok\n")
 
 
 def test_update_via_zip_rejects_symlink_member(tmp_path, monkeypatch):
@@ -37,7 +37,7 @@ def test_update_via_zip_rejects_symlink_member(tmp_path, monkeypatch):
     zip_path = tmp_path / "evil.zip"
     _build_zip_with_symlink_member(
         str(zip_path),
-        link_name="hermes-agent-main/evil-link",
+        link_name="openamer-agent-main/evil-link",
         target="/etc/passwd",
     )
 
@@ -74,7 +74,7 @@ def test_update_via_zip_rejects_symlink_member(tmp_path, monkeypatch):
     # Belt: confirm extractall never produced the link.
     tmp_dir = captured.get("tmp_dir")
     if tmp_dir:
-        evil_path = os.path.join(tmp_dir, "hermes-agent-main", "evil-link")
+        evil_path = os.path.join(tmp_dir, "openamer-agent-main", "evil-link")
         assert not os.path.lexists(evil_path), (
             "symlink member should never be materialized"
         )
@@ -98,9 +98,9 @@ def test_update_via_zip_accepts_normal_member(tmp_path, monkeypatch, capsys):
     fake_root = tmp_path / "install_dir"
     fake_root.mkdir()
 
-    from openamer_cli import main as hermes_main
+    from openamer_cli import main as openamer_main
 
-    monkeypatch.setattr(hermes_main, "PROJECT_ROOT", fake_root)
+    monkeypatch.setattr(openamer_main, "PROJECT_ROOT", fake_root)
 
     args = type("Args", (), {})()
 
@@ -118,7 +118,7 @@ def test_update_via_zip_accepts_normal_member(tmp_path, monkeypatch, capsys):
          patch("subprocess.check_call"):
         fake_run.return_value = type("R", (), {"returncode": 0, "stdout": "", "stderr": ""})()
         try:
-            hermes_main._update_via_zip(args)
+            openamer_main._update_via_zip(args)
         except SystemExit:
             pass
 

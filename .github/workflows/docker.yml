@@ -24,14 +24,14 @@ concurrency:
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 env:
-  IMAGE_NAME: nousresearch/hermes-agent
+  IMAGE_NAME: nousresearch/openamer-agent
 
 jobs:
   # Build and test the image for each architecture. This job runs PR code,
   # so it must remain secret-free. Publishing happens in the separate,
   # protected publish job after these tests pass.
   build:
-    if: github.repository == 'NousResearch/hermes-agent'
+    if: github.repository == 'NousResearch/openamer-agent'
     strategy:
       fail-fast: false
       matrix:
@@ -96,7 +96,7 @@ jobs:
         # ``dev`` extra pulls in pytest, pytest-asyncio —
         # everything tests/docker/ needs.  We deliberately avoid ``all``
         # here because the docker tests only drive the container via
-        # subprocess and don't import hermes_agent's optional deps.
+        # subprocess and don't import openamer_agent's optional deps.
         uses: ./.github/actions/retry
         with:
           command: uv sync --locked --python 3.11 --extra dev
@@ -118,7 +118,7 @@ jobs:
   # matrix passes. This job is the sole Docker Hub credential boundary.
   # ---------------------------------------------------------------------------
   publish:
-    if: github.repository == 'NousResearch/hermes-agent' && (github.event_name == 'push' && github.ref == 'refs/heads/main' || github.event_name == 'release')
+    if: github.repository == 'NousResearch/openamer-agent' && (github.event_name == 'push' && github.ref == 'refs/heads/main' || github.event_name == 'release')
     needs: [build]
     environment: container-publish
     strategy:
@@ -190,7 +190,7 @@ jobs:
   # On releases: tags :<release_tag_name>.
   # ---------------------------------------------------------------------------
   merge:
-    if: github.repository == 'NousResearch/hermes-agent' && (github.event_name == 'push' && github.ref == 'refs/heads/main' || github.event_name == 'release')
+    if: github.repository == 'NousResearch/openamer-agent' && (github.event_name == 'push' && github.ref == 'refs/heads/main' || github.event_name == 'release')
     runs-on: ubuntu-latest
     needs: [publish]
     timeout-minutes: 10

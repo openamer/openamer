@@ -3,7 +3,7 @@
 
 Reads OPENAMER_KANBAN_TASK from env, heartbeats periodically, does short
 work, completes via the CLI. Designed to be spawned by the dispatcher
-exactly the way `hermes chat -q` would be, minus the LLM cost.
+exactly the way `openamer chat -q` would be, minus the LLM cost.
 """
 
 import json
@@ -18,7 +18,7 @@ def main():
 
     # Announce via CLI (goes through real argparse + init_db + etc)
     subprocess.run(
-        ["hermes", "kanban", "heartbeat", tid, "--note", "started"],
+        ["openamer", "kanban", "heartbeat", tid, "--note", "started"],
         check=True, capture_output=True,
     )
 
@@ -26,14 +26,14 @@ def main():
     for i in range(3):
         time.sleep(0.3)
         subprocess.run(
-            ["hermes", "kanban", "heartbeat", tid, "--note", f"progress {i+1}/3"],
+            ["openamer", "kanban", "heartbeat", tid, "--note", f"progress {i+1}/3"],
             check=True, capture_output=True,
         )
 
     # Complete with structured handoff
     subprocess.run(
         [
-            "hermes", "kanban", "complete", tid,
+            "openamer", "kanban", "complete", tid,
             "--summary", f"real-subprocess worker finished {tid}",
             "--metadata", json.dumps({
                 "workspace": workspace,

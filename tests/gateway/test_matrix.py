@@ -349,14 +349,14 @@ class TestMatrixConfigLoading:
     def test_matrix_user_id_stored_in_extra(self, monkeypatch):
         monkeypatch.setenv("MATRIX_ACCESS_TOKEN", "syt_abc123")
         monkeypatch.setenv("MATRIX_HOMESERVER", "https://matrix.example.org")
-        monkeypatch.setenv("MATRIX_USER_ID", "@hermes:example.org")
+        monkeypatch.setenv("MATRIX_USER_ID", "@openamer:example.org")
 
         from gateway.config import GatewayConfig, _apply_env_overrides
         config = GatewayConfig()
         _apply_env_overrides(config)
 
         mc = config.platforms[Platform.MATRIX]
-        assert mc.extra.get("user_id") == "@hermes:example.org"
+        assert mc.extra.get("user_id") == "@openamer:example.org"
 
 
 # ---------------------------------------------------------------------------
@@ -585,7 +585,7 @@ class TestMatrixDmDetection:
             if event_type == "m.room.name":
                 raise Exception("no name")
             if event_type == "m.room.canonical_alias":
-                return {"content": {"alias": "#hermes:ex.org"}}
+                return {"content": {"alias": "#openamer:ex.org"}}
             raise Exception("unknown")
 
         self.adapter._client.get_state_event = AsyncMock(side_effect=get_state_event)
@@ -594,7 +594,7 @@ class TestMatrixDmDetection:
 
         identity = await self.adapter._resolve_room_identity("!alias:ex.org")
 
-        assert identity.display_name == "#hermes:ex.org"
+        assert identity.display_name == "#openamer:ex.org"
         assert identity.chat_type == "room"
 
     @pytest.mark.asyncio
@@ -688,7 +688,7 @@ class TestMatrixReplyFallbackStripping:
 # ---------------------------------------------------------------------------
 
 class TestMatrixBangCommandAlias:
-    """Matrix clients may reserve /commands, so Hermes supports !commands."""
+    """Matrix clients may reserve /commands, so OpenAmer supports !commands."""
 
     def setup_method(self):
         self.adapter = _make_adapter()
@@ -2733,7 +2733,7 @@ class TestMatrixEncryptedEventHandler:
         # Verify inbound event handlers were registered as sync-awaited
         # callbacks. mautrix only returns waited handler tasks from
         # handle_sync(), so background-only handlers leave _dispatch_sync()
-        # without a completion point for Hermes' Matrix intake.
+        # without a completion point for OpenAmer' Matrix intake.
         handler_calls = mock_client.add_event_handler.call_args_list
         waited_types = {
             str(call.args[0])
@@ -4031,7 +4031,7 @@ class TestMatrixSystemBridgeFilter:
         ) is False
 
     def test_bot_account_is_not_bridge(self):
-        # The Hermes bot itself (no leading underscore) must not be
+        # The OpenAmer bot itself (no leading underscore) must not be
         # classified as a bridge — that filter is a pairing guard, not
         # a self-filter.
         assert self.adapter._is_system_or_bridge_sender(

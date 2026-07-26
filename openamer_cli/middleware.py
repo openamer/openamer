@@ -14,8 +14,8 @@ from typing import Any, Callable, Dict, List, Optional
 
 logger = logging.getLogger(__name__)
 
-OBSERVER_SCHEMA_VERSION = "hermes.observer.v1"
-MIDDLEWARE_SCHEMA_VERSION = "hermes.middleware.v1"
+OBSERVER_SCHEMA_VERSION = "openamer.observer.v1"
+MIDDLEWARE_SCHEMA_VERSION = "openamer.middleware.v1"
 
 TOOL_REQUEST_MIDDLEWARE = "tool_request"
 TOOL_EXECUTION_MIDDLEWARE = "tool_execution"

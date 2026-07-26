@@ -18,7 +18,7 @@ from fastapi.testclient import TestClient
 from openamer_cli.web_server import _SESSION_TOKEN, app
 
 client = TestClient(app)
-HEADERS = {"X-Hermes-Session-Token": _SESSION_TOKEN}
+HEADERS = {"X-OpenAmer-Session-Token": _SESSION_TOKEN}
 
 # Runtime-constructed fake credentials (never literal key-shaped strings).
 FAKE_ZAI_KEY = "zk-" + "a" * 24
@@ -27,7 +27,7 @@ NEW_KEY = "zk-" + "c" * 24
 
 
 @pytest.fixture
-def hermes_home(monkeypatch, tmp_path):
+def openamer_home(monkeypatch, tmp_path):
     """Fresh OPENAMER_HOME with .env + auth.json + config.yaml fixtures."""
     home = tmp_path / "cred_home"
     home.mkdir()
@@ -87,9 +87,9 @@ def _zai_pool_fixture():
 # ---------------------------------------------------------------------------
 
 
-def test_delete_env_key_prunes_env_seeded_pool_entry(hermes_home):
-    _write_env(hermes_home, ZAI_API_KEY=FAKE_ZAI_KEY)
-    _write_auth(hermes_home, _zai_pool_fixture())
+def test_delete_env_key_prunes_env_seeded_pool_entry(openamer_home):
+    _write_env(openamer_home, ZAI_API_KEY=FAKE_ZAI_KEY)
+    _write_auth(openamer_home, _zai_pool_fixture())
 
     resp = client.request(
         "DELETE", "/api/env", json={"key": "ZAI_API_KEY"}, headers=HEADERS
@@ -105,17 +105,17 @@ def test_delete_env_key_prunes_env_seeded_pool_entry(hermes_home):
     assert "ZAI_API_KEY" not in load_env()
 
     # auth.json: env-seeded entry gone, OAuth entry preserved
-    store = _read_auth(hermes_home)
+    store = _read_auth(openamer_home)
     sources = [e["source"] for e in store["credential_pool"]["zai"]]
     assert "env:ZAI_API_KEY" not in sources
     assert "device_code" in sources, "OAuth grant must survive an API-key delete"
 
 
-def test_delete_env_key_removes_provider_pool_key_when_emptied(hermes_home):
+def test_delete_env_key_removes_provider_pool_key_when_emptied(openamer_home):
     """A provider whose ONLY pool entry was env-seeded disappears entirely."""
-    _write_env(hermes_home, ZAI_API_KEY=FAKE_ZAI_KEY)
+    _write_env(openamer_home, ZAI_API_KEY=FAKE_ZAI_KEY)
     _write_auth(
-        hermes_home,
+        openamer_home,
         {"zai": [_zai_pool_fixture()["zai"][0]]},  # env entry only
     )
 
@@ -123,17 +123,17 @@ def test_delete_env_key_removes_provider_pool_key_when_emptied(hermes_home):
         "DELETE", "/api/env", json={"key": "ZAI_API_KEY"}, headers=HEADERS
     )
     assert resp.status_code == 200
-    store = _read_auth(hermes_home)
+    store = _read_auth(openamer_home)
     assert "zai" not in store.get("credential_pool", {}), (
         "provider must vanish from credential_pool so the model picker "
         "stops listing it (#51071)"
     )
 
 
-def test_delete_survives_pool_reload(hermes_home):
+def test_delete_survives_pool_reload(openamer_home):
     """#59761: the pool loader must not resurrect the entry after 'restart'."""
-    _write_env(hermes_home, ZAI_API_KEY=FAKE_ZAI_KEY)
-    _write_auth(hermes_home, {"zai": [_zai_pool_fixture()["zai"][0]]})
+    _write_env(openamer_home, ZAI_API_KEY=FAKE_ZAI_KEY)
+    _write_auth(openamer_home, {"zai": [_zai_pool_fixture()["zai"][0]]})
 
     resp = client.request(
         "DELETE", "/api/env", json={"key": "ZAI_API_KEY"}, headers=HEADERS
@@ -147,10 +147,10 @@ def test_delete_survives_pool_reload(hermes_home):
     assert entries == [], f"stale entries resurrected: {[e.source for e in entries]}"
 
 
-def test_delete_clears_provider_models_cache(hermes_home):
-    _write_env(hermes_home, ZAI_API_KEY=FAKE_ZAI_KEY)
-    _write_auth(hermes_home, {"zai": [_zai_pool_fixture()["zai"][0]]})
-    cache_path = hermes_home / "provider_models_cache.json"
+def test_delete_clears_provider_models_cache(openamer_home):
+    _write_env(openamer_home, ZAI_API_KEY=FAKE_ZAI_KEY)
+    _write_auth(openamer_home, {"zai": [_zai_pool_fixture()["zai"][0]]})
+    cache_path = openamer_home / "provider_models_cache.json"
     cache_path.write_text(
         json.dumps({"zai": {"models": ["glm-5"], "ts": 0}}), encoding="utf-8"
     )
@@ -164,30 +164,30 @@ def test_delete_clears_provider_models_cache(hermes_home):
         assert "zai" not in cache
 
 
-def test_delete_pool_only_credential_still_cleans_up(hermes_home):
+def test_delete_pool_only_credential_still_cleans_up(openamer_home):
     """Stale pool entry with NO .env line (the #59761 restart state) is
     removable through the same delete button instead of 404ing."""
-    _write_env(hermes_home)  # empty .env
-    _write_auth(hermes_home, {"zai": [_zai_pool_fixture()["zai"][0]]})
+    _write_env(openamer_home)  # empty .env
+    _write_auth(openamer_home, {"zai": [_zai_pool_fixture()["zai"][0]]})
 
     resp = client.request(
         "DELETE", "/api/env", json={"key": "ZAI_API_KEY"}, headers=HEADERS
     )
     assert resp.status_code == 200
-    store = _read_auth(hermes_home)
+    store = _read_auth(openamer_home)
     assert "zai" not in store.get("credential_pool", {})
 
 
-def test_delete_unknown_key_404s(hermes_home):
-    _write_env(hermes_home)
+def test_delete_unknown_key_404s(openamer_home):
+    _write_env(openamer_home)
     resp = client.request(
         "DELETE", "/api/env", json={"key": "NEVER_SET_KEY"}, headers=HEADERS
     )
     assert resp.status_code == 404
 
 
-def test_delete_does_not_touch_other_providers(hermes_home):
-    _write_env(hermes_home, ZAI_API_KEY=FAKE_ZAI_KEY)
+def test_delete_does_not_touch_other_providers(openamer_home):
+    _write_env(openamer_home, ZAI_API_KEY=FAKE_ZAI_KEY)
     other_key = "dk-" + "e" * 24
     pool = _zai_pool_fixture()
     pool["deepseek"] = [
@@ -200,13 +200,13 @@ def test_delete_does_not_touch_other_providers(hermes_home):
             "access_token": other_key,
         }
     ]
-    _write_auth(hermes_home, pool)
+    _write_auth(openamer_home, pool)
 
     resp = client.request(
         "DELETE", "/api/env", json={"key": "ZAI_API_KEY"}, headers=HEADERS
     )
     assert resp.status_code == 200
-    store = _read_auth(hermes_home)
+    store = _read_auth(openamer_home)
     assert [e["source"] for e in store["credential_pool"]["deepseek"]] == [
         "env:DEEPSEEK_API_KEY"
     ]
@@ -221,12 +221,12 @@ def _write_config(home, text):
     home.joinpath("config.yaml").write_text(text, encoding="utf-8")
 
 
-def test_update_rotates_config_yaml_model_mirror(hermes_home):
+def test_update_rotates_config_yaml_model_mirror(openamer_home):
     old = "sk-oe-" + "f" * 24
     new = "sk-oe-" + "g" * 24
-    _write_env(hermes_home, OPENAI_API_KEY=old)
+    _write_env(openamer_home, OPENAI_API_KEY=old)
     _write_config(
-        hermes_home,
+        openamer_home,
         "model:\n"
         "  provider: custom\n"
         "  default: my-model\n"
@@ -240,7 +240,7 @@ def test_update_rotates_config_yaml_model_mirror(hermes_home):
     assert resp.status_code == 200
     assert "model.api_key" in resp.json().get("config_updates", [])
 
-    cfg_text = hermes_home.joinpath("config.yaml").read_text(encoding="utf-8")
+    cfg_text = openamer_home.joinpath("config.yaml").read_text(encoding="utf-8")
     assert old not in cfg_text, "stale old key left in config.yaml (#62269)"
     assert new in cfg_text, "config.yaml mirror not rotated to the new key"
 
@@ -249,12 +249,12 @@ def test_update_rotates_config_yaml_model_mirror(hermes_home):
     assert load_env()["OPENAI_API_KEY"] == new
 
 
-def test_update_rotates_custom_provider_mirror(hermes_home):
+def test_update_rotates_custom_provider_mirror(openamer_home):
     old = "sk-cp-" + "h" * 24
     new = "sk-cp-" + "i" * 24
-    _write_env(hermes_home, OPENAI_API_KEY=old)
+    _write_env(openamer_home, OPENAI_API_KEY=old)
     _write_config(
-        hermes_home,
+        openamer_home,
         "custom_providers:\n"
         "  - name: myendpoint\n"
         "    base_url: https://llm.example.test/v1\n"
@@ -265,17 +265,17 @@ def test_update_rotates_custom_provider_mirror(hermes_home):
         "/api/env", json={"key": "OPENAI_API_KEY", "value": new}, headers=HEADERS
     )
     assert resp.status_code == 200
-    cfg_text = hermes_home.joinpath("config.yaml").read_text(encoding="utf-8")
+    cfg_text = openamer_home.joinpath("config.yaml").read_text(encoding="utf-8")
     assert old not in cfg_text
     assert new in cfg_text
 
 
-def test_update_leaves_unrelated_config_keys_alone(hermes_home):
+def test_update_leaves_unrelated_config_keys_alone(openamer_home):
     """A DIFFERENT key configured inline must not be rewritten by value-match."""
     old = "sk-un-" + "j" * 24
     unrelated = "sk-un-" + "k" * 24
-    _write_env(hermes_home, OPENAI_API_KEY=old)
-    _write_config(hermes_home, f"model:\n  provider: custom\n  api_key: {unrelated}\n")
+    _write_env(openamer_home, OPENAI_API_KEY=old)
+    _write_config(openamer_home, f"model:\n  provider: custom\n  api_key: {unrelated}\n")
 
     resp = client.put(
         "/api/env",
@@ -283,21 +283,21 @@ def test_update_leaves_unrelated_config_keys_alone(hermes_home):
         headers=HEADERS,
     )
     assert resp.status_code == 200
-    cfg_text = hermes_home.joinpath("config.yaml").read_text(encoding="utf-8")
+    cfg_text = openamer_home.joinpath("config.yaml").read_text(encoding="utf-8")
     assert unrelated in cfg_text, "unrelated inline key must be preserved"
 
 
-def test_delete_scrubs_config_yaml_mirror(hermes_home):
+def test_delete_scrubs_config_yaml_mirror(openamer_home):
     old = "sk-dl-" + "m" * 24
-    _write_env(hermes_home, OPENAI_API_KEY=old)
-    _write_config(hermes_home, f"model:\n  provider: custom\n  api_key: {old}\n")
+    _write_env(openamer_home, OPENAI_API_KEY=old)
+    _write_config(openamer_home, f"model:\n  provider: custom\n  api_key: {old}\n")
 
     resp = client.request(
         "DELETE", "/api/env", json={"key": "OPENAI_API_KEY"}, headers=HEADERS
     )
     assert resp.status_code == 200
     assert "model.api_key" in resp.json()["config_scrubbed"]
-    cfg_text = hermes_home.joinpath("config.yaml").read_text(encoding="utf-8")
+    cfg_text = openamer_home.joinpath("config.yaml").read_text(encoding="utf-8")
     assert old not in cfg_text
 
 
@@ -306,9 +306,9 @@ def test_delete_scrubs_config_yaml_mirror(hermes_home):
 # ---------------------------------------------------------------------------
 
 
-def test_delete_then_resave_round_trip(hermes_home):
-    _write_env(hermes_home, ZAI_API_KEY=FAKE_ZAI_KEY)
-    _write_auth(hermes_home, {"zai": [_zai_pool_fixture()["zai"][0]]})
+def test_delete_then_resave_round_trip(openamer_home):
+    _write_env(openamer_home, ZAI_API_KEY=FAKE_ZAI_KEY)
+    _write_auth(openamer_home, {"zai": [_zai_pool_fixture()["zai"][0]]})
 
     resp = client.request(
         "DELETE", "/api/env", json={"key": "ZAI_API_KEY"}, headers=HEADERS
@@ -327,7 +327,7 @@ def test_delete_then_resave_round_trip(hermes_home):
     )
     assert resp.status_code == 200
     assert not is_source_suppressed("zai", "env:ZAI_API_KEY"), (
-        "an explicit re-save must lift the suppression (like `hermes auth add`)"
+        "an explicit re-save must lift the suppression (like `openamer auth add`)"
     )
 
     from openamer_cli.config import load_env

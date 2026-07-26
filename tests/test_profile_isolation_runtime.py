@@ -20,7 +20,7 @@ from pathlib import Path
 import pytest
 
 from openamer_constants import (
-    get_hermes_home,
+    get_openamer_home,
     reset_openamer_home_override,
     set_openamer_home_override,
 )

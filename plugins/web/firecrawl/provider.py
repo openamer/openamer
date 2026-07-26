@@ -171,7 +171,7 @@ def check_firecrawl_api_key() -> bool:
     """Return True when Firecrawl backend (direct or gateway) is usable.
 
     Re-exported by :mod:`tools.web_tools` for backward compatibility with
-    existing tests and the ``hermes tools`` setup flow.
+    existing tests and the ``openamer tools`` setup flow.
     """
     return _has_direct_firecrawl_config() or _is_tool_gateway_ready()
 
@@ -200,7 +200,7 @@ def _raise_web_backend_configuration_error() -> None:
     if _wt.managed_nous_tools_enabled():
         message += (
             " With your Nous subscription you can also use the Tool Gateway. "
-            "run `hermes tools` and select Nous Subscription as the web provider."
+            "run `openamer tools` and select Nous Subscription as the web provider."
         )
     else:
         message += " " + _wt.nous_tool_gateway_unavailable_message(

@@ -905,7 +905,7 @@ class DingTalkAdapter(BasePlatformAdapter):
 
         payload = {
             "msgtype": "markdown",
-            "markdown": {"title": "Hermes", "text": normalized},
+            "markdown": {"title": "OpenAmer", "text": normalized},
         }
 
         try:
@@ -1042,7 +1042,7 @@ class DingTalkAdapter(BasePlatformAdapter):
             if not token:
                 return None
 
-            out_track_id = f"hermes_{uuid.uuid4().hex[:12]}"
+            out_track_id = f"openamer_{uuid.uuid4().hex[:12]}"
 
             conversation_id = getattr(message, "conversation_id", "") or ""
             conversation_type = getattr(message, "conversation_type", "1")
@@ -1711,7 +1711,7 @@ def _build_adapter(config):
 
 
 def register(ctx) -> None:
-    """Plugin entry point — called by the Hermes plugin system."""
+    """Plugin entry point — called by the OpenAmer plugin system."""
     ctx.register_platform(
         name="dingtalk",
         label="DingTalk",

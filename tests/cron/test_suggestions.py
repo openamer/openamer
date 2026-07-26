@@ -16,7 +16,7 @@ import pytest
 @pytest.fixture
 def store(tmp_path, monkeypatch):
     """A cron.suggestions module bound to an isolated OPENAMER_HOME."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
     # Reload so module-level CRON_DIR/SUGGESTIONS_FILE pick up the temp home.

@@ -1,7 +1,7 @@
 """`openamer checkpoints` CLI subcommand.
 
 Gives users direct visibility and control over the filesystem checkpoint
-store at ``~/.hermes/checkpoints/``.  Actions:
+store at ``~/.openamer/checkpoints/``.  Actions:
 
     openamer checkpoints               # same as `status`
     openamer checkpoints status        # total size, project count, breakdown

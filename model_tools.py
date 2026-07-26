@@ -407,15 +407,15 @@ def _compute_tool_definitions(
             tools_to_include.update(resolve_toolset(ts_name))
 
     # Always apply disabled toolsets as a subtraction step at the end.
-    # This ensures that even if a composite toolset (like hermes-cli)
+    # This ensures that even if a composite toolset (like openamer-cli)
     # is enabled, any tools belonging to a disabled toolset are strictly
     # stripped out. See issue #17309.
     if disabled_toolsets:
         for toolset_name in disabled_toolsets:
             if validate_toolset(toolset_name):
                 from toolsets import bundle_non_core_tools, get_toolset
-                if toolset_name.startswith("hermes-") or (get_toolset(toolset_name) or {}).get("posture"):
-                    # Platform bundles (hermes-*) include _HERMES_CORE_TOOLS, and
+                if toolset_name.startswith("openamer-") or (get_toolset(toolset_name) or {}).get("posture"):
+                    # Platform bundles (openamer-*) include _HERMES_CORE_TOOLS, and
                     # posture toolsets (`posture: True`, e.g. `coding`) re-list
                     # those same core tools without owning them, so subtracting
                     # the whole toolset would strip core tools shared by other
@@ -424,7 +424,7 @@ def _compute_tool_definitions(
                     to_remove = bundle_non_core_tools(toolset_name)
                     tools_to_include.difference_update(to_remove)
                     resolved = sorted(to_remove)
-                    if (not quiet_mode and toolset_name.startswith("hermes-")
+                    if (not quiet_mode and toolset_name.startswith("openamer-")
                             and toolset_name not in _WARNED_DISABLED_BUNDLES):
                         _WARNED_DISABLED_BUNDLES.add(toolset_name)
                         logger.info(
@@ -552,7 +552,7 @@ def _compute_tool_definitions(
     # Conditionally replace MCP + plugin (non-core) tools with three bridge
     # tools (tool_search / tool_describe / tool_call) when the deferrable
     # surface exceeds the configured threshold (default 10% of context
-    # window). Core Hermes tools (toolsets._HERMES_CORE_TOOLS) are NEVER
+    # window). Core OpenAmer tools (toolsets._HERMES_CORE_TOOLS) are NEVER
     # deferred. See tools/tool_search.py for full design notes.
     #
     # This is deliberately the last step before returning — sanitization
@@ -833,7 +833,7 @@ def _normalize_json_strings_for_schema(value: Any, schema: Any) -> Any:
     matching schema position actually expects an array or object, so
     legitimate JSON-looking string fields (``type: string``) are preserved.
 
-    Ported from cline/cline#11803, adapted to hermes-agent's coercion layer.
+    Ported from cline/cline#11803, adapted to openamer-agent's coercion layer.
     Returns the original value object when nothing changed (identity preserved
     so callers can cheaply detect no-ops).
     """

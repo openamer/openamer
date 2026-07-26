@@ -138,7 +138,7 @@ def _initialize_schema(conn: sqlite3.Connection) -> None:
         ("task_json", "TEXT"),
         ("delivery_claim", "TEXT"),
         ("delivery_claimed_at", "REAL"),
-        # Raw api_server session id (X-Hermes-Session-Id) of the ORIGINATING
+        # Raw api_server session id (X-OpenAmer-Session-Id) of the ORIGINATING
         # request — the wake self-post target. Without persisting it,
         # completions recovered after a process restart are unroutable on
         # api_server (the in-memory record that carried it is gone).
@@ -543,7 +543,7 @@ def _current_origin_session_id() -> str:
 
     The request-scoped ``HERMES_SESSION_CHAT_ID`` binding survives child
     construction: ``_bind_api_server_session`` binds ``chat_id`` to the raw
-    ``X-Hermes-Session-Id``, and its only writer is ``set_session_vars`` —
+    ``X-OpenAmer-Session-Id``, and its only writer is ``set_session_vars`` —
     ``set_current_session_id`` never touches it. Gate on the platform: on
     push platforms ``chat_id`` is a chat, not a session, so yield ``""``
     there.

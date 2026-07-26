@@ -112,13 +112,13 @@ def test_registered_sudo_callback_is_used_without_interactive_env(monkeypatch):
     terminal_tool.set_sudo_password_callback(sudo_callback)
     try:
         transformed, sudo_stdin = terminal_tool._transform_sudo_command(
-            "echo ok | sudo tee /tmp/hermes-test"
+            "echo ok | sudo tee /tmp/openamer-test"
         )
     finally:
         terminal_tool.set_sudo_password_callback(None)
 
     assert calls == ["called"]
-    assert transformed == "echo ok | sudo -S -p '' tee /tmp/hermes-test"
+    assert transformed == "echo ok | sudo -S -p '' tee /tmp/openamer-test"
     assert sudo_stdin == "callback-pass\n"
 
 
@@ -233,7 +233,7 @@ def test_get_env_config_ignores_bad_docker_json_for_ssh_backend(monkeypatch):
 
 
 def test_get_env_config_preserves_ssh_tilde_cwd(monkeypatch):
-    """SSH cwd '~' is expanded by the remote shell, not the Hermes host."""
+    """SSH cwd '~' is expanded by the remote shell, not the OpenAmer host."""
     monkeypatch.setenv("TERMINAL_ENV", "ssh")
     monkeypatch.setenv("TERMINAL_CWD", "~")
     monkeypatch.setenv("HOME", "/opt/data")

@@ -1,6 +1,6 @@
 """Tests for the Windows half-updated-venv hardening (July 2026 incident).
 
-Covers three additions to ``hermes update``:
+Covers three additions to ``openamer update``:
 
 1. ``_venv_core_imports_healthy`` — the venv health probe that lets an
    "Already up to date" checkout still repair a broken dependency install.
@@ -43,7 +43,7 @@ def test_venv_health_missing_venv_unhealthy_on_managed_install(tmp_path):
     """On a managed install (bootstrap marker) the venv IS the install —
     its absence must be reported unhealthy so the repair lane runs instead
     of 'Already up to date!'."""
-    (tmp_path / ".hermes-bootstrap-complete").write_text("done")
+    (tmp_path / ".openamer-bootstrap-complete").write_text("done")
     with patch.object(cli_main, "PROJECT_ROOT", tmp_path):
         healthy, detail = cli_main._venv_core_imports_healthy()
     assert healthy is False
@@ -179,7 +179,7 @@ def test_detect_venv_python_excludes_self_and_ancestors(_winp, tmp_path):
         process_iter=lambda attrs: iter(
             [
                 _proc(_os.getpid(), venv_py, "python.exe"),
-                _proc(555, venv_py, "hermes.exe"),
+                _proc(555, venv_py, "openamer.exe"),
             ]
         ),
         Process=lambda *a, **k: me,
@@ -207,14 +207,14 @@ def test_format_venv_holders_message_flags_desktop_backend(tmp_path):
     assert "101" in msg
     assert "desktop app" in msg.lower()
     assert "gateway" in msg
-    assert "hermes update" in msg
+    assert "openamer update" in msg
     assert "--force-venv" in msg
 
 
 @patch.object(cli_main, "_is_windows", return_value=True)
 def test_detect_venv_python_catches_outside_venv_trampoline(_winp, tmp_path):
     """uv/base-interpreter trampoline: exe OUTSIDE the venv, but the cmdline
-    clearly runs Hermes from this install → must still be flagged as a holder
+    clearly runs OpenAmer from this install → must still be flagged as a holder
     (it imports from the venv and holds its .pyd files)."""
     base_py = "C:\\Python311\\python.exe"
     venv_path = str(tmp_path / "venv" / "Scripts" / "python.exe")

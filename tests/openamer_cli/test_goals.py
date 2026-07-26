@@ -15,11 +15,11 @@ import pytest
 
 
 @pytest.fixture
-def hermes_home(tmp_path, monkeypatch):
+def openamer_home(tmp_path, monkeypatch):
     """Isolated OPENAMER_HOME so SessionDB.state_meta writes don't clobber the real one."""
     from pathlib import Path
 
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setattr(Path, "home", lambda: tmp_path)
     monkeypatch.setenv("OPENAMER_HOME", str(home))
@@ -217,7 +217,7 @@ class TestJudgeGoal:
 
 
 class TestGoalManager:
-    def test_no_goal_initial(self, hermes_home):
+    def test_no_goal_initial(self, openamer_home):
         from openamer_cli.goals import GoalManager
 
         mgr = GoalManager(session_id="test-sid-1")
@@ -226,7 +226,7 @@ class TestGoalManager:
         assert not mgr.has_goal()
         assert "No active goal" in mgr.status_line()
 
-    def test_set_then_status(self, hermes_home):
+    def test_set_then_status(self, openamer_home):
         from openamer_cli.goals import GoalManager
 
         mgr = GoalManager(session_id="test-sid-2", default_max_turns=5)
@@ -239,7 +239,7 @@ class TestGoalManager:
         assert "active" in mgr.status_line().lower()
         assert "port the thing" in mgr.status_line()
 
-    def test_set_rejects_empty(self, hermes_home):
+    def test_set_rejects_empty(self, openamer_home):
         from openamer_cli.goals import GoalManager
 
         mgr = GoalManager(session_id="test-sid-3")
@@ -248,7 +248,7 @@ class TestGoalManager:
         with pytest.raises(ValueError):
             mgr.set("   ")
 
-    def test_pause_and_resume(self, hermes_home):
+    def test_pause_and_resume(self, openamer_home):
         from openamer_cli.goals import GoalManager
 
         mgr = GoalManager(session_id="test-sid-4")
@@ -262,7 +262,7 @@ class TestGoalManager:
         assert mgr.state.status == "active"
         assert mgr.is_active()
 
-    def test_clear(self, hermes_home):
+    def test_clear(self, openamer_home):
         from openamer_cli.goals import GoalManager
 
         mgr = GoalManager(session_id="test-sid-5")
@@ -271,7 +271,7 @@ class TestGoalManager:
         assert mgr.state is None
         assert not mgr.is_active()
 
-    def test_persistence_across_managers(self, hermes_home):
+    def test_persistence_across_managers(self, openamer_home):
         """Key invariant: a second manager on the same session sees the goal.
 
         This is what makes /resume work — each session rebinds its
@@ -287,7 +287,7 @@ class TestGoalManager:
         assert mgr2.state.goal == "do the thing"
         assert mgr2.is_active()
 
-    def test_evaluate_after_turn_done(self, hermes_home):
+    def test_evaluate_after_turn_done(self, openamer_home):
         """Judge says done → status=done, no continuation."""
         from openamer_cli import goals
         from openamer_cli.goals import GoalManager
@@ -304,7 +304,7 @@ class TestGoalManager:
         assert mgr.state.status == "done"
         assert mgr.state.turns_used == 1
 
-    def test_evaluate_after_turn_continue_under_budget(self, hermes_home):
+    def test_evaluate_after_turn_continue_under_budget(self, openamer_home):
         from openamer_cli import goals
         from openamer_cli.goals import GoalManager
 
@@ -321,7 +321,7 @@ class TestGoalManager:
         assert mgr.state.status == "active"
         assert mgr.state.turns_used == 1
 
-    def test_evaluate_after_turn_budget_exhausted(self, hermes_home):
+    def test_evaluate_after_turn_budget_exhausted(self, openamer_home):
         """When turn budget hits ceiling, auto-pause instead of continuing."""
         from openamer_cli import goals
         from openamer_cli.goals import GoalManager
@@ -342,7 +342,7 @@ class TestGoalManager:
             assert mgr.state.turns_used == 2
             assert "budget" in (mgr.state.paused_reason or "").lower()
 
-    def test_evaluate_after_turn_inactive(self, hermes_home):
+    def test_evaluate_after_turn_inactive(self, openamer_home):
         """evaluate_after_turn is a no-op when goal isn't active."""
         from openamer_cli.goals import GoalManager
 
@@ -357,17 +357,17 @@ class TestGoalManager:
         assert d2["verdict"] == "inactive"
         assert d2["should_continue"] is False
 
-    def test_continuation_prompt_shape(self, hermes_home):
+    def test_continuation_prompt_shape(self, openamer_home):
         """The continuation prompt must include the goal text verbatim —
         and must be safe to inject as a user-role message (prompt-cache
         invariants: no system-prompt mutation)."""
         from openamer_cli.goals import GoalManager
 
         mgr = GoalManager(session_id="cont-sid")
-        mgr.set("port goal command to hermes")
+        mgr.set("port goal command to openamer")
         prompt = mgr.next_continuation_prompt()
         assert prompt is not None
-        assert "port goal command to hermes" in prompt
+        assert "port goal command to openamer" in prompt
         assert prompt.strip()  # non-empty
 
 
@@ -457,7 +457,7 @@ class TestJudgeParseFailureAutoPause:
         assert verdict == "continue"
         assert parse_failed is True
 
-    def test_auto_pause_after_three_consecutive_parse_failures(self, hermes_home):
+    def test_auto_pause_after_three_consecutive_parse_failures(self, openamer_home):
         """N=3 consecutive parse failures → auto-pause with config pointer."""
         from openamer_cli import goals
         from openamer_cli.goals import GoalManager, DEFAULT_MAX_CONSECUTIVE_PARSE_FAILURES
@@ -486,7 +486,7 @@ class TestJudgeParseFailureAutoPause:
             assert "goal_judge" in d3["message"]
             assert "config.yaml" in d3["message"]
 
-    def test_parse_failure_counter_resets_on_good_reply(self, hermes_home):
+    def test_parse_failure_counter_resets_on_good_reply(self, openamer_home):
         """A single good judge reply resets the counter — transient flakes don't pause."""
         from openamer_cli import goals
         from openamer_cli.goals import GoalManager
@@ -510,7 +510,7 @@ class TestJudgeParseFailureAutoPause:
             assert d["should_continue"] is True
             assert mgr.state.consecutive_parse_failures == 0
 
-    def test_transport_failures_do_not_increment_parse_counter(self, hermes_home):
+    def test_transport_failures_do_not_increment_parse_counter(self, openamer_home):
         """Transport failures use their own counter and a good reply resets both."""
         from openamer_cli import goals
         from openamer_cli.goals import GoalManager
@@ -549,7 +549,7 @@ class TestJudgeParseFailureAutoPause:
         assert mgr.state.consecutive_transport_failures == 0
 
     def test_consecutive_parse_failures_persists_across_goalmanager_reloads(
-        self, hermes_home
+        self, openamer_home
     ):
         """The counter must be durable so cross-session resumes see it."""
         from openamer_cli import goals
@@ -606,7 +606,7 @@ class TestMigrateGoalToSession:
     per-session lookup with no lineage walk, so without migration an active
     goal silently dies when compression rotates session_id."""
 
-    def test_migrates_active_goal_to_child(self, hermes_home):
+    def test_migrates_active_goal_to_child(self, openamer_home):
         from openamer_cli.goals import save_goal, load_goal, migrate_goal_to_session, GoalState
         save_goal("parent-sid", GoalState(goal="ship the feature"))
         assert migrate_goal_to_session("parent-sid", "child-sid", reason="compression") is True
@@ -616,24 +616,24 @@ class TestMigrateGoalToSession:
         parent = load_goal("parent-sid")
         assert parent is not None and parent.status == "cleared"
 
-    def test_no_goal_to_migrate_returns_false(self, hermes_home):
+    def test_no_goal_to_migrate_returns_false(self, openamer_home):
         from openamer_cli.goals import migrate_goal_to_session, load_goal
         assert migrate_goal_to_session("empty-parent", "child2") is False
         assert load_goal("child2") is None
 
-    def test_does_not_clobber_existing_child_goal(self, hermes_home):
+    def test_does_not_clobber_existing_child_goal(self, openamer_home):
         from openamer_cli.goals import save_goal, load_goal, migrate_goal_to_session, GoalState
         save_goal("p3", GoalState(goal="parent goal"))
         save_goal("c3", GoalState(goal="child already has one"))
         assert migrate_goal_to_session("p3", "c3") is False
         assert load_goal("c3").goal == "child already has one"
 
-    def test_same_id_is_noop(self, hermes_home):
+    def test_same_id_is_noop(self, openamer_home):
         from openamer_cli.goals import save_goal, migrate_goal_to_session, GoalState
         save_goal("same", GoalState(goal="g"))
         assert migrate_goal_to_session("same", "same") is False
 
-    def test_cleared_goal_not_migrated(self, hermes_home):
+    def test_cleared_goal_not_migrated(self, openamer_home):
         from openamer_cli.goals import save_goal, clear_goal, migrate_goal_to_session, load_goal, GoalState
         save_goal("p4", GoalState(goal="done already"))
         clear_goal("p4")
@@ -642,7 +642,7 @@ class TestMigrateGoalToSession:
 
 
 class TestGoalManagerSubgoals:
-    def test_add_subgoal(self, hermes_home):
+    def test_add_subgoal(self, openamer_home):
         from openamer_cli.goals import GoalManager
         mgr = GoalManager(session_id="sub-add")
         mgr.set("main goal")
@@ -650,14 +650,14 @@ class TestGoalManagerSubgoals:
         assert text == "use bullet points"
         assert mgr.state.subgoals == ["use bullet points"]
 
-    def test_add_subgoal_requires_active_goal(self, hermes_home):
+    def test_add_subgoal_requires_active_goal(self, openamer_home):
         import pytest
         from openamer_cli.goals import GoalManager
         mgr = GoalManager(session_id="sub-noactive")
         with pytest.raises(RuntimeError):
             mgr.add_subgoal("oops")
 
-    def test_add_empty_subgoal_rejected(self, hermes_home):
+    def test_add_empty_subgoal_rejected(self, openamer_home):
         import pytest
         from openamer_cli.goals import GoalManager
         mgr = GoalManager(session_id="sub-empty")
@@ -665,7 +665,7 @@ class TestGoalManagerSubgoals:
         with pytest.raises(ValueError):
             mgr.add_subgoal("   ")
 
-    def test_remove_subgoal(self, hermes_home):
+    def test_remove_subgoal(self, openamer_home):
         from openamer_cli.goals import GoalManager
         mgr = GoalManager(session_id="sub-remove")
         mgr.set("g")
@@ -676,7 +676,7 @@ class TestGoalManagerSubgoals:
         assert removed == "second"
         assert mgr.state.subgoals == ["first", "third"]
 
-    def test_remove_subgoal_out_of_range(self, hermes_home):
+    def test_remove_subgoal_out_of_range(self, openamer_home):
         import pytest
         from openamer_cli.goals import GoalManager
         mgr = GoalManager(session_id="sub-oob")
@@ -687,7 +687,7 @@ class TestGoalManagerSubgoals:
         with pytest.raises(IndexError):
             mgr.remove_subgoal(0)
 
-    def test_clear_subgoals(self, hermes_home):
+    def test_clear_subgoals(self, openamer_home):
         from openamer_cli.goals import GoalManager
         mgr = GoalManager(session_id="sub-clear")
         mgr.set("g")
@@ -697,7 +697,7 @@ class TestGoalManagerSubgoals:
         assert prev == 2
         assert mgr.state.subgoals == []
 
-    def test_subgoals_persist_across_reloads(self, hermes_home):
+    def test_subgoals_persist_across_reloads(self, openamer_home):
         """Subgoals stored in SessionDB survive a fresh GoalManager."""
         from openamer_cli.goals import GoalManager
         mgr = GoalManager(session_id="sub-persist")
@@ -710,7 +710,7 @@ class TestGoalManagerSubgoals:
 
 
 class TestContinuationPromptWithSubgoals:
-    def test_empty_subgoals_uses_original_template(self, hermes_home):
+    def test_empty_subgoals_uses_original_template(self, openamer_home):
         from openamer_cli.goals import GoalManager
         mgr = GoalManager(session_id="cp-empty")
         mgr.set("ship the feature")
@@ -719,7 +719,7 @@ class TestContinuationPromptWithSubgoals:
         assert "ship the feature" in prompt
         assert "Additional criteria" not in prompt
 
-    def test_with_subgoals_includes_them(self, hermes_home):
+    def test_with_subgoals_includes_them(self, openamer_home):
         from openamer_cli.goals import GoalManager
         mgr = GoalManager(session_id="cp-with")
         mgr.set("ship the feature")
@@ -734,7 +734,7 @@ class TestContinuationPromptWithSubgoals:
 
 
 class TestJudgeGoalWithSubgoals:
-    def test_judge_uses_subgoals_template_when_provided(self, hermes_home):
+    def test_judge_uses_subgoals_template_when_provided(self, openamer_home):
         """judge_goal switches templates when subgoals is non-empty.
 
         We don't actually call the model — we patch the aux client to
@@ -771,7 +771,7 @@ class TestJudgeGoalWithSubgoals:
         assert "every additional criterion" in user_msg
         assert verdict == "done"
 
-    def test_judge_uses_original_template_when_no_subgoals(self, hermes_home):
+    def test_judge_uses_original_template_when_no_subgoals(self, openamer_home):
         from unittest.mock import patch
         from openamer_cli import goals
 
@@ -797,7 +797,7 @@ class TestJudgeGoalWithSubgoals:
 
 
 class TestStatusLineSubgoalCount:
-    def test_status_line_no_subgoals(self, hermes_home):
+    def test_status_line_no_subgoals(self, openamer_home):
         from openamer_cli.goals import GoalManager
         mgr = GoalManager(session_id="sl-empty")
         mgr.set("ship it")
@@ -805,7 +805,7 @@ class TestStatusLineSubgoalCount:
         assert "ship it" in line
         assert "subgoal" not in line.lower()
 
-    def test_status_line_with_subgoals(self, hermes_home):
+    def test_status_line_with_subgoals(self, openamer_home):
         from openamer_cli.goals import GoalManager
         mgr = GoalManager(session_id="sl-with")
         mgr.set("ship it")
@@ -836,20 +836,20 @@ class TestWaitBarrier:
         """A PID that is essentially guaranteed not to be running."""
         return 2_000_000_000
 
-    def test_wait_on_requires_active_goal(self, hermes_home):
+    def test_wait_on_requires_active_goal(self, openamer_home):
         from openamer_cli.goals import GoalManager
         mgr = GoalManager(session_id="wb-noactive")
         with pytest.raises(RuntimeError):
             mgr.wait_on(12345)
 
-    def test_wait_on_rejects_bad_pid(self, hermes_home):
+    def test_wait_on_rejects_bad_pid(self, openamer_home):
         from openamer_cli.goals import GoalManager
         mgr = GoalManager(session_id="wb-badpid")
         mgr.set("g")
         with pytest.raises(ValueError):
             mgr.wait_on(0)
 
-    def test_parked_on_live_pid_does_not_continue_or_judge(self, hermes_home):
+    def test_parked_on_live_pid_does_not_continue_or_judge(self, openamer_home):
         from openamer_cli import goals
         from openamer_cli.goals import GoalManager
 
@@ -876,7 +876,7 @@ class TestWaitBarrier:
             proc.terminate()
             proc.wait(timeout=10)
 
-    def test_barrier_auto_clears_when_process_exits_and_loop_resumes(self, hermes_home):
+    def test_barrier_auto_clears_when_process_exits_and_loop_resumes(self, openamer_home):
         from openamer_cli import goals
         from openamer_cli.goals import GoalManager
 
@@ -900,7 +900,7 @@ class TestWaitBarrier:
         assert decision["should_continue"] is True
         assert mgr.state.turns_used == 1  # now a turn IS consumed
 
-    def test_dead_pid_never_parks(self, hermes_home):
+    def test_dead_pid_never_parks(self, openamer_home):
         from openamer_cli import goals
         from openamer_cli.goals import GoalManager
 
@@ -914,7 +914,7 @@ class TestWaitBarrier:
             decision = mgr.evaluate_after_turn("response")
         assert decision["should_continue"] is True
 
-    def test_stop_waiting_clears_barrier(self, hermes_home):
+    def test_stop_waiting_clears_barrier(self, openamer_home):
         from openamer_cli.goals import GoalManager
 
         proc = self._spawn_sleeper()
@@ -931,7 +931,7 @@ class TestWaitBarrier:
             proc.terminate()
             proc.wait(timeout=10)
 
-    def test_pause_and_resume_clear_barrier(self, hermes_home):
+    def test_pause_and_resume_clear_barrier(self, openamer_home):
         from openamer_cli.goals import GoalManager
 
         proc = self._spawn_sleeper()
@@ -948,7 +948,7 @@ class TestWaitBarrier:
             proc.terminate()
             proc.wait(timeout=10)
 
-    def test_barrier_persists_and_reloads(self, hermes_home):
+    def test_barrier_persists_and_reloads(self, openamer_home):
         from openamer_cli.goals import GoalManager
 
         proc = self._spawn_sleeper()
@@ -966,7 +966,7 @@ class TestWaitBarrier:
             proc.terminate()
             proc.wait(timeout=10)
 
-    def test_old_state_row_loads_without_barrier_fields(self, hermes_home):
+    def test_old_state_row_loads_without_barrier_fields(self, openamer_home):
         """Backwards-compat: a state_meta row written before the barrier
         existed must load with no barrier."""
         from openamer_cli.goals import GoalState
@@ -999,7 +999,7 @@ class TestJudgeDrivenWait:
         import subprocess, sys
         return subprocess.Popen([sys.executable, "-c", "import time; time.sleep(30)"])
 
-    def test_judge_wait_pid_parks_loop(self, hermes_home):
+    def test_judge_wait_pid_parks_loop(self, openamer_home):
         from openamer_cli import goals
         from openamer_cli.goals import GoalManager
 
@@ -1036,7 +1036,7 @@ class TestJudgeDrivenWait:
             proc.terminate()
             proc.wait(timeout=10)
 
-    def test_judge_wait_seconds_parks_loop(self, hermes_home):
+    def test_judge_wait_seconds_parks_loop(self, openamer_home):
         from openamer_cli import goals
         from openamer_cli.goals import GoalManager
 
@@ -1053,7 +1053,7 @@ class TestJudgeDrivenWait:
         assert mgr.state.waiting_on_pid is None
         assert mgr.is_waiting() is True
 
-    def test_time_barrier_clears_after_deadline(self, hermes_home):
+    def test_time_barrier_clears_after_deadline(self, openamer_home):
         from openamer_cli.goals import GoalManager
 
         mgr = GoalManager(session_id="jw-deadline")
@@ -1065,7 +1065,7 @@ class TestJudgeDrivenWait:
         assert mgr.is_waiting() is False
         assert mgr.state.waiting_until == 0.0
 
-    def test_continue_verdict_still_continues_with_background(self, hermes_home):
+    def test_continue_verdict_still_continues_with_background(self, openamer_home):
         """A running process present but judge says continue → normal loop."""
         from openamer_cli import goals
         from openamer_cli.goals import GoalManager
@@ -1111,11 +1111,11 @@ class TestSessionTriggerBarrier:
             process_registry._running[sid] = s
         return s, process_registry
 
-    def test_registry_is_session_waiting_running_unmatched(self, hermes_home):
+    def test_registry_is_session_waiting_running_unmatched(self, openamer_home):
         s, reg = self._inject("proc_t1", watch_patterns=["READY"])
         assert reg.is_session_waiting("proc_t1") is True
 
-    def test_registry_releases_on_watch_match_while_alive(self, hermes_home):
+    def test_registry_releases_on_watch_match_while_alive(self, openamer_home):
         s, reg = self._inject("proc_t2", watch_patterns=["READY"])
         assert reg.is_session_waiting("proc_t2") is True
         s._watch_hits = 1  # what _check_watch_patterns sets on a match
@@ -1123,17 +1123,17 @@ class TestSessionTriggerBarrier:
         assert s.exited is False
         assert reg.is_session_waiting("proc_t2") is False
 
-    def test_registry_releases_on_exit_plain_session(self, hermes_home):
+    def test_registry_releases_on_exit_plain_session(self, openamer_home):
         s, reg = self._inject("proc_t3")  # no watch pattern
         assert reg.is_session_waiting("proc_t3") is True
         s.exited = True
         assert reg.is_session_waiting("proc_t3") is False
 
-    def test_registry_unknown_session_never_waits(self, hermes_home):
+    def test_registry_unknown_session_never_waits(self, openamer_home):
         from tools.process_registry import process_registry
         assert process_registry.is_session_waiting("proc_does_not_exist") is False
 
-    def test_goal_parks_on_session_and_releases_on_trigger(self, hermes_home):
+    def test_goal_parks_on_session_and_releases_on_trigger(self, openamer_home):
         from openamer_cli import goals
         from openamer_cli.goals import GoalManager
 
@@ -1174,7 +1174,7 @@ class TestSessionTriggerBarrier:
             d3 = mgr.evaluate_after_turn("build succeeded")
         assert d3["should_continue"] is True
 
-    def test_wait_on_session_validation(self, hermes_home):
+    def test_wait_on_session_validation(self, openamer_home):
         from openamer_cli.goals import GoalManager
         mgr = GoalManager(session_id="st-val")
         # No active goal → RuntimeError
@@ -1190,7 +1190,7 @@ class TestSessionTriggerBarrier:
         except ValueError:
             pass
 
-    def test_session_directive_parsed_from_judge(self, hermes_home):
+    def test_session_directive_parsed_from_judge(self, openamer_home):
         from openamer_cli.goals import _parse_judge_response
         v, _, pf, wd = _parse_judge_response(
             '{"verdict": "wait", "wait_on_session": "proc_abc", "reason": "r"}'
@@ -1199,7 +1199,7 @@ class TestSessionTriggerBarrier:
         assert pf is False
         assert wd == {"session_id": "proc_abc"}
 
-    def test_old_state_loads_without_session_field(self, hermes_home):
+    def test_old_state_loads_without_session_field(self, openamer_home):
         from openamer_cli.goals import GoalState
         st = GoalState.from_json(json.dumps({
             "goal": "g", "status": "active", "turns_used": 0, "max_turns": 20,
@@ -1299,7 +1299,7 @@ class TestGoalContractSerialization:
 
 
 class TestGoalManagerContract:
-    def test_set_with_contract(self, hermes_home):
+    def test_set_with_contract(self, openamer_home):
         from openamer_cli.goals import GoalManager, GoalContract
 
         mgr = GoalManager(session_id="c-set")
@@ -1307,7 +1307,7 @@ class TestGoalManagerContract:
         assert mgr.has_contract()
         assert "contract" in mgr.status_line()
 
-    def test_set_without_contract_no_marker(self, hermes_home):
+    def test_set_without_contract_no_marker(self, openamer_home):
         from openamer_cli.goals import GoalManager
 
         mgr = GoalManager(session_id="c-none")
@@ -1315,7 +1315,7 @@ class TestGoalManagerContract:
         assert not mgr.has_contract()
         assert "contract" not in mgr.status_line()
 
-    def test_continuation_prompt_includes_contract(self, hermes_home):
+    def test_continuation_prompt_includes_contract(self, openamer_home):
         from openamer_cli.goals import GoalManager, GoalContract
 
         mgr = GoalManager(session_id="c-cont")
@@ -1325,7 +1325,7 @@ class TestGoalManagerContract:
         assert "run pytest" in prompt
         assert "concrete evidence" in prompt
 
-    def test_set_contract_after_the_fact(self, hermes_home):
+    def test_set_contract_after_the_fact(self, openamer_home):
         from openamer_cli.goals import GoalManager, GoalContract
 
         mgr = GoalManager(session_id="c-after")
@@ -1337,7 +1337,7 @@ class TestGoalManagerContract:
         from openamer_cli.goals import GoalManager as GM2
         assert GM2(session_id="c-after").has_contract()
 
-    def test_persistence_roundtrip(self, hermes_home):
+    def test_persistence_roundtrip(self, openamer_home):
         from openamer_cli.goals import GoalManager, GoalContract
 
         GoalManager(session_id="c-persist").set(
@@ -1364,7 +1364,7 @@ class TestJudgeWithContract:
             return _FakeResp()
         return _fake
 
-    def test_judge_uses_contract_template(self, hermes_home):
+    def test_judge_uses_contract_template(self, openamer_home):
         from unittest.mock import patch
         from openamer_cli import goals
         from openamer_cli.goals import GoalContract
@@ -1383,7 +1383,7 @@ class TestJudgeWithContract:
         assert "pytest -q passes" in user_msg
         assert "concrete evidence" in user_msg
 
-    def test_contract_plus_subgoals_combine(self, hermes_home):
+    def test_contract_plus_subgoals_combine(self, openamer_home):
         from unittest.mock import patch
         from openamer_cli import goals
         from openamer_cli.goals import GoalContract
@@ -1404,7 +1404,7 @@ class TestJudgeWithContract:
 
 
 class TestDraftContract:
-    def test_draft_parses_json(self, hermes_home):
+    def test_draft_parses_json(self, openamer_home):
         from unittest.mock import patch
         from openamer_cli import goals
 
@@ -1426,7 +1426,7 @@ class TestDraftContract:
         assert contract.verification == "auth suite green"
         assert not contract.is_empty()
 
-    def test_draft_returns_none_on_bad_json(self, hermes_home):
+    def test_draft_returns_none_on_bad_json(self, openamer_home):
         from unittest.mock import patch
         from openamer_cli import goals
 
@@ -1440,7 +1440,7 @@ class TestDraftContract:
                    return_value=_FakeResp()):
             assert goals.draft_contract("anything") is None
 
-    def test_draft_returns_none_when_no_client(self, hermes_home):
+    def test_draft_returns_none_when_no_client(self, openamer_home):
         from unittest.mock import patch
         from openamer_cli import goals
 
@@ -1474,7 +1474,7 @@ class TestContractAndBackgroundCompose:
             return _FakeResp()
         return _fake
 
-    def test_judge_prompt_carries_contract_and_background(self, hermes_home):
+    def test_judge_prompt_carries_contract_and_background(self, openamer_home):
         from unittest.mock import patch
         from openamer_cli import goals
         from openamer_cli.goals import GoalContract
@@ -1504,7 +1504,7 @@ class TestContractAndBackgroundCompose:
         assert verdict == "wait"
         assert wait_directive and wait_directive.get("pid") == 4242
 
-    def test_contract_goal_can_still_complete_on_evidence(self, hermes_home):
+    def test_contract_goal_can_still_complete_on_evidence(self, openamer_home):
         from unittest.mock import patch
         from openamer_cli import goals
         from openamer_cli.goals import GoalContract

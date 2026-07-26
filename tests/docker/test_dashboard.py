@@ -6,7 +6,7 @@ it is restarted under supervision. The restart-after-crash test lives in
 Phase 2 Task 2.5; this file only locks the opt-in surface (which must
 not change between tini and s6).
 
-Every ``docker exec`` here runs as the unprivileged ``hermes`` user
+Every ``docker exec`` here runs as the unprivileged ``openamer`` user
 (via :func:`docker_exec`/:func:`docker_exec_sh` in conftest), matching
 the realistic runtime context. See the conftest module docstring.
 """
@@ -23,7 +23,7 @@ def test_dashboard_not_running_by_default(
 ) -> None:
     """Without HERMES_DASHBOARD, no dashboard process should be running."""
     start_container(built_image, container_name, cmd="sleep 60")
-    r = docker_exec(container_name, "pgrep", "-f", "hermes dashboard")
+    r = docker_exec(container_name, "pgrep", "-f", "openamer dashboard")
     # pgrep exits non-zero when no match found
     assert r.returncode != 0, (
         "Dashboard should not be running without HERMES_DASHBOARD"
@@ -35,7 +35,7 @@ def test_dashboard_slot_reports_down_when_disabled(
 ) -> None:
     """Without HERMES_DASHBOARD, s6-svstat should report the dashboard
     slot as DOWN (not up-with-sleep-infinity, which would
-    false-positive `hermes doctor` and any other health check).
+    false-positive `openamer doctor` and any other health check).
 
     Locks the PR #30136 review item I3 fix: cont-init.d/03-dashboard-toggle
     writes a `down` marker file in the live service-dir when
@@ -94,7 +94,7 @@ def test_dashboard_opt_in_starts(
     # backgrounds it and bootstrap (skills sync etc.) can take a few
     # seconds before the python process actually launches.
     ok, _ = poll_container(
-        container_name, "pgrep -f 'hermes dashboard'", deadline_s=30.0,
+        container_name, "pgrep -f 'openamer dashboard'", deadline_s=30.0,
     )
     assert ok, "Dashboard should be running with HERMES_DASHBOARD=1"
 
@@ -151,7 +151,7 @@ def test_dashboard_restarts_after_crash(
     )
     # Wait for the first dashboard to come up.
     ok, _ = poll_container(
-        container_name, "pgrep -f 'hermes dashboard'", deadline_s=30.0,
+        container_name, "pgrep -f 'openamer dashboard'", deadline_s=30.0,
     )
     assert ok, "Dashboard never started initially"
 
@@ -161,7 +161,7 @@ def test_dashboard_restarts_after_crash(
     first_pid: str | None = None
     for _attempt in range(10):
         first_pid_result = docker_exec(
-            container_name, "pgrep", "-f", "hermes dashboard",
+            container_name, "pgrep", "-f", "openamer dashboard",
         )
         first_pids = first_pid_result.stdout.strip().split()
         if first_pids:
@@ -170,15 +170,15 @@ def test_dashboard_restarts_after_crash(
         time.sleep(0.5)
     assert first_pid is not None, "Could not capture initial dashboard PID"
 
-    # Kill the dashboard. The dashboard process runs as hermes, so the
-    # hermes user can kill it (same UID).
+    # Kill the dashboard. The dashboard process runs as openamer, so the
+    # openamer user can kill it (same UID).
     docker_exec(container_name, "kill", "-9", first_pid)
 
     # s6 backs off ~1s before restart; allow up to 15s for the new
     # process to appear with a different PID.
     deadline = time.monotonic() + 15.0
     while time.monotonic() < deadline:
-        r = docker_exec(container_name, "pgrep", "-f", "hermes dashboard")
+        r = docker_exec(container_name, "pgrep", "-f", "openamer dashboard")
         pids = r.stdout.strip().split() if r.returncode == 0 else []
         if pids and pids[0] != first_pid:
             return  # success
@@ -239,7 +239,7 @@ except urllib.error.HTTPError as h:
     # single bash string stays clean. The 'PY' delimiter is quoted to
     # disable shell expansion inside the heredoc body.
     probe = (
-        "/opt/hermes/.venv/bin/python - <<'PY'\n"
+        "/opt/openamer/.venv/bin/python - <<'PY'\n"
         f"{py_program}"
         "PY"
     )

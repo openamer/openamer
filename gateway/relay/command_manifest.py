@@ -49,7 +49,7 @@ def build_relay_command_manifest() -> List[Dict[str, Any]]:
     """The relay lane's Discord slash-command manifest (native-tree mirror)."""
     return [
         {"name": "new", "description": "Start a new conversation"},
-        {"name": "reset", "description": "Reset your Hermes session"},
+        {"name": "reset", "description": "Reset your OpenAmer session"},
         {
             "name": "model",
             "description": "Show or change the model",
@@ -85,9 +85,9 @@ def build_relay_command_manifest() -> List[Dict[str, Any]]:
         },
         {"name": "retry", "description": "Retry your last message"},
         {"name": "undo", "description": "Remove the last exchange"},
-        {"name": "status", "description": "Show Hermes session status"},
+        {"name": "status", "description": "Show OpenAmer session status"},
         {"name": "sethome", "description": "Set this chat as the home channel"},
-        {"name": "stop", "description": "Stop the running Hermes agent"},
+        {"name": "stop", "description": "Stop the running OpenAmer agent"},
         {
             "name": "steer",
             "description": "Inject a message after the next tool call (no interrupt)",
@@ -113,8 +113,8 @@ def build_relay_command_manifest() -> List[Dict[str, Any]]:
             "description": "Re-scan skills for new or removed entries",
         },
         {"name": "voice", "description": "Toggle voice reply mode"},
-        {"name": "update", "description": "Update Hermes Agent to the latest version"},
-        {"name": "restart", "description": "Gracefully restart the Hermes gateway"},
+        {"name": "update", "description": "Update OpenAmer Agent to the latest version"},
+        {"name": "restart", "description": "Gracefully restart the OpenAmer gateway"},
         {
             "name": "approve",
             "description": "Approve a pending dangerous command",
@@ -129,7 +129,7 @@ def build_relay_command_manifest() -> List[Dict[str, Any]]:
         },
         {
             "name": "thread",
-            "description": "Create a new thread and start a Hermes session in it",
+            "description": "Create a new thread and start a OpenAmer session in it",
             "options": [_opt("name", "Thread name")],
         },
         {

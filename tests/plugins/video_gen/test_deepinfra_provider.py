@@ -101,7 +101,7 @@ def _mock_url_download(captured: dict, raise_exc: Exception | None = None):
         captured["url"] = url
         if raise_exc:
             raise raise_exc
-        return Path(f"/home/x/.hermes/cache/videos/{prefix}_test.mp4")
+        return Path(f"/home/x/.openamer/cache/videos/{prefix}_test.mp4")
 
     with patch.object(base, "save_url_video", _fake_save_url_video):
         yield

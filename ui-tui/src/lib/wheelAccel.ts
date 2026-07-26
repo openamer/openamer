@@ -15,7 +15,7 @@
 // Native terminals (Ghostty, iTerm2) and xterm.js embedders (VS Code,
 // Cursor) emit wheel events with different cadences, hence two paths.
 
-import { isXtermJs } from '@hermes/ink'
+import { isXtermJs } from '@openamer/ink'
 
 // ── Native (ghostty, iTerm2, WezTerm, …) ───────────────────────────────
 const WHEEL_ACCEL_WINDOW_MS = 40

@@ -20,7 +20,7 @@ _LM_VALID_EFFORTS = {"none", "minimal", "low", "medium", "high", "xhigh"}
 # Map them onto the OpenAI-compatible request vocabulary.
 _LM_EFFORT_ALIASES = {"off": "none", "on": "medium"}
 
-# Hermes' generic effort ladder grew past LM Studio's vocabulary ("max",
+# OpenAmer' generic effort ladder grew past LM Studio's vocabulary ("max",
 # "ultra"). Clamp the stronger generic levels onto LM Studio's ceiling: left
 # alone they miss _LM_VALID_EFFORTS, keep the initialized "medium" default and
 # are thereby conflated with unparseable input, so asking for more reasoning

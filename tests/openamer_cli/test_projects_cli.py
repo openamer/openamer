@@ -1,4 +1,4 @@
-"""Tests for the `hermes project` CLI dispatch (openamer_cli/projects_cmd)."""
+"""Tests for the `openamer project` CLI dispatch (openamer_cli/projects_cmd)."""
 
 from __future__ import annotations
 

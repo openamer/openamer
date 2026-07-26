@@ -436,7 +436,7 @@ def test_gateway_pid_scan_hides_wmic_and_powershell_windows(monkeypatch):
         captured.append((cmd, kwargs))
         if cmd[0] == "wmic":
             return _Completed(stdout="", returncode=1)
-        return _Completed(stdout="CommandLine=hermes gateway\nProcessId=123\n")
+        return _Completed(stdout="CommandLine=openamer gateway\nProcessId=123\n")
 
     monkeypatch.setattr(gateway, "is_windows", lambda: True)
     monkeypatch.setattr(gateway.shutil, "which", lambda name: name)
@@ -473,7 +473,7 @@ def test_stale_dashboard_windows_scan_hides_wmic(monkeypatch):
 
     def fake_run(cmd, **kwargs):
         captured.append((cmd, kwargs))
-        return _Completed(stdout="CommandLine=hermes dashboard\nProcessId=123\n")
+        return _Completed(stdout="CommandLine=openamer dashboard\nProcessId=123\n")
 
     monkeypatch.setattr(main.sys, "platform", "win32")
     monkeypatch.setattr(_subprocess_compat, "IS_WINDOWS", True)
@@ -680,7 +680,7 @@ def test_tui_cli_exec_rpc_hides_python_window(monkeypatch):
 
     def fake_run(cmd, **kwargs):
         captured.append((cmd, kwargs))
-        return _Completed(stdout="hermes 0.0-test\n")
+        return _Completed(stdout="openamer 0.0-test\n")
 
     _patch_hide_flags(monkeypatch)
     monkeypatch.setattr(server.subprocess, "run", fake_run)
@@ -758,7 +758,7 @@ def test_cli_quick_command_exec_hides_console_window(monkeypatch):
     _patch_hide_flags(monkeypatch)
     monkeypatch.setattr(subprocess, "run", fake_run)
 
-    inst = object.__new__(cli_mod.HermesCLI)
+    inst = object.__new__(cli_mod.OpenAmerCLI)
     inst.config = {"quick_commands": {"qtest": {"type": "exec", "command": "echo cli-qc-56747"}}}
     inst._pending_resume_sessions = None
     inst._console_print = lambda *a, **k: None
@@ -904,7 +904,7 @@ def test_lsp_install_npm_hides_console_window(monkeypatch, tmp_path):
     monkeypatch.setattr(lsp_install.subprocess, "run", fake_run)
     monkeypatch.setattr(lsp_install.shutil, "which", lambda name: f"/fake/bin/{name}")
     monkeypatch.setattr(
-        lsp_install, "hermes_lsp_bin_dir", lambda: tmp_path / "lsp" / "bin"
+        lsp_install, "openamer_lsp_bin_dir", lambda: tmp_path / "lsp" / "bin"
     )
 
     # Bin lookup after the install misses (nothing staged) → None; the
@@ -932,7 +932,7 @@ def test_lsp_install_go_hides_console_window(monkeypatch, tmp_path):
     monkeypatch.setattr(lsp_install.subprocess, "run", fake_run)
     monkeypatch.setattr(lsp_install.shutil, "which", lambda name: f"/fake/bin/{name}")
     monkeypatch.setattr(
-        lsp_install, "hermes_lsp_bin_dir", lambda: tmp_path / "lsp" / "bin"
+        lsp_install, "openamer_lsp_bin_dir", lambda: tmp_path / "lsp" / "bin"
     )
 
     lsp_install._install_go("golang.org/x/tools/gopls@latest", "gopls")

@@ -1,12 +1,12 @@
-"""ntfy platform adapter (Hermes plugin).
+"""ntfy platform adapter (OpenAmer plugin).
 
 Subscribes to a topic on ntfy.sh or any self-hosted ntfy server via
 HTTP streaming (``/json`` endpoint with ``poll=false``) and publishes
 replies via HTTP POST. No external SDK — only httpx, which is already
-a Hermes dependency.
+a OpenAmer dependency.
 
-This adapter ships as a Hermes platform plugin under
-``plugins/platforms/ntfy/``. The Hermes plugin loader scans the
+This adapter ships as a OpenAmer platform plugin under
+``plugins/platforms/ntfy/``. The OpenAmer plugin loader scans the
 directory at startup, calls :func:`register`, and the platform becomes
 available to ``gateway/run.py`` and ``tools/send_message_tool`` through
 the registry — no edits to core files required.
@@ -18,8 +18,8 @@ Configuration in config.yaml::
         enabled: true
         extra:
           server: "https://ntfy.sh"       # or self-hosted URL
-          topic: "hermes-in"              # subscribe topic (incoming)
-          publish_topic: "hermes-out"     # optional — defaults to topic
+          topic: "openamer-in"              # subscribe topic (incoming)
+          publish_topic: "openamer-out"     # optional — defaults to topic
           token: "..."                    # optional Bearer / Basic auth token
           markdown: true                  # optional — enable markdown (default: false)
 
@@ -81,7 +81,7 @@ DEDUP_WINDOW_SECONDS = 300
 DEDUP_MAX_SIZE = 1000
 RECONNECT_BACKOFF = [2, 5, 10, 30, 60]
 STREAM_TIMEOUT_SECONDS = 90  # ntfy keepalive default is 55s; give margin
-_ECHO_TAG = "hermes-agent"  # tag added to outgoing messages for echo-loop prevention
+_ECHO_TAG = "openamer-agent"  # tag added to outgoing messages for echo-loop prevention
 
 
 def _build_auth_header(token: str) -> Dict[str, str]:
@@ -500,7 +500,7 @@ async def _standalone_send(
 
     Used by ``tools/send_message_tool._send_via_adapter`` and the cron
     scheduler when the gateway runner is not in this process (e.g.
-    ``hermes cron`` running standalone). Without this hook,
+    ``openamer cron`` running standalone). Without this hook,
     ``deliver=ntfy`` cron jobs fail with ``No live adapter for platform``.
 
     ``thread_id`` and ``media_files`` are accepted for signature parity
@@ -553,7 +553,7 @@ async def _standalone_send(
 
 
 def register(ctx) -> None:
-    """Plugin entry point — called by the Hermes plugin system at startup."""
+    """Plugin entry point — called by the OpenAmer plugin system at startup."""
     ctx.register_platform(
         name="ntfy",
         label="ntfy",
@@ -562,9 +562,9 @@ def register(ctx) -> None:
         validate_config=validate_config,
         is_connected=is_connected,
         required_env=["NTFY_TOPIC"],
-        install_hint="pip install httpx   # already a Hermes dependency",
+        install_hint="pip install httpx   # already a OpenAmer dependency",
         # Env-driven auto-configuration: seeds PlatformConfig.extra so
-        # env-only setups show up in `hermes gateway status` without
+        # env-only setups show up in `openamer gateway status` without
         # instantiating the HTTP client.
         env_enablement_fn=_env_enablement,
         # Cron home-channel delivery support — `deliver=ntfy` cron jobs

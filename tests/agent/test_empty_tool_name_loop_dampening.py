@@ -129,15 +129,15 @@ def agent_env():
     t = threading.Thread(target=srv.serve_forever, daemon=True)
     t.start()
 
-    test_home = tempfile.mkdtemp(prefix="hermes_e2e_47967_")
-    os.makedirs(os.path.join(test_home, ".hermes"))
+    test_home = tempfile.mkdtemp(prefix="openamer_e2e_47967_")
+    os.makedirs(os.path.join(test_home, ".openamer"))
     prev_home = os.environ.get("OPENAMER_HOME")
-    os.environ["OPENAMER_HOME"] = os.path.join(test_home, ".hermes")
+    os.environ["OPENAMER_HOME"] = os.path.join(test_home, ".openamer")
 
     # Import fresh so the patched conversation_loop is exercised even when the
     # module was imported earlier in the same worker.
     for mod in list(sys.modules):
-        if mod == "run_agent" or mod.startswith("agent.") or mod.startswith("tools.") or mod.startswith("hermes_"):
+        if mod == "run_agent" or mod.startswith("agent.") or mod.startswith("tools.") or mod.startswith("openamer_"):
             del sys.modules[mod]
     from run_agent import AIAgent
 

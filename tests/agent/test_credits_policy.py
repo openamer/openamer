@@ -343,13 +343,13 @@ class TestIsFreeTierModel:
         from agent.credits_tracker import is_free_tier_model
 
         assert is_free_tier_model("nvidia/nemotron-3-ultra:free") is True
-        assert is_free_tier_model("Hermes-4-70B:free", "https://inference-api.nousresearch.com") is True
+        assert is_free_tier_model("OpenAmer-4-70B:free", "https://inference-api.nousresearch.com") is True
 
     def test_empty_or_paid_model_is_not_free(self):
         from agent.credits_tracker import is_free_tier_model
 
         assert is_free_tier_model("") is False
-        assert is_free_tier_model("Hermes-4-405B") is False
+        assert is_free_tier_model("OpenAmer-4-405B") is False
 
     def test_pricing_cache_peek_zero_priced_model(self, monkeypatch):
         from agent.credits_tracker import is_free_tier_model

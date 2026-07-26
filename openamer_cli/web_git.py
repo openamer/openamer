@@ -556,7 +556,7 @@ def _ensure_repo(cwd: str) -> None:
             cwd,
             [
                 "-c",
-                "user.email=hermes@localhost",
+                "user.email=openamer@localhost",
                 "-c",
                 "user.name=OpenAmer",
                 "commit",
@@ -593,7 +593,7 @@ def worktree_add(cwd: str, options: dict) -> dict:
         return {"path": target, "branch": existing, "repoRoot": root}
 
     slug = _slugify(options.get("name") or f"work-{os.urandom(4).hex()}")
-    branch = _sanitize_branch(options.get("branch") or "") or f"hermes/{slug}"
+    branch = _sanitize_branch(options.get("branch") or "") or f"openamer/{slug}"
     target = _unique_dir(os.path.join(root, ".worktrees", slug))
     args = ["worktree", "add", "-b", branch, target]
     if options.get("base"):

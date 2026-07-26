@@ -46,8 +46,8 @@ import types
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-def _isolate_hermes_home():
-    os.environ.setdefault("OPENAMER_HOME", "/tmp/hermes-bg-review-test")
+def _isolate_openamer_home():
+    os.environ.setdefault("OPENAMER_HOME", "/tmp/openamer-bg-review-test")
 
 
 def _load_module():
@@ -174,7 +174,7 @@ def test_a_change_as_list_does_not_crash():
     and ``change.get("description", "")`` raised ``AttributeError: 'list'
     object has no attribute 'get'``.
     """
-    _isolate_hermes_home()
+    _isolate_openamer_home()
     bg = _load_module()
     if bg is None:
         print("SKIP module not importable")
@@ -195,7 +195,7 @@ def test_a_change_as_list_does_not_crash():
 
 def test_a_change_as_int_does_not_crash():
     """And ditto for any non-dict scalar that the JSON shape allows."""
-    _isolate_hermes_home()
+    _isolate_openamer_home()
     bg = _load_module()
     if bg is None:
         print("SKIP module not importable")
@@ -217,7 +217,7 @@ def test_a_change_as_int_does_not_crash():
 
 def test_b_operations_as_string_treated_as_empty():
     """``operations = "abc"`` from a stale response must not crash."""
-    _isolate_hermes_home()
+    _isolate_openamer_home()
     bg = _load_module()
     if bg is None:
         print("SKIP module not importable")
@@ -234,7 +234,7 @@ def test_b_operations_as_string_treated_as_empty():
 
 def test_b_operations_as_none_treated_as_empty():
     """``operations = None`` (missing key, JSON null) is still safe."""
-    _isolate_hermes_home()
+    _isolate_openamer_home()
     bg = _load_module()
     if bg is None:
         print("SKIP module not importable")
@@ -263,7 +263,7 @@ def test_c_operations_contains_non_dict_entries():
     so this test exercises the verbose branch where iteration over
     per-entry fields actually happens.
     """
-    _isolate_hermes_home()
+    _isolate_openamer_home()
     bg = _load_module()
     if bg is None:
         print("SKIP module not importable")
@@ -300,7 +300,7 @@ def test_d_detail_non_dict_replaced_with_empty():
     """When ``call_details.get(tcid)`` returns None, summarize must coerce
     it to ``{}`` rather than calling ``.get(...)`` on ``None``.
     """
-    _isolate_hermes_home()
+    _isolate_openamer_home()
     bg = _load_module()
     if bg is None:
         print("SKIP module not importable")

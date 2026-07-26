@@ -2,7 +2,7 @@
 
 ``utils.warn_if_credential_file_broadly_readable`` is the shared helper for
 the class of bug PR #60009 reported for ``slack_tokens.json``: token files
-provisioned by hand (or written by older Hermes versions without an explicit
+provisioned by hand (or written by older OpenAmer versions without an explicit
 mode) end up group/world-readable under the default umask, silently exposing
 plaintext secrets to other local users. The helper warns with a remediation
 hint; adapters call it on every read path.

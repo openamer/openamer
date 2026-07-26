@@ -309,7 +309,7 @@ class TestGenerate:
         call_args = mock_post.call_args
         headers = call_args.kwargs.get("headers") or call_args[1].get("headers")
         assert "Bearer test-key-12345" in headers["Authorization"]
-        assert "Hermes-Agent" in headers["User-Agent"]
+        assert "OpenAmer-Agent" in headers["User-Agent"]
 
     def test_payload_resolution_is_literal_1k_or_2k(self):
         """Regression: xAI API rejects numeric resolutions ("1024"/"2048") with 422.
@@ -495,16 +495,16 @@ def test_xai_image_field_expands_user_home(tmp_path, monkeypatch):
 
 
 class TestXAIImageFieldReadGuard:
-    """#57698: local image inputs must not read Hermes credential stores."""
+    """#57698: local image inputs must not read OpenAmer credential stores."""
 
     def test_xai_image_field_blocks_credential_store(self, tmp_path, monkeypatch):
         from plugins.image_gen.xai import _xai_image_field
 
-        hermes_home = tmp_path / ".hermes"
-        hermes_home.mkdir()
-        auth_json = hermes_home / "auth.json"
+        openamer_home = tmp_path / ".openamer"
+        openamer_home.mkdir()
+        auth_json = openamer_home / "auth.json"
         auth_json.write_text('{"api_key":"sk-secret"}', encoding="utf-8")
-        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
 
         with pytest.raises(ValueError, match="credential store"):
             _xai_image_field(str(auth_json))
@@ -515,11 +515,11 @@ class TestXAIImageFieldReadGuard:
 
         from plugins.image_gen.xai import _xai_image_field
 
-        hermes_home = tmp_path / ".hermes"
-        hermes_home.mkdir()
-        auth_json = hermes_home / "auth.json"
+        openamer_home = tmp_path / ".openamer"
+        openamer_home.mkdir()
+        auth_json = openamer_home / "auth.json"
         auth_json.write_text('{"api_key":"sk-secret"}', encoding="utf-8")
-        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
 
         real_open = builtins.open
         opened: list = []

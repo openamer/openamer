@@ -34,11 +34,11 @@ def test_notify_sends_real_unix_datagram(tmp_path, monkeypatch):
     not hasattr(socket, "AF_UNIX"), reason="Unix datagram sockets are unavailable"
 )
 def test_notify_supports_systemd_abstract_socket(monkeypatch):
-    name = "\0hermes-test-notify"
+    name = "\0openamer-test-notify"
     receiver = socket.socket(socket.AF_UNIX, socket.SOCK_DGRAM)
     receiver.bind(name)
     receiver.settimeout(1.0)
-    monkeypatch.setenv("NOTIFY_SOCKET", "@hermes-test-notify")
+    monkeypatch.setenv("NOTIFY_SOCKET", "@openamer-test-notify")
 
     try:
         from gateway.systemd_notify import notify
@@ -70,7 +70,7 @@ def test_notify_uses_nonblocking_datagram_send(monkeypatch):
 
     import gateway.systemd_notify as notify_mod
 
-    monkeypatch.setenv("NOTIFY_SOCKET", "/tmp/hermes-test-notify")
+    monkeypatch.setenv("NOTIFY_SOCKET", "/tmp/openamer-test-notify")
     monkeypatch.setattr(notify_mod.socket, "socket", lambda *_args: _Sender())
 
     assert notify_mod.notify("READY=1") is True
@@ -85,7 +85,7 @@ def test_watchdog_interval_is_disabled_for_missing_invalid_or_nonpositive_values
         monkeypatch.delenv("WATCHDOG_USEC", raising=False)
     else:
         monkeypatch.setenv("WATCHDOG_USEC", raw)
-    monkeypatch.setenv("NOTIFY_SOCKET", "/tmp/hermes-test-notify-does-not-exist")
+    monkeypatch.setenv("NOTIFY_SOCKET", "/tmp/openamer-test-notify-does-not-exist")
 
     from gateway.systemd_notify import watchdog_interval_seconds
 
@@ -94,7 +94,7 @@ def test_watchdog_interval_is_disabled_for_missing_invalid_or_nonpositive_values
 
 def test_watchdog_latches_when_loop_progress_is_late(monkeypatch):
     calls: list[str] = []
-    monkeypatch.setenv("NOTIFY_SOCKET", "/tmp/hermes-test-notify")
+    monkeypatch.setenv("NOTIFY_SOCKET", "/tmp/openamer-test-notify")
     monkeypatch.setenv("WATCHDOG_USEC", "1000000")
 
     import gateway.systemd_notify as notify_mod
@@ -115,7 +115,7 @@ def test_watchdog_latches_when_loop_progress_is_late(monkeypatch):
 @pytest.mark.asyncio
 async def test_watchdog_sends_ready_heartbeat_and_stopping(monkeypatch):
     calls: list[str] = []
-    monkeypatch.setenv("NOTIFY_SOCKET", "/tmp/hermes-test-notify")
+    monkeypatch.setenv("NOTIFY_SOCKET", "/tmp/openamer-test-notify")
     monkeypatch.setenv("WATCHDOG_USEC", "20000")
 
     import gateway.systemd_notify as notify_mod
@@ -138,7 +138,7 @@ async def test_watchdog_sends_ready_heartbeat_and_stopping(monkeypatch):
 
 def test_watchdog_config_disabled_ignores_systemd_environment(monkeypatch):
     calls: list[str] = []
-    monkeypatch.setenv("NOTIFY_SOCKET", "/tmp/hermes-test-notify")
+    monkeypatch.setenv("NOTIFY_SOCKET", "/tmp/openamer-test-notify")
     monkeypatch.setenv("WATCHDOG_USEC", "1000000")
 
     import gateway.systemd_notify as notify_mod

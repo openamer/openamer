@@ -43,7 +43,7 @@ Key contract points encoded here:
     middleware persists back to the HttpOnly cookie. On a dead/expired/
     reuse-detected refresh token Portal returns 400 → ``RefreshExpiredError``
     → middleware redirects to ``/auth/login``.
-  - audience claim is the bare ``client_id`` (no ``hermes-cli:`` prefix).
+  - audience claim is the bare ``client_id`` (no ``openamer-cli:`` prefix).
   - tolerant ``oauth_contract_version`` check: missing → warn + proceed;
     present and ``!= 1`` → refuse.
 
@@ -51,7 +51,7 @@ The cookie payload returned by ``start_login`` stashes the PKCE
 ``code_verifier`` and the OAuth ``state`` parameter for the
 ``/auth/callback`` handler to retrieve. The auth-route layer is the owner
 of cookie names; this provider just hands back ``{"code_verifier": …,
-"state": …}`` and the route serializes those into the ``hermes_session_pkce``
+"state": …}`` and the route serializes those into the ``openamer_session_pkce``
 cookie.
 
 Refresh-token rotation: Portal rotates the refresh token on every
@@ -195,12 +195,12 @@ class NousDashboardAuthProvider(DashboardAuthProvider):
             "code_challenge_method": "S256",
         }
         redirect_url = f"{self._authorize_url}?{urllib.parse.urlencode(params)}"
-        # The auth-route layer expects ``cookie_payload[\"hermes_session_pkce\"]``
+        # The auth-route layer expects ``cookie_payload[\"openamer_session_pkce\"]``
         # as a single semicolon-delimited string of ``key=value`` segments,
         # matching the stub provider's shape. The route handler prepends
         # ``provider=`` so the callback knows which plugin to dispatch to.
         cookie_payload = {
-            "hermes_session_pkce": f"state={state};verifier={code_verifier}",
+            "openamer_session_pkce": f"state={state};verifier={code_verifier}",
         }
         return LoginStart(redirect_url=redirect_url, cookie_payload=cookie_payload)
 
@@ -631,7 +631,7 @@ def register(ctx) -> None:
             "HERMES_DASHBOARD_OAUTH_CLIENT_ID is not set (and "
             "dashboard.oauth.client_id in config.yaml is empty). The "
             "Nous Portal provisions this env var (shape "
-            "'agent:{instance_id}') when it deploys a Hermes Agent "
+            "'agent:{instance_id}') when it deploys a OpenAmer Agent "
             "instance — set it to your provisioned client id (either "
             "as an env var or under dashboard.oauth.client_id in "
             "config.yaml), or pass --insecure to skip the OAuth gate "

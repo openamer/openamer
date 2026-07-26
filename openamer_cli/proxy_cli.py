@@ -243,7 +243,7 @@ def cmd_setup(args: argparse.Namespace) -> int:
             return 1
     else:
         # Env-based discovery reads os.environ.  Operators commonly keep their
-        # provider keys only in ~/.hermes/.env (loaded automatically when the
+        # provider keys only in ~/.openamer/.env (loaded automatically when the
         # agent runs, but NOT exported into an interactive shell).  Fall back
         # to loading that file so `openamer egress setup` finds the same keys the
         # agent would — otherwise a user with keys solely in .env sees a
@@ -252,7 +252,7 @@ def cmd_setup(args: argparse.Namespace) -> int:
         if loaded:
             console.print(
                 f"  [dim]Loaded {loaded} provider key name(s) from "
-                f"~/.hermes/.env for discovery.[/dim]"
+                f"~/.openamer/.env for discovery.[/dim]"
             )
 
     discovered = ip.discover_provider_mappings(
@@ -260,7 +260,7 @@ def cmd_setup(args: argparse.Namespace) -> int:
     )
 
     # Preserve tokens for providers we already had unless the operator
-    # explicitly requested rotation.  This prevents re-running `hermes
+    # explicitly requested rotation.  This prevents re-running `openamer
     # egress setup` from invalidating tokens baked into already-running
     # sandboxes.
     existing = ip.load_mappings()
@@ -862,10 +862,10 @@ def cmd_config(args: argparse.Namespace) -> int:
 
 
 def _load_env_file_into_environ() -> int:
-    """Backfill provider keys from ``~/.hermes/.env`` into ``os.environ``.
+    """Backfill provider keys from ``~/.openamer/.env`` into ``os.environ``.
 
     ``openamer egress setup`` discovers providers by reading ``os.environ``, but
-    many operators keep their keys ONLY in ``~/.hermes/.env`` (which the agent
+    many operators keep their keys ONLY in ``~/.openamer/.env`` (which the agent
     loads at runtime but which is NOT exported into an interactive shell).
     Without this, ``setup`` reports "no provider keys found" even though the
     keys plainly exist — a confusing first-run papercut.

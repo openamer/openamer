@@ -1,7 +1,7 @@
-# nix/tui.nix — Hermes TUI (Ink/React) compiled with tsc and bundled
-{ pkgs, hermesNpmLib, ... }:
+# nix/tui.nix — OpenAmer TUI (Ink/React) compiled with tsc and bundled
+{ pkgs, openamerNpmLib, ... }:
 let
-  npm = hermesNpmLib.mkNpmPassthru {
+  npm = openamerNpmLib.mkNpmPassthru {
     dirs = [
       "ui-tui"
       "apps/shared"
@@ -12,7 +12,7 @@ let
   version = packageJson.version;
 in
 pkgs.buildNpmPackage (npm // {
-  pname = "hermes-tui";
+  pname = "openamer-tui";
   inherit version;
 
   doCheck = false;
@@ -26,12 +26,12 @@ pkgs.buildNpmPackage (npm // {
   installPhase = ''
     runHook preInstall
 
-    mkdir -p $out/lib/hermes-tui
+    mkdir -p $out/lib/openamer-tui
     # esbuild writes to ui-tui/dist/ from the source root (no cd).
-    cp -r ui-tui/dist $out/lib/hermes-tui/dist
+    cp -r ui-tui/dist $out/lib/openamer-tui/dist
 
     # package.json kept for "type": "module" resolution on `node dist/entry.js`.
-    cp ui-tui/package.json $out/lib/hermes-tui/
+    cp ui-tui/package.json $out/lib/openamer-tui/
 
     runHook postInstall
   '';

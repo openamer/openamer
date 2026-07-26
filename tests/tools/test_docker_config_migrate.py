@@ -23,11 +23,11 @@ def _load_script_module():
     return module
 
 
-def _run_migration(hermes_home: Path, **env_overrides: str) -> subprocess.CompletedProcess[str]:
+def _run_migration(openamer_home: Path, **env_overrides: str) -> subprocess.CompletedProcess[str]:
     env = os.environ.copy()
     env.update(
         {
-            "OPENAMER_HOME": str(hermes_home),
+            "OPENAMER_HOME": str(openamer_home),
             "HERMES_SKIP_CHMOD": "1",
             "PYTHONPATH": str(REPO_ROOT),
         }
@@ -126,7 +126,7 @@ def test_docker_config_migrate_does_not_rewrite_invalid_yaml(tmp_path: Path) -> 
 
     assert proc.returncode == 0, proc.stderr
     assert "Migrating config schema" not in proc.stdout
-    assert "hermes config:" in proc.stderr
+    assert "openamer config:" in proc.stderr
     assert config_path.read_text(encoding="utf-8") == original
     assert not list(tmp_path.glob("*.bak-*"))
 

@@ -57,7 +57,7 @@ export function usePlugins() {
       // re-execute a previously cached <script> URL.
       const baseUrl = `${OPENAMER_BASE_PATH}/dashboard-plugins/${manifest.name}/${manifest.entry}`;
       const scriptSrc = import.meta.env.DEV
-        ? `${baseUrl}?hermes_dv=${Date.now()}`
+        ? `${baseUrl}?openamer_dv=${Date.now()}`
         : baseUrl;
       if (!import.meta.env.DEV) {
         if (loadedScripts.current.has(baseUrl)) continue;
@@ -65,7 +65,7 @@ export function usePlugins() {
       }
 
       const script = document.createElement("script");
-      script.setAttribute("data-hermes-plugin", manifest.name);
+      script.setAttribute("data-openamer-plugin", manifest.name);
       script.src = scriptSrc;
       script.async = true;
       // SRI integrity verification — defense against compromised plugin

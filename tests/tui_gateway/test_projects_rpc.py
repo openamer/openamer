@@ -255,7 +255,7 @@ def test_record_repos_persists_and_shows_zero_session_repo(tmp_path):
     repo = tmp_path / "fresh-repo"
     repo.mkdir()
 
-    # Repo-first: a scanned repo with no hermes sessions still surfaces.
+    # Repo-first: a scanned repo with no openamer sessions still surfaces.
     _call("projects.record_repos", {"repos": [{"root": str(repo), "label": "fresh-repo"}]})
 
     by_label = {r["label"]: r for r in _call("projects.discover_repos")["repos"]}

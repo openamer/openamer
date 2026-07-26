@@ -1,7 +1,7 @@
 """
 Backup and import commands for openamer CLI.
 
-`openamer backup` creates a zip archive of the entire ~/.hermes/ directory
+`openamer backup` creates a zip archive of the entire ~/.openamer/ directory
 (excluding the openamer-agent repo and transient files).
 
 `openamer import` restores from a backup zip, overlaying onto the current
@@ -21,7 +21,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from openamer_constants import get_default_hermes_root, get_hermes_home, display_hermes_home
+from openamer_constants import get_default_openamer_root, get_openamer_home, display_openamer_home
 
 logger = logging.getLogger(__name__)
 
@@ -503,10 +503,10 @@ def _format_size(nbytes: int) -> str:
 
 def run_backup(args) -> None:
     """Create a zip backup of the OpenAmer home directory."""
-    hermes_root = get_default_hermes_root()
+    openamer_root = get_default_openamer_root()
 
-    if not hermes_root.is_dir():
-        print(f"Error: OpenAmer home directory not found at {hermes_root}")
+    if not openamer_root.is_dir():
+        print(f"Error: OpenAmer home directory not found at {openamer_root}")
         sys.exit(1)
 
     # Determine output path
@@ -528,13 +528,13 @@ def run_backup(args) -> None:
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
     # Collect files
-    print(f"Scanning {display_hermes_home()} ...")
+    print(f"Scanning {display_openamer_home()} ...")
     files_to_add: list[tuple[Path, Path]] = []  # (absolute, relative)
     skipped_dirs = set()
 
-    for dirpath, dirnames, filenames in os.walk(hermes_root, followlinks=False):
+    for dirpath, dirnames, filenames in os.walk(openamer_root, followlinks=False):
         dp = Path(dirpath)
-        rel_dir = dp.relative_to(hermes_root)
+        rel_dir = dp.relative_to(openamer_root)
 
         # Prune excluded directories in-place so os.walk doesn't descend
         # ``openamer-agent`` is only pruned at the root level; nested dirs
@@ -550,7 +550,7 @@ def run_backup(args) -> None:
 
         for fname in filenames:
             fpath = dp / fname
-            rel = fpath.relative_to(hermes_root)
+            rel = fpath.relative_to(openamer_root)
 
             if _should_skip_backup_file(fpath, rel, out_path):
                 continue
@@ -653,7 +653,7 @@ def run_backup(args) -> None:
     if external_to_add:
         print(
             f"\n  Included {len(external_to_add)} memory-provider file(s) "
-            f"stored outside {display_hermes_home()}."
+            f"stored outside {display_openamer_home()}."
         )
 
     if skipped_external:
@@ -714,7 +714,7 @@ def _validate_backup_zip(zf: zipfile.ZipFile) -> tuple[bool, str]:
 def _detect_prefix(zf: zipfile.ZipFile) -> str:
     """Detect if the zip has a common directory prefix wrapping all entries.
 
-    Some tools zip as `.hermes/config.yaml` instead of `config.yaml`.
+    Some tools zip as `.openamer/config.yaml` instead of `config.yaml`.
     Returns the prefix to strip (empty string if none).
     """
     names = [n for n in zf.namelist() if not n.endswith("/")]
@@ -729,7 +729,7 @@ def _detect_prefix(zf: zipfile.ZipFile) -> str:
     if len(first_parts) == 1:
         prefix = first_parts.pop()
         # Only strip if it looks like a openamer dir name
-        if prefix in {".hermes", "hermes"}:
+        if prefix in {".openamer", "openamer"}:
             return prefix + "/"
 
     return ""
@@ -747,7 +747,7 @@ def run_import(args) -> None:
         print(f"Error: Not a valid zip file: {zip_path}")
         sys.exit(1)
 
-    hermes_root = get_default_hermes_root()
+    openamer_root = get_default_openamer_root()
 
     with zipfile.ZipFile(zip_path, "r") as zf:
         # Validate
@@ -761,14 +761,14 @@ def run_import(args) -> None:
         file_count = len(members)
 
         print(f"Backup contains {file_count} files")
-        print(f"Target: {display_hermes_home()}")
+        print(f"Target: {display_openamer_home()}")
 
         if prefix:
             print(f"Detected archive prefix: {prefix!r} (will be stripped)")
 
         # Check for existing installation
-        has_config = (hermes_root / "config.yaml").exists()
-        has_env = (hermes_root / ".env").exists()
+        has_config = (openamer_root / "config.yaml").exists()
+        has_env = (openamer_root / ".env").exists()
 
         if (has_config or has_env) and not args.force:
             print()
@@ -786,7 +786,7 @@ def run_import(args) -> None:
 
         # Extract
         print(f"\nImporting {file_count} files ...")
-        hermes_root.mkdir(parents=True, exist_ok=True)
+        openamer_root.mkdir(parents=True, exist_ok=True)
 
         errors = []
         restored = 0
@@ -847,11 +847,11 @@ def run_import(args) -> None:
                 skipped_runtime.append(rel)
                 continue
 
-            target = hermes_root / rel
+            target = openamer_root / rel
 
             # Security: reject absolute paths and traversals
             try:
-                target.resolve().relative_to(hermes_root.resolve())
+                target.resolve().relative_to(openamer_root.resolve())
             except ValueError:
                 errors.append(f"  {rel}: path traversal blocked")
                 continue
@@ -874,12 +874,12 @@ def run_import(args) -> None:
         # Summary
         print()
         print(f"Import complete: {restored} files restored in {elapsed:.1f}s")
-        print(f"  Target: {display_hermes_home()}")
+        print(f"  Target: {display_openamer_home()}")
 
         if restored_external:
             print(
                 f"\n  Restored {restored_external} memory-provider file(s) to "
-                f"their original location(s) outside {display_hermes_home()}."
+                f"their original location(s) outside {display_openamer_home()}."
             )
 
         if errors:
@@ -900,7 +900,7 @@ def run_import(args) -> None:
                 print(f"    ... and {len(skipped_runtime) - 10} more")
 
         # Post-import: restore profile wrapper scripts
-        profiles_dir = hermes_root / "profiles"
+        profiles_dir = openamer_root / "profiles"
         restored_profiles = []
         if profiles_dir.is_dir():
             try:
@@ -938,11 +938,11 @@ def run_import(args) -> None:
                 # openamer_cli.profiles might not be available (fresh install)
                 if any(profiles_dir.iterdir()):
                     print("\n  Profiles detected but aliases could not be created.")
-                    print("  Run: openamer profile list  (after installing hermes)")
+                    print("  Run: openamer profile list  (after installing openamer)")
 
         # Guidance
         print()
-        if not (hermes_root / "openamer-agent").is_dir():
+        if not (openamer_root / "openamer-agent").is_dir():
             print("Note: The openamer-agent codebase was not included in the backup.")
             print("  If this is a fresh install, run: openamer update")
 
@@ -1003,14 +1003,14 @@ _QUICK_SNAPSHOTS_DIR = "state-snapshots"
 _QUICK_DEFAULT_KEEP = 20
 
 
-def _quick_snapshot_root(hermes_home: Optional[Path] = None) -> Path:
-    home = hermes_home or get_openamer_home()
+def _quick_snapshot_root(openamer_home: Optional[Path] = None) -> Path:
+    home = openamer_home or get_openamer_home()
     return home / _QUICK_SNAPSHOTS_DIR
 
 
 def create_quick_snapshot(
     label: Optional[str] = None,
-    hermes_home: Optional[Path] = None,
+    openamer_home: Optional[Path] = None,
     keep: Optional[int] = None,
     max_file_size: Optional[int] = None,
 ) -> Optional[str]:
@@ -1032,7 +1032,7 @@ def create_quick_snapshot(
     Returns:
         Snapshot ID (timestamp-based), or None if no files found.
     """
-    home = hermes_home or get_openamer_home()
+    home = openamer_home or get_openamer_home()
     root = _quick_snapshot_root(home)
 
     def _too_large(path: Path, rel_name: str) -> bool:
@@ -1222,10 +1222,10 @@ def create_quick_snapshot(
 
 def list_quick_snapshots(
     limit: int = 20,
-    hermes_home: Optional[Path] = None,
+    openamer_home: Optional[Path] = None,
 ) -> List[Dict[str, Any]]:
     """List existing quick state snapshots, most recent first."""
-    root = _quick_snapshot_root(hermes_home)
+    root = _quick_snapshot_root(openamer_home)
     if not root.exists():
         return []
 
@@ -1248,14 +1248,14 @@ def list_quick_snapshots(
 
 def restore_quick_snapshot(
     snapshot_id: str,
-    hermes_home: Optional[Path] = None,
+    openamer_home: Optional[Path] = None,
 ) -> bool:
     """Restore state from a quick snapshot.
 
     Overwrites current state files with the snapshot's copies.
     Returns True if at least one file was restored.
     """
-    home = hermes_home or get_openamer_home()
+    home = openamer_home or get_openamer_home()
     root = _quick_snapshot_root(home)
 
     # Security: reject snapshot_id values that contain path separators or
@@ -1360,7 +1360,7 @@ def _count_cron_jobs(path: Path) -> Optional[int]:
 
 def restore_cron_jobs_if_emptied(
     snapshot_id: str,
-    hermes_home: Optional[Path] = None,
+    openamer_home: Optional[Path] = None,
 ) -> Optional[Dict[str, Any]]:
     """Safety net for silent cron-job loss across ``openamer update``.
 
@@ -1383,7 +1383,7 @@ def restore_cron_jobs_if_emptied(
     Args:
         snapshot_id: The pre-update quick-snapshot id (from
             :func:`create_quick_snapshot`).
-        hermes_home: Override for the OpenAmer home directory (tests).
+        openamer_home: Override for the OpenAmer home directory (tests).
 
     Returns:
         ``None`` when no action was taken (the common, healthy path). On a
@@ -1393,7 +1393,7 @@ def restore_cron_jobs_if_emptied(
     if not snapshot_id:
         return None
 
-    home = hermes_home or get_openamer_home()
+    home = openamer_home or get_openamer_home()
     live_path = home / _CRON_JOBS_REL
 
     live_count = _count_cron_jobs(live_path)
@@ -1458,10 +1458,10 @@ def _prune_quick_snapshots(root: Path, keep: int = _QUICK_DEFAULT_KEEP) -> int:
 
 def prune_quick_snapshots(
     keep: int = _QUICK_DEFAULT_KEEP,
-    hermes_home: Optional[Path] = None,
+    openamer_home: Optional[Path] = None,
 ) -> int:
     """Manually prune quick snapshots. Returns count deleted."""
-    return _prune_quick_snapshots(_quick_snapshot_root(hermes_home), keep=keep)
+    return _prune_quick_snapshots(_quick_snapshot_root(openamer_home), keep=keep)
 
 
 def run_quick_backup(args) -> None:
@@ -1471,7 +1471,7 @@ def run_quick_backup(args) -> None:
     if snap_id:
         print(f"State snapshot created: {snap_id}")
         snaps = list_quick_snapshots()
-        print(f"  {len(snaps)} snapshot(s) stored in {display_hermes_home()}/state-snapshots/")
+        print(f"  {len(snaps)} snapshot(s) stored in {display_openamer_home()}/state-snapshots/")
         print(f"  Restore with: /snapshot restore {snap_id}")
     else:
         print("No state files found to snapshot.")
@@ -1481,8 +1481,8 @@ def run_quick_backup(args) -> None:
 # Shared full-zip backup helper
 # ---------------------------------------------------------------------------
 
-def _write_full_zip_backup(out_path: Path, hermes_root: Path) -> Optional[Path]:
-    """Write a full zip snapshot of ``hermes_root`` to ``out_path``.
+def _write_full_zip_backup(out_path: Path, openamer_root: Path) -> Optional[Path]:
+    """Write a full zip snapshot of ``openamer_root`` to ``out_path``.
 
     Uses the same exclusion rules and SQLite safe-copy as :func:`run_backup`.
     Returns the output path on success, None on failure (nothing to back up,
@@ -1490,7 +1490,7 @@ def _write_full_zip_backup(out_path: Path, hermes_root: Path) -> Optional[Path]:
     """
     files_to_add: list[tuple[Path, Path]] = []
     try:
-        for dirpath, dirnames, filenames in os.walk(hermes_root, followlinks=False):
+        for dirpath, dirnames, filenames in os.walk(openamer_root, followlinks=False):
             dp = Path(dirpath)
             # Prune excluded directories in-place so os.walk doesn't descend
             dirnames[:] = [d for d in dirnames if d not in _EXCLUDED_DIRS]
@@ -1498,7 +1498,7 @@ def _write_full_zip_backup(out_path: Path, hermes_root: Path) -> Optional[Path]:
             for fname in filenames:
                 fpath = dp / fname
                 try:
-                    rel = fpath.relative_to(hermes_root)
+                    rel = fpath.relative_to(openamer_root)
                 except ValueError:
                     continue
 
@@ -1571,8 +1571,8 @@ _PRE_UPDATE_PREFIX = "pre-update-"
 _PRE_UPDATE_DEFAULT_KEEP = 5
 
 
-def _pre_update_backup_dir(hermes_home: Optional[Path] = None) -> Path:
-    home = hermes_home or get_openamer_home()
+def _pre_update_backup_dir(openamer_home: Optional[Path] = None) -> Path:
+    home = openamer_home or get_openamer_home()
     return home / _PRE_UPDATE_BACKUPS_DIR
 
 
@@ -1614,7 +1614,7 @@ def _prune_pre_update_backups(backup_dir: Path, keep: int) -> int:
 
 
 def create_pre_update_backup(
-    hermes_home: Optional[Path] = None,
+    openamer_home: Optional[Path] = None,
     keep: int = _PRE_UPDATE_DEFAULT_KEEP,
 ) -> Optional[Path]:
     """Create a full zip backup of OPENAMER_HOME under ``backups/``.
@@ -1627,11 +1627,11 @@ def create_pre_update_backup(
     found or the backup could not be created.  Never raises — the caller
     (``openamer update``) should continue even if the backup fails.
     """
-    hermes_root = hermes_home or get_default_hermes_root()
-    if not hermes_root.is_dir():
+    openamer_root = openamer_home or get_default_openamer_root()
+    if not openamer_root.is_dir():
         return None
 
-    backup_dir = _pre_update_backup_dir(hermes_root)
+    backup_dir = _pre_update_backup_dir(openamer_root)
     try:
         backup_dir.mkdir(parents=True, exist_ok=True)
     except OSError as exc:
@@ -1641,7 +1641,7 @@ def create_pre_update_backup(
     stamp = datetime.now().strftime("%Y-%m-%d-%H%M%S")
     out_path = backup_dir / f"{_PRE_UPDATE_PREFIX}{stamp}.zip"
 
-    result = _write_full_zip_backup(out_path, hermes_root)
+    result = _write_full_zip_backup(out_path, openamer_root)
     if result is None:
         return None
 
@@ -1686,7 +1686,7 @@ def _prune_pre_migration_backups(backup_dir: Path, keep: int) -> int:
 
 
 def create_pre_migration_backup(
-    hermes_home: Optional[Path] = None,
+    openamer_home: Optional[Path] = None,
     keep: int = _PRE_MIGRATION_DEFAULT_KEEP,
 ) -> Optional[Path]:
     """Create a full zip backup of OPENAMER_HOME under ``backups/`` before a
@@ -1702,13 +1702,13 @@ def create_pre_migration_backup(
     to back up (fresh install) or the write failed.  Never raises — the
     caller decides whether to abort or proceed.
     """
-    hermes_root = hermes_home or get_default_hermes_root()
-    if not hermes_root.is_dir():
+    openamer_root = openamer_home or get_default_openamer_root()
+    if not openamer_root.is_dir():
         return None
 
     # Reuses the shared backups/ directory so `openamer import` and the
     # update-backup listing pick up pre-migration archives too.
-    backup_dir = _pre_update_backup_dir(hermes_root)
+    backup_dir = _pre_update_backup_dir(openamer_root)
     try:
         backup_dir.mkdir(parents=True, exist_ok=True)
     except OSError as exc:
@@ -1718,7 +1718,7 @@ def create_pre_migration_backup(
     stamp = datetime.now().strftime("%Y-%m-%d-%H%M%S")
     out_path = backup_dir / f"{_PRE_MIGRATION_PREFIX}{stamp}.zip"
 
-    result = _write_full_zip_backup(out_path, hermes_root)
+    result = _write_full_zip_backup(out_path, openamer_root)
     if result is None:
         return None
 

@@ -1,6 +1,6 @@
 """Platform/source tagging for the desktop chat surface.
 
-The desktop app's chat panel uses ``hermes serve`` (the ``tui_gateway``
+The desktop app's chat panel uses ``openamer serve`` (the ``tui_gateway``
 backend), so every chat session historically got ``platform="tui"`` stamped
 on it — even though the user is in a graphical chat surface, not a
 terminal. That mis-tag is why the agent suggested TUI-only slash commands

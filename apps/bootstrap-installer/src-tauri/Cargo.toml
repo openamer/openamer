@@ -1,24 +1,24 @@
 [package]
-name = "hermes-bootstrap"
+name = "openamer-bootstrap"
 version = "0.0.1"
-description = "Hermes Setup — signed installer that drives scripts/install.ps1"
+description = "OpenAmer Setup — signed installer that drives scripts/install.ps1"
 authors = ["Nous Research <info@nousresearch.com>"]
 edition = "2021"
 rust-version = "1.77"
 
 # Rename the output binary so the distributed artifact is literally
-# `Hermes-Setup.exe` on disk — not `hermes-bootstrap.exe`. Grandma sees
+# `OpenAmer-Setup.exe` on disk — not `openamer-bootstrap.exe`. Grandma sees
 # what we hand her, period. Tauri honors [[bin]] over [package].name
 # for the produced executable name.
 [[bin]]
-name = "Hermes-Setup"
+name = "OpenAmer-Setup"
 path = "src/main.rs"
 
 # The library target name MUST match the `withGlobalTauri` binding name that
 # tauri.conf.json's `app.windows[].label` references. We don't ship a separate
 # lib for now; everything is in src/.
 [lib]
-name = "hermes_bootstrap_lib"
+name = "openamer_bootstrap_lib"
 crate-type = ["staticlib", "cdylib", "rlib"]
 
 [build-dependencies]

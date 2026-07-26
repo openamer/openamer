@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 
 import { api } from "./api";
 
-const SESSION_HEADER = "X-Hermes-Session-Token";
+const SESSION_HEADER = "X-OpenAmer-Session-Token";
 
 afterEach(() => {
   vi.restoreAllMocks();

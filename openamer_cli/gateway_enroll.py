@@ -6,7 +6,7 @@ zero-touch enrollment in the connector repo's
 ``docs/connector-gateway-auth-design.md``:
 
   1. Resolve a fresh Nous Portal access token from the existing login
-     (``~/.hermes/auth.json``) — the same path ``openamer dashboard register``
+     (``~/.openamer/auth.json``) — the same path ``openamer dashboard register``
      uses (``resolve_nous_access_token``). This proves *which Nous org (tenant)*
      the caller owns; the connector derives the authoritative tenant from it via
      ``GET /api/oauth/account`` (never from anything the gateway asserts).
@@ -17,7 +17,7 @@ zero-touch enrollment in the connector repo's
      delivery key, and returns both ONCE.
   4. Persist ``GATEWAY_RELAY_ID`` / ``GATEWAY_RELAY_SECRET`` /
      ``GATEWAY_RELAY_DELIVERY_KEY`` (+ ``GATEWAY_RELAY_URL`` if supplied) into
-     ``~/.hermes/.env``. The per-gateway secret authenticates the WS upgrade;
+     ``~/.openamer/.env``. The per-gateway secret authenticates the WS upgrade;
      the per-tenant delivery key verifies signed inbound deliveries.
 
 Managed/hosted installs do NOT self-enroll: the orchestrator (NAS) mints the
@@ -52,7 +52,7 @@ def _default_gateway_id() -> str:
         host = socket.gethostname().strip()
     except Exception:
         host = ""
-    return f"gw-{host or 'hermes'}"
+    return f"gw-{host or 'openamer'}"
 
 
 def _resolve_connector_url(override: Optional[str]) -> Optional[str]:
@@ -228,7 +228,7 @@ def cmd_gateway_enroll(args) -> None:
     resolved_gateway_id = str(result.get("gatewayId") or gateway_id)
 
     # 4. Persist the creds idempotently. The secret + delivery key are sensitive;
-    #    save_env_value writes them to ~/.hermes/.env (0600 dir) and never logs.
+    #    save_env_value writes them to ~/.openamer/.env (0600 dir) and never logs.
     to_write = {
         "GATEWAY_RELAY_ID": resolved_gateway_id,
         "GATEWAY_RELAY_SECRET": secret,

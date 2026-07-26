@@ -5,7 +5,7 @@ Unified tool configuration for OpenAmer Agent.
 Select a platform → toggle toolsets on/off → for newly enabled tools
 that need API keys, run through provider-aware configuration.
 
-Saves per-platform tool configuration to ~/.hermes/config.yaml under
+Saves per-platform tool configuration to ~/.openamer/config.yaml under
 the `platform_toolsets` key.
 """
 
@@ -1166,7 +1166,7 @@ def _run_cua_driver_installer(label: str = "Installing", verbose: bool = True) -
             )
             # Preserve the full installer output. During `openamer update`,
             # sys.stdout is the mirroring _UpdateOutputStream whose `_log`
-            # handle is ~/.hermes/logs/update.log — write straight to it so
+            # handle is ~/.openamer/logs/update.log — write straight to it so
             # the captured "Next steps" wall is kept in full (success AND
             # failure), without echoing it to the terminal.
             if result.stdout:
@@ -1249,8 +1249,8 @@ def _run_post_setup(post_setup_key: str):
             if result.returncode == 0:
                 _print_success("    Node.js dependencies installed")
             else:
-                from openamer_constants import display_hermes_home
-                _print_warning(f"    npm install failed - run manually: cd {display_hermes_home()}/openamer-agent && npm install --workspaces=false")
+                from openamer_constants import display_openamer_home
+                _print_warning(f"    npm install failed - run manually: cd {display_openamer_home()}/openamer-agent && npm install --workspaces=false")
                 if result.stderr:
                     _print_info(f"      {result.stderr.strip()[:200]}")
         elif node_modules.exists():
@@ -1423,7 +1423,7 @@ def _run_post_setup(post_setup_key: str):
                 return
         _print_info("    Default voice: en_US-lessac-medium (downloaded on first TTS call)")
         _print_info("    Full voice list: https://github.com/OHF-Voice/piper1-gpl/blob/main/docs/VOICES.md")
-        _print_info("    Switch voices by setting tts.piper.voice in ~/.hermes/config.yaml")
+        _print_info("    Switch voices by setting tts.piper.voice in ~/.openamer/config.yaml")
 
     elif post_setup_key == "ddgs":
         try:
@@ -1451,7 +1451,7 @@ def _run_post_setup(post_setup_key: str):
         # Run the full `openamer auth spotify` flow — if the user has no
         # client_id yet, this drops them into the interactive wizard
         # (opens the Spotify dashboard, prompts for client_id, persists
-        # to ~/.hermes/.env), then continues straight into PKCE. If they
+        # to ~/.openamer/.env), then continues straight into PKCE. If they
         # already have an app, it skips the wizard and just does OAuth.
         from types import SimpleNamespace
         try:
@@ -1774,7 +1774,7 @@ def _get_platform_tools(
             if ts in configurable_keys and _toolset_allowed_for_platform(ts, platform)
         }
         # Mixed config: composite toolset alongside configurables (e.g.
-        # ``[openamer-cli, spotify]`` after enabling Spotify via ``hermes
+        # ``[openamer-cli, spotify]`` after enabling Spotify via ``openamer
         # tools``). Without expansion the composite name is silently dropped,
         # leaving sessions with only the configurable opt-ins and no native
         # tools. Mirror the else-branch's subset inference, but apply
@@ -1996,7 +1996,7 @@ def _get_platform_tools(
         enabled_toolsets -= disabled_set
 
     # #38798: if this platform was explicitly configured but every toolset name
-    # is invalid (e.g. a migration or hand-edit left `hermes` instead of
+    # is invalid (e.g. a migration or hand-edit left `openamer` instead of
     # `openamer-cli`), resolve_toolset() returns [] for each and the platform ends
     # up with no native tools — silently, with no error. Surface it at the point
     # tools are resolved for a session so an already-corrupted config is caught
@@ -4551,9 +4551,9 @@ def tools_command(args=None, first_install: bool = False, config: dict = None):
         platform_choices[idx] = f"Configure {pinfo['label']}  ({new_count}/{total} enabled)"
 
     print()
-    from openamer_constants import display_hermes_home
-    print(color(f"  Tool configuration saved to {display_hermes_home()}/config.yaml", Colors.DIM))
-    print(color("  Changes take effect on next 'hermes' or gateway restart.", Colors.DIM))
+    from openamer_constants import display_openamer_home
+    print(color(f"  Tool configuration saved to {display_openamer_home()}/config.yaml", Colors.DIM))
+    print(color("  Changes take effect on next 'openamer' or gateway restart.", Colors.DIM))
     print()
 
 

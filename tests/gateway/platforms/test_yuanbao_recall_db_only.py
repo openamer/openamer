@@ -13,7 +13,7 @@ from gateway.config import GatewayConfig
 
 
 def _pin_db(monkeypatch, tmp_path):
-    """Force SessionDB() to write into tmp_path instead of the real ~/.hermes."""
+    """Force SessionDB() to write into tmp_path instead of the real ~/.openamer."""
     import openamer_state
     monkeypatch.setattr(openamer_state, "DEFAULT_DB_PATH", tmp_path / "state.db")
 

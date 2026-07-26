@@ -31,7 +31,7 @@ def _state(token: str) -> dict[str, Any]:
     return {
         "access_token": token,
         "portal_base_url": "https://portal.example.test",
-        "client_id": "hermes-cli",
+        "client_id": "openamer-cli",
     }
 
 
@@ -85,9 +85,9 @@ def test_valid_jwt_with_paid_access_true(monkeypatch):
         {
             "sub": "user_123",
             "org_id": "org_123",
-            "client_id": "hermes-cli",
-            "product_id": "nous-hermes-agent",
-            "nous_client": "hermes-agent",
+            "client_id": "openamer-cli",
+            "product_id": "nous-openamer-agent",
+            "nous_client": "openamer-agent",
             "exp": int(time.time()) + 900,
             "paid_access": True,
             "subscription_tier": 2,
@@ -102,7 +102,7 @@ def test_valid_jwt_with_paid_access_true(monkeypatch):
     assert info.logged_in is True
     assert info.user_id == "user_123"
     assert info.org_id == "org_123"
-    assert info.product_id == "nous-hermes-agent"
+    assert info.product_id == "nous-openamer-agent"
     assert info.paid_service_access is True
     assert info.is_paid is True
     assert info.is_free_tier is False
@@ -325,7 +325,7 @@ def test_pool_oauth_entry_uses_jwt_snapshot(monkeypatch):
         {
             "sub": "user_123",
             "org_id": "org_123",
-            "client_id": "hermes-cli",
+            "client_id": "openamer-cli",
             "exp": int(time.time()) + 900,
             "paid_access": True,
         }
@@ -456,7 +456,7 @@ def test_entitlement_message_for_inference_key_without_portal_login():
     assert message is not None
     assert "Nous inference credentials are configured" in message
     assert "cannot verify your Nous Portal paid access" in message
-    assert "Log in with `hermes model`" in message
+    assert "Log in with `openamer model`" in message
 
 
 def test_entitlement_message_for_active_paid_subscription_with_no_credits():
@@ -527,7 +527,7 @@ def test_entitlement_message_for_unknown_entitlement_is_explicit():
     assert message is not None
     assert "could not verify" in message
     assert "account_api_timeout" in message
-    assert "Run `hermes model`" in message
+    assert "Run `openamer model`" in message
 
 
 def test_entitlement_message_for_account_missing():

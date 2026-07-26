@@ -36,14 +36,14 @@ def _write_skill(skills_dir: Path, name: str, description: str = "") -> Path:
 
 
 @pytest.fixture
-def hermes_home(monkeypatch):
+def openamer_home(monkeypatch):
     """Isolate OPENAMER_HOME for ``reload_skills`` tests.
 
     Rather than popping cache-bearing modules from ``sys.modules``,
     we monkeypatch the module-level ``OPENAMER_HOME`` / ``SKILLS_DIR``
     constants in place so the isolation is local to this fixture's scope.
     """
-    td = tempfile.mkdtemp(prefix="hermes-reload-skills-")
+    td = tempfile.mkdtemp(prefix="openamer-reload-skills-")
     monkeypatch.setenv("OPENAMER_HOME", td)
     home = Path(td)
     (home / "skills").mkdir(parents=True, exist_ok=True)
@@ -66,7 +66,7 @@ def hermes_home(monkeypatch):
 class TestReloadSkillsHelper:
     """``agent.skill_commands.reload_skills``."""
 
-    def test_returns_expected_keys(self, hermes_home):
+    def test_returns_expected_keys(self, openamer_home):
         from agent.skill_commands import reload_skills
 
         result = reload_skills()
@@ -75,13 +75,13 @@ class TestReloadSkillsHelper:
         assert result["added"] == []
         assert result["removed"] == []
 
-    def test_detects_newly_added_skill_with_description(self, hermes_home):
+    def test_detects_newly_added_skill_with_description(self, openamer_home):
         from agent.skill_commands import reload_skills, get_skill_commands
 
         # Prime the cache so subsequent diff is meaningful
         get_skill_commands()
 
-        _write_skill(hermes_home / "skills", "demo", "a demo skill")
+        _write_skill(openamer_home / "skills", "demo", "a demo skill")
         result = reload_skills()
 
         assert result["added"] == [{"name": "demo", "description": "a demo skill"}]
@@ -89,10 +89,10 @@ class TestReloadSkillsHelper:
         assert result["total"] == 1
         assert result["commands"] == 1
 
-    def test_detects_removed_skill_carries_description(self, hermes_home):
+    def test_detects_removed_skill_carries_description(self, openamer_home):
         from agent.skill_commands import reload_skills
 
-        skill_dir = _write_skill(hermes_home / "skills", "demo", "soon to be gone")
+        skill_dir = _write_skill(openamer_home / "skills", "demo", "soon to be gone")
         # First reload: demo present
         first = reload_skills()
         assert first["total"] == 1
@@ -107,7 +107,7 @@ class TestReloadSkillsHelper:
         assert second["added"] == []
         assert second["total"] == 0
 
-    def test_description_passes_through_verbatim(self, hermes_home):
+    def test_description_passes_through_verbatim(self, openamer_home):
         """``description`` must be the full SKILL.md frontmatter string — no
         truncation. The system prompt renders skills as
         ``    - name: description`` without a length cap, and the reload
@@ -117,16 +117,16 @@ class TestReloadSkillsHelper:
 
         get_skill_commands()  # prime
         long_desc = "x" * 200
-        _write_skill(hermes_home / "skills", "longdesc", long_desc)
+        _write_skill(openamer_home / "skills", "longdesc", long_desc)
 
         result = reload_skills()
         assert len(result["added"]) == 1
         assert result["added"][0]["description"] == long_desc
 
-    def test_unchanged_skills_appear_in_unchanged_list(self, hermes_home):
+    def test_unchanged_skills_appear_in_unchanged_list(self, openamer_home):
         from agent.skill_commands import reload_skills, get_skill_commands
 
-        _write_skill(hermes_home / "skills", "alpha")
+        _write_skill(openamer_home / "skills", "alpha")
         # Prime cache
         get_skill_commands()
 
@@ -136,7 +136,7 @@ class TestReloadSkillsHelper:
         assert result["added"] == []
         assert result["removed"] == []
 
-    def test_does_not_invalidate_prompt_cache_snapshot(self, hermes_home):
+    def test_does_not_invalidate_prompt_cache_snapshot(self, openamer_home):
         """reload_skills must NOT delete the skills prompt-cache snapshot.
 
         Skills are called at runtime — the system prompt doesn't need to

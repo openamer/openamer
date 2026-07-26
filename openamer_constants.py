@@ -229,7 +229,7 @@ def get_bundled_skills_dir(default: Path | None = None) -> Path:
     return get_openamer_home() / "skills"
 
 
-def get_hermes_dir(new_subpath: str, old_name: str) -> Path:
+def get_openamer_dir(new_subpath: str, old_name: str) -> Path:
     """Resolve a OpenAmer subdirectory with backward compatibility.
 
     New installs get the consolidated layout (e.g. ``cache/images``).
@@ -259,18 +259,18 @@ def get_hermes_dir(new_subpath: str, old_name: str) -> Path:
     return home / new_subpath
 
 
-def iter_hermes_node_dirs(home: Path | None = None) -> list[Path]:
+def iter_openamer_node_dirs(home: Path | None = None) -> list[Path]:
     """Return OpenAmer-managed Node.js directories in preferred lookup order.
 
     Windows installs from ``scripts/install.ps1`` unpack portable Node directly
-    into ``%LOCALAPPDATA%\\hermes\\node``. POSIX installs use
+    into ``%LOCALAPPDATA%\\openamer\\node``. POSIX installs use
     ``$OPENAMER_HOME/node/bin``. Include both shapes on every platform so mixed
     or migrated installs still work.
     """
     root = home or get_openamer_home()
     dirs = [root / "node"]
     bin_dir = root / "node" / "bin"
-    # NOTE: keep this ordering in sync with hermesManagedNodePathEntries() in
+    # NOTE: keep this ordering in sync with openamerManagedNodePathEntries() in
     # apps/desktop/electron/main.cjs — the Electron main process is Node and
     # cannot import this module, so the platform-ordering rule is mirrored there.
     if sys.platform == "win32":
@@ -304,8 +304,8 @@ def node_tool_runnable(path: str | None) -> bool:
     OpenAmer-managed Node trees live under ``$OPENAMER_HOME/node`` (or a profile's
     ``OPENAMER_HOME``). A partial upgrade or interrupted install can leave
     ``bin/npm`` behind while ``lib/cli.js`` is missing — the wrapper exists but
-    immediately throws ``MODULE_NOT_FOUND``. ``find_hermes_node_executable``
-    used to trust file presence alone, so ``hermes update`` would pick that
+    immediately throws ``MODULE_NOT_FOUND``. ``find_openamer_node_executable``
+    used to trust file presence alone, so ``openamer update`` would pick that
     broken npm and fail the Node refresh / web UI build.
 
     Probe with ``--version`` (same pattern as :func:`agent_browser_runnable`) so
@@ -329,7 +329,7 @@ def node_tool_runnable(path: str | None) -> bool:
             [path, "--version"],
             capture_output=True,
             timeout=10,
-            env=with_hermes_node_path(),
+            env=with_openamer_node_path(),
             creationflags=windows_hide_flags(),
         )
     except (OSError, subprocess.TimeoutExpired, ValueError):
@@ -337,12 +337,12 @@ def node_tool_runnable(path: str | None) -> bool:
     return result.returncode == 0
 
 
-def hermes_managed_node_tree_present(home: Path | None = None) -> bool:
+def openamer_managed_node_tree_present(home: Path | None = None) -> bool:
     """Return True when any OpenAmer-managed node/npm/npx shim exists on disk."""
     names = set()
     for command in ("node", "npm", "npx"):
         names.update(_candidate_node_command_names(command))
-    for directory in iter_hermes_node_dirs(home):
+    for directory in iter_openamer_node_dirs(home):
         for name in names:
             candidate = directory / name
             if candidate.is_file() and (
@@ -414,7 +414,7 @@ def _heal_managed_node_windows() -> bool:
     return node_tool_runnable(str(target / "node.exe"))
 
 
-def heal_hermes_managed_node() -> bool:
+def heal_openamer_managed_node() -> bool:
     """Redownload OpenAmer-managed Node when the tree exists but is broken.
 
     Runs at most once per process. POSIX installs shell out to
@@ -424,7 +424,7 @@ def heal_hermes_managed_node() -> bool:
     global _managed_node_heal_attempted
     if _managed_node_heal_attempted:
         return False
-    if not hermes_managed_node_tree_present():
+    if not openamer_managed_node_tree_present():
         return False
     _managed_node_heal_attempted = True
 
@@ -453,11 +453,11 @@ def heal_hermes_managed_node() -> bool:
     return result.returncode == 0
 
 
-def find_hermes_node_executable(command: str) -> str | None:
+def find_openamer_node_executable(command: str) -> str | None:
     """Return a OpenAmer-managed Node/npm executable path, healing broken trees."""
     names = _candidate_node_command_names(command)
     broken_present = False
-    for directory in iter_hermes_node_dirs():
+    for directory in iter_openamer_node_dirs():
         for name in names:
             candidate = directory / name
             if candidate.is_file() and (
@@ -467,8 +467,8 @@ def find_hermes_node_executable(command: str) -> str | None:
                 if node_tool_runnable(resolved):
                     return resolved
                 broken_present = True
-    if broken_present and heal_hermes_managed_node():
-        for directory in iter_hermes_node_dirs():
+    if broken_present and heal_openamer_managed_node():
+        for directory in iter_openamer_node_dirs():
             for name in names:
                 candidate = directory / name
                 if candidate.is_file() and (
@@ -516,20 +516,20 @@ def find_node_executable(command: str) -> str | None:
     tree exists but cannot be healed, returns ``None`` instead of falling back
     to system npm on PATH.
     """
-    managed = find_hermes_node_executable(command)
+    managed = find_openamer_node_executable(command)
     if managed:
         return managed
-    if hermes_managed_node_tree_present():
+    if openamer_managed_node_tree_present():
         return None
     return find_node_executable_on_path(command)
 
 
-def with_hermes_node_path(env: dict[str, str] | None = None) -> dict[str, str]:
+def with_openamer_node_path(env: dict[str, str] | None = None) -> dict[str, str]:
     """Return *env* with OpenAmer-managed Node directories prepended to PATH."""
     merged = dict(os.environ if env is None else env)
     existing = merged.get("PATH", "")
     parts = [p for p in existing.split(os.pathsep) if p]
-    managed = [str(path) for path in iter_hermes_node_dirs() if path.is_dir()]
+    managed = [str(path) for path in iter_openamer_node_dirs() if path.is_dir()]
     for entry in reversed(managed):
         if entry not in parts:
             parts.insert(0, entry)
@@ -544,7 +544,7 @@ def agent_browser_runnable(path: str | None) -> bool:
     agent-browser's npm ``postinstall`` re-points a *global* install symlink
     (e.g. ``/opt/homebrew/bin/agent-browser``) at our local
     ``node_modules/agent-browser/bin/...`` binary, which then disappears on the
-    next ``hermes update`` — leaving a **dangling symlink** that ``which`` still
+    next ``openamer update`` — leaving a **dangling symlink** that ``which`` still
     reports but exec fails on with exit 127 (issue #48521). Callers that trust
     such a path silently break every browser tool.
 
@@ -577,7 +577,7 @@ def agent_browser_runnable(path: str | None) -> bool:
             [path, "--version"],
             capture_output=True,
             timeout=10,
-            env=with_hermes_node_path(),
+            env=with_openamer_node_path(),
             creationflags=windows_hide_flags(),
         )
     except (OSError, subprocess.TimeoutExpired, ValueError):
@@ -634,18 +634,18 @@ def _legacy_path_has_content(path: Path) -> bool:
     return True
 
 
-def display_hermes_home() -> str:
+def display_openamer_home() -> str:
     """Return a user-friendly display string for the current OPENAMER_HOME.
 
     Uses ``~/`` shorthand for readability::
 
         default:  ``~/.openamer``
-        profile:  ``~/.hermes/profiles/coder``
-        custom:   ``/opt/hermes-custom``
+        profile:  ``~/.openamer/profiles/coder``
+        custom:   ``/opt/openamer-custom``
 
     Use this in **user-facing** print/log messages instead of hardcoding
     ``~/.openamer``.  For code that needs a real ``Path``, use
-    :func:`get_hermes_home` instead.
+    :func:`get_openamer_home` instead.
     """
     home = get_openamer_home()
     try:
@@ -687,10 +687,10 @@ def _norm_home_path(path: str | None) -> str:
 
 def _profile_home_path(env: dict[str, str] | None = None) -> str | None:
     """Return ``{OPENAMER_HOME}/home`` when the profile-home directory exists."""
-    hermes_home = get_openamer_home_override() or (env or {}).get("OPENAMER_HOME") or os.getenv("OPENAMER_HOME")
-    if not hermes_home:
+    openamer_home = get_openamer_home_override() or (env or {}).get("OPENAMER_HOME") or os.getenv("OPENAMER_HOME")
+    if not openamer_home:
         return None
-    profile_home = os.path.join(hermes_home, "home")
+    profile_home = os.path.join(openamer_home, "home")
     if os.path.isdir(profile_home):
         return profile_home
     return None
@@ -1193,7 +1193,7 @@ def apply_ipv4_preference(force: bool = False) -> None:
     import socket
 
     # Guard against double-patching
-    if getattr(socket.getaddrinfo, "_hermes_ipv4_patched", False):
+    if getattr(socket.getaddrinfo, "_openamer_ipv4_patched", False):
         return
 
     _original_getaddrinfo = socket.getaddrinfo
@@ -1209,7 +1209,7 @@ def apply_ipv4_preference(force: bool = False) -> None:
                 return _original_getaddrinfo(host, port, family, type, proto, flags)
         return _original_getaddrinfo(host, port, family, type, proto, flags)
 
-    _ipv4_getaddrinfo._hermes_ipv4_patched = True  # type: ignore[attr-defined]
+    _ipv4_getaddrinfo._openamer_ipv4_patched = True  # type: ignore[attr-defined]
     socket.getaddrinfo = _ipv4_getaddrinfo  # type: ignore[assignment]
 
 
@@ -1224,13 +1224,13 @@ FINISH_REASON_LENGTH = "length"
 OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 OPENROUTER_MODELS_URL = f"{OPENROUTER_BASE_URL}/models"
 
-# Backward-compatibility aliases during the Hermes→OpenAmer rebrand transition.
-get_hermes_home = get_openamer_home
-get_hermes_home_override = get_openamer_home_override
-set_hermes_home_override = set_openamer_home_override
-reset_hermes_home_override = reset_openamer_home_override
-get_process_hermes_home = get_process_openamer_home
-get_default_hermes_root = get_default_openamer_root
+# Backward-compatibility aliases during the OpenAmer→OpenAmer rebrand transition.
+get_openamer_home = get_openamer_home
+get_openamer_home_override = get_openamer_home_override
+set_openamer_home_override = set_openamer_home_override
+reset_openamer_home_override = reset_openamer_home_override
+get_process_openamer_home = get_process_openamer_home
+get_default_openamer_root = get_default_openamer_root
 _OPENAMER_HOME_OVERRIDE = _OPENAMER_HOME_OVERRIDE
-_get_platform_default_hermes_home = _get_platform_default_openamer_home
-_hermes_home_from_env = _openamer_home_from_env
+_get_platform_default_openamer_home = _get_platform_default_openamer_home
+_openamer_home_from_env = _openamer_home_from_env

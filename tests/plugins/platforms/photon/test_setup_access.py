@@ -1,7 +1,7 @@
-"""Tests for `hermes photon setup`'s access auto-configuration.
+"""Tests for `openamer photon setup`'s access auto-configuration.
 
 `_autoconfigure_access` allowlists the operator and points the cron home
-channel at their DM, writing to the per-test ~/.hermes/.env (the hermetic
+channel at their DM, writing to the per-test ~/.openamer/.env (the hermetic
 OPENAMER_HOME fixture isolates this). It must fill only unset keys so a re-run
 never clobbers a hand-tuned allowlist.
 """
@@ -106,5 +106,5 @@ def test_setup_hint_uses_gateway_service_command(monkeypatch: pytest.MonkeyPatch
 
     assert rc == 0
     out = capsys.readouterr().out
-    assert "Start the gateway:  hermes gateway start" in out
+    assert "Start the gateway:  openamer gateway start" in out
     assert "--platform photon" not in out

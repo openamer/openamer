@@ -1,7 +1,7 @@
-"""Vertex AI (Google Cloud) adapter for Hermes Agent.
+"""Vertex AI (Google Cloud) adapter for OpenAmer Agent.
 
 Provides authentication and configuration for Vertex AI's OpenAI-compatible
-endpoint. This allows Hermes to use Gemini models via Google Cloud with
+endpoint. This allows OpenAmer to use Gemini models via Google Cloud with
 enterprise-grade rate limits and quotas.
 
 Requires: pip install google-auth
@@ -26,7 +26,7 @@ from agent.secret_scope import get_secret as _get_secret, is_multiplex_active
 # Ensure google-auth is installed before importing. The [vertex] extra is no
 # longer in [all] per the lazy-install policy added 2026-05-12 — lazy_deps
 # handles on-demand installation so the Vertex provider still works for users
-# who installed plain `hermes-agent` and only later selected a Gemini model.
+# who installed plain `openamer-agent` and only later selected a Gemini model.
 try:
     from tools.lazy_deps import ensure as _lazy_ensure
     _lazy_ensure("provider.vertex", prompt=False)

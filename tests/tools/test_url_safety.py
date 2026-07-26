@@ -435,7 +435,7 @@ class TestSSRFGuardedHttpxClient:
         backend = _SSRFGuardedAsyncNetworkBackend(contextvars.ContextVar("test_schemes"))
 
         with pytest.raises(SSRFConnectionBlocked, match="Unix socket"):
-            await backend.connect_unix_socket("/tmp/hermes.sock")
+            await backend.connect_unix_socket("/tmp/openamer.sock")
 
     def test_async_client_rejects_unpatchable_custom_transport(self):
         class CustomTransport(httpx.AsyncBaseTransport):

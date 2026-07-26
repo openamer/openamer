@@ -108,7 +108,7 @@ def test_verify_on_stop_auto_messaging_platform_is_case_insensitive(clear_verify
     assert verify_on_stop_enabled({"agent": {"verify_on_stop": "auto"}}) is False
 
 
-def test_verify_on_stop_auto_uses_hermes_platform_override(clear_verify_env):
+def test_verify_on_stop_auto_uses_openamer_platform_override(clear_verify_env):
     # HERMES_PLATFORM mirrors the sibling platform resolution and also flags a
     # messaging surface under the "auto" sentinel.
     clear_verify_env.setenv("HERMES_PLATFORM", "discord")
@@ -151,7 +151,7 @@ def test_verify_on_stop_default_path_through_load_config(tmp_path, clear_verify_
     # resolves through load_config() + DEFAULT_CONFIG. The default is now the
     # surface-aware "auto" sentinel. This is the path the unit-level tests above
     # cannot exercise.
-    clear_verify_env.setenv("OPENAMER_HOME", str(tmp_path / ".hermes"))
+    clear_verify_env.setenv("OPENAMER_HOME", str(tmp_path / ".openamer"))
 
     from openamer_cli.config import load_config
 
@@ -168,7 +168,7 @@ def test_verify_on_stop_default_path_through_load_config(tmp_path, clear_verify_
 
 
 def test_no_nudge_after_fresh_pass(tmp_path, monkeypatch):
-    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".hermes"))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".openamer"))
     _node_project(tmp_path)
     changed = str(tmp_path / "src" / "app.ts")
 
@@ -184,7 +184,7 @@ def test_no_nudge_after_fresh_pass(tmp_path, monkeypatch):
 
 
 def test_nudge_checks_all_edited_workspaces(tmp_path, monkeypatch):
-    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".hermes"))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".openamer"))
     project_a = tmp_path / "a"
     project_b = tmp_path / "b"
     _make_project(project_a)
@@ -211,7 +211,7 @@ def test_nudge_checks_all_edited_workspaces(tmp_path, monkeypatch):
 
 
 def test_nudge_after_unverified_edit_with_known_command(tmp_path, monkeypatch):
-    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".hermes"))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".openamer"))
     _node_project(tmp_path)
     changed = str(tmp_path / "src" / "app.ts")
     mark_workspace_edited(session_id="s1", cwd=tmp_path, paths=[changed])
@@ -226,7 +226,7 @@ def test_nudge_after_unverified_edit_with_known_command(tmp_path, monkeypatch):
 
 
 def test_nudge_includes_failed_output_summary(tmp_path, monkeypatch):
-    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".hermes"))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".openamer"))
     _node_project(tmp_path)
     changed = str(tmp_path / "src" / "app.ts")
 
@@ -247,7 +247,7 @@ def test_nudge_includes_failed_output_summary(tmp_path, monkeypatch):
 
 
 def test_no_suite_nudge_requests_temp_script(tmp_path, monkeypatch):
-    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".hermes"))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".openamer"))
     (tmp_path / "package.json").write_text("{}", encoding="utf-8")
     changed = str(tmp_path / "src" / "app.ts")
 
@@ -261,7 +261,7 @@ def test_no_suite_nudge_requests_temp_script(tmp_path, monkeypatch):
 
 
 def test_no_suite_nudge_uses_canonical_temp_dir(tmp_path, monkeypatch):
-    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".hermes"))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".openamer"))
     project = tmp_path / "project"
     project.mkdir()
     (project / "package.json").write_text("{}", encoding="utf-8")
@@ -282,7 +282,7 @@ def test_no_suite_nudge_uses_canonical_temp_dir(tmp_path, monkeypatch):
 
 
 def test_verify_guidance_can_be_disabled(tmp_path, monkeypatch):
-    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".hermes"))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".openamer"))
     _node_project(tmp_path)
     changed = str(tmp_path / "src" / "app.ts")
 
@@ -298,10 +298,10 @@ def test_verify_guidance_can_be_disabled(tmp_path, monkeypatch):
 
 
 def test_ad_hoc_pass_satisfies_no_suite_stop_loop(tmp_path, monkeypatch):
-    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".hermes"))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".openamer"))
     (tmp_path / "package.json").write_text("{}", encoding="utf-8")
     changed = str(tmp_path / "src" / "app.ts")
-    script = Path(tempfile.gettempdir()) / f"hermes-ad-hoc-stop-{tmp_path.name}.py"
+    script = Path(tempfile.gettempdir()) / f"openamer-ad-hoc-stop-{tmp_path.name}.py"
     script.write_text("print('ok')\n", encoding="utf-8")
     try:
         record_terminal_result(
@@ -318,7 +318,7 @@ def test_ad_hoc_pass_satisfies_no_suite_stop_loop(tmp_path, monkeypatch):
 
 
 def test_nudge_attempts_are_bounded(tmp_path, monkeypatch):
-    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".hermes"))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".openamer"))
     _node_project(tmp_path)
     changed = str(tmp_path / "src" / "app.ts")
     mark_workspace_edited(session_id="s1", cwd=tmp_path, paths=[changed])
@@ -351,7 +351,7 @@ def test_nudge_attempts_are_bounded(tmp_path, monkeypatch):
     ],
 )
 def test_doc_only_edit_does_not_nudge(tmp_path, monkeypatch, doc_name):
-    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".hermes"))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".openamer"))
     _node_project(tmp_path)
     changed = str(tmp_path / doc_name)
     mark_workspace_edited(session_id="s1", cwd=tmp_path, paths=[changed])
@@ -361,7 +361,7 @@ def test_doc_only_edit_does_not_nudge(tmp_path, monkeypatch, doc_name):
 
 
 def test_mixed_doc_and_code_edit_still_nudges(tmp_path, monkeypatch):
-    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".hermes"))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".openamer"))
     _node_project(tmp_path)
     doc = str(tmp_path / "README.md")
     code = str(tmp_path / "src" / "app.ts")

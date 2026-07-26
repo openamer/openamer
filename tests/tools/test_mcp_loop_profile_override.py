@@ -24,7 +24,7 @@ def mcp_loop():
 
 def test_override_propagates_to_mcp_loop(tmp_path, monkeypatch, mcp_loop):
     from openamer_constants import (
-        get_hermes_home,
+        get_openamer_home,
         reset_openamer_home_override,
         set_openamer_home_override,
     )
@@ -57,7 +57,7 @@ def test_override_propagates_to_mcp_loop(tmp_path, monkeypatch, mcp_loop):
 
 
 def test_oauth_token_paths_follow_override(tmp_path, monkeypatch, mcp_loop):
-    """The actual symptom path: HermesTokenStorage resolving inside the
+    """The actual symptom path: OpenAmerTokenStorage resolving inside the
     probe's MCP-loop coroutine must land in the selected profile's
     mcp-tokens dir, not the process home's."""
     from openamer_constants import (
@@ -72,9 +72,9 @@ def test_oauth_token_paths_follow_override(tmp_path, monkeypatch, mcp_loop):
     monkeypatch.setenv("OPENAMER_HOME", str(process_home))
 
     async def token_path():
-        from tools.mcp_oauth import HermesTokenStorage
+        from tools.mcp_oauth import OpenAmerTokenStorage
 
-        return str(HermesTokenStorage("probe-srv")._tokens_path())
+        return str(OpenAmerTokenStorage("probe-srv")._tokens_path())
 
     token = set_openamer_home_override(str(profile_home))
     try:
@@ -91,7 +91,7 @@ def test_concurrent_scopes_do_not_interfere(tmp_path, monkeypatch, mcp_loop):
     import threading
 
     from openamer_constants import (
-        get_hermes_home,
+        get_openamer_home,
         reset_openamer_home_override,
         set_openamer_home_override,
     )

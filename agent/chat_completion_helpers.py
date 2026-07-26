@@ -1148,7 +1148,7 @@ def build_api_kwargs(agent, api_messages: list) -> dict:
     _qwen_meta = None
     if _is_qwen:
         _qwen_meta = {
-            "sessionId": agent.session_id or "hermes",
+            "sessionId": agent.session_id or "openamer",
             "promptId": str(uuid.uuid4()),
         }
 
@@ -1979,12 +1979,12 @@ def handle_max_iterations(agent, messages: list, api_call_count: int) -> str:
             # tool_name (SQLite FTS bookkeeping), the codex_* reasoning carriers,
             # timestamp (preserved on gateway user replay entries for the
             # stale-confirmation expiry check — #47868 rejection class),
-            # and every Hermes-internal underscore-prefixed scaffolding key.
+            # and every OpenAmer-internal underscore-prefixed scaffolding key.
             for schema_foreign in ("tool_name", "codex_reasoning_items", "codex_message_items", "timestamp"):
                 api_msg.pop(schema_foreign, None)
             # api_content (the persist-what-you-send sidecar) carries the
             # exact bytes every main-loop call sent for this message —
-            # substitute it before dropping the key (Hermes bookkeeping,
+            # substitute it before dropping the key (OpenAmer bookkeeping,
             # never a provider field), mirroring the loop's api_messages
             # build. Popping without substituting would send CLEAN content
             # here, diverging the summary request's prefix at the EARLIEST

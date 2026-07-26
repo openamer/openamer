@@ -1,5 +1,5 @@
 """Tests for openamer_cli.session_filters — CLI time/filter parsing for
-`hermes sessions prune` / `hermes sessions archive`."""
+`openamer sessions prune` / `openamer sessions archive`."""
 
 import time
 from argparse import Namespace

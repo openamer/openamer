@@ -22,7 +22,7 @@ def test_check_for_updates_uses_cache(tmp_path, monkeypatch):
     from openamer_cli import __version__
 
     # Create a fake git repo and fresh cache
-    repo_dir = tmp_path / "hermes-agent"
+    repo_dir = tmp_path / "openamer-agent"
     repo_dir.mkdir()
     (repo_dir / ".git").mkdir()
 
@@ -77,7 +77,7 @@ def test_check_for_updates_expired_cache(tmp_path, monkeypatch):
     """When cache is expired, check_for_updates should call git fetch."""
     from openamer_cli.banner import check_for_updates
 
-    repo_dir = tmp_path / "hermes-agent"
+    repo_dir = tmp_path / "openamer-agent"
     repo_dir.mkdir()
     (repo_dir / ".git").mkdir()
 
@@ -100,7 +100,7 @@ def test_check_for_updates_official_ssh_origin_uses_https_probe(tmp_path):
     """Passive update checks must not trigger SSH auth for official installs."""
     import openamer_cli.banner as banner
 
-    repo_dir = tmp_path / "hermes-agent"
+    repo_dir = tmp_path / "openamer-agent"
     repo_dir.mkdir()
     (repo_dir / ".git").mkdir()
 
@@ -109,13 +109,13 @@ def test_check_for_updates_official_ssh_origin_uses_https_probe(tmp_path):
     def fake_run(cmd, **kwargs):
         calls.append(cmd)
         if cmd == ["git", "remote", "get-url", "origin"]:
-            return MagicMock(returncode=0, stdout="git@github.com:NousResearch/hermes-agent.git\n")
+            return MagicMock(returncode=0, stdout="git@github.com:NousResearch/openamer-agent.git\n")
         if cmd == ["git", "rev-parse", "HEAD"]:
             return MagicMock(returncode=0, stdout="local-sha\n")
         if cmd == [
             "git",
             "ls-remote",
-            "https://github.com/NousResearch/hermes-agent.git",
+            "https://github.com/NousResearch/openamer-agent.git",
             "refs/heads/main",
         ]:
             return MagicMock(returncode=0, stdout="upstream-sha\trefs/heads/main\n")
@@ -139,7 +139,7 @@ def test_check_via_local_git_shallow_clone_behind_reports_no_count(tmp_path):
     """
     import openamer_cli.banner as banner
 
-    repo_dir = tmp_path / "hermes-agent"
+    repo_dir = tmp_path / "openamer-agent"
     repo_dir.mkdir()
     (repo_dir / ".git").mkdir()
 
@@ -148,7 +148,7 @@ def test_check_via_local_git_shallow_clone_behind_reports_no_count(tmp_path):
     def fake_run(cmd, **kwargs):
         calls.append(cmd)
         if cmd == ["git", "remote", "get-url", "origin"]:
-            return MagicMock(returncode=0, stdout="https://github.com/NousResearch/hermes-agent.git\n")
+            return MagicMock(returncode=0, stdout="https://github.com/NousResearch/openamer-agent.git\n")
         if cmd == ["git", "rev-parse", "--is-shallow-repository"]:
             return MagicMock(returncode=0, stdout="true\n")
         if cmd[:2] == ["git", "fetch"]:
@@ -173,13 +173,13 @@ def test_check_via_local_git_shallow_clone_up_to_date(tmp_path):
     """Shallow clone whose tip matches upstream reports up-to-date (0)."""
     import openamer_cli.banner as banner
 
-    repo_dir = tmp_path / "hermes-agent"
+    repo_dir = tmp_path / "openamer-agent"
     repo_dir.mkdir()
     (repo_dir / ".git").mkdir()
 
     def fake_run(cmd, **kwargs):
         if cmd == ["git", "remote", "get-url", "origin"]:
-            return MagicMock(returncode=0, stdout="https://github.com/NousResearch/hermes-agent.git\n")
+            return MagicMock(returncode=0, stdout="https://github.com/NousResearch/openamer-agent.git\n")
         if cmd == ["git", "rev-parse", "--is-shallow-repository"]:
             return MagicMock(returncode=0, stdout="true\n")
         if cmd[:2] == ["git", "fetch"]:
@@ -200,13 +200,13 @@ def test_check_via_local_git_full_clone_keeps_exact_count(tmp_path):
     """Full (non-shallow) clones keep the exact rev-list count path."""
     import openamer_cli.banner as banner
 
-    repo_dir = tmp_path / "hermes-agent"
+    repo_dir = tmp_path / "openamer-agent"
     repo_dir.mkdir()
     (repo_dir / ".git").mkdir()
 
     def fake_run(cmd, **kwargs):
         if cmd == ["git", "remote", "get-url", "origin"]:
-            return MagicMock(returncode=0, stdout="https://github.com/NousResearch/hermes-agent.git\n")
+            return MagicMock(returncode=0, stdout="https://github.com/NousResearch/openamer-agent.git\n")
         if cmd == ["git", "rev-parse", "--is-shallow-repository"]:
             return MagicMock(returncode=0, stdout="false\n")
         if cmd[:2] == ["git", "fetch"]:
@@ -246,7 +246,7 @@ def test_check_for_updates_fallback_to_project_root(tmp_path, monkeypatch):
     if not (project_root / ".git").exists():
         pytest.skip("Not running from a git checkout")
 
-    # Point OPENAMER_HOME at a temp dir with no hermes-agent/.git
+    # Point OPENAMER_HOME at a temp dir with no openamer-agent/.git
     monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     with patch("openamer_cli.banner.subprocess.run") as mock_run:
         mock_run.return_value = MagicMock(returncode=0, stdout="0\n")
@@ -305,8 +305,8 @@ def test_invalidate_update_cache_clears_all_profiles(tmp_path):
     """_invalidate_update_cache() should delete .update_check from ALL profiles."""
     from openamer_cli.main import _invalidate_update_cache
 
-    # Build a fake ~/.hermes with default + two named profiles
-    default_home = tmp_path / ".hermes"
+    # Build a fake ~/.openamer with default + two named profiles
+    default_home = tmp_path / ".openamer"
     default_home.mkdir()
     (default_home / ".update_check").write_text('{"ts":1,"behind":50}')
 
@@ -330,7 +330,7 @@ def test_invalidate_update_cache_no_profiles_dir(tmp_path):
     """Works fine when no profiles directory exists (single-profile setup)."""
     from openamer_cli.main import _invalidate_update_cache
 
-    default_home = tmp_path / ".hermes"
+    default_home = tmp_path / ".openamer"
     default_home.mkdir()
     (default_home / ".update_check").write_text('{"ts":1,"behind":5}')
 

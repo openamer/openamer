@@ -46,7 +46,7 @@ def _build_runner(monkeypatch, tmp_path, mode: str) -> GatewayRunner:
 
     import gateway.run as gateway_run
 
-    monkeypatch.setattr(gateway_run, "_hermes_home", tmp_path)
+    monkeypatch.setattr(gateway_run, "_openamer_home", tmp_path)
 
     runner = GatewayRunner(GatewayConfig())
     adapter = SimpleNamespace(send=AsyncMock(), handle_message=AsyncMock())
@@ -74,7 +74,7 @@ class TestLoadBackgroundNotificationsMode:
 
     def test_defaults_to_all(self, monkeypatch, tmp_path):
         import gateway.run as gw
-        monkeypatch.setattr(gw, "_hermes_home", tmp_path)
+        monkeypatch.setattr(gw, "_openamer_home", tmp_path)
         monkeypatch.delenv("HERMES_BACKGROUND_NOTIFICATIONS", raising=False)
         assert GatewayRunner._load_background_notifications_mode() == "all"
 
@@ -83,7 +83,7 @@ class TestLoadBackgroundNotificationsMode:
             "display:\n  background_process_notifications: error\n"
         )
         import gateway.run as gw
-        monkeypatch.setattr(gw, "_hermes_home", tmp_path)
+        monkeypatch.setattr(gw, "_openamer_home", tmp_path)
         monkeypatch.delenv("HERMES_BACKGROUND_NOTIFICATIONS", raising=False)
         assert GatewayRunner._load_background_notifications_mode() == "error"
 
@@ -92,7 +92,7 @@ class TestLoadBackgroundNotificationsMode:
             "display:\n  background_process_notifications: error\n"
         )
         import gateway.run as gw
-        monkeypatch.setattr(gw, "_hermes_home", tmp_path)
+        monkeypatch.setattr(gw, "_openamer_home", tmp_path)
         monkeypatch.setenv("HERMES_BACKGROUND_NOTIFICATIONS", "off")
         assert GatewayRunner._load_background_notifications_mode() == "off"
 
@@ -101,7 +101,7 @@ class TestLoadBackgroundNotificationsMode:
             "display:\n  background_process_notifications: false\n"
         )
         import gateway.run as gw
-        monkeypatch.setattr(gw, "_hermes_home", tmp_path)
+        monkeypatch.setattr(gw, "_openamer_home", tmp_path)
         monkeypatch.delenv("HERMES_BACKGROUND_NOTIFICATIONS", raising=False)
         assert GatewayRunner._load_background_notifications_mode() == "off"
 
@@ -110,7 +110,7 @@ class TestLoadBackgroundNotificationsMode:
             "display:\n  background_process_notifications: banana\n"
         )
         import gateway.run as gw
-        monkeypatch.setattr(gw, "_hermes_home", tmp_path)
+        monkeypatch.setattr(gw, "_openamer_home", tmp_path)
         monkeypatch.delenv("HERMES_BACKGROUND_NOTIFICATIONS", raising=False)
         assert GatewayRunner._load_background_notifications_mode() == "all"
 

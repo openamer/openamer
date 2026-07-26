@@ -203,12 +203,12 @@ async def test_prose_still_accepted_for_open_ended_clarify():
     runner = _make_runner(adapter)
     cm.register("cl-open", SESSION_KEY, "What should I name it?", None)
 
-    result = await _dispatch(runner, _event("call it hermes-ux"))
+    result = await _dispatch(runner, _event("call it openamer-ux"))
 
     assert result == ""
     with cm._lock:
         entry = cm._entries.get("cl-open")
     assert entry is not None
     assert entry.event.is_set()
-    assert entry.response == "call it hermes-ux"
+    assert entry.response == "call it openamer-ux"
     _clear_clarify_state()

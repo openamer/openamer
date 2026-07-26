@@ -3,7 +3,7 @@
 Reasoning models (Nemotron 3 Ultra, OpenAI o1/o3, Anthropic Opus 4.x
 thinking, DeepSeek R1, Qwen QwQ, xAI Grok reasoning) routinely exceed
 the 180s / 90s chat-model stale-timeout defaults during their
-thinking phase.  Hermes's default cloud-stream stale detector
+thinking phase.  OpenAmer's default cloud-stream stale detector
 (``HERMES_STREAM_STALE_TIMEOUT`` = 180s) and non-stream detector
 (``HERMES_API_CALL_STALE_TIMEOUT`` = 90s) both fire before the
 upstream proxy's idle timeout on a healthy reasoning stream.  Result:

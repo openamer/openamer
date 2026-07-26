@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """unbroker - deterministic CLI helper.
 
-The Hermes agent orchestrates scanning and opt-out submission with native tools
+The OpenAmer agent orchestrates scanning and opt-out submission with native tools
 (`web_extract`, `browser_navigate`, email mechanisms). THIS CLI owns the
 deterministic state: config, dossiers + consent, the broker DB, tier planning,
 the ledger + audit log, draft/template rendering, and reports.
@@ -187,9 +187,9 @@ def cmd_doctor(args) -> None:
                  "verify links via your logged-in webmail); or set EMAIL_* for SMTP/IMAP.")
     elif cfg["email_mode"] == "browser":
         L.append("  Email mode: browser (no password) - the agent sends opt-outs and opens verify "
-                 "links via the operator's logged-in webmail. This needs Hermes pointed at the "
+                 "links via the operator's logged-in webmail. This needs OpenAmer pointed at the "
                  "operator's OWN Chrome over CDP (launch with --remote-debugging-port=9222 "
-                 "--user-data-dir=~/.hermes/chrome-debug, signed into the webmail once); else it falls "
+                 "--user-data-dir=~/.openamer/chrome-debug, signed into the webmail once); else it falls "
                  "back to drafts. Run `pdd.py cdp` to launch it (or `pdd.py cdp --print` for the command). "
                  "See methods.md 'Browser backends'.")
         cloud_scan = cfg.get("browser_backend") == "browserbase" or (
@@ -247,7 +247,7 @@ def cmd_cdp(args) -> None:
     """Launch (or detect) the operator's Chrome over CDP for Phase-2 browser + webmail work.
 
     A cloud browser cannot send the operator's webmail or clear session-bound gates; this points
-    Hermes at the operator's real Chrome on a dedicated debug profile (see methods.md).
+    OpenAmer at the operator's real Chrome on a dedicated debug profile (see methods.md).
     """
     import shlex
     import time
@@ -260,7 +260,7 @@ def cmd_cdp(args) -> None:
         _out({"running": True, "endpoint": f"127.0.0.1:{port}",
               "browser": live.get("Browser"),
               "webSocketDebuggerUrl": live.get("webSocketDebuggerUrl"),
-              "note": "a debuggable browser is already listening; point Hermes's browser tools at "
+              "note": "a debuggable browser is already listening; point OpenAmer's browser tools at "
                       f"127.0.0.1:{port} and make sure the operator's webmail is signed in in THAT browser."})
         return
 
@@ -292,7 +292,7 @@ def cmd_cdp(args) -> None:
     _out({"running": bool(live), "launched_pid": pid, "browser": browser,
           "profile": str(profile), "endpoint": f"127.0.0.1:{port}",
           "webSocketDebuggerUrl": (live or {}).get("webSocketDebuggerUrl"),
-          "next": ([f"point Hermes's browser tools at 127.0.0.1:{port} (CDP)",
+          "next": ([f"point OpenAmer's browser tools at 127.0.0.1:{port} (CDP)",
                     "in the launched browser, sign into the operator's webmail ONCE (dedicated debug profile)",
                     "then run email/verify flows in browser mode -- they use this logged-in session"]
                    if live else

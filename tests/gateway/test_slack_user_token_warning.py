@@ -85,7 +85,7 @@ def test_warns_when_bot_id_absent(caplog):
 def test_no_warning_when_bot_id_present(caplog):
     # Real bot token: auth.test carries a bot_id.
     adapter = _make_adapter()
-    resp = _DictAuthResponse(team_id="T1", user_id="U_BOT", bot_id="B123", user="hermes")
+    resp = _DictAuthResponse(team_id="T1", user_id="U_BOT", bot_id="B123", user="openamer")
     with caplog.at_level(logging.WARNING):
         adapter._warn_if_not_bot_token(resp, "Acme")
     assert not any("authenticated as a USER" in r.message for r in caplog.records)

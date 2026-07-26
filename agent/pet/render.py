@@ -11,7 +11,7 @@ Supported output modes, in fidelity order:
 - ``sixel``   — DEC sixel (xterm -ti vt340, foot, mlterm, WezTerm, …).
 - ``unicode`` — 24-bit half-block downscale; works in any truecolor terminal.
 
-Frame decoding requires Pillow (a core Hermes dependency).  If Pillow or the
+Frame decoding requires Pillow (a core OpenAmer dependency).  If Pillow or the
 spritesheet is unavailable the renderer degrades to ``unicode`` text or an
 empty string rather than raising.
 """

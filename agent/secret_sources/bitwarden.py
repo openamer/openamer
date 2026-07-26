@@ -1,24 +1,24 @@
 """Bitwarden Secrets Manager (`bws` CLI) integration.
 
-Hermes pulls API keys from Bitwarden Secrets Manager at process startup
-so they don't have to live in plaintext in ``~/.hermes/.env``.
+OpenAmer pulls API keys from Bitwarden Secrets Manager at process startup
+so they don't have to live in plaintext in ``~/.openamer/.env``.
 
 Design summary
 --------------
 
-* The ``bws`` binary is auto-installed into ``<hermes_home>/bin/bws`` on
-  first use.  Hermes pins one version (``_BWS_VERSION``) and downloads
+* The ``bws`` binary is auto-installed into ``<openamer_home>/bin/bws`` on
+  first use.  OpenAmer pins one version (``_BWS_VERSION``) and downloads
   the matching asset from the official GitHub Releases page, verifying
   the SHA-256 against the release's published checksum file.
-* The access token is stored in ``~/.hermes/.env`` as
+* The access token is stored in ``~/.openamer/.env`` as
   ``BWS_ACCESS_TOKEN`` (or whatever name the user picked in
   ``secrets.bitwarden.access_token_env``).  This is the one
   bootstrap secret — every other provider key can live in Bitwarden.
 * Pulling secrets is a single ``bws secret list <project_id>
   --output json`` call.  We cache the result in-process for
-  ``cache_ttl_seconds`` so back-to-back ``hermes`` invocations don't
+  ``cache_ttl_seconds`` so back-to-back ``openamer`` invocations don't
   hammer the API.
-* Failures NEVER block Hermes startup.  Missing binary, no network,
+* Failures NEVER block OpenAmer startup.  Missing binary, no network,
   expired token, etc. all emit a one-line warning and continue with
   whatever credentials ``.env`` already had.
 
@@ -80,26 +80,26 @@ _BWS_CHECKSUM_NAME = f"bws-sha256-checksums-{_BWS_VERSION}.txt"
 _BWS_DOWNLOAD_TIMEOUT = 60
 _BWS_RUN_TIMEOUT = 30
 
-# In-process cache so repeated load_hermes_dotenv() calls (CLI startup,
+# In-process cache so repeated load_openamer_dotenv() calls (CLI startup,
 # gateway hot-reload, test suites) don't re-fetch from BSM.
 _CacheKey = Tuple[str, str, str]  # (access_token_fingerprint, project_id, server_url)
 _CACHE: Dict[_CacheKey, _CachedFetch] = {}
 
-# Disk-persisted cache so back-to-back CLI invocations (e.g. `hermes chat -q ...`
+# Disk-persisted cache so back-to-back CLI invocations (e.g. `openamer chat -q ...`
 # called from scripts, cron, the gateway forking new agents) don't each pay the
 # ~380ms `bws secret list` tax. The in-process _CACHE above only saves repeated
 # fetches WITHIN one process; this saves repeated fetches ACROSS processes.
 #
 # Layout: one JSON object per cache key, written atomically with mode 0600 in
-# <hermes_home>/cache/bws_cache.json. The file holds only the secret VALUES,
-# never the access token. It's plaintext-equivalent to ~/.hermes/.env (which
+# <openamer_home>/cache/bws_cache.json. The file holds only the secret VALUES,
+# never the access token. It's plaintext-equivalent to ~/.openamer/.env (which
 # we already accept) but kept out of the .env file so users editing it won't
 # accidentally commit BSM-sourced secrets. The atomic-write/0600/TTL mechanics
 # live in agent.secret_sources._cache.DiskCache, shared with the other backends.
 _DISK_CACHE_BASENAME = "bws_cache.json"
 _ENCRYPTED_CACHE_BASENAME = "bws_cache.enc.json"
 _ENCRYPTED_CACHE_VERSION = 1
-_ENCRYPTED_CACHE_INFO = b"hermes-bws-encrypted-cache-v1"
+_ENCRYPTED_CACHE_INFO = b"openamer-bws-encrypted-cache-v1"
 
 
 def _cache_key_str(cache_key: _CacheKey) -> str:
@@ -114,16 +114,16 @@ _DISK_CACHE: DiskCache = DiskCache(
 
 
 def _disk_cache_path(home_path: Optional[Path] = None) -> Path:
-    """Return the disk cache path under hermes_home/cache/.
+    """Return the disk cache path under openamer_home/cache/.
 
     Thin wrapper over the shared DiskCache, kept for tests and any direct
-    callers; falls back to `$OPENAMER_HOME` / `~/.hermes` when home is None.
+    callers; falls back to `$OPENAMER_HOME` / `~/.openamer` when home is None.
     """
     return _DISK_CACHE.path(home_path)
 
 
 def _encrypted_disk_cache_path(home_path: Optional[Path] = None) -> Path:
-    """Return the encrypted disk cache path under hermes_home/cache/."""
+    """Return the encrypted disk cache path under openamer_home/cache/."""
     from agent.secret_sources._cache import resolve_cache_home
 
     return resolve_cache_home(home_path) / "cache" / _ENCRYPTED_CACHE_BASENAME
@@ -134,8 +134,8 @@ def _encrypted_disk_cache_path(home_path: Optional[Path] = None) -> Path:
 # ---------------------------------------------------------------------------
 
 
-def _hermes_bin_dir() -> Path:
-    """Where Hermes stores its managed binaries.  Profile-aware."""
+def _openamer_bin_dir() -> Path:
+    """Where OpenAmer stores its managed binaries.  Profile-aware."""
     from openamer_constants import get_openamer_home
 
     return get_openamer_home() / "bin"
@@ -145,13 +145,13 @@ def find_bws(*, install_if_missing: bool = False) -> Optional[Path]:
     """Return a path to a usable ``bws`` binary, or None.
 
     Resolution order:
-      1. ``<hermes_home>/bin/bws``  (our managed copy — preferred)
+      1. ``<openamer_home>/bin/bws``  (our managed copy — preferred)
       2. ``shutil.which("bws")``    (system PATH)
 
     When ``install_if_missing`` is True and neither resolves, this calls
     :func:`install_bws` to download and verify the pinned version.
     """
-    managed = _hermes_bin_dir() / _platform_binary_name()
+    managed = _openamer_bin_dir() / _platform_binary_name()
     if managed.exists() and os.access(managed, os.X_OK):
         return managed
 
@@ -220,10 +220,10 @@ def install_bws(*, force: bool = False) -> Path:
 
     Returns the path to the installed executable.  Raises on any
     failure (network, checksum, extraction) — callers in the auto-install
-    path catch these; the user-facing ``hermes secrets bitwarden setup``
+    path catch these; the user-facing ``openamer secrets bitwarden setup``
     surface lets them propagate so the wizard can show a clear error.
     """
-    bin_dir = _hermes_bin_dir()
+    bin_dir = _openamer_bin_dir()
     bin_dir.mkdir(parents=True, exist_ok=True)
     target = bin_dir / _platform_binary_name()
 
@@ -234,7 +234,7 @@ def install_bws(*, force: bool = False) -> Path:
     asset_url = f"{_BWS_RELEASE_BASE}/{asset_name}"
     checksum_url = f"{_BWS_RELEASE_BASE}/{_BWS_CHECKSUM_NAME}"
 
-    with tempfile.TemporaryDirectory(prefix="hermes-bws-") as tmpdir:
+    with tempfile.TemporaryDirectory(prefix="openamer-bws-") as tmpdir:
         tmp = Path(tmpdir)
         zip_path = tmp / asset_name
         checksum_path = tmp / _BWS_CHECKSUM_NAME
@@ -277,7 +277,7 @@ def install_bws(*, force: bool = False) -> Path:
 
 
 def _http_download(url: str, dest: Path) -> None:
-    req = urllib.request.Request(url, headers={"User-Agent": "hermes-agent"})
+    req = urllib.request.Request(url, headers={"User-Agent": "openamer-agent"})
     try:
         with urllib.request.urlopen(req, timeout=_BWS_DOWNLOAD_TIMEOUT) as resp:  # noqa: S310
             with open(dest, "wb") as f:
@@ -559,7 +559,7 @@ def fetch_bitwarden_secrets(
             "bws binary not available — auto-install failed and `bws` is "
             "not on PATH.  Install manually from "
             "https://github.com/bitwarden/sdk-sm/releases or re-run "
-            "`hermes secrets bitwarden setup`."
+            "`openamer secrets bitwarden setup`."
         )
 
     try:
@@ -642,7 +642,7 @@ def _summarize_bws_stderr(raw: str) -> str:
            crates/bws/src/main.rs:108
         ...
 
-    Everything from ``Location:`` on is diagnostic noise for a Hermes
+    Everything from ``Location:`` on is diagnostic noise for a OpenAmer
     user.  Keep the numbered cause lines (joined), drop the rest, and
     fall back to the stripped raw text when the shape is unrecognized.
     """
@@ -757,7 +757,7 @@ def apply_bitwarden_secrets(
 ) -> FetchResult:
     """Pull secrets from BSM and set them on ``os.environ``.
 
-    This is the function ``load_hermes_dotenv()`` calls after the .env
+    This is the function ``load_openamer_dotenv()`` calls after the .env
     files have loaded.  It is intentionally defensive — any failure
     returns a :class:`FetchResult` with ``error`` set; it never raises.
 
@@ -777,14 +777,14 @@ def apply_bitwarden_secrets(
     if not access_token:
         result.error = (
             f"secrets.bitwarden.enabled is true but {access_token_env} is "
-            "not set.  Run `hermes secrets bitwarden setup`."
+            "not set.  Run `openamer secrets bitwarden setup`."
         )
         return result
 
     if not project_id:
         result.error = (
             "secrets.bitwarden.project_id is empty.  "
-            "Run `hermes secrets bitwarden setup`."
+            "Run `openamer secrets bitwarden setup`."
         )
         return result
 
@@ -793,7 +793,7 @@ def apply_bitwarden_secrets(
     if binary is None:
         result.error = (
             "bws binary not available and auto-install is disabled.  "
-            "Run `hermes secrets bitwarden setup` to install."
+            "Run `openamer secrets bitwarden setup` to install."
         )
         return result
 
@@ -909,7 +909,7 @@ class BitwardenSource(SecretSource):
         if not access_token:
             result.error = (
                 f"secrets.bitwarden.enabled is true but {access_token_env} is "
-                "not set.  Run `hermes secrets bitwarden setup`."
+                "not set.  Run `openamer secrets bitwarden setup`."
             )
             result.error_kind = ErrorKind.NOT_CONFIGURED
             return result
@@ -918,7 +918,7 @@ class BitwardenSource(SecretSource):
         if not project_id:
             result.error = (
                 "secrets.bitwarden.project_id is empty.  "
-                "Run `hermes secrets bitwarden setup`."
+                "Run `openamer secrets bitwarden setup`."
             )
             result.error_kind = ErrorKind.NOT_CONFIGURED
             return result
@@ -929,7 +929,7 @@ class BitwardenSource(SecretSource):
         if binary is None:
             result.error = (
                 "bws binary not available and auto-install is disabled.  "
-                "Run `hermes secrets bitwarden setup` to install."
+                "Run `openamer secrets bitwarden setup` to install."
             )
             result.error_kind = ErrorKind.BINARY_MISSING
             return result
@@ -978,10 +978,10 @@ class BitwardenSource(SecretSource):
     def remediation(self, kind, cfg: dict) -> str:
         if kind in (ErrorKind.AUTH_FAILED, ErrorKind.AUTH_EXPIRED):
             return (
-                "Run `hermes secrets bitwarden token` to paste a fresh access "
+                "Run `openamer secrets bitwarden token` to paste a fresh access "
                 "token (create one in the Bitwarden web app: Secrets Manager → "
                 "Machine accounts → Access tokens).  Wrong region?  Re-run "
-                "`hermes secrets bitwarden setup` and pick EU/self-hosted."
+                "`openamer secrets bitwarden setup` and pick EU/self-hosted."
             )
         return super().remediation(kind, cfg)
 
@@ -1016,7 +1016,7 @@ def _classify_bws_error(message: str) -> ErrorKind:
 def clear_caches(home_path: Optional[Path] = None) -> None:
     """Drop in-process AND disk caches (plaintext and encrypted).
 
-    Used after a token rotation (`hermes secrets bitwarden token`) so the
+    Used after a token rotation (`openamer secrets bitwarden token`) so the
     next startup fetches fresh with the new credential instead of serving
     a pull cached under the old token's fingerprint.  The encrypted cache
     is keyed off the old token too, so it must go as well.

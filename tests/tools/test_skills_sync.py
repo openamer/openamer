@@ -190,7 +190,7 @@ class TestRmtreeWritableScopeGuard:
     ``tools/skills_sync.py`` ever computes a path outside the skills
     root — through a bad join, a missing default, a malicious
     bundled-manifest entry, or a stale path in scope after an
-    exception — the result is a silent ``shutil.rmtree(~/.hermes/)``
+    exception — the result is a silent ``shutil.rmtree(~/.openamer/)``
     that destroys the user's ``.env``, ``MEMORY.md``, ``kanban.db``,
     custom skills, scripts, and the rest of the install in one go
     (#48200).
@@ -210,16 +210,16 @@ class TestRmtreeWritableScopeGuard:
             with pytest.raises(ValueError, match="refusing to rmtree"):
                 _rmtree_writable(Path("/"))
 
-    def test_refuses_hermes_home_itself(self, tmp_path):
-        """``~/.hermes/`` itself is what the #48200 wipe destroyed."""
+    def test_refuses_openamer_home_itself(self, tmp_path):
+        """``~/.openamer/`` itself is what the #48200 wipe destroyed."""
         from tools.skills_sync import _rmtree_writable
 
-        hermes = tmp_path / "home"
-        hermes.mkdir()
-        (hermes / "skills").mkdir()
-        with patch("tools.skills_sync.SKILLS_DIR", hermes / "skills"):
+        openamer = tmp_path / "home"
+        openamer.mkdir()
+        (openamer / "skills").mkdir()
+        with patch("tools.skills_sync.SKILLS_DIR", openamer / "skills"):
             with pytest.raises(ValueError, match="refusing to rmtree"):
-                _rmtree_writable(hermes)
+                _rmtree_writable(openamer)
 
     def test_refuses_sibling_directory(self, tmp_path):
         """A directory that is a sibling of SKILLS_DIR (e.g. a wrong
@@ -227,11 +227,11 @@ class TestRmtreeWritableScopeGuard:
         """
         from tools.skills_sync import _rmtree_writable
 
-        hermes = tmp_path / "home"
-        hermes.mkdir()
-        skills = hermes / "skills"
+        openamer = tmp_path / "home"
+        openamer.mkdir()
+        skills = openamer / "skills"
         skills.mkdir()
-        not_skills = hermes / "kanban.db"  # any non-skills path
+        not_skills = openamer / "kanban.db"  # any non-skills path
         not_skills.mkdir()
         with patch("tools.skills_sync.SKILLS_DIR", skills):
             with pytest.raises(ValueError, match="refusing to rmtree"):
@@ -850,7 +850,7 @@ class TestSyncSkills:
 
         captured = capsys.readouterr().out
         assert "new-skill" in captured
-        assert "hermes skills reset new-skill" in captured
+        assert "openamer skills reset new-skill" in captured
 
     def test_backfills_official_optional_provenance_for_existing_identical_skill(self, tmp_path):
         bundled = self._setup_bundled(tmp_path)
@@ -912,7 +912,7 @@ class TestSyncSkills:
         When a skill was installed at ``mlops/chroma`` and upstream later moved
         it to ``mlops/vector-databases/chroma``, the repo-derived install path
         no longer exists in the active tree. A path-only lookup skips it
-        forever, so `hermes skills repair-optional` can never fix it. The
+        forever, so `openamer skills repair-optional` can never fix it. The
         recorded install_path must be the ACTUAL location, not the repo's.
         """
         bundled = self._setup_bundled(tmp_path)
@@ -1382,9 +1382,9 @@ class TestResetBundledSkill:
 class TestNoBundledSkillsOptOut:
     """The .no-bundled-skills marker makes sync_skills() a no-op.
 
-    This is what `hermes profile create --no-skills` (named profiles) and the
-    installer's `--no-skills` flag (default ~/.hermes) rely on so bundled
-    skills are never seeded at install time NOR re-injected by `hermes update`.
+    This is what `openamer profile create --no-skills` (named profiles) and the
+    installer's `--no-skills` flag (default ~/.openamer) rely on so bundled
+    skills are never seeded at install time NOR re-injected by `openamer update`.
     """
 
     def _setup_bundled(self, tmp_path):
@@ -1398,14 +1398,14 @@ class TestNoBundledSkillsOptOut:
         bundled = self._setup_bundled(tmp_path)
         skills_dir = tmp_path / "user_skills"
         manifest_file = skills_dir / ".bundled_manifest"
-        hermes_home = tmp_path / "home"
-        hermes_home.mkdir()
-        (hermes_home / ".no-bundled-skills").write_text("opted out\n")
+        openamer_home = tmp_path / "home"
+        openamer_home.mkdir()
+        (openamer_home / ".no-bundled-skills").write_text("opted out\n")
 
         with patch("tools.skills_sync._get_bundled_dir", return_value=bundled), \
              patch("tools.skills_sync.SKILLS_DIR", skills_dir), \
              patch("tools.skills_sync.MANIFEST_FILE", manifest_file), \
-             patch("tools.skills_sync.OPENAMER_HOME", hermes_home):
+             patch("tools.skills_sync.OPENAMER_HOME", openamer_home):
             result = sync_skills(quiet=True)
 
         # Opt-out signalled, nothing copied, nothing written to disk.
@@ -1418,15 +1418,15 @@ class TestNoBundledSkillsOptOut:
         bundled = self._setup_bundled(tmp_path)
         skills_dir = tmp_path / "user_skills"
         manifest_file = skills_dir / ".bundled_manifest"
-        hermes_home = tmp_path / "home"
-        hermes_home.mkdir()
+        openamer_home = tmp_path / "home"
+        openamer_home.mkdir()
         # No marker written.
 
         with patch("tools.skills_sync._get_bundled_dir", return_value=bundled), \
              patch("tools.skills_sync._get_optional_dir", return_value=bundled.parent / "optional-skills"), \
              patch("tools.skills_sync.SKILLS_DIR", skills_dir), \
              patch("tools.skills_sync.MANIFEST_FILE", manifest_file), \
-             patch("tools.skills_sync.OPENAMER_HOME", hermes_home):
+             patch("tools.skills_sync.OPENAMER_HOME", openamer_home):
             result = sync_skills(quiet=True)
 
         assert result.get("skipped_opt_out") is not True
@@ -1435,7 +1435,7 @@ class TestNoBundledSkillsOptOut:
 
 
 class TestOptOutToggleAndRemove:
-    """`hermes skills opt-out/opt-in` core: marker toggle + safe removal."""
+    """`openamer skills opt-out/opt-in` core: marker toggle + safe removal."""
 
     def _setup_bundled(self, tmp_path):
         bundled = tmp_path / "bundled"

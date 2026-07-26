@@ -260,7 +260,7 @@ def test_resolve_runtime_provider_falls_back_when_pool_empty(monkeypatch):
             "provider": "openai-codex",
             "base_url": "https://chatgpt.com/backend-api/codex",
             "api_key": "codex-token",
-            "source": "hermes-auth-store",
+            "source": "openamer-auth-store",
             "last_refresh": "2026-02-26T00:00:00Z",
         },
     )
@@ -2316,7 +2316,7 @@ class TestAzureFoundryResolution:
 
     def test_azure_foundry_missing_api_key_raises(self, monkeypatch):
         monkeypatch.delenv("AZURE_FOUNDRY_API_KEY", raising=False)
-        # `get_env_value` reads from ~/.hermes/.env — mock it to return None
+        # `get_env_value` reads from ~/.openamer/.env — mock it to return None
         # so the resolver can't find a key there either.
         import openamer_cli.config as cfg_mod
         monkeypatch.setattr(cfg_mod, "get_env_value", lambda k: None)
@@ -3306,7 +3306,7 @@ def test_named_custom_provider_with_extra_headers(monkeypatch):
                     "api_key": "custom-host-key",
                     "extra_headers": {
                         "X-Custom-Auth": "auth-123",
-                        "X-Client-Name": "hermes-agent",
+                        "X-Client-Name": "openamer-agent",
                     },
                 }
             ]
@@ -3320,7 +3320,7 @@ def test_named_custom_provider_with_extra_headers(monkeypatch):
     assert resolved["api_key"] == "custom-host-key"
     assert resolved["extra_headers"] == {
         "X-Custom-Auth": "auth-123",
-        "X-Client-Name": "hermes-agent",
+        "X-Client-Name": "openamer-agent",
     }
 
 

@@ -2,12 +2,12 @@
 
 import queue
 
-from cli import HermesCLI
+from cli import OpenAmerCLI
 
 
 def test_cli_completion_drain_uses_visible_session_identity(monkeypatch):
     """A CLI window must not claim another window's restored completion."""
-    cli = HermesCLI.__new__(HermesCLI)
+    cli = OpenAmerCLI.__new__(OpenAmerCLI)
     cli.session_id = "visible-session"
     cli._pending_input = queue.Queue()
 
@@ -48,7 +48,7 @@ def test_cli_completion_drain_uses_visible_session_identity(monkeypatch):
 
 
 def test_cli_completion_ownership_rejects_foreign_session():
-    cli = HermesCLI.__new__(HermesCLI)
+    cli = OpenAmerCLI.__new__(OpenAmerCLI)
     cli.session_id = "visible-session"
     cli._session_db = None
 
@@ -58,7 +58,7 @@ def test_cli_completion_ownership_rejects_foreign_session():
 
 
 def test_cli_completion_ownership_accepts_compression_lineage():
-    cli = HermesCLI.__new__(HermesCLI)
+    cli = OpenAmerCLI.__new__(OpenAmerCLI)
     cli.session_id = "visible-session"
 
     class FakeSessionDB:

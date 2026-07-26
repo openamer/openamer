@@ -108,7 +108,7 @@ def test_both_kimi_providers_appear_when_both_keys_set():
     "KIMI_CN_API_KEY": "sk-cn-fake",
 }, clear=False)
 def test_kimi_aliases_not_listed_separately():
-    """Alias hermes_ids (kimi, moonshot) must NOT create phantom picker rows.
+    """Alias openamer_ids (kimi, moonshot) must NOT create phantom picker rows.
 
     They resolve to the same canonical profile (kimi-coding) and should be
     deduped.  Only the canonical slug (kimi-coding) should appear.

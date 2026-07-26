@@ -261,7 +261,7 @@ def test_reader_loop_streams_incremental_chunks_from_read1(registry, monkeypatch
 class TestOrphanedPipeReconciliation:
     """Regression tests for issue #17327.
 
-    `hermes update` in Feishu spawned a background subprocess that restarted
+    `openamer update` in Feishu spawned a background subprocess that restarted
     the gateway; the direct child exited quickly but a descendant daemon
     held the stdout pipe open. `_reader_loop.finally` never ran, so
     `session.exited` stayed False and the agent polled 74 times over 7
@@ -720,11 +720,11 @@ class TestSpawnEnvSanitization:
 
         bg_command = env.commands[0][0]
         assert session.pid == 4321
-        assert "/data/data/com.termux/files/usr/tmp/hermes_bg_" in bg_command
+        assert "/data/data/com.termux/files/usr/tmp/openamer_bg_" in bg_command
         assert ".exit" in bg_command
         assert "rc=$?;" in bg_command
-        assert " > /tmp/hermes_bg_" not in bg_command
-        assert "cat /tmp/hermes_bg_" not in bg_command
+        assert " > /tmp/openamer_bg_" not in bg_command
+        assert "cat /tmp/openamer_bg_" not in bg_command
         fake_thread.start.assert_called_once()
 
     def test_spawn_via_env_checks_returncode_when_wrapper_fails(self, registry):
@@ -797,14 +797,14 @@ class TestSpawnEnvSanitization:
             registry._env_poller_loop(
                 session,
                 env,
-                "/path with spaces/hermes_bg.log",
-                "/path with spaces/hermes_bg.pid",
-                "/path with spaces/hermes_bg.exit",
+                "/path with spaces/openamer_bg.log",
+                "/path with spaces/openamer_bg.pid",
+                "/path with spaces/openamer_bg.exit",
             )
 
-        assert env.commands[0][0] == "cat '/path with spaces/hermes_bg.log' 2>/dev/null"
-        assert env.commands[1][0] == "kill -0 \"$(cat '/path with spaces/hermes_bg.pid' 2>/dev/null)\" 2>/dev/null; echo $?"
-        assert env.commands[2][0] == "cat '/path with spaces/hermes_bg.exit' 2>/dev/null"
+        assert env.commands[0][0] == "cat '/path with spaces/openamer_bg.log' 2>/dev/null"
+        assert env.commands[1][0] == "kill -0 \"$(cat '/path with spaces/openamer_bg.pid' 2>/dev/null)\" 2>/dev/null; echo $?"
+        assert env.commands[2][0] == "cat '/path with spaces/openamer_bg.exit' 2>/dev/null"
 
 
 # =========================================================================

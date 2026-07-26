@@ -218,9 +218,9 @@ def _write_env(env_path: Path, env_writes: dict[str, str]) -> None:
     env_path.write_text("\n".join(new_lines) + "\n", encoding="utf-8")
 
 
-def _save_mem0_json(hermes_home: str, data: dict) -> None:
+def _save_mem0_json(openamer_home: str, data: dict) -> None:
     """Merge-write to mem0.json."""
-    config_path = Path(hermes_home) / "mem0.json"
+    config_path = Path(openamer_home) / "mem0.json"
     existing = {}
     if config_path.exists():
         try:
@@ -231,7 +231,7 @@ def _save_mem0_json(hermes_home: str, data: dict) -> None:
     config_path.write_text(json.dumps(existing, indent=2) + "\n", encoding="utf-8")
 
 
-def _setup_platform(hermes_home: str, config: dict, flags: dict[str, str]) -> None:
+def _setup_platform(openamer_home: str, config: dict, flags: dict[str, str]) -> None:
     """Platform mode setup — uses the framework's schema-based flow.
 
     Delegates to the same code path the framework uses when post_setup
@@ -239,13 +239,13 @@ def _setup_platform(hermes_home: str, config: dict, flags: dict[str, str]) -> No
     """
     schema = [
         {"key": "api_key", "description": "Mem0 Platform API key", "secret": True, "required": True, "env_var": "MEM0_API_KEY", "url": "https://app.mem0.ai"},
-        {"key": "user_id", "description": "User identifier", "default": "hermes-user"},
-        {"key": "agent_id", "description": "Agent identifier", "default": "hermes"},
+        {"key": "user_id", "description": "User identifier", "default": "openamer-user"},
+        {"key": "agent_id", "description": "Agent identifier", "default": "openamer"},
         {"key": "rerank", "description": "Enable reranking for recall", "default": "false", "choices": ["true", "false"]},
     ]
 
     existing_config = {}
-    config_path = Path(hermes_home) / "mem0.json"
+    config_path = Path(openamer_home) / "mem0.json"
     if config_path.exists():
         try:
             existing_config = json.loads(config_path.read_text(encoding="utf-8"))
@@ -313,13 +313,13 @@ def _setup_platform(hermes_home: str, config: dict, flags: dict[str, str]) -> No
     provider_config["host"] = ""
     # The json-file clear above can't help when the host comes from the
     # environment: _load_config() seeds ``host`` from MEM0_HOST, and the
-    # docs tell self-hosted users to put MEM0_HOST in ~/.hermes/.env. Warn
+    # docs tell self-hosted users to put MEM0_HOST in ~/.openamer/.env. Warn
     # so the user knows platform mode won't take effect until it's removed.
     if os.environ.get("MEM0_HOST", "").strip():
         print(
             "\n  ⚠ MEM0_HOST is set in your environment "
             f"({os.environ['MEM0_HOST']}). It overrides platform mode — "
-            "remove it from ~/.hermes/.env (or unset it) or Hermes will keep "
+            "remove it from ~/.openamer/.env (or unset it) or OpenAmer will keep "
             "routing to the self-hosted server."
         )
 
@@ -329,10 +329,10 @@ def _setup_platform(hermes_home: str, config: dict, flags: dict[str, str]) -> No
 
     from plugins.memory.mem0 import Mem0MemoryProvider
     provider = Mem0MemoryProvider()
-    provider.save_config(provider_config, hermes_home)
+    provider.save_config(provider_config, openamer_home)
 
     if env_writes:
-        _write_env(Path(hermes_home) / ".env", env_writes)
+        _write_env(Path(openamer_home) / ".env", env_writes)
 
     print("\n  Memory provider: mem0")
     print("  Activation saved to config.yaml")
@@ -358,7 +358,7 @@ def _check_selfhosted_server(host: str) -> None:
         print(f"  ⚠ Could not reach {host} — check the URL and that the server is running.")
 
 
-def _setup_selfhosted(hermes_home: str, config: dict, flags: dict[str, str]) -> None:
+def _setup_selfhosted(openamer_home: str, config: dict, flags: dict[str, str]) -> None:
     """Self-hosted mode setup — point at an existing Mem0 dashboard server.
 
     For users already running the Dockerized Mem0 FastAPI server: stores the
@@ -366,7 +366,7 @@ def _setup_selfhosted(hermes_home: str, config: dict, flags: dict[str, str]) -> 
     (secret -> .env as MEM0_API_KEY).
     """
     existing_config = {}
-    config_path = Path(hermes_home) / "mem0.json"
+    config_path = Path(openamer_home) / "mem0.json"
     if config_path.exists():
         try:
             existing_config = json.loads(config_path.read_text(encoding="utf-8"))
@@ -400,9 +400,9 @@ def _setup_selfhosted(hermes_home: str, config: dict, flags: dict[str, str]) -> 
             env_writes["MEM0_API_KEY"] = val
 
     user_id = flags.get("user_id") or _prompt(
-        "User identifier", default=provider_config.get("user_id") or "hermes-user"
+        "User identifier", default=provider_config.get("user_id") or "openamer-user"
     )
-    agent_id = _prompt("Agent identifier", default=provider_config.get("agent_id") or "hermes")
+    agent_id = _prompt("Agent identifier", default=provider_config.get("agent_id") or "openamer")
 
     if flags.get("dry_run"):
         print(f"\n  [dry-run] Would save config: host={host}, user_id={user_id}, agent_id={agent_id}")
@@ -423,10 +423,10 @@ def _setup_selfhosted(hermes_home: str, config: dict, flags: dict[str, str]) -> 
 
     from plugins.memory.mem0 import Mem0MemoryProvider
     provider = Mem0MemoryProvider()
-    provider.save_config(provider_config, hermes_home)
+    provider.save_config(provider_config, openamer_home)
 
     if env_writes:
-        _write_env(Path(hermes_home) / ".env", env_writes)
+        _write_env(Path(openamer_home) / ".env", env_writes)
 
     _check_selfhosted_server(host)
     print("\n  Memory provider: mem0 (self-hosted)")
@@ -438,14 +438,14 @@ def _setup_selfhosted(hermes_home: str, config: dict, flags: dict[str, str]) -> 
     print("\n  Start a new session to activate.\n")
 
 
-def _setup_oss(hermes_home: str, config: dict, flags: dict[str, str]) -> None:
+def _setup_oss(openamer_home: str, config: dict, flags: dict[str, str]) -> None:
     """OSS mode setup — build config from flags or interactive prompts.
 
     Non-interactive when --mode was set explicitly via flags (post_setup already
     resolved mode). Interactive only when mode was chosen via curses picker.
     """
     if not flags.get("_mode_from_flag"):
-        _setup_oss_interactive(hermes_home, config)
+        _setup_oss_interactive(openamer_home, config)
         return
 
     oss_config, env_writes = build_oss_config(flags)
@@ -455,7 +455,7 @@ def _setup_oss(hermes_home: str, config: dict, flags: dict[str, str]) -> None:
             print(f"  Error: {e}", file=sys.stderr)
         sys.exit(1)
 
-    user_id = flags.get("user_id") or os.getenv("USER", "hermes-user")
+    user_id = flags.get("user_id") or os.getenv("USER", "openamer-user")
 
     llm_id = oss_config["llm"]["provider"]
     embedder_id = oss_config["embedder"]["provider"]
@@ -473,8 +473,8 @@ def _setup_oss(hermes_home: str, config: dict, flags: dict[str, str]) -> None:
         return
 
     if env_writes:
-        _write_env(Path(hermes_home) / ".env", env_writes)
-    _save_mem0_json(hermes_home, {"mode": "oss", "user_id": user_id, "agent_id": "hermes", "oss": oss_config})
+        _write_env(Path(openamer_home) / ".env", env_writes)
+    _save_mem0_json(openamer_home, {"mode": "oss", "user_id": user_id, "agent_id": "openamer", "oss": oss_config})
 
     _install_provider_deps(llm_id, embedder_id, vector_id)
 
@@ -494,11 +494,11 @@ def _setup_oss(hermes_home: str, config: dict, flags: dict[str, str]) -> None:
     print("\n  Start a new session to activate.\n")
 
 
-def _prompt_api_key(label: str, env_var: str, hermes_home: str) -> str:
+def _prompt_api_key(label: str, env_var: str, openamer_home: str) -> str:
     """Prompt for API key, showing masked existing value if found."""
     existing = os.environ.get(env_var, "")
     if not existing:
-        env_path = Path(hermes_home) / ".env"
+        env_path = Path(openamer_home) / ".env"
         if env_path.exists():
             # BOM-tolerant read matching the canonical .env readers in
             # openamer_cli/config.py; a Notepad BOM on the first line would
@@ -515,9 +515,9 @@ def _prompt_api_key(label: str, env_var: str, hermes_home: str) -> str:
     return getpass.getpass(f"  {label} API key: ").strip()
 
 
-_PGVECTOR_CONTAINER = "hermes-pgvector"
+_PGVECTOR_CONTAINER = "openamer-pgvector"
 _PGVECTOR_IMAGE = "pgvector/pgvector:pg17"
-_PGVECTOR_PASSWORD = "hermes"
+_PGVECTOR_PASSWORD = "openamer"
 
 
 def _ensure_pgvector(host: str = "localhost", port: int = 5432) -> dict | None:
@@ -731,7 +731,7 @@ def _vector_description(pid: str, v: dict) -> str:
     return pid
 
 
-def _setup_oss_interactive(hermes_home: str, config: dict) -> None:
+def _setup_oss_interactive(openamer_home: str, config: dict) -> None:
     """Interactive OSS setup using curses pickers."""
     llm_items = [(v["label"], _provider_description(v)) for pid, v in LLM_PROVIDERS.items()]
     llm_idx = _curses_select("LLM Provider", llm_items, 0)
@@ -742,7 +742,7 @@ def _setup_oss_interactive(hermes_home: str, config: dict) -> None:
     llm_model = llm_def["default_model"]
     llm_url = llm_def.get("default_url")
     if llm_def["needs_key"]:
-        key = _prompt_api_key(llm_def["label"], llm_def["env_var"], hermes_home)
+        key = _prompt_api_key(llm_def["label"], llm_def["env_var"], openamer_home)
         if key:
             env_writes[llm_def["env_var"]] = key
     if llm_id == "ollama":
@@ -757,7 +757,7 @@ def _setup_oss_interactive(hermes_home: str, config: dict) -> None:
     embedder_model = embedder_def["default_model"]
     embedder_url = embedder_def.get("default_url")
     if embedder_def["needs_key"] and embedder_id != llm_id:
-        key = _prompt_api_key(f"{embedder_def['label']} embedder", embedder_def["env_var"], hermes_home)
+        key = _prompt_api_key(f"{embedder_def['label']} embedder", embedder_def["env_var"], openamer_home)
         if key:
             env_writes[embedder_def["env_var"]] = key
     elif embedder_def["needs_key"] and embedder_id == llm_id:
@@ -799,11 +799,11 @@ def _setup_oss_interactive(hermes_home: str, config: dict) -> None:
             if pg_password:
                 pgvector_config["password"] = pg_password
 
-    user_id = input(f"  User ID [{os.getenv('USER', 'hermes-user')}]: ").strip()
-    user_id = user_id or os.getenv("USER", "hermes-user")
+    user_id = input(f"  User ID [{os.getenv('USER', 'openamer-user')}]: ").strip()
+    user_id = user_id or os.getenv("USER", "openamer-user")
 
-    agent_id = input("  Agent ID [hermes]: ").strip()
-    agent_id = agent_id or "hermes"
+    agent_id = input("  Agent ID [openamer]: ").strip()
+    agent_id = agent_id or "openamer"
 
     flags = {
         "oss_llm": llm_id,
@@ -828,8 +828,8 @@ def _setup_oss_interactive(hermes_home: str, config: dict) -> None:
     oss_config, _ = build_oss_config(flags)
 
     if env_writes:
-        _write_env(Path(hermes_home) / ".env", env_writes)
-    _save_mem0_json(hermes_home, {"mode": "oss", "user_id": user_id, "agent_id": agent_id, "oss": oss_config})
+        _write_env(Path(openamer_home) / ".env", env_writes)
+    _save_mem0_json(openamer_home, {"mode": "oss", "user_id": user_id, "agent_id": agent_id, "oss": oss_config})
 
     _install_provider_deps(llm_id, embedder_id, vector_id)
 
@@ -955,8 +955,8 @@ def _check_min_dep_version() -> None:
         pass
 
 
-def post_setup(hermes_home: str, config: dict) -> None:
-    """Entry point called by hermes memory setup framework.
+def post_setup(openamer_home: str, config: dict) -> None:
+    """Entry point called by openamer memory setup framework.
 
     Routes on --mode (platform / selfhosted / oss); with no flag it shows an
     interactive picker with all three modes. Platform keeps the framework's
@@ -968,15 +968,15 @@ def post_setup(hermes_home: str, config: dict) -> None:
 
     if flags["mode"] == "oss":
         flags["_mode_from_flag"] = True
-        _setup_oss(hermes_home, config, flags)
+        _setup_oss(openamer_home, config, flags)
         return
 
     if flags["mode"] in ("selfhosted", "self-hosted"):
-        _setup_selfhosted(hermes_home, config, flags)
+        _setup_selfhosted(openamer_home, config, flags)
         return
 
     if flags["mode"] == "platform":
-        _setup_platform(hermes_home, config, flags)
+        _setup_platform(openamer_home, config, flags)
         return
 
     # No --mode flag: show interactive picker
@@ -987,9 +987,9 @@ def post_setup(hermes_home: str, config: dict) -> None:
     ]
     mode_idx = _curses_select("  Select mode", mode_items, 0)
     if mode_idx == 1:
-        _setup_selfhosted(hermes_home, config, flags)
+        _setup_selfhosted(openamer_home, config, flags)
     elif mode_idx == 2:
         flags["_mode_from_flag"] = False
-        _setup_oss(hermes_home, config, flags)
+        _setup_oss(openamer_home, config, flags)
     else:
-        _setup_platform(hermes_home, config, flags)
+        _setup_platform(openamer_home, config, flags)

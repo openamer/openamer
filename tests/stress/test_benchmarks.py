@@ -54,7 +54,7 @@ def seed_tasks(conn, kb, n, assignee="bench-worker", with_parents=False):
 
 
 def main():
-    home = tempfile.mkdtemp(prefix="hermes_bench_")
+    home = tempfile.mkdtemp(prefix="openamer_bench_")
     os.environ["OPENAMER_HOME"] = home
     os.environ["HOME"] = home
     sys.path.insert(0, WT)

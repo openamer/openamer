@@ -1131,7 +1131,7 @@ class TestTranscribeAudioMistralDispatch:
 def mock_xai_http_module():
     """Inject a fake tools.xai_http module for testing."""
     fake_module = MagicMock()
-    fake_module.hermes_xai_user_agent = MagicMock(return_value="hermes-xai/test")
+    fake_module.openamer_xai_user_agent = MagicMock(return_value="openamer-xai/test")
     with patch.dict("sys.modules", {"tools.xai_http": fake_module}):
         yield fake_module
 

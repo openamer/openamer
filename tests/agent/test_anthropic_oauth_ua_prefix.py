@@ -57,7 +57,7 @@ class TestOAuthUserAgentPrefix:
                 )
 
     def test_token_exchange_ua_not_throttled(self):
-        """run_hermes_oauth_login_pure must NOT send a throttled token-endpoint UA.
+        """run_openamer_oauth_login_pure must NOT send a throttled token-endpoint UA.
 
         Anthropic 429s both ``claude-cli/`` and ``claude-code/`` UAs at the
         token endpoint. The login exchange must use the shared
@@ -67,9 +67,9 @@ class TestOAuthUserAgentPrefix:
         import agent.anthropic_adapter as mod
 
         try:
-            source = inspect.getsource(mod.run_hermes_oauth_login_pure)
+            source = inspect.getsource(mod.run_openamer_oauth_login_pure)
         except AttributeError:
-            pytest.skip("run_hermes_oauth_login_pure not found")
+            pytest.skip("run_openamer_oauth_login_pure not found")
 
         for i, line in enumerate(source.split("\n"), 1):
             stripped = line.strip()
@@ -80,7 +80,7 @@ class TestOAuthUserAgentPrefix:
                     f"Line {i}: throttled UA in token-exchange header: {stripped}"
                 )
         assert "_OAUTH_TOKEN_USER_AGENT" in source, (
-            "run_hermes_oauth_login_pure should send the shared "
+            "run_openamer_oauth_login_pure should send the shared "
             "_OAUTH_TOKEN_USER_AGENT (non-claude-code) on the token endpoint"
         )
         assert not mod._OAUTH_TOKEN_USER_AGENT.startswith(("claude-code/", "claude-cli/")), (

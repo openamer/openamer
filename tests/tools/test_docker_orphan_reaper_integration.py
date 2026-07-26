@@ -47,7 +47,7 @@ def test_maybe_reap_runs_once_per_process(monkeypatch):
 def test_maybe_reap_respects_disable_flag(monkeypatch):
     """``terminal.docker_orphan_reaper: false`` (via container_config) must
     skip the sweep entirely — no docker ps, no inspect, no rm. The escape
-    hatch for operators running multiple Hermes processes in the same
+    hatch for operators running multiple OpenAmer processes in the same
     profile."""
     _reset_reaper_gate()
     call_count = {"reap": 0}
@@ -67,7 +67,7 @@ def test_maybe_reap_respects_disable_flag(monkeypatch):
 
 def test_maybe_reap_doubles_lifetime_for_max_age(monkeypatch):
     """The reaper's age threshold is ``2 × lifetime_seconds`` (with a 60s
-    floor). Generous default — gives sibling Hermes processes ample grace
+    floor). Generous default — gives sibling OpenAmer processes ample grace
     to be replaced without their just-exited containers being yanked."""
     _reset_reaper_gate()
     captured_args = {}
@@ -106,7 +106,7 @@ def test_maybe_reap_floors_at_60_seconds(monkeypatch):
 
 
 def test_maybe_reap_passes_current_profile_as_filter(monkeypatch):
-    """The reaper must be scoped to the current Hermes profile — a research
+    """The reaper must be scoped to the current OpenAmer profile — a research
     profile must NEVER reap default's containers. Verifies the
     profile-filter wiring."""
     _reset_reaper_gate()

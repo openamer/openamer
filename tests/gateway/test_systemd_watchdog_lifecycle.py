@@ -49,7 +49,7 @@ def test_runner_starts_watchdog_only_after_running(monkeypatch):
 
     watchdog = _FakeWatchdog.instances[-1]
     assert watchdog.config_enabled is True
-    assert watchdog.calls == ["start", "ready:Hermes Gateway running"]
+    assert watchdog.calls == ["start", "ready:OpenAmer Gateway running"]
 
 
 def test_runner_does_not_start_watchdog_when_disabled_or_not_running(monkeypatch):

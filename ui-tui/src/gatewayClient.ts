@@ -349,7 +349,7 @@ export class GatewayClient extends EventEmitter {
     const pyPath = env.PYTHONPATH?.trim()
 
     env.PYTHONPATH = pyPath ? `${root}${delimiter}${pyPath}` : root
-    // Tell the gateway child where the Hermes source root is so its import
+    // Tell the gateway child where the OpenAmer source root is so its import
     // guard can force it ahead of any same-named package in the launch cwd.
     env.HERMES_PYTHON_SRC_ROOT = root
     this.startReadyTimer(python, cwd)

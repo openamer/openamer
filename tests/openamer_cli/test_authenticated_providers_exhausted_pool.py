@@ -130,7 +130,7 @@ def _spy_list_authenticated(recorded: dict):
 
 
 def test_aux_task_picker_requests_exhausted_pool_visibility(monkeypatch):
-    """The ``hermes model`` auxiliary-task picker (``_aux_select_for_task``)
+    """The ``openamer model`` auxiliary-task picker (``_aux_select_for_task``)
     must request exhausted-pool visibility (``for_picker=True``) like the
     ``/model`` picker (#66584).
 

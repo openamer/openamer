@@ -54,7 +54,7 @@ class WhatsAppBehaviorMixin:
     MAX_MESSAGE_LENGTH: int = 4096
     supports_code_blocks = True  # WhatsApp renders fenced code blocks (monospace)
 
-    DEFAULT_REPLY_PREFIX: str = "⚕ *Hermes Agent*\n────────────\n"
+    DEFAULT_REPLY_PREFIX: str = "⚕ *OpenAmer Agent*\n────────────\n"
 
     _OUTBOUND_INVISIBLE_CHARS_RE = re.compile(r"[\u200b\u2060\u2063\ufeff]")
     _OUTBOUND_ODD_SPACE_RE = re.compile(r"[\u00a0\u1680\u180e\u2000-\u200a\u202f\u205f\u3000]")
@@ -464,7 +464,7 @@ class WhatsAppBehaviorMixin:
 def resolve_whatsapp_bridge_dir() -> Path:
     """Resolve the WhatsApp bridge directory, mirroring to OPENAMER_HOME if needed.
 
-    When the install tree is read-only (e.g., Docker /opt/hermes), this function
+    When the install tree is read-only (e.g., Docker /opt/openamer), this function
     mirrors the bridge source to a writable OPENAMER_HOME location and returns that
     path. This ensures npm install works in Docker environments.
 
@@ -478,8 +478,8 @@ def resolve_whatsapp_bridge_dir() -> Path:
     install_bridge = _Path(__file__).resolve().parents[2] / "scripts" / "whatsapp-bridge"
 
     # Try OPENAMER_HOME location first
-    hermes_home = get_openamer_home()
-    hermes_home_bridge = hermes_home / "scripts" / "whatsapp-bridge"
+    openamer_home = get_openamer_home()
+    openamer_home_bridge = openamer_home / "scripts" / "whatsapp-bridge"
 
     # Check if install dir is writable
     try:
@@ -494,17 +494,17 @@ def resolve_whatsapp_bridge_dir() -> Path:
         return install_bridge
 
     # Install dir is read-only, mirror to OPENAMER_HOME if needed
-    if hermes_home_bridge.exists():
-        return hermes_home_bridge
+    if openamer_home_bridge.exists():
+        return openamer_home_bridge
 
     # Mirror the bridge source to OPENAMER_HOME
     try:
-        hermes_home_bridge.parent.mkdir(parents=True, exist_ok=True)
+        openamer_home_bridge.parent.mkdir(parents=True, exist_ok=True)
         shutil.copytree(
             install_bridge,
-            hermes_home_bridge,
+            openamer_home_bridge,
             dirs_exist_ok=False,
         )
-        return hermes_home_bridge
+        return openamer_home_bridge
     except Exception:
         return install_bridge

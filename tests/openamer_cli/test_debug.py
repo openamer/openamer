@@ -1,4 +1,4 @@
-"""Tests for ``hermes debug`` CLI command and debug utilities."""
+"""Tests for ``openamer debug`` CLI command and debug utilities."""
 
 import os
 import urllib.error
@@ -11,9 +11,9 @@ import pytest
 # ---------------------------------------------------------------------------
 
 @pytest.fixture
-def hermes_home(tmp_path, monkeypatch):
+def openamer_home(tmp_path, monkeypatch):
     """Set up an isolated OPENAMER_HOME with minimal logs."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
 
@@ -144,7 +144,7 @@ class TestUploadToPastebin:
 class TestCaptureLogSnapshot:
     """Test _capture_log_snapshot for log reading and truncation."""
 
-    def test_reads_small_file(self, hermes_home):
+    def test_reads_small_file(self, openamer_home):
         from openamer_cli.debug import _capture_log_snapshot
 
         snap = _capture_log_snapshot("agent", tail_lines=10)
@@ -153,7 +153,7 @@ class TestCaptureLogSnapshot:
         assert "session started" in snap.tail_text
 
     def test_returns_none_for_missing(self, tmp_path, monkeypatch):
-        home = tmp_path / ".hermes"
+        home = tmp_path / ".openamer"
         home.mkdir()
         monkeypatch.setenv("OPENAMER_HOME", str(home))
 
@@ -162,18 +162,18 @@ class TestCaptureLogSnapshot:
         assert snap.full_text is None
         assert snap.tail_text == "(file not found)"
 
-    def test_empty_primary_reports_file_empty(self, hermes_home):
+    def test_empty_primary_reports_file_empty(self, openamer_home):
         """Empty primary (no .1 fallback) surfaces as '(file empty)', not missing."""
-        (hermes_home / "logs" / "agent.log").write_text("")
+        (openamer_home / "logs" / "agent.log").write_text("")
 
         from openamer_cli.debug import _capture_log_snapshot
         snap = _capture_log_snapshot("agent", tail_lines=10)
         assert snap.full_text is None
         assert snap.tail_text == "(file empty)"
 
-    def test_race_truncate_after_resolve_reports_empty(self, hermes_home, monkeypatch):
+    def test_race_truncate_after_resolve_reports_empty(self, openamer_home, monkeypatch):
         """If the log is truncated between resolve and stat, say 'empty', not 'missing'."""
-        log_path = hermes_home / "logs" / "agent.log"
+        log_path = openamer_home / "logs" / "agent.log"
         from openamer_cli import debug
 
         monkeypatch.setattr(debug, "_resolve_log_path", lambda _name: log_path)
@@ -184,19 +184,19 @@ class TestCaptureLogSnapshot:
         assert snap.full_text is None
         assert snap.tail_text == "(file empty)"
 
-    def test_truncates_large_file(self, hermes_home):
+    def test_truncates_large_file(self, openamer_home):
         """Files larger than max_bytes get tail-truncated."""
         from openamer_cli.debug import _capture_log_snapshot
 
         # Write a file larger than 1KB
         big_content = "x" * 100 + "\n"
-        (hermes_home / "logs" / "agent.log").write_text(big_content * 200)
+        (openamer_home / "logs" / "agent.log").write_text(big_content * 200)
 
         snap = _capture_log_snapshot("agent", tail_lines=10, max_bytes=1024)
         assert snap.full_text is not None
         assert "truncated" in snap.full_text
 
-    def test_keeps_first_line_when_truncation_on_boundary(self, hermes_home):
+    def test_keeps_first_line_when_truncation_on_boundary(self, openamer_home):
         """When truncation lands on a line boundary, keep the first full line."""
         from openamer_cli.debug import _capture_log_snapshot
 
@@ -204,7 +204,7 @@ class TestCaptureLogSnapshot:
         # backward-reading loop so the truncation path actually fires.
         line = "A" * 99 + "\n"  # 100 bytes per line
         num_lines = 200  # 20000 bytes
-        (hermes_home / "logs" / "agent.log").write_text(line * num_lines)
+        (openamer_home / "logs" / "agent.log").write_text(line * num_lines)
 
         # max_bytes = 1000 = 100 * 10 → cut at byte 20000 - 1000 = 19000,
         # and byte 19000 - 1 is '\n'.  Boundary hit → keep all 10 lines.
@@ -215,13 +215,13 @@ class TestCaptureLogSnapshot:
         kept = [l for l in raw.strip().splitlines() if l.startswith("A")]
         assert len(kept) == 10
 
-    def test_drops_partial_when_truncation_mid_line(self, hermes_home):
+    def test_drops_partial_when_truncation_mid_line(self, openamer_home):
         """When truncation lands mid-line, drop the partial fragment."""
         from openamer_cli.debug import _capture_log_snapshot
 
         line = "A" * 99 + "\n"  # 100 bytes per line
         num_lines = 200  # 20000 bytes
-        (hermes_home / "logs" / "agent.log").write_text(line * num_lines)
+        (openamer_home / "logs" / "agent.log").write_text(line * num_lines)
 
         # max_bytes = 950 doesn't divide evenly into 100 → mid-line cut.
         snap = _capture_log_snapshot("agent", tail_lines=5, max_bytes=950)
@@ -232,16 +232,16 @@ class TestCaptureLogSnapshot:
         # 950 / 100 = 9.5 → 9 complete lines after dropping partial
         assert len(kept) == 9
 
-    def test_unknown_log_returns_none(self, hermes_home):
+    def test_unknown_log_returns_none(self, openamer_home):
         from openamer_cli.debug import _capture_log_snapshot
         snap = _capture_log_snapshot("nonexistent", tail_lines=10)
         assert snap.full_text is None
 
-    def test_falls_back_to_rotated_file(self, hermes_home):
+    def test_falls_back_to_rotated_file(self, openamer_home):
         """When gateway.log doesn't exist, falls back to gateway.log.1."""
         from openamer_cli.debug import _capture_log_snapshot
 
-        logs_dir = hermes_home / "logs"
+        logs_dir = openamer_home / "logs"
         # Remove the primary (if any) and create a .1 rotation
         (logs_dir / "gateway.log").unlink(missing_ok=True)
         (logs_dir / "gateway.log.1").write_text(
@@ -252,11 +252,11 @@ class TestCaptureLogSnapshot:
         assert snap.full_text is not None
         assert "rotated content" in snap.full_text
 
-    def test_prefers_primary_over_rotated(self, hermes_home):
+    def test_prefers_primary_over_rotated(self, openamer_home):
         """Primary log is used when it exists, even if .1 also exists."""
         from openamer_cli.debug import _capture_log_snapshot
 
-        logs_dir = hermes_home / "logs"
+        logs_dir = openamer_home / "logs"
         (logs_dir / "gateway.log").write_text("primary content\n")
         (logs_dir / "gateway.log.1").write_text("rotated content\n")
 
@@ -264,11 +264,11 @@ class TestCaptureLogSnapshot:
         assert "primary content" in snap.full_text
         assert "rotated" not in snap.full_text
 
-    def test_falls_back_when_primary_empty(self, hermes_home):
+    def test_falls_back_when_primary_empty(self, openamer_home):
         """Empty primary log falls back to .1 rotation."""
         from openamer_cli.debug import _capture_log_snapshot
 
-        logs_dir = hermes_home / "logs"
+        logs_dir = openamer_home / "logs"
         (logs_dir / "agent.log").write_text("")
         (logs_dir / "agent.log.1").write_text("rotated agent data\n")
 
@@ -290,9 +290,9 @@ class TestCaptureLogSnapshotRedaction:
     """Pin upload-time redaction at the _capture_log_snapshot boundary."""
 
     @pytest.fixture
-    def hermes_home_with_secret(self, tmp_path, monkeypatch):
+    def openamer_home_with_secret(self, tmp_path, monkeypatch):
         """Isolated OPENAMER_HOME whose agent.log contains a vendor-prefixed token."""
-        home = tmp_path / ".hermes"
+        home = tmp_path / ".openamer"
         home.mkdir()
         monkeypatch.setenv("OPENAMER_HOME", str(home))
         # Baseline fixture: no explicit env-var opinion. With the post-#17691
@@ -311,7 +311,7 @@ class TestCaptureLogSnapshotRedaction:
         (logs_dir / "gateway.log").write_text("")
         return home
 
-    def test_default_redacts_tail_and_full_text(self, hermes_home_with_secret):
+    def test_default_redacts_tail_and_full_text(self, openamer_home_with_secret):
         from openamer_cli.debug import _capture_log_snapshot
 
         snap = _capture_log_snapshot("agent", tail_lines=10)
@@ -321,7 +321,7 @@ class TestCaptureLogSnapshotRedaction:
         assert snap.full_text is not None
         assert _REDACT_FIXTURE_TOKEN not in snap.full_text
 
-    def test_redact_false_passes_through(self, hermes_home_with_secret):
+    def test_redact_false_passes_through(self, openamer_home_with_secret):
         from openamer_cli.debug import _capture_log_snapshot
 
         snap = _capture_log_snapshot("agent", tail_lines=10, redact=False)
@@ -331,7 +331,7 @@ class TestCaptureLogSnapshotRedaction:
         assert _REDACT_FIXTURE_TOKEN in (snap.full_text or "")
 
     def test_force_true_works_when_redaction_disabled(
-        self, hermes_home_with_secret, monkeypatch
+        self, openamer_home_with_secret, monkeypatch
     ):
         """Regression test: redact_sensitive_text short-circuits without force=True.
 
@@ -357,11 +357,11 @@ class TestCaptureLogSnapshotRedaction:
         assert _REDACT_FIXTURE_TOKEN not in snap.full_text
 
     def test_default_redacts_email_addresses_for_public_share(
-        self, hermes_home_with_secret
+        self, openamer_home_with_secret
     ):
         from openamer_cli.debug import _capture_log_snapshot
 
-        log_path = hermes_home_with_secret / "logs" / "agent.log"
+        log_path = openamer_home_with_secret / "logs" / "agent.log"
         log_path.write_text(
             "2026-04-12 17:00:00 INFO gateway.run: "
             "inbound message: platform=bluebubbles "
@@ -375,10 +375,10 @@ class TestCaptureLogSnapshotRedaction:
         assert snap.full_text is not None
         assert "person@example.com" not in snap.full_text
 
-    def test_no_redact_preserves_email_addresses(self, hermes_home_with_secret):
+    def test_no_redact_preserves_email_addresses(self, openamer_home_with_secret):
         from openamer_cli.debug import _capture_log_snapshot
 
-        log_path = hermes_home_with_secret / "logs" / "agent.log"
+        log_path = openamer_home_with_secret / "logs" / "agent.log"
         log_path.write_text(
             "2026-04-12 17:00:00 INFO gateway.run: "
             "inbound message: platform=bluebubbles "
@@ -391,7 +391,7 @@ class TestCaptureLogSnapshotRedaction:
         assert "person@example.com" in (snap.full_text or "")
 
     def test_capture_default_log_snapshots_threads_redact(
-        self, hermes_home_with_secret
+        self, openamer_home_with_secret
     ):
         from openamer_cli.debug import _capture_default_log_snapshots
 
@@ -402,7 +402,7 @@ class TestCaptureLogSnapshotRedaction:
         assert _REDACT_FIXTURE_TOKEN not in (snaps["agent"].full_text or "")
 
     def test_capture_default_log_snapshots_no_redact_passes_through(
-        self, hermes_home_with_secret
+        self, openamer_home_with_secret
     ):
         from openamer_cli.debug import _capture_default_log_snapshots
 
@@ -419,19 +419,19 @@ class TestCaptureLogSnapshotRedaction:
 class TestCollectDebugReport:
     """Test the debug report builder."""
 
-    def test_report_includes_dump_output(self, hermes_home):
+    def test_report_includes_dump_output(self, openamer_home):
         from openamer_cli.debug import collect_debug_report
 
         with patch("openamer_cli.dump.run_dump") as mock_dump:
             mock_dump.side_effect = lambda args: print(
-                "--- hermes dump ---\nversion: 0.8.0\n--- end dump ---"
+                "--- openamer dump ---\nversion: 0.8.0\n--- end dump ---"
             )
             report = collect_debug_report(log_lines=50)
 
-        assert "--- hermes dump ---" in report
+        assert "--- openamer dump ---" in report
         assert "version: 0.8.0" in report
 
-    def test_report_includes_agent_log(self, hermes_home):
+    def test_report_includes_agent_log(self, openamer_home):
         from openamer_cli.debug import collect_debug_report
 
         with patch("openamer_cli.dump.run_dump"):
@@ -440,7 +440,7 @@ class TestCollectDebugReport:
         assert "--- agent.log" in report
         assert "session started" in report
 
-    def test_report_includes_errors_log(self, hermes_home):
+    def test_report_includes_errors_log(self, openamer_home):
         from openamer_cli.debug import collect_debug_report
 
         with patch("openamer_cli.dump.run_dump"):
@@ -449,7 +449,7 @@ class TestCollectDebugReport:
         assert "--- errors.log" in report
         assert "connection lost" in report
 
-    def test_report_includes_gateway_log(self, hermes_home):
+    def test_report_includes_gateway_log(self, openamer_home):
         from openamer_cli.debug import collect_debug_report
 
         with patch("openamer_cli.dump.run_dump"):
@@ -457,7 +457,7 @@ class TestCollectDebugReport:
 
         assert "--- gateway.log" in report
 
-    def test_report_includes_gui_log(self, hermes_home):
+    def test_report_includes_gui_log(self, openamer_home):
         from openamer_cli.debug import collect_debug_report
 
         with patch("openamer_cli.dump.run_dump"):
@@ -466,7 +466,7 @@ class TestCollectDebugReport:
         assert "--- gui.log" in report
         assert "dashboard request" in report
 
-    def test_report_includes_desktop_log(self, hermes_home):
+    def test_report_includes_desktop_log(self, openamer_home):
         from openamer_cli.debug import collect_debug_report
 
         with patch("openamer_cli.dump.run_dump"):
@@ -476,7 +476,7 @@ class TestCollectDebugReport:
         assert "backend spawned" in report
 
     def test_missing_logs_handled(self, tmp_path, monkeypatch):
-        home = tmp_path / ".hermes"
+        home = tmp_path / ".openamer"
         home.mkdir()
         monkeypatch.setenv("OPENAMER_HOME", str(home))
 
@@ -495,7 +495,7 @@ class TestCollectDebugReport:
 class TestRunDebugShare:
     """Test the run_debug_share CLI handler."""
 
-    def test_share_sweeps_expired_pastes(self, hermes_home, capsys):
+    def test_share_sweeps_expired_pastes(self, openamer_home, capsys):
         """Slash-command path should sweep old pending deletes before uploading."""
         from openamer_cli.debug import run_debug_share
 
@@ -514,7 +514,7 @@ class TestRunDebugShare:
         mock_sweep.assert_called_once()
         assert "Debug report uploaded" in capsys.readouterr().out
 
-    def test_share_survives_sweep_failure(self, hermes_home, capsys):
+    def test_share_survives_sweep_failure(self, openamer_home, capsys):
         """Expired-paste cleanup is best-effort and must not block sharing."""
         from openamer_cli.debug import run_debug_share
 
@@ -535,7 +535,7 @@ class TestRunDebugShare:
 
         assert "https://paste.rs/test" in capsys.readouterr().out
 
-    def test_local_flag_prints_full_logs(self, hermes_home, capsys):
+    def test_local_flag_prints_full_logs(self, openamer_home, capsys):
         """--local prints the report plus full log contents."""
         from openamer_cli.debug import run_debug_share
 
@@ -553,7 +553,7 @@ class TestRunDebugShare:
         assert "FULL agent.log" in out
         assert "FULL gateway.log" in out
 
-    def test_share_uploads_five_pastes(self, hermes_home, capsys):
+    def test_share_uploads_five_pastes(self, openamer_home, capsys):
         """Successful share uploads report + agent.log + gateway.log + gui.log + desktop.log."""
         from openamer_cli.debug import run_debug_share
 
@@ -573,7 +573,7 @@ class TestRunDebugShare:
         with patch("openamer_cli.dump.run_dump") as mock_dump, \
              patch("openamer_cli.debug.upload_to_pastebin",
                     side_effect=_mock_upload):
-            mock_dump.side_effect = lambda a: print("--- hermes dump ---\nversion: test\n--- end dump ---")
+            mock_dump.side_effect = lambda a: print("--- openamer dump ---\nversion: test\n--- end dump ---")
             run_debug_share(args)
 
         out = capsys.readouterr().out
@@ -592,23 +592,23 @@ class TestRunDebugShare:
 
         # Each log paste should start with the dump header
         agent_paste = uploaded_content[1]
-        assert "--- hermes dump ---" in agent_paste
+        assert "--- openamer dump ---" in agent_paste
         assert "--- full agent.log ---" in agent_paste
         gateway_paste = uploaded_content[2]
-        assert "--- hermes dump ---" in gateway_paste
+        assert "--- openamer dump ---" in gateway_paste
         assert "--- full gateway.log ---" in gateway_paste
         gui_paste = uploaded_content[3]
-        assert "--- hermes dump ---" in gui_paste
+        assert "--- openamer dump ---" in gui_paste
         assert "--- full gui.log ---" in gui_paste
         desktop_paste = uploaded_content[4]
-        assert "--- hermes dump ---" in desktop_paste
+        assert "--- openamer dump ---" in desktop_paste
         assert "--- full desktop.log ---" in desktop_paste
 
-    def test_share_keeps_report_and_full_log_on_same_snapshot(self, hermes_home, capsys):
+    def test_share_keeps_report_and_full_log_on_same_snapshot(self, openamer_home, capsys):
         """A mid-run rotation must not make full agent.log older than the report."""
         from openamer_cli.debug import run_debug_share, collect_debug_report as real_collect_debug_report
 
-        logs_dir = hermes_home / "logs"
+        logs_dir = openamer_home / "logs"
         (logs_dir / "agent.log").write_text(
             "2026-04-22 12:00:00 INFO agent: newest line\n"
         )
@@ -656,7 +656,7 @@ class TestRunDebugShare:
 
     def test_share_skips_missing_logs(self, tmp_path, monkeypatch, capsys):
         """Only uploads logs that exist."""
-        home = tmp_path / ".hermes"
+        home = tmp_path / ".openamer"
         home.mkdir()
         monkeypatch.setenv("OPENAMER_HOME", str(home))
 
@@ -683,7 +683,7 @@ class TestRunDebugShare:
         assert call_count[0] == 1
         assert "Report" in out
 
-    def test_share_continues_on_log_upload_failure(self, hermes_home, capsys):
+    def test_share_continues_on_log_upload_failure(self, openamer_home, capsys):
         """Log upload failure doesn't stop the report from being shared."""
         from openamer_cli.debug import run_debug_share
 
@@ -710,7 +710,7 @@ class TestRunDebugShare:
         assert "paste.rs/report" in out
         assert "failed to upload" in out
 
-    def test_share_exits_on_report_upload_failure(self, hermes_home, capsys):
+    def test_share_exits_on_report_upload_failure(self, openamer_home, capsys):
         """If the main report fails to upload, exit with code 1."""
         from openamer_cli.debug import run_debug_share
 
@@ -739,9 +739,9 @@ class TestRunDebugShareRedaction:
     """End-to-end: --no-redact flag, banner injection, default behavior."""
 
     @pytest.fixture
-    def hermes_home_with_secret(self, tmp_path, monkeypatch):
+    def openamer_home_with_secret(self, tmp_path, monkeypatch):
         """Isolated OPENAMER_HOME whose agent.log contains a vendor-prefixed token."""
-        home = tmp_path / ".hermes"
+        home = tmp_path / ".openamer"
         home.mkdir()
         monkeypatch.setenv("OPENAMER_HOME", str(home))
         monkeypatch.delenv("HERMES_REDACT_SECRETS", raising=False)
@@ -758,7 +758,7 @@ class TestRunDebugShareRedaction:
         return home
 
     def test_default_share_redacts_uploaded_content(
-        self, hermes_home_with_secret, capsys
+        self, openamer_home_with_secret, capsys
     ):
         """The uploaded report and full-log pastes do not contain the raw token."""
         from openamer_cli.debug import run_debug_share
@@ -789,7 +789,7 @@ class TestRunDebugShareRedaction:
             )
 
     def test_default_share_includes_redaction_banner(
-        self, hermes_home_with_secret, capsys
+        self, openamer_home_with_secret, capsys
     ):
         """Each upload-bound paste carries the visible redaction banner."""
         from openamer_cli.debug import run_debug_share
@@ -818,7 +818,7 @@ class TestRunDebugShareRedaction:
             )
 
     def test_no_redact_flag_disables_redaction_and_banner(
-        self, hermes_home_with_secret, capsys
+        self, openamer_home_with_secret, capsys
     ):
         """--no-redact preserves original log content and omits the banner."""
         from openamer_cli.debug import run_debug_share
@@ -866,11 +866,11 @@ class TestRunDebug:
         run_debug(args)
 
         out = capsys.readouterr().out
-        assert "hermes debug" in out
+        assert "openamer debug" in out
         assert "share" in out
         assert "delete" in out
 
-    def test_share_subcommand_routes(self, hermes_home):
+    def test_share_subcommand_routes(self, openamer_home):
         from openamer_cli.debug import run_debug
 
         args = MagicMock()
@@ -946,12 +946,12 @@ class TestScheduleAutoDelete:
     were observed in production.
 
     The new implementation is stateless: it records pending deletions to
-    ``~/.hermes/pastes/pending.json`` and lets ``_sweep_expired_pastes``
-    handle the DELETE requests synchronously on the next ``hermes debug``
+    ``~/.openamer/pastes/pending.json`` and lets ``_sweep_expired_pastes``
+    handle the DELETE requests synchronously on the next ``openamer debug``
     invocation.
     """
 
-    def test_does_not_spawn_subprocess(self, hermes_home):
+    def test_does_not_spawn_subprocess(self, openamer_home):
         """Regression guard: _schedule_auto_delete must NEVER spawn subprocesses.
 
         We assert this structurally rather than by mocking Popen: the new
@@ -1013,7 +1013,7 @@ class TestScheduleAutoDelete:
                 except OSError:
                     pass  # process exited already
 
-    def test_records_pending_to_json(self, hermes_home):
+    def test_records_pending_to_json(self, openamer_home):
         """Scheduled URLs are persisted to pending.json with expiration."""
         from openamer_cli.debug import _schedule_auto_delete, _pending_file
         import json
@@ -1037,7 +1037,7 @@ class TestScheduleAutoDelete:
             assert e["expire_at"] > time.time()
             assert e["expire_at"] <= time.time() + 15
 
-    def test_skips_non_paste_rs_urls(self, hermes_home):
+    def test_skips_non_paste_rs_urls(self, openamer_home):
         """dpaste.com URLs auto-expire — don't track them."""
         from openamer_cli.debug import _schedule_auto_delete, _pending_file
 
@@ -1046,7 +1046,7 @@ class TestScheduleAutoDelete:
         # pending.json should not be created for non-paste.rs URLs
         assert not _pending_file().exists()
 
-    def test_merges_with_existing_pending(self, hermes_home):
+    def test_merges_with_existing_pending(self, openamer_home):
         """Subsequent calls merge into existing pending.json."""
         from openamer_cli.debug import _schedule_auto_delete, _load_pending
 
@@ -1057,7 +1057,7 @@ class TestScheduleAutoDelete:
         urls = {e["url"] for e in entries}
         assert urls == {"https://paste.rs/first", "https://paste.rs/second"}
 
-    def test_dedupes_same_url(self, hermes_home):
+    def test_dedupes_same_url(self, openamer_home):
         """Same URL recorded twice → one entry with the later expire_at."""
         from openamer_cli.debug import _schedule_auto_delete, _load_pending
 
@@ -1072,14 +1072,14 @@ class TestScheduleAutoDelete:
 class TestSweepExpiredPastes:
     """Test the opportunistic sweep that replaces the sleeping subprocess."""
 
-    def test_sweep_empty_is_noop(self, hermes_home):
+    def test_sweep_empty_is_noop(self, openamer_home):
         from openamer_cli.debug import _sweep_expired_pastes
 
         deleted, remaining = _sweep_expired_pastes()
         assert deleted == 0
         assert remaining == 0
 
-    def test_sweep_deletes_expired_entries(self, hermes_home):
+    def test_sweep_deletes_expired_entries(self, openamer_home):
         from openamer_cli.debug import (
             _sweep_expired_pastes,
             _save_pending,
@@ -1110,7 +1110,7 @@ class TestSweepExpiredPastes:
         urls = {e["url"] for e in entries}
         assert urls == {"https://paste.rs/future"}
 
-    def test_sweep_leaves_future_entries_alone(self, hermes_home):
+    def test_sweep_leaves_future_entries_alone(self, openamer_home):
         from openamer_cli.debug import _sweep_expired_pastes, _save_pending
         import time
 
@@ -1126,7 +1126,7 @@ class TestSweepExpiredPastes:
         assert deleted == 0
         assert remaining == 2
 
-    def test_sweep_survives_network_failure(self, hermes_home):
+    def test_sweep_survives_network_failure(self, openamer_home):
         """Failed DELETEs stay in pending.json until the 24h grace window."""
         from openamer_cli.debug import (
             _sweep_expired_pastes,
@@ -1150,7 +1150,7 @@ class TestSweepExpiredPastes:
         assert remaining == 1
         assert len(_load_pending()) == 1
 
-    def test_sweep_drops_entries_past_grace_window(self, hermes_home):
+    def test_sweep_drops_entries_past_grace_window(self, openamer_home):
         """After 24h past expiration, give up even on network failures."""
         from openamer_cli.debug import (
             _sweep_expired_pastes,
@@ -1179,7 +1179,7 @@ class TestSweepExpiredPastes:
 class TestRunDebugSweepsOnInvocation:
     """``run_debug`` must sweep expired pastes on every invocation."""
 
-    def test_run_debug_calls_sweep(self, hermes_home):
+    def test_run_debug_calls_sweep(self, openamer_home):
         from openamer_cli.debug import run_debug
 
         args = MagicMock()
@@ -1190,7 +1190,7 @@ class TestRunDebugSweepsOnInvocation:
 
         mock_sweep.assert_called_once()
 
-    def test_run_debug_survives_sweep_failure(self, hermes_home, capsys):
+    def test_run_debug_survives_sweep_failure(self, openamer_home, capsys):
         """If the sweep throws, the subcommand still runs."""
         from openamer_cli.debug import run_debug
 
@@ -1205,7 +1205,7 @@ class TestRunDebugSweepsOnInvocation:
 
         # Default subcommand still printed help
         out = capsys.readouterr().out
-        assert "Usage: hermes debug" in out
+        assert "Usage: openamer debug" in out
 
 
 class TestRunDebugDelete:
@@ -1250,7 +1250,7 @@ class TestRunDebugDelete:
 class TestShareIncludesAutoDelete:
     """Verify that run_debug_share schedules auto-deletion and prints TTL."""
 
-    def test_share_schedules_auto_delete(self, hermes_home, capsys):
+    def test_share_schedules_auto_delete(self, openamer_home, capsys):
         from openamer_cli.debug import run_debug_share
 
         args = MagicMock()
@@ -1273,7 +1273,7 @@ class TestShareIncludesAutoDelete:
         out = capsys.readouterr().out
         assert "auto-delete" in out
 
-    def test_share_shows_privacy_notice(self, hermes_home, capsys):
+    def test_share_shows_privacy_notice(self, openamer_home, capsys):
         from openamer_cli.debug import run_debug_share
 
         args = MagicMock()
@@ -1292,7 +1292,7 @@ class TestShareIncludesAutoDelete:
         assert "PUBLIC paste service" in out
         assert "NOT redacted" in out
 
-    def test_local_no_privacy_notice(self, hermes_home, capsys):
+    def test_local_no_privacy_notice(self, openamer_home, capsys):
         from openamer_cli.debug import run_debug_share
 
         args = MagicMock()
@@ -1316,12 +1316,12 @@ class TestShareIncludesAutoDelete:
 class TestBuildDebugShare:
     """The shared core that returns structured paste URLs (not printed text).
 
-    Backs both ``hermes debug share`` (CLI) and ``POST /api/ops/debug-share``
+    Backs both ``openamer debug share`` (CLI) and ``POST /api/ops/debug-share``
     (dashboard). The dashboard renders ``urls`` as real, copyable links, so the
     contract here is the return value, not stdout.
     """
 
-    def test_returns_structured_urls(self, hermes_home):
+    def test_returns_structured_urls(self, openamer_home):
         from openamer_cli.debug import build_debug_share, DebugShareResult
 
         count = [0]
@@ -1345,11 +1345,11 @@ class TestBuildDebugShare:
         assert result.redacted is True
         assert result.auto_delete_seconds == 21600
 
-    def test_skips_missing_logs_without_failure(self, hermes_home):
+    def test_skips_missing_logs_without_failure(self, openamer_home):
         from openamer_cli.debug import build_debug_share
 
         # Remove desktop.log so it should be neither uploaded nor reported failed.
-        (hermes_home / "logs" / "desktop.log").unlink()
+        (openamer_home / "logs" / "desktop.log").unlink()
 
         with patch("openamer_cli.dump.run_dump"), patch(
             "openamer_cli.debug.upload_to_pastebin",
@@ -1360,11 +1360,11 @@ class TestBuildDebugShare:
         assert "desktop.log" not in result.urls
         assert result.failures == []
 
-    def test_redaction_keeps_secrets_out_of_payload(self, hermes_home):
+    def test_redaction_keeps_secrets_out_of_payload(self, openamer_home):
         from openamer_cli.debug import build_debug_share
 
         secret = "sk-proj-SUPERSECRETtoken1234567890"
-        (hermes_home / "logs" / "agent.log").write_text(
+        (openamer_home / "logs" / "agent.log").write_text(
             f"line one\nauthorization token={secret}\nline three\n"
         )
 
@@ -1383,7 +1383,7 @@ class TestBuildDebugShare:
         joined = "\n".join(uploaded)
         assert secret not in joined, "secret leaked into upload payload"
 
-    def test_optional_log_failure_is_collected_not_raised(self, hermes_home):
+    def test_optional_log_failure_is_collected_not_raised(self, openamer_home):
         from openamer_cli.debug import build_debug_share
 
         count = [0]
@@ -1404,7 +1404,7 @@ class TestBuildDebugShare:
         assert len(result.failures) == 1
         assert "paste service hiccup" in result.failures[0]
 
-    def test_required_report_failure_raises(self, hermes_home):
+    def test_required_report_failure_raises(self, openamer_home):
         from openamer_cli.debug import build_debug_share
 
         with patch("openamer_cli.dump.run_dump"), patch(
@@ -1420,7 +1420,7 @@ class TestBuildDebugShare:
 # ---------------------------------------------------------------------------
 
 class TestCollectShareBundle:
-    def test_returns_report_and_logs(self, hermes_home):
+    def test_returns_report_and_logs(self, openamer_home):
         from openamer_cli.debug import collect_share_bundle
 
         with patch("openamer_cli.dump.run_dump"):
@@ -1434,7 +1434,7 @@ class TestCollectShareBundle:
         assert "redacted at upload time" in bundle["report"]
         assert "session started" in bundle["agent.log"]
 
-    def test_no_redact_omits_banner(self, hermes_home):
+    def test_no_redact_omits_banner(self, openamer_home):
         from openamer_cli.debug import collect_share_bundle
 
         with patch("openamer_cli.dump.run_dump"):
@@ -1442,11 +1442,11 @@ class TestCollectShareBundle:
 
         assert "redacted at upload time" not in bundle["report"]
 
-    def test_redaction_keeps_secrets_out(self, hermes_home):
+    def test_redaction_keeps_secrets_out(self, openamer_home):
         from openamer_cli.debug import collect_share_bundle
 
         secret = "sk-proj-abcdefghijklmnopqrstuvwxyz1234567890"
-        (hermes_home / "logs" / "agent.log").write_text(
+        (openamer_home / "logs" / "agent.log").write_text(
             f"line one\nOPENAI_API_KEY={secret}\nline three\n"
         )
         with patch("openamer_cli.dump.run_dump"):
@@ -1459,7 +1459,7 @@ class TestCollectShareBundle:
         assert secret not in "\n".join(redacted.values())
 
 
-    def test_build_debug_share_uses_collector(self, hermes_home):
+    def test_build_debug_share_uses_collector(self, openamer_home):
         # build_debug_share must produce the same report text the collector does
         # (i.e. the refactor preserved paste.rs behaviour).
         from openamer_cli.debug import build_debug_share, collect_share_bundle
@@ -1484,7 +1484,7 @@ class TestCollectShareBundle:
 
 
 class TestBuildNousBundle:
-    def test_envelope_shape_and_gzip(self, hermes_home):
+    def test_envelope_shape_and_gzip(self, openamer_home):
         import gzip
         import json as _json
 
@@ -1496,7 +1496,7 @@ class TestBuildNousBundle:
         # It's gzip — magic bytes.
         assert blob[:2] == b"\x1f\x8b"
         envelope = _json.loads(gzip.decompress(blob).decode())
-        assert envelope["format"] == "hermes-debug-share/1"
+        assert envelope["format"] == "openamer-debug-share/1"
         assert envelope["redacted"] is True
         assert envelope["files"] == files
         assert "created" in envelope
@@ -1527,7 +1527,7 @@ class TestRunDebugShareNous:
             setattr(a, k, v)
         return a
 
-    def test_nous_success_prints_view_url(self, hermes_home, capsys):
+    def test_nous_success_prints_view_url(self, openamer_home, capsys):
         from openamer_cli.debug import run_debug_share
 
         res = {
@@ -1548,7 +1548,7 @@ class TestRunDebugShareNous:
         blob = share.call_args[0][0]
         assert isinstance(blob, (bytes, bytearray)) and blob[:2] == b"\x1f\x8b"
 
-    def test_nous_failure_suggests_local(self, hermes_home, capsys):
+    def test_nous_failure_suggests_local(self, openamer_home, capsys):
         from openamer_cli.debug import run_debug_share
 
         with patch("openamer_cli.dump.run_dump"), patch(
@@ -1562,7 +1562,7 @@ class TestRunDebugShareNous:
         assert "Nous upload failed" in err
         assert "--local" in err
 
-    def test_nous_does_not_touch_pastebin(self, hermes_home):
+    def test_nous_does_not_touch_pastebin(self, openamer_home):
         from openamer_cli.debug import run_debug_share
 
         res = {"id": "id-1", "viewUrl": "https://v"}
@@ -1577,7 +1577,7 @@ class TestDebugSlashCommand:
     """`/debug [nous|local]` parsing in the CLI/TUI handler.
 
     The classic CLI and the TUI slash worker both dispatch through
-    ``HermesCLI.process_command`` → ``_handle_debug_command(cmd_original)``,
+    ``OpenAmerCLI.process_command`` → ``_handle_debug_command(cmd_original)``,
     which parses an optional destination word and builds the args namespace
     handed to ``run_debug_share``.
     """
@@ -1636,7 +1636,7 @@ class TestDebugSlashCommand:
 
 
 class TestShareConsentGate:
-    """`hermes debug share` requires explicit consent before uploading.
+    """`openamer debug share` requires explicit consent before uploading.
 
     Uses SimpleNamespace rather than MagicMock so ``args.yes`` is a real
     ``False`` — a MagicMock auto-provides a truthy ``.yes`` and would silently
@@ -1651,7 +1651,7 @@ class TestShareConsentGate:
         base.update(over)
         return SimpleNamespace(**base)
 
-    def test_aborts_on_user_decline(self, hermes_home, capsys, monkeypatch):
+    def test_aborts_on_user_decline(self, openamer_home, capsys, monkeypatch):
         """Interactive user typing anything but y/yes → no upload."""
         from openamer_cli.debug import run_debug_share
 
@@ -1665,7 +1665,7 @@ class TestShareConsentGate:
         mock_upload.assert_not_called()
         assert "Aborted" in capsys.readouterr().out
 
-    def test_proceeds_on_user_accept(self, hermes_home, capsys, monkeypatch):
+    def test_proceeds_on_user_accept(self, openamer_home, capsys, monkeypatch):
         """Interactive user typing 'y' → upload proceeds."""
         from openamer_cli.debug import run_debug_share
 
@@ -1683,7 +1683,7 @@ class TestShareConsentGate:
         assert "Debug report uploaded" in out
         assert "Aborted" not in out
 
-    def test_yes_flag_skips_prompt(self, hermes_home, capsys, monkeypatch):
+    def test_yes_flag_skips_prompt(self, openamer_home, capsys, monkeypatch):
         """--yes uploads without ever calling input()."""
         from openamer_cli.debug import run_debug_share
 
@@ -1701,7 +1701,7 @@ class TestShareConsentGate:
 
         assert "Debug report uploaded" in capsys.readouterr().out
 
-    def test_non_interactive_requires_yes(self, hermes_home, capsys, monkeypatch):
+    def test_non_interactive_requires_yes(self, openamer_home, capsys, monkeypatch):
         """No TTY + no --yes → exit(1), never upload silently."""
         from openamer_cli.debug import run_debug_share
 
@@ -1718,7 +1718,7 @@ class TestShareConsentGate:
         assert "Non-interactive mode requires --yes" in err
         assert "personal data" in err
 
-    def test_non_interactive_with_yes_succeeds(self, hermes_home, capsys, monkeypatch):
+    def test_non_interactive_with_yes_succeeds(self, openamer_home, capsys, monkeypatch):
         """No TTY but --yes present → upload proceeds."""
         from openamer_cli.debug import run_debug_share
 
@@ -1733,7 +1733,7 @@ class TestShareConsentGate:
 
         assert "https://paste.rs/test" in capsys.readouterr().out
 
-    def test_nous_path_also_gated(self, hermes_home, capsys, monkeypatch):
+    def test_nous_path_also_gated(self, openamer_home, capsys, monkeypatch):
         """The --nous S3 path enforces the same consent gate (sibling site)."""
         from openamer_cli.debug import run_debug_share
 
@@ -1747,7 +1747,7 @@ class TestShareConsentGate:
         mock_nous.assert_not_called()
         assert "Aborted" in capsys.readouterr().out
 
-    def test_local_never_prompts(self, hermes_home, capsys, monkeypatch):
+    def test_local_never_prompts(self, openamer_home, capsys, monkeypatch):
         """--local renders to stdout and must not prompt or upload."""
         from openamer_cli.debug import run_debug_share
 

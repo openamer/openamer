@@ -109,7 +109,7 @@ class TestControlSocketPath:
 
         env = SSHEnvironment(
             host="9373:9b91:4480:558d:708e:e601:24e8:d8d0",
-            user="hermes",
+            user="openamer",
             port=22,
         )
 

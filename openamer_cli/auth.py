@@ -3,7 +3,7 @@ Multi-provider authentication system for OpenAmer Agent.
 
 Supports OAuth device code flows (Nous Portal, future: OpenAI Codex) and
 traditional API key providers (OpenRouter, custom endpoints). Auth state
-is persisted in ~/.hermes/auth.json with cross-process file locking.
+is persisted in ~/.openamer/auth.json with cross-process file locking.
 
 Architecture:
 - ProviderConfig registry defines known OAuth providers
@@ -44,7 +44,7 @@ from urllib.parse import parse_qs, urlencode, urlparse
 import httpx
 
 from openamer_cli.config import (
-    get_hermes_home,
+    get_openamer_home,
     get_config_path,
     read_raw_config,
     require_readable_config_before_write,
@@ -498,7 +498,7 @@ def get_anthropic_key() -> str:
     """Return the first usable Anthropic credential, or ``""``.
 
     Checks both the ``.env`` file and the process environment, preferring
-    ``~/.hermes/.env`` so a deliberate key rotation isn't shadowed by a stale
+    ``~/.openamer/.env`` so a deliberate key rotation isn't shadowed by a stale
     shell export (matches the api-key resolution path — see #20591).  The
     order mirrors the ``PROVIDER_REGISTRY["anthropic"].api_key_env_vars``
     tuple:
@@ -596,7 +596,7 @@ def _resolve_api_key_provider_secret(
 
     from openamer_cli.config import get_env_value_prefer_dotenv
     for env_var in pconfig.api_key_env_vars:
-        # Prefer ~/.hermes/.env over os.environ so a deliberate key rotation
+        # Prefer ~/.openamer/.env over os.environ so a deliberate key rotation
         # in the user's .env file isn't shadowed by a stale shell export
         # inherited from a parent process (Codex CLI, test runners, etc.).
         val = (get_env_value_prefer_dotenv(env_var) or "").strip()
@@ -899,7 +899,7 @@ def _oauth_trace(event: str, *, sequence_id: Optional[str] = None, **fields: Any
 
 
 # =============================================================================
-# Auth Store — persistence layer for ~/.hermes/auth.json
+# Auth Store — persistence layer for ~/.openamer/auth.json
 # =============================================================================
 
 def _auth_file_path() -> Path:
@@ -910,7 +910,7 @@ def _auth_file_path() -> Path:
     # hermetic conftest, or sandbox escapes via threads/subprocesses. In
     # production (no PYTEST_CURRENT_TEST) this is a single dict lookup.
     if os.environ.get("PYTEST_CURRENT_TEST"):
-        real_home_auth = (Path.home() / ".hermes" / "auth.json").resolve(strict=False)
+        real_home_auth = (Path.home() / ".openamer" / "auth.json").resolve(strict=False)
         try:
             resolved = path.resolve(strict=False)
         except Exception:
@@ -935,8 +935,8 @@ def _global_auth_file_path() -> Optional[Path]:
     See issue #18594 follow-up (credential_pool shadowing).
     """
     try:
-        from openamer_constants import get_default_hermes_root
-        global_root = get_default_hermes_root()
+        from openamer_constants import get_default_openamer_root
+        global_root = get_default_openamer_root()
     except Exception:
         return None
     profile_home = get_openamer_home()
@@ -962,9 +962,9 @@ def _load_global_auth_store() -> Dict[str, Any]:
     or the global auth.json is absent). Never raises on missing file.
 
     Seat belt: under pytest, refuses to read the real user's
-    ``~/.hermes/auth.json`` even when OPENAMER_HOME is set to a profile
+    ``~/.openamer/auth.json`` even when OPENAMER_HOME is set to a profile
     path. The hermetic conftest does not redirect ``HOME``, so
-    ``get_default_hermes_root()`` for a profile-shaped OPENAMER_HOME can
+    ``get_default_openamer_root()`` for a profile-shaped OPENAMER_HOME can
     still resolve to the real user's home on a dev machine. That would
     leak real credentials into tests. This guard uses the unmodified
     ``HOME`` env var (what ``os.path.expanduser('~')`` would resolve to),
@@ -977,7 +977,7 @@ def _load_global_auth_store() -> Dict[str, Any]:
     if os.environ.get("PYTEST_CURRENT_TEST"):
         real_home_env = os.environ.get("HOME", "")
         if real_home_env:
-            real_root = Path(real_home_env) / ".hermes" / "auth.json"
+            real_root = Path(real_home_env) / ".openamer" / "auth.json"
             try:
                 if global_path.resolve(strict=False) == real_root.resolve(strict=False):
                     return {}
@@ -1763,7 +1763,7 @@ def is_provider_explicitly_configured(provider_id: str) -> bool:
                     return True
                 continue
             if (
-                source in {"device_code", "loopback_pkce", "hermes_pkce", "manual"}
+                source in {"device_code", "loopback_pkce", "openamer_pkce", "manual"}
                 or source.startswith("manual:")
             ):
                 return True
@@ -2012,7 +2012,7 @@ def resolve_provider(
             if has_usable_secret(os.getenv(env_var, "")):
                 # An exported API key now wins over a logged-in OAuth provider
                 # (the #29285 fix). Surface that so a user who deliberately uses
-                # OAuth but has a stale key in ~/.hermes/.env isn't silently
+                # OAuth but has a stale key in ~/.openamer/.env isn't silently
                 # switched without knowing why.
                 if _oauth_active and _oauth_active != pid:
                     logger.warning(
@@ -2053,7 +2053,7 @@ def resolve_provider(
     raise AuthError(
         "No inference provider configured. Run 'openamer model' to choose a "
         "provider and model, or set an API key (OPENROUTER_API_KEY, "
-        "OPENAI_API_KEY, etc.) in ~/.hermes/.env.",
+        "OPENAI_API_KEY, etc.) in ~/.openamer/.env.",
         code="no_provider_configured",
     )
 
@@ -2639,7 +2639,7 @@ def get_qwen_auth_status() -> Dict[str, Any]:
 
 
 # =============================================================================
-# Spotify auth — PKCE tokens stored in ~/.hermes/auth.json
+# Spotify auth — PKCE tokens stored in ~/.openamer/auth.json
 # =============================================================================
 
 
@@ -3112,7 +3112,7 @@ def get_spotify_auth_status() -> Dict[str, Any]:
 
 def _spotify_interactive_setup(redirect_uri_hint: str) -> str:
     """Walk the user through creating a Spotify developer app, persist the
-    resulting client_id to ~/.hermes/.env, and return it.
+    resulting client_id to ~/.openamer/.env, and return it.
 
     Raises SystemExit if the user aborts or submits an empty value.
     """
@@ -3166,7 +3166,7 @@ def _spotify_interactive_setup(redirect_uri_hint: str) -> str:
         save_env_value("HERMES_SPOTIFY_REDIRECT_URI", redirect_uri_hint)
 
     print()
-    print("Saved HERMES_SPOTIFY_CLIENT_ID to ~/.hermes/.env")
+    print("Saved HERMES_SPOTIFY_CLIENT_ID to ~/.openamer/.env")
     print()
     return raw
 
@@ -3434,7 +3434,7 @@ def _print_loopback_ssh_hint(redirect_uri: str, *, docs_url: str | None = None) 
 
 
 # =============================================================================
-# OpenAI Codex auth — tokens stored in ~/.hermes/auth.json (not ~/.codex/)
+# OpenAI Codex auth — tokens stored in ~/.openamer/auth.json (not ~/.codex/)
 #
 # OpenAmer maintains its own Codex OAuth session separate from the Codex CLI
 # and VS Code extension. This prevents refresh token rotation conflicts
@@ -3442,7 +3442,7 @@ def _print_loopback_ssh_hint(redirect_uri: str, *, docs_url: str | None = None) 
 # =============================================================================
 
 def _read_codex_tokens(*, _lock: bool = True) -> Dict[str, Any]:
-    """Read Codex OAuth tokens from OpenAmer auth store (~/.hermes/auth.json).
+    """Read Codex OAuth tokens from OpenAmer auth store (~/.openamer/auth.json).
     
     Returns dict with 'tokens' (access_token, refresh_token) and 'last_refresh'.
     Raises AuthError if no Codex tokens are stored.
@@ -3592,7 +3592,7 @@ def _sync_codex_pool_entries(
 
 
 def _save_codex_tokens(tokens: Dict[str, str], last_refresh: str = None, label: str = None) -> None:
-    """Save Codex OAuth tokens to OpenAmer auth store (~/.hermes/auth.json)."""
+    """Save Codex OAuth tokens to OpenAmer auth store (~/.openamer/auth.json)."""
     if last_refresh is None:
         last_refresh = datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
     with _auth_store_lock():
@@ -4291,7 +4291,7 @@ def _pool_codex_access_token() -> str:
 
 
 # =============================================================================
-# xAI Grok OAuth — tokens stored in ~/.hermes/auth.json
+# xAI Grok OAuth — tokens stored in ~/.openamer/auth.json
 # =============================================================================
 
 def _xai_oauth_state_from_store(auth_store: Dict[str, Any]) -> Optional[Dict[str, Any]]:
@@ -4422,13 +4422,13 @@ def _write_through_xai_oauth_to_global_root(state: Dict[str, Any]) -> None:
         # Classic mode (profile == root); the profile save already hit root.
         return
     # Seat belt: under pytest, refuse to write the real user's
-    # ~/.hermes/auth.json even when OPENAMER_HOME points at a profile path
+    # ~/.openamer/auth.json even when OPENAMER_HOME points at a profile path
     # (mirrors the read-side guard in _load_global_auth_store). Uses the
     # unmodified HOME env, not Path.home() which fixtures may monkeypatch.
     if os.environ.get("PYTEST_CURRENT_TEST"):
         real_home_env = os.environ.get("HOME", "")
         if real_home_env:
-            real_root = Path(real_home_env) / ".hermes" / "auth.json"
+            real_root = Path(real_home_env) / ".openamer" / "auth.json"
             try:
                 if global_path.resolve(strict=False) == real_root.resolve(strict=False):
                     return
@@ -4532,7 +4532,7 @@ def _xai_validate_oauth_endpoint(url: str, *, field: str) -> str:
     """Refuse any OIDC discovery endpoint that isn't HTTPS on the xAI origin.
 
     The OIDC discovery response is a long-lived, low-frequency request whose
-    output is cached in ``~/.hermes/auth.json``. A single MITM during initial
+    output is cached in ``~/.openamer/auth.json``. A single MITM during initial
     login could substitute a malicious ``token_endpoint``; that URL would
     then receive the refresh_token on every subsequent refresh — a permanent
     credential leak from a one-time MITM. Validating scheme + host pins the
@@ -5055,8 +5055,8 @@ def _poll_for_token(
 #
 # File lives at ${HERMES_SHARED_AUTH_DIR}/nous_auth.json, defaulting to
 # ``<openamer-root>/shared/nous_auth.json`` where ``<openamer-root>`` is what
-# ``get_default_hermes_root()`` returns — ``~/.hermes`` on Linux/macOS,
-# ``%LOCALAPPDATA%\hermes`` on native Windows, or the Docker/custom root.
+# ``get_default_openamer_root()`` returns — ``~/.openamer`` on Linux/macOS,
+# ``%LOCALAPPDATA%\openamer`` on native Windows, or the Docker/custom root.
 # It is OUTSIDE any named profile's OPENAMER_HOME so named profiles (which
 # typically live under ``<openamer-root>/profiles/<name>/``) all see the
 # same file.
@@ -5077,9 +5077,9 @@ def _nous_shared_auth_dir() -> Path:
     Honors ``HERMES_SHARED_AUTH_DIR`` so tests can redirect it to a tmp
     path without touching the real user's home. Defaults to
     ``<openamer-root>/shared/``, where ``<openamer-root>`` is what
-    :func:`openamer_constants.get_default_hermes_root` returns — so
-    Linux/macOS classic installs land at ``~/.hermes/shared/``, native
-    Windows installs at ``%LOCALAPPDATA%\\hermes\\shared\\``, and
+    :func:`openamer_constants.get_default_openamer_root` returns — so
+    Linux/macOS classic installs land at ``~/.openamer/shared/``, native
+    Windows installs at ``%LOCALAPPDATA%\\openamer\\shared\\``, and
     Docker / custom ``OPENAMER_HOME`` deployments at
     ``<OPENAMER_HOME>/shared/``. Sits outside any named profile so all
     profiles under the same root share the store.
@@ -5087,8 +5087,8 @@ def _nous_shared_auth_dir() -> Path:
     override = os.getenv("HERMES_SHARED_AUTH_DIR", "").strip()
     if override:
         return Path(override).expanduser()
-    from openamer_constants import get_default_hermes_root
-    return get_default_hermes_root() / "shared"
+    from openamer_constants import get_default_openamer_root
+    return get_default_openamer_root() / "shared"
 
 
 def _nous_shared_store_path() -> Path:
@@ -5100,9 +5100,9 @@ def _nous_shared_store_path() -> Path:
     # so forgetting to set it fails loudly instead of writing to the real
     # shared store).
     if os.environ.get("PYTEST_CURRENT_TEST"):
-        from openamer_constants import get_default_hermes_root
+        from openamer_constants import get_default_openamer_root
         real_home_shared = (
-            get_default_hermes_root() / "shared" / NOUS_SHARED_STORE_FILENAME
+            get_default_openamer_root() / "shared" / NOUS_SHARED_STORE_FILENAME
         ).resolve(strict=False)
         try:
             resolved = path.resolve(strict=False)
@@ -5575,7 +5575,7 @@ def _refresh_access_token(
             "Nous Portal detected refresh-token reuse and revoked this session.\n"
             "This usually means an external process (monitoring script, "
             "custom self-heal hook, or another OpenAmer install sharing "
-            "~/.hermes/auth.json) called POST /api/oauth/token with OpenAmer's "
+            "~/.openamer/auth.json) called POST /api/oauth/token with OpenAmer's "
             "refresh token without persisting the rotated token back.\n"
             "Nous refresh tokens are single-use — only OpenAmer may call the "
             "refresh endpoint. For health checks, use `openamer auth status` "
@@ -5624,7 +5624,7 @@ def fetch_nous_models(
         if isinstance(model_id, str) and model_id.strip():
             mid = model_id.strip()
             # Skip OpenAmer models — they're not reliable for agentic tool-calling
-            if "hermes" in mid.lower():
+            if "openamer" in mid.lower():
                 continue
             model_ids.append(mid)
 
@@ -7442,7 +7442,7 @@ def _login_openai_codex(
     *,
     force_new_login: bool = False,
 ) -> None:
-    """OpenAI Codex login via device code flow. Tokens stored in ~/.hermes/auth.json."""
+    """OpenAI Codex login via device code flow. Tokens stored in ~/.openamer/auth.json."""
 
     del args, pconfig  # kept for parity with other provider login helpers
 
@@ -7505,7 +7505,7 @@ def _login_openai_codex(
     config_path = _update_config_for_provider("openai-codex", creds.get("base_url", DEFAULT_CODEX_BASE_URL))
     print()
     print("Login successful!")
-    from openamer_constants import display_hermes_home as _dhh
+    from openamer_constants import display_openamer_home as _dhh
     print(f"  Auth state: {_dhh()}/auth.json")
     print(f"  Config updated: {config_path} (model.provider=openai-codex)")
 
@@ -7573,7 +7573,7 @@ def _login_xai_oauth(
     config_path = _update_config_for_provider("xai-oauth", creds.get("base_url", DEFAULT_XAI_OAUTH_BASE_URL))
     print()
     print("Login successful!")
-    from openamer_constants import display_hermes_home as _dhh
+    from openamer_constants import display_openamer_home as _dhh
     print(f"  Auth state: {_dhh()}/auth.json")
     print(f"  Config updated: {config_path} (model.provider=xai-oauth)")
 
@@ -8093,7 +8093,7 @@ def _minimax_poll_token(
 
 
 def _minimax_save_auth_state(auth_state: Dict[str, Any]) -> None:
-    """Persist MiniMax OAuth state to OpenAmer auth store (~/.hermes/auth.json)."""
+    """Persist MiniMax OAuth state to OpenAmer auth store (~/.openamer/auth.json)."""
     with _auth_store_lock():
         auth_store = _load_auth_store()
         _save_provider_state(auth_store, "minimax-oauth", auth_state)

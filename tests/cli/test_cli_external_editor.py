@@ -2,7 +2,7 @@
 
 from unittest.mock import patch
 
-from cli import HermesCLI
+from cli import OpenAmerCLI
 
 
 class _FakeBuffer:
@@ -21,7 +21,7 @@ class _FakeApp:
 
 
 def _make_cli(with_app=True):
-    cli_obj = HermesCLI.__new__(HermesCLI)
+    cli_obj = OpenAmerCLI.__new__(OpenAmerCLI)
     cli_obj._app = _FakeApp() if with_app else None
     cli_obj._command_running = False
     cli_obj._command_status = ""

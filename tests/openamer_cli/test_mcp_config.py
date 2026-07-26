@@ -1,5 +1,5 @@
 """
-Tests for openamer_cli.mcp_config — ``hermes mcp`` subcommands.
+Tests for openamer_cli.mcp_config — ``openamer mcp`` subcommands.
 
 These tests mock the MCP server connection layer so they run without
 any actual MCP servers or API keys.
@@ -29,7 +29,7 @@ def _isolate_config(tmp_path, monkeypatch):
     """Redirect all config I/O to a temp directory."""
     monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     monkeypatch.setattr(
-        "openamer_cli.config.get_hermes_home", lambda: tmp_path
+        "openamer_cli.config.get_openamer_home", lambda: tmp_path
     )
     config_path = tmp_path / "config.yaml"
     env_path = tmp_path / ".env"
@@ -159,9 +159,9 @@ class TestMcpRemove:
             "oauth-srv": {"url": "https://example.com/mcp", "auth": "oauth"},
         })
         monkeypatch.setattr("builtins.input", lambda _: "y")
-        # Also patch get_hermes_home in the mcp_config module namespace
+        # Also patch get_openamer_home in the mcp_config module namespace
         monkeypatch.setattr(
-            "openamer_cli.mcp_config.get_hermes_home", lambda: tmp_path
+            "openamer_cli.mcp_config.get_openamer_home", lambda: tmp_path
         )
 
         # Create a fake token file
@@ -558,7 +558,7 @@ class TestEnvVarInterpolation:
 class TestProbeEnvResolution:
     """The probe path must resolve ``${ENV}`` before connecting, so the
     discovery probe behaves like runtime tool loading. Regression for #37792
-    where `hermes mcp add --auth header` sent a literal
+    where `openamer mcp add --auth header` sent a literal
     ``Authorization: Bearer ${MCP_X_API_KEY}`` and got 401."""
 
     def test_resolve_interpolates_header(self, monkeypatch):
@@ -846,7 +846,7 @@ class TestMcpRemoveEvictsManager:
         })
         monkeypatch.setattr("builtins.input", lambda _: "y")
         monkeypatch.setattr(
-            "openamer_cli.mcp_config.get_hermes_home", lambda: tmp_path
+            "openamer_cli.mcp_config.get_openamer_home", lambda: tmp_path
         )
         monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
         _set_interactive_stdin(monkeypatch)

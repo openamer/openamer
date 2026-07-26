@@ -1,6 +1,6 @@
-"""Tests for openamer_cli.dump._get_git_commit — git SHA resolution for ``hermes dump``.
+"""Tests for openamer_cli.dump._get_git_commit — git SHA resolution for ``openamer dump``.
 
-``hermes dump`` prints the running commit so support bug reports identify the
+``openamer dump`` prints the running commit so support bug reports identify the
 exact version.  Source installs resolve it live via ``git rev-parse``; the
 published Docker image excludes ``.git`` and falls back to the baked SHA
 written by the Dockerfile's ``HERMES_GIT_SHA`` build-arg.
@@ -92,7 +92,7 @@ def test_get_git_commit_output_format_identical_between_sources(tmp_path):
     """Regression guard: live-git and baked-SHA outputs share the same shape.
 
     Ben explicitly asked for identical output between Docker and source installs
-    so support tooling that parses ``hermes dump`` doesn't have to special-case
+    so support tooling that parses ``openamer dump`` doesn't have to special-case
     container builds.  Both paths must return a bare 8-char SHA — no prefix,
     no suffix, no annotation.
     """

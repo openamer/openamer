@@ -4,8 +4,8 @@ The dashboard host exposes a sanctioned, gated-mode-aware auth surface on the
 plugin SDK (``window.__OPENAMER_PLUGIN_SDK__``): ``fetchJSON`` (JSON REST),
 ``authedFetch`` (uploads / blob downloads), and ``buildWsUrl`` /
 ``buildWsAuthParam`` (WebSockets). These handle BOTH dashboard auth modes —
-loopback (``X-Hermes-Session-Token`` header) and gated OAuth
-(``hermes_session_at`` cookie / single-use ``?ticket=``).
+loopback (``X-OpenAmer-Session-Token`` header) and gated OAuth
+(``openamer_session_at`` cookie / single-use ``?ticket=``).
 
 Plugins that hand-roll ``fetch`` / ``WebSocket`` and read
 ``window.__OPENAMER_SESSION_TOKEN__`` directly send an empty token in gated mode
@@ -52,7 +52,7 @@ def test_there_are_plugin_bundles_to_check() -> None:
     doesn't silently turn this guard into a no-op."""
     bundles = _plugin_frontend_bundles()
     names = {b.parent.parent.parent.name for b in bundles}
-    # kanban + hermes-achievements are bundled today; assert at least one is
+    # kanban + openamer-achievements are bundled today; assert at least one is
     # found so the guard can't pass vacuously.
     assert bundles, "no plugin dashboard bundles found — glob/layout drift?"
     assert names, "could not resolve plugin names from bundle paths"

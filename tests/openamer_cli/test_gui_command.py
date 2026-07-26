@@ -1,4 +1,4 @@
-"""Tests for ``hermes gui`` desktop launcher wiring."""
+"""Tests for ``openamer gui`` desktop launcher wiring."""
 
 from __future__ import annotations
 
@@ -21,7 +21,7 @@ def _ns(**kw):
         source=False,
         fake_boot=False,
         ignore_existing=False,
-        hermes_root=None,
+        openamer_root=None,
         cwd=None,
     )
     defaults.update(kw)
@@ -29,7 +29,7 @@ def _ns(**kw):
 
 
 def _make_desktop_tree(tmp_path: Path) -> Path:
-    root = tmp_path / "hermes-agent"
+    root = tmp_path / "openamer-agent"
     desktop_dir = root / "apps" / "desktop"
     desktop_dir.mkdir(parents=True)
     (desktop_dir / "package.json").write_text("{}", encoding="utf-8")
@@ -40,11 +40,11 @@ def _make_packaged_executable(root: Path, monkeypatch, platform: str = "darwin")
     monkeypatch.setattr(cli_main.sys, "platform", platform)
     desktop_dir = root / "apps" / "desktop"
     if platform == "darwin":
-        exe = desktop_dir / "release" / "mac-arm64" / "Hermes.app" / "Contents" / "MacOS" / "Hermes"
+        exe = desktop_dir / "release" / "mac-arm64" / "OpenAmer.app" / "Contents" / "MacOS" / "OpenAmer"
     elif platform == "win32":
-        exe = desktop_dir / "release" / "win-unpacked" / "Hermes.exe"
+        exe = desktop_dir / "release" / "win-unpacked" / "OpenAmer.exe"
     else:
-        exe = desktop_dir / "release" / "linux-unpacked" / "hermes"
+        exe = desktop_dir / "release" / "linux-unpacked" / "openamer"
     exe.parent.mkdir(parents=True)
     exe.write_text("", encoding="utf-8")
     return exe
@@ -86,26 +86,26 @@ def test_gui_installs_packages_and_launches_desktop_app(tmp_path, monkeypatch):
 def test_gui_install_env_prepends_managed_node_on_bare_path(tmp_path, monkeypatch):
     """Regression: npm's child scripts (electron-winstaller's select-7z-arch.js)
     shell out to bare ``node``. When Desktop is launched from the updater chain
-    the parent PATH is stripped, so the install env MUST carry the Hermes-managed
+    the parent PATH is stripped, so the install env MUST carry the OpenAmer-managed
     Node ahead of that bare PATH or the install dies with ``node: not found``.
     """
     import os
 
-    from openamer_constants import iter_hermes_node_dirs
+    from openamer_constants import iter_openamer_node_dirs
 
     root = _make_desktop_tree(tmp_path)
     monkeypatch.setattr(cli_main, "PROJECT_ROOT", root)
     _make_packaged_executable(root, monkeypatch, platform="win32")
 
-    # A managed Node tree on disk so with_hermes_node_path() actually prepends it.
-    home = tmp_path / "hermes-home"
+    # A managed Node tree on disk so with_openamer_node_path() actually prepends it.
+    home = tmp_path / "openamer-home"
     (home / "node" / "bin").mkdir(parents=True)
     monkeypatch.setenv("OPENAMER_HOME", str(home))
     # Simulate the stripped PATH the desktop updater chain hands us.
     monkeypatch.setenv("PATH", os.pathsep.join(["/usr/bin", "/bin"]))
 
     install_ok = subprocess.CompletedProcess(["npm", "ci"], 0)
-    launch_ok = subprocess.CompletedProcess(["hermes"], 0)
+    launch_ok = subprocess.CompletedProcess(["openamer"], 0)
 
     with patch("openamer_cli.main._resolve_node_runtime_npm", return_value="/usr/bin/npm"), \
          patch("openamer_cli.main._run_npm_install_deterministic", return_value=install_ok) as mock_install, \
@@ -115,7 +115,7 @@ def test_gui_install_env_prepends_managed_node_on_bare_path(tmp_path, monkeypatc
          pytest.raises(SystemExit):
         cli_main.cmd_gui(_ns(skip_build=False))
 
-    managed_dirs = [str(p) for p in iter_hermes_node_dirs() if p.is_dir()]
+    managed_dirs = [str(p) for p in iter_openamer_node_dirs() if p.is_dir()]
     assert managed_dirs, "managed node tree not discovered"
     install_env = mock_install.call_args.kwargs["env"]
     path_parts = install_env["PATH"].split(os.pathsep)
@@ -125,9 +125,9 @@ def test_gui_install_env_prepends_managed_node_on_bare_path(tmp_path, monkeypatc
 
 def test_gui_forwards_desktop_environment_overrides(tmp_path, monkeypatch):
     root = _make_desktop_tree(tmp_path)
-    hermes_root = tmp_path / "custom-hermes"
+    openamer_root = tmp_path / "custom-openamer"
     cwd = tmp_path / "project"
-    hermes_root.mkdir()
+    openamer_root.mkdir()
     cwd.mkdir()
     monkeypatch.setattr(cli_main, "PROJECT_ROOT", root)
     _make_packaged_executable(root, monkeypatch)
@@ -144,14 +144,14 @@ def test_gui_forwards_desktop_environment_overrides(tmp_path, monkeypatch):
         cli_main.cmd_gui(_ns(
             fake_boot=True,
             ignore_existing=True,
-            hermes_root=str(hermes_root),
+            openamer_root=str(openamer_root),
             cwd=str(cwd),
         ))
 
     launch_env = mock_run.call_args_list[1].kwargs["env"]
     assert launch_env["HERMES_DESKTOP_BOOT_FAKE"] == "1"
     assert launch_env["HERMES_DESKTOP_IGNORE_EXISTING"] == "1"
-    assert launch_env["HERMES_DESKTOP_OPENAMER_ROOT"] == str(hermes_root)
+    assert launch_env["HERMES_DESKTOP_OPENAMER_ROOT"] == str(openamer_root)
     assert launch_env["HERMES_DESKTOP_CWD"] == str(cwd)
 
 
@@ -330,8 +330,8 @@ def test_gui_source_mode_uses_renderer_build_and_electron(tmp_path, monkeypatch)
 @pytest.mark.parametrize(
     "argv",
     [
-        ["hermes", "gui"],
-        ["hermes", "-m", "gpt5", "gui"],
+        ["openamer", "gui"],
+        ["openamer", "-m", "gpt5", "gui"],
     ],
 )
 def test_gui_is_known_builtin_for_plugin_gating(argv):
@@ -394,7 +394,7 @@ def test_compute_desktop_content_hash_stable(tmp_path, monkeypatch):
     """_compute_desktop_content_hash returns the same digest for identical trees."""
     root = _make_desktop_tree(tmp_path)
     (root / "apps" / "desktop" / "main.js").write_text("console.log('hi')", encoding="utf-8")
-    (root / "package.json").write_text('{"name":"hermes"}', encoding="utf-8")
+    (root / "package.json").write_text('{"name":"openamer"}', encoding="utf-8")
     (root / "package-lock.json").write_text('{}', encoding="utf-8")
     monkeypatch.setattr(cli_main, "PROJECT_ROOT", root)
 
@@ -558,7 +558,7 @@ def test_gui_retries_pack_once_after_purging_build_cache(tmp_path, monkeypatch):
     # signature the cache purge + retry exist for (#40187). Only the successful
     # retry produces it (via the side_effect below).
     monkeypatch.setattr(cli_main.sys, "platform", "linux")
-    packaged_exe = root / "apps" / "desktop" / "release" / "linux-unpacked" / "hermes"
+    packaged_exe = root / "apps" / "desktop" / "release" / "linux-unpacked" / "openamer"
 
     install_ok = subprocess.CompletedProcess(["npm", "ci"], 0)
     pack_fail = subprocess.CompletedProcess(["npm", "run", "pack"], 1)
@@ -755,7 +755,7 @@ def test_gui_does_not_retry_after_packaged_executable_exists(tmp_path, monkeypat
     Electron-download problem the cache purge + mirror retries exist to repair.
 
     Regression for #40187: a late failure such as macOS code signing leaves
-    Hermes.app/Contents/MacOS/Hermes in place. Re-downloading Electron can't
+    OpenAmer.app/Contents/MacOS/OpenAmer in place. Re-downloading Electron can't
     repair a signing failure, so the destructive purge + slow mirror retry must
     be skipped — we fail directly instead of grinding through an identical retry.
     """
@@ -961,7 +961,7 @@ class _FakeProc:
 def test_stop_desktop_build_lock_noop_off_windows(tmp_path, monkeypatch):
     """POSIX can unlink a running binary, so the helper is a no-op there."""
     desktop_dir = tmp_path / "apps" / "desktop"
-    exe = desktop_dir / "release" / "linux-unpacked" / "hermes"
+    exe = desktop_dir / "release" / "linux-unpacked" / "openamer"
     exe.parent.mkdir(parents=True)
     exe.write_text("", encoding="utf-8")
     monkeypatch.setattr(cli_main.sys, "platform", "linux")
@@ -977,9 +977,9 @@ def test_stop_desktop_build_lock_terminates_only_release_procs(tmp_path, monkeyp
     desktop_dir = tmp_path / "apps" / "desktop"
     release = desktop_dir / "release" / "win-unpacked"
     release.mkdir(parents=True)
-    locker_exe = release / "Hermes.exe"
+    locker_exe = release / "OpenAmer.exe"
     locker_exe.write_text("", encoding="utf-8")
-    other_exe = tmp_path / "elsewhere" / "Hermes.exe"
+    other_exe = tmp_path / "elsewhere" / "OpenAmer.exe"
     other_exe.parent.mkdir(parents=True)
     other_exe.write_text("", encoding="utf-8")
 

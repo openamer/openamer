@@ -29,7 +29,7 @@ def _reset_modules(prefixes: tuple[str, ...]):
 
 @pytest.fixture(autouse=True)
 def _restore_tool_modules():
-    original_hermes_home = os.environ.get("OPENAMER_HOME")
+    original_openamer_home = os.environ.get("OPENAMER_HOME")
     original_modules = {
         name: module
         for name, module in sys.modules.items()
@@ -43,10 +43,10 @@ def _restore_tool_modules():
     try:
         yield
     finally:
-        if original_hermes_home is None:
+        if original_openamer_home is None:
             os.environ.pop("OPENAMER_HOME", None)
         else:
-            os.environ["OPENAMER_HOME"] = original_hermes_home
+            os.environ["OPENAMER_HOME"] = original_openamer_home
         _reset_modules(("tools", "openamer_cli", "modal"))
         sys.modules.update(original_modules)
 
@@ -62,10 +62,10 @@ def _install_modal_test_modules(
     openamer_cli = types.ModuleType("openamer_cli")
     openamer_cli.__path__ = []  # type: ignore[attr-defined]
     sys.modules["openamer_cli"] = openamer_cli
-    hermes_home = tmp_path / "hermes-home"
-    os.environ["OPENAMER_HOME"] = str(hermes_home)
+    openamer_home = tmp_path / "openamer-home"
+    os.environ["OPENAMER_HOME"] = str(openamer_home)
     sys.modules["openamer_cli.config"] = types.SimpleNamespace(
-        get_hermes_home=lambda: hermes_home,
+        get_openamer_home=lambda: openamer_home,
     )
 
     tools_package = types.ModuleType("tools")
@@ -144,7 +144,7 @@ def _install_modal_test_modules(
             return {"kind": "registry", "image": image}
 
     async def _lookup_aio(_name: str, create_if_missing: bool = False):
-        return types.SimpleNamespace(name="hermes-agent", create_if_missing=create_if_missing)
+        return types.SimpleNamespace(name="openamer-agent", create_if_missing=create_if_missing)
 
     class _FakeSandboxInstance:
         def __init__(self, image):
@@ -190,7 +190,7 @@ def _install_modal_test_modules(
     )
 
     return {
-        "snapshot_store": hermes_home / "modal_snapshots.json",
+        "snapshot_store": openamer_home / "modal_snapshots.json",
         "create_calls": create_calls,
         "from_id_calls": from_id_calls,
         "registry_calls": registry_calls,

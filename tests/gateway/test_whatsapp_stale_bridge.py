@@ -4,7 +4,7 @@ Regression tests for the stale-bridge trap: ``connect()`` reused any
 already-running bridge with ``status: connected`` unconditionally, and
 ``disconnect()`` only kills bridges the adapter spawned itself.  A
 long-lived bridge process therefore survived gateway restarts AND
-``hermes update``, serving pre-update bridge.js behavior forever (e.g.
+``openamer update``, serving pre-update bridge.js behavior forever (e.g.
 no inbound media download → images/voice notes arrive as placeholders).
 
 The fix: bridge.js reports a hash of its own source in ``/health``
@@ -97,7 +97,7 @@ def _fresh_node_modules(bridge_dir: Path) -> None:
 
     nm = bridge_dir / "node_modules"
     nm.mkdir()
-    (nm / ".hermes-pkg-hash").write_text(
+    (nm / ".openamer-pkg-hash").write_text(
         _file_content_hash(bridge_dir / "package.json")
     )
 
@@ -252,7 +252,7 @@ class TestDepRefreshStamp:
     async def test_reinstalls_when_package_json_changed(self, tmp_path):
         bridge_dir = _setup_bridge_dir(tmp_path)
         _fresh_node_modules(bridge_dir)
-        # Simulate `hermes update` bumping the Baileys pin
+        # Simulate `openamer update` bumping the Baileys pin
         (bridge_dir / "package.json").write_text('{"name": "bridge", "v": 2}\n')
         adapter = _make_adapter(
             bridge_script=str(bridge_dir / "bridge.js"),
@@ -276,7 +276,7 @@ class TestDepRefreshStamp:
         assert "install" in mock_run.call_args[0][0]
         # Stamp updated to the new package.json hash
         from plugins.platforms.whatsapp.adapter import _file_content_hash
-        stamp = (bridge_dir / "node_modules" / ".hermes-pkg-hash").read_text().strip()
+        stamp = (bridge_dir / "node_modules" / ".openamer-pkg-hash").read_text().strip()
         assert stamp == _file_content_hash(bridge_dir / "package.json")
 
     @pytest.mark.asyncio

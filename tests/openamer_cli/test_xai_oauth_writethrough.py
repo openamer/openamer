@@ -35,7 +35,7 @@ def profile_and_root(tmp_path, monkeypatch):
 
     Returns (profile_path, root_path). The pytest seat belt in
     ``_write_through_xai_oauth_to_global_root`` only refuses the *real* user's
-    ``$HOME/.hermes/auth.json``; a tmp_path root is allowed, so we point HOME
+    ``$HOME/.openamer/auth.json``; a tmp_path root is allowed, so we point HOME
     away from the tmp root to keep the guard from tripping on these fixtures.
     """
     profile_path = tmp_path / "profiles" / "work" / "auth.json"

@@ -1,8 +1,8 @@
 """Regression: installer/bootstrap must recover from diverged managed clones.
 
-When ``~/.hermes/hermes-agent`` has local-only commits (or diverged history),
+When ``~/.openamer/openamer-agent`` has local-only commits (or diverged history),
 ``git pull --ff-only`` fails with exit 128 and bootstrap aborts at the
-repository stage. ``hermes update`` already resets to ``origin/$BRANCH`` in
+repository stage. ``openamer update`` already resets to ``origin/$BRANCH`` in
 that case; both installer scripts must do the same.
 
 Fixes the bootstrap failure seen in #53257 and desktop update paths that run

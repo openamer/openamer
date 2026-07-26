@@ -349,12 +349,12 @@ class TestAtomicWrite:
             os.chmod(locked, 0o700)  # restore for cleanup
         assert res.error is not None
         assert target.read_text() == "ORIGINAL\n"
-        assert [p for p in os.listdir(locked) if ".hermes-tmp" in p] == []
+        assert [p for p in os.listdir(locked) if ".openamer-tmp" in p] == []
 
     def test_no_temp_file_leaked_on_success(self, ops, tmp_path: Path):
         target = tmp_path / "f.txt"
         ops.write_file(str(target), "hello\n")
-        assert [p for p in os.listdir(tmp_path) if ".hermes-tmp" in p] == []
+        assert [p for p in os.listdir(tmp_path) if ".openamer-tmp" in p] == []
 
     def test_special_chars_roundtrip(self, ops, tmp_path: Path):
         target = tmp_path / "special.txt"

@@ -1,8 +1,8 @@
 """Behavior tests for the Windows desktop-exe integrity gate (#69179).
 
-The desktop self-update chain (Desktop → hermes-setup --update →
-``hermes update`` → ``hermes desktop --build-only`` → relaunch) rebuilds
-Hermes.exe on the end user's machine. Before this gate, "build succeeded" was
+The desktop self-update chain (Desktop → openamer-setup --update →
+``openamer update`` → ``openamer desktop --build-only`` → relaunch) rebuilds
+OpenAmer.exe on the end user's machine. Before this gate, "build succeeded" was
 just "the file exists", so a truncated PE (corrupt cached Electron zip), a
 non-PE file, or a wrong-architecture tree shipped as the new app — Windows
 then refuses to launch it with "This app can't run on your computer"
@@ -57,7 +57,7 @@ def make_pe(path: Path, machine: int = PE_AMD64, *, truncate_to: int | None = No
 
 
 def test_parse_pe_machine_reads_machine_field(tmp_path):
-    exe = make_pe(tmp_path / "Hermes.exe", PE_AMD64)
+    exe = make_pe(tmp_path / "OpenAmer.exe", PE_AMD64)
     assert cli_main._parse_pe_machine(exe) == PE_AMD64
 
     exe_arm = make_pe(tmp_path / "arm.exe", PE_ARM64)
@@ -66,14 +66,14 @@ def test_parse_pe_machine_reads_machine_field(tmp_path):
 
 def test_parse_pe_machine_rejects_non_pe_file(tmp_path):
     """An HTML error page saved as .exe — the classic corrupted-download body."""
-    fake = tmp_path / "Hermes.exe"
+    fake = tmp_path / "OpenAmer.exe"
     fake.write_bytes(b"<html><body>404 Not Found</body></html>" + b" " * 600)
     with pytest.raises(ValueError, match="MZ"):
         cli_main._parse_pe_machine(fake)
 
 
 def test_parse_pe_machine_rejects_tiny_file(tmp_path):
-    stub = tmp_path / "Hermes.exe"
+    stub = tmp_path / "OpenAmer.exe"
     stub.write_bytes(b"MZ")
     with pytest.raises(ValueError, match="too small"):
         cli_main._parse_pe_machine(stub)
@@ -81,13 +81,13 @@ def test_parse_pe_machine_rejects_tiny_file(tmp_path):
 
 def test_parse_pe_machine_rejects_truncated_sections(tmp_path):
     """File cut mid-download: headers parse but section data extends past EOF."""
-    exe = make_pe(tmp_path / "Hermes.exe", PE_AMD64, truncate_to=0x300)
+    exe = make_pe(tmp_path / "OpenAmer.exe", PE_AMD64, truncate_to=0x300)
     with pytest.raises(ValueError, match="truncated"):
         cli_main._parse_pe_machine(exe)
 
 
 def test_parse_pe_machine_rejects_bad_pe_signature(tmp_path):
-    exe = make_pe(tmp_path / "Hermes.exe", PE_AMD64)
+    exe = make_pe(tmp_path / "OpenAmer.exe", PE_AMD64)
     data = bytearray(exe.read_bytes())
     data[0x80:0x84] = b"XX\x00\x00"
     exe.write_bytes(bytes(data))
@@ -294,11 +294,11 @@ def test_native_machine_non_windows_uses_platform(monkeypatch):
 
 def test_integrity_gate_accepts_arm64_exe_from_emulated_x64_process(monkeypatch, tmp_path):
     """End-to-end shape of the reporter's failure: ARM64 host, x64 updater
-    process, correctly-built ARM64 Hermes.exe. The gate must pass it."""
+    process, correctly-built ARM64 OpenAmer.exe. The gate must pass it."""
     import ctypes
 
     monkeypatch.setattr(cli_main.sys, "platform", "win32")
-    exe = make_pe(tmp_path / "Hermes.exe", PE_ARM64)
+    exe = make_pe(tmp_path / "OpenAmer.exe", PE_ARM64)
     with patch.object(ctypes, "WinDLL", _fake_windll(PE_ARM64), create=True), \
          patch("platform.machine", return_value="AMD64"):
         assert cli_main._desktop_exe_integrity_error(exe) is None
@@ -309,13 +309,13 @@ def test_integrity_gate_accepts_arm64_when_iswow64_fails_but_attributes_ok(
 ):
     """End-to-end residual WoA shape: IsWow64Process2 fails and env lies as
     AMD64, but GetMachineTypeAttributes reports ARM64 as user-runnable, so the
-    ARM64 Hermes.exe must pass the gate."""
+    ARM64 OpenAmer.exe must pass the gate."""
     import ctypes
 
     monkeypatch.setattr(cli_main.sys, "platform", "win32")
     monkeypatch.setenv("PROCESSOR_ARCHITECTURE", "AMD64")
     monkeypatch.delenv("PROCESSOR_ARCHITEW6432", raising=False)
-    exe = make_pe(tmp_path / "Hermes.exe", PE_ARM64)
+    exe = make_pe(tmp_path / "OpenAmer.exe", PE_ARM64)
     with patch.object(
         ctypes,
         "WinDLL",
@@ -331,7 +331,7 @@ def test_integrity_gate_accepts_arm64_when_iswow64_fails_but_attributes_ok(
 
 
 def test_integrity_error_none_for_matching_arch(tmp_path):
-    exe = make_pe(tmp_path / "Hermes.exe", PE_AMD64)
+    exe = make_pe(tmp_path / "OpenAmer.exe", PE_AMD64)
     with patch("openamer_cli.main._windows_native_machine", return_value="AMD64"):
         assert cli_main._desktop_exe_integrity_error(exe) is None
 
@@ -339,7 +339,7 @@ def test_integrity_error_none_for_matching_arch(tmp_path):
 def test_integrity_error_reports_arch_mismatch(tmp_path):
     """ARM64 exe on the reporter's 'Windows 10 AMD64' host — the wrong-arch
     flavor of 'This app can't run on your computer'."""
-    exe = make_pe(tmp_path / "Hermes.exe", PE_ARM64)
+    exe = make_pe(tmp_path / "OpenAmer.exe", PE_ARM64)
     with patch("openamer_cli.main._windows_native_machine", return_value="AMD64"):
         error = cli_main._desktop_exe_integrity_error(exe)
     assert error is not None and "architecture mismatch" in error
@@ -347,7 +347,7 @@ def test_integrity_error_reports_arch_mismatch(tmp_path):
 
 
 def test_integrity_error_reports_corruption_reason(tmp_path):
-    exe = make_pe(tmp_path / "Hermes.exe", PE_AMD64, truncate_to=0x300)
+    exe = make_pe(tmp_path / "OpenAmer.exe", PE_AMD64, truncate_to=0x300)
     error = cli_main._desktop_exe_integrity_error(exe)
     assert error is not None and "truncated" in error
 
@@ -359,8 +359,8 @@ def test_packaged_executable_prefers_host_arch_over_mtime(tmp_path, monkeypatch)
     """A newer wrong-arch tree must not shadow the loadable one (#69179)."""
     monkeypatch.setattr(cli_main.sys, "platform", "win32")
     desktop_dir = tmp_path / "apps" / "desktop"
-    good = make_pe(desktop_dir / "release" / "win-unpacked" / "Hermes.exe", PE_AMD64)
-    bad = make_pe(desktop_dir / "release" / "win-arm64-unpacked" / "Hermes.exe", PE_ARM64)
+    good = make_pe(desktop_dir / "release" / "win-unpacked" / "OpenAmer.exe", PE_AMD64)
+    bad = make_pe(desktop_dir / "release" / "win-arm64-unpacked" / "OpenAmer.exe", PE_ARM64)
     # Make the wrong-arch tree the newest, which the pure-mtime pick would take.
     import os
 
@@ -374,8 +374,8 @@ def test_packaged_executable_falls_back_to_mtime_when_unparseable(tmp_path, monk
     """Non-PE stubs (dev trees, tests) keep the historical newest-wins pick."""
     monkeypatch.setattr(cli_main.sys, "platform", "win32")
     desktop_dir = tmp_path / "apps" / "desktop"
-    a = desktop_dir / "release" / "win-unpacked" / "Hermes.exe"
-    b = desktop_dir / "release" / "win-arm64-unpacked" / "Hermes.exe"
+    a = desktop_dir / "release" / "win-unpacked" / "OpenAmer.exe"
+    b = desktop_dir / "release" / "win-arm64-unpacked" / "OpenAmer.exe"
     for p in (a, b):
         p.parent.mkdir(parents=True)
         p.write_text("", encoding="utf-8")
@@ -391,14 +391,14 @@ def test_packaged_executable_falls_back_to_mtime_when_unparseable(tmp_path, monk
 
 def _win_tree(tmp_path: Path) -> tuple[Path, Path]:
     desktop_dir = tmp_path / "apps" / "desktop"
-    exe = desktop_dir / "release" / "win-unpacked" / "Hermes.exe"
+    exe = desktop_dir / "release" / "win-unpacked" / "OpenAmer.exe"
     return desktop_dir, exe
 
 
 def test_rollback_restores_backup_and_keeps_corrupt_copy(tmp_path):
     desktop_dir, exe = _win_tree(tmp_path)
     make_pe(exe, PE_AMD64, truncate_to=0x300)  # corrupt new build
-    backup_exe = desktop_dir / "release" / "win-unpacked.bak" / "Hermes.exe"
+    backup_exe = desktop_dir / "release" / "win-unpacked.bak" / "OpenAmer.exe"
     make_pe(backup_exe, PE_AMD64)  # valid old build
 
     with patch("openamer_cli.main._windows_native_machine", return_value="AMD64"):
@@ -409,7 +409,7 @@ def test_rollback_restores_backup_and_keeps_corrupt_copy(tmp_path):
     assert cli_main._parse_pe_machine(exe) == PE_AMD64
     assert exe.stat().st_size == 0x400
     # Corrupt tree preserved for diagnostics; backup consumed.
-    assert (desktop_dir / "release" / "win-unpacked.corrupt" / "Hermes.exe").exists()
+    assert (desktop_dir / "release" / "win-unpacked.corrupt" / "OpenAmer.exe").exists()
     assert not backup_exe.exists()
 
 
@@ -425,7 +425,7 @@ def test_rollback_refuses_corrupt_backup(tmp_path):
     """Never 'restore' a backup that would also fail to launch."""
     desktop_dir, exe = _win_tree(tmp_path)
     make_pe(exe, PE_AMD64, truncate_to=0x300)
-    backup_exe = desktop_dir / "release" / "win-unpacked.bak" / "Hermes.exe"
+    backup_exe = desktop_dir / "release" / "win-unpacked.bak" / "OpenAmer.exe"
     make_pe(backup_exe, PE_AMD64, truncate_to=0x280)  # backup also corrupt
 
     assert cli_main._rollback_desktop_from_backup(exe) is None
@@ -460,7 +460,7 @@ def test_gate_rolls_back_corrupt_exe_and_purges_cache(tmp_path, monkeypatch, cap
     monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / "home"))
     desktop_dir, exe = _win_tree(tmp_path)
     make_pe(exe, PE_AMD64, truncate_to=0x300)
-    make_pe(desktop_dir / "release" / "win-unpacked.bak" / "Hermes.exe", PE_AMD64)
+    make_pe(desktop_dir / "release" / "win-unpacked.bak" / "OpenAmer.exe", PE_AMD64)
 
     stamp = tmp_path / "home" / "desktop-build-stamp.json"
     stamp.parent.mkdir(parents=True, exist_ok=True)
@@ -500,7 +500,7 @@ def test_gate_fails_clearly_without_backup(tmp_path, monkeypatch, capsys):
     assert "No usable backup" in out
 
 
-# ─── end-to-end: `hermes desktop --build-only` exits nonzero on corrupt exe ─
+# ─── end-to-end: `openamer desktop --build-only` exits nonzero on corrupt exe ─
 
 
 def _ns(**kw):
@@ -511,7 +511,7 @@ def _ns(**kw):
         source=False,
         fake_boot=False,
         ignore_existing=False,
-        hermes_root=None,
+        openamer_root=None,
         cwd=None,
     )
     defaults.update(kw)
@@ -519,19 +519,19 @@ def _ns(**kw):
 
 
 def test_build_only_fails_when_pack_produces_corrupt_exe(tmp_path, monkeypatch, capsys):
-    """The updater chain's contract: a rebuild whose Hermes.exe cannot launch
-    must exit nonzero (so hermes-setup's retry-once kicks in) and must restore
+    """The updater chain's contract: a rebuild whose OpenAmer.exe cannot launch
+    must exit nonzero (so openamer-setup's retry-once kicks in) and must restore
     the previous working build instead of leaving the corrupt one."""
-    root = tmp_path / "hermes-agent"
+    root = tmp_path / "openamer-agent"
     desktop_dir = root / "apps" / "desktop"
     desktop_dir.mkdir(parents=True)
     (desktop_dir / "package.json").write_text("{}", encoding="utf-8")
     monkeypatch.setattr(cli_main, "PROJECT_ROOT", root)
     monkeypatch.setattr(cli_main.sys, "platform", "win32")
 
-    exe = desktop_dir / "release" / "win-unpacked" / "Hermes.exe"
+    exe = desktop_dir / "release" / "win-unpacked" / "OpenAmer.exe"
     make_pe(exe, PE_AMD64, truncate_to=0x300)  # what the failed pack produced
-    make_pe(desktop_dir / "release" / "win-unpacked.bak" / "Hermes.exe", PE_AMD64)
+    make_pe(desktop_dir / "release" / "win-unpacked.bak" / "OpenAmer.exe", PE_AMD64)
 
     install_ok = subprocess.CompletedProcess(["npm", "ci"], 0)
     pack_ok = subprocess.CompletedProcess(["npm", "run", "pack"], 0)
@@ -558,14 +558,14 @@ def test_build_only_fails_when_pack_produces_corrupt_exe(tmp_path, monkeypatch, 
 
 
 def test_build_only_succeeds_with_valid_exe(tmp_path, monkeypatch, capsys):
-    root = tmp_path / "hermes-agent"
+    root = tmp_path / "openamer-agent"
     desktop_dir = root / "apps" / "desktop"
     desktop_dir.mkdir(parents=True)
     (desktop_dir / "package.json").write_text("{}", encoding="utf-8")
     monkeypatch.setattr(cli_main, "PROJECT_ROOT", root)
     monkeypatch.setattr(cli_main.sys, "platform", "win32")
 
-    make_pe(desktop_dir / "release" / "win-unpacked" / "Hermes.exe", PE_AMD64)
+    make_pe(desktop_dir / "release" / "win-unpacked" / "OpenAmer.exe", PE_AMD64)
 
     install_ok = subprocess.CompletedProcess(["npm", "ci"], 0)
     pack_ok = subprocess.CompletedProcess(["npm", "run", "pack"], 0)

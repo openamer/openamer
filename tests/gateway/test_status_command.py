@@ -427,7 +427,7 @@ async def test_first_run_slack_home_channel_onboarding_uses_parent_command(monke
     assert result == "ok"
     runner.adapters[Platform.SLACK].send.assert_awaited_once()
     onboarding = runner.adapters[Platform.SLACK].send.await_args.args[1]
-    assert "/hermes sethome" in onboarding
+    assert "/openamer sethome" in onboarding
     assert "Type /sethome" not in onboarding
 
 
@@ -606,7 +606,7 @@ async def test_status_command_bypasses_active_session_guard():
 
     async def fake_handler(event):
         handler_called_with.append(event)
-        return "📊 **Hermes Gateway Status**\n**Agent Running:** Yes ⚡"
+        return "📊 **OpenAmer Gateway Status**\n**Agent Running:** Yes ⚡"
 
     # Concrete subclass to avoid abstract method errors
     class _ConcreteAdapter(BasePlatformAdapter):
@@ -649,7 +649,7 @@ async def test_status_command_bypasses_active_session_guard():
 
 @pytest.mark.asyncio
 async def test_profile_command_reports_custom_root_profile(monkeypatch, tmp_path):
-    """Gateway /profile detects custom-root profiles (not under ~/.hermes)."""
+    """Gateway /profile detects custom-root profiles (not under ~/.openamer)."""
     from pathlib import Path
 
     session_entry = SessionEntry(
@@ -678,8 +678,8 @@ async def test_profile_command_reports_source_stamped_profile(monkeypatch, tmp_p
     source (source.profile — URL prefix / per-credential adapter / room map),
     not the multiplexer's active profile, which is always the default and
     made /profile answer "default" in every persona chat."""
-    hermes_home = tmp_path / ".hermes"
-    profile_home = hermes_home / "profiles" / "milo"
+    openamer_home = tmp_path / ".openamer"
+    profile_home = openamer_home / "profiles" / "milo"
     profile_home.mkdir(parents=True)
 
     session_entry = SessionEntry(
@@ -692,7 +692,7 @@ async def test_profile_command_reports_source_stamped_profile(monkeypatch, tmp_p
     )
     runner = _make_runner(session_entry)
     runner.config.multiplex_profiles = True
-    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
 
     event = _make_event("/profile")
     event.source.profile = "milo"
@@ -709,8 +709,8 @@ async def test_profile_command_ignores_stamp_when_multiplexing_off(monkeypatch, 
     /profile keeps reporting the active profile and the default home,
     mirroring the multiplex gating in ``_run_agent`` and
     ``_reset_notice_session_info``."""
-    hermes_home = tmp_path / ".hermes"
-    profile_home = hermes_home / "profiles" / "milo"
+    openamer_home = tmp_path / ".openamer"
+    profile_home = openamer_home / "profiles" / "milo"
     profile_home.mkdir(parents=True)
 
     session_entry = SessionEntry(
@@ -723,7 +723,7 @@ async def test_profile_command_ignores_stamp_when_multiplexing_off(monkeypatch, 
     )
     runner = _make_runner(session_entry)
     assert runner.config.multiplex_profiles is False
-    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
 
     event = _make_event("/profile")
     event.source.profile = "milo"
@@ -731,15 +731,15 @@ async def test_profile_command_ignores_stamp_when_multiplexing_off(monkeypatch, 
     result = await runner._handle_profile_command(event)
 
     assert "**Profile:** `default`" in result
-    assert f"**Home:** `{hermes_home}`" in result
+    assert f"**Home:** `{openamer_home}`" in result
 
 
 @pytest.mark.asyncio
 async def test_profile_command_unstamped_source_unchanged(monkeypatch, tmp_path):
     """Single-profile behavior is untouched: an unstamped source reports the
     active profile and the default home."""
-    hermes_home = tmp_path / ".hermes"
-    hermes_home.mkdir()
+    openamer_home = tmp_path / ".openamer"
+    openamer_home.mkdir()
 
     session_entry = SessionEntry(
         session_key=build_session_key(_make_source()),
@@ -750,12 +750,12 @@ async def test_profile_command_unstamped_source_unchanged(monkeypatch, tmp_path)
         chat_type="dm",
     )
     runner = _make_runner(session_entry)
-    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
 
     result = await runner._handle_profile_command(_make_event("/profile"))
 
     assert "**Profile:** `default`" in result
-    assert f"**Home:** `{hermes_home}`" in result
+    assert f"**Home:** `{openamer_home}`" in result
 
 
 @pytest.mark.asyncio
@@ -763,7 +763,7 @@ async def test_post_delivery_callback_generation_snapshot_happens_after_bind():
     """Regression: the callback_generation snapshot in _process_message_background
     must happen AFTER the handler runs, not before.
 
-    _hermes_run_generation is set on the interrupt event by
+    _openamer_run_generation is set on the interrupt event by
     GatewayRunner._bind_adapter_run_generation during _handle_message_with_agent.
     The earlier snapshot-at-task-start always captured None, which bypassed the
     generation-ownership check in pop_post_delivery_callback and let stale runs
@@ -791,7 +791,7 @@ async def test_post_delivery_callback_generation_snapshot_happens_after_bind():
     async def fake_handler(event):
         # Simulate what _bind_adapter_run_generation does mid-run.
         interrupt_event = adapter._active_sessions.get(session_key)
-        setattr(interrupt_event, "_hermes_run_generation", 1)
+        setattr(interrupt_event, "_openamer_run_generation", 1)
         # Stale run registers its callback at generation=1.
         adapter.register_post_delivery_callback(
             session_key,

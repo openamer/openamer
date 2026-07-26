@@ -219,7 +219,7 @@ COMMAND_REGISTRY: list[CommandDef] = [
                cli_only=True),
     CommandDef("reload-mcp", "Reload MCP servers from config", "Tools & Skills",
                aliases=("reload_mcp",)),
-    CommandDef("reload-skills", "Re-scan ~/.hermes/skills/ for newly installed or removed skills",
+    CommandDef("reload-skills", "Re-scan ~/.openamer/skills/ for newly installed or removed skills",
                "Tools & Skills", aliases=("reload_skills",)),
     CommandDef("browser", "Connect browser tools to your live Chromium-family browser via CDP", "Tools & Skills",
                cli_only=True, args_hint="[connect|disconnect|status]",
@@ -489,7 +489,7 @@ def _iter_plugin_command_entries() -> list[tuple[str, str, str]]:
     Plugin commands are registered via
     :func:`openamer_cli.plugins.PluginContext.register_command`. They behave
     like ``CommandDef`` entries for gateway surfacing: they appear in the
-    Telegram command menu, in Slack's ``/hermes`` subcommand mapping, and
+    Telegram command menu, in Slack's ``/openamer`` subcommand mapping, and
     (via :func:`plugins.platforms.discord.adapter._register_slash_commands`) in
     Discord's native slash command picker.
 
@@ -1149,7 +1149,7 @@ _SLACK_RESERVED_COMMANDS = frozenset({
 # registry fills up. Without this, adding a new canonical command silently
 # clamps off low-priority aliases (they're added in the second pass), so a
 # long-standing native slash like /btw could disappear just because an
-# unrelated command landed. These claim their slots right after /hermes,
+# unrelated command landed. These claim their slots right after /openamer,
 # ahead of both canonical names and the rest of the aliases. Anything not
 # listed here still degrades gracefully (reachable via /openamer <command>).
 # Keep this list TIGHT: every pinned alias takes a slot a canonical command
@@ -1165,7 +1165,7 @@ _SLACK_PRIORITY_ALIASES = ("btw", "bg")
 # ``/openamer <command>`` on Slack only. They remain native on every other
 # surface (CLI, TUI, Telegram, Discord). Keep this list TIGHT and intentional —
 # the telegram-parity test reads it so an entry here is a deliberate
-# "Slack-via-/hermes" decision, not a silent clamp.
+# "Slack-via-/openamer" decision, not a silent clamp.
 #   - topup: the billing/balance surface; reached via /openamer topup on Slack.
 #     (the rehaul folded the old /credits + /billing surfaces into /topup.)
 #   - moa: high-cost slash mode, available through /openamer moa to avoid
@@ -1204,7 +1204,7 @@ def slack_native_slashes() -> list[tuple[str, str, str]]:
     can still reach them via ``/openamer <command>``.
 
     Results are clamped to Slack's 50-command limit with duplicate-name
-    avoidance. ``/hermes`` is always reserved as the first entry so the
+    avoidance. ``/openamer`` is always reserved as the first entry so the
     legacy ``/openamer <subcommand>`` form keeps working for anything that
     gets dropped by the clamp or for free-form questions.
     """
@@ -1213,8 +1213,8 @@ def slack_native_slashes() -> list[tuple[str, str, str]]:
     seen: set[str] = set()
 
     # Reserve /openamer as the catch-all top-level command.
-    entries.append(("hermes", "Talk to OpenAmer or run a subcommand", "[subcommand] [args]"))
-    seen.add("hermes")
+    entries.append(("openamer", "Talk to OpenAmer or run a subcommand", "[subcommand] [args]"))
+    seen.add("openamer")
 
     def _add(name: str, desc: str, hint: str) -> None:
         slack_name = _sanitize_slack_name(name)
@@ -1232,7 +1232,7 @@ def slack_native_slashes() -> list[tuple[str, str, str]]:
         seen.add(slack_name)
 
     # Priority pass: pin high-value aliases (e.g. /btw, /bg, /reset) ahead of
-    # everything except /hermes, so a new canonical command can never silently
+    # everything except /openamer, so a new canonical command can never silently
     # clamp them off the 50-slash cap. Each alias borrows its parent command's
     # description and hint.
     _alias_to_cmd = {

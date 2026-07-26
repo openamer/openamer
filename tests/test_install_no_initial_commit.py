@@ -5,7 +5,7 @@ present but with no resolvable ``HEAD``. ``git rev-parse --is-inside-work-tree``
 and ``git status`` both still succeed there, so the installer treated it as a
 valid checkout and tried to *update* it -- but ``git stash``/``git checkout``
 abort with "You do not have the initial commit yet", failing the install at the
-"Cloning Hermes repository" stage.
+"Cloning OpenAmer repository" stage.
 
 Both installers must instead treat a commit-less checkout as broken and
 re-clone fresh.
@@ -65,7 +65,7 @@ def _run_guard(install_dir: Path) -> None:
 
 
 def test_install_sh_guard_moves_commitless_checkout_aside(tmp_path: Path) -> None:
-    install_dir = tmp_path / "hermes-agent"
+    install_dir = tmp_path / "openamer-agent"
     install_dir.mkdir()
     _git(install_dir, "init")
     (install_dir / "leftover.txt").write_text("partial download")  # untracked
@@ -87,7 +87,7 @@ def test_install_sh_guard_moves_commitless_checkout_aside(tmp_path: Path) -> Non
 
 
 def test_install_sh_guard_keeps_repo_with_commits(tmp_path: Path) -> None:
-    install_dir = tmp_path / "hermes-agent"
+    install_dir = tmp_path / "openamer-agent"
     install_dir.mkdir()
     _git(install_dir, "init")
     (install_dir / "f.txt").write_text("real content")
@@ -103,7 +103,7 @@ def test_install_sh_guard_keeps_repo_with_commits(tmp_path: Path) -> None:
 
 
 def test_install_sh_guard_ignores_non_repo_dir(tmp_path: Path) -> None:
-    install_dir = tmp_path / "hermes-agent"
+    install_dir = tmp_path / "openamer-agent"
     install_dir.mkdir()
     (install_dir / "f.txt").write_text("not a repo")
 

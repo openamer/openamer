@@ -1,11 +1,11 @@
 """Tests for subprocess env sanitization in LocalEnvironment.
 
-Verifies that Hermes-managed provider, tool, and gateway env vars are
+Verifies that OpenAmer-managed provider, tool, and gateway env vars are
 stripped from subprocess environments so external CLIs are not silently
-misrouted or handed Hermes secrets.
+misrouted or handed OpenAmer secrets.
 
-See: https://github.com/NousResearch/hermes-agent/issues/1002
-See: https://github.com/NousResearch/hermes-agent/issues/1264
+See: https://github.com/NousResearch/openamer-agent/issues/1002
+See: https://github.com/NousResearch/openamer-agent/issues/1264
 """
 
 import os
@@ -59,7 +59,7 @@ def _run_with_env(extra_os_env=None, self_env=None):
 
 
 class TestProviderEnvBlocklist:
-    """Provider env vars loaded from ~/.hermes/.env must not leak."""
+    """Provider env vars loaded from ~/.openamer/.env must not leak."""
 
     def test_blocked_vars_are_stripped(self):
         """OPENAI_BASE_URL and other provider vars must not appear in subprocess env."""
@@ -95,14 +95,14 @@ class TestProviderEnvBlocklist:
             assert var not in result_env, f"{var} leaked into subprocess env"
 
     def test_bedrock_bearer_token_is_stripped(self):
-        """The Bedrock-specific bearer token is a Hermes inference secret
+        """The Bedrock-specific bearer token is a OpenAmer inference secret
         (analogous to OPENAI_API_KEY) and must not leak into subprocesses.
 
         Regression for #32314: AWS_BEARER_TOKEN_BEDROCK leaked into terminal /
         execute_code children because the ``bedrock`` ProviderConfig declares
         ``api_key_env_vars=()`` (auth_type="aws_sdk") and the blocklist builder
         only consulted that field. The reporter caught it when ``opencode
-        models`` run inside a Hermes terminal enumerated the entire Bedrock
+        models`` run inside a OpenAmer terminal enumerated the entire Bedrock
         catalog off the leaked bearer token.
         """
         result_env = _run_with_env(extra_os_env={
@@ -148,7 +148,7 @@ class TestProviderEnvBlocklist:
         unconditionally — and (b) be unrecoverable, because env_passthrough.py
         refuses to re-allow anything in _HERMES_PROVIDER_ENV_BLOCKLIST
         (GHSA-rhgp-j443-p4rf). Only the Bedrock inference bearer token is
-        Hermes-managed; the rest belongs to the user.
+        OpenAmer-managed; the rest belongs to the user.
         """
         general_chain = {
             "AWS_ACCESS_KEY_ID": "AKIAIOSFODNN7EXAMPLE",
@@ -268,21 +268,21 @@ class TestActiveVenvMarkerStripping:
     VIRTUAL_ENV (and possibly CONDA_PREFIX). If those leak into commands the
     agent runs against ANOTHER Python project, ``uv``/``poetry`` treat the
     inherited value as the active environment and build that project's deps
-    into the Hermes venv path instead of the project's own ``.venv`` —
-    silently clobbering the Hermes environment (and, when the other project
-    pins a different Python, breaking the gateway outright). The Hermes venv
+    into the OpenAmer venv path instead of the project's own ``.venv`` —
+    silently clobbering the OpenAmer environment (and, when the other project
+    pins a different Python, breaking the gateway outright). The OpenAmer venv
     stays reachable via PATH, so stripping the markers is safe.
     """
 
     def test_virtualenv_marker_stripped_end_to_end(self):
         result_env = _run_with_env(extra_os_env={
-            "VIRTUAL_ENV": "/home/user/.hermes/hermes-agent/venv",
+            "VIRTUAL_ENV": "/home/user/.openamer/openamer-agent/venv",
         })
         assert "VIRTUAL_ENV" not in result_env
 
     def test_conda_prefix_marker_stripped_end_to_end(self):
         result_env = _run_with_env(extra_os_env={
-            "CONDA_PREFIX": "/opt/conda/envs/hermes",
+            "CONDA_PREFIX": "/opt/conda/envs/openamer",
         })
         assert "CONDA_PREFIX" not in result_env
 
@@ -328,7 +328,7 @@ class TestBlocklistCoverage:
         must appear in the blocklist — ensures no drift.
 
         CLAUDE_CODE_OAUTH_TOKEN is the one deliberate exemption: it is owned
-        by the user's Claude Code install, not Hermes (#55878).
+        by the user's Claude Code install, not OpenAmer (#55878).
         """
         from openamer_cli.auth import PROVIDER_REGISTRY
 
@@ -347,7 +347,7 @@ class TestBlocklistCoverage:
                 )
 
     def test_bedrock_bearer_token_is_in_blocklist(self):
-        """auth_type='aws_sdk' providers contribute their Hermes-managed
+        """auth_type='aws_sdk' providers contribute their OpenAmer-managed
         inference token (the Bedrock bearer) to the blocklist, keyed off
         auth_type so any future SDK-cred provider is covered automatically."""
         assert "AWS_BEARER_TOKEN_BEDROCK" in _HERMES_PROVIDER_ENV_BLOCKLIST
@@ -355,7 +355,7 @@ class TestBlocklistCoverage:
     def test_general_aws_chain_not_in_blocklist(self):
         """The general AWS credential chain must NOT be in the blocklist —
         no-regression guard for #32314. These belong to the user's trusted
-        operator shell (SECURITY.md §3.2), not to Hermes, and blocklisting
+        operator shell (SECURITY.md §3.2), not to OpenAmer, and blocklisting
         them would be unrecoverable via env_passthrough (GHSA-rhgp-j443-p4rf).
         """
         general_chain = {
@@ -384,7 +384,7 @@ class TestBlocklistCoverage:
 
     def test_claude_code_oauth_token_is_inheritable(self):
         """CLAUDE_CODE_OAUTH_TOKEN is owned by the user's Claude Code install
-        (subscription OAuth), not a Hermes inference credential. Stripping it
+        (subscription OAuth), not a OpenAmer inference credential. Stripping it
         made agent-spawned ``claude`` fall through to the shared Keychain /
         ~/.claude credential store and clobber the user's interactive login
         on auth failure (#55878). It must stay inheritable."""
@@ -467,10 +467,10 @@ class TestSanePathIncludesHomebrew:
     """Verify _SANE_PATH includes macOS Homebrew directories."""
 
     @pytest.fixture(autouse=True)
-    def _disable_hermes_bin_injection(self):
+    def _disable_openamer_bin_injection(self):
         """These tests assert the sane-path merge in isolation. Disable the
-        hermes-install-dir prepend (a separate concern, covered by
-        TestHermesBinDirOnPath) so a real ``hermes`` on the test runner's PATH
+        openamer-install-dir prepend (a separate concern, covered by
+        TestOpenAmerBinDirOnPath) so a real ``openamer`` on the test runner's PATH
         doesn't shift the asserted PATH layout."""
         from tools.environments import local as local_mod
         saved = local_mod._HERMES_BIN_DIR
@@ -572,13 +572,13 @@ class TestSanePathIncludesHomebrew:
         assert "PATH" not in result
 
 
-class TestHermesBinDirOnPath:
-    """The hermes install dir is reachable in the terminal subshell PATH.
+class TestOpenAmerBinDirOnPath:
+    """The openamer install dir is reachable in the terminal subshell PATH.
 
-    Plugins shelling out to bare ``hermes`` via the terminal tool must work
-    even when the gateway was launched without the hermes install dir on
+    Plugins shelling out to bare ``openamer`` via the terminal tool must work
+    even when the gateway was launched without the openamer install dir on
     PATH (systemd, service managers, cron). See the discussion that motivated
-    _resolve_hermes_bin_dir / _prepend_hermes_bin_dir.
+    _resolve_openamer_bin_dir / _prepend_openamer_bin_dir.
     """
 
     def _reset_cache(self):
@@ -589,21 +589,21 @@ class TestHermesBinDirOnPath:
         from tools.environments import local as local_mod
         self._reset_cache()
         monkeypatch.setattr(local_mod.shutil, "which",
-                            lambda name: "/opt/hermes/bin/hermes" if name == "hermes" else None)
-        monkeypatch.setattr(local_mod.os.path, "isdir", lambda p: p == "/opt/hermes/bin")
-        assert local_mod._resolve_hermes_bin_dir() == "/opt/hermes/bin"
+                            lambda name: "/opt/openamer/bin/openamer" if name == "openamer" else None)
+        monkeypatch.setattr(local_mod.os.path, "isdir", lambda p: p == "/opt/openamer/bin")
+        assert local_mod._resolve_openamer_bin_dir() == "/opt/openamer/bin"
 
     def test_resolves_via_sys_executable_dir(self, monkeypatch, tmp_path):
         from tools.environments import local as local_mod
         self._reset_cache()
         venv_bin = tmp_path / "venv" / "bin"
         venv_bin.mkdir(parents=True)
-        (venv_bin / "hermes").write_text("#!/bin/sh\n")
+        (venv_bin / "openamer").write_text("#!/bin/sh\n")
         monkeypatch.setattr(local_mod.shutil, "which", lambda name: None)
         monkeypatch.setattr(local_mod.sys, "argv", ["python"])
         monkeypatch.setattr(local_mod.sys, "executable", str(venv_bin / "python"))
         monkeypatch.setattr(local_mod, "_IS_WINDOWS", False)
-        assert local_mod._resolve_hermes_bin_dir() == str(venv_bin)
+        assert local_mod._resolve_openamer_bin_dir() == str(venv_bin)
 
     def test_returns_none_when_unresolvable(self, monkeypatch):
         from tools.environments import local as local_mod
@@ -611,47 +611,47 @@ class TestHermesBinDirOnPath:
         monkeypatch.setattr(local_mod.shutil, "which", lambda name: None)
         monkeypatch.setattr(local_mod.sys, "argv", ["python"])
         monkeypatch.setattr(local_mod.sys, "executable", "/nonexistent/python")
-        assert local_mod._resolve_hermes_bin_dir() is None
+        assert local_mod._resolve_openamer_bin_dir() is None
 
     def test_prepend_adds_missing_dir_at_front(self, monkeypatch):
         from tools.environments import local as local_mod
         self._reset_cache()
-        local_mod._HERMES_BIN_DIR = "/opt/hermes/bin"
-        out = local_mod._prepend_hermes_bin_dir("/usr/bin:/bin")
-        assert out.split(os.pathsep)[0] == "/opt/hermes/bin"
+        local_mod._HERMES_BIN_DIR = "/opt/openamer/bin"
+        out = local_mod._prepend_openamer_bin_dir("/usr/bin:/bin")
+        assert out.split(os.pathsep)[0] == "/opt/openamer/bin"
         assert "/usr/bin" in out.split(os.pathsep)
 
     def test_prepend_is_idempotent(self, monkeypatch):
         from tools.environments import local as local_mod
         self._reset_cache()
-        local_mod._HERMES_BIN_DIR = "/opt/hermes/bin"
-        once = local_mod._prepend_hermes_bin_dir("/usr/bin:/bin")
-        twice = local_mod._prepend_hermes_bin_dir(once)
+        local_mod._HERMES_BIN_DIR = "/opt/openamer/bin"
+        once = local_mod._prepend_openamer_bin_dir("/usr/bin:/bin")
+        twice = local_mod._prepend_openamer_bin_dir(once)
         assert twice == once
-        assert once.split(os.pathsep).count("/opt/hermes/bin") == 1
+        assert once.split(os.pathsep).count("/opt/openamer/bin") == 1
 
     def test_prepend_noop_when_unresolved(self, monkeypatch):
         from tools.environments import local as local_mod
         self._reset_cache()
         local_mod._HERMES_BIN_DIR = None
-        assert local_mod._prepend_hermes_bin_dir("/usr/bin:/bin") == "/usr/bin:/bin"
+        assert local_mod._prepend_openamer_bin_dir("/usr/bin:/bin") == "/usr/bin:/bin"
 
-    def test_make_run_env_injects_hermes_bin_dir(self, monkeypatch):
-        """A gateway env missing the hermes dir gets it back in the subshell PATH."""
+    def test_make_run_env_injects_openamer_bin_dir(self, monkeypatch):
+        """A gateway env missing the openamer dir gets it back in the subshell PATH."""
         from tools.environments import local as local_mod
         from tools.environments.local import _make_run_env
         self._reset_cache()
-        local_mod._HERMES_BIN_DIR = "/opt/hermes/bin"
+        local_mod._HERMES_BIN_DIR = "/opt/openamer/bin"
         monkeypatch.setattr(local_mod, "_IS_WINDOWS", False)
         with patch.dict(os.environ, {"PATH": "/usr/bin:/bin"}, clear=True):
             result = _make_run_env({})
         entries = result["PATH"].split(os.pathsep)
-        assert entries[0] == "/opt/hermes/bin"
+        assert entries[0] == "/opt/openamer/bin"
         assert "/usr/bin" in entries
 
 
-class TestHermesInternalDynamicSecrets:
-    """Dynamically-named Hermes secrets injected at gateway/CLI startup must
+class TestOpenAmerInternalDynamicSecrets:
+    """Dynamically-named OpenAmer secrets injected at gateway/CLI startup must
     not leak into terminal subprocesses.
 
     The static ``_HERMES_PROVIDER_ENV_BLOCKLIST`` is name-based and derived
@@ -663,43 +663,43 @@ class TestHermesInternalDynamicSecrets:
     - ``GATEWAY_RELAY_*_SECRET`` / ``_KEY`` / ``_TOKEN`` — relay-auth material
       provisioned by ``gateway/relay``.
 
-    ``_is_hermes_internal_secret`` is the single source of truth; every spawn
+    ``_is_openamer_internal_secret`` is the single source of truth; every spawn
     path (``_sanitize_subprocess_env``, ``_make_run_env``,
-    ``hermes_subprocess_env``, Docker forward filter, ``env_passthrough``)
+    ``openamer_subprocess_env``, Docker forward filter, ``env_passthrough``)
     consults it. These tests exercise the terminal execute path + predicate.
     """
 
     def test_predicate_matches_auxiliary_api_key(self):
-        from tools.environments.local import _is_hermes_internal_secret
-        assert _is_hermes_internal_secret("AUXILIARY_VISION_API_KEY")
-        assert _is_hermes_internal_secret("AUXILIARY_WEB_EXTRACT_API_KEY")
-        assert _is_hermes_internal_secret("AUXILIARY_APPROVAL_API_KEY")
+        from tools.environments.local import _is_openamer_internal_secret
+        assert _is_openamer_internal_secret("AUXILIARY_VISION_API_KEY")
+        assert _is_openamer_internal_secret("AUXILIARY_WEB_EXTRACT_API_KEY")
+        assert _is_openamer_internal_secret("AUXILIARY_APPROVAL_API_KEY")
         # plugin-registered task names are covered by the pattern
-        assert _is_hermes_internal_secret("AUXILIARY_MY_PLUGIN_TASK_API_KEY")
+        assert _is_openamer_internal_secret("AUXILIARY_MY_PLUGIN_TASK_API_KEY")
 
     def test_predicate_matches_auxiliary_base_url(self):
-        from tools.environments.local import _is_hermes_internal_secret
-        assert _is_hermes_internal_secret("AUXILIARY_VISION_BASE_URL")
-        assert _is_hermes_internal_secret("AUXILIARY_COMPRESSION_BASE_URL")
+        from tools.environments.local import _is_openamer_internal_secret
+        assert _is_openamer_internal_secret("AUXILIARY_VISION_BASE_URL")
+        assert _is_openamer_internal_secret("AUXILIARY_COMPRESSION_BASE_URL")
 
     def test_predicate_matches_gateway_relay_auth(self):
-        from tools.environments.local import _is_hermes_internal_secret
-        assert _is_hermes_internal_secret("GATEWAY_RELAY_SECRET")
-        assert _is_hermes_internal_secret("GATEWAY_RELAY_DELIVERY_KEY")
-        assert _is_hermes_internal_secret("GATEWAY_RELAY_SESSION_TOKEN")
+        from tools.environments.local import _is_openamer_internal_secret
+        assert _is_openamer_internal_secret("GATEWAY_RELAY_SECRET")
+        assert _is_openamer_internal_secret("GATEWAY_RELAY_DELIVERY_KEY")
+        assert _is_openamer_internal_secret("GATEWAY_RELAY_SESSION_TOKEN")
 
     def test_predicate_allows_auxiliary_non_secrets(self):
         """AUXILIARY_*_PROVIDER / _MODEL and GATEWAY_RELAY_* routing hints are
         NOT secrets and must remain visible so tooling that reads them works."""
-        from tools.environments.local import _is_hermes_internal_secret
-        assert not _is_hermes_internal_secret("AUXILIARY_VISION_PROVIDER")
-        assert not _is_hermes_internal_secret("AUXILIARY_VISION_MODEL")
-        assert not _is_hermes_internal_secret("GATEWAY_RELAY_URL")
-        assert not _is_hermes_internal_secret("GATEWAY_RELAY_PLATFORMS")
-        assert not _is_hermes_internal_secret("GATEWAY_RELAY_ID")  # not a secret suffix
+        from tools.environments.local import _is_openamer_internal_secret
+        assert not _is_openamer_internal_secret("AUXILIARY_VISION_PROVIDER")
+        assert not _is_openamer_internal_secret("AUXILIARY_VISION_MODEL")
+        assert not _is_openamer_internal_secret("GATEWAY_RELAY_URL")
+        assert not _is_openamer_internal_secret("GATEWAY_RELAY_PLATFORMS")
+        assert not _is_openamer_internal_secret("GATEWAY_RELAY_ID")  # not a secret suffix
         # unrelated vars pass through
-        assert not _is_hermes_internal_secret("PATH")
-        assert not _is_hermes_internal_secret("MY_APP_KEY")
+        assert not _is_openamer_internal_secret("PATH")
+        assert not _is_openamer_internal_secret("MY_APP_KEY")
 
     def test_auxiliary_secrets_stripped_from_subprocess(self):
         """AUXILIARY_*_API_KEY / _BASE_URL injected into os.environ must not

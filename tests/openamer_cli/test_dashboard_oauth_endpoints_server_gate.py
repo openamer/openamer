@@ -1,6 +1,6 @@
 """Regression guard for PR #61281 (mobile/hosted dashboard OAuth).
 
-The PR removed the *client-side* ``X-Hermes-Session-Token`` requirement from
+The PR removed the *client-side* ``X-OpenAmer-Session-Token`` requirement from
 the dashboard OAuth mutation calls (``web/src/lib/api.ts``) so that
 cookie-authenticated hosted/mobile sessions can start provider logins. The
 safety of that change rests entirely on the *server* still gating those

@@ -82,28 +82,28 @@ def test_clear_discovered_repos_records_policy_atomically(conn):
 
 
 def test_create_get_list(conn):
-    pid = pdb.create_project(conn, name="Hermes Agent", folders=["/tmp/hermes"])
+    pid = pdb.create_project(conn, name="OpenAmer Agent", folders=["/tmp/openamer"])
     proj = pdb.get_project(conn, pid)
 
     assert proj is not None
-    assert proj.slug == "hermes-agent"
-    assert proj.name == "Hermes Agent"
+    assert proj.slug == "openamer-agent"
+    assert proj.name == "OpenAmer Agent"
     # First folder becomes primary.
-    assert proj.primary_path == "/tmp/hermes"
-    assert [f.path for f in proj.folders] == ["/tmp/hermes"]
+    assert proj.primary_path == "/tmp/openamer"
+    assert [f.path for f in proj.folders] == ["/tmp/openamer"]
     assert proj.folders[0].is_primary is True
 
     # Lookup by slug too.
-    assert pdb.get_project(conn, "hermes-agent").id == pid
+    assert pdb.get_project(conn, "openamer-agent").id == pid
     assert len(pdb.list_projects(conn)) == 1
 
 
 def test_slug_collision_disambiguates(conn):
-    pdb.create_project(conn, name="Hermes Agent")
-    pdb.create_project(conn, name="Hermes Agent")
+    pdb.create_project(conn, name="OpenAmer Agent")
+    pdb.create_project(conn, name="OpenAmer Agent")
     slugs = sorted(p.slug for p in pdb.list_projects(conn))
 
-    assert slugs == ["hermes-agent", "hermes-agent-2"]
+    assert slugs == ["openamer-agent", "openamer-agent-2"]
 
 
 def test_empty_name_rejected(conn):
@@ -209,7 +209,7 @@ def test_per_profile_isolation(tmp_path):
         b.close()
 
 
-def test_db_path_under_hermes_home():
+def test_db_path_under_openamer_home():
     # Resolves under OPENAMER_HOME (set by the autouse isolation fixture).
     assert pdb.projects_db_path().name == "projects.db"
     assert os.path.basename(str(pdb.projects_db_path().parent))  # non-empty parent

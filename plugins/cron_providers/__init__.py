@@ -2,7 +2,7 @@
 
 Scans two directories for cron scheduler provider plugins:
 
-1. Bundled providers: ``plugins/cron_providers/<name>/`` (shipped with hermes-agent)
+1. Bundled providers: ``plugins/cron_providers/<name>/`` (shipped with openamer-agent)
 2. User-installed providers: ``$OPENAMER_HOME/plugins/<name>/``
 
 Each subdirectory must contain ``__init__.py`` with a class implementing the
@@ -41,17 +41,17 @@ _CRON_PLUGINS_DIR = Path(__file__).parent
 
 # Synthetic parent package for user-installed providers, so they don't
 # collide with bundled providers in sys.modules.
-_USER_NAMESPACE = "_hermes_user_cron"
+_USER_NAMESPACE = "_openamer_user_cron"
 
 
 def _register_synthetic_package(name: str, search_locations: List[str]) -> None:
     """Register an empty package shell in sys.modules.
 
-    User-installed providers import as ``_hermes_user_cron.<name>``, a dotted
+    User-installed providers import as ``_openamer_user_cron.<name>``, a dotted
     name whose parents exist nowhere on disk. Unless those parents are present
     in ``sys.modules``, any relative import inside the plugin
     (``from . import config``) fails with
-    ``ModuleNotFoundError: No module named '_hermes_user_cron'`` — the same
+    ``ModuleNotFoundError: No module named '_openamer_user_cron'`` — the same
     reason the loader already registers ``plugins`` and ``plugins.cron_providers`` for
     bundled providers.
     """

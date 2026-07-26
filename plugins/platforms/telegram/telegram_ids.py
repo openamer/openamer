@@ -2,7 +2,7 @@
 
 Telegram's Bot API accepts a ``chat_id`` in two forms: a numeric ID (an int,
 e.g. ``123456789`` for a DM or ``-1001234567890`` for a channel/supergroup) or
-an ``@username`` string for public channels and groups. Hermes historically
+an ``@username`` string for public channels and groups. OpenAmer historically
 coerced every ``chat_id`` with ``int()``, which crashes on the username form
 (``ValueError: invalid literal for int()``). Normalizing here lets numeric IDs
 pass through as ints while usernames pass through unchanged — both are valid

@@ -249,7 +249,7 @@ class TestSend:
         assert call_args[0][0] == "https://dingtalk.example/webhook"
         payload = call_args[1]["json"]
         assert payload["msgtype"] == "markdown"
-        assert payload["markdown"]["title"] == "Hermes"
+        assert payload["markdown"]["title"] == "OpenAmer"
         assert payload["markdown"]["text"] == "Hello!"
 
     @pytest.mark.asyncio
@@ -692,14 +692,14 @@ class TestMentionPatterns:
 
     def test_pattern_matches_text(self, monkeypatch):
         adapter = _make_gating_adapter(
-            monkeypatch, extra={"mention_patterns": ["^hermes"]}
+            monkeypatch, extra={"mention_patterns": ["^openamer"]}
         )
-        assert adapter._message_matches_mention_patterns("hermes please help") is True
-        assert adapter._message_matches_mention_patterns("please hermes help") is False
+        assert adapter._message_matches_mention_patterns("openamer please help") is True
+        assert adapter._message_matches_mention_patterns("please openamer help") is False
 
     def test_pattern_is_case_insensitive(self, monkeypatch):
         adapter = _make_gating_adapter(
-            monkeypatch, extra={"mention_patterns": ["^hermes"]}
+            monkeypatch, extra={"mention_patterns": ["^openamer"]}
         )
         assert adapter._message_matches_mention_patterns("HERMES help") is True
 
@@ -761,10 +761,10 @@ class TestShouldProcessMessage:
     def test_group_accepted_when_text_matches_wake_word(self, monkeypatch):
         adapter = _make_gating_adapter(
             monkeypatch,
-            extra={"require_mention": True, "mention_patterns": ["^hermes"]},
+            extra={"require_mention": True, "mention_patterns": ["^openamer"]},
         )
         msg = MagicMock(is_in_at_list=False)
-        assert adapter._should_process_message(msg, "hermes help", is_group=True, chat_id="grp1") is True
+        assert adapter._should_process_message(msg, "openamer help", is_group=True, chat_id="grp1") is True
 
     def test_group_accepted_when_chat_in_free_response_list(self, monkeypatch):
         adapter = _make_gating_adapter(

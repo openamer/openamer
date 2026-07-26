@@ -30,7 +30,7 @@ def isolated_kanban_home(monkeypatch):
 
 
 def test_cli_dispatch_passes_max_in_progress_from_config(isolated_kanban_home, monkeypatch):
-    """#33488: hermes kanban dispatch must pass kanban.max_in_progress from
+    """#33488: openamer kanban dispatch must pass kanban.max_in_progress from
     config to dispatch_once. Without this, the global concurrency cap is
     unreachable from the CLI even though it works from the gateway."""
     from openamer_cli import kanban as kb_cli

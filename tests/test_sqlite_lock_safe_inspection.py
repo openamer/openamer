@@ -1,4 +1,4 @@
-"""POSIX advisory locks must survive Hermes' own database inspection.
+"""POSIX advisory locks must survive OpenAmer' own database inspection.
 
 close() on ANY file descriptor for a SQLite database cancels every POSIX
 advisory lock the process holds on that file -- including a running VACUUM's
@@ -6,14 +6,14 @@ EXCLUSIVE lock and an in-flight BEGIN IMMEDIATE's RESERVED lock:
 
     https://sqlite.org/howtocorrupt.html#_posix_advisory_locks_canceled_by_a_separate_thread_doing_close_
 
-Hermes used to byte-probe live databases in several places (kanban's
+OpenAmer used to byte-probe live databases in several places (kanban's
 post-commit page-count check, the zeroed-state.db detector run on every
-SessionDB construction, backup header verification). Under `hermes sessions
+SessionDB construction, backup header verification). Under `openamer sessions
 optimize` this let an external process write into a database while VACUUM was
 rewriting it, producing "database disk image is malformed".
 
 These tests pin the behavioural contract: an external process must stay locked
-out across Hermes' inspection calls.
+out across OpenAmer' inspection calls.
 """
 
 from __future__ import annotations

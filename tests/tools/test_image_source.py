@@ -19,8 +19,8 @@ PNG = b"\x89PNG\r\n\x1a\n" + b"\x00" * 64
 JPEG = b"\xff\xd8\xff" + b"\x00" * 64
 
 
-def _reload(monkeypatch, hermes_home: Path):
-    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+def _reload(monkeypatch, openamer_home: Path):
+    monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
     import openamer_constants
     importlib.reload(openamer_constants)
     import tools.image_source as isrc
@@ -31,7 +31,7 @@ def _reload(monkeypatch, hermes_home: Path):
 class TestDataUrl:
     @pytest.mark.asyncio
     async def test_valid_data_url_resolves_to_bytes(self, tmp_path, monkeypatch):
-        isrc = _reload(monkeypatch, tmp_path / "hermes")
+        isrc = _reload(monkeypatch, tmp_path / "openamer")
         b64 = base64.b64encode(PNG).decode()
         res = await isrc.resolve_image_source(
             f"data:image/png;base64,{b64}", isrc.ResolveContext())
@@ -41,7 +41,7 @@ class TestDataUrl:
 
     @pytest.mark.asyncio
     async def test_non_image_data_url_rejected(self, tmp_path, monkeypatch):
-        isrc = _reload(monkeypatch, tmp_path / "hermes")
+        isrc = _reload(monkeypatch, tmp_path / "openamer")
         b64 = base64.b64encode(b"not an image").decode()
         with pytest.raises(isrc.NotAnImage):
             await isrc.resolve_image_source(
@@ -51,7 +51,7 @@ class TestDataUrl:
 class TestLocalBackend:
     @pytest.mark.asyncio
     async def test_local_backend_reads_any_host_path(self, tmp_path, monkeypatch):
-        isrc = _reload(monkeypatch, tmp_path / "hermes")
+        isrc = _reload(monkeypatch, tmp_path / "openamer")
         monkeypatch.setenv("TERMINAL_ENV", "local")
         img = tmp_path / "outside" / "pic.png"
         img.parent.mkdir(parents=True)
@@ -62,7 +62,7 @@ class TestLocalBackend:
 
     @pytest.mark.asyncio
     async def test_file_uri_scheme_stripped(self, tmp_path, monkeypatch):
-        isrc = _reload(monkeypatch, tmp_path / "hermes")
+        isrc = _reload(monkeypatch, tmp_path / "openamer")
         monkeypatch.setenv("TERMINAL_ENV", "local")
         img = tmp_path / "pic.jpg"
         img.write_bytes(JPEG)
@@ -73,7 +73,7 @@ class TestLocalBackend:
     async def test_bare_relative_path_resolves(self, tmp_path, monkeypatch):
         """A cwd-relative bare filename ('pic.png') is a valid local source —
         main accepted it; the resolver must not regress it (PR review)."""
-        isrc = _reload(monkeypatch, tmp_path / "hermes")
+        isrc = _reload(monkeypatch, tmp_path / "openamer")
         monkeypatch.setenv("TERMINAL_ENV", "local")
         img = tmp_path / "pic.png"
         img.write_bytes(PNG)
@@ -84,7 +84,7 @@ class TestLocalBackend:
 
     @pytest.mark.asyncio
     async def test_unknown_url_scheme_rejected(self, tmp_path, monkeypatch):
-        isrc = _reload(monkeypatch, tmp_path / "hermes")
+        isrc = _reload(monkeypatch, tmp_path / "openamer")
         monkeypatch.setenv("TERMINAL_ENV", "local")
         with pytest.raises(isrc.UnsupportedScheme):
             await isrc.resolve_image_source(
@@ -94,7 +94,7 @@ class TestLocalBackend:
     async def test_svg_passes_through_for_rasterization(self, tmp_path, monkeypatch):
         """SVG has no raster magic bytes but is passed through with mime
         image/svg+xml so the vision call sites can rasterize it to PNG."""
-        isrc = _reload(monkeypatch, tmp_path / "hermes")
+        isrc = _reload(monkeypatch, tmp_path / "openamer")
         monkeypatch.setenv("TERMINAL_ENV", "local")
         svg = tmp_path / "art.svg"
         svg_bytes = b'<svg xmlns="http://www.w3.org/2000/svg"></svg>'
@@ -110,7 +110,7 @@ class TestNonLocalBackendConfinement:
 
     @pytest.mark.asyncio
     async def test_media_cache_path_host_read(self, tmp_path, monkeypatch):
-        home = tmp_path / "hermes"
+        home = tmp_path / "openamer"
         isrc = _reload(monkeypatch, home)
         monkeypatch.setenv("TERMINAL_ENV", "docker")
         cached = home / "cache" / "images" / "inbound.png"
@@ -125,7 +125,7 @@ class TestNonLocalBackendConfinement:
     async def test_host_secret_outside_cache_routes_to_sandbox_not_host(self, tmp_path, monkeypatch):
         """A non-cache host path (e.g. /etc/passwd) must NOT be host-read — it
         routes to the in-sandbox exec-read, which reads the CONTAINER's file."""
-        home = tmp_path / "hermes"
+        home = tmp_path / "openamer"
         isrc = _reload(monkeypatch, home)
         monkeypatch.setenv("TERMINAL_ENV", "docker")
 
@@ -156,7 +156,7 @@ class TestNonLocalBackendConfinement:
     @pytest.mark.asyncio
     async def test_non_cache_path_fails_closed_without_sandbox(self, tmp_path, monkeypatch):
         """No active sandbox env -> refuse rather than fall back to a host read."""
-        home = tmp_path / "hermes"
+        home = tmp_path / "openamer"
         isrc = _reload(monkeypatch, home)
         monkeypatch.setenv("TERMINAL_ENV", "docker")
         secret = tmp_path / "id_rsa"
@@ -170,7 +170,7 @@ class TestNonLocalBackendConfinement:
     async def test_symlink_in_cache_pointing_outside_is_not_host_read(self, tmp_path, monkeypatch):
         """A symlink planted inside a cache dir that points at a host secret must
         not be host-read (resolve() escapes the cache) — it routes to sandbox."""
-        home = tmp_path / "hermes"
+        home = tmp_path / "openamer"
         isrc = _reload(monkeypatch, home)
         monkeypatch.setenv("TERMINAL_ENV", "docker")
         secret = tmp_path / "outside" / "id_rsa"
@@ -195,7 +195,7 @@ class TestExecReadSafety:
     async def test_exec_read_is_bounded_and_redirect_safe(self, tmp_path, monkeypatch):
         """Leading-dash paths go through an input redirect (no argv exposure)
         and the read is size-bounded via head -c."""
-        home = tmp_path / "hermes"
+        home = tmp_path / "openamer"
         isrc = _reload(monkeypatch, home)
         monkeypatch.setenv("TERMINAL_ENV", "docker")
         captured = {}
@@ -214,7 +214,7 @@ class TestExecReadSafety:
     @pytest.mark.asyncio
     async def test_exec_read_over_cap_rejected(self, tmp_path, monkeypatch):
         """A sandbox file larger than the ingest cap is rejected, not embedded."""
-        home = tmp_path / "hermes"
+        home = tmp_path / "openamer"
         isrc = _reload(monkeypatch, home)
         monkeypatch.setenv("TERMINAL_ENV", "docker")
         # head -c returns cap+1 bytes for an oversized file.
@@ -231,7 +231,7 @@ class TestExecReadSafety:
 
     @pytest.mark.asyncio
     async def test_exec_read_nonzero_returncode_raises(self, tmp_path, monkeypatch):
-        home = tmp_path / "hermes"
+        home = tmp_path / "openamer"
         isrc = _reload(monkeypatch, home)
         monkeypatch.setenv("TERMINAL_ENV", "docker")
 
@@ -253,7 +253,7 @@ class TestSvgNormalization:
     @pytest.mark.asyncio
     async def test_svg_rasterized_when_converter_available(self, tmp_path, monkeypatch):
         from tools import vision_tools as vt
-        isrc = _reload(monkeypatch, tmp_path / "hermes")
+        isrc = _reload(monkeypatch, tmp_path / "openamer")
         monkeypatch.setenv("TERMINAL_ENV", "local")
         svg = tmp_path / "art.svg"
         svg.write_bytes(b'<svg xmlns="http://www.w3.org/2000/svg" width="4" height="4"/>')
@@ -273,7 +273,7 @@ class TestSvgNormalization:
 
     def test_svg_actionable_error_when_no_converter(self, tmp_path, monkeypatch):
         from tools import vision_tools as vt
-        _reload(monkeypatch, tmp_path / "hermes")
+        _reload(monkeypatch, tmp_path / "openamer")
         svg = tmp_path / "art.svg"
         svg.write_bytes(b'<svg xmlns="http://www.w3.org/2000/svg"/>')
         with patch.object(vt, "_rasterize_svg_to_png", return_value=False):

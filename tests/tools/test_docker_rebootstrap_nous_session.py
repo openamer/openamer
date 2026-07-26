@@ -24,7 +24,7 @@ def _terminal_nous_state():
     """On-disk shape after a terminal quarantine: tokens cleared, marker set."""
     return {
         "portal_base_url": "https://portal.example.com",
-        "client_id": "hermes-cli-vps",
+        "client_id": "openamer-cli-vps",
         "last_auth_error": {
             "provider": "nous",
             "code": "invalid_grant",
@@ -36,7 +36,7 @@ def _terminal_nous_state():
 def _healthy_nous_state():
     return {
         "portal_base_url": "https://portal.example.com",
-        "client_id": "hermes-cli-vps",
+        "client_id": "openamer-cli-vps",
         "access_token": "live-at",
         "refresh_token": "live-rt",
     }
@@ -53,7 +53,7 @@ _FRESH_SEED = json.dumps({
     "providers": {
         "nous": {
             "portal_base_url": "https://portal.example.com",
-            "client_id": "hermes-cli-vps",
+            "client_id": "openamer-cli-vps",
             "access_token": "FRESH-at",
             "refresh_token": "FRESH-rt",
         }
@@ -105,7 +105,7 @@ def test_reseeds_newer_orchestrator_session_over_healthy_stale_entry(tmp_path):
         "providers": {
             "nous": {
                 "portal_base_url": "https://portal.example.com",
-                "client_id": "hermes-cli-vps",
+                "client_id": "openamer-cli-vps",
                 "access_token": "FRESH-at",
                 "refresh_token": "FRESH-rt",
                 "obtained_at": "2026-07-14T19:05:00+00:00",
@@ -127,7 +127,7 @@ def test_does_not_replace_healthy_entry_with_older_seed(tmp_path):
         "version": 1,
         "providers": {
             "nous": {
-                "client_id": "hermes-cli-vps",
+                "client_id": "openamer-cli-vps",
                 "access_token": "STALE-at",
                 "refresh_token": "STALE-rt",
                 "obtained_at": "2026-07-14T19:00:00+00:00",
@@ -148,7 +148,7 @@ def test_timezone_less_local_timestamp_is_incomparable(tmp_path):
     seed = json.dumps({
         "providers": {
             "nous": {
-                "client_id": "hermes-cli-vps",
+                "client_id": "openamer-cli-vps",
                 "access_token": "FRESH-at",
                 "refresh_token": "FRESH-rt",
                 "obtained_at": "2026-07-14T19:05:00Z",
@@ -167,7 +167,7 @@ def test_malformed_timestamp_does_not_clobber_healthy_entry(tmp_path):
     seed = json.dumps({
         "providers": {
             "nous": {
-                "client_id": "hermes-cli-vps",
+                "client_id": "openamer-cli-vps",
                 "access_token": "FRESH-at",
                 "refresh_token": "FRESH-rt",
                 "obtained_at": "2026-07-14T19:05:00Z",
@@ -186,7 +186,7 @@ def test_newer_seed_without_tokens_does_not_clobber_healthy_entry(tmp_path):
     seed = json.dumps({
         "providers": {
             "nous": {
-                "client_id": "hermes-cli-vps",
+                "client_id": "openamer-cli-vps",
                 "obtained_at": "2026-07-14T19:05:00Z",
             }
         },
@@ -205,7 +205,7 @@ def test_newer_seed_for_non_bootstrap_client_does_not_clobber_healthy_entry(tmp_
     seed = json.dumps({
         "providers": {
             "nous": {
-                "client_id": "hermes-cli",
+                "client_id": "openamer-cli",
                 "access_token": "FRESH-at",
                 "refresh_token": "FRESH-rt",
                 "obtained_at": "2026-07-14T19:05:00Z",
@@ -226,7 +226,7 @@ def test_timezone_less_seed_timestamp_is_incomparable(tmp_path):
     seed = json.dumps({
         "providers": {
             "nous": {
-                "client_id": "hermes-cli-vps",
+                "client_id": "openamer-cli-vps",
                 "access_token": "FRESH-at",
                 "refresh_token": "FRESH-rt",
                 "obtained_at": "2026-07-14T19:05:00",
@@ -245,7 +245,7 @@ def test_extreme_timestamp_is_incomparable(tmp_path):
     seed = json.dumps({
         "providers": {
             "nous": {
-                "client_id": "hermes-cli-vps",
+                "client_id": "openamer-cli-vps",
                 "access_token": "FRESH-at",
                 "refresh_token": "FRESH-rt",
                 "obtained_at": "0001-01-01T00:00:00+23:59",
@@ -264,7 +264,7 @@ def test_equal_instants_with_different_offsets_do_not_reseed(tmp_path):
     seed = json.dumps({
         "providers": {
             "nous": {
-                "client_id": "hermes-cli-vps",
+                "client_id": "openamer-cli-vps",
                 "access_token": "FRESH-at",
                 "refresh_token": "FRESH-rt",
                 "obtained_at": "2026-07-14T20:00:00+01:00",
@@ -323,5 +323,5 @@ def test_unreadable_auth_file_is_left_alone(tmp_path):
 def test_terminal_entry_missing_marker_is_not_terminal(tmp_path):
     """No last_auth_error at all (e.g. a merely-expired but not-quarantined
     entry) → not terminal, no re-seed."""
-    auth = _write_auth(tmp_path, {"nous": {"client_id": "hermes-cli-vps"}})
+    auth = _write_auth(tmp_path, {"nous": {"client_id": "openamer-cli-vps"}})
     assert mod.reseed_if_terminal(auth, _FRESH_SEED) == "not_terminal"

@@ -18,7 +18,7 @@ _jitter_lock = threading.Lock()
 
 # Z.AI Coding Plan's GLM-5.2 endpoint often returns HTTP 429 code 1305
 # ("The service may be temporarily overloaded...") for otherwise valid
-# Hermes requests. Short retries tend to hammer the same overloaded window;
+# OpenAmer requests. Short retries tend to hammer the same overloaded window;
 # after a few normal retries, progressively widen the wait window. Keep the
 # cap interactive-friendly: a simple TUI message should fail visibly in minutes,
 # not sit silent for 20+ minutes.
@@ -133,7 +133,7 @@ def adaptive_rate_limit_backoff(
     idx = min(attempt - short_attempts - 1, len(_ZAI_CODING_OVERLOAD_LONG_BACKOFF) - 1)
     base_delay = _ZAI_CODING_OVERLOAD_LONG_BACKOFF[idx]
     # A smaller jitter ratio keeps long waits readable while still avoiding
-    # synchronized retry storms across concurrent Hermes sessions.
+    # synchronized retry storms across concurrent OpenAmer sessions.
     return jittered_backoff(1, base_delay=base_delay, max_delay=base_delay, jitter_ratio=0.2), "zai_coding_overload_long"
 
 

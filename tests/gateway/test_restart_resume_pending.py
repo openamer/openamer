@@ -1645,7 +1645,7 @@ class TestStuckLoopEscalation:
         counts_file = tmp_path / ".restart_failure_counts"
         counts_file.write_text(json.dumps({entry.session_key: 3}))
 
-        monkeypatch.setattr("gateway.run._hermes_home", tmp_path)
+        monkeypatch.setattr("gateway.run._openamer_home", tmp_path)
         runner = object.__new__(GatewayRunner)
         runner.session_store = store
 
@@ -1675,7 +1675,7 @@ class TestStuckLoopEscalation:
         counts_file = tmp_path / ".restart_failure_counts"
         counts_file.write_text(json.dumps({entry.session_key: 2}))
 
-        monkeypatch.setattr("gateway.run._hermes_home", tmp_path)
+        monkeypatch.setattr("gateway.run._openamer_home", tmp_path)
         runner = object.__new__(GatewayRunner)
         runner.session_store = store
 
@@ -1693,7 +1693,7 @@ class TestStuckLoopEscalation:
         source = _make_source()
         session_key = _make_store(tmp_path).get_or_create_session(source).session_key
 
-        monkeypatch.setattr("gateway.run._hermes_home", tmp_path)
+        monkeypatch.setattr("gateway.run._openamer_home", tmp_path)
         calls = []
 
         def _fake_atomic_json_write(path, payload, **kwargs):
@@ -1728,7 +1728,7 @@ class TestStuckLoopEscalation:
             encoding="utf-8",
         )
 
-        monkeypatch.setattr("gateway.run._hermes_home", tmp_path)
+        monkeypatch.setattr("gateway.run._openamer_home", tmp_path)
         calls = []
 
         def _fake_atomic_json_write(path, payload, **kwargs):

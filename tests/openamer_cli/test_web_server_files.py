@@ -199,7 +199,7 @@ def test_gated_local_mode_still_defaults_to_home(monkeypatch, tmp_path):
     monkeypatch.delenv("HERMES_DASHBOARD_FILES_ROOT", raising=False)
     monkeypatch.delenv("HERMES_MANAGED", raising=False)
     monkeypatch.setenv("HOME", str(home))
-    monkeypatch.setenv("OPENAMER_HOME", str(home / ".hermes"))
+    monkeypatch.setenv("OPENAMER_HOME", str(home / ".openamer"))
 
     prev_auth_required = getattr(web_server.app.state, "auth_required", None)
     prev_bound_host = getattr(web_server.app.state, "bound_host", None)

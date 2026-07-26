@@ -69,7 +69,7 @@ def _iteration_messages(base, iterations):
 def test_every_n_cadence_runs_references_every_nth_iteration(monkeypatch, tmp_path):
     """With every_n:3, references run on iterations 1 and 4 of a 6-iteration
     tool loop (1 on-cadence, then every 3rd), not on all 6."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     _cadence_config(home, "every_n:3")
     monkeypatch.setenv("OPENAMER_HOME", str(home))
 
@@ -94,7 +94,7 @@ def test_every_n_cadence_runs_references_every_nth_iteration(monkeypatch, tmp_pa
 def test_every_n_off_cadence_iterations_reuse_cached_guidance(monkeypatch, tmp_path):
     """Off-cadence iterations must still give the aggregator the last
     on-cadence advisor guidance (cache reuse), not run advisor-less."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     _cadence_config(home, "every_n:3")
     monkeypatch.setenv("OPENAMER_HOME", str(home))
 
@@ -122,7 +122,7 @@ def test_every_n_off_cadence_iterations_reuse_cached_guidance(monkeypatch, tmp_p
 
 def test_every_n_off_cadence_does_not_double_charge_usage(monkeypatch, tmp_path):
     """Cache-reuse iterations must not re-report advisor usage/cost."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     _cadence_config(home, "every_n:2")
     monkeypatch.setenv("OPENAMER_HOME", str(home))
 
@@ -151,7 +151,7 @@ def test_every_n_off_cadence_does_not_double_charge_usage(monkeypatch, tmp_path)
 def test_every_n_counter_resets_on_new_user_turn(monkeypatch, tmp_path):
     """A new user message starts a new turn: iteration 1 is on-cadence again,
     regardless of where the previous turn's counter stood."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     _cadence_config(home, "every_n:3")
     monkeypatch.setenv("OPENAMER_HOME", str(home))
 
@@ -180,7 +180,7 @@ def test_every_n_counter_resets_on_new_user_turn(monkeypatch, tmp_path):
 def test_every_n_redundant_create_does_not_consume_cadence_slot(monkeypatch, tmp_path):
     """A repeat create() with IDENTICAL state (e.g. a streaming retry) must not
     advance the cadence counter — only real state changes count."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     _cadence_config(home, "every_n:2")
     monkeypatch.setenv("OPENAMER_HOME", str(home))
 
@@ -205,7 +205,7 @@ def test_every_n_redundant_create_does_not_consume_cadence_slot(monkeypatch, tmp
 
 def test_per_iteration_default_unchanged_by_cadence_state(monkeypatch, tmp_path):
     """Default fanout still re-runs references on every state change."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     _cadence_config(home, "per_iteration")
     monkeypatch.setenv("OPENAMER_HOME", str(home))
 

@@ -41,7 +41,7 @@ from gateway.restart import (
 )
 from openamer_cli.config import (
     get_env_value,
-    get_hermes_home,
+    get_openamer_home,
     is_managed,
     managed_error,
     read_raw_config,
@@ -49,7 +49,7 @@ from openamer_cli.config import (
     write_platform_config_field,
 )
 
-# display_hermes_home is imported lazily at call sites to avoid ImportError
+# display_openamer_home is imported lazily at call sites to avoid ImportError
 # when openamer_constants is cached from a pre-update version during `openamer update`.
 from openamer_cli.setup import (
     print_header,
@@ -308,7 +308,7 @@ def _get_ancestor_pids() -> set[int]:
 
     Walks from the current PID up to PID 1 (init) so that process-table scans
     never match the calling CLI process or any of its parents.  This prevents
-    ``openamer gateway status`` from falsely counting the ``hermes`` CLI that
+    ``openamer gateway status`` from falsely counting the ``openamer`` CLI that
     invoked it as a running gateway instance (see #13242).
     """
     ancestors: set[int] = set()
@@ -372,7 +372,7 @@ def _scan_gateway_pids(
             return (
                 f"--profile {current_profile_name_lc}" in command_lc
                 or f"-p {current_profile_name_lc}" in command_lc
-                or f"hermes_home={current_home_lc}" in command_lc
+                or f"openamer_home={current_home_lc}" in command_lc
             )
 
         # Default-profile case: no profile flag in argv. Accept as long as
@@ -383,8 +383,8 @@ def _scan_gateway_pids(
         if "--profile " in command_lc or " -p " in command_lc:
             return False
         if (
-            "hermes_home=" in command_lc
-            and f"hermes_home={current_home_lc}" not in command_lc
+            "openamer_home=" in command_lc
+            and f"openamer_home={current_home_lc}" not in command_lc
         ):
             return False
         return True
@@ -958,7 +958,7 @@ def _read_systemd_unit_environment(system: bool = False) -> dict[str, str]:
     return parsed
 
 
-def _hermes_home_from_systemd_unit_file(system: bool = False) -> str | None:
+def _openamer_home_from_systemd_unit_file(system: bool = False) -> str | None:
     """Read ``OPENAMER_HOME`` from the on-disk unit file (not ``systemctl show``).
 
     Prefer the file when refreshing/comparing: under ``sudo``, ``systemctl``
@@ -984,11 +984,11 @@ def _hermes_home_from_systemd_unit_file(system: bool = False) -> str | None:
     return None
 
 
-def _sync_hermes_home_from_systemd_unit(system: bool) -> None:
+def _sync_openamer_home_from_systemd_unit(system: bool) -> None:
     """When acting on a system-scope unit, adopt its ``OPENAMER_HOME``.
 
     Under ``sudo``, ``OPENAMER_HOME`` is stripped and ``HOME=/root``, so
-    :func:`get_hermes_home` falls back to ``/root/.hermes`` — the wrong
+    :func:`get_openamer_home` falls back to ``/root/.openamer`` — the wrong
     profile. The unit file pins ``OPENAMER_HOME`` for the actual gateway
     process, so we mirror that into our own environment to make
     ``read_runtime_status`` / ``get_running_pid`` read the correct files.
@@ -997,7 +997,7 @@ def _sync_hermes_home_from_systemd_unit(system: bool) -> None:
         return
     # Prefer the on-disk unit (source of truth for refresh/compare). Fall
     # back to ``systemctl show`` for units that only exist in the manager.
-    unit_home = (_hermes_home_from_systemd_unit_file(system=True) or "").strip()
+    unit_home = (_openamer_home_from_systemd_unit_file(system=True) or "").strip()
     if not unit_home:
         unit_home = _read_systemd_unit_environment(system=True).get("OPENAMER_HOME", "").strip()
     if not unit_home:
@@ -1733,10 +1733,10 @@ def _profile_suffix() -> str:
     """
     import hashlib
     import re
-    from openamer_constants import get_default_hermes_root
+    from openamer_constants import get_default_openamer_root
 
     home = get_openamer_home().resolve()
-    default = get_default_hermes_root().resolve()
+    default = get_default_openamer_root().resolve()
     if home == default:
         return ""
     # Detect <root>/profiles/<name> pattern → use the profile name
@@ -1752,26 +1752,26 @@ def _profile_suffix() -> str:
     return hashlib.sha256(str(home).encode()).hexdigest()[:8]
 
 
-def _profile_arg(hermes_home: str | None = None, default_root: str | Path | None = None) -> str:
+def _profile_arg(openamer_home: str | None = None, default_root: str | Path | None = None) -> str:
     """Return ``--profile <name>`` only when OPENAMER_HOME is a named profile.
 
-    For ``~/.hermes/profiles/<name>``, returns ``"--profile <name>"``.
+    For ``~/.openamer/profiles/<name>``, returns ``"--profile <name>"``.
     For the default profile or hash-based custom paths, returns the empty string.
 
     Args:
-        hermes_home: Optional explicit OPENAMER_HOME path. Defaults to the current
+        openamer_home: Optional explicit OPENAMER_HOME path. Defaults to the current
             ``get_openamer_home()`` value. Should be passed when generating a
             service definition for a different user (e.g. system service).
         default_root: Optional OpenAmer root to compare against. Used when
             generating a system service for another user from a sudo/root
-            process, where ``Path.home()`` and ``get_default_hermes_root()``
+            process, where ``Path.home()`` and ``get_default_openamer_root()``
             refer to root but the target profile lives under the service user.
     """
     import re
-    from openamer_constants import get_default_hermes_root
+    from openamer_constants import get_default_openamer_root
 
-    home = Path(hermes_home or str(get_openamer_home())).resolve()
-    default = Path(default_root).resolve() if default_root else get_default_hermes_root().resolve()
+    home = Path(openamer_home or str(get_openamer_home())).resolve()
+    default = Path(default_root).resolve() if default_root else get_default_openamer_root().resolve()
     if home == default:
         return ""
     profiles_root = (default / "profiles").resolve()
@@ -1785,21 +1785,21 @@ def _profile_arg(hermes_home: str | None = None, default_root: str | Path | None
     return ""
 
 
-def _profile_arg_for_target_user(hermes_home: str, target_home_dir: str) -> str:
+def _profile_arg_for_target_user(openamer_home: str, target_home_dir: str) -> str:
     """Return the profile arg for a system service running as another user."""
-    target_root = Path(target_home_dir) / ".hermes"
+    target_root = Path(target_home_dir) / ".openamer"
     try:
-        Path(hermes_home).resolve().relative_to(target_root.resolve())
-        return _profile_arg(hermes_home, default_root=target_root)
+        Path(openamer_home).resolve().relative_to(target_root.resolve())
+        return _profile_arg(openamer_home, default_root=target_root)
     except ValueError:
-        return _profile_arg(hermes_home)
+        return _profile_arg(openamer_home)
 
 
 def get_service_name() -> str:
     """Derive a systemd service name scoped to this OPENAMER_HOME.
 
-    Default ``~/.hermes`` returns ``openamer-gateway`` (backward compatible).
-    Profile ``~/.hermes/profiles/coder`` returns ``openamer-gateway-coder``.
+    Default ``~/.openamer`` returns ``openamer-gateway`` (backward compatible).
+    Profile ``~/.openamer/profiles/coder`` returns ``openamer-gateway-coder``.
     Any other OPENAMER_HOME appends a short hash for uniqueness.
     """
     suffix = _profile_suffix()
@@ -2065,8 +2065,8 @@ def has_conflicting_systemd_units() -> bool:
 # Legacy service names from older OpenAmer installs that predate the
 # openamer-gateway rename. Kept as an explicit allowlist (NOT a glob) so
 # profile units (openamer-gateway-*.service) and unrelated third-party
-# "hermes" units are never matched.
-_LEGACY_SERVICE_NAMES: tuple[str, ...] = ("hermes.service",)
+# "openamer" units are never matched.
+_LEGACY_SERVICE_NAMES: tuple[str, ...] = ("openamer.service",)
 
 # ExecStart content markers that identify a unit as running our gateway.
 # A legacy unit is only flagged when its file contains one of these.
@@ -2091,11 +2091,11 @@ def _legacy_unit_search_paths() -> list[tuple[bool, Path]]:
     ]
 
 
-def _find_legacy_hermes_units() -> list[tuple[str, Path, bool]]:
+def _find_legacy_openamer_units() -> list[tuple[str, Path, bool]]:
     """Return ``[(unit_name, unit_path, is_system)]`` for legacy OpenAmer gateway units.
 
     Detects unit files installed by older OpenAmer versions that used a
-    different service name (e.g. ``hermes.service`` before the rename to
+    different service name (e.g. ``openamer.service`` before the rename to
     ``openamer-gateway.service``). When both a legacy unit and the current
     ``openamer-gateway.service`` are active, they fight over the same bot
     token — the PR #5646 signal-recovery change turns this into a 30-second
@@ -2107,7 +2107,7 @@ def _find_legacy_hermes_units() -> list[tuple[str, Path, bool]]:
       as ``openamer-gateway-coder.service`` and unrelated third-party
       ``openamer-*`` services are never matched.
     * ExecStart content check — only flag units that invoke our gateway
-      entrypoint. A user-created ``hermes.service`` running an unrelated
+      entrypoint. A user-created ``openamer.service`` running an unrelated
       binary is left untouched.
     * Results are returned purely for caller inspection; this function
       never mutates or removes anything.
@@ -2129,9 +2129,9 @@ def _find_legacy_hermes_units() -> list[tuple[str, Path, bool]]:
     return results
 
 
-def has_legacy_hermes_units() -> bool:
+def has_legacy_openamer_units() -> bool:
     """Return True when any legacy OpenAmer gateway unit files exist."""
-    return bool(_find_legacy_hermes_units())
+    return bool(_find_legacy_openamer_units())
 
 
 def print_legacy_unit_warning() -> None:
@@ -2140,7 +2140,7 @@ def print_legacy_unit_warning() -> None:
     Idempotent: prints nothing when no legacy units are detected. Safe to
     call from any status/install/setup path.
     """
-    legacy = _find_legacy_hermes_units()
+    legacy = _find_legacy_openamer_units()
     if not legacy:
         return
     print_warning("Legacy OpenAmer gateway unit(s) detected from an older install:")
@@ -2153,13 +2153,13 @@ def print_legacy_unit_warning() -> None:
     print_info("    openamer gateway migrate-legacy")
 
 
-def remove_legacy_hermes_units(
+def remove_legacy_openamer_units(
     interactive: bool = True,
     dry_run: bool = False,
 ) -> tuple[int, list[Path]]:
     """Stop, disable, and remove legacy OpenAmer gateway unit files.
 
-    Iterates over whatever ``_find_legacy_hermes_units()`` returns — which is
+    Iterates over whatever ``_find_legacy_openamer_units()`` returns — which is
     an explicit allowlist of legacy names (not a glob). Profile units and
     unrelated third-party services are never touched.
 
@@ -2173,7 +2173,7 @@ def remove_legacy_hermes_units(
         ``(removed_count, remaining_paths)`` — remaining includes units we
         couldn't remove (typically system-scope when not running as root).
     """
-    legacy = _find_legacy_hermes_units()
+    legacy = _find_legacy_openamer_units()
     if not legacy:
         print("No legacy OpenAmer gateway units found.")
         return 0, []
@@ -2481,11 +2481,11 @@ def _launchd_user_home() -> Path:
 def get_launchd_plist_path() -> Path:
     """Return the launchd plist path, scoped per profile.
 
-    Default ``~/.hermes`` → ``ai.hermes.gateway.plist`` (backward compatible).
-    Profile ``~/.hermes/profiles/coder`` → ``ai.hermes.gateway-coder.plist``.
+    Default ``~/.openamer`` → ``ai.openamer.gateway.plist`` (backward compatible).
+    Profile ``~/.openamer/profiles/coder`` → ``ai.openamer.gateway-coder.plist``.
     """
     suffix = _profile_suffix()
-    name = f"ai.hermes.gateway-{suffix}" if suffix else "ai.hermes.gateway"
+    name = f"ai.openamer.gateway-{suffix}" if suffix else "ai.openamer.gateway"
     return _launchd_user_home() / "Library" / "LaunchAgents" / f"{name}.plist"
 
 
@@ -2596,7 +2596,7 @@ def _remap_path_for_user(path: str, target_home_dir: str) -> str:
     If *path* lives under ``Path.home()`` the corresponding prefix is swapped
     to *target_home_dir*; otherwise the path is returned unchanged.
 
-      /root/.hermes/openamer-agent  -> /home/alice/.hermes/openamer-agent
+      /root/.openamer/openamer-agent  -> /home/alice/.openamer/openamer-agent
       /opt/openamer                 -> /opt/openamer  (kept as-is)
 
     Note: this function intentionally does NOT resolve symlinks. A venv's
@@ -2616,26 +2616,26 @@ def _remap_path_for_user(path: str, target_home_dir: str) -> str:
         return str(p)
 
 
-def _hermes_home_for_target_user(target_home_dir: str) -> str:
+def _openamer_home_for_target_user(target_home_dir: str) -> str:
     """Remap the current OPENAMER_HOME to the equivalent under a target user's home.
 
     When installing a system service via sudo, get_openamer_home() resolves to
     root's home.  This translates it to the target user's equivalent path:
-      /root/.openamer                    → /home/alice/.hermes
-      /root/.hermes/profiles/coder     → /home/alice/.hermes/profiles/coder
+      /root/.openamer                    → /home/alice/.openamer
+      /root/.openamer/profiles/coder     → /home/alice/.openamer/profiles/coder
       /opt/custom-openamer               → /opt/custom-openamer  (kept as-is)
     """
-    current_hermes_raw = os.environ.get("OPENAMER_HOME", "").strip()
+    current_openamer_raw = os.environ.get("OPENAMER_HOME", "").strip()
     current_openamer = (
-        Path(current_hermes_raw).expanduser()
-        if current_hermes_raw
+        Path(current_openamer_raw).expanduser()
+        if current_openamer_raw
         else get_openamer_home()
     )
     # Keep explicit custom paths lexical. Resolving a non-existent custom path
     # can rewrite it through host-specific path mappings, which would bake a
     # different OPENAMER_HOME into the generated service unit.
-    current_default = Path.home() / ".hermes"
-    target_default = Path(target_home_dir) / ".hermes"
+    current_default = Path.home() / ".openamer"
+    target_default = Path(target_home_dir) / ".openamer"
 
     # Default ~/.openamer → remap to target user's default
     if current_openamer == current_default:
@@ -2643,11 +2643,11 @@ def _hermes_home_for_target_user(target_home_dir: str) -> str:
 
     # Profile or subdir of ~/.openamer → preserve the relative structure
     try:
-        relative = current_hermes.relative_to(current_default)
+        relative = current_openamer.relative_to(current_default)
         return str(target_default / relative)
     except ValueError:
-        # Completely custom path (not under ~/.hermes) — keep as-is
-        return str(current_hermes)
+        # Completely custom path (not under ~/.openamer) — keep as-is
+        return str(current_openamer)
 
 
 def _build_service_path_dirs(project_root: Path | None = None) -> list[str]:
@@ -2673,13 +2673,13 @@ def _build_service_path_dirs(project_root: Path | None = None) -> list[str]:
     if _is_dir(node_bin):
         candidates.append(str(node_bin))
 
-    hermes_home = get_openamer_home()
-    hermes_node = hermes_home / "node" / "bin"
-    if _is_dir(hermes_node):
-        candidates.append(str(hermes_node))
-    hermes_nm = hermes_home / "node_modules" / ".bin"
-    if _is_dir(hermes_nm):
-        candidates.append(str(hermes_nm))
+    openamer_home = get_openamer_home()
+    openamer_node = openamer_home / "node" / "bin"
+    if _is_dir(openamer_node):
+        candidates.append(str(openamer_node))
+    openamer_nm = openamer_home / "node_modules" / ".bin"
+    if _is_dir(openamer_nm):
+        candidates.append(str(openamer_nm))
 
     return candidates
 
@@ -2712,17 +2712,17 @@ def _stable_service_working_dir() -> str:
     return str(PROJECT_ROOT)
 
 
-def _systemd_watchdog_seconds(hermes_home: str | Path | None = None) -> int:
+def _systemd_watchdog_seconds(openamer_home: str | Path | None = None) -> int:
     """Resolve the managed-overlay-aware watchdog setting for a service home."""
     override_token = None
     reset_home_override = None
-    if hermes_home is not None:
+    if openamer_home is not None:
         from openamer_constants import (
             reset_openamer_home_override,
             set_openamer_home_override,
         )
 
-        override_token = set_openamer_home_override(hermes_home)
+        override_token = set_openamer_home_override(openamer_home)
         reset_home_override = reset_openamer_home_override
     try:
         config = load_gateway_config()
@@ -2741,10 +2741,10 @@ def _systemd_watchdog_seconds(hermes_home: str | Path | None = None) -> int:
 
 
 def _systemd_watchdog_service_fields(
-    hermes_home: str | Path | None = None,
+    openamer_home: str | Path | None = None,
 ) -> tuple[str, str]:
     """Return systemd service fields for the effective gateway config."""
-    seconds = _systemd_watchdog_seconds(hermes_home)
+    seconds = _systemd_watchdog_seconds(openamer_home)
     if seconds <= 0:
         return "simple", ""
     return "notify", f"NotifyAccess=main\nWatchdogSec={seconds}s\n"
@@ -2788,11 +2788,11 @@ def generate_systemd_unit(system: bool = False, run_as_user: str | None = None) 
 
     if system:
         username, group_name, home_dir = _system_service_identity(run_as_user)
-        hermes_home = _hermes_home_for_target_user(home_dir)
+        openamer_home = _openamer_home_for_target_user(home_dir)
         systemd_type, systemd_watchdog_directives = _systemd_watchdog_service_fields(
-            hermes_home
+            openamer_home
         )
-        profile_arg = _profile_arg_for_target_user(hermes_home, home_dir)
+        profile_arg = _profile_arg_for_target_user(openamer_home, home_dir)
         # Remap all paths that may resolve under the calling user's home
         # (e.g. /root/) to the target user's home so the service can
         # actually access them.
@@ -2800,7 +2800,7 @@ def generate_systemd_unit(system: bool = False, run_as_user: str | None = None) 
         # Anchor cwd to the target user's OPENAMER_HOME (stable, always exists)
         # rather than a remapped source-checkout path that can rot. See
         # _stable_service_working_dir() for the full rationale.
-        working_dir = str(hermes_home) if hermes_home else _remap_path_for_user(working_dir, home_dir)
+        working_dir = str(openamer_home) if openamer_home else _remap_path_for_user(working_dir, home_dir)
         venv_dir = _remap_path_for_user(venv_dir, home_dir)
         path_entries = [_remap_path_for_user(p, home_dir) for p in path_entries]
         path_entries.extend(_build_user_local_paths(Path(home_dir), path_entries))
@@ -2824,7 +2824,7 @@ Environment="USER={username}"
 Environment="LOGNAME={username}"
 Environment="PATH={sane_path}"
 Environment="VIRTUAL_ENV={venv_dir}"
-Environment="OPENAMER_HOME={hermes_home}"
+Environment="OPENAMER_HOME={openamer_home}"
 Restart=always
 RestartSec=5
 RestartForceExitStatus={GATEWAY_SERVICE_RESTART_EXIT_CODE}
@@ -2841,11 +2841,11 @@ StandardError=journal
 WantedBy=multi-user.target
 """
 
-    hermes_home = str(get_openamer_home().resolve())
+    openamer_home = str(get_openamer_home().resolve())
     systemd_type, systemd_watchdog_directives = _systemd_watchdog_service_fields(
-        hermes_home
+        openamer_home
     )
-    profile_arg = _profile_arg(hermes_home)
+    profile_arg = _profile_arg(openamer_home)
     path_entries.extend(_build_user_local_paths(Path.home(), path_entries))
     path_entries.extend(_build_wsl_interop_paths(path_entries))
     path_entries.extend(common_bin_paths)
@@ -2862,7 +2862,7 @@ Type={systemd_type}
 WorkingDirectory={working_dir}
 Environment="PATH={sane_path}"
 Environment="VIRTUAL_ENV={venv_dir}"
-Environment="OPENAMER_HOME={hermes_home}"
+Environment="OPENAMER_HOME={openamer_home}"
 Restart=always
 RestartSec=5
 RestartForceExitStatus={GATEWAY_SERVICE_RESTART_EXIT_CODE}
@@ -2936,14 +2936,14 @@ def systemd_unit_is_current(system: bool = False) -> bool:
     # site, so a future callsite cannot regress it by forgetting to pre-sync.
     #
     # Under ``sudo openamer gateway … --system``, OPENAMER_HOME is often stripped
-    # and falls back to ``/root/.hermes``. Adopting the unit's pinned home
+    # and falls back to ``/root/.openamer``. Adopting the unit's pinned home
     # first makes TimeoutStopSec / WorkingDirectory / OPENAMER_HOME comparisons
     # use the real operator config — otherwise start/restart "refresh" rewrites
     # a correct unit from root's defaults and ``status`` keeps warning forever.
     # ``_sync_...`` is idempotent (early-returns once os.environ matches), so
     # the mutation persists for callers that read runtime state after this
     # (e.g. ``systemd_restart``'s post-refresh get_running_pid / drain-timeout).
-    _sync_hermes_home_from_systemd_unit(system=system)
+    _sync_openamer_home_from_systemd_unit(system=system)
 
     unit_path = get_systemd_unit_path(system=system)
     if not unit_path.exists():
@@ -3043,7 +3043,7 @@ def refresh_systemd_unit_if_needed(system: bool = False) -> bool:
     # The user-scope unit path resolves under ``Path.home()``, which is NOT
     # sandboxed by the test conftest (only OPENAMER_HOME is). If a test
     # exercises ``run_gateway()`` with a pytest-tmp OPENAMER_HOME, the freshly
-    # generated unit bakes that ``/tmp/pytest-of-.../hermes_test`` path into
+    # generated unit bakes that ``/tmp/pytest-of-.../openamer_test`` path into
     # ``Environment="OPENAMER_HOME=..."``. Writing that to the developer's
     # real user systemd unit file silently breaks their gateway on the next
     # reboot (systemd loads the polluted env, the gateway looks at an empty
@@ -3055,8 +3055,8 @@ def refresh_systemd_unit_if_needed(system: bool = False) -> bool:
     # still works.
     if not system and (
         "/pytest-of-" in new_unit
-        or '/hermes_test"' in new_unit
-        or "/hermes_test/" in new_unit
+        or '/openamer_test"' in new_unit
+        or "/openamer_test/" in new_unit
     ):
         return False
 
@@ -3204,17 +3204,17 @@ def systemd_install(
     if system:
         _require_root_for_system_service("install")
 
-    # Offer to remove legacy units (hermes.service from pre-rename installs)
+    # Offer to remove legacy units (openamer.service from pre-rename installs)
     # before installing the new openamer-gateway.service. If both remain, they
     # flap-fight for the Telegram bot token on every gateway startup.
     # Only removes units matching _LEGACY_SERVICE_NAMES + our ExecStart
     # signature — profile units are never touched.
-    if has_legacy_hermes_units():
+    if has_legacy_openamer_units():
         print()
         print_legacy_unit_warning()
         print()
         if non_interactive or prompt_yes_no("Remove the legacy unit(s) before installing?", True):
-            remove_legacy_hermes_units(interactive=False)
+            remove_legacy_openamer_units(interactive=False)
             print()
 
     unit_path = get_systemd_unit_path(system=system)
@@ -3224,10 +3224,10 @@ def systemd_install(
     # regenerate. This pre-sync is NOT redundant with the systemd_unit_is_current
     # chokepoint: the ``--force`` path below skips the is_current gate and calls
     # generate_systemd_unit() directly (line ~3172), so without this a
-    # ``sudo openamer gateway install --system --force`` would bake /root/.hermes
+    # ``sudo openamer gateway install --system --force`` would bake /root/.openamer
     # into an already-correct unit. Keep it to protect that bypass path.
     if unit_path.exists():
-        _sync_hermes_home_from_systemd_unit(system=system)
+        _sync_openamer_home_from_systemd_unit(system=system)
 
     if unit_path.exists() and not force:
         if not systemd_unit_is_current(system=system):
@@ -3332,7 +3332,7 @@ def systemd_stop(system: bool = False):
     if system:
         _require_root_for_system_service("stop")
     _require_service_installed("stop", system=system)
-    _sync_hermes_home_from_systemd_unit(system=system)
+    _sync_openamer_home_from_systemd_unit(system=system)
     try:
         from gateway.status import get_running_pid, write_planned_stop_marker
 
@@ -3472,7 +3472,7 @@ def systemd_status(deep: bool = False, system: bool = False, full: bool = False)
         print_systemd_scope_conflict_warning()
         print()
 
-    if has_legacy_hermes_units():
+    if has_legacy_openamer_units():
         print_legacy_unit_warning()
         print()
 
@@ -3585,7 +3585,7 @@ def systemd_status(deep: bool = False, system: bool = False, full: bool = False)
 def get_launchd_label() -> str:
     """Return the launchd service label, scoped per profile."""
     suffix = _profile_suffix()
-    return f"ai.hermes.gateway-{suffix}" if suffix else "ai.hermes.gateway"
+    return f"ai.openamer.gateway-{suffix}" if suffix else "ai.openamer.gateway"
 
 
 # Cached launchd domain result — probing is cheap but should only run once per
@@ -3921,7 +3921,7 @@ def _launchd_fallback_to_detached(reason: str, *, exit_on_failure: bool = True) 
     launched, prints the manual workaround and (by default) exits non-zero so
     the failure surfaces instead of silently doing nothing.
     """
-    from openamer_constants import display_hermes_home as _dhh
+    from openamer_constants import display_openamer_home as _dhh
 
     _write_launchd_unsupported_marker()
     print(f"⚠ launchd cannot manage the gateway on this macOS version ({reason}).")
@@ -3947,11 +3947,11 @@ def generate_launchd_plist() -> str:
     # _stable_service_working_dir() for the rationale (same rot risk applies
     # to launchd's WorkingDirectory as to systemd's).
     working_dir = _stable_service_working_dir()
-    hermes_home = str(get_openamer_home().resolve())
+    openamer_home = str(get_openamer_home().resolve())
     log_dir = get_openamer_home() / "logs"
     log_dir.mkdir(parents=True, exist_ok=True)
     label = get_launchd_label()
-    profile_arg = _profile_arg(hermes_home)
+    profile_arg = _profile_arg(openamer_home)
     # Build a sane PATH for the launchd plist.  launchd provides only a
     # minimal default (/usr/bin:/bin:/usr/sbin:/sbin) which misses Homebrew,
     # nvm, cargo, etc.  We prepend venv/bin and node_modules/.bin (matching
@@ -4019,7 +4019,7 @@ def generate_launchd_plist() -> str:
         <key>VIRTUAL_ENV</key>
         <string>{venv_dir}</string>
         <key>OPENAMER_HOME</key>
-        <string>{hermes_home}</string>
+        <string>{openamer_home}</string>
     </dict>
 
     <key>LimitLoadToSessionType</key>
@@ -4116,7 +4116,7 @@ def refresh_launchd_plist_if_needed() -> bool:
         # service stays unregistered — KeepAlive can't revive a service
         # launchd no longer knows about, so the gateway stays dark until a
         # manual `launchctl bootstrap`. Failures append a timestamped line
-        # to ~/.hermes/logs/launchd-reload.log, which the health watchdog
+        # to ~/.openamer/logs/launchd-reload.log, which the health watchdog
         # can tail to detect a persistent orphan. See openamer-restart
         # rootcause handoff (2026-06-26 incident).
         reload_log_path = get_openamer_home() / "logs" / "launchd-reload.log"
@@ -4269,7 +4269,7 @@ def launchd_install(force: bool = False):
     print()
     print("Next steps:")
     print("  openamer gateway status             # Check status")
-    from openamer_constants import display_hermes_home as _dhh
+    from openamer_constants import display_openamer_home as _dhh
 
     print(f"  tail -f {_dhh()}/logs/gateway.log  # View logs")
 
@@ -4598,7 +4598,7 @@ def _truthy_env(value: str | None) -> bool:
 
 def _is_official_docker_checkout() -> bool:
     return (
-        str(PROJECT_ROOT) == "/opt/hermes"
+        str(PROJECT_ROOT) == "/opt/openamer"
         and (PROJECT_ROOT / "docker" / "entrypoint.sh").is_file()
     )
 
@@ -4645,8 +4645,8 @@ def _guard_named_profile_under_multiplexer(force: bool = False) -> None:
         return  # default profile (or unrecognized) — this guard doesn't apply
 
     try:
-        from openamer_constants import get_default_hermes_root
-        default_root = get_default_hermes_root()
+        from openamer_constants import get_default_openamer_root
+        default_root = get_default_openamer_root()
         # (b) Is the default-profile gateway running?
         from gateway.status import get_running_pid as _default_running_pid  # noqa
     except Exception:
@@ -4799,9 +4799,9 @@ def _guard_official_docker_root_gateway() -> None:
         "Refusing to run the OpenAmer gateway as root inside the official Docker image."
     )
     print(
-        "  The image entrypoint normally drops privileges to the 'hermes' user. "
+        "  The image entrypoint normally drops privileges to the 'openamer' user. "
         "If you override entrypoint in Docker Compose, include "
-        "/opt/hermes/docker/entrypoint.sh before the OpenAmer command."
+        "/opt/openamer/docker/entrypoint.sh before the OpenAmer command."
     )
     print(
         "  Running the gateway as root can leave root-owned files in "
@@ -5090,7 +5090,7 @@ _PLATFORMS = [
         "setup_instructions": [
             "1. In Mattermost: Integrations → Bot Accounts → Add Bot Account",
             "   (System Console → Integrations → Bot Accounts must be enabled)",
-            "2. Give it a username (e.g. hermes) and copy the bot token",
+            "2. Give it a username (e.g. openamer) and copy the bot token",
             "3. Works with any self-hosted Mattermost instance — enter your server URL",
             "4. To find your user ID: click your avatar (top-left) → Profile",
             "   Your user ID is displayed there — click it to copy.",
@@ -5283,7 +5283,7 @@ def _all_platforms() -> list[dict]:
     # Populate the registry so plugin platforms are visible. Idempotent.
     # Bundled platform plugins (``kind: platform``) auto-load unconditionally,
     # so every shipped messaging channel appears in the setup menu by default.
-    # User-installed platform plugins under ~/.hermes/plugins/ still require
+    # User-installed platform plugins under ~/.openamer/plugins/ still require
     # opt-in via ``plugins.enabled`` (untrusted code).
     try:
         from openamer_cli.plugins import discover_plugins
@@ -5736,7 +5736,7 @@ def _setup_weixin():
     print_info("  1. OpenAmer will open Tencent iLink QR login in this terminal.")
     print_info("  2. Use WeChat to scan and confirm the QR code.")
     print_info(
-        "  3. OpenAmer will store the returned account_id/token in ~/.hermes/.env."
+        "  3. OpenAmer will store the returned account_id/token in ~/.openamer/.env."
     )
     print_info(
         "  4. This adapter supports native text, image, video, and document delivery."
@@ -6204,7 +6204,7 @@ def _configure_platform(platform: dict) -> None:
       4. Env-var hint fallback for plugins that offer no setup helper.
 
     Bundled platform plugins (e.g. IRC) auto-load, so no plugin enable step
-    is needed here. User-installed platform plugins under ~/.hermes/plugins/
+    is needed here. User-installed platform plugins under ~/.openamer/plugins/
     must already be in ``plugins.enabled`` before they appear in this menu.
     """
     entry = platform.get("_registry_entry")
@@ -6229,7 +6229,7 @@ def _configure_platform(platform: dict) -> None:
     print(color(f"  ─── {emoji} {label} Setup ───", Colors.CYAN))
     required = entry.required_env if entry else []
     if required:
-        print_info(f"  Set these env vars in ~/.hermes/.env: {', '.join(required)}")
+        print_info(f"  Set these env vars in ~/.openamer/.env: {', '.join(required)}")
     else:
         print_info(
             f"  Configure {label} in config.yaml under gateway.platforms.{platform['key']}"
@@ -6289,7 +6289,7 @@ def gateway_setup():
         print_systemd_scope_conflict_warning()
         print()
 
-    if supports_systemd_services() and has_legacy_hermes_units():
+    if supports_systemd_services() and has_legacy_openamer_units():
         print_legacy_unit_warning()
         print()
 
@@ -6480,7 +6480,7 @@ def gateway_setup():
                     "  To enable systemd: add systemd=true to /etc/wsl.conf, then 'wsl --shutdown'"
                 )
             elif is_termux():
-                from openamer_constants import display_hermes_home as _dhh
+                from openamer_constants import display_openamer_home as _dhh
 
                 print_info("  Termux does not use systemd/launchd services.")
                 print_info("  Run in foreground: openamer gateway run")
@@ -6692,7 +6692,7 @@ def _maybe_redirect_run_to_s6_supervision(args) -> bool:
     # shutdown (which tears down the supervised gateway cleanly).
     #
     # Prefer `sleep infinity` (matches the static main-openamer service's
-    # pattern in docker/s6-rc.d/main-hermes/run, and frees the Python
+    # pattern in docker/s6-rc.d/main-openamer/run, and frees the Python
     # interpreter — the heartbeat is a tiny `sleep` process, not a
     # resident interpreter). But `os.execvp` does a PATH lookup for the
     # `sleep` binary and historically crashed the whole container with
@@ -6837,7 +6837,7 @@ def _gateway_command_inner(args):
                 "  tmux new -s openamer 'openamer gateway run'         # persistent via tmux"
             )
             print(
-                "  nohup openamer gateway run > ~/.hermes/logs/gateway.log 2>&1 &  # background"
+                "  nohup openamer gateway run > ~/.openamer/logs/gateway.log 2>&1 &  # background"
             )
             sys.exit(1)
         elif is_container():
@@ -6956,7 +6956,7 @@ def _gateway_command_inner(args):
                 "  tmux new -s openamer 'openamer gateway run'         # persistent via tmux"
             )
             print(
-                "  nohup openamer gateway run > ~/.hermes/logs/gateway.log 2>&1 &  # background"
+                "  nohup openamer gateway run > ~/.openamer/logs/gateway.log 2>&1 &  # background"
             )
             print()
             print(
@@ -7304,14 +7304,14 @@ def _gateway_command_inner(args):
                 print("  openamer gateway run      # Run in foreground")
                 if is_termux():
                     print(
-                        "  nohup openamer gateway run > ~/.hermes/logs/gateway.log 2>&1 &  # Best-effort background start"
+                        "  nohup openamer gateway run > ~/.openamer/logs/gateway.log 2>&1 &  # Best-effort background start"
                     )
                 elif is_wsl():
                     print(
                         "  tmux new -s openamer 'openamer gateway run'         # persistent via tmux"
                     )
                     print(
-                        "  nohup openamer gateway run > ~/.hermes/logs/gateway.log 2>&1 &  # background"
+                        "  nohup openamer gateway run > ~/.openamer/logs/gateway.log 2>&1 &  # background"
                     )
                 elif is_windows():
                     print(
@@ -7331,11 +7331,11 @@ def _gateway_command_inner(args):
 
     elif subcmd == "migrate-legacy":
         # Stop, disable, and remove legacy OpenAmer gateway unit files from
-        # pre-rename installs (e.g. hermes.service). Profile units and
+        # pre-rename installs (e.g. openamer.service). Profile units and
         # unrelated third-party services are never touched.
         dry_run = getattr(args, "dry_run", False)
         yes = getattr(args, "yes", False)
         if not supports_systemd_services() and not is_macos():
             print("Legacy unit migration only applies to systemd-based Linux hosts.")
             return
-        remove_legacy_hermes_units(interactive=not yes, dry_run=dry_run)
+        remove_legacy_openamer_units(interactive=not yes, dry_run=dry_run)

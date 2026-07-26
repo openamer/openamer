@@ -1,6 +1,6 @@
 """Exit watchdog: arm on shutdown *intent* (signal), never at chat startup.
 
-Regression coverage for the #65998 class: a ``hermes --tui`` process whose
+Regression coverage for the #65998 class: a ``openamer --tui`` process whose
 main thread wedges before ``app.run()`` returns never executes the ``finally``
 that calls ``_run_cleanup`` — the only place the exit watchdog used to be
 armed — so a "dead" CLI lingered indefinitely (observed ~47 min at 4% CPU).

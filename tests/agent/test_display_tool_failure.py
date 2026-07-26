@@ -32,7 +32,7 @@ class TestTrimError:
         assert trimmed.endswith("...")
 
     def test_file_not_found_path_collapsed_to_filename(self):
-        long_path = "File not found: /home/teknium/.hermes/hermes-agent/very/deep/path/foo.py"
+        long_path = "File not found: /home/teknium/.openamer/openamer-agent/very/deep/path/foo.py"
         assert _trim_error(long_path) == "File not found: foo.py"
 
     def test_file_not_found_already_short_unchanged(self):

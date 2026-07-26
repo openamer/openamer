@@ -309,7 +309,7 @@ class TestEnsureInstalled:
                                  "tirith_timeout": 5, "tirith_fail_open": True}
         _tirith_mod._resolved_path = None
         with patch("tools.tirith_security.shutil.which", return_value=None), \
-             patch("tools.tirith_security._hermes_bin_dir", return_value="/nonexistent"), \
+             patch("tools.tirith_security._openamer_bin_dir", return_value="/nonexistent"), \
              patch("tools.tirith_security._is_install_failed_on_disk", return_value=False), \
              patch("tools.tirith_security.threading.Thread") as MockThread:
             mock_thread = MagicMock()
@@ -326,7 +326,7 @@ class TestEnsureInstalled:
                                  "tirith_timeout": 5, "tirith_fail_open": True}
         _tirith_mod._resolved_path = None
         with patch("tools.tirith_security.shutil.which", return_value=None), \
-             patch("tools.tirith_security._hermes_bin_dir", return_value="/nonexistent"), \
+             patch("tools.tirith_security._openamer_bin_dir", return_value="/nonexistent"), \
              patch("tools.tirith_security._is_install_failed_on_disk", return_value=False), \
              patch("tools.tirith_security.threading.Thread") as MockThread:
             mock_thread = MagicMock()
@@ -766,14 +766,14 @@ class TestInstallArchiveMemberValidation:
         member.size = len(payload)
         archive, checksums = self._write_archive(tmp_path, member, payload)
 
-        hermes_home = tmp_path / "hermes-home"
-        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+        openamer_home = tmp_path / "openamer-home"
+        monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
         with patch("tools.tirith_security._download_file",
                    side_effect=self._download_side_effect(archive, checksums)):
             path, reason = _install_tirith(log_failures=False)
 
         assert reason == ""
-        assert path == str(hermes_home / "bin" / "tirith")
+        assert path == str(openamer_home / "bin" / "tirith")
         assert os.path.isfile(path)
         assert not os.path.islink(path)
         with open(path, "rb") as f:
@@ -793,15 +793,15 @@ class TestInstallArchiveMemberValidation:
         member.linkname = "/bin/sh"
         archive, checksums = self._write_archive(tmp_path, member)
 
-        hermes_home = tmp_path / "hermes-home"
-        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+        openamer_home = tmp_path / "openamer-home"
+        monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
         with patch("tools.tirith_security._download_file",
                    side_effect=self._download_side_effect(archive, checksums)):
             path, reason = _install_tirith(log_failures=False)
 
         assert path is None
         assert reason == "binary_not_regular_file"
-        assert not os.path.lexists(hermes_home / "bin" / "tirith")
+        assert not os.path.lexists(openamer_home / "bin" / "tirith")
 
 
 # ---------------------------------------------------------------------------
@@ -817,7 +817,7 @@ class TestBackgroundInstall:
                    return_value={"tirith_enabled": True, "tirith_path": "tirith",
                                  "tirith_timeout": 5, "tirith_fail_open": True}), \
              patch("tools.tirith_security.shutil.which", return_value=None), \
-             patch("tools.tirith_security._hermes_bin_dir", return_value="/nonexistent"), \
+             patch("tools.tirith_security._openamer_bin_dir", return_value="/nonexistent"), \
              patch("tools.tirith_security._is_install_failed_on_disk", return_value=False), \
              patch("tools.tirith_security.threading.Thread") as MockThread:
             mock_thread = MagicMock()
@@ -839,7 +839,7 @@ class TestBackgroundInstall:
                    return_value={"tirith_enabled": True, "tirith_path": "tirith",
                                  "tirith_timeout": 5, "tirith_fail_open": True}), \
              patch("tools.tirith_security.shutil.which", return_value=None), \
-             patch("tools.tirith_security._hermes_bin_dir", return_value="/nonexistent"), \
+             patch("tools.tirith_security._openamer_bin_dir", return_value="/nonexistent"), \
              patch("tools.tirith_security._read_failure_reason", return_value="download_failed"), \
              patch("tools.tirith_security._is_install_failed_on_disk", return_value=True):
 
@@ -859,7 +859,7 @@ class TestBackgroundInstall:
         _tirith_mod._install_thread = mock_thread
 
         with patch("tools.tirith_security.shutil.which", return_value=None), \
-             patch("tools.tirith_security._hermes_bin_dir", return_value="/nonexistent"):
+             patch("tools.tirith_security._openamer_bin_dir", return_value="/nonexistent"):
             result = _resolve_tirith_path("tirith")
             assert result == "tirith"  # returns configured default, doesn't block
 
@@ -987,7 +987,7 @@ class TestDiskFailureMarker:
         _tirith_mod._resolved_path = None
 
         with patch("tools.tirith_security.shutil.which", return_value=None), \
-             patch("tools.tirith_security._hermes_bin_dir", return_value="/nonexistent"), \
+             patch("tools.tirith_security._openamer_bin_dir", return_value="/nonexistent"), \
              patch("tools.tirith_security._read_failure_reason", return_value="download_failed"), \
              patch("tools.tirith_security._is_install_failed_on_disk", return_value=True), \
              patch("tools.tirith_security._install_tirith") as mock_install:
@@ -1012,25 +1012,25 @@ class TestDiskFailureMarker:
 
         _tirith_mod._resolved_path = None
 
-    def test_install_failed_recovers_from_hermes_bin(self):
+    def test_install_failed_recovers_from_openamer_bin(self):
         """After _INSTALL_FAILED, manual install in OPENAMER_HOME/bin is picked up."""
         from tools.tirith_security import _resolve_tirith_path, _INSTALL_FAILED
         import tempfile
         tmpdir = tempfile.mkdtemp()
-        hermes_bin = os.path.join(tmpdir, "tirith")
+        openamer_bin = os.path.join(tmpdir, "tirith")
         # Create a fake executable
-        with open(hermes_bin, "w") as f:
+        with open(openamer_bin, "w") as f:
             f.write("#!/bin/sh\n")
-        os.chmod(hermes_bin, 0o755)
+        os.chmod(openamer_bin, 0o755)
 
         _tirith_mod._resolved_path = _INSTALL_FAILED
 
         with patch("tools.tirith_security.shutil.which", return_value=None), \
-             patch("tools.tirith_security._hermes_bin_dir", return_value=tmpdir), \
+             patch("tools.tirith_security._openamer_bin_dir", return_value=tmpdir), \
              patch("tools.tirith_security._clear_install_failed") as mock_clear:
             result = _resolve_tirith_path("tirith")
-            assert result == hermes_bin
-            assert _tirith_mod._resolved_path == hermes_bin
+            assert result == openamer_bin
+            assert _tirith_mod._resolved_path == openamer_bin
             mock_clear.assert_called_once()
 
         _tirith_mod._resolved_path = None
@@ -1041,7 +1041,7 @@ class TestDiskFailureMarker:
         _tirith_mod._resolved_path = _INSTALL_FAILED
 
         with patch("tools.tirith_security.shutil.which", return_value=None), \
-             patch("tools.tirith_security._hermes_bin_dir", return_value="/nonexistent"), \
+             patch("tools.tirith_security._openamer_bin_dir", return_value="/nonexistent"), \
              patch("tools.tirith_security._install_tirith") as mock_install:
             result = _resolve_tirith_path("tirith")
             assert result == "tirith"  # fallback to configured path
@@ -1056,7 +1056,7 @@ class TestDiskFailureMarker:
 
         # _is_install_failed_on_disk sees "cosign_missing" + cosign on PATH → returns False
         with patch("tools.tirith_security.shutil.which", return_value=None), \
-             patch("tools.tirith_security._hermes_bin_dir", return_value="/nonexistent"), \
+             patch("tools.tirith_security._openamer_bin_dir", return_value="/nonexistent"), \
              patch("tools.tirith_security._is_install_failed_on_disk", return_value=False), \
              patch("tools.tirith_security._install_tirith", return_value=("/new/tirith", "")) as mock_install, \
              patch("tools.tirith_security._clear_install_failed"):
@@ -1080,7 +1080,7 @@ class TestDiskFailureMarker:
             return None
 
         with patch("tools.tirith_security.shutil.which", side_effect=_which_side_effect), \
-             patch("tools.tirith_security._hermes_bin_dir", return_value="/nonexistent"), \
+             patch("tools.tirith_security._openamer_bin_dir", return_value="/nonexistent"), \
              patch("tools.tirith_security._is_install_failed_on_disk", return_value=False), \
              patch("tools.tirith_security._install_tirith", return_value=("/new/tirith", "")) as mock_install, \
              patch("tools.tirith_security._clear_install_failed"):
@@ -1097,7 +1097,7 @@ class TestDiskFailureMarker:
         _tirith_mod._install_failure_reason = "cosign_exec_failed"
 
         with patch("tools.tirith_security.shutil.which", return_value=None), \
-             patch("tools.tirith_security._hermes_bin_dir", return_value="/nonexistent"), \
+             patch("tools.tirith_security._openamer_bin_dir", return_value="/nonexistent"), \
              patch("tools.tirith_security._install_tirith") as mock_install:
             result = _resolve_tirith_path("tirith")
             assert result == "tirith"  # fallback
@@ -1112,7 +1112,7 @@ class TestDiskFailureMarker:
         _tirith_mod._install_failure_reason = "cosign_missing"
 
         with patch("tools.tirith_security.shutil.which", return_value=None), \
-             patch("tools.tirith_security._hermes_bin_dir", return_value="/nonexistent"), \
+             patch("tools.tirith_security._openamer_bin_dir", return_value="/nonexistent"), \
              patch("tools.tirith_security._install_tirith") as mock_install:
             result = _resolve_tirith_path("tirith")
             assert result == "tirith"  # fallback
@@ -1127,7 +1127,7 @@ class TestDiskFailureMarker:
 
         # First call: disk marker with cosign_missing is active, cosign still absent
         with patch("tools.tirith_security.shutil.which", return_value=None), \
-             patch("tools.tirith_security._hermes_bin_dir", return_value="/nonexistent"), \
+             patch("tools.tirith_security._openamer_bin_dir", return_value="/nonexistent"), \
              patch("tools.tirith_security._read_failure_reason", return_value="cosign_missing"), \
              patch("tools.tirith_security._is_install_failed_on_disk", return_value=True):
             _resolve_tirith_path("tirith")
@@ -1143,7 +1143,7 @@ class TestDiskFailureMarker:
             return None
 
         with patch("tools.tirith_security.shutil.which", side_effect=_which_side_effect), \
-             patch("tools.tirith_security._hermes_bin_dir", return_value="/nonexistent"), \
+             patch("tools.tirith_security._openamer_bin_dir", return_value="/nonexistent"), \
              patch("tools.tirith_security._is_install_failed_on_disk", return_value=False), \
              patch("tools.tirith_security._install_tirith", return_value=("/new/tirith", "")) as mock_install, \
              patch("tools.tirith_security._clear_install_failed"):
@@ -1158,39 +1158,39 @@ class TestDiskFailureMarker:
 # OPENAMER_HOME isolation
 # ---------------------------------------------------------------------------
 
-class TestHermesHomeIsolation:
-    def test_hermes_bin_dir_respects_hermes_home(self):
-        """_hermes_bin_dir must use OPENAMER_HOME, not hardcoded ~/.hermes."""
-        from tools.tirith_security import _hermes_bin_dir
+class TestOpenAmerHomeIsolation:
+    def test_openamer_bin_dir_respects_openamer_home(self):
+        """_openamer_bin_dir must use OPENAMER_HOME, not hardcoded ~/.openamer."""
+        from tools.tirith_security import _openamer_bin_dir
         import tempfile
         tmpdir = tempfile.mkdtemp()
         with patch.dict(os.environ, {"OPENAMER_HOME": tmpdir}):
-            result = _hermes_bin_dir()
+            result = _openamer_bin_dir()
         assert result == os.path.join(tmpdir, "bin")
         assert os.path.isdir(result)
 
-    def test_failure_marker_respects_hermes_home(self):
-        """_failure_marker_path must use OPENAMER_HOME, not hardcoded ~/.hermes."""
+    def test_failure_marker_respects_openamer_home(self):
+        """_failure_marker_path must use OPENAMER_HOME, not hardcoded ~/.openamer."""
         from tools.tirith_security import _failure_marker_path
-        with patch.dict(os.environ, {"OPENAMER_HOME": "/custom/hermes"}):
+        with patch.dict(os.environ, {"OPENAMER_HOME": "/custom/openamer"}):
             result = _failure_marker_path()
-        assert result == "/custom/hermes/.tirith-install-failed"
+        assert result == "/custom/openamer/.tirith-install-failed"
 
     def test_conftest_isolation_prevents_real_home_writes(self):
         """The conftest autouse fixture sets OPENAMER_HOME; verify it's active."""
-        hermes_home = os.getenv("OPENAMER_HOME")
-        assert hermes_home is not None, "OPENAMER_HOME should be set by conftest"
-        assert "hermes_test" in hermes_home, "Should point to test temp dir"
+        openamer_home = os.getenv("OPENAMER_HOME")
+        assert openamer_home is not None, "OPENAMER_HOME should be set by conftest"
+        assert "openamer_test" in openamer_home, "Should point to test temp dir"
 
-    def test_get_hermes_home_fallback(self):
+    def test_get_openamer_home_fallback(self):
         """Without OPENAMER_HOME set, falls back to the active OS home."""
-        from tools.tirith_security import _get_hermes_home
+        from tools.tirith_security import _get_openamer_home
         with patch.dict(os.environ, {}, clear=True):
             # Remove OPENAMER_HOME entirely. With HOME also absent, expanduser
             # falls back to the account database; compute expected under the
             # same environment instead of after patch.dict restores HOME.
             os.environ.pop("OPENAMER_HOME", None)
-            expected = os.path.join(os.path.expanduser("~"), ".hermes")
+            expected = os.path.join(os.path.expanduser("~"), ".openamer")
             result = _get_openamer_home()
         assert result == expected
 
@@ -1484,7 +1484,7 @@ class TestMkdtempOSErrorNoSpace:
                    side_effect=OSError(28, "No space left on device")), \
              patch("tools.tirith_security.shutil.which",
                    return_value=None), \
-             patch("tools.tirith_security._hermes_bin_dir",
+             patch("tools.tirith_security._openamer_bin_dir",
                    return_value="/nonexistent"), \
              patch("tools.tirith_security._is_install_failed_on_disk",
                    return_value=False), \

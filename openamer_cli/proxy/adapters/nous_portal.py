@@ -1,6 +1,6 @@
 """Nous Portal upstream adapter.
 
-Reads the user's Nous OAuth state from ``~/.hermes/auth.json`` through the
+Reads the user's Nous OAuth state from ``~/.openamer/auth.json`` through the
 shared runtime resolver, validates or refreshes the inference JWT, then exposes
 the upstream base URL plus bearer for the proxy server to forward to.
 """

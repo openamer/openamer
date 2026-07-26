@@ -547,7 +547,7 @@ class TestSessionLifecycle:
         """A later /model switch must replace, not compete with, a Browser lock."""
         db.create_session(
             session_id="s1",
-            source="hermes_browser",
+            source="openamer_browser",
             model="x-ai/grok-4.5",
             model_config={
                 "_branched_from": "parent-session",
@@ -3931,7 +3931,7 @@ class TestSchemaInit:
     def test_topic_mode_schema_is_not_auto_migrated_on_open(self, tmp_path):
         """Opening an old DB should not add topic-mode columns until /topic opts in.
 
-        The gateway must remain rollback-safe: simply upgrading Hermes and starting
+        The gateway must remain rollback-safe: simply upgrading OpenAmer and starting
         the old bot should not eagerly mutate the state DB for this feature.
         """
         old_db = tmp_path / "old.db"
@@ -5760,7 +5760,7 @@ class TestFTS5ToolCallMigration:
         try:
             assert session_db.fts_optimize_available() is True
 
-            # `hermes db optimize` performs the v23 transition; afterwards the
+            # `openamer db optimize` performs the v23 transition; afterwards the
             # tool fields are searchable.
             result = session_db.optimize_fts_storage(vacuum=False)
             assert result["ok"] is True
@@ -5936,7 +5936,7 @@ class TestFTSExternalContentMigration:
         checkpoint that folds it back is REFUSED (SQLITE_BUSY) while another
         connection — a live gateway — holds a read-mark. A caller that sizes
         the result with ``os.path.getsize()`` therefore reads the stale,
-        still-growing main file: that is how `hermes sessions optimize-storage`
+        still-growing main file: that is how `openamer sessions optimize-storage`
         reported "reclaimed -3820.1 MB" on a DB that had actually shrunk 60%.
         SQLite's own page accounting is correct immediately.
         """
@@ -7138,7 +7138,7 @@ def test_v18_backfill_from_sessions_json(tmp_path, monkeypatch):
     """Migration backfills display_name/origin_json/expiry_finalized from sessions.json."""
     import openamer_state as hs
 
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     (home / "sessions").mkdir(parents=True)
     monkeypatch.setenv("OPENAMER_HOME", str(home))
     monkeypatch.setattr(hs, "DEFAULT_DB_PATH", home / "state.db")

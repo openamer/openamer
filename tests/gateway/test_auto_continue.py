@@ -192,7 +192,7 @@ class TestInterruptedReplayFiltering:
                         "id": "call_1",
                         "function": {
                             "name": "terminal",
-                            "arguments": '{"command": "docker restart hermes-agent"}',
+                            "arguments": '{"command": "docker restart openamer-agent"}',
                         },
                     },
                 ],
@@ -232,7 +232,7 @@ class TestInterruptedReplayFiltering:
                         "id": "call_2",
                         "function": {
                             "name": "terminal",
-                            "arguments": '{"command": "systemctl restart hermes"}',
+                            "arguments": '{"command": "systemctl restart openamer"}',
                         },
                     },
                 ],

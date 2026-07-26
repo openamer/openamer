@@ -13,7 +13,7 @@ def test_dashboard_flow_exposes_authorization_url_and_accepts_callback():
         flow_id="flow-1",
         server_name="reports",
         profile=None,
-        hermes_home="/tmp/hermes-test",
+        openamer_home="/tmp/openamer-test",
         redirect_uri="https://agent.example/mcp/oauth/callback/flow-1",
     )
 
@@ -37,7 +37,7 @@ def test_dashboard_flow_rejects_wrong_state_without_consuming_callback():
         flow_id="flow-state",
         server_name="reports",
         profile=None,
-        hermes_home="/tmp/hermes-test",
+        openamer_home="/tmp/openamer-test",
         redirect_uri="https://agent.example/mcp/oauth/callback/flow-state",
     )
     asyncio.run(
@@ -63,7 +63,7 @@ def test_dashboard_flow_rejects_second_callback():
         flow_id="flow-2",
         server_name="reports",
         profile=None,
-        hermes_home="/tmp/hermes-test",
+        openamer_home="/tmp/openamer-test",
         redirect_uri="https://agent.example/mcp/oauth/callback/flow-2",
     )
     asyncio.run(
@@ -83,7 +83,7 @@ def test_dashboard_flow_accepts_only_one_concurrent_callback():
         flow_id="flow-race",
         server_name="reports",
         profile=None,
-        hermes_home="/tmp/hermes-test",
+        openamer_home="/tmp/openamer-test",
         redirect_uri="https://agent.example/mcp/oauth/callback/flow-race",
     )
     asyncio.run(flow.publish_authorization_url("https://idp.example/authorize?state=state"))
@@ -116,7 +116,7 @@ def test_dashboard_flow_cannot_resurrect_after_terminal_error():
         flow_id="flow-terminal",
         server_name="reports",
         profile=None,
-        hermes_home="/tmp/hermes-test",
+        openamer_home="/tmp/openamer-test",
         redirect_uri="https://agent.example/mcp/oauth/callback/flow-terminal",
     )
     flow.mark_error("start timed out")
@@ -143,7 +143,7 @@ def test_dashboard_context_overrides_redirect_and_handlers():
         flow_id="flow-3",
         server_name="reports",
         profile=None,
-        hermes_home="/tmp/hermes-test",
+        openamer_home="/tmp/openamer-test",
         redirect_uri="https://agent.example/mcp/oauth/callback/flow-3",
     )
     assert get_dashboard_oauth_flow() is None
@@ -155,7 +155,7 @@ def test_dashboard_context_overrides_redirect_and_handlers():
 def test_mcp_oauth_helpers_use_dashboard_flow_without_loopback_port():
     from tools.mcp_dashboard_oauth import DashboardOAuthFlow, dashboard_oauth_flow
     from tools.mcp_oauth import (
-        HermesTokenStorage,
+        OpenAmerTokenStorage,
         _build_client_metadata,
         _configure_callback_port,
         _make_callback_waiter,
@@ -166,12 +166,12 @@ def test_mcp_oauth_helpers_use_dashboard_flow_without_loopback_port():
         flow_id="flow-4",
         server_name="reports",
         profile=None,
-        hermes_home="/tmp/hermes-test",
+        openamer_home="/tmp/openamer-test",
         redirect_uri="https://agent.example/mcp/oauth/callback/flow-4",
     )
     cfg = {}
     with dashboard_oauth_flow(flow):
-        assert _configure_callback_port(cfg, HermesTokenStorage("reports")) == 0
+        assert _configure_callback_port(cfg, OpenAmerTokenStorage("reports")) == 0
         metadata = _build_client_metadata(cfg)
         assert str(metadata.redirect_uris[0]) == flow.redirect_uri
 
@@ -196,7 +196,7 @@ def test_manager_build_allows_dashboard_flow_without_tty(tmp_path, monkeypatch):
         flow_id="flow-5",
         server_name="reports",
         profile=None,
-        hermes_home="/tmp/hermes-test",
+        openamer_home="/tmp/openamer-test",
         redirect_uri="https://agent.example/api/mcp/oauth/callback/flow-5",
     )
     with dashboard_oauth_flow(flow):
@@ -208,11 +208,11 @@ def test_manager_build_allows_dashboard_flow_without_tty(tmp_path, monkeypatch):
 
 
 def test_manager_evict_preserves_persisted_oauth_state(tmp_path, monkeypatch):
-    from tools.mcp_oauth import HermesTokenStorage
+    from tools.mcp_oauth import OpenAmerTokenStorage
     from tools.mcp_oauth_manager import MCPOAuthManager, _ProviderEntry
 
     monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
-    storage = HermesTokenStorage("reports")
+    storage = OpenAmerTokenStorage("reports")
     storage._tokens_path().parent.mkdir(parents=True)
     storage._tokens_path().write_text(
         '{"access_token":"a","token_type":"Bearer"}'
@@ -276,10 +276,10 @@ def test_reconnect_mcp_server_keeps_manager_entry_until_live_task_rebuilds(
 
 
 def test_failed_reauth_rollback_preserves_newer_oauth_state(tmp_path, monkeypatch):
-    from tools.mcp_oauth import HermesTokenStorage
+    from tools.mcp_oauth import OpenAmerTokenStorage
 
     monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
-    storage = HermesTokenStorage("reports")
+    storage = OpenAmerTokenStorage("reports")
     storage._tokens_path().parent.mkdir(parents=True)
     storage._tokens_path().write_text("OLD")
     backup = storage.snapshot()

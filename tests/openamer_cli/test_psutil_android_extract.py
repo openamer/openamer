@@ -68,7 +68,7 @@ def test_install_psutil_android_compat_uses_patched_tree(tmp_path):
     archive = tmp_path / "psutil.tar.gz"
     _build_psutil_archive(archive, malicious_symlink=False)
 
-    from openamer_cli import main as hermes_main
+    from openamer_cli import main as openamer_main
 
     captured: dict[str, object] = {}
 
@@ -86,8 +86,8 @@ def test_install_psutil_android_compat_uses_patched_tree(tmp_path):
         )
 
     with patch("urllib.request.urlretrieve", side_effect=fake_urlretrieve), \
-         patch.object(hermes_main, "_run_install_with_heartbeat", side_effect=fake_run_install):
-        hermes_main._install_psutil_android_compat(
+         patch.object(openamer_main, "_run_install_with_heartbeat", side_effect=fake_run_install):
+        openamer_main._install_psutil_android_compat(
             ["uv", "pip"],
             env={"HERMES_TEST": "1"},
         )

@@ -4,7 +4,7 @@ Exercises the full chain — manager, provider subclass, disk watch, 401
 dedup — with real file I/O and real imports (no transport mocks, no
 subprocesses). These are the tests that would catch Cthulhu's original
 BetterStack bug: an external process rewrites the tokens file on disk,
-and the running Hermes session picks up the new tokens on the next auth
+and the running OpenAmer session picks up the new tokens on the next auth
 flow without requiring a restart.
 """
 import asyncio
@@ -30,7 +30,7 @@ def _set_interactive_stdin(monkeypatch, *, is_tty: bool = True) -> None:
 async def test_external_refresh_picked_up_without_restart(tmp_path, monkeypatch):
     """Simulate Cthulhu's cron workflow end-to-end.
 
-    1. A running Hermes session has OAuth tokens loaded in memory.
+    1. A running OpenAmer session has OAuth tokens loaded in memory.
     2. An external process (cron) writes fresh tokens to disk.
     3. On the next auth flow, the manager's disk-watch invalidates the
        in-memory state so the SDK re-reads from storage.
@@ -74,7 +74,7 @@ async def test_external_refresh_picked_up_without_restart(tmp_path, monkeypatch)
     assert provider.context.current_tokens.access_token == "OLD_ACCESS"
 
     # Now record the baseline mtime in the manager (this happens
-    # automatically via the HermesMCPOAuthProvider.async_auth_flow
+    # automatically via the OpenAmerMCPOAuthProvider.async_auth_flow
     # pre-hook on the first real request, but we exercise it directly
     # here for test determinism).
     await mgr.invalidate_if_disk_changed("srv")

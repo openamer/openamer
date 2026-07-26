@@ -711,7 +711,7 @@ def test_token_provider_refreshes_when_near_expiry():
 
 def test_token_provider_rereads_state_each_call():
     """Each callable invocation re-reads auth.json so cross-process refreshes
-    persisted by another hermes process are immediately visible."""
+    persisted by another openamer process are immediately visible."""
     from openamer_cli.auth import build_minimax_oauth_token_provider
 
     states = [

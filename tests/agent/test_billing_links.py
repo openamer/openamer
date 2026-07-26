@@ -14,7 +14,7 @@ from agent.billing_links import (
 
 
 def test_nous_route_by_provider_slug():
-    block = build_billing_block(provider="nous", base_url="", model="hermes-4")
+    block = build_billing_block(provider="nous", base_url="", model="openamer-4")
     assert block.is_nous is True
     assert block.provider_label == "Nous Portal"
     # Nous always resolves an in-app/portal billing URL as a fallback.
@@ -25,7 +25,7 @@ def test_nous_route_by_base_url_host():
     block = build_billing_block(
         provider="openai_compatible",
         base_url="https://inference-api.nousresearch.com/v1",
-        model="hermes-4",
+        model="openamer-4",
     )
     assert block.is_nous is True
 

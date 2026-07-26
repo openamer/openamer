@@ -9,7 +9,7 @@ def test_load_transcript_returns_db_messages_when_no_jsonl(tmp_path, monkeypatch
     """Reading a transcript must work from SQLite alone — no JSONL fallback needed.
 
     Pin DEFAULT_DB_PATH to tmp_path so this test cannot write to the real
-    ~/.hermes/state.db. (DEFAULT_DB_PATH is a module-level constant computed
+    ~/.openamer/state.db. (DEFAULT_DB_PATH is a module-level constant computed
     at openamer_state import time, before pytest's OPENAMER_HOME monkeypatch
     fires — the autouse fixture's OPENAMER_HOME override doesn't help here.)
     """

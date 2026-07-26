@@ -28,7 +28,7 @@ CONFIG_SCHEMA = ProviderConfigSchema(
     name="honcho",
     label="Honcho",
     storage=STORAGE_HONCHO_HOST_BLOCK,
-    docs_url="https://docs.honcho.dev/v3/guides/integrations/hermes",
+    docs_url="https://docs.honcho.dev/v3/guides/integrations/openamer",
     fields=(
         # — Connection —
         ProviderField(

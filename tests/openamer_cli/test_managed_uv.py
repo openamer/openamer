@@ -63,13 +63,13 @@ def _make_runtime_install(
 
 class TestManagedUvPath:
     def test_posix(self, tmp_path):
-        with patch("openamer_cli.managed_uv.get_hermes_home", return_value=tmp_path), \
+        with patch("openamer_cli.managed_uv.get_openamer_home", return_value=tmp_path), \
              patch("openamer_cli.managed_uv.platform.system", return_value="Linux"):
             from openamer_cli.managed_uv import managed_uv_path
             assert managed_uv_path() == tmp_path / "bin" / "uv"
 
     def test_windows(self, tmp_path):
-        with patch("openamer_cli.managed_uv.get_hermes_home", return_value=tmp_path), \
+        with patch("openamer_cli.managed_uv.get_openamer_home", return_value=tmp_path), \
              patch("openamer_cli.managed_uv.platform.system", return_value="Windows"):
             from openamer_cli.managed_uv import managed_uv_path
             assert managed_uv_path() == tmp_path / "bin" / "uv.exe"
@@ -81,13 +81,13 @@ class TestManagedUvPath:
 
 class TestResolveUv:
     def test_missing_returns_none(self, tmp_path):
-        with patch("openamer_cli.managed_uv.get_hermes_home", return_value=tmp_path):
+        with patch("openamer_cli.managed_uv.get_openamer_home", return_value=tmp_path):
             from openamer_cli.managed_uv import resolve_uv
             assert resolve_uv() is None
 
     def test_existing_executable(self, tmp_path):
         _make_executable(tmp_path / "bin" / "uv")
-        with patch("openamer_cli.managed_uv.get_hermes_home", return_value=tmp_path):
+        with patch("openamer_cli.managed_uv.get_openamer_home", return_value=tmp_path):
             from openamer_cli.managed_uv import resolve_uv
             result = resolve_uv()
             assert result == str(tmp_path / "bin" / "uv")
@@ -98,7 +98,7 @@ class TestResolveUv:
         uv.write_text("not a binary")
         # Ensure no execute bit
         uv.chmod(0o644)
-        with patch("openamer_cli.managed_uv.get_hermes_home", return_value=tmp_path):
+        with patch("openamer_cli.managed_uv.get_openamer_home", return_value=tmp_path):
             from openamer_cli.managed_uv import resolve_uv
             assert resolve_uv() is None
 
@@ -110,13 +110,13 @@ class TestResolveUv:
 class TestEnsureUv:
     def test_already_installed_no_bootstrap(self, tmp_path):
         _make_executable(tmp_path / "bin" / "uv")
-        with patch("openamer_cli.managed_uv.get_hermes_home", return_value=tmp_path):
+        with patch("openamer_cli.managed_uv.get_openamer_home", return_value=tmp_path):
             from openamer_cli.managed_uv import ensure_uv
             path = ensure_uv()
             assert path == str(tmp_path / "bin" / "uv")
 
     def test_installs_if_missing(self, tmp_path):
-        with patch("openamer_cli.managed_uv.get_hermes_home", return_value=tmp_path), \
+        with patch("openamer_cli.managed_uv.get_openamer_home", return_value=tmp_path), \
              patch("openamer_cli.managed_uv._install_uv") as mock_install:
             # Simulate the installer creating the binary
             def fake_install(target):
@@ -145,7 +145,7 @@ class TestEnsureUv:
 
         observed = []
         with patch(
-            "openamer_cli.managed_uv.get_hermes_home",
+            "openamer_cli.managed_uv.get_openamer_home",
             return_value=tmp_path,
         ), patch(
             "openamer_cli.managed_uv._install_uv",
@@ -160,7 +160,7 @@ class TestEnsureUv:
         assert observed == [repair]
 
     def test_install_failure_returns_falsy(self, tmp_path):
-        with patch("openamer_cli.managed_uv.get_hermes_home", return_value=tmp_path), \
+        with patch("openamer_cli.managed_uv.get_openamer_home", return_value=tmp_path), \
              patch("openamer_cli.managed_uv._install_uv", side_effect=RuntimeError("network down")):
             from openamer_cli.managed_uv import ensure_uv
             path = ensure_uv()
@@ -174,7 +174,7 @@ class TestEnsureUvUpdateBoundary:
     """``ensure_uv()`` must answer to both the single-value and the legacy
     ``(path, fresh_bootstrap)`` call conventions — **on POSIX**.
 
-    ``hermes update`` runs the call site from the old, already-imported
+    ``openamer update`` runs the call site from the old, already-imported
     ``openamer_cli.main`` against the freshly pulled ``managed_uv``. A release
     parked on a ``(path, fresh)`` tuple runs ``uv_bin, fresh = ensure_uv()``
     against the single-value module; the path is an iterable ``str`` so the
@@ -191,7 +191,7 @@ class TestEnsureUvUpdateBoundary:
 
     def test_success_usable_as_single_value(self, tmp_path):
         _make_executable(tmp_path / "bin" / "uv")
-        with patch("openamer_cli.managed_uv.get_hermes_home", return_value=tmp_path), \
+        with patch("openamer_cli.managed_uv.get_openamer_home", return_value=tmp_path), \
              patch("openamer_cli.managed_uv.platform.system", return_value="Linux"):
             from openamer_cli.managed_uv import ensure_uv
             uv_bin = ensure_uv()
@@ -200,7 +200,7 @@ class TestEnsureUvUpdateBoundary:
 
     def test_success_unpacks_as_legacy_two_tuple(self, tmp_path):
         _make_executable(tmp_path / "bin" / "uv")
-        with patch("openamer_cli.managed_uv.get_hermes_home", return_value=tmp_path), \
+        with patch("openamer_cli.managed_uv.get_openamer_home", return_value=tmp_path), \
              patch("openamer_cli.managed_uv.platform.system", return_value="Linux"):
             from openamer_cli.managed_uv import ensure_uv
             uv_bin, fresh = ensure_uv()  # old: uv_bin, fresh_bootstrap = ensure_uv()
@@ -208,7 +208,7 @@ class TestEnsureUvUpdateBoundary:
             assert fresh is False
 
     def test_failure_unpacks_without_raising(self, tmp_path):
-        with patch("openamer_cli.managed_uv.get_hermes_home", return_value=tmp_path), \
+        with patch("openamer_cli.managed_uv.get_openamer_home", return_value=tmp_path), \
              patch("openamer_cli.managed_uv.platform.system", return_value="Linux"), \
              patch("openamer_cli.managed_uv._install_uv", side_effect=RuntimeError("network down")):
             from openamer_cli.managed_uv import ensure_uv
@@ -240,13 +240,13 @@ class TestEnsureUvWindowsSafe:
         import subprocess
         from openamer_cli.managed_uv import _UvResult
         with pytest.raises(TypeError):
-            subprocess.list2cmdline([_UvResult("C:\\hermes\\uv.exe"), "pip"])
+            subprocess.list2cmdline([_UvResult("C:\\openamer\\uv.exe"), "pip"])
 
     def test_windows_returns_plain_str_safe_for_subprocess(self, tmp_path):
         import subprocess
         # On (mocked) Windows the managed binary is uv.exe.
         _make_executable(tmp_path / "bin" / "uv.exe")
-        with patch("openamer_cli.managed_uv.get_hermes_home", return_value=tmp_path), \
+        with patch("openamer_cli.managed_uv.get_openamer_home", return_value=tmp_path), \
              patch("openamer_cli.managed_uv.platform.system", return_value="Windows"):
             from openamer_cli.managed_uv import _UvResult, ensure_uv
             uv_bin = ensure_uv()
@@ -256,7 +256,7 @@ class TestEnsureUvWindowsSafe:
             assert "pip" in cmdline and "install" in cmdline
 
     def test_windows_failure_returns_none(self, tmp_path):
-        with patch("openamer_cli.managed_uv.get_hermes_home", return_value=tmp_path), \
+        with patch("openamer_cli.managed_uv.get_openamer_home", return_value=tmp_path), \
              patch("openamer_cli.managed_uv.platform.system", return_value="Windows"), \
              patch("openamer_cli.managed_uv._install_uv", side_effect=RuntimeError("network down")):
             from openamer_cli.managed_uv import ensure_uv
@@ -269,13 +269,13 @@ class TestEnsureUvWindowsSafe:
 
 class TestUpdateManagedUv:
     def test_no_uv_returns_none(self, tmp_path):
-        with patch("openamer_cli.managed_uv.get_hermes_home", return_value=tmp_path):
+        with patch("openamer_cli.managed_uv.get_openamer_home", return_value=tmp_path):
             from openamer_cli.managed_uv import update_managed_uv
             assert update_managed_uv() is None
 
     def test_self_update_success(self, tmp_path):
         _make_executable(tmp_path / "bin" / "uv")
-        with patch("openamer_cli.managed_uv.get_hermes_home", return_value=tmp_path), \
+        with patch("openamer_cli.managed_uv.get_openamer_home", return_value=tmp_path), \
              patch("openamer_cli.managed_uv.subprocess.run") as mock_run:
             # uv self update succeeds
             mock_run.return_value = MagicMock(returncode=0, stdout="uv 0.2.0")
@@ -288,7 +288,7 @@ class TestUpdateManagedUv:
 
     def test_self_update_failure_non_fatal(self, tmp_path):
         _make_executable(tmp_path / "bin" / "uv")
-        with patch("openamer_cli.managed_uv.get_hermes_home", return_value=tmp_path), \
+        with patch("openamer_cli.managed_uv.get_openamer_home", return_value=tmp_path), \
              patch("openamer_cli.managed_uv.subprocess.run") as mock_run:
             mock_run.return_value = MagicMock(returncode=1, stderr="nope")
             from openamer_cli.managed_uv import update_managed_uv
@@ -302,7 +302,7 @@ class TestUpdateManagedUv:
 
         uv = tmp_path / "bin" / "uv"
         _make_executable(uv)
-        with patch("openamer_cli.managed_uv.get_hermes_home", return_value=tmp_path), \
+        with patch("openamer_cli.managed_uv.get_openamer_home", return_value=tmp_path), \
              patch("openamer_cli.managed_uv.platform.system", return_value="Linux"), \
              patch("openamer_cli.managed_uv.subprocess.run") as mock_run, \
              patch(
@@ -335,7 +335,7 @@ class TestUpdateManagedUv:
         )
         observed = []
         with patch(
-            "openamer_cli.managed_uv.get_hermes_home",
+            "openamer_cli.managed_uv.get_openamer_home",
             return_value=tmp_path,
         ), patch(
             "openamer_cli.managed_uv.subprocess.run",
@@ -360,7 +360,7 @@ class TestManagedPythonStore:
         monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / "profiles" / "beta"))
         beta = managed_python_install_dir(checkout)
 
-        expected = checkout / ".hermes-runtime" / "python"
+        expected = checkout / ".openamer-runtime" / "python"
         assert alpha == expected
         assert beta == expected
 
@@ -390,7 +390,7 @@ class TestManagedPythonStore:
         assert env["UV_PYTHON_INSTALL_BIN"] == "0"
         assert env["UV_PYTHON_INSTALL_REGISTRY"] == "0"
         assert env["UV_PYTHON_INSTALL_DIR"] == str(
-            checkout / ".hermes-runtime" / "python"
+            checkout / ".openamer-runtime" / "python"
         )
         for key in (
             "CONDA_DEFAULT_ENV",
@@ -428,7 +428,7 @@ class TestRuntimeRepair:
         assert result.sqlite_before == "3.53.1"
         assert result.sqlite_after == "3.53.1"
         assert sentinel.read_text(encoding="utf-8") == "live"
-        assert not (root / ".hermes-runtime").exists()
+        assert not (root / ".openamer-runtime").exists()
         mock_install.assert_not_called()
 
     def test_failed_candidate_preserves_live_venv(self, tmp_path):
@@ -440,7 +440,7 @@ class TestRuntimeRepair:
 
         root, live, sentinel = _make_runtime_install(tmp_path)
         current = _runtime_info(live / "bin" / "python", (3, 50, 4))
-        generation = root / ".hermes-runtime" / "python" / "generation-test"
+        generation = root / ".openamer-runtime" / "python" / "generation-test"
         candidate_python = generation / "bin" / "python"
         candidate_python.parent.mkdir(parents=True)
         candidate_python.write_text("candidate interpreter", encoding="utf-8")
@@ -468,7 +468,7 @@ class TestRuntimeRepair:
             "live interpreter"
         )
         assert not generation.exists()
-        reacquired = _acquire_repair_lock(root / ".hermes-runtime")
+        reacquired = _acquire_repair_lock(root / ".openamer-runtime")
         assert reacquired is not None
         _release_repair_lock(reacquired)
 
@@ -479,7 +479,7 @@ class TestRuntimeRepair:
         current = _runtime_info(live / "Scripts" / "python.exe", (3, 50, 4))
         old_main = SimpleNamespace(
             _detect_venv_python_processes=lambda: [
-                (1729, "python.exe", "hermes gateway run")
+                (1729, "python.exe", "openamer gateway run")
             ]
         )
         monkeypatch.setitem(sys.modules, "openamer_cli.main", old_main)
@@ -497,7 +497,7 @@ class TestRuntimeRepair:
         assert result.status == "skipped"
         assert "PID 1729" in result.detail
         assert sentinel.read_text(encoding="utf-8") == "live"
-        assert not (root / ".hermes-runtime").exists()
+        assert not (root / ".openamer-runtime").exists()
         mock_install.assert_not_called()
 
 
@@ -505,7 +505,7 @@ class TestRuntimeCutover:
     def test_os_lock_blocks_concurrent_repair_and_releases(self, tmp_path):
         from openamer_cli.managed_uv import _acquire_repair_lock, _release_repair_lock
 
-        runtime_root = tmp_path / ".hermes-runtime"
+        runtime_root = tmp_path / ".openamer-runtime"
         first = _acquire_repair_lock(runtime_root)
         assert first is not None
         assert _acquire_repair_lock(runtime_root) is None
@@ -536,7 +536,7 @@ class TestRuntimeCutover:
         from openamer_cli.managed_uv import _cut_over_candidate
 
         root, _, _ = _make_runtime_install(tmp_path)
-        runtime_root = root / ".hermes-runtime"
+        runtime_root = root / ".openamer-runtime"
         candidate = runtime_root / "venv-candidate-test"
         candidate.mkdir(parents=True)
         (candidate / "sentinel").write_text("candidate", encoding="utf-8")
@@ -565,7 +565,7 @@ class TestRuntimeCutover:
         from openamer_cli.managed_uv import _cut_over_candidate
 
         root, live, sentinel = _make_runtime_install(tmp_path)
-        runtime_root = root / ".hermes-runtime"
+        runtime_root = root / ".openamer-runtime"
         candidate = runtime_root / "venv-candidate-test"
         candidate.mkdir(parents=True)
         (candidate / "sentinel").write_text("candidate", encoding="utf-8")
@@ -595,7 +595,7 @@ class TestRuntimeCutover:
         from openamer_cli.managed_uv import _cut_over_candidate
 
         root, live, sentinel = _make_runtime_install(tmp_path)
-        candidate = root / ".hermes-runtime" / "venv-candidate-test"
+        candidate = root / ".openamer-runtime" / "venv-candidate-test"
         candidate.mkdir(parents=True)
         (candidate / "sentinel").write_text("candidate", encoding="utf-8")
 
@@ -621,7 +621,7 @@ class TestRuntimeCutover:
         from openamer_cli.managed_uv import _cut_over_candidate
 
         root, live, sentinel = _make_runtime_install(tmp_path)
-        candidate = root / ".hermes-runtime" / "venv-candidate-test"
+        candidate = root / ".openamer-runtime" / "venv-candidate-test"
         candidate.mkdir(parents=True)
         (candidate / "sentinel").write_text("candidate", encoding="utf-8")
         rename_count = 0
@@ -647,7 +647,7 @@ class TestRuntimeCutover:
         from openamer_cli.managed_uv import _cut_over_candidate
 
         root, live, sentinel = _make_runtime_install(tmp_path)
-        runtime_root = root / ".hermes-runtime"
+        runtime_root = root / ".openamer-runtime"
         candidate = runtime_root / "venv-candidate-test"
         candidate.mkdir(parents=True)
         (candidate / "sentinel").write_text("candidate", encoding="utf-8")

@@ -524,7 +524,7 @@ def _cmd_backup(args) -> int:
     if snap is None:
         print("curator: snapshot failed — check logs (backup disabled or IO error)")
         return 1
-    print(f"curator: snapshot created at ~/.hermes/skills/.curator_backups/{snap.name}")
+    print(f"curator: snapshot created at ~/.openamer/skills/.curator_backups/{snap.name}")
     return 0
 
 
@@ -577,7 +577,7 @@ def _cmd_rollback(args) -> int:
                 reason = cron.get("reason", "not captured")
                 print(f"  cron jobs:   not in snapshot ({reason})")
     print(
-        "\nThis will replace the current ~/.hermes/skills/ tree (a safety "
+        "\nThis will replace the current ~/.openamer/skills/ tree (a safety "
         "snapshot of the current state is taken first so this is undoable). "
         "Cron jobs that still exist will have their skills/skill fields "
         "restored from the snapshot; all other cron fields are left alone."
@@ -805,7 +805,7 @@ def register_cli(parent: argparse.ArgumentParser) -> None:
 
     p_backup = subs.add_parser(
         "backup",
-        help="Take a manual tar.gz snapshot of ~/.hermes/skills/ "
+        help="Take a manual tar.gz snapshot of ~/.openamer/skills/ "
              "(curator also does this automatically before every real run)",
     )
     p_backup.add_argument(
@@ -816,7 +816,7 @@ def register_cli(parent: argparse.ArgumentParser) -> None:
 
     p_rollback = subs.add_parser(
         "rollback",
-        help="Restore ~/.hermes/skills/ from a curator snapshot "
+        help="Restore ~/.openamer/skills/ from a curator snapshot "
              "(defaults to the newest)",
     )
     p_rollback.add_argument(

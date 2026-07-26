@@ -20,7 +20,7 @@ def _make_local_embedded_provider(monkeypatch):
     monkeypatch.setattr(
         hindsight,
         "_load_config",
-        lambda: {"mode": "local_embedded", "profile": "hermes"},
+        lambda: {"mode": "local_embedded", "profile": "openamer"},
     )
     # Pretend the local runtime imports cleanly so initialize() reaches the
     # daemon-start branch instead of bailing on a missing `hindsight` package.

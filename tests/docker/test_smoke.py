@@ -1,6 +1,6 @@
 """Runtime smoke tests for the Docker image entrypoint and subcommands.
 
-Converted from the former ``.github/actions/hermes-smoke-test`` composite
+Converted from the former ``.github/actions/openamer-smoke-test`` composite
 action.  These tests exercise the image's real ENTRYPOINT (``/init`` +
 ``main-wrapper.sh``) via ``docker run --rm <image> --help`` and
 ``docker run --rm <image> dashboard --help`` to catch basic runtime
@@ -15,7 +15,7 @@ from __future__ import annotations
 import subprocess
 
 
-def test_hermes_help(built_image: str) -> None:
+def test_openamer_help(built_image: str) -> None:
     """``docker run --rm <image> --help`` must exit 0.
 
     Uses the image's real ENTRYPOINT (``/init`` + ``main-wrapper.sh``)
@@ -30,11 +30,11 @@ def test_hermes_help(built_image: str) -> None:
         capture_output=True, text=True, timeout=60,
     )
     assert r.returncode == 0, (
-        f"hermes --help failed (exit {r.returncode}): "
+        f"openamer --help failed (exit {r.returncode}): "
         f"stdout={r.stdout[-2000:]!r} stderr={r.stderr[-2000:]!r}"
     )
     assert "Traceback" not in r.stderr, (
-        f"hermes --help produced a traceback: {r.stderr[-2000:]!r}"
+        f"openamer --help produced a traceback: {r.stderr[-2000:]!r}"
     )
 
 
@@ -51,7 +51,7 @@ def test_dashboard_subcommand_present(built_image: str) -> None:
         capture_output=True, text=True, timeout=60,
     )
     assert r.returncode == 0, (
-        f"hermes dashboard --help failed (exit {r.returncode}): "
+        f"openamer dashboard --help failed (exit {r.returncode}): "
         f"stdout={r.stdout[-2000:]!r} stderr={r.stderr[-2000:]!r}"
     )
     combined = (r.stdout + r.stderr).lower()

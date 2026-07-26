@@ -125,21 +125,21 @@ _KEYS_DROPPED_WITH_WARNING = {
 
 
 def _translate_one_server(
-    name: str, hermes_cfg: dict
+    name: str, openamer_cfg: dict
 ) -> tuple[Optional[dict], list[str]]:
     """Translate one OpenAmer MCP server config to the codex inline-table dict
     representation. Returns (codex_entry, skipped_keys).
 
     codex_entry is a dict ready for TOML serialization, or None when the
     server can't be translated (e.g. neither command nor url present)."""
-    if not isinstance(hermes_cfg, dict):
+    if not isinstance(openamer_cfg, dict):
         return None, []
 
     skipped: list[str] = []
     out: dict[str, Any] = {}
 
-    has_command = bool(hermes_cfg.get("command"))
-    has_url = bool(hermes_cfg.get("url"))
+    has_command = bool(openamer_cfg.get("command"))
+    has_url = bool(openamer_cfg.get("url"))
 
     if has_command and has_url:
         skipped.append("url (both command and url set; preferring stdio)")
@@ -147,47 +147,47 @@ def _translate_one_server(
 
     if has_command:
         # Stdio transport
-        out["command"] = str(hermes_cfg["command"])
-        args = hermes_cfg.get("args") or []
+        out["command"] = str(openamer_cfg["command"])
+        args = openamer_cfg.get("args") or []
         if args:
             out["args"] = [str(a) for a in args]
-        env = hermes_cfg.get("env") or {}
+        env = openamer_cfg.get("env") or {}
         if env:
             # Codex expects string values
             out["env"] = {str(k): str(v) for k, v in env.items()}
-        cwd = hermes_cfg.get("cwd")
+        cwd = openamer_cfg.get("cwd")
         if cwd:
             out["cwd"] = str(cwd)
     elif has_url:
         # streamable_http transport (codex covers both http and SSE here)
-        out["url"] = str(hermes_cfg["url"])
-        headers = hermes_cfg.get("headers") or {}
+        out["url"] = str(openamer_cfg["url"])
+        headers = openamer_cfg.get("headers") or {}
         if headers:
             out["http_headers"] = {str(k): str(v) for k, v in headers.items()}
         # OpenAmer' transport: sse hint is informational; codex auto-negotiates
-        if hermes_cfg.get("transport") == "sse":
+        if openamer_cfg.get("transport") == "sse":
             skipped.append("transport=sse (codex auto-negotiates)")
     else:
         return None, ["no command or url field"]
 
     # Timeouts
-    if "timeout" in hermes_cfg:
+    if "timeout" in openamer_cfg:
         try:
-            out["tool_timeout_sec"] = float(hermes_cfg["timeout"])
+            out["tool_timeout_sec"] = float(openamer_cfg["timeout"])
         except (TypeError, ValueError):
             skipped.append("timeout (not numeric)")
-    if "connect_timeout" in hermes_cfg:
+    if "connect_timeout" in openamer_cfg:
         try:
-            out["startup_timeout_sec"] = float(hermes_cfg["connect_timeout"])
+            out["startup_timeout_sec"] = float(openamer_cfg["connect_timeout"])
         except (TypeError, ValueError):
             skipped.append("connect_timeout (not numeric)")
 
     # Enabled flag (codex defaults to true so we only emit when explicitly false)
-    if hermes_cfg.get("enabled") is False:
+    if openamer_cfg.get("enabled") is False:
         out["enabled"] = False
 
     # Detect keys we explicitly drop with warning
-    for key in hermes_cfg:
+    for key in openamer_cfg:
         if key in _KEYS_DROPPED_WITH_WARNING:
             skipped.append(f"{key} (no codex equivalent)")
         elif key not in _KNOWN_HERMES_KEYS:
@@ -539,7 +539,7 @@ def _looks_like_test_tempdir(path: str) -> bool:
     codex-routed openamer-tools call fails silently once the directory is GC'd.
 
     We err on the side of refusing — losing a (very unlikely) real
-    ``~/.hermes`` symlink that happens to live under ``/private/var/folders``
+    ``~/.openamer`` symlink that happens to live under ``/private/var/folders``
     is much less harmful than silently bricking codex's tool surface.
     """
     if not path:
@@ -554,7 +554,7 @@ def _looks_like_test_tempdir(path: str) -> bool:
     return any(needle in normalized for needle in needles)
 
 
-def _build_hermes_tools_mcp_entry() -> dict:
+def _build_openamer_tools_mcp_entry() -> dict:
     """Build the codex stdio-transport entry that launches OpenAmer' own
     tool surface as an MCP server. Codex's subprocess will call back into
     this for browser/web/delegate_task/vision/memory/skills tools.
@@ -579,11 +579,11 @@ def _build_hermes_tools_mcp_entry() -> dict:
     # a sibling test's monkeypatch.setenv("OPENAMER_HOME", tmp_path) would
     # otherwise leak a transient pytest tempdir into the user's real
     # ~/.codex/config.toml and silently brick codex once the tempdir is GC'd.
-    hermes_home = os.environ.get("OPENAMER_HOME") or ""
-    if hermes_home and _looks_like_test_tempdir(hermes_home):
-        hermes_home = ""
-    if hermes_home:
-        env["OPENAMER_HOME"] = hermes_home
+    openamer_home = os.environ.get("OPENAMER_HOME") or ""
+    if openamer_home and _looks_like_test_tempdir(openamer_home):
+        openamer_home = ""
+    if openamer_home:
+        env["OPENAMER_HOME"] = openamer_home
     # PYTHONPATH passes through so a worktree-launched openamer finds the
     # branch's modules instead of the installed package.
     pythonpath = os.environ.get("PYTHONPATH")
@@ -595,7 +595,7 @@ def _build_hermes_tools_mcp_entry() -> dict:
 
     out: dict[str, Any] = {
         "command": sys.executable,
-        "args": ["-m", "agent.transports.hermes_tools_mcp_server"],
+        "args": ["-m", "agent.transports.openamer_tools_mcp_server"],
     }
     if env:
         out["env"] = env
@@ -607,19 +607,19 @@ def _build_hermes_tools_mcp_entry() -> dict:
 
 
 def migrate(
-    hermes_config: dict,
+    openamer_config: dict,
     *,
     codex_home: Optional[Path] = None,
     dry_run: bool = False,
     discover_plugins: bool = True,
     default_permission_profile: Optional[str] = ":workspace",
-    expose_hermes_tools: bool = True,
+    expose_openamer_tools: bool = True,
 ) -> MigrationReport:
     """Translate OpenAmer mcp_servers config + Codex curated plugins into
     ~/.codex/config.toml.
 
     Args:
-        hermes_config: full ~/.hermes/config.yaml dict
+        openamer_config: full ~/.openamer/config.yaml dict
         codex_home: override CODEX_HOME (defaults to ~/.codex)
         dry_run: skip the actual write; report what would happen
         discover_plugins: when True (default), query `plugin/list` against
@@ -635,7 +635,7 @@ def migrate(
             configured in their own [permissions.<name>] table. Set None
             to leave permissions unset and let codex use its compiled-in
             default (which is read-only).
-        expose_hermes_tools: when True (default), register OpenAmer' own
+        expose_openamer_tools: when True (default), register OpenAmer' own
             tool surface (web_search, browser_*, delegate_task, vision,
             memory, skills, etc.) as an MCP server in ~/.codex/config.toml
             so the codex subprocess can call back into OpenAmer for tools
@@ -646,15 +646,15 @@ def migrate(
     target = codex_home / "config.toml"
     report.target_path = target
 
-    hermes_servers = (hermes_config or {}).get("mcp_servers") or {}
-    if not isinstance(hermes_servers, dict):
+    openamer_servers = (openamer_config or {}).get("mcp_servers") or {}
+    if not isinstance(openamer_servers, dict):
         report.errors.append(
             "mcp_servers in OpenAmer config is not a dict; cannot migrate."
         )
         return report
 
     translated: dict[str, dict] = {}
-    for name, cfg in hermes_servers.items():
+    for name, cfg in openamer_servers.items():
         out, skipped = _translate_one_server(str(name), cfg or {})
         if out is None:
             report.errors.append(
@@ -691,10 +691,10 @@ def migrate(
     # codex subprocess can call back into OpenAmer for the tools codex
     # doesn't ship with — web_search, browser_*, delegate_task, vision,
     # memory, skills, session_search, image_generate, text_to_speech.
-    # The server itself is agent/transports/hermes_tools_mcp_server.py
+    # The server itself is agent/transports/openamer_tools_mcp_server.py
     # and is launched on demand by codex (stdio MCP).
-    if expose_hermes_tools:
-        translated["openamer-tools"] = _build_hermes_tools_mcp_entry()
+    if expose_openamer_tools:
+        translated["openamer-tools"] = _build_openamer_tools_mcp_entry()
         if "openamer-tools" not in report.migrated:
             report.migrated.append("openamer-tools")
 

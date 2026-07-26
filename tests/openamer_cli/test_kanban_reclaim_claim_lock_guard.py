@@ -25,7 +25,7 @@ from openamer_cli import kanban_db as kb
 
 @pytest.fixture
 def kanban_home(tmp_path, monkeypatch):
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
     monkeypatch.setenv("HERMES_KANBAN_HOME", str(home))

@@ -41,7 +41,7 @@ def test_long_running_script_refreshes_owned_claim_in_profile_store(
     original_time = datetime.fromisoformat(original_timestamp)
     claim_ttl = jobs._oneshot_run_claim_ttl_seconds()
     current_time = [original_time + timedelta(seconds=claim_ttl - 60)]
-    monkeypatch.setattr(jobs, "_hermes_now", lambda: current_time[0])
+    monkeypatch.setattr(jobs, "_openamer_now", lambda: current_time[0])
 
     def _job() -> dict:
         return {

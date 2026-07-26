@@ -12,8 +12,8 @@ video generation provider. Mirrors the ``image_generate`` design:
 - Each provider lives under ``plugins/video_gen/<name>/``.
 
 The tool itself is intentionally backend-agnostic and ships **no in-tree
-provider** — turn on a backend by enabling a plugin (``hermes plugins
-enable video_gen/<name>``) and selecting it in ``hermes tools`` → Video
+provider** — turn on a backend by enabling a plugin (``openamer plugins
+enable video_gen/<name>``) and selecting it in ``openamer tools`` → Video
 Generation.
 
 Unified surface
@@ -66,7 +66,7 @@ VIDEO_GENERATE_SCHEMA: Dict[str, Any] = {
     # actual capabilities (which modalities / resolutions / duration
     # ranges the user's currently-selected model supports).
     # See _build_dynamic_video_schema() below and the dynamic-tool-schemas
-    # skill at github/hermes-agent-dev/references/dynamic-tool-schemas.md.
+    # skill at github/openamer-agent-dev/references/dynamic-tool-schemas.md.
     "description": "(rebuilt at get_definitions() time — see _build_dynamic_video_schema)",
     "parameters": {
         "type": "object",
@@ -149,7 +149,7 @@ VIDEO_GENERATE_SCHEMA: Dict[str, Any] = {
                 "type": "string",
                 "description": (
                     "Optional model override. If omitted, the user's "
-                    "configured ``video_gen.model`` (set via `hermes tools` "
+                    "configured ``video_gen.model`` (set via `openamer tools` "
                     "→ Video Generation) is used. Models that the active "
                     "provider does not know are rejected."
                 ),
@@ -248,8 +248,8 @@ def _missing_provider_error(configured: Optional[str]) -> str:
     if configured:
         msg = (
             f"video_gen.provider='{configured}' is set but no plugin "
-            f"registered that name. Run `hermes plugins list` to see "
-            f"installed video gen backends, or `hermes tools` → Video "
+            f"registered that name. Run `openamer plugins list` to see "
+            f"installed video gen backends, or `openamer tools` → Video "
             f"Generation to pick one."
         )
         return json.dumps(error_response(
@@ -257,7 +257,7 @@ def _missing_provider_error(configured: Optional[str]) -> str:
             provider=configured,
         ))
     msg = (
-        "No video generation backend is configured. Run `hermes tools` → "
+        "No video generation backend is configured. Run `openamer tools` → "
         "Video Generation to enable one (xAI, FAL, or Google Veo)."
     )
     return json.dumps(error_response(
@@ -413,7 +413,7 @@ def _handle_video_generate(args: Dict[str, Any], **_kw: Any) -> str:
 #
 # Memoization: model_tools.get_tool_definitions() keys its cache on
 # config.yaml mtime, so when the user changes provider/model via
-# `hermes tools` or `/skills`, the schema rebuilds automatically.
+# `openamer tools` or `/skills`, the schema rebuilds automatically.
 
 
 _GENERIC_DESCRIPTION = (
@@ -423,7 +423,7 @@ _GENERIC_DESCRIPTION = (
     "reference-to-video. Video edit/extend workflows are not part of this "
     "unified surface; use a dedicated provider-specific tool when one is "
     "available. The backend and model family are user-configured via "
-    "`hermes tools` → Video Generation; the agent does not pick them. "
+    "`openamer tools` → Video Generation; the agent does not pick them. "
     "Long-running generations may take 30 seconds to several minutes — "
     "the call blocks until the video is ready. Returns the result in the "
     "`video` field — either an HTTP URL or an absolute file path. To show "
@@ -484,7 +484,7 @@ def _build_dynamic_video_schema() -> Dict[str, Any]:
     if provider is None:
         parts.append(
             "\nNo video backend is available. Calls will return an error "
-            "until the user picks one via `hermes tools` → Video Generation."
+            "until the user picks one via `openamer tools` → Video Generation."
         )
         return {"description": "\n".join(parts)}
 

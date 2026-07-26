@@ -1,4 +1,4 @@
-"""Tests for CodexEventProjector — codex item/* events → Hermes messages list.
+"""Tests for CodexEventProjector — codex item/* events → OpenAmer messages list.
 
 Drives projection against fixture notifications captured from codex 0.130.0
 plus synthetic ones for item types we couldn't auth-test live."""
@@ -202,7 +202,7 @@ class TestMcpToolCallProjection:
             "server": "obsidian",
             "tool": "search_notes",
             "status": "completed",
-            "arguments": {"query": "hermes"},
+            "arguments": {"query": "openamer"},
             "result": {"content": [{"text": "found"}]},
             "error": None,
         }
@@ -274,7 +274,7 @@ class TestHelpers:
 
 class TestRoleAlternationInvariant:
     """The project must never emit two assistant messages back-to-back from
-    one item — that breaks Hermes' message alternation invariant."""
+    one item — that breaks OpenAmer' message alternation invariant."""
 
     @pytest.mark.parametrize(
         "item",

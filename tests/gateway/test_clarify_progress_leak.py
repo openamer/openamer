@@ -128,7 +128,7 @@ async def test_clarify_tool_never_renders_progress_bubble(monkeypatch, tmp_path,
     adapter = ProgressCaptureAdapter()
     runner = _make_runner(adapter)
     gateway_run = _install_fakes(monkeypatch, mode)
-    monkeypatch.setattr(gateway_run, "_hermes_home", tmp_path)
+    monkeypatch.setattr(gateway_run, "_openamer_home", tmp_path)
 
     source = SessionSource(platform=Platform.SLACK, chat_id="C1", chat_type="dm")
 

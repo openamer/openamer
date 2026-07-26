@@ -11,7 +11,7 @@ import yaml
 
 
 @pytest.fixture
-def isolated_profiles(tmp_path, monkeypatch, _isolate_hermes_home):
+def isolated_profiles(tmp_path, monkeypatch, _isolate_openamer_home):
     """Isolated default home + one named profile, each with config + .env."""
     from openamer_constants import get_openamer_home
     from openamer_cli import profiles
@@ -24,7 +24,7 @@ def isolated_profiles(tmp_path, monkeypatch, _isolate_hermes_home):
         (home / "config.yaml").write_text("{}\n", encoding="utf-8")
     (worker_home / ".env").write_text("", encoding="utf-8")
 
-    monkeypatch.setattr(profiles, "_get_default_hermes_home", lambda: default_home)
+    monkeypatch.setattr(profiles, "_get_default_openamer_home", lambda: default_home)
     monkeypatch.setattr(profiles, "_get_profiles_root", lambda: profiles_root)
     return {"default": default_home, "worker_beta": worker_home}
 
@@ -445,7 +445,7 @@ class TestProfileScopedPostSetup:
 
         monkeypatch.setattr(
             web_server,
-            "_spawn_hermes_action",
+            "_spawn_openamer_action",
             lambda subcommand, name: calls.append(list(subcommand)) or _FakeProc(),
         )
         monkeypatch.setattr(
@@ -473,7 +473,7 @@ class TestProfileScopedPostSetup:
 
         monkeypatch.setattr(
             web_server,
-            "_spawn_hermes_action",
+            "_spawn_openamer_action",
             lambda subcommand, name: calls.append(list(subcommand)) or _FakeProc(),
         )
         monkeypatch.setattr(
@@ -501,7 +501,7 @@ class TestProfileScopedGateway:
 
         monkeypatch.setattr(
             web_server,
-            "_spawn_hermes_action",
+            "_spawn_openamer_action",
             lambda subcommand, name: calls.append((list(subcommand), name)) or _FakeProc(),
         )
         web_server._ACTION_PROCS.pop("gateway-restart", None)
@@ -546,7 +546,7 @@ class TestProfileScopedGateway:
 
         assert resp.status_code == 200
         assert seen_homes[0] == str(isolated_profiles["worker_beta"])
-        assert resp.json()["hermes_home"] == str(isolated_profiles["worker_beta"])
+        assert resp.json()["openamer_home"] == str(isolated_profiles["worker_beta"])
 
     def test_status_uses_runtime_pid_when_profile_pid_file_is_missing(
         self, client, isolated_profiles, monkeypatch
@@ -626,7 +626,7 @@ class TestProfileScopedTelegramOnboarding:
 
         monkeypatch.setattr(
             web_server,
-            "_spawn_hermes_action",
+            "_spawn_openamer_action",
             lambda subcommand, name: calls.append((list(subcommand), name)) or _FakeProc(),
         )
         web_server._ACTION_PROCS.pop("gateway-restart", None)
@@ -658,7 +658,7 @@ class TestProfileScopedTelegramOnboarding:
 
 
 class TestProfileScopedChatPty:
-    def test_chat_argv_scopes_hermes_home(self, isolated_profiles, monkeypatch):
+    def test_chat_argv_scopes_openamer_home(self, isolated_profiles, monkeypatch):
         import openamer_cli.web_server as web_server
 
         monkeypatch.setattr(

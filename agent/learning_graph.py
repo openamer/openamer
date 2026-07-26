@@ -48,16 +48,16 @@ def _frontmatter(text: str) -> dict[str, Any]:
         return {}
 
 
-def _hermes_meta(fm: dict[str, Any]) -> dict[str, Any]:
-    """``metadata.hermes`` as a dict, tolerant of the string-valued frontmatter
+def _openamer_meta(fm: dict[str, Any]) -> dict[str, Any]:
+    """``metadata.openamer`` as a dict, tolerant of the string-valued frontmatter
     that ``parse_frontmatter``'s malformed-YAML fallback produces."""
     meta = fm.get("metadata")
-    hermes = meta.get("hermes") if isinstance(meta, dict) else None
-    return hermes if isinstance(hermes, dict) else {}
+    openamer = meta.get("openamer") if isinstance(meta, dict) else None
+    return openamer if isinstance(openamer, dict) else {}
 
 
 def _related(fm: dict[str, Any]) -> list[str]:
-    raw = fm.get("related_skills") or _hermes_meta(fm).get("related_skills")
+    raw = fm.get("related_skills") or _openamer_meta(fm).get("related_skills")
     if isinstance(raw, list):
         return [str(r).strip() for r in raw if str(r).strip()]
     if isinstance(raw, str):
@@ -66,7 +66,7 @@ def _related(fm: dict[str, Any]) -> list[str]:
 
 
 def _category(fm: dict[str, Any], skill_md: Path) -> str:
-    cat = fm.get("category") or _hermes_meta(fm).get("category")
+    cat = fm.get("category") or _openamer_meta(fm).get("category")
     if cat:
         return str(cat)
     # …/skills/<category>/<skill>/SKILL.md

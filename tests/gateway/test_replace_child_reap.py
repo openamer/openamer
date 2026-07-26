@@ -158,10 +158,10 @@ class TestScopedLockTakeoverReapsChildren:
         target_home.mkdir(parents=True, exist_ok=True)
         record = {
             "pid": pid,
-            "kind": "hermes-gateway",
+            "kind": "openamer-gateway",
             "argv": ["python", "-m", "openamer_cli.main", "gateway", "run"],
             "start_time": start_time,
-            "hermes_home": str(target_home),
+            "openamer_home": str(target_home),
         }
         (target_home / "gateway.pid").write_text(json.dumps(record))
         return record
@@ -319,7 +319,7 @@ async def test_start_gateway_replace_reaps_old_gateway_children_posix(
     monkeypatch.setattr("time.sleep", lambda _: None)
     monkeypatch.setattr("tools.skills_sync.sync_skills", lambda quiet=True: None)
     monkeypatch.setattr(
-        "openamer_logging.setup_logging", lambda hermes_home, mode: tmp_path
+        "openamer_logging.setup_logging", lambda openamer_home, mode: tmp_path
     )
     monkeypatch.setattr(
         "openamer_logging._add_rotating_handler", lambda *args, **kwargs: None

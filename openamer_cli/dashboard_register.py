@@ -2,18 +2,18 @@
 
 Automates what a user otherwise does by hand: open the Nous Portal
 ``/local-dashboards`` page in a browser, click "register", copy the
-resulting ``agent:{id}`` OAuth client ID, and paste it into ``~/.hermes/.env``
+resulting ``agent:{id}`` OAuth client ID, and paste it into ``~/.openamer/.env``
 as ``HERMES_DASHBOARD_OAUTH_CLIENT_ID``.
 
 This command:
   1. Resolves a fresh Nous Portal access token from the existing login
-     (``~/.hermes/auth.json``), refreshing it if needed. Fails fast with a
+     (``~/.openamer/auth.json``), refreshing it if needed. Fails fast with a
      "run `openamer setup`" hint when the user isn't logged in.
   2. POSTs to ``{portal}/api/oauth/self-hosted-client`` with that bearer
      token, which creates a SELF_HOSTED agent client owned by the caller's
      org and returns the fully-formed ``agent:{id}`` client_id.
   3. Writes ``HERMES_DASHBOARD_OAUTH_CLIENT_ID`` and (if absent)
-     ``HERMES_DASHBOARD_PORTAL_URL`` into ``~/.hermes/.env`` idempotently.
+     ``HERMES_DASHBOARD_PORTAL_URL`` into ``~/.openamer/.env`` idempotently.
   4. Prints a post-register hint explaining that the OAuth gate only engages
      on a non-loopback bind.
 
@@ -377,7 +377,7 @@ def cmd_dashboard_register(args) -> None:
     # Persist the dashboard public URL derived from the OAuth redirect URI.
     #
     # --redirect-uri is the full public HTTPS callback the user registered with
-    # the portal, e.g. https://hermes.example.com/auth/callback. At serve time
+    # the portal, e.g. https://openamer.example.com/auth/callback. At serve time
     # the dashboard auth layer (dashboard_auth/routes._redirect_uri) reconstructs
     # that same callback by taking HERMES_DASHBOARD_PUBLIC_URL and appending
     # "/auth/callback" verbatim. So the value the runtime actually consumes is

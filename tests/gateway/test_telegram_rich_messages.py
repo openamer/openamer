@@ -309,7 +309,7 @@ async def test_expect_edits_metadata_keeps_preview_on_legacy_path():
 
     assert result.success is True
     # Streaming preview sends will be edited later, so they must not be born as
-    # rich messages until Hermes wires rich_message edits directly.
+    # rich messages until OpenAmer wires rich_message edits directly.
     bot = adapter._bot
     assert bot is not None
     bot.do_api_request.assert_not_called()

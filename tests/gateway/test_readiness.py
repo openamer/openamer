@@ -9,7 +9,7 @@ from gateway.readiness import collect_runtime_readiness
 
 
 def test_collect_runtime_readiness_reports_healthy_local_runtime(tmp_path, monkeypatch):
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     (home / "config.yaml").write_text(
         "model:\n  provider: openrouter\n  model: test/model\n",
@@ -41,7 +41,7 @@ def test_collect_runtime_readiness_reports_healthy_local_runtime(tmp_path, monke
 def test_collect_runtime_readiness_degrades_on_invalid_config_and_stopped_gateway(
     tmp_path, monkeypatch
 ):
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     (home / "config.yaml").write_text("model: [unterminated", encoding="utf-8")
     monkeypatch.setenv("OPENAMER_HOME", str(home))
@@ -60,7 +60,7 @@ def test_collect_runtime_readiness_degrades_on_invalid_config_and_stopped_gatewa
 
 
 def test_collect_runtime_readiness_marks_corrupt_state_db_degraded(tmp_path, monkeypatch):
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     (home / "config.yaml").write_text("{}\n", encoding="utf-8")
     (home / "state.db").write_bytes(b"not sqlite")
@@ -74,7 +74,7 @@ def test_collect_runtime_readiness_marks_corrupt_state_db_degraded(tmp_path, mon
 
 
 def test_collect_runtime_readiness_never_exposes_config_values(tmp_path, monkeypatch):
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     secret = "do-not-return-this-value"
     (home / "config.yaml").write_text(
@@ -99,5 +99,5 @@ def test_collect_runtime_readiness_uses_active_profile_home(tmp_path, monkeypatc
     result = collect_runtime_readiness(configured_model="model", runtime_status={})
 
     assert result["checks"]["config"]["status"] == "ok"
-    assert not (tmp_path / ".hermes" / "state.db").exists()
+    assert not (tmp_path / ".openamer" / "state.db").exists()
     assert os.environ["OPENAMER_HOME"] == str(profile_home)

@@ -5,8 +5,8 @@ from types import SimpleNamespace
 def test_postprocess_adds_agent_visible_image_for_active_ssh_env(monkeypatch, tmp_path):
     from tools import image_generation_tool
 
-    hermes_home = tmp_path / ".hermes"
-    image_dir = hermes_home / "cache" / "images"
+    openamer_home = tmp_path / ".openamer"
+    image_dir = openamer_home / "cache" / "images"
     image_dir.mkdir(parents=True)
     image_path = image_dir / "xai_grok-imagine-image_test.jpg"
     image_path.write_bytes(b"jpg")
@@ -22,7 +22,7 @@ def test_postprocess_adds_agent_visible_image_for_active_ssh_env(monkeypatch, tm
         _sync_manager=FakeSyncManager(),
     )
 
-    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
     monkeypatch.setattr(image_generation_tool, "_active_terminal_env", lambda task_id: env)
 
     raw = json.dumps({"success": True, "image": str(image_path)})
@@ -33,7 +33,7 @@ def test_postprocess_adds_agent_visible_image_for_active_ssh_env(monkeypatch, tm
     assert result["image"] == str(image_path)
     assert result["host_image"] == str(image_path)
     assert result["agent_visible_image"] == (
-        "/home/remotesshuser/.hermes/cache/images/xai_grok-imagine-image_test.jpg"
+        "/home/remotesshuser/.openamer/cache/images/xai_grok-imagine-image_test.jpg"
     )
     assert sync_calls == [True]
 
@@ -41,13 +41,13 @@ def test_postprocess_adds_agent_visible_image_for_active_ssh_env(monkeypatch, tm
 def test_postprocess_maps_docker_cache_path_without_active_env(monkeypatch, tmp_path):
     from tools import image_generation_tool
 
-    hermes_home = tmp_path / ".hermes"
-    image_dir = hermes_home / "cache" / "images"
+    openamer_home = tmp_path / ".openamer"
+    image_dir = openamer_home / "cache" / "images"
     image_dir.mkdir(parents=True)
     image_path = image_dir / "generated.png"
     image_path.write_bytes(b"png")
 
-    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
     monkeypatch.setenv("TERMINAL_ENV", "docker")
     monkeypatch.setattr(image_generation_tool, "_active_terminal_env", lambda task_id: None)
 
@@ -55,19 +55,19 @@ def test_postprocess_maps_docker_cache_path_without_active_env(monkeypatch, tmp_
     result = json.loads(image_generation_tool._postprocess_image_generate_result(raw))
 
     assert result["image"] == str(image_path)
-    assert result["agent_visible_image"] == "/root/.hermes/cache/images/generated.png"
+    assert result["agent_visible_image"] == "/root/.openamer/cache/images/generated.png"
 
 
 def test_postprocess_maps_ssh_cache_path_without_active_env(monkeypatch, tmp_path):
     from tools import image_generation_tool
 
-    hermes_home = tmp_path / ".hermes"
-    image_dir = hermes_home / "cache" / "images"
+    openamer_home = tmp_path / ".openamer"
+    image_dir = openamer_home / "cache" / "images"
     image_dir.mkdir(parents=True)
     image_path = image_dir / "first-call.png"
     image_path.write_bytes(b"png")
 
-    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
     monkeypatch.setenv("TERMINAL_ENV", "ssh")
     monkeypatch.setattr(image_generation_tool, "_active_terminal_env", lambda task_id: None)
 
@@ -75,7 +75,7 @@ def test_postprocess_maps_ssh_cache_path_without_active_env(monkeypatch, tmp_pat
     result = json.loads(image_generation_tool._postprocess_image_generate_result(raw))
 
     assert result["image"] == str(image_path)
-    assert result["agent_visible_image"] == "~/.hermes/cache/images/first-call.png"
+    assert result["agent_visible_image"] == "~/.openamer/cache/images/first-call.png"
 
 
 def test_postprocess_leaves_remote_image_urls_unchanged(monkeypatch):
@@ -91,8 +91,8 @@ def test_postprocess_leaves_remote_image_urls_unchanged(monkeypatch):
 def test_handle_image_generate_postprocesses_plugin_result(monkeypatch, tmp_path):
     from tools import image_generation_tool
 
-    hermes_home = tmp_path / ".hermes"
-    image_dir = hermes_home / "cache" / "images"
+    openamer_home = tmp_path / ".openamer"
+    image_dir = openamer_home / "cache" / "images"
     image_dir.mkdir(parents=True)
     image_path = image_dir / "plugin.png"
     image_path.write_bytes(b"png")
@@ -105,7 +105,7 @@ def test_handle_image_generate_postprocesses_plugin_result(monkeypatch, tmp_path
         seen_task_ids.append(task_id)
         return env
 
-    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
     monkeypatch.setattr(image_generation_tool, "_active_terminal_env", fake_active_env)
     monkeypatch.setattr(
         image_generation_tool,
@@ -121,4 +121,4 @@ def test_handle_image_generate_postprocesses_plugin_result(monkeypatch, tmp_path
     )
 
     assert seen_task_ids == ["plugin-task"]
-    assert result["agent_visible_image"] == "/home/remote/.hermes/cache/images/plugin.png"
+    assert result["agent_visible_image"] == "/home/remote/.openamer/cache/images/plugin.png"

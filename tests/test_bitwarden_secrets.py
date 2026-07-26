@@ -2,7 +2,7 @@
 
 We never hit GitHub or Bitwarden in tests — subprocess + urllib are
 mocked so the suite stays fast and offline-safe.  The "live" pull and
-binary download are exercised manually by `hermes secrets bitwarden
+binary download are exercised manually by `openamer secrets bitwarden
 setup` outside of pytest.
 """
 
@@ -39,12 +39,12 @@ def _reset_caches():
 
 
 @pytest.fixture
-def hermes_home(tmp_path, monkeypatch):
-    """Point Hermes at an isolated home directory."""
-    home = tmp_path / ".hermes"
+def openamer_home(tmp_path, monkeypatch):
+    """Point OpenAmer at an isolated home directory."""
+    home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
-    # Some modules cache get_hermes_home; clear if needed.
+    # Some modules cache get_openamer_home; clear if needed.
     import openamer_constants
     if hasattr(openamer_constants, "_OPENAMER_HOME_CACHE"):
         openamer_constants._OPENAMER_HOME_CACHE = None  # type: ignore[attr-defined]
@@ -163,7 +163,7 @@ def test_safe_extract_member_rejects_absolute_path(tmp_path):
             bw._safe_extract_member(zf, "../../../etc/cron.d/evil", dest)
 
 
-def test_install_bws_rejects_malicious_member(hermes_home, monkeypatch):
+def test_install_bws_rejects_malicious_member(openamer_home, monkeypatch):
     # Build an archive whose only matching member escapes the temp dir.
     buf = io.BytesIO()
     with zipfile.ZipFile(buf, "w") as zf:
@@ -186,7 +186,7 @@ def test_install_bws_rejects_malicious_member(hermes_home, monkeypatch):
         bw.install_bws()
 
 
-def test_install_bws_happy_path(hermes_home, monkeypatch):
+def test_install_bws_happy_path(openamer_home, monkeypatch):
     fake_binary = b"#!/bin/sh\necho 'bws fake 2.0.0'\n"
     zip_bytes = _make_fake_zip(fake_binary)
     asset_name = bw._platform_asset_name()
@@ -212,7 +212,7 @@ def test_install_bws_happy_path(hermes_home, monkeypatch):
     assert path.stat().st_mode & stat.S_IXUSR
 
 
-def test_install_bws_checksum_mismatch(hermes_home, monkeypatch):
+def test_install_bws_checksum_mismatch(openamer_home, monkeypatch):
     zip_bytes = _make_fake_zip(b"contents")
     asset_name = bw._platform_asset_name()
     wrong_checksum = "0" * 64
@@ -230,7 +230,7 @@ def test_install_bws_checksum_mismatch(hermes_home, monkeypatch):
         bw.install_bws()
 
 
-def test_install_bws_missing_checksum_entry(hermes_home, monkeypatch):
+def test_install_bws_missing_checksum_entry(openamer_home, monkeypatch):
     zip_bytes = _make_fake_zip(b"x")
 
     def fake_download(url, dest):
@@ -611,7 +611,7 @@ def test_apply_swallows_fetch_errors(monkeypatch, tmp_path):
 
 def test_env_loader_skips_when_disabled(tmp_path, monkeypatch):
     """No config.yaml present → no BSM call, no crash."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
     monkeypatch.setattr(Path, "home", lambda: tmp_path)
@@ -622,7 +622,7 @@ def test_env_loader_skips_when_disabled(tmp_path, monkeypatch):
 
 
 def test_env_loader_calls_bsm_when_enabled(tmp_path, monkeypatch):
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     (home / "config.yaml").write_text(
         "secrets:\n"
@@ -670,8 +670,8 @@ def test_env_loader_calls_bsm_when_enabled(tmp_path, monkeypatch):
 
 
 def test_disk_cache_written_after_first_fetch(monkeypatch, tmp_path):
-    """First fetch hits bws AND writes a 0600 file under hermes_home/cache/."""
-    home = tmp_path / ".hermes"
+    """First fetch hits bws AND writes a 0600 file under openamer_home/cache/."""
+    home = tmp_path / ".openamer"
     home.mkdir()
     fake_binary = tmp_path / "bws"
     fake_binary.write_text("")
@@ -707,7 +707,7 @@ def test_disk_cache_written_after_first_fetch(monkeypatch, tmp_path):
 
 def test_disk_cache_short_circuits_bws_when_fresh(monkeypatch, tmp_path):
     """Second fetch (different process simulation) skips bws entirely."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     fake_binary = tmp_path / "bws"
     fake_binary.write_text("")
@@ -741,7 +741,7 @@ def test_disk_cache_short_circuits_bws_when_fresh(monkeypatch, tmp_path):
 
 def test_disk_cache_expires_with_ttl(monkeypatch, tmp_path):
     """Stale disk cache (older than ttl) triggers a refetch."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     fake_binary = tmp_path / "bws"
     fake_binary.write_text("")
@@ -778,7 +778,7 @@ def test_disk_cache_expires_with_ttl(monkeypatch, tmp_path):
 
 def test_disk_cache_key_mismatch_triggers_refetch(monkeypatch, tmp_path):
     """Disk cache entry written by a different token/project is ignored."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     fake_binary = tmp_path / "bws"
     fake_binary.write_text("")
@@ -812,7 +812,7 @@ def test_disk_cache_key_mismatch_triggers_refetch(monkeypatch, tmp_path):
 
 def test_disk_cache_use_cache_false_skips_disk(monkeypatch, tmp_path):
     """use_cache=False must skip BOTH in-process and disk caches."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     fake_binary = tmp_path / "bws"
     fake_binary.write_text("")
@@ -843,7 +843,7 @@ def test_disk_cache_use_cache_false_skips_disk(monkeypatch, tmp_path):
 
 def test_disk_cache_corrupt_file_falls_through(monkeypatch, tmp_path):
     """A garbage cache file must NOT crash startup — we refetch."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     fake_binary = tmp_path / "bws"
     fake_binary.write_text("")
@@ -872,7 +872,7 @@ def test_disk_cache_corrupt_file_falls_through(monkeypatch, tmp_path):
 
 def test_encrypted_cache_writes_without_plaintext(monkeypatch, tmp_path):
     """Encrypted cache stores last-good secrets without raw values on disk."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     fake_binary = tmp_path / "bws"
     fake_binary.write_text("")
@@ -922,7 +922,7 @@ def test_encrypted_cache_enabled_never_writes_plaintext_when_stale_disabled(
     monkeypatch, tmp_path
 ):
     """Encryption remains mandatory even when stale fallback is disabled."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     fake_binary = tmp_path / "bws"
     fake_binary.write_text("")
@@ -952,7 +952,7 @@ def test_encrypted_cache_enabled_never_writes_plaintext_when_stale_disabled(
 
 def test_encrypted_cache_timestamp_is_authenticated(monkeypatch, tmp_path):
     """An unauthenticated outer timestamp cannot make old ciphertext usable."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     fake_binary = tmp_path / "bws"
     fake_binary.write_text("")
@@ -1023,7 +1023,7 @@ def test_encrypted_cache_timestamp_is_authenticated(monkeypatch, tmp_path):
         )
 def test_encrypted_cache_falls_back_on_network_error(monkeypatch, tmp_path):
     """A fresh-enough encrypted cache is used when BWS is unreachable."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     fake_binary = tmp_path / "bws"
     fake_binary.write_text("")
@@ -1068,7 +1068,7 @@ def test_encrypted_cache_falls_back_on_network_error(monkeypatch, tmp_path):
 
 def test_encrypted_cache_does_not_fallback_on_auth_failure(monkeypatch, tmp_path):
     """Auth failures must not bypass revocation by using stale secrets."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     fake_binary = tmp_path / "bws"
     fake_binary.write_text("")
@@ -1104,7 +1104,7 @@ def test_encrypted_cache_does_not_fallback_on_auth_failure(monkeypatch, tmp_path
 
 def test_reset_cache_for_tests_deletes_disk_file(tmp_path):
     """_reset_cache_for_tests(home_path) must also clean disk."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     cache_path = bw._disk_cache_path(home)
     encrypted_cache_path = bw._encrypted_disk_cache_path(home)
@@ -1148,7 +1148,7 @@ def _seed_stale_disk_cache(home, *, secrets, age_seconds, project_id="proj-1",
 def test_stale_disk_cache_returned_when_bws_fails(monkeypatch, tmp_path):
     """When bws fails and the disk cache is stale, return the stale secrets
     with a warning rather than raising."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     fake_binary = tmp_path / "bws"
     fake_binary.write_text("")
@@ -1176,7 +1176,7 @@ def test_stale_disk_cache_returned_when_bws_fails(monkeypatch, tmp_path):
 
 def test_stale_fallback_warning_includes_cache_age(monkeypatch, tmp_path):
     """Operator-facing warning should report how old the cached secrets are."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     fake_binary = tmp_path / "bws"
     fake_binary.write_text("")
@@ -1202,7 +1202,7 @@ def test_stale_fallback_warning_includes_cache_age(monkeypatch, tmp_path):
 def test_no_stale_fallback_when_disk_cache_missing(monkeypatch, tmp_path):
     """If bws fails and there's no disk cache at all, re-raise — no silent
     success with empty secrets."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     fake_binary = tmp_path / "bws"
     fake_binary.write_text("")
@@ -1224,7 +1224,7 @@ def test_no_stale_fallback_when_disk_cache_missing(monkeypatch, tmp_path):
 def test_stale_fallback_skipped_when_use_cache_false(monkeypatch, tmp_path):
     """`use_cache=False` is an explicit opt-out from any cached value,
     including the stale fallback path — must still raise on bws failure."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     fake_binary = tmp_path / "bws"
     fake_binary.write_text("")
@@ -1249,7 +1249,7 @@ def test_stale_fallback_skipped_when_use_cache_false(monkeypatch, tmp_path):
 def test_stale_fallback_does_not_overwrite_disk_cache(monkeypatch, tmp_path):
     """Stale fallback must not bump the disk cache `fetched_at` — that would
     falsely make future processes think the cache is fresh."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     fake_binary = tmp_path / "bws"
     fake_binary.write_text("")
@@ -1279,7 +1279,7 @@ def test_stale_fallback_skipped_on_auth_failure(monkeypatch, tmp_path):
     """An AUTH_FAILED bws error must raise, not serve stale secrets — a bad
     access token indicates a real credential problem the caller needs to
     see, not a transient outage worth papering over."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     fake_binary = tmp_path / "bws"
     fake_binary.write_text("")
@@ -1304,7 +1304,7 @@ def test_stale_fallback_skipped_on_malformed_output(monkeypatch, tmp_path):
     """An INTERNAL-classified failure (unparseable bws output) must raise —
     the fallback is scoped to transport failures only, not "anything went
     wrong"."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     fake_binary = tmp_path / "bws"
     fake_binary.write_text("")
@@ -1330,7 +1330,7 @@ def test_stale_fallback_skipped_when_cache_ttl_zero(monkeypatch, tmp_path):
     """cache_ttl_seconds=0 means the caller opted out of caching entirely —
     the stale fallback must honor that even though it explicitly asks the
     disk cache for a stale (not-fresh) hit via ttl_seconds=inf internally."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     fake_binary = tmp_path / "bws"
     fake_binary.write_text("")

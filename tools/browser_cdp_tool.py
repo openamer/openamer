@@ -56,7 +56,7 @@ def _redact_cdp_output(value: Any) -> Any:
         return {key: _redact_cdp_output(item) for key, item in value.items()}
     return value
 
-# ``websockets`` is a direct hermes-agent dependency because the browser CDP
+# ``websockets`` is a direct openamer-agent dependency because the browser CDP
 # supervisor and browser_dialog tool import it during tool discovery. Wrap the
 # import so a clean error surfaces if an environment is stale or incomplete.
 try:

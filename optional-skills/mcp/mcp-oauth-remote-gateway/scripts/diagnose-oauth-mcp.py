@@ -30,17 +30,17 @@ import json, os, sys, time, argparse, urllib.request, urllib.error, urllib.parse
 UA = "python-httpx/0.27"  # CF blocks default urllib UA on many providers
 
 
-def _hermes_home():
-    # Prefer Hermes' own resolver (profile-safe); fall back to env then ~/.hermes.
+def _openamer_home():
+    # Prefer OpenAmer' own resolver (profile-safe); fall back to env then ~/.openamer.
     try:
         from openamer_constants import get_openamer_home
         return str(get_openamer_home())
     except Exception:
-        return os.environ.get("OPENAMER_HOME") or os.path.expanduser("~/.hermes")
+        return os.environ.get("OPENAMER_HOME") or os.path.expanduser("~/.openamer")
 
 
 def _tokens_dir():
-    return os.path.join(_hermes_home(), "mcp-tokens")
+    return os.path.join(_openamer_home(), "mcp-tokens")
 
 
 def _post(url, data=None, headers=None, form=False, timeout=30):
@@ -70,7 +70,7 @@ def _mcp_initialize(mcp_url, access_token):
         data={
             "jsonrpc": "2.0", "id": 1, "method": "initialize",
             "params": {"protocolVersion": "2025-06-18", "capabilities": {},
-                       "clientInfo": {"name": "hermes-diag", "version": "1.0"}},
+                       "clientInfo": {"name": "openamer-diag", "version": "1.0"}},
         },
         headers={
             "Authorization": "Bearer " + access_token,

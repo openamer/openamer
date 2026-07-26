@@ -217,7 +217,7 @@ class TestUnknownTopLevelKeys:
     """Arbitrary top-level keys must NOT warn — they are bridged to os.environ.
 
     Top-level scalars in config.yaml are forwarded into the environment
-    (gateway/run.py, hermes send) so users can feed skills and external apps
+    (gateway/run.py, openamer send) so users can feed skills and external apps
     env-style keys like DISCORD_HOME_CHANNEL or MY_APP_TOKEN. A closed-world
     allowlist can never enumerate those, so no "Unknown top-level config key"
     warning may exist.

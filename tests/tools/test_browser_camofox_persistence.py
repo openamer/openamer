@@ -76,7 +76,7 @@ class TestEphemeralMode:
         monkeypatch.setenv("CAMOFOX_URL", "http://localhost:9377")
 
         session = _get_session("task-1")
-        assert session["user_id"].startswith("hermes_")
+        assert session["user_id"].startswith("openamer_")
         assert session["managed"] is False
 
     def test_different_tasks_get_different_user_ids(self, tmp_path, monkeypatch):
@@ -97,7 +97,7 @@ class TestEphemeralMode:
 
 
 class TestManagedPersistenceMode:
-    """With managed_persistence: stable userId derived from Hermes profile."""
+    """With managed_persistence: stable userId derived from OpenAmer profile."""
 
     def test_session_gets_stable_user_id(self, tmp_path, monkeypatch):
         monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))

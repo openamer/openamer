@@ -103,7 +103,7 @@ class TestNormalizeCustomProviderEntry:
         assert any("unknown config keys" in r.message.lower() for r in caplog.records)
 
     def test_provider_key_not_flagged_unknown(self, caplog):
-        """A redundant ``provider`` key (written by Hermes' own config writer)
+        """A redundant ``provider`` key (written by OpenAmer' own config writer)
         must be accepted silently — not reported as an unknown key. Regression
         for the config warn-storm that deadlocked Windows logging."""
         entry = {

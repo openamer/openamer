@@ -945,7 +945,7 @@ SESSION_SEARCH_SCHEMA = {
         "FTS5-backed retrieval over the SQLite message store. No LLM calls — every "
         "shape returns actual messages from the DB.\n\n"
         "SOURCE-FIRST LIMIT\n\n"
-        "  This tool searches Hermes conversation history only. It is not evidence "
+        "  This tool searches OpenAmer conversation history only. It is not evidence "
         "about the current contents of external sources. If the user provided a "
         "direct source such as a URL, phone number/contact, app/thread, file path, "
         "account, website, or live system, inspect that original source before or "
@@ -995,7 +995,7 @@ SESSION_SEARCH_SCHEMA = {
         "  When you refer the user to a session, write its `link` value inline in "
         "your reply — every result carries one, e.g. "
         "`@session:default/20260722_204335_d62c16`. Copy it verbatim; do not "
-        "reformat it as a markdown link or wrap it in backticks. Hermes renders "
+        "reformat it as a markdown link or wrap it in backticks. OpenAmer renders "
         "it as a link showing the session's title, so the link IS the title: "
         "use it as a noun mid-sentence (\"that's @session:default/... — want me "
         "to pick it up?\"), never alone on its own line, and never alongside the "
@@ -1007,7 +1007,7 @@ SESSION_SEARCH_SCHEMA = {
         "(`\"docker networking\"`), boolean (`python NOT java`), or prefix wildcards "
         "(`deploy*`).\n\n"
         "WHEN TO USE\n\n"
-        "  Reach for this on questions about Hermes conversation history itself, such "
+        "  Reach for this on questions about OpenAmer conversation history itself, such "
         "as \"what did we do about X\", \"where did we leave Y\", or \"find the "
         "session where Z\". If the user provided a direct source identifier, inspect "
         "that source first when accessible; session_search can then supply historical "
@@ -1084,7 +1084,7 @@ SESSION_SEARCH_SCHEMA = {
             "profile": {
                 "type": "string",
                 "description": (
-                    "Optional. Read sessions from another Hermes profile's database "
+                    "Optional. Read sessions from another OpenAmer profile's database "
                     "(read-only). Use when resolving an `@session:<profile>/<id>` link: "
                     "pass the profile segment here with session_id as the id segment. "
                     "Omit to use the current profile."

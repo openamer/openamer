@@ -23,7 +23,7 @@ class TestHonchoSession:
         return HonchoSession(
             key="telegram:12345",
             user_peer_id="user-telegram-12345",
-            assistant_peer_id="hermes-assistant",
+            assistant_peer_id="openamer-assistant",
             honcho_session_id="telegram-12345",
         )
 
@@ -199,7 +199,7 @@ class TestPeerLookupHelpers:
         session = HonchoSession(
             key="telegram:123",
             user_peer_id="robert",
-            assistant_peer_id="hermes",
+            assistant_peer_id="openamer",
             honcho_session_id="telegram-123",
         )
         mgr._cache[session.key] = session
@@ -252,7 +252,7 @@ class TestPeerLookupHelpers:
         mgr, session = self._make_cached_manager()
         honcho_client = MagicMock()
         honcho_client.search.return_value = [
-            SimpleNamespace(content="Robert runs neuralancer", peer_id="hermes", session_id="s-old", id="m1"),
+            SimpleNamespace(content="Robert runs neuralancer", peer_id="openamer", session_id="s-old", id="m1"),
             SimpleNamespace(content="I founded neuralancer in 2019", peer_id="robert", session_id="s-old", id="m2"),
         ]
         with patch.object(HonchoSessionManager, "honcho", new_callable=lambda: property(lambda s: honcho_client)):
@@ -273,7 +273,7 @@ class TestPeerLookupHelpers:
         mgr, session = self._make_cached_manager()
         honcho_client = MagicMock()
         honcho_client.search.return_value = [
-            SimpleNamespace(content="Assistant note", peer_id="hermes", session_id="s1", id="m1"),
+            SimpleNamespace(content="Assistant note", peer_id="openamer", session_id="s1", id="m1"),
         ]
         with patch.object(HonchoSessionManager, "honcho", new_callable=lambda: property(lambda s: honcho_client)):
             result = mgr.search_context(session.key, "assistant", peer=session.assistant_peer_id)
@@ -578,11 +578,11 @@ class TestConcludeToolDispatch:
 
         result = provider.handle_tool_call(
             "honcho_profile",
-            {"peer": "hermes"},
+            {"peer": "openamer"},
         )
 
         assert "Role: Assistant" in result
-        provider._manager.get_peer_card.assert_called_once_with("telegram:123", peer="hermes")
+        provider._manager.get_peer_card.assert_called_once_with("telegram:123", peer="openamer")
 
     def test_honcho_search_can_target_explicit_peer_id(self):
         provider = HonchoMemoryProvider()
@@ -593,7 +593,7 @@ class TestConcludeToolDispatch:
 
         result = provider.handle_tool_call(
             "honcho_search",
-            {"query": "assistant", "peer": "hermes"},
+            {"query": "assistant", "peer": "openamer"},
         )
 
         assert "Assistant self context" in result
@@ -601,7 +601,7 @@ class TestConcludeToolDispatch:
             "telegram:123",
             "assistant",
             max_tokens=800,
-            peer="hermes",
+            peer="openamer",
         )
 
     def test_honcho_search_rejects_whitespace_only_query(self):
@@ -626,7 +626,7 @@ class TestConcludeToolDispatch:
 
         result = provider.handle_tool_call(
             "honcho_reasoning",
-            {"query": "who are you", "peer": "hermes"},
+            {"query": "who are you", "peer": "openamer"},
         )
 
         assert "Assistant answer" in result
@@ -634,7 +634,7 @@ class TestConcludeToolDispatch:
             "telegram:123",
             "who are you",
             reasoning_level=None,
-            peer="hermes",
+            peer="openamer",
             apply_injection_cap=False,
         )
 
@@ -860,7 +860,7 @@ class TestToolsModeInitBehavior:
         with patch("plugins.memory.honcho.client.HonchoClientConfig.from_global_config", return_value=cfg), \
              patch("plugins.memory.honcho.client.get_honcho_client", return_value=MagicMock()), \
              patch("plugins.memory.honcho.session.HonchoSessionManager", return_value=mock_manager) as mock_manager_cls, \
-             patch("openamer_constants.get_hermes_home", return_value=MagicMock()):
+             patch("openamer_constants.get_openamer_home", return_value=MagicMock()):
             provider.initialize(session_id="test-session-001", **init_kwargs)
 
         return provider, cfg, mock_manager_cls
@@ -926,7 +926,7 @@ class TestToolsModeInitBehavior:
 class TestPerSessionMigrateGuard:
     """Verify migrate_memory_files is skipped under per-session strategy.
 
-    per-session creates a fresh Honcho session every Hermes run. Uploading
+    per-session creates a fresh Honcho session every OpenAmer run. Uploading
     MEMORY.md/USER.md/SOUL.md to each short-lived session floods the backend
     with duplicate content. The guard was added to prevent orphan sessions
     containing only <prior_memory_file> wrappers.
@@ -955,7 +955,7 @@ class TestPerSessionMigrateGuard:
         with patch("plugins.memory.honcho.client.HonchoClientConfig.from_global_config", return_value=cfg), \
              patch("plugins.memory.honcho.client.get_honcho_client", return_value=MagicMock()), \
              patch("plugins.memory.honcho.session.HonchoSessionManager", return_value=mock_manager), \
-             patch("openamer_constants.get_hermes_home", return_value=MagicMock()):
+             patch("openamer_constants.get_openamer_home", return_value=MagicMock()):
             provider.initialize(session_id="test-session-001")
 
         return provider, mock_manager
@@ -1201,7 +1201,7 @@ class TestDialecticCadenceDefaults:
         with patch("plugins.memory.honcho.client.HonchoClientConfig.from_global_config", return_value=cfg), \
              patch("plugins.memory.honcho.client.get_honcho_client", return_value=MagicMock()), \
              patch("plugins.memory.honcho.session.HonchoSessionManager", return_value=mock_manager), \
-             patch("openamer_constants.get_hermes_home", return_value=MagicMock()):
+             patch("openamer_constants.get_openamer_home", return_value=MagicMock()):
             provider.initialize(session_id="test-session-001")
 
         _settle_prewarm(provider)
@@ -1361,7 +1361,7 @@ class TestDialecticDepth:
         with patch("plugins.memory.honcho.client.HonchoClientConfig.from_global_config", return_value=cfg), \
              patch("plugins.memory.honcho.client.get_honcho_client", return_value=MagicMock()), \
              patch("plugins.memory.honcho.session.HonchoSessionManager", return_value=mock_manager), \
-             patch("openamer_constants.get_hermes_home", return_value=MagicMock()):
+             patch("openamer_constants.get_openamer_home", return_value=MagicMock()):
             provider.initialize(session_id="test-session-001")
 
         _settle_prewarm(provider)
@@ -1523,7 +1523,7 @@ class TestTrivialPromptHeuristic:
         with patch("plugins.memory.honcho.client.HonchoClientConfig.from_global_config", return_value=cfg), \
              patch("plugins.memory.honcho.client.get_honcho_client", return_value=MagicMock()), \
              patch("plugins.memory.honcho.session.HonchoSessionManager", return_value=mock_manager), \
-             patch("openamer_constants.get_hermes_home", return_value=MagicMock()):
+             patch("openamer_constants.get_openamer_home", return_value=MagicMock()):
             provider.initialize(session_id="test-session-trivial")
         _settle_prewarm(provider)
         return provider
@@ -1623,7 +1623,7 @@ class TestDialecticCadenceAdvancesOnSuccess:
         with patch("plugins.memory.honcho.client.HonchoClientConfig.from_global_config", return_value=cfg), \
              patch("plugins.memory.honcho.client.get_honcho_client", return_value=MagicMock()), \
              patch("plugins.memory.honcho.session.HonchoSessionManager", return_value=mock_manager), \
-             patch("openamer_constants.get_hermes_home", return_value=MagicMock()):
+             patch("openamer_constants.get_openamer_home", return_value=MagicMock()):
             provider.initialize(session_id="test-session-retry")
         _settle_prewarm(provider)
         return provider
@@ -1707,7 +1707,7 @@ class TestSessionStartDialecticPrewarm:
         with patch("plugins.memory.honcho.client.HonchoClientConfig.from_global_config", return_value=cfg), \
              patch("plugins.memory.honcho.client.get_honcho_client", return_value=MagicMock()), \
              patch("plugins.memory.honcho.session.HonchoSessionManager", return_value=mock_manager), \
-             patch("openamer_constants.get_hermes_home", return_value=MagicMock()):
+             patch("openamer_constants.get_openamer_home", return_value=MagicMock()):
             provider.initialize(session_id="test-prewarm")
         return provider
 
@@ -1796,7 +1796,7 @@ class TestDialecticLiveness:
         with patch("plugins.memory.honcho.client.HonchoClientConfig.from_global_config", return_value=cfg), \
              patch("plugins.memory.honcho.client.get_honcho_client", return_value=MagicMock()), \
              patch("plugins.memory.honcho.session.HonchoSessionManager", return_value=mock_manager), \
-             patch("openamer_constants.get_hermes_home", return_value=MagicMock()):
+             patch("openamer_constants.get_openamer_home", return_value=MagicMock()):
             provider.initialize(session_id="test-liveness")
         _settle_prewarm(provider)
         return provider
@@ -1943,7 +1943,7 @@ class TestDialecticLifecycleSmoke:
         with patch("plugins.memory.honcho.client.HonchoClientConfig.from_global_config", return_value=cfg), \
              patch("plugins.memory.honcho.client.get_honcho_client", return_value=MagicMock()), \
              patch("plugins.memory.honcho.session.HonchoSessionManager", return_value=mock_manager), \
-             patch("openamer_constants.get_hermes_home", return_value=MagicMock()):
+             patch("openamer_constants.get_openamer_home", return_value=MagicMock()):
             return provider, mock_manager, cfg
 
     def _await_thread(self, provider):
@@ -1975,7 +1975,7 @@ class TestDialecticLifecycleSmoke:
         # Program the dialectic responses in the exact order they'll be requested.
         # An extra or missing call fails the test — strong smoke signal.
         responses = iter([
-            "prewarm: user is eri, works on hermes",      # session-start prewarm
+            "prewarm: user is eri, works on openamer",      # session-start prewarm
             "cadence fire: long query synthesis",         # turn 4 queue_prefetch
             "",                                           # turn 7 fire: silent failure
             "retry success: fresh synthesis",             # turn 8 queue_prefetch retry
@@ -1986,7 +1986,7 @@ class TestDialecticLifecycleSmoke:
         with patch("plugins.memory.honcho.client.HonchoClientConfig.from_global_config", return_value=cfg), \
              patch("plugins.memory.honcho.client.get_honcho_client", return_value=MagicMock()), \
              patch("plugins.memory.honcho.session.HonchoSessionManager", return_value=mgr), \
-             patch("openamer_constants.get_hermes_home", return_value=MagicMock()):
+             patch("openamer_constants.get_openamer_home", return_value=MagicMock()):
             provider.initialize(session_id="smoke-test")
 
         self._await_thread(provider)
@@ -2086,7 +2086,7 @@ class TestReasoningHeuristic:
         with patch("plugins.memory.honcho.client.HonchoClientConfig.from_global_config", return_value=cfg), \
              patch("plugins.memory.honcho.client.get_honcho_client", return_value=MagicMock()), \
              patch("plugins.memory.honcho.session.HonchoSessionManager", return_value=mock_manager), \
-             patch("openamer_constants.get_hermes_home", return_value=MagicMock()):
+             patch("openamer_constants.get_openamer_home", return_value=MagicMock()):
             provider.initialize(session_id="test-heuristic")
         _settle_prewarm(provider)
         return provider

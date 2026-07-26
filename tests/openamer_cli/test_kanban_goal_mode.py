@@ -23,7 +23,7 @@ from openamer_cli import goals
 
 @pytest.fixture
 def kanban_home(tmp_path, monkeypatch):
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
     monkeypatch.setattr(Path, "home", lambda: tmp_path)
@@ -69,7 +69,7 @@ def test_goal_mode_without_max_turns(kanban_home):
 
 def test_legacy_db_migrates_goal_columns(tmp_path, monkeypatch):
     """A tasks table created without goal columns must gain them on init."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
     monkeypatch.setattr(Path, "home", lambda: tmp_path)
@@ -299,11 +299,11 @@ def test_loop_stops_if_task_reclaimed(monkeypatch):
 
 
 # ---------------------------------------------------------------------------
-# CLI judge gate tests (hermes kanban complete bypass fix)
+# CLI judge gate tests (openamer kanban complete bypass fix)
 # ---------------------------------------------------------------------------
 
 class TestCLIJudgeGate:
-    """hermes kanban complete must apply the same goal_mode judge gate as the
+    """openamer kanban complete must apply the same goal_mode judge gate as the
     kanban_complete tool (Issue #38367 sibling gap).
 
     Uses mocks for kb.get_task and kb.complete_task to avoid depending on the

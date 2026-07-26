@@ -49,7 +49,7 @@ def test_builtin_catalog_is_loaded_from_external_asset_and_is_status_only():
     assert len(catalog["generic"]) >= 10
 
 
-def test_relative_status_phrase_path_loads_from_hermes_home(tmp_path, monkeypatch):
+def test_relative_status_phrase_path_loads_from_openamer_home(tmp_path, monkeypatch):
     monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     phrase_file = tmp_path / "phrases.yaml"
     phrase_file.write_text("mode: replace\nstatus:\n  - relative safe status text\n", encoding="utf-8")

@@ -280,7 +280,7 @@ async def test_process_message_ephemeral_reply_does_not_auto_upload_bare_paths(t
     )
     config_path = tmp_path / "config.yaml"
     config_path.write_text("model:\n  provider: test\n", encoding="utf-8")
-    reply_text = f"Tip: hermes chat --ignore-user-config skips {config_path}"
+    reply_text = f"Tip: openamer chat --ignore-user-config skips {config_path}"
 
     async def _handler(evt):
         return EphemeralReply(reply_text, ttl_seconds=0)

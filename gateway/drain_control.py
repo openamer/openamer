@@ -25,7 +25,7 @@ Contract (presence-based, mirroring ``.restart_notify.json``):
     marker from a *prior* instantiation) means "not draining" (revert to
     ``running`` if we had flipped it).
 
-Why the epoch (NS-570). ``OPENAMER_HOME`` is a **durable** store — on Hermes
+Why the epoch (NS-570). ``OPENAMER_HOME`` is a **durable** store — on OpenAmer
 Cloud it is a persistent Fly volume (``/opt/data``). A begin-drain marker
 written there *survives a machine restart*. But the disruptive lifecycle
 actions a drain protects (auto-update / image migrate / env edit / profile
@@ -86,7 +86,7 @@ def current_instantiation_epoch() -> str:
       | Fly microVM reboot (auto-upd.) | changes | changes    | NEW    | reject |
       | plain ``docker restart``       | same    | changes    | NEW    | reject |
       | s6 respawn of the gateway only | same    | same       | SAME   | honour |
-      | host ``hermes gateway restart``| same    | same(init) | SAME   | honour |
+      | host ``openamer gateway restart``| same    | same(init) | SAME   | honour |
 
     The last row is intentional: a host install has no durable-volume drain
     bug, and honouring a drain across a deliberate process restart is the
@@ -212,7 +212,7 @@ def drain_requested(*, home: Optional[Path] = None) -> bool:
 
     A marker whose ``epoch`` does not match the current instantiation epoch is
     treated as absent: it survived a container/VM restart (OPENAMER_HOME is a
-    durable Fly volume on Hermes Cloud) and the lifecycle action that triggered
+    durable Fly volume on OpenAmer Cloud) and the lifecycle action that triggered
     the drain has already completed — honouring it would wedge the
     freshly-restarted gateway in ``draining`` (NS-570). The staleness check is
     lenient (see :func:`_marker_epoch_is_stale`): a legacy/corrupt marker with

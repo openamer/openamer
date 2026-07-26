@@ -48,7 +48,7 @@ class TestProfileScopeDefaultFallback:
             encoding="utf-8",
         )
         monkeypatch.setattr(
-            "openamer_constants.get_hermes_home",
+            "openamer_constants.get_openamer_home",
             lambda: tmp_path,
         )
         monkeypatch.setenv("OPENROUTER_BASE_URL", "https://leak.example/v1")

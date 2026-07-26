@@ -19,7 +19,7 @@
     /* Path aliases */
     "paths": {
       "@/*": ["./src/*"],
-      "@hermes/shared": ["../apps/shared/src/index.ts"]
+      "@openamer/shared": ["../apps/shared/src/index.ts"]
     },
 
     /* Linting */

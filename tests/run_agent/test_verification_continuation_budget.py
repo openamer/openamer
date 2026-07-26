@@ -19,7 +19,7 @@ def _response(content="composed report"):
 
 @pytest.fixture
 def agent(tmp_path, monkeypatch):
-    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".hermes"))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".openamer"))
     with (
         patch("run_agent.get_tool_definitions", return_value=[]),
         patch("run_agent.check_toolset_requirements", return_value={}),

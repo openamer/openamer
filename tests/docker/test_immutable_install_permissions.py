@@ -21,14 +21,14 @@ def test_container_sets_hosted_write_policy_env(built_image: str) -> None:
     assert result.returncode == 0, result.stderr[-2000:]
 
 
-def test_hermes_user_cannot_modify_install_but_can_write_data(built_image: str) -> None:
+def test_openamer_user_cannot_modify_install_but_can_write_data(built_image: str) -> None:
     script = textwrap.dedent(
         r"""
         set -eu
-        /opt/hermes/.venv/bin/python - <<'PY'
+        /opt/openamer/.venv/bin/python - <<'PY'
         from pathlib import Path
 
-        install_file = Path("/opt/hermes/agent/message_sanitization.py")
+        install_file = Path("/opt/openamer/agent/message_sanitization.py")
         try:
             with install_file.open("a", encoding="utf-8") as handle:
                 handle.write("\n# unexpected hosted mutation\n")
@@ -54,7 +54,7 @@ def test_hermes_user_cannot_modify_install_but_can_write_data(built_image: str) 
             "--entrypoint",
             "su",
             built_image,
-            "hermes",
+            "openamer",
             "-s",
             "/bin/sh",
             "-c",

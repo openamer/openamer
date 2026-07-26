@@ -1,4 +1,4 @@
-"""Tests for ``hermes migrate xai`` — apply path with ruamel round-trip."""
+"""Tests for ``openamer migrate xai`` — apply path with ruamel round-trip."""
 from __future__ import annotations
 
 from pathlib import Path
@@ -21,7 +21,7 @@ def trap_config(tmp_path: Path) -> Path:
     """A config.yaml with retired models AND comments to verify round-trip."""
     p = tmp_path / "config.yaml"
     p.write_text(
-        "# Hermes config (sample)\n"
+        "# OpenAmer config (sample)\n"
         "principal:\n"
         "  provider: xai             # the main model\n"
         "  model: grok-4-1-fast-non-reasoning  # retiring May 15\n"
@@ -152,7 +152,7 @@ class TestRoundTripPreservation:
         issues = find_retired_xai_refs(_parse(trap_config))
         apply_migration(trap_config, issues)
         text = trap_config.read_text(encoding="utf-8")
-        assert "# Hermes config (sample)" in text
+        assert "# OpenAmer config (sample)" in text
 
     def test_preserves_inline_comments_on_unmodified_lines(self, trap_config: Path):
         issues = find_retired_xai_refs(_parse(trap_config))

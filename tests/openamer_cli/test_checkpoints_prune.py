@@ -1,4 +1,4 @@
-"""Tests for `hermes checkpoints prune`'s orphan confirmation flow.
+"""Tests for `openamer checkpoints prune`'s orphan confirmation flow.
 
 Covers the P1 raised on PR #69141: the confirmation preview must cover
 BOTH v2 projects (`store_status()["projects"]`) and pre-v2 shadow repos
@@ -34,7 +34,7 @@ _V2_ORPHAN_ONLY_STATUS = {
 _PRE_V2_ONLY_STATUS = {
     "projects": [],
     "pre_v2_projects": [
-        {"path": "/home/user/.hermes/checkpoints/deadbeefcafebabe", "workdir": None, "exists": False},
+        {"path": "/home/user/.openamer/checkpoints/deadbeefcafebabe", "workdir": None, "exists": False},
     ],
 }
 
@@ -43,7 +43,7 @@ _MIXED_STATUS = {
         {"hash": "abc123", "workdir": "/gone/v2-project", "exists": False, "commits": 4},
     ],
     "pre_v2_projects": [
-        {"path": "/home/user/.hermes/checkpoints/deadbeefcafebabe", "workdir": "/gone/pre-v2-project", "exists": False},
+        {"path": "/home/user/.openamer/checkpoints/deadbeefcafebabe", "workdir": "/gone/pre-v2-project", "exists": False},
     ],
 }
 
@@ -245,7 +245,7 @@ def test_nonempty_preview_allowlist_matches_displayed_set(monkeypatch, capsys):
     assert len(prune_calls) == 1
     assert prune_calls[0]["orphan_allowlist"] == {
         "abc123",
-        "/home/user/.hermes/checkpoints/deadbeefcafebabe",
+        "/home/user/.openamer/checkpoints/deadbeefcafebabe",
     }
 
 

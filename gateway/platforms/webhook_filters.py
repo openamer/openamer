@@ -27,7 +27,7 @@ def _stringify_filter_value(value: Any) -> str:
 
 
 def _resolve_profile_path(path_value: Any) -> Optional[Path]:
-    """Resolve a user path, mapping ~/.hermes to the active profile home."""
+    """Resolve a user path, mapping ~/.openamer to the active profile home."""
     if not isinstance(path_value, str):
         return None
     raw = os.path.expandvars(path_value.strip())
@@ -35,15 +35,15 @@ def _resolve_profile_path(path_value: Any) -> Optional[Path]:
         return None
     from openamer_constants import get_openamer_home
 
-    hermes_home = get_openamer_home()
-    if raw == "~/.hermes":
-        return hermes_home
-    if raw.startswith("~/.hermes/"):
-        return hermes_home / raw.removeprefix("~/.hermes/")
+    openamer_home = get_openamer_home()
+    if raw == "~/.openamer":
+        return openamer_home
+    if raw.startswith("~/.openamer/"):
+        return openamer_home / raw.removeprefix("~/.openamer/")
     path = Path(raw).expanduser()
     if path.is_absolute():
         return path
-    return hermes_home / path
+    return openamer_home / path
 
 
 def _resolve_script_path(script_value: Any) -> tuple[Optional[Path], Optional[str]]:
@@ -54,7 +54,7 @@ def _resolve_script_path(script_value: Any) -> tuple[Optional[Path], Optional[st
 
     scripts_root = (get_openamer_home() / "scripts").resolve()
     raw_text = os.path.expandvars(script_value.strip())
-    if raw_text == "~/.hermes" or raw_text.startswith("~/.hermes/"):
+    if raw_text == "~/.openamer" or raw_text.startswith("~/.openamer/"):
         mapped = _resolve_profile_path(raw_text)
         candidate = mapped.resolve() if mapped is not None else scripts_root
     else:
@@ -296,7 +296,7 @@ class WebhookRouteProcessor:
             return False, None
         if (
             transformed.get("[SILENT]") is True
-            or transformed.get("__hermes_ignore__") is True
+            or transformed.get("__openamer_ignore__") is True
         ):
             return False, None
         return True, transformed

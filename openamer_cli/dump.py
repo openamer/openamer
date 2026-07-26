@@ -13,14 +13,14 @@ import subprocess
 import sys
 from pathlib import Path
 
-from openamer_cli.config import get_hermes_home, get_env_path, get_project_root, load_config
-from openamer_cli.env_loader import load_hermes_dotenv
-from openamer_constants import display_hermes_home
+from openamer_cli.config import get_openamer_home, get_env_path, get_project_root, load_config
+from openamer_cli.env_loader import load_openamer_dotenv
+from openamer_constants import display_openamer_home
 from agent.skill_utils import is_excluded_skill_path
 
 
 def _dotenv_key_names() -> set[str]:
-    """Return the set of env-var names assigned a non-empty value in ~/.hermes/.env.
+    """Return the set of env-var names assigned a non-empty value in ~/.openamer/.env.
 
     The managed backends (launchd / systemd / the desktop-spawned ``serve``
     process) load credentials from this file — NOT from an interactive shell's
@@ -57,7 +57,7 @@ def _get_git_commit(project_root: Path) -> str:
     Source installs and dev images resolve this live via ``git rev-parse``.
     The published Docker image excludes ``.git`` from the build context, so
     that lookup always fails — we fall back to the baked-in build SHA written
-    to ``<project_root>/.hermes_build_sha`` by the Dockerfile's
+    to ``<project_root>/.openamer_build_sha`` by the Dockerfile's
     ``HERMES_GIT_SHA`` build-arg (see ``openamer_cli/build_info.py``).
     The output format is identical regardless of source.
     """
@@ -141,9 +141,9 @@ def _gateway_status() -> str:
         return "unknown" if sys.platform.startswith(("linux", "darwin")) else "N/A"
 
 
-def _count_skills(hermes_home: Path) -> int:
+def _count_skills(openamer_home: Path) -> int:
     """Count installed skills."""
-    skills_dir = hermes_home / "skills"
+    skills_dir = openamer_home / "skills"
     if not skills_dir.is_dir():
         return 0
     count = 0
@@ -161,9 +161,9 @@ def _count_mcp_servers(config: dict) -> int:
     return len(servers)
 
 
-def _cron_summary(hermes_home: Path) -> str:
+def _cron_summary(openamer_home: Path) -> str:
     """Return cron jobs summary."""
-    jobs_file = hermes_home / "cron" / "jobs.json"
+    jobs_file = openamer_home / "cron" / "jobs.json"
     if not jobs_file.exists():
         return "0"
     try:
@@ -280,13 +280,13 @@ def run_dump(args):
 
     # Load env from .env file so key checks work
     env_path = get_env_path()
-    load_hermes_dotenv(
-        hermes_home=env_path.parent,
+    load_openamer_dotenv(
+        openamer_home=env_path.parent,
         project_env=get_project_root() / ".env",
     )
 
     project_root = get_project_root()
-    hermes_home = get_openamer_home()
+    openamer_home = get_openamer_home()
 
     try:
         from openamer_cli import __version__
@@ -354,7 +354,7 @@ def run_dump(args):
     lines.append(f"python:           {sys.version.split()[0]}")
     lines.append(f"openai_sdk:       {openai_ver}")
     lines.append(f"profile:          {profile}")
-    lines.append(f"hermes_home:      {display_hermes_home()}")
+    lines.append(f"openamer_home:      {display_openamer_home()}")
     lines.append(f"model:            {model}")
     lines.append(f"provider:         {provider}")
     lines.append(f"terminal:         {backend}")
@@ -397,7 +397,7 @@ def run_dump(args):
             display = _redact(val)
         else:
             display = "set" if val else "not set"
-        # Set in this (shell) process but absent from ~/.hermes/.env: a managed
+        # Set in this (shell) process but absent from ~/.openamer/.env: a managed
         # backend (launchd/systemd/desktop `serve`) loads .env, not the login
         # shell, so it likely can't see this key — even though the dump reads
         # "set". Flag it so support doesn't chase a phantom "key is configured"
@@ -429,8 +429,8 @@ def run_dump(args):
 
     platforms = _configured_platforms()
     lines.append(f"  platforms:          {', '.join(platforms) if platforms else 'none'}")
-    lines.append(f"  cron_jobs:          {_cron_summary(hermes_home)}")
-    lines.append(f"  skills:             {_count_skills(hermes_home)}")
+    lines.append(f"  cron_jobs:          {_cron_summary(openamer_home)}")
+    lines.append(f"  skills:             {_count_skills(openamer_home)}")
 
     # Config overrides (non-default values)
     overrides = _config_overrides(config)

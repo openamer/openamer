@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Bridge desktop-only tools to Hermes-desktop renderer events.
+"""Bridge desktop-only tools to OpenAmer-desktop renderer events.
 
 The preview pane, pane focus, and friends live in the desktop renderer, so
 desktop-gated tools reach them through an emitter the desktop ``tui_gateway``

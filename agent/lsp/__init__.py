@@ -1,6 +1,6 @@
-"""Language Server Protocol (LSP) integration for Hermes Agent.
+"""Language Server Protocol (LSP) integration for OpenAmer Agent.
 
-Hermes runs full language servers (pyright, gopls, rust-analyzer,
+OpenAmer runs full language servers (pyright, gopls, rust-analyzer,
 typescript-language-server, etc.) as subprocesses and pipes their
 ``textDocument/publishDiagnostics`` output into the post-write lint
 delta filter used by ``write_file`` and ``patch``.
@@ -69,7 +69,7 @@ def get_service() -> Optional[LSPService]:
             # be reaped by the kernel along with their parent.  We
             # care about clean exits where Python flushes stdio
             # before terminating; without this hook every
-            # ``hermes chat`` exit would leak pyright processes that
+            # ``openamer chat`` exit would leak pyright processes that
             # outlive the parent for a few seconds while their
             # stdout buffers drain.
             atexit.register(_atexit_shutdown)

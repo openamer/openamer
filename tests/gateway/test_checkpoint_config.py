@@ -7,7 +7,7 @@ def test_gateway_checkpoint_config_reaches_real_agent(tmp_path, monkeypatch):
     from run_agent import AIAgent
 
     monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
-    monkeypatch.setattr(gateway_run, "_hermes_home", tmp_path)
+    monkeypatch.setattr(gateway_run, "_openamer_home", tmp_path)
     (tmp_path / "config.yaml").write_text(
         """checkpoints:
   enabled: true

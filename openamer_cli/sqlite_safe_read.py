@@ -149,13 +149,13 @@ def has_live_connection(path: Path | str) -> bool:
 class _TrackingMixin:
     """Untrack-on-close behaviour, mixable into any Connection subclass."""
 
-    _hermes_tracked_path: str | None = None
+    _openamer_tracked_path: str | None = None
 
     def close(self) -> None:  # type: ignore[misc]
         with _live_lock:
-            path = getattr(self, "_hermes_tracked_path", None)
+            path = getattr(self, "_openamer_tracked_path", None)
             if path is not None:
-                self._hermes_tracked_path = None
+                self._openamer_tracked_path = None
                 untrack_connection(path)
             super().close()  # type: ignore[misc]
 
@@ -254,7 +254,7 @@ def connect_tracked(
                 # releases the registry entry, rather than handing back a
                 # connection whose database has silently lost probe safety.
                 conn = _retrofit_tracking(conn, resolved)
-            conn._hermes_tracked_path = resolved
+            conn._openamer_tracked_path = resolved
             _live_connections[resolved] = _live_connections.get(resolved, 0) + 1
             return conn
         except Exception:

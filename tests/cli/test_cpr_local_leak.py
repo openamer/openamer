@@ -161,7 +161,7 @@ class TestDelayedCprLocalPtyLeak:
                 pass
 
     def test_cpr_disabled_output_sends_no_query(self):
-        """Hermes CPR-disabled builder must not emit ESC[6n."""
+        """OpenAmer CPR-disabled builder must not emit ESC[6n."""
         master, slave = _openpty_or_skip()
         try:
             slave_w = os.fdopen(slave, "w", buffering=1)

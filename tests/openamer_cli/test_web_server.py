@@ -37,7 +37,7 @@ _EXAMPLE_PLUGIN_FIXTURE = (
 
 
 @pytest.fixture
-def _install_example_plugin(_isolate_hermes_home):
+def _install_example_plugin(_isolate_openamer_home):
     """Drop the example-dashboard fixture into the per-test OPENAMER_HOME
     user-plugins directory and force the web_server's dashboard plugin
     cache + API mount to rediscover it.
@@ -52,7 +52,7 @@ def _install_example_plugin(_isolate_hermes_home):
     The user-plugin source is preferred over a transient
     ``HERMES_BUNDLED_PLUGINS`` override because the bundled dir is
     resolved per-call (other tests in the suite implicitly rely on the
-    real bundled plugins — kanban, hermes-achievements, model providers
+    real bundled plugins — kanban, openamer-achievements, model providers
     — being available, and globally swapping that root would yank them
     all). User plugins are first in the discovery search order, so
     laying down the fixture here is enough.
@@ -72,7 +72,7 @@ def _install_example_plugin(_isolate_hermes_home):
     # An installed-but-not-enabled user plugin has its API mount skipped
     # and its assets 404'd — which is the whole point of the gate. These
     # fixtures exist to exercise the *serving* paths, so opt the example
-    # plugin in exactly as a real operator would with `hermes plugins
+    # plugin in exactly as a real operator would with `openamer plugins
     # enable example`.
     from openamer_cli.config import load_config, save_config
     _cfg = load_config()
@@ -163,7 +163,7 @@ class TestReloadEnv:
         os.environ.pop("TEST_RELOAD_VAR", None)
 
     def test_removes_deleted_known_vars(self, tmp_path):
-        """reload_env() removes known Hermes vars not present in .env."""
+        """reload_env() removes known OpenAmer vars not present in .env."""
         env_file = tmp_path / ".env"
         env_file.write_text("")  # empty .env
         # Pick a known key from OPTIONAL_ENV_VARS
@@ -175,7 +175,7 @@ class TestReloadEnv:
             assert count >= 1
 
     def test_does_not_remove_unknown_vars(self, tmp_path):
-        """reload_env() preserves non-Hermes env vars even when absent from .env."""
+        """reload_env() preserves non-OpenAmer env vars even when absent from .env."""
         env_file = tmp_path / ".env"
         env_file.write_text("")
         with patch.dict(reload_env.__globals__, {"get_env_path": lambda: env_file}):
@@ -243,7 +243,7 @@ class TestWebServerEndpoints:
     """Test the FastAPI REST endpoints using Starlette TestClient."""
 
     @pytest.fixture(autouse=True)
-    def _setup_test_client(self, monkeypatch, _isolate_hermes_home):
+    def _setup_test_client(self, monkeypatch, _isolate_openamer_home):
         """Create a TestClient and isolate the state DB under the test OPENAMER_HOME."""
         try:
             from starlette.testclient import TestClient
@@ -264,9 +264,9 @@ class TestWebServerEndpoints:
         assert resp.status_code == 200
         data = resp.json()
         assert "version" in data
-        assert "hermes_home" in data
+        assert "openamer_home" in data
         assert "active_sessions" in data
-        assert data["can_update_hermes"] is True
+        assert data["can_update_openamer"] is True
 
     def test_status_active_session_count_uses_read_only_db(self, monkeypatch, tmp_path):
         import openamer_cli.web_server as web_server
@@ -348,9 +348,9 @@ class TestWebServerEndpoints:
 
     def test_get_status_profile_scopes_gateway_state_reads(self, monkeypatch):
         """?profile=<name> must read gateway identity files from the profile's
-        home (~/.hermes/profiles/<name>/), not the process-level OPENAMER_HOME.
+        home (~/.openamer/profiles/<name>/), not the process-level OPENAMER_HOME.
 
-        Gateway PID/state readers resolve _get_process_hermes_home(), which
+        Gateway PID/state readers resolve _get_process_openamer_home(), which
         deliberately ignores the contextvar override _config_profile_scope
         sets (issue #56986) — so the handler must pass explicit per-profile
         paths (issue #69143).
@@ -477,7 +477,7 @@ class TestWebServerEndpoints:
 
         resp = self.client.get("/api/status")
         assert resp.status_code == 200
-        assert resp.json()["can_update_hermes"] is False
+        assert resp.json()["can_update_openamer"] is False
 
     def test_dashboard_update_capability_detects_generic_container(self, monkeypatch):
         import openamer_constants
@@ -490,7 +490,7 @@ class TestWebServerEndpoints:
         assert web_server._dashboard_local_update_managed_externally() is True
 
     def test_dashboard_update_capability_allows_git_in_container(self, monkeypatch):
-        """A git checkout inside a container (e.g. bind-mounted in hermes-webui)
+        """A git checkout inside a container (e.g. bind-mounted in openamer-webui)
         should still offer dashboard updates — the checkout is self-managed."""
         import openamer_constants
         import openamer_cli.web_server as web_server
@@ -531,7 +531,7 @@ class TestWebServerEndpoints:
         }
         assert fields["api_url"]["kind"] == "text"
         assert fields["api_url"]["value"]
-        assert fields["bank_id"]["value"] == "hermes"
+        assert fields["bank_id"]["value"] == "openamer"
         assert fields["recall_budget"]["value"] == "mid"
         assert fields["api_key"]["kind"] == "secret"
         assert fields["api_key"]["is_set"] is False
@@ -796,7 +796,7 @@ class TestWebServerEndpoints:
                 "values": {
                     "mode": "spaceship",
                     "api_url": "http://localhost:8888",
-                    "bank_id": "hermes",
+                    "bank_id": "openamer",
                     "recall_budget": "mid",
                 }
             },
@@ -825,7 +825,7 @@ class TestWebServerEndpoints:
                     "mode": "cloud",
                     "api_url": "https://api.hindsight.vectorize.io",
                     "api_key": "secret-value",
-                    "bank_id": "hermes",
+                    "bank_id": "openamer",
                     "recall_budget": "mid",
                 }
             },
@@ -850,7 +850,7 @@ class TestWebServerEndpoints:
                     "mode": "cloud",
                     "api_url": "https://api.hindsight.vectorize.io",
                     "api_key": "secret-value",
-                    "bank_id": "hermes",
+                    "bank_id": "openamer",
                     "recall_budget": "mid",
                 }
             },
@@ -1090,7 +1090,7 @@ class TestWebServerEndpoints:
         data = resp.json()
         assert data["name"] == "honcho"
         assert data["label"] == "Honcho"
-        assert data["docs_url"] == "https://docs.honcho.dev/v3/guides/integrations/hermes"
+        assert data["docs_url"] == "https://docs.honcho.dev/v3/guides/integrations/openamer"
 
         fields = self._provider_field_map(data)
         assert fields["environment"]["kind"] == "select"
@@ -1102,8 +1102,8 @@ class TestWebServerEndpoints:
         assert fields["sessionStrategy"]["value"] == "per-directory"
         # Blank workspace/aiPeer surface the resolved host as the placeholder.
         assert fields["workspace"]["value"] == ""
-        assert fields["workspace"]["placeholder"] == "hermes"
-        assert fields["aiPeer"]["placeholder"] == "hermes"
+        assert fields["workspace"]["placeholder"] == "openamer"
+        assert fields["aiPeer"]["placeholder"] == "openamer"
         assert fields["apiKey"]["kind"] == "secret"
         assert fields["apiKey"]["is_set"] is False
 
@@ -1124,7 +1124,7 @@ class TestWebServerEndpoints:
                     "environment": "local",
                     "workspace": "myws",
                     "peerName": "eri",
-                    "aiPeer": "hermes",
+                    "aiPeer": "openamer",
                     "sessionStrategy": "per-repo",
                 }
             },
@@ -1138,12 +1138,12 @@ class TestWebServerEndpoints:
         cfg = json.loads((get_openamer_home() / "honcho.json").read_text(encoding="utf-8"))
         # baseUrl is root-scoped; the rest live in the active host block.
         assert cfg["baseUrl"] == "https://honcho.example.dev"
-        assert cfg["hosts"]["hermes"]["workspace"] == "myws"
-        assert cfg["hosts"]["hermes"]["peerName"] == "eri"
-        assert cfg["hosts"]["hermes"]["environment"] == "local"
-        assert cfg["hosts"]["hermes"]["sessionStrategy"] == "per-repo"
+        assert cfg["hosts"]["openamer"]["workspace"] == "myws"
+        assert cfg["hosts"]["openamer"]["peerName"] == "eri"
+        assert cfg["hosts"]["openamer"]["environment"] == "local"
+        assert cfg["hosts"]["openamer"]["sessionStrategy"] == "per-repo"
         # The key lands where the client reads first; GET keeps it write-only.
-        assert cfg["hosts"]["hermes"]["apiKey"] == "hch-test-key"
+        assert cfg["hosts"]["openamer"]["apiKey"] == "hch-test-key"
 
     def test_put_honcho_blank_text_clears_key(self, monkeypatch, tmp_path):
         monkeypatch.setenv("HOME", str(tmp_path))
@@ -1160,7 +1160,7 @@ class TestWebServerEndpoints:
         )
 
         cfg = json.loads((get_openamer_home() / "honcho.json").read_text(encoding="utf-8"))
-        assert "workspace" not in cfg.get("hosts", {}).get("hermes", {})
+        assert "workspace" not in cfg.get("hosts", {}).get("openamer", {})
 
     def test_put_honcho_partial_save_preserves_other_keys(self, monkeypatch, tmp_path):
         monkeypatch.setenv("HOME", str(tmp_path))
@@ -1176,7 +1176,7 @@ class TestWebServerEndpoints:
             json={"values": {"peerName": "eri"}},
         )
 
-        host = json.loads((get_openamer_home() / "honcho.json").read_text(encoding="utf-8"))["hosts"]["hermes"]
+        host = json.loads((get_openamer_home() / "honcho.json").read_text(encoding="utf-8"))["hosts"]["openamer"]
         assert host["workspace"] == "myws"
         assert host["peerName"] == "eri"
 
@@ -1220,7 +1220,7 @@ class TestWebServerEndpoints:
             json={"values": {"saveMessages": "false", "dialecticDynamic": "true"}},
         )
 
-        host = json.loads((get_openamer_home() / "honcho.json").read_text(encoding="utf-8"))["hosts"]["hermes"]
+        host = json.loads((get_openamer_home() / "honcho.json").read_text(encoding="utf-8"))["hosts"]["openamer"]
         # Native JSON bools, not the strings "false"/"true" (which read truthy).
         assert host["saveMessages"] is False
         assert host["dialecticDynamic"] is True
@@ -1240,8 +1240,8 @@ class TestWebServerEndpoints:
         )
 
         cfg = json.loads((get_openamer_home() / "honcho.json").read_text(encoding="utf-8"))
-        assert cfg["hosts"]["hermes"]["dialecticMaxChars"] == 1200
-        assert isinstance(cfg["hosts"]["hermes"]["dialecticMaxChars"], int)
+        assert cfg["hosts"]["openamer"]["dialecticMaxChars"] == 1200
+        assert isinstance(cfg["hosts"]["openamer"]["dialecticMaxChars"], int)
         # timeout is root-scoped and keeps its fractional part.
         assert cfg["timeout"] == 2.5
 
@@ -1258,7 +1258,7 @@ class TestWebServerEndpoints:
             json={"values": {"userPeerAliases": '{"telegram_1": "eri"}'}},
         )
 
-        host = json.loads((get_openamer_home() / "honcho.json").read_text(encoding="utf-8"))["hosts"]["hermes"]
+        host = json.loads((get_openamer_home() / "honcho.json").read_text(encoding="utf-8"))["hosts"]["openamer"]
         assert host["userPeerAliases"] == {"telegram_1": "eri"}
 
         fields = self._provider_field_map(self.client.get("/api/memory/providers/honcho/config?surface=declared").json())
@@ -1272,7 +1272,7 @@ class TestWebServerEndpoints:
         global_path = tmp_path / ".honcho" / "config.json"
         global_path.parent.mkdir(parents=True)
         global_path.write_text(
-            json.dumps({"baseUrl": "https://kept.example", "hosts": {"hermes": {"workspace": "kept"}}}),
+            json.dumps({"baseUrl": "https://kept.example", "hosts": {"openamer": {"workspace": "kept"}}}),
             encoding="utf-8",
         )
 
@@ -1285,14 +1285,14 @@ class TestWebServerEndpoints:
         assert not (get_openamer_home() / "honcho.json").exists()
         cfg = json.loads(global_path.read_text(encoding="utf-8"))
         assert cfg["baseUrl"] == "https://kept.example"
-        assert cfg["hosts"]["hermes"] == {"workspace": "kept", "peerName": "eri"}
+        assert cfg["hosts"]["openamer"] == {"workspace": "kept", "peerName": "eri"}
 
     def test_put_honcho_updates_legacy_dot_form_host_block(self, monkeypatch, tmp_path):
         # The legacy dot-form block reads resolve is updated in place, not shadowed.
         monkeypatch.setenv("HOME", str(tmp_path))
-        monkeypatch.setenv("HERMES_HONCHO_HOST", "hermes_work")
+        monkeypatch.setenv("HERMES_HONCHO_HOST", "openamer_work")
 
-        path = self._seed_local_honcho({"hosts": {"hermes.work": {"workspace": "w", "peerName": "eri"}}})
+        path = self._seed_local_honcho({"hosts": {"openamer.work": {"workspace": "w", "peerName": "eri"}}})
 
         resp = self.client.put(
             "/api/memory/providers/honcho/config?surface=declared",
@@ -1301,8 +1301,8 @@ class TestWebServerEndpoints:
 
         assert resp.status_code == 200
         hosts = json.loads(path.read_text(encoding="utf-8"))["hosts"]
-        assert set(hosts) == {"hermes.work"}
-        assert hosts["hermes.work"] == {"workspace": "w", "peerName": "eri", "sessionStrategy": "per-repo"}
+        assert set(hosts) == {"openamer.work"}
+        assert hosts["openamer.work"] == {"workspace": "w", "peerName": "eri", "sessionStrategy": "per-repo"}
 
     def test_put_honcho_api_key_never_overwrites_oauth_token(self, monkeypatch, tmp_path):
         monkeypatch.setenv("HOME", str(tmp_path))
@@ -1310,7 +1310,7 @@ class TestWebServerEndpoints:
         monkeypatch.delenv("HONCHO_API_KEY")
         from openamer_cli.config import load_env
 
-        path = self._seed_local_honcho({"hosts": {"hermes": {"apiKey": "hch-at-oauth-token"}}})
+        path = self._seed_local_honcho({"hosts": {"openamer": {"apiKey": "hch-at-oauth-token"}}})
 
         resp = self.client.put(
             "/api/memory/providers/honcho/config?surface=declared",
@@ -1320,7 +1320,7 @@ class TestWebServerEndpoints:
         assert resp.status_code == 200
         cfg = json.loads(path.read_text(encoding="utf-8"))
         # The OAuth grant owns the JSON slot; the manual key lands in the env store.
-        assert cfg["hosts"]["hermes"]["apiKey"] == "hch-at-oauth-token"
+        assert cfg["hosts"]["openamer"]["apiKey"] == "hch-at-oauth-token"
         assert load_env()["HONCHO_API_KEY"] == "manual-key"
 
     def test_put_honcho_tolerates_null_hosts(self, monkeypatch, tmp_path):
@@ -1334,13 +1334,13 @@ class TestWebServerEndpoints:
         )
 
         assert resp.status_code == 200
-        assert json.loads(path.read_text(encoding="utf-8"))["hosts"]["hermes"]["workspace"] == "myws"
+        assert json.loads(path.read_text(encoding="utf-8"))["hosts"]["openamer"]["workspace"] == "myws"
 
     def test_memory_provider_config_honors_profile_param(self, monkeypatch, tmp_path):
         # A ?profile= save must land in that profile's config, not the serving
         # process's — same contract as the skills/toolsets endpoints.
         monkeypatch.setenv("HOME", str(tmp_path))
-        # The suite pins HERMES_HONCHO_HOST=hermes; this test exercises
+        # The suite pins HERMES_HONCHO_HOST=openamer; this test exercises
         # profile-driven host resolution, so drop the override explicitly.
         monkeypatch.delenv("HERMES_HONCHO_HOST", raising=False)
         from openamer_constants import get_openamer_home
@@ -1351,7 +1351,7 @@ class TestWebServerEndpoints:
         worker_home = get_profile_dir("worker")
         worker_home.mkdir(parents=True, exist_ok=True)
         worker_cfg = worker_home / "honcho.json"
-        worker_cfg.write_text(json.dumps({"hosts": {"hermes_worker": {"workspace": "kept"}}}), encoding="utf-8")
+        worker_cfg.write_text(json.dumps({"hosts": {"openamer_worker": {"workspace": "kept"}}}), encoding="utf-8")
 
         resp = self.client.put(
             "/api/memory/providers/honcho/config?surface=declared&profile=worker",
@@ -1974,7 +1974,7 @@ class TestWebServerEndpoints:
 
     def test_list_triggers_config_gated_auto_archive(self):
         """With sessions.auto_archive on, listing sessions opportunistically
-        sweeps stale ones (the Desktop `hermes serve` code path)."""
+        sweeps stale ones (the Desktop `openamer serve` code path)."""
         import time as _time
 
         import openamer_cli.web_server as ws
@@ -2525,7 +2525,7 @@ class TestWebServerEndpoints:
         resp = self.client.post("/api/audio/speak", json={"text": "   "})
         assert resp.status_code == 400
 
-    def test_update_hermes_returns_docker_guidance_without_spawning(self, monkeypatch):
+    def test_update_openamer_returns_docker_guidance_without_spawning(self, monkeypatch):
         import openamer_cli.web_server as web_server
 
         spawned = False
@@ -2533,47 +2533,47 @@ class TestWebServerEndpoints:
         def fail_spawn(*_args, **_kwargs):
             nonlocal spawned
             spawned = True
-            raise AssertionError("docker update guard should not spawn hermes update")
+            raise AssertionError("docker update guard should not spawn openamer update")
 
         # Bypass the managed-externally gate so we reach the docker install check.
         monkeypatch.setattr(web_server, "_dashboard_local_update_managed_externally", lambda: False)
         monkeypatch.setattr(web_server, "detect_install_method", lambda _root: "docker")
-        monkeypatch.setattr(web_server, "_spawn_hermes_action", fail_spawn)
-        web_server._ACTION_PROCS.pop("hermes-update", None)
-        web_server._ACTION_RESULTS.pop("hermes-update", None)
+        monkeypatch.setattr(web_server, "_spawn_openamer_action", fail_spawn)
+        web_server._ACTION_PROCS.pop("openamer-update", None)
+        web_server._ACTION_RESULTS.pop("openamer-update", None)
 
-        resp = self.client.post("/api/hermes/update")
+        resp = self.client.post("/api/openamer/update")
 
         assert resp.status_code == 200
         data = resp.json()
         assert data["ok"] is False
-        assert data["name"] == "hermes-update"
+        assert data["name"] == "openamer-update"
         assert data["pid"] is None
         assert data["error"] == "docker_update_unsupported"
-        assert "docker pull nousresearch/hermes-agent:latest" in data["message"]
+        assert "docker pull nousresearch/openamer-agent:latest" in data["message"]
         assert spawned is False
 
-        status = self.client.get("/api/actions/hermes-update/status")
+        status = self.client.get("/api/actions/openamer-update/status")
         assert status.status_code == 200
         status_data = status.json()
         assert status_data["running"] is False
         assert status_data["exit_code"] == 1
         assert status_data["pid"] is None
-        assert any("docker pull nousresearch/hermes-agent:latest" in line for line in status_data["lines"])
+        assert any("docker pull nousresearch/openamer-agent:latest" in line for line in status_data["lines"])
 
-    def test_update_hermes_returns_nix_guidance_without_spawning(self, monkeypatch):
+    def test_update_openamer_returns_nix_guidance_without_spawning(self, monkeypatch):
         import openamer_cli.web_server as web_server
 
         def fail_spawn(*_args, **_kwargs):
-            raise AssertionError("Nix update guard should not spawn hermes update")
+            raise AssertionError("Nix update guard should not spawn openamer update")
 
         monkeypatch.setattr(web_server, "_dashboard_local_update_managed_externally", lambda: False)
         monkeypatch.setattr(web_server, "detect_install_method", lambda _root: "nix")
-        monkeypatch.setattr(web_server, "_spawn_hermes_action", fail_spawn)
-        web_server._ACTION_PROCS.pop("hermes-update", None)
-        web_server._ACTION_RESULTS.pop("hermes-update", None)
+        monkeypatch.setattr(web_server, "_spawn_openamer_action", fail_spawn)
+        web_server._ACTION_PROCS.pop("openamer-update", None)
+        web_server._ACTION_RESULTS.pop("openamer-update", None)
 
-        resp = self.client.post("/api/hermes/update")
+        resp = self.client.post("/api/openamer/update")
 
         assert resp.status_code == 200
         data = resp.json()
@@ -2582,7 +2582,7 @@ class TestWebServerEndpoints:
         assert data["error"] == "nix_update_unsupported"
         assert "Nix" in data["message"]
 
-    def test_update_hermes_returns_managed_runtime_guidance_without_spawning(self, monkeypatch):
+    def test_update_openamer_returns_managed_runtime_guidance_without_spawning(self, monkeypatch):
         import openamer_cli.web_server as web_server
 
         spawned = False
@@ -2591,7 +2591,7 @@ class TestWebServerEndpoints:
         def fail_spawn(*_args, **_kwargs):
             nonlocal spawned
             spawned = True
-            raise AssertionError("managed runtime update guard should not spawn hermes update")
+            raise AssertionError("managed runtime update guard should not spawn openamer update")
 
         def fail_detect(*_args, **_kwargs):
             nonlocal detected
@@ -2600,23 +2600,23 @@ class TestWebServerEndpoints:
 
         monkeypatch.setattr(web_server, "_dashboard_local_update_managed_externally", lambda: True)
         monkeypatch.setattr(web_server, "detect_install_method", fail_detect)
-        monkeypatch.setattr(web_server, "_spawn_hermes_action", fail_spawn)
-        web_server._ACTION_PROCS.pop("hermes-update", None)
-        web_server._ACTION_RESULTS.pop("hermes-update", None)
+        monkeypatch.setattr(web_server, "_spawn_openamer_action", fail_spawn)
+        web_server._ACTION_PROCS.pop("openamer-update", None)
+        web_server._ACTION_RESULTS.pop("openamer-update", None)
 
-        resp = self.client.post("/api/hermes/update")
+        resp = self.client.post("/api/openamer/update")
 
         assert resp.status_code == 200
         data = resp.json()
         assert data["ok"] is False
-        assert data["name"] == "hermes-update"
+        assert data["name"] == "openamer-update"
         assert data["pid"] is None
         assert data["error"] == "dashboard_update_managed_externally"
         assert "managed outside this dashboard" in data["message"]
         assert spawned is False
         assert detected is False
 
-        status = self.client.get("/api/actions/hermes-update/status")
+        status = self.client.get("/api/actions/openamer-update/status")
         assert status.status_code == 200
         status_data = status.json()
         assert status_data["running"] is False
@@ -2624,7 +2624,7 @@ class TestWebServerEndpoints:
         assert status_data["pid"] is None
         assert any("managed outside this dashboard" in line for line in status_data["lines"])
 
-    def test_update_hermes_spawns_on_non_docker_install(self, monkeypatch):
+    def test_update_openamer_spawns_on_non_docker_install(self, monkeypatch):
         import openamer_cli.web_server as web_server
 
         class Proc:
@@ -2640,15 +2640,15 @@ class TestWebServerEndpoints:
             return Proc()
 
         monkeypatch.setattr(web_server, "detect_install_method", lambda _root: "git")
-        monkeypatch.setattr(web_server, "_spawn_hermes_action", fake_spawn)
-        web_server._ACTION_PROCS.pop("hermes-update", None)
-        web_server._ACTION_RESULTS.pop("hermes-update", None)
+        monkeypatch.setattr(web_server, "_spawn_openamer_action", fake_spawn)
+        web_server._ACTION_PROCS.pop("openamer-update", None)
+        web_server._ACTION_RESULTS.pop("openamer-update", None)
 
-        resp = self.client.post("/api/hermes/update")
+        resp = self.client.post("/api/openamer/update")
 
         assert resp.status_code == 200
-        assert resp.json() == {"ok": True, "pid": 12345, "name": "hermes-update"}
-        assert calls == [(["update"], "hermes-update")]
+        assert resp.json() == {"ok": True, "pid": 12345, "name": "openamer-update"}
+        assert calls == [(["update"], "openamer-update")]
 
     def test_action_status_reaps_completed_process(self, monkeypatch):
         import openamer_cli.web_server as web_server
@@ -2665,11 +2665,11 @@ class TestWebServerEndpoints:
                 waited["done"] = True
 
         proc = _Proc()
-        web_server._ACTION_PROCS.pop("hermes-update", None)
-        web_server._ACTION_RESULTS.pop("hermes-update", None)
-        web_server._ACTION_PROCS["hermes-update"] = proc
+        web_server._ACTION_PROCS.pop("openamer-update", None)
+        web_server._ACTION_RESULTS.pop("openamer-update", None)
+        web_server._ACTION_PROCS["openamer-update"] = proc
 
-        resp = self.client.get("/api/actions/hermes-update/status")
+        resp = self.client.get("/api/actions/openamer-update/status")
         assert resp.status_code == 200
         data = resp.json()
         assert data["running"] is False
@@ -2678,8 +2678,8 @@ class TestWebServerEndpoints:
 
         # Process should have been reaped and moved to results.
         assert waited["done"] is True
-        assert "hermes-update" not in web_server._ACTION_PROCS
-        assert web_server._ACTION_RESULTS["hermes-update"] == {
+        assert "openamer-update" not in web_server._ACTION_PROCS
+        assert web_server._ACTION_RESULTS["openamer-update"] == {
             "exit_code": 0,
             "pid": 42424,
         }
@@ -2697,17 +2697,17 @@ class TestWebServerEndpoints:
                 raise OSError("already reaped")
 
         proc = _Proc()
-        web_server._ACTION_PROCS.pop("hermes-update", None)
-        web_server._ACTION_RESULTS.pop("hermes-update", None)
-        web_server._ACTION_PROCS["hermes-update"] = proc
+        web_server._ACTION_PROCS.pop("openamer-update", None)
+        web_server._ACTION_RESULTS.pop("openamer-update", None)
+        web_server._ACTION_PROCS["openamer-update"] = proc
 
-        resp = self.client.get("/api/actions/hermes-update/status")
+        resp = self.client.get("/api/actions/openamer-update/status")
         assert resp.status_code == 200
         data = resp.json()
         assert data["exit_code"] == 1
         # Still reaped despite wait() raising.
-        assert "hermes-update" not in web_server._ACTION_PROCS
-        assert web_server._ACTION_RESULTS["hermes-update"] == {
+        assert "openamer-update" not in web_server._ACTION_PROCS
+        assert web_server._ACTION_RESULTS["openamer-update"] == {
             "exit_code": 1,
             "pid": 99,
         }
@@ -2716,10 +2716,10 @@ class TestWebServerEndpoints:
         import openamer_cli.web_server as web_server
 
         monkeypatch.setattr(web_server, "_ACTION_LOG_DIR", tmp_path)
-        web_server._ACTION_PROCS.pop("hermes-update", None)
-        web_server._ACTION_RESULTS.pop("hermes-update", None)
+        web_server._ACTION_PROCS.pop("openamer-update", None)
+        web_server._ACTION_RESULTS.pop("openamer-update", None)
 
-        log_path = tmp_path / web_server._ACTION_LOG_FILES["hermes-update"]
+        log_path = tmp_path / web_server._ACTION_LOG_FILES["openamer-update"]
         log_path.write_text(
             "stale-start\n"
             + ("x" * (web_server._ACTION_LOG_TAIL_MAX_BYTES + 1024))
@@ -2737,7 +2737,7 @@ class TestWebServerEndpoints:
 
         monkeypatch.setattr(Path, "read_text", fail_if_status_reads_whole_log)
 
-        resp = self.client.get("/api/actions/hermes-update/status?lines=3")
+        resp = self.client.get("/api/actions/openamer-update/status?lines=3")
 
         assert resp.status_code == 200
         assert resp.json()["lines"] == ["tail-one", "tail-two"]
@@ -2997,7 +2997,7 @@ class TestWebServerEndpoints:
         as a provider card, even when it has no hand entry in OPTIONAL_ENV_VARS.
 
         Regression for the GUI⇄CLI drift: openai-api, kilocode, novita,
-        tencent-tokenhub, copilot were configurable via `hermes model` but
+        tencent-tokenhub, copilot were configurable via `openamer model` but
         invisible in the desktop Providers → API keys tab.
         """
         from openamer_cli.provider_catalog import provider_catalog
@@ -3125,7 +3125,7 @@ class TestWebServerEndpoints:
 
     def test_model_set_maps_unknown_vendor_to_aggregator(self, monkeypatch):
         """A bare vendor name from analytics rows (no billing_provider) is not
-        a Hermes provider — keep the user's aggregator instead of writing a
+        a OpenAmer provider — keep the user's aggregator instead of writing a
         provider that can never resolve credentials."""
         monkeypatch.setattr(
             "openamer_cli.model_cost_guard.expensive_model_warning",
@@ -3172,7 +3172,7 @@ class TestWebServerEndpoints:
 
     def test_ops_import_passes_force_flag(self, tmp_path, monkeypatch):
         """force=True must append --force so the spawned non-interactive
-        `hermes import` doesn't auto-abort at the overwrite prompt."""
+        `openamer import` doesn't auto-abort at the overwrite prompt."""
         import openamer_cli.web_server as ws
 
         archive = tmp_path / "backup.zip"
@@ -3188,7 +3188,7 @@ class TestWebServerEndpoints:
             from types import SimpleNamespace as NS
             return NS(pid=12345)
 
-        monkeypatch.setattr(ws, "_spawn_hermes_action", fake_spawn)
+        monkeypatch.setattr(ws, "_spawn_openamer_action", fake_spawn)
 
         resp = self.client.post(
             "/api/ops/import", json={"archive": str(archive), "force": True},
@@ -3206,7 +3206,7 @@ class TestWebServerEndpoints:
         from pathlib import Path
 
         import openamer_cli.web_server as ws
-        from openamer_cli.config import get_hermes_home
+        from openamer_cli.config import get_openamer_home
 
         captured = {}
 
@@ -3216,7 +3216,7 @@ class TestWebServerEndpoints:
             from types import SimpleNamespace as NS
             return NS(pid=12345)
 
-        monkeypatch.setattr(ws, "_spawn_hermes_action", fake_spawn)
+        monkeypatch.setattr(ws, "_spawn_openamer_action", fake_spawn)
 
         resp = self.client.post("/api/ops/backup", json={})
         assert resp.status_code == 200
@@ -3227,10 +3227,10 @@ class TestWebServerEndpoints:
         assert captured["name"] == "backup"
         assert captured["args"] == ["backup", "-o", str(archive)]
         assert archive.parent == get_openamer_home() / "backups"
-        assert archive.name.startswith("hermes-backup-")
+        assert archive.name.startswith("openamer-backup-")
         assert archive.suffix == ".zip"
 
-    def test_ops_backup_uses_hosted_hermes_home(self, tmp_path, monkeypatch):
+    def test_ops_backup_uses_hosted_openamer_home(self, tmp_path, monkeypatch):
         from pathlib import Path
 
         import openamer_cli.web_server as ws
@@ -3245,7 +3245,7 @@ class TestWebServerEndpoints:
             from types import SimpleNamespace as NS
             return NS(pid=12345)
 
-        monkeypatch.setattr(ws, "_spawn_hermes_action", fake_spawn)
+        monkeypatch.setattr(ws, "_spawn_openamer_action", fake_spawn)
 
         resp = self.client.post("/api/ops/backup", json={})
         assert resp.status_code == 200
@@ -3260,7 +3260,7 @@ class TestWebServerEndpoints:
 
         backup_dir = ws._dashboard_backup_dir()
         backup_dir.mkdir(parents=True, exist_ok=True)
-        archive = backup_dir / "hermes-backup-test.zip"
+        archive = backup_dir / "openamer-backup-test.zip"
         archive.write_bytes(b"zip bytes")
 
         resp = self.client.get(
@@ -3297,7 +3297,7 @@ class TestWebServerEndpoints:
             from types import SimpleNamespace as NS
             return NS(pid=12345)
 
-        monkeypatch.setattr(ws, "_spawn_hermes_action", fake_spawn)
+        monkeypatch.setattr(ws, "_spawn_openamer_action", fake_spawn)
 
         resp = self.client.post(
             "/api/ops/import-upload",
@@ -3330,7 +3330,7 @@ class TestWebServerEndpoints:
         def fail_spawn(*_args):
             raise AssertionError("invalid uploads must not spawn import")
 
-        monkeypatch.setattr(ws, "_spawn_hermes_action", fail_spawn)
+        monkeypatch.setattr(ws, "_spawn_openamer_action", fail_spawn)
 
         resp = self.client.post(
             "/api/ops/import-upload",
@@ -3474,7 +3474,7 @@ class TestWebServerEndpoints:
         assert "personal WeChat" in weixin["description"]
         assert "Official Account" not in f"{weixin['name']} {weixin['description']}"
         assert weixin["docs_url"] == (
-            "https://hermes-agent.nousresearch.com/docs/user-guide/messaging/weixin/"
+            "https://openamer-agent.nousresearch.com/docs/user-guide/messaging/weixin/"
         )
 
         fields = {field["key"]: field for field in weixin["env_vars"]}
@@ -3492,7 +3492,7 @@ class TestWebServerEndpoints:
 
         teams = _build_catalog_entry("teams")
         assert teams["docs_url"] == (
-            "https://hermes-agent.nousresearch.com/docs/user-guide/messaging/teams"
+            "https://openamer-agent.nousresearch.com/docs/user-guide/messaging/teams"
         )
 
     def test_google_chat_messaging_metadata_links_setup_guide(self):
@@ -3505,7 +3505,7 @@ class TestWebServerEndpoints:
         google_chat = _build_catalog_entry("google_chat")
         assert google_chat["name"] == "Google Chat"
         assert google_chat["docs_url"] == (
-            "https://hermes-agent.nousresearch.com/docs/user-guide/messaging/google_chat"
+            "https://openamer-agent.nousresearch.com/docs/user-guide/messaging/google_chat"
         )
 
     def test_messaging_catalog_covers_gateway_platforms(self):
@@ -3690,7 +3690,7 @@ class TestWebServerEndpoints:
         payload = ws._telegram_onboarding_request_sync(
             "POST",
             "/v1/telegram/pairings",
-            body={"bot_name": "Hermes Agent"},
+            body={"bot_name": "OpenAmer Agent"},
             bearer_token="poll-secret",
         )
 
@@ -3698,11 +3698,11 @@ class TestWebServerEndpoints:
         method, url, kwargs = calls["request"]
         assert method == "POST"
         assert url == "https://worker.example/v1/telegram/pairings"
-        assert kwargs["json"] == {"bot_name": "Hermes Agent"}
+        assert kwargs["json"] == {"bot_name": "OpenAmer Agent"}
         assert kwargs["headers"]["Accept"] == "application/json"
         assert kwargs["headers"]["Authorization"] == "Bearer poll-secret"
         assert kwargs["headers"]["Content-Type"] == "application/json"
-        assert kwargs["headers"]["User-Agent"].startswith("HermesDashboard/")
+        assert kwargs["headers"]["User-Agent"].startswith("OpenAmerDashboard/")
 
     def test_telegram_onboarding_worker_request_maps_unexpected_errors(
         self, monkeypatch
@@ -3715,7 +3715,7 @@ class TestWebServerEndpoints:
             ws._telegram_onboarding_request_sync(
                 "POST",
                 "/v1/telegram/pairings",
-                body={"bot_name": "Hermes Agent"},
+                body={"bot_name": "OpenAmer Agent"},
             )
 
         assert exc.value.status_code == 502
@@ -3737,9 +3737,9 @@ class TestWebServerEndpoints:
             return {
                 "pairing_id": "pair123",
                 "poll_token": "poll-secret",
-                "suggested_username": "hermes_pair123_bot",
-                "deep_link": "https://t.me/newbot/HermesSetupBot/hermes_pair123_bot",
-                "qr_payload": "https://t.me/newbot/HermesSetupBot/hermes_pair123_bot",
+                "suggested_username": "openamer_pair123_bot",
+                "deep_link": "https://t.me/newbot/OpenAmerSetupBot/openamer_pair123_bot",
+                "qr_payload": "https://t.me/newbot/OpenAmerSetupBot/openamer_pair123_bot",
                 "expires_at": "2027-05-18T00:00:00.000Z",
             }
 
@@ -3747,7 +3747,7 @@ class TestWebServerEndpoints:
 
         resp = self.client.post(
             "/api/messaging/telegram/onboarding/start",
-            json={"bot_name": "Hosted Hermes"},
+            json={"bot_name": "Hosted OpenAmer"},
         )
 
         assert resp.status_code == 200
@@ -3758,7 +3758,7 @@ class TestWebServerEndpoints:
             (
                 "POST",
                 "/v1/telegram/pairings",
-                {"bot_name": "Hosted Hermes"},
+                {"bot_name": "Hosted OpenAmer"},
                 None,
             )
         ]
@@ -3775,9 +3775,9 @@ class TestWebServerEndpoints:
                 return {
                     "pairing_id": "pair-ready",
                     "poll_token": "poll-secret",
-                    "suggested_username": "hermes_pair_ready_bot",
-                    "deep_link": "https://t.me/newbot/HermesSetupBot/hermes_pair_ready_bot",
-                    "qr_payload": "https://t.me/newbot/HermesSetupBot/hermes_pair_ready_bot",
+                    "suggested_username": "openamer_pair_ready_bot",
+                    "deep_link": "https://t.me/newbot/OpenAmerSetupBot/openamer_pair_ready_bot",
+                    "qr_payload": "https://t.me/newbot/OpenAmerSetupBot/openamer_pair_ready_bot",
                     "expires_at": "2027-05-18T00:00:00.000Z",
                 }
             assert method == "GET"
@@ -3785,7 +3785,7 @@ class TestWebServerEndpoints:
             assert bearer_token == "poll-secret"
             return {
                 "status": "ready",
-                "bot_username": "hermes_pair_ready_bot",
+                "bot_username": "openamer_pair_ready_bot",
                 "owner_user_id": 123456789,
                 "token": "123456:SECRET",
             }
@@ -3801,7 +3801,7 @@ class TestWebServerEndpoints:
             restart_calls.append((subcommand, name))
             return FakeRestartProc()
 
-        monkeypatch.setattr(ws, "_spawn_hermes_action", fake_spawn_action)
+        monkeypatch.setattr(ws, "_spawn_openamer_action", fake_spawn_action)
 
         start = self.client.post("/api/messaging/telegram/onboarding/start", json={})
         assert start.status_code == 200
@@ -3822,7 +3822,7 @@ class TestWebServerEndpoints:
         assert applied_data == {
             "ok": True,
             "platform": "telegram",
-            "bot_username": "hermes_pair_ready_bot",
+            "bot_username": "openamer_pair_ready_bot",
             "needs_restart": False,
             "restart_started": True,
             "restart_action": "gateway-restart",
@@ -3848,9 +3848,9 @@ class TestWebServerEndpoints:
                 return {
                     "pairing_id": "pair-restart-fails",
                     "poll_token": "poll-secret",
-                    "suggested_username": "hermes_pair_restart_fails_bot",
-                    "deep_link": "https://t.me/newbot/HermesSetupBot/hermes_pair_restart_fails_bot",
-                    "qr_payload": "https://t.me/newbot/HermesSetupBot/hermes_pair_restart_fails_bot",
+                    "suggested_username": "openamer_pair_restart_fails_bot",
+                    "deep_link": "https://t.me/newbot/OpenAmerSetupBot/openamer_pair_restart_fails_bot",
+                    "qr_payload": "https://t.me/newbot/OpenAmerSetupBot/openamer_pair_restart_fails_bot",
                     "expires_at": "2027-05-18T00:00:00.000Z",
                 }
             assert method == "GET"
@@ -3858,7 +3858,7 @@ class TestWebServerEndpoints:
             assert bearer_token == "poll-secret"
             return {
                 "status": "ready",
-                "bot_username": "hermes_pair_restart_fails_bot",
+                "bot_username": "openamer_pair_restart_fails_bot",
                 "owner_user_id": 123456789,
                 "token": "123456:SECRET",
             }
@@ -3871,7 +3871,7 @@ class TestWebServerEndpoints:
             assert name == "gateway-restart"
             raise RuntimeError("supervisor unavailable")
 
-        monkeypatch.setattr(ws, "_spawn_hermes_action", fail_spawn_action)
+        monkeypatch.setattr(ws, "_spawn_openamer_action", fail_spawn_action)
 
         start = self.client.post("/api/messaging/telegram/onboarding/start", json={})
         assert start.status_code == 200
@@ -3900,7 +3900,7 @@ class TestWebServerEndpoints:
         self, monkeypatch
     ):
         """A live in-flight gateway restart is reused instead of spawning a
-        second racing ``hermes gateway restart`` child (e.g. when a stale
+        second racing ``openamer gateway restart`` child (e.g. when a stale
         cached frontend also fires its own restart call)."""
         import openamer_cli.web_server as ws
 
@@ -3912,14 +3912,14 @@ class TestWebServerEndpoints:
                 return {
                     "pairing_id": "pair-reuse",
                     "poll_token": "poll-secret",
-                    "suggested_username": "hermes_pair_reuse_bot",
-                    "deep_link": "https://t.me/newbot/HermesSetupBot/hermes_pair_reuse_bot",
-                    "qr_payload": "https://t.me/newbot/HermesSetupBot/hermes_pair_reuse_bot",
+                    "suggested_username": "openamer_pair_reuse_bot",
+                    "deep_link": "https://t.me/newbot/OpenAmerSetupBot/openamer_pair_reuse_bot",
+                    "qr_payload": "https://t.me/newbot/OpenAmerSetupBot/openamer_pair_reuse_bot",
                     "expires_at": "2027-05-18T00:00:00.000Z",
                 }
             return {
                 "status": "ready",
-                "bot_username": "hermes_pair_reuse_bot",
+                "bot_username": "openamer_pair_reuse_bot",
                 "owner_user_id": 123456789,
                 "token": "123456:SECRET",
             }
@@ -3937,7 +3937,7 @@ class TestWebServerEndpoints:
         def fail_spawn_action(subcommand, name):
             raise AssertionError("must not spawn a second concurrent restart")
 
-        monkeypatch.setattr(ws, "_spawn_hermes_action", fail_spawn_action)
+        monkeypatch.setattr(ws, "_spawn_openamer_action", fail_spawn_action)
 
         start = self.client.post("/api/messaging/telegram/onboarding/start", json={})
         assert start.status_code == 200
@@ -3965,9 +3965,9 @@ class TestWebServerEndpoints:
             return {
                 "pairing_id": "pair-waiting",
                 "poll_token": "poll-secret",
-                "suggested_username": "hermes_pair_waiting_bot",
-                "deep_link": "https://t.me/newbot/HermesSetupBot/hermes_pair_waiting_bot",
-                "qr_payload": "https://t.me/newbot/HermesSetupBot/hermes_pair_waiting_bot",
+                "suggested_username": "openamer_pair_waiting_bot",
+                "deep_link": "https://t.me/newbot/OpenAmerSetupBot/openamer_pair_waiting_bot",
+                "qr_payload": "https://t.me/newbot/OpenAmerSetupBot/openamer_pair_waiting_bot",
                 "expires_at": "2027-05-18T00:00:00.000Z",
             }
 
@@ -3994,9 +3994,9 @@ class TestWebServerEndpoints:
             return {
                 "pairing_id": "pair-cancel",
                 "poll_token": "poll-secret",
-                "suggested_username": "hermes_pair_cancel_bot",
-                "deep_link": "https://t.me/newbot/HermesSetupBot/hermes_pair_cancel_bot",
-                "qr_payload": "https://t.me/newbot/HermesSetupBot/hermes_pair_cancel_bot",
+                "suggested_username": "openamer_pair_cancel_bot",
+                "deep_link": "https://t.me/newbot/OpenAmerSetupBot/openamer_pair_cancel_bot",
+                "qr_payload": "https://t.me/newbot/OpenAmerSetupBot/openamer_pair_cancel_bot",
                 "expires_at": "2027-05-18T00:00:00.000Z",
             }
 
@@ -4094,14 +4094,14 @@ class TestWebServerEndpoints:
         assert index_resp.status_code == 200
         assert "cafe cafe" in index_resp.text
 
-        css_resp = spa_client.get("/assets/app.css", headers={"x-forwarded-prefix": "/hermes"})
+        css_resp = spa_client.get("/assets/app.css", headers={"x-forwarded-prefix": "/openamer"})
         assert css_resp.status_code == 200
         assert "content: 'cafe';" in css_resp.text
 
         assert seen_encodings == {"index": "utf-8", "css": "utf-8"}
 
     def test_headless_serve_disables_spa_even_with_a_dist(self, monkeypatch, tmp_path):
-        """`hermes serve` (HERMES_SERVE_HEADLESS) must NOT serve the SPA even
+        """`openamer serve` (HERMES_SERVE_HEADLESS) must NOT serve the SPA even
         when a built dist is present — only the API/WS surface is reachable."""
         from fastapi import FastAPI
         from starlette.testclient import TestClient
@@ -4141,7 +4141,7 @@ class TestWebServerEndpoints:
 
         resp = self.client.post(
             "/api/model/set",
-            json={"scope": "main", "provider": "nous", "model": "hermes-4"},
+            json={"scope": "main", "provider": "nous", "model": "openamer-4"},
         )
         assert resp.status_code == 200
         data = resp.json()
@@ -4323,7 +4323,7 @@ class TestWebServerEndpoints:
         """A custom endpoint that requires auth must persist model.api_key (where
         the runtime reads it) AND register a named custom_providers entry so the
         endpoint reappears as a ready row in the picker — matching the
-        ``hermes model`` custom flow. Regression for the desktop loop where a
+        ``openamer model`` custom flow. Regression for the desktop loop where a
         keyed custom endpoint could never be configured from the GUI."""
         from openamer_cli.config import load_config
 
@@ -4413,7 +4413,7 @@ class TestWebServerEndpoints:
         from openamer_cli.config import load_config, save_config
 
         cfg = load_config()
-        cfg["model"] = {"provider": "nous", "default": "hermes-4"}
+        cfg["model"] = {"provider": "nous", "default": "openamer-4"}
         cfg["auxiliary"] = {
             # Pinned to nous — same as the OLD main, becomes stale after switch.
             "compression": {"provider": "nous", "model": "anthropic/claude-sonnet-4.6"},
@@ -4444,7 +4444,7 @@ class TestWebServerEndpoints:
         from openamer_cli.config import load_config, save_config
 
         cfg = load_config()
-        cfg["model"] = {"provider": "nous", "default": "hermes-4"}
+        cfg["model"] = {"provider": "nous", "default": "openamer-4"}
         cfg["auxiliary"] = {
             "compression": {"provider": "openrouter", "model": "google/gemini-2.5-flash"},
             "vision": {"provider": "auto", "model": ""},
@@ -5012,7 +5012,7 @@ class TestWebServerEndpoints:
         from openamer_cli.config import load_config, save_config
 
         save_config({
-            "model": {"provider": "nous", "default": "hermes-4"},
+            "model": {"provider": "nous", "default": "openamer-4"},
             "providers": {
                 "axet-proxy": {
                     "name": "Axet Proxy",
@@ -5047,7 +5047,7 @@ class TestWebServerEndpoints:
 
         resp = self.client.post(
             "/api/model/set",
-            json={"scope": "main", "provider": "nous", "model": "hermes-4"},
+            json={"scope": "main", "provider": "nous", "model": "openamer-4"},
         )
         assert resp.status_code == 200
         data = resp.json()
@@ -5056,7 +5056,7 @@ class TestWebServerEndpoints:
 
     def test_recommended_default_nous_honors_free_tier(self, monkeypatch):
         """For a free-tier Nous user, the recommended default must be a free
-        model (mirroring `hermes model`), not the first curated paid entry."""
+        model (mirroring `openamer model`), not the first curated paid entry."""
         import openamer_cli.models as models_mod
 
         monkeypatch.setattr(models_mod, "get_curated_nous_model_ids", lambda: ["paid/expensive", "free/cheap"])
@@ -5237,7 +5237,7 @@ class TestBuildSchemaFromConfig:
         entry = CONFIG_SCHEMA["proxy.enabled"]
         assert entry["category"] == "security"
         assert "Docker-only" in entry["description"]
-        assert "hermes egress setup" in entry["description"]
+        assert "openamer egress setup" in entry["description"]
 
         source_entry = CONFIG_SCHEMA["proxy.credential_source"]
         assert source_entry["type"] == "select"
@@ -5488,7 +5488,7 @@ class TestNewEndpoints:
     """Tests for session detail, logs, cron, skills, tools, raw config, analytics."""
 
     @pytest.fixture(autouse=True)
-    def _setup(self, monkeypatch, _isolate_hermes_home):
+    def _setup(self, monkeypatch, _isolate_openamer_home):
         try:
             from starlette.testclient import TestClient
         except ImportError:
@@ -5534,7 +5534,7 @@ class TestNewEndpoints:
         first = blueprints[0]
         assert "fields" in first
         assert first["command"].startswith("/blueprint")
-        assert first["appUrl"].startswith("hermes://")
+        assert first["appUrl"].startswith("openamer://")
 
     def test_blueprint_instantiate_creates_job(self):
         resp = self.client.post(
@@ -5575,13 +5575,13 @@ class TestNewEndpoints:
         from openamer_constants import get_openamer_home
         import openamer_cli.profiles as profiles_mod
 
-        hermes_home = get_openamer_home()
-        hermes_home.mkdir(parents=True, exist_ok=True)
-        (hermes_home / "config.yaml").write_text(
+        openamer_home = get_openamer_home()
+        openamer_home.mkdir(parents=True, exist_ok=True)
+        (openamer_home / "config.yaml").write_text(
             "model:\n  provider: openrouter\n  name: anthropic/claude-sonnet-4.6\n",
             encoding="utf-8",
         )
-        named = hermes_home / "profiles" / "multi-agent"
+        named = openamer_home / "profiles" / "multi-agent"
         named.mkdir(parents=True)
         (named / ".env").write_text("EXAMPLE=1\n", encoding="utf-8")
         (named / "skills" / "demo").mkdir(parents=True)
@@ -5636,7 +5636,7 @@ class TestNewEndpoints:
         assert resp.status_code == 200
         assert resp.json()["command"] == "coder setup"
 
-    def test_profile_setup_command_uses_hermes_for_default_profile(self):
+    def test_profile_setup_command_uses_openamer_for_default_profile(self):
         from openamer_constants import get_openamer_home
 
         get_openamer_home().mkdir(parents=True, exist_ok=True)
@@ -5644,7 +5644,7 @@ class TestNewEndpoints:
         resp = self.client.get("/api/profiles/default/setup-command")
 
         assert resp.status_code == 200
-        assert resp.json()["command"] == "hermes setup"
+        assert resp.json()["command"] == "openamer setup"
 
     def test_profiles_create_creates_wrapper_alias_when_safe(self, monkeypatch, tmp_path):
         import openamer_cli.profiles as profiles_mod
@@ -5652,7 +5652,7 @@ class TestNewEndpoints:
         wrapper_dir = tmp_path / "bin"
         wrapper_dir.mkdir()
         monkeypatch.setattr(profiles_mod, "_get_wrapper_dir", lambda: wrapper_dir)
-        monkeypatch.setattr(profiles_mod.shutil, "which", lambda name: "/opt/hermes/bin/hermes")
+        monkeypatch.setattr(profiles_mod.shutil, "which", lambda name: "/opt/openamer/bin/openamer")
 
         resp = self.client.post(
             "/api/profiles",
@@ -5665,9 +5665,9 @@ class TestNewEndpoints:
         assert wrapper_path.exists()
         lines = [line.strip() for line in wrapper_path.read_text().splitlines() if line.strip()]
         if is_windows:
-            assert lines == ["@echo off", "hermes -p writer %*"]
+            assert lines == ["@echo off", "openamer -p writer %*"]
         else:
-            assert lines == ["#!/bin/sh", 'exec /opt/hermes/bin/hermes -p writer "$@"']
+            assert lines == ["#!/bin/sh", 'exec /opt/openamer/bin/openamer -p writer "$@"']
 
     def test_profiles_create_with_clone_from_copies_source_skills(self, monkeypatch):
         from openamer_constants import get_openamer_home
@@ -5772,7 +5772,7 @@ class TestNewEndpoints:
         all land in the NEW profile's config, and hub installs are spawned
         scoped to that profile via ``-p <name>``."""
         from openamer_constants import (
-            get_hermes_home,
+            get_openamer_home,
             set_openamer_home_override,
             reset_openamer_home_override,
         )
@@ -5803,7 +5803,7 @@ class TestNewEndpoints:
             spawned.append((list(subcommand), name))
             return _FakeProc()
 
-        monkeypatch.setattr(web_server, "_spawn_hermes_action", fake_spawn)
+        monkeypatch.setattr(web_server, "_spawn_openamer_action", fake_spawn)
 
         resp = self.client.post(
             "/api/profiles",
@@ -6786,13 +6786,13 @@ class TestNewEndpoints:
         config = load_config()
         config.setdefault("terminal", {})
         config["terminal"]["ssh_host"] = "devbox.example.com"
-        config["terminal"]["ssh_user"] = "hermes"
+        config["terminal"]["ssh_user"] = "openamer"
         save_config(config)
 
         body = self.client.get("/api/tools/terminal/backends").json()
         ssh = next(r for r in body["backends"] if r["name"] == "ssh")
         assert ssh["status"] == "ready"
-        assert "hermes@devbox.example.com" in ssh["detail"]
+        assert "openamer@devbox.example.com" in ssh["detail"]
 
     def test_select_terminal_backend_persists_config(self, monkeypatch):
         """PUT .../backend writes terminal.backend and the list reflects it."""
@@ -8093,7 +8093,7 @@ class TestNormaliseThemeDefinition:
 
 
 class TestDiscoverUserThemes:
-    """Tests for _discover_user_themes() — scans ~/.hermes/dashboard-themes/."""
+    """Tests for _discover_user_themes() — scans ~/.openamer/dashboard-themes/."""
 
     def test_returns_empty_when_dir_missing(self, tmp_path, monkeypatch):
         monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
@@ -8168,8 +8168,8 @@ class TestThemeBootstrapCSS:
     the default-teal first-paint flash for user YAML themes."""
 
     @staticmethod
-    def _write_theme(hermes_home, name="ocean"):
-        themes_dir = hermes_home / "dashboard-themes"
+    def _write_theme(openamer_home, name="ocean"):
+        themes_dir = openamer_home / "dashboard-themes"
         themes_dir.mkdir(exist_ok=True)
         (themes_dir / f"{name}.yaml").write_text(
             f"name: {name}\n"
@@ -8195,7 +8195,7 @@ class TestThemeBootstrapCSS:
             web_server, "load_config", lambda: {"dashboard": {"theme": "ocean"}}
         )
         css = web_server._render_active_theme_bootstrap_css()
-        assert css.startswith('<style id="hermes-theme-bootstrap">')
+        assert css.startswith('<style id="openamer-theme-bootstrap">')
         assert css.endswith("</style>")
         # Real bundle tokens (web/src/themes/context.tsx + index.css).
         assert "--background-base:#0a1628;" in css
@@ -8311,11 +8311,11 @@ class TestThemeBootstrapCSS:
         client = self._mount_spa_client(tmp_path, monkeypatch)
         resp = client.get("/chat")
         assert resp.status_code == 200
-        assert '<style id="hermes-theme-bootstrap">' in resp.text
+        assert '<style id="openamer-theme-bootstrap">' in resp.text
         assert "--background-base:#0a1628;" in resp.text
         # Injected inside <head>, before the closing tag.
         head = resp.text.split("</head>")[0]
-        assert "hermes-theme-bootstrap" in head
+        assert "openamer-theme-bootstrap" in head
 
     def test_serve_index_no_bootstrap_for_builtin_theme(self, tmp_path, monkeypatch):
         monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
@@ -8326,7 +8326,7 @@ class TestThemeBootstrapCSS:
         client = self._mount_spa_client(tmp_path, monkeypatch)
         resp = client.get("/chat")
         assert resp.status_code == 200
-        assert "hermes-theme-bootstrap" not in resp.text
+        assert "openamer-theme-bootstrap" not in resp.text
 
     def test_serve_index_survives_render_failure(self, tmp_path, monkeypatch):
         """Even if theme rendering blows up internally, index serving
@@ -8341,7 +8341,7 @@ class TestThemeBootstrapCSS:
         client = self._mount_spa_client(tmp_path, monkeypatch)
         resp = client.get("/chat")
         assert resp.status_code == 200
-        assert "hermes-theme-bootstrap" not in resp.text
+        assert "openamer-theme-bootstrap" not in resp.text
         assert "SPA" in resp.text
 
 
@@ -8487,7 +8487,7 @@ class TestDeleteSessionEndpoint:
     """
 
     @pytest.fixture(autouse=True)
-    def _setup_test_client(self, monkeypatch, _isolate_hermes_home):
+    def _setup_test_client(self, monkeypatch, _isolate_openamer_home):
         try:
             from starlette.testclient import TestClient
         except ImportError:
@@ -8564,7 +8564,7 @@ class TestBulkDeleteSessionsEndpoint:
     """
 
     @pytest.fixture(autouse=True)
-    def _setup_test_client(self, monkeypatch, _isolate_hermes_home):
+    def _setup_test_client(self, monkeypatch, _isolate_openamer_home):
         try:
             from starlette.testclient import TestClient
         except ImportError:
@@ -8688,7 +8688,7 @@ class TestDeleteEmptySessionsEndpoint:
     """
 
     @pytest.fixture(autouse=True)
-    def _setup_test_client(self, monkeypatch, _isolate_hermes_home):
+    def _setup_test_client(self, monkeypatch, _isolate_openamer_home):
         try:
             from starlette.testclient import TestClient
         except ImportError:
@@ -8817,7 +8817,7 @@ class TestPluginAPIAuth:
     """Tests that plugin API routes require the session token (issue #19533)."""
 
     @pytest.fixture(autouse=True)
-    def _setup_test_client(self, monkeypatch, _isolate_hermes_home, _install_example_plugin):
+    def _setup_test_client(self, monkeypatch, _isolate_openamer_home, _install_example_plugin):
         """Create a TestClient without the session token header.
 
         Pulls in ``_install_example_plugin`` so ``test_plugin_route_allows_auth``
@@ -8891,12 +8891,12 @@ class TestPluginAPIAuth:
         """Auth must be plugin-agnostic, not kanban-specific.
 
         The middleware fix is at the gate level (no per-plugin allowlist),
-        so any plugin's API surface — kanban, hermes-achievements, future
+        so any plugin's API surface — kanban, openamer-achievements, future
         plugins — must require the session token. Hit a non-kanban plugin
         path to lock that in.
         """
-        # Real plugin path (hermes-achievements is loaded by default).
-        resp = self.client.get("/api/plugins/hermes-achievements/overview")
+        # Real plugin path (openamer-achievements is loaded by default).
+        resp = self.client.get("/api/plugins/openamer-achievements/overview")
         assert resp.status_code == 401
         # Same for an arbitrary plugin namespace that doesn't even exist —
         # the middleware should 401 before routing decides 404, so an
@@ -9077,7 +9077,7 @@ class TestDashboardPluginManifestExtensions:
 # /api/pty WebSocket — terminal bridge for the dashboard "Chat" tab.
 #
 # These tests drive the endpoint with a tiny fake command (typically ``cat``
-# or ``sh -c 'printf …'``) instead of the real ``hermes --tui`` binary.  The
+# or ``sh -c 'printf …'``) instead of the real ``openamer --tui`` binary.  The
 # endpoint resolves its argv through ``_resolve_chat_argv``, so tests
 # monkeypatch that hook.
 # ---------------------------------------------------------------------------
@@ -9093,7 +9093,7 @@ skip_on_windows = pytest.mark.skipif(
 @skip_on_windows
 class TestPtyWebSocket:
     @pytest.fixture(autouse=True)
-    def _setup(self, monkeypatch, _isolate_hermes_home):
+    def _setup(self, monkeypatch, _isolate_openamer_home):
         from starlette.testclient import TestClient
 
         import openamer_cli.web_server as ws
@@ -9188,7 +9188,7 @@ class TestPtyWebSocket:
         """Dashboard chat does not preserve unusable inherited TUI Python env."""
         import openamer_cli.main as main_mod
 
-        monkeypatch.setenv("HERMES_PYTHON_SRC_ROOT", "/definitely/missing/hermes-src")
+        monkeypatch.setenv("HERMES_PYTHON_SRC_ROOT", "/definitely/missing/openamer-src")
         monkeypatch.setenv("HERMES_PYTHON", "/definitely/missing/python")
         monkeypatch.setenv("HERMES_CWD", "/definitely/missing/cwd")
         monkeypatch.setattr(
@@ -9233,7 +9233,7 @@ class TestPtyWebSocket:
         """Bare Python commands are resolved from the TUI child's PATH."""
         import openamer_cli.main as main_mod
 
-        command = f"hermes-review-python{Path(sys.executable).suffix}"
+        command = f"openamer-review-python{Path(sys.executable).suffix}"
         bin_dir = tmp_path / "bin"
         bin_dir.mkdir()
         executable = bin_dir / command
@@ -9269,7 +9269,7 @@ class TestPtyWebSocket:
         assert env["HERMES_CWD"] == str(tmp_path)
 
     def test_resolve_chat_argv_applies_terminal_backend_config(
-        self, monkeypatch, _isolate_hermes_home
+        self, monkeypatch, _isolate_openamer_home
     ):
         import openamer_cli.main as main_mod
 
@@ -9279,7 +9279,7 @@ class TestPtyWebSocket:
                 [
                     "terminal:",
                     "  backend: docker",
-                    "  docker_image: example/hermes-tools:latest",
+                    "  docker_image: example/openamer-tools:latest",
                     "  docker_extra_args:",
                     "    - --network=host",
                 ]
@@ -9298,7 +9298,7 @@ class TestPtyWebSocket:
         _argv, _cwd, env = self.ws_module._resolve_chat_argv()
 
         assert env["TERMINAL_ENV"] == "docker"
-        assert env["TERMINAL_DOCKER_IMAGE"] == "example/hermes-tools:latest"
+        assert env["TERMINAL_DOCKER_IMAGE"] == "example/openamer-tools:latest"
         assert env["TERMINAL_DOCKER_EXTRA_ARGS"] == '["--network=host"]'
 
     def test_rejects_when_embedded_chat_disabled(self, monkeypatch):
@@ -9442,7 +9442,7 @@ class TestPtyWebSocket:
             self.ws_module,
             "_resolve_chat_argv",
             lambda resume=None, sidecar_url=None, profile=None: (
-                ["/bin/sh", "-c", "printf hermes-ws-ok"],
+                ["/bin/sh", "-c", "printf openamer-ws-ok"],
                 None,
                 None,
             ),
@@ -9461,9 +9461,9 @@ class TestPtyWebSocket:
                     break
                 if frame:
                     buf += frame
-                if b"hermes-ws-ok" in buf:
+                if b"openamer-ws-ok" in buf:
                     break
-            assert b"hermes-ws-ok" in buf
+            assert b"openamer-ws-ok" in buf
 
     def test_client_input_reaches_child_stdin(self, monkeypatch):
         # ``cat`` echoes stdin back, so a write → read round-trip proves
@@ -9705,7 +9705,7 @@ class TestDashboardPluginStaticAssetAllowlist:
     """
 
     @pytest.fixture(autouse=True)
-    def _setup_test_client(self, monkeypatch, _isolate_hermes_home, _install_example_plugin):
+    def _setup_test_client(self, monkeypatch, _isolate_openamer_home, _install_example_plugin):
         """Create a TestClient and install the example-dashboard fixture.
 
         The static-asset allowlist tests need a plugin to point at —
@@ -9808,7 +9808,7 @@ class TestValidateProviderCredential:
     """Live-probe credential validation (/api/providers/validate)."""
 
     @pytest.fixture(autouse=True)
-    def _setup_test_client(self, monkeypatch, _isolate_hermes_home):
+    def _setup_test_client(self, monkeypatch, _isolate_openamer_home):
         try:
             from starlette.testclient import TestClient
         except ImportError:
@@ -9941,7 +9941,7 @@ class TestDesktopCronTicker:
 
         return TestClient(app)
 
-    def test_ticker_runs_when_desktop(self, monkeypatch, _isolate_hermes_home):
+    def test_ticker_runs_when_desktop(self, monkeypatch, _isolate_openamer_home):
         import threading
         import cron.scheduler as sched
 
@@ -9952,7 +9952,7 @@ class TestDesktopCronTicker:
         with self._client():
             assert called.wait(3.0), "expected cron tick under HERMES_DESKTOP=1"
 
-    def test_ticker_skipped_without_desktop(self, monkeypatch, _isolate_hermes_home):
+    def test_ticker_skipped_without_desktop(self, monkeypatch, _isolate_openamer_home):
         import threading
         import cron.scheduler as sched
 
@@ -10021,7 +10021,7 @@ class TestDashboardComponentHealth:
     """Component-health rollup: error middleware, /api/status components, self-test."""
 
     @pytest.fixture(autouse=True)
-    def _setup(self, monkeypatch, _isolate_hermes_home):
+    def _setup(self, monkeypatch, _isolate_openamer_home):
         try:
             from starlette.testclient import TestClient
         except ImportError:

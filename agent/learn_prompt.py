@@ -11,9 +11,9 @@ that instructs the live agent to:
      (``read_file`` / ``search_files`` for dirs, ``web_extract`` for URLs, the
      current conversation for "what I just did", the user's text for pasted
      material).
-  2. Author a single ``SKILL.md`` via ``skill_manage`` that follows the Hermes
+  2. Author a single ``SKILL.md`` via ``skill_manage`` that follows the OpenAmer
      skill-authoring standards (description <=60 chars, the modern section
-     order, Hermes-tool framing, no invented commands).
+     order, OpenAmer-tool framing, no invented commands).
 
 There is no separate distillation engine and no model-tool footprint: the
 agent does the work with its existing toolset, so this works identically on
@@ -25,10 +25,10 @@ gateway ``/learn``, the dashboard "Learn a skill" panel) calls
 from __future__ import annotations
 
 # The house-style rules, distilled from AGENTS.md "Skill authoring standards
-# (HARDLINE)" and the hermes-agent-dev new-skill salvage reference. Embedded in
+# (HARDLINE)" and the openamer-agent-dev new-skill salvage reference. Embedded in
 # the prompt so the agent authors skills the way a maintainer would by hand.
 _AUTHORING_STANDARDS = """\
-Follow the Hermes skill-authoring standards exactly. These are the same
+Follow the OpenAmer skill-authoring standards exactly. These are the same
 HARDLINE rules a maintainer enforces in review:
 
 Frontmatter:
@@ -46,33 +46,33 @@ Frontmatter:
     Bad (123):   `A comprehensive skill that lets the agent search arXiv for
                   academic papers using keywords, authors, and categories.`
 - version: 0.1.0
-- author: always the literal value `Hermes`. NEVER fill it from the host
+- author: always the literal value `OpenAmer`. NEVER fill it from the host
   environment — the OS/login username (e.g. the `user=` line in your
   environment hints), git config, or any identity you can probe must not be
   written. Skills get shared and published, so an environment-derived name is
-  a privacy leak the user never opted into; the skill names itself as Hermes.
+  a privacy leak the user never opted into; the skill names itself as OpenAmer.
 - platforms: declare `[macos]`, `[linux]`, and/or `[windows]` IF the skill
   uses OS-bound primitives (osascript/apt/systemctl => the matching OS; /proc,
   os.setsid, signal.SIGKILL => linux; fcntl/termios => POSIX). Prefer fixing it
   cross-platform first (tempfile.gettempdir(), pathlib.Path, psutil); gate only
   when the dependency is genuinely platform-bound. Omit the field for portable
   skills.
-- metadata.hermes.tags: a few Capitalized, Relevant, Tags.
+- metadata.openamer.tags: a few Capitalized, Relevant, Tags.
 
 Body section order (omit a section only if it genuinely has no content):
 1. "# <Human Title>" then a 2-3 sentence intro: what it does, what it does NOT
    do, and the key dependency stance (e.g. "stdlib only").
 2. "## When to Use" — bullet list of concrete trigger phrases.
 3. "## Prerequisites" — exact env vars, install steps, credentials.
-4. "## How to Run" — the canonical invocation, framed through Hermes tools.
+4. "## How to Run" — the canonical invocation, framed through OpenAmer tools.
 5. "## Quick Reference" — a flat command/endpoint list, no narration.
 6. "## Procedure" — numbered steps with copy-paste-exact commands.
 7. "## Pitfalls" — known limits, rate limits, things that look broken but aren't.
 8. "## Verification" — a single command/check that proves the skill worked.
 
-Hermes-tool framing (this is what makes it a skill, not shell docs):
+OpenAmer-tool framing (this is what makes it a skill, not shell docs):
 - Frame running scripts as "invoke through the `terminal` tool".
-- Reference Hermes tools by name in backticks: `terminal`, `read_file`,
+- Reference OpenAmer tools by name in backticks: `terminal`, `read_file`,
   `write_file`, `search_files`, `patch`, `web_extract`, `web_search`,
   `vision_analyze`, `browser_navigate`, `delegate_task`, `image_generate`,
   `text_to_speech`, `cronjob`, `memory`, `skill_view`, `execute_code`.

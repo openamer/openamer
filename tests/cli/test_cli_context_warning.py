@@ -12,23 +12,23 @@ from agent.model_metadata import MINIMUM_CONTEXT_LENGTH
 @pytest.fixture
 def _isolate(tmp_path, monkeypatch):
     """Isolate OPENAMER_HOME so tests don't touch real config."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
 
 
 @pytest.fixture
 def cli_obj(_isolate):
-    """Create a minimal HermesCLI instance for banner testing."""
+    """Create a minimal OpenAmerCLI instance for banner testing."""
     with patch("cli.load_cli_config", return_value={
         "display": {"tool_progress": "new"},
         "terminal": {},
     }), patch("cli.get_tool_definitions", return_value=[]), \
          patch("cli.build_welcome_banner"):
-        from cli import HermesCLI
-        obj = HermesCLI.__new__(HermesCLI)
+        from cli import OpenAmerCLI
+        obj = OpenAmerCLI.__new__(OpenAmerCLI)
         obj.model = "test-model"
-        obj.enabled_toolsets = ["hermes-core"]
+        obj.enabled_toolsets = ["openamer-core"]
         obj.compact = False
         obj.console = MagicMock()
         obj.session_id = None
@@ -47,7 +47,7 @@ class TestLowContextWarning:
     """Tests that the CLI warns about low context lengths."""
 
     def test_warning_for_below_minimum_context(self, cli_obj):
-        """Warning shown when context is below Hermes' minimum."""
+        """Warning shown when context is below OpenAmer' minimum."""
         cli_obj.agent.context_compressor.context_length = 32768
         with patch("cli.get_tool_definitions", return_value=[]), \
              patch("cli.build_welcome_banner"):
@@ -83,7 +83,7 @@ class TestLowContextWarning:
         assert len(warning_calls) == 1
 
     def test_no_warning_at_boundary(self, cli_obj):
-        """No warning at exactly Hermes' minimum context length."""
+        """No warning at exactly OpenAmer' minimum context length."""
         cli_obj.agent.context_compressor.context_length = MINIMUM_CONTEXT_LENGTH
         with patch("cli.get_tool_definitions", return_value=[]), \
              patch("cli.build_welcome_banner"):
@@ -94,7 +94,7 @@ class TestLowContextWarning:
         assert len(warning_calls) == 0
 
     def test_no_warning_above_boundary(self, cli_obj):
-        """No warning above Hermes' minimum context length."""
+        """No warning above OpenAmer' minimum context length."""
         cli_obj.agent.context_compressor.context_length = MINIMUM_CONTEXT_LENGTH + 1
         with patch("cli.get_tool_definitions", return_value=[]), \
              patch("cli.build_welcome_banner"):

@@ -41,7 +41,7 @@ def test_bare_leaked_payload_reproduces_the_typeerror():
 def test_strips_all_responses_only_keys():
     payload = {
         "model": "claude-sonnet-4-6",
-        "instructions": "You are Hermes.",
+        "instructions": "You are OpenAmer.",
         "input": [{"role": "user", "content": "hi"}],
         "store": False,
         "parallel_tool_calls": True,

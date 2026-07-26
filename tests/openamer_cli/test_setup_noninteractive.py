@@ -51,7 +51,7 @@ class TestNonInteractiveSetup:
         mock_run_setup.assert_called_once_with(args)
 
     def test_cmd_setup_defers_no_tty_handling_to_setup_wizard(self):
-        """Bare `hermes setup` should reach setup.py, which prints headless guidance."""
+        """Bare `openamer setup` should reach setup.py, which prints headless guidance."""
         from openamer_cli.main import cmd_setup
 
         args = _make_setup_args(non_interactive=False)
@@ -72,16 +72,16 @@ class TestNonInteractiveSetup:
         args = _make_setup_args(non_interactive=True)
 
         with (
-            patch("openamer_cli.setup.ensure_hermes_home"),
+            patch("openamer_cli.setup.ensure_openamer_home"),
             patch("openamer_cli.setup.load_config", return_value={}),
-            patch("openamer_cli.setup.get_hermes_home", return_value="/tmp/.hermes"),
+            patch("openamer_cli.setup.get_openamer_home", return_value="/tmp/.openamer"),
             patch("openamer_cli.auth.get_active_provider", side_effect=AssertionError("wizard continued")),
             patch("builtins.input", side_effect=AssertionError("input should not be called")),
         ):
             run_setup_wizard(args)
 
         out = capsys.readouterr().out
-        assert "hermes config set model.provider custom" in out
+        assert "openamer config set model.provider custom" in out
 
     def test_no_tty_skips_wizard(self, capsys):
         """When stdin has no TTY, the setup wizard should print guidance and return."""
@@ -90,9 +90,9 @@ class TestNonInteractiveSetup:
         args = _make_setup_args(non_interactive=False)
 
         with (
-            patch("openamer_cli.setup.ensure_hermes_home"),
+            patch("openamer_cli.setup.ensure_openamer_home"),
             patch("openamer_cli.setup.load_config", return_value={}),
-            patch("openamer_cli.setup.get_hermes_home", return_value="/tmp/.hermes"),
+            patch("openamer_cli.setup.get_openamer_home", return_value="/tmp/.openamer"),
             patch("openamer_cli.auth.get_active_provider", side_effect=AssertionError("wizard continued")),
             patch("sys.stdin") as mock_stdin,
             patch("builtins.input", side_effect=AssertionError("input should not be called")),
@@ -101,7 +101,7 @@ class TestNonInteractiveSetup:
             run_setup_wizard(args)
 
         out = capsys.readouterr().out
-        assert "hermes config set model.provider custom" in out
+        assert "openamer config set model.provider custom" in out
 
     def test_reset_flag_rewrites_config_before_noninteractive_exit(self, tmp_path, monkeypatch, capsys):
         """--reset should rewrite config.yaml even when the wizard cannot run interactively."""
@@ -124,7 +124,7 @@ class TestNonInteractiveSetup:
         assert "Configuration reset to defaults." in out
 
     def test_chat_first_run_headless_skips_setup_prompt(self, capsys):
-        """Bare `hermes` should not prompt for input when no provider exists and stdin is headless."""
+        """Bare `openamer` should not prompt for input when no provider exists and stdin is headless."""
         from openamer_cli.main import cmd_chat
 
         args = _make_chat_args()
@@ -142,10 +142,10 @@ class TestNonInteractiveSetup:
         assert exc.value.code == 1
         mock_setup.assert_not_called()
         out = capsys.readouterr().out
-        assert "hermes config set model.provider custom" in out
+        assert "openamer config set model.provider custom" in out
 
     def test_main_accepts_tts_setup_section(self, monkeypatch):
-        """`hermes setup tts` should parse and dispatch like other setup sections."""
+        """`openamer setup tts` should parse and dispatch like other setup sections."""
         from openamer_cli import main as main_mod
 
         received = {}
@@ -154,7 +154,7 @@ class TestNonInteractiveSetup:
             received["section"] = args.section
 
         monkeypatch.setattr(main_mod, "cmd_setup", fake_cmd_setup)
-        monkeypatch.setattr("sys.argv", ["hermes", "setup", "tts"])
+        monkeypatch.setattr("sys.argv", ["openamer", "setup", "tts"])
 
         main_mod.main()
 

@@ -3,8 +3,8 @@
 Petdex (https://github.com/crafter-station/petdex) is a public gallery of
 animated sprite "pets" for coding agents.  Each pet is a ``pet.json`` plus a
 ``spritesheet.{webp,png}`` of 192×208 px cells. Current Codex/petdex sheets use
-an 8-column × 9-row atlas; older Hermes/petdex sheets used an 8-row atlas.
-Hermes infers the row taxonomy from the sheet and maps agent activity onto
+an 8-column × 9-row atlas; older OpenAmer/petdex sheets used an 8-row atlas.
+OpenAmer infers the row taxonomy from the sheet and maps agent activity onto
 idle/run/review/failed/wave/jump.
 
 This package is the **single source of truth** for the feature so the base

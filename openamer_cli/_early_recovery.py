@@ -1,6 +1,6 @@
 """Dependency-light venv recovery that runs BEFORE openamer_cli.main's imports.
 
-The ``hermes`` console entry point is ``openamer_cli.main:main``.  Importing
+The ``openamer`` console entry point is ``openamer_cli.main:main``.  Importing
 ``openamer_cli.main`` pulls in third-party packages at module level (``dotenv``
 via ``openamer_cli.env_loader``, ``yaml`` via ``openamer_cli.config``, ...).  In
 the exact failure state the update-recovery markers exist for — a failed lazy

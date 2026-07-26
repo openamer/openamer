@@ -32,7 +32,7 @@ def _make_socket_dir(tmpdir, session_name, pid=None, owner_pid=None):
         tmpdir: base temp directory
         session_name: name like "h_abc1234567" or "cdp_abc1234567"
         pid: daemon PID to write to <session>.pid (None = no file)
-        owner_pid: owning hermes PID to write to <session>.owner_pid
+        owner_pid: owning openamer PID to write to <session>.owner_pid
                    (None = no file; tests the legacy path)
     """
     d = tmpdir / f"agent-browser-{session_name}"
@@ -156,7 +156,7 @@ class TestReapOrphanedBrowserSessions:
         # No PID file → cleaned up
         assert not d.exists()
 
-    def test_non_hermes_dirs_are_ignored(self, fake_tmpdir):
+    def test_non_openamer_dirs_are_ignored(self, fake_tmpdir):
         """Socket dirs that don't match our naming pattern are left alone."""
         from tools.browser_tool import _reap_orphaned_browser_sessions
 
@@ -184,8 +184,8 @@ class TestReapOrphanedBrowserSessions:
 class TestOwnerPidCrossProcess:
     """Tests for owner_pid-based cross-process safe reaping.
 
-    The owner_pid file records which hermes process owns a daemon so that
-    concurrent hermes processes don't reap each other's active browser
+    The owner_pid file records which openamer process owns a daemon so that
+    concurrent openamer processes don't reap each other's active browser
     sessions.  Added to fix orphan accumulation from crashed processes.
     """
 

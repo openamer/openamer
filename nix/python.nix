@@ -111,11 +111,11 @@ let
           buildSystemOverrides
           pythonPackageOverrides
           # ``setup.py`` permits wheel/sdist creation only from the sealed
-          # Hermes derivation. This is deliberately a derivation environment
+          # OpenAmer derivation. This is deliberately a derivation environment
           # variable, not a devShell variable: ``nix develop -c uv build``
           # must remain blocked.
           (final: prev: {
-            hermes-agent = prev.hermes-agent.overrideAttrs (_old: {
+            openamer-agent = prev.openamer-agent.overrideAttrs (_old: {
               HERMES_NIX_BUILD = "1";
             });
           })
@@ -138,7 +138,7 @@ let
     lib.composeManyExtensions [
       editableOverlay
       (final: prev: {
-        hermes-agent = prev.hermes-agent.overrideAttrs (old: {
+        openamer-agent = prev.openamer-agent.overrideAttrs (old: {
           # point straight at the real source instead of the filtered nix store copy
           src = workspaceRoot;
           nativeBuildInputs = old.nativeBuildInputs ++ final.resolveBuildSystem { editables = [ ]; };
@@ -148,10 +148,10 @@ let
   );
 in
 {
-  venv = pythonSet.mkVirtualEnv "hermes-agent-env" {
-    hermes-agent = dependency-groups;
+  venv = pythonSet.mkVirtualEnv "openamer-agent-env" {
+    openamer-agent = dependency-groups;
   };
-  editableVenv = editableSet.mkVirtualEnv "hermes-agent-editable-env" {
-    hermes-agent = dependency-groups;
+  editableVenv = editableSet.mkVirtualEnv "openamer-agent-editable-env" {
+    openamer-agent = dependency-groups;
   };
 }

@@ -3,7 +3,7 @@
 When installing as root with the FHS layout (INSTALL_DIR=/usr/local/lib/...),
 ``uv python install`` must place the managed Python under a world-readable
 location, otherwise the venv interpreter ends up at ``/root/.local/share/uv/...``
-and the shared ``/usr/local/bin/hermes`` wrapper fails for non-root users with
+and the shared ``/usr/local/bin/openamer`` wrapper fails for non-root users with
 "bad interpreter: Permission denied".  See #21457.
 """
 

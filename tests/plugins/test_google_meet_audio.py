@@ -13,10 +13,10 @@ import pytest
 
 @pytest.fixture(autouse=True)
 def _isolate_home(tmp_path, monkeypatch):
-    hermes_home = tmp_path / ".hermes"
-    hermes_home.mkdir()
-    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
-    yield hermes_home
+    openamer_home = tmp_path / ".openamer"
+    openamer_home.mkdir()
+    monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
+    yield openamer_home
 
 
 # ---------------------------------------------------------------------------
@@ -59,23 +59,23 @@ def test_setup_linux_loads_null_sink_and_virtual_source():
     assert len(calls) == 2
     assert calls[0][0] == "pactl" and calls[0][1] == "load-module"
     assert "module-null-sink" in calls[0]
-    assert any(a.startswith("sink_name=hermes_meet_sink") for a in calls[0])
+    assert any(a.startswith("sink_name=openamer_meet_sink") for a in calls[0])
     assert calls[1][0] == "pactl" and calls[1][1] == "load-module"
     assert "module-virtual-source" in calls[1]
-    assert any(a.startswith("source_name=hermes_meet_src") for a in calls[1])
-    assert any("master=hermes_meet_sink.monitor" in a for a in calls[1])
+    assert any(a.startswith("source_name=openamer_meet_src") for a in calls[1])
+    assert any("master=openamer_meet_sink.monitor" in a for a in calls[1])
 
     # Dict shape.
     assert info["platform"] == "linux"
-    assert info["device_name"] == "hermes_meet_src"
-    assert info["write_target"] == "hermes_meet_sink"
+    assert info["device_name"] == "openamer_meet_src"
+    assert info["write_target"] == "openamer_meet_sink"
     assert info["sample_rate"] == 48000
     assert info["channels"] == 2
     assert info["module_ids"] == [42, 43]
 
     # Properties.
-    assert br.device_name == "hermes_meet_src"
-    assert br.write_target == "hermes_meet_sink"
+    assert br.device_name == "openamer_meet_src"
+    assert br.write_target == "openamer_meet_sink"
 
 
 def test_teardown_linux_unloads_modules_in_reverse_order():
@@ -230,7 +230,7 @@ def test_chrome_fake_audio_flags_linux():
     with patch("plugins.google_meet.audio_bridge.platform.system",
                return_value="Linux"):
         flags = chrome_fake_audio_flags(
-            {"platform": "linux", "device_name": "hermes_meet_src"}
+            {"platform": "linux", "device_name": "openamer_meet_src"}
         )
     assert "--use-fake-ui-for-media-stream" in flags
 

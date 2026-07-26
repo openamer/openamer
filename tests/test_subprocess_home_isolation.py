@@ -1,13 +1,13 @@
 """Tests for subprocess HOME handling in profile mode.
 
-Hermes state stays profile-scoped through OPENAMER_HOME. Host subprocesses should
+OpenAmer state stays profile-scoped through OPENAMER_HOME. Host subprocesses should
 keep the user's real HOME by default so external CLIs find existing credentials.
 Containers still use the profile home for persistence, and users can explicitly
 opt into profile HOME isolation on the host.
 
-See: https://github.com/NousResearch/hermes-agent/issues/25114
-See: https://github.com/NousResearch/hermes-agent/issues/36144
-See: https://github.com/NousResearch/hermes-agent/issues/29015
+See: https://github.com/NousResearch/openamer-agent/issues/25114
+See: https://github.com/NousResearch/openamer-agent/issues/36144
+See: https://github.com/NousResearch/openamer-agent/issues/29015
 """
 
 import os
@@ -35,15 +35,15 @@ class TestGetSubprocessHome:
         monkeypatch.delenv("TERMINAL_HOME_MODE", raising=False)
         monkeypatch.delenv("HERMES_REAL_HOME", raising=False)
 
-    def test_returns_none_when_hermes_home_unset(self, monkeypatch):
+    def test_returns_none_when_openamer_home_unset(self, monkeypatch):
         monkeypatch.delenv("OPENAMER_HOME", raising=False)
         from openamer_constants import get_subprocess_home
         assert get_subprocess_home() is None
 
     def test_returns_none_when_home_dir_missing(self, tmp_path, monkeypatch):
-        hermes_home = tmp_path / ".hermes"
-        hermes_home.mkdir()
-        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+        openamer_home = tmp_path / ".openamer"
+        openamer_home.mkdir()
+        monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
         # No home/ subdirectory created
         from openamer_constants import get_subprocess_home
         assert get_subprocess_home() is None
@@ -52,27 +52,27 @@ class TestGetSubprocessHome:
         """Host installs should not hide real ~/.ssh, ~/.gitconfig, ~/.azure, etc."""
         self._host_mode(monkeypatch)
         real_home = tmp_path / "real-home"
-        hermes_home = real_home / ".hermes" / "profiles" / "coder"
-        profile_home = hermes_home / "home"
+        openamer_home = real_home / ".openamer" / "profiles" / "coder"
+        profile_home = openamer_home / "home"
         profile_home.mkdir(parents=True)
         monkeypatch.setenv("HOME", str(real_home))
-        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
         from openamer_constants import get_subprocess_home
         assert get_subprocess_home() is None
 
     def test_container_auto_uses_profile_home_when_home_dir_exists(self, tmp_path, monkeypatch):
         self._container_mode(monkeypatch)
-        hermes_home = tmp_path / ".hermes"
-        profile_home = hermes_home / "home"
+        openamer_home = tmp_path / ".openamer"
+        profile_home = openamer_home / "home"
         profile_home.mkdir(parents=True)
-        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
         from openamer_constants import get_subprocess_home
         assert get_subprocess_home() == str(profile_home)
 
     def test_returns_profile_specific_path(self, tmp_path, monkeypatch):
         """Explicit profile mode keeps the old per-profile HOME behavior."""
         self._host_mode(monkeypatch)
-        profile_dir = tmp_path / ".hermes" / "profiles" / "coder"
+        profile_dir = tmp_path / ".openamer" / "profiles" / "coder"
         profile_dir.mkdir(parents=True)
         profile_home = profile_dir / "home"
         profile_home.mkdir()
@@ -83,7 +83,7 @@ class TestGetSubprocessHome:
 
     def test_real_mode_repairs_parent_home_already_pointing_at_profile(self, tmp_path, monkeypatch):
         self._host_mode(monkeypatch)
-        profile_dir = tmp_path / ".hermes" / "profiles" / "coder"
+        profile_dir = tmp_path / ".openamer" / "profiles" / "coder"
         profile_home = profile_dir / "home"
         profile_home.mkdir(parents=True)
         real_home = tmp_path / "real-home"
@@ -100,7 +100,7 @@ class TestGetSubprocessHome:
 
     def test_real_home_falls_back_to_os_account_when_home_is_profile(self, tmp_path, monkeypatch):
         self._host_mode(monkeypatch)
-        profile_dir = tmp_path / ".hermes" / "profiles" / "coder"
+        profile_dir = tmp_path / ".openamer" / "profiles" / "coder"
         profile_home = profile_dir / "home"
         profile_home.mkdir(parents=True)
         monkeypatch.setenv("OPENAMER_HOME", str(profile_dir))
@@ -112,7 +112,7 @@ class TestGetSubprocessHome:
 
     def test_two_profiles_get_different_homes(self, tmp_path, monkeypatch):
         self._container_mode(monkeypatch)
-        base = tmp_path / ".hermes" / "profiles"
+        base = tmp_path / ".openamer" / "profiles"
         for name in ("alpha", "beta"):
             p = base / name
             p.mkdir(parents=True)
@@ -140,7 +140,7 @@ class TestGetSubprocessHome:
         monkeypatch.setenv("OPENAMER_HOME", str(root))
 
         from openamer_constants import (
-            get_hermes_home,
+            get_openamer_home,
             reset_openamer_home_override,
             set_openamer_home_override,
         )
@@ -179,13 +179,13 @@ class TestMakeRunEnvHomeInjection:
     """Verify _make_run_env() applies the subprocess HOME policy."""
 
     def test_host_auto_preserves_real_home_when_profile_home_exists(self, tmp_path, monkeypatch):
-        hermes_home = tmp_path / "hermes"
-        hermes_home.mkdir()
-        (hermes_home / "home").mkdir()
+        openamer_home = tmp_path / "openamer"
+        openamer_home.mkdir()
+        (openamer_home / "home").mkdir()
         real_home = tmp_path / "real-home"
         real_home.mkdir()
         monkeypatch.setattr(openamer_constants, "is_container", lambda: False)
-        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
         monkeypatch.setenv("HOME", str(real_home))
         monkeypatch.setenv("PATH", "/usr/bin:/bin")
 
@@ -196,28 +196,28 @@ class TestMakeRunEnvHomeInjection:
         assert result["HERMES_REAL_HOME"] == str(real_home)
 
     def test_profile_mode_injects_profile_home_when_profile_home_exists(self, tmp_path, monkeypatch):
-        hermes_home = tmp_path / "hermes"
-        hermes_home.mkdir()
-        (hermes_home / "home").mkdir()
+        openamer_home = tmp_path / "openamer"
+        openamer_home.mkdir()
+        (openamer_home / "home").mkdir()
         real_home = tmp_path / "real-home"
         real_home.mkdir()
         monkeypatch.setattr(openamer_constants, "is_container", lambda: False)
         monkeypatch.setenv("TERMINAL_HOME_MODE", "profile")
-        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
         monkeypatch.setenv("HOME", str(real_home))
         monkeypatch.setenv("PATH", "/usr/bin:/bin")
 
         from tools.environments.local import _make_run_env
         result = _make_run_env({})
 
-        assert result["HOME"] == str(hermes_home / "home")
+        assert result["HOME"] == str(openamer_home / "home")
         assert result["HERMES_REAL_HOME"] == str(real_home)
 
     def test_no_injection_when_home_dir_missing(self, tmp_path, monkeypatch):
-        hermes_home = tmp_path / "hermes"
-        hermes_home.mkdir()
+        openamer_home = tmp_path / "openamer"
+        openamer_home.mkdir()
         # No home/ subdirectory
-        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
         monkeypatch.setenv("HOME", "/root")
         monkeypatch.setenv("PATH", "/usr/bin:/bin")
 
@@ -226,7 +226,7 @@ class TestMakeRunEnvHomeInjection:
 
         assert result["HOME"] == "/root"
 
-    def test_no_injection_when_hermes_home_unset(self, monkeypatch):
+    def test_no_injection_when_openamer_home_unset(self, monkeypatch):
         monkeypatch.delenv("OPENAMER_HOME", raising=False)
         monkeypatch.setenv("HOME", "/home/user")
         monkeypatch.setenv("PATH", "/usr/bin:/bin")
@@ -268,13 +268,13 @@ class TestSanitizeSubprocessEnvHomeInjection:
     """Verify _sanitize_subprocess_env() applies the subprocess HOME policy."""
 
     def test_host_auto_preserves_real_home_when_profile_home_exists(self, tmp_path, monkeypatch):
-        hermes_home = tmp_path / "hermes"
-        hermes_home.mkdir()
-        (hermes_home / "home").mkdir()
+        openamer_home = tmp_path / "openamer"
+        openamer_home.mkdir()
+        (openamer_home / "home").mkdir()
         real_home = tmp_path / "real-home"
         real_home.mkdir()
         monkeypatch.setattr(openamer_constants, "is_container", lambda: False)
-        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
 
         base_env = {"HOME": str(real_home), "PATH": "/usr/bin", "USER": "root"}
         from tools.environments.local import _sanitize_subprocess_env
@@ -284,26 +284,26 @@ class TestSanitizeSubprocessEnvHomeInjection:
         assert result["HERMES_REAL_HOME"] == str(real_home)
 
     def test_profile_mode_injects_profile_home_when_profile_home_exists(self, tmp_path, monkeypatch):
-        hermes_home = tmp_path / "hermes"
-        hermes_home.mkdir()
-        (hermes_home / "home").mkdir()
+        openamer_home = tmp_path / "openamer"
+        openamer_home.mkdir()
+        (openamer_home / "home").mkdir()
         real_home = tmp_path / "real-home"
         real_home.mkdir()
         monkeypatch.setattr(openamer_constants, "is_container", lambda: False)
         monkeypatch.setenv("TERMINAL_HOME_MODE", "profile")
-        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
 
         base_env = {"HOME": str(real_home), "PATH": "/usr/bin", "USER": "root"}
         from tools.environments.local import _sanitize_subprocess_env
         result = _sanitize_subprocess_env(base_env)
 
-        assert result["HOME"] == str(hermes_home / "home")
+        assert result["HOME"] == str(openamer_home / "home")
         assert result["HERMES_REAL_HOME"] == str(real_home)
 
     def test_no_injection_when_home_dir_missing(self, tmp_path, monkeypatch):
-        hermes_home = tmp_path / "hermes"
-        hermes_home.mkdir()
-        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+        openamer_home = tmp_path / "openamer"
+        openamer_home.mkdir()
+        monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
 
         base_env = {"HOME": "/root", "PATH": "/usr/bin"}
         from tools.environments.local import _sanitize_subprocess_env
@@ -347,7 +347,7 @@ class TestProfileBootstrap:
 
     def test_create_profile_bootstraps_home_dir(self, tmp_path, monkeypatch):
         """create_profile() should create home/ inside the profile dir."""
-        home = tmp_path / ".hermes"
+        home = tmp_path / ".openamer"
         home.mkdir()
         monkeypatch.setattr(Path, "home", lambda: tmp_path)
         monkeypatch.setenv("OPENAMER_HOME", str(home))
@@ -367,10 +367,10 @@ class TestPythonProcessUnchanged:
     def test_path_home_unchanged_after_subprocess_home_resolved(
         self, tmp_path, monkeypatch
     ):
-        hermes_home = tmp_path / "hermes"
-        hermes_home.mkdir()
-        (hermes_home / "home").mkdir()
-        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+        openamer_home = tmp_path / "openamer"
+        openamer_home.mkdir()
+        (openamer_home / "home").mkdir()
+        monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
 
         original_home = os.environ.get("HOME")
         original_path_home = str(Path.home())
@@ -379,6 +379,6 @@ class TestPythonProcessUnchanged:
         sub_home = get_subprocess_home()
 
         # Resolving subprocess HOME must not mutate the Python process env.
-        assert sub_home in (None, str(hermes_home / "home"), original_home)
+        assert sub_home in (None, str(openamer_home / "home"), original_home)
         assert os.environ.get("HOME") == original_home
         assert str(Path.home()) == original_path_home

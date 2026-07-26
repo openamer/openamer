@@ -9,7 +9,7 @@ Pipeline
 --------
 1. ``get_catalog()`` — returns a parsed manifest dict.
    - Checks in-process cache (invalidated by TTL).
-   - Reads disk cache at ``~/.hermes/cache/model_catalog.json``.
+   - Reads disk cache at ``~/.openamer/cache/model_catalog.json``.
    - Fetches the master URL if disk cache is stale or missing.
    - On any fetch failure, keeps using the stale cache (or empty dict).
 
@@ -402,7 +402,7 @@ def seed_cache_from_checkout(project_root: "Path | str") -> bool:
     or the Portal hiccups.
 
     Reads the shipped manifest, validates it against the schema, and writes it
-    to ``~/.hermes/cache/model_catalog.json`` via the same atomic writer the
+    to ``~/.openamer/cache/model_catalog.json`` via the same atomic writer the
     network path uses. Returns ``True`` on success, ``False`` if the file is
     missing, malformed, or fails validation (caller should treat a ``False``
     as non-fatal — the network fetch path still applies on the next picker

@@ -20,7 +20,7 @@ def test_ssl_verify_false_disables_verification(clean_ca_env):
     assert resolve_httpx_verify(ssl_verify=False) is False
 
 
-def test_hermes_ca_bundle_returns_ssl_context(clean_ca_env, monkeypatch):
+def test_openamer_ca_bundle_returns_ssl_context(clean_ca_env, monkeypatch):
     monkeypatch.setenv("HERMES_CA_BUNDLE", certifi.where())
     result = resolve_httpx_verify()
     assert isinstance(result, ssl.SSLContext)

@@ -6,7 +6,7 @@ supports top-level ``reasoning_effort`` with values ``none``, ``low``,
 empirically confirmed for DeepSeek V4 — ``max`` produces ~2.5× more
 thinking tokens than ``high``).
 
-This profile maps Hermes's ``xhigh`` → ``max`` to unlock DeepSeek V4's
+This profile maps OpenAmer's ``xhigh`` → ``max`` to unlock DeepSeek V4's
 "Max thinking" tier through Ollama Cloud.  ``low`` / ``medium`` / ``high``
 pass through unchanged.
 

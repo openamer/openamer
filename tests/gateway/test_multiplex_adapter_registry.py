@@ -93,7 +93,7 @@ class TestCredentialFingerprint:
             config = _Cfg()
         fp = GatewayRunner._adapter_credential_fingerprint(_Both())
         import hashlib
-        expected = hashlib.sha256(b"hermes-mux:from-direct").hexdigest()[:16]
+        expected = hashlib.sha256(b"openamer-mux:from-direct").hexdigest()[:16]
         assert fp == expected
 
     def test_config_without_token_returns_none(self):

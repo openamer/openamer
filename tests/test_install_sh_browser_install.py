@@ -1,6 +1,6 @@
 """Regression tests for install.sh browser setup.
 
-Browser automation is optional. The installer should not leave Hermes
+Browser automation is optional. The installer should not leave OpenAmer
 half-installed just because Playwright's managed Chromium download hangs on an
 unsupported distribution.
 """
@@ -25,7 +25,7 @@ def test_install_script_does_not_autodetect_system_browser_on_path() -> None:
 
     assert "find_system_browser()" in text
     assert "google-chrome google-chrome-stable chromium chromium-browser chrome" not in text
-    assert "Skipping Playwright browser download; Hermes will use the system browser." not in text
+    assert "Skipping Playwright browser download; OpenAmer will use the system browser." not in text
 
 
 def test_install_script_honors_explicit_browser_override_only() -> None:

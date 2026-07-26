@@ -10,18 +10,18 @@ import subprocess
 import shutil
 from pathlib import Path
 
-from openamer_cli.config import get_project_root, get_hermes_home, get_env_path
-from openamer_cli.env_loader import load_hermes_dotenv
-from openamer_constants import display_hermes_home
+from openamer_cli.config import get_project_root, get_openamer_home, get_env_path
+from openamer_cli.env_loader import load_openamer_dotenv
+from openamer_constants import display_openamer_home
 from openamer_constants import agent_browser_runnable
 
 PROJECT_ROOT = get_project_root()
 OPENAMER_HOME = get_openamer_home()
-_DHH = display_hermes_home()  # user-facing display path (e.g. ~/.openamer or ~/.hermes/profiles/coder)
+_DHH = display_openamer_home()  # user-facing display path (e.g. ~/.openamer or ~/.openamer/profiles/coder)
 
-# Load environment variables from ~/.hermes/.env so API key checks work
+# Load environment variables from ~/.openamer/.env so API key checks work
 _env_path = get_env_path()
-load_hermes_dotenv(hermes_home=_env_path.parent, project_env=PROJECT_ROOT / ".env")
+load_openamer_dotenv(openamer_home=_env_path.parent, project_env=PROJECT_ROOT / ".env")
 
 from openamer_cli.colors import Colors, color
 from openamer_cli.models import _HERMES_USER_AGENT
@@ -101,7 +101,7 @@ def _termux_install_all_fallback_notes() -> list[str]:
 
 
 def _has_provider_env_config(content: str) -> bool:
-    """Return True when ~/.hermes/.env contains provider auth/base URL settings."""
+    """Return True when ~/.openamer/.env contains provider auth/base URL settings."""
     return any(key in content for key in _PROVIDER_ENV_HINTS)
 
 
@@ -405,7 +405,7 @@ def _check_s6_supervision(issues: list[str]) -> None:
 
     # Static services. They live under /run/service/ via s6-rc symlinks,
     # so the same s6-svstat probe works.
-    for static in ("main-hermes", "dashboard"):
+    for static in ("main-openamer", "dashboard"):
         if mgr.is_running(static):
             check_ok(f"{static}: up")
         else:
@@ -679,7 +679,7 @@ def run_doctor(args):
     ack_target = getattr(args, 'ack', None)
 
     # Doctor runs from the interactive CLI, so CLI-gated tool availability
-    # checks (like cronjob management) should see the same context as `hermes`.
+    # checks (like cronjob management) should see the same context as `openamer`.
     os.environ.setdefault("HERMES_INTERACTIVE", "1")
 
     # Handle `openamer doctor --ack <id>` as a fast path. Persist the ack and
@@ -707,7 +707,7 @@ def run_doctor(args):
         else:
             print(color(
                 f"  ✗ Failed to persist ack for {ack_target}. "
-                f"Check ~/.hermes/config.yaml is writable.",
+                f"Check ~/.openamer/config.yaml is writable.",
                 Colors.RED,
             ))
             sys.exit(1)
@@ -882,7 +882,7 @@ def run_doctor(args):
     _section("Configuration Files")
     # Managed scope (administrator-pinned config/env), when present.
     managed_scope_check()
-    # Check ~/.hermes/.env (primary location for user config)
+    # Check ~/.openamer/.env (primary location for user config)
     env_path = OPENAMER_HOME / '.env'
     if env_path.exists():
         check_ok(f"{_DHH}/.env file exists")
@@ -923,7 +923,7 @@ def run_doctor(args):
                 check_info("Run 'openamer setup' to create one")
                 issues.append("Run 'openamer setup' to create .env")
     
-    # Check ~/.hermes/config.yaml (primary) or project cli-config.yaml (fallback)
+    # Check ~/.openamer/config.yaml (primary) or project cli-config.yaml (fallback)
     config_path = OPENAMER_HOME / 'config.yaml'
     if config_path.exists():
         check_ok(f"{_DHH}/config.yaml exists")
@@ -1103,7 +1103,7 @@ def run_doctor(args):
                     if not configured:
                         _fail_and_issue(
                             f"model.provider '{runtime_provider}' is set but no API key is configured",
-                            "(check ~/.hermes/.env or run 'openamer setup')",
+                            "(check ~/.openamer/.env or run 'openamer setup')",
                             (
                                 f"No credentials found for provider '{runtime_provider}'. "
                                 f"Run 'openamer setup' or set the provider's API key in {_DHH}/.env, "
@@ -1388,11 +1388,11 @@ def run_doctor(args):
         pass
 
     _section("Directory Structure")
-    hermes_home = OPENAMER_HOME
-    if hermes_home.exists():
+    openamer_home = OPENAMER_HOME
+    if openamer_home.exists():
         check_ok(f"{_DHH} directory exists")
     elif should_fix:
-        hermes_home.mkdir(parents=True, exist_ok=True)
+        openamer_home.mkdir(parents=True, exist_ok=True)
         check_ok(f"Created {_DHH} directory")
         fixed_count += 1
     else:
@@ -1401,7 +1401,7 @@ def run_doctor(args):
     # Check expected subdirectories
     expected_subdirs = ["cron", "sessions", "logs", "skills", "memories"]
     for subdir_name in expected_subdirs:
-        subdir_path = hermes_home / subdir_name
+        subdir_path = openamer_home / subdir_name
         if subdir_path.exists():
             check_ok(f"{_DHH}/{subdir_name}/ exists")
         elif should_fix:
@@ -1412,7 +1412,7 @@ def run_doctor(args):
             check_warn(f"{_DHH}/{subdir_name}/ not found", "(will be created on first use)")
     
     # Check for SOUL.md persona file
-    soul_path = hermes_home / "SOUL.md"
+    soul_path = openamer_home / "SOUL.md"
     if soul_path.exists():
         content = soul_path.read_text(encoding="utf-8").strip()
         # Check if it's just the template comments (no real content)
@@ -1435,7 +1435,7 @@ def run_doctor(args):
             fixed_count += 1
     
     # Check memory directory
-    memories_dir = hermes_home / "memories"
+    memories_dir = openamer_home / "memories"
     if memories_dir.exists():
         check_ok(f"{_DHH}/memories/ directory exists")
         memory_file = memories_dir / "MEMORY.md"
@@ -1458,7 +1458,7 @@ def run_doctor(args):
             fixed_count += 1
     
     # Check SQLite session store
-    state_db_path = hermes_home / "state.db"
+    state_db_path = openamer_home / "state.db"
     if state_db_path.exists():
         try:
             import sqlite3
@@ -1559,7 +1559,7 @@ def run_doctor(args):
         check_info(f"{_DHH}/state.db not created yet (will be created on first session)")
 
     # Check WAL file size (unbounded growth indicates missed checkpoints)
-    wal_path = hermes_home / "state.db-wal"
+    wal_path = openamer_home / "state.db-wal"
     if wal_path.exists():
         try:
             wal_size = wal_path.stat().st_size
@@ -1591,7 +1591,7 @@ def run_doctor(args):
         # Determine the venv entry point location
         _venv_bin = None
         for _venv_name in ("venv", ".venv"):
-            _candidate = PROJECT_ROOT / _venv_name / "bin" / "hermes"
+            _candidate = PROJECT_ROOT / _venv_name / "bin" / "openamer"
             if _candidate.exists():
                 _venv_bin = _candidate
                 break
@@ -1605,7 +1605,7 @@ def run_doctor(args):
         else:
             _cmd_link_dir = Path.home() / ".local" / "bin"
             _cmd_link_display = "~/.local/bin"
-        _cmd_link = _cmd_link_dir / "hermes"
+        _cmd_link = _cmd_link_dir / "openamer"
 
         if _venv_bin is None:
             check_warn(

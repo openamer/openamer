@@ -33,8 +33,8 @@ def test_secondary_profile_pairing_stores_created(tmp_path, monkeypatch):
     Pre-fix this silently did nothing: the ``PairingStore(profile=name)``
     reference raised NameError inside the swallowed try/except.
     """
-    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".hermes"))
-    (tmp_path / ".hermes").mkdir()
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".openamer"))
+    (tmp_path / ".openamer").mkdir()
 
     runner = _bare_runner()
 
@@ -45,7 +45,7 @@ def test_secondary_profile_pairing_stores_created(tmp_path, monkeypatch):
     runner._adapter_credential_fingerprint = lambda adapter: None
 
     with patch("openamer_cli.profiles.profiles_to_serve", return_value=[
-        ("coder", tmp_path / ".hermes" / "profiles" / "coder"),
+        ("coder", tmp_path / ".openamer" / "profiles" / "coder"),
     ]), patch("openamer_cli.profiles.get_active_profile_name", return_value="default"):
         runner._profile_adapters["coder"] = {}
         asyncio.run(runner._start_secondary_profile_adapters())
@@ -61,8 +61,8 @@ def test_secondary_profile_pairing_stores_created(tmp_path, monkeypatch):
 
 def test_pairing_store_scoped_to_profile_dir(tmp_path, monkeypatch):
     """The created store must live under the profile's pairing directory."""
-    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".hermes"))
-    (tmp_path / ".hermes").mkdir()
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".openamer"))
+    (tmp_path / ".openamer").mkdir()
 
     runner = _bare_runner()
 
@@ -73,7 +73,7 @@ def test_pairing_store_scoped_to_profile_dir(tmp_path, monkeypatch):
     runner._adapter_credential_fingerprint = lambda adapter: None
 
     with patch("openamer_cli.profiles.profiles_to_serve", return_value=[
-        ("ops", tmp_path / ".hermes" / "profiles" / "ops"),
+        ("ops", tmp_path / ".openamer" / "profiles" / "ops"),
     ]), patch("openamer_cli.profiles.get_active_profile_name", return_value="default"):
         runner._profile_adapters["ops"] = {}
         asyncio.run(runner._start_secondary_profile_adapters())

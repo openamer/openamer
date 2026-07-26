@@ -40,8 +40,8 @@ def _write_plugin(
     return plugin_dir
 
 
-def _enable(hermes_home: Path, name: str) -> None:
-    cfg_path = hermes_home / "config.yaml"
+def _enable(openamer_home: Path, name: str) -> None:
+    cfg_path = openamer_home / "config.yaml"
     cfg: dict = {}
     if cfg_path.exists():
         try:
@@ -62,9 +62,9 @@ class TestRegisterTranscriptionProvider:
         from agent import transcription_registry
         transcription_registry._reset_for_tests()
 
-        hermes_home = Path(os.environ["OPENAMER_HOME"])
+        openamer_home = Path(os.environ["OPENAMER_HOME"])
         _write_plugin(
-            hermes_home / "plugins",
+            openamer_home / "plugins",
             "my-stt-plugin",
             register_body=(
                 "from agent.transcription_provider import TranscriptionProvider\n"
@@ -76,7 +76,7 @@ class TestRegisterTranscriptionProvider:
                 "    ctx.register_transcription_provider(P())"
             ),
         )
-        _enable(hermes_home, "my-stt-plugin")
+        _enable(openamer_home, "my-stt-plugin")
 
         mgr = PluginManager()
         mgr.discover_and_load()
@@ -94,13 +94,13 @@ class TestRegisterTranscriptionProvider:
         from agent import transcription_registry
         transcription_registry._reset_for_tests()
 
-        hermes_home = Path(os.environ["OPENAMER_HOME"])
+        openamer_home = Path(os.environ["OPENAMER_HOME"])
         _write_plugin(
-            hermes_home / "plugins",
+            openamer_home / "plugins",
             "bad-stt-plugin",
             register_body="ctx.register_transcription_provider('not a provider')",
         )
-        _enable(hermes_home, "bad-stt-plugin")
+        _enable(openamer_home, "bad-stt-plugin")
 
         with caplog.at_level("WARNING"):
             mgr = PluginManager()
@@ -119,9 +119,9 @@ class TestRegisterTranscriptionProvider:
         from agent import transcription_registry
         transcription_registry._reset_for_tests()
 
-        hermes_home = Path(os.environ["OPENAMER_HOME"])
+        openamer_home = Path(os.environ["OPENAMER_HOME"])
         _write_plugin(
-            hermes_home / "plugins",
+            openamer_home / "plugins",
             "shadow-stt-plugin",
             register_body=(
                 "from agent.transcription_provider import TranscriptionProvider\n"
@@ -133,7 +133,7 @@ class TestRegisterTranscriptionProvider:
                 "    ctx.register_transcription_provider(P())"
             ),
         )
-        _enable(hermes_home, "shadow-stt-plugin")
+        _enable(openamer_home, "shadow-stt-plugin")
 
         with caplog.at_level("WARNING"):
             mgr = PluginManager()

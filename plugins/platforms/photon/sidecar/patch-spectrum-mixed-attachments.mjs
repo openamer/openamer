@@ -2,7 +2,7 @@
 // Patch spectrum-ts' iMessage inbound mapper until upstream preserves mixed
 // text + attachment Apple events. The mapper returns only
 // buildAttachmentMessage(...) whenever attachments are present, which drops
-// `message.content.text` before Hermes can see it. We rewrite the two inbound
+// `message.content.text` before OpenAmer can see it. We rewrite the two inbound
 // mappers — `rebuildFromAppleMessage` (used by `space.getMessage`) and
 // `toInboundMessages` (used by the live stream) — so a bubble carrying both
 // text and attachment(s) surfaces as a group whose first child is the typed
@@ -18,7 +18,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
-const MARKER = "Hermes patch: Preserve mixed text + attachment iMessage payloads";
+const MARKER = "OpenAmer patch: Preserve mixed text + attachment iMessage payloads";
 
 function scriptDir() {
   return path.dirname(fileURLToPath(import.meta.url));

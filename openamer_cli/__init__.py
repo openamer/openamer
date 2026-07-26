@@ -2,7 +2,7 @@
 OpenAmer CLI - Unified command-line interface for OpenAmer Agent.
 
 Provides subcommands for:
-- openamer chat          - Interactive chat (same as ./hermes)
+- openamer chat          - Interactive chat (same as ./openamer)
 - openamer gateway       - Run gateway in foreground
 - openamer gateway start - Start gateway service
 - openamer gateway stop  - Stop gateway service

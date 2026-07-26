@@ -50,9 +50,9 @@ def test_non_anthropic_provider_unchanged():
 
 
 def test_add_entry_normalizes_before_persisting(tmp_path, monkeypatch):
-    hermes_home = tmp_path / "hermes"
-    hermes_home.mkdir()
-    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+    openamer_home = tmp_path / "openamer"
+    openamer_home.mkdir()
+    monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
 
     pool = CredentialPool("anthropic", [])
     entry = pool.add_entry(PooledCredential(
@@ -65,15 +65,15 @@ def test_add_entry_normalizes_before_persisting(tmp_path, monkeypatch):
         access_token="sk-ant-oat-manual-entry",
     ))
 
-    persisted = json.loads((hermes_home / "auth.json").read_text())
+    persisted = json.loads((openamer_home / "auth.json").read_text())
     assert entry.auth_type == AUTH_TYPE_OAUTH
     assert persisted["credential_pool"]["anthropic"][0]["auth_type"] == AUTH_TYPE_OAUTH
 
 
 def test_load_heals_legacy_row_and_exposes_it_to_resolver(tmp_path, monkeypatch):
-    hermes_home = tmp_path / "hermes"
-    hermes_home.mkdir()
-    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+    openamer_home = tmp_path / "openamer"
+    openamer_home.mkdir()
+    monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
     for key in ("ANTHROPIC_API_KEY", "ANTHROPIC_TOKEN", "CLAUDE_CODE_OAUTH_TOKEN"):
         monkeypatch.delenv(key, raising=False)
     monkeypatch.setattr(
@@ -81,7 +81,7 @@ def test_load_heals_legacy_row_and_exposes_it_to_resolver(tmp_path, monkeypatch)
         lambda: None,
     )
     token = "sk-ant-oat-legacy-manual"
-    auth_file = hermes_home / "auth.json"
+    auth_file = openamer_home / "auth.json"
     auth_file.write_text(json.dumps({
         "version": 1,
         "credential_pool": {
@@ -108,7 +108,7 @@ def test_load_heals_legacy_row_and_exposes_it_to_resolver(tmp_path, monkeypatch)
 
 def test_profile_global_fallback_normalizes_in_memory_without_writing(tmp_path, monkeypatch):
     monkeypatch.setattr(Path, "home", lambda: tmp_path)
-    global_root = tmp_path / ".hermes"
+    global_root = tmp_path / ".openamer"
     global_root.mkdir()
     profile_home = global_root / "profiles" / "coder"
     profile_home.mkdir(parents=True)

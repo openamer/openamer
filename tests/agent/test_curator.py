@@ -17,7 +17,7 @@ import pytest
 @pytest.fixture
 def curator_env(tmp_path, monkeypatch):
     """Isolated OPENAMER_HOME + freshly reloaded curator + skill_usage modules."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     (home / "skills").mkdir(parents=True)
     monkeypatch.setattr(Path, "home", lambda: tmp_path)
     monkeypatch.setenv("OPENAMER_HOME", str(home))
@@ -44,7 +44,7 @@ def curator_env(tmp_path, monkeypatch):
     # daemon "curator-review" thread that calls save_state() when it finishes.
     # save_state() resolves the state path from OPENAMER_HOME at write time, so a
     # straggler thread that outlives this test would write into whatever home
-    # the *next* test has configured (or the default ~/.hermes once monkeypatch
+    # the *next* test has configured (or the default ~/.openamer once monkeypatch
     # restores the env) — corrupting an unrelated test's state file. This race
     # is invisible on a fast machine but flakes under CI load. Join any such
     # thread here, while OPENAMER_HOME is still pinned to this test's tmp home
@@ -579,7 +579,7 @@ def test_run_review_records_state(curator_env):
 def test_dry_run_does_not_advance_state(curator_env, monkeypatch):
     """Dry-run previews must not bump last_run_at or run_count. A preview
     shouldn't defer the next scheduled real pass or look like a real run in
-    `hermes curator status`. Fixes #18373.
+    `openamer curator status`. Fixes #18373.
     """
     c = curator_env["curator"]
     u = curator_env["usage"]
@@ -745,7 +745,7 @@ def test_run_review_skips_llm_when_consolidate_off(curator_env, monkeypatch):
 
 def test_run_review_consolidate_override_runs_llm(curator_env, monkeypatch):
     """Passing consolidate=True overrides the config default (off) and drives
-    the LLM consolidation pass — mirrors `hermes curator run --consolidate`."""
+    the LLM consolidation pass — mirrors `openamer curator run --consolidate`."""
     c = curator_env["curator"]
     u = curator_env["usage"]
     skills_dir = curator_env["home"] / "skills"
@@ -960,7 +960,7 @@ def test_curator_review_prompt_offers_support_file_actions():
 
 
 def test_cli_unpin_refuses_bundled_skill(curator_env, capsys):
-    """hermes curator unpin must refuse bundled/hub skills too (matches pin)."""
+    """openamer curator unpin must refuse bundled/hub skills too (matches pin)."""
     from openamer_cli import curator as cli
     skills_dir = curator_env["home"] / "skills"
     _write_skill(skills_dir, "ship-skill")
@@ -998,7 +998,7 @@ def test_cli_pin_refuses_bundled_skill(curator_env, capsys):
 # curator review-model resolution (canonical auxiliary.curator slot)
 #
 # Curator was unified with the rest of the aux task system in Apr 2026 so
-# `hermes model` → auxiliary picker, the dashboard Models tab, and the full
+# `openamer model` → auxiliary picker, the dashboard Models tab, and the full
 # per-task config (timeout, base_url, api_key, extra_body) all work for it.
 # Voscko report: curator.auxiliary.{provider,model} was advertised but never
 # read. Fix wires curator through auxiliary.curator with a legacy fallback.

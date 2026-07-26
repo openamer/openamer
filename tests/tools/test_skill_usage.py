@@ -8,8 +8,8 @@ from pathlib import Path
 import pytest
 
 
-def _bump_view_many(hermes_home: str, skill_name: str, iterations: int) -> None:
-    os.environ["OPENAMER_HOME"] = hermes_home
+def _bump_view_many(openamer_home: str, skill_name: str, iterations: int) -> None:
+    os.environ["OPENAMER_HOME"] = openamer_home
     from tools.skill_usage import bump_view
 
     for _ in range(iterations):
@@ -25,7 +25,7 @@ def skills_home(tmp_path, monkeypatch):
     default. Tests that want built-ins to be curation-eligible flip it back on
     explicitly via ``monkeypatch.setattr(mod, "_prune_builtins_enabled", ...)``.
     """
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     (home / "skills").mkdir()
     monkeypatch.setattr(Path, "home", lambda: tmp_path)

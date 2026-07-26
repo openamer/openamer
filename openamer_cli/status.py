@@ -13,7 +13,7 @@ PROJECT_ROOT = Path(__file__).parent.parent.resolve()
 
 from openamer_cli.auth import AuthError, resolve_provider
 from openamer_cli.colors import Colors, color
-from openamer_cli.config import get_env_path, get_env_value, get_hermes_home, load_config
+from openamer_cli.config import get_env_path, get_env_value, get_openamer_home, load_config
 from openamer_cli.models import provider_label
 from openamer_cli.nous_account import (
     format_nous_portal_entitlement_message,

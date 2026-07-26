@@ -62,7 +62,7 @@ _DEFAULT_ROOTS = ["tests"]
 #   tests/integration/ — historical; legacy --ignore flags
 #   tests/docker/      — .github/workflows/docker.yml ::
 #                        build-amd64 job (runs against the freshly-loaded
-#                        nousresearch/hermes-agent:test image, via
+#                        nousresearch/openamer-agent:test image, via
 #                        ``HERMES_TEST_IMAGE`` so the fixture skips
 #                        rebuild). The full pytest-shard runner can't
 #                        host these because the session-scoped
@@ -411,7 +411,7 @@ def _parse_pytest_summary(output: str) -> dict[str, int]:
 def _format_file(file: Path, repo_root: Path) -> str:
     """Render a test-file path for display: strip the repo-root prefix
     when possible so output reads ``tests/acp/test_auth.py`` instead of
-    ``/home/runner/work/hermes-agent/hermes-agent/tests/acp/test_auth.py``.
+    ``/home/runner/work/openamer-agent/openamer-agent/tests/acp/test_auth.py``.
 
     Falls back to the absolute path for anything outside the repo root.
     """

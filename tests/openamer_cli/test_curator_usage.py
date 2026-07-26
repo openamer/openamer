@@ -1,4 +1,4 @@
-"""Tests for `hermes curator usage` — the all-skills usage view.
+"""Tests for `openamer curator usage` — the all-skills usage view.
 
 Covers:
 - Lists every skill regardless of provenance (agent / bundled / hub), unlike
@@ -103,7 +103,7 @@ def test_usage_command_is_registered():
     import argparse
     import openamer_cli.curator as curator_cli
 
-    parser = argparse.ArgumentParser(prog="hermes curator")
+    parser = argparse.ArgumentParser(prog="openamer curator")
     curator_cli.register_cli(parser)
     args = parser.parse_args(["usage", "--sort", "recent", "--provenance", "hub", "--json"])
     assert args.func is curator_cli._cmd_usage

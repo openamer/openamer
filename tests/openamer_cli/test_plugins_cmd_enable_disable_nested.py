@@ -2,7 +2,7 @@
 
 Companion to test_plugins_cmd_category_discovery.py. That file covers the
 *listing* side of nested category plugins (issue #41066). These tests cover
-the *mutation* side: `hermes plugins enable/disable` must resolve a bare name
+the *mutation* side: `openamer plugins enable/disable` must resolve a bare name
 OR a full path-derived key (e.g. `observability/nemo_relay`) to the canonical
 registry key and write THAT — the same string PluginManager gates on — so a
 nested bundled plugin can actually be toggled.
@@ -154,7 +154,7 @@ class TestEnableDisableNested:
 
         The web providers ship with a manifest name that differs from the
         key (``web-firecrawl`` vs ``web/firecrawl``). A user who ran
-        ``hermes plugins disable web-firecrawl`` gets ``web-firecrawl`` in
+        ``openamer plugins disable web-firecrawl`` gets ``web-firecrawl`` in
         ``plugins.disabled``. Since the loader's disable check matches on
         the manifest name too, ``enable web/firecrawl`` must remove that
         entry or "explicit disable wins" keeps the plugin off.
@@ -379,7 +379,7 @@ class TestEnableToolOverrideConsent:
 
 
 class TestCompositeMenuWritesCanonicalKey:
-    """#40190 follow-up: the interactive `hermes plugins` menu must persist
+    """#40190 follow-up: the interactive `openamer plugins` menu must persist
     the CANONICAL KEY (``web/firecrawl``), never the bare manifest name
     (``web-firecrawl``), so its disabled-list entries stay aligned with what
     ``cmd_enable`` clears and what PluginManager gates on. Writing the bare

@@ -379,8 +379,8 @@ class TestTeamsInteractiveSetup:
         from openamer_cli.cli_output (not openamer_cli.config) and persist
         credentials to .env without crashing.
         """
-        hermes_home = tmp_path / "hermes"
-        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+        openamer_home = tmp_path / "openamer"
+        monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
 
         import openamer_cli.cli_output as cli_output_mod
 
@@ -393,7 +393,7 @@ class TestTeamsInteractiveSetup:
 
         _teams_mod.interactive_setup()
 
-        env_text = (hermes_home / ".env").read_text(encoding="utf-8")
+        env_text = (openamer_home / ".env").read_text(encoding="utf-8")
         assert "TEAMS_CLIENT_ID=client-id" in env_text
         assert "TEAMS_TENANT_ID=tenant-id" in env_text
 
@@ -724,7 +724,7 @@ class TestTeamsMessageHandling:
         adapter.handle_message = AsyncMock()
 
         activity = self._make_activity(
-            text="<at>Hermes</at> what is the weather?",
+            text="<at>OpenAmer</at> what is the weather?",
             from_id="user-id",
         )
         await adapter._on_message(self._make_ctx(activity))

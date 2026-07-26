@@ -178,7 +178,7 @@ def register_pending(
     cap below.
 
     The returned ``broker_state`` is what the gateway threads through its OWN
-    upstream PKCE round trip (inside the ``hermes_session_pkce`` cookie), so the
+    upstream PKCE round trip (inside the ``openamer_session_pkce`` cookie), so the
     callback can find this entry again via :func:`complete_pending`.
 
     Raises ``NativeFlowError`` if the store is at capacity or the caller's IP

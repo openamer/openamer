@@ -204,7 +204,7 @@ def test_do_list_enabled_only_hides_disabled(three_source_env, monkeypatch):
 
 
 def test_do_list_platform_env_is_ignored(three_source_env, monkeypatch):
-    """`hermes skills list` reads the active profile's config via
+    """`openamer skills list` reads the active profile's config via
     OPENAMER_HOME (swapped by -p), so it must NOT pass a platform arg to
     ``get_disabled_skill_names`` — otherwise per-platform overrides
     would silently leak in from HERMES_PLATFORM env."""
@@ -692,7 +692,7 @@ def test_do_browse_reports_live_per_source_progress():
 
 
 # ---------------------------------------------------------------------------
-# Regression: full identifier must be recoverable from `hermes skills search`
+# Regression: full identifier must be recoverable from `openamer skills search`
 # even when the slug is too long to fit the terminal width (issue #33674).
 # ---------------------------------------------------------------------------
 

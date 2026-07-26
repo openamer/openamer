@@ -61,7 +61,7 @@ def _extract_install_sh_autostash_block() -> str:
 def test_install_sh_discards_runtime_lockfile_churn_before_stash(
     tmp_path: Path,
 ) -> None:
-    repo = tmp_path / "hermes-agent"
+    repo = tmp_path / "openamer-agent"
     repo.mkdir()
     _git(repo, "init")
     (repo / "package.json").write_text('{"dependencies":{"a":"1"}}\n')

@@ -18,7 +18,7 @@ def clean_tls_env(monkeypatch):
         monkeypatch.delenv(var, raising=False)
 
 
-def test_build_keepalive_http_client_uses_hermes_ca_bundle(clean_tls_env, monkeypatch):
+def test_build_keepalive_http_client_uses_openamer_ca_bundle(clean_tls_env, monkeypatch):
     monkeypatch.setenv("HERMES_CA_BUNDLE", certifi.where())
     verify = resolve_httpx_verify()
     client = AIAgent._build_keepalive_http_client(

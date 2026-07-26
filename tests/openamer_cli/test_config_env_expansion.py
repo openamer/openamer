@@ -96,7 +96,7 @@ class TestLoadConfigExpansion:
 
 class TestLoadConfigCacheEnvStaleness:
     """The load_config() cache must not pin expansions made against a stale
-    environment (#58514): a load before load_hermes_dotenv() runs, or an env
+    environment (#58514): a load before load_openamer_dotenv() runs, or an env
     var rotated in-process, must not keep serving the old expansion."""
 
     def test_env_var_appearing_after_first_load_invalidates_cache(self, tmp_path, monkeypatch):
@@ -154,7 +154,7 @@ class TestLoadCliConfigExpansion:
         config_file = tmp_path / "config.yaml"
         config_file.write_text("terminal:\n")
 
-        monkeypatch.setattr("cli._hermes_home", tmp_path)
+        monkeypatch.setattr("cli._openamer_home", tmp_path)
 
         from cli import load_cli_config
         config = load_cli_config()
@@ -172,8 +172,8 @@ class TestLoadCliConfigExpansion:
         config_file.write_text(config_yaml)
 
         monkeypatch.setenv("TEST_VISION_KEY_XYZ", "vis-key-123")
-        # Patch the hermes home so load_cli_config finds our test config
-        monkeypatch.setattr("cli._hermes_home", tmp_path)
+        # Patch the openamer home so load_cli_config finds our test config
+        monkeypatch.setattr("cli._openamer_home", tmp_path)
 
         from cli import load_cli_config
         config = load_cli_config()
@@ -190,7 +190,7 @@ class TestLoadCliConfigExpansion:
         config_file.write_text(config_yaml)
 
         monkeypatch.delenv("UNSET_CLI_VAR_ABC", raising=False)
-        monkeypatch.setattr("cli._hermes_home", tmp_path)
+        monkeypatch.setattr("cli._openamer_home", tmp_path)
 
         from cli import load_cli_config
         config = load_cli_config()

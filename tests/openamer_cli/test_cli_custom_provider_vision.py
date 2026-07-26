@@ -37,8 +37,8 @@ class _RuntimeCLI(CLIAgentSetupMixin):
         return False
 
 
-def _write_profile_config(hermes_home) -> None:
-    (hermes_home / "config.yaml").write_text(
+def _write_profile_config(openamer_home) -> None:
+    (openamer_home / "config.yaml").write_text(
         """
 model:
   default: ollama-cloud/glm-5.2

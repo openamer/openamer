@@ -8,7 +8,7 @@ instances via ``PluginContext.register_image_gen_provider()``; the active one
 ``image_generate`` tool call.
 
 Providers live in ``<repo>/plugins/image_gen/<name>/`` (built-in, auto-loaded
-as ``kind: backend``) or ``~/.hermes/plugins/image_gen/<name>/`` (user, opt-in
+as ``kind: backend``) or ``~/.openamer/plugins/image_gen/<name>/`` (user, opt-in
 via ``plugins.enabled``).
 
 Unified surface
@@ -78,7 +78,7 @@ class ImageGenProvider(abc.ABC):
 
     @property
     def display_name(self) -> str:
-        """Human-readable label shown in ``hermes tools``. Defaults to ``name.title()``."""
+        """Human-readable label shown in ``openamer tools``. Defaults to ``name.title()``."""
         return self.name.title()
 
     def is_available(self) -> bool:
@@ -90,7 +90,7 @@ class ImageGenProvider(abc.ABC):
         return True
 
     def list_models(self) -> List[Dict[str, Any]]:
-        """Return catalog entries for ``hermes tools`` model picker.
+        """Return catalog entries for ``openamer tools`` model picker.
 
         Each entry::
 
@@ -107,7 +107,7 @@ class ImageGenProvider(abc.ABC):
         return []
 
     def get_setup_schema(self) -> Dict[str, Any]:
-        """Return provider metadata for the ``hermes tools`` picker.
+        """Return provider metadata for the ``openamer tools`` picker.
 
         Used by ``tools_config.py`` to inject this provider as a row in
         the Image Generation provider list. Shape::
@@ -153,7 +153,7 @@ class ImageGenProvider(abc.ABC):
         ``modalities`` declares whether the active backend/model supports
         text-to-image (``"text"``), image-to-image / editing (``"image"``),
         or both. The tool layer surfaces this in the dynamic schema so the
-        model knows when ``image_url`` is honored. Used by ``hermes tools``
+        model knows when ``image_url`` is honored. Used by ``openamer tools``
         for the picker too. Default: text-only (backward compatible — a
         provider that doesn't override this advertises text-to-image only).
         """

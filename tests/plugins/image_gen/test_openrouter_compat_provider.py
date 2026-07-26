@@ -172,11 +172,11 @@ class TestHelpers:
     def test_to_image_url_part_blocks_credential_store(self, tmp_path, monkeypatch):
         from plugins.image_gen.openrouter import _to_image_url_part
 
-        hermes_home = tmp_path / ".hermes"
-        hermes_home.mkdir()
-        auth_json = hermes_home / "auth.json"
+        openamer_home = tmp_path / ".openamer"
+        openamer_home.mkdir()
+        auth_json = openamer_home / "auth.json"
         auth_json.write_text('{"api_key":"sk-secret"}', encoding="utf-8")
-        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
 
         with pytest.raises(ValueError, match="credential store"):
             _to_image_url_part(str(auth_json))
@@ -188,11 +188,11 @@ class TestHelpers:
 
         from plugins.image_gen.openrouter import _to_image_url_part
 
-        hermes_home = tmp_path / ".hermes"
-        hermes_home.mkdir()
-        auth_json = hermes_home / "auth.json"
+        openamer_home = tmp_path / ".openamer"
+        openamer_home.mkdir()
+        auth_json = openamer_home / "auth.json"
         auth_json.write_text('{"api_key":"sk-secret"}', encoding="utf-8")
-        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
 
         real_read_bytes = _P.read_bytes
         read: list = []

@@ -123,7 +123,7 @@ export function exposePluginSDK() {
       createContext,
     },
 
-    // Hermes API client
+    // OpenAmer API client
     api,
     // Raw fetchJSON for plugin-specific JSON endpoints
     fetchJSON,

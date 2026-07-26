@@ -226,10 +226,10 @@ def build_gateway_parser(
     # gateway migrate-legacy
     gateway_migrate_legacy = gateway_subparsers.add_parser(
         "migrate-legacy",
-        help="Remove legacy hermes.service units from pre-rename installs",
+        help="Remove legacy openamer.service units from pre-rename installs",
         description=(
             "Stop, disable, and remove legacy OpenAmer gateway unit files "
-            "(e.g. hermes.service) left over from older installs. Profile "
+            "(e.g. openamer.service) left over from older installs. Profile "
             "units (openamer-gateway-<profile>.service) and unrelated "
             "third-party services are never touched."
         ),
@@ -261,7 +261,7 @@ def build_gateway_parser(
             "Authenticates as your Nous Portal account (the connector derives the "
             "authoritative tenant from it), mints this gateway's per-gateway secret "
             "and per-tenant delivery key, and writes GATEWAY_RELAY_ID / "
-            "GATEWAY_RELAY_SECRET / GATEWAY_RELAY_DELIVERY_KEY into ~/.hermes/.env. "
+            "GATEWAY_RELAY_SECRET / GATEWAY_RELAY_DELIVERY_KEY into ~/.openamer/.env. "
             "Requires being logged in (openamer setup). Not available in managed installs."
         ),
     )
@@ -300,7 +300,7 @@ def build_gateway_parser(
             "Phase 5 §5.2 wake URL: a reachable URL the connector pokes "
             "(payload-free GET) to wake this gateway when buffered work arrives "
             "while it's idle/suspended, so it reconnects and drains. Persisted as "
-            "GATEWAY_RELAY_WAKE_URL in ~/.hermes/.env and forwarded at provision. "
+            "GATEWAY_RELAY_WAKE_URL in ~/.openamer/.env and forwarded at provision. "
             "Optional — without it the gateway still drains whenever it next "
             "reconnects on its own."
         ),

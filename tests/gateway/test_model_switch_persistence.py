@@ -320,15 +320,15 @@ class TestOneTurnNeverPersisted:
         from gateway.run import GatewayRunner
         from openamer_cli.model_switch import ModelSwitchResult
 
-        hermes_home = tmp_path / ".hermes"
-        hermes_home.mkdir()
-        (hermes_home / "config.yaml").write_text(
+        openamer_home = tmp_path / ".openamer"
+        openamer_home.mkdir()
+        (openamer_home / "config.yaml").write_text(
             _yaml.safe_dump(
                 {"model": {"default": "old-model", "provider": "openrouter"}}
             ),
             encoding="utf-8",
         )
-        monkeypatch.setattr(gateway_run, "_hermes_home", hermes_home)
+        monkeypatch.setattr(gateway_run, "_openamer_home", openamer_home)
         monkeypatch.setattr("agent.models_dev.fetch_models_dev", lambda: {})
         monkeypatch.setattr(
             "openamer_cli.model_switch.switch_model",
@@ -343,8 +343,8 @@ class TestOneTurnNeverPersisted:
                 provider_label="OpenRouter",
             ),
         )
-        monkeypatch.setattr("openamer_constants.get_hermes_home", lambda: hermes_home)
-        monkeypatch.setattr("openamer_cli.config.get_hermes_home", lambda: hermes_home)
+        monkeypatch.setattr("openamer_constants.get_openamer_home", lambda: openamer_home)
+        monkeypatch.setattr("openamer_cli.config.get_openamer_home", lambda: openamer_home)
 
         runner = object.__new__(GatewayRunner)
         runner.adapters = {}

@@ -1,4 +1,4 @@
-"""Tests for openamer_cli/bundles.py — the `hermes bundles` CLI subcommand."""
+"""Tests for openamer_cli/bundles.py — the `openamer bundles` CLI subcommand."""
 
 import argparse
 

@@ -10,8 +10,8 @@ import yaml
 from openamer_cli.config import (
     DEFAULT_CONFIG,
     check_config_version,
-    get_hermes_home,
-    ensure_hermes_home,
+    get_openamer_home,
+    ensure_openamer_home,
     get_compatible_custom_providers,
     _explicit_config_paths,
     _normalize_max_turns_config,
@@ -31,12 +31,12 @@ from openamer_cli.config import (
 )
 
 
-class TestGetHermesHome:
+class TestGetOpenAmerHome:
     def test_default_path(self):
         with patch.dict(os.environ, {}, clear=False):
             os.environ.pop("OPENAMER_HOME", None)
             home = get_openamer_home()
-            assert home == Path.home() / ".hermes"
+            assert home == Path.home() / ".openamer"
 
     def test_env_override(self):
         with patch.dict(os.environ, {"OPENAMER_HOME": "/custom/path"}):
@@ -44,10 +44,10 @@ class TestGetHermesHome:
             assert home == Path("/custom/path")
 
 
-class TestEnsureHermesHome:
+class TestEnsureOpenAmerHome:
     def test_creates_subdirs(self, tmp_path):
         with patch.dict(os.environ, {"OPENAMER_HOME": str(tmp_path)}):
-            ensure_hermes_home()
+            ensure_openamer_home()
             assert (tmp_path / "cron").is_dir()
             assert (tmp_path / "sessions").is_dir()
             assert (tmp_path / "logs").is_dir()
@@ -55,7 +55,7 @@ class TestEnsureHermesHome:
 
     def test_creates_default_soul_md_if_missing(self, tmp_path):
         with patch.dict(os.environ, {"OPENAMER_HOME": str(tmp_path)}):
-            ensure_hermes_home()
+            ensure_openamer_home()
             soul_path = tmp_path / "SOUL.md"
             assert soul_path.exists()
             assert soul_path.read_text(encoding="utf-8").strip() != ""
@@ -64,7 +64,7 @@ class TestEnsureHermesHome:
         with patch.dict(os.environ, {"OPENAMER_HOME": str(tmp_path)}):
             soul_path = tmp_path / "SOUL.md"
             soul_path.write_text("custom soul", encoding="utf-8")
-            ensure_hermes_home()
+            ensure_openamer_home()
             assert soul_path.read_text(encoding="utf-8") == "custom soul"
 
     def test_upgrades_legacy_template_soul_md(self, tmp_path):
@@ -76,7 +76,7 @@ class TestEnsureHermesHome:
         with patch.dict(os.environ, {"OPENAMER_HOME": str(tmp_path)}):
             soul_path = tmp_path / "SOUL.md"
             soul_path.write_text(_LEGACY_TEMPLATE_SOULS[0] + "\n", encoding="utf-8")
-            ensure_hermes_home()
+            ensure_openamer_home()
             assert soul_path.read_text(encoding="utf-8") == DEFAULT_SOUL_MD
 
     def test_preserves_legacy_template_with_user_persona(self, tmp_path):
@@ -88,23 +88,23 @@ class TestEnsureHermesHome:
         with patch.dict(os.environ, {"OPENAMER_HOME": str(tmp_path)}):
             soul_path = tmp_path / "SOUL.md"
             soul_path.write_text(mixed, encoding="utf-8")
-            ensure_hermes_home()
+            ensure_openamer_home()
             assert soul_path.read_text(encoding="utf-8") == mixed
 
     def test_existing_named_profile_still_bootstraps_subdirs(self, tmp_path):
-        profile_home = tmp_path / ".hermes" / "profiles" / "coder"
+        profile_home = tmp_path / ".openamer" / "profiles" / "coder"
         profile_home.mkdir(parents=True)
         with patch.dict(os.environ, {"OPENAMER_HOME": str(profile_home)}):
-            ensure_hermes_home()
+            ensure_openamer_home()
             assert (profile_home / "cron").is_dir()
             assert (profile_home / "sessions").is_dir()
             assert (profile_home / "memories").is_dir()
 
     def test_missing_named_profile_is_not_recreated(self, tmp_path):
-        profile_home = tmp_path / ".hermes" / "profiles" / "coder"
+        profile_home = tmp_path / ".openamer" / "profiles" / "coder"
         with patch.dict(os.environ, {"OPENAMER_HOME": str(profile_home)}):
             with pytest.raises(FileNotFoundError, match="Named profile home does not exist"):
-                ensure_hermes_home()
+                ensure_openamer_home()
         assert not profile_home.exists()
 
 
@@ -135,7 +135,7 @@ class TestLoadConfigParseFailure:
     Before issue #23570 this was a single ``print(...)`` that scrolled past
     on the first invocation — users saw aux-fallback misbehavior with no clue
     their config.yaml was being ignored. The helper must:
-      * log at WARNING (so ``hermes logs`` surfaces it)
+      * log at WARNING (so ``openamer logs`` surfaces it)
       * also write to stderr (so it's visible at startup even before
         ``setup_logging()`` has wired up file handlers)
       * dedup on (path, mtime_ns, size) so concurrent loads don't spam
@@ -166,9 +166,9 @@ class TestLoadConfigParseFailure:
             ), f"expected WARNING log, got: {[r.message for r in caplog.records]}"
 
             # stderr also got a user-visible message (with the ⚠️ marker so it
-            # stands out at hermes startup before logging is configured)
+            # stands out at openamer startup before logging is configured)
             captured = capsys.readouterr()
-            assert "hermes config:" in captured.err
+            assert "openamer config:" in captured.err
             assert str(tmp_path / "config.yaml") in captured.err
 
     def test_dedup_on_repeated_load_same_file(self, tmp_path, capsys):
@@ -180,7 +180,7 @@ class TestLoadConfigParseFailure:
 
             load_config()
             first = capsys.readouterr().err
-            assert "hermes config:" in first
+            assert "openamer config:" in first
 
             load_config()
             second = capsys.readouterr().err
@@ -201,7 +201,7 @@ class TestLoadConfigParseFailure:
             (tmp_path / "config.yaml").write_text("\tstill broken differently:\n")
             load_config()
             after_edit = capsys.readouterr().err
-            assert "hermes config:" in after_edit, "edited file should re-warn"
+            assert "openamer config:" in after_edit, "edited file should re-warn"
 
     def test_corrupt_config_is_backed_up(self, tmp_path, capsys):
         """A broken config.yaml is snapshotted to a timestamped .bak so the
@@ -618,7 +618,7 @@ class TestSaveEnvValueSecure:
         import subprocess
         from dotenv import dotenv_values
 
-        path = "/Users/paulo/Library/Application Support/hermes/keys/id_ed25519"
+        path = "/Users/paulo/Library/Application Support/openamer/keys/id_ed25519"
         with patch.dict(os.environ, {"OPENAMER_HOME": str(tmp_path)}, clear=False):
             os.environ.pop("TERMINAL_SSH_KEY", None)
             save_env_value("TERMINAL_SSH_KEY", path)
@@ -698,7 +698,7 @@ class TestSaveEnvValueSecure:
             assert f'TERMINAL_SSH_KEY="{path}"' in first
 
     def test_save_env_value_readback_resave_is_idempotent(self, tmp_path):
-        """hermes setup path: dotenv unquotes, then re-save must not grow quotes."""
+        """openamer setup path: dotenv unquotes, then re-save must not grow quotes."""
         from dotenv import dotenv_values
 
         path = "/Users/me/Application Support/key"
@@ -1127,7 +1127,7 @@ class TestOptionalEnvVarsRegistry:
     def test_max_iterations_not_offered_as_env_var(self):
         """HERMES_MAX_ITERATIONS must NOT be in OPTIONAL_ENV_VARS (issue #17534).
 
-        Offering it as an editable env var (dashboard, `hermes setup`) lets a
+        Offering it as an editable env var (dashboard, `openamer setup`) lets a
         user write it to .env, recreating the stale ghost that shadows
         config.yaml's agent.max_turns. The iteration budget is configured ONLY
         via config.yaml; HERMES_MAX_ITERATIONS remains a read-only backward-compat
@@ -1140,7 +1140,7 @@ class TestOptionalEnvVarsRegistry:
 class TestMemoryProviderEnvVarsRegistry:
     """Every memory provider that reads an API key from the environment must
     have that key catalogued in OPTIONAL_ENV_VARS so the dashboard Keys page
-    and `hermes setup` surface it (previously only Honcho was listed, leaving
+    and `openamer setup` surface it (previously only Honcho was listed, leaving
     Hindsight/Supermemory/Mem0/RetainDB/ByteRover/OpenViking invisible).
 
     This is a behavior contract, not a snapshot: it asserts each provider's
@@ -1643,7 +1643,7 @@ class TestEnvWriteDenylist:
     the session token lives in the SPA's HTML where any future plugin
     XSS or local process could exfiltrate it). Without this gate, an
     attacker who steals the token could plant
-    ``LD_PRELOAD=/tmp/evil.so`` in ``.env`` and own the next Hermes
+    ``LD_PRELOAD=/tmp/evil.so`` in ``.env`` and own the next OpenAmer
     process on next startup via the dotenv → ``os.environ`` chain in
     ``openamer_cli/env_loader.py``.
 
@@ -1652,9 +1652,9 @@ class TestEnvWriteDenylist:
     """
 
     @pytest.fixture(autouse=True)
-    def _hermes_home(self, tmp_path, monkeypatch):
+    def _openamer_home(self, tmp_path, monkeypatch):
         monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
-        ensure_hermes_home()
+        ensure_openamer_home()
 
     @pytest.mark.parametrize(
         "denied_key",
@@ -1702,7 +1702,7 @@ class TestEnvWriteDenylist:
             "HERMES_MAX_ITERATIONS",
         ],
     )
-    def test_hermes_integration_keys_still_writable(self, allowed_key):
+    def test_openamer_integration_keys_still_writable(self, allowed_key):
         """``HERMES_*`` overall is NOT blocked — only the four runtime
         location names (HOME/PROFILE/CONFIG/ENV) are. Integration
         credentials following the ``HERMES_*`` convention must keep
@@ -2262,13 +2262,13 @@ class TestCodexAppServerAutoConfig:
                 tmp_path,
                 "_config_version: 31\n"
                 "compression:\n"
-                "  codex_app_server_auto: hermes\n",
+                "  codex_app_server_auto: openamer\n",
             )
 
             migrate_config(interactive=False, quiet=True)
 
             raw = yaml.safe_load((tmp_path / "config.yaml").read_text())
-            assert raw["compression"]["codex_app_server_auto"] == "hermes"
+            assert raw["compression"]["codex_app_server_auto"] == "openamer"
 
 
 class TestIsProviderEnabled:

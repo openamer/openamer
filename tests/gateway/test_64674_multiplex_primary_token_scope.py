@@ -67,9 +67,9 @@ class TestLoadGatewayConfigForRunner:
         # was not bulk-loaded into os.environ (multiplex isolation path).
         monkeypatch.delenv("TELEGRAM_BOT_TOKEN", raising=False)
         # Point both openamer_constants and gateway.run at our temp home.
-        monkeypatch.setattr(hc, "get_hermes_home", lambda: home)
-        monkeypatch.setattr(run_mod, "get_hermes_home", lambda: home)
-        monkeypatch.setattr(run_mod, "_hermes_home", home)
+        monkeypatch.setattr(hc, "get_openamer_home", lambda: home)
+        monkeypatch.setattr(run_mod, "get_openamer_home", lambda: home)
+        monkeypatch.setattr(run_mod, "_openamer_home", home)
 
         cfg = run_mod.load_gateway_config_for_runner()
         assert cfg.multiplex_profiles is True

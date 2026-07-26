@@ -37,7 +37,7 @@ def home():
 def test_parse_node_kind():
     assert lm.parse_node_kind("memory:memory:0") == "memory"
     assert lm.parse_node_kind("memory:profile:3") == "memory"
-    assert lm.parse_node_kind("debugging-hermes") == "skill"
+    assert lm.parse_node_kind("debugging-openamer") == "skill"
 
 
 def test_memory_global_index_maps_across_files(home):

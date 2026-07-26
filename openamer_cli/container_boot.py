@@ -87,7 +87,7 @@ class ReconcileAction:
 
 def reconcile_profile_gateways(
     *,
-    hermes_home: Path,
+    openamer_home: Path,
     scandir: Path,
     dry_run: bool = False,
     container_argv: Sequence[str] | None = None,
@@ -109,9 +109,9 @@ def reconcile_profile_gateways(
     same way as for named profiles.
 
     Args:
-        hermes_home: The container's OPENAMER_HOME (typically /opt/data).
-            Profiles live under ``<hermes_home>/profiles/<name>/``;
-            the default profile lives at ``<hermes_home>`` itself.
+        openamer_home: The container's OPENAMER_HOME (typically /opt/data).
+            Profiles live under ``<openamer_home>/profiles/<name>/``;
+            the default profile lives at ``<openamer_home>`` itself.
         scandir: The s6 dynamic scandir (typically /run/service). Service
             directories are created at ``<scandir>/gateway-<profile>/``.
         dry_run: When True, walk and return the action list without
@@ -143,14 +143,14 @@ def reconcile_profile_gateways(
     # `gateway run` command and no state exists yet, seed that intent
     # as `running` so the s6 reconciler preserves the pre-s6 behavior.
     legacy_default_state = _maybe_migrate_legacy_gateway_run_state(
-        hermes_home,
+        openamer_home,
         container_argv=container_argv,
         dry_run=dry_run,
     )
-    default_prior_state = legacy_default_state or _read_desired_state(hermes_home)
+    default_prior_state = legacy_default_state or _read_desired_state(openamer_home)
     default_should_start = default_prior_state in _AUTOSTART_STATES
     if not dry_run:
-        _cleanup_stale_runtime_files(hermes_home)
+        _cleanup_stale_runtime_files(openamer_home)
         _register_service(scandir, "default", start=default_should_start)
     actions.append(ReconcileAction(
         profile="default",
@@ -158,7 +158,7 @@ def reconcile_profile_gateways(
         action="started" if default_should_start else "registered",
     ))
 
-    profiles_root = hermes_home / "profiles"
+    profiles_root = openamer_home / "profiles"
     if profiles_root.is_dir():
         for entry in sorted(profiles_root.iterdir()):
             if not entry.is_dir():
@@ -198,12 +198,12 @@ def reconcile_profile_gateways(
             ))
 
     if not dry_run:
-        _write_reconcile_log(hermes_home, actions)
+        _write_reconcile_log(openamer_home, actions)
     return actions
 
 
 def _maybe_migrate_legacy_gateway_run_state(
-    hermes_home: Path,
+    openamer_home: Path,
     *,
     container_argv: Sequence[str] | None,
     dry_run: bool,
@@ -218,7 +218,7 @@ def _maybe_migrate_legacy_gateway_run_state(
     root gateway_state.json exists so explicit stopped/failed states keep
     winning across restarts.
     """
-    state_file = hermes_home / "gateway_state.json"
+    state_file = openamer_home / "gateway_state.json"
     if state_file.exists():
         return None
 
@@ -292,10 +292,10 @@ def _strip_container_argv_prefix(argv: Sequence[str]) -> list[str]:
     Two container-command argv shapes are handled:
 
     * **s6-overlay v2 / tini:** PID 1 argv is
-      ``/init /opt/hermes/docker/main-wrapper.sh <subcommand> [args...]``.
+      ``/init /opt/openamer/docker/main-wrapper.sh <subcommand> [args...]``.
     * **s6-overlay v3:** PID 1 is ``s6-svscan`` and the command lives on the
       rc.init-launched process as ``/bin/sh -e
-      /run/s6/basedir/scripts/rc.init top /opt/hermes/docker/main-wrapper.sh
+      /run/s6/basedir/scripts/rc.init top /opt/openamer/docker/main-wrapper.sh
       <subcommand> [args...]`` (see :func:`_read_container_argv`).
 
     Rather than peel each leading token positionally (which silently breaks
@@ -303,9 +303,9 @@ def _strip_container_argv_prefix(argv: Sequence[str]) -> list[str]:
     in the v2→v3 bump), drop everything up to and including the
     ``main-wrapper.sh`` token: that wrapper path is the stable boundary the
     image owns, and the subcommand always follows it. Pre-s6 / direct
-    ``hermes`` invocations carry no wrapper, so fall back to peeling a bare
+    ``openamer`` invocations carry no wrapper, so fall back to peeling a bare
     ``init`` prefix. The wrapper re-execs ``openamer <subcommand>``, so an
-    explicit leading ``hermes`` is peeled too. Shared by the legacy-gateway
+    explicit leading ``openamer`` is peeled too. Shared by the legacy-gateway
     and dashboard role detectors.
     """
     args = list(argv)
@@ -323,8 +323,8 @@ def _strip_container_argv_prefix(argv: Sequence[str]) -> list[str]:
         # Defensive: an `init` prefix with no wrapper token in argv.
         args = args[1:]
 
-    # The wrapper re-execs `openamer <subcommand>`; peel an explicit hermes.
-    if args and Path(args[0]).name == "hermes":
+    # The wrapper re-execs `openamer <subcommand>`; peel an explicit openamer.
+    if args and Path(args[0]).name == "openamer":
         args = args[1:]
     return args
 
@@ -484,7 +484,7 @@ def _register_service(scandir: Path, profile: str, *, start: bool) -> None:
         # BEFORE we publish the slot. Mirrors the same pre-creation
         # step in S6ServiceManager.register_profile_gateway — when
         # s6-svscan picks the published slot up, the s6-supervise it
-        # spawns will EEXIST our dirs/FIFOs and inherit hermes
+        # spawns will EEXIST our dirs/FIFOs and inherit openamer
         # ownership, so runtime s6-svc / s6-svstat / s6-svwait calls
         # (all dispatched as the openamer user) won't hit EACCES. See
         # ``_seed_supervise_skeleton`` in service_manager.py for the
@@ -504,7 +504,7 @@ def _register_service(scandir: Path, profile: str, *, start: bool) -> None:
 
 
 def _write_reconcile_log(
-    hermes_home: Path, actions: list[ReconcileAction],
+    openamer_home: Path, actions: list[ReconcileAction],
 ) -> None:
     """Append one line per profile to $OPENAMER_HOME/logs/container-boot.log.
 
@@ -522,7 +522,7 @@ def _write_reconcile_log(
     one append-only file (PR #30136 review item O3).
     """
     import time
-    log_dir = hermes_home / "logs"
+    log_dir = openamer_home / "logs"
     log_dir.mkdir(parents=True, exist_ok=True)
     log_path = log_dir / "container-boot.log"
 
@@ -571,10 +571,10 @@ def main() -> int:
         )
         return 0
 
-    hermes_home = Path(os.environ.get("OPENAMER_HOME", "/opt/data"))
+    openamer_home = Path(os.environ.get("OPENAMER_HOME", "/opt/data"))
     scandir = Path(os.environ.get("S6_PROFILE_GATEWAY_SCANDIR", "/run/service"))
     actions = reconcile_profile_gateways(
-        hermes_home=hermes_home, scandir=scandir,
+        openamer_home=openamer_home, scandir=scandir,
     )
     for a in actions:
         print(

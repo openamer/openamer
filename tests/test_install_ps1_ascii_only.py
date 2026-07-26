@@ -1,6 +1,6 @@
 """Regression: install.ps1 must stay pure ASCII.
 
-Issues #66994 / #67000 reported the Windows GUI installer (Hermes-Setup.exe)
+Issues #66994 / #67000 reported the Windows GUI installer (OpenAmer-Setup.exe)
 crashing before it did anything, with a cascade of PowerShell parser errors at
 lines 1619 / 1770 ("Missing argument in parameter list", "A 'using' statement
 must appear before any other statements in a script").

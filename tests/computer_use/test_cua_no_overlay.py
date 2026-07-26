@@ -1,7 +1,7 @@
 """Tests for the cua-driver --no-overlay policy.
 
 cua-driver's cursor overlay rendering loop can consume CPU indefinitely when
-idle (#28152, #47032). Hermes passes ``--no-overlay`` to suppress it when the
+idle (#28152, #47032). OpenAmer passes ``--no-overlay`` to suppress it when the
 ``computer_use.no_overlay`` config is enabled (or auto-detected on macOS and
 headless Linux / WSL2).
 
@@ -131,7 +131,7 @@ class TestDriverSupportsNoOverlay:
 
 
 class TestMcpInvocationUsesResolvedCommand:
-    """Surface 8 (NousResearch/hermes-agent#47072) + sweeper feedback
+    """Surface 8 (NousResearch/openamer-agent#47072) + sweeper feedback
     #4701565902: when the manifest surfaces a relocated executable for
     ``mcp_invocation.command``, the support probe must run against THAT
     binary, not the system-resolved ``_CUA_DRIVER_CMD``. Otherwise a

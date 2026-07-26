@@ -161,7 +161,7 @@ def build_skills_parser(subparsers, *, cmd_skills: Callable) -> None:
         "reset",
         help="Reset a bundled skill — clears 'user-modified' tracking so updates work again",
         description=(
-            "Clear a bundled skill's entry from the sync manifest (~/.hermes/skills/.bundled_manifest) "
+            "Clear a bundled skill's entry from the sync manifest (~/.openamer/skills/.bundled_manifest) "
             "so future 'openamer update' runs stop marking it as user-modified. Pass --restore to also "
             "replace the current copy with the bundled version."
         ),

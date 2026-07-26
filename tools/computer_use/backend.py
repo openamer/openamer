@@ -25,7 +25,7 @@ class UIElement:
     window_id: int = 0               # SkyLight / CG window ID
     attributes: Dict[str, Any] = field(default_factory=dict)
     # Opaque per-snapshot element handle from cua-driver
-    # (trycua/cua#1961 — Surface 6 of NousResearch/hermes-agent#47072).
+    # (trycua/cua#1961 — Surface 6 of NousResearch/openamer-agent#47072).
     # When set, downstream calls can pass it alongside `index` for
     # explicit stale-detection: a stale token returns an error from
     # cua-driver rather than silently re-resolving to a different
@@ -61,7 +61,7 @@ class CaptureResult:
     png_bytes_len: int = 0
     # Explicit MIME type for `png_b64` when the backend supplied it
     # (cua-driver-rs emits `mimeType` on every image part as of
-    # trycua/cua#1961 — Surface 7 of NousResearch/hermes-agent#47072).
+    # trycua/cua#1961 — Surface 7 of NousResearch/openamer-agent#47072).
     # When None, downstream consumers fall back to base64-prefix
     # sniffing for back-compat with older drivers.
     image_mime_type: Optional[str] = None
@@ -73,7 +73,7 @@ class ActionResult:
 
     Beyond the transport-level ``ok`` flag, this carries cua-driver's
     structured action verdict so the model can follow the documented
-    verify → escalate ladder (NousResearch/hermes-agent#67052). ``ok`` stays
+    verify → escalate ladder (NousResearch/openamer-agent#67052). ``ok`` stays
     tool/transport success only — it is NOT the semantic verdict. Read
     ``effect`` / ``escalation`` to decide the next rung. All structured
     fields are optional and additive: an older driver that omits

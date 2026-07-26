@@ -78,9 +78,9 @@ def resolve_context_cwd() -> Path | None:
     # to the launch dir (os.getcwd()), correct for a local CLI launched inside a
     # real project. A configured path is validated here (previously it was passed
     # through unchecked, diverging from resolve_agent_cwd). An explicitly
-    # configured path is otherwise honored verbatim — including the Hermes
+    # configured path is otherwise honored verbatim — including the OpenAmer
     # source tree itself, which is a legitimate workspace when the user is
-    # developing Hermes (per-surface policy for fallback-picked directories
+    # developing OpenAmer (per-surface policy for fallback-picked directories
     # lives in build_context_files_prompt; see #64590).
     override = _session_cwd_override()
     if override:

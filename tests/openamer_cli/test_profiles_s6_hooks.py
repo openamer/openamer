@@ -143,7 +143,7 @@ def test_register_swallows_arbitrary_error(
     monkeypatch: pytest.MonkeyPatch, capsys: pytest.CaptureFixture[str],
 ) -> None:
     """Even an unexpected exception from the manager must not bring
-    down `hermes profile create` — print and continue."""
+    down `openamer profile create` — print and continue."""
     _patch_detect_s6(monkeypatch)
     mgr = _S6Manager()
     mgr.raise_on_register = RuntimeError("svscanctl exploded")

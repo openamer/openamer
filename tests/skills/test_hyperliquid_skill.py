@@ -208,7 +208,7 @@ def test_resolve_user_uses_env_fallback(monkeypatch):
 def test_resolve_user_errors_when_missing(monkeypatch, tmp_path):
     mod = load_module()
     monkeypatch.chdir(tmp_path)
-    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".hermes"))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".openamer"))
     monkeypatch.delenv("HYPERLIQUID_USER_ADDRESS", raising=False)
 
     try:
@@ -240,15 +240,15 @@ def test_main_state_json_uses_env_fallback(monkeypatch, capsys):
     assert mock_post.call_args[0][0]["user"] == "0xenv999"
 
 
-def test_env_lookup_reads_hermes_dotenv(tmp_path, monkeypatch):
+def test_env_lookup_reads_openamer_dotenv(tmp_path, monkeypatch):
     mod = load_module()
-    hermes_home = tmp_path / ".hermes"
-    hermes_home.mkdir(parents=True)
-    (hermes_home / ".env").write_text(
+    openamer_home = tmp_path / ".openamer"
+    openamer_home.mkdir(parents=True)
+    (openamer_home / ".env").write_text(
         "HYPERLIQUID_USER_ADDRESS=0xdotenv123\nHYPERLIQUID_API_URL=https://api.hyperliquid-testnet.xyz\n",
         encoding="utf-8",
     )
-    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
     monkeypatch.delenv("HYPERLIQUID_USER_ADDRESS", raising=False)
     monkeypatch.delenv("HYPERLIQUID_API_URL", raising=False)
 
@@ -263,12 +263,12 @@ def test_user_dotenv_overrides_project_dotenv(tmp_path, monkeypatch):
     project_dir.mkdir()
     (project_dir / ".env").write_text("HYPERLIQUID_USER_ADDRESS=0xproject\n", encoding="utf-8")
 
-    hermes_home = tmp_path / ".hermes"
-    hermes_home.mkdir()
-    (hermes_home / ".env").write_text("HYPERLIQUID_USER_ADDRESS=0xuserhome\n", encoding="utf-8")
+    openamer_home = tmp_path / ".openamer"
+    openamer_home.mkdir()
+    (openamer_home / ".env").write_text("HYPERLIQUID_USER_ADDRESS=0xuserhome\n", encoding="utf-8")
 
     monkeypatch.chdir(project_dir)
-    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
     monkeypatch.delenv("HYPERLIQUID_USER_ADDRESS", raising=False)
 
     assert mod._env_lookup("HYPERLIQUID_USER_ADDRESS") == "0xuserhome"

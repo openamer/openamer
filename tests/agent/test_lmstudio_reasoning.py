@@ -1,6 +1,6 @@
 """Reasoning-effort resolution for LM Studio.
 
-Covers the contract that Hermes' generic effort ladder must stay monotonic
+Covers the contract that OpenAmer' generic effort ladder must stay monotonic
 once it is mapped onto LM Studio's narrower vocabulary: a stronger requested
 level may resolve to an equal-or-stronger LM Studio level, never a weaker one.
 """
@@ -28,7 +28,7 @@ def test_strong_efforts_clamp_to_lmstudio_ceiling(effort):
 
 
 def test_effort_ladder_is_monotonic():
-    """Resolving Hermes' canonical ladder never produces an inversion."""
+    """Resolving OpenAmer' canonical ladder never produces an inversion."""
     resolved = [
         resolve_lmstudio_effort({"enabled": True, "effort": effort}, None)
         for effort in VALID_REASONING_EFFORTS

@@ -18,7 +18,7 @@ def _pkce_payload(ls) -> dict:
     """Parse ``state=...;verifier=...`` out of the LoginStart cookie payload."""
     return dict(
         item.split("=", 1)
-        for item in ls.cookie_payload["hermes_session_pkce"].split(";")
+        for item in ls.cookie_payload["openamer_session_pkce"].split(";")
     )
 
 
@@ -31,7 +31,7 @@ def test_stub_start_login_returns_callback_redirect():
     ls = p.start_login(redirect_uri="https://x.fly.dev/auth/callback")
     assert "code=stub_code" in ls.redirect_url
     assert "state=" in ls.redirect_url
-    assert "hermes_session_pkce" in ls.cookie_payload
+    assert "openamer_session_pkce" in ls.cookie_payload
 
 
 def test_stub_complete_login_with_matching_state_succeeds():

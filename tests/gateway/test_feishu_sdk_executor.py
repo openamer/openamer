@@ -71,7 +71,7 @@ async def test_run_blocking_executes_on_owned_pool():
     result = await adapter._run_blocking(_work, 21)
     assert result == 42
     # Ran on the adapter-owned pool, not the default executor.
-    assert captured["thread"].startswith("hermes-feishu-sdk")
+    assert captured["thread"].startswith("openamer-feishu-sdk")
     adapter._shutdown_sdk_executor()
 
 

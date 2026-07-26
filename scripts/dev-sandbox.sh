@@ -1,29 +1,29 @@
 #!/usr/bin/env bash
-# Run a Hermes instance in an isolated sandbox — separate OPENAMER_HOME,
+# Run a OpenAmer instance in an isolated sandbox — separate OPENAMER_HOME,
 # separate Electron userData, and a distinct Desktop app name so it doesn't compete
 # with your main desktop instance's single-instance lock.
 #
 # By default the sandbox is throwaway: a temp dir is created and removed on
 # exit. Use --persistent to keep the sandbox across restarts (stored under
-# .hermes-sandbox/ in the worktree git root).
+# .openamer-sandbox/ in the worktree git root).
 #
 # Usage:
-#   scripts/dev-sandbox.sh python -m hermes_cli.main
-#   scripts/dev-sandbox.sh hermes desktop
+#   scripts/dev-sandbox.sh python -m openamer_cli.main
+#   scripts/dev-sandbox.sh openamer desktop
 #   scripts/dev-sandbox.sh electron .
 #   scripts/dev-sandbox.sh -- npm run dev   # from apps/desktop/
-#   scripts/dev-sandbox.sh --persistent hermes desktop
+#   scripts/dev-sandbox.sh --persistent openamer desktop
 #   scripts/dev-sandbox.sh --persistent -- npm run dev
 #
 # Seed the sandbox OPENAMER_HOME from an existing directory (e.g. your main
-# ~/.hermes) so config, sessions, skills, etc. are pre-populated:
-#   scripts/dev-sandbox.sh --from ~/.hermes hermes desktop
+# ~/.openamer) so config, sessions, skills, etc. are pre-populated:
+#   scripts/dev-sandbox.sh --from ~/.openamer openamer desktop
 #
-# Override the app name (default: HermesSandbox):
-#   HERMES_DEV_SANDBOX_NAME=Staging scripts/dev-sandbox.sh hermes desktop
+# Override the app name (default: OpenAmerSandbox):
+#   HERMES_DEV_SANDBOX_NAME=Staging scripts/dev-sandbox.sh openamer desktop
 #
-# Override the persistent sandbox dir name (default: .hermes-sandbox):
-#   HERMES_DEV_SANDBOX_DIR=.staging-sandbox scripts/dev-sandbox.sh --persistent hermes desktop
+# Override the persistent sandbox dir name (default: .openamer-sandbox):
+#   HERMES_DEV_SANDBOX_DIR=.staging-sandbox scripts/dev-sandbox.sh --persistent openamer desktop
 
 set -euo pipefail
 
@@ -33,27 +33,27 @@ print_help() {
   cat <<'EOF'
 Usage: dev-sandbox.sh [--persistent] [--from DIR] [--] <command...>
 
-Run a Hermes instance in an isolated sandbox.
+Run a OpenAmer instance in an isolated sandbox.
 
 Options:
   --persistent    Keep the sandbox dir across restarts (under the worktree
-                  git root, in .hermes-sandbox/). Without this flag the
+                  git root, in .openamer-sandbox/). Without this flag the
                   sandbox is a temp dir that is removed on exit.
   --from DIR      Copy DIR into the sandbox OPENAMER_HOME as the starting
                   point (config, sessions, skills, etc.).
                   Ignored if the sandbox OPENAMER_HOME already has content
                   (e.g. reusing a --persistent sandbox) to avoid clobbering.
-  --delete        Delete the existing persistent sandbox in .hermes-sandbox.
+  --delete        Delete the existing persistent sandbox in .openamer-sandbox.
   -h, --help      Show this help message.
 
 Environment:
-  HERMES_DEV_SANDBOX_NAME  Override the app name (default: HermesSandbox)
-  HERMES_DEV_SANDBOX_DIR   Override the persistent dir name (default: .hermes-sandbox)
+  HERMES_DEV_SANDBOX_NAME  Override the app name (default: OpenAmerSandbox)
+  HERMES_DEV_SANDBOX_DIR   Override the persistent dir name (default: .openamer-sandbox)
 
 Examples:
-  dev-sandbox.sh hermes desktop
-  dev-sandbox.sh --persistent hermes desktop
-  dev-sandbox.sh --from ~/.hermes hermes desktop
+  dev-sandbox.sh openamer desktop
+  dev-sandbox.sh --persistent openamer desktop
+  dev-sandbox.sh --from ~/.openamer openamer desktop
   dev-sandbox.sh -- npm run dev
 EOF
 }
@@ -117,7 +117,7 @@ if [ "$#" -eq 0 ]; then
 fi
 
 
-SANDBOX_DIR_NAME="${HERMES_DEV_SANDBOX_DIR:-.hermes-sandbox}"
+SANDBOX_DIR_NAME="${HERMES_DEV_SANDBOX_DIR:-.openamer-sandbox}"
 GIT_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || echo "$SCRIPT_DIR/..")"
 GIT_ROOT="$(cd "$GIT_ROOT" && pwd)"
 PERSISTENT_SANDBOX_ROOT="$GIT_ROOT/$SANDBOX_DIR_NAME"
@@ -148,17 +148,17 @@ WORKTREE_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || echo "$SCRIPT_DIR/
 WORKTREE_ROOT="$(cd "$WORKTREE_ROOT" && pwd)"
 WORKTREE_HASH="$(printf '%s' "$WORKTREE_ROOT" | cksum | cut -d' ' -f1)"
 WORKTREE_NAME="$(basename "$WORKTREE_ROOT")"
-DEFAULT_SANDBOX_NAME="HermesSandbox-${WORKTREE_NAME}-${WORKTREE_HASH}"
+DEFAULT_SANDBOX_NAME="OpenAmerSandbox-${WORKTREE_NAME}-${WORKTREE_HASH}"
 
 SANDBOX_NAME="${HERMES_DEV_SANDBOX_NAME:-$DEFAULT_SANDBOX_NAME}"
 
 if [ "$PERSISTENT" = true ]; then
   SANDBOX_ROOT="$PERSISTENT_SANDBOX_ROOT"
 else
-  SANDBOX_ROOT="$(mktemp -d -t hermes-sandbox.XXXXXX)"
+  SANDBOX_ROOT="$(mktemp -d -t openamer-sandbox.XXXXXX)"
 fi
 
-export OPENAMER_HOME="$SANDBOX_ROOT/hermes-home"
+export OPENAMER_HOME="$SANDBOX_ROOT/openamer-home"
 export HERMES_DESKTOP_USER_DATA_DIR="$SANDBOX_ROOT/user-data"
 export HERMES_DESKTOP_APP_NAME="$SANDBOX_NAME"
 

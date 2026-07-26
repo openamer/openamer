@@ -33,7 +33,7 @@ def test_default_spawn_pins_assignee_profile_cli_toolsets(monkeypatch, tmp_path)
     composite. The spawned CLI gets an explicit --toolsets pin resolved from
     platform_toolsets.cli; model_tools appends task-scoped kanban tools later.
     """
-    root = tmp_path / ".hermes"
+    root = tmp_path / ".openamer"
     profile = root / "profiles" / "elias"
     profile.mkdir(parents=True)
     profile.joinpath("config.yaml").write_text(
@@ -50,7 +50,7 @@ platform_toolsets:
     - terminal
     - web
 toolsets:
-  - hermes-cli
+  - openamer-cli
 agent:
   disabled_toolsets: []
 """.lstrip(),
@@ -61,7 +61,7 @@ agent:
 
     from openamer_cli import kanban_db as kb
 
-    monkeypatch.setattr(kb, "_resolve_hermes_argv", lambda: ["hermes"])
+    monkeypatch.setattr(kb, "_resolve_openamer_argv", lambda: ["openamer"])
 
     captured = {}
 
@@ -95,7 +95,7 @@ def test_default_spawn_never_boots_the_tui(monkeypatch, tmp_path):
     bail-out exits 0 without doing the task — every attempt then ends in
     "protocol violation". The spawn pins --cli (highest-precedence interface
     flag) and strips HERMES_TUI from the child env."""
-    root = tmp_path / ".hermes"
+    root = tmp_path / ".openamer"
     (root / "profiles" / "elias").mkdir(parents=True)
     root.joinpath("config.yaml").write_text("display:\n  interface: tui\n", encoding="utf-8")
     monkeypatch.setenv("OPENAMER_HOME", str(root))
@@ -103,7 +103,7 @@ def test_default_spawn_never_boots_the_tui(monkeypatch, tmp_path):
 
     from openamer_cli import kanban_db as kb
 
-    monkeypatch.setattr(kb, "_resolve_hermes_argv", lambda: ["hermes"])
+    monkeypatch.setattr(kb, "_resolve_openamer_argv", lambda: ["openamer"])
 
     captured = {}
 
@@ -132,7 +132,7 @@ def test_default_spawn_model_override_survives_real_cli_parse(monkeypatch, tmp_p
     the real CLI parser. A parser default once erased the explicit override,
     silently sending the worker to its profile default or fallback instead.
     """
-    root = tmp_path / ".hermes"
+    root = tmp_path / ".openamer"
     (root / "profiles" / "elias").mkdir(parents=True)
     root.joinpath("config.yaml").write_text("{}\n", encoding="utf-8")
     monkeypatch.setenv("OPENAMER_HOME", str(root))
@@ -140,7 +140,7 @@ def test_default_spawn_model_override_survives_real_cli_parse(monkeypatch, tmp_p
     from openamer_cli import kanban_db as kb
     from openamer_cli._parser import build_top_level_parser
 
-    monkeypatch.setattr(kb, "_resolve_hermes_argv", lambda: ["hermes"])
+    monkeypatch.setattr(kb, "_resolve_openamer_argv", lambda: ["openamer"])
     captured = {}
 
     class FakeProc:
@@ -171,7 +171,7 @@ def test_default_spawn_model_override_survives_real_cli_parse(monkeypatch, tmp_p
 
 
 def test_resolve_worker_cli_toolsets_uses_profile_home_not_parent_config(monkeypatch, tmp_path):
-    root = tmp_path / ".hermes"
+    root = tmp_path / ".openamer"
     profile = root / "profiles" / "elias"
     profile.mkdir(parents=True)
     root.joinpath("config.yaml").write_text("platform_toolsets:\n  cli:\n    - kanban\n", encoding="utf-8")
@@ -182,7 +182,7 @@ platform_toolsets:
     - terminal
     - web
 toolsets:
-  - hermes-cli
+  - openamer-cli
 """.lstrip(),
         encoding="utf-8",
     )

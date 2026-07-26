@@ -68,13 +68,13 @@ except ImportError:  # pragma: no cover - plugin loaded outside package context
 logger = logging.getLogger(__name__)
 
 # User-Agent prefix for outbound Slack API calls so platform partners can
-# identify HermesAgent traffic — matching other Hermes outbound surfaces
-# that already set ``HermesAgent/<version>`` for platform-partner attribution.
+# identify OpenAmerAgent traffic — matching other OpenAmer outbound surfaces
+# that already set ``OpenAmerAgent/<version>`` for platform-partner attribution.
 try:
     from openamer_cli import __version__ as _HERMES_VERSION
 except Exception:
     _HERMES_VERSION = "unknown"
-_HERMES_SLACK_USER_AGENT_PREFIX = f"HermesAgent/{_HERMES_VERSION}"
+_HERMES_SLACK_USER_AGENT_PREFIX = f"OpenAmerAgent/{_HERMES_VERSION}"
 
 _SLACK_ERROR_BODY_LIMIT_BYTES = 8 * 1024
 
@@ -864,7 +864,7 @@ class SlackAdapter(BasePlatformAdapter):
       - DMs and channel messages (mention-gated in channels)
       - Thread support
       - File/image/audio attachments
-      - Slash commands (/hermes)
+      - Slash commands (/openamer)
       - Typing indicators (not natively supported by Slack bots)
     """
 
@@ -1679,7 +1679,7 @@ class SlackAdapter(BasePlatformAdapter):
                     "and 'message.mpim' event. Add 'mpim:history' (and "
                     "'mpim:read') to bot scopes, add 'message.mpim' to event "
                     "subscriptions, then REINSTALL the app to the workspace. "
-                    "Regenerating the app from `hermes slack` produces a "
+                    "Regenerating the app from `openamer slack` produces a "
                     "manifest with these already included.",
                     team_key or "this workspace",
                 )
@@ -1775,14 +1775,14 @@ class SlackAdapter(BasePlatformAdapter):
         if not raw_token:
             logger.error(
                 "[Slack] SLACK_BOT_TOKEN not set — this is a permanent config "
-                "error; set SLACK_BOT_TOKEN via `hermes gateway setup` "
-                "or in the active profile's ~/.hermes/.env file, then restart "
+                "error; set SLACK_BOT_TOKEN via `openamer gateway setup` "
+                "or in the active profile's ~/.openamer/.env file, then restart "
                 "the gateway.",
             )
             self._set_fatal_error(
                 "missing_slack_bot_token",
-                "SLACK_BOT_TOKEN not configured. Use `hermes gateway setup` "
-                "or add it to your active profile's ~/.hermes/.env file, "
+                "SLACK_BOT_TOKEN not configured. Use `openamer gateway setup` "
+                "or add it to your active profile's ~/.openamer/.env file, "
                 "then restart the gateway.",
                 retryable=False,
             )
@@ -1790,14 +1790,14 @@ class SlackAdapter(BasePlatformAdapter):
         if not app_token:
             logger.error(
                 "[Slack] SLACK_APP_TOKEN not set — this is a permanent config "
-                "error; set SLACK_APP_TOKEN via `hermes gateway setup` "
-                "or in the active profile's ~/.hermes/.env file, then restart "
+                "error; set SLACK_APP_TOKEN via `openamer gateway setup` "
+                "or in the active profile's ~/.openamer/.env file, then restart "
                 "the gateway.",
             )
             self._set_fatal_error(
                 "missing_slack_app_token",
-                "SLACK_APP_TOKEN not configured. Use `hermes gateway setup` "
-                "or add it to your active profile's ~/.hermes/.env file, "
+                "SLACK_APP_TOKEN not configured. Use `openamer gateway setup` "
+                "or add it to your active profile's ~/.openamer/.env file, "
                 "then restart the gateway.",
                 retryable=False,
             )
@@ -1999,7 +1999,7 @@ class SlackAdapter(BasePlatformAdapter):
                 await self._handle_assistant_thread_lifecycle_event(event, body)
 
             # Catch-all no-op ack for any other subscribed event type that
-            # Hermes has no listener for (e.g. user_change,
+            # OpenAmer has no listener for (e.g. user_change,
             # user_huddle_changed, member_joined_channel, channel_archive,
             # pin_added, etc.).
             #
@@ -2029,9 +2029,9 @@ class SlackAdapter(BasePlatformAdapter):
             async def handle_unhandled_event(event, body, logger):
                 logger.debug(
                     "[Slack] Ignoring unhandled event type=%s (no listener "
-                    "registered; subscribed events not handled by Hermes can "
+                    "registered; subscribed events not handled by OpenAmer can "
                     "be removed from the Slack app manifest via "
-                    "`hermes slack manifest`)",
+                    "`openamer slack manifest`)",
                     (event or {}).get(
                         "type",
                         (body or {}).get("event", {}).get("type", "unknown"),
@@ -2042,12 +2042,12 @@ class SlackAdapter(BasePlatformAdapter):
             #
             # Every gateway command from COMMAND_REGISTRY is a native Slack
             # slash, matching Discord and Telegram's model (e.g. /btw, /stop,
-            # /model work directly without /hermes prefix). A single regex
+            # /model work directly without /openamer prefix). A single regex
             # matcher dispatches all of them to one handler so we don't need
             # N identical @app.command() decorators.
             #
             # The slash commands must ALSO be declared in the Slack app
-            # manifest (see `hermes slack manifest`). In Socket Mode, Slack
+            # manifest (see `openamer slack manifest`). In Socket Mode, Slack
             # routes the command event through the socket regardless of the
             # manifest's request URL, but it will not deliver an event for
             # a slash command the manifest doesn't declare.
@@ -2060,10 +2060,10 @@ class SlackAdapter(BasePlatformAdapter):
                     r"^/(?:" + "|".join(_re.escape(n) for n in _slash_names) + r")$"
                 )
             else:  # pragma: no cover - registry always non-empty
-                _slash_pattern = _re.compile(r"^/hermes$")
+                _slash_pattern = _re.compile(r"^/openamer$")
 
             @self._app.command(_slash_pattern)
-            async def handle_hermes_command(ack, command):
+            async def handle_openamer_command(ack, command):
                 slash = (command.get("command") or "").lstrip("/")
                 await ack(
                     response_type="ephemeral",
@@ -2073,32 +2073,32 @@ class SlackAdapter(BasePlatformAdapter):
 
             # Register Block Kit action handlers for approval buttons
             for _action_id in (
-                "hermes_approve_once",
-                "hermes_approve_session",
-                "hermes_approve_always",
-                "hermes_deny",
+                "openamer_approve_once",
+                "openamer_approve_session",
+                "openamer_approve_always",
+                "openamer_deny",
             ):
                 self._app.action(_action_id)(self._handle_approval_action)
 
             # Register Block Kit action handlers for slash-confirm buttons
             # (generic three-option prompts; see tools/slash_confirm.py).
             for _action_id in (
-                "hermes_confirm_once",
-                "hermes_confirm_always",
-                "hermes_confirm_cancel",
+                "openamer_confirm_once",
+                "openamer_confirm_always",
+                "openamer_confirm_cancel",
             ):
                 self._app.action(_action_id)(self._handle_slash_confirm_action)
 
-            self._app.action("hermes_feedback")(self._handle_feedback_action)
+            self._app.action("openamer_feedback")(self._handle_feedback_action)
 
             # Register Block Kit action handlers for clarify buttons
             # (interactive multiple-choice prompts; see tools/clarify_gateway.py).
             # Choice buttons use indexed action IDs so each ID is unique within
             # its actions block, as required by Slack's Block Kit schema.
             self._app.action(
-                _re.compile(r"^hermes_clarify_choice_\d+$")
+                _re.compile(r"^openamer_clarify_choice_\d+$")
             )(self._handle_clarify_action)
-            self._app.action("hermes_clarify_other")(self._handle_clarify_action)
+            self._app.action("openamer_clarify_other")(self._handle_clarify_action)
 
             # Register plugin-provided Block Kit action handlers.
             #
@@ -2202,7 +2202,7 @@ class SlackAdapter(BasePlatformAdapter):
                     "[Slack] allow_bots=%s — for bot-to-bot interop also ensure: "
                     "(a) the Slack app manifest subscribes to message.channels / "
                     "message.groups / message.im as appropriate (run "
-                    "'hermes slack manifest' if unsure), and (b) the other bot's "
+                    "'openamer slack manifest' if unsure), and (b) the other bot's "
                     "Slack user id is in SLACK_ALLOWED_USERS or "
                     "GATEWAY_ALLOW_ALL_USERS=true. Without these, bot events are "
                     "silently dropped upstream of the allow_bots gate.",
@@ -2239,7 +2239,7 @@ class SlackAdapter(BasePlatformAdapter):
             if client is None:
                 return None
             seed_text = (
-                f":thread: Hermes handoff — *{(name or 'session').strip()[:80]}*"
+                f":thread: OpenAmer handoff — *{(name or 'session').strip()[:80]}*"
             )
             result = await client.chat_postMessage(
                 channel=parent_chat_id,
@@ -3026,7 +3026,7 @@ class SlackAdapter(BasePlatformAdapter):
         """Whether top-level Slack DMs get per-message session threads.
 
         Defaults to ``True`` so each visible DM reply thread is isolated as its
-        own Hermes session — matching the per-thread behavior channels already
+        own OpenAmer session — matching the per-thread behavior channels already
         have.  Set ``platforms.slack.extra.dm_top_level_threads_as_sessions``
         to ``false`` in config.yaml to revert to the legacy behavior where all
         top-level DMs share one continuous session.
@@ -3488,7 +3488,7 @@ class SlackAdapter(BasePlatformAdapter):
             "elements": [
                 {
                     "type": "feedback_buttons",
-                    "action_id": "hermes_feedback",
+                    "action_id": "openamer_feedback",
                     "positive_button": {
                         "text": {"type": "plain_text", "text": "Good Response"},
                         "accessibility_label": (
@@ -4694,7 +4694,7 @@ class SlackAdapter(BasePlatformAdapter):
         user_id = event.get("user") or event.get("user_id") or ""
         team_id = self._event_team_id(event, body)
         # ``context_channel_id`` is a channel the user is viewing, not the DM
-        # Hermes owns. Do not write it into _channel_team: channel IDs can be
+        # OpenAmer owns. Do not write it into _channel_team: channel IDs can be
         # shared across Slack Connect workspaces, so doing so can misroute a
         # later unrelated send. Workspace ownership is recorded from actual
         # inbound DM/channel events below.
@@ -4911,11 +4911,11 @@ class SlackAdapter(BasePlatformAdapter):
             # trigger emoji) is definitionally addressed to the bot — skip
             # the mention requirement the way Feishu/Photon reaction routing
             # does. User authorization and allowed_channels still apply.
-            "_hermes_force_process": True,
+            "_openamer_force_process": True,
             # Surfaced for any downstream code that wants to know this was a
             # reaction rather than a typed message; not used by the default
             # pipeline.
-            "_hermes_reaction": {
+            "_openamer_reaction": {
                 "name": reaction_name,
                 "action": action,
                 "reacted_to_ts": msg_ts,
@@ -4935,12 +4935,12 @@ class SlackAdapter(BasePlatformAdapter):
             synthetic["channel_type"] = (
                 "im" if target_channel.startswith("D") else "channel"
             )
-            synthetic["_hermes_reaction_source_channel"] = channel_id
+            synthetic["_openamer_reaction_source_channel"] = channel_id
             if target_thread:
                 synthetic["thread_ts"] = target_thread
             else:
                 synthetic.pop("thread_ts", None)
-                synthetic["_hermes_no_thread_response"] = True
+                synthetic["_openamer_no_thread_response"] = True
 
         await self._handle_slack_message(synthetic)
 
@@ -5546,7 +5546,7 @@ class SlackAdapter(BasePlatformAdapter):
             thread_ts = event.get("thread_ts") or assistant_meta.get("thread_ts")
             if not thread_ts and self._dm_top_level_threads_as_sessions():
                 thread_ts = ts
-        elif event.get("_hermes_no_thread_response"):
+        elif event.get("_openamer_no_thread_response"):
             # Reaction handoff into a configured target channel (#45265):
             # the response should be a new top-level message in the target
             # channel, never a thread under the synthetic ts (which is the
@@ -5610,11 +5610,11 @@ class SlackAdapter(BasePlatformAdapter):
         # Internal routing paths (reaction triggers) are pre-authorized as
         # "addressed to the bot" — they skip the mention requirement but NOT
         # the allowed_channels whitelist or user authorization above.
-        force_process = bool(event.get("_hermes_force_process"))
+        force_process = bool(event.get("_openamer_force_process"))
 
         # Some Slack bot posts arrive as ordinary-looking message events with a
         # bot *user* id but without ``bot_id``/``subtype=bot_message``.  This is
-        # the shape produced by peer Hermes agents in Socket Mode on some
+        # the shape produced by peer OpenAmer agents in Socket Mode on some
         # workspaces.  If we let those fall through as human users, an old
         # thread mention or active session will re-trigger the target agent on
         # every peer status/error/ack message, causing agent-agent loops.  Apply
@@ -6386,7 +6386,7 @@ class SlackAdapter(BasePlatformAdapter):
                     "type": "button",
                     "text": {"type": "plain_text", "text": "Allow Once"},
                     "style": "primary",
-                    "action_id": "hermes_approve_once",
+                    "action_id": "openamer_approve_once",
                     "value": session_key,
                 },
             ]
@@ -6394,21 +6394,21 @@ class SlackAdapter(BasePlatformAdapter):
                 actions.append({
                     "type": "button",
                     "text": {"type": "plain_text", "text": "Allow Session"},
-                    "action_id": "hermes_approve_session",
+                    "action_id": "openamer_approve_session",
                     "value": session_key,
                 })
                 if allow_permanent:
                     actions.append({
                         "type": "button",
                         "text": {"type": "plain_text", "text": "Always Allow"},
-                        "action_id": "hermes_approve_always",
+                        "action_id": "openamer_approve_always",
                         "value": session_key,
                     })
             actions.append({
                 "type": "button",
                 "text": {"type": "plain_text", "text": "Deny"},
                 "style": "danger",
-                "action_id": "hermes_deny",
+                "action_id": "openamer_deny",
                 "value": session_key,
             })
             blocks = [
@@ -6491,20 +6491,20 @@ class SlackAdapter(BasePlatformAdapter):
                             "type": "button",
                             "text": {"type": "plain_text", "text": "Approve Once"},
                             "style": "primary",
-                            "action_id": "hermes_confirm_once",
+                            "action_id": "openamer_confirm_once",
                             "value": value,
                         },
                         {
                             "type": "button",
                             "text": {"type": "plain_text", "text": "Always Approve"},
-                            "action_id": "hermes_confirm_always",
+                            "action_id": "openamer_confirm_always",
                             "value": value,
                         },
                         {
                             "type": "button",
                             "text": {"type": "plain_text", "text": "Cancel"},
                             "style": "danger",
-                            "action_id": "hermes_confirm_cancel",
+                            "action_id": "openamer_confirm_cancel",
                             "value": value,
                         },
                     ],
@@ -6541,9 +6541,9 @@ class SlackAdapter(BasePlatformAdapter):
         """Render a clarify prompt as Block Kit interactive buttons.
 
         Multi-choice mode (``choices`` non-empty): one button per option
-        (unique ``hermes_clarify_choice_<idx>`` action_id, ``value`` packs
+        (unique ``openamer_clarify_choice_<idx>`` action_id, ``value`` packs
         ``clarify_id|idx``) plus a final "✏️ Other…" button
-        (``hermes_clarify_other``).  A choice click resolves the clarify
+        (``openamer_clarify_other``).  A choice click resolves the clarify
         primitive directly; the "Other" button flips the entry into
         text-capture mode so the gateway's platform-agnostic text-intercept
         (:meth:`GatewayRunner._handle_message`) picks up the next typed
@@ -6595,13 +6595,13 @@ class SlackAdapter(BasePlatformAdapter):
                 elements.append({
                     "type": "button",
                     "text": {"type": "plain_text", "text": label[:75], "emoji": True},
-                    "action_id": f"hermes_clarify_choice_{idx}",
+                    "action_id": f"openamer_clarify_choice_{idx}",
                     "value": f"{clarify_id}|{idx}",
                 })
             elements.append({
                 "type": "button",
                 "text": {"type": "plain_text", "text": "✏️ Other…", "emoji": True},
-                "action_id": "hermes_clarify_other",
+                "action_id": "openamer_clarify_other",
                 "value": f"{clarify_id}|other",
             })
 
@@ -6742,9 +6742,9 @@ class SlackAdapter(BasePlatformAdapter):
         session_key, confirm_id = value.split("|", 1)
 
         choice_map = {
-            "hermes_confirm_once": "once",
-            "hermes_confirm_always": "always",
-            "hermes_confirm_cancel": "cancel",
+            "openamer_confirm_once": "once",
+            "openamer_confirm_always": "always",
+            "openamer_confirm_cancel": "cancel",
         }
         choice = choice_map.get(action_id, "cancel")
 
@@ -6883,10 +6883,10 @@ class SlackAdapter(BasePlatformAdapter):
 
         # Map action_id to approval choice
         choice_map = {
-            "hermes_approve_once": "once",
-            "hermes_approve_session": "session",
-            "hermes_approve_always": "always",
-            "hermes_deny": "deny",
+            "openamer_approve_once": "once",
+            "openamer_approve_session": "session",
+            "openamer_approve_always": "always",
+            "openamer_deny": "deny",
         }
         choice = choice_map.get(action_id, "deny")
 
@@ -7050,7 +7050,7 @@ class SlackAdapter(BasePlatformAdapter):
         # resolves the clarify from the user's next typed message, so there is
         # no Slack-side text bookkeeping: mark_awaiting_text flips the entry and
         # GatewayRunner._handle_message does the rest.
-        if action_id == "hermes_clarify_other" or token == "other":
+        if action_id == "openamer_clarify_other" or token == "other":
             if not _clarify_mod.mark_awaiting_text(clarify_id):
                 # Entry evicted (clarify_timeout) or gateway restarted between
                 # ask and tap — a typed answer would go nowhere.
@@ -7633,9 +7633,9 @@ class SlackAdapter(BasePlatformAdapter):
         Discord and Telegram model. The slash name itself is the command;
         any text after it is the argument list.
 
-        The legacy ``/hermes <subcommand> [args]`` form is preserved for
+        The legacy ``/openamer <subcommand> [args]`` form is preserved for
         backward compatibility with older workspace manifests and for users
-        who want a single entry point for free-form questions (``/hermes
+        who want a single entry point for free-form questions (``/openamer
         what's the weather`` — non-slash text is treated as a regular
         message).
         """
@@ -7650,8 +7650,8 @@ class SlackAdapter(BasePlatformAdapter):
         if team_id and channel_id:
             self._remember_channel_team(channel_id, team_id)
 
-        if slash_name in {"hermes", ""}:
-            # Legacy /hermes <subcommand> [args] routing + free-form questions.
+        if slash_name in {"openamer", ""}:
+            # Legacy /openamer <subcommand> [args] routing + free-form questions.
             # Empty slash_name falls into this branch for backward compat
             # with any caller that didn't populate command["command"].
             legacy_text = raw_text.strip()
@@ -7660,7 +7660,7 @@ class SlackAdapter(BasePlatformAdapter):
             subcommand_map = slack_subcommand_map()
             subcommand_map["compact"] = "/compress"
             # Guard against whitespace-only text where ``text`` is truthy but
-            # ``text.split()`` returns ``[]`` (e.g. user sends ``/hermes   ``).
+            # ``text.split()`` returns ``[]`` (e.g. user sends ``/openamer   ``).
             parts = legacy_text.split() if legacy_text else []
             first_word = parts[0] if parts else ""
             if first_word in subcommand_map:
@@ -7737,9 +7737,9 @@ class SlackAdapter(BasePlatformAdapter):
 
         # Stash the Slack response_url so the first reply for this
         # channel+user can be routed ephemerally (replaces the initial
-        # "Running /cmd…" ack shown by handle_hermes_command).
+        # "Running /cmd…" ack shown by handle_openamer_command).
         # Only stash for COMMAND events (text starts with "/") — free-form
-        # questions via "/hermes <question>" must produce public replies so
+        # questions via "/openamer <question>" must produce public replies so
         # the whole channel can see the agent's answer.
         response_url = command.get("response_url", "")
         if response_url and user_id and channel_id and text.startswith("/"):
@@ -8865,8 +8865,8 @@ def interactive_setup() -> None:
             import json as _json
 
             manifest = _build_full_manifest(
-                bot_name="Hermes",
-                bot_description="Your Hermes agent on Slack",
+                bot_name="OpenAmer",
+                bot_description="Your OpenAmer agent on Slack",
             )
             target = Path(get_openamer_home()) / "slack-manifest.json"
             target.parent.mkdir(parents=True, exist_ok=True)
@@ -8881,8 +8881,8 @@ def interactive_setup() -> None:
                 "reinstall if scopes or slash commands changed."
             )
             print_info(
-                "   Re-run `hermes slack manifest --write` anytime to refresh after "
-                "Hermes adds new commands."
+                "   Re-run `openamer slack manifest --write` anytime to refresh after "
+                "OpenAmer adds new commands."
             )
         except Exception as e:
             print_warning(f"Could not write Slack manifest: {e}")
@@ -8896,7 +8896,7 @@ def interactive_setup() -> None:
             # new commands (e.g. /btw, /stop, ...) get registered in Slack.
             if prompt_yes_no(
                 "Regenerate the Slack app manifest with the latest command "
-                "list? (recommended after `hermes update`)",
+                "list? (recommended after `openamer update`)",
                 True,
             ):
                 _write_slack_manifest_and_instruct()
@@ -8910,7 +8910,7 @@ def interactive_setup() -> None:
     print_info("   3. Install to Workspace: Settings → Install App")
     print_info("   4. After installing, invite the bot to channels: /invite @YourBot")
     print()
-    print_info("   Full guide: https://hermes-agent.nousresearch.com/docs/user-guide/messaging/slack/")
+    print_info("   Full guide: https://openamer-agent.nousresearch.com/docs/user-guide/messaging/slack/")
     print()
 
     # Generate and write manifest up-front so the user can paste it into
@@ -8943,7 +8943,7 @@ def interactive_setup() -> None:
         print_info("   Set SLACK_ALLOW_ALL_USERS=true or GATEWAY_ALLOW_ALL_USERS=true only if you intentionally want open workspace access.")
 
     print()
-    print_info("📬 Home Channel: where Hermes delivers cron job results,")
+    print_info("📬 Home Channel: where OpenAmer delivers cron job results,")
     print_info("   cross-platform messages, and notifications.")
     print_info("   To get a channel ID: open the channel in Slack, then right-click")
     print_info("   the channel name → Copy link — the ID starts with C (e.g. C01ABC2DE3F).")
@@ -9044,7 +9044,7 @@ def _build_adapter(config):
 
 
 def register(ctx) -> None:
-    """Plugin entry point — called by the Hermes plugin system."""
+    """Plugin entry point — called by the OpenAmer plugin system."""
     ctx.register_platform(
         name="slack",
         label="Slack",
@@ -9052,7 +9052,7 @@ def register(ctx) -> None:
         check_fn=check_slack_requirements,
         is_connected=_is_connected,
         required_env=["SLACK_BOT_TOKEN", "SLACK_APP_TOKEN"],
-        install_hint="Run `hermes setup` to install Slack support.",
+        install_hint="Run `openamer setup` to install Slack support.",
         # Interactive setup wizard — replaces openamer_cli/setup.py::_setup_slack
         # and the static _PLATFORMS["slack"] dict in openamer_cli/gateway.py.
         setup_fn=interactive_setup,

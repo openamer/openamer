@@ -59,8 +59,8 @@ class TestSSHBulkUpload:
         f2.write_text("bbb")
 
         files = [
-            (str(f1), "/home/testuser/.hermes/skills/a.txt"),
-            (str(f2), "/home/testuser/.hermes/credentials/b.txt"),
+            (str(f1), "/home/testuser/.openamer/skills/a.txt"),
+            (str(f2), "/home/testuser/.openamer/credentials/b.txt"),
         ]
 
         # Mock subprocess.run for mkdir and Popen for tar pipe
@@ -86,8 +86,8 @@ class TestSSHBulkUpload:
         # Should contain mkdir -p with both parent dirs
         mkdir_str = " ".join(mkdir_cmd)
         assert "mkdir -p" in mkdir_str
-        assert "/home/testuser/.hermes/skills" in mkdir_str
-        assert "/home/testuser/.hermes/credentials" in mkdir_str
+        assert "/home/testuser/.openamer/skills" in mkdir_str
+        assert "/home/testuser/.openamer/credentials" in mkdir_str
 
     def test_staging_symlinks_mirror_remote_layout(self, mock_env, tmp_path):
         """Staged file in staging dir should mirror the remote path structure.
@@ -100,7 +100,7 @@ class TestSSHBulkUpload:
         f1.write_text("content a")
 
         files = [
-            (str(f1), "/home/testuser/.hermes/skills/my_skill.md"),
+            (str(f1), "/home/testuser/.openamer/skills/my_skill.md"),
         ]
 
         staging_paths = []
@@ -140,7 +140,7 @@ class TestSSHBulkUpload:
         f1 = tmp_path / "x.txt"
         f1.write_text("x")
 
-        files = [(str(f1), "/home/testuser/.hermes/cache/x.txt")]
+        files = [(str(f1), "/home/testuser/.openamer/cache/x.txt")]
 
         popen_cmds = []
 
@@ -171,19 +171,19 @@ class TestSSHBulkUpload:
         assert "-" in tar_cmd  # stdout
         assert "-C" in tar_cmd
 
-        # ssh: extract from stdin at ~/.hermes, preserving existing dir modes (#17767)
+        # ssh: extract from stdin at ~/.openamer, preserving existing dir modes (#17767)
         ssh_str = " ".join(ssh_cmd)
         assert "ssh" in ssh_str
         assert "tar xf -" in ssh_str
         assert "--no-overwrite-dir" in ssh_str
-        assert "-C /home/testuser/.hermes" in ssh_str
+        assert "-C /home/testuser/.openamer" in ssh_str
         assert "testuser@example.com" in ssh_str
 
     def test_bulk_upload_never_stages_remote_home_prefix(self, mock_env, tmp_path):
         """Regression: do not archive /home/<user> path components."""
         f1 = tmp_path / "nested.txt"
         f1.write_text("nested")
-        files = [(str(f1), "/home/testuser/.hermes/cache/nested.txt")]
+        files = [(str(f1), "/home/testuser/.openamer/cache/nested.txt")]
 
         def capture_tar_cmd(cmd, **kwargs):
             if cmd[0] == "tar":
@@ -211,7 +211,7 @@ class TestSSHBulkUpload:
         """mkdir failure should raise RuntimeError before tar pipe."""
         f1 = tmp_path / "y.txt"
         f1.write_text("y")
-        files = [(str(f1), "/home/testuser/.hermes/skills/y.txt")]
+        files = [(str(f1), "/home/testuser/.openamer/skills/y.txt")]
 
         failed_run = subprocess.CompletedProcess([], 1, stderr="Permission denied")
         with patch.object(subprocess, "run", return_value=failed_run):
@@ -222,7 +222,7 @@ class TestSSHBulkUpload:
         """tar create failure should raise RuntimeError."""
         f1 = tmp_path / "z.txt"
         f1.write_text("z")
-        files = [(str(f1), "/home/testuser/.hermes/skills/z.txt")]
+        files = [(str(f1), "/home/testuser/.openamer/skills/z.txt")]
 
         mock_tar = MagicMock()
         mock_tar.stdout = MagicMock()
@@ -251,7 +251,7 @@ class TestSSHBulkUpload:
         """SSH tar extract failure should raise RuntimeError."""
         f1 = tmp_path / "w.txt"
         f1.write_text("w")
-        files = [(str(f1), "/home/testuser/.hermes/skills/w.txt")]
+        files = [(str(f1), "/home/testuser/.openamer/skills/w.txt")]
 
         mock_tar = MagicMock()
         mock_tar.stdout = MagicMock()
@@ -280,7 +280,7 @@ class TestSSHBulkUpload:
         """SSH command for tar extract should reuse ControlMaster socket."""
         f1 = tmp_path / "c.txt"
         f1.write_text("c")
-        files = [(str(f1), "/home/testuser/.hermes/cache/c.txt")]
+        files = [(str(f1), "/home/testuser/.openamer/cache/c.txt")]
 
         popen_cmds = []
 
@@ -319,7 +319,7 @@ class TestSSHBulkUpload:
 
         f1 = tmp_path / "d.txt"
         f1.write_text("d")
-        files = [(str(f1), "/home/u/.hermes/skills/d.txt")]
+        files = [(str(f1), "/home/u/.openamer/skills/d.txt")]
 
         run_cmds = []
         popen_cmds = []
@@ -364,9 +364,9 @@ class TestSSHBulkUpload:
         f3.write_text("c")
 
         files = [
-            (str(f1), "/home/testuser/.hermes/skills/a.txt"),
-            (str(f2), "/home/testuser/.hermes/skills/b.txt"),
-            (str(f3), "/home/testuser/.hermes/credentials/c.txt"),
+            (str(f1), "/home/testuser/.openamer/skills/a.txt"),
+            (str(f2), "/home/testuser/.openamer/skills/b.txt"),
+            (str(f3), "/home/testuser/.openamer/credentials/c.txt"),
         ]
 
         run_cmds = []
@@ -393,14 +393,14 @@ class TestSSHBulkUpload:
         assert len(run_cmds) == 1
         mkdir_str = " ".join(run_cmds[0])
         # skills dir should appear exactly once despite two files
-        assert mkdir_str.count("/home/testuser/.hermes/skills") == 1
-        assert "/home/testuser/.hermes/credentials" in mkdir_str
+        assert mkdir_str.count("/home/testuser/.openamer/skills") == 1
+        assert "/home/testuser/.openamer/credentials" in mkdir_str
 
     def test_tar_stdout_closed_for_sigpipe(self, mock_env, tmp_path):
         """tar_proc.stdout must be closed so SIGPIPE propagates correctly."""
         f1 = tmp_path / "s.txt"
         f1.write_text("s")
-        files = [(str(f1), "/home/testuser/.hermes/skills/s.txt")]
+        files = [(str(f1), "/home/testuser/.openamer/skills/s.txt")]
 
         mock_tar_stdout = MagicMock()
 
@@ -428,7 +428,7 @@ class TestSSHBulkUpload:
         """TimeoutExpired during communicate should kill both processes."""
         f1 = tmp_path / "t.txt"
         f1.write_text("t")
-        files = [(str(f1), "/home/testuser/.hermes/skills/t.txt")]
+        files = [(str(f1), "/home/testuser/.openamer/skills/t.txt")]
 
         mock_tar = MagicMock()
         mock_tar.stdout = MagicMock()
@@ -529,7 +529,7 @@ class TestSSHBulkUploadEdgeCases:
         """If SSH Popen raises, tar process must be killed and cleaned up."""
         f1 = tmp_path / "e.txt"
         f1.write_text("e")
-        files = [(str(f1), "/home/testuser/.hermes/skills/e.txt")]
+        files = [(str(f1), "/home/testuser/.openamer/skills/e.txt")]
 
         mock_tar = _mock_proc()
 

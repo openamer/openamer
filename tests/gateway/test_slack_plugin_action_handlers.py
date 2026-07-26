@@ -272,8 +272,8 @@ class TestSlackAdapterPluginActionWiring:
         assert result is True
         action_ids = [aid for aid, _cb in registered]
         # Built-in approval buttons remain registered…
-        assert "hermes_approve_once" in action_ids
-        assert "hermes_deny" in action_ids
+        assert "openamer_approve_once" in action_ids
+        assert "openamer_deny" in action_ids
         # …and the plugin's action_id was added.
         assert "inbox_sweep_approve" in action_ids
 
@@ -288,7 +288,7 @@ class TestSlackAdapterPluginActionWiring:
         assert result is True
         # Built-ins still wired
         action_ids = [aid for aid, _cb in registered]
-        assert "hermes_approve_once" in action_ids
+        assert "openamer_approve_once" in action_ids
 
     def test_plugin_exception_does_not_propagate_to_slack(self):
         """A misbehaving plugin handler must NOT crash slack_bolt's dispatch.
@@ -420,4 +420,4 @@ class TestSlackAdapterPluginActionWiring:
         assert result is True
         # Built-ins still wired even when plugin loader failed.
         action_ids = [aid for aid, _cb in registered_actions]
-        assert "hermes_approve_once" in action_ids
+        assert "openamer_approve_once" in action_ids

@@ -17,9 +17,9 @@
     "jsx": "react-jsx",
     "paths": {
       "@/*": ["./src/*"],
-      "@hermes/plugin-sdk": ["./src/sdk/index.ts"],
-      "@hermes/shared/billing": ["../shared/src/billing-types.ts"],
-      "@hermes/shared": ["../shared/src/index.ts"]
+      "@openamer/plugin-sdk": ["./src/sdk/index.ts"],
+      "@openamer/shared/billing": ["../shared/src/billing-types.ts"],
+      "@openamer/shared": ["../shared/src/index.ts"]
     }
   },
   "include": ["src", "../shared/src"],

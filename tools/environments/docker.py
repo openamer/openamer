@@ -20,7 +20,7 @@ from typing import Optional
 from tools.environments.base import BaseEnvironment, _popen_bash
 from tools.environments.local import (
     _HERMES_PROVIDER_ENV_BLOCKLIST,
-    _is_hermes_internal_secret,
+    _is_openamer_internal_secret,
 )
 
 logger = logging.getLogger(__name__)
@@ -37,7 +37,7 @@ _DOCKER_SEARCH_PATHS = [
 
 _docker_executable: Optional[str] = None  # resolved once, cached
 _ENV_VAR_NAME_RE = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")
-_EGRESS_LABEL_KEY = "hermes-egress"
+_EGRESS_LABEL_KEY = "openamer-egress"
 
 
 def _normalize_forward_env_names(forward_env: list[str] | None) -> list[str]:
@@ -95,8 +95,8 @@ def _normalize_env_dict(env: dict | None) -> dict[str, str]:
     return normalized
 
 
-def _load_hermes_env_vars() -> dict[str, str]:
-    """Load ~/.hermes/.env values without failing Docker command execution."""
+def _load_openamer_env_vars() -> dict[str, str]:
+    """Load ~/.openamer/.env values without failing Docker command execution."""
     try:
         from openamer_cli.config import load_env
 
@@ -126,7 +126,7 @@ def _sanitize_label_value(value: str) -> str:
 
 
 def _get_active_profile_name() -> str:
-    """Return the active Hermes profile name, or ``"default"`` on any error.
+    """Return the active OpenAmer profile name, or ``"default"`` on any error.
 
     Resolved at container-create time so a single container is permanently
     tagged with the profile that created it. Profile switches inside the
@@ -146,16 +146,16 @@ def reap_orphan_containers(
     profile_filter: str | None = None,
     docker_exe: str | None = None,
 ) -> int:
-    """Remove stale hermes-tagged containers left behind by prior processes.
+    """Remove stale openamer-tagged containers left behind by prior processes.
 
     Targets containers that match all of:
 
-    * ``label=hermes-agent=1`` (created by this codebase)
+    * ``label=openamer-agent=1`` (created by this codebase)
     * ``status=exited`` (running containers are NEVER reaped — they may
-      belong to a sibling Hermes process whose reuse path will pick them
+      belong to a sibling OpenAmer process whose reuse path will pick them
       up; killing them would crash the sibling mid-command)
-    * (optional) ``label=hermes-profile=<profile_filter>`` (sweep only the
-      caller's profile by default; a hermes process in profile A must not
+    * (optional) ``label=openamer-profile=<profile_filter>`` (sweep only the
+      caller's profile by default; a openamer process in profile A must not
       tear down profile B's containers)
     * ``State.FinishedAt`` older than *max_age_seconds* ago (so a sibling
       process that just exited and is about to be replaced doesn't get
@@ -168,15 +168,15 @@ def reap_orphan_containers(
 
     Issue #20561 — this is the safety net for SIGKILL / OOM / crashed
     terminal exits that bypass the ``atexit`` cleanup hook. Without it,
-    even with the cleanup-fix in the prior commit, a hard-killed Hermes
+    even with the cleanup-fix in the prior commit, a hard-killed OpenAmer
     process leaves its container behind permanently because there's no
-    subsequent Hermes process scheduled to reuse that exact (task, profile)
+    subsequent OpenAmer process scheduled to reuse that exact (task, profile)
     pair.
     """
     docker = docker_exe or find_docker() or "docker"
-    filters = ["--filter", "label=hermes-agent=1", "--filter", "status=exited"]
+    filters = ["--filter", "label=openamer-agent=1", "--filter", "status=exited"]
     if profile_filter:
-        filters.extend(["--filter", f"label=hermes-profile={_sanitize_label_value(profile_filter)}"])
+        filters.extend(["--filter", f"label=openamer-profile={_sanitize_label_value(profile_filter)}"])
 
     try:
         listing = subprocess.run(
@@ -319,7 +319,7 @@ def find_docker() -> Optional[str]:
 # We drop all capabilities then add back the minimum needed:
 #   DAC_OVERRIDE - root can write to bind-mounted dirs owned by host user
 #   CHOWN/FOWNER - package managers (pip, npm, apt) need to set file ownership
-#   SETUID/SETGID - the image's init drops from root to the 'hermes'
+#   SETUID/SETGID - the image's init drops from root to the 'openamer'
 #       user (via `s6-setuidgid` in the bundled image, or whatever
 #       privilege-drop helper a user image uses), which requires these
 #       caps. Combined with `no-new-privileges`, the dropped process
@@ -410,7 +410,7 @@ def _egress_proxy_args_for_docker() -> tuple[list[str], dict[str, str], list[str
     if not status.configured:
         msg = (
             "proxy.enabled is true but iron-proxy is not configured. "
-            "Run `hermes egress setup` to mint tokens and write proxy.yaml."
+            "Run `openamer egress setup` to mint tokens and write proxy.yaml."
         )
         if enforce:
             raise RuntimeError(msg)
@@ -420,7 +420,7 @@ def _egress_proxy_args_for_docker() -> tuple[list[str], dict[str, str], list[str
     if not (status.pid and status.listening):
         msg = (
             f"iron-proxy is enabled but not running on port {status.tunnel_port}. "
-            "Start it with `hermes egress start`."
+            "Start it with `openamer egress start`."
         )
         if enforce:
             raise RuntimeError(msg)
@@ -437,7 +437,7 @@ def _egress_proxy_args_for_docker() -> tuple[list[str], dict[str, str], list[str
         # vars AND any other isolation, opening the sandbox.
         msg = (
             f"iron-proxy CA cert vanished from {status.ca_cert_path}. "
-            "Re-run `hermes egress setup` to regenerate it."
+            "Re-run `openamer egress setup` to regenerate it."
         )
         if enforce:
             raise RuntimeError(msg)
@@ -452,7 +452,7 @@ def _egress_proxy_args_for_docker() -> tuple[list[str], dict[str, str], list[str
     if not mappings:
         msg = (
             "iron-proxy is configured but mappings.json is empty or "
-            "corrupt.  Re-run `hermes egress setup` to mint provider "
+            "corrupt.  Re-run `openamer egress setup` to mint provider "
             "tokens before starting a sandbox."
         )
         if enforce:
@@ -460,7 +460,7 @@ def _egress_proxy_args_for_docker() -> tuple[list[str], dict[str, str], list[str
         logger.warning("%s — continuing without proxy (enforce_on_docker=false).", msg)
         return ([], {}, [])
 
-    container_ca = "/etc/ssl/certs/hermes-egress-ca.crt"
+    container_ca = "/etc/ssl/certs/openamer-egress-ca.crt"
     volume_args = ["-v", f"{status.ca_cert_path}:{container_ca}:ro"]
 
     # tunnel_port serves CONNECT (HTTPS); the plain-HTTP forward listener
@@ -626,7 +626,7 @@ def _image_uses_init_entrypoint(docker_exe: str, image: str) -> bool:
     """Return True if ``image``'s entrypoint is the s6-overlay ``/init``.
 
     Such images (e.g. anything built on ``s6-overlay``, including
-    ``hermes-agent:latest``) already provide their own PID-1 init and execute
+    ``openamer-agent:latest``) already provide their own PID-1 init and execute
     ``/run/s6/basedir/bin/init`` during stage0 startup. They are incompatible
     with Docker's ``--init`` (two competing PID-1 inits) and with a ``noexec``
     ``/run`` mount. Detection is best-effort: on any inspection failure we
@@ -886,7 +886,7 @@ class DockerEnvironment(BaseEnvironment):
             resource_args.append("--network=none")
 
         # Persistent workspace via bind mounts from a configurable host directory
-        # (TERMINAL_SANDBOX_DIR, default ~/.hermes/sandboxes/). Non-persistent
+        # (TERMINAL_SANDBOX_DIR, default ~/.openamer/sandboxes/). Non-persistent
         # mode uses tmpfs (ephemeral, fast, gone on cleanup).
         from tools.environments.base import get_sandbox_dir
 
@@ -1242,7 +1242,7 @@ class DockerEnvironment(BaseEnvironment):
         # /usr/local/bin is not in PATH (common on macOS gateway/service).
         self._docker_exe = find_docker() or "docker"
 
-        # s6-overlay images (e.g. hermes-agent:latest) already use /init as PID 1
+        # s6-overlay images (e.g. openamer-agent:latest) already use /init as PID 1
         # and exec /run/s6/basedir/bin/init during startup. For those images we
         # must (a) skip Docker's --init (two competing PID-1 inits) and (b) mount
         # /run with exec instead of noexec, or s6 stage0 dies with exit 126
@@ -1301,20 +1301,20 @@ class DockerEnvironment(BaseEnvironment):
         logger.info(f"Docker run_args: {all_run_args}")
 
         # Start the container directly via `docker run -d`.
-        container_name = f"hermes-{uuid.uuid4().hex[:8]}"
-        # Labels make hermes-created containers identifiable to:
-        #   * the orphan reaper (`hermes-agent=1` for the global sweep filter)
-        #   * future cross-process reuse (`hermes-task-id`, `hermes-profile`)
-        #   * operators running `docker ps --filter label=hermes-agent=1`
+        container_name = f"openamer-{uuid.uuid4().hex[:8]}"
+        # Labels make openamer-created containers identifiable to:
+        #   * the orphan reaper (`openamer-agent=1` for the global sweep filter)
+        #   * future cross-process reuse (`openamer-task-id`, `openamer-profile`)
+        #   * operators running `docker ps --filter label=openamer-agent=1`
         # Values are limited to the safe character set defined by
-        # _sanitize_label_value(); the active Hermes profile is captured at
+        # _sanitize_label_value(); the active OpenAmer profile is captured at
         # container-start time and never changes for the container's lifetime.
         profile_name = _sanitize_label_value(_get_active_profile_name())
         task_label = _sanitize_label_value(task_id)
         label_args = [
-            "--label", "hermes-agent=1",
-            "--label", f"hermes-task-id={task_label}",
-            "--label", f"hermes-profile={profile_name}",
+            "--label", "openamer-agent=1",
+            "--label", f"openamer-task-id={task_label}",
+            "--label", f"openamer-profile={profile_name}",
             "--label", f"{_EGRESS_LABEL_KEY}={egress_label}",
         ]
         # Save args for container recreation on "No such container" recovery.
@@ -1324,14 +1324,14 @@ class DockerEnvironment(BaseEnvironment):
         self._all_run_args = all_run_args
 
         self._labels = {
-            "hermes-agent": "1",
-            "hermes-task-id": task_label,
-            "hermes-profile": profile_name,
+            "openamer-agent": "1",
+            "openamer-task-id": task_label,
+            "openamer-profile": profile_name,
             _EGRESS_LABEL_KEY: egress_label,
         }
 
         # Cross-process container reuse (issue #20561 — docs claim "ONE long-lived
-        # container shared across sessions").  If a prior Hermes process
+        # container shared across sessions").  If a prior OpenAmer process
         # already started a container for this (task_id, profile) and it
         # still exists, attach to it instead of starting a fresh one.  This
         # restores the documented contract; opt out via
@@ -1482,19 +1482,19 @@ class DockerEnvironment(BaseEnvironment):
         except Exception:
             pass
         # Explicit docker_forward_env entries are an intentional opt-in and must
-        # win over the generic Hermes secret blocklist. Only implicit passthrough
-        # keys are filtered. Also strip Hermes-internal dynamic secrets
+        # win over the generic OpenAmer secret blocklist. Only implicit passthrough
+        # keys are filtered. Also strip OpenAmer-internal dynamic secrets
         # (AUXILIARY_*_API_KEY / _BASE_URL, GATEWAY_RELAY_* auth) that the
-        # name-based blocklist doesn't cover — see _is_hermes_internal_secret.
+        # name-based blocklist doesn't cover — see _is_openamer_internal_secret.
         _implicit_forward = {
-            k for k in passthrough_keys if not _is_hermes_internal_secret(k)
+            k for k in passthrough_keys if not _is_openamer_internal_secret(k)
         }
         forward_keys = explicit_forward_keys | (_implicit_forward - _HERMES_PROVIDER_ENV_BLOCKLIST)
-        hermes_env = _load_hermes_env_vars() if forward_keys else {}
+        openamer_env = _load_openamer_env_vars() if forward_keys else {}
         for key in sorted(forward_keys):
             value = os.getenv(key)
             if not value:
-                value = hermes_env.get(key)
+                value = openamer_env.get(key)
             if value:
                 exec_env[key] = value
 
@@ -1555,8 +1555,8 @@ class DockerEnvironment(BaseEnvironment):
         self._container_id = None
 
         # 1. Try label-based reuse (another process may have recreated it).
-        task_label = self._labels.get("hermes-task-id", "")
-        profile_label = self._labels.get("hermes-profile", "")
+        task_label = self._labels.get("openamer-task-id", "")
+        profile_label = self._labels.get("openamer-profile", "")
         existing = self._find_reusable_container(
             task_label, profile_label, self._labels.get(_EGRESS_LABEL_KEY, "off"),
         )
@@ -1584,7 +1584,7 @@ class DockerEnvironment(BaseEnvironment):
                 return False
             try:
                 import uuid as _uuid
-                new_name = f"hermes-{_uuid.uuid4().hex[:8]}"
+                new_name = f"openamer-{_uuid.uuid4().hex[:8]}"
                 init_args = [] if self._image_uses_s6_init else ["--init"]
                 label_args = []
                 for k, v in self._labels.items():
@@ -1733,14 +1733,14 @@ class DockerEnvironment(BaseEnvironment):
         whether the state warrants ``docker start`` before reuse.
 
         Restricted to the docker-stored label set this class creates; never
-        matches containers that happened to be named ``hermes-*`` but were
+        matches containers that happened to be named ``openamer-*`` but were
         started by some other tool.
         """
         try:
             filters = [
-                "--filter", "label=hermes-agent=1",
-                "--filter", f"label=hermes-task-id={task_label}",
-                "--filter", f"label=hermes-profile={profile_label}",
+                "--filter", "label=openamer-agent=1",
+                "--filter", f"label=openamer-task-id={task_label}",
+                "--filter", f"label=openamer-profile={profile_label}",
             ]
             if egress_label != "off":
                 filters.extend(["--filter", f"label={_EGRESS_LABEL_KEY}={egress_label}"])
@@ -1749,9 +1749,9 @@ class DockerEnvironment(BaseEnvironment):
                 # When egress is off, we widen the probe to find any
                 # task+profile container (regardless of egress label), then
                 # post-filter in Python: reject containers whose
-                # hermes-egress label is present and not "off".  Without
+                # openamer-egress label is present and not "off".  Without
                 # this, a container created with egress=on can be silently
-                # reused after the operator runs "hermes egress disable",
+                # reused after the operator runs "openamer egress disable",
                 # preserving baked-in proxy env and CA mounts.
                 fmt = '{{.ID}}\t{{.State}}\t{{.Label "' + _EGRESS_LABEL_KEY + '"}}'
             result = subprocess.run(
@@ -1779,7 +1779,7 @@ class DockerEnvironment(BaseEnvironment):
         if not lines:
             return None
         # Multiple matches are unusual (one (task, profile) should produce one
-        # container) but can happen if a previous Hermes process crashed
+        # container) but can happen if a previous OpenAmer process crashed
         # mid-cleanup. Prefer a running one if present; otherwise pick the
         # first listed. Stale duplicates get reaped by the orphan-reaper in a
         # follow-up commit; we don't try to be heroic about them here.
@@ -1815,7 +1815,7 @@ class DockerEnvironment(BaseEnvironment):
 
         Persist-mode (``persist_across_processes=True``, the default) leaves the
         container **running** untouched. The docs promise "ONE long-lived
-        container shared across sessions" and stopping it on every Hermes exit
+        container shared across sessions" and stopping it on every OpenAmer exit
         breaks that promise:
 
         * Background processes inside the container (``npm run dev``, watchers,
@@ -1828,8 +1828,8 @@ class DockerEnvironment(BaseEnvironment):
 
         Resource reclamation for the persist-mode case lives in the
         ``reap_orphan_containers()`` path (see issue #20561 commit 3): if no
-        Hermes process touches a labeled container for ``2 × lifetime_seconds``
-        it gets ``docker rm -f``'d at the next Hermes startup. That covers the
+        OpenAmer process touches a labeled container for ``2 × lifetime_seconds``
+        it gets ``docker rm -f``'d at the next OpenAmer startup. That covers the
         SIGKILL / OOM / abandoned-laptop cases without us needing to stop the
         container on every graceful exit.
 
@@ -1869,7 +1869,7 @@ class DockerEnvironment(BaseEnvironment):
         #   persist_across_processes=False → stop + rm (per-process isolation)
         #
         # The persist-mode no-op is the issue-#20561 contract: the container
-        # outlives Hermes processes, processes inside it stay alive, and
+        # outlives OpenAmer processes, processes inside it stay alive, and
         # reuse on next startup is instant.
         if force_remove:
             should_stop = True
@@ -1916,7 +1916,7 @@ class DockerEnvironment(BaseEnvironment):
         # ``_atexit_cleanup`` in terminal_tool.py which waits up to ~60s for
         # outstanding cleanups, so most exits complete the work cleanly.
         import threading
-        t = threading.Thread(target=_do_cleanup, daemon=True, name=f"hermes-cleanup-{log_id}")
+        t = threading.Thread(target=_do_cleanup, daemon=True, name=f"openamer-cleanup-{log_id}")
         t.start()
         self._cleanup_thread = t
         self._container_id = None
@@ -1935,7 +1935,7 @@ class DockerEnvironment(BaseEnvironment):
         Returns ``True`` if the thread finished (or no thread was started),
         ``False`` on timeout. The atexit hook in terminal_tool.py calls this
         on every active environment so docker stop/rm actually completes
-        before the Python process exits — without this, ``hermes /quit``
+        before the Python process exits — without this, ``openamer /quit``
         races the interpreter shutdown and leaves stopped containers behind.
         """
         thread = getattr(self, "_cleanup_thread", None)

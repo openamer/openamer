@@ -101,8 +101,8 @@ class TestGoalMigratesOnRotation:
         agent = _build_agent_with_db(db, parent)
 
         # Set a persistent goal on the parent via the real persistence path.
-        with patch.dict(os.environ, {"OPENAMER_HOME": str(tmp_path / ".hermes")}):
-            (tmp_path / ".hermes").mkdir(exist_ok=True)
+        with patch.dict(os.environ, {"OPENAMER_HOME": str(tmp_path / ".openamer")}):
+            (tmp_path / ".openamer").mkdir(exist_ok=True)
             import openamer_cli.goals as goals
             goals._DB_CACHE.clear()
             # Point the goal DB at the same state.db the agent uses.

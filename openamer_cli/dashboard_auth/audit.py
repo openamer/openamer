@@ -59,11 +59,11 @@ class AuditEvent(enum.Enum):
 def _resolve_log_path() -> Path:
     """``$OPENAMER_HOME/logs/dashboard-auth.log`` with the standard fallback.
 
-    Mirrors ``openamer_constants.get_hermes_home`` semantics: env var wins,
-    else ``~/.hermes``. A local copy avoids an import cycle with the
+    Mirrors ``openamer_constants.get_openamer_home`` semantics: env var wins,
+    else ``~/.openamer``. A local copy avoids an import cycle with the
     middleware which lives below ``openamer_cli``.
     """
-    home = os.environ.get("OPENAMER_HOME") or str(Path.home() / ".hermes")
+    home = os.environ.get("OPENAMER_HOME") or str(Path.home() / ".openamer")
     return Path(home) / "logs" / "dashboard-auth.log"
 
 

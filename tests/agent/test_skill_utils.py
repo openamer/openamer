@@ -18,11 +18,11 @@ from agent.skill_utils import (
 )
 
 
-def test_metadata_as_dict_with_hermes():
-    """Normal case: metadata is a dict containing hermes keys."""
+def test_metadata_as_dict_with_openamer():
+    """Normal case: metadata is a dict containing openamer keys."""
     frontmatter = {
         "metadata": {
-            "hermes": {
+            "openamer": {
                 "fallback_for_toolsets": ["toolset_a"],
                 "requires_toolsets": ["toolset_b"],
                 "fallback_for_tools": ["tool_x"],
@@ -115,11 +115,11 @@ def test_skill_config_helpers_share_raw_config_parse_cache(tmp_path, monkeypatch
     """Repeated skill config helpers should parse config.yaml only once."""
     from agent import skill_utils
 
-    hermes_home = tmp_path / ".hermes"
-    hermes_home.mkdir()
+    openamer_home = tmp_path / ".openamer"
+    openamer_home.mkdir()
     external = tmp_path / "external-skills"
     external.mkdir()
-    config_path = hermes_home / "config.yaml"
+    config_path = openamer_home / "config.yaml"
     config_path.write_text(
         f"""
 skills:
@@ -141,7 +141,7 @@ skills:
         parse_count += 1
         return real_yaml_load(text)
 
-    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
     skill_utils._external_dirs_cache_clear()
     getattr(skill_utils, "_raw_config_cache_clear", lambda: None)()
     monkeypatch.setattr(skill_utils, "yaml_load", counting_yaml_load)
@@ -158,12 +158,12 @@ def test_skill_config_raw_cache_invalidates_on_config_edit(tmp_path, monkeypatch
     """Editing config.yaml should invalidate the shared raw config cache."""
     from agent import skill_utils
 
-    hermes_home = tmp_path / ".hermes"
-    hermes_home.mkdir()
-    config_path = hermes_home / "config.yaml"
+    openamer_home = tmp_path / ".openamer"
+    openamer_home.mkdir()
+    config_path = openamer_home / "config.yaml"
     config_path.write_text("skills:\n  disabled: [old-skill]\n", encoding="utf-8")
 
-    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
     skill_utils._external_dirs_cache_clear()
     assert get_disabled_skill_names() == {"old-skill"}
 
@@ -177,17 +177,17 @@ def test_skill_config_raw_cache_invalidates_on_config_edit(tmp_path, monkeypatch
 def test_is_external_skill_path_matches_configured_external_dir(tmp_path, monkeypatch):
     from agent import skill_utils
 
-    hermes_home = tmp_path / ".hermes"
-    local_skills = hermes_home / "skills"
+    openamer_home = tmp_path / ".openamer"
+    local_skills = openamer_home / "skills"
     external = tmp_path / "external-skills"
     local_skills.mkdir(parents=True)
     external.mkdir()
-    (hermes_home / "config.yaml").write_text(
+    (openamer_home / "config.yaml").write_text(
         f"skills:\n  external_dirs:\n    - {external}\n",
         encoding="utf-8",
     )
 
-    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
     skill_utils._external_dirs_cache_clear()
 
     assert is_external_skill_path(external / "team-skill" / "SKILL.md") is True
@@ -411,7 +411,7 @@ class TestParseFrontmatterBOM:
         "description: Does a thing.\n"
         "platforms: [macos]\n"
         "metadata:\n"
-        "  hermes:\n"
+        "  openamer:\n"
         "    config:\n"
         "      - key: my.key\n"
         "        description: A configured value\n"
@@ -458,7 +458,7 @@ class TestParseFrontmatterBOM:
             assert skill_matches_platform(bom_fm) is False
 
     def test_bom_config_vars_preserved(self):
-        # metadata.hermes.config drives secure setup-on-load; it must survive
+        # metadata.openamer.config drives secure setup-on-load; it must survive
         # a BOM so Windows users still get prompted for the value.
         bom_fm, _ = parse_frontmatter("\ufeff" + self.SKILL)
         assert [v["key"] for v in extract_skill_config_vars(bom_fm)] == ["my.key"]

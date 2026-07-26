@@ -203,7 +203,7 @@ def test_build_models_payload_does_not_call_provider_model_ids():
     caching). ``build_models_payload`` itself must not call the live fetcher
     directly; the test pins that boundary.
     """
-    rows = [{"slug": "nous", "name": "Nous", "models": ["hermes-4-405b"],
+    rows = [{"slug": "nous", "name": "Nous", "models": ["openamer-4-405b"],
              "total_models": 1, "is_current": False, "is_user_defined": False,
              "source": "built-in"}]
     ctx = _empty_ctx()
@@ -419,16 +419,16 @@ def test_explicit_only_filters_ambient_credentials_but_keeps_current_and_custom_
     rows = [
         {"slug": "openai-codex", "name": "OpenAI Codex", "models": ["gpt-5.4"],
          "total_models": 1, "is_current": True, "is_user_defined": False,
-         "source": "hermes"},
+         "source": "openamer"},
         {"slug": "gemini", "name": "Gemini", "models": ["gemini-2.5-pro"],
          "total_models": 1, "is_current": False, "is_user_defined": False,
          "source": "built-in"},
         {"slug": "copilot", "name": "Copilot", "models": ["gpt-5.4"],
          "total_models": 1, "is_current": False, "is_user_defined": False,
-         "source": "hermes"},
+         "source": "openamer"},
         {"slug": "nous", "name": "Nous", "models": ["anthropic/claude-sonnet-5"],
          "total_models": 1, "is_current": False, "is_user_defined": False,
-         "source": "hermes"},
+         "source": "openamer"},
         {"slug": "custom:lab", "name": "Lab", "models": ["lab-1"],
          "total_models": 1, "is_current": False, "is_user_defined": True,
          "source": "user-config"},
@@ -572,10 +572,10 @@ def test_picker_hints_adds_warning_to_skeleton_rows():
         assert "auth_type" in row
         assert "warning" in row
         # api_key providers get "paste X to activate" / others get the
-        # hermes model fallback.
+        # openamer model fallback.
         assert (
             row["warning"].startswith("paste ")
-            or row["warning"].startswith("run `hermes model`")
+            or row["warning"].startswith("run `openamer model`")
         )
 
 

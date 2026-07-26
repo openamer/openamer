@@ -17,7 +17,7 @@ from run_agent import AIAgent
 # time (inside a per-test hermetic OPENAMER_HOME), but this module previously
 # froze the value at IMPORT time — before the hermetic fixture ran — so a
 # developer machine with delegation.max_concurrent_children in the real
-# ~/.hermes/config.yaml saw a different limit at import vs call and the
+# ~/.openamer/config.yaml saw a different limit at import vs call and the
 # truncation tests failed locally while passing on CI.
 MAX_CONCURRENT_CHILDREN = 3
 

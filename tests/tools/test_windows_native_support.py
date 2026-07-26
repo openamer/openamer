@@ -2,7 +2,7 @@
 
 Complements ``tests/tools/test_windows_compat.py`` (which does source-level
 pattern linting) with cross-platform-mocked tests that exercise the actual
-code paths Hermes takes on native Windows.
+code paths OpenAmer takes on native Windows.
 
 Runs on Linux CI — every test mocks ``sys.platform``, ``subprocess.run``,
 and ``os.kill`` as needed to simulate Windows behavior without requiring a
@@ -606,8 +606,8 @@ class TestSubprocessCompatHelpers:
     def test_windows_detach_flags_includes_breakaway_from_job(self, monkeypatch):
         """CREATE_BREAKAWAY_FROM_JOB is load-bearing for the GUI-driven update path.
 
-        Without it, the gateway-respawn watcher spawned by ``hermes update``
-        (which runs under hermes-setup.exe, itself a grandchild of the
+        Without it, the gateway-respawn watcher spawned by ``openamer update``
+        (which runs under openamer-setup.exe, itself a grandchild of the
         Electron Desktop app) gets reaped when Electron exits and its
         Win32 job object is torn down by the OS.  Result: gateway dies
         during update and never comes back.
@@ -858,11 +858,11 @@ class TestLocalEnvironmentWindowsTempDir:
                 f"POSIX temp dir must start with '/'; got {tmp_dir!r}"
             )
 
-    def test_source_has_windows_branch_using_hermes_home(self):
+    def test_source_has_windows_branch_using_openamer_home(self):
         root = Path(__file__).resolve().parents[2]
         source = (root / "tools" / "environments" / "local.py").read_text(encoding="utf-8")
         assert "if _IS_WINDOWS:" in source
-        assert "get_hermes_home" in source
+        assert "get_openamer_home" in source
         assert 'cache_dir = get_openamer_home() / "cache" / "terminal"' in source
 
 
@@ -1123,13 +1123,13 @@ class TestWindowlessGatewayRestartSpec:
             "--replace",
         ]
 
-        # Mock get_hermes_home too: the real one calls Path.resolve(), which
+        # Mock get_openamer_home too: the real one calls Path.resolve(), which
         # consults sysconfig and raises ModuleNotFoundError under the win32
         # platform patch on a Linux host.
         with mock.patch.object(gw.sys, "platform", "win32"), mock.patch.object(
-            gw, "_stable_gateway_working_dir", return_value="C:/hermes"
+            gw, "_stable_gateway_working_dir", return_value="C:/openamer"
         ), mock.patch(
-            "openamer_cli.config.get_hermes_home", return_value="C:/hermes"
+            "openamer_cli.config.get_openamer_home", return_value="C:/openamer"
         ):
             new_argv, cwd, env = gw.windowless_gateway_restart_spec(list(argv))
 
@@ -1138,7 +1138,7 @@ class TestWindowlessGatewayRestartSpec:
         assert new_argv[0] == "C:/venv/Scripts/python.exe"
         # Everything after the interpreter is byte-for-byte preserved.
         assert new_argv[1:] == argv[1:]
-        assert cwd == "C:/hermes"
+        assert cwd == "C:/openamer"
         assert env["VIRTUAL_ENV"] == str(Path("C:/venv"))
         assert "PYTHONPATH" in env
 
@@ -1190,7 +1190,7 @@ class TestGatewayRunRestartWatcherOuterPopenFallback:
         )
 
         monkeypatch.setattr(gr.sys, "platform", "win32")
-        monkeypatch.setattr(gr, "_resolve_hermes_bin", lambda: ["hermes"])
+        monkeypatch.setattr(gr, "_resolve_openamer_bin", lambda: ["openamer"])
 
         calls = []
 
@@ -1254,7 +1254,7 @@ class TestGatewayRunRestartWatcherOuterPopenFallback:
         import gateway.run as gr
 
         monkeypatch.setattr(gr.sys, "platform", "win32")
-        monkeypatch.setattr(gr, "_resolve_hermes_bin", lambda: ["hermes"])
+        monkeypatch.setattr(gr, "_resolve_openamer_bin", lambda: ["openamer"])
 
         captured = {}
 
@@ -1273,7 +1273,7 @@ class TestGatewayRunRestartWatcherOuterPopenFallback:
         import gateway.run as gr
 
         monkeypatch.setattr(gr.sys, "platform", "win32")
-        monkeypatch.setattr(gr, "_resolve_hermes_bin", lambda: ["hermes"])
+        monkeypatch.setattr(gr, "_resolve_openamer_bin", lambda: ["openamer"])
 
         calls = []
         monkeypatch.setattr(
@@ -1294,7 +1294,7 @@ class TestGatewayRunRestartWatcherOuterPopenFallback:
         import gateway.run as gr
 
         monkeypatch.setattr(gr.sys, "platform", "win32")
-        monkeypatch.setattr(gr, "_resolve_hermes_bin", lambda: ["hermes"])
+        monkeypatch.setattr(gr, "_resolve_openamer_bin", lambda: ["openamer"])
 
         calls = []
 

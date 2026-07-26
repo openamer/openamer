@@ -1,4 +1,4 @@
-"""Tests for `hermes secrets bitwarden token` / `hermes secrets onepassword token`.
+"""Tests for `openamer secrets bitwarden token` / `openamer secrets onepassword token`.
 
 The rotation command must: verify the candidate token BEFORE persisting,
 never touch .env on a rejected token, store + clear caches on success,

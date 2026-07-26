@@ -7,7 +7,7 @@ from queue import Queue
 import subprocess
 from unittest.mock import patch
 
-from cli import HermesCLI
+from cli import OpenAmerCLI
 from openamer_cli.browser_connect import (
     _wait_for_browser_debug_ready_or_exit,
     get_chrome_debug_candidates,
@@ -69,7 +69,7 @@ class TestChromeDebugLaunch:
              patch("openamer_cli.browser_connect.os.path.isfile", side_effect=lambda path: path == r"C:\Chrome\chrome.exe"), \
              patch("openamer_cli.browser_connect._wait_for_browser_debug_ready_or_exit", return_value="ready"), \
              patch("subprocess.Popen", side_effect=fake_popen):
-            assert HermesCLI._try_launch_chrome_debug(9333, "Windows") is True
+            assert OpenAmerCLI._try_launch_chrome_debug(9333, "Windows") is True
 
         _assert_chrome_debug_cmd(captured["cmd"], r"C:\Chrome\chrome.exe", 9333)
         # Windows uses creationflags (POSIX-only start_new_session would raise).
@@ -99,7 +99,7 @@ class TestChromeDebugLaunch:
              patch("openamer_cli.browser_connect.os.path.isfile", side_effect=lambda path: path == installed), \
              patch("openamer_cli.browser_connect._wait_for_browser_debug_ready_or_exit", return_value="ready"), \
              patch("subprocess.Popen", side_effect=fake_popen):
-            assert HermesCLI._try_launch_chrome_debug(9222, "Windows") is True
+            assert OpenAmerCLI._try_launch_chrome_debug(9222, "Windows") is True
 
         _assert_chrome_debug_cmd(captured["cmd"], installed, 9222)
 
@@ -200,7 +200,7 @@ class TestChromeDebugLaunch:
         with patch("openamer_cli.browser_connect.get_chrome_debug_candidates", return_value=[brave, chrome]), \
              patch("openamer_cli.browser_connect._wait_for_browser_debug_ready_or_exit", return_value="ready"), \
              patch("subprocess.Popen", side_effect=fake_popen):
-            assert HermesCLI._try_launch_chrome_debug(9222, "Linux") is True
+            assert OpenAmerCLI._try_launch_chrome_debug(9222, "Linux") is True
 
         assert attempts == [brave, chrome]
 
@@ -234,7 +234,7 @@ class TestChromeDebugLaunch:
         with patch("openamer_cli.browser_connect.get_chrome_debug_candidates", return_value=[brave, chrome]), \
              patch("openamer_cli.browser_connect._wait_for_browser_debug_ready_or_exit", side_effect=["exited", "ready"]), \
              patch("subprocess.Popen", side_effect=fake_popen):
-            assert HermesCLI._try_launch_chrome_debug(9222, "Linux") is True
+            assert OpenAmerCLI._try_launch_chrome_debug(9222, "Linux") is True
 
         assert attempts == [brave, chrome]
 
@@ -338,7 +338,7 @@ class TestChromeDebugLaunch:
         permission step or imply that the attached browser is the user's main
         everyday Chrome profile.
         """
-        cli = HermesCLI.__new__(HermesCLI)
+        cli = OpenAmerCLI.__new__(OpenAmerCLI)
         cli._pending_input = Queue()
         monkeypatch.delenv("BROWSER_CDP_URL", raising=False)
 

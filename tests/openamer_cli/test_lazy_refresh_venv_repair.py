@@ -266,7 +266,7 @@ def test_upgrade_pip_before_lazy_refresh_never_raises(monkeypatch):
 def test_package_only_repair_does_not_quarantine_shims_on_windows(
     tmp_path, monkeypatch
 ):
-    """Regression: package-only repairs must not rename hermes.exe on Windows."""
+    """Regression: package-only repairs must not rename openamer.exe on Windows."""
     fake_scripts = tmp_path / "venv" / "Scripts"
     fake_scripts.mkdir(parents=True)
 
@@ -282,7 +282,7 @@ def test_package_only_repair_does_not_quarantine_shims_on_windows(
         m, "_detect_broken_lazy_refresh_imports", lambda *a, **k: []
     )
 
-    with patch("openamer_cli.main._quarantine_running_hermes_exe") as mock_quar:
+    with patch("openamer_cli.main._quarantine_running_openamer_exe") as mock_quar:
         m._repair_broken_lazy_refresh_imports(
             ["uv", "pip"],
             ["PyYAML"],
@@ -306,7 +306,7 @@ def test_upgrade_pip_does_not_quarantine_shims_on_windows(tmp_path, monkeypatch)
     monkeypatch.setattr(m, "_venv_scripts_dir", lambda: fake_scripts)
     monkeypatch.setattr(m, "_run_package_only_install", fake_install)
 
-    with patch("openamer_cli.main._quarantine_running_hermes_exe") as mock_quar:
+    with patch("openamer_cli.main._quarantine_running_openamer_exe") as mock_quar:
         m._upgrade_pip_before_lazy_refresh(["uv", "pip"])
 
     mock_quar.assert_not_called()

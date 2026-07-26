@@ -213,7 +213,7 @@ def _run_and_exit_oneshot(
 
 
 def _set_process_title() -> None:
-    """Set the process title to 'hermes' so tools like 'ps', 'top', and
+    """Set the process title to 'openamer' so tools like 'ps', 'top', and
     'htop' show the app name instead of 'python3.xx'.
 
     Purely cosmetic — non-fatal on any platform.
@@ -224,13 +224,13 @@ def _set_process_title() -> None:
       2. ctypes ``prctl(PR_SET_NAME)`` (Linux only, 15-char limit).
       3. ctypes ``pthread_setname_np`` (macOS only, kernel thread name —
          changes lldb/top but not ``ps aux``).
-      4. No-op on Windows (the .exe name is already ``hermes.exe``).
+      4. No-op on Windows (the .exe name is already ``openamer.exe``).
     """
     # Strategy 1: setproctitle (best — works on macOS, Linux, BSD)
     try:
         import setproctitle  # type: ignore[import-untyped]
 
-        setproctitle.setproctitle("hermes")
+        setproctitle.setproctitle("openamer")
         return
     except ImportError:
         pass
@@ -243,11 +243,11 @@ def _set_process_title() -> None:
         system = platform.system()
         if system == "Linux":
             libc = ctypes.CDLL("libc.so.6", use_errno=True)
-            libc.prctl(15, b"hermes", 0, 0, 0)  # PR_SET_NAME = 15
+            libc.prctl(15, b"openamer", 0, 0, 0)  # PR_SET_NAME = 15
         elif system == "Darwin":
             libc = ctypes.CDLL("libc.dylib", use_errno=True)
-            libc.pthread_setname_np(b"hermes")
-        # Windows: the .exe name is already ``hermes.exe`` — nothing to do.
+            libc.pthread_setname_np(b"openamer")
+        # Windows: the .exe name is already ``openamer.exe`` — nothing to do.
     except Exception:
         pass
 
@@ -272,7 +272,7 @@ def _config_default_interface_early() -> str:
         if home:
             cfg_path = os.path.join(home, "config.yaml")
         else:
-            cfg_path = os.path.join(os.path.expanduser("~"), ".hermes", "config.yaml")
+            cfg_path = os.path.join(os.path.expanduser("~"), ".openamer", "config.yaml")
         if os.path.exists(cfg_path):
             import yaml as _yaml_iface
 
@@ -499,7 +499,7 @@ sys.path.insert(0, str(PROJECT_ROOT))
 # We intercept --profile/-p from sys.argv here and set the env var so that
 # every subsequent ``os.getenv("OPENAMER_HOME", ...)`` resolves correctly.
 # The flag is stripped from sys.argv so argparse never sees it.
-# Falls back to ~/.hermes/active_profile for sticky default.
+# Falls back to ~/.openamer/active_profile for sticky default.
 # ---------------------------------------------------------------------------
 def _apply_profile_override() -> None:
     """Pre-parse --profile/-p and set OPENAMER_HOME before imports."""
@@ -545,7 +545,7 @@ def _apply_profile_override() -> None:
         except Exception:
             return None
 
-        candidate = home / ".hermes" / "profiles" / name
+        candidate = home / ".openamer" / "profiles" / name
         try:
             if candidate.is_dir():
                 return str(candidate)
@@ -610,15 +610,15 @@ def _apply_profile_override() -> None:
     # 1.5 If OPENAMER_HOME is already set and no explicit flag was given, trust it
     # only when it already points to a specific profile directory.  The
     # distinguishing heuristic: a profile path has "profiles" as its immediate
-    # parent directory name (e.g. ~/.hermes/profiles/coder or
+    # parent directory name (e.g. ~/.openamer/profiles/coder or
     # /opt/data/profiles/coder).  If OPENAMER_HOME points to the openamer root
-    # instead (e.g. systemd hardcodes OPENAMER_HOME=/root/.hermes), we must
+    # instead (e.g. systemd hardcodes OPENAMER_HOME=/root/.openamer), we must
     # still read active_profile — the user may have switched profiles via
     # `openamer profile use` and the gateway should honour that choice.
     # See issue #22502.
-    hermes_home_env = os.environ.get("OPENAMER_HOME", "")
-    if profile_name is None and hermes_home_env:
-        if Path(hermes_home_env).parent.name == "profiles":
+    openamer_home_env = os.environ.get("OPENAMER_HOME", "")
+    if profile_name is None and openamer_home_env:
+        if Path(openamer_home_env).parent.name == "profiles":
             return
 
     # 2. If no flag, check active_profile in the openamer root.
@@ -635,9 +635,9 @@ def _apply_profile_override() -> None:
     # the "Docker & Profiles & Dashboard" report.
     if profile_name is None and not os.environ.get("HERMES_S6_SUPERVISED_CHILD"):
         try:
-            from openamer_constants import get_default_hermes_root
+            from openamer_constants import get_default_openamer_root
 
-            active_path = get_default_hermes_root() / "active_profile"
+            active_path = get_default_openamer_root() / "active_profile"
             if active_path.exists():
                 name = active_path.read_text(encoding="utf-8").strip()
                 if name and name != "default":
@@ -651,10 +651,10 @@ def _apply_profile_override() -> None:
         try:
             from openamer_cli.profiles import resolve_profile_env
 
-            hermes_home = resolve_profile_env(profile_name)
+            openamer_home = resolve_profile_env(profile_name)
         except FileNotFoundError as exc:
-            hermes_home = _resolve_sudo_user_profile_env(profile_name)
-            if not hermes_home:
+            openamer_home = _resolve_sudo_user_profile_env(profile_name)
+            if not openamer_home:
                 print(f"Error: {exc}", file=sys.stderr)
                 sys.exit(1)
         except ValueError as exc:
@@ -667,7 +667,7 @@ def _apply_profile_override() -> None:
                 file=sys.stderr,
             )
             return
-        os.environ["OPENAMER_HOME"] = hermes_home
+        os.environ["OPENAMER_HOME"] = openamer_home
         # Strip the flag from argv so argparse doesn't choke
         if consume > 0 and profile_index is not None:
             start = profile_index + 1  # +1 because argv is sys.argv[1:]
@@ -676,12 +676,12 @@ def _apply_profile_override() -> None:
 
 _apply_profile_override()
 
-# Load .env from ~/.hermes/.env first, then project root as dev fallback.
+# Load .env from ~/.openamer/.env first, then project root as dev fallback.
 # User-managed env files should override stale shell exports on restart.
-from openamer_cli.config import get_hermes_home
-from openamer_cli.env_loader import load_hermes_dotenv
+from openamer_cli.config import get_openamer_home
+from openamer_cli.env_loader import load_openamer_dotenv
 
-load_hermes_dotenv(project_env=PROJECT_ROOT / ".env")
+load_openamer_dotenv(project_env=PROJECT_ROOT / ".env")
 
 # Bridge security.redact_secrets from config.yaml → HERMES_REDACT_SECRETS env
 # var BEFORE openamer_logging imports agent.redact (which snapshots the flag at
@@ -726,7 +726,7 @@ try:
 except Exception:
     pass  # best-effort — redaction stays at default (enabled) on config errors
 
-# Initialize centralized file logging early — all `hermes` subcommands
+# Initialize centralized file logging early — all `openamer` subcommands
 # (chat, setup, gateway, config, etc.) write to agent.log + errors.log.
 # Dashboard entrypoints bootstrap with GUI mode so gui.log is always present
 # during GUI testing, including pre-dispatch startup failures.
@@ -948,7 +948,7 @@ def _relative_time(ts) -> str:
 
 def _has_any_provider_configured() -> bool:
     """Check if at least one inference provider is usable."""
-    from openamer_cli.config import get_env_path, get_hermes_home, load_config
+    from openamer_cli.config import get_env_path, get_openamer_home, load_config
     from openamer_cli.auth import get_auth_status
 
     # Determine whether OpenAmer itself has been explicitly configured (model
@@ -966,7 +966,7 @@ def _has_any_provider_configured() -> bool:
         _model_name = model_cfg.strip()
     else:
         _model_name = ""
-    _has_hermes_config = _model_name and _model_name != _DEFAULT_MODEL
+    _has_openamer_config = _model_name and _model_name != _DEFAULT_MODEL
 
     # Check env vars (may be set by .env or shell).
     # OPENAI_BASE_URL alone counts — local models (vLLM, llama.cpp, etc.)
@@ -1044,7 +1044,7 @@ def _has_any_provider_configured() -> bool:
     # Check for Claude Code OAuth credentials (~/.claude/.credentials.json)
     # Only count these if OpenAmer has been explicitly configured — Claude Code
     # being installed doesn't mean the user wants OpenAmer to use their tokens.
-    if _has_hermes_config:
+    if _has_openamer_config:
         try:
             from agent.anthropic_adapter import (
                 read_claude_code_credentials,
@@ -1350,14 +1350,14 @@ def _exec_in_container(container_info: dict, cli_args: list):
     On failure, OSError propagates naturally.
 
     Args:
-        container_info: dict with backend, container_name, exec_user, hermes_bin
-        cli_args: the original CLI arguments (everything after 'hermes')
+        container_info: dict with backend, container_name, exec_user, openamer_bin
+        cli_args: the original CLI arguments (everything after 'openamer')
     """
 
     backend = container_info["backend"]
     container_name = container_info["container_name"]
     exec_user = container_info["exec_user"]
-    hermes_bin = container_info["hermes_bin"]
+    openamer_bin = container_info["openamer_bin"]
 
     runtime = shutil.which(backend)
     if not runtime:
@@ -1427,7 +1427,7 @@ def _exec_in_container(container_info: dict, cli_args: list):
         + tty_flags
         + ["-u", exec_user]
         + env_flags
-        + [container_name, hermes_bin]
+        + [container_name, openamer_bin]
         + cli_args
     )
 
@@ -1612,7 +1612,7 @@ def _termux_workspace_install_context(
 
 
 def _tui_need_npm_install(root: Path) -> bool:
-    """True when @hermes/ink is missing or node_modules is behind package-lock.json.
+    """True when @openamer/ink is missing or node_modules is behind package-lock.json.
 
     Prebuilt bundle mode: when ``dist/entry.js`` exists and there is no
     ``package-lock.json`` (nix install layout only ships ``dist/`` +
@@ -1651,7 +1651,7 @@ def _tui_need_npm_install(root: Path) -> bool:
     if entry.is_file() and not lock.is_file():
         return False
 
-    ink = ws_root / "node_modules" / "@hermes" / "ink" / "package.json"
+    ink = ws_root / "node_modules" / "@openamer" / "ink" / "package.json"
     if not ink.is_file():
         return True
     if not lock.is_file():
@@ -1779,7 +1779,7 @@ def _ensure_tui_node() -> None:
     if not helper.is_file():
         return
 
-    hermes_home = os.environ.get("OPENAMER_HOME") or str(Path.home() / ".hermes")
+    openamer_home = os.environ.get("OPENAMER_HOME") or str(Path.home() / ".openamer")
     try:
         # Helper writes logs to stderr; we ask bash to print `command -v node`
         # on stdout once ensure_node succeeds. Subshell PATH edits don't leak
@@ -1790,7 +1790,7 @@ def _ensure_tui_node() -> None:
                 "-c",
                 f'source "{helper}" >&2 && ensure_node >&2 && command -v node',
             ],
-            env={**os.environ, "OPENAMER_HOME": hermes_home},
+            env={**os.environ, "OPENAMER_HOME": openamer_home},
             capture_output=True,
             text=True,
             encoding="utf-8",
@@ -1807,7 +1807,7 @@ def _ensure_tui_node() -> None:
     if resolved:
         extras.append(Path(resolved).resolve().parent)
 
-    extras.extend([Path(hermes_home) / "node" / "bin", Path.home() / ".local" / "bin"])
+    extras.extend([Path(openamer_home) / "node" / "bin", Path.home() / ".local" / "bin"])
 
     for extra in extras:
         s = str(extra)
@@ -2010,8 +2010,8 @@ def _make_tui_argv(tui_dir: Path, tui_dev: bool) -> tuple[list[str], Path]:
         did_install = True
 
     if tui_dev:
-        # Keep the local @hermes/ink package exports in sync with source.
-        # --dev runs src/entry.tsx directly, but @hermes/ink resolves through
+        # Keep the local @openamer/ink package exports in sync with source.
+        # --dev runs src/entry.tsx directly, but @openamer/ink resolves through
         # packages/openamer-ink/dist/entry-exports.js. If that dist bundle is
         # stale after a pull, newer hooks/components can exist in src while
         # being missing at runtime (e.g. useCursorAdvance). Prebuild it here.
@@ -2379,7 +2379,7 @@ def _pin_kanban_board_env() -> None:
 
 
 def _sync_bundled_skills_quietly() -> None:
-    """Seed ``~/.hermes/skills/`` with the bundled skill library on first launch.
+    """Seed ``~/.openamer/skills/`` with the bundled skill library on first launch.
 
     Called from any CLI entrypoint that the user might use as their first
     interaction with OpenAmer — chat, dashboard (the desktop GUI's backend),
@@ -2583,7 +2583,7 @@ def cmd_chat(args):
         os.environ["HERMES_YOLO_MODE"] = "1"
 
     # --ignore-user-config: make load_cli_config() / load_config() skip the
-    # user's ~/.hermes/config.yaml and return built-in defaults. Set BEFORE
+    # user's ~/.openamer/config.yaml and return built-in defaults. Set BEFORE
     # importing cli (which runs `CLI_CONFIG = load_cli_config()` at module
     # import time). Credentials in .env are still loaded — this flag only
     # ignores behavioral/config settings.
@@ -2677,7 +2677,7 @@ def cmd_whatsapp(args):
     """Set up WhatsApp: choose mode, configure, install bridge, pair via QR."""
     _require_tty("whatsapp")
     from openamer_cli.config import get_env_value, save_env_value
-    from openamer_constants import find_node_executable, with_hermes_node_path
+    from openamer_constants import find_node_executable, with_openamer_node_path
 
     print()
     print("⚕ WhatsApp Setup")
@@ -2805,7 +2805,7 @@ def cmd_whatsapp(args):
                 text=True,
                 encoding="utf-8",
                 errors="replace",
-                env=with_hermes_node_path(),
+                env=with_openamer_node_path(),
             )
         except KeyboardInterrupt:
             print("\n  ✗ Install cancelled")
@@ -2870,7 +2870,7 @@ def cmd_whatsapp(args):
                 str(session_dir),
             ],
             cwd=str(bridge_dir),
-            env=with_hermes_node_path(),
+            env=with_openamer_node_path(),
         )
     except KeyboardInterrupt:
         pass
@@ -3205,7 +3205,7 @@ def select_provider_and_model(args=None):
     # picker hides the same providers the gateway/TUI pickers do. A canonical
     # provider is hidden if its slug OR any of its aliases appears in the
     # exclusion list (case-insensitive), matching list_authenticated_providers'
-    # matching against hermes_id / alias / canonical slug.
+    # matching against openamer_id / alias / canonical slug.
     _cli_excluded = {
         str(p).strip().lower()
         for p in (config.get("model_catalog", {}) or {}).get("excluded_providers") or []
@@ -3388,7 +3388,7 @@ def select_provider_and_model(args=None):
 
     # ── Post-switch cleanup: clear stale OPENAI_BASE_URL ──────────────
     # When the user switches to a named provider (anything except "custom"),
-    # a leftover OPENAI_BASE_URL in ~/.hermes/.env can poison auxiliary
+    # a leftover OPENAI_BASE_URL in ~/.openamer/.env can poison auxiliary
     # clients that use provider:auto. Clear it proactively.  (#5161)
     if selected_provider not in {
         "custom",
@@ -3399,7 +3399,7 @@ def select_provider_and_model(args=None):
 
 
 def _clear_stale_openai_base_url():
-    """Remove OPENAI_BASE_URL from ~/.hermes/.env if the active provider is not 'custom'.
+    """Remove OPENAI_BASE_URL from ~/.openamer/.env if the active provider is not 'custom'.
 
     After a provider switch, a leftover OPENAI_BASE_URL causes auxiliary
     clients (compression, vision, delegation) with provider:auto to route
@@ -4113,7 +4113,7 @@ def _remove_custom_provider(config):
 # Lazy-export the model catalog at module level. Tests and a handful of
 # downstream call sites read `openamer_cli.main._PROVIDER_MODELS` directly,
 # so the symbol needs to be reachable as a module attribute. But importing
-# the catalog eagerly costs ~55ms on every `hermes` invocation — including
+# the catalog eagerly costs ~55ms on every `openamer` invocation — including
 # fast paths like `openamer --version` and slash-command dispatch that never
 # touch the catalog. PEP 562 module-level __getattr__ defers the import
 # until first attribute access, so the cost is only paid by callers that
@@ -4237,7 +4237,7 @@ def _prompt_api_key(pconfig, existing_key: str, provider_id: str = "") -> tuple:
 
     Handles both first-time entry and the already-configured case.  When a key
     is already present, offers [K]eep / [R]eplace / [C]lear so the user can
-    recover from a malformed paste without editing ``~/.hermes/.env`` by hand.
+    recover from a malformed paste without editing ``~/.openamer/.env`` by hand.
 
     Returns ``(resolved_key, abort)``.  ``abort=True`` means the caller should
     ``return`` immediately — the user cancelled entry, declined to replace, or
@@ -4368,7 +4368,7 @@ def _run_anthropic_oauth_flow(save_env_value):
         ):
             use_anthropic_claude_code_credentials(save_fn=save_env_value)
             print("  ✓ Claude Code credentials linked.")
-            from openamer_constants import display_hermes_home as _dhh_fn
+            from openamer_constants import display_openamer_home as _dhh_fn
 
             print(
                 f"    OpenAmer will use Claude's credential store directly instead of copying a setup-token into {_dhh_fn()}/.env."
@@ -4750,7 +4750,7 @@ def _capture_head_sha(git_cmd, cwd) -> str | None:
 def _validate_critical_files_syntax(root) -> tuple[bool, str | None, str | None]:
     """Compile each file in ``_UPDATE_CRITICAL_FILES`` to catch SyntaxErrors.
 
-    These are the files imported on every ``hermes`` startup; if any of them
+    These are the files imported on every ``openamer`` startup; if any of them
     has a syntax error (orphan merge-conflict markers, bad ref to a name
     that no longer exists, etc.) the CLI can't bootstrap at all. We validate
     them after a successful ``git pull`` so we can auto-roll-back instead of
@@ -4970,7 +4970,7 @@ def _run_with_idle_timeout(
     WSL2 with the default 4 GB cap) the build can stall or sit silent for
     minutes; users see a frozen terminal, assume the update is hung, and
     reboot — leaving the editable install in a half-state with the
-    ``hermes`` launcher present but ``openamer_cli`` not importable.
+    ``openamer`` launcher present but ``openamer_cli`` not importable.
 
     This helper fixes both halves: stdout is streamed (so the user sees
     progress), and if no bytes have appeared on stdout/stderr for
@@ -5250,7 +5250,7 @@ def _do_build_web_ui(web_dir: Path, *, fatal: bool = False) -> bool:
             encoding = getattr(sys.stdout, "encoding", None) or "ascii"
             print(text.encode(encoding, errors="replace").decode(encoding, errors="replace"))
 
-    from openamer_constants import with_hermes_node_path
+    from openamer_constants import with_openamer_node_path
 
     npm = _resolve_node_runtime_npm()
     if not npm:
@@ -5258,7 +5258,7 @@ def _do_build_web_ui(web_dir: Path, *, fatal: bool = False) -> bool:
             _say("Web UI frontend not built and npm is not available.")
             _say("Install Node.js, then run:  cd web && npm install && npm run build")
         return not fatal
-    build_env = with_hermes_node_path()
+    build_env = with_openamer_node_path()
     _say("→ Building web UI...")
 
     def _relay(result: "subprocess.CompletedProcess") -> None:
@@ -5508,9 +5508,9 @@ def _desktop_packaged_executable(desktop_dir: Path) -> Optional[Path]:
         ]
     else:
         candidates = [
-            release_dir / "linux-unpacked" / "hermes",
+            release_dir / "linux-unpacked" / "openamer",
             release_dir / "linux-unpacked" / "OpenAmer",
-            release_dir / "linux-arm64-unpacked" / "hermes",
+            release_dir / "linux-arm64-unpacked" / "openamer",
             release_dir / "linux-arm64-unpacked" / "OpenAmer",
         ]
 
@@ -6040,7 +6040,7 @@ def _redownload_electron_dist(
     installer = electron_dir / "install.js"
     if not installer.is_file():
         return False
-    from openamer_constants import find_node_executable, with_hermes_node_path
+    from openamer_constants import find_node_executable, with_openamer_node_path
 
     node = find_node_executable("node")
     if not node:
@@ -6053,7 +6053,7 @@ def _redownload_electron_dist(
     except OSError:
         pass
 
-    dl_env = with_hermes_node_path(env)
+    dl_env = with_openamer_node_path(env)
     if mirror:
         dl_env["ELECTRON_MIRROR"] = mirror
     try:
@@ -6339,16 +6339,16 @@ def cmd_gui(args: argparse.Namespace):
     except Exception:
         pass
 
-    from openamer_constants import with_hermes_node_path
+    from openamer_constants import with_openamer_node_path
 
-    # with_hermes_node_path() copies os.environ when called with no arg.
-    env = with_hermes_node_path()
+    # with_openamer_node_path() copies os.environ when called with no arg.
+    env = with_openamer_node_path()
     if getattr(args, "fake_boot", False):
         env["HERMES_DESKTOP_BOOT_FAKE"] = "1"
     if getattr(args, "ignore_existing", False):
         env["HERMES_DESKTOP_IGNORE_EXISTING"] = "1"
-    if getattr(args, "hermes_root", None):
-        env["HERMES_DESKTOP_OPENAMER_ROOT"] = str(Path(args.hermes_root).expanduser().resolve())
+    if getattr(args, "openamer_root", None):
+        env["HERMES_DESKTOP_OPENAMER_ROOT"] = str(Path(args.openamer_root).expanduser().resolve())
     if getattr(args, "cwd", None):
         env["HERMES_DESKTOP_CWD"] = str(Path(args.cwd).expanduser().resolve())
     else:
@@ -6417,7 +6417,7 @@ def cmd_gui(args: argparse.Namespace):
             # openamer update) loses shell PATH customizations. Wrapping the
             # NixOS build env keeps its PYTHON hint while restoring managed Node
             # ahead of a bare PATH (same idiom as the `openamer update` path).
-            nixos_env = with_hermes_node_path(_nixos_build_env())
+            nixos_env = with_openamer_node_path(_nixos_build_env())
             install_result = _run_npm_install_deterministic(npm, PROJECT_ROOT, capture_output=False, env=nixos_env)
             if install_result.returncode != 0:
                 if not _electron_pkg_staged_missing_dist(PROJECT_ROOT):
@@ -6656,7 +6656,7 @@ def _find_stale_dashboard_pids(
         else:
             # Linux / macOS: scan the process table via ps and match against
             # the same explicit patterns list used on Windows.  Using ps
-            # (rather than `pgrep -f "hermes.*dashboard"`) keeps us consistent
+            # (rather than `pgrep -f "openamer.*dashboard"`) keeps us consistent
             # with `openamer_cli.gateway._scan_gateway_pids` and avoids the
             # greedy regex matching unrelated cmdlines that merely contain
             # both words (e.g. a chat session discussing "dashboard").
@@ -8068,9 +8068,9 @@ def _invalidate_update_cache():
     """
     homes = []
     # Default profile home (Docker-aware — uses /opt/data in Docker)
-    from openamer_constants import get_default_hermes_root
+    from openamer_constants import get_default_openamer_root
 
-    default_home = get_default_hermes_root()
+    default_home = get_default_openamer_root()
     homes.append(default_home)
     # Named profiles under <root>/profiles/
     profiles_root = default_home / "profiles"
@@ -8310,15 +8310,15 @@ def _recover_core_update_marker_locked() -> None:
         "finishing dependency installation now..."
     )
 
-    # Windows: a normal ``hermes.exe`` launch always has the launcher as an
+    # Windows: a normal ``openamer.exe`` launch always has the launcher as an
     # ancestor. Full editable reinstall uses quarantine so the live shim can
     # still be replaced. Package-only import repair may help as first aid but
     # must NEVER clear this core marker on its own (#58004 review).
-    self_locked = _windows_running_hermes_launcher_locked()
+    self_locked = _windows_running_openamer_launcher_locked()
     if self_locked:
         install_prefix, install_env = _default_venv_install_target()
         print(
-            "  → Running from hermes.exe; applying package-only first aid, "
+            "  → Running from openamer.exe; applying package-only first aid, "
             "then quarantined full reinstall (core marker stays until that "
             "succeeds)..."
         )
@@ -8380,8 +8380,8 @@ def _recover_core_update_marker_locked() -> None:
             print(f"    {sys.executable} -m pip install -e '.[all]'")
 
 
-def _windows_running_hermes_launcher_locked() -> bool:
-    """True when a venv ``hermes*.exe`` shim is this process or an ancestor.
+def _windows_running_openamer_launcher_locked() -> bool:
+    """True when a venv ``openamer*.exe`` shim is this process or an ancestor.
 
     Best-effort: returns False when psutil is unavailable or inspection fails.
     """
@@ -8390,7 +8390,7 @@ def _windows_running_hermes_launcher_locked() -> bool:
     scripts_dir = _venv_scripts_dir()
     if scripts_dir is None:
         return False
-    shims = _hermes_exe_shims(scripts_dir)
+    shims = _openamer_exe_shims(scripts_dir)
     if not shims:
         return False
     shim_set: set[str] = set()
@@ -8484,7 +8484,7 @@ def _venv_scripts_dir() -> Path | None:
     return scripts if scripts.is_dir() else None
 
 
-def _hermes_exe_shims(scripts_dir: Path) -> list[Path]:
+def _openamer_exe_shims(scripts_dir: Path) -> list[Path]:
     """Entry-point shims that uv may try to rewrite during ``pip install -e .``.
 
     On Windows these are .exe launchers generated by setuptools/uv. On POSIX
@@ -8494,31 +8494,31 @@ def _hermes_exe_shims(scripts_dir: Path) -> list[Path]:
     if not _is_windows():
         return []
 
-    names = set(_load_console_script_names()) or {"hermes", "openamer-agent", "openamer-acp"}
+    names = set(_load_console_script_names()) or {"openamer", "openamer-agent", "openamer-acp"}
     # The gateway shim is not a [project.scripts] entry point, but older
     # update/install paths still rewrite and quarantine it.
     names.add("openamer-gateway")
     return [scripts_dir / f"{name}.exe" for name in sorted(names)]
 
 
-def _detect_concurrent_hermes_instances(
+def _detect_concurrent_openamer_instances(
     scripts_dir: Path, *, exclude_pid: int | None = None
 ) -> list[tuple[int, str]]:
     """Find other live processes whose .exe is one of our entry-point shims.
 
     Windows blocks DELETE/REPLACE on a running .exe — and even RENAME on the
     same .exe when another process opened it without ``FILE_SHARE_DELETE``.
-    The OpenAmer Desktop Electron app spawns ``hermes.EXE`` as a backend child,
+    The OpenAmer Desktop Electron app spawns ``openamer.EXE`` as a backend child,
     so during ``openamer update`` the user-invoked process and the desktop's
     child both hold the same file. The quarantine rename then fails with
     ``[WinError 32]`` and uv inherits the lock.
 
     This helper enumerates processes whose ``exe`` matches one of the venv's
-    shims (``hermes.exe`` / ``openamer-gateway.exe``) and returns ``(pid,
+    shims (``openamer.exe`` / ``openamer-gateway.exe``) and returns ``(pid,
     process_name)`` pairs. The caller's own PID and its entire ancestor
     chain are excluded so the running ``openamer update`` invocation never
     reports itself — this matters on Windows where the setuptools .exe
-    launcher (``hermes.exe``) is a separate process from the Python
+    launcher (``openamer.exe``) is a separate process from the Python
     interpreter it loads (``python.exe``).
 
     Returns an empty list off-Windows, on missing psutil, or when no other
@@ -8534,7 +8534,7 @@ def _detect_concurrent_hermes_instances(
 
     # Resolve every shim path to its canonical form once for cheap comparison.
     shim_paths: set[str] = set()
-    for shim in _hermes_exe_shims(scripts_dir):
+    for shim in _openamer_exe_shims(scripts_dir):
         try:
             shim_paths.add(str(shim.resolve()).lower())
         except OSError:
@@ -8544,7 +8544,7 @@ def _detect_concurrent_hermes_instances(
 
     # Build a set of PIDs to exclude: the Python process itself plus every
     # ancestor whose executable is one of our shims. On Windows the
-    # setuptools-generated hermes.exe launcher is a separate native process
+    # setuptools-generated openamer.exe launcher is a separate native process
     # that spawns python.exe (the interpreter that runs our code).
     # os.getpid() returns the Python PID, but the launcher (which holds the
     # file lock) is the parent. Without excluding it, every ``openamer update``
@@ -8558,7 +8558,7 @@ def _detect_concurrent_hermes_instances(
     #      across session/elevation boundaries), leaving the launcher shim in
     #      the candidate set and re-triggering the false positive.
     #   2. Only exclude ancestors whose exe is itself a shim. A genuine second
-    #      hermes.exe sitting *under* a non-OpenAmer parent (e.g. a OpenAmer
+    #      openamer.exe sitting *under* a non-OpenAmer parent (e.g. a OpenAmer
     #      Desktop backend child) must still be flagged, so we don't blanket-
     #      exclude unrelated ancestors like the shell or terminal.
     # Broad ``except Exception`` guards against partially-stubbed psutil in
@@ -8622,15 +8622,15 @@ def _format_concurrent_instances_message(
     matches: list[tuple[int, str]], scripts_dir: Path
 ) -> str:
     """Build a human-readable explanation + remediation hint for the user."""
-    shim = scripts_dir / "hermes.exe"
-    lines = ["✗ Another hermes.exe is running:"]
+    shim = scripts_dir / "openamer.exe"
+    lines = ["✗ Another openamer.exe is running:"]
     for pid, name in matches:
         lines.append(f"    PID {pid}  {name}")
     lines.append("")
     lines.append(f"  Updating now would fail to overwrite {shim} because")
     lines.append("  Windows blocks REPLACE on a running executable.")
     lines.append("")
-    lines.append("  Close OpenAmer Desktop, exit any open `hermes` REPLs, and")
+    lines.append("  Close OpenAmer Desktop, exit any open `openamer` REPLs, and")
     lines.append("  stop the gateway (`openamer gateway stop`) before retrying.")
     lines.append("")
     if matches:
@@ -8644,18 +8644,18 @@ def _format_concurrent_instances_message(
     return "\n".join(lines)
 
 
-def _quarantine_running_hermes_exe(
+def _quarantine_running_openamer_exe(
     scripts_dir: Path, *, max_attempts: int = 4
 ) -> list[tuple[Path, Path]]:
-    """Pre-empt Windows file lock on the running ``hermes.exe``.
+    """Pre-empt Windows file lock on the running ``openamer.exe``.
 
     Windows allows RENAMING a mapped/running executable (the kernel tracks the
     file by handle, not path), but blocks DELETE/REPLACE while it's loaded. uv
     needs to overwrite the entry-point shims during ``pip install -e .``;
-    when ``openamer update`` runs, ``hermes.exe`` IS the live process, and uv
+    when ``openamer update`` runs, ``openamer.exe`` IS the live process, and uv
     fails with ``Access is denied. (os error 5)``.
 
-    We rename live shims to ``hermes.exe.old.<unix-ms>`` first. uv then writes
+    We rename live shims to ``openamer.exe.old.<unix-ms>`` first. uv then writes
     fresh shims at the original paths. The ``.old`` files are cleaned up on
     the next openamer invocation by ``_cleanup_quarantined_exes``.
 
@@ -8692,7 +8692,7 @@ def _quarantine_running_hermes_exe(
     backoff_ms = [0, 100, 250, 500, 1000]
     attempts = max(1, min(max_attempts, len(backoff_ms)))
 
-    for shim in _hermes_exe_shims(scripts_dir):
+    for shim in _openamer_exe_shims(scripts_dir):
         if not shim.exists():
             continue
         target = shim.with_suffix(shim.suffix + f".old.{stamp}")
@@ -8740,7 +8740,7 @@ def _quarantine_running_hermes_exe(
             f"another process is holding it open)."
         )
         print(
-            "    Close OpenAmer Desktop, exit other `hermes` REPLs, stop the "
+            "    Close OpenAmer Desktop, exit other `openamer` REPLs, stop the "
             "gateway, or pause AV scanning, then re-run `openamer update`."
         )
 
@@ -8783,7 +8783,7 @@ def _schedule_replace_on_reboot(shim: Path, quarantine_target: Path) -> bool:
 
 
 def _restore_quarantined_exes(moved: list[tuple[Path, Path]]) -> None:
-    """Roll back ``_quarantine_running_hermes_exe`` if uv didn't write replacements."""
+    """Roll back ``_quarantine_running_openamer_exe`` if uv didn't write replacements."""
     for original, quarantined in moved:
         try:
             if not original.exists() and quarantined.exists():
@@ -8798,12 +8798,12 @@ def _run_quarantined_install(
     env: dict[str, str] | None = None,
     scripts_dir: Path | None = None,
 ) -> None:
-    """Run an editable install, quarantining the running ``hermes.exe`` first.
+    """Run an editable install, quarantining the running ``openamer.exe`` first.
 
     Any ``pip install -e .`` (or ``--reinstall``) rewrites the entry-point
-    shims, and on Windows the live ``hermes.exe`` is the running process —
+    shims, and on Windows the live ``openamer.exe`` is the running process —
     pip can neither delete nor overwrite it, so without quarantine the shim
-    is left missing and ``hermes`` drops off PATH. This wraps
+    is left missing and ``openamer`` drops off PATH. This wraps
     :func:`_run_install_with_heartbeat` with the same rename-out-of-the-way /
     restore-on-failure dance that the primary install path uses, so EVERY
     install that touches the shims is protected — including the
@@ -8815,7 +8815,7 @@ def _run_quarantined_install(
     """
     moved: list[tuple[Path, Path]] = []
     if scripts_dir is not None:
-        moved = _quarantine_running_hermes_exe(scripts_dir)
+        moved = _quarantine_running_openamer_exe(scripts_dir)
     try:
         _run_install_with_heartbeat(cmd, env=env)
     except BaseException:
@@ -8827,7 +8827,7 @@ def _run_quarantined_install(
 
 
 def _cleanup_quarantined_exes(scripts_dir: Path | None = None) -> None:
-    """Sweep ``hermes.exe.old.*`` left by prior updates.
+    """Sweep ``openamer.exe.old.*`` left by prior updates.
 
     Called early on every openamer invocation. The .old files are unlocked once
     their owning process exited, so deletion succeeds the next run. Silent
@@ -8871,7 +8871,7 @@ def _run_package_only_install(
     """Run a package-only pip/uv install without quarantining entry-point shims.
 
     ``pip install --upgrade pip`` and ``--force-reinstall <pkg>`` do not
-    rewrite ``hermes.exe``. The editable-install quarantine path would rename
+    rewrite ``openamer.exe``. The editable-install quarantine path would rename
     shims without uv recreating them on Windows (#57828).
     """
     _run_install_with_heartbeat(cmd, env=env)
@@ -9050,7 +9050,7 @@ def _repair_venv_via_import_probes(
 
     Uses real ``import`` checks (not distribution metadata) so a venv where
     METADATA remains but ``.py`` files were wiped mid-install is still
-    detected (#57828). Package-only reinstall — never rewrites ``hermes.exe``.
+    detected (#57828). Package-only reinstall — never rewrites ``openamer.exe``.
 
     Never raises. Returns one of:
       - ``"healthy"`` — probes ran and found nothing broken
@@ -9201,10 +9201,10 @@ def _install_python_dependencies_with_optional_fallback(
     By default this targets ``.[all]``; Termux callers can pass
     ``group='termux-all'`` to use the curated Android-compatible profile.
 
-    On Windows, pre-renames live ``hermes.exe`` / ``openamer-gateway.exe`` shims
+    On Windows, pre-renames live ``openamer.exe`` / ``openamer-gateway.exe`` shims
     in the venv Scripts dir before each install attempt so uv can write fresh
     copies (Windows blocks REPLACE on a running .exe but allows RENAME). See
-    ``_quarantine_running_hermes_exe`` for the rationale.
+    ``_quarantine_running_openamer_exe`` for the rationale.
     """
     scripts_dir = _venv_scripts_dir() if _is_windows() else None
 
@@ -9284,11 +9284,11 @@ def _verify_console_scripts_installed(
 ) -> None:
     """Ensure every declared console_script shim exists on disk after install.
 
-    On Windows, ``uv pip install -e .`` can register ``hermes.exe`` in the
+    On Windows, ``uv pip install -e .`` can register ``openamer.exe`` in the
     wheel RECORD while the file never lands on disk — typically when the live
-    ``hermes.exe`` shim is locked during ``openamer update``, or when uv/distlib
+    ``openamer.exe`` shim is locked during ``openamer update``, or when uv/distlib
     skips a launcher write. The symptom is ``openamer-agent.exe`` and
-    ``openamer-acp.exe`` present but ``hermes.exe`` missing, so ``hermes`` drops
+    ``openamer-acp.exe`` present but ``openamer.exe`` missing, so ``openamer`` drops
     off PATH even though the install reported success (issue #52931).
 
     If any shim is missing we reinstall with ``--reinstall -e .`` under the
@@ -9471,9 +9471,9 @@ def _verify_core_dependencies_installed(
     # extras install can cost minutes and trips on whatever optional extra
     # was already broken upstream. Base is fast and is what's actually wrong.
     #
-    # Quarantine the running ``hermes.exe`` first: ``--reinstall -e .``
+    # Quarantine the running ``openamer.exe`` first: ``--reinstall -e .``
     # rewrites the entry-point shims, and on Windows pip can't overwrite the
-    # live launcher, which would leave ``hermes`` off PATH.
+    # live launcher, which would leave ``openamer`` off PATH.
     scripts_dir = _venv_scripts_dir() if _is_windows() else None
     repair_args = ["install", "--reinstall", "-e", "."]
     try:
@@ -9691,7 +9691,7 @@ def _npm_manifests_digest() -> str | None:
     return h.hexdigest()
 
 
-def _npm_lockfile_changed(hermes_root: Path) -> bool:
+def _npm_lockfile_changed(openamer_root: Path) -> bool:
     current = _npm_manifests_digest()
     if current is None:
         return True
@@ -9702,7 +9702,7 @@ def _npm_lockfile_changed(hermes_root: Path) -> bool:
     try:
         # Key the cache by PROJECT_ROOT so parallel worktrees don't collide.
         cache_key = hashlib.sha256(str(PROJECT_ROOT).encode()).hexdigest()[:12]
-        cache_file = hermes_root / f".npm_lock_hash_{cache_key}"
+        cache_file = openamer_root / f".npm_lock_hash_{cache_key}"
         if not cache_file.exists():
             return True
         return cache_file.read_text(encoding="utf-8").strip() != current
@@ -9710,13 +9710,13 @@ def _npm_lockfile_changed(hermes_root: Path) -> bool:
         return True
 
 
-def _record_npm_lockfile_hash(hermes_root: Path) -> None:
+def _record_npm_lockfile_hash(openamer_root: Path) -> None:
     digest = _npm_manifests_digest()
     if digest is None:
         return
     try:
         cache_key = hashlib.sha256(str(PROJECT_ROOT).encode()).hexdigest()[:12]
-        cache_file = hermes_root / f".npm_lock_hash_{cache_key}"
+        cache_file = openamer_root / f".npm_lock_hash_{cache_key}"
         cache_file.write_text(digest, encoding="utf-8")
     except OSError:
         logger.debug("Could not write npm lockfile hash cache")
@@ -9811,13 +9811,13 @@ def _update_node_dependencies() -> list[str]:
             return failed
         return []
 
-    from openamer_constants import get_default_hermes_root
+    from openamer_constants import get_default_openamer_root
 
     # This cache describes PROJECT_ROOT/node_modules, which is shared by every
     # OpenAmer profile using this checkout. Keep one per-checkout cache under the
     # shared OpenAmer root rather than rerunning npm once per named profile.
-    shared_hermes_root = get_default_hermes_root()
-    if not _npm_lockfile_changed(shared_hermes_root):
+    shared_openamer_root = get_default_openamer_root()
+    if not _npm_lockfile_changed(shared_openamer_root):
         logger.info("npm lockfile unchanged, skipping npm install")
         return []
 
@@ -9839,9 +9839,9 @@ def _update_node_dependencies() -> list[str]:
 
     extra_args = ["--no-fund", "--no-audit", "--progress=false"]
 
-    from openamer_constants import with_hermes_node_path
+    from openamer_constants import with_openamer_node_path
 
-    nixos_env = with_hermes_node_path(_nixos_build_env())
+    nixos_env = with_openamer_node_path(_nixos_build_env())
 
     # Step 1: root install (no workspace recursion).
     # NOTE: capture_output=False here is deliberate (#18840) — optional
@@ -9875,7 +9875,7 @@ def _update_node_dependencies() -> list[str]:
         env=nixos_env,
     )
     if ws_result.returncode == 0:
-        _record_npm_lockfile_hash(shared_hermes_root)
+        _record_npm_lockfile_hash(shared_openamer_root)
         print("  ✓ repo root + ui-tui, web workspaces (desktop skipped)")
         return []
 
@@ -9892,7 +9892,7 @@ class _UpdateOutputStream:
     Wraps the process's original stdout/stderr so that:
 
     * Every write is also mirrored to an append-only log file
-      (``~/.hermes/logs/update.log``) that users can inspect after the
+      (``~/.openamer/logs/update.log``) that users can inspect after the
       terminal disconnects.
     * Writes to the original stream that fail with ``BrokenPipeError`` /
       ``OSError`` / ``ValueError`` (closed file) no longer cascade into
@@ -9974,7 +9974,7 @@ def _install_hangup_protection(gateway_mode: bool = False):
        across ``exec()``, so pip and git subprocesses also stop dying on
        hangup.
     2. ``sys.stdout`` / ``sys.stderr`` are wrapped to mirror output to
-       ``~/.hermes/logs/update.log`` and to silently absorb
+       ``~/.openamer/logs/update.log`` and to silently absorb
        ``BrokenPipeError`` when the terminal vanishes.
 
     ``SIGINT`` (Ctrl-C) and ``SIGTERM`` (systemd shutdown) are
@@ -10013,8 +10013,8 @@ def _install_hangup_protection(gateway_mode: bool = False):
     # tolerance.  Any failure here is non-fatal; we just skip the wrap.
     try:
         # Late-bound import so tests can monkeypatch
-        # openamer_cli.config.get_hermes_home to simulate setup failure.
-        from openamer_cli.config import get_hermes_home as _get_hermes_home
+        # openamer_cli.config.get_openamer_home to simulate setup failure.
+        from openamer_cli.config import get_openamer_home as _get_openamer_home
 
         logs_dir = _get_openamer_home() / "logs"
         logs_dir.mkdir(parents=True, exist_ok=True)
@@ -10041,7 +10041,7 @@ def _install_hangup_protection(gateway_mode: bool = False):
 
 
 def _log_only_write(text: str) -> None:
-    """Write ``text`` to ``~/.hermes/logs/update.log`` only, never the terminal.
+    """Write ``text`` to ``~/.openamer/logs/update.log`` only, never the terminal.
 
     During ``openamer update`` ``sys.stdout`` is an ``_UpdateOutputStream`` that
     mirrors to both the terminal and ``update.log``. Loud, low-signal
@@ -10283,11 +10283,11 @@ def _ensure_fhs_path_guard() -> None:
     standard shell breaks on those distros in non-login interactive shells
     (su, sudo -s, tmux panes, some web terminals): /etc/bashrc doesn't
     add /usr/local/bin and /root/.bash_profile doesn't either.  Symptom:
-    ``hermes`` prints ``command not found`` even though the symlink lives
-    at /usr/local/bin/hermes.
+    ``openamer`` prints ``command not found`` even though the symlink lives
+    at /usr/local/bin/openamer.
 
     Silent no-op on: non-Linux, non-root, non-FHS installs, and any system
-    where ``bash -i -c 'command -v hermes'`` already resolves.  Idempotent.
+    where ``bash -i -c 'command -v openamer'`` already resolves.  Idempotent.
     """
     if sys.platform != "linux":
         return
@@ -10297,8 +10297,8 @@ def _ensure_fhs_path_guard() -> None:
     except AttributeError:
         return
     # Only act when this is actually an FHS-layout install (command link at
-    # /usr/local/bin/hermes, code at /usr/local/lib/openamer-agent).
-    fhs_link = Path("/usr/local/bin/hermes")
+    # /usr/local/bin/openamer, code at /usr/local/lib/openamer-agent).
+    fhs_link = Path("/usr/local/bin/openamer")
     if not fhs_link.is_symlink() and not fhs_link.exists():
         return
 
@@ -10316,7 +10316,7 @@ def _ensure_fhs_path_guard() -> None:
                 "bash",
                 "-i",
                 "-c",
-                "command -v hermes",
+                "command -v openamer",
             ],
             capture_output=True,
             text=True, encoding="utf-8", errors="replace",
@@ -10471,9 +10471,9 @@ def _run_pre_update_backup(args) -> Optional[str]:
         )
 
         # NOTE: this function later does `from openamer_constants import
-        # get_hermes_home`, which makes the name function-local — the
+        # get_openamer_home`, which makes the name function-local — the
         # module-level import is shadowed and unbound here. Alias explicitly.
-        from openamer_cli.config import get_hermes_home as _get_home
+        from openamer_cli.config import get_openamer_home as _get_home
 
         snapshot_id = create_quick_snapshot(
             label="pre-update",
@@ -10582,13 +10582,13 @@ def _run_pre_update_backup(args) -> Optional[str]:
         size_bytes /= 1024
         size_str = f"{size_bytes:.1f} {unit}"
 
-    # Render path using display_hermes_home so the user sees ~/.hermes/...
+    # Render path using display_openamer_home so the user sees ~/.openamer/...
     try:
-        from openamer_constants import get_openamer_home, display_hermes_home
+        from openamer_constants import get_openamer_home, display_openamer_home
 
         home = get_openamer_home()
         try:
-            display_path = f"{display_hermes_home()}/{out_path.relative_to(home)}"
+            display_path = f"{display_openamer_home()}/{out_path.relative_to(home)}"
         except ValueError:
             display_path = str(out_path)
     except Exception:
@@ -10733,7 +10733,7 @@ def _detect_venv_python_processes(
 ) -> list[tuple[int, str, str]]:
     """Find live processes running from the project venv's interpreter.
 
-    The hermes.exe shim guard misses the biggest lock-holder class on
+    The openamer.exe shim guard misses the biggest lock-holder class on
     Windows: the Desktop app's backend (``python.exe -m openamer_cli.main
     serve``) and anything else running straight off ``venv\\Scripts\\python
     (w).exe``. Those processes keep native ``.pyd`` extensions mapped, so a
@@ -10744,7 +10744,7 @@ def _detect_venv_python_processes(
     backend and respawns it within seconds — so the caller should refuse and
     tell the user to close the app instead. Returns ``(pid, name, cmdline)``
     tuples; empty off-Windows / without psutil / when nothing matches. The
-    calling process and its ancestors are always excluded (a CLI ``hermes
+    calling process and its ancestors are always excluded (a CLI ``openamer
     update`` itself runs from the venv python). Never raises.
     """
     if not _is_windows():
@@ -10848,7 +10848,7 @@ def _pause_windows_gateways_for_update() -> dict | None:
     """Stop running Windows gateways before mutating the checkout or venv.
 
     Windows scheduled/startup gateways run through pythonw.exe, so the generic
-    hermes.exe concurrent-instance guard does not see them. They still import
+    openamer.exe concurrent-instance guard does not see them. They still import
     from the checkout and can keep files locked while ``git`` or ``uv`` updates
     the install. Stop only PIDs that the gateway discovery code identifies.
     """
@@ -11277,14 +11277,14 @@ def _cmd_update_impl(args, gateway_mode: bool):
     print("⚕ Updating OpenAmer Agent...")
     print()
 
-    # On Windows, abort early if another hermes.exe is holding the venv shim
+    # On Windows, abort early if another openamer.exe is holding the venv shim
     # open. Continuing would result in a string of WinError 32 warnings and
     # then either a deferred-rename leftover or a failed git-pull fast path
     # that silently falls back to the slower ZIP route. See issue #26670.
     if _is_windows() and not getattr(args, "force", False):
         scripts_dir = _venv_scripts_dir()
         if scripts_dir is not None:
-            concurrent = _detect_concurrent_hermes_instances(scripts_dir)
+            concurrent = _detect_concurrent_openamer_instances(scripts_dir)
             if concurrent:
                 print(_format_concurrent_instances_message(concurrent, scripts_dir))
                 sys.exit(2)
@@ -11310,7 +11310,7 @@ def _cmd_update_impl(args, gateway_mode: bool):
     # race: killing the desktop backend is futile (the app supervises and
     # respawns it), so the user must close the app. Deliberately NOT bypassed
     # by plain --force: the desktop bootstrap updater passes --force to skip
-    # the hermes.exe shim guard above, but its lock probe only checks the shim
+    # the openamer.exe shim guard above, but its lock probe only checks the shim
     # and app.asar — a non-desktop venv python holding a .pyd would sail
     # through and corrupt the sync (the exact failure this guard exists for).
     # --force-venv is the explicit escape hatch.
@@ -11645,7 +11645,7 @@ def _cmd_update_impl(args, gateway_mode: bool):
             # parse before declaring the update successful. If a bad commit
             # made it through CI (e.g. admin-merge bypass of a failing
             # ruff check), this catches it on the user side and rolls back
-            # so the CLI stays bootable. The user can then retry ``hermes
+            # so the CLI stays bootable. The user can then retry ``openamer
             # update`` later once a fix lands upstream.
             syntax_ok, failing_path, syntax_error = _validate_critical_files_syntax(
                 PROJECT_ROOT
@@ -11714,7 +11714,7 @@ def _cmd_update_impl(args, gateway_mode: bool):
 
         # Clear stale .pyc bytecode cache — prevents ImportError on gateway
         # restart when updated source references names that didn't exist in
-        # the old bytecode (e.g. get_hermes_home added to openamer_constants).
+        # the old bytecode (e.g. get_openamer_home added to openamer_constants).
         removed = _clear_bytecode_cache(PROJECT_ROOT)
         if removed:
             print(
@@ -11731,7 +11731,7 @@ def _cmd_update_impl(args, gateway_mode: bool):
         #
         # Drop the core-install breadcrumb BEFORE touching the venv. If the
         # install is killed mid-flight (Ctrl-C, terminal close, WSL OOM), the
-        # marker survives and the next ``hermes`` launch finishes the install
+        # marker survives and the next ``openamer`` launch finishes the install
         # via ``_recover_from_interrupted_install``. Cleared after the core
         # ``.[all]`` install completes — lazy refresh uses a separate marker.
         _write_update_incomplete_marker()
@@ -11809,7 +11809,7 @@ def _cmd_update_impl(args, gateway_mode: bool):
             _clear_lazy_refresh_incomplete_marker()
         else:
             print(
-                "  ⚠ Lazy-refresh recovery incomplete — run `hermes` again "
+                "  ⚠ Lazy-refresh recovery incomplete — run `openamer` again "
                 "to finish import-based venv repair."
             )
 
@@ -11840,9 +11840,9 @@ def _cmd_update_impl(args, gateway_mode: bool):
             # (Desktop → openamer-setup → openamer update), the shell PATH
             # customizations are lost, so a bare-PATH child would fail with
             # `node: not found` before cmd_gui can self-heal.
-            from openamer_constants import with_hermes_node_path
+            from openamer_constants import with_openamer_node_path
 
-            _build_env = with_hermes_node_path()
+            _build_env = with_openamer_node_path()
             build_result = _run_logged_subprocess(_desktop_build_cmd, cwd=PROJECT_ROOT, env=_build_env)
             if build_result.returncode != 0:
                 build_result = _run_logged_subprocess(_desktop_build_cmd, cwd=PROJECT_ROOT, env=_build_env)
@@ -11851,7 +11851,7 @@ def _cmd_update_impl(args, gateway_mode: bool):
                 tail = "\n".join((build_result.stdout or "").strip().splitlines()[-15:])
                 if tail:
                     print(tail)
-                from openamer_constants import display_hermes_home as _dhh
+                from openamer_constants import display_openamer_home as _dhh
                 print(f"  Full build log: {_dhh()}/logs/update.log")
             else:
                 print("  ✓ Desktop app up to date")
@@ -11937,7 +11937,7 @@ def _cmd_update_impl(args, gateway_mode: bool):
         # Seed the model-catalog disk cache from the freshly-pulled checkout.
         # The repo ships the canonical catalog at
         # website/static/api/model-catalog.json, and `git pull` just made it
-        # current — so copy it straight over ~/.hermes/cache/model_catalog.json
+        # current — so copy it straight over ~/.openamer/cache/model_catalog.json
         # instead of waiting on a network fetch (which can be bot-gated or hit a
         # Portal hiccup). Keeps the model picker's curated/free lists in sync
         # with the version the user just installed. Non-fatal on failure: the
@@ -11953,7 +11953,7 @@ def _cmd_update_impl(args, gateway_mode: bool):
         # After git pull, source files on disk are newer than cached Python
         # modules in this process.  Reload openamer_constants so that any lazy
         # import executed below (skills sync, gateway restart) sees new
-        # attributes like display_hermes_home() added since the last release.
+        # attributes like display_openamer_home() added since the last release.
         try:
             import importlib
             import openamer_constants as _hc
@@ -12987,25 +12987,25 @@ def _cmd_update_impl(args, gateway_mode: bool):
         _resume_windows_gateways_after_update(_windows_gateway_resume)
 
         # Warn if legacy OpenAmer gateway unit files are still installed.
-        # When both hermes.service (from a pre-rename install) and the
+        # When both openamer.service (from a pre-rename install) and the
         # current openamer-gateway.service are enabled, they SIGTERM-fight
         # for the same bot token (see PR #11909). Flagging here means
         # every `openamer update` surfaces the issue until the user migrates.
         try:
             from openamer_cli.gateway import (
-                has_legacy_hermes_units,
-                _find_legacy_hermes_units,
+                has_legacy_openamer_units,
+                _find_legacy_openamer_units,
                 supports_systemd_services,
             )
 
-            if supports_systemd_services() and has_legacy_hermes_units():
+            if supports_systemd_services() and has_legacy_openamer_units():
                 print()
                 print("⚠ Legacy OpenAmer gateway unit(s) detected:")
-                for name, path, is_sys in _find_legacy_hermes_units():
+                for name, path, is_sys in _find_legacy_openamer_units():
                     scope = "system" if is_sys else "user"
                     print(f"    {path}  ({scope} scope)")
                 print()
-                print("  These pre-rename units (hermes.service) fight the current")
+                print("  These pre-rename units (openamer.service) fight the current")
                 print("  openamer-gateway.service for the bot token and cause SIGTERM")
                 print("  flap loops. Remove them with:")
                 print()
@@ -13142,14 +13142,14 @@ def cmd_profile(args):
         _is_wrapper_dir_in_path,
         _get_wrapper_dir,
     )
-    from openamer_constants import display_hermes_home
+    from openamer_constants import display_openamer_home
 
     action = getattr(args, "profile_action", None)
 
     if action is None:
         # Bare `openamer profile` — show current profile status
         profile_name = get_active_profile_name()
-        dhh = display_hermes_home()
+        dhh = display_openamer_home()
         print(f"\nActive profile: {profile_name}")
         print(f"Path:           {dhh}")
 
@@ -13215,7 +13215,7 @@ def cmd_profile(args):
         try:
             set_active_profile(name)
             if name == "default":
-                print("Switched to: default (~/.hermes)")
+                print("Switched to: default (~/.openamer)")
             else:
                 print(f"Switched to: {name}")
         except (ValueError, FileNotFoundError) as e:
@@ -13583,7 +13583,7 @@ def cmd_profile(args):
             # Preview: stage the distribution into a scratch dir, show the
             # manifest, then do the real install.  The double-stage avoids
             # any side-effects if the user declines.
-            with tempfile.TemporaryDirectory(prefix="hermes_dist_preview_") as tmp:
+            with tempfile.TemporaryDirectory(prefix="openamer_dist_preview_") as tmp:
                 plan = plan_install(
                     args.source,
                     Path(tmp),
@@ -13692,8 +13692,8 @@ def cmd_profile(args):
             print(f"Author:       {data['author']}")
         if data.get("license"):
             print(f"License:      {data['license']}")
-        if data.get("hermes_requires"):
-            print(f"Requires:     OpenAmer {data['hermes_requires']}")
+        if data.get("openamer_requires"):
+            print(f"Requires:     OpenAmer {data['openamer_requires']}")
         if data.get("source"):
             print(f"Source:       {data['source']}")
         if data.get("installed_at"):
@@ -13721,8 +13721,8 @@ def _render_distribution_plan(plan) -> None:
         print(f"  {mf.description}")
     if mf.author:
         print(f"  Author:   {mf.author}")
-    if mf.hermes_requires:
-        print(f"  Requires: OpenAmer {mf.hermes_requires}")
+    if mf.openamer_requires:
+        print(f"  Requires: OpenAmer {mf.openamer_requires}")
     print(f"  Source:   {plan.provenance}")
     print(f"  Target:   {plan.target_dir}")
     if plan.existing:
@@ -13900,7 +13900,7 @@ def _maybe_setup_dashboard_auth_interactively(args) -> None:
             "the dashboard again:\n"
             "    openamer dashboard register\n"
             "  It provisions a Nous Portal OAuth client and writes "
-            "HERMES_DASHBOARD_OAUTH_CLIENT_ID into ~/.hermes/.env for you.\n"
+            "HERMES_DASHBOARD_OAUTH_CLIENT_ID into ~/.openamer/.env for you.\n"
             "  Docs: https://openamer-agent.nousresearch.com/docs/"
             "user-guide/features/web-dashboard#authentication-gated-mode"
         )
@@ -13993,7 +13993,7 @@ def _read_ssh_session_token_file(path: str) -> str:
 
     import stat as _stat
     from pathlib import Path as _Path
-    from openamer_constants import get_openamer_home as _get_hermes_home
+    from openamer_constants import get_openamer_home as _get_openamer_home
 
     if not os.path.isabs(path):
         raise SystemExit("--ssh-session-token-file must be absolute")
@@ -14209,13 +14209,13 @@ def cmd_dashboard(args):
         # OPENAMER_HOME falls back to $HOME/.openamer = /opt/data/.openamer — an
         # empty, auto-seeded home where the dashboard sees only the default
         # profile and the install-method stamp is missing (so the Docker
-        # update-button guard also misfires).  get_default_hermes_root()
+        # update-button guard also misfires).  get_default_openamer_root()
         # returns the root for both layouts: ~/.openamer for a standard install
         # and /opt/data for Docker (it strips a trailing profiles/<name>).
         # See the support report for the double-mount workaround this avoids.
         try:
-            from openamer_constants import get_default_hermes_root
-            env["OPENAMER_HOME"] = str(get_default_hermes_root())
+            from openamer_constants import get_default_openamer_root
+            env["OPENAMER_HOME"] = str(get_default_openamer_root())
         except Exception:
             # Best-effort: if root resolution fails, fall back to the prior
             # behaviour (drop OPENAMER_HOME) rather than block the reroute.
@@ -14573,7 +14573,7 @@ def _plugin_cli_discovery_needed() -> bool:
     """
     first = _first_positional_argv()
     if first is None:
-        # Bare ``hermes`` or only flags → defaults to ``chat``.
+        # Bare ``openamer`` or only flags → defaults to ``chat``.
         return False
     if first in _BUILTIN_SUBCOMMANDS:
         return False
@@ -14838,7 +14838,7 @@ def cmd_memory(args):
         print("\n  ✓ Memory provider: built-in only")
         print("  Saved to config.yaml\n")
     elif sub == "reset":
-        from openamer_constants import get_openamer_home, display_hermes_home
+        from openamer_constants import get_openamer_home, display_openamer_home
 
         mem_dir = get_openamer_home() / "memories"
         target = getattr(args, "target", "all")
@@ -14854,7 +14854,7 @@ def cmd_memory(args):
         ]
         if not existing:
             print(
-                f"\n  Nothing to reset — no memory files found in {display_hermes_home()}/memories/\n"
+                f"\n  Nothing to reset — no memory files found in {display_openamer_home()}/memories/\n"
             )
             return
 
@@ -14881,7 +14881,7 @@ def cmd_memory(args):
         print(
             "\n  Memory reset complete. New sessions will start with a blank slate."
         )
-        print(f"  Files were in: {display_hermes_home()}/memories/\n")
+        print(f"  Files were in: {display_openamer_home()}/memories/\n")
     else:
         from openamer_cli.memory_setup import memory_command
 
@@ -14981,7 +14981,7 @@ def cmd_claw(args):
 
 def main():
     """Main entry point for openamer CLI."""
-    # Cosmetic: make the process show up as 'hermes' instead of 'python3.11'
+    # Cosmetic: make the process show up as 'openamer' instead of 'python3.11'
     # in ps/top/htop.  Non-fatal — just a nicer UX.
     _set_process_title()
 
@@ -14992,9 +14992,9 @@ def main():
     except Exception:
         pass
 
-    # Sweep stale ``hermes.exe.old.*`` quarantine files left by previous
+    # Sweep stale ``openamer.exe.old.*`` quarantine files left by previous
     # ``openamer update`` runs on Windows. Silent no-op on non-Windows or when
-    # there's nothing to clean. See ``_quarantine_running_hermes_exe``.
+    # there's nothing to clean. See ``_quarantine_running_openamer_exe``.
     try:
         _cleanup_quarantined_exes()
     except Exception:
@@ -15090,7 +15090,7 @@ def main():
         help="Manage external secret sources (Bitwarden, 1Password)",
         description=(
             "Pull API keys from an external secret manager at process startup "
-            "instead of storing them in ~/.hermes/.env.  Supports Bitwarden "
+            "instead of storing them in ~/.openamer/.env.  Supports Bitwarden "
             "Secrets Manager and 1Password.  See: "
             "https://openamer-agent.nousresearch.com/docs/user-guide/secrets/"
         ),
@@ -15344,7 +15344,7 @@ def main():
     # =========================================================================
     checkpoints_parser = subparsers.add_parser(
         "checkpoints",
-        help="Inspect / prune / clear ~/.hermes/checkpoints/",
+        help="Inspect / prune / clear ~/.openamer/checkpoints/",
         description="Manage the filesystem checkpoint store — the shadow git "
         "repo openamer uses to snapshot working directories before "
         "write_file/patch/terminal calls. Lets you see how much "
@@ -15792,7 +15792,7 @@ def main():
         p.add_argument(
             "--model",
             help="Only match sessions whose model name contains this substring "
-            "(e.g. 'sonnet', 'gpt-5', 'hermes')",
+            "(e.g. 'sonnet', 'gpt-5', 'openamer')",
         )
         p.add_argument(
             "--provider",

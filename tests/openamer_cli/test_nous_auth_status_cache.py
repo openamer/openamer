@@ -1,7 +1,7 @@
 """Tests for the get_nous_auth_status() process-level cache.
 
 The cache avoids re-validating Nous credentials on every menu paint —
-`hermes tools` → "All Platforms" used to fire ~31 OAuth refresh POSTs
+`openamer tools` → "All Platforms" used to fire ~31 OAuth refresh POSTs
 against portal.nousresearch.com during one render. The cache is keyed
 on auth.json path + mtime so profile switches stay isolated while
 login/logout flows invalidate naturally; tests and other writers can
@@ -153,7 +153,7 @@ def test_invalidate_nous_auth_status_cache_forces_recompute(tmp_path, monkeypatc
 def test_get_nous_auth_status_caches_failure_path(tmp_path, monkeypatch):
     """Logged-out snapshots are cached too — that's where the cost was.
 
-    Teknium's case: ~31 cache misses per `hermes tools` "All Platforms"
+    Teknium's case: ~31 cache misses per `openamer tools` "All Platforms"
     menu paint, all returning logged_in=False after a failed refresh POST.
     The whole point of the cache is to memoise that failure path too.
     """

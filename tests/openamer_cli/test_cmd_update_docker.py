@@ -1,10 +1,10 @@
-"""Tests for ``hermes update`` / ``--check`` inside the Docker container.
+"""Tests for ``openamer update`` / ``--check`` inside the Docker container.
 
 Background: ``.dockerignore`` excludes ``.git``, so the existing git-pull
 update path can never succeed inside the published image.  Before this
-fix, ``hermes update`` would fall through to ``"✗ Not a git repository.
+fix, ``openamer update`` would fall through to ``"✗ Not a git repository.
 Please reinstall: curl ... install.sh"`` — that script installs a *new*
-host-side Hermes, not an update to the running container, so the message
+host-side OpenAmer, not an update to the running container, so the message
 was actively misleading.
 
 These tests pin the new behaviour: when ``detect_install_method`` reports
@@ -33,7 +33,7 @@ from openamer_cli.main import _cmd_update_check, cmd_update
 def test_cmd_update_in_docker_prints_guidance_and_exits(
     mock_run, _mock_method, _mock_managed, capsys
 ):
-    """``hermes update`` inside Docker → friendly message + exit 1, no git calls."""
+    """``openamer update`` inside Docker → friendly message + exit 1, no git calls."""
     with pytest.raises(SystemExit) as excinfo:
         cmd_update(SimpleNamespace(check=False))
 
@@ -42,7 +42,7 @@ def test_cmd_update_in_docker_prints_guidance_and_exits(
     # Spot-check the key guidance — exhaustive wording is locked in by the
     # config-module test below to keep these CLI tests resilient to copy edits.
     assert "doesn't apply inside the Docker container" in out
-    assert "docker pull nousresearch/hermes-agent:latest" in out
+    assert "docker pull nousresearch/openamer-agent:latest" in out
 
     # No git invocations — the early-return must beat every git command.
     git_calls = [c for c in mock_run.call_args_list if c.args and c.args[0] and "git" in str(c.args[0][0])]
@@ -55,14 +55,14 @@ def test_cmd_update_in_docker_prints_guidance_and_exits(
 def test_cmd_update_check_in_docker_prints_guidance_and_exits(
     mock_run, _mock_method, _mock_managed, capsys
 ):
-    """``hermes update --check`` inside Docker → same message + exit 1, no fetch."""
+    """``openamer update --check`` inside Docker → same message + exit 1, no fetch."""
     with pytest.raises(SystemExit) as excinfo:
         cmd_update(SimpleNamespace(check=True, branch=None))
 
     assert excinfo.value.code == 1
     out = capsys.readouterr().out
     assert "doesn't apply inside the Docker container" in out
-    assert "docker pull nousresearch/hermes-agent:latest" in out
+    assert "docker pull nousresearch/openamer-agent:latest" in out
 
     git_calls = [c for c in mock_run.call_args_list if c.args and c.args[0] and "git" in str(c.args[0][0])]
     assert git_calls == [], f"expected no git calls, got: {git_calls}"
@@ -187,7 +187,7 @@ def test_format_docker_update_message_contents():
     msg = format_docker_update_message()
 
     # Primary command — the entire reason this message exists.
-    assert "docker pull nousresearch/hermes-agent:latest" in msg
+    assert "docker pull nousresearch/openamer-agent:latest" in msg
 
     # The four key concepts the message must cover:
     assert "restart" in msg.lower(), "must explain that a restart is required"

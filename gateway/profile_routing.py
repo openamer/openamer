@@ -1,6 +1,6 @@
 """Profile-based routing for the gateway with hierarchical matching.
 
-Allows a single Hermes instance to route specific Discord guilds/channels/threads
+Allows a single OpenAmer instance to route specific Discord guilds/channels/threads
 to different profiles — each with their own model, tools, memory, and persona.
 
 Matching priority (most specific first):

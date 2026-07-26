@@ -43,7 +43,7 @@ class TestResolveRequestsVerify:
     def test_no_env_returns_true(self, clean_env):
         assert _resolve_requests_verify() is True
 
-    def test_hermes_ca_bundle_returns_path(self, clean_env, bundle_file):
+    def test_openamer_ca_bundle_returns_path(self, clean_env, bundle_file):
         clean_env.setenv("HERMES_CA_BUNDLE", bundle_file)
         assert _resolve_requests_verify() == bundle_file
 
@@ -55,7 +55,7 @@ class TestResolveRequestsVerify:
         clean_env.setenv("SSL_CERT_FILE", bundle_file)
         assert _resolve_requests_verify() == bundle_file
 
-    def test_priority_hermes_over_requests(self, clean_env, tmp_path, bundle_file):
+    def test_priority_openamer_over_requests(self, clean_env, tmp_path, bundle_file):
         other = tmp_path / "other.pem"
         other.write_text("stub")
         clean_env.setenv("HERMES_CA_BUNDLE", bundle_file)

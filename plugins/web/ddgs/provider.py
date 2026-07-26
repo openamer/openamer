@@ -7,12 +7,12 @@ canonical implementation.
 
 The ``ddgs`` package is an optional dependency. ``is_available()`` reflects
 whether the package is importable; the plugin still registers either way so
-``hermes tools`` can prompt the user to install it.
+``openamer tools`` can prompt the user to install it.
 
 Isolation note (#68096): ``ddgs``/``primp`` can block inside native code while
 holding the Python GIL. A ``ThreadPoolExecutor`` + ``future.result(timeout=…)``
 cap (see #52118) cannot fire in that state — the waiter never reacquires the
-GIL — so the whole Hermes process freezes through Ctrl+C/SIGTERM. Each search
+GIL — so the whole OpenAmer process freezes through Ctrl+C/SIGTERM. Each search
 therefore runs in a disposable child process the parent can terminate/kill.
 """
 
@@ -147,7 +147,7 @@ def _run_ddgs_search_bounded(query: str, safe_limit: int) -> list[dict[str, Any]
     terminates the child OS process. Raises ``TimeoutError``,
     ``_SearchInterrupted``, or ``RuntimeError``.
     """
-    # Imported lazily so plugin import stays light for ``hermes tools`` probes.
+    # Imported lazily so plugin import stays light for ``openamer tools`` probes.
     from tools.interrupt import is_interrupted
 
     global _last_worker_proc
@@ -285,7 +285,7 @@ class DDGSWebSearchProvider(WebSearchProvider):
 
         Probes the import once; cheap because Python caches the import. Must
         NOT perform network I/O — runs at tool-registration time and on every
-        ``hermes tools`` paint.
+        ``openamer tools`` paint.
         """
         try:
             import ddgs  # noqa: F401
@@ -305,7 +305,7 @@ class DDGSWebSearchProvider(WebSearchProvider):
 
         The synchronous ``ddgs`` call runs in a disposable child process with
         a hard wall-clock timeout (``_SEARCH_TIMEOUT_SECS``) so a hung native
-        ``primp`` call cannot freeze the Hermes process (#36776, #68096).
+        ``primp`` call cannot freeze the OpenAmer process (#36776, #68096).
         """
         try:
             import ddgs  # type: ignore  # noqa: F401 — availability probe

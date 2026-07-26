@@ -227,7 +227,7 @@ def test_resolve_credentials_quarantines_dead_tokens_on_terminal_refresh_failure
 
     def _terminal_refresh(_state, **_kw):
         raise AuthError(
-            "Spotify token refresh failed. Run `hermes auth spotify` again.",
+            "Spotify token refresh failed. Run `openamer auth spotify` again.",
             provider="spotify",
             code="spotify_refresh_failed",
             relogin_required=True,

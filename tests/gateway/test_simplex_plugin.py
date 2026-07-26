@@ -210,7 +210,7 @@ async def test_send_dm():
     The bracketed form ``@[<id>] text`` is what the daemon's man page
     documents, but in practice both addressing styles route through
     the same chat-command parser; bare ``@<id>`` matches what every
-    Hermes deployment has been using in production for months.
+    OpenAmer deployment has been using in production for months.
     """
     from gateway.config import PlatformConfig
     cfg = PlatformConfig(enabled=True, extra={"ws_url": "ws://localhost:5225"})

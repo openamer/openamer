@@ -1,7 +1,7 @@
 """
 yuanbao_tools.py - 元宝平台工具集
 
-提供以下工具函数，供 hermes-agent 的 "hermes-yuanbao" toolset 使用：
+提供以下工具函数，供 openamer-agent 的 "openamer-yuanbao" toolset 使用：
   - get_group_info        : 查询群基本信息（群名、群主、成员数）
   - query_group_members   : 查询群成员（按名搜索、列举 bot、列举全部）
   - search_sticker        : 按关键词搜索内置贴纸（返回候选列表，含 sticker_id/name/description）
@@ -497,7 +497,7 @@ async def _handle_yb_send_sticker(args, **kw):
     ))
 
 
-_TOOLSET = "hermes-yuanbao"
+_TOOLSET = "openamer-yuanbao"
 
 registry.register(
     name="yb_query_group_info",

@@ -1,4 +1,4 @@
-"""Tests for the bundled hermes-achievements dashboard plugin.
+"""Tests for the bundled openamer-achievements dashboard plugin.
 
 These target the two behaviors that matter for official integration:
 
@@ -10,9 +10,9 @@ These target the two behaviors that matter for official integration:
   takes minutes.
 
 The upstream repo ships its own unittest suite under
-``plugins/hermes-achievements/tests/`` covering the achievement engine
+``plugins/openamer-achievements/tests/`` covering the achievement engine
 internals (tier math, secret-state handling, catalog invariants). These
-tests live at the hermes-agent level and focus on the integration
+tests live at the openamer-agent level and focus on the integration
 contract: the plugin scans ALL of your sessions, not the first 200.
 """
 from __future__ import annotations
@@ -29,7 +29,7 @@ import pytest
 PLUGIN_MODULE_PATH = (
     Path(__file__).resolve().parents[2]
     / "plugins"
-    / "hermes-achievements"
+    / "openamer-achievements"
     / "dashboard"
     / "plugin_api.py"
 )
@@ -37,7 +37,7 @@ PLUGIN_MODULE_PATH = (
 
 @pytest.fixture
 def plugin_api(tmp_path, monkeypatch):
-    """Load plugin_api with isolated ~/.hermes so state/snapshot files don't collide.
+    """Load plugin_api with isolated ~/.openamer so state/snapshot files don't collide.
 
     We load the module fresh per test because the plugin keeps module-level
     caches (``_SNAPSHOT_CACHE``, ``_SCAN_STATUS``, background thread handle).

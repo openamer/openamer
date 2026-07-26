@@ -1016,15 +1016,15 @@ class TestServerRequestRouting:
             "around approvals"
         )
 
-    def test_mcp_elicitation_for_hermes_tools_auto_accepts(self):
-        """When codex elicits on behalf of hermes-tools (our own callback),
+    def test_mcp_elicitation_for_openamer_tools_auto_accepts(self):
+        """When codex elicits on behalf of openamer-tools (our own callback),
         accept automatically — the user already opted in by enabling the
         runtime."""
         client = FakeClient()
         client.queue_server_request(
             "mcpServer/elicitation/request", request_id="elic-1",
             threadId="t", turnId="tu1",
-            serverName="hermes-tools",
+            serverName="openamer-tools",
             mode="form",
             message="confirm",
             requestedSchema={"type": "object", "properties": {}},

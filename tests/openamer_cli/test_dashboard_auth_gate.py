@@ -50,7 +50,7 @@ def test_loopback_protected_route_accepts_session_token(client_loopback):
     """The injected SPA token unlocks protected /api/ routes."""
     r = client_loopback.get(
         "/api/sessions",
-        headers={"X-Hermes-Session-Token": web_server._SESSION_TOKEN},
+        headers={"X-OpenAmer-Session-Token": web_server._SESSION_TOKEN},
     )
     # 200 or 404 (no sessions yet) both prove the auth layer let it through.
     # 500 is also acceptable if there's a downstream issue unrelated to auth.
@@ -88,13 +88,13 @@ def test_loopback_host_header_validation_still_enforced(client_loopback):
     ("localhost", False, False),
     ("::1",       False, False),
     # --insecure (allow_public=True) NO LONGER bypasses the gate on a public
-    # bind (June 2026 hermes-0day hardening). Non-loopback always requires auth.
+    # bind (June 2026 openamer-0day hardening). Non-loopback always requires auth.
     ("0.0.0.0",   True,  True),
     ("0.0.0.0",   False, True),
     ("192.168.1.5", False, True),
     ("10.0.0.1",  True,  True),     # allow_public ignored — LAN IP is public
     ("100.64.0.1", False, True),    # Tailscale CGNAT — treated as public
-    ("hermes-agent-prod-abc.fly.dev", False, True),
+    ("openamer-agent-prod-abc.fly.dev", False, True),
 ])
 def test_should_require_auth_truth_table(host, allow_public, expected):
     from openamer_cli.web_server import should_require_auth

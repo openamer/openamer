@@ -7,7 +7,7 @@ UnicodeEncodeError when stdout/stderr are bound to a non-UTF-8 codec.
 Historically the repair was gated on ``sys.platform == "win32"`` and only
 caught the Windows cp1252 case. Linux hosts with a latin-1 / C / POSIX locale
 (common on minimal Debian installs and Raspberry Pi) hit the identical crash
-in ``hermes setup`` because the repair returned early. See the Raspberry Pi
+in ``openamer setup`` because the repair returned early. See the Raspberry Pi
 report: latin-1 locale → UnicodeEncodeError before the wizard could start.
 """
 
@@ -19,7 +19,7 @@ import openamer_cli
 
 
 # The exact glyphs the setup wizard / banners print (setup.py ~line 2962+).
-_BANNER = "┌─────┐\n│ ⚕ Hermes │\n└─────┘"
+_BANNER = "┌─────┐\n│ ⚕ OpenAmer │\n└─────┘"
 
 
 class _FakeStream:

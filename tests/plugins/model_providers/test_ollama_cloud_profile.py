@@ -3,7 +3,7 @@
 Ollama Cloud's ``/v1/chat/completions`` endpoint supports top-level
 ``reasoning_effort`` with values ``none``, ``low``, ``medium``, ``high``,
 and (undocumented but empirically confirmed) ``max``.  The profile maps
-Hermes's ``xhigh`` → ``max`` to unlock DeepSeek V4's "Max thinking" tier
+OpenAmer's ``xhigh`` → ``max`` to unlock DeepSeek V4's "Max thinking" tier
 and passes the standard levels through unchanged.
 
 These tests pin the profile's wire-shape contract so Ollama Cloud
@@ -126,7 +126,7 @@ class TestOllamaCloudReasoningEffort:
         assert top_level == {}
 
     def test_minimal_effort_omitted(self, ollama_cloud_profile):
-        """``minimal`` is a real Hermes effort level but is not documented for
+        """``minimal`` is a real OpenAmer effort level but is not documented for
         Ollama Cloud's /v1/chat/completions, so it is omitted rather than sent
         verbatim (which could trigger a 400)."""
         _, top_level = ollama_cloud_profile.build_api_kwargs_extras(

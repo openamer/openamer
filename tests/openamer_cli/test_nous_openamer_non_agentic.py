@@ -1,12 +1,12 @@
-"""Tests for the Nous-Hermes-3/4 non-agentic warning detector.
+"""Tests for the Nous-OpenAmer-3/4 non-agentic warning detector.
 
 Prior to this check, the warning fired on any model whose name contained
-``"hermes"`` anywhere (case-insensitive). That false-positived on unrelated
-local Modelfiles such as ``hermes-brain:qwen3-14b-ctx16k`` — a tool-capable
-Qwen3 wrapper that happens to live under the "hermes" tag namespace.
+``"openamer"`` anywhere (case-insensitive). That false-positived on unrelated
+local Modelfiles such as ``openamer-brain:qwen3-14b-ctx16k`` — a tool-capable
+Qwen3 wrapper that happens to live under the "openamer" tag namespace.
 
-``is_nous_hermes_non_agentic`` should only match the actual Nous Research
-Hermes-3 / Hermes-4 chat family.
+``is_nous_openamer_non_agentic`` should only match the actual Nous Research
+OpenAmer-3 / OpenAmer-4 chat family.
 """
 
 from __future__ import annotations
@@ -15,41 +15,41 @@ import pytest
 
 from openamer_cli.model_switch import (
     _HERMES_MODEL_WARNING,
-    _check_hermes_model_warning,
-    is_nous_hermes_non_agentic,
+    _check_openamer_model_warning,
+    is_nous_openamer_non_agentic,
 )
 
 
 @pytest.mark.parametrize(
     "model_name",
     [
-        "NousResearch/Hermes-3-Llama-3.1-70B",
-        "NousResearch/Hermes-3-Llama-3.1-405B",
-        "hermes-3",
-        "Hermes-3",
-        "hermes-4",
-        "hermes-4-405b",
-        "hermes_4_70b",
-        "openrouter/hermes3:70b",
-        "openrouter/nousresearch/hermes-4-405b",
-        "NousResearch/Hermes3",
-        "hermes-3.1",
+        "NousResearch/OpenAmer-3-Llama-3.1-70B",
+        "NousResearch/OpenAmer-3-Llama-3.1-405B",
+        "openamer-3",
+        "OpenAmer-3",
+        "openamer-4",
+        "openamer-4-405b",
+        "openamer_4_70b",
+        "openrouter/openamer3:70b",
+        "openrouter/nousresearch/openamer-4-405b",
+        "NousResearch/OpenAmer3",
+        "openamer-3.1",
     ],
 )
-def test_matches_real_nous_hermes_chat_models(model_name: str) -> None:
-    assert is_nous_hermes_non_agentic(model_name), (
-        f"expected {model_name!r} to be flagged as Nous Hermes 3/4"
+def test_matches_real_nous_openamer_chat_models(model_name: str) -> None:
+    assert is_nous_openamer_non_agentic(model_name), (
+        f"expected {model_name!r} to be flagged as Nous OpenAmer 3/4"
     )
-    assert _check_hermes_model_warning(model_name) == _HERMES_MODEL_WARNING
+    assert _check_openamer_model_warning(model_name) == _HERMES_MODEL_WARNING
 
 
 @pytest.mark.parametrize(
     "model_name",
     [
         # Kyle's local Modelfile — qwen3:14b under a custom tag
-        "hermes-brain:qwen3-14b-ctx16k",
-        "hermes-brain:qwen3-14b-ctx32k",
-        "hermes-honcho:qwen3-8b-ctx8k",
+        "openamer-brain:qwen3-14b-ctx16k",
+        "openamer-brain:qwen3-14b-ctx32k",
+        "openamer-honcho:qwen3-8b-ctx8k",
         # Plain unrelated models
         "qwen3:14b",
         "qwen3-coder:30b",
@@ -60,25 +60,25 @@ def test_matches_real_nous_hermes_chat_models(model_name: str) -> None:
         "openai/gpt-4o",
         "google/gemini-2.5-flash",
         "deepseek-chat",
-        # Non-chat Hermes models we don't warn about
-        "hermes-llm-2",
-        "hermes2-pro",
-        "nous-hermes-2-mistral",
+        # Non-chat OpenAmer models we don't warn about
+        "openamer-llm-2",
+        "openamer2-pro",
+        "nous-openamer-2-mistral",
         # Edge cases
         "",
-        "hermes",  # bare "hermes" isn't the 3/4 family
-        "hermes-brain",
-        "brain-hermes-3-impostor",  # "3" not preceded by /: boundary
+        "openamer",  # bare "openamer" isn't the 3/4 family
+        "openamer-brain",
+        "brain-openamer-3-impostor",  # "3" not preceded by /: boundary
     ],
 )
 def test_does_not_match_unrelated_models(model_name: str) -> None:
-    assert not is_nous_hermes_non_agentic(model_name), (
-        f"expected {model_name!r} NOT to be flagged as Nous Hermes 3/4"
+    assert not is_nous_openamer_non_agentic(model_name), (
+        f"expected {model_name!r} NOT to be flagged as Nous OpenAmer 3/4"
     )
-    assert _check_hermes_model_warning(model_name) == ""
+    assert _check_openamer_model_warning(model_name) == ""
 
 
 def test_none_like_inputs_are_safe() -> None:
-    assert is_nous_hermes_non_agentic("") is False
+    assert is_nous_openamer_non_agentic("") is False
     # Defensive: the helper shouldn't crash on None-ish falsy input either.
-    assert _check_hermes_model_warning("") == ""
+    assert _check_openamer_model_warning("") == ""

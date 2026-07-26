@@ -232,7 +232,7 @@ def _permitted_host_read_target(p: Path, ctx: ResolveContext) -> Optional[Path]:
 
     - Local backend: any path is permitted (chosen posture). Returns ``p``.
     - Non-local backend: permitted only if the path resolves inside a media
-      cache root. A container-visible cache path (e.g. ``/root/.hermes/cache/
+      cache root. A container-visible cache path (e.g. ``/root/.openamer/cache/
       images/x.png``) is first translated back to its host mount; anything that
       is not under a cache returns ``None`` so the caller routes it to the
       in-sandbox exec-read instead of reading the host filesystem.

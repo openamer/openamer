@@ -58,7 +58,7 @@ class FakeDMChannel:
 
 
 class FakeTextChannel:
-    def __init__(self, channel_id: int = 1, name: str = "general", guild_name: str = "Hermes Server"):
+    def __init__(self, channel_id: int = 1, name: str = "general", guild_name: str = "OpenAmer Server"):
         self.id = channel_id
         self.name = name
         self.guild = SimpleNamespace(name=guild_name)
@@ -72,7 +72,7 @@ class FakeTextChannel:
 
 
 class FakeForumChannel:
-    def __init__(self, channel_id: int = 1, name: str = "support-forum", guild_name: str = "Hermes Server"):
+    def __init__(self, channel_id: int = 1, name: str = "support-forum", guild_name: str = "OpenAmer Server"):
         self.id = channel_id
         self.name = name
         self.guild = SimpleNamespace(name=guild_name)
@@ -81,7 +81,7 @@ class FakeForumChannel:
 
 
 class FakeThread:
-    def __init__(self, channel_id: int = 1, name: str = "thread", parent=None, guild_name: str = "Hermes Server"):
+    def __init__(self, channel_id: int = 1, name: str = "thread", parent=None, guild_name: str = "OpenAmer Server"):
         self.id = channel_id
         self.name = name
         self.parent = parent
@@ -242,7 +242,7 @@ async def test_discord_forum_threads_are_handled_as_threads(adapter, monkeypatch
     monkeypatch.delenv("DISCORD_FREE_RESPONSE_CHANNELS", raising=False)
 
     forum = FakeForumChannel(channel_id=222, name="support-forum")
-    thread = FakeThread(channel_id=456, name="Can Hermes reply here?", parent=forum)
+    thread = FakeThread(channel_id=456, name="Can OpenAmer reply here?", parent=forum)
     message = make_message(channel=thread, content="hello from forum post")
 
     await adapter._handle_message(message)
@@ -253,7 +253,7 @@ async def test_discord_forum_threads_are_handled_as_threads(adapter, monkeypatch
     assert event.source.chat_id == "456"
     assert event.source.thread_id == "456"
     assert event.source.chat_type == "thread"
-    assert event.source.chat_name == "Hermes Server / support-forum / Can Hermes reply here?"
+    assert event.source.chat_name == "OpenAmer Server / support-forum / Can OpenAmer reply here?"
 
 
 @pytest.mark.asyncio
@@ -837,7 +837,7 @@ async def test_fetch_channel_context_skips_self_improvement_boundary_message(ada
             make_history_message(author=human, content="question after reply", msg_id=5),
             make_history_message(
                 author=adapter._client.user,
-                content="💾 Self-improvement review: Skill 'hermes-gateway-display-config' patched",
+                content="💾 Self-improvement review: Skill 'openamer-gateway-display-config' patched",
                 msg_id=4,
             ),
             make_history_message(author=codex, content="Codex final answer", msg_id=3),
@@ -1445,7 +1445,7 @@ async def test_discord_reply_in_free_channel_triggers_backfill(adapter, monkeypa
     monkeypatch.setenv("DISCORD_AUTO_THREAD", "false")
     adapter.config.extra["history_backfill"] = True
     adapter._fetch_channel_context = AsyncMock(
-        return_value="[Context around the replied-to message]\n[Hermes [bot]] earlier answer"
+        return_value="[Context around the replied-to message]\n[OpenAmer [bot]] earlier answer"
     )
 
     message = make_message(channel=FakeTextChannel(channel_id=321), content="what about edge cases?")
@@ -1461,7 +1461,7 @@ async def test_discord_reply_in_free_channel_triggers_backfill(adapter, monkeypa
 
     event = adapter.handle_message.await_args.args[0]
     assert event.channel_context == (
-        "[Context around the replied-to message]\n[Hermes [bot]] earlier answer"
+        "[Context around the replied-to message]\n[OpenAmer [bot]] earlier answer"
     )
 
 

@@ -435,4 +435,4 @@ def test_redeem_missing_credentials_reports_unavailable(monkeypatch):
     result = account_usage.redeem_codex_reset_credit()
 
     assert result.status == "unavailable"
-    assert "hermes auth" in result.message
+    assert "openamer auth" in result.message

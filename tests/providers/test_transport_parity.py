@@ -201,7 +201,7 @@ class TestNousParity:
     def test_tags(self, transport):
         from agent.portal_tags import nous_portal_tags
         kw = transport.build_kwargs(
-            model="hermes-3-llama-3.1-405b",
+            model="openamer-3-llama-3.1-405b",
             messages=_simple_messages(),
             tools=None,
             provider_profile=get_provider_profile("nous"),
@@ -226,7 +226,7 @@ class TestNousParity:
     def test_reasoning_omitted_when_disabled(self, transport):
         """Nous special case: reasoning omitted entirely when disabled."""
         kw = transport.build_kwargs(
-            model="hermes-3-llama-3.1-405b",
+            model="openamer-3-llama-3.1-405b",
             messages=_simple_messages(),
             tools=None,
             provider_profile=get_provider_profile("nous"),
@@ -238,7 +238,7 @@ class TestNousParity:
     def test_reasoning_enabled(self, transport):
         rc = {"enabled": True, "effort": "high"}
         kw = transport.build_kwargs(
-            model="hermes-3-llama-3.1-405b",
+            model="openamer-3-llama-3.1-405b",
             messages=_simple_messages(),
             tools=None,
             provider_profile=get_provider_profile("nous"),

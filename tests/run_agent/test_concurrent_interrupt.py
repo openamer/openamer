@@ -8,9 +8,9 @@ import pytest
 
 
 @pytest.fixture(autouse=True)
-def _isolate_hermes(tmp_path, monkeypatch):
-    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".hermes"))
-    (tmp_path / ".hermes").mkdir(exist_ok=True)
+def _isolate_openamer(tmp_path, monkeypatch):
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".openamer"))
+    (tmp_path / ".openamer").mkdir(exist_ok=True)
 
 
 def _make_agent(monkeypatch):

@@ -1,7 +1,7 @@
 """Characterization tests for the cron trigger before/after the provider refactor.
 
 These lock the CURRENT in-process-ticker contract (Phase 0 of the pluggable
-CronScheduler plan, .hermes/plans/cron-scheduler-provider-interface.md). They
+CronScheduler plan, .openamer/plans/cron-scheduler-provider-interface.md). They
 must pass unchanged on `main` now, and after every subsequent phase of the
 refactor — they are the regression harness that proves the built-in firing
 behavior is byte-for-byte preserved when the ticker is moved behind the
@@ -749,7 +749,7 @@ def test_multiplex_ticker_ticks_each_profile_once(tmp_path, monkeypatch):
 
 def test_multiplex_heartbeat_scoped_per_profile(tmp_path, monkeypatch):
     """record_ticker_heartbeat is scoped to each profile's store under
-    multiplex, so 'hermes cron status' can report liveness per profile."""
+    multiplex, so 'openamer cron status' can report liveness per profile."""
     from cron.scheduler_provider import InProcessCronScheduler
     from cron.jobs import record_ticker_heartbeat as _real_heartbeat
 

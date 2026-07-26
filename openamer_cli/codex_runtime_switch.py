@@ -50,7 +50,7 @@ def parse_args(arg_string: str) -> tuple[Optional[str], list[str]]:
     # Accept human-friendly synonyms
     if raw in {"on", "codex", "enable"}:
         return "codex_app_server", []
-    if raw in {"off", "default", "disable", "hermes"}:
+    if raw in {"off", "default", "disable", "openamer"}:
         return "auto", []
     if raw in VALID_RUNTIMES:
         return raw, []

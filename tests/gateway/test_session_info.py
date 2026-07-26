@@ -18,7 +18,7 @@ def _patch_info(tmp_path, config_yaml, model, runtime):
     if config_yaml is not None:
         cfg_path.write_text(config_yaml)
     return (
-        patch("gateway.run._hermes_home", tmp_path),
+        patch("gateway.run._openamer_home", tmp_path),
         patch("gateway.run._resolve_gateway_model", return_value=model),
         patch("gateway.run._resolve_runtime_agent_kwargs", return_value=runtime),
     )
@@ -155,7 +155,7 @@ model:
         """If runtime resolution raises, should still produce output."""
         cfg_path = tmp_path / "config.yaml"
         cfg_path.write_text("model:\n  default: test-model\n  context_length: 4096\n")
-        with patch("gateway.run._hermes_home", tmp_path), \
+        with patch("gateway.run._openamer_home", tmp_path), \
              patch("gateway.run._resolve_gateway_model", return_value="test-model"), \
              patch("gateway.run._resolve_runtime_agent_kwargs", side_effect=RuntimeError("no creds")):
             info = runner._format_session_info()
@@ -192,7 +192,7 @@ class TestResetNoticeSessionInfo:
         from types import SimpleNamespace
         base, profile = self._homes(tmp_path)
         runner.config = SimpleNamespace(multiplex_profiles=True)
-        with patch("gateway.run._hermes_home", base), \
+        with patch("gateway.run._openamer_home", base), \
              patch.object(GatewayRunner, "_resolve_profile_home_for_source", return_value=profile), \
              patch("gateway.run._resolve_runtime_agent_kwargs", return_value=self._RUNTIME):
             info = runner._reset_notice_session_info(self._source())
@@ -204,7 +204,7 @@ class TestResetNoticeSessionInfo:
         from types import SimpleNamespace
         base, _profile = self._homes(tmp_path)
         runner.config = SimpleNamespace(multiplex_profiles=False)
-        with patch("gateway.run._hermes_home", base), \
+        with patch("gateway.run._openamer_home", base), \
              patch("gateway.run._resolve_runtime_agent_kwargs", return_value=self._RUNTIME):
             info = runner._reset_notice_session_info(self._source())
         assert "base-model" in info

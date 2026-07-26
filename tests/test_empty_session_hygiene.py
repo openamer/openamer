@@ -2,7 +2,7 @@
 
 Starting the CLI and immediately quitting (or rotating sessions with /new)
 used to leave empty untitled rows in the session DB that clutter /resume
-and `hermes sessions list`. ``SessionDB.delete_session_if_empty`` removes
+and `openamer sessions list`. ``SessionDB.delete_session_if_empty`` removes
 a just-ended session row only when it never gained resumable content:
 no messages, no title, and no child sessions.
 """
@@ -106,12 +106,12 @@ class TestDeleteSessionIfEmpty:
 
 
 class TestCLIDiscardSessionIfEmpty:
-    """Wiring tests for HermesCLI._discard_session_if_empty."""
+    """Wiring tests for OpenAmerCLI._discard_session_if_empty."""
 
     def _make_cli(self, db):
-        from cli import HermesCLI
+        from cli import OpenAmerCLI
 
-        cli = HermesCLI.__new__(HermesCLI)
+        cli = OpenAmerCLI.__new__(OpenAmerCLI)
         cli._session_db = db
         cli.conversation_history = []
         return cli

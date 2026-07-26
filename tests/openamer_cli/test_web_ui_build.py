@@ -2,7 +2,7 @@
 
 The freshness check uses a SHA-256 content hash of the web source tree
 (mirroring the desktop build), recorded in a stamp file under $OPENAMER_HOME,
-NOT mtime comparison — so ``git pull`` / ``hermes update`` that rewrite
+NOT mtime comparison — so ``git pull`` / ``openamer update`` that rewrite
 source mtimes without changing content no longer fool it.
 
 Critical invariant: the dashboard Vite build outputs to openamer_cli/web_dist/
@@ -29,9 +29,9 @@ from openamer_cli.main import (
 
 
 @pytest.fixture(autouse=True)
-def _isolated_hermes_home(tmp_path, monkeypatch):
+def _isolated_openamer_home(tmp_path, monkeypatch):
     """Keep web-build-stamp writes inside the test's tmp dir, never the real home."""
-    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / "_hermes_home"))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / "_openamer_home"))
 
 
 def _touch(path: Path, offset: float = 0.0) -> None:
@@ -128,7 +128,7 @@ class TestWebUIBuildNeeded:
 
     def test_mtime_only_change_is_not_stale(self, tmp_path):
         """The whole point: bumping mtimes without changing bytes (what
-        ``git pull`` / ``hermes update`` do) must NOT report stale."""
+        ``git pull`` / ``openamer update`` do) must NOT report stale."""
         web_dir, dist_dir = _make_web_dir(tmp_path)
         src = web_dir / "src" / "App.tsx"
         src.parent.mkdir(parents=True, exist_ok=True)

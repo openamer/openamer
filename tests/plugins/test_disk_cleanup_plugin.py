@@ -28,10 +28,10 @@ def _isolate_env(tmp_path, monkeypatch):
     but we want the plugin to work with a predictable subpath. We reset
     OPENAMER_HOME here for clarity.
     """
-    hermes_home = tmp_path / ".hermes"
-    hermes_home.mkdir()
-    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
-    yield hermes_home
+    openamer_home = tmp_path / ".openamer"
+    openamer_home.mkdir()
+    monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
+    yield openamer_home
 
 
 def _load_lib():
@@ -52,20 +52,20 @@ def _load_plugin_init():
     plugin_dir = repo_root / "plugins" / "disk-cleanup"
     # Use the PluginManager's module naming convention so relative imports work.
     spec = importlib.util.spec_from_file_location(
-        "hermes_plugins.disk_cleanup",
+        "openamer_plugins.disk_cleanup",
         plugin_dir / "__init__.py",
         submodule_search_locations=[str(plugin_dir)],
     )
     # Ensure parent namespace package exists for the relative `. import disk_cleanup`
     import types
-    if "hermes_plugins" not in sys.modules:
-        ns = types.ModuleType("hermes_plugins")
+    if "openamer_plugins" not in sys.modules:
+        ns = types.ModuleType("openamer_plugins")
         ns.__path__ = []
-        sys.modules["hermes_plugins"] = ns
+        sys.modules["openamer_plugins"] = ns
     mod = importlib.util.module_from_spec(spec)
-    mod.__package__ = "hermes_plugins.disk_cleanup"
+    mod.__package__ = "openamer_plugins.disk_cleanup"
     mod.__path__ = [str(plugin_dir)]
-    sys.modules["hermes_plugins.disk_cleanup"] = mod
+    sys.modules["openamer_plugins.disk_cleanup"] = mod
     spec.loader.exec_module(mod)
     return mod
 
@@ -75,20 +75,20 @@ def _load_plugin_init():
 # ---------------------------------------------------------------------------
 
 class TestIsSafePath:
-    def test_accepts_path_under_hermes_home(self, _isolate_env):
+    def test_accepts_path_under_openamer_home(self, _isolate_env):
         dg = _load_lib()
         p = _isolate_env / "subdir" / "file.txt"
         p.parent.mkdir()
         p.write_text("x")
         assert dg.is_safe_path(p) is True
 
-    def test_rejects_outside_hermes_home(self, _isolate_env):
+    def test_rejects_outside_openamer_home(self, _isolate_env):
         dg = _load_lib()
         assert dg.is_safe_path(Path("/etc/passwd")) is False
 
-    def test_accepts_tmp_hermes_prefix(self, _isolate_env, tmp_path):
+    def test_accepts_tmp_openamer_prefix(self, _isolate_env, tmp_path):
         dg = _load_lib()
-        assert dg.is_safe_path(Path("/tmp/hermes-abc/x.log")) is True
+        assert dg.is_safe_path(Path("/tmp/openamer-abc/x.log")) is True
 
     def test_rejects_plain_tmp(self, _isolate_env):
         dg = _load_lib()
@@ -387,15 +387,15 @@ class TestTrackForgetQuick:
     ):
         dg = _load_lib()
         protected_empty = (
-            _isolate_env / "hermes-agent" / "node_modules" / "pkg" / "empty"
+            _isolate_env / "openamer-agent" / "node_modules" / "pkg" / "empty"
         )
         protected_empty.mkdir(parents=True)
 
         original_iterdir = Path.iterdir
 
         def guarded_iterdir(path):
-            if path == _isolate_env / "hermes-agent":
-                raise AssertionError("quick() descended into protected hermes-agent/")
+            if path == _isolate_env / "openamer-agent":
+                raise AssertionError("quick() descended into protected openamer-agent/")
             return original_iterdir(path)
 
         monkeypatch.setattr(Path, "iterdir", guarded_iterdir)
@@ -584,10 +584,10 @@ class TestSlashCommand:
 # ---------------------------------------------------------------------------
 
 class TestBundledDiscovery:
-    def _write_enabled_config(self, hermes_home, names):
+    def _write_enabled_config(self, openamer_home, names):
         """Write plugins.enabled allow-list to config.yaml."""
         import yaml
-        cfg_path = hermes_home / "config.yaml"
+        cfg_path = openamer_home / "config.yaml"
         cfg_path.write_text(yaml.safe_dump({"plugins": {"enabled": list(names)}}))
 
     def test_disk_cleanup_discovered_but_not_loaded_by_default(self, _isolate_env):

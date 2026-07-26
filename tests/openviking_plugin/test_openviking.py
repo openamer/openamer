@@ -118,7 +118,7 @@ def make_prefetch_provider(monkeypatch, responses, **env):
     provider._endpoint = "http://openviking.test"
     provider._account = "default"
     provider._user = "default"
-    provider._agent = "hermes"
+    provider._agent = "openamer"
     provider._session_id = "session-test"
     return provider
 
@@ -129,10 +129,10 @@ def wait_prefetch(provider, query="What should we recall?", session_id="session-
 
 class TestOpenVikingSummaryUriNormalization:
     def test_normalize_summary_uri_maps_pseudo_files_to_parent_directory(self):
-        assert OpenVikingMemoryProvider._normalize_summary_uri("viking://user/hermes/.overview.md") == "viking://user/hermes"
+        assert OpenVikingMemoryProvider._normalize_summary_uri("viking://user/openamer/.overview.md") == "viking://user/openamer"
         assert OpenVikingMemoryProvider._normalize_summary_uri("viking://resources/.abstract.md") == "viking://resources"
         assert OpenVikingMemoryProvider._normalize_summary_uri("viking://") == "viking://"
-        assert OpenVikingMemoryProvider._normalize_summary_uri("viking://user/hermes/memories/profile.md") == "viking://user/hermes/memories/profile.md"
+        assert OpenVikingMemoryProvider._normalize_summary_uri("viking://user/openamer/memories/profile.md") == "viking://user/openamer/memories/profile.md"
 
 class TestOpenVikingSkillQuerySafety:
     def test_derive_returns_empty_string_for_non_string_input(self):
@@ -156,7 +156,7 @@ class TestOpenVikingSkillQuerySafety:
 
         assert openviking_plugin._derive_openviking_user_text(skill_message) == ""
 
-    def test_skill_markers_match_hermes_scaffolding(self, tmp_path, monkeypatch):
+    def test_skill_markers_match_openamer_scaffolding(self, tmp_path, monkeypatch):
         import agent.skill_bundles as skill_bundles
         import agent.skill_commands as skill_commands
         import tools.skills_tool as skills_tool
@@ -205,7 +205,7 @@ class TestOpenVikingSkillQuerySafety:
         provider._api_key = ""
         provider._account = "default"
         provider._user = "default"
-        provider._agent = "hermes"
+        provider._agent = "openamer"
         skill_message = (
             '[IMPORTANT: The user has invoked the "skill-creator" skill, indicating they want '
             "you to follow its instructions. The full skill content is loaded below.]\n\n"
@@ -238,7 +238,7 @@ class TestOpenVikingSkillQuerySafety:
         provider._api_key = ""
         provider._account = "default"
         provider._user = "default"
-        provider._agent = "hermes"
+        provider._agent = "openamer"
         skill_message = (
             '[IMPORTANT: The user has invoked the "backend-dev" skill bundle, '
             "loading 2 skills together. Treat every skill below as active guidance for this turn.]\n\n"
@@ -288,7 +288,7 @@ class TestOpenVikingSkillQuerySafety:
         provider._api_key = ""
         provider._account = "default"
         provider._user = "default"
-        provider._agent = "hermes"
+        provider._agent = "openamer"
         provider._session_id = "session-1"
         skill_message = (
             '[IMPORTANT: The user has invoked the "skill-creator" skill, indicating they want '
@@ -316,7 +316,7 @@ class TestOpenVikingSkillQuerySafety:
                         {
                             "role": "assistant",
                             "parts": [{"type": "text", "text": "Done."}],
-                            "peer_id": "hermes",
+                            "peer_id": "openamer",
                         },
                     ]
                 },
@@ -611,7 +611,7 @@ class TestOpenVikingTurnConversion:
                     "content": json.dumps({
                         "results": [
                             {
-                                "uri": "viking://user/hermes/memories/context",
+                                "uri": "viking://user/openamer/memories/context",
                                 "abstract": "Old OpenViking memory content",
                             }
                         ]
@@ -709,12 +709,12 @@ class TestOpenVikingTurnConversion:
 
         batch = OpenVikingMemoryProvider._messages_to_openviking_batch(
             turn,
-            assistant_peer_id="hermes",
+            assistant_peer_id="openamer",
         )
 
         assert batch == [
             {"role": "user", "parts": [{"type": "text", "text": "hello"}]},
-            {"role": "assistant", "parts": [{"type": "text", "text": "answer"}], "peer_id": "hermes"},
+            {"role": "assistant", "parts": [{"type": "text", "text": "answer"}], "peer_id": "openamer"},
         ]
 
 
@@ -725,20 +725,20 @@ class TestOpenVikingRead:
             {
                 (
                     "/api/v1/content/overview",
-                    (("uri", "viking://user/hermes"),),
+                    (("uri", "viking://user/openamer"),),
                 ): {"result": {"content": "overview text"}},
             }
         )
 
-        result = json.loads(provider._tool_read({"uri": "viking://user/hermes/.overview.md", "level": "overview"}))
+        result = json.loads(provider._tool_read({"uri": "viking://user/openamer/.overview.md", "level": "overview"}))
 
-        assert result["uri"] == "viking://user/hermes/.overview.md"
-        assert result["resolved_uri"] == "viking://user/hermes"
+        assert result["uri"] == "viking://user/openamer/.overview.md"
+        assert result["resolved_uri"] == "viking://user/openamer"
         assert result["level"] == "overview"
         assert result["content"] == "overview text"
         assert provider._client.calls == [(
             "/api/v1/content/overview",
-            {"uri": "viking://user/hermes"},
+            {"uri": "viking://user/openamer"},
         )]
 
     def test_full_read_keeps_original_uri(self):
@@ -747,29 +747,29 @@ class TestOpenVikingRead:
             {
                 (
                     "/api/v1/content/read",
-                    (("uri", "viking://user/hermes/memories/profile.md"),),
+                    (("uri", "viking://user/openamer/memories/profile.md"),),
                 ): {"result": "full text"},
             }
         )
 
-        result = json.loads(provider._tool_read({"uri": "viking://user/hermes/memories/profile.md", "level": "full"}))
+        result = json.loads(provider._tool_read({"uri": "viking://user/openamer/memories/profile.md", "level": "full"}))
 
-        assert result["uri"] == "viking://user/hermes/memories/profile.md"
-        assert result["resolved_uri"] == "viking://user/hermes/memories/profile.md"
+        assert result["uri"] == "viking://user/openamer/memories/profile.md"
+        assert result["resolved_uri"] == "viking://user/openamer/memories/profile.md"
         assert result["level"] == "full"
         assert result["content"] == "full text"
         assert provider._client.calls == [(
             "/api/v1/content/read",
-            {"uri": "viking://user/hermes/memories/profile.md"},
+            {"uri": "viking://user/openamer/memories/profile.md"},
         )]
 
     def test_read_accepts_uri_batch_and_caps_batch_full_content(self):
         provider = OpenVikingMemoryProvider()
         uris = [
-            "viking://user/hermes/memories/a.md",
-            "viking://user/hermes/memories/b.md",
-            "viking://user/hermes/memories/c.md",
-            "viking://user/hermes/memories/d.md",
+            "viking://user/openamer/memories/a.md",
+            "viking://user/openamer/memories/b.md",
+            "viking://user/openamer/memories/c.md",
+            "viking://user/openamer/memories/d.md",
         ]
         provider._client = FakeVikingClient(
             {
@@ -806,8 +806,8 @@ class TestOpenVikingRead:
 
     def test_read_deduplicates_uri_batch_and_keeps_errors_per_uri(self):
         provider = OpenVikingMemoryProvider()
-        ok_uri = "viking://user/hermes/memories/ok.md"
-        bad_uri = "viking://user/hermes/memories/bad.md"
+        ok_uri = "viking://user/openamer/memories/ok.md"
+        bad_uri = "viking://user/openamer/memories/bad.md"
         provider._client = FakeVikingClient(
             {
                 (
@@ -838,7 +838,7 @@ class TestOpenVikingRead:
     def test_overview_file_uri_routes_straight_to_content_read_via_stat_probe(self):
         """Pre-check via fs/stat: file URIs skip the directory-only endpoint entirely."""
         provider = OpenVikingMemoryProvider()
-        file_uri = "viking://user/hermes/memories/entities/mem_abc.md"
+        file_uri = "viking://user/openamer/memories/entities/mem_abc.md"
         provider._client = FakeVikingClient(
             {
                 (
@@ -871,23 +871,23 @@ class TestOpenVikingRead:
             {
                 (
                     "/api/v1/content/overview",
-                    (("uri", "viking://user/hermes"),),
+                    (("uri", "viking://user/openamer"),),
                 ): {"result": "overview"},
             }
         )
 
-        result = json.loads(provider._tool_read({"uri": "viking://user/hermes/.overview.md", "level": "overview"}))
+        result = json.loads(provider._tool_read({"uri": "viking://user/openamer/.overview.md", "level": "overview"}))
 
         assert result["content"] == "overview"
         # No fs/stat call — normalization already determined it's a directory.
         assert provider._client.calls == [
-            ("/api/v1/content/overview", {"uri": "viking://user/hermes"}),
+            ("/api/v1/content/overview", {"uri": "viking://user/openamer"}),
         ]
 
     def test_overview_directory_uri_uses_stat_probe_then_overview(self):
         """Non-pseudo directory URI: stat → isDir=True → summary endpoint."""
         provider = OpenVikingMemoryProvider()
-        dir_uri = "viking://user/hermes/memories"
+        dir_uri = "viking://user/openamer/memories"
         provider._client = FakeVikingClient(
             {
                 (
@@ -913,7 +913,7 @@ class TestOpenVikingRead:
     def test_overview_file_uri_falls_back_via_exception_when_stat_indeterminate(self):
         """If fs/stat raises or returns unknown shape, legacy exception fallback still kicks in."""
         provider = OpenVikingMemoryProvider()
-        file_uri = "viking://user/hermes/memories/entities/mem_abc.md"
+        file_uri = "viking://user/openamer/memories/entities/mem_abc.md"
         provider._client = FakeVikingClient(
             {
                 (
@@ -949,19 +949,19 @@ class TestOpenVikingRead:
             {
                 (
                     "/api/v1/content/overview",
-                    (("uri", "viking://user/hermes"),),
+                    (("uri", "viking://user/openamer"),),
                 ): RuntimeError("500 Internal Server Error"),
             }
         )
 
         try:
-            provider._tool_read({"uri": "viking://user/hermes/.overview.md", "level": "overview"})
+            provider._tool_read({"uri": "viking://user/openamer/.overview.md", "level": "overview"})
             assert False, "Expected summary endpoint error to be raised"
         except RuntimeError:
             pass
 
         assert provider._client.calls == [
-            ("/api/v1/content/overview", {"uri": "viking://user/hermes"}),
+            ("/api/v1/content/overview", {"uri": "viking://user/openamer"}),
         ]
 
 
@@ -1037,7 +1037,7 @@ class TestOpenVikingAutoRecallPrefetch:
                             "result": {
                                 "memories": [
                                     {
-                                        "uri": "viking://user/peers/hermes/memories/e2e-full.md",
+                                        "uri": "viking://user/peers/openamer/memories/e2e-full.md",
                                         "score": 0.9,
                                         "level": 2,
                                         "category": "events",
@@ -1070,7 +1070,7 @@ class TestOpenVikingAutoRecallPrefetch:
         monkeypatch.setenv("OPENVIKING_ENDPOINT", endpoint)
         monkeypatch.setenv("OPENVIKING_ACCOUNT", "acct")
         monkeypatch.setenv("OPENVIKING_USER", "user")
-        monkeypatch.setenv("OPENVIKING_AGENT", "hermes")
+        monkeypatch.setenv("OPENVIKING_AGENT", "openamer")
 
         provider = OpenVikingMemoryProvider()
         try:
@@ -1088,7 +1088,7 @@ class TestOpenVikingAutoRecallPrefetch:
         assert "people/ada.md — Ada is the project owner." in block
         assert "E2E full L2 memory content." in block
         assert "E2E abstract should not be injected." not in block
-        assert records["reads"] == ["viking://user/peers/hermes/memories/e2e-full.md"]
+        assert records["reads"] == ["viking://user/peers/openamer/memories/e2e-full.md"]
         assert [listing["uri"] for listing in records["listings"]] == [
             "viking://user/memories/preferences",
             "viking://user/memories/entities",
@@ -1109,7 +1109,7 @@ class TestOpenVikingAutoRecallPrefetch:
             {key.lower(): value for key, value in headers.items()}
             for headers in records["headers"]
         ]
-        assert all(headers.get("x-openviking-actor-peer") == "hermes" for headers in normalized_headers)
+        assert all(headers.get("x-openviking-actor-peer") == "openamer" for headers in normalized_headers)
         assert all(headers.get("x-openviking-account") == "acct" for headers in normalized_headers)
         assert all(headers.get("x-openviking-user") == "user" for headers in normalized_headers)
 
@@ -1124,7 +1124,7 @@ class TestOpenVikingAutoRecallPrefetch:
                 "result": {
                     "memories": [
                         {
-                            "uri": "viking://user/peers/hermes/memories/caroline.md",
+                            "uri": "viking://user/peers/openamer/memories/caroline.md",
                             "score": 0.9,
                             "level": 1,
                             "category": "profile",
@@ -1151,7 +1151,7 @@ class TestOpenVikingAutoRecallPrefetch:
                 "result": {
                     "memories": [
                         {
-                            "uri": "viking://user/peers/hermes/memories/caroline.md",
+                            "uri": "viking://user/peers/openamer/memories/caroline.md",
                             "score": 0.9,
                             "level": 1,
                             "category": "profile",
@@ -1169,7 +1169,7 @@ class TestOpenVikingAutoRecallPrefetch:
                 "result": {
                     "memories": [
                         {
-                            "uri": "viking://user/peers/hermes/memories/melanie-race.md",
+                            "uri": "viking://user/peers/openamer/memories/melanie-race.md",
                             "score": 0.9,
                             "level": 1,
                             "category": "events",
@@ -1197,14 +1197,14 @@ class TestOpenVikingAutoRecallPrefetch:
                 "result": {
                     "memories": [
                         {
-                            "uri": "viking://user/peers/hermes/memories/keep.md",
+                            "uri": "viking://user/peers/openamer/memories/keep.md",
                             "score": 0.22,
                             "level": 1,
                             "category": "preferences",
                             "abstract": "Keep this relevant memory.",
                         },
                         {
-                            "uri": "viking://user/peers/hermes/memories/drop.md",
+                            "uri": "viking://user/peers/openamer/memories/drop.md",
                             "score": 0.12,
                             "level": 1,
                             "category": "preferences",
@@ -1237,14 +1237,14 @@ class TestOpenVikingAutoRecallPrefetch:
                 "result": {
                     "memories": [
                         {
-                            "uri": "viking://user/peers/hermes/memories/too-large.md",
+                            "uri": "viking://user/peers/openamer/memories/too-large.md",
                             "score": 0.9,
                             "level": 1,
                             "category": "memory",
                             "abstract": long_memory,
                         },
                         {
-                            "uri": "viking://user/peers/hermes/memories/small.md",
+                            "uri": "viking://user/peers/openamer/memories/small.md",
                             "score": 0.8,
                             "level": 1,
                             "category": "memory",
@@ -1272,7 +1272,7 @@ class TestOpenVikingAutoRecallPrefetch:
                 "result": {
                     "memories": [
                         {
-                            "uri": "viking://user/peers/hermes/memories/full.md",
+                            "uri": "viking://user/peers/openamer/memories/full.md",
                             "score": 0.9,
                             "level": 2,
                             "category": "events",
@@ -1281,7 +1281,7 @@ class TestOpenVikingAutoRecallPrefetch:
                     ]
                 }
             },
-            ("/api/v1/content/read", "viking://user/peers/hermes/memories/full.md"): {
+            ("/api/v1/content/read", "viking://user/peers/openamer/memories/full.md"): {
                 "result": {"content": "Full L2 memory content."}
             },
         }
@@ -1294,7 +1294,7 @@ class TestOpenVikingAutoRecallPrefetch:
         assert (
             "get",
             "/api/v1/content/read",
-            {"uri": "viking://user/peers/hermes/memories/full.md"},
+            {"uri": "viking://user/peers/openamer/memories/full.md"},
         ) in FakeRecallClient.calls
 
     def test_prefetch_prefer_abstract_does_not_read_l2_content(self, monkeypatch):
@@ -1303,7 +1303,7 @@ class TestOpenVikingAutoRecallPrefetch:
                 "result": {
                     "memories": [
                         {
-                            "uri": "viking://user/peers/hermes/memories/full.md",
+                            "uri": "viking://user/peers/openamer/memories/full.md",
                             "score": 0.9,
                             "level": 2,
                             "category": "events",
@@ -1374,28 +1374,28 @@ class TestOpenVikingBrowse:
             {
                 (
                     "/api/v1/fs/ls",
-                    (("uri", "viking://user/hermes"),),
+                    (("uri", "viking://user/openamer"),),
                 ): {
                     "result": {
                         "entries": [
-                            {"name": "memories", "uri": "viking://user/hermes/memories", "type": "dir"},
-                            {"rel_path": "profile.md", "uri": "viking://user/hermes/memories/profile.md", "isDir": False, "abstract": "Profile"},
+                            {"name": "memories", "uri": "viking://user/openamer/memories", "type": "dir"},
+                            {"rel_path": "profile.md", "uri": "viking://user/openamer/memories/profile.md", "isDir": False, "abstract": "Profile"},
                         ]
                     }
                 },
             }
         )
 
-        result = json.loads(provider._tool_browse({"action": "list", "path": "viking://user/hermes"}))
+        result = json.loads(provider._tool_browse({"action": "list", "path": "viking://user/openamer"}))
 
-        assert result["path"] == "viking://user/hermes"
+        assert result["path"] == "viking://user/openamer"
         assert result["entries"] == [
-            {"name": "memories", "uri": "viking://user/hermes/memories", "type": "dir", "abstract": ""},
-            {"name": "profile.md", "uri": "viking://user/hermes/memories/profile.md", "type": "file", "abstract": "Profile"},
+            {"name": "memories", "uri": "viking://user/openamer/memories", "type": "dir", "abstract": ""},
+            {"name": "profile.md", "uri": "viking://user/openamer/memories/profile.md", "type": "file", "abstract": "Profile"},
         ]
         assert provider._client.calls == [(
             "/api/v1/fs/ls",
-            {"uri": "viking://user/hermes"},
+            {"uri": "viking://user/openamer"},
         )]
 
 
@@ -1420,11 +1420,11 @@ class TestOpenVikingMemoryUriBuilder:
         assert uri.endswith(".md")
 
     def test_uri_uses_configured_peer_not_default(self):
-        """_agent value is the OpenViking actor peer ID, not hardcoded to 'hermes'."""
+        """_agent value is the OpenViking actor peer ID, not hardcoded to 'openamer'."""
         p = self._make_provider(user="alice", agent="research-bot")
         uri = p._build_memory_uri("entities")
         assert "/peers/research-bot/" in uri
-        assert "/peers/hermes/" not in uri
+        assert "/peers/openamer/" not in uri
 
     def test_uri_slug_is_twelve_hex_chars_and_unique(self):
         """Slug must be 12 hex chars and differ between calls."""
@@ -1461,7 +1461,7 @@ class TestEnsureClientReloadsEnv:
         constructions = []
 
         class _StubClient:
-            def __init__(self, endpoint, api_key, account="", user="", agent="hermes"):
+            def __init__(self, endpoint, api_key, account="", user="", agent="openamer"):
                 constructions.append({"endpoint": endpoint, "api_key": api_key,
                                       "account": account, "user": user, "agent": agent})
                 self.endpoint, self.api_key = endpoint, api_key
@@ -1621,7 +1621,7 @@ class TestEnsureClientReloadsEnv:
         assert instances[1].posts[0][1]["content"] == "stable fact"
         assert instances[1].posts[0][1]["mode"] == "create"
         assert instances[1].posts[0][1]["uri"].startswith(
-            "viking://user/peers/hermes/memories/"
+            "viking://user/peers/openamer/memories/"
         )
 
     def test_concurrent_refresh_does_not_return_stale_client(self, monkeypatch):
@@ -1653,7 +1653,7 @@ class TestEnsureClientReloadsEnv:
         provider._api_key = stale_client.api_key
         provider._account = ""
         provider._user = ""
-        provider._agent = "hermes"
+        provider._agent = "openamer"
         provider._client = stale_client
         provider._env_refresh_enabled = True
 
@@ -1702,9 +1702,9 @@ class TestEnsureClientReloadsEnv:
         tmp_path,
         monkeypatch,
     ):
-        from openamer_cli import config as hermes_config
+        from openamer_cli import config as openamer_config
 
-        known_hermes_env = set(hermes_config.OPTIONAL_ENV_VARS) | hermes_config._EXTRA_ENV_KEYS
+        known_openamer_env = set(openamer_config.OPTIONAL_ENV_VARS) | openamer_config._EXTRA_ENV_KEYS
         openviking_tenant_env = {
             "OPENVIKING_ENDPOINT",
             "OPENVIKING_API_KEY",
@@ -1712,19 +1712,19 @@ class TestEnsureClientReloadsEnv:
             "OPENVIKING_USER",
             "OPENVIKING_AGENT",
         }
-        for key in known_hermes_env | openviking_tenant_env:
+        for key in known_openamer_env | openviking_tenant_env:
             monkeypatch.delenv(key, raising=False)
 
-        hermes_home = tmp_path / "hermes-home"
-        hermes_home.mkdir()
-        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
-        env_path = hermes_home / ".env"
+        openamer_home = tmp_path / "openamer-home"
+        openamer_home.mkdir()
+        monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
+        env_path = openamer_home / ".env"
         env_path.write_text(
             "OPENVIKING_ENDPOINT=https://openviking.example\n"
             "OPENVIKING_API_KEY=sk-old\n",
             encoding="utf-8",
         )
-        assert hermes_config.reload_env() >= 1
+        assert openamer_config.reload_env() >= 1
 
         class _StubClient:
             def __init__(self, endpoint, api_key="", account="", user="", agent=""):
@@ -1751,7 +1751,7 @@ class TestEnsureClientReloadsEnv:
             "OPENVIKING_API_KEY=\n",
             encoding="utf-8",
         )
-        assert hermes_config.reload_env() >= 1
+        assert openamer_config.reload_env() >= 1
 
         start_calls = []
         waiter_calls = []

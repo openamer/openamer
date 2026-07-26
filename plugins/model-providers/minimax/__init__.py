@@ -41,7 +41,7 @@ class MiniMaxProfile(ProviderProfile):
 
         MiniMax-M3's OpenAI-compatible endpoint keeps thinking inline unless
         ``reasoning_split`` is sent, so always request the split format on that
-        route. ``thinking`` controls the M3 mode; Hermes' effort levels are not
+        route. ``thinking`` controls the M3 mode; OpenAmer' effort levels are not
         a MiniMax depth knob here, so they only select adaptive vs disabled.
         """
         if not _is_minimax_global_openai_base_url(base_url) or not _is_minimax_m3(model):

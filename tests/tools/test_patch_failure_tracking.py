@@ -15,11 +15,11 @@ import pytest
 
 
 @pytest.fixture
-def hermes_home(monkeypatch, tmp_path):
+def openamer_home(monkeypatch, tmp_path):
     """Isolate OPENAMER_HOME and clear module-level caches afterward so the
     real shell-out side effects from _handle_patch don't leak into
     subsequent tests (see test_line_ending_preservation.py for details)."""
-    home = tmp_path / "hermes"
+    home = tmp_path / "openamer"
     home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
     yield home
@@ -52,7 +52,7 @@ def fresh_tracker():
 
 
 class TestPatchFailureEscalation:
-    def test_first_two_failures_use_normal_hint(self, hermes_home, tmp_path, fresh_tracker):
+    def test_first_two_failures_use_normal_hint(self, openamer_home, tmp_path, fresh_tracker):
         from tools.file_tools import _handle_patch
 
         target = tmp_path / "f.py"
@@ -74,7 +74,7 @@ class TestPatchFailureEscalation:
                 f"Escalating hint fired too early on attempt {_i + 1}: {hint!r}"
             )
 
-    def test_third_consecutive_failure_escalates(self, hermes_home, tmp_path, fresh_tracker):
+    def test_third_consecutive_failure_escalates(self, openamer_home, tmp_path, fresh_tracker):
         from tools.file_tools import _handle_patch
 
         target = tmp_path / "f.py"
@@ -100,7 +100,7 @@ class TestPatchFailureEscalation:
             "Escalating hint should mention write_file fallback"
         )
 
-    def test_success_clears_failure_counter(self, hermes_home, tmp_path, fresh_tracker):
+    def test_success_clears_failure_counter(self, openamer_home, tmp_path, fresh_tracker):
         from tools.file_tools import _handle_patch
 
         target = tmp_path / "f.py"
@@ -148,7 +148,7 @@ class TestPatchFailureEscalation:
         )
 
     def test_different_paths_have_independent_counters(
-        self, hermes_home, tmp_path, fresh_tracker
+        self, openamer_home, tmp_path, fresh_tracker
     ):
         from tools.file_tools import _handle_patch
 
@@ -186,7 +186,7 @@ class TestPatchFailureEscalation:
         )
 
     def test_different_tasks_have_independent_counters(
-        self, hermes_home, tmp_path, fresh_tracker
+        self, openamer_home, tmp_path, fresh_tracker
     ):
         from tools.file_tools import _handle_patch
 

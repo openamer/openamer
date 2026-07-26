@@ -1,4 +1,4 @@
-# Hermes static-message catalog -- Arabic (العربية)
+# OpenAmer static-message catalog -- Arabic (العربية)
 #
 # Mirrors locales/en.yaml key-for-key.  Only user-facing static prose is
 # translated: command names, /slash commands, config keys, paths, URLs, model
@@ -108,8 +108,8 @@ gateway:
     upload_failed:         "✗ فشل رفع تقرير التصحيح: {error}"
     header:                "**تم رفع تقرير التصحيح:**"
     auto_delete:           "⏱ ستُحذف اللصقات تلقائيًا خلال 6 ساعات."
-    full_logs_hint:        "لرفع السجلات الكاملة، استخدم `hermes debug share` من واجهة الأوامر."
-    share_hint:            "شارك هذه الروابط مع فريق Hermes للحصول على الدعم."
+    full_logs_hint:        "لرفع السجلات الكاملة، استخدم `openamer debug share` من واجهة الأوامر."
+    share_hint:            "شارك هذه الروابط مع فريق OpenAmer للحصول على الدعم."
 
   deny:
     stale:                 "❌ رُفض الأمر (الموافقة كانت قديمة)."
@@ -151,7 +151,7 @@ gateway:
     set:                   "⊙ حُدِّد الهدف (ميزانية {budget} دور): {goal}\nسأواصل العمل حتى يكتمل الهدف، أو توقفه/تمسحه، أو تنفد الميزانية.\nالتحكم: /goal status · /goal pause · /goal resume · /goal clear"
 
   help:
-    header:                "📖 **أوامر Hermes**\n"
+    header:                "📖 **أوامر OpenAmer**\n"
     skill_header:          "\n⚡ **أوامر المهارات** ({count} نشطة):"
     more_use_commands:     "\n... و{count} آخر. استخدم `/commands` للقائمة الكاملة المُقسّمة إلى صفحات."
 
@@ -162,7 +162,7 @@ gateway:
   kanban:
     error_prefix:          "⚠ خطأ kanban: {error}"
     subscribed_suffix:     "(مُشترك — ستُخطَر عند اكتمال {task_id} أو حجبها)"
-    truncated_suffix:      "… (مقتطع؛ استخدم `hermes kanban …` في الطرفية للخرج الكامل)"
+    truncated_suffix:      "… (مقتطع؛ استخدم `openamer kanban …` في الطرفية للخرج الكامل)"
     no_output:             "(لا يوجد خرج)"
     wake:
       completed:           "اكتملت"
@@ -244,13 +244,13 @@ gateway:
 
   restart:
     in_progress:           "⏳ إعادة تشغيل البوابة قيد التنفيذ بالفعل..."
-    restarting:            "♻ جارٍ إعادة تشغيل البوابة. إن لم تُخطَر خلال 60 ثانية، أعِد التشغيل من وحدة التحكّم باستخدام `hermes gateway restart`."
+    restarting:            "♻ جارٍ إعادة تشغيل البوابة. إن لم تُخطَر خلال 60 ثانية، أعِد التشغيل من وحدة التحكّم باستخدام `openamer gateway restart`."
 
   resume:
     db_unavailable:        "قاعدة بيانات الجلسات غير متاحة."
     parse_error:           "⚠️ تعذّر تحليل وسائط `/resume`: {error}.\nاستخدم علامات اقتباس حول العناوين التي تحتوي مسافات، مثال: `/resume \"Project A Plan\"`."
     matrix_no_named_sessions: "لم يُعثر على جلسات مُسمّاة لغرفة Matrix هذه.\nاستخدم `/title My Session` لتسمية جلسة الغرفة الحالية، أو `/resume --all` لسرد كل جلسات Matrix، أو `/resume --cross-room <session name>` لتجاوز حدود الغرفة صراحةً."
-    matrix_blocked_no_origin: "⚠️ حُجب /resume في Matrix: هذه الجلسة المُسمّاة لا تملك أصل غرفة مُسجّلًا، لذا لن يستأنفها Hermes داخل الغرفة الحالية افتراضيًا. استخدم `/resume --cross-room {name}` إن كنت تريد عمدًا تجاوز حدود الغرفة."
+    matrix_blocked_no_origin: "⚠️ حُجب /resume في Matrix: هذه الجلسة المُسمّاة لا تملك أصل غرفة مُسجّلًا، لذا لن يستأنفها OpenAmer داخل الغرفة الحالية افتراضيًا. استخدم `/resume --cross-room {name}` إن كنت تريد عمدًا تجاوز حدود الغرفة."
     matrix_blocked_other_room: "⚠️ حُجب /resume في Matrix: تلك الجلسة تخصّ غرفة Matrix مختلفة ({room}). استخدم `/resume --cross-room {name}` إن كنت تريد عمدًا استئنافها هنا."
     matrix_cross_room_success: "⚠️ استئناف عبر الغرف: استُؤنفت **{title}** داخل غرفة Matrix ‏**{room}**.\nستستخدم الرسائل المستقبلية في هذه الغرفة ذلك النص حتى `/reset` أو `/resume` آخر.{msg_part}"
     blocked_not_owner:     "⚠️ حُجب /resume: '**{name}**' تخصّ مستخدمًا أو محادثة مختلفة. يمكنك فقط استئناف جلسات هذه المحادثة."
@@ -285,7 +285,7 @@ gateway:
     success:               "✅ ضُبطت القناة الرئيسية إلى **{name}** (المعرّف: {chat_id}).\nستُسلَّم مهام cron والرسائل عبر المنصّات هنا."
 
   status:
-    header:                "📊 **حالة بوابة Hermes**"
+    header:                "📊 **حالة بوابة OpenAmer**"
     matrix_scope_header:   "**نطاق Matrix:**"
     matrix_scope_room:     "  الغرفة: {room}"
     matrix_scope_room_id:  "  معرّف الغرفة: {room_id}"
@@ -330,7 +330,7 @@ gateway:
     topics_user_disallowed:  "مواضيع Telegram مُفعّلة، لكن غير مسموح للمستخدمين بإنشاء مواضيع.\n\nافتح @BotFather → اختر البوت → Bot Settings → Threads Settings، ثم أوقف 'Disallow users to create new threads'.\n\nثم أرسل /topic مرة أخرى."
     enable_failed:           "فشل تفعيل وضع مواضيع Telegram: {error}"
     bound_status:            "هذا الموضوع مرتبط بـ:\nالجلسة: {label}\nالمعرّف: {session_id}\n\nاستخدم /new لاستبدال هذا الموضوع بجلسة جديدة.\nللعمل المتوازي، افتح All Messages وأرسل رسالة هناك لإنشاء موضوع آخر."
-    thread_ready:            "مواضيع Telegram متعددة الجلسات مُفعّلة.\n\nسيُستخدم هذا الموضوع كجلسة Hermes مستقلة. استخدم /new لاستبدال جلسة هذا الموضوع الحالية. للعمل المتوازي، افتح All Messages وأرسل رسالة هناك لإنشاء موضوع آخر."
+    thread_ready:            "مواضيع Telegram متعددة الجلسات مُفعّلة.\n\nسيُستخدم هذا الموضوع كجلسة OpenAmer مستقلة. استخدم /new لاستبدال جلسة هذا الموضوع الحالية. للعمل المتوازي، افتح All Messages وأرسل رسالة هناك لإنشاء موضوع آخر."
     untitled_session:        "جلسة دون عنوان"
 
   undo:
@@ -339,11 +339,11 @@ gateway:
     invalid_count:         "عدد غير صالح \"{arg}\" — استخدم /undo أو /undo N."
 
   update:
-    platform_not_messaging:  "✗ /update متاح فقط من منصّات المراسلة. شغّل `hermes update` من الطرفية."
+    platform_not_messaging:  "✗ /update متاح فقط من منصّات المراسلة. شغّل `openamer update` من الطرفية."
     not_git_repo:            "✗ ليس مستودع git — لا يمكن التحديث."
-    hermes_cmd_not_found:    "✗ تعذّر تحديد موقع أمر `hermes`. Hermes يعمل، لكن أمر التحديث لم يجد الملف التنفيذي على PATH أو عبر مُفسّر Python الحالي. جرّب تشغيل `hermes update` يدويًا في طرفيتك."
+    openamer_cmd_not_found:    "✗ تعذّر تحديد موقع أمر `openamer`. OpenAmer يعمل، لكن أمر التحديث لم يجد الملف التنفيذي على PATH أو عبر مُفسّر Python الحالي. جرّب تشغيل `openamer update` يدويًا في طرفيتك."
     start_failed:            "✗ فشل بدء التحديث: {error}"
-    starting:                "⚕ جارٍ بدء تحديث Hermes… سأبثّ التقدّم هنا."
+    starting:                "⚕ جارٍ بدء تحديث OpenAmer… سأبثّ التقدّم هنا."
 
   usage:
     rate_limits:              "⏱️ **حدود المعدّل:** {state}"
@@ -386,7 +386,7 @@ gateway:
     mode_new:              "⚙️ تقدّم الأدوات: **NEW** — يُعرض عند تغيّر الأداة (طول المعاينة: `display.tool_preview_length`، افتراضي 40)."
     mode_all:              "⚙️ تقدّم الأدوات: **ALL** — يُعرض كل استدعاء أداة (طول المعاينة: `display.tool_preview_length`، افتراضي 40)."
     mode_verbose:          "⚙️ تقدّم الأدوات: **VERBOSE** — كل استدعاء أداة مع وسائطه الكاملة."
-    mode_log:              "⚙️ تقدّم الأدوات: **LOG** — صامت في المحادثة؛ تُكتب استدعاءات الأدوات إلى ~/.hermes/logs/tool_calls.log."
+    mode_log:              "⚙️ تقدّم الأدوات: **LOG** — صامت في المحادثة؛ تُكتب استدعاءات الأدوات إلى ~/.openamer/logs/tool_calls.log."
     saved_suffix:          "_(حُفظ لـ **{platform}** — يسري على الرسالة التالية)_"
     save_failed:           "_(تعذّر الحفظ في الإعدادات: {error})_"
 

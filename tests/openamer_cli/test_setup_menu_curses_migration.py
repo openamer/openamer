@@ -3,7 +3,7 @@ through the shared curses radiolist (ESC + arrow-key handling that works across
 terminals, incl. Ghostty) instead of simple_term_menu.
 
 Guards against silently regressing back to simple_term_menu, whose ESC/arrow
-handling was unreliable in `hermes setup` (the provider->model sub-menu).
+handling was unreliable in `openamer setup` (the provider->model sub-menu).
 """
 from unittest.mock import patch
 

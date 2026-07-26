@@ -2,7 +2,7 @@
 
 The agent's system prompt is built once per session and reused across all
 turns — only context compression triggers a rebuild.  This keeps the
-upstream prefix cache warm.  See ``hermes-agent-dev``'s
+upstream prefix cache warm.  See ``openamer-agent-dev``'s
 ``references/system-prompt-invariant.md`` for the invariants and
 ``references/self-improvement-loop.md`` for how the background-review
 fork inherits the cached prompt verbatim.
@@ -160,7 +160,7 @@ def build_system_prompt_parts(agent: Any, system_message: Optional[str] = None) 
 
     Joined into a single string by :func:`build_system_prompt` and
     cached on ``agent._cached_system_prompt`` for the lifetime of the
-    AIAgent.  Hermes never re-renders parts of this string mid-
+    AIAgent.  OpenAmer never re-renders parts of this string mid-
     session — that's the only way to keep upstream prompt caches
     warm across turns.
     """
@@ -210,7 +210,7 @@ def build_system_prompt_parts(agent: Any, system_message: Optional[str] = None) 
         # Goal engine failure must never block prompt build.
         pass
 
-    # Pointer to the hermes-agent skill + docs for user questions about Hermes itself.
+    # Pointer to the openamer-agent skill + docs for user questions about OpenAmer itself.
     stable_parts.append(HERMES_AGENT_HELP_GUIDANCE)
 
     # Universal task-completion / no-fabrication guidance.  Applied to ALL
@@ -359,7 +359,7 @@ def build_system_prompt_parts(agent: Any, system_message: Optional[str] = None) 
     if _env_hints:
         stable_parts.append(_env_hints)
 
-    # Coding posture (base Hermes, any interactive coding surface in a code
+    # Coding posture (base OpenAmer, any interactive coding surface in a code
     # workspace — see agent/coding_context.py). Keep the operating brief in
     # the cross-session-stable prefix, while placing the live git/workspace
     # snapshot behind its own cache boundary. The post-snapshot blocks must
@@ -406,9 +406,9 @@ def build_system_prompt_parts(agent: Any, system_message: Optional[str] = None) 
             # Probe failure must never block prompt build.
             pass
 
-    # Active-profile hint — names the Hermes profile the agent is running
-    # under so it doesn't conflate ~/.hermes/skills/ (default profile) with
-    # ~/.hermes/profiles/<active>/skills/ (this profile's). Deterministic
+    # Active-profile hint — names the OpenAmer profile the agent is running
+    # under so it doesn't conflate ~/.openamer/skills/ (default profile) with
+    # ~/.openamer/profiles/<active>/skills/ (this profile's). Deterministic
     # for the lifetime of the agent — profile name doesn't change
     # mid-session, so this doesn't break the prompt cache.
     # See file_safety._resolve_active_profile_name + classify_cross_profile_target
@@ -420,7 +420,7 @@ def build_system_prompt_parts(agent: Any, system_message: Optional[str] = None) 
         active_profile = "default"
     if active_profile == "default":
         post_workspace_parts.append(
-            "Active Hermes profile: default. Other profiles (if any) live "
+            "Active OpenAmer profile: default. Other profiles (if any) live "
             "under " + str(get_openamer_home()) + "/profiles/<name>/. Each profile has its own "
             "skills/, plugins/, cron/, and memories/ that affect a different "
             "session than this one. Do not modify another profile's "
@@ -429,7 +429,7 @@ def build_system_prompt_parts(agent: Any, system_message: Optional[str] = None) 
         )
     else:
         post_workspace_parts.append(
-            f"Active Hermes profile: {active_profile}. This session reads "
+            f"Active OpenAmer profile: {active_profile}. This session reads "
             f"and writes {get_openamer_home()}/profiles/{active_profile}/. The default "
             f"profile's data lives at {get_openamer_home()}/skills/, {get_openamer_home()}/plugins/, "
             f"{get_openamer_home()}/cron/, {get_openamer_home()}/memories/ — those belong to a "
@@ -497,7 +497,7 @@ def build_system_prompt_parts(agent: Any, system_message: Optional[str] = None) 
         #
         # allow_install_tree_fallback: for cli/tui the launch dir IS the
         # user's shell cwd, so an in-tree fallback is a deliberate choice
-        # (developing Hermes). Every other surface (desktop chat panel,
+        # (developing OpenAmer). Every other surface (desktop chat panel,
         # gateway daemons) self-spawns into the install tree, where the
         # fallback would inject this repo's contributor AGENTS.md (#64590).
         context_files_prompt = _r.build_context_files_prompt(
@@ -530,8 +530,8 @@ def build_system_prompt_parts(agent: Any, system_message: Optional[str] = None) 
         except Exception:
             pass
 
-    from openamer_time import now as _hermes_now
-    now = _hermes_now()
+    from openamer_time import now as _openamer_now
+    now = _openamer_now()
     # Date-only (not minute-precision) so the system prompt is byte-stable
     # for the full day.  Minute-precision changes invalidate prefix-cache KV
     # on every rebuild path (compression boundary, fresh-agent gateway turns,
@@ -567,7 +567,7 @@ def build_system_prompt(agent: Any, system_message: Optional[str] = None) -> str
     Layers are ordered cache-friendly: stable identity/guidance first,
     then session-stable context files, then per-call volatile content
     (memory, USER profile, timestamp).  The whole string is treated as
-    one cached block — Hermes never rebuilds or reinjects parts of it
+    one cached block — OpenAmer never rebuilds or reinjects parts of it
     mid-session, which is the only way to keep upstream prompt caches
     warm across turns.
     """

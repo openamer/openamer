@@ -101,19 +101,19 @@ def _setup_isolated_home(tmp_path, monkeypatch, model_yaml_value):
     """Write a config.yaml with the given ``model:`` value and stub heavy bits."""
     import gateway.run as gateway_run
 
-    hermes_home = tmp_path / ".hermes"
-    hermes_home.mkdir()
-    cfg_path = hermes_home / "config.yaml"
+    openamer_home = tmp_path / ".openamer"
+    openamer_home.mkdir()
+    cfg_path = openamer_home / "config.yaml"
     cfg_path.write_text(
         yaml.safe_dump({"model": model_yaml_value, "providers": {}}),
         encoding="utf-8",
     )
 
-    monkeypatch.setattr(gateway_run, "_hermes_home", hermes_home)
+    monkeypatch.setattr(gateway_run, "_openamer_home", openamer_home)
     _stub_picker_dependencies(monkeypatch)
     # save_config writes to ``get_openamer_home() / config.yaml`` — point it here.
-    monkeypatch.setattr("openamer_constants.get_hermes_home", lambda: hermes_home)
-    monkeypatch.setattr("openamer_cli.config.get_hermes_home", lambda: hermes_home)
+    monkeypatch.setattr("openamer_constants.get_openamer_home", lambda: openamer_home)
+    monkeypatch.setattr("openamer_cli.config.get_openamer_home", lambda: openamer_home)
     return cfg_path
 
 
@@ -332,7 +332,7 @@ async def test_multiplex_picker_global_persists_only_named_profile(
     default_adapter = _FakePickerAdapter()
     named_adapter = _FakePickerAdapter()
     runner = _make_named_runner(monkeypatch, default_adapter, named_adapter, named_home)
-    monkeypatch.setattr(gateway_run, "_hermes_home", default_home)
+    monkeypatch.setattr(gateway_run, "_openamer_home", default_home)
     _stub_picker_dependencies(monkeypatch)
     event = _named_event("--global")
 

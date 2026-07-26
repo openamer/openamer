@@ -175,10 +175,10 @@ def _boot_with_bind_mount(
 
 
 def _cleanup_bind_mount(built_image: str, container_name: str, host_dir: Path) -> None:
-    """Remove root/hermes-owned files left in a bind-mounted host dir.
+    """Remove root/openamer-owned files left in a bind-mounted host dir.
 
     The stage2 hook chowns /opt/data (and its contents) to UID 10000
-    (hermes), which the host test user cannot delete. We run a throwaway
+    (openamer), which the host test user cannot delete. We run a throwaway
     container as root to chown everything back and rm -rf the contents
     before the temp dir is cleaned up.
     """

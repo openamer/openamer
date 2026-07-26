@@ -6,7 +6,7 @@ import { busyIndicatorWidth, statusBarSegments, statusRuleWidths } from '../comp
 describe('statusRuleWidths', () => {
   it('keeps the status rule within the terminal width', () => {
     for (const cols of [8, 12, 20, 40, 100]) {
-      const widths = statusRuleWidths(cols, '~/src/hermes-agent/main (some-long-branch-name)')
+      const widths = statusRuleWidths(cols, '~/src/openamer-agent/main (some-long-branch-name)')
 
       expect(widths.leftWidth + widths.separatorWidth + widths.rightWidth).toBeLessThanOrEqual(cols)
       expect(widths.leftWidth).toBeGreaterThan(0)
@@ -14,9 +14,9 @@ describe('statusRuleWidths', () => {
   })
 
   it('truncates the cwd segment before it can wrap in skinny terminals', () => {
-    const widths = statusRuleWidths(24, '~/src/hermes-agent/main (bb/some-extremely-long-branch)')
+    const widths = statusRuleWidths(24, '~/src/openamer-agent/main (bb/some-extremely-long-branch)')
 
-    expect(widths.rightWidth).toBeLessThan('~/src/hermes-agent/main (bb/some-extremely-long-branch)'.length)
+    expect(widths.rightWidth).toBeLessThan('~/src/openamer-agent/main (bb/some-extremely-long-branch)'.length)
     expect(widths.leftWidth).toBeGreaterThanOrEqual(8)
   })
 
@@ -32,7 +32,7 @@ describe('statusRuleWidths', () => {
   })
 
   it('reserves the high-priority left content so the cwd/branch yields first', () => {
-    const cwd = '~/src/hermes-agent/apps/desktop (bb/tui-statusbar-responsive)'
+    const cwd = '~/src/openamer-agent/apps/desktop (bb/tui-statusbar-responsive)'
 
     const greedy = statusRuleWidths(70, cwd) // legacy behaviour: cwd hogs the row
     const reserved = statusRuleWidths(70, cwd, 40) // reserve indicator+model+ctx
@@ -52,7 +52,7 @@ describe('statusRuleWidths', () => {
   })
 
   it('keeps the default (no reservation) behaviour identical for legacy callers', () => {
-    const cwd = '~/src/hermes-agent/main (some-long-branch-name)'
+    const cwd = '~/src/openamer-agent/main (some-long-branch-name)'
 
     expect(statusRuleWidths(80, cwd, 0)).toEqual(statusRuleWidths(80, cwd))
   })

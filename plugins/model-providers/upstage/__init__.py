@@ -13,10 +13,10 @@ from providers.base import ProviderProfile
 # ``solar-mini-250127`` are covered too.
 _NON_REASONING_MODEL_MARKERS = ("solar-mini", "syn-pro")
 
-# When the user hasn't picked a reasoning effort, Hermes passes
+# When the user hasn't picked a reasoning effort, OpenAmer passes
 # reasoning_config=None. Solar's own server default is "minimal" (reasoning
 # off), which is the wrong default for an agentic workload. We default reasoning
-# ON at this effort — matching the "medium (default)" that Hermes' /reasoning
+# ON at this effort — matching the "medium (default)" that OpenAmer' /reasoning
 # panel shows for an unset config, so the displayed default and the real wire
 # value agree. An explicit saved setting or a `/reasoning <level>` change is
 # always honored over this default; `/reasoning none` disables it.
@@ -75,7 +75,7 @@ class UpstageProfile(ProviderProfile):
         if reasoning_config.get("enabled") is False:
             return {}, top_level
 
-        # Map Hermes' effort vocabulary onto Solar's accepted set. xhigh/max/
+        # Map OpenAmer' effort vocabulary onto Solar's accepted set. xhigh/max/
         # ultra collapse to high (Solar's strongest). minimal → off (omit).
         # Unknown-but-enabled efforts (future vocabulary additions above
         # "high", per the max/ultra precedent in #62650) also collapse to

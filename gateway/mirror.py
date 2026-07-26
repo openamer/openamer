@@ -14,7 +14,7 @@ import logging
 from datetime import datetime
 from typing import Optional
 
-from openamer_cli.config import get_hermes_home
+from openamer_cli.config import get_openamer_home
 
 logger = logging.getLogger(__name__)
 

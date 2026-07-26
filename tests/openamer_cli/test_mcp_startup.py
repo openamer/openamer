@@ -201,7 +201,7 @@ def test_cli_get_tool_definitions_briefly_waits_for_fast_mcp_thread(monkeypatch)
 def test_init_agent_waits_for_mcp_discovery_before_agent_build(monkeypatch):
     waited = {"done": False}
 
-    cli = cli_mod.HermesCLI(compact=True)
+    cli = cli_mod.OpenAmerCLI(compact=True)
     cli._session_db = object()
     cli._resumed = False
     cli.conversation_history = []

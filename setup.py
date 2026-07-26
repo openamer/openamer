@@ -17,7 +17,7 @@ fires for ``uv build``, ``pip wheel``, ``python -m build``, and direct
 The one legitimate consumer of ``build_wheel`` is uv2nix, which calls
 ``setuptools.build_meta.build_wheel`` (→ ``bdist_wheel``) inside a Nix
 build sandbox. ``nix/python.nix`` sets ``HERMES_NIX_BUILD=1`` on the
-Hermes package derivation, so only that build may create an artifact.
+OpenAmer package derivation, so only that build may create an artifact.
 
 Editable installs (``uv sync``, ``pip install -e .``, ``nix develop``)
 use ``build_editable``, which does NOT call ``bdist_wheel`` — it calls
@@ -33,14 +33,14 @@ _IN_NIX_BUILD = os.environ.get("HERMES_NIX_BUILD") == "1"
 
 _BLOCK_MESSAGE = (
     "Building wheels or sdists for openamer-agent is not supported.\n"
-    "Hermes is distributed via the shell installer, Docker image, or Nix.\n"
+    "OpenAmer is distributed via the shell installer, Docker image, or Nix.\n"
     "See: https://openamer-agent.nousresearch.com/docs/getting-started/installation\n"
     "\n"
     "If you are developing, use an editable install instead:\n"
     "  uv sync          # or: uv pip install -e .\n"
     "\n"
     "If you are building with Nix (uv2nix), this error should not fire —\n"
-    "the Hermes Nix derivation sets HERMES_NIX_BUILD=1. If it does, file a bug."
+    "the OpenAmer Nix derivation sets HERMES_NIX_BUILD=1. If it does, file a bug."
 )
 
 

@@ -1,7 +1,7 @@
 """User-authorization methods for ``GatewayRunner``.
 
 Extracted from ``gateway/run.py`` as part of the god-file decomposition campaign
-(``~/.hermes/plans/god-file-decomposition.md``, Phase 3 mechanical mixin lifts).
+(``~/.openamer/plans/god-file-decomposition.md``, Phase 3 mechanical mixin lifts).
 This mixin holds the inbound-message authorization cluster: whether a user/chat
 is allowed to talk to the agent, the per-adapter DM policy, and the
 unauthorized-DM behavior.
@@ -287,7 +287,7 @@ class GatewayAuthorizationMixin:
 
         WeCom supports ``groups.<group_id>.allow_from`` on top of the top-level
         ``group_policy``. A group may be open at the chat level while still
-        restricting which senders inside that group can invoke Hermes. If such a
+        restricting which senders inside that group can invoke OpenAmer. If such a
         message reached the gateway, the adapter already checked that sender
         allowlist, so it is a trustworthy intake decision rather than the
         fail-open ``group_policy: open`` case.
@@ -541,7 +541,7 @@ class GatewayAuthorizationMixin:
 
         # Check pairing store. A pairing entry is a first-class authorization
         # grant, created only by a trusted operator approving a pairing code
-        # (hermes gateway pairing approve / the authenticated dashboard) — an
+        # (openamer gateway pairing approve / the authenticated dashboard) — an
         # inbound sender can never reach approve_code, so this is not an
         # attacker-controlled path. Honored as a UNION with the allowlist: a
         # paired user is authorized regardless of the allowlist, and when an

@@ -1,5 +1,5 @@
 """
-Tests for mcp_serve — Hermes MCP server.
+Tests for mcp_serve — OpenAmer MCP server.
 
 Three layers of tests:
 1. Unit tests — helpers, content extraction, attachment parsing
@@ -25,12 +25,12 @@ import pytest
 # ---------------------------------------------------------------------------
 
 @pytest.fixture(autouse=True)
-def _isolate_hermes_home(tmp_path, monkeypatch):
+def _isolate_openamer_home(tmp_path, monkeypatch):
     """Redirect OPENAMER_HOME to a temp directory."""
     monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     try:
         import openamer_constants
-        monkeypatch.setattr(openamer_constants, "get_hermes_home", lambda: tmp_path)
+        monkeypatch.setattr(openamer_constants, "get_openamer_home", lambda: tmp_path)
     except (ImportError, AttributeError):
         pass
     return tmp_path

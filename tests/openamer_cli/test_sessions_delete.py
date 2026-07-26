@@ -25,7 +25,7 @@ def test_sessions_delete_accepts_unique_id_prefix(monkeypatch, capsys):
     monkeypatch.setattr(
         sys,
         "argv",
-        ["hermes", "sessions", "delete", "20260315_092437_c9a6", "--yes"],
+        ["openamer", "sessions", "delete", "20260315_092437_c9a6", "--yes"],
     )
 
     main_mod.main()
@@ -57,7 +57,7 @@ def test_sessions_delete_reports_not_found_when_prefix_is_unknown(monkeypatch, c
     monkeypatch.setattr(
         sys,
         "argv",
-        ["hermes", "sessions", "delete", "missing-prefix", "--yes"],
+        ["openamer", "sessions", "delete", "missing-prefix", "--yes"],
     )
 
     main_mod.main()
@@ -84,7 +84,7 @@ def test_sessions_delete_handles_eoferror_on_confirm(monkeypatch, capsys):
     monkeypatch.setattr(openamer_state, "SessionDB", lambda: FakeDB())
     monkeypatch.setattr(
         sys, "argv",
-        ["hermes", "sessions", "delete", "20260315_092437_c9a6"],
+        ["openamer", "sessions", "delete", "20260315_092437_c9a6"],
     )
     monkeypatch.setattr("builtins.input", lambda _prompt="": (_ for _ in ()).throw(EOFError))
 
@@ -122,7 +122,7 @@ def test_sessions_prune_handles_eoferror_on_confirm(monkeypatch, capsys):
     monkeypatch.setattr(openamer_state, "SessionDB", lambda: FakeDB())
     monkeypatch.setattr(
         sys, "argv",
-        ["hermes", "sessions", "prune"],
+        ["openamer", "sessions", "prune"],
     )
     monkeypatch.setattr("builtins.input", lambda _prompt="": (_ for _ in ()).throw(EOFError))
 
@@ -133,7 +133,7 @@ def test_sessions_prune_handles_eoferror_on_confirm(monkeypatch, capsys):
 
 
 def _run_prune(monkeypatch, capsys, argv_tail, candidates=None):
-    """Run `hermes sessions prune <argv_tail>` against a FakeDB, capturing
+    """Run `openamer sessions prune <argv_tail>` against a FakeDB, capturing
     the filter kwargs passed to list_prune_candidates. Auto-confirms."""
     import openamer_cli.main as main_mod
     import openamer_state
@@ -173,7 +173,7 @@ def _run_prune(monkeypatch, capsys, argv_tail, candidates=None):
 
     monkeypatch.setattr(openamer_state, "SessionDB", lambda: FakeDB())
     monkeypatch.setattr(
-        sys, "argv", ["hermes", "sessions", "prune", *argv_tail]
+        sys, "argv", ["openamer", "sessions", "prune", *argv_tail]
     )
     monkeypatch.setattr("builtins.input", lambda _prompt="": "y")
     main_mod.main()
@@ -181,7 +181,7 @@ def _run_prune(monkeypatch, capsys, argv_tail, candidates=None):
 
 
 def test_sessions_prune_bare_keeps_90_day_default(monkeypatch, capsys):
-    """A truly bare `hermes sessions prune` keeps the implicit 90-day cutoff."""
+    """A truly bare `openamer sessions prune` keeps the implicit 90-day cutoff."""
     import time as _time
 
     filters, _out = _run_prune(monkeypatch, capsys, [])

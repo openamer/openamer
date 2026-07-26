@@ -54,7 +54,7 @@ def test_slack_send_to_platform_routes_through_send_via_adapter(monkeypatch):
                 Platform.SLACK,
                 SimpleNamespace(enabled=True, token="bad-token,good-token", extra={}),
                 "C123",
-                "**hello** from Hermes",
+                "**hello** from OpenAmer",
                 thread_id="171.1",
             )
         )

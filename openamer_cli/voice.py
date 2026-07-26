@@ -799,10 +799,10 @@ def speak_text(text: str) -> None:
         # MP3 output path, pre-chosen so we can play the MP3 directly even
         # when text_to_speech_tool auto-converts to OGG for messaging
         # platforms.  afplay's OGG support is flaky, MP3 always works.
-        os.makedirs(os.path.join(tempfile.gettempdir(), "hermes_voice"), exist_ok=True)
+        os.makedirs(os.path.join(tempfile.gettempdir(), "openamer_voice"), exist_ok=True)
         mp3_path = os.path.join(
             tempfile.gettempdir(),
-            "hermes_voice",
+            "openamer_voice",
             f"tts_{time.strftime('%Y%m%d_%H%M%S')}.mp3",
         )
 

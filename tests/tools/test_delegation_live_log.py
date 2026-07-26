@@ -38,12 +38,12 @@ def test_writer_precreates_file_with_header():
     w = LiveTranscriptWriter("deleg_test1", 0, "do the thing", context="some ctx")
     assert w.path is not None and w.path.exists()
     text = w.path.read_text(encoding="utf-8")
-    assert "Hermes subagent live transcript" in text
+    assert "OpenAmer subagent live transcript" in text
     assert "delegation: deleg_test1" in text
     assert "goal: do the thing" in text
     assert "kickoff" in text
     assert "some ctx" in text
-    # Lives under the hermes cache/delegation/live root, named task-<n>.log
+    # Lives under the openamer cache/delegation/live root, named task-<n>.log
     assert w.path.name == "task-0.log"
     assert w.path.parent.name == "deleg_test1"
     assert w.path.parent.parent == live_transcript_root()

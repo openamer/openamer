@@ -7,7 +7,7 @@ referenced skill's full content into a single user message, the same way
 
 Storage
 -------
-Bundles live in ``~/.hermes/skill-bundles/*.yaml`` (and the equivalent
+Bundles live in ``~/.openamer/skill-bundles/*.yaml`` (and the equivalent
 profile-aware directory under ``OPENAMER_HOME``). Each file looks like::
 
     name: backend-dev
@@ -36,7 +36,7 @@ Public API
 - :func:`resolve_bundle_command_key` — map a user-typed command to its slug
 - :func:`build_bundle_invocation_message` — produce the full user message
 - :func:`reload_bundles` — re-scan disk and return a diff
-- :func:`list_bundles` — return rich info for display (``hermes bundles``)
+- :func:`list_bundles` — return rich info for display (``openamer bundles``)
 - :func:`save_bundle` / :func:`delete_bundle` — file-level operations
 """
 
@@ -369,7 +369,7 @@ def build_bundle_invocation_message(
 
 
 # ---------------------------------------------------------------------------
-# File-level CRUD helpers — used by `hermes bundles` CLI subcommand.
+# File-level CRUD helpers — used by `openamer bundles` CLI subcommand.
 # ---------------------------------------------------------------------------
 
 

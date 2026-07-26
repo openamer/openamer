@@ -23,7 +23,7 @@ import sys
 from pathlib import Path
 
 from openamer_constants import agent_browser_runnable
-from tools.environments.local import hermes_subprocess_env
+from tools.environments.local import openamer_subprocess_env
 
 _IS_WINDOWS = platform.system() == "Windows"
 
@@ -32,7 +32,7 @@ _DEP_CHECKS = {
     "browser": lambda: (
         agent_browser_runnable(shutil.which("agent-browser"))
         or _has_system_browser()
-        or _has_hermes_agent_browser()
+        or _has_openamer_agent_browser()
     ),
     "ripgrep": lambda: shutil.which("rg") is not None,
     "ffmpeg": lambda: shutil.which("ffmpeg") is not None,
@@ -57,7 +57,7 @@ def _has_system_browser() -> bool:
     return False
 
 
-def _has_hermes_agent_browser() -> bool:
+def _has_openamer_agent_browser() -> bool:
     from openamer_constants import get_openamer_home
     home = get_openamer_home()
     if _IS_WINDOWS:
@@ -149,7 +149,7 @@ def ensure_dependency(
     else:
         cmd = ["bash", str(script), "--ensure", dep]
 
-    run_env = hermes_subprocess_env(inherit_credentials=False)
+    run_env = openamer_subprocess_env(inherit_credentials=False)
     run_env["IS_INTERACTIVE"] = "false"
     result = subprocess.run(
         cmd,

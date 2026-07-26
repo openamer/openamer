@@ -124,7 +124,7 @@ def test_codex_gpt55_autoraise_notice_deduped_across_agent_inits(monkeypatch, tm
 # ── per-profile dedupe marker (#54432) ───────────────────────────────────────
 
 
-def test_marker_lives_under_hermes_home() -> None:
+def test_marker_lives_under_openamer_home() -> None:
     marker = _codex_gpt55_autoraise_notice_marker()
     assert marker.parent == get_openamer_home()
     assert marker.name == ".codex_gpt55_autoraise_notice"

@@ -24,8 +24,8 @@ from openamer_state import SessionDB
 
 
 @pytest.fixture()
-def hermes_home(tmp_path, monkeypatch):
-    home = tmp_path / ".hermes"
+def openamer_home(tmp_path, monkeypatch):
+    home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setattr(Path, "home", lambda: tmp_path)
     monkeypatch.setenv("OPENAMER_HOME", str(home))
@@ -33,7 +33,7 @@ def hermes_home(tmp_path, monkeypatch):
 
 
 @pytest.fixture()
-def server(hermes_home):
+def server(openamer_home):
     with patch.dict(
         "sys.modules",
         {
@@ -56,8 +56,8 @@ def server(hermes_home):
 
 
 @pytest.fixture()
-def db(hermes_home):
-    return SessionDB(db_path=hermes_home / "state.db")
+def db(openamer_home):
+    return SessionDB(db_path=openamer_home / "state.db")
 
 
 @pytest.fixture()

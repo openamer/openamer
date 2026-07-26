@@ -52,17 +52,17 @@ def make_spawn_fn(home: str):
 
 
 def main():
-    home = tempfile.mkdtemp(prefix="hermes_e2e_")
+    home = tempfile.mkdtemp(prefix="openamer_e2e_")
     os.environ["OPENAMER_HOME"] = home
     os.environ["HOME"] = home
     sys.path.insert(0, WT)
     from openamer_cli import kanban_db as kb
 
-    # Point the `hermes` CLI child processes will run at the worktree
+    # Point the `openamer` CLI child processes will run at the worktree
     # openamer_cli.main. We do this by putting a shim on PATH.
     shim_dir = os.path.join(home, "bin")
     os.makedirs(shim_dir, exist_ok=True)
-    shim_path = os.path.join(shim_dir, "hermes")
+    shim_path = os.path.join(shim_dir, "openamer")
     with open(shim_path, "w") as f:
         f.write(f"""#!/bin/sh
 exec {PY} -m openamer_cli.main "$@"
@@ -211,7 +211,7 @@ exec {PY} -m openamer_cli.main "$@"
     print("=" * 60)
     print("C. Worker log captured to disk")
     print("=" * 60)
-    # Scenario A workers wrote to /tmp/hermes_e2e_*/worker_*.log
+    # Scenario A workers wrote to /tmp/openamer_e2e_*/worker_*.log
     import glob
     logs = glob.glob(os.path.join(home, "worker_*.log"))
     print(f"  {len(logs)} worker log files")

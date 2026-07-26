@@ -31,7 +31,7 @@ import time
 from pathlib import Path
 from typing import Dict, Optional
 
-from openamer_cli.config import get_hermes_home
+from openamer_cli.config import get_openamer_home
 
 logger = logging.getLogger(__name__)
 
@@ -138,6 +138,6 @@ class DeadTargetRegistry:
         return False
 
     def all_dead(self) -> Dict[str, Dict[str, object]]:
-        """Snapshot of the current dead set (for diagnostics / `hermes` CLI)."""
+        """Snapshot of the current dead set (for diagnostics / `openamer` CLI)."""
         with self._lock:
             return {k: dict(v) for k, v in self._dead.items()}

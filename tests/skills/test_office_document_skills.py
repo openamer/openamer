@@ -63,7 +63,7 @@ def test_referenced_scripts_exist(name):
 def test_related_skills_resolve(name):
     """related_skills entries must name skills that exist in skills/ or optional-skills/."""
     fm = _frontmatter(_skill_dir(name) / "SKILL.md")
-    related = fm.get("metadata", {}).get("hermes", {}).get("related_skills", [])
+    related = fm.get("metadata", {}).get("openamer", {}).get("related_skills", [])
     assert related, f"{name}: office skills must cross-link related_skills"
     all_skill_names = {
         p.parent.name

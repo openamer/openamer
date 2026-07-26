@@ -129,7 +129,7 @@ def detect_service_manager() -> ServiceManagerKind:
 def _s6_running() -> bool:
     """True when s6-svscan is running as PID 1 in this container.
 
-    Detection has to work for **both** root and the unprivileged hermes
+    Detection has to work for **both** root and the unprivileged openamer
     user (UID 10000). The obvious probe — ``Path('/proc/1/exe').resolve()``
     — only works as root: for any other UID, the symlink at
     ``/proc/1/exe`` is unreadable and ``resolve()`` silently returns the
@@ -322,7 +322,7 @@ def get_service_manager() -> ServiceManager:
 # S6ServiceManager (container-only)
 #
 # Per-profile gateways are registered dynamically when `openamer profile create`
-# runs inside the container (Phase 4). Static services (main-hermes, dashboard)
+# runs inside the container (Phase 4). Static services (main-openamer, dashboard)
 # live in /etc/s6-overlay/s6-rc.d/ and are NOT managed by this class — they're
 # part of the image, not runtime-created.
 # ---------------------------------------------------------------------------
@@ -348,11 +348,11 @@ def _profile_dir_for_gateway_service(name: str) -> Path:
 
     profile = name[len(S6_SERVICE_PREFIX):] if name.startswith(S6_SERVICE_PREFIX) else name
     validate_profile_name(profile)
-    hermes_home = Path(os.environ.get("OPENAMER_HOME", "/opt/data"))
-    if hermes_home.parent.name == "profiles":
-        root = hermes_home.parent.parent
+    openamer_home = Path(os.environ.get("OPENAMER_HOME", "/opt/data"))
+    if openamer_home.parent.name == "profiles":
+        root = openamer_home.parent.parent
     else:
-        root = hermes_home
+        root = openamer_home
     return root if profile == "default" else root / "profiles" / profile
 
 
@@ -405,7 +405,7 @@ def _write_gateway_desired_state(name: str, desired_state: str) -> None:
 _S6_BIN_DIR = "/command"
 
 
-# UID/GID of the in-image ``hermes`` user. Hardcoded to match what
+# UID/GID of the in-image ``openamer`` user. Hardcoded to match what
 # ``stage2-hook.sh`` enforces (the runtime invariant — see also
 # tests/docker/test_uid_remap.py). The container starts s6-supervise
 # under root and immediately drops to this UID via ``s6-setuidgid``.
@@ -424,7 +424,7 @@ def _seed_supervise_skeleton(svc_dir: Path) -> None:
     ``0700``. It also ``mkfifo``s ``<svc>/supervise/control`` with mode
     ``0600``. Because s6-supervise runs as PID 1's effective UID (root)
     these dirs end up root-owned mode 0700, and an unprivileged client
-    (the ``hermes`` user — UID 10000 — running every OpenAmer runtime
+    (the ``openamer`` user — UID 10000 — running every OpenAmer runtime
     operation via ``s6-setuidgid``) gets ``EACCES`` on any ``s6-svc``,
     ``s6-svstat``, or ``s6-svwait`` invocation against the slot.
 
@@ -446,11 +446,11 @@ def _seed_supervise_skeleton(svc_dir: Path) -> None:
 
     Layout produced
     ---------------
-    ``svc_dir/``                           hermes:hermes, 0755 (parent must already exist)
-    ``svc_dir/event/``                     hermes:hermes, 03730   (setgid + g+rwx + sticky)
-    ``svc_dir/supervise/``                 hermes:hermes, 0755
-    ``svc_dir/supervise/event/``           hermes:hermes, 03730
-    ``svc_dir/supervise/control``          hermes:hermes, 0660    (FIFO)
+    ``svc_dir/``                           openamer:openamer, 0755 (parent must already exist)
+    ``svc_dir/event/``                     openamer:openamer, 03730   (setgid + g+rwx + sticky)
+    ``svc_dir/supervise/``                 openamer:openamer, 0755
+    ``svc_dir/supervise/event/``           openamer:openamer, 03730
+    ``svc_dir/supervise/control``          openamer:openamer, 0660    (FIFO)
 
     The ``death_tally``, ``lock``, and ``status`` regular files end up
     written by s6-supervise itself (as root), but those land mode 0644 —
@@ -602,7 +602,7 @@ class S6ServiceManager:
     """Per-profile gateway supervision via s6-overlay.
 
     Only handles runtime-registered services under
-    ``S6_DYNAMIC_SCANDIR``. Static services (main-hermes, dashboard)
+    ``S6_DYNAMIC_SCANDIR``. Static services (main-openamer, dashboard)
     are managed by s6-rc at image-build time and are out of scope.
     """
 
@@ -629,14 +629,14 @@ class S6ServiceManager:
 
         The script:
           1. Sources OPENAMER_HOME (and any extra env) via with-contenv —
-             so e.g. ``-e OPENAMER_HOME=/data/hermes`` is honored at run
+             so e.g. ``-e OPENAMER_HOME=/data/openamer`` is honored at run
              time, not Python-substituted at registration time (OQ8-C).
           2. Resets ``HOME`` to ``/opt/data`` before the privilege drop
              so with-contenv's root HOME does not leak into the
              unprivileged gateway process.
           3. Activates the bundled venv.
           4. Drops to the openamer user and exec's
-             ``openamer -p <profile> gateway run`` (or just ``hermes
+             ``openamer -p <profile> gateway run`` (or just ``openamer
              gateway run`` for the default profile — see below).
 
         Special case: ``profile == "default"`` emits ``openamer gateway
@@ -672,7 +672,7 @@ class S6ServiceManager:
             "set -e",
             "export HOME=/opt/data",
             "cd /opt/data",
-            ". /opt/hermes/.venv/bin/activate",
+            ". /opt/openamer/.venv/bin/activate",
         ]
         for k, v in sorted(extra_env.items()):
             lines.append(f"export {k}={shlex.quote(v)}")
@@ -740,8 +740,8 @@ class S6ServiceManager:
         OQ8-C: persist to ``${OPENAMER_HOME}/logs/gateways/<profile>/``.
         CRITICAL: the OPENAMER_HOME path is sourced from the runtime env
         via with-contenv — NOT Python-substituted at registration time
-        — so a container started with ``-e OPENAMER_HOME=/data/hermes``
-        gets its logs under /data/hermes/logs/..., not the build-time
+        — so a container started with ``-e OPENAMER_HOME=/data/openamer``
+        gets its logs under /data/openamer/logs/..., not the build-time
         default.
 
         Output routing — the script is two action directives, applied
@@ -792,8 +792,8 @@ class S6ServiceManager:
             # root-context boot, so it also heals volumes already poisoned
             # by older images. Non-recursive on purpose: sibling profile
             # dirs are each managed by their own log/run. See #45258.
-            f'chown hermes:openamer "$OPENAMER_HOME/logs/gateways" 2>/dev/null || true\n'
-            f'chown -R hermes:openamer "$log_dir" 2>/dev/null || true\n'
+            f'chown openamer:openamer "$OPENAMER_HOME/logs/gateways" 2>/dev/null || true\n'
+            f'chown -R openamer:openamer "$log_dir" 2>/dev/null || true\n'
             f'rm -f "$log_dir/lock"\n'
             # Skip the drop when already non-root (CAP_SETGID).
             f'[ "$(id -u)" = 0 ] || exec s6-log 1 n10 s1000000 T "$log_dir"\n'

@@ -1,6 +1,6 @@
 """Context-local state for delegate_task child execution.
 
-The parent Hermes process may itself be a Kanban dispatcher worker with
+The parent OpenAmer process may itself be a Kanban dispatcher worker with
 HERMES_KANBAN_* variables in process env. delegate_task children run inside the
 same Python process, but they are not dispatcher-owned Kanban workers. This
 module lets code paths that resolve tool schemas or spawn subprocesses fail
@@ -13,7 +13,7 @@ from contextvars import ContextVar
 from typing import Iterator, Mapping, MutableMapping
 
 _DELEGATED_CHILD_CONTEXT: ContextVar[bool] = ContextVar(
-    "hermes_delegated_child_context",
+    "openamer_delegated_child_context",
     default=False,
 )
 

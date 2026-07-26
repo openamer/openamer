@@ -504,7 +504,7 @@ class TestMattermostWebSocketParsing:
     def setup_method(self):
         self.adapter = _make_adapter()
         self.adapter._bot_user_id = "bot_user_id"
-        self.adapter._bot_username = "hermes-bot"
+        self.adapter._bot_username = "openamer-bot"
         # Mock handle_message to capture the MessageEvent without processing
         self.adapter.handle_message = AsyncMock()
 
@@ -704,7 +704,7 @@ class TestMattermostMentionBehavior:
     def setup_method(self):
         self.adapter = _make_adapter()
         self.adapter._bot_user_id = "bot_user_id"
-        self.adapter._bot_username = "hermes-bot"
+        self.adapter._bot_username = "openamer-bot"
         self.adapter.handle_message = AsyncMock()
 
     def _make_event(self, message, channel_type="O", channel_id="chan_456"):
@@ -769,11 +769,11 @@ class TestMattermostMentionBehavior:
         with patch.dict(os.environ, {}, clear=False):
             os.environ.pop("MATTERMOST_REQUIRE_MENTION", None)
             await self.adapter._handle_ws_event(
-                self._make_event("@hermes-bot what is 2+2")
+                self._make_event("@openamer-bot what is 2+2")
             )
             assert self.adapter.handle_message.called
             msg = self.adapter.handle_message.call_args[0][0]
-            assert "@hermes-bot" not in msg.text
+            assert "@openamer-bot" not in msg.text
             assert "2+2" in msg.text
 
 
@@ -1068,13 +1068,13 @@ async def test_mattermost_top_level_channel_post_is_thread_root():
     adapter = _make_adapter()
     adapter._reply_mode = "thread"
     adapter._bot_user_id = "bot_user_id"
-    adapter._bot_username = "hermes-bot"
+    adapter._bot_username = "openamer-bot"
     adapter.handle_message = AsyncMock()
     post_data = {
         "id": "top_post_123",
         "user_id": "user_123",
         "channel_id": "chan_456",
-        "message": "@hermes-bot start work",
+        "message": "@openamer-bot start work",
         "root_id": "",
     }
     event = {
@@ -1099,7 +1099,7 @@ async def test_mattermost_dm_post_does_not_seed_thread_root():
     adapter = _make_adapter()
     adapter._reply_mode = "thread"
     adapter._bot_user_id = "bot_user_id"
-    adapter._bot_username = "hermes-bot"
+    adapter._bot_username = "openamer-bot"
     adapter.handle_message = AsyncMock()
     post_data = {
         "id": "dm_post_123",

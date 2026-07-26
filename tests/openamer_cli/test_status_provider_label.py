@@ -1,4 +1,4 @@
-"""`hermes status` provider label honors config.yaml model.base_url (#3296)."""
+"""`openamer status` provider label honors config.yaml model.base_url (#3296)."""
 
 from unittest.mock import patch
 

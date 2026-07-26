@@ -46,7 +46,7 @@ def test_regex_preserves_user_env():
     for line in (
         'declare -x PATH="/usr/bin:/bin"',
         'declare -x HOME="/home/user"',
-        'declare -x OPENAMER_HOME="/home/user/.hermes"',  # NOT a session var
+        'declare -x OPENAMER_HOME="/home/user/.openamer"',  # NOT a session var
         'declare -x HERMESX="x"',
         'declare -x MY_HERMES_SESSION_ID="x"',  # prefix must anchor after "declare -x "
     ):

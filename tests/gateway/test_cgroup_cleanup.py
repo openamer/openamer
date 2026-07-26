@@ -14,14 +14,14 @@ from gateway import cgroup_cleanup
 class TestOwnCgroupPath:
     def test_parses_v2_cgroup_path(self, tmp_path, monkeypatch):
         proc_self = tmp_path / "cgroup"
-        proc_self.write_text("0::/user.slice/user-1000.slice/hermes-gateway.service\n")
+        proc_self.write_text("0::/user.slice/user-1000.slice/openamer-gateway.service\n")
         monkeypatch.setattr(
             cgroup_cleanup,
             "Path",
             lambda p: proc_self if p == "/proc/self/cgroup" else Path(p),
         )
 
-        assert cgroup_cleanup._own_cgroup_path() == "/user.slice/user-1000.slice/hermes-gateway.service"
+        assert cgroup_cleanup._own_cgroup_path() == "/user.slice/user-1000.slice/openamer-gateway.service"
 
     def test_returns_none_when_proc_missing(self, monkeypatch):
         def _raise(_path):
@@ -34,7 +34,7 @@ class TestOwnCgroupPath:
 class TestReapCgroup:
     def test_skips_own_pid_and_kills_the_rest(self, tmp_path, monkeypatch):
         own = os.getpid()
-        cgroup_path = "/test.slice/hermes-gateway.service"
+        cgroup_path = "/test.slice/openamer-gateway.service"
         procs_file = tmp_path / "cgroup.procs"
         procs_file.write_text(f"{own}\n1001\n1002\n\n")
 
@@ -56,7 +56,7 @@ class TestReapCgroup:
         assert (1002, signal.SIGKILL) in killed_pids
 
     def test_tolerates_already_exited_pids(self, tmp_path, monkeypatch):
-        cgroup_path = "/test.slice/hermes-gateway.service"
+        cgroup_path = "/test.slice/openamer-gateway.service"
         procs_file = tmp_path / "cgroup.procs"
         procs_file.write_text("1001\n1002\n")
 
@@ -86,7 +86,7 @@ class TestReapCgroup:
         assert cgroup_cleanup.reap_cgroup() == 0
 
     def test_noop_when_procs_file_missing(self, tmp_path, monkeypatch):
-        cgroup_path = "/missing.slice/hermes-gateway.service"
+        cgroup_path = "/missing.slice/openamer-gateway.service"
         monkeypatch.setattr(
             cgroup_cleanup,
             "Path",

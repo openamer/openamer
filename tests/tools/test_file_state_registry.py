@@ -32,7 +32,7 @@ from tools.file_tools import (
 
 
 def _tmp_file(content: str = "initial\n") -> str:
-    fd, path = tempfile.mkstemp(prefix="hermes_file_state_test_", suffix=".txt")
+    fd, path = tempfile.mkstemp(prefix="openamer_file_state_test_", suffix=".txt")
     with os.fdopen(fd, "w") as f:
         f.write(content)
     return path
@@ -216,7 +216,7 @@ class FileToolsIntegrationTests(unittest.TestCase):
 
     def setUp(self) -> None:
         file_state.get_registry().clear()
-        self._tmpdir = tempfile.mkdtemp(prefix="hermes_file_state_int_")
+        self._tmpdir = tempfile.mkdtemp(prefix="openamer_file_state_int_")
 
     def tearDown(self) -> None:
         import shutil

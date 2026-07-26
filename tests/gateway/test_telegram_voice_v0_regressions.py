@@ -198,7 +198,7 @@ async def test_monitor_to_drain_transcribes_and_echoes_pending_voice_once(
     _PendingVoiceAgent.messages = []
 
     with (
-        patch("gateway.run._hermes_home", tmp_path),
+        patch("gateway.run._openamer_home", tmp_path),
         patch("gateway.run._resolve_runtime_agent_kwargs", return_value={"api_key": "fake"}),
         patch(
             "tools.transcription_tools.transcribe_audio",

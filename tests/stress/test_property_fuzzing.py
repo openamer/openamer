@@ -233,7 +233,7 @@ def main():
     for seq_idx in range(NUM_SEQUENCES):
         seed = random.randint(0, 10**9)
         rng = random.Random(seed)
-        home = tempfile.mkdtemp(prefix=f"hermes_fuzz_{seq_idx}_")
+        home = tempfile.mkdtemp(prefix=f"openamer_fuzz_{seq_idx}_")
         os.environ["OPENAMER_HOME"] = home
         os.environ["HOME"] = home
         sys.path.insert(0, WT)

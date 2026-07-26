@@ -48,8 +48,8 @@ _PHOTON_ENV = (
 
 
 @pytest.fixture
-def tmp_hermes_home(tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
-    home = tmp_path / "hermes"
+def tmp_openamer_home(tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
+    home = tmp_path / "openamer"
     home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
     for key in _PHOTON_ENV:
@@ -63,16 +63,16 @@ def tmp_hermes_home(tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
 # ---------------------------------------------------------------------------
 # Credential storage
 
-def test_store_and_load_photon_token(tmp_hermes_home: Path) -> None:
+def test_store_and_load_photon_token(tmp_openamer_home: Path) -> None:
     photon_auth.store_photon_token("abc123def456")
     assert photon_auth.load_photon_token() == "abc123def456"
 
-    auth_json = json.loads((tmp_hermes_home / "auth.json").read_text())
+    auth_json = json.loads((tmp_openamer_home / "auth.json").read_text())
     assert auth_json["credential_pool"]["photon"][0]["access_token"] == "abc123def456"
 
 
 def test_store_project_credentials_round_trip(
-    tmp_hermes_home: Path, monkeypatch: pytest.MonkeyPatch,
+    tmp_openamer_home: Path, monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     # Don't touch .env / os.environ here — exercise the auth.json path.
     monkeypatch.setattr(photon_auth, "_persist_runtime_env", lambda *a, **k: None)
@@ -80,7 +80,7 @@ def test_store_project_credentials_round_trip(
         spectrum_project_id="sp-123",
         project_secret="secret-key",
         dashboard_project_id="dash-456",
-        name="Hermes Agent",
+        name="OpenAmer Agent",
     )
     for key in _PHOTON_ENV:
         monkeypatch.delenv(key, raising=False)
@@ -94,18 +94,18 @@ def test_store_project_credentials_round_trip(
     assert photon_auth.load_dashboard_project_id() == "sp-123"
 
 
-def test_store_project_credentials_writes_env(tmp_hermes_home: Path) -> None:
+def test_store_project_credentials_writes_env(tmp_openamer_home: Path) -> None:
     photon_auth.store_project_credentials(
         spectrum_project_id="sp-789",
         project_secret="sek-ret",
         dashboard_project_id="dash-1",
     )
-    env_text = (tmp_hermes_home / ".env").read_text()
+    env_text = (tmp_openamer_home / ".env").read_text()
     assert "PHOTON_PROJECT_ID=sp-789" in env_text
     assert "PHOTON_PROJECT_SECRET=sek-ret" in env_text
 
 
-def test_store_user_numbers_round_trip(tmp_hermes_home: Path) -> None:
+def test_store_user_numbers_round_trip(tmp_openamer_home: Path) -> None:
     photon_auth.store_user_numbers(
         phone_number="+15551234567",
         assigned_phone_number="+16282679185",
@@ -128,7 +128,7 @@ def test_store_user_numbers_round_trip(tmp_hermes_home: Path) -> None:
 
 
 def test_load_user_numbers_falls_back_to_home_channel(
-    tmp_hermes_home: Path,
+    tmp_openamer_home: Path,
 ) -> None:
     from openamer_cli.config import save_env_value
 
@@ -140,7 +140,7 @@ def test_load_user_numbers_falls_back_to_home_channel(
 
 
 def test_refresh_user_numbers_reads_existing_assignment(
-    tmp_hermes_home: Path, monkeypatch: pytest.MonkeyPatch,
+    tmp_openamer_home: Path, monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     photon_auth.store_user_numbers(phone_number="+15551234567")
 
@@ -164,7 +164,7 @@ def test_refresh_user_numbers_reads_existing_assignment(
 
 
 def test_load_project_credentials_env_override(
-    tmp_hermes_home: Path, monkeypatch: pytest.MonkeyPatch,
+    tmp_openamer_home: Path, monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     monkeypatch.setattr(photon_auth, "_persist_runtime_env", lambda *a, **k: None)
     photon_auth.store_project_credentials(
@@ -268,7 +268,7 @@ def test_poll_for_token_access_denied(monkeypatch: pytest.MonkeyPatch) -> None:
 
 def test_list_projects_unwraps_list(monkeypatch: pytest.MonkeyPatch) -> None:
     def fake_get(url: str, **kwargs: Any) -> _FakeResponse:
-        return _FakeResponse(json_body=[{"id": "p1", "name": "Hermes Agent"}])
+        return _FakeResponse(json_body=[{"id": "p1", "name": "OpenAmer Agent"}])
 
     monkeypatch.setattr(photon_auth.httpx, "get", fake_get)
     projects = photon_auth.list_projects("tok")
@@ -279,11 +279,11 @@ def test_find_project_by_name_case_insensitive(monkeypatch: pytest.MonkeyPatch) 
     def fake_get(url: str, **kwargs: Any) -> _FakeResponse:
         return _FakeResponse(json_body={"data": [
             {"id": "p1", "name": "Other"},
-            {"id": "p2", "name": "hermes agent"},
+            {"id": "p2", "name": "openamer agent"},
         ]})
 
     monkeypatch.setattr(photon_auth.httpx, "get", fake_get)
-    proj = photon_auth.find_project_by_name("tok", "Hermes Agent")
+    proj = photon_auth.find_project_by_name("tok", "OpenAmer Agent")
     assert proj is not None and proj["id"] == "p2"
 
 
@@ -297,12 +297,12 @@ def test_create_project_omits_spectrum_flag(monkeypatch: pytest.MonkeyPatch) -> 
         return _FakeResponse(json_body={"success": True, "id": "new-proj"})
 
     monkeypatch.setattr(photon_auth.httpx, "post", fake_post)
-    data = photon_auth.create_project("tok", name="Hermes Agent")
+    data = photon_auth.create_project("tok", name="OpenAmer Agent")
     assert data["id"] == "new-proj"
     # Spectrum is always provisioned at create-time; the field was dropped
     # from the API schema, so we must not send it.
     assert "spectrum" not in captured["body"]
-    assert captured["body"]["name"] == "Hermes Agent"
+    assert captured["body"]["name"] == "OpenAmer Agent"
     assert captured["headers"]["Authorization"] == "Bearer tok"
     assert captured["url"].endswith("/api/projects")
 
@@ -448,7 +448,7 @@ def test_get_imessage_line_provisions_when_missing(monkeypatch: pytest.MonkeyPat
 # Credential summary (no secret leakage)
 
 def test_credential_summary_no_secret_leak(
-    tmp_hermes_home: Path, monkeypatch: pytest.MonkeyPatch,
+    tmp_openamer_home: Path, monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     monkeypatch.setattr(photon_auth, "_persist_runtime_env", lambda *a, **k: None)
     photon_auth.store_photon_token("token-aaaaaaaaaaaaaaaa")
@@ -523,7 +523,7 @@ def test_validate_photon_token_rejects_project_api_denial(
 
 
 def test_login_device_flow_validates_before_persisting(
-    tmp_hermes_home: Path, monkeypatch: pytest.MonkeyPatch,
+    tmp_openamer_home: Path, monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     def fake_post(url: str, *, json: Dict[str, Any], timeout: float) -> _FakeResponse:
         if url.endswith("/api/auth/device/code"):
@@ -550,7 +550,7 @@ def test_login_device_flow_validates_before_persisting(
 
 
 def test_login_device_flow_raises_when_token_invalid(
-    tmp_hermes_home: Path, monkeypatch: pytest.MonkeyPatch,
+    tmp_openamer_home: Path, monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     def fake_post(url: str, *, json: Dict[str, Any], timeout: float) -> _FakeResponse:
         if url.endswith("/api/auth/device/code"):

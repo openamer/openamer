@@ -9,7 +9,7 @@ Regression context: ashh hit a Nous 401 (OAuth token expired / portal said
 account out of credits) plus a model slug ``deepseek/deepseek-v4-flash:free``
 that's OpenRouter syntax, not a Nous catalog name. The previous guidance
 branch only covered ``openai-codex`` and ``xai-oauth``; ``nous`` fell through
-to a generic "Your API key was rejected... run hermes setup" message, which is
+to a generic "Your API key was rejected... run openamer setup" message, which is
 the wrong advice for a pure-OAuth provider.
 """
 from __future__ import annotations
@@ -48,8 +48,8 @@ def test_nous_401_guidance_strings_present():
     # (Nous Portal has no API key path — auth_type=oauth_device_code only).
     assert "Nous Portal OAuth token was rejected" in source
 
-    # Must give a concrete re-auth command, not a generic "hermes setup".
-    assert "hermes portal" in source
+    # Must give a concrete re-auth command, not a generic "openamer setup".
+    assert "openamer portal" in source
 
     # Must point at the portal so users can check account/credit status.
     assert "portal.nousresearch.com" in source

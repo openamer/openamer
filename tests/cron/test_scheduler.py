@@ -1156,9 +1156,9 @@ class TestRunJobSessionPersistence:
         fake_db = MagicMock()
         fake_db.get_compression_tip.side_effect = lambda session_id: session_id
 
-        with patch("cron.scheduler._hermes_home", tmp_path), \
+        with patch("cron.scheduler._openamer_home", tmp_path), \
              patch("cron.scheduler._resolve_origin", return_value=None), \
-             patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+             patch("openamer_cli.env_loader.load_openamer_dotenv"), \
              patch("openamer_cli.env_loader.reset_secret_source_cache"), \
              patch("openamer_state.SessionDB", return_value=fake_db), \
              patch(
@@ -1205,9 +1205,9 @@ class TestRunJobSessionPersistence:
         job = {"id": "test-job", "name": "test", "prompt": "hello"}
         fake_db = MagicMock()
 
-        with patch("cron.scheduler._hermes_home", tmp_path), \
+        with patch("cron.scheduler._openamer_home", tmp_path), \
              patch("cron.scheduler._resolve_origin", return_value=None), \
-             patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+             patch("openamer_cli.env_loader.load_openamer_dotenv"), \
              patch("openamer_cli.env_loader.reset_secret_source_cache"), \
              patch("openamer_state.SessionDB", return_value=fake_db), \
              patch(
@@ -1249,9 +1249,9 @@ class TestRunJobSessionPersistence:
         job = {"id": "test-job", "name": "test", "prompt": "hello"}
         fake_db = MagicMock()
 
-        with patch("cron.scheduler._hermes_home", tmp_path), \
+        with patch("cron.scheduler._openamer_home", tmp_path), \
              patch("cron.scheduler._resolve_origin", return_value=None), \
-             patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+             patch("openamer_cli.env_loader.load_openamer_dotenv"), \
              patch("openamer_cli.env_loader.reset_secret_source_cache"), \
              patch("openamer_state.SessionDB", return_value=fake_db), \
              patch(
@@ -1291,9 +1291,9 @@ class TestRunJobSessionPersistence:
         fake_db = MagicMock()
         fake_db.get_compression_tip.side_effect = lambda session_id: session_id
 
-        with patch("cron.scheduler._hermes_home", tmp_path), \
+        with patch("cron.scheduler._openamer_home", tmp_path), \
              patch("cron.scheduler._resolve_origin", return_value=None), \
-             patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+             patch("openamer_cli.env_loader.load_openamer_dotenv"), \
              patch("openamer_cli.env_loader.reset_secret_source_cache"), \
              patch("openamer_state.SessionDB", return_value=fake_db), \
              patch(
@@ -1330,9 +1330,9 @@ class TestRunJobSessionPersistence:
         fake_db = MagicMock()
         fake_db.get_compression_tip.return_value = "failure-compression-tip"
 
-        with patch("cron.scheduler._hermes_home", tmp_path), \
+        with patch("cron.scheduler._openamer_home", tmp_path), \
              patch("cron.scheduler._resolve_origin", return_value=None), \
-             patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+             patch("openamer_cli.env_loader.load_openamer_dotenv"), \
              patch("openamer_cli.env_loader.reset_secret_source_cache"), \
              patch("openamer_state.SessionDB", return_value=fake_db), \
              patch(
@@ -1509,9 +1509,9 @@ class TestRunJobSessionPersistence:
         }
         fake_db = MagicMock()
 
-        with patch("cron.scheduler._hermes_home", tmp_path), \
+        with patch("cron.scheduler._openamer_home", tmp_path), \
              patch("cron.scheduler._resolve_origin", return_value=None), \
-             patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+             patch("openamer_cli.env_loader.load_openamer_dotenv"), \
              patch("openamer_cli.env_loader.reset_secret_source_cache"), \
              patch("openamer_state.SessionDB", return_value=fake_db), \
              patch(
@@ -1552,9 +1552,9 @@ class TestRunJobSessionPersistence:
         mock_agent = MagicMock()
         mock_agent.run_conversation.return_value = {"final_response": "ok"}
         base = [
-            patch("cron.scheduler._hermes_home", tmp_path),
+            patch("cron.scheduler._openamer_home", tmp_path),
             patch("cron.scheduler._resolve_origin", return_value=None),
-            patch("openamer_cli.env_loader.load_hermes_dotenv"),
+            patch("openamer_cli.env_loader.load_openamer_dotenv"),
             patch("openamer_cli.env_loader.reset_secret_source_cache"),
             patch("openamer_state.SessionDB", return_value=fake_db),
             patch(
@@ -1621,7 +1621,7 @@ class TestRunJobSessionPersistence:
 
     def test_run_job_enabled_toolsets_resolves_from_platform_config_when_not_set(self, tmp_path):
         """When a job has no explicit enabled_toolsets, the scheduler now
-        resolves them from ``hermes tools`` platform config for ``cron``
+        resolves them from ``openamer tools`` platform config for ``cron``
         (PR #14xxx — blanket fix for Norbert's surprise ``moa`` run).
 
         The legacy "pass None → AIAgent loads full default" path is still
@@ -1647,14 +1647,14 @@ class TestRunJobSessionPersistence:
 
     def test_run_job_per_job_toolsets_win_over_platform_config(self, tmp_path):
         """Per-job enabled_toolsets (via cronjob tool) always take precedence
-        over the platform-level ``hermes tools`` config."""
+        over the platform-level ``openamer tools`` config."""
         job = {
             "id": "override-job",
             "name": "test",
             "prompt": "hello",
             "enabled_toolsets": ["terminal"],
         }
-        # Even if the user has ``hermes tools`` configured to enable web+file
+        # Even if the user has ``openamer tools`` configured to enable web+file
         # for cron, the per-job override wins.
         extra = [patch("openamer_cli.tools_config._get_platform_tools", return_value={"web", "file"})]
         with self._run_job_patches(tmp_path, extra=extra) as (_fake_db, mock_agent_cls):
@@ -1676,9 +1676,9 @@ class TestRunJobSessionPersistence:
         }
         fake_db = MagicMock()
 
-        with patch("cron.scheduler._hermes_home", tmp_path), \
+        with patch("cron.scheduler._openamer_home", tmp_path), \
              patch("cron.scheduler._resolve_origin", return_value=None), \
-             patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+             patch("openamer_cli.env_loader.load_openamer_dotenv"), \
              patch("openamer_cli.env_loader.reset_secret_source_cache"), \
              patch("openamer_state.SessionDB", return_value=fake_db), \
              patch(
@@ -1753,9 +1753,9 @@ class TestRunJobSessionPersistence:
         }
         fake_db = MagicMock()
 
-        with patch("cron.scheduler._hermes_home", tmp_path), \
+        with patch("cron.scheduler._openamer_home", tmp_path), \
              patch("cron.scheduler._resolve_origin", return_value=None), \
-             patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+             patch("openamer_cli.env_loader.load_openamer_dotenv"), \
              patch("openamer_cli.env_loader.reset_secret_source_cache"), \
              patch("openamer_state.SessionDB", return_value=fake_db), \
              patch(
@@ -1793,9 +1793,9 @@ class TestRunJobSessionPersistence:
         }
         fake_db = MagicMock()
 
-        with patch("cron.scheduler._hermes_home", tmp_path), \
+        with patch("cron.scheduler._openamer_home", tmp_path), \
              patch("cron.scheduler._resolve_origin", return_value=None), \
-             patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+             patch("openamer_cli.env_loader.load_openamer_dotenv"), \
              patch("openamer_cli.env_loader.reset_secret_source_cache"), \
              patch("openamer_state.SessionDB", return_value=fake_db), \
              patch(
@@ -1836,9 +1836,9 @@ class TestRunJobSessionPersistence:
         }
         fake_db = MagicMock()
 
-        with patch("cron.scheduler._hermes_home", tmp_path), \
+        with patch("cron.scheduler._openamer_home", tmp_path), \
              patch("cron.scheduler._resolve_origin", return_value=None), \
-             patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+             patch("openamer_cli.env_loader.load_openamer_dotenv"), \
              patch("openamer_cli.env_loader.reset_secret_source_cache"), \
              patch("openamer_state.SessionDB", return_value=fake_db), \
              patch(
@@ -1907,7 +1907,7 @@ class TestRunJobSessionPersistence:
 
         fake_db = MagicMock()
 
-        with patch("cron.scheduler._hermes_home", tmp_path), \
+        with patch("cron.scheduler._openamer_home", tmp_path), \
              patch("cron.scheduler.get_due_jobs", return_value=[job]), \
              patch("cron.scheduler.advance_next_run"), \
              patch("cron.scheduler.mark_job_run") as mock_mark, \
@@ -1950,7 +1950,7 @@ class TestRunJobSessionPersistence:
                 seen["thread_id"] = get_session_env("HERMES_CRON_AUTO_DELIVER_THREAD_ID") or None
                 return {"final_response": "ok"}
 
-        with patch("cron.scheduler._hermes_home", tmp_path), \
+        with patch("cron.scheduler._openamer_home", tmp_path), \
              patch("openamer_state.SessionDB", return_value=fake_db), \
              patch(
                  "openamer_cli.runtime_provider.resolve_runtime_provider",
@@ -2009,7 +2009,7 @@ class TestRunJobSessionPersistence:
                 seen["thread_id"] = get_session_env("HERMES_CRON_AUTO_DELIVER_THREAD_ID") or None
                 return {"final_response": "ok"}
 
-        with patch("cron.scheduler._hermes_home", tmp_path), \
+        with patch("cron.scheduler._openamer_home", tmp_path), \
              patch("openamer_state.SessionDB", return_value=fake_db), \
              patch(
                  "openamer_cli.runtime_provider.resolve_runtime_provider",
@@ -2069,7 +2069,7 @@ class TestRunJobSessionPersistence:
         monotonic_ticks = itertools.count(step=61.0)
         monkeypatch.setenv("HERMES_CRON_TIMEOUT", timeout_value)
 
-        with patch("cron.scheduler._hermes_home", tmp_path), \
+        with patch("cron.scheduler._openamer_home", tmp_path), \
              patch("openamer_state.SessionDB", return_value=fake_db), \
              patch(
                  "openamer_cli.runtime_provider.resolve_runtime_provider",
@@ -2103,7 +2103,7 @@ class TestRunJobSessionPersistence:
         this OPENAMER_HOME in ``_APPLIED_HOMES``, so the external-secret pull
         no-ops and only the placeholder is re-applied. The scheduler must call
         ``reset_secret_source_cache()`` (forcing the re-pull) and route through
-        ``load_hermes_dotenv`` (which then re-applies external secret sources).
+        ``load_openamer_dotenv`` (which then re-applies external secret sources).
         """
         job = {"id": "bsm-job", "name": "bsm", "prompt": "hello"}
         fake_db = MagicMock()
@@ -2116,10 +2116,10 @@ class TestRunJobSessionPersistence:
             call_order.append("load")
             return []
 
-        with patch("cron.scheduler._hermes_home", tmp_path), \
+        with patch("cron.scheduler._openamer_home", tmp_path), \
              patch("cron.scheduler._resolve_origin", return_value=None), \
              patch("openamer_cli.env_loader.reset_secret_source_cache", _record_reset), \
-             patch("openamer_cli.env_loader.load_hermes_dotenv", _record_load), \
+             patch("openamer_cli.env_loader.load_openamer_dotenv", _record_load), \
              patch("openamer_state.SessionDB", return_value=fake_db), \
              patch(
                  "openamer_cli.runtime_provider.resolve_runtime_provider",
@@ -2179,7 +2179,7 @@ class TestRunJobSessionPersistence:
                 )
                 return {"final_response": "ok"}
 
-        with patch("cron.scheduler._hermes_home", tmp_path), \
+        with patch("cron.scheduler._openamer_home", tmp_path), \
              patch("openamer_state.SessionDB", return_value=fake_db), \
              patch(
                  "openamer_cli.runtime_provider.resolve_runtime_provider",
@@ -2235,9 +2235,9 @@ class TestRunJobConfigLogging:
         # resolution and MCP discovery, both of which can spawn subprocesses
         # / hit the network and have caused this test to time out on CI
         # (>30s wall clock) under load. See PR #33661 follow-up.
-        with patch("cron.scheduler._hermes_home", tmp_path), \
+        with patch("cron.scheduler._openamer_home", tmp_path), \
              patch("cron.scheduler._resolve_origin", return_value=None), \
-             patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+             patch("openamer_cli.env_loader.load_openamer_dotenv"), \
              patch("openamer_cli.env_loader.reset_secret_source_cache"), \
              patch("openamer_cli.runtime_provider.resolve_runtime_provider",
                    return_value={"provider": "openrouter", "api_key": "x",
@@ -2270,9 +2270,9 @@ class TestRunJobConfigLogging:
             "prompt": "hello",
         }
 
-        with patch("cron.scheduler._hermes_home", tmp_path), \
+        with patch("cron.scheduler._openamer_home", tmp_path), \
              patch("cron.scheduler._resolve_origin", return_value=None), \
-             patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+             patch("openamer_cli.env_loader.load_openamer_dotenv"), \
              patch("openamer_cli.env_loader.reset_secret_source_cache"), \
              patch("openamer_cli.runtime_provider.resolve_runtime_provider",
                    return_value={"provider": "openrouter", "api_key": "x",
@@ -2309,9 +2309,9 @@ class TestRunJobConfigEnvVarExpansion:
         job = {"id": "env-job", "name": "env test", "prompt": "hi"}
         fake_db = MagicMock()
 
-        with patch("cron.scheduler._hermes_home", tmp_path), \
+        with patch("cron.scheduler._openamer_home", tmp_path), \
              patch("cron.scheduler._resolve_origin", return_value=None), \
-             patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+             patch("openamer_cli.env_loader.load_openamer_dotenv"), \
              patch("openamer_cli.env_loader.reset_secret_source_cache"), \
              patch("openamer_state.SessionDB", return_value=fake_db), \
              patch("openamer_cli.runtime_provider.resolve_runtime_provider",
@@ -2343,9 +2343,9 @@ class TestRunJobConfigEnvVarExpansion:
         job = {"id": "prefill-job", "name": "prefill test", "prompt": "hi"}
         fake_db = MagicMock()
 
-        with patch("cron.scheduler._hermes_home", tmp_path), \
+        with patch("cron.scheduler._openamer_home", tmp_path), \
              patch("cron.scheduler._resolve_origin", return_value=None), \
-             patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+             patch("openamer_cli.env_loader.load_openamer_dotenv"), \
              patch("openamer_cli.env_loader.reset_secret_source_cache"), \
              patch("openamer_state.SessionDB", return_value=fake_db), \
              patch("openamer_cli.runtime_provider.resolve_runtime_provider",
@@ -2374,9 +2374,9 @@ class TestRunJobConfigEnvVarExpansion:
         job = {"id": "fb-job", "name": "fallback test", "prompt": "hi"}
         fake_db = MagicMock()
 
-        with patch("cron.scheduler._hermes_home", tmp_path), \
+        with patch("cron.scheduler._openamer_home", tmp_path), \
              patch("cron.scheduler._resolve_origin", return_value=None), \
-             patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+             patch("openamer_cli.env_loader.load_openamer_dotenv"), \
              patch("openamer_cli.env_loader.reset_secret_source_cache"), \
              patch("openamer_state.SessionDB", return_value=fake_db), \
              patch("openamer_cli.runtime_provider.resolve_runtime_provider",
@@ -2430,9 +2430,9 @@ class TestRunJobConfigEnvVarExpansion:
             assert kwargs["target_model"] == "z-ai/glm-5.2"
             return {**self._RUNTIME, "provider": "openrouter"}
 
-        with patch("cron.scheduler._hermes_home", tmp_path), \
+        with patch("cron.scheduler._openamer_home", tmp_path), \
              patch("cron.scheduler._resolve_origin", return_value=None), \
-             patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+             patch("openamer_cli.env_loader.load_openamer_dotenv"), \
              patch("openamer_cli.env_loader.reset_secret_source_cache"), \
              patch("openamer_state.SessionDB", return_value=fake_db), \
              patch("openamer_cli.runtime_provider.resolve_runtime_provider",
@@ -2465,7 +2465,7 @@ class TestRunJobConfigEnvVarExpansion:
         job = {"id": "fb-merge", "name": "fallback merge", "prompt": "hi"}
         fake_db = MagicMock()
 
-        with patch("cron.scheduler._hermes_home", tmp_path), \
+        with patch("cron.scheduler._openamer_home", tmp_path), \
              patch("cron.scheduler._resolve_origin", return_value=None), \
              patch("dotenv.load_dotenv"), \
              patch("openamer_state.SessionDB", return_value=fake_db), \
@@ -2489,9 +2489,9 @@ class TestRunJobConfigEnvVarExpansion:
         job = {"id": "unset-job", "name": "unset var test", "prompt": "hi"}
         fake_db = MagicMock()
 
-        with patch("cron.scheduler._hermes_home", tmp_path), \
+        with patch("cron.scheduler._openamer_home", tmp_path), \
              patch("cron.scheduler._resolve_origin", return_value=None), \
-             patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+             patch("openamer_cli.env_loader.load_openamer_dotenv"), \
              patch("openamer_cli.env_loader.reset_secret_source_cache"), \
              patch("openamer_state.SessionDB", return_value=fake_db), \
              patch("openamer_cli.runtime_provider.resolve_runtime_provider",
@@ -2534,9 +2534,9 @@ class TestRunJobModelResolution:
         job = {"id": "null-model-job", "name": "null model", "prompt": "hi", "model": None}
         fake_db = MagicMock()
 
-        with patch("cron.scheduler._hermes_home", tmp_path), \
+        with patch("cron.scheduler._openamer_home", tmp_path), \
              patch("cron.scheduler._resolve_origin", return_value=None), \
-             patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+             patch("openamer_cli.env_loader.load_openamer_dotenv"), \
              patch("openamer_cli.env_loader.reset_secret_source_cache"), \
              patch("openamer_state.SessionDB", return_value=fake_db), \
              patch("openamer_cli.runtime_provider.resolve_runtime_provider",
@@ -2559,9 +2559,9 @@ class TestRunJobModelResolution:
         job = {"id": "cfg-default-job", "name": "cfg default", "prompt": "hi", "model": None}
         fake_db = MagicMock()
 
-        with patch("cron.scheduler._hermes_home", tmp_path), \
+        with patch("cron.scheduler._openamer_home", tmp_path), \
              patch("cron.scheduler._resolve_origin", return_value=None), \
-             patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+             patch("openamer_cli.env_loader.load_openamer_dotenv"), \
              patch("openamer_cli.env_loader.reset_secret_source_cache"), \
              patch("openamer_state.SessionDB", return_value=fake_db), \
              patch("openamer_cli.runtime_provider.resolve_runtime_provider",
@@ -2592,9 +2592,9 @@ class TestRunJobModelResolution:
         job = {"id": "null-default-job", "name": "null default", "prompt": "hi", "model": None}
         fake_db = MagicMock()
 
-        with patch("cron.scheduler._hermes_home", tmp_path), \
+        with patch("cron.scheduler._openamer_home", tmp_path), \
              patch("cron.scheduler._resolve_origin", return_value=None), \
-             patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+             patch("openamer_cli.env_loader.load_openamer_dotenv"), \
              patch("openamer_cli.env_loader.reset_secret_source_cache"), \
              patch("openamer_state.SessionDB", return_value=fake_db), \
              patch("openamer_cli.runtime_provider.resolve_runtime_provider",
@@ -2616,9 +2616,9 @@ class TestRunJobModelResolution:
         job = {"id": "no-model-job", "name": "no model anywhere", "prompt": "hi", "model": None}
         fake_db = MagicMock()
 
-        with patch("cron.scheduler._hermes_home", tmp_path), \
+        with patch("cron.scheduler._openamer_home", tmp_path), \
              patch("cron.scheduler._resolve_origin", return_value=None), \
-             patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+             patch("openamer_cli.env_loader.load_openamer_dotenv"), \
              patch("openamer_cli.env_loader.reset_secret_source_cache"), \
              patch("openamer_state.SessionDB", return_value=fake_db), \
              patch("openamer_cli.runtime_provider.resolve_runtime_provider",
@@ -2646,9 +2646,9 @@ class TestRunJobModelResolution:
         job = {"id": "updated-model-job", "name": "updated", "prompt": "hi", "model": "first-model"}
         fake_db = MagicMock()
 
-        with patch("cron.scheduler._hermes_home", tmp_path), \
+        with patch("cron.scheduler._openamer_home", tmp_path), \
              patch("cron.scheduler._resolve_origin", return_value=None), \
-             patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+             patch("openamer_cli.env_loader.load_openamer_dotenv"), \
              patch("openamer_cli.env_loader.reset_secret_source_cache"), \
              patch("openamer_state.SessionDB", return_value=fake_db), \
              patch("openamer_cli.runtime_provider.resolve_runtime_provider",
@@ -2673,9 +2673,9 @@ class TestRunJobModelResolution:
         job = {"id": "string-cfg-job", "name": "string cfg", "prompt": "hi", "model": None}
         fake_db = MagicMock()
 
-        with patch("cron.scheduler._hermes_home", tmp_path), \
+        with patch("cron.scheduler._openamer_home", tmp_path), \
              patch("cron.scheduler._resolve_origin", return_value=None), \
-             patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+             patch("openamer_cli.env_loader.load_openamer_dotenv"), \
              patch("openamer_cli.env_loader.reset_secret_source_cache"), \
              patch("openamer_state.SessionDB", return_value=fake_db), \
              patch("openamer_cli.runtime_provider.resolve_runtime_provider",
@@ -2704,9 +2704,9 @@ class TestRunJobModelResolution:
         job = {"id": "alias-job", "name": "alias", "prompt": "hi", "model": None}
         fake_db = MagicMock()
 
-        with patch("cron.scheduler._hermes_home", tmp_path), \
+        with patch("cron.scheduler._openamer_home", tmp_path), \
              patch("cron.scheduler._resolve_origin", return_value=None), \
-             patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+             patch("openamer_cli.env_loader.load_openamer_dotenv"), \
              patch("openamer_cli.env_loader.reset_secret_source_cache"), \
              patch("openamer_state.SessionDB", return_value=fake_db), \
              patch("openamer_cli.runtime_provider.resolve_runtime_provider",
@@ -2729,9 +2729,9 @@ class TestRunJobModelResolution:
         job = {"id": "corrupt-job", "name": "corrupt", "prompt": "hi", "model": "explicit-model"}
         fake_db = MagicMock()
 
-        with patch("cron.scheduler._hermes_home", tmp_path), \
+        with patch("cron.scheduler._openamer_home", tmp_path), \
              patch("cron.scheduler._resolve_origin", return_value=None), \
-             patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+             patch("openamer_cli.env_loader.load_openamer_dotenv"), \
              patch("openamer_cli.env_loader.reset_secret_source_cache"), \
              patch("openamer_state.SessionDB", return_value=fake_db), \
              patch("openamer_cli.runtime_provider.resolve_runtime_provider",
@@ -2772,9 +2772,9 @@ class TestRunJobSkillBacked:
             assert "NOTION_API_KEY" in get_all_passthrough()
             return {"final_response": "ok"}
 
-        with patch("cron.scheduler._hermes_home", tmp_path), \
+        with patch("cron.scheduler._openamer_home", tmp_path), \
              patch("cron.scheduler._resolve_origin", return_value=None), \
-             patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+             patch("openamer_cli.env_loader.load_openamer_dotenv"), \
              patch("openamer_cli.env_loader.reset_secret_source_cache"), \
              patch("openamer_state.SessionDB", return_value=fake_db), \
              patch(
@@ -2832,10 +2832,10 @@ class TestRunJobSkillBacked:
             assert any("google_token.json" in v for v in registered.values())
             return {"final_response": "ok"}
 
-        with patch("cron.scheduler._hermes_home", tmp_path), \
+        with patch("cron.scheduler._openamer_home", tmp_path), \
              patch("cron.scheduler._resolve_origin", return_value=None), \
-             patch("tools.credential_files._resolve_hermes_home", return_value=tmp_path), \
-             patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+             patch("tools.credential_files._resolve_openamer_home", return_value=tmp_path), \
+             patch("openamer_cli.env_loader.load_openamer_dotenv"), \
              patch("openamer_cli.env_loader.reset_secret_source_cache"), \
              patch("openamer_state.SessionDB", return_value=fake_db), \
              patch(
@@ -2872,9 +2872,9 @@ class TestRunJobSkillBacked:
 
         fake_db = MagicMock()
 
-        with patch("cron.scheduler._hermes_home", tmp_path), \
+        with patch("cron.scheduler._openamer_home", tmp_path), \
              patch("cron.scheduler._resolve_origin", return_value=None), \
-             patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+             patch("openamer_cli.env_loader.load_openamer_dotenv"), \
              patch("openamer_cli.env_loader.reset_secret_source_cache"), \
              patch("openamer_state.SessionDB", return_value=fake_db), \
              patch(
@@ -2919,9 +2919,9 @@ class TestRunJobSkillBacked:
         def _skill_view(name):
             return json.dumps({"success": True, "content": f"# {name}\nInstructions for {name}."})
 
-        with patch("cron.scheduler._hermes_home", tmp_path), \
+        with patch("cron.scheduler._openamer_home", tmp_path), \
              patch("cron.scheduler._resolve_origin", return_value=None), \
-             patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+             patch("openamer_cli.env_loader.load_openamer_dotenv"), \
              patch("openamer_cli.env_loader.reset_secret_source_cache"), \
              patch("openamer_state.SessionDB", return_value=fake_db), \
              patch(
@@ -4610,7 +4610,7 @@ class TestCronDeliveryTargets:
 class TestHomeTargetEnvVarRegistry:
     """Regression: ``_HOME_TARGET_ENV_VARS`` must include every gateway
     platform that supports cron-driven outbound delivery. Missing an
-    entry means ``hermes cron create --deliver=<platform>`` silently
+    entry means ``openamer cron create --deliver=<platform>`` silently
     fails to route through the platform's home channel."""
 
     def test_whatsapp_cloud_registered(self):

@@ -1,7 +1,7 @@
 """The base-CLI petdex pane: reactive half-block sprite above the prompt.
 
 Mirrors the TUI's PetPane. The methods are tested in isolation via __new__ so
-we don't pay the full HermesCLI.__init__ cost; a synthetic spritesheet exercises
+we don't pay the full OpenAmerCLI.__init__ cost; a synthetic spritesheet exercises
 the real engine decode + half-block fragment building.
 """
 
@@ -14,7 +14,7 @@ import pytest
 from agent.pet import store
 from agent.pet.constants import FRAME_H, FRAME_W
 from agent.pet.render import PetRenderer
-from cli import HermesCLI
+from cli import OpenAmerCLI
 
 
 @pytest.fixture
@@ -22,7 +22,7 @@ def boba_like(tmp_path, monkeypatch):
     """Install a synthetic pet into a temp OPENAMER_HOME and return its slug."""
     from PIL import Image
 
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
 
@@ -44,7 +44,7 @@ def boba_like(tmp_path, monkeypatch):
 
 
 def _make_cli():
-    cli_obj = HermesCLI.__new__(HermesCLI)
+    cli_obj = OpenAmerCLI.__new__(OpenAmerCLI)
     cli_obj._app = None
     cli_obj._pet_lock = threading.Lock()
     cli_obj._pet_enabled = False
@@ -55,7 +55,7 @@ def _make_cli():
     cli_obj._pet_frames_cache = {}
     cli_obj._pet_frame_idx = 0
     cli_obj._agent_running = False
-    # Transient-beat + reasoning state (set by HermesCLI.__init__ in production).
+    # Transient-beat + reasoning state (set by OpenAmerCLI.__init__ in production).
     cli_obj._pet_event = ""
     cli_obj._pet_event_until = 0.0
     cli_obj._pet_reasoning = False

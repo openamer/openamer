@@ -163,7 +163,7 @@ class XsignBootstrapE2E(unittest.IsolatedAsyncioTestCase):
         from mautrix.util.async_db import Database
 
         # The actual bootstrap snippet from gateway/platforms/matrix.py
-        # (copied so we can run it without importing the full hermes
+        # (copied so we can run it without importing the full openamer
         # gateway and its many deps). If the source code drifts from this,
         # the test should be updated to match.
         log_lines: list[str] = []

@@ -23,9 +23,9 @@ import openamer_cli.plugins as plugins_mod
 from openamer_cli.plugins import PluginManager, VALID_HOOKS
 
 
-def _make_enabled_plugin(hermes_home: Path, name: str, register_body: str) -> Path:
-    """Create a plugin under <hermes_home>/plugins/<name> and opt it in."""
-    plugin_dir = hermes_home / "plugins" / name
+def _make_enabled_plugin(openamer_home: Path, name: str, register_body: str) -> Path:
+    """Create a plugin under <openamer_home>/plugins/<name> and opt it in."""
+    plugin_dir = openamer_home / "plugins" / name
     plugin_dir.mkdir(parents=True)
     (plugin_dir / "plugin.yaml").write_text(
         yaml.safe_dump({"name": name, "version": "0.1.0"}), encoding="utf-8",
@@ -35,7 +35,7 @@ def _make_enabled_plugin(hermes_home: Path, name: str, register_body: str) -> Pa
         f"    {register_body}\n",
         encoding="utf-8",
     )
-    cfg_path = hermes_home / "config.yaml"
+    cfg_path = openamer_home / "config.yaml"
     cfg = {}
     if cfg_path.exists():
         cfg = yaml.safe_load(cfg_path.read_text()) or {}
@@ -50,17 +50,17 @@ def test_transform_llm_output_in_valid_hooks():
 
 def test_hook_receives_expected_kwargs(tmp_path, monkeypatch):
     """Hook callback should see response_text + session_id + model + platform."""
-    hermes_home = tmp_path / "hermes_test"
-    hermes_home.mkdir(exist_ok=True)
+    openamer_home = tmp_path / "openamer_test"
+    openamer_home.mkdir(exist_ok=True)
     _make_enabled_plugin(
-        hermes_home, "capture_hook",
+        openamer_home, "capture_hook",
         register_body=(
             'ctx.register_hook("transform_llm_output", '
             'lambda **kw: f"{kw[\'response_text\']}|{kw[\'session_id\']}|'
             '{kw[\'model\']}|{kw[\'platform\']}")'
         ),
     )
-    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
 
     mgr = PluginManager()
     mgr.discover_and_load()
@@ -111,17 +111,17 @@ def test_hook_exception_does_not_replace_response(tmp_path, monkeypatch):
     to the results list, and the walk in run_agent.py finds nothing to
     replace with.
     """
-    hermes_home = tmp_path / "hermes_test"
-    hermes_home.mkdir(exist_ok=True)
+    openamer_home = tmp_path / "openamer_test"
+    openamer_home.mkdir(exist_ok=True)
     _make_enabled_plugin(
-        hermes_home, "raising_hook",
+        openamer_home, "raising_hook",
         register_body=(
             'def _boom(**kw):\n'
             '        raise RuntimeError("boom")\n'
             '    ctx.register_hook("transform_llm_output", _boom)'
         ),
     )
-    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
 
     mgr = PluginManager()
     mgr.discover_and_load()
@@ -145,7 +145,7 @@ def test_hook_exception_does_not_replace_response(tmp_path, monkeypatch):
 
 def test_no_plugins_returns_empty_results(tmp_path, monkeypatch):
     """With no plugins loaded, invoke_hook returns [] and the response is unchanged."""
-    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / "hermes_empty"))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / "openamer_empty"))
     plugins_mod._plugin_manager = PluginManager()
 
     mgr = plugins_mod._plugin_manager

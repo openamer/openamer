@@ -1,13 +1,13 @@
 """Regression tests for the CLI ``/yolo`` in-chat toggle.
 
-Pre-fix bug (issue #33925): ``cli.HermesCLI._toggle_yolo`` mutated only
+Pre-fix bug (issue #33925): ``cli.OpenAmerCLI._toggle_yolo`` mutated only
 ``os.environ["HERMES_YOLO_MODE"]``. That env var is captured once at
 module-import time into ``tools.approval._YOLO_MODE_FROZEN`` (security
 hardening: stops prompt-injected skills from flipping the bypass mid-run),
 so the post-startup toggle was a silent no-op. ``/yolo`` advertised "YOLO ON"
 in the status bar while every dangerous command still hit the approval
-prompt. Only ``hermes --yolo`` (process-start env), ``HERMES_YOLO_MODE=1``,
-and ``hermes config set approvals.mode off`` actually bypassed.
+prompt. Only ``openamer --yolo`` (process-start env), ``HERMES_YOLO_MODE=1``,
+and ``openamer config set approvals.mode off`` actually bypassed.
 
 The fix routes the CLI toggle through ``enable_session_yolo`` /
 ``disable_session_yolo`` (matching the gateway and TUI ``/yolo`` paths) and
@@ -17,9 +17,9 @@ against the same key the toggle writes under.
 
 We test ``_toggle_yolo`` and ``_is_session_yolo_active`` as unbound methods
 against a minimal stand-in object that exposes only the attribute they
-read (``session_id``). This avoids the heavy ``HermesCLI`` construction
+read (``session_id``). This avoids the heavy ``OpenAmerCLI`` construction
 path used in ``test_cli_init.py``, which is incompatible with this test
-file's path layout — ``HermesCLI.__init__`` imports a lot of optional
+file's path layout — ``OpenAmerCLI.__init__`` imports a lot of optional
 state we don't need here.
 """
 
@@ -30,7 +30,7 @@ from unittest.mock import patch
 import pytest
 
 import tools.approval as approval_module
-from cli import HermesCLI
+from cli import OpenAmerCLI
 
 
 SESSION_KEY = "test-cli-yolo-session"
@@ -53,9 +53,9 @@ def _make_stand_in(session_id: str = SESSION_KEY) -> SimpleNamespace:
     ``_toggle_yolo`` and ``_is_session_yolo_active`` are both pure methods
     that only read ``self.session_id`` — no other CLI state is touched.
     Calling them as unbound functions against this stand-in is equivalent
-    to invoking them on a fully-constructed ``HermesCLI`` for the
+    to invoking them on a fully-constructed ``OpenAmerCLI`` for the
     behaviour under test, and avoids the brittle prompt_toolkit / config
-    stubbing required to instantiate ``HermesCLI`` from this test file.
+    stubbing required to instantiate ``OpenAmerCLI`` from this test file.
     """
     return SimpleNamespace(session_id=session_id)
 
@@ -74,16 +74,16 @@ class TestToggleYoloIsSessionScoped:
         assert approval_module.is_session_yolo_enabled(SESSION_KEY) is False
 
         with patch("cli._cprint"):
-            HermesCLI._toggle_yolo(stand_in)
+            OpenAmerCLI._toggle_yolo(stand_in)
 
         assert approval_module.is_session_yolo_enabled(SESSION_KEY) is True
 
     def test_toggle_yolo_disables_session_bypass_on_second_call(self):
         stand_in = _make_stand_in()
         with patch("cli._cprint"):
-            HermesCLI._toggle_yolo(stand_in)  # ON
+            OpenAmerCLI._toggle_yolo(stand_in)  # ON
             assert approval_module.is_session_yolo_enabled(SESSION_KEY) is True
-            HermesCLI._toggle_yolo(stand_in)  # OFF
+            OpenAmerCLI._toggle_yolo(stand_in)  # OFF
             assert approval_module.is_session_yolo_enabled(SESSION_KEY) is False
 
     def test_toggle_yolo_does_not_mutate_env_var(self):
@@ -92,7 +92,7 @@ class TestToggleYoloIsSessionScoped:
         (subprocesses, status bars wired to the env, the relaunch flag list)."""
         stand_in = _make_stand_in()
         with patch("cli._cprint"):
-            HermesCLI._toggle_yolo(stand_in)
+            OpenAmerCLI._toggle_yolo(stand_in)
 
         assert os.environ.get("HERMES_YOLO_MODE") is None
 
@@ -103,7 +103,7 @@ class TestToggleYoloIsSessionScoped:
         that resolves against the default key."""
         stand_in = _make_stand_in(session_id="")
         with patch("cli._cprint"):
-            HermesCLI._toggle_yolo(stand_in)
+            OpenAmerCLI._toggle_yolo(stand_in)
 
         assert approval_module.is_session_yolo_enabled("default") is True
 
@@ -115,7 +115,7 @@ class TestToggleYoloIsSessionScoped:
 
         try:
             with patch("cli._cprint"):
-                HermesCLI._toggle_yolo(cli_a)
+                OpenAmerCLI._toggle_yolo(cli_a)
 
             assert approval_module.is_session_yolo_enabled("session-yolo-a") is True
             assert approval_module.is_session_yolo_enabled("session-yolo-b") is False
@@ -131,26 +131,26 @@ class TestIsSessionYoloActiveHelper:
     def test_helper_reflects_toggle(self):
         stand_in = _make_stand_in()
 
-        assert HermesCLI._is_session_yolo_active(stand_in) is False
+        assert OpenAmerCLI._is_session_yolo_active(stand_in) is False
 
         with patch("cli._cprint"):
-            HermesCLI._toggle_yolo(stand_in)
+            OpenAmerCLI._toggle_yolo(stand_in)
 
-        assert HermesCLI._is_session_yolo_active(stand_in) is True
+        assert OpenAmerCLI._is_session_yolo_active(stand_in) is True
 
         with patch("cli._cprint"):
-            HermesCLI._toggle_yolo(stand_in)
+            OpenAmerCLI._toggle_yolo(stand_in)
 
-        assert HermesCLI._is_session_yolo_active(stand_in) is False
+        assert OpenAmerCLI._is_session_yolo_active(stand_in) is False
 
     def test_helper_honors_frozen_yolo_mode(self):
-        """``hermes --yolo`` sets ``HERMES_YOLO_MODE`` before tool imports, so
+        """``openamer --yolo`` sets ``HERMES_YOLO_MODE`` before tool imports, so
         ``_YOLO_MODE_FROZEN`` ends up True. The status bar should still
         reflect YOLO on in that case even when the session toggle is off."""
         stand_in = _make_stand_in()
 
         with patch.object(approval_module, "_YOLO_MODE_FROZEN", True):
-            assert HermesCLI._is_session_yolo_active(stand_in) is True
+            assert OpenAmerCLI._is_session_yolo_active(stand_in) is True
 
 
 class TestToggleYoloEndToEnd:
@@ -163,7 +163,7 @@ class TestToggleYoloEndToEnd:
         token = approval_module.set_current_session_key(SESSION_KEY)
         try:
             with patch("cli._cprint"):
-                HermesCLI._toggle_yolo(stand_in)  # YOLO ON
+                OpenAmerCLI._toggle_yolo(stand_in)  # YOLO ON
 
             result = approval_module.check_all_command_guards(
                 "rm -rf /tmp/scratch-xyzzy", "local",
@@ -177,7 +177,7 @@ class TestToggleYoloEndToEnd:
 
 class TestIsSessionYoloActiveAttrSafety:
     """The status-bar helper runs against partially-constructed CLI fixtures
-    (tests use ``HermesCLI.__new__(HermesCLI)`` to skip ``__init__``). It must
+    (tests use ``OpenAmerCLI.__new__(OpenAmerCLI)`` to skip ``__init__``). It must
     not raise ``AttributeError`` when ``session_id`` is absent — the
     status-bar builders swallow exceptions silently and lose every field
     after the failure, producing a regression that's hard to track back to
@@ -188,7 +188,7 @@ class TestIsSessionYoloActiveAttrSafety:
         from types import SimpleNamespace
         no_attr = SimpleNamespace()
         # Must return False, not raise.
-        assert HermesCLI._is_session_yolo_active(no_attr) is False
+        assert OpenAmerCLI._is_session_yolo_active(no_attr) is False
 
 
 class TestSessionRotationTransfersYolo:
@@ -204,7 +204,7 @@ class TestSessionRotationTransfersYolo:
             approval_module.enable_session_yolo("old-id")
             assert approval_module.is_session_yolo_enabled("old-id") is True
 
-            HermesCLI._transfer_session_yolo(stand_in, "old-id", "new-id")
+            OpenAmerCLI._transfer_session_yolo(stand_in, "old-id", "new-id")
 
             assert approval_module.is_session_yolo_enabled("new-id") is True
             assert approval_module.is_session_yolo_enabled("old-id") is False
@@ -215,7 +215,7 @@ class TestSessionRotationTransfersYolo:
     def test_transfer_is_noop_when_yolo_was_off(self):
         stand_in = _make_stand_in(session_id="old-id")
         try:
-            HermesCLI._transfer_session_yolo(stand_in, "old-id", "new-id")
+            OpenAmerCLI._transfer_session_yolo(stand_in, "old-id", "new-id")
             assert approval_module.is_session_yolo_enabled("new-id") is False
             assert approval_module.is_session_yolo_enabled("old-id") is False
         finally:
@@ -226,7 +226,7 @@ class TestSessionRotationTransfersYolo:
         stand_in = _make_stand_in(session_id="same-id")
         try:
             approval_module.enable_session_yolo("same-id")
-            HermesCLI._transfer_session_yolo(stand_in, "same-id", "same-id")
+            OpenAmerCLI._transfer_session_yolo(stand_in, "same-id", "same-id")
             # Must NOT have been disabled — same-id == same-id is a no-op,
             # not a "disable then re-enable" round-trip.
             assert approval_module.is_session_yolo_enabled("same-id") is True
@@ -237,8 +237,8 @@ class TestSessionRotationTransfersYolo:
         stand_in = _make_stand_in(session_id="x")
         # Both directions of empty input should be safe no-ops; nothing
         # to transfer from "" / to "".
-        HermesCLI._transfer_session_yolo(stand_in, "", "new")
-        HermesCLI._transfer_session_yolo(stand_in, "old", "")
+        OpenAmerCLI._transfer_session_yolo(stand_in, "", "new")
+        OpenAmerCLI._transfer_session_yolo(stand_in, "old", "")
         # Neither key should have been touched.
         assert approval_module.is_session_yolo_enabled("new") is False
         assert approval_module.is_session_yolo_enabled("old") is False

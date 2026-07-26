@@ -241,10 +241,10 @@ def test_load_website_blocklist_wraps_shared_file_read_errors(tmp_path, monkeypa
     assert result["rules"] == []  # shared file rules skipped
 
 
-def test_check_website_access_uses_dynamic_hermes_home(monkeypatch, tmp_path):
-    hermes_home = tmp_path / "hermes-home"
-    hermes_home.mkdir()
-    (hermes_home / "config.yaml").write_text(
+def test_check_website_access_uses_dynamic_openamer_home(monkeypatch, tmp_path):
+    openamer_home = tmp_path / "openamer-home"
+    openamer_home.mkdir()
+    (openamer_home / "config.yaml").write_text(
         yaml.safe_dump(
             {
                 "security": {
@@ -259,11 +259,11 @@ def test_check_website_access_uses_dynamic_hermes_home(monkeypatch, tmp_path):
         encoding="utf-8",
     )
 
-    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
 
     # Invalidate the module-level cache so the new OPENAMER_HOME is picked up.
     # A prior test may have cached a default policy (enabled=False) under the
-    # old OPENAMER_HOME set by the autouse _isolate_hermes_home fixture.
+    # old OPENAMER_HOME set by the autouse _isolate_openamer_home fixture.
     from tools.website_policy import invalidate_cache
     invalidate_cache()
 

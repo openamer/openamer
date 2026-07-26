@@ -57,7 +57,7 @@ def install_loop_noise_filter(loop: asyncio.AbstractEventLoop) -> None:
     Idempotent: re-installing on a loop that already has the filter is a no-op,
     so it's safe to call on every reconnect/serve entry.
     """
-    if getattr(loop, "_hermes_noise_filter_installed", False):
+    if getattr(loop, "_openamer_noise_filter_installed", False):
         return
 
     previous = loop.get_exception_handler()
@@ -78,6 +78,6 @@ def install_loop_noise_filter(loop: asyncio.AbstractEventLoop) -> None:
     # Mark on the loop instance so a second install (reconnect, re-serve) is a
     # no-op rather than stacking handlers.
     try:
-        loop._hermes_noise_filter_installed = True  # type: ignore[attr-defined]
+        loop._openamer_noise_filter_installed = True  # type: ignore[attr-defined]
     except (AttributeError, TypeError):  # pragma: no cover - exotic loop impls
         pass

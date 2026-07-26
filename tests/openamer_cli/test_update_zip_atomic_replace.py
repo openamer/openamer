@@ -3,7 +3,7 @@
 Issue #49145: on Windows the ZIP-update path did ``rmtree(dst); copytree(...)``.
 A copy that failed partway (file locks / flaky I/O — the very conditions the ZIP
 path exists to work around) left the directory deleted with nothing copied back,
-which broke ``hermes --tui`` because ``ui-tui/`` had vanished.
+which broke ``openamer --tui`` because ``ui-tui/`` had vanished.
 
 ``_atomic_replace_dir`` stages the new copy first and only swaps it in on full
 success, so a mid-copy failure leaves the original directory intact.
@@ -33,8 +33,8 @@ def test_atomic_replace_swaps_content_on_success(tmp_path: Path) -> None:
     assert (dst / "new.txt").read_text() == "NEW"
     assert not (dst / "old.txt").exists()
     # No staging/backup siblings left behind.
-    assert not (dst.parent / "ui-tui.hermes-update-staging").exists()
-    assert not (dst.parent / "ui-tui.hermes-update-old").exists()
+    assert not (dst.parent / "ui-tui.openamer-update-staging").exists()
+    assert not (dst.parent / "ui-tui.openamer-update-old").exists()
 
 
 def test_atomic_replace_leaves_original_intact_when_copy_fails(
@@ -59,7 +59,7 @@ def test_atomic_replace_leaves_original_intact_when_copy_fails(
     # The whole point: the live directory survives a failed update untouched.
     assert dst.is_dir()
     assert (dst / "keep.txt").read_text() == "PRECIOUS"
-    assert not (dst.parent / "ui-tui.hermes-update-staging").exists()
+    assert not (dst.parent / "ui-tui.openamer-update-staging").exists()
 
 
 def test_atomic_replace_clears_stale_staging_leftovers(tmp_path: Path) -> None:
@@ -71,8 +71,8 @@ def test_atomic_replace_clears_stale_staging_leftovers(tmp_path: Path) -> None:
     dst = tmp_path / "install" / "ui-tui"
     dst.mkdir(parents=True)
 
-    stale_staging = dst.parent / "ui-tui.hermes-update-staging"
-    stale_backup = dst.parent / "ui-tui.hermes-update-old"
+    stale_staging = dst.parent / "ui-tui.openamer-update-staging"
+    stale_backup = dst.parent / "ui-tui.openamer-update-old"
     stale_staging.mkdir()
     stale_backup.mkdir()
     (stale_staging / "junk").write_text("junk")

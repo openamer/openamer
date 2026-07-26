@@ -41,17 +41,17 @@ import pytest
 @pytest.fixture
 def isolated_home(monkeypatch):
     """Temp OPENAMER_HOME with config + clean credential env vars."""
-    test_home = tempfile.mkdtemp(prefix="hermes_test_31179_")
-    hermes_home = os.path.join(test_home, ".hermes")
-    os.makedirs(hermes_home)
-    monkeypatch.setenv("OPENAMER_HOME", hermes_home)
+    test_home = tempfile.mkdtemp(prefix="openamer_test_31179_")
+    openamer_home = os.path.join(test_home, ".openamer")
+    os.makedirs(openamer_home)
+    monkeypatch.setenv("OPENAMER_HOME", openamer_home)
 
     # Strip all credential-shaped env vars so each scenario starts hermetic.
     for k in list(os.environ.keys()):
         if k.endswith("_API_KEY") or k.endswith("_TOKEN"):
             monkeypatch.delenv(k, raising=False)
 
-    yield hermes_home
+    yield openamer_home
     shutil.rmtree(test_home, ignore_errors=True)
 
 
@@ -61,7 +61,7 @@ def _write_config(home: str, text: str) -> None:
 
 
 def _fresh_modules():
-    """Drop cached hermes modules so each test reloads against current env."""
+    """Drop cached openamer modules so each test reloads against current env."""
     for mod in list(sys.modules.keys()):
         if mod.startswith(("agent.auxiliary_client", "agent.image_routing",
                            "tools.vision_tools", "tools.browser_tool",

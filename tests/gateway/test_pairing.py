@@ -38,7 +38,7 @@ class TestSplitPairingDirMigration:
             "ou_user": {"user_name": "Alice", "approved_at": 123.0}
         }))
 
-        with patch("gateway.pairing.PAIRING_DIR", legacy), patch("gateway.pairing.get_hermes_home", return_value=home):
+        with patch("gateway.pairing.PAIRING_DIR", legacy), patch("gateway.pairing.get_openamer_home", return_value=home):
             store = PairingStore()
             assert store.is_approved("feishu", "ou_user") is True
 
@@ -59,7 +59,7 @@ class TestSplitPairingDirMigration:
             "ou_other": {"user_name": "Other", "approved_at": 1.0},
         }))
 
-        with patch("gateway.pairing.PAIRING_DIR", legacy), patch("gateway.pairing.get_hermes_home", return_value=home):
+        with patch("gateway.pairing.PAIRING_DIR", legacy), patch("gateway.pairing.get_openamer_home", return_value=home):
             store = PairingStore()
             assert store.is_approved("feishu", "ou_user") is True
             assert store.is_approved("feishu", "ou_other") is True
@@ -736,7 +736,7 @@ class TestUnreadablePairingFile:
         # And the warning should include actionable advice
         msgs = " ".join(rec.getMessage() for rec in caplog.records)
         assert "docker exec" in msgs
-        assert "-u hermes" in msgs
+        assert "-u openamer" in msgs
 
     def test_is_approved_returns_false_when_file_unreadable(self, tmp_path, caplog):
         """End-to-end: an unreadable approved.json must not crash the gateway,
@@ -774,9 +774,9 @@ class TestProfileScopedStorage:
 
     def test_default_store_uses_global_dir(self, tmp_path, monkeypatch):
         """PairingStore() (no profile) keeps the legacy global path so the
-        ``hermes pairing`` CLI continues to work without a profile context."""
+        ``openamer pairing`` CLI continues to work without a profile context."""
         from openamer_constants import get_openamer_home
-        monkeypatch.setattr("openamer_constants.get_hermes_home", lambda: tmp_path)
+        monkeypatch.setattr("openamer_constants.get_openamer_home", lambda: tmp_path)
         # Re-import PAIRING_DIR (it's a module-level constant resolved at
         # import time) so the test exercises the right path. We patch it
         # rather than re-importing so the assertion is unambiguous.
@@ -790,7 +790,7 @@ class TestProfileScopedStorage:
         """PairingStore(profile="yangyang") puts files under
         <OPENAMER_HOME>/profiles/yangyang/pairing/."""
         from openamer_constants import get_openamer_home
-        monkeypatch.setattr("openamer_constants.get_hermes_home", lambda: tmp_path)
+        monkeypatch.setattr("openamer_constants.get_openamer_home", lambda: tmp_path)
         store = PairingStore(profile="yangyang")
         assert store.profile == "yangyang"
         expected = tmp_path / "profiles" / "yangyang" / "pairing"
@@ -803,7 +803,7 @@ class TestProfileScopedStorage:
         """Approving in a profile-scoped store must not appear in the global
         store — and vice versa. This is the whole point of the fix."""
         from openamer_constants import get_openamer_home
-        monkeypatch.setattr("openamer_constants.get_hermes_home", lambda: tmp_path)
+        monkeypatch.setattr("openamer_constants.get_openamer_home", lambda: tmp_path)
         with patch("gateway.pairing.PAIRING_DIR", tmp_path):
             global_store = PairingStore()
             profile_store = PairingStore(profile="yangyang")
@@ -823,7 +823,7 @@ class TestProfileScopedStorage:
         """Rate-limit state is per-profile, not shared globally — otherwise
         one profile's flood would lock out the other profile's users."""
         from openamer_constants import get_openamer_home
-        monkeypatch.setattr("openamer_constants.get_hermes_home", lambda: tmp_path)
+        monkeypatch.setattr("openamer_constants.get_openamer_home", lambda: tmp_path)
         with patch("gateway.pairing.PAIRING_DIR", tmp_path):
             global_store = PairingStore()
             profile_store = PairingStore(profile="yangyang")

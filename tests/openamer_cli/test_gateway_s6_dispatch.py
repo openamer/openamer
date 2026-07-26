@@ -1,7 +1,7 @@
 """Tests for the Phase 4 s6 dispatch helper in openamer_cli.gateway.
 
 `_dispatch_via_service_manager_if_s6` decides whether a
-`hermes gateway start/stop/restart` invocation should be routed to
+`openamer gateway start/stop/restart` invocation should be routed to
 the in-container S6ServiceManager instead of falling through to the
 host systemd/launchd/windows code path.
 """
@@ -270,7 +270,7 @@ def test_dispatch_renders_gateway_not_registered_friendly(
     monkeypatch: pytest.MonkeyPatch,
     capsys: pytest.CaptureFixture,
 ) -> None:
-    """`hermes -p typo gateway start` should print a clear message and
+    """`openamer -p typo gateway start` should print a clear message and
     exit 1 — not dump a traceback at the user."""
     from openamer_cli import gateway as gw
     from openamer_cli.service_manager import GatewayNotRegisteredError
@@ -293,7 +293,7 @@ def test_dispatch_renders_gateway_not_registered_friendly(
     assert excinfo.value.code == 1
     out = capsys.readouterr().out
     assert "no such gateway 'typo'" in out
-    assert "hermes profile create typo" in out
+    assert "openamer profile create typo" in out
     # And critically: no traceback prefix.
     assert "Traceback" not in out
 
@@ -511,7 +511,7 @@ def test_redirect_short_circuits_supervised_child(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     """The recursion guard: when the supervised gateway s6-supervise is
-    running execs `hermes gateway run --replace`, the
+    running execs `openamer gateway run --replace`, the
     HERMES_S6_SUPERVISED_CHILD sentinel must short-circuit the redirect
     so the gateway actually starts foreground. Without this guard the
     supervised process would re-dispatch `start` → re-exec `run` → ...

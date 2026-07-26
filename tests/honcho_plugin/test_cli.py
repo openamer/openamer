@@ -9,20 +9,20 @@ class TestResolveApiKey:
 
     def test_returns_api_key_from_root(self, monkeypatch):
         import plugins.memory.honcho.cli as honcho_cli
-        monkeypatch.setattr(honcho_cli, "_host_key", lambda: "hermes")
+        monkeypatch.setattr(honcho_cli, "_host_key", lambda: "openamer")
         monkeypatch.delenv("HONCHO_API_KEY", raising=False)
         assert honcho_cli._resolve_api_key({"apiKey": "root-key"}) == "root-key"
 
     def test_returns_api_key_from_host_block(self, monkeypatch):
         import plugins.memory.honcho.cli as honcho_cli
-        monkeypatch.setattr(honcho_cli, "_host_key", lambda: "hermes")
+        monkeypatch.setattr(honcho_cli, "_host_key", lambda: "openamer")
         monkeypatch.delenv("HONCHO_API_KEY", raising=False)
-        cfg = {"hosts": {"hermes": {"apiKey": "host-key"}}, "apiKey": "root-key"}
+        cfg = {"hosts": {"openamer": {"apiKey": "host-key"}}, "apiKey": "root-key"}
         assert honcho_cli._resolve_api_key(cfg) == "host-key"
 
     def test_returns_local_for_base_url_without_api_key(self, monkeypatch):
         import plugins.memory.honcho.cli as honcho_cli
-        monkeypatch.setattr(honcho_cli, "_host_key", lambda: "hermes")
+        monkeypatch.setattr(honcho_cli, "_host_key", lambda: "openamer")
         monkeypatch.delenv("HONCHO_API_KEY", raising=False)
         monkeypatch.delenv("HONCHO_BASE_URL", raising=False)
         cfg = {"baseUrl": "http://localhost:8000"}
@@ -30,14 +30,14 @@ class TestResolveApiKey:
 
     def test_returns_local_for_base_url_env_var(self, monkeypatch):
         import plugins.memory.honcho.cli as honcho_cli
-        monkeypatch.setattr(honcho_cli, "_host_key", lambda: "hermes")
+        monkeypatch.setattr(honcho_cli, "_host_key", lambda: "openamer")
         monkeypatch.delenv("HONCHO_API_KEY", raising=False)
         monkeypatch.setenv("HONCHO_BASE_URL", "http://10.0.0.5:8000")
         assert honcho_cli._resolve_api_key({}) == "local"
 
     def test_returns_empty_when_nothing_configured(self, monkeypatch):
         import plugins.memory.honcho.cli as honcho_cli
-        monkeypatch.setattr(honcho_cli, "_host_key", lambda: "hermes")
+        monkeypatch.setattr(honcho_cli, "_host_key", lambda: "openamer")
         monkeypatch.delenv("HONCHO_API_KEY", raising=False)
         monkeypatch.delenv("HONCHO_BASE_URL", raising=False)
         assert honcho_cli._resolve_api_key({}) == ""
@@ -45,7 +45,7 @@ class TestResolveApiKey:
     def test_rejects_garbage_base_url_without_scheme(self, monkeypatch):
         """Obvious non-URL literals in baseUrl (typos) must not pass the guard."""
         import plugins.memory.honcho.cli as honcho_cli
-        monkeypatch.setattr(honcho_cli, "_host_key", lambda: "hermes")
+        monkeypatch.setattr(honcho_cli, "_host_key", lambda: "openamer")
         monkeypatch.delenv("HONCHO_API_KEY", raising=False)
         monkeypatch.delenv("HONCHO_BASE_URL", raising=False)
         # Boolean literals, pure digits, and bare identifiers without
@@ -65,7 +65,7 @@ class TestResolveApiKey:
         parsed scheme explicitly.
         """
         import plugins.memory.honcho.cli as honcho_cli
-        monkeypatch.setattr(honcho_cli, "_host_key", lambda: "hermes")
+        monkeypatch.setattr(honcho_cli, "_host_key", lambda: "openamer")
         monkeypatch.delenv("HONCHO_API_KEY", raising=False)
         monkeypatch.delenv("HONCHO_BASE_URL", raising=False)
         # file:/// parses with scheme='file' but empty netloc, so the
@@ -78,7 +78,7 @@ class TestResolveApiKey:
 
     def test_accepts_https_base_url(self, monkeypatch):
         import plugins.memory.honcho.cli as honcho_cli
-        monkeypatch.setattr(honcho_cli, "_host_key", lambda: "hermes")
+        monkeypatch.setattr(honcho_cli, "_host_key", lambda: "openamer")
         monkeypatch.delenv("HONCHO_API_KEY", raising=False)
         monkeypatch.delenv("HONCHO_BASE_URL", raising=False)
         assert honcho_cli._resolve_api_key({"baseUrl": "https://honcho.example.com"}) == "local"
@@ -93,7 +93,7 @@ class TestResolveApiKey:
         The SDK itself still rejects malformed URLs at connect time.
         """
         import plugins.memory.honcho.cli as honcho_cli
-        monkeypatch.setattr(honcho_cli, "_host_key", lambda: "hermes")
+        monkeypatch.setattr(honcho_cli, "_host_key", lambda: "openamer")
         monkeypatch.delenv("HONCHO_API_KEY", raising=False)
         monkeypatch.delenv("HONCHO_BASE_URL", raising=False)
         for legacy in ("localhost:8000", "10.0.0.5:8000", "honcho.local:8080", "host.example.com"):
@@ -112,7 +112,7 @@ class TestCmdSetupLocalJwt:
         monkeypatch.setattr(honcho_cli, "_read_config", lambda: dict(initial_cfg))
         monkeypatch.setattr(honcho_cli, "_local_config_path", lambda: cfg_path)
         monkeypatch.setattr(honcho_cli, "_config_path", lambda: cfg_path)
-        monkeypatch.setattr(honcho_cli, "_host_key", lambda: "hermes")
+        monkeypatch.setattr(honcho_cli, "_host_key", lambda: "openamer")
         monkeypatch.setattr(honcho_cli, "_ensure_sdk_installed", lambda: True)
 
         written = {}
@@ -156,7 +156,7 @@ class TestCmdSetupLocalJwt:
         # Top-level apiKey must remain unset (cloud field).
         assert not cfg.get("apiKey")
         # The new local JWT belongs under the host block.
-        host_block = (cfg.get("hosts") or {}).get("hermes") or {}
+        host_block = (cfg.get("hosts") or {}).get("openamer") or {}
         assert host_block.get("apiKey") == "my-local-jwt-token"
 
     def test_local_setup_blank_jwt_keeps_local_no_auth(self, monkeypatch, tmp_path):
@@ -175,7 +175,7 @@ class TestCmdSetupLocalJwt:
         assert cfg is not None
         assert cfg.get("baseUrl") == "http://localhost:8000"
         assert not cfg.get("apiKey")
-        host_block = (cfg.get("hosts") or {}).get("hermes") or {}
+        host_block = (cfg.get("hosts") or {}).get("openamer") or {}
         assert not host_block.get("apiKey")
 
 
@@ -189,10 +189,10 @@ class TestCmdStatus:
         class FakeConfig:
             enabled = True
             api_key = "root-key"
-            workspace_id = "hermes"
-            host = "hermes"
+            workspace_id = "openamer"
+            host = "openamer"
             base_url = None
-            ai_peer = "hermes"
+            ai_peer = "openamer"
             peer_name = "eri"
             recall_mode = "hybrid"
             user_observe_me = True
@@ -207,7 +207,7 @@ class TestCmdStatus:
             reasoning_heuristic = True
 
             def resolve_session_name(self):
-                return "hermes"
+                return "openamer"
 
         monkeypatch.setattr(honcho_cli, "_read_config", lambda: {"apiKey": "***"})
         monkeypatch.setattr(honcho_cli, "_config_path", lambda: cfg_path)
@@ -244,9 +244,9 @@ class TestCmdStatus:
             enabled = True
             api_key = "hch-at-deadbeef"
             workspace_id = "claude-code"
-            host = "hermes"
+            host = "openamer"
             base_url = None
-            ai_peer = "hermes"
+            ai_peer = "openamer"
             peer_name = "eri"
             recall_mode = "hybrid"
             user_observe_me = True
@@ -261,11 +261,11 @@ class TestCmdStatus:
             reasoning_heuristic = True
             raw = {
                 "hosts": {
-                    "hermes": {
+                    "openamer": {
                         "apiKey": "hch-at-deadbeef",
                         "oauth": {
                             "refreshToken": "hch-rt-x",
-                            "clientId": "hermes-agent",
+                            "clientId": "openamer-agent",
                             "tokenEndpoint": "https://api.honcho.dev/oauth/token",
                             "expiresAt": 9999999999,
                         },
@@ -274,7 +274,7 @@ class TestCmdStatus:
             }
 
             def resolve_session_name(self):
-                return "hermes"
+                return "openamer"
 
         monkeypatch.setattr(honcho_cli, "_read_config", lambda: {})
         monkeypatch.setattr(honcho_cli, "_config_path", lambda: cfg_path)
@@ -291,7 +291,7 @@ class TestCmdStatus:
         honcho_cli.cmd_status(SimpleNamespace(all=False))
 
         out = capsys.readouterr().out
-        assert "Auth:           OAuth (hermes-agent" in out
+        assert "Auth:           OAuth (openamer-agent" in out
         assert "API key:" not in out
 
 
@@ -322,7 +322,7 @@ class TestCloneHonchoForProfile:
         cfg = {
             "apiKey": "***",
             "hosts": {
-                "hermes": {
+                "openamer": {
                     "userPeerAliases": {"7654321": "eri", "discord-491827364": "eri"},
                     "peerName": "eri",
                 },
@@ -331,14 +331,14 @@ class TestCloneHonchoForProfile:
         honcho_cli, written = self._setup_clone_env(monkeypatch, tmp_path, cfg)
         ok = honcho_cli.clone_honcho_for_profile("coder")
         assert ok is True
-        new_block = written["cfg"]["hosts"]["hermes_coder"]
+        new_block = written["cfg"]["hosts"]["openamer_coder"]
         assert new_block["userPeerAliases"] == {"7654321": "eri", "discord-491827364": "eri"}
 
     def test_runtime_peer_prefix_carries_into_cloned_profile(self, monkeypatch, tmp_path):
         cfg = {
             "apiKey": "***",
             "hosts": {
-                "hermes": {
+                "openamer": {
                     "runtimePeerPrefix": "telegram_",
                     "peerName": "eri",
                 },
@@ -347,14 +347,14 @@ class TestCloneHonchoForProfile:
         honcho_cli, written = self._setup_clone_env(monkeypatch, tmp_path, cfg)
         ok = honcho_cli.clone_honcho_for_profile("coder")
         assert ok is True
-        new_block = written["cfg"]["hosts"]["hermes_coder"]
+        new_block = written["cfg"]["hosts"]["openamer_coder"]
         assert new_block["runtimePeerPrefix"] == "telegram_"
 
     def test_legacy_pin_peer_name_migrates_to_canonical_on_clone(self, monkeypatch, tmp_path):
         cfg = {
             "apiKey": "***",
             "hosts": {
-                "hermes": {
+                "openamer": {
                     "pinPeerName": True,
                     "peerName": "eri",
                 },
@@ -363,19 +363,19 @@ class TestCloneHonchoForProfile:
         honcho_cli, written = self._setup_clone_env(monkeypatch, tmp_path, cfg)
         ok = honcho_cli.clone_honcho_for_profile("coder")
         assert ok is True
-        new_block = written["cfg"]["hosts"]["hermes_coder"]
+        new_block = written["cfg"]["hosts"]["openamer_coder"]
         assert new_block["pinUserPeer"] is True
         assert "pinPeerName" not in new_block
 
     def test_unset_identity_keys_do_not_appear_in_cloned_profile(self, monkeypatch, tmp_path):
         cfg = {
             "apiKey": "***",
-            "hosts": {"hermes": {"peerName": "eri"}},
+            "hosts": {"openamer": {"peerName": "eri"}},
         }
         honcho_cli, written = self._setup_clone_env(monkeypatch, tmp_path, cfg)
         ok = honcho_cli.clone_honcho_for_profile("coder")
         assert ok is True
-        new_block = written["cfg"]["hosts"]["hermes_coder"]
+        new_block = written["cfg"]["hosts"]["openamer_coder"]
         assert "userPeerAliases" not in new_block
         assert "runtimePeerPrefix" not in new_block
         assert "pinUserPeer" not in new_block
@@ -391,7 +391,7 @@ class TestSetupWizardDeploymentShape:
     Choice [2] (me + others, pooled) aliases the operator's own runtime IDs.
 
     These tests mock gateway detection and script the interactive _prompt
-    calls, asserting the resulting hermes_host block so the tree's routing
+    calls, asserting the resulting openamer_host block so the tree's routing
     semantics stay locked even as adjacent prompts are added.
     """
 
@@ -406,7 +406,7 @@ class TestSetupWizardDeploymentShape:
         monkeypatch.setattr(honcho_cli, "_read_config", lambda: cfg)
         monkeypatch.setattr(honcho_cli, "_config_path", lambda: cfg_path)
         monkeypatch.setattr(honcho_cli, "_local_config_path", lambda: cfg_path)
-        monkeypatch.setattr(honcho_cli, "_host_key", lambda: "hermes")
+        monkeypatch.setattr(honcho_cli, "_host_key", lambda: "openamer")
         monkeypatch.setattr(honcho_cli, "_ensure_sdk_installed", lambda: True)
         monkeypatch.setattr(honcho_cli, "_write_config", lambda *a, **k: None)
         # No network probe / environment sniffing in tests.
@@ -427,8 +427,8 @@ class TestSetupWizardDeploymentShape:
 
         class _FakeClientCfg:
             def resolve_session_name(self):
-                return "hermes-test"
-            workspace_id = "hermes"
+                return "openamer-test"
+            workspace_id = "openamer"
             peer_name = "eri"
             ai_peer = "hermetika"
             observation_mode = "directional"
@@ -462,7 +462,7 @@ class TestSetupWizardDeploymentShape:
         monkeypatch.setattr(honcho_cli, "_prompt", _scripted_prompt)
 
         honcho_cli.cmd_setup(SimpleNamespace())
-        return cfg["hosts"]["hermes"]
+        return cfg["hosts"]["openamer"]
 
     def test_just_me_pins_and_clears_aliases(self, monkeypatch, tmp_path):
         answers = [
@@ -470,13 +470,13 @@ class TestSetupWizardDeploymentShape:
             "",                # api key (keep)
             "eri",             # peer name
             "hermetika",       # ai peer
-            "hermes",          # workspace
+            "openamer",          # workspace
             "1",               # tree: just me ← key answer
             # remaining prompts fall through to defaults
         ]
         initial_cfg = {
             "apiKey": "***",
-            "hosts": {"hermes": {
+            "hosts": {"openamer": {
                 "userPeerAliases": {"old": "stale"},
                 "runtimePeerPrefix": "old_",
             }},
@@ -492,7 +492,7 @@ class TestSetupWizardDeploymentShape:
             "",                # api key (keep)
             "eri",             # peer name
             "hermetika",       # ai peer
-            "hermes",          # workspace
+            "openamer",          # workspace
             "3",               # tree: only other people
             "telegram_",       # runtime peer prefix
         ]
@@ -510,7 +510,7 @@ class TestSetupWizardDeploymentShape:
             "",                # api key (keep)
             "eri",             # peer name
             "hermetika",       # ai peer
-            "hermes",          # workspace
+            "openamer",          # workspace
             "2",               # tree: me + other people
             "y",               # keep my memory pooled? → hybrid
             "7654321",        # telegram uid
@@ -532,14 +532,14 @@ class TestSetupWizardDeploymentShape:
         # except for the on-load migration onto the canonical key.
         initial_cfg = {
             "apiKey": "***",
-            "hosts": {"hermes": {
+            "hosts": {"openamer": {
                 "pinPeerName": True,
                 "userPeerAliases": {"keep": "me"},
                 "runtimePeerPrefix": "keep_",
             }},
         }
         answers = [
-            "cloud", "", "eri", "hermetika", "hermes", "s",
+            "cloud", "", "eri", "hermetika", "openamer", "s",
         ]
         host = self._run_setup(monkeypatch, tmp_path, answers=answers, initial_cfg=initial_cfg)
         assert host["pinUserPeer"] is True
@@ -554,14 +554,14 @@ class TestSetupWizardDeploymentShape:
         """
         initial_cfg = {
             "apiKey": "***",
-            "hosts": {"hermes": {"pinPeerName": True, "peerName": "eri"}},
+            "hosts": {"openamer": {"pinPeerName": True, "peerName": "eri"}},
         }
         answers = [
             "cloud",           # deployment
             "",                # api key (keep)
             "eri",             # peer name
             "hermetika",       # ai peer
-            "hermes",          # workspace
+            "openamer",          # workspace
             "3",               # tree: only others — triggers the orphan guard
             "y",               # pool my own memory instead? → hybrid
             "7654321",        # telegram uid
@@ -579,10 +579,10 @@ class TestSetupWizardDeploymentShape:
         up with per-user peers (no aliases)."""
         initial_cfg = {
             "apiKey": "***",
-            "hosts": {"hermes": {"pinPeerName": True, "peerName": "eri"}},
+            "hosts": {"openamer": {"pinPeerName": True, "peerName": "eri"}},
         }
         answers = [
-            "cloud", "", "eri", "hermetika", "hermes",
+            "cloud", "", "eri", "hermetika", "openamer",
             "3",               # tree: only others — triggers the orphan guard
             "n",               # decline pooling, accept orphaning
             "telegram_",       # runtime peer prefix
@@ -602,13 +602,13 @@ class TestSetupWizardDeploymentShape:
         """
         initial_cfg = {
             "apiKey": "***",
-            "hosts": {"hermes": {"pinUserPeer": True, "peerName": "eri"}},
+            "hosts": {"openamer": {"pinUserPeer": True, "peerName": "eri"}},
         }
         # Exhaust the iterator before the choice prompt so the scripted
         # mock falls through to the prompt's default (the detected shape →
         # choice "1").  Scripting an explicit "" would NOT exercise that
         # fallthrough — the mock returns it literally.
-        answers = ["cloud", "", "eri", "hermetika", "hermes"]
+        answers = ["cloud", "", "eri", "hermetika", "openamer"]
         host = self._run_setup(monkeypatch, tmp_path, answers=answers, initial_cfg=initial_cfg)
         # Scrub-then-write normalises onto the canonical pinUserPeer.
         assert host["pinUserPeer"] is True
@@ -624,13 +624,13 @@ class TestSetupWizardDeploymentShape:
         """
         initial_cfg = {
             "apiKey": "***",
-            "hosts": {"hermes": {
+            "hosts": {"openamer": {
                 "pinUserPeer": False,
                 "pinPeerName": True,
                 "peerName": "eri",
             }},
         }
-        answers = ["cloud", "", "eri", "hermetika", "hermes"]
+        answers = ["cloud", "", "eri", "hermetika", "openamer"]
         host = self._run_setup(monkeypatch, tmp_path, answers=answers, initial_cfg=initial_cfg)
         assert host["pinUserPeer"] is False
         assert "pinPeerName" not in host
@@ -642,9 +642,9 @@ class TestSetupWizardDeploymentShape:
         initial_cfg = {
             "apiKey": "***",
             "userPeerAliases": {"7654321": "eri"},
-            "hosts": {"hermes": {"peerName": "eri"}},
+            "hosts": {"openamer": {"peerName": "eri"}},
         }
-        answers = ["cloud", "", "eri", "hermetika", "hermes"]
+        answers = ["cloud", "", "eri", "hermetika", "openamer"]
         host = self._run_setup(monkeypatch, tmp_path, answers=answers, initial_cfg=initial_cfg)
         assert host["pinUserPeer"] is False
         # Hybrid materialises the root aliases into the host so subsequent
@@ -666,10 +666,10 @@ class TestSetupWizardDeploymentShape:
         initial_cfg = {
             "apiKey": "***",
             "userPeerAliases": {"baseline": "eri"},
-            "hosts": {"hermes": {"peerName": "eri"}},
+            "hosts": {"openamer": {"peerName": "eri"}},
         }
         answers = [
-            "cloud", "", "eri", "hermetika", "hermes",
+            "cloud", "", "eri", "hermetika", "openamer",
             "3",               # explicit per-user override of detected hybrid
         ]
         host = self._run_setup(monkeypatch, tmp_path, answers=answers, initial_cfg=initial_cfg)
@@ -682,13 +682,13 @@ class TestSetupWizardDeploymentShape:
         """
         initial_cfg = {
             "apiKey": "***",
-            "hosts": {"hermes": {
+            "hosts": {"openamer": {
                 "pinUserPeer": False,
                 "peerName": "eri",
             }},
         }
         answers = [
-            "cloud", "", "eri", "hermetika", "hermes",
+            "cloud", "", "eri", "hermetika", "openamer",
             "1",
         ]
         host = self._run_setup(monkeypatch, tmp_path, answers=answers, initial_cfg=initial_cfg)
@@ -699,9 +699,9 @@ class TestSetupWizardDeploymentShape:
         the 'configure anyway?' prompt leaves identity mapping untouched."""
         initial_cfg = {
             "apiKey": "***",
-            "hosts": {"hermes": {"peerName": "eri"}},
+            "hosts": {"openamer": {"peerName": "eri"}},
         }
-        answers = ["cloud", "", "eri", "hermetika", "hermes", "n"]
+        answers = ["cloud", "", "eri", "hermetika", "openamer", "n"]
         host = self._run_setup(
             monkeypatch, tmp_path, answers=answers, initial_cfg=initial_cfg,
             gateway_platforms=[],
@@ -715,9 +715,9 @@ class TestSetupWizardDeploymentShape:
         whether the gateway is running; 'no' skips the mapping step."""
         initial_cfg = {
             "apiKey": "***",
-            "hosts": {"hermes": {"peerName": "eri"}},
+            "hosts": {"openamer": {"peerName": "eri"}},
         }
-        answers = ["cloud", "", "eri", "hermetika", "hermes", "n"]
+        answers = ["cloud", "", "eri", "hermetika", "openamer", "n"]
         host = self._run_setup(
             monkeypatch, tmp_path, answers=answers, initial_cfg=initial_cfg,
             gateway_platforms=None,
@@ -728,7 +728,7 @@ class TestSetupWizardDeploymentShape:
         """The [e] escape hatch lets a power user set pinUserPeer + an alias +
         prefix directly, bypassing the intent tree."""
         answers = [
-            "cloud", "", "eri", "hermetika", "hermes",
+            "cloud", "", "eri", "hermetika", "openamer",
             "e",               # tree: edit raw keys
             "false",           # pinUserPeer
             "99887766=eri",    # one alias pair
@@ -753,7 +753,7 @@ class TestCloneCarriesPinUserPeer:
 
         cfg = {
             "apiKey": "***",
-            "hosts": {"hermes": {"pinUserPeer": True, "peerName": "eri"}},
+            "hosts": {"openamer": {"pinUserPeer": True, "peerName": "eri"}},
         }
         cfg_path = tmp_path / "config.json"
         cfg_path.write_text("{}")
@@ -768,7 +768,7 @@ class TestCloneCarriesPinUserPeer:
 
         ok = honcho_cli.clone_honcho_for_profile("partner")
         assert ok is True
-        new_block = written["cfg"]["hosts"]["hermes_partner"]
+        new_block = written["cfg"]["hosts"]["openamer_partner"]
         assert new_block["pinUserPeer"] is True
 
 
@@ -813,7 +813,7 @@ class TestCmdSetupDeviceFlow:
         monkeypatch.setattr(honcho_cli, "_read_config", lambda: cfg)
         monkeypatch.setattr(honcho_cli, "_config_path", lambda: cfg_path)
         monkeypatch.setattr(honcho_cli, "_local_config_path", lambda: cfg_path)
-        monkeypatch.setattr(honcho_cli, "_host_key", lambda: "hermes")
+        monkeypatch.setattr(honcho_cli, "_host_key", lambda: "openamer")
         monkeypatch.setattr(honcho_cli, "_ensure_sdk_installed", lambda: True)
         monkeypatch.setattr(honcho_cli, "_write_config", lambda *a, **k: None)
         monkeypatch.setattr(honcho_cli, "_gateway_platforms", lambda: [])
@@ -828,8 +828,8 @@ class TestCmdSetupDeviceFlow:
 
         class _FakeClientCfg:
             def resolve_session_name(self):
-                return "hermes-test"
-            workspace_id = "hermes"
+                return "openamer-test"
+            workspace_id = "openamer"
             peer_name = "eri"
             ai_peer = "hermetika"
             observation_mode = "directional"
@@ -847,7 +847,7 @@ class TestCmdSetupDeviceFlow:
         calls: list[dict] = []
         cred = OAuthCredential(
             access_token="hch-at-x", refresh_token="hch-rt-x", expires_at=9_999_999_999,
-            client_id="hermes-agent", token_endpoint="http://x/oauth/token",
+            client_id="openamer-agent", token_endpoint="http://x/oauth/token",
             consent_peer_name="lyra",
         )
 
@@ -877,8 +877,8 @@ class TestCmdSetupDeviceFlow:
         cfg, calls, _ = self._run_setup(monkeypatch, tmp_path, answers=["cloud", "device"])
         assert len(calls) == 1
         assert calls[0]["apply_config"] is False
-        assert calls[0]["source"] == "hermes-cli"
-        host = cfg["hosts"]["hermes"]
+        assert calls[0]["source"] == "openamer-cli"
+        host = cfg["hosts"]["openamer"]
         assert host["apiKey"] == "hch-at-x"
         assert host["oauth"]["refreshToken"] == "hch-rt-x"
         assert host["peerName"] == "lyra"
@@ -893,7 +893,7 @@ class TestCmdSetupDeviceFlow:
         assert method_prompts[0][1] == "device"
         assert len(calls) == 1
         assert calls[0]["open_url"] is None  # never auto-open a browser headless
-        assert cfg["hosts"]["hermes"]["apiKey"] == "hch-at-x"
+        assert cfg["hosts"]["openamer"]["apiKey"] == "hch-at-x"
 
     def test_denied_device_flow_aborts_without_grant(self, monkeypatch, tmp_path):
         from plugins.memory.honcho.oauth_flow import AccessDenied
@@ -903,7 +903,7 @@ class TestCmdSetupDeviceFlow:
             device_error=AccessDenied("access_denied", "user denied"),
         )
         assert len(calls) == 1
-        assert "apiKey" not in cfg.get("hosts", {}).get("hermes", {})
+        assert "apiKey" not in cfg.get("hosts", {}).get("openamer", {})
 
     def test_device_option_hidden_when_not_advertised(self, monkeypatch, tmp_path):
         _, calls, prompts = self._run_setup(

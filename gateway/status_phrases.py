@@ -1,15 +1,15 @@
 """Human-friendly generic gateway status phrases.
 
 These helpers deliberately avoid relaying raw model scratch text.  They turn
-Hermes' long-running gateway status surface into short status lines suitable
+OpenAmer' long-running gateway status surface into short status lines suitable
 for chat surfaces.
 
 Built-in defaults live in ``gateway/assets/status_phrases.yaml``. Users can add
 portable, profile-relative phrase catalogs under ``OPENAMER_HOME`` either by using
 conventional paths::
 
-    ~/.hermes/status_phrases.yaml
-    ~/.hermes/status_phrases/*.yaml
+    ~/.openamer/status_phrases.yaml
+    ~/.openamer/status_phrases/*.yaml
 
 or by pointing config at a relative file/directory::
 
@@ -36,7 +36,7 @@ import yaml
 
 from openamer_constants import get_openamer_home
 
-# These are Hermes UI surfaces, not app/vendor/domain buckets.  Keep this
+# These are OpenAmer UI surfaces, not app/vendor/domain buckets.  Keep this
 # long-running-only: regular tool/thinking/interim chatter is intentionally not
 # rewritten into generic placeholders because that gets noisy fast in chat.
 _STATUS_SURFACES = ("status", "generic")
@@ -163,22 +163,22 @@ def resolve_status_phrase_catalog(user_config: Mapping[str, Any] | None, platfor
     ``display.platforms.<platform>.status_phrases``.
     """
     catalog = _copy_default_catalog()
-    hermes_home = get_openamer_home()
-    _merge_phrase_paths(catalog, list(_CONVENTIONAL_RELATIVE_PATHS), base_dir=hermes_home)
+    openamer_home = get_openamer_home()
+    _merge_phrase_paths(catalog, list(_CONVENTIONAL_RELATIVE_PATHS), base_dir=openamer_home)
 
     display = (user_config or {}).get("display") if isinstance(user_config, Mapping) else None
     if not isinstance(display, Mapping):
         return catalog
 
-    _merge_phrase_config(catalog, display.get("generic_status_phrases"), base_dir=hermes_home)
-    _merge_phrase_config(catalog, display.get("status_phrases"), base_dir=hermes_home)
+    _merge_phrase_config(catalog, display.get("generic_status_phrases"), base_dir=openamer_home)
+    _merge_phrase_config(catalog, display.get("status_phrases"), base_dir=openamer_home)
 
     platforms = display.get("platforms")
     if platform_key and isinstance(platforms, Mapping):
         platform_display = platforms.get(platform_key)
         if isinstance(platform_display, Mapping):
-            _merge_phrase_config(catalog, platform_display.get("generic_status_phrases"), base_dir=hermes_home)
-            _merge_phrase_config(catalog, platform_display.get("status_phrases"), base_dir=hermes_home)
+            _merge_phrase_config(catalog, platform_display.get("generic_status_phrases"), base_dir=openamer_home)
+            _merge_phrase_config(catalog, platform_display.get("status_phrases"), base_dir=openamer_home)
     return catalog
 
 
@@ -189,7 +189,7 @@ def classify_status_context(
     preview: str | None = None,
     args: Any = None,
 ) -> str:
-    """Classify an internal gateway event into a Hermes UI-surface bucket."""
+    """Classify an internal gateway event into a OpenAmer UI-surface bucket."""
     normalized = str(kind or "").strip().lower()
     if normalized in {"heartbeat", "waiting", "long_running", "status"}:
         return "status"

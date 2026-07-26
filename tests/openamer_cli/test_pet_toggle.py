@@ -12,7 +12,7 @@ from agent.pet.constants import FRAME_H, FRAME_W
 def boba_installed(tmp_path, monkeypatch):
     from PIL import Image
 
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
 
@@ -62,7 +62,7 @@ def test_toggle_pet_display_turns_on_resolved_pet(boba_installed):
 def test_toggle_pet_display_errors_with_no_installed_pets(tmp_path, monkeypatch):
     from openamer_cli.pets import toggle_pet_display
 
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
     _write_config(home, enabled=False, slug="")
@@ -76,7 +76,7 @@ def test_toggle_pet_display_errors_with_no_installed_pets(tmp_path, monkeypatch)
 
 @pytest.fixture
 def empty_home(tmp_path, monkeypatch):
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
     return home

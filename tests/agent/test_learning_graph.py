@@ -67,7 +67,7 @@ def test_skill_node_timestamp_uses_iso_usage_activity(tmp_path, monkeypatch):
 
 
 def test_memory_is_cards_split_on_separator(tmp_path):
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     (home / "memories").mkdir(parents=True)
     (home / "memories" / "MEMORY.md").write_text(
         "Project uses pytest with xdist\n§\nUser prefers concise responses",
@@ -106,14 +106,14 @@ def test_malformed_frontmatter_metadata_does_not_crash(tmp_path):
     assert node.related == []
 
 
-def test_hermes_meta_tolerates_non_dict():
-    assert learning_graph._hermes_meta({"metadata": "junk"}) == {}
-    assert learning_graph._hermes_meta({"metadata": {"hermes": "junk"}}) == {}
-    assert learning_graph._hermes_meta({"metadata": {"hermes": {"category": "x"}}}) == {"category": "x"}
+def test_openamer_meta_tolerates_non_dict():
+    assert learning_graph._openamer_meta({"metadata": "junk"}) == {}
+    assert learning_graph._openamer_meta({"metadata": {"openamer": "junk"}}) == {}
+    assert learning_graph._openamer_meta({"metadata": {"openamer": {"category": "x"}}}) == {"category": "x"}
 
 
 def test_full_payload_shape_and_edge_integrity(tmp_path):
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     token = set_openamer_home_override(home)
     try:

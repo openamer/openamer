@@ -14,7 +14,7 @@ test_yuanbao_integration.py - Yuanbao 模块集成测试
 import sys
 import os
 
-# 确保 hermes-agent 根目录在 sys.path 中
+# 确保 openamer-agent 根目录在 sys.path 中
 _REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if _REPO_ROOT not in sys.path:
     sys.path.insert(0, _REPO_ROOT)
@@ -285,12 +285,12 @@ class TestMediaModule:
 
 class TestToolset:
     def test_yuanbao_toolset_registered(self):
-        """toolsets.py 中存在 hermes-yuanbao 键"""
+        """toolsets.py 中存在 openamer-yuanbao 键"""
         import importlib
         ts = importlib.import_module("toolsets")
         assert hasattr(ts, "TOOLSETS") or hasattr(ts, "toolsets")
         toolsets_dict = getattr(ts, "TOOLSETS", getattr(ts, "toolsets", {}))
-        assert "hermes-yuanbao" in toolsets_dict
+        assert "openamer-yuanbao" in toolsets_dict
 
     def test_tools_import(self):
         from tools.yuanbao_tools import (

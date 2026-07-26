@@ -1,7 +1,7 @@
 /**
  * Invariants for what is eager vs lazy in the root ``package.json``.
  *
- * The root ``package.json`` is installed by ``hermes update`` on every user,
+ * The root ``package.json`` is installed by ``openamer update`` on every user,
  * including users who never opted into a given browser backend. Anything
  * listed in ``dependencies`` therefore runs its npm postinstall script for
  * everyone — including binary-fetching backends, on every update.
@@ -15,9 +15,9 @@
  *
  * - ``@askjo/camofox-browser`` is NOT eager. It is an explicit opt-in
  *   alternative browser backend, selected by the user via
- *   ``hermes tools`` → Browser Automation → Camofox, and only used at
+ *   ``openamer tools`` → Browser Automation → Camofox, and only used at
  *   runtime when ``CAMOFOX_URL`` is set. Its postinstall fetches a ~300MB
- *   Firefox-fork binary, which silently blocked ``hermes update`` for
+ *   Firefox-fork binary, which silently blocked ``openamer update`` for
  *   multi-minute stretches on slow / network-restricted connections
  *   (notably users in China running through a VPN). The package is
  *   installed on demand by ``tools_config.py`` ``post_setup_key ==
@@ -25,7 +25,7 @@
  *
  * If a future PR re-adds Camofox (or any other binary-postinstall package)
  * to root ``dependencies``, this test fails — read the lazy-install
- * guidance in the ``hermes-agent-dev`` skill before changing the
+ * guidance in the ``openamer-agent-dev`` skill before changing the
  * expectations.
  */
 
@@ -49,9 +49,9 @@ test('camofox is not in root dependencies (must stay opt-in)', () => {
     !('@askjo/camofox-browser' in deps),
     'Camofox is a ~300MB binary-postinstall backend that must stay ' +
       'out of root package.json dependencies. It belongs in the ' +
-      'Camofox post_setup handler in hermes_cli/tools_config.py so it ' +
+      'Camofox post_setup handler in openamer_cli/tools_config.py so it ' +
       'only installs when the user explicitly selects Camofox via ' +
-      '`hermes tools` → Browser Automation → Camofox.'
+      '`openamer tools` → Browser Automation → Camofox.'
   )
 })
 
@@ -62,7 +62,7 @@ test('agent-browser stays eager (default backend)', () => {
     'agent-browser is the default browser-tool backend used by every ' +
       'session that doesn\'t have a cloud browser provider configured. ' +
       'It must stay in root package.json dependencies so it is present ' +
-      'after `hermes setup` / `hermes update` without an explicit ' +
+      'after `openamer setup` / `openamer update` without an explicit ' +
       'post_setup step.'
   )
 })

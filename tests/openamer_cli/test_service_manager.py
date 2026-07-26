@@ -74,7 +74,7 @@ def test_detect_service_manager_s6_keys_off_s6_running_not_is_container(
 ) -> None:
     """Regression: Fly runs s6-overlay as PID 1 in a Firecracker microVM, which
     is not a Docker/Podman container. Gating s6 detection on is_container() made
-    the dispatch path inert on Fly, so `hermes gateway restart` spawned a
+    the dispatch path inert on Fly, so `openamer gateway restart` spawned a
     foreground gateway that fought the supervised one. Detection must key off
     s6 being PID 1 (`_s6_running`) alone."""
     monkeypatch.setattr(
@@ -153,7 +153,7 @@ def test_s6_running_false_when_comm_unreadable(
 ) -> None:
     """Regression: /proc/1/exe was unreadable to UID 10000 and
     resolve() silently returned the unresolved path, making detection
-    always-False inside the container under the hermes user. The new
+    always-False inside the container under the openamer user. The new
     probe must FAIL CLOSED — not raise — when /proc/1/comm can't be
     read.
     """
@@ -430,7 +430,7 @@ def test_s6_manager_kind_and_supports_registration() -> None:
 #
 # The skeleton helper pre-creates the dirs and FIFOs that s6-supervise
 # would otherwise create as root mode 0700, locking out the
-# unprivileged hermes user from every lifecycle op. These tests run
+# unprivileged openamer user from every lifecycle op. These tests run
 # against tmp_path and assert the produced layout — the live-container
 # verification (against real s6-svc / s6-svstat) lives in
 # tests/docker/test_s6_profile_gateway_integration.py.
@@ -478,7 +478,7 @@ def test_seed_supervise_skeleton_handles_log_subservice(tmp_path) -> None:
 
     Without this, ``unregister_profile_gateway``'s rmtree would EACCES
     on the logger's root-owned supervise dir even after the parent
-    slot's supervise/ was hermes-owned.
+    slot's supervise/ was openamer-owned.
     """
     import stat
 
@@ -548,8 +548,8 @@ def test_s6_register_creates_service_dir_and_triggers_scan(
     assert run_path.stat().st_mode & 0o111  # executable
     run_text = run_path.read_text()
     assert "export HOME=/opt/data" in run_text
-    assert "hermes -p coder gateway run" in run_text
-    assert "s6-setuidgid hermes" in run_text
+    assert "openamer -p coder gateway run" in run_text
+    assert "s6-setuidgid openamer" in run_text
     # Sentinel marking this as the supervised-child invocation. Without
     # it, the supervised `gateway run` would re-enter the s6 redirect
     # in `_gateway_command_inner` and recurse. See the matching guard
@@ -677,14 +677,14 @@ def test_render_run_script_resets_home_before_exec() -> None:
     run_text = S6ServiceManager._render_run_script("coder", {})
 
     assert "export HOME=/opt/data" in run_text
-    assert "exec s6-setuidgid hermes hermes -p coder gateway run --replace" in run_text
+    assert "exec s6-setuidgid openamer openamer -p coder gateway run --replace" in run_text
 
 
 def test_render_run_script_uses_replace_to_take_over_stale_holder() -> None:
     """NS-505: the supervised gateway must exec ``gateway run --replace``.
 
     Without ``--replace`` a gateway started OUTSIDE s6 (a stray shell
-    ``hermes gateway run``, an agent action, the Open WebUI helper) holds
+    ``openamer gateway run``, an agent action, the Open WebUI helper) holds
     the per-OPENAMER_HOME PID lock; the supervised slot then execs a bare
     ``gateway run``, hits the "Another gateway instance is already
     running" guard, exits non-zero, and s6 restarts it — a restart loop
@@ -695,9 +695,9 @@ def test_render_run_script_uses_replace_to_take_over_stale_holder() -> None:
     render paths.
     """
     default_text = S6ServiceManager._render_run_script("default", {})
-    # Root profile: bare `hermes gateway run --replace` (no -p flag).
-    assert "hermes gateway run --replace" in default_text
-    assert "hermes -p default" not in default_text
+    # Root profile: bare `openamer gateway run --replace` (no -p flag).
+    assert "openamer gateway run --replace" in default_text
+    assert "openamer -p default" not in default_text
     # Every exec line that launches the gateway must carry --replace, so
     # neither the non-root nor the privilege-drop branch can spin.
     gateway_execs = [
@@ -843,11 +843,11 @@ def test_s6_lifecycle_persists_named_profile_desired_state(
 ) -> None:
     import json
 
-    hermes_home = tmp_path / "hermes-home"
-    profile_dir = hermes_home / "profiles" / "coder"
+    openamer_home = tmp_path / "openamer-home"
+    profile_dir = openamer_home / "profiles" / "coder"
     profile_dir.mkdir(parents=True)
     (s6_scandir / "gateway-coder").mkdir()
-    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
 
     mgr = S6ServiceManager(scandir=s6_scandir)
     mgr.start("gateway-coder")
@@ -866,14 +866,14 @@ def test_s6_lifecycle_persists_default_profile_desired_state(
 ) -> None:
     import json
 
-    hermes_home = tmp_path / "hermes-home"
-    hermes_home.mkdir()
+    openamer_home = tmp_path / "openamer-home"
+    openamer_home.mkdir()
     (s6_scandir / "gateway-default").mkdir()
-    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home / "profiles" / "coder"))
+    monkeypatch.setenv("OPENAMER_HOME", str(openamer_home / "profiles" / "coder"))
 
     mgr = S6ServiceManager(scandir=s6_scandir)
     mgr.start("gateway-default")
-    state = json.loads((hermes_home / "gateway_state.json").read_text())
+    state = json.loads((openamer_home / "gateway_state.json").read_text())
     assert state["desired_state"] == "running"
 
 
@@ -901,7 +901,7 @@ def test_lifecycle_raises_gateway_not_registered_for_missing_slot(
     assert excinfo.value.service == "gateway-typo"
     msg = str(excinfo.value)
     assert "'typo'" in msg
-    assert "hermes profile create typo" in msg
+    assert "openamer profile create typo" in msg
     # And critically: s6-svc was NOT invoked.
     assert not any(c[0] == "s6-svc" for c in fake_subprocess_run)
 
@@ -998,7 +998,7 @@ def test_s6_is_running_parses_svstat(
 # ---------------------------------------------------------------------------
 # S6 stop writes a planned-stop marker (issue #42675)
 #
-# `hermes gateway stop` inside a container dispatches through
+# `openamer gateway stop` inside a container dispatches through
 # S6ServiceManager.stop() -> `s6-svc -d`, which SIGTERMs the gateway.
 # That SIGTERM is indistinguishable from the one s6/Docker sends on a
 # container restart unless we mark the intentional stop first. Without
@@ -1109,27 +1109,27 @@ def test_s6_log_run_chowns_gateways_parent(s6_scandir, fake_subprocess_run) -> N
     Regression guard for #45258: `mkdir -p` creates the gateways/ parent
     root-owned on a root-context boot, and a leaf-only chown leaves it that
     way. Every profile registered later then runs its log service as the
-    dropped hermes user and s6-log crash-loops on `mkdir: Permission denied`.
+    dropped openamer user and s6-log crash-loops on `mkdir: Permission denied`.
     """
     mgr = S6ServiceManager(scandir=s6_scandir)
     mgr.register_profile_gateway("coder")
 
     log_text = (s6_scandir / "gateway-coder" / "log" / "run").read_text()
 
-    parent_chown = 'chown hermes:hermes "$OPENAMER_HOME/logs/gateways"'
+    parent_chown = 'chown openamer:openamer "$OPENAMER_HOME/logs/gateways"'
     assert parent_chown in log_text, (
         "log/run must chown the logs/gateways parent so profiles added "
         f"after a root-context boot can create their leaf dirs. Saw: {log_text!r}"
     )
     # Non-recursive on purpose: sibling profile leaf dirs are each managed
     # by their own log/run; a recursive parent chown would race them.
-    assert 'chown -R hermes:hermes "$OPENAMER_HOME/logs/gateways"' not in log_text
+    assert 'chown -R openamer:openamer "$OPENAMER_HOME/logs/gateways"' not in log_text
 
     # Ordering: mkdir creates the parent, then the parent chown repairs its
     # ownership, then the leaf chown — all before s6-log execs.
     mkdir_idx = log_text.index('mkdir -p "$log_dir"')
     parent_idx = log_text.index(parent_chown)
-    leaf_idx = log_text.index('chown -R hermes:hermes "$log_dir"')
+    leaf_idx = log_text.index('chown -R openamer:openamer "$log_dir"')
     exec_idx = log_text.index("s6-log 1 ")
     assert mkdir_idx < parent_idx < leaf_idx < exec_idx
 

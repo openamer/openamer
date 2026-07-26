@@ -41,7 +41,7 @@ async def test_exec_approval_prompt_uses_visible_content_with_command_and_reason
 
     prompt_text = sent["content"]
     assert "Command Approval Required" in prompt_text
-    assert "Do you want Hermes to run this command?" in prompt_text
+    assert "Do you want OpenAmer to run this command?" in prompt_text
     assert "Requested command" in prompt_text
     assert command in prompt_text
     assert "Reason" in prompt_text

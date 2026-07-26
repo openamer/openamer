@@ -40,8 +40,8 @@ def _write_plugin(
     return plugin_dir
 
 
-def _enable(hermes_home: Path, name: str) -> None:
-    cfg_path = hermes_home / "config.yaml"
+def _enable(openamer_home: Path, name: str) -> None:
+    cfg_path = openamer_home / "config.yaml"
     cfg: dict = {}
     if cfg_path.exists():
         try:
@@ -64,9 +64,9 @@ class TestRegisterTTSProvider:
         from agent import tts_registry
         tts_registry._reset_for_tests()
 
-        hermes_home = Path(os.environ["OPENAMER_HOME"])
+        openamer_home = Path(os.environ["OPENAMER_HOME"])
         _write_plugin(
-            hermes_home / "plugins",
+            openamer_home / "plugins",
             "my-tts-plugin",
             register_body=(
                 "from agent.tts_provider import TTSProvider\n"
@@ -78,7 +78,7 @@ class TestRegisterTTSProvider:
                 "    ctx.register_tts_provider(P())"
             ),
         )
-        _enable(hermes_home, "my-tts-plugin")
+        _enable(openamer_home, "my-tts-plugin")
 
         mgr = PluginManager()
         mgr.discover_and_load()
@@ -97,13 +97,13 @@ class TestRegisterTTSProvider:
         from agent import tts_registry
         tts_registry._reset_for_tests()
 
-        hermes_home = Path(os.environ["OPENAMER_HOME"])
+        openamer_home = Path(os.environ["OPENAMER_HOME"])
         _write_plugin(
-            hermes_home / "plugins",
+            openamer_home / "plugins",
             "bad-tts-plugin",
             register_body="ctx.register_tts_provider('not a provider')",
         )
-        _enable(hermes_home, "bad-tts-plugin")
+        _enable(openamer_home, "bad-tts-plugin")
 
         with caplog.at_level("WARNING"):
             mgr = PluginManager()
@@ -127,9 +127,9 @@ class TestRegisterTTSProvider:
         from agent import tts_registry
         tts_registry._reset_for_tests()
 
-        hermes_home = Path(os.environ["OPENAMER_HOME"])
+        openamer_home = Path(os.environ["OPENAMER_HOME"])
         _write_plugin(
-            hermes_home / "plugins",
+            openamer_home / "plugins",
             "shadow-tts-plugin",
             register_body=(
                 "from agent.tts_provider import TTSProvider\n"
@@ -141,7 +141,7 @@ class TestRegisterTTSProvider:
                 "    ctx.register_tts_provider(P())"
             ),
         )
-        _enable(hermes_home, "shadow-tts-plugin")
+        _enable(openamer_home, "shadow-tts-plugin")
 
         with caplog.at_level("WARNING"):
             mgr = PluginManager()

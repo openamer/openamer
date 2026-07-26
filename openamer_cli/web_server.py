@@ -64,8 +64,8 @@ from openamer_cli.config import (
     clear_model_endpoint_credentials,
     get_config_path,
     get_env_path,
-    get_hermes_home,
-    get_process_hermes_home,
+    get_openamer_home,
+    get_process_openamer_home,
     load_config,
     load_env,
     read_raw_config,
@@ -203,7 +203,7 @@ async def _lifespan(app: "FastAPI"):
     asyncio.get_event_loop().run_in_executor(None, _warm_gateway_module)
 
     # Desktop-spawned backends (HERMES_DESKTOP=1) fire cron jobs themselves,
-    # since the app has no gateway running the scheduler. Server `hermes
+    # since the app has no gateway running the scheduler. Server `openamer
     # dashboard` is unaffected — it relies on its own gateway.
     cron_stop: "threading.Event | None" = None
     cron_thread: "threading.Thread | None" = None
@@ -2108,14 +2108,14 @@ def _local_dashboard_request(request: Request) -> bool:
     return host in local_hosts or client_host in local_hosts
 
 
-def _default_hermes_root_is_opt_data() -> bool:
+def _default_openamer_root_is_opt_data() -> bool:
     raw = os.environ.get("OPENAMER_HOME", "").strip()
     if not raw:
         return False
     try:
-        from openamer_constants import get_default_hermes_root
+        from openamer_constants import get_default_openamer_root
 
-        root = get_default_hermes_root().expanduser().resolve(strict=False)
+        root = get_default_openamer_root().expanduser().resolve(strict=False)
     except (OSError, RuntimeError):
         root = Path(raw).expanduser().resolve(strict=False)
     return root == _HOSTED_MANAGED_FILES_ROOT
@@ -2136,7 +2136,7 @@ def _dashboard_local_update_managed_externally() -> bool:
     externally managed unless their apply path is proven safe inside the
     running container filesystem.
     """
-    if _default_hermes_root_is_opt_data():
+    if _default_openamer_root_is_opt_data():
         return True
     try:
         from openamer_constants import is_container
@@ -2170,7 +2170,7 @@ def _managed_files_policy(request: Request, *, create_root: bool = True) -> Mana
     # and still expect the Files page to browse their local home directory. Lock
     # to /opt/data only when the installation's OpenAmer root is actually /opt/data
     # (the container/hosted layout) or when HERMES_DASHBOARD_FILES_ROOT is set.
-    if _default_hermes_root_is_opt_data():
+    if _default_openamer_root_is_opt_data():
         root = _ensure_managed_root(_HOSTED_MANAGED_FILES_ROOT) if create_root else _HOSTED_MANAGED_FILES_ROOT
         return ManagedFilesPolicy(default_path=root, locked_root=root, can_change_path=False)
 
@@ -2659,7 +2659,7 @@ class FsWriteText(BaseModel):
 async def fs_write_text(payload: FsWriteText):
     """Overwrite (or create) a UTF-8 text file for the in-app spot editor.
 
-    Mirrors the local Electron ``hermes:fs:writeText`` hardening: the path is
+    Mirrors the local Electron ``openamer:fs:writeText`` hardening: the path is
     resolved + validated by ``_fs_path``, the parent directory must already
     exist (we never build directory trees), only regular files may be replaced,
     and the payload is size-capped. The write is staged to a sibling temp file
@@ -3273,7 +3273,7 @@ async def get_status(profile: Optional[str] = None):
             "release_date": __release_date__,
             "config_version": current_ver,
             "latest_config_version": latest_ver,
-            "can_update_hermes": not _dashboard_local_update_managed_externally(),
+            "can_update_openamer": not _dashboard_local_update_managed_externally(),
             "gateway_running": gateway_running,
             "gateway_state": gateway_state,
             "gateway_platforms": gateway_platforms,
@@ -3385,7 +3385,7 @@ async def get_status(profile: Optional[str] = None):
         # split ``should_require_auth`` draws.
         if not auth_required:
             status.update({
-                "hermes_home": str(get_openamer_home()),
+                "openamer_home": str(get_openamer_home()),
                 "config_path": str(get_config_path()),
                 "env_path": str(get_env_path()),
                 "gateway_pid": gateway_pid,
@@ -3463,7 +3463,7 @@ async def get_system_stats():
         "hostname": _platform.node(),
         "python_version": _platform.python_version(),
         "python_impl": _platform.python_implementation(),
-        "hermes_version": __version__,
+        "openamer_version": __version__,
         "cpu_count": os.cpu_count(),
     }
 
@@ -3569,7 +3569,7 @@ async def set_curator_paused(body: CuratorPause):
 async def run_curator():
     """Trigger a curator review now (backgrounded; tail via action status)."""
     try:
-        proc = _spawn_hermes_action(["curator", "run"], "curator-run")
+        proc = _spawn_openamer_action(["curator", "run"], "curator-run")
     except Exception as exc:
         raise HTTPException(status_code=500, detail=f"Failed to run curator: {exc}")
     return {"ok": True, "pid": proc.pid, "name": "curator-run"}
@@ -3703,7 +3703,7 @@ async def get_portal_status():
 @app.post("/api/ops/prompt-size")
 async def run_prompt_size():
     try:
-        proc = _spawn_hermes_action(["prompt-size"], "prompt-size")
+        proc = _spawn_openamer_action(["prompt-size"], "prompt-size")
     except Exception as exc:
         raise HTTPException(status_code=500, detail=f"Failed: {exc}")
     return {"ok": True, "pid": proc.pid, "name": "prompt-size"}
@@ -3712,7 +3712,7 @@ async def run_prompt_size():
 @app.post("/api/ops/dump")
 async def run_dump():
     try:
-        proc = _spawn_hermes_action(["dump"], "dump")
+        proc = _spawn_openamer_action(["dump"], "dump")
     except Exception as exc:
         raise HTTPException(status_code=500, detail=f"Failed: {exc}")
     return {"ok": True, "pid": proc.pid, "name": "dump"}
@@ -3721,7 +3721,7 @@ async def run_dump():
 @app.post("/api/ops/config-migrate")
 async def run_config_migrate():
     try:
-        proc = _spawn_hermes_action(["config", "migrate"], "config-migrate")
+        proc = _spawn_openamer_action(["config", "migrate"], "config-migrate")
     except Exception as exc:
         raise HTTPException(status_code=500, detail=f"Failed: {exc}")
     return {"ok": True, "pid": proc.pid, "name": "config-migrate"}
@@ -3778,7 +3778,7 @@ async def run_debug_share_endpoint(body: DebugShareRequest | None = None):
 # Both commands are spawned as detached subprocesses so the HTTP request
 # returns immediately.  stdin is closed (``DEVNULL``) so any stray ``input()``
 # calls fail fast with EOF rather than hanging forever.  stdout/stderr are
-# streamed to a per-action log file under ``~/.hermes/logs/<action>.log`` so
+# streamed to a per-action log file under ``~/.openamer/logs/<action>.log`` so
 # the dashboard can tail them back to the user.
 # ---------------------------------------------------------------------------
 
@@ -3848,7 +3848,7 @@ def _dashboard_spawn_executable() -> str:
     return sys.executable
 
 
-def _spawn_hermes_action(subcommand: List[str], name: str) -> subprocess.Popen:
+def _spawn_openamer_action(subcommand: List[str], name: str) -> subprocess.Popen:
     """Spawn ``openamer <subcommand>`` detached and record the Popen handle.
 
     Uses the running interpreter's ``openamer_cli.main`` module so the action
@@ -3947,7 +3947,7 @@ def _gateway_subcommand(profile: Optional[str], verb: str) -> List[str]:
 
 
 def _gateway_display_command(profile: Optional[str], verb: str) -> str:
-    return " ".join(["hermes", *_gateway_subcommand(profile, verb)])
+    return " ".join(["openamer", *_gateway_subcommand(profile, verb)])
 
 
 # Kept in sync with the corresponding frontend validation in ChannelsPage.tsx.
@@ -4024,7 +4024,7 @@ def _spawn_gateway_restart(profile: Optional[str] = None) -> Tuple[subprocess.Po
         if existing_command is None or existing_command == tuple(subcommand):
             return existing, True
         raise RuntimeError("gateway restart already in progress for another profile")
-    return _spawn_hermes_action(subcommand, "gateway-restart"), False
+    return _spawn_openamer_action(subcommand, "gateway-restart"), False
 
 
 def _restart_gateway_after_webhook_enable(profile: Optional[str] = None) -> dict[str, Any]:
@@ -4139,8 +4139,8 @@ async def gateway_drain(request: Request):
     }
 
 
-@app.post("/api/hermes/update")
-async def update_hermes():
+@app.post("/api/openamer/update")
+async def update_openamer():
     """Kick off ``openamer update`` in the background."""
     if _dashboard_local_update_managed_externally():
         message = (
@@ -4184,7 +4184,7 @@ async def update_hermes():
         }
 
     try:
-        proc = _spawn_hermes_action(["update"], "openamer-update")
+        proc = _spawn_openamer_action(["update"], "openamer-update")
     except Exception as exc:
         _log.exception("Failed to spawn openamer update")
         raise HTTPException(status_code=500, detail=f"Failed to start update: {exc}")
@@ -4249,13 +4249,13 @@ def _recent_upstream_commits(n: int = 20) -> List[Dict[str, Any]]:
         return []
 
 
-@app.get("/api/hermes/update/check")
-async def check_hermes_update(force: bool = False):
+@app.get("/api/openamer/update/check")
+async def check_openamer_update(force: bool = False):
     """Report whether a OpenAmer update is available, without applying it.
 
     Powers the dashboard's "check before you update" flow: the System page
     shows the commit-behind count and asks the user to confirm before
-    ``POST /api/hermes/update`` actually runs ``openamer update``.
+    ``POST /api/openamer/update`` actually runs ``openamer update``.
 
     Returns:
         install_method: 'git' | 'docker' | 'nix' | 'nixos' | 'unknown'
@@ -4525,7 +4525,7 @@ async def speak_text(payload: TTSSpeakRequest):
     Used by the desktop voice-conversation mode to play back assistant
     responses without exposing the on-disk file path. Reuses the
     existing TTS provider chain (Edge / OpenAI / ElevenLabs / etc.)
-    configured in ``~/.hermes/config.yaml`` under ``tts.``.
+    configured in ``~/.openamer/config.yaml`` under ``tts.``.
     """
     text = (payload.text or "").strip()
     if not text:
@@ -6138,13 +6138,13 @@ def _read_json_file(path: Path) -> Dict[str, Any]:
 def _read_memory_provider_existing_values(name: str) -> Dict[str, Any]:
     """Best-effort read of existing provider config across legacy/native stores."""
 
-    hermes_home = get_openamer_home()
+    openamer_home = get_openamer_home()
     values: Dict[str, Any] = {}
 
     # Common native provider stores.
     for path in (
-        hermes_home / f"{name}.json",
-        hermes_home / name / "config.json",
+        openamer_home / f"{name}.json",
+        openamer_home / name / "config.json",
     ):
         values.update(_read_json_file(path))
 
@@ -6957,7 +6957,7 @@ def set_moa_models(body: MoaConfigPayload, profile: Optional[str] = None):
 async def set_model_assignment(body: ModelAssignment, profile: Optional[str] = None):
     """Assign a model to the main slot or an auxiliary task slot.
 
-    Writes to ``~/.hermes/config.yaml`` — applies to **new** sessions only.
+    Writes to ``~/.openamer/config.yaml`` — applies to **new** sessions only.
     The currently running chat PTY (if any) is not affected; use the
     ``/model`` slash command inside a chat to hot-swap that specific session.
     """
@@ -8785,9 +8785,9 @@ def _normalize_whatsapp_allowed_users(value: Any) -> str:
 
 
 def _whatsapp_session_path() -> Path:
-    from openamer_constants import get_hermes_dir
+    from openamer_constants import get_openamer_dir
 
-    return get_hermes_dir("platforms/whatsapp/session", "whatsapp/session")
+    return get_openamer_dir("platforms/whatsapp/session", "whatsapp/session")
 
 
 def _whatsapp_phone_from_identifier(value: Any) -> str | None:
@@ -8837,7 +8837,7 @@ def _ensure_whatsapp_bridge_dependencies(bridge_dir: Path) -> None:
     if (bridge_dir / "node_modules").exists():
         return
 
-    from openamer_constants import find_node_executable, with_hermes_node_path
+    from openamer_constants import find_node_executable, with_openamer_node_path
     from utils import env_int
 
     npm = find_node_executable("npm")
@@ -8859,7 +8859,7 @@ def _ensure_whatsapp_bridge_dependencies(bridge_dir: Path) -> None:
             encoding="utf-8",
             errors="replace",
             timeout=timeout,
-            env=with_hermes_node_path(),
+            env=with_openamer_node_path(),
             creationflags=windows_hide_flags(),
         )
     except subprocess.TimeoutExpired as exc:
@@ -8885,7 +8885,7 @@ def _ensure_whatsapp_bridge_dependencies(bridge_dir: Path) -> None:
 
 def _spawn_whatsapp_pairing_process(session_path: Path, mode: str) -> subprocess.Popen:
     from gateway.platforms.whatsapp_common import resolve_whatsapp_bridge_dir
-    from openamer_constants import find_node_executable, with_hermes_node_path
+    from openamer_constants import find_node_executable, with_openamer_node_path
 
     bridge_dir = resolve_whatsapp_bridge_dir()
     bridge_script = bridge_dir / "bridge.js"
@@ -8904,7 +8904,7 @@ def _spawn_whatsapp_pairing_process(session_path: Path, mode: str) -> subprocess
     _ensure_whatsapp_bridge_dependencies(bridge_dir)
     session_path.mkdir(parents=True, exist_ok=True)
 
-    env = with_hermes_node_path()
+    env = with_openamer_node_path()
     env["WHATSAPP_MODE"] = mode
     env["WHATSAPP_DM_POLICY"] = "pairing"
     return subprocess.Popen(
@@ -9834,12 +9834,12 @@ def _anthropic_oauth_status() -> Dict[str, Any]:
     """Status for the "Anthropic API Key" catalog entry.
 
     Two sources, in priority order:
-    1. ``~/.hermes/.anthropic_oauth.json`` — OpenAmer-managed PKCE flow (what
+    1. ``~/.openamer/.anthropic_oauth.json`` — OpenAmer-managed PKCE flow (what
        this entry's Connect button writes)
     2. ``ANTHROPIC_API_KEY`` → ``ANTHROPIC_TOKEN`` → ``CLAUDE_CODE_OAUTH_TOKEN``
        env vars (registry order) — from ``.env``, the shell, or an external
        secret source like Bitwarden (whose keys are injected into the process
-       env during ``load_hermes_dotenv()``, so the same check covers them)
+       env during ``load_openamer_dotenv()``, so the same check covers them)
 
     Claude Code's ``~/.claude/.credentials.json`` is deliberately NOT read
     here — it has its own dedicated catalog entry (``claude-code`` →
@@ -9848,27 +9848,27 @@ def _anthropic_oauth_status() -> Dict[str, Any]:
     """
     try:
         from agent.anthropic_adapter import (
-            read_hermes_oauth_credentials,
-            _get_hermes_oauth_file,
+            read_openamer_oauth_credentials,
+            _get_openamer_oauth_file,
         )
     except ImportError:
-        read_hermes_oauth_credentials = None  # type: ignore
-        _get_hermes_oauth_file = None  # type: ignore
+        read_openamer_oauth_credentials = None  # type: ignore
+        _get_openamer_oauth_file = None  # type: ignore
 
-    hermes_creds = None
-    if read_hermes_oauth_credentials:
+    openamer_creds = None
+    if read_openamer_oauth_credentials:
         try:
-            hermes_creds = read_hermes_oauth_credentials()
+            openamer_creds = read_openamer_oauth_credentials()
         except Exception:
-            hermes_creds = None
-    if hermes_creds and hermes_creds.get("accessToken"):
+            openamer_creds = None
+    if openamer_creds and openamer_creds.get("accessToken"):
         return {
             "logged_in": True,
-            "source": "hermes_pkce",
-            "source_label": f"OpenAmer PKCE ({_get_hermes_oauth_file() if _get_hermes_oauth_file else None})",
-            "token_preview": _truncate_token(hermes_creds.get("accessToken")),
-            "expires_at": hermes_creds.get("expiresAt"),
-            "has_refresh_token": bool(hermes_creds.get("refreshToken")),
+            "source": "openamer_pkce",
+            "source_label": f"OpenAmer PKCE ({_get_openamer_oauth_file() if _get_openamer_oauth_file else None})",
+            "token_preview": _truncate_token(openamer_creds.get("accessToken")),
+            "expires_at": openamer_creds.get("expiresAt"),
+            "has_refresh_token": bool(openamer_creds.get("refreshToken")),
         }
 
     # Env-var / secret-source path. ``get_env_value`` checks the process
@@ -10233,7 +10233,7 @@ async def list_oauth_providers(profile: Optional[str] = None):
         docs_url        external docs/portal link for the "Learn more" link
         status:
           logged_in        bool — currently has usable creds
-          source           short slug ("hermes_pkce", "claude_code", ...)
+          source           short slug ("openamer_pkce", "claude_code", ...)
           source_label     human-readable origin (file path, env var name)
           token_preview    last N chars of the token, never the full token
           expires_at       ISO timestamp string or null
@@ -10302,8 +10302,8 @@ async def disconnect_oauth_provider(
         if provider_id == "anthropic":
             cleared = False
             try:
-                from agent.anthropic_adapter import _get_hermes_oauth_file
-                oauth_file = _get_hermes_oauth_file()
+                from agent.anthropic_adapter import _get_openamer_oauth_file
+                oauth_file = _get_openamer_oauth_file()
                 if oauth_file.exists():
                     oauth_file.unlink()
                     cleared = True
@@ -10344,7 +10344,7 @@ async def disconnect_oauth_provider(
 #     2. UI opens auth_url in a new tab. User authorizes, copies code.
 #     3. POST /api/providers/oauth/anthropic/submit { session_id, code }
 #          → server exchanges (code + verifier) → tokens at console.anthropic.com
-#          → persists to ~/.hermes/.anthropic_oauth.json AND credential pool
+#          → persists to ~/.openamer/.anthropic_oauth.json AND credential pool
 #          → returns { ok: true, status: "approved" }
 #
 #   Device code (Nous, OpenAI Codex):
@@ -10449,8 +10449,8 @@ def _save_anthropic_oauth_creds(access_token: str, refresh_token: str, expires_a
     Mirrors what auth_commands.add_command does so the dashboard flow leaves
     the system in the same state as ``openamer auth add anthropic``.
     """
-    from agent.anthropic_adapter import _get_hermes_oauth_file
-    oauth_file = _get_hermes_oauth_file()
+    from agent.anthropic_adapter import _get_openamer_oauth_file
+    oauth_file = _get_openamer_oauth_file()
     payload = {
         "accessToken": access_token,
         "refreshToken": refresh_token,
@@ -12166,7 +12166,7 @@ def _cron_default_profile() -> str:
     A desktop pool backend runs one process per profile (OPENAMER_HOME already
     scoped), but these cron endpoints deliberately route storage through the
     profiles tree via ``_cron_profile_home`` — so a hardcoded ``"default"``
-    fallback would write a non-default profile's job into ``~/.hermes``.
+    fallback would write a non-default profile's job into ``~/.openamer``.
     Resolve the process's own profile instead. ``custom`` (an unrecognized
     OPENAMER_HOME outside the profiles tree) has no profile-dir equivalent, so
     it keeps the legacy ``default`` fallback.
@@ -12199,7 +12199,7 @@ def _annotate_cron_job(job: Dict[str, Any], profile: str, home: Path) -> Dict[st
     annotated = dict(job)
     annotated["profile"] = profile
     annotated["profile_name"] = profile
-    annotated["hermes_home"] = str(home)
+    annotated["openamer_home"] = str(home)
     annotated["is_default_profile"] = profile == "default"
     return annotated
 
@@ -12988,7 +12988,7 @@ def _mcp_oauth_callback_url(request: Request, server_name: str) -> str:
 
 
 def _mcp_oauth_transaction(flow) -> threading.Lock:
-    key = (flow.hermes_home, flow.server_name)
+    key = (flow.openamer_home, flow.server_name)
     with _mcp_oauth_transactions_lock:
         return _mcp_oauth_transactions.setdefault(key, threading.Lock())
 
@@ -13011,8 +13011,8 @@ def _run_dashboard_mcp_oauth(flow, cfg: dict) -> None:
         from tools.mcp_oauth import OpenAmerTokenStorage, force_interactive_oauth
         from tools.mcp_oauth_manager import get_manager
 
-        home_token = set_openamer_home_override(flow.hermes_home)
-        secret_token = set_secret_scope(build_profile_secret_scope(Path(flow.hermes_home)))
+        home_token = set_openamer_home_override(flow.openamer_home)
+        secret_token = set_secret_scope(build_profile_secret_scope(Path(flow.openamer_home)))
         try:
             transaction = _mcp_oauth_transaction(flow)
             with transaction, force_interactive_oauth(), dashboard_oauth_flow(flow):
@@ -13023,7 +13023,7 @@ def _run_dashboard_mcp_oauth(flow, cfg: dict) -> None:
                 try:
                     previous_entry = manager.remove(
                         flow.server_name,
-                        hermes_home=flow.hermes_home,
+                        openamer_home=flow.openamer_home,
                     )
                     tools = _probe_single_server(
                         flow.server_name,
@@ -13047,7 +13047,7 @@ def _run_dashboard_mcp_oauth(flow, cfg: dict) -> None:
                     manager.restore_entry(
                         flow.server_name,
                         previous_entry,
-                        hermes_home=flow.hermes_home,
+                        openamer_home=flow.openamer_home,
                     )
                     raise
         finally:
@@ -13101,7 +13101,7 @@ async def auth_mcp_server(name: str, request: Request, profile: Optional[str] = 
         flow_id=flow_id,
         server_name=name,
         profile=profile,
-        hermes_home=flow_home,
+        openamer_home=flow_home,
         redirect_uri=(cfg.get("oauth") or {}).get("redirect_uri")
         or _mcp_oauth_callback_url(request, name),
         reconnect_live=flow_home == process_home,
@@ -13118,7 +13118,7 @@ async def auth_mcp_server(name: str, request: Request, profile: Optional[str] = 
             )
         if any(
             flow.server_name == name
-            and flow.hermes_home == flow_home
+            and flow.openamer_home == flow_home
             and not flow.worker_done
             for flow in _mcp_oauth_flows.values()
         ):
@@ -13340,7 +13340,7 @@ async def install_mcp_catalog_entry(body: MCPCatalogInstall, profile: Optional[s
         # the first clone is still running.
         action = _mcp_install_action_name(name)
         try:
-            proc = _spawn_hermes_action(
+            proc = _spawn_openamer_action(
                 _profile_cli_args(effective_profile) + ["mcp", "install", name],
                 action,
             )
@@ -13643,7 +13643,7 @@ async def set_webhook_enabled(name: str, body: WebhookEnabledToggle):
 @app.post("/api/gateway/start")
 async def start_gateway(profile: Optional[str] = None):
     try:
-        proc = _spawn_hermes_action(_gateway_subcommand(profile, "start"), "gateway-start")
+        proc = _spawn_openamer_action(_gateway_subcommand(profile, "start"), "gateway-start")
     except HTTPException:
         raise
     except Exception as exc:
@@ -13655,7 +13655,7 @@ async def start_gateway(profile: Optional[str] = None):
 @app.post("/api/gateway/stop")
 async def stop_gateway(profile: Optional[str] = None):
     try:
-        proc = _spawn_hermes_action(_gateway_subcommand(profile, "stop"), "gateway-stop")
+        proc = _spawn_openamer_action(_gateway_subcommand(profile, "stop"), "gateway-stop")
     except HTTPException:
         raise
     except Exception as exc:
@@ -13933,7 +13933,7 @@ async def reset_memory(body: MemoryReset):
 @app.post("/api/ops/doctor")
 async def run_doctor():
     try:
-        proc = _spawn_hermes_action(["doctor"], "doctor")
+        proc = _spawn_openamer_action(["doctor"], "doctor")
     except Exception as exc:
         _log.exception("Failed to spawn doctor")
         raise HTTPException(status_code=500, detail=f"Failed to run doctor: {exc}")
@@ -13943,7 +13943,7 @@ async def run_doctor():
 @app.post("/api/ops/security-audit")
 async def run_security_audit():
     try:
-        proc = _spawn_hermes_action(["security", "audit"], "security-audit")
+        proc = _spawn_openamer_action(["security", "audit"], "security-audit")
     except Exception as exc:
         _log.exception("Failed to spawn security audit")
         raise HTTPException(status_code=500, detail=f"Failed to run security audit: {exc}")
@@ -13982,7 +13982,7 @@ async def run_backup(body: BackupRequest):
             )
         args.extend(["-o", str(archive)])
     try:
-        proc = _spawn_hermes_action(args, "backup")
+        proc = _spawn_openamer_action(args, "backup")
     except Exception as exc:
         _log.exception("Failed to spawn backup")
         raise HTTPException(status_code=500, detail=f"Failed to run backup: {exc}")
@@ -14038,7 +14038,7 @@ async def run_import(body: ImportRequest):
     if body.force:
         args.append("--force")
     try:
-        proc = _spawn_hermes_action(args, "import")
+        proc = _spawn_openamer_action(args, "import")
     except Exception as exc:
         _log.exception("Failed to spawn import")
         raise HTTPException(status_code=500, detail=f"Failed to run import: {exc}")
@@ -14120,7 +14120,7 @@ async def run_import_upload(
     if force:
         args.append("--force")
     try:
-        proc = _spawn_hermes_action(args, "import")
+        proc = _spawn_openamer_action(args, "import")
     except Exception as exc:
         _log.exception("Failed to spawn import")
         raise HTTPException(status_code=500, detail=f"Failed to run import: {exc}")
@@ -14294,7 +14294,7 @@ async def delete_hook(body: HookDelete):
 @app.get("/api/ops/checkpoints")
 async def list_checkpoints():
     """List the /rollback shadow store checkpoints (read-only)."""
-    # Checkpoints live under <hermes_home>/checkpoints/.  Surface a count +
+    # Checkpoints live under <openamer_home>/checkpoints/.  Surface a count +
     # total size so the dashboard can show what a prune would reclaim; the
     # actual prune is a spawned action so confirmation/pruning logic stays
     # in one place (the CLI).
@@ -14326,7 +14326,7 @@ async def list_checkpoints():
 @app.post("/api/ops/checkpoints/prune")
 async def prune_checkpoints():
     try:
-        proc = _spawn_hermes_action(["checkpoints", "prune"], "checkpoints-prune")
+        proc = _spawn_openamer_action(["checkpoints", "prune"], "checkpoints-prune")
     except Exception as exc:
         _log.exception("Failed to spawn checkpoints prune")
         raise HTTPException(status_code=500, detail=f"Failed to prune checkpoints: {exc}")
@@ -14351,7 +14351,7 @@ class SkillInstallRequest(BaseModel):
 def _profile_cli_args(profile: Optional[str]) -> List[str]:
     """Return ``["-p", <name>]`` for a validated non-default profile.
 
-    Hub install/uninstall/update run in a fresh ``hermes`` subprocess, and
+    Hub install/uninstall/update run in a fresh ``openamer`` subprocess, and
     ``_apply_profile_override()`` reads ``-p`` from argv in the child — the
     only mechanism that reaches import-time-bound globals like
     ``skills_hub.SKILLS_DIR``. Empty/"current" means the dashboard's own
@@ -14368,7 +14368,7 @@ def _profile_cli_args(profile: Optional[str]) -> List[str]:
 def _hub_action_name(verb: str, key: str) -> str:
     """Unique per-skill hub action name (+ registered log file).
 
-    ``_spawn_hermes_action`` tracks one process/log per name, so a shared
+    ``_spawn_openamer_action`` tracks one process/log per name, so a shared
     "skills-install"/"skills-uninstall" would make concurrent row-level actions
     overwrite each other's status/log while the UI polls per identifier. Slug
     (readable) + hash (collision-proof) keys each action to its own row.
@@ -14387,7 +14387,7 @@ async def install_skill_hub(body: SkillInstallRequest, profile: Optional[str] = 
         raise HTTPException(status_code=400, detail="identifier is required")
     name = _hub_action_name("install", identifier)
     try:
-        proc = _spawn_hermes_action(
+        proc = _spawn_openamer_action(
             _profile_cli_args(body.profile or profile)
             + ["skills", "install", identifier, "--yes"],
             name,
@@ -14412,7 +14412,7 @@ async def uninstall_skill_hub(body: SkillUninstallRequest, profile: Optional[str
         raise HTTPException(status_code=400, detail="name is required")
     action = _hub_action_name("uninstall", name)
     try:
-        proc = _spawn_hermes_action(
+        proc = _spawn_openamer_action(
             _profile_cli_args(body.profile or profile) + ["skills", "uninstall", name, "--yes"],
             action,
         )
@@ -14434,7 +14434,7 @@ async def update_skills_hub(
 ):
     try:
         effective = (body.profile if body else None) or profile
-        proc = _spawn_hermes_action(
+        proc = _spawn_openamer_action(
             _profile_cli_args(effective) + ["skills", "update"], "skills-update"
         )
     except HTTPException:
@@ -14880,7 +14880,7 @@ def _fallback_profile_dicts(profiles_mod) -> List[Dict[str, Any]]:
             return default
 
     profiles: List[Dict[str, Any]] = []
-    default_home = profiles_mod._get_default_hermes_home()
+    default_home = profiles_mod._get_default_openamer_home()
     if default_home.is_dir():
         model, provider = _safe(lambda: profiles_mod._read_config_model(default_home), (None, None))
         profiles.append({
@@ -15149,7 +15149,7 @@ async def create_profile_endpoint(body: ProfileCreate):
         if not ident:
             continue
         try:
-            proc = _spawn_hermes_action(
+            proc = _spawn_openamer_action(
                 ["-p", body.name, "skills", "install", ident, "--yes"],
                 _hub_action_name("install", ident),
             )
@@ -15440,7 +15440,7 @@ def _profile_scope(profile: Optional[str]):
     requested = (profile or "").strip()
 
     from openamer_constants import (
-        get_hermes_home,
+        get_openamer_home,
         set_openamer_home_override,
         reset_openamer_home_override,
     )
@@ -16168,7 +16168,7 @@ class ToolsetEnvUpdate(BaseModel):
 async def save_toolset_env(name: str, body: ToolsetEnvUpdate, profile: Optional[str] = None):
     """Persist API keys for a toolset's provider env vars.
 
-    Writes each ``key: value`` to ``~/.hermes/.env`` via ``save_env_value`` —
+    Writes each ``key: value`` to ``~/.openamer/.env`` via ``save_env_value`` —
     the same store ``openamer tools`` writes when it prompts for keys. Keys are
     validated against the env-var allowlist for the toolset's category (the
     union of every visible provider's ``env_vars``), so the GUI can't write an
@@ -16259,7 +16259,7 @@ async def run_toolset_post_setup(
         )
 
     try:
-        proc = _spawn_hermes_action(
+        proc = _spawn_openamer_action(
             _profile_cli_args(body.profile or profile)
             + ["tools", "post-setup", body.key],
             "tools-post-setup",
@@ -16548,7 +16548,7 @@ async def grant_computer_use_permissions(profile: Optional[str] = None):
             detail="Computer Use permission grants are a macOS concept.",
         )
     try:
-        proc = _spawn_hermes_action(
+        proc = _spawn_openamer_action(
             _profile_cli_args(profile)
             + ["computer-use", "permissions", "grant"],
             "computer-use-grant",
@@ -17688,7 +17688,7 @@ def _ws_close_reason(text: str) -> str:
 # structured JSON frames with the dashboard xterm overlay.
 # ---------------------------------------------------------------------------
 
-_CONSOLE_PROMPT = "hermes> "
+_CONSOLE_PROMPT = "openamer> "
 _CONSOLE_COMMAND_TIMEOUT_SECONDS = 60.0
 _CONSOLE_OUTPUT_LIMIT = 50000
 
@@ -18626,8 +18626,8 @@ def mount_spa(application: FastAPI):
     separate (unauthenticated) token-dispensing endpoint.
 
     When served behind a path-prefix reverse proxy (e.g.
-    ``mission-control.tilos.com/hermes/*`` -> local Caddy -> :9119), the
-    proxy injects ``X-Forwarded-Prefix: /hermes`` on every request. We
+    ``mission-control.tilos.com/openamer/*`` -> local Caddy -> :9119), the
+    proxy injects ``X-Forwarded-Prefix: /openamer`` on every request. We
     rewrite the served ``index.html`` so absolute asset URLs (``/assets/...``)
     and the SPA's runtime ``__OPENAMER_BASE_PATH__`` honour that prefix
     without rebuilding the bundle.
@@ -18654,7 +18654,7 @@ def mount_spa(application: FastAPI):
     def _serve_index(prefix: str = ""):
         """Return index.html with the session token + base-path injected.
 
-        ``prefix`` is the normalised ``X-Forwarded-Prefix`` (e.g. ``/hermes``)
+        ``prefix`` is the normalised ``X-Forwarded-Prefix`` (e.g. ``/openamer``)
         or empty string when served at root.
 
         When the OAuth auth gate is active (``app.state.auth_required``),
@@ -18722,7 +18722,7 @@ def mount_spa(application: FastAPI):
     # When served behind a path-prefix proxy, the built CSS contains
     # absolute ``url(/fonts/...)`` and ``url(/ds-assets/...)`` references.
     # Browsers resolve those against the document origin, which means
-    # under ``/hermes`` they'd hit ``mission-control.tilos.com/fonts/...``
+    # under ``/openamer`` they'd hit ``mission-control.tilos.com/fonts/...``
     # (the MC Pages app), not the OpenAmer backend. Intercept CSS asset
     # requests BEFORE the StaticFiles mount and rewrite the absolute paths
     # when a prefix is in play.
@@ -18948,7 +18948,7 @@ def _normalise_theme_definition(data: Dict[str, Any]) -> Optional[Dict[str, Any]
     # tag on theme apply.  Clipped to _THEME_CUSTOM_CSS_MAX to keep the
     # payload bounded.  We intentionally do NOT parse/sanitise the CSS
     # here — the dashboard is localhost-only and themes are user-authored
-    # YAML in ~/.hermes/, same trust level as the config file itself.
+    # YAML in ~/.openamer/, same trust level as the config file itself.
     custom_css_val = data.get("customCSS")
     custom_css: Optional[str] = None
     if isinstance(custom_css_val, str) and custom_css_val.strip():
@@ -19003,7 +19003,7 @@ def _normalise_theme_definition(data: Dict[str, Any]) -> Optional[Dict[str, Any]
 
 
 def _discover_user_themes() -> list:
-    """Scan ~/.hermes/dashboard-themes/*.yaml for user-created themes.
+    """Scan ~/.openamer/dashboard-themes/*.yaml for user-created themes.
 
     Returns a list of fully-normalised theme definitions ready to ship
     to the frontend, so the client can apply them without a secondary
@@ -19013,7 +19013,7 @@ def _discover_user_themes() -> list:
     transient profile override from embedded chat does not hide themes that
     live under the server's own ``OPENAMER_HOME``.
     """
-    themes_dir = get_process_hermes_home() / "dashboard-themes"
+    themes_dir = get_process_openamer_home() / "dashboard-themes"
     if not themes_dir.is_dir():
         return []
     result = []
@@ -19034,7 +19034,7 @@ async def get_dashboard_themes():
 
     Built-in entries ship name/label/description only (the frontend owns
     their full definitions in `web/src/themes/presets.ts`).  User themes
-    from `~/.hermes/dashboard-themes/*.yaml` ship with their full
+    from `~/.openamer/dashboard-themes/*.yaml` ship with their full
     normalised definition under `definition`, so the client can apply
     them without a stub.
     """
@@ -19165,9 +19165,9 @@ def _discover_dashboard_plugins() -> list:
     """Scan plugins/*/dashboard/manifest.json for dashboard extensions.
 
     Checks three plugin sources (same as openamer_cli.plugins):
-    1. User plugins:    ~/.hermes/plugins/<name>/dashboard/manifest.json
+    1. User plugins:    ~/.openamer/plugins/<name>/dashboard/manifest.json
     2. Bundled plugins: <repo>/plugins/<name>/dashboard/manifest.json  (memory/, etc.)
-    3. Project plugins: ./.hermes/plugins/  (only if HERMES_ENABLE_PROJECT_PLUGINS)
+    3. Project plugins: ./.openamer/plugins/  (only if HERMES_ENABLE_PROJECT_PLUGINS)
     """
     plugins = []
     seen_names: set = set()
@@ -19179,7 +19179,7 @@ def _discover_dashboard_plugins() -> list:
     # vanish when a request is scoped to another profile via a context-local
     # OPENAMER_HOME override (e.g. embedded /chat under --open-profile).
     search_dirs = [
-        (get_process_hermes_home() / "plugins", "user"),
+        (get_process_openamer_home() / "plugins", "user"),
         (bundled_root / "memory", "bundled"),
         (bundled_root, "bundled"),
     ]
@@ -19193,7 +19193,7 @@ def _discover_dashboard_plugins() -> list:
     # semantics (``1`` / ``true`` / ``yes`` / ``on``) so the gate matches
     # ``openamer_cli/plugins.py`` and the documented user contract.
     if env_var_enabled("HERMES_ENABLE_PROJECT_PLUGINS"):
-        search_dirs.append((Path.cwd() / ".hermes" / "plugins", "project"))
+        search_dirs.append((Path.cwd() / ".openamer" / "plugins", "project"))
 
     for plugins_root, source in search_dirs:
         if not plugins_root.is_dir():
@@ -19691,7 +19691,7 @@ def _mount_plugin_api_routes():
     ``/api/plugins/<name>/``.
 
     Backend import is restricted to ``bundled`` and ``user`` sources.
-    Project plugins (``./.hermes/plugins/``) ship with the CWD and are
+    Project plugins (``./.openamer/plugins/``) ship with the CWD and are
     therefore attacker-controlled in any threat model where the user
     opens a malicious repo; they can extend the dashboard UI via
     static JS/CSS but their Python ``api`` file is never auto-imported
@@ -19746,7 +19746,7 @@ def _mount_plugin_api_routes():
             _log.warning(
                 "Plugin %s: ignoring backend api=%s (project plugins may "
                 "not auto-import Python code; move the plugin to "
-                "~/.hermes/plugins/ if you trust it)",
+                "~/.openamer/plugins/ if you trust it)",
                 plugin["name"], api_file_name,
             )
             continue
@@ -19770,7 +19770,7 @@ def _mount_plugin_api_routes():
             _log.warning("Plugin %s declares api=%s but file not found", plugin["name"], api_file_name)
             continue
         try:
-            module_name = f"hermes_dashboard_plugin_{plugin['name']}"
+            module_name = f"openamer_dashboard_plugin_{plugin['name']}"
             spec = importlib.util.spec_from_file_location(module_name, api_path)
             if spec is None or spec.loader is None:
                 continue

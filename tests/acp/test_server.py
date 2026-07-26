@@ -1,4 +1,4 @@
-"""Tests for acp_adapter.server — HermesACPAgent ACP server."""
+"""Tests for acp_adapter.server — OpenAmerACPAgent ACP server."""
 
 import asyncio
 import os
@@ -38,7 +38,7 @@ from acp.schema import (
 from acp_adapter.auth import TERMINAL_SETUP_AUTH_METHOD_ID
 from acp_adapter.server import (
     ACP_MAX_MODELS_PER_PROVIDER,
-    HermesACPAgent,
+    OpenAmerACPAgent,
     HERMES_VERSION,
 )
 from acp_adapter.session import SessionManager
@@ -53,8 +53,8 @@ def mock_manager():
 
 @pytest.fixture()
 def agent(mock_manager):
-    """HermesACPAgent backed by a mock session manager."""
-    return HermesACPAgent(session_manager=mock_manager)
+    """OpenAmerACPAgent backed by a mock session manager."""
+    return OpenAmerACPAgent(session_manager=mock_manager)
 
 
 @pytest.mark.asyncio
@@ -103,7 +103,7 @@ class TestInitialize:
         resp = await agent.initialize(protocol_version=1)
         assert resp.agent_info is not None
         assert isinstance(resp.agent_info, Implementation)
-        assert resp.agent_info.name == "hermes-agent"
+        assert resp.agent_info.name == "openamer-agent"
         assert resp.agent_info.version == HERMES_VERSION
 
     @pytest.mark.asyncio
@@ -154,11 +154,11 @@ class TestInitialize:
             {
                 "args": ["--setup"],
                 "description": (
-                    "Open Hermes' interactive model/provider setup in a terminal. "
-                    "Use this when Hermes has not been configured on this machine yet."
+                    "Open OpenAmer' interactive model/provider setup in a terminal. "
+                    "Use this when OpenAmer has not been configured on this machine yet."
                 ),
                 "id": TERMINAL_SETUP_AUTH_METHOD_ID,
-                "name": "Configure Hermes provider",
+                "name": "Configure OpenAmer provider",
                 "type": "terminal",
             }
         ]
@@ -250,7 +250,7 @@ class TestSessionOps:
                 base_url="https://api.openai.com/v1",
             )
         )
-        acp_agent = HermesACPAgent(session_manager=manager)
+        acp_agent = OpenAmerACPAgent(session_manager=manager)
         picker_context = MagicMock()
         picker_context.with_overrides.return_value = picker_context
         payload = {
@@ -328,13 +328,13 @@ class TestSessionOps:
                 base_url="",
             )
         )
-        acp_agent = HermesACPAgent(session_manager=manager)
+        acp_agent = OpenAmerACPAgent(session_manager=manager)
         picker_context = MagicMock()
         picker_context.with_overrides.return_value = picker_context
 
         def bounded_payload(_context, **kwargs):
             # Mirror the shared inventory's per-provider slicing so the test
-            # exercises the cap Hermes actually requests.
+            # exercises the cap OpenAmer actually requests.
             cap = kwargs.get("max_models")
             models = oversized if cap is None else oversized[:cap]
             return {
@@ -370,7 +370,7 @@ class TestSessionOps:
                 base_url="https://api.anthropic.com",
             )
         )
-        acp_agent = HermesACPAgent(session_manager=manager)
+        acp_agent = OpenAmerACPAgent(session_manager=manager)
         picker_context = MagicMock()
         picker_context.with_overrides.return_value = picker_context
         payload = {
@@ -515,7 +515,7 @@ class TestSessionOps:
         state.history = [
             {"role": "system", "content": "hidden system"},
             {"role": "user", "content": "what controls the / slash commands?"},
-            {"role": "assistant", "content": "HermesACPAgent._ADVERTISED_COMMANDS controls them."},
+            {"role": "assistant", "content": "OpenAmerACPAgent._ADVERTISED_COMMANDS controls them."},
             {
                 "role": "assistant",
                 "content": "",
@@ -553,7 +553,7 @@ class TestSessionOps:
         assert isinstance(replay_calls[0].kwargs["update"], UserMessageChunk)
         assert replay_calls[0].kwargs["update"].content.text == "what controls the / slash commands?"
         assert isinstance(replay_calls[1].kwargs["update"], AgentMessageChunk)
-        assert replay_calls[1].kwargs["update"].content.text.startswith("HermesACPAgent")
+        assert replay_calls[1].kwargs["update"].content.text.startswith("OpenAmerACPAgent")
 
         tool_updates = [
             call.kwargs["update"]
@@ -572,7 +572,7 @@ class TestSessionOps:
 
     @pytest.mark.asyncio
     async def test_load_session_flags_compaction_summary_on_replayed_user_chunk(self, agent):
-        """A replayed compaction summary must carry _meta.hermes.compactionSummary.
+        """A replayed compaction summary must carry _meta.openamer.compactionSummary.
 
         The handoff is stored role="user" but is not a real user turn; without
         the flag on the wire, ACP frontends render the whole summary as a user
@@ -605,7 +605,7 @@ class TestSessionOps:
         ]
         assert len(user_chunks) == 2
         # First user chunk is the summary → flagged; second is a real turn → not.
-        assert user_chunks[0].field_meta == {"hermes": {"compactionSummary": True}}
+        assert user_chunks[0].field_meta == {"openamer": {"compactionSummary": True}}
         assert user_chunks[1].field_meta is None
 
     @pytest.mark.asyncio
@@ -640,7 +640,7 @@ class TestSessionOps:
             if isinstance(call.kwargs.get("update"), AgentMessageChunk)
         ]
         assert len(agent_chunks) == 2
-        assert agent_chunks[0].field_meta == {"hermes": {"compactionSummary": True}}
+        assert agent_chunks[0].field_meta == {"openamer": {"compactionSummary": True}}
         assert agent_chunks[1].field_meta is None
 
     @pytest.mark.asyncio
@@ -687,7 +687,7 @@ class TestSessionOps:
         ]
         assert len(user_chunks) == 1
         assert user_chunks[0].field_meta == {
-            "hermes": {"containsCompactionSummary": True}
+            "openamer": {"containsCompactionSummary": True}
         }
 
     @pytest.mark.asyncio
@@ -1252,7 +1252,7 @@ class TestSessionConfiguration:
         manager = SessionManager(db=SessionDB(tmp_path / "state.db"))
 
         with patch("run_agent.AIAgent", side_effect=fake_agent):
-            acp_agent = HermesACPAgent(session_manager=manager)
+            acp_agent = OpenAmerACPAgent(session_manager=manager)
             state = manager.create_session(cwd="/tmp")
             assert state.agent.provider == "openrouter"
             assert state.agent.base_url == "https://openrouter.example/v1"
@@ -1282,7 +1282,7 @@ class TestSessionConfiguration:
                 api_mode="chat_completions",
             ),
         )
-        acp_agent = HermesACPAgent(session_manager=manager)
+        acp_agent = OpenAmerACPAgent(session_manager=manager)
         state = manager.create_session(cwd="/tmp")
         replacement_agent = SimpleNamespace(
             model="new-model",
@@ -1498,7 +1498,7 @@ class TestPrompt:
         assert final_text in agent_texts
 
     @pytest.mark.asyncio
-    async def test_prompt_propagates_hermes_session_id_env(self, agent, monkeypatch):
+    async def test_prompt_propagates_openamer_session_id_env(self, agent, monkeypatch):
         """ACP must propagate the originating session id to the agent loop
         via ``HERMES_SESSION_ID`` so tools that want to stamp side-effects
         with it (e.g. ``kanban_create``) can read the env var inside
@@ -1543,7 +1543,7 @@ class TestPrompt:
         )
 
     @pytest.mark.asyncio
-    async def test_prompt_restores_prior_hermes_session_id(self, agent, monkeypatch):
+    async def test_prompt_restores_prior_openamer_session_id(self, agent, monkeypatch):
         """If the env already had HERMES_SESSION_ID set (e.g. nested
         agent loops), the prior value must be restored after the inner
         prompt completes — not popped, not left at the inner id."""
@@ -1641,7 +1641,7 @@ class TestPrompt:
 
     @pytest.mark.asyncio
     async def test_prompt_pins_the_session_cwd_for_the_turn(self, agent, tmp_path):
-        """The turn must resolve the ACP client's cwd, not the Hermes workspace.
+        """The turn must resolve the ACP client's cwd, not the OpenAmer workspace.
 
         ``resolve_agent_cwd()`` is what the system prompt reports as "Current
         working directory". When it is left unpinned it falls back to
@@ -2199,7 +2199,7 @@ class TestSlashCommands:
         manager = SessionManager(db=SessionDB(tmp_path / "state.db"))
 
         with patch("run_agent.AIAgent", side_effect=fake_agent):
-            acp_agent = HermesACPAgent(session_manager=manager)
+            acp_agent = OpenAmerACPAgent(session_manager=manager)
             state = manager.create_session(cwd="/tmp")
             result = acp_agent._cmd_model("anthropic:claude-sonnet-4-6", state)
 
@@ -2239,7 +2239,7 @@ class TestRegisterSessionMcpServers:
 
         state = mock_manager.create_session(cwd="/tmp")
         # Give the mock agent the attributes _register_session_mcp_servers reads
-        state.agent.enabled_toolsets = ["hermes-acp"]
+        state.agent.enabled_toolsets = ["openamer-acp"]
         state.agent.disabled_toolsets = None
         state.agent.tools = []
         state.agent.valid_tool_names = set()
@@ -2272,7 +2272,7 @@ class TestRegisterSessionMcpServers:
         from acp.schema import McpServerHttp, HttpHeader
 
         state = mock_manager.create_session(cwd="/tmp")
-        state.agent.enabled_toolsets = ["hermes-acp"]
+        state.agent.enabled_toolsets = ["openamer-acp"]
         state.agent.disabled_toolsets = None
         state.agent.tools = []
         state.agent.valid_tool_names = set()
@@ -2303,7 +2303,7 @@ class TestRegisterSessionMcpServers:
         from acp.schema import McpServerStdio
 
         state = mock_manager.create_session(cwd="/tmp")
-        state.agent.enabled_toolsets = ["hermes-acp"]
+        state.agent.enabled_toolsets = ["openamer-acp"]
         state.agent.disabled_toolsets = None
         state.agent.tools = []
         state.agent.valid_tool_names = set()
@@ -2332,11 +2332,11 @@ class TestRegisterSessionMcpServers:
             await agent._register_session_mcp_servers(state, [server])
 
         mock_defs.assert_called_once_with(
-            enabled_toolsets=["hermes-acp", "mcp-srv"],
+            enabled_toolsets=["openamer-acp", "mcp-srv"],
             disabled_toolsets=None,
             quiet_mode=True,
         )
-        assert state.agent.enabled_toolsets == ["hermes-acp", "mcp-srv"]
+        assert state.agent.enabled_toolsets == ["openamer-acp", "mcp-srv"]
         assert state.agent.tools is fake_tools
         assert state.agent.tools[-1] == {
             "type": "function",

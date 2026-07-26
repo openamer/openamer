@@ -87,7 +87,7 @@ def _run_main(mod, tokens_dir, argv, responses):
          patch.object(mod.urllib.request, "urlopen", side_effect=fake_urlopen), \
          patch.object(sys, "argv", ["diagnose-oauth-mcp.py", *argv]):
         # Force the env-var fallback path (ignore any importable openamer_constants).
-        with patch.object(mod, "_hermes_home", lambda: str(tokens_dir.parent)):
+        with patch.object(mod, "_openamer_home", lambda: str(tokens_dir.parent)):
             buf = io.StringIO()
             from contextlib import redirect_stdout
             with redirect_stdout(buf):
@@ -201,12 +201,12 @@ def test_session_revoked_branch(tmp_path):
     assert on_disk["access_token"] == "at-stored"
 
 
-def test_hermes_home_env_fallback(tmp_path, monkeypatch):
+def test_openamer_home_env_fallback(tmp_path, monkeypatch):
     mod = load_module()
     monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / "custom-home"))
     # Block the openamer_constants import so the env fallback is exercised
     with patch.dict(sys.modules, {"openamer_constants": None}):
-        home = mod._hermes_home()
+        home = mod._openamer_home()
     assert home == str(tmp_path / "custom-home")
 
 
@@ -228,4 +228,4 @@ def test_skill_md_frontmatter_invariants():
     assert len(fm["description"]) <= 60
     assert fm["description"].endswith(".")
     assert "platforms" in fm and len(fm["platforms"]) >= 1
-    assert fm["author"].split(",")[0].strip() != "Hermes Agent"  # human credited first
+    assert fm["author"].split(",")[0].strip() != "OpenAmer Agent"  # human credited first

@@ -112,11 +112,11 @@ def _resolve_xai_credentials() -> Tuple[str, str]:
 
 def _xai_user_agent() -> str:
     try:
-        from tools.xai_http import hermes_xai_user_agent
+        from tools.xai_http import openamer_xai_user_agent
 
-        return hermes_xai_user_agent()
+        return openamer_xai_user_agent()
     except Exception:
-        return "hermes-agent/video_gen"
+        return "openamer-agent/video_gen"
 
 
 def _xai_headers(api_key: str) -> Dict[str, str]:
@@ -128,7 +128,7 @@ def _xai_headers(api_key: str) -> Dict[str, str]:
 
 
 def _raise_if_blocked_local_input(ref: str) -> None:
-    """Refuse to read a local media path that Hermes' read deny-list blocks.
+    """Refuse to read a local media path that OpenAmer' read deny-list blocks.
 
     Thin wrapper over the shared ``agent.file_safety.raise_if_read_blocked``
     chokepoint so xAI video inputs enforce the same credential-store guard as
@@ -767,7 +767,7 @@ async def _extend_xai_video_async(
 def _auth_required_response(prompt: str) -> Dict[str, Any]:
     return error_response(
         error=(
-            "No xAI credentials found. Sign in via `hermes auth add xai-oauth` "
+            "No xAI credentials found. Sign in via `openamer auth add xai-oauth` "
             "(SuperGrok / Premium+) or set XAI_API_KEY from "
             "https://console.x.ai/."
         ),
@@ -799,7 +799,7 @@ async def _submit_xai_video_payload(
 
         storage_options = build_xai_storage_options(
             "video_gen",
-            filename_prefix="hermes-xai-video",
+            filename_prefix="openamer-xai-video",
             extension="mp4",
         )
         storage_notice = maybe_mark_xai_storage_notice_seen("video_gen")

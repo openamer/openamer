@@ -36,7 +36,7 @@ from agent.image_gen_provider import (
 )
 from tools.xai_http import (
     build_xai_storage_options,
-    hermes_xai_user_agent,
+    openamer_xai_user_agent,
     maybe_mark_xai_storage_notice_seen,
     read_xai_imagine_storage_config,
     resolve_xai_http_credentials,
@@ -233,7 +233,7 @@ class XAIImageGenProvider(ImageGenProvider):
         provider_name = str(creds.get("provider") or "xai").strip() or "xai"
         if not api_key:
             return error_response(
-                error="No xAI credentials found. Configure xAI OAuth in `hermes model` or set XAI_API_KEY.",
+                error="No xAI credentials found. Configure xAI OAuth in `openamer model` or set XAI_API_KEY.",
                 error_type="missing_api_key",
                 provider=provider_name,
                 aspect_ratio=aspect_ratio,
@@ -283,13 +283,13 @@ class XAIImageGenProvider(ImageGenProvider):
         headers = {
             "Authorization": f"Bearer {api_key}",
             "Content-Type": "application/json",
-            "User-Agent": hermes_xai_user_agent(),
+            "User-Agent": openamer_xai_user_agent(),
         }
 
         base_url = str(creds.get("base_url") or "https://api.x.ai/v1").strip().rstrip("/")
         storage_options = build_xai_storage_options(
             "image_gen",
-            filename_prefix="hermes-xai-image",
+            filename_prefix="openamer-xai-image",
             extension="png",
         )
         storage_notice = maybe_mark_xai_storage_notice_seen("image_gen")

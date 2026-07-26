@@ -15,7 +15,7 @@ def _host_block(refresh="hch-rt-old", expires_at=10_000):
         "oauth": {
             "refreshToken": refresh,
             "expiresAt": expires_at,
-            "clientId": "hermes-desktop",
+            "clientId": "openamer-desktop",
             "tokenEndpoint": "http://localhost:8000/oauth/token",
             "scope": "write",
             "tokenType": "Bearer",
@@ -42,7 +42,7 @@ class TestCredentialModel:
         block = cred.oauth_block()
         assert block["refreshToken"] == "hch-rt-old"
         assert block["expiresAt"] == 10_000
-        assert block["clientId"] == "hermes-desktop"
+        assert block["clientId"] == "openamer-desktop"
 
     def test_incomplete_block_returns_none(self):
         # plain API key (no oauth sub-block)
@@ -61,42 +61,42 @@ class TestCredentialModel:
 class TestEnsureFreshToken:
     def test_no_oauth_credential_is_noop(self, tmp_path):
         path = tmp_path / "honcho.json"
-        _write(path, {"hosts": {"hermes": {"apiKey": "hch-v3-static"}}})
-        token, refreshed = oauth.ensure_fresh_token(path, "hermes", now=0)
+        _write(path, {"hosts": {"openamer": {"apiKey": "hch-v3-static"}}})
+        token, refreshed = oauth.ensure_fresh_token(path, "openamer", now=0)
         assert token is None and refreshed is False
 
     def test_fresh_token_skips_refresh(self, tmp_path, monkeypatch):
         path = tmp_path / "honcho.json"
-        _write(path, {"hosts": {"hermes": _host_block(expires_at=10_000)}})
+        _write(path, {"hosts": {"openamer": _host_block(expires_at=10_000)}})
         monkeypatch.setattr(
             oauth, "_http_post_form",
             lambda *a, **k: pytest.fail("refresh must not be called when fresh"),
         )
-        token, refreshed = oauth.ensure_fresh_token(path, "hermes", now=0)
+        token, refreshed = oauth.ensure_fresh_token(path, "openamer", now=0)
         assert token == "hch-at-old" and refreshed is False
 
     def test_fresh_token_served_from_cache_without_disk(self, tmp_path, monkeypatch):
         path = tmp_path / "honcho.json"
-        _write(path, {"hosts": {"hermes": _host_block(expires_at=10_000)}})
+        _write(path, {"hosts": {"openamer": _host_block(expires_at=10_000)}})
         oauth._expiry_cache.clear()
         # First call seeds the cache from disk.
-        oauth.ensure_fresh_token(path, "hermes", now=0)
+        oauth.ensure_fresh_token(path, "openamer", now=0)
         # Second call must not touch disk while the token is well clear of expiry.
         monkeypatch.setattr(
             oauth, "_read_config",
             lambda *a, **k: pytest.fail("disk must not be read while token is fresh"),
         )
-        token, refreshed = oauth.ensure_fresh_token(path, "hermes", now=100)
+        token, refreshed = oauth.ensure_fresh_token(path, "openamer", now=100)
         assert token == "hch-at-old" and refreshed is False
 
     def test_expired_token_refreshes_and_persists_rotation(self, tmp_path, monkeypatch):
         path = tmp_path / "honcho.json"
-        _write(path, {"hosts": {"hermes": _host_block(expires_at=100)}})
+        _write(path, {"hosts": {"openamer": _host_block(expires_at=100)}})
 
         def fake_post(url, data, timeout):
             assert data["grant_type"] == "refresh_token"
             assert data["refresh_token"] == "hch-rt-old"
-            assert data["client_id"] == "hermes-desktop"
+            assert data["client_id"] == "openamer-desktop"
             return {
                 "access_token": "hch-at-new",
                 "refresh_token": "hch-rt-new",
@@ -106,40 +106,40 @@ class TestEnsureFreshToken:
             }
 
         monkeypatch.setattr(oauth, "_http_post_form", fake_post)
-        token, refreshed = oauth.ensure_fresh_token(path, "hermes", now=1000)
+        token, refreshed = oauth.ensure_fresh_token(path, "openamer", now=1000)
         assert token == "hch-at-new" and refreshed is True
 
         # Rotated refresh token + new access token + absolute expiry persisted.
-        saved = json.loads(path.read_text())["hosts"]["hermes"]
+        saved = json.loads(path.read_text())["hosts"]["openamer"]
         assert saved["apiKey"] == "hch-at-new"
         assert saved["oauth"]["refreshToken"] == "hch-rt-new"
         assert saved["oauth"]["expiresAt"] == 1000 + 3600
 
     def test_refresh_failure_fails_open(self, tmp_path, monkeypatch):
         path = tmp_path / "honcho.json"
-        _write(path, {"hosts": {"hermes": _host_block(expires_at=100)}})
+        _write(path, {"hosts": {"openamer": _host_block(expires_at=100)}})
 
         def boom(*a, **k):
             raise RuntimeError("network down")
 
         monkeypatch.setattr(oauth, "_http_post_form", boom)
-        token, refreshed = oauth.ensure_fresh_token(path, "hermes", now=1000)
+        token, refreshed = oauth.ensure_fresh_token(path, "openamer", now=1000)
         # Stale token returned, no crash, file untouched.
         assert token == "hch-at-old" and refreshed is False
-        assert json.loads(path.read_text())["hosts"]["hermes"]["apiKey"] == "hch-at-old"
+        assert json.loads(path.read_text())["hosts"]["openamer"]["apiKey"] == "hch-at-old"
 
     def test_double_check_uses_disk_when_already_rotated(self, tmp_path, monkeypatch):
         # Simulates a concurrent thread that rotated the token on disk after our
         # stale in-memory snapshot: the locked re-read must skip the HTTP call.
         path = tmp_path / "honcho.json"
-        _write(path, {"hosts": {"hermes": _host_block(refresh="hch-rt-fresh", expires_at=10_000)}})
-        stale_raw = {"hosts": {"hermes": _host_block(refresh="hch-rt-old", expires_at=100)}}
-        stale_raw["hosts"]["hermes"]["apiKey"] = "hch-at-stale"
+        _write(path, {"hosts": {"openamer": _host_block(refresh="hch-rt-fresh", expires_at=10_000)}})
+        stale_raw = {"hosts": {"openamer": _host_block(refresh="hch-rt-old", expires_at=100)}}
+        stale_raw["hosts"]["openamer"]["apiKey"] = "hch-at-stale"
         monkeypatch.setattr(
             oauth, "_http_post_form",
             lambda *a, **k: pytest.fail("must not refresh; disk token is fresh"),
         )
-        token, refreshed = oauth.ensure_fresh_token(path, "hermes", stale_raw, now=1000)
+        token, refreshed = oauth.ensure_fresh_token(path, "openamer", stale_raw, now=1000)
         assert token == "hch-at-old"  # the on-disk fresh credential's access token
 
     def test_refresh_holds_cross_process_lock(self, tmp_path, monkeypatch):
@@ -147,7 +147,7 @@ class TestEnsureFreshToken:
         # rotation is serialized machine-wide so peers can't replay the token.
         fcntl = pytest.importorskip("fcntl")
         path = tmp_path / "honcho.json"
-        _write(path, {"hosts": {"hermes": _host_block(expires_at=100)}})
+        _write(path, {"hosts": {"openamer": _host_block(expires_at=100)}})
         seen = {}
 
         def fake_post(url, data, timeout):
@@ -162,7 +162,7 @@ class TestEnsureFreshToken:
                     "expires_in": 3600, "scope": "write", "token_type": "Bearer"}
 
         monkeypatch.setattr(oauth, "_http_post_form", fake_post)
-        token, refreshed = oauth.ensure_fresh_token(path, "hermes", now=1000)
+        token, refreshed = oauth.ensure_fresh_token(path, "openamer", now=1000)
         assert refreshed is True and seen.get("held") is True
         # Released afterward: a non-blocking acquire now succeeds.
         with open(f"{path}.lock", "a+b") as fh:
@@ -174,7 +174,7 @@ class TestEnsureFreshToken:
         # back to in-process serialization only.
         fcntl = pytest.importorskip("fcntl")
         path = tmp_path / "honcho.json"
-        _write(path, {"hosts": {"hermes": _host_block(expires_at=100)}})
+        _write(path, {"hosts": {"openamer": _host_block(expires_at=100)}})
 
         def no_flock(*a, **k):
             raise OSError("flock unsupported")
@@ -185,7 +185,7 @@ class TestEnsureFreshToken:
             lambda *a, **k: {"access_token": "hch-at-new", "refresh_token": "hch-rt-new",
                              "expires_in": 3600, "scope": "write", "token_type": "Bearer"},
         )
-        token, refreshed = oauth.ensure_fresh_token(path, "hermes", now=1000)
+        token, refreshed = oauth.ensure_fresh_token(path, "openamer", now=1000)
         assert token == "hch-at-new" and refreshed is True
 
 
@@ -196,7 +196,7 @@ class TestInstallGrant:
             "apiKey": "hch-v3-root",  # root static key preserved
             "hosts": {
                 "obsidian": {"workspace": "obsidian"},
-                "hermes": {"workspace": "hermes", "saveMessages": False},
+                "openamer": {"workspace": "openamer", "saveMessages": False},
             },
         })
         grant = {
@@ -206,12 +206,12 @@ class TestInstallGrant:
             "scope": "write",
             "config": {
                 "environment": "production",
-                "hosts": {"hermes": {"saveMessages": True, "recallMode": "hybrid"}},
+                "hosts": {"openamer": {"saveMessages": True, "recallMode": "hybrid"}},
             },
         }
         cred = oauth.install_grant(
-            path, "hermes", grant,
-            client_id="hermes-desktop",
+            path, "openamer", grant,
+            client_id="openamer-desktop",
             token_endpoint="http://localhost:8000/oauth/token",
             now=1000,
         )
@@ -220,12 +220,12 @@ class TestInstallGrant:
         saved = json.loads(path.read_text())
         assert saved["apiKey"] == "hch-v3-root"  # untouched
         assert saved["hosts"]["obsidian"] == {"workspace": "obsidian"}  # untouched
-        h = saved["hosts"]["hermes"]
+        h = saved["hosts"]["openamer"]
         assert h["apiKey"] == "hch-at-fresh"
         assert h["oauth"]["refreshToken"] == "hch-rt-fresh"
         assert h["saveMessages"] is True  # grant config won the deep-merge
         assert h["recallMode"] == "hybrid"  # new key added
-        assert h["workspace"] == "hermes"  # pre-existing key preserved
+        assert h["workspace"] == "openamer"  # pre-existing key preserved
         assert saved["environment"] == "production"  # root key from grant
 
     def test_rejects_grant_without_tokens(self, tmp_path):
@@ -233,7 +233,7 @@ class TestInstallGrant:
         _write(path, {})
         with pytest.raises(ValueError):
             oauth.install_grant(
-                path, "hermes", {"access_token": "hch-at-x"},  # no refresh_token
+                path, "openamer", {"access_token": "hch-at-x"},  # no refresh_token
                 client_id="c", token_endpoint="e",
             )
 

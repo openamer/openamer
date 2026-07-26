@@ -30,17 +30,17 @@ def _make_auth_store(pool: dict | None = None, providers: dict | None = None) ->
 
 @pytest.fixture()
 def profile_env(tmp_path, monkeypatch):
-    """Set up a global root + an active profile under Path.home()/.hermes/profiles/coder.
+    """Set up a global root + an active profile under Path.home()/.openamer/profiles/coder.
 
     * Path.home() -> tmp_path
-    * Global root -> tmp_path/.hermes            (has its own auth.json fixture)
-    * Profile     -> tmp_path/.hermes/profiles/coder   (active, OPENAMER_HOME points here)
+    * Global root -> tmp_path/.openamer            (has its own auth.json fixture)
+    * Profile     -> tmp_path/.openamer/profiles/coder   (active, OPENAMER_HOME points here)
 
     This mirrors the real "named profile mounted under the default root"
     layout that profile users actually have on disk.
     """
     monkeypatch.setattr(Path, "home", lambda: tmp_path)
-    global_root = tmp_path / ".hermes"
+    global_root = tmp_path / ".openamer"
     global_root.mkdir()
     profile_dir = global_root / "profiles" / "coder"
     profile_dir.mkdir(parents=True)
@@ -284,7 +284,7 @@ def test_provider_auth_state_returns_none_when_neither_has_it(profile_env):
 # ``resolve_nous_access_token``) call ``_load_provider_state`` directly with
 # a profile-loaded auth store rather than going through
 # ``get_provider_auth_state``. Without the fallback wired into
-# ``_load_provider_state`` itself, those helpers raise ``"Hermes is not
+# ``_load_provider_state`` itself, those helpers raise ``"OpenAmer is not
 # logged into Nous Portal"`` even though the user has a valid global Nous
 # login. These tests pin the per-provider shadowing into the helper.
 # ---------------------------------------------------------------------------
@@ -336,11 +336,11 @@ def test_load_provider_state_classic_mode_no_fallback(tmp_path, monkeypatch):
     fake_home = tmp_path / "home"
     fake_home.mkdir()
     monkeypatch.setattr(Path, "home", lambda: fake_home)
-    hermes_home = tmp_path / "classic"
-    hermes_home.mkdir()
-    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+    openamer_home = tmp_path / "classic"
+    openamer_home.mkdir()
+    monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
 
-    _write(hermes_home / "auth.json", _make_auth_store(providers={
+    _write(openamer_home / "auth.json", _make_auth_store(providers={
         "nous": {"access_token": "classic-token"},
     }))
 
@@ -381,16 +381,16 @@ def test_classic_mode_does_not_double_read_same_file(tmp_path, monkeypatch):
     profile and global resolve to the same directory.
     """
     # Put Path.home() under a subdir so the seat belt in _auth_file_path()
-    # sees tmp_path/home/.hermes as the "real home" — which is NOT equal
+    # sees tmp_path/home/.openamer as the "real home" — which is NOT equal
     # to the OPENAMER_HOME we set (tmp_path/classic), so the guard passes.
     fake_home = tmp_path / "home"
     fake_home.mkdir()
     monkeypatch.setattr(Path, "home", lambda: fake_home)
-    hermes_home = tmp_path / "classic"
-    hermes_home.mkdir()
-    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+    openamer_home = tmp_path / "classic"
+    openamer_home.mkdir()
+    monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
 
-    _write(hermes_home / "auth.json", _make_auth_store(pool={
+    _write(openamer_home / "auth.json", _make_auth_store(pool={
         "openrouter": [{
             "id": "only",
             "label": "classic",
@@ -404,7 +404,7 @@ def test_classic_mode_does_not_double_read_same_file(tmp_path, monkeypatch):
     from openamer_cli.auth import read_credential_pool, _global_auth_file_path
 
     # Classic mode: OPENAMER_HOME is set to a custom path that is NOT under
-    # ~/.hermes/profiles/ — get_default_hermes_root() returns OPENAMER_HOME
+    # ~/.openamer/profiles/ — get_default_openamer_root() returns OPENAMER_HOME
     # itself, so the profile root and global root are the same directory,
     # and the helper correctly returns None (no fallback).
     assert _global_auth_file_path() is None
@@ -529,14 +529,14 @@ def test_auth_lock_reentrancy_is_scoped_after_profile_context_switch(profile_env
 
 @pytest.fixture()
 def classic_env(tmp_path, monkeypatch):
-    """Classic single-root layout (OPENAMER_HOME != ~/.hermes, no profiles)."""
+    """Classic single-root layout (OPENAMER_HOME != ~/.openamer, no profiles)."""
     fake_home = tmp_path / "home"
     fake_home.mkdir()
     monkeypatch.setattr(Path, "home", lambda: fake_home)
-    hermes_home = tmp_path / "classic"
-    hermes_home.mkdir()
-    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
-    return hermes_home
+    openamer_home = tmp_path / "classic"
+    openamer_home.mkdir()
+    monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
+    return openamer_home
 
 
 def _pool_entry(**overrides) -> dict:

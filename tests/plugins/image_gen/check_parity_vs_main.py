@@ -39,13 +39,13 @@ REPO_ROOT = Path(__file__).resolve().parents[3]
 # Pin one path to current main, one to the PR worktree.
 # ``REPO_ROOT`` is ``.../.worktrees/<name>``; the main checkout lives
 # two levels up. When running directly from a regular clone (no
-# worktree), ``MAIN_DIR`` falls back to a sibling ``hermes-agent-main``
+# worktree), ``MAIN_DIR`` falls back to a sibling ``openamer-agent-main``
 # checkout if one exists.
 def _resolve_main_dir() -> Path:
     candidate = REPO_ROOT.parent.parent
     if (candidate / "tools" / "image_generation_tool.py").exists() and candidate != REPO_ROOT:
         return candidate
-    sibling = REPO_ROOT.parent / "hermes-agent-main"
+    sibling = REPO_ROOT.parent / "openamer-agent-main"
     if (sibling / "tools" / "image_generation_tool.py").exists():
         return sibling
     return REPO_ROOT
@@ -54,7 +54,7 @@ def _resolve_main_dir() -> Path:
 MAIN_DIR = _resolve_main_dir()
 PR_DIR = REPO_ROOT
 assert (PR_DIR / "tools" / "image_generation_tool.py").exists(), (
-    f"PR_DIR={PR_DIR} doesn't look like a hermes-agent checkout"
+    f"PR_DIR={PR_DIR} doesn't look like a openamer-agent checkout"
 )
 
 
@@ -233,7 +233,7 @@ def main() -> int:
     if MAIN_DIR == PR_DIR:
         print(
             "WARN: MAIN_DIR == PR_DIR — diffs will be trivially identical.\n"
-            "      Set up a sibling 'hermes-agent-main' checkout pinned to "
+            "      Set up a sibling 'openamer-agent-main' checkout pinned to "
             "origin/main to get real parity coverage."
         )
         print()

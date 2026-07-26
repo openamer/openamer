@@ -180,7 +180,7 @@ def test_human_single_query_main_finalizes_after_query(monkeypatch):
         def _print_exit_summary(self, clear_screen=True):
             calls.append("summary")
 
-    monkeypatch.setattr(cli_mod, "HermesCLI", FakeCLI)
+    monkeypatch.setattr(cli_mod, "OpenAmerCLI", FakeCLI)
     monkeypatch.setattr(cli_mod.atexit, "register", lambda *_args, **_kwargs: None)
     monkeypatch.setattr(
         cli_mod,
@@ -253,7 +253,7 @@ def test_quiet_single_query_main_finalizes_while_preserving_exit_code(monkeypatc
 
     monkeypatch.delenv("OPENAMER_KANBAN_TASK", raising=False)
     monkeypatch.delenv("HERMES_KANBAN_GOAL_MODE", raising=False)
-    monkeypatch.setattr(cli_mod, "HermesCLI", FakeCLI)
+    monkeypatch.setattr(cli_mod, "OpenAmerCLI", FakeCLI)
     monkeypatch.setattr(cli_mod.atexit, "register", lambda *_args, **_kwargs: None)
     monkeypatch.setattr(
         cli_mod,

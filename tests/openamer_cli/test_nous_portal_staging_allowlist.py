@@ -44,7 +44,7 @@ class TestPortalEnvOverrideHelper:
         monkeypatch.delenv("NOUS_PORTAL_BASE_URL", raising=False)
         assert _nous_portal_env_override() is None
 
-    def test_hermes_portal_base_url_wins(self, monkeypatch):
+    def test_openamer_portal_base_url_wins(self, monkeypatch):
         monkeypatch.setenv(
             "HERMES_PORTAL_BASE_URL", "https://portal.staging-nousresearch.com/"
         )
@@ -92,7 +92,7 @@ class TestResolveAccessTokenEnvOverrideWins:
                             "portal_base_url": stored_portal_url,
                             "access_token": "expired-access",
                             "refresh_token": "staging-refresh",
-                            "client_id": "hermes-cli-vps",
+                            "client_id": "openamer-cli-vps",
                             "expires_at": "2000-01-01T00:00:00+00:00",
                         }
                     },

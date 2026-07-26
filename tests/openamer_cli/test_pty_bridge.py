@@ -58,10 +58,10 @@ class TestPtyBridgeSpawn:
 @skip_on_windows
 class TestPtyBridgeIO:
     def test_reads_child_stdout(self):
-        bridge = PtyBridge.spawn(["/bin/sh", "-c", "printf hermes-ok"])
+        bridge = PtyBridge.spawn(["/bin/sh", "-c", "printf openamer-ok"])
         try:
-            output = _read_until(bridge, b"hermes-ok")
-            assert b"hermes-ok" in output
+            output = _read_until(bridge, b"openamer-ok")
+            assert b"openamer-ok" in output
         finally:
             bridge.close()
 

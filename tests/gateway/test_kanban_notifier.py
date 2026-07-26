@@ -122,8 +122,8 @@ def test_kanban_notifier_rewinds_claim_if_adapter_disconnects(tmp_path, monkeypa
 
 
 def test_kanban_db_path_is_test_isolated_from_real_home():
-    hermes_home = Path(kb.kanban_home())
-    production_db = Path.home() / ".hermes" / "kanban.db"
+    openamer_home = Path(kb.kanban_home())
+    production_db = Path.home() / ".openamer" / "kanban.db"
     assert kb.kanban_db_path().resolve() != production_db.resolve()
 
     conn = kb.connect()
@@ -133,7 +133,7 @@ def test_kanban_db_path_is_test_isolated_from_real_home():
     finally:
         conn.close()
 
-    assert kb.kanban_db_path().resolve().is_relative_to(hermes_home.resolve())
+    assert kb.kanban_db_path().resolve().is_relative_to(openamer_home.resolve())
     assert kb.kanban_db_path().resolve() != production_db.resolve()
 
 

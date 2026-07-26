@@ -117,7 +117,7 @@ def test_shutdown_during_final_health_probe_does_not_publish_client(monkeypatch)
     provider._api_key = ""
     provider._account = ""
     provider._user = ""
-    provider._agent = "hermes"
+    provider._agent = "openamer"
     health_entered = threading.Event()
     release_health = threading.Event()
 

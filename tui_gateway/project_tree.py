@@ -544,7 +544,7 @@ def build_tree(
     ``is_junk_root`` flags git roots that must never become an AUTO project (the
     bare home dir, the OPENAMER_HOME subtree). ``is_junk_cwd`` is the narrower
     policy for non-git session folders: selected descendants may be intentional
-    workspaces even when their parent tree contains Hermes state. User-created
+    workspaces even when their parent tree contains OpenAmer state. User-created
     projects are honored regardless. ``exists`` reports whether a directory is
     still on disk, so a session whose workspace was DELETED (a removed worktree,
     a scratch dir under /tmp) doesn't get promoted to a phantom AUTO project;

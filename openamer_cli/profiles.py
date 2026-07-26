@@ -3,9 +3,9 @@ Profile management for multiple isolated OpenAmer instances.
 
 Each profile is a fully independent OPENAMER_HOME directory with its own
 config.yaml, .env, memory, sessions, skills, gateway, cron, and logs.
-Profiles live under ``~/.hermes/profiles/<name>/`` by default.
+Profiles live under ``~/.openamer/profiles/<name>/`` by default.
 
-The "default" profile is ``~/.hermes`` itself — backward compatible,
+The "default" profile is ``~/.openamer`` itself — backward compatible,
 zero migration needed.
 
 Usage::
@@ -78,7 +78,7 @@ _CLONE_ALL_STRIP: list[str] = [
 ]
 
 # Infrastructure artifacts excluded from --clone-all when the source is the
-# default profile (``~/.hermes``).  Named profiles never contain these
+# default profile (``~/.openamer``).  Named profiles never contain these
 # directories at root, so the exclusion is gated to avoid silently dropping
 # user data from a named-profile source.
 #
@@ -126,7 +126,7 @@ _CLONE_ALL_HISTORY_EXCLUDE_ROOT: frozenset[str] = frozenset({
 })
 
 # Marker file written by `openamer profile create --no-skills`.  When present in
-# a profile's root, callers of seed_profile_skills() (fresh-create, `hermes
+# a profile's root, callers of seed_profile_skills() (fresh-create, `openamer
 # update`'s all-profile sync, the web dashboard) skip bundled-skill seeding
 # for that profile.  The user can still install skills manually via
 # `openamer skills install` or drop SKILL.md files into the profile's skills/.
@@ -151,7 +151,7 @@ def _clone_all_copytree_ignore(source_dir: Path):
          and should never carry into a fresh clone.  Applies to any source.
       2. Root-level entries in ``_CLONE_ALL_DEFAULT_EXCLUDE_ROOT`` — known
          OpenAmer infrastructure directories that only the default profile
-         (``~/.hermes``) ever contains.  Gated on ``source_dir`` actually
+         (``~/.openamer``) ever contains.  Gated on ``source_dir`` actually
          being the default profile so a named-profile source never has its
          own data silently dropped.
       3. Universal exclusions at any depth — Python bytecode caches that
@@ -164,7 +164,7 @@ def _clone_all_copytree_ignore(source_dir: Path):
     clone.
     """
     source_resolved = source_dir.resolve()
-    is_default_source = source_resolved == _get_default_hermes_home().resolve()
+    is_default_source = source_resolved == _get_default_openamer_home().resolve()
 
     def _ignore(directory: str, names: List[str]) -> List[str]:
         ignored: list[str] = []
@@ -196,7 +196,7 @@ def _clone_all_copytree_ignore(source_dir: Path):
     return _ignore
 
 
-# Directories/files to exclude when exporting the default (~/.hermes) profile.
+# Directories/files to exclude when exporting the default (~/.openamer) profile.
 # The default profile contains infrastructure (repo checkout, worktrees, DBs,
 # caches, binaries) that named profiles don't have.  We exclude those so the
 # export is a portable, reasonable-size archive of actual profile data.
@@ -216,7 +216,7 @@ _DEFAULT_EXPORT_EXCLUDE_ROOT = frozenset({
     ".env",                 # API keys (dotenv)
     "auth.lock", "active_profile", ".update_check",
     "errors.log",
-    ".hermes_history",
+    ".openamer_history",
     # Caches (regenerated on use)
     "image_cache", "audio_cache", "document_cache",
     "browser_screenshots", "checkpoints",
@@ -245,7 +245,7 @@ _DEFAULT_EXPORT_INCLUDE_ROOT = frozenset({
 
 # Names that cannot be used as profile aliases
 _RESERVED_NAMES = frozenset({
-    "hermes", "default", "test", "tmp", "root", "sudo",
+    "openamer", "default", "test", "tmp", "root", "sudo",
 })
 
 # OpenAmer subcommands that cannot be used as profile names/aliases
@@ -269,26 +269,26 @@ def _get_profiles_root() -> Path:
     can see all profiles.
 
     In Docker/custom deployments where OPENAMER_HOME points outside
-    ``~/.hermes``, profiles live under ``OPENAMER_HOME/profiles/`` so
+    ``~/.openamer``, profiles live under ``OPENAMER_HOME/profiles/`` so
     they persist on the mounted volume.
     """
-    return _get_default_hermes_home() / "profiles"
+    return _get_default_openamer_home() / "profiles"
 
 
-def _get_default_hermes_home() -> Path:
+def _get_default_openamer_home() -> Path:
     """Return the default (pre-profile) OPENAMER_HOME path.
 
-    In standard deployments this is ``~/.hermes``.
-    In Docker/custom deployments where OPENAMER_HOME is outside ``~/.hermes``
+    In standard deployments this is ``~/.openamer``.
+    In Docker/custom deployments where OPENAMER_HOME is outside ``~/.openamer``
     (e.g. ``/opt/data``), returns OPENAMER_HOME directly.
     """
-    from openamer_constants import get_default_hermes_root
-    return get_default_hermes_root()
+    from openamer_constants import get_default_openamer_root
+    return get_default_openamer_root()
 
 
 def _get_active_profile_path() -> Path:
     """Return the path to the sticky active_profile file."""
-    return _get_default_hermes_home() / "active_profile"
+    return _get_default_openamer_home() / "active_profile"
 
 
 def _get_wrapper_dir() -> Path:
@@ -327,14 +327,14 @@ def validate_profile_name(name: str) -> None:
     honest about what the on-disk directory name must look like, while
     ingress-point normalization handles UX flexibility (see #18498).
 
-    Also rejects names in :data:`_RESERVED_NAMES` (``hermes``, ``test``,
+    Also rejects names in :data:`_RESERVED_NAMES` (``openamer``, ``test``,
     ``tmp``, ``root``, ``sudo``) that would create confusing on-disk
-    collisions (a ``hermes`` profile inside ``~/.hermes/``) or get refused
+    collisions (a ``openamer`` profile inside ``~/.openamer/``) or get refused
     at alias-creation time anyway. ``default`` is a special pass-through —
     it's a valid alias for the built-in root profile.
     """
     if name == "default":
-        return  # special alias for ~/.hermes
+        return  # special alias for ~/.openamer
     if not _PROFILE_ID_RE.match(name):
         raise ValueError(
             f"Invalid profile name {name!r}. Must match "
@@ -368,7 +368,7 @@ def get_profile_dir(name: str) -> Path:
     """Resolve a profile name to its OPENAMER_HOME directory."""
     canon = normalize_profile_name(name)
     if canon == "default":
-        return _get_default_hermes_home()
+        return _get_default_openamer_home()
     return _get_profiles_root() / canon
 
 
@@ -466,8 +466,8 @@ def create_wrapper_script(name: str, target: Optional[str] = None) -> Optional[P
     else:
         wrapper_path = wrapper_dir / canon
         try:
-            hermes_exe = shutil.which("hermes") or "hermes"
-            wrapper_path.write_text(f'#!/bin/sh\nexec {shlex.quote(hermes_exe)} -p {profile} "$@"\n', encoding="utf-8")
+            openamer_exe = shutil.which("openamer") or "openamer"
+            wrapper_path.write_text(f'#!/bin/sh\nexec {shlex.quote(openamer_exe)} -p {profile} "$@"\n', encoding="utf-8")
             wrapper_path.chmod(wrapper_path.stat().st_mode | stat.S_IEXEC | stat.S_IXGRP | stat.S_IXOTH)
             return wrapper_path
         except OSError as e:
@@ -880,7 +880,7 @@ def list_profiles() -> List[ProfileInfo]:
     wrapper_dir = _get_wrapper_dir()
 
     # Default profile
-    default_home = _get_default_hermes_home()
+    default_home = _get_default_openamer_home()
     if default_home.is_dir():
         model, provider = _read_config_model(default_home)
         dist_name, dist_version, dist_source = _read_distribution_meta(default_home)
@@ -947,7 +947,7 @@ def list_profiles() -> List[ProfileInfo]:
 
 
 def profiles_to_serve(multiplex: bool) -> List[Tuple[str, Path]]:
-    """Return the ``(profile_name, hermes_home)`` pairs a gateway should serve.
+    """Return the ``(profile_name, openamer_home)`` pairs a gateway should serve.
 
     This is the single chokepoint for "which profiles does the inbound gateway
     handle" so later multiplexing phases never re-derive the set.
@@ -963,14 +963,14 @@ def profiles_to_serve(multiplex: bool) -> List[Tuple[str, Path]]:
     per-profile config reads, gateway-running probes, or skill counts like
     :func:`list_profiles`. It runs on gateway startup and must stay cheap.
 
-    The returned ``hermes_home`` is the path to pass to
+    The returned ``openamer_home`` is the path to pass to
     ``set_openamer_home_override`` when scoping a turn to that profile.
     """
     active = get_active_profile_name() or "default"
     if not multiplex:
         return [(active, get_profile_dir(active))]
 
-    serve: List[Tuple[str, Path]] = [("default", _get_default_hermes_home())]
+    serve: List[Tuple[str, Path]] = [("default", _get_default_openamer_home())]
 
     profiles_root = _get_profiles_root()
     if profiles_root.is_dir():
@@ -1033,7 +1033,7 @@ def create_profile(
 
     if canon == "default":
         raise ValueError(
-            "Cannot create a profile named 'default' — it is the built-in profile (~/.hermes)."
+            "Cannot create a profile named 'default' — it is the built-in profile (~/.openamer)."
         )
 
     profile_dir = get_profile_dir(canon)
@@ -1057,7 +1057,7 @@ def create_profile(
             )
 
     if clone_all and source_dir:
-        # Full copy of source profile (exclude sibling ~/.hermes/profiles/)
+        # Full copy of source profile (exclude sibling ~/.openamer/profiles/)
         shutil.copytree(
             source_dir,
             profile_dir,
@@ -1248,7 +1248,7 @@ def backfill_profile_envs(quiet: bool = False) -> List[str]:
     if not profiles_root.is_dir():
         return backfilled
 
-    default_env = _get_default_hermes_home() / ".env"
+    default_env = _get_default_openamer_home() / ".env"
 
     for entry in sorted(profiles_root.iterdir()):
         if not entry.is_dir() or not _PROFILE_ID_RE.match(entry.name):
@@ -1322,7 +1322,7 @@ def _profile_bound_backend_pids(canon: str, profile_dir: Path) -> list[int]:
         current_user = None
 
     backend_tokens = {"serve", "dashboard", "gateway"}
-    hermes_markers = ("openamer_cli.main", "openamer-gateway", "tui_gateway")
+    openamer_markers = ("openamer_cli.main", "openamer-gateway", "tui_gateway")
     pids: list[int] = []
 
     for proc in psutil.process_iter(["pid", "name", "username", "cmdline"]):
@@ -1339,15 +1339,15 @@ def _profile_bound_backend_pids(canon: str, profile_dir: Path) -> list[int]:
                 continue
 
             # Must be a OpenAmer process: either an entrypoint marker in argv, or
-            # a resolved executable named `hermes`.
+            # a resolved executable named `openamer`.
             joined = " ".join(argv)
             exe_name = os.path.basename(argv[0]).lower()
             is_openamer = (
-                any(marker in joined for marker in hermes_markers)
-                or exe_name == "hermes"
-                or exe_name.startswith("hermes")
+                any(marker in joined for marker in openamer_markers)
+                or exe_name == "openamer"
+                or exe_name.startswith("openamer")
             )
-            if not is_hermes:
+            if not is_openamer:
                 continue
 
             # Restrict to backend subcommands so we never kill an interactive
@@ -1473,7 +1473,7 @@ def delete_profile(name: str, yes: bool = False) -> Path:
 
     if canon == "default":
         raise ValueError(
-            "Cannot delete the default profile (~/.hermes).\n"
+            "Cannot delete the default profile (~/.openamer).\n"
             "To remove everything, use: openamer uninstall"
         )
 
@@ -1540,7 +1540,7 @@ def delete_profile(name: str, yes: bool = False) -> Path:
     # 2b. Stop any other backends bound to this profile (Desktop-spawned
     # serve/dashboard processes the gateway.pid file never names). They hold
     # the profile's SQLite connection open and keep writing files, which makes
-    # the rmtree below fail with ENOTEMPTY and — before the ensure_hermes_home
+    # the rmtree below fail with ENOTEMPTY and — before the ensure_openamer_home
     # guard — resurrected the deleted tree.
     _stop_profile_backends(canon, profile_dir)
 
@@ -1807,7 +1807,7 @@ def get_active_profile() -> str:
 def set_active_profile(name: str) -> None:
     """Set the sticky active profile.
 
-    Writes to ``~/.hermes/active_profile``. Use ``"default"`` to clear.
+    Writes to ``~/.openamer/active_profile``. Use ``"default"`` to clear.
     """
     canon = normalize_profile_name(name)
     validate_profile_name(canon)
@@ -1832,15 +1832,15 @@ def set_active_profile(name: str) -> None:
 def get_active_profile_name() -> str:
     """Infer the current profile name from OPENAMER_HOME.
 
-    Returns ``"default"`` if OPENAMER_HOME is not set or points to ``~/.hermes``.
-    Returns the profile name if OPENAMER_HOME points into ``~/.hermes/profiles/<name>``.
+    Returns ``"default"`` if OPENAMER_HOME is not set or points to ``~/.openamer``.
+    Returns the profile name if OPENAMER_HOME points into ``~/.openamer/profiles/<name>``.
     Returns ``"custom"`` if OPENAMER_HOME is set to an unrecognized path.
     """
     from openamer_constants import get_openamer_home
-    hermes_home = get_openamer_home()
-    resolved = hermes_home.resolve()
+    openamer_home = get_openamer_home()
+    resolved = openamer_home.resolve()
 
-    default_resolved = _get_default_hermes_home().resolve()
+    default_resolved = _get_default_openamer_home().resolve()
     if resolved == default_resolved:
         return "default"
 
@@ -1916,7 +1916,7 @@ def export_profile(name: str, output_path: str) -> Path:
 
     if canon == "default":
         # The default profile IS ~/.openamer itself — its parent is ~/ and its
-        # directory name is ".hermes", not "default".  We stage a clean copy
+        # directory name is ".openamer", not "default".  We stage a clean copy
         # under a temp dir so the archive contains ``default/...``.
         with tempfile.TemporaryDirectory() as tmpdir:
             staged = Path(tmpdir) / "default"
@@ -2052,7 +2052,7 @@ def import_profile(archive_path: str, name: Optional[str] = None) -> Path:
     validate_profile_name(canon)
     if canon == "default":
         raise ValueError(
-            "Cannot import as 'default' — that is the built-in root profile (~/.hermes). "
+            "Cannot import as 'default' — that is the built-in root profile (~/.openamer). "
             "Specify a different name: openamer profile import <archive> --name <name>"
         )
 
@@ -2063,7 +2063,7 @@ def import_profile(archive_path: str, name: Optional[str] = None) -> Path:
     profiles_root = _get_profiles_root()
     profiles_root.mkdir(parents=True, exist_ok=True)
 
-    with tempfile.TemporaryDirectory(prefix="hermes_profile_import_") as tmpdir:
+    with tempfile.TemporaryDirectory(prefix="openamer_profile_import_") as tmpdir:
         staging_root = Path(tmpdir)
         _safe_extract_profile_archive(archive, staging_root)
 
@@ -2089,13 +2089,13 @@ def import_profile(archive_path: str, name: Optional[str] = None) -> Path:
 
 def _migrate_honcho_profile_host(old_name: str, new_name: str, new_dir: Path) -> None:
     """Rename Honcho host blocks for a renamed profile without changing peers."""
-    old_host = f"hermes_{old_name}"
-    legacy_old_host = f"hermes.{old_name}"
-    new_host = f"hermes_{new_name}"
+    old_host = f"openamer_{old_name}"
+    legacy_old_host = f"openamer.{old_name}"
+    new_host = f"openamer_{new_name}"
 
     candidates = [
         new_dir / "honcho.json",
-        _get_default_hermes_home() / "honcho.json",
+        _get_default_openamer_home() / "honcho.json",
         Path.home() / ".honcho" / "config.json",
     ]
 
@@ -2127,7 +2127,7 @@ def _migrate_honcho_profile_host(old_name: str, new_name: str, new_dir: Path) ->
 
         block = hosts[source_host]
         if isinstance(block, dict) and "aiPeer" not in block:
-            if source_host.startswith("hermes_"):
+            if source_host.startswith("openamer_"):
                 bare = source_host.split("_", 1)[1]
             else:
                 bare = source_host.split(".", 1)[1] if "." in source_host else source_host

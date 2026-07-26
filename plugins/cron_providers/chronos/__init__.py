@@ -1,6 +1,6 @@
 """Chronos — NAS-mediated managed cron provider (scale-to-zero).
 
-Chronos (the Greek god of time, alongside Hermes) is the first non-default
+Chronos (the Greek god of time, alongside OpenAmer) is the first non-default
 ``CronScheduler``. It lets a hosted gateway scale to zero while idle and still
 fire cron jobs: instead of a 60s in-process ticker, it asks NAS to arm exactly
 one external one-shot per job at that job's real next-fire time. NAS calls the

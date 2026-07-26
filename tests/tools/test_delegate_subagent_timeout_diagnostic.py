@@ -2,7 +2,7 @@
 
 When delegate_task's child subagent times out without having made any API
 call, a structured diagnostic file is written under
-``~/.hermes/logs/subagent-timeout-<sid>-<ts>.log``. This gives users a
+``~/.openamer/logs/subagent-timeout-<sid>-<ts>.log``. This gives users a
 concrete artifact to inspect (worker thread stack, system prompt size,
 tool schema bytes, credential pool state, etc.) instead of the previous
 opaque "subagent timed out" error.
@@ -25,8 +25,8 @@ import pytest
 
 
 @pytest.fixture
-def hermes_home(tmp_path, monkeypatch):
-    home = tmp_path / ".hermes"
+def openamer_home(tmp_path, monkeypatch):
+    home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
     return home
@@ -85,7 +85,7 @@ class _StubChild:
 
 class TestDumpSubagentTimeoutDiagnostic:
 
-    def test_writes_log_with_expected_sections(self, hermes_home):
+    def test_writes_log_with_expected_sections(self, openamer_home):
         from tools.delegate_tool import _dump_subagent_timeout_diagnostic
         child = _StubChild(subagent_id="sa-7-abc123")
 
@@ -112,7 +112,7 @@ class TestDumpSubagentTimeoutDiagnostic:
         p = Path(path)
         assert p.is_file()
         # File lives under OPENAMER_HOME/logs/
-        assert p.parent == hermes_home / "logs"
+        assert p.parent == openamer_home / "logs"
         assert p.name.startswith("subagent-timeout-sa-7-abc123-")
         assert p.suffix == ".log"
 
@@ -145,7 +145,7 @@ class TestDumpSubagentTimeoutDiagnostic:
         # The thread is parked inside _hang.wait → cond.wait → waiter.acquire
         assert "acquire" in content or "wait" in content
 
-    def test_truncates_very_long_goal(self, hermes_home):
+    def test_truncates_very_long_goal(self, openamer_home):
         from tools.delegate_tool import _dump_subagent_timeout_diagnostic
         child = _StubChild()
         huge_goal = "x" * 5000
@@ -166,7 +166,7 @@ class TestDumpSubagentTimeoutDiagnostic:
         goal_block = content.split("## Goal", 1)[1].split("## Child config", 1)[0]
         assert len(goal_block) < 1200
 
-    def test_missing_worker_thread_is_handled(self, hermes_home):
+    def test_missing_worker_thread_is_handled(self, openamer_home):
         from tools.delegate_tool import _dump_subagent_timeout_diagnostic
         child = _StubChild()
         path = _dump_subagent_timeout_diagnostic(
@@ -181,7 +181,7 @@ class TestDumpSubagentTimeoutDiagnostic:
         content = Path(path).read_text()
         assert "<no worker thread handle>" in content
 
-    def test_exited_worker_thread_is_handled(self, hermes_home):
+    def test_exited_worker_thread_is_handled(self, openamer_home):
         from tools.delegate_tool import _dump_subagent_timeout_diagnostic
         child = _StubChild()
         # A thread that has already finished
@@ -205,7 +205,7 @@ class TestDumpSubagentTimeoutDiagnostic:
         # Point OPENAMER_HOME at an unwritable path so logs/ can't be created
         # (simulates permission-denied). Helper must not raise.
         from tools.delegate_tool import _dump_subagent_timeout_diagnostic
-        bogus = tmp_path / "does-not-exist" / ".hermes"
+        bogus = tmp_path / "does-not-exist" / ".openamer"
         monkeypatch.setenv("OPENAMER_HOME", str(bogus))
         child = _StubChild()
 
@@ -250,7 +250,7 @@ class TestRunSingleChildTimeoutDump:
             parent_agent=parent,
         )
 
-    def test_zero_api_calls_writes_dump_and_surfaces_path(self, hermes_home, monkeypatch):
+    def test_zero_api_calls_writes_dump_and_surfaces_path(self, openamer_home, monkeypatch):
         child = _StubChild(api_call_count=0, hang_seconds=10.0)
         result = self._invoke_with_short_timeout(child, monkeypatch)
 
@@ -259,14 +259,14 @@ class TestRunSingleChildTimeoutDump:
         assert result["diagnostic_path"] is not None
         dump_path = Path(result["diagnostic_path"])
         assert dump_path.is_file()
-        assert dump_path.parent == hermes_home / "logs"
+        assert dump_path.parent == openamer_home / "logs"
 
         # Error message surfaces the path and the "no API call" phrasing
         assert "without making any API call" in result["error"]
         assert "Diagnostic:" in result["error"]
         assert str(dump_path) in result["error"]
 
-    def test_nonzero_api_calls_skips_dump_and_uses_old_message(self, hermes_home, monkeypatch):
+    def test_nonzero_api_calls_skips_dump_and_uses_old_message(self, openamer_home, monkeypatch):
         child = _StubChild(api_call_count=5, hang_seconds=10.0)
         result = self._invoke_with_short_timeout(child, monkeypatch)
 
@@ -278,7 +278,7 @@ class TestRunSingleChildTimeoutDump:
         assert result.get("diagnostic_path") is None
         assert "stuck on a slow API call" in result["error"]
         # And no subagent-timeout-* file should exist under logs/
-        logs_dir = hermes_home / "logs"
+        logs_dir = openamer_home / "logs"
         if logs_dir.is_dir():
             dumps = list(logs_dir.glob("subagent-timeout-*.log"))
             assert dumps == []

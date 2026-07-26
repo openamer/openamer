@@ -322,7 +322,7 @@ class TestBuildThinkingTimeoutGuidance:
     def test_guidance_mentions_built_in_floor(self):
         """User should know that 600s is already set by default for
         known reasoning models — if they hit the error after raising,
-        it's the upstream cap, not hermes."""
+        it's the upstream cap, not openamer."""
         from agent.thinking_timeout_guidance import build_thinking_timeout_guidance
         text = build_thinking_timeout_guidance(provider="nvidia", model="x")
         assert "600s" in text

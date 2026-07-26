@@ -242,7 +242,7 @@ def test_stale_env_cwd_from_different_session_is_ignored(monkeypatch):
 
     class FakeEnv:
         env = {}
-        cwd = "/home/user/src/hermes-desktop-tipc/apps/desktop"
+        cwd = "/home/user/src/openamer-desktop-tipc/apps/desktop"
         cwd_owner = "session-A-key"
 
         def execute(self, command, **kwargs):
@@ -253,7 +253,7 @@ def test_stale_env_cwd_from_different_session_is_ignored(monkeypatch):
     monkeypatch.setattr(terminal_tool, "_active_environments", {"default": FakeEnv()})
     monkeypatch.setattr(terminal_tool, "_last_activity", {})
     monkeypatch.setattr(terminal_tool, "_task_env_overrides", {})
-    monkeypatch.setattr(terminal_tool, "_get_env_config", lambda: _minimal_terminal_config(cwd="/home/user/src/hermes-agent"))
+    monkeypatch.setattr(terminal_tool, "_get_env_config", lambda: _minimal_terminal_config(cwd="/home/user/src/openamer-agent"))
     monkeypatch.setattr(terminal_tool, "_start_cleanup_thread", lambda: None)
     monkeypatch.setattr(terminal_tool, "_resolve_container_task_id", lambda value: "default")
     monkeypatch.setattr(
@@ -265,9 +265,9 @@ def test_stale_env_cwd_from_different_session_is_ignored(monkeypatch):
     result = json.loads(terminal_tool.terminal_tool(command="pwd", task_id=task_id))
 
     assert result["exit_code"] == 0
-    # The command must run in the config cwd (hermes-agent), NOT the stale
-    # env.cwd left by session A (hermes-desktop-tipc).
-    assert calls == [("pwd", {"timeout": 60, "cwd": "/home/user/src/hermes-agent", "bounded_capture": True})]
+    # The command must run in the config cwd (openamer-agent), NOT the stale
+    # env.cwd left by session A (openamer-desktop-tipc).
+    assert calls == [("pwd", {"timeout": 60, "cwd": "/home/user/src/openamer-agent", "bounded_capture": True})]
 
 
 def test_same_session_recorded_cwd_survives_across_commands(monkeypatch):

@@ -3,14 +3,14 @@
 Bug 1 — OpenAI picker dumped the raw ``/v1/models`` catalog
     ``provider_model_ids("openai")`` hit ``api.openai.com/v1/models`` and
     returned the full 120+ entry catalog (embeddings, whisper, tts, dall-e,
-    moderation, gpt-3.5, …). The ``hermes model`` CLI shows only the curated
+    moderation, gpt-3.5, …). The ``openamer model`` CLI shows only the curated
     agentic list. The picker now intersects the live default-endpoint catalog
     with the curated list (preserving curated order) so both surfaces match.
     Custom OpenAI-compatible endpoints (proxies, gateways) keep the live list
     verbatim so discovery still works.
 
 Bug 2 — OpenRouter appeared authenticated whenever OPENAI_API_KEY was set
-    OpenRouter's HermesOverlay carried ``extra_env_vars=("OPENAI_API_KEY",)``.
+    OpenRouter's OpenAmerOverlay carried ``extra_env_vars=("OPENAI_API_KEY",)``.
     ``list_authenticated_providers`` reads ``extra_env_vars`` to decide whether
     a provider has credentials, so any OpenAI user saw a phantom OpenRouter
     row. The overlay entry is removed; runtime credential resolution still

@@ -80,7 +80,7 @@ def test_default_max_bytes_bounds_the_pragma_by_size():
     """The default must NOT be size-unbounded.
 
     ``PRAGMA integrity_check`` walks every page in the file, so an unbounded
-    default made `hermes update` peg a CPU for minutes on a multi-GB
+    default made `openamer update` peg a CPU for minutes on a multi-GB
     state.db with no output (read as a hang). Callers that omit max_bytes
     must inherit a finite ceiling.
     """
@@ -169,11 +169,11 @@ class TestPreUpdateBackupIntegrityGuard:
     OPENAMER_HOME whose state.db is corrupted mid-flight (#68474)."""
 
     @pytest.fixture()
-    def hermes_home(self, tmp_path, monkeypatch):
+    def openamer_home(self, tmp_path, monkeypatch):
         from pathlib import Path
         import sys
 
-        root = tmp_path / ".hermes"
+        root = tmp_path / ".openamer"
         root.mkdir()
         (root / "config.yaml").write_text("model:\n  provider: openrouter\n")
         db = root / "state.db"
@@ -188,7 +188,7 @@ class TestPreUpdateBackupIntegrityGuard:
                 del sys.modules[mod]
         return root
 
-    def test_healthy_db_stays_quiet(self, hermes_home, capsys):
+    def test_healthy_db_stays_quiet(self, openamer_home, capsys):
         from argparse import Namespace
 
         from openamer_cli.main import _run_pre_update_backup
@@ -199,7 +199,7 @@ class TestPreUpdateBackupIntegrityGuard:
         assert "Pre-update snapshot" in out
         assert "integrity check FAILED" not in out
 
-    def test_zeroed_db_after_snapshot_is_loud(self, hermes_home, capsys, monkeypatch):
+    def test_zeroed_db_after_snapshot_is_loud(self, openamer_home, capsys, monkeypatch):
         """If state.db is zeroed right after the snapshot completes, the
         guard must warn loudly instead of proceeding silently (exit-0 mask)."""
         from argparse import Namespace
@@ -211,7 +211,7 @@ class TestPreUpdateBackupIntegrityGuard:
 
         def create_then_zero(**kwargs):
             snap_id = real_create(**kwargs)
-            live = hermes_home / "state.db"
+            live = openamer_home / "state.db"
             live.write_bytes(b"\x00" * live.stat().st_size)
             return snap_id
 

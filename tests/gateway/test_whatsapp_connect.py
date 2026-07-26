@@ -687,7 +687,7 @@ class TestNoCredsPreflight:
     With the guard, ``connect()`` returns False immediately with a
     non-retryable fatal error so the reconnect watcher drops the platform
     and the gateway gets a single clear log line telling the user to run
-    ``hermes whatsapp``.
+    ``openamer whatsapp``.
     """
 
     @pytest.mark.asyncio

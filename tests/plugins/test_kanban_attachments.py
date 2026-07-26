@@ -33,7 +33,7 @@ def _load_plugin_router():
     plugin_file = repo_root / "plugins" / "kanban" / "dashboard" / "plugin_api.py"
     assert plugin_file.exists(), f"plugin file missing: {plugin_file}"
     spec = importlib.util.spec_from_file_location(
-        "hermes_dashboard_plugin_kanban_attach_test", plugin_file,
+        "openamer_dashboard_plugin_kanban_attach_test", plugin_file,
     )
     assert spec is not None and spec.loader is not None
     mod = importlib.util.module_from_spec(spec)
@@ -44,7 +44,7 @@ def _load_plugin_router():
 
 @pytest.fixture
 def kanban_home(tmp_path, monkeypatch):
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
     monkeypatch.setattr(Path, "home", lambda: tmp_path)
@@ -359,7 +359,7 @@ def test_store_attachment_bytes_unknown_task_leaves_no_blob(kanban_home):
 
 
 # ---------------------------------------------------------------------------
-# CLI — hermes kanban attach / attachments / attach-rm
+# CLI — openamer kanban attach / attachments / attach-rm
 # ---------------------------------------------------------------------------
 
 

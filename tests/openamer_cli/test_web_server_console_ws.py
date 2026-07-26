@@ -1,4 +1,4 @@
-"""Dashboard Hermes Console websocket tests."""
+"""Dashboard OpenAmer Console websocket tests."""
 
 from __future__ import annotations
 
@@ -13,7 +13,7 @@ from openamer_cli import web_server
 
 
 @pytest.fixture
-def console_client(monkeypatch, _isolate_hermes_home):
+def console_client(monkeypatch, _isolate_openamer_home):
     previous_auth_required = getattr(web_server.app.state, "auth_required", None)
     previous_bound_host = getattr(web_server.app.state, "bound_host", None)
     web_server.app.state.auth_required = False
@@ -74,14 +74,14 @@ def test_console_ws_runs_read_only_command(console_client):
     with console_client.websocket_connect(_url()) as conn:
         ready = conn.receive_json()
         assert ready["type"] == "ready"
-        assert ready["prompt"] == "hermes> "
+        assert ready["prompt"] == "openamer> "
 
         conn.send_json({"type": "input", "line": "help"})
 
         output = _recv_until(conn, "output")
-        assert "Hermes Console" in output["data"]
+        assert "OpenAmer Console" in output["data"]
         complete = _recv_until(conn, "complete", status="ok")
-        assert complete["prompt"] == "hermes> "
+        assert complete["prompt"] == "openamer> "
 
 
 def test_console_ws_confirmed_command_executes_after_confirmation(console_client):
@@ -102,13 +102,13 @@ def test_console_ws_confirmed_command_executes_after_confirmation(console_client
 
 
 def test_console_ws_cancel_returns_to_prompt(console_client, monkeypatch):
-    from openamer_cli.console_engine import ConsoleResult, HermesConsoleEngine
+    from openamer_cli.console_engine import ConsoleResult, OpenAmerConsoleEngine
 
     def slow_execute(self, line: str, *, confirmed: bool = False):
         time.sleep(0.5)
         return ConsoleResult("ok", output="late", command=line)
 
-    monkeypatch.setattr(HermesConsoleEngine, "execute", slow_execute)
+    monkeypatch.setattr(OpenAmerConsoleEngine, "execute", slow_execute)
 
     with console_client.websocket_connect(_url()) as conn:
         assert conn.receive_json()["type"] == "ready"
@@ -116,4 +116,4 @@ def test_console_ws_cancel_returns_to_prompt(console_client, monkeypatch):
         conn.send_json({"type": "cancel"})
 
         complete = _recv_until(conn, "complete", status="cancelled")
-        assert complete["prompt"] == "hermes> "
+        assert complete["prompt"] == "openamer> "

@@ -1,7 +1,7 @@
 """Tests for per-turn Copilot x-initiator header injection (issue #3040).
 
 Copilot bills "premium requests" only when a request is marked as
-user-initiated via the ``x-initiator: user`` header. Hermes previously sent
+user-initiated via the ``x-initiator: user`` header. OpenAmer previously sent
 ``x-initiator: agent`` on every request (client-level default headers), so
 user prompts never consumed premium requests and were throttled as agent
 traffic. The fix marks the FIRST API call of each user turn as "user" and

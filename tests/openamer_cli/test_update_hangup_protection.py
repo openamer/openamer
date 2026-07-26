@@ -1,8 +1,8 @@
-"""Tests for SIGHUP protection and stdout mirroring in ``hermes update``.
+"""Tests for SIGHUP protection and stdout mirroring in ``openamer update``.
 
 Covers ``_UpdateOutputStream``, ``_install_hangup_protection``, and
 ``_finalize_update_output`` in ``openamer_cli/main.py``.  These exist so
-that ``hermes update`` survives a terminal disconnect mid-install
+that ``openamer update`` survives a terminal disconnect mid-install
 (SSH drop, shell close) without leaving the venv half-installed.
 """
 
@@ -184,7 +184,7 @@ class TestInstallHangupProtection:
     def test_installs_sighup_ignore(self, tmp_path, monkeypatch):
         """SIGHUP should be set to SIG_IGN so SSH disconnect doesn't kill the update."""
         monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
-        # Clear cached get_hermes_home if present
+        # Clear cached get_openamer_home if present
         import openamer_cli.config as _cfg
         if hasattr(_cfg, "_OPENAMER_HOME_CACHE"):
             _cfg._OPENAMER_HOME_CACHE = None  # type: ignore[attr-defined]
@@ -223,7 +223,7 @@ class TestInstallHangupProtection:
             assert log_path.exists()
             contents = log_path.read_text(encoding="utf-8")
             assert "checking mirror" in contents
-            assert "hermes update started" in contents
+            assert "openamer update started" in contents
         finally:
             _finalize_update_output(state)
             # Sanity-check restoration
@@ -255,7 +255,7 @@ class TestInstallHangupProtection:
 
         # Patch the import inside _install_hangup_protection.
         monkeypatch.setattr(
-            "openamer_cli.config.get_hermes_home", _boom, raising=True
+            "openamer_cli.config.get_openamer_home", _boom, raising=True
         )
 
         original_handler = (

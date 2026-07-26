@@ -269,8 +269,8 @@ def check_for_updates() -> Optional[int]:
     if behind but the count is unknown, ``0`` if up-to-date, or ``None`` if
     the check failed or doesn't apply. Cached for 6 hours.
     """
-    hermes_home = get_openamer_home()
-    cache_file = hermes_home / ".update_check"
+    openamer_home = get_openamer_home()
+    cache_file = openamer_home / ".update_check"
     embedded_rev = os.environ.get("HERMES_REVISION") or None
 
     # Docker images have no working tree to count commits against — the
@@ -278,7 +278,7 @@ def check_for_updates() -> Optional[int]:
     # HERMES_REVISION (that's nix-only). Returning None makes both the Rich
     # banner (build_welcome_banner) and the Ink badge (branding.tsx, guarded
     # on `typeof === 'number' && > 0`) show nothing. The dashboard's REST
-    # `/api/hermes/update/check` endpoint short-circuits docker the same way
+    # `/api/openamer/update/check` endpoint short-circuits docker the same way
     # (web_server.py); mirror that here so the banner/TUI surfaces agree.
     try:
         from openamer_cli.config import detect_install_method, get_project_root
@@ -310,7 +310,7 @@ def check_for_updates() -> Optional[int]:
         # Path(__file__) always resolves to the actual installed checkout.
         repo_dir = Path(__file__).parent.parent.resolve()
         if not (repo_dir / ".git").exists():
-            repo_dir = hermes_home / "openamer-agent"
+            repo_dir = openamer_home / "openamer-agent"
         if not (repo_dir / ".git").exists():
             # No git checkout and no embedded revision — can't determine
             # update status. This is the Docker path (already short-circuited
@@ -339,8 +339,8 @@ def _resolve_repo_dir() -> Optional[Path]:
     """
     repo_dir = Path(__file__).parent.parent.resolve()
     if not (repo_dir / ".git").exists():
-        hermes_home = get_openamer_home()
-        repo_dir = hermes_home / "openamer-agent"
+        openamer_home = get_openamer_home()
+        repo_dir = openamer_home / "openamer-agent"
     return repo_dir if (repo_dir / ".git").exists() else None
 
 
@@ -844,7 +844,7 @@ def build_welcome_banner(console: "Console", model: str, cwd: str,
                     f"[dim yellow] — run [bold]{recommended_update_command()}[/bold] to update[/]"
                 )
             else:
-                # UPDATE_AVAILABLE_NO_COUNT: nix-built hermes; we know an update
+                # UPDATE_AVAILABLE_NO_COUNT: nix-built openamer; we know an update
                 # exists but not by how much, and we don't know how the user
                 # installed it (nix run, profile, system flake, home-manager).
                 managed_cmd = get_managed_update_command()

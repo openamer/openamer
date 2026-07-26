@@ -22,7 +22,7 @@ _PNG_BYTES = base64.b64decode(
 
 
 class TestResolveMediaToDataUrls(unittest.TestCase):
-    def _write_png(self, tmpdir_name="hermes_media_test"):
+    def _write_png(self, tmpdir_name="openamer_media_test"):
         import tempfile
         from pathlib import Path
 
@@ -68,7 +68,7 @@ class TestResolveMediaToDataUrls(unittest.TestCase):
 
     def test_multiple_tags(self):
         p1 = self._write_png()
-        p2 = self._write_png("hermes_media_test2")
+        p2 = self._write_png("openamer_media_test2")
         out = _resolve_media_to_data_urls(f"MEDIA:{p1}\nand MEDIA:{p2}")
         self.assertEqual(out.count("data:image/png;base64,"), 2)
 
@@ -97,7 +97,7 @@ class TestResolveMediaToDataUrls(unittest.TestCase):
         import tempfile
         from pathlib import Path
 
-        d = Path(tempfile.mkdtemp(prefix="hermes_media_test_symlink"))
+        d = Path(tempfile.mkdtemp(prefix="openamer_media_test_symlink"))
         link = d / "shot.png"
         try:
             os.symlink("/etc/hosts", link)

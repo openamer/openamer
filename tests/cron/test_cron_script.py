@@ -24,21 +24,21 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 @pytest.fixture
 def cron_env(tmp_path, monkeypatch):
     """Isolated cron environment with temp OPENAMER_HOME."""
-    hermes_home = tmp_path / ".hermes"
-    hermes_home.mkdir()
-    (hermes_home / "cron").mkdir()
-    (hermes_home / "cron" / "output").mkdir()
-    (hermes_home / "scripts").mkdir()
-    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+    openamer_home = tmp_path / ".openamer"
+    openamer_home.mkdir()
+    (openamer_home / "cron").mkdir()
+    (openamer_home / "cron" / "output").mkdir()
+    (openamer_home / "scripts").mkdir()
+    monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
 
     # Clear cached module-level paths
     import cron.jobs as jobs_mod
-    monkeypatch.setattr(jobs_mod, "HERMES_DIR", hermes_home)
-    monkeypatch.setattr(jobs_mod, "CRON_DIR", hermes_home / "cron")
-    monkeypatch.setattr(jobs_mod, "JOBS_FILE", hermes_home / "cron" / "jobs.json")
-    monkeypatch.setattr(jobs_mod, "OUTPUT_DIR", hermes_home / "cron" / "output")
+    monkeypatch.setattr(jobs_mod, "HERMES_DIR", openamer_home)
+    monkeypatch.setattr(jobs_mod, "CRON_DIR", openamer_home / "cron")
+    monkeypatch.setattr(jobs_mod, "JOBS_FILE", openamer_home / "cron" / "jobs.json")
+    monkeypatch.setattr(jobs_mod, "OUTPUT_DIR", openamer_home / "cron" / "output")
 
-    return hermes_home
+    return openamer_home
 
 
 class TestJobScriptField:
@@ -92,7 +92,7 @@ def test_cronjob_tool_rejects_stale_past_one_shot(cron_env, monkeypatch):
     from tools.cronjob_tools import cronjob
 
     now = datetime(2026, 3, 18, 4, 30, 0, tzinfo=timezone.utc)
-    monkeypatch.setattr("cron.jobs._hermes_now", lambda: now)
+    monkeypatch.setattr("cron.jobs._openamer_now", lambda: now)
     stale = (now - timedelta(minutes=5)).isoformat()
 
     result = json.loads(cronjob(action="create", prompt="Too late", schedule=stale))
@@ -148,7 +148,7 @@ class TestRunJobScript:
         assert "error info" in output
 
     def test_script_subprocess_env_sanitized(self, cron_env, monkeypatch):
-        """Cron scripts must not inherit Hermes provider env (SECURITY.md §2.3)."""
+        """Cron scripts must not inherit OpenAmer provider env (SECURITY.md §2.3)."""
         from tools.environments.local import _HERMES_PROVIDER_ENV_BLOCKLIST
         from cron.scheduler import _run_job_script
 
@@ -438,7 +438,7 @@ class TestScriptPathContainment:
     """
 
     def test_absolute_path_outside_scripts_dir_blocked(self, cron_env):
-        """Absolute paths outside ~/.hermes/scripts/ must be rejected."""
+        """Absolute paths outside ~/.openamer/scripts/ must be rejected."""
         from cron.scheduler import _run_job_script
 
         # Create a script outside the scripts dir

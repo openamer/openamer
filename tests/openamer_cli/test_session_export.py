@@ -183,7 +183,7 @@ def test_sessions_export_cli_prompt_only_stdout(monkeypatch, capsys):
     monkeypatch.setattr(
         sys,
         "argv",
-        ["hermes", "sessions", "export", "-", "--session-id", "sess", "--only", "user-prompts"],
+        ["openamer", "sessions", "export", "-", "--session-id", "sess", "--only", "user-prompts"],
     )
 
     main_mod.main()
@@ -221,7 +221,7 @@ def test_sessions_export_cli_prompt_only_markdown_file(monkeypatch, capsys, tmp_
         sys,
         "argv",
         [
-            "hermes",
+            "openamer",
             "sessions",
             "export",
             str(output_path),
@@ -258,7 +258,7 @@ def test_sessions_export_only_rejects_unsupported_format(monkeypatch, capsys):
     monkeypatch.setattr(
         sys,
         "argv",
-        ["hermes", "sessions", "export", "-", "--format", "html", "--only", "user-prompts"],
+        ["openamer", "sessions", "export", "-", "--format", "html", "--only", "user-prompts"],
     )
 
     main_mod.main()

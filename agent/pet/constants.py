@@ -2,7 +2,7 @@
 
 These values are the common petdex/Codex pet geometry. The real ``pet.json``
 usually only carries ``id``/``displayName``/``description``/``spritesheetPath``;
-row taxonomy is inferred from the atlas shape so Hermes can render both legacy
+row taxonomy is inferred from the atlas shape so OpenAmer can render both legacy
 8-row sheets and current 9-row Codex sheets.
 """
 
@@ -11,7 +11,7 @@ from __future__ import annotations
 from enum import Enum
 
 # Frame geometry (pixels). Current Codex/petdex spritesheets are 8 columns x 9
-# rows (1536x1872), while older Hermes/petdex sheets used 9 columns x 8 rows
+# rows (1536x1872), while older OpenAmer/petdex sheets used 9 columns x 8 rows
 # (1728x1664). Renderers derive both row taxonomy and real column count from the
 # concrete sheet, so either shape works.
 FRAME_W = 192
@@ -78,7 +78,7 @@ def resolve_cols(scale: float, unicode_cols: int = 0) -> int:
 class PetState(str, Enum):
     """Animation state a pet can be shown in.
 
-    These are Hermes' activity state names. They are not always identical to the
+    These are OpenAmer' activity state names. They are not always identical to the
     source atlas row names: Codex-format pets use rows like ``jumping`` /
     ``running`` while the UI keeps the shorter ``jump`` / ``run`` names.
     """
@@ -92,7 +92,7 @@ class PetState(str, Enum):
     WAITING = "waiting"
 
 
-# Legacy Hermes/petdex row order (top -> bottom) used by the older 8-row,
+# Legacy OpenAmer/petdex row order (top -> bottom) used by the older 8-row,
 # 9-column atlas shape.
 LEGACY_STATE_ROWS: list[str] = [
     PetState.IDLE.value,
@@ -123,7 +123,7 @@ CODEX_STATE_ROWS: list[str] = [
 # format because generated pets and the public Codex pet contract use it.
 STATE_ROWS: list[str] = CODEX_STATE_ROWS
 
-# Canonical Hermes activity names -> accepted row-name aliases in descending
+# Canonical OpenAmer activity names -> accepted row-name aliases in descending
 # preference. This keeps our internal state names stable (`wave`/`jump`/`run`)
 # while matching Petdex's current `waving`/`jumping`/`running` taxonomy.
 STATE_ALIASES: dict[str, tuple[str, ...]] = {

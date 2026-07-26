@@ -4,7 +4,7 @@ Build the real image and verify the actual runtime behavior:
 
   1. docker run --user <arbitrary-uid> is rejected with actionable guidance
   2. Root start (default) works fine
-  3. --user <hermes-uid> (10000) is allowed (supported non-root start)
+  3. --user <openamer-uid> (10000) is allowed (supported non-root start)
 """
 from __future__ import annotations
 
@@ -48,10 +48,10 @@ def test_root_start_works(
     assert "OK" in r.stdout
 
 
-def test_user_pinned_to_hermes_uid_works(
+def test_user_pinned_to_openamer_uid_works(
     built_image: str,
 ) -> None:
-    """docker run --user 10000:10000 (the hermes UID) must be allowed.
+    """docker run --user 10000:10000 (the openamer UID) must be allowed.
 
     This is the supported non-root start from #34648 / #34837.
     """
@@ -61,6 +61,6 @@ def test_user_pinned_to_hermes_uid_works(
         capture_output=True, text=True, timeout=60,
     )
     assert r.returncode == 0, (
-        f"--user 10000:10000 (hermes UID) was rejected: {r.stderr[-500:]}"
+        f"--user 10000:10000 (openamer UID) was rejected: {r.stderr[-500:]}"
     )
     assert "OK" in r.stdout

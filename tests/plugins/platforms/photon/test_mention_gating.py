@@ -61,7 +61,7 @@ def _capture(adapter: PhotonAdapter, monkeypatch: pytest.MonkeyPatch) -> List[Me
 def test_require_mention_defaults_off(monkeypatch: pytest.MonkeyPatch) -> None:
     adapter = _make_adapter(monkeypatch)
     assert adapter.require_mention is False
-    # Defaults compile to the two Hermes wake-word patterns.
+    # Defaults compile to the two OpenAmer wake-word patterns.
     assert len(adapter._mention_patterns) == 2
 
 
@@ -79,7 +79,7 @@ async def test_group_message_passes_and_strips_wake_word(monkeypatch: pytest.Mon
     adapter = _make_adapter(monkeypatch, extra={"require_mention": True})
     captured = _capture(adapter, monkeypatch)
 
-    await adapter._dispatch_inbound(_group_payload("Hermes what's the weather"))
+    await adapter._dispatch_inbound(_group_payload("OpenAmer what's the weather"))
     assert len(captured) == 1
     # Leading wake word stripped before dispatch.
     assert captured[0].text == "what's the weather"
@@ -113,7 +113,7 @@ def test_custom_mention_patterns_from_config(monkeypatch: pytest.MonkeyPatch) ->
     assert adapter.require_mention is True
     assert len(adapter._mention_patterns) == 1
     assert adapter._message_matches_mention_patterns("amos help me") is True
-    assert adapter._message_matches_mention_patterns("hermes help me") is False
+    assert adapter._message_matches_mention_patterns("openamer help me") is False
 
 
 def test_mention_patterns_env_comma_separated(monkeypatch: pytest.MonkeyPatch) -> None:

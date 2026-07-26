@@ -2,9 +2,9 @@
 
 The guard fires when a tool tries to write into the per-task mirror
 directory created by a non-local terminal backend (Docker, Daytona, etc.).
-Those paths look like ``…/sandboxes/<backend>/<task>/home/.hermes/…`` and
+Those paths look like ``…/sandboxes/<backend>/<task>/home/.openamer/…`` and
 they accumulate divergent copies of authoritative profile state (SOUL.md,
-config.yaml, memories/*.md) because the host Hermes process never reads
+config.yaml, memories/*.md) because the host OpenAmer process never reads
 them. Soft guard — defense in depth, NOT a security boundary.
 
 Reference: #32049 — under ``terminal.backend: docker``, the agent's
@@ -32,7 +32,7 @@ class TestClassifySandboxMirrorTarget:
         target = (
             tmp_path
             / "profiles" / "group1"
-            / "sandboxes" / "docker" / "default" / "home" / ".hermes"
+            / "sandboxes" / "docker" / "default" / "home" / ".openamer"
             / "profiles" / "group1" / "SOUL.md"
         )
         target.parent.mkdir(parents=True)
@@ -42,7 +42,7 @@ class TestClassifySandboxMirrorTarget:
         assert result is not None
         assert result["target_path"] == str(target.resolve())
         assert result["mirror_root"].endswith(
-            "sandboxes/docker/default/home/.hermes"
+            "sandboxes/docker/default/home/.openamer"
         )
         assert result["inner_path"] == "profiles/group1/SOUL.md"
 
@@ -60,7 +60,7 @@ class TestClassifySandboxMirrorTarget:
 
         target = (
             tmp_path
-            / "sandboxes" / backend / "task-42" / "home" / ".hermes"
+            / "sandboxes" / backend / "task-42" / "home" / ".openamer"
             / Path(inner)
         )
         target.parent.mkdir(parents=True, exist_ok=True)
@@ -72,17 +72,17 @@ class TestClassifySandboxMirrorTarget:
         assert backend in result["mirror_root"]
 
     def test_path_outside_sandbox_returns_none(self, tmp_path):
-        """A plain Hermes path is not a mirror."""
+        """A plain OpenAmer path is not a mirror."""
         from agent.file_safety import classify_sandbox_mirror_target
 
-        target = tmp_path / ".hermes" / "profiles" / "group1" / "SOUL.md"
+        target = tmp_path / ".openamer" / "profiles" / "group1" / "SOUL.md"
         target.parent.mkdir(parents=True)
         target.write_text("# real SOUL\n")
 
         assert classify_sandbox_mirror_target(str(target)) is None
 
-    def test_sandboxes_segment_without_home_hermes_returns_none(self, tmp_path):
-        """A ``sandboxes/`` directory unrelated to Hermes-state mirroring (e.g.
+    def test_sandboxes_segment_without_home_openamer_returns_none(self, tmp_path):
+        """A ``sandboxes/`` directory unrelated to OpenAmer-state mirroring (e.g.
         the sandbox workspace itself) is not flagged."""
         from agent.file_safety import classify_sandbox_mirror_target
 
@@ -95,8 +95,8 @@ class TestClassifySandboxMirrorTarget:
 
         assert classify_sandbox_mirror_target(str(target)) is None
 
-    def test_sandboxes_segment_with_home_but_no_hermes_returns_none(self, tmp_path):
-        """``sandboxes/<backend>/<task>/home/anything-not-hermes`` is not a mirror."""
+    def test_sandboxes_segment_with_home_but_no_openamer_returns_none(self, tmp_path):
+        """``sandboxes/<backend>/<task>/home/anything-not-openamer`` is not a mirror."""
         from agent.file_safety import classify_sandbox_mirror_target
 
         target = (
@@ -109,7 +109,7 @@ class TestClassifySandboxMirrorTarget:
         assert classify_sandbox_mirror_target(str(target)) is None
 
     def test_truncated_sandbox_path_returns_none(self, tmp_path):
-        """``…/sandboxes/<backend>/<task>`` without ``home/.hermes/<thing>`` is not a mirror."""
+        """``…/sandboxes/<backend>/<task>`` without ``home/.openamer/<thing>`` is not a mirror."""
         from agent.file_safety import classify_sandbox_mirror_target
 
         target = tmp_path / "sandboxes" / "docker" / "task-42"
@@ -125,7 +125,7 @@ class TestClassifySandboxMirrorTarget:
         target = (
             tmp_path
             / "profiles" / "group1"
-            / "sandboxes" / "docker" / "default" / "home" / ".hermes"
+            / "sandboxes" / "docker" / "default" / "home" / ".openamer"
             / "profiles" / "group1" / "SOUL.md"
         )
         # Parent directory exists so .resolve() doesn't strip the tail
@@ -147,7 +147,7 @@ class TestGetSandboxMirrorWarning:
     def test_non_mirror_returns_none(self, tmp_path):
         from agent.file_safety import get_sandbox_mirror_warning
 
-        target = tmp_path / ".hermes" / "profiles" / "group1" / "SOUL.md"
+        target = tmp_path / ".openamer" / "profiles" / "group1" / "SOUL.md"
         target.parent.mkdir(parents=True)
         target.write_text("# real SOUL\n")
 
@@ -159,7 +159,7 @@ class TestGetSandboxMirrorWarning:
         target = (
             tmp_path
             / "profiles" / "group1"
-            / "sandboxes" / "docker" / "default" / "home" / ".hermes"
+            / "sandboxes" / "docker" / "default" / "home" / ".openamer"
             / "profiles" / "group1" / "SOUL.md"
         )
         target.parent.mkdir(parents=True)
@@ -168,7 +168,7 @@ class TestGetSandboxMirrorWarning:
         warn = get_sandbox_mirror_warning(str(target))
         assert warn is not None
         # Must name the mirror root so the user can locate the sandbox.
-        assert "sandboxes/docker/default/home/.hermes" in warn
+        assert "sandboxes/docker/default/home/.openamer" in warn
         # Must hint at what the agent likely meant.
         assert "profiles/group1/SOUL.md" in warn
         # Must name the bypass kwarg shared with the cross-profile guard.
@@ -179,7 +179,7 @@ class TestGetSandboxMirrorWarning:
 
         target = (
             tmp_path
-            / "sandboxes" / "docker" / "t" / "home" / ".hermes"
+            / "sandboxes" / "docker" / "t" / "home" / ".openamer"
             / "profiles" / "g" / "SOUL.md"
         )
         target.parent.mkdir(parents=True)
@@ -204,13 +204,13 @@ class TestSandboxMirrorIsOrthogonalToCrossProfile:
 
     def test_same_profile_mirror_still_flagged(self, tmp_path, monkeypatch):
         import agent.file_safety as fs
-        monkeypatch.setattr(fs, "_hermes_root_path", lambda: tmp_path)
-        monkeypatch.setattr(fs, "_hermes_home_path", lambda: tmp_path / "profiles" / "group1")
+        monkeypatch.setattr(fs, "_openamer_root_path", lambda: tmp_path)
+        monkeypatch.setattr(fs, "_openamer_home_path", lambda: tmp_path / "profiles" / "group1")
 
         target = (
             tmp_path
             / "profiles" / "group1"
-            / "sandboxes" / "docker" / "default" / "home" / ".hermes"
+            / "sandboxes" / "docker" / "default" / "home" / ".openamer"
             / "profiles" / "group1" / "SOUL.md"
         )
         target.parent.mkdir(parents=True)

@@ -3,7 +3,7 @@ Feishu/Lark meeting-invitation event handling.
 
 Processes ``vc.bot.meeting_invited_v1`` events by converting them into a
 synthetic gateway ``MessageEvent``.  Unlike document comments, the response
-should go back to the inviter through the normal Hermes gateway pipeline, so
+should go back to the inviter through the normal OpenAmer gateway pipeline, so
 this module does not instantiate an agent directly.
 """
 

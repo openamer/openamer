@@ -1,6 +1,6 @@
 """Tests for the clean shutdown marker that prevents unwanted session auto-resets.
 
-When the gateway shuts down gracefully (hermes update, gateway restart, /restart),
+When the gateway shuts down gracefully (openamer update, gateway restart, /restart),
 it writes a .clean_shutdown marker.  On the next startup, if the marker exists,
 suspend_recently_active() is skipped so users don't lose their sessions.
 
@@ -91,7 +91,7 @@ class TestCleanShutdownMarker:
 
     def test_marker_written_on_graceful_stop(self, tmp_path, monkeypatch):
         """stop() should write .clean_shutdown marker."""
-        monkeypatch.setattr("gateway.run._hermes_home", tmp_path)
+        monkeypatch.setattr("gateway.run._openamer_home", tmp_path)
         marker = tmp_path / ".clean_shutdown"
         assert not marker.exists()
 
@@ -133,7 +133,7 @@ class TestCleanShutdownMarker:
 
     def test_marker_skips_suspension_on_startup(self, tmp_path, monkeypatch):
         """If .clean_shutdown exists, suspend_recently_active should NOT be called."""
-        monkeypatch.setattr("gateway.run._hermes_home", tmp_path)
+        monkeypatch.setattr("gateway.run._openamer_home", tmp_path)
 
         # Create the marker
         marker = tmp_path / ".clean_shutdown"
@@ -162,7 +162,7 @@ class TestCleanShutdownMarker:
 
     def test_no_marker_triggers_suspension(self, tmp_path, monkeypatch):
         """Without .clean_shutdown marker (crash), suspension should fire."""
-        monkeypatch.setattr("gateway.run._hermes_home", tmp_path)
+        monkeypatch.setattr("gateway.run._openamer_home", tmp_path)
 
         marker = tmp_path / ".clean_shutdown"
         assert not marker.exists()
@@ -187,7 +187,7 @@ class TestCleanShutdownMarker:
 
     def test_marker_written_on_restart_stop(self, tmp_path, monkeypatch):
         """stop(restart=True) should also write the marker."""
-        monkeypatch.setattr("gateway.run._hermes_home", tmp_path)
+        monkeypatch.setattr("gateway.run._openamer_home", tmp_path)
         marker = tmp_path / ".clean_shutdown"
 
         from gateway.run import GatewayRunner
@@ -227,7 +227,7 @@ class TestCleanShutdownMarker:
 
     def test_shutdown_cleanup_does_not_end_gateway_session_rows(self, tmp_path, monkeypatch):
         """Gateway process restart/stop must not mark live chats ended in state.db."""
-        monkeypatch.setattr("gateway.run._hermes_home", tmp_path)
+        monkeypatch.setattr("gateway.run._openamer_home", tmp_path)
         from gateway.run import GatewayRunner
 
         runner = object.__new__(GatewayRunner)
@@ -254,7 +254,7 @@ class TestCleanShutdownMarker:
         SQLite row as ``agent_close``, stale-route recovery treats it as
         recoverable and resurrects the expired session instead.
         """
-        monkeypatch.setattr("gateway.run._hermes_home", tmp_path)
+        monkeypatch.setattr("gateway.run._openamer_home", tmp_path)
         from gateway.run import GatewayRunner
 
         runner = object.__new__(GatewayRunner)

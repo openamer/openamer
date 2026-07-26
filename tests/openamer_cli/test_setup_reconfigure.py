@@ -1,10 +1,10 @@
 """Tests for the setup wizard's returning-user behavior.
 
 On an existing install:
-- Bare `hermes setup` drops straight into the full reconfigure wizard
+- Bare `openamer setup` drops straight into the full reconfigure wizard
   (every prompt shows the current value as its default).
-- `hermes setup --quick` runs the narrower "fill in missing items" flow.
-- `hermes setup --reconfigure` is a backwards-compat alias for the
+- `openamer setup --quick` runs the narrower "fill in missing items" flow.
+- `openamer setup --reconfigure` is a backwards-compat alias for the
   bare-setup default.
 
 On a fresh install, all three are no-ops — fall through to first-time setup.
@@ -30,7 +30,7 @@ def _make_setup_args(**overrides):
 @pytest.fixture
 def existing_install(tmp_path, monkeypatch):
     """Simulate a returning user with an existing configured install."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setattr("pathlib.Path.home", lambda: tmp_path)
     monkeypatch.setenv("OPENAMER_HOME", str(home))
@@ -40,7 +40,7 @@ def existing_install(tmp_path, monkeypatch):
 @pytest.fixture
 def fresh_install(tmp_path, monkeypatch):
     """Simulate a first-time user with no existing configuration."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setattr("pathlib.Path.home", lambda: tmp_path)
     monkeypatch.setenv("OPENAMER_HOME", str(home))
@@ -55,7 +55,7 @@ def _enter_existing_install_patches(stack, **extra):
     """
     # Unconditional mocks (no return values to assert against).
     for target, kwargs in [
-        ("openamer_cli.setup.ensure_hermes_home", {}),
+        ("openamer_cli.setup.ensure_openamer_home", {}),
         ("openamer_cli.setup.is_interactive_stdin", {"return_value": True}),
         ("openamer_cli.config.is_managed", {"return_value": False}),
         ("openamer_cli.setup.load_config", {"return_value": {}}),
@@ -76,7 +76,7 @@ def _enter_existing_install_patches(stack, **extra):
 
 def _enter_fresh_install_patches(stack, **extra):
     for target, kwargs in [
-        ("openamer_cli.setup.ensure_hermes_home", {}),
+        ("openamer_cli.setup.ensure_openamer_home", {}),
         ("openamer_cli.setup.is_interactive_stdin", {"return_value": True}),
         ("openamer_cli.config.is_managed", {"return_value": False}),
         ("openamer_cli.setup.load_config", {"return_value": {}}),
@@ -98,7 +98,7 @@ def _enter_fresh_install_patches(stack, **extra):
 
 
 class TestExistingInstallDefault:
-    """Bare `hermes setup` on an existing install = full reconfigure wizard."""
+    """Bare `openamer setup` on an existing install = full reconfigure wizard."""
 
     def test_bare_setup_runs_full_reconfigure_without_menu(self, existing_install):
         """No menu, no prompt_choice — just run every section in sequence."""
@@ -131,7 +131,7 @@ class TestExistingInstallDefault:
         m["tools"].assert_called_once()
 
     def test_reconfigure_flag_is_backwards_compat_noop(self, existing_install):
-        """`hermes setup --reconfigure` behaves the same as bare `hermes setup`."""
+        """`openamer setup --reconfigure` behaves the same as bare `openamer setup`."""
         args = _make_setup_args(reconfigure=True)
 
         with ExitStack() as stack:
@@ -244,7 +244,7 @@ class TestArgparse:
             "openamer_cli.setup.run_setup_wizard",
             lambda args: captured.setdefault("args", args),
         )
-        monkeypatch.setattr(sys, "argv", ["hermes", "setup", "--reconfigure"])
+        monkeypatch.setattr(sys, "argv", ["openamer", "setup", "--reconfigure"])
         try:
             main()
         except SystemExit:
@@ -261,7 +261,7 @@ class TestArgparse:
             "openamer_cli.setup.run_setup_wizard",
             lambda args: captured.setdefault("args", args),
         )
-        monkeypatch.setattr(sys, "argv", ["hermes", "setup", "--quick"])
+        monkeypatch.setattr(sys, "argv", ["openamer", "setup", "--quick"])
         try:
             main()
         except SystemExit:
@@ -278,7 +278,7 @@ class TestArgparse:
             "openamer_cli.setup.run_setup_wizard",
             lambda args: captured.setdefault("args", args),
         )
-        monkeypatch.setattr(sys, "argv", ["hermes", "setup"])
+        monkeypatch.setattr(sys, "argv", ["openamer", "setup"])
         try:
             main()
         except SystemExit:

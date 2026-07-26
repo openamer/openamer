@@ -144,7 +144,7 @@ class TestLatencyFlagResolution:
             'apiKey': 'k',
             'queryRewrite': False,
             'firstTurnBaseWait': 3,
-            'hosts': {'hermes': {
+            'hosts': {'openamer': {
                 'queryRewrite': True,
                 'firstTurnBaseWait': 0,
                 'firstTurnDialecticWait': 0.5,
@@ -161,7 +161,7 @@ class TestLatencyFlagResolution:
         config_path.write_text(json.dumps({
             'apiKey': 'k',
             'timeout': 30,
-            'hosts': {'hermes': {'timeout': 5}},
+            'hosts': {'openamer': {'timeout': 5}},
         }))
         cfg = HonchoClientConfig.from_global_config(config_path=config_path)
         assert cfg.timeout == 5.0

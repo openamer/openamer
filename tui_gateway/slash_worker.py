@@ -1,10 +1,10 @@
-"""Persistent slash-command worker — one HermesCLI per TUI session.
+"""Persistent slash-command worker — one OpenAmerCLI per TUI session.
 
 Protocol: reads JSON lines from stdin {id, command}, writes {id, ok, output|error} to stdout.
 """
 
 # Stop a ``utils/`` (or ``proxy/``, ``ui/``) package in the launch directory
-# from shadowing Hermes's own top-level modules.  This worker is spawned as
+# from shadowing OpenAmer's own top-level modules.  This worker is spawned as
 # ``-m tui_gateway.slash_worker`` and inherits the user's CWD, so the ``import
 # cli`` below would otherwise resolve ``utils`` to a colliding local package
 # and crash the child in a retry loop (issue #51286).  ``openamer_bootstrap``
@@ -26,7 +26,7 @@ import threading
 import time
 
 import cli as cli_mod
-from cli import HermesCLI
+from cli import OpenAmerCLI
 from tui_gateway._stdin_recovery import handle_spurious_eof
 from rich.console import Console
 
@@ -56,9 +56,9 @@ def _is_orphaned(original_ppid, getppid=os.getppid) -> bool:
 
 
 def _prepare_slash_worker_runtime() -> None:
-    """Start bounded MCP discovery before HermesCLI snapshots tools.
+    """Start bounded MCP discovery before OpenAmerCLI snapshots tools.
 
-    Each slash_worker child is its own process — the parent ``hermes serve``
+    Each slash_worker child is its own process — the parent ``openamer serve``
     discovery thread does not populate this registry (issue #61891).
     """
     import logging
@@ -88,7 +88,7 @@ def _start_parent_death_watchdog(original_ppid) -> None:
     threading.Thread(target=_loop, daemon=True).start()
 
 
-def _run(cli: HermesCLI, command: str) -> str:
+def _run(cli: OpenAmerCLI, command: str) -> str:
     cmd = (command or "").strip()
     if not cmd:
         return ""
@@ -132,14 +132,14 @@ def main():
     os.environ["HERMES_SESSION_KEY"] = args.session_key
     os.environ["HERMES_INTERACTIVE"] = "1"
 
-    # Start before the (hundreds-of-ms) HermesCLI build — that window is itself
+    # Start before the (hundreds-of-ms) OpenAmerCLI build — that window is itself
     # an orphan risk if the gateway dies mid-spawn.
     orig_ppid = os.getppid()
     _start_parent_death_watchdog(orig_ppid)
     _prepare_slash_worker_runtime()
 
     with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
-        cli = HermesCLI(model=args.model or None, compact=True, resume=args.session_key, verbose=False)
+        cli = OpenAmerCLI(model=args.model or None, compact=True, resume=args.session_key, verbose=False)
 
     # Spurious stdin-EOF recovery (same O_NONBLOCK shared file-description
     # issue as the gateway entry point — any child inheriting fd 0 can flip

@@ -72,7 +72,7 @@ def test_state_row_index_maps_to_supported_atlas_taxonomies():
     assert constants.state_row_index(PetState.RUN, 9) == 7
     assert constants.state_row_index(PetState.REVIEW, 9) == 8
 
-    # Legacy Hermes/petdex sheets were 8 rows with Hermes state names packed in
+    # Legacy OpenAmer/petdex sheets were 8 rows with OpenAmer state names packed in
     # order. Keep those readable instead of forcing old installs through the
     # newer Codex taxonomy.
     assert constants.state_row_index(PetState.WAVE, 8) == 1
@@ -120,7 +120,7 @@ def boba_like(tmp_path, monkeypatch):
     """Install a synthetic 8-col × 9-row pet into a temp OPENAMER_HOME."""
     from PIL import Image
 
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
 

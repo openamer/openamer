@@ -126,9 +126,9 @@ _PATTERNS: List[Tuple[str, str, str]] = [
     # ── Persistence / SSH backdoor (strict scope — memory + skills) ──
     (r'authorized_keys', "ssh_backdoor", "strict"),
     (r'\$HOME/\.ssh|\~/\.ssh', "ssh_access", "strict"),
-    (r'\$HOME/\.hermes/\.env|\~/\.hermes/\.env', "hermes_env", "strict"),
+    (r'\$HOME/\.openamer/\.env|\~/\.openamer/\.env', "openamer_env", "strict"),
     (r'(update|modify|edit|write|change|append|add\s+to)\s+[^\n]{0,2048}(?:AGENTS\.md|CLAUDE\.md|\.cursorrules|\.clinerules)', "agent_config_mod", "strict"),
-    (r'(update|modify|edit|write|change|append|add\s+to)\s+[^\n]{0,2048}\.hermes/(config\.yaml|SOUL\.md)', "hermes_config_mod", "strict"),
+    (r'(update|modify|edit|write|change|append|add\s+to)\s+[^\n]{0,2048}\.openamer/(config\.yaml|SOUL\.md)', "openamer_config_mod", "strict"),
 
     # ── Hardcoded secrets ────────────────────────────────────────────
     (r'(?:api[_-]?key|token|secret|password)\s*[=:]\s*["\'][A-Za-z0-9+/=_-]{20,}', "hardcoded_secret", "strict"),
@@ -239,7 +239,7 @@ def scan_for_threats(content: str, scope: str = "context") -> List[str]:
     # Normalise to NFKC so full-width / compatibility Unicode variants
     # (e.g. ｃａｔ → cat, Ａ → A) are folded to their ASCII counterparts before
     # the regex engine sees them.  This prevents homograph substitution from
-    # bypassing keyword checks (e.g. ``ｃａｔ ~/.hermes/.env``).  NOTE: this
+    # bypassing keyword checks (e.g. ``ｃａｔ ~/.openamer/.env``).  NOTE: this
     # does NOT defend against cross-script confusables (Cyrillic ``а`` U+0430),
     # which NFKC leaves untouched — that needs a TR#39 confusable database.
     normalised = unicodedata.normalize("NFKC", content)

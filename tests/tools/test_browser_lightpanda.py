@@ -425,7 +425,7 @@ class TestLightpandaFallbackWarning:
              patch("tools.browser_tool._chrome_fallback_screenshot", return_value={
                  "success": True, "data": {"path": str(chrome_shot)}
              }), \
-             patch("openamer_constants.get_hermes_dir", return_value=tmp_path), \
+             patch("openamer_constants.get_openamer_dir", return_value=tmp_path), \
              patch("tools.browser_tool.call_llm", side_effect=fake_call_llm):
             response = json.loads(bt.browser_vision("what is this?", task_id="vision-test"))
 
@@ -476,7 +476,7 @@ class TestLightpandaFallbackWarning:
              patch("tools.browser_tool._chrome_fallback_screenshot", return_value={
                  "success": True, "data": {"path": str(chrome_shot)}
              }), \
-             patch("openamer_constants.get_hermes_dir", return_value=tmp_path), \
+             patch("openamer_constants.get_openamer_dir", return_value=tmp_path), \
              patch("tools.browser_tool.call_llm", return_value=_Response()):
             response = json.loads(bt.browser_vision("what is this?", task_id="vision-structured"))
 

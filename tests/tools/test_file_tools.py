@@ -593,31 +593,31 @@ class TestSearchHints:
 class TestSensitivePathCheck:
     """Verify that _check_sensitive_path blocks writes to protected locations."""
 
-    def test_hermes_config_blocked_for_write_file(self, tmp_path, monkeypatch):
+    def test_openamer_config_blocked_for_write_file(self, tmp_path, monkeypatch):
         fake_config = tmp_path / "config.yaml"
-        monkeypatch.setattr("tools.file_tools._hermes_config_resolved", str(fake_config))
-        monkeypatch.setattr("tools.file_tools._hermes_config_resolved_loaded", True)
+        monkeypatch.setattr("tools.file_tools._openamer_config_resolved", str(fake_config))
+        monkeypatch.setattr("tools.file_tools._openamer_config_resolved_loaded", True)
 
         from tools.file_tools import write_file_tool
         result = json.loads(write_file_tool(str(fake_config), "approvals:\n  mode: off\n"))
         assert "error" in result
-        assert "Hermes config" in result["error"]
+        assert "OpenAmer config" in result["error"]
 
-    def test_hermes_config_blocked_via_tilde_path(self, tmp_path, monkeypatch):
+    def test_openamer_config_blocked_via_tilde_path(self, tmp_path, monkeypatch):
         fake_config = tmp_path / "config.yaml"
-        monkeypatch.setattr("tools.file_tools._hermes_config_resolved", str(fake_config))
-        monkeypatch.setattr("tools.file_tools._hermes_config_resolved_loaded", True)
+        monkeypatch.setattr("tools.file_tools._openamer_config_resolved", str(fake_config))
+        monkeypatch.setattr("tools.file_tools._openamer_config_resolved_loaded", True)
 
         from tools.file_tools import write_file_tool
         result = json.loads(write_file_tool(str(fake_config), "approvals:\n  mode: off\n"))
         assert "error" in result
-        assert "Hermes config" in result["error"]
+        assert "OpenAmer config" in result["error"]
 
-    def test_hermes_config_blocked_for_patch(self, tmp_path, monkeypatch):
+    def test_openamer_config_blocked_for_patch(self, tmp_path, monkeypatch):
         fake_config = tmp_path / "config.yaml"
         fake_config.write_text("approvals:\n  mode: manual\n")
-        monkeypatch.setattr("tools.file_tools._hermes_config_resolved", str(fake_config))
-        monkeypatch.setattr("tools.file_tools._hermes_config_resolved_loaded", True)
+        monkeypatch.setattr("tools.file_tools._openamer_config_resolved", str(fake_config))
+        monkeypatch.setattr("tools.file_tools._openamer_config_resolved_loaded", True)
 
         from tools.file_tools import patch_tool
         result = json.loads(patch_tool(
@@ -627,11 +627,11 @@ class TestSensitivePathCheck:
             new_string="mode: off",
         ))
         assert "error" in result
-        assert "Hermes config" in result["error"]
+        assert "OpenAmer config" in result["error"]
 
     def test_system_path_still_blocked(self, monkeypatch):
-        monkeypatch.setattr("tools.file_tools._hermes_config_resolved", "/some/other/path")
-        monkeypatch.setattr("tools.file_tools._hermes_config_resolved_loaded", True)
+        monkeypatch.setattr("tools.file_tools._openamer_config_resolved", "/some/other/path")
+        monkeypatch.setattr("tools.file_tools._openamer_config_resolved_loaded", True)
 
         from tools.file_tools import write_file_tool
         result = json.loads(write_file_tool("/etc/passwd", "evil"))
@@ -640,8 +640,8 @@ class TestSensitivePathCheck:
 
     @patch("tools.file_tools._get_file_ops")
     def test_normal_file_not_blocked(self, mock_get, monkeypatch):
-        monkeypatch.setattr("tools.file_tools._hermes_config_resolved", "/home/user/.hermes/config.yaml")
-        monkeypatch.setattr("tools.file_tools._hermes_config_resolved_loaded", True)
+        monkeypatch.setattr("tools.file_tools._openamer_config_resolved", "/home/user/.openamer/config.yaml")
+        monkeypatch.setattr("tools.file_tools._openamer_config_resolved_loaded", True)
         mock_ops = MagicMock()
         result_obj = MagicMock()
         result_obj.to_dict.return_value = {"status": "ok", "path": "/tmp/other.txt", "bytes": 5}

@@ -20,7 +20,7 @@ These are intentionally plain frozen dataclasses — no behavior, no platform
 knowledge, no I/O.  They are cheap to construct on the agent's worker thread and
 safe to hand across the thread/async boundary into the consumer queue.
 
-Design constraints (see hermes-agent-dev skill — message-flow + cache
+Design constraints (see openamer-agent-dev skill — message-flow + cache
 invariants):
   * Events describe *transport*, never *context*.  Nothing here is persisted to
     conversation history; what the gateway chooses to "eat" (e.g. tool chrome on

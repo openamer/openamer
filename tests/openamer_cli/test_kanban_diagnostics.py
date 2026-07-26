@@ -25,7 +25,7 @@ from openamer_cli import kanban_diagnostics as kd
 
 @pytest.fixture
 def kanban_home(tmp_path, monkeypatch):
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
     monkeypatch.setattr(Path, "home", lambda: tmp_path)
@@ -713,7 +713,7 @@ def test_triage_aux_unavailable_fires_auto_decompose_off_points_at_specifier():
     assert d.data["primary_slot"] == "auxiliary.triage_specifier"
     # And it should offer the manual specify command as an action
     labels = [a.label for a in d.actions]
-    assert any("hermes kanban specify" in l for l in labels)
+    assert any("openamer kanban specify" in l for l in labels)
 
 
 def test_triage_aux_unavailable_skips_non_triage_tasks():

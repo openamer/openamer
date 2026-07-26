@@ -35,7 +35,7 @@ from unittest.mock import MagicMock, patch
 
 
 def _make_cli():
-    """Build a HermesCLI instance with prompt_toolkit stubbed out.
+    """Build a OpenAmerCLI instance with prompt_toolkit stubbed out.
 
     Mirrors the helper in ``test_cli_steer_busy_path.py``.
     """
@@ -76,7 +76,7 @@ def _make_cli():
         with patch.object(_cli_mod, "get_tool_definitions", return_value=[]), patch.dict(
             _cli_mod.__dict__, {"CLI_CONFIG": _clean_config}
         ):
-            return _cli_mod.HermesCLI()
+            return _cli_mod.OpenAmerCLI()
 
 
 class TestInterruptQueueDrain:

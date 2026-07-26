@@ -1,6 +1,6 @@
 """Tests for the secret-source tracking in ``openamer_cli.env_loader``.
 
-These cover the small public surface that lets `hermes model` / `hermes setup`
+These cover the small public surface that lets `openamer model` / `openamer setup`
 label detected credentials with their origin ("from Bitwarden") so users
 don't see an unexplained "credentials ✓" line when their .env is empty.
 """
@@ -153,7 +153,7 @@ def test_apply_external_secret_sources_noop_when_disabled(tmp_path, monkeypatch)
 
 
 def test_apply_external_secret_sources_dedupes_within_process(tmp_path, monkeypatch):
-    """``load_hermes_dotenv()`` is called at module-import time from several
+    """``load_openamer_dotenv()`` is called at module-import time from several
     hot modules (cli.py, openamer_cli/main.py, run_agent.py, ...).  The
     Bitwarden status line previously printed once per call — 3-5x per
     startup.  The applied-home guard must short-circuit subsequent calls
@@ -362,7 +362,7 @@ def test_apply_external_secret_sources_survives_non_dict_section(tmp_path, monke
 
     Both `onepassword: true` (non-dict) and a bad bitwarden section must be
     coerced to empty config instead of raising AttributeError up through
-    load_hermes_dotenv().
+    load_openamer_dotenv().
     """
 
     monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))

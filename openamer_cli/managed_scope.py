@@ -1,8 +1,8 @@
 """Managed scope — IT-pushed, user-immutable config & env layer.
 
-A system-level directory (default ``/etc/hermes``, root-owned and not
+A system-level directory (default ``/etc/openamer``, root-owned and not
 user-writable) supplies ``config.yaml`` and ``.env`` values that WIN over the
-user's ``~/.hermes/config.yaml`` and ``~/.hermes/.env`` on a per-leaf-key basis.
+user's ``~/.openamer/config.yaml`` and ``~/.openamer/.env`` on a per-leaf-key basis.
 
 This is DISTINCT from ``openamer_cli.config.is_managed()`` / ``HERMES_MANAGED``,
 which is a coarse package-manager write-lock (declarative-distro / formula
@@ -30,7 +30,7 @@ logger = logging.getLogger(__name__)
 
 # POSIX default. Other-platform locations are a deliberate v2 item; when added,
 # they belong ONLY inside get_managed_dir().
-_DEFAULT_MANAGED_DIR = Path("/etc/hermes")
+_DEFAULT_MANAGED_DIR = Path("/etc/openamer")
 
 _CACHE_LOCK = threading.Lock()
 # path_key -> (mtime_ns, size, parsed)
@@ -41,7 +41,7 @@ _ENV_CACHE: Dict[str, tuple] = {}
 def _under_pytest() -> bool:
     """True when running inside the test suite.
 
-    Used to ignore the system default ``/etc/hermes`` during tests so a real
+    Used to ignore the system default ``/etc/openamer`` during tests so a real
     managed scope on a developer/CI box can't leak policy into the suite. Tests
     that exercise managed scope set ``HERMES_MANAGED_DIR`` explicitly, which is
     still honored (the override path below runs before this guard takes effect).
@@ -56,7 +56,7 @@ def get_managed_dir() -> Optional[Path]:
       1. ``$HERMES_MANAGED_DIR`` — deployment/bootstrap path override (IT-only;
          never persisted to any .env). Honored only when set to a non-empty value
          AND the directory exists.
-      2. ``/etc/hermes`` — POSIX default, when it exists. Ignored under pytest so
+      2. ``/etc/openamer`` — POSIX default, when it exists. Ignored under pytest so
          a real system managed scope can't leak into the test suite.
 
     A non-existent directory at either tier resolves to None (no managed scope),

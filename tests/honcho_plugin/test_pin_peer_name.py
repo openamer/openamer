@@ -1,6 +1,6 @@
 """Tests for the ``pinPeerName`` / ``pinUserPeer`` config flag.
 
-Under a gateway (Telegram, Discord, Slack, ...) Hermes passes the
+Under a gateway (Telegram, Discord, Slack, ...) OpenAmer passes the
 platform-native user ID as ``runtime_user_peer_name`` into
 ``HonchoSessionManager``.  By default that ID wins over any configured
 ``peer_name`` so multi-user bots scope memory per user.
@@ -54,7 +54,7 @@ class TestPinPeerNameConfigParsing:
             "apiKey": "k",
             "peerName": "Igor",
             "hosts": {
-                "hermes": {"pinPeerName": True},
+                "openamer": {"pinPeerName": True},
             },
         }))
         monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / "isolated"))
@@ -70,7 +70,7 @@ class TestPinPeerNameConfigParsing:
             "peerName": "Igor",
             "pinPeerName": True,
             "hosts": {
-                "hermes": {"pinPeerName": False},
+                "openamer": {"pinPeerName": False},
             },
         }))
         monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / "isolated"))
@@ -124,7 +124,7 @@ class TestRuntimePeerMappingConfigParsing:
             "apiKey": "k",
             "userPeerAliases": {"root-user": "root-peer"},
             "hosts": {
-                "hermes": {
+                "openamer": {
                     "userPeerAliases": {"host-user": "host-peer"},
                 },
             },
@@ -140,7 +140,7 @@ class TestRuntimePeerMappingConfigParsing:
             "apiKey": "k",
             "userPeerAliases": {"root-user": "root-peer"},
             "hosts": {
-                "hermes": {
+                "openamer": {
                     "userPeerAliases": {},
                 },
             },
@@ -156,7 +156,7 @@ class TestRuntimePeerMappingConfigParsing:
             "apiKey": "k",
             "runtimePeerPrefix": "telegram_",
             "hosts": {
-                "hermes": {
+                "openamer": {
                     "runtimePeerPrefix": "",
                 },
             },
@@ -519,7 +519,7 @@ class TestPeerResolutionOrder:
             api_key="k",
             peer_name="Igor",
             pin_peer_name=True,
-            ai_peer="hermes-assistant",
+            ai_peer="openamer-assistant",
             enabled=False,
             write_frequency="turn",
         )
@@ -532,11 +532,11 @@ class TestPeerResolutionOrder:
 
         session = mgr.get_or_create("telegram:7654321")
         assert session.user_peer_id == "Igor"
-        assert session.assistant_peer_id == "hermes-assistant"
+        assert session.assistant_peer_id == "openamer-assistant"
 
 
 class TestCrossPlatformMemoryUnification:
-    """The same physical user talking to Hermes via Telegram AND Discord
+    """The same physical user talking to OpenAmer via Telegram AND Discord
     lands on ONE peer when ``pinPeerName`` is opted in.
     """
 
@@ -635,7 +635,7 @@ class TestPinUserPeerAlias:
             "apiKey": "***",
             "peerName": "eri",
             "pinPeerName": False,
-            "hosts": {"hermes": {"pinUserPeer": True}},
+            "hosts": {"openamer": {"pinUserPeer": True}},
         }))
         config = HonchoClientConfig.from_global_config(config_path=config_file)
         assert config.pin_peer_name is True
@@ -648,7 +648,7 @@ class TestPinUserPeerAlias:
             "apiKey": "***",
             "peerName": "eri",
             "pinPeerName": True,
-            "hosts": {"hermes": {"pinUserPeer": False}},
+            "hosts": {"openamer": {"pinUserPeer": False}},
         }))
         config = HonchoClientConfig.from_global_config(config_path=config_file)
         assert config.pin_peer_name is False, (
@@ -663,7 +663,7 @@ class TestPinUserPeerAlias:
         config_file.write_text(json.dumps({
             "apiKey": "***",
             "peerName": "eri",
-            "hosts": {"hermes": {"pinPeerName": True}},
+            "hosts": {"openamer": {"pinPeerName": True}},
         }))
         config = HonchoClientConfig.from_global_config(config_path=config_file)
         assert config.pin_peer_name is True
@@ -803,7 +803,7 @@ class TestPinTransition:
         cfg_path.write_text(json.dumps({
             "apiKey": "k",
             "peerName": "Igor",
-            "aiPeer": "hermes",
+            "aiPeer": "openamer",
         }))
         sig_before = GatewayRunner._extract_cache_busting_config({"memory": {"provider": "honcho"}})
 
@@ -818,10 +818,10 @@ class TestPinTransition:
 
 
 class TestProfilePeerUniqueness:
-    """Each Hermes profile can pin to its own unique peerName.
+    """Each OpenAmer profile can pin to its own unique peerName.
 
     Profile cloning copies host blocks, but operators routinely diverge them
-    afterwards (e.g. `hermes -p partner` pinned to a different person's peer).
+    afterwards (e.g. `openamer -p partner` pinned to a different person's peer).
     The resolver must honor host-level ``peerName`` so two profiles in the
     same workspace stay scoped to different Honcho peers.
     """
@@ -868,7 +868,7 @@ class TestProfilePeerUniqueness:
             "apiKey": "k",
             "peerName": "default-user",
             "hosts": {
-                "hermes.partner": {
+                "openamer.partner": {
                     "peerName": "partner-user",
                     "pinPeerName": True,
                 },
@@ -877,7 +877,7 @@ class TestProfilePeerUniqueness:
         monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / "isolated"))
 
         cfg = HonchoClientConfig.from_global_config(
-            host="hermes.partner", config_path=config_file,
+            host="openamer.partner", config_path=config_file,
         )
         assert cfg.peer_name == "partner-user"
         assert cfg.pin_peer_name is True

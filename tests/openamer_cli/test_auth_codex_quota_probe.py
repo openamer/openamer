@@ -3,7 +3,7 @@
 Covers issue #43747 (externally-reset variant): Codex 429s persist a
 ``last_error_reset_at`` that can be days in the future, but the upstream
 window can reopen early (banked reset redeemed, plan upgrade, upstream
-reset).  Hermes must detect that and lift the stale local cooldown instead
+reset).  OpenAmer must detect that and lift the stale local cooldown instead
 of refusing requests until re-auth.
 """
 
@@ -185,9 +185,9 @@ def test_probe_sends_chatgpt_account_id_from_jwt(monkeypatch):
 # ---------------------------------------------------------------------------
 
 
-def _write_auth_store(hermes_home, payload):
-    hermes_home.mkdir(parents=True, exist_ok=True)
-    (hermes_home / "auth.json").write_text(json.dumps(payload, indent=2))
+def _write_auth_store(openamer_home, payload):
+    openamer_home.mkdir(parents=True, exist_ok=True)
+    (openamer_home / "auth.json").write_text(json.dumps(payload, indent=2))
 
 
 def _exhausted_pool_store(now=None):
@@ -241,13 +241,13 @@ def _exhausted_pool_store(now=None):
 
 
 def test_clear_cooldowns_only_touches_quota_shaped_entries(tmp_path, monkeypatch):
-    hermes_home = tmp_path / "hermes"
-    _write_auth_store(hermes_home, _exhausted_pool_store())
-    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+    openamer_home = tmp_path / "openamer"
+    _write_auth_store(openamer_home, _exhausted_pool_store())
+    monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
 
     assert clear_codex_pool_quota_cooldowns() == 1
 
-    store = json.loads((hermes_home / "auth.json").read_text())
+    store = json.loads((openamer_home / "auth.json").read_text())
     entries = {e["id"]: e for e in store["credential_pool"]["openai-codex"]}
     assert entries["cred-quota"]["last_status"] is None
     assert entries["cred-quota"]["last_error_reset_at"] is None
@@ -273,22 +273,22 @@ def test_clear_cooldowns_scoped_to_access_token(tmp_path, monkeypatch):
             "last_error_reset_at": now + 3600,
         }
     )
-    hermes_home = tmp_path / "hermes"
-    _write_auth_store(hermes_home, store)
-    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+    openamer_home = tmp_path / "openamer"
+    _write_auth_store(openamer_home, store)
+    monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
 
     assert clear_codex_pool_quota_cooldowns("tok-other") == 1
 
-    persisted = json.loads((hermes_home / "auth.json").read_text())
+    persisted = json.loads((openamer_home / "auth.json").read_text())
     entries = {e["id"]: e for e in persisted["credential_pool"]["openai-codex"]}
     assert entries["cred-quota-2"]["last_status"] is None
     assert entries["cred-quota"]["last_status"] == "exhausted"
 
 
 def test_clear_cooldowns_noop_without_pool(tmp_path, monkeypatch):
-    hermes_home = tmp_path / "hermes"
-    _write_auth_store(hermes_home, {"version": 1, "providers": {}})
-    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+    openamer_home = tmp_path / "openamer"
+    _write_auth_store(openamer_home, {"version": 1, "providers": {}})
+    monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
     assert clear_codex_pool_quota_cooldowns() == 0
 
 
@@ -327,9 +327,9 @@ def test_resolver_recovers_when_probe_confirms_reset(tmp_path, monkeypatch):
     """The screenshot bug: pool-only cooldown raises `quota exhausted (429);
     retry after Ns` even though the upstream window already reset.  A positive
     probe must clear the cooldown and return the pool credential."""
-    hermes_home = tmp_path / "hermes"
-    _write_auth_store(hermes_home, _pool_only_rate_limited_store())
-    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+    openamer_home = tmp_path / "openamer"
+    _write_auth_store(openamer_home, _pool_only_rate_limited_store())
+    monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
 
     monkeypatch.setattr(
         auth_mod, "_probe_codex_quota_restored", lambda token, **kw: True
@@ -339,16 +339,16 @@ def test_resolver_recovers_when_probe_confirms_reset(tmp_path, monkeypatch):
     assert resolved["api_key"] == "tok-quota"
     assert resolved["source"] == "credential_pool"
 
-    store = json.loads((hermes_home / "auth.json").read_text())
+    store = json.loads((openamer_home / "auth.json").read_text())
     entry = store["credential_pool"]["openai-codex"][0]
     assert entry["last_status"] is None
     assert entry["last_error_reset_at"] is None
 
 
 def test_resolver_keeps_cooldown_when_probe_negative(tmp_path, monkeypatch):
-    hermes_home = tmp_path / "hermes"
-    _write_auth_store(hermes_home, _pool_only_rate_limited_store())
-    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+    openamer_home = tmp_path / "openamer"
+    _write_auth_store(openamer_home, _pool_only_rate_limited_store())
+    monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
 
     monkeypatch.setattr(
         auth_mod, "_probe_codex_quota_restored", lambda token, **kw: False
@@ -361,9 +361,9 @@ def test_resolver_keeps_cooldown_when_probe_negative(tmp_path, monkeypatch):
 
 
 def test_resolver_keeps_cooldown_when_probe_indeterminate(tmp_path, monkeypatch):
-    hermes_home = tmp_path / "hermes"
-    _write_auth_store(hermes_home, _pool_only_rate_limited_store())
-    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+    openamer_home = tmp_path / "openamer"
+    _write_auth_store(openamer_home, _pool_only_rate_limited_store())
+    monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
 
     monkeypatch.setattr(
         auth_mod, "_probe_codex_quota_restored", lambda token, **kw: None
@@ -380,8 +380,8 @@ def test_resolver_keeps_cooldown_when_probe_indeterminate(tmp_path, monkeypatch)
 
 
 def test_pool_entry_recovers_when_probe_confirms_reset(tmp_path, monkeypatch):
-    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / "hermes"))
-    _write_auth_store(tmp_path / "hermes", _pool_only_rate_limited_store())
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / "openamer"))
+    _write_auth_store(tmp_path / "openamer", _pool_only_rate_limited_store())
 
     from agent.credential_pool import load_pool
 
@@ -397,8 +397,8 @@ def test_pool_entry_recovers_when_probe_confirms_reset(tmp_path, monkeypatch):
 
 
 def test_pool_entry_stays_frozen_when_probe_negative(tmp_path, monkeypatch):
-    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / "hermes"))
-    _write_auth_store(tmp_path / "hermes", _pool_only_rate_limited_store())
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / "openamer"))
+    _write_auth_store(tmp_path / "openamer", _pool_only_rate_limited_store())
 
     from agent.credential_pool import load_pool
 
@@ -418,8 +418,8 @@ def test_pool_probe_not_fired_for_non_quota_exhaustion(tmp_path, monkeypatch):
     entry["last_error_code"] = 401
     entry["last_error_reason"] = "token_expired"
     entry["last_error_message"] = "expired"
-    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / "hermes"))
-    _write_auth_store(tmp_path / "hermes", store)
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / "openamer"))
+    _write_auth_store(tmp_path / "openamer", store)
 
     from agent.credential_pool import load_pool
 
@@ -438,8 +438,8 @@ def test_pool_probe_not_fired_for_non_quota_exhaustion(tmp_path, monkeypatch):
 def test_pool_readonly_enumeration_does_not_probe(tmp_path, monkeypatch):
     """clear_expired=False callers (read-only listing) must not fire probes
     or mutate persisted state."""
-    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / "hermes"))
-    _write_auth_store(tmp_path / "hermes", _pool_only_rate_limited_store())
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / "openamer"))
+    _write_auth_store(tmp_path / "openamer", _pool_only_rate_limited_store())
 
     from agent.credential_pool import load_pool
 
@@ -461,9 +461,9 @@ def test_pool_readonly_enumeration_does_not_probe(tmp_path, monkeypatch):
 
 
 def test_redeem_reset_clears_pool_cooldowns(tmp_path, monkeypatch):
-    hermes_home = tmp_path / "hermes"
-    _write_auth_store(hermes_home, _pool_only_rate_limited_store())
-    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+    openamer_home = tmp_path / "openamer"
+    _write_auth_store(openamer_home, _pool_only_rate_limited_store())
+    monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
 
     from agent import account_usage
 
@@ -502,7 +502,7 @@ def test_redeem_reset_clears_pool_cooldowns(tmp_path, monkeypatch):
     )
     assert result.redeemed
 
-    store = json.loads((hermes_home / "auth.json").read_text())
+    store = json.loads((openamer_home / "auth.json").read_text())
     entry = store["credential_pool"]["openai-codex"][0]
     assert entry["last_status"] is None
     assert entry["last_error_reset_at"] is None

@@ -1,6 +1,6 @@
 """Bounded reads of HTTP error response bodies.
 
-When a provider returns a non-OK status on a *streaming* request, Hermes reads
+When a provider returns a non-OK status on a *streaming* request, OpenAmer reads
 the response body to build a useful diagnostic error. A bare ``response.read()``
 on a streaming httpx response is unbounded in two dangerous ways:
 
@@ -30,7 +30,7 @@ on it with a hard deadline; on timeout we close the response (which unblocks /
 cancels the read) and return whatever partial bytes were collected.
 
 Ported and adapted from openclaw/openclaw#95108 ("bound Anthropic error
-streams"), generalized to cover Hermes's three streaming error-body sites
+streams"), generalized to cover OpenAmer's three streaming error-body sites
 (native Gemini, Gemini Cloud Code, Antigravity Cloud Code).
 """
 

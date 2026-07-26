@@ -1,6 +1,6 @@
 """Provider-agnostic streaming TTS: sentence text → int16 PCM chunk iterator.
 
-The keystone of Hermes' conversational voice UX. `stream_tts_to_speaker`
+The keystone of OpenAmer' conversational voice UX. `stream_tts_to_speaker`
 (``tools.tts_tool``) owns the sentence buffer, sounddevice output, and
 stop/queue protocol; this module owns the *provider* half — turning one
 sentence into audio the moment it's ready, so playback starts on sentence one

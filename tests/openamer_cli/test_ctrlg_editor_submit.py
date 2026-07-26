@@ -9,7 +9,7 @@ so ``_open_external_editor`` chains a done-callback that calls
 
 import queue
 
-from cli import HermesCLI
+from cli import OpenAmerCLI
 
 
 class _FakeBuf:
@@ -22,8 +22,8 @@ class _FakeBuf:
         self.text = ""
 
 
-def _make(agent_running: bool = False, busy: str = "queue") -> HermesCLI:
-    c = HermesCLI.__new__(HermesCLI)
+def _make(agent_running: bool = False, busy: str = "queue") -> OpenAmerCLI:
+    c = OpenAmerCLI.__new__(OpenAmerCLI)
     c._pending_input = queue.Queue()
     c._interrupt_queue = queue.Queue()
     c._agent_running = agent_running

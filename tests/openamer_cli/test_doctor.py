@@ -76,7 +76,7 @@ class TestDoctorToolAvailabilitySummary:
 
 
 class TestDoctorEnvFileEncoding:
-    """Regression for #18637 (bug 3): `hermes doctor` crashed on Windows
+    """Regression for #18637 (bug 3): `openamer doctor` crashed on Windows
     Chinese locale (GBK) because `.env` was read with Path.read_text() which
     defaults to the system locale encoding, not UTF-8."""
 
@@ -85,19 +85,19 @@ class TestDoctorEnvFileEncoding:
     ):
         import pathlib
 
-        hermes_home = tmp_path / ".hermes"
-        hermes_home.mkdir()
+        openamer_home = tmp_path / ".openamer"
+        openamer_home.mkdir()
         # Write a UTF-8 .env containing an em dash (U+2014 = e2 80 94). The
         # 0x94 byte is exactly the one the issue reporter hit: it's invalid
         # as a GBK trailing byte in this position, so locale-default reads
         # raise UnicodeDecodeError on Chinese Windows.
-        env_path = hermes_home / ".env"
+        env_path = openamer_home / ".env"
         env_path.write_text(
             "OPENAI_API_KEY=sk-test  # em-dash here — should not crash\n",
             encoding="utf-8",
         )
 
-        monkeypatch.setattr(doctor_mod, "OPENAMER_HOME", hermes_home)
+        monkeypatch.setattr(doctor_mod, "OPENAMER_HOME", openamer_home)
 
         orig_read_text = pathlib.Path.read_text
 
@@ -131,14 +131,14 @@ class TestDoctorEnvFileEncoding:
         self, monkeypatch, tmp_path
     ):
         """cp1252/latin-1 .env with ASCII provider hints must not abort doctor."""
-        hermes_home = tmp_path / ".hermes"
-        hermes_home.mkdir()
-        env_path = hermes_home / ".env"
+        openamer_home = tmp_path / ".openamer"
+        openamer_home.mkdir()
+        env_path = openamer_home / ".env"
         # 0xff is invalid UTF-8; latin-1 decodes it. Keep an ASCII provider key
         # so the scan still reports a configured endpoint/key.
         env_path.write_bytes(b"OPENAI_API_KEY=sk-test\xff\n")
 
-        monkeypatch.setattr(doctor_mod, "OPENAMER_HOME", hermes_home)
+        monkeypatch.setattr(doctor_mod, "OPENAMER_HOME", openamer_home)
 
         fake_model_tools = types.SimpleNamespace(
             check_tool_availability=lambda *a, **kw: (_ for _ in ()).throw(SystemExit(0)),
@@ -241,12 +241,12 @@ class TestHonchoDoctorConfigDetection:
 def test_run_doctor_sets_interactive_env_for_tool_checks(monkeypatch, tmp_path):
     """Doctor should present CLI-gated tools as available in CLI context."""
     project_root = tmp_path / "project"
-    hermes_home = tmp_path / ".hermes"
+    openamer_home = tmp_path / ".openamer"
     project_root.mkdir()
-    hermes_home.mkdir()
+    openamer_home.mkdir()
 
     monkeypatch.setattr(doctor_mod, "PROJECT_ROOT", project_root)
-    monkeypatch.setattr(doctor_mod, "OPENAMER_HOME", hermes_home)
+    monkeypatch.setattr(doctor_mod, "OPENAMER_HOME", openamer_home)
     monkeypatch.delenv("HERMES_INTERACTIVE", raising=False)
 
     seen = {}
@@ -268,7 +268,7 @@ def test_run_doctor_sets_interactive_env_for_tool_checks(monkeypatch, tmp_path):
 
 
 def test_check_gateway_service_linger_warns_when_disabled(monkeypatch, tmp_path, capsys):
-    unit_path = tmp_path / "hermes-gateway.service"
+    unit_path = tmp_path / "openamer-gateway.service"
     unit_path.write_text("[Unit]\n")
 
     monkeypatch.setattr(gateway_cli, "is_linux", lambda: True)
@@ -307,9 +307,9 @@ def test_check_gateway_service_linger_skips_when_service_not_installed(monkeypat
 class TestDoctorMemoryProviderSection:
     """The ◆ Memory Provider section should respect memory.provider config."""
 
-    def _make_hermes_home(self, tmp_path, provider=""):
+    def _make_openamer_home(self, tmp_path, provider=""):
         """Create a minimal OPENAMER_HOME with config.yaml."""
-        home = tmp_path / ".hermes"
+        home = tmp_path / ".openamer"
         home.mkdir(parents=True, exist_ok=True)
         import yaml
         config = {"memory": {"provider": provider}} if provider else {"memory": {}}
@@ -318,7 +318,7 @@ class TestDoctorMemoryProviderSection:
 
     def _run_doctor_and_capture(self, monkeypatch, tmp_path, provider=""):
         """Run doctor and capture stdout."""
-        home = self._make_hermes_home(tmp_path, provider)
+        home = self._make_openamer_home(tmp_path, provider)
         monkeypatch.setattr(doctor_mod, "OPENAMER_HOME", home)
         monkeypatch.setattr(doctor_mod, "PROJECT_ROOT", tmp_path / "project")
         monkeypatch.setattr(doctor_mod, "_DHH", str(home))
@@ -404,7 +404,7 @@ def test_run_doctor_termux_treats_docker_and_browser_warnings_as_expected(monkey
 
 
 def test_run_doctor_accepts_named_provider_from_providers_section(monkeypatch, tmp_path):
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir(parents=True, exist_ok=True)
 
     import yaml
@@ -456,7 +456,7 @@ def test_run_doctor_accepts_named_provider_from_providers_section(monkeypatch, t
 
 
 def test_run_doctor_accepts_bare_custom_provider(monkeypatch, tmp_path):
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir(parents=True, exist_ok=True)
     (home / "config.yaml").write_text(
         "model:\n"
@@ -494,7 +494,7 @@ def test_run_doctor_accepts_bare_custom_provider(monkeypatch, tmp_path):
 
 
 def test_run_doctor_flags_missing_credentials_for_active_openrouter_provider(monkeypatch, tmp_path):
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir(parents=True, exist_ok=True)
     (home / "config.yaml").write_text(
         "model:\n"
@@ -544,10 +544,10 @@ def test_run_doctor_flags_missing_credentials_for_active_openrouter_provider(mon
         ("moa", "anthropic/claude-sonnet-4.6"),
     ],
 )
-def test_run_doctor_accepts_hermes_provider_ids_that_catalog_aliases(
+def test_run_doctor_accepts_openamer_provider_ids_that_catalog_aliases(
     monkeypatch, tmp_path, provider, default_model
 ):
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir(parents=True, exist_ok=True)
     (home / "config.yaml").write_text(
         "model:\n"
@@ -590,7 +590,7 @@ def test_run_doctor_accepts_hermes_provider_ids_that_catalog_aliases(
 
 
 def test_run_doctor_accepts_vendor_slugs_for_named_custom_provider(monkeypatch, tmp_path):
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir(parents=True, exist_ok=True)
     (home / "config.yaml").write_text(
         "model:\n"
@@ -640,7 +640,7 @@ def test_run_doctor_accepts_vendor_slugs_for_named_custom_provider(monkeypatch, 
 
 
 def test_run_doctor_accepts_kimi_coding_cn_provider(monkeypatch, tmp_path):
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir(parents=True, exist_ok=True)
     (home / ".env").write_text("KIMI_CN_API_KEY=***\n", encoding="utf-8")
     (home / "config.yaml").write_text(
@@ -679,7 +679,7 @@ def test_run_doctor_accepts_kimi_coding_cn_provider(monkeypatch, tmp_path):
 
 
 def test_run_doctor_termux_does_not_mark_browser_available_without_agent_browser(monkeypatch, tmp_path):
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir(parents=True, exist_ok=True)
     (home / "config.yaml").write_text("memory: {}\n", encoding="utf-8")
     project = tmp_path / "project"
@@ -723,7 +723,7 @@ def test_run_doctor_termux_does_not_mark_browser_available_without_agent_browser
 
 
 def test_run_doctor_kimi_cn_env_is_detected_and_probe_is_null_safe(monkeypatch, tmp_path):
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir(parents=True, exist_ok=True)
     (home / "config.yaml").write_text("memory: {}\n", encoding="utf-8")
     (home / ".env").write_text("KIMI_CN_API_KEY=sk-test\n", encoding="utf-8")
@@ -771,7 +771,7 @@ def test_run_doctor_kimi_cn_env_is_detected_and_probe_is_null_safe(monkeypatch, 
 
 
 def test_run_doctor_dashscope_retries_china_endpoint_after_intl_unauthorized(monkeypatch, tmp_path):
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir(parents=True, exist_ok=True)
     (home / "config.yaml").write_text("memory: {}\n", encoding="utf-8")
     (home / ".env").write_text("DASHSCOPE_API_KEY=sk-test\n", encoding="utf-8")
@@ -827,7 +827,7 @@ def test_run_doctor_dashscope_retries_china_endpoint_after_intl_unauthorized(mon
 
 @pytest.mark.parametrize("base_url", [None, "https://opencode.ai/zen/go/v1"])
 def test_run_doctor_opencode_go_skips_invalid_models_probe(monkeypatch, tmp_path, base_url):
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir(parents=True, exist_ok=True)
     (home / "config.yaml").write_text("memory: {}\n", encoding="utf-8")
     (home / ".env").write_text("OPENCODE_GO_API_KEY=***\n", encoding="utf-8")
@@ -889,7 +889,7 @@ class TestGitHubTokenCheck:
 
         ``run_doctor`` reads the module-level ``OPENAMER_HOME`` constant (cached
         at import time), NOT the env var — so ``setenv("OPENAMER_HOME")`` alone
-        leaves doctor probing the REAL ~/.hermes. On a dev machine with a
+        leaves doctor probing the REAL ~/.openamer. On a dev machine with a
         large state.db that meant a multi-minute ``PRAGMA integrity_check``
         that blew the 300s per-file budget and killed the whole file.
         """
@@ -898,7 +898,7 @@ class TestGitHubTokenCheck:
         monkeypatch.setenv("OPENAMER_HOME", str(home))
 
     def test_no_token_and_not_gh_authenticated_shows_warn(self, monkeypatch, tmp_path):
-        home = tmp_path / ".hermes"
+        home = tmp_path / ".openamer"
         home.mkdir(parents=True, exist_ok=True)
         self._isolate_home(monkeypatch, home)
         monkeypatch.setenv("PATH", "/nonexistent")  # gh not found
@@ -915,7 +915,7 @@ class TestGitHubTokenCheck:
         assert "60 req/hr" in out
 
     def test_token_env_present_shows_ok(self, monkeypatch, tmp_path):
-        home = tmp_path / ".hermes"
+        home = tmp_path / ".openamer"
         home.mkdir(parents=True, exist_ok=True)
         self._isolate_home(monkeypatch, home)
         monkeypatch.setenv("GITHUB_TOKEN", "ghp_test123")
@@ -932,7 +932,7 @@ class TestGitHubTokenCheck:
         assert "GitHub token configured" in out
 
     def test_gh_authenticated_without_env_token_shows_ok(self, monkeypatch, tmp_path):
-        home = tmp_path / ".hermes"
+        home = tmp_path / ".openamer"
         home.mkdir(parents=True, exist_ok=True)
         self._isolate_home(monkeypatch, home)
         # No GITHUB_TOKEN or GH_TOKEN
@@ -980,7 +980,7 @@ def _run_doctor_with_healthy_oauth_fallback(
     minimax_oauth_status: dict,
     xai_oauth_status: dict | None = None,
 ) -> str:
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir(parents=True, exist_ok=True)
     (home / "config.yaml").write_text(
         "model:\n"
@@ -1125,7 +1125,7 @@ class TestDoctorXaiOAuthStatus:
 
     def _run(self, monkeypatch, tmp_path, *, xai_auth_fn) -> str:
         """Run doctor with a controlled xAI auth callable; return stdout."""
-        home = tmp_path / ".hermes"
+        home = tmp_path / ".openamer"
         home.mkdir(parents=True, exist_ok=True)
         (home / "config.yaml").write_text("memory: {}\n", encoding="utf-8")
         project = tmp_path / "project"
@@ -1199,7 +1199,7 @@ class TestDoctorXaiOAuthStatus:
 
     def test_import_failure_does_not_crash_doctor(self, monkeypatch, tmp_path):
         """Doctor must not crash when get_xai_oauth_auth_status cannot be imported."""
-        home = tmp_path / ".hermes"
+        home = tmp_path / ".openamer"
         home.mkdir(parents=True, exist_ok=True)
         (home / "config.yaml").write_text("memory: {}\n", encoding="utf-8")
         project = tmp_path / "project"
@@ -1230,7 +1230,7 @@ class TestDoctorXaiOAuthStatus:
 
     def test_import_failure_does_not_affect_other_providers(self, monkeypatch, tmp_path):
         """Nous / Codex / Gemini / MiniMax rows must survive an xAI import failure."""
-        home = tmp_path / ".hermes"
+        home = tmp_path / ".openamer"
         home.mkdir(parents=True, exist_ok=True)
         (home / "config.yaml").write_text("memory: {}\n", encoding="utf-8")
         project = tmp_path / "project"
@@ -1290,7 +1290,7 @@ class TestDoctorCodexCliHintPlacement:
     """
 
     def _run(self, monkeypatch, tmp_path, *, codex_logged_in: bool, codex_cli_present: bool) -> str:
-        home = tmp_path / ".hermes"
+        home = tmp_path / ".openamer"
         home.mkdir(parents=True, exist_ok=True)
         (home / "config.yaml").write_text("memory: {}\n", encoding="utf-8")
         project = tmp_path / "project"
@@ -1380,20 +1380,20 @@ class TestDoctorStaleMaxIterationsDrift:
         import io
         from argparse import Namespace
 
-        hermes_home = tmp_path / ".hermes"
-        hermes_home.mkdir(parents=True)
-        (hermes_home / "config.yaml").write_text(
+        openamer_home = tmp_path / ".openamer"
+        openamer_home.mkdir(parents=True)
+        (openamer_home / "config.yaml").write_text(
             f"agent:\n  max_turns: {cfg_turns}\n", encoding="utf-8"
         )
         env_lines = ["OPENAI_API_KEY=sk-test\n"]
         if ghost is not None:
             env_lines.append(f"HERMES_MAX_ITERATIONS={ghost}\n")
-        (hermes_home / ".env").write_text("".join(env_lines), encoding="utf-8")
+        (openamer_home / ".env").write_text("".join(env_lines), encoding="utf-8")
 
-        monkeypatch.setattr(doctor_mod, "OPENAMER_HOME", hermes_home)
-        monkeypatch.setattr(doctor_mod, "get_hermes_home", lambda: hermes_home)
+        monkeypatch.setattr(doctor_mod, "OPENAMER_HOME", openamer_home)
+        monkeypatch.setattr(doctor_mod, "get_openamer_home", lambda: openamer_home)
         # Point the config helpers at the temp home.
-        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
         if os_environ_value is not None:
             # Simulate the gateway bridge having already overridden os.environ.
             monkeypatch.setenv("HERMES_MAX_ITERATIONS", str(os_environ_value))
@@ -1411,25 +1411,25 @@ class TestDoctorStaleMaxIterationsDrift:
         buf = io.StringIO()
         with contextlib.redirect_stdout(buf), pytest.raises(SystemExit):
             doctor_mod.run_doctor(Namespace(fix=fix))
-        return buf.getvalue(), hermes_home
+        return buf.getvalue(), openamer_home
 
     def test_detects_drift_warn_only(self, monkeypatch, tmp_path):
-        out, hermes_home = self._run_config_section(
+        out, openamer_home = self._run_config_section(
             monkeypatch, tmp_path, fix=False, ghost=90, cfg_turns=400,
             os_environ_value=400,  # bridge contaminated os.environ
         )
         assert "HERMES_MAX_ITERATIONS=90" in out
         assert "shadows" in out
         # Warn-only must NOT mutate .env.
-        assert "HERMES_MAX_ITERATIONS=90" in (hermes_home / ".env").read_text(encoding="utf-8")
+        assert "HERMES_MAX_ITERATIONS=90" in (openamer_home / ".env").read_text(encoding="utf-8")
 
     def test_fix_removes_ghost(self, monkeypatch, tmp_path):
-        out, hermes_home = self._run_config_section(
+        out, openamer_home = self._run_config_section(
             monkeypatch, tmp_path, fix=True, ghost=90, cfg_turns=400,
             os_environ_value=400,
         )
         assert "Removed stale HERMES_MAX_ITERATIONS" in out
-        env_after = (hermes_home / ".env").read_text(encoding="utf-8")
+        env_after = (openamer_home / ".env").read_text(encoding="utf-8")
         assert "HERMES_MAX_ITERATIONS" not in env_after
         assert "OPENAI_API_KEY=sk-test" in env_after  # other keys preserved
 
@@ -1447,7 +1447,7 @@ class TestDoctorStaleMaxIterationsDrift:
 
 
 def test_npm_audit_fix_hint_avoids_crashing_workspace_flag(monkeypatch, tmp_path):
-    """`hermes doctor` must not hand users `npm audit fix --workspace <name>`:
+    """`openamer doctor` must not hand users `npm audit fix --workspace <name>`:
     that exact form crashes npm with "Cannot read properties of null (reading
     'edgesOut')" (an arborist bug with workspace-filtered audit fix).
 
@@ -1459,7 +1459,7 @@ def test_npm_audit_fix_hint_avoids_crashing_workspace_flag(monkeypatch, tmp_path
     Regression for user reports where doctor flagged the web/ui-tui workspaces
     and the suggested fix command errored out.
     """
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir(parents=True, exist_ok=True)
     project = tmp_path / "project"
     (project / "node_modules").mkdir(parents=True)
@@ -1509,7 +1509,7 @@ def test_npm_audit_fix_hint_avoids_crashing_workspace_flag(monkeypatch, tmp_path
     assert "npm audit fix" not in out
     # ... and explains the workspace advisories are build-time tooling whose
     # manual remediation may hit a known npm arborist crash, so the user isn't
-    # left thinking a crashing command means a broken Hermes install.
+    # left thinking a crashing command means a broken OpenAmer install.
     assert "build-time tooling" in out
     assert "known npm bug" in out
     assert "lockfile bump" in out
@@ -1570,15 +1570,15 @@ class TestDoctorDeprecatedConfigAndEnv:
         assert doctor_mod.collect_deprecated_env_vars(None) == []
 
     def _run_doctor_with_config(self, monkeypatch, tmp_path, *, config_yaml: str, env_text: str = ""):
-        hermes_home = tmp_path / ".hermes"
-        hermes_home.mkdir(parents=True)
-        (hermes_home / "config.yaml").write_text(config_yaml, encoding="utf-8")
+        openamer_home = tmp_path / ".openamer"
+        openamer_home.mkdir(parents=True)
+        (openamer_home / "config.yaml").write_text(config_yaml, encoding="utf-8")
         env_body = env_text if env_text else "OPENAI_API_KEY=sk-test\n"
-        (hermes_home / ".env").write_text(env_body, encoding="utf-8")
+        (openamer_home / ".env").write_text(env_body, encoding="utf-8")
 
-        monkeypatch.setattr(doctor_mod, "OPENAMER_HOME", hermes_home)
-        monkeypatch.setattr(doctor_mod, "get_hermes_home", lambda: hermes_home)
-        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+        monkeypatch.setattr(doctor_mod, "OPENAMER_HOME", openamer_home)
+        monkeypatch.setattr(doctor_mod, "get_openamer_home", lambda: openamer_home)
+        monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
         # Clear process-level legacy env so tests only see the on-disk .env.
         for k in (
             "HERMES_TOOL_PROGRESS",
@@ -1599,7 +1599,7 @@ class TestDoctorDeprecatedConfigAndEnv:
         buf = io.StringIO()
         with contextlib.redirect_stdout(buf), pytest.raises(SystemExit):
             doctor_mod.run_doctor(Namespace(fix=False))
-        return buf.getvalue(), hermes_home
+        return buf.getvalue(), openamer_home
 
     def test_doctor_warns_on_tool_progress_overrides_and_max_async_children(
         self, monkeypatch, tmp_path
@@ -1612,13 +1612,13 @@ delegation:
   max_async_children: 8
   max_concurrent_children: 3
 """
-        out, hermes_home = self._run_doctor_with_config(monkeypatch, tmp_path, config_yaml=cfg)
+        out, openamer_home = self._run_doctor_with_config(monkeypatch, tmp_path, config_yaml=cfg)
         assert "Deprecated: display.tool_progress_overrides" in out
         assert "display.platforms" in out
         assert "Deprecated: delegation.max_async_children" in out
         assert "max_concurrent_children" in out
         # Warn-only: must not mutate config.
-        on_disk = (hermes_home / "config.yaml").read_text(encoding="utf-8")
+        on_disk = (openamer_home / "config.yaml").read_text(encoding="utf-8")
         assert "tool_progress_overrides" in on_disk
         assert "max_async_children" in on_disk
 

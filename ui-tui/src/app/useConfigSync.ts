@@ -1,4 +1,4 @@
-import type { MouseTrackingMode } from '@hermes/ink'
+import type { MouseTrackingMode } from '@openamer/ink'
 import { useEffect, useRef } from 'react'
 
 import { resolveDetailsMode, resolveSections } from '../domain/details.js'
@@ -31,7 +31,7 @@ export const normalizeStatusBar = (raw: unknown): StatusBarMode =>
 const BUSY_MODES = new Set<BusyInputMode>(['interrupt', 'queue', 'steer'])
 
 // TUI defaults to `queue` even though the framework default
-// (`hermes_cli/config.py`) is `interrupt`.  Rationale: in a full-screen
+// (`openamer_cli/config.py`) is `interrupt`.  Rationale: in a full-screen
 // TUI you're typically authoring the next prompt while the agent is
 // still streaming, and an unintended interrupt loses work.  Set
 // `display.busy_input_mode: interrupt` (or `steer`) explicitly to

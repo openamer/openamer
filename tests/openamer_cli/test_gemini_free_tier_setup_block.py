@@ -9,7 +9,7 @@ import pytest
 @pytest.fixture
 def config_home(tmp_path, monkeypatch):
     """Isolated OPENAMER_HOME with an empty config."""
-    home = tmp_path / "hermes"
+    home = tmp_path / "openamer"
     home.mkdir()
     (home / "config.yaml").write_text("model: some-old-model\n")
     (home / ".env").write_text("")

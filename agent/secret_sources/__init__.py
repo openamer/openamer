@@ -1,7 +1,7 @@
 """External secret source integrations.
 
 A secret source is anything that can supply environment-variable-shaped
-credentials at process startup, _after_ ~/.hermes/.env has loaded.
+credentials at process startup, _after_ ~/.openamer/.env has loaded.
 
 The contract every source implements is
 :class:`agent.secret_sources.base.SecretSource`; the orchestrator that

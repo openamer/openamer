@@ -16,12 +16,12 @@ import agent.billing_usage as bu
 import agent.subscription_view as sv
 import openamer_cli.nous_billing as nb
 from agent.subscription_view import CurrentSubscription, SubscriptionState, SubscriptionTier
-from cli import HermesCLI
+from cli import OpenAmerCLI
 
 
 @pytest.fixture
 def cli():
-    obj = HermesCLI.__new__(HermesCLI)  # bypass __init__ (no full app needed)
+    obj = OpenAmerCLI.__new__(OpenAmerCLI)  # bypass __init__ (no full app needed)
     obj._app = None  # non-interactive by default; tests flip it on
     return obj
 
@@ -93,7 +93,7 @@ def _capture_opener(monkeypatch, *, opened_ok=False):
         seen["url"] = url
         return opened_ok
 
-    monkeypatch.setattr(HermesCLI, "_open_url_in_browser", _open, raising=False)
+    monkeypatch.setattr(OpenAmerCLI, "_open_url_in_browser", _open, raising=False)
     return seen
 
 
@@ -103,7 +103,7 @@ def test_free_prints_catalog_and_deep_links_with_plan(cli, monkeypatch, capsys):
     cli._app = object()  # interactive
     monkeypatch.setattr(sv, "build_subscription_state", lambda *a, **kw: _free_state())
     # catalog pick → "plus" (single modal; the pick opens the portal directly)
-    monkeypatch.setattr(HermesCLI, "_prompt_text_input_modal", _scripted_modal("plus"), raising=False)
+    monkeypatch.setattr(OpenAmerCLI, "_prompt_text_input_modal", _scripted_modal("plus"), raising=False)
     opened = _capture_opener(monkeypatch)  # returns False → URL also printed
 
     cli._show_subscription()
@@ -129,7 +129,7 @@ def test_free_numbered_pick_stdin_fallback_opens_tier(cli, monkeypatch, capsys):
     cli._app = object()
     monkeypatch.setattr(sv, "build_subscription_state", lambda *a, **kw: _free_state())
     # Row 1 = Plus (cheapest selectable). Feed a bare "1" as the stdin fallback.
-    monkeypatch.setattr(HermesCLI, "_prompt_text_input_modal", _scripted_modal("1"), raising=False)
+    monkeypatch.setattr(OpenAmerCLI, "_prompt_text_input_modal", _scripted_modal("1"), raising=False)
     opened = _capture_opener(monkeypatch)
 
     cli._show_subscription()
@@ -143,7 +143,7 @@ def test_free_numbered_pick_stdin_fallback_opens_tier(cli, monkeypatch, capsys):
 def test_free_catalog_cancel_builds_no_url(cli, monkeypatch, capsys):
     cli._app = object()
     monkeypatch.setattr(sv, "build_subscription_state", lambda *a, **kw: _free_state())
-    monkeypatch.setattr(HermesCLI, "_prompt_text_input_modal", _scripted_modal("cancel"), raising=False)
+    monkeypatch.setattr(OpenAmerCLI, "_prompt_text_input_modal", _scripted_modal("cancel"), raising=False)
 
     cli._show_subscription()
     out = capsys.readouterr().out
@@ -157,7 +157,7 @@ def test_free_no_paid_tiers_falls_back_to_plain_portal(cli, monkeypatch, capsys)
     cli._app = object()
     only_free = (_FREE_TIERS[0],)
     monkeypatch.setattr(sv, "build_subscription_state", lambda *a, **kw: _free_state(only_free))
-    monkeypatch.setattr(HermesCLI, "_prompt_text_input_modal", _scripted_modal("cancel"), raising=False)
+    monkeypatch.setattr(OpenAmerCLI, "_prompt_text_input_modal", _scripted_modal("cancel"), raising=False)
 
     cli._show_subscription()
     out = capsys.readouterr().out
@@ -225,7 +225,7 @@ def test_blocked_upgrade_fallback_carries_plan_param(cli, monkeypatch, capsys):
     )
     object.__setattr__(st, "tiers", tiers)
     monkeypatch.setattr(sv, "build_subscription_state", lambda *a, **kw: st)
-    monkeypatch.setattr(HermesCLI, "_prompt_text_input_modal", _scripted_modal("change", "ultra"), raising=False)
+    monkeypatch.setattr(OpenAmerCLI, "_prompt_text_input_modal", _scripted_modal("change", "ultra"), raising=False)
     monkeypatch.setattr(nb, "post_subscription_preview", lambda **kw: {"effect": "blocked", "reason": "Not available here."})
 
     cli._show_subscription()
@@ -239,7 +239,7 @@ def test_blocked_downgrade_fallback_stays_generic(cli, monkeypatch, capsys):
     # (d): a blocked DOWNGRADE fallback stays native/generic — no plan= deep-link.
     cli._app = object()
     monkeypatch.setattr(sv, "build_subscription_state", lambda *a, **kw: _sub_state())  # current = Ultra
-    monkeypatch.setattr(HermesCLI, "_prompt_text_input_modal", _scripted_modal("change", "plus"), raising=False)
+    monkeypatch.setattr(OpenAmerCLI, "_prompt_text_input_modal", _scripted_modal("change", "plus"), raising=False)
     monkeypatch.setattr(nb, "post_subscription_preview", lambda **kw: {"effect": "blocked", "reason": "Nope."})
 
     cli._show_subscription()
@@ -267,7 +267,7 @@ def test_change_flow_schedules_a_downgrade(cli, monkeypatch, capsys):
     cli._app = object()  # interactive
     monkeypatch.setattr(sv, "build_subscription_state", lambda *a, **kw: _sub_state())
     # change menu → "change"; picker → "plus" (only selectable); confirm → "yes"
-    monkeypatch.setattr(HermesCLI, "_prompt_text_input_modal", _scripted_modal("change", "plus", "yes"), raising=False)
+    monkeypatch.setattr(OpenAmerCLI, "_prompt_text_input_modal", _scripted_modal("change", "plus", "yes"), raising=False)
     monkeypatch.setattr(
         nb, "post_subscription_preview",
         lambda **kw: {"effect": "scheduled", "targetTierName": "Plus", "effectiveAt": "2026-07-28T00:00:00Z", "monthlyCreditsDelta": "-198"},
@@ -292,7 +292,7 @@ def test_change_flow_upgrade_charges_now(cli, monkeypatch, capsys):
     tiers = tuple(SubscriptionTier(tier_id=t.tier_id, name=t.name, tier_order=t.tier_order, dollars_per_month=t.dollars_per_month, monthly_credits=t.monthly_credits, is_current=(t.tier_id == "plus"), is_enabled=True) for t in _TIERS)
     object.__setattr__(st, "tiers", tiers)
     monkeypatch.setattr(sv, "build_subscription_state", lambda *a, **kw: st)
-    monkeypatch.setattr(HermesCLI, "_prompt_text_input_modal", _scripted_modal("change", "ultra", "yes"), raising=False)
+    monkeypatch.setattr(OpenAmerCLI, "_prompt_text_input_modal", _scripted_modal("change", "ultra", "yes"), raising=False)
     monkeypatch.setattr(nb, "post_subscription_preview", lambda **kw: {"effect": "charge_now", "targetTierName": "Ultra", "amountDueNowCents": 4630})
     seen = {}
     monkeypatch.setattr(nb, "post_subscription_upgrade", lambda **kw: seen.update(kw) or {"status": "upgraded", "targetTierName": "Ultra"})
@@ -309,7 +309,7 @@ def test_change_flow_upgrade_charges_now(cli, monkeypatch, capsys):
 def test_change_menu_cancel_schedules_cancellation(cli, monkeypatch, capsys):
     cli._app = object()
     monkeypatch.setattr(sv, "build_subscription_state", lambda *a, **kw: _sub_state())
-    monkeypatch.setattr(HermesCLI, "_prompt_text_input_modal", _scripted_modal("cancel_sub", "yes"), raising=False)
+    monkeypatch.setattr(OpenAmerCLI, "_prompt_text_input_modal", _scripted_modal("cancel_sub", "yes"), raising=False)
     seen = {}
     monkeypatch.setattr(nb, "put_subscription_pending_change", lambda **kw: seen.update(kw) or {"message": "Cancelled."})
 
@@ -324,7 +324,7 @@ def test_pending_change_menu_offers_undo(cli, monkeypatch, capsys):
     cli._app = object()
     st = _sub_state(pending_downgrade_tier_name="Plus", pending_downgrade_at="2026-07-28")
     monkeypatch.setattr(sv, "build_subscription_state", lambda *a, **kw: st)
-    monkeypatch.setattr(HermesCLI, "_prompt_text_input_modal", _scripted_modal("keep"), raising=False)
+    monkeypatch.setattr(OpenAmerCLI, "_prompt_text_input_modal", _scripted_modal("keep"), raising=False)
     called = {"n": 0}
     monkeypatch.setattr(nb, "delete_subscription_pending_change", lambda **kw: called.update(n=called["n"] + 1) or {"message": "Resumed."})
 
@@ -339,7 +339,7 @@ def test_insufficient_scope_triggers_stepup_then_replays(cli, monkeypatch, capsy
     cli._app = object()
     monkeypatch.setattr(sv, "build_subscription_state", lambda *a, **kw: _sub_state())
     # menu → change; picker → plus; confirm → yes; step-up → yes
-    monkeypatch.setattr(HermesCLI, "_prompt_text_input_modal", _scripted_modal("change", "plus", "yes", "yes"), raising=False)
+    monkeypatch.setattr(OpenAmerCLI, "_prompt_text_input_modal", _scripted_modal("change", "plus", "yes", "yes"), raising=False)
     monkeypatch.setattr(nb, "post_subscription_preview", lambda **kw: {"effect": "scheduled", "targetTierName": "Plus", "effectiveAt": "2026-07-28"})
     calls = {"n": 0}
 
@@ -365,7 +365,7 @@ def test_insufficient_scope_triggers_stepup_then_replays(cli, monkeypatch, capsy
 def test_stepup_declined_grant_does_not_replay(cli, monkeypatch, capsys):
     cli._app = object()
     monkeypatch.setattr(sv, "build_subscription_state", lambda *a, **kw: _sub_state())
-    monkeypatch.setattr(HermesCLI, "_prompt_text_input_modal", _scripted_modal("change", "plus", "yes", "yes"), raising=False)
+    monkeypatch.setattr(OpenAmerCLI, "_prompt_text_input_modal", _scripted_modal("change", "plus", "yes", "yes"), raising=False)
     monkeypatch.setattr(nb, "post_subscription_preview", lambda **kw: {"effect": "scheduled", "targetTierName": "Plus", "effectiveAt": "2026-07-28"})
     calls = {"n": 0}
 
@@ -389,7 +389,7 @@ def test_unknown_preview_effect_fails_safe(cli, monkeypatch, capsys):
     # An unrecognized effect string must NOT schedule a real change (fail safe).
     cli._app = object()
     monkeypatch.setattr(sv, "build_subscription_state", lambda *a, **kw: _sub_state())
-    monkeypatch.setattr(HermesCLI, "_prompt_text_input_modal", _scripted_modal("change", "plus"), raising=False)
+    monkeypatch.setattr(OpenAmerCLI, "_prompt_text_input_modal", _scripted_modal("change", "plus"), raising=False)
     monkeypatch.setattr(nb, "post_subscription_preview", lambda **kw: {"effect": "weird_unknown", "targetTierName": "Plus"})
     put = {"n": 0}
     monkeypatch.setattr(nb, "put_subscription_pending_change", lambda **kw: put.update(n=put["n"] + 1) or {})
@@ -406,7 +406,7 @@ def test_bounded_stepup_does_not_loop_on_repeat_denial(cli, monkeypatch, capsys)
     # then stop — no re-prompt / re-open-browser loop.
     cli._app = object()
     monkeypatch.setattr(sv, "build_subscription_state", lambda *a, **kw: _sub_state())
-    monkeypatch.setattr(HermesCLI, "_prompt_text_input_modal", _scripted_modal("change", "plus", "yes", "yes"), raising=False)
+    monkeypatch.setattr(OpenAmerCLI, "_prompt_text_input_modal", _scripted_modal("change", "plus", "yes", "yes"), raising=False)
     monkeypatch.setattr(nb, "post_subscription_preview", lambda **kw: {"effect": "scheduled", "targetTierName": "Plus", "effectiveAt": "2026-07-28"})
     calls = {"n": 0}
 
@@ -441,7 +441,7 @@ def test_upgrade_transport_failure_is_ambiguous_not_flat_failure(cli, monkeypatc
     )
     object.__setattr__(st, "tiers", tiers)
     monkeypatch.setattr(sv, "build_subscription_state", lambda *a, **kw: st)
-    monkeypatch.setattr(HermesCLI, "_prompt_text_input_modal", _scripted_modal("change", "ultra", "yes"), raising=False)
+    monkeypatch.setattr(OpenAmerCLI, "_prompt_text_input_modal", _scripted_modal("change", "ultra", "yes"), raising=False)
     monkeypatch.setattr(nb, "post_subscription_preview", lambda **kw: {"effect": "charge_now", "targetTierName": "Ultra", "amountDueNowCents": 4630})
 
     def _boom(**kw):
@@ -469,7 +469,7 @@ def test_upgrade_rate_limit_is_deterministic_not_ambiguous(cli, monkeypatch, cap
     )
     object.__setattr__(st, "tiers", tiers)
     monkeypatch.setattr(sv, "build_subscription_state", lambda *a, **kw: st)
-    monkeypatch.setattr(HermesCLI, "_prompt_text_input_modal", _scripted_modal("change", "ultra", "yes"), raising=False)
+    monkeypatch.setattr(OpenAmerCLI, "_prompt_text_input_modal", _scripted_modal("change", "ultra", "yes"), raising=False)
     monkeypatch.setattr(nb, "post_subscription_preview", lambda **kw: {"effect": "charge_now", "targetTierName": "Ultra", "amountDueNowCents": 4630})
 
     def _rl(**kw):
@@ -495,7 +495,7 @@ def test_upgrade_transport_failure_still_ambiguous_after_narrowing(cli, monkeypa
     )
     object.__setattr__(st, "tiers", tiers)
     monkeypatch.setattr(sv, "build_subscription_state", lambda *a, **kw: st)
-    monkeypatch.setattr(HermesCLI, "_prompt_text_input_modal", _scripted_modal("change", "ultra", "yes"), raising=False)
+    monkeypatch.setattr(OpenAmerCLI, "_prompt_text_input_modal", _scripted_modal("change", "ultra", "yes"), raising=False)
     monkeypatch.setattr(nb, "post_subscription_preview", lambda **kw: {"effect": "charge_now", "targetTierName": "Ultra", "amountDueNowCents": 4630})
 
     def _net(**kw):
@@ -533,7 +533,7 @@ def test_upgrade_confirm_names_the_subscription_card(cli, monkeypatch, capsys):
     object.__setattr__(st, "tiers", tiers)
     monkeypatch.setattr(sv, "build_subscription_state", lambda *a, **kw: st)
     # picker → ultra; charge confirm → back out (we only assert the card line)
-    monkeypatch.setattr(HermesCLI, "_prompt_text_input_modal", _scripted_modal("change", "ultra", "cancel"), raising=False)
+    monkeypatch.setattr(OpenAmerCLI, "_prompt_text_input_modal", _scripted_modal("change", "ultra", "cancel"), raising=False)
     monkeypatch.setattr(nb, "post_subscription_preview", lambda **kw: {"effect": "charge_now", "targetTierName": "Ultra", "amountDueNowCents": 4630})
     import agent.billing_view as bv
     from agent.billing_view import BillingState as _BS

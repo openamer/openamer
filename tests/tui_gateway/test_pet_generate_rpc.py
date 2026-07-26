@@ -207,7 +207,7 @@ def test_pet_sprite_payload_includes_concrete_row_counts():
 
     cols, rows = 8, 9
     sheet = Image.new("RGBA", (constants.FRAME_W * cols, constants.FRAME_H * rows), (0, 0, 0, 0))
-    # Current Codex rows can have more/fewer frames than Hermes' generic
+    # Current Codex rows can have more/fewer frames than OpenAmer' generic
     # FRAMES_PER_STATE. The desktop preview needs the concrete row count.
     real = {0: 6, 1: 8, 3: 4, 4: 5, 7: 6}
     for row, count in real.items():

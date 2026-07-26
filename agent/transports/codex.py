@@ -259,20 +259,20 @@ class ResponsesApiTransport(ProviderTransport):
         # ``web_search`` function for the xAI path and let the native tool
         # satisfy it.  All other client-side tools (read_file, terminal,
         # web_extract, MCP tools, …) are untouched and continue to dispatch
-        # through Hermes's agent loop.
+        # through OpenAmer's agent loop.
         #
         # Scope: we ONLY swap in the native built-in when the client
         # ``web_search`` was actually present.  We do NOT force-enable Grok
         # server-side search on turns where the user never had web enabled —
-        # that would silently route around Hermes's web-provider config and
+        # that would silently route around OpenAmer's web-provider config and
         # tool-trace/citation plumbing for every xai-oauth turn.  The swap is
         # a 1:1 replacement of an already-requested capability, not an
         # additive grant.
         #
         # NOTE: for the swapped case this routes ``web_search`` to Grok's
-        # native search engine for xAI sessions instead of Hermes's
+        # native search engine for xAI sessions instead of OpenAmer's
         # configured web provider (Tavily/etc.), and those results bypass
-        # Hermes's tool-trace / citation plumbing (they arrive baked into the
+        # OpenAmer's tool-trace / citation plumbing (they arrive baked into the
         # model's answer rather than as a tool result the loop observes).
         # Scoped to ``is_xai_responses`` deliberately; narrow to specific
         # models if a future grok variant should keep the client-side

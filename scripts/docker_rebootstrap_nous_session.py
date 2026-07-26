@@ -3,7 +3,7 @@
 
 Background
 ----------
-A Nous bootstrap session (client_id ``hermes-cli-vps``) can take a terminal
+A Nous bootstrap session (client_id ``openamer-cli-vps``) can take a terminal
 ``invalid_grant`` and be quarantined locally — the refresh path clears the dead
 tokens from ``auth.json`` and stamps
 ``providers.nous.last_auth_error.relogin_required = true``. From then on every
@@ -47,7 +47,7 @@ from typing import Any, Optional
 # paths can never be confused: BOOTSTRAP seeds a fresh volume; REBOOTSTRAP
 # overwrites a terminally-dead Nous entry on an existing volume.
 REBOOTSTRAP_ENV = "HERMES_AUTH_JSON_REBOOTSTRAP"
-BOOTSTRAP_CLIENT_ID = "hermes-cli-vps"
+BOOTSTRAP_CLIENT_ID = "openamer-cli-vps"
 
 
 def _nous_entry_is_terminal(nous_state: Any) -> bool:

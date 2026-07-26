@@ -93,7 +93,7 @@ class TestFireworksDoctor:
         dropped — that heuristic is for aggregator vendor slugs only."""
         from openamer_cli import doctor as doctor_mod
 
-        home = tmp_path / ".hermes"
+        home = tmp_path / ".openamer"
         home.mkdir(parents=True)
         (home / "config.yaml").write_text(
             "model:\n"

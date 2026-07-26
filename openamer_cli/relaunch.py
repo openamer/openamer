@@ -5,7 +5,7 @@ Preserves critical flags (--tui, --dev, --profile, --model, etc.) across
 process replacement so that ``openamer sessions browse`` or post-setup relaunch
 doesn't silently drop the user's UI mode or other preferences.
 
-Also works when ``hermes`` is not on PATH (e.g. ``nix run`` or ``python -m``).
+Also works when ``openamer`` is not on PATH (e.g. ``nix run`` or ``python -m``).
 """
 
 import os
@@ -22,7 +22,7 @@ from openamer_cli._parser import (
 def _build_inherited_flag_table() -> list[tuple[str, bool]]:
     """Build the ``(option_string, takes_value)`` table of flags that must
     survive a self-relaunch, by introspecting the real parser used by
-    ``hermes`` itself.
+    ``openamer`` itself.
 
     A flag participates if its argparse Action carries
     ``inherit_on_relaunch = True`` — set by ``_parser._inherited_flag``.
@@ -52,7 +52,7 @@ _INHERITED_FLAGS_TABLE = _build_inherited_flag_table()
 
 
 def _extract_inherited_flags(argv: Sequence[str]) -> list[str]:
-    """Pull out flags that should carry over into a self-relaunched hermes."""
+    """Pull out flags that should carry over into a self-relaunched openamer."""
     flags: list[str] = []
     i = 0
     while i < len(argv):
@@ -77,12 +77,12 @@ def _extract_inherited_flags(argv: Sequence[str]) -> list[str]:
     return flags
 
 
-def resolve_hermes_bin() -> Optional[str]:
+def resolve_openamer_bin() -> Optional[str]:
     """Find the openamer entry point.
 
     Priority:
       1. ``sys.argv[0]`` if it resolves to a real executable.
-      2. ``shutil.which("hermes")`` on PATH.
+      2. ``shutil.which("openamer")`` on PATH.
       3. ``None`` → caller should fall back to ``python -m openamer_cli.main``.
 
     Windows note: ``os.access(path, os.X_OK)`` returns True for ``.py`` and
@@ -92,7 +92,7 @@ def resolve_hermes_bin() -> Optional[str]:
     directly — CreateProcessW needs a real .exe, not a script associated
     with the Python launcher.  On Windows we therefore skip the argv[0]
     fast-path when it points at a .py file and fall through to either
-    ``hermes.exe`` on PATH or the ``sys.executable -m openamer_cli.main``
+    ``openamer.exe`` on PATH or the ``sys.executable -m openamer_cli.main``
     fallback.
     """
     argv0 = sys.argv[0]
@@ -114,7 +114,7 @@ def resolve_hermes_bin() -> Optional[str]:
                 return abs_path
 
     # PATH lookup
-    path_bin = shutil.which("hermes")
+    path_bin = shutil.which("openamer")
     if path_bin:
         return path_bin
 
@@ -127,7 +127,7 @@ def build_relaunch_argv(
     preserve_inherited: bool = True,
     original_argv: Optional[Sequence[str]] = None,
 ) -> list[str]:
-    """Construct an argv list for replacing the current process with hermes.
+    """Construct an argv list for replacing the current process with openamer.
 
     Args:
         extra_args: Arguments to append (e.g. ``["--resume", id]``).
@@ -136,7 +136,7 @@ def build_relaunch_argv(
         original_argv: The original argv to scan for flags (defaults to
             ``sys.argv[1:]``).
     """
-    bin_path = resolve_hermes_bin()
+    bin_path = resolve_openamer_bin()
 
     if bin_path:
         argv = [bin_path]
@@ -168,7 +168,7 @@ def relaunch(
     Windows has no native exec semantics — ``os.execvp`` on Windows
     *emulates* exec by spawning the child and exiting the parent, but
     only works when the target is a real Win32 executable.  Our target
-    is usually ``hermes.exe`` (a Python console-script shim that wraps
+    is usually ``openamer.exe`` (a Python console-script shim that wraps
     ``python -m openamer_cli.main``) or a ``.cmd`` batch file, and both
     raise ``OSError(8, "Exec format error")`` on Windows' execvp.
 
@@ -192,12 +192,12 @@ def relaunch(
         except OSError as exc:
             # Surface a helpful error rather than the raw OSError — the
             # caller used to see ``[Errno 8] Exec format error`` which is
-            # cryptic.  Common causes: ``hermes`` not on PATH yet (install
+            # cryptic.  Common causes: ``openamer`` not on PATH yet (install
             # hasn't propagated User PATH into this shell) or a stale shim.
             print(
                 f"\nOpenAmer relaunch failed: {exc}\n"
                 f"Command: {' '.join(new_argv)}\n"
-                f"Fix: open a new terminal so PATH picks up, then re-run hermes.",
+                f"Fix: open a new terminal so PATH picks up, then re-run openamer.",
                 file=sys.stderr,
             )
             sys.exit(1)

@@ -1,5 +1,5 @@
 """Tests that ``model_catalog.excluded_providers`` hides providers from the
-interactive ``hermes model`` CLI picker.
+interactive ``openamer model`` CLI picker.
 
 The CLI picker (``openamer_cli.main.select_provider_and_model``) builds its
 provider menu from ``CANONICAL_PROVIDERS`` via ``group_providers`` — a
@@ -16,7 +16,7 @@ import pytest
 @pytest.fixture
 def config_home(tmp_path, monkeypatch):
     """Isolated OPENAMER_HOME with a minimal config."""
-    home = tmp_path / "hermes"
+    home = tmp_path / "openamer"
     home.mkdir()
     config_yaml = home / "config.yaml"
     config_yaml.write_text("model: old-model\ncustom_providers: []\n")
@@ -62,7 +62,7 @@ def _capture_provider_labels(config_home):
 
 def test_cli_picker_hides_excluded_provider(config_home):
     """``excluded_providers: [openrouter]`` must remove the OpenRouter row
-    from the ``hermes model`` provider menu."""
+    from the ``openamer model`` provider menu."""
     _write_config(config_home, **{"model_catalog": {"excluded_providers": ["openrouter"]}})
 
     labels = _capture_provider_labels(config_home)
@@ -75,8 +75,8 @@ def test_cli_picker_hides_excluded_provider(config_home):
 def test_cli_picker_hides_excluded_provider_by_alias(config_home):
     """Exclusion by an alias (not the canonical slug) must also hide the
     provider, matching ``list_authenticated_providers``' matching against
-    hermes_id / alias names."""
-    # 'openai' is an alias-style hermes id; ensure excluding it hides the
+    openamer_id / alias names."""
+    # 'openai' is an alias-style openamer id; ensure excluding it hides the
     # canonical openai provider row if present. Use the canonical slug's
     # alias from _PROVIDER_ALIASES to stay robust to renames.
     from openamer_cli.models import _PROVIDER_ALIASES, CANONICAL_PROVIDERS

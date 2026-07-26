@@ -1,4 +1,4 @@
-"""Regression tests for Hermes' Spectrum mixed text+attachment workaround."""
+"""Regression tests for OpenAmer' Spectrum mixed text+attachment workaround."""
 from __future__ import annotations
 
 import subprocess
@@ -48,7 +48,7 @@ def test_sidecar_labels_catchup_internal_errors_as_upstream_photon() -> None:
     index = Path("plugins/platforms/photon/sidecar/index.mjs").read_text(encoding="utf-8")
     assert "function inboundStreamErrorMessage" in index
     assert "EventService/CatchUpEvents" in index
-    assert "this is upstream of Hermes" in index
+    assert "this is upstream of OpenAmer" in index
     assert "PHOTON_ALLOWED_USERS" in index
 
 

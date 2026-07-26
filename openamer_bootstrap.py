@@ -14,7 +14,7 @@ Python on Windows has two long-standing text-encoding footguns:
 
 This module fixes both on Windows *only* — POSIX is untouched.  It
 should be imported at the very top of every OpenAmer entry point
-(``hermes``, ``openamer-agent``, ``hermes-acp``, ``python -m gateway.run``,
+(``openamer``, ``openamer-agent``, ``openamer-acp``, ``python -m gateway.run``,
 ``batch_runner.py``, ``cron/scheduler.py``) before any other imports
 that might do file I/O or print to stdout.
 

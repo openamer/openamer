@@ -750,7 +750,7 @@ def test_recovery_refuses_before_writing_when_disk_space_is_short(
     with pytest.raises(SessionRecoverySafetyError, match="Not enough free disk space"):
         recover_session_database(source, output, work_dir=tmp_path)
     assert not output.exists()
-    assert not list(tmp_path.glob("hermes-session-recovery-*"))
+    assert not list(tmp_path.glob("openamer-session-recovery-*"))
 
 
 def test_recovery_requires_readable_sessions_and_messages(tmp_path: Path) -> None:
@@ -832,7 +832,7 @@ def test_cli_allow_partial_salvages_rows_across_a_corrupt_leaf(
     assert not rejected_output.exists()
 
     env = os.environ.copy()
-    env["OPENAMER_HOME"] = str(tmp_path / "isolated-hermes-home")
+    env["OPENAMER_HOME"] = str(tmp_path / "isolated-openamer-home")
     result = subprocess.run(
         [
             sys.executable,
@@ -972,7 +972,7 @@ def test_cli_recover_writes_verified_report_without_touching_source(
     expected = _make_source(source)
     source_hash = _sha256(source)
     env = os.environ.copy()
-    env["OPENAMER_HOME"] = str(tmp_path / "isolated-hermes-home")
+    env["OPENAMER_HOME"] = str(tmp_path / "isolated-openamer-home")
 
     result = subprocess.run(
         [
@@ -1011,18 +1011,18 @@ def test_cli_recover_writes_verified_report_without_touching_source(
 def test_failed_repair_points_the_user_at_offline_recovery(tmp_path: Path) -> None:
     """A failed in-place repair must name the offline recovery command.
 
-    This is the reported dead end: `hermes sessions repair` exhausts its
+    This is the reported dead end: `openamer sessions repair` exhausts its
     in-place ladder, prints "keep the files", and stops -- leaving the user
     with no idea that a non-destructive recovery path exists. The failure
     branch has to hand them the next command, inspection first, seeded with
     the preserved backup it just made.
     """
-    hermes_home = tmp_path / "isolated-hermes-home"
-    hermes_home.mkdir()
+    openamer_home = tmp_path / "isolated-openamer-home"
+    openamer_home.mkdir()
     # Not a database at all -> every in-place repair strategy fails.
-    (hermes_home / "state.db").write_bytes(b"SQLite format 3\x00" + b"\x7f" * 2048)
+    (openamer_home / "state.db").write_bytes(b"SQLite format 3\x00" + b"\x7f" * 2048)
     env = os.environ.copy()
-    env["OPENAMER_HOME"] = str(hermes_home)
+    env["OPENAMER_HOME"] = str(openamer_home)
 
     result = subprocess.run(
         [sys.executable, "-m", "openamer_cli.main", "sessions", "repair"],

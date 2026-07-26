@@ -3,7 +3,7 @@ OpenAmer Agent Uninstaller.
 
 Provides options for:
 - Full uninstall: Remove everything including configs and data
-- Keep data: Remove code but keep ~/.hermes/ (configs, sessions, logs)
+- Keep data: Remove code but keep ~/.openamer/ (configs, sessions, logs)
 """
 
 import os
@@ -69,13 +69,13 @@ def remove_path_from_shell_configs():
                 if '# OpenAmer Agent' in line or '# openamer-agent' in line:
                     skip_next = True
                     continue
-                if skip_next and ('hermes' in line.lower() and 'PATH' in line):
+                if skip_next and ('openamer' in line.lower() and 'PATH' in line):
                     skip_next = False
                     continue
                 skip_next = False
                 
-                # Remove any PATH line containing hermes
-                if 'hermes' in line.lower() and ('PATH=' in line or 'path=' in line.lower()):
+                # Remove any PATH line containing openamer
+                if 'openamer' in line.lower() and ('PATH=' in line or 'path=' in line.lower()):
                     continue
                     
                 new_lines.append(line)
@@ -99,8 +99,8 @@ def remove_path_from_shell_configs():
 def remove_wrapper_script():
     """Remove the openamer wrapper script if it exists."""
     wrapper_paths = [
-        Path.home() / ".local" / "bin" / "hermes",
-        Path("/usr/local/bin/hermes"),
+        Path.home() / ".local" / "bin" / "openamer",
+        Path("/usr/local/bin/openamer"),
     ]
     
     removed = []
@@ -131,11 +131,11 @@ def _node_symlink_candidate_dirs() -> "list[Path]":
     return dirs
 
 
-def remove_node_symlinks(hermes_home: Path) -> list:
+def remove_node_symlinks(openamer_home: Path) -> list:
     """Remove the node/npm/npx symlinks the installer placed on PATH.
 
     The POSIX installer (``scripts/install.sh`` / ``scripts/lib/node-bootstrap.sh``)
-    symlinks node/npm/npx into the same directory as the ``hermes`` command:
+    symlinks node/npm/npx into the same directory as the ``openamer`` command:
 
     - ``/usr/local/bin/`` on root FHS installs (Linux, uid 0)
     - ``$PREFIX/bin/`` on Termux
@@ -148,7 +148,7 @@ def remove_node_symlinks(hermes_home: Path) -> list:
     directory are removed — links the user has repointed elsewhere (nvm, fnm,
     etc.) are left untouched.
     """
-    node_dir = (hermes_home / "node").resolve()
+    node_dir = (openamer_home / "node").resolve()
     removed = []
 
     for name in ("node", "npm", "npx"):
@@ -299,15 +299,15 @@ def uninstall_gateway_service():
 #      don't live in ~/.bashrc — they're in the Windows registry at
 #      HKCU\Environment.
 #   2. Prepends to User-scope ``PATH`` (same registry location) entries
-#      like ``%LOCALAPPDATA%\hermes\git\cmd``, ``%LOCALAPPDATA%\hermes\git\bin``,
-#      ``%LOCALAPPDATA%\hermes\git\usr\bin``, ``%LOCALAPPDATA%\hermes\node``.
+#      like ``%LOCALAPPDATA%\openamer\git\cmd``, ``%LOCALAPPDATA%\openamer\git\bin``,
+#      ``%LOCALAPPDATA%\openamer\git\usr\bin``, ``%LOCALAPPDATA%\openamer\node``.
 #      Again not in any rc file — only accessible via the registry or the
 #      .NET [Environment] API.
-#   3. Downloads PortableGit to ``%LOCALAPPDATA%\hermes\git\`` and Node to
-#      ``%LOCALAPPDATA%\hermes\node\`` as user-scoped, isolated copies.
+#   3. Downloads PortableGit to ``%LOCALAPPDATA%\openamer\git\`` and Node to
+#      ``%LOCALAPPDATA%\openamer\node\`` as user-scoped, isolated copies.
 #      These are ~200MB combined and serve no purpose after uninstall.
 #   4. On the ``openamer dashboard`` + gateway paths, drops files into
-#      ``%LOCALAPPDATA%\hermes\gateway-service\`` and sometimes
+#      ``%LOCALAPPDATA%\openamer\gateway-service\`` and sometimes
 #      ``%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\`` — the
 #      latter is handled by ``gateway_windows.uninstall()`` already.
 #
@@ -319,20 +319,20 @@ def uninstall_gateway_service():
 # or open a new terminal anyway).
 
 
-def _hermes_path_markers(hermes_home: Path) -> list[str]:
+def _openamer_path_markers(openamer_home: Path) -> list[str]:
     """Path-entry substrings that identify OpenAmer-owned User-PATH entries."""
-    root = str(hermes_home).rstrip("\\/")
+    root = str(openamer_home).rstrip("\\/")
     # Match on prefix so sub-entries (git\cmd, git\bin, git\usr\bin, node, etc.)
     # all get swept.  Also match the bare openamer-agent install dir.
     markers = [root + "\\openamer-agent", root + "\\git", root + "\\node", root + "\\venv"]
     # Also match if OPENAMER_HOME was customised to somewhere else — find-and-nuke
-    # any entry whose path component contains "hermes".  We don't want to catch
+    # any entry whose path component contains "openamer".  We don't want to catch
     # unrelated entries like "copenamer-foo" or "ephermeral", so we look for
     # backslash-openamer as a word-ish boundary.
     return markers
 
 
-def remove_path_from_windows_registry(hermes_home: Path) -> list[str]:
+def remove_path_from_windows_registry(openamer_home: Path) -> list[str]:
     """Strip OpenAmer-owned entries from User-scope PATH in the registry.
 
     Returns the list of removed path entries.  Operates on HKCU\\Environment,
@@ -354,7 +354,7 @@ def remove_path_from_windows_registry(hermes_home: Path) -> list[str]:
                 return []
             # Preserve REG_EXPAND_SZ vs REG_SZ so unexpanded %VARS% survive.
             entries = [e for e in path_value.split(";") if e]
-            markers = _hermes_path_markers(hermes_home)
+            markers = _openamer_path_markers(openamer_home)
             kept: list[str] = []
             for entry in entries:
                 entry_norm = entry.rstrip("\\/")
@@ -371,7 +371,7 @@ def remove_path_from_windows_registry(hermes_home: Path) -> list[str]:
     return removed
 
 
-def remove_hermes_env_vars_windows() -> list[str]:
+def remove_openamer_env_vars_windows() -> list[str]:
     """Delete OPENAMER_HOME and HERMES_GIT_BASH_PATH from User-scope env vars."""
     try:
         import winreg
@@ -397,13 +397,13 @@ def remove_hermes_env_vars_windows() -> list[str]:
     return removed
 
 
-def remove_portable_tooling_windows(hermes_home: Path) -> list[Path]:
+def remove_portable_tooling_windows(openamer_home: Path) -> list[Path]:
     """Delete PortableGit and Node installs the Windows installer created under
-    ``%LOCALAPPDATA%\\hermes\\``.  Only called on full uninstall; they're
+    ``%LOCALAPPDATA%\\openamer\\``.  Only called on full uninstall; they're
     isolated from any system Git / Node so they cannot break other tools."""
     removed: list[Path] = []
     for sub in ("git", "node", "gateway-service"):
-        target = hermes_home / sub
+        target = openamer_home / sub
         if target.exists():
             try:
                 shutil.rmtree(target, ignore_errors=False)
@@ -418,11 +418,11 @@ def _is_windows() -> bool:
     return sys.platform == "win32"
 
 
-def _is_default_hermes_home(hermes_home: Path) -> bool:
-    """Return True when ``hermes_home`` points at the default (non-profile) root."""
+def _is_default_openamer_home(openamer_home: Path) -> bool:
+    """Return True when ``openamer_home`` points at the default (non-profile) root."""
     try:
-        from openamer_constants import get_default_hermes_root
-        return hermes_home.resolve() == get_default_hermes_root().resolve()
+        from openamer_constants import get_default_openamer_root
+        return openamer_home.resolve() == get_default_openamer_root().resolve()
     except Exception:
         return False
 
@@ -457,13 +457,13 @@ def _uninstall_profile(profile) -> None:
     log_info(f"Uninstalling profile '{name}'...")
 
     # 1. Stop and remove this profile's gateway service.
-    #    Use `python -m openamer_cli.main` so we don't depend on a `hermes`
+    #    Use `python -m openamer_cli.main` so we don't depend on a `openamer`
     #    wrapper that may be half-removed mid-uninstall.
-    hermes_invocation = [_sys.executable, "-m", "openamer_cli.main", "--profile", name]
+    openamer_invocation = [_sys.executable, "-m", "openamer_cli.main", "--profile", name]
     for subcmd in ("stop", "uninstall"):
         try:
             subprocess.run(
-                hermes_invocation + ["gateway", subcmd],
+                openamer_invocation + ["gateway", subcmd],
                 capture_output=True,
                 text=True, encoding='utf-8', errors='replace',
                 timeout=60,
@@ -506,8 +506,8 @@ def run_gui_uninstall(args):
         uninstall_gui,
     )
 
-    hermes_home = get_openamer_home()
-    summary = gui_install_summary(hermes_home)
+    openamer_home = get_openamer_home()
+    summary = gui_install_summary(openamer_home)
     skip_confirm = bool(getattr(args, "yes", False))
 
     print()
@@ -518,7 +518,7 @@ def run_gui_uninstall(args):
 
     if not summary["gui_installed"]:
         print("No OpenAmer Chat GUI installation was found.")
-        print(f"  Checked: {hermes_home}, and the standard app locations for this OS.")
+        print(f"  Checked: {openamer_home}, and the standard app locations for this OS.")
         return
 
     print(color("This removes the Chat GUI only. The OpenAmer agent stays installed.", Colors.CYAN))
@@ -531,10 +531,10 @@ def run_gui_uninstall(args):
     if summary["userdata_exists"]:
         print(f"  • {summary['userdata_dir']}  (desktop app data)")
     print()
-    if agent_is_installed(hermes_home):
+    if agent_is_installed(openamer_home):
         print(color("Kept intact:", Colors.GREEN, Colors.BOLD))
-        print(f"  • The OpenAmer agent at {hermes_home / 'openamer-agent'}")
-        print(f"  • Your config, sessions, and secrets under {hermes_home}")
+        print(f"  • The OpenAmer agent at {openamer_home / 'openamer-agent'}")
+        print(f"  • Your config, sessions, and secrets under {openamer_home}")
         print()
 
     if not skip_confirm:
@@ -552,14 +552,14 @@ def run_gui_uninstall(args):
     print()
     print(color("Uninstalling Chat GUI...", Colors.CYAN, Colors.BOLD))
     print()
-    uninstall_gui(hermes_home)
+    uninstall_gui(openamer_home)
 
     print()
     print(color("┌─────────────────────────────────────────────────────────┐", Colors.GREEN, Colors.BOLD))
     print(color("│            ✓ Chat GUI Uninstalled!                      │", Colors.GREEN, Colors.BOLD))
     print(color("└─────────────────────────────────────────────────────────┘", Colors.GREEN, Colors.BOLD))
     print()
-    print("The OpenAmer agent is still installed. Run 'hermes' to use the CLI,")
+    print("The OpenAmer agent is still installed. Run 'openamer' to use the CLI,")
     print("or 'openamer uninstall' to remove the agent too.")
     print()
 
@@ -569,16 +569,16 @@ def run_uninstall(args):
     Run the uninstall process.
     
     Options:
-    - Full uninstall: removes code + ~/.hermes/ (configs, data, logs)
-    - Keep data: removes code but keeps ~/.hermes/ for future reinstall
+    - Full uninstall: removes code + ~/.openamer/ (configs, data, logs)
+    - Keep data: removes code but keeps ~/.openamer/ for future reinstall
     """
     project_root = get_project_root()
-    hermes_home = get_openamer_home()
+    openamer_home = get_openamer_home()
 
     if bool(getattr(args, "dry_run", False)):
         _print_uninstall_dry_run(
             project_root=project_root,
-            hermes_home=hermes_home,
+            openamer_home=openamer_home,
             full_uninstall=bool(getattr(args, "full", False)),
         )
         return
@@ -586,7 +586,7 @@ def run_uninstall(args):
     # Detect named profiles when uninstalling from the default root —
     # offer to clean them up too instead of leaving zombie OPENAMER_HOMEs
     # and systemd units behind.
-    is_default_profile = _is_default_hermes_home(hermes_home)
+    is_default_profile = _is_default_openamer_home(openamer_home)
     named_profiles = _discover_named_profiles() if is_default_profile else []
 
     # Non-interactive fast path (``--yes``): no prompts. ``--full`` selects a
@@ -600,7 +600,7 @@ def run_uninstall(args):
         full_uninstall = bool(getattr(args, "full", False))
         _perform_uninstall(
             project_root=project_root,
-            hermes_home=hermes_home,
+            openamer_home=openamer_home,
             full_uninstall=full_uninstall,
             remove_profiles=False,
             named_profiles=named_profiles,
@@ -616,9 +616,9 @@ def run_uninstall(args):
     # Show what will be affected
     print(color("Current Installation:", Colors.CYAN, Colors.BOLD))
     print(f"  Code:    {project_root}")
-    print(f"  Config:  {hermes_home / 'config.yaml'}")
-    print(f"  Secrets: {hermes_home / '.env'}")
-    print(f"  Data:    {hermes_home / 'cron/'}, {hermes_home / 'sessions/'}, {hermes_home / 'logs/'}")
+    print(f"  Config:  {openamer_home / 'config.yaml'}")
+    print(f"  Secrets: {openamer_home / '.env'}")
+    print(f"  Data:    {openamer_home / 'cron/'}, {openamer_home / 'sessions/'}, {openamer_home / 'logs/'}")
     print()
 
     if named_profiles:
@@ -705,14 +705,14 @@ def run_uninstall(args):
 
     _perform_uninstall(
         project_root=project_root,
-        hermes_home=hermes_home,
+        openamer_home=openamer_home,
         full_uninstall=full_uninstall,
         remove_profiles=remove_profiles,
         named_profiles=named_profiles,
     )
 
 
-def _print_uninstall_dry_run(*, project_root: Path, hermes_home: Path, full_uninstall: bool) -> None:
+def _print_uninstall_dry_run(*, project_root: Path, openamer_home: Path, full_uninstall: bool) -> None:
     """Print the uninstall plan without stopping services or deleting files."""
     print()
     print(color("Dry run: no files, services, or environment entries will be changed.", Colors.CYAN, Colors.BOLD))
@@ -724,22 +724,22 @@ def _print_uninstall_dry_run(*, project_root: Path, hermes_home: Path, full_unin
     print("  • Desktop Chat GUI artifacts")
     print(f"  • Code checkout: {project_root}")
     if full_uninstall:
-        print(f"  • OpenAmer config/data: {hermes_home}")
-        if _is_default_hermes_home(hermes_home):
+        print(f"  • OpenAmer config/data: {openamer_home}")
+        if _is_default_openamer_home(openamer_home):
             profiles = _discover_named_profiles()
             if profiles:
                 print("  • Named profiles (interactive uninstall asks before removing):")
                 for prof in profiles:
                     print(f"    - {prof.name}: {prof.path}")
     else:
-        print(f"  • Keep OpenAmer config/data: {hermes_home}")
+        print(f"  • Keep OpenAmer config/data: {openamer_home}")
     print()
 
 
 def _perform_uninstall(
     *,
     project_root: Path,
-    hermes_home: Path,
+    openamer_home: Path,
     full_uninstall: bool,
     remove_profiles: bool,
     named_profiles: list,
@@ -748,7 +748,7 @@ def _perform_uninstall(
     paths so the destructive sequence lives in exactly one place.
 
     Steps: stop gateway → strip PATH (rc files + Windows registry) → remove the
-    ``hermes`` wrapper + node symlinks → remove the desktop Chat GUI artifacts →
+    ``openamer`` wrapper + node symlinks → remove the desktop Chat GUI artifacts →
     delete the code checkout → (Windows) remove PortableGit/Node → optionally
     wipe ``$OPENAMER_HOME`` data and named profiles on full uninstall.
     """
@@ -774,10 +774,10 @@ def _perform_uninstall(
 
     if _is_windows():
         log_info("Removing PATH entries from Windows User environment...")
-        # Expand %LOCALAPPDATA% etc. in hermes_home so the marker matching is
+        # Expand %LOCALAPPDATA% etc. in openamer_home so the marker matching is
         # against fully resolved paths — installer writes literal strings
-        # like C:\Users\<u>\AppData\Local\hermes\git\cmd, not %LOCALAPPDATA%.
-        removed_path_entries = remove_path_from_windows_registry(Path(os.path.expandvars(str(hermes_home))))
+        # like C:\Users\<u>\AppData\Local\openamer\git\cmd, not %LOCALAPPDATA%.
+        removed_path_entries = remove_path_from_windows_registry(Path(os.path.expandvars(str(openamer_home))))
         if removed_path_entries:
             for entry in removed_path_entries:
                 log_success(f"Removed from User PATH: {entry}")
@@ -785,7 +785,7 @@ def _perform_uninstall(
             log_info("No OpenAmer-owned PATH entries in User environment")
 
         log_info("Removing OPENAMER_HOME / HERMES_GIT_BASH_PATH User env vars...")
-        removed_env = remove_hermes_env_vars_windows()
+        removed_env = remove_openamer_env_vars_windows()
         if removed_env:
             for name in removed_env:
                 log_success(f"Removed User env var: {name}")
@@ -805,7 +805,7 @@ def _perform_uninstall(
     #     (only when they still point into this OpenAmer home's node dir, so we
     #     never clobber an existing nvm / user-managed Node).
     log_info("Removing OpenAmer-managed node/npm/npx symlinks...")
-    removed_node_links = remove_node_symlinks(hermes_home)
+    removed_node_links = remove_node_symlinks(openamer_home)
     if removed_node_links:
         for link in removed_node_links:
             log_success(f"Removed {link}")
@@ -818,13 +818,13 @@ def _perform_uninstall(
     #     code, so the GUI — which is just another consumer of the same
     #     checkout — should go with it. uninstall_gui() never touches config /
     #     sessions / .env, so it's safe in keep-data mode; on full uninstall the
-    #     step-5 rmtree(hermes_home) would sweep the in-tree artifacts anyway,
+    #     step-5 rmtree(openamer_home) would sweep the in-tree artifacts anyway,
     #     but the packaged app + Electron userData live OUTSIDE OPENAMER_HOME and
     #     must be cleaned explicitly here.
     log_info("Removing desktop Chat GUI artifacts...")
     try:
         from openamer_cli.gui_uninstall import uninstall_gui
-        gui_removed = uninstall_gui(hermes_home)
+        gui_removed = uninstall_gui(openamer_home)
         if not gui_removed:
             log_info("No desktop GUI artifacts found")
     except Exception as e:
@@ -837,8 +837,8 @@ def _perform_uninstall(
     # We need to be careful here
     try:
         if project_root.exists():
-            # If the install is inside ~/.hermes/, just remove the openamer-agent subdir
-            if hermes_home in project_root.parents or project_root.parent == hermes_home:
+            # If the install is inside ~/.openamer/, just remove the openamer-agent subdir
+            if openamer_home in project_root.parents or project_root.parent == openamer_home:
                 shutil.rmtree(project_root)
                 log_success(f"Removed {project_root}")
             else:
@@ -853,18 +853,18 @@ def _perform_uninstall(
     #     PortableGit, bundled Node, gateway-service dir.  Installer put them
     #     under OPENAMER_HOME but they're install tooling, not config — safe to
     #     remove even in "keep data" mode.  If we're doing a full uninstall
-    #     the step-5 rmtree(hermes_home) would sweep them anyway; calling
+    #     the step-5 rmtree(openamer_home) would sweep them anyway; calling
     #     this helper there is a no-op since they'll already be gone.
     if _is_windows():
         log_info("Removing Windows installer artifacts (PortableGit, Node, gateway-service)...")
-        removed_artifacts = remove_portable_tooling_windows(hermes_home)
+        removed_artifacts = remove_portable_tooling_windows(openamer_home)
         if removed_artifacts:
             for path in removed_artifacts:
                 log_success(f"Removed {path}")
         else:
             log_info("No Windows installer artifacts to remove")
     
-    # 5. Optionally remove ~/.hermes/ data directory (and named profiles)
+    # 5. Optionally remove ~/.openamer/ data directory (and named profiles)
     if full_uninstall:
         # 5a. Stop and remove each named profile's gateway service and
         #     alias wrapper. The profile OPENAMER_HOME dirs live under
@@ -877,14 +877,14 @@ def _perform_uninstall(
 
         log_info("Removing configuration and data...")
         try:
-            if hermes_home.exists():
-                shutil.rmtree(hermes_home)
-                log_success(f"Removed {hermes_home}")
+            if openamer_home.exists():
+                shutil.rmtree(openamer_home)
+                log_success(f"Removed {openamer_home}")
         except Exception as e:
-            log_warn(f"Could not fully remove {hermes_home}: {e}")
+            log_warn(f"Could not fully remove {openamer_home}: {e}")
             log_info("You may need to manually remove it")
     else:
-        log_info(f"Keeping configuration and data in {hermes_home}")
+        log_info(f"Keeping configuration and data in {openamer_home}")
     
     # Done
     print()
@@ -895,7 +895,7 @@ def _perform_uninstall(
     
     if not full_uninstall:
         print(color("Your configuration and data have been preserved:", Colors.CYAN))
-        print(f"  {hermes_home}/")
+        print(f"  {openamer_home}/")
         print()
         print("To reinstall later with your existing settings:")
         if _is_windows():

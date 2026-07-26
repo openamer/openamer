@@ -50,9 +50,9 @@ def _run_with_current_provider(job, current_provider, tmp_path):
     Returns (success, output, final_response, error, agent_constructed).
     """
     fake_db = MagicMock()
-    with patch("cron.scheduler._hermes_home", tmp_path), \
+    with patch("cron.scheduler._openamer_home", tmp_path), \
          patch("cron.scheduler._resolve_origin", return_value=None), \
-         patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+         patch("openamer_cli.env_loader.load_openamer_dotenv"), \
          patch("openamer_cli.env_loader.reset_secret_source_cache"), \
          patch("openamer_state.SessionDB", return_value=fake_db), \
          patch(
@@ -215,7 +215,7 @@ class TestCreateJobSnapshot:
         jobs = self._isolate_storage(monkeypatch)
         (tmp_path / "config.yaml").write_text("model:\n  default: llama-3.3-70b:free\n")
         monkeypatch.setattr(
-            "cron.jobs.get_hermes_home", lambda: tmp_path, raising=True
+            "cron.jobs.get_openamer_home", lambda: tmp_path, raising=True
         )
         with patch(
             "openamer_cli.runtime_provider.resolve_runtime_provider",
@@ -230,7 +230,7 @@ class TestCreateJobSnapshot:
         jobs = self._isolate_storage(monkeypatch)
         (tmp_path / "config.yaml").write_text("model:\n  default: llama-3.3-70b:free\n")
         monkeypatch.setattr(
-            "cron.jobs.get_hermes_home", lambda: tmp_path, raising=True
+            "cron.jobs.get_openamer_home", lambda: tmp_path, raising=True
         )
         with patch(
             "openamer_cli.runtime_provider.resolve_runtime_provider",
@@ -250,10 +250,10 @@ def _run_with_current_provider_and_model(job, current_provider, current_model, t
         f"model:\n  default: {current_model}\n"
     )
     fake_db = MagicMock()
-    with patch("cron.scheduler._hermes_home", tmp_path), \
-         patch("cron.scheduler._get_hermes_home", return_value=tmp_path), \
+    with patch("cron.scheduler._openamer_home", tmp_path), \
+         patch("cron.scheduler._get_openamer_home", return_value=tmp_path), \
          patch("cron.scheduler._resolve_origin", return_value=None), \
-         patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+         patch("openamer_cli.env_loader.load_openamer_dotenv"), \
          patch("openamer_cli.env_loader.reset_secret_source_cache"), \
          patch("openamer_state.SessionDB", return_value=fake_db), \
          patch(
@@ -356,9 +356,9 @@ class TestRuntimeResolutionTargetModel:
             }
 
         fake_db = MagicMock()
-        with patch("cron.scheduler._hermes_home", tmp_path), \
+        with patch("cron.scheduler._openamer_home", tmp_path), \
              patch("cron.scheduler._resolve_origin", return_value=None), \
-             patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+             patch("openamer_cli.env_loader.load_openamer_dotenv"), \
              patch("openamer_cli.env_loader.reset_secret_source_cache"), \
              patch("openamer_state.SessionDB", return_value=fake_db), \
              patch(

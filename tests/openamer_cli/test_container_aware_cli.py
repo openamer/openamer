@@ -24,20 +24,20 @@ from openamer_cli.config import (
 @pytest.fixture
 def container_env(tmp_path, monkeypatch):
     """Set up a fake OPENAMER_HOME with .container-mode file."""
-    hermes_home = tmp_path / ".hermes"
-    hermes_home.mkdir()
-    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+    openamer_home = tmp_path / ".openamer"
+    openamer_home.mkdir()
+    monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
     monkeypatch.delenv("HERMES_DEV", raising=False)
 
-    container_mode = hermes_home / ".container-mode"
+    container_mode = openamer_home / ".container-mode"
     container_mode.write_text(
         "# Written by NixOS activation script. Do not edit manually.\n"
         "backend=podman\n"
-        "container_name=hermes-agent\n"
-        "exec_user=hermes\n"
-        "hermes_bin=/data/current-package/bin/hermes\n"
+        "container_name=openamer-agent\n"
+        "exec_user=openamer\n"
+        "openamer_bin=/data/current-package/bin/openamer\n"
     )
-    return hermes_home
+    return openamer_home
 
 
 def test_get_container_exec_info_returns_metadata(container_env):
@@ -47,9 +47,9 @@ def test_get_container_exec_info_returns_metadata(container_env):
 
     assert info is not None
     assert info["backend"] == "podman"
-    assert info["container_name"] == "hermes-agent"
-    assert info["exec_user"] == "hermes"
-    assert info["hermes_bin"] == "/data/current-package/bin/hermes"
+    assert info["container_name"] == "openamer-agent"
+    assert info["exec_user"] == "openamer"
+    assert info["openamer_bin"] == "/data/current-package/bin/openamer"
 
 
 def test_get_container_exec_info_none_inside_container(container_env):
@@ -62,9 +62,9 @@ def test_get_container_exec_info_none_inside_container(container_env):
 
 def test_get_container_exec_info_none_without_file(tmp_path, monkeypatch):
     """Returns None when .container-mode doesn't exist (native mode)."""
-    hermes_home = tmp_path / ".hermes"
-    hermes_home.mkdir()
-    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+    openamer_home = tmp_path / ".openamer"
+    openamer_home.mkdir()
+    monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
     monkeypatch.delenv("HERMES_DEV", raising=False)
 
     with patch("openamer_constants.is_container", return_value=False):
@@ -73,7 +73,7 @@ def test_get_container_exec_info_none_without_file(tmp_path, monkeypatch):
     assert info is None
 
 
-def test_get_container_exec_info_skipped_when_hermes_dev(container_env, monkeypatch):
+def test_get_container_exec_info_skipped_when_openamer_dev(container_env, monkeypatch):
     """Returns None when HERMES_DEV=1 is set (dev mode bypass)."""
     monkeypatch.setenv("HERMES_DEV", "1")
 
@@ -83,7 +83,7 @@ def test_get_container_exec_info_skipped_when_hermes_dev(container_env, monkeypa
     assert info is None
 
 
-def test_get_container_exec_info_not_skipped_when_hermes_dev_zero(container_env, monkeypatch):
+def test_get_container_exec_info_not_skipped_when_openamer_dev_zero(container_env, monkeypatch):
     """HERMES_DEV=0 does NOT trigger bypass — only '1' does."""
     monkeypatch.setenv("HERMES_DEV", "0")
 
@@ -98,41 +98,41 @@ def test_get_container_exec_info_defaults():
     import tempfile
 
     with tempfile.TemporaryDirectory() as tmpdir:
-        hermes_home = Path(tmpdir) / ".hermes"
-        hermes_home.mkdir()
-        (hermes_home / ".container-mode").write_text(
+        openamer_home = Path(tmpdir) / ".openamer"
+        openamer_home.mkdir()
+        (openamer_home / ".container-mode").write_text(
             "# minimal file with no keys\n"
         )
 
         with patch("openamer_constants.is_container", return_value=False), \
-             patch.dict(get_container_exec_info.__globals__, {"get_hermes_home": lambda: hermes_home}), \
+             patch.dict(get_container_exec_info.__globals__, {"get_openamer_home": lambda: openamer_home}), \
              patch.dict(os.environ, {}, clear=False):
             os.environ.pop("HERMES_DEV", None)
             info = get_container_exec_info()
 
         assert info is not None
         assert info["backend"] == "docker"
-        assert info["container_name"] == "hermes-agent"
-        assert info["exec_user"] == "hermes"
-        assert info["hermes_bin"] == "/data/current-package/bin/hermes"
+        assert info["container_name"] == "openamer-agent"
+        assert info["exec_user"] == "openamer"
+        assert info["openamer_bin"] == "/data/current-package/bin/openamer"
 
 
 def test_get_container_exec_info_docker_backend(container_env):
     """Correctly reads docker backend with custom exec_user."""
     (container_env / ".container-mode").write_text(
         "backend=docker\n"
-        "container_name=hermes-custom\n"
+        "container_name=openamer-custom\n"
         "exec_user=myuser\n"
-        "hermes_bin=/opt/hermes/bin/hermes\n"
+        "openamer_bin=/opt/openamer/bin/openamer\n"
     )
 
     with patch("openamer_constants.is_container", return_value=False):
         info = get_container_exec_info()
 
     assert info["backend"] == "docker"
-    assert info["container_name"] == "hermes-custom"
+    assert info["container_name"] == "openamer-custom"
     assert info["exec_user"] == "myuser"
-    assert info["hermes_bin"] == "/opt/hermes/bin/hermes"
+    assert info["openamer_bin"] == "/opt/openamer/bin/openamer"
 
 
 def test_get_container_exec_info_crashes_on_permission_error(container_env):
@@ -152,9 +152,9 @@ def test_get_container_exec_info_crashes_on_permission_error(container_env):
 def docker_container_info():
     return {
         "backend": "docker",
-        "container_name": "hermes-agent",
-        "exec_user": "hermes",
-        "hermes_bin": "/data/current-package/bin/hermes",
+        "container_name": "openamer-agent",
+        "exec_user": "openamer",
+        "openamer_bin": "/data/current-package/bin/openamer",
     }
 
 
@@ -162,9 +162,9 @@ def docker_container_info():
 def podman_container_info():
     return {
         "backend": "podman",
-        "container_name": "hermes-agent",
-        "exec_user": "hermes",
-        "hermes_bin": "/data/current-package/bin/hermes",
+        "container_name": "openamer-agent",
+        "exec_user": "openamer",
+        "openamer_bin": "/data/current-package/bin/openamer",
     }
 
 
@@ -190,13 +190,13 @@ def test_exec_in_container_calls_execvp(docker_container_info):
     assert cmd[1] == "exec"
     assert "-it" in cmd
     idx_u = cmd.index("-u")
-    assert cmd[idx_u + 1] == "hermes"
+    assert cmd[idx_u + 1] == "openamer"
     e_indices = [i for i, v in enumerate(cmd) if v == "-e"]
     e_values = [cmd[i + 1] for i in e_indices]
     assert "TERM=xterm-256color" in e_values
     assert "LANG=en_US.UTF-8" in e_values
-    assert "hermes-agent" in cmd
-    assert "/data/current-package/bin/hermes" in cmd
+    assert "openamer-agent" in cmd
+    assert "/data/current-package/bin/openamer" in cmd
     assert "chat" in cmd
 
 

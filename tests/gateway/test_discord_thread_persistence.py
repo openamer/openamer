@@ -1,7 +1,7 @@
 """Tests for Discord thread participation persistence.
 
 Verifies that _threads (ThreadParticipationTracker) survives adapter restarts by
-being persisted to ~/.hermes/discord_threads.json.
+being persisted to ~/.openamer/discord_threads.json.
 """
 
 import json
@@ -88,7 +88,7 @@ class TestDiscordThreadPersistence:
         adapter = self._make_adapter(tmp_path)
         assert "$nonexistent" not in adapter._threads
 
-    def test_missing_hermes_home_does_not_crash(self, tmp_path):
+    def test_missing_openamer_home_does_not_crash(self, tmp_path):
         """Load/save tolerate missing directories."""
         fake_home = tmp_path / "nonexistent" / "deep"
         with patch.dict(os.environ, {"OPENAMER_HOME": str(fake_home)}):

@@ -6,7 +6,7 @@ isolating these here prevents real-Popen state from racing with the
 ``subprocess.run`` / ``_run_with_idle_timeout`` patches used by
 ``test_web_ui_build.py``.
 
-Added for issue #33788: ``hermes update`` got stuck at "webui-build" because
+Added for issue #33788: ``openamer update`` got stuck at "webui-build" because
 ``npm run build`` ran with ``capture_output=True`` and no timeout. The helper
 fixes both halves — streams output AND idle-kills the process.
 """

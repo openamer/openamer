@@ -47,9 +47,9 @@ class TestSessionDbInitTimeout:
         job = {"id": "wedged-sessiondb", "name": "test", "prompt": "hello"}
 
         try:
-            with patch("cron.scheduler._hermes_home", tmp_path), \
+            with patch("cron.scheduler._openamer_home", tmp_path), \
                  patch("cron.scheduler._resolve_origin", return_value=None), \
-                 patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+                 patch("openamer_cli.env_loader.load_openamer_dotenv"), \
                  patch("openamer_cli.env_loader.reset_secret_source_cache"), \
                  patch("openamer_state.SessionDB", side_effect=lambda: _hanging_session_db(never_set)), \
                  patch(
@@ -88,9 +88,9 @@ class TestSessionDbInitTimeout:
         fake_db = MagicMock()
         job = {"id": "bad-timeout-env", "name": "test", "prompt": "hello"}
 
-        with patch("cron.scheduler._hermes_home", tmp_path), \
+        with patch("cron.scheduler._openamer_home", tmp_path), \
              patch("cron.scheduler._resolve_origin", return_value=None), \
-             patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+             patch("openamer_cli.env_loader.load_openamer_dotenv"), \
              patch("openamer_cli.env_loader.reset_secret_source_cache"), \
              patch("openamer_state.SessionDB", return_value=fake_db), \
              patch(
@@ -135,9 +135,9 @@ class TestSessionDbInitTimeout:
         job = {"id": "config-timeout", "name": "test", "prompt": "hello"}
 
         try:
-            with patch("cron.scheduler._hermes_home", tmp_path), \
+            with patch("cron.scheduler._openamer_home", tmp_path), \
                  patch("cron.scheduler._resolve_origin", return_value=None), \
-                 patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+                 patch("openamer_cli.env_loader.load_openamer_dotenv"), \
                  patch("openamer_cli.env_loader.reset_secret_source_cache"), \
                  patch("openamer_state.SessionDB", side_effect=lambda: _hanging_session_db(never_set)), \
                  patch(
@@ -190,9 +190,9 @@ class TestDispatchGuardReleasedAfterHang:
         }
 
         try:
-            with patch("cron.scheduler._hermes_home", tmp_path), \
+            with patch("cron.scheduler._openamer_home", tmp_path), \
                  patch("cron.scheduler._resolve_origin", return_value=None), \
-                 patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+                 patch("openamer_cli.env_loader.load_openamer_dotenv"), \
                  patch("openamer_cli.env_loader.reset_secret_source_cache"), \
                  patch("openamer_state.SessionDB", side_effect=lambda: _hanging_session_db(never_set)), \
                  patch(

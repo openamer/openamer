@@ -154,7 +154,7 @@ class TestMultiplexConfigFlag:
             encoding="utf-8",
         )
 
-        monkeypatch.setattr(gateway_run, "_hermes_home", root_home)
+        monkeypatch.setattr(gateway_run, "_openamer_home", root_home)
 
         assert gateway_run._load_gateway_config()["display"]["tool_progress"] == "all"
 

@@ -22,7 +22,7 @@ Three distinct failure modes the user community hit during rollout:
    ``encrypted_content``) was briefly suppressed for ``is_xai_responses``
    in PR #26644 on the theory that xAI's OAuth/SuperGrok surface
    rejected replayed encrypted reasoning items.  That suppression was
-   reverted shortly after: xAI confirmed they explicitly want Hermes to
+   reverted shortly after: xAI confirmed they explicitly want OpenAmer to
    thread encrypted reasoning back across turns, and the original
    multi-turn failure mode was actually the prelude-SSE issue closed by
    Fix A above.  The remaining tests here lock in that xAI receives
@@ -533,7 +533,7 @@ def test_codex_reasoning_replay_includes_encrypted_content_for_xai():
 
     Earlier we stripped these on the theory that the OAuth/SuperGrok
     surface rejected them.  xAI subsequently confirmed they explicitly
-    want Hermes to thread encrypted reasoning back across turns for
+    want OpenAmer to thread encrypted reasoning back across turns for
     cross-turn coherence — that's the whole point of the partnership
     integration.
     """
@@ -1136,7 +1136,7 @@ def test_recover_with_credential_pool_still_blocks_real_entitlement():
 def test_grok_4_3_context_length_is_1m():
     """grok-4.3 ships with 1M context per docs.x.ai/developers/models/grok-4.3.
 
-    Hermes' substring-match fallback used to return 256k (from the
+    OpenAmer' substring-match fallback used to return 256k (from the
     "grok-4" catch-all) which under-reported the model's real capacity.
     """
     from agent.model_metadata import DEFAULT_CONTEXT_LENGTHS
@@ -1340,7 +1340,7 @@ def test_transport_round_trip_drops_foreign_reasoning():
 
     transport = ResponsesApiTransport()
     messages = [
-        {"role": "system", "content": "you are hermes"},
+        {"role": "system", "content": "you are openamer"},
         {"role": "user", "content": "hi"},
         _stamped_assistant_msg("xai_responses", encrypted="grok_blob"),
         {"role": "user", "content": "엑스다임 프로젝트 파악, 스킬로 정리."},
@@ -1354,7 +1354,7 @@ def test_transport_round_trip_drops_foreign_reasoning():
         is_xai_responses=False,
         is_github_responses=False,
         base_url="https://chatgpt.com/backend-api/codex",
-        instructions="you are hermes",
+        instructions="you are openamer",
     )
 
     reasoning = [it for it in kwargs["input"] if it.get("type") == "reasoning"]

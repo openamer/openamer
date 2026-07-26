@@ -154,7 +154,7 @@ def test_full_login_round_trip_unlocks_gated_api(gated_app):
     assert r1.status_code == 302
     pkce = next(
         (c for c in r1.headers.get_list("set-cookie")
-         if "hermes_session_pkce" in c),
+         if "openamer_session_pkce" in c),
         None,
     )
     assert pkce and "HttpOnly" in pkce
@@ -174,8 +174,8 @@ def test_full_login_round_trip_unlocks_gated_api(gated_app):
     assert r2.status_code == 302
     assert r2.headers["location"] == "/"
     set_cookies = r2.headers.get_list("set-cookie")
-    assert any("hermes_session_at" in c for c in set_cookies)
-    assert any("hermes_session_rt" in c for c in set_cookies)
+    assert any("openamer_session_at" in c for c in set_cookies)
+    assert any("openamer_session_rt" in c for c in set_cookies)
 
     # 3) A gated API route (``/api/sessions``) now succeeds because we
     #    have a valid session cookie. (We deliberately don't probe
@@ -193,7 +193,7 @@ def _complete_stub_login(client) -> None:
     """Walk the stub OAuth round trip so ``client`` carries a valid session.
 
     TestClient persists Set-Cookie across calls, so after this returns the
-    client's cookie jar holds ``hermes_session_at`` / ``hermes_session_rt``
+    client's cookie jar holds ``openamer_session_at`` / ``openamer_session_rt``
     and subsequent gated requests authenticate.
     """
     r1 = client.get("/auth/login?provider=stub", follow_redirects=False)
@@ -389,11 +389,11 @@ def test_logout_clears_cookies_and_redirects_to_login(gated_app):
     assert r.headers["location"] == "/login"
     set_cookies = r.headers.get_list("set-cookie")
     assert any(
-        c.startswith("hermes_session_at=") and "Max-Age=0" in c
+        c.startswith("openamer_session_at=") and "Max-Age=0" in c
         for c in set_cookies
     )
     assert any(
-        c.startswith("hermes_session_rt=") and "Max-Age=0" in c
+        c.startswith("openamer_session_rt=") and "Max-Age=0" in c
         for c in set_cookies
     )
 
@@ -507,12 +507,12 @@ def _mint_stub_at(stub: StubAuthProvider) -> str:
     ls = stub.start_login(redirect_uri="https://fly-app.fly.dev/auth/callback")
     state = dict(
         seg.split("=", 1)
-        for seg in ls.cookie_payload["hermes_session_pkce"].split(";")
+        for seg in ls.cookie_payload["openamer_session_pkce"].split(";")
         if "=" in seg
     )["state"]
     verifier = dict(
         seg.split("=", 1)
-        for seg in ls.cookie_payload["hermes_session_pkce"].split(";")
+        for seg in ls.cookie_payload["openamer_session_pkce"].split(";")
         if "=" in seg
     )["verifier"]
     session = stub.complete_login(

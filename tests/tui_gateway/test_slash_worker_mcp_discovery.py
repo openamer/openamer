@@ -30,7 +30,7 @@ def test_profile_local_mcp_tool_is_visible_in_slash_worker(tmp_path):
             mcp = FastMCP("profileprobe")
 
             @mcp.tool()
-            def hermes_61922_profile_probe() -> str:
+            def openamer_61922_profile_probe() -> str:
                 return {marker!r}
 
             if __name__ == "__main__":
@@ -95,7 +95,7 @@ def test_profile_local_mcp_tool_is_visible_in_slash_worker(tmp_path):
             pytest.fail("slash worker produced no /tools response within 10 seconds")
         response = json.loads(line)
         assert response["ok"] is True
-        assert "mcp__profileprobe__hermes_61922_profile_probe" in response["output"]
+        assert "mcp__profileprobe__openamer_61922_profile_probe" in response["output"]
     finally:
         proc.terminate()
         try:

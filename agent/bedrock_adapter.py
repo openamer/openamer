@@ -1,4 +1,4 @@
-"""AWS Bedrock Converse API adapter for Hermes Agent.
+"""AWS Bedrock Converse API adapter for OpenAmer Agent.
 
 Provides native integration with Amazon Bedrock using the Converse API,
 bypassing the OpenAI-compatible endpoint in favor of direct AWS SDK calls.
@@ -69,10 +69,10 @@ def _require_boto3():
         raise ImportError(
             "The 'boto3' package is required for the AWS Bedrock provider. "
             "Install it with: pip install boto3\n"
-            "Or install Hermes with Bedrock support: pip install -e '.[bedrock]'"
+            "Or install OpenAmer with Bedrock support: pip install -e '.[bedrock]'"
         )
     # converse() / converse_stream() were added in boto3 1.34.59.
-    # When Hermes is installed editable into system Python, the system boto3
+    # When OpenAmer is installed editable into system Python, the system boto3
     # (e.g. Ubuntu 24.04 ships 1.34.46) may take precedence over the venv
     # version pinned in pyproject.toml.
     try:

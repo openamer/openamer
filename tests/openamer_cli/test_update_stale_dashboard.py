@@ -1,6 +1,6 @@
-"""Tests for the stale-dashboard handling run at the end of ``hermes update``.
+"""Tests for the stale-dashboard handling run at the end of ``openamer update``.
 
-``hermes update`` detects ``hermes dashboard`` processes left over from the
+``openamer update`` detects ``openamer dashboard`` processes left over from the
 previous version and kills them (SIGTERM + SIGKILL grace, or ``taskkill /F``
 on Windows).  Without this, the running backend silently serves stale Python
 against a freshly-updated JS bundle, producing 401s / empty data.
@@ -113,7 +113,7 @@ class TestFindStaleDashboardPids:
                 returncode=0,
                 stdout="\n".join([
                     _ps_line(12345, "python3 -m openamer_cli.main dashboard --port 9119"),
-                    _ps_line(12346, "hermes dashboard --port 9120 --no-open"),
+                    _ps_line(12346, "openamer dashboard --port 9120 --no-open"),
                     _ps_line(12347, "python /home/x/openamer_cli/main.py dashboard"),
                 ]) + "\n",
                 stderr="",
@@ -126,7 +126,7 @@ class TestFindStaleDashboardPids:
                 returncode=0,
                 stdout="\n".join([
                     _ps_line(os.getpid(), "python3 -m openamer_cli.main dashboard"),
-                    _ps_line(12345, "hermes dashboard --port 9119"),
+                    _ps_line(12345, "openamer dashboard --port 9119"),
                 ]) + "\n",
                 stderr="",
             )
@@ -165,8 +165,8 @@ class TestFindStaleDashboardPids:
             mock_run.return_value = MagicMock(
                 returncode=0,
                 stdout="\n".join([
-                    _ps_line(99999, "grep hermes dashboard"),
-                    _ps_line(12345, "hermes dashboard --port 9119"),
+                    _ps_line(99999, "grep openamer dashboard"),
+                    _ps_line(12345, "openamer dashboard --port 9119"),
                 ]) + "\n",
                 stderr="",
             )
@@ -179,8 +179,8 @@ class TestFindStaleDashboardPids:
             mock_run.return_value = MagicMock(
                 returncode=0,
                 stdout="\n".join([
-                    "notapid hermes dashboard --bad",
-                    _ps_line(12345, "hermes dashboard --port 9119"),
+                    "notapid openamer dashboard --bad",
+                    _ps_line(12345, "openamer dashboard --port 9119"),
                     "   ",
                 ]) + "\n",
                 stderr="",
@@ -196,9 +196,9 @@ class TestFindStaleDashboardPids:
             mock_run.return_value = MagicMock(
                 returncode=0,
                 stdout="\n".join([
-                    _ps_line(11111, "hermes dashboard --port 9119"),
-                    _ps_line(22222, "hermes dashboard --port 9120"),
-                    _ps_line(33333, "hermes dashboard --port 9121"),
+                    _ps_line(11111, "openamer dashboard --port 9119"),
+                    _ps_line(22222, "openamer dashboard --port 9120"),
+                    _ps_line(33333, "openamer dashboard --port 9121"),
                 ]) + "\n",
                 stderr="",
             )
@@ -213,7 +213,7 @@ class TestFindStaleDashboardPids:
         with patch("subprocess.run") as mock_run:
             mock_run.return_value = MagicMock(
                 returncode=0,
-                stdout=_ps_line(12345, "hermes dashboard --port 9119") + "\n",
+                stdout=_ps_line(12345, "openamer dashboard --port 9119") + "\n",
                 stderr="",
             )
             pids = _find_stale_dashboard_pids(exclude_pids=None)
@@ -224,7 +224,7 @@ class TestFindStaleDashboardPids:
         with patch("subprocess.run") as mock_run:
             mock_run.return_value = MagicMock(
                 returncode=0,
-                stdout=_ps_line(12345, "hermes dashboard --port 9119") + "\n",
+                stdout=_ps_line(12345, "openamer dashboard --port 9119") + "\n",
                 stderr="",
             )
             pids = _find_stale_dashboard_pids(exclude_pids={12345})
@@ -304,7 +304,7 @@ class TestKillStaleDashboardPosix:
 
     def test_permission_error_is_reported_not_raised(self, capsys):
         """os.kill raising PermissionError (e.g. another user's process)
-        must not abort hermes update — it's reported as a failure and we
+        must not abort openamer update — it's reported as a failure and we
         move on."""
         def fake_kill(pid, sig):
             raise PermissionError("Operation not permitted")
@@ -345,15 +345,15 @@ class TestKillStaleDashboardPosix:
 
         def fake_run(args, *a, **kw):
             calls.append(list(args))
-            if args == ["systemctl", "--user", "list-unit-files", "hermes-dashboard.service", "--no-legend", "--no-pager"]:
+            if args == ["systemctl", "--user", "list-unit-files", "openamer-dashboard.service", "--no-legend", "--no-pager"]:
                 return MagicMock(returncode=0, stdout="", stderr="")
             if args[:2] == ["systemctl", "list-unit-files"]:
-                return MagicMock(returncode=0, stdout="hermes-dashboard.service enabled enabled\n", stderr="")
+                return MagicMock(returncode=0, stdout="openamer-dashboard.service enabled enabled\n", stderr="")
             if args[:2] == ["systemctl", "is-active"]:
                 return MagicMock(returncode=0, stdout="active\n", stderr="")
             if args[:2] == ["systemctl", "is-enabled"]:
                 return MagicMock(returncode=0, stdout="enabled\n", stderr="")
-            if args == ["systemctl", "restart", "hermes-dashboard.service"]:
+            if args == ["systemctl", "restart", "openamer-dashboard.service"]:
                 return MagicMock(returncode=0, stdout="", stderr="")
             raise AssertionError(f"unexpected subprocess.run call: {args}")
 
@@ -363,13 +363,13 @@ class TestKillStaleDashboardPosix:
              patch("os.kill") as kill:
             _kill_stale_dashboard_processes(restart_managed=True)
 
-        assert ["systemctl", "restart", "hermes-dashboard.service"] in calls
+        assert ["systemctl", "restart", "openamer-dashboard.service"] in calls
         find_pids.assert_not_called()
         kill.assert_not_called()
 
         out = capsys.readouterr().out
         assert "Restarting managed dashboard service" in out
-        assert "✓ restarted hermes-dashboard.service" in out
+        assert "✓ restarted openamer-dashboard.service" in out
 
     def test_user_scope_restart_never_falls_back_to_system_or_sudo(self, capsys):
         """A user unit is discovered and restarted through ``systemctl --user``."""
@@ -377,13 +377,13 @@ class TestKillStaleDashboardPosix:
 
         def fake_run(args, *a, **kw):
             calls.append(list(args))
-            if args == ["systemctl", "--user", "list-unit-files", "hermes-dashboard.service", "--no-legend", "--no-pager"]:
-                return MagicMock(returncode=0, stdout="hermes-dashboard.service enabled enabled\n", stderr="")
-            if args == ["systemctl", "--user", "is-active", "hermes-dashboard.service"]:
+            if args == ["systemctl", "--user", "list-unit-files", "openamer-dashboard.service", "--no-legend", "--no-pager"]:
+                return MagicMock(returncode=0, stdout="openamer-dashboard.service enabled enabled\n", stderr="")
+            if args == ["systemctl", "--user", "is-active", "openamer-dashboard.service"]:
                 return MagicMock(returncode=0, stdout="active\n", stderr="")
-            if args == ["systemctl", "--user", "is-enabled", "hermes-dashboard.service"]:
+            if args == ["systemctl", "--user", "is-enabled", "openamer-dashboard.service"]:
                 return MagicMock(returncode=0, stdout="enabled\n", stderr="")
-            if args == ["systemctl", "--user", "restart", "hermes-dashboard.service"]:
+            if args == ["systemctl", "--user", "restart", "openamer-dashboard.service"]:
                 return MagicMock(returncode=0, stdout="", stderr="")
             raise AssertionError(f"unexpected subprocess.run call: {args}")
 
@@ -393,15 +393,15 @@ class TestKillStaleDashboardPosix:
             _kill_stale_dashboard_processes(restart_managed=True)
 
         assert calls == [
-            ["systemctl", "--user", "list-unit-files", "hermes-dashboard.service", "--no-legend", "--no-pager"],
-            ["systemctl", "--user", "is-active", "hermes-dashboard.service"],
-            ["systemctl", "--user", "is-enabled", "hermes-dashboard.service"],
-            ["systemctl", "--user", "restart", "hermes-dashboard.service"],
+            ["systemctl", "--user", "list-unit-files", "openamer-dashboard.service", "--no-legend", "--no-pager"],
+            ["systemctl", "--user", "is-active", "openamer-dashboard.service"],
+            ["systemctl", "--user", "is-enabled", "openamer-dashboard.service"],
+            ["systemctl", "--user", "restart", "openamer-dashboard.service"],
         ]
         assert all(call[:1] != ["sudo"] and call[:2] != ["systemctl"] for call in calls)
         find_pids.assert_not_called()
         kill.assert_not_called()
-        assert "✓ restarted hermes-dashboard.service" in capsys.readouterr().out
+        assert "✓ restarted openamer-dashboard.service" in capsys.readouterr().out
 
     def test_user_scope_restart_failure_does_not_try_system_or_sudo(self):
         """A failed user-manager restart remains fail-closed and never raw-kills."""
@@ -409,13 +409,13 @@ class TestKillStaleDashboardPosix:
 
         def fake_run(args, *a, **kw):
             calls.append(list(args))
-            if args == ["systemctl", "--user", "list-unit-files", "hermes-dashboard.service", "--no-legend", "--no-pager"]:
-                return MagicMock(returncode=0, stdout="hermes-dashboard.service enabled enabled\n", stderr="")
-            if args[-2:] == ["is-active", "hermes-dashboard.service"]:
+            if args == ["systemctl", "--user", "list-unit-files", "openamer-dashboard.service", "--no-legend", "--no-pager"]:
+                return MagicMock(returncode=0, stdout="openamer-dashboard.service enabled enabled\n", stderr="")
+            if args[-2:] == ["is-active", "openamer-dashboard.service"]:
                 return MagicMock(returncode=0, stdout="active\n", stderr="")
-            if args[-2:] == ["is-enabled", "hermes-dashboard.service"]:
+            if args[-2:] == ["is-enabled", "openamer-dashboard.service"]:
                 return MagicMock(returncode=0, stdout="enabled\n", stderr="")
-            if args[-2:] == ["restart", "hermes-dashboard.service"]:
+            if args[-2:] == ["restart", "openamer-dashboard.service"]:
                 return MagicMock(returncode=1, stdout="", stderr="user manager unavailable")
             raise AssertionError(f"unexpected subprocess.run call: {args}")
 
@@ -424,25 +424,25 @@ class TestKillStaleDashboardPosix:
              patch("os.kill") as kill:
             _kill_stale_dashboard_processes(restart_managed=True)
 
-        assert calls[-1] == ["systemctl", "--user", "restart", "hermes-dashboard.service"]
-        assert not any(call[:1] == ["sudo"] or call == ["systemctl", "restart", "hermes-dashboard.service"] for call in calls)
+        assert calls[-1] == ["systemctl", "--user", "restart", "openamer-dashboard.service"]
+        assert not any(call[:1] == ["sudo"] or call == ["systemctl", "restart", "openamer-dashboard.service"] for call in calls)
         find_pids.assert_not_called()
         kill.assert_not_called()
 
     def test_managed_dashboard_restart_failure_does_not_raw_kill(self, capsys):
         """If systemd restart cannot run, print the fix and do not kill the PID."""
         def fake_run(args, *a, **kw):
-            if args == ["systemctl", "--user", "list-unit-files", "hermes-dashboard.service", "--no-legend", "--no-pager"]:
+            if args == ["systemctl", "--user", "list-unit-files", "openamer-dashboard.service", "--no-legend", "--no-pager"]:
                 return MagicMock(returncode=0, stdout="", stderr="")
             if args[:2] == ["systemctl", "list-unit-files"]:
-                return MagicMock(returncode=0, stdout="hermes-dashboard.service enabled enabled\n", stderr="")
+                return MagicMock(returncode=0, stdout="openamer-dashboard.service enabled enabled\n", stderr="")
             if args[:2] == ["systemctl", "is-active"]:
                 return MagicMock(returncode=0, stdout="active\n", stderr="")
             if args[:2] == ["systemctl", "is-enabled"]:
                 return MagicMock(returncode=0, stdout="enabled\n", stderr="")
-            if args == ["systemctl", "restart", "hermes-dashboard.service"]:
+            if args == ["systemctl", "restart", "openamer-dashboard.service"]:
                 return MagicMock(returncode=1, stdout="", stderr="Interactive authentication required.\n")
-            if args == ["sudo", "-n", "systemctl", "restart", "hermes-dashboard.service"]:
+            if args == ["sudo", "-n", "systemctl", "restart", "openamer-dashboard.service"]:
                 return MagicMock(returncode=1, stdout="", stderr="a password is required\n")
             raise AssertionError(f"unexpected subprocess.run call: {args}")
 
@@ -456,9 +456,9 @@ class TestKillStaleDashboardPosix:
         kill.assert_not_called()
 
         out = capsys.readouterr().out
-        assert "failed to restart hermes-dashboard.service" in out
+        assert "failed to restart openamer-dashboard.service" in out
         assert "not raw-killing its PID" in out
-        assert "sudo systemctl restart hermes-dashboard.service" in out
+        assert "sudo systemctl restart openamer-dashboard.service" in out
 
 
 class TestKillStaleDashboardWindows:
@@ -516,7 +516,7 @@ class TestBackCompatAlias:
 
 class TestWindowsWmicEncoding:
     """Regression tests for #17049 — the Windows wmic branch must not crash
-    `hermes update` on non-UTF-8 system locales (e.g. cp936 on zh-CN).
+    `openamer update` on non-UTF-8 system locales (e.g. cp936 on zh-CN).
     """
 
     def test_wmic_invoked_with_utf8_ignore_errors(self, monkeypatch):
@@ -554,7 +554,7 @@ class TestWindowsWmicEncoding:
         is what Python 3.11 leaves behind when the reader thread silently
         crashed on UnicodeDecodeError before this fix landed — detection
         must short-circuit instead of raising AttributeError on
-        ``None.split('\\n')`` and aborting `hermes update` (#17049)."""
+        ``None.split('\\n')`` and aborting `openamer update` (#17049)."""
         monkeypatch.setattr(sys, "platform", "win32")
         with patch("subprocess.run") as mock_run:
             mock_run.return_value = MagicMock(

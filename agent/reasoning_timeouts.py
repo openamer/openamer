@@ -1,7 +1,7 @@
 """Per-reasoning-model stale-timeout floor for known reasoning models.
 
 Reasoning models (those that emit extended thinking blocks before their
-first content token) routinely exceed Hermes's default chat-model
+first content token) routinely exceed OpenAmer's default chat-model
 stale detectors:
 
 * Stream stale detector:   ``HERMES_STREAM_STALE_TIMEOUT``     default 180s

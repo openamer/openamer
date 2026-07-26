@@ -5,7 +5,7 @@ Provides PID-file based detection of whether the gateway daemon is running,
 used by send_message's check_fn to gate availability in the CLI.
 
 The PID file lives at ``{OPENAMER_HOME}/gateway.pid``.  OPENAMER_HOME defaults to
-``~/.hermes`` but can be overridden via the environment variable.  This means
+``~/.openamer`` but can be overridden via the environment variable.  This means
 separate OPENAMER_HOME directories naturally get separate PID files — a property
 that will be useful when we add named profiles (multiple agents running
 concurrently under distinct configurations).
@@ -23,7 +23,7 @@ import threading
 import time
 from datetime import datetime, timezone
 from pathlib import Path
-from openamer_constants import get_openamer_home, _get_platform_default_hermes_home
+from openamer_constants import get_openamer_home, _get_platform_default_openamer_home
 from typing import Any, NamedTuple, Optional
 from utils import atomic_json_write
 
@@ -32,7 +32,7 @@ if sys.platform == "win32":
 else:
     import fcntl
 
-_GATEWAY_KIND = "hermes-gateway"
+_GATEWAY_KIND = "openamer-gateway"
 _RUNTIME_STATUS_FILE = "gateway_state.json"
 _LOCKS_DIRNAME = "gateway-locks"
 _IS_WINDOWS = sys.platform == "win32"
@@ -126,7 +126,7 @@ def record_start_and_check_storm(
         return None
 
 
-def _get_process_hermes_home() -> Path:
+def _get_process_openamer_home() -> Path:
     """Return the process-level OPENAMER_HOME, skipping context-local overrides.
 
     Gateway identity files (PID, lock, runtime status, takeover/stop markers)
@@ -139,24 +139,24 @@ def _get_process_hermes_home() -> Path:
     val = os.environ.get("OPENAMER_HOME", "").strip()
     if val:
         return Path(val)
-    return _get_platform_default_hermes_home()
+    return _get_platform_default_openamer_home()
 
 
-def _canonical_hermes_home(path: Path | str) -> Path:
+def _canonical_openamer_home(path: Path | str) -> Path:
     """Return a stable absolute OPENAMER_HOME path for persisted identity data."""
     return Path(path).expanduser().resolve(strict=False)
 
 
-def _same_hermes_home(left: Path | str, right: Path | str) -> bool:
+def _same_openamer_home(left: Path | str, right: Path | str) -> bool:
     """Compare OPENAMER_HOME paths with the host platform's case semantics."""
-    return os.path.normcase(str(_canonical_hermes_home(left))) == os.path.normcase(
-        str(_canonical_hermes_home(right))
+    return os.path.normcase(str(_canonical_openamer_home(left))) == os.path.normcase(
+        str(_canonical_openamer_home(right))
     )
 
 
 def _get_pid_path() -> Path:
     """Return the path to the gateway PID file, respecting OPENAMER_HOME."""
-    home = _get_process_hermes_home()
+    home = _get_process_openamer_home()
     return home / "gateway.pid"
 
 
@@ -164,7 +164,7 @@ def _get_gateway_lock_path(pid_path: Optional[Path] = None) -> Path:
     """Return the path to the runtime gateway lock file."""
     if pid_path is not None:
         return pid_path.with_name(_GATEWAY_LOCK_FILENAME)
-    home = _get_process_hermes_home()
+    home = _get_process_openamer_home()
     return home / _GATEWAY_LOCK_FILENAME
 
 
@@ -179,14 +179,14 @@ def _get_lock_dir() -> Path:
     if override:
         return Path(override)
     state_home = Path(os.getenv("XDG_STATE_HOME", Path.home() / ".local" / "state"))
-    return state_home / "hermes" / _LOCKS_DIRNAME
+    return state_home / "openamer" / _LOCKS_DIRNAME
 
 
 def _utc_now_iso() -> str:
     return datetime.now(timezone.utc).isoformat()
 
 
-# Reject epoch values before 2000-01-01T00:00:00Z: nothing in Hermes' lifetime
+# Reject epoch values before 2000-01-01T00:00:00Z: nothing in OpenAmer' lifetime
 # legitimately produced a gateway heartbeat last century, so anything older is
 # a corrupt or hand-edited state file (e.g. an accidental 0 / tiny int).
 _EPOCH_MIN_PLAUSIBLE = 946684800.0  # 2000-01-01T00:00:00Z
@@ -366,7 +366,7 @@ def _read_process_cmdline(pid: int) -> Optional[str]:
 
 
 def _gateway_command_subcommand(command: str | None) -> str | None:
-    """Return the Hermes gateway lifecycle subcommand from a command line.
+    """Return the OpenAmer gateway lifecycle subcommand from a command line.
 
     Lifecycle decisions (is the gateway up? did restart relaunch it?) must not
     fire on loose substring matches.  The previous ``"... gateway" in cmdline``
@@ -379,8 +379,8 @@ def _gateway_command_subcommand(command: str | None) -> str | None:
     word "gateway".
 
     Tokenizes quote-aware (``shlex``) so quoted Windows paths with spaces
-    (``"C:\\Program Files\\...\\hermes-gateway.exe"``) survive, and strips
-    ``--profile``/``-p`` selectors from anywhere in argv -- Hermes's
+    (``"C:\\Program Files\\...\\openamer-gateway.exe"``) survive, and strips
+    ``--profile``/``-p`` selectors from anywhere in argv -- OpenAmer's
     ``_apply_profile_override`` removes them before argparse, so the profile
     flag (and a profile literally named ``gateway``) can legally appear on
     either side of the ``gateway`` subcommand.
@@ -402,14 +402,14 @@ def _gateway_command_subcommand(command: str | None) -> str | None:
         if token == "gateway/run.py" or token.endswith("/gateway/run.py"):
             return "run"
         basename = token.rsplit("/", 1)[-1]
-        if basename in ("hermes-gateway", "hermes-gateway.exe"):
+        if basename in ("openamer-gateway", "openamer-gateway.exe"):
             return "run"
 
     joined = " ".join(tokens)
     has_gateway_entry = (
         "openamer_cli.main" in joined
         or "openamer_cli/main.py" in joined
-        or any(t.rsplit("/", 1)[-1] in ("hermes", "hermes.exe") for t in tokens)
+        or any(t.rsplit("/", 1)[-1] in ("openamer", "openamer.exe") for t in tokens)
     )
     if not has_gateway_entry:
         return None
@@ -434,7 +434,7 @@ def _gateway_command_subcommand(command: str | None) -> str | None:
         if token != "gateway":
             continue
         if i + 1 >= len(filtered):
-            return "run"  # bare `hermes gateway` defaults to `run`
+            return "run"  # bare `openamer gateway` defaults to `run`
         return filtered[i + 1]
     return None
 
@@ -452,14 +452,14 @@ def looks_like_gateway_runtime_command_line(command: str | None) -> bool:
     fallback executes ``run_gateway()`` in that same process, so its argv stays
     as ``gateway restart`` while it owns the webhook port and writes runtime
     state. Keep the public ``looks_like_gateway_command_line()`` strict, and
-    use this broader matcher only when validating Hermes-owned runtime records
+    use this broader matcher only when validating OpenAmer-owned runtime records
     or no-supervisor cleanup scans.
     """
     return _gateway_command_subcommand(command) in {"run", "restart"}
 
 
 def _looks_like_gateway_process(pid: int) -> bool:
-    """Return True when the live PID still looks like the Hermes gateway."""
+    """Return True when the live PID still looks like the OpenAmer gateway."""
     cmdline = _read_process_cmdline(pid)
     if not cmdline:
         return False
@@ -483,7 +483,7 @@ def _profile_name_for_home(profile_home: Path) -> Optional[str]:
     """Return the profile id a OPENAMER_HOME directory represents, or None.
 
     A named profile's home is ``<root>/profiles/<name>`` (immediate parent is
-    ``profiles``).  The root/default home (``~/.hermes`` or ``$OPENAMER_HOME``)
+    ``profiles``).  The root/default home (``~/.openamer`` or ``$OPENAMER_HOME``)
     has no such parent, so it maps to the default profile (``None`` here, which
     callers treat as "the bare, flag-less gateway").
     """
@@ -514,7 +514,7 @@ def _command_line_belongs_to_profile(command: str, profile_home: Path) -> bool:
         return (
             f"--profile {profile_lc}" in command_lc
             or f"-p {profile_lc}" in command_lc
-            or f"hermes_home={home_lc}" in command_lc
+            or f"openamer_home={home_lc}" in command_lc
         )
 
     # Default/root profile: the gateway runs with no profile flag. Accept unless
@@ -524,7 +524,7 @@ def _command_line_belongs_to_profile(command: str, profile_home: Path) -> bool:
     # absence is not disqualifying — only a conflicting explicit value is.
     if "--profile " in command_lc or " -p " in command_lc:
         return False
-    if "hermes_home=" in command_lc and f"hermes_home={home_lc}" not in command_lc:
+    if "openamer_home=" in command_lc and f"openamer_home={home_lc}" not in command_lc:
         return False
     return True
 
@@ -571,7 +571,7 @@ def _build_pid_record() -> dict:
         # OPENAMER_HOME-local.  Persist the owning gateway's process home so an
         # explicit cross-profile --replace can place its planned-takeover
         # marker where the target process will actually read it.
-        "hermes_home": str(_canonical_hermes_home(_get_process_hermes_home())),
+        "openamer_home": str(_canonical_openamer_home(_get_process_openamer_home())),
     }
 
 
@@ -1005,7 +1005,7 @@ def write_runtime_status(
         payload["active_agents"] = parse_active_agents(active_agents)
     if served_profiles is not _UNSET:
         # Profiles this gateway multiplexes (multi-profile mode). Absent/empty
-        # for a single-profile gateway. Lets `hermes status` show per-profile
+        # for a single-profile gateway. Lets `openamer status` show per-profile
         # coverage without a second probe.
         payload["served_profiles"] = list(served_profiles or [])
 
@@ -1412,7 +1412,7 @@ def release_all_scoped_locks(
 # unexpected kills — but that also means a --replace takeover target
 # exits 1, which tricks systemd into reviving it 30 seconds later,
 # starting a flap loop against the replacer when both services are
-# enabled in the user's systemd (e.g. ``hermes.service`` + ``hermes-
+# enabled in the user's systemd (e.g. ``openamer.service`` + ``openamer-
 # gateway.service``).
 #
 # The takeover marker breaks the loop: the replacer writes a short-lived
@@ -1429,19 +1429,19 @@ _PLANNED_STOP_MARKER_FILENAME = ".gateway-planned-stop.json"
 _PLANNED_STOP_MARKER_TTL_S = 60
 
 
-def _get_takeover_marker_path(hermes_home: Optional[Path] = None) -> Path:
+def _get_takeover_marker_path(openamer_home: Optional[Path] = None) -> Path:
     """Return the path to the --replace takeover marker file.
 
-    ``hermes_home`` is supplied only for a verified cross-home handoff.  The
+    ``openamer_home`` is supplied only for a verified cross-home handoff.  The
     target process always consumes the marker from its own process-level home.
     """
-    home = hermes_home or _get_process_hermes_home()
-    return _canonical_hermes_home(home) / _TAKEOVER_MARKER_FILENAME
+    home = openamer_home or _get_process_openamer_home()
+    return _canonical_openamer_home(home) / _TAKEOVER_MARKER_FILENAME
 
 
 def _get_planned_stop_marker_path() -> Path:
     """Return the path to the intentional gateway stop marker file."""
-    home = _get_process_hermes_home()
+    home = _get_process_openamer_home()
     return home / _PLANNED_STOP_MARKER_FILENAME
 
 
@@ -1488,16 +1488,16 @@ def _consume_pid_marker_for_self(
     # ensuring a marker accidentally written into another profile's directory
     # is ignored.  Legacy markers have no target field, so retain the original
     # same-replacer-home rule for backwards compatibility.
-    our_home = _get_process_hermes_home()
-    target_home = record.get("target_hermes_home")
+    our_home = _get_process_openamer_home()
+    target_home = record.get("target_openamer_home")
     if target_home is not None:
-        if not isinstance(target_home, str) or not _same_hermes_home(
+        if not isinstance(target_home, str) or not _same_openamer_home(
             target_home, our_home
         ):
             return False
     else:
-        replacer_home = record.get("replacer_hermes_home")
-        if replacer_home is not None and not _same_hermes_home(
+        replacer_home = record.get("replacer_openamer_home")
+        if replacer_home is not None and not _same_openamer_home(
             replacer_home, our_home
         ):
             return False
@@ -1509,7 +1509,7 @@ def _consume_pid_marker_for_self(
     # platforms without ``/proc`` (macOS, native Windows — the very
     # platform the planned-stop watcher exists for). Requiring a non-None
     # match there would make every consume return False, so a legitimate
-    # ``hermes gateway stop`` on Windows would be misclassified as an
+    # ``openamer gateway stop`` on Windows would be misclassified as an
     # unexpected ``UNKNOWN`` exit (exit 1) and revived by the service
     # manager. So: when both start_times are known they must match; when
     # either is unknown, fall back to PID equality alone (bounded by the
@@ -1554,18 +1554,18 @@ def write_takeover_marker(
     without recognizing the handoff.
     """
     try:
-        marker_home = _canonical_hermes_home(
-            target_home or _get_process_hermes_home()
+        marker_home = _canonical_openamer_home(
+            target_home or _get_process_openamer_home()
         )
         if target_start_time is _UNSET:
             target_start_time = _get_process_start_time(target_pid)
         record = {
             "target_pid": target_pid,
             "target_start_time": target_start_time,
-            "target_hermes_home": str(marker_home),
+            "target_openamer_home": str(marker_home),
             "replacer_pid": os.getpid(),
-            "replacer_hermes_home": str(
-                _canonical_hermes_home(_get_process_hermes_home())
+            "replacer_openamer_home": str(
+                _canonical_openamer_home(_get_process_openamer_home())
             ),
             "written_at": _utc_now_iso(),
         }
@@ -1628,12 +1628,12 @@ def _validated_scoped_lock_gateway_owner(
     if not isinstance(owner_start_time, int) or isinstance(owner_start_time, bool):
         return None
 
-    raw_home = record.get("hermes_home")
+    raw_home = record.get("openamer_home")
     if not isinstance(raw_home, str) or not raw_home.strip():
         return None
     if not Path(raw_home).expanduser().is_absolute():
         return None
-    target_home = _canonical_hermes_home(raw_home)
+    target_home = _canonical_openamer_home(raw_home)
 
     if not _pid_exists(owner_pid):
         return None
@@ -1657,8 +1657,8 @@ def _validated_scoped_lock_gateway_owner(
     if pid_record_pid != owner_pid or pid_record.get("start_time") != owner_start_time:
         return None
 
-    pid_record_home = pid_record.get("hermes_home")
-    if not isinstance(pid_record_home, str) or not _same_hermes_home(
+    pid_record_home = pid_record.get("openamer_home")
+    if not isinstance(pid_record_home, str) or not _same_openamer_home(
         pid_record_home, target_home
     ):
         return None

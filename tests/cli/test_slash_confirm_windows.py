@@ -25,10 +25,10 @@ import pytest
 
 
 def _make_cli():
-    """Minimal HermesCLI shell exposing the prompt/modal helpers."""
+    """Minimal OpenAmerCLI shell exposing the prompt/modal helpers."""
     import cli as cli_mod
 
-    obj = object.__new__(cli_mod.HermesCLI)
+    obj = object.__new__(cli_mod.OpenAmerCLI)
     obj._app = MagicMock()
     obj._app.loop = MagicMock()
     obj._status_bar_visible = True

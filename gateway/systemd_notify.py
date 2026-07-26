@@ -112,7 +112,7 @@ class SystemdWatchdog:
         self._stopping = False
         self._unhealthy = False
         self._stopping_notified = False
-        self._task = asyncio.create_task(self._run(), name="hermes-systemd-watchdog")
+        self._task = asyncio.create_task(self._run(), name="openamer-systemd-watchdog")
         return True
 
     def ready(self, status: str = "Gateway running") -> bool:

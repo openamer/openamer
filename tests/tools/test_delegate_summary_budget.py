@@ -42,7 +42,7 @@ def test_small_summaries_pass_through_untouched():
 def test_batch_overflow_trimmed_and_spilled_losslessly(monkeypatch):
     # Isolate spill directory to a temp OPENAMER_HOME.
     with tempfile.TemporaryDirectory() as td:
-        monkeypatch.setenv("OPENAMER_HOME", os.path.join(td, ".hermes"))
+        monkeypatch.setenv("OPENAMER_HOME", os.path.join(td, ".openamer"))
         # Distinct head + tail markers so we can prove the tail survives.
         big = "HEAD_MARKER\n" + ("X" * 50_000) + "\nTAIL_MARKER"
         # Parent nearly full (120k/131k) → tiny headroom → aggressive trim.
@@ -98,7 +98,7 @@ def test_unknown_context_falls_back_to_static_ceiling(monkeypatch):
 
     # But the static delegation.max_summary_chars ceiling still trims.
     with tempfile.TemporaryDirectory() as td:
-        monkeypatch.setenv("OPENAMER_HOME", os.path.join(td, ".hermes"))
+        monkeypatch.setenv("OPENAMER_HOME", os.path.join(td, ".openamer"))
         results = [{"task_index": 0, "summary": "Y" * 40_000, "status": "completed"}]
         dt._apply_summary_budget(results, _Bare())
         assert results[0]["summary_truncated"] is True

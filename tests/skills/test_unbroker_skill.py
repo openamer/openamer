@@ -15,14 +15,14 @@ import sys
 import tempfile
 from pathlib import Path
 
-# Resolve the skill's scripts dir across layouts: standalone dev repo (tests/) and hermes-agent
+# Resolve the skill's scripts dir across layouts: standalone dev repo (tests/) and openamer-agent
 # (tests/skills/ -> optional-skills/security/unbroker/scripts).
 _HERE = Path(__file__).resolve()
 _REL = ("optional-skills", "security", "unbroker", "scripts")
 _CANDIDATES = [
     _HERE.parent.parent / "skill" / "scripts",           # standalone dev repo
     _HERE.parent.parent.joinpath(*_REL),                 # standalone layout
-    _HERE.parent.parent.parent.joinpath(*_REL),          # hermes-agent (tests/skills/)
+    _HERE.parent.parent.parent.joinpath(*_REL),          # openamer-agent (tests/skills/)
 ]
 SCRIPTS = next((c for c in _CANDIDATES if (c / "pdd.py").exists()), _CANDIDATES[0])
 sys.path.insert(0, str(SCRIPTS))
@@ -503,7 +503,7 @@ def test_cdp_launch_command_has_debug_flags():
     assert "--no-first-run" in cmd
 
 
-def test_cdp_default_profile_uses_hermes_home():
+def test_cdp_default_profile_uses_openamer_home():
     prev = os.environ.get("OPENAMER_HOME")
     with tempfile.TemporaryDirectory() as d:
         os.environ["OPENAMER_HOME"] = d

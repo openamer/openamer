@@ -68,7 +68,7 @@ def test_plugin_engine_gets_context_length_on_init():
 
 
 def test_active_context_engine_tools_survive_explicit_platform_toolsets():
-    """LCM-style recovery tools must survive saved `hermes tools` lists."""
+    """LCM-style recovery tools must survive saved `openamer tools` lists."""
     engine = _ToolEngine()
     cfg = {
         "context": {"engine": "stub"},

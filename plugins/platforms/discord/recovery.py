@@ -22,13 +22,13 @@ _RETENTION_DAYS = 30
 class DiscordRecoveryStore:
     """Small profile-scoped SQLite ledger for completed Discord messages."""
 
-    def __init__(self, hermes_home: Path | None = None) -> None:
+    def __init__(self, openamer_home: Path | None = None) -> None:
         self._lock = threading.Lock()
         self._initialized = False
-        self._hermes_home = Path(hermes_home or get_openamer_home())
+        self._openamer_home = Path(openamer_home or get_openamer_home())
 
     def path(self) -> Path:
-        directory = self._hermes_home / "gateway"
+        directory = self._openamer_home / "gateway"
         directory.mkdir(parents=True, exist_ok=True)
         return directory / _DB_FILENAME
 

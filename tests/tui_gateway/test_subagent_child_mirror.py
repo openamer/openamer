@@ -21,7 +21,7 @@ def server():
         "sys.modules",
         {
             "openamer_constants": MagicMock(
-                get_hermes_home=MagicMock(return_value="/tmp/hermes_test_child_mirror")
+                get_openamer_home=MagicMock(return_value="/tmp/openamer_test_child_mirror")
             ),
             "openamer_cli.env_loader": MagicMock(),
             "openamer_cli.banner": MagicMock(),

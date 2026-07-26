@@ -590,7 +590,7 @@ class TestDisabledPluginDiagnostic:
             err = result["error"]
             assert "disabled" in err
             assert "web/firecrawl" in err
-            assert "hermes plugins enable" in err
+            assert "openamer plugins enable" in err
             # Must NOT tell them to set extract_backend (already set)
             assert "Set web.extract_backend to firecrawl" not in err
         finally:

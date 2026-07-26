@@ -446,7 +446,7 @@ class RelayAdapter(BasePlatformAdapter):
                 event = self._discord_interaction_to_event(forward)
                 if event is not None:
                     self._capture_scope(event)
-                    # Phase 3: a component press carrying a Hermes prompt token
+                    # Phase 3: a component press carrying a OpenAmer prompt token
                     # resolves its waiting primitive and is consumed (same
                     # gate as _on_inbound's prompt_response arm).
                     if await self._consume_prompt_response(event):
@@ -520,7 +520,7 @@ class RelayAdapter(BasePlatformAdapter):
         )
         event = MessageEvent(text=text, message_type=message_type, source=source)
         if itype == 3:
-            # Phase 3: a component press whose custom_id is a Hermes prompt
+            # Phase 3: a component press whose custom_id is a OpenAmer prompt
             # token (hp1:<prompt_id>:<option_id>) becomes a STRUCTURED prompt
             # answer — _on_inbound's _consume_prompt_response then resolves
             # the waiting approval/confirm/clarify, replacing the bare-
@@ -548,7 +548,7 @@ class RelayAdapter(BasePlatformAdapter):
 
         Mirrors the connector's promptCodec.decodePromptCallback (the token
         alphabet is [A-Za-z0-9_.-], ≤32 per id) so both ends agree on what is
-        — and is not — a Hermes prompt answer.
+        — and is not — a OpenAmer prompt answer.
         """
         import re
 

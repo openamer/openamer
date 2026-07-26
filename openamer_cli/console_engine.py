@@ -147,7 +147,7 @@ def _format_job(job: dict, action: str) -> str:
 
 
 def _parser_root() -> tuple[_ArgumentParser, argparse._SubParsersAction]:
-    parser = _ArgumentParser(prog="hermes", add_help=False)
+    parser = _ArgumentParser(prog="openamer", add_help=False)
     subparsers = parser.add_subparsers(dest="_console_command")
     return parser, subparsers
 
@@ -494,7 +494,7 @@ class OpenAmerConsoleEngine:
 
         try:
             tokens = _split_line(raw_line)
-            if tokens and tokens[0] == "hermes":
+            if tokens and tokens[0] == "openamer":
                 tokens = tokens[1:]
             if not tokens:
                 return self._help_result()
@@ -1599,7 +1599,7 @@ def run_console_repl(
 
     while True:
         if interactive:
-            print("hermes> ", end="", file=stdout, flush=True)
+            print("openamer> ", end="", file=stdout, flush=True)
         line = stdin.readline()
         if line == "":
             if interactive:

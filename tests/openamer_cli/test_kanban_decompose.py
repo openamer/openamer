@@ -1,4 +1,4 @@
-"""Tests for the decomposer module + `hermes kanban decompose` CLI surface.
+"""Tests for the decomposer module + `openamer kanban decompose` CLI surface.
 
 The auxiliary LLM client is mocked — no network calls. Tests exercise the
 prompt plumbing, response parsing, DB writes (via the real DB helper),
@@ -19,7 +19,7 @@ from openamer_cli import kanban_decompose as decomp
 
 @pytest.fixture
 def kanban_home(tmp_path, monkeypatch):
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
     monkeypatch.setattr(Path, "home", lambda: tmp_path)

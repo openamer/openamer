@@ -711,7 +711,7 @@ def _find_pses_bundle(ctx: ServerContext) -> Optional[str]:
     if env_path:
         candidates.append(env_path)
     home = os.environ.get("OPENAMER_HOME") or os.path.join(
-        os.path.expanduser("~"), ".hermes"
+        os.path.expanduser("~"), ".openamer"
     )
     candidates.append(os.path.join(home, "lsp", "PowerShellEditorServices"))
 
@@ -760,16 +760,16 @@ def _spawn_powershell_es(root: str, ctx: ServerContext) -> Optional[SpawnSpec]:
     )
     # Session details file: PSES writes connection info here on startup.
     session_path = os.path.join(
-        hermes_lsp_session_dir(), f"pses-session-{os.getpid()}.json"
+        openamer_lsp_session_dir(), f"pses-session-{os.getpid()}.json"
     )
-    log_path = os.path.join(hermes_lsp_session_dir(), "pses.log")
+    log_path = os.path.join(openamer_lsp_session_dir(), "pses.log")
     inner = (
         f"& '{start_script}' "
         f"-BundledModulesPath '{bundle}' "
         f"-LogPath '{log_path}' "
         f"-SessionDetailsPath '{session_path}' "
         f"-FeatureFlags @() -AdditionalModules @() "
-        f"-HostName Hermes -HostProfileId hermes -HostVersion 1.0.0 "
+        f"-HostName OpenAmer -HostProfileId openamer -HostVersion 1.0.0 "
         f"-Stdio -LogLevel Normal"
     )
     return SpawnSpec(
@@ -794,10 +794,10 @@ def _spawn_powershell_es(root: str, ctx: ServerContext) -> Optional[SpawnSpec]:
     )
 
 
-def hermes_lsp_session_dir() -> str:
+def openamer_lsp_session_dir() -> str:
     """Return (and create) the dir for PSES session/log scratch files."""
     home = os.environ.get("OPENAMER_HOME") or os.path.join(
-        os.path.expanduser("~"), ".hermes"
+        os.path.expanduser("~"), ".openamer"
     )
     d = os.path.join(home, "lsp", "pses")
     os.makedirs(d, exist_ok=True)

@@ -175,7 +175,7 @@ class TestCollectProfileGatewayTopology:
 
 class TestStatusEndpointTopology:
     @pytest.fixture(autouse=True)
-    def _setup_client(self, monkeypatch, _isolate_hermes_home):
+    def _setup_client(self, monkeypatch, _isolate_openamer_home):
         try:
             from starlette.testclient import TestClient
         except ImportError:
@@ -210,7 +210,7 @@ class TestStatusEndpointTopology:
 
     def test_profile_names_and_mode_public_when_auth_gated(self, monkeypatch):
         # Profile NAMES + gateway_mode are low-sensitivity product surface: the
-        # Hermes Cloud Portal reads /api/status over the network (a gated bind)
+        # OpenAmer Cloud Portal reads /api/status over the network (a gated bind)
         # to render the profile list, so they must survive the auth gate.
         monkeypatch.setattr(
             web_server, "_collect_profile_gateway_topology",
@@ -228,9 +228,9 @@ class TestStatusEndpointTopology:
             assert data["profiles"] == ["default", "coder"]
             assert data["gateway_mode"] == "multiplex"
             # But the per-gateway detail (host ports = recon) stays gated,
-            # alongside hermes_home / gateway_pid.
+            # alongside openamer_home / gateway_pid.
             assert "gateways" not in data
-            assert "hermes_home" not in data
+            assert "openamer_home" not in data
             assert "gateway_pid" not in data
         finally:
             monkeypatch.setattr(

@@ -47,7 +47,7 @@ logger = logging.getLogger(__name__)
 # is access-gated / unavailable / times out on this endpoint.
 #
 # Explicit override (OPENROUTER_IMAGE_MODEL, image_gen.<provider>.model, or
-# image_gen.model from ``hermes tools``): use exactly that model (no auto
+# image_gen.model from ``openamer tools``): use exactly that model (no auto
 # fallback), so power users keep full control.
 DEFAULT_MODEL = "openai/gpt-5.4-image-2"
 _FALLBACK_MODEL = "google/gemini-3-pro-image"
@@ -258,7 +258,7 @@ class OpenRouterCompatImageProvider(ImageGenProvider):
         Precedence: explicit caller override (the ``model`` kwarg) → the
         provider's ``*_IMAGE_MODEL`` env override → scoped
         ``image_gen.<provider>.model`` → top-level ``image_gen.model`` (written
-        by ``hermes tools``) → the quality-first default chain.
+        by ``openamer tools``) → the quality-first default chain.
 
         Any explicit user/model selection means "use this exact model", so no
         fallback. Only the bare default chain carries a Gemini fallback.
@@ -305,7 +305,7 @@ class OpenRouterCompatImageProvider(ImageGenProvider):
             return error_response(
                 error=(
                     f"No {self._display} credentials found. "
-                    f"Configure {self._display} in `hermes tools` → Image Generation."
+                    f"Configure {self._display} in `openamer tools` → Image Generation."
                 ),
                 error_type="missing_api_key",
                 provider=self._name,
@@ -337,8 +337,8 @@ class OpenRouterCompatImageProvider(ImageGenProvider):
             "Authorization": f"Bearer {api_key}",
             "Content-Type": "application/json",
             # OpenRouter attribution headers (harmless against Nous Portal).
-            "HTTP-Referer": "https://github.com/NousResearch/hermes-agent",
-            "X-Title": "Hermes Agent",
+            "HTTP-Referer": "https://github.com/NousResearch/openamer-agent",
+            "X-Title": "OpenAmer Agent",
         }
         last_error: Optional[Dict[str, Any]] = None
         for i, model_id in enumerate(model_chain):

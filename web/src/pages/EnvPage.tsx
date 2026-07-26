@@ -488,7 +488,7 @@ function ProviderGroupCard({
 /*  CustomKeysCard — user-added arbitrary env vars + add-key form      */
 /* ------------------------------------------------------------------ */
 
-// Mirror of the backend env-name guard (hermes_cli/config.py _ENV_VAR_NAME_RE).
+// Mirror of the backend env-name guard (openamer_cli/config.py _ENV_VAR_NAME_RE).
 const ENV_VAR_NAME_RE = /^[A-Za-z_][A-Za-z0-9_]*$/;
 
 function CustomKeysCard({
@@ -919,7 +919,7 @@ export default function EnvPage() {
       <div className="flex items-center justify-between">
         <div className="flex flex-col gap-1">
           <p className="text-sm text-muted-foreground">
-            {t.env.description} <code>~/.hermes/.env</code>
+            {t.env.description} <code>~/.openamer/.env</code>
           </p>
           <p className="text-xs text-text-tertiary">
             {t.env.changesNote}

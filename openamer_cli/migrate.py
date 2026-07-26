@@ -110,6 +110,6 @@ def cmd_migrate_xai(args: Any) -> int:
 
 def _resolve_config_path() -> Path:
     """Best-effort: locate the active config.yaml on disk."""
-    from openamer_cli.config import get_hermes_home
+    from openamer_cli.config import get_openamer_home
 
     return get_openamer_home() / "config.yaml"

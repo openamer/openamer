@@ -78,7 +78,7 @@ def test_step_up_requests_billing_scope_and_reuses_prior_urls(monkeypatch, _stub
             "scope": "inference:invoke tool:invoke",
             "portal_base_url": "https://preview.example.com",
             "inference_base_url": "https://inf.example.com",
-            "client_id": "hermes-cli",
+            "client_id": "openamer-cli",
         },
     )
     captured = {}
@@ -97,7 +97,7 @@ def test_step_up_requests_billing_scope_and_reuses_prior_urls(monkeypatch, _stub
     assert "inference:invoke" in captured["scope"].split()
     # Reuses the prior credential's deployment URLs (so a preview stays a preview).
     assert captured["portal_base_url"] == "https://preview.example.com"
-    assert captured["client_id"] == "hermes-cli"
+    assert captured["client_id"] == "openamer-cli"
 
 
 def test_step_up_returns_false_when_downscoped(monkeypatch, _stub_persist):

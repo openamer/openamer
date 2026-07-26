@@ -295,7 +295,7 @@ class TestIsSatisfiedVersionAware:
 
 
 # ---------------------------------------------------------------------------
-# active_features + refresh_active_features (Piece A — hermes update wiring)
+# active_features + refresh_active_features (Piece A — openamer update wiring)
 # ---------------------------------------------------------------------------
 
 
@@ -334,7 +334,7 @@ class TestRefreshActiveFeatures:
 
     def test_windows_matrix_refresh_is_skipped_before_pip(self, monkeypatch):
         # Matrix E2EE pulls python-olm, which has no native Windows wheel/build
-        # path. `hermes update` must not retry that doomed install every run.
+        # path. `openamer update` must not retry that doomed install every run.
         monkeypatch.setattr(ld.sys, "platform", "win32")
         monkeypatch.setattr(ld, "active_features", lambda: ["platform.matrix"])
         monkeypatch.setattr(ld, "_is_satisfied", lambda spec: False)
@@ -404,7 +404,7 @@ class TestRefreshActiveFeatures:
         assert result == {"test.feat": "refreshed"}
 
     def test_install_failure_recorded_not_raised(self, monkeypatch):
-        # A failed refresh must NOT raise out of hermes update.
+        # A failed refresh must NOT raise out of openamer update.
         monkeypatch.setattr(ld, "active_features", lambda: ["test.feat"])
         monkeypatch.setitem(ld.LAZY_DEPS, "test.feat", ("zzzfake==2.0.0",))
         monkeypatch.setattr(ld, "_is_satisfied", lambda spec: False)
@@ -422,7 +422,7 @@ class TestRefreshActiveFeatures:
 
     def test_lazy_installs_disabled_marked_skipped(self, monkeypatch):
         # security.allow_lazy_installs=false → don't error, mark skipped
-        # so hermes update can render "respecting your config" message.
+        # so openamer update can render "respecting your config" message.
         monkeypatch.setattr(ld, "active_features", lambda: ["test.feat"])
         monkeypatch.setitem(ld.LAZY_DEPS, "test.feat", ("zzzfake==2.0.0",))
         monkeypatch.setattr(ld, "_is_satisfied", lambda spec: False)

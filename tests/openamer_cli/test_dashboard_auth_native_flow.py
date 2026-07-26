@@ -292,7 +292,7 @@ def _walk_native_login(client, *, redirect_uri, challenge, state="cli-state"):
     loop_qs = parse_qs(loop.query)
     # No session cookie must be set on the native callback response.
     set_cookie = r2.headers.get("set-cookie", "")
-    assert "hermes_session_at" not in set_cookie, (
+    assert "openamer_session_at" not in set_cookie, (
         f"native callback must NOT set a session cookie; got {set_cookie!r}"
     )
     return loop_qs["code"][0], loop_qs["state"][0]

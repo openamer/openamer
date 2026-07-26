@@ -1,6 +1,6 @@
 """Regression tests for the Docker terminal network toggle.
 
-Ported from NanoClaw PR #2713's opt-in egress lockdown idea. Hermes already
+Ported from NanoClaw PR #2713's opt-in egress lockdown idea. OpenAmer already
 has DockerEnvironment(network=False), but the terminal config path did not
 expose it, so operators could not request networkless Docker execution from
 config.yaml.

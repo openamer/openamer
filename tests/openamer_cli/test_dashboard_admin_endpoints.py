@@ -29,7 +29,7 @@ def _client():
 
 class TestMcpEndpoints:
     @pytest.fixture(autouse=True)
-    def _setup(self, _isolate_hermes_home):
+    def _setup(self, _isolate_openamer_home):
         self.client, self.header = _client()
 
     def test_list_add_remove_roundtrip(self):
@@ -66,7 +66,7 @@ class TestMcpEndpoints:
         assert srv["env"]["API_KEY"] != "sk-secret-1234567890"
 
     def test_http_bearer_auth_separates_secret_from_config(
-        self, _isolate_hermes_home
+        self, _isolate_openamer_home
     ):
         from openamer_constants import get_openamer_home
 
@@ -85,9 +85,9 @@ class TestMcpEndpoints:
         assert response.json()["auth"] == "header"
         assert "bearer_token" not in response.json()
 
-        hermes_home = get_openamer_home()
-        config_text = (hermes_home / "config.yaml").read_text()
-        env_text = (hermes_home / ".env").read_text()
+        openamer_home = get_openamer_home()
+        config_text = (openamer_home / "config.yaml").read_text()
+        env_text = (openamer_home / ".env").read_text()
         assert secret not in config_text
         assert "Bearer ${MCP_BEARER_SERVER_API_KEY}" in config_text
         assert f"MCP_BEARER_SERVER_API_KEY={secret}" in env_text
@@ -220,7 +220,7 @@ class TestMcpEndpoints:
 
 class TestCredentialPoolEndpoints:
     @pytest.fixture(autouse=True)
-    def _setup(self, _isolate_hermes_home):
+    def _setup(self, _isolate_openamer_home):
         self.client, _ = _client()
 
     def test_add_list_remove_and_cli_parity(self):
@@ -256,9 +256,9 @@ class TestCredentialPoolEndpoints:
     def test_env_seeded_delete_stays_deleted(self):
         """#55217: DELETE must suppress the source or load_pool() resurrects it.
 
-        load_pool() re-seeds from ~/.hermes/.env on every call, so removing
+        load_pool() re-seeds from ~/.openamer/.env on every call, so removing
         just the pool row silently reverts on the next dashboard refresh.
-        The endpoint must mirror `hermes auth remove`: clean up the backing
+        The endpoint must mirror `openamer auth remove`: clean up the backing
         source and suppress (provider, source).
         """
         from agent.credential_pool import load_pool
@@ -286,7 +286,7 @@ class TestCredentialPoolEndpoints:
     def test_post_readd_lifts_suppression(self):
         """Re-adding via POST is an explicit re-engagement — suppressions lift.
 
-        Mirrors `hermes auth add`, which clears every suppression for the
+        Mirrors `openamer auth add`, which clears every suppression for the
         provider so a user who deleted a credential and re-adds one isn't
         silently blocked from env re-seeding.
         """
@@ -354,7 +354,7 @@ class TestCredentialPoolEndpoints:
 
 class TestMemoryEndpoints:
     @pytest.fixture(autouse=True)
-    def _setup(self, _isolate_hermes_home):
+    def _setup(self, _isolate_openamer_home):
         self.client, _ = _client()
         from openamer_constants import get_openamer_home
 
@@ -390,7 +390,7 @@ class TestMemoryEndpoints:
 
 class TestPairingEndpoints:
     @pytest.fixture(autouse=True)
-    def _setup(self, _isolate_hermes_home):
+    def _setup(self, _isolate_openamer_home):
         self.client, _ = _client()
 
     def test_list_and_bad_approve(self):
@@ -404,7 +404,7 @@ class TestPairingEndpoints:
 
 class TestWebhookEndpoints:
     @pytest.fixture(autouse=True)
-    def _setup(self, _isolate_hermes_home):
+    def _setup(self, _isolate_openamer_home):
         self.client, _ = _client()
 
     def test_list_disabled_and_create_blocked(self):
@@ -451,7 +451,7 @@ class TestWebhookEndpoints:
             restart_calls.append((subcommand, name))
             return FakeRestartProc()
 
-        monkeypatch.setattr(ws, "_spawn_hermes_action", fake_spawn_action)
+        monkeypatch.setattr(ws, "_spawn_openamer_action", fake_spawn_action)
 
         r = self.client.post("/api/webhooks/enable")
 
@@ -480,7 +480,7 @@ class TestWebhookEndpoints:
             assert name == "gateway-restart"
             raise RuntimeError("supervisor unavailable")
 
-        monkeypatch.setattr(ws, "_spawn_hermes_action", fail_spawn_action)
+        monkeypatch.setattr(ws, "_spawn_openamer_action", fail_spawn_action)
 
         r = self.client.post("/api/webhooks/enable")
 
@@ -511,7 +511,7 @@ class TestWebhookEndpoints:
         def fail_spawn_action(subcommand, name):
             raise AssertionError("must not spawn a second concurrent restart")
 
-        monkeypatch.setattr(ws, "_spawn_hermes_action", fail_spawn_action)
+        monkeypatch.setattr(ws, "_spawn_openamer_action", fail_spawn_action)
 
         r = self.client.post("/api/webhooks/enable")
 
@@ -525,7 +525,7 @@ class TestWebhookEndpoints:
 
 class TestOpsEndpoints:
     @pytest.fixture(autouse=True)
-    def _setup(self, _isolate_hermes_home):
+    def _setup(self, _isolate_openamer_home):
         self.client, _ = _client()
 
     def test_backup_output_uses_output_flag(self, monkeypatch):
@@ -541,16 +541,16 @@ class TestOpsEndpoints:
             captured["name"] = name
             return FakeProc()
 
-        monkeypatch.setattr(ws, "_spawn_hermes_action", fake_spawn_action)
+        monkeypatch.setattr(ws, "_spawn_openamer_action", fake_spawn_action)
 
         r = self.client.post(
             "/api/ops/backup",
-            json={"output": "  /tmp/hermes-test.zip  "},
+            json={"output": "  /tmp/openamer-test.zip  "},
         )
 
         assert r.status_code == 200
         assert captured == {
-            "subcommand": ["backup", "-o", "/tmp/hermes-test.zip"],
+            "subcommand": ["backup", "-o", "/tmp/openamer-test.zip"],
             "name": "backup",
         }
 
@@ -558,7 +558,7 @@ class TestOpsEndpoints:
         from pathlib import Path
 
         import openamer_cli.web_server as ws
-        from openamer_cli.config import get_hermes_home
+        from openamer_cli.config import get_openamer_home
 
         captured = {}
 
@@ -570,7 +570,7 @@ class TestOpsEndpoints:
             captured["name"] = name
             return FakeProc()
 
-        monkeypatch.setattr(ws, "_spawn_hermes_action", fake_spawn_action)
+        monkeypatch.setattr(ws, "_spawn_openamer_action", fake_spawn_action)
 
         r = self.client.post("/api/ops/backup", json={"output": "   "})
 
@@ -640,7 +640,7 @@ class TestOpsEndpoints:
 
 class TestSystemStatsEndpoint:
     @pytest.fixture(autouse=True)
-    def _setup(self, _isolate_hermes_home):
+    def _setup(self, _isolate_openamer_home):
         self.client, _ = _client()
 
     def test_stats_shape(self):
@@ -648,7 +648,7 @@ class TestSystemStatsEndpoint:
         assert r.status_code == 200
         s = r.json()
         # Identity fields always present (stdlib-sourced).
-        for key in ("os", "arch", "hostname", "python_version", "hermes_version"):
+        for key in ("os", "arch", "hostname", "python_version", "openamer_version"):
             assert key in s and s[key]
         # psutil flag tells the UI whether the richer metrics are populated.
         assert "psutil" in s
@@ -656,7 +656,7 @@ class TestSystemStatsEndpoint:
 
 class TestCuratorEndpoints:
     @pytest.fixture(autouse=True)
-    def _setup(self, _isolate_hermes_home):
+    def _setup(self, _isolate_openamer_home):
         self.client, _ = _client()
 
     def test_status_and_pause_toggle(self):
@@ -674,7 +674,7 @@ class TestCuratorEndpoints:
 
 class TestPortalEndpoint:
     @pytest.fixture(autouse=True)
-    def _setup(self, _isolate_hermes_home):
+    def _setup(self, _isolate_openamer_home):
         self.client, _ = _client()
 
     def test_status_shape(self):
@@ -687,7 +687,7 @@ class TestPortalEndpoint:
 
 class TestSessionManagementEndpoints:
     @pytest.fixture(autouse=True)
-    def _setup(self, _isolate_hermes_home):
+    def _setup(self, _isolate_openamer_home):
         self.client, _ = _client()
         from openamer_state import SessionDB
 
@@ -753,7 +753,7 @@ class TestSessionManagementEndpoints:
 
 class TestSkillsHubSearchEndpoint:
     @pytest.fixture(autouse=True)
-    def _setup(self, _isolate_hermes_home):
+    def _setup(self, _isolate_openamer_home):
         self.client, _ = _client()
 
     def test_empty_query_returns_empty(self):
@@ -803,7 +803,7 @@ class _FakeBundle:
 
 class TestSkillsHubSourcesEndpoint:
     @pytest.fixture(autouse=True)
-    def _setup(self, _isolate_hermes_home):
+    def _setup(self, _isolate_openamer_home):
         self.client, _ = _client()
 
     def test_sources_lists_configured_hubs(self, monkeypatch):
@@ -819,12 +819,12 @@ class TestSkillsHubSourcesEndpoint:
                 return self._sid
 
             def search(self, q, limit=10):
-                return [_FakeMeta("hermes-index/featured-skill", "trusted")]
+                return [_FakeMeta("openamer-index/featured-skill", "trusted")]
 
         def _fake_router():
             srcs = [_Src("official"), _Src("github")]
-            # hermes-index source advertises availability + featured search.
-            idx = _Src("hermes-index")
+            # openamer-index source advertises availability + featured search.
+            idx = _Src("openamer-index")
             idx.is_available = True
             srcs.insert(1, idx)
             return srcs
@@ -836,7 +836,7 @@ class TestSkillsHubSourcesEndpoint:
         assert r.status_code == 200
         body = r.json()
         ids = {s["id"] for s in body["sources"]}
-        assert {"official", "github", "hermes-index"} <= ids
+        assert {"official", "github", "openamer-index"} <= ids
         # Every source carries a human label.
         assert all(s.get("label") for s in body["sources"])
         assert body["index_available"] is True
@@ -848,7 +848,7 @@ class TestSkillsHubSourcesEndpoint:
 
 class TestSkillsHubPreviewEndpoint:
     @pytest.fixture(autouse=True)
-    def _setup(self, _isolate_hermes_home):
+    def _setup(self, _isolate_openamer_home):
         self.client, _ = _client()
 
     def test_preview_requires_identifier(self):
@@ -890,7 +890,7 @@ class TestSkillsHubPreviewEndpoint:
 
 class TestSkillsHubScanEndpoint:
     @pytest.fixture(autouse=True)
-    def _setup(self, _isolate_hermes_home):
+    def _setup(self, _isolate_openamer_home):
         self.client, _ = _client()
 
     def test_scan_requires_identifier(self):
@@ -969,7 +969,7 @@ class TestSkillsHubScanEndpoint:
 
 class TestWebhookToggleEndpoint:
     @pytest.fixture(autouse=True)
-    def _setup(self, _isolate_hermes_home):
+    def _setup(self, _isolate_openamer_home):
         self.client, _ = _client()
         # Enable the webhook platform so a subscription can be created.
         from openamer_cli.config import load_config, save_config
@@ -1000,7 +1000,7 @@ class TestAdminEndpointsAuthGate:
     """Every admin endpoint must sit behind the dashboard session-token gate."""
 
     @pytest.fixture(autouse=True)
-    def _setup(self, _isolate_hermes_home):
+    def _setup(self, _isolate_openamer_home):
         from starlette.testclient import TestClient
         from openamer_cli.web_server import app
 
@@ -1020,7 +1020,7 @@ class TestAdminEndpointsAuthGate:
             "/api/curator",
             "/api/portal",
             "/api/system/stats",
-            "/api/hermes/update/check",
+            "/api/openamer/update/check",
         ],
     )
     def test_gated(self, path):
@@ -1033,15 +1033,15 @@ class TestAdminEndpointsAuthGate:
 
 
 class TestUpdateCheckEndpoint:
-    """``GET /api/hermes/update/check`` reports availability without applying.
+    """``GET /api/openamer/update/check`` reports availability without applying.
 
     Powers the dashboard's check-before-you-update flow: the System page
     shows the commit-behind count and asks the user to confirm before
-    ``POST /api/hermes/update`` runs ``hermes update``.
+    ``POST /api/openamer/update`` runs ``openamer update``.
     """
 
     @pytest.fixture(autouse=True)
-    def _setup(self, _isolate_hermes_home):
+    def _setup(self, _isolate_openamer_home):
         self.client, _ = _client()
 
     def test_git_install_reports_behind_count(self, monkeypatch):
@@ -1053,7 +1053,7 @@ class TestUpdateCheckEndpoint:
 
         monkeypatch.setattr(banner, "check_for_updates", lambda: 5)
 
-        r = self.client.get("/api/hermes/update/check")
+        r = self.client.get("/api/openamer/update/check")
         assert r.status_code == 200
         body = r.json()
         assert {
@@ -1078,7 +1078,7 @@ class TestUpdateCheckEndpoint:
         monkeypatch.setattr(ws, "detect_install_method", lambda *a, **k: "git")
         monkeypatch.setattr(banner, "check_for_updates", lambda: 0)
 
-        body = self.client.get("/api/hermes/update/check").json()
+        body = self.client.get("/api/openamer/update/check").json()
         assert body["behind"] == 0
         assert body["update_available"] is False
 
@@ -1086,7 +1086,7 @@ class TestUpdateCheckEndpoint:
         import openamer_cli.web_server as ws
 
         monkeypatch.setattr(ws, "detect_install_method", lambda *a, **k: "docker")
-        body = self.client.get("/api/hermes/update/check").json()
+        body = self.client.get("/api/openamer/update/check").json()
         # Docker images are immutable — the dashboard can't apply an update.
         assert body["can_apply"] is False
         assert body["message"]
@@ -1104,7 +1104,7 @@ class TestUpdateCheckEndpoint:
             ),
         )
 
-        body = self.client.get("/api/hermes/update/check").json()
+        body = self.client.get("/api/openamer/update/check").json()
         assert body["install_method"] == "managed-runtime"
         assert body["can_apply"] is False
         assert body["update_available"] is False
@@ -1122,7 +1122,7 @@ class TestUpdateCheckEndpoint:
 
         monkeypatch.setattr(banner, "check_for_updates", _boom)
         # A failed check must not 500 — it returns behind=null with guidance.
-        r = self.client.get("/api/hermes/update/check")
+        r = self.client.get("/api/openamer/update/check")
         assert r.status_code == 200
         body = r.json()
         assert body["behind"] is None
@@ -1143,7 +1143,7 @@ class TestUpdateCheckEndpoint:
             ],
         )
 
-        body = self.client.get("/api/hermes/update/check").json()
+        body = self.client.get("/api/openamer/update/check").json()
         # The desktop overlay renders this as the "what's changed" list.
         assert isinstance(body["commits"], list)
         assert body["commits"][0]["sha"] == "abc1234"
@@ -1156,7 +1156,7 @@ class TestUpdateCheckEndpoint:
         monkeypatch.setattr(ws, "detect_install_method", lambda *a, **k: "git")
         monkeypatch.setattr(banner, "check_for_updates", lambda: 0)
 
-        body = self.client.get("/api/hermes/update/check").json()
+        body = self.client.get("/api/openamer/update/check").json()
         # No commits list when there's nothing to show (additive, non-breaking).
         assert body.get("commits", []) == []
 
@@ -1166,7 +1166,7 @@ class TestDebugShareEndpoint:
     dashboard can render them as copyable links (not a backgrounded log tail)."""
 
     @pytest.fixture(autouse=True)
-    def _setup(self, _isolate_hermes_home):
+    def _setup(self, _isolate_openamer_home):
         self.client, self.header = _client()
         from openamer_constants import get_openamer_home
 
@@ -1256,10 +1256,10 @@ class TestDebugShareEndpoint:
 
 class TestToolsConfigEndpoints:
     """Provider selection, API-key save, and post-setup spawn for toolsets —
-    the dashboard surface that replicates the `hermes tools` configurator."""
+    the dashboard surface that replicates the `openamer tools` configurator."""
 
     @pytest.fixture(autouse=True)
-    def _setup(self, _isolate_hermes_home):
+    def _setup(self, _isolate_openamer_home):
         self.client, self.header = _client()
 
     def test_list_toolsets_shape(self):
@@ -1358,7 +1358,7 @@ class TestToolsConfigEndpoints:
             spawned["name"] = name
             return _FakeProc()
 
-        monkeypatch.setattr(ws, "_spawn_hermes_action", _fake_spawn)
+        monkeypatch.setattr(ws, "_spawn_openamer_action", _fake_spawn)
         r = self.client.post(
             "/api/tools/toolsets/browser/post-setup",
             json={"key": "agent_browser"},
@@ -1384,10 +1384,10 @@ class TestToolsConfigEndpoints:
 
 
 # ---------------------------------------------------------------------------
-# _spawn_hermes_action env scrubbing (#52470)
+# _spawn_openamer_action env scrubbing (#52470)
 # ---------------------------------------------------------------------------
 
-def test_spawn_hermes_action_scrubs_gateway_loop_guard_env(monkeypatch, tmp_path):
+def test_spawn_openamer_action_scrubs_gateway_loop_guard_env(monkeypatch, tmp_path):
     """The dashboard runs inside the gateway, so os.environ has
     _HERMES_GATEWAY=1. Spawned actions (e.g. `gateway restart`) must NOT inherit
     it, or the in-process restart-loop guard rejects the restart and it silently
@@ -1409,7 +1409,7 @@ def test_spawn_hermes_action_scrubs_gateway_loop_guard_env(monkeypatch, tmp_path
 
     monkeypatch.setattr(ws.subprocess, "Popen", _fake_popen)
 
-    ws._spawn_hermes_action(["gateway", "restart"], "gateway-restart")
+    ws._spawn_openamer_action(["gateway", "restart"], "gateway-restart")
 
     assert "_HERMES_GATEWAY" not in captured["env"]
     assert captured["env"]["HERMES_NONINTERACTIVE"] == "1"

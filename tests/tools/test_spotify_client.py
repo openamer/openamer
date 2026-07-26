@@ -307,7 +307,7 @@ def test_client_wraps_invalid_grant_as_spotify_auth_required_error(
 
     def _raise_invalid_grant(**kwargs):
         raise AuthError(
-            "Spotify refresh token has expired or was revoked. Run `hermes auth spotify` again.",
+            "Spotify refresh token has expired or was revoked. Run `openamer auth spotify` again.",
             provider="spotify",
             code="spotify_refresh_invalid_grant",
             relogin_required=True,

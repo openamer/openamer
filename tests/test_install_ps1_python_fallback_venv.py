@@ -11,7 +11,7 @@ and then failed with ``Failed to create virtual environment (uv venv exited
 with 2)``.
 
 Root cause: ``Test-Python`` records the fallback via an in-memory
-``$script:PythonVersion = $fallbackVer`` mutation, but under Hermes-Setup.exe
+``$script:PythonVersion = $fallbackVer`` mutation, but under OpenAmer-Setup.exe
 each ``-Stage NAME`` runs in its *own* fresh ``powershell.exe`` process.  The
 ``venv`` stage therefore starts with ``$PythonVersion`` back at its ``"3.11"``
 default, so ``uv venv venv --python 3.11`` runs on a machine that has no 3.11.

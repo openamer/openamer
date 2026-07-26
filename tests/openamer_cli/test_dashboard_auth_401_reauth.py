@@ -12,7 +12,7 @@ Verifies the contract documented in Phase 6 v2 of the plan:
   - Invalid/expired cookies are cleared on 401 so the browser doesn't
     keep replaying them.
   - ``set_session_cookies(refresh_token="")`` does NOT emit the
-    ``hermes_session_rt`` cookie (contract V1: no RT to persist).
+    ``openamer_session_rt`` cookie (contract V1: no RT to persist).
   - ``/auth/callback?next=…`` honours the same-origin landing path.
 """
 
@@ -171,7 +171,7 @@ class TestApi401Envelope:
         /api/analytics/models?days=30`` from ModelsPage round-tripped
         through the OAuth dance and landed the user on the raw JSON
         endpoint instead of the dashboard. The gate now drops API paths
-        from ``next=`` entirely; the SPA's own ``hermes.lastLocation``
+        from ``next=`` entirely; the SPA's own ``openamer.lastLocation``
         fallback in ``web/src/lib/api.ts`` covers the deep-link case.
         """
         r = gated_app.get("/api/sessions?page=2")
@@ -200,8 +200,8 @@ class TestTransparentRefreshOnAccessTokenEviction:
 
     This is the common-path expiry bug, not an edge case. The access-token
     cookie is set with ``Max-Age = access_token_expires_in`` (~15 min), so
-    the browser deletes ``hermes_session_at`` the instant the token lapses,
-    while ``hermes_session_rt`` lives for 30 days. From that moment the
+    the browser deletes ``openamer_session_at`` the instant the token lapses,
+    while ``openamer_session_rt`` lives for 30 days. From that moment the
     browser sends ONLY the refresh-token cookie. The original gate bailed at
     ``if not at: return _unauth_response(...)`` — bouncing the user to
     /login on every single expiry despite holding a perfectly good refresh
@@ -945,7 +945,7 @@ class TestAuthLoginPkceCookieNext:
         )
         assert r.status_code == 302
         cookies = r.headers.get_list("set-cookie")
-        pkce = next(c for c in cookies if "hermes_session_pkce" in c)
+        pkce = next(c for c in cookies if "openamer_session_pkce" in c)
         assert "next=" not in pkce
 
     def test_safe_next_query_encoded_into_cookie(self, gated_app):
@@ -954,7 +954,7 @@ class TestAuthLoginPkceCookieNext:
             follow_redirects=False,
         )
         cookies = r.headers.get_list("set-cookie")
-        pkce = next(c for c in cookies if "hermes_session_pkce" in c)
+        pkce = next(c for c in cookies if "openamer_session_pkce" in c)
         # ``next=`` segment present, URL-encoded.
         assert "next=%2Fsessions" in pkce
 
@@ -968,5 +968,5 @@ class TestAuthLoginPkceCookieNext:
             follow_redirects=False,
         )
         cookies = r.headers.get_list("set-cookie")
-        pkce = next(c for c in cookies if "hermes_session_pkce" in c)
+        pkce = next(c for c in cookies if "openamer_session_pkce" in c)
         assert "next=" not in pkce

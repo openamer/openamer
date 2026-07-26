@@ -167,7 +167,7 @@ jobs:
   # A single ``comment-live`` job polls the GitHub Actions API every 15s
   # for job statuses in this run, re-assembles the review comment from
   # whatever results are available, and upserts it via the
-  # ``<!-- hermes-ci-review-bot -->`` marker.
+  # ``<!-- openamer-ci-review-bot -->`` marker.
   #
   # When the visible job set goes quiet, the poller waits 10 seconds and polls
   # once more so downstream jobs created by an aggregate gate get included.

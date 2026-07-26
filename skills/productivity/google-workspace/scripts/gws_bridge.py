@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Bridge between Hermes OAuth token and gws CLI.
+"""Bridge between OpenAmer OAuth token and gws CLI.
 
 Refreshes the token if expired, then executes gws with the valid access token.
 """
@@ -10,12 +10,12 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-# Ensure sibling modules (_hermes_home) are importable when run standalone.
+# Ensure sibling modules (_openamer_home) are importable when run standalone.
 _SCRIPTS_DIR = str(Path(__file__).resolve().parent)
 if _SCRIPTS_DIR not in sys.path:
     sys.path.insert(0, _SCRIPTS_DIR)
 
-from _hermes_home import get_hermes_home
+from _openamer_home import get_openamer_home
 
 
 def get_token_path() -> Path:

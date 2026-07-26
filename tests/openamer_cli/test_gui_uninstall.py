@@ -14,51 +14,51 @@ import pytest
 import openamer_cli.gui_uninstall as gu
 
 
-def _make_agent(hermes_home: Path) -> Path:
+def _make_agent(openamer_home: Path) -> Path:
     """Create a fake agent install: source package + venv."""
-    agent_root = hermes_home / "hermes-agent"
+    agent_root = openamer_home / "openamer-agent"
     (agent_root / "openamer_cli").mkdir(parents=True)
     (agent_root / "openamer_cli" / "__init__.py").write_text("")
     (agent_root / "venv" / "bin").mkdir(parents=True)
     return agent_root
 
 
-def _make_gui_build(hermes_home: Path) -> None:
-    """Create the source-built GUI artifacts a `hermes desktop` run produces."""
-    desktop = hermes_home / "hermes-agent" / "apps" / "desktop"
+def _make_gui_build(openamer_home: Path) -> None:
+    """Create the source-built GUI artifacts a `openamer desktop` run produces."""
+    desktop = openamer_home / "openamer-agent" / "apps" / "desktop"
     (desktop / "dist").mkdir(parents=True)
     (desktop / "dist" / "index.html").write_text("<html>")
     (desktop / "release" / "linux-unpacked").mkdir(parents=True)
     (desktop / "node_modules").mkdir(parents=True)
-    (hermes_home / "hermes-agent" / "node_modules").mkdir(parents=True)
-    (hermes_home / "desktop-build-stamp.json").write_text("{}")
+    (openamer_home / "openamer-agent" / "node_modules").mkdir(parents=True)
+    (openamer_home / "desktop-build-stamp.json").write_text("{}")
 
 
-def _make_user_data(hermes_home: Path) -> None:
-    (hermes_home / "config.yaml").write_text("x: 1\n")
-    (hermes_home / ".env").write_text("KEY=secret\n")
-    (hermes_home / "sessions").mkdir()
+def _make_user_data(openamer_home: Path) -> None:
+    (openamer_home / "config.yaml").write_text("x: 1\n")
+    (openamer_home / ".env").write_text("KEY=secret\n")
+    (openamer_home / "sessions").mkdir()
 
 
 def test_agent_is_installed_detects_source_and_venv(tmp_path):
-    hermes_home = tmp_path / ".hermes"
-    hermes_home.mkdir()
-    assert gu.agent_is_installed(hermes_home) is False
-    _make_agent(hermes_home)
-    assert gu.agent_is_installed(hermes_home) is True
+    openamer_home = tmp_path / ".openamer"
+    openamer_home.mkdir()
+    assert gu.agent_is_installed(openamer_home) is False
+    _make_agent(openamer_home)
+    assert gu.agent_is_installed(openamer_home) is True
 
 
 def test_agent_is_installed_venv_only(tmp_path):
     """A checkout with only a venv (no package dir yet) still counts."""
-    hermes_home = tmp_path / ".hermes"
-    (hermes_home / "hermes-agent" / "venv").mkdir(parents=True)
-    assert gu.agent_is_installed(hermes_home) is True
+    openamer_home = tmp_path / ".openamer"
+    (openamer_home / "openamer-agent" / "venv").mkdir(parents=True)
+    assert gu.agent_is_installed(openamer_home) is True
 
 
 def test_source_built_artifacts_lists_known_paths(tmp_path):
-    hermes_home = tmp_path / ".hermes"
-    _make_gui_build(hermes_home)
-    artifacts = gu.source_built_gui_artifacts(hermes_home)
+    openamer_home = tmp_path / ".openamer"
+    _make_gui_build(openamer_home)
+    artifacts = gu.source_built_gui_artifacts(openamer_home)
     names = {p.name for p in artifacts}
     assert "dist" in names
     assert "release" in names
@@ -67,35 +67,35 @@ def test_source_built_artifacts_lists_known_paths(tmp_path):
 
 
 def test_gui_is_installed_true_when_built(tmp_path, monkeypatch):
-    hermes_home = tmp_path / ".hermes"
-    _make_gui_build(hermes_home)
+    openamer_home = tmp_path / ".openamer"
+    _make_gui_build(openamer_home)
     # Make sure packaged-app + userdata probes don't false-positive on the box
     # running the test.
     monkeypatch.setattr(gu, "packaged_gui_app_paths", lambda: [])
     monkeypatch.setattr(gu, "desktop_userdata_dir", lambda: tmp_path / "nope")
-    assert gu.gui_is_installed(hermes_home) is True
+    assert gu.gui_is_installed(openamer_home) is True
 
 
 def test_gui_is_installed_false_when_nothing(tmp_path, monkeypatch):
-    hermes_home = tmp_path / ".hermes"
-    hermes_home.mkdir()
+    openamer_home = tmp_path / ".openamer"
+    openamer_home.mkdir()
     monkeypatch.setattr(gu, "packaged_gui_app_paths", lambda: [])
     monkeypatch.setattr(gu, "desktop_userdata_dir", lambda: tmp_path / "nope")
-    assert gu.gui_is_installed(hermes_home) is False
+    assert gu.gui_is_installed(openamer_home) is False
 
 
 def test_uninstall_gui_removes_only_gui_artifacts(tmp_path, monkeypatch):
     """The core invariant: GUI gone, agent + user data untouched."""
-    hermes_home = tmp_path / ".hermes"
-    agent_root = _make_agent(hermes_home)
-    _make_gui_build(hermes_home)
-    _make_user_data(hermes_home)
+    openamer_home = tmp_path / ".openamer"
+    agent_root = _make_agent(openamer_home)
+    _make_gui_build(openamer_home)
+    _make_user_data(openamer_home)
 
     # Isolate the packaged-app + userdata probes from the test machine.
     monkeypatch.setattr(gu, "packaged_gui_app_paths", lambda: [])
     monkeypatch.setattr(gu, "desktop_userdata_dir", lambda: tmp_path / "userdata-none")
 
-    removed = gu.uninstall_gui(hermes_home)
+    removed = gu.uninstall_gui(openamer_home)
     removed_names = {p.name for p in removed}
 
     # GUI artifacts removed.
@@ -104,88 +104,88 @@ def test_uninstall_gui_removes_only_gui_artifacts(tmp_path, monkeypatch):
     assert not (desktop / "release").exists()
     assert not (desktop / "node_modules").exists()
     assert not (agent_root / "node_modules").exists()
-    assert not (hermes_home / "desktop-build-stamp.json").exists()
+    assert not (openamer_home / "desktop-build-stamp.json").exists()
     assert "dist" in removed_names
 
     # Agent + user data preserved.
     assert (agent_root / "openamer_cli" / "__init__.py").exists()
     assert (agent_root / "venv").exists()
-    assert (hermes_home / "config.yaml").exists()
-    assert (hermes_home / ".env").exists()
-    assert (hermes_home / "sessions").exists()
+    assert (openamer_home / "config.yaml").exists()
+    assert (openamer_home / ".env").exists()
+    assert (openamer_home / "sessions").exists()
     # The desktop source dir itself survives (only its build output is gone).
     assert desktop.exists()
 
 
 def test_uninstall_gui_removes_userdata(tmp_path, monkeypatch):
-    hermes_home = tmp_path / ".hermes"
-    _make_agent(hermes_home)
-    userdata = tmp_path / "Hermes-userdata"
+    openamer_home = tmp_path / ".openamer"
+    _make_agent(openamer_home)
+    userdata = tmp_path / "OpenAmer-userdata"
     userdata.mkdir()
     (userdata / "connection.json").write_text("{}")
 
     monkeypatch.setattr(gu, "packaged_gui_app_paths", lambda: [])
     monkeypatch.setattr(gu, "desktop_userdata_dir", lambda: userdata)
 
-    gu.uninstall_gui(hermes_home)
+    gu.uninstall_gui(openamer_home)
     assert not userdata.exists()
 
 
 def test_uninstall_gui_keeps_userdata_when_requested(tmp_path, monkeypatch):
-    hermes_home = tmp_path / ".hermes"
-    _make_agent(hermes_home)
-    userdata = tmp_path / "Hermes-userdata"
+    openamer_home = tmp_path / ".openamer"
+    _make_agent(openamer_home)
+    userdata = tmp_path / "OpenAmer-userdata"
     userdata.mkdir()
 
     monkeypatch.setattr(gu, "packaged_gui_app_paths", lambda: [])
     monkeypatch.setattr(gu, "desktop_userdata_dir", lambda: userdata)
 
-    gu.uninstall_gui(hermes_home, remove_userdata=False)
+    gu.uninstall_gui(openamer_home, remove_userdata=False)
     assert userdata.exists()
 
 
 def test_uninstall_gui_removes_packaged_bundle(tmp_path, monkeypatch):
-    hermes_home = tmp_path / ".hermes"
-    _make_agent(hermes_home)
-    bundle = tmp_path / "Hermes.app"
+    openamer_home = tmp_path / ".openamer"
+    _make_agent(openamer_home)
+    bundle = tmp_path / "OpenAmer.app"
     (bundle / "Contents").mkdir(parents=True)
 
     monkeypatch.setattr(gu, "packaged_gui_app_paths", lambda: [bundle])
     monkeypatch.setattr(gu, "desktop_userdata_dir", lambda: tmp_path / "none")
 
-    removed = gu.uninstall_gui(hermes_home)
+    removed = gu.uninstall_gui(openamer_home)
     assert not bundle.exists()
     assert bundle in removed
 
 
 def test_gui_install_summary_shape(tmp_path, monkeypatch):
-    hermes_home = tmp_path / ".hermes"
-    _make_agent(hermes_home)
-    _make_gui_build(hermes_home)
+    openamer_home = tmp_path / ".openamer"
+    _make_agent(openamer_home)
+    _make_gui_build(openamer_home)
     monkeypatch.setattr(gu, "packaged_gui_app_paths", lambda: [])
     monkeypatch.setattr(gu, "desktop_userdata_dir", lambda: tmp_path / "none")
 
-    summary = gu.gui_install_summary(hermes_home)
+    summary = gu.gui_install_summary(openamer_home)
     # JSON-serializable primitives the desktop UI gates on.
     assert summary["agent_installed"] is True
     assert summary["gui_installed"] is True
     assert isinstance(summary["source_built_artifacts"], list)
     assert all(isinstance(p, str) for p in summary["source_built_artifacts"])
-    assert summary["hermes_home"] == str(hermes_home)
+    assert summary["openamer_home"] == str(openamer_home)
     assert summary["platform"] == sys.platform
 
 
 def test_userdata_dir_per_platform(monkeypatch):
-    """userData path matches Electron's app.getPath('userData') for "Hermes"."""
+    """userData path matches Electron's app.getPath('userData') for "OpenAmer"."""
     home = Path("/home/tester")
     monkeypatch.setattr(Path, "home", classmethod(lambda cls: home))
 
     monkeypatch.setattr(gu.sys, "platform", "darwin")
-    assert gu.desktop_userdata_dir() == home / "Library" / "Application Support" / "Hermes"
+    assert gu.desktop_userdata_dir() == home / "Library" / "Application Support" / "OpenAmer"
 
     monkeypatch.setattr(gu.sys, "platform", "linux")
     monkeypatch.delenv("XDG_CONFIG_HOME", raising=False)
-    assert gu.desktop_userdata_dir() == home / ".config" / "Hermes"
+    assert gu.desktop_userdata_dir() == home / ".config" / "OpenAmer"
 
 
 def test_userdata_dir_windows(monkeypatch):
@@ -193,7 +193,7 @@ def test_userdata_dir_windows(monkeypatch):
     monkeypatch.setattr(Path, "home", classmethod(lambda cls: home))
     monkeypatch.setattr(gu.sys, "platform", "win32")
     monkeypatch.setenv("APPDATA", r"C:\Users\tester\AppData\Roaming")
-    assert gu.desktop_userdata_dir() == Path(r"C:\Users\tester\AppData\Roaming") / "Hermes"
+    assert gu.desktop_userdata_dir() == Path(r"C:\Users\tester\AppData\Roaming") / "OpenAmer"
 
 
 @pytest.mark.skipif(sys.platform == "win32", reason="POSIX symlink semantics")
@@ -227,19 +227,19 @@ def test_run_uninstall_yes_keep_data_is_non_interactive(tmp_path, monkeypatch):
     """
     import openamer_cli.uninstall as uninstall
 
-    hermes_home = tmp_path / ".hermes"
-    agent_root = hermes_home / "hermes-agent"
+    openamer_home = tmp_path / ".openamer"
+    agent_root = openamer_home / "openamer-agent"
     (agent_root / "openamer_cli").mkdir(parents=True)
-    (hermes_home / "config.yaml").write_text("x: 1\n")
+    (openamer_home / "config.yaml").write_text("x: 1\n")
     desktop = agent_root / "apps" / "desktop"
     (desktop / "release").mkdir(parents=True)
-    (hermes_home / "desktop-build-stamp.json").write_text("{}")
+    (openamer_home / "desktop-build-stamp.json").write_text("{}")
     fake_code = tmp_path / "checkout"
     fake_code.mkdir()
 
     # Stub every destructive external so the test only exercises the control
     # flow + the real GUI sweep (which is safe inside tmp_path).
-    monkeypatch.setattr(uninstall, "get_hermes_home", lambda: hermes_home)
+    monkeypatch.setattr(uninstall, "get_openamer_home", lambda: openamer_home)
     monkeypatch.setattr(uninstall, "get_project_root", lambda: fake_code)
     monkeypatch.setattr(uninstall, "uninstall_gateway_service", lambda: False)
     monkeypatch.setattr(uninstall, "remove_path_from_shell_configs", lambda: [])
@@ -257,23 +257,23 @@ def test_run_uninstall_yes_keep_data_is_non_interactive(tmp_path, monkeypatch):
 
     # Code checkout removed, GUI artifacts swept, but user data preserved.
     assert not fake_code.exists()
-    assert not (hermes_home / "desktop-build-stamp.json").exists()
+    assert not (openamer_home / "desktop-build-stamp.json").exists()
     assert not (desktop / "release").exists()
-    assert (hermes_home / "config.yaml").exists()
-    assert hermes_home.exists()
+    assert (openamer_home / "config.yaml").exists()
+    assert openamer_home.exists()
 
 
 def test_run_uninstall_yes_full_wipes_home(tmp_path, monkeypatch):
     """``--yes --full`` removes the whole OPENAMER_HOME non-interactively."""
     import openamer_cli.uninstall as uninstall
 
-    hermes_home = tmp_path / ".hermes"
-    (hermes_home / "hermes-agent" / "openamer_cli").mkdir(parents=True)
-    (hermes_home / "config.yaml").write_text("x: 1\n")
+    openamer_home = tmp_path / ".openamer"
+    (openamer_home / "openamer-agent" / "openamer_cli").mkdir(parents=True)
+    (openamer_home / "config.yaml").write_text("x: 1\n")
     fake_code = tmp_path / "checkout"
     fake_code.mkdir()
 
-    monkeypatch.setattr(uninstall, "get_hermes_home", lambda: hermes_home)
+    monkeypatch.setattr(uninstall, "get_openamer_home", lambda: openamer_home)
     monkeypatch.setattr(uninstall, "get_project_root", lambda: fake_code)
     monkeypatch.setattr(uninstall, "uninstall_gateway_service", lambda: False)
     monkeypatch.setattr(uninstall, "remove_path_from_shell_configs", lambda: [])
@@ -288,7 +288,7 @@ def test_run_uninstall_yes_full_wipes_home(tmp_path, monkeypatch):
 
     uninstall.run_uninstall(_Args(yes=True, full=True))
 
-    assert not hermes_home.exists()
+    assert not openamer_home.exists()
 
 
 def test_uninstall_module_main_gui_mode(tmp_path, monkeypatch):
@@ -300,28 +300,28 @@ def test_uninstall_module_main_gui_mode(tmp_path, monkeypatch):
     """
     import openamer_cli.uninstall as uninstall
 
-    hermes_home = tmp_path / ".hermes"
-    agent_root = hermes_home / "hermes-agent"
+    openamer_home = tmp_path / ".openamer"
+    agent_root = openamer_home / "openamer-agent"
     (agent_root / "openamer_cli").mkdir(parents=True)
     desktop = agent_root / "apps" / "desktop"
     (desktop / "release").mkdir(parents=True)
-    (hermes_home / "desktop-build-stamp.json").write_text("{}")
-    (hermes_home / "config.yaml").write_text("x: 1\n")
+    (openamer_home / "desktop-build-stamp.json").write_text("{}")
+    (openamer_home / "config.yaml").write_text("x: 1\n")
 
-    monkeypatch.setattr(uninstall, "get_hermes_home", lambda: hermes_home)
+    monkeypatch.setattr(uninstall, "get_openamer_home", lambda: openamer_home)
     from openamer_cli import gui_uninstall as gu_mod
     monkeypatch.setattr(gu_mod, "packaged_gui_app_paths", lambda: [])
     monkeypatch.setattr(gu_mod, "desktop_userdata_dir", lambda: tmp_path / "none")
-    monkeypatch.setattr(gu_mod, "get_hermes_home", lambda: hermes_home)
+    monkeypatch.setattr(gu_mod, "get_openamer_home", lambda: openamer_home)
     monkeypatch.setattr("builtins.input", lambda *a, **k: pytest.fail("prompted in module main"))
 
     rc = uninstall.main(["--mode", "gui"])
     assert rc == 0
     # GUI swept, agent + config kept (gui-only contract).
     assert not (desktop / "release").exists()
-    assert not (hermes_home / "desktop-build-stamp.json").exists()
+    assert not (openamer_home / "desktop-build-stamp.json").exists()
     assert (agent_root / "openamer_cli").exists()
-    assert (hermes_home / "config.yaml").exists()
+    assert (openamer_home / "config.yaml").exists()
 
 
 def test_uninstall_module_main_rejects_bad_mode():

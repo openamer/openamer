@@ -1190,7 +1190,7 @@ export default function SessionsPage() {
         const res = await fetch(api.exportSessionUrl(id), {
           credentials: "include",
           headers: {
-            "X-Hermes-Session-Token":
+            "X-OpenAmer-Session-Token":
               (window as unknown as { __OPENAMER_SESSION_TOKEN__?: string })
                 .__OPENAMER_SESSION_TOKEN__ ?? "",
           },
@@ -1479,7 +1479,7 @@ export default function SessionsPage() {
               <span className="text-xs font-mondwest tracking-[0.12em] truncate">
                 {activeAction === "restart"
                   ? t.status.restartGateway
-                  : t.status.updateHermes}
+                  : t.status.updateOpenAmer}
               </span>
 
               <Badge

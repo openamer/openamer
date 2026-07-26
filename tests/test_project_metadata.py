@@ -73,7 +73,7 @@ def test_lazy_installable_extras_excluded_from_all():
     for extra in lazy_covered_extras:
         offending = [
             spec for spec in all_extra_specs
-            if f"hermes-agent[{extra}]" in spec
+            if f"openamer-agent[{extra}]" in spec
         ]
         assert not offending, (
             f"[{extra}] is in [all] but also in LAZY_DEPS. "
@@ -99,7 +99,7 @@ def test_pyproject_aiohttp_pins_match_lazy_slack_pin():
 
     pyproject extras (messaging/slack/homeassistant/sms) exact-pin aiohttp.
     The Slack lazy-install deps (LAZY_DEPS['platform.slack']) also pin it.
-    If the two drift, `hermes update` resolves the pyproject pin and
+    If the two drift, `openamer update` resolves the pyproject pin and
     downgrades aiohttp, reopening the CVEs the lazy pin fixed (#31817) —
     only for Slack's lazy refresh to upgrade it again on next use.
     """
@@ -122,7 +122,7 @@ def test_pyproject_aiohttp_pins_match_lazy_slack_pin():
     }
     assert not mismatches, (
         "pyproject.toml aiohttp pins must match "
-        "LAZY_DEPS['platform.slack'] to avoid hermes update downgrading "
+        "LAZY_DEPS['platform.slack'] to avoid openamer update downgrading "
         "aiohttp before Slack's lazy refresh upgrades it again. "
         f"lazy aiohttp=={lazy_aiohttp}; mismatched extras: {mismatches}"
     )
@@ -133,7 +133,7 @@ def test_pyproject_pins_match_lazy_deps_pins():
 
     Any package that is exact-pinned in BOTH a pyproject extra and a
     `tools/lazy_deps.py` LAZY_DEPS entry must use the SAME version in both
-    places. When they drift, `hermes update` resolves the pyproject extra
+    places. When they drift, `openamer update` resolves the pyproject extra
     pin and downgrades the package to the older version, reopening whatever
     the lazy pin fixed (the aiohttp #31817 case, and the anthropic
     CVE-2026-34450/34452 case found alongside it) — only for the lazy
@@ -173,7 +173,7 @@ def test_pyproject_pins_match_lazy_deps_pins():
     }
     assert not drift, (
         "pyproject extras pins must match tools/lazy_deps.py LAZY_DEPS pins "
-        "for every shared package — otherwise `hermes update` downgrades the "
+        "for every shared package — otherwise `openamer update` downgrades the "
         "package below the security-current lazy pin (see #31817). Drift: "
         f"{drift}"
     )
@@ -185,7 +185,7 @@ def test_dev_extra_excluded_from_all():
 
     assert "dev" in optional_dependencies
     assert not any(
-        spec == "hermes-agent[dev]"
+        spec == "openamer-agent[dev]"
         for spec in optional_dependencies["all"]
     )
 
@@ -220,6 +220,6 @@ def test_nemo_relay_extra_uses_supported_official_distribution_range():
 
     assert optional_dependencies["nemo-relay"] == ["nemo-relay>=0.5,<1.0"]
     assert not any(
-        spec == "hermes-agent[nemo-relay]"
+        spec == "openamer-agent[nemo-relay]"
         for spec in optional_dependencies["all"]
     )

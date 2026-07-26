@@ -480,7 +480,7 @@ class TestWsHostOriginGuardOrigins:
         assert web_server._ws_host_origin_is_allowed(ws) is True
 
     def test_loopback_app_scheme_origin_allowed(self, loopback_app):
-        ws = self._ws(origin="app://hermes", host="127.0.0.1:8080")
+        ws = self._ws(origin="app://openamer", host="127.0.0.1:8080")
         assert web_server._ws_host_origin_is_allowed(ws) is True
 
     def test_loopback_matching_http_origin_allowed(self, loopback_app):
@@ -495,7 +495,7 @@ class TestWsHostOriginGuardOrigins:
         assert web_server._ws_host_origin_is_allowed(ws) is False
 
     def test_explicit_non_loopback_file_origin_allowed(self, insecure_explicit_host_app):
-        """Packaged Hermes Desktop also uses file:// when connecting to a
+        """Packaged OpenAmer Desktop also uses file:// when connecting to a
         Tailscale/LAN dashboard bind.
 
         The WebSocket route calls _ws_auth_ok before this guard, so in

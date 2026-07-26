@@ -124,14 +124,14 @@ async def test_create_handoff_thread_falls_back_to_message_id():
 async def test_rename_thread_carries_the_no_clobber_guard():
     adapter, stub = _adapter()
     ok = await adapter.rename_thread(
-        "th1", "Fix the build", only_if_current_name="Hermes"
+        "th1", "Fix the build", only_if_current_name="OpenAmer"
     )
     assert ok is True
     action = stub.sent[-1]
     assert action["op"] == "thread_rename"
     assert action["message_id"] == "th1"
     assert action["thread_name"] == "Fix the build"
-    assert action["only_if_current_name"] == "Hermes"
+    assert action["only_if_current_name"] == "OpenAmer"
     # chat_id defaults to the thread id (Discord ignores it; Telegram callers
     # pass parent_chat_id explicitly).
     assert action["chat_id"] == "th1"
@@ -181,7 +181,7 @@ def test_relay_source_satisfies_auto_thread_lane_field_contract():
                 "thread_id": "th9",
                 "user_id": "u1",
                 "auto_thread_created": True,
-                "auto_thread_initial_name": "Hermes reply",
+                "auto_thread_initial_name": "OpenAmer reply",
             },
         }
     )
@@ -189,7 +189,7 @@ def test_relay_source_satisfies_auto_thread_lane_field_contract():
     assert src.chat_type == "thread"
     assert src.thread_id == "th9"
     assert src.auto_thread_created is True
-    assert src.auto_thread_initial_name == "Hermes reply"
+    assert src.auto_thread_initial_name == "OpenAmer reply"
     # And absent markers default off (never light the lane spuriously).
     plain = _event_from_wire(
         {
@@ -219,14 +219,14 @@ def test_event_from_wire_maps_reply_to_onto_native_fields():
             "reply_to_message_id": "19",
             "reply_to": {
                 "text": "what the bot said",
-                "author": "hermesbot",
+                "author": "openamerbot",
                 "is_own": True,
             },
         }
     )
     assert event.reply_to_message_id == "19"
     assert event.reply_to_text == "what the bot said"
-    assert event.reply_to_author_name == "hermesbot"
+    assert event.reply_to_author_name == "openamerbot"
     assert event.reply_to_is_own_message is True
 
 

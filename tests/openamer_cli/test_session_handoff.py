@@ -24,7 +24,7 @@ class TestHandoffStateDB:
 
     @pytest.fixture
     def db(self, tmp_path, monkeypatch):
-        home = tmp_path / ".hermes"
+        home = tmp_path / ".openamer"
         home.mkdir()
         monkeypatch.setenv("OPENAMER_HOME", str(home))
         return SessionDB(db_path=home / "state.db")

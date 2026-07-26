@@ -123,7 +123,7 @@ def strip_dangling_tool_call_tail(
     """Strip a trailing ``assistant(tool_calls)`` block left with NO answers.
 
     When a tool call itself kills the gateway process (``docker restart``,
-    ``systemctl restart``, ``kill``, ``hermes gateway restart``), the process
+    ``systemctl restart``, ``kill``, ``openamer gateway restart``), the process
     is terminated by SIGKILL *mid-call* — before the tool result is ever
     written and before the orderly shutdown rewind
     (``_drop_trailing_empty_response_scaffolding``) can run.  The last thing
@@ -166,7 +166,7 @@ def strip_dangling_tool_call_tail(
             call_id = str(call.get("id") or call.get("call_id") or "")
             disposition = "unknown" if tool_may_have_side_effect(name) else "none"
             content = (
-                "[Orphan recovery: this tool may have executed before Hermes stopped; "
+                "[Orphan recovery: this tool may have executed before OpenAmer stopped; "
                 "its effect is UNKNOWN. Inspect current state before retrying.]"
                 if disposition == "unknown"
                 else "[Orphan recovery: this read-only tool did not complete and had no effect.]"

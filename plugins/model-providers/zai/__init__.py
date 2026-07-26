@@ -1,13 +1,13 @@
 """ZAI / GLM provider profile.
 
 Z.AI's GLM-4.5-and-later chat models default to thinking-mode ON when the
-request omits ``thinking``.  Hermes' ``reasoning_config = {"enabled": False}``
+request omits ``thinking``.  OpenAmer' ``reasoning_config = {"enabled": False}``
 was previously a silent no-op on this route — the base profile emits nothing,
 so users who turned thinking off (desktop toggle, ``/reasoning none``,
 ``reasoning_effort: none``/``false`` in config.yaml) kept burning thinking
 tokens on every turn.
 
-:meth:`ZaiProfile.build_api_kwargs_extras` translates the Hermes reasoning
+:meth:`ZaiProfile.build_api_kwargs_extras` translates the OpenAmer reasoning
 config into the wire shape Z.AI's OpenAI-compat endpoint expects:
 
     {"extra_body": {"thinking": {"type": "enabled" | "disabled"}}}
@@ -19,7 +19,7 @@ untouched.
 
 GLM-5.2 additionally exposes a native ``reasoning_effort`` knob with exactly
 two enabled levels — ``high`` and ``max`` — on the OpenAI-compatible endpoint
-(per Z.AI / BigModel docs).  Hermes' richer effort scale is collapsed onto
+(per Z.AI / BigModel docs).  OpenAmer' richer effort scale is collapsed onto
 those two so the user's effort preference actually reaches the model instead
 of being silently dropped.
 """
@@ -60,7 +60,7 @@ def _is_glm_5_2(model: str | None) -> bool:
 
 
 def _glm_5_2_reasoning_effort(reasoning_config: dict | None) -> str | None:
-    """Map Hermes reasoning effort onto GLM-5.2's native ``high``/``max``.
+    """Map OpenAmer reasoning effort onto GLM-5.2's native ``high``/``max``.
 
     GLM-5.2 only supports two enabled effort levels. ``xhigh``/``max``/``ultra``
     request the top tier; everything else that is enabled requests ``high``

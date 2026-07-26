@@ -25,7 +25,7 @@ main-checkout install):
     cd <worktree>
     PYTHONPATH="$PWD" ../../.venv/bin/python tests/manual/cron_inchannel_e2e.py
 
-Uses a throwaway OPENAMER_HOME so it never touches ~/.hermes. No real names.
+Uses a throwaway OPENAMER_HOME so it never touches ~/.openamer. No real names.
 """
 
 import os

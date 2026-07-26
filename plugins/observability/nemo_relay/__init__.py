@@ -1,4 +1,4 @@
-"""nemo_relay — optional Hermes plugin for NeMo Relay observability."""
+"""nemo_relay — optional OpenAmer plugin for NeMo Relay observability."""
 
 from __future__ import annotations
 
@@ -55,13 +55,13 @@ class _Settings:
     adaptive_mode: str = "observe_only"
     atof_enabled: bool = False
     atof_output_directory: str = ""
-    atof_filename: str = "hermes-atof.jsonl"
+    atof_filename: str = "openamer-atof.jsonl"
     atof_mode: str = "append"
     atif_enabled: bool = False
     atif_output_directory: str = ""
-    atif_filename_template: str = "hermes-atif-{session_id}.json"
+    atif_filename_template: str = "openamer-atif-{session_id}.json"
     atif_subagent_export_mode: str = "embedded"
-    atif_agent_name: str = "Hermes Agent"
+    atif_agent_name: str = "OpenAmer Agent"
     atif_agent_version: str = "unknown"
     atif_model_name: str = "unknown"
 
@@ -73,7 +73,7 @@ class _Runtime:
         self.sessions: dict[str, _SessionState] = {}
         self.subagent_parents: dict[str, _SubagentParent] = {}
         self.atof_exporter: Any = None
-        self._atof_subscriber_name = "hermes.nemo_relay.atof"
+        self._atof_subscriber_name = "openamer.nemo_relay.atof"
         self._plugin_activation: Any = None
         self._shutdown_registered = False
         self._plugin_config_initialized = self._configure_plugins_toml()
@@ -247,9 +247,9 @@ class _Runtime:
                 self.settings.atif_agent_name,
                 self.settings.atif_agent_version,
                 model_name=str(kwargs.get("model") or self.settings.atif_model_name),
-                extra={"source": "hermes-agent", "plugin": "observability/nemo_relay"},
+                extra={"source": "openamer-agent", "plugin": "observability/nemo_relay"},
             )
-            state.atif_subscriber_name = f"hermes.nemo_relay.atif.{session_id}"
+            state.atif_subscriber_name = f"openamer.nemo_relay.atif.{session_id}"
             state.atif_exporter.register(state.atif_subscriber_name)
 
         subagent_parent = self.subagent_parents.get(session_id)
@@ -262,7 +262,7 @@ class _Runtime:
             state.parent_session_id = subagent_parent.parent_session_id
 
         state.handle = self.nemo_relay.scope.push(
-            f"hermes-session-{session_id}",
+            f"openamer-session-{session_id}",
             self.nemo_relay.ScopeType.Agent,
             handle=parent_handle,
             data={"session_id": session_id},
@@ -373,7 +373,7 @@ class _Runtime:
                 metadata=_subagent_child_metadata(kwargs, metadata),
             )
         self.nemo_relay.scope.event(
-            "hermes.subagent.start",
+            "openamer.subagent.start",
             handle=parent_state.handle,
             data=_jsonable(kwargs),
             metadata=metadata,
@@ -383,7 +383,7 @@ class _Runtime:
         child_session_id = _child_session_id(kwargs)
         if child_session_id:
             self.subagent_parents.pop(child_session_id, None)
-        self.mark("hermes.subagent.stop", kwargs)
+        self.mark("openamer.subagent.stop", kwargs)
 
     def managed_llm_enabled(self) -> bool:
         return (
@@ -410,7 +410,7 @@ class _Runtime:
         # NeMo Relay's native managed execution may wrap a failing callback as an
         # internal runtime error, hiding the real downstream provider/tool
         # exception. Capture the original here and re-raise it after managed
-        # execution so Hermes retry classification still sees it. The LLM and tool
+        # execution so OpenAmer retry classification still sees it. The LLM and tool
         # paths share this scaffolding; they differ only in payload normalization,
         # response shaping, and the Relay call itself.
         raw_response: dict[str, Any] = {"set": False, "value": None, "normalized": None}
@@ -524,7 +524,7 @@ class _Runtime:
 
 
 def register(ctx) -> None:
-    # Activate dynamic plugins before Hermes installs the managed execution
+    # Activate dynamic plugins before OpenAmer installs the managed execution
     # boundaries that invoke their interceptors.
     if _load_settings().dynamic_plugins:
         _get_runtime()
@@ -556,7 +556,7 @@ def on_session_start(**kwargs: Any) -> None:
 def on_session_end(**kwargs: Any) -> None:
     runtime = _get_runtime()
     if runtime is not None:
-        _safe(lambda: (runtime.mark("hermes.session.end", kwargs), runtime.export_atif(runtime.ensure_session(kwargs))))
+        _safe(lambda: (runtime.mark("openamer.session.end", kwargs), runtime.export_atif(runtime.ensure_session(kwargs))))
 
 
 def on_session_finalize(**kwargs: Any) -> None:
@@ -574,13 +574,13 @@ def on_session_reset(**kwargs: Any) -> None:
 def on_pre_llm_call(**kwargs: Any) -> None:
     runtime = _get_runtime()
     if runtime is not None:
-        _safe(lambda: runtime.mark("hermes.turn.start", kwargs))
+        _safe(lambda: runtime.mark("openamer.turn.start", kwargs))
 
 
 def on_post_llm_call(**kwargs: Any) -> None:
     runtime = _get_runtime()
     if runtime is not None:
-        _safe(lambda: runtime.mark("hermes.turn.end", kwargs))
+        _safe(lambda: runtime.mark("openamer.turn.end", kwargs))
 
 
 def on_pre_api_request(**kwargs: Any) -> None:
@@ -619,7 +619,7 @@ def on_post_api_request(**kwargs: Any) -> None:
         state = runtime.ensure_session(kwargs)
         span = state.llm_spans.pop(_api_key(kwargs), None)
         if span is None:
-            runtime.mark("hermes.api.response.unmatched", kwargs)
+            runtime.mark("openamer.api.response.unmatched", kwargs)
             return
         runtime.nemo_relay.llm.call_end(
             span,
@@ -642,7 +642,7 @@ def on_api_request_error(**kwargs: Any) -> None:
         state = runtime.ensure_session(kwargs)
         span = state.llm_spans.pop(_api_key(kwargs), None)
         if span is None:
-            runtime.mark("hermes.api.error", kwargs)
+            runtime.mark("openamer.api.error", kwargs)
             return
         runtime.nemo_relay.llm.call_end(
             span,
@@ -687,7 +687,7 @@ def on_post_tool_call(**kwargs: Any) -> None:
         state = runtime.ensure_session(kwargs)
         span = state.tool_spans.pop(_tool_key(kwargs), None)
         if span is None:
-            runtime.mark("hermes.tool.response.unmatched", kwargs)
+            runtime.mark("openamer.tool.response.unmatched", kwargs)
             return
         runtime.nemo_relay.tools.call_end(
             span,
@@ -702,13 +702,13 @@ def on_post_tool_call(**kwargs: Any) -> None:
 def on_pre_approval_request(**kwargs: Any) -> None:
     runtime = _get_runtime()
     if runtime is not None:
-        _safe(lambda: runtime.mark("hermes.approval.request", kwargs))
+        _safe(lambda: runtime.mark("openamer.approval.request", kwargs))
 
 
 def on_post_approval_response(**kwargs: Any) -> None:
     runtime = _get_runtime()
     if runtime is not None:
-        _safe(lambda: runtime.mark("hermes.approval.response", kwargs))
+        _safe(lambda: runtime.mark("openamer.approval.response", kwargs))
 
 
 def on_subagent_start(**kwargs: Any) -> None:
@@ -779,13 +779,13 @@ def _load_settings() -> _Settings:
         adaptive_mode=_adaptive_mode(adaptive_config),
         atof_enabled=_env_bool("HERMES_NEMO_RELAY_ATOF_ENABLED"),
         atof_output_directory=_env("HERMES_NEMO_RELAY_ATOF_OUTPUT_DIRECTORY"),
-        atof_filename=_env("HERMES_NEMO_RELAY_ATOF_FILENAME") or "hermes-atof.jsonl",
+        atof_filename=_env("HERMES_NEMO_RELAY_ATOF_FILENAME") or "openamer-atof.jsonl",
         atof_mode=_env("HERMES_NEMO_RELAY_ATOF_MODE") or "append",
         atif_enabled=_env_bool("HERMES_NEMO_RELAY_ATIF_ENABLED"),
         atif_output_directory=_env("HERMES_NEMO_RELAY_ATIF_OUTPUT_DIRECTORY"),
-        atif_filename_template=_env("HERMES_NEMO_RELAY_ATIF_FILENAME_TEMPLATE") or "hermes-atif-{session_id}.json",
+        atif_filename_template=_env("HERMES_NEMO_RELAY_ATIF_FILENAME_TEMPLATE") or "openamer-atif-{session_id}.json",
         atif_subagent_export_mode=_atif_subagent_export_mode(),
-        atif_agent_name=_env("HERMES_NEMO_RELAY_ATIF_AGENT_NAME") or "Hermes Agent",
+        atif_agent_name=_env("HERMES_NEMO_RELAY_ATIF_AGENT_NAME") or "OpenAmer Agent",
         atif_agent_version=_env("HERMES_NEMO_RELAY_ATIF_AGENT_VERSION") or "unknown",
         atif_model_name=_env("HERMES_NEMO_RELAY_ATIF_MODEL_NAME") or "unknown",
     )
@@ -819,9 +819,9 @@ def _dynamic_plugin_specs(
             return []
         if plugins_section:
             logger.error(
-                "Hermes cannot activate Relay gateway [[plugins.dynamic]] records because "
+                "OpenAmer cannot activate Relay gateway [[plugins.dynamic]] records because "
                 "the Python binding does not expose the CLI lifecycle resolver for "
-                "enablement, trust policy, and worker environments. Use Hermes-owned "
+                "enablement, trust policy, and worker environments. Use OpenAmer-owned "
                 "[[dynamic_plugins]] activation specs instead; no dynamic plugins will be "
                 "activated. Continuing with static observability only."
             )
@@ -1116,7 +1116,7 @@ def _value(obj: Any, key: str, default: Any = None) -> Any:
 
 
 def _original_downstream_error(exc: Exception) -> BaseException:
-    # Hermes wraps downstream execution failures in a local/private exception
+    # OpenAmer wraps downstream execution failures in a local/private exception
     # class, so detect the wrapper by shape instead of importing it here.
     original = getattr(exc, "original", None)
     if exc.__class__.__name__ == "_DownstreamExecutionError" and isinstance(original, BaseException):
@@ -1130,7 +1130,7 @@ def _is_relay_wrapped_callback_error(exc: Exception, callback_error: Exception |
     # trailing traceback/suffix in a future Relay version doesn't silently defeat
     # the unwrap; the class-name + message prefix still discriminates the real
     # downstream failure from unrelated Relay-internal errors. If Relay drops the
-    # leading ``internal error:`` shape entirely, this returns False and Hermes
+    # leading ``internal error:`` shape entirely, this returns False and OpenAmer
     # falls back to surfacing Relay's error (the pre-fix behavior) rather than
     # masking it.
     if callback_error is None or not isinstance(exc, RuntimeError):
@@ -1220,7 +1220,7 @@ def _resolve_awaitable(value: Any) -> Any:
 
     thread = threading.Thread(
         target=_runner,
-        name="hermes-nemo-relay-awaitable",
+        name="openamer-nemo-relay-awaitable",
         daemon=True,
     )
     thread.start()

@@ -1,6 +1,6 @@
 /**
  * AuthWidget — sidebar "Logged in as …" affordance for the dashboard
- * OAuth gate (Phase 7 of .hermes/plans/2026-05-21-dashboard-oauth-auth.md).
+ * OAuth gate (Phase 7 of .openamer/plans/2026-05-21-dashboard-oauth-auth.md).
  *
  * Renders nothing in loopback / --insecure mode. In gated mode, fetches
  * /api/auth/me on mount and surfaces:

@@ -96,14 +96,14 @@ def test_cmd_setup_clears_interactive_picker_before_provider_post_setup(monkeypa
     events = []
 
     class PostSetupProvider:
-        def post_setup(self, hermes_home, config):
+        def post_setup(self, openamer_home, config):
             events.append("post_setup")
 
     monkeypatch.setattr(memory_setup, "_get_available_providers", lambda: [("openviking", "local", PostSetupProvider())])
     monkeypatch.setattr(memory_setup, "_curses_select", lambda *args, **kwargs: events.append("select") or 0)
     monkeypatch.setattr(memory_setup, "_clear_interactive_transition", lambda: events.append("clear"), raising=False)
     monkeypatch.setattr(memory_setup, "_install_dependencies", lambda name: events.append("install"))
-    monkeypatch.setattr(memory_setup, "get_hermes_home", lambda: "/tmp/hermes-test")
+    monkeypatch.setattr(memory_setup, "get_openamer_home", lambda: "/tmp/openamer-test")
     monkeypatch.setattr("openamer_cli.config.load_config", lambda: {"memory": {}})
 
     memory_setup.cmd_setup(SimpleNamespace())
@@ -115,13 +115,13 @@ def test_cmd_setup_provider_clears_before_provider_post_setup(monkeypatch):
     events = []
 
     class PostSetupProvider:
-        def post_setup(self, hermes_home, config):
+        def post_setup(self, openamer_home, config):
             events.append("post_setup")
 
     monkeypatch.setattr(memory_setup, "_get_available_providers", lambda: [("openviking", "local", PostSetupProvider())])
     monkeypatch.setattr(memory_setup, "_clear_interactive_transition", lambda: events.append("clear"), raising=False)
     monkeypatch.setattr(memory_setup, "_install_dependencies", lambda name: events.append("install"))
-    monkeypatch.setattr(memory_setup, "get_hermes_home", lambda: "/tmp/hermes-test")
+    monkeypatch.setattr(memory_setup, "get_openamer_home", lambda: "/tmp/openamer-test")
     monkeypatch.setattr("openamer_cli.config.load_config", lambda: {"memory": {}})
 
     memory_setup.cmd_setup_provider("openviking")
@@ -139,7 +139,7 @@ def test_cmd_status_prefers_provider_status_config(monkeypatch, capsys):
                 "endpoint": "https://vps.example",
                 "account": "acct",
                 "user": "alice",
-                "agent": "hermes",
+                "agent": "openamer",
             }
 
         def is_available(self):
@@ -186,7 +186,7 @@ def test_cmd_setup_generic_choice_cancel_writes_nothing(tmp_path, monkeypatch):
     monkeypatch.setattr(memory_setup, "_get_available_providers", lambda: [("fake", "local", provider)])
     monkeypatch.setattr(memory_setup, "_curses_select", lambda *args, **kwargs: next(selections))
     monkeypatch.setattr(memory_setup, "_install_dependencies", install_dependencies)
-    monkeypatch.setattr(memory_setup, "get_hermes_home", lambda: tmp_path)
+    monkeypatch.setattr(memory_setup, "get_openamer_home", lambda: tmp_path)
     monkeypatch.setattr("openamer_cli.config.load_config", lambda: {"memory": {}})
     monkeypatch.setattr("openamer_cli.config.save_config", save_config)
 

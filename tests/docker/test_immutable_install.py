@@ -2,9 +2,9 @@
 
 Build the real image and verify at runtime:
 
-  1. /opt/hermes is not writable by the hermes user (immutable install tree)
+  1. /opt/openamer is not writable by the openamer user (immutable install tree)
   2. PYTHONDONTWRITEBYTECODE and HERMES_DISABLE_LAZY_INSTALLS are set
-  3. /opt/hermes/.install_method contains "docker" (code-scoped stamp)
+  3. /opt/openamer/.install_method contains "docker" (code-scoped stamp)
   4. $OPENAMER_HOME/.install_method is NOT stamped as "docker" by stage2
   5. A stale "docker" stamp in $OPENAMER_HOME is healed (removed) on boot
 """
@@ -18,10 +18,10 @@ from tests.docker.conftest import (
 )
 
 
-def test_install_tree_not_writable_by_hermes(
+def test_install_tree_not_writable_by_openamer(
     built_image: str, container_name: str,
 ) -> None:
-    """The hermes user must not be able to modify /opt/hermes.
+    """The openamer user must not be able to modify /opt/openamer.
 
     The install tree (source, venv, TUI bundle, node_modules) must remain
     root-owned and non-writable so an agent session cannot self-modify
@@ -31,29 +31,29 @@ def test_install_tree_not_writable_by_hermes(
 
     r = docker_exec_sh(
         container_name,
-        # Try to create a file under /opt/hermes as the hermes user
-        "touch /opt/hermes/test_write 2>&1 && "
+        # Try to create a file under /opt/openamer as the openamer user
+        "touch /opt/openamer/test_write 2>&1 && "
         "echo WRITE_SUCCEEDED || echo WRITE_FAILED",
         timeout=10,
     )
     assert "WRITE_FAILED" in r.stdout, (
-        f"hermes user can write to /opt/hermes (install tree not immutable): "
+        f"openamer user can write to /opt/openamer (install tree not immutable): "
         f"{r.stdout}"
     )
 
     # Also check a key subdirectory
     r = docker_exec_sh(
         container_name,
-        "touch /opt/hermes/.venv/test_write 2>&1 && "
+        "touch /opt/openamer/.venv/test_write 2>&1 && "
         "echo WRITE_SUCCEEDED || echo WRITE_FAILED",
         timeout=10,
     )
     assert "WRITE_FAILED" in r.stdout, (
-        f"hermes user can write to /opt/hermes/.venv: {r.stdout}"
+        f"openamer user can write to /opt/openamer/.venv: {r.stdout}"
     )
 
 
-def test_hermes_disable_lazy_installs_and_dont_write_bytecode(
+def test_openamer_disable_lazy_installs_and_dont_write_bytecode(
     built_image: str, container_name: str,
 ) -> None:
     """The container must set PYTHONDONTWRITEBYTECODE and
@@ -78,17 +78,17 @@ def test_install_method_stamp_is_code_scoped(
     built_image: str, container_name: str,
 ) -> None:
     """The 'docker' install-method stamp must be baked at
-    /opt/hermes/.install_method (code-scoped), NOT in $OPENAMER_HOME."""
+    /opt/openamer/.install_method (code-scoped), NOT in $OPENAMER_HOME."""
     start_container(built_image, container_name)
 
     # Code-scoped stamp must exist and say "docker"
     r = docker_exec_sh(
         container_name,
-        "cat /opt/hermes/.install_method",
+        "cat /opt/openamer/.install_method",
         timeout=10,
     )
     assert r.returncode == 0, (
-        f"/opt/hermes/.install_method not found: {r.stderr}"
+        f"/opt/openamer/.install_method not found: {r.stderr}"
     )
     assert r.stdout.strip() == "docker", (
         f"expected 'docker' stamp, got: {r.stdout.strip()!r}"

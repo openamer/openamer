@@ -1,4 +1,4 @@
-"""Tests for the interactive session browser (`hermes sessions browse`).
+"""Tests for the interactive session browser (`openamer sessions browse`).
 
 Covers:
 - _session_browse_picker logic (curses mocked, fallback tested)
@@ -384,7 +384,7 @@ class TestSessionBrowseArgparse:
     """Verify the 'browse' subcommand is properly registered."""
 
     def test_browse_subcommand_exists(self):
-        """hermes sessions browse should be parseable."""
+        """openamer sessions browse should be parseable."""
 
         # We can't run main(), but we can import and test the parser setup
         # by checking that argparse doesn't error on "sessions browse"

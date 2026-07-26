@@ -101,7 +101,7 @@ class TestIsLocalEndpoint:
     @pytest.mark.parametrize("url", [
         "http://ollama:11434",
         "http://litellm:4000/v1",
-        "http://hermes-litellm:8080",
+        "http://openamer-litellm:8080",
         "http://vllm:8000",
     ])
     def test_unqualified_docker_hostnames(self, url):

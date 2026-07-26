@@ -121,8 +121,8 @@ def _resolve_spill_dir(directory_override: Optional[str], session_id: Optional[s
             from openamer_constants import get_openamer_home
             base = Path(get_openamer_home()) / "hook_outputs"
         except Exception:
-            # Last-resort fallback: OPENAMER_HOME env var, then ~/.hermes
-            home = os.environ.get("OPENAMER_HOME") or os.path.expanduser("~/.hermes")
+            # Last-resort fallback: OPENAMER_HOME env var, then ~/.openamer
+            home = os.environ.get("OPENAMER_HOME") or os.path.expanduser("~/.openamer")
             base = Path(home) / "hook_outputs"
 
     # Group by session so spills are contained per conversation.

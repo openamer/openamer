@@ -1,7 +1,7 @@
 """Agent-construction and session-resume display methods for ``OpenAmerCLI``.
 
 Extracted from ``cli.py`` as part of the god-file decomposition campaign
-(``~/.hermes/plans/god-file-decomposition.md``, Phase 4 step 2). This mixin holds
+(``~/.openamer/plans/god-file-decomposition.md``, Phase 4 step 2). This mixin holds
 the agent lifecycle/setup cluster: runtime-credential resolution, per-turn agent
 config, first-use agent construction, and resumed-session preload + history recap.
 

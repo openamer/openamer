@@ -29,7 +29,7 @@ def test_print_exit_summary_clears_screen_by_default(monkeypatch):
     ))
 
     fake = FakeCLI()
-    cli_mod.HermesCLI._print_exit_summary(fake)  # default clear_screen=True
+    cli_mod.OpenAmerCLI._print_exit_summary(fake)  # default clear_screen=True
 
     assert "clear" in calls, "_clear_terminal_on_exit should be called by default"
 
@@ -54,7 +54,7 @@ def test_print_exit_summary_skips_clear_when_clear_screen_false(monkeypatch):
     ))
 
     fake = FakeCLI()
-    cli_mod.HermesCLI._print_exit_summary(fake, clear_screen=False)
+    cli_mod.OpenAmerCLI._print_exit_summary(fake, clear_screen=False)
 
     assert "clear" not in calls, (
         "_clear_terminal_on_exit should NOT be called when clear_screen=False"
@@ -93,7 +93,7 @@ def test_single_query_main_skips_clear_on_exit_summary(monkeypatch):
             if clear_screen:
                 clear_calls.append("CLEARED")  # should NOT happen
 
-    monkeypatch.setattr(cli_mod, "HermesCLI", FakeCLI)
+    monkeypatch.setattr(cli_mod, "OpenAmerCLI", FakeCLI)
     monkeypatch.setattr(cli_mod.atexit, "register", lambda *_a, **_kw: None)
     monkeypatch.setattr(
         cli_mod,
@@ -142,7 +142,7 @@ def test_print_exit_summary_still_clears_in_interactive_path(monkeypatch):
     ))
 
     fake = FakeCLI()
-    cli_mod.HermesCLI._print_exit_summary(fake)  # default clear_screen=True
+    cli_mod.OpenAmerCLI._print_exit_summary(fake)  # default clear_screen=True
 
     assert "clear" in calls, (
         "Interactive mode should still clear the screen (regression test for #38928)"

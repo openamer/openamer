@@ -1,4 +1,4 @@
-"""Tests for ``hermes dashboard register``.
+"""Tests for ``openamer dashboard register``.
 
 Covers the CLI half of self-hosted dashboard registration:
   - Docker-style auto-name generation
@@ -56,7 +56,7 @@ class TestFastFails:
         assert exc.value.code == 1
         out = capsys.readouterr().out
         assert "not logged into Nous Portal" in out
-        assert "hermes setup" in out
+        assert "openamer setup" in out
 
     def test_managed_install_refuses(self, capsys):
         with patch("openamer_cli.config.is_managed", return_value=True):
@@ -147,12 +147,12 @@ class TestHappyPath:
     def test_custom_redirect_uri_is_forwarded(self, capsys):
         captured: dict = {}
         self._run(
-            args=_ns(redirect_uri="https://hermes.example.com/auth/callback"),
+            args=_ns(redirect_uri="https://openamer.example.com/auth/callback"),
             captured=captured,
         )
         assert (
             captured["body"]["custom_redirect_uri"]
-            == "https://hermes.example.com/auth/callback"
+            == "https://openamer.example.com/auth/callback"
         )
 
     def test_non_default_portal_is_persisted(self, capsys):
@@ -399,7 +399,7 @@ class TestPublicUrlPersistence:
     """`--redirect-uri` derives & persists HERMES_DASHBOARD_PUBLIC_URL in .env.
 
     --redirect-uri is the full public callback (e.g.
-    https://hermes.example.com/auth/callback). At serve time the dashboard auth
+    https://openamer.example.com/auth/callback). At serve time the dashboard auth
     layer reconstructs that callback by appending "/auth/callback" to
     HERMES_DASHBOARD_PUBLIC_URL, so the value that's actually consumed is the
     ORIGIN (scheme://host). We derive the origin from the supplied redirect URI
@@ -457,20 +457,20 @@ class TestPublicUrlPersistence:
         # The key behaviour: a full callback URL is reduced to its ORIGIN so
         # the runtime's "public_url + /auth/callback" reconstruction matches.
         saved = self._run(
-            args=_ns(redirect_uri="https://hermes.example.com/auth/callback"),
+            args=_ns(redirect_uri="https://openamer.example.com/auth/callback"),
             existing_public=None,
         )
-        assert saved["HERMES_DASHBOARD_PUBLIC_URL"] == "https://hermes.example.com"
+        assert saved["HERMES_DASHBOARD_PUBLIC_URL"] == "https://openamer.example.com"
         # The full callback path must NOT be persisted verbatim (would double
         # the path at serve time).
         assert "/auth/callback" not in saved["HERMES_DASHBOARD_PUBLIC_URL"]
 
     def test_origin_preserves_port(self, capsys):
         saved = self._run(
-            args=_ns(redirect_uri="https://hermes.example.com:8443/auth/callback"),
+            args=_ns(redirect_uri="https://openamer.example.com:8443/auth/callback"),
             existing_public=None,
         )
-        assert saved["HERMES_DASHBOARD_PUBLIC_URL"] == "https://hermes.example.com:8443"
+        assert saved["HERMES_DASHBOARD_PUBLIC_URL"] == "https://openamer.example.com:8443"
 
     def test_public_url_updates_existing_in_place(self, capsys):
         # A stale public-url entry exists; the new derived origin overwrites it.
@@ -483,8 +483,8 @@ class TestPublicUrlPersistence:
     def test_public_url_equal_to_existing_is_noop(self, capsys):
         # Derived origin already matches what's stored → no redundant write.
         saved = self._run(
-            args=_ns(redirect_uri="https://hermes.example.com/auth/callback"),
-            existing_public="https://hermes.example.com",
+            args=_ns(redirect_uri="https://openamer.example.com/auth/callback"),
+            existing_public="https://openamer.example.com",
         )
         assert "HERMES_DASHBOARD_PUBLIC_URL" not in saved
 
@@ -522,7 +522,7 @@ class TestPublicUrlPersistence:
             "id": "selfhost-1",
             "name": "dreamy_tesla",
             "kind": "SELF_HOSTED",
-            "custom_redirect_uri": "https://hermes.example.com/auth/callback",
+            "custom_redirect_uri": "https://openamer.example.com/auth/callback",
             "created_at": "2026-06-04T12:00:00.000Z",
         }
         saved: dict = {}
@@ -547,11 +547,11 @@ class TestPublicUrlPersistence:
             dr.cmd_dashboard_register(
                 _ns(
                     portal_url="https://preview.example.com",
-                    redirect_uri="https://hermes.example.com/auth/callback",
+                    redirect_uri="https://openamer.example.com/auth/callback",
                 )
             )
         assert saved["HERMES_DASHBOARD_PORTAL_URL"] == "https://preview.example.com"
-        assert saved["HERMES_DASHBOARD_PUBLIC_URL"] == "https://hermes.example.com"
+        assert saved["HERMES_DASHBOARD_PUBLIC_URL"] == "https://openamer.example.com"
 
 
 class TestPortalResolution:

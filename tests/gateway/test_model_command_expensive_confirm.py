@@ -60,7 +60,7 @@ def _fake_warning():
     return SimpleNamespace(
         message=(
             "!!! EXPENSIVE MODEL WARNING !!!\n"
-            "openai/gpt-5.5-pro has known pricing above Hermes' safety threshold.\n"
+            "openai/gpt-5.5-pro has known pricing above OpenAmer' safety threshold.\n"
             "did you mean to select openai/gpt-5.5?"
         ),
     )
@@ -69,22 +69,22 @@ def _fake_warning():
 def _setup_isolated_home(tmp_path, monkeypatch, *, warn):
     import gateway.run as gateway_run
 
-    hermes_home = tmp_path / ".hermes"
-    hermes_home.mkdir()
-    cfg_path = hermes_home / "config.yaml"
+    openamer_home = tmp_path / ".openamer"
+    openamer_home.mkdir()
+    cfg_path = openamer_home / "config.yaml"
     cfg_path.write_text(
         yaml.safe_dump({"model": {"default": "old-model", "provider": "openrouter"}, "providers": {}}),
         encoding="utf-8",
     )
 
-    monkeypatch.setattr(gateway_run, "_hermes_home", hermes_home)
+    monkeypatch.setattr(gateway_run, "_openamer_home", openamer_home)
     monkeypatch.setattr("agent.models_dev.fetch_models_dev", lambda: {})
     monkeypatch.setattr(
         "openamer_cli.model_switch.switch_model",
         lambda **kw: _fake_switch_result(),
     )
-    monkeypatch.setattr("openamer_constants.get_hermes_home", lambda: hermes_home)
-    monkeypatch.setattr("openamer_cli.config.get_hermes_home", lambda: hermes_home)
+    monkeypatch.setattr("openamer_constants.get_openamer_home", lambda: openamer_home)
+    monkeypatch.setattr("openamer_cli.config.get_openamer_home", lambda: openamer_home)
     monkeypatch.setattr(
         "openamer_cli.model_cost_guard.expensive_model_warning",
         (lambda *a, **kw: _fake_warning()) if warn else (lambda *a, **kw: None),

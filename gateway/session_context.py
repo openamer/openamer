@@ -1,5 +1,5 @@
 """
-Session-scoped context variables for the Hermes gateway.
+Session-scoped context variables for the OpenAmer gateway.
 
 Replaces the previous ``os.environ``-based session state
 (``HERMES_SESSION_PLATFORM``, ``HERMES_SESSION_CHAT_ID``, etc.) with
@@ -346,7 +346,7 @@ def declare_stateless_channel() -> None:
     returned within the turn instead of being dispatched to a channel that will
     never deliver them.
 
-    See NousResearch/hermes-agent#53027 and #63142.
+    See NousResearch/openamer-agent#53027 and #63142.
     """
     _SESSION_ASYNC_DELIVERY.set(False)
 
@@ -357,7 +357,7 @@ def async_delivery_supported() -> bool:
     Returns ``False`` for finite runtimes that can end before a detached result
     is delivered: sessions explicitly bound by a stateless channel — an adapter
     that cannot route a notification back after the turn ends (the API server),
-    or a one-shot runner that exits after its final response (``hermes -z``,
+    or a one-shot runner that exits after its final response (``openamer -z``,
     cron — see :func:`declare_stateless_channel`) — and dispatcher-spawned
     Kanban workers (identified by ``OPENAMER_KANBAN_TASK``), which are one-shot
     ``chat -q`` subprocesses. The real gateway platforms, the interactive CLI,

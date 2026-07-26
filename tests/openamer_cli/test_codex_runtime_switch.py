@@ -23,7 +23,7 @@ class TestParseArgs:
         ("off", "auto"),
         ("codex", "codex_app_server"),
         ("default", "auto"),
-        ("hermes", "auto"),
+        ("openamer", "auto"),
         ("ENABLE", "codex_app_server"),  # case-insensitive
         ("DiSaBlE", "auto"),
     ])
@@ -102,7 +102,7 @@ class TestApply:
         `openai_runtime: codex_app_server` in config.yaml, then runs
         /codex-runtime codex_app_server expecting the migration. Without
         this, the slash command short-circuits with "already set" and
-        ~/.codex/config.toml never gets the hermes-tools MCP callback
+        ~/.codex/config.toml never gets the openamer-tools MCP callback
         or plugin migration — silent partial setup.
         """
         cfg = {
@@ -119,7 +119,7 @@ class TestApply:
         with patch.object(crs, "check_codex_binary_ok",
                           return_value=(True, "0.130.0")), \
              patch("openamer_cli.codex_runtime_plugin_migration.migrate") as mig:
-            mig.return_value.migrated = ["filesystem", "hermes-tools"]
+            mig.return_value.migrated = ["filesystem", "openamer-tools"]
             mig.return_value.migrated_plugins = []
             mig.return_value.plugin_query_error = None
             mig.return_value.wrote_permissions_default = ":workspace"
@@ -178,7 +178,7 @@ class TestApply:
         assert r.new_value == "codex_app_server"
         assert r.old_value == "auto"
         assert r.requires_new_session is True
-        assert "via MCP" in r.message  # hermes-tools callback message
+        assert "via MCP" in r.message  # openamer-tools callback message
         assert cfg["model"]["openai_runtime"] == "codex_app_server"
         assert persisted["model"]["openai_runtime"] == "codex_app_server"
 
@@ -206,7 +206,7 @@ class TestApply:
         assert "disk full" in r.message
 
     def test_enable_triggers_mcp_migration(self):
-        """Enabling codex_app_server should auto-migrate Hermes mcp_servers
+        """Enabling codex_app_server should auto-migrate OpenAmer mcp_servers
         to ~/.codex/config.toml so the spawned subprocess sees them."""
         cfg = {
             "mcp_servers": {
@@ -217,7 +217,7 @@ class TestApply:
         with patch.object(crs, "check_codex_binary_ok",
                           return_value=(True, "0.130.0")), \
              patch("openamer_cli.codex_runtime_plugin_migration.migrate") as mig:
-            mig.return_value.migrated = ["filesystem", "hermes-tools"]
+            mig.return_value.migrated = ["filesystem", "openamer-tools"]
             mig.return_value.migrated_plugins = []
             mig.return_value.plugin_query_error = None
             mig.return_value.wrote_permissions_default = ":workspace"
@@ -226,12 +226,12 @@ class TestApply:
             r = crs.apply(cfg, "codex_app_server")
         assert r.success
         assert mig.called  # migration was triggered
-        # User MCP servers are reported (excluding internal hermes-tools)
+        # User MCP servers are reported (excluding internal openamer-tools)
         assert "Migrated 1 MCP server" in r.message
         assert "filesystem" in r.message
         # Permissions default surfaces
         assert "Default sandbox: :workspace" in r.message
-        # Hermes tool callback announcement
+        # OpenAmer tool callback announcement
         assert "via MCP" in r.message
 
     def test_disable_does_not_trigger_migration(self):

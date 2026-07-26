@@ -15,7 +15,7 @@ import re
 import sys
 from pathlib import Path
 
-from openamer_constants import display_hermes_home, get_hermes_home
+from openamer_constants import display_openamer_home, get_openamer_home
 
 _HEX_RE = re.compile(r"^#[0-9a-fA-F]{6}$")
 
@@ -78,7 +78,7 @@ def _skin_set(key: str, value: str, skin: str | None) -> int:
     if target != name:
         _use(target)
 
-    print(f"✓ {key} = {value} in {display_hermes_home()}/skins/{target}.yaml (live within ~1s)")
+    print(f"✓ {key} = {value} in {display_openamer_home()}/skins/{target}.yaml (live within ~1s)")
     return 0
 
 

@@ -1,4 +1,4 @@
-import { wrapAnsi } from '@hermes/ink'
+import { wrapAnsi } from '@openamer/ink'
 import { describe, expect, it } from 'vitest'
 
 import { offsetFromPosition } from '../components/textInput.js'

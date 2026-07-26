@@ -113,10 +113,10 @@ class TestSlackExecApproval:
         elements = blocks[1]["elements"]
         assert len(elements) == 4
         action_ids = [e["action_id"] for e in elements]
-        assert "hermes_approve_once" in action_ids
-        assert "hermes_approve_session" in action_ids
-        assert "hermes_approve_always" in action_ids
-        assert "hermes_deny" in action_ids
+        assert "openamer_approve_once" in action_ids
+        assert "openamer_approve_session" in action_ids
+        assert "openamer_approve_always" in action_ids
+        assert "openamer_deny" in action_ids
         # Each button carries the session key as value
         for e in elements:
             assert e["value"] == "agent:main:slack:group:C1:1111"
@@ -135,7 +135,7 @@ class TestSlackExecApproval:
         kwargs = mock_client.chat_postMessage.call_args.kwargs
         elements = kwargs["blocks"][1]["elements"]
         assert [element["action_id"] for element in elements] == [
-            "hermes_approve_once", "hermes_deny",
+            "openamer_approve_once", "openamer_deny",
         ]
         assert "one operation" in kwargs["blocks"][0]["text"]["text"].lower()
 
@@ -207,7 +207,7 @@ class TestSlackApprovalAction:
             "user": {"name": "norbert", "id": "U_NORBERT"},
         }
         action = {
-            "action_id": "hermes_approve_once",
+            "action_id": "openamer_approve_once",
             "value": "agent:main:slack:group:C1:1111",
         }
 
@@ -238,7 +238,7 @@ class TestSlackApprovalAction:
             "user": {"name": "norbert", "id": "U_NORBERT"},
         }
         action = {
-            "action_id": "hermes_approve_once",
+            "action_id": "openamer_approve_once",
             "value": "some-session",
         }
 
@@ -263,7 +263,7 @@ class TestSlackApprovalAction:
             "channel": {"id": "C1"},
             "user": {"name": "alice", "id": "U_ALICE"},
         }
-        action = {"action_id": "hermes_deny", "value": "session-key"}
+        action = {"action_id": "openamer_deny", "value": "session-key"}
 
         mock_client = adapter._team_clients["T1"]
         mock_client.chat_update = AsyncMock()
@@ -294,7 +294,7 @@ class TestSlackApprovalAction:
             "channel": {"id": "C1"},
             "user": {"name": "alice", "id": "U_ALICE"},
         }
-        action = {"action_id": "hermes_approve_once", "value": "session-key"}
+        action = {"action_id": "openamer_approve_once", "value": "session-key"}
 
         mock_client = adapter._team_clients["T1"]
         mock_client.chat_update = AsyncMock()
@@ -322,7 +322,7 @@ class TestSlackApprovalAction:
             "user": {"name": "mallory", "id": "U_ATTACKER"},
         }
         action = {
-            "action_id": "hermes_approve_once",
+            "action_id": "openamer_approve_once",
             "value": "agent:main:slack:group:C1:1111",
         }
 
@@ -391,7 +391,7 @@ class TestSlackSlashConfirmAction:
             "user": {"name": "owner", "id": "U_OWNER"},
         }
         action = {
-            "action_id": "hermes_confirm_once",
+            "action_id": "openamer_confirm_once",
             "value": "agent:main:slack:group:C1:1111|confirm-1",
         }
 
@@ -430,7 +430,7 @@ class TestSlackSlashConfirmAction:
             "user": {"name": "owner", "id": "U_OWNER"},
         }
         action = {
-            "action_id": "hermes_confirm_once",
+            "action_id": "openamer_confirm_once",
             "value": "agent:main:slack:group:C1:1111|confirm-1",
         }
 
@@ -460,7 +460,7 @@ class TestSlackSlashConfirmAction:
             "user": {"name": "owner", "id": "U_OWNER"},
         }
         action = {
-            "action_id": "hermes_confirm_once",
+            "action_id": "openamer_confirm_once",
             "value": "agent:main:slack:group:C1:1111|confirm-1",
         }
 
@@ -1233,11 +1233,11 @@ class TestSlackReactionForwarding:
         # Distinct synthetic ts so dedup doesn't merge with anything else.
         assert synth["ts"] == "3000.0"
         # Reaction metadata preserved for downstream introspection.
-        assert synth["_hermes_reaction"]["name"] == "thumbsup"
-        assert synth["_hermes_reaction"]["action"] == "added"
-        assert synth["_hermes_reaction"]["reacted_to_ts"] == "2000.0"
+        assert synth["_openamer_reaction"]["name"] == "thumbsup"
+        assert synth["_openamer_reaction"]["action"] == "added"
+        assert synth["_openamer_reaction"]["reacted_to_ts"] == "2000.0"
         # Pre-authorized as addressed-to-the-bot (skips mention gate only).
-        assert synth["_hermes_force_process"] is True
+        assert synth["_openamer_force_process"] is True
 
     @pytest.mark.asyncio
     async def test_reaction_removed_synthesizes_removed_text(self):
@@ -1269,7 +1269,7 @@ class TestSlackReactionForwarding:
 
         assert len(forwarded) == 1
         assert forwarded[0]["text"] == "reaction:removed:✅"
-        assert forwarded[0]["_hermes_reaction"]["action"] == "removed"
+        assert forwarded[0]["_openamer_reaction"]["action"] == "removed"
 
     @pytest.mark.asyncio
     async def test_self_reaction_dropped(self):
@@ -1469,8 +1469,8 @@ class TestSlackReactionForwarding:
         synth = forwarded[0]
         assert synth["channel"] == "C_TRAIN"
         assert "thread_ts" not in synth
-        assert synth["_hermes_no_thread_response"] is True
-        assert synth["_hermes_reaction_source_channel"] == "C1"
+        assert synth["_openamer_no_thread_response"] is True
+        assert synth["_openamer_reaction_source_channel"] == "C1"
 
     @pytest.mark.asyncio
     async def test_target_channel_with_thread_routes_to_thread(self):
@@ -1500,7 +1500,7 @@ class TestSlackReactionForwarding:
         assert len(forwarded) == 1
         assert forwarded[0]["channel"] == "C_TRAIN"
         assert forwarded[0]["thread_ts"] == "1719.0001"
-        assert "_hermes_no_thread_response" not in forwarded[0]
+        assert "_openamer_no_thread_response" not in forwarded[0]
 
     @pytest.mark.asyncio
     async def test_hook_fires_even_when_routing_disabled(self):

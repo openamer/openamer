@@ -51,7 +51,7 @@ class DummyAgent:
     ):
         self.api_mode = "codex_app_server"
         self.codex_app_server_auto_compaction = auto_compaction
-        self.session_id = "hermes-session-1"
+        self.session_id = "openamer-session-1"
         self.platform = "cli"
         self._cached_system_prompt = "cached prompt"
         self._codex_session = FakeCodexSession(result)
@@ -175,7 +175,7 @@ def test_codex_app_server_manual_compression_routes_to_codex_thread():
             "session:compress",
             {
                 "platform": "cli",
-                "session_id": "hermes-session-1",
+                "session_id": "openamer-session-1",
                 "old_session_id": "",
                 "in_place": False,
                 "compression_count": 1,
@@ -187,10 +187,10 @@ def test_codex_app_server_manual_compression_routes_to_codex_thread():
     ]
 
 
-def test_codex_app_server_hermes_mode_auto_compression_routes_to_codex_thread():
+def test_codex_app_server_openamer_mode_auto_compression_routes_to_codex_thread():
     agent = DummyAgent(
         TurnResult(thread_id="thread-1", turn_id="compact-turn-1"),
-        auto_compaction="hermes",
+        auto_compaction="openamer",
     )
     messages = [{"role": "user", "content": "hi"}]
 
@@ -254,7 +254,7 @@ def test_codex_app_server_native_compaction_notice_emits_status_and_event():
             "session:compress",
             {
                 "platform": "cli",
-                "session_id": "hermes-session-1",
+                "session_id": "openamer-session-1",
                 "old_session_id": "",
                 "in_place": False,
                 "compression_count": 1,
@@ -266,7 +266,7 @@ def test_codex_app_server_native_compaction_notice_emits_status_and_event():
     ]
 
 
-def test_codex_native_boundary_clears_stale_hermes_fallback_streak():
+def test_codex_native_boundary_clears_stale_openamer_fallback_streak():
     from unittest.mock import patch
 
     from agent.context_compressor import ContextCompressor

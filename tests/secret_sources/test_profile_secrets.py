@@ -46,7 +46,7 @@ def _clean_registry():
     registry._reset_registry_for_tests()
 
 
-def _apply(secrets, cfg_extra=None, home=Path("/tmp/x/.hermes"), env=None):
+def _apply(secrets, cfg_extra=None, home=Path("/tmp/x/.openamer"), env=None):
     registry.register_source(_FakeBulk(secrets), replace=True)
     cfg = {"fakebulk": {"enabled": True}}
     cfg.update(cfg_extra or {})
@@ -55,7 +55,7 @@ def _apply(secrets, cfg_extra=None, home=Path("/tmp/x/.hermes"), env=None):
     return report, env
 
 
-PROFILE_HOME = Path("/home/u/.hermes/profiles/milla")
+PROFILE_HOME = Path("/home/u/.openamer/profiles/milla")
 
 
 # ---------------------------------------------------------------------------
@@ -152,7 +152,7 @@ def test_alias_disabled_by_config():
 def test_default_profile_never_aliases():
     _, env = _apply(
         {"TELEGRAM_BOT_TOKEN_MILLA": "123:tok"},
-        home=Path("/home/u/.hermes"),
+        home=Path("/home/u/.openamer"),
     )
     assert "TELEGRAM_BOT_TOKEN" not in env
 
@@ -160,7 +160,7 @@ def test_default_profile_never_aliases():
 def test_hyphenated_profile_name_matches_underscore_suffix():
     _, env = _apply(
         {"SLACK_APP_TOKEN_MY_BOT": "xapp-1"},
-        home=Path("/home/u/.hermes/profiles/my-bot"),
+        home=Path("/home/u/.openamer/profiles/my-bot"),
     )
     assert env["SLACK_APP_TOKEN"] == "xapp-1"
 

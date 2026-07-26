@@ -1,6 +1,6 @@
 """Tests for the curator per-run report writer (run.json + REPORT.md).
 
-Reports live under ``~/.hermes/logs/curator/{YYYYMMDD-HHMMSS}/`` alongside
+Reports live under ``~/.openamer/logs/curator/{YYYYMMDD-HHMMSS}/`` alongside
 the standard log dir, not inside the user's ``skills/`` data directory.
 """
 
@@ -16,7 +16,7 @@ import pytest
 @pytest.fixture
 def curator_env(tmp_path, monkeypatch):
     """Isolated OPENAMER_HOME with a skills/ dir + reset curator module state."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     (home / "skills").mkdir()
     (home / "logs").mkdir()

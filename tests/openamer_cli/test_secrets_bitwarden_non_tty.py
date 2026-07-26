@@ -1,4 +1,4 @@
-"""Regression tests for hermes secrets bitwarden setup non-TTY guard.
+"""Regression tests for openamer secrets bitwarden setup non-TTY guard.
 
 Issue #40274: cmd_setup() crashes with EOFError when stdin is not a TTY
 because getpass.getpass() and console.input() require an interactive terminal.

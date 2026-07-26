@@ -263,8 +263,8 @@ class TestRunBrowserCommandPathConstruction:
             "cdp_url": None,
         }
         fake_json = json.dumps({"success": True})
-        browser_path = "/Users/test/Library/Application Support/hermes/node_modules/.bin/agent-browser"
-        hermes_home = str(tmp_path / "hermes-home")
+        browser_path = "/Users/test/Library/Application Support/openamer/node_modules/.bin/agent-browser"
+        openamer_home = str(tmp_path / "openamer-home")
 
         with patch("tools.browser_tool._find_agent_browser", return_value=browser_path), \
  patch("tools.browser_tool._chromium_installed", return_value=True), \
@@ -281,7 +281,7 @@ class TestRunBrowserCommandPathConstruction:
                  {
                      "PATH": "/usr/bin:/bin",
                      "HOME": "/home/test",
-                     "OPENAMER_HOME": hermes_home,
+                     "OPENAMER_HOME": openamer_home,
                  },
                  clear=True,
              ):
@@ -316,7 +316,7 @@ class TestRunBrowserCommandPathConstruction:
             "cdp_url": None,
         }
         fake_json = json.dumps({"success": True})
-        hermes_home = str(tmp_path / "hermes-home")
+        openamer_home = str(tmp_path / "openamer-home")
 
         with patch("tools.browser_tool._find_agent_browser", return_value="npx agent-browser"), \
  patch("tools.browser_tool._chromium_installed", return_value=True), \
@@ -333,7 +333,7 @@ class TestRunBrowserCommandPathConstruction:
                  {
                      "PATH": "/usr/bin:/bin",
                      "HOME": "/home/test",
-                     "OPENAMER_HOME": hermes_home,
+                     "OPENAMER_HOME": openamer_home,
                  },
                  clear=True,
              ):

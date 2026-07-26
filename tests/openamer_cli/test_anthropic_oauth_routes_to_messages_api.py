@@ -34,7 +34,7 @@ class TestExplicitRuntimeForAnthropic:
     always return ``api_mode='anthropic_messages'`` regardless of
     base_url shape or stale persisted ``model.api_mode`` values.
 
-    Exercised whenever the user (or a Hermes subcommand) passes an
+    Exercised whenever the user (or a OpenAmer subcommand) passes an
     explicit ``--api-key`` / ``--base-url`` override to the runtime
     resolver.
     """
@@ -85,7 +85,7 @@ class TestExplicitRuntimeForAnthropic:
 
 class TestPoolEntryForAnthropic:
     """``_resolve_runtime_from_pool_entry`` is what runs when a user
-    has added an OAuth credential via ``hermes auth add anthropic
+    has added an OAuth credential via ``openamer auth add anthropic
     --type oauth`` (the exact flow from #32243).  Pin the contract
     alongside the URL-detector test so all three runtime branches
     stay aligned and a future refactor of one cannot diverge from
@@ -96,7 +96,7 @@ class TestPoolEntryForAnthropic:
         class _Entry:
             access_token = "sk-ant-oat01-pool"
             runtime_api_key = "sk-ant-oat01-pool"
-            source = "manual:hermes_pkce"
+            source = "manual:openamer_pkce"
             base_url = "https://api.anthropic.com"
 
         resolved = rp._resolve_runtime_from_pool_entry(
@@ -117,7 +117,7 @@ class TestPoolEntryForAnthropic:
         class _Entry:
             access_token = "sk-ant-oat01-pool"
             runtime_api_key = "sk-ant-oat01-pool"
-            source = "manual:hermes_pkce"
+            source = "manual:openamer_pkce"
             base_url = "https://api.anthropic.com"
 
         resolved = rp._resolve_runtime_from_pool_entry(

@@ -62,19 +62,19 @@ def test_agent_disabled_toolsets_with_explicit_platform_config():
 
 def test_all_invalid_platform_toolsets_logs_runtime_warning(caplog):
     """#38798: an explicit platform config whose toolset names are all invalid
-    (e.g. 'hermes' instead of 'hermes-cli') must warn at resolve time so an
+    (e.g. 'openamer' instead of 'openamer-cli') must warn at resolve time so an
     already-corrupted config is caught at runtime, not just during migration."""
     import openamer_cli.tools_config as _tc
     # The runtime warning fires once per platform per process; clear the guard
     # so this test is deterministic regardless of prior resolutions.
     _tc._warned_invalid_platform_toolsets.discard("cli")
-    config = {"platform_toolsets": {"cli": ["hermes"]}}
+    config = {"platform_toolsets": {"cli": ["openamer"]}}
 
     with caplog.at_level(logging.WARNING, logger="openamer_cli.tools_config"):
         _get_platform_tools(config, "cli")
 
     warnings = [r.getMessage() for r in caplog.records if r.levelno >= logging.WARNING]
-    assert any("#38798" in m and "hermes" in m for m in warnings), warnings
+    assert any("#38798" in m and "openamer" in m for m in warnings), warnings
 
 
 def test_invalid_platform_toolsets_runtime_warning_fires_once(caplog):
@@ -82,7 +82,7 @@ def test_invalid_platform_toolsets_runtime_warning_fires_once(caplog):
     config must not spam an identical warning on every tool resolution."""
     import openamer_cli.tools_config as _tc
     _tc._warned_invalid_platform_toolsets.discard("cli")
-    config = {"platform_toolsets": {"cli": ["hermes"]}}
+    config = {"platform_toolsets": {"cli": ["openamer"]}}
 
     with caplog.at_level(logging.WARNING, logger="openamer_cli.tools_config"):
         _get_platform_tools(config, "cli")
@@ -95,7 +95,7 @@ def test_invalid_platform_toolsets_runtime_warning_fires_once(caplog):
 
 def test_valid_platform_toolsets_no_runtime_warning(caplog):
     """A correctly-configured platform must not emit the #38798 warning."""
-    config = {"platform_toolsets": {"cli": ["hermes-cli"]}}
+    config = {"platform_toolsets": {"cli": ["openamer-cli"]}}
 
     with caplog.at_level(logging.WARNING, logger="openamer_cli.tools_config"):
         _get_platform_tools(config, "cli")
@@ -107,7 +107,7 @@ def test_partially_valid_platform_toolsets_no_runtime_warning(caplog):
     """When at least one configured toolset is valid, tools still resolve, so
     the runtime zero-tools warning must not fire (the migration-time check still
     flags the individual bad name)."""
-    config = {"platform_toolsets": {"cli": ["hermes-cli", "bogus"]}}
+    config = {"platform_toolsets": {"cli": ["openamer-cli", "bogus"]}}
 
     with caplog.at_level(logging.WARNING, logger="openamer_cli.tools_config"):
         _get_platform_tools(config, "cli")
@@ -230,7 +230,7 @@ def test_get_platform_tools_x_search_auto_enabled_when_xai_oauth_present(monkeyp
     tokens are present, mirroring the HASS_TOKEN → homeassistant rule.
 
     The user already authenticated via SuperGrok OAuth; they shouldn't have
-    to also click through `hermes tools` → X (Twitter) Search to flip the
+    to also click through `openamer tools` → X (Twitter) Search to flip the
     toolset on. Tool's check_fn still gates schema registration if creds
     later go missing.
     """
@@ -246,34 +246,34 @@ def test_get_platform_tools_x_search_auto_enabled_when_xai_oauth_present(monkeyp
 
 # ─── #35527: platform-restricted default-off toolsets (discord/discord_admin)
 # are stripped by _DEFAULT_OFF_TOOLSETS even when the user explicitly opts in
-# via the platform's native composite. The composite ``hermes-discord``
+# via the platform's native composite. The composite ``openamer-discord``
 # contains both ``discord`` and ``discord_admin`` tools, so configuring it is
 # an explicit opt-in that should survive the default-off strip. ───────────────
 
 
 def test_discord_composite_only_enables_discord_toolsets():
-    """Layer 1: ``platform_toolsets.discord: [hermes-discord]`` is an explicit
+    """Layer 1: ``platform_toolsets.discord: [openamer-discord]`` is an explicit
     opt-in to the full Discord bundle (which includes the ``discord`` and
     ``discord_admin`` tools). They must not be silently stripped."""
-    config = {"platform_toolsets": {"discord": ["hermes-discord"]}}
+    config = {"platform_toolsets": {"discord": ["openamer-discord"]}}
     enabled = _get_platform_tools(config, "discord")
-    assert "discord" in enabled, "discord toolset missing from hermes-discord composite"
+    assert "discord" in enabled, "discord toolset missing from openamer-discord composite"
     assert "discord_admin" in enabled, "discord_admin toolset missing from composite"
 
 
 def test_discord_composite_plus_configurable_enables_discord_toolsets():
     """Layer 2: mixing the composite with a configurable key (e.g. spotify)
     still opts into the Discord toolsets carried by the composite."""
-    config = {"platform_toolsets": {"discord": ["hermes-discord", "spotify"]}}
+    config = {"platform_toolsets": {"discord": ["openamer-discord", "spotify"]}}
     enabled = _get_platform_tools(config, "discord")
     assert "discord" in enabled
     assert "discord_admin" in enabled
 
 
 def test_discord_composite_plus_partial_explicit_enables_sibling():
-    """Layer 3: ``[hermes-discord, discord]`` lists discord explicitly but
+    """Layer 3: ``[openamer-discord, discord]`` lists discord explicitly but
     discord_admin arrives only via the composite. Both must survive."""
-    config = {"platform_toolsets": {"discord": ["hermes-discord", "discord"]}}
+    config = {"platform_toolsets": {"discord": ["openamer-discord", "discord"]}}
     enabled = _get_platform_tools(config, "discord")
     assert "discord" in enabled
     assert "discord_admin" in enabled
@@ -301,7 +301,7 @@ def test_discord_toolsets_do_not_leak_to_other_platforms():
     """Layer 4 (guard): discord/discord_admin are platform-restricted — they
     must never appear on a non-discord platform even when that platform is
     explicitly configured."""
-    config = {"platform_toolsets": {"telegram": ["hermes-telegram", "discord"]}}
+    config = {"platform_toolsets": {"telegram": ["openamer-telegram", "discord"]}}
     enabled = _get_platform_tools(config, "telegram")
     assert "discord" not in enabled
     assert "discord_admin" not in enabled
@@ -311,7 +311,7 @@ def test_discord_explicit_workaround_still_works():
     """Regression guard: the documented workaround of listing toolsets
     explicitly must keep working after the fix."""
     config = {
-        "platform_toolsets": {"discord": ["hermes-discord", "discord", "discord_admin"]}
+        "platform_toolsets": {"discord": ["openamer-discord", "discord", "discord_admin"]}
     }
     enabled = _get_platform_tools(config, "discord")
     assert "discord" in enabled
@@ -340,7 +340,7 @@ def test_get_platform_tools_x_search_off_when_no_xai_credentials(monkeypatch):
 
 
 def test_get_platform_tools_x_search_respects_explicit_config(monkeypatch):
-    """Once the user has saved an explicit toolset list via `hermes tools`,
+    """Once the user has saved an explicit toolset list via `openamer tools`,
     that list is authoritative — x_search auto-enable does NOT fire even
     when xAI creds exist. The saved list represents deliberate choices."""
     monkeypatch.delenv("XAI_API_KEY", raising=False)
@@ -348,26 +348,26 @@ def test_get_platform_tools_x_search_respects_explicit_config(monkeypatch):
         "openamer_cli.tools_config._xai_credentials_present", lambda: True
     )
 
-    # User explicitly opted into spotify but not x_search via `hermes tools`.
-    config = {"platform_toolsets": {"cli": ["hermes-cli", "spotify"]}}
+    # User explicitly opted into spotify but not x_search via `openamer tools`.
+    config = {"platform_toolsets": {"cli": ["openamer-cli", "spotify"]}}
     enabled = _get_platform_tools(config, "cli")
     assert "x_search" not in enabled
     assert "spotify" in enabled
 
 
 def test_get_platform_tools_expands_composite_when_mixed_with_configurable():
-    """``[hermes-cli, spotify]`` (composite + configurable) must keep the full
-    ``hermes-cli`` toolset alongside the explicit Spotify opt-in. The
-    has_explicit_config branch used to drop ``hermes-cli`` on the floor,
+    """``[openamer-cli, spotify]`` (composite + configurable) must keep the full
+    ``openamer-cli`` toolset alongside the explicit Spotify opt-in. The
+    has_explicit_config branch used to drop ``openamer-cli`` on the floor,
     leaving sessions with only ``{spotify, kanban}``."""
-    config = {"platform_toolsets": {"cli": ["hermes-cli", "spotify"]}}
+    config = {"platform_toolsets": {"cli": ["openamer-cli", "spotify"]}}
 
     enabled = _get_platform_tools(config, "cli", include_default_mcp_servers=False)
 
     # Native tools must reappear.
     for ts in ("terminal", "file", "web", "browser", "memory", "delegation",
                "code_execution", "todo", "session_search", "skills"):
-        assert ts in enabled, f"{ts} should be enabled when hermes-cli is listed"
+        assert ts in enabled, f"{ts} should be enabled when openamer-cli is listed"
     # User explicitly opted into Spotify — must survive _DEFAULT_OFF_TOOLSETS subtraction.
     assert "spotify" in enabled
 
@@ -377,7 +377,7 @@ def test_get_platform_tools_composite_only_unchanged():
     else-branch path and produce the full toolset — guards against the new
     code accidentally hijacking the composite-only case."""
     composite_only = _get_platform_tools(
-        {"platform_toolsets": {"cli": ["hermes-cli"]}},
+        {"platform_toolsets": {"cli": ["openamer-cli"]}},
         "cli",
         include_default_mcp_servers=False,
     )
@@ -402,9 +402,9 @@ def test_get_platform_tools_configurable_only_no_expansion():
 
 def test_get_platform_tools_mixed_does_not_resurrect_default_off():
     """Expansion must subtract _DEFAULT_OFF_TOOLSETS from the implicit
-    pull-in. Without this, ``hermes-cli`` expansion would re-enable
+    pull-in. Without this, ``openamer-cli`` expansion would re-enable
     ``moa`` / ``rl`` / ``homeassistant`` for users who never opted in."""
-    config = {"platform_toolsets": {"cli": ["hermes-cli", "terminal"]}}
+    config = {"platform_toolsets": {"cli": ["openamer-cli", "terminal"]}}
 
     enabled = _get_platform_tools(config, "cli", include_default_mcp_servers=False)
 
@@ -422,7 +422,7 @@ def test_get_platform_tools_preserves_explicit_empty_selection():
     # terminal, memory, …). Non-configurable platform toolsets that ride
     # along on the platform's default composite (e.g. `kanban`, whose tools
     # live in _HERMES_CORE_TOOLS but aren't user-toggleable) are still
-    # auto-recovered by _get_platform_tools so saving via `hermes tools`
+    # auto-recovered by _get_platform_tools so saving via `openamer tools`
     # doesn't silently drop them. The contract this test guards is the
     # configurable side: nothing the user could have checked in the TUI
     # checklist should reappear here.
@@ -570,7 +570,7 @@ def test_toolset_has_keys_for_vision_accepts_codex_auth(tmp_path, monkeypatch):
 def test_save_platform_tools_preserves_mcp_server_names():
     """Ensure MCP server names are preserved when saving platform tools.
 
-    Regression test for https://github.com/NousResearch/hermes-agent/issues/1247
+    Regression test for https://github.com/NousResearch/openamer-agent/issues/1247
     """
     config = {
         "platform_toolsets": {
@@ -621,7 +621,7 @@ def test_save_platform_tools_handles_invalid_existing_config():
 
 
 def test_save_platform_tools_does_not_preserve_platform_default_toolsets():
-    """Platform default toolsets (hermes-cli, hermes-telegram, etc.) must NOT
+    """Platform default toolsets (openamer-cli, openamer-telegram, etc.) must NOT
     be preserved across saves.
 
     These "super" toolsets resolve to ALL tools, so if they survive in the
@@ -631,14 +631,14 @@ def test_save_platform_tools_does_not_preserve_platform_default_toolsets():
     (like MCP server names), causing them to be kept unconditionally.
 
     Regression test: user unchecks image_gen and homeassistant via
-    ``hermes tools``, but hermes-cli stays in the config and re-enables
+    ``openamer tools``, but openamer-cli stays in the config and re-enables
     everything on the next read.
     """
     config = {
         "platform_toolsets": {
             "cli": [
                 "browser", "clarify", "code_execution", "cronjob",
-                "delegation", "file", "hermes-cli",  # <-- the culprit
+                "delegation", "file", "openamer-cli",  # <-- the culprit
                 "memory", "session_search", "skills", "terminal",
                 "todo", "tts", "vision", "web",
             ]
@@ -657,8 +657,8 @@ def test_save_platform_tools_does_not_preserve_platform_default_toolsets():
 
     saved = config["platform_toolsets"]["cli"]
 
-    # hermes-cli must NOT survive — it's a platform default, not an MCP server
-    assert "hermes-cli" not in saved
+    # openamer-cli must NOT survive — it's a platform default, not an MCP server
+    assert "openamer-cli" not in saved
 
     # The individual toolset keys the user selected must be present
     assert "web" in saved
@@ -671,12 +671,12 @@ def test_save_platform_tools_does_not_preserve_platform_default_toolsets():
     assert "moa" not in saved
 
 
-def test_save_platform_tools_does_not_preserve_hermes_telegram():
-    """Same bug for Telegram — hermes-telegram must not be preserved."""
+def test_save_platform_tools_does_not_preserve_openamer_telegram():
+    """Same bug for Telegram — openamer-telegram must not be preserved."""
     config = {
         "platform_toolsets": {
             "telegram": [
-                "browser", "file", "hermes-telegram", "terminal", "web",
+                "browser", "file", "openamer-telegram", "terminal", "web",
             ]
         }
     }
@@ -687,7 +687,7 @@ def test_save_platform_tools_does_not_preserve_hermes_telegram():
         _save_platform_tools(config, "telegram", new_selection)
 
     saved = config["platform_toolsets"]["telegram"]
-    assert "hermes-telegram" not in saved
+    assert "openamer-telegram" not in saved
     assert "web" in saved
 
 
@@ -697,7 +697,7 @@ def test_save_platform_tools_still_preserves_mcp_with_platform_default_present()
     config = {
         "platform_toolsets": {
             "cli": [
-                "web", "terminal", "hermes-cli", "my-mcp-server", "github-tools",
+                "web", "terminal", "openamer-cli", "my-mcp-server", "github-tools",
             ]
         }
     }
@@ -714,7 +714,7 @@ def test_save_platform_tools_still_preserves_mcp_with_platform_default_present()
     assert "github-tools" in saved
 
     # Platform default stripped
-    assert "hermes-cli" not in saved
+    assert "openamer-cli" not in saved
 
     # User selections present
     assert "web" in saved
@@ -894,7 +894,7 @@ def test_reconfigure_lists_enabled_web_without_existing_provider_config(monkeypa
 
 
 def test_configure_all_platforms_configures_selected_tool_missing_provider(monkeypatch):
-    """Regression: `hermes tools` → Configure all platforms → Web Search
+    """Regression: `openamer tools` → Configure all platforms → Web Search
     must enter provider/API-key setup even when Web was already enabled on all
     configured platforms, so the checklist selection itself has no diff.
     """
@@ -940,7 +940,7 @@ def test_configure_all_platforms_configures_selected_tool_missing_provider(monke
 
 
 def test_configure_single_platform_configures_selected_tool_missing_provider(monkeypatch):
-    """Regression (per-platform sibling of the global flow): `hermes tools` →
+    """Regression (per-platform sibling of the global flow): `openamer tools` →
     Configure <platform> → Web Search must enter provider/API-key setup even
     when Web was already enabled on that platform, so the checklist selection
     itself has no diff.
@@ -1121,11 +1121,11 @@ class TestPlatformToolsetConsistency:
             )
 
     def test_gateway_toolset_includes_all_messaging_platforms(self):
-        """hermes-gateway includes list should cover all messaging platforms."""
+        """openamer-gateway includes list should cover all messaging platforms."""
         from openamer_cli.tools_config import PLATFORMS
         from toolsets import TOOLSETS
 
-        gateway_includes = set(TOOLSETS["hermes-gateway"]["includes"])
+        gateway_includes = set(TOOLSETS["openamer-gateway"]["includes"])
         # Exclude non-messaging platforms from the check
         non_messaging = {"cli", "api_server", "cron"}
         for platform, meta in PLATFORMS.items():
@@ -1134,7 +1134,7 @@ class TestPlatformToolsetConsistency:
             ts_name = meta["default_toolset"]
             assert ts_name in gateway_includes, (
                 f"Platform {platform!r} toolset {ts_name!r} missing from "
-                f"hermes-gateway includes"
+                f"openamer-gateway includes"
             )
 
     def test_skills_config_covers_tools_config_platforms(self):
@@ -1158,7 +1158,7 @@ def test_numeric_mcp_server_name_does_not_crash_sorted():
     _get_platform_tools must normalise them to str so that sorted()
     on the returned set never raises TypeError on mixed int/str.
 
-    Regression test for https://github.com/NousResearch/hermes-agent/issues/6901
+    Regression test for https://github.com/NousResearch/openamer-agent/issues/6901
     """
     config = {
         "platform_toolsets": {"cli": ["web", 12306]},
@@ -1191,7 +1191,7 @@ def test_toolset_has_keys_treats_no_key_providers_as_configured():
 def test_computer_use_needs_configuration_when_cua_driver_post_setup_pending():
     """No-key providers can still need setup when their post_setup is unsatisfied.
 
-    Returning users enabling Computer Use through `hermes tools` must reach the
+    Returning users enabling Computer Use through `openamer tools` must reach the
     cua-driver post-setup installer even though the provider has no API keys.
     """
     with patch("shutil.which", return_value=None):
@@ -1373,7 +1373,7 @@ def test_save_platform_tools_normalizes_numeric_entries():
 
 
 def test_save_platform_tools_clears_no_mcp_sentinel():
-    """`hermes tools` has no UI for no_mcp, so saving from the picker clears
+    """`openamer tools` has no UI for no_mcp, so saving from the picker clears
     the sentinel unconditionally — otherwise a user who once set no_mcp by
     hand could never re-enable MCP servers through the UI.
     """
@@ -1422,14 +1422,14 @@ def test_get_platform_tools_recovers_non_configurable_toolsets_from_composite():
         "tools": ["_test_special_tool"],
         "includes": [],
     }
-    fake_toolsets["hermes-_test_platform"] = {
+    fake_toolsets["openamer-_test_platform"] = {
         "description": "test composite",
         "tools": ["web_search", "web_extract", "terminal", "process", "_test_special_tool"],
         "includes": [],
     }
 
     test_platforms = {
-        "_test_platform": {"label": "Test", "default_toolset": "hermes-_test_platform"},
+        "_test_platform": {"label": "Test", "default_toolset": "openamer-_test_platform"},
     }
 
     with mock_patch("openamer_cli.tools_config.PLATFORMS", {**PLATFORMS, **test_platforms}):
@@ -1443,7 +1443,7 @@ def test_get_platform_tools_recovers_non_configurable_toolsets_from_composite():
 
 def test_get_platform_tools_second_pass_skips_fully_claimed_toolsets():
     """Toolsets whose tools are fully covered by configurable keys should NOT
-    be added by the second pass (prevents 'search', 'hermes-acp' noise).
+    be added by the second pass (prevents 'search', 'openamer-acp' noise).
     """
     enabled = _get_platform_tools({}, "cli")
 
@@ -1451,7 +1451,7 @@ def test_get_platform_tools_second_pass_skips_fully_claimed_toolsets():
 
 
 def test_get_platform_tools_discord_both_off_by_default():
-    """Both `discord` and `discord_admin` are opt-in via `hermes tools`,
+    """Both `discord` and `discord_admin` are opt-in via `openamer tools`,
     even on the Discord platform itself.  Users shouldn't auto-inherit 19
     extra tools just because DISCORD_BOT_TOKEN is set."""
     enabled = _get_platform_tools({}, "discord")
@@ -1486,7 +1486,7 @@ def test_discord_toolsets_not_available_on_other_platforms():
 
 
 def test_discord_toolsets_user_enabled_are_honored():
-    """When the user opts in via `hermes tools`, the toolset appears."""
+    """When the user opts in via `openamer tools`, the toolset appears."""
     config = {"platform_toolsets": {"discord": ["web", "terminal", "discord"]}}
     enabled = _get_platform_tools(config, "discord")
     assert "discord" in enabled
@@ -1522,7 +1522,7 @@ def test_get_platform_tools_feishu_tools_not_on_other_platforms():
 def test_get_effective_configurable_toolsets_dedupes_bundled_plugins():
     """Bundled plugins (plugins/spotify) share their toolset key with the
     built-in CONFIGURABLE_TOOLSETS entry. The effective list must not list
-    them twice — otherwise `hermes tools` → "reconfigure existing" shows
+    them twice — otherwise `openamer tools` → "reconfigure existing" shows
     the same toolset two rows in a row.
     """
     from openamer_cli.tools_config import _get_effective_configurable_toolsets
@@ -1714,7 +1714,7 @@ def test_apply_provider_selection_does_not_prompt_or_post_setup(monkeypatch):
 
 
 # ── Checklist diff scope: non-configurable toolsets (kanban) must not be
-#    reported as added/removed by `hermes tools` ──────────────────────────
+#    reported as added/removed by `openamer tools` ──────────────────────────
 
 
 def test_checklist_toolset_keys_excludes_kanban():
@@ -1728,7 +1728,7 @@ def test_checklist_toolset_keys_excludes_kanban():
 
 
 def test_kanban_not_reported_as_removed_in_diff():
-    """Reproduces the false-signal bug: `hermes tools` printed ``- kanban``
+    """Reproduces the false-signal bug: `openamer tools` printed ``- kanban``
     when saving a platform that resolves kanban as enabled, even though the
     checklist never offered kanban as a toggle.
 
@@ -1771,7 +1771,7 @@ def test_vision_picker_writes_provider_and_model(tmp_path, monkeypatch):
     """Picking a provider+model persists auxiliary.vision.{provider,model}.
 
     Vision must not force OpenRouter — it offers the same any-provider surface
-    as ``hermes model`` and writes the selection to the auxiliary config keys
+    as ``openamer model`` and writes the selection to the auxiliary config keys
     the resolver reads.
     """
     monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
@@ -2045,7 +2045,7 @@ def test_provider_readiness_unknown_post_setup_falls_back_to_is_active():
 # ── Windows console-flash guard for post-setup subprocess spawns ──────────────
 #
 # The desktop GUI runs post-setup hooks through a detached, console-less
-# `hermes tools post-setup <key>` child. On Windows each console child (npm,
+# `openamer tools post-setup <key>` child. On Windows each console child (npm,
 # npx, pip, powershell) spawned without CREATE_NO_WINDOW materializes a brand
 # new console window — the "terminal flash" reported on the Capabilities
 # browser-setup journey. `_post_setup_no_window_flags` is the single wrapper

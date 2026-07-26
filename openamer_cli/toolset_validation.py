@@ -5,7 +5,7 @@ the tool registry or launching OpenAmer (mirrors the decoupled-helper pattern us
 elsewhere in the CLI).
 
 Motivated by #38798: a config migration silently rewrote the valid toolset name
-``openamer-cli`` to the non-existent ``hermes``. ``resolve_toolset('hermes')``
+``openamer-cli`` to the non-existent ``openamer``. ``resolve_toolset('openamer')``
 returns an empty list, so every tool silently disappeared with no error, warning,
 or log entry — the agent degraded to text-only replies and the cause took
 significant debugging to find. Surfacing invalid toolset names (and the
@@ -25,7 +25,7 @@ def validate_platform_toolsets(
 
     1. A toolset name that ``is_valid_toolset`` rejects — usually a corrupted or
        renamed entry. When ``openamer-<platform>`` would have been valid (the exact
-       #38798 shape, where ``cli`` held ``hermes`` instead of ``openamer-cli``),
+       #38798 shape, where ``cli`` held ``openamer`` instead of ``openamer-cli``),
        the warning includes that as a suggestion.
     2. The mapping is non-empty but resolves to *zero* valid toolsets, so the
        agent would start with no tools at all.

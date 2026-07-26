@@ -16,7 +16,7 @@ from openamer_cli import kanban_db as kb
 
 @pytest.fixture
 def kanban_home(tmp_path, monkeypatch):
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
     monkeypatch.setattr(Path, "home", lambda: tmp_path)
@@ -195,7 +195,7 @@ def test_run_slash_tenant_filter(kanban_home):
 
 
 def test_run_slash_session_filter(kanban_home):
-    """`hermes kanban list --session <id>` filters by the originating
+    """`openamer kanban list --session <id>` filters by the originating
     chat session id stamped on tasks created from inside an ACP loop."""
     from openamer_cli import kanban_db as kb
     with kb.connect() as conn:
@@ -268,7 +268,7 @@ def test_board_override_is_isolated_per_concurrent_call(kanban_home, monkeypatch
     kb.create_board("alpha")
     kb.create_board("beta")
 
-    parser = argparse.ArgumentParser(prog="hermes", add_help=False)
+    parser = argparse.ArgumentParser(prog="openamer", add_help=False)
     sub = parser.add_subparsers(dest="command")
     kc.build_parser(sub)
 

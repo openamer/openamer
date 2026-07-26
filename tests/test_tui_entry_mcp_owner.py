@@ -1,6 +1,6 @@
 """Regression tests: the stdio TUI consults the shared MCP discovery owner.
 
-The stdio ``hermes --tui`` path used to spawn its own discovery thread and
+The stdio ``openamer --tui`` path used to spawn its own discovery thread and
 ``wait_for_mcp_discovery`` only ever joined that local handle. Now the spawn
 goes through ``openamer_cli.mcp_startup.start_background_mcp_discovery`` (single
 owner, restart-after-zero-connected semantics), so the entry-side wait must

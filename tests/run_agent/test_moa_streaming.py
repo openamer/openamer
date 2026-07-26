@@ -36,7 +36,7 @@ moa:
 
 
 def _facade(monkeypatch, tmp_path, on_call=None):
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     _write_cfg(home)
     monkeypatch.setenv("OPENAMER_HOME", str(home))
     calls = []

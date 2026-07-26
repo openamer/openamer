@@ -46,7 +46,7 @@ CASES = [
 
 @pytest.mark.parametrize("name,builder,kw,argv", CASES, ids=[c[0] for c in CASES])
 def test_followup_builders_dispatch(name, builder, kw, argv):
-    parser = argparse.ArgumentParser(prog="hermes")
+    parser = argparse.ArgumentParser(prog="openamer")
     sub = parser.add_subparsers(dest="command")
     handler = _h(name)
     builder(sub, **{kw: handler})
@@ -57,7 +57,7 @@ def test_followup_builders_dispatch(name, builder, kw, argv):
 
 def test_mcp_and_acp_accept_hooks_flag():
     # mcp/acp parser blocks use the shared add_accept_hooks_flag helper.
-    parser = argparse.ArgumentParser(prog="hermes")
+    parser = argparse.ArgumentParser(prog="openamer")
     sub = parser.add_subparsers(dest="command")
     build_mcp_parser(sub, cmd_mcp=_h("mcp"))
     build_acp_parser(sub, cmd_acp=_h("acp"))

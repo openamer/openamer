@@ -222,7 +222,7 @@ class TestFinalizeSessionPersistE2E:
         (messages live only in agent._session_messages / session['history'],
         never written to the DB) must be flushed to state.db when the WS
         disconnect tears the session down."""
-        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".hermes"))
+        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".openamer"))
         from openamer_state import SessionDB
         import tui_gateway.server as srv
 
@@ -255,7 +255,7 @@ class TestFinalizeSessionPersistE2E:
     def test_resumed_session_not_reflushed_as_duplicates(self, tmp_path, monkeypatch):
         """A resumed session torn down before any new turn (its transcript is
         already durable in the DB) must NOT re-append duplicate rows."""
-        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".hermes"))
+        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".openamer"))
         from openamer_state import SessionDB
         import tui_gateway.server as srv
 
@@ -292,7 +292,7 @@ class TestFinalizeSessionPersistE2E:
         ``_session_messages``-empty test above skips the flush entirely, so it
         can't catch a duplicate-write regression; this one drives a real flush.
         """
-        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".hermes"))
+        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".openamer"))
         from openamer_state import SessionDB
         import tui_gateway.server as srv
 

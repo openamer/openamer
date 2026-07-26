@@ -107,35 +107,35 @@ def test_has_system_browser_checks_posix_names():
         assert _has_system_browser() is False
 
 
-def test_has_hermes_agent_browser_windows_path(tmp_path):
+def test_has_openamer_agent_browser_windows_path(tmp_path):
     node_dir = tmp_path / "node"
     node_dir.mkdir(parents=True)
     (node_dir / "agent-browser.cmd").write_text("@echo off")
-    from openamer_cli.dep_ensure import _has_hermes_agent_browser
+    from openamer_cli.dep_ensure import _has_openamer_agent_browser
     with patch("openamer_cli.dep_ensure._IS_WINDOWS", True), \
-         patch("openamer_constants.get_hermes_home", return_value=tmp_path):
-        assert _has_hermes_agent_browser() is True
+         patch("openamer_constants.get_openamer_home", return_value=tmp_path):
+        assert _has_openamer_agent_browser() is True
 
 
-def test_has_hermes_agent_browser_posix_path(tmp_path):
+def test_has_openamer_agent_browser_posix_path(tmp_path):
     bin_dir = tmp_path / "node" / "bin"
     bin_dir.mkdir(parents=True)
     (bin_dir / "agent-browser").write_text("#!/bin/sh")
-    from openamer_cli.dep_ensure import _has_hermes_agent_browser
+    from openamer_cli.dep_ensure import _has_openamer_agent_browser
     with patch("openamer_cli.dep_ensure._IS_WINDOWS", False), \
-         patch("openamer_constants.get_hermes_home", return_value=tmp_path):
-        assert _has_hermes_agent_browser() is True
+         patch("openamer_constants.get_openamer_home", return_value=tmp_path):
+        assert _has_openamer_agent_browser() is True
 
 
-def test_has_hermes_agent_browser_legacy_node_modules_path(tmp_path):
+def test_has_openamer_agent_browser_legacy_node_modules_path(tmp_path):
     """Legacy git-clone installs put agent-browser in $OPENAMER_HOME/node_modules/.bin/."""
     bin_dir = tmp_path / "node_modules" / ".bin"
     bin_dir.mkdir(parents=True)
     (bin_dir / "agent-browser").write_text("#!/bin/sh")
-    from openamer_cli.dep_ensure import _has_hermes_agent_browser
+    from openamer_cli.dep_ensure import _has_openamer_agent_browser
     with patch("openamer_cli.dep_ensure._IS_WINDOWS", False), \
-         patch("openamer_constants.get_hermes_home", return_value=tmp_path):
-        assert _has_hermes_agent_browser() is True
+         patch("openamer_constants.get_openamer_home", return_value=tmp_path):
+        assert _has_openamer_agent_browser() is True
 
 
 def test_ensure_dependency_uses_powershell_on_windows(tmp_path):
@@ -147,7 +147,7 @@ def test_ensure_dependency_uses_powershell_on_windows(tmp_path):
          patch("openamer_cli.dep_ensure._DEP_CHECKS", {"node": lambda: False}), \
          patch("openamer_cli.dep_ensure._find_install_script", return_value=(scripts_dir / "install.ps1", "powershell")), \
          patch("openamer_cli.dep_ensure.shutil") as mock_shutil, \
-         patch("openamer_constants.get_hermes_home", return_value=tmp_path / "fakehome"), \
+         patch("openamer_constants.get_openamer_home", return_value=tmp_path / "fakehome"), \
          patch("subprocess.run") as mock_run, \
          patch("sys.stdin") as mock_stdin:
         mock_shutil.which.side_effect = lambda name: "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" if name == "powershell" else None
@@ -158,5 +158,5 @@ def test_ensure_dependency_uses_powershell_on_windows(tmp_path):
         assert "powershell" in cmd[0].lower()
         assert "-Ensure" in cmd
         assert cmd[cmd.index("-Ensure") + 1] == "node"
-        assert "-HermesHome" in cmd
+        assert "-OpenAmerHome" in cmd
         assert str(tmp_path / "fakehome") in cmd

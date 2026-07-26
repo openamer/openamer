@@ -1,4 +1,4 @@
-"""Deterministic spritesheet assembly — generated row strips → Hermes atlas.
+"""Deterministic spritesheet assembly — generated row strips → OpenAmer atlas.
 
 Image-generation models are good at *drawing* a row of poses but bad at exact
 grid geometry, so the model never owns the atlas layout: it produces one loose
@@ -1050,7 +1050,7 @@ def mirror_frames(frames: list) -> list:
 
 
 def compose_atlas(frames_by_state: dict[str, list]):
-    """Pack per-state frame lists into the Hermes atlas (RGBA, residue-cleared).
+    """Pack per-state frame lists into the OpenAmer atlas (RGBA, residue-cleared).
 
     Missing/short states leave their trailing cells transparent; extra frames
     beyond a state's spec are dropped.

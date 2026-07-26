@@ -6,9 +6,9 @@ toolset on the desktop app + dashboard WebUI.
 Root cause: there are two independent background MCP discovery thread owners
 by surface:
 
-  * ``tui_gateway.entry`` — the stdio ``hermes --tui`` path.
+  * ``tui_gateway.entry`` — the stdio ``openamer --tui`` path.
   * ``openamer_cli.mcp_startup`` — the desktop app + dashboard WebSocket sidecar
-    (``tui_gateway/ws.py``) and ``hermes dashboard``.
+    (``tui_gateway/ws.py``) and ``openamer dashboard``.
 
 The late-refresh scheduler (``tui_gateway.server._schedule_mcp_late_refresh``)
 gates on ``tui_gateway.entry.mcp_discovery_in_flight()``. Before the fix that

@@ -64,7 +64,7 @@ def test_platform_enum_resolves_via_plugin_scan():
 class TestNtfyRequirements:
 
     def test_returns_false_when_httpx_unavailable(self, monkeypatch):
-        monkeypatch.setenv("NTFY_TOPIC", "hermes-test")
+        monkeypatch.setenv("NTFY_TOPIC", "openamer-test")
         monkeypatch.setattr(_ntfy, "HTTPX_AVAILABLE", False)
         assert check_requirements() is False
 
@@ -75,7 +75,7 @@ class TestNtfyRequirements:
 
     def test_returns_true_when_topic_set_via_env(self, monkeypatch):
         monkeypatch.setattr(_ntfy, "HTTPX_AVAILABLE", True)
-        monkeypatch.setenv("NTFY_TOPIC", "hermes-test")
+        monkeypatch.setenv("NTFY_TOPIC", "openamer-test")
         assert check_requirements() is True
 
     def test_validate_config_requires_topic(self, monkeypatch):
@@ -104,7 +104,7 @@ class TestNtfyAdapterInit:
 
     def test_default_server_url(self, monkeypatch):
         monkeypatch.delenv("NTFY_SERVER_URL", raising=False)
-        config = PlatformConfig(enabled=True, extra={"topic": "hermes-in"})
+        config = PlatformConfig(enabled=True, extra={"topic": "openamer-in"})
         adapter = NtfyAdapter(config)
         assert adapter._server == DEFAULT_SERVER.rstrip("/")
 
@@ -121,17 +121,17 @@ class TestNtfyAdapterInit:
 
     def test_publish_topic_falls_back_to_topic(self, monkeypatch):
         monkeypatch.delenv("NTFY_PUBLISH_TOPIC", raising=False)
-        config = PlatformConfig(enabled=True, extra={"topic": "hermes-in"})
+        config = PlatformConfig(enabled=True, extra={"topic": "openamer-in"})
         adapter = NtfyAdapter(config)
-        assert adapter._publish_topic == "hermes-in"
+        assert adapter._publish_topic == "openamer-in"
 
     def test_publish_topic_uses_extra_value(self):
         config = PlatformConfig(
             enabled=True,
-            extra={"topic": "hermes-in", "publish_topic": "hermes-out"},
+            extra={"topic": "openamer-in", "publish_topic": "openamer-out"},
         )
         adapter = NtfyAdapter(config)
-        assert adapter._publish_topic == "hermes-out"
+        assert adapter._publish_topic == "openamer-out"
 
     def test_token_read_from_extra(self):
         config = PlatformConfig(enabled=True, extra={"topic": "t", "token": "tok-123"})
@@ -267,7 +267,7 @@ class TestConnect:
 
     def test_connect_starts_stream_task(self, monkeypatch):
         monkeypatch.setattr(_ntfy, "HTTPX_AVAILABLE", True)
-        config = PlatformConfig(enabled=True, extra={"topic": "hermes-test"})
+        config = PlatformConfig(enabled=True, extra={"topic": "openamer-test"})
         adapter = NtfyAdapter(config)
 
         with patch.object(adapter, "_run_stream", new_callable=AsyncMock):
@@ -318,7 +318,7 @@ class TestConnect:
 
 class TestSend:
 
-    def _make_adapter(self, topic="hermes-in", publish_topic="", token="", markdown=False):
+    def _make_adapter(self, topic="openamer-in", publish_topic="", token="", markdown=False):
         extra: dict = {"topic": topic, "token": token}
         if publish_topic:
             extra["publish_topic"] = publish_topic
@@ -328,12 +328,12 @@ class TestSend:
 
     def test_send_fails_without_http_client(self):
         adapter = self._make_adapter()
-        result = _run(adapter.send("hermes-in", "hello"))
+        result = _run(adapter.send("openamer-in", "hello"))
         assert result.success is False
         assert "not initialized" in result.error.lower()
 
     def test_send_posts_to_publish_topic(self):
-        adapter = self._make_adapter(topic="hermes-in", publish_topic="hermes-out")
+        adapter = self._make_adapter(topic="openamer-in", publish_topic="openamer-out")
 
         mock_resp = MagicMock()
         mock_resp.status_code = 200
@@ -343,15 +343,15 @@ class TestSend:
         mock_client.post = AsyncMock(return_value=mock_resp)
         adapter._http_client = mock_client
 
-        result = _run(adapter.send("hermes-in", "Hello ntfy!"))
+        result = _run(adapter.send("openamer-in", "Hello ntfy!"))
         assert result.success is True
         assert result.message_id == "abc123"
 
         posted_url = mock_client.post.call_args[0][0]
-        assert posted_url.endswith("/hermes-out")
+        assert posted_url.endswith("/openamer-out")
 
     def test_send_falls_back_to_subscribe_topic(self):
-        adapter = self._make_adapter(topic="hermes-in")
+        adapter = self._make_adapter(topic="openamer-in")
 
         mock_resp = MagicMock()
         mock_resp.status_code = 200
@@ -361,13 +361,13 @@ class TestSend:
         mock_client.post = AsyncMock(return_value=mock_resp)
         adapter._http_client = mock_client
 
-        result = _run(adapter.send("hermes-in", "Hello!"))
+        result = _run(adapter.send("openamer-in", "Hello!"))
         assert result.success is True
         posted_url = mock_client.post.call_args[0][0]
-        assert posted_url.endswith("/hermes-in")
+        assert posted_url.endswith("/openamer-in")
 
     def test_send_uses_metadata_publish_topic(self):
-        adapter = self._make_adapter(topic="hermes-in")
+        adapter = self._make_adapter(topic="openamer-in")
 
         mock_resp = MagicMock()
         mock_resp.status_code = 200
@@ -378,14 +378,14 @@ class TestSend:
         adapter._http_client = mock_client
 
         result = _run(adapter.send(
-            "hermes-in", "Hi!", metadata={"publish_topic": "override-out"}
+            "openamer-in", "Hi!", metadata={"publish_topic": "override-out"}
         ))
         assert result.success is True
         posted_url = mock_client.post.call_args[0][0]
         assert posted_url.endswith("/override-out")
 
     def test_send_handles_http_error_status(self):
-        adapter = self._make_adapter(topic="hermes-in")
+        adapter = self._make_adapter(topic="openamer-in")
 
         mock_resp = MagicMock()
         mock_resp.status_code = 403
@@ -395,12 +395,12 @@ class TestSend:
         mock_client.post = AsyncMock(return_value=mock_resp)
         adapter._http_client = mock_client
 
-        result = _run(adapter.send("hermes-in", "Hello!"))
+        result = _run(adapter.send("openamer-in", "Hello!"))
         assert result.success is False
         assert "403" in result.error
 
     def test_send_handles_timeout(self):
-        adapter = self._make_adapter(topic="hermes-in")
+        adapter = self._make_adapter(topic="openamer-in")
 
         class _FakeTimeout(Exception):
             pass
@@ -413,7 +413,7 @@ class TestSend:
         adapter._http_client = mock_client
 
         with patch.object(_ntfy, "httpx", fake_httpx):
-            result = _run(adapter.send("hermes-in", "Hello!"))
+            result = _run(adapter.send("openamer-in", "Hello!"))
 
         assert result.success is False
         assert "timeout" in result.error.lower()
@@ -440,12 +440,12 @@ class TestSend:
 
     def test_get_chat_info_returns_dict(self):
         adapter = NtfyAdapter(PlatformConfig(enabled=True, extra={"topic": "t"}))
-        info = _run(adapter.get_chat_info("hermes-in"))
-        assert info["name"] == "hermes-in"
+        info = _run(adapter.get_chat_info("openamer-in"))
+        assert info["name"] == "openamer-in"
         assert info["type"] == "dm"
 
     def test_send_includes_bearer_auth_header(self):
-        adapter = self._make_adapter(topic="hermes-in", token="mytoken")
+        adapter = self._make_adapter(topic="openamer-in", token="mytoken")
 
         mock_resp = MagicMock()
         mock_resp.status_code = 200
@@ -455,13 +455,13 @@ class TestSend:
         mock_client.post = AsyncMock(return_value=mock_resp)
         adapter._http_client = mock_client
 
-        _run(adapter.send("hermes-in", "secure message"))
+        _run(adapter.send("openamer-in", "secure message"))
 
         call_headers = mock_client.post.call_args[1]["headers"]
         assert call_headers.get("Authorization") == "Bearer mytoken"
 
     def test_send_emits_markdown_header_when_enabled(self):
-        adapter = self._make_adapter(topic="hermes-in", markdown=True)
+        adapter = self._make_adapter(topic="openamer-in", markdown=True)
         mock_resp = MagicMock()
         mock_resp.status_code = 200
         mock_resp.json.return_value = {}
@@ -469,12 +469,12 @@ class TestSend:
         mock_client.post = AsyncMock(return_value=mock_resp)
         adapter._http_client = mock_client
 
-        _run(adapter.send("hermes-in", "**bold**"))
+        _run(adapter.send("openamer-in", "**bold**"))
         call_headers = mock_client.post.call_args[1]["headers"]
         assert call_headers.get("X-Markdown") == "true"
 
     def test_send_omits_markdown_header_when_disabled(self):
-        adapter = self._make_adapter(topic="hermes-in", markdown=False)
+        adapter = self._make_adapter(topic="openamer-in", markdown=False)
         mock_resp = MagicMock()
         mock_resp.status_code = 200
         mock_resp.json.return_value = {}
@@ -482,7 +482,7 @@ class TestSend:
         mock_client.post = AsyncMock(return_value=mock_resp)
         adapter._http_client = mock_client
 
-        _run(adapter.send("hermes-in", "plain"))
+        _run(adapter.send("openamer-in", "plain"))
         call_headers = mock_client.post.call_args[1]["headers"]
         assert "X-Markdown" not in call_headers
 
@@ -490,7 +490,7 @@ class TestSend:
         """Outgoing messages carry the echo-prevention tag so the adapter
         can recognise and skip its own replies when subscribe topic ==
         publish topic (the default config that causes the loop)."""
-        adapter = self._make_adapter(topic="hermes-in")
+        adapter = self._make_adapter(topic="openamer-in")
         mock_resp = MagicMock()
         mock_resp.status_code = 200
         mock_resp.json.return_value = {"id": "abc123"}
@@ -498,7 +498,7 @@ class TestSend:
         mock_client.post = AsyncMock(return_value=mock_resp)
         adapter._http_client = mock_client
 
-        _run(adapter.send("hermes-in", "Hello!"))
+        _run(adapter.send("openamer-in", "Hello!"))
         call_headers = mock_client.post.call_args[1]["headers"]
         assert call_headers.get("X-Tags") == _ntfy._ECHO_TAG
 
@@ -511,7 +511,7 @@ class TestSend:
 class TestOnMessage:
 
     def _make_adapter(self):
-        return NtfyAdapter(PlatformConfig(enabled=True, extra={"topic": "hermes-in"}))
+        return NtfyAdapter(PlatformConfig(enabled=True, extra={"topic": "openamer-in"}))
 
     def test_message_dispatched_to_handler(self):
         adapter = self._make_adapter()
@@ -525,7 +525,7 @@ class TestOnMessage:
         event = {
             "id": "evt-001",
             "event": "message",
-            "topic": "hermes-in",
+            "topic": "openamer-in",
             "message": "Hello from ntfy",
             "time": 1700000000,
         }
@@ -554,7 +554,7 @@ class TestOnMessage:
             calls.append(event)
 
         adapter.set_message_handler(handler)
-        event = {"id": "dup-1", "event": "message", "topic": "hermes-in", "message": "hi", "time": None}
+        event = {"id": "dup-1", "event": "message", "topic": "openamer-in", "message": "hi", "time": None}
         _run(adapter._on_message(event))
         _run(adapter._on_message(event))
         assert len(calls) == 1
@@ -573,7 +573,7 @@ class TestOnMessage:
         _run(adapter._on_message({
             "id": "echo-1",
             "event": "message",
-            "topic": "hermes-in",
+            "topic": "openamer-in",
             "message": "my own reply",
             "tags": [_ntfy._ECHO_TAG],
             "time": None,
@@ -593,7 +593,7 @@ class TestOnMessage:
         _run(adapter._on_message({
             "id": "user-1",
             "event": "message",
-            "topic": "hermes-in",
+            "topic": "openamer-in",
             "message": "hello",
             "tags": ["warning", "skull"],
             "time": None,
@@ -612,7 +612,7 @@ class TestOnMessage:
         _run(adapter._on_message({
             "id": "ts-1",
             "event": "message",
-            "topic": "hermes-in",
+            "topic": "openamer-in",
             "message": "ping",
             "time": 1700000000,
         }))
@@ -630,7 +630,7 @@ class TestOnMessage:
         _run(adapter._on_message({
             "id": "ntfy-id-42",
             "event": "message",
-            "topic": "hermes-in",
+            "topic": "openamer-in",
             "message": "test",
             "time": None,
         }))
@@ -648,13 +648,13 @@ class TestOnMessage:
         _run(adapter._on_message({
             "id": "u-1",
             "event": "message",
-            "topic": "hermes-in",
+            "topic": "openamer-in",
             "message": "hello",
             "title": "Alice",
             "time": None,
         }))
-        assert captured[0].source.user_id == "hermes-in"
-        assert captured[0].source.user_name == "hermes-in"
+        assert captured[0].source.user_id == "openamer-in"
+        assert captured[0].source.user_name == "openamer-in"
 
     def test_unknown_publisher_cannot_impersonate_allowed_user(self):
         """An unknown publisher setting title=admin must not gain admin identity."""
@@ -668,12 +668,12 @@ class TestOnMessage:
         _run(adapter._on_message({
             "id": "u-2",
             "event": "message",
-            "topic": "hermes-in",
+            "topic": "openamer-in",
             "message": "sensitive command",
             "title": "admin",
             "time": None,
         }))
-        assert captured[0].source.user_id == "hermes-in"
+        assert captured[0].source.user_id == "openamer-in"
         assert captured[0].source.user_id != "admin"
 
     def test_source_chat_id_is_topic(self):
@@ -687,11 +687,11 @@ class TestOnMessage:
         _run(adapter._on_message({
             "id": "s-1",
             "event": "message",
-            "topic": "hermes-in",
+            "topic": "openamer-in",
             "message": "hello",
             "time": None,
         }))
-        assert captured[0].source.chat_id == "hermes-in"
+        assert captured[0].source.chat_id == "openamer-in"
 
 
 # ---------------------------------------------------------------------------
@@ -706,52 +706,52 @@ class TestEnvEnablement:
         assert _env_enablement() is None
 
     def test_seeds_topic_and_server(self, monkeypatch):
-        monkeypatch.setenv("NTFY_TOPIC", "hermes-in")
+        monkeypatch.setenv("NTFY_TOPIC", "openamer-in")
         monkeypatch.delenv("NTFY_SERVER_URL", raising=False)
         seed = _env_enablement()
         assert seed is not None
-        assert seed["topic"] == "hermes-in"
+        assert seed["topic"] == "openamer-in"
         assert seed["server"] == DEFAULT_SERVER
 
     def test_custom_server_url(self, monkeypatch):
-        monkeypatch.setenv("NTFY_TOPIC", "hermes-in")
+        monkeypatch.setenv("NTFY_TOPIC", "openamer-in")
         monkeypatch.setenv("NTFY_SERVER_URL", "https://ntfy.example.com/")
         seed = _env_enablement()
         assert seed["server"] == "https://ntfy.example.com"  # trailing slash stripped
 
     def test_publish_topic_seeded(self, monkeypatch):
-        monkeypatch.setenv("NTFY_TOPIC", "hermes-in")
-        monkeypatch.setenv("NTFY_PUBLISH_TOPIC", "hermes-out")
+        monkeypatch.setenv("NTFY_TOPIC", "openamer-in")
+        monkeypatch.setenv("NTFY_PUBLISH_TOPIC", "openamer-out")
         seed = _env_enablement()
-        assert seed["publish_topic"] == "hermes-out"
+        assert seed["publish_topic"] == "openamer-out"
 
     def test_token_seeded(self, monkeypatch):
-        monkeypatch.setenv("NTFY_TOPIC", "hermes-in")
+        monkeypatch.setenv("NTFY_TOPIC", "openamer-in")
         monkeypatch.setenv("NTFY_TOKEN", "tk_abc")
         seed = _env_enablement()
         assert seed["token"] == "tk_abc"
 
     def test_markdown_truthy_values(self, monkeypatch):
-        monkeypatch.setenv("NTFY_TOPIC", "hermes-in")
+        monkeypatch.setenv("NTFY_TOPIC", "openamer-in")
         for val in ("true", "1", "yes", "TRUE"):
             monkeypatch.setenv("NTFY_MARKDOWN", val)
             assert _env_enablement()["markdown"] is True
 
     def test_markdown_falsy_values(self, monkeypatch):
-        monkeypatch.setenv("NTFY_TOPIC", "hermes-in")
+        monkeypatch.setenv("NTFY_TOPIC", "openamer-in")
         for val in ("false", "0", "no", "anything"):
             monkeypatch.setenv("NTFY_MARKDOWN", val)
             assert _env_enablement()["markdown"] is False
 
     def test_home_channel_defaults_to_topic(self, monkeypatch):
-        monkeypatch.setenv("NTFY_TOPIC", "hermes-in")
+        monkeypatch.setenv("NTFY_TOPIC", "openamer-in")
         monkeypatch.delenv("NTFY_HOME_CHANNEL", raising=False)
         seed = _env_enablement()
-        assert seed["home_channel"]["chat_id"] == "hermes-in"
-        assert seed["home_channel"]["name"] == "hermes-in"
+        assert seed["home_channel"]["chat_id"] == "openamer-in"
+        assert seed["home_channel"]["name"] == "openamer-in"
 
     def test_home_channel_override(self, monkeypatch):
-        monkeypatch.setenv("NTFY_TOPIC", "hermes-in")
+        monkeypatch.setenv("NTFY_TOPIC", "openamer-in")
         monkeypatch.setenv("NTFY_HOME_CHANNEL", "alerts")
         monkeypatch.setenv("NTFY_HOME_CHANNEL_NAME", "Alerts Channel")
         seed = _env_enablement()
@@ -776,9 +776,9 @@ class TestStandaloneSend:
         assert "NTFY_TOPIC" in result["error"]
 
     def test_posts_to_server(self, monkeypatch):
-        monkeypatch.setenv("NTFY_TOPIC", "hermes-in")
+        monkeypatch.setenv("NTFY_TOPIC", "openamer-in")
         pconfig = MagicMock()
-        pconfig.extra = {"server": "https://ntfy.example.com", "topic": "hermes-in"}
+        pconfig.extra = {"server": "https://ntfy.example.com", "topic": "openamer-in"}
 
         mock_resp = MagicMock()
         mock_resp.status_code = 200
@@ -791,20 +791,20 @@ class TestStandaloneSend:
 
         with patch.object(_ntfy, "httpx") as mock_httpx:
             mock_httpx.AsyncClient.return_value = mock_client
-            result = _run(_standalone_send(pconfig, "hermes-in", "hello"))
+            result = _run(_standalone_send(pconfig, "openamer-in", "hello"))
 
         assert result.get("success") is True
         assert result["platform"] == "ntfy"
         assert result["message_id"] == "id-42"
         posted_url = mock_client.post.call_args[0][0]
-        assert posted_url == "https://ntfy.example.com/hermes-in"
+        assert posted_url == "https://ntfy.example.com/openamer-in"
 
     def test_emits_echo_tag_header(self, monkeypatch):
         """Out-of-process cron / send_message deliveries also carry the echo
         tag, so a gateway subscribed to the same topic skips them too."""
-        monkeypatch.setenv("NTFY_TOPIC", "hermes-in")
+        monkeypatch.setenv("NTFY_TOPIC", "openamer-in")
         pconfig = MagicMock()
-        pconfig.extra = {"topic": "hermes-in"}
+        pconfig.extra = {"topic": "openamer-in"}
 
         mock_resp = MagicMock()
         mock_resp.status_code = 200
@@ -816,15 +816,15 @@ class TestStandaloneSend:
 
         with patch.object(_ntfy, "httpx") as mock_httpx:
             mock_httpx.AsyncClient.return_value = mock_client
-            _run(_standalone_send(pconfig, "hermes-in", "hi"))
+            _run(_standalone_send(pconfig, "openamer-in", "hi"))
 
         headers = mock_client.post.call_args[1]["headers"]
         assert headers.get("X-Tags") == _ntfy._ECHO_TAG
 
     def test_emits_bearer_token_when_configured(self, monkeypatch):
-        monkeypatch.setenv("NTFY_TOPIC", "hermes-in")
+        monkeypatch.setenv("NTFY_TOPIC", "openamer-in")
         pconfig = MagicMock()
-        pconfig.extra = {"topic": "hermes-in", "token": "tk_xyz"}
+        pconfig.extra = {"topic": "openamer-in", "token": "tk_xyz"}
 
         mock_resp = MagicMock()
         mock_resp.status_code = 200
@@ -836,15 +836,15 @@ class TestStandaloneSend:
 
         with patch.object(_ntfy, "httpx") as mock_httpx:
             mock_httpx.AsyncClient.return_value = mock_client
-            _run(_standalone_send(pconfig, "hermes-in", "hi"))
+            _run(_standalone_send(pconfig, "openamer-in", "hi"))
 
         headers = mock_client.post.call_args[1]["headers"]
         assert headers["Authorization"] == "Bearer tk_xyz"
 
     def test_basic_auth_when_token_has_colon(self, monkeypatch):
-        monkeypatch.setenv("NTFY_TOPIC", "hermes-in")
+        monkeypatch.setenv("NTFY_TOPIC", "openamer-in")
         pconfig = MagicMock()
-        pconfig.extra = {"topic": "hermes-in", "token": "user:pass"}
+        pconfig.extra = {"topic": "openamer-in", "token": "user:pass"}
 
         mock_resp = MagicMock()
         mock_resp.status_code = 200
@@ -856,15 +856,15 @@ class TestStandaloneSend:
 
         with patch.object(_ntfy, "httpx") as mock_httpx:
             mock_httpx.AsyncClient.return_value = mock_client
-            _run(_standalone_send(pconfig, "hermes-in", "hi"))
+            _run(_standalone_send(pconfig, "openamer-in", "hi"))
 
         headers = mock_client.post.call_args[1]["headers"]
         assert headers["Authorization"].startswith("Basic ")
 
     def test_returns_error_on_http_failure(self, monkeypatch):
-        monkeypatch.setenv("NTFY_TOPIC", "hermes-in")
+        monkeypatch.setenv("NTFY_TOPIC", "openamer-in")
         pconfig = MagicMock()
-        pconfig.extra = {"topic": "hermes-in"}
+        pconfig.extra = {"topic": "openamer-in"}
 
         mock_resp = MagicMock()
         mock_resp.status_code = 403
@@ -876,7 +876,7 @@ class TestStandaloneSend:
 
         with patch.object(_ntfy, "httpx") as mock_httpx:
             mock_httpx.AsyncClient.return_value = mock_client
-            result = _run(_standalone_send(pconfig, "hermes-in", "hi"))
+            result = _run(_standalone_send(pconfig, "openamer-in", "hi"))
 
         assert "error" in result
         assert "403" in result["error"]

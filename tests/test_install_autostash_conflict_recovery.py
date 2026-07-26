@@ -49,7 +49,7 @@ def _make_conflicted_managed_checkout(tmp_path: Path) -> Path:
     _git(seed, "remote", "add", "origin", str(remote))
     _git(seed, "push", "-u", "origin", "main")
 
-    managed = tmp_path / "hermes-agent"
+    managed = tmp_path / "openamer-agent"
     _git(tmp_path, "clone", "--branch", "main", str(remote), str(managed))
 
     (managed / "tracked.txt").write_text("local edit\n", encoding="utf-8")
@@ -88,7 +88,7 @@ def test_install_sh_repository_stage_recovers_from_autostash_conflict(
 ) -> None:
     managed = _make_conflicted_managed_checkout(tmp_path)
     env = os.environ | {
-        "OPENAMER_HOME": str(tmp_path / "hermes-home"),
+        "OPENAMER_HOME": str(tmp_path / "openamer-home"),
         "HERMES_INSTALL_DIR": str(managed),
     }
 
@@ -124,8 +124,8 @@ def test_install_ps1_repository_stage_recovers_from_autostash_conflict(
             "-NonInteractive",
             "-InstallDir",
             str(managed),
-            "-HermesHome",
-            str(tmp_path / "hermes-home"),
+            "-OpenAmerHome",
+            str(tmp_path / "openamer-home"),
         ],
         cwd=tmp_path,
         capture_output=True,
@@ -162,7 +162,7 @@ def test_install_sh_repository_stage_clean_apply_drops_stash(
     _git(seed, "remote", "add", "origin", str(remote))
     _git(seed, "push", "-u", "origin", "main")
 
-    managed = tmp_path / "hermes-agent"
+    managed = tmp_path / "openamer-agent"
     _git(tmp_path, "clone", "--branch", "main", str(remote), str(managed))
 
     # Local edit on a file upstream will NOT touch — no conflict on apply.
@@ -175,7 +175,7 @@ def test_install_sh_repository_stage_clean_apply_drops_stash(
     _git(upstream, "push", "origin", "main")
 
     env = os.environ | {
-        "OPENAMER_HOME": str(tmp_path / "hermes-home"),
+        "OPENAMER_HOME": str(tmp_path / "openamer-home"),
         "HERMES_INSTALL_DIR": str(managed),
     }
     result = subprocess.run(

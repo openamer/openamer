@@ -102,10 +102,10 @@ class TestWinPtyBridgeSpawn:
 @windows_only
 class TestWinPtyBridgeIO:
     def test_reads_child_stdout(self):
-        bridge = WinPtyBridge.spawn(["cmd.exe", "/c", "echo hermes-ok"])
+        bridge = WinPtyBridge.spawn(["cmd.exe", "/c", "echo openamer-ok"])
         try:
-            output = _read_until(bridge, b"hermes-ok")
-            assert b"hermes-ok" in output
+            output = _read_until(bridge, b"openamer-ok")
+            assert b"openamer-ok" in output
         finally:
             bridge.close()
 

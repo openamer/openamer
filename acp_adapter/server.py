@@ -1,4 +1,4 @@
-"""ACP agent server — exposes Hermes Agent via the Agent Client Protocol."""
+"""ACP agent server — exposes OpenAmer Agent via the Agent Client Protocol."""
 
 from __future__ import annotations
 
@@ -79,8 +79,8 @@ from agent.context_compressor import (
     ContextCompressor,
 )
 from tools.approval import (
-    reset_hermes_interactive_context,
-    set_hermes_interactive_context,
+    reset_openamer_interactive_context,
+    set_openamer_interactive_context,
 )
 
 logger = logging.getLogger(__name__)
@@ -271,7 +271,7 @@ def _path_from_file_uri(uri: str) -> Path | None:
 
     Zed may send POSIX file URIs from Linux/WSL workspaces or Windows-ish paths
     when launched through wsl.exe. Translate the common Windows drive form to
-    /mnt/<drive>/... so Hermes running in WSL can read it.
+    /mnt/<drive>/... so OpenAmer running in WSL can read it.
     """
     raw = (uri or "").strip()
     if not raw:
@@ -352,7 +352,7 @@ def _resource_link_to_parts(block: ResourceContentBlock) -> list[dict[str, Any]]
                 uri=uri,
                 name=name,
                 title=title,
-                body="[Resource link only; Hermes cannot read non-file ACP resource URIs directly.]",
+                body="[Resource link only; OpenAmer cannot read non-file ACP resource URIs directly.]",
             ),
         }]
 
@@ -520,7 +520,7 @@ def _content_blocks_to_openai_user_content(
         | EmbeddedResourceContentBlock
     ],
 ) -> str | list[dict[str, Any]]:
-    """Convert ACP prompt blocks into a Hermes/OpenAI-compatible user content payload."""
+    """Convert ACP prompt blocks into a OpenAmer/OpenAI-compatible user content payload."""
     parts: list[dict[str, Any]] = []
     text_parts: list[str] = []
 
@@ -562,8 +562,8 @@ def _content_blocks_to_openai_user_content(
     return parts
 
 
-class HermesACPAgent(acp.Agent):
-    """ACP Agent implementation wrapping Hermes AIAgent."""
+class OpenAmerACPAgent(acp.Agent):
+    """ACP Agent implementation wrapping OpenAmer AIAgent."""
 
     _SLASH_COMMANDS = {
         "help": "Show available commands",
@@ -574,7 +574,7 @@ class HermesACPAgent(acp.Agent):
         "compress": "Compress conversation context",
         "steer": "Inject guidance into the currently running agent turn",
         "queue": "Queue a prompt to run after the current turn finishes",
-        "version": "Show Hermes version",
+        "version": "Show OpenAmer version",
     }
 
     _ADVERTISED_COMMANDS = (
@@ -615,7 +615,7 @@ class HermesACPAgent(acp.Agent):
         },
         {
             "name": "version",
-            "description": "Show Hermes version",
+            "description": "Show OpenAmer version",
         },
     )
 
@@ -651,7 +651,7 @@ class HermesACPAgent(acp.Agent):
 
         Zed renders ``config_options`` in the prominent selector slot where the
         model picker was visible. Claude/Codex expose policy-like controls as ACP
-        modes, which coexist with the model picker, so Hermes maps edit approval
+        modes, which coexist with the model picker, so OpenAmer maps edit approval
         policy onto modes instead of advertising config options.
         """
 
@@ -698,7 +698,7 @@ class HermesACPAgent(acp.Agent):
     def _build_model_state(self, state: SessionState) -> SessionModelState | None:
         """Return authenticated providers and their models for ACP clients.
 
-        The shared Hermes inventory is also used by ``hermes model``, the TUI,
+        The shared OpenAmer inventory is also used by ``openamer model``, the TUI,
         and the dashboard. Keeping ACP on that substrate prevents its selector
         from silently collapsing to the current provider's curated list.
         """
@@ -844,7 +844,7 @@ class HermesACPAgent(acp.Agent):
 
         Zed's circular context indicator is driven by ACP ``usage_update``
         session updates: ``size`` is the model context window and ``used`` is
-        the current request pressure.  Hermes estimates ``used`` from the same
+        the current request pressure.  OpenAmer estimates ``used`` from the same
         buckets it sends to providers: system prompt, conversation history, and
         tool schemas.
         """
@@ -894,16 +894,16 @@ class HermesACPAgent(acp.Agent):
     def _provenance_meta(
         self,
         acp_session_id: str,
-        current_hermes_session_id: str,
-        previous_hermes_session_id: Optional[str] = None,
+        current_openamer_session_id: str,
+        previous_openamer_session_id: Optional[str] = None,
     ) -> Optional[dict]:
-        """Best-effort ``_meta.hermes.sessionProvenance`` for an ACP session."""
+        """Best-effort ``_meta.openamer.sessionProvenance`` for an ACP session."""
         try:
             return session_provenance_meta(
                 self.session_manager._get_db(),
                 acp_session_id,
-                current_hermes_session_id,
-                previous_hermes_session_id=previous_hermes_session_id,
+                current_openamer_session_id,
+                previous_openamer_session_id=previous_openamer_session_id,
             )
         except Exception:
             logger.debug(
@@ -915,14 +915,14 @@ class HermesACPAgent(acp.Agent):
         self,
         session_id: str,
         *,
-        current_hermes_session_id: Optional[str] = None,
-        previous_hermes_session_id: Optional[str] = None,
+        current_openamer_session_id: Optional[str] = None,
+        previous_openamer_session_id: Optional[str] = None,
     ) -> None:
-        """Send ACP native session metadata after Hermes changes it.
+        """Send ACP native session metadata after OpenAmer changes it.
 
-        When the internal Hermes head rotated (e.g. compression-driven session
-        split during a turn), pass ``previous_hermes_session_id`` so the
-        attached ``_meta.hermes.sessionProvenance`` flags the rotation reason.
+        When the internal OpenAmer head rotated (e.g. compression-driven session
+        split during a turn), pass ``previous_openamer_session_id`` so the
+        attached ``_meta.openamer.sessionProvenance`` flags the rotation reason.
         """
         if not self._conn:
             return
@@ -942,8 +942,8 @@ class HermesACPAgent(acp.Agent):
         updated_at = datetime.now(timezone.utc).isoformat()
         meta = self._provenance_meta(
             session_id,
-            current_hermes_session_id or session_id,
-            previous_hermes_session_id,
+            current_openamer_session_id or session_id,
+            previous_openamer_session_id,
         )
         update = SessionInfoUpdate(
             session_update="session_info_update",
@@ -1008,7 +1008,7 @@ class HermesACPAgent(acp.Agent):
             from agent.memory_manager import inject_memory_provider_tools
 
             enabled_toolsets = _expand_acp_enabled_toolsets(
-                getattr(state.agent, "enabled_toolsets", None) or ["hermes-acp"],
+                getattr(state.agent, "enabled_toolsets", None) or ["openamer-acp"],
                 mcp_server_names=[server.name for server in mcp_servers],
             )
             state.agent.enabled_toolsets = enabled_toolsets
@@ -1060,7 +1060,7 @@ class HermesACPAgent(acp.Agent):
 
         return InitializeResponse(
             protocol_version=acp.PROTOCOL_VERSION,
-            agent_info=Implementation(name="hermes-agent", version=HERMES_VERSION),
+            agent_info=Implementation(name="openamer-agent", version=HERMES_VERSION),
             agent_capabilities=AgentCapabilities(
                 load_session=True,
                 prompt_capabilities=PromptCapabilities(image=True),
@@ -1078,7 +1078,7 @@ class HermesACPAgent(acp.Agent):
         # provider we advertised in initialize(). Without this check,
         # authenticate() would acknowledge any method_id as long as the
         # server has provider credentials configured — harmless under
-        # Hermes' threat model (ACP is stdio-only, local-trust), but poor
+        # OpenAmer' threat model (ACP is stdio-only, local-trust), but poor
         # API hygiene and confusing if ACP ever grows multi-method auth.
         if not isinstance(method_id, str):
             return None
@@ -1086,7 +1086,7 @@ class HermesACPAgent(acp.Agent):
         provider = detect_provider()
 
         if normalized_method == TERMINAL_SETUP_AUTH_METHOD_ID:
-            # Terminal auth launches Hermes setup/model selection out-of-band.
+            # Terminal auth launches OpenAmer setup/model selection out-of-band.
             # Only report success once that flow has produced usable runtime
             # credentials for the normal ACP session.
             return AuthenticateResponse() if provider else None
@@ -1157,7 +1157,7 @@ class HermesACPAgent(acp.Agent):
         first preserved tail message's real content. Without a wire flag,
         ACP frontends render all of these as ordinary turns.
 
-        Two distinct keys under ``_meta.hermes`` (ACP's extensibility
+        Two distinct keys under ``_meta.openamer`` (ACP's extensibility
         channel), so clients cannot accidentally hide real content:
 
         * ``compactionSummary: true`` — the entire chunk is the handoff
@@ -1178,9 +1178,9 @@ class HermesACPAgent(acp.Agent):
             # ever set on summary-bearing messages.
             kind = "standalone"
         if kind == "standalone":
-            return {"hermes": {"compactionSummary": True}}
+            return {"openamer": {"compactionSummary": True}}
         if kind == "merged":
-            return {"hermes": {"containsCompactionSummary": True}}
+            return {"openamer": {"containsCompactionSummary": True}}
         return None
 
     @staticmethod
@@ -1247,7 +1247,7 @@ class HermesACPAgent(acp.Agent):
 
         Replays the conversation as user/assistant chunks, thinking-mode
         thought chunks, plus reconstructed tool-call start/completion
-        notifications. Merely restoring server-side state makes Hermes
+        notifications. Merely restoring server-side state makes OpenAmer
         remember context, but leaves the editor looking like a clean thread.
         """
         if not self._conn or not state.history:
@@ -1537,7 +1537,7 @@ class HermesACPAgent(acp.Agent):
         session_id: str,
         **kwargs: Any,
     ) -> PromptResponse:
-        """Run Hermes on the user's prompt and stream events back to the editor."""
+        """Run OpenAmer on the user's prompt and stream events back to the editor."""
         state = self.session_manager.get_session(session_id)
         if state is None:
             logger.error("prompt: session %s not found", session_id)
@@ -1722,7 +1722,7 @@ class HermesACPAgent(acp.Agent):
 
         agent = state.agent
         agent.tool_progress_callback = tool_progress_cb
-        # ACP thought panes should not receive Hermes' local kawaii waiting/status
+        # ACP thought panes should not receive OpenAmer' local kawaii waiting/status
         # updates. Route provider/model reasoning deltas instead; if the provider
         # emits no reasoning, Zed should not get a fake "thinking" accordion.
         agent.thinking_callback = None
@@ -1734,7 +1734,7 @@ class HermesACPAgent(acp.Agent):
         # Set it INSIDE _run_agent so the TLS write happens in the executor
         # thread — setting it here would write to the event-loop thread's TLS,
         # not the executor's. Interactive routing uses a contextvar in
-        # tools.approval (set_hermes_interactive_context) rather than
+        # tools.approval (set_openamer_interactive_context) rather than
         # os.environ["HERMES_INTERACTIVE"], so concurrent executor workers can't
         # race on a process-global flag — one session's restore can't drop
         # another onto the non-interactive auto-approve path mid-run
@@ -1764,9 +1764,9 @@ class HermesACPAgent(acp.Agent):
                 # ``cwd`` pins the logical working directory for this context,
                 # which is what the system prompt's "Current working directory"
                 # line reports (agent/prompt_builder.py -> resolve_agent_cwd).
-                # Without it the prompt advertises the global Hermes workspace
+                # Without it the prompt advertises the global OpenAmer workspace
                 # while the tools are rooted at the client's project, so the
-                # model emits absolute paths under ~/.hermes/workspace and the
+                # model emits absolute paths under ~/.openamer/workspace and the
                 # edit silently lands outside the editor's workspace.
                 session_tokens = set_session_vars(
                     session_key=session_id, cwd=state.cwd,
@@ -1793,7 +1793,7 @@ class HermesACPAgent(acp.Agent):
             # and the non-interactive auto-approve path must not fire. Uses a
             # contextvar (not os.environ) so concurrent executor workers don't
             # race on the flag (GHSA-96vc-wcxf-jjff).
-            interactive_token = set_hermes_interactive_context(True)
+            interactive_token = set_openamer_interactive_context(True)
             # Propagate the originating ACP session id to tools that want to
             # tag side-effects with it (e.g. ``kanban_create`` stamps it on
             # the new task so clients can render a per-session board). Save
@@ -1815,7 +1815,7 @@ class HermesACPAgent(acp.Agent):
             finally:
                 # Restore the interactive contextvar for this context.
                 if interactive_token is not None:
-                    reset_hermes_interactive_context(interactive_token)
+                    reset_openamer_interactive_context(interactive_token)
                 # Restore HERMES_SESSION_ID symmetrically.
                 if previous_session_id is None:
                     os.environ.pop("HERMES_SESSION_ID", None)
@@ -1841,11 +1841,11 @@ class HermesACPAgent(acp.Agent):
                         logger.debug("Could not clear ACP session context", exc_info=True)
 
         try:
-            # Snapshot the internal Hermes DB session id before the turn so we
+            # Snapshot the internal OpenAmer DB session id before the turn so we
             # can detect a compression-driven session rotation afterwards. The
             # ACP `session_id` stays the stable client handle; agent.session_id
             # is the live internal head that compression may rotate.
-            pre_turn_hermes_id = getattr(state.agent, "session_id", None)
+            pre_turn_openamer_id = getattr(state.agent, "session_id", None)
             # Wrap the executor call in a fresh copy of the current context so
             # concurrent ACP sessions on the shared ThreadPoolExecutor don't
             # stomp on each other's ContextVar writes (HERMES_SESSION_KEY in
@@ -1866,20 +1866,20 @@ class HermesACPAgent(acp.Agent):
 
         # Detect a compression-driven internal session rotation. If the agent's
         # DB head moved during the turn, emit a session_info_update carrying
-        # _meta.hermes.sessionProvenance so ACP clients can render the boundary
+        # _meta.openamer.sessionProvenance so ACP clients can render the boundary
         # and keep old/new ids in lineage. The ACP session_id is unchanged.
-        post_turn_hermes_id = getattr(state.agent, "session_id", None)
+        post_turn_openamer_id = getattr(state.agent, "session_id", None)
         if (
             conn
-            and post_turn_hermes_id
-            and pre_turn_hermes_id
-            and post_turn_hermes_id != pre_turn_hermes_id
+            and post_turn_openamer_id
+            and pre_turn_openamer_id
+            and post_turn_openamer_id != pre_turn_openamer_id
         ):
             try:
                 await self._send_session_info_update(
                     session_id,
-                    current_hermes_session_id=post_turn_hermes_id,
-                    previous_hermes_session_id=pre_turn_hermes_id,
+                    current_openamer_session_id=post_turn_openamer_id,
+                    previous_openamer_session_id=pre_turn_openamer_id,
                 )
             except Exception:
                 logger.debug(
@@ -1891,7 +1891,7 @@ class HermesACPAgent(acp.Agent):
         final_response = result.get("final_response", "")
         cancelled = bool(state.cancel_event and state.cancel_event.is_set())
         interrupted = bool(result.get("interrupted")) or cancelled
-        # Hermes' local "waiting for model response" interrupt status is metadata,
+        # OpenAmer' local "waiting for model response" interrupt status is metadata,
         # not assistant prose — clients get cancellation from stop_reason instead.
         from agent.conversation_loop import INTERRUPT_WAITING_FOR_MODEL_PREFIX
 
@@ -2061,7 +2061,7 @@ class HermesACPAgent(acp.Agent):
         # contextvars.copy_context() that pins the session cwd for the agent
         # call. ``/compress`` and ``/model`` reach code that REBUILDS the
         # system prompt (agent._build_system_prompt -> resolve_agent_cwd), so
-        # an unpinned handler bakes the Hermes install tree into the session's
+        # an unpinned handler bakes the OpenAmer install tree into the session's
         # cached prompt — persisted, and therefore poisoning every later turn
         # even though the turn itself is pinned. Pin inside a fresh context so
         # the write can't leak into other concurrent ACP sessions and needs no
@@ -2117,7 +2117,7 @@ class HermesACPAgent(acp.Agent):
             from agent.memory_manager import inject_memory_provider_tools
 
             toolsets = _expand_acp_enabled_toolsets(
-                getattr(state.agent, "enabled_toolsets", None) or ["hermes-acp"]
+                getattr(state.agent, "enabled_toolsets", None) or ["openamer-acp"]
             )
             tools = get_tool_definitions(enabled_toolsets=toolsets, quiet_mode=True)
             tool_view = SimpleNamespace(
@@ -2330,7 +2330,7 @@ class HermesACPAgent(acp.Agent):
         return f"Queued for the next turn. ({depth} queued)"
 
     def _cmd_version(self, args: str, state: SessionState) -> str:
-        return f"Hermes Agent v{HERMES_VERSION}"
+        return f"OpenAmer Agent v{HERMES_VERSION}"
 
     # ---- Model switching (ACP protocol method) -------------------------------
 
@@ -2387,7 +2387,7 @@ class HermesACPAgent(acp.Agent):
     async def set_config_option(
         self, config_id: str, session_id: str, value: str, **kwargs: Any
     ) -> SetSessionConfigOptionResponse | None:
-        """Accept ACP config option updates even when Hermes has no typed ACP config surface yet."""
+        """Accept ACP config option updates even when OpenAmer has no typed ACP config surface yet."""
         state = self.session_manager.get_session(session_id)
         if state is None:
             logger.warning("Session %s: config update requested for missing session", session_id)

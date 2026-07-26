@@ -18,7 +18,7 @@ def build_security_parser(subparsers, *, cmd_security: Callable) -> None:
         description=(
             "On-demand vulnerability scan against OSV.dev. Covers the OpenAmer "
             "venv (installed PyPI dists), Python deps declared by plugins under "
-            "~/.hermes/plugins/, and pinned npx/uvx MCP servers in config.yaml. "
+            "~/.openamer/plugins/, and pinned npx/uvx MCP servers in config.yaml. "
             "Does NOT scan globally-installed packages or editor/browser extensions."
         ),
     )

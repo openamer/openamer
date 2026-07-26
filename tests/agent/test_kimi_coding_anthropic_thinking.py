@@ -111,7 +111,7 @@ class TestKimiFamilyGetsAdaptiveThinking:
         assert kwargs["max_tokens"] == 4096
 
     @pytest.mark.parametrize(
-        "hermes_effort,wire_effort",
+        "openamer_effort,wire_effort",
         [
             ("minimal", "low"),
             ("low", "low"),
@@ -122,7 +122,7 @@ class TestKimiFamilyGetsAdaptiveThinking:
             ("ultra", "max"),
         ],
     )
-    def test_kimi_effort_mapping(self, hermes_effort: str, wire_effort: str) -> None:
+    def test_kimi_effort_mapping(self, openamer_effort: str, wire_effort: str) -> None:
         from agent.anthropic_adapter import build_anthropic_kwargs
 
         kwargs = build_anthropic_kwargs(
@@ -130,7 +130,7 @@ class TestKimiFamilyGetsAdaptiveThinking:
             messages=[{"role": "user", "content": "hello"}],
             tools=None,
             max_tokens=4096,
-            reasoning_config={"enabled": True, "effort": hermes_effort},
+            reasoning_config={"enabled": True, "effort": openamer_effort},
             base_url="https://api.moonshot.cn/anthropic/v1",
         )
         assert kwargs["thinking"] == {"type": "adaptive", "display": "summarized"}

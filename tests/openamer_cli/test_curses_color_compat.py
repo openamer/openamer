@@ -1,6 +1,6 @@
 """Tests for curses color compatibility on low-color terminals (Docker).
 
-Regression test for #13688: ``hermes plugins`` crashes with
+Regression test for #13688: ``openamer plugins`` crashes with
 ``curses.error: init_pair() : color number is greater than COLORS-1``
 in Docker containers where curses.COLORS == 8 (only colors 0-7 exist).
 

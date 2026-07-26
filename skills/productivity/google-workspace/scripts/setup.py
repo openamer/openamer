@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Google Workspace OAuth2 setup for Hermes Agent.
+"""Google Workspace OAuth2 setup for OpenAmer Agent.
 
 Fully non-interactive — designed to be driven by the agent via terminal commands.
 The agent mediates between this script and the user (works on CLI, Telegram, Discord, etc.)
@@ -31,12 +31,12 @@ import subprocess
 import sys
 from pathlib import Path
 
-# Ensure sibling modules (_hermes_home) are importable when run standalone.
+# Ensure sibling modules (_openamer_home) are importable when run standalone.
 _SCRIPTS_DIR = str(Path(__file__).resolve().parent)
 if _SCRIPTS_DIR not in sys.path:
     sys.path.insert(0, _SCRIPTS_DIR)
 
-from _hermes_home import display_hermes_home, get_hermes_home
+from _openamer_home import display_openamer_home, get_openamer_home
 
 OPENAMER_HOME = get_openamer_home()
 TOKEN_PATH = OPENAMER_HOME / "google_token.json"
@@ -89,7 +89,7 @@ def _format_missing_scopes(missing_scopes: list[str]) -> str:
     return (
         "Token is valid but missing required Google Workspace scopes:\n"
         f"{bullets}\n"
-        "Run the Google Workspace setup again from this same Hermes profile to refresh consent."
+        "Run the Google Workspace setup again from this same OpenAmer profile to refresh consent."
     )
 
 
@@ -116,7 +116,7 @@ def install_deps():
     except subprocess.CalledProcessError as e:
         pip_error = e
 
-    # Fallback: the interpreter has no pip (the Hermes Docker image's venv is
+    # Fallback: the interpreter has no pip (the OpenAmer Docker image's venv is
     # built with `uv sync`, which does not bootstrap pip). `uv pip install
     # --python <interpreter>` installs into that exact interpreter without
     # needing pip present. Targeting sys.executable keeps us on the venv the
@@ -138,10 +138,10 @@ def install_deps():
 
     print(f"ERROR: Failed to install dependencies: {pip_error}")
     print(
-        "On environments without pip (e.g. Nix, or the Hermes Docker image's "
+        "On environments without pip (e.g. Nix, or the OpenAmer Docker image's "
         "uv-managed venv), install the optional extra instead:"
     )
-    print("  hermes setup")
+    print("  openamer setup")
     print(f"Or manually: {sys.executable} -m pip install {' '.join(REQUIRED_PACKAGES)}")
     return False
 
@@ -253,7 +253,7 @@ def check_auth(quiet: bool = False):
 
 
 def store_client_secret(path: str):
-    """Copy and validate client_secret.json to Hermes home."""
+    """Copy and validate client_secret.json to OpenAmer home."""
     src = Path(path).expanduser().resolve()
     if not src.exists():
         print(f"ERROR: File not found: {src}")
@@ -413,7 +413,7 @@ def exchange_auth_code(code: str):
     TOKEN_PATH.write_text(json.dumps(token_payload, indent=2), encoding="utf-8")
     PENDING_AUTH_PATH.unlink(missing_ok=True)
     print(f"OK: Authenticated. Token saved to {TOKEN_PATH}")
-    print(f"Profile-scoped token location: {display_hermes_home()}/google_token.json")
+    print(f"Profile-scoped token location: {display_openamer_home()}/google_token.json")
 
 
 def revoke():
@@ -450,7 +450,7 @@ def revoke():
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Google Workspace OAuth setup for Hermes")
+    parser = argparse.ArgumentParser(description="Google Workspace OAuth setup for OpenAmer")
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument("--check", action="store_true", help="Check if auth is valid (exit 0=yes, 1=no)")
     group.add_argument("--check-live", action="store_true", help="Check auth with a real API call (detects disabled_client)")

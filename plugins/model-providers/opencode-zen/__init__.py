@@ -64,7 +64,7 @@ class OpenCodeGoProfile(ProviderProfile):
         if _is_glm_5_2_model(model):
             # GLM-5.2 on OpenCode Go uses its native OpenAI-compatible
             # reasoning_effort knob, which has exactly two enabled levels:
-            # high and max. Map Hermes' richer scale onto those; leave the
+            # high and max. Map OpenAmer' richer scale onto those; leave the
             # server default alone when reasoning is disabled or unset.
             if not isinstance(reasoning_config, dict):
                 return extra_body, top_level

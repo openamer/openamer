@@ -7,7 +7,7 @@ def test_format_banner_version_label_without_git_state():
     with patch.object(banner, "get_git_banner_state", return_value=None):
         value = banner.format_banner_version_label()
 
-    assert value == f"Hermes Agent v{banner.VERSION} ({banner.RELEASE_DATE})"
+    assert value == f"OpenAmer Agent v{banner.VERSION} ({banner.RELEASE_DATE})"
 
 
 def test_format_banner_version_label_on_upstream_main():
@@ -67,7 +67,7 @@ def test_get_git_banner_state_falls_back_to_build_sha_when_no_repo():
     """Docker image case: no .git checkout — baked build SHA fills the gap.
 
     ``_resolve_repo_dir`` returns None when neither the running code's
-    parent nor ``$OPENAMER_HOME/hermes-agent/`` is a git repo (the canonical
+    parent nor ``$OPENAMER_HOME/openamer-agent/`` is a git repo (the canonical
     case inside the published container, where .git is dockerignored).
     The banner should still report the build SHA so support bug reports
     can identify the running commit.

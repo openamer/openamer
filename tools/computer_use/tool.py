@@ -8,7 +8,7 @@ OpenAI function-calling so every tool-capable model can drive it.
 Linux is the most recent runtime (X11 + Wayland, via cua-driver-rs's
 AT-SPI tree path); it is enabled here alongside macOS and Windows. When a
 host's display server or accessibility stack isn't reachable, cua-driver's
-`health_report` (surfaced by `hermes computer-use doctor`) reports the
+`health_report` (surfaced by `openamer computer-use doctor`) reports the
 exact blocked check rather than the toolset silently failing.
 
 Return contract
@@ -86,7 +86,7 @@ _DESTRUCTIVE_ACTIONS = frozenset({
 })
 
 # Hard-blocked key combinations. Mirrored from #4562 — these are destructive
-# regardless of approval level (e.g. logout kills the session Hermes runs in).
+# regardless of approval level (e.g. logout kills the session OpenAmer runs in).
 _BLOCKED_KEY_COMBOS = {
     frozenset({"cmd", "shift", "backspace"}),   # empty trash
     frozenset({"cmd", "option", "backspace"}),   # force delete
@@ -147,7 +147,7 @@ _backend: Optional[ComputerUseBackend] = None
 # don't pass a session_id (e.g. the classic single-run CLI). Values:
 #   _session_auto_approve[sid] -> bool   ("always_approve everything")
 #   _always_allow[sid]         -> set of (action, delivery_mode) scope keys
-# See NousResearch/hermes-agent#67052 gap 4.
+# See NousResearch/openamer-agent#67052 gap 4.
 _approval_lock = threading.Lock()
 _session_auto_approve: Dict[str, bool] = {}
 _always_allow: Dict[str, set] = {}
@@ -303,7 +303,7 @@ def handle_computer_use(args: Dict[str, Any], **kwargs) -> Any:
     except Exception as e:
         return json.dumps({
             "error": f"computer_use backend unavailable: {e}",
-            "hint": "If the cua-driver binary is missing, run `hermes computer-use install`. "
+            "hint": "If the cua-driver binary is missing, run `openamer computer-use install`. "
                     "If a Python dependency is missing, the error above shows the exact install command.",
         })
 
@@ -321,7 +321,7 @@ def _request_approval(action: str, args: Dict[str, Any],
     Approval is scoped by (action, delivery_mode) AND by session_id.
     Foreground delivery is a visible focus change, so a prior background
     approval — even ``approve_session`` on the same action — must NOT
-    silently authorize it (NousResearch/hermes-agent#67052).
+    silently authorize it (NousResearch/openamer-agent#67052).
     ``always_approve`` (the blanket "auto-approve everything" unlock) still
     covers foreground, since the user explicitly opted into unattended
     operation. State is keyed on session_id so concurrent runs don't leak
@@ -700,7 +700,7 @@ def _capture_response(cap: CaptureResult, max_elements: int = _DEFAULT_MAX_ELEME
             return json.dumps(payload)
 
         # Prefer the explicit MIME type cua-driver attaches to its image
-        # parts (Surface 7 of NousResearch/hermes-agent#47072 — trycua/cua#1961
+        # parts (Surface 7 of NousResearch/openamer-agent#47072 — trycua/cua#1961
         # made `mimeType` part of every MCP image-part response). Fall back
         # to base64-prefix sniffing for older cua-driver builds that didn't
         # carry the field. JPEG base64 starts with /9j/; PNG with iVBOR.
@@ -852,7 +852,7 @@ def _route_capture_through_aux_vision(
         import os as _os
         import uuid as _uuid
 
-        from openamer_constants import get_hermes_dir
+        from openamer_constants import get_openamer_dir
         from model_tools import _run_async
         from tools.vision_tools import vision_analyze_tool
     except Exception as exc:  # pragma: no cover - defensive
@@ -875,7 +875,7 @@ def _route_capture_through_aux_vision(
             ext = ".jpg"
         else:
             ext = ".png"
-        cache_dir = get_hermes_dir("cache/vision", "temp_vision_images")
+        cache_dir = get_openamer_dir("cache/vision", "temp_vision_images")
         cache_dir.mkdir(parents=True, exist_ok=True)
         temp_image_path = cache_dir / f"computer_use_{_uuid.uuid4().hex}{ext}"
         raw = _shrink_capture_for_vision(raw, ext)
@@ -1009,7 +1009,7 @@ def check_computer_use_requirements() -> bool:
     override via env). cua-driver runs on all three; the Linux path is
     headed/X11 today (Wayland via XWayland), pure-Wayland progress tracked
     upstream. Linux users see specific blocked checks via
-    `hermes computer-use doctor` if their session is incomplete (e.g. no
+    `openamer computer-use doctor` if their session is incomplete (e.g. no
     DISPLAY set).
     """
     if sys.platform not in ("darwin", "win32", "linux"):

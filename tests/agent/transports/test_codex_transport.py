@@ -140,7 +140,7 @@ class TestCodexBuildKwargs:
         # thread is_github_responses through to the input converter so the
         # id never reaches the request.
         messages = [
-            {"role": "system", "content": "You are Hermes."},
+            {"role": "system", "content": "You are OpenAmer."},
             {
                 "role": "assistant",
                 "content": "pong",
@@ -221,7 +221,7 @@ class TestCodexBuildKwargs:
 
     def test_non_github_responses_keeps_message_item_id_end_to_end(self, transport):
         messages = [
-            {"role": "system", "content": "You are Hermes."},
+            {"role": "system", "content": "You are OpenAmer."},
             {
                 "role": "assistant",
                 "content": "pong",
@@ -601,7 +601,7 @@ class TestCodexBuildKwargs:
         already-requested client ``web_search`` — NOT an additive grant.  A
         turn whose toolset has no ``web_search`` (user never enabled the web
         toolset) must not get Grok server-side search force-injected, which
-        would silently bypass Hermes's web-provider config and tool-trace
+        would silently bypass OpenAmer's web-provider config and tool-trace
         plumbing for every xai-oauth turn.
         """
         messages = [{"role": "user", "content": "Read this file."}]

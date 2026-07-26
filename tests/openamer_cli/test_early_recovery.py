@@ -42,8 +42,8 @@ def _make_broken_dotenv_shadow(tmp_path: Path) -> Path:
 
 def _run_lifecycle_subprocess(tmp_path: Path, *, repair: bool) -> subprocess.CompletedProcess:
     shadow = _make_broken_dotenv_shadow(tmp_path)
-    hermes_home = tmp_path / "hermes_home"
-    hermes_home.mkdir()
+    openamer_home = tmp_path / "openamer_home"
+    openamer_home.mkdir()
     script = tmp_path / "lifecycle.py"
     script.write_text(
         textwrap.dedent(
@@ -76,7 +76,7 @@ def _run_lifecycle_subprocess(tmp_path: Path, *, repair: bool) -> subprocess.Com
     env = {
         **os.environ,
         "PYTHONPATH": str(REPO_ROOT),
-        "OPENAMER_HOME": str(hermes_home),
+        "OPENAMER_HOME": str(openamer_home),
     }
     return subprocess.run(
         [sys.executable, str(script)],

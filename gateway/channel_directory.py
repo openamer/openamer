@@ -2,7 +2,7 @@
 Channel directory -- cached map of reachable channels/contacts per platform.
 
 Built on gateway startup, refreshed periodically (every 5 min), and saved to
-~/.hermes/channel_directory.json.  The send_message tool reads this file for
+~/.openamer/channel_directory.json.  The send_message tool reads this file for
 action="list" and for resolving human-friendly channel names to numeric IDs.
 """
 
@@ -13,7 +13,7 @@ import time
 from datetime import datetime
 from typing import Any, Dict, List, Optional
 
-from openamer_cli.config import get_hermes_home
+from openamer_cli.config import get_openamer_home
 from utils import atomic_json_write
 
 logger = logging.getLogger(__name__)

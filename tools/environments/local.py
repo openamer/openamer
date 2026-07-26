@@ -54,9 +54,9 @@ def _resolve_local_initial_cwd(cwd: str) -> str:
 
     ``TERMINAL_CWD`` can be populated from config.yaml before the terminal
     backend is created.  If that value is relative and happens to match the
-    directory Hermes was already launched from (for example ``hermes-agent``
-    while the process cwd is ``~/.hermes/hermes-agent``), passing it through
-    unchanged makes the wrapper run ``cd hermes-agent`` *inside* the project
+    directory OpenAmer was already launched from (for example ``openamer-agent``
+    while the process cwd is ``~/.openamer/openamer-agent``), passing it through
+    unchanged makes the wrapper run ``cd openamer-agent`` *inside* the project
     and fail with a confusing nested-path error.  Anchor relative local cwd
     values once, up front, so both ``subprocess.Popen(cwd=...)`` and the
     in-shell ``cd`` use the same absolute directory.
@@ -76,9 +76,9 @@ def _resolve_local_initial_cwd(cwd: str) -> str:
     candidate = os.path.abspath(expanded)
     current = os.getcwd()
 
-    # Common recovery for config values like ``hermes-agent`` when Hermes was
+    # Common recovery for config values like ``openamer-agent`` when OpenAmer was
     # launched from that directory already.  ``os.path.abspath`` would point at
-    # a nonexistent nested ``./hermes-agent``; use the current directory instead.
+    # a nonexistent nested ``./openamer-agent``; use the current directory instead.
     if not os.path.isdir(candidate):
         wanted_parts = Path(expanded).parts
         current_parts = Path(current).parts
@@ -196,12 +196,12 @@ def _resolve_safe_cwd(cwd: str) -> str:
     return tempfile.gettempdir()
 
 
-# Hermes-internal env vars that should NOT leak into terminal subprocesses.
+# OpenAmer-internal env vars that should NOT leak into terminal subprocesses.
 _HERMES_PROVIDER_ENV_FORCE_PREFIX = "_HERMES_FORCE_"
 
-# Hermes-managed AWS *inference* credentials for ``auth_type="aws_sdk"``
+# OpenAmer-managed AWS *inference* credentials for ``auth_type="aws_sdk"``
 # providers (Bedrock).  Scoped DELIBERATELY NARROW: this lists only the
-# Bedrock-specific bearer token, which is a Hermes inference secret exactly
+# Bedrock-specific bearer token, which is a OpenAmer inference secret exactly
 # analogous to ``OPENAI_API_KEY`` — nobody drives the ``aws``/``terraform``/
 # ``boto3`` toolchain off it, so stripping it from terminal/execute_code
 # subprocesses costs no user capability.
@@ -318,8 +318,8 @@ def _build_provider_env_blocklist() -> frozenset:
     })
     # CLAUDE_CODE_OAUTH_TOKEN is deliberately NOT stripped.  It is set and
     # owned by the user's Claude Code install (subscription OAuth), not a
-    # Hermes-managed inference credential — Claude subscription auth is not a
-    # working Hermes provider path.  Stripping it broke agent-spawned
+    # OpenAmer-managed inference credential — Claude subscription auth is not a
+    # working OpenAmer provider path.  Stripping it broke agent-spawned
     # ``claude`` CLIs: the child fell through to the shared macOS Keychain /
     # ``~/.claude/.credentials.json`` store and, on auth failure, cleared it,
     # logging the user out of their interactive Claude sessions (#55878).
@@ -336,16 +336,16 @@ _HERMES_PROVIDER_ENV_BLOCKLIST = _build_provider_env_blocklist()
 # VIRTUAL_ENV (and possibly CONDA_PREFIX). If those leak into commands the
 # agent runs against OTHER Python projects, tools like ``uv``/``poetry`` treat
 # the inherited value as the active environment and build/sync that other
-# project's dependencies into the Hermes venv path instead of the project's own
-# ``.venv`` — silently clobbering the Hermes environment (e.g. a project pinned
+# project's dependencies into the OpenAmer venv path instead of the project's own
+# ``.venv`` — silently clobbering the OpenAmer environment (e.g. a project pinned
 # to a different Python version overwrites it and breaks the gateway). The
-# Hermes venv stays reachable via PATH (its bin dir is first), so stripping
+# OpenAmer venv stays reachable via PATH (its bin dir is first), so stripping
 # these markers is safe and only prevents the cross-project clobber (#23473).
 _ACTIVE_VENV_MARKER_VARS = ("VIRTUAL_ENV", "CONDA_PREFIX")
 
 
-def _is_hermes_internal_secret(key: str) -> bool:
-    """Return True for Hermes-internal secrets injected under *dynamic* names.
+def _is_openamer_internal_secret(key: str) -> bool:
+    """Return True for OpenAmer-internal secrets injected under *dynamic* names.
 
     ``_HERMES_PROVIDER_ENV_BLOCKLIST`` is name-based and derived from the
     provider/tool registries, but the gateway and CLI also inject secrets into
@@ -369,10 +369,10 @@ def _is_hermes_internal_secret(key: str) -> bool:
     ``KEY`` / ``SECRET`` / ``TOKEN``; the terminal backend's narrower name-based
     blocklist did not, which is the leak this predicate closes.
 
-    This is the single source of truth for "Hermes-internal dynamic secret"
+    This is the single source of truth for "OpenAmer-internal dynamic secret"
     across every spawn path — the terminal ``_make_run_env`` /
     ``_sanitize_subprocess_env`` filters, the Docker passthrough filter, and the
-    non-terminal :func:`hermes_subprocess_env` helper all call it, so the
+    non-terminal :func:`openamer_subprocess_env` helper all call it, so the
     dynamic patterns are stripped **unconditionally** regardless of
     ``env_passthrough`` skill registration or ``inherit_credentials``. Nothing
     a model-driving CLI legitimately needs matches these patterns.
@@ -389,8 +389,8 @@ def _is_hermes_internal_secret(key: str) -> bool:
     return False
 
 
-def _inject_context_hermes_home(env: dict) -> None:
-    """Bridge the context-local Hermes home override into subprocess env."""
+def _inject_context_openamer_home(env: dict) -> None:
+    """Bridge the context-local OpenAmer home override into subprocess env."""
     try:
         from openamer_constants import get_openamer_home_override
 
@@ -449,7 +449,7 @@ def _inject_session_context_env(env: dict) -> None:
 
 
 def _sanitize_subprocess_env(base_env: dict | None, extra_env: dict | None = None) -> dict:
-    """Filter Hermes-managed secrets from a subprocess environment."""
+    """Filter OpenAmer-managed secrets from a subprocess environment."""
     try:
         from tools.env_passthrough import is_env_passthrough as _is_passthrough
     except Exception:
@@ -460,7 +460,7 @@ def _sanitize_subprocess_env(base_env: dict | None, extra_env: dict | None = Non
     for key, value in (base_env or {}).items():
         if key.startswith(_HERMES_PROVIDER_ENV_FORCE_PREFIX):
             continue
-        if _is_hermes_internal_secret(key):
+        if _is_openamer_internal_secret(key):
             continue
         if key not in _HERMES_PROVIDER_ENV_BLOCKLIST or _is_passthrough(key):
             sanitized[key] = value
@@ -468,15 +468,15 @@ def _sanitize_subprocess_env(base_env: dict | None, extra_env: dict | None = Non
     for key, value in (extra_env or {}).items():
         if key.startswith(_HERMES_PROVIDER_ENV_FORCE_PREFIX):
             real_key = key[len(_HERMES_PROVIDER_ENV_FORCE_PREFIX):]
-            if _is_hermes_internal_secret(real_key):
+            if _is_openamer_internal_secret(real_key):
                 continue
             sanitized[real_key] = value
-        elif _is_hermes_internal_secret(key):
+        elif _is_openamer_internal_secret(key):
             continue
         elif key not in _HERMES_PROVIDER_ENV_BLOCKLIST or _is_passthrough(key):
             sanitized[key] = value
 
-    _inject_context_hermes_home(sanitized)
+    _inject_context_openamer_home(sanitized)
 
     from openamer_constants import apply_subprocess_home_env
     apply_subprocess_home_env(sanitized)
@@ -513,11 +513,11 @@ def _scrub_delegated_child_kanban_env(env: dict[str, str]) -> dict[str, str]:
 # Tier-1 secrets: stripped from EVERY spawned subprocess unconditionally —
 # even when the caller opts into credential inheritance for a model-driving
 # CLI (claude / codex / gemini).  These are not LLM provider credentials; no
-# legitimate child Hermes spawns needs them, and they are the highest-value
+# legitimate child OpenAmer spawns needs them, and they are the highest-value
 # secrets to keep out of a compromised dependency's reach (gateway bot tokens,
 # GitHub auth, remote-compute tokens, dashboard session secret).  The set is a
 # narrow subset of _HERMES_PROVIDER_ENV_BLOCKLIST; provider keys are handled by
-# the conditional Tier-2 strip in hermes_subprocess_env().
+# the conditional Tier-2 strip in openamer_subprocess_env().
 _ALWAYS_STRIP_KEYS: frozenset[str] = frozenset({
     # GitHub auth
     "GH_TOKEN",
@@ -537,7 +537,7 @@ _ALWAYS_STRIP_KEYS: frozenset[str] = frozenset({
     # provisions and persists to the 0600 .env. Stripped unconditionally on
     # EVERY spawn surface (terminal + model-driving CLIs) so it can't drift
     # between paths: _SECRET / _DELIVERY_KEY are also matched by
-    # _is_hermes_internal_secret, but _ID has no secret suffix, so it must be
+    # _is_openamer_internal_secret, but _ID has no secret suffix, so it must be
     # enumerated here to stay stripped on the inherit_credentials=True path
     # (codex / copilot), which skips the Tier-2 blocklist.
     "GATEWAY_RELAY_ID",
@@ -553,7 +553,7 @@ _ALWAYS_STRIP_KEYS: frozenset[str] = frozenset({
 })
 
 
-def hermes_subprocess_env(*, inherit_credentials: bool = False) -> dict[str, str]:
+def openamer_subprocess_env(*, inherit_credentials: bool = False) -> dict[str, str]:
     """Build a sanitized environment dict for a spawned subprocess.
 
     Centralized helper for the **non-terminal** spawn surface (browser,
@@ -569,7 +569,7 @@ def hermes_subprocess_env(*, inherit_credentials: bool = False) -> dict[str, str
 
     * **Tier 1 (always):** ``_ALWAYS_STRIP_KEYS`` — gateway bot tokens, GitHub
       auth, and remote-compute secrets are removed regardless of
-      ``inherit_credentials``.  No child Hermes spawns legitimately needs them.
+      ``inherit_credentials``.  No child OpenAmer spawns legitimately needs them.
     * **Tier 2 (conditional):** the rest of ``_HERMES_PROVIDER_ENV_BLOCKLIST``
       (LLM provider API keys, tool secrets) is removed unless the caller passes
       ``inherit_credentials=True``.
@@ -590,15 +590,15 @@ def hermes_subprocess_env(*, inherit_credentials: bool = False) -> dict[str, str
     # Tier 1 — always strip.
     for key in _ALWAYS_STRIP_KEYS:
         env.pop(key, None)
-    # Internal routing hints and Hermes-internal dynamic secrets
+    # Internal routing hints and OpenAmer-internal dynamic secrets
     # (``AUXILIARY_<TASK>_API_KEY`` / ``_BASE_URL`` side-LLM credentials,
     # ``GATEWAY_RELAY_*`` relay-auth material) must never reach a child,
     # regardless of ``inherit_credentials`` — a model-driving CLI has no
-    # legitimate use for them. See :func:`_is_hermes_internal_secret`.
+    # legitimate use for them. See :func:`_is_openamer_internal_secret`.
     for key in list(env):
         if key.startswith(_HERMES_PROVIDER_ENV_FORCE_PREFIX):
             env.pop(key, None)
-        elif _is_hermes_internal_secret(key):
+        elif _is_openamer_internal_secret(key):
             env.pop(key, None)
 
     if not inherit_credentials:
@@ -609,7 +609,7 @@ def hermes_subprocess_env(*, inherit_credentials: bool = False) -> dict[str, str
     # Windows UTF-8 safety for spawned processes (#31420).
     env.setdefault("PYTHONUTF8", "1")
 
-    _inject_context_hermes_home(env)
+    _inject_context_openamer_home(env)
     from openamer_constants import apply_subprocess_home_env
     apply_subprocess_home_env(env)
 
@@ -661,14 +661,14 @@ def _find_bash() -> str:
     #
     # Layouts (both checked so upgrades between MinGit and PortableGit
     # installs work transparently):
-    #   PortableGit: %LOCALAPPDATA%\hermes\git\bin\bash.exe   (primary)
-    #   MinGit:      %LOCALAPPDATA%\hermes\git\usr\bin\bash.exe (legacy/32-bit fallback)
+    #   PortableGit: %LOCALAPPDATA%\openamer\git\bin\bash.exe   (primary)
+    #   MinGit:      %LOCALAPPDATA%\openamer\git\usr\bin\bash.exe (legacy/32-bit fallback)
     _local_appdata = os.environ.get("LOCALAPPDATA", "")
-    _hermes_portable_git = os.path.join(_local_appdata, "hermes", "git") if _local_appdata else ""
-    if _hermes_portable_git:
+    _openamer_portable_git = os.path.join(_local_appdata, "openamer", "git") if _local_appdata else ""
+    if _openamer_portable_git:
         for candidate in (
-            os.path.join(_hermes_portable_git, "bin", "bash.exe"),        # PortableGit (primary)
-            os.path.join(_hermes_portable_git, "usr", "bin", "bash.exe"), # MinGit fallback
+            os.path.join(_openamer_portable_git, "bin", "bash.exe"),        # PortableGit (primary)
+            os.path.join(_openamer_portable_git, "usr", "bin", "bash.exe"), # MinGit fallback
         ):
             if os.path.isfile(candidate) and candidate not in candidates:
                 candidates.append(candidate)
@@ -692,7 +692,7 @@ def _find_bash() -> str:
     # Prefer the first candidate that can actually start.  A stale
     # HERMES_GIT_BASH_PATH pointing at a broken Git-for-Windows install
     # (``Directory \\drivers\\etc does not exist``) must not win over a
-    # healthy portable Git under %LOCALAPPDATA%\\hermes\\git.
+    # healthy portable Git under %LOCALAPPDATA%\\openamer\\git.
     for candidate in candidates:
         if _bash_starts(candidate):
             if candidate != custom and custom and os.path.isfile(custom):
@@ -720,7 +720,7 @@ def _find_bash() -> str:
         return candidates[0]
 
     raise RuntimeError(
-        "Git Bash not found. Hermes Agent requires Git for Windows on Windows.\n"
+        "Git Bash not found. OpenAmer Agent requires Git for Windows on Windows.\n"
         "Install it from: https://git-scm.com/download/win\n"
         "Or set HERMES_GIT_BASH_PATH to your bash.exe location."
     )
@@ -808,7 +808,7 @@ def _git_bash_aslr_help(bash: str, details: str = "") -> str:
         'Get-Item "$gitRoot\\bin\\bash.exe", "$gitRoot\\usr\\bin\\*.exe" '
         "-ErrorAction SilentlyContinue | ForEach-Object { "
         "Set-ProcessMitigation -Name $_.FullName -Disable ForceRelocateImages }\n"
-        "Then restart Hermes. If the override is blocked or later re-applied, "
+        "Then restart OpenAmer. If the override is blocked or later re-applied, "
         "ask your Windows administrator to allow this per-program exception."
     )
 
@@ -979,32 +979,32 @@ _SANE_PATH = (
     "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 )
 
-# Cached directory containing the ``hermes`` console-script.
+# Cached directory containing the ``openamer`` console-script.
 # ``_SENTINEL`` distinguishes "not resolved yet" from a resolved ``None``.
 _SENTINEL = object()
 _HERMES_BIN_DIR: "str | None | object" = _SENTINEL
 
 
-def _resolve_hermes_bin_dir() -> str | None:
-    """Return the directory holding the ``hermes`` console-script, or None.
+def _resolve_openamer_bin_dir() -> str | None:
+    """Return the directory holding the ``openamer`` console-script, or None.
 
     The terminal tool runs in a freshly-spawned subshell whose PATH is the
     agent process's PATH plus a static set of system dirs (``_SANE_PATH``).
     When the gateway is launched by something that does NOT source the user's
     shell rc — systemd, a service manager, a desktop launcher, cron — the
-    hermes install dir (``~/.local/bin``, the venv ``bin``/``Scripts``, pipx,
-    nix) is absent from that PATH, so plugins shelling out to bare ``hermes``
+    openamer install dir (``~/.local/bin``, the venv ``bin``/``Scripts``, pipx,
+    nix) is absent from that PATH, so plugins shelling out to bare ``openamer``
     via the terminal tool hit ``command not found`` (exit 127) even though
-    ``hermes`` works fine in the user's own interactive terminal.
+    ``openamer`` works fine in the user's own interactive terminal.
 
     We resolve the install dir once (it never changes within a process) and
-    prepend-if-missing it to the subshell PATH so bare ``hermes`` resolves
+    prepend-if-missing it to the subshell PATH so bare ``openamer`` resolves
     regardless of how the gateway was started.
 
     Resolution order (cheap, no heavy imports):
-      1. ``shutil.which("hermes")`` — normal PATH-installed shim.
+      1. ``shutil.which("openamer")`` — normal PATH-installed shim.
       2. The directory of ``sys.argv[0]`` when it's an absolute path to a
-         real ``hermes`` executable (covers nix-store / venv wrappers).
+         real ``openamer`` executable (covers nix-store / venv wrappers).
       3. The directory of ``sys.executable`` — the running interpreter's
          venv ``bin``/``Scripts`` is where its console-scripts live.
     """
@@ -1014,7 +1014,7 @@ def _resolve_hermes_bin_dir() -> str | None:
 
     candidate: str | None = None
 
-    which = shutil.which("hermes")
+    which = shutil.which("openamer")
     if which:
         candidate = os.path.dirname(which)
 
@@ -1023,7 +1023,7 @@ def _resolve_hermes_bin_dir() -> str | None:
         base = os.path.basename(argv0).lower()
         if (
             os.path.isabs(argv0)
-            and (base == "hermes" or base.startswith("hermes."))
+            and (base == "openamer" or base.startswith("openamer."))
             and os.path.isfile(argv0)
         ):
             candidate = os.path.dirname(argv0)
@@ -1031,7 +1031,7 @@ def _resolve_hermes_bin_dir() -> str | None:
     if candidate is None:
         exe_dir = os.path.dirname(sys.executable) if sys.executable else ""
         if exe_dir:
-            shim = "hermes.exe" if _IS_WINDOWS else "hermes"
+            shim = "openamer.exe" if _IS_WINDOWS else "openamer"
             if os.path.isfile(os.path.join(exe_dir, shim)):
                 candidate = exe_dir
 
@@ -1042,14 +1042,14 @@ def _resolve_hermes_bin_dir() -> str | None:
     return candidate
 
 
-def _prepend_hermes_bin_dir(existing_path: str) -> str:
-    """Prepend the hermes install dir to ``existing_path`` if it's missing.
+def _prepend_openamer_bin_dir(existing_path: str) -> str:
+    """Prepend the openamer install dir to ``existing_path`` if it's missing.
 
     Cross-platform (uses ``os.pathsep``). First-occurrence wins, so a PATH
     that already contains the dir is returned unchanged. Returns the input
     unchanged when the install dir can't be resolved.
     """
-    bin_dir = _resolve_hermes_bin_dir()
+    bin_dir = _resolve_openamer_bin_dir()
     if not bin_dir:
         return existing_path
     sep = os.pathsep
@@ -1112,7 +1112,7 @@ def _apply_windows_msys_bash_env_defaults(env: dict) -> None:
 
     Git Bash rewrites arguments that look like Unix paths (``/FO``, ``/TN``,
     ``/Create``) into ``C:/.../git/FO``-style paths, which breaks native
-    Windows commands such as ``tasklist``, ``schtasks``, and ``wmic``.  Hermes
+    Windows commands such as ``tasklist``, ``schtasks``, and ``wmic``.  OpenAmer
     runs terminal commands through bash on Windows, so set the standard MSYS
     opt-out by default.  Users who need conversion can override in their env.
     Refs #56700.
@@ -1160,10 +1160,10 @@ def _make_run_env(env: dict) -> dict:
     for k, v in merged.items():
         if k.startswith(_HERMES_PROVIDER_ENV_FORCE_PREFIX):
             real_key = k[len(_HERMES_PROVIDER_ENV_FORCE_PREFIX):]
-            if _is_hermes_internal_secret(real_key):
+            if _is_openamer_internal_secret(real_key):
                 continue
             run_env[real_key] = v
-        elif _is_hermes_internal_secret(k):
+        elif _is_openamer_internal_secret(k):
             continue
         elif k not in _HERMES_PROVIDER_ENV_BLOCKLIST or _is_passthrough(k):
             run_env[k] = v
@@ -1177,12 +1177,12 @@ def _make_run_env(env: dict) -> dict:
         # error / exit 127).  No-op off Windows and when a login snapshot is
         # healthy (the snapshot re-exports the full PATH inside the shell).
         new_path = _prepend_git_bash_dirs(new_path)
-        # Ensure the hermes install dir is reachable so plugins can shell out
-        # to bare ``hermes`` via the terminal tool even when the gateway was
+        # Ensure the openamer install dir is reachable so plugins can shell out
+        # to bare ``openamer`` via the terminal tool even when the gateway was
         # launched without it on PATH (systemd, service managers, cron, etc.).
-        run_env[path_key] = _prepend_hermes_bin_dir(new_path)
+        run_env[path_key] = _prepend_openamer_bin_dir(new_path)
 
-    _inject_context_hermes_home(run_env)
+    _inject_context_openamer_home(run_env)
 
     from openamer_constants import apply_subprocess_home_env
     apply_subprocess_home_env(run_env)
@@ -1228,7 +1228,7 @@ def _resolve_shell_init_files() -> list[str]:
     Expands ``~`` and ``${VAR}`` references and drops anything that doesn't
     exist on disk, so a missing ``~/.bashrc`` never breaks the snapshot.
     The ``auto_source_bashrc`` path runs only when the user hasn't supplied
-    an explicit list — once they have, Hermes trusts them.
+    an explicit list — once they have, OpenAmer trusts them.
     """
     explicit, auto_bashrc = _read_terminal_shell_init_config()
 
@@ -1327,7 +1327,7 @@ class LocalEnvironment(BaseEnvironment):
                 from openamer_constants import get_openamer_home
                 cache_dir = get_openamer_home() / "cache" / "terminal"
             except Exception:
-                cache_dir = Path(tempfile.gettempdir()) / "hermes_terminal"
+                cache_dir = Path(tempfile.gettempdir()) / "openamer_terminal"
             cache_dir.mkdir(parents=True, exist_ok=True)
             # Force forward slashes so the same string serves both contexts.
             return str(cache_dir).replace("\\", "/")
@@ -1416,7 +1416,7 @@ class LocalEnvironment(BaseEnvironment):
         )
         if not _IS_WINDOWS:
             try:
-                proc._hermes_pgid = os.getpgid(proc.pid)
+                proc._openamer_pgid = os.getpgid(proc.pid)
             except ProcessLookupError:
                 pass
 
@@ -1473,7 +1473,7 @@ class LocalEnvironment(BaseEnvironment):
                 try:
                     pgid = os.getpgid(proc.pid)
                 except ProcessLookupError:
-                    pgid = getattr(proc, "_hermes_pgid", None)
+                    pgid = getattr(proc, "_openamer_pgid", None)
                     if pgid is None:
                         raise
 

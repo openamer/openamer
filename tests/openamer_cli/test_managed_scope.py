@@ -28,7 +28,7 @@ def test_get_managed_dir_empty_override_falls_through(tmp_path, monkeypatch):
     from openamer_cli import managed_scope
 
     monkeypatch.setenv("HERMES_MANAGED_DIR", "   ")  # whitespace = unset
-    # Under pytest the /etc/hermes default is ignored, so this is None; the
+    # Under pytest the /etc/openamer default is ignored, so this is None; the
     # assertion that matters is that it does NOT raise.
     result = managed_scope.get_managed_dir()
     assert result is None or result.exists()

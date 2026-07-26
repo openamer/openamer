@@ -1,4 +1,4 @@
-"""Tests for the `hermes proxy` subcommand and its upstream adapters."""
+"""Tests for the `openamer proxy` subcommand and its upstream adapters."""
 
 from __future__ import annotations
 
@@ -58,9 +58,9 @@ def test_get_adapter_unknown_provider_raises():
 # ---------------------------------------------------------------------------
 
 
-def _write_auth_store(hermes_home: Path, nous_state: Dict[str, Any]) -> Path:
+def _write_auth_store(openamer_home: Path, nous_state: Dict[str, Any]) -> Path:
     """Write an auth.json with the given nous state into a hermetic OPENAMER_HOME."""
-    auth_path = hermes_home / "auth.json"
+    auth_path = openamer_home / "auth.json"
     auth_path.write_text(json.dumps({
         "version": 1,
         "providers": {"nous": nous_state},
@@ -119,7 +119,7 @@ def test_nous_adapter_get_credential_uses_runtime_resolver(tmp_path, monkeypatch
     _write_auth_store(tmp_path, {
         "access_token": "access-tok",
         "refresh_token": "refresh-tok",
-        "client_id": "hermes-cli",
+        "client_id": "openamer-cli",
         "portal_base_url": "https://portal.nousresearch.com",
         "inference_base_url": "https://inference-api.nousresearch.com/v1",
     })
@@ -149,7 +149,7 @@ def test_nous_adapter_retry_credential_force_refreshes_on_jwt_401(tmp_path, monk
     _write_auth_store(tmp_path, {
         "access_token": "jwt-access",
         "refresh_token": "refresh-tok",
-        "client_id": "hermes-cli",
+        "client_id": "openamer-cli",
         "portal_base_url": "https://portal.nousresearch.com",
         "inference_base_url": "https://inference-api.nousresearch.com/v1",
         "agent_key": "jwt-access",
@@ -205,7 +205,7 @@ def test_nous_adapter_retry_credential_skips_non_401(tmp_path, monkeypatch):
 def test_nous_adapter_get_credential_raises_when_not_logged_in(tmp_path, monkeypatch):
     monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     adapter = NousPortalAdapter()
-    with pytest.raises(RuntimeError, match="hermes auth add nous"):
+    with pytest.raises(RuntimeError, match="openamer auth add nous"):
         adapter.get_credential()
 
 
@@ -343,7 +343,7 @@ def test_nous_adapter_concurrent_refresh_serialized(tmp_path, monkeypatch):
 
 
 def _write_xai_pool_entry(
-    hermes_home: Path,
+    openamer_home: Path,
     *,
     access_token: str = "xai-access-token",
     refresh_token: str = "xai-refresh-token",
@@ -351,7 +351,7 @@ def _write_xai_pool_entry(
     source: str = "manual:xai_pkce",
 ) -> Path:
     """Write an xai-oauth pool entry into a hermetic OPENAMER_HOME."""
-    auth_path = hermes_home / "auth.json"
+    auth_path = openamer_home / "auth.json"
     auth_path.write_text(json.dumps({
         "version": 1,
         "providers": {},
@@ -692,7 +692,7 @@ def test_server_forwards_chat_completions():
             async with aiohttp.ClientSession() as session:
                 async with session.post(
                     f"{proxy_base}/v1/chat/completions",
-                    json={"model": "Hermes-4-70B",
+                    json={"model": "OpenAmer-4-70B",
                           "messages": [{"role": "user", "content": "hi"}]},
                     headers={"Authorization": "Bearer client-dummy-key"},
                 ) as resp:
@@ -703,7 +703,7 @@ def test_server_forwards_chat_completions():
             assert len(captured["requests"]) == 1
             req = captured["requests"][0]
             assert req["auth"] == "Bearer real-portal-key"
-            assert "Hermes-4-70B" in req["body"]
+            assert "OpenAmer-4-70B" in req["body"]
         finally:
             await proxy_runner.cleanup()
             await upstream_runner.cleanup()
@@ -728,7 +728,7 @@ def test_server_retries_once_with_adapter_retry_credential_on_401():
             async with aiohttp.ClientSession() as session:
                 async with session.post(
                     f"{proxy_base}/v1/chat/completions",
-                    json={"model": "Hermes-4-70B"},
+                    json={"model": "OpenAmer-4-70B"},
                 ) as resp:
                     assert resp.status == 200
                     data = await resp.json()
@@ -898,4 +898,4 @@ def test_cmd_proxy_start_refuses_when_unauthenticated(capsys, tmp_path, monkeypa
     rc = cmd_proxy_start(args)
     assert rc == 2
     err = capsys.readouterr().err
-    assert "hermes auth add nous" in err
+    assert "openamer auth add nous" in err

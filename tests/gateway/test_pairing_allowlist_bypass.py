@@ -98,8 +98,8 @@ def test_unpaired_user_no_allowlist_denied_no_failopen(monkeypatch):
 @pytest.fixture
 def store(tmp_path, monkeypatch):
     """A real PairingStore backed by a temp pairing dir."""
-    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".hermes"))
-    (tmp_path / ".hermes").mkdir(parents=True, exist_ok=True)
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".openamer"))
+    (tmp_path / ".openamer").mkdir(parents=True, exist_ok=True)
     import importlib
 
     import gateway.pairing as pairing_mod

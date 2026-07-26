@@ -105,7 +105,7 @@ class TestSupermemoryEnsureCalled:
         fake.Supermemory = lambda **kw: object()
         monkeypatch.setitem(sys.modules, "supermemory", fake)
 
-        _SupermemoryClient(api_key="k", timeout=5.0, container_tag="hermes")
+        _SupermemoryClient(api_key="k", timeout=5.0, container_tag="openamer")
 
         assert ("memory.supermemory", {"prompt": False}) in calls, (
             "supermemory client did not call ensure('memory.supermemory', "

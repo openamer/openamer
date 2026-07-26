@@ -2,11 +2,11 @@
 
 A provider API key can live in up to THREE stores at once:
 
-    1. ``~/.hermes/.env``                     — the canonical secret store
-    2. ``~/.hermes/auth.json`` →
+    1. ``~/.openamer/.env``                     — the canonical secret store
+    2. ``~/.openamer/auth.json`` →
        ``credential_pool.<provider>[*]``      — env-seeded pool entries
        (``source == "env:<VAR>"``) persisted by the pool loader
-    3. ``~/.hermes/config.yaml``              — inline mirrors written by the
+    3. ``~/.openamer/config.yaml``              — inline mirrors written by the
        custom-endpoint flows (``model.api_key``, ``auxiliary.<task>.api_key``,
        ``custom_providers[*].api_key``)
 

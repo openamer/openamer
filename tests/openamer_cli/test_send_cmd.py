@@ -1,4 +1,4 @@
-"""Tests for the ``hermes send`` CLI subcommand.
+"""Tests for the ``openamer send`` CLI subcommand.
 
 Covers the argument parsing / stdin / file / list behavior of
 ``openamer_cli.send_cmd``. The underlying ``send_message_tool`` is stubbed so
@@ -24,7 +24,7 @@ def _parse(argv):
     """Build the top-level parser and return the parsed args for ``argv``."""
     import argparse
 
-    parser = argparse.ArgumentParser(prog="hermes")
+    parser = argparse.ArgumentParser(prog="openamer")
     subparsers = parser.add_subparsers(dest="command")
     send_cmd.register_send_subparser(subparsers)
     return parser.parse_args(["send", *argv])
@@ -333,25 +333,25 @@ def test_register_send_subparser_is_reusable():
 # ---------------------------------------------------------------------------
 
 
-def test_load_hermes_env_bridges_config_yaml_scalars(tmp_path, monkeypatch):
+def test_load_openamer_env_bridges_config_yaml_scalars(tmp_path, monkeypatch):
     """Top-level config.yaml scalars should be bridged into os.environ.
 
     This mirrors the gateway/run.py bootstrap behavior: without this, running
-    ``hermes send`` from a fresh shell cannot resolve the home channel
-    because ``TELEGRAM_HOME_CHANNEL`` (saved by ``hermes config set``) lives
+    ``openamer send`` from a fresh shell cannot resolve the home channel
+    because ``TELEGRAM_HOME_CHANNEL`` (saved by ``openamer config set``) lives
     in config.yaml, not in .env — and the gateway's config loader reads via
     ``os.getenv(...)``.
     """
     import os
 
-    hermes_home = tmp_path / ".hermes"
-    hermes_home.mkdir()
-    (hermes_home / ".env").write_text("SOME_TOKEN=abc123\n")
-    (hermes_home / "config.yaml").write_text(
+    openamer_home = tmp_path / ".openamer"
+    openamer_home.mkdir()
+    (openamer_home / ".env").write_text("SOME_TOKEN=abc123\n")
+    (openamer_home / "config.yaml").write_text(
         "TELEGRAM_HOME_CHANNEL: '5550001111'\nnested:\n  ignored: true\n"
     )
 
-    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
     monkeypatch.delenv("TELEGRAM_HOME_CHANNEL", raising=False)
     monkeypatch.delenv("SOME_TOKEN", raising=False)
 
@@ -361,41 +361,41 @@ def test_load_hermes_env_bridges_config_yaml_scalars(tmp_path, monkeypatch):
     import openamer_cli.config as _hc_config
     reload(_hc_config)
 
-    send_cmd._load_hermes_env()
+    send_cmd._load_openamer_env()
 
     assert os.environ.get("SOME_TOKEN") == "abc123"
     assert os.environ.get("TELEGRAM_HOME_CHANNEL") == "5550001111"
 
 
-def test_load_hermes_env_does_not_override_existing(tmp_path, monkeypatch):
+def test_load_openamer_env_does_not_override_existing(tmp_path, monkeypatch):
     """Existing env vars must not be clobbered by config.yaml values."""
     import os
 
-    hermes_home = tmp_path / ".hermes"
-    hermes_home.mkdir()
-    (hermes_home / "config.yaml").write_text("TELEGRAM_HOME_CHANNEL: yaml_value\n")
+    openamer_home = tmp_path / ".openamer"
+    openamer_home.mkdir()
+    (openamer_home / "config.yaml").write_text("TELEGRAM_HOME_CHANNEL: yaml_value\n")
 
-    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
     monkeypatch.setenv("TELEGRAM_HOME_CHANNEL", "env_value")
 
     from importlib import reload
     import openamer_cli.config as _hc_config
     reload(_hc_config)
 
-    send_cmd._load_hermes_env()
+    send_cmd._load_openamer_env()
 
     assert os.environ.get("TELEGRAM_HOME_CHANNEL") == "env_value"
 
 
-def test_load_hermes_env_handles_missing_files(tmp_path, monkeypatch):
+def test_load_openamer_env_handles_missing_files(tmp_path, monkeypatch):
     """No .env or config.yaml should be a silent no-op, not an exception."""
-    hermes_home = tmp_path / ".hermes"
-    hermes_home.mkdir()
-    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+    openamer_home = tmp_path / ".openamer"
+    openamer_home.mkdir()
+    monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
 
     from importlib import reload
     import openamer_cli.config as _hc_config
     reload(_hc_config)
 
     # Should not raise.
-    send_cmd._load_hermes_env()
+    send_cmd._load_openamer_env()

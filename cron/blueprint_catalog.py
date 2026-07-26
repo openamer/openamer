@@ -6,7 +6,7 @@ renders natively:
   * Dashboard / GUI app  -> a form (one field per slot)
   * CLI / TUI / messenger -> a pre-filled ``/blueprint`` slash command
   * Agent                 -> a seed prompt; it asks for any blank/ambiguous slot
-  * Docs catalog          -> a copy-paste command + a ``hermes://`` deep-link
+  * Docs catalog          -> a copy-paste command + a ``openamer://`` deep-link
 
 The single source of truth is the slot schema below. ``blueprint_form_schema``
 emits what a form renderer needs; ``blueprint_slash_command`` emits the flattened
@@ -535,7 +535,7 @@ def blueprint_slash_command(blueprint: AutomationBlueprint, values: Optional[Dic
 
 
 def blueprint_deeplink(blueprint: AutomationBlueprint, values: Optional[Dict[str, Any]] = None) -> str:
-    """Build the ``hermes://blueprint/<key>?slot=val`` deep-link URL."""
+    """Build the ``openamer://blueprint/<key>?slot=val`` deep-link URL."""
     from urllib.parse import quote, urlencode
 
     values = values or {}
@@ -545,7 +545,7 @@ def blueprint_deeplink(blueprint: AutomationBlueprint, values: Optional[Dict[str
         if val not in (None, ""):
             query[s.name] = str(val)
     qs = ("?" + urlencode(query)) if query else ""
-    return f"hermes://blueprint/{quote(blueprint.key)}{qs}"
+    return f"openamer://blueprint/{quote(blueprint.key)}{qs}"
 
 
 def _humanize_schedule(blueprint: AutomationBlueprint) -> str:

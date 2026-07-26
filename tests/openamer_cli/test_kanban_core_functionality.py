@@ -31,7 +31,7 @@ from openamer_cli.kanban import run_slash
 
 @pytest.fixture
 def kanban_home(tmp_path, monkeypatch):
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
     # Existing crash-detection tests pre-date the grace window; pin to 0
@@ -206,7 +206,7 @@ def test_per_task_max_retries_overrides_dispatcher_limit(kanban_home, all_assign
 
     Three-tier resolution order:
       1. ``task.max_retries`` (set via ``create_task(max_retries=N)`` /
-         ``hermes kanban create --max-retries N``)
+         ``openamer kanban create --max-retries N``)
       2. ``failure_limit`` kwarg passed by the caller (gateway threads
          this from ``kanban.failure_limit`` config)
       3. ``DEFAULT_FAILURE_LIMIT``
@@ -1238,7 +1238,7 @@ def test_spawned_event_emitted_with_pid(kanban_home, all_assignees_spawnable):
 def test_migration_renames_legacy_event_kinds(tmp_path, monkeypatch):
     """A DB created with the old vocab must have its event rows renamed
     in place on init_db()."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
     monkeypatch.setattr(Path, "home", lambda: tmp_path)
@@ -1278,10 +1278,10 @@ def test_migration_renames_legacy_event_kinds(tmp_path, monkeypatch):
 
 def test_list_profiles_on_disk(tmp_path, monkeypatch):
     """list_profiles_on_disk returns the implicit default profile plus
-    named profiles under ~/.hermes/profiles/ that contain a config.yaml."""
+    named profiles under ~/.openamer/profiles/ that contain a config.yaml."""
     monkeypatch.setattr(Path, "home", lambda: tmp_path)
     monkeypatch.delenv("OPENAMER_HOME", raising=False)
-    profiles = tmp_path / ".hermes" / "profiles"
+    profiles = tmp_path / ".openamer" / "profiles"
     profiles.mkdir(parents=True)
     for name in ("researcher", "writer"):
         d = profiles / name
@@ -1313,9 +1313,9 @@ def test_known_assignees_merges_disk_and_board(tmp_path, monkeypatch):
     """known_assignees unions profiles on disk with currently-assigned
     names, and reports per-status counts."""
     monkeypatch.setattr(Path, "home", lambda: tmp_path)
-    profiles = tmp_path / ".hermes" / "profiles"
+    profiles = tmp_path / ".openamer" / "profiles"
     profiles.mkdir(parents=True)
-    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".hermes"))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".openamer"))
 
     for name in ("researcher", "writer"):
         d = profiles / name
@@ -1381,7 +1381,7 @@ def test_parse_duration_rejects_garbage():
 
 
 def test_cli_create_max_runtime_via_duration(kanban_home):
-    """`hermes kanban create --max-runtime 2h` should persist 7200 seconds."""
+    """`openamer kanban create --max-runtime 2h` should persist 7200 seconds."""
     out = run_slash("create 'long task' --max-runtime 2h --json")
     data = json.loads(out)
     tid = data["id"]
@@ -2262,7 +2262,7 @@ def test_claim_task_recovers_from_invariant_leak(kanban_home):
 def test_cli_create_on_fresh_home_auto_inits(tmp_path, monkeypatch):
     """First CLI action on an empty OPENAMER_HOME must not error with
     'no such table: tasks' — init_db auto-runs now."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
     monkeypatch.setattr(Path, "home", lambda: tmp_path)
@@ -2288,7 +2288,7 @@ def test_cli_create_on_fresh_home_auto_inits(tmp_path, monkeypatch):
 def test_connect_auto_inits_fresh_db(tmp_path, monkeypatch):
     """Calling connect() on a fresh OPENAMER_HOME must create the
     schema. Previously callers had to remember kb.init_db() first."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
     monkeypatch.setattr(Path, "home", lambda: tmp_path)
@@ -2306,7 +2306,7 @@ def test_connect_auto_inits_fresh_db(tmp_path, monkeypatch):
 
 
 def test_cli_show_json_carries_runs(kanban_home):
-    """hermes kanban show --json must include runs[] so scripts that
+    """openamer kanban show --json must include runs[] so scripts that
     inspect attempt history don't need a separate 'runs' call."""
     conn = kb.connect()
     try:
@@ -2398,7 +2398,7 @@ def test_migration_backfill_idempotent_under_re_run(tmp_path, monkeypatch):
     """init_db must be safe to re-run repeatedly. Each call should leave
     at most one run row per in-flight task, even if called while a
     dispatcher is simultaneously claiming."""
-    home = tmp_path / ".hermes"
+    home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setenv("OPENAMER_HOME", str(home))
     monkeypatch.setattr(Path, "home", lambda: tmp_path)
@@ -2699,18 +2699,18 @@ def test_build_worker_context_caps_prior_attempts(kanban_home):
 def test_build_worker_context_renders_author_with_safe_framing(kanban_home):
     """Author rendering wraps the operator-controlled author in code fences
     + "comment from worker" prefix so a misleading HERMES_PROFILE name
-    (e.g. "hermes-system", "operator") can't be misread as a system
+    (e.g. "openamer-system", "operator") can't be misread as a system
     directive above the comment body. Defense-in-depth — see #22452."""
     conn = kb.connect()
     try:
         tid = kb.create_task(conn, title="t", assignee="worker")
-        kb.add_comment(conn, tid, author="hermes-system", body="some note")
+        kb.add_comment(conn, tid, author="openamer-system", body="some note")
         ctx = kb.build_worker_context(conn, tid)
 
         # No bold-author rendering anywhere in the context.
-        assert "**hermes-system**" not in ctx
+        assert "**openamer-system**" not in ctx
         # Explicit provenance prefix is present.
-        assert "comment from worker `hermes-system` at " in ctx
+        assert "comment from worker `openamer-system` at " in ctx
         # The body still renders.
         assert "some note" in ctx
     finally:
@@ -2779,7 +2779,7 @@ def test_default_spawn_does_not_auto_load_any_skill(kanban_home, monkeypatch):
     when the task carries no per-task skills.
 
     We intercept Popen to capture the argv without actually spawning a
-    hermes subprocess (which would hang trying to call an LLM).
+    openamer subprocess (which would hang trying to call an LLM).
     """
     captured = {}
 
@@ -3132,7 +3132,7 @@ def test_default_spawn_passes_task_skills_verbatim(kanban_home, monkeypatch):
 
 
 def test_cli_create_skill_flag_repeatable(kanban_home):
-    """`hermes kanban create --skill a --skill b` persists the list."""
+    """`openamer kanban create --skill a --skill b` persists the list."""
     out = run_slash(
         "create 'multi-skill' --assignee linguist "
         "--skill translation --skill github-code-review --json"
@@ -3154,7 +3154,7 @@ def test_cli_create_without_skill_flag_leaves_none(kanban_home):
 
 
 def test_cli_show_renders_skills(kanban_home):
-    """`hermes kanban show <id>` prints a skills row when present."""
+    """`openamer kanban show <id>` prints a skills row when present."""
     out = run_slash(
         "create 'show-test' --assignee x "
         "--skill translation --json"
@@ -3461,7 +3461,7 @@ def test_check_dispatcher_presence_warns_when_no_gateway(monkeypatch):
     )
     running, msg = kb_cli._check_dispatcher_presence()
     assert running is False
-    assert "hermes gateway start" in msg
+    assert "openamer gateway start" in msg
 
 
 def test_check_dispatcher_presence_warns_when_flag_off(monkeypatch):
@@ -3514,7 +3514,7 @@ def test_cli_create_warns_when_no_gateway(kanban_home, monkeypatch, capsys):
     assert kb_cli._cmd_create(ns) == 0
     captured = capsys.readouterr()
     # Stderr has the warning prefix + guidance.
-    assert "hermes gateway start" in captured.err
+    assert "openamer gateway start" in captured.err
 
 
 def test_cli_create_silent_when_gateway_up(kanban_home, monkeypatch, capsys):
@@ -3528,7 +3528,7 @@ def test_cli_create_silent_when_gateway_up(kanban_home, monkeypatch, capsys):
     ns = _make_create_ns(title="silent", assignee="worker")
     assert kb_cli._cmd_create(ns) == 0
     captured = capsys.readouterr()
-    assert "hermes gateway start" not in captured.err
+    assert "openamer gateway start" not in captured.err
 
 
 def test_cli_create_no_warn_on_triage(kanban_home, monkeypatch, capsys):
@@ -3542,7 +3542,7 @@ def test_cli_create_no_warn_on_triage(kanban_home, monkeypatch, capsys):
     ns = _make_create_ns(title="triage-task", assignee=None, triage=True)
     assert kb_cli._cmd_create(ns) == 0
     err = capsys.readouterr().err
-    assert "hermes gateway start" not in err
+    assert "openamer gateway start" not in err
 
 
 def test_cli_create_no_warn_unassigned(kanban_home, monkeypatch, capsys):
@@ -3556,11 +3556,11 @@ def test_cli_create_no_warn_unassigned(kanban_home, monkeypatch, capsys):
     ns = _make_create_ns(title="nobody", assignee=None)
     assert kb_cli._cmd_create(ns) == 0
     err = capsys.readouterr().err
-    assert "hermes gateway start" not in err
+    assert "openamer gateway start" not in err
 
 
 def test_cli_daemon_without_force_prints_deprecation_exits_2(kanban_home, capsys):
-    """`hermes kanban daemon` (no --force) is a deprecation stub."""
+    """`openamer kanban daemon` (no --force) is a deprecation stub."""
     from openamer_cli import kanban as kb_cli
     ns = argparse.Namespace(
         force=False, interval=60.0, max=None, failure_limit=3,
@@ -3570,7 +3570,7 @@ def test_cli_daemon_without_force_prints_deprecation_exits_2(kanban_home, capsys
     assert rc == 2
     err = capsys.readouterr().err
     assert "DEPRECATED" in err
-    assert "hermes gateway start" in err
+    assert "openamer gateway start" in err
 
 
 def test_cli_daemon_help_marks_deprecated():
@@ -3603,7 +3603,7 @@ def test_cli_daemon_help_marks_deprecated():
                     break
     assert found_deprecation, (
         "daemon subparser help should be marked DEPRECATED so users see "
-        "the migration guidance in `hermes kanban --help` output"
+        "the migration guidance in `openamer kanban --help` output"
     )
 
 

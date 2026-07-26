@@ -13,7 +13,7 @@ from email.mime.text import MIMEText
 from unittest.mock import MagicMock, patch
 
 
-def _make_adapter(address="hermes@test.com"):
+def _make_adapter(address="openamer@test.com"):
     from gateway.config import PlatformConfig
 
     with patch.dict(os.environ, {
@@ -93,7 +93,7 @@ class TestMessageIdDomain(unittest.TestCase):
     """Message-ID generation tolerates EMAIL_ADDRESS without '@'."""
 
     def test_normal_address(self):
-        adapter = _make_adapter("hermes@example.org")
+        adapter = _make_adapter("openamer@example.org")
         self.assertEqual(adapter._message_id_domain(), "example.org")
 
     def test_address_without_at(self):

@@ -1,4 +1,4 @@
-"""ACP permission bridging for Hermes dangerous-command approvals."""
+"""ACP permission bridging for OpenAmer dangerous-command approvals."""
 
 from __future__ import annotations
 
@@ -15,7 +15,7 @@ from acp.schema import (
 
 logger = logging.getLogger(__name__)
 
-# Maps ACP permission option ids to Hermes approval result strings.
+# Maps ACP permission option ids to OpenAmer approval result strings.
 # Option ids are stable across both the ``allow_permanent=True`` and
 # ``allow_permanent=False`` paths even though the option list differs.
 _OPTION_ID_TO_HERMES = {
@@ -41,7 +41,7 @@ def _permission_option_supports_kind(kind: str) -> bool:
 def _build_permission_options(
     *, allow_permanent: bool, smart_denied: bool = False,
 ) -> list[PermissionOption]:
-    """Return ACP options that match Hermes approval semantics."""
+    """Return ACP options that match OpenAmer approval semantics."""
     options = [PermissionOption(
         option_id="allow_once", kind="allow_once", name="Allow once",
     )]
@@ -49,7 +49,7 @@ def _build_permission_options(
         options.append(PermissionOption(
             option_id="allow_session",
             # ACP has no session-scoped kind, so use the closest persistent
-            # hint while keeping Hermes semantics in the option id.
+            # hint while keeping OpenAmer semantics in the option id.
             kind="allow_always",
             name="Allow for session",
         ))
@@ -95,8 +95,8 @@ def _build_permission_tool_call(command: str, description: str):
     )
 
 
-def _map_outcome_to_hermes(outcome: object, *, allowed_option_ids: set[str]) -> str:
-    """Map an ACP permission outcome into Hermes approval strings."""
+def _map_outcome_to_openamer(outcome: object, *, allowed_option_ids: set[str]) -> str:
+    """Map an ACP permission outcome into OpenAmer approval strings."""
     if not isinstance(outcome, AllowedOutcome):
         return "deny"
 
@@ -114,7 +114,7 @@ def make_approval_callback(
     timeout: float = 60.0,
 ) -> Callable[..., str]:
     """
-    Return a Hermes-compatible approval callback that bridges to ACP.
+    Return a OpenAmer-compatible approval callback that bridges to ACP.
 
     The callback accepts ``command`` and ``description`` plus optional
     keyword arguments such as ``allow_permanent`` used by
@@ -167,7 +167,7 @@ def make_approval_callback(
             return "deny"
 
         allowed_option_ids = {option.option_id for option in options}
-        return _map_outcome_to_hermes(
+        return _map_outcome_to_openamer(
             response.outcome,
             allowed_option_ids=allowed_option_ids,
         )

@@ -76,8 +76,8 @@ class _TinyImageHandler(http.server.BaseHTTPRequestHandler):
 @pytest.fixture
 def http_server(tmp_path, monkeypatch):
     """Spin up a localhost HTTP server and isolate OPENAMER_HOME under tmp_path."""
-    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".hermes"))
-    (tmp_path / ".hermes").mkdir()
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".openamer"))
+    (tmp_path / ".openamer").mkdir()
 
     # Force the constants/image cache helpers to re-read OPENAMER_HOME.
     import sys
@@ -94,7 +94,7 @@ def http_server(tmp_path, monkeypatch):
 
 
 class TestSaveUrlImage:
-    def test_writes_real_bytes_to_hermes_home_cache(self, http_server):
+    def test_writes_real_bytes_to_openamer_home_cache(self, http_server):
         base, _ = http_server
         from agent.image_gen_provider import save_url_image
 

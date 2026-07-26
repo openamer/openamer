@@ -27,7 +27,7 @@ def _make_plan(target_dir, env_requires):
         version="1.0.0",
         description="",
         author="",
-        hermes_requires="",
+        openamer_requires="",
         env_requires=env_requires,
     )
     return SimpleNamespace(

@@ -5,7 +5,7 @@ server's dashboard plugin loader.
 Two primitives combined into the original advisory chain:
 
 1. ``openamer_cli.web_server._discover_dashboard_plugins`` opted into
-   the untrusted ``./.hermes/plugins/`` source via
+   the untrusted ``./.openamer/plugins/`` source via
    ``os.environ.get("HERMES_ENABLE_PROJECT_PLUGINS")`` — truthy for
    any non-empty string, so ``=0`` / ``=false`` / ``=no`` (all of
    which the agent loader treats as off, and which operators set to
@@ -72,7 +72,7 @@ class TestProjectPluginsEnvGate:
 
     @pytest.fixture
     def project_plugin(self, tmp_path, monkeypatch):
-        """Plant a project-source plugin under CWD's ``.hermes/plugins``
+        """Plant a project-source plugin under CWD's ``.openamer/plugins``
         and isolate the user-plugins dir to an empty tmp tree."""
         monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / "home"))
         (tmp_path / "home").mkdir()
@@ -80,7 +80,7 @@ class TestProjectPluginsEnvGate:
         cwd.mkdir()
         monkeypatch.chdir(cwd)
         _write_plugin_manifest(
-            cwd / ".hermes" / "plugins",
+            cwd / ".openamer" / "plugins",
             "evil",
             {
                 "name": "evil",
@@ -327,7 +327,7 @@ class TestEndToEndPocBlocked:
         payload_py = tmp_path / "payload.py"
         payload_py.write_text("OWNED = True\n")
         _write_plugin_manifest(
-            cwd / ".hermes" / "plugins",
+            cwd / ".openamer" / "plugins",
             "evil",
             {
                 "name": "evil",
@@ -354,7 +354,7 @@ class TestEndToEndPocBlocked:
         for call in spec.call_args_list:
             module_name = call.args[0]
             target = Path(call.args[1])
-            assert module_name != "hermes_dashboard_plugin_evil"
+            assert module_name != "openamer_dashboard_plugin_evil"
             assert target != payload_py
             assert "evil-repo" not in target.parts
-        assert "hermes_dashboard_plugin_evil" not in sys.modules
+        assert "openamer_dashboard_plugin_evil" not in sys.modules

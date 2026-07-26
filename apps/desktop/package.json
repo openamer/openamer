@@ -252,7 +252,7 @@
       ]
     },
     "win": {
-      "legalTrademarks": "Hermes",
+      "legalTrademarks": "OpenAmer",
       "target": [
         "nsis",
         "msi"

@@ -15,7 +15,7 @@ metadata hostnames (metadata.google.internal, 169.254.169.254) are
 Limitations:
   - DNS rebinding (TOCTOU): an attacker-controlled DNS server with TTL=0
     can return a public IP for the check, then a private IP for the actual
-    connection. Hermes-owned direct httpx request paths should use
+    connection. OpenAmer-owned direct httpx request paths should use
     ``create_ssrf_safe_client()`` / ``create_ssrf_safe_async_client()`` so the
     same policy is applied immediately before TCP connect and the client
     connects to the validated IP while preserving Host/SNI semantics.
@@ -55,7 +55,7 @@ def _proxy_is_configured() -> bool:
 
 
 def normalize_url_for_request(url: str) -> str:
-    """Return an ASCII-safe HTTP URL for Hermes-owned URL tools.
+    """Return an ASCII-safe HTTP URL for OpenAmer-owned URL tools.
 
     Browsers and HTTP clients expect URIs, but users and models often provide
     IRIs such as ``https://wttr.in/Köln``.  Preserve URL syntax and existing
@@ -697,7 +697,7 @@ def ssrf_safe_async_http_transport(**kwargs: Any) -> Any:
     import contextvars
     import httpx
 
-    schemes_by_origin_var = contextvars.ContextVar("hermes_ssrf_async_origin_schemes")
+    schemes_by_origin_var = contextvars.ContextVar("openamer_ssrf_async_origin_schemes")
 
     class _Transport(httpx.AsyncHTTPTransport):
         def __init__(self, **transport_kwargs: Any):
@@ -721,7 +721,7 @@ def ssrf_safe_http_transport(**kwargs: Any) -> Any:
     import contextvars
     import httpx
 
-    schemes_by_origin_var = contextvars.ContextVar("hermes_ssrf_origin_schemes")
+    schemes_by_origin_var = contextvars.ContextVar("openamer_ssrf_origin_schemes")
 
     class _Transport(httpx.HTTPTransport):
         def __init__(self, **transport_kwargs: Any):
@@ -742,7 +742,7 @@ def ssrf_safe_http_transport(**kwargs: Any) -> Any:
 
 def _install_ssrf_guard_on_async_transport(transport: Any, schemes_by_origin_var: Any) -> None:
     state = getattr(transport, "__dict__", {}) if transport is not None else {}
-    if transport is None or state.get("_hermes_ssrf_guarded", False):
+    if transport is None or state.get("_openamer_ssrf_guarded", False):
         return
 
     pool = state.get("_pool")
@@ -762,12 +762,12 @@ def _install_ssrf_guard_on_async_transport(transport: Any, schemes_by_origin_var
             schemes_by_origin_var.reset(token)
 
     transport.handle_async_request = guarded_handle_async_request
-    transport._hermes_ssrf_guarded = True
+    transport._openamer_ssrf_guarded = True
 
 
 def _install_ssrf_guard_on_transport(transport: Any, schemes_by_origin_var: Any) -> None:
     state = getattr(transport, "__dict__", {}) if transport is not None else {}
-    if transport is None or state.get("_hermes_ssrf_guarded", False):
+    if transport is None or state.get("_openamer_ssrf_guarded", False):
         return
 
     pool = state.get("_pool")
@@ -787,13 +787,13 @@ def _install_ssrf_guard_on_transport(transport: Any, schemes_by_origin_var: Any)
             schemes_by_origin_var.reset(token)
 
     transport.handle_request = guarded_handle_request
-    transport._hermes_ssrf_guarded = True
+    transport._openamer_ssrf_guarded = True
 
 
 def _install_ssrf_guard_on_async_client(client: Any) -> None:
     import contextvars
 
-    schemes_by_origin_var = contextvars.ContextVar("hermes_ssrf_async_origin_schemes")
+    schemes_by_origin_var = contextvars.ContextVar("openamer_ssrf_async_origin_schemes")
     state = getattr(client, "__dict__", {})
     _install_ssrf_guard_on_async_transport(
         state.get("_transport"), schemes_by_origin_var
@@ -803,7 +803,7 @@ def _install_ssrf_guard_on_async_client(client: Any) -> None:
 def _install_ssrf_guard_on_client(client: Any) -> None:
     import contextvars
 
-    schemes_by_origin_var = contextvars.ContextVar("hermes_ssrf_origin_schemes")
+    schemes_by_origin_var = contextvars.ContextVar("openamer_ssrf_origin_schemes")
     state = getattr(client, "__dict__", {})
     _install_ssrf_guard_on_transport(
         state.get("_transport"), schemes_by_origin_var

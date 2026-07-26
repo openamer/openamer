@@ -206,7 +206,7 @@ def test_first_user_message_is_not_shadowed_by_generic_dialectic_prewarm():
             "plugins.memory.honcho.session.HonchoSessionManager",
             return_value=manager,
         ),
-        patch("openamer_constants.get_hermes_home", return_value=MagicMock()),
+        patch("openamer_constants.get_openamer_home", return_value=MagicMock()),
     ):
         provider.initialize(session_id="test-query-aware-first-turn")
 

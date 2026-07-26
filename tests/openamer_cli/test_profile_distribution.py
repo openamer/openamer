@@ -24,7 +24,7 @@ from openamer_cli.profile_distribution import (
     _env_template_from_manifest,
     _looks_like_git_url,
     _parse_semver,
-    check_hermes_requires,
+    check_openamer_requires,
     describe_distribution,
     install_distribution,
     plan_install,
@@ -42,7 +42,7 @@ from openamer_cli.profile_distribution import (
 @pytest.fixture()
 def profile_env(tmp_path, monkeypatch):
     monkeypatch.setattr(Path, "home", lambda: tmp_path)
-    default_home = tmp_path / ".hermes"
+    default_home = tmp_path / ".openamer"
     default_home.mkdir(exist_ok=True)
     monkeypatch.setenv("OPENAMER_HOME", str(default_home))
     return tmp_path
@@ -100,7 +100,7 @@ class TestManifestParsing:
             "name: telem\n"
             "version: 1.2.3\n"
             "description: Telem monitor\n"
-            "hermes_requires: '>=0.12.0'\n"
+            "openamer_requires: '>=0.12.0'\n"
             "author: Kyle\n"
             "license: MIT\n"
             "env_requires:\n"
@@ -185,10 +185,10 @@ class TestVersionRequires:
     ])
     def test_check_matrix(self, spec, cur, ok):
         if ok:
-            check_hermes_requires(spec, cur)
+            check_openamer_requires(spec, cur)
         else:
-            with pytest.raises(DistributionError, match="requires Hermes"):
-                check_hermes_requires(spec, cur)
+            with pytest.raises(DistributionError, match="requires OpenAmer"):
+                check_openamer_requires(spec, cur)
 
     def test_parse_semver_handles_prerelease(self):
         assert _parse_semver("0.12.0-rc1") == (0, 12, 0)
@@ -234,7 +234,7 @@ class TestEnvTemplate:
     def test_empty_env_requires_is_header_only(self):
         m = DistributionManifest(name="x")
         out = _env_template_from_manifest(m)
-        assert "Hermes distribution" in out
+        assert "OpenAmer distribution" in out
         assert "FOO" not in out
 
 
@@ -334,18 +334,18 @@ class TestInstall:
         assert example.is_file()
         assert "OPENAI_API_KEY" in example.read_text()
 
-    def test_install_enforces_hermes_requires(self, profile_env, monkeypatch):
-        # Pin current Hermes version to something well below the requirement
+    def test_install_enforces_openamer_requires(self, profile_env, monkeypatch):
+        # Pin current OpenAmer version to something well below the requirement
         import openamer_cli
         monkeypatch.setattr(openamer_cli, "__version__", "0.1.0", raising=False)
 
         mf = DistributionManifest(
             name="future",
             version="1.0.0",
-            hermes_requires=">=99.0.0",
+            openamer_requires=">=99.0.0",
         )
         staged = _make_staging_dir(profile_env, "future", manifest=mf)
-        with pytest.raises(DistributionError, match="requires Hermes"):
+        with pytest.raises(DistributionError, match="requires OpenAmer"):
             install_distribution(str(staged), name="future")
 
 

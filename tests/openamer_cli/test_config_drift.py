@@ -18,10 +18,10 @@ def test_delegation_default_toolsets_removed_from_cli_config():
 
     We inspect the source of load_cli_config() instead of asserting on the
     runtime CLI_CONFIG dict because CLI_CONFIG is populated by deep-merging
-    the user's ~/.hermes/config.yaml over the defaults (cli.py:359-366).
+    the user's ~/.openamer/config.yaml over the defaults (cli.py:359-366).
     A contributor who still has the legacy key set in their own config
     would cause a false failure, and OPENAMER_HOME patching via conftest
-    doesn't help because cli._hermes_home is frozen at module import time
+    doesn't help because cli._openamer_home is frozen at module import time
     (cli.py:76) — before any autouse fixture can fire. Source inspection
     sidesteps all of that: it tests the defaults literal directly.
     """

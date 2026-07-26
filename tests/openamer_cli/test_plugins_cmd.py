@@ -1,4 +1,4 @@
-"""Tests for openamer_cli.plugins_cmd — the ``hermes plugins`` CLI subcommand."""
+"""Tests for openamer_cli.plugins_cmd — the ``openamer plugins`` CLI subcommand."""
 
 from __future__ import annotations
 

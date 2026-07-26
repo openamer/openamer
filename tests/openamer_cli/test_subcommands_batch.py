@@ -78,7 +78,7 @@ SINGLE_HANDLER_CASES = [
 
 @pytest.mark.parametrize("name,builder,kw,argv", SINGLE_HANDLER_CASES, ids=[c[0] for c in SINGLE_HANDLER_CASES])
 def test_single_handler_builders(name, builder, kw, argv):
-    parser = argparse.ArgumentParser(prog="hermes")
+    parser = argparse.ArgumentParser(prog="openamer")
     sub = parser.add_subparsers(dest="command")
     handler = _h(name)
     builder(sub, **{kw: handler})
@@ -87,8 +87,8 @@ def test_single_handler_builders(name, builder, kw, argv):
 
 
 def test_config_get_unset_subcommands_parse():
-    """`hermes config get/unset` parse key args (and --json for get)."""
-    parser = argparse.ArgumentParser(prog="hermes")
+    """`openamer config get/unset` parse key args (and --json for get)."""
+    parser = argparse.ArgumentParser(prog="openamer")
     sub = parser.add_subparsers(dest="command")
     handler = _h("config")
     build_config_parser(sub, cmd_config=handler)
@@ -106,7 +106,7 @@ def test_config_get_unset_subcommands_parse():
 
 
 def test_dashboard_builder_two_handlers():
-    parser = argparse.ArgumentParser(prog="hermes")
+    parser = argparse.ArgumentParser(prog="openamer")
     sub = parser.add_subparsers(dest="command")
     dash, reg = _h("dashboard"), _h("dashboard_register")
     build_dashboard_parser(sub, cmd_dashboard=dash, cmd_dashboard_register=reg)
@@ -116,11 +116,11 @@ def test_dashboard_builder_two_handlers():
     assert parser.parse_args(["dashboard", "register"]).func is reg
 
 
-# ── deprecated `hermes login` fails gracefully, not with argparse error ────
+# ── deprecated `openamer login` fails gracefully, not with argparse error ────
 #
-# `hermes login` is a removed command; its handler (`login_command` in
-# `openamer_cli/auth.py`) prints a deprecation notice pointing at `hermes auth` /
-# `hermes model` and exits 0.  Two behavior contracts guard the UX:
+# `openamer login` is a removed command; its handler (`login_command` in
+# `openamer_cli/auth.py`) prints a deprecation notice pointing at `openamer auth` /
+# `openamer model` and exits 0.  Two behavior contracts guard the UX:
 #   1. ANY `--provider <value>` (including ones the user actually wants, like
 #      `anthropic`) must parse and reach the handler — never crash in argparse
 #      with `invalid choice` before the friendly redirect is printed (#24756).
@@ -128,7 +128,7 @@ def test_dashboard_builder_two_handlers():
 
 
 def _login_parser():
-    parser = argparse.ArgumentParser(prog="hermes")
+    parser = argparse.ArgumentParser(prog="openamer")
     sub = parser.add_subparsers(dest="command")
     build_login_parser(sub, cmd_login=_h("login"))
     return parser
@@ -149,13 +149,13 @@ def test_login_accepts_any_provider_value(provider):
 
 
 def test_login_subparser_help_is_suppressed():
-    """The deprecated `login` row must not appear in `hermes --help`.
+    """The deprecated `login` row must not appear in `openamer --help`.
 
     Must hold without leaking argparse's literal `==SUPPRESS==` placeholder,
     which `help=argparse.SUPPRESS` emits for a top-level subparser on 3.12+.
     The fix omits the `help=` kwarg entirely instead.
     """
-    parser = argparse.ArgumentParser(prog="hermes")
+    parser = argparse.ArgumentParser(prog="openamer")
     sub = parser.add_subparsers(dest="command")
     build_login_parser(sub, cmd_login=_h("login"))
     help_text = parser.format_help()
