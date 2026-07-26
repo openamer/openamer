@@ -1,4 +1,4 @@
-import type { SkinBranding, SkinColors } from '@hermes/shared/skin'
+import type { SkinBranding, SkinColors } from '@openamer/shared/skin'
 
 import { desaturate, grayOf, liftForContrast, mix, parseColor, relativeLuminance, toHex } from './lib/color.js'
 

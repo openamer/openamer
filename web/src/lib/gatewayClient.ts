@@ -19,7 +19,7 @@ import {
   type ConnectionState,
   type GatewayEvent,
   type GatewayEventName,
-} from "@hermes/shared";
+} from "@openamer/shared";
 
 import { OPENAMER_BASE_PATH, buildWsAuthParam } from "@/lib/api";
 
