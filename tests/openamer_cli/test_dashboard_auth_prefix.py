@@ -5,7 +5,7 @@ prefix (e.g. ``mission-control.tilos.com/hermes/*`` -> local Caddy ->
 :9119), injecting ``X-Forwarded-Prefix: /hermes`` on every request.
 
 The dashboard already honours this for the SPA bundle (rewriting asset
-URLs and the bootstrap ``__HERMES_BASE_PATH__``). The OAuth gate must
+URLs and the bootstrap ``__OPENAMER_BASE_PATH__``). The OAuth gate must
 honour it too:
 
   1. The gate's ``Location:`` redirect to /login (in
@@ -112,7 +112,7 @@ class TestForwardedPrefixNormalisation:
     ):
         """Home Assistant Supervisor ingress prefixes are 63 chars before
         add-ons append their own mount path. They must survive validation so
-        the SPA receives the correct __HERMES_BASE_PATH__ and asset prefix."""
+        the SPA receives the correct __OPENAMER_BASE_PATH__ and asset prefix."""
         prefix_mod._warned_malformed_prefixes.clear()
         assert len(HA_INGRESS_DASHBOARD_PREFIX) > 64
 

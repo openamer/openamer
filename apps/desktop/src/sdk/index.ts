@@ -6,7 +6,7 @@
  * Two delivery modes, one surface:
  *  - bundled (`src/plugins/<name>/`): the import resolves here via alias;
  *  - runtime-fetched (plugin host, next phase): the loader injects this same
- *    object as `window.__HERMES_PLUGIN_SDK__` and maps the import to it, so a
+ *    object as `window.__OPENAMER_PLUGIN_SDK__` and maps the import to it, so a
  *    published plugin builds against the types with the SDK marked external.
  *
  * Capability tiers (WoW-style):

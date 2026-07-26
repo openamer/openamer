@@ -463,7 +463,7 @@ def run_certify(args: argparse.Namespace) -> dict[str, Any]:
     try:
         with ScratchDashboard(
             home=home, port=port, isolation=args.isolation,
-            env_extra={"HERMES_DASHBOARD_SESSION_TOKEN": token},
+            env_extra={"OPENAMER_DASHBOARD_SESSION_TOKEN": token},
         ) as dash:
             actual_port = dash.actual_port
             result["port"] = actual_port

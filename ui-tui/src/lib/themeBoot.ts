@@ -34,13 +34,13 @@ interface BootThemeFile {
   version: 1
 }
 
-// Profile-aware: the Python launcher exports HERMES_HOME (set by
+// Profile-aware: the Python launcher exports OPENAMER_HOME (set by
 // _apply_profile_override) before spawning the TUI. Falling back to
 // ~/.hermes matches get_hermes_home()'s default.
-const bootFilePath = () => join(process.env.HERMES_HOME ?? join(homedir(), '.hermes'), 'tui-theme-boot.json')
+const bootFilePath = () => join(process.env.OPENAMER_HOME ?? join(homedir(), '.hermes'), 'tui-theme-boot.json')
 
 // Never touch the user's real ~/.hermes from test runs (the TS suite has no
-// HERMES_HOME isolation fixture).
+// OPENAMER_HOME isolation fixture).
 const isTestRun = () => !!process.env.VITEST || process.env.NODE_ENV === 'test'
 
 const looksLikeTheme = (value: unknown): value is Theme => {

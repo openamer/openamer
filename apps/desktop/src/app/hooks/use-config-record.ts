@@ -11,12 +11,12 @@ import type { OpenAmerConfigRecord } from '@/types/openamer'
 //
 // Distinct from session/hooks/use-openamer-config.ts, which is side-effecting —
 // it pushes personality/cwd/voice/… into the session stores for live chat.
-export const HERMES_CONFIG_KEY = ['openamer-config-record'] as const
+export const OPENAMER_CONFIG_KEY = ['openamer-config-record'] as const
 
 // staleTime 0 → serve cache instantly, background-revalidate on every mount.
 export const useOpenAmerConfigRecord = () =>
-  useQuery({ queryKey: HERMES_CONFIG_KEY, queryFn: getOpenAmerConfigRecord, staleTime: 0 })
+  useQuery({ queryKey: OPENAMER_CONFIG_KEY, queryFn: getOpenAmerConfigRecord, staleTime: 0 })
 
-export const setOpenAmerConfigCache = writeCache<OpenAmerConfigRecord>(HERMES_CONFIG_KEY)
+export const setOpenAmerConfigCache = writeCache<OpenAmerConfigRecord>(OPENAMER_CONFIG_KEY)
 
-export const invalidateOpenAmerConfig = () => queryClient.invalidateQueries({ queryKey: HERMES_CONFIG_KEY })
+export const invalidateOpenAmerConfig = () => queryClient.invalidateQueries({ queryKey: OPENAMER_CONFIG_KEY })

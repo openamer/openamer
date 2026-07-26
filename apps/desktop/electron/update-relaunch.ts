@@ -226,12 +226,12 @@ function collectRelaunchArgs(argv) {
 
 // Env keys whose values define the relaunched instance's context (which
 // backend/profile/root it talks to). Anything OPENAMER_DESKTOP_* is preserved
-// plus HERMES_HOME. We snapshot the values, not the live env, so the new
+// plus OPENAMER_HOME. We snapshot the values, not the live env, so the new
 // instance comes up pointed at the same place this one was.
 // ELECTRON_DISABLE_SANDBOX is preserved for the same reason --no-sandbox is kept
 // in the replayed args: if a relaunch is only safe because the user opted out of
 // the SUID sandbox, the relaunched instance must inherit that opt-out too.
-const PRESERVED_ENV_KEYS = ['HERMES_HOME', 'ELECTRON_DISABLE_SANDBOX']
+const PRESERVED_ENV_KEYS = ['OPENAMER_HOME', 'ELECTRON_DISABLE_SANDBOX']
 const PRESERVED_ENV_PREFIXES = ['OPENAMER_DESKTOP_']
 
 function collectRelaunchEnv(env) {

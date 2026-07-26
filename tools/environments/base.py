@@ -379,7 +379,7 @@ class _ThreadedProcessHandle:
 
 
 def _cwd_marker(session_id: str) -> str:
-    return f"__HERMES_CWD_{session_id}__"
+    return f"__OPENAMER_CWD_{session_id}__"
 
 
 # Per-session variables that the gateway bridges freshly onto every command's
@@ -1044,7 +1044,7 @@ class BaseEnvironment(ABC):
         self._extract_cwd_from_output(result)
 
     def _extract_cwd_from_output(self, result: dict):
-        """Parse the __HERMES_CWD_{session}__ marker from stdout output.
+        """Parse the __OPENAMER_CWD_{session}__ marker from stdout output.
 
         Updates self.cwd and strips the marker from result["output"].
         Used by remote backends (Docker, SSH, Modal, Daytona, Singularity).

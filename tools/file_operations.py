@@ -54,7 +54,7 @@ WRITE_DENIED_PREFIXES = build_write_denied_prefixes(_HOME)
 
 
 _OSC_SEQUENCE_RE = re.compile(r"\x1b\][^\x07\x1b]*(?:\x07|\x1b\\)")
-_FENCE_MARKER_RE = re.compile(r"'?\x07?__HERMES_FENCE_[A-Za-z0-9]+__\x07?'?")
+_FENCE_MARKER_RE = re.compile(r"'?\x07?__OPENAMER_FENCE_[A-Za-z0-9]+__\x07?'?")
 
 
 def _strip_terminal_fence_leaks(text: str) -> str:
@@ -64,7 +64,7 @@ def _strip_terminal_fence_leaks(text: str) -> str:
 
     cleaned_lines: List[str] = []
     for line in text.splitlines(keepends=True):
-        had_terminal_wrapper = "__HERMES_FENCE_" in line or "\x1b]" in line
+        had_terminal_wrapper = "__OPENAMER_FENCE_" in line or "\x1b]" in line
         cleaned = _OSC_SEQUENCE_RE.sub("", line)
         cleaned = _FENCE_MARKER_RE.sub("", cleaned)
         cleaned = cleaned.replace("\x07", "")

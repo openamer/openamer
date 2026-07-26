@@ -7,7 +7,7 @@
 # Container mode: hermes runs from /nix/store bind-mounted read-only into a
 # plain Ubuntu container. The writable layer (apt/pip/npm installs) persists
 # across restarts and agent updates. Only image/volume/options changes trigger
-# container recreation. Environment variables are written to $HERMES_HOME/.env
+# container recreation. Environment variables are written to $OPENAMER_HOME/.env
 # and read by hermes at startup — no container recreation needed for env changes.
 #
 # Tool resolution: the hermes wrapper uses --suffix PATH for nix store tools,
@@ -58,7 +58,7 @@
     configMergeScript = pkgs.callPackage ./configMergeScript.nix { };
 
     # config.yaml mode: group-writable (0660) when interactive users share this
-    # HERMES_HOME via addToSystemPackages, so they can save settings through the
+    # OPENAMER_HOME via addToSystemPackages, so they can save settings through the
     # CLI/TUI without hitting EACCES; otherwise group-read-only (0640). Secrets
     # (.env) stay 0640 regardless — see below.
     configYamlMode = if cfg.addToSystemPackages then "0660" else "0640";
@@ -131,13 +131,13 @@
       chown "$HERMES_UID:$HERMES_GID" "$TARGET_HOME"
       chmod 0750 "$TARGET_HOME"
 
-      # Ensure HERMES_HOME is owned by the target user.
+      # Ensure OPENAMER_HOME is owned by the target user.
       # Use find instead of chown -R: chown strips the setgid bit (kernel
       # behavior), destroying the 2770 permissions the NixOS activation
       # script sets for group access by hostUsers.  Only touch files with
       # wrong ownership so correctly-owned dirs keep their permission bits.
-      if [ -n "''${HERMES_HOME:-}" ] && [ -d "$HERMES_HOME" ]; then
-        find "$HERMES_HOME" \! -user "$HERMES_UID" -exec chown "$HERMES_UID:$HERMES_GID" {} +
+      if [ -n "''${OPENAMER_HOME:-}" ] && [ -d "$OPENAMER_HOME" ]; then
+        find "$OPENAMER_HOME" \! -user "$HERMES_UID" -exec chown "$HERMES_UID:$HERMES_GID" {} +
       fi
 
       # ── Provision apt packages (first boot only, cached in writable layer) ──
@@ -198,7 +198,7 @@
 
     # Identity hash — only recreate container when structural config changes.
     # Package and entrypoint use stable symlinks (current-package, current-entrypoint)
-    # so they can update without recreation. Env vars go through $HERMES_HOME/.env.
+    # so they can update without recreation. Env vars go through $OPENAMER_HOME/.env.
     containerIdentity = builtins.hashString "sha256" (builtins.toJSON {
       schema = 4; # bump when identity inputs change (4: Node 18→22 via NodeSource)
       image = cfg.container.image;
@@ -249,7 +249,7 @@
       stateDir = mkOption {
         type = types.str;
         default = "/var/lib/hermes";
-        description = "State directory. Contains .hermes/ subdir (HERMES_HOME).";
+        description = "State directory. Contains .hermes/ subdir (OPENAMER_HOME).";
       };
 
       workingDirectory = mkOption {
@@ -292,7 +292,7 @@
         default = [ ];
         description = ''
           Paths to environment files containing secrets (API keys, tokens).
-          Contents are merged into $HERMES_HOME/.env at activation time.
+          Contents are merged into $OPENAMER_HOME/.env at activation time.
           Hermes reads this file on every startup via load_hermes_dotenv().
         '';
       };
@@ -301,7 +301,7 @@
         type = types.attrsOf types.str;
         default = { };
         description = ''
-          Non-secret environment variables. Merged into $HERMES_HOME/.env
+          Non-secret environment variables. Merged into $OPENAMER_HOME/.env
           at activation time. Do NOT put secrets here — use environmentFiles.
         '';
       };
@@ -376,7 +376,7 @@
               default = null;
               description = ''
                 Authentication method. Set to "oauth" for OAuth 2.1 PKCE flow
-                (remote MCP servers). Tokens are stored in $HERMES_HOME/mcp-tokens/.
+                (remote MCP servers). Tokens are stored in $OPENAMER_HOME/mcp-tokens/.
               '';
             };
 
@@ -564,7 +564,7 @@
         default = false;
         description = ''
           Add the hermes CLI to environment.systemPackages and export
-          HERMES_HOME system-wide (via environment.variables) so interactive
+          OPENAMER_HOME system-wide (via environment.variables) so interactive
           shells share state with the gateway service.
         '';
       };
@@ -657,12 +657,12 @@
       })
 
       # ── Host CLI ──────────────────────────────────────────────────────
-      # Add the hermes CLI to system PATH and export HERMES_HOME system-wide
+      # Add the hermes CLI to system PATH and export OPENAMER_HOME system-wide
       # so interactive shells share state (sessions, skills, cron) with the
       # gateway service instead of creating a separate ~/.hermes/.
       (lib.mkIf cfg.addToSystemPackages {
         environment.systemPackages = [ effectivePackage ];
-        environment.variables.HERMES_HOME = "${cfg.stateDir}/.hermes";
+        environment.variables.OPENAMER_HOME = "${cfg.stateDir}/.hermes";
       })
 
       # ── Host user group membership ─────────────────────────────────────
@@ -828,7 +828,7 @@
           ''}
 
           # Seed .env from Nix-declared environment + environmentFiles.
-          # Hermes reads $HERMES_HOME/.env at startup via load_hermes_dotenv(),
+          # Hermes reads $OPENAMER_HOME/.env at startup via load_hermes_dotenv(),
           # so this is the single source of truth for both native and container mode.
           ${lib.optionalString (cfg.environment != {} || cfg.environmentFiles != []) ''
             ENV_FILE="${cfg.stateDir}/.hermes/.env"
@@ -879,7 +879,7 @@
 
           environment = {
             HOME = cfg.stateDir;
-            HERMES_HOME = "${cfg.stateDir}/.hermes";
+            OPENAMER_HOME = "${cfg.stateDir}/.hermes";
             HERMES_MANAGED = "true";
             # Working directory is declared via terminal.cwd in the merged
             # config.yaml (see configJson above) — MESSAGING_CWD is deprecated.
@@ -891,7 +891,7 @@
             WorkingDirectory = cfg.workingDirectory;
 
             # cfg.environment and cfg.environmentFiles are written to
-            # $HERMES_HOME/.env by the activation script. load_hermes_dotenv()
+            # $OPENAMER_HOME/.env by the activation script. load_hermes_dotenv()
             # reads them at Python startup — no systemd EnvironmentFile needed.
 
             ExecStart = lib.concatStringsSep " " ([
@@ -976,7 +976,7 @@
                 ${lib.concatStringsSep " " (map (v: "--volume ${v}") cfg.container.extraVolumes)} \
                 --env HERMES_UID="$HERMES_UID" \
                 --env HERMES_GID="$HERMES_GID" \
-                --env HERMES_HOME=${containerDataDir}/.hermes \
+                --env OPENAMER_HOME=${containerDataDir}/.hermes \
                 --env HERMES_MANAGED=true \
                 --env HOME=${containerHomeDir} \
                 ${lib.concatStringsSep " " cfg.container.extraOptions} \

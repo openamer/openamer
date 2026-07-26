@@ -9,10 +9,10 @@
  *   import { runBootstrap }from './bootstrap-runner'
  *   const result = await runBootstrap({
  *     installStamp,        // INSTALL_STAMP from main.ts (may be null in dev)
- *     activeRoot,          // ACTIVE_HERMES_ROOT
+ *     activeRoot,          // ACTIVE_OPENAMER_ROOT
  *     sourceRepoRoot,      // SOURCE_REPO_ROOT (for dev install.ps1 lookup)
- *     openamerHome,          // HERMES_HOME
- *     logRoot,             // HERMES_HOME/logs
+ *     openamerHome,          // OPENAMER_HOME
+ *     logRoot,             // OPENAMER_HOME/logs
  *     emit: ev => {...}    // event sink (sender.send or similar)
  *   })
  *
@@ -468,9 +468,9 @@ function spawnPowerShell(scriptPath, args, { emit, stageName, abortSignal, opena
         stdio: ['ignore', 'pipe', 'pipe'],
         env: {
           ...process.env,
-          // Pass HERMES_HOME through so install.ps1 respects the caller's
+          // Pass OPENAMER_HOME through so install.ps1 respects the caller's
           // choice rather than re-computing the default.
-          HERMES_HOME: openamerHome || process.env.HERMES_HOME || ''
+          OPENAMER_HOME: openamerHome || process.env.OPENAMER_HOME || ''
         }
       })
     )
@@ -566,7 +566,7 @@ function spawnBash(scriptPath, args, { emit, stageName, abortSignal, openamerHom
       stdio: ['ignore', 'pipe', 'pipe'],
       env: {
         ...process.env,
-        HERMES_HOME: openamerHome || process.env.HERMES_HOME || ''
+        OPENAMER_HOME: openamerHome || process.env.OPENAMER_HOME || ''
       }
     })
 

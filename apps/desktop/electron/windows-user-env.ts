@@ -6,7 +6,7 @@
 // A GUI app launched from Explorer inherits the environment block captured at
 // login, so a variable set via `setx` AFTER login is invisible in process.env
 // even though a fresh shell — and the OpenAmer CLI — sees it immediately. The
-// desktop's HERMES_HOME resolution relies on process.env, so that stale-snapshot
+// desktop's OPENAMER_HOME resolution relies on process.env, so that stale-snapshot
 // gap silently sends the backend to the default %LOCALAPPDATA%\openamer. Reading
 // the live registry value closes the gap. See #45471.
 
@@ -15,7 +15,7 @@ import { execFileSync } from 'node:child_process'
 // Parse the output of `reg query HKCU\Environment /v <name>`, which looks like:
 //
 //   HKEY_CURRENT_USER\Environment
-//       HERMES_HOME    REG_SZ    F:\OpenAmer\data
+//       OPENAMER_HOME    REG_SZ    F:\OpenAmer\data
 //
 // Returns the raw value string (spaces inside the value preserved), or null when
 // the requested value line isn't present.

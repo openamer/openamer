@@ -153,7 +153,7 @@ function buildPosixCleanupScript({ desktopPid, pythonExe, pythonPath, agentRoot,
     '    sleep 0.5',
     '  done',
     'fi',
-    `export HERMES_HOME=${q(openamerHome)}`
+    `export OPENAMER_HOME=${q(openamerHome)}`
   ]
 
   if (pythonPath) {
@@ -209,7 +209,7 @@ function buildWindowsCleanupScript({
   const lines = [
     '@echo off',
     'setlocal enableextensions',
-    `set "HERMES_HOME=${String(openamerHome).replace(/"/g, '')}"`,
+    `set "OPENAMER_HOME=${String(openamerHome).replace(/"/g, '')}"`,
     `set "PID=${pid}"`
   ]
 

@@ -21,7 +21,7 @@ import {
   type GatewayEventName,
 } from "@hermes/shared";
 
-import { HERMES_BASE_PATH, buildWsAuthParam } from "@/lib/api";
+import { OPENAMER_BASE_PATH, buildWsAuthParam } from "@/lib/api";
 
 export type { ConnectionState, GatewayEvent, GatewayEventName };
 
@@ -53,7 +53,7 @@ export class GatewayClient extends JsonRpcGatewayClient {
     await super.connect(
       buildHermesWebSocketUrl({
         authParam,
-        basePath: HERMES_BASE_PATH,
+        basePath: OPENAMER_BASE_PATH,
         path: "/api/ws",
       }),
     );

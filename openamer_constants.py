@@ -1231,6 +1231,6 @@ set_hermes_home_override = set_openamer_home_override
 reset_hermes_home_override = reset_openamer_home_override
 get_process_hermes_home = get_process_openamer_home
 get_default_hermes_root = get_default_openamer_root
-_HERMES_HOME_OVERRIDE = _OPENAMER_HOME_OVERRIDE
+_OPENAMER_HOME_OVERRIDE = _OPENAMER_HOME_OVERRIDE
 _get_platform_default_hermes_home = _get_platform_default_openamer_home
 _hermes_home_from_env = _openamer_home_from_env

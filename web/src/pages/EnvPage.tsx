@@ -50,7 +50,7 @@ const PROVIDER_GROUPS: { prefix: string; name: string; priority: number }[] = [
   // Then alphabetical by display name
   { prefix: "ANTHROPIC_", name: "Anthropic", priority: 1 },
   { prefix: "DASHSCOPE_", name: "DashScope (Qwen)", priority: 2 },
-  { prefix: "HERMES_QWEN_", name: "DashScope (Qwen)", priority: 2 },
+  { prefix: "OPENAMER_QWEN_", name: "DashScope (Qwen)", priority: 2 },
   { prefix: "DEEPSEEK_", name: "DeepSeek", priority: 3 },
   { prefix: "GOOGLE_", name: "Gemini", priority: 4 },
   { prefix: "GEMINI_", name: "Gemini", priority: 4 },

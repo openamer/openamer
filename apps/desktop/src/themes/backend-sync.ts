@@ -1,7 +1,7 @@
 /**
  * Live skin sync from the OpenAmer backend.
  *
- * The backend resolves the active skin (built-in or `$HERMES_HOME/skins/*.yaml`)
+ * The backend resolves the active skin (built-in or `$OPENAMER_HOME/skins/*.yaml`)
  * and announces it on `gateway.ready` / `skin.changed`, and answers `config.get
  * skin` with the same payload. `ingestBackendSkin` folds that into the desktop:
  *

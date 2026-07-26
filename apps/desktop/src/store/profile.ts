@@ -127,7 +127,7 @@ export async function refreshActiveProfile(): Promise<void> {
   }
 }
 
-// Persist the choice and relaunch the backend under the new HERMES_HOME. The
+// Persist the choice and relaunch the backend under the new OPENAMER_HOME. The
 // main process reloads the window, so this normally never returns to the caller
 // (the renderer is torn down). We optimistically reflect the selection first so
 // the pill updates instantly if the reload is delayed.

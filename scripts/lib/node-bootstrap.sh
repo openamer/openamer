@@ -20,12 +20,12 @@
 # Env inputs (set before sourcing to override defaults):
 #   HERMES_NODE_MIN_VERSION   (default: 20)   — accepted on PATH
 #   HERMES_NODE_TARGET_MAJOR  (default: 22)   — installed when we install
-#   HERMES_HOME               (default: $HOME/.hermes)
+#   OPENAMER_HOME               (default: $HOME/.hermes)
 # ============================================================================
 
 HERMES_NODE_MIN_VERSION="${HERMES_NODE_MIN_VERSION:-20}"
 HERMES_NODE_TARGET_MAJOR="${HERMES_NODE_TARGET_MAJOR:-22}"
-HERMES_HOME="${HERMES_HOME:-$HOME/.hermes}"
+OPENAMER_HOME="${OPENAMER_HOME:-$HOME/.hermes}"
 HERMES_NODE_AVAILABLE=false
 
 # ---------------------------------------------------------------------------
@@ -58,16 +58,16 @@ _nb_get_link_dir() {
 }
 
 # Redirect a Hermes-managed Node's `npm install -g` to the command link dir
-# (already on PATH) instead of the default $HERMES_HOME/node/bin, which is off
+# (already on PATH) instead of the default $OPENAMER_HOME/node/bin, which is off
 # PATH and wiped on every Node upgrade. Scoped to the managed Node via its
 # prefix-local global npmrc; the user's other Node installs / ~/.npmrc are
 # untouched. Idempotent no-op when there's no managed npm.
 _nb_configure_npm_prefix() {
-    [ -x "$HERMES_HOME/node/bin/npm" ] || return 0
+    [ -x "$OPENAMER_HOME/node/bin/npm" ] || return 0
     local _link_dir
     _link_dir="$(_nb_get_link_dir)"
-    mkdir -p "$HERMES_HOME/node/etc"
-    printf 'prefix=%s\n' "$(dirname "$_link_dir")" > "$HERMES_HOME/node/etc/npmrc"
+    mkdir -p "$OPENAMER_HOME/node/etc"
+    printf 'prefix=%s\n' "$(dirname "$_link_dir")" > "$OPENAMER_HOME/node/etc/npmrc"
 }
 
 _nb_node_major() {
@@ -193,7 +193,7 @@ _nb_install_bundled_node() {
         _nb_warn "Download failed"; rm -rf "$tmp"; return 1
     }
 
-    _nb_log "Extracting to $HERMES_HOME/node/..."
+    _nb_log "Extracting to $OPENAMER_HOME/node/..."
     if [[ "$tarball" == *.tar.xz ]]; then
         tar xf  "$tmp/$tarball" -C "$tmp" || { rm -rf "$tmp"; return 1; }
     else
@@ -208,24 +208,24 @@ _nb_install_bundled_node() {
         return 1
     fi
 
-    mkdir -p "$HERMES_HOME"
-    rm -rf "$HERMES_HOME/node"
-    mv "$extracted" "$HERMES_HOME/node"
+    mkdir -p "$OPENAMER_HOME"
+    rm -rf "$OPENAMER_HOME/node"
+    mv "$extracted" "$OPENAMER_HOME/node"
     rm -rf "$tmp"
 
     local _link_dir
     _link_dir="$(_nb_get_link_dir)"
     mkdir -p "$_link_dir"
-    ln -sf "$HERMES_HOME/node/bin/node" "$_link_dir/node"
-    ln -sf "$HERMES_HOME/node/bin/npm"  "$_link_dir/npm"
-    ln -sf "$HERMES_HOME/node/bin/npx"  "$_link_dir/npx"
+    ln -sf "$OPENAMER_HOME/node/bin/node" "$_link_dir/node"
+    ln -sf "$OPENAMER_HOME/node/bin/npm"  "$_link_dir/npm"
+    ln -sf "$OPENAMER_HOME/node/bin/npx"  "$_link_dir/npx"
 
     _nb_configure_npm_prefix
 
-    export PATH="$HERMES_HOME/node/bin:$PATH"
+    export PATH="$OPENAMER_HOME/node/bin:$PATH"
 
     _nb_have_modern_node || return 1
-    _nb_ok "Node $(node --version) installed to $HERMES_HOME/node/"
+    _nb_ok "Node $(node --version) installed to $OPENAMER_HOME/node/"
     return 0
 }
 
@@ -237,9 +237,9 @@ _nb_managed_tool_broken() {
     local tool="$1"
     local probe
     for probe in \
-        "$HERMES_HOME/node/bin/$tool" \
-        "$HERMES_HOME/node/${tool}.exe" \
-        "$HERMES_HOME/node/$tool"; do
+        "$OPENAMER_HOME/node/bin/$tool" \
+        "$OPENAMER_HOME/node/${tool}.exe" \
+        "$OPENAMER_HOME/node/$tool"; do
         if [ -x "$probe" ] || [ -f "$probe" ]; then
             if ! "$probe" --version >/dev/null 2>&1; then
                 return 0
@@ -264,11 +264,11 @@ _nb_managed_node_needs_heal() {
 # absent. Used by hermes_constants.find_hermes_node_executable() and safe
 # to call from install reruns.
 heal_managed_node() {
-    [ -d "$HERMES_HOME/node" ] || return 1
+    [ -d "$OPENAMER_HOME/node" ] || return 1
     if ! _nb_managed_node_needs_heal; then
         return 0
     fi
-    _nb_log "Hermes-managed Node is broken — redownloading to $HERMES_HOME/node/..."
+    _nb_log "Hermes-managed Node is broken — redownloading to $OPENAMER_HOME/node/..."
     _nb_install_bundled_node
 }
 
@@ -289,8 +289,8 @@ ensure_node() {
         return 0
     fi
 
-    if [ -x "$HERMES_HOME/node/bin/node" ]; then
-        export PATH="$HERMES_HOME/node/bin:$PATH"
+    if [ -x "$OPENAMER_HOME/node/bin/node" ]; then
+        export PATH="$OPENAMER_HOME/node/bin:$PATH"
         if _nb_have_modern_node; then
             _nb_ok "Node $(node --version) found (Hermes-managed)"
             HERMES_NODE_AVAILABLE=true

@@ -6348,7 +6348,7 @@ def cmd_gui(args: argparse.Namespace):
     if getattr(args, "ignore_existing", False):
         env["HERMES_DESKTOP_IGNORE_EXISTING"] = "1"
     if getattr(args, "hermes_root", None):
-        env["HERMES_DESKTOP_HERMES_ROOT"] = str(Path(args.hermes_root).expanduser().resolve())
+        env["HERMES_DESKTOP_OPENAMER_ROOT"] = str(Path(args.hermes_root).expanduser().resolve())
     if getattr(args, "cwd", None):
         env["HERMES_DESKTOP_CWD"] = str(Path(args.cwd).expanduser().resolve())
     else:

@@ -13,7 +13,7 @@ import { expectVisualSnapshot } from './visual-snapshot'
  *
  * Launches the real packaged Electron binary (produced by `npm run pack` →
  * `electron-builder --dir`) with BOOT_FAKE=1 and full sandbox isolation
- * (credential stripping, isolated HERMES_HOME + userData, unique app name).
+ * (credential stripping, isolated OPENAMER_HOME + userData, unique app name).
  *
  * Skips if the packaged binary doesn't exist — run `npm run pack` first.
  */

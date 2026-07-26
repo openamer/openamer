@@ -30,7 +30,7 @@ export const debugCommands: SlashCommand[] = [
   ...widgetAppCommands,
 
   {
-    help: 'rescan $HERMES_HOME/tui-widgets and (re)register user widget apps',
+    help: 'rescan $OPENAMER_HOME/tui-widgets and (re)register user widget apps',
     name: 'widgets-reload',
     run: (_arg, ctx) => {
       void loadUserWidgets().then(({ errors, loaded }) => {

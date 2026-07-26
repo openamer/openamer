@@ -49,17 +49,17 @@ const APP = (() => {
   }
 })()
 
-// Default HERMES_HOME for non-sandboxed runs -- matches main.ts's
+// Default OPENAMER_HOME for non-sandboxed runs -- matches main.ts's
 // resolveOpenAmerHome(). On Windows it's %LOCALAPPDATA%\openamer; elsewhere
 // it's ~/.openamer. The fresh-install sandbox launchFresh() sets its own
-// HERMES_HOME and never touches this.
-const DEFAULT_HERMES_HOME = (() => {
+// OPENAMER_HOME and never touches this.
+const DEFAULT_OPENAMER_HOME = (() => {
   if (PLATFORM === 'win32' && process.env.LOCALAPPDATA) {
     return path.join(process.env.LOCALAPPDATA, 'openamer')
   }
   return path.join(os.homedir(), '.openamer')
 })()
-const VENV_ROOT = path.join(DEFAULT_HERMES_HOME, 'openamer-agent', 'venv')
+const VENV_ROOT = path.join(DEFAULT_OPENAMER_HOME, 'openamer-agent', 'venv')
 const FRESH_SANDBOX_ROOT = path.join(os.tmpdir(), 'openamer-desktop-fresh-install')
 
 function die(message) {
@@ -260,9 +260,9 @@ function launchFresh() {
   env.OPENAMER_DESKTOP_IGNORE_EXISTING = '1'
   env.OPENAMER_DESKTOP_TEST_MODE = 'fresh-install'
   env.OPENAMER_DESKTOP_USER_DATA_DIR = userDataDir
-  env.HERMES_HOME = openamerHome
+  env.OPENAMER_HOME = openamerHome
   delete env.OPENAMER_DESKTOP_HERMES
-  delete env.OPENAMER_DESKTOP_HERMES_ROOT
+  delete env.OPENAMER_DESKTOP_OPENAMER_ROOT
 
   const child = spawn(APP.binary, [], {
     cwd: os.homedir(),
@@ -275,7 +275,7 @@ function launchFresh() {
   console.log('\nFresh install sandbox:')
   console.log(`  root: ${sandbox}`)
   console.log(`  electron userData: ${userDataDir}`)
-  console.log(`  HERMES_HOME: ${openamerHome}`)
+  console.log(`  OPENAMER_HOME: ${openamerHome}`)
   console.log(`  cwd: ${cwd}`)
 
   return { runtimeRoot: path.join(openamerHome, 'openamer-agent', 'venv') }
@@ -400,7 +400,7 @@ function printArtifacts(options = {}) {
 function help() {
   console.log(`Usage:
   npm run test:desktop:existing  # build packaged app, launch with normal PATH/existing OpenAmer
-  npm run test:desktop:fresh     # build packaged app, launch with temp userData + HERMES_HOME
+  npm run test:desktop:fresh     # build packaged app, launch with temp userData + OPENAMER_HOME
   npm run test:desktop:dmg       # (macOS only) build DMG and open it
   npm run test:desktop:nsis      # (win32 only) build NSIS installer
   npm run test:desktop:all       # build installer, validate app payload, print paths

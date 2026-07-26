@@ -9,7 +9,7 @@ Three scenarios are covered:
 
 1. _lifespan fire-and-forget: patched _warm_gateway_module sleeps N seconds in
    a thread; TestClient startup must complete in << N seconds (event loop not
-   blocked, HERMES_DASHBOARD_READY would fire immediately).
+   blocked, OPENAMER_DASHBOARD_READY would fire immediately).
 
 2. get_status run_in_executor: patched _resolve_restart_drain_timeout sleeps N
    seconds in a thread; a concurrent fast endpoint (/api/version) must respond
@@ -61,7 +61,7 @@ def test_lifespan_warmup_is_nonblocking():
     _warm_gateway_module runs in an executor (fire-and-forget).
     Even if it sleeps for SLOW_SECONDS, TestClient startup must complete
     in well under that time — proving the event loop was never blocked and
-    HERMES_DASHBOARD_READY would have fired without delay.
+    OPENAMER_DASHBOARD_READY would have fired without delay.
     """
     from fastapi.testclient import TestClient
 

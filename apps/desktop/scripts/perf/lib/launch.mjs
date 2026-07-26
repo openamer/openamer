@@ -5,7 +5,7 @@
 // the measurement that the single-instance lock used to prevent:
 //   · its own --user-data-dir  → its own Electron single-instance lock, so it
 //     never collides with (or steals focus from) the user's running `hgui`.
-//   · its own HERMES_HOME      → its own backend + sessions, no shared state.
+//   · its own OPENAMER_HOME      → its own backend + sessions, no shared state.
 //   · its own --remote-debugging-port → a private CDP endpoint.
 //   · OPENAMER_DESKTOP_BOOT_FAKE=1 → deterministic boot overlay.
 // The synthetic scenarios drive `$messages` directly, so no LLM credits are
@@ -47,9 +47,9 @@ async function waitFor(fn, { timeoutMs, label }) {
   throw new Error(`timed out after ${timeoutMs}ms waiting for ${label}`)
 }
 
-// Seed an isolated HERMES_HOME with just enough config (NOT sessions) so the
+// Seed an isolated OPENAMER_HOME with just enough config (NOT sessions) so the
 // spawned instance reaches an empty chat view instead of the onboarding wizard.
-// A separate HERMES_HOME dir means a separate gateway lock — no collision with
+// A separate OPENAMER_HOME dir means a separate gateway lock — no collision with
 // the user's running app, which keeps its own sessions DB and state.
 function seedConfigFrom(sourceHome, targetHome) {
   if (!existsSync(sourceHome)) {
@@ -229,7 +229,7 @@ export async function startIsolatedInstance({
     }
 
     // Isolated Electron: own --user-data-dir (single-instance lock scope) + own
-    // HERMES_HOME (backend + sessions). No DEV_SERVER env in prod → dist load.
+    // OPENAMER_HOME (backend + sessions). No DEV_SERVER env in prod → dist load.
     const electronBin = require('electron')
     // NB: do NOT set OPENAMER_DESKTOP_BOOT_FAKE here — it injects artificial
     // per-phase sleeps into the boot overlay, which inflates cold-start timing
@@ -237,7 +237,7 @@ export async function startIsolatedInstance({
     // real boot sequence.
     const env = {
       ...process.env,
-      HERMES_HOME: home,
+      OPENAMER_HOME: home,
       XCURSOR_SIZE: '24'
     }
 

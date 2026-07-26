@@ -24,7 +24,7 @@ ExecStart=/usr/bin/env hermes kanban daemon --force --interval 60 --pidfile %t/h
 Restart=on-failure
 RestartSec=5
 # Log to the journal via stdout/stderr; the dispatcher also writes per-task
-# worker output to $HERMES_HOME/kanban/logs/<task>.log.
+# worker output to $OPENAMER_HOME/kanban/logs/<task>.log.
 StandardOutput=journal
 StandardError=journal
 

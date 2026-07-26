@@ -5884,7 +5884,7 @@ def _enrich_with_attached_images(user_text: str, image_paths: list[str]) -> str:
 def _build_persist_message_with_image_refs(user_text: str, image_paths: list[str]) -> str:
     """Build the clean, UI-recognizable version of the user's message for
     persisting to session history. Uses ``@image:<path>`` directives — the
-    format the desktop client (directive-text.tsx / HERMES_DIRECTIVE_RE)
+    format the desktop client (directive-text.tsx / OPENAMER_DIRECTIVE_RE)
     actually parses and renders as an image — unlike
     ``_enrich_with_attached_images``, which embeds a vision description and
     an ``image_url:`` hint meant only for the model and must never be

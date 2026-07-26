@@ -141,7 +141,7 @@ test('buildPosixCleanupScript waits for the PID, runs the uninstall module, remo
   assert.match(script, /seq 1 60/)
   assert.match(script, /'-m' 'openamer_cli\.uninstall' '--mode' 'gui'/)
   assert.match(script, /rm -rf '\/opt\/openamer\/linux-unpacked'/)
-  assert.match(script, /export HERMES_HOME='\/home\/x\/\.openamer'/)
+  assert.match(script, /export OPENAMER_HOME='\/home\/x\/\.openamer'/)
 })
 
 test('buildPosixCleanupScript exports PYTHONPATH when pythonPath is set (lite/full)', () => {

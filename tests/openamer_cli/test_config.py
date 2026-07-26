@@ -1698,7 +1698,7 @@ class TestEnvWriteDenylist:
         [
             "HERMES_LANGFUSE_PUBLIC_KEY",
             "HERMES_SPOTIFY_CLIENT_ID",
-            "HERMES_QWEN_BASE_URL",
+            "OPENAMER_QWEN_BASE_URL",
             "HERMES_MAX_ITERATIONS",
         ],
     )

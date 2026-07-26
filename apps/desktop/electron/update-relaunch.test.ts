@@ -10,7 +10,7 @@
  *      relaunch/claim a GUI update; AppImage/.deb/.rpm/dev/unresolved paths land
  *      on the guiSkew terminal state and do NOT claim the GUI was updated.
  *   2. Launch context is replayed on re-exec (args filtered of Electron
- *      internals; HERMES_HOME / OPENAMER_DESKTOP_* env + cwd preserved) and is
+ *      internals; OPENAMER_HOME / OPENAMER_DESKTOP_* env + cwd preserved) and is
  *      safely shell-quoted.
  *   3. The sandbox preflight: chrome-sandbox must be root-owned + setuid to be
  *      launchable; otherwise the decision degrades to a manual terminal state
@@ -157,12 +157,12 @@ test('collectRelaunchArgs drops Electron internals, keeps user/launcher args', (
   assert.deepEqual(collectRelaunchArgs(undefined), [])
 })
 
-test('collectRelaunchEnv preserves HERMES_HOME + OPENAMER_DESKTOP_* + sandbox opt-out only', () => {
+test('collectRelaunchEnv preserves OPENAMER_HOME + OPENAMER_DESKTOP_* + sandbox opt-out only', () => {
   const env = {
-    HERMES_HOME: '/home/u/.openamer',
+    OPENAMER_HOME: '/home/u/.openamer',
     OPENAMER_DESKTOP_REMOTE_URL: 'http://box:9119',
     OPENAMER_DESKTOP_REMOTE_TOKEN: 'secret',
-    OPENAMER_DESKTOP_HERMES_ROOT: '/home/u/dev/openamer',
+    OPENAMER_DESKTOP_OPENAMER_ROOT: '/home/u/dev/openamer',
     OPENAMER_DESKTOP_APP_NAME: 'OpenAmerSandbox',
     ELECTRON_DISABLE_SANDBOX: '1', // sandbox opt-out — preserved
     PATH: '/usr/bin', // not preserved
@@ -171,10 +171,10 @@ test('collectRelaunchEnv preserves HERMES_HOME + OPENAMER_DESKTOP_* + sandbox op
   }
 
   assert.deepEqual(collectRelaunchEnv(env), {
-    HERMES_HOME: '/home/u/.openamer',
+    OPENAMER_HOME: '/home/u/.openamer',
     OPENAMER_DESKTOP_REMOTE_URL: 'http://box:9119',
     OPENAMER_DESKTOP_REMOTE_TOKEN: 'secret',
-    OPENAMER_DESKTOP_HERMES_ROOT: '/home/u/dev/openamer',
+    OPENAMER_DESKTOP_OPENAMER_ROOT: '/home/u/dev/openamer',
     OPENAMER_DESKTOP_APP_NAME: 'OpenAmerSandbox',
     ELECTRON_DISABLE_SANDBOX: '1'
   })
@@ -195,7 +195,7 @@ test('buildRelaunchScript embeds pid/exec/args/env/cwd and is valid bash', () =>
     pid: 4242,
     execPath: '/home/u/.openamer/openamer-agent/apps/desktop/release/linux-unpacked/OpenAmer',
     args: ['openamer://open/agent/42', "--note=it's fine"],
-    env: { HERMES_HOME: '/home/u/.openamer', OPENAMER_DESKTOP_REMOTE_URL: 'http://box:9119' },
+    env: { OPENAMER_HOME: '/home/u/.openamer', OPENAMER_DESKTOP_REMOTE_URL: 'http://box:9119' },
     cwd: '/home/u/work dir'
   })
 
@@ -205,7 +205,7 @@ test('buildRelaunchScript embeds pid/exec/args/env/cwd and is valid bash', () =>
   assert.match(script, /kill -9 "\$APP_PID"/)
   assert.match(script, /rm -f -- "\$0"/)
   // env exports + cwd restore + args replay are present and quoted.
-  assert.match(script, /export HERMES_HOME='\/home\/u\/\.openamer'/)
+  assert.match(script, /export OPENAMER_HOME='\/home\/u\/\.openamer'/)
   assert.match(script, /export OPENAMER_DESKTOP_REMOTE_URL='http:\/\/box:9119'/)
   assert.match(script, /cd '\/home\/u\/work dir'/)
   assert.match(script, /exec '.*\/linux-unpacked\/OpenAmer' 'openamer:\/\/open\/agent\/42' '--note=it'\\''s fine'/)

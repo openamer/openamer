@@ -98,7 +98,7 @@ export const $petActive = computed($petInfo, info => info.enabled && Boolean(inf
 /**
  * Profile the pet RPCs should resolve against. Pets are per-profile — the active
  * pet (`display.pet.*`) and the installed sprites live under each profile's
- * HERMES_HOME — so every pet RPC carries this. The gateway no-ops it for the
+ * OPENAMER_HOME — so every pet RPC carries this. The gateway no-ops it for the
  * launch profile (own-profile backends already resolve it) and rebinds for any
  * other profile, which is what makes per-profile pets work in app-global remote
  * mode (one backend serving every profile).

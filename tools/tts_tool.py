@@ -704,7 +704,7 @@ def _render_command_tts_template(
 
     def replace_match(match: re.Match[str]) -> str:
         name = match.group("double") or match.group("single")
-        token = f"__HERMES_TTS_PLACEHOLDER_{len(replacements)}__"
+        token = f"__OPENAMER_TTS_PLACEHOLDER_{len(replacements)}__"
         replacements.append((
             token,
             _quote_command_tts_placeholder(

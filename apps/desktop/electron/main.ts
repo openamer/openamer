@@ -459,8 +459,8 @@ if (INSTALL_STAMP) {
   )
 }
 
-// HERMES_HOME — the user-facing root for everything OpenAmer-related. Mirrors
-// scripts/install.ps1's $OpenAmerHome and scripts/install.sh's $HERMES_HOME.
+// OPENAMER_HOME — the user-facing root for everything OpenAmer-related. Mirrors
+// scripts/install.ps1's $OpenAmerHome and scripts/install.sh's $OPENAMER_HOME.
 //
 // Defaults:
 //   Windows: %LOCALAPPDATA%\openamer (matches install.ps1)
@@ -472,11 +472,11 @@ if (INSTALL_STAMP) {
 // existing config / sessions / .env. New installs go to %LOCALAPPDATA%.
 //
 // OPENAMER_DESKTOP_USER_DATA_DIR (used by test:desktop:fresh) puts the sandbox
-// HERMES_HOME beneath the throwaway userData dir so a fresh-install run never
+// OPENAMER_HOME beneath the throwaway userData dir so a fresh-install run never
 // touches the user's real ~/.openamer / %LOCALAPPDATA%\openamer.
 function resolveOpenAmerHome() {
-  if (process.env.HERMES_HOME) {
-    return normalizeOpenAmerHomeRoot(process.env.HERMES_HOME)
+  if (process.env.OPENAMER_HOME) {
+    return normalizeOpenAmerHomeRoot(process.env.OPENAMER_HOME)
   }
 
   if (USER_DATA_OVERRIDE) {
@@ -485,12 +485,12 @@ function resolveOpenAmerHome() {
 
   if (IS_WINDOWS) {
     // A GUI app launched from Explorer inherits the environment block captured
-    // at login, so a HERMES_HOME set via `setx` AFTER login is invisible in
+    // at login, so a OPENAMER_HOME set via `setx` AFTER login is invisible in
     // process.env even though the CLI (a fresh shell) sees it. Without this the
     // backend silently falls back to %LOCALAPPDATA%\openamer and reports "No
     // inference provider configured" despite a valid configured home (#45471).
     // Consult the live User-scoped registry value before the default below.
-    const fromRegistry = readWindowsUserEnvVar('HERMES_HOME')
+    const fromRegistry = readWindowsUserEnvVar('OPENAMER_HOME')
 
     if (fromRegistry) {
       return normalizeOpenAmerHomeRoot(fromRegistry)
@@ -513,13 +513,13 @@ function resolveOpenAmerHome() {
   return path.join(app.getPath('home'), '.openamer')
 }
 
-const HERMES_HOME = resolveOpenAmerHome()
+const OPENAMER_HOME = resolveOpenAmerHome()
 
 function openamerManagedNodePathEntries() {
   // NOTE: keep this ordering in sync with iter_openamer_node_dirs() in
   // openamer_constants.py — this Node main process cannot import the Python
   // module, so the platform-ordering rule is mirrored here.
-  const root = path.join(HERMES_HOME, 'node')
+  const root = path.join(OPENAMER_HOME, 'node')
   const bin = path.join(root, 'bin')
   const entries = IS_WINDOWS ? [root, bin] : [bin, root]
 
@@ -530,12 +530,12 @@ function pathWithOpenAmerManagedNode(...entries) {
   return [...openamerManagedNodePathEntries(), ...entries, process.env.PATH].filter(Boolean).join(path.delimiter)
 }
 
-// ACTIVE_HERMES_ROOT — the canonical mutable OpenAmer install. Same path
+// ACTIVE_OPENAMER_ROOT — the canonical mutable OpenAmer install. Same path
 // install.ps1 / install.sh use, so a desktop-only user and a CLI-only user end
 // up with identical layouts and can share one install.
-const ACTIVE_HERMES_ROOT = path.join(HERMES_HOME, 'openamer-agent')
+const ACTIVE_OPENAMER_ROOT = path.join(OPENAMER_HOME, 'openamer-agent')
 // VENV_ROOT — venv lives inside the repo, exactly like install.ps1 does it.
-const VENV_ROOT = path.join(ACTIVE_HERMES_ROOT, 'venv')
+const VENV_ROOT = path.join(ACTIVE_OPENAMER_ROOT, 'venv')
 // BOOTSTRAP_COMPLETE_MARKER — written by the first-launch bootstrap runner
 // (Phase 1D) after install.ps1 has completed all stages and the user has
 // finished initial configuration. Presence of this marker means the install
@@ -544,10 +544,10 @@ const VENV_ROOT = path.join(ACTIVE_HERMES_ROOT, 'venv')
 // means we re-run the bootstrap; install.ps1's stages are idempotent so a
 // re-run on an already-good install just discovers everything in place.
 //
-// We deliberately put the marker INSIDE ACTIVE_HERMES_ROOT (not alongside)
+// We deliberately put the marker INSIDE ACTIVE_OPENAMER_ROOT (not alongside)
 // so that deleting the checkout to start fresh also deletes the marker --
 // avoids the confusing "marker exists but checkout is gone" state.
-const BOOTSTRAP_COMPLETE_MARKER = path.join(ACTIVE_HERMES_ROOT, '.openamer-bootstrap-complete')
+const BOOTSTRAP_COMPLETE_MARKER = path.join(ACTIVE_OPENAMER_ROOT, '.openamer-bootstrap-complete')
 const BOOTSTRAP_MARKER_SCHEMA_VERSION = 1
 
 const DESKTOP_CONNECTION_CONFIG_PATH = path.join(app.getPath('userData'), 'connection.json')
@@ -556,7 +556,7 @@ const DESKTOP_UPDATE_CONFIG_PATH = path.join(app.getPath('userData'), 'updates.j
 const DESKTOP_WINDOW_STATE_PATH = path.join(app.getPath('userData'), 'window-state.json')
 // active-profile.json records which OpenAmer profile the desktop launches its
 // local backend as. When set, startOpenAmer() passes `openamer --profile <name>
-// dashboard …`, which deterministically pins HERMES_HOME (see
+// dashboard …`, which deterministically pins OPENAMER_HOME (see
 // _apply_profile_override in openamer_cli/main.py) and bypasses the sticky
 // ~/.openamer/active_profile file. Unset (null) preserves the legacy behavior:
 // no --profile flag, so the backend honors active_profile / default.
@@ -568,10 +568,10 @@ const PROFILE_NAME_RE = /^[a-z0-9][a-z0-9_-]{0,63}$/
 // tracks main. User can also override at runtime via
 // openamerDesktop.updates.setBranch().
 const DEFAULT_UPDATE_BRANCH = 'main'
-// desktop.log lives under HERMES_HOME/logs/ so it sits next to agent.log,
+// desktop.log lives under OPENAMER_HOME/logs/ so it sits next to agent.log,
 // errors.log, gateway.log produced by openamer_logging.setup_logging — one log
 // directory per user, regardless of which UI surface produced the line.
-const DESKTOP_LOG_PATH = path.join(HERMES_HOME, 'logs', 'desktop.log')
+const DESKTOP_LOG_PATH = path.join(OPENAMER_HOME, 'logs', 'desktop.log')
 const DESKTOP_LOG_FLUSH_MS = 120
 const DESKTOP_LOG_BUFFER_MAX_CHARS = 64 * 1024
 // Bound desktop.log on disk. It is an append-only forensic log, so a boot loop
@@ -1516,7 +1516,7 @@ function promptFirstRunSetupChoice(backend) {
     type: 'setup-choice',
     active: true,
     platform: backend.platform || process.platform,
-    activeRoot: backend.activeRoot || ACTIVE_HERMES_ROOT
+    activeRoot: backend.activeRoot || ACTIVE_OPENAMER_ROOT
   })
 }
 
@@ -1644,7 +1644,7 @@ function directoryExists(filePath) {
 }
 
 // --- in-app update mutual exclusion (#50238) -------------------------------
-// The Tauri updater writes HERMES_HOME/.openamer-update-in-progress for the whole
+// The Tauri updater writes OPENAMER_HOME/.openamer-update-in-progress for the whole
 // duration of an `--update` run (see update.rs UpdateMarkerGuard). If the user
 // relaunches the desktop mid-update — because the window vanished with no
 // progress and looks crashed — a fresh instance must NOT spawn its own local
@@ -1674,7 +1674,7 @@ const UPDATE_HANDOFF_DWELL_MS = 2500
 // Emits a boot-progress phase so the renderer shows "Update in progress…"
 // rather than a frozen splash. Returns true if it parked at all.
 async function waitForUpdateToFinish() {
-  let marker = readLiveUpdateMarker(HERMES_HOME)
+  let marker = readLiveUpdateMarker(OPENAMER_HOME)
 
   if (!marker) {
     return false
@@ -1690,7 +1690,7 @@ async function waitForUpdateToFinish() {
       12
     )
     await new Promise(r => setTimeout(r, UPDATE_WAIT_POLL_MS))
-    marker = readLiveUpdateMarker(HERMES_HOME)
+    marker = readLiveUpdateMarker(OPENAMER_HOME)
   }
 
   if (marker) {
@@ -1762,7 +1762,7 @@ function unwrapWindowsVenvOpenAmerCommand(command, backendArgs) {
     getVenvPython,
     getVenvSitePackagesEntries,
     buildDesktopBackendEnv,
-    openamerHome: HERMES_HOME,
+    openamerHome: OPENAMER_HOME,
     resolvePath: (...segments) => path.resolve(...segments),
     dirname: p => path.dirname(p),
     basename: p => path.basename(p),
@@ -1809,7 +1809,7 @@ function backendSupportsServe(backend) {
       const prefix = backend.args && backend.args[0] === '-m' ? backend.args.slice(0, 2) : []
       execFileSync(backend.command, [...prefix, 'serve', '--help'], {
         cwd: backend.root || undefined,
-        env: { ...process.env, HERMES_HOME, ...(backend.env || {}) },
+        env: { ...process.env, OPENAMER_HOME, ...(backend.env || {}) },
         timeout: 15000,
         stdio: 'ignore',
         windowsHide: true
@@ -2081,7 +2081,7 @@ function getVenvPython(venvRoot) {
 // This makes "no flashing windows" a property of the one backend launch rather
 // than a flag that has to be remembered at every descendant spawn site. Restoring
 // console python also restores stdout, so the backend announces its port on the
-// normal HERMES_DASHBOARD_READY stdout line and no ready-file side channel is
+// normal OPENAMER_DASHBOARD_READY stdout line and no ready-file side channel is
 // needed.
 
 function makeDashboardReadyFile() {
@@ -2249,16 +2249,16 @@ function writeZoomState(zoomLevel) {
 }
 
 // Match the backend's source resolution but bias toward a real git checkout.
-// Dev → SOURCE_REPO_ROOT. Packaged/CLI install → ACTIVE_HERMES_ROOT.
-// OPENAMER_DESKTOP_HERMES_ROOT always wins so devs can pin a worktree.
+// Dev → SOURCE_REPO_ROOT. Packaged/CLI install → ACTIVE_OPENAMER_ROOT.
+// OPENAMER_DESKTOP_OPENAMER_ROOT always wins so devs can pin a worktree.
 function resolveUpdateRoot() {
   const candidates = [
-    process.env.OPENAMER_DESKTOP_HERMES_ROOT && path.resolve(process.env.OPENAMER_DESKTOP_HERMES_ROOT),
+    process.env.OPENAMER_DESKTOP_OPENAMER_ROOT && path.resolve(process.env.OPENAMER_DESKTOP_OPENAMER_ROOT),
     !IS_PACKAGED && isOpenAmerSourceRoot(SOURCE_REPO_ROOT) ? SOURCE_REPO_ROOT : null,
-    isOpenAmerSourceRoot(ACTIVE_HERMES_ROOT) ? ACTIVE_HERMES_ROOT : null
+    isOpenAmerSourceRoot(ACTIVE_OPENAMER_ROOT) ? ACTIVE_OPENAMER_ROOT : null
   ].filter(Boolean)
 
-  return candidates.find(c => directoryExists(path.join(c, '.git'))) || candidates[0] || ACTIVE_HERMES_ROOT
+  return candidates.find(c => directoryExists(path.join(c, '.git'))) || candidates[0] || ACTIVE_OPENAMER_ROOT
 }
 
 function runGit(args, options: any = {}): Promise<{ code: number; stdout: string; stderr: string }> {
@@ -2485,7 +2485,7 @@ let updateInFlight = false
 let isQuittingForHandoff = false
 
 // Resolve the staged updater binary. The Tauri installer copies itself to
-// HERMES_HOME/openamer-setup.exe on a successful install (see
+// OPENAMER_HOME/openamer-setup.exe on a successful install (see
 // apps/bootstrap-installer paths::copy_self_to_openamer_home). That binary owns
 // ALL repo mutation — running `openamer update` + rebuilding the desktop — so
 // the desktop never touches its own bits while running. Returns null when the
@@ -2493,7 +2493,7 @@ let isQuittingForHandoff = false
 // installer); callers degrade gracefully.
 function resolveUpdaterBinary() {
   const name = IS_WINDOWS ? 'openamer-setup.exe' : 'openamer-setup'
-  const candidate = path.join(HERMES_HOME, name)
+  const candidate = path.join(OPENAMER_HOME, name)
 
   return fileExists(candidate) ? candidate : null
 }
@@ -2735,7 +2735,7 @@ async function applyUpdates(opts = {}) {
     if (!updater) {
       // No staged updater binary — this is a CLI-installed user (they ran
       // `openamer desktop`, never the Tauri installer that self-copies
-      // openamer-setup.exe into HERMES_HOME). They DO have a working `openamer`
+      // openamer-setup.exe into OPENAMER_HOME). They DO have a working `openamer`
       // on PATH / in the venv, so the correct path is the one-liner in their
       // native medium. We show the EXACT command, branch-pinned to the
       // checkout they're on — bare `openamer update` defaults to main and would
@@ -2789,7 +2789,7 @@ async function applyUpdates(opts = {}) {
     // ── Pre-flight state.db integrity guard (#68474) ─────────────────
     // Emergency backup and header verification before the update touches
     // anything.  Runs while the backend is still alive.
-    preflightStateDb(HERMES_HOME, rememberLog)
+    preflightStateDb(OPENAMER_HOME, rememberLog)
 
     // Stop our own backend(s) and wait for the venv shim to unlock BEFORE we
     // spawn the updater. Without this the updater races a still-locked
@@ -2816,10 +2816,10 @@ async function applyUpdates(opts = {}) {
     // Detached so the updater outlives this process — it needs us GONE before
     // `openamer update` will run (the venv shim is locked while we live).
     const child = spawnUpdaterProcess(updater, updaterArgs, {
-      cwd: HERMES_HOME,
+      cwd: OPENAMER_HOME,
       env: {
         ...process.env,
-        HERMES_HOME,
+        OPENAMER_HOME,
         PATH: pathWithOpenAmerManagedNode(venvBin)
       },
       detached: true,
@@ -2834,7 +2834,7 @@ async function applyUpdates(opts = {}) {
     // waitForUpdateToFinish() gate sees a live update and parks instead.
     // The updater overwrites this with its own PID later; same format.
     if (Number.isInteger(child.pid)) {
-      writeUpdateMarker(HERMES_HOME, child.pid)
+      writeUpdateMarker(OPENAMER_HOME, child.pid)
     }
 
     rememberLog(`[updates] launched updater: ${updater} ${updaterArgs.join(' ')}; exiting desktop to release venv shim`)
@@ -2891,10 +2891,10 @@ async function handOffWindowsBootstrapRecovery(reason) {
   await releaseBackendLockForUpdate(updateRoot)
 
   const child = spawnUpdaterProcess(updater, updaterArgs, {
-    cwd: HERMES_HOME,
+    cwd: OPENAMER_HOME,
     env: {
       ...process.env,
-      HERMES_HOME,
+      OPENAMER_HOME,
       PATH: pathWithOpenAmerManagedNode(venvBin)
     },
     detached: true,
@@ -2905,7 +2905,7 @@ async function handOffWindowsBootstrapRecovery(reason) {
   // hand-off has the same window where the renderer can respawn a backend
   // before the updater writes its own marker.
   if (Number.isInteger(child.pid)) {
-    writeUpdateMarker(HERMES_HOME, child.pid)
+    writeUpdateMarker(OPENAMER_HOME, child.pid)
   }
 
   rememberLog(
@@ -3093,7 +3093,7 @@ async function applyUpdatesPosixInApp(opts: any) {
   }
 
   // ── Pre-flight state.db integrity guard (#68474) ──
-  preflightStateDb(HERMES_HOME, rememberLog)
+  preflightStateDb(OPENAMER_HOME, rememberLog)
 
   // Put the OpenAmer-managed Node and the venv on PATH so `openamer desktop`'s
   // npm build can find them on a machine with no system Node. Windows portable
@@ -3103,7 +3103,7 @@ async function applyUpdatesPosixInApp(opts: any) {
   // multi-GB archives for minutes) stream nothing to the progress UI — users
   // read the silence as a hang and cancel a healthy update.
   const env: Record<string, string> = {
-    HERMES_HOME,
+    OPENAMER_HOME,
     PYTHONUNBUFFERED: '1',
     PATH: pathWithOpenAmerManagedNode(path.join(updateRoot, 'venv', 'bin'))
   }
@@ -3401,7 +3401,7 @@ function readBootstrapMarker() {
   return readJson(BOOTSTRAP_COMPLETE_MARKER)
 }
 
-// Marker-independent: is the canonical install at ACTIVE_HERMES_ROOT actually
+// Marker-independent: is the canonical install at ACTIVE_OPENAMER_ROOT actually
 // runnable right now? A complete CLI install (`install.sh --include-desktop`)
 // or a DMG launch over a prior CLI install satisfies this WITHOUT the desktop
 // ever having written the bootstrap marker -- so we must be able to recognise
@@ -3410,11 +3410,11 @@ function isActiveRuntimeUsable() {
   const venvPython = getVenvPython(VENV_ROOT)
 
   return (
-    isOpenAmerSourceRoot(ACTIVE_HERMES_ROOT) &&
+    isOpenAmerSourceRoot(ACTIVE_OPENAMER_ROOT) &&
     fileExists(venvPython) &&
     canImportOpenAmerCli(venvPython, {
       env: {
-        PYTHONPATH: [ACTIVE_HERMES_ROOT, process.env.PYTHONPATH].filter(Boolean).join(path.delimiter)
+        PYTHONPATH: [ACTIVE_OPENAMER_ROOT, process.env.PYTHONPATH].filter(Boolean).join(path.delimiter)
       }
     })
   )
@@ -3643,7 +3643,7 @@ function createPythonBackend(root, label, backendArgs, options: any = {}) {
     command,
     args: ['-m', 'openamer_cli.main', ...backendArgs],
     env: buildDesktopBackendEnv({
-      openamerHome: HERMES_HOME,
+      openamerHome: OPENAMER_HOME,
       pythonPathEntries: [root, ...getVenvSitePackagesEntries(venvRoot)],
       venvRoot
     }),
@@ -3653,7 +3653,7 @@ function createPythonBackend(root, label, backendArgs, options: any = {}) {
   }
 }
 
-// createActiveBackend — build a backend pointing at ACTIVE_HERMES_ROOT, the
+// createActiveBackend — build a backend pointing at ACTIVE_OPENAMER_ROOT, the
 // canonical install location shared with the CLI installer. The venv at
 // VENV_ROOT may not exist yet on first run; bootstrap=true tells
 // ensureRuntime() to create / refresh it before launch.
@@ -3663,24 +3663,24 @@ function createActiveBackend(backendArgs) {
 
   return {
     kind: 'python',
-    label: `OpenAmer at ${ACTIVE_HERMES_ROOT}`,
+    label: `OpenAmer at ${ACTIVE_OPENAMER_ROOT}`,
     command,
     args: ['-m', 'openamer_cli.main', ...backendArgs],
     env: buildDesktopBackendEnv({
-      openamerHome: HERMES_HOME,
-      pythonPathEntries: [ACTIVE_HERMES_ROOT, ...getVenvSitePackagesEntries(VENV_ROOT)],
+      openamerHome: OPENAMER_HOME,
+      pythonPathEntries: [ACTIVE_OPENAMER_ROOT, ...getVenvSitePackagesEntries(VENV_ROOT)],
       venvRoot: VENV_ROOT
     }),
-    root: ACTIVE_HERMES_ROOT,
+    root: ACTIVE_OPENAMER_ROOT,
     bootstrap: true,
     shell: false
   }
 }
 
 function resolveOpenAmerBackend(backendArgs) {
-  // 1. Explicit override -- OPENAMER_DESKTOP_HERMES_ROOT points at a developer
+  // 1. Explicit override -- OPENAMER_DESKTOP_OPENAMER_ROOT points at a developer
   //    checkout. Honour it as-is (no bootstrap; the user is driving).
-  const overrideRoot = process.env.OPENAMER_DESKTOP_HERMES_ROOT && path.resolve(process.env.OPENAMER_DESKTOP_HERMES_ROOT)
+  const overrideRoot = process.env.OPENAMER_DESKTOP_OPENAMER_ROOT && path.resolve(process.env.OPENAMER_DESKTOP_OPENAMER_ROOT)
 
   if (overrideRoot && isOpenAmerSourceRoot(overrideRoot)) {
     const backend = createPythonBackend(overrideRoot, `OpenAmer source at ${overrideRoot}`, backendArgs)
@@ -3702,7 +3702,7 @@ function resolveOpenAmerBackend(backendArgs) {
     }
   }
 
-  // 3. Bootstrap-complete ACTIVE_HERMES_ROOT -- the canonical install at
+  // 3. Bootstrap-complete ACTIVE_OPENAMER_ROOT -- the canonical install at
   //    %LOCALAPPDATA%\openamer\openamer-agent (Windows) or ~/.openamer/openamer-agent.
   //    The bootstrap marker means install.ps1 stages finished and the user
   //    completed initial configuration; we trust the install and go straight
@@ -3830,7 +3830,7 @@ function resolveOpenAmerBackend(backendArgs) {
     env: {},
     shell: false,
     // Hints for the bootstrap runner / UI layer:
-    activeRoot: ACTIVE_HERMES_ROOT,
+    activeRoot: ACTIVE_OPENAMER_ROOT,
     installStamp: INSTALL_STAMP, // may be null in dev
     isPackaged: IS_PACKAGED,
     platform: process.platform
@@ -3889,8 +3889,8 @@ async function ensureRuntime(backend) {
       installStamp: backend.installStamp,
       activeRoot: backend.activeRoot,
       sourceRepoRoot: SOURCE_REPO_ROOT,
-      openamerHome: HERMES_HOME,
-      logRoot: path.join(HERMES_HOME, 'logs'),
+      openamerHome: OPENAMER_HOME,
+      logRoot: path.join(OPENAMER_HOME, 'logs'),
       abortSignal: bootstrapAbortController.signal,
       onEvent: ev => {
         // Tee every bootstrap event to (a) the desktop log for forensics
@@ -3926,7 +3926,7 @@ async function ensureRuntime(backend) {
       const bootstrapError = new Error(
         `OpenAmer bootstrap failed${bootstrapResult.failedStage ? ` at stage '${bootstrapResult.failedStage}'` : ''}: ` +
           `${bootstrapResult.error || 'unknown error'}. ` +
-          `Check ${path.join(HERMES_HOME, 'logs', 'desktop.log')} for the full transcript.`
+          `Check ${path.join(OPENAMER_HOME, 'logs', 'desktop.log')} for the full transcript.`
       ) as any
 
       bootstrapError.isBootstrapFailure = true
@@ -3951,9 +3951,9 @@ async function ensureRuntime(backend) {
   // sync flow exited through, minus all the factory/pip/marker machinery
   // (install.ps1 owns those concerns now and the bootstrap-complete marker
   // attests they ran successfully).
-  if (!isOpenAmerSourceRoot(ACTIVE_HERMES_ROOT)) {
+  if (!isOpenAmerSourceRoot(ACTIVE_OPENAMER_ROOT)) {
     throw new Error(
-      `OpenAmer install at ${ACTIVE_HERMES_ROOT} is missing or incomplete. ` +
+      `OpenAmer install at ${ACTIVE_OPENAMER_ROOT} is missing or incomplete. ` +
         'Reinstall via the desktop installer or scripts/install.ps1.'
     )
   }
@@ -3989,7 +3989,7 @@ async function ensureRuntime(backend) {
   }
 
   backend.command = getVenvPython(VENV_ROOT)
-  backend.label = `OpenAmer at ${ACTIVE_HERMES_ROOT} (venv: ${VENV_ROOT})`
+  backend.label = `OpenAmer at ${ACTIVE_OPENAMER_ROOT} (venv: ${VENV_ROOT})`
   updateBootProgress({
     phase: 'runtime.ready',
     message: 'OpenAmer runtime is ready',
@@ -6642,7 +6642,7 @@ function writeDesktopConnectionConfig(config) {
 }
 
 // Returns the desktop's chosen profile name, or null when unset. "default" is
-// a valid stored value (pins the root HERMES_HOME explicitly); null means "no
+// a valid stored value (pins the root OPENAMER_HOME explicitly); null means "no
 // preference" and preserves the legacy launch (no --profile flag).
 function readActiveDesktopProfile() {
   try {
@@ -7839,7 +7839,7 @@ async function spawnPoolBackend(profile, entry) {
   }
 
   const token = crypto.randomBytes(32).toString('base64url')
-  // --profile wins over the inherited HERMES_HOME env (see _apply_profile_override
+  // --profile wins over the inherited OPENAMER_HOME env (see _apply_profile_override
   // step 3 in openamer_cli/main.py), so the child re-homes to this profile.
   // --port 0: the OS assigns an ephemeral port; the child announces it on stdout.
   const backendArgs = ['--profile', profile, 'serve', '--host', '127.0.0.1', '--port', '0']
@@ -7859,13 +7859,13 @@ async function spawnPoolBackend(profile, entry) {
       cwd: openamerCwd,
       env: {
         ...process.env,
-        HERMES_HOME,
+        OPENAMER_HOME,
         ...backend.env,
         // Pin the gateway's tool/terminal cwd to the same directory we chose for
         // the child process. Inherited TERMINAL_CWD (or a stale config bridge)
         // can still point at the install dir even when spawn cwd is home.
         TERMINAL_CWD: openamerCwd,
-        HERMES_DASHBOARD_SESSION_TOKEN: token,
+        OPENAMER_DASHBOARD_SESSION_TOKEN: token,
         // Marks this dashboard backend as desktop-spawned so it runs the cron
         // scheduler tick loop (the gateway isn't running under the app).
         HERMES_DESKTOP: '1',
@@ -8085,7 +8085,7 @@ async function startOpenAmer() {
     const backendArgs = ['serve', '--host', '127.0.0.1', '--port', '0']
     // Pin the desktop's chosen profile via the global --profile flag. This is
     // deterministic (it wins over the sticky ~/.openamer/active_profile file) and
-    // resolves HERMES_HOME the same way `openamer -p <name>` does on the CLI. An
+    // resolves OPENAMER_HOME the same way `openamer -p <name>` does on the CLI. An
     // unset preference keeps the legacy launch so existing installs are
     // unaffected.
     const activeProfile = readActiveDesktopProfile()
@@ -8136,18 +8136,18 @@ async function startOpenAmer() {
         cwd: openamerCwd,
         env: {
           ...process.env,
-          // Explicitly pin HERMES_HOME for the child so Python's get_openamer_home()
+          // Explicitly pin OPENAMER_HOME for the child so Python's get_openamer_home()
           // resolves to the SAME location our resolveOpenAmerHome() picked. Without
           // this pin, Python falls back to ~/.openamer on every platform — fine on
           // mac/linux (where our default matches), but on Windows our default is
           // %LOCALAPPDATA%\openamer, which differs from C:\Users\<u>\.openamer.
           // Mismatch would split config / sessions / .env / logs across two
-          // directories. install.ps1 sets HERMES_HOME via setx; the desktop
+          // directories. install.ps1 sets OPENAMER_HOME via setx; the desktop
           // can't reliably do that, so we set it inline for every spawn.
-          HERMES_HOME,
+          OPENAMER_HOME,
           ...backend.env,
           TERMINAL_CWD: openamerCwd,
-          HERMES_DASHBOARD_SESSION_TOKEN: token,
+          OPENAMER_DASHBOARD_SESSION_TOKEN: token,
           // Marks this dashboard backend as desktop-spawned so it runs the cron
           // scheduler tick loop (the gateway isn't running under the app).
           HERMES_DESKTOP: '1',
@@ -9351,7 +9351,7 @@ ipcMain.handle('openamer:profile:set', async (_event, name) => {
   const next = writeActiveDesktopProfile(name)
 
   // Switching profiles is a backend re-home: relaunch the dashboard under the
-  // new HERMES_HOME. Pool backends keep their own homes, so only the primary
+  // new OPENAMER_HOME. Pool backends keep their own homes, so only the primary
   // is torn down.
   await teardownPrimaryBackendAndWait()
   mainWindow?.reload()
@@ -10613,12 +10613,12 @@ function uninstallVenvPython() {
 
 async function getUninstallSummary() {
   const py = uninstallVenvPython()
-  const agentRoot = ACTIVE_HERMES_ROOT
+  const agentRoot = ACTIVE_OPENAMER_ROOT
 
   // Fast JS-side fallback used when the agent venv is gone (lite client) or the
   // probe fails — the renderer still needs *something* to render options from.
   const fallback = () => ({
-    openamer_home: HERMES_HOME,
+    openamer_home: OPENAMER_HOME,
     agent_installed: isOpenAmerSourceRoot(agentRoot) && fileExists(py),
     gui_installed: true,
     source_built_artifacts: [],
@@ -10652,7 +10652,7 @@ async function getUninstallSummary() {
         ['-m', 'openamer_cli.main', 'uninstall', '--gui-summary'],
         hiddenWindowsChildOptions({
           cwd: agentRoot,
-          env: { ...process.env, HERMES_HOME, NO_COLOR: '1' },
+          env: { ...process.env, OPENAMER_HOME, NO_COLOR: '1' },
           stdio: ['ignore', 'pipe', 'ignore']
         })
       )
@@ -10720,7 +10720,7 @@ async function runDesktopUninstall(mode) {
 
     if (sysPy) {
       py = sysPy
-      pythonPath = ACTIVE_HERMES_ROOT
+      pythonPath = ACTIVE_OPENAMER_ROOT
     } else if (IS_WINDOWS) {
       rememberLog(
         '[uninstall] no system Python found for lite/full on Windows; falling back ' +
@@ -10740,7 +10740,7 @@ async function runDesktopUninstall(mode) {
   // lock would make the script's rmdir half-fail (#37532 for the update path).
   // Reuses the incident-hardened update teardown; no-op on macOS/Linux.
   try {
-    await releaseBackendLock(ACTIVE_HERMES_ROOT, 'uninstall')
+    await releaseBackendLock(ACTIVE_OPENAMER_ROOT, 'uninstall')
   } catch (error) {
     rememberLog(`[uninstall] backend teardown errored (continuing): ${error.message}`)
   }
@@ -10749,10 +10749,10 @@ async function runDesktopUninstall(mode) {
     desktopPid: process.pid,
     pythonExe: py,
     pythonPath,
-    agentRoot: ACTIVE_HERMES_ROOT,
+    agentRoot: ACTIVE_OPENAMER_ROOT,
     uninstallArgs,
     appPath: removeBundle,
-    openamerHome: HERMES_HOME
+    openamerHome: OPENAMER_HOME
   }
 
   let scriptPath

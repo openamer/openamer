@@ -436,7 +436,7 @@ json.dump(sorted(leaf_paths(DEFAULT_CONFIG)), sys.stdout, indent=2)
           # Helper: run merge then load with Python, output merged JSON
           merge_and_load() {
             local hermes_home="$1"
-            export HERMES_HOME="$hermes_home"
+            export OPENAMER_HOME="$hermes_home"
             ${configMergeScript} ${nixSettings} "$hermes_home/config.yaml"
             ${hermesVenv}/bin/python3 -c '
 import json, sys

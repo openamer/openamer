@@ -2920,7 +2920,7 @@ def _normalize_launchd_plist_for_comparison(text: str) -> str:
     normalized = _normalize_service_definition(text)
     return re.sub(
         r"(<key>PATH</key>\s*<string>)(.*?)(</string>)",
-        r"\1__HERMES_PATH__\3",
+        r"\1__OPENAMER_PATH__\3",
         normalized,
         flags=re.S,
     )

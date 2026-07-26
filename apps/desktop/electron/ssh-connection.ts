@@ -89,7 +89,7 @@ function validateKeyPath(keyPath) {
 // Token / secret redaction
 
 const _REDACTIONS: Array<[RegExp, string]> = [
-  [/(HERMES_DASHBOARD_SESSION_TOKEN=)(\S+)/g, '$1<redacted>'],
+  [/(OPENAMER_DASHBOARD_SESSION_TOKEN=)(\S+)/g, '$1<redacted>'],
   [/(X-OpenAmer-Session-Token["']?\s*[:=]\s*["']?)([^\s"'&]+)/gi, '$1<redacted>'],
   [/(Authorization["']?\s*:\s*Bearer\s+)(\S+)/gi, '$1<redacted>'],
   [/([?&](?:token|ticket)=)([^\s&"']+)/gi, '$1<redacted>']

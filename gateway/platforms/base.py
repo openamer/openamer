@@ -982,7 +982,7 @@ _CACHE_DIR_IMPORT_DEFAULTS = {
 }
 
 _OPENAMER_HOME = get_openamer_home()
-_HERMES_ROOT = get_default_hermes_root()
+_OPENAMER_ROOT = get_default_hermes_root()
 MEDIA_DELIVERY_ALLOW_DIRS_ENV = "HERMES_MEDIA_ALLOW_DIRS"
 MEDIA_DELIVERY_TRUST_RECENT_ENV = "HERMES_MEDIA_TRUST_RECENT_FILES"
 MEDIA_DELIVERY_TRUST_RECENT_SECONDS_ENV = "HERMES_MEDIA_TRUST_RECENT_SECONDS"
@@ -1082,7 +1082,7 @@ def _profile_cache_roots() -> List[Path]:
     denied prefix and $HOME is not that prefix). See issue #31733.
     """
     roots: List[Path] = []
-    profiles_dir = _HERMES_ROOT / "profiles"
+    profiles_dir = _OPENAMER_ROOT / "profiles"
     try:
         profile_dirs = [p for p in profiles_dir.iterdir() if p.is_dir()]
     except OSError:
@@ -1099,7 +1099,7 @@ def _kanban_attachment_roots() -> List[Path]:
     if override:
         return [Path(override).expanduser()]
     home_override = os.environ.get("HERMES_KANBAN_HOME", "").strip()
-    root = Path(home_override).expanduser() if home_override else _HERMES_ROOT
+    root = Path(home_override).expanduser() if home_override else _OPENAMER_ROOT
     roots = [root / "kanban" / "attachments"]
     boards_root = root / "kanban" / "boards"
     try:
@@ -1217,7 +1217,7 @@ def _media_delivery_denied_paths() -> List[Path]:
         "pairing",
         "mcp-tokens",
     )
-    for hermes_root in (_OPENAMER_HOME, _HERMES_ROOT):
+    for hermes_root in (_OPENAMER_HOME, _OPENAMER_ROOT):
         for rel in _ROOT_CREDENTIAL_FILES:
             denied.append(hermes_root / rel)
         for rel in _ROOT_CREDENTIAL_DIRS:

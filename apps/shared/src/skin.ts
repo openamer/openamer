@@ -1,7 +1,7 @@
 /**
  * Canonical Hermes skin — the theme SDK's cross-surface contract.
  *
- * A skin is authored once as YAML in `$HERMES_HOME/skins/<name>.yaml` (or a
+ * A skin is authored once as YAML in `$OPENAMER_HOME/skins/<name>.yaml` (or a
  * built-in), resolved by the Python skin engine (`hermes_cli/skin_engine.py`),
  * and pushed to every surface over JSON-RPC (`gateway.ready`, `skin.changed`,
  * `config.get skin`). This is the ONE shape every TypeScript surface consumes;

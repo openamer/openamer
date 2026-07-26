@@ -88,21 +88,21 @@ test('falls back to the default for malformed / non-positive overrides', () => {
 test('resolves with the announced port', async () => {
   const child = makeFakeChild()
   const p = waitForDashboardPort(child, 1000)
-  child.stdout.emit('data', 'noise before\nHERMES_DASHBOARD_READY port=54321\n')
+  child.stdout.emit('data', 'noise before\nOPENAMER_DASHBOARD_READY port=54321\n')
   assert.equal(await p, 54321)
 })
 
-test('resolves with a HERMES_BACKEND_READY port (headless `serve`)', async () => {
+test('resolves with a OPENAMER_BACKEND_READY port (headless `serve`)', async () => {
   const child = makeFakeChild()
   const p = waitForDashboardPort(child, 1000)
-  child.stdout.emit('data', 'HERMES_BACKEND_READY port=43210\n')
+  child.stdout.emit('data', 'OPENAMER_BACKEND_READY port=43210\n')
   assert.equal(await p, 43210)
 })
 
 test('parses the port even when the line arrives split across chunks', async () => {
   const child = makeFakeChild()
   const p = waitForDashboardPort(child, 1000)
-  child.stdout.emit('data', 'HERMES_DASHBOARD_READY po')
+  child.stdout.emit('data', 'OPENAMER_DASHBOARD_READY po')
   child.stdout.emit('data', 'rt=8080\n')
   assert.equal(await p, 8080)
 })
@@ -135,7 +135,7 @@ test('a late announcement after timeout does not throw (listeners torn down)', a
   // The orphaned backend may still print its READY line later; the watcher
   // must have detached so this emit is a no-op rather than a double-settle.
   assert.doesNotThrow(() => {
-    child.stdout.emit('data', 'HERMES_DASHBOARD_READY port=9999\n')
+    child.stdout.emit('data', 'OPENAMER_DASHBOARD_READY port=9999\n')
   })
 })
 

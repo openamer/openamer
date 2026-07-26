@@ -44,7 +44,7 @@ def build_gui_parser(subparsers, *, cmd_gui: Callable) -> None:
     )
     gui_parser.add_argument(
         "--openamer-root",
-        help="Override the OpenAmer source root used by Desktop (sets HERMES_DESKTOP_HERMES_ROOT)",
+        help="Override the OpenAmer source root used by Desktop (sets HERMES_DESKTOP_OPENAMER_ROOT)",
     )
     gui_parser.add_argument(
         "--cwd",

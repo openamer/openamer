@@ -151,7 +151,7 @@ def test_gui_forwards_desktop_environment_overrides(tmp_path, monkeypatch):
     launch_env = mock_run.call_args_list[1].kwargs["env"]
     assert launch_env["HERMES_DESKTOP_BOOT_FAKE"] == "1"
     assert launch_env["HERMES_DESKTOP_IGNORE_EXISTING"] == "1"
-    assert launch_env["HERMES_DESKTOP_HERMES_ROOT"] == str(hermes_root)
+    assert launch_env["HERMES_DESKTOP_OPENAMER_ROOT"] == str(hermes_root)
     assert launch_env["HERMES_DESKTOP_CWD"] == str(cwd)
 
 

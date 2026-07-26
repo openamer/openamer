@@ -13,8 +13,8 @@ import { useSessionLinkTitle } from '@/lib/session-link-title'
 import { parseSessionRefValue, sessionRefFallbackLabel } from '@/lib/session-refs'
 import { cn } from '@/lib/utils'
 
-const HERMES_REF_TYPES = ['file', 'folder', 'url', 'image', 'tool', 'line', 'terminal', 'session'] as const
-type OpenAmerRefType = (typeof HERMES_REF_TYPES)[number]
+const OPENAMER_REF_TYPES = ['file', 'folder', 'url', 'image', 'tool', 'line', 'terminal', 'session'] as const
+type OpenAmerRefType = (typeof OPENAMER_REF_TYPES)[number]
 
 /** Single source of truth for chip icon glyphs (Tabler outline @ 24×24).
  * Used both by the rendered <DirectiveIcon> and the raw SVG markup the
@@ -161,7 +161,7 @@ export const DIRECTIVE_CHIP_CLASS =
  */
 const CANONICAL_DIRECTIVE_RE = /:([\w-]{1,64})\[([^\]\n]{1,1024})\](?:\{name=([^}\n]{1,1024})\})?/g
 
-const HERMES_DIRECTIVE_RE = new RegExp(
+const OPENAMER_DIRECTIVE_RE = new RegExp(
   '@(file|folder|url|image|tool|line|terminal|session):(' +
     '`[^`\\n]+`' +
     '|"[^"\\n]+"' +
@@ -270,7 +270,7 @@ function parseDirectiveText(text: string): Unstable_DirectiveSegment[] {
       label: match[2] || match[3] || '',
       id: match[3] || match[2] || ''
     })),
-    ...Array.from(text.matchAll(HERMES_DIRECTIVE_RE)).map(match => {
+    ...Array.from(text.matchAll(OPENAMER_DIRECTIVE_RE)).map(match => {
       const id = unwrapRefValue(match[2] || '')
 
       return {

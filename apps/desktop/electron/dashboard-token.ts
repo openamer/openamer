@@ -1,7 +1,7 @@
 /**
  * Helpers for local dashboard session-token discovery.
  *
- * The desktop main process can pass HERMES_DASHBOARD_SESSION_TOKEN when it
+ * The desktop main process can pass OPENAMER_DASHBOARD_SESSION_TOKEN when it
  * spawns the local dashboard, but the dashboard is the source of truth for the
  * token it actually serves to the renderer. If those drift, HTTP readiness
  * probes still pass while /api/ws rejects the renderer's token.
@@ -36,7 +36,7 @@ async function fetchPublicText(url, options: any = {}) {
 }
 
 function extractInjectedDashboardToken(html) {
-  const match = /window\.__HERMES_SESSION_TOKEN__\s*=\s*("(?:\\.|[^"\\])*")/.exec(String(html || ''))
+  const match = /window\.__OPENAMER_SESSION_TOKEN__\s*=\s*("(?:\\.|[^"\\])*")/.exec(String(html || ''))
 
   if (!match) {
     return null

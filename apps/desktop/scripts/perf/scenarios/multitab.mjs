@@ -5,7 +5,7 @@
 //
 // Drives the real pipeline synthetically (no backend, no credits):
 // publishSessionState per session per flush — exactly what the gateway's
-// delta flush does — via the __HERMES_SESSION_TILES__ hook.
+// delta flush does — via the __OPENAMER_SESSION_TILES__ hook.
 //
 //   node scripts/perf/run.mjs multitab --spawn [--tiles 5] [--tokens 240]
 
@@ -54,7 +54,7 @@ const COLLECT = `
  *  bind fake runtime ids, and seed each with a realistic transcript. */
 const setup = (tiles, seedTurns, streamSeed) => `
   (() => {
-    const hook = window.__HERMES_SESSION_TILES__
+    const hook = window.__OPENAMER_SESSION_TILES__
     if (!hook) return 'no-hook'
 
     const turn = (sid, i) => ([
@@ -105,13 +105,13 @@ const setup = (tiles, seedTurns, streamSeed) => `
 
 // Activate every tab once so keep-alive mounts the full stack (lazy mount:
 // a never-activated tab stays unmounted, which would understate the cost).
-const reveal = sid => `window.__HERMES_LAYOUT_TREE__.reveal(${JSON.stringify(`session-tile:${sid}`)})`
+const reveal = sid => `window.__OPENAMER_LAYOUT_TREE__.reveal(${JSON.stringify(`session-tile:${sid}`)})`
 
 /** Page-side driver: grow every tile's streaming tail by `chunk` each
  *  `intervalMs`, through the same publish path the gateway flush uses. */
 const drive = (chunk, intervalMs, totalTokens) => `
   (() => {
-    const hook = window.__HERMES_SESSION_TILES__
+    const hook = window.__OPENAMER_SESSION_TILES__
     let pushed = 0
     const tick = () => {
       const states = hook.states()
@@ -140,10 +140,10 @@ const CLEANUP = `
     if (window.__MT__) {
       clearTimeout(window.__MT__.timer)
       for (const { sid, rid } of window.__MT__.ids) {
-        window.__HERMES_SESSION_TILES__.publish(rid, {
-          ...window.__HERMES_SESSION_TILES__.states()[rid], busy: false, streamId: null
+        window.__OPENAMER_SESSION_TILES__.publish(rid, {
+          ...window.__OPENAMER_SESSION_TILES__.states()[rid], busy: false, streamId: null
         })
-        window.__HERMES_SESSION_TILES__.close(sid)
+        window.__OPENAMER_SESSION_TILES__.close(sid)
       }
       window.__MT__ = null
     }

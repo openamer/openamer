@@ -4,7 +4,7 @@
  * Exposes React, UI components, hooks, and utilities on the window so
  * that plugin bundles can use them without bundling their own copies.
  *
- * Plugins call window.__HERMES_PLUGINS__.register(name, Component)
+ * Plugins call window.__OPENAMER_PLUGINS__.register(name, Component)
  * to register their tab component.
  */
 
@@ -92,7 +92,7 @@ export function getRegisteredCount(): number {
  * Version of the plugin SDK contract (see ``plugins/sdk.d.ts``). Bump the
  * major on any backwards-incompatible change to the exposed surface;
  * additive changes (new optional fields / helpers) don't require a bump.
- * Exposed at runtime as ``window.__HERMES_PLUGIN_SDK__.sdkVersion`` so a
+ * Exposed at runtime as ``window.__OPENAMER_PLUGIN_SDK__.sdkVersion`` so a
  * plugin (or a future host-side compatibility gate) can read it.
  */
 export const SDK_CONTRACT_VERSION = "1.1.0";
@@ -102,12 +102,12 @@ export const SDK_CONTRACT_VERSION = "1.1.0";
 // here (duplicate ambient declarations with differing modifiers conflict).
 
 export function exposePluginSDK() {
-  window.__HERMES_PLUGINS__ = {
+  window.__OPENAMER_PLUGINS__ = {
     register: registerPlugin,
     registerSlot,
   };
 
-  window.__HERMES_PLUGIN_SDK__ = {
+  window.__OPENAMER_PLUGIN_SDK__ = {
     // Contract version of the plugin SDK surface (see plugins/sdk.d.ts).
     // Bump on backwards-incompatible changes; additive changes don't need it.
     sdkVersion: SDK_CONTRACT_VERSION,
@@ -129,7 +129,7 @@ export function exposePluginSDK() {
     fetchJSON,
     // Authenticated fetch for non-JSON endpoints (uploads / blob downloads).
     // Handles loopback-token vs gated-cookie auth so plugins never read
-    // window.__HERMES_SESSION_TOKEN__ directly.
+    // window.__OPENAMER_SESSION_TOKEN__ directly.
     authedFetch,
     // Build a ws(s):// URL with the correct auth param for the active mode
     // (single-use ticket in gated mode, token in loopback). Use this for any

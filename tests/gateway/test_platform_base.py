@@ -28,7 +28,7 @@ def test_media_delivery_denies_encrypted_bitwarden_cache(tmp_path, monkeypatch):
     hermes_home = tmp_path / ".hermes"
     hermes_home.mkdir()
     monkeypatch.setattr(base, "_OPENAMER_HOME", hermes_home)
-    monkeypatch.setattr(base, "_HERMES_ROOT", hermes_home)
+    monkeypatch.setattr(base, "_OPENAMER_ROOT", hermes_home)
     path = hermes_home / "cache" / "bws_cache.enc.json"
     path.parent.mkdir()
     path.write_text("encrypted-secret-cache")
@@ -1156,7 +1156,7 @@ class TestMediaDeliveryDefaultMode:
             hermes_dir,
         )
         monkeypatch.setattr(
-            "gateway.platforms.base._HERMES_ROOT",
+            "gateway.platforms.base._OPENAMER_ROOT",
             hermes_dir,
         )
 
@@ -1195,7 +1195,7 @@ class TestMediaDeliveryDefaultMode:
             profile_home,
         )
         monkeypatch.setattr(
-            "gateway.platforms.base._HERMES_ROOT",
+            "gateway.platforms.base._OPENAMER_ROOT",
             hermes_root,
         )
 
@@ -1217,7 +1217,7 @@ class TestMediaDeliveryDefaultMode:
         token.write_text('{"access_token": "***", "refresh_token": "***"}')
         monkeypatch.setenv("HOME", str(fake_home))
         monkeypatch.setattr("gateway.platforms.base._OPENAMER_HOME", hermes_dir)
-        monkeypatch.setattr("gateway.platforms.base._HERMES_ROOT", hermes_dir)
+        monkeypatch.setattr("gateway.platforms.base._OPENAMER_ROOT", hermes_dir)
 
         assert BasePlatformAdapter.validate_media_delivery_path(str(token)) is None
 
@@ -1239,7 +1239,7 @@ class TestMediaDeliveryDefaultMode:
         token.write_text('{"access_token": "***"}')  # mtime = now → "recent"
         monkeypatch.setenv("HOME", str(fake_home))
         monkeypatch.setattr("gateway.platforms.base._OPENAMER_HOME", hermes_dir)
-        monkeypatch.setattr("gateway.platforms.base._HERMES_ROOT", hermes_dir)
+        monkeypatch.setattr("gateway.platforms.base._OPENAMER_ROOT", hermes_dir)
 
         assert BasePlatformAdapter.validate_media_delivery_path(str(token)) is None
 
@@ -1257,7 +1257,7 @@ class TestMediaDeliveryDefaultMode:
         token.write_text('{"approved": ["123"]}')
         monkeypatch.setenv("HOME", str(fake_home))
         monkeypatch.setattr("gateway.platforms.base._OPENAMER_HOME", hermes_dir)
-        monkeypatch.setattr("gateway.platforms.base._HERMES_ROOT", hermes_dir)
+        monkeypatch.setattr("gateway.platforms.base._OPENAMER_ROOT", hermes_dir)
 
         assert BasePlatformAdapter.validate_media_delivery_path(str(token)) is None
 
@@ -1275,7 +1275,7 @@ class TestMediaDeliveryDefaultMode:
         self._patch_roots(monkeypatch, cache_dir)
         monkeypatch.setenv("HOME", str(fake_home))
         monkeypatch.setattr("gateway.platforms.base._OPENAMER_HOME", hermes_dir)
-        monkeypatch.setattr("gateway.platforms.base._HERMES_ROOT", hermes_dir)
+        monkeypatch.setattr("gateway.platforms.base._OPENAMER_ROOT", hermes_dir)
 
         assert BasePlatformAdapter.validate_media_delivery_path(str(artifact)) == str(artifact.resolve())
 
@@ -1296,7 +1296,7 @@ class TestMediaDeliveryDefaultMode:
         artifact.write_bytes(b"%PDF-1.4")  # fresh mtime
         monkeypatch.setenv("HOME", str(fake_home))
         monkeypatch.setattr("gateway.platforms.base._OPENAMER_HOME", hermes_dir)
-        monkeypatch.setattr("gateway.platforms.base._HERMES_ROOT", hermes_dir)
+        monkeypatch.setattr("gateway.platforms.base._OPENAMER_ROOT", hermes_dir)
 
         assert BasePlatformAdapter.validate_media_delivery_path(str(artifact)) == str(artifact.resolve())
 
@@ -1436,7 +1436,7 @@ class TestMediaDeliveryDefaultMode:
             (str(denied_root),),
         )
         monkeypatch.setattr(
-            "gateway.platforms.base._HERMES_ROOT", hermes_root
+            "gateway.platforms.base._OPENAMER_ROOT", hermes_root
         )
 
         assert (
@@ -1466,7 +1466,7 @@ class TestMediaDeliveryDefaultMode:
             (str(denied_root),),
         )
         monkeypatch.setattr(
-            "gateway.platforms.base._HERMES_ROOT", hermes_root
+            "gateway.platforms.base._OPENAMER_ROOT", hermes_root
         )
 
         assert BasePlatformAdapter.validate_media_delivery_path(str(cred)) is None

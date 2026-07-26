@@ -56,7 +56,7 @@ import {
 
 // Manual compression is LLM-bound and routinely outlives the desktop's 30s
 // default WS request timeout on large sessions — give it the TUI client's
-// 120s RPC budget (HERMES_TUI_RPC_TIMEOUT_MS default) instead.
+// 120s RPC budget (OPENAMER_TUI_RPC_TIMEOUT_MS default) instead.
 const SESSION_COMPRESS_TIMEOUT_MS = 120_000
 
 /** Everything a slash handler needs about the invocation it's serving. */

@@ -8,7 +8,7 @@ import math
 from copy import deepcopy
 from typing import Any
 
-MOA_MARKER_PREFIX = "__HERMES_MOA_TURN_V1__"
+MOA_MARKER_PREFIX = "__OPENAMER_MOA_TURN_V1__"
 DEFAULT_MOA_PRESET_NAME = "default"
 
 DEFAULT_MOA_REFERENCE_MODELS: list[dict[str, str]] = [

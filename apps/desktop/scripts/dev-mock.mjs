@@ -204,16 +204,16 @@ async function main() {
 
   const sandbox = createSandbox()
   writeMockConfig(sandbox.openamerHome, mock.url)
-  console.log(`  HERMES_HOME: ${sandbox.openamerHome}`)
+  console.log(`  OPENAMER_HOME: ${sandbox.openamerHome}`)
 
   const electronBin = findElectron()
 
   const env = {
     ...process.env,
-    HERMES_HOME: sandbox.openamerHome,
+    OPENAMER_HOME: sandbox.openamerHome,
     OPENAMER_DESKTOP_USER_DATA_DIR: sandbox.userDataDir,
     OPENAMER_DESKTOP_IGNORE_EXISTING: '1',
-    OPENAMER_DESKTOP_HERMES_ROOT: REPO_ROOT,
+    OPENAMER_DESKTOP_OPENAMER_ROOT: REPO_ROOT,
     OPENAMER_DESKTOP_APP_NAME: `OpenAmerDevMock-${Date.now()}`,
   }
 

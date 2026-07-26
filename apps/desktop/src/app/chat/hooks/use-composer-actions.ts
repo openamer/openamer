@@ -79,7 +79,7 @@ export interface DroppedFile {
 
 /** MIME emitted by in-app drag sources (project tree, gutter line numbers).
  * Payload is JSON `{ path; isDirectory?; line?; lineEnd? }[]`. */
-export const HERMES_PATHS_MIME = 'application/x-openamer-paths'
+export const OPENAMER_PATHS_MIME = 'application/x-openamer-paths'
 
 /**
  * Eagerly resolve files from a drop event into [File?, path, isDirectory?]
@@ -99,7 +99,7 @@ export function extractDroppedFiles(transfer: DataTransfer): DroppedFile[] {
   // In-app drags first — they carry richer metadata (isDirectory) than the
   // File-based fallback can provide, and produce no overlapping native files.
   try {
-    const internalRaw = transfer.getData(HERMES_PATHS_MIME)
+    const internalRaw = transfer.getData(OPENAMER_PATHS_MIME)
 
     if (internalRaw) {
       const parsed = JSON.parse(internalRaw) as {

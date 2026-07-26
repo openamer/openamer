@@ -26,7 +26,7 @@ _TIER1_SAMPLE = {
     "TELEGRAM_BOT_TOKEN": "bot-token",
     "SLACK_APP_TOKEN": "xapp-secret",
     "MODAL_TOKEN_SECRET": "modal-secret",
-    "HERMES_DASHBOARD_SESSION_TOKEN": "dash-secret",
+    "OPENAMER_DASHBOARD_SESSION_TOKEN": "dash-secret",
 }
 
 _PROVIDER_SAMPLE = {

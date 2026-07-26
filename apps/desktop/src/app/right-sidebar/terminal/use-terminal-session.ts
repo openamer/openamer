@@ -68,7 +68,7 @@ function previewSelectionLabel(): string {
   return source.split(/[\\/]/).filter(Boolean).pop() || target?.label?.trim() || ''
 }
 
-const HERMES_PATHS_MIME = 'application/x-openamer-paths'
+const OPENAMER_PATHS_MIME = 'application/x-openamer-paths'
 
 function readEscapeSequence(data: string, index: number) {
   if (data.charCodeAt(index) !== 0x1b || index + 1 >= data.length) {
@@ -284,7 +284,7 @@ function withSurface(theme: ReturnType<typeof terminalTheme>) {
 }
 
 function transferHasDropCandidates(t: DataTransfer): boolean {
-  if (t.types?.includes(HERMES_PATHS_MIME)) {
+  if (t.types?.includes(OPENAMER_PATHS_MIME)) {
     return true
   }
 
@@ -317,7 +317,7 @@ function collectDroppedPaths(t: DataTransfer): string[] {
   }
 
   try {
-    const raw = t.getData(HERMES_PATHS_MIME)
+    const raw = t.getData(OPENAMER_PATHS_MIME)
 
     if (raw) {
       for (const entry of JSON.parse(raw) as { path?: unknown }[]) {

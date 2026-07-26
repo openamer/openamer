@@ -11,14 +11,14 @@
  *   - reuse an existing desktop-dedicated dashboard via a lockfile + an
  *     AUTHENTICATED /api/status probe (pid liveness alone is insufficient),
  *   - spawn a fresh detached `--isolated --port 0` dashboard and scrape its
- *     `HERMES_DASHBOARD_READY port=<n>` readiness line,
+ *     `OPENAMER_DASHBOARD_READY port=<n>` readiness line,
  *   - adopt the token the dashboard actually serves (served-token adoption),
  *   - clean up a stale dashboard only when it is provably ours.
  *
  * No `import 'electron'` so it's unit-testable with `node --test`. main.ts wires
  * the real SshConnection, fetch, adoptServedDashboardToken, and waitForOpenAmer in.
  *
- * The minted HERMES_DASHBOARD_SESSION_TOKEN is the SPAWN credential. After
+ * The minted OPENAMER_DASHBOARD_SESSION_TOKEN is the SPAWN credential. After
  * readiness the caller runs served-token adoption against the tunneled baseUrl
  * and the SERVED token's fingerprint is what lands in the lockfile — so the
  * reuse probe checks the credential that actually authenticates /api/ws, not
@@ -242,12 +242,12 @@ async function probeRemotePlatform(ssh) {
   return { os: osName, arch }
 }
 
-// The HERMES_HOME the remote dashboard will use (explicit env wins, else
+// The OPENAMER_HOME the remote dashboard will use (explicit env wins, else
 // ~/.openamer). Recorded in the lockfile so a future reuse can tell it's the same
 // state store; best-effort.
 async function probeRemoteOpenAmerHome(ssh) {
   try {
-    const out = (await ssh.exec('echo "${HERMES_HOME:-$HOME/.openamer}"')).trim().split('\n').pop()
+    const out = (await ssh.exec('echo "${OPENAMER_HOME:-$HOME/.openamer}"')).trim().split('\n').pop()
 
     return out || '~/.openamer'
   } catch (cause) {

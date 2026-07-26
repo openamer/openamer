@@ -206,7 +206,7 @@ class TestRedactKey:
 
 
 class TestSessionTokenInjection:
-    """The desktop shell mints HERMES_DASHBOARD_SESSION_TOKEN and signs its
+    """The desktop shell mints OPENAMER_DASHBOARD_SESSION_TOKEN and signs its
     /api + /api/ws calls with it. The backend must adopt that token, else every
     desktop request 401s ("gateway is offline"). A main-merge once silently
     dropped this read — this guards the contract, not a literal value.
@@ -216,19 +216,19 @@ class TestSessionTokenInjection:
         import importlib
         import openamer_cli.web_server as ws
 
-        monkeypatch.setenv("HERMES_DASHBOARD_SESSION_TOKEN", "desktop-seeded-token")
+        monkeypatch.setenv("OPENAMER_DASHBOARD_SESSION_TOKEN", "desktop-seeded-token")
         try:
             importlib.reload(ws)
             assert ws._SESSION_TOKEN == "desktop-seeded-token"
         finally:
-            monkeypatch.delenv("HERMES_DASHBOARD_SESSION_TOKEN", raising=False)
+            monkeypatch.delenv("OPENAMER_DASHBOARD_SESSION_TOKEN", raising=False)
             importlib.reload(ws)
 
     def test_falls_back_to_random_token(self, monkeypatch):
         import importlib
         import openamer_cli.web_server as ws
 
-        monkeypatch.delenv("HERMES_DASHBOARD_SESSION_TOKEN", raising=False)
+        monkeypatch.delenv("OPENAMER_DASHBOARD_SESSION_TOKEN", raising=False)
         importlib.reload(ws)
 
         assert ws._SESSION_TOKEN and len(ws._SESSION_TOKEN) >= 32

@@ -201,11 +201,11 @@ function writeEmptyConfig(openamerHome: string): void {
  * Build the environment for the Electron app process.
  *
  * Key env vars:
- *  - HERMES_HOME → sandbox openamer-home (isolated config/sessions)
+ *  - OPENAMER_HOME → sandbox openamer-home (isolated config/sessions)
  *  - OPENAMER_DESKTOP_USER_DATA_DIR → sandbox electron-user-data
  *  - OPENAMER_DESKTOP_IGNORE_EXISTING=1 → don't pick up `openamer` from PATH
  *    (we want the dev checkout at REPO_ROOT)
- *  - OPENAMER_DESKTOP_HERMES_ROOT → REPO_ROOT (dev checkout resolution)
+ *  - OPENAMER_DESKTOP_OPENAMER_ROOT → REPO_ROOT (dev checkout resolution)
  *  - OPENAMER_DESKTOP_APP_NAME → unique-ish per test (avoids single-instance lock)
  *  - XDG_RUNTIME_DIR → ensure Electron has a writable runtime dir on Linux
  */
@@ -225,10 +225,10 @@ export function buildAppEnv(sandbox: Sandbox, extra: Record<string, string> = {}
 
   return {
     ...clean,
-    HERMES_HOME: sandbox.openamerHome,
+    OPENAMER_HOME: sandbox.openamerHome,
     OPENAMER_DESKTOP_USER_DATA_DIR: sandbox.userDataDir,
     OPENAMER_DESKTOP_IGNORE_EXISTING: '1',
-    OPENAMER_DESKTOP_HERMES_ROOT: REPO_ROOT,
+    OPENAMER_DESKTOP_OPENAMER_ROOT: REPO_ROOT,
     OPENAMER_DESKTOP_APP_NAME: `OpenAmerE2E-${Date.now()}`,
     // Clear dev-server override — we want the built dist/, not a vite server.
     // The dev-server check in main.ts looks for this env var; if it's set,
@@ -295,8 +295,8 @@ export function findElectron(): string {
 /**
  * Launch the desktop app in dev mode.
  *
- * @param sandbox  - isolated HERMES_HOME + userData
- * @param env      - the process environment (already has HERMES_HOME etc.)
+ * @param sandbox  - isolated OPENAMER_HOME + userData
+ * @param env      - the process environment (already has OPENAMER_HOME etc.)
  * @returns the ElectronApplication + first Page
  */
 export async function launchDesktop(
@@ -525,7 +525,7 @@ export interface PackagedAppFixture {
  * progress without spawning a real OpenAmer backend.
  *
  * Uses the same sandbox isolation (credential stripping, isolated
- * HERMES_HOME + userData, unique app name) as the dev-mode fixtures.
+ * OPENAMER_HOME + userData, unique app name) as the dev-mode fixtures.
  *
  * Skips if the packaged binary doesn't exist — run `npm run pack` first.
  */
@@ -550,7 +550,7 @@ export async function setupPackagedApp(): Promise<PackagedAppFixture> {
   // should use its own bundled renderer, not the dev checkout.
   delete (env as Record<string, string | undefined>).OPENAMER_DESKTOP_DEV_SERVER
   delete (env as Record<string, string | undefined>).OPENAMER_DESKTOP_HERMES
-  delete (env as Record<string, string | undefined>).OPENAMER_DESKTOP_HERMES_ROOT
+  delete (env as Record<string, string | undefined>).OPENAMER_DESKTOP_OPENAMER_ROOT
 
   const app = await _electron.launch({
     executablePath: PACKAGED_BINARY_PATH,

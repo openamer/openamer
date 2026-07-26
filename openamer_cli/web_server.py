@@ -195,7 +195,7 @@ async def _lifespan(app: "FastAPI"):
     app.state.chat_argv_lock = asyncio.Lock()
 
     # Fire openamer_cli.gateway import into a background thread so the event
-    # loop is not blocked and HERMES_DASHBOARD_READY fires without delay.
+    # loop is not blocked and OPENAMER_DASHBOARD_READY fires without delay.
     # On a cold Windows install the module chain triggers .pyc compilation
     # and Defender real-time scans that can stall the event loop for 15-30s.
     # Running in an executor means the cost is paid in a worker thread while
@@ -289,12 +289,12 @@ app.include_router(_memory_oauth_router)
 # ---------------------------------------------------------------------------
 # Session token for protecting sensitive endpoints (reveal).
 # The desktop shell mints the token and injects it via
-# HERMES_DASHBOARD_SESSION_TOKEN so its main process can authenticate the
+# OPENAMER_DASHBOARD_SESSION_TOKEN so its main process can authenticate the
 # /api calls it makes on the user's behalf; otherwise we generate one fresh
 # on every server start. Either way it dies when the process exits and is
 # injected into the SPA HTML so only the legitimate web UI can use it.
 # ---------------------------------------------------------------------------
-_SESSION_TOKEN = os.environ.get("HERMES_DASHBOARD_SESSION_TOKEN") or secrets.token_urlsafe(32)
+_SESSION_TOKEN = os.environ.get("OPENAMER_DASHBOARD_SESSION_TOKEN") or secrets.token_urlsafe(32)
 _SESSION_HEADER_NAME = "X-OpenAmer-Session-Token"
 _SSH_OWNER_NONCE: Optional[str] = None
 
@@ -18629,7 +18629,7 @@ def mount_spa(application: FastAPI):
     ``mission-control.tilos.com/hermes/*`` -> local Caddy -> :9119), the
     proxy injects ``X-Forwarded-Prefix: /hermes`` on every request. We
     rewrite the served ``index.html`` so absolute asset URLs (``/assets/...``)
-    and the SPA's runtime ``__HERMES_BASE_PATH__`` honour that prefix
+    and the SPA's runtime ``__OPENAMER_BASE_PATH__`` honour that prefix
     without rebuilding the bundle.
     """
     # `openamer serve` is the headless backend: it must NEVER serve the browser
@@ -18660,7 +18660,7 @@ def mount_spa(application: FastAPI):
         When the OAuth auth gate is active (``app.state.auth_required``),
         the legacy ``_SESSION_TOKEN`` is NOT injected — the SPA reads
         identity from ``/api/auth/me`` over cookie auth instead.  The
-        ``__HERMES_AUTH_REQUIRED__`` flag lets the SPA pick the right
+        ``__OPENAMER_AUTH_REQUIRED__`` flag lets the SPA pick the right
         auth scheme for /api/pty and /api/ws (ticket vs token).
         """
         try:
@@ -18681,17 +18681,17 @@ def mount_spa(application: FastAPI):
         if gated:
             bootstrap_script = (
                 f"<script>"
-                f"window.__HERMES_DASHBOARD_EMBEDDED_CHAT__={chat_js};"
-                f'window.__HERMES_BASE_PATH__="{prefix}";'
-                f"window.__HERMES_AUTH_REQUIRED__={gated_js};"
+                f"window.__OPENAMER_DASHBOARD_EMBEDDED_CHAT__={chat_js};"
+                f'window.__OPENAMER_BASE_PATH__="{prefix}";'
+                f"window.__OPENAMER_AUTH_REQUIRED__={gated_js};"
                 f"</script>"
             )
         else:
             bootstrap_script = (
-                f'<script>window.__HERMES_SESSION_TOKEN__="{_SESSION_TOKEN}";'
-                f"window.__HERMES_DASHBOARD_EMBEDDED_CHAT__={chat_js};"
-                f'window.__HERMES_BASE_PATH__="{prefix}";'
-                f"window.__HERMES_AUTH_REQUIRED__={gated_js};"
+                f'<script>window.__OPENAMER_SESSION_TOKEN__="{_SESSION_TOKEN}";'
+                f"window.__OPENAMER_DASHBOARD_EMBEDDED_CHAT__={chat_js};"
+                f'window.__OPENAMER_BASE_PATH__="{prefix}";'
+                f"window.__OPENAMER_AUTH_REQUIRED__={gated_js};"
                 f"</script>"
             )
         if prefix:
@@ -20050,7 +20050,7 @@ def start_server(
     # We use uvicorn.Server directly (not uvicorn.run) so we can split
     # startup from the main loop.  After startup() the socket is actually
     # bound — we read the OS-assigned port from the live socket, print
-    # HERMES_DASHBOARD_READY, open the browser, *then* serve.
+    # OPENAMER_DASHBOARD_READY, open the browser, *then* serve.
     #
     # This eliminates the TOCTOU of the old pre-bind-then-close approach
     # (bind port 0 → close → uvicorn rebind): the socket is held by
@@ -20116,7 +20116,7 @@ def start_server(
             # Port-discovery sentinel parsed by the desktop spawn. `serve` is a
             # plain backend, not a dashboard, so it announces a neutral token;
             # `dashboard` keeps the legacy one. The desktop matches either.
-            ready_token = "HERMES_BACKEND_READY" if headless else "HERMES_DASHBOARD_READY"
+            ready_token = "OPENAMER_BACKEND_READY" if headless else "OPENAMER_DASHBOARD_READY"
             print(f"{ready_token} port={actual_port}", flush=True)
             if headless:
                 # No SPA, and the JSON-RPC/WS endpoints are auth-gated — don't

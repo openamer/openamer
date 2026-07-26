@@ -68,7 +68,7 @@ def test_loopback_index_injects_session_token(client_loopback):
     r = client_loopback.get("/")
     if r.status_code == 404:
         pytest.skip("WEB_DIST not built in this env")
-    assert "__HERMES_SESSION_TOKEN__" in r.text
+    assert "__OPENAMER_SESSION_TOKEN__" in r.text
 
 
 def test_loopback_host_header_validation_still_enforced(client_loopback):
