@@ -64,7 +64,7 @@ export function useStepUpFlow() {
       return
     }
 
-    void window.hermesDesktop?.openExternal?.(verification.url)
+    void window.openamerDesktop?.openExternal?.(verification.url)
   }, [verification?.url])
 
   const start = useCallback(async () => {

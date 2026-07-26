@@ -33,12 +33,12 @@ except ImportError:  # pragma: no cover - non-Windows
     msvcrt = None
 from datetime import datetime, timedelta
 from pathlib import Path
-from hermes_constants import get_hermes_home
+from openamer_constants import get_openamer_home
 from typing import Optional, Dict, List, Any, Set, Tuple, Union
 
 logger = logging.getLogger(__name__)
 
-from hermes_time import now as _hermes_now
+from openamer_time import now as _hermes_now
 from utils import atomic_replace
 
 try:
@@ -52,18 +52,18 @@ except ImportError:
 # =============================================================================
 
 # Cron is per-profile by design (issue #4707). Each profile owns its own cron
-# store under its own HERMES_HOME, and a profile-scoped gateway runs that
-# profile's jobs under that same HERMES_HOME — so a job authored in profile
+# store under its own OPENAMER_HOME, and a profile-scoped gateway runs that
+# profile's jobs under that same OPENAMER_HOME — so a job authored in profile
 # `coder` lives in `~/.hermes/profiles/coder/cron/jobs.json` and executes with
 # `coder`'s `.env`, `config.yaml`, and skills. We deliberately anchor on
-# `get_hermes_home()` (the active profile home), NOT `get_default_hermes_root()`
+# `get_openamer_home()` (the active profile home), NOT `get_default_hermes_root()`
 # (the shared root). Anchoring at the root would funnel every profile's jobs
-# into one shared `jobs.json` and run them under whatever HERMES_HOME the
+# into one shared `jobs.json` and run them under whatever OPENAMER_HOME the
 # ticker process happens to have — leaking config/credentials/skills across
 # profiles (the security boundary #4707 was filed for). Do NOT change this to
 # the default root: that re-breaks per-profile isolation. See also the dynamic
-# `_get_hermes_home()` / `_get_lock_paths()` resolution in cron/scheduler.py.
-HERMES_DIR = get_hermes_home().resolve()
+# `_get_openamer_home()` / `_get_lock_paths()` resolution in cron/scheduler.py.
+HERMES_DIR = get_openamer_home().resolve()
 # These constants remain the default-profile fallback and a compatibility
 # surface for existing callers/tests. Cross-profile callers must scope paths
 # with use_cron_store() instead of mutating them process-wide.
@@ -80,7 +80,7 @@ TICKER_HEARTBEAT_FILE = CRON_DIR / "ticker_heartbeat"
 TICKER_SUCCESS_FILE = CRON_DIR / "ticker_last_success"
 # Default ticker loop interval (seconds). The single source of truth shared by
 # the in-process ticker (cron/scheduler_provider.py) and the staleness
-# threshold in `hermes cron status` (hermes_cli/cron.py), so the two never
+# threshold in `hermes cron status` (openamer_cli/cron.py), so the two never
 # drift apart.
 TICKER_INTERVAL_SECONDS = 60
 
@@ -131,9 +131,9 @@ def _current_cron_store() -> _CronStorePaths:
     2. deliberately re-pointed module constants — if CRON_DIR/JOBS_FILE/
        OUTPUT_DIR no longer match their import-time values, someone chose
        the documented process-wide compatibility surface; honor it;
-    3. the ACTIVE profile home, resolved fresh via get_hermes_home()
-       (context-local override, then the HERMES_HOME env var) — so a test
-       or embedder that re-points HERMES_HOME after this module was
+    3. the ACTIVE profile home, resolved fresh via get_openamer_home()
+       (context-local override, then the OPENAMER_HOME env var) — so a test
+       or embedder that re-points OPENAMER_HOME after this module was
        imported reads/writes ITS OWN store, not whatever jobs.json the
        import happened to freeze (the filed incident: fixtures that patched
        the env too late silently rewrote the user's real jobs file);
@@ -146,7 +146,7 @@ def _current_cron_store() -> _CronStorePaths:
     live_constants = _CronStorePaths(CRON_DIR, JOBS_FILE, OUTPUT_DIR)
     if live_constants != _IMPORT_STORE:
         return live_constants
-    home = get_hermes_home().resolve()
+    home = get_openamer_home().resolve()
     if home == HERMES_DIR:
         return live_constants
     cron_dir = home / "cron"
@@ -608,7 +608,7 @@ def parse_schedule(schedule: str) -> Dict[str, Any]:
             #
             # Anchor to the CONFIGURED Hermes timezone, not the server's local
             # timezone. The due-check (`get_due_jobs`) compares `next_run_at`
-            # against `hermes_time.now()`, which uses the configured zone. If a
+            # against `openamer_time.now()`, which uses the configured zone. If a
             # naive "20:07" were interpreted as server-local (e.g. UTC) while
             # now() runs in Asia/Kolkata, the stored instant would land hours
             # off from the user's wall-clock intent — far enough that one-shots
@@ -1106,15 +1106,15 @@ def _resolve_default_model_snapshot() -> Optional[str]:
     """
     try:
         import yaml
-        from hermes_cli.config import _expand_env_vars
+        from openamer_cli.config import _expand_env_vars
 
-        cfg_path = get_hermes_home() / "config.yaml"
+        cfg_path = get_openamer_home() / "config.yaml"
         if not cfg_path.exists():
             return None
         with cfg_path.open(encoding="utf-8") as f:
             cfg = yaml.safe_load(f) or {}
         try:
-            from hermes_cli import managed_scope
+            from openamer_cli import managed_scope
             cfg = managed_scope.apply_managed_overlay(cfg)
         except Exception:
             pass
@@ -1167,7 +1167,7 @@ def _compute_provider_model_snapshots(
     model_snapshot: Optional[str] = None
     if normalized_provider is None:
         try:
-            from hermes_cli.runtime_provider import resolve_runtime_provider
+            from openamer_cli.runtime_provider import resolve_runtime_provider
 
             runtime_kwargs = {"requested": None}
             if normalized_base_url:
@@ -2246,7 +2246,7 @@ def _get_due_jobs_locked() -> List[Dict[str, Any]]:
 
                 # Durably claim a one-shot for the DURATION of its run before
                 # returning it as due, so a second scheduler process (gateway +
-                # desktop both run in-process 60s tickers on one HERMES_HOME)
+                # desktop both run in-process 60s tickers on one OPENAMER_HOME)
                 # cannot re-dispatch it while the first run is still in flight
                 # (#59229). A plain one-shot's due-state is not resolved until
                 # mark_job_run() completes it minutes later, so advancing
@@ -2284,7 +2284,7 @@ def _get_due_jobs_locked() -> List[Dict[str, Any]]:
 
 
 # Per-run cron output (`cron/output/<job>/<timestamp>.md`) is written once per
-# execution. Unlike the quick-snapshot store (`hermes_cli.backup`, capped at 20)
+# execution. Unlike the quick-snapshot store (`openamer_cli.backup`, capped at 20)
 # it had no retention, so a frequently-scheduled job on a long-running deploy
 # accumulated one file per run forever and could fill the disk (#52383). Keep the
 # most recent N files per job; a non-positive value disables pruning (opt-out).
@@ -2294,7 +2294,7 @@ _CRON_OUTPUT_DEFAULT_KEEP = 50
 def _cron_output_keep() -> int:
     """Resolve the per-job output-file retention cap from config (``cron.output_retention``)."""
     try:
-        from hermes_cli.config import load_config
+        from openamer_cli.config import load_config
         cfg = load_config() or {}
         cron_cfg = cfg.get("cron", {}) if isinstance(cfg, dict) else {}
         return int(cron_cfg.get("output_retention", _CRON_OUTPUT_DEFAULT_KEEP))
@@ -2305,7 +2305,7 @@ def _cron_output_keep() -> int:
 def _prune_job_output(job_output_dir: Path, keep: int) -> int:
     """Remove the oldest ``*.md`` run-output files beyond *keep*. Returns count deleted.
 
-    Mirrors the quick-snapshot retention in ``hermes_cli.backup._prune_quick_snapshots``:
+    Mirrors the quick-snapshot retention in ``openamer_cli.backup._prune_quick_snapshots``:
     output filenames are timestamp-based (``%Y-%m-%d_%H-%M-%S.md``) so a reverse
     lexical sort orders newest-first, and everything past *keep* is the tail to
     drop. A non-positive *keep* disables pruning. Pruning failures are swallowed

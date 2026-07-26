@@ -24,7 +24,7 @@ import {
   searchSkillsHub,
   type SkillHubResult,
   type SkillHubScanResult
-} from '@/hermes'
+} from '@/openamer'
 import { useI18n } from '@/i18n'
 import { stripAnsi } from '@/lib/ansi'
 import { Loader2 } from '@/lib/icons'

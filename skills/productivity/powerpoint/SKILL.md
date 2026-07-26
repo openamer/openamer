@@ -6,7 +6,7 @@ author: Anthropic (adapted by Nous Research)
 license: Proprietary. LICENSE.txt has complete terms
 platforms: [linux, macos, windows]
 metadata:
-  hermes:
+  openamer:
     tags: [PowerPoint, PPTX, Presentations, Office, Productivity]
     category: productivity
     related_skills: [docx, xlsx, pdf]

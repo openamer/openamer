@@ -11,7 +11,7 @@ async def test_unrelated_allow_all_does_not_bypass_yuanbao_open_gate(
     monkeypatch, tmp_path,
 ):
     """TELEGRAM_ALLOW_ALL_USERS must not satisfy Yuanbao's open-policy opt-in."""
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     monkeypatch.delenv("GATEWAY_ALLOW_ALL_USERS", raising=False)
     monkeypatch.delenv("YUANBAO_ALLOW_ALL_USERS", raising=False)
     monkeypatch.setenv("TELEGRAM_ALLOW_ALL_USERS", "true")
@@ -37,7 +37,7 @@ async def test_unrelated_allow_all_does_not_bypass_yuanbao_open_gate(
 @pytest.mark.asyncio
 async def test_gateway_allow_all_satisfies_yuanbao_open_gate(monkeypatch, tmp_path):
     """GATEWAY_ALLOW_ALL_USERS is the intended global open-policy opt-in."""
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     monkeypatch.setenv("GATEWAY_ALLOW_ALL_USERS", "true")
     monkeypatch.delenv("YUANBAO_ALLOW_ALL_USERS", raising=False)
     monkeypatch.delenv("TELEGRAM_ALLOW_ALL_USERS", raising=False)

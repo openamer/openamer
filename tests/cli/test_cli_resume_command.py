@@ -91,7 +91,7 @@ class TestCliResumeCommand:
         cli_obj._session_db.resolve_resume_session_id.return_value = "sess_001"
 
         with (
-            patch("hermes_cli.main._resolve_session_by_name_or_id", return_value=None),
+            patch("openamer_cli.main._resolve_session_by_name_or_id", return_value=None),
             patch("cli._cprint") as mock_cprint,
         ):
             cli_obj._handle_resume_command("/resume 2")
@@ -129,7 +129,7 @@ class TestCliResumeCommand:
         for raw in ("<sess_alpha>", "[sess_alpha]", '"sess_alpha"', "'sess_alpha'"):
             cli_obj.session_id = "current_session"
             with (
-                patch("hermes_cli.main._resolve_session_by_name_or_id", return_value="sess_alpha"),
+                patch("openamer_cli.main._resolve_session_by_name_or_id", return_value="sess_alpha"),
                 patch("cli._cprint"),
             ):
                 cli_obj._handle_resume_command(f"/resume {raw}")
@@ -148,7 +148,7 @@ class TestCliResumeCommand:
         cli_obj._session_db.get_session.return_value = None
 
         with (
-            patch("hermes_cli.main._resolve_session_by_name_or_id", return_value=None),
+            patch("openamer_cli.main._resolve_session_by_name_or_id", return_value=None),
             patch("cli._cprint") as mock_cprint,
         ):
             cli_obj._handle_resume_command("/resume <half")
@@ -186,7 +186,7 @@ class TestCliResumeRestoresCwd:
         cli_obj = self._resumable_cli({"id": "sess_dir", "title": "Dir", "cwd": recorded})
 
         with (
-            patch("hermes_cli.main._resolve_session_by_name_or_id", return_value="sess_dir"),
+            patch("openamer_cli.main._resolve_session_by_name_or_id", return_value="sess_dir"),
             patch("cli._cprint"),
             patch.object(cli_obj, "_console_print"),
             patch("os.chdir") as mock_chdir,
@@ -203,7 +203,7 @@ class TestCliResumeRestoresCwd:
         cli_obj = self._resumable_cli({"id": "sess_dir", "title": "Dir"})
 
         with (
-            patch("hermes_cli.main._resolve_session_by_name_or_id", return_value="sess_dir"),
+            patch("openamer_cli.main._resolve_session_by_name_or_id", return_value="sess_dir"),
             patch("cli._cprint"),
             patch.object(cli_obj, "_console_print"),
             patch("os.chdir") as mock_chdir,
@@ -218,7 +218,7 @@ class TestCliResumeRestoresCwd:
         cli_obj = self._resumable_cli({"id": "sess_dir", "title": "Dir", "cwd": recorded})
 
         with (
-            patch("hermes_cli.main._resolve_session_by_name_or_id", return_value="sess_dir"),
+            patch("openamer_cli.main._resolve_session_by_name_or_id", return_value="sess_dir"),
             patch("cli._cprint"),
             patch.object(cli_obj, "_console_print"),
             patch("os.chdir") as mock_chdir,
@@ -283,7 +283,7 @@ class TestPendingResumeNumberedSelection:
         cli_obj._session_db.resolve_resume_session_id.return_value = "sess_001"
 
         with (
-            patch("hermes_cli.main._resolve_session_by_name_or_id", return_value=None),
+            patch("openamer_cli.main._resolve_session_by_name_or_id", return_value=None),
             patch("cli._cprint"),
         ):
             consumed = cli_obj._consume_pending_resume_selection("2")
@@ -422,7 +422,7 @@ class TestResumeFlushesBeforeEndSession:
         cli_obj._session_db.resolve_resume_session_id.return_value = "target"
 
         with (
-            patch("hermes_cli.main._resolve_session_by_name_or_id", return_value="target"),
+            patch("openamer_cli.main._resolve_session_by_name_or_id", return_value="target"),
             patch("cli._cprint"),
         ):
             cli_obj._handle_resume_command("/resume target")

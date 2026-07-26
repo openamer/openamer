@@ -1,56 +1,56 @@
 ---
 sidebar_position: 1
 title: "CLI 界面"
-description: "掌握 Hermes Agent 终端界面——命令、快捷键、人格设定等"
+description: "掌握 OpenAmer Agent 终端界面——命令、快捷键、人格设定等"
 ---
 
 # CLI 界面
 
-Hermes Agent 的 CLI 是一个完整的终端用户界面（TUI），而非 Web UI。它支持多行编辑、斜杠命令自动补全、对话历史、中断并重定向，以及流式工具输出。专为常驻终端的用户而生。
+OpenAmer Agent 的 CLI 是一个完整的终端用户界面（TUI），而非 Web UI。它支持多行编辑、斜杠命令自动补全、对话历史、中断并重定向，以及流式工具输出。专为常驻终端的用户而生。
 
 :::tip
-Hermes 还提供了一个现代 TUI，支持模态覆盖层、鼠标选择和非阻塞输入。使用 `hermes --tui` 启动——参见 [TUI](tui.md) 指南。
+OpenAmer 还提供了一个现代 TUI，支持模态覆盖层、鼠标选择和非阻塞输入。使用 `openamer --tui` 启动——参见 [TUI](tui.md) 指南。
 :::
 
 ## 运行 CLI
 
 ```bash
 # 启动交互式会话（默认）
-hermes
+openamer
 
 # 单次查询模式（非交互式）
-hermes chat -q "Hello"
+openamer chat -q "Hello"
 
 # 使用指定模型
-hermes chat --model "anthropic/claude-sonnet-4"
+openamer chat --model "anthropic/claude-sonnet-4"
 
 # 使用指定提供商
-hermes chat --provider nous        # 使用 Nous Portal
-hermes chat --provider openrouter  # 强制使用 OpenRouter
+openamer chat --provider nous        # 使用 Nous Portal
+openamer chat --provider openrouter  # 强制使用 OpenRouter
 
 # 使用指定工具集
-hermes chat --toolsets "web,terminal,skills"
+openamer chat --toolsets "web,terminal,skills"
 
 # 启动时预加载一个或多个 skill
-hermes -s hermes-agent-dev,github-auth
-hermes chat -s github-pr-workflow -q "open a draft PR"
+openamer -s openamer-agent-dev,github-auth
+openamer chat -s github-pr-workflow -q "open a draft PR"
 
 # 恢复之前的会话
-hermes --continue             # 恢复最近的 CLI 会话（-c）
-hermes --resume <session_id>  # 通过 ID 恢复指定会话（-r）
+openamer --continue             # 恢复最近的 CLI 会话（-c）
+openamer --resume <session_id>  # 通过 ID 恢复指定会话（-r）
 
 # 详细模式（调试输出）
-hermes chat --verbose
+openamer chat --verbose
 
 # 隔离的 git worktree（用于并行运行多个 agent）
-hermes -w                         # 在 worktree 中以交互模式运行
-hermes -w -z "Fix issue #123"     # 在 worktree 中以单次查询模式运行
+openamer -w                         # 在 worktree 中以交互模式运行
+openamer -w -z "Fix issue #123"     # 在 worktree 中以单次查询模式运行
 ```
 
 ## 界面布局
 
-<img className="docs-terminal-figure" src="/img/docs/cli-layout.svg" alt="Hermes CLI 布局的风格化预览，展示了横幅、对话区域和固定输入提示符。" />
-<p className="docs-figure-caption">Hermes CLI 横幅、对话流和固定输入提示符，以稳定的文档图示形式呈现，而非脆弱的文字艺术。</p>
+<img className="docs-terminal-figure" src="/img/docs/cli-layout.svg" alt="OpenAmer CLI 布局的风格化预览，展示了横幅、对话区域和固定输入提示符。" />
+<p className="docs-figure-caption">OpenAmer CLI 横幅、对话流和固定输入提示符，以稳定的文档图示形式呈现，而非脆弱的文字艺术。</p>
 
 欢迎横幅一目了然地显示当前模型、终端后端、工作目录、可用工具和已安装的 skill。
 
@@ -71,7 +71,7 @@ hermes -w -z "Fix issue #123"     # 在 worktree 中以单次查询模式运行
 | 🗜️ N | **上下文压缩次数**——当前运行会话被自动压缩的次数。首次压缩触发后显示。 |
 | ▶ N | **活跃后台任务数**——当前会话中仍在运行的 `/background` prompt（提示词）数量。至少有一个任务进行中时显示。 |
 | 时长 | 会话已用时间 |
-| ⚠ YOLO | **YOLO 模式警告**——当 `HERMES_YOLO_MODE` 开启时显示（通过启动时的 `hermes --yolo` 或会话中的 `/yolo` 切换）。与横幅行警告保持同步，确保你不会忘记自己处于自动批准模式。 |
+| ⚠ YOLO | **YOLO 模式警告**——当 `HERMES_YOLO_MODE` 开启时显示（通过启动时的 `openamer --yolo` 或会话中的 `/yolo` 切换）。与横幅行警告保持同步，确保你不会忘记自己处于自动批准模式。 |
 
 状态栏会根据终端宽度自适应——≥ 76 列时显示完整布局，52–75 列时显示紧凑布局，低于 52 列时显示最简布局（模型 + 时长，以及 YOLO 徽章（如已激活））。
 
@@ -88,7 +88,7 @@ hermes -w -z "Fix issue #123"     # 在 worktree 中以单次查询模式运行
 
 ### 会话恢复显示
 
-恢复之前的会话时（`hermes -c` 或 `hermes --resume <id>`），横幅与输入提示符之间会出现一个"Previous Conversation"面板，显示对话历史的简洁摘要。详情及配置说明参见[会话——恢复时的对话摘要](sessions.md#conversation-recap-on-resume)。
+恢复之前的会话时（`openamer -c` 或 `openamer --resume <id>`），横幅与输入提示符之间会出现一个"Previous Conversation"面板，显示对话历史的简洁摘要。详情及配置说明参见[会话——恢复时的对话摘要](sessions.md#conversation-recap-on-resume)。
 
 ## 快捷键
 
@@ -103,7 +103,7 @@ hermes -w -z "Fix issue #123"     # 在 worktree 中以单次查询模式运行
 | `Ctrl+X Ctrl+E` | 外部编辑器的 Emacs 风格备用绑定（与 `Ctrl+G` 行为相同）。 |
 | `Ctrl+C` | 中断 agent（2 秒内双击强制退出） |
 | `Ctrl+D` | 退出 |
-| `Ctrl+Z` | 将 Hermes 挂起到后台（仅 Unix）。在 shell 中运行 `fg` 恢复。 |
+| `Ctrl+Z` | 将 OpenAmer 挂起到后台（仅 Unix）。在 shell 中运行 `fg` 恢复。 |
 | `Tab` | 接受自动建议（ghost text）或自动补全斜杠命令 |
 
 **多行粘贴预览。** 粘贴多行内容时，CLI 会显示一行简洁的单行预览（`[pasted: 47 lines, 1,842 chars — press Enter to send]`），而非将全部内容倾倒到滚动缓冲区。实际发送的仍是完整内容；这只是显示上的优化。
@@ -112,7 +112,7 @@ hermes -w -z "Fix issue #123"     # 在 worktree 中以单次查询模式运行
 
 ## 斜杠命令
 
-输入 `/` 查看自动补全下拉菜单。Hermes 支持大量 CLI 斜杠命令、动态 skill 命令和用户自定义快捷命令。
+输入 `/` 查看自动补全下拉菜单。OpenAmer 支持大量 CLI 斜杠命令、动态 skill 命令和用户自定义快捷命令。
 
 常用示例：
 
@@ -125,7 +125,7 @@ hermes -w -z "Fix issue #123"     # 在 worktree 中以单次查询模式运行
 | `/background <prompt>` | 在独立后台会话中运行一个 prompt |
 | `/skin` | 显示或切换当前 CLI 皮肤 |
 | `/voice on` | 启用 CLI 语音模式（按 `Ctrl+B` 录音） |
-| `/voice tts` | 切换 Hermes 回复的语音播放 |
+| `/voice tts` | 切换 OpenAmer 回复的语音播放 |
 | `/reasoning high` | 提高推理强度 |
 | `/title My Session` | 为当前会话命名 |
 | `/status` | 显示会话信息——模型/配置/token/时长——以及本地**会话摘要**块（近期轮次数、常用工具、涉及文件、最新用户 prompt + 助手回复）。纯本地计算，不调用 LLM。 |
@@ -144,11 +144,11 @@ hermes -w -z "Fix issue #123"     # 在 worktree 中以单次查询模式运行
 你可以定义自定义命令，无需调用 LLM 即可立即执行 shell 命令。这些命令在 CLI 和消息平台（Telegram、Discord 等）中均可使用。
 
 ```yaml
-# ~/.hermes/config.yaml
+# ~/.openamer/config.yaml
 quick_commands:
   status:
     type: exec
-    command: systemctl status hermes-agent
+    command: systemctl status openamer-agent
   gpu:
     type: exec
     command: nvidia-smi --query-gpu=utilization.gpu,memory.used --format=csv,noheader
@@ -164,15 +164,15 @@ quick_commands:
 如果你已知道本次会话需要哪些 skill，可在启动时传入：
 
 ```bash
-hermes -s hermes-agent-dev,github-auth
-hermes chat -s github-pr-workflow -s github-auth
+openamer -s openamer-agent-dev,github-auth
+openamer chat -s github-pr-workflow -s github-auth
 ```
 
-Hermes 会在第一轮对话前将每个指定的 skill 加载到会话 prompt 中。该标志在交互模式和单次查询模式下均有效。
+OpenAmer 会在第一轮对话前将每个指定的 skill 加载到会话 prompt 中。该标志在交互模式和单次查询模式下均有效。
 
 ## Skill 斜杠命令
 
-`~/.hermes/skills/` 中每个已安装的 skill 都会自动注册为斜杠命令。skill 名称即为命令名：
+`~/.openamer/skills/` 中每个已安装的 skill 都会自动注册为斜杠命令。skill 名称即为命令名：
 
 ```
 /gif-search funny cats
@@ -195,13 +195,13 @@ Hermes 会在第一轮对话前将每个指定的 skill 加载到会话 prompt �
 
 内置人格包括：`helpful`、`concise`、`technical`、`creative`、`teacher`、`kawaii`、`catgirl`、`pirate`、`shakespeare`、`surfer`、`noir`、`uwu`、`philosopher`、`hype`。
 
-你也可以在 `~/.hermes/config.yaml` 中定义自定义人格：
+你也可以在 `~/.openamer/config.yaml` 中定义自定义人格：
 
 ```yaml
 personalities:
   helpful: "You are a helpful, friendly AI assistant."
   kawaii: "You are a kawaii assistant! Use cute expressions..."
-  pirate: "Arrr! Ye be talkin' to Captain Hermes..."
+  pirate: "Arrr! Ye be talkin' to Captain OpenAmer..."
   # 添加你自己的！
 ```
 
@@ -224,7 +224,7 @@ personalities:
 
 ### Shift+Enter 兼容性
 
-大多数终端默认对 `Enter` 和 `Shift+Enter` 发送相同的字节序列，因此应用程序无法区分它们。Hermes 仅在终端通过 [Kitty 键盘协议](https://sw.kovidgoyal.net/kitty/keyboard-protocol/)或 xterm 的 `modifyOtherKeys` 模式发送不同序列时才能识别 `Shift+Enter`。
+大多数终端默认对 `Enter` 和 `Shift+Enter` 发送相同的字节序列，因此应用程序无法区分它们。OpenAmer 仅在终端通过 [Kitty 键盘协议](https://sw.kovidgoyal.net/kitty/keyboard-protocol/)或 xterm 的 `modifyOtherKeys` 模式发送不同序列时才能识别 `Shift+Enter`。
 
 | 终端 | 状态 |
 |---|---|
@@ -233,7 +233,7 @@ personalities:
 | Windows Terminal Preview 1.25+ | 在设置中启用 Kitty 协议后支持 |
 | macOS Terminal.app、Windows Terminal 稳定版 | 不支持——`Shift+Enter` 与 `Enter` 无法区分 |
 
-当终端无法区分时，`Alt+Enter` 和 `Ctrl+J` 在所有终端中均可正常使用。**特别是在 Windows Terminal 中，`Alt+Enter` 被终端捕获（切换全屏），永远不会传递给 Hermes——请直接使用 `Ctrl+Enter`（传递为 `Ctrl+J`）或 `Ctrl+J` 来换行。**
+当终端无法区分时，`Alt+Enter` 和 `Ctrl+J` 在所有终端中均可正常使用。**特别是在 Windows Terminal 中，`Alt+Enter` 被终端捕获（切换全屏），永远不会传递给 OpenAmer——请直接使用 `Ctrl+Enter`（传递为 `Ctrl+J`）或 `Ctrl+J` 来换行。**
 
 ## 中断 Agent
 
@@ -255,7 +255,7 @@ personalities:
 | `"steer"` | 你的消息通过 `/steer` 注入当前运行，在下一次工具调用后到达 agent——不中断，不开启新轮次 |
 
 ```yaml
-# ~/.hermes/config.yaml
+# ~/.openamer/config.yaml
 display:
   busy_input_mode: "steer"   # 或 "queue" 或 "interrupt"（默认）
 ```
@@ -274,15 +274,15 @@ display:
 ```
 
 :::tip 首次提示
-第一次在 Hermes 工作时按下 Enter，Hermes 会打印一行提示，说明 `/busy` 选项（`"(tip) Your message interrupted the current run…"`）。每次安装只触发一次——`config.yaml` 中 `onboarding.seen.busy_input_prompt` 下的标志会锁定它。删除该键可再次看到提示。
+第一次在 OpenAmer 工作时按下 Enter，OpenAmer 会打印一行提示，说明 `/busy` 选项（`"(tip) Your message interrupted the current run…"`）。每次安装只触发一次——`config.yaml` 中 `onboarding.seen.busy_input_prompt` 下的标志会锁定它。删除该键可再次看到提示。
 :::
 
 ### 挂起到后台
 
-在 Unix 系统上，按 **`Ctrl+Z`** 将 Hermes 挂起到后台——与任何终端进程一样。shell 会打印确认信息：
+在 Unix 系统上，按 **`Ctrl+Z`** 将 OpenAmer 挂起到后台——与任何终端进程一样。shell 会打印确认信息：
 
 ```
-Hermes Agent has been suspended. Run `fg` to bring Hermes Agent back.
+OpenAmer Agent has been suspended. Run `fg` to bring OpenAmer Agent back.
 ```
 
 在 shell 中输入 `fg` 即可从中断处恢复会话。Windows 不支持此功能。
@@ -312,7 +312,7 @@ CLI 在 agent 工作时显示动态反馈：
 `display.tool_preview_length` 配置项控制工具调用预览行（如文件路径、终端命令）中显示的最大字符数。默认值为 `0`，表示无限制——显示完整路径和命令。
 
 ```yaml
-# ~/.hermes/config.yaml
+# ~/.openamer/config.yaml
 display:
   tool_preview_length: 80   # 将工具预览截断为 80 个字符（0 = 无限制）
 ```
@@ -327,7 +327,7 @@ display:
 
 ```
 Resume this session with:
-  hermes --resume 20260225_143052_a1b2c3
+  openamer --resume 20260225_143052_a1b2c3
 
 Session:        20260225_143052_a1b2c3
 Duration:       12m 34s
@@ -337,21 +337,21 @@ Messages:       28 (5 user, 18 tool calls)
 恢复选项：
 
 ```bash
-hermes --continue                          # 恢复最近的 CLI 会话
-hermes -c                                  # 简写形式
-hermes -c "my project"                     # 恢复命名会话（谱系中最新的）
-hermes --resume 20260225_143052_a1b2c3     # 通过 ID 恢复指定会话
-hermes --resume "refactoring auth"         # 通过标题恢复
-hermes -r 20260225_143052_a1b2c3           # 简写形式
+openamer --continue                          # 恢复最近的 CLI 会话
+openamer -c                                  # 简写形式
+openamer -c "my project"                     # 恢复命名会话（谱系中最新的）
+openamer --resume 20260225_143052_a1b2c3     # 通过 ID 恢复指定会话
+openamer --resume "refactoring auth"         # 通过标题恢复
+openamer -r 20260225_143052_a1b2c3           # 简写形式
 ```
 
 恢复会从 SQLite 中还原完整的对话历史。agent 能看到所有之前的消息、工具调用和响应——就像从未离开一样。
 
-在聊天中使用 `/title My Session Name` 为当前会话命名，或从命令行使用 `hermes sessions rename <id> <title>`。使用 `hermes sessions list` 浏览历史会话。
+在聊天中使用 `/title My Session Name` 为当前会话命名，或从命令行使用 `openamer sessions rename <id> <title>`。使用 `openamer sessions list` 浏览历史会话。
 
 ### 会话存储
 
-CLI 会话存储在 Hermes 的 SQLite 状态数据库 `~/.hermes/state.db` 中。数据库保存：
+CLI 会话存储在 OpenAmer 的 SQLite 状态数据库 `~/.openamer/state.db` 中。数据库保存：
 
 - 会话元数据（ID、标题、时间戳、token 计数器）
 - 消息历史
@@ -365,7 +365,7 @@ CLI 会话存储在 Hermes 的 SQLite 状态数据库 `~/.hermes/state.db` 中�
 长对话在接近上下文限制时会自动摘要：
 
 ```yaml
-# 在 ~/.hermes/config.yaml 中
+# 在 ~/.openamer/config.yaml 中
 compression:
   enabled: true
   threshold: 0.50    # 默认在上下文限制的 50% 时压缩
@@ -386,7 +386,7 @@ auxiliary:
 /background Analyze the logs in /var/log and summarize any errors from today
 ```
 
-Hermes 立即确认任务并将提示符还给你：
+OpenAmer 立即确认任务并将提示符还给你：
 
 ```
 🔄 Background task #1 started: "Analyze the logs in /var/log and summarize..."
@@ -407,7 +407,7 @@ Hermes 立即确认任务并将提示符还给你：
 后台任务完成时，结果会以面板形式出现在终端中：
 
 ```
-╭─ ⚕ Hermes (background #1) ──────────────────────────────────╮
+╭─ ⚕ OpenAmer (background #1) ──────────────────────────────────╮
 │ Found 3 errors in syslog from today:                         │
 │ 1. OOM killer invoked at 03:22 — killed process nginx        │
 │ 2. Disk I/O error on /dev/sda1 at 07:15                      │
@@ -436,5 +436,5 @@ Hermes 立即确认任务并将提示符还给你：
 
 如需调试输出：
 ```bash
-hermes chat --verbose
+openamer chat --verbose
 ```

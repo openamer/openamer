@@ -1,15 +1,15 @@
 """Tests for the WeCom plugin's interactive_setup wizard home-channel flow.
 
 The interactive_setup wizard lazy-imports its CLI helpers from
-``hermes_cli.config`` (get_env_value / save_env_value / remove_env_value),
-``hermes_cli.cli_output`` (prompt / prompt_yes_no / print_*), and
-``hermes_cli.setup`` (prompt_choice); we patch each at its source module so
+``openamer_cli.config`` (get_env_value / save_env_value / remove_env_value),
+``openamer_cli.cli_output`` (prompt / prompt_yes_no / print_*), and
+``openamer_cli.setup`` (prompt_choice); we patch each at its source module so
 the QR scan / pip paths never fire. Covers the home-channel clear-on-blank
 behavior added in the follow-up to PR #58421.
 """
-import hermes_cli.config as config_mod
-import hermes_cli.cli_output as cli_output_mod
-import hermes_cli.setup as setup_mod
+import openamer_cli.config as config_mod
+import openamer_cli.cli_output as cli_output_mod
+import openamer_cli.setup as setup_mod
 from plugins.platforms.wecom.adapter import interactive_setup
 
 
@@ -62,7 +62,7 @@ class TestWeComHomeChannelClear:
     """Blank home-channel answer must clear WECOM_HOME_CHANNEL (#12423)."""
 
     def test_blank_removes_existing_home_channel(self, monkeypatch, tmp_path):
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
         saved, removed = {}, []
         _patch_setup_io(
             monkeypatch,
@@ -77,7 +77,7 @@ class TestWeComHomeChannelClear:
         assert "WECOM_HOME_CHANNEL" not in saved
 
     def test_blank_without_prior_home_still_attempts_remove(self, monkeypatch, tmp_path):
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
         saved, removed = {}, []
         _patch_setup_io(
             monkeypatch, _PROMPTS_BLANK, _CHOICES, saved, removed, existing={}
@@ -86,7 +86,7 @@ class TestWeComHomeChannelClear:
         assert removed.count("WECOM_HOME_CHANNEL") == 1
 
     def test_nonempty_saves_home_channel(self, monkeypatch, tmp_path):
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
         saved, removed = {}, []
         _patch_setup_io(
             monkeypatch, _PROMPTS_NONEMPTY, _CHOICES, saved, removed, existing={}
@@ -96,7 +96,7 @@ class TestWeComHomeChannelClear:
         assert "WECOM_HOME_CHANNEL" not in removed
 
     def test_whitespace_only_clears_home_channel(self, monkeypatch, tmp_path):
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
         saved, removed = {}, []
         _patch_setup_io(
             monkeypatch,

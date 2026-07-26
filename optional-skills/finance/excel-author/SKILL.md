@@ -6,7 +6,7 @@ author: Anthropic (adapted by Nous Research)
 license: Apache-2.0
 platforms: [linux, macos, windows]
 metadata:
-  hermes:
+  openamer:
     tags: [excel, openpyxl, finance, spreadsheet, modeling]
     related_skills: [xlsx, pptx-author, dcf-model, comps-analysis, lbo-model, 3-statement-model]
 ---

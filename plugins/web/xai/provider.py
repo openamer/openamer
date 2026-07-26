@@ -64,7 +64,7 @@ _JSON_BLOCK_RE = re.compile(r"\{[\s\S]*\}", re.MULTILINE)
 def _load_xai_web_config() -> Dict[str, Any]:
     """Read ``web.xai`` from config.yaml (returns {} on miss)."""
     try:
-        from hermes_cli.config import load_config
+        from openamer_cli.config import load_config
 
         cfg = load_config()
         web_section = cfg.get("web") if isinstance(cfg, dict) else None

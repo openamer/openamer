@@ -1,6 +1,6 @@
 # Desktop Engineering Guide
 
-How to build Hermes Desktop well. This is a judgment guide, not an inventory —
+How to build OpenAmer Desktop well. This is a judgment guide, not an inventory —
 it teaches the invariants and the reasoning behind them so a change fits the app
 even as files move. Read it with the repository `AGENTS.md` (root rules still
 apply) and [`DESIGN.md`](./DESIGN.md) for the visual and interaction contract.
@@ -29,7 +29,7 @@ change blurs a seam, that is the smell — fix the seam, don't widen it.
 The first question for any piece of state is *who is allowed to be right about
 it*, not where it is convenient to store it. Put state with its authority:
 
-- The **backend** is authoritative for anything another Hermes surface can also
+- The **backend** is authoritative for anything another OpenAmer surface can also
   change. Treat the renderer's copy as a cache of that truth.
 - **Electron** is authoritative for machine and runtime facts.
 - The **renderer** owns only what is purely about this window's presentation.
@@ -150,7 +150,7 @@ lean on an existing seam — before you invent a framework. The shell's internal
 registries are composition seams, not a public plugin ABI; do not build a
 universal extension system, a manifest, or a plugin adapter for a single
 consumer. Design a shared contract only once more than one real consumer proves
-its shape. "Plugin" means several unrelated things across Hermes — do not assume
+its shape. "Plugin" means several unrelated things across OpenAmer — do not assume
 one surface's extension model runs in another.
 
 ## Respect the person using it

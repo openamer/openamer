@@ -24,7 +24,7 @@ sys.modules.setdefault("fal_client", types.SimpleNamespace())
 
 
 def _make_agent(tmp_path, monkeypatch, **kwargs):
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     (tmp_path / ".env").write_text("", encoding="utf-8")
     (tmp_path / "config.yaml").write_text("{}\n", encoding="utf-8")
     from run_agent import AIAgent

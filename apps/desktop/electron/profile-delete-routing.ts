@@ -1,16 +1,16 @@
-// Profile-delete routing logic for the `hermes:api` IPC handler.
+// Profile-delete routing logic for the `openamer:api` IPC handler.
 //
 // When the renderer issues DELETE /api/profiles/<name>, the handler must
 // tear down that profile's backend (primary window backend or pool backend)
 // and then route the *next* request away from the just-deleted profile's
-// pool backend -- spawning a fresh one would call ensure_hermes_home() and
+// pool backend -- spawning a fresh one would call ensure_openamer_home() and
 // recreate the profile directory the delete just removed, leaving a zombie
 // process behind (issue #52279).
 //
 // These helpers are pure so they can be unit-tested without Electron.
 
 /**
- * Parse a `hermes:api` request into the profile name a DELETE targets, or
+ * Parse a `openamer:api` request into the profile name a DELETE targets, or
  * null when the request is not a profile-delete at all (wrong method, wrong
  * path, empty/invalid name).
  */
@@ -82,10 +82,10 @@ export function decideProfileDeleteAction(
 }
 
 /**
- * Route the next `hermes:api` request away from the primary/window backend
+ * Route the next `openamer:api` request away from the primary/window backend
  * whenever a profile was just torn down -- otherwise ensureBackend would
  * spawn a fresh pool backend for the deleted profile, whose
- * ensure_hermes_home() recreates the directory the delete just removed.
+ * ensure_openamer_home() recreates the directory the delete just removed.
  */
 export function resolveRouteProfile(
   tornDownProfile: string | null,

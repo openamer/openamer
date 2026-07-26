@@ -7,7 +7,7 @@ sidebar_position: 5
 
 # 浏览器自动化
 
-Hermes Agent 内置完整的浏览器自动化工具集，支持多种后端选项：
+OpenAmer Agent 内置完整的浏览器自动化工具集，支持多种后端选项：
 
 - **Browserbase 云端模式** — 通过 [Browserbase](https://browserbase.com) 使用托管云端浏览器及反机器人工具
 - **Browser Use 云端模式** — 通过 [Browser Use](https://browser-use.com) 作为备选云端浏览器提供商
@@ -34,7 +34,7 @@ Hermes Agent 内置完整的浏览器自动化工具集，支持多种后端选�
 ## 配置
 
 :::tip Nous 订阅用户
-如果您拥有付费 [Nous Portal](https://portal.nousresearch.com) 订阅，可通过 **[Tool Gateway](tool-gateway.md)** 使用浏览器自动化功能，无需单独的 API 密钥。新安装可运行 `hermes setup --portal` 登录并一次性开启所有 gateway 工具；已有安装可通过 `hermes model` 或 `hermes tools` 选择 **Nous Subscription** 作为浏览器提供商。
+如果您拥有付费 [Nous Portal](https://portal.nousresearch.com) 订阅，可通过 **[Tool Gateway](tool-gateway.md)** 使用浏览器自动化功能，无需单独的 API 密钥。新安装可运行 `openamer setup --portal` 登录并一次性开启所有 gateway 工具；已有安装可通过 `openamer model` 或 `openamer tools` 选择 **Nous Subscription** 作为浏览器提供商。
 :::
 
 ### Browserbase 云端模式
@@ -42,7 +42,7 @@ Hermes Agent 内置完整的浏览器自动化工具集，支持多种后端选�
 要使用 Browserbase 托管的云端浏览器，请添加：
 
 ```bash
-# Add to ~/.hermes/.env
+# Add to ~/.openamer/.env
 BROWSERBASE_API_KEY=***
 BROWSERBASE_PROJECT_ID=your-project-id-here
 ```
@@ -54,7 +54,7 @@ BROWSERBASE_PROJECT_ID=your-project-id-here
 要使用 Browser Use 作为云端浏览器提供商，请添加：
 
 ```bash
-# Add to ~/.hermes/.env
+# Add to ~/.openamer/.env
 BROWSER_USE_API_KEY=***
 ```
 
@@ -65,14 +65,14 @@ BROWSER_USE_API_KEY=***
 要使用 Firecrawl 作为云端浏览器提供商，请添加：
 
 ```bash
-# Add to ~/.hermes/.env
+# Add to ~/.openamer/.env
 FIRECRAWL_API_KEY=fc-***
 ```
 
 在 [firecrawl.dev](https://firecrawl.dev) 获取 API 密钥，然后选择 Firecrawl 作为浏览器提供商：
 
 ```bash
-hermes setup tools
+openamer setup tools
 # → Browser Automation → Firecrawl
 ```
 
@@ -88,14 +88,14 @@ FIRECRAWL_BROWSER_TTL=600
 
 ### 混合路由：公网 URL 使用云端，LAN/localhost 使用本地
 
-配置云端提供商后，Hermes 会为解析到私有/回环/LAN 地址的 URL（`localhost`、`127.0.0.1`、`192.168.x.x`、`10.x.x.x`、`172.16-31.x.x`、`*.local`、`*.lan`、`*.internal`、IPv6 回环 `::1`、链路本地 `169.254.x.x`）自动启动一个**本地 Chromium 辅助进程**。公网 URL 在同一对话中继续使用云端提供商。
+配置云端提供商后，OpenAmer 会为解析到私有/回环/LAN 地址的 URL（`localhost`、`127.0.0.1`、`192.168.x.x`、`10.x.x.x`、`172.16-31.x.x`、`*.local`、`*.lan`、`*.internal`、IPv6 回环 `::1`、链路本地 `169.254.x.x`）自动启动一个**本地 Chromium 辅助进程**。公网 URL 在同一对话中继续使用云端提供商。
 
 这解决了常见的"本地开发但使用 Browserbase"场景 — Agent 可以截取 `http://localhost:3000` 上的仪表盘，同时抓取 `https://github.com`，无需切换提供商或禁用 SSRF 防护。云端提供商永远不会看到私有 URL。
 
 该功能**默认开启**。如需禁用（所有 URL 均走已配置的云端提供商，与之前行为一致）：
 
 ```yaml
-# ~/.hermes/config.yaml
+# ~/.openamer/config.yaml
 browser:
   cloud_provider: browserbase
   auto_local_for_private_urls: false
@@ -103,7 +103,7 @@ browser:
 
 禁用自动路由后，私有 URL 将被拒绝并返回 `"Blocked: URL targets a private or internal address"`，除非同时设置 `browser.allow_private_urls: true`（允许云端提供商尝试访问，但通常无法成功，因为 Browserbase 等无法访问您的 LAN）。
 
-要求：本地辅助进程使用与纯本地模式相同的 `agent-browser` CLI，因此需要先安装（`hermes setup tools → Browser Automation` 会自动安装）。从公网 URL 导航后重定向到私有地址的情况仍会被阻止（无法通过公网路径的重定向访问 LAN）。
+要求：本地辅助进程使用与纯本地模式相同的 `agent-browser` CLI，因此需要先安装（`openamer setup tools → Browser Automation` 会自动安装）。从公网 URL 导航后重定向到私有地址的情况仍会被阻止（无法通过公网路径的重定向访问 LAN）。
 
 ### Camofox 本地模式
 
@@ -164,19 +164,19 @@ make down
 # then run the custom docker run command above
 ```
 
-然后在 `~/.hermes/.env` 中设置：
+然后在 `~/.openamer/.env` 中设置：
 
 ```bash
 CAMOFOX_URL=http://localhost:9377
 ```
 
-或通过 `hermes tools` → Browser Automation → Camofox 进行配置。
+或通过 `openamer tools` → Browser Automation → Camofox 进行配置。
 
 设置 `CAMOFOX_URL` 后，所有浏览器工具将自动通过 Camofox 路由，而非 Browserbase 或 agent-browser。
 
 #### 持久化浏览器会话
 
-默认情况下，每个 Camofox 会话使用随机身份 — Cookie 和登录状态不会在 Agent 重启后保留。要启用持久化浏览器会话，请在 `~/.hermes/config.yaml` 中添加：
+默认情况下，每个 Camofox 会话使用随机身份 — Cookie 和登录状态不会在 Agent 重启后保留。要启用持久化浏览器会话，请在 `~/.openamer/config.yaml` 中添加：
 
 ```yaml
 browser:
@@ -184,53 +184,53 @@ browser:
     managed_persistence: true
 ```
 
-然后完全重启 Hermes 以使新配置生效。
+然后完全重启 OpenAmer 以使新配置生效。
 
 :::warning 嵌套路径很重要
-Hermes 读取的是 `browser.camofox.managed_persistence`，**而非**顶层的 `managed_persistence`。常见错误写法：
+OpenAmer 读取的是 `browser.camofox.managed_persistence`，**而非**顶层的 `managed_persistence`。常见错误写法：
 
 ```yaml
-# ❌ Wrong — Hermes ignores this
+# ❌ Wrong — OpenAmer ignores this
 managed_persistence: true
 ```
 
-如果该标志放在错误的路径下，Hermes 会静默回退到随机临时 `userId`，您的登录状态将在每次会话后丢失。
+如果该标志放在错误的路径下，OpenAmer 会静默回退到随机临时 `userId`，您的登录状态将在每次会话后丢失。
 :::
 
-##### Hermes 的行为
+##### OpenAmer 的行为
 - 向 Camofox 发送确定性的 profile 范围 `userId`，使服务器能够跨会话复用同一 Firefox profile。
 - 在清理时跳过服务端 context 销毁，使 Cookie 和登录状态在 Agent 任务间保留。
-- 将 `userId` 限定在当前 Hermes profile 范围内，不同 Hermes profile 对应不同浏览器 profile（profile 隔离）。
+- 将 `userId` 限定在当前 OpenAmer profile 范围内，不同 OpenAmer profile 对应不同浏览器 profile（profile 隔离）。
 
-##### Hermes 不做的事
-- 不会强制 Camofox 服务器持久化。Hermes 只发送稳定的 `userId`；服务器必须通过将该 `userId` 映射到持久化 Firefox profile 目录来支持它。
-- 如果您的 Camofox 服务器构建将每个请求视为临时的（例如始终调用 `browser.newContext()` 而不加载已存储的 profile），Hermes 无法使这些会话持久化。请确保运行的 Camofox 版本实现了基于 userId 的 profile 持久化。
+##### OpenAmer 不做的事
+- 不会强制 Camofox 服务器持久化。OpenAmer 只发送稳定的 `userId`；服务器必须通过将该 `userId` 映射到持久化 Firefox profile 目录来支持它。
+- 如果您的 Camofox 服务器构建将每个请求视为临时的（例如始终调用 `browser.newContext()` 而不加载已存储的 profile），OpenAmer 无法使这些会话持久化。请确保运行的 Camofox 版本实现了基于 userId 的 profile 持久化。
 
 ##### 验证是否正常工作
 
-1. 启动 Hermes 和 Camofox 服务器。
+1. 启动 OpenAmer 和 Camofox 服务器。
 2. 在浏览器任务中打开 Google（或任意登录网站）并手动登录。
 3. 正常结束浏览器任务。
 4. 开始新的浏览器任务。
 5. 再次打开同一网站 — 应仍处于登录状态。
 
-如果第 5 步退出了登录，说明 Camofox 服务器未遵守稳定的 `userId`。请检查配置路径，确认编辑 `config.yaml` 后已完全重启 Hermes，并验证您的 Camofox 服务器版本是否支持基于用户的持久化 profile。
+如果第 5 步退出了登录，说明 Camofox 服务器未遵守稳定的 `userId`。请检查配置路径，确认编辑 `config.yaml` 后已完全重启 OpenAmer，并验证您的 Camofox 服务器版本是否支持基于用户的持久化 profile。
 
 ##### 状态存储位置
 
-Hermes 从 profile 范围目录 `~/.hermes/browser_auth/camofox/`（非默认 profile 则在 `$HERMES_HOME` 下的对应位置）派生稳定的 `userId`。实际浏览器 profile 数据存储在 Camofox 服务器端，以该 `userId` 为键。要完全重置持久化 profile，请在 Camofox 服务器端清除对应数据，并删除相应 Hermes profile 的状态目录。
+OpenAmer 从 profile 范围目录 `~/.openamer/browser_auth/camofox/`（非默认 profile 则在 `$HERMES_HOME` 下的对应位置）派生稳定的 `userId`。实际浏览器 profile 数据存储在 Camofox 服务器端，以该 `userId` 为键。要完全重置持久化 profile，请在 Camofox 服务器端清除对应数据，并删除相应 OpenAmer profile 的状态目录。
 
 #### 外部管理的 Camofox 会话
 
-当另一个应用驱动可见的 Camofox 浏览器（桌面助手、自定义集成、另一个 Agent）时，可配置 Hermes 在同一身份下运行，而非启动独立的隔离 profile。
+当另一个应用驱动可见的 Camofox 浏览器（桌面助手、自定义集成、另一个 Agent）时，可配置 OpenAmer 在同一身份下运行，而非启动独立的隔离 profile。
 
 三个参数控制行为：
 
 | 设置 | 环境变量 | 效果 |
 |---------|---------|--------|
-| `browser.camofox.user_id` | `CAMOFOX_USER_ID` | Hermes 创建标签页时使用的 Camofox `userId`。设置此项即进入"外部管理"模式。 |
+| `browser.camofox.user_id` | `CAMOFOX_USER_ID` | OpenAmer 创建标签页时使用的 Camofox `userId`。设置此项即进入"外部管理"模式。 |
 | `browser.camofox.session_key` | `CAMOFOX_SESSION_KEY` | 创建标签页时发送的 `sessionKey`（即 `listItemId`）。用于接管时匹配已有标签页。未设置时默认为每任务值。 |
-| `browser.camofox.adopt_existing_tab` | `CAMOFOX_ADOPT_EXISTING_TAB` | 为 true 时，Hermes 在首次使用时调用 `GET /tabs?userId=<user_id>` 并优先复用已有标签页，而非新建。 |
+| `browser.camofox.adopt_existing_tab` | `CAMOFOX_ADOPT_EXISTING_TAB` | 为 true 时，OpenAmer 在首次使用时调用 `GET /tabs?userId=<user_id>` 并优先复用已有标签页，而非新建。 |
 
 环境变量优先于 `config.yaml`。两种形式均可：
 
@@ -250,32 +250,32 @@ CAMOFOX_ADOPT_EXISTING_TAB=true
 
 **设置 `user_id` 后的变化：**
 
-- Hermes 在任务结束时跳过破坏性清理（与 `managed_persistence: true` 相同）。其他应用的标签页/Cookie/profile 得以保留。
-- Hermes **不会**调用 `DELETE /sessions/<user_id>` — 该端点会清除所有用户数据，若触发将销毁外部应用的会话。
+- OpenAmer 在任务结束时跳过破坏性清理（与 `managed_persistence: true` 相同）。其他应用的标签页/Cookie/profile 得以保留。
+- OpenAmer **不会**调用 `DELETE /sessions/<user_id>` — 该端点会清除所有用户数据，若触发将销毁外部应用的会话。
 
 **标签页接管的工作方式（当 `adopt_existing_tab: true` 时）：**
 
-1. 进程启动后首次调用浏览器工具时，Hermes 发出 `GET /tabs?userId=<user_id>`（5 秒超时）。
-2. 若响应中有标签页的 `listItemId == session_key`，Hermes 接管该组中最近创建的一个。
-3. 否则，Hermes 接管该用户最近创建的标签页（任意 `listItemId`）。
-4. 若无标签页或请求失败，Hermes 在下次操作时回退到新建标签页。
+1. 进程启动后首次调用浏览器工具时，OpenAmer 发出 `GET /tabs?userId=<user_id>`（5 秒超时）。
+2. 若响应中有标签页的 `listItemId == session_key`，OpenAmer 接管该组中最近创建的一个。
+3. 否则，OpenAmer 接管该用户最近创建的标签页（任意 `listItemId`）。
+4. 若无标签页或请求失败，OpenAmer 在下次操作时回退到新建标签页。
 
-接管仅在会话的 `tab_id` 填充之前触发一次。若外部应用在运行中关闭了被接管的标签页，下次浏览器工具调用将返回 Camofox 错误 — Hermes 不会在每次调用时重新轮询新标签页。
+接管仅在会话的 `tab_id` 填充之前触发一次。若外部应用在运行中关闭了被接管的标签页，下次浏览器工具调用将返回 Camofox 错误 — OpenAmer 不会在每次调用时重新轮询新标签页。
 
-**选择 `session_key`：** 若要 Hermes 可靠地附加到*特定*已有标签页，请将 `session_key` 设置为外部应用创建该标签页时使用的 `listItemId`。若只设置 `user_id` 而不设置 `session_key`，Hermes 会生成每任务的 `session_key`（`task_<id>`）— Hermes 将与外部应用共享 Cookie 和 profile，但会并排打开自己的标签页而非复用已有标签页。
+**选择 `session_key`：** 若要 OpenAmer 可靠地附加到*特定*已有标签页，请将 `session_key` 设置为外部应用创建该标签页时使用的 `listItemId`。若只设置 `user_id` 而不设置 `session_key`，OpenAmer 会生成每任务的 `session_key`（`task_<id>`）— OpenAmer 将与外部应用共享 Cookie 和 profile，但会并排打开自己的标签页而非复用已有标签页。
 
-**并发说明：** 外部应用和 Hermes 可同时驱动同一 Camofox `userId`，但 Camofox 不会在客户端之间协调每个标签页的焦点。请在应用层协调所有权（例如，Hermes 运行时外部应用暂停）。
+**并发说明：** 外部应用和 OpenAmer 可同时驱动同一 Camofox `userId`，但 Camofox 不会在客户端之间协调每个标签页的焦点。请在应用层协调所有权（例如，OpenAmer 运行时外部应用暂停）。
 
 #### VNC 实时查看
 
-当 Camofox 以有头模式运行（带可见浏览器窗口）时，其健康检查响应中会暴露 VNC 端口。Hermes 自动发现此信息，并在导航响应中包含 VNC URL，Agent 可分享链接供您实时查看浏览器。
+当 Camofox 以有头模式运行（带可见浏览器窗口）时，其健康检查响应中会暴露 VNC 端口。OpenAmer 自动发现此信息，并在导航响应中包含 VNC URL，Agent 可分享链接供您实时查看浏览器。
 
 ### 通过 CDP 连接本地 Chromium 系浏览器（`/browser connect`）
 
-除云端提供商外，您还可以通过 Chrome DevTools Protocol（CDP）将 Hermes 浏览器工具连接到本地运行的 Chrome、Brave、Chromium 或 Edge 实例。当您希望实时查看 Agent 操作、与需要自身 Cookie/会话的页面交互，或避免云端浏览器费用时，此方式非常有用。
+除云端提供商外，您还可以通过 Chrome DevTools Protocol（CDP）将 OpenAmer 浏览器工具连接到本地运行的 Chrome、Brave、Chromium 或 Edge 实例。当您希望实时查看 Agent 操作、与需要自身 Cookie/会话的页面交互，或避免云端浏览器费用时，此方式非常有用。
 
 :::note
-`/browser connect` 是**交互式 CLI 斜杠命令** — 不由 gateway 分发。若在 WebUI、Telegram、Discord 或其他 gateway 聊天中尝试运行，消息将作为纯文本发送给 Agent，命令不会执行。请从终端启动 Hermes（`hermes` 或 `hermes chat`）并在那里执行 `/browser connect`。
+`/browser connect` 是**交互式 CLI 斜杠命令** — 不由 gateway 分发。若在 WebUI、Telegram、Discord 或其他 gateway 聊天中尝试运行，消息将作为纯文本发送给 Agent，命令不会执行。请从终端启动 OpenAmer（`openamer` 或 `openamer chat`）并在那里执行 `/browser connect`。
 :::
 
 在 CLI 中使用：
@@ -287,7 +287,7 @@ CAMOFOX_ADOPT_EXISTING_TAB=true
 /browser disconnect              # Detach and return to cloud/local mode
 ```
 
-若浏览器尚未以远程调试模式运行，Hermes 将尝试自动启动支持的 Chromium 系浏览器并使用 `--remote-debugging-port=9222`。检测范围包括 Brave、Google Chrome、Chromium 和 Microsoft Edge，以及常见 Linux 安装路径（如 `/opt/brave-bin/brave` 和 `/snap/bin/brave`）。
+若浏览器尚未以远程调试模式运行，OpenAmer 将尝试自动启动支持的 Chromium 系浏览器并使用 `--remote-debugging-port=9222`。检测范围包括 Brave、Google Chrome、Chromium 和 Microsoft Edge，以及常见 Linux 安装路径（如 `/opt/brave-bin/brave` 和 `/snap/bin/brave`）。
 
 :::tip
 要手动启动带 CDP 的 Chromium 系浏览器，请使用专用的 user-data-dir，确保即使浏览器已以普通 profile 运行，调试端口也能正常开启：
@@ -296,33 +296,33 @@ CAMOFOX_ADOPT_EXISTING_TAB=true
 # Linux — Brave
 brave-browser \
   --remote-debugging-port=9222 \
-  --user-data-dir=$HOME/.hermes/chrome-debug \
+  --user-data-dir=$HOME/.openamer/chrome-debug \
   --no-first-run \
   --no-default-browser-check &
 
 # Linux — Google Chrome
 google-chrome \
   --remote-debugging-port=9222 \
-  --user-data-dir=$HOME/.hermes/chrome-debug \
+  --user-data-dir=$HOME/.openamer/chrome-debug \
   --no-first-run \
   --no-default-browser-check &
 
 # macOS — Brave
 "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser" \
   --remote-debugging-port=9222 \
-  --user-data-dir="$HOME/.hermes/chrome-debug" \
+  --user-data-dir="$HOME/.openamer/chrome-debug" \
   --no-first-run \
   --no-default-browser-check &
 
 # macOS — Google Chrome
 "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
   --remote-debugging-port=9222 \
-  --user-data-dir="$HOME/.hermes/chrome-debug" \
+  --user-data-dir="$HOME/.openamer/chrome-debug" \
   --no-first-run \
   --no-default-browser-check &
 ```
 
-然后启动 Hermes CLI 并运行 `/browser connect`。
+然后启动 OpenAmer CLI 并运行 `/browser connect`。
 
 **为什么需要 `--user-data-dir`？** 若不指定，在普通实例已运行时启动 Chromium 系浏览器通常只会在现有进程上打开新窗口 — 而该进程启动时未带 `--remote-debugging-port`，因此端口 9222 永远不会开启。专用的 user-data-dir 会强制启动新的浏览器进程，使调试端口正常监听。`--no-first-run --no-default-browser-check` 跳过新 profile 的首次启动向导。
 :::
@@ -331,23 +331,23 @@ google-chrome \
 
 ### WSL2 + Windows Chrome：优先使用 MCP 而非 `/browser connect`
 
-若 Hermes 在 WSL2 内运行，但您想控制的 Chrome 窗口在 Windows 宿主机上，`/browser connect` 通常不是最佳方案。
+若 OpenAmer 在 WSL2 内运行，但您想控制的 Chrome 窗口在 Windows 宿主机上，`/browser connect` 通常不是最佳方案。
 
 原因：
 
-- `/browser connect` 要求 Hermes 本身能访问可用的 CDP 端点
+- `/browser connect` 要求 OpenAmer 本身能访问可用的 CDP 端点
 - 现代 Chrome 实时调试会话通常暴露仅宿主机本地可访问的端点，WSL 无法像访问经典 `9222` 端口那样直接访问
-- 即使 Windows Chrome 可调试，最简洁的集成方式通常是让 Windows 侧的浏览器 MCP 服务器连接 Chrome，再让 Hermes 与该 MCP 服务器通信
+- 即使 Windows Chrome 可调试，最简洁的集成方式通常是让 Windows 侧的浏览器 MCP 服务器连接 Chrome，再让 OpenAmer 与该 MCP 服务器通信
 
-对于此场景，建议通过 Hermes MCP 支持使用 `chrome-devtools-mcp`。
+对于此场景，建议通过 OpenAmer MCP 支持使用 `chrome-devtools-mcp`。
 
 具体配置请参阅 MCP 指南：
 
-- [在 Hermes 中使用 MCP](../../guides/use-mcp-with-hermes.md#wsl2-bridge-hermes-in-wsl-to-windows-chrome)
+- [在 OpenAmer 中使用 MCP](../../guides/use-mcp-with-openamer.md#wsl2-bridge-openamer-in-wsl-to-windows-chrome)
 
 ### 本地浏览器模式
 
-若**未**设置任何云端凭据且未使用 `/browser connect`，Hermes 仍可通过由 `agent-browser` 驱动的本地 Chromium 安装使用浏览器工具。
+若**未**设置任何云端凭据且未使用 `/browser connect`，OpenAmer 仍可通过由 `agent-browser` 驱动的本地 Chromium 安装使用浏览器工具。
 
 ### 可选环境变量
 
@@ -368,11 +368,11 @@ BROWSERBASE_SESSION_TIMEOUT=600000
 # Inactivity timeout before auto-cleanup in seconds (default: 120)
 BROWSER_INACTIVITY_TIMEOUT=120
 
-# Extra Chromium launch flags (comma- or newline-separated). Hermes auto-injects
+# Extra Chromium launch flags (comma- or newline-separated). OpenAmer auto-injects
 # `--no-sandbox,--disable-dev-shm-usage` when it detects root or AppArmor-restricted
 # unprivileged user namespaces (Ubuntu 23.10+, DGX Spark, many container images),
 # so most users don't need to set this. Set it manually only if you need a flag
-# Hermes doesn't add automatically; setting it disables the auto-injection.
+# OpenAmer doesn't add automatically; setting it disables the auto-injection.
 AGENT_BROWSER_ARGS=--no-sandbox
 ```
 
@@ -385,7 +385,7 @@ npm install
 ```
 
 :::info
-`browser` 工具集必须包含在配置的 `toolsets` 列表中，或通过 `hermes config set toolsets '["hermes-cli", "browser"]'` 启用。
+`browser` 工具集必须包含在配置的 `toolsets` 列表中，或通过 `openamer config set toolsets '["openamer-cli", "browser"]'` 启用。
 :::
 
 ## 可用工具
@@ -409,7 +409,7 @@ Navigate to https://github.com/NousResearch
 - **`full=false`**（默认）：仅显示交互元素的紧凑视图
 - **`full=true`**：完整页面内容
 
-超过 15,000 字符的快照将被截断或由 LLM 自动摘要（与 `web_extract` 使用相同的单页预算）。发生截断时，完整快照会保存到 `~/.hermes/cache/web/`，工具输出中包含文件路径和可直接使用的 `read_file` 调用，代理无需重新截图即可翻阅完整的可访问性树（包括被截断部分的元素 ref）。
+超过 15,000 字符的快照将被截断或由 LLM 自动摘要（与 `web_extract` 使用相同的单页预算）。发生截断时，完整快照会保存到 `~/.openamer/cache/web/`，工具输出中包含文件路径和可直接使用的 `read_file` 调用，代理无需重新截图即可翻阅完整的可访问性树（包括被截断部分的元素 ref）。
 
 ### `browser_click`
 
@@ -424,7 +424,7 @@ Click @e5 to press the "Sign In" button
 向输入框输入文本。先清空字段，再输入新文本。
 
 ```
-Type "hermes agent" into the search field @e3
+Type "openamer agent" into the search field @e3
 ```
 
 ### `browser_scroll`
@@ -463,7 +463,7 @@ Press Enter to submit the form
 What does the chart on this page show?
 ```
 
-截图存储在 `~/.hermes/cache/screenshots/`，24 小时后自动清理。
+截图存储在 `~/.openamer/cache/screenshots/`，24 小时后自动清理。
 
 ### `browser_console`
 
@@ -595,7 +595,7 @@ browser:
   record_sessions: true  # default: false
 ```
 
-启用后，录制在首次 `browser_navigate` 时自动开始，会话关闭时保存到 `~/.hermes/browser_recordings/`。本地模式和云端模式（Browserbase）均支持。超过 72 小时的录制文件自动清理。
+启用后，录制在首次 `browser_navigate` 时自动开始，会话关闭时保存到 `~/.openamer/browser_recordings/`。本地模式和云端模式（Browserbase）均支持。超过 72 小时的录制文件自动清理。
 
 ## 隐身功能
 
@@ -609,7 +609,7 @@ Browserbase 提供自动隐身能力：
 | Keep Alive | 开启 | 网络中断后的会话重连 |
 
 :::note
-若付费功能在您的计划中不可用，Hermes 会自动降级 — 先禁用 `keepAlive`，再禁用代理 — 确保免费计划也能正常浏览。
+若付费功能在您的计划中不可用，OpenAmer 会自动降级 — 先禁用 `keepAlive`，再禁用代理 — 确保免费计划也能正常浏览。
 :::
 
 ## 会话管理
@@ -623,7 +623,7 @@ Browserbase 提供自动隐身能力：
 ## 限制
 
 - **基于文本的交互** — 依赖无障碍树，而非像素坐标
-- **快照大小** — 大型页面可能在 15,000 字符处被截断或由 LLM 摘要（与 `web_extract` 一致）；完整快照会保存到 `~/.hermes/cache/web/`，输出中给出路径供 `read_file` 翻阅
+- **快照大小** — 大型页面可能在 15,000 字符处被截断或由 LLM 摘要（与 `web_extract` 一致）；完整快照会保存到 `~/.openamer/cache/web/`，输出中给出路径供 `read_file` 翻阅
 - **会话超时** — 云端会话根据提供商计划设置过期
 - **费用** — 云端会话消耗提供商额度；对话结束或非活跃后会话自动清理。使用 `/browser connect` 可免费本地浏览。
 - **不支持文件下载** — 无法从浏览器下载文件

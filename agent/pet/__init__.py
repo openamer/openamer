@@ -15,7 +15,7 @@ parts:
 - :mod:`agent.pet.state`     — map agent activity → a :class:`PetState`.
 - :mod:`agent.pet.manifest`  — fetch the public petdex manifest.
 - :mod:`agent.pet.store`     — install / list / resolve pets on disk
-                               (profile-aware via ``get_hermes_home()``).
+                               (profile-aware via ``get_openamer_home()``).
 - :mod:`agent.pet.render`    — decode a spritesheet and encode frames for a
                                terminal (kitty / iTerm2 / sixel graphics
                                protocols, with a Unicode half-block

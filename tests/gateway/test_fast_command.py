@@ -237,7 +237,7 @@ async def test_run_agent_passes_priority_processing_to_gateway_agent(monkeypatch
         },
     )
 
-    import hermes_cli.tools_config as tools_config
+    import openamer_cli.tools_config as tools_config
     monkeypatch.setattr(tools_config, "_get_platform_tools", lambda user_config, platform_key: {"core"})
 
     _CapturingAgent.last_init = None
@@ -278,7 +278,7 @@ async def test_run_agent_passes_discord_auto_thread_title_callback(monkeypatch, 
         },
     )
 
-    import hermes_cli.tools_config as tools_config
+    import openamer_cli.tools_config as tools_config
     monkeypatch.setattr(tools_config, "_get_platform_tools", lambda user_config, platform_key: {"core"})
 
     with patch("agent.title_generator.maybe_auto_title") as mock_title:

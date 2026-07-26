@@ -30,7 +30,7 @@ def test_packaging_declared_as_core_dependency():
 
     ``packaging`` is imported directly on three production paths
     (plugins/memory/hindsight/__init__.py, tools/lazy_deps.py,
-    hermes_cli/main.py) yet was undeclared, so it only reached users
+    openamer_cli/main.py) yet was undeclared, so it only reached users
     transitively. The slim Docker image shipped without it, silently
     disabling Hindsight append-mode and version-constraint checks. It must
     be a declared core dependency so it installs everywhere and the

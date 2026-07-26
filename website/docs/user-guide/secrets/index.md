@@ -1,6 +1,6 @@
 # Secrets
 
-Hermes can pull API keys from external secret managers at process startup instead of storing them in `~/.hermes/.env`. The bootstrap token for the secret manager lives in `.env`; every other provider key (OpenAI, Anthropic, OpenRouter, etc.) can stay in the manager and rotate centrally.
+OpenAmer can pull API keys from external secret managers at process startup instead of storing them in `~/.openamer/.env`. The bootstrap token for the secret manager lives in `.env`; every other provider key (OpenAI, Anthropic, OpenRouter, etc.) can stay in the manager and rotate centrally.
 
 Supported:
 
@@ -26,7 +26,7 @@ secrets:
     project_id: "..."
 ```
 
-Every credential injected by a source is labelled with its origin — setup flows and `hermes model` show `(from Bitwarden)` next to detected keys so you always know where a value came from.
+Every credential injected by a source is labelled with its origin — setup flows and `openamer model` show `(from Bitwarden)` next to detected keys so you always know where a value came from.
 
 ## Profiles and shared vaults
 
@@ -39,7 +39,7 @@ Two orchestrator-level knobs make one shared vault safe across [profiles](../fea
     preserve_existing: [FEISHU_APP_SECRET, TELEGRAM_BOT_TOKEN]
   ```
 
-- **Profile aliasing** (on by default, `secrets.profile_alias: false` to disable) — when Hermes runs under a named profile, a vault secret named `FOO_<PROFILE>` (credential-shaped suffixes only: `*_API_KEY`, `*_TOKEN`, `*_SECRET`, `*_KEY`, `*_PASSWORD`) also hydrates the canonical `FOO`. Store `TELEGRAM_BOT_TOKEN_MILLA` in the shared project and the `milla` profile's adapters — which read the fixed name `TELEGRAM_BOT_TOKEN` — get the right value automatically. A var the vault supplies directly under its canonical name always beats an alias.
+- **Profile aliasing** (on by default, `secrets.profile_alias: false` to disable) — when OpenAmer runs under a named profile, a vault secret named `FOO_<PROFILE>` (credential-shaped suffixes only: `*_API_KEY`, `*_TOKEN`, `*_SECRET`, `*_KEY`, `*_PASSWORD`) also hydrates the canonical `FOO`. Store `TELEGRAM_BOT_TOKEN_MILLA` in the shared project and the `milla` profile's adapters — which read the fixed name `TELEGRAM_BOT_TOKEN` — get the right value automatically. A var the vault supplies directly under its canonical name always beats an alias.
 
 Both apply to every source — bundled and plugin — because they live in the orchestrator, not the backends.
 

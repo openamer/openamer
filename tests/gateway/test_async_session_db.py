@@ -13,8 +13,8 @@ from pathlib import Path
 
 import pytest
 
-import hermes_state
-from hermes_state import AsyncSessionDB
+import openamer_state
+from openamer_state import AsyncSessionDB
 
 
 class _SpyDB:
@@ -82,7 +82,7 @@ async def test_offload_goes_through_to_thread(monkeypatch):
         seen.append(getattr(func, "__name__", repr(func)))
         return await real(func, *args, **kwargs)
 
-    monkeypatch.setattr(hermes_state.asyncio, "to_thread", _spy)
+    monkeypatch.setattr(openamer_state.asyncio, "to_thread", _spy)
     await facade.returns_str()
     assert "returns_str" in seen
 
@@ -383,7 +383,7 @@ def test_offloaded_helpers_never_called_bare_on_loop():
 
 @pytest.mark.asyncio
 async def test_concurrent_claim_handoff_single_winner(tmp_path):
-    db = AsyncSessionDB(hermes_state.SessionDB(db_path=tmp_path / "state.db"))
+    db = AsyncSessionDB(openamer_state.SessionDB(db_path=tmp_path / "state.db"))
     sid = "s-handoff"
     await db.create_session(sid, "test")
     await db.request_handoff(sid, "telegram")
@@ -395,7 +395,7 @@ async def test_concurrent_claim_handoff_single_winner(tmp_path):
 
 @pytest.mark.asyncio
 async def test_concurrent_create_session_idempotent(tmp_path):
-    db = AsyncSessionDB(hermes_state.SessionDB(db_path=tmp_path / "state.db"))
+    db = AsyncSessionDB(openamer_state.SessionDB(db_path=tmp_path / "state.db"))
     sid = "s-create"
 
     await asyncio.gather(*(db.create_session(sid, "test") for _ in range(20)))

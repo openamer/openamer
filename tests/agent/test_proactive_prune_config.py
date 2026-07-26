@@ -14,7 +14,7 @@ import contextlib
 import io
 from pathlib import Path
 
-from hermes_state import SessionDB
+from openamer_state import SessionDB
 from run_agent import AIAgent
 
 
@@ -36,7 +36,7 @@ def _config(**prune_keys) -> dict:
 
 
 def _make_agent(monkeypatch, tmp_path: Path, **prune_keys):
-    from hermes_cli import config as config_mod
+    from openamer_cli import config as config_mod
 
     monkeypatch.setattr(config_mod, "load_config", lambda: _config(**prune_keys))
     db = SessionDB(db_path=tmp_path / "state.db")

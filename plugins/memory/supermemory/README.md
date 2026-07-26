@@ -5,20 +5,20 @@ Semantic long-term memory with profile recall, semantic search, explicit memory 
 ## Requirements
 
 - `pip install supermemory`
-- Hosted: API key from [app.supermemory.ai/integrations?connect=hermes](http://app.supermemory.ai/integrations?connect=hermes)
+- Hosted: API key from [app.supermemory.ai/integrations?connect=openamer](http://app.supermemory.ai/integrations?connect=openamer)
 - Self-hosted: a running [Supermemory local](https://supermemory.ai/docs/self-hosting/overview) server and the API key it prints on first boot
 
 ## Setup
 
 ```bash
-hermes memory setup    # select "supermemory"
+openamer memory setup    # select "supermemory"
 ```
 
 Or manually:
 
 ```bash
-hermes config set memory.provider supermemory
-echo 'SUPERMEMORY_API_KEY=***' >> ~/.hermes/.env
+openamer config set memory.provider supermemory
+echo 'SUPERMEMORY_API_KEY=***' >> ~/.openamer/.env
 ```
 
 For a fully self-hosted setup, start Supermemory local and note the API key it
@@ -28,7 +28,7 @@ prints on first boot:
 npx supermemory local
 ```
 
-Before running `hermes memory setup`, add the local endpoint to
+Before running `openamer memory setup`, add the local endpoint to
 `$HERMES_HOME/supermemory.json`:
 
 ```json
@@ -37,7 +37,7 @@ Before running `hermes memory setup`, add the local endpoint to
 }
 ```
 
-Then run `hermes memory setup` and enter the local server's API key. Configuring
+Then run `openamer memory setup` and enter the local server's API key. Configuring
 the endpoint first ensures the setup connection probe also stays local.
 
 ## Config
@@ -47,7 +47,7 @@ Config file: `$HERMES_HOME/supermemory.json`
 | Key | Default | Description |
 |-----|---------|-------------|
 | `base_url` | `https://api.supermemory.ai` | API endpoint for hosted or self-hosted Supermemory. Takes priority over `SUPERMEMORY_BASE_URL`. |
-| `container_tag` | `hermes` | Container tag used for search and writes. Supports `{identity}` template for profile-scoped tags (e.g. `hermes-{identity}` → `hermes-coder`). |
+| `container_tag` | `openamer` | Container tag used for search and writes. Supports `{identity}` template for profile-scoped tags (e.g. `openamer-{identity}` → `openamer-coder`). |
 | `auto_recall` | `true` | Inject relevant memory context before turns |
 | `auto_capture` | `true` | Store cleaned user-assistant turns after each response |
 | `max_recall_results` | `10` | Max recalled items to format into context |
@@ -66,7 +66,7 @@ Config file: `$HERMES_HOME/supermemory.json`
 | `SUPERMEMORY_CONTAINER_TAG` | Override container tag (takes priority over config file) |
 
 Base URL precedence is `supermemory.json` → `SUPERMEMORY_BASE_URL` →
-`https://api.supermemory.ai`. Hermes resolves it once and uses the same endpoint
+`https://api.supermemory.ai`. OpenAmer resolves it once and uses the same endpoint
 for SDK operations, setup/status probes, and full-session conversation ingest.
 
 ## Tools
@@ -82,15 +82,15 @@ Kebab-case names are registered for the agent; snake_case aliases remain support
 
 ## Source attribution
 
-All Supermemory API calls send `x-sm-source: hermes`, and document writes stamp
-`metadata.sm_source: hermes`. This is a **functional routing key, not telemetry**:
-it groups Hermes-written memories into a dedicated "Hermes" Space in the
+All Supermemory API calls send `x-sm-source: openamer`, and document writes stamp
+`metadata.sm_source: openamer`. This is a **functional routing key, not telemetry**:
+it groups OpenAmer-written memories into a dedicated "OpenAmer" Space in the
 Supermemory app, so you can filter, browse, and bulk-manage them per source agent
 (alongside Codex, Claude Code, etc.) from the Supermemory UI.
 
 ## Behavior
 
-When enabled, Hermes can:
+When enabled, OpenAmer can:
 
 - prefetch relevant memory context before each turn
 - buffer the full conversation and ingest it as **one session** at session end (or on `/reset`, branch, compression, or shutdown)
@@ -102,15 +102,15 @@ The session is written once via the conversations endpoint, which drives Superme
 
 ## Profile-Scoped Containers
 
-Use `{identity}` in the `container_tag` to scope memories per Hermes profile:
+Use `{identity}` in the `container_tag` to scope memories per OpenAmer profile:
 
 ```json
 {
-  "container_tag": "hermes-{identity}"
+  "container_tag": "openamer-{identity}"
 }
 ```
 
-For a profile named `coder`, this resolves to `hermes-coder`. The default profile resolves to `hermes-default`. Without `{identity}`, all profiles share the same container.
+For a profile named `coder`, this resolves to `openamer-coder`. The default profile resolves to `openamer-default`. Without `{identity}`, all profiles share the same container.
 
 ## Multi-Container Mode
 
@@ -118,7 +118,7 @@ For advanced setups (e.g. OpenClaw-style multi-workspace), you can enable custom
 
 ```json
 {
-  "container_tag": "hermes",
+  "container_tag": "openamer",
   "enable_custom_container_tags": true,
   "custom_containers": ["project-alpha", "project-beta", "shared-knowledge"],
   "custom_container_instructions": "Use project-alpha for coding tasks, project-beta for research, and shared-knowledge for team-wide facts."

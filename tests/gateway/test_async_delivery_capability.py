@@ -80,7 +80,7 @@ class TestAsyncDeliverySupported:
         """A one-shot Kanban worker cannot receive a detached completion
         after its process exits, even when its CLI session otherwise defaults
         to supporting async delivery."""
-        monkeypatch.setenv("HERMES_KANBAN_TASK", "t_review")
+        monkeypatch.setenv("OPENAMER_KANBAN_TASK", "t_review")
 
         assert async_delivery_supported() is False
 

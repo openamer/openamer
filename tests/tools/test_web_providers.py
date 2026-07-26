@@ -210,7 +210,7 @@ class TestDefaultConfig:
     """The web section exists in DEFAULT_CONFIG with per-capability keys."""
 
     def test_web_section_in_default_config(self):
-        from hermes_cli.config import DEFAULT_CONFIG
+        from openamer_cli.config import DEFAULT_CONFIG
 
         assert "web" in DEFAULT_CONFIG
         web = DEFAULT_CONFIG["web"]
@@ -402,7 +402,7 @@ class TestDispatchersTriggerPluginDiscovery:
 
             mock_hook = MagicMock(wraps=_register_fake)
             # Patch the helper on ``tools.web_tools`` directly rather than the
-            # underlying ``hermes_cli.plugins._ensure_plugins_discovered`` so
+            # underlying ``openamer_cli.plugins._ensure_plugins_discovered`` so
             # the test stays valid even if the import inside the helper is
             # later moved to module scope or renamed.
             monkeypatch.setattr(
@@ -524,7 +524,7 @@ class TestDisabledPluginDiagnostic:
         """Point ``get_plugin_manager()`` at a stub whose ``_plugins``
         dict is ``plugins_map`` so ``_disabled_web_plugin_for`` sees the
         simulated disabled/enabled state without touching real config."""
-        import hermes_cli.plugins as plugins_mod
+        import openamer_cli.plugins as plugins_mod
 
         class _StubMgr:
             _plugins = plugins_map

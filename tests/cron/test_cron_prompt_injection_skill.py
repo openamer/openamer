@@ -22,10 +22,10 @@ sys.path.insert(0, str(Path(__file__).parent.parent.parent))
 
 @pytest.fixture
 def cron_env(tmp_path, monkeypatch):
-    """Isolated HERMES_HOME with an empty skills tree.
+    """Isolated OPENAMER_HOME with an empty skills tree.
 
     `tools.skills_tool` snapshots `SKILLS_DIR` at module-import time, so
-    setting `HERMES_HOME` alone doesn't reach it. We also patch the
+    setting `OPENAMER_HOME` alone doesn't reach it. We also patch the
     module-level constant so `skill_view()` finds the skills we plant.
 
     Note: `test_cron_no_agent.py` (and potentially others) do
@@ -40,7 +40,7 @@ def cron_env(tmp_path, monkeypatch):
     skills_dir.mkdir()
     (hermes_home / "cron").mkdir()
     (hermes_home / "cron" / "output").mkdir()
-    monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
     monkeypatch.setenv("HERMES_BUNDLES_DIR", str(hermes_home / "skill-bundles"))
 
     # Patch the module-level SKILLS_DIR snapshots that `skill_view()`
@@ -48,7 +48,7 @@ def cron_env(tmp_path, monkeypatch):
     # `~/.hermes/skills/` and our planted skills are invisible.
     import tools.skills_tool as _skills_tool
     monkeypatch.setattr(_skills_tool, "SKILLS_DIR", skills_dir)
-    monkeypatch.setattr(_skills_tool, "HERMES_HOME", hermes_home)
+    monkeypatch.setattr(_skills_tool, "OPENAMER_HOME", hermes_home)
 
     # Reset bundle cache and make bundle discovery hit this test home.
     import agent.skill_bundles as _skill_bundles

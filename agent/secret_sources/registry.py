@@ -14,7 +14,7 @@ so no individual source can get it wrong:
 * provenance: which source supplied every applied var
 
 The single entry point for startup is :func:`apply_all`, called from
-``hermes_cli.env_loader._apply_external_secret_sources()``.
+``openamer_cli.env_loader._apply_external_secret_sources()``.
 
 Plugins register additional sources via
 ``PluginContext.register_secret_source()`` which lands in
@@ -286,7 +286,7 @@ def _ordered_enabled_sources(secrets_cfg: dict) -> List[SecretSource]:
 def _active_profile_name(home_path: Optional[Path]) -> str:
     """Best-effort active profile name for profile-scoped secret aliases.
 
-    A named profile's HERMES_HOME is ``~/.hermes/profiles/<name>``; the
+    A named profile's OPENAMER_HOME is ``~/.hermes/profiles/<name>``; the
     default profile (``~/.hermes``) returns "".
     """
     if home_path is not None:

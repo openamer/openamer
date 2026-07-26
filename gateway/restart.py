@@ -3,7 +3,7 @@
 import os
 from collections.abc import Mapping
 
-from hermes_cli.config import DEFAULT_CONFIG
+from openamer_cli.config import DEFAULT_CONFIG
 
 # EX_TEMPFAIL from sysexits.h — used to ask the service manager to restart
 # the gateway after a graceful drain/reload path completes.

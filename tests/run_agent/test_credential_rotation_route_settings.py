@@ -38,7 +38,7 @@ def test_credential_rotation_replaces_route_scoped_tls_settings():
         ]
     }
 
-    with patch("hermes_cli.config.load_config_readonly", return_value=config):
+    with patch("openamer_cli.config.load_config_readonly", return_value=config):
         AIAgent._swap_credential(agent, entry)
 
     assert agent._client_kwargs["ssl_verify"] is True
@@ -90,9 +90,9 @@ def test_credential_rotation_does_not_carry_global_headers_across_routes():
     }
 
     with (
-        patch("hermes_cli.config.load_config_readonly", return_value=config),
+        patch("openamer_cli.config.load_config_readonly", return_value=config),
         patch(
-            "hermes_cli.config.get_compatible_custom_providers",
+            "openamer_cli.config.get_compatible_custom_providers",
             return_value=config["custom_providers"],
         ),
     ):
@@ -126,7 +126,7 @@ def test_credential_rotation_preserves_route_significant_trailing_segments():
         base_url="https://b.example/v1//",
     )
 
-    with patch("hermes_cli.config.load_config_readonly", return_value={}):
+    with patch("openamer_cli.config.load_config_readonly", return_value={}):
         AIAgent._swap_credential(agent, entry)
 
     assert agent.base_url == "https://b.example/v1"

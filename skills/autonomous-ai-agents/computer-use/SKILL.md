@@ -9,7 +9,7 @@ description: |
 version: 2.0.0
 platforms: [macos, windows, linux]
 metadata:
-  hermes:
+  openamer:
     tags: [computer-use, desktop, automation, gui, cross-platform]
     category: desktop
     related_skills: []
@@ -27,9 +27,9 @@ Everything here works with any tool-capable model — Claude, GPT, Gemini,
 or an open model on a local OpenAI-compatible endpoint. There is no
 Anthropic-native schema to learn.
 
-Hermes drives [cua-driver](https://github.com/trycua/cua) under the hood
-for the platform plumbing. The Hermes-side `computer_use` tool exposed
-in this skill is a higher-level Hermes vocabulary; the raw cua-driver
+OpenAmer drives [cua-driver](https://github.com/trycua/cua) under the hood
+for the platform plumbing. The OpenAmer-side `computer_use` tool exposed
+in this skill is a higher-level OpenAmer vocabulary; the raw cua-driver
 MCP tools (which a different agent harness would see) are NOT what you
 call — call the `computer_use` actions documented below.
 
@@ -252,13 +252,13 @@ in your conversation context.
 
 | Symptom | Likely cause + remedy |
 |---|---|
-| `cua-driver not installed` | Run `hermes computer-use install`, or `hermes tools` and enable Computer Use |
-| Captures consistently return empty / "no on-screen window" | On Linux: DISPLAY may not be set (X11) or you're on pure Wayland — ask the user to run `hermes computer-use doctor`. On Windows: you may be in Session 0 (SSH session) instead of the interactive desktop — see the cua-driver `WINDOWS.md` deep-dive |
+| `cua-driver not installed` | Run `openamer computer-use install`, or `openamer tools` and enable Computer Use |
+| Captures consistently return empty / "no on-screen window" | On Linux: DISPLAY may not be set (X11) or you're on pure Wayland — ask the user to run `openamer computer-use doctor`. On Windows: you may be in Session 0 (SSH session) instead of the interactive desktop — see the cua-driver `WINDOWS.md` deep-dive |
 | Element index stale ("Element N not in cache") | SOM indices are only valid until the next `capture`. Re-capture before clicking. The wrapper carries opaque `element_token`s for stale-detection; you'll see an explicit error rather than a wrong click |
 | Click had no effect | Read the structured verdict, don't just recapture. `effect:"unverifiable"` → re-capture and confirm yourself. `effect:"suspected_noop"` / `code:"background_unavailable"` / `escalation.recommended` → climb the ladder: try `coordinate=[x,y]` (px), then `delivery_mode="foreground"`. A modal (e.g. an Electron consent dialog) may be blocking input — foreground delivery is how you dismiss it. Don't conclude the app is undrivable |
-| Type text disappears into a terminal emulator | cua-driver detects terminals (Ghostty, iTerm2, Terminal.app, Windows Terminal, mintty, etc.) and routes through key-event synthesis — should "just work" on a recent cua-driver. If it doesn't, ask the user to run `hermes computer-use doctor` |
+| Type text disappears into a terminal emulator | cua-driver detects terminals (Ghostty, iTerm2, Terminal.app, Windows Terminal, mintty, etc.) and routes through key-event synthesis — should "just work" on a recent cua-driver. If it doesn't, ask the user to run `openamer computer-use doctor` |
 | `blocked pattern in type text` | You tried to `type` a shell command matching the dangerous-pattern block list (`curl ... \| bash`, `sudo rm -rf`, etc.). Break the command up or reconsider |
-| Anything else weird | **First action: ask the user to run `hermes computer-use doctor`.** It runs the cua-driver `health_report` MCP tool and prints a structured per-check matrix. Their output tells you (and them) exactly what's wrong |
+| Anything else weird | **First action: ask the user to run `openamer computer-use doctor`.** It runs the cua-driver `health_report` MCP tool and prints a structured per-check matrix. Their output tells you (and them) exactly what's wrong |
 
 ## When NOT to use `computer_use`
 
@@ -275,7 +275,7 @@ in your conversation context.
 
 ## Going deeper — read the cua-driver skill pack
 
-Hermes intentionally keeps THIS skill focused on the Hermes-side
+OpenAmer intentionally keeps THIS skill focused on the OpenAmer-side
 `computer_use` action vocabulary. The platform-specific deep dives
 (macOS no-foreground contract, Windows UIA + Session 0, Linux AT-SPI +
 X11/Wayland nuances, recording trajectory + video, browser-page
@@ -307,7 +307,7 @@ These are platform deep dives, not duplicates — when the user reports
 `WINDOWS.md` for the UIA / UWP context that explains why and what to
 do differently.
 
-When `cua-driver skills install` autodetects Hermes (planned follow-up
+When `cua-driver skills install` autodetects OpenAmer (planned follow-up
 in trycua/cua), this happens automatically on install. Until then, ask
 the user to run the command and the pack lands in their agent skill
 space alongside this skill.

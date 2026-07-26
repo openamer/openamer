@@ -27,7 +27,7 @@ def test_dockerfile_makes_opt_hermes_readonly_for_hermes_user() -> None:
 def test_dockerfile_keeps_mutable_state_under_opt_data() -> None:
     text = _dockerfile_text()
 
-    assert "ENV HERMES_HOME=/opt/data" in text
+    assert "ENV OPENAMER_HOME=/opt/data" in text
     assert "ENV HERMES_WRITE_SAFE_ROOT=/opt/data" in text
     assert 'VOLUME [ "/opt/data" ]' in text
 
@@ -61,7 +61,7 @@ def test_dockerfile_bakes_code_scoped_install_method_stamp() -> None:
     detect_install_method() reads the code-scoped stamp
     (/opt/hermes/.install_method) first; baking it at build time keeps the
     published image self-identifying as 'docker' WITHOUT writing into the
-    shared $HERMES_HOME data volume (which a host install may also use).
+    shared $OPENAMER_HOME data volume (which a host install may also use).
     The stamp is created by root in the shim-wiring RUN block; the hermes
     user can't modify it (go-w from the --chmod on the source COPY).
     """
@@ -102,7 +102,7 @@ def test_dockerfile_redirects_lazy_installs_to_durable_target() -> None:
     # stage2-hook must seed + chown the target dir so first-use installs
     # succeed as the unprivileged hermes runtime user.
     stage2 = (REPO_ROOT / "docker" / "stage2-hook.sh").read_text()
-    assert '"$HERMES_HOME/lazy-packages"' in stage2, (
+    assert '"$OPENAMER_HOME/lazy-packages"' in stage2, (
         "stage2-hook.sh must create the lazy-packages dir on the data volume"
     )
     assert "lazy-packages" in stage2.split("for sub in", 1)[1].split(";", 1)[0], (

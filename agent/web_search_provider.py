@@ -59,7 +59,7 @@ from typing import Any, Dict, List, Optional
 def get_provider_env(name: str) -> str:
     """Config-aware env lookup for web providers.
 
-    Resolves *name* via :func:`hermes_cli.config.get_env_value` (checks
+    Resolves *name* via :func:`openamer_cli.config.get_env_value` (checks
     ``os.environ`` first, then ``~/.hermes/.env``) so credentials set
     through Hermes' config layer are visible even when they were never
     exported into the process environment — gateway sessions, delegate
@@ -71,7 +71,7 @@ def get_provider_env(name: str) -> str:
     """
     val: Optional[str] = None
     try:
-        from hermes_cli.config import get_env_value
+        from openamer_cli.config import get_env_value
 
         val = get_env_value(name)
     except Exception:  # noqa: BLE001 — config layer optional here
@@ -186,7 +186,7 @@ class WebSearchProvider(abc.ABC):
     def get_setup_schema(self) -> Dict[str, Any]:
         """Return provider metadata for the ``hermes tools`` picker.
 
-        Used by ``hermes_cli/tools_config.py`` to inject this provider as a
+        Used by ``openamer_cli/tools_config.py`` to inject this provider as a
         row in the Web Search / Web Extract picker. Shape::
 
             {

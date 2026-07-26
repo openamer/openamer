@@ -15,7 +15,7 @@ These tests pin the fixed behavior:
   :func:`agent.skill_commands.scan_skill_commands`), so the slug differs
   from the directory name when the declared name is multi-word.
 * ``disabled`` membership is checked by the declared name, because that
-  is what :func:`hermes_cli.skills_config.save_disabled_skills` stores.
+  is what :func:`openamer_cli.skills_config.save_disabled_skills` stores.
 """
 from __future__ import annotations
 
@@ -27,11 +27,11 @@ import pytest
 
 @pytest.fixture
 def tmp_skills(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> Path:
-    """Isolated skills dir + HERMES_HOME so the real user config is untouched."""
+    """Isolated skills dir + OPENAMER_HOME so the real user config is untouched."""
     home = tmp_path / ".hermes"
     home.mkdir()
     (home / "skills").mkdir()
-    monkeypatch.setenv("HERMES_HOME", str(home))
+    monkeypatch.setenv("OPENAMER_HOME", str(home))
     monkeypatch.setattr(Path, "home", lambda: tmp_path)
     return home / "skills"
 
@@ -161,7 +161,7 @@ def test_optional_skill_uses_frontmatter_slug(
     # ``get_optional_skills_dir(repo_root / "optional-skills")`` — we
     # can't easily retarget ``repo_root``, so patch the resolver.
     monkeypatch.setattr(
-        "hermes_constants.get_optional_skills_dir",
+        "openamer_constants.get_optional_skills_dir",
         lambda _default: optional,
         raising=False,
     )

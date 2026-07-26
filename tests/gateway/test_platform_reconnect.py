@@ -119,8 +119,8 @@ class TestStartupPlatformIsolation:
             return MagicMock()
 
         with patch("gateway.status.write_runtime_status"):
-            with patch("hermes_cli.plugins.discover_plugins"):
-                with patch("hermes_cli.config.load_config", return_value={}):
+            with patch("openamer_cli.plugins.discover_plugins"):
+                with patch("openamer_cli.config.load_config", return_value={}):
                     with patch("agent.shell_hooks.register_from_config"):
                         with patch(
                             "tools.process_registry.process_registry.recover_from_checkpoint",

@@ -17,7 +17,7 @@ from agent import shell_hooks
 
 @pytest.fixture(autouse=True)
 def _isolated_home(tmp_path, monkeypatch):
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path / "hermes_home"))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / "hermes_home"))
     monkeypatch.delenv("HERMES_ACCEPT_HOOKS", raising=False)
     shell_hooks.reset_for_tests()
     yield
@@ -36,7 +36,7 @@ def _write_hook_script(tmp_path: Path) -> Path:
 
 class TestTTYPromptFlow:
     def test_first_use_prompts_and_approves(self, tmp_path):
-        from hermes_cli import plugins
+        from openamer_cli import plugins
 
         script = _write_hook_script(tmp_path)
         plugins._plugin_manager = plugins.PluginManager()
@@ -55,7 +55,7 @@ class TestTTYPromptFlow:
         assert entry["command"] == str(script)
 
     def test_first_use_prompts_and_rejects(self, tmp_path):
-        from hermes_cli import plugins
+        from openamer_cli import plugins
 
         script = _write_hook_script(tmp_path)
         plugins._plugin_manager = plugins.PluginManager()
@@ -73,7 +73,7 @@ class TestTTYPromptFlow:
 
     def test_subsequent_use_does_not_prompt(self, tmp_path):
         """After the first approval, re-registration must be silent."""
-        from hermes_cli import plugins
+        from openamer_cli import plugins
 
         script = _write_hook_script(tmp_path)
         plugins._plugin_manager = plugins.PluginManager()
@@ -106,7 +106,7 @@ class TestTTYPromptFlow:
 
 class TestNonTTYFlow:
     def test_no_tty_no_flag_skips_registration(self, tmp_path):
-        from hermes_cli import plugins
+        from openamer_cli import plugins
 
         script = _write_hook_script(tmp_path)
         plugins._plugin_manager = plugins.PluginManager()
@@ -120,7 +120,7 @@ class TestNonTTYFlow:
         assert registered == []
 
     def test_no_tty_with_argument_flag_accepts(self, tmp_path):
-        from hermes_cli import plugins
+        from openamer_cli import plugins
 
         script = _write_hook_script(tmp_path)
         plugins._plugin_manager = plugins.PluginManager()
@@ -134,7 +134,7 @@ class TestNonTTYFlow:
         assert len(registered) == 1
 
     def test_no_tty_with_env_accepts(self, tmp_path, monkeypatch):
-        from hermes_cli import plugins
+        from openamer_cli import plugins
 
         script = _write_hook_script(tmp_path)
         plugins._plugin_manager = plugins.PluginManager()
@@ -149,7 +149,7 @@ class TestNonTTYFlow:
         assert len(registered) == 1
 
     def test_no_tty_with_config_accepts(self, tmp_path):
-        from hermes_cli import plugins
+        from openamer_cli import plugins
 
         script = _write_hook_script(tmp_path)
         plugins._plugin_manager = plugins.PluginManager()

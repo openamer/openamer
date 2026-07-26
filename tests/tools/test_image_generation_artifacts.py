@@ -22,7 +22,7 @@ def test_postprocess_adds_agent_visible_image_for_active_ssh_env(monkeypatch, tm
         _sync_manager=FakeSyncManager(),
     )
 
-    monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
     monkeypatch.setattr(image_generation_tool, "_active_terminal_env", lambda task_id: env)
 
     raw = json.dumps({"success": True, "image": str(image_path)})
@@ -47,7 +47,7 @@ def test_postprocess_maps_docker_cache_path_without_active_env(monkeypatch, tmp_
     image_path = image_dir / "generated.png"
     image_path.write_bytes(b"png")
 
-    monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
     monkeypatch.setenv("TERMINAL_ENV", "docker")
     monkeypatch.setattr(image_generation_tool, "_active_terminal_env", lambda task_id: None)
 
@@ -67,7 +67,7 @@ def test_postprocess_maps_ssh_cache_path_without_active_env(monkeypatch, tmp_pat
     image_path = image_dir / "first-call.png"
     image_path.write_bytes(b"png")
 
-    monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
     monkeypatch.setenv("TERMINAL_ENV", "ssh")
     monkeypatch.setattr(image_generation_tool, "_active_terminal_env", lambda task_id: None)
 
@@ -105,7 +105,7 @@ def test_handle_image_generate_postprocesses_plugin_result(monkeypatch, tmp_path
         seen_task_ids.append(task_id)
         return env
 
-    monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
     monkeypatch.setattr(image_generation_tool, "_active_terminal_env", fake_active_env)
     monkeypatch.setattr(
         image_generation_tool,

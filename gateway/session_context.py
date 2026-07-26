@@ -71,7 +71,7 @@ def session_context_engaged() -> bool:
 # ---------------------------------------------------------------------------
 
 _SESSION_PLATFORM: ContextVar = ContextVar("HERMES_SESSION_PLATFORM", default=_UNSET)
-_SESSION_SOURCE: ContextVar = ContextVar("HERMES_SESSION_SOURCE", default=_UNSET)
+_SESSION_SOURCE: ContextVar = ContextVar("OPENAMER_SESSION_SOURCE", default=_UNSET)
 _SESSION_CHAT_ID: ContextVar = ContextVar("HERMES_SESSION_CHAT_ID", default=_UNSET)
 _SESSION_CHAT_NAME: ContextVar = ContextVar("HERMES_SESSION_CHAT_NAME", default=_UNSET)
 _SESSION_THREAD_ID: ContextVar = ContextVar("HERMES_SESSION_THREAD_ID", default=_UNSET)
@@ -121,7 +121,7 @@ _CRON_AUTO_DELIVER_THREAD_ID: ContextVar = ContextVar("HERMES_CRON_AUTO_DELIVER_
 
 _VAR_MAP = {
     "HERMES_SESSION_PLATFORM": _SESSION_PLATFORM,
-    "HERMES_SESSION_SOURCE": _SESSION_SOURCE,
+    "OPENAMER_SESSION_SOURCE": _SESSION_SOURCE,
     "HERMES_SESSION_CHAT_ID": _SESSION_CHAT_ID,
     "HERMES_SESSION_CHAT_NAME": _SESSION_CHAT_NAME,
     "HERMES_SESSION_THREAD_ID": _SESSION_THREAD_ID,
@@ -359,7 +359,7 @@ def async_delivery_supported() -> bool:
     that cannot route a notification back after the turn ends (the API server),
     or a one-shot runner that exits after its final response (``hermes -z``,
     cron — see :func:`declare_stateless_channel`) — and dispatcher-spawned
-    Kanban workers (identified by ``HERMES_KANBAN_TASK``), which are one-shot
+    Kanban workers (identified by ``OPENAMER_KANBAN_TASK``), which are one-shot
     ``chat -q`` subprocesses. The real gateway platforms, the interactive CLI,
     and any other path that never bound the contextvar return ``True``.
 
@@ -374,7 +374,7 @@ def async_delivery_supported() -> bool:
     # disappear after the quiet turn returns, so a completion queued later has
     # no durable consumer even though an ordinary CLI session can drain that
     # queue. Force tools onto their existing synchronous/polling fallbacks.
-    if os.environ.get("HERMES_KANBAN_TASK"):
+    if os.environ.get("OPENAMER_KANBAN_TASK"):
         return False
 
     value = _SESSION_ASYNC_DELIVERY.get()

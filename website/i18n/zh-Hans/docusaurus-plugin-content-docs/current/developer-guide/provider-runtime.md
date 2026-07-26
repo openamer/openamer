@@ -1,12 +1,12 @@
 ---
 sidebar_position: 4
 title: "Provider 运行时解析"
-description: "Hermes 如何在运行时解析 provider、凭据、API 模式及辅助模型"
+description: "OpenAmer 如何在运行时解析 provider、凭据、API 模式及辅助模型"
 ---
 
 # Provider 运行时解析
 
-Hermes 拥有一个共享的 provider 运行时解析器，用于以下场景：
+OpenAmer 拥有一个共享的 provider 运行时解析器，用于以下场景：
 
 - CLI
 - gateway
@@ -16,9 +16,9 @@ Hermes 拥有一个共享的 provider 运行时解析器，用于以下场景：
 
 主要实现：
 
-- `hermes_cli/runtime_provider.py` — 凭据解析，`_resolve_custom_runtime()`
-- `hermes_cli/auth.py` — provider 注册表，`resolve_provider()`
-- `hermes_cli/model_switch.py` — 共享 `/model` 切换流水线（CLI + gateway）
+- `openamer_cli/runtime_provider.py` — 凭据解析，`_resolve_custom_runtime()`
+- `openamer_cli/auth.py` — provider 注册表，`resolve_provider()`
+- `openamer_cli/model_switch.py` — 共享 `/model` 切换流水线（CLI + gateway）
 - `agent/auxiliary_client.py` — 辅助模型路由
 - `providers/` — ABC + 注册表入口点（`ProviderProfile`、`register_provider`、`get_provider_profile`、`list_providers`）
 - `plugins/model-providers/<name>/` — 每个 provider 的插件（内置），声明 `api_mode`、`base_url`、`env_vars`、`fallback_models` 并在首次访问时将自身注册到注册表。用户插件位于 `$HERMES_HOME/plugins/model-providers/<name>/`，会覆盖同名的内置插件。
@@ -36,7 +36,7 @@ Hermes 拥有一个共享的 provider 运行时解析器，用于以下场景：
 3. 环境变量
 4. provider 特定的默认值或自动解析
 
-该顺序很重要，因为 Hermes 将已保存的模型/provider 选择视为正常运行的真实来源。这可以防止过时的 shell 导出变量悄悄覆盖用户在 `hermes model` 中最后选择的端点。
+该顺序很重要，因为 OpenAmer 将已保存的模型/provider 选择视为正常运行的真实来源。这可以防止过时的 shell 导出变量悄悄覆盖用户在 `openamer model` 中最后选择的端点。
 
 ## Provider
 
@@ -84,9 +84,9 @@ Hermes 拥有一个共享的 provider 运行时解析器，用于以下场景：
 
 ## 为什么这很重要
 
-该解析器是 Hermes 能够在以下场景之间共享认证/运行时逻辑的主要原因：
+该解析器是 OpenAmer 能够在以下场景之间共享认证/运行时逻辑的主要原因：
 
-- `hermes chat`
+- `openamer chat`
 - gateway 消息处理
 - 在全新会话中运行的 cron 任务
 - ACP 编辑器会话
@@ -94,14 +94,14 @@ Hermes 拥有一个共享的 provider 运行时解析器，用于以下场景：
 
 ## OpenRouter 与自定义 OpenAI 兼容 base URL
 
-Hermes 包含相关逻辑，以避免在存在多个 provider 密钥时（例如同时存在 `OPENROUTER_API_KEY` 和 `OPENAI_API_KEY`）将错误的 API key 泄露给自定义端点。
+OpenAmer 包含相关逻辑，以避免在存在多个 provider 密钥时（例如同时存在 `OPENROUTER_API_KEY` 和 `OPENAI_API_KEY`）将错误的 API key 泄露给自定义端点。
 
 每个 provider 的 API key 仅作用于其自身的 base URL：
 
 - `OPENROUTER_API_KEY` 仅发送至 `openrouter.ai` 端点
 - `OPENAI_API_KEY` 用于自定义端点及作为回退
 
-Hermes 还区分以下两种情况：
+OpenAmer 还区分以下两种情况：
 
 - 用户主动选择的真实自定义端点
 - 未配置自定义端点时使用的 OpenRouter 回退路径
@@ -117,7 +117,7 @@ Hermes 还区分以下两种情况：
 
 Anthropic 不再仅限于"通过 OpenRouter"访问。
 
-当 provider 解析选择 `anthropic` 时，Hermes 使用：
+当 provider 解析选择 `anthropic` 时，OpenAmer 使用：
 
 - `api_mode = anthropic_messages`
 - 原生 Anthropic Messages API
@@ -127,8 +127,8 @@ Anthropic 不再仅限于"通过 OpenRouter"访问。
 
 - 包含可刷新认证的 Claude Code 凭据文件被视为首选来源
 - 手动设置的 `ANTHROPIC_TOKEN` / `CLAUDE_CODE_OAUTH_TOKEN` 值仍可作为显式覆盖
-- Hermes 在调用原生 Messages API 前会预检 Anthropic 凭据刷新
-- Hermes 在重建 Anthropic 客户端后，仍会在收到 401 时重试一次，作为回退路径
+- OpenAmer 在调用原生 Messages API 前会预检 Anthropic 凭据刷新
+- OpenAmer 在重建 Anthropic 客户端后，仍会在收到 401 时重试一次，作为回退路径
 
 ## OpenAI Codex 路径
 
@@ -150,15 +150,15 @@ Codex 使用独立的 Responses API 路径：
 
 这些任务可以使用各自独立的 provider/模型路由，而非主对话模型。
 
-当辅助任务配置的 provider 为 `main` 时，Hermes 通过与普通对话相同的共享运行时路径进行解析。实际效果为：
+当辅助任务配置的 provider 为 `main` 时，OpenAmer 通过与普通对话相同的共享运行时路径进行解析。实际效果为：
 
 - 环境变量驱动的自定义端点仍然有效
-- 通过 `hermes model` / `config.yaml` 保存的自定义端点同样有效
+- 通过 `openamer model` / `config.yaml` 保存的自定义端点同样有效
 - 辅助路由能够区分真实保存的自定义端点与 OpenRouter 回退
 
 ## 回退模型
 
-Hermes 支持配置回退 provider 链——一个按顺序尝试的 `(provider, model)` 条目列表，当主模型遇到错误时依次尝试。旧版单对 `fallback_model` 字典仍被接受以保持向后兼容（并在首次写入时迁移）。
+OpenAmer 支持配置回退 provider 链——一个按顺序尝试的 `(provider, model)` 条目列表，当主模型遇到错误时依次尝试。旧版单对 `fallback_model` 字典仍被接受以保持向后兼容（并在首次写入时迁移）。
 
 ### 内部工作原理
 

@@ -37,11 +37,11 @@ interface InsertRefsDetail {
   target: ComposerTarget
 }
 
-const FOCUS_EVENT = 'hermes:composer-focus'
-const INSERT_EVENT = 'hermes:composer-insert'
-const INSERT_REFS_EVENT = 'hermes:composer-insert-refs'
-const SUBMIT_EVENT = 'hermes:composer-submit'
-const VOICE_TOGGLE_EVENT = 'hermes:composer-voice-toggle'
+const FOCUS_EVENT = 'openamer:composer-focus'
+const INSERT_EVENT = 'openamer:composer-insert'
+const INSERT_REFS_EVENT = 'openamer:composer-insert-refs'
+const SUBMIT_EVENT = 'openamer:composer-submit'
+const VOICE_TOGGLE_EVENT = 'openamer:composer-voice-toggle'
 
 interface SubmitDetail {
   target: ComposerTarget

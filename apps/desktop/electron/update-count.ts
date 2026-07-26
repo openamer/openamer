@@ -13,7 +13,7 @@ function shouldCountCommits({ isShallow, hasMergeBase }) {
 // Resolve how many commits the local checkout is behind origin for the desktop
 // update indicator. When the count isn't meaningful (shallow + no merge-base)
 // fall back to a binary up-to-date check by SHA, exactly like the official-SSH
-// path in checkUpdates() and the CLI guard in hermes_cli/banner.py. Full clones
+// path in checkUpdates() and the CLI guard in openamer_cli/banner.py. Full clones
 // (developers / Docker dev images) keep the exact count path unchanged.
 function resolveBehindCount({ countStr, currentSha, targetSha, isShallow, hasMergeBase }) {
   if (!shouldCountCommits({ isShallow, hasMergeBase })) {

@@ -14,7 +14,7 @@ Canvas LMS 集成 — 使用 API token（令牌）认证获取已注册课程和
 
 | | |
 |---|---|
-| 来源 | 可选 — 通过 `hermes skills install official/productivity/canvas` 安装 |
+| 来源 | 可选 — 通过 `openamer skills install official/productivity/canvas` 安装 |
 | 路径 | `optional-skills/productivity/canvas` |
 | 版本 | `1.0.0` |
 | 作者 | community |
@@ -25,7 +25,7 @@ Canvas LMS 集成 — 使用 API token（令牌）认证获取已注册课程和
 ## 参考：完整 SKILL.md
 
 :::info
-以下是 Hermes 在触发此 skill 时加载的完整 skill 定义。这是 skill 激活时 agent 所看到的指令内容。
+以下是 OpenAmer 在触发此 skill 时加载的完整 skill 定义。这是 skill 激活时 agent 所看到的指令内容。
 :::
 
 # Canvas LMS — 课程与作业访问
@@ -41,8 +41,8 @@ Canvas LMS 集成 — 使用 API token（令牌）认证获取已注册课程和
 1. 在浏览器中登录你的 Canvas 实例
 2. 进入 **Account → Settings**（点击个人头像，然后点击 Settings）
 3. 滚动到 **Approved Integrations**，点击 **+ New Access Token**
-4. 为 token 命名（例如 "Hermes Agent"），设置可选的过期时间，然后点击 **Generate Token**
-5. 复制 token 并添加到 `~/.hermes/.env`：
+4. 为 token 命名（例如 "OpenAmer Agent"），设置可选的过期时间，然后点击 **Generate Token**
+5. 复制 token 并添加到 `~/.openamer/.env`：
 
 ```
 CANVAS_API_TOKEN=your_token_here

@@ -14,7 +14,7 @@ Fetch Canvas LMS courses and assignments via API token.
 
 | | |
 |---|---|
-| Source | Optional — install with `hermes skills install official/productivity/canvas` |
+| Source | Optional — install with `openamer skills install official/productivity/canvas` |
 | Path | `optional-skills/productivity/canvas` |
 | Version | `1.0.0` |
 | Author | community |
@@ -25,7 +25,7 @@ Fetch Canvas LMS courses and assignments via API token.
 ## Reference: full SKILL.md
 
 :::info
-The following is the complete skill definition that Hermes loads when this skill is triggered. This is what the agent sees as instructions when the skill is active.
+The following is the complete skill definition that OpenAmer loads when this skill is triggered. This is what the agent sees as instructions when the skill is active.
 :::
 
 # Canvas LMS — Course & Assignment Access
@@ -41,8 +41,8 @@ Read-only access to Canvas LMS for listing courses and assignments.
 1. Log in to your Canvas instance in a browser
 2. Go to **Account → Settings** (click your profile icon, then Settings)
 3. Scroll to **Approved Integrations** and click **+ New Access Token**
-4. Name the token (e.g., "Hermes Agent"), set an optional expiry, and click **Generate Token**
-5. Copy the token and add to `${HERMES_HOME:-~/.hermes}/.env`:
+4. Name the token (e.g., "OpenAmer Agent"), set an optional expiry, and click **Generate Token**
+5. Copy the token and add to `${HERMES_HOME:-~/.openamer}/.env`:
 
 ```
 CANVAS_API_TOKEN=your_token_here

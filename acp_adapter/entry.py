@@ -13,12 +13,12 @@ Usage::
     hermes-acp
 """
 
-# IMPORTANT: hermes_bootstrap must be the very first import — UTF-8 stdio
-# on Windows.  No-op on POSIX.  See hermes_bootstrap.py for full rationale.
+# IMPORTANT: openamer_bootstrap must be the very first import — UTF-8 stdio
+# on Windows.  No-op on POSIX.  See openamer_bootstrap.py for full rationale.
 try:
-    import hermes_bootstrap  # noqa: F401
+    import openamer_bootstrap  # noqa: F401
 except ModuleNotFoundError:
-    # Graceful fallback when hermes_bootstrap isn't registered in the venv
+    # Graceful fallback when openamer_bootstrap isn't registered in the venv
     # yet — happens during partial ``hermes update`` where git-reset landed
     # new code but ``uv pip install -e .`` didn't finish.  Missing bootstrap
     # means UTF-8 stdio setup is skipped on Windows; POSIX is unaffected.
@@ -27,7 +27,7 @@ else:
     # Stop a ``utils/``/``proxy/``/``ui/`` package in the launch directory from
     # shadowing Hermes's own modules — ``hermes acp`` can be started from any
     # cwd, including a project that has same-named packages on its path.
-    hermes_bootstrap.harden_import_path()
+    openamer_bootstrap.harden_import_path()
 
 import argparse
 import asyncio
@@ -35,7 +35,7 @@ import logging
 import os
 import sys
 from pathlib import Path
-from hermes_constants import get_hermes_home
+from openamer_constants import get_openamer_home
 
 
 # Methods clients send as periodic liveness probes. They are not part of the
@@ -100,10 +100,10 @@ def _setup_logging() -> None:
 
 
 def _load_env() -> None:
-    """Load .env from HERMES_HOME (default ``~/.hermes``)."""
-    from hermes_cli.env_loader import load_hermes_dotenv
+    """Load .env from OPENAMER_HOME (default ``~/.hermes``)."""
+    from openamer_cli.env_loader import load_hermes_dotenv
 
-    hermes_home = get_hermes_home()
+    hermes_home = get_openamer_home()
     loaded = load_hermes_dotenv(hermes_home=hermes_home)
     if loaded:
         for env_file in loaded:
@@ -148,7 +148,7 @@ def _parse_args(argv: list[str] | None = None) -> argparse.Namespace:
 
 
 def _print_version() -> None:
-    from hermes_cli import __version__ as hermes_version
+    from openamer_cli import __version__ as hermes_version
 
     print(hermes_version)
 
@@ -161,7 +161,7 @@ def _run_check() -> None:
 
 
 def _run_setup() -> None:
-    from hermes_cli.main import main as hermes_main
+    from openamer_cli.main import main as hermes_main
 
     old_argv = sys.argv[:]
     try:
@@ -195,7 +195,7 @@ def _run_setup_browser(assume_yes: bool = False) -> int:
 
     Returns 0 on success, 1 on failure.
     """
-    from hermes_cli.dep_ensure import ensure_dependency
+    from openamer_cli.dep_ensure import ensure_dependency
 
     try:
         node_ok = ensure_dependency("node", interactive=not assume_yes)

@@ -10,7 +10,7 @@ import { UserEditComposer } from '@/components/assistant-ui/thread/user-edit-com
 import { UserMessage } from '@/components/assistant-ui/thread/user-message'
 import { Intro, type IntroProps } from '@/components/chat/intro'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
-import type { HermesGateway } from '@/hermes'
+import type { OpenAmerGateway } from '@/openamer'
 import { useI18n } from '@/i18n'
 import { notifyError } from '@/store/notifications'
 
@@ -19,7 +19,7 @@ type ThreadLoadingState = 'response' | 'session'
 export const Thread: FC<{
   clampToComposer?: boolean
   cwd?: string | null
-  gateway?: HermesGateway | null
+  gateway?: OpenAmerGateway | null
   intro?: IntroProps
   loading?: ThreadLoadingState
   onBranchInNewChat?: (messageId: string) => void

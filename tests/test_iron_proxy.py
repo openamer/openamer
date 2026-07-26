@@ -32,11 +32,11 @@ from agent.proxy_sources import iron_proxy as ip
 
 @pytest.fixture
 def hermes_home(tmp_path, monkeypatch):
-    """Point HERMES_HOME at a temp dir so install paths don't touch the real $HOME."""
+    """Point OPENAMER_HOME at a temp dir so install paths don't touch the real $HOME."""
 
     home = tmp_path / "hermes"
     home.mkdir()
-    monkeypatch.setenv("HERMES_HOME", str(home))
+    monkeypatch.setenv("OPENAMER_HOME", str(home))
     # Make sure no stale provider keys influence discovery.
     for key in list(os.environ):
         if key.endswith("_API_KEY"):
@@ -850,7 +850,7 @@ def test_docker_egress_args_empty_when_disabled(hermes_home, monkeypatch):
 
 def test_docker_egress_args_when_enabled_but_unconfigured_raises(hermes_home, monkeypatch):
     from tools.environments.docker import _egress_proxy_args_for_docker
-    from hermes_cli.config import load_config, save_config
+    from openamer_cli.config import load_config, save_config
 
     cfg = load_config()
     cfg.setdefault("proxy", {})["enabled"] = True
@@ -864,7 +864,7 @@ def test_docker_egress_args_when_enabled_but_unconfigured_raises(hermes_home, mo
 
 def test_docker_egress_args_when_unconfigured_no_enforce(hermes_home, monkeypatch):
     from tools.environments.docker import _egress_proxy_args_for_docker
-    from hermes_cli.config import load_config, save_config
+    from openamer_cli.config import load_config, save_config
 
     cfg = load_config()
     cfg.setdefault("proxy", {})["enabled"] = True
@@ -883,7 +883,7 @@ def test_docker_egress_args_full_path(hermes_home, monkeypatch):
     verify the docker helper emits the right mounts and env."""
 
     from tools.environments.docker import _egress_proxy_args_for_docker
-    from hermes_cli.config import load_config, save_config
+    from openamer_cli.config import load_config, save_config
 
     # Materialize config, CA, mappings.
     state = ip._proxy_state_dir()
@@ -1126,7 +1126,7 @@ def test_docker_egress_args_raises_on_empty_mappings(hermes_home, monkeypatch):
     silently mounting an unusable proxy config."""
 
     from tools.environments.docker import _egress_proxy_args_for_docker
-    from hermes_cli.config import load_config, save_config
+    from openamer_cli.config import load_config, save_config
 
     state = ip._proxy_state_dir()
     (state / "ca.crt").write_text("fake-ca")
@@ -1163,7 +1163,7 @@ def test_docker_egress_args_raises_when_ca_vanishes(hermes_home, monkeypatch):
     ~/.hermes/proxy/ca.crt).  enforce_on_docker=True must refuse."""
 
     from tools.environments.docker import _egress_proxy_args_for_docker
-    from hermes_cli.config import load_config, save_config
+    from openamer_cli.config import load_config, save_config
 
     state = ip._proxy_state_dir()
     ca = state / "ca.crt"
@@ -1240,7 +1240,7 @@ def test_docker_env_collision_with_proxy_raises_when_enforce(hermes_home, monkey
     the egress isolation."""
 
     from tools.environments.docker import DockerEnvironment
-    from hermes_cli.config import load_config, save_config
+    from openamer_cli.config import load_config, save_config
 
     # Set up a fully-running proxy.
     state = ip._proxy_state_dir()
@@ -1805,7 +1805,7 @@ def test_docker_egress_node_options_uses_sentinel(hermes_home, monkeypatch):
     append-merge with the operator's existing NODE_OPTIONS."""
 
     from tools.environments.docker import _egress_proxy_args_for_docker
-    from hermes_cli.config import load_config, save_config
+    from openamer_cli.config import load_config, save_config
 
     state = ip._proxy_state_dir()
     ca = state / "ca.crt"

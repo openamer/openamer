@@ -9,14 +9,14 @@ import { connectWindowsRemote } from './windows-remote-lifecycle'
 // your test rig; skipped everywhere else (CI, other machines).
 //   HERMES_WIN_SSH_HOST   ssh alias/host of the Windows box
 //   HERMES_WIN_SSH_USER   remote user
-//   HERMES_WIN_SSH_HERMES absolute path to the remote hermes.exe under test
+//   HERMES_WIN_SSH_HERMES absolute path to the remote openamer.exe under test
 const liveHost = process.env.HERMES_WIN_SSH_HOST || ''
 const liveUser = process.env.HERMES_WIN_SSH_USER || ''
-const configuredHermes = process.env.HERMES_WIN_SSH_HERMES || ''
+const configuredOpenAmer = process.env.HERMES_WIN_SSH_HERMES || ''
 const ownershipId = '89abcdef0123456789abcdef01234567'
 
 function fetchJson(url, token, path) {
-  return fetch(`${url}${path}`, { headers: { 'X-Hermes-Session-Token': token } }).then(async response => {
+  return fetch(`${url}${path}`, { headers: { 'X-OpenAmer-Session-Token': token } }).then(async response => {
     if (!response.ok) {
       throw new Error(`${response.status}: ${await response.text()}`)
     }
@@ -25,7 +25,7 @@ function fetchJson(url, token, path) {
   })
 }
 
-test.skipIf(!liveHost || !liveUser || !configuredHermes)(
+test.skipIf(!liveHost || !liveUser || !configuredOpenAmer)(
   'live Windows remote lifecycle spawns, authenticates, reuses, and cleans exact ownership',
   async () => {
     const ssh = new SshConnection({ host: liveHost, user: liveUser, port: 22, keyPath: '' }, { mux: true })
@@ -35,11 +35,11 @@ test.skipIf(!liveHost || !liveUser || !configuredHermes)(
       ssh,
       ownershipId,
       profile: '',
-      remoteHermesPath: configuredHermes,
+      remoteOpenAmerPath: configuredOpenAmer,
       pickLocalPort,
       forward: (local, remote) => ssh.forward(local, remote),
       cancelForward: (local, remote) => ssh.cancelForward(local, remote),
-      waitForHermes: async (baseUrl, token) => {
+      waitForOpenAmer: async (baseUrl, token) => {
         for (let i = 0; i < 40; i++) {
           try {
             await fetchJson(baseUrl, token, '/api/status')
@@ -81,21 +81,21 @@ test.skipIf(!liveHost || !liveUser || !configuredHermes)(
         await ssh.cancelForward(second.localPort, second.remotePort)
       }
 
-      const runtimeScript = `& '${configuredHermes.replace('hermes.exe', 'python.exe')}' -m hermes_cli.windows_ssh_runtime read-lock '${ownershipId}'`
+      const runtimeScript = `& '${configuredOpenAmer.replace('openamer.exe', 'python.exe')}' -m openamer_cli.windows_ssh_runtime read-lock '${ownershipId}'`
 
       const lock: any = JSON.parse(
         await ssh.exec(`powershell.exe -NoProfile -NonInteractive -Command "${runtimeScript}"`)
       )
 
       if (lock) {
-        const python = configuredHermes.replace('hermes.exe', 'python.exe')
-        const terminate = `& '${python}' -m hermes_cli.windows_ssh_runtime terminate '${lock.pid}' '${lock.creationTimeNs}' '${lock.hermesPath}' '${lock.spawnNonce}'`
+        const python = configuredOpenAmer.replace('openamer.exe', 'python.exe')
+        const terminate = `& '${python}' -m openamer_cli.windows_ssh_runtime terminate '${lock.pid}' '${lock.creationTimeNs}' '${lock.openamerPath}' '${lock.spawnNonce}'`
         await ssh.exec(`powershell.exe -NoProfile -NonInteractive -Command "${terminate}"`)
         await ssh.exec(
-          `powershell.exe -NoProfile -NonInteractive -Command "& '${python}' -m hermes_cli.windows_ssh_runtime remove-lock '${ownershipId}'"`
+          `powershell.exe -NoProfile -NonInteractive -Command "& '${python}' -m openamer_cli.windows_ssh_runtime remove-lock '${ownershipId}'"`
         )
         await ssh.exec(
-          `powershell.exe -NoProfile -NonInteractive -Command "& '${python}' -m hermes_cli.windows_ssh_runtime remove-log '${ownershipId}' '${lock.spawnNonce}'"`
+          `powershell.exe -NoProfile -NonInteractive -Command "& '${python}' -m openamer_cli.windows_ssh_runtime remove-log '${ownershipId}' '${lock.spawnNonce}'"`
         )
       }
 

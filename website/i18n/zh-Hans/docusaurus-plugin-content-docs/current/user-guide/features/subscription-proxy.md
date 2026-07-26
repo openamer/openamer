@@ -6,14 +6,14 @@ description: "将你的 Nous Portal 订阅（或其他 OAuth 提供商）用作�
 
 # 订阅代理
 
-订阅代理是一个本地 HTTP 服务器，让外部应用——OpenViking、Karakeep、Open WebUI，以及任何支持 OpenAI 兼容聊天补全（chat completions）的应用——能够将你的 Hermes 托管提供商订阅用作其 LLM 端点。代理会自动附加正确的凭据（并在需要时自动刷新），因此应用无需静态 API 密钥。
+订阅代理是一个本地 HTTP 服务器，让外部应用——OpenViking、Karakeep、Open WebUI，以及任何支持 OpenAI 兼容聊天补全（chat completions）的应用——能够将你的 OpenAmer 托管提供商订阅用作其 LLM 端点。代理会自动附加正确的凭据（并在需要时自动刷新），因此应用无需静态 API 密钥。
 
 这与 [API 服务器](./api-server.md) 不同：
 
 | | API 服务器 | 订阅代理 |
 |---|---|---|
 | 服务内容 | 你的 Agent（完整工具集、记忆、技能） | 原始模型推理 |
-| 使用场景 | "将 Hermes 用作聊天后端" | "从其他应用使用我的 Portal 订阅" |
+| 使用场景 | "将 OpenAmer 用作聊天后端" | "从其他应用使用我的 Portal 订阅" |
 | 认证 | 你的 `API_SERVER_KEY` | 任意 bearer（代理附加真实凭据） |
 | 工具调用 | 是——Agent 执行工具 | 否——仅透传 |
 
@@ -24,19 +24,19 @@ description: "将你的 Nous Portal 订阅（或其他 OAuth 提供商）用作�
 ### 1. 登录你的提供商（仅需一次）
 
 ```bash
-hermes portal
+openamer portal
 ```
 
-这会打开浏览器进行 Nous Portal OAuth 流程。Hermes 将刷新令牌存储在 `~/.hermes/auth.json` 中——与所有 Hermes 提供商登录信息存放在同一位置。
+这会打开浏览器进行 Nous Portal OAuth 流程。OpenAmer 将刷新令牌存储在 `~/.openamer/auth.json` 中——与所有 OpenAmer 提供商登录信息存放在同一位置。
 
 ### 2. 启动代理
 
 ```bash
-hermes proxy start
+openamer proxy start
 ```
 
 ```
-Starting Hermes proxy for Nous Portal
+Starting OpenAmer proxy for Nous Portal
   Listening on:  http://127.0.0.1:8645/v1
   Forwarding to: (resolved per-request from your subscription)
   Use any bearer token in the client — the proxy attaches your real credential.
@@ -51,7 +51,7 @@ Starting Hermes proxy for Nous Portal
 ```
 Base URL:   http://127.0.0.1:8645/v1
 API key:    任意值（例如 "sk-unused"）
-Model:      Hermes-4-70B    # 或 Hermes-4.3-36B、Hermes-4-405B
+Model:      OpenAmer-4-70B    # 或 OpenAmer-4.3-36B、OpenAmer-4-405B
 ```
 
 代理会忽略来自你应用的 `Authorization` 请求头，并将你真实的 Portal 凭据附加到上游请求中。当 bearer 令牌临近过期时，刷新会自动进行。
@@ -59,24 +59,24 @@ Model:      Hermes-4-70B    # 或 Hermes-4.3-36B、Hermes-4-405B
 ## 可用提供商
 
 ```bash
-hermes proxy providers
+openamer proxy providers
 ```
 
-当前已内置：`nous`（Nous Portal）。更多 OAuth 提供商可通过在 `hermes_cli/proxy/adapters/` 中实现 `UpstreamAdapter` 接口来添加。
+当前已内置：`nous`（Nous Portal）。更多 OAuth 提供商可通过在 `openamer_cli/proxy/adapters/` 中实现 `UpstreamAdapter` 接口来添加。
 
 ## 检查状态
 
 ```bash
-hermes proxy status
+openamer proxy status
 ```
 
 ```
-Hermes proxy upstream adapters
+OpenAmer proxy upstream adapters
 
   [nous    ] Nous Portal — ready (bearer expires 2026-05-15T06:43:21Z)
 ```
 
-如果显示 `not logged in`，请运行 `hermes portal`。如果显示 `credentials need attention`，说明你的刷新令牌已被撤销（较少见——通常发生在你从 Portal Web UI 退出登录时）——重新运行 `hermes portal` 即可。
+如果显示 `not logged in`，请运行 `openamer portal`。如果显示 `credentials need attention`，说明你的刷新令牌已被撤销（较少见——通常发生在你从 Portal Web UI 退出登录时）——重新运行 `openamer portal` 即可。
 
 ## 允许的路径
 
@@ -101,7 +101,7 @@ Hermes proxy upstream adapters
 {
   "vlm": {
     "provider": "openai",
-    "model": "Hermes-4-70B",
+    "model": "OpenAmer-4-70B",
     "api_base": "http://127.0.0.1:8645/v1",
     "api_key": "unused-proxy-attaches-real-creds"
   }
@@ -112,7 +112,7 @@ Hermes proxy upstream adapters
 
 ```bash
 # 终端 1
-hermes proxy start
+openamer proxy start
 
 # 终端 2
 openviking-server
@@ -128,7 +128,7 @@ OpenViking 的 VLM 调用现在将通过你的 Portal 订阅进行。Embedding �
 # Karakeep .env
 OPENAI_API_BASE_URL=http://127.0.0.1:8645/v1
 OPENAI_API_KEY=any-non-empty-string
-INFERENCE_TEXT_MODEL=Hermes-4-70B
+INFERENCE_TEXT_MODEL=OpenAmer-4-70B
 ```
 
 同样的方式适用于 Open WebUI、LobeChat、NextChat 或任何其他 OpenAI 兼容客户端。
@@ -138,7 +138,7 @@ INFERENCE_TEXT_MODEL=Hermes-4-70B
 默认情况下，代理绑定 `127.0.0.1`（仅限本机）。若要让网络中的其他机器使用：
 
 ```bash
-hermes proxy start --host 0.0.0.0 --port 8645
+openamer proxy start --host 0.0.0.0 --port 8645
 ```
 
 ⚠ **注意：** 你网络中的任何人现在都可以使用你的 Portal 订阅。代理本身没有认证机制——它接受任意 bearer。如果你将其暴露在可信网络之外，请使用防火墙、VPN 或带有适当认证的反向代理。
@@ -160,4 +160,4 @@ hermes proxy start --host 0.0.0.0 --port 8645
 
 ## 未来：更多 OAuth 提供商
 
-适配器系统是可插拔的。添加新提供商（例如 HuggingFace、GitHub Copilot 的聊天端点、通过 OAuth 接入的 Anthropic）需要在 `hermes_cli/proxy/adapters/<provider>.py` 中实现 `UpstreamAdapter`，并在 `adapters/__init__.py` 中注册。协议层面不兼容 OpenAI 的提供商（例如 Anthropic Messages API）需要额外的转换层，这超出了当前版本的范围。
+适配器系统是可插拔的。添加新提供商（例如 HuggingFace、GitHub Copilot 的聊天端点、通过 OAuth 接入的 Anthropic）需要在 `openamer_cli/proxy/adapters/<provider>.py` 中实现 `UpstreamAdapter`，并在 `adapters/__init__.py` 中注册。协议层面不兼容 OpenAI 的提供商（例如 Anthropic Messages API）需要额外的转换层，这超出了当前版本的范围。

@@ -1,14 +1,14 @@
 # 会话存储
 
-Hermes Agent 使用 SQLite 数据库（`~/.hermes/state.db`）跨 CLI 和 gateway 会话持久化会话元数据、完整消息历史及模型配置。这替代了早期的逐会话 JSONL 文件方案。
+OpenAmer Agent 使用 SQLite 数据库（`~/.openamer/state.db`）跨 CLI 和 gateway 会话持久化会话元数据、完整消息历史及模型配置。这替代了早期的逐会话 JSONL 文件方案。
 
-源文件：`hermes_state.py`
+源文件：`openamer_state.py`
 
 
 ## 架构概览
 
 ```
-~/.hermes/state.db (SQLite, WAL mode)
+~/.openamer/state.db (SQLite, WAL mode)
 ├── sessions              — 会话元数据、token 计数、计费信息
 ├── messages              — 每个会话的完整消息历史
 ├── messages_fts          — FTS5 虚拟表（content + tool_name + tool_calls）
@@ -153,7 +153,7 @@ END;
 
 ## 写入竞争处理
 
-多个 hermes 进程（gateway + CLI 会话 + worktree agent）共享同一个 `state.db`。`SessionDB` 类通过以下方式处理写入竞争：
+多个 openamer 进程（gateway + CLI 会话 + worktree agent）共享同一个 `state.db`。`SessionDB` 类通过以下方式处理写入竞争：
 
 - **短 SQLite 超时**（1 秒），而非默认的 30 秒
 - **应用层重试**，带随机抖动（20–150ms，最多 15 次重试）
@@ -175,9 +175,9 @@ _CHECKPOINT_EVERY_N_WRITES = 50
 ### 初始化
 
 ```python
-from hermes_state import SessionDB
+from openamer_state import SessionDB
 
-db = SessionDB()                           # 默认：~/.hermes/state.db
+db = SessionDB()                           # 默认：~/.openamer/state.db
 db = SessionDB(db_path=Path("/tmp/test.db"))  # 自定义路径
 ```
 
@@ -379,8 +379,8 @@ db.delete_session("sess_abc123")
 
 ## 数据库位置
 
-默认路径：`~/.hermes/state.db`
+默认路径：`~/.openamer/state.db`
 
-该路径由 `hermes_constants.get_hermes_home()` 推导，默认解析为 `~/.hermes/`，或 `HERMES_HOME` 环境变量的值。
+该路径由 `openamer_constants.get_openamer_home()` 推导，默认解析为 `~/.openamer/`，或 `HERMES_HOME` 环境变量的值。
 
 数据库文件、WAL 文件（`state.db-wal`）和共享内存文件（`state.db-shm`）均创建于同一目录。

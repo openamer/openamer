@@ -9,7 +9,7 @@ responsive (p99 < 1s) with zero event-loop stalls.
 What it does
 ------------
 1. Spawns a SCRATCH dashboard (``hermes dashboard``) bound to loopback on a
-   free port, with an ISOLATED ``HERMES_HOME`` (temp dir, minimal seeded state).
+   free port, with an ISOLATED ``OPENAMER_HOME`` (temp dir, minimal seeded state).
    It NEVER touches the live :9119 dashboard / ai.hermes.dashboard / live
    state.db. Loopback bind ⇒ no auth gate (web_server.should_require_auth).
 2. Arms the synthetic GIL-heavy turn seam (``HERMES_ISO_CERTIFY_SYNTH_TURN=1``,
@@ -32,7 +32,7 @@ window. ``--dry-run`` runs ONE short light turn as a plumbing smoke test and is
 explicitly NOT a verdict (a dry-run green is a fake green — the spec says so).
 
 Turn isolation is controlled by the ``dashboard.turn_isolation`` config knob in
-the scratch HERMES_HOME; ``--isolation on|off`` sets it. Run BOTH:
+the scratch OPENAMER_HOME; ``--isolation on|off`` sets it. Run BOTH:
     iso-certify --isolation off   # baseline: expect stalls
     iso-certify --isolation on    # the measurement that decides AC-4
 """
@@ -96,7 +96,7 @@ def free_port() -> int:
         return int(s.getsockname()[1])
 
 
-# ── scratch HERMES_HOME ─────────────────────────────────────────────────
+# ── scratch OPENAMER_HOME ─────────────────────────────────────────────────
 def seed_scratch_home(home: Path, *, isolation: str, heartbeat_secs: int, respawn_max: int) -> None:
     """Write a minimal config.yaml with the isolation knob set."""
     home.mkdir(parents=True, exist_ok=True)
@@ -167,13 +167,13 @@ class ScratchDashboard:
         python = str(venv_py) if venv_py.exists() else sys.executable
         env = dict(os.environ)
         env.update(self.env_extra)
-        env["HERMES_HOME"] = str(self.home)
+        env["OPENAMER_HOME"] = str(self.home)
         env["HOME"] = str(self.home.parent) if str(self.home.parent) else env.get("HOME", "")
-        env["HERMES_HOME"] = str(self.home)
+        env["OPENAMER_HOME"] = str(self.home)
         env["PYTHONPATH"] = str(REPO_ROOT) + os.pathsep + env.get("PYTHONPATH", "")
         env["HERMES_ISO_CERTIFY_SYNTH_TURN"] = "1"
         cmd = [
-            python, "-m", "hermes_cli.main", "dashboard",
+            python, "-m", "openamer_cli.main", "dashboard",
             "--no-open", "--host", "127.0.0.1", "--port", str(self.port),
         ]
         self.proc = subprocess.Popen(
@@ -585,7 +585,7 @@ def probe_thread_samples_ok(ws_samples: list[float], rest_samples: list[float]) 
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(description="AC-4 dashboard turn-isolation certify harness")
     p.add_argument("--isolation", choices=["on", "off"], default="on",
-                   help="set dashboard.turn_isolation in the scratch HERMES_HOME")
+                   help="set dashboard.turn_isolation in the scratch OPENAMER_HOME")
     p.add_argument("--dry-run", action="store_true",
                    help="1 short light turn plumbing smoke — NOT an AC-4 verdict")
     p.add_argument("--concurrency", type=int, default=6, help="concurrent heavy-turn lanes (AC-4: 6)")
@@ -603,7 +603,7 @@ def main(argv: list[str] | None = None) -> int:
                    help="serving p99 threshold (AC-4: <1s)")
     p.add_argument("--heartbeat-secs", type=int, default=15, dest="heartbeat_secs")
     p.add_argument("--respawn-max", type=int, default=3, dest="respawn_max")
-    p.add_argument("--keep-home", action="store_true", help="do not delete the scratch HERMES_HOME on exit")
+    p.add_argument("--keep-home", action="store_true", help="do not delete the scratch OPENAMER_HOME on exit")
     p.add_argument("--json-out", type=Path, help="write JSON metrics to this path")
     args = p.parse_args(argv)
 

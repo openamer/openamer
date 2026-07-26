@@ -38,9 +38,9 @@ if _SCRIPTS_DIR not in sys.path:
 
 from _hermes_home import get_hermes_home
 
-HERMES_HOME = get_hermes_home()
-TOKEN_PATH = HERMES_HOME / "google_token.json"
-CLIENT_SECRET_PATH = HERMES_HOME / "google_client_secret.json"
+OPENAMER_HOME = get_openamer_home()
+TOKEN_PATH = OPENAMER_HOME / "google_token.json"
+CLIENT_SECRET_PATH = OPENAMER_HOME / "google_client_secret.json"
 
 SCOPES = [
     "https://www.googleapis.com/auth/gmail.readonly",

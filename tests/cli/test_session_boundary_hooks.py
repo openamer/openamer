@@ -1,6 +1,6 @@
 from unittest.mock import MagicMock, patch
 from types import SimpleNamespace
-from hermes_cli.plugins import VALID_HOOKS, PluginManager
+from openamer_cli.plugins import VALID_HOOKS, PluginManager
 from cli import HermesCLI
 
 
@@ -10,7 +10,7 @@ def test_session_hooks_in_valid_hooks():
     assert "on_session_reset" in VALID_HOOKS
 
 
-@patch("hermes_cli.plugins.invoke_hook")
+@patch("openamer_cli.plugins.invoke_hook")
 def test_session_finalize_on_reset(mock_invoke_hook):
     """Verify on_session_finalize fires when /new or /reset is used."""
     cli = HermesCLI()
@@ -36,7 +36,7 @@ def test_session_finalize_on_reset(mock_invoke_hook):
     )
 
 
-@patch("hermes_cli.plugins.invoke_hook")
+@patch("openamer_cli.plugins.invoke_hook")
 def test_session_finalize_on_cleanup(mock_invoke_hook):
     """Verify on_session_finalize fires during CLI exit cleanup."""
     import cli as cli_mod
@@ -57,7 +57,7 @@ def test_session_finalize_on_cleanup(mock_invoke_hook):
     )
 
 
-@patch("hermes_cli.plugins.invoke_hook")
+@patch("openamer_cli.plugins.invoke_hook")
 def test_interrupted_session_end_helper_emits_observer_shape(mock_invoke_hook):
     """Verify quiet single-query interruption emits a correlated session end."""
     import cli as cli_mod
@@ -87,7 +87,7 @@ def test_interrupted_session_end_helper_emits_observer_shape(mock_invoke_hook):
     assert call.kwargs["reason"] == "keyboard_interrupt"
 
 
-@patch("hermes_cli.plugins.invoke_hook")
+@patch("openamer_cli.plugins.invoke_hook")
 def test_hook_errors_are_caught(mock_invoke_hook):
     """Verify hook exceptions are caught and don't crash the agent."""
     mgr = PluginManager()

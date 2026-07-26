@@ -9,8 +9,8 @@ terminal. That mis-tag is why the agent suggested TUI-only slash commands
 These tests pin the env-var matrix that resolves the session platform at
 ``tui_gateway`` session-creation time:
 
-  HERMES_DESKTOP=1, HERMES_DESKTOP_TERMINAL unset  -> platform="desktop"
-  HERMES_DESKTOP=1, HERMES_DESKTOP_TERMINAL=1     -> platform="tui"  (embedded pane)
+  HERMES_DESKTOP=1, OPENAMER_DESKTOP_TERMINAL unset  -> platform="desktop"
+  HERMES_DESKTOP=1, OPENAMER_DESKTOP_TERMINAL=1     -> platform="tui"  (embedded pane)
   neither set                                      -> platform="tui"  (standalone)
 
 The resolver helper is import-safe (no heavy module side effects) so it
@@ -35,7 +35,7 @@ def _reload_resolver():
 @pytest.fixture
 def clean_env(monkeypatch):
     monkeypatch.delenv("HERMES_DESKTOP", raising=False)
-    monkeypatch.delenv("HERMES_DESKTOP_TERMINAL", raising=False)
+    monkeypatch.delenv("OPENAMER_DESKTOP_TERMINAL", raising=False)
     return monkeypatch
 
 
@@ -51,12 +51,12 @@ class TestResolveSessionPlatform:
 
     def test_desktop_embedded_terminal_pane_stays_tui(self, clean_env):
         clean_env.setenv("HERMES_DESKTOP", "1")
-        clean_env.setenv("HERMES_DESKTOP_TERMINAL", "1")
+        clean_env.setenv("OPENAMER_DESKTOP_TERMINAL", "1")
         _srv = _reload_resolver()
         assert _srv._resolve_session_platform() == "tui"
 
     def test_desktop_terminal_alone_means_standalone_tui(self, clean_env):
-        clean_env.setenv("HERMES_DESKTOP_TERMINAL", "1")
+        clean_env.setenv("OPENAMER_DESKTOP_TERMINAL", "1")
         _srv = _reload_resolver()
         assert _srv._resolve_session_platform() == "tui"
 
@@ -76,7 +76,7 @@ class TestResolveSessionPlatform:
         """The terminal-pane qualifier must short-circuit the desktop-backend
         marker. An embedded TUI is a TUI, not a desktop chat surface."""
         clean_env.setenv("HERMES_DESKTOP", "1")
-        clean_env.setenv("HERMES_DESKTOP_TERMINAL", "true")
+        clean_env.setenv("OPENAMER_DESKTOP_TERMINAL", "true")
         _srv = _reload_resolver()
         assert _srv._resolve_session_platform() == "tui"
 
@@ -102,7 +102,7 @@ class TestResolveSessionSource:
 
     def test_embedded_terminal_default_is_tui(self, clean_env):
         clean_env.setenv("HERMES_DESKTOP", "1")
-        clean_env.setenv("HERMES_DESKTOP_TERMINAL", "1")
+        clean_env.setenv("OPENAMER_DESKTOP_TERMINAL", "1")
         _srv = _reload_resolver()
         assert _srv._resolve_session_source(None) == "tui"
 
@@ -145,7 +145,7 @@ class TestSessionSourceFallback:
 
     def test_session_source_defaults_to_tui_for_embedded_terminal(self, clean_env):
         clean_env.setenv("HERMES_DESKTOP", "1")
-        clean_env.setenv("HERMES_DESKTOP_TERMINAL", "1")
+        clean_env.setenv("OPENAMER_DESKTOP_TERMINAL", "1")
         _srv = _reload_resolver()
         assert _srv._session_source({}) == "tui"
         assert _srv._session_source(None) == "tui"

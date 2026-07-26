@@ -22,7 +22,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Optional
 
-from hermes_constants import get_hermes_home
+from openamer_constants import get_openamer_home
 
 
 @dataclass
@@ -87,7 +87,7 @@ def _load_usage() -> dict[str, dict[str, Any]]:
 
         return load_usage()
     except Exception:
-        path = get_hermes_home() / "skills" / ".usage.json"
+        path = get_openamer_home() / "skills" / ".usage.json"
         try:
             return json.loads(path.read_text(encoding="utf-8"))
         except Exception:
@@ -196,7 +196,7 @@ def _memory_cards() -> list[dict[str, Any]]:
     ``MEMORY.md`` / ``USER.md`` are prose split on bare ``§`` separators; each
     chunk becomes one card. Every chunk is surfaced — the graph shows everything.
     """
-    base = get_hermes_home() / "memories"
+    base = get_openamer_home() / "memories"
     cards: list[dict[str, Any]] = []
     for fname, source in (("MEMORY.md", "memory"), ("USER.md", "profile")):
         path = base / fname
@@ -247,7 +247,7 @@ def _memory_skill_edges(memory_cards: list[dict[str, Any]], skills: list[SkillNo
 
 def _skill_roots() -> list[tuple[str, Path]]:
     repo = Path(__file__).resolve().parent.parent
-    home_skills = get_hermes_home() / "skills"
+    home_skills = get_openamer_home() / "skills"
     return [("base", repo / "skills"), ("profile", home_skills)]
 
 

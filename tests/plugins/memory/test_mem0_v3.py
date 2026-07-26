@@ -398,7 +398,7 @@ class TestMem0V3Config:
 class TestMem0ModeSwitch:
 
     def test_default_mode_is_platform(self, monkeypatch, tmp_path):
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
         monkeypatch.setenv("MEM0_API_KEY", "test-key")
         provider = Mem0MemoryProvider()
         provider.initialize("test")
@@ -406,7 +406,7 @@ class TestMem0ModeSwitch:
 
     def test_missing_mode_key_defaults_platform(self, monkeypatch, tmp_path):
         """Backward compat: old mem0.json without mode key works."""
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
         config_path = tmp_path / "mem0.json"
         config_path.write_text('{"user_id": "old-user"}')
         monkeypatch.setenv("MEM0_API_KEY", "test-key")
@@ -416,20 +416,20 @@ class TestMem0ModeSwitch:
         assert provider._user_id == "old-user"
 
     def test_is_available_platform_needs_key(self, monkeypatch, tmp_path):
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
         monkeypatch.delenv("MEM0_API_KEY", raising=False)
         provider = Mem0MemoryProvider()
         assert provider.is_available() is False
 
     def test_is_available_oss_needs_vector(self, monkeypatch, tmp_path):
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
         config_path = tmp_path / "mem0.json"
         config_path.write_text('{"mode": "oss", "oss": {"vector_store": {"provider": "qdrant"}}}')
         provider = Mem0MemoryProvider()
         assert provider.is_available() is True
 
     def test_is_available_oss_no_vector(self, monkeypatch, tmp_path):
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
         config_path = tmp_path / "mem0.json"
         config_path.write_text('{"mode": "oss", "oss": {}}')
         provider = Mem0MemoryProvider()
@@ -459,7 +459,7 @@ class TestMem0UserIdResolution:
     """
 
     def _provider(self, monkeypatch, tmp_path):
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
         monkeypatch.setenv("MEM0_API_KEY", "test-key")
         provider = Mem0MemoryProvider()
         # Skip backend instantiation — we only care about identity resolution.

@@ -1,16 +1,16 @@
 ---
 sidebar_position: 5
 title: "添加 Provider"
-description: "如何向 Hermes Agent 添加新的推理 provider——认证、运行时解析、CLI 流程、适配器、测试与文档"
+description: "如何向 OpenAmer Agent 添加新的推理 provider——认证、运行时解析、CLI 流程、适配器、测试与文档"
 ---
 
 # 添加 Provider
 
-Hermes 已经可以通过自定义 provider 路径与任何 OpenAI 兼容的端点通信。除非你需要为某个服务提供一流的用户体验，否则不要添加内置 provider：
+OpenAmer 已经可以通过自定义 provider 路径与任何 OpenAI 兼容的端点通信。除非你需要为某个服务提供一流的用户体验，否则不要添加内置 provider：
 
 - provider 专属的认证或 token 刷新
 - 精选的模型目录
-- setup / `hermes model` 菜单条目
+- setup / `openamer model` 菜单条目
 - 用于 `provider:model` 语法的 provider 别名
 - 需要适配器的非 OpenAI API 格式
 
@@ -20,15 +20,15 @@ Hermes 已经可以通过自定义 provider 路径与任何 OpenAI 兼容的端�
 
 内置 provider 需要在几个层面保持一致：
 
-1. `hermes_cli/auth.py` 决定如何查找凭据。
-2. `hermes_cli/runtime_provider.py` 将其转换为运行时数据：
+1. `openamer_cli/auth.py` 决定如何查找凭据。
+2. `openamer_cli/runtime_provider.py` 将其转换为运行时数据：
    - `provider`
    - `api_mode`
    - `base_url`
    - `api_key`
    - `source`
 3. `run_agent.py` 使用 `api_mode` 决定如何构建和发送请求。
-4. `hermes_cli/models.py` 和 `hermes_cli/main.py` 使 provider 在 CLI 中可见。（`hermes_cli/setup.py` 自动委托给 `main.py`——无需在此处做任何修改。）
+4. `openamer_cli/models.py` 和 `openamer_cli/main.py` 使 provider 在 CLI 中可见。（`openamer_cli/setup.py` 自动委托给 `main.py`——无需在此处做任何修改。）
 5. `agent/auxiliary_client.py` 和 `agent/model_metadata.py` 保持辅助任务和 token 预算正常运作。
 
 核心抽象是 `api_mode`。
@@ -74,17 +74,17 @@ Hermes 已经可以通过自定义 provider 路径与任何 OpenAI 兼容的端�
 
 ### 每个内置 provider 都必须修改
 
-1. `hermes_cli/auth.py`
-2. `hermes_cli/models.py`
-3. `hermes_cli/runtime_provider.py`
-4. `hermes_cli/main.py`
+1. `openamer_cli/auth.py`
+2. `openamer_cli/models.py`
+3. `openamer_cli/runtime_provider.py`
+4. `openamer_cli/main.py`
 5. `agent/auxiliary_client.py`
 6. `agent/model_metadata.py`
 7. 测试
 8. `website/docs/` 下的用户文档
 
 :::tip
-`hermes_cli/setup.py` **无需**修改。setup 向导将 provider/model 选择委托给 `main.py` 中的 `select_provider_and_model()`——在那里添加的任何 provider 都会自动出现在 `hermes setup` 中。
+`openamer_cli/setup.py` **无需**修改。setup 向导将 provider/model 选择委托给 `main.py` 中的 `select_provider_and_model()`——在那里添加的任何 provider 都会自动出现在 `openamer setup` 中。
 :::
 
 ### 原生 / 非 OpenAI provider 额外需要
@@ -112,8 +112,8 @@ Hermes 已经可以通过自定义 provider 路径与任何 OpenAI 兼容的端�
 4. 按优先级顺序检查 `env_vars` 以获取 API key
 5. 为该 provider 注册 `fallback_models` 列表
 6. `--provider` CLI 标志接受该 provider id
-7. `hermes model` 菜单包含该 provider
-8. `hermes setup` 向导自动委托给 `main.py`
+7. `openamer model` 菜单包含该 provider
+8. `openamer setup` 向导自动委托给 `main.py`
 9. `provider:model` 别名语法正常工作
 10. 运行时解析器返回正确的 `base_url` 和 `api_key`
 11. `--provider <name>` CLI 标志接受该 provider id
@@ -131,7 +131,7 @@ Hermes 已经可以通过自定义 provider 路径与任何 OpenAI 兼容的端�
 - 需要新适配器的非 OpenAI API 格式（Anthropic Messages、Codex Responses）
 - 自定义端点检测或多区域探测（z.ai、Kimi）
 - 精选的静态模型目录或实时 `/models` 获取
-- 带有特定认证流程的 provider 专属 `hermes model` 菜单条目
+- 带有特定认证流程的 provider 专属 `openamer model` 菜单条目
 
 ## 第 1 步：选择一个规范的 provider id
 
@@ -145,17 +145,17 @@ Hermes 已经可以通过自定义 provider 路径与任何 OpenAI 兼容的端�
 
 该 id 应出现在：
 
-- `hermes_cli/auth.py` 中的 `PROVIDER_REGISTRY`
-- `hermes_cli/models.py` 中的 `_PROVIDER_LABELS`
-- `hermes_cli/auth.py` 和 `hermes_cli/models.py` 中的 `_PROVIDER_ALIASES`
-- `hermes_cli/main.py` 中的 CLI `--provider` 选项
+- `openamer_cli/auth.py` 中的 `PROVIDER_REGISTRY`
+- `openamer_cli/models.py` 中的 `_PROVIDER_LABELS`
+- `openamer_cli/auth.py` 和 `openamer_cli/models.py` 中的 `_PROVIDER_ALIASES`
+- `openamer_cli/main.py` 中的 CLI `--provider` 选项
 - setup / 模型选择分支
 - 辅助模型默认值
 - 测试
 
 如果这些文件之间的 id 不一致，provider 会感觉只接了一半线：认证可能正常，而 `/model`、setup 或运行时解析会静默地遗漏它。
 
-## 第 2 步：在 `hermes_cli/auth.py` 中添加认证元数据
+## 第 2 步：在 `openamer_cli/auth.py` 中添加认证元数据
 
 对于 API key provider，在 `PROVIDER_REGISTRY` 中添加一个 `ProviderConfig` 条目，包含：
 
@@ -177,14 +177,14 @@ Hermes 已经可以通过自定义 provider 路径与任何 OpenAI 兼容的端�
 
 需要在此回答的问题：
 
-- Hermes 应该检查哪些环境变量，按什么优先级顺序？
+- OpenAmer 应该检查哪些环境变量，按什么优先级顺序？
 - provider 是否需要 base URL 覆盖？
 - 是否需要端点探测或 token 刷新？
 - 当凭据缺失时，认证错误应该显示什么？
 
 如果 provider 需要的不仅仅是"查找 API key"，请添加专用的凭据解析器，而不是将逻辑塞进不相关的分支。
 
-## 第 3 步：在 `hermes_cli/models.py` 中添加模型目录和别名
+## 第 3 步：在 `openamer_cli/models.py` 中添加模型目录和别名
 
 更新 provider 目录，使 provider 在菜单和 `provider:model` 语法中正常工作。
 
@@ -207,7 +207,7 @@ kimi:model-name
 
 如果此处缺少别名，provider 可能认证正常，但在 `/model` 解析中仍然失败。
 
-## 第 4 步：在 `hermes_cli/runtime_provider.py` 中解析运行时数据
+## 第 4 步：在 `openamer_cli/runtime_provider.py` 中解析运行时数据
 
 `resolve_runtime_provider()` 是 CLI、gateway（网关）、cron、ACP 和辅助客户端共用的路径。
 
@@ -226,13 +226,13 @@ kimi:model-name
 
 如果 provider 与 OpenAI 兼容，`api_mode` 通常应保持为 `chat_completions`。
 
-注意 API key 优先级。Hermes 已经包含避免将 OpenRouter key 泄露给无关端点的逻辑。新 provider 应同样明确地指定哪个 key 对应哪个 base URL。
+注意 API key 优先级。OpenAmer 已经包含避免将 OpenRouter key 泄露给无关端点的逻辑。新 provider 应同样明确地指定哪个 key 对应哪个 base URL。
 
-## 第 5 步：在 `hermes_cli/main.py` 中接线 CLI
+## 第 5 步：在 `openamer_cli/main.py` 中接线 CLI
 
-在交互式 `hermes model` 流程中出现之前，provider 是不可发现的。
+在交互式 `openamer model` 流程中出现之前，provider 是不可发现的。
 
-在 `hermes_cli/main.py` 中更新以下内容：
+在 `openamer_cli/main.py` 中更新以下内容：
 
 - `provider_labels` 字典
 - `select_provider_and_model()` 中的 `providers` 列表
@@ -242,7 +242,7 @@ kimi:model-name
 - 一个 `_model_flow_<provider>()` 函数，或者如果适用则复用 `_model_flow_api_key_provider()`
 
 :::tip
-`hermes_cli/setup.py` 无需修改——它调用 `main.py` 中的 `select_provider_and_model()`，因此你的新 provider 会自动出现在 `hermes model` 和 `hermes setup` 中。
+`openamer_cli/setup.py` 无需修改——它调用 `main.py` 中的 `select_provider_and_model()`，因此你的新 provider 会自动出现在 `openamer model` 和 `openamer setup` 中。
 :::
 
 ## 第 6 步：保持辅助调用正常工作
@@ -313,7 +313,7 @@ Prompt（提示词）缓存和 provider 专属的调节项很容易出现回归�
 - OpenRouter 获得 provider 路由字段
 - 并非每个 provider 都应该接收每个请求端选项
 
-添加原生 provider 时，仔细检查 Hermes 只向该 provider 发送它实际理解的字段。
+添加原生 provider 时，仔细检查 OpenAmer 只向该 provider 发送它实际理解的字段。
 
 ## 第 8 步：测试
 
@@ -358,15 +358,15 @@ python -m pytest tests/ -n0 -q
 
 ```bash
 source venv/bin/activate
-python -m hermes_cli.main chat -q "Say hello" --provider your-provider --model your-model
+python -m openamer_cli.main chat -q "Say hello" --provider your-provider --model your-model
 ```
 
 如果你修改了菜单，也测试交互式流程：
 
 ```bash
 source venv/bin/activate
-python -m hermes_cli.main model
-python -m hermes_cli.main setup
+python -m openamer_cli.main model
+python -m openamer_cli.main setup
 ```
 
 对于原生 provider，至少也验证一次工具调用，而不仅仅是纯文本响应。
@@ -385,11 +385,11 @@ python -m hermes_cli.main setup
 
 如果 provider 是标准 chat completions，使用此清单。
 
-- [ ] 在 `hermes_cli/auth.py` 中添加 `ProviderConfig`
-- [ ] 在 `hermes_cli/auth.py` 和 `hermes_cli/models.py` 中添加别名
-- [ ] 在 `hermes_cli/models.py` 中添加模型目录
-- [ ] 在 `hermes_cli/runtime_provider.py` 中添加运行时分支
-- [ ] 在 `hermes_cli/main.py` 中添加 CLI 接线（setup.py 自动继承）
+- [ ] 在 `openamer_cli/auth.py` 中添加 `ProviderConfig`
+- [ ] 在 `openamer_cli/auth.py` 和 `openamer_cli/models.py` 中添加别名
+- [ ] 在 `openamer_cli/models.py` 中添加模型目录
+- [ ] 在 `openamer_cli/runtime_provider.py` 中添加运行时分支
+- [ ] 在 `openamer_cli/main.py` 中添加 CLI 接线（setup.py 自动继承）
 - [ ] 在 `agent/auxiliary_client.py` 中添加辅助模型
 - [ ] 在 `agent/model_metadata.py` 中添加上下文长度
 - [ ] 更新运行时 / CLI 测试
@@ -434,7 +434,7 @@ python -m hermes_cli.main setup
 
 provider 路由等字段只属于支持它们的 provider。
 
-### 7. 更新了 `hermes model` 但未更新 `hermes setup`
+### 7. 更新了 `openamer model` 但未更新 `openamer setup`
 
 两个流程都需要了解该 provider。
 

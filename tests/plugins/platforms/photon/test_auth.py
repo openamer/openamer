@@ -51,7 +51,7 @@ _PHOTON_ENV = (
 def tmp_hermes_home(tmp_path: Path, monkeypatch: pytest.MonkeyPatch):
     home = tmp_path / "hermes"
     home.mkdir()
-    monkeypatch.setenv("HERMES_HOME", str(home))
+    monkeypatch.setenv("OPENAMER_HOME", str(home))
     for key in _PHOTON_ENV:
         monkeypatch.delenv(key, raising=False)
     yield home
@@ -130,7 +130,7 @@ def test_store_user_numbers_round_trip(tmp_hermes_home: Path) -> None:
 def test_load_user_numbers_falls_back_to_home_channel(
     tmp_hermes_home: Path,
 ) -> None:
-    from hermes_cli.config import save_env_value
+    from openamer_cli.config import save_env_value
 
     save_env_value("PHOTON_HOME_CHANNEL", "+15551234567")
 

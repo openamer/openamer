@@ -11,7 +11,7 @@ from pathlib import Path
 
 import pytest
 
-from hermes_state import FTS_CJK_STALE_KEY, SessionDB
+from openamer_state import FTS_CJK_STALE_KEY, SessionDB
 
 REPO = Path(__file__).resolve().parent.parent
 SRC = REPO / "native" / "fts5_cjk" / "fts5_cjk.c"
@@ -243,7 +243,7 @@ def test_legacy_v22_optimize_lands_on_cjk(cjk_so, tmp_path, monkeypatch):
     cjk index in the same run."""
     import time as _time
 
-    from hermes_state import SCHEMA_SQL
+    from openamer_state import SCHEMA_SQL
 
     monkeypatch.setenv("HERMES_FTS5_CJK_SO", str(cjk_so))
     db_path = tmp_path / "state.db"

@@ -17,13 +17,13 @@ description: "查询 Polymarket：市场、价格、订单簿、历史记录"
 | 来源 | 内置（默认安装） |
 | 路径 | `skills/research/polymarket` |
 | 版本 | `1.0.0` |
-| 作者 | Hermes Agent + Teknium |
+| 作者 | OpenAmer Agent + Teknium |
 | 平台 | linux, macos, windows |
 
 ## 参考：完整 SKILL.md
 
 :::info
-以下是 Hermes 在触发此 skill 时加载的完整 skill 定义。这是 agent 在 skill 激活时所看到的指令内容。
+以下是 OpenAmer 在触发此 skill 时加载的完整 skill 定义。这是 agent 在 skill 激活时所看到的指令内容。
 :::
 
 # Polymarket — 预测市场数据

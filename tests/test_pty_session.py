@@ -3,7 +3,7 @@ import time
 
 import pytest
 
-from hermes_cli.pty_session import RingBuffer
+from openamer_cli.pty_session import RingBuffer
 
 
 def test_ringbuffer_keeps_everything_under_capacity():
@@ -70,7 +70,7 @@ class FakeWS:
 
 @pytest.mark.asyncio
 async def test_attach_replays_buffer_then_streams_live():
-    from hermes_cli.pty_session import PtySession
+    from openamer_cli.pty_session import PtySession
     bridge = FakeBridge([b"hello ", b"world", None])
     s = PtySession("k", bridge, buffer_cap=1024, read_timeout=0.01)
     await s.start()
@@ -84,7 +84,7 @@ async def test_attach_replays_buffer_then_streams_live():
 
 @pytest.mark.asyncio
 async def test_detach_keeps_draining_into_buffer():
-    from hermes_cli.pty_session import PtySession
+    from openamer_cli.pty_session import PtySession
     bridge = FakeBridge([b"one", b"", b"two"])
     s = PtySession("k", bridge, buffer_cap=1024, read_timeout=0.01)
     await s.start()
@@ -103,7 +103,7 @@ async def test_detach_keeps_draining_into_buffer():
 
 @pytest.mark.asyncio
 async def test_eof_marks_dead_and_closes_socket_4410():
-    from hermes_cli.pty_session import PtySession
+    from openamer_cli.pty_session import PtySession
     bridge = FakeBridge([b"bye", None])
     s = PtySession("k", bridge, buffer_cap=1024, read_timeout=0.01)
     await s.start()
@@ -115,7 +115,7 @@ async def test_eof_marks_dead_and_closes_socket_4410():
     await s.close()
 
 
-from hermes_cli.pty_session import PtySessionRegistry, RegistryFull
+from openamer_cli.pty_session import PtySessionRegistry, RegistryFull
 
 
 def make_registry(ttl=1800.0, max_sessions=16):
@@ -164,7 +164,7 @@ async def test_new_key_at_capacity_raises_when_none_reapable():
 
 @pytest.mark.asyncio
 async def test_reaper_loop_invokes_reap(monkeypatch):
-    from hermes_cli.pty_session import run_reaper
+    from openamer_cli.pty_session import run_reaper
     reg = make_registry()
     calls = {"n": 0}
 

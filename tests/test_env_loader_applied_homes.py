@@ -7,7 +7,7 @@ from pathlib import Path
 
 import pytest
 
-from hermes_cli import env_loader
+from openamer_cli import env_loader
 
 
 @pytest.fixture(autouse=True)

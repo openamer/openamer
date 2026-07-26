@@ -60,7 +60,7 @@ class TestDeadTargetRegistry:
     def test_persists_across_instances(self, isolate):
         reg = DeadTargetRegistry()
         reg.mark_dead("telegram", "999", "deleted group")
-        # New instance reads the same on-disk store under tmp HERMES_HOME.
+        # New instance reads the same on-disk store under tmp OPENAMER_HOME.
         reg2 = DeadTargetRegistry()
         assert reg2.is_dead("telegram", "999") is True
 

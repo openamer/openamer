@@ -61,7 +61,7 @@ describe('subagent store', () => {
         subagent_id: 'a1',
         task_index: 0,
         tool_name: 'search_files',
-        tool_preview: 'pattern=hermes'
+        tool_preview: 'pattern=openamer'
       },
       false,
       'subagent.tool'

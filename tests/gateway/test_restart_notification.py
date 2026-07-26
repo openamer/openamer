@@ -217,7 +217,7 @@ async def test_sethome_updates_running_config_for_same_process_restart(tmp_path,
     def _fake_save_env_value(key, value):
         saved[key] = value
 
-    monkeypatch.setattr("hermes_cli.config.save_env_value", _fake_save_env_value)
+    monkeypatch.setattr("openamer_cli.config.save_env_value", _fake_save_env_value)
     monkeypatch.setattr("gateway.slash_commands.persist_home_channel", lambda home, **kwargs: None)
 
     runner, _adapter = make_restart_runner()
@@ -250,7 +250,7 @@ async def test_sethome_preserves_thread_target_for_same_process_restart(tmp_path
     def _fake_save_env_value(key, value):
         saved[key] = value
 
-    monkeypatch.setattr("hermes_cli.config.save_env_value", _fake_save_env_value)
+    monkeypatch.setattr("openamer_cli.config.save_env_value", _fake_save_env_value)
     monkeypatch.setattr("gateway.slash_commands.persist_home_channel", lambda home, **kwargs: None)
 
     runner, _adapter = make_restart_runner()
@@ -281,7 +281,7 @@ async def test_relay_sethome_persists_authenticated_logical_owner(monkeypatch):
         "gateway.slash_commands.persist_home_channel",
         lambda home, **kwargs: persisted.append(home),
     )
-    monkeypatch.setattr("hermes_cli.config.save_env_value", lambda key, value: None)
+    monkeypatch.setattr("openamer_cli.config.save_env_value", lambda key, value: None)
 
     runner, _adapter = make_restart_runner()
     relay = MagicMock()

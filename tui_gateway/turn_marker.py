@@ -9,7 +9,7 @@ a process death leaves one behind. ``session.resume`` reads the marker to
 decide whether to auto-continue the interrupted turn (see
 ``_maybe_schedule_auto_continue`` in ``tui_gateway/server.py``).
 
-Markers are stored per ``HERMES_HOME`` (callers pass the session's home so
+Markers are stored per ``OPENAMER_HOME`` (callers pass the session's home so
 profile sessions keep their state in their own profile directory) and the
 file is bounded: writes prune entries older than ``_MAX_AGE_SECS`` and cap
 the total count, so an unlucky streak of crashes can't grow it unboundedly.

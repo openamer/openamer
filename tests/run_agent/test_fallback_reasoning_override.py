@@ -20,7 +20,7 @@ class TestFallbackReasoningOverride:
         The production code calls resolve_per_model_reasoning_effort with
         the fallback model string — we verify that works correctly.
         """
-        from hermes_constants import resolve_per_model_reasoning_effort
+        from openamer_constants import resolve_per_model_reasoning_effort
 
         # Simulate: primary was gemini-flash (medium), fallback to claude-opus-4.5 (xhigh)
         overrides = {
@@ -43,7 +43,7 @@ class TestFallbackReasoningOverride:
 
     def test_fallback_to_model_without_override_uses_global(self):
         """Fallback to a model with no override should resolve to None (→ global)."""
-        from hermes_constants import resolve_per_model_reasoning_effort
+        from openamer_constants import resolve_per_model_reasoning_effort
 
         overrides = {"claude-opus-4.5": "xhigh"}
 
@@ -53,7 +53,7 @@ class TestFallbackReasoningOverride:
 
     def test_fallback_with_normalized_model_name(self):
         """Fallback model name may be normalized (dots→dashes); override should still match."""
-        from hermes_constants import resolve_per_model_reasoning_effort
+        from openamer_constants import resolve_per_model_reasoning_effort
 
         # User wrote key with dots, but normalize_model_for_provider converts to dashes
         overrides = {"claude-sonnet-4.6": "high"}
@@ -129,7 +129,7 @@ class TestFallbackReasoningOverride:
         We verify that passing the raw False (not coerced "") produces
         the disabled config.
         """
-        from hermes_constants import parse_reasoning_effort
+        from openamer_constants import parse_reasoning_effort
 
         # Simulate: no per-model override matches, global is YAML False
         _fb_agent_cfg = {"reasoning_effort": False}

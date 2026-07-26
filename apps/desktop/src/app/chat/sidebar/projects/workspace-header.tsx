@@ -122,7 +122,7 @@ export function WorkspaceMenu({ path, onRemove }: { path: null | string; onRemov
 
 // "New worktree": prompt for a branch name, then git spins up a fresh worktree
 // for that branch under the repo (the lightest way) and we open a new session
-// inside it. Naming is explicit — no auto-generated `hermes/work-<ts>` trees.
+// inside it. Naming is explicit — no auto-generated `openamer/work-<ts>` trees.
 // The base branch defaults to the remote default (origin/HEAD); the user can
 // pick any local or remote-tracking branch via a filterable combobox.
 export function StartWorkButton({ repoPath, onStarted }: { repoPath: string; onStarted: (path: string) => void }) {

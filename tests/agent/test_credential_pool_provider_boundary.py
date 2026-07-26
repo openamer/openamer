@@ -4,7 +4,7 @@ from types import SimpleNamespace
 from unittest.mock import patch
 
 from agent.credential_pool import credential_pool_matches_provider
-from hermes_cli import runtime_provider as rp
+from openamer_cli import runtime_provider as rp
 
 
 def test_provider_match_requires_exact_non_custom_identity():

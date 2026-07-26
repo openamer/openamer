@@ -26,7 +26,7 @@ description: "通过 twozero MCP 控制运行中的 TouchDesigner 实例——�
 ## 参考：完整 SKILL.md
 
 :::info
-以下是 Hermes 在触发此 skill 时加载的完整 skill 定义。这是 agent 在 skill 激活时看到的指令内容。
+以下是 OpenAmer 在触发此 skill 时加载的完整 skill 定义。这是 agent 在 skill 激活时看到的指令内容。
 :::
 
 # TouchDesigner 集成（twozero MCP）
@@ -42,7 +42,7 @@ description: "通过 twozero MCP 控制运行中的 TouchDesigner 实例——�
 ## 架构
 
 ```
-Hermes Agent -> MCP (Streamable HTTP) -> twozero.tox (port 40404) -> TD Python
+OpenAmer Agent -> MCP (Streamable HTTP) -> twozero.tox (port 40404) -> TD Python
 ```
 
 36 个原生工具。免费插件（无需付费/许可证——2026 年 4 月确认）。
@@ -54,13 +54,13 @@ Hub 健康检查：`GET http://localhost:40404/mcp` 返回包含实例 PID、项
 运行设置脚本处理所有事项：
 
 ```bash
-bash "${HERMES_HOME:-$HOME/.hermes}/skills/creative/touchdesigner-mcp/scripts/setup.sh"
+bash "${HERMES_HOME:-$HOME/.openamer}/skills/creative/touchdesigner-mcp/scripts/setup.sh"
 ```
 
 脚本将：
 1. 检查 TD 是否正在运行
 2. 如果尚未缓存，下载 twozero.tox
-3. 将 `twozero_td` MCP 服务器添加到 Hermes 配置（如果缺失）
+3. 将 `twozero_td` MCP 服务器添加到 OpenAmer 配置（如果缺失）
 4. 在端口 40404 上测试 MCP 连接
 5. 报告剩余的手动步骤（将 .tox 拖入 TD，启用 MCP 开关）
 
@@ -68,7 +68,7 @@ bash "${HERMES_HOME:-$HOME/.hermes}/skills/creative/touchdesigner-mcp/scripts/se
 
 1. **将 `~/Downloads/twozero.tox` 拖入 TD 网络编辑器** → 点击 Install
 2. **启用 MCP：** 点击 twozero 图标 → Settings → mcp → "auto start MCP" → Yes
-3. **重启 Hermes 会话**以加载新的 MCP 服务器
+3. **重启 OpenAmer 会话**以加载新的 MCP 服务器
 
 设置完成后，验证：
 ```bash

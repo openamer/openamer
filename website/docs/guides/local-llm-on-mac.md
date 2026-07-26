@@ -15,7 +15,7 @@ We cover two backends:
 | **llama.cpp** | `brew install llama.cpp` | Fastest time-to-first-token, quantized KV cache for low memory | GGUF |
 | **omlx** | [omlx.ai](https://omlx.ai) | Fastest token generation, native Metal optimization | MLX (safetensors) |
 
-Both expose an OpenAI-compatible `/v1/chat/completions` endpoint. Hermes works with either one — just point it at `http://localhost:8080` or `http://localhost:8000`.
+Both expose an OpenAI-compatible `/v1/chat/completions` endpoint. OpenAmer works with either one — just point it at `http://localhost:8080` or `http://localhost:8000`.
 
 :::info Apple Silicon only
 This guide targets Macs with Apple Silicon (M1 and later). Intel Macs will work with llama.cpp but without GPU acceleration — expect significantly slower performance.
@@ -110,9 +110,9 @@ The `--cache-type-k q4_0 --cache-type-v q4_0` flags are the most important optim
 | q8_0 | ~8 GB |
 | **q4_0** | **~4 GB** |
 
-On an 8 GB Mac, use `q4_0` KV cache and choose a smaller model that can still fit Hermes' 64K minimum context. On 16 GB, you can comfortably do 128K context. On 32 GB+, you can run larger models or multiple parallel slots.
+On an 8 GB Mac, use `q4_0` KV cache and choose a smaller model that can still fit OpenAmer' 64K minimum context. On 16 GB, you can comfortably do 128K context. On 32 GB+, you can run larger models or multiple parallel slots.
 
-If you're still running out of memory, reduce context only while staying at or above Hermes' 64K minimum; otherwise switch to a smaller model or smaller quantization (Q3_K_M instead of Q4_K_M).
+If you're still running out of memory, reduce context only while staying at or above OpenAmer' 64K minimum; otherwise switch to a smaller model or smaller quantization (Q3_K_M instead of Q4_K_M).
 
 ### Test it
 
@@ -208,12 +208,12 @@ Both backends tested on the same machine (Apple M5 Max, 128 GB unified memory) r
 
 ---
 
-## Connect to Hermes
+## Connect to OpenAmer
 
 Once your local server is running:
 
 ```bash
-hermes model
+openamer model
 ```
 
 Select **Custom endpoint** and follow the prompts. It will ask for the base URL and model name — use the values from whichever backend you set up above.
@@ -222,7 +222,7 @@ Select **Custom endpoint** and follow the prompts. It will ask for the base URL 
 
 ## Timeouts
 
-Hermes automatically detects local endpoints (localhost, LAN IPs) and relaxes its streaming timeouts. No configuration needed for most setups.
+OpenAmer automatically detects local endpoints (localhost, LAN IPs) and relaxes its streaming timeouts. No configuration needed for most setups.
 
 If you still hit timeout errors (e.g. very large contexts on slow hardware), you can override the streaming read timeout:
 

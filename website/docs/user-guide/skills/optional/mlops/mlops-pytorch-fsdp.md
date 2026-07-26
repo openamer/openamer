@@ -14,7 +14,7 @@ Fully sharded data-parallel training for large models.
 
 | | |
 |---|---|
-| Source | Optional — install with `hermes skills install official/mlops/pytorch-fsdp` |
+| Source | Optional — install with `openamer skills install official/mlops/pytorch-fsdp` |
 | Path | `optional-skills/mlops/pytorch-fsdp` |
 | Version | `1.0.0` |
 | Author | Orchestra Research |
@@ -26,7 +26,7 @@ Fully sharded data-parallel training for large models.
 ## Reference: full SKILL.md
 
 :::info
-The following is the complete skill definition that Hermes loads when this skill is triggered. This is what the agent sees as instructions when the skill is active.
+The following is the complete skill definition that OpenAmer loads when this skill is triggered. This is what the agent sees as instructions when the skill is active.
 :::
 
 # Pytorch-Fsdp Skill

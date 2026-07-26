@@ -4,7 +4,7 @@ from pathlib import Path
 
 from gateway.config import Platform
 from gateway.run import GatewayRunner
-from hermes_cli import kanban_db as kb
+from openamer_cli import kanban_db as kb
 
 
 class RecordingAdapter:

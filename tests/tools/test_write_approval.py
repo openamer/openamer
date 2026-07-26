@@ -1,5 +1,5 @@
 """Tests for the memory/skill write-approval gate (tools/write_approval.py)
-and the shared slash-command handlers (hermes_cli/write_approval_commands.py).
+and the shared slash-command handlers (openamer_cli/write_approval_commands.py).
 
 Covers the boolean write_approval gate (off by default = write freely; on =
 require approval) for both subsystems, the foreground-vs-background staging
@@ -20,13 +20,13 @@ def hermes_home(monkeypatch):
     d = tempfile.mkdtemp(prefix="hermes_wa_test_")
     home = os.path.join(d, ".hermes")
     os.makedirs(home)
-    monkeypatch.setenv("HERMES_HOME", home)
+    monkeypatch.setenv("OPENAMER_HOME", home)
     yield home
     shutil.rmtree(d, ignore_errors=True)
 
 
 def _set_approval(subsystem, enabled):
-    import hermes_cli.config as cfg
+    import openamer_cli.config as cfg
     c = cfg.load_config()
     c.setdefault(subsystem, {})["write_approval"] = enabled
     cfg.save_config(c)
@@ -115,7 +115,7 @@ def test_cli_memory_approve_without_live_agent_uses_fresh_store(hermes_home, cap
     import json
     from tools.memory_tool import memory_tool, MemoryStore
     from tools import write_approval as wa
-    from hermes_cli.cli_commands_mixin import CLICommandsMixin
+    from openamer_cli.cli_commands_mixin import CLICommandsMixin
 
     _set_approval("memory", True)
     staging = MemoryStore(); staging.load_from_disk()
@@ -147,7 +147,7 @@ def test_load_on_disk_store_honors_configured_char_limits(hermes_home, monkeypat
 
     # Config override path: helper picks up the configured limits.
     monkeypatch.setattr(
-        "hermes_cli.config.load_config",
+        "openamer_cli.config.load_config",
         lambda: {"memory": {"memory_char_limit": 999, "user_char_limit": 444}},
     )
     store = load_on_disk_store()
@@ -158,7 +158,7 @@ def test_load_on_disk_store_honors_configured_char_limits(hermes_home, monkeypat
     def _boom():
         raise RuntimeError("no config")
 
-    monkeypatch.setattr("hermes_cli.config.load_config", _boom)
+    monkeypatch.setattr("openamer_cli.config.load_config", _boom)
     fallback = load_on_disk_store()
     assert fallback.memory_char_limit == 2200
     assert fallback.user_char_limit == 1375
@@ -198,7 +198,7 @@ def test_skill_gate_on_always_stages(hermes_home):
 
 def test_skill_gate_on_then_apply_writes_file(hermes_home):
     # SKILLS_DIR is resolved at import time, so reload the skill module under
-    # this test's HERMES_HOME to exercise the real on-disk write path.
+    # this test's OPENAMER_HOME to exercise the real on-disk write path.
     import importlib
     import tools.skill_manager_tool as smt
     importlib.reload(smt)
@@ -242,14 +242,14 @@ def test_pending_store_roundtrip(hermes_home):
 # ---------------------------------------------------------------------------
 
 def test_handle_pending_list_empty(hermes_home):
-    from hermes_cli.write_approval_commands import handle_pending_subcommand
+    from openamer_cli.write_approval_commands import handle_pending_subcommand
     from tools import write_approval as wa
     out = handle_pending_subcommand(wa.MEMORY, ["pending"])
     assert "No pending memory" in out
 
 
 def test_handle_approve_all(hermes_home):
-    from hermes_cli.write_approval_commands import handle_pending_subcommand
+    from openamer_cli.write_approval_commands import handle_pending_subcommand
     from tools.memory_tool import MemoryStore
     from tools import write_approval as wa
     store = MemoryStore(); store.load_from_disk()
@@ -264,7 +264,7 @@ def test_handle_approve_all(hermes_home):
 
 
 def test_handle_reject(hermes_home):
-    from hermes_cli.write_approval_commands import handle_pending_subcommand
+    from openamer_cli.write_approval_commands import handle_pending_subcommand
     from tools import write_approval as wa
     rec = wa.stage_write("skills", {"action": "create", "name": "s"},
                          summary="create s", origin="background_review")
@@ -274,7 +274,7 @@ def test_handle_reject(hermes_home):
 
 
 def test_handle_approval_on(hermes_home):
-    from hermes_cli.write_approval_commands import handle_pending_subcommand
+    from openamer_cli.write_approval_commands import handle_pending_subcommand
     from tools import write_approval as wa
     captured = {}
     out = handle_pending_subcommand(
@@ -286,7 +286,7 @@ def test_handle_approval_on(hermes_home):
 
 
 def test_handle_approval_off(hermes_home):
-    from hermes_cli.write_approval_commands import handle_pending_subcommand
+    from openamer_cli.write_approval_commands import handle_pending_subcommand
     from tools import write_approval as wa
     captured = {}
     out = handle_pending_subcommand(
@@ -299,7 +299,7 @@ def test_handle_approval_off(hermes_home):
 
 def test_handle_mode_alias_still_works(hermes_home):
     # 'mode' is kept as a back-compat alias for 'approval'.
-    from hermes_cli.write_approval_commands import handle_pending_subcommand
+    from openamer_cli.write_approval_commands import handle_pending_subcommand
     from tools import write_approval as wa
     captured = {}
     out = handle_pending_subcommand(
@@ -311,7 +311,7 @@ def test_handle_mode_alias_still_works(hermes_home):
 
 
 def test_handle_approval_invalid(hermes_home):
-    from hermes_cli.write_approval_commands import handle_pending_subcommand
+    from openamer_cli.write_approval_commands import handle_pending_subcommand
     from tools import write_approval as wa
     out = handle_pending_subcommand(wa.MEMORY, ["approval", "bogus"],
                                     set_mode_fn=lambda enabled: None)
@@ -319,7 +319,7 @@ def test_handle_approval_invalid(hermes_home):
 
 
 def test_handle_unknown_subcommand_returns_none(hermes_home):
-    from hermes_cli.write_approval_commands import handle_pending_subcommand
+    from openamer_cli.write_approval_commands import handle_pending_subcommand
     from tools import write_approval as wa
     # An unrecognized /skills subcommand (e.g. 'search') must return None so
     # the CLI falls through to the skills hub.

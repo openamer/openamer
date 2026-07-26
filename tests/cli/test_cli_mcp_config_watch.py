@@ -35,7 +35,7 @@ class TestMCPConfigWatch:
         """If mtime and mcp_servers unchanged, _reload_mcp is NOT called."""
         obj, cfg_file = _make_cli(tmp_path)
 
-        with patch("hermes_cli.config.get_config_path", return_value=cfg_file):
+        with patch("openamer_cli.config.get_config_path", return_value=cfg_file):
             obj._check_config_mcp_changes()
 
         obj._reload_mcp.assert_not_called()
@@ -50,7 +50,7 @@ class TestMCPConfigWatch:
         # Force mtime to appear changed
         obj._config_mtime = 0.0
 
-        with patch("hermes_cli.config.get_config_path", return_value=cfg_file):
+        with patch("openamer_cli.config.get_config_path", return_value=cfg_file):
             obj._check_config_mcp_changes()
 
         obj._reload_mcp.assert_not_called()
@@ -64,7 +64,7 @@ class TestMCPConfigWatch:
         cfg_file.write_text(yaml.dump({"mcp_servers": {"github": {"url": "https://mcp.github.com"}}}))
         obj._config_mtime = 0.0  # force stale mtime
 
-        with patch("hermes_cli.config.get_config_path", return_value=cfg_file):
+        with patch("openamer_cli.config.get_config_path", return_value=cfg_file):
             obj._check_config_mcp_changes()
 
         obj._reload_mcp.assert_called_once()
@@ -78,7 +78,7 @@ class TestMCPConfigWatch:
         cfg_file.write_text(yaml.dump({"mcp_servers": {}}))
         obj._config_mtime = 0.0
 
-        with patch("hermes_cli.config.get_config_path", return_value=cfg_file):
+        with patch("openamer_cli.config.get_config_path", return_value=cfg_file):
             obj._check_config_mcp_changes()
 
         obj._reload_mcp.assert_called_once()
@@ -88,7 +88,7 @@ class TestMCPConfigWatch:
         obj, cfg_file = _make_cli(tmp_path)
         obj._last_config_check = time.monotonic()  # just checked
 
-        with patch("hermes_cli.config.get_config_path", return_value=cfg_file), \
+        with patch("openamer_cli.config.get_config_path", return_value=cfg_file), \
              patch.object(Path, "stat") as mock_stat:
             obj._check_config_mcp_changes()
             mock_stat.assert_not_called()
@@ -100,7 +100,7 @@ class TestMCPConfigWatch:
         obj, cfg_file = _make_cli(tmp_path)
         missing = tmp_path / "nonexistent.yaml"
 
-        with patch("hermes_cli.config.get_config_path", return_value=missing):
+        with patch("openamer_cli.config.get_config_path", return_value=missing):
             obj._check_config_mcp_changes()  # should not raise
 
         obj._reload_mcp.assert_not_called()
@@ -131,7 +131,7 @@ class TestMCPConfigWatch:
         }))
         obj._config_mtime = 0.0  # force stale mtime
 
-        with patch("hermes_cli.config.get_config_path", return_value=cfg_file):
+        with patch("openamer_cli.config.get_config_path", return_value=cfg_file):
             obj._check_config_mcp_changes()
 
         obj._reload_mcp.assert_not_called()
@@ -154,7 +154,7 @@ class TestMCPConfigWatch:
         }))
         obj._config_mtime = 0.0
 
-        with patch("hermes_cli.config.get_config_path", return_value=cfg_file):
+        with patch("openamer_cli.config.get_config_path", return_value=cfg_file):
             obj._check_config_mcp_changes()
             # Second pass: same file content, new mtime — no reload, no change.
             obj._last_config_check = 0.0
@@ -183,7 +183,7 @@ class TestMCPConfigWatch:
         }))
         obj._config_mtime = 0.0
 
-        with patch("hermes_cli.config.get_config_path", return_value=cfg_file):
+        with patch("openamer_cli.config.get_config_path", return_value=cfg_file):
             obj._check_config_mcp_changes()
 
         # Reload happened because the aux-task path is not the toggle.
@@ -228,7 +228,7 @@ class TestMCPConfigWatch:
         }))
         obj._config_mtime = 0.0
 
-        with patch("hermes_cli.config.get_config_path", return_value=cfg_file):
+        with patch("openamer_cli.config.get_config_path", return_value=cfg_file):
             obj._check_config_mcp_changes()
 
         obj._reload_mcp.assert_not_called()

@@ -1,6 +1,6 @@
 # Blender MCP — Pitfalls & Lessons Learned
 
-All interaction goes through the blender MCP tools (`hermes mcp install
+All interaction goes through the blender MCP tools (`openamer mcp install
 blender`): `get_scene_info`, `get_object_info`, `get_viewport_screenshot`,
 and `execute_blender_code` for arbitrary bpy Python.
 

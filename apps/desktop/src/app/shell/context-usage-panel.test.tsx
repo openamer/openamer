@@ -2,7 +2,7 @@ import { act, cleanup, render, waitFor } from '@testing-library/react'
 import { useState } from 'react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
-import type { ContextBreakdown, UsageStats } from '@/types/hermes'
+import type { ContextBreakdown, UsageStats } from '@/types/openamer'
 
 import { ContextUsagePanel } from './context-usage-panel'
 

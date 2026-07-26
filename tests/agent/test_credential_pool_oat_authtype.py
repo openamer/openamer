@@ -52,7 +52,7 @@ def test_non_anthropic_provider_unchanged():
 def test_add_entry_normalizes_before_persisting(tmp_path, monkeypatch):
     hermes_home = tmp_path / "hermes"
     hermes_home.mkdir()
-    monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
     pool = CredentialPool("anthropic", [])
     entry = pool.add_entry(PooledCredential(
@@ -73,7 +73,7 @@ def test_add_entry_normalizes_before_persisting(tmp_path, monkeypatch):
 def test_load_heals_legacy_row_and_exposes_it_to_resolver(tmp_path, monkeypatch):
     hermes_home = tmp_path / "hermes"
     hermes_home.mkdir()
-    monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
     for key in ("ANTHROPIC_API_KEY", "ANTHROPIC_TOKEN", "CLAUDE_CODE_OAUTH_TOKEN"):
         monkeypatch.delenv(key, raising=False)
     monkeypatch.setattr(
@@ -112,7 +112,7 @@ def test_profile_global_fallback_normalizes_in_memory_without_writing(tmp_path, 
     global_root.mkdir()
     profile_home = global_root / "profiles" / "coder"
     profile_home.mkdir(parents=True)
-    monkeypatch.setenv("HERMES_HOME", str(profile_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(profile_home))
     token = "sk-ant-oat-global-fallback"
     global_auth = global_root / "auth.json"
     global_auth.write_text(json.dumps({

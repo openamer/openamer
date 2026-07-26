@@ -86,7 +86,7 @@ class FakeChannel:
 
 @pytest.fixture
 def adapter(monkeypatch, tmp_path):
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     config = PlatformConfig(enabled=True, token="fake-token")
     adapter = DiscordAdapter(config)
     bot_user = SimpleNamespace(id=999, bot=True, display_name="Hermes", name="hermes")
@@ -423,7 +423,7 @@ async def test_recovered_messages_bypass_live_text_debounce(adapter, monkeypatch
 def test_missed_message_backfill_config_bridge(monkeypatch, tmp_path):
     from gateway.config import load_gateway_config
 
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     for key in (
         "DISCORD_MISSED_MESSAGE_BACKFILL",
         "DISCORD_MISSED_MESSAGE_BACKFILL_CHANNELS",
@@ -461,7 +461,7 @@ def test_missed_message_backfill_config_bridge(monkeypatch, tmp_path):
 
 
 def test_default_config_exposes_missed_message_backfill_settings():
-    from hermes_cli.config import DEFAULT_CONFIG
+    from openamer_cli.config import DEFAULT_CONFIG
 
     assert DEFAULT_CONFIG["discord"]["missed_message_backfill"] == {
         "enabled": False,
@@ -516,9 +516,9 @@ def test_missed_message_backfill_config_stays_per_adapter():
 def test_recovery_store_pins_profile_home_at_adapter_construction(monkeypatch, tmp_path):
     first_home = tmp_path / "first"
     second_home = tmp_path / "second"
-    monkeypatch.setenv("HERMES_HOME", str(first_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(first_home))
     adapter = DiscordAdapter(PlatformConfig(enabled=True, token="one"))
-    monkeypatch.setenv("HERMES_HOME", str(second_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(second_home))
 
     assert adapter._discord_recovery_db_path() == (
         first_home / "gateway" / "discord_message_recovery.db"

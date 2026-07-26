@@ -21,7 +21,7 @@ def _make_pconfig(provider_id="deepseek", env_vars=None):
     Default provider_id is 'deepseek' because it's a real api_key provider
     in PROVIDER_REGISTRY (needed for _seed_from_env's generic path).
     """
-    from hermes_cli.auth import ProviderConfig
+    from openamer_cli.auth import ProviderConfig
     return ProviderConfig(
         id=provider_id,
         name=provider_id.title(),
@@ -32,14 +32,14 @@ def _make_pconfig(provider_id="deepseek", env_vars=None):
 
 @pytest.fixture
 def isolated_hermes_home(tmp_path, monkeypatch):
-    """Point HERMES_HOME at a temp dir and clear known API key env vars.
+    """Point OPENAMER_HOME at a temp dir and clear known API key env vars.
 
     Also invalidates any cached get_env_value state by patching Path.home().
     """
     home = tmp_path / ".hermes"
     home.mkdir()
     monkeypatch.setattr(Path, "home", lambda: tmp_path)
-    monkeypatch.setenv("HERMES_HOME", str(home))
+    monkeypatch.setenv("OPENAMER_HOME", str(home))
 
     # Clear all known API key env vars so get_env_value falls through to .env
     for key in [
@@ -134,7 +134,7 @@ class TestAuthResolvesFromDotEnv:
         _write_env_file(isolated_hermes_home, DEEPSEEK_API_KEY="sk-dotenv-resolve-789")
         assert "DEEPSEEK_API_KEY" not in os.environ
 
-        from hermes_cli.auth import _resolve_api_key_provider_secret
+        from openamer_cli.auth import _resolve_api_key_provider_secret
         key, source = _resolve_api_key_provider_secret(
             provider_id="deepseek",
             pconfig=_make_pconfig(),
@@ -154,7 +154,7 @@ class TestAuthResolvesFromDotEnv:
         _write_env_file(isolated_hermes_home, DEEPSEEK_API_KEY="dotenv-fresh-deepseek")
         monkeypatch.setenv("DEEPSEEK_API_KEY", "stale-shell-deepseek")
 
-        from hermes_cli.auth import _resolve_api_key_provider_secret
+        from openamer_cli.auth import _resolve_api_key_provider_secret
         key, source = _resolve_api_key_provider_secret(
             provider_id="deepseek",
             pconfig=_make_pconfig(),
@@ -174,7 +174,7 @@ class TestAuthResolvesFromDotEnv:
         _write_env_file(isolated_hermes_home, ANTHROPIC_API_KEY="dotenv-fresh-anthropic")
         monkeypatch.setenv("ANTHROPIC_API_KEY", "stale-shell-anthropic")
 
-        from hermes_cli.auth import get_anthropic_key
+        from openamer_cli.auth import get_anthropic_key
         assert get_anthropic_key() == "dotenv-fresh-anthropic"
 
 
@@ -191,7 +191,7 @@ class TestAuthCredentialPoolFallback:
         mock_pool.has_credentials.return_value = True
         mock_pool.peek.return_value = mock_entry
 
-        from hermes_cli.auth import _resolve_api_key_provider_secret
+        from openamer_cli.auth import _resolve_api_key_provider_secret
         with patch("agent.credential_pool.load_pool", return_value=mock_pool):
             key, source = _resolve_api_key_provider_secret(
                 provider_id="deepseek",
@@ -205,7 +205,7 @@ class TestAuthCredentialPoolFallback:
         mock_pool = MagicMock()
         mock_pool.has_credentials.return_value = False
 
-        from hermes_cli.auth import _resolve_api_key_provider_secret
+        from openamer_cli.auth import _resolve_api_key_provider_secret
         with patch("agent.credential_pool.load_pool", return_value=mock_pool):
             key, source = _resolve_api_key_provider_secret(
                 provider_id="deepseek",
@@ -220,7 +220,7 @@ class TestAuthCredentialPoolFallback:
         mock_pool = MagicMock()
         mock_pool.has_credentials.return_value = True
 
-        from hermes_cli.auth import _resolve_api_key_provider_secret
+        from openamer_cli.auth import _resolve_api_key_provider_secret
         with patch("agent.credential_pool.load_pool", return_value=mock_pool) as mp:
             key, source = _resolve_api_key_provider_secret(
                 provider_id="deepseek",
@@ -239,7 +239,7 @@ class TestAuthCredentialPoolFallback:
         mock_pool = MagicMock()
         mock_pool.has_credentials.return_value = True
 
-        from hermes_cli.auth import _resolve_api_key_provider_secret
+        from openamer_cli.auth import _resolve_api_key_provider_secret
         with patch("agent.credential_pool.load_pool", return_value=mock_pool) as mp:
             key, source = _resolve_api_key_provider_secret(
                 provider_id="deepseek",

@@ -247,7 +247,7 @@ class TestFutilityGuard:
         assert cc._verify_compaction_cleared_threshold is True
 
     def test_model_switch_resets_and_persists_fallback_streak(self, tmp_path):
-        from hermes_state import SessionDB
+        from openamer_state import SessionDB
 
         db = SessionDB(db_path=tmp_path / "state.db")
         db.create_session("s1", source="cli")
@@ -261,7 +261,7 @@ class TestFutilityGuard:
         assert db.get_compression_fallback_streak("s1") == 0
 
     def test_same_runtime_context_recalibration_preserves_fallback_streak(self, tmp_path):
-        from hermes_state import SessionDB
+        from openamer_state import SessionDB
 
         db = SessionDB(db_path=tmp_path / "state.db")
         db.create_session("s1", source="cli")

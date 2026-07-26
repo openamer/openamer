@@ -1,6 +1,6 @@
-import { resolveGatewayWsUrl } from '@hermes/shared'
+import { resolveGatewayWsUrl } from '@openamer/shared'
 
-import { speakText } from '@/hermes'
+import { speakText } from '@/openamer'
 import {
   $voicePlayback,
   setVoicePlaybackState,
@@ -67,7 +67,7 @@ export function stopVoicePlayback() {
 // ---------------------------------------------------------------------------
 
 async function resolveSpeakStreamUrl(): Promise<null | string> {
-  const desktop = window.hermesDesktop
+  const desktop = window.openamerDesktop
 
   if (!desktop?.getConnection) {
     return null

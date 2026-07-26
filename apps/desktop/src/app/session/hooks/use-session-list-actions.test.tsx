@@ -1,7 +1,7 @@
 import { act, renderHook } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import type { SessionInfo, SidebarSessionsResponse } from '@/hermes'
+import type { SessionInfo, SidebarSessionsResponse } from '@/openamer'
 import {
   $cronSessions,
   $messagingSessions,
@@ -55,7 +55,7 @@ const sidebar = (
 const listSidebarSessions = vi.fn()
 const listAllProfileSessions = vi.fn()
 
-vi.mock('@/hermes', async importOriginal => ({
+vi.mock('@/openamer', async importOriginal => ({
   ...(await importOriginal<Record<string, unknown>>()),
   getCronJobs: vi.fn(async () => []),
   listAllProfileSessions: (...args: unknown[]) => listAllProfileSessions(...args),
@@ -237,7 +237,7 @@ describe('refreshSessions batches slices into one request', () => {
   })
 
   it('scopes the cron-jobs fetch to the active profile (all → unified view)', async () => {
-    const { getCronJobs } = await import('@/hermes')
+    const { getCronJobs } = await import('@/openamer')
     listSidebarSessions.mockResolvedValue(sidebar({ sessions: [], total: 0, profile_totals: {} }))
 
     const scoped = renderHook(() => useSessionListActions({ profileScope: 'work' }))

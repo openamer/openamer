@@ -26,12 +26,12 @@ def curator_env(tmp_path, monkeypatch):
     home.mkdir()
     (home / "skills").mkdir()
     (home / "logs").mkdir()
-    monkeypatch.setenv("HERMES_HOME", str(home))
+    monkeypatch.setenv("OPENAMER_HOME", str(home))
     monkeypatch.setattr(Path, "home", lambda: tmp_path)
 
     import importlib
-    import hermes_constants
-    importlib.reload(hermes_constants)
+    import openamer_constants
+    importlib.reload(openamer_constants)
     from agent import curator
     importlib.reload(curator)
     yield curator

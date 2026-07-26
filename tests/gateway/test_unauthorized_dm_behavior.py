@@ -77,7 +77,7 @@ def _make_runner(platform: Platform, config: GatewayConfig):
 def test_whatsapp_lid_user_matches_phone_allowlist_via_session_mapping(monkeypatch, tmp_path):
     _clear_auth_env(monkeypatch)
     monkeypatch.setenv("WHATSAPP_ALLOWED_USERS", "15550000001")
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
 
     session_dir = tmp_path / "whatsapp" / "session"
     session_dir.mkdir(parents=True)
@@ -109,7 +109,7 @@ def test_whatsapp_lid_user_matches_phone_allowlist_via_modern_session_mapping(
     Regression guard for the silently-dropped-LID-sender bug (#36664)."""
     _clear_auth_env(monkeypatch)
     monkeypatch.setenv("WHATSAPP_ALLOWED_USERS", "15550000001")
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
 
     session_dir = tmp_path / "platforms" / "whatsapp" / "session"
     session_dir.mkdir(parents=True)

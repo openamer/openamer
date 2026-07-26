@@ -104,7 +104,7 @@ def _session_is_messaging_surface() -> bool:
     """Return whether this turn is delivered over a human messaging channel.
 
     The gateway binds the platform value (e.g. ``telegram``) to
-    ``HERMES_SESSION_PLATFORM``; the CLI and TUI set ``HERMES_SESSION_SOURCE``
+    ``HERMES_SESSION_PLATFORM``; the CLI and TUI set ``OPENAMER_SESSION_SOURCE``
     (e.g. ``cli``, ``tui``) instead. Both are consulted via the session-context
     helper (with an ``os.environ`` fallback), alongside the ``HERMES_PLATFORM``
     override, matching the sibling platform resolution in
@@ -119,12 +119,12 @@ def _session_is_messaging_surface() -> bool:
             os.getenv("HERMES_PLATFORM")
             or get_session_env("HERMES_SESSION_PLATFORM", "")
         )
-        source = get_session_env("HERMES_SESSION_SOURCE", "")
+        source = get_session_env("OPENAMER_SESSION_SOURCE", "")
     except Exception:
         platform = os.getenv("HERMES_PLATFORM", "") or os.environ.get(
             "HERMES_SESSION_PLATFORM", ""
         )
-        source = os.environ.get("HERMES_SESSION_SOURCE", "")
+        source = os.environ.get("OPENAMER_SESSION_SOURCE", "")
     for identity in (platform, source):
         identity = str(identity or "").strip().lower()
         if identity and identity not in _NON_MESSAGING_SESSION_SURFACES:
@@ -149,7 +149,7 @@ def verify_on_stop_enabled(config: dict[str, Any] | None = None) -> bool:
         return env.strip().lower() not in {"0", "false", "no", "off"}
     if config is None:
         try:
-            from hermes_cli.config import load_config
+            from openamer_cli.config import load_config
 
             config = load_config()
         except Exception:

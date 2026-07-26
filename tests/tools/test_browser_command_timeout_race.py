@@ -36,7 +36,7 @@ class TestGetCommandTimeoutRace:
     def test_returns_default_when_config_read_raises(self):
         """If config reading blows up, we still return an int (not None)."""
         with patch(
-            "hermes_cli.config.read_raw_config", side_effect=RuntimeError("boom")
+            "openamer_cli.config.read_raw_config", side_effect=RuntimeError("boom")
         ):
             result = self.bt._get_command_timeout()
 
@@ -49,7 +49,7 @@ class TestGetCommandTimeoutRace:
     def test_cache_assigned_before_resolved_flag(self):
         """Invariant: if resolved=True then cache must not be None."""
         with patch(
-            "hermes_cli.config.read_raw_config", side_effect=RuntimeError("boom")
+            "openamer_cli.config.read_raw_config", side_effect=RuntimeError("boom")
         ):
             self.bt._get_command_timeout()
 
@@ -84,7 +84,7 @@ class TestGetCommandTimeoutRace:
         """After cleanup, observers must never see resolved=True with cache=None."""
         # Warm the cache first.
         with patch(
-            "hermes_cli.config.read_raw_config", side_effect=RuntimeError("boom")
+            "openamer_cli.config.read_raw_config", side_effect=RuntimeError("boom")
         ):
             self.bt._get_command_timeout()
         assert self.bt._command_timeout_resolved is True

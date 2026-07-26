@@ -1,19 +1,19 @@
 ---
 sidebar_position: 6
 title: "WhatsApp Business (Cloud API)"
-description: "Set up Hermes Agent as a WhatsApp bot via Meta's official Business Cloud API"
+description: "Set up OpenAmer Agent as a WhatsApp bot via Meta's official Business Cloud API"
 ---
 
 # WhatsApp Business Cloud API Setup
 
-Hermes can connect to WhatsApp through Meta's **official** WhatsApp Business Cloud API. This is the production-grade path: no Node.js bridge subprocess, no QR codes, no account-ban risk.
+OpenAmer can connect to WhatsApp through Meta's **official** WhatsApp Business Cloud API. This is the production-grade path: no Node.js bridge subprocess, no QR codes, no account-ban risk.
 
 In exchange:
 
 - You need a **Meta Business account** (not personal WhatsApp).
 - The bot operates on a dedicated business phone number, not your personal number.
-- The Hermes gateway needs a **public HTTPS URL** so Meta can deliver inbound messages via webhook.
-- Replies more than 24 hours after the user's last message require a pre-approved **template** (this is Meta's "customer service window" rule, not a Hermes limit).
+- The OpenAmer gateway needs a **public HTTPS URL** so Meta can deliver inbound messages via webhook.
+- Replies more than 24 hours after the user's last message require a pre-approved **template** (this is Meta's "customer service window" rule, not a OpenAmer limit).
 
 If those constraints don't work for your use case, the [Baileys bridge integration](./whatsapp.md) is the alternative — personal account, no public URL needed, but unofficial and ban-prone.
 
@@ -27,7 +27,7 @@ If those constraints don't work for your use case, the [Baileys bridge integrati
 ## Quick start
 
 ```bash
-hermes whatsapp-cloud
+openamer whatsapp-cloud
 ```
 
 The wizard walks you through every credential, validates each one as you paste it (catches the #1 setup trap — pasting a phone number into the Phone Number ID field), and prints exact follow-up instructions for the parts that need to happen outside the wizard (starting cloudflared, configuring Meta's webhook dashboard).
@@ -41,7 +41,7 @@ The rest of this page is the manual reference.
 1. **A Meta Business account**.  Create one at [business.facebook.com](https://business.facebook.com/).
 2. **A Meta app with WhatsApp enabled**.  See "Creating the Meta app" below.
 3. **A way to expose a local port to the public internet** with HTTPS.  Cloudflare Tunnel (`cloudflared`) is recommended — free, no port forwarding, no domain required.  ngrok, your own domain with a reverse proxy + TLS, or a VPS with the gateway directly bound to a public IP all work too.
-4. **Optional but recommended**: ffmpeg on `PATH` so outbound voice messages render as native WhatsApp voice-note bubbles (green waveform) instead of MP3 audio attachments. Hermes degrades gracefully if absent.
+4. **Optional but recommended**: ffmpeg on `PATH` so outbound voice messages render as native WhatsApp voice-note bubbles (green waveform) instead of MP3 audio attachments. OpenAmer degrades gracefully if absent.
 
 ---
 
@@ -70,7 +70,7 @@ You'll need these values from the dashboard — the wizard prompts for them in t
 Temporary access tokens expire after **24 hours**, which means a token generated today stops working tomorrow.  For production deployments use a **System User permanent token**:
 
 1. Go to [business.facebook.com/latest/settings](https://business.facebook.com/latest/settings) → **System users** (left sidebar).
-2. **Add** → name (e.g. `hermes-bot`) → role: **Admin**.
+2. **Add** → name (e.g. `openamer-bot`) → role: **Admin**.
 3. Select the new user → **Assign Assets**:
    - Select your app → toggle **Manage app** under Full control.
    - Select your WhatsApp account → toggle **Manage WhatsApp Business Accounts** under Full control.
@@ -80,15 +80,15 @@ Temporary access tokens expire after **24 hours**, which means a token generated
    - `whatsapp_business_messaging`
    - `whatsapp_business_management`
 5. Set **token expiration: Never**.
-6. Copy the token → update `WHATSAPP_CLOUD_ACCESS_TOKEN` in `~/.hermes/.env` → restart the gateway.
+6. Copy the token → update `WHATSAPP_CLOUD_ACCESS_TOKEN` in `~/.openamer/.env` → restart the gateway.
 
 System User tokens don't expire unless you explicitly revoke them.
 
 ---
 
-## Exposing Hermes to the internet
+## Exposing OpenAmer to the internet
 
-The Cloud API delivers inbound messages by HTTPS POST to your webhook URL — that means the Hermes gateway has to be reachable from Meta's servers.  Three common ways:
+The Cloud API delivers inbound messages by HTTPS POST to your webhook URL — that means the OpenAmer gateway has to be reachable from Meta's servers.  Three common ways:
 
 ### Cloudflare Tunnel (recommended)
 
@@ -142,8 +142,8 @@ Once your tunnel is running:
    ```bash
    python -c "import secrets; print(secrets.token_urlsafe(32))"
    ```
-   Save it as `WHATSAPP_CLOUD_VERIFY_TOKEN` in `~/.hermes/.env`.
-3. Start the Hermes gateway: `hermes gateway`.
+   Save it as `WHATSAPP_CLOUD_VERIFY_TOKEN` in `~/.openamer/.env`.
+3. Start the OpenAmer gateway: `openamer gateway`.
 4. In the Meta App Dashboard → **WhatsApp → Configuration** (or **Use cases → Customize → Configuration** depending on UI version) → click **Edit** on the Webhook section.
 5. Fill in:
    - **Callback URL**: `https://abc123.trycloudflare.com/whatsapp/webhook`
@@ -178,9 +178,9 @@ Up to 5 numbers in dev mode.  Going to App Review removes this limit.
 
 ---
 
-## Allowlist (Hermes-side)
+## Allowlist (OpenAmer-side)
 
-In addition to Meta's recipient whitelist, Hermes has its own per-platform allowlist that controls **which incoming messages the agent processes**.  Add to `~/.hermes/.env`:
+In addition to Meta's recipient whitelist, OpenAmer has its own per-platform allowlist that controls **which incoming messages the agent processes**.  Add to `~/.openamer/.env`:
 
 ```bash
 # Comma-separated phone numbers, country code, no '+' / spaces / dashes
@@ -207,13 +207,13 @@ Once your bot is working, head to **[business.facebook.com/wa/manage/phone-numbe
 | **About / description / website / email / hours / category** | "Edit profile" button | These appear in the info pane when a user taps the bot's name. Cosmetic. |
 | **Verified badge** (green checkmark) | Business Manager → Security Center → Start Verification | Requires Meta's separate business verification process. |
 
-The `hermes whatsapp-cloud` wizard prints these links at the end of setup. None of this is required for the bot to work — it's pure polish for how your bot appears to users.
+The `openamer whatsapp-cloud` wizard prints these links at the end of setup. None of this is required for the bot to work — it's pure polish for how your bot appears to users.
 
 ---
 
 ## Configuration reference
 
-All settings live in `~/.hermes/.env`.  Required values are in **bold**.
+All settings live in `~/.openamer/.env`.  Required values are in **bold**.
 
 | Variable | Default | Description |
 |---|---|---|
@@ -255,7 +255,7 @@ You can have **both** the Baileys (`whatsapp`) and Cloud (`whatsapp_cloud`) adap
 
 ### Interactive UX
 
-When the agent invokes any of these flows, Hermes uses WhatsApp's native interactive messages — tap-to-answer buttons instead of "reply with the number" prompts:
+When the agent invokes any of these flows, OpenAmer uses WhatsApp's native interactive messages — tap-to-answer buttons instead of "reply with the number" prompts:
 
 - **`clarify` tool** — multi-choice questions render as quick-reply buttons (1–3 choices) or a tap-to-open list sheet (4+ choices). Picking "✏️ Other" lets the user type a free-form answer that the agent receives as the resolution.
 - **Dangerous-command approvals** — when the agent's terminal/code execution hits a gated command, the user sees `✅ Approve` / `❌ Deny` buttons instead of needing to type `/approve` or `/deny`.
@@ -265,7 +265,7 @@ All interactive prompts gracefully degrade to plain text if the buttons fail to 
 
 ### Read receipts and typing indicator
 
-Hermes acknowledges inbound messages immediately:
+OpenAmer acknowledges inbound messages immediately:
 
 - Your message shows **blue double-checkmarks** as soon as the gateway receives it.
 - The bot's name in your WhatsApp chat shows **"typing…"** while the agent is preparing a reply.
@@ -277,7 +277,7 @@ This makes it obvious when the bot has seen your message versus when it's still 
 
 WhatsApp distinguishes between a "voice note" (the green waveform bubble) and a generic audio file attachment. The difference is purely codec: voice notes need to be `audio/ogg` with `opus` encoding.
 
-Hermes TTS produces MP3. Two paths:
+OpenAmer TTS produces MP3. Two paths:
 
 - **With ffmpeg on PATH** (recommended) — outbound TTS is converted and arrives as a proper voice note. Install:
   - Windows: `winget install Gyan.FFmpeg`
@@ -307,17 +307,17 @@ Meta only allows **free-form messages** within a 24-hour window after the user's
 - **Long-running `delegate_task` async results** that take longer than 24h fail the same way.
 - **Webhook subscribers** that route external events to WhatsApp fail when the user hasn't DM'd the bot recently.
 
-Hermes warns the agent about this window in its system prompt, so the model knows to mention it when scheduling delayed messages.
+OpenAmer warns the agent about this window in its system prompt, so the model knows to mention it when scheduling delayed messages.
 
-Message-template support (the workaround for outside-window sends) is not yet implemented in Hermes. If you need it, please [open an issue](https://github.com/NousResearch/hermes-agent/issues) — it's planned but waiting on a clear demand signal.
+Message-template support (the workaround for outside-window sends) is not yet implemented in OpenAmer. If you need it, please [open an issue](https://github.com/NousResearch/openamer-agent/issues) — it's planned but waiting on a clear demand signal.
 
 ### Group chats
 
-The Cloud API has limited group support (capability-tier gated by Meta).  Hermes's `whatsapp_cloud` adapter currently handles **direct messages only** in v1.  If you need group chats, use the Baileys bridge.
+The Cloud API has limited group support (capability-tier gated by Meta).  OpenAmer's `whatsapp_cloud` adapter currently handles **direct messages only** in v1.  If you need group chats, use the Baileys bridge.
 
 ### Outbound rate limit
 
-Meta's default throughput is **80 messages/second per business phone number**, with upgrades available.  Hermes doesn't currently enforce this client-side — extremely high-volume sends could hit Meta's limit.
+Meta's default throughput is **80 messages/second per business phone number**, with upgrades available.  OpenAmer doesn't currently enforce this client-side — extremely high-volume sends could hit Meta's limit.
 
 ---
 
@@ -328,9 +328,9 @@ Meta's default throughput is **80 messages/second per business phone number**, w
 Almost always one of:
 
 - **Tunnel URL is wrong or stale** — cloudflared quick tunnels rotate.  Get a fresh URL and update both `.env` and Meta's dashboard.
-- **Verify token mismatch** — the token in `~/.hermes/.env`'s `WHATSAPP_CLOUD_VERIFY_TOKEN` must match exactly what you typed into Meta's dashboard.  Run the curl probe above to confirm the gateway's verify handshake works locally first.
-- **Gateway not running** — check `hermes gateway` is up.
-- **App Secret not set** — without it, Hermes refuses inbound POSTs with 503.  Meta interprets that as "can't validate."
+- **Verify token mismatch** — the token in `~/.openamer/.env`'s `WHATSAPP_CLOUD_VERIFY_TOKEN` must match exactly what you typed into Meta's dashboard.  Run the curl probe above to confirm the gateway's verify handshake works locally first.
+- **Gateway not running** — check `openamer gateway` is up.
+- **App Secret not set** — without it, OpenAmer refuses inbound POSTs with 503.  Meta interprets that as "can't validate."
 
 ### `graph error 100`: Object with ID '...' does not exist
 
@@ -351,7 +351,7 @@ Your access token is invalid.  Subcodes:
 The 24-hour conversation window expired (see "Known limitations").  Either:
 
 - Ask the user to DM the bot first to reopen the window.
-- Wait for template support to land in Hermes.
+- Wait for template support to land in OpenAmer.
 
 ### Inbound message: `media metadata fetch failed (status=401)`
 
@@ -359,18 +359,18 @@ Same 401 root causes as outbound (`graph error 190`) — the access token is inv
 
 ### Bot replies appear as raw JSON / tool-call leakage
 
-Common cause: the toolset configured for `whatsapp_cloud` is missing the tools the agent wants to call.  Check `hermes tools list` and verify the platform is using `hermes-whatsapp` (the default Cloud adapter toolset, same as Baileys).
+Common cause: the toolset configured for `whatsapp_cloud` is missing the tools the agent wants to call.  Check `openamer tools list` and verify the platform is using `openamer-whatsapp` (the default Cloud adapter toolset, same as Baileys).
 
-If the model emits tool-call-shaped text instead of a structured call, it usually means the toolset was effectively empty.  See `hermes_cli/platforms.py` for the platform → default toolset mapping.
+If the model emits tool-call-shaped text instead of a structured call, it usually means the toolset was effectively empty.  See `openamer_cli/platforms.py` for the platform → default toolset mapping.
 
 ### STT (voice note transcription) returns empty / "could not transcribe"
 
 The default `stt.provider: local` requires `pip install faster-whisper`.  If you're a Nous subscriber, you can route STT through Meta's managed audio gateway instead:
 
 ```bash
-hermes config set stt.provider openai
-hermes config set stt.use_gateway true
-hermes gateway restart
+openamer config set stt.provider openai
+openamer config set stt.use_gateway true
+openamer gateway restart
 ```
 
 This uses your Nous Portal access token instead of needing a separate OpenAI key.
@@ -379,7 +379,7 @@ This uses your Nous Portal access token instead of needing a separate OpenAI key
 
 ## Security notes
 
-- **Treat the App Secret like a password** — anyone with it can forge webhook payloads that Hermes will accept as authentic.
+- **Treat the App Secret like a password** — anyone with it can forge webhook payloads that OpenAmer will accept as authentic.
 - **The verify token is a shared secret** — leaks are lower-stakes (worst case someone could re-subscribe Meta's webhook to a different URL of theirs), but still avoid committing it.
 - **The access token is your bot's identity** — System User tokens are equivalent to long-lived API keys.  Rotate immediately if a deployment is compromised.
 - **The webhook endpoint accepts only signed requests when `WHATSAPP_CLOUD_APP_SECRET` is set** — leave it set even in development.  Without it, the gateway refuses inbound delivery with HTTP 503.
@@ -389,7 +389,7 @@ This uses your Nous Portal access token instead of needing a separate OpenAI key
 
 ## Comparison to the Baileys bridge
 
-| | Baileys (`hermes whatsapp`) | Cloud API (`hermes whatsapp-cloud`) |
+| | Baileys (`openamer whatsapp`) | Cloud API (`openamer whatsapp-cloud`) |
 |---|---|---|
 | Account type | Personal | Business |
 | Setup | QR code scan | Meta app + WABA + token |
@@ -407,7 +407,7 @@ This uses your Nous Portal access token instead of needing a separate OpenAI key
 | Interactive buttons | Text fallback only | Native (clarify, approval, slash-confirm) |
 | Production use | Risky (Meta can ban) | Designed for it |
 
-Most users running Hermes for personal projects prefer Baileys. Most users running customer-facing bots prefer Cloud API.
+Most users running OpenAmer for personal projects prefer Baileys. Most users running customer-facing bots prefer Cloud API.
 
 ---
 

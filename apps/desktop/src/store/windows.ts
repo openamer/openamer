@@ -54,12 +54,12 @@ export function isWatchWindow(): boolean {
 // True when running inside the Electron desktop shell (the preload bridge is
 // present). The "open in new window" affordance is desktop-only.
 export function canOpenSessionWindow(): boolean {
-  return typeof window !== 'undefined' && typeof window.hermesDesktop?.openSessionWindow === 'function'
+  return typeof window !== 'undefined' && typeof window.openamerDesktop?.openSessionWindow === 'function'
 }
 
 // True when the shell can open a full peer app window (⌘⇧N / "New Window").
 export function canOpenNewWindow(): boolean {
-  return typeof window !== 'undefined' && typeof window.hermesDesktop?.openWindow === 'function'
+  return typeof window !== 'undefined' && typeof window.openamerDesktop?.openWindow === 'function'
 }
 
 type WindowOpenResult = { ok: boolean; error?: string } | undefined
@@ -87,7 +87,7 @@ export async function openSessionInNewWindow(sessionId: string, opts?: { watch?:
   }
 
   await runWindowOpen(
-    () => window.hermesDesktop.openSessionWindow(sessionId, opts),
+    () => window.openamerDesktop.openSessionWindow(sessionId, opts),
     'Could not open chat in a new window'
   )
 }
@@ -99,5 +99,5 @@ export async function openNewWindow(): Promise<void> {
     return
   }
 
-  await runWindowOpen(() => window.hermesDesktop.openWindow(), 'Could not open a new window')
+  await runWindowOpen(() => window.openamerDesktop.openWindow(), 'Could not open a new window')
 }

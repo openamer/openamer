@@ -2,7 +2,7 @@
 
 import asyncio
 
-from hermes_cli.banner import format_banner_version_label
+from openamer_cli.banner import format_banner_version_label
 
 
 def test_gateway_version_command_returns_release_line():

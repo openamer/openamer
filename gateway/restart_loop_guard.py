@@ -21,7 +21,7 @@ still starts and serves real inbound messages, it just stops replaying
 the session that keeps killing it, which breaks the cycle and puts a
 human back in the loop.
 
-State lives in ``<HERMES_HOME>/gateway/restart_loop.json`` so it is
+State lives in ``<OPENAMER_HOME>/gateway/restart_loop.json`` so it is
 profile-scoped and survives process death.  It is intentionally tiny and
 best-effort: any read/write failure fails OPEN (no false trip) because a
 broken breaker must never wedge a healthy gateway.
@@ -34,7 +34,7 @@ import logging
 import time
 from typing import List, Optional
 
-from hermes_constants import get_hermes_home
+from openamer_constants import get_openamer_home
 
 logger = logging.getLogger("gateway.run")
 
@@ -45,7 +45,7 @@ DEFAULT_WINDOW_SECONDS = 60
 
 
 def _state_path():
-    return get_hermes_home() / "gateway" / "restart_loop.json"
+    return get_openamer_home() / "gateway" / "restart_loop.json"
 
 
 def _load_boots() -> List[float]:

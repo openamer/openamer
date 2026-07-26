@@ -10,7 +10,7 @@ import {
   recoverInFlightTurnJournal
 } from '@/lib/inflight-turn-journal'
 
-const STORAGE_KEY = 'hermes.desktop.inflightTurnJournal.v1'
+const STORAGE_KEY = 'openamer.desktop.inflightTurnJournal.v1'
 
 function user(id: string, text: string): ChatMessage {
   return { id, role: 'user', parts: [{ type: 'text', text }] }

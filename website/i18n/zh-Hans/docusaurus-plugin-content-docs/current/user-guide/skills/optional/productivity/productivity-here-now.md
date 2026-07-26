@@ -14,7 +14,7 @@ description: "将静态站点发布到 {slug}"
 
 | | |
 |---|---|
-| 来源 | 可选 — 通过 `hermes skills install official/productivity/here-now` 安装 |
+| 来源 | 可选 — 通过 `openamer skills install official/productivity/here-now` 安装 |
 | 路径 | `optional-skills/productivity/here-now` |
 | 版本 | `1.15.3` |
 | 作者 | here.now |
@@ -25,7 +25,7 @@ description: "将静态站点发布到 {slug}"
 ## 参考：完整 SKILL.md
 
 :::info
-以下是 Hermes 在触发此 skill 时加载的完整 skill 定义。这是 skill 激活时 agent 所看到的指令内容。
+以下是 OpenAmer 在触发此 skill 时加载的完整 skill 定义。这是 skill 激活时 agent 所看到的指令内容。
 :::
 
 # here.now
@@ -81,7 +81,7 @@ here.now 适用于两类任务：
 
 ```bash
 PUBLISH="${HERMES_SKILL_DIR}/scripts/publish.sh"
-bash "$PUBLISH" {file-or-dir} --client hermes
+bash "$PUBLISH" {file-or-dir} --client openamer
 ```
 
 输出实时 URL（例如 `https://bright-canvas-a7k2.here.now/`）。
@@ -99,7 +99,7 @@ bash "$PUBLISH" {file-or-dir} --client hermes
 
 ```bash
 PUBLISH="${HERMES_SKILL_DIR}/scripts/publish.sh"
-bash "$PUBLISH" {file-or-dir} --slug {slug} --client hermes
+bash "$PUBLISH" {file-or-dir} --slug {slug} --client openamer
 ```
 
 更新匿名站点时，脚本会自动从 `.herenow/state.json` 加载 `claimToken`。传入 `--claim-token {token}` 可覆盖此值。
@@ -215,7 +215,7 @@ mkdir -p ~/.herenow && echo "{API_KEY}" > ~/.herenow/credentials && chmod 600 ~/
 | `--title {text}` | 预览器标题（非 HTML 站点） |
 | `--description {text}` | 预览器描述 |
 | `--ttl {seconds}` | 设置过期时间（仅限已认证用户） |
-| `--client {name}` | 用于归因的 agent 名称（如 `hermes`） |
+| `--client {name}` | 用于归因的 agent 名称（如 `openamer`） |
 | `--base-url {url}` | API 基础 URL（默认：`https://here.now`） |
 | `--allow-nonherenow-base-url` | 允许向非默认 `--base-url` 发送认证信息 |
 | `--api-key {key}` | API key 覆盖（优先使用凭据文件） |

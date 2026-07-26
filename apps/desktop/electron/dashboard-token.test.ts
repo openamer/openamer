@@ -35,7 +35,7 @@ test('extractInjectedDashboardToken returns null for missing or malformed values
 
 test('dashboardIndexUrl preserves dashboard path prefixes', () => {
   assert.equal(dashboardIndexUrl('http://127.0.0.1:9120'), 'http://127.0.0.1:9120/')
-  assert.equal(dashboardIndexUrl('https://host.example/hermes/'), 'https://host.example/hermes/')
+  assert.equal(dashboardIndexUrl('https://host.example/openamer/'), 'https://host.example/openamer/')
 })
 
 test('resolveServedDashboardToken uses the served token and logs when it differs', async () => {
@@ -90,7 +90,7 @@ test('resolveServedDashboardToken propagates fetch errors so callers can fall ba
 })
 
 test('fetchPublicText rejects unsupported protocols', async () => {
-  await assert.rejects(() => fetchPublicText('file:///tmp/index.html'), /Unsupported Hermes backend URL protocol/)
+  await assert.rejects(() => fetchPublicText('file:///tmp/index.html'), /Unsupported OpenAmer backend URL protocol/)
 })
 
 test('isForeignBackendToken only flags a mismatched token from a dead child', () => {
@@ -124,7 +124,7 @@ test('adoptServedDashboardToken refuses a foreign token when our child is dead',
       adoptServedDashboardToken('http://127.0.0.1:9120', 'spawn-token', {
         childAlive: () => false,
         fetchText: async () => '<script>window.__HERMES_SESSION_TOKEN__="squatter-token";</script>',
-        label: 'Hermes backend for profile "work"'
+        label: 'OpenAmer backend for profile "work"'
       }),
     /profile "work".*process we did not spawn/
   )
@@ -143,5 +143,5 @@ test('adoptServedDashboardToken falls back to the spawn token when the fetch fai
 
   assert.equal(token, 'spawn-token')
   assert.equal(logs.length, 1)
-  assert.match(logs[0], /could not read served dashboard token \(Hermes backend\): boom/)
+  assert.match(logs[0], /could not read served dashboard token \(OpenAmer backend\): boom/)
 })

@@ -13,14 +13,14 @@ import pytest
 
 
 def test_manager_isolates_same_named_servers_by_profile_home(tmp_path, monkeypatch):
-    from hermes_constants import reset_hermes_home_override, set_hermes_home_override
+    from openamer_constants import reset_openamer_home_override, set_openamer_home_override
     from tools.mcp_oauth import HermesTokenStorage
     from tools.mcp_oauth_manager import MCPOAuthManager
 
     profile_a = tmp_path / "profile-a"
     profile_b = tmp_path / "profile-b"
     for home, access_token in ((profile_a, "TOKEN_A"), (profile_b, "TOKEN_B")):
-        token = set_hermes_home_override(home)
+        token = set_openamer_home_override(home)
         try:
             storage = HermesTokenStorage("shared")
             storage._tokens_path().parent.mkdir(parents=True, exist_ok=True)
@@ -29,18 +29,18 @@ def test_manager_isolates_same_named_servers_by_profile_home(tmp_path, monkeypat
                 % access_token
             )
         finally:
-            reset_hermes_home_override(token)
+            reset_openamer_home_override(token)
 
     manager = MCPOAuthManager()
     providers = []
     for home in (profile_a, profile_b):
-        token = set_hermes_home_override(home)
+        token = set_openamer_home_override(home)
         try:
             provider = manager.get_or_build_provider("shared", "https://mcp.example/mcp", {})
             asyncio.run(provider._initialize())
             providers.append(provider)
         finally:
-            reset_hermes_home_override(token)
+            reset_openamer_home_override(token)
 
     assert providers[0] is not providers[1]
     assert providers[0].context.current_tokens.access_token == "TOKEN_A"
@@ -48,7 +48,7 @@ def test_manager_isolates_same_named_servers_by_profile_home(tmp_path, monkeypat
 
 
 def test_manager_explicit_home_removes_only_that_profiles_tokens(tmp_path):
-    from hermes_constants import reset_hermes_home_override, set_hermes_home_override
+    from openamer_constants import reset_openamer_home_override, set_openamer_home_override
     from tools.mcp_oauth import HermesTokenStorage
     from tools.mcp_oauth_manager import MCPOAuthManager
 
@@ -56,20 +56,20 @@ def test_manager_explicit_home_removes_only_that_profiles_tokens(tmp_path):
     profile_b = tmp_path / "profile-b"
     paths = []
     for home in (profile_a, profile_b):
-        token = set_hermes_home_override(home)
+        token = set_openamer_home_override(home)
         try:
             storage = HermesTokenStorage("shared")
             storage._tokens_path().parent.mkdir(parents=True, exist_ok=True)
             storage._tokens_path().write_text('{"access_token":"x","token_type":"Bearer"}')
             paths.append(storage._tokens_path())
         finally:
-            reset_hermes_home_override(token)
+            reset_openamer_home_override(token)
 
-    token = set_hermes_home_override(profile_a)
+    token = set_openamer_home_override(profile_a)
     try:
         MCPOAuthManager().remove("shared", hermes_home=profile_b)
     finally:
-        reset_hermes_home_override(token)
+        reset_openamer_home_override(token)
 
     assert paths[0].exists()
     assert not paths[1].exists()
@@ -78,7 +78,7 @@ def test_manager_explicit_home_removes_only_that_profiles_tokens(tmp_path):
 def test_manager_can_restore_removed_entry_after_failed_reauth(tmp_path, monkeypatch):
     from tools.mcp_oauth_manager import MCPOAuthManager
 
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     _set_interactive_stdin(monkeypatch)
     manager = MCPOAuthManager()
     provider = manager.get_or_build_provider("shared", "https://mcp.example", {})
@@ -92,7 +92,7 @@ def test_manager_can_restore_removed_entry_after_failed_reauth(tmp_path, monkeyp
 def test_manager_restore_entry_preserves_newer_concurrent_entry(tmp_path, monkeypatch):
     from tools.mcp_oauth_manager import MCPOAuthManager
 
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     _set_interactive_stdin(monkeypatch)
     manager = MCPOAuthManager()
     old_provider = manager.get_or_build_provider("shared", "https://old.example", {})
@@ -127,7 +127,7 @@ def test_manager_is_singleton():
 
 def test_manager_get_or_build_provider_caches(tmp_path, monkeypatch):
     """Calling get_or_build_provider twice with same name returns same provider."""
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     _set_interactive_stdin(monkeypatch)
     from tools.mcp_oauth_manager import MCPOAuthManager
 
@@ -139,7 +139,7 @@ def test_manager_get_or_build_provider_caches(tmp_path, monkeypatch):
 
 def test_manager_get_or_build_rebuilds_on_url_change(tmp_path, monkeypatch):
     """Changing the URL discards the cached provider."""
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     _set_interactive_stdin(monkeypatch)
     from tools.mcp_oauth_manager import MCPOAuthManager
 
@@ -151,7 +151,7 @@ def test_manager_get_or_build_rebuilds_on_url_change(tmp_path, monkeypatch):
 
 def test_manager_remove_evicts_cache(tmp_path, monkeypatch):
     """remove(name) evicts the provider from cache AND deletes disk files."""
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     _set_interactive_stdin(monkeypatch)
     from tools.mcp_oauth_manager import MCPOAuthManager
 
@@ -192,7 +192,7 @@ async def test_disk_watch_invalidates_on_mtime_change(tmp_path, monkeypatch):
     invalidateOAuthCacheIfDiskChanged (CC-1096 / GH#24317) and is the core
     fix for Cthulhu's external-cron refresh workflow.
     """
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     from tools.mcp_oauth_manager import MCPOAuthManager, reset_manager_for_tests
 
     reset_manager_for_tests()
@@ -239,7 +239,7 @@ async def test_handle_401_tracks_inflight_task_to_prevent_gc(tmp_path, monkeypat
     """
     import asyncio
 
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     from tools.mcp_oauth_manager import MCPOAuthManager, _ProviderEntry
 
     class _TrackedSet(set):
@@ -299,7 +299,7 @@ async def test_handle_401_dedup_survives_even_if_task_reference_dropped(tmp_path
     import asyncio
     import gc
 
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     from tools.mcp_oauth_manager import MCPOAuthManager, _ProviderEntry
 
     mgr = MCPOAuthManager()
@@ -336,7 +336,7 @@ def test_manager_builds_hermes_provider_subclass(tmp_path, monkeypatch):
         MCPOAuthManager, _HERMES_PROVIDER_CLS, reset_manager_for_tests,
     )
     reset_manager_for_tests()
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     _set_interactive_stdin(monkeypatch)
 
     mgr = MCPOAuthManager()
@@ -349,7 +349,7 @@ def test_manager_builds_hermes_provider_subclass(tmp_path, monkeypatch):
 
 def test_manager_fails_fast_noninteractive_without_cached_tokens(tmp_path, monkeypatch):
     """A daemon without cached MCP OAuth tokens must not enter browser auth."""
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     _set_interactive_stdin(monkeypatch, is_tty=False)
     from tools.mcp_oauth import OAuthNonInteractiveError
     from tools.mcp_oauth_manager import MCPOAuthManager
@@ -400,7 +400,7 @@ def _provider_with_token_endpoint(tmp_path, oauth_config, token_endpoint, monkey
 
 def test_invalid_client_at_token_endpoint_poisons(tmp_path, monkeypatch):
     """400 invalid_client on the token endpoint deletes the dead client.json."""
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     d = tmp_path / "mcp-tokens"
     d.mkdir(parents=True)
     (d / "srv.client.json").write_text('{"client_id": "dead"}')
@@ -422,7 +422,7 @@ def test_invalid_client_at_token_endpoint_poisons(tmp_path, monkeypatch):
 
 def test_invalid_client_at_other_endpoint_is_ignored(tmp_path, monkeypatch):
     """An invalid_client body from a non-token endpoint must not poison."""
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     d = tmp_path / "mcp-tokens"
     d.mkdir(parents=True)
     (d / "srv.client.json").write_text('{"client_id": "live"}')
@@ -440,7 +440,7 @@ def test_invalid_client_at_other_endpoint_is_ignored(tmp_path, monkeypatch):
 
 
 def test_success_response_is_ignored(tmp_path, monkeypatch):
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     d = tmp_path / "mcp-tokens"
     d.mkdir(parents=True)
     (d / "srv.client.json").write_text('{"client_id": "live"}')
@@ -459,7 +459,7 @@ def test_success_response_is_ignored(tmp_path, monkeypatch):
 
 def test_preregistered_client_is_never_poisoned(tmp_path, monkeypatch):
     """A config-supplied client_id is never auto-deleted (re-reg can't help)."""
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     provider = _provider_with_token_endpoint(
         tmp_path, {"client_id": "from-config"}, "https://idp.example.com/oauth/token", monkeypatch
     )
@@ -478,7 +478,7 @@ def test_preregistered_client_is_never_poisoned(tmp_path, monkeypatch):
 
 def test_invalid_client_metadata_does_not_trip(tmp_path, monkeypatch):
     """RFC 7591 `invalid_client_metadata` must NOT be mistaken for invalid_client."""
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     d = tmp_path / "mcp-tokens"
     d.mkdir(parents=True)
     (d / "srv.client.json").write_text('{"client_id": "live"}')
@@ -513,7 +513,7 @@ def test_bridge_forwards_requests_and_poisons_on_token_endpoint_400(
     genuinely fragile part. A patched SDK base generator stands in for the
     real OAuth flow so we control exactly which response the bridge sees.
     """
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     token_ep = "https://idp.example.com/oauth/token"
     d = tmp_path / "mcp-tokens"
     d.mkdir(parents=True)

@@ -4,7 +4,7 @@
 scheduler (Chronos) fires a job: across N gateway replicas, exactly ONE wins the
 claim for a given fire. Single-machine deployments always win (unaffected).
 
-These exercise the real store against a temp HERMES_HOME (no mocks) per the
+These exercise the real store against a temp OPENAMER_HOME (no mocks) per the
 E2E-over-mocks discipline for file-touching code.
 """
 import pytest
@@ -12,9 +12,9 @@ import pytest
 
 @pytest.fixture
 def temp_home(tmp_path, monkeypatch):
-    """Isolated HERMES_HOME so jobs.json doesn't touch the real store."""
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
-    # cron.jobs caches no home at import; get_hermes_home() reads the env live.
+    """Isolated OPENAMER_HOME so jobs.json doesn't touch the real store."""
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
+    # cron.jobs caches no home at import; get_openamer_home() reads the env live.
     yield tmp_path
 
 

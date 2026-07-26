@@ -3,7 +3,7 @@ title: "fix: Prevent Telegram streamed replies from ending after first overflow 
 status: active
 date: 2026-06-09
 type: fix
-target_repo: hermes-agent
+target_repo: openamer-agent
 origin: user-reported Telegram topic screenshot
 ---
 
@@ -11,7 +11,7 @@ origin: user-reported Telegram topic screenshot
 
 ## Summary
 
-Fix a Telegram gateway bug where a long streamed assistant reply can appear to stop mid-answer in a topic after the first overflow chunk. The reported screenshot shows a long Hermes response in the `Nehemiah - Coding` Telegram topic ending at `- The visible tool-call summary`, followed by the user noting that the previous message did not finish streaming to that Telegram topic.
+Fix a Telegram gateway bug where a long streamed assistant reply can appear to stop mid-answer in a topic after the first overflow chunk. The reported screenshot shows a long OpenAmer response in the `Nehemiah - Coding` Telegram topic ending at `- The visible tool-call summary`, followed by the user noting that the previous message did not finish streaming to that Telegram topic.
 
 The plan targets the streamed edit overflow path, not general model generation. A completed assistant response must either reach Telegram in full across all continuation messages or leave enough state for the gateway fallback path to deliver the remaining content instead of marking the turn complete after a partial delivery.
 
@@ -19,7 +19,7 @@ The plan targets the streamed edit overflow path, not general model generation. 
 
 ## Problem Frame
 
-Telegram limits message text to 4096 UTF-16 code units. Hermes streams gateway responses by editing a message and, when a streamed message grows past the limit, splitting the overflow into additional Telegram messages. The adapter already has a split-and-deliver path for oversized edits, but the partial-continuation failure contract is weak: if chunk 1 is edited successfully and a later continuation fails, the adapter can still report success for the operation. The stream consumer may then mark the final response delivered even though the visible topic only contains the first part.
+Telegram limits message text to 4096 UTF-16 code units. OpenAmer streams gateway responses by editing a message and, when a streamed message grows past the limit, splitting the overflow into additional Telegram messages. The adapter already has a split-and-deliver path for oversized edits, but the partial-continuation failure contract is weak: if chunk 1 is edited successfully and a later continuation fails, the adapter can still report success for the operation. The stream consumer may then mark the final response delivered even though the visible topic only contains the first part.
 
 This is especially visible in Telegram forum topics because a long final response can be split below tool-progress bubbles, and a missing continuation looks exactly like the stream stopped mid-answer.
 
@@ -223,7 +223,7 @@ sequenceDiagram
 
 ## Sources & Research
 
-- User-provided screenshot at `/root/.hermes/image_cache/img_f664e68f6ddf.jpg`.
+- User-provided screenshot at `/root/.openamer/image_cache/img_f664e68f6ddf.jpg`.
 - `gateway/stream_consumer.py` streamed edit, overflow, fallback, and final-delivery state handling.
 - `gateway/platforms/telegram.py` Telegram send/edit overflow splitting and topic routing helpers.
 - `gateway/platforms/base.py` `SendResult` contract and shared message chunking helper.

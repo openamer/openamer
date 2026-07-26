@@ -138,7 +138,7 @@ class TestFirecrawlClientConfig:
                 )
 
     def test_nous_auth_token_respects_hermes_home_override(self, tmp_path):
-        """Auth lookup should read from HERMES_HOME/auth.json, not ~/.hermes/auth.json."""
+        """Auth lookup should read from OPENAMER_HOME/auth.json, not ~/.hermes/auth.json."""
         real_home = tmp_path / "real-home"
         (real_home / ".hermes").mkdir(parents=True)
 
@@ -154,7 +154,7 @@ class TestFirecrawlClientConfig:
 
         with patch.dict(os.environ, {
             "HOME": str(real_home),
-            "HERMES_HOME": str(hermes_home),
+            "OPENAMER_HOME": str(hermes_home),
         }, clear=False):
             import tools.web_tools
             importlib.reload(tools.web_tools)
@@ -587,7 +587,7 @@ class TestCheckWebApiKey:
         # config.yaml with a present-but-null ``web:`` section makes the raw
         # ``.get("web", {})`` return None; _load_web_config must still yield a
         # dict so no caller does None.get(...).
-        with patch("hermes_cli.config.load_config", return_value={"web": None}):
+        with patch("openamer_cli.config.load_config", return_value={"web": None}):
             from tools.web_tools import _load_web_config, check_web_api_key
             assert _load_web_config() == {}
             assert check_web_api_key() is False
@@ -640,7 +640,7 @@ class TestCheckWebApiKey:
         monkeypatch,
     ):
         monkeypatch.delenv("TOOL_GATEWAY_USER_TOKEN", raising=False)
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
         expired_at = "2000-01-01T00:00:00+00:00"
         (tmp_path / "auth.json").write_text(json.dumps({
             "providers": {
@@ -658,7 +658,7 @@ class TestCheckWebApiKey:
             return "fresh-token"
 
         monkeypatch.setattr(
-            "hermes_cli.auth.resolve_nous_access_token",
+            "openamer_cli.auth.resolve_nous_access_token",
             _record_refresh,
         )
 
@@ -814,7 +814,7 @@ class TestNonBuiltinProviderAvailability:
 
 
 class TestFirecrawlEnvResolution:
-    """Verify Firecrawl reads env values from hermes_cli.config.get_env_value,
+    """Verify Firecrawl reads env values from openamer_cli.config.get_env_value,
     not just os.getenv.  This catches the regression reported in #40190 where
     values stored in ~/.hermes/.env were invisible to the provider."""
 
@@ -826,7 +826,7 @@ class TestFirecrawlEnvResolution:
 
         fake_key = "fc-test-key-from-dotenv"
         with patch(
-            "hermes_cli.config.get_env_value",
+            "openamer_cli.config.get_env_value",
             side_effect=lambda k: fake_key if k == "FIRECRAWL_API_KEY" else None,
         ):
             from plugins.web.firecrawl.provider import _get_direct_firecrawl_config
@@ -843,7 +843,7 @@ class TestFirecrawlEnvResolution:
 
         fake_url = "https://firecrawl.internal.example.com"
         with patch(
-            "hermes_cli.config.get_env_value",
+            "openamer_cli.config.get_env_value",
             side_effect=lambda k: fake_url if k == "FIRECRAWL_API_URL" else None,
         ):
             from plugins.web.firecrawl.provider import _get_direct_firecrawl_config
@@ -881,7 +881,7 @@ class TestSiblingProvidersEnvResolution:
         assert provider.is_available() is False
 
         with patch(
-            "hermes_cli.config.get_env_value",
+            "openamer_cli.config.get_env_value",
             side_effect=lambda k: "test-key-from-dotenv" if k == env_key else None,
         ):
             assert provider.is_available() is True, (
@@ -894,12 +894,12 @@ class TestSiblingProvidersEnvResolution:
         from agent.web_search_provider import get_provider_env
 
         monkeypatch.setenv("WSP_TEST_FALLBACK_KEY", "  from-process-env  ")
-        with patch("hermes_cli.config.get_env_value", return_value=None):
+        with patch("openamer_cli.config.get_env_value", return_value=None):
             assert get_provider_env("WSP_TEST_FALLBACK_KEY") == "from-process-env"
 
     def test_get_provider_env_unset_returns_empty(self, monkeypatch):
         monkeypatch.delenv("WSP_TEST_UNSET_KEY", raising=False)
-        with patch("hermes_cli.config.get_env_value", return_value=None):
+        with patch("openamer_cli.config.get_env_value", return_value=None):
             from agent.web_search_provider import get_provider_env
 
             assert get_provider_env("WSP_TEST_UNSET_KEY") == ""

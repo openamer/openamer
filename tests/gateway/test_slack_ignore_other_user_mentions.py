@@ -340,7 +340,7 @@ def test_config_bridges_slack_ignore_other_user_mentions(monkeypatch, tmp_path):
         "slack:\n  ignore_other_user_mentions: true\n",
         encoding="utf-8",
     )
-    monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
     monkeypatch.delenv("SLACK_IGNORE_OTHER_USER_MENTIONS", raising=False)
 
     load_gateway_config()
@@ -358,7 +358,7 @@ def test_ignore_other_user_mentions_env_wins_over_yaml(monkeypatch, tmp_path):
         "slack:\n  ignore_other_user_mentions: true\n",
         encoding="utf-8",
     )
-    monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
     monkeypatch.setenv("SLACK_IGNORE_OTHER_USER_MENTIONS", "false")
 
     load_gateway_config()

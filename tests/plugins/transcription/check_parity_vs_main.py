@@ -63,9 +63,9 @@ SUBPROCESS_SCRIPT = r"""
 import json, os, sys, tempfile
 sys.path.insert(0, sys.argv[1])
 
-# Isolated HERMES_HOME so the config write is hermetic.
+# Isolated OPENAMER_HOME so the config write is hermetic.
 home = tempfile.mkdtemp()
-os.environ["HERMES_HOME"] = home
+os.environ["OPENAMER_HOME"] = home
 
 # Clear STT-related env so dispatch decisions are config-driven.
 for k in (
@@ -90,7 +90,7 @@ for name in list(sys.modules):
     if (name.startswith("tools.")
             or name.startswith("agent.")
             or name.startswith("plugins.")
-            or name.startswith("hermes_cli.")):
+            or name.startswith("openamer_cli.")):
         sys.modules.pop(name, None)
 
 # Try importing transcription_registry — only exists on PR side.

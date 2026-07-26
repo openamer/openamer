@@ -1,19 +1,19 @@
 ---
 sidebar_label: "Desktop Plugin SDK"
-title: "Desktop Plugin SDK (@hermes/plugin-sdk)"
-description: "Extend the native Hermes Desktop app — panes, pages, sidebar nav, status bar, palette commands, keybinds, themes, and a scoped backend namespace, with one import and no build step."
+title: "Desktop Plugin SDK (@openamer/plugin-sdk)"
+description: "Extend the native OpenAmer Desktop app — panes, pages, sidebar nav, status bar, palette commands, keybinds, themes, and a scoped backend namespace, with one import and no build step."
 ---
 
 # Desktop Plugin SDK
 
-The native [Hermes Desktop](/user-guide/desktop) app is contribution-driven: every
+The native [OpenAmer Desktop](/user-guide/desktop) app is contribution-driven: every
 surface in the window — panes, routes, sidebar nav, status-bar items, palette
 entries, keybinds, themes — registers into one central registry. Core registers
 its surfaces exactly the way a plugin does, so the plugin story is the real one,
 not a bolted-on afterthought.
 
-A **desktop plugin** is a single ESM file that default-exports a `HermesPlugin`.
-It imports one module — `@hermes/plugin-sdk` — and gets everything: the app's
+A **desktop plugin** is a single ESM file that default-exports a `OpenAmerPlugin`.
+It imports one module — `@openamer/plugin-sdk` — and gets everything: the app's
 live state, the gateway JSON-RPC door, a scoped REST/socket backend namespace,
 React Query, and the app's own UI kit so plugin UI looks native by default. No
 repo clone, no `npm run build`, no patching app source. Drop the file in
@@ -21,13 +21,13 @@ repo clone, no `npm run build`, no patching app source. Drop the file in
 and hot-reloads every save.
 
 :::warning This is not the web-dashboard plugin SDK
-"Plugin" means several unrelated things across Hermes. This page is the **native
-desktop app** (`hermes desktop`) SDK — the `@hermes/plugin-sdk` module and
-`$HERMES_HOME/desktop-plugins/`. The **web dashboard** (`hermes dashboard`) has
+"Plugin" means several unrelated things across OpenAmer. This page is the **native
+desktop app** (`openamer desktop`) SDK — the `@openamer/plugin-sdk` module and
+`$HERMES_HOME/desktop-plugins/`. The **web dashboard** (`openamer dashboard`) has
 its own, unrelated plugin system on `window.__HERMES_PLUGIN_SDK__` with a
 `manifest.json` — documented at
 [Extending the Dashboard](/user-guide/features/extending-the-dashboard). Python
-CLI/gateway plugins are documented at [Build a Hermes Plugin](/developer-guide/plugins).
+CLI/gateway plugins are documented at [Build a OpenAmer Plugin](/developer-guide/plugins).
 The three do not share code, APIs, or delivery. Only the backend `plugin_api.py`
 namespace (`/api/plugins/<id>`) is shared between the desktop and dashboard SDKs.
 :::
@@ -56,23 +56,23 @@ plugin, and fail to resolve in a disk plugin). Capability comes in tiers:
 | **Disk** (recommended) | `$HERMES_HOME/desktop-plugins/<id>/plugin.js` | users, agents | none — plain ESM, loaded uncompiled |
 | **Bundled** | `apps/desktop/src/plugins/<id>/plugin.tsx` | in-tree, shipped with the app | the app's own Vite build |
 
-Both take the same `HermesPlugin` contract, appear in **Settings → Plugins**, and
+Both take the same `OpenAmerPlugin` contract, appear in **Settings → Plugins**, and
 enable/disable live. Everything on this page is written against the disk door
 (what you and the agent write); [Bundled plugins](#bundled-plugins) notes the two
 differences. No desktop plugins ship in the core tree today — reference demos
 live in the companion
-[`hermes-example-plugins`](https://github.com/NousResearch/hermes-example-plugins)
+[`openamer-example-plugins`](https://github.com/NousResearch/openamer-example-plugins)
 repo.
 
 ## Quick start — your first plugin
 
-Create `$HERMES_HOME/desktop-plugins/hello/plugin.js` (that's `~/.hermes/...`
-by default, or `~/.hermes/profiles/<name>/...` under a named profile). The folder
+Create `$HERMES_HOME/desktop-plugins/hello/plugin.js` (that's `~/.openamer/...`
+by default, or `~/.openamer/profiles/<name>/...` under a named profile). The folder
 name must equal the plugin `id`.
 
 ```javascript
-// ~/.hermes/desktop-plugins/hello/plugin.js
-import { host, haptic, useValue } from '@hermes/plugin-sdk'
+// ~/.openamer/desktop-plugins/hello/plugin.js
+import { host, haptic, useValue } from '@openamer/plugin-sdk'
 import { jsx, jsxs } from 'react/jsx-runtime'
 
 function HelloPane() {
@@ -81,7 +81,7 @@ function HelloPane() {
   return jsxs('div', {
     className: 'flex h-full flex-col gap-2 p-3 text-sm',
     children: [
-      jsx('div', { className: 'font-medium', children: 'Hello, Hermes' }),
+      jsx('div', { className: 'font-medium', children: 'Hello, OpenAmer' }),
       jsx('div', {
         className: 'text-(--ui-text-tertiary)',
         children: `gateway: ${gateway}`
@@ -128,16 +128,16 @@ save again.
 :::note No JSX, no build
 The disk file is loaded **uncompiled**, so JSX syntax will not parse. Write UI
 with `jsx()` / `jsxs()` calls from `react/jsx-runtime` (or `React.createElement`).
-The only importable specifiers are `@hermes/plugin-sdk`, `react`, and
+The only importable specifiers are `@openamer/plugin-sdk`, `react`, and
 `react/jsx-runtime` — everything else fails to resolve, on purpose.
 :::
 
 ## The plugin contract
 
-A plugin default-exports a `HermesPlugin`:
+A plugin default-exports a `OpenAmerPlugin`:
 
 ```ts
-interface HermesPlugin {
+interface OpenAmerPlugin {
   /** Stable slug — becomes the `plugin:<id>` source and the id namespace. */
   id: string
   /** Human name for Settings / about UI. Defaults to `id`. */
@@ -168,7 +168,7 @@ interface PluginContext {
   rest: <T>(path: string, opts?: PluginRestOptions) => Promise<T>
   /** Live WebSocket to this plugin's own namespace. Returns a disposer. */
   socket: (path: string, onMessage: (data: unknown) => void) => () => void
-  /** Plugin-scoped JSON persistence (keys live under `hermes.plugin.<id>.`). */
+  /** Plugin-scoped JSON persistence (keys live under `openamer.plugin.<id>.`). */
   storage: PluginStorage
 }
 ```
@@ -246,7 +246,7 @@ A route mounts a full page in the workspace pane, like any built-in view. Pair i
 with a sidebar nav row (and/or a palette command) to make it reachable.
 
 ```javascript
-import { ROUTES_AREA, SIDEBAR_NAV_AREA } from '@hermes/plugin-sdk'
+import { ROUTES_AREA, SIDEBAR_NAV_AREA } from '@openamer/plugin-sdk'
 
 ctx.registerMany([
   {
@@ -273,7 +273,7 @@ Simplest is a `render` function; for a plain button use `data` as a
 `StatusbarItem` (`{ id, label?, icon?, detail?, variant?, menuItems?, … }`).
 
 ```javascript
-import { STATUSBAR_AREAS, TITLEBAR_AREAS } from '@hermes/plugin-sdk'
+import { STATUSBAR_AREAS, TITLEBAR_AREAS } from '@openamer/plugin-sdk'
 
 ctx.register({
   id: 'count',
@@ -289,7 +289,7 @@ data (`{ id, label, icon, active?, onSelect? }`).
 ### Palette commands and keybinds
 
 ```javascript
-import { PALETTE_AREA, KEYBINDS_AREA } from '@hermes/plugin-sdk'
+import { PALETTE_AREA, KEYBINDS_AREA } from '@openamer/plugin-sdk'
 
 ctx.registerMany([
   {
@@ -324,7 +324,7 @@ A theme contribution ships a full `DesktopTheme` as its `data` (name, label,
 colors, …). It appears in the theme picker like a built-in.
 
 ```javascript
-import { THEMES_AREA } from '@hermes/plugin-sdk'
+import { THEMES_AREA } from '@openamer/plugin-sdk'
 
 ctx.register({ id: 'noir', area: THEMES_AREA, data: myDesktopTheme })
 ```
@@ -343,7 +343,7 @@ die with a component that's already on screen (a page's own title-bar control
 leaves when the page unmounts), render `<Contribute>` inside it instead:
 
 ```javascript
-import { Contribute, TITLEBAR_AREAS } from '@hermes/plugin-sdk'
+import { Contribute, TITLEBAR_AREAS } from '@openamer/plugin-sdk'
 
 jsx(Contribute, {
   area: TITLEBAR_AREAS.center,
@@ -391,7 +391,7 @@ Plugins share the app's single `QueryClient`, so plugin queries cache, dedupe,
 poll, and invalidate exactly like core screens — never hand-roll a fetch loop.
 
 ```javascript
-import { useQuery, useMutation, useQueryClient, atom, computed, useValue } from '@hermes/plugin-sdk'
+import { useQuery, useMutation, useQueryClient, atom, computed, useValue } from '@openamer/plugin-sdk'
 
 function MyPanel() {
   const { data, isLoading } = useQuery({
@@ -408,7 +408,7 @@ renders the value with `useValue`. To invalidate a query from **outside** React
 (e.g. a `ctx.socket` frame arriving), import the shared `queryClient`:
 
 ```javascript
-import { queryClient } from '@hermes/plugin-sdk'
+import { queryClient } from '@openamer/plugin-sdk'
 
 ctx.socket('/events', () => {
   queryClient.invalidateQueries({ queryKey: ['my-plugin', 'items'] })
@@ -449,11 +449,11 @@ construction**.
 ### The Python side
 
 Desktop plugins reuse the dashboard plugin backend mount. Put the backend in a
-`dashboard/` subfolder of a regular Hermes plugin and declare it in a
+`dashboard/` subfolder of a regular OpenAmer plugin and declare it in a
 `manifest.json`:
 
 ```
-~/.hermes/plugins/<id>/
+~/.openamer/plugins/<id>/
 └── dashboard/
     ├── manifest.json      # { "name": "<id>", "api": "plugin_api.py" }
     └── plugin_api.py      # exports `router = APIRouter()`
@@ -476,7 +476,7 @@ async def action(body: dict):
 
 Routes mount under `/api/plugins/<id>/` (`GET /api/plugins/<id>/board`, …).
 Backend code runs inside the gateway process, so it can import from the
-hermes-agent codebase directly (`hermes_state`, `hermes_cli.config`, …). See
+openamer-agent codebase directly (`openamer_state`, `openamer_cli.config`, …). See
 [Extending the Dashboard → Backend API routes](/user-guide/features/extending-the-dashboard#backend-api-routes)
 for the full backend reference — the mount is identical.
 
@@ -484,7 +484,7 @@ for the full backend reference — the mount is identical.
 Enabling a plugin in the desktop **Settings → Plugins** panel is a renderer-side
 choice; it does **not** import Python. A user plugin's `plugin_api.py` is
 imported only when the plugin is in the `plugins.enabled` allow-list in
-`config.yaml` (and not in `plugins.disabled`). Project plugins (`./.hermes/`)
+`config.yaml` (and not in `plugins.disabled`). Project plugins (`./.openamer/`)
 never auto-import Python. This is a security boundary, not an oversight
 (GHSA-mcfc-hp25-cjv7).
 :::
@@ -529,7 +529,7 @@ choice is remembered:
   stays disabled — don't fight it; the user turned you off.
 
 Persist your own state with `ctx.storage`, namespaced to your plugin
-(`hermes.plugin.<id>.*`) so plugins can't read or clobber each other:
+(`openamer.plugin.<id>.*`) so plugins can't read or clobber each other:
 
 ```javascript
 ctx.storage.set('lastTab', 'board')
@@ -540,18 +540,18 @@ ctx.storage.remove('lastTab')
 ## Bundled plugins
 
 A plugin can ship in-tree at `apps/desktop/src/plugins/<id>/plugin.tsx` (default
-export a `HermesPlugin`). It's discovered by `discoverBundledPlugins()` at boot —
+export a `OpenAmerPlugin`). It's discovered by `discoverBundledPlugins()` at boot —
 no import, no registry edit — and shares the exact inventory + live
 enable/disable contract as a disk plugin. The two differences:
 
 1. It goes through the app's Vite build, so you can write **real JSX** and import
-   the SDK by its `@hermes/plugin-sdk` alias.
-2. It's still lint-fenced to `@hermes/plugin-sdk` + `react` only — no `@/…` app
+   the SDK by its `@openamer/plugin-sdk` alias.
+2. It's still lint-fenced to `@openamer/plugin-sdk` + `react` only — no `@/…` app
    internals.
 
 No desktop plugins ship in the core tree today; the shipped app stays uncluttered
 and demos live in the
-[`hermes-example-plugins`](https://github.com/NousResearch/hermes-example-plugins)
+[`openamer-example-plugins`](https://github.com/NousResearch/openamer-example-plugins)
 companion repo.
 
 ## Security model
@@ -574,7 +574,7 @@ not treat this pipeline as a trust boundary.
 - **JSX won't parse in a disk plugin.** The file loads uncompiled — use `jsx()` /
   `jsxs()` (or `React.createElement`), not JSX syntax. (Bundled plugins are built,
   so JSX is fine there.)
-- **Only three specifiers resolve:** `@hermes/plugin-sdk`, `react`,
+- **Only three specifiers resolve:** `@openamer/plugin-sdk`, `react`,
   `react/jsx-runtime`. Any other import surfaces an up-front load error.
 - **Never hardcode colors** (`#000`, `black`, `rgb(...)`). Leave the background
   alone; use theme variables (`var(--ui-*)`) for everything.
@@ -597,7 +597,7 @@ not treat this pipeline as a trust boundary.
 | Category | Exports |
 |----------|---------|
 | Host | `host` (`.state.*`, `.notify`, `.notifyError`, `.navigate`, `.onEvent`, `.logs`, `.status`, `.restartGateway`, `.request`) |
-| Plugin contract | `HermesPlugin`, `PluginContext`, `PluginContribution`, `PluginStorage`, `PluginRestOptions`, `Contribution` |
+| Plugin contract | `OpenAmerPlugin`, `PluginContext`, `PluginContribution`, `PluginStorage`, `PluginRestOptions`, `Contribution` |
 | Area constants | `PANES_AREA`, `ROUTES_AREA`, `SIDEBAR_NAV_AREA`, `STATUSBAR_AREAS`, `TITLEBAR_AREAS`, `PALETTE_AREA`, `KEYBINDS_AREA`, `THEMES_AREA`, `COMPOSER_AREAS` |
 | Area payloads | `RouteContribution`, `SidebarNavContribution`, `StatusbarItem`, `TitlebarTool`, `PaletteContribution`, `KeybindContribution`, `ComposerMiddleware`, `ComposerAttachmentProvider` |
 | React / state | `useValue`, `atom`, `computed`, `useQuery`, `useMutation`, `useQueryClient`, `queryClient`, `Contribute` |
@@ -606,10 +606,10 @@ not treat this pipeline as a trust boundary.
 
 The canonical, always-current export list is `apps/desktop/src/sdk/index.ts`.
 
-### Agents: the `hermes-desktop-plugins` skill
+### Agents: the `openamer-desktop-plugins` skill
 
 When an agent writes a desktop plugin, it should load the bundled
-**`hermes-desktop-plugins`** skill — it carries the same contract as this page in
+**`openamer-desktop-plugins`** skill — it carries the same contract as this page in
 agent-facing form, with a ready-to-copy `templates/plugin.js`. This page is the
 human/developer reference; the skill is the working checklist.
 
@@ -618,18 +618,18 @@ human/developer reference; the skill is the working checklist.
 **My plugin doesn't appear.** Confirm the file is at
 `$HERMES_HOME/desktop-plugins/<id>/plugin.js` and the folder name matches the
 export `id`. Run ⌘K → **Reload desktop plugins**. Check the app for an error
-toast naming the failure, and tail `hermes logs gui -f`.
+toast naming the failure, and tail `openamer logs gui -f`.
 
 **"unsupported import" on load.** A disk plugin may only import
-`@hermes/plugin-sdk`, `react`, and `react/jsx-runtime`. Remove any other import.
+`@openamer/plugin-sdk`, `react`, and `react/jsx-runtime`. Remove any other import.
 
 **A `jsx` element renders nothing / throws `ReferenceError`.** An identifier used
 in a `jsx()` call isn't imported. Add it to the import line.
 
 **`ctx.rest` returns 404.** The backend isn't mounted: confirm
-`~/.hermes/plugins/<id>/dashboard/manifest.json` has `"api": "plugin_api.py"`,
+`~/.openamer/plugins/<id>/dashboard/manifest.json` has `"api": "plugin_api.py"`,
 that the plugin is in `plugins.enabled` in `config.yaml`, and restart the gateway
-(backend routes mount at startup). Tail `~/.hermes/logs/errors.log` for
+(backend routes mount at startup). Tail `~/.openamer/logs/errors.log` for
 `Failed to load plugin <id> API routes`.
 
 **`ctx.socket` never fires.** On an OAuth remote it's a no-op by design — use your

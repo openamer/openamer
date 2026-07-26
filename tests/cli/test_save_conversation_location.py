@@ -24,11 +24,11 @@ def hermes_home(tmp_path, monkeypatch):
     home = tmp_path / ".hermes"
     home.mkdir()
     monkeypatch.setattr(Path, "home", lambda: tmp_path)
-    monkeypatch.setenv("HERMES_HOME", str(home))
+    monkeypatch.setenv("OPENAMER_HOME", str(home))
     # Clear any cached hermes_home computation
-    import hermes_constants
-    if hasattr(hermes_constants, "_hermes_home_cache"):
-        hermes_constants._hermes_home_cache = None
+    import openamer_constants
+    if hasattr(openamer_constants, "_hermes_home_cache"):
+        openamer_constants._hermes_home_cache = None
     return home
 
 
@@ -49,8 +49,8 @@ def test_save_conversation_writes_under_hermes_home(hermes_home, tmp_path, monke
     work.mkdir()
     monkeypatch.chdir(work)
 
-    # Import fresh to pick up the HERMES_HOME fixture
-    for mod in [m for m in sys.modules if m.startswith("cli") or m == "hermes_constants"]:
+    # Import fresh to pick up the OPENAMER_HOME fixture
+    for mod in [m for m in sys.modules if m.startswith("cli") or m == "openamer_constants"]:
         sys.modules.pop(mod, None)
 
     import cli  # noqa: F401  (module under test)
@@ -88,7 +88,7 @@ def test_save_conversation_writes_under_hermes_home(hermes_home, tmp_path, monke
 
 
 def test_save_conversation_empty_history_does_nothing(hermes_home, capsys):
-    for mod in [m for m in sys.modules if m.startswith("cli") or m == "hermes_constants"]:
+    for mod in [m for m in sys.modules if m.startswith("cli") or m == "openamer_constants"]:
         sys.modules.pop(mod, None)
     import cli
 

@@ -26,7 +26,7 @@ finish gracefully re-flush nothing.
 
 These tests exercise BOTH a lightweight unit path (the flush hook is invoked
 with the in-flight messages) AND a true E2E path (a real ``AIAgent`` flush
-against a real ``SessionDB`` in a temp ``HERMES_HOME``, read back through the
+against a real ``SessionDB`` in a temp ``OPENAMER_HOME``, read back through the
 real ``SessionStore.load_transcript``).
 """
 
@@ -150,9 +150,9 @@ class TestShutdownTranscriptSurvivesResumeE2E:
         in-flight turn is readable back through SessionStore.load_transcript —
         the exact path the resume logic reads on the next message."""
         # Isolated state.db.
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path / ".hermes"))
+        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".hermes"))
 
-        from hermes_state import SessionDB
+        from openamer_state import SessionDB
         from run_agent import AIAgent
 
         db = SessionDB(db_path=tmp_path / "state.db")
@@ -223,9 +223,9 @@ class TestShutdownTranscriptSurvivesResumeE2E:
     def test_graceful_agent_reflush_is_idempotent(self, tmp_path, monkeypatch):
         """An agent that already flushed via finalize_turn must not produce
         duplicate rows when _finalize_shutdown_agents re-flushes."""
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path / ".hermes"))
+        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".hermes"))
 
-        from hermes_state import SessionDB
+        from openamer_state import SessionDB
         from run_agent import AIAgent
 
         db = SessionDB(db_path=tmp_path / "state.db")

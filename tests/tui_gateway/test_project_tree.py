@@ -402,7 +402,7 @@ def test_nested_project_folders_pick_the_deepest_match():
 
 
 def test_junk_root_never_becomes_an_auto_project():
-    # A session whose git root is HERMES_HOME (config/state) must not spawn a
+    # A session whose git root is OPENAMER_HOME (config/state) must not spawn a
     # phantom project; it falls through to flat Recents (unscoped). A real repo
     # alongside it still groups normally.
     resolve = _resolver(

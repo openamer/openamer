@@ -26,7 +26,7 @@ description: "使用 ComfyUI 生成图像、视频和音频——安装、启动
 ## 参考：完整 SKILL.md
 
 :::info
-以下是 Hermes 在触发此 skill 时加载的完整 skill 定义。这是 agent 在 skill 激活时看到的指令内容。
+以下是 OpenAmer 在触发此 skill 时加载的完整 skill 定义。这是 agent 在 skill 激活时看到的指令内容。
 :::
 
 # ComfyUI

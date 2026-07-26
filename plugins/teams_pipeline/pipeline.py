@@ -16,7 +16,7 @@ from typing import Any, Awaitable, Callable, Optional
 import httpx
 
 from agent.auxiliary_client import async_call_llm, extract_content_or_reasoning
-from hermes_constants import get_hermes_home
+from openamer_constants import get_openamer_home
 from plugins.teams_pipeline.meetings import (
     download_recording_artifact,
     enrich_meeting_with_call_record,
@@ -453,7 +453,7 @@ class TeamsMeetingPipeline:
         meeting_ref: TeamsMeetingRef,
         recording: MeetingArtifact,
     ) -> str:
-        temp_root = self.config.tmp_dir or (get_hermes_home() / "tmp" / "teams_pipeline")
+        temp_root = self.config.tmp_dir or (get_openamer_home() / "tmp" / "teams_pipeline")
         temp_root.mkdir(parents=True, exist_ok=True)
         with tempfile.TemporaryDirectory(dir=str(temp_root), prefix="teams-recording-") as tmp_dir:
             # display_name comes from Graph API and is ultimately set by

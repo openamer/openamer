@@ -2,7 +2,7 @@
 
 Task 2.2/2.3. Two layers:
   * drain_control.py — the presence-based marker contract (write/clear/read,
-    HERMES_HOME-scoped, never-raises).
+    OPENAMER_HOME-scoped, never-raises).
   * GatewayRunner enter/exit/watcher + the new-turn accept gate — the
     reversible state machine driven by the marker.
 
@@ -31,7 +31,7 @@ from tests.gateway.restart_test_helpers import make_restart_runner, make_restart
 
 @pytest.fixture
 def home(tmp_path, monkeypatch):
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     return tmp_path
 
 
@@ -151,7 +151,7 @@ class TestInstantiationEpoch:
 
     def test_marker_from_prior_instantiation_reads_as_absent(self, home, monkeypatch):
         # THE NS-570 REGRESSION. A begin-drain marker written by a PREVIOUS
-        # container/VM instantiation survives on the durable HERMES_HOME volume
+        # container/VM instantiation survives on the durable OPENAMER_HOME volume
         # across a machine restart. The freshly-restarted gateway (new epoch)
         # must treat it as absent, NOT re-engage drain.
         monkeypatch.setattr(dc, "current_instantiation_epoch", lambda: "epoch-OLD")

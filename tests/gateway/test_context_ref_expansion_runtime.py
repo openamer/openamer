@@ -257,7 +257,7 @@ async def test_at_reference_passes_compatible_custom_provider_context(monkeypatc
         lambda: {"provider": "custom:private", "api_key": "test", "base_url": "https://private.example/v1"},
     )
 
-    import hermes_cli.config as config_mod
+    import openamer_cli.config as config_mod
     import agent.model_metadata as model_meta_mod
     import agent.context_references as ctx_mod
 
@@ -300,7 +300,7 @@ async def test_at_reference_applies_custom_runtime_budget_to_preprocessor(monkey
         {"provider": "custom:private", "api_key": "test", "base_url": "https://private.example/v1"},
     ))
 
-    import hermes_cli.config as config_mod
+    import openamer_cli.config as config_mod
     import agent.model_metadata as model_meta_mod
     import agent.context_references as ctx_mod
 

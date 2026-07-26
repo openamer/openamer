@@ -21,7 +21,7 @@ def external_skills_dir(tmp_path):
 
 @pytest.fixture
 def hermes_home(tmp_path):
-    """Create a minimal HERMES_HOME with config."""
+    """Create a minimal OPENAMER_HOME with config."""
     home = tmp_path / ".hermes"
     home.mkdir()
     (home / "skills").mkdir()
@@ -31,7 +31,7 @@ def hermes_home(tmp_path):
 class TestGetExternalSkillsDirs:
     def test_empty_config(self, hermes_home):
         (hermes_home / "config.yaml").write_text("skills:\n  external_dirs: []\n")
-        with patch.dict(os.environ, {"HERMES_HOME": str(hermes_home)}):
+        with patch.dict(os.environ, {"OPENAMER_HOME": str(hermes_home)}):
             from agent.skill_utils import get_external_skills_dirs
             result = get_external_skills_dirs()
         assert result == []
@@ -40,7 +40,7 @@ class TestGetExternalSkillsDirs:
         (hermes_home / "config.yaml").write_text(
             "skills:\n  external_dirs:\n    - /nonexistent/path\n"
         )
-        with patch.dict(os.environ, {"HERMES_HOME": str(hermes_home)}):
+        with patch.dict(os.environ, {"OPENAMER_HOME": str(hermes_home)}):
             from agent.skill_utils import get_external_skills_dirs
             result = get_external_skills_dirs()
         assert result == []
@@ -49,7 +49,7 @@ class TestGetExternalSkillsDirs:
         (hermes_home / "config.yaml").write_text(
             f"skills:\n  external_dirs:\n    - {external_skills_dir}\n"
         )
-        with patch.dict(os.environ, {"HERMES_HOME": str(hermes_home)}):
+        with patch.dict(os.environ, {"OPENAMER_HOME": str(hermes_home)}):
             from agent.skill_utils import get_external_skills_dirs
             result = get_external_skills_dirs()
         assert len(result) == 1
@@ -59,7 +59,7 @@ class TestGetExternalSkillsDirs:
         (hermes_home / "config.yaml").write_text(
             f"skills:\n  external_dirs:\n    - {external_skills_dir}\n    - {external_skills_dir}\n"
         )
-        with patch.dict(os.environ, {"HERMES_HOME": str(hermes_home)}):
+        with patch.dict(os.environ, {"OPENAMER_HOME": str(hermes_home)}):
             from agent.skill_utils import get_external_skills_dirs
             result = get_external_skills_dirs()
         assert len(result) == 1
@@ -69,14 +69,14 @@ class TestGetExternalSkillsDirs:
         (hermes_home / "config.yaml").write_text(
             f"skills:\n  external_dirs:\n    - {local_skills}\n"
         )
-        with patch.dict(os.environ, {"HERMES_HOME": str(hermes_home)}):
+        with patch.dict(os.environ, {"OPENAMER_HOME": str(hermes_home)}):
             from agent.skill_utils import get_external_skills_dirs
             result = get_external_skills_dirs()
         assert result == []
 
     def test_no_config_file(self, hermes_home):
         # No config.yaml at all
-        with patch.dict(os.environ, {"HERMES_HOME": str(hermes_home)}):
+        with patch.dict(os.environ, {"OPENAMER_HOME": str(hermes_home)}):
             from agent.skill_utils import get_external_skills_dirs
             result = get_external_skills_dirs()
         assert result == []
@@ -85,7 +85,7 @@ class TestGetExternalSkillsDirs:
         (hermes_home / "config.yaml").write_text(
             f"skills:\n  external_dirs: {external_skills_dir}\n"
         )
-        with patch.dict(os.environ, {"HERMES_HOME": str(hermes_home)}):
+        with patch.dict(os.environ, {"OPENAMER_HOME": str(hermes_home)}):
             from agent.skill_utils import get_external_skills_dirs
             result = get_external_skills_dirs()
         assert len(result) == 1
@@ -96,7 +96,7 @@ class TestGetAllSkillsDirs:
         (hermes_home / "config.yaml").write_text(
             f"skills:\n  external_dirs:\n    - {external_skills_dir}\n"
         )
-        with patch.dict(os.environ, {"HERMES_HOME": str(hermes_home)}):
+        with patch.dict(os.environ, {"OPENAMER_HOME": str(hermes_home)}):
             from agent.skill_utils import get_all_skills_dirs
             result = get_all_skills_dirs()
         assert result[0] == hermes_home / "skills"
@@ -110,7 +110,7 @@ class TestExternalSkillsInFindAll:
         )
         local_skills = hermes_home / "skills"
         with (
-            patch.dict(os.environ, {"HERMES_HOME": str(hermes_home)}),
+            patch.dict(os.environ, {"OPENAMER_HOME": str(hermes_home)}),
             patch("tools.skills_tool.SKILLS_DIR", local_skills),
         ):
             from tools.skills_tool import _find_all_skills
@@ -130,7 +130,7 @@ class TestExternalSkillsInFindAll:
             f"skills:\n  external_dirs:\n    - {external_skills_dir}\n"
         )
         with (
-            patch.dict(os.environ, {"HERMES_HOME": str(hermes_home)}),
+            patch.dict(os.environ, {"OPENAMER_HOME": str(hermes_home)}),
             patch("tools.skills_tool.SKILLS_DIR", local_skills),
         ):
             from tools.skills_tool import _find_all_skills
@@ -147,7 +147,7 @@ class TestExternalSkillView:
         )
         local_skills = hermes_home / "skills"
         with (
-            patch.dict(os.environ, {"HERMES_HOME": str(hermes_home)}),
+            patch.dict(os.environ, {"OPENAMER_HOME": str(hermes_home)}),
             patch("tools.skills_tool.SKILLS_DIR", local_skills),
         ):
             from tools.skills_tool import skill_view

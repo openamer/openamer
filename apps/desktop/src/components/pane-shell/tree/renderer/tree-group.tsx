@@ -720,7 +720,7 @@ function ZoneDropOverlay({ node }: { node: GroupNode }) {
   return (
     <div
       className="pointer-events-none absolute inset-0 z-40"
-      style={{ animation: `hermes-zone-fade ${OVERLAY_FADE_MS}ms linear both` }}
+      style={{ animation: `openamer-zone-fade ${OVERLAY_FADE_MS}ms linear both` }}
     >
       <div
         className={cn(

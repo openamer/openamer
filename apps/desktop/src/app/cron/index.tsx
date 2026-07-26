@@ -42,7 +42,7 @@ import {
   type SessionInfo,
   triggerCronJob,
   updateCronJob
-} from '@/hermes'
+} from '@/openamer'
 import { type Translations, useI18n } from '@/i18n'
 import { AlertTriangle } from '@/lib/icons'
 import { requestModelOptions } from '@/lib/model-options'

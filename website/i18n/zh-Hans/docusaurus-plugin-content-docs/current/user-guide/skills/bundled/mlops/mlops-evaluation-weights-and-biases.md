@@ -26,7 +26,7 @@ W&B：记录 ML 实验、sweeps、模型注册表、仪表盘。
 ## 参考：完整 SKILL.md
 
 :::info
-以下是 Hermes 在触发此 skill 时加载的完整 skill 定义。这是 agent 在 skill 激活时所看到的指令内容。
+以下是 OpenAmer 在触发此 skill 时加载的完整 skill 定义。这是 agent 在 skill 激活时所看到的指令内容。
 :::
 
 # Weights & Biases：ML 实验追踪与 MLOps

@@ -26,12 +26,12 @@ _boot_fingerprint: str | None = None
 def _fingerprint() -> str | None:
     """Current checkout fingerprint, reusing the CLI's git-rev reader.
 
-    ``hermes_cli.main`` is always already imported in a gateway process (it's
+    ``openamer_cli.main`` is always already imported in a gateway process (it's
     the entry point), so this import is free and avoids duplicating the
     worktree-aware ref resolution.
     """
     try:
-        from hermes_cli.main import _read_git_revision_fingerprint
+        from openamer_cli.main import _read_git_revision_fingerprint
 
         return _read_git_revision_fingerprint(_PROJECT_ROOT)
     except Exception:

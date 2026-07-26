@@ -45,11 +45,11 @@ def test_build_keepalive_http_client_default_verify_true(clean_tls_env):
 
 def test_resolve_aux_verify_uses_per_provider_ssl_ca_cert(clean_tls_env, monkeypatch):
     """_resolve_aux_verify should mirror the main-client resolution for a matched base_url."""
-    import hermes_cli.config as cfg
+    import openamer_cli.config as cfg
     from agent import auxiliary_client
 
     # get_custom_provider_tls_settings is imported inside the function from
-    # hermes_cli.config, so patch it at the source module.
+    # openamer_cli.config, so patch it at the source module.
     monkeypatch.setattr(
         cfg,
         "get_custom_provider_tls_settings",
@@ -60,7 +60,7 @@ def test_resolve_aux_verify_uses_per_provider_ssl_ca_cert(clean_tls_env, monkeyp
 
 
 def test_resolve_aux_verify_ssl_verify_false(clean_tls_env, monkeypatch):
-    import hermes_cli.config as cfg
+    import openamer_cli.config as cfg
     from agent import auxiliary_client
 
     monkeypatch.setattr(
@@ -72,7 +72,7 @@ def test_resolve_aux_verify_ssl_verify_false(clean_tls_env, monkeypatch):
 
 
 def test_resolve_aux_verify_no_match_defaults_true(clean_tls_env, monkeypatch):
-    import hermes_cli.config as cfg
+    import openamer_cli.config as cfg
     from agent import auxiliary_client
 
     monkeypatch.setattr(cfg, "get_custom_provider_tls_settings", lambda *a, **k: {})

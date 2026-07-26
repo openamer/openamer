@@ -1,12 +1,12 @@
 ---
 sidebar_position: 16
 title: "Yuanbao"
-description: "通过 WebSocket gateway 将 Hermes Agent 连接到元宝企业消息平台"
+description: "通过 WebSocket gateway 将 OpenAmer Agent 连接到元宝企业消息平台"
 ---
 
 # Yuanbao
 
-将 Hermes 连接到腾讯企业消息平台 [元宝（Yuanbao）](https://yuanbao.tencent.com/)。该适配器使用 WebSocket gateway 实现实时消息传递，支持单聊（C2C）和群聊两种会话模式。
+将 OpenAmer 连接到腾讯企业消息平台 [元宝（Yuanbao）](https://yuanbao.tencent.com/)。该适配器使用 WebSocket gateway 实现实时消息传递，支持单聊（C2C）和群聊两种会话模式。
 
 :::info
 元宝是一个企业消息平台，主要用于腾讯内部及企业环境。它使用 WebSocket 进行实时通信，采用基于 HMAC 的认证方式，支持图片、文件和语音消息等富媒体内容。
@@ -38,7 +38,7 @@ pip install websockets httpx aiofiles
 配置元宝最简便的方式是通过交互式向导：
 
 ```bash
-hermes gateway setup
+openamer gateway setup
 ```
 
 在提示时选择 **Yuanbao**。向导将：
@@ -53,7 +53,7 @@ WebSocket URL 和 API Domain 均内置了合理的默认值。只需提供 APP_I
 
 ### 3. 配置环境变量
 
-初始配置完成后，在 `~/.hermes/.env` 中验证以下变量：
+初始配置完成后，在 `~/.openamer/.env` 中验证以下变量：
 
 ```bash
 # 必填
@@ -79,7 +79,7 @@ YUANBAO_ALLOWED_USERS=user_account_1,user_account_2
 ### 4. 启动 Gateway
 
 ```bash
-hermes gateway
+openamer gateway
 ```
 
 适配器将连接到元宝 WebSocket gateway，使用 HMAC 签名进行认证，并开始处理消息。
@@ -130,7 +130,7 @@ hermes gateway
 如果未配置主频道，第一个向机器人发消息的用户将自动成为主频道所有者。如果当前主频道是群聊，第一条单聊消息将把主频道升级为直接频道。
 :::
 
-也可以在 `~/.hermes/.env` 中手动设置：
+也可以在 `~/.openamer/.env` 中手动设置：
 
 ```bash
 YUANBAO_HOME_CHANNEL=direct:user_account_id
@@ -170,7 +170,7 @@ hello
 
 ### 可用命令
 
-所有标准 Hermes 命令均可在元宝上使用：
+所有标准 OpenAmer 命令均可在元宝上使用：
 
 | 命令 | 描述 |
 |------|------|
@@ -204,7 +204,7 @@ Please analyze this document
 1. 验证 APP_ID 和 APP_SECRET 是否正确
 2. 检查 WebSocket URL 是否可访问
 3. 确保机器人账号拥有适当权限
-4. 查看 gateway 日志：`tail -f ~/.hermes/logs/gateway.log`
+4. 查看 gateway 日志：`tail -f ~/.openamer/logs/gateway.log`
 
 ### "Connection refused" 错误
 
@@ -278,7 +278,7 @@ platforms:
 
 ### 消息分块
 
-元宝有最大消息大小限制。Hermes 自动对大响应进行分块，采用 Markdown 感知拆分（遵守代码围栏、表格和段落边界）。
+元宝有最大消息大小限制。OpenAmer 自动对大响应进行分块，采用 Markdown 感知拆分（遵守代码围栏、表格和段落边界）。
 
 ### 连接参数
 
@@ -302,7 +302,7 @@ platforms:
 启用 debug 日志以排查连接问题：
 
 ```bash
-HERMES_LOG_LEVEL=debug hermes gateway
+HERMES_LOG_LEVEL=debug openamer gateway
 ```
 
 ## 与其他功能集成
@@ -330,7 +330,7 @@ HERMES_LOG_LEVEL=debug hermes gateway
 从 CLI 向元宝发送消息：
 
 ```bash
-hermes chat -q "Send 'Hello from CLI' to yuanbao:group:group_code"
+openamer chat -q "Send 'Hello from CLI' to yuanbao:group:group_code"
 ```
 
 ## 相关文档

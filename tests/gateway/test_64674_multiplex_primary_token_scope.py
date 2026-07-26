@@ -40,7 +40,7 @@ class TestLoadGatewayConfigForRunner:
         home.mkdir()
         (home / ".env").write_text("TELEGRAM_BOT_TOKEN=from-default-env\n", encoding="utf-8")
         (home / "config.yaml").write_text("gateway:\n  multiplex_profiles: false\n", encoding="utf-8")
-        monkeypatch.setenv("HERMES_HOME", str(home))
+        monkeypatch.setenv("OPENAMER_HOME", str(home))
         monkeypatch.delenv("TELEGRAM_BOT_TOKEN", raising=False)
 
         # Without multiplex, dotenv is still loaded into os.environ by the
@@ -52,7 +52,7 @@ class TestLoadGatewayConfigForRunner:
     def test_scoped_reload_picks_up_default_profile_token(self, tmp_path, monkeypatch):
         """Token only in default profile .env, not in process os.environ."""
         from gateway import run as run_mod
-        import hermes_constants as hc
+        import openamer_constants as hc
 
         home = tmp_path / "home"
         home.mkdir()
@@ -62,11 +62,11 @@ class TestLoadGatewayConfigForRunner:
         (home / "config.yaml").write_text(
             "gateway:\n  multiplex_profiles: true\n", encoding="utf-8"
         )
-        monkeypatch.setenv("HERMES_HOME", str(home))
+        monkeypatch.setenv("OPENAMER_HOME", str(home))
         # Simulate a clean process env where the token was NOT exported and
         # was not bulk-loaded into os.environ (multiplex isolation path).
         monkeypatch.delenv("TELEGRAM_BOT_TOKEN", raising=False)
-        # Point both hermes_constants and gateway.run at our temp home.
+        # Point both openamer_constants and gateway.run at our temp home.
         monkeypatch.setattr(hc, "get_hermes_home", lambda: home)
         monkeypatch.setattr(run_mod, "get_hermes_home", lambda: home)
         monkeypatch.setattr(run_mod, "_hermes_home", home)

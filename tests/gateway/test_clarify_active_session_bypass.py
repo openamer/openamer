@@ -114,7 +114,7 @@ async def test_gateway_clarify_reply_resumes_typing_before_returning_empty_ack()
 
     cm.register("clarify-2", "clarify-session", "What is missing?", None)
 
-    with patch("hermes_cli.plugins.invoke_hook", return_value=[]):
+    with patch("openamer_cli.plugins.invoke_hook", return_value=[]):
         result = await runner._handle_message(event)
 
     assert result == ""

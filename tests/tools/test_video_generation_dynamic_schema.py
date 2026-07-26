@@ -20,7 +20,7 @@ def _reset_registry():
 
 @pytest.fixture
 def cfg_home(tmp_path, monkeypatch):
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     return tmp_path
 
 
@@ -108,7 +108,7 @@ class TestDynamicSchemaBuilder:
         _write_cfg(cfg_home, {"video_gen": {"provider": "both"}})
         video_gen_registry.register_provider(_BothModalitiesProvider())
 
-        import hermes_cli.plugins as plugins_module
+        import openamer_cli.plugins as plugins_module
         saved = plugins_module._ensure_plugins_discovered
         plugins_module._ensure_plugins_discovered = lambda *a, **k: None
         try:
@@ -127,7 +127,7 @@ class TestDynamicSchemaBuilder:
         _write_cfg(cfg_home, {"video_gen": {"provider": "img-only"}})
         video_gen_registry.register_provider(_ImageOnlyProvider())
 
-        import hermes_cli.plugins as plugins_module
+        import openamer_cli.plugins as plugins_module
         saved = plugins_module._ensure_plugins_discovered
         plugins_module._ensure_plugins_discovered = lambda *a, **k: None
         try:

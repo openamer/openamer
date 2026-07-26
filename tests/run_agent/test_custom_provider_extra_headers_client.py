@@ -29,7 +29,7 @@ _PROXY_CONFIG = {
 @patch("run_agent.OpenAI")
 def test_custom_provider_extra_headers_applied_at_construction(mock_openai):
     mock_openai.return_value = MagicMock()
-    with patch("hermes_cli.config.load_config", return_value=_PROXY_CONFIG):
+    with patch("openamer_cli.config.load_config", return_value=_PROXY_CONFIG):
         agent = AIAgent(
             api_key="proxy-key",
             base_url=_PROXY_URL,
@@ -48,7 +48,7 @@ def test_custom_provider_extra_headers_applied_at_construction(mock_openai):
 @patch("run_agent.OpenAI")
 def test_extra_headers_not_applied_for_other_base_url(mock_openai):
     mock_openai.return_value = MagicMock()
-    with patch("hermes_cli.config.load_config", return_value=_PROXY_CONFIG):
+    with patch("openamer_cli.config.load_config", return_value=_PROXY_CONFIG):
         agent = AIAgent(
             api_key="other-key",
             base_url="http://localhost:8080/v1",
@@ -69,7 +69,7 @@ def test_extra_headers_survive_header_reapplication(mock_openai):
     """_apply_client_headers_for_base_url (credential swaps, rebuilds) must
     re-apply per-provider extra_headers rather than dropping them."""
     mock_openai.return_value = MagicMock()
-    with patch("hermes_cli.config.load_config", return_value=_PROXY_CONFIG):
+    with patch("openamer_cli.config.load_config", return_value=_PROXY_CONFIG):
         agent = AIAgent(
             api_key="proxy-key",
             base_url=_PROXY_URL,
@@ -102,7 +102,7 @@ def test_extra_headers_merge_with_global_default_headers(mock_openai):
             }
         ],
     }
-    with patch("hermes_cli.config.load_config", return_value=config):
+    with patch("openamer_cli.config.load_config", return_value=config):
         agent = AIAgent(
             api_key="proxy-key",
             base_url=_PROXY_URL,

@@ -42,7 +42,7 @@ from pathlib import Path
 from typing import Dict, Optional
 
 # Reuse the exact result shape the bitwarden source returns so
-# hermes_cli.env_loader can consume both providers identically.
+# openamer_cli.env_loader can consume both providers identically.
 from agent.secret_sources.base import ErrorKind, SecretSource
 from agent.secret_sources.bitwarden import FetchResult
 
@@ -308,7 +308,7 @@ def list_command_secrets(
 
 
 # ---------------------------------------------------------------------------
-# Public entry point — called from hermes_cli.env_loader
+# Public entry point — called from openamer_cli.env_loader
 # ---------------------------------------------------------------------------
 
 

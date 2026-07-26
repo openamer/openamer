@@ -14,10 +14,10 @@ Deploy a Worker live, no account, via wrangler --temporary.
 
 | | |
 |---|---|
-| Source | Optional — install with `hermes skills install official/web-development/cloudflare-temporary-deploy` |
+| Source | Optional — install with `openamer skills install official/web-development/cloudflare-temporary-deploy` |
 | Path | `optional-skills/web-development/cloudflare-temporary-deploy` |
 | Version | `1.0.0` |
-| Author | Hermes Agent |
+| Author | OpenAmer Agent |
 | License | MIT |
 | Platforms | linux, macos, windows |
 | Tags | `cloudflare`, `workers`, `wrangler`, `deploy`, `temporary`, `agent`, `serverless`, `web-development` |
@@ -25,7 +25,7 @@ Deploy a Worker live, no account, via wrangler --temporary.
 ## Reference: full SKILL.md
 
 :::info
-The following is the complete skill definition that Hermes loads when this skill is triggered. This is what the agent sees as instructions when the skill is active.
+The following is the complete skill definition that OpenAmer loads when this skill is triggered. This is what the agent sees as instructions when the skill is active.
 :::
 
 # Cloudflare Temporary Deploy Skill

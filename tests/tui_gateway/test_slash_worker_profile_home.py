@@ -11,7 +11,7 @@ import pytest
 def test_slash_worker_accepts_profile_home():
     """_SlashWorker.__init__ accepts profile_home parameter."""
     with patch.dict("sys.modules", {
-        "hermes_constants": MagicMock(get_hermes_home=MagicMock(return_value="/tmp/hermes_test")),
+        "openamer_constants": MagicMock(get_hermes_home=MagicMock(return_value="/tmp/hermes_test")),
     }):
         with patch("subprocess.Popen") as mock_popen:
             mock_popen.return_value.stdout = MagicMock()
@@ -29,16 +29,16 @@ def test_slash_worker_accepts_profile_home():
             # Verify Popen was called
             assert mock_popen.called
             
-            # Check that HERMES_HOME was set in the environment
+            # Check that OPENAMER_HOME was set in the environment
             call_kwargs = mock_popen.call_args[1]
             assert "env" in call_kwargs
-            assert call_kwargs["env"]["HERMES_HOME"] == "/home/luke/.hermes/profiles/work"
+            assert call_kwargs["env"]["OPENAMER_HOME"] == "/home/luke/.hermes/profiles/work"
 
 
 def test_slash_worker_without_profile_home():
     """_SlashWorker works without profile_home parameter (backward compatible)."""
     with patch.dict("sys.modules", {
-        "hermes_constants": MagicMock(get_hermes_home=MagicMock(return_value="/tmp/hermes_test")),
+        "openamer_constants": MagicMock(get_hermes_home=MagicMock(return_value="/tmp/hermes_test")),
     }):
         with patch("subprocess.Popen") as mock_popen:
             mock_popen.return_value.stdout = MagicMock()
@@ -55,10 +55,10 @@ def test_slash_worker_without_profile_home():
             # Verify Popen was called
             assert mock_popen.called
             
-            # Check that HERMES_HOME was NOT overridden
+            # Check that OPENAMER_HOME was NOT overridden
             call_kwargs = mock_popen.call_args[1]
             assert "env" in call_kwargs
-            # HERMES_HOME should be from parent env or undefined (inherited from os.environ)
+            # OPENAMER_HOME should be from parent env or undefined (inherited from os.environ)
             # The key is that it's not explicitly set when profile_home is None
             env = call_kwargs["env"]
             # Verify env is a copy of os.environ
@@ -68,7 +68,7 @@ def test_slash_worker_without_profile_home():
 def test_slash_worker_with_none_profile_home():
     """_SlashWorker with explicit profile_home=None works."""
     with patch.dict("sys.modules", {
-        "hermes_constants": MagicMock(get_hermes_home=MagicMock(return_value="/tmp/hermes_test")),
+        "openamer_constants": MagicMock(get_hermes_home=MagicMock(return_value="/tmp/hermes_test")),
     }):
         with patch("subprocess.Popen") as mock_popen:
             mock_popen.return_value.stdout = MagicMock()
@@ -86,11 +86,11 @@ def test_slash_worker_with_none_profile_home():
             # Verify Popen was called
             assert mock_popen.called
             
-            # Check that HERMES_HOME was NOT set
+            # Check that OPENAMER_HOME was NOT set
             call_kwargs = mock_popen.call_args[1]
             env = call_kwargs["env"]
-            # When profile_home is None, HERMES_HOME should come from parent env only
-            if "HERMES_HOME" in env:
+            # When profile_home is None, OPENAMER_HOME should come from parent env only
+            if "OPENAMER_HOME" in env:
                 # This is from os.environ at test time, not from our code
                 pass
 
@@ -98,7 +98,7 @@ def test_slash_worker_with_none_profile_home():
 def test_slash_worker_inherits_argv_correctly():
     """_SlashWorker passes correct argv to Popen."""
     with patch.dict("sys.modules", {
-        "hermes_constants": MagicMock(get_hermes_home=MagicMock(return_value="/tmp/hermes_test")),
+        "openamer_constants": MagicMock(get_hermes_home=MagicMock(return_value="/tmp/hermes_test")),
     }):
         with patch("subprocess.Popen") as mock_popen:
             mock_popen.return_value.stdout = MagicMock()

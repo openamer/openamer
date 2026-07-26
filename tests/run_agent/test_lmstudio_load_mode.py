@@ -24,7 +24,7 @@ def test_lmstudio_jit_load_mode_skips_explicit_preload(monkeypatch):
         calls.append((args, kwargs))
         return 64000
 
-    monkeypatch.setattr("hermes_cli.models.ensure_lmstudio_model_loaded", fake_ensure)
+    monkeypatch.setattr("openamer_cli.models.ensure_lmstudio_model_loaded", fake_ensure)
 
     AIAgent._ensure_lmstudio_runtime_loaded(cast(Any, _agent("jit")))
 
@@ -38,7 +38,7 @@ def test_lmstudio_explicit_load_mode_preserves_preload(monkeypatch):
         calls.append((args, kwargs))
         return 64000
 
-    monkeypatch.setattr("hermes_cli.models.ensure_lmstudio_model_loaded", fake_ensure)
+    monkeypatch.setattr("openamer_cli.models.ensure_lmstudio_model_loaded", fake_ensure)
 
     AIAgent._ensure_lmstudio_runtime_loaded(cast(Any, _agent("explicit")))
 
@@ -56,7 +56,7 @@ def test_missing_lmstudio_load_mode_defaults_to_explicit(monkeypatch):
         calls.append((args, kwargs))
         return 64000
 
-    monkeypatch.setattr("hermes_cli.models.ensure_lmstudio_model_loaded", fake_ensure)
+    monkeypatch.setattr("openamer_cli.models.ensure_lmstudio_model_loaded", fake_ensure)
 
     AIAgent._ensure_lmstudio_runtime_loaded(cast(Any, agent))
 

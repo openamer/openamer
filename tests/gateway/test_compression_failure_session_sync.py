@@ -134,7 +134,7 @@ def _install_compression_failure_agent(monkeypatch):
     monkeypatch.setattr(gateway_run, "_load_gateway_config", lambda: {})
     monkeypatch.setattr("gateway.stream_consumer.GatewayStreamConsumer", _StreamConsumer)
 
-    import hermes_cli.tools_config as tools_config
+    import openamer_cli.tools_config as tools_config
 
     monkeypatch.setattr(tools_config, "_get_platform_tools", lambda *_args, **_kwargs: {"core"})
 

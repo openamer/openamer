@@ -438,10 +438,10 @@ class ComputeHost:
         home_token = None
         try:
             if profile_home:
-                from hermes_constants import set_hermes_home_override
-                from hermes_state import SessionDB
+                from openamer_constants import set_openamer_home_override
+                from openamer_state import SessionDB
 
-                home_token = set_hermes_home_override(profile_home)
+                home_token = set_openamer_home_override(profile_home)
                 session_db = SessionDB(db_path=Path(profile_home) / "state.db")
             agent = server._make_agent(
                 sid,
@@ -456,9 +456,9 @@ class ComputeHost:
         finally:
             if home_token is not None:
                 try:
-                    from hermes_constants import reset_hermes_home_override
+                    from openamer_constants import reset_openamer_home_override
 
-                    reset_hermes_home_override(home_token)
+                    reset_openamer_home_override(home_token)
                 except Exception:
                     pass
         try:
@@ -727,7 +727,7 @@ def run_host(stdin: Any = None, stdout: Any = None) -> None:
             "boot_id": host._boot_id,
             "build_sha": _build_sha(),
             "cwd": os.getcwd(),
-            "hermes_home": os.environ.get("HERMES_HOME", ""),
+            "hermes_home": os.environ.get("OPENAMER_HOME", ""),
         }
     )
 

@@ -6,7 +6,7 @@ author: Anthropic (adapted by Nous Research)
 license: Proprietary. LICENSE.txt has complete terms
 platforms: [linux, macos, windows]
 metadata:
-  hermes:
+  openamer:
     tags: [Excel, XLSX, Spreadsheets, Office, Productivity]
     category: productivity
     related_skills: [docx, pdf, powerpoint]
@@ -92,7 +92,7 @@ Unless the user says otherwise, or the existing file already does something else
 
 **Structure:** every assumption in its own labeled cell, referenced by the formulas that use it (`=B5*(1+$B$6)`, never `=B5*1.05`) · formulas consistent across every projection period, since a lone edited cell mid-row is the commonest silent error · guard denominators that can be zero.
 
-For full investment-banking conventions (balance checks, sensitivity tables, named ranges), install the optional skill: `hermes skills install official/finance/excel-author`.
+For full investment-banking conventions (balance checks, sensitivity tables, named ranges), install the optional skill: `openamer skills install official/finance/excel-author`.
 
 ## Verification
 

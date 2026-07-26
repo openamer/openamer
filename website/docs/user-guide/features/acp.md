@@ -1,12 +1,12 @@
 ---
 sidebar_position: 11
 title: "ACP Editor Integration"
-description: "Use Hermes Agent inside ACP-compatible editors such as VS Code, Zed, and JetBrains"
+description: "Use OpenAmer Agent inside ACP-compatible editors such as VS Code, Zed, and JetBrains"
 ---
 
 # ACP Editor Integration
 
-Hermes Agent can run as an ACP server, letting ACP-compatible editors talk to Hermes over stdio and render:
+OpenAmer Agent can run as an ACP server, letting ACP-compatible editors talk to OpenAmer over stdio and render:
 
 - chat messages
 - tool activity
@@ -15,11 +15,11 @@ Hermes Agent can run as an ACP server, letting ACP-compatible editors talk to He
 - approval prompts
 - streamed thinking / response chunks
 
-ACP is a good fit when you want Hermes to behave like an editor-native coding agent instead of a standalone CLI or messaging bot.
+ACP is a good fit when you want OpenAmer to behave like an editor-native coding agent instead of a standalone CLI or messaging bot.
 
-## What Hermes exposes in ACP mode
+## What OpenAmer exposes in ACP mode
 
-Hermes runs with a curated `hermes-acp` toolset designed for editor workflows. It includes:
+OpenAmer runs with a curated `openamer-acp` toolset designed for editor workflows. It includes:
 
 - file tools: `read_file`, `write_file`, `patch`, `search_files`
 - terminal tools: `terminal`, `process`
@@ -33,41 +33,41 @@ It intentionally excludes things that do not fit typical editor UX, such as mess
 
 ## Installation
 
-Install Hermes normally, then add the ACP extra from the install checkout:
+Install OpenAmer normally, then add the ACP extra from the install checkout:
 
 ```bash
-cd ~/.hermes/hermes-agent && uv pip install -e '.[acp]'
+cd ~/.openamer/openamer-agent && uv pip install -e '.[acp]'
 ```
 
 This installs the `agent-client-protocol` dependency and enables:
 
-- `hermes acp`
-- `hermes-acp`
+- `openamer acp`
+- `openamer-acp`
 - `python -m acp_adapter`
 
 ## Launching the ACP server
 
-Any of the following starts Hermes in ACP mode:
+Any of the following starts OpenAmer in ACP mode:
 
 ```bash
-hermes acp
+openamer acp
 ```
 
 ```bash
-hermes-acp
+openamer-acp
 ```
 
 ```bash
 python -m acp_adapter
 ```
 
-Hermes logs to stderr so stdout remains reserved for ACP JSON-RPC traffic.
+OpenAmer logs to stderr so stdout remains reserved for ACP JSON-RPC traffic.
 
 For non-interactive checks:
 
 ```bash
-hermes acp --version
-hermes acp --check
+openamer acp --version
+openamer acp --check
 ```
 
 ### Browser tools (optional)
@@ -77,16 +77,16 @@ Browser tools (`browser_navigate`, `browser_click`, etc.) depend on the
 wheel. Install them with:
 
 ```bash
-hermes acp --setup-browser           # interactive (prompts before ~400 MB download)
-hermes acp --setup-browser --yes     # accept the download non-interactively
+openamer acp --setup-browser           # interactive (prompts before ~400 MB download)
+openamer acp --setup-browser --yes     # accept the download non-interactively
 ```
 
-This is the standalone command. The terminal-auth flow (`hermes acp --setup`) also offers the browser bootstrap as a follow-up question after model selection, so most users never need to run `--setup-browser` directly.
+This is the standalone command. The terminal-auth flow (`openamer acp --setup`) also offers the browser bootstrap as a follow-up question after model selection, so most users never need to run `--setup-browser` directly.
 
 What it does:
 
-- Installs Node.js 22 LTS into `~/.hermes/node/` if missing
-- `npm install -g agent-browser @askjo/camofox-browser` into that prefix (no sudo needed — `npm`'s `--prefix` points at the user-writable Hermes-managed Node)
+- Installs Node.js 22 LTS into `~/.openamer/node/` if missing
+- `npm install -g agent-browser @askjo/camofox-browser` into that prefix (no sudo needed — `npm`'s `--prefix` points at the user-writable OpenAmer-managed Node)
 - Installs Playwright Chromium, or uses a detected system Chrome/Chromium when available
 
 The bootstrap is idempotent — re-running it is fast and skips work that's already done.
@@ -100,16 +100,16 @@ Install the [ACP Client](https://marketplace.visualstudio.com/items?itemName=for
 To connect:
 
 1. Open the ACP Client panel from the Activity Bar.
-2. Select **Hermes Agent** from the built-in agent list.
+2. Select **OpenAmer Agent** from the built-in agent list.
 3. Connect and start chatting.
 
-If you want to define Hermes manually, add it through VS Code settings under `acp.agents`:
+If you want to define OpenAmer manually, add it through VS Code settings under `acp.agents`:
 
 ```json
 {
   "acp.agents": {
-    "Hermes Agent": {
-      "command": "hermes",
+    "OpenAmer Agent": {
+      "command": "openamer",
       "args": ["acp"]
     }
   }
@@ -118,7 +118,7 @@ If you want to define Hermes manually, add it through VS Code settings under `ac
 
 ### Zed
 
-Configure Hermes as a custom agent server in Zed settings:
+Configure OpenAmer as a custom agent server in Zed settings:
 
 1. Open the Agent Panel.
 2. Add a custom agent server with the following configuration:
@@ -126,47 +126,47 @@ Configure Hermes as a custom agent server in Zed settings:
 ```json
 {
   "agent_servers": {
-    "hermes-agent": {
+    "openamer-agent": {
       "type": "custom",
-      "command": "hermes",
+      "command": "openamer",
       "args": ["acp"]
     }
   }
 }
 ```
 
-3. Start a new Hermes external-agent thread.
+3. Start a new OpenAmer external-agent thread.
 
 Prerequisites:
 
-- Configure Hermes provider credentials first with `hermes model`, or set them in `~/.hermes/.env` / `~/.hermes/config.yaml`.
+- Configure OpenAmer provider credentials first with `openamer model`, or set them in `~/.openamer/.env` / `~/.openamer/config.yaml`.
 
 ### JetBrains
 
-Use an ACP-compatible plugin and point it at `hermes acp` or `hermes-acp`.
+Use an ACP-compatible plugin and point it at `openamer acp` or `openamer-acp`.
 
 ## Configuration and credentials
 
-ACP mode uses the same Hermes configuration as the CLI:
+ACP mode uses the same OpenAmer configuration as the CLI:
 
-- `~/.hermes/.env`
-- `~/.hermes/config.yaml`
-- `~/.hermes/skills/`
-- `~/.hermes/state.db`
+- `~/.openamer/.env`
+- `~/.openamer/config.yaml`
+- `~/.openamer/skills/`
+- `~/.openamer/state.db`
 
-Provider resolution uses Hermes' normal runtime resolver, so ACP inherits the currently configured provider and credentials. Hermes also advertises a terminal auth method (`--setup`) for first-run ACP clients; this opens Hermes' interactive model/provider setup.
+Provider resolution uses OpenAmer' normal runtime resolver, so ACP inherits the currently configured provider and credentials. OpenAmer also advertises a terminal auth method (`--setup`) for first-run ACP clients; this opens OpenAmer' interactive model/provider setup.
 
 ## Host integration
 
 These variables are set by an **ACP host process** (an editor or another agent
-harness) on the Hermes subprocess it spawns. They are not user configuration —
+harness) on the OpenAmer subprocess it spawns. They are not user configuration —
 do not set them by hand in `.env` or `config.yaml`.
 
 | Variable | Value | Effect |
 |----------|-------|--------|
 | `HERMES_ACP_SKIP_CONFIGURED_MCP` | `1` | Skip starting the **globally configured** MCP servers from `config.yaml` before the ACP JSON-RPC loop begins. |
 
-Hermes normally starts every MCP server configured in `config.yaml` before it
+OpenAmer normally starts every MCP server configured in `config.yaml` before it
 enters the ACP JSON-RPC loop. A host that owns MCP itself — passing the
 session's servers explicitly through `session/new` — does not need that global
 startup, and an unrelated slow or interactive MCP server would otherwise delay
@@ -190,11 +190,11 @@ Each session stores:
 - current conversation history
 - cancel event
 
-The underlying `AIAgent` still uses Hermes' normal persistence/logging paths, but ACP `list/load/resume/fork` are scoped to the currently running ACP server process.
+The underlying `AIAgent` still uses OpenAmer' normal persistence/logging paths, but ACP `list/load/resume/fork` are scoped to the currently running ACP server process.
 
 ## Working directory behavior
 
-ACP sessions bind the editor's cwd to the Hermes task ID so file and terminal tools run relative to the editor workspace, not the server process cwd.
+ACP sessions bind the editor's cwd to the OpenAmer task ID so file and terminal tools run relative to the editor workspace, not the server process cwd.
 
 ## Approvals
 
@@ -214,12 +214,12 @@ ACP exposes a third tier between *allow once* and *allow always*: **Allow for se
 |---|---|---|---|
 | `allow_once` | Allow once | This one tool call | No |
 | `allow_session` | Allow for session | All matching calls in this ACP session | No — cleared when the session ends |
-| `allow_always` | Allow always | All future sessions | Yes (written to the Hermes permanent allowlist) |
+| `allow_always` | Allow always | All future sessions | Yes (written to the OpenAmer permanent allowlist) |
 | `deny` | Deny | This one tool call | No |
 
 `allow_session` is the right default for an editor workflow where you trust an agent for the duration of a task but don't want to grant a long-lived allowlist entry. The safety trade-off is straightforward: the broader the scope, the less the editor will interrupt you, and the more damage a misbehaving agent (or prompt injection) can do before you notice. Start with `allow_once` for unfamiliar commands; promote to `allow_session` once you've seen the agent run the same pattern correctly a few times; reserve `allow_always` for truly idempotent commands you trust forever (e.g. `git status`).
 
-The ACP bridge maps these options onto Hermes' internal approval semantics — `allow_always` writes a permanent allowlist entry the same way the CLI does, while `allow_session` only affects the in-process approval cache for the current ACP session.
+The ACP bridge maps these options onto OpenAmer' internal approval semantics — `allow_always` writes a permanent allowlist entry the same way the CLI does, while `allow_session` only affects the in-process approval cache for the current ACP session.
 
 ## Troubleshooting
 
@@ -227,30 +227,30 @@ The ACP bridge maps these options onto Hermes' internal approval semantics — `
 
 Check:
 
-- For manual/local development, verify the custom `agent_servers` command points to `hermes acp`.
-- Hermes is installed and on your PATH.
-- The ACP extra is installed (`cd ~/.hermes/hermes-agent && uv pip install -e '.[acp]'`).
+- For manual/local development, verify the custom `agent_servers` command points to `openamer acp`.
+- OpenAmer is installed and on your PATH.
+- The ACP extra is installed (`cd ~/.openamer/openamer-agent && uv pip install -e '.[acp]'`).
 
 ### ACP starts but immediately errors
 
 Try these checks:
 
 ```bash
-hermes acp --version
-hermes acp --check
-hermes doctor
-hermes status
+openamer acp --version
+openamer acp --check
+openamer doctor
+openamer status
 ```
 
 ### Missing credentials
 
-ACP mode uses Hermes' existing provider setup. Configure credentials with:
+ACP mode uses OpenAmer' existing provider setup. Configure credentials with:
 
 ```bash
-hermes model
+openamer model
 ```
 
-or by editing `~/.hermes/.env`. The terminal auth flow (`hermes acp --setup`) can also trigger the interactive provider/model setup.
+or by editing `~/.openamer/.env`. The terminal auth flow (`openamer acp --setup`) can also trigger the interactive provider/model setup.
 
 ## See also
 

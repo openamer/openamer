@@ -36,14 +36,14 @@ const COMPACTION_TRIGGER_PADDING = ' force real context compression'.repeat(600)
 async function setupSeededMockBackend(): Promise<MockBackendFixture> {
   const mock = await startMockServer()
   const sandbox = createSandbox('hidden-history')
-  writeMockProviderConfig(sandbox.hermesHome, mock.url)
+  writeMockProviderConfig(sandbox.openamerHome, mock.url)
   fs.appendFileSync(
-    path.join(sandbox.hermesHome, 'config.yaml'),
+    path.join(sandbox.openamerHome, 'config.yaml'),
     '\ncompression:\n  threshold_tokens: 1\n',
     'utf8',
   )
-  writeEnvFile(sandbox.hermesHome)
-  const builder = await RealSessionBuilder.start(sandbox.hermesHome)
+  writeEnvFile(sandbox.openamerHome)
+  const builder = await RealSessionBuilder.start(sandbox.openamerHome)
   try {
     await builder.createSession({
       title: SESSION_TITLE,
@@ -108,9 +108,9 @@ test('live verify-on-stop continuations stay out of the transcript', async ({}, 
   )
 
   const mock = await startMockServer({ verificationWritePath: changedFile })
-  writeMockProviderConfig(sandbox.hermesHome, mock.url)
-  fs.appendFileSync(path.join(sandbox.hermesHome, 'config.yaml'), '\nagent:\n  verify_on_stop: true\n', 'utf8')
-  writeEnvFile(sandbox.hermesHome)
+  writeMockProviderConfig(sandbox.openamerHome, mock.url)
+  fs.appendFileSync(path.join(sandbox.openamerHome, 'config.yaml'), '\nagent:\n  verify_on_stop: true\n', 'utf8')
+  writeEnvFile(sandbox.openamerHome)
   const { app, page } = await launchDesktop(buildAppEnv(sandbox))
   const fixture: MockBackendFixture = {
     app,

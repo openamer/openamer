@@ -1,7 +1,7 @@
 ---
 sidebar_position: 8
 title: "MCP 配置参考"
-description: "Hermes Agent MCP 配置键、过滤语义及工具策略参考"
+description: "OpenAmer Agent MCP 配置键、过滤语义及工具策略参考"
 ---
 
 # MCP 配置参考
@@ -10,7 +10,7 @@ description: "Hermes Agent MCP 配置键、过滤语义及工具策略参考"
 
 概念说明请参阅：
 - [MCP（Model Context Protocol）](/user-guide/features/mcp)
-- [在 Hermes 中使用 MCP](/guides/use-mcp-with-hermes)
+- [在 OpenAmer 中使用 MCP](/guides/use-mcp-with-openamer)
 
 ## 根配置结构
 
@@ -98,7 +98,7 @@ tools:
 
 ## 工具策略
 
-Hermes 可为每个 MCP 服务器注册以下工具包装器：
+OpenAmer 可为每个 MCP 服务器注册以下工具包装器：
 
 Resources（资源）：
 - `list_resources`
@@ -124,7 +124,7 @@ tools:
 
 ### 能力感知注册
 
-即使设置了 `resources: true` 或 `prompts: true`，Hermes 也只在 MCP 会话实际暴露对应能力时才注册相应工具。
+即使设置了 `resources: true` 或 `prompts: true`，OpenAmer 也只在 MCP 会话实际暴露对应能力时才注册相应工具。
 
 因此以下情况属于正常现象：
 - 你启用了 prompts
@@ -148,7 +148,7 @@ mcp_servers:
 
 ## 空结果行为
 
-若过滤后服务器原生工具全部被移除，且没有工具被注册，Hermes 不会为该服务器创建空的 MCP 运行时工具集。
+若过滤后服务器原生工具全部被移除，且没有工具被注册，OpenAmer 不会为该服务器创建空的 MCP 运行时工具集。
 
 ## 配置示例
 
@@ -242,8 +242,8 @@ mcp_servers:
 ```
 
 行为：
-- Hermes 使用 MCP SDK 的 OAuth 2.1 PKCE 流程（元数据发现、动态客户端注册、token 交换及刷新）
+- OpenAmer 使用 MCP SDK 的 OAuth 2.1 PKCE 流程（元数据发现、动态客户端注册、token 交换及刷新）
 - 首次连接时，浏览器窗口将打开以完成授权
-- Token 持久化至 `~/.hermes/mcp-tokens/<server>.json`，跨会话复用
+- Token 持久化至 `~/.openamer/mcp-tokens/<server>.json`，跨会话复用
 - Token 刷新自动进行；仅在刷新失败时才需重新授权
 - 仅适用于 HTTP/StreamableHTTP 传输（基于 `url` 的服务器）

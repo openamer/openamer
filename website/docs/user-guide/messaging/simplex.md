@@ -2,7 +2,7 @@
 
 [SimpleX Chat](https://simplex.chat/) is a private, decentralised messaging platform where users own their contacts and groups. Unlike other platforms, SimpleX assigns no persistent user IDs — every contact is identified by an opaque internal ID generated at connection time, which makes it one of the most private messengers available.
 
-> Run `hermes gateway setup` and pick **SimpleX** for a guided walk-through.
+> Run `openamer gateway setup` and pick **SimpleX** for a guided walk-through.
 
 ## Prerequisites
 
@@ -29,19 +29,19 @@ simplex-chat -p 5225
 
 The daemon listens on WebSocket at `ws://127.0.0.1:5225` by default.
 
-## Configure Hermes
+## Configure OpenAmer
 
 ### Via setup wizard
 
 ```bash
-hermes gateway setup
+openamer gateway setup
 ```
 
 Select **SimpleX Chat** and follow the prompts.
 
 ### Via environment variables
 
-Add these to `~/.hermes/.env`:
+Add these to `~/.openamer/.env`:
 
 ```
 SIMPLEX_WS_URL=ws://127.0.0.1:5225
@@ -69,7 +69,7 @@ After starting the daemon, open a conversation with your agent contact. The nume
 By default **all contacts are denied**. You must either:
 
 1. Set `SIMPLEX_ALLOWED_USERS` to a comma-separated list of `contactId`s and/or display names (e.g. `SIMPLEX_ALLOWED_USERS=4,alice` matches either contactId 4 or the contact whose display name is "alice"), or
-2. Use **DM pairing** — send any message to the bot and it will reply with a pairing code. Enter that code via `hermes pairing approve simplex <CODE>`.
+2. Use **DM pairing** — send any message to the bot and it will reply with a pairing code. Enter that code via `openamer pairing approve simplex <CODE>`.
 
 ## Group chats
 
@@ -83,7 +83,7 @@ SIMPLEX_GROUP_ALLOWED=*              # any group the bot is in
 ```
 
 Address groups by prefixing the chat ID with `group:`, e.g.
-`simplex:group:12` as a cron `deliver=` target or in a `hermes send` call.
+`simplex:group:12` as a cron `deliver=` target or in a `openamer send` call.
 
 ## Attachments
 
@@ -113,16 +113,16 @@ cronjob(
 )
 ```
 
-Or target a specific contact via the cron job's `deliver:` field, or from a shell script with the [`hermes send` CLI](/guides/pipe-script-output):
+Or target a specific contact via the cron job's `deliver:` field, or from a shell script with the [`openamer send` CLI](/guides/pipe-script-output):
 
 ```bash
-hermes send simplex:<contact-id> "Done!"
+openamer send simplex:<contact-id> "Done!"
 ```
 
 ## Privacy notes
 
 - SimpleX never reveals phone numbers or email addresses — contacts use opaque IDs
-- The connection between Hermes and the daemon is local WebSocket (`ws://127.0.0.1:5225`) — no data leaves your machine
+- The connection between OpenAmer and the daemon is local WebSocket (`ws://127.0.0.1:5225`) — no data leaves your machine
 - Messages are end-to-end encrypted by the SimpleX protocol before reaching the daemon
 
 ## Troubleshooting

@@ -504,16 +504,16 @@ def test_cdp_launch_command_has_debug_flags():
 
 
 def test_cdp_default_profile_uses_hermes_home():
-    prev = os.environ.get("HERMES_HOME")
+    prev = os.environ.get("OPENAMER_HOME")
     with tempfile.TemporaryDirectory() as d:
-        os.environ["HERMES_HOME"] = d
+        os.environ["OPENAMER_HOME"] = d
         try:
             assert cdp.default_profile() == Path(d) / "chrome-debug"
         finally:
             if prev is None:
-                os.environ.pop("HERMES_HOME", None)
+                os.environ.pop("OPENAMER_HOME", None)
             else:
-                os.environ["HERMES_HOME"] = prev
+                os.environ["OPENAMER_HOME"] = prev
 
 
 def test_cdp_endpoint_status_parses_live_and_handles_down():
@@ -1367,10 +1367,10 @@ def test_show_reads_back_case_state_and_evidence():
 
 
 def test_dotenv_env_fills_missing_creds_and_shell_wins():
-    prev_home = os.environ.get("HERMES_HOME")
+    prev_home = os.environ.get("OPENAMER_HOME")
     prev_key = os.environ.get("BROWSERBASE_API_KEY")
     with tempfile.TemporaryDirectory() as d:
-        os.environ["HERMES_HOME"] = d
+        os.environ["OPENAMER_HOME"] = d
         (Path(d) / ".env").write_text(
             '# comment\nBROWSERBASE_API_KEY="from_dotenv"\nFIRECRAWL_API_KEY=fc_123\n', encoding="utf-8")
         try:
@@ -1381,7 +1381,7 @@ def test_dotenv_env_fills_missing_creds_and_shell_wins():
             os.environ["BROWSERBASE_API_KEY"] = "from_shell"
             assert config.dotenv_env()["BROWSERBASE_API_KEY"] == "from_shell"  # shell wins
         finally:
-            for k, v in (("HERMES_HOME", prev_home), ("BROWSERBASE_API_KEY", prev_key)):
+            for k, v in (("OPENAMER_HOME", prev_home), ("BROWSERBASE_API_KEY", prev_key)):
                 if v is None:
                     os.environ.pop(k, None)
                 else:

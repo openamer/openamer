@@ -88,7 +88,7 @@ def test_install_sh_repository_stage_recovers_from_autostash_conflict(
 ) -> None:
     managed = _make_conflicted_managed_checkout(tmp_path)
     env = os.environ | {
-        "HERMES_HOME": str(tmp_path / "hermes-home"),
+        "OPENAMER_HOME": str(tmp_path / "hermes-home"),
         "HERMES_INSTALL_DIR": str(managed),
     }
 
@@ -175,7 +175,7 @@ def test_install_sh_repository_stage_clean_apply_drops_stash(
     _git(upstream, "push", "origin", "main")
 
     env = os.environ | {
-        "HERMES_HOME": str(tmp_path / "hermes-home"),
+        "OPENAMER_HOME": str(tmp_path / "hermes-home"),
         "HERMES_INSTALL_DIR": str(managed),
     }
     result = subprocess.run(

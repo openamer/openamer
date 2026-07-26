@@ -47,7 +47,7 @@ class TestMinimaxM3StaleCacheGuard:
         assert not _model_name_suggests_minimax_m3("MiniMax-M2.5")
 
     def test_stale_m3_cache_dropped_and_reresolves(self, tmp_path, monkeypatch):
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
         import importlib
         import agent.model_metadata as mm
         importlib.reload(mm)
@@ -65,7 +65,7 @@ class TestMinimaxM3StaleCacheGuard:
         assert ctx > 204_800, f"stale M3 cache not dropped/re-resolved, got {ctx}"
 
     def test_correct_m3_cache_preserved(self, tmp_path, monkeypatch):
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
         import importlib
         import agent.model_metadata as mm
         importlib.reload(mm)
@@ -77,7 +77,7 @@ class TestMinimaxM3StaleCacheGuard:
         assert ctx == 1_000_000
 
     def test_m2_cache_not_clobbered(self, tmp_path, monkeypatch):
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
         import importlib
         import agent.model_metadata as mm
         importlib.reload(mm)
@@ -284,24 +284,24 @@ class TestMinimaxApiMode:
     """
 
     def test_minimax_returns_anthropic_messages(self):
-        from hermes_cli.providers import determine_api_mode
+        from openamer_cli.providers import determine_api_mode
         assert determine_api_mode("minimax") == "anthropic_messages"
 
     def test_minimax_cn_returns_anthropic_messages(self):
-        from hermes_cli.providers import determine_api_mode
+        from openamer_cli.providers import determine_api_mode
         assert determine_api_mode("minimax-cn") == "anthropic_messages"
 
     def test_minimax_with_url_also_works(self):
-        from hermes_cli.providers import determine_api_mode
+        from openamer_cli.providers import determine_api_mode
         # Even with explicit base_url, provider lookup takes priority
         assert determine_api_mode("minimax", "https://api.minimax.io/anthropic") == "anthropic_messages"
 
     def test_anthropic_still_returns_anthropic_messages(self):
-        from hermes_cli.providers import determine_api_mode
+        from openamer_cli.providers import determine_api_mode
         assert determine_api_mode("anthropic") == "anthropic_messages"
 
     def test_openai_returns_chat_completions(self):
-        from hermes_cli.providers import determine_api_mode
+        from openamer_cli.providers import determine_api_mode
         # Sanity check: standard providers are unaffected
         result = determine_api_mode("deepseek")
         assert result == "chat_completions"

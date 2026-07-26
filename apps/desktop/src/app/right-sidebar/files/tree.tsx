@@ -319,7 +319,7 @@ function ProjectTreeRow({
         const payload = JSON.stringify([{ isDirectory: isFolder, path: node.data.id }])
 
         event.dataTransfer.effectAllowed = 'copy'
-        event.dataTransfer.setData('application/x-hermes-paths', payload)
+        event.dataTransfer.setData('application/x-openamer-paths', payload)
         event.dataTransfer.setData('text/plain', node.data.id)
       }}
       ref={dragHandle}

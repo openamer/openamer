@@ -63,7 +63,7 @@ def save_config(cfg: dict) -> Path:
 
 
 def dotenv_env() -> dict:
-    """Shell env overlaid on `$HERMES_HOME/.env`, so capability detection sees the creds Hermes
+    """Shell env overlaid on `$OPENAMER_HOME/.env`, so capability detection sees the creds Hermes
     loads for its own tools (BROWSERBASE_API_KEY, EMAIL_*, AGENTMAIL_API_KEY, ...) even though the
     terminal-tool shell doesn't export them. Shell env wins; the .env only fills gaps."""
     merged: dict = {}

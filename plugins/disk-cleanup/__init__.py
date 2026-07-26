@@ -4,12 +4,12 @@ Wires three behaviours:
 
 1. ``post_tool_call`` hook — inspects ``write_file`` and ``terminal``
    tool results for newly-created paths matching test/temp patterns
-   under ``HERMES_HOME`` and tracks them silently.  Zero agent
+   under ``OPENAMER_HOME`` and tracks them silently.  Zero agent
    compliance required.
 
 2. ``on_session_end`` hook — when any test files were auto-tracked
    during the just-finished turn, runs :func:`disk_cleanup.quick` and
-   logs a single line to ``$HERMES_HOME/disk-cleanup/cleanup.log``.
+   logs a single line to ``$OPENAMER_HOME/disk-cleanup/cleanup.log``.
 
 3. ``/disk-cleanup`` slash command — manual ``status``, ``dry-run``,
    ``quick``, ``deep``, ``track``, ``forget``.
@@ -205,7 +205,7 @@ Subcommands:
 
 Categories: temp | test | research | download | chrome-profile | cron-output | other
 
-All operations are scoped to HERMES_HOME and /tmp/hermes-*.
+All operations are scoped to OPENAMER_HOME and /tmp/hermes-*.
 Test files are auto-tracked on write_file / terminal and auto-cleaned at session end.
 """
 
@@ -286,7 +286,7 @@ def _handle_slash(raw_args: str) -> Optional[str]:
         if dg.track(path_arg, category, silent=True):
             return f"Tracked {path_arg} as '{category}'."
         return (
-            f"Not tracked (already present, missing, or outside HERMES_HOME): "
+            f"Not tracked (already present, missing, or outside OPENAMER_HOME): "
             f"{path_arg}"
         )
 

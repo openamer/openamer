@@ -35,7 +35,7 @@ from tools.interrupt import (
 
 @pytest.fixture(autouse=True)
 def _isolate(tmp_path, monkeypatch):
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     (tmp_path / "logs").mkdir(exist_ok=True)
     # Clean interrupt slate before and after every test so a stale tid left in
     # the module-global set can't leak across tests in the same worker.

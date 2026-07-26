@@ -1,4 +1,4 @@
-"""Runtime smoke test for Docker $HERMES_HOME/logs/gateways seeding.
+"""Runtime smoke test for Docker $OPENAMER_HOME/logs/gateways seeding.
 
 Build the real image and verify logs/ and logs/gateways/ exist and are
 owned by the hermes user after container boot.

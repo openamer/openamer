@@ -27,7 +27,7 @@ import pytest
 def _isolate_home(tmp_path, monkeypatch):
     hermes_home = tmp_path / ".hermes"
     hermes_home.mkdir()
-    monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
     yield hermes_home
 
 
@@ -189,7 +189,7 @@ def test_start_spawns_subprocess_and_writes_active_pointer(tmp_path):
 def test_transcript_reads_last_n_lines(tmp_path):
     from plugins.google_meet import process_manager as pm
 
-    meeting_dir = Path(os.environ["HERMES_HOME"]) / "workspace" / "meetings" / "abc-defg-hij"
+    meeting_dir = Path(os.environ["OPENAMER_HOME"]) / "workspace" / "meetings" / "abc-defg-hij"
     meeting_dir.mkdir(parents=True)
     (meeting_dir / "transcript.txt").write_text(
         "[10:00:00] Alice: one\n"
@@ -385,7 +385,7 @@ def test_enqueue_say_no_active_meeting():
 def test_enqueue_say_rejects_transcribe_mode(tmp_path):
     from plugins.google_meet import process_manager as pm
 
-    out_dir = Path(os.environ["HERMES_HOME"]) / "workspace" / "meetings" / "abc-defg-hij"
+    out_dir = Path(os.environ["OPENAMER_HOME"]) / "workspace" / "meetings" / "abc-defg-hij"
     out_dir.mkdir(parents=True)
     pm._write_active({
         "pid": 0, "meeting_id": "abc-defg-hij",
@@ -400,7 +400,7 @@ def test_enqueue_say_rejects_transcribe_mode(tmp_path):
 def test_enqueue_say_writes_jsonl_in_realtime_mode():
     from plugins.google_meet import process_manager as pm
 
-    out_dir = Path(os.environ["HERMES_HOME"]) / "workspace" / "meetings" / "abc-defg-hij"
+    out_dir = Path(os.environ["OPENAMER_HOME"]) / "workspace" / "meetings" / "abc-defg-hij"
     out_dir.mkdir(parents=True)
     pm._write_active({
         "pid": 0, "meeting_id": "abc-defg-hij",

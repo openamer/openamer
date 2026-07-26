@@ -26,7 +26,7 @@ Create, read, edit Excel .xlsx spreadsheets and CSVs.
 ## Reference: full SKILL.md
 
 :::info
-The following is the complete skill definition that Hermes loads when this skill is triggered. This is what the agent sees as instructions when the skill is active.
+The following is the complete skill definition that OpenAmer loads when this skill is triggered. This is what the agent sees as instructions when the skill is active.
 :::
 
 # XLSX Skill
@@ -109,7 +109,7 @@ Unless the user says otherwise, or the existing file already does something else
 
 **Structure:** every assumption in its own labeled cell, referenced by the formulas that use it (`=B5*(1+$B$6)`, never `=B5*1.05`) · formulas consistent across every projection period, since a lone edited cell mid-row is the commonest silent error · guard denominators that can be zero.
 
-For full investment-banking conventions (balance checks, sensitivity tables, named ranges), install the optional skill: `hermes skills install official/finance/excel-author`.
+For full investment-banking conventions (balance checks, sensitivity tables, named ranges), install the optional skill: `openamer skills install official/finance/excel-author`.
 
 ## Verification
 

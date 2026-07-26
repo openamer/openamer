@@ -19,7 +19,7 @@ def _response(content="composed report"):
 
 @pytest.fixture
 def agent(tmp_path, monkeypatch):
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path / ".hermes"))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".hermes"))
     with (
         patch("run_agent.get_tool_definitions", return_value=[]),
         patch("run_agent.check_toolset_requirements", return_value={}),
@@ -71,7 +71,7 @@ def test_verify_on_stop_preserves_composed_report_at_budget_limit(agent, monkeyp
 
     with (
         patch("agent.verification_stop.build_verify_on_stop_nudge", return_value="verify it"),
-        patch("hermes_cli.plugins.invoke_hook", return_value=[]),
+        patch("openamer_cli.plugins.invoke_hook", return_value=[]),
     ):
         result = agent.run_conversation("edit changed.py")
 
@@ -90,13 +90,13 @@ def test_pre_verify_preserves_composed_report_at_budget_limit(agent, monkeypatch
     monkeypatch.setenv("HERMES_VERIFY_ON_STOP", "0")
 
     with (
-        patch("hermes_cli.plugins.has_hook", side_effect=lambda name: name == "pre_verify"),
+        patch("openamer_cli.plugins.has_hook", side_effect=lambda name: name == "pre_verify"),
         patch(
-            "hermes_cli.plugins.get_pre_verify_continue_message",
+            "openamer_cli.plugins.get_pre_verify_continue_message",
             return_value="run project tests",
         ),
         patch("agent.verify_hooks.max_verify_nudges", return_value=2),
-        patch("hermes_cli.plugins.invoke_hook", return_value=[]),
+        patch("openamer_cli.plugins.invoke_hook", return_value=[]),
     ):
         result = agent.run_conversation("edit changed.py")
 
@@ -114,8 +114,8 @@ def test_intermediate_ack_uses_summary_instead_of_premature_text(agent, monkeypa
     monkeypatch.setenv("HERMES_VERIFY_ON_STOP", "0")
 
     with (
-        patch("hermes_cli.plugins.has_hook", return_value=False),
-        patch("hermes_cli.plugins.invoke_hook", return_value=[]),
+        patch("openamer_cli.plugins.has_hook", return_value=False),
+        patch("openamer_cli.plugins.invoke_hook", return_value=[]),
     ):
         result = agent.run_conversation("inspect /tmp/project")
 
@@ -137,7 +137,7 @@ def test_later_verified_response_supersedes_pending_report(agent, monkeypatch):
             "agent.verification_stop.build_verify_on_stop_nudge",
             side_effect=["verify it", None],
         ),
-        patch("hermes_cli.plugins.invoke_hook", return_value=[]),
+        patch("openamer_cli.plugins.invoke_hook", return_value=[]),
     ):
         result = agent.run_conversation("edit changed.py")
 
@@ -171,7 +171,7 @@ def test_multiple_verification_retries_publish_each_candidate_once(agent, monkey
             "agent.verification_stop.build_verify_on_stop_nudge",
             side_effect=nudge_side_effects,
         ),
-        patch("hermes_cli.plugins.invoke_hook", return_value=[]),
+        patch("openamer_cli.plugins.invoke_hook", return_value=[]),
     ):
         result = agent.run_conversation("edit changed.py")
 
@@ -199,7 +199,7 @@ def test_verification_false_finalizes_candidate_once(agent, monkeypatch):
             "agent.verification_stop.build_verify_on_stop_nudge",
             side_effect=RuntimeError("verify check crashed"),
         ),
-        patch("hermes_cli.plugins.invoke_hook", return_value=[]),
+        patch("openamer_cli.plugins.invoke_hook", return_value=[]),
     ):
         result = agent.run_conversation("edit changed.py")
 
@@ -231,7 +231,7 @@ def test_verify_on_stop_emits_interim_response_to_ui(agent, monkeypatch):
 
     with (
         patch("agent.verification_stop.build_verify_on_stop_nudge", return_value="verify it"),
-        patch("hermes_cli.plugins.invoke_hook", return_value=[]),
+        patch("openamer_cli.plugins.invoke_hook", return_value=[]),
     ):
         result = agent.run_conversation("edit changed.py")
 
@@ -266,8 +266,8 @@ def test_streamed_interim_then_different_summary_not_marked_previewed(agent, mon
     agent.interim_assistant_callback = lambda text, **kw: emitted.append(text)
 
     with (
-        patch("hermes_cli.plugins.has_hook", return_value=False),
-        patch("hermes_cli.plugins.invoke_hook", return_value=[]),
+        patch("openamer_cli.plugins.has_hook", return_value=False),
+        patch("openamer_cli.plugins.invoke_hook", return_value=[]),
     ):
         result = agent.run_conversation("inspect /tmp/project")
 
@@ -307,7 +307,7 @@ def test_streamed_verification_candidate_reused_marked_previewed(agent, monkeypa
     with (
         patch.object(agent, "_interim_content_was_streamed", return_value=True),
         patch("agent.verification_stop.build_verify_on_stop_nudge", return_value="verify it"),
-        patch("hermes_cli.plugins.invoke_hook", return_value=[]),
+        patch("openamer_cli.plugins.invoke_hook", return_value=[]),
     ):
         result = agent.run_conversation("edit changed.py")
 

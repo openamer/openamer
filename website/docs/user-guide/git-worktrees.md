@@ -2,26 +2,26 @@
 sidebar_position: 3
 sidebar_label: "Git Worktrees"
 title: "Git Worktrees"
-description: "Run multiple Hermes agents safely on the same repository using git worktrees and isolated checkouts"
+description: "Run multiple OpenAmer agents safely on the same repository using git worktrees and isolated checkouts"
 ---
 
 # Git Worktrees
 
-Hermes Agent is often used on large, long‑lived repositories. When you want to:
+OpenAmer Agent is often used on large, long‑lived repositories. When you want to:
 
 - Run **multiple agents in parallel** on the same project, or
 - Keep experimental refactors isolated from your main branch,
 
 Git **worktrees** are the safest way to give each agent its own checkout without duplicating the entire repository.
 
-This page shows how to combine worktrees with Hermes so each session has a clean, isolated working directory.
+This page shows how to combine worktrees with OpenAmer so each session has a clean, isolated working directory.
 
-## Why Use Worktrees with Hermes?
+## Why Use Worktrees with OpenAmer?
 
-Hermes treats the **current working directory** as the project root:
+OpenAmer treats the **current working directory** as the project root:
 
-- CLI: the directory where you run `hermes` or `hermes chat`
-- Messaging gateways: the directory set by `terminal.cwd` in `~/.hermes/config.yaml`
+- CLI: the directory where you run `openamer` or `openamer chat`
+- Messaging gateways: the directory set by `terminal.cwd` in `~/.openamer/config.yaml`
 
 If you run multiple agents in the **same checkout**, their changes can interfere with each other:
 
@@ -44,24 +44,24 @@ From your main repository (containing `.git/`), create a new worktree for a feat
 cd /path/to/your/repo
 
 # Create a new branch and worktree in ../repo-feature
-git worktree add ../repo-feature feature/hermes-experiment
+git worktree add ../repo-feature feature/openamer-experiment
 ```
 
 This creates:
 
 - A new directory: `../repo-feature`
-- A new branch: `feature/hermes-experiment` checked out in that directory
+- A new branch: `feature/openamer-experiment` checked out in that directory
 
-Now you can `cd` into the new worktree and run Hermes there:
+Now you can `cd` into the new worktree and run OpenAmer there:
 
 ```bash
 cd ../repo-feature
 
-# Start Hermes in the worktree
-hermes
+# Start OpenAmer in the worktree
+openamer
 ```
 
-Hermes will:
+OpenAmer will:
 
 - See `../repo-feature` as the project root.
 - Use that directory for context files, code edits, and tools.
@@ -74,8 +74,8 @@ You can create multiple worktrees, each with its own branch:
 ```bash
 cd /path/to/your/repo
 
-git worktree add ../repo-experiment-a feature/hermes-a
-git worktree add ../repo-experiment-b feature/hermes-b
+git worktree add ../repo-experiment-a feature/openamer-a
+git worktree add ../repo-experiment-b feature/openamer-b
 ```
 
 In separate terminals:
@@ -83,16 +83,16 @@ In separate terminals:
 ```bash
 # Terminal 1
 cd ../repo-experiment-a
-hermes
+openamer
 
 # Terminal 2
 cd ../repo-experiment-b
-hermes
+openamer
 ```
 
-Each Hermes process:
+Each OpenAmer process:
 
-- Works on its own branch (`feature/hermes-a` vs `feature/hermes-b`).
+- Works on its own branch (`feature/openamer-a` vs `feature/openamer-b`).
 - Writes checkpoints under a different shadow repo hash (derived from the worktree path).
 - Can use `/rollback` independently without affecting the other.
 
@@ -122,47 +122,47 @@ Notes:
 
 - `git worktree remove` will refuse to remove a worktree with uncommitted changes unless you force it.
 - Removing a worktree does **not** automatically delete the branch; you can delete or keep the branch using normal `git branch` commands.
-- Hermes checkpoint data under `~/.hermes/checkpoints/` is not automatically pruned when you remove a worktree, but it is usually very small.
+- OpenAmer checkpoint data under `~/.openamer/checkpoints/` is not automatically pruned when you remove a worktree, but it is usually very small.
 
 ## Best Practices
 
-- **One worktree per Hermes experiment**
+- **One worktree per OpenAmer experiment**
   - Create a dedicated branch/worktree for each substantial change.
   - This keeps diffs focused and PRs small and reviewable.
 - **Name branches after the experiment**
-  - e.g. `feature/hermes-checkpoints-docs`, `feature/hermes-refactor-tests`.
+  - e.g. `feature/openamer-checkpoints-docs`, `feature/openamer-refactor-tests`.
 - **Commit frequently**
   - Use git commits for high‑level milestones.
   - Use [checkpoints and /rollback](./checkpoints-and-rollback.md) as a safety net for tool‑driven edits in between.
-- **Avoid running Hermes from the bare repo root when using worktrees**
+- **Avoid running OpenAmer from the bare repo root when using worktrees**
   - Prefer the worktree directories instead, so each agent has a clear scope.
 
-## Using `hermes -w` (Automatic Worktree Mode)
+## Using `openamer -w` (Automatic Worktree Mode)
 
-Hermes has a built‑in `-w` flag that **automatically creates a disposable git worktree** with its own branch. You don't need to set up worktrees manually — just `cd` into your repo and run:
+OpenAmer has a built‑in `-w` flag that **automatically creates a disposable git worktree** with its own branch. You don't need to set up worktrees manually — just `cd` into your repo and run:
 
 ```bash
 cd /path/to/your/repo
-hermes -w
+openamer -w
 ```
 
-Hermes will:
+OpenAmer will:
 
 - Create a temporary worktree under `.worktrees/` inside your repo.
-- Check out an isolated branch (e.g. `hermes/hermes-<hash>`).
+- Check out an isolated branch (e.g. `openamer/openamer-<hash>`).
 - Run the full CLI session inside that worktree.
 
 This is the easiest way to get worktree isolation. You can also combine it with a single query:
 
 ```bash
-hermes -w -z "Fix issue #123"
+openamer -w -z "Fix issue #123"
 ```
 
-For parallel agents, open multiple terminals and run `hermes -w` in each — every invocation gets its own worktree and branch automatically.
+For parallel agents, open multiple terminals and run `openamer -w` in each — every invocation gets its own worktree and branch automatically.
 
 ## Putting It All Together
 
-- Use **git worktrees** to give each Hermes session its own clean checkout.
+- Use **git worktrees** to give each OpenAmer session its own clean checkout.
 - Use **branches** to capture the high‑level history of your experiments.
 - Use **checkpoints + `/rollback`** to recover from mistakes inside each worktree.
 

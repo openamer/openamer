@@ -8,7 +8,7 @@ vi.mock('@/store/gateway', () => ({
   $gateway: atom<unknown>(null),
   ensureGatewayForProfile: vi.fn(async () => undefined)
 }))
-vi.mock('@/hermes', () => ({
+vi.mock('@/openamer', () => ({
   getProfiles: vi.fn(async () => ({ profiles: [] })),
   setApiRequestProfile: vi.fn()
 }))

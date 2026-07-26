@@ -1,7 +1,7 @@
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
-import type { HermesConfigRecord } from '@/hermes'
+import type { OpenAmerConfigRecord } from '@/openamer'
 import { type I18nConfigClient, I18nProvider } from '@/i18n'
 
 import { LanguageSwitcher } from './language-switcher'
@@ -27,7 +27,7 @@ describe('LanguageSwitcher', () => {
 
   it('persists language changes through display.language config', async () => {
     const saveConfig = vi.fn().mockResolvedValue({ ok: true })
-    const latestConfig: HermesConfigRecord = { display: { language: 'en', skin: 'slate' } }
+    const latestConfig: OpenAmerConfigRecord = { display: { language: 'en', skin: 'slate' } }
 
     const configClient: I18nConfigClient = {
       getConfig: vi.fn().mockResolvedValue(latestConfig),

@@ -27,7 +27,7 @@ def load_module():
 
 def test_save_twilio_writes_env_and_state(tmp_path: Path, monkeypatch):
     mod = load_module()
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path / ".hermes"))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".hermes"))
 
     result = mod.save_twilio(
         "AC123",
@@ -199,7 +199,7 @@ def test_vapi_import_twilio_number_saves_phone_number_id(tmp_path: Path):
 def test_diagnose_includes_decision_tree_and_saved_state(tmp_path: Path, monkeypatch):
     mod = load_module()
     hermes_home = tmp_path / ".hermes"
-    monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
     mod._save_state(
         {
             "version": 1,

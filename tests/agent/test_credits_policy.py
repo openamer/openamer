@@ -353,7 +353,7 @@ class TestIsFreeTierModel:
 
     def test_pricing_cache_peek_zero_priced_model(self, monkeypatch):
         from agent.credits_tracker import is_free_tier_model
-        import hermes_cli.models as models_mod
+        import openamer_cli.models as models_mod
 
         # The picker keys the cache on the pre-/v1 root (get_pricing_for_provider
         # strips a trailing /v1 before fetch_models_with_pricing).
@@ -378,7 +378,7 @@ class TestIsFreeTierModel:
 
     def test_cache_miss_is_not_free_and_no_fetch(self, monkeypatch):
         from agent.credits_tracker import is_free_tier_model
-        import hermes_cli.models as models_mod
+        import openamer_cli.models as models_mod
 
         monkeypatch.setattr(models_mod, "_pricing_cache", {})
 
@@ -392,7 +392,7 @@ class TestIsFreeTierModel:
 
     def test_exception_fails_open_to_false(self, monkeypatch):
         from agent.credits_tracker import is_free_tier_model
-        import hermes_cli.models as models_mod
+        import openamer_cli.models as models_mod
 
         class _Exploding:
             def get(self, *_a, **_kw):

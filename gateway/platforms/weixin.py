@@ -66,7 +66,7 @@ from gateway.platforms.base import (
     cache_document_from_bytes,
     cache_image_from_bytes,
 )
-from hermes_constants import get_hermes_home
+from openamer_constants import get_openamer_home
 from utils import atomic_json_write
 from agent.secret_scope import get_secret
 
@@ -1151,7 +1151,7 @@ class WeixinAdapter(BasePlatformAdapter):
     def __init__(self, config: PlatformConfig):
         super().__init__(config, Platform.WEIXIN)
         extra = config.extra or {}
-        hermes_home = str(get_hermes_home())
+        hermes_home = str(get_openamer_home())
         self._hermes_home = hermes_home
         self._token_store = ContextTokenStore(hermes_home)
         self._typing_cache = TypingTicketCache()
@@ -2302,7 +2302,7 @@ async def send_weixin_direct(
     if not account_id:
         return {"error": "Weixin account ID missing. Configure WEIXIN_ACCOUNT_ID or platforms.weixin.extra.account_id."}
 
-    token_store = ContextTokenStore(str(get_hermes_home()))
+    token_store = ContextTokenStore(str(get_openamer_home()))
     token_store.restore(account_id)
     context_token = token_store.get(account_id, chat_id)
 

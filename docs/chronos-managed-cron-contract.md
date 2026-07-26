@@ -4,7 +4,7 @@
 **Audience:** the NAS-side implementer of the `agent-cron` endpoints
 (`nous-account-service`) and anyone debugging the managed-cron path.
 
-Chronos lets a hosted Hermes gateway **scale to zero** while idle and still
+Chronos lets a hosted OpenAmer gateway **scale to zero** while idle and still
 fire cron jobs. Instead of an in-process 60-second ticker, the agent asks NAS
 to arm exactly **one external one-shot per job at that job's real next-fire
 time**. NAS calls the agent back at fire time over an authenticated webhook;
@@ -40,7 +40,7 @@ agent verifies the NAS JWT → store CAS claim → run_one_job → re-arm next o
 
 | Hop | Who calls whom | Auth mechanism | Verified by |
 |---|---|---|---|
-| 1 | agent → NAS (`provision`/`cancel`/`list`) | the agent's existing **Nous Portal access token** (Bearer) — for a hosted agent this is the **bootstrap-session token** NAS planted in `auth.json` (client `hermes-cli-vps`), NOT an `agent:*` client token | NAS (its normal agent-token path) |
+| 1 | agent → NAS (`provision`/`cancel`/`list`) | the agent's existing **Nous Portal access token** (Bearer) — for a hosted agent this is the **bootstrap-session token** NAS planted in `auth.json` (client `openamer-cli-vps`), NOT an `agent:*` client token | NAS (its normal agent-token path) |
 | 2 | scheduler → NAS (`relay`) | the scheduler's request **signature** | NAS (the signature path it already has) |
 | 3 | NAS → agent (`/api/cron/fire`) | a **short-lived NAS-minted JWT** (`aud=agent:{instance_id}`, `purpose=cron_fire`) | agent (PyJWT against NAS JWKS) |
 
@@ -48,7 +48,7 @@ agent verifies the NAS JWT → store CAS claim → run_one_job → re-arm next o
 > OAuth client credential — that shape is minted only by the interactive dashboard
 > auth-code grant (a browser user). For all of its own outbound portal calls the
 > agent uses the **bootstrap-session access token** (`resolve_nous_access_token`),
-> minted under the bootstrap-only client `hermes-cli-vps` and seeded into the
+> minted under the bootstrap-only client `openamer-cli-vps` and seeded into the
 > container on first boot. NAS therefore must resolve the calling agent's instance
 > id from EITHER an `agent:{id}` client (self-hosted/dashboard callers) OR — for the
 > bootstrap token — from `AgentInstance.bootstrapSessionId` matching the token's
@@ -127,7 +127,7 @@ Arm (or re-arm, idempotently) exactly one one-shot for a job.
 ## Inbound `POST /api/cron/fire`  (NAS → agent) — agent side, already implemented
 
 This is the agent endpoint NAS calls in Endpoint 3 step 3. Served by the
-**dashboard app** (`hermes_cli/web_server.py`) — the agent's always-reachable
+**dashboard app** (`openamer_cli/web_server.py`) — the agent's always-reachable
 public HTTP surface on hosted deployments (the gateway may be idle/scaled down);
 it is in `PUBLIC_API_PATHS` so the dashboard cookie gate lets the bearer-JWT
 callback through to the verifier. (Also registered on the optional

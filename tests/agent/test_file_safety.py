@@ -80,7 +80,7 @@ class TestEnvFileReadBlocking:
             assert error is None, f"{path} should be allowed"
 
     def test_allowed_hermes_env(self):
-        """Hermes' own .env inside HERMES_HOME is NOT blocked by this rule
+        """Hermes' own .env inside OPENAMER_HOME is NOT blocked by this rule
         (it's handled by other mechanisms). Only project-local .env is blocked."""
         # Note: hermes internal .env is in ~/.hermes/.env which is NOT a project-local
         # path, but the basename check applies to ANY .env. This is intentional —
@@ -135,7 +135,7 @@ class TestCombinedGuards:
     """Both guards should work independently without interference."""
 
     def test_env_guard_works_regardless_of_hermes_home(self, tmp_path):
-        """The env basename guard does not depend on HERMES_HOME resolution."""
+        """The env basename guard does not depend on OPENAMER_HOME resolution."""
         hermes_home = tmp_path / ".hermes"
         hermes_home.mkdir()
 

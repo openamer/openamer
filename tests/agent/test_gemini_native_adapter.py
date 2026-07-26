@@ -546,5 +546,5 @@ def test_hermes_version_is_valid():
     assert isinstance(_HERMES_VERSION, str)
     assert len(_HERMES_VERSION) > 0
     assert _HERMES_VERSION != "0.0.0", (
-        "Version should resolve from hermes_cli.__version__, not the fallback"
+        "Version should resolve from openamer_cli.__version__, not the fallback"
     )

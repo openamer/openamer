@@ -176,7 +176,7 @@ def _reinstall_sidecar_deps() -> None:
         return
     # Windows: suppress the console flash these short-lived npm runs would
     # otherwise pop (0 elsewhere). Same helper as the sidecar spawn below.
-    from hermes_cli._subprocess_compat import windows_hide_flags
+    from openamer_cli._subprocess_compat import windows_hide_flags
 
     try:
         result = subprocess.run(  # noqa: S603
@@ -952,7 +952,7 @@ class PhotonAdapter(BasePlatformAdapter):
 
         # Windows: hide the child console (0 elsewhere). Same helper the
         # discord/whatsapp adapters use for their sidecar spawns.
-        from hermes_cli._subprocess_compat import windows_hide_flags
+        from openamer_cli._subprocess_compat import windows_hide_flags
 
         try:
             patch = subprocess.run(  # noqa: S603

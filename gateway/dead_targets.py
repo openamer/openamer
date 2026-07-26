@@ -16,7 +16,7 @@ self-heal that by retrying without ``reply_to`` (see the Telegram adapter's
 reply-target-deleted path), and a deleted topic does not mean the parent chat is
 dead.
 
-The store is a small JSON file under the active profile's HERMES_HOME so each
+The store is a small JSON file under the active profile's OPENAMER_HOME so each
 profile keeps its own dead set.  Reads/writes are best-effort: a corrupt or
 unwritable file degrades to an in-memory-only registry rather than raising on
 the delivery path.
@@ -31,7 +31,7 @@ import time
 from pathlib import Path
 from typing import Dict, Optional
 
-from hermes_cli.config import get_hermes_home
+from openamer_cli.config import get_hermes_home
 
 logger = logging.getLogger(__name__)
 
@@ -59,7 +59,7 @@ class DeadTargetRegistry:
         if path is not None:
             self._path = path
         else:
-            self._path = get_hermes_home() / "gateway" / "dead_targets.json"
+            self._path = get_openamer_home() / "gateway" / "dead_targets.json"
         self._load()
 
     # -- persistence -------------------------------------------------------

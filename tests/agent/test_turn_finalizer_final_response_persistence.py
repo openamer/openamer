@@ -83,7 +83,7 @@ class FakeAgent:
 
 def test_finalizer_restores_clean_api_local_text_before_return(monkeypatch):
     """One-shot CLI notes do not replay through same-process history."""
-    monkeypatch.setattr("hermes_cli.plugins.invoke_hook", lambda *_a, **_kw: [])
+    monkeypatch.setattr("openamer_cli.plugins.invoke_hook", lambda *_a, **_kw: [])
     agent = FakeAgent()
     messages = [
         {"role": "user", "content": "[MODEL SWITCH NOTE]\n\nclean prompt"},
@@ -116,7 +116,7 @@ def test_finalizer_restores_clean_api_local_text_before_return(monkeypatch):
 
 def test_finalizer_restores_clean_api_local_multimodal_before_return(monkeypatch):
     """A queued note does not remain in the next-turn native image payload."""
-    monkeypatch.setattr("hermes_cli.plugins.invoke_hook", lambda *_a, **_kw: [])
+    monkeypatch.setattr("openamer_cli.plugins.invoke_hook", lambda *_a, **_kw: [])
     agent = FakeAgent()
     clean_content = [
         {"type": "text", "text": "Describe the image"},
@@ -163,7 +163,7 @@ def test_final_response_closes_tool_tail_before_persistence(monkeypatch):
     way, the next turn reloads a stale/malformed history and can appear to loop
     because the assistant's visible final answer is missing from durable state.
     """
-    monkeypatch.setattr("hermes_cli.plugins.invoke_hook", lambda *_a, **_kw: [])
+    monkeypatch.setattr("openamer_cli.plugins.invoke_hook", lambda *_a, **_kw: [])
     agent = FakeAgent()
     messages = [
         {"role": "user", "content": "do it"},

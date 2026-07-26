@@ -42,9 +42,9 @@ import { rootChildSide } from './renderer/track-model'
 
 // v2: v1 trees were saved against placeholder panes with index-order zone
 // assignment (chat could land in a corner cell). Retire them wholesale.
-const STORAGE_KEY = 'hermes.desktop.layoutTree.v2'
+const STORAGE_KEY = 'openamer.desktop.layoutTree.v2'
 
-writeKey('hermes.desktop.layoutTree.v1', null)
+writeKey('openamer.desktop.layoutTree.v1', null)
 
 let defaultTree: LayoutNode | null = null
 
@@ -75,11 +75,11 @@ export const $layoutTree = atom<LayoutNode | null>(isSecondaryWindow() ? null : 
  * Which layout preset the current tree came from; `'custom'` after the user
  * rearranges anything. Drives the picker's active highlight.
  */
-export const $activePresetId = atom<string>(readKey('hermes.desktop.layoutPreset.active') ?? 'default')
+export const $activePresetId = atom<string>(readKey('openamer.desktop.layoutPreset.active') ?? 'default')
 
 export function markActivePreset(id: string) {
   $activePresetId.set(id)
-  writeKey('hermes.desktop.layoutPreset.active', id)
+  writeKey('openamer.desktop.layoutPreset.active', id)
 }
 
 /** Pane id being dragged (tree drag session), null when idle. Also set to the
@@ -174,7 +174,7 @@ function frontPaneInGroup(paneId: string) {
  *    from the tree and remembered so adoption doesn't re-add it. Reveal
  *    intent (a preview target, ⌘G) or a layout reset un-dismisses.
  */
-const DISMISSED_KEY = 'hermes.desktop.dismissedPanes.v1'
+const DISMISSED_KEY = 'openamer.desktop.dismissedPanes.v1'
 
 function loadDismissed(): ReadonlySet<string> {
   return new Set(readJson<string[]>(DISMISSED_KEY) ?? [])
@@ -898,7 +898,7 @@ function commit(next: LayoutNode | null) {
 // Presets and resets hand placement back to the app.
 // ---------------------------------------------------------------------------
 
-const USER_PLACED_KEY = 'hermes.desktop.userPlacedPanes.v1'
+const USER_PLACED_KEY = 'openamer.desktop.userPlacedPanes.v1'
 
 export const $userPlacedPanes = atom<ReadonlySet<string>>(new Set(readJson<string[]>(USER_PLACED_KEY) ?? []))
 

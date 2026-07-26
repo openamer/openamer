@@ -6,7 +6,7 @@ The Hermes agent orchestrates scanning and opt-out submission with native tools
 deterministic state: config, dossiers + consent, the broker DB, tier planning,
 the ledger + audit log, draft/template rendering, and reports.
 
-Run it through the `terminal` tool (it can read PII files under HERMES_HOME);
+Run it through the `terminal` tool (it can read PII files under OPENAMER_HOME);
 do NOT run it through `execute_code` (that sandbox scrubs env and redacts output).
 
 Examples:
@@ -60,7 +60,7 @@ def _require_subject(subject_id: str) -> dict:
 def cmd_setup(args) -> None:
     if getattr(args, "auto", False):
         # Autonomous path: detect capabilities and pick the most autonomous valid config without
-        # asking anyone. Read creds from $HERMES_HOME/.env too (the terminal shell doesn't export
+        # asking anyone. Read creds from $OPENAMER_HOME/.env too (the terminal shell doesn't export
         # them). Explicit flags still win below.
         cfg = config_mod.auto_configure(env=config_mod.dotenv_env())
     else:
@@ -125,7 +125,7 @@ def cmd_doctor(args) -> None:
     import platform
 
     cfg = config_mod.load_config()
-    caps = config_mod.detect_capabilities(config_mod.dotenv_env())  # see creds in $HERMES_HOME/.env too
+    caps = config_mod.detect_capabilities(config_mod.dotenv_env())  # see creds in $OPENAMER_HOME/.env too
     data = paths_mod.data_dir()
     writable = _check_writable(data)
     curated = len(brokers_mod._load_curated())
@@ -164,7 +164,7 @@ def cmd_doctor(args) -> None:
              "encrypts dossiers + ledgers on disk")
     if engaged:
         L.append(f"        key: {crypto.identity_path()} (0600) - guards casual/backup/commit "
-                 "exposure, NOT a full-HERMES_HOME read")
+                 "exposure, NOT a full-OPENAMER_HOME read")
     elif cfg["encryption"] == "age":
         L.append("        WARNING: encryption=age is SET but NOT engaged (age binary or key missing);"
                  " dossiers would be PLAINTEXT")
@@ -200,7 +200,7 @@ def cmd_doctor(args) -> None:
                      "and is itself Cloudflare/DataDome-gated on session-bound gates (e.g. PeopleConnect). "
                      "For Phase-2 email/verify, launch the operator's Chrome over CDP: `pdd.py cdp`.")
     if not crypto.is_engaged():
-        L.append("  Storage: dossiers are PLAINTEXT JSON (0600 under HERMES_HOME). "
+        L.append("  Storage: dossiers are PLAINTEXT JSON (0600 under OPENAMER_HOME). "
                  "Run `setup --encryption age` for at-rest encryption.")
     if not live:
         L.append("  Next: run `refresh-brokers` to load the full broker list.")
@@ -752,7 +752,7 @@ def build_parser() -> argparse.ArgumentParser:
                        help="launch/detect the operator's Chrome over CDP (Phase-2 browser + webmail)")
     s.add_argument("--port", type=int, default=cdp.DEFAULT_PORT, help="remote debugging port (default 9222)")
     s.add_argument("--profile",
-                   help="user-data-dir (default: $HERMES_HOME/chrome-debug, a dedicated debug profile)")
+                   help="user-data-dir (default: $OPENAMER_HOME/chrome-debug, a dedicated debug profile)")
     s.add_argument("--browser", help="path to (or PATH name of) a Chrome/Chromium/Brave/Edge binary")
     s.add_argument("--check", action="store_true",
                    help="only report whether a debug browser is live; do not launch")

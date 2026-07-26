@@ -150,7 +150,7 @@ async def test_known_slash_command_not_flagged_as_unknown(monkeypatch):
 async def test_egress_slash_command_reports_proxy_status(monkeypatch):
     runner = _make_runner()
     monkeypatch.setattr(
-        "hermes_cli.proxy_cli.format_status_text",
+        "openamer_cli.proxy_cli.format_status_text",
         lambda: "Egress proxy status\nEnabled: no",
     )
 
@@ -166,7 +166,7 @@ async def test_egress_slash_command_reports_proxy_status_while_agent_running(mon
     runner = _make_runner()
     runner._running_agents[build_session_key(_make_source())] = MagicMock()
     monkeypatch.setattr(
-        "hermes_cli.proxy_cli.format_status_text",
+        "openamer_cli.proxy_cli.format_status_text",
         lambda: "Egress proxy status\nEnabled: yes",
     )
 
@@ -334,7 +334,7 @@ async def test_command_hook_fires_for_plugin_registered_command(monkeypatch):
         gateway_run, "_resolve_runtime_agent_kwargs", lambda: {"api_key": "***"}
     )
     # Stub plugin command lookup so is_gateway_known_command() recognizes /metricas.
-    from hermes_cli import plugins as _plugins_mod
+    from openamer_cli import plugins as _plugins_mod
 
     monkeypatch.setattr(
         _plugins_mod,
@@ -382,7 +382,7 @@ async def test_command_hook_rewrite_routes_to_plugin(monkeypatch):
     monkeypatch.setattr(
         gateway_run, "_resolve_runtime_agent_kwargs", lambda: {"api_key": "***"}
     )
-    from hermes_cli import plugins as _plugins_mod
+    from openamer_cli import plugins as _plugins_mod
 
     monkeypatch.setattr(
         _plugins_mod,

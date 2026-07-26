@@ -175,7 +175,7 @@ export function useMicRecorder(copy: MicRecorderErrorCopy): {
       throw new Error(copy.microphoneUnsupported)
     }
 
-    const permitted = await window.hermesDesktop?.requestMicrophoneAccess?.()
+    const permitted = await window.openamerDesktop?.requestMicrophoneAccess?.()
 
     if (permitted === false) {
       throw new Error(copy.microphoneAccessDenied)

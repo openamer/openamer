@@ -1,22 +1,22 @@
 ---
 sidebar_position: 3
 title: '学习路径'
-description: '根据您的经验水平和目标，选择适合您的 Hermes Agent 文档学习路径。'
+description: '根据您的经验水平和目标，选择适合您的 OpenAmer Agent 文档学习路径。'
 ---
 
 # 学习路径
 
-Hermes Agent 功能丰富——CLI 助手、Telegram/Discord 机器人、任务自动化、强化学习训练等。本页帮助您根据自身经验水平和目标，确定从哪里开始、阅读哪些内容。
+OpenAmer Agent 功能丰富——CLI 助手、Telegram/Discord 机器人、任务自动化、强化学习训练等。本页帮助您根据自身经验水平和目标，确定从哪里开始、阅读哪些内容。
 
 :::tip 从这里开始
-如果您尚未安装 Hermes Agent，请先阅读[安装指南](/getting-started/installation)，然后完成[快速入门](/getting-started/quickstart)。以下内容均假设您已完成安装。
+如果您尚未安装 OpenAmer Agent，请先阅读[安装指南](/getting-started/installation)，然后完成[快速入门](/getting-started/quickstart)。以下内容均假设您已完成安装。
 :::
 
 ## 如何使用本页
 
 - **已知自己的水平？** 跳转至[按经验水平](#by-experience-level)表格，按照对应层级的阅读顺序进行。
 - **有明确目标？** 跳至[按使用场景](#by-use-case)，找到匹配的场景。
-- **随便浏览？** 查看[主要功能](#key-features-at-a-glance)表格，快速了解 Hermes Agent 的全部能力。
+- **随便浏览？** 查看[主要功能](#key-features-at-a-glance)表格，快速了解 OpenAmer Agent 的全部能力。
 
 ## 按经验水平
 
@@ -32,7 +32,7 @@ Hermes Agent 功能丰富——CLI 助手、Telegram/Discord 机器人、任务�
 
 ### "我想要一个 CLI 编程助手"
 
-将 Hermes Agent 用作交互式终端助手，用于编写、审查和运行代码。
+将 OpenAmer Agent 用作交互式终端助手，用于编写、审查和运行代码。
 
 1. [安装](/getting-started/installation)
 2. [快速入门](/getting-started/quickstart)
@@ -42,12 +42,12 @@ Hermes Agent 功能丰富——CLI 助手、Telegram/Discord 机器人、任务�
 6. [技巧与窍门](/guides/tips)
 
 :::tip
-通过上下文文件将文件直接传入对话。Hermes Agent 可以读取、编辑并运行您项目中的代码。
+通过上下文文件将文件直接传入对话。OpenAmer Agent 可以读取、编辑并运行您项目中的代码。
 :::
 
 ### "我想要一个 Telegram/Discord 机器人"
 
-将 Hermes Agent 部署为您常用消息平台上的机器人。
+将 OpenAmer Agent 部署为您常用消息平台上的机器人。
 
 1. [安装](/getting-started/installation)
 2. [配置](/user-guide/configuration)
@@ -55,7 +55,7 @@ Hermes Agent 功能丰富——CLI 助手、Telegram/Discord 机器人、任务�
 4. [Telegram 配置](/user-guide/messaging/telegram)
 5. [Discord 配置](/user-guide/messaging/discord)
 6. [语音模式](/user-guide/features/voice-mode)
-7. [在 Hermes 中使用语音模式](/guides/use-voice-mode-with-hermes)
+7. [在 OpenAmer 中使用语音模式](/guides/use-voice-mode-with-openamer)
 8. [安全](/user-guide/security)
 
 完整项目示例请参阅：
@@ -73,15 +73,15 @@ Hermes Agent 功能丰富——CLI 助手、Telegram/Discord 机器人、任务�
 5. [Hooks](/user-guide/features/hooks)
 
 :::tip
-Cron 任务让 Hermes Agent 按计划执行任务——每日摘要、定期检查、自动报告——无需您在场。
+Cron 任务让 OpenAmer Agent 按计划执行任务——每日摘要、定期检查、自动报告——无需您在场。
 :::
 
 ### "我想构建自定义工具/技能"
 
-通过自定义工具和可复用技能包扩展 Hermes Agent。
+通过自定义工具和可复用技能包扩展 OpenAmer Agent。
 
 1. [插件](/user-guide/features/plugins)
-2. [构建 Hermes 插件](/developer-guide/plugins)
+2. [构建 OpenAmer 插件](/developer-guide/plugins)
 3. [工具概览](/user-guide/features/tools)
 4. [技能概览](/user-guide/features/skills)
 5. [MCP（模型上下文协议）](/user-guide/features/mcp)
@@ -90,12 +90,12 @@ Cron 任务让 Hermes Agent 按计划执行任务——每日摘要、定期检�
 8. [创建技能](/developer-guide/creating-skills)
 
 :::tip
-对于大多数自定义工具的创建，建议从插件开始。[添加工具](/developer-guide/adding-tools)页面面向 Hermes 核心内置开发，而非常规用户/自定义工具路径。
+对于大多数自定义工具的创建，建议从插件开始。[添加工具](/developer-guide/adding-tools)页面面向 OpenAmer 核心内置开发，而非常规用户/自定义工具路径。
 :::
 
 ### "我想训练模型"
 
-使用强化学习（RL）通过 Hermes Agent 内置的 RL 训练流水线对模型行为进行微调。
+使用强化学习（RL）通过 OpenAmer Agent 内置的 RL 训练流水线对模型行为进行微调。
 
 1. [快速入门](/getting-started/quickstart)
 2. [配置](/user-guide/configuration)
@@ -104,12 +104,12 @@ Cron 任务让 Hermes Agent 按计划执行任务——每日摘要、定期检�
 5. [架构](/developer-guide/architecture)
 
 :::tip
-强化学习训练在您已了解 Hermes Agent 如何处理对话和工具调用的基础上效果最佳。如果您是新手，请先完成初级路径。
+强化学习训练在您已了解 OpenAmer Agent 如何处理对话和工具调用的基础上效果最佳。如果您是新手，请先完成初级路径。
 :::
 
 ### "我想将其作为 Python 库使用"
 
-以编程方式将 Hermes Agent 集成到您自己的 Python 应用中。
+以编程方式将 OpenAmer Agent 集成到您自己的 Python 应用中。
 
 1. [安装](/getting-started/installation)
 2. [快速入门](/getting-started/quickstart)
@@ -131,7 +131,7 @@ Cron 任务让 Hermes Agent 按计划执行任务——每日摘要、定期检�
 | **MCP** | 通过模型上下文协议连接外部工具服务器 | [MCP](/user-guide/features/mcp) |
 | **Cron** | 调度周期性 agent 任务 | [Cron](/user-guide/features/cron) |
 | **委派** | 生成子 agent 以并行处理工作 | [委派](/user-guide/features/delegation) |
-| **代码执行** | 运行以编程方式调用 Hermes 工具的 Python 脚本 | [代码执行](/user-guide/features/code-execution) |
+| **代码执行** | 运行以编程方式调用 OpenAmer 工具的 Python 脚本 | [代码执行](/user-guide/features/code-execution) |
 | **浏览器** | 网页浏览与抓取 | [浏览器](/user-guide/features/browser) |
 | **Hooks** | 事件驱动的回调与中间件 | [Hooks](/user-guide/features/hooks) |
 | **批处理** | 批量处理多个输入 | [批处理](/user-guide/features/batch-processing) |

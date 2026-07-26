@@ -39,7 +39,7 @@ class TestRecoverTerminalAfterInterrupt:
     def test_drains_stdin_then_redraws(self, bare_cli):
         """Happy path: flush_stdin runs, then a full redraw is forced."""
         bare_cli._force_full_redraw = MagicMock()
-        with patch("hermes_cli.curses_ui.flush_stdin") as mock_flush:
+        with patch("openamer_cli.curses_ui.flush_stdin") as mock_flush:
             bare_cli._recover_terminal_after_interrupt()
 
         mock_flush.assert_called_once()
@@ -53,7 +53,7 @@ class TestRecoverTerminalAfterInterrupt:
         """
         bare_cli._force_full_redraw = MagicMock()
         with patch(
-            "hermes_cli.curses_ui.flush_stdin", side_effect=OSError("no tty")
+            "openamer_cli.curses_ui.flush_stdin", side_effect=OSError("no tty")
         ):
             bare_cli._recover_terminal_after_interrupt()  # must not raise
 
@@ -66,7 +66,7 @@ class TestRecoverTerminalAfterInterrupt:
             side_effect=lambda: events.append("redraw")
         )
         with patch(
-            "hermes_cli.curses_ui.flush_stdin",
+            "openamer_cli.curses_ui.flush_stdin",
             side_effect=lambda: events.append("flush"),
         ):
             bare_cli._recover_terminal_after_interrupt()
@@ -79,7 +79,7 @@ class TestRecoverTerminalAfterInterrupt:
         Under pytest stdin is not a TTY, so this must return cleanly without
         touching termios.
         """
-        from hermes_cli.curses_ui import flush_stdin
+        from openamer_cli.curses_ui import flush_stdin
 
         flush_stdin()  # must not raise in a non-TTY test environment
 

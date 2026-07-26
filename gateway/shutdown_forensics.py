@@ -168,7 +168,7 @@ def snapshot_shutdown_context(received_signal: Any = None) -> Dict[str, Any]:
     # _PLANNED_STOP_MARKER_FILENAME); we use string literals here so the
     # signal-handler path stays import-light.
     try:
-        hermes_home_str = os.environ.get("HERMES_HOME")
+        hermes_home_str = os.environ.get("OPENAMER_HOME")
         if hermes_home_str:
             takeover_path = Path(hermes_home_str) / ".gateway-takeover.json"
             if takeover_path.exists():
@@ -394,7 +394,7 @@ def check_systemd_timing_alignment(drain_timeout: float) -> Optional[Dict[str, A
     timeout_stop_sec = timeout_us / 1_000_000.0
     # systemd needs headroom for: post-interrupt kill, adapter disconnect,
     # SessionDB close, file unlinks, etc.  30s matches the unit-template
-    # constant in hermes_cli/gateway.py.
+    # constant in openamer_cli/gateway.py.
     headroom = 30.0
     expected = drain_timeout + headroom
     return {

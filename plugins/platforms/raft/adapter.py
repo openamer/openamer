@@ -788,7 +788,7 @@ def interactive_setup() -> None:
     and test contexts. The flow persists ``RAFT_PROFILE`` to the Hermes env
     file so the Raft adapter auto-enables after a gateway restart.
     """
-    from hermes_cli.cli_output import (
+    from openamer_cli.cli_output import (
         print_header,
         print_info,
         print_success,
@@ -796,7 +796,7 @@ def interactive_setup() -> None:
         prompt,
         prompt_yes_no,
     )
-    from hermes_cli.config import get_env_value, save_env_value
+    from openamer_cli.config import get_env_value, save_env_value
 
     print_header("Raft")
     existing_profile = get_env_value("RAFT_PROFILE")

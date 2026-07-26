@@ -1,6 +1,6 @@
 """On-disk pet store — install / list / resolve pets.
 
-Pets live under ``get_hermes_home()/pets/<slug>/`` so every profile gets its
+Pets live under ``get_openamer_home()/pets/<slug>/`` so every profile gets its
 own set (we deliberately do **not** reuse petdex's ``~/.codex/pets`` default —
 that's owned by the petdex npm CLI and isn't profile-aware).  Each installed
 pet directory holds:
@@ -22,7 +22,7 @@ import re
 from dataclasses import dataclass
 from pathlib import Path
 
-from hermes_constants import get_hermes_home
+from openamer_constants import get_openamer_home
 
 logger = logging.getLogger(__name__)
 
@@ -55,7 +55,7 @@ class InstalledPet:
 
 def pets_dir() -> Path:
     """Return the profile-scoped pets directory (created on demand)."""
-    path = get_hermes_home() / "pets"
+    path = get_openamer_home() / "pets"
     path.mkdir(parents=True, exist_ok=True)
     return path
 

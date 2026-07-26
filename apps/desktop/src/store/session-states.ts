@@ -294,8 +294,8 @@ export interface SessionTile {
 // (and drops runtime bindings so each tile re-resumes against the now-current
 // gateway — which also settles the "tile resumes against the wrong backend" and
 // "stale runtime after respawn" bugs by construction).
-const TILES_KEY = 'hermes.desktop.sessionTiles.v2'
-const LEGACY_TILES_KEY = 'hermes.desktop.sessionTiles.v1'
+const TILES_KEY = 'openamer.desktop.sessionTiles.v2'
+const LEGACY_TILES_KEY = 'openamer.desktop.sessionTiles.v1'
 const TILE_PANE_PREFIX = 'session-tile:'
 
 /** Persisted placement — `dir` + strip slot (`before`) + dock `anchor` so a

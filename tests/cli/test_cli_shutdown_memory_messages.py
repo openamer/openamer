@@ -22,7 +22,7 @@ from typing import Any
 from unittest.mock import MagicMock, patch
 
 
-@patch("hermes_cli.plugins.invoke_hook")
+@patch("openamer_cli.plugins.invoke_hook")
 def test_cleanup_forwards_session_messages(mock_invoke_hook):
     """_run_cleanup forwards a populated ``_session_messages`` list."""
     import cli as cli_mod
@@ -47,7 +47,7 @@ def test_cleanup_forwards_session_messages(mock_invoke_hook):
     agent.shutdown_memory_provider.assert_called_once_with(transcript)
 
 
-@patch("hermes_cli.plugins.invoke_hook")
+@patch("openamer_cli.plugins.invoke_hook")
 def test_cleanup_empty_list_still_forwarded(mock_invoke_hook):
     """An agent that initialised but ran no turns has an empty list.
     Forwarding it (rather than falling through) matches the gateway-side
@@ -69,7 +69,7 @@ def test_cleanup_empty_list_still_forwarded(mock_invoke_hook):
     agent.shutdown_memory_provider.assert_called_once_with([])
 
 
-@patch("hermes_cli.plugins.invoke_hook")
+@patch("openamer_cli.plugins.invoke_hook")
 def test_cleanup_non_list_attribute_falls_back_to_no_arg(mock_invoke_hook):
     """A MagicMock agent auto-synthesises ``_session_messages`` as a
     nested MagicMock. ``isinstance(mock, list)`` is False, so we fall
@@ -93,7 +93,7 @@ def test_cleanup_non_list_attribute_falls_back_to_no_arg(mock_invoke_hook):
     agent.shutdown_memory_provider.assert_called_once_with()
 
 
-@patch("hermes_cli.plugins.invoke_hook")
+@patch("openamer_cli.plugins.invoke_hook")
 def test_cleanup_provider_exception_is_swallowed(mock_invoke_hook):
     """A raising ``shutdown_memory_provider`` must not crash CLI exit."""
     import cli as cli_mod
@@ -224,10 +224,10 @@ def test_cli_close_persist_real_db_survives_history_alias(tmp_path, monkeypatch)
     every message as already durable and write zero rows.  The close safety-net
     should use marker-based dedup instead.
     """
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path / ".hermes"))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".hermes"))
 
     import cli as cli_mod
-    from hermes_state import SessionDB
+    from openamer_state import SessionDB
 
     db = SessionDB(db_path=tmp_path / "state.db")
     session_id = "cli-close-alias"
@@ -260,10 +260,10 @@ def test_cli_close_preflush_resumed_prefix_is_not_duplicated(tmp_path, monkeypat
     The pause is after ``_persist_session`` records its live snapshot but before
     its normal DB flush. The close helper must retain the distinct CLI baseline.
     """
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path / ".hermes"))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".hermes"))
 
     import cli as cli_mod
-    from hermes_state import SessionDB
+    from openamer_state import SessionDB
 
     db = SessionDB(db_path=tmp_path / "state.db")
     session_id = "cli-close-preflush-resume"
@@ -349,10 +349,10 @@ def test_cli_close_preflush_resumed_prefix_is_not_duplicated(tmp_path, monkeypat
 
 def test_cli_close_preserves_unflushed_tail_after_prior_prefix_flush(tmp_path, monkeypatch):
     """Marker-only alias close writes only a new tail after a prior flush."""
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path / ".hermes"))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".hermes"))
 
     import cli as cli_mod
-    from hermes_state import SessionDB
+    from openamer_state import SessionDB
 
     db = SessionDB(db_path=tmp_path / "state.db")
     session_id = "cli-close-tail"
@@ -383,10 +383,10 @@ def test_cli_close_preserves_unflushed_tail_after_prior_prefix_flush(tmp_path, m
 
 def test_cli_close_hands_staged_user_marker_to_turn_start(tmp_path, monkeypatch):
     """A close before turn setup does not duplicate the CLI-staged user row."""
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path / ".hermes"))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".hermes"))
 
     import cli as cli_mod
-    from hermes_state import SessionDB
+    from openamer_state import SessionDB
 
     db = SessionDB(db_path=tmp_path / "state.db")
     session_id = "cli-close-staged-user"
@@ -453,10 +453,10 @@ def test_cli_chat_staging_does_not_mutate_live_agent_snapshot():
 
 def test_cli_close_persists_pending_user_when_agent_snapshot_is_empty(tmp_path, monkeypatch):
     """Close before worker startup persists only the CLI-staged user input."""
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path / ".hermes"))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".hermes"))
 
     import cli as cli_mod
-    from hermes_state import SessionDB
+    from openamer_state import SessionDB
 
     db = SessionDB(db_path=tmp_path / "state.db")
     session_id = "cli-close-before-worker"
@@ -494,10 +494,10 @@ def test_cli_close_persists_pending_user_when_agent_snapshot_is_empty(tmp_path, 
 
 def test_cli_close_uses_clean_override_for_shortened_pending_snapshot(tmp_path, monkeypatch):
     """Close retains the clean user text when its snapshot omits the prefix."""
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path / ".hermes"))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".hermes"))
 
     import cli as cli_mod
-    from hermes_state import SessionDB
+    from openamer_state import SessionDB
 
     db = SessionDB(db_path=tmp_path / "state.db")
     session_id = "cli-close-shortened-noted-pending"
@@ -539,10 +539,10 @@ def test_cli_close_uses_clean_override_for_shortened_pending_snapshot(tmp_path, 
 
 def test_cli_close_preserves_clean_staged_user_across_noted_worker_turn(tmp_path, monkeypatch):
     """A noted API-only turn reuses the close-marked clean staged user row."""
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path / ".hermes"))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".hermes"))
 
     import cli as cli_mod
-    from hermes_state import SessionDB
+    from openamer_state import SessionDB
 
     db = SessionDB(db_path=tmp_path / "state.db")
     session_id = "cli-close-noted-staged-user"
@@ -631,11 +631,11 @@ def test_cli_close_preserves_clean_staged_user_across_noted_worker_turn(tmp_path
 
 def test_cli_close_builds_prompt_before_creating_first_session_row(tmp_path, monkeypatch):
     """First-turn close persistence must not leave a NULL prompt snapshot."""
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path / ".hermes"))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".hermes"))
 
     import agent.conversation_loop as loop_mod
     import cli as cli_mod
-    from hermes_state import SessionDB
+    from openamer_state import SessionDB
 
     db = SessionDB(db_path=tmp_path / "state.db")
     session_id = "cli-close-first-turn"

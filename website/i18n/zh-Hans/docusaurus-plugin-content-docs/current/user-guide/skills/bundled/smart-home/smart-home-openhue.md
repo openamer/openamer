@@ -25,7 +25,7 @@ description: "通过 OpenHue CLI 控制 Philips Hue 灯光、场景和房间"
 ## 参考：完整 SKILL.md
 
 :::info
-以下是 Hermes 在触发此 skill 时加载的完整 skill 定义。这是 skill 激活时 agent 所看到的指令内容。
+以下是 OpenAmer 在触发此 skill 时加载的完整 skill 定义。这是 skill 激活时 agent 所看到的指令内容。
 :::
 
 # OpenHue CLI
@@ -117,7 +117,7 @@ openhue set room "Living Room" --off
 
 ## 注意事项
 
-- Bridge 必须与运行 Hermes 的机器处于同一本地网络
+- Bridge 必须与运行 OpenAmer 的机器处于同一本地网络
 - 首次运行需要物理按下 Hue Bridge 上的按钮进行授权
 - 颜色功能仅适用于支持彩色的灯泡（不适用于纯白光型号）
 - 灯光和房间名称区分大小写——使用 `openhue get light` 查看确切名称

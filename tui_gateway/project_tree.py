@@ -542,7 +542,7 @@ def build_tree(
     ``git_branch``, ``git_repo_root``, ``started_at``, ``last_active``).
     ``discovered_repos`` are ``{"root", "label", "sessions", "last_active"}``.
     ``is_junk_root`` flags git roots that must never become an AUTO project (the
-    bare home dir, the HERMES_HOME subtree). ``is_junk_cwd`` is the narrower
+    bare home dir, the OPENAMER_HOME subtree). ``is_junk_cwd`` is the narrower
     policy for non-git session folders: selected descendants may be intentional
     workspaces even when their parent tree contains Hermes state. User-created
     projects are honored regardless. ``exists`` reports whether a directory is

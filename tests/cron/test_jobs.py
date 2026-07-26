@@ -1799,14 +1799,14 @@ class TestCronOutputRetention:
     def test_cron_output_keep_reads_config(self, monkeypatch):
         import cron.jobs as jobs
         monkeypatch.setattr(
-            "hermes_cli.config.load_config", lambda: {"cron": {"output_retention": 7}}
+            "openamer_cli.config.load_config", lambda: {"cron": {"output_retention": 7}}
         )
         assert jobs._cron_output_keep() == 7
 
     def test_cron_output_keep_defaults_on_bad_config(self, monkeypatch):
         import cron.jobs as jobs
         monkeypatch.setattr(
-            "hermes_cli.config.load_config", lambda: {"cron": {"output_retention": "oops"}}
+            "openamer_cli.config.load_config", lambda: {"cron": {"output_retention": "oops"}}
         )
         assert jobs._cron_output_keep() == jobs._CRON_OUTPUT_DEFAULT_KEEP
 
@@ -1948,14 +1948,14 @@ class TestClaimDispatch:
 
 
 class TestLateEnvRepointScopesStore:
-    """A HERMES_HOME set AFTER cron.jobs import must scope the store even
+    """A OPENAMER_HOME set AFTER cron.jobs import must scope the store even
     without use_cron_store(): fixtures that patch the environment too late
     previously read/wrote the import-time jobs.json — the user's real file."""
 
     def test_late_env_repoint_scopes_store(self, tmp_path, monkeypatch):
         import cron.jobs as jobs
 
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
         store = jobs._current_cron_store()
         expected = tmp_path.resolve() / "cron"
         assert store.cron_dir == expected
@@ -1967,28 +1967,28 @@ class TestLateEnvRepointScopesStore:
     def test_unchanged_home_returns_import_time_constants(self, monkeypatch):
         import cron.jobs as jobs
 
-        monkeypatch.setenv("HERMES_HOME", str(jobs.HERMES_DIR))
+        monkeypatch.setenv("OPENAMER_HOME", str(jobs.HERMES_DIR))
         store = jobs._current_cron_store()
         assert store.jobs_file is jobs.JOBS_FILE
 
     def test_use_cron_store_override_still_wins(self, tmp_path, monkeypatch):
         import cron.jobs as jobs
 
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path / "env-home"))
+        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / "env-home"))
         with jobs.use_cron_store(tmp_path / "override-home"):
             store = jobs._current_cron_store()
             assert store.jobs_file == (tmp_path / "override-home").resolve() / "cron" / "jobs.json"
 
     def test_patched_compatibility_constants_beat_env(self, tmp_path, monkeypatch):
         """Deliberately re-pointed module constants are the documented
-        process-wide escape hatch — they win over a repointed HERMES_HOME."""
+        process-wide escape hatch — they win over a repointed OPENAMER_HOME."""
         import cron.jobs as jobs
 
         patched_dir = tmp_path / "patched-cron"
         monkeypatch.setattr(jobs, "CRON_DIR", patched_dir)
         monkeypatch.setattr(jobs, "JOBS_FILE", patched_dir / "jobs.json")
         monkeypatch.setattr(jobs, "OUTPUT_DIR", patched_dir / "output")
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path / "env-home"))
+        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / "env-home"))
         store = jobs._current_cron_store()
         assert store.jobs_file == patched_dir / "jobs.json"
 
@@ -1996,7 +1996,7 @@ class TestLateEnvRepointScopesStore:
         self, tmp_path, monkeypatch
     ):
         """The public API, not the store internals: save_jobs()/load_jobs()
-        called after a post-import HERMES_HOME repoint must operate on the NEW
+        called after a post-import OPENAMER_HOME repoint must operate on the NEW
         home's jobs.json and leave the import-time file byte-identical.
 
         The "import-time home" is SIMULATED at a tmp location by patching the
@@ -2027,7 +2027,7 @@ class TestLateEnvRepointScopesStore:
         old_file.write_text(sentinel, encoding="utf-8")
 
         new_home = tmp_path / "late-home"
-        monkeypatch.setenv("HERMES_HOME", str(new_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(new_home))
 
         job = {
             "id": "lateenvjob01",

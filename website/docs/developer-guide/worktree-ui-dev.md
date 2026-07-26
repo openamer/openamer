@@ -6,7 +6,7 @@ description: "Run the Ink TUI and Electron desktop app from a git worktree witho
 
 # TUI & Desktop from Worktrees
 
-The Python core runs fine from any [git worktree](../user-guide/git-worktrees.md) — `cd` in and `hermes` just works. The two TypeScript surfaces do not: `ui-tui/` and `apps/desktop/` each need a populated `node_modules`, and a fresh `npm ci` per worktree is slow and duplicates gigabytes across every branch you have checked out.
+The Python core runs fine from any [git worktree](../user-guide/git-worktrees.md) — `cd` in and `openamer` just works. The two TypeScript surfaces do not: `ui-tui/` and `apps/desktop/` each need a populated `node_modules`, and a fresh `npm ci` per worktree is slow and duplicates gigabytes across every branch you have checked out.
 
 `htui` and `hgui` are two shell helpers that close that gap. Each launches its surface **from the current worktree** while borrowing `node_modules` from one canonical checkout — so a throwaway branch costs a symlink, not an install.
 
@@ -32,25 +32,25 @@ Two env vars name the canonical checkout:
 | `HERMES_MAIN_CHECKOUT` | The deps checkout — where `node_modules` really lives, and whose `.venv/bin/python` runs the backend. |
 | `HERMES_GUI_DEPS_CHECKOUT` | Where the desktop deps (`apps/desktop/node_modules`) live. Defaults to `HERMES_MAIN_CHECKOUT`; override only if you keep desktop deps elsewhere. |
 
-Neither is read by Hermes itself — they're private to these helpers. The variables Hermes *does* read are covered in [Environment Variables](../reference/environment-variables.md).
+Neither is read by OpenAmer itself — they're private to these helpers. The variables OpenAmer *does* read are covered in [Environment Variables](../reference/environment-variables.md).
 
 ## `htui` — TUI from the worktree
 
-The Ink TUI has a dev path already: `hermes --tui --dev` runs the TypeScript sources via `tsx` instead of the prebuilt bundle. `htui` is a one-liner over it that also points the run at the current worktree's `ui-tui/`:
+The Ink TUI has a dev path already: `openamer --tui --dev` runs the TypeScript sources via `tsx` instead of the prebuilt bundle. `htui` is a one-liner over it that also points the run at the current worktree's `ui-tui/`:
 
 ```bash
 htui() {
   local root
-  root="$(_hermes_root)" || { echo "htui: not in a Hermes checkout" >&2; return 1; }
+  root="$(_openamer_root)" || { echo "htui: not in a OpenAmer checkout" >&2; return 1; }
   ( cd "$root" && PYTHONPATH="$root" \
-      "$HERMES_MAIN_CHECKOUT/.venv/bin/python" -m hermes_cli.main --tui --dev "$@" )
+      "$HERMES_MAIN_CHECKOUT/.venv/bin/python" -m openamer_cli.main --tui --dev "$@" )
 }
 ```
 
-`--dev` compiles from source, so it links `ui-tui/node_modules` from `HERMES_MAIN_CHECKOUT` when the root lockfile matches and installs locally otherwise (see [`_hermes_root` / linking helpers](#shared-helpers)).
+`--dev` compiles from source, so it links `ui-tui/node_modules` from `HERMES_MAIN_CHECKOUT` when the root lockfile matches and installs locally otherwise (see [`_openamer_root` / linking helpers](#shared-helpers)).
 
 :::warning `--dev` and `HERMES_TUI_DIR` are mutually exclusive
-`HERMES_TUI_DIR` points Hermes at a *prebuilt* bundle (Nix, system packages), which has no source to hot-reload. If it's set in your shell, `hermes --tui --dev` exits with an error. Run `unset HERMES_TUI_DIR` before `htui`.
+`HERMES_TUI_DIR` points OpenAmer at a *prebuilt* bundle (Nix, system packages), which has no source to hot-reload. If it's set in your shell, `openamer --tui --dev` exits with an error. Run `unset HERMES_TUI_DIR` before `htui`.
 :::
 
 ## `hgui` — desktop app from the worktree
@@ -60,14 +60,14 @@ The desktop app is heavier: it needs `node_modules` at both the repo root and `a
 ```bash
 hgui() {
   local root deps desktop
-  root="$(_hermes_root)" || { echo "hgui: not in a Hermes checkout" >&2; return 1; }
+  root="$(_openamer_root)" || { echo "hgui: not in a OpenAmer checkout" >&2; return 1; }
   deps="${HERMES_GUI_DEPS_CHECKOUT:-$HERMES_MAIN_CHECKOUT}"
   desktop="$root/apps/desktop"
 
   # Borrow deps when locks match; otherwise install locally in the worktree.
   if cmp -s "$root/package-lock.json" "$deps/package-lock.json"; then
-    _hermes_link_deps "$desktop" "$deps/apps/desktop"
-    _hermes_link_deps "$root" "$deps"
+    _openamer_link_deps "$desktop" "$deps/apps/desktop"
+    _openamer_link_deps "$root" "$deps"
   else
     ( cd "$root" && npm ci ) || return 1
   fi
@@ -76,7 +76,7 @@ hgui() {
   lsof -t -i:5174 >/dev/null 2>&1 && killport 5174
 
   # Electron often survives Ctrl+C without reaping its ephemeral backends.
-  trap '_hermes_gui_cleanup "$root"' INT TERM EXIT
+  trap '_openamer_gui_cleanup "$root"' INT TERM EXIT
 
   ( cd "$desktop"
     export PATH="$root/node_modules/.bin:$PATH"
@@ -92,9 +92,9 @@ The desktop env vars it sets are all real backend-resolution knobs:
 
 | Variable | Role in `hgui` |
 |----------|----------------|
-| `HERMES_DESKTOP_HERMES_ROOT` | Runs the backend from **this worktree**, not the packaged/PATH `hermes`. |
+| `HERMES_DESKTOP_HERMES_ROOT` | Runs the backend from **this worktree**, not the packaged/PATH `openamer`. |
 | `HERMES_DESKTOP_PYTHON` | Reuses the deps checkout's venv instead of re-resolving a Python. |
-| `HERMES_DESKTOP_IGNORE_EXISTING` | Ignores any `hermes` on `PATH` so it can't shadow the worktree. |
+| `HERMES_DESKTOP_IGNORE_EXISTING` | Ignores any `openamer` on `PATH` so it can't shadow the worktree. |
 | `HERMES_DESKTOP_CWD` | Opens the desktop chat rooted at the worktree. |
 
 Two footguns `hgui` handles that a bare `npm run dev` does not:
@@ -107,26 +107,26 @@ Two footguns `hgui` handles that a bare `npm run dev` does not:
 Both functions resolve the enclosing checkout and link deps the same way:
 
 ```bash
-# The enclosing worktree, verified as a real Hermes checkout.
-_hermes_root() {
+# The enclosing worktree, verified as a real OpenAmer checkout.
+_openamer_root() {
   local root
   root="$(git rev-parse --show-toplevel 2>/dev/null)" || return 1
-  [[ -f "$root/hermes_cli/main.py" && -d "$root/ui-tui" ]] && print -r "$root"
+  [[ -f "$root/openamer_cli/main.py" && -d "$root/ui-tui" ]] && print -r "$root"
 }
 
 # Symlink node_modules from the deps checkout — never over an existing tree.
-_hermes_link_deps() {
+_openamer_link_deps() {
   local target="${1%/}" source="${2%/}"
   [[ -d "$source/node_modules" ]] || return 1
   [[ -e "$target/node_modules" ]] || ln -s "$source/node_modules" "$target/node_modules"
 }
 
 # Reap ephemeral backends Electron leaves behind on exit.
-_hermes_gui_cleanup() {
+_openamer_gui_cleanup() {
   local root="$1"
   [[ -n "$root" ]] && pkill -TERM -f "${root}/apps/desktop/node_modules/electron" 2>/dev/null
   lsof -t -i:5174 >/dev/null 2>&1 && killport 5174
-  pgrep -f 'hermes_cli\.main.*dashboard.*--port 0' 2>/dev/null | xargs -r kill -TERM 2>/dev/null
+  pgrep -f 'openamer_cli\.main.*dashboard.*--port 0' 2>/dev/null | xargs -r kill -TERM 2>/dev/null
 }
 ```
 
@@ -139,7 +139,7 @@ A symlink to a divergent `node_modules` is worse than no install — the worktre
 ## See also
 
 - [Git Worktrees](../user-guide/git-worktrees.md) — the isolation model these helpers build on
-- [TUI](../user-guide/tui.md) — `hermes --tui --dev` and the `HERMES_TUI_DIR` prebuild path
+- [TUI](../user-guide/tui.md) — `openamer --tui --dev` and the `HERMES_TUI_DIR` prebuild path
 - [Desktop App](../user-guide/desktop.md) — building from source and the backend resolution ladder
-- [`apps/desktop/README.md`](https://github.com/NousResearch/hermes-agent/blob/main/apps/desktop/README.md) — dev server, sandbox script, and packaging
-- [Environment Variables](../reference/environment-variables.md) — every `HERMES_*` variable Hermes reads
+- [`apps/desktop/README.md`](https://github.com/NousResearch/openamer-agent/blob/main/apps/desktop/README.md) — dev server, sandbox script, and packaging
+- [Environment Variables](../reference/environment-variables.md) — every `HERMES_*` variable OpenAmer reads

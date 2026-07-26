@@ -5,7 +5,7 @@ sidebar_position: 16
 
 # 电脑操控（macOS）
 
-Hermes Agent 可以在**后台**驱动你的 Mac 桌面——点击、输入、滚动、拖拽。你的光标不会移动，键盘焦点不会改变，macOS 也不会切换 Spaces。你和 Agent 可以在同一台机器上协同工作。
+OpenAmer Agent 可以在**后台**驱动你的 Mac 桌面——点击、输入、滚动、拖拽。你的光标不会移动，键盘焦点不会改变，macOS 也不会切换 Spaces。你和 Agent 可以在同一台机器上协同工作。
 
 与大多数电脑操控集成不同，这适用于**任何支持工具调用的模型**——Claude、GPT、Gemini，或本地 vLLM 端点上的开源模型。无需关心 Anthropic 原生 schema。
 
@@ -26,37 +26,37 @@ Hermes Agent 可以在**后台**驱动你的 Mac 桌面——点击、输入、�
 **方式一：使用专用 CLI 命令（最直接）。**
 
 ```
-hermes computer-use install
+openamer computer-use install
 ```
 
 此命令会获取并运行上游 cua-driver 安装脚本：
 `curl -fsSL https://raw.githubusercontent.com/trycua/cua/main/libs/cua-driver/scripts/install.sh`。
-使用 `hermes computer-use status` 验证安装结果。
+使用 `openamer computer-use status` 验证安装结果。
 
 **方式二：通过交互式界面启用工具集。**
 
-1. 运行 `hermes tools`，选择 `🖱️ Computer Use (macOS)` → `cua-driver (background)`。
+1. 运行 `openamer tools`，选择 `🖱️ Computer Use (macOS)` → `cua-driver (background)`。
 2. 安装程序将运行上游安装脚本（与方式一相同）。
 
 安装完成后，无论采用哪种方式，继续执行以下步骤：
 
 3. 在提示时授予 macOS 权限：
-   - **系统设置 → 隐私与安全性 → 辅助功能** → 允许终端（或 Hermes 应用）。
+   - **系统设置 → 隐私与安全性 → 辅助功能** → 允许终端（或 OpenAmer 应用）。
    - **系统设置 → 隐私与安全性 → 屏幕录制** → 允许同一应用。
 4. 启动启用了该工具集的会话：
    ```
-   hermes -t computer_use chat
+   openamer -t computer_use chat
    ```
-   或在 `~/.hermes/config.yaml` 中将 `computer_use` 添加到已启用的工具集列表。
+   或在 `~/.openamer/config.yaml` 中将 `computer_use` 添加到已启用的工具集列表。
 
 ## 保持 cua-driver 最新
 
-cua-driver 项目会定期发布修复（例如 v0.1.6 修复了 UTM 工作流中的 Safari 窗口焦点问题）。Hermes 在两处刷新二进制文件，避免你停留在过时版本：
+cua-driver 项目会定期发布修复（例如 v0.1.6 修复了 UTM 工作流中的 Safari 窗口焦点问题）。OpenAmer 在两处刷新二进制文件，避免你停留在过时版本：
 
-- **`hermes update`** — 更新 Hermes 本身时，如果 `cua-driver` 在 PATH 中，更新结束时会重新运行上游安装程序。对非 macOS 用户及未安装 cua-driver 的用户无操作。
-- **`hermes computer-use install --upgrade`** — 手动强制刷新。无论 cua-driver 是否已安装，都会重新运行上游安装程序。在不等待下次 Agent 更新的情况下获取最新修复时使用此命令。
+- **`openamer update`** — 更新 OpenAmer 本身时，如果 `cua-driver` 在 PATH 中，更新结束时会重新运行上游安装程序。对非 macOS 用户及未安装 cua-driver 的用户无操作。
+- **`openamer computer-use install --upgrade`** — 手动强制刷新。无论 cua-driver 是否已安装，都会重新运行上游安装程序。在不等待下次 Agent 更新的情况下获取最新修复时使用此命令。
 
-`hermes computer-use status` 会在二进制路径旁显示已安装的版本号。
+`openamer computer-use status` 会在二进制路径旁显示已安装的版本号。
 
 ## 快速示例
 
@@ -86,18 +86,18 @@ Agent 的执行计划：
 
 ## 安全性
 
-Hermes 应用多层防护机制：
+OpenAmer 应用多层防护机制：
 
 - 破坏性操作（click、type、drag、scroll、key、focus_app）需要审批——通过 CLI 对话框交互确认，或通过消息平台审批按钮确认。
 - 工具层面硬性屏蔽的按键组合：清空废纸篓、强制删除、锁定屏幕、注销、强制注销。
 - 硬性屏蔽的输入模式：`curl | bash`、`sudo rm -rf /`、fork bomb 等。
 - Agent 的系统 prompt 明确规定：不得点击权限对话框，不得输入密码，不得执行截图中嵌入的指令。
 
-如需对每个操作进行确认，可在 `~/.hermes/config.yaml` 中配置 `approvals.mode: manual`。
+如需对每个操作进行确认，可在 `~/.openamer/config.yaml` 中配置 `approvals.mode: manual`。
 
 ## Token 效率
 
-截图开销较大。Hermes 应用四层优化措施：
+截图开销较大。OpenAmer 应用四层优化措施：
 
 - **截图淘汰** — Anthropic 适配器在上下文中仅保留最近 3 张截图；较旧的截图替换为 `[screenshot removed to save context]` 占位符。
 - **客户端压缩裁剪** — 上下文压缩器检测多模态工具结果，并从旧结果中剥离图像部分。
@@ -109,7 +109,7 @@ Hermes 应用多层防护机制：
 ## 限制
 
 - **仅限 macOS。** cua-driver 使用的私有 Apple SPI 在 Linux 或 Windows 上不存在。跨平台 GUI 自动化请使用 `browser` 工具集。
-- **私有 SPI 风险。** Apple 可能在任何 OS 更新中更改 SkyLight 的符号接口。Hermes 始终安装最新版 cua-driver，并在已安装的二进制文件低于其测试基线版本（按操作系统分别设定）时发出警告。没有版本固定开关——如需可复现的版本，请将 `HERMES_CUA_DRIVER_CMD` 指向特定的二进制文件。
+- **私有 SPI 风险。** Apple 可能在任何 OS 更新中更改 SkyLight 的符号接口。OpenAmer 始终安装最新版 cua-driver，并在已安装的二进制文件低于其测试基线版本（按操作系统分别设定）时发出警告。没有版本固定开关——如需可复现的版本，请将 `HERMES_CUA_DRIVER_CMD` 指向特定的二进制文件。
 - **性能。** 后台模式比前台模式慢——SkyLight 路由事件耗时约 5–20ms，而直接 HID 投递更快。对于 Agent 速度的点击操作无明显影响；若尝试录制速通视频则会有感知。
 - **不支持键盘输入密码。** `type` 对命令行 payload 有硬性屏蔽模式；密码请使用系统自动填充功能。
 
@@ -129,7 +129,7 @@ HERMES_COMPUTER_USE_BACKEND=noop   # records calls, no side effects
 
 ## 故障排查
 
-**`computer_use backend unavailable: cua-driver is not installed`** — 运行 `hermes computer-use install` 获取 cua-driver 二进制文件，或运行 `hermes tools` 并启用 Computer Use 工具集。
+**`computer_use backend unavailable: cua-driver is not installed`** — 运行 `openamer computer-use install` 获取 cua-driver 二进制文件，或运行 `openamer tools` 并启用 Computer Use 工具集。
 
 **点击似乎没有效果** — 截图并验证。可能有一个你未注意到的模态框正在阻止输入。使用 `escape` 或关闭按钮将其关闭。
 
@@ -139,6 +139,6 @@ HERMES_COMPUTER_USE_BACKEND=noop   # records calls, no side effects
 
 ## 另请参阅
 
-- [通用技能：`macos-computer-use`](https://github.com/NousResearch/hermes-agent/blob/main/skills/apple/macos-computer-use/SKILL.md)
+- [通用技能：`macos-computer-use`](https://github.com/NousResearch/openamer-agent/blob/main/skills/apple/macos-computer-use/SKILL.md)
 - [cua-driver 源码（trycua/cua）](https://github.com/trycua/cua)
 - 跨平台 Web 任务请参阅[浏览器自动化](./browser.md)。

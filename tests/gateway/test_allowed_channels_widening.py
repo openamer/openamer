@@ -128,7 +128,7 @@ class TestTelegramAllowedChats:
             "    - -200\n",
             encoding="utf-8",
         )
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         monkeypatch.setenv("TELEGRAM_ALLOWED_CHATS", "__sentinel__")
         monkeypatch.delenv("TELEGRAM_ALLOWED_CHATS")
 
@@ -147,7 +147,7 @@ class TestTelegramAllowedChats:
             "  allowed_chats: -100\n",
             encoding="utf-8",
         )
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         monkeypatch.setenv("TELEGRAM_ALLOWED_CHATS", "-999")
 
         load_gateway_config()
@@ -221,7 +221,7 @@ class TestDingTalkAllowedChats:
             "    - cidDEF\n",
             encoding="utf-8",
         )
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         monkeypatch.setenv("DINGTALK_ALLOWED_CHATS", "__sentinel__")
         monkeypatch.delenv("DINGTALK_ALLOWED_CHATS")
 
@@ -292,7 +292,7 @@ class TestMattermostAllowedChannels:
             "    - chanDEF\n",
             encoding="utf-8",
         )
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         # Pre-register the key with monkeypatch so teardown cleans it up
         # even though load_gateway_config mutates os.environ directly
         # (monkeypatch only restores keys it's touched via setenv/delenv;
@@ -357,7 +357,7 @@ class TestMatrixAllowedRooms:
             "    - '!room2:srv'\n",
             encoding="utf-8",
         )
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         monkeypatch.setenv("MATRIX_ALLOWED_ROOMS", "__sentinel__")
         monkeypatch.delenv("MATRIX_ALLOWED_ROOMS")
 

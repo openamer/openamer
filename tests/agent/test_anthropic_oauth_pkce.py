@@ -57,7 +57,7 @@ def _patch_oauth_flow(
     # run headless, so force the GUI path to True — the URL capture relies on
     # webbrowser.open() being invoked.
     monkeypatch.setattr(
-        "hermes_cli.auth._can_open_graphical_browser", lambda: True
+        "openamer_cli.auth._can_open_graphical_browser", lambda: True
     )
     monkeypatch.setattr("builtins.input", lambda *_a, **_kw: callback_code)
 
@@ -91,7 +91,7 @@ def test_authorization_url_state_is_not_pkce_verifier(monkeypatch, tmp_path):
     Reusing the verifier as state leaks the verifier into browser history,
     Referer headers, and auth-server access logs — defeating RFC 7636.
     """
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
 
     captured_url: Dict[str, str] = {}
     captured_token: Dict[str, Any] = {}
@@ -156,7 +156,7 @@ def test_login_token_exchange_uses_platform_claude_host(monkeypatch, tmp_path):
     fresh login impossible (issue #45250 / #49821). The refresh path already
     iterates the new host first — the login path must do the same.
     """
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
 
     captured_token: Dict[str, Any] = {}
     captured_url: Dict[str, str] = {}
@@ -194,7 +194,7 @@ def test_login_token_exchange_falls_back_to_console_host(monkeypatch, tmp_path):
     """
     import urllib.request
 
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
 
     captured_url: Dict[str, str] = {}
     _patch_oauth_flow(
@@ -262,7 +262,7 @@ def test_callback_state_mismatch_aborts(monkeypatch, tmp_path, caplog):
     CSRF protection that ``state`` is supposed to provide (RFC 6749 §10.12)
     would be absent.
     """
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
 
     captured_token: Dict[str, Any] = {}
     _patch_oauth_flow(

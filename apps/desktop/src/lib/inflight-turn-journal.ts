@@ -16,7 +16,7 @@ import { type ChatMessage, type ChatMessagePart, chatMessageText } from '@/lib/c
  * Best-effort by design: storage failures must never break chat streaming.
  */
 
-const STORAGE_KEY = 'hermes.desktop.inflightTurnJournal.v1'
+const STORAGE_KEY = 'openamer.desktop.inflightTurnJournal.v1'
 const STORE_VERSION = 1
 const MAX_ENTRIES = 24
 const MAX_AGE_MS = 7 * 24 * 60 * 60 * 1000

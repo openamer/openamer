@@ -71,7 +71,7 @@ def test_every_n_cadence_runs_references_every_nth_iteration(monkeypatch, tmp_pa
     tool loop (1 on-cadence, then every 3rd), not on all 6."""
     home = tmp_path / ".hermes"
     _cadence_config(home, "every_n:3")
-    monkeypatch.setenv("HERMES_HOME", str(home))
+    monkeypatch.setenv("OPENAMER_HOME", str(home))
 
     ref_runs = []
     _install_fake_llm(monkeypatch, ref_runs)
@@ -96,7 +96,7 @@ def test_every_n_off_cadence_iterations_reuse_cached_guidance(monkeypatch, tmp_p
     on-cadence advisor guidance (cache reuse), not run advisor-less."""
     home = tmp_path / ".hermes"
     _cadence_config(home, "every_n:3")
-    monkeypatch.setenv("HERMES_HOME", str(home))
+    monkeypatch.setenv("OPENAMER_HOME", str(home))
 
     ref_runs = []
     _install_fake_llm(monkeypatch, ref_runs)
@@ -124,7 +124,7 @@ def test_every_n_off_cadence_does_not_double_charge_usage(monkeypatch, tmp_path)
     """Cache-reuse iterations must not re-report advisor usage/cost."""
     home = tmp_path / ".hermes"
     _cadence_config(home, "every_n:2")
-    monkeypatch.setenv("HERMES_HOME", str(home))
+    monkeypatch.setenv("OPENAMER_HOME", str(home))
 
     ref_runs = []
     _install_fake_llm(monkeypatch, ref_runs)
@@ -153,7 +153,7 @@ def test_every_n_counter_resets_on_new_user_turn(monkeypatch, tmp_path):
     regardless of where the previous turn's counter stood."""
     home = tmp_path / ".hermes"
     _cadence_config(home, "every_n:3")
-    monkeypatch.setenv("HERMES_HOME", str(home))
+    monkeypatch.setenv("OPENAMER_HOME", str(home))
 
     ref_runs = []
     _install_fake_llm(monkeypatch, ref_runs)
@@ -182,7 +182,7 @@ def test_every_n_redundant_create_does_not_consume_cadence_slot(monkeypatch, tmp
     advance the cadence counter — only real state changes count."""
     home = tmp_path / ".hermes"
     _cadence_config(home, "every_n:2")
-    monkeypatch.setenv("HERMES_HOME", str(home))
+    monkeypatch.setenv("OPENAMER_HOME", str(home))
 
     ref_runs = []
     _install_fake_llm(monkeypatch, ref_runs)
@@ -207,7 +207,7 @@ def test_per_iteration_default_unchanged_by_cadence_state(monkeypatch, tmp_path)
     """Default fanout still re-runs references on every state change."""
     home = tmp_path / ".hermes"
     _cadence_config(home, "per_iteration")
-    monkeypatch.setenv("HERMES_HOME", str(home))
+    monkeypatch.setenv("OPENAMER_HOME", str(home))
 
     ref_runs = []
     _install_fake_llm(monkeypatch, ref_runs)

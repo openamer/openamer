@@ -43,7 +43,7 @@ def test_defaults_to_nous_portal_when_no_idp_configured(monkeypatch):
         return "nous-portal-token"
 
     monkeypatch.setattr(
-        "hermes_cli.auth.resolve_nous_access_token", fake_resolve, raising=False
+        "openamer_cli.auth.resolve_nous_access_token", fake_resolve, raising=False
     )
     assert relay._resolve_relay_identity_token() == "nous-portal-token"
     assert called == {"yes": True}

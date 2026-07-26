@@ -12,7 +12,7 @@ import {
   setCurrentModelSource,
   setCurrentProvider
 } from '@/store/session'
-import type { RpcEvent } from '@/types/hermes'
+import type { RpcEvent } from '@/types/openamer'
 
 import { useMessageStream } from './index'
 
@@ -29,7 +29,7 @@ function Harness({ activeSessionId }: { activeSessionId: string | null }) {
     activeSessionIdRef: sessionIdRef,
     hydrateFromStoredSession: vi.fn(async () => undefined),
     queryClient: queryClientRef.current,
-    refreshHermesConfig: vi.fn(async () => undefined),
+    refreshOpenAmerConfig: vi.fn(async () => undefined),
     refreshSessions: vi.fn(async () => undefined),
     sessionStateByRuntimeIdRef,
     updateSessionState: (sessionId, updater) => {

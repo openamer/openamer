@@ -55,7 +55,7 @@ def test_seed_one_refuses_symlinked_destinations(
 
     script = (
         "set -e\n"
-        f'HERMES_HOME="{home}"\n'
+        f'OPENAMER_HOME="{home}"\n'
         f'INSTALL_DIR="{install_dir}"\n'
         "as_hermes() { \"$@\"; }\n"
         f"{_path_guard_functions(stage2_text)}\n"
@@ -94,7 +94,7 @@ def test_seed_one_is_quiet_for_existing_symlinked_files(
 
     script = (
         "set -e\n"
-        f'HERMES_HOME="{home}"\n'
+        f'OPENAMER_HOME="{home}"\n'
         f'INSTALL_DIR="{install_dir}"\n'
         "as_hermes() { \"$@\"; }\n"
         f"{_path_guard_functions(stage2_text)}\n"

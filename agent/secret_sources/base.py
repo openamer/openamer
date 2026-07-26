@@ -13,7 +13,7 @@ Scope of the contract (deliberate, please do not widen):
   mid-session secret API.  If a future need for rotation/refresh appears
   it will arrive as a versioned optional hook — do not bolt it on.
 * **Startup-time, synchronous.**  ``fetch()`` is called once per process
-  (per HERMES_HOME) by the orchestrator in
+  (per OPENAMER_HOME) by the orchestrator in
   :mod:`agent.secret_sources.registry`, which enforces a wall-clock
   timeout around it.  Sources must not spawn background refreshers.
 * **Never raises, never prompts.**  ``fetch()`` returns a
@@ -146,7 +146,7 @@ class SecretSource(ABC):
 
         ``cfg`` is the source's raw config section (``secrets.<name>``)
         from config.yaml — treat every field defensively, the section
-        may be malformed.  ``home_path`` is the resolved HERMES_HOME.
+        may be malformed.  ``home_path`` is the resolved OPENAMER_HOME.
         """
 
     # -- optional hooks (defaults are correct for most sources) ------------

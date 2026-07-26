@@ -1702,7 +1702,7 @@ class TestEnsureClientReloadsEnv:
         tmp_path,
         monkeypatch,
     ):
-        from hermes_cli import config as hermes_config
+        from openamer_cli import config as hermes_config
 
         known_hermes_env = set(hermes_config.OPTIONAL_ENV_VARS) | hermes_config._EXTRA_ENV_KEYS
         openviking_tenant_env = {
@@ -1717,7 +1717,7 @@ class TestEnsureClientReloadsEnv:
 
         hermes_home = tmp_path / "hermes-home"
         hermes_home.mkdir()
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         env_path = hermes_home / ".env"
         env_path.write_text(
             "OPENVIKING_ENDPOINT=https://openviking.example\n"

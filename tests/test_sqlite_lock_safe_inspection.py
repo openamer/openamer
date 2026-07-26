@@ -26,7 +26,7 @@ import threading
 
 import pytest
 
-from hermes_cli.sqlite_safe_read import (
+from openamer_cli.sqlite_safe_read import (
     file_length_matches_header,
     has_live_connection,
     page_count_bytes,
@@ -75,7 +75,7 @@ def _make_db(path, journal_mode: str) -> None:
 def clean_registry():
     yield
     # Keep the module-level registry from leaking across tests.
-    import hermes_cli.sqlite_safe_read as mod
+    import openamer_cli.sqlite_safe_read as mod
 
     with mod._live_lock:
         mod._live_connections.clear()
@@ -84,7 +84,7 @@ def clean_registry():
 @pytest.mark.parametrize("journal_mode", ["DELETE", "WAL"])
 def test_write_lock_survives_file_length_check(tmp_path, journal_mode, clean_registry):
     """kanban's post-commit invariant check must not cancel the write lock."""
-    from hermes_cli.kanban_db import _check_file_length_invariant
+    from openamer_cli.kanban_db import _check_file_length_invariant
 
     db = tmp_path / "kanban.db"
     _make_db(db, journal_mode)
@@ -119,7 +119,7 @@ def test_write_lock_survives_zeroed_state_db_probe(
     tmp_path, journal_mode, clean_registry
 ):
     """SessionDB's zeroed-file detector must not cancel locks once connected."""
-    from hermes_state import is_zeroed_state_db
+    from openamer_state import is_zeroed_state_db
 
     db = tmp_path / "state.db"
     _make_db(db, journal_mode)
@@ -175,7 +175,7 @@ def test_tracking_registry_does_not_leak_across_close_paths(tmp_path, clean_regi
     """
     import contextlib
 
-    from hermes_cli.sqlite_safe_read import connect_tracked
+    from openamer_cli.sqlite_safe_read import connect_tracked
 
     db = tmp_path / "state.db"
     boot = connect_tracked(db, isolation_level=None)
@@ -233,7 +233,7 @@ def test_probe_and_connect_do_not_race(tmp_path, clean_registry, monkeypatch):
     interleaving is possible. If the lock is only held across the check, that
     thread slips in and the probe's ``close()`` cancels its POSIX locks.
     """
-    import hermes_cli.sqlite_safe_read as ssr
+    import openamer_cli.sqlite_safe_read as ssr
 
     db = tmp_path / "state.db"
     _make_db(db, "DELETE")
@@ -291,7 +291,7 @@ def test_read_only_uri_connection_is_tracked_by_real_path(tmp_path, clean_regist
     match -- leaving the read-only connection invisible to the guard and its
     locks cancellable.
     """
-    from hermes_cli.sqlite_safe_read import connect_tracked
+    from openamer_cli.sqlite_safe_read import connect_tracked
 
     db = tmp_path / "state.db"
     _make_db(db, "DELETE")
@@ -313,8 +313,8 @@ def test_read_only_uri_connection_is_tracked_by_real_path(tmp_path, clean_regist
 
 def test_session_db_read_only_is_tracked(tmp_path, clean_registry, monkeypatch):
     """End-to-end: a real read-only SessionDB blocks byte-probes."""
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
-    from hermes_state import SessionDB
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
+    from openamer_state import SessionDB
 
     db_path = tmp_path / "state.db"
     seed = SessionDB(db_path=db_path)
@@ -340,7 +340,7 @@ def test_custom_factory_is_honoured_and_still_tracked(tmp_path, clean_registry):
     leaving them untracked is acceptable — the former breaks real callers, the
     latter quietly unguards the database. The factory is augmented instead.
     """
-    from hermes_cli.sqlite_safe_read import connect_tracked
+    from openamer_cli.sqlite_safe_read import connect_tracked
 
     class CustomConnection(sqlite3.Connection):
         pass
@@ -369,7 +369,7 @@ def test_opener_that_discards_our_factory_is_still_tracked(tmp_path, clean_regis
     The suite's FTS5-less doubles take the second path, so it needs its own
     coverage -- otherwise a regression there is invisible.
     """
-    from hermes_cli.sqlite_safe_read import connect_tracked
+    from openamer_cli.sqlite_safe_read import connect_tracked
 
     class CustomConnection(sqlite3.Connection):
         pass
@@ -402,7 +402,7 @@ def test_session_db_read_only_tracks_under_canonical_path(tmp_path, clean_regist
     depend on that: ``PRAGMA database_list`` is the authority. This exercises
     the no-hint path directly so removing the fallback is caught.
     """
-    from hermes_cli.sqlite_safe_read import connect_tracked
+    from openamer_cli.sqlite_safe_read import connect_tracked
 
     db = tmp_path / "state.db"
     _make_db(db, "DELETE")

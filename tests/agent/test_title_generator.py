@@ -10,7 +10,7 @@ from agent.title_generator import (
     maybe_auto_title,
     _title_language,
 )
-from hermes_state import SessionDB
+from openamer_state import SessionDB
 
 
 class TestGenerateTitle:
@@ -54,11 +54,11 @@ class TestGenerateTitle:
     def test_title_language_reads_config(self):
         cfg = {"auxiliary": {"title_generation": {"language": "  French "}}}
 
-        with patch("hermes_cli.config.load_config", return_value=cfg):
+        with patch("openamer_cli.config.load_config", return_value=cfg):
             assert _title_language() == "French"
-        with patch("hermes_cli.config.load_config", return_value={}):
+        with patch("openamer_cli.config.load_config", return_value={}):
             assert _title_language() == ""
-        with patch("hermes_cli.config.load_config", side_effect=RuntimeError("bad config")):
+        with patch("openamer_cli.config.load_config", side_effect=RuntimeError("bad config")):
             assert _title_language() == ""
 
     def test_default_timeout_delegates_to_auxiliary_config(self):
@@ -217,7 +217,7 @@ class TestGenerateTitle:
         config = {"auxiliary": {"title_generation": {"enabled": False}}}
 
         with (
-            patch("hermes_cli.config.load_config_readonly", return_value=config),
+            patch("openamer_cli.config.load_config_readonly", return_value=config),
             patch("agent.title_generator.call_llm") as mock_call_llm,
         ):
             assert generate_title("question", "answer") is None
@@ -403,7 +403,7 @@ class TestMaybeAutoTitle:
         config = {"auxiliary": {"title_generation": {"enabled": False}}}
 
         with (
-            patch("hermes_cli.config.load_config_readonly", return_value=config),
+            patch("openamer_cli.config.load_config_readonly", return_value=config),
             patch("agent.title_generator.auto_title_session") as mock_auto,
         ):
             maybe_auto_title(db, "sess-1", "hello", "hi there", history)

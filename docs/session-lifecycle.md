@@ -197,7 +197,7 @@ SessionStore(sessions_dir: Path, config: GatewayConfig, has_active_processes_fn=
   {session_id}.jsonl     # (Legacy, removed in spec 002)
 ```
 
-The canonical transcript store is SQLite via `SessionDB` (from `hermes_state`). The
+The canonical transcript store is SQLite via `SessionDB` (from `openamer_state`). The
 `sessions.json` file persists the `session_key → session_id` mapping and entry metadata
 (flags, timestamps, token counts). If SQLite is unavailable, the store falls back to
 JSONL, but this is a degradation path.
@@ -435,7 +435,7 @@ Written at the end of a graceful shutdown. On next startup:
   drained, so no sessions are stuck.
 - Then delete the marker.
 
-This prevents unwanted auto-resets after `hermes update`, `hermes gateway restart`,
+This prevents unwanted auto-resets after `openamer update`, `openamer gateway restart`,
 or `/restart`.
 
 ---

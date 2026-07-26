@@ -10,7 +10,7 @@ Launched by ``hermes meet node run``.
 Token handling
 --------------
 On first boot we mint 32 hex chars of entropy and persist them at
-``$HERMES_HOME/workspace/meetings/node_token.json``. Subsequent boots
+``$OPENAMER_HOME/workspace/meetings/node_token.json``. Subsequent boots
 reuse the same token so previously-approved gateways don't need to be
 re-paired. The operator copies this token out-of-band to the gateway
 via ``hermes meet node approve <name> <url> <token>``.
@@ -30,12 +30,12 @@ import time
 from pathlib import Path
 from typing import Any, Dict, Optional
 
-from hermes_constants import get_hermes_home
+from openamer_constants import get_openamer_home
 from plugins.google_meet.node import protocol as _proto
 
 
 def _default_token_path() -> Path:
-    return Path(get_hermes_home()) / "workspace" / "meetings" / "node_token.json"
+    return Path(get_openamer_home()) / "workspace" / "meetings" / "node_token.json"
 
 
 class NodeServer:

@@ -22,7 +22,7 @@ adapter — not just Discord.
 
 Routes live under `profile_routes` in `config.yaml`. Both the top-level and the nested
 `gateway.profile_routes` forms are accepted (the nested form is what
-`hermes config set gateway.profile_routes ...` writes).
+`openamer config set gateway.profile_routes ...` writes).
 
 ```yaml
 profile_routes:
@@ -60,7 +60,7 @@ profile_routes:
 |---|---|---|
 | `name` | yes | Human-readable route identifier (used in logs). |
 | `platform` | yes | Adapter platform: `discord`, `telegram`, `feishu`, `slack`, … |
-| `profile` | yes | Target profile name (must exist under `~/.hermes/profiles/<name>`). |
+| `profile` | yes | Target profile name (must exist under `~/.openamer/profiles/<name>`). |
 | `guild_id` | no | Server/guild (Discord). |
 | `chat_id` | no | Channel/group/DM id. |
 | `thread_id` | no | Thread id within a channel. |

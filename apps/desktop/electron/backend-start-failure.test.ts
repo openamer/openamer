@@ -23,7 +23,7 @@ test('the two branches are mutually exclusive (a failure either latches or stays
 })
 
 test('latches a CONFIRMED remote reauth failure so the overlay stays clickable', () => {
-  // Without this the non-latching remote path re-runs startHermes on every
+  // Without this the non-latching remote path re-runs startOpenAmer on every
   // getConnection/api call, re-emits running:true, and the overlay hides
   // itself — the "Sign in" button flickers away before it can be clicked.
   assert.equal(shouldLatchRemoteReauthFailure({ attemptedRemote: true, isReauth: true }), true)

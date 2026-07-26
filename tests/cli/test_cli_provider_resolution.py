@@ -6,8 +6,8 @@ from types import SimpleNamespace
 
 import pytest
 
-from hermes_cli.auth import AuthError
-from hermes_cli import main as hermes_main
+from openamer_cli.auth import AuthError
+from openamer_cli import main as hermes_main
 
 
 # ---------------------------------------------------------------------------
@@ -123,7 +123,7 @@ def _import_cli():
     return importlib.import_module("cli")
 
 
-def test_hermes_cli_init_does_not_eagerly_resolve_runtime_provider(monkeypatch):
+def test_openamer_cli_init_does_not_eagerly_resolve_runtime_provider(monkeypatch):
     cli = _import_cli()
     calls = {"count": 0}
 
@@ -131,8 +131,8 @@ def test_hermes_cli_init_does_not_eagerly_resolve_runtime_provider(monkeypatch):
         calls["count"] += 1
         raise AssertionError("resolve_runtime_provider should not be called in HermesCLI.__init__")
 
-    monkeypatch.setattr("hermes_cli.runtime_provider.resolve_runtime_provider", _unexpected_runtime_resolve)
-    monkeypatch.setattr("hermes_cli.runtime_provider.format_runtime_provider_error", lambda exc: str(exc))
+    monkeypatch.setattr("openamer_cli.runtime_provider.resolve_runtime_provider", _unexpected_runtime_resolve)
+    monkeypatch.setattr("openamer_cli.runtime_provider.format_runtime_provider_error", lambda exc: str(exc))
 
     shell = cli.HermesCLI(model="gpt-5", compact=True, max_turns=1)
 
@@ -160,8 +160,8 @@ def test_runtime_resolution_failure_is_not_sticky(monkeypatch):
         def __init__(self, *args, **kwargs):
             self.kwargs = kwargs
 
-    monkeypatch.setattr("hermes_cli.runtime_provider.resolve_runtime_provider", _runtime_resolve)
-    monkeypatch.setattr("hermes_cli.runtime_provider.format_runtime_provider_error", lambda exc: str(exc))
+    monkeypatch.setattr("openamer_cli.runtime_provider.resolve_runtime_provider", _runtime_resolve)
+    monkeypatch.setattr("openamer_cli.runtime_provider.format_runtime_provider_error", lambda exc: str(exc))
     monkeypatch.setattr(cli, "AIAgent", _DummyAgent)
 
     shell = cli.HermesCLI(model="gpt-5", compact=True, max_turns=1)
@@ -184,8 +184,8 @@ def test_runtime_resolution_rebuilds_agent_on_routing_change(monkeypatch):
             "source": "env/config",
         }
 
-    monkeypatch.setattr("hermes_cli.runtime_provider.resolve_runtime_provider", _runtime_resolve)
-    monkeypatch.setattr("hermes_cli.runtime_provider.format_runtime_provider_error", lambda exc: str(exc))
+    monkeypatch.setattr("openamer_cli.runtime_provider.resolve_runtime_provider", _runtime_resolve)
+    monkeypatch.setattr("openamer_cli.runtime_provider.format_runtime_provider_error", lambda exc: str(exc))
 
     shell = cli.HermesCLI(model="gpt-5", compact=True, max_turns=1)
     shell.provider = "openrouter"
@@ -294,10 +294,10 @@ def test_codex_provider_replaces_incompatible_default_model(monkeypatch):
             "source": "env/config",
         }
 
-    monkeypatch.setattr("hermes_cli.runtime_provider.resolve_runtime_provider", _runtime_resolve)
-    monkeypatch.setattr("hermes_cli.runtime_provider.format_runtime_provider_error", lambda exc: str(exc))
+    monkeypatch.setattr("openamer_cli.runtime_provider.resolve_runtime_provider", _runtime_resolve)
+    monkeypatch.setattr("openamer_cli.runtime_provider.format_runtime_provider_error", lambda exc: str(exc))
     monkeypatch.setattr(
-        "hermes_cli.codex_models.get_codex_model_ids",
+        "openamer_cli.codex_models.get_codex_model_ids",
         lambda access_token=None: ["gpt-5.2-codex", "gpt-5.1-codex-mini"],
     )
 
@@ -313,7 +313,7 @@ def test_codex_provider_replaces_incompatible_default_model(monkeypatch):
 
 def test_model_flow_nous_prints_subscription_guidance_without_mutating_explicit_tts(monkeypatch, capsys):
     monkeypatch.setattr(
-        "hermes_cli.nous_subscription.managed_nous_tools_enabled",
+        "openamer_cli.nous_subscription.managed_nous_tools_enabled",
         lambda *args, **kwargs: True,
     )
     config = {
@@ -323,23 +323,23 @@ def test_model_flow_nous_prints_subscription_guidance_without_mutating_explicit_
     }
 
     monkeypatch.setattr(
-        "hermes_cli.auth.get_provider_auth_state",
+        "openamer_cli.auth.get_provider_auth_state",
         lambda provider: {"access_token": "nous-token"},
     )
     monkeypatch.setattr(
-        "hermes_cli.auth.resolve_nous_runtime_credentials",
+        "openamer_cli.auth.resolve_nous_runtime_credentials",
         lambda *args, **kwargs: {
             "base_url": "https://inference.example.com/v1",
             "api_key": "nous-key",
         },
     )
     monkeypatch.setattr(
-        "hermes_cli.auth.fetch_nous_models",
+        "openamer_cli.auth.fetch_nous_models",
         lambda *args, **kwargs: ["claude-opus-4-6"],
     )
-    monkeypatch.setattr("hermes_cli.auth._prompt_model_selection", lambda model_ids, current_model="", pricing=None, **kw: "claude-opus-4-6")
-    monkeypatch.setattr("hermes_cli.auth._save_model_choice", lambda model: None)
-    monkeypatch.setattr("hermes_cli.auth._update_config_for_provider", lambda provider, url: None)
+    monkeypatch.setattr("openamer_cli.auth._prompt_model_selection", lambda model_ids, current_model="", pricing=None, **kw: "claude-opus-4-6")
+    monkeypatch.setattr("openamer_cli.auth._save_model_choice", lambda model: None)
+    monkeypatch.setattr("openamer_cli.auth._update_config_for_provider", lambda provider, url: None)
 
     hermes_main._model_flow_nous(config, current_model="claude-opus-4-6")
 
@@ -354,7 +354,7 @@ def test_model_flow_nous_does_not_restore_stale_custom_api_key(tmp_path, monkeyp
 
     config_home = tmp_path / "hermes"
     config_home.mkdir()
-    monkeypatch.setenv("HERMES_HOME", str(config_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(config_home))
 
     config_path = config_home / "config.yaml"
     config_path.write_text(
@@ -376,35 +376,35 @@ def test_model_flow_nous_does_not_restore_stale_custom_api_key(tmp_path, monkeyp
     selected_model = "deepseek/deepseek-v4-flash"
 
     monkeypatch.setattr(
-        "hermes_cli.auth.get_provider_auth_state",
+        "openamer_cli.auth.get_provider_auth_state",
         lambda provider: {
             "access_token": "nous-token",
             "portal_base_url": "https://portal.example.com",
         },
     )
     monkeypatch.setattr(
-        "hermes_cli.auth.resolve_nous_runtime_credentials",
+        "openamer_cli.auth.resolve_nous_runtime_credentials",
         lambda *args, **kwargs: {
             "base_url": "https://inference-api.nousresearch.com/v1",
             "api_key": "nous-key",
         },
     )
     monkeypatch.setattr(
-        "hermes_cli.models.get_curated_nous_model_ids",
+        "openamer_cli.models.get_curated_nous_model_ids",
         lambda: [selected_model],
     )
-    monkeypatch.setattr("hermes_cli.models.get_pricing_for_provider", lambda provider: {})
-    monkeypatch.setattr("hermes_cli.models.check_nous_free_tier", lambda **kwargs: False)
+    monkeypatch.setattr("openamer_cli.models.get_pricing_for_provider", lambda provider: {})
+    monkeypatch.setattr("openamer_cli.models.check_nous_free_tier", lambda **kwargs: False)
     monkeypatch.setattr(
-        "hermes_cli.models.union_with_portal_paid_recommendations",
+        "openamer_cli.models.union_with_portal_paid_recommendations",
         lambda model_ids, pricing, portal_url: (model_ids, pricing),
     )
     monkeypatch.setattr(
-        "hermes_cli.auth._prompt_model_selection",
+        "openamer_cli.auth._prompt_model_selection",
         lambda *args, **kwargs: selected_model,
     )
     monkeypatch.setattr(
-        "hermes_cli.nous_subscription.prompt_enable_tool_gateway",
+        "openamer_cli.nous_subscription.prompt_enable_tool_gateway",
         lambda config: None,
     )
 
@@ -424,7 +424,7 @@ def _seed_stale_custom_model(tmp_path, monkeypatch):
 
     config_home = tmp_path / "hermes"
     config_home.mkdir()
-    monkeypatch.setenv("HERMES_HOME", str(config_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(config_home))
     config_path = config_home / "config.yaml"
     config_path.write_text(
         yaml.safe_dump(
@@ -451,19 +451,19 @@ def test_model_flow_openrouter_clears_stale_custom_key(tmp_path, monkeypatch):
     config_path = _seed_stale_custom_model(tmp_path, monkeypatch)
 
     monkeypatch.setattr(
-        "hermes_cli.main._prompt_api_key",
+        "openamer_cli.main._prompt_api_key",
         lambda *args, **kwargs: ("sk-openrouter", False),
     )
     monkeypatch.setattr(
-        "hermes_cli.models.model_ids",
+        "openamer_cli.models.model_ids",
         lambda **kwargs: ["anthropic/claude-sonnet-4.6"],
     )
-    monkeypatch.setattr("hermes_cli.models.get_pricing_for_provider", lambda *a, **k: {})
+    monkeypatch.setattr("openamer_cli.models.get_pricing_for_provider", lambda *a, **k: {})
     monkeypatch.setattr(
-        "hermes_cli.auth._prompt_model_selection",
+        "openamer_cli.auth._prompt_model_selection",
         lambda *args, **kwargs: "anthropic/claude-sonnet-4.6",
     )
-    monkeypatch.setattr("hermes_cli.auth.deactivate_provider", lambda: None)
+    monkeypatch.setattr("openamer_cli.auth.deactivate_provider", lambda: None)
 
     hermes_main._model_flow_openrouter({}, current_model="glm-5.2")
 
@@ -481,7 +481,7 @@ def test_model_flow_anthropic_clears_stale_custom_key_and_mode(tmp_path, monkeyp
 
     config_path = _seed_stale_custom_model(tmp_path, monkeypatch)
 
-    monkeypatch.setattr("hermes_cli.auth.get_anthropic_key", lambda: "sk-ant-api03-test")
+    monkeypatch.setattr("openamer_cli.auth.get_anthropic_key", lambda: "sk-ant-api03-test")
     monkeypatch.setattr(
         "agent.anthropic_adapter.read_claude_code_credentials",
         lambda: None,
@@ -491,14 +491,14 @@ def test_model_flow_anthropic_clears_stale_custom_key_and_mode(tmp_path, monkeyp
         lambda creds: False,
     )
     monkeypatch.setattr(
-        "hermes_cli.model_setup_flows._prompt_auth_credentials_choice",
+        "openamer_cli.model_setup_flows._prompt_auth_credentials_choice",
         lambda title: "use",
     )
     monkeypatch.setattr(
-        "hermes_cli.auth._prompt_model_selection",
+        "openamer_cli.auth._prompt_model_selection",
         lambda *args, **kwargs: "claude-sonnet-4-6",
     )
-    monkeypatch.setattr("hermes_cli.auth.deactivate_provider", lambda: None)
+    monkeypatch.setattr("openamer_cli.auth.deactivate_provider", lambda: None)
 
     hermes_main._model_flow_anthropic({}, current_model="glm-5.2")
 
@@ -513,12 +513,12 @@ def test_model_flow_anthropic_clears_stale_custom_key_and_mode(tmp_path, monkeyp
 
 
 def test_model_flow_nous_offers_tool_gateway_prompt_when_unconfigured(monkeypatch, capsys):
-    from hermes_cli.nous_account import NousPortalAccountInfo
+    from openamer_cli.nous_account import NousPortalAccountInfo
 
     # Entitled account (paid → all tools eligible) drives the offer; the prompt
     # is a per-tool checklist now, so capture the call rather than scrape stdout.
     monkeypatch.setattr(
-        "hermes_cli.nous_subscription.get_nous_portal_account_info",
+        "openamer_cli.nous_subscription.get_nous_portal_account_info",
         lambda **kwargs: NousPortalAccountInfo(
             logged_in=True,
             source="account_api",
@@ -533,7 +533,7 @@ def test_model_flow_nous_offers_tool_gateway_prompt_when_unconfigured(monkeypatc
         captured["items"] = list(items)
         return []  # decline; we only assert the prompt was offered
 
-    monkeypatch.setattr("hermes_cli.setup.prompt_checklist", _fake_checklist, raising=False)
+    monkeypatch.setattr("openamer_cli.setup.prompt_checklist", _fake_checklist, raising=False)
 
     config = {
         "model": {"provider": "nous", "default": "claude-opus-4-6"},
@@ -541,23 +541,23 @@ def test_model_flow_nous_offers_tool_gateway_prompt_when_unconfigured(monkeypatc
     }
 
     monkeypatch.setattr(
-        "hermes_cli.auth.get_provider_auth_state",
+        "openamer_cli.auth.get_provider_auth_state",
         lambda provider: {"access_token": "***"},
     )
     monkeypatch.setattr(
-        "hermes_cli.auth.resolve_nous_runtime_credentials",
+        "openamer_cli.auth.resolve_nous_runtime_credentials",
         lambda *args, **kwargs: {
             "base_url": "https://inference.example.com/v1",
             "api_key": "***",
         },
     )
     monkeypatch.setattr(
-        "hermes_cli.auth.fetch_nous_models",
+        "openamer_cli.auth.fetch_nous_models",
         lambda *args, **kwargs: ["claude-opus-4-6"],
     )
-    monkeypatch.setattr("hermes_cli.auth._prompt_model_selection", lambda model_ids, current_model="", pricing=None, **kw: "claude-opus-4-6")
-    monkeypatch.setattr("hermes_cli.auth._save_model_choice", lambda model: None)
-    monkeypatch.setattr("hermes_cli.auth._update_config_for_provider", lambda provider, url: None)
+    monkeypatch.setattr("openamer_cli.auth._prompt_model_selection", lambda model_ids, current_model="", pricing=None, **kw: "claude-opus-4-6")
+    monkeypatch.setattr("openamer_cli.auth._save_model_choice", lambda model: None)
+    monkeypatch.setattr("openamer_cli.auth._update_config_for_provider", lambda provider, url: None)
     hermes_main._model_flow_nous(config, current_model="claude-opus-4-6")
 
     # The per-tool Tool Gateway checklist was offered.
@@ -590,11 +590,11 @@ def test_codex_provider_uses_config_model(monkeypatch):
             "source": "env/config",
         }
 
-    monkeypatch.setattr("hermes_cli.runtime_provider.resolve_runtime_provider", _runtime_resolve)
-    monkeypatch.setattr("hermes_cli.runtime_provider.format_runtime_provider_error", lambda exc: str(exc))
+    monkeypatch.setattr("openamer_cli.runtime_provider.resolve_runtime_provider", _runtime_resolve)
+    monkeypatch.setattr("openamer_cli.runtime_provider.format_runtime_provider_error", lambda exc: str(exc))
     # Prevent live API call from overriding the config model
     monkeypatch.setattr(
-        "hermes_cli.codex_models.get_codex_model_ids",
+        "openamer_cli.codex_models.get_codex_model_ids",
         lambda access_token=None: ["gpt-5.2-codex"],
     )
 
@@ -633,11 +633,11 @@ def test_codex_config_model_not_replaced_by_normalization(monkeypatch):
             "source": "env/config",
         }
 
-    monkeypatch.setattr("hermes_cli.runtime_provider.resolve_runtime_provider", _runtime_resolve)
-    monkeypatch.setattr("hermes_cli.runtime_provider.format_runtime_provider_error", lambda exc: str(exc))
+    monkeypatch.setattr("openamer_cli.runtime_provider.resolve_runtime_provider", _runtime_resolve)
+    monkeypatch.setattr("openamer_cli.runtime_provider.format_runtime_provider_error", lambda exc: str(exc))
     # API returns a DIFFERENT model than what the user configured
     monkeypatch.setattr(
-        "hermes_cli.codex_models.get_codex_model_ids",
+        "openamer_cli.codex_models.get_codex_model_ids",
         lambda access_token=None: ["gpt-5.4", "gpt-5.3-codex"],
     )
 
@@ -668,8 +668,8 @@ def test_codex_provider_preserves_explicit_codex_model(monkeypatch):
             "source": "env/config",
         }
 
-    monkeypatch.setattr("hermes_cli.runtime_provider.resolve_runtime_provider", _runtime_resolve)
-    monkeypatch.setattr("hermes_cli.runtime_provider.format_runtime_provider_error", lambda exc: str(exc))
+    monkeypatch.setattr("openamer_cli.runtime_provider.resolve_runtime_provider", _runtime_resolve)
+    monkeypatch.setattr("openamer_cli.runtime_provider.format_runtime_provider_error", lambda exc: str(exc))
 
     shell = cli.HermesCLI(model="gpt-5.1-codex-mini", compact=True, max_turns=1)
 
@@ -695,8 +695,8 @@ def test_codex_provider_strips_provider_prefix_from_model(monkeypatch):
             "source": "env/config",
         }
 
-    monkeypatch.setattr("hermes_cli.runtime_provider.resolve_runtime_provider", _runtime_resolve)
-    monkeypatch.setattr("hermes_cli.runtime_provider.format_runtime_provider_error", lambda exc: str(exc))
+    monkeypatch.setattr("openamer_cli.runtime_provider.resolve_runtime_provider", _runtime_resolve)
+    monkeypatch.setattr("openamer_cli.runtime_provider.format_runtime_provider_error", lambda exc: str(exc))
 
     shell = cli.HermesCLI(model="openai/gpt-5.3-codex", compact=True, max_turns=1)
 
@@ -706,19 +706,19 @@ def test_codex_provider_strips_provider_prefix_from_model(monkeypatch):
 
 def test_cmd_model_falls_back_to_auto_on_invalid_provider(monkeypatch, capsys):
     monkeypatch.setattr(
-        "hermes_cli.config.load_config",
+        "openamer_cli.config.load_config",
         lambda: {"model": {"default": "gpt-5", "provider": "invalid-provider"}},
     )
-    monkeypatch.setattr("hermes_cli.config.save_config", lambda cfg: None)
-    monkeypatch.setattr("hermes_cli.config.get_env_value", lambda key: "")
-    monkeypatch.setattr("hermes_cli.config.save_env_value", lambda key, value: None)
+    monkeypatch.setattr("openamer_cli.config.save_config", lambda cfg: None)
+    monkeypatch.setattr("openamer_cli.config.get_env_value", lambda key: "")
+    monkeypatch.setattr("openamer_cli.config.save_env_value", lambda key, value: None)
 
     def _resolve_provider(requested, **kwargs):
         if requested == "invalid-provider":
             raise AuthError("Unknown provider 'invalid-provider'.", code="invalid_provider")
         return "openrouter"
 
-    monkeypatch.setattr("hermes_cli.auth.resolve_provider", _resolve_provider)
+    monkeypatch.setattr("openamer_cli.auth.resolve_provider", _resolve_provider)
     monkeypatch.setattr(hermes_main, "_prompt_provider_choice", lambda choices, **kwargs: len(choices) - 1)
     monkeypatch.setattr("sys.stdin", type("FakeTTY", (), {"isatty": lambda self: True})())
 
@@ -732,16 +732,16 @@ def test_cmd_model_falls_back_to_auto_on_invalid_provider(monkeypatch, capsys):
 
 def test_model_flow_custom_saves_verified_v1_base_url(monkeypatch, capsys):
     monkeypatch.setattr(
-        "hermes_cli.config.get_env_value",
+        "openamer_cli.config.get_env_value",
         lambda key: "" if key in {"OPENAI_BASE_URL", "OPENAI_API_KEY"} else "",
     )
     saved_env = {}
-    monkeypatch.setattr("hermes_cli.config.save_env_value", lambda key, value: saved_env.__setitem__(key, value))
-    monkeypatch.setattr("hermes_cli.auth._save_model_choice", lambda model: saved_env.__setitem__("MODEL", model))
-    monkeypatch.setattr("hermes_cli.auth.deactivate_provider", lambda: None)
-    monkeypatch.setattr("hermes_cli.main._save_custom_provider", lambda *args, **kwargs: None)
+    monkeypatch.setattr("openamer_cli.config.save_env_value", lambda key, value: saved_env.__setitem__(key, value))
+    monkeypatch.setattr("openamer_cli.auth._save_model_choice", lambda model: saved_env.__setitem__("MODEL", model))
+    monkeypatch.setattr("openamer_cli.auth.deactivate_provider", lambda: None)
+    monkeypatch.setattr("openamer_cli.main._save_custom_provider", lambda *args, **kwargs: None)
     monkeypatch.setattr(
-        "hermes_cli.models.probe_api_models",
+        "openamer_cli.models.probe_api_models",
         lambda api_key, base_url: {
             "models": ["llm"],
             "probed_url": "http://localhost:8000/v1/models",
@@ -751,17 +751,17 @@ def test_model_flow_custom_saves_verified_v1_base_url(monkeypatch, capsys):
         },
     )
     monkeypatch.setattr(
-        "hermes_cli.config.load_config",
+        "openamer_cli.config.load_config",
         lambda: {"model": {"default": "", "provider": "custom", "base_url": ""}},
     )
-    monkeypatch.setattr("hermes_cli.config.save_config", lambda cfg: None)
+    monkeypatch.setattr("openamer_cli.config.save_config", lambda cfg: None)
 
     # After the probe detects a single model ("llm"), the flow asks
     # "Use this model? [Y/n]:" — confirm with Enter, then context length,
     # then display name. The api_mode prompt also runs before model selection.
     answers = iter(["http://localhost:8000", "local-key", "", "", "", "", ""])
     monkeypatch.setattr("builtins.input", lambda _prompt="": next(answers))
-    monkeypatch.setattr("hermes_cli.secret_prompt.masked_secret_prompt", lambda _prompt="": next(answers))
+    monkeypatch.setattr("openamer_cli.secret_prompt.masked_secret_prompt", lambda _prompt="": next(answers))
 
     hermes_main._model_flow_custom({})
     output = capsys.readouterr().out
@@ -778,13 +778,13 @@ def test_model_flow_custom_persists_selected_api_mode(monkeypatch):
     captured_provider = {}
 
     monkeypatch.setattr(
-        "hermes_cli.config.get_env_value",
+        "openamer_cli.config.get_env_value",
         lambda key: "" if key in {"OPENAI_BASE_URL", "OPENAI_API_KEY"} else "",
     )
-    monkeypatch.setattr("hermes_cli.auth._save_model_choice", lambda model: None)
-    monkeypatch.setattr("hermes_cli.auth.deactivate_provider", lambda: None)
+    monkeypatch.setattr("openamer_cli.auth._save_model_choice", lambda model: None)
+    monkeypatch.setattr("openamer_cli.auth.deactivate_provider", lambda: None)
     monkeypatch.setattr(
-        "hermes_cli.models.probe_api_models",
+        "openamer_cli.models.probe_api_models",
         lambda api_key, base_url: {
             "models": [],
             "probed_url": f"{base_url.rstrip('/')}/models",
@@ -794,14 +794,14 @@ def test_model_flow_custom_persists_selected_api_mode(monkeypatch):
         },
     )
     saved_env = {}
-    monkeypatch.setattr("hermes_cli.config.load_config", lambda: saved_cfg)
-    monkeypatch.setattr("hermes_cli.config.save_config", lambda cfg: saved_cfg.update(cfg))
+    monkeypatch.setattr("openamer_cli.config.load_config", lambda: saved_cfg)
+    monkeypatch.setattr("openamer_cli.config.save_config", lambda cfg: saved_cfg.update(cfg))
     monkeypatch.setattr(
-        "hermes_cli.config.save_env_value",
+        "openamer_cli.config.save_env_value",
         lambda key, value: saved_env.__setitem__(key, value),
     )
     monkeypatch.setattr(
-        "hermes_cli.main._save_custom_provider",
+        "openamer_cli.main._save_custom_provider",
         lambda base_url, api_key="", model="", context_length=None, name=None, api_mode=None, key_env="": captured_provider.update(
             {
                 "base_url": base_url,
@@ -825,7 +825,7 @@ def test_model_flow_custom_persists_selected_api_mode(monkeypatch):
         ]
     )
     monkeypatch.setattr("builtins.input", lambda _prompt="": next(answers))
-    monkeypatch.setattr("hermes_cli.secret_prompt.masked_secret_prompt", lambda _prompt="": "test-key")
+    monkeypatch.setattr("openamer_cli.secret_prompt.masked_secret_prompt", lambda _prompt="": "test-key")
 
     hermes_main._model_flow_custom({"model": {"provider": "custom"}})
 
@@ -843,14 +843,14 @@ def test_model_flow_custom_persists_selected_api_mode(monkeypatch):
 def test_cmd_model_forwards_nous_login_tls_options(monkeypatch):
     monkeypatch.setattr(hermes_main, "_require_tty", lambda *a: None)
     monkeypatch.setattr(
-        "hermes_cli.config.load_config",
+        "openamer_cli.config.load_config",
         lambda: {"model": {"default": "gpt-5", "provider": "nous"}},
     )
-    monkeypatch.setattr("hermes_cli.config.save_config", lambda cfg: None)
-    monkeypatch.setattr("hermes_cli.config.get_env_value", lambda key: "")
-    monkeypatch.setattr("hermes_cli.config.save_env_value", lambda key, value: None)
-    monkeypatch.setattr("hermes_cli.auth.resolve_provider", lambda requested, **kwargs: "nous")
-    monkeypatch.setattr("hermes_cli.auth.get_provider_auth_state", lambda provider_id: None)
+    monkeypatch.setattr("openamer_cli.config.save_config", lambda cfg: None)
+    monkeypatch.setattr("openamer_cli.config.get_env_value", lambda key: "")
+    monkeypatch.setattr("openamer_cli.config.save_env_value", lambda key, value: None)
+    monkeypatch.setattr("openamer_cli.auth.resolve_provider", lambda requested, **kwargs: "nous")
+    monkeypatch.setattr("openamer_cli.auth.get_provider_auth_state", lambda provider_id: None)
     monkeypatch.setattr(hermes_main, "_prompt_provider_choice", lambda choices, **kwargs: 0)
 
     captured = {}
@@ -865,7 +865,7 @@ def test_cmd_model_forwards_nous_login_tls_options(monkeypatch):
         captured["ca_bundle"] = login_args.ca_bundle
         captured["insecure"] = login_args.insecure
 
-    monkeypatch.setattr("hermes_cli.auth._login_nous", _fake_login)
+    monkeypatch.setattr("openamer_cli.auth._login_nous", _fake_login)
 
     hermes_main.cmd_model(
         SimpleNamespace(
@@ -897,18 +897,18 @@ def test_cmd_model_forwards_nous_login_tls_options(monkeypatch):
 # ---------------------------------------------------------------------------
 
 def test_auto_provider_name_localhost():
-    from hermes_cli.main import _auto_provider_name
+    from openamer_cli.main import _auto_provider_name
     assert _auto_provider_name("http://localhost:11434/v1") == "Local (localhost:11434)"
     assert _auto_provider_name("http://127.0.0.1:1234/v1") == "Local (127.0.0.1:1234)"
 
 
 def test_auto_provider_name_runpod():
-    from hermes_cli.main import _auto_provider_name
+    from openamer_cli.main import _auto_provider_name
     assert "RunPod" in _auto_provider_name("https://xyz.runpod.io/v1")
 
 
 def test_auto_provider_name_remote():
-    from hermes_cli.main import _auto_provider_name
+    from openamer_cli.main import _auto_provider_name
     result = _auto_provider_name("https://api.together.xyz/v1")
     assert result == "Api.together.xyz"
 
@@ -916,18 +916,18 @@ def test_auto_provider_name_remote():
 def test_save_custom_provider_uses_provided_name(monkeypatch, tmp_path):
     """When a display name is passed, it should appear in the saved entry."""
     import yaml
-    from hermes_cli.main import _save_custom_provider
+    from openamer_cli.main import _save_custom_provider
 
     cfg_path = tmp_path / "config.yaml"
     cfg_path.write_text(yaml.dump({}))
 
     monkeypatch.setattr(
-        "hermes_cli.config.load_config", lambda: yaml.safe_load(cfg_path.read_text()) or {},
+        "openamer_cli.config.load_config", lambda: yaml.safe_load(cfg_path.read_text()) or {},
     )
     saved = {}
     def _save(cfg):
         saved.update(cfg)
-    monkeypatch.setattr("hermes_cli.config.save_config", _save)
+    monkeypatch.setattr("openamer_cli.config.save_config", _save)
 
     _save_custom_provider("http://localhost:11434/v1", name="Ollama")
     entries = saved.get("custom_providers", [])
@@ -938,15 +938,15 @@ def test_save_custom_provider_uses_provided_name(monkeypatch, tmp_path):
 def test_save_custom_provider_references_the_key_instead_of_inlining_it(monkeypatch, tmp_path):
     """With key_env set the entry must not carry the secret (#69449)."""
     import yaml
-    from hermes_cli.main import _save_custom_provider
+    from openamer_cli.main import _save_custom_provider
 
     cfg_path = tmp_path / "config.yaml"
     cfg_path.write_text(yaml.dump({}))
     monkeypatch.setattr(
-        "hermes_cli.config.load_config", lambda: yaml.safe_load(cfg_path.read_text()) or {},
+        "openamer_cli.config.load_config", lambda: yaml.safe_load(cfg_path.read_text()) or {},
     )
     saved = {}
-    monkeypatch.setattr("hermes_cli.config.save_config", lambda cfg: saved.update(cfg))
+    monkeypatch.setattr("openamer_cli.config.save_config", lambda cfg: saved.update(cfg))
 
     _save_custom_provider(
         "http://localhost:11434/v1",
@@ -964,7 +964,7 @@ def test_save_custom_provider_references_the_key_instead_of_inlining_it(monkeypa
 def test_save_custom_provider_migrates_an_existing_plaintext_entry(monkeypatch, tmp_path):
     """Re-saving a known URL swaps its inline key for the .env reference."""
     import yaml
-    from hermes_cli.main import _save_custom_provider
+    from openamer_cli.main import _save_custom_provider
 
     existing = {
         "custom_providers": [
@@ -975,9 +975,9 @@ def test_save_custom_provider_migrates_an_existing_plaintext_entry(monkeypatch, 
             }
         ]
     }
-    monkeypatch.setattr("hermes_cli.config.load_config", lambda: existing)
+    monkeypatch.setattr("openamer_cli.config.load_config", lambda: existing)
     saved = {}
-    monkeypatch.setattr("hermes_cli.config.save_config", lambda cfg: saved.update(cfg))
+    monkeypatch.setattr("openamer_cli.config.save_config", lambda cfg: saved.update(cfg))
 
     _save_custom_provider(
         "http://localhost:11434/v1",
@@ -999,7 +999,7 @@ def test_custom_endpoint_key_env_is_a_valid_posix_name_for_ip_endpoints():
     """
     import re
 
-    from hermes_cli.config import _ENV_VAR_NAME_RE, custom_endpoint_key_env
+    from openamer_cli.config import _ENV_VAR_NAME_RE, custom_endpoint_key_env
 
     for identity in ("127.0.0.1_8080", "0.0.0.0", "10.0.0.7:11434", "", "-–-"):
         assert _ENV_VAR_NAME_RE.match(custom_endpoint_key_env(identity)), identity
@@ -1007,7 +1007,7 @@ def test_custom_endpoint_key_env_is_a_valid_posix_name_for_ip_endpoints():
 
 def test_custom_endpoint_key_env_separates_ports_on_one_host():
     """Two servers on one machine must not collapse onto one .env slot."""
-    from hermes_cli.config import custom_endpoint_key_env
+    from openamer_cli.config import custom_endpoint_key_env
 
     assert custom_endpoint_key_env("127.0.0.1_8000") != custom_endpoint_key_env("127.0.0.1_8001")
     assert custom_endpoint_key_env("acme") == custom_endpoint_key_env("ACME")

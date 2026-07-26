@@ -20,9 +20,9 @@ JPEG = b"\xff\xd8\xff" + b"\x00" * 64
 
 
 def _reload(monkeypatch, hermes_home: Path):
-    monkeypatch.setenv("HERMES_HOME", str(hermes_home))
-    import hermes_constants
-    importlib.reload(hermes_constants)
+    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
+    import openamer_constants
+    importlib.reload(openamer_constants)
     import tools.image_source as isrc
     importlib.reload(isrc)
     return isrc

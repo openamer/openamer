@@ -201,7 +201,7 @@ def test_xai_video_image_input_blocks_credential_store_symlink(tmp_path, monkeyp
     except OSError as exc:
         pytest.skip(f"symlink unavailable on this platform: {exc}")
 
-    monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
     with pytest.raises(ValueError, match="credential store"):
         _image_ref_to_xai_input(str(image_link))
@@ -220,7 +220,7 @@ def test_xai_video_file_input_blocks_credential_store_symlink(tmp_path, monkeypa
     except OSError as exc:
         pytest.skip(f"symlink unavailable on this platform: {exc}")
 
-    monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
     with pytest.raises(ValueError, match="credential store"):
         _video_ref_to_xai_url(str(video_link))

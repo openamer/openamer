@@ -42,11 +42,11 @@ class TestProviderSelectionGate:
     """
 
     def test_import_after_config_env_patch_uses_restored_dotenv_loader(self):
-        """Importing STT while hermes_cli.config.get_env_value is patched must
+        """Importing STT while openamer_cli.config.get_env_value is patched must
         not freeze that temporary helper into this module forever.
         """
         import importlib
-        import hermes_cli.config as config_mod
+        import openamer_cli.config as config_mod
         from tools import transcription_tools as tt
 
         with pytest.MonkeyPatch.context() as mp:
@@ -57,7 +57,7 @@ class TestProviderSelectionGate:
             with patch.object(tt, "_HAS_FASTER_WHISPER", False), \
                  patch.object(tt, "_HAS_OPENAI", True), \
                  patch.object(tt, "_has_local_command", return_value=False), \
-                 patch("hermes_cli.config.load_env",
+                 patch("openamer_cli.config.load_env",
                        return_value={"GROQ_API_KEY": "dotenv-secret"}):
                 assert tt._get_provider({"enabled": True, "provider": "groq"}) == "groq"
         finally:
@@ -66,7 +66,7 @@ class TestProviderSelectionGate:
     def test_xai_resolver_import_after_config_env_patch_uses_restored_dotenv_loader(self):
         """xAI HTTP auth must not cache a temporarily patched env helper."""
         import importlib
-        import hermes_cli.config as config_mod
+        import openamer_cli.config as config_mod
         from tools import xai_http
 
         with pytest.MonkeyPatch.context() as mp:
@@ -75,13 +75,13 @@ class TestProviderSelectionGate:
 
         try:
             with patch(
-                "hermes_cli.runtime_provider.resolve_runtime_provider",
+                "openamer_cli.runtime_provider.resolve_runtime_provider",
                 side_effect=RuntimeError("no oauth"),
             ), patch(
-                "hermes_cli.auth.resolve_xai_oauth_runtime_credentials",
+                "openamer_cli.auth.resolve_xai_oauth_runtime_credentials",
                 return_value={},
             ), patch(
-                "hermes_cli.config.load_env",
+                "openamer_cli.config.load_env",
                 return_value={"XAI_API_KEY": "dotenv-secret"},
             ):
                 creds = xai_http.resolve_xai_http_credentials()
@@ -96,7 +96,7 @@ class TestProviderSelectionGate:
         with patch.object(tt, "_HAS_FASTER_WHISPER", False), \
              patch.object(tt, "_HAS_OPENAI", True), \
              patch.object(tt, "_has_local_command", return_value=False), \
-             patch("hermes_cli.config.load_env",
+             patch("openamer_cli.config.load_env",
                    return_value={"GROQ_API_KEY": "dotenv-secret"}):
             assert tt._get_provider({"enabled": True, "provider": "groq"}) == "groq"
 
@@ -106,7 +106,7 @@ class TestProviderSelectionGate:
         with patch.object(tt, "_HAS_FASTER_WHISPER", False), \
              patch.object(tt, "_HAS_MISTRAL", True), \
              patch.object(tt, "_has_local_command", return_value=False), \
-             patch("hermes_cli.config.load_env",
+             patch("openamer_cli.config.load_env",
                    return_value={"MISTRAL_API_KEY": "dotenv-secret"}):
             assert tt._get_provider({"enabled": True, "provider": "mistral"}) == "mistral"
 
@@ -115,7 +115,7 @@ class TestProviderSelectionGate:
 
         with patch.object(tt, "_HAS_FASTER_WHISPER", False), \
              patch.object(tt, "_has_local_command", return_value=False), \
-             patch("hermes_cli.config.load_env",
+             patch("openamer_cli.config.load_env",
                    return_value={"XAI_API_KEY": "dotenv-secret"}):
             assert tt._get_provider({"enabled": True, "provider": "xai"}) == "xai"
 
@@ -124,7 +124,7 @@ class TestProviderSelectionGate:
 
         with patch.object(tt, "_HAS_FASTER_WHISPER", False), \
              patch.object(tt, "_has_local_command", return_value=False), \
-             patch("hermes_cli.config.load_env",
+             patch("openamer_cli.config.load_env",
                    return_value={"ELEVENLABS_API_KEY": "dotenv-secret"}):
             assert tt._get_provider({"enabled": True, "provider": "elevenlabs"}) == "elevenlabs"
 
@@ -139,7 +139,7 @@ class TestProviderSelectionGate:
              patch.object(tt, "_HAS_MISTRAL", False), \
              patch.object(tt, "_has_local_command", return_value=False), \
              patch.object(tt, "_has_openai_audio_backend", return_value=False), \
-             patch("hermes_cli.config.load_env",
+             patch("openamer_cli.config.load_env",
                    return_value={"GROQ_API_KEY": "dotenv-secret"}):
             # No "provider" key → explicit=False → auto-detect branch
             assert tt._get_provider({"enabled": True}) == "groq"
@@ -268,7 +268,7 @@ class TestTranscribeCallSitesReadDotenv:
 
 
 class TestEndToEndRegressionGuard:
-    """End-to-end probe: patch ``hermes_cli.config.load_env`` to simulate
+    """End-to-end probe: patch ``openamer_cli.config.load_env`` to simulate
     ``~/.hermes/.env`` carrying the key while ``os.environ`` does not.
     Before the fix ``_transcribe_xai`` called ``os.getenv("XAI_API_KEY")``
     directly and returned ``XAI_API_KEY not set``."""
@@ -288,11 +288,11 @@ class TestEndToEndRegressionGuard:
             response.json.return_value = {"text": "ok"}
             return response
 
-        with patch("hermes_cli.config.load_env",
+        with patch("openamer_cli.config.load_env",
                    return_value={"XAI_API_KEY": "dotenv-secret"}):
             # Sanity: get_env_value resolves through load_env when
             # os.environ is empty.
-            from hermes_cli.config import get_env_value as live_get
+            from openamer_cli.config import get_env_value as live_get
             assert live_get("XAI_API_KEY") == "dotenv-secret"
 
             with patch("requests.post", side_effect=fake_post), \

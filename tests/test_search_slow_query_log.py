@@ -4,7 +4,7 @@ import logging
 
 import pytest
 
-from hermes_state import SessionDB
+from openamer_state import SessionDB
 
 
 @pytest.fixture()
@@ -18,7 +18,7 @@ def db(tmp_path):
 
 def test_slow_log_emitted_at_zero_threshold(db, monkeypatch, caplog):
     monkeypatch.setenv("HERMES_SEARCH_SLOW_MS", "0")
-    with caplog.at_level(logging.INFO, logger="hermes_state"):
+    with caplog.at_level(logging.INFO, logger="openamer_state"):
         rows = db.search_messages("graphiti", limit=5)
     assert rows
     slow = [r for r in caplog.records if "slow session search" in r.getMessage()]
@@ -29,7 +29,7 @@ def test_slow_log_emitted_at_zero_threshold(db, monkeypatch, caplog):
 
 def test_no_log_under_threshold(db, monkeypatch, caplog):
     monkeypatch.setenv("HERMES_SEARCH_SLOW_MS", "60000")
-    with caplog.at_level(logging.INFO, logger="hermes_state"):
+    with caplog.at_level(logging.INFO, logger="openamer_state"):
         db.search_messages("graphiti", limit=5)
     assert not [r for r in caplog.records if "slow session search" in r.getMessage()]
 

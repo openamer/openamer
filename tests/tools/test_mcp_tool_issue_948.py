@@ -26,7 +26,7 @@ def test_resolve_stdio_command_falls_back_to_hermes_node_bin(tmp_path):
     npx_path.chmod(0o755)
 
     with patch("tools.mcp_tool.shutil.which", return_value=None), \
-         patch.dict("os.environ", {"HERMES_HOME": str(tmp_path)}, clear=False):
+         patch.dict("os.environ", {"OPENAMER_HOME": str(tmp_path)}, clear=False):
         command, env = _resolve_stdio_command("npx", {"PATH": "/usr/bin"})
 
     assert command == str(npx_path)
@@ -34,7 +34,7 @@ def test_resolve_stdio_command_falls_back_to_hermes_node_bin(tmp_path):
 
 
 def test_resolve_stdio_command_falls_back_to_usr_local_bin():
-    """When ``npx`` isn't on the filtered PATH and isn't under ``$HERMES_HOME/node/bin``
+    """When ``npx`` isn't on the filtered PATH and isn't under ``$OPENAMER_HOME/node/bin``
     or ``~/.local/bin``, the resolver should still locate it at ``/usr/local/bin/npx``.
 
     This is the canonical install location for Node on Linux from-source builds,
@@ -47,7 +47,7 @@ def test_resolve_stdio_command_falls_back_to_usr_local_bin():
     target = os.path.join(os.sep, "usr", "local", "bin", "npx")
 
     # Pretend ONLY the /usr/local/bin/npx candidate exists and is executable —
-    # the other candidates ($HERMES_HOME/node/bin/npx and ~/.local/bin/npx)
+    # the other candidates ($OPENAMER_HOME/node/bin/npx and ~/.local/bin/npx)
     # should fail isfile() and the resolver must fall through to /usr/local/bin.
     def _fake_isfile(path):
         return path == target
@@ -113,7 +113,7 @@ def test_run_stdio_uses_resolved_command_and_prepended_path(tmp_path):
 
     async def _test():
         with patch("tools.mcp_tool.shutil.which", return_value=None), \
-             patch.dict("os.environ", {"HERMES_HOME": str(tmp_path), "PATH": "/usr/bin", "HOME": str(tmp_path)}, clear=False), \
+             patch.dict("os.environ", {"OPENAMER_HOME": str(tmp_path), "PATH": "/usr/bin", "HOME": str(tmp_path)}, clear=False), \
              patch("tools.mcp_tool.StdioServerParameters") as mock_params, \
              patch("tools.mcp_tool.stdio_client", return_value=mock_stdio_cm), \
              patch("tools.mcp_tool.ClientSession", return_value=mock_session_cm):

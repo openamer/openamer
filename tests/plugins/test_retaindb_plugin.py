@@ -19,10 +19,10 @@ import pytest
 
 @pytest.fixture(autouse=True)
 def _isolate_env(tmp_path, monkeypatch):
-    """Ensure HERMES_HOME and RETAINDB vars are isolated."""
+    """Ensure OPENAMER_HOME and RETAINDB vars are isolated."""
     hermes_home = tmp_path / ".hermes"
     hermes_home.mkdir()
-    monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
     monkeypatch.delenv("RETAINDB_API_KEY", raising=False)
     monkeypatch.delenv("RETAINDB_BASE_URL", raising=False)
     monkeypatch.delenv("RETAINDB_PROJECT", raising=False)
@@ -317,7 +317,7 @@ class TestRetainDBMemoryProvider:
 
     def _make_provider(self, tmp_path, monkeypatch, api_key="rdb-test-key"):
         monkeypatch.setenv("RETAINDB_API_KEY", api_key)
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path / ".hermes"))
+        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".hermes"))
         (tmp_path / ".hermes").mkdir(exist_ok=True)
         provider = RetainDBMemoryProvider()
         return provider
@@ -539,7 +539,7 @@ class TestPrefetch:
         monkeypatch.setenv("RETAINDB_API_KEY", "rdb-test-key")
         hermes_home = tmp_path / ".hermes"
         hermes_home.mkdir(exist_ok=True)
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         p = RetainDBMemoryProvider()
         p.initialize("test-session", hermes_home=str(hermes_home))
         return p
@@ -639,7 +639,7 @@ class TestSyncTurn:
         monkeypatch.setenv("RETAINDB_API_KEY", "rdb-test-key")
         hermes_home = tmp_path / ".hermes"
         hermes_home.mkdir(exist_ok=True)
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         p = RetainDBMemoryProvider()
         p.initialize("test-session", hermes_home=str(hermes_home))
         with patch.object(p._queue, "enqueue") as mock_enqueue:
@@ -658,7 +658,7 @@ class TestSyncTurn:
         monkeypatch.setenv("RETAINDB_API_KEY", "rdb-test-key")
         hermes_home = tmp_path / ".hermes"
         hermes_home.mkdir(exist_ok=True)
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         p = RetainDBMemoryProvider()
         p.initialize("test-session", hermes_home=str(hermes_home))
         with patch.object(p._queue, "enqueue") as mock_enqueue:
@@ -678,7 +678,7 @@ class TestOnMemoryWrite:
         monkeypatch.setenv("RETAINDB_API_KEY", "rdb-test-key")
         hermes_home = tmp_path / ".hermes"
         hermes_home.mkdir(exist_ok=True)
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         p = RetainDBMemoryProvider()
         p.initialize("test-session", hermes_home=str(hermes_home))
         with patch.object(p._client, "add_memory", return_value={"id": "mem-1"}) as mock_add:
@@ -691,7 +691,7 @@ class TestOnMemoryWrite:
         monkeypatch.setenv("RETAINDB_API_KEY", "rdb-test-key")
         hermes_home = tmp_path / ".hermes"
         hermes_home.mkdir(exist_ok=True)
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         p = RetainDBMemoryProvider()
         p.initialize("test-session", hermes_home=str(hermes_home))
         with patch.object(p._client, "add_memory") as mock_add:
@@ -703,7 +703,7 @@ class TestOnMemoryWrite:
         monkeypatch.setenv("RETAINDB_API_KEY", "rdb-test-key")
         hermes_home = tmp_path / ".hermes"
         hermes_home.mkdir(exist_ok=True)
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         p = RetainDBMemoryProvider()
         p.initialize("test-session", hermes_home=str(hermes_home))
         with patch.object(p._client, "add_memory") as mock_add:
@@ -715,7 +715,7 @@ class TestOnMemoryWrite:
         monkeypatch.setenv("RETAINDB_API_KEY", "rdb-test-key")
         hermes_home = tmp_path / ".hermes"
         hermes_home.mkdir(exist_ok=True)
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         p = RetainDBMemoryProvider()
         p.initialize("test-session", hermes_home=str(hermes_home))
         with patch.object(p._client, "add_memory", return_value={"id": "mem-1"}) as mock_add:

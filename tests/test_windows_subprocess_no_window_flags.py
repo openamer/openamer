@@ -38,7 +38,7 @@ def _spawns(captured, *needles):
 def _is_git_spawn(cmd) -> bool:
     """True only for a ``git -C <cwd> ...`` spawn.
 
-    ``bounded_git_probe`` lives in ``hermes_cli._subprocess_compat`` and both
+    ``bounded_git_probe`` lives in ``openamer_cli._subprocess_compat`` and both
     probe call sites delegate to it, so these tests patch
     ``_subprocess_compat.subprocess.Popen`` — which is the shared ``subprocess``
     module singleton, i.e. a process-wide patch. Any unrelated daemon spawn
@@ -69,7 +69,7 @@ def _make_fake_popen(spawns, *, stdout="ok\n", returncode=0):
 def test_bounded_git_probe_fast_path_spawn_contract_windows(monkeypatch):
     """The normal-path spawn contract survives the run()->Popen rewrite:
     PIPE/PIPE/DEVNULL, text + utf-8/replace, hidden-window flags on Windows."""
-    from hermes_cli import _subprocess_compat
+    from openamer_cli import _subprocess_compat
 
     spawns = []
     monkeypatch.setattr(_subprocess_compat, "IS_WINDOWS", True)
@@ -93,7 +93,7 @@ def test_bounded_git_probe_fast_path_spawn_contract_windows(monkeypatch):
 
 
 def test_bounded_git_probe_no_hide_flags_off_windows(monkeypatch):
-    from hermes_cli import _subprocess_compat
+    from openamer_cli import _subprocess_compat
 
     spawns = []
     monkeypatch.setattr(_subprocess_compat, "IS_WINDOWS", False)
@@ -105,7 +105,7 @@ def test_bounded_git_probe_no_hide_flags_off_windows(monkeypatch):
 
 
 def test_bounded_git_probe_nonzero_returncode_returns_empty(monkeypatch):
-    from hermes_cli import _subprocess_compat
+    from openamer_cli import _subprocess_compat
 
     spawns = []
     monkeypatch.setattr(_subprocess_compat, "IS_WINDOWS", False)
@@ -124,7 +124,7 @@ def test_bounded_git_probe_timeout_kills_and_returns_empty(monkeypatch):
     unbounded post-kill reader-thread join, which on Windows deadlocks when a
     suspended descendant git.exe retains the captured handles and blocks Desktop
     agent initialization behind it (issues #68609 / #66037)."""
-    from hermes_cli import _subprocess_compat
+    from openamer_cli import _subprocess_compat
 
     events = []
 
@@ -158,7 +158,7 @@ def test_bounded_git_probe_timeout_tree_kills_on_windows(monkeypatch):
     ``taskkill /T /F`` so the suspended descendant git.exe holding the pipe
     writers dies too — otherwise the bounded drain can't reach EOF and the
     process + reader threads leak per fired timeout (the #68609 leak)."""
-    from hermes_cli import _subprocess_compat
+    from openamer_cli import _subprocess_compat
 
     taskkills = []
 
@@ -195,7 +195,7 @@ def test_bounded_git_probe_kill_failure_still_fails_open(monkeypatch):
     """kill() raising (access denied, already-reaped) must not escape — the
     contract is "" on ANY failure. A raise inside the except handler would
     otherwise propagate."""
-    from hermes_cli import _subprocess_compat
+    from openamer_cli import _subprocess_compat
 
     class _UnkillablePopen:
         def __init__(self, cmd, **kwargs):
@@ -221,7 +221,7 @@ def test_bounded_git_probe_kill_failure_still_fails_open(monkeypatch):
 def test_bounded_git_probe_nontimeout_failure_kills_child(monkeypatch):
     """A non-timeout communicate() failure (torn-down pipe, decode error) must
     still terminate the child and fail open, not leave it running."""
-    from hermes_cli import _subprocess_compat
+    from openamer_cli import _subprocess_compat
 
     events = []
 
@@ -254,7 +254,7 @@ def test_bounded_git_probe_cleanup_failure_is_swallowed(monkeypatch):
     """If the bounded post-kill drain itself still times out (descendant keeps
     the handles), the probe abandons the pipes and honours the ""-on-failure
     contract instead of hanging."""
-    from hermes_cli import _subprocess_compat
+    from openamer_cli import _subprocess_compat
 
     class _StuckPopen:
         def __init__(self, cmd, **kwargs):
@@ -278,7 +278,7 @@ def test_bounded_git_probe_cleanup_failure_is_swallowed(monkeypatch):
 
 def test_bounded_git_probe_spawn_failure_returns_empty(monkeypatch):
     """A spawn failure (git not on PATH) fails open to ""."""
-    from hermes_cli import _subprocess_compat
+    from openamer_cli import _subprocess_compat
 
     def boom(cmd, **kwargs):
         raise FileNotFoundError("git not found")
@@ -293,7 +293,7 @@ def test_tui_gateway_git_probe_delegates_to_bounded_probe(monkeypatch):
     """run_git wires cwd/args through the shared bounded helper (hidden-window
     flags reach the spawn on Windows) and preserves its own timeout."""
     from tui_gateway import git_probe
-    from hermes_cli import _subprocess_compat
+    from openamer_cli import _subprocess_compat
 
     spawns = []
     monkeypatch.setattr(_subprocess_compat, "IS_WINDOWS", True)
@@ -311,7 +311,7 @@ def test_tui_gateway_git_probe_delegates_to_bounded_probe(monkeypatch):
 def test_tui_gateway_git_probe_empty_cwd_short_circuits(monkeypatch):
     """run_git returns "" for a falsy cwd without spawning git."""
     from tui_gateway import git_probe
-    from hermes_cli import _subprocess_compat
+    from openamer_cli import _subprocess_compat
 
     def boom(*a, **k):  # pragma: no cover - must not be called
         raise AssertionError("git must not spawn for an empty cwd")
@@ -321,7 +321,7 @@ def test_tui_gateway_git_probe_empty_cwd_short_circuits(monkeypatch):
 
 
 def test_tui_gateway_fuzzy_file_listing_hides_git_windows(monkeypatch):
-    from hermes_cli import _subprocess_compat
+    from openamer_cli import _subprocess_compat
     from tui_gateway import server
 
     captured = []
@@ -350,7 +350,7 @@ def test_coding_context_git_delegates_to_bounded_probe(monkeypatch):
     """_git wires cwd/args through the shared bounded helper (hidden-window flags
     reach the spawn on Windows), stringifying the Path cwd."""
     from agent import coding_context
-    from hermes_cli import _subprocess_compat
+    from openamer_cli import _subprocess_compat
 
     spawns = []
     monkeypatch.setattr(_subprocess_compat, "IS_WINDOWS", True)
@@ -408,7 +408,7 @@ def test_context_reference_git_and_rg_hide_windows(monkeypatch):
 
 
 def test_copilot_gh_cli_probe_hides_gh_windows(monkeypatch):
-    from hermes_cli import copilot_auth
+    from openamer_cli import copilot_auth
 
     captured = []
 
@@ -427,8 +427,8 @@ def test_copilot_gh_cli_probe_hides_gh_windows(monkeypatch):
 
 
 def test_gateway_pid_scan_hides_wmic_and_powershell_windows(monkeypatch):
-    from hermes_cli import gateway
-    from hermes_cli import _subprocess_compat
+    from openamer_cli import gateway
+    from openamer_cli import _subprocess_compat
 
     captured = []
 
@@ -466,8 +466,8 @@ def test_gateway_pid_scan_hides_wmic_and_powershell_windows(monkeypatch):
 
 
 def test_stale_dashboard_windows_scan_hides_wmic(monkeypatch):
-    from hermes_cli import main
-    from hermes_cli import _subprocess_compat
+    from openamer_cli import main
+    from openamer_cli import _subprocess_compat
 
     captured = []
 
@@ -486,7 +486,7 @@ def test_stale_dashboard_windows_scan_hides_wmic(monkeypatch):
 
 def test_gateway_force_kill_hides_taskkill_window(monkeypatch):
     from gateway import status
-    from hermes_cli import _subprocess_compat
+    from openamer_cli import _subprocess_compat
 
     captured = []
 
@@ -647,7 +647,7 @@ def test_tui_slash_worker_hides_python_window(monkeypatch):
     monkeypatch.setattr(server.subprocess, "Popen", fake_popen)
     monkeypatch.setattr(server.threading, "Thread", lambda *a, **k: SimpleNamespace(start=lambda: None))
 
-    import hermes_cli._subprocess_compat as subprocess_compat
+    import openamer_cli._subprocess_compat as subprocess_compat
 
     monkeypatch.setattr(subprocess_compat, "windows_hide_flags", lambda: _CREATE_NO_WINDOW)
 
@@ -667,7 +667,7 @@ def test_tui_slash_worker_hides_python_window(monkeypatch):
 
 
 def _patch_hide_flags(monkeypatch):
-    import hermes_cli._subprocess_compat as subprocess_compat
+    import openamer_cli._subprocess_compat as subprocess_compat
 
     monkeypatch.setattr(subprocess_compat, "IS_WINDOWS", True)
     monkeypatch.setattr(subprocess_compat, "windows_hide_flags", lambda: _CREATE_NO_WINDOW)
@@ -690,10 +690,10 @@ def test_tui_cli_exec_rpc_hides_python_window(monkeypatch):
     )
     assert resp["result"]["code"] == 0
 
-    spawns = _spawns(captured, "hermes_cli.main")
+    spawns = _spawns(captured, "openamer_cli.main")
     assert len(spawns) == 1, captured
     cmd, kwargs = spawns[0]
-    assert cmd[:3] == [server.sys.executable, "-m", "hermes_cli.main"]
+    assert cmd[:3] == [server.sys.executable, "-m", "openamer_cli.main"]
     assert kwargs["creationflags"] == _CREATE_NO_WINDOW
 
 
@@ -1062,7 +1062,7 @@ def test_suppress_platform_ver_console_posix_noop(monkeypatch):
     """On POSIX the helper must do nothing at all and never raise."""
     import platform
 
-    from hermes_cli import _subprocess_compat
+    from openamer_cli import _subprocess_compat
 
     monkeypatch.setattr(_subprocess_compat, "IS_WINDOWS", False)
     original = platform._syscmd_ver
@@ -1079,7 +1079,7 @@ def test_suppress_platform_ver_console_stubs_syscmd_ver(monkeypatch):
     so win32_ver() takes its ValueError fallback instead of `cmd /c ver`."""
     import platform
 
-    from hermes_cli import _subprocess_compat
+    from openamer_cli import _subprocess_compat
 
     monkeypatch.setattr(_subprocess_compat, "IS_WINDOWS", True)
     # Register the original with monkeypatch so it gets restored after.

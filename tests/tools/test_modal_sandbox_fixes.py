@@ -366,7 +366,7 @@ class TestDockerHostBindApproval:
         ``tools.approval`` loads ``command_allowlist`` into module-level
         ``_permanent_approved`` at import time. This file imports
         ``tools.terminal_tool`` at module level (collection time — BEFORE the
-        hermetic HERMES_HOME fixture runs), so on a dev machine whose real
+        hermetic OPENAMER_HOME fixture runs), so on a dev machine whose real
         config permanently allowlists e.g. "delete in root path" the guard
         under test silently approves and the assertions flip. CI never has
         such an allowlist, making this a local-only flake.

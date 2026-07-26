@@ -84,7 +84,7 @@ class TestGoogleChatReadPathWarns:
         self, tmp_path, monkeypatch, caplog
     ):
         """The google_chat legacy token read path shares the Slack fix."""
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
         # google-auth may not be installed in this environment; the warning
         # fires before the import guard, so a None return is fine either way.
         token = tmp_path / "google_chat_user_token.json"

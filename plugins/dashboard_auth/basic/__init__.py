@@ -67,7 +67,7 @@ import secrets
 import time
 from typing import Any, Optional
 
-from hermes_cli.dashboard_auth import (
+from openamer_cli.dashboard_auth import (
     DashboardAuthProvider,
     InvalidCredentialsError,
     LoginStart,
@@ -339,7 +339,7 @@ def _load_config_basic_auth_section() -> dict:
     not being a dict — every shape falls through to ``{}``.
     """
     try:
-        from hermes_cli.config import cfg_get, load_config
+        from openamer_cli.config import cfg_get, load_config
 
         cfg = load_config()
     except Exception as exc:  # noqa: BLE001 — broad catch is intentional

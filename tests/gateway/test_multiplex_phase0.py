@@ -2,7 +2,7 @@
 
 Covers the three Phase 0 deliverables:
   1. ``gateway.multiplex_profiles`` config flag (default False, round-trips).
-  2. ``hermes_cli.profiles.profiles_to_serve`` enumeration.
+  2. ``openamer_cli.profiles.profiles_to_serve`` enumeration.
   3. Profile-stamped ``build_session_key`` that is BYTE-IDENTICAL when the
      flag is off (the orphan-every-session guard) and namespace-segmented when
      on, without disturbing the positional key layout downstream parsers rely
@@ -13,7 +13,7 @@ from datetime import datetime
 from unittest.mock import patch
 import yaml
 
-from hermes_constants import reset_hermes_home_override, set_hermes_home_override
+from openamer_constants import reset_openamer_home_override, set_openamer_home_override
 from gateway.config import GatewayConfig, Platform
 from gateway.session import SessionSource, SessionStore, build_session_key
 
@@ -158,11 +158,11 @@ class TestMultiplexConfigFlag:
 
         assert gateway_run._load_gateway_config()["display"]["tool_progress"] == "all"
 
-        token = set_hermes_home_override(profile_home)
+        token = set_openamer_home_override(profile_home)
         try:
             scoped_config = gateway_run._load_gateway_config()
         finally:
-            reset_hermes_home_override(token)
+            reset_openamer_home_override(token)
 
         assert scoped_config["display"]["tool_progress"] is False
         assert scoped_config["display"]["interim_assistant_messages"] is False
@@ -193,13 +193,13 @@ class TestSessionStoreProfileResolution:
     def test_flag_on_uses_active_profile_namespace(self, tmp_path):
         store = self._store(tmp_path, multiplex_profiles=True)
         s = _src(chat_id="99", chat_type="dm")
-        with patch("hermes_cli.profiles.get_active_profile_name", return_value="coder"):
+        with patch("openamer_cli.profiles.get_active_profile_name", return_value="coder"):
             assert store._generate_session_key(s) == "agent:coder:telegram:dm:99"
 
     def test_flag_on_default_profile_stays_legacy(self, tmp_path):
         store = self._store(tmp_path, multiplex_profiles=True)
         s = _src(chat_id="99", chat_type="dm")
-        with patch("hermes_cli.profiles.get_active_profile_name", return_value="default"):
+        with patch("openamer_cli.profiles.get_active_profile_name", return_value="default"):
             assert store._generate_session_key(s) == "agent:main:telegram:dm:99"
 
 
@@ -235,7 +235,7 @@ class TestSessionStoreUnmultiplexedRecovery:
         store = self._store_with_row(tmp_path, row)
         source = _src(chat_id="99", chat_type="dm")
 
-        with patch("hermes_cli.profiles.get_active_profile_name", return_value="default"):
+        with patch("openamer_cli.profiles.get_active_profile_name", return_value="default"):
             recovered = store._recover_session_from_db(
                 session_key="agent:main:telegram:dm:99",
                 source=source,
@@ -254,7 +254,7 @@ class TestSessionStoreUnmultiplexedRecovery:
         store = self._store_with_row(tmp_path, row)
         source = _src(chat_id="99", chat_type="dm")
 
-        with patch("hermes_cli.profiles.get_active_profile_name", return_value="coder"):
+        with patch("openamer_cli.profiles.get_active_profile_name", return_value="coder"):
             recovered = store._recover_session_from_db(
                 session_key="agent:main:telegram:dm:99",
                 source=source,

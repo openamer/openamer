@@ -65,7 +65,7 @@ describe('connecting overlay vs recovery surface', () => {
     // failDesktopBoot() ran: error set, gateway never opened.
     $desktopBoot.set({
       ...$desktopBoot.get(),
-      error: 'Hermes backend did not become ready',
+      error: 'OpenAmer backend did not become ready',
       running: false,
       visible: true
     })
@@ -177,7 +177,7 @@ describe('connecting overlay vs recovery surface', () => {
     setGatewayState('error')
     $desktopBoot.set({
       ...$desktopBoot.get(),
-      error: 'Lost connection to the Hermes gateway and could not reconnect.',
+      error: 'Lost connection to the OpenAmer gateway and could not reconnect.',
       running: false,
       visible: true
     })

@@ -50,7 +50,7 @@ def test_builtin_catalog_is_loaded_from_external_asset_and_is_status_only():
 
 
 def test_relative_status_phrase_path_loads_from_hermes_home(tmp_path, monkeypatch):
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     phrase_file = tmp_path / "phrases.yaml"
     phrase_file.write_text("mode: replace\nstatus:\n  - relative safe status text\n", encoding="utf-8")
 
@@ -63,7 +63,7 @@ def test_relative_status_phrase_path_loads_from_hermes_home(tmp_path, monkeypatc
 
 
 def test_status_phrase_path_can_load_relative_directory(tmp_path, monkeypatch):
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     phrase_dir = tmp_path / "phrase-catalog"
     phrase_dir.mkdir()
     (phrase_dir / "01-status.yaml").write_text("status:\n  - relative dir status text\n", encoding="utf-8")
@@ -77,7 +77,7 @@ def test_status_phrase_path_can_load_relative_directory(tmp_path, monkeypatch):
 
 
 def test_absolute_or_parent_phrase_paths_are_ignored(tmp_path, monkeypatch):
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     outside = tmp_path.parent / "outside-phrases.yaml"
     outside.write_text("mode: replace\nstatus:\n  - should not load\n", encoding="utf-8")
 
@@ -95,7 +95,7 @@ def test_absolute_or_parent_phrase_paths_are_ignored(tmp_path, monkeypatch):
 
 
 def test_conventional_relative_status_phrase_file_is_loaded(tmp_path, monkeypatch):
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     (tmp_path / "status_phrases.yaml").write_text(
         "mode: replace\nstatus:\n  - conventional status text\n",
         encoding="utf-8",

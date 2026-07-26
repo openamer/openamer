@@ -13,7 +13,7 @@ from agent.kanban_stop import (
 
 @pytest.fixture
 def clear_kanban_env(monkeypatch):
-    for var in ("HERMES_KANBAN_TASK", "HERMES_KANBAN_STOP_NUDGE"):
+    for var in ("OPENAMER_KANBAN_TASK", "HERMES_KANBAN_STOP_NUDGE"):
         monkeypatch.delenv(var, raising=False)
     return monkeypatch
 
@@ -24,19 +24,19 @@ def test_disabled_without_kanban_task(clear_kanban_env):
 
 
 def test_enabled_with_kanban_task(clear_kanban_env):
-    clear_kanban_env.setenv("HERMES_KANBAN_TASK", "t_abc")
+    clear_kanban_env.setenv("OPENAMER_KANBAN_TASK", "t_abc")
     assert kanban_stop_nudge_enabled() is True
 
 
 def test_env_can_disable(clear_kanban_env):
-    clear_kanban_env.setenv("HERMES_KANBAN_TASK", "t_abc")
+    clear_kanban_env.setenv("OPENAMER_KANBAN_TASK", "t_abc")
     clear_kanban_env.setenv("HERMES_KANBAN_STOP_NUDGE", "0")
     assert kanban_stop_nudge_enabled() is False
     assert build_kanban_stop_nudge(messages=[]) is None
 
 
 def test_nudge_when_no_terminal_tool(clear_kanban_env):
-    clear_kanban_env.setenv("HERMES_KANBAN_TASK", "t_46be8aa5")
+    clear_kanban_env.setenv("OPENAMER_KANBAN_TASK", "t_46be8aa5")
     messages = [
         {"role": "user", "content": "work kanban task"},
         {
@@ -61,7 +61,7 @@ def test_nudge_when_no_terminal_tool(clear_kanban_env):
 
 
 def test_no_nudge_after_kanban_complete(clear_kanban_env):
-    clear_kanban_env.setenv("HERMES_KANBAN_TASK", "t_abc")
+    clear_kanban_env.setenv("OPENAMER_KANBAN_TASK", "t_abc")
     messages = [
         {
             "role": "assistant",
@@ -81,7 +81,7 @@ def test_no_nudge_after_kanban_complete(clear_kanban_env):
 
 
 def test_no_nudge_after_kanban_block(clear_kanban_env):
-    clear_kanban_env.setenv("HERMES_KANBAN_TASK", "t_abc")
+    clear_kanban_env.setenv("OPENAMER_KANBAN_TASK", "t_abc")
     messages = [
         {"role": "tool", "name": "kanban_block", "tool_call_id": "1", "content": "blocked"},
     ]
@@ -89,7 +89,7 @@ def test_no_nudge_after_kanban_block(clear_kanban_env):
 
 
 def test_nudge_budget_exhausted(clear_kanban_env):
-    clear_kanban_env.setenv("HERMES_KANBAN_TASK", "t_abc")
+    clear_kanban_env.setenv("OPENAMER_KANBAN_TASK", "t_abc")
     assert build_kanban_stop_nudge(messages=[], attempts=2) is None
     assert build_kanban_stop_nudge(messages=[], attempts=1, max_attempts=1) is None
     assert build_kanban_stop_nudge(messages=[], attempts=0, max_attempts=1) is not None
@@ -99,13 +99,13 @@ def test_nudge_budget_exhausted(clear_kanban_env):
 # These tests verify the two layers compose correctly: the agent-side
 # nudge fires first (up to 2 attempts), and if the worker still exits
 # without a terminal call, the dispatcher's bounded retry (streak of 3)
-# handles it.  See also tests/hermes_cli/test_kanban_core_functionality.py
+# handles it.  See also tests/openamer_cli/test_kanban_core_functionality.py
 # for the dispatcher-side streak tests.
 
 
 def test_nudge_text_warns_about_blocking(clear_kanban_env):
     """The nudge should warn that repeated violations will block the task."""
-    clear_kanban_env.setenv("HERMES_KANBAN_TASK", "t_abc")
+    clear_kanban_env.setenv("OPENAMER_KANBAN_TASK", "t_abc")
     nudge = build_kanban_stop_nudge(messages=[], attempts=0)
     assert nudge is not None
     assert "block" in nudge.lower(), (
@@ -123,7 +123,7 @@ def test_nudge_and_dispatcher_budgets_are_independent(clear_kanban_env):
     per session, while the dispatcher streak lives in the task_runs DB
     table and persists across worker respawns.
     """
-    clear_kanban_env.setenv("HERMES_KANBAN_TASK", "t_abc")
+    clear_kanban_env.setenv("OPENAMER_KANBAN_TASK", "t_abc")
     # Agent-side: 2 nudge attempts per session
     assert build_kanban_stop_nudge(messages=[], attempts=0) is not None
     assert build_kanban_stop_nudge(messages=[], attempts=1) is not None

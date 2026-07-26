@@ -22,7 +22,7 @@ from tools.approval import (
 @pytest.fixture
 def isolated_session(monkeypatch, tmp_path):
     """Give each test a fresh session_key, clean approval-state, and isolated
-    HERMES_HOME so the real user's command_allowlist doesn't leak in."""
+    OPENAMER_HOME so the real user's command_allowlist doesn't leak in."""
     import tools.approval as _am
 
     session_key = "test:session:approval_hooks"
@@ -70,7 +70,7 @@ class TestCliPathFiresHooks:
         def cb(command, description, *, allow_permanent=True):
             return "once"
 
-        with patch("hermes_cli.plugins.invoke_hook", side_effect=fake_invoke_hook):
+        with patch("openamer_cli.plugins.invoke_hook", side_effect=fake_invoke_hook):
             result = check_all_command_guards(
                 "rm -rf /tmp/test-hook", "local", approval_callback=cb,
             )
@@ -109,7 +109,7 @@ class TestCliPathFiresHooks:
         def cb(command, description, *, allow_permanent=True):
             return "deny"
 
-        with patch("hermes_cli.plugins.invoke_hook", side_effect=fake_invoke_hook):
+        with patch("openamer_cli.plugins.invoke_hook", side_effect=fake_invoke_hook):
             result = check_all_command_guards(
                 "rm -rf /tmp/test-deny", "local", approval_callback=cb,
             )
@@ -135,7 +135,7 @@ class TestCliPathFiresHooks:
         def cb(command, description, *, allow_permanent=True):
             return "once"
 
-        with patch("hermes_cli.plugins.invoke_hook", side_effect=boom):
+        with patch("openamer_cli.plugins.invoke_hook", side_effect=boom):
             result = check_all_command_guards(
                 "rm -rf /tmp/test-crash", "local", approval_callback=cb,
             )
@@ -183,7 +183,7 @@ class TestSmartModeFiresHooks:
         captured = []
 
         with patch(
-            "hermes_cli.plugins.invoke_hook",
+            "openamer_cli.plugins.invoke_hook",
             side_effect=lambda name, **kwargs: captured.append((name, kwargs)),
         ):
             result = guard(value, "local")
@@ -223,7 +223,7 @@ class TestSmartModeFiresHooks:
 
         monkeypatch.setattr(approval_module, "_smart_approve", decide)
         with patch(
-            "hermes_cli.plugins.invoke_hook",
+            "openamer_cli.plugins.invoke_hook",
             side_effect=lambda name, **kwargs: events.append(name),
         ):
             result = guard(value, "local")
@@ -251,7 +251,7 @@ class TestSmartModeFiresHooks:
 
         with (
             patch("agent.redact.redact_sensitive_text", side_effect=redact),
-            patch("hermes_cli.plugins.invoke_hook"),
+            patch("openamer_cli.plugins.invoke_hook"),
         ):
             result = guard(value, "local")
 
@@ -268,7 +268,7 @@ class TestSmartModeFiresHooks:
     ):
         self._configure(monkeypatch, verdict)
         with patch(
-            "hermes_cli.plugins.invoke_hook",
+            "openamer_cli.plugins.invoke_hook",
             side_effect=RuntimeError("observer failed"),
         ):
             result = guard(value, "local")
@@ -293,7 +293,7 @@ class TestSmartModeFiresHooks:
         with (
             patch("agent.redact.redact_sensitive_text", side_effect=fail_observer_redaction),
             patch(
-                "hermes_cli.plugins.invoke_hook",
+                "openamer_cli.plugins.invoke_hook",
                 side_effect=lambda name, **kwargs: captured.append((name, kwargs)),
             ),
         ):
@@ -329,7 +329,7 @@ class TestSmartModeFiresHooks:
         )
         captured = []
         with patch(
-            "hermes_cli.plugins.invoke_hook",
+            "openamer_cli.plugins.invoke_hook",
             side_effect=lambda name, **kwargs: captured.append((name, kwargs)),
         ):
             first = guard(first_value, "local")

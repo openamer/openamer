@@ -57,7 +57,7 @@ export function FirstRunRemoteForm({ onBack }: FirstRunRemoteFormProps) {
       return
     }
 
-    const desktop = window.hermesDesktop
+    const desktop = window.openamerDesktop
 
     if (!desktop?.probeConnectionConfig) {
       return
@@ -132,7 +132,7 @@ export function FirstRunRemoteForm({ onBack }: FirstRunRemoteFormProps) {
       // backing out must still allow local install without leaving a remote
       // connection selected. The login IPC accepts the raw URL and stores only
       // its OAuth cookies; config is persisted once the user applies.
-      const result = await window.hermesDesktop.oauthLoginConnectionConfig(trimmedUrl)
+      const result = await window.openamerDesktop.oauthLoginConnectionConfig(trimmedUrl)
       invalidateTest()
       setOauthConnected(Boolean(result.connected))
 
@@ -164,7 +164,7 @@ export function FirstRunRemoteForm({ onBack }: FirstRunRemoteFormProps) {
 
     try {
       if (!authResolved) {
-        const result = await window.hermesDesktop.probeConnectionConfig(trimmedUrl)
+        const result = await window.openamerDesktop.probeConnectionConfig(trimmedUrl)
 
         if (seq !== testSeq.current || testedPayloadKey !== payloadKeyRef.current) {
           return
@@ -177,7 +177,7 @@ export function FirstRunRemoteForm({ onBack }: FirstRunRemoteFormProps) {
         return
       }
 
-      const result = await window.hermesDesktop.testConnectionConfig(testedPayload)
+      const result = await window.openamerDesktop.testConnectionConfig(testedPayload)
 
       if (seq !== testSeq.current || testedPayloadKey !== payloadKeyRef.current) {
         return
@@ -208,7 +208,7 @@ export function FirstRunRemoteForm({ onBack }: FirstRunRemoteFormProps) {
     let applied = false
 
     try {
-      await window.hermesDesktop.applyConnectionConfig(testedPayload)
+      await window.openamerDesktop.applyConnectionConfig(testedPayload)
       applied = true
     } catch (err) {
       setError(errorMessage(err))

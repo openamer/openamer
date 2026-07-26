@@ -38,7 +38,7 @@ def _make_agent(max_iterations: int = 10, config: dict | None = None) -> AIAgent
     with (
         patch("run_agent.get_tool_definitions", return_value=[]),
         patch("run_agent.check_toolset_requirements", return_value={}),
-        patch("hermes_cli.config.load_config", return_value=config or {}),
+        patch("openamer_cli.config.load_config", return_value=config or {}),
         patch("run_agent.OpenAI"),
     ):
         agent = AIAgent(
@@ -113,7 +113,7 @@ def test_explainer_enabled_by_default():
     agent = _make_agent()
     with patch.dict(os.environ, {}, clear=False):
         os.environ.pop("HERMES_TURN_COMPLETION_EXPLAINER", None)
-        with patch("hermes_cli.config.load_config", return_value={}):
+        with patch("openamer_cli.config.load_config", return_value={}):
             assert agent._turn_completion_explainer_enabled() is True
 
 
@@ -130,7 +130,7 @@ def test_explainer_disabled_via_config():
     with patch.dict(os.environ, {}, clear=False):
         os.environ.pop("HERMES_TURN_COMPLETION_EXPLAINER", None)
         with patch(
-            "hermes_cli.config.load_config",
+            "openamer_cli.config.load_config",
             return_value={"display": {"turn_completion_explainer": False}},
         ):
             assert agent._turn_completion_explainer_enabled() is False

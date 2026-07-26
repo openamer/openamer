@@ -27,19 +27,19 @@ simplex-chat -p 5225
 
 守护进程默认在 `ws://127.0.0.1:5225` 上监听 WebSocket 连接。
 
-## 配置 Hermes
+## 配置 OpenAmer
 
 ### 通过设置向导
 
 ```bash
-hermes gateway setup
+openamer gateway setup
 ```
 
 选择 **SimpleX Chat** 并按提示操作。
 
 ### 通过环境变量
 
-将以下内容添加到 `~/.hermes/.env`：
+将以下内容添加到 `~/.openamer/.env`：
 
 ```
 SIMPLEX_WS_URL=ws://127.0.0.1:5225
@@ -57,14 +57,14 @@ SIMPLEX_HOME_CHANNEL=<contact-id>
 
 ## 查找联系人 ID
 
-启动守护进程后，与你的 Agent 联系人开启一段对话。联系人 ID 将出现在会话日志中，或通过 `hermes send_message action=list` 查看。
+启动守护进程后，与你的 Agent 联系人开启一段对话。联系人 ID 将出现在会话日志中，或通过 `openamer send_message action=list` 查看。
 
 ## 授权
 
 默认情况下**所有联系人均被拒绝访问**。你必须选择以下方式之一：
 
 1. 将 `SIMPLEX_ALLOWED_USERS` 设置为以逗号分隔的联系人 ID 列表，或
-2. 使用 **DM 配对**——向 Bot 发送任意消息，Bot 将回复一个配对码。通过 `hermes pairing approve simplex <CODE>` 输入该配对码。
+2. 使用 **DM 配对**——向 Bot 发送任意消息，Bot 将回复一个配对码。通过 `openamer pairing approve simplex <CODE>` 输入该配对码。
 
 ## 在 cron 任务中使用 SimpleX
 
@@ -86,7 +86,7 @@ send_message(target="simplex:<contact-id>", message="Done!")
 ## 隐私说明
 
 - SimpleX 从不暴露手机号或电子邮件地址——联系人使用不透明 ID 标识
-- Hermes 与守护进程之间的连接为本地 WebSocket（`ws://127.0.0.1:5225`）——数据不会离开你的机器
+- OpenAmer 与守护进程之间的连接为本地 WebSocket（`ws://127.0.0.1:5225`）——数据不会离开你的机器
 - 消息在到达守护进程之前已由 SimpleX 协议进行端到端加密
 
 ## 故障排查

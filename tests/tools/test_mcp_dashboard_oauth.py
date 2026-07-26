@@ -190,7 +190,7 @@ def test_manager_build_allows_dashboard_flow_without_tty(tmp_path, monkeypatch):
     from tools.mcp_dashboard_oauth import DashboardOAuthFlow, dashboard_oauth_flow
     from tools.mcp_oauth_manager import MCPOAuthManager
 
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     monkeypatch.setattr("tools.mcp_oauth.sys.stdin.isatty", lambda: False)
     flow = DashboardOAuthFlow(
         flow_id="flow-5",
@@ -211,7 +211,7 @@ def test_manager_evict_preserves_persisted_oauth_state(tmp_path, monkeypatch):
     from tools.mcp_oauth import HermesTokenStorage
     from tools.mcp_oauth_manager import MCPOAuthManager, _ProviderEntry
 
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     storage = HermesTokenStorage("reports")
     storage._tokens_path().parent.mkdir(parents=True)
     storage._tokens_path().write_text(
@@ -278,7 +278,7 @@ def test_reconnect_mcp_server_keeps_manager_entry_until_live_task_rebuilds(
 def test_failed_reauth_rollback_preserves_newer_oauth_state(tmp_path, monkeypatch):
     from tools.mcp_oauth import HermesTokenStorage
 
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     storage = HermesTokenStorage("reports")
     storage._tokens_path().parent.mkdir(parents=True)
     storage._tokens_path().write_text("OLD")

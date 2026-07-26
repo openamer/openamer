@@ -7,7 +7,7 @@ import { test } from 'vitest'
 import { checkDistBuilt } from '../scripts/assert-dist-built.mjs'
 
 function makeDist(extra) {
-  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'hermes-assert-dist-'))
+  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'openamer-assert-dist-'))
   const distDir = path.join(tempRoot, 'dist')
   fs.mkdirSync(distDir, { recursive: true })
   if (extra) extra(distDir)
@@ -28,7 +28,7 @@ test('checkDistBuilt passes when index.html + an assets JS bundle exist', () => 
 })
 
 test('checkDistBuilt fails when the dist directory is absent', () => {
-  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'hermes-assert-dist-'))
+  const tempRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'openamer-assert-dist-'))
   try {
     const result = checkDistBuilt(path.join(tempRoot, 'dist'))
     assert.equal(result.ok, false)

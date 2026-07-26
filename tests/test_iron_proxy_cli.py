@@ -1,4 +1,4 @@
-"""Unit tests for ``hermes_cli.proxy_cli`` command handlers.
+"""Unit tests for ``openamer_cli.proxy_cli`` command handlers.
 
 These tests cover the user-facing CLI surface that was previously
 uncovered.  We mock the iron_proxy module's side-effect functions
@@ -17,18 +17,18 @@ from unittest.mock import MagicMock, patch
 import pytest
 
 from agent.proxy_sources import iron_proxy as ip
-from hermes_cli import proxy_cli
+from openamer_cli import proxy_cli
 
 
 @pytest.fixture
 def hermes_home(tmp_path, monkeypatch):
-    """Point HERMES_HOME at a temp dir so the wizard doesn't touch the
+    """Point OPENAMER_HOME at a temp dir so the wizard doesn't touch the
     operator's real config.  Also blanks any provider env vars so we
     don't accidentally read a real key."""
 
     home = tmp_path / "hermes"
     home.mkdir()
-    monkeypatch.setenv("HERMES_HOME", str(home))
+    monkeypatch.setenv("OPENAMER_HOME", str(home))
     for key in list(os.environ):
         if key.endswith("_API_KEY") or key in (
             "BWS_ACCESS_TOKEN", "ANTHROPIC_API_KEY",
@@ -83,7 +83,7 @@ def test_cmd_setup_from_bitwarden_refuses_when_bw_disabled(hermes_home, monkeypa
     the wizard must FAIL rather than silently rewriting credential_source
     to bitwarden."""
 
-    from hermes_cli.config import load_config, save_config
+    from openamer_cli.config import load_config, save_config
 
     cfg = load_config()
     cfg.setdefault("secrets", {})["bitwarden"] = {"enabled": False}
@@ -109,7 +109,7 @@ def test_cmd_setup_from_bitwarden_refuses_when_token_missing(hermes_home, monkey
     """--from-bitwarden with secrets.bitwarden.enabled=true but BWS access
     token unset → fail loud, not silent env-fallback."""
 
-    from hermes_cli.config import load_config, save_config
+    from openamer_cli.config import load_config, save_config
 
     cfg = load_config()
     cfg.setdefault("secrets", {})["bitwarden"] = {
@@ -135,7 +135,7 @@ def test_cmd_setup_from_bitwarden_refuses_on_empty_vault(hermes_home, monkeypatc
     """If BW returns {} (empty vault / scoped wrong / unreachable), fail
     loud rather than silently writing credential_source: bitwarden."""
 
-    from hermes_cli.config import load_config, save_config
+    from openamer_cli.config import load_config, save_config
 
     cfg = load_config()
     cfg.setdefault("secrets", {})["bitwarden"] = {
@@ -202,7 +202,7 @@ def test_cmd_setup_rejects_invalid_tunnel_port_range(hermes_home, monkeypatch, b
 
 
 def test_cmd_start_refuses_when_proxy_disabled(hermes_home, monkeypatch):
-    from hermes_cli.config import load_config, save_config
+    from openamer_cli.config import load_config, save_config
     cfg = load_config()
     cfg.setdefault("proxy", {})["enabled"] = False
     save_config(cfg)
@@ -212,7 +212,7 @@ def test_cmd_start_refuses_when_proxy_disabled(hermes_home, monkeypatch):
 
 
 def test_cmd_start_honors_auto_install_false(hermes_home, monkeypatch):
-    from hermes_cli.config import load_config, save_config
+    from openamer_cli.config import load_config, save_config
 
     cfg = load_config()
     cfg.setdefault("proxy", {})["enabled"] = True
@@ -241,7 +241,7 @@ def test_cmd_start_passes_bitwarden_refresh_flag_when_credential_source_is_bitwa
     refresh_secrets_from_bitwarden=True into start_proxy.  That's what
     delivers the rotation promise the docs make."""
 
-    from hermes_cli.config import load_config, save_config
+    from openamer_cli.config import load_config, save_config
     cfg = load_config()
     cfg.setdefault("proxy", {})["enabled"] = True
     cfg["proxy"]["credential_source"] = "bitwarden"
@@ -278,7 +278,7 @@ def test_cmd_start_refuses_when_bitwarden_token_missing(hermes_home, monkeypatch
     access-token env var is empty, cmd_start must fail-loud BEFORE
     start_proxy can silently fall back to parent env."""
 
-    from hermes_cli.config import load_config, save_config
+    from openamer_cli.config import load_config, save_config
     cfg = load_config()
     cfg.setdefault("proxy", {})["enabled"] = True
     cfg["proxy"]["credential_source"] = "bitwarden"
@@ -303,7 +303,7 @@ def test_cmd_start_refuses_when_bitwarden_token_missing(hermes_home, monkeypatch
 def test_cmd_start_does_not_pass_bitwarden_refresh_when_credential_source_is_env(
     hermes_home, monkeypatch,
 ):
-    from hermes_cli.config import load_config, save_config
+    from openamer_cli.config import load_config, save_config
     cfg = load_config()
     cfg.setdefault("proxy", {})["enabled"] = True
     cfg["proxy"]["credential_source"] = "env"
@@ -387,7 +387,7 @@ def test_load_env_file_backfills_provider_keys(hermes_home, monkeypatch):
     # Key present in .env but NOT exported in the process env.
     monkeypatch.delenv("OPENROUTER_API_KEY", raising=False)
     monkeypatch.setattr(
-        "hermes_cli.config.load_env",
+        "openamer_cli.config.load_env",
         lambda: {"OPENROUTER_API_KEY": "sk-or-from-dotenv", "UNRELATED": "x"},
     )
     added = proxy_cli._load_env_file_into_environ()
@@ -400,7 +400,7 @@ def test_load_env_file_backfills_provider_keys(hermes_home, monkeypatch):
 def test_load_env_file_does_not_override_exported_value(hermes_home, monkeypatch):
     monkeypatch.setenv("OPENROUTER_API_KEY", "sk-or-exported-wins")
     monkeypatch.setattr(
-        "hermes_cli.config.load_env",
+        "openamer_cli.config.load_env",
         lambda: {"OPENROUTER_API_KEY": "sk-or-from-dotenv"},
     )
     proxy_cli._load_env_file_into_environ()
@@ -423,7 +423,7 @@ def test_cmd_disable_uses_public_status_pid_not_private_read_pid(
     check) — NOT ip._read_pid() directly (which would fire a spurious
     'still running' warning for a stale pidfile from a crashed run)."""
 
-    from hermes_cli.config import load_config, save_config
+    from openamer_cli.config import load_config, save_config
 
     cfg = load_config()
     cfg.setdefault("proxy", {})["enabled"] = True
@@ -455,7 +455,7 @@ def test_cmd_disable_uses_public_status_pid_not_private_read_pid(
     # assertion is that no "still running" message fired with a stale
     # pidfile.  That's covered by inspecting return code + config
     # mutation only.
-    from hermes_cli.config import load_config as _lc
+    from openamer_cli.config import load_config as _lc
     cfg2 = _lc()
     assert cfg2["proxy"]["enabled"] is False
 
@@ -527,7 +527,7 @@ def test_cmd_start_refuses_when_bitwarden_mode_but_disabled(hermes_home, monkeyp
     later flips to false — cmd_start must refuse, not silently start on
     host env (the silent-degrade class strict mode is meant to close)."""
 
-    from hermes_cli.config import load_config, save_config
+    from openamer_cli.config import load_config, save_config
     cfg = load_config()
     cfg.setdefault("proxy", {})["enabled"] = True
     cfg["proxy"]["credential_source"] = "bitwarden"
@@ -549,7 +549,7 @@ def test_cmd_start_bitwarden_disabled_proceeds_with_env_fallback(
     """Same scenario but proxy.allow_env_fallback=true is the documented
     escape hatch — start proceeds (with a warning)."""
 
-    from hermes_cli.config import load_config, save_config
+    from openamer_cli.config import load_config, save_config
     cfg = load_config()
     cfg.setdefault("proxy", {})["enabled"] = True
     cfg["proxy"]["credential_source"] = "bitwarden"

@@ -35,7 +35,7 @@ def copilot_profile():
 
 def _patch_efforts(monkeypatch, efforts):
     """Stub the catalog lookup the profile calls for supported efforts."""
-    import hermes_cli.models as models_mod
+    import openamer_cli.models as models_mod
     monkeypatch.setattr(
         models_mod, "github_model_reasoning_efforts", lambda model: list(efforts)
     )

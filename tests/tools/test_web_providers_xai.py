@@ -88,7 +88,7 @@ class TestXAIProviderIsAvailable:
         """Cheap probe should detect xai-oauth tokens in ~/.hermes/auth.json
         without invoking the resolver (which can trigger refresh)."""
         monkeypatch.delenv("XAI_API_KEY", raising=False)
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
         auth_path = tmp_path / "auth.json"
         auth_path.write_text(json.dumps({
             "version": 1,
@@ -102,14 +102,14 @@ class TestXAIProviderIsAvailable:
 
     def test_unavailable_when_no_env_and_no_auth_store(self, monkeypatch, tmp_path):
         monkeypatch.delenv("XAI_API_KEY", raising=False)
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
         # No auth.json written.
         from plugins.web.xai.provider import XAIWebSearchProvider
         assert XAIWebSearchProvider().is_available() is False
 
     def test_unavailable_when_auth_store_has_empty_token(self, monkeypatch, tmp_path):
         monkeypatch.delenv("XAI_API_KEY", raising=False)
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
         auth_path = tmp_path / "auth.json"
         auth_path.write_text(json.dumps({
             "version": 1,
@@ -122,7 +122,7 @@ class TestXAIProviderIsAvailable:
     def test_unavailable_when_auth_store_corrupted(self, monkeypatch, tmp_path):
         """A malformed auth.json must not crash availability scans."""
         monkeypatch.delenv("XAI_API_KEY", raising=False)
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
         (tmp_path / "auth.json").write_text("not json at all }{")
 
         from plugins.web.xai.provider import XAIWebSearchProvider
@@ -674,7 +674,7 @@ class TestXAIBackendWiring:
         from tools import web_tools
 
         monkeypatch.delenv("XAI_API_KEY", raising=False)
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
         assert web_tools._is_backend_available("xai") is False
 
     def test_is_backend_available_does_not_call_resolver(self, monkeypatch):
@@ -739,7 +739,7 @@ class TestXAIProviderOAuthPath:
 
         # Force the env-var fallback to fail so resolution must go via OAuth.
         monkeypatch.delenv("XAI_API_KEY", raising=False)
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
         monkeypatch.setenv("HERMES_XAI_BASE_URL", "https://proxy.x.ai/v1/")
         (tmp_path / "auth.json").write_text(json.dumps({
             "version": 1,
@@ -776,10 +776,10 @@ class TestXAIProviderOAuthPath:
         pair only to ``providers.xai-oauth`` leaves the manual row stale and
         breaks the next main-runtime load.
         """
-        from hermes_cli.runtime_provider import resolve_runtime_provider
+        from openamer_cli.runtime_provider import resolve_runtime_provider
         from tools.xai_http import resolve_xai_http_credentials
 
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
         monkeypatch.delenv("XAI_API_KEY", raising=False)
         monkeypatch.delenv("XAI_OAUTH_ACCESS_TOKEN", raising=False)
         (tmp_path / "config.yaml").write_text(
@@ -824,7 +824,7 @@ class TestXAIProviderOAuthPath:
             }
 
         monkeypatch.setattr(
-            "hermes_cli.auth.refresh_xai_oauth_pure",
+            "openamer_cli.auth.refresh_xai_oauth_pure",
             fake_refresh,
         )
 

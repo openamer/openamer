@@ -19,12 +19,12 @@ from cli import HermesCLI
 
 @pytest.fixture
 def boba_like(tmp_path, monkeypatch):
-    """Install a synthetic pet into a temp HERMES_HOME and return its slug."""
+    """Install a synthetic pet into a temp OPENAMER_HOME and return its slug."""
     from PIL import Image
 
     home = tmp_path / ".hermes"
     home.mkdir()
-    monkeypatch.setenv("HERMES_HOME", str(home))
+    monkeypatch.setenv("OPENAMER_HOME", str(home))
 
     cols, rows = 8, 9
     sheet = Image.new("RGBA", (FRAME_W * cols, FRAME_H * rows), (0, 0, 0, 0))
@@ -115,7 +115,7 @@ def test_pet_fragments_render_half_blocks(boba_like):
 
 
 def test_pet_resolve_config_enables_and_disables(boba_like):
-    from hermes_cli.config import load_config, save_config
+    from openamer_cli.config import load_config, save_config
 
     cli_obj = _make_cli()
 

@@ -20,22 +20,22 @@ import pytest
 
 @pytest.fixture
 def isolated_home(tmp_path, monkeypatch):
-    """Isolated HERMES_HOME with a writable config.yaml and a clean module cache.
+    """Isolated OPENAMER_HOME with a writable config.yaml and a clean module cache.
 
-    These tests deliberately re-import ``hermes_cli`` / ``gateway`` so each
+    These tests deliberately re-import ``openamer_cli`` / ``gateway`` so each
     config write is read fresh. To avoid leaking that purge into sibling test
     files in the same worker (which breaks their import-time mocks), we snapshot
     the affected modules and restore them on teardown.
     """
     hermes_home = tmp_path / ".hermes"
     hermes_home.mkdir()
-    monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
     monkeypatch.delenv("HERMES_MAX_TOKENS", raising=False)
 
     _saved = {
         k: v
         for k, v in sys.modules.items()
-        if k.startswith(("hermes_cli", "gateway"))
+        if k.startswith(("openamer_cli", "gateway"))
     }
 
     def write_cfg(body: str) -> None:
@@ -43,7 +43,7 @@ def isolated_home(tmp_path, monkeypatch):
 
     def fresh_gateway():
         for mod in list(sys.modules.keys()):
-            if mod.startswith(("hermes_cli", "gateway")):
+            if mod.startswith(("openamer_cli", "gateway")):
                 del sys.modules[mod]
         return importlib.import_module("gateway.run")
 
@@ -53,7 +53,7 @@ def isolated_home(tmp_path, monkeypatch):
         # Drop anything we (re)imported, then restore the pre-test snapshot so
         # the next test file sees the module objects it was loaded with.
         for k in list(sys.modules.keys()):
-            if k.startswith(("hermes_cli", "gateway")):
+            if k.startswith(("openamer_cli", "gateway")):
                 del sys.modules[k]
         sys.modules.update(_saved)
 
@@ -160,9 +160,9 @@ def test_lift_helper_accepts_alias_and_rejects_garbage(isolated_home):
     write_cfg, _ = isolated_home
     write_cfg("model:\n  provider: openrouter\n")
     for mod in list(sys.modules.keys()):
-        if mod.startswith("hermes_cli"):
+        if mod.startswith("openamer_cli"):
             del sys.modules[mod]
-    rp = importlib.import_module("hermes_cli.runtime_provider")
+    rp = importlib.import_module("openamer_cli.runtime_provider")
 
     out: dict = {}
     rp._lift_max_output_tokens({"max_output_tokens": 8192}, out)

@@ -266,9 +266,9 @@ class TestTickerLoopRecordsErrors:
 
 class TestCronStatusSurfacesError:
     def test_status_shows_last_error_and_permission_hint(self, monkeypatch, capsys):
-        from hermes_cli import cron as cron_cli
+        from openamer_cli import cron as cron_cli
 
-        monkeypatch.setattr("hermes_cli.gateway.find_gateway_pids", lambda: [4321])
+        monkeypatch.setattr("openamer_cli.gateway.find_gateway_pids", lambda: [4321])
         monkeypatch.setattr(jobs, "get_ticker_heartbeat_age", lambda: 5.0)   # alive
         monkeypatch.setattr(jobs, "get_ticker_success_age", lambda: 9_999.0)  # failing
         monkeypatch.setattr(
@@ -289,9 +289,9 @@ class TestCronStatusSurfacesError:
         assert "docker exec -u" in out
 
     def test_status_without_marker_keeps_generic_message(self, monkeypatch, capsys):
-        from hermes_cli import cron as cron_cli
+        from openamer_cli import cron as cron_cli
 
-        monkeypatch.setattr("hermes_cli.gateway.find_gateway_pids", lambda: [4321])
+        monkeypatch.setattr("openamer_cli.gateway.find_gateway_pids", lambda: [4321])
         monkeypatch.setattr(jobs, "get_ticker_heartbeat_age", lambda: 5.0)
         monkeypatch.setattr(jobs, "get_ticker_success_age", lambda: 9_999.0)
         monkeypatch.setattr(jobs, "get_ticker_last_error", lambda: None)

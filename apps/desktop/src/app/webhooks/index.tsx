@@ -28,7 +28,7 @@ import {
   setWebhookEnabled,
   type WebhookRoute,
   type WebhooksResponse
-} from '@/hermes'
+} from '@/openamer'
 import { useI18n } from '@/i18n'
 import { AlertTriangle, Globe, Plus, RefreshCw } from '@/lib/icons'
 import { cn } from '@/lib/utils'

@@ -33,7 +33,7 @@ def test_resolve_shutdown_watchdog_delay_adds_grace():
 
 
 def test_write_loop_heartbeat_atomic_json(tmp_path, monkeypatch):
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     path = write_loop_heartbeat(pid=4242, start_time=100.5, home=tmp_path)
     assert path == tmp_path / "state" / "gateway.heartbeat"
     assert path.is_file()

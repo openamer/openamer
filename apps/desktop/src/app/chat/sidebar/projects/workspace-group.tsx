@@ -2,7 +2,7 @@ import type * as React from 'react'
 import { useState } from 'react'
 
 import { Codicon } from '@/components/ui/codicon'
-import type { SessionInfo } from '@/hermes'
+import type { SessionInfo } from '@/openamer'
 import { useI18n } from '@/i18n'
 import { setWorkspaceNodeOpen } from '@/store/layout'
 import { notifyError } from '@/store/notifications'

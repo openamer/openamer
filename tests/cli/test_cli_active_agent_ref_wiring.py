@@ -24,7 +24,7 @@ def test_mixin_writes_active_agent_ref_to_cli_module():
     """The mixin's agent-setup code must publish the agent reference where
     ``_run_cleanup`` reads it — on the ``cli`` module, not the mixin module."""
     import cli as cli_mod
-    from hermes_cli import cli_agent_setup_mixin as mixin_mod
+    from openamer_cli import cli_agent_setup_mixin as mixin_mod
 
     sentinel = object()
     prev_cli = getattr(cli_mod, "_active_agent_ref", None)
@@ -50,7 +50,7 @@ def test_mixin_does_not_use_bare_global_for_active_agent_ref():
     """Guard against a regression to ``global _active_agent_ref`` inside the
     mixin: a bare module-local global would write the wrong namespace and
     silently re-break CLI memory shutdown. The source must target ``cli``."""
-    from hermes_cli import cli_agent_setup_mixin as mixin_mod
+    from openamer_cli import cli_agent_setup_mixin as mixin_mod
 
     src = inspect.getsource(mixin_mod)
     assert "_active_agent_ref = self.agent" in src, (

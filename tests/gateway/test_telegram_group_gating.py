@@ -814,7 +814,7 @@ def test_config_bridges_telegram_group_settings(monkeypatch, tmp_path):
         encoding="utf-8",
     )
 
-    monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
     # Clear the TELEGRAM_* vars this test exercises so a developer's ambient
     # shell/.env values don't pre-empt the YAML→env bridge (env-over-YAML
     # precedence, adapter.py::_apply_yaml_config). The authoritative assertions
@@ -874,7 +874,7 @@ def test_config_bridges_telegram_user_allowlists(monkeypatch, tmp_path):
         encoding="utf-8",
     )
 
-    monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
     monkeypatch.delenv("TELEGRAM_ALLOWED_USERS", raising=False)
     monkeypatch.delenv("TELEGRAM_GROUP_ALLOWED_USERS", raising=False)
     monkeypatch.delenv("TELEGRAM_GROUP_ALLOWED_CHATS", raising=False)
@@ -903,7 +903,7 @@ def test_config_env_overrides_telegram_user_allowlists(monkeypatch, tmp_path):
         encoding="utf-8",
     )
 
-    monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
     monkeypatch.setenv("TELEGRAM_ALLOWED_USERS", "999")
     monkeypatch.setenv("TELEGRAM_GROUP_ALLOWED_USERS", "888")
 
@@ -940,7 +940,7 @@ def test_top_level_require_mention_bridges_to_telegram(monkeypatch, tmp_path):
         encoding="utf-8",
     )
 
-    monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
     monkeypatch.delenv("TELEGRAM_REQUIRE_MENTION", raising=False)
 
     config = load_gateway_config()
@@ -968,7 +968,7 @@ def test_top_level_require_mention_does_not_override_telegram_section(monkeypatc
         encoding="utf-8",
     )
 
-    monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
     monkeypatch.delenv("TELEGRAM_REQUIRE_MENTION", raising=False)
 
     config = load_gateway_config()
@@ -989,7 +989,7 @@ def test_config_bridges_telegram_free_response_topics(monkeypatch, tmp_path):
         encoding="utf-8",
     )
 
-    monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
     monkeypatch.delenv("TELEGRAM_FREE_RESPONSE_TOPICS", raising=False)
 
     config = load_gateway_config()
@@ -1016,7 +1016,7 @@ def test_config_bridges_telegram_ignored_threads(monkeypatch, tmp_path):
         encoding="utf-8",
     )
 
-    monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
     monkeypatch.delenv("TELEGRAM_IGNORED_THREADS", raising=False)
 
     config = load_gateway_config()

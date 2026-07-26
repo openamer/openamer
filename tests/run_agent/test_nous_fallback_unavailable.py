@@ -51,7 +51,7 @@ class TestNousFallbackLocalAvailability:
             ]
         )
         with patch(
-            "hermes_cli.auth.get_provider_auth_state",
+            "openamer_cli.auth.get_provider_auth_state",
             return_value={},
         ), patch(
             "agent.auxiliary_client.resolve_provider_client",
@@ -70,7 +70,7 @@ class TestNousFallbackLocalAvailability:
             ]
         )
         with patch(
-            "hermes_cli.auth.get_provider_auth_state",
+            "openamer_cli.auth.get_provider_auth_state",
             return_value={},
         ):
             agent._try_activate_fallback(None)
@@ -90,7 +90,7 @@ class TestNousFallbackLocalAvailability:
             ]
         )
         with patch(
-            "hermes_cli.auth.get_provider_auth_state",
+            "openamer_cli.auth.get_provider_auth_state",
             return_value={"access_token": "abc", "refresh_token": "xyz"},
         ), patch(
             "agent.auxiliary_client.resolve_provider_client",

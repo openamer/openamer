@@ -231,7 +231,7 @@ class TestPluginContextEngineSlot:
     """Test register_context_engine on PluginContext."""
 
     def test_register_engine(self):
-        from hermes_cli.plugins import PluginManager, PluginContext, PluginManifest
+        from openamer_cli.plugins import PluginManager, PluginContext, PluginManifest
         mgr = PluginManager()
         manifest = PluginManifest(name="test-lcm")
         ctx = PluginContext(manifest, mgr)
@@ -243,7 +243,7 @@ class TestPluginContextEngineSlot:
         assert mgr._context_engine.name == "stub"
 
     def test_reject_second_engine(self):
-        from hermes_cli.plugins import PluginManager, PluginContext, PluginManifest
+        from openamer_cli.plugins import PluginManager, PluginContext, PluginManifest
         mgr = PluginManager()
         manifest = PluginManifest(name="test-lcm")
         ctx = PluginContext(manifest, mgr)
@@ -256,7 +256,7 @@ class TestPluginContextEngineSlot:
         assert mgr._context_engine is engine1
 
     def test_reject_non_engine(self):
-        from hermes_cli.plugins import PluginManager, PluginContext, PluginManifest
+        from openamer_cli.plugins import PluginManager, PluginContext, PluginManifest
         mgr = PluginManager()
         manifest = PluginManifest(name="test-bad")
         ctx = PluginContext(manifest, mgr)
@@ -265,8 +265,8 @@ class TestPluginContextEngineSlot:
         assert mgr._context_engine is None
 
     def test_get_plugin_context_engine(self):
-        from hermes_cli.plugins import PluginManager, get_plugin_context_engine
-        import hermes_cli.plugins as plugins_mod
+        from openamer_cli.plugins import PluginManager, get_plugin_context_engine
+        import openamer_cli.plugins as plugins_mod
 
         # Inject a test manager
         old_mgr = plugins_mod._plugin_manager
@@ -346,8 +346,8 @@ class TestInitAgentDoesNotMutatePluginSingleton:
     """
 
     def test_child_init_does_not_corrupt_parent_singleton(self, monkeypatch):
-        import hermes_cli.plugins as plugins_mod
-        from hermes_cli.plugins import PluginManager
+        import openamer_cli.plugins as plugins_mod
+        from openamer_cli.plugins import PluginManager
 
         # Register a "parent" engine as the global plugin singleton, sized for
         # a 1M-context model (DeepSeek-style), threshold 20% => 200K.
@@ -362,7 +362,7 @@ class TestInitAgentDoesNotMutatePluginSingleton:
             # singleton, deepcopy it, then mutate the copy via update_model with
             # a SMALLER child context (MiniMax-style 204800).
             import copy
-            from hermes_cli.plugins import get_plugin_context_engine
+            from openamer_cli.plugins import get_plugin_context_engine
 
             _candidate = get_plugin_context_engine()
             assert _candidate is singleton

@@ -134,7 +134,7 @@ export async function normalizeOrLocalPreviewTarget(
   cwd?: string | null
 ): Promise<PreviewTarget | null> {
   try {
-    const normalized = await window.hermesDesktop?.normalizePreviewTarget?.(rawTarget, cwd || undefined)
+    const normalized = await window.openamerDesktop?.normalizePreviewTarget?.(rawTarget, cwd || undefined)
 
     if (normalized) {
       return enrichPreviewTarget(normalized)

@@ -34,19 +34,19 @@ class TestIsHeadedMode:
         from tools.browser_tool import _is_headed_mode
         with patch.dict(os.environ, {}, clear=False):
             os.environ.pop("AGENT_BROWSER_HEADED", None)
-            with patch("hermes_cli.config.read_raw_config", return_value={}):
+            with patch("openamer_cli.config.read_raw_config", return_value={}):
                 assert _is_headed_mode() is False
 
     def test_config_true(self):
         from tools.browser_tool import _is_headed_mode
         cfg = {"browser": {"headed": True}}
-        with patch("hermes_cli.config.read_raw_config", return_value=cfg):
+        with patch("openamer_cli.config.read_raw_config", return_value=cfg):
             assert _is_headed_mode() is True
 
     def test_config_string_true(self):
         from tools.browser_tool import _is_headed_mode
         cfg = {"browser": {"headed": "true"}}
-        with patch("hermes_cli.config.read_raw_config", return_value=cfg):
+        with patch("openamer_cli.config.read_raw_config", return_value=cfg):
             assert _is_headed_mode() is True
 
     def test_config_false_beats_missing_env(self):
@@ -54,25 +54,25 @@ class TestIsHeadedMode:
         cfg = {"browser": {"headed": False}}
         with patch.dict(os.environ, {}, clear=False):
             os.environ.pop("AGENT_BROWSER_HEADED", None)
-            with patch("hermes_cli.config.read_raw_config", return_value=cfg):
+            with patch("openamer_cli.config.read_raw_config", return_value=cfg):
                 assert _is_headed_mode() is False
 
     def test_env_var_fallback(self):
         from tools.browser_tool import _is_headed_mode
         with patch.dict(os.environ, {"AGENT_BROWSER_HEADED": "1"}):
-            with patch("hermes_cli.config.read_raw_config", return_value={}):
+            with patch("openamer_cli.config.read_raw_config", return_value={}):
                 assert _is_headed_mode() is True
 
     def test_env_var_garbage_is_false(self):
         from tools.browser_tool import _is_headed_mode
         with patch.dict(os.environ, {"AGENT_BROWSER_HEADED": "banana"}):
-            with patch("hermes_cli.config.read_raw_config", return_value={}):
+            with patch("openamer_cli.config.read_raw_config", return_value={}):
                 assert _is_headed_mode() is False
 
     def test_caching(self):
         from tools.browser_tool import _is_headed_mode
         cfg = {"browser": {"headed": True}}
-        with patch("hermes_cli.config.read_raw_config", return_value=cfg) as mock_read:
+        with patch("openamer_cli.config.read_raw_config", return_value=cfg) as mock_read:
             assert _is_headed_mode() is True
             assert _is_headed_mode() is True
             assert mock_read.call_count == 1

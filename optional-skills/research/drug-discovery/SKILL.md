@@ -12,7 +12,7 @@ version: 1.0.0
 author: bennytimz
 license: MIT
 metadata:
-  hermes:
+  openamer:
     tags: [science, chemistry, pharmacology, research, health]
 prerequisites:
   commands: [curl, python3]

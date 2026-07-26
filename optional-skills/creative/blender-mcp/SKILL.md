@@ -3,14 +3,14 @@ name: blender-mcp
 description: Drive Blender via the catalog blender MCP, with bpy recipes.
 version: 2.1.0
 requires: Blender 3.0+ desktop instance (headless via xvfb-run)
-author: alireza78a + kshitijk4poor + Hermes Agent
+author: alireza78a + kshitijk4poor + OpenAmer Agent
 tags: [blender, 3d, animation, modeling, bpy, mcp]
 platforms: [linux, macos, windows]
 ---
 
 # Blender MCP Skill
 
-Companion skill for the `blender` entry in the Hermes MCP catalog. The MCP
+Companion skill for the `blender` entry in the OpenAmer MCP catalog. The MCP
 server provides the connection to Blender; this skill teaches the bpy idioms
 and pitfalls for driving it well. It does not cover Blender UI workflows —
 everything here goes through the MCP tools against a live Blender session.
@@ -26,7 +26,7 @@ connected.
 
 1. Install the MCP server from the Nous catalog (one-time):
 
-       hermes mcp install blender
+       openamer mcp install blender
 
    This configures the pinned `blender-mcp` stdio server with the curated
    tool set: `get_scene_info`, `get_object_info`, `get_viewport_screenshot`,
@@ -40,7 +40,7 @@ connected.
 
 3. Every session: start Blender FIRST, press N in the viewport, open the
    "BlenderMCP" tab, click "Connect to Claude" (starts the local bridge
-   socket). Then start your Hermes session so the MCP tools are loaded.
+   socket). Then start your OpenAmer session so the MCP tools are loaded.
 
    The addon refuses to start under `blender -b` (background mode). On a
    machine without a display, run Blender under a virtual one:
@@ -65,7 +65,7 @@ Deeper material lives in the reference files (load on demand):
 
 Optional asset-service tools (PolyHaven, Sketchfab, Hyper3D, Hunyuan3D) are
 disabled by default. If the user has enabled a service in the addon panel,
-opt into its tools with `hermes mcp configure blender`.
+opt into its tools with `openamer mcp configure blender`.
 
 ## Procedure
 
@@ -115,7 +115,7 @@ Render to file:
 ## Pitfalls
 
 - The blender MCP tools only exist if the server is installed and the session
-  started after install. If they're missing, run `hermes mcp install blender`
+  started after install. If they're missing, run `openamer mcp install blender`
   and start a new session.
 - The addon bridge must be (re)connected inside Blender each Blender session
   (N-panel > BlenderMCP > Connect). "Connection refused" from the tools means
@@ -123,7 +123,7 @@ Render to file:
 - Break complex scenes into multiple smaller `execute_blender_code` calls to
   avoid bridge timeouts.
 - Render output paths must be absolute (`/tmp/render.png`), not relative —
-  they resolve on the BLENDER host's filesystem, which matters if Hermes and
+  they resolve on the BLENDER host's filesystem, which matters if OpenAmer and
   Blender run on different machines.
 - `shade_smooth()` requires the object to be selected and in object mode.
 - `execute_blender_code` runs arbitrary Python inside Blender with no sandbox

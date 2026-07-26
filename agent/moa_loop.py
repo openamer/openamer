@@ -73,7 +73,7 @@ def _redact_reference_text(text: Any) -> Any:
 
 def _moa_privacy_mode(moa_raw: Any) -> str:
     """Resolve the normalized privacy-filter mode from a raw ``moa`` config."""
-    from hermes_cli.moa_config import coerce_privacy_filter
+    from openamer_cli.moa_config import coerce_privacy_filter
 
     raw = moa_raw if isinstance(moa_raw, dict) else {}
     return coerce_privacy_filter(raw.get("privacy_filter"))
@@ -273,7 +273,7 @@ def _slot_reasoning_config(slot: dict[str, Any]) -> dict[str, Any] | None:
     """Translate optional per-MoA-slot reasoning_effort into runtime config."""
     effort = slot.get("reasoning_effort")
     try:
-        from hermes_constants import parse_reasoning_effort
+        from openamer_constants import parse_reasoning_effort
 
         return parse_reasoning_effort(effort)
     except Exception:  # pragma: no cover - defensive; bad config must not break MoA
@@ -300,8 +300,8 @@ def _aggregator_reasoning_config(aggregator: dict[str, Any]) -> dict[str, Any] |
     if cfg is not None:
         return cfg
     try:
-        from hermes_cli.config import load_config
-        from hermes_constants import resolve_reasoning_config
+        from openamer_cli.config import load_config
+        from openamer_constants import resolve_reasoning_config
 
         return resolve_reasoning_config(
             load_config() or {}, str(aggregator.get("model") or "")
@@ -331,7 +331,7 @@ def _slot_runtime(slot: dict[str, Any]) -> dict[str, Any]:
     model = str(slot.get("model") or "").strip()
     out: dict[str, Any] = {"provider": provider, "model": model}
     try:
-        from hermes_cli.runtime_provider import resolve_runtime_provider
+        from openamer_cli.runtime_provider import resolve_runtime_provider
 
         rt = resolve_runtime_provider(requested=provider, target_model=model)
         # Forward the resolved endpoint through to call_llm unconditionally.
@@ -1215,7 +1215,7 @@ def aggregate_moa_context(
     # runs on the successful outputs only (failed refs are already filtered
     # into the degraded notice).
     try:
-        from hermes_cli.config import load_config as _load_config
+        from openamer_cli.config import load_config as _load_config
 
         if _moa_privacy_mode((_load_config() or {}).get("moa")) == "full":
             successful_outputs = _redact_reference_outputs(successful_outputs)
@@ -1637,8 +1637,8 @@ class MoAChatCompletions:
                 raise TypeError("_moa_prepared_request must be a dict")
             return self._call_prepared_aggregator(prepared_request, api_kwargs)
 
-        from hermes_cli.config import load_config
-        from hermes_cli.moa_config import resolve_moa_preset
+        from openamer_cli.config import load_config
+        from openamer_cli.moa_config import resolve_moa_preset
 
         _moa_raw = load_config().get("moa") or {}
         preset = resolve_moa_preset(_moa_raw, self.preset_name)

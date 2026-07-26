@@ -8,7 +8,7 @@ referenced skill's full content into a single user message, the same way
 Storage
 -------
 Bundles live in ``~/.hermes/skill-bundles/*.yaml`` (and the equivalent
-profile-aware directory under ``HERMES_HOME``). Each file looks like::
+profile-aware directory under ``OPENAMER_HOME``). Each file looks like::
 
     name: backend-dev
     description: Backend feature work — code review, testing, PR workflow.
@@ -50,7 +50,7 @@ from typing import Any, Dict, List, Optional, Tuple
 
 import yaml
 
-from hermes_constants import get_hermes_home
+from openamer_constants import get_openamer_home
 
 logger = logging.getLogger(__name__)
 
@@ -64,15 +64,15 @@ _bundles_cache_mtime: Optional[float] = None
 
 
 def _bundles_dir() -> Path:
-    """Return the canonical bundles directory under HERMES_HOME.
+    """Return the canonical bundles directory under OPENAMER_HOME.
 
     Honors ``HERMES_BUNDLES_DIR`` for tests; falls back to
-    ``<HERMES_HOME>/skill-bundles``.
+    ``<OPENAMER_HOME>/skill-bundles``.
     """
     override = os.environ.get("HERMES_BUNDLES_DIR")
     if override:
         return Path(override).expanduser()
-    return get_hermes_home() / "skill-bundles"
+    return get_openamer_home() / "skill-bundles"
 
 
 def _slugify(name: str) -> str:

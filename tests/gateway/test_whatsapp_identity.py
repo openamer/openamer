@@ -13,7 +13,7 @@ def test_aliases_resolve_on_modern_platforms_layout(tmp_path, monkeypatch):
         json.dumps("15551234567@s.whatsapp.net"),
         encoding="utf-8",
     )
-    monkeypatch.setenv("HERMES_HOME", str(tmp_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_home))
 
     assert expand_whatsapp_aliases("999999999999999@lid") == {
         "999999999999999",
@@ -29,7 +29,7 @@ def test_aliases_resolve_on_legacy_layout(tmp_path, monkeypatch):
         json.dumps("15551234567@s.whatsapp.net"),
         encoding="utf-8",
     )
-    monkeypatch.setenv("HERMES_HOME", str(tmp_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_home))
 
     assert expand_whatsapp_aliases("999999999999999@lid") == {
         "999999999999999",

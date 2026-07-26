@@ -1,7 +1,7 @@
 ---
 sidebar_position: 12
 title: "Cron 故障排查"
-description: "诊断并修复常见的 Hermes cron 问题——任务未触发、投递失败、skill 加载错误及性能问题"
+description: "诊断并修复常见的 OpenAmer cron 问题——任务未触发、投递失败、skill 加载错误及性能问题"
 ---
 
 # Cron 故障排查
@@ -15,7 +15,7 @@ description: "诊断并修复常见的 Hermes cron 问题——任务未触发�
 ### 检查 1：确认任务存在且处于活跃状态
 
 ```bash
-hermes cron list
+openamer cron list
 ```
 
 找到该任务并确认其状态为 `[active]`（而非 `[paused]` 或 `[completed]`）。若显示 `[completed]`，可能是重复次数已耗尽——编辑该任务以重置。
@@ -38,7 +38,7 @@ hermes cron list
 
 Cron 任务由 gateway 的后台 ticker 线程触发，该线程每 60 秒 tick 一次。普通的 CLI 聊天会话**不会**自动触发 cron 任务。
 
-如果你期望任务自动触发，需要运行一个 gateway（前台运行用 `hermes gateway`，安装为服务用 `hermes gateway start`）。如需单次调试，可手动触发一次 tick：`hermes cron tick`。
+如果你期望任务自动触发，需要运行一个 gateway（前台运行用 `openamer gateway`，安装为服务用 `openamer gateway start`）。如需单次调试，可手动触发一次 tick：`openamer cron tick`。
 
 ### 检查 4：检查系统时钟和时区
 
@@ -46,7 +46,7 @@ Cron 任务由 gateway 的后台 ticker 线程触发，该线程每 60 秒 tick 
 
 ```bash
 date
-hermes cron list   # 将 next_run 时间与本地时间对比
+openamer cron list   # 将 next_run 时间与本地时间对比
 ```
 
 ---
@@ -59,20 +59,20 @@ hermes cron list   # 将 next_run 时间与本地时间对比
 
 | 目标 | 所需配置 |
 |--------|----------|
-| `telegram` | `~/.hermes/.env` 中的 `TELEGRAM_BOT_TOKEN` |
-| `discord` | `~/.hermes/.env` 中的 `DISCORD_BOT_TOKEN` |
-| `slack` | `~/.hermes/.env` 中的 `SLACK_BOT_TOKEN` |
+| `telegram` | `~/.openamer/.env` 中的 `TELEGRAM_BOT_TOKEN` |
+| `discord` | `~/.openamer/.env` 中的 `DISCORD_BOT_TOKEN` |
+| `slack` | `~/.openamer/.env` 中的 `SLACK_BOT_TOKEN` |
 | `whatsapp` | 已配置 WhatsApp gateway |
 | `signal` | 已配置 Signal gateway |
 | `matrix` | 已配置 Matrix homeserver |
 | `email` | `config.yaml` 中已配置 SMTP |
 | `sms` | 已配置 SMS 提供商 |
-| `local` | 对 `~/.hermes/cron/output/` 有写权限 |
+| `local` | 对 `~/.openamer/cron/output/` 有写权限 |
 | `origin` | 投递到创建该任务的聊天会话 |
 
 其他支持的平台包括 `mattermost`、`homeassistant`、`dingtalk`、`feishu`、`wecom`、`weixin`、`bluebubbles`、`qqbot` 和 `webhook`。你也可以使用 `platform:chat_id` 语法指定特定聊天（例如 `telegram:-1001234567890`）。
 
-若投递失败，任务仍会执行——只是不会发送到任何地方。检查 `hermes cron list` 中的 `last_error` 字段（如有）。
+若投递失败，任务仍会执行——只是不会发送到任何地方。检查 `openamer cron list` 中的 `last_error` 字段（如有）。
 
 ### 检查 2：检查 `[SILENT]` 的使用
 
@@ -104,14 +104,14 @@ cron:
 ### 检查 1：确认 skill 已安装
 
 ```bash
-hermes skills list
+openamer skills list
 ```
 
-Skill 必须先安装才能附加到 cron 任务。若 skill 缺失，先用 `hermes skills install <skill-name>` 安装，或在 CLI 中通过 `/skills` 安装。
+Skill 必须先安装才能附加到 cron 任务。若 skill 缺失，先用 `openamer skills install <skill-name>` 安装，或在 CLI 中通过 `/skills` 安装。
 
 ### 检查 2：检查 skill 名称与 skill 文件夹名称
 
-Skill 名称区分大小写，必须与已安装 skill 的文件夹名称完全匹配。若任务指定的是 `ai-funding-daily-report`，但 skill 文件夹也是 `ai-funding-daily-report`，请从 `hermes skills list` 确认确切名称。
+Skill 名称区分大小写，必须与已安装 skill 的文件夹名称完全匹配。若任务指定的是 `ai-funding-daily-report`，但 skill 文件夹也是 `ai-funding-daily-report`，请从 `openamer skills list` 确认确切名称。
 
 ### 检查 3：依赖交互式工具的 skill
 
@@ -138,20 +138,20 @@ Cron 任务运行时，`cronjob`、`messaging` 和 `clarify` 工具集均被禁�
 若任务运行后失败，可在以下位置查看错误上下文：
 
 1. 任务投递的聊天会话（若投递成功）
-2. `~/.hermes/logs/agent.log`（调度器消息）或 `errors.log`（警告信息）
-3. 通过 `hermes cron list` 查看任务的 `last_run` 元数据
+2. `~/.openamer/logs/agent.log`（调度器消息）或 `errors.log`（警告信息）
+3. 通过 `openamer cron list` 查看任务的 `last_run` 元数据
 
 ### 检查 2：常见错误模式
 
 **脚本报 "No such file or directory"**
-`script` 路径必须为绝对路径（或相对于 Hermes 配置目录的路径）。验证：
+`script` 路径必须为绝对路径（或相对于 OpenAmer 配置目录的路径）。验证：
 ```bash
-ls ~/.hermes/scripts/your-script.py   # 必须存在
-hermes cron edit <job_id> --script ~/.hermes/scripts/your-script.py
+ls ~/.openamer/scripts/your-script.py   # 必须存在
+openamer cron edit <job_id> --script ~/.openamer/scripts/your-script.py
 ```
 
 **任务执行时报 "Skill not found"**
-Skill 必须安装在运行调度器的机器上。若你在不同机器间切换，skill 不会自动同步——请用 `hermes skills install <skill-name>` 重新安装。
+Skill 必须安装在运行调度器的机器上。若你在不同机器间切换，skill 不会自动同步——请用 `openamer skills install <skill-name>` 重新安装。
 
 **任务运行但没有投递任何内容**
 可能是投递目标问题（见上方"投递失败"部分）或响应被静默抑制（`[SILENT]`）。
@@ -165,17 +165,17 @@ Skill 必须安装在运行调度器的机器上。若你在不同机器间切�
 
 终止重复的 gateway 进程：
 ```bash
-ps aux | grep hermes
+ps aux | grep openamer
 # 终止重复进程，只保留一个
 ```
 
 ### 检查 4：jobs.json 的权限
 
-任务存储在 `~/.hermes/cron/jobs.json`。若该文件对当前用户不可读写，调度器将静默失败：
+任务存储在 `~/.openamer/cron/jobs.json`。若该文件对当前用户不可读写，调度器将静默失败：
 
 ```bash
-ls -la ~/.hermes/cron/jobs.json
-chmod 600 ~/.hermes/cron/jobs.json   # 应由你的用户拥有
+ls -la ~/.openamer/cron/jobs.json
+chmod 600 ~/.openamer/cron/jobs.json   # 应由你的用户拥有
 ```
 
 ---
@@ -199,11 +199,11 @@ chmod 600 ~/.hermes/cron/jobs.json   # 应由你的用户拥有
 ## 诊断命令
 
 ```bash
-hermes cron list                    # 显示所有任务、状态、next_run 时间
-hermes cron run <job_id>            # 安排在下次 tick 执行（用于测试）
-hermes cron edit <job_id>           # 修复配置问题
-hermes logs                         # 查看近期 Hermes 日志
-hermes skills list                  # 确认已安装的 skill
+openamer cron list                    # 显示所有任务、状态、next_run 时间
+openamer cron run <job_id>            # 安排在下次 tick 执行（用于测试）
+openamer cron edit <job_id>           # 修复配置问题
+openamer logs                         # 查看近期 OpenAmer 日志
+openamer skills list                  # 确认已安装的 skill
 ```
 
 ---
@@ -212,9 +212,9 @@ hermes skills list                  # 确认已安装的 skill
 
 若你已按本指南逐项排查，问题仍未解决：
 
-1. 使用 `hermes cron run <job_id>` 运行任务（在下次 gateway tick 时触发），观察聊天输出中的错误
-2. 查看 `~/.hermes/logs/agent.log` 中的调度器消息和 `~/.hermes/logs/errors.log` 中的警告
-3. 在 [github.com/NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent) 提交 issue，并附上：
+1. 使用 `openamer cron run <job_id>` 运行任务（在下次 gateway tick 时触发），观察聊天输出中的错误
+2. 查看 `~/.openamer/logs/agent.log` 中的调度器消息和 `~/.openamer/logs/errors.log` 中的警告
+3. 在 [github.com/NousResearch/openamer-agent](https://github.com/NousResearch/openamer-agent) 提交 issue，并附上：
    - 任务 ID 和调度表达式
    - 投递目标
    - 预期行为与实际行为

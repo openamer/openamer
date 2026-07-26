@@ -38,7 +38,7 @@ class _FakeResponse:
 
 def test_x_search_posts_responses_request(monkeypatch):
     from tools.x_search_tool import x_search_tool
-    from hermes_cli import __version__
+    from openamer_cli import __version__
 
     captured = {}
 
@@ -452,7 +452,7 @@ def test_x_search_honors_config_reasoning_effort(monkeypatch, tmp_path):
     from tools.x_search_tool import x_search_tool
 
     monkeypatch.setenv("XAI_API_KEY", "xai-test-key")
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     (tmp_path / "config.yaml").write_text(
         "x_search:\n  reasoning_effort: low\n  retries: 0\n",
         encoding="utf-8",

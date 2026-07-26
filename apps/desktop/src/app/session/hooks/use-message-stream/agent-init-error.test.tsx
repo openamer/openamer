@@ -7,7 +7,7 @@ import type { ClientSessionState } from '@/app/types'
 import { textPart } from '@/lib/chat-messages'
 import { createClientSessionState } from '@/lib/chat-runtime'
 import { $notifications, clearNotifications } from '@/store/notifications'
-import type { RpcEvent } from '@/types/hermes'
+import type { RpcEvent } from '@/types/openamer'
 
 import { useMessageStream } from './index'
 
@@ -25,7 +25,7 @@ function Harness() {
     activeSessionIdRef,
     hydrateFromStoredSession: vi.fn(async () => undefined),
     queryClient: queryClientRef.current,
-    refreshHermesConfig: vi.fn(async () => undefined),
+    refreshOpenAmerConfig: vi.fn(async () => undefined),
     refreshSessions: vi.fn(async () => undefined),
     sessionStateByRuntimeIdRef,
     updateSessionState: (sessionId, updater) => {

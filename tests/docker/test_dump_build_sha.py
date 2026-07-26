@@ -4,7 +4,7 @@ Background: ``.dockerignore`` excludes ``.git``, so ``git rev-parse HEAD``
 fails inside the published image and ``hermes dump`` used to report
 ``version: ... [(unknown)]``.  The Dockerfile now writes the build-time
 ``$HERMES_GIT_SHA`` build-arg to ``/opt/hermes/.hermes_build_sha`` and
-``hermes_cli/build_info.py`` reads it as a fallback.
+``openamer_cli/build_info.py`` reads it as a fallback.
 
 CI (``.github/workflows/docker.yml``) always sets the build-arg
 to ``${{ github.sha }}``.  Local ``docker build`` (the ``built_image``

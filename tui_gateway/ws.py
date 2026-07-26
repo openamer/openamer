@@ -312,7 +312,7 @@ async def handle_ws(ws: Any) -> None:
         # to surface MCP tools is a manual /reload-mcp. Start it once per
         # process here (idempotent, config-gated) before gateway.ready so the
         # first agent build can pick up already-spawning servers. (#38945)
-        from hermes_cli.mcp_startup import start_background_mcp_discovery
+        from openamer_cli.mcp_startup import start_background_mcp_discovery
 
         start_background_mcp_discovery(
             logger=_log,

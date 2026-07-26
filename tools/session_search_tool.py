@@ -19,7 +19,7 @@ mode parameter):
      previews, timestamps).
 
 All three modes operate on the SQLite session DB via the FTS5 index and
-the get_anchored_view / get_messages_around primitives in hermes_state.
+the get_anchored_view / get_messages_around primitives in openamer_state.
 No LLM calls anywhere — every shape returns actual messages from the DB.
 
 History: PR #20238 (JabberELF) seeded a fast/summary dual-mode split; the
@@ -34,7 +34,7 @@ import logging
 from typing import Any, Dict, List, Optional, Union
 
 # Sources that are excluded from session browsing/searching by default.
-# Third-party integrations tag their sessions with HERMES_SESSION_SOURCE=tool;
+# Third-party integrations tag their sessions with OPENAMER_SESSION_SOURCE=tool;
 # delegate subagent runs are tagged "subagent" — neither belongs in the
 # user's session history.
 _HIDDEN_SESSION_SOURCES = ("subagent", "tool")
@@ -280,8 +280,8 @@ def _resolve_profile_db(profile: str):
     if profile is None or not str(profile).strip():
         return None
 
-    from hermes_cli import profiles as profiles_mod
-    from hermes_state import SessionDB
+    from openamer_cli import profiles as profiles_mod
+    from openamer_state import SessionDB
 
     canon = profiles_mod.normalize_profile_name(profile)
     profiles_mod.validate_profile_name(canon)
@@ -302,7 +302,7 @@ def _session_link(session_id: str, profile: str = None) -> str:
     name = (profile or "").strip()
     if not name:
         try:
-            from hermes_cli.profiles import get_active_profile_name
+            from openamer_cli.profiles import get_active_profile_name
 
             resolved = get_active_profile_name()
             name = "" if resolved == "custom" else resolved
@@ -325,8 +325,8 @@ def _locate_session_db(session_id: str):
     from pathlib import Path
 
     try:
-        from hermes_cli import profiles as profiles_mod
-        from hermes_state import SessionDB
+        from openamer_cli import profiles as profiles_mod
+        from openamer_state import SessionDB
     except Exception:
         return None, None
 
@@ -832,11 +832,11 @@ def session_search(
     """
     if db is None:
         try:
-            from hermes_state import SessionDB
+            from openamer_state import SessionDB
             db = SessionDB()
         except Exception:
             logging.debug("SessionDB unavailable for session_search", exc_info=True)
-            from hermes_state import format_session_db_unavailable
+            from openamer_state import format_session_db_unavailable
             return tool_error(format_session_db_unavailable(), success=False)
 
     # Normalise a raw `@session:<profile>/<id>` link value passed as session_id.
@@ -932,7 +932,7 @@ def session_search(
 def check_session_search_requirements() -> bool:
     """Requires the SQLite state database."""
     try:
-        from hermes_state import DEFAULT_DB_PATH
+        from openamer_state import DEFAULT_DB_PATH
         return DEFAULT_DB_PATH.parent.exists()
     except ImportError:
         return False

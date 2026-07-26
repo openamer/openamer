@@ -17,7 +17,7 @@ GitHub auth 设置：HTTPS 令牌、SSH 密钥、gh CLI 登录。
 | 来源 | 内置（默认安装） |
 | 路径 | `skills/github/github-auth` |
 | 版本 | `1.1.0` |
-| 作者 | Hermes Agent |
+| 作者 | OpenAmer Agent |
 | 许可证 | MIT |
 | 平台 | linux, macos, windows |
 | 标签 | `GitHub`, `Authentication`, `Git`, `gh-cli`, `SSH`, `Setup` |
@@ -26,7 +26,7 @@ GitHub auth 设置：HTTPS 令牌、SSH 密钥、gh CLI 登录。
 ## 参考：完整 SKILL.md
 
 :::info
-以下是 Hermes 在触发此 skill 时加载的完整 skill 定义。这是 agent 在 skill 激活时所看到的指令内容。
+以下是 OpenAmer 在触发此 skill 时加载的完整 skill 定义。这是 agent 在 skill 激活时所看到的指令内容。
 :::
 
 # GitHub 认证设置
@@ -70,7 +70,7 @@ git config --global credential.helper 2>/dev/null || echo "no git credential hel
 告知用户访问：**https://github.com/settings/tokens**
 
 - 点击"Generate new token (classic)"
-- 填写名称，如"hermes-agent"
+- 填写名称，如"openamer-agent"
 - 选择权限范围（scope）：
   - `repo`（完整仓库访问——读、写、推送、PR）
   - `workflow`（触发和管理 GitHub Actions）
@@ -149,7 +149,7 @@ cat ~/.ssh/id_ed25519.pub
 告知用户在以下地址添加公钥：**https://github.com/settings/keys**
 - 点击"New SSH key"
 - 粘贴公钥内容
-- 填写标题，如"hermes-agent-&lt;machine-name>"
+- 填写标题，如"openamer-agent-&lt;machine-name>"
 
 **第三步：测试连接**
 
@@ -238,8 +238,8 @@ if command -v gh &>/dev/null && gh auth status &>/dev/null; then
   echo "AUTH_METHOD=gh"
 elif [ -n "$GITHUB_TOKEN" ]; then
   echo "AUTH_METHOD=curl"
-elif [ -f ~/.hermes/.env ] && grep -q "^GITHUB_TOKEN=" ~/.hermes/.env; then
-  export GITHUB_TOKEN=$(grep "^GITHUB_TOKEN=" ~/.hermes/.env | head -1 | cut -d= -f2 | tr -d '\n\r')
+elif [ -f ~/.openamer/.env ] && grep -q "^GITHUB_TOKEN=" ~/.openamer/.env; then
+  export GITHUB_TOKEN=$(grep "^GITHUB_TOKEN=" ~/.openamer/.env | head -1 | cut -d= -f2 | tr -d '\n\r')
   echo "AUTH_METHOD=curl"
 elif grep -q "github.com" ~/.git-credentials 2>/dev/null; then
   export GITHUB_TOKEN=$(grep "github.com" ~/.git-credentials | head -1 | sed 's|https://[^:]*:\([^@]*\)@.*|\1|')

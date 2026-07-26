@@ -75,7 +75,7 @@ CASES = {
         _lanes(python=True, mcp_catalog=True),
     ),
     "mcp_catalog.py → mcp_catalog": (
-        ["hermes_cli/mcp_catalog.py"],
+        ["openamer_cli/mcp_catalog.py"],
         _lanes(python=True, scan=True, mcp_catalog=True),
     ),
     # CI-sensitive files require explicit review label.

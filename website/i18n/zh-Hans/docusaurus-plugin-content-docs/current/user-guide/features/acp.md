@@ -1,12 +1,12 @@
 ---
 sidebar_position: 11
 title: "ACP 编辑器集成"
-description: "在 VS Code、Zed 和 JetBrains 等兼容 ACP 的编辑器中使用 Hermes Agent"
+description: "在 VS Code、Zed 和 JetBrains 等兼容 ACP 的编辑器中使用 OpenAmer Agent"
 ---
 
 # ACP 编辑器集成
 
-Hermes Agent 可作为 ACP 服务器运行，让兼容 ACP 的编辑器通过 stdio 与 Hermes 通信并渲染：
+OpenAmer Agent 可作为 ACP 服务器运行，让兼容 ACP 的编辑器通过 stdio 与 OpenAmer 通信并渲染：
 
 - 聊天消息
 - 工具活动
@@ -15,11 +15,11 @@ Hermes Agent 可作为 ACP 服务器运行，让兼容 ACP 的编辑器通过 st
 - 审批 prompt（提示词）
 - 流式思考 / 响应块
 
-当你希望 Hermes 表现得像编辑器原生的编码 agent，而非独立 CLI 或消息机器人时，ACP 是合适的选择。
+当你希望 OpenAmer 表现得像编辑器原生的编码 agent，而非独立 CLI 或消息机器人时，ACP 是合适的选择。
 
-## Hermes 在 ACP 模式下暴露的内容
+## OpenAmer 在 ACP 模式下暴露的内容
 
-Hermes 使用专为编辑器工作流设计的精选 `hermes-acp` 工具集运行，包括：
+OpenAmer 使用专为编辑器工作流设计的精选 `openamer-acp` 工具集运行，包括：
 
 - 文件工具：`read_file`、`write_file`、`patch`、`search_files`
 - 终端工具：`terminal`、`process`
@@ -33,41 +33,41 @@ Hermes 使用专为编辑器工作流设计的精选 `hermes-acp` 工具集运�
 
 ## 安装
 
-正常安装 Hermes 后，从安装检出目录添加 ACP 扩展：
+正常安装 OpenAmer 后，从安装检出目录添加 ACP 扩展：
 
 ```bash
-cd ~/.hermes/hermes-agent && uv pip install -e '.[acp]'
+cd ~/.openamer/openamer-agent && uv pip install -e '.[acp]'
 ```
 
 这将安装 `agent-client-protocol` 依赖并启用：
 
-- `hermes acp`
-- `hermes-acp`
+- `openamer acp`
+- `openamer-acp`
 - `python -m acp_adapter`
 
 ## 启动 ACP 服务器
 
-以下任意命令均可以 ACP 模式启动 Hermes：
+以下任意命令均可以 ACP 模式启动 OpenAmer：
 
 ```bash
-hermes acp
+openamer acp
 ```
 
 ```bash
-hermes-acp
+openamer-acp
 ```
 
 ```bash
 python -m acp_adapter
 ```
 
-Hermes 将日志输出到 stderr，以保留 stdout 用于 ACP JSON-RPC 流量。
+OpenAmer 将日志输出到 stderr，以保留 stdout 用于 ACP JSON-RPC 流量。
 
 非交互式检查：
 
 ```bash
-hermes acp --version
-hermes acp --check
+openamer acp --version
+openamer acp --check
 ```
 
 ### 浏览器工具（可选）
@@ -75,16 +75,16 @@ hermes acp --check
 浏览器工具（`browser_navigate`、`browser_click` 等）依赖 `agent-browser` npm 包和 Chromium，这些不包含在 Python wheel 中。通过以下命令安装：
 
 ```bash
-hermes acp --setup-browser           # 交互式（下载约 400 MB 前会提示确认）
-hermes acp --setup-browser --yes     # 非交互式接受下载
+openamer acp --setup-browser           # 交互式（下载约 400 MB 前会提示确认）
+openamer acp --setup-browser --yes     # 非交互式接受下载
 ```
 
-这是独立命令。终端认证流程（`hermes acp --setup`）在模型选择后也会将浏览器引导作为后续问题提供，因此大多数用户无需直接运行 `--setup-browser`。
+这是独立命令。终端认证流程（`openamer acp --setup`）在模型选择后也会将浏览器引导作为后续问题提供，因此大多数用户无需直接运行 `--setup-browser`。
 
 具体操作：
 
-- 若缺少 Node.js 22 LTS，将其安装到 `~/.hermes/node/`
-- 将 `npm install -g agent-browser @askjo/camofox-browser` 安装到该前缀（无需 sudo — `npm` 的 `--prefix` 指向用户可写的 Hermes 管理 Node）
+- 若缺少 Node.js 22 LTS，将其安装到 `~/.openamer/node/`
+- 将 `npm install -g agent-browser @askjo/camofox-browser` 安装到该前缀（无需 sudo — `npm` 的 `--prefix` 指向用户可写的 OpenAmer 管理 Node）
 - 安装 Playwright Chromium，或在检测到系统 Chrome/Chromium 时使用已有版本
 
 该引导过程是幂等的——重复运行速度很快，已完成的步骤会被跳过。
@@ -98,16 +98,16 @@ hermes acp --setup-browser --yes     # 非交互式接受下载
 连接步骤：
 
 1. 从活动栏打开 ACP Client 面板。
-2. 从内置 agent 列表中选择 **Hermes Agent**。
+2. 从内置 agent 列表中选择 **OpenAmer Agent**。
 3. 连接并开始聊天。
 
-如需手动定义 Hermes，通过 VS Code 设置在 `acp.agents` 下添加：
+如需手动定义 OpenAmer，通过 VS Code 设置在 `acp.agents` 下添加：
 
 ```json
 {
   "acp.agents": {
-    "Hermes Agent": {
-      "command": "hermes",
+    "OpenAmer Agent": {
+      "command": "openamer",
       "args": ["acp"]
     }
   }
@@ -116,7 +116,7 @@ hermes acp --setup-browser --yes     # 非交互式接受下载
 
 ### Zed
 
-在 Zed 设置中将 Hermes 配置为自定义 agent 服务器：
+在 Zed 设置中将 OpenAmer 配置为自定义 agent 服务器：
 
 1. 打开 Agent 面板。
 2. 使用以下配置添加自定义 agent 服务器：
@@ -124,35 +124,35 @@ hermes acp --setup-browser --yes     # 非交互式接受下载
 ```json
 {
   "agent_servers": {
-    "hermes-agent": {
+    "openamer-agent": {
       "type": "custom",
-      "command": "hermes",
+      "command": "openamer",
       "args": ["acp"]
     }
   }
 }
 ```
 
-3. 启动新的 Hermes 外部 agent 线程。
+3. 启动新的 OpenAmer 外部 agent 线程。
 
 前提条件：
 
-- 先通过 `hermes model` 配置 Hermes provider 凭据，或在 `~/.hermes/.env` / `~/.hermes/config.yaml` 中设置。
+- 先通过 `openamer model` 配置 OpenAmer provider 凭据，或在 `~/.openamer/.env` / `~/.openamer/config.yaml` 中设置。
 
 ### JetBrains
 
-使用兼容 ACP 的插件并将其指向 `hermes acp` 或 `hermes-acp`。
+使用兼容 ACP 的插件并将其指向 `openamer acp` 或 `openamer-acp`。
 
 ## 配置与凭据
 
-ACP 模式使用与 CLI 相同的 Hermes 配置：
+ACP 模式使用与 CLI 相同的 OpenAmer 配置：
 
-- `~/.hermes/.env`
-- `~/.hermes/config.yaml`
-- `~/.hermes/skills/`
-- `~/.hermes/state.db`
+- `~/.openamer/.env`
+- `~/.openamer/config.yaml`
+- `~/.openamer/skills/`
+- `~/.openamer/state.db`
 
-Provider 解析使用 Hermes 的正常运行时解析器，因此 ACP 继承当前配置的 provider 和凭据。Hermes 还为首次运行的 ACP 客户端提供终端认证方法（`--setup`）；这将打开 Hermes 的交互式模型/provider 设置。
+Provider 解析使用 OpenAmer 的正常运行时解析器，因此 ACP 继承当前配置的 provider 和凭据。OpenAmer 还为首次运行的 ACP 客户端提供终端认证方法（`--setup`）；这将打开 OpenAmer 的交互式模型/provider 设置。
 
 ## 会话行为
 
@@ -166,11 +166,11 @@ ACP 会话在服务器运行期间由 ACP 适配器的内存会话管理器跟�
 - 当前对话历史
 - 取消事件
 
-底层 `AIAgent` 仍使用 Hermes 的正常持久化/日志路径，但 ACP 的 `list/load/resume/fork` 仅限于当前运行的 ACP 服务器进程。
+底层 `AIAgent` 仍使用 OpenAmer 的正常持久化/日志路径，但 ACP 的 `list/load/resume/fork` 仅限于当前运行的 ACP 服务器进程。
 
 ## 工作目录行为
 
-ACP 会话将编辑器的 cwd 绑定到 Hermes 任务 ID，使文件和终端工具相对于编辑器工作区运行，而非服务器进程的 cwd。
+ACP 会话将编辑器的 cwd 绑定到 OpenAmer 任务 ID，使文件和终端工具相对于编辑器工作区运行，而非服务器进程的 cwd。
 
 ## 审批
 
@@ -190,12 +190,12 @@ ACP 在*允许一次*和*始终允许*之间提供第三层：**允许本次会�
 |---|---|---|---|
 | `allow_once` | 允许一次 | 本次工具调用 | 否 |
 | `allow_session` | 允许本次会话 | 本 ACP 会话中所有匹配调用 | 否——会话结束时清除 |
-| `allow_always` | 始终允许 | 所有未来会话 | 是（写入 Hermes 永久允许列表） |
+| `allow_always` | 始终允许 | 所有未来会话 | 是（写入 OpenAmer 永久允许列表） |
 | `deny` | 拒绝 | 本次工具调用 | 否 |
 
 `allow_session` 是编辑器工作流的正确默认选项——你在任务期间信任 agent，但不想授予长期允许列表条目。安全权衡很直接：范围越广，编辑器打断你的次数越少，行为异常的 agent（或 prompt 注入）在被发现前能造成的损害也越大。对不熟悉的命令从 `allow_once` 开始；在看到 agent 多次正确运行相同模式后升级为 `allow_session`；将 `allow_always` 保留给你永远信任的真正幂等命令（例如 `git status`）。
 
-ACP 桥接将这些选项映射到 Hermes 的内部审批语义——`allow_always` 与 CLI 相同地写入永久允许列表条目，而 `allow_session` 仅影响当前 ACP 会话的进程内审批缓存。
+ACP 桥接将这些选项映射到 OpenAmer 的内部审批语义——`allow_always` 与 CLI 相同地写入永久允许列表条目，而 `allow_session` 仅影响当前 ACP 会话的进程内审批缓存。
 
 ## 故障排查
 
@@ -203,30 +203,30 @@ ACP 桥接将这些选项映射到 Hermes 的内部审批语义——`allow_alwa
 
 检查：
 
-- 对于手动/本地开发，验证自定义 `agent_servers` 命令是否指向 `hermes acp`。
-- Hermes 已安装且在 PATH 中。
-- ACP 扩展已安装（`cd ~/.hermes/hermes-agent && uv pip install -e '.[acp]'`）。
+- 对于手动/本地开发，验证自定义 `agent_servers` 命令是否指向 `openamer acp`。
+- OpenAmer 已安装且在 PATH 中。
+- ACP 扩展已安装（`cd ~/.openamer/openamer-agent && uv pip install -e '.[acp]'`）。
 
 ### ACP 启动后立即报错
 
 尝试以下检查：
 
 ```bash
-hermes acp --version
-hermes acp --check
-hermes doctor
-hermes status
+openamer acp --version
+openamer acp --check
+openamer doctor
+openamer status
 ```
 
 ### 缺少凭据
 
-ACP 模式使用 Hermes 现有的 provider 设置。通过以下方式配置凭据：
+ACP 模式使用 OpenAmer 现有的 provider 设置。通过以下方式配置凭据：
 
 ```bash
-hermes model
+openamer model
 ```
 
-或编辑 `~/.hermes/.env`。终端认证流程（`hermes acp --setup`）也可以触发交互式 provider/模型设置。
+或编辑 `~/.openamer/.env`。终端认证流程（`openamer acp --setup`）也可以触发交互式 provider/模型设置。
 
 ## 另请参阅
 

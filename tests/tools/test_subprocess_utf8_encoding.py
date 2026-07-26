@@ -3,9 +3,9 @@ explicit ``encoding=`` triggers ``UnicodeDecodeError`` on Chinese Windows
 (cp936/GBK default encoding).
 
 PR #55339 covers 21 call sites in ``agent/``, ``gateway/``, ``cli.py``,
-``cron/``, plus 5 more in ``tools/`` and ``hermes_cli/`` (main.py,
+``cron/``, plus 5 more in ``tools/`` and ``openamer_cli/`` (main.py,
 setup.py, tts_tool.py, transcription_tools.py). The two call sites it
-misses — ``hermes_cli/onepassword_secrets_cli.py::_op_whoami`` and
+misses — ``openamer_cli/onepassword_secrets_cli.py::_op_whoami`` and
 ``_op_version`` — are guarded here.
 
 Without ``encoding=``, ``text=True`` decodes child output with
@@ -40,7 +40,7 @@ def _assert_utf8_kwargs(mock_run):
 def test_op_whoami_passes_utf8_encoding(tmp_path):
     """_op_whoami must pass encoding='utf-8', errors='replace' so op CLI
     output containing non-ASCII account names doesn't crash on cp936."""
-    from hermes_cli import onepassword_secrets_cli as op_cli
+    from openamer_cli import onepassword_secrets_cli as op_cli
 
     fake_binary = tmp_path / "op"
     fake_binary.write_bytes(b"")
@@ -56,7 +56,7 @@ def test_op_version_passes_utf8_encoding(tmp_path):
     """_op_version must pass encoding='utf-8', errors='replace' so op CLI
     output containing non-ASCII bytes doesn't crash on cp936. Pairs with
     _op_whoami — both run in the same setup/status CLI flow."""
-    from hermes_cli import onepassword_secrets_cli as op_cli
+    from openamer_cli import onepassword_secrets_cli as op_cli
 
     fake_binary = tmp_path / "op"
     fake_binary.write_bytes(b"")

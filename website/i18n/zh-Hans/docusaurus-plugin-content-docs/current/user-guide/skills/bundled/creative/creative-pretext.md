@@ -17,7 +17,7 @@ description: "适用于使用 @chenglou/pretext 构建创意浏览器演示 —�
 | 来源 | 内置（默认安装） |
 | 路径 | `skills/creative/pretext` |
 | 版本 | `1.0.0` |
-| 作者 | Hermes Agent |
+| 作者 | OpenAmer Agent |
 | 许可证 | MIT |
 | 平台 | linux, macos, windows |
 | 标签 | `creative-coding`, `typography`, `pretext`, `ascii-art`, `canvas`, `generative`, `text-layout`, `kinetic-typography` |
@@ -26,7 +26,7 @@ description: "适用于使用 @chenglou/pretext 构建创意浏览器演示 —�
 ## 参考：完整 SKILL.md
 
 :::info
-以下是 Hermes 在触发此 skill 时加载的完整 skill 定义。这是 agent 在 skill 激活时所看到的指令内容。
+以下是 OpenAmer 在触发此 skill 时加载的完整 skill 定义。这是 agent 在 skill 激活时所看到的指令内容。
 :::
 
 # Pretext 创意演示
@@ -37,7 +37,7 @@ description: "适用于使用 @chenglou/pretext 构建创意浏览器演示 —�
 
 听起来像底层管道，但并非如此。由于它快速且几何化，它是一个**创意原语**：你可以在 60fps 下让段落绕着移动的精灵重排，构建关卡几何体由真实文字组成的游戏，将 ASCII logo 嵌入散文，利用精确的每字形起始坐标将文字炸裂成粒子，或者在不调用任何 `getBoundingClientRect` 的情况下打包紧凑的多行 UI。
 
-此 skill 的存在是为了让 Hermes 能用它制作**酷炫演示** —— 那种人们会发到 X 上的作品。社区演示库请见 `pretext.cool` 和 `chenglou.me/pretext`。
+此 skill 的存在是为了让 OpenAmer 能用它制作**酷炫演示** —— 那种人们会发到 X 上的作品。社区演示库请见 `pretext.cool` 和 `chenglou.me/pretext`。
 
 ## 使用时机
 

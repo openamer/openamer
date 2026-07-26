@@ -11,7 +11,7 @@ export interface QueuedPromptEntry {
 
 type QueueState = Record<string, QueuedPromptEntry[]>
 
-const STORAGE_KEY = 'hermes.desktop.composerQueue.v1'
+const STORAGE_KEY = 'openamer.desktop.composerQueue.v1'
 
 const load = (): QueueState => {
   if (typeof window === 'undefined') {

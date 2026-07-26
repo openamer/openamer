@@ -6,7 +6,7 @@
  * provider pointing at a mock inference server. When the app boots, the
  * runtime readiness check should detect the working provider and dismiss the
  * onboarding overlay — landing straight on the chat UI without ever showing
- * the "Let's get you setup with Hermes Agent" screen.
+ * the "Let's get you setup with OpenAmer Agent" screen.
  *
  * If these tests fail, the mock backend config isn't getting the app past
  * onboarding — the chat interaction tests (chat.spec.ts) will also fail
@@ -40,7 +40,7 @@ test.describe('mock backend gets past setup screen', () => {
   test('onboarding overlay is not shown', async () => {
     const page = fixture!.page
 
-    // The onboarding overlay renders "Let's get you setup with Hermes Agent"
+    // The onboarding overlay renders "Let's get you setup with OpenAmer Agent"
     // when the runtime check fails to find a working provider. With the mock
     // backend configured, the runtime check should pass and the overlay
     // returns null — this text should NOT be present in the DOM.

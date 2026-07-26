@@ -71,7 +71,7 @@ def get_tool_output_limits() -> Dict[str, int]:
     if _cached_limits is not None:
         return _cached_limits
     try:
-        from hermes_cli.config import load_config
+        from openamer_cli.config import load_config
         cfg = load_config() or {}
         section = cfg.get("tool_output") if isinstance(cfg, dict) else None
         if not isinstance(section, dict):

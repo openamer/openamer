@@ -1,6 +1,6 @@
 # QQ Bot
 
-通过**官方 QQ Bot API（v2）**将 Hermes 接入 QQ——支持私聊（C2C）、群组 @-提及、频道及直接消息，并具备语音转写功能。
+通过**官方 QQ Bot API（v2）**将 OpenAmer 接入 QQ——支持私聊（C2C）、群组 @-提及、频道及直接消息，并具备语音转写功能。
 
 ## 概述
 
@@ -28,14 +28,14 @@ QQ Bot 适配器使用[官方 QQ Bot API](https://bot.q.qq.com/wiki/develop/api-
 ### 交互式设置
 
 ```bash
-hermes gateway setup
+openamer gateway setup
 ```
 
 从平台列表中选择 **QQ Bot** 并按提示操作。
 
 ### 手动配置
 
-在 `~/.hermes/.env` 中设置所需环境变量：
+在 `~/.openamer/.env` 中设置所需环境变量：
 
 ```bash
 QQ_APP_ID=your-app-id
@@ -60,7 +60,7 @@ QQ_CLIENT_SECRET=your-app-secret
 
 ## 高级配置
 
-如需精细控制，可在 `~/.hermes/config.yaml` 中添加平台设置：
+如需精细控制，可在 `~/.openamer/config.yaml` 中添加平台设置：
 
 ```yaml
 platforms:

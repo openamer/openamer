@@ -41,7 +41,7 @@ def test_moa_reference_passes_per_slot_reasoning_config(monkeypatch):
         return _response("advice")
 
     monkeypatch.setattr("agent.moa_loop.call_llm", fake_call_llm)
-    with patch("hermes_cli.runtime_provider.resolve_runtime_provider") as mock_resolve:
+    with patch("openamer_cli.runtime_provider.resolve_runtime_provider") as mock_resolve:
         mock_resolve.return_value = {"provider": "openai-codex", "model": "gpt-5.6-sol"}
         _run_reference(
             {"provider": "openai-codex", "model": "gpt-5.6-sol", "reasoning_effort": "low"},
@@ -83,7 +83,7 @@ class TestAggregatorGlobalFallback:
         from agent import moa_loop
 
         monkeypatch.setattr(
-            "hermes_cli.config.load_config",
+            "openamer_cli.config.load_config",
             lambda: {"agent": {"reasoning_effort": "medium"}},
         )
         cfg = moa_loop._aggregator_reasoning_config({"reasoning_effort": "xhigh"})
@@ -93,7 +93,7 @@ class TestAggregatorGlobalFallback:
         from agent import moa_loop
 
         monkeypatch.setattr(
-            "hermes_cli.config.load_config",
+            "openamer_cli.config.load_config",
             lambda: {"agent": {"reasoning_effort": "high"}},
         )
         cfg = moa_loop._aggregator_reasoning_config({"provider": "openrouter", "model": "m"})
@@ -105,7 +105,7 @@ class TestAggregatorGlobalFallback:
         from agent import moa_loop
 
         monkeypatch.setattr(
-            "hermes_cli.config.load_config",
+            "openamer_cli.config.load_config",
             lambda: {
                 "agent": {
                     "reasoning_effort": "medium",
@@ -122,7 +122,7 @@ class TestAggregatorGlobalFallback:
         from agent import moa_loop
 
         monkeypatch.setattr(
-            "hermes_cli.config.load_config",
+            "openamer_cli.config.load_config",
             lambda: {
                 "agent": {
                     "reasoning_effort": "medium",
@@ -139,7 +139,7 @@ class TestAggregatorGlobalFallback:
         from agent import moa_loop
 
         monkeypatch.setattr(
-            "hermes_cli.config.load_config",
+            "openamer_cli.config.load_config",
             lambda: {"agent": {"reasoning_effort": False}},
         )
         cfg = moa_loop._aggregator_reasoning_config({})
@@ -148,7 +148,7 @@ class TestAggregatorGlobalFallback:
     def test_no_slot_no_global_returns_none(self, monkeypatch):
         from agent import moa_loop
 
-        monkeypatch.setattr("hermes_cli.config.load_config", lambda: {})
+        monkeypatch.setattr("openamer_cli.config.load_config", lambda: {})
         assert moa_loop._aggregator_reasoning_config({}) is None
 
     def test_reference_slots_do_not_inherit_global(self, monkeypatch):
@@ -156,7 +156,7 @@ class TestAggregatorGlobalFallback:
         from agent import moa_loop
 
         monkeypatch.setattr(
-            "hermes_cli.config.load_config",
+            "openamer_cli.config.load_config",
             lambda: {"agent": {"reasoning_effort": "xhigh"}},
         )
         assert moa_loop._slot_reasoning_config({"provider": "p", "model": "m"}) is None

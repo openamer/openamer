@@ -5,7 +5,7 @@ Hermes' long-running gateway status surface into short status lines suitable
 for chat surfaces.
 
 Built-in defaults live in ``gateway/assets/status_phrases.yaml``. Users can add
-portable, profile-relative phrase catalogs under ``HERMES_HOME`` either by using
+portable, profile-relative phrase catalogs under ``OPENAMER_HOME`` either by using
 conventional paths::
 
     ~/.hermes/status_phrases.yaml
@@ -15,7 +15,7 @@ or by pointing config at a relative file/directory::
 
     display:
       status_phrases:
-        path: status_phrases/whatsapp.yaml  # relative to HERMES_HOME
+        path: status_phrases/whatsapp.yaml  # relative to OPENAMER_HOME
         mode: append                        # append (default) or replace
 
 Absolute paths and ``..`` escapes are ignored on purpose so config stays
@@ -34,7 +34,7 @@ from typing import Any
 
 import yaml
 
-from hermes_constants import get_hermes_home
+from openamer_constants import get_openamer_home
 
 # These are Hermes UI surfaces, not app/vendor/domain buckets.  Keep this
 # long-running-only: regular tool/thinking/interim chatter is intentionally not
@@ -163,7 +163,7 @@ def resolve_status_phrase_catalog(user_config: Mapping[str, Any] | None, platfor
     ``display.platforms.<platform>.status_phrases``.
     """
     catalog = _copy_default_catalog()
-    hermes_home = get_hermes_home()
+    hermes_home = get_openamer_home()
     _merge_phrase_paths(catalog, list(_CONVENTIONAL_RELATIVE_PATHS), base_dir=hermes_home)
 
     display = (user_config or {}).get("display") if isinstance(user_config, Mapping) else None

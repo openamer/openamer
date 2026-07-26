@@ -7,7 +7,7 @@ import yaml
 
 def _invalidate_config_cache():
     try:
-        import hermes_cli.config as cfg_mod
+        import openamer_cli.config as cfg_mod
 
         if hasattr(cfg_mod, "_invalidate_load_config_cache"):
             cfg_mod._invalidate_load_config_cache()
@@ -16,7 +16,7 @@ def _invalidate_config_cache():
 
 
 def test_storage_defaults_to_permanent_public_urls(tmp_path, monkeypatch):
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     _invalidate_config_cache()
 
     from tools.xai_http import build_xai_storage_options
@@ -35,7 +35,7 @@ def test_storage_defaults_to_permanent_public_urls(tmp_path, monkeypatch):
 
 
 def test_storage_can_be_disabled(tmp_path, monkeypatch):
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     (tmp_path / "config.yaml").write_text(yaml.safe_dump({
         "video_gen": {
             "xai": {
@@ -58,7 +58,7 @@ def test_storage_can_be_disabled(tmp_path, monkeypatch):
 
 
 def test_storage_can_be_permanent(tmp_path, monkeypatch):
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     (tmp_path / "config.yaml").write_text(yaml.safe_dump({
         "image_gen": {
             "xai": {
@@ -83,7 +83,7 @@ def test_storage_can_be_permanent(tmp_path, monkeypatch):
 
 
 def test_storage_can_use_finite_retention(tmp_path, monkeypatch):
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     (tmp_path / "config.yaml").write_text(yaml.safe_dump({
         "image_gen": {
             "xai": {
@@ -108,7 +108,7 @@ def test_storage_can_use_finite_retention(tmp_path, monkeypatch):
 
 
 def test_invalid_storage_retention_falls_back_to_bounded_ttl(tmp_path, monkeypatch):
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     (tmp_path / "config.yaml").write_text(yaml.safe_dump({
         "video_gen": {
             "xai": {

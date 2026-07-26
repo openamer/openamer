@@ -13,7 +13,7 @@ import urllib.request
 from pathlib import Path
 from typing import Any
 
-from hermes_constants import get_hermes_home
+from openamer_constants import get_openamer_home
 
 from ._oss_providers import (
     LLM_PROVIDERS,
@@ -26,7 +26,7 @@ from ._oss_providers import (
 
 def _curses_select(title: str, items: list[tuple[str, str]], default: int = 0) -> int:
     """Interactive single-select with arrow keys."""
-    from hermes_cli.curses_ui import curses_radiolist
+    from openamer_cli.curses_ui import curses_radiolist
     display_items = [
         f"{label}  {desc}" if desc else label
         for label, desc in items
@@ -194,7 +194,7 @@ def _write_env(env_path: Path, env_writes: dict[str, str]) -> None:
     existing_lines: list[str] = []
     if env_path.exists():
         # Read as UTF-8 (BOM-tolerant), matching the canonical .env readers in
-        # hermes_cli/config.py. read_text() with no encoding falls back to the
+        # openamer_cli/config.py. read_text() with no encoding falls back to the
         # system locale (cp1252/GBK on Windows): it mangles or crashes on
         # non-ASCII values while copying existing lines through, and a BOM'd
         # first line would fail the key match and get duplicated.
@@ -323,7 +323,7 @@ def _setup_platform(hermes_home: str, config: dict, flags: dict[str, str]) -> No
             "routing to the self-hosted server."
         )
 
-    from hermes_cli.config import save_config
+    from openamer_cli.config import save_config
     config["memory"]["provider"] = "mem0"
     save_config(config)
 
@@ -417,7 +417,7 @@ def _setup_selfhosted(hermes_home: str, config: dict, flags: dict[str, str]) -> 
     provider_config["user_id"] = user_id
     provider_config["agent_id"] = agent_id
 
-    from hermes_cli.config import save_config
+    from openamer_cli.config import save_config
     config["memory"]["provider"] = "mem0"
     save_config(config)
 
@@ -478,7 +478,7 @@ def _setup_oss(hermes_home: str, config: dict, flags: dict[str, str]) -> None:
 
     _install_provider_deps(llm_id, embedder_id, vector_id)
 
-    from hermes_cli.config import save_config
+    from openamer_cli.config import save_config
     config["memory"]["provider"] = "mem0"
     save_config(config)
 
@@ -501,7 +501,7 @@ def _prompt_api_key(label: str, env_var: str, hermes_home: str) -> str:
         env_path = Path(hermes_home) / ".env"
         if env_path.exists():
             # BOM-tolerant read matching the canonical .env readers in
-            # hermes_cli/config.py; a Notepad BOM on the first line would
+            # openamer_cli/config.py; a Notepad BOM on the first line would
             # otherwise defeat the startswith() key match below.
             for line in env_path.read_text(
                 encoding="utf-8-sig", errors="replace"
@@ -836,7 +836,7 @@ def _setup_oss_interactive(hermes_home: str, config: dict) -> None:
     if vector_id == "pgvector" and pgvector_config:
         _ensure_pgvector_extension(pgvector_config)
 
-    from hermes_cli.config import save_config
+    from openamer_cli.config import save_config
     config["memory"]["provider"] = "mem0"
     save_config(config)
 

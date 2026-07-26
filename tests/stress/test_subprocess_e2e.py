@@ -2,11 +2,11 @@
 
 This validates the IPC + lifecycle story that mocks can't:
   - spawn_fn returns a real PID
-  - the child process resolves hermes_cli.kanban_db on its own
+  - the child process resolves openamer_cli.kanban_db on its own
   - the child writes heartbeats via the CLI (real argparse, real init_db)
   - the child completes via the CLI with --summary + --metadata
   - the dispatcher observes all of this through the DB only
-  - worker logs are captured to HERMES_HOME/kanban/logs/<task>.log
+  - worker logs are captured to OPENAMER_HOME/kanban/logs/<task>.log
   - crash detection works against a real dead PID
 """
 
@@ -30,10 +30,10 @@ def make_spawn_fn(home: str):
         log_path = os.path.join(home, f"worker_{task.id}.log")
         env = {
             **os.environ,
-            "HERMES_HOME": home,
+            "OPENAMER_HOME": home,
             "HOME": home,
             "PYTHONPATH": WT,
-            "HERMES_KANBAN_TASK": task.id,
+            "OPENAMER_KANBAN_TASK": task.id,
             "HERMES_KANBAN_WORKSPACE": workspace,
             "PATH": f"{os.path.dirname(PY)}:{os.environ.get('PATH','')}",
         }
@@ -53,19 +53,19 @@ def make_spawn_fn(home: str):
 
 def main():
     home = tempfile.mkdtemp(prefix="hermes_e2e_")
-    os.environ["HERMES_HOME"] = home
+    os.environ["OPENAMER_HOME"] = home
     os.environ["HOME"] = home
     sys.path.insert(0, WT)
-    from hermes_cli import kanban_db as kb
+    from openamer_cli import kanban_db as kb
 
     # Point the `hermes` CLI child processes will run at the worktree
-    # hermes_cli.main. We do this by putting a shim on PATH.
+    # openamer_cli.main. We do this by putting a shim on PATH.
     shim_dir = os.path.join(home, "bin")
     os.makedirs(shim_dir, exist_ok=True)
     shim_path = os.path.join(shim_dir, "hermes")
     with open(shim_path, "w") as f:
         f.write(f"""#!/bin/sh
-exec {PY} -m hermes_cli.main "$@"
+exec {PY} -m openamer_cli.main "$@"
 """)
     os.chmod(shim_path, 0o755)
     os.environ["PATH"] = f"{shim_dir}:{os.environ.get('PATH','')}"

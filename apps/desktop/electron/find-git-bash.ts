@@ -11,7 +11,7 @@ export interface GitBashOptions {
  * Locate bash.exe on Windows.
  * Resolution order (first match wins):
  *   1. HERMES_GIT_BASH_PATH env var override
- *   2. PortableGit under %LOCALAPPDATA%\hermes\git\ (install.ps1)
+ *   2. PortableGit under %LOCALAPPDATA%\openamer\git\ (install.ps1)
  *   3. Standard Git for Windows install locations
  *   4. %LOCALAPPDATA%\Programs\Git\ (user-scoped)
  *   5. bash on PATH
@@ -38,8 +38,8 @@ export function findGitBash(opts: GitBashOptions): string | null {
   const joinWin = path.win32.join
 
   if (localAppData) {
-    candidates.push(joinWin(localAppData, 'hermes', 'git', 'bin', 'bash.exe'))
-    candidates.push(joinWin(localAppData, 'hermes', 'git', 'usr', 'bin', 'bash.exe'))
+    candidates.push(joinWin(localAppData, 'openamer', 'git', 'bin', 'bash.exe'))
+    candidates.push(joinWin(localAppData, 'openamer', 'git', 'usr', 'bin', 'bash.exe'))
   }
 
   candidates.push(joinWin(env['ProgramFiles'] || 'C:\\Program Files', 'Git', 'bin', 'bash.exe'))

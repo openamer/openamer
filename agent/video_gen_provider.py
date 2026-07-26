@@ -202,10 +202,10 @@ class VideoGenProvider(abc.ABC):
 
 
 def _videos_cache_dir() -> Path:
-    """Return ``$HERMES_HOME/cache/videos/``, creating parents as needed."""
-    from hermes_constants import get_hermes_home
+    """Return ``$OPENAMER_HOME/cache/videos/``, creating parents as needed."""
+    from openamer_constants import get_openamer_home
 
-    path = get_hermes_home() / "cache" / "videos"
+    path = get_openamer_home() / "cache" / "videos"
     path.mkdir(parents=True, exist_ok=True)
     return path
 
@@ -216,7 +216,7 @@ def save_b64_video(
     prefix: str = "video",
     extension: str = "mp4",
 ) -> Path:
-    """Decode base64 video data and write under ``$HERMES_HOME/cache/videos/``.
+    """Decode base64 video data and write under ``$OPENAMER_HOME/cache/videos/``.
 
     Returns the absolute :class:`Path` to the saved file.
 
@@ -259,7 +259,7 @@ def save_url_video(
     timeout: float = 180.0,
     max_bytes: int = 200 * 1024 * 1024,
 ) -> Path:
-    """Download a video URL and write it under ``$HERMES_HOME/cache/videos/``.
+    """Download a video URL and write it under ``$OPENAMER_HOME/cache/videos/``.
 
     The video twin of :func:`agent.image_gen_provider.save_url_image`: several
     backends (DeepInfra, FAL) return an *ephemeral* delivery URL that expires

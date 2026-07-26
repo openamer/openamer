@@ -14,10 +14,10 @@ Agent payments via Stripe Link — cards, SPT, approvals.
 
 | | |
 |---|---|
-| Source | Optional — install with `hermes skills install official/payments/stripe-link-cli` |
+| Source | Optional — install with `openamer skills install official/payments/stripe-link-cli` |
 | Path | `optional-skills/payments/stripe-link-cli` |
 | Version | `0.1.0` |
-| Author | Teknium (teknium1), Hermes Agent |
+| Author | Teknium (teknium1), OpenAmer Agent |
 | License | MIT |
 | Platforms | linux, macos |
 | Tags | `Payments`, `Stripe`, `Link`, `Checkout`, `MPP` |
@@ -26,12 +26,12 @@ Agent payments via Stripe Link — cards, SPT, approvals.
 ## Reference: full SKILL.md
 
 :::info
-The following is the complete skill definition that Hermes loads when this skill is triggered. This is what the agent sees as instructions when the skill is active.
+The following is the complete skill definition that OpenAmer loads when this skill is triggered. This is what the agent sees as instructions when the skill is active.
 :::
 
 # Stripe Link CLI Skill
 
-Wraps [@stripe/link-cli](https://github.com/stripe/link-cli) so Hermes can complete purchases on the user's behalf using one-time-use virtual cards or Shared Payment Tokens (SPT). Every spend is gated by an in-app approval in the Link mobile/web app — Hermes cannot self-approve.
+Wraps [@stripe/link-cli](https://github.com/stripe/link-cli) so OpenAmer can complete purchases on the user's behalf using one-time-use virtual cards or Shared Payment Tokens (SPT). Every spend is gated by an in-app approval in the Link mobile/web app — OpenAmer cannot self-approve.
 
 US-only at the moment (Link account requirement). Windows is not supported by the upstream CLI — this skill is gated `[linux, macos]`.
 
@@ -51,7 +51,7 @@ If the user wants a paid API call (HTTP 402, no checkout form), the `card` path 
 - Node.js 20+ available on `PATH` (`node --version`)
 - US-based (Link account requirement)
 
-The Link account, payment method, and spend-approval app do NOT need to be set up before Hermes attempts to pay — the CLI walks the user through them on first run:
+The Link account, payment method, and spend-approval app do NOT need to be set up before OpenAmer attempts to pay — the CLI walks the user through them on first run:
 
 - A Link account at https://app.link.com — created/linked during first `link-cli` auth
 - At least one payment method — added during first run at https://app.link.com/wallet
@@ -87,7 +87,7 @@ link-cli auth status
 If not authenticated, log in with a clear client name (this label shows in the user's Link app):
 
 ```
-link-cli auth login --client-name "Hermes" --interval 5 --timeout 300
+link-cli auth login --client-name "OpenAmer" --interval 5 --timeout 300
 ```
 
 The `--interval`/`--timeout` form polls inline so the agent doesn't need to manage a `_next` step. Print the verification URL + phrase to the user and wait for the CLI to return.
@@ -176,13 +176,13 @@ rm -f /tmp/link-card.json
 
 ## Optional: run as an MCP server instead
 
-`@stripe/link-cli --mcp` exposes the same commands as MCP tools over stdio. To register it with Hermes' native MCP:
+`@stripe/link-cli --mcp` exposes the same commands as MCP tools over stdio. To register it with OpenAmer' native MCP:
 
 ```
-hermes mcp add stripe-link --command "npx" --args "@stripe/link-cli --mcp"
+openamer mcp add stripe-link --command "npx" --args "@stripe/link-cli --mcp"
 ```
 
-Then `hermes mcp list` should show `stripe-link`. The same approval rules apply — MCP doesn't bypass the Link app approval step.
+Then `openamer mcp list` should show `stripe-link`. The same approval rules apply — MCP doesn't bypass the Link app approval step.
 
 ## Pitfalls
 

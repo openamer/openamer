@@ -24,7 +24,7 @@ description: "在后台驱动 macOS 桌面——截图、鼠标、键盘、滚�
 ## 参考：完整 SKILL.md
 
 :::info
-以下是 Hermes 在触发此 skill 时加载的完整 skill 定义。这是 skill 激活时 agent 所看到的指令内容。
+以下是 OpenAmer 在触发此 skill 时加载的完整 skill 定义。这是 skill 激活时 agent 所看到的指令内容。
 :::
 
 # macOS Computer Use（通用，适配任意模型）
@@ -163,7 +163,7 @@ computer_use(action="scroll", direction="down", amount=3, coordinate=[500, 400])
 
 ## 故障排查
 
-- **"cua-driver not installed"**——运行 `hermes tools` 并启用 Computer Use；安装程序会通过上游脚本安装 cua-driver。需要 macOS + Accessibility + Screen Recording 权限。
+- **"cua-driver not installed"**——运行 `openamer tools` 并启用 Computer Use；安装程序会通过上游脚本安装 cua-driver。需要 macOS + Accessibility + Screen Recording 权限。
 - **元素索引过期**——SOM 索引来自最后一次 `capture` 调用。如果 UI 发生变化（新标签页打开、对话框出现），点击前需重新截图。
 - **点击无效**——重新截图并验证。有时之前不可见的模态框现在正在阻挡输入。先关闭它（通常是 `escape` 或点击关闭按钮），再重试。
 - **"blocked pattern in type text"**——你尝试 `type` 的 shell 命令匹配了危险模式黑名单（`curl ... | bash`、`sudo rm -rf` 等）。请拆分命令或重新考虑方案。

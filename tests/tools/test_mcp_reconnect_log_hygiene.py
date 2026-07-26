@@ -44,7 +44,7 @@ class TestJitter:
 def test_retry_attempts_log_debug_transitions_warn(monkeypatch, tmp_path, caplog):
     """Consecutive transient failures: each retry logs at DEBUG, and the
     degraded→parked transition logs exactly one WARNING."""
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
 
     from tools import mcp_tool
 
@@ -119,7 +119,7 @@ def test_retry_attempts_log_debug_transitions_warn(monkeypatch, tmp_path, caplog
 @pytest.mark.no_isolate
 def test_keepalive_failure_warns_connected_to_degraded(monkeypatch, tmp_path, caplog):
     """The connected→degraded transition (keepalive failure) is a WARNING."""
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
 
     from tools import mcp_tool
 
@@ -151,7 +151,7 @@ def test_keepalive_failure_warns_connected_to_degraded(monkeypatch, tmp_path, ca
 def test_parked_to_revived_warns_once_on_proven_health(monkeypatch, tmp_path, caplog):
     """After a park, the first PROVEN-healthy session logs one
     parked→connected revival WARNING (via _mark_session_proven)."""
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
 
     task = MCPServerTask("reviver")
     task._was_parked = True
@@ -175,7 +175,7 @@ def test_parked_to_revived_warns_once_on_proven_health(monkeypatch, tmp_path, ca
 def test_initial_retry_attempts_log_debug(monkeypatch, tmp_path, caplog):
     """Initial-connect per-attempt retries are DEBUG; only the final park
     (connecting→parked) is a WARNING."""
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
 
     from tools import mcp_tool
 

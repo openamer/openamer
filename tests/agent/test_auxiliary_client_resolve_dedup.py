@@ -57,8 +57,8 @@ class TestUnhandledAuthTypeDedup:
         ac._LOGGED_UNHANDLED_AUTHTYPE_KEYS.clear()
 
     def test_unhandled_auth_type_logs_debug_once_not_warning(self, caplog, monkeypatch):
-        import hermes_cli.auth as auth
-        from hermes_cli.auth import ProviderConfig
+        import openamer_cli.auth as auth
+        from openamer_cli.auth import ProviderConfig
 
         # A registered provider whose auth_type matches no handled branch →
         # the terminal "unhandled auth_type" fall-through.
@@ -91,8 +91,8 @@ class TestUnsupportedOAuthDedup:
         ac._LOGGED_UNSUPPORTED_OAUTH_KEYS.clear()
 
     def test_unsupported_oauth_provider_logs_debug_once(self, caplog, monkeypatch):
-        import hermes_cli.auth as auth
-        from hermes_cli.auth import ProviderConfig
+        import openamer_cli.auth as auth
+        from openamer_cli.auth import ProviderConfig
 
         # A registered oauth_* provider that is not one of the directly-handled
         # names (nous / openai-codex / xai-oauth) → the OAuth dead-end branch.

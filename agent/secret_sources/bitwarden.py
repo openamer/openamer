@@ -117,7 +117,7 @@ def _disk_cache_path(home_path: Optional[Path] = None) -> Path:
     """Return the disk cache path under hermes_home/cache/.
 
     Thin wrapper over the shared DiskCache, kept for tests and any direct
-    callers; falls back to `$HERMES_HOME` / `~/.hermes` when home is None.
+    callers; falls back to `$OPENAMER_HOME` / `~/.hermes` when home is None.
     """
     return _DISK_CACHE.path(home_path)
 
@@ -136,9 +136,9 @@ def _encrypted_disk_cache_path(home_path: Optional[Path] = None) -> Path:
 
 def _hermes_bin_dir() -> Path:
     """Where Hermes stores its managed binaries.  Profile-aware."""
-    from hermes_constants import get_hermes_home
+    from openamer_constants import get_openamer_home
 
-    return get_hermes_home() / "bin"
+    return get_openamer_home() / "bin"
 
 
 def find_bws(*, install_if_missing: bool = False) -> Optional[Path]:
@@ -738,7 +738,7 @@ def _run_bws_list(
 
 
 # ---------------------------------------------------------------------------
-# Public entry point — called from hermes_cli.env_loader
+# Public entry point — called from openamer_cli.env_loader
 # ---------------------------------------------------------------------------
 
 

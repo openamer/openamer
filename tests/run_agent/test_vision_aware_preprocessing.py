@@ -172,7 +172,7 @@ class TestModelSupportsVision:
         agent = _make_agent()
         agent.provider = "custom"
         agent.model = "my-llava"
-        with patch("hermes_cli.config.load_config", return_value={"model": {"supports_vision": True}}), \
+        with patch("openamer_cli.config.load_config", return_value={"model": {"supports_vision": True}}), \
              patch("agent.models_dev.get_model_capabilities", return_value=None):
             assert agent._model_supports_vision() is True
 
@@ -181,7 +181,7 @@ class TestModelSupportsVision:
         agent.provider = "custom"
         agent.model = "my-llava"
         cfg = {"providers": {"custom": {"models": {"my-llava": {"supports_vision": True}}}}}
-        with patch("hermes_cli.config.load_config", return_value=cfg), \
+        with patch("openamer_cli.config.load_config", return_value=cfg), \
              patch("agent.models_dev.get_model_capabilities", return_value=None):
             assert agent._model_supports_vision() is True
 
@@ -196,7 +196,7 @@ class TestModelSupportsVision:
             "model": {"provider": "my-vllm", "default": "my-llava"},
             "providers": {"my-vllm": {"models": {"my-llava": {"supports_vision": True}}}},
         }
-        with patch("hermes_cli.config.load_config", return_value=cfg), \
+        with patch("openamer_cli.config.load_config", return_value=cfg), \
              patch("agent.models_dev.get_model_capabilities", return_value=None):
             assert agent._model_supports_vision() is True
 
@@ -204,6 +204,6 @@ class TestModelSupportsVision:
         agent = _make_agent()
         fake_caps = MagicMock()
         fake_caps.supports_vision = True
-        with patch("hermes_cli.config.load_config", return_value={"model": {"supports_vision": False}}), \
+        with patch("openamer_cli.config.load_config", return_value={"model": {"supports_vision": False}}), \
              patch("agent.models_dev.get_model_capabilities", return_value=fake_caps):
             assert agent._model_supports_vision() is False

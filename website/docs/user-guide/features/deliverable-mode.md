@@ -6,7 +6,7 @@ description: How the agent ships generated charts, PDFs, spreadsheets, and other
 
 # Deliverable Mode
 
-When Hermes Agent runs inside a messaging gateway (Slack, Discord, Telegram,
+When OpenAmer Agent runs inside a messaging gateway (Slack, Discord, Telegram,
 WhatsApp, Signal, etc.), it can deliver generated files directly into the
 chat — not as paths the user has to copy, but as native attachments.
 
@@ -65,8 +65,8 @@ messaging platforms.
 
 **Project-level:** add the bias to `AGENTS.md` / `CLAUDE.md` /
 `.cursorrules` in a project the agent works from, to your global
-persona in `~/.hermes/SOUL.md`, or as a named preset under
-`agent.personalities` in `~/.hermes/config.yaml` (switchable per session
+persona in `~/.openamer/SOUL.md`, or as a named preset under
+`agent.personalities` in `~/.openamer/config.yaml` (switchable per session
 via `/personality`).
 
 The mechanic the agent has to use is simple: render the file to an
@@ -77,7 +77,7 @@ mutilated.
 
 ## Kanban: artifacts ride completion notifications
 
-If you use Hermes' kanban multi-agent workflow, workers can attach
+If you use OpenAmer' kanban multi-agent workflow, workers can attach
 deliverable files to their `kanban_complete` call:
 
 ```python
@@ -114,14 +114,14 @@ community servers for most popular tools — install whichever you need:
 | **Snowflake / BigQuery** | SQL against data warehouses |
 | **Google Drive** | File search, contents, share management |
 
-Install MCP servers via `~/.hermes/config.yaml` under the `mcp_servers`
+Install MCP servers via `~/.openamer/config.yaml` under the `mcp_servers`
 section. See [MCP integration](./mcp.md) for the full setup guide.
 
 ## Comparison to Perplexity Computer in Slack
 
 Perplexity Computer's Slack integration is built around the same idea:
 the agent generates a deliverable (chart, PDF, slide deck) and posts it
-back into the thread as a native attachment. Hermes Agent's deliverable
+back into the thread as a native attachment. OpenAmer Agent's deliverable
 mode provides the same user-facing pattern locally:
 
 - Generation happens in the user's own venv / sandbox (no remote tenant).

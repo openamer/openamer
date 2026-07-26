@@ -19,7 +19,7 @@ from agent.conversation_compression import (
     _ensure_compressed_has_user_turn,
     compress_context,
 )
-from hermes_state import SessionDB
+from openamer_state import SessionDB
 from tools.todo_tool import TODO_INJECTION_HEADER
 
 
@@ -221,7 +221,7 @@ def test_compress_context_todo_snapshot_stays_synthetic_across_two_boundaries(
     tmp_path, monkeypatch
 ):
     hermes_home = tmp_path / "hermes-home"
-    monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
     db = SessionDB(db_path=tmp_path / "state.db")
     session_id = "zero-user-todo-lifecycle"
     db.create_session(session_id, source="cron", model="test/model")

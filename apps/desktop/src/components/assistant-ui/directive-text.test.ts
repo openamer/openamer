@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { formatRefValue, hermesDirectiveFormatter } from './directive-text'
+import { formatRefValue, openamerDirectiveFormatter } from './directive-text'
 
 describe('formatRefValue', () => {
   it('leaves simple paths untouched', () => {
@@ -17,9 +17,9 @@ describe('formatRefValue', () => {
   })
 })
 
-describe('hermesDirectiveFormatter.parse', () => {
+describe('openamerDirectiveFormatter.parse', () => {
   it('keeps quoted file paths whole when parsing', () => {
-    const segments = hermesDirectiveFormatter.parse('see @image:`apple-touch-icon (1).png` for the icon')
+    const segments = openamerDirectiveFormatter.parse('see @image:`apple-touch-icon (1).png` for the icon')
 
     expect(segments).toEqual([
       { kind: 'text', text: 'see ' },
@@ -29,7 +29,7 @@ describe('hermesDirectiveFormatter.parse', () => {
   })
 
   it('still parses unquoted paths', () => {
-    const segments = hermesDirectiveFormatter.parse('@file:src/main.tsx the entry point')
+    const segments = openamerDirectiveFormatter.parse('@file:src/main.tsx the entry point')
 
     expect(segments).toEqual([
       { kind: 'mention', type: 'file', label: 'main.tsx', id: 'src/main.tsx' },
@@ -38,7 +38,7 @@ describe('hermesDirectiveFormatter.parse', () => {
   })
 
   it('parses session links with profile/id values', () => {
-    const segments = hermesDirectiveFormatter.parse('see @session:work/20260101_abc123 next')
+    const segments = openamerDirectiveFormatter.parse('see @session:work/20260101_abc123 next')
 
     expect(segments).toEqual([
       { kind: 'text', text: 'see ' },
@@ -50,7 +50,7 @@ describe('hermesDirectiveFormatter.parse', () => {
 
 describe('inline skill references', () => {
   const skills = (text: string) =>
-    [...hermesDirectiveFormatter.parse(text)]
+    [...openamerDirectiveFormatter.parse(text)]
       .filter(segment => segment.kind === 'mention' && segment.type === 'skill')
       .map(segment => (segment.kind === 'mention' ? segment.id : ''))
 
@@ -59,7 +59,7 @@ describe('inline skill references', () => {
   })
 
   it('keeps the surrounding prose as text around the chip', () => {
-    const segments = hermesDirectiveFormatter.parse('tidy this with /clean thanks')
+    const segments = openamerDirectiveFormatter.parse('tidy this with /clean thanks')
 
     expect(segments).toEqual([
       { kind: 'text', text: 'tidy this with ' },
@@ -79,7 +79,7 @@ describe('inline skill references', () => {
   })
 
   it('parses a skill chip alongside an @ reference', () => {
-    const mentions = [...hermesDirectiveFormatter.parse('run /clean on @file:`src/a.ts`')].filter(
+    const mentions = [...openamerDirectiveFormatter.parse('run /clean on @file:`src/a.ts`')].filter(
       segment => segment.kind === 'mention'
     )
 

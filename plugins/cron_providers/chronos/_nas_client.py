@@ -42,7 +42,7 @@ class NasCronClient:
 
     def _access_token(self) -> str:
         """The agent's existing Nous Portal access token (refresh-aware)."""
-        from hermes_cli.auth import resolve_nous_access_token
+        from openamer_cli.auth import resolve_nous_access_token
         return resolve_nous_access_token()
 
     def _headers(self) -> Dict[str, str]:

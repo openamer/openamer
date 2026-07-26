@@ -1,7 +1,7 @@
 
 
 [project]
-name = "hermes-agent"
+name = "openamer-agent"
 version = "0.19.0"
 description = "The self-improving AI agent — creates skills from experience, improves them during use, and runs anywhere"
 readme = "README.md"
@@ -306,9 +306,9 @@ requires = ["setuptools>=77.0,<83"]
 build-backend = "setuptools.build_meta"
 
 [project.scripts]
-hermes = "hermes_cli.main:main"
-hermes-agent = "run_agent:main"
-hermes-acp = "acp_adapter.entry:main"
+openamer = "openamer_cli.main:main"
+openamer-agent = "run_agent:main"
+openamer-acp = "acp_adapter.entry:main"
 
 [tool.setuptools]
 # Top-level single-file modules (not packages). Without this, uv2nix's

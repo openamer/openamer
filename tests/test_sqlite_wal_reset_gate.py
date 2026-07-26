@@ -14,8 +14,8 @@ from types import SimpleNamespace
 
 import pytest
 
-import hermes_state
-from hermes_state import (
+import openamer_state
+from openamer_state import (
     apply_wal_with_fallback,
     is_sqlite_wal_reset_vulnerable,
     sqlite_source_id,
@@ -24,9 +24,9 @@ from hermes_state import (
 
 @pytest.fixture(autouse=True)
 def _reset_wal_reset_bug_warnings():
-    hermes_state._wal_reset_bug_warned_paths.clear()
+    openamer_state._wal_reset_bug_warned_paths.clear()
     yield
-    hermes_state._wal_reset_bug_warned_paths.clear()
+    openamer_state._wal_reset_bug_warned_paths.clear()
 
 
 class TestIsSqliteWalResetVulnerable:
@@ -60,10 +60,10 @@ class TestIsSqliteWalResetVulnerable:
 class TestApplyWalWalResetGate:
     def test_fresh_db_uses_delete_when_vulnerable(self, tmp_path, monkeypatch, caplog):
         monkeypatch.setattr(
-            hermes_state, "is_sqlite_wal_reset_vulnerable", lambda version_info=None: True
+            openamer_state, "is_sqlite_wal_reset_vulnerable", lambda version_info=None: True
         )
         conn = sqlite3.connect(str(tmp_path / "fresh.db"))
-        with caplog.at_level("WARNING", logger="hermes_state"):
+        with caplog.at_level("WARNING", logger="openamer_state"):
             mode = apply_wal_with_fallback(conn, db_label="fresh.db")
         assert mode == "delete"
         assert conn.execute("PRAGMA journal_mode").fetchone()[0].lower() == "delete"
@@ -75,7 +75,7 @@ class TestApplyWalWalResetGate:
     ):
         """Already-WAL DBs must not be live-downgraded under concurrent openers."""
         monkeypatch.setattr(
-            hermes_state, "is_sqlite_wal_reset_vulnerable", lambda version_info=None: True
+            openamer_state, "is_sqlite_wal_reset_vulnerable", lambda version_info=None: True
         )
         path = tmp_path / "prior_wal.db"
         seed = sqlite3.connect(str(path))
@@ -90,7 +90,7 @@ class TestApplyWalWalResetGate:
 
         conn = sqlite3.connect(str(path), timeout=30.0)
         try:
-            with caplog.at_level("WARNING", logger="hermes_state"):
+            with caplog.at_level("WARNING", logger="openamer_state"):
                 mode = apply_wal_with_fallback(conn, db_label="prior_wal.db")
             assert mode == "wal"
             assert conn.execute("PRAGMA journal_mode").fetchone()[0].lower() == "wal"
@@ -107,7 +107,7 @@ class TestApplyWalWalResetGate:
         self, tmp_path, monkeypatch
     ):
         monkeypatch.setattr(
-            hermes_state, "is_sqlite_wal_reset_vulnerable", lambda version_info=None: True
+            openamer_state, "is_sqlite_wal_reset_vulnerable", lambda version_info=None: True
         )
 
         class _TracingConn(sqlite3.Connection):
@@ -135,7 +135,7 @@ class TestApplyWalWalResetGate:
 
     def test_fixed_sqlite_still_enables_wal(self, tmp_path, monkeypatch):
         monkeypatch.setattr(
-            hermes_state, "is_sqlite_wal_reset_vulnerable", lambda version_info=None: False
+            openamer_state, "is_sqlite_wal_reset_vulnerable", lambda version_info=None: False
         )
         conn = sqlite3.connect(str(tmp_path / "fixed.db"))
         mode = apply_wal_with_fallback(conn, db_label="fixed.db")
@@ -145,9 +145,9 @@ class TestApplyWalWalResetGate:
 
     def test_warning_deduped_per_label(self, tmp_path, monkeypatch, caplog):
         monkeypatch.setattr(
-            hermes_state, "is_sqlite_wal_reset_vulnerable", lambda version_info=None: True
+            openamer_state, "is_sqlite_wal_reset_vulnerable", lambda version_info=None: True
         )
-        with caplog.at_level("WARNING", logger="hermes_state"):
+        with caplog.at_level("WARNING", logger="openamer_state"):
             for name in ("a.db", "a.db", "b.db"):
                 conn = sqlite3.connect(str(tmp_path / name))
                 apply_wal_with_fallback(conn, db_label=name)
@@ -164,16 +164,16 @@ def test_sqlite_source_id_non_empty_string():
 
 def test_doctor_warns_without_adding_issues(monkeypatch, tmp_path, capsys):
     """Vulnerable SQLite is warn-only in doctor — not a blocking issues[] entry."""
-    from hermes_cli.doctor import run_doctor
+    from openamer_cli.doctor import run_doctor
 
     home = tmp_path / ".hermes"
     home.mkdir()
-    monkeypatch.setenv("HERMES_HOME", str(home))
-    monkeypatch.setattr("hermes_constants.get_hermes_home", lambda: home)
+    monkeypatch.setenv("OPENAMER_HOME", str(home))
+    monkeypatch.setattr("openamer_constants.get_hermes_home", lambda: home)
     monkeypatch.setattr(
-        hermes_state, "is_sqlite_wal_reset_vulnerable", lambda version_info=None: True
+        openamer_state, "is_sqlite_wal_reset_vulnerable", lambda version_info=None: True
     )
-    monkeypatch.setattr(hermes_state, "sqlite_source_id", lambda: "testid-abc")
+    monkeypatch.setattr(openamer_state, "sqlite_source_id", lambda: "testid-abc")
     monkeypatch.setattr(sqlite3, "sqlite_version", "3.50.4", raising=False)
 
     args = SimpleNamespace(fix=False, ack=None)

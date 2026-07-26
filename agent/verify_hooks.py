@@ -2,7 +2,7 @@
 
 When the agent has edited code and is about to verify/finish, the loop fires the
 ``pre_verify`` hook (user directives resolved by
-:func:`hermes_cli.plugins.get_pre_verify_continue_message`). A directive keeps
+:func:`openamer_cli.plugins.get_pre_verify_continue_message`). A directive keeps
 the agent going one more turn — run a check, defer it, tidy the diff — instead of
 stopping immediately.
 
@@ -52,7 +52,7 @@ def coding_verify_guidance(config: Optional[dict[str, Any]] = None) -> Optional[
 def _agent_cfg(config: Optional[dict[str, Any]]) -> dict[str, Any]:
     if config is None:
         try:
-            from hermes_cli.config import load_config
+            from openamer_cli.config import load_config
 
             config = load_config()
         except Exception:

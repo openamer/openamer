@@ -14,10 +14,10 @@ Automate Unreal Engine editor scenes, actors, and renders.
 
 | | |
 |---|---|
-| Source | Optional — install with `hermes skills install official/creative/unreal-mcp` |
+| Source | Optional — install with `openamer skills install official/creative/unreal-mcp` |
 | Path | `optional-skills/creative/unreal-mcp` |
 | Version | `1.0.0` |
-| Author | Hermes Agent |
+| Author | OpenAmer Agent |
 | License | MIT |
 | Platforms | linux, macos, windows |
 | Tags | `unreal`, `unreal-engine`, `ue5`, `3d`, `mcp`, `scenes`, `cinematics`, `lighting`, `gamedev` |
@@ -26,12 +26,12 @@ Automate Unreal Engine editor scenes, actors, and renders.
 ## Reference: full SKILL.md
 
 :::info
-The following is the complete skill definition that Hermes loads when this skill is triggered. This is what the agent sees as instructions when the skill is active.
+The following is the complete skill definition that OpenAmer loads when this skill is triggered. This is what the agent sees as instructions when the skill is active.
 :::
 
 # Unreal Engine MCP Skill
 
-Companion skill for the `unreal-engine` entry in the Hermes MCP catalog. The
+Companion skill for the `unreal-engine` entry in the OpenAmer MCP catalog. The
 MCP server (Epic's official, experimental "Unreal MCP" plugin, internal id
 `ModelContextProtocol`) runs INSIDE the Unreal Editor process and exposes
 editor functionality as typed tools. This skill teaches how to drive it well:
@@ -55,7 +55,7 @@ code work — use the terminal; this skill is about the live editor).
 
 ## Prerequisites
 
-Two halves, in this order: the editor side must be up before Hermes connects.
+Two halves, in this order: the editor side must be up before OpenAmer connects.
 
 ### One-time, editor side
 
@@ -75,18 +75,18 @@ Two halves, in this order: the editor side must be up before Hermes connects.
    To start manually instead, run `ModelContextProtocol.StartServer` in the
    editor console (backtick key).
 
-### One-time, Hermes side
+### One-time, OpenAmer side
 
-    hermes mcp install unreal-engine
+    openamer mcp install unreal-engine
 
 This writes the `mcp_servers.unreal-engine` HTTP entry pointing at
 `http://127.0.0.1:8000/mcp` and probes the live server for its tools. Run it
 while the editor + server are up so the probe sees the real surface. If the
 user changed port/path in Editor Preferences, edit the `url` in
-`~/.hermes/config.yaml` under `mcp_servers.unreal-engine` to match.
+`~/.openamer/config.yaml` under `mcp_servers.unreal-engine` to match.
 
-Do NOT use `ModelContextProtocol.GenerateClientConfig` for Hermes — that
-writes `.mcp.json`-style files for Claude Code/Cursor/etc. Hermes connects
+Do NOT use `ModelContextProtocol.GenerateClientConfig` for OpenAmer — that
+writes `.mcp.json`-style files for Claude Code/Cursor/etc. OpenAmer connects
 from `config.yaml` via the catalog entry.
 
 ### Every session
@@ -94,19 +94,19 @@ from `config.yaml` via the catalog entry.
 1. Launch Unreal Editor, wait for the project to finish loading; confirm the
    server started (Output Log shows the bind address, or run
    `ModelContextProtocol.StartServer` manually).
-2. Start the Hermes session. Tools register as `mcp_unreal_engine_*`. If
+2. Start the OpenAmer session. Tools register as `mcp_unreal_engine_*`. If
    they're missing: editor wasn't up first — start it, then open a new
-   Hermes session.
+   OpenAmer session.
 3. Sanity check: call `mcp_unreal_engine_list_toolsets` and confirm toolsets
    come back.
 
 ## The Tool Surface: Discovery, Not a Fixed List
 
 By default the plugin runs in **tool-search mode**: `tools/list` returns only
-three meta-tools, and every real tool is reached through them. Through Hermes
+three meta-tools, and every real tool is reached through them. Through OpenAmer
 they appear as:
 
-| Hermes tool | Purpose |
+| OpenAmer tool | Purpose |
 |---|---|
 | `mcp_unreal_engine_list_toolsets` | Names + descriptions of every registered toolset |
 | `mcp_unreal_engine_describe_toolset` | Full JSON schemas for one named toolset's tools |
@@ -129,7 +129,7 @@ changes (new plugin enabled, toolset authored, `RefreshTools` run).
 
 The alternative eager mode (`Enable Tool Search` off in Editor Preferences)
 advertises every tool as its own `mcp_unreal_engine_<tool>` entry. Discovery
-then happens at `hermes mcp install`/`configure` time instead. Tool-search
+then happens at `openamer mcp install`/`configure` time instead. Tool-search
 mode is the default and what this skill assumes; it also keeps schema tokens
 out of every API call, so prefer it.
 
@@ -153,7 +153,7 @@ Every Unreal task follows the same loop:
    server-side without breaking the serial rule
    (`references/advanced-workflows.md`).
 3. **NEVER issue overlapping calls.** Do not batch multiple
-   `mcp_unreal_engine_*` calls in one turn — Hermes runs batched calls
+   `mcp_unreal_engine_*` calls in one turn — OpenAmer runs batched calls
    concurrently, and parallel calls against the game thread deadlock or
    fail. Strictly one call, await result, next call. This overrides the
    general parallel-tool-calls guidance.
@@ -231,7 +231,7 @@ Load on demand; keep SKILL.md-level rules in mind throughout.
 
 ## Pitfalls (top of mind — full list in references/pitfalls.md)
 
-- **Start order matters.** Editor + server up first, then the Hermes
+- **Start order matters.** Editor + server up first, then the OpenAmer
   session. Missing `mcp_unreal_engine_*` tools = wrong order.
 - **One call at a time.** Serial game thread; no batching, no overlap.
 - **The editor UI freezes during each call.** That's by design (game-thread
@@ -239,9 +239,9 @@ Load on demand; keep SKILL.md-level rules in mind throughout.
 - **Modal dialogs block everything.** A tool call that opens (or collides
   with) a modal editor dialog stalls until a human dismisses it. If a call
   hangs indefinitely, tell the user to check the editor for a dialog.
-- **Timeouts on long operations.** Hermes' per-call default is 120 s; asset
+- **Timeouts on long operations.** OpenAmer' per-call default is 120 s; asset
   imports, big level saves, and renders can exceed it. Raise
-  `mcp_servers.unreal-engine.timeout` in `~/.hermes/config.yaml` for
+  `mcp_servers.unreal-engine.timeout` in `~/.openamer/config.yaml` for
   render/import-heavy sessions.
 - **Stale tool schemas.** After authoring/hot-reloading toolsets or enabling
   a plugin, run `ModelContextProtocol.RefreshTools` in the editor console

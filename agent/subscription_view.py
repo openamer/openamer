@@ -268,7 +268,7 @@ def build_subscription_state(*, timeout: float = 15.0) -> SubscriptionState:
         return fixture
 
     try:
-        from hermes_cli.nous_billing import (
+        from openamer_cli.nous_billing import (
             BillingAuthError,
             BillingError,
             _absolutize_portal_url,

@@ -1,13 +1,13 @@
 """Tests for the WhatsApp plugin's interactive_setup wizard home-channel flow.
 
 The interactive_setup wizard lazy-imports its CLI helpers from
-``hermes_cli.config`` (get_env_value / save_env_value / remove_env_value) and
-``hermes_cli.cli_output`` (prompt / prompt_yes_no / print_*); we patch those
+``openamer_cli.config`` (get_env_value / save_env_value / remove_env_value) and
+``openamer_cli.cli_output`` (prompt / prompt_yes_no / print_*); we patch those
 source modules. Covers the home-channel clear-on-blank behavior added in
 PR #58421 and extended in the follow-up.
 """
-import hermes_cli.config as config_mod
-import hermes_cli.cli_output as cli_output_mod
+import openamer_cli.config as config_mod
+import openamer_cli.cli_output as cli_output_mod
 from plugins.platforms.whatsapp.adapter import interactive_setup
 
 
@@ -42,7 +42,7 @@ class TestWhatsAppHomeChannelClear:
     """Blank home-channel answer must clear WHATSAPP_HOME_CHANNEL (#12423)."""
 
     def test_blank_removes_existing_home_channel(self, monkeypatch, tmp_path):
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
         saved, removed = {}, []
         _patch_setup_io(
             monkeypatch,
@@ -57,7 +57,7 @@ class TestWhatsAppHomeChannelClear:
         assert "WHATSAPP_HOME_CHANNEL" not in saved
 
     def test_blank_without_prior_home_still_attempts_remove(self, monkeypatch, tmp_path):
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
         saved, removed = {}, []
         _patch_setup_io(
             monkeypatch, _PROMPTS_BLANK, _YES_NO, saved, removed, existing={}
@@ -66,7 +66,7 @@ class TestWhatsAppHomeChannelClear:
         assert removed.count("WHATSAPP_HOME_CHANNEL") == 1
 
     def test_nonempty_saves_home_channel(self, monkeypatch, tmp_path):
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
         saved, removed = {}, []
         _patch_setup_io(
             monkeypatch, _PROMPTS_NONEMPTY, _YES_NO, saved, removed, existing={}
@@ -76,7 +76,7 @@ class TestWhatsAppHomeChannelClear:
         assert "WHATSAPP_HOME_CHANNEL" not in removed
 
     def test_whitespace_only_clears_home_channel(self, monkeypatch, tmp_path):
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
         saved, removed = {}, []
         _patch_setup_io(
             monkeypatch,

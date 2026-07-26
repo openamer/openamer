@@ -1,7 +1,7 @@
 """Subprocess lifecycle manager for the google_meet bot.
 
 Single active meeting at a time. Stores the running pid + out_dir in a
-session-scoped state file under ``$HERMES_HOME/workspace/meetings/.active.json``
+session-scoped state file under ``$OPENAMER_HOME/workspace/meetings/.active.json``
 so tool calls across turns can find the bot, and ``on_session_end`` can clean
 it up.
 
@@ -20,9 +20,9 @@ import time
 from pathlib import Path
 from typing import Any, Dict, Optional
 
-from hermes_constants import get_hermes_home
+from openamer_constants import get_openamer_home
 
-# File + directory layout (under $HERMES_HOME):
+# File + directory layout (under $OPENAMER_HOME):
 #
 #   workspace/meetings/
 #       .active.json                # pointer to current session's bot
@@ -37,7 +37,7 @@ from hermes_constants import get_hermes_home
 
 
 def _root() -> Path:
-    return Path(get_hermes_home()) / "workspace" / "meetings"
+    return Path(get_openamer_home()) / "workspace" / "meetings"
 
 
 def _active_file() -> Path:

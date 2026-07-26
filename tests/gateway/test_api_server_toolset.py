@@ -59,7 +59,7 @@ class TestHermesApiServerToolset:
 
 class TestApiServerPlatformConfig:
     def test_platforms_dict_includes_api_server(self):
-        from hermes_cli.tools_config import PLATFORMS
+        from openamer_cli.tools_config import PLATFORMS
         assert "api_server" in PLATFORMS
         assert PLATFORMS["api_server"]["default_toolset"] == "hermes-api-server"
 
@@ -71,7 +71,7 @@ class TestApiServerPlatformConfig:
         'terminal' entirely. Its static membership (terminal, process) IS in the
         composite, so it must stay enabled."""
         from tools.registry import discover_builtin_tools
-        from hermes_cli.tools_config import _get_platform_tools
+        from openamer_cli.tools_config import _get_platform_tools
         discover_builtin_tools()
         assert "terminal" in _get_platform_tools({}, "api_server")
 
@@ -81,7 +81,7 @@ class TestApiServerPlatformConfig:
         toolset from a platform whose composite lists the toolset's static
         tools. Synthetic registration keeps the test hermetic in CI."""
         from tools.registry import registry
-        from hermes_cli.tools_config import _get_platform_tools
+        from openamer_cli.tools_config import _get_platform_tools
 
         sentinel = "test_sentinel_delegation_tool"
         registry.register(
@@ -105,7 +105,7 @@ class TestApiServerPlatformConfig:
         enable default-off or platform-restricted toolsets."""
         import os
         from unittest.mock import patch
-        from hermes_cli.tools_config import _get_platform_tools
+        from openamer_cli.tools_config import _get_platform_tools
         with patch.dict(os.environ, {}, clear=False):
             os.environ.pop("HASS_TOKEN", None)
             os.environ.pop("XAI_API_KEY", None)

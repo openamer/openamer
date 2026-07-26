@@ -2,7 +2,7 @@ import queue
 from unittest.mock import patch
 
 from cli import HermesCLI
-from hermes_cli.moa_config import decode_moa_turn
+from openamer_cli.moa_config import decode_moa_turn
 
 
 def _make_cli():
@@ -74,7 +74,7 @@ def test_moa_non_preset_is_one_shot_prompt():
 
 
 def test_decode_legacy_encoded_moa_turn_still_works():
-    from hermes_cli.moa_config import build_moa_turn_prompt
+    from openamer_cli.moa_config import build_moa_turn_prompt
 
     encoded = build_moa_turn_prompt("hello", _make_cli().config["moa"], preset="review")
     prompt, cfg = decode_moa_turn(encoded)

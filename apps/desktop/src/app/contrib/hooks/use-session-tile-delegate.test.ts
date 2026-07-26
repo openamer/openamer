@@ -1,19 +1,19 @@
 import { renderHook } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import type * as HermesModule from '@/hermes'
+import type * as OpenAmerModule from '@/openamer'
 import { setSessions } from '@/store/session'
 import { sessionTileDelegate } from '@/store/session-states'
-import type { SessionInfo } from '@/types/hermes'
+import type { SessionInfo } from '@/types/openamer'
 
 import { useSessionTileDelegate } from './use-session-tile-delegate'
 
-vi.mock('@/hermes', async importActual => ({
-  ...(await importActual<typeof HermesModule>()),
+vi.mock('@/openamer', async importActual => ({
+  ...(await importActual<typeof OpenAmerModule>()),
   getSessionMessages: vi.fn(async () => ({ messages: [], session_id: '' }))
 }))
 
-const { getSessionMessages } = await import('@/hermes')
+const { getSessionMessages } = await import('@/openamer')
 
 const row = (over: Partial<SessionInfo>): SessionInfo =>
   ({

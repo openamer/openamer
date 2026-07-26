@@ -94,7 +94,7 @@ def test_background_review_installs_thread_local_whitelist():
     whitelist is set with exactly the memory+skills tool names.
     """
     import run_agent
-    from hermes_cli import plugins as _plugins
+    from openamer_cli import plugins as _plugins
 
     captured = {}
 
@@ -167,7 +167,7 @@ def test_background_review_excludes_memory_when_disabled():
     out of built-in memory. The whitelist must gate "memory" on the flag.
     """
     import run_agent
-    from hermes_cli import plugins as _plugins
+    from openamer_cli import plugins as _plugins
 
     captured = {}
 
@@ -202,7 +202,7 @@ def test_background_review_excludes_memory_when_disabled():
 def test_background_review_includes_memory_when_user_profile_enabled():
     """user_profile_enabled alone (USER.md) still needs the memory tool."""
     import run_agent
-    from hermes_cli import plugins as _plugins
+    from openamer_cli import plugins as _plugins
 
     captured = {}
 

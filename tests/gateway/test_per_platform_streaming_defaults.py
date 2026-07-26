@@ -12,7 +12,7 @@ from __future__ import annotations
 
 
 def test_default_per_platform_streaming_flags():
-    from hermes_cli.config import DEFAULT_CONFIG
+    from openamer_cli.config import DEFAULT_CONFIG
     plats = DEFAULT_CONFIG["display"]["platforms"]
     assert plats["telegram"]["streaming"] is True
     assert plats["discord"]["streaming"] is False
@@ -22,7 +22,7 @@ def test_default_per_platform_streaming_flags():
 def test_resolver_telegram_on_discord_and_slack_off_when_global_enabled():
     """With global streaming on, the per-platform defaults make Telegram stream
     and Discord/Slack not — matching the platforms' actual streaming quality."""
-    from hermes_cli.config import DEFAULT_CONFIG
+    from openamer_cli.config import DEFAULT_CONFIG
     from gateway.display_config import resolve_display_setting
 
     cfg = dict(DEFAULT_CONFIG)
@@ -43,7 +43,7 @@ def test_resolver_telegram_on_discord_and_slack_off_when_global_enabled():
 def test_user_override_wins_over_default():
     """A user who explicitly enables Discord or Slack streaming keeps their value
     — the default false must not clobber it (config deep-merge: user wins)."""
-    from hermes_cli.config import DEFAULT_CONFIG, _deep_merge
+    from openamer_cli.config import DEFAULT_CONFIG, _deep_merge
 
     user = {"display": {"platforms": {
         "discord": {"streaming": True},
@@ -61,7 +61,7 @@ def test_dashboard_schema_exposes_per_platform_streaming():
     per-platform streaming toggles surface in the dashboard automatically."""
     import pytest
     pytest.importorskip("fastapi")  # web_server requires fastapi/uvicorn
-    from hermes_cli.web_server import CONFIG_SCHEMA
+    from openamer_cli.web_server import CONFIG_SCHEMA
 
     assert "display.platforms.telegram.streaming" in CONFIG_SCHEMA
     assert "display.platforms.discord.streaming" in CONFIG_SCHEMA

@@ -99,7 +99,7 @@ def test_lock_skip_with_confirmed_holder_names_it():
 
 def test_lock_skip_without_confirmed_holder_does_not_claim_concurrency():
     """signal=True / None / '' / whitespace: acquisition failed but the
-    holder is unconfirmed (hermes_state.try_acquire_compression_lock catches
+    holder is unconfirmed (openamer_state.try_acquire_compression_lock catches
     sqlite3.Error internally and returns False). The message must not assert
     another compression is definitely running."""
     for signal in (True, None, "", "   "):

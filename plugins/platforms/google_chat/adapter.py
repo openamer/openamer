@@ -714,13 +714,13 @@ class GoogleChatAdapter(BasePlatformAdapter):
         # Inbound message count per (chat_id, thread_name). Drives the
         # DM main-flow vs side-thread heuristic in _build_message_event
         # and the outbound thread routing in _resolve_thread_id.
-        # Persisted to ${HERMES_HOME}/google_chat_thread_counts.json so
+        # Persisted to ${OPENAMER_HOME}/google_chat_thread_counts.json so
         # active side-threads survive gateway restarts (the bug that
         # made the in-memory version of this heuristic flaky for
         # multi-restart sessions).
         try:
-            from hermes_constants import get_hermes_home as _get_hermes_home
-            _hermes_home = _get_hermes_home()
+            from openamer_constants import get_openamer_home as _get_hermes_home
+            _hermes_home = _get_openamer_home()
         except (ModuleNotFoundError, ImportError):
             _hermes_home = _Path.home() / ".hermes"
         self._thread_count_store = _ThreadCountStore(
@@ -916,7 +916,7 @@ class GoogleChatAdapter(BasePlatformAdapter):
     # ------------------------------------------------------------------
     def _bot_id_cache_path(self) -> _Path:
         """Location where the resolved bot user_id is cached across restarts."""
-        base = os.getenv("HERMES_HOME", str(_Path.home() / ".hermes"))
+        base = os.getenv("OPENAMER_HOME", str(_Path.home() / ".hermes"))
         return _Path(base) / "google_chat_bot_id.json"
 
     def _load_cached_bot_id(self) -> Optional[str]:
@@ -1565,7 +1565,7 @@ class GoogleChatAdapter(BasePlatformAdapter):
             if text.startswith("/setup-files") and event.source is not None:
                 # The sender's email (user_id_alt) is the per-user OAuth
                 # key — the bot stores this user's token at
-                # ${HERMES_HOME}/google_chat_user_tokens/<sanitized>.json
+                # ${OPENAMER_HOME}/google_chat_user_tokens/<sanitized>.json
                 # so when User B asks for a file later in B's DM, B's
                 # token gets used (not the first person who set up files).
                 sender_email = (
@@ -3423,20 +3423,20 @@ def _env_enablement() -> Optional[Dict[str, Any]]:
 def interactive_setup() -> None:
     """Walk the user through Google Chat configuration via ``hermes setup``.
 
-    The setup wizard at ``hermes_cli/gateway.py`` calls this for plugin
+    The setup wizard at ``openamer_cli/gateway.py`` calls this for plugin
     platforms instead of using the in-tree ``_PLATFORMS`` data block. The
     flow mirrors the in-tree built-ins: print the GCP setup instructions,
     prompt for env vars, persist them to ``~/.hermes/.env`` so the next
     gateway restart picks them up.
     """
-    from hermes_cli.cli_output import (
+    from openamer_cli.cli_output import (
         print_info,
         print_success,
         print_warning,
         prompt,
         prompt_yes_no,
     )
-    from hermes_cli.config import get_env_value, save_env_value
+    from openamer_cli.config import get_env_value, save_env_value
 
     existing_sub = get_env_value("GOOGLE_CHAT_SUBSCRIPTION_NAME")
     if existing_sub:

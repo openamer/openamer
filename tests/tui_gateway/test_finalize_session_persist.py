@@ -222,8 +222,8 @@ class TestFinalizeSessionPersistE2E:
         (messages live only in agent._session_messages / session['history'],
         never written to the DB) must be flushed to state.db when the WS
         disconnect tears the session down."""
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path / ".hermes"))
-        from hermes_state import SessionDB
+        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".hermes"))
+        from openamer_state import SessionDB
         import tui_gateway.server as srv
 
         db = SessionDB(db_path=tmp_path / "state.db")
@@ -255,8 +255,8 @@ class TestFinalizeSessionPersistE2E:
     def test_resumed_session_not_reflushed_as_duplicates(self, tmp_path, monkeypatch):
         """A resumed session torn down before any new turn (its transcript is
         already durable in the DB) must NOT re-append duplicate rows."""
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path / ".hermes"))
-        from hermes_state import SessionDB
+        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".hermes"))
+        from openamer_state import SessionDB
         import tui_gateway.server as srv
 
         db = SessionDB(db_path=tmp_path / "state.db")
@@ -292,8 +292,8 @@ class TestFinalizeSessionPersistE2E:
         ``_session_messages``-empty test above skips the flush entirely, so it
         can't catch a duplicate-write regression; this one drives a real flush.
         """
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path / ".hermes"))
-        from hermes_state import SessionDB
+        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / ".hermes"))
+        from openamer_state import SessionDB
         import tui_gateway.server as srv
 
         db = SessionDB(db_path=tmp_path / "state.db")
@@ -333,7 +333,7 @@ class TestFinalizeSessionPersistE2E:
 class TestOnSessionEndHook:
     """Verify on_session_end plugin hook fires on finalize."""
 
-    @patch("hermes_cli.plugins.invoke_hook")
+    @patch("openamer_cli.plugins.invoke_hook")
     def test_hook_fired_with_interrupted_true(self, mock_invoke_hook):
         """on_session_end is called with interrupted=True when finalizing."""
         from tui_gateway.server import _finalize_session
@@ -354,7 +354,7 @@ class TestOnSessionEndHook:
             platform="tui",
         )
 
-    @patch("hermes_cli.plugins.invoke_hook")
+    @patch("openamer_cli.plugins.invoke_hook")
     def test_hook_exception_does_not_block(self, mock_invoke_hook):
         """Hook failure doesn't prevent session finalization."""
         from tui_gateway.server import _finalize_session

@@ -34,7 +34,7 @@ export default defineConfig({
     // without this, Vite's `postcss-load-config` walks UP the filesystem
     // looking for a stray `postcss.config.*` / `tailwind.config.*`. The desktop
     // build runs from inside the user's home tree (e.g.
-    // `C:\Users\<name>\AppData\Local\hermes\hermes-agent\apps\desktop`), so an
+    // `C:\Users\<name>\AppData\Local\openamer\openamer-agent\apps\desktop`), so an
     // unrelated Tailwind v3 config higher up the tree gets picked up and
     // reprocesses our v4 stylesheet, failing the build with
     // "`@layer base` is used but no matching `@tailwind base` directive is
@@ -58,9 +58,9 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
-      '@hermes/plugin-sdk': path.resolve(__dirname, './src/sdk/index.ts'),
-      '@hermes/shared/billing': path.resolve(__dirname, '../shared/src/billing-types.ts'),
-      '@hermes/shared': path.resolve(__dirname, '../shared/src'),
+      '@openamer/plugin-sdk': path.resolve(__dirname, './src/sdk/index.ts'),
+      '@openamer/shared/billing': path.resolve(__dirname, '../shared/src/billing-types.ts'),
+      '@openamer/shared': path.resolve(__dirname, '../shared/src'),
       react: path.resolve(__dirname, '../../node_modules/react'),
       'react-dom': path.resolve(__dirname, '../../node_modules/react-dom'),
       'react/jsx-dev-runtime': path.resolve(__dirname, '../../node_modules/react/jsx-dev-runtime.js'),

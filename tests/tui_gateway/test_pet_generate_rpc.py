@@ -191,7 +191,7 @@ def test_pet_hatch_then_adopt_activates(monkeypatch, tmp_path):
     monkeypatch.setattr(gen, "hatch_pet", _fake_hatch_factory(captured))
 
     activated = {}
-    monkeypatch.setattr("hermes_cli.pets._set_active", lambda slug: activated.setdefault("slug", slug))
+    monkeypatch.setattr("openamer_cli.pets._set_active", lambda slug: activated.setdefault("slug", slug))
 
     token = server._methods["pet.generate"]("r1", {"prompt": "a fox"})["result"]["token"]
     hatched = server._methods["pet.hatch"]("r2", {"token": token, "index": 0, "name": "My Fox"})["result"]
@@ -225,7 +225,7 @@ def test_pet_sprite_payload_includes_concrete_row_counts():
 
 
 def test_pet_info_meta_avoids_full_payload(monkeypatch):
-    import hermes_cli.config as cli_config
+    import openamer_cli.config as cli_config
     from agent.pet import constants, store
 
     sheet = Image.new("RGBA", (constants.FRAME_W * 8, constants.FRAME_H * 9), (80, 120, 220, 255))

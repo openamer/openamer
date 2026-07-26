@@ -1,37 +1,37 @@
 ---
 title: "Honcho"
 sidebar_label: "Honcho"
-description: "配置并使用 Honcho 记忆功能与 Hermes -- 跨会话用户建模、多配置文件 peer 隔离、观察配置、辩证推理、会话摘要及上下文预算控制。"
+description: "配置并使用 Honcho 记忆功能与 OpenAmer -- 跨会话用户建模、多配置文件 peer 隔离、观察配置、辩证推理、会话摘要及上下文预算控制。"
 ---
 
 {/* This page is auto-generated from the skill's SKILL.md by website/scripts/generate-skill-docs.py. Edit the source SKILL.md, not this page. */}
 
 # Honcho
 
-配置并使用 Honcho 记忆功能与 Hermes -- 跨会话用户建模、多配置文件 peer 隔离、观察配置、辩证推理、会话摘要及上下文预算控制。适用于设置 Honcho、排查记忆问题、通过 Honcho peers 管理配置文件，或调整观察、召回和辩证设置。
+配置并使用 Honcho 记忆功能与 OpenAmer -- 跨会话用户建模、多配置文件 peer 隔离、观察配置、辩证推理、会话摘要及上下文预算控制。适用于设置 Honcho、排查记忆问题、通过 Honcho peers 管理配置文件，或调整观察、召回和辩证设置。
 
 ## Skill 元数据
 
 | | |
 |---|---|
-| 来源 | 可选 — 通过 `hermes skills install official/autonomous-ai-agents/honcho` 安装 |
+| 来源 | 可选 — 通过 `openamer skills install official/autonomous-ai-agents/honcho` 安装 |
 | 路径 | `optional-skills/autonomous-ai-agents/honcho` |
 | 版本 | `2.0.0` |
-| 作者 | Hermes Agent |
+| 作者 | OpenAmer Agent |
 | 许可证 | MIT |
 | 平台 | linux, macos, windows |
 | 标签 | `Honcho`, `Memory`, `Profiles`, `Observation`, `Dialectic`, `User-Modeling`, `Session-Summary` |
-| 相关 skills | [`hermes-agent`](/user-guide/skills/bundled/autonomous-ai-agents/autonomous-ai-agents-hermes-agent) |
+| 相关 skills | [`openamer-agent`](/user-guide/skills/bundled/autonomous-ai-agents/autonomous-ai-agents-openamer-agent) |
 
 ## 参考：完整 SKILL.md
 
 :::info
-以下是 Hermes 在触发此 skill 时加载的完整 skill 定义。这是 skill 激活时 agent 所看到的指令内容。
+以下是 OpenAmer 在触发此 skill 时加载的完整 skill 定义。这是 skill 激活时 agent 所看到的指令内容。
 :::
 
-# Hermes 的 Honcho 记忆
+# OpenAmer 的 Honcho 记忆
 
-Honcho 提供 AI 原生的跨会话用户建模。它在多次对话中学习用户特征，并为每个 Hermes 配置文件提供独立的 peer 身份，同时共享统一的用户视图。
+Honcho 提供 AI 原生的跨会话用户建模。它在多次对话中学习用户特征，并为每个 OpenAmer 配置文件提供独立的 peer 身份，同时共享统一的用户视图。
 
 ## 使用场景
 
@@ -47,23 +47,23 @@ Honcho 提供 AI 原生的跨会话用户建模。它在多次对话中学习用
 ### 云端（app.honcho.dev）
 
 ```bash
-hermes honcho setup
+openamer honcho setup
 # select "cloud", paste API key from https://app.honcho.dev
 ```
 
 ### 自托管
 
 ```bash
-hermes honcho setup
+openamer honcho setup
 # select "local", enter base URL (e.g. http://localhost:8000)
 ```
 
-参见：https://docs.honcho.dev/v3/guides/integrations/hermes#running-honcho-locally-with-hermes
+参见：https://docs.honcho.dev/v3/guides/integrations/openamer#running-honcho-locally-with-openamer
 
 ### 验证
 
 ```bash
-hermes honcho status    # shows resolved config, connection test, peer info
+openamer honcho status    # shows resolved config, connection test, peer info
 ```
 
 ## 架构
@@ -74,7 +74,7 @@ hermes honcho status    # shows resolved config, connection test, peer info
 
 1. **会话摘要** -- 当前会话的简短摘要（置于首位，使模型立即获得对话连续性）
 2. **用户表示** -- Honcho 积累的用户模型（偏好、事实、行为模式）
-3. **AI peer 卡片** -- 此 Hermes 配置文件的 AI peer 身份卡片
+3. **AI peer 卡片** -- 此 OpenAmer 配置文件的 AI peer 身份卡片
 
 会话摘要由 Honcho 在每轮开始时自动生成（当存在先前会话时）。它为模型提供热启动，无需重放完整历史。
 
@@ -91,10 +91,10 @@ Honcho 自动在两种 prompt 策略之间选择：
 
 ### Peers
 
-Honcho 将对话建模为 **peers** 之间的交互。Hermes 每个会话创建两个 peers：
+Honcho 将对话建模为 **peers** 之间的交互。OpenAmer 每个会话创建两个 peers：
 
 - **用户 peer**（`peerName`）：代表人类用户。Honcho 从观察到的消息中构建用户表示。
-- **AI peer**（`aiPeer`）：代表此 Hermes 实例。每个配置文件拥有自己的 AI peer，使 agents 形成独立视角。
+- **AI peer**（`aiPeer`）：代表此 OpenAmer 实例。每个配置文件拥有自己的 AI peer，使 agents 形成独立视角。
 
 ### 观察
 
@@ -135,10 +135,10 @@ Honcho 会话限定消息和观察的落点。策略选项：
 |----------|----------|
 | `per-directory`（默认） | 每个工作目录一个会话 |
 | `per-repo` | 每个 git 仓库根目录一个会话 |
-| `per-session` | 每次 Hermes 运行创建新的 Honcho 会话 |
+| `per-session` | 每次 OpenAmer 运行创建新的 Honcho 会话 |
 | `global` | 跨所有目录使用单一会话 |
 
-手动覆盖：`hermes honcho map my-project-name`
+手动覆盖：`openamer honcho map my-project-name`
 
 ### 召回模式
 
@@ -211,7 +211,7 @@ Honcho 的辩证行为由三个独立维度控制。每个维度可单独调整�
 
 ## 多配置文件设置
 
-每个 Hermes 配置文件拥有自己的 Honcho AI peer，同时共享同一工作区（用户上下文）。这意味着：
+每个 OpenAmer 配置文件拥有自己的 Honcho AI peer，同时共享同一工作区（用户上下文）。这意味着：
 
 - 所有配置文件看到相同的用户表示
 - 每个配置文件构建自己的 AI 身份和观察
@@ -220,12 +220,12 @@ Honcho 的辩证行为由三个独立维度控制。每个维度可单独调整�
 ### 创建带 Honcho peer 的配置文件
 
 ```bash
-hermes profile create coder --clone
-# creates host block hermes.coder, AI peer "coder", inherits config from default
+openamer profile create coder --clone
+# creates host block openamer.coder, AI peer "coder", inherits config from default
 ```
 
 `--clone` 对 Honcho 的作用：
-1. 在 `honcho.json` 中创建 `hermes.coder` host 块
+1. 在 `honcho.json` 中创建 `openamer.coder` host 块
 2. 设置 `aiPeer: "coder"`（配置文件名称）
 3. 从默认值继承 `workspace`、`peerName`、`writeFrequency`、`recallMode` 等
 4. 在 Honcho 中预先创建 peer，使其在第一条消息之前就已存在
@@ -233,7 +233,7 @@ hermes profile create coder --clone
 ### 为现有配置文件补充创建
 
 ```bash
-hermes honcho sync    # creates host blocks for all profiles that don't have one yet
+openamer honcho sync    # creates host blocks for all profiles that don't have one yet
 ```
 
 ### 按配置文件配置
@@ -243,7 +243,7 @@ hermes honcho sync    # creates host blocks for all profiles that don't have one
 ```json
 {
   "hosts": {
-    "hermes.coder": {
+    "openamer.coder": {
       "aiPeer": "coder",
       "recallMode": "tools",
       "dialecticDepth": 2,
@@ -303,7 +303,7 @@ honcho_conclude delete_id="abc123"    # PII removal
 
 ## Agent 使用模式
 
-Honcho 记忆激活时 Hermes 的使用指南。
+Honcho 记忆激活时 OpenAmer 的使用指南。
 
 ### 对话开始时
 
@@ -404,13 +404,13 @@ Honcho 在注入前对 `memory-context` 块进行净化，以防止 prompt 注�
 ## 故障排查
 
 ### "Honcho not configured"
-运行 `hermes honcho setup`。确保 `~/.hermes/config.yaml` 中包含 `memory.provider: honcho`。
+运行 `openamer honcho setup`。确保 `~/.openamer/config.yaml` 中包含 `memory.provider: honcho`。
 
 ### 记忆未跨会话持久化
-检查 `hermes honcho status` -- 验证 `saveMessages: true` 且 `writeFrequency` 不是 `session`（该选项仅在退出时写入）。
+检查 `openamer honcho status` -- 验证 `saveMessages: true` 且 `writeFrequency` 不是 `session`（该选项仅在退出时写入）。
 
 ### 配置文件未获得自己的 peer
-创建时使用 `--clone`：`hermes profile create <name> --clone`。对于现有配置文件：`hermes honcho sync`。
+创建时使用 `--clone`：`openamer profile create <name> --clone`。对于现有配置文件：`openamer honcho sync`。
 
 ### 控制台中的观察更改未生效
 观察配置在每次会话初始化时从服务器同步。在 Honcho UI 中更改设置后，启动新会话。
@@ -428,19 +428,19 @@ Honcho 在注入前对 `memory-context` 块进行净化，以防止 prompt 注�
 
 | 命令 | 描述 |
 |---------|-------------|
-| `hermes honcho setup` | 交互式设置向导（云端/本地、身份、观察、召回、会话） |
-| `hermes honcho status` | 显示当前配置文件的已解析配置、连接测试、peer 信息 |
-| `hermes honcho enable` | 为当前配置文件启用 Honcho（如需则创建 host 块） |
-| `hermes honcho disable` | 为当前配置文件禁用 Honcho |
-| `hermes honcho peer` | 显示或更新 peer 名称（`--user <name>`、`--ai <name>`、`--reasoning <level>`） |
-| `hermes honcho peers` | 显示所有配置文件的 peer 身份 |
-| `hermes honcho mode` | 显示或设置召回模式（`hybrid`、`context`、`tools`） |
-| `hermes honcho tokens` | 显示或设置 token 预算（`--context <N>`、`--dialectic <N>`） |
-| `hermes honcho sessions` | 列出已知的目录到会话名称映射 |
-| `hermes honcho map <name>` | 将当前工作目录映射到 Honcho 会话名称 |
-| `hermes honcho identity` | 为 AI peer 身份播种，或显示两个 peer 的表示 |
-| `hermes honcho sync` | 为所有尚未拥有 host 块的 Hermes 配置文件创建 host 块 |
-| `hermes honcho migrate` | 从 OpenClaw 原生记忆迁移到 Hermes + Honcho 的分步指南 |
-| `hermes memory setup` | 通用记忆提供商选择器（选择 "honcho" 运行相同向导） |
-| `hermes memory status` | 显示当前活跃的记忆提供商及配置 |
-| `hermes memory off` | 禁用外部记忆提供商 |
+| `openamer honcho setup` | 交互式设置向导（云端/本地、身份、观察、召回、会话） |
+| `openamer honcho status` | 显示当前配置文件的已解析配置、连接测试、peer 信息 |
+| `openamer honcho enable` | 为当前配置文件启用 Honcho（如需则创建 host 块） |
+| `openamer honcho disable` | 为当前配置文件禁用 Honcho |
+| `openamer honcho peer` | 显示或更新 peer 名称（`--user <name>`、`--ai <name>`、`--reasoning <level>`） |
+| `openamer honcho peers` | 显示所有配置文件的 peer 身份 |
+| `openamer honcho mode` | 显示或设置召回模式（`hybrid`、`context`、`tools`） |
+| `openamer honcho tokens` | 显示或设置 token 预算（`--context <N>`、`--dialectic <N>`） |
+| `openamer honcho sessions` | 列出已知的目录到会话名称映射 |
+| `openamer honcho map <name>` | 将当前工作目录映射到 Honcho 会话名称 |
+| `openamer honcho identity` | 为 AI peer 身份播种，或显示两个 peer 的表示 |
+| `openamer honcho sync` | 为所有尚未拥有 host 块的 OpenAmer 配置文件创建 host 块 |
+| `openamer honcho migrate` | 从 OpenClaw 原生记忆迁移到 OpenAmer + Honcho 的分步指南 |
+| `openamer memory setup` | 通用记忆提供商选择器（选择 "honcho" 运行相同向导） |
+| `openamer memory status` | 显示当前活跃的记忆提供商及配置 |
+| `openamer memory off` | 禁用外部记忆提供商 |

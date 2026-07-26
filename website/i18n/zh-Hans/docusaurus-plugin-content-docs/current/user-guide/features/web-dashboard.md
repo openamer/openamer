@@ -6,12 +6,12 @@ description: "基于浏览器的仪表板，用于管理配置、API 密钥、�
 
 # Web Dashboard
 
-Web Dashboard 是一个基于浏览器的 UI，用于管理你的 Hermes Agent 安装。无需编辑 YAML 文件或运行 CLI 命令，即可通过简洁的 Web 界面配置设置、管理 API 密钥并监控会话。
+Web Dashboard 是一个基于浏览器的 UI，用于管理你的 OpenAmer Agent 安装。无需编辑 YAML 文件或运行 CLI 命令，即可通过简洁的 Web 界面配置设置、管理 API 密钥并监控会话。
 
 ## 快速开始
 
 ```bash
-hermes dashboard
+openamer dashboard
 ```
 
 这将启动一个本地 Web 服务器，并在浏览器中打开 `http://127.0.0.1:9119`。Dashboard 完全在你的机器上运行——数据不会离开 localhost。
@@ -27,28 +27,28 @@ hermes dashboard
 
 ```bash
 # 自定义端口
-hermes dashboard --port 8080
+openamer dashboard --port 8080
 
 # 绑定到所有接口（在共享网络上请谨慎使用）
-hermes dashboard --host 0.0.0.0
+openamer dashboard --host 0.0.0.0
 
 # 启动时不打开浏览器
-hermes dashboard --no-open
+openamer dashboard --no-open
 ```
 
 ## 前置条件
 
-默认的 `hermes-agent` 安装不包含 HTTP 栈或 PTY 辅助工具——这些是可选扩展。**Web Dashboard** 需要 FastAPI 和 Uvicorn（`web` 扩展）。**Chat** 标签页还需要 `ptyprocess` 来在伪终端（pseudo-terminal）后面启动嵌入式 TUI（POSIX 上的 `pty` 扩展）。使用以下命令同时安装：
+默认的 `openamer-agent` 安装不包含 HTTP 栈或 PTY 辅助工具——这些是可选扩展。**Web Dashboard** 需要 FastAPI 和 Uvicorn（`web` 扩展）。**Chat** 标签页还需要 `ptyprocess` 来在伪终端（pseudo-terminal）后面启动嵌入式 TUI（POSIX 上的 `pty` 扩展）。使用以下命令同时安装：
 
 ```bash
-cd ~/.hermes/hermes-agent && uv pip install -e ".[web,pty]"
+cd ~/.openamer/openamer-agent && uv pip install -e ".[web,pty]"
 ```
 
-`web` 扩展会引入 FastAPI/Uvicorn；`pty` 扩展会引入 `ptyprocess`（POSIX）或 `pywinpty`（原生 Windows——注意嵌入式 TUI 本身仍需要 WSL）。`cd ~/.hermes/hermes-agent && uv pip install -e ".[all]"` 包含两个扩展，如果你还需要消息/语音等功能，这是最简便的方式。
+`web` 扩展会引入 FastAPI/Uvicorn；`pty` 扩展会引入 `ptyprocess`（POSIX）或 `pywinpty`（原生 Windows——注意嵌入式 TUI 本身仍需要 WSL）。`cd ~/.openamer/openamer-agent && uv pip install -e ".[all]"` 包含两个扩展，如果你还需要消息/语音等功能，这是最简便的方式。
 
-在没有依赖项的情况下运行 `hermes dashboard` 时，它会告诉你需要安装什么。如果前端尚未构建且 `npm` 可用，则会在首次启动时自动构建。
+在没有依赖项的情况下运行 `openamer dashboard` 时，它会告诉你需要安装什么。如果前端尚未构建且 `npm` 可用，则会在首次启动时自动构建。
 
-Chat 标签页是每次 `hermes dashboard` 启动的一部分——内嵌的浏览器聊天面板（通过 PTY/WebSocket 运行 TUI）始终可用，无需任何额外参数。
+Chat 标签页是每次 `openamer dashboard` 启动的一部分——内嵌的浏览器聊天面板（通过 PTY/WebSocket 运行 TUI）始终可用，无需任何额外参数。
 
 ## 页面
 
@@ -65,12 +65,12 @@ Chat 标签页是每次 `hermes dashboard` 启动的一部分——内嵌的浏�
 
 ### Chat（聊天）
 
-**Chat** 标签页将完整的 Hermes TUI（与 `hermes --tui` 相同的界面）直接嵌入浏览器。你在终端 TUI 中能做的一切——斜杠命令、模型选择器、工具调用卡片、Markdown 流式输出、clarify/sudo/approval 提示、皮肤主题——在这里都完全一致，因为 Dashboard 运行的是真实的 TUI 二进制文件，并通过 [xterm.js](https://xtermjs.org/) 的 WebGL 渲染器以像素级精度渲染其 ANSI 输出。
+**Chat** 标签页将完整的 OpenAmer TUI（与 `openamer --tui` 相同的界面）直接嵌入浏览器。你在终端 TUI 中能做的一切——斜杠命令、模型选择器、工具调用卡片、Markdown 流式输出、clarify/sudo/approval 提示、皮肤主题——在这里都完全一致，因为 Dashboard 运行的是真实的 TUI 二进制文件，并通过 [xterm.js](https://xtermjs.org/) 的 WebGL 渲染器以像素级精度渲染其 ANSI 输出。
 
 **工作原理：**
 
 - `/api/pty` 打开一个经 Dashboard 会话 token 认证的 WebSocket
-- 服务器在 POSIX 伪终端后面启动 `hermes --tui`
+- 服务器在 POSIX 伪终端后面启动 `openamer --tui`
 - 按键传输到 PTY；ANSI 输出流式返回浏览器
 - xterm.js 的 WebGL 渲染器将每个单元格绘制到整数像素网格；鼠标追踪（SGR 1006）、宽字符（Unicode 11）和方框绘制字形均原生渲染
 - 调整浏览器窗口大小会通过 `@xterm/addon-fit` 插件调整 TUI 大小
@@ -79,8 +79,8 @@ Chat 标签页是每次 `hermes dashboard` 启动的一部分——内嵌的浏�
 
 **前置条件：**
 
-- Node.js（与 `hermes --tui` 相同的要求；TUI 包在首次启动时构建）
-- `ptyprocess`——由 `pty` 扩展安装（`cd ~/.hermes/hermes-agent && uv pip install -e ".[web,pty]"`，或 `[all]` 同时包含两者）
+- Node.js（与 `openamer --tui` 相同的要求；TUI 包在首次启动时构建）
+- `ptyprocess`——由 `pty` 扩展安装（`cd ~/.openamer/openamer-agent && uv pip install -e ".[web,pty]"`，或 `[all]` 同时包含两者）
 - POSIX 内核（Linux、macOS 或 WSL2）。`/chat` 终端面板特别需要 POSIX PTY——原生 Windows Python 没有等效实现，因此在原生 Windows 安装上，Dashboard 的其余部分（sessions、jobs、metrics、config editor）可以正常工作，但 `/chat` 标签页会显示提示，告知你需要使用 WSL2 才能使用该功能。
 
 关闭浏览器标签页后，PTY 会在服务器端被干净地回收。重新打开会启动一个新会话。
@@ -108,7 +108,7 @@ Chat 标签页是每次 `hermes dashboard` 启动的一部分——内嵌的浏�
 - **Import** — 上传 JSON 配置文件以替换当前值
 
 :::tip
-配置更改在下一次 agent 会话或 gateway 重启时生效。Web Dashboard 编辑的是 `hermes config set` 和 gateway 读取的同一个 `config.yaml` 文件。
+配置更改在下一次 agent 会话或 gateway 重启时生效。Web Dashboard 编辑的是 `openamer config set` 和 gateway 读取的同一个 `config.yaml` 文件。
 :::
 
 ### API Keys（API 密钥）
@@ -170,7 +170,7 @@ Chat 标签页是每次 `hermes dashboard` 启动的一部分——内嵌的浏�
 
 ### Skills（技能）
 
-浏览、搜索和切换技能与工具集。技能从 `~/.hermes/skills/` 加载，并按类别分组。
+浏览、搜索和切换技能与工具集。技能从 `~/.openamer/skills/` 加载，并按类别分组。
 
 - **Search** — 按名称、描述或类别过滤技能和工具集
 - **Category filter** — 点击类别标签缩小列表范围（如 MLOps、MCP、Red Teaming、AI）
@@ -190,7 +190,7 @@ You → /reload
   Reloaded .env (3 var(s) updated)
 ```
 
-这会将 `~/.hermes/.env` 重新读取到运行中进程的环境中。当你通过 Dashboard 添加了新的提供商密钥并希望立即使用时非常有用。
+这会将 `~/.openamer/.env` 重新读取到运行中进程的环境中。当你通过 Dashboard 添加了新的提供商密钥并希望立即使用时非常有用。
 
 ## REST API
 
@@ -308,7 +308,7 @@ Web 服务器将 CORS 限制为仅 localhost 来源：
 
 ```bash
 # 终端 1：启动后端 API
-hermes dashboard --no-open
+openamer dashboard --no-open
 
 # 终端 2：启动带 HMR 的 Vite 开发服务器
 cd web/
@@ -318,11 +318,11 @@ npm run dev
 
 `http://localhost:5173` 上的 Vite 开发服务器会将 `/api` 请求代理到 `http://127.0.0.1:9119` 上的 FastAPI 后端。
 
-前端使用 React 19、TypeScript、Tailwind CSS v4 和 shadcn/ui 风格组件构建。生产构建输出到 `hermes_cli/web_dist/`，由 FastAPI 服务器作为静态 SPA 提供服务。
+前端使用 React 19、TypeScript、Tailwind CSS v4 和 shadcn/ui 风格组件构建。生产构建输出到 `openamer_cli/web_dist/`，由 FastAPI 服务器作为静态 SPA 提供服务。
 
 ## 更新时自动构建
 
-运行 `hermes update` 时，如果 `npm` 可用，Web 前端会自动重新构建。这使 Dashboard 与代码更新保持同步。如果未安装 `npm`，更新会跳过前端构建，`hermes dashboard` 将在首次启动时构建。
+运行 `openamer update` 时，如果 `npm` 可用，Web 前端会自动重新构建。这使 Dashboard 与代码更新保持同步。如果未安装 `npm`，更新会跳过前端构建，`openamer dashboard` 将在首次启动时构建。
 
 ## 主题与插件
 
@@ -334,8 +334,8 @@ Dashboard 内置六个主题，并可通过用户自定义主题、插件标签�
 
 | 主题 | 特点 |
 |-------|-----------|
-| **Hermes Teal** (`default`) | 深青色 + 奶油色，系统字体，舒适间距 |
-| **Hermes Teal (Large)** (`default-large`) | 与 default 相同，但使用 18px 文字和更宽松的间距 |
+| **OpenAmer Teal** (`default`) | 深青色 + 奶油色，系统字体，舒适间距 |
+| **OpenAmer Teal (Large)** (`default-large`) | 与 default 相同，但使用 18px 文字和更宽松的间距 |
 | **Midnight** (`midnight`) | 深蓝紫色，Inter + JetBrains Mono |
 | **Ember** (`ember`) | 暖深红 + 古铜色，Spectral 衬线体 + IBM Plex Mono |
 | **Mono** (`mono`) | 灰度，IBM Plex，紧凑 |

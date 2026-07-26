@@ -17,7 +17,7 @@ description: "一次性 HTML 原型：2-3 个设计方案对比"
 | 来源 | 内置（默认安装） |
 | 路径 | `skills/creative/sketch` |
 | 版本 | `1.0.0` |
-| 作者 | Hermes Agent（改编自 gsd-build/get-shit-done） |
+| 作者 | OpenAmer Agent（改编自 gsd-build/get-shit-done） |
 | 许可证 | MIT |
 | 平台 | linux, macos, windows |
 | 标签 | `sketch`, `mockup`, `design`, `ui`, `prototype`, `html`, `variants`, `exploration`, `wireframe`, `comparison` |
@@ -26,7 +26,7 @@ description: "一次性 HTML 原型：2-3 个设计方案对比"
 ## 参考：完整 SKILL.md
 
 :::info
-以下是 Hermes 在触发该 skill 时加载的完整 skill 定义。这是 agent 在 skill 激活时所看到的指令内容。
+以下是 OpenAmer 在触发该 skill 时加载的完整 skill 定义。这是 agent 在 skill 激活时所看到的指令内容。
 :::
 
 # Sketch
@@ -44,7 +44,7 @@ description: "一次性 HTML 原型：2-3 个设计方案对比"
 
 ## 如果用户安装了完整的 GSD 系统
 
-如果 `gsd-sketch` 作为同级 skill 出现（通过 `npx get-shit-done-cc --hermes` 安装），优先使用 **`gsd-sketch`** 以获得完整工作流：持久化的 `.planning/sketches/` 目录（含 MANIFEST）、前沿模式分析、跨历史草图的一致性审计，以及与 GSD 其余部分的集成。本 skill 是轻量级独立版本——无状态机制的一次性草图。
+如果 `gsd-sketch` 作为同级 skill 出现（通过 `npx get-shit-done-cc --openamer` 安装），优先使用 **`gsd-sketch`** 以获得完整工作流：持久化的 `.planning/sketches/` 目录（含 MANIFEST）、前沿模式分析、跨历史草图的一致性审计，以及与 GSD 其余部分的集成。本 skill 是轻量级独立版本——无状态机制的一次性草图。
 
 ## 核心方法
 
@@ -105,7 +105,7 @@ sketches/
 
 在浏览器中打开验证。如果看起来有问题，在展示给用户之前修复。
 
-**使用 Hermes 的浏览器工具对方案进行视觉验证。** 不要只写 HTML 然后寄希望于它能正常渲染；加载每个方案并查看：
+**使用 OpenAmer 的浏览器工具对方案进行视觉验证。** 不要只写 HTML 然后寄希望于它能正常渲染；加载每个方案并查看：
 
 ```
 browser_navigate(url="file:///absolute/path/to/sketches/001-calm-editorial/index.html")
@@ -235,4 +235,4 @@ browser_vision(question="How does this look? Any obvious layout issues?")
 
 ## 致谢
 
-改编自 GSD（Get Shit Done）项目的 `/gsd-sketch` 工作流——MIT © 2025 Lex Christopherson（[gsd-build/get-shit-done](https://github.com/gsd-build/get-shit-done)）。完整 GSD 系统提供持久化草图状态、主题/方案模式参考及一致性审计工作流；通过 `npx get-shit-done-cc --hermes --global` 安装。
+改编自 GSD（Get Shit Done）项目的 `/gsd-sketch` 工作流——MIT © 2025 Lex Christopherson（[gsd-build/get-shit-done](https://github.com/gsd-build/get-shit-done)）。完整 GSD 系统提供持久化草图状态、主题/方案模式参考及一致性审计工作流；通过 `npx get-shit-done-cc --openamer --global` 安装。

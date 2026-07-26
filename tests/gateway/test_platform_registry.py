@@ -352,13 +352,13 @@ class TestPlatformsMerge:
     """Test get_all_platforms() merges with registry."""
 
     def test_get_all_platforms_includes_builtins(self):
-        from hermes_cli.platforms import get_all_platforms, PLATFORMS
+        from openamer_cli.platforms import get_all_platforms, PLATFORMS
         merged = get_all_platforms()
         for key in PLATFORMS:
             assert key in merged
 
     def test_get_all_platforms_includes_plugin(self):
-        from hermes_cli.platforms import get_all_platforms
+        from openamer_cli.platforms import get_all_platforms
         from gateway.platform_registry import platform_registry as _reg
 
         _reg.register(PlatformEntry(
@@ -377,7 +377,7 @@ class TestPlatformsMerge:
             _reg.unregister("testmerge")
 
     def test_platform_label_plugin_fallback(self):
-        from hermes_cli.platforms import platform_label
+        from openamer_cli.platforms import platform_label
         from gateway.platform_registry import platform_registry as _reg
 
         _reg.register(PlatformEntry(
@@ -430,7 +430,7 @@ class TestApplyYamlConfigFnDispatch:
     """End-to-end dispatch through load_gateway_config().
 
     Each test registers a temporary PlatformEntry, writes a config.yaml in
-    a tmp HERMES_HOME, calls load_gateway_config(), and asserts the hook
+    a tmp OPENAMER_HOME, calls load_gateway_config(), and asserts the hook
     was invoked correctly.  Cleanup unregisters the entry.
     """
 
@@ -469,7 +469,7 @@ class TestApplyYamlConfigFnDispatch:
             home = self._write_config(
                 tmp_path, "myhookplat:\n  flag: true\n",
             )
-            monkeypatch.setenv("HERMES_HOME", str(home))
+            monkeypatch.setenv("OPENAMER_HOME", str(home))
 
             from gateway.config import load_gateway_config
             load_gateway_config()
@@ -490,7 +490,7 @@ class TestApplyYamlConfigFnDispatch:
             home = self._write_config(
                 tmp_path, "myextraplat:\n  flag: yes\n",
             )
-            monkeypatch.setenv("HERMES_HOME", str(home))
+            monkeypatch.setenv("OPENAMER_HOME", str(home))
 
             from gateway.config import load_gateway_config
             cfg = load_gateway_config()
@@ -523,7 +523,7 @@ class TestApplyYamlConfigFnDispatch:
                 "mycaptureplat:\n"
                 "  inner_key: deep\n",
             )
-            monkeypatch.setenv("HERMES_HOME", str(home))
+            monkeypatch.setenv("OPENAMER_HOME", str(home))
 
             from gateway.config import load_gateway_config
             load_gateway_config()
@@ -570,7 +570,7 @@ class TestApplyYamlConfigFnDispatch:
                 "mybadplat:\n  k: v\n"
                 "mygoodplat:\n  k: v\n",
             )
-            monkeypatch.setenv("HERMES_HOME", str(home))
+            monkeypatch.setenv("OPENAMER_HOME", str(home))
 
             # Must not raise.
             from gateway.config import load_gateway_config
@@ -594,7 +594,7 @@ class TestApplyYamlConfigFnDispatch:
         reg = self._register_hook("myabsentplat", _hook)
         try:
             home = self._write_config(tmp_path, "telegram:\n  k: v\n")
-            monkeypatch.setenv("HERMES_HOME", str(home))
+            monkeypatch.setenv("OPENAMER_HOME", str(home))
 
             from gateway.config import load_gateway_config
             load_gateway_config()
@@ -618,7 +618,7 @@ class TestApplyYamlConfigFnDispatch:
             home = self._write_config(
                 tmp_path, "mybadshapeplat: just-a-string\n",
             )
-            monkeypatch.setenv("HERMES_HOME", str(home))
+            monkeypatch.setenv("OPENAMER_HOME", str(home))
 
             from gateway.config import load_gateway_config
             load_gateway_config()
@@ -644,7 +644,7 @@ class TestApplyYamlConfigFnDispatch:
             home = self._write_config(
                 tmp_path, "myprecplat:\n  flag: yaml-value\n",
             )
-            monkeypatch.setenv("HERMES_HOME", str(home))
+            monkeypatch.setenv("OPENAMER_HOME", str(home))
 
             from gateway.config import load_gateway_config
             load_gateway_config()
@@ -693,7 +693,7 @@ class TestPluginPlatformSharedKeyBridge:
                 "  reply_prefix: \"→ \"\n"
                 "  allow_from: [\"alice\", \"bob\"]\n",
             )
-            monkeypatch.setenv("HERMES_HOME", str(home))
+            monkeypatch.setenv("OPENAMER_HOME", str(home))
 
             from gateway.config import load_gateway_config, Platform
             cfg = load_gateway_config()
@@ -749,7 +749,7 @@ class TestPluginEnablementGate:
         ))
         try:
             home = self._write_config(tmp_path)
-            monkeypatch.setenv("HERMES_HOME", str(home))
+            monkeypatch.setenv("OPENAMER_HOME", str(home))
 
             from gateway.config import load_gateway_config, Platform
             cfg = load_gateway_config()
@@ -779,7 +779,7 @@ class TestPluginEnablementGate:
         ))
         try:
             home = self._write_config(tmp_path)
-            monkeypatch.setenv("HERMES_HOME", str(home))
+            monkeypatch.setenv("OPENAMER_HOME", str(home))
 
             from gateway.config import load_gateway_config, Platform
             cfg = load_gateway_config()
@@ -811,7 +811,7 @@ class TestPluginEnablementGate:
         ))
         try:
             home = self._write_config(tmp_path)
-            monkeypatch.setenv("HERMES_HOME", str(home))
+            monkeypatch.setenv("OPENAMER_HOME", str(home))
 
             from gateway.config import load_gateway_config, Platform
             cfg = load_gateway_config()
@@ -844,7 +844,7 @@ class TestPluginEnablementGate:
         ))
         try:
             home = self._write_config(tmp_path)
-            monkeypatch.setenv("HERMES_HOME", str(home))
+            monkeypatch.setenv("OPENAMER_HOME", str(home))
 
             from gateway.config import load_gateway_config, Platform
             cfg = load_gateway_config()
@@ -881,7 +881,7 @@ class TestPluginEnablementGate:
                 "  myexplicitplat:\n"
                 "    enabled: true\n",
             )
-            monkeypatch.setenv("HERMES_HOME", str(home))
+            monkeypatch.setenv("OPENAMER_HOME", str(home))
 
             from gateway.config import load_gateway_config, Platform
             cfg = load_gateway_config()
@@ -930,7 +930,7 @@ class TestPluginEnablementGate:
         ))
         try:
             home = self._write_config(tmp_path)
-            monkeypatch.setenv("HERMES_HOME", str(home))
+            monkeypatch.setenv("OPENAMER_HOME", str(home))
 
             from gateway.config import load_gateway_config, Platform
             cfg = load_gateway_config()
@@ -969,7 +969,7 @@ class TestPluginEnablementGate:
         ))
         try:
             home = self._write_config(tmp_path)
-            monkeypatch.setenv("HERMES_HOME", str(home))
+            monkeypatch.setenv("OPENAMER_HOME", str(home))
 
             from gateway.config import load_gateway_config, Platform
             cfg = load_gateway_config()

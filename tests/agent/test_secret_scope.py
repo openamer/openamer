@@ -61,10 +61,10 @@ class TestMultiplexActiveFailClosed:
             ss.reset_secret_scope(token)
 
     def test_global_env_still_reads_environ_under_multiplex(self, monkeypatch):
-        monkeypatch.setenv("HERMES_HOME", "/opt/data")
+        monkeypatch.setenv("OPENAMER_HOME", "/opt/data")
         ss.set_multiplex_active(True)
-        # No scope, multiplex on — but HERMES_HOME is global, so no raise.
-        assert ss.get_secret("HERMES_HOME") == "/opt/data"
+        # No scope, multiplex on — but OPENAMER_HOME is global, so no raise.
+        assert ss.get_secret("OPENAMER_HOME") == "/opt/data"
 
     def test_kanban_prefix_is_global(self, monkeypatch):
         monkeypatch.setenv("HERMES_KANBAN_DB", "/x/kanban.db")
@@ -180,7 +180,7 @@ class TestEnvFileParsing:
         self, tmp_path, monkeypatch
     ):
         (tmp_path / ".env").write_text("XIAOMI_API_KEY=placeholder\n")
-        from hermes_cli import env_loader
+        from openamer_cli import env_loader
 
         home_key = str(tmp_path.resolve())
         monkeypatch.setitem(
@@ -200,7 +200,7 @@ class TestEnvFileParsing:
         other = tmp_path / "other"
         profile.mkdir()
         other.mkdir()
-        from hermes_cli import env_loader
+        from openamer_cli import env_loader
 
         monkeypatch.setitem(
             env_loader._SECRET_SOURCE_VALUES_BY_HOME,

@@ -3,9 +3,9 @@ name: osint-investigation
 description: Follow the money via public records and sanctions data.
 version: 0.1.0
 platforms: [linux, macos, windows]
-author: Hermes Agent (adapted from ShinMegamiBoson/OpenPlanter, MIT)
+author: OpenAmer Agent (adapted from ShinMegamiBoson/OpenPlanter, MIT)
 metadata:
-  hermes:
+  openamer:
     tags: [osint, investigation, public-records, sec, sanctions, corporate-registry, property, courts, due-diligence, journalism]
     category: research
     related_skills: [domain-intel, arxiv]
@@ -115,7 +115,7 @@ python3 SKILL_DIR/scripts/fetch_ofac_sdn.py --out data/ofac_sdn.csv
 
 # ICIJ Offshore Leaks — downloads ~70 MB bulk CSV on first use,
 # then searches it locally. Cached for 30 days under
-# $HERMES_OSINT_CACHE/icij/ (default: ~/.cache/hermes-osint/icij/).
+# $HERMES_OSINT_CACHE/icij/ (default: ~/.cache/openamer-osint/icij/).
 python3 SKILL_DIR/scripts/fetch_icij_offshore.py --entity "EXAMPLE CORP" \
     --out data/icij.csv
 ```

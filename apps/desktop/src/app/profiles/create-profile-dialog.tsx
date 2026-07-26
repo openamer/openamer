@@ -14,10 +14,10 @@ import { Field, FieldHint } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
-import { createProfile, updateProfileSoul } from '@/hermes'
+import { createProfile, updateProfileSoul } from '@/openamer'
 import { useI18n } from '@/i18n'
 import { AlertTriangle } from '@/lib/icons'
-import type { ProfileInfo } from '@/types/hermes'
+import type { ProfileInfo } from '@/types/openamer'
 
 const PROFILE_NAME_RE = /^[a-z0-9][a-z0-9_-]{0,63}$/
 

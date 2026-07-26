@@ -4,7 +4,7 @@ from gateway.config import GatewayConfig, Platform, PlatformConfig
 from gateway.platforms.base import MessageEvent, MessageType
 from gateway.run import GatewayRunner
 from gateway.session import SessionSource
-from hermes_cli import goals
+from openamer_cli import goals
 
 
 class _FakeSessionEntry:
@@ -28,7 +28,7 @@ async def test_gateway_goal_uses_goals_max_turns_from_full_config(tmp_path, monk
     home = tmp_path / ".hermes"
     home.mkdir()
     (home / "config.yaml").write_text("goals:\n  max_turns: 7\n", encoding="utf-8")
-    monkeypatch.setenv("HERMES_HOME", str(home))
+    monkeypatch.setenv("OPENAMER_HOME", str(home))
     goals._DB_CACHE.clear()
 
     runner = object.__new__(GatewayRunner)

@@ -177,7 +177,7 @@ def test_coding_prompt_preserves_legacy_workspace_order(monkeypatch):
             ),
         ),
         patch("agent.file_safety._resolve_active_profile_name", return_value="default"),
-        patch("hermes_time.now", return_value=datetime(2026, 1, 2)),
+        patch("openamer_time.now", return_value=datetime(2026, 1, 2)),
     ):
         prompt = build_system_prompt(agent, system_message="SYSTEM_MESSAGE")
 
@@ -192,7 +192,7 @@ class TestTelegramRichMessagesHint:
         """When rich_messages is False (default), only the base hint is used."""
         agent = _make_agent(platform="telegram")
         # Mock config to return rich_messages: false (default)
-        with patch("hermes_cli.config.load_config_readonly") as mock_cfg:
+        with patch("openamer_cli.config.load_config_readonly") as mock_cfg:
             mock_cfg.return_value = {
                 "platforms": {"telegram": {"extra": {"rich_messages": False}}}
             }
@@ -206,7 +206,7 @@ class TestTelegramRichMessagesHint:
     def test_rich_hint_with_rich_messages_enabled(self, monkeypatch):
         """When rich_messages is True, the rich-messages extension is appended."""
         agent = _make_agent(platform="telegram")
-        with patch("hermes_cli.config.load_config_readonly") as mock_cfg:
+        with patch("openamer_cli.config.load_config_readonly") as mock_cfg:
             mock_cfg.return_value = {
                 "platforms": {"telegram": {"extra": {"rich_messages": True}}}
             }
@@ -221,7 +221,7 @@ class TestTelegramRichMessagesHint:
     def test_base_hint_without_config(self, monkeypatch):
         """When config has no telegram section, only base hint is used."""
         agent = _make_agent(platform="telegram")
-        with patch("hermes_cli.config.load_config_readonly") as mock_cfg:
+        with patch("openamer_cli.config.load_config_readonly") as mock_cfg:
             mock_cfg.return_value = {}
             stable = _stable_prompt(agent)
         assert "Standard Markdown is automatically converted" in stable

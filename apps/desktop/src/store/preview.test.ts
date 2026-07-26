@@ -72,7 +72,7 @@ describe('preview store', () => {
     expect($previewTarget.get()).toEqual(withRenderMode(target, 'preview'))
     expect($paneOpen(PREVIEW_PANE_ID).get()).toBe(true)
     expect(getSessionPreviewRecord('session-1')?.normalized).toEqual(withRenderMode(target, 'preview'))
-    expect(window.localStorage.getItem('hermes.desktop.sessionPreviews.v1')).toContain('/work/demo.html')
+    expect(window.localStorage.getItem('openamer.desktop.sessionPreviews.v1')).toContain('/work/demo.html')
 
     dismissPreviewTarget()
 

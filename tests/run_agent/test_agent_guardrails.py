@@ -14,7 +14,7 @@ from run_agent import AIAgent
 
 # Pin the concurrency limit instead of reading the runtime config.
 # _cap_delegate_task_calls() resolves _get_max_concurrent_children() at CALL
-# time (inside a per-test hermetic HERMES_HOME), but this module previously
+# time (inside a per-test hermetic OPENAMER_HOME), but this module previously
 # froze the value at IMPORT time — before the hermetic fixture ran — so a
 # developer machine with delegation.max_concurrent_children in the real
 # ~/.hermes/config.yaml saw a different limit at import vs call and the

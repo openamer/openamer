@@ -1,4 +1,4 @@
-from hermes_state import AsyncSessionDB
+from openamer_state import AsyncSessionDB
 """Tests for gateway /status behavior and token persistence."""
 
 from datetime import datetime
@@ -663,7 +663,7 @@ async def test_profile_command_reports_custom_root_profile(monkeypatch, tmp_path
     runner = _make_runner(session_entry)
     profile_home = tmp_path / "profiles" / "coder"
 
-    monkeypatch.setenv("HERMES_HOME", str(profile_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(profile_home))
     monkeypatch.setattr(Path, "home", lambda: tmp_path / "unrelated-home")
 
     result = await runner._handle_profile_command(_make_event("/profile"))
@@ -692,7 +692,7 @@ async def test_profile_command_reports_source_stamped_profile(monkeypatch, tmp_p
     )
     runner = _make_runner(session_entry)
     runner.config.multiplex_profiles = True
-    monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
     event = _make_event("/profile")
     event.source.profile = "milo"
@@ -723,7 +723,7 @@ async def test_profile_command_ignores_stamp_when_multiplexing_off(monkeypatch, 
     )
     runner = _make_runner(session_entry)
     assert runner.config.multiplex_profiles is False
-    monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
     event = _make_event("/profile")
     event.source.profile = "milo"
@@ -750,7 +750,7 @@ async def test_profile_command_unstamped_source_unchanged(monkeypatch, tmp_path)
         chat_type="dm",
     )
     runner = _make_runner(session_entry)
-    monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
     result = await runner._handle_profile_command(_make_event("/profile"))
 

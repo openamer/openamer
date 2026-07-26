@@ -207,7 +207,7 @@ class TestSealedVenvDurableTarget:
         monkeypatch.setenv("HERMES_LAZY_INSTALL_TARGET", str(tmp_path / "lazy"))
         # config.yaml kill-switch left at default (allow).
         monkeypatch.setattr(
-            "hermes_cli.config.load_config",
+            "openamer_cli.config.load_config",
             lambda: {"security": {"allow_lazy_installs": True}},
         )
 
@@ -245,7 +245,7 @@ class TestSealedVenvDurableTarget:
         monkeypatch.setenv("HERMES_DISABLE_LAZY_INSTALLS", "1")
         monkeypatch.delenv("HERMES_LAZY_INSTALL_TARGET", raising=False)
         monkeypatch.setattr(
-            "hermes_cli.config.load_config",
+            "openamer_cli.config.load_config",
             lambda: {"security": {"allow_lazy_installs": True}},
         )
         monkeypatch.setattr(ld, "_is_satisfied", lambda spec: False)

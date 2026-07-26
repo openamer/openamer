@@ -18,7 +18,7 @@ from pathlib import Path
 
 import pytest
 
-from hermes_state import SessionDB
+from openamer_state import SessionDB
 
 
 @pytest.fixture

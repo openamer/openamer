@@ -18,7 +18,7 @@ console.log(`[perf:serve] starting isolated instance (CDP :${port}, dev :${devPo
 const instance = await startIsolatedInstance({
   port,
   devPort,
-  hermesHome: process.env.PERF_HERMES_HOME,
+  openamerHome: process.env.PERF_HERMES_HOME,
   userDataDir: process.env.PERF_USER_DATA
 })
 

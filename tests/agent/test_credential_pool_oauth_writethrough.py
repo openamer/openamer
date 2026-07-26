@@ -1,6 +1,6 @@
 """Regression tests for credential-pool OAuth refresh write-through to root.
 
-Companion to ``tests/hermes_cli/test_xai_oauth_writethrough.py``. That file
+Companion to ``tests/openamer_cli/test_xai_oauth_writethrough.py``. That file
 covers the *non-pool* xAI refresh path (``_save_xai_oauth_tokens``). These
 cover the **credential-pool** refresh path
 (``CredentialPool._sync_device_code_entry_to_auth_store``): when a profile
@@ -27,7 +27,7 @@ from agent.credential_pool import (
     CredentialPool,
     PooledCredential,
 )
-from hermes_cli import auth as A
+from openamer_cli import auth as A
 
 
 def _write_store(path, store):

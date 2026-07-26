@@ -72,7 +72,7 @@ def test_non_allowlisted_host_file_not_touched(
 ) -> None:
     """A non-allowlisted host-owned file must NOT be chowned, even if
     root-owned. Regression guard for #19788 / #19795: a bind-mounted
-    $HERMES_HOME may contain host-owned files Hermes does not manage."""
+    $OPENAMER_HOME may contain host-owned files Hermes does not manage."""
     start_container(built_image, container_name)
 
     # Create a non-allowlisted file as root

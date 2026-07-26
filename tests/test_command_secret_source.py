@@ -2,8 +2,8 @@
 
 These exercise the REAL resolution path: real helper shell scripts written
 to a temp dir (chmod +x), real ``/bin/sh -c`` subprocesses, and a real temp
-HERMES_HOME with a config.yaml routing ``secrets.provider: command`` through
-``hermes_cli.env_loader._apply_external_secret_sources``.
+OPENAMER_HOME with a config.yaml routing ``secrets.provider: command`` through
+``openamer_cli.env_loader._apply_external_secret_sources``.
 
 Security invariants under test (ported from the desktop TS provider):
 
@@ -41,7 +41,7 @@ from agent.secret_sources.command import (  # noqa: E402
     parse_secret_output,
     unquote_dotenv_value,
 )
-from hermes_cli import env_loader  # noqa: E402
+from openamer_cli import env_loader  # noqa: E402
 
 
 pytestmark = pytest.mark.skipif(
@@ -271,7 +271,7 @@ def test_apply_empty_command_sets_error(tmp_path):
 
 
 # ---------------------------------------------------------------------------
-# Dispatch E2E through env_loader against a real temp HERMES_HOME
+# Dispatch E2E through env_loader against a real temp OPENAMER_HOME
 # ---------------------------------------------------------------------------
 
 
@@ -284,7 +284,7 @@ def _clean_registry():
 
 
 def test_registry_command_source_applies_and_records_source(tmp_path, monkeypatch):
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     helper = _write_helper(
         tmp_path, "printf 'CMDTEST_API_KEY=sk-dispatch\\nCMDTEST_TOKEN=tok-dispatch\\n'"
     )
@@ -308,7 +308,7 @@ def test_registry_command_source_applies_and_records_source(tmp_path, monkeypatc
 
 
 def test_registry_status_line_printed_once_per_home(tmp_path, monkeypatch, capsys):
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     helper = _write_helper(tmp_path, "printf 'CMDTEST_API_KEY=sk-once\\n'")
     (tmp_path / "config.yaml").write_text(
         "secrets:\n  command:\n    enabled: true\n"
@@ -324,7 +324,7 @@ def test_registry_status_line_printed_once_per_home(tmp_path, monkeypatch, capsy
 
 
 def test_registry_disabled_command_source_is_noop(tmp_path, monkeypatch):
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     helper = _write_helper(tmp_path, "printf 'CMDTEST_API_KEY=sk-should-not-load\\n'")
     (tmp_path / "config.yaml").write_text(
         "secrets:\n  command:\n    enabled: false\n"
@@ -339,7 +339,7 @@ def test_registry_disabled_command_source_is_noop(tmp_path, monkeypatch):
 
 
 def test_registry_failing_helper_does_not_block_startup(tmp_path, monkeypatch):
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     (tmp_path / "config.yaml").write_text(
         "secrets:\n  command:\n    enabled: true\n    command: exit 9\n",
         encoding="utf-8",
@@ -368,7 +368,7 @@ def test_registry_command_composes_with_other_sources(tmp_path, monkeypatch):
             }
             return res
 
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     helper = _write_helper(tmp_path, "printf 'CMDTEST_API_KEY=sk-cmd\\n'")
     (tmp_path / "config.yaml").write_text(
         "secrets:\n"
@@ -393,7 +393,7 @@ def test_registry_command_composes_with_other_sources(tmp_path, monkeypatch):
 
 
 def test_registry_helper_error_prints_remediation(tmp_path, monkeypatch, capsys):
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     (tmp_path / "config.yaml").write_text(
         "secrets:\n  command:\n    enabled: true\n    command: ''\n",
         encoding="utf-8",

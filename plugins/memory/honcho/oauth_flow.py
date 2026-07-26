@@ -635,7 +635,7 @@ def start_loopback_flow_background(
     """
     global _flow_thread
     # Resolve under the caller's profile scope NOW — the worker thread outlives
-    # the request, where a context-local HERMES_HOME override can't reach.
+    # the request, where a context-local OPENAMER_HOME override can't reach.
     config_path = config_path or resolve_config_path()
     host = host or resolve_active_host()
     with _status_lock:

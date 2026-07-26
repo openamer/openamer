@@ -99,7 +99,7 @@ test('path helpers reject blank non-string NUL and Windows device syntax', async
 })
 
 test('resolveRequestedPathForIpc resolves relative paths from the trimmed base directory', () => {
-  const baseDir = path.join(os.tmpdir(), 'hermes-desktop-base')
+  const baseDir = path.join(os.tmpdir(), 'openamer-desktop-base')
 
   assert.equal(
     resolveRequestedPathForIpc('notes.txt', {
@@ -124,7 +124,7 @@ test('resolveRequestedPathForIpc expands ~ to the home directory', () => {
 })
 
 test('resolveReadableFileForIpc validates existence type size and sensitivity', async () => {
-  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'hermes-desktop-hardening-'))
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'openamer-desktop-hardening-'))
 
   try {
     const textPath = path.join(tempDir, 'notes.txt')
@@ -204,7 +204,7 @@ test('resolveReadableFileForIpc validates existence type size and sensitivity', 
 })
 
 test('resolveReadableFileForIpc blocks common sensitive files', async () => {
-  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'hermes-desktop-sensitive-'))
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'openamer-desktop-sensitive-'))
 
   try {
     const sshDir = path.join(tempDir, '.ssh')
@@ -233,7 +233,7 @@ test('resolveReadableFileForIpc blocks common sensitive files', async () => {
 })
 
 test('resolveReadableFileForIpc blocks symlinks whose realpath is sensitive', async () => {
-  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'hermes-desktop-realpath-'))
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'openamer-desktop-realpath-'))
 
   try {
     const envPath = path.join(tempDir, '.env')
@@ -258,7 +258,7 @@ test('resolveReadableFileForIpc blocks symlinks whose realpath is sensitive', as
 })
 
 test('resolveDirectoryForIpc accepts directories and rejects invalid directory targets', async () => {
-  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'hermes-desktop-dir-'))
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'openamer-desktop-dir-'))
 
   try {
     const directory = path.join(tempDir, 'project')
@@ -279,7 +279,7 @@ test('resolveDirectoryForIpc accepts directories and rejects invalid directory t
 })
 
 test('resolveDirectoryForIpc accepts directory symlinks or junctions', async () => {
-  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'hermes-desktop-dir-link-'))
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'openamer-desktop-dir-link-'))
 
   try {
     const directory = path.join(tempDir, 'actual-project')

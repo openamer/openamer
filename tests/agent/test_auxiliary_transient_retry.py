@@ -31,21 +31,21 @@ def test_transient_retry_count_default(monkeypatch):
 
     # No config value -> default.
     monkeypatch.setattr(ac, "load_config", lambda: {}, raising=False)
-    with patch("hermes_cli.config.load_config", return_value={}), \
-         patch("hermes_cli.config.cfg_get", return_value=None):
+    with patch("openamer_cli.config.load_config", return_value={}), \
+         patch("openamer_cli.config.cfg_get", return_value=None):
         assert ac._transient_retry_count() == ac._DEFAULT_TRANSIENT_RETRIES
 
 
 def test_transient_retry_count_configurable_and_clamped():
     from agent import auxiliary_client as ac
 
-    with patch("hermes_cli.config.cfg_get", return_value=4):
+    with patch("openamer_cli.config.cfg_get", return_value=4):
         assert ac._transient_retry_count() == 4
-    with patch("hermes_cli.config.cfg_get", return_value=100):
+    with patch("openamer_cli.config.cfg_get", return_value=100):
         assert ac._transient_retry_count() == 6  # clamped high
-    with patch("hermes_cli.config.cfg_get", return_value=-3):
+    with patch("openamer_cli.config.cfg_get", return_value=-3):
         assert ac._transient_retry_count() == 0  # clamped low
-    with patch("hermes_cli.config.cfg_get", side_effect=RuntimeError):
+    with patch("openamer_cli.config.cfg_get", side_effect=RuntimeError):
         assert ac._transient_retry_count() == ac._DEFAULT_TRANSIENT_RETRIES
 
 

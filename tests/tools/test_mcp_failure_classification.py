@@ -139,7 +139,7 @@ class TestClassifyMcpFailure:
 def test_keepalive_failure_logs_root_cause(monkeypatch, tmp_path, caplog):
     """A keepalive that dies with a TaskGroup-wrapped BrokenPipeError (empty
     str) must log 'BrokenPipeError', not 'unhandled errors in a TaskGroup'."""
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
 
     from tools import mcp_tool
 
@@ -174,7 +174,7 @@ def test_keepalive_failure_logs_root_cause(monkeypatch, tmp_path, caplog):
 def test_permanent_failure_parks_without_retry_ladder(monkeypatch, tmp_path, caplog):
     """A stdio command that doesn't exist (FileNotFoundError) must park after
     ONE attempt — not burn _MAX_INITIAL_CONNECT_RETRIES identical warnings."""
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
 
     from tools import mcp_tool
 

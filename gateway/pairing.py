@@ -33,7 +33,7 @@ from gateway.whatsapp_identity import (
     expand_whatsapp_aliases,
     normalize_whatsapp_identifier,
 )
-from hermes_constants import get_hermes_dir, get_hermes_home
+from openamer_constants import get_hermes_dir, get_hermes_home
 from utils import atomic_replace
 
 logger = logging.getLogger(__name__)
@@ -129,7 +129,7 @@ def _sync_allowlist_add(platform: str, user_id: str) -> None:
         return  # Already covered.
     ids.append(str(user_id))
     try:
-        from hermes_cli.config import save_env_value
+        from openamer_cli.config import save_env_value
 
         save_env_value(env_var, ",".join(ids))
     except Exception:
@@ -151,7 +151,7 @@ def _sync_allowlist_remove(platform: str, user_id: str) -> None:
     if len(remaining) == len(ids):
         return  # Not present.
     try:
-        from hermes_cli.config import save_env_value, remove_env_value
+        from openamer_cli.config import save_env_value, remove_env_value
 
         if remaining:
             save_env_value(env_var, ",".join(remaining))
@@ -174,8 +174,8 @@ def _load_json_file(path: Path) -> dict:
 def _merge_pairing_dir(active_dir: Path, alternate_dir: Path) -> None:
     """Merge split legacy/new pairing data into the active PairingStore dir.
 
-    Older installs use ``{HERMES_HOME}/pairing`` while newer code/docs may
-    write ``{HERMES_HOME}/platforms/pairing``. If both directories exist, the
+    Older installs use ``{OPENAMER_HOME}/pairing`` while newer code/docs may
+    write ``{OPENAMER_HOME}/platforms/pairing``. If both directories exist, the
     gateway must not silently ignore approved users sitting in the inactive
     location; otherwise already-paired Feishu users get asked for a fresh code.
     """
@@ -198,7 +198,7 @@ def _merge_pairing_dir(active_dir: Path, alternate_dir: Path) -> None:
 
 
 def _migrate_split_pairing_dirs() -> None:
-    home = get_hermes_home()
+    home = get_openamer_home()
     old_dir = home / "pairing"
     new_dir = home / "platforms" / "pairing"
     active = PAIRING_DIR
@@ -242,18 +242,18 @@ class PairingStore:
       - _rate_limits.json         : rate limit tracking
 
     When constructed with ``profile="<name>"``, storage lives under
-    ``<HERMES_HOME>/profiles/<name>/pairing/`` (per-profile, used by
+    ``<OPENAMER_HOME>/profiles/<name>/pairing/`` (per-profile, used by
     multiplexing gateways so each profile has its own whitelist).
-    Without a profile, storage is the global ``<HERMES_HOME>/pairing/``
+    Without a profile, storage is the global ``<OPENAMER_HOME>/pairing/``
     directory (backward-compat for the ``hermes pairing`` CLI).
     """
 
     def __init__(self, profile: Optional[str] = None):
-        # Resolve storage directory lazily — tests use a temp HERMES_HOME
+        # Resolve storage directory lazily — tests use a temp OPENAMER_HOME
         # and PairingStore may be constructed before the env is set.
         if profile:
-            from hermes_constants import get_hermes_home
-            self._dir = get_hermes_home() / "profiles" / profile / "pairing"
+            from openamer_constants import get_openamer_home
+            self._dir = get_openamer_home() / "profiles" / profile / "pairing"
         else:
             self._dir = PAIRING_DIR
         self._dir.mkdir(parents=True, exist_ok=True)

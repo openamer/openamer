@@ -19,7 +19,7 @@ const URL_RE =
 const EXPLICIT_URL_RE = /(?:https?:\/\/|www\.)[^\s<>"'`]+[^\s<>"'`.,;:!?)]/gi
 
 const DOMAIN_RE = /^(?:www\.)?[a-z0-9](?:[a-z0-9-]*\.)+[a-z]{2,}(?::\d+)?(?:[/?#][^\s]*)?$/i
-const SKIP_PROTO_RE = /^(?:file|data|mailto|javascript|blob|chrome|about|hermes):/i
+const SKIP_PROTO_RE = /^(?:file|data|mailto|javascript|blob|chrome|about|openamer):/i
 const LOCAL_HOST_RE = /^(?:localhost|127\.0\.0\.1|0\.0\.0\.0|\[::1\])(?::\d+)?$/i
 
 const ERROR_TITLE_RE =
@@ -139,7 +139,7 @@ export function fetchLinkTitle(url: string): Promise<string> {
     return pending
   }
 
-  const bridge = typeof window === 'undefined' ? undefined : window.hermesDesktop?.fetchLinkTitle
+  const bridge = typeof window === 'undefined' ? undefined : window.openamerDesktop?.fetchLinkTitle
 
   if (!bridge) {
     titleCache.set(key, '')
@@ -196,7 +196,7 @@ export function useLinkTitle(url?: null | string): string {
 
 export function openExternalLink(href: string): void {
   if (href) {
-    void window.hermesDesktop?.openExternal?.(href)
+    void window.openamerDesktop?.openExternal?.(href)
   }
 }
 

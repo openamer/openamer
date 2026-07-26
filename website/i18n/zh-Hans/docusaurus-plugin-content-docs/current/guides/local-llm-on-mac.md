@@ -15,7 +15,7 @@ description: "使用 llama.cpp 或 MLX 在 macOS 上搭建兼容 OpenAI 的本�
 | **llama.cpp** | `brew install llama.cpp` | 首 token 延迟最低，量化 KV 缓存节省内存 | GGUF |
 | **omlx** | [omlx.ai](https://omlx.ai) | token 生成速度最快，原生 Metal 优化 | MLX (safetensors) |
 
-两者均暴露兼容 OpenAI 的 `/v1/chat/completions` 端点。Hermes 支持任意一个——只需将其指向 `http://localhost:8080` 或 `http://localhost:8000`。
+两者均暴露兼容 OpenAI 的 `/v1/chat/completions` 端点。OpenAmer 支持任意一个——只需将其指向 `http://localhost:8080` 或 `http://localhost:8000`。
 
 :::info 仅限 Apple Silicon
 本指南面向搭载 Apple Silicon（M1 及更新）的 Mac。Intel Mac 可使用 llama.cpp，但无 GPU 加速——性能会明显更慢。
@@ -208,12 +208,12 @@ curl -s http://127.0.0.1:8000/v1/models | jq '.data[].id'
 
 ---
 
-## 连接 Hermes
+## 连接 OpenAmer
 
 本地服务器启动后：
 
 ```bash
-hermes model
+openamer model
 ```
 
 选择 **Custom endpoint**，按提示操作。系统会询问 base URL 和模型名称——使用你所配置的后端对应的值即可。
@@ -222,7 +222,7 @@ hermes model
 
 ## 超时设置
 
-Hermes 会自动检测本地端点（localhost、局域网 IP）并放宽其流式传输超时限制。大多数情况下无需额外配置。
+OpenAmer 会自动检测本地端点（localhost、局域网 IP）并放宽其流式传输超时限制。大多数情况下无需额外配置。
 
 如果仍然遇到超时错误（例如在慢速硬件上使用超大上下文），可以覆盖流式读取超时：
 

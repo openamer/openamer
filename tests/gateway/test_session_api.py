@@ -8,7 +8,7 @@ from aiohttp.test_utils import TestClient, TestServer
 
 from gateway.config import PlatformConfig
 from gateway.platforms.api_server import APIServerAdapter
-from hermes_state import SessionDB
+from openamer_state import SessionDB
 
 
 @pytest.fixture
@@ -648,7 +648,7 @@ def _patch_api_server_runtime(monkeypatch):
         staticmethod(lambda: None),
     )
     monkeypatch.setattr("gateway.run._current_max_iterations", lambda: 90)
-    monkeypatch.setattr("hermes_cli.tools_config._get_platform_tools", lambda *_: set())
+    monkeypatch.setattr("openamer_cli.tools_config._get_platform_tools", lambda *_: set())
     monkeypatch.setattr(
         "gateway.run._resolve_runtime_agent_kwargs_for_provider",
         lambda provider: {
@@ -1071,7 +1071,7 @@ def test_confirmed_runtime_lock_fails_closed_on_provider_resolution_error(adapte
     # gateway fallback) — a confirmed lock must propagate the failure
     # instead of constructing an agent on the previous global credentials.
     monkeypatch.setattr(
-        "hermes_cli.runtime_provider.resolve_runtime_provider",
+        "openamer_cli.runtime_provider.resolve_runtime_provider",
         lambda **_kwargs: (_ for _ in ()).throw(RuntimeError("provider unavailable")),
     )
     monkeypatch.setattr(

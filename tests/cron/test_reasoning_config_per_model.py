@@ -13,7 +13,7 @@ class TestCronPerModelReasoningConfig:
 
     def test_per_model_override_resolves_for_cron_model(self):
         """The spelling-tolerant helper resolves the cron config's model."""
-        from hermes_constants import resolve_per_model_reasoning_effort
+        from openamer_constants import resolve_per_model_reasoning_effort
 
         # Simulate cron scheduler config shape
         _cfg = {
@@ -35,7 +35,7 @@ class TestCronPerModelReasoningConfig:
 
     def test_cron_falls_back_to_global_when_no_override(self):
         """When no per-model override matches, global effort is used."""
-        from hermes_constants import parse_reasoning_effort, resolve_per_model_reasoning_effort
+        from openamer_constants import parse_reasoning_effort, resolve_per_model_reasoning_effort
 
         _cfg = {
             "model": {"default": "gpt-5"},
@@ -60,7 +60,7 @@ class TestCronPerModelReasoningConfig:
 
     def test_cron_handles_missing_model_key(self):
         """Works when config has no model.default."""
-        from hermes_constants import resolve_per_model_reasoning_effort
+        from openamer_constants import resolve_per_model_reasoning_effort
 
         _cfg = {
             "agent": {
@@ -83,7 +83,7 @@ class TestCronPerModelReasoningConfig:
         re-enabling thinking. The raw value must pass through so
         parse_reasoning_effort(False) returns {'enabled': False}.
         """
-        from hermes_constants import parse_reasoning_effort, resolve_per_model_reasoning_effort
+        from openamer_constants import parse_reasoning_effort, resolve_per_model_reasoning_effort
 
         _cfg = {
             "model": {"default": "gpt-5"},

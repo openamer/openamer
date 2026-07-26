@@ -3,7 +3,7 @@
 Regression coverage for #49561: in the Docker image the install tree
 (/opt/hermes/scripts/whatsapp-bridge) is read-only, so `npm install` fails
 with EACCES. The resolver must detect the read-only install dir and mirror the
-bridge source into a writable HERMES_HOME location instead.
+bridge source into a writable OPENAMER_HOME location instead.
 """
 import importlib
 from pathlib import Path
@@ -35,17 +35,17 @@ def test_writable_install_returns_install_dir(tmp_path, monkeypatch):
         str(install_root / "gateway" / "platforms" / "whatsapp_common.py"),
     )
     monkeypatch.setattr(
-        "hermes_constants.get_hermes_home", lambda: hermes_home
+        "openamer_constants.get_hermes_home", lambda: hermes_home
     )
 
     resolved = whatsapp_common.resolve_whatsapp_bridge_dir()
     assert resolved == install_bridge
-    # Nothing mirrored into HERMES_HOME.
+    # Nothing mirrored into OPENAMER_HOME.
     assert not (hermes_home / "scripts" / "whatsapp-bridge").exists()
 
 
 def test_readonly_install_mirrors_to_hermes_home(tmp_path, monkeypatch):
-    """A read-only install tree is mirrored into a writable HERMES_HOME."""
+    """A read-only install tree is mirrored into a writable OPENAMER_HOME."""
     install_root = tmp_path / "install"
     install_bridge = install_root / "scripts" / "whatsapp-bridge"
     _seed_install_tree(install_bridge)
@@ -58,7 +58,7 @@ def test_readonly_install_mirrors_to_hermes_home(tmp_path, monkeypatch):
         str(install_root / "gateway" / "platforms" / "whatsapp_common.py"),
     )
     monkeypatch.setattr(
-        "hermes_constants.get_hermes_home", lambda: hermes_home
+        "openamer_constants.get_hermes_home", lambda: hermes_home
     )
 
     # Simulate a read-only install tree. chmod(0o555) is unreliable under
@@ -83,7 +83,7 @@ def test_readonly_install_mirrors_to_hermes_home(tmp_path, monkeypatch):
 
 
 def test_readonly_install_reuses_existing_mirror(tmp_path, monkeypatch):
-    """If the HERMES_HOME mirror already exists, return it without re-copying."""
+    """If the OPENAMER_HOME mirror already exists, return it without re-copying."""
     install_root = tmp_path / "install"
     install_bridge = install_root / "scripts" / "whatsapp-bridge"
     _seed_install_tree(install_bridge)
@@ -101,7 +101,7 @@ def test_readonly_install_reuses_existing_mirror(tmp_path, monkeypatch):
         str(install_root / "gateway" / "platforms" / "whatsapp_common.py"),
     )
     monkeypatch.setattr(
-        "hermes_constants.get_hermes_home", lambda: hermes_home
+        "openamer_constants.get_hermes_home", lambda: hermes_home
     )
 
     _real_touch = Path.touch

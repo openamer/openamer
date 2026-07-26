@@ -14,7 +14,7 @@ import { atom } from 'nanostores'
 
 import { persistString, storedString } from '@/lib/storage'
 
-const KEY = 'hermes.desktop.translucency.v1'
+const KEY = 'openamer.desktop.translucency.v1'
 
 const clamp = (n: number): number => Math.min(100, Math.max(0, Math.round(n)))
 
@@ -33,6 +33,6 @@ export function setTranslucency(intensity: number): void {
 if (typeof window !== 'undefined') {
   $translucency.subscribe(intensity => {
     persistString(KEY, String(intensity))
-    window.hermesDesktop?.setTranslucency?.({ intensity })
+    window.openamerDesktop?.setTranslucency?.({ intensity })
   })
 }

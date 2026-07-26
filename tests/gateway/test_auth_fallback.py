@@ -10,7 +10,7 @@ class TestResolveRuntimeAgentKwargsAuthFallback:
 
     def test_auth_error_tries_fallback(self, tmp_path, monkeypatch):
         """When primary provider raises AuthError, fallback is attempted."""
-        from hermes_cli.auth import AuthError
+        from openamer_cli.auth import AuthError
 
         # Create a config with fallback
         config_path = tmp_path / "config.yaml"
@@ -43,7 +43,7 @@ class TestResolveRuntimeAgentKwargsAuthFallback:
             }
 
         with patch(
-            "hermes_cli.runtime_provider.resolve_runtime_provider",
+            "openamer_cli.runtime_provider.resolve_runtime_provider",
             side_effect=_mock_resolve,
         ):
             from gateway.run import _resolve_runtime_agent_kwargs
@@ -56,7 +56,7 @@ class TestResolveRuntimeAgentKwargsAuthFallback:
 
     def test_auth_error_no_fallback_raises(self, tmp_path, monkeypatch):
         """When primary fails and no fallback configured, RuntimeError is raised."""
-        from hermes_cli.auth import AuthError
+        from openamer_cli.auth import AuthError
 
         config_path = tmp_path / "config.yaml"
         config_path.write_text("model:\n  provider: openai-codex\n")
@@ -64,7 +64,7 @@ class TestResolveRuntimeAgentKwargsAuthFallback:
         monkeypatch.setattr("gateway.run._hermes_home", tmp_path)
 
         with patch(
-            "hermes_cli.runtime_provider.resolve_runtime_provider",
+            "openamer_cli.runtime_provider.resolve_runtime_provider",
             side_effect=AuthError("token expired"),
         ):
             from gateway.run import _resolve_runtime_agent_kwargs
@@ -103,7 +103,7 @@ class TestResolveRuntimeAgentKwargsAuthFallback:
             }
 
         with patch(
-            "hermes_cli.runtime_provider.resolve_runtime_provider",
+            "openamer_cli.runtime_provider.resolve_runtime_provider",
             side_effect=_mock_resolve,
         ):
             from gateway.run import _try_resolve_fallback_provider

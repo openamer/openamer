@@ -4,7 +4,7 @@ import json
 import logging
 import urllib.request
 
-from hermes_cli.urllib_security import open_credentialed_url
+from openamer_cli.urllib_security import open_credentialed_url
 from providers import register_provider
 from providers.base import ProviderProfile
 

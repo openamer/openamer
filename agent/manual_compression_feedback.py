@@ -14,7 +14,7 @@ def describe_compression_lock_skip(lock_signal: Any) -> str:
     ``holder`` carried by the TUI's ``CompressionLockHeld``): a descriptive
     holder string when another compressor CONFIRMED holds the lock, or
     ``True``/``None`` when acquisition failed without a confirmed holder
-    (``hermes_state.try_acquire_compression_lock`` catches ``sqlite3.Error``
+    (``openamer_state.try_acquire_compression_lock`` catches ``sqlite3.Error``
     internally and returns ``False``, so a failed acquire is NOT proof that
     another compression is running). The two cases must be worded
     differently: claiming "already in progress" on an unconfirmed failure

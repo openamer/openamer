@@ -1,5 +1,5 @@
-import type { HermesGitWorktree } from '@/global'
-import type { ProjectInfo, SessionInfo } from '@/hermes'
+import type { OpenAmerGitWorktree } from '@/global'
+import type { ProjectInfo, SessionInfo } from '@/openamer'
 import { normalize } from '@/lib/text'
 
 // Session grouping is now computed authoritatively on the backend
@@ -155,7 +155,7 @@ export function sortWorktreeGroups(groups: SidebarSessionGroup[]): SidebarSessio
 
 /**
  * VISUAL enhancer only: inject empty lanes from a live `git worktree list` so a
- * repo shows its branches/worktrees even when they have no Hermes sessions yet.
+ * repo shows its branches/worktrees even when they have no OpenAmer sessions yet.
  * The repo's real session lanes already come fully built from the backend
  * (`projects.project_sessions`); this never adds or moves session rows, and it
  * degrades to a no-op on remote backends (where the Electron probe returns
@@ -163,7 +163,7 @@ export function sortWorktreeGroups(groups: SidebarSessionGroup[]): SidebarSessio
  */
 export function mergeRepoWorktreeGroups(
   repo: Pick<SidebarWorkspaceTree, 'groups' | 'id' | 'path'>,
-  discoveredWorktrees?: HermesGitWorktree[]
+  discoveredWorktrees?: OpenAmerGitWorktree[]
 ): SidebarSessionGroup[] {
   // Branch-primary labels: a linked worktree's identity in every git UI (VS
   // Code, JetBrains, lazygit, …) is its CHECKED-OUT BRANCH, not the directory it

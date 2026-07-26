@@ -1,7 +1,7 @@
 ---
 sidebar_position: 2
 title: "添加工具"
-description: "如何向 Hermes Agent 添加新工具——schema、handler、注册与 toolset"
+description: "如何向 OpenAmer Agent 添加新工具——schema、handler、注册与 toolset"
 ---
 
 # 添加工具
@@ -9,11 +9,11 @@ description: "如何向 Hermes Agent 添加新工具——schema、handler、注
 在编写工具之前，先问自己：**这是否应该是一个 [skill](creating-skills.md)？**
 
 :::warning 仅限内置核心工具
-本页面用于向仓库本身添加 **Hermes 内置工具**。
-如果你想要个人专用、项目本地或其他自定义工具，而不修改 Hermes 核心，请使用插件方式：
+本页面用于向仓库本身添加 **OpenAmer 内置工具**。
+如果你想要个人专用、项目本地或其他自定义工具，而不修改 OpenAmer 核心，请使用插件方式：
 
 - [插件](/user-guide/features/plugins)
-- [构建 Hermes 插件](/developer-guide/plugins)
+- [构建 OpenAmer 插件](/developer-guide/plugins)
 
 大多数自定义工具创建场景默认使用插件。只有当你明确希望在 `tools/` 和 `toolsets.py` 中发布新的内置工具时，才遵循本页面。
 :::
@@ -183,7 +183,7 @@ registry.register(
 
 ## 可选：Setup Wizard 集成
 
-如果你的工具需要 API 密钥，将其添加到 `hermes_cli/config.py`：
+如果你的工具需要 API 密钥，将其添加到 `openamer_cli/config.py`：
 
 ```python
 OPTIONAL_ENV_VARS = {
@@ -204,6 +204,6 @@ OPTIONAL_ENV_VARS = {
 - [ ] 已在 `toolsets.py` 中添加到适当的 toolset
 - [ ] 已确认该工具确实应为内置/核心工具而非插件
 - [ ] Handler 返回 JSON 字符串，错误以 `{"error": "..."}` 形式返回
-- [ ] 可选：已将 API 密钥添加到 `hermes_cli/config.py` 的 `OPTIONAL_ENV_VARS`
+- [ ] 可选：已将 API 密钥添加到 `openamer_cli/config.py` 的 `OPTIONAL_ENV_VARS`
 - [ ] 可选：已添加到 `toolset_distributions.py` 以支持批量处理
-- [ ] 已通过 `hermes chat -q "Use the weather tool for London"` 测试
+- [ ] 已通过 `openamer chat -q "Use the weather tool for London"` 测试

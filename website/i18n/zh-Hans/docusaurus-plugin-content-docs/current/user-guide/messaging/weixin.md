@@ -1,40 +1,40 @@
 ---
 sidebar_position: 15
 title: "微信（Weixin）"
-description: "通过 iLink Bot API 将 Hermes Agent 连接到个人微信账号"
+description: "通过 iLink Bot API 将 OpenAmer Agent 连接到个人微信账号"
 ---
 
 # 微信（Weixin / WeChat）
 
-将 Hermes 连接到 [微信](https://weixin.qq.com/)（WeChat），腾讯的个人即时通讯平台。该适配器使用腾讯的 **iLink Bot API** 对接个人微信账号——与企业微信（WeCom）不同。消息通过长轮询（long-polling）方式传递，无需公网端点或 webhook。
+将 OpenAmer 连接到 [微信](https://weixin.qq.com/)（WeChat），腾讯的个人即时通讯平台。该适配器使用腾讯的 **iLink Bot API** 对接个人微信账号——与企业微信（WeCom）不同。消息通过长轮询（long-polling）方式传递，无需公网端点或 webhook。
 
 :::info
 本适配器适用于**个人微信账号**（微信）。如需对接企业微信，请参阅 [WeCom 适配器](./wecom.md)。
 :::
 
 :::warning iLink bot 身份——普通微信群可能无法使用
-扫码登录后，Hermes 连接的是一个 **iLink bot 身份**（例如 `a5ace6fd482e@im.bot`），**而非**可完全脚本化的普通个人微信账号。具体影响如下：
+扫码登录后，OpenAmer 连接的是一个 **iLink bot 身份**（例如 `a5ace6fd482e@im.bot`），**而非**可完全脚本化的普通个人微信账号。具体影响如下：
 
 - iLink bot 身份通常**无法像普通联系人一样被邀请进入普通微信群**。
 - 对于大多数 bot 类型账号，iLink 通常**不会将普通微信群事件**（包括对扫码登录所用个人账号的 `@` 提及）推送到网关。
 - `@` 提及用于扫码的个人微信账号，**不等同于** `@` 提及 iLink bot——两者是独立身份。
-- 下方的 `WEIXIN_GROUP_POLICY` / `WEIXIN_GROUP_ALLOWED_USERS` 设置仅在 iLink 实际为你的账号类型返回群事件时才生效。若 iLink 不返回群事件，无论策略如何配置，群消息都不会到达 Hermes。
+- 下方的 `WEIXIN_GROUP_POLICY` / `WEIXIN_GROUP_ALLOWED_USERS` 设置仅在 iLink 实际为你的账号类型返回群事件时才生效。若 iLink 不返回群事件，无论策略如何配置，群消息都不会到达 OpenAmer。
 
-实际部署中，大多数情况下只有发送给 iLink bot 的私信（DM）能可靠工作。若配置完成后群消息仍无法送达，限制来自 iLink 侧，而非 Hermes。只要 `WEIXIN_GROUP_POLICY` 设置为 `disabled` 以外的值，网关在启动时会记录一条 `WARNING`。
+实际部署中，大多数情况下只有发送给 iLink bot 的私信（DM）能可靠工作。若配置完成后群消息仍无法送达，限制来自 iLink 侧，而非 OpenAmer。只要 `WEIXIN_GROUP_POLICY` 设置为 `disabled` 以外的值，网关在启动时会记录一条 `WARNING`。
 :::
 
 ## 前置条件
 
 - 一个个人微信账号
 - Python 包：`aiohttp` 和 `cryptography`
-- 使用 `messaging` 扩展安装 Hermes 时已内置终端二维码渲染功能
+- 使用 `messaging` 扩展安装 OpenAmer 时已内置终端二维码渲染功能
 
 安装所需依赖：
 
 ```bash
 pip install aiohttp cryptography
 # 可选：用于终端二维码显示
-cd ~/.hermes/hermes-agent && uv pip install -e ".[messaging]"
+cd ~/.openamer/openamer-agent && uv pip install -e ".[messaging]"
 ```
 
 ## 配置步骤
@@ -44,7 +44,7 @@ cd ~/.hermes/hermes-agent && uv pip install -e ".[messaging]"
 连接微信账号最简便的方式是通过交互式配置向导：
 
 ```bash
-hermes gateway setup
+openamer gateway setup
 ```
 
 在提示中选择 **Weixin**。向导将执行以下步骤：
@@ -53,7 +53,7 @@ hermes gateway setup
 2. 在终端中显示二维码（或提供 URL）
 3. 等待你用微信手机端扫描二维码
 4. 提示你在手机上确认登录
-5. 自动将账号凭据保存至 `~/.hermes/weixin/accounts/`
+5. 自动将账号凭据保存至 `~/.openamer/weixin/accounts/`
 
 确认后，你将看到如下消息：
 
@@ -65,7 +65,7 @@ hermes gateway setup
 
 ### 2. 配置环境变量
 
-完成首次扫码登录后，在 `~/.hermes/.env` 中至少设置账号 ID：
+完成首次扫码登录后，在 `~/.openamer/.env` 中至少设置账号 ID：
 
 ```bash
 WEIXIN_ACCOUNT_ID=your-account-id
@@ -88,7 +88,7 @@ WEIXIN_HOME_CHANNEL_NAME=Home
 ### 3. 启动网关
 
 ```bash
-hermes gateway
+openamer gateway
 ```
 
 适配器将恢复已保存的凭据，连接到 iLink API，并开始长轮询消息。
@@ -96,7 +96,7 @@ hermes gateway
 ## 功能特性
 
 - **长轮询传输** — 无需公网端点、webhook 或 WebSocket
-- **扫码登录** — 通过 `hermes gateway setup` 扫码连接
+- **扫码登录** — 通过 `openamer gateway setup` 扫码连接
 - **私信（DM）消息** — 可配置访问策略；群消息功能取决于 iLink 是否实际为所连接身份推送群事件（iLink bot 账号通常不推送，详见上方警告）
 - **媒体支持** — 图片、视频、文件和语音消息
 - **AES-128-ECB 加密 CDN** — 所有媒体传输自动加解密
@@ -210,7 +210,7 @@ WEIXIN_GROUP_ALLOWED_USERS=group_id_1,group_id_2
 
 iLink Bot API 要求在每条出站消息中回传 `context_token`（针对特定对话方）。适配器维护一个基于磁盘的上下文 token 存储：
 
-- Token 按账号+对话方保存至 `~/.hermes/weixin/accounts/<account_id>.context-tokens.json`
+- Token 按账号+对话方保存至 `~/.openamer/weixin/accounts/<account_id>.context-tokens.json`
 - 启动时恢复之前保存的 token
 - 每条入站消息都会更新该发送方的已存储 token
 - 出站消息自动包含最新的上下文 token
@@ -297,16 +297,16 @@ iLink Bot API 要求在每条出站消息中回传 `context_token`（针对特�
 | 问题 | 解决方法 |
 |---------|-----|
 | `Weixin startup failed: aiohttp and cryptography are required` | 安装两者：`pip install aiohttp cryptography` |
-| `Weixin startup failed: WEIXIN_TOKEN is required` | 运行 `hermes gateway setup` 完成扫码登录，或手动设置 `WEIXIN_TOKEN` |
-| `Weixin startup failed: WEIXIN_ACCOUNT_ID is required` | 在 `.env` 中设置 `WEIXIN_ACCOUNT_ID`，或运行 `hermes gateway setup` |
-| `Another local Hermes gateway is already using this Weixin token` | 先停止另一个网关实例——每个 token 只允许一个轮询器 |
-| 会话过期（`errcode=-14`） | 登录会话已过期。重新运行 `hermes gateway setup` 扫描新二维码 |
+| `Weixin startup failed: WEIXIN_TOKEN is required` | 运行 `openamer gateway setup` 完成扫码登录，或手动设置 `WEIXIN_TOKEN` |
+| `Weixin startup failed: WEIXIN_ACCOUNT_ID is required` | 在 `.env` 中设置 `WEIXIN_ACCOUNT_ID`，或运行 `openamer gateway setup` |
+| `Another local OpenAmer gateway is already using this Weixin token` | 先停止另一个网关实例——每个 token 只允许一个轮询器 |
+| 会话过期（`errcode=-14`） | 登录会话已过期。重新运行 `openamer gateway setup` 扫描新二维码 |
 | 配置过程中二维码过期 | 二维码最多自动刷新 3 次。若持续过期，请检查网络连接 |
 | Bot 不响应私信 | 检查 `WEIXIN_DM_POLICY`——若设置为 `allowlist`，发送方必须在 `WEIXIN_ALLOWED_USERS` 中 |
-| Bot 忽略群消息 | 群组策略默认为 `disabled`。设置 `WEIXIN_GROUP_POLICY=open` 或 `allowlist`——但请注意，扫码登录的 iLink bot 身份（`...@im.bot`）通常根本无法接收普通微信群消息。若网关日志中没有群消息的原始入站事件，限制来自 iLink 侧，而非 Hermes。 |
+| Bot 忽略群消息 | 群组策略默认为 `disabled`。设置 `WEIXIN_GROUP_POLICY=open` 或 `allowlist`——但请注意，扫码登录的 iLink bot 身份（`...@im.bot`）通常根本无法接收普通微信群消息。若网关日志中没有群消息的原始入站事件，限制来自 iLink 侧，而非 OpenAmer。 |
 | 媒体下载/上传失败 | 确保已安装 `cryptography`。检查对 `novac2c.cdn.weixin.qq.com` 的网络访问 |
 | `Blocked unsafe URL (SSRF protection)` | 出站媒体 URL 指向私有/内部地址，仅允许公网 URL |
 | 语音消息显示为文本 | 若微信提供了转录文本，适配器会使用文本内容，这是预期行为 |
 | 消息出现重复 | 适配器通过消息 ID 去重。若仍出现重复，检查是否有多个网关实例在运行 |
 | `iLink POST ... HTTP 4xx/5xx` | iLink 服务返回 API 错误。检查 token 有效性和网络连通性 |
-| 终端二维码无法渲染 | 使用 messaging 扩展重新安装：`cd ~/.hermes/hermes-agent && uv pip install -e ".[messaging]"`。或者，打开二维码上方打印的 URL |
+| 终端二维码无法渲染 | 使用 messaging 扩展重新安装：`cd ~/.openamer/openamer-agent && uv pip install -e ".[messaging]"`。或者，打开二维码上方打印的 URL |

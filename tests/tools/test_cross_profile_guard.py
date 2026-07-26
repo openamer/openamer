@@ -20,7 +20,7 @@ import pytest
 
 @pytest.fixture
 def fake_hermes(tmp_path, monkeypatch):
-    """Build a two-profile Hermes layout and point HERMES_HOME at
+    """Build a two-profile Hermes layout and point OPENAMER_HOME at
     the hermes-security profile (matching the original-incident shape).
     """
     root = tmp_path / "fake-hermes"
@@ -35,10 +35,10 @@ def fake_hermes(tmp_path, monkeypatch):
     coder_home = root / "profiles" / "coder"
     (coder_home / "skills").mkdir(parents=True)
 
-    monkeypatch.setenv("HERMES_HOME", str(sec_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(sec_home))
 
-    import hermes_constants
-    monkeypatch.setattr(hermes_constants, "get_default_hermes_root", lambda: root)
+    import openamer_constants
+    monkeypatch.setattr(openamer_constants, "get_default_hermes_root", lambda: root)
 
     import agent.file_safety as fs
     monkeypatch.setattr(fs, "_hermes_home_path", lambda: sec_home)
@@ -179,7 +179,7 @@ class TestSkillManageCrossProfileErrorUX:
         profile, but 'foo' lives in default. Error must point at default."""
         self._make_skill_in_profile(fake_hermes["root"], "default-only-skill")
 
-        # Re-import the module so SKILLS_DIR picks up HERMES_HOME (set in
+        # Re-import the module so SKILLS_DIR picks up OPENAMER_HOME (set in
         # the fixture). Skill_manager_tool computes SKILLS_DIR at import.
         import importlib
         import tools.skill_manager_tool
@@ -230,7 +230,7 @@ class TestSystemPromptActiveProfile:
     def test_default_profile_line_in_prompt(self, tmp_path, monkeypatch):
         """When active profile is 'default', the prompt names it and warns
         about ~/.hermes/profiles/<name>/."""
-        # Don't set HERMES_HOME — falls back to default.
+        # Don't set OPENAMER_HOME — falls back to default.
         import agent.file_safety as fs
         monkeypatch.setattr(fs, "_hermes_home_path", lambda: tmp_path / "fake")
         monkeypatch.setattr(fs, "_hermes_root_path", lambda: tmp_path / "fake")

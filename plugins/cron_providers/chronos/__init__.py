@@ -38,7 +38,7 @@ logger = logging.getLogger("cron.chronos")
 def _cfg(*keys: str, default: Any = "") -> Any:
     """Read a cron.chronos.* config value (no network)."""
     try:
-        from hermes_cli.config import cfg_get, load_config
+        from openamer_cli.config import cfg_get, load_config
         return cfg_get(load_config(), *keys, default=default)
     except Exception:
         return default
@@ -81,7 +81,7 @@ class ChronosCronScheduler(CronScheduler):
         refresh-aware token is resolved lazily at provision time.
         """
         try:
-            from hermes_cli.auth import get_provider_auth_state
+            from openamer_cli.auth import get_provider_auth_state
             state = get_provider_auth_state("nous") or {}
             return bool(state.get("access_token"))
         except Exception:

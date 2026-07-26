@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 
 import { StableText } from '@/components/chat/stable-text'
 import { compactNumber } from '@/lib/format'
-import type { UsageStats } from '@/types/hermes'
+import type { UsageStats } from '@/types/openamer'
 
 export function formatDuration(elapsedMs: number): string {
   const totalSeconds = Math.max(0, Math.floor(elapsedMs / 1000))

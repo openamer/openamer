@@ -2,8 +2,8 @@ import { atom } from 'nanostores'
 
 import { persistBoolean, persistString, storedBoolean, storedString } from '@/lib/storage'
 
-const POPOUT_ENABLED_STORAGE_KEY = 'hermes.desktop.composerPopout.enabled'
-const POPOUT_POSITION_STORAGE_KEY = 'hermes.desktop.composerPopout.position'
+const POPOUT_ENABLED_STORAGE_KEY = 'openamer.desktop.composerPopout.enabled'
+const POPOUT_POSITION_STORAGE_KEY = 'openamer.desktop.composerPopout.position'
 
 /** Where the floating composer's bottom-right corner sits, measured as an inset
  *  from the viewport's bottom/right edges. Anchoring to the bottom-right keeps

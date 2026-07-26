@@ -107,7 +107,7 @@ const ApprovalBar: FC<{ request: ApprovalRequest; surface: 'floating' | 'inline'
   const copy = t.assistant.approval
   const gateway = useStore($gateway)
   const [submitting, setSubmitting] = useState<ApprovalChoice | null>(null)
-  // "Always allow" persists the pattern to ~/.hermes/config.yaml permanently, so
+  // "Always allow" persists the pattern to ~/.openamer/config.yaml permanently, so
   // it goes through a confirm step rather than firing straight from the menu.
   const [confirmAlways, setConfirmAlways] = useState(false)
   // The pending tool row only shows a single truncated line of the command, and

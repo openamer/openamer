@@ -187,15 +187,15 @@ describe('renderRpcResult', () => {
 
   describe('session.save', () => {
     it('echoes the saved file path', () => {
-      expect(renderRpcResult({ file: '/home/user/.hermes/sessions/saved/x.json' }, 'save')).toBe(
-        'Saved transcript to /home/user/.hermes/sessions/saved/x.json'
+      expect(renderRpcResult({ file: '/home/user/.openamer/sessions/saved/x.json' }, 'save')).toBe(
+        'Saved transcript to /home/user/.openamer/sessions/saved/x.json'
       )
     })
   })
 
   describe('session.status', () => {
     it('passes through the multi-line plain-text output verbatim', () => {
-      const output = 'Hermes TUI Status\n\nSession ID: s-1\nModel: nous-hermes-3 (unknown)'
+      const output = 'OpenAmer TUI Status\n\nSession ID: s-1\nModel: nous-openamer-3 (unknown)'
       expect(renderRpcResult({ output }, 'status')).toBe(output)
     })
   })

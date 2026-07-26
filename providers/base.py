@@ -29,7 +29,7 @@ def _profile_user_agent() -> str:
     (OpenCode Zen, etc.) sit behind a WAF that returns 403 for that.
     """
     try:
-        from hermes_cli import __version__ as _ver  # lazy: avoid layer cycle at import time
+        from openamer_cli import __version__ as _ver  # lazy: avoid layer cycle at import time
         return f"hermes-cli/{_ver}"
     except Exception:
         return "hermes-cli"
@@ -209,7 +209,7 @@ class ProviderProfile:
         import json
         import urllib.request
 
-        from hermes_cli.urllib_security import open_credentialed_url
+        from openamer_cli.urllib_security import open_credentialed_url
 
         req = urllib.request.Request(url)
         if api_key:

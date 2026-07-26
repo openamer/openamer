@@ -6,7 +6,7 @@ description: "大规模生成 agent 轨迹——并行处理、断点续跑与�
 
 # 批量处理
 
-批量处理让你能够并行地在数百乃至数千个 prompt（提示词）上运行 Hermes agent，生成结构化的轨迹数据。其主要用途是**训练数据生成**——产出包含工具使用统计信息的 ShareGPT 格式轨迹，可用于微调或评估。
+批量处理让你能够并行地在数百乃至数千个 prompt（提示词）上运行 OpenAmer agent，生成结构化的轨迹数据。其主要用途是**训练数据生成**——产出包含工具使用统计信息的 ShareGPT 格式轨迹，可用于微调或评估。
 
 ## 概述
 
@@ -35,7 +35,7 @@ python batch_runner.py --list_distributions
 ```
 
 :::tip 大规模运行下的可预测成本
-批量运行会启动大量并发 agent 会话，每个会话都会调用模型和工具。[Nous Portal](/user-guide/features/tool-gateway) 订阅将模型访问、网页搜索、图像生成、TTS 以及云端浏览器统一计费——当你希望在不同供应商账户间稳定控制每条轨迹成本、避免触碰速率限制时非常实用。使用 `hermes setup --portal` 完成配置，然后将 `--model` 指向 Nous 模型。
+批量运行会启动大量并发 agent 会话，每个会话都会调用模型和工具。[Nous Portal](/user-guide/features/tool-gateway) 订阅将模型访问、网页搜索、图像生成、TTS 以及云端浏览器统一计费——当你希望在不同供应商账户间稳定控制每条轨迹成本、避免触碰速率限制时非常实用。使用 `openamer setup --portal` 完成配置，然后将 `--model` 指向 Nous 模型。
 :::
 
 ## 数据集格式

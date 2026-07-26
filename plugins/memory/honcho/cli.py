@@ -10,9 +10,9 @@ import os
 import sys
 from pathlib import Path
 
-from hermes_constants import get_hermes_home
+from openamer_constants import get_openamer_home
 from plugins.memory.honcho.client import _host_block, profile_host_key, resolve_active_host, resolve_config_path, HOST
-from hermes_cli.config import cfg_get
+from openamer_cli.config import cfg_get
 
 
 def clone_honcho_for_profile(profile_name: str) -> bool:
@@ -165,7 +165,7 @@ def cmd_sync(args) -> None:
     have one yet. Inherits settings from the default host block.
     """
     try:
-        from hermes_cli.profiles import list_profiles
+        from openamer_cli.profiles import list_profiles
         profiles = list_profiles()
     except Exception as e:
         print(f"  Could not list profiles: {e}\n")
@@ -210,7 +210,7 @@ def sync_honcho_profiles_quiet() -> int:
     Called from `hermes update` -- no output, no exceptions.
     """
     try:
-        from hermes_cli.profiles import list_profiles
+        from openamer_cli.profiles import list_profiles
         profiles = list_profiles()
     except Exception:
         return 0
@@ -253,11 +253,11 @@ def _config_path() -> Path:
 def _local_config_path() -> Path:
     """Return the instance-local Honcho config path for writing.
 
-    Always returns $HERMES_HOME/honcho.json so each profile/instance gets
+    Always returns $OPENAMER_HOME/honcho.json so each profile/instance gets
     its own config file.  The global ~/.honcho/config.json is only used as
     a read fallback (via resolve_config_path) for cross-app interop.
     """
-    return get_hermes_home() / "honcho.json"
+    return get_openamer_home() / "honcho.json"
 
 
 def _read_config() -> dict:
@@ -397,7 +397,7 @@ def _gateway_platforms() -> list[str] | None:
     Identity mapping only affects gateway runtime users, so setup gates the
     whole step on this.  Best-effort and dependency-free: the memory plugin
     must not hard-depend on the gateway package, so the import is lazy and
-    guarded (matching the idiom hermes_cli already uses for gateway refs).
+    guarded (matching the idiom openamer_cli already uses for gateway refs).
     """
     try:
         from gateway.config import load_gateway_config
@@ -491,7 +491,7 @@ def _prompt(label: str, default: str | None = None, secret: bool = False) -> str
     sys.stdout.flush()
     if secret:
         if sys.stdin.isatty():
-            from hermes_cli.secret_prompt import masked_secret_prompt
+            from openamer_cli.secret_prompt import masked_secret_prompt
             val = masked_secret_prompt("")
         else:
             # Non-TTY (piped input, test runners) — read plaintext
@@ -516,7 +516,7 @@ def _ensure_sdk_installed() -> bool:
         return False
 
     print("  Installing honcho-ai...", flush=True)
-    from hermes_cli.tools_config import _pip_install
+    from openamer_cli.tools_config import _pip_install
 
     result = _pip_install(["honcho-ai==2.2.0"])
     if result.returncode == 0:
@@ -999,7 +999,7 @@ def cmd_setup(args) -> None:
 
     # --- Auto-enable Honcho as memory provider in config.yaml ---
     try:
-        from hermes_cli.config import load_config, save_config
+        from openamer_cli.config import load_config, save_config
         hermes_config = load_config()
         hermes_config.setdefault("memory", {})["provider"] = "honcho"
         save_config(hermes_config)
@@ -1054,9 +1054,9 @@ def _device_login_available() -> bool:
 
 
 def _headless() -> tuple[bool, bool]:
-    """(is_remote, can_open_browser) — degrades safely if hermes_cli internals move."""
+    """(is_remote, can_open_browser) — degrades safely if openamer_cli internals move."""
     try:
-        from hermes_cli.auth import _can_open_graphical_browser, _is_remote_session
+        from openamer_cli.auth import _can_open_graphical_browser, _is_remote_session
 
         return _is_remote_session(), _can_open_graphical_browser()
     except Exception:
@@ -1077,7 +1077,7 @@ def _active_profile_name() -> str:
     if _profile_override:
         return _profile_override
     try:
-        from hermes_cli.profiles import get_active_profile_name
+        from openamer_cli.profiles import get_active_profile_name
         return get_active_profile_name()
     except Exception:
         return "default"
@@ -1089,7 +1089,7 @@ def _all_profile_host_configs() -> list[tuple[str, str, dict]]:
     Reads honcho.json once and maps each profile to its host block.
     """
     try:
-        from hermes_cli.profiles import list_profiles
+        from openamer_cli.profiles import list_profiles
         profiles = list_profiles()
     except Exception:
         return [(_active_profile_name(), _host_key(), {})]
@@ -1826,7 +1826,7 @@ def honcho_command(args) -> None:
         # Redirect to memory setup — honcho setup goes through the unified path
         print("\n  Honcho is configured via the memory provider system.")
         print("  Running 'hermes memory setup'...\n")
-        from hermes_cli.memory_setup import cmd_setup_provider
+        from openamer_cli.memory_setup import cmd_setup_provider
         cmd_setup_provider("honcho")
         return
     elif sub is None:

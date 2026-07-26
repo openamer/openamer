@@ -3,7 +3,7 @@
 History:
 - The original implementation hardcoded an allow-list of known gateway
   sources (``tui, cli, telegram, discord, slack, ...``). New or unlisted
-  sources (``acp``, ``webhook``, user-defined ``HERMES_SESSION_SOURCE``
+  sources (``acp``, ``webhook``, user-defined ``OPENAMER_SESSION_SOURCE``
   values, newly-added platforms) were silently dropped from the resume
   picker — users reported "lots of sessions are missing from browse
   but exist in .hermes/sessions."
@@ -63,7 +63,7 @@ def test_session_list_surfaces_all_user_facing_sources(monkeypatch):
     assert "cli-1" in ids
     assert "acp-1" in ids, "acp sessions were being hidden by the old allow-list"
     assert "webhook-1" in ids, "webhook sessions were being hidden by the old allow-list"
-    assert "custom-1" in ids, "custom HERMES_SESSION_SOURCE values were being hidden"
+    assert "custom-1" in ids, "custom OPENAMER_SESSION_SOURCE values were being hidden"
 
     # Only internal sub-agent runs stay hidden.
     assert "tool-1" not in ids

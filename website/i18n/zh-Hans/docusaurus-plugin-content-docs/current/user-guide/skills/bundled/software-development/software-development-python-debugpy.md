@@ -17,7 +17,7 @@ description: "调试 Python：pdb REPL + debugpy 远程（DAP）"
 | 来源 | 内置（默认安装） |
 | 路径 | `skills/software-development/python-debugpy` |
 | 版本 | `1.0.0` |
-| 作者 | Hermes Agent |
+| 作者 | OpenAmer Agent |
 | 许可证 | MIT |
 | 平台 | linux, macos |
 | 标签 | `debugging`, `python`, `pdb`, `debugpy`, `breakpoints`, `dap`, `post-mortem` |
@@ -26,7 +26,7 @@ description: "调试 Python：pdb REPL + debugpy 远程（DAP）"
 ## 参考：完整 SKILL.md
 
 :::info
-以下是 Hermes 在触发此 skill 时加载的完整 skill 定义。这是 agent 在 skill 激活时所看到的指令内容。
+以下是 OpenAmer 在触发此 skill 时加载的完整 skill 定义。这是 agent 在 skill 激活时所看到的指令内容。
 :::
 
 # Python 调试器（pdb + debugpy）
@@ -47,7 +47,7 @@ description: "调试 Python：pdb REPL + debugpy 远程（DAP）"
 
 - 测试失败，但 traceback 无法说明某个值为何出错
 - 需要逐步执行某个函数并观察集合的变化
-- 长期运行的进程（hermes gateway、tui_gateway）出现异常且无法重启
+- 长期运行的进程（openamer gateway、tui_gateway）出现异常且无法重启
 - 事后分析（post-mortem）：异常在类生产代码中触发，需要检查崩溃现场的局部变量
 - 子进程 / 子进程（Python `_SlashWorker`、PTY bridge worker）才是实际的 bug 所在
 
@@ -112,7 +112,7 @@ python -m pdb path/to/script.py arg1 arg2
 
 ## 方案 3：调试 pytest 测试
 
-hermes 测试运行器和 pytest 均支持以下方式：
+openamer 测试运行器和 pytest 均支持以下方式：
 
 ```bash
 # 在失败时（或任何异常抛出时）进入 pdb：
@@ -164,12 +164,12 @@ sys.excepthook = excepthook
 
 ## 方案 5：使用 debugpy 进行远程调试（附加到运行中的进程）
 
-适用于长期运行的进程：Hermes gateway、tui_gateway、daemon，或已出现异常且无法干净重启的进程。
+适用于长期运行的进程：OpenAmer gateway、tui_gateway、daemon，或已出现异常且无法干净重启的进程。
 
 ### 安装
 
 ```bash
-source /home/bb/hermes-agent/.venv/bin/activate
+source /home/bb/openamer-agent/.venv/bin/activate
 pip install debugpy
 ```
 
@@ -215,7 +215,7 @@ echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope
 
 ### 从终端连接客户端
 
-最简便的终端侧 DAP 客户端是 VS Code CLI 或一个小脚本。在 Hermes 内部有两个实用选项：
+最简便的终端侧 DAP 客户端是 VS Code CLI 或一个小脚本。在 OpenAmer 内部有两个实用选项：
 
 **选项 1：`debugpy` 自带 CLI REPL** — 并非官方功能，而是一个小型 DAP 客户端脚本：
 
@@ -260,13 +260,13 @@ send({"type": "request", "command": "configurationDone"})
 
 ```json
 {
-  "name": "Attach to Hermes",
+  "name": "Attach to OpenAmer",
   "type": "debugpy",
   "request": "attach",
   "connect": { "host": "127.0.0.1", "port": 5678 },
   "justMyCode": false,
   "pathMappings": [
-    { "localRoot": "${workspaceFolder}", "remoteRoot": "/home/bb/hermes-agent" }
+    { "localRoot": "${workspaceFolder}", "remoteRoot": "/home/bb/openamer-agent" }
   ]
 }
 ```
@@ -291,15 +291,15 @@ nc 127.0.0.1 4444
 
 当 `debugpy` 的 DAP 协议过于繁重时，`remote-pdb` 是最适合 agent 的选择。仅在确实需要 IDE 集成时才使用 `debugpy`。
 
-## 调试 Hermes 特定进程
+## 调试 OpenAmer 特定进程
 
 ### 测试
 参见方案 3。始终添加 `-p no:xdist` 或在不使用 xdist 的情况下运行单个测试。
 
 ### `run_agent.py` / CLI — 一次性运行
-最简单：在可疑行附近添加 `breakpoint()`，然后正常运行 `hermes`。控制权将在暂停点返回到你的终端。
+最简单：在可疑行附近添加 `breakpoint()`，然后正常运行 `openamer`。控制权将在暂停点返回到你的终端。
 
-### `tui_gateway` 子进程（由 `hermes --tui` 启动）
+### `tui_gateway` 子进程（由 `openamer --tui` 启动）
 gateway 作为 Node TUI 的子进程运行。可选方案：
 
 **A. 修改 gateway 源码：**
@@ -309,7 +309,7 @@ import debugpy
 debugpy.listen(("127.0.0.1", 5678))
 debugpy.wait_for_client()
 ```
-启动 `hermes --tui`。TUI 将显示为冻结状态（其后端正在等待）。附加客户端后，执行在你 `continue` 时恢复。
+启动 `openamer --tui`。TUI 将显示为冻结状态（其后端正在等待）。附加客户端后，执行在你 `continue` 时恢复。
 
 **B. 在特定处理器中使用 `remote-pdb`：**
 ```python
@@ -345,7 +345,7 @@ set_trace(host="127.0.0.1", port=4444)   # 在你想捕获的 RPC 处理器中
 
 8. **`scripts/run_tests.sh` 会剥离凭据并设置 `HOME=<tmpdir>`。** 如果你的 bug 依赖用户配置或真实 API 密钥，在 wrapper 下将无法复现。先用原始 `pytest` 复现，再在 wrapper 下确认。
 
-9. **fork / 多进程。** pdb 不会跟随 fork。每个子进程需要自己的 `breakpoint()` 或 `set_trace()`。对于 Hermes 子 agent，每次只调试一个进程。
+9. **fork / 多进程。** pdb 不会跟随 fork。每个子进程需要自己的 `breakpoint()` 或 `set_trace()`。对于 OpenAmer 子 agent，每次只调试一个进程。
 
 ## 验证清单
 

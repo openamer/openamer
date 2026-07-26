@@ -19,7 +19,7 @@ from _hermes_home import get_hermes_home
 
 
 def get_token_path() -> Path:
-    return get_hermes_home() / "google_token.json"
+    return get_openamer_home() / "google_token.json"
 
 
 def _normalize_authorized_user_payload(payload: dict) -> dict:

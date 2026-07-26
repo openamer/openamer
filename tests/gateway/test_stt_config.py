@@ -24,7 +24,7 @@ def test_load_gateway_config_bridges_stt_enabled_from_config_yaml(tmp_path, monk
         encoding="utf-8",
     )
 
-    monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+    monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
     monkeypatch.setattr(Path, "home", lambda: tmp_path)
 
     config = load_gateway_config()

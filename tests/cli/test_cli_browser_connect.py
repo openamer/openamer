@@ -8,7 +8,7 @@ import subprocess
 from unittest.mock import patch
 
 from cli import HermesCLI
-from hermes_cli.browser_connect import (
+from openamer_cli.browser_connect import (
     _wait_for_browser_debug_ready_or_exit,
     get_chrome_debug_candidates,
     is_browser_debug_ready,
@@ -65,9 +65,9 @@ class TestChromeDebugLaunch:
             captured["kwargs"] = kwargs
             return object()
 
-        with patch("hermes_cli.browser_connect.shutil.which", side_effect=lambda name: r"C:\Chrome\chrome.exe" if name == "chrome.exe" else None), \
-             patch("hermes_cli.browser_connect.os.path.isfile", side_effect=lambda path: path == r"C:\Chrome\chrome.exe"), \
-             patch("hermes_cli.browser_connect._wait_for_browser_debug_ready_or_exit", return_value="ready"), \
+        with patch("openamer_cli.browser_connect.shutil.which", side_effect=lambda name: r"C:\Chrome\chrome.exe" if name == "chrome.exe" else None), \
+             patch("openamer_cli.browser_connect.os.path.isfile", side_effect=lambda path: path == r"C:\Chrome\chrome.exe"), \
+             patch("openamer_cli.browser_connect._wait_for_browser_debug_ready_or_exit", return_value="ready"), \
              patch("subprocess.Popen", side_effect=fake_popen):
             assert HermesCLI._try_launch_chrome_debug(9333, "Windows") is True
 
@@ -95,17 +95,17 @@ class TestChromeDebugLaunch:
         monkeypatch.delenv("ProgramFiles(x86)", raising=False)
         monkeypatch.delenv("LOCALAPPDATA", raising=False)
 
-        with patch("hermes_cli.browser_connect.shutil.which", return_value=None), \
-             patch("hermes_cli.browser_connect.os.path.isfile", side_effect=lambda path: path == installed), \
-             patch("hermes_cli.browser_connect._wait_for_browser_debug_ready_or_exit", return_value="ready"), \
+        with patch("openamer_cli.browser_connect.shutil.which", return_value=None), \
+             patch("openamer_cli.browser_connect.os.path.isfile", side_effect=lambda path: path == installed), \
+             patch("openamer_cli.browser_connect._wait_for_browser_debug_ready_or_exit", return_value="ready"), \
              patch("subprocess.Popen", side_effect=fake_popen):
             assert HermesCLI._try_launch_chrome_debug(9222, "Windows") is True
 
         _assert_chrome_debug_cmd(captured["cmd"], installed, 9222)
 
     def test_manual_command_uses_detected_linux_browser(self):
-        with patch("hermes_cli.browser_connect.shutil.which", side_effect=lambda name: "/usr/bin/chromium" if name == "chromium" else None), \
-             patch("hermes_cli.browser_connect.os.path.isfile", side_effect=lambda path: path == "/usr/bin/chromium"):
+        with patch("openamer_cli.browser_connect.shutil.which", side_effect=lambda name: "/usr/bin/chromium" if name == "chromium" else None), \
+             patch("openamer_cli.browser_connect.os.path.isfile", side_effect=lambda path: path == "/usr/bin/chromium"):
             command = manual_chrome_debug_command(9222, "Linux")
 
         assert command is not None
@@ -118,8 +118,8 @@ class TestChromeDebugLaunch:
         def fake_which(name):
             return {"google-chrome": chrome, "brave-browser": brave}.get(name)
 
-        with patch("hermes_cli.browser_connect.shutil.which", side_effect=fake_which), \
-             patch("hermes_cli.browser_connect.os.path.isfile", side_effect=lambda path: path in {chrome, brave}):
+        with patch("openamer_cli.browser_connect.shutil.which", side_effect=fake_which), \
+             patch("openamer_cli.browser_connect.os.path.isfile", side_effect=lambda path: path in {chrome, brave}):
             candidates = get_chrome_debug_candidates("Linux")
             command = manual_chrome_debug_command(9222, "Linux")
 
@@ -131,8 +131,8 @@ class TestChromeDebugLaunch:
         chrome = "/opt/google/chrome/chrome"
         brave = "/usr/bin/brave-browser"
 
-        with patch("hermes_cli.browser_connect.shutil.which", side_effect=lambda name: brave if name == "brave-browser" else None), \
-             patch("hermes_cli.browser_connect.os.path.isfile", side_effect=lambda path: path in {chrome, brave}):
+        with patch("openamer_cli.browser_connect.shutil.which", side_effect=lambda name: brave if name == "brave-browser" else None), \
+             patch("openamer_cli.browser_connect.os.path.isfile", side_effect=lambda path: path in {chrome, brave}):
             candidates = get_chrome_debug_candidates("Linux")
 
         assert candidates[:2] == [chrome, brave]
@@ -146,8 +146,8 @@ class TestChromeDebugLaunch:
         monkeypatch.delenv("ProgramFiles(x86)", raising=False)
         monkeypatch.delenv("LOCALAPPDATA", raising=False)
 
-        with patch("hermes_cli.browser_connect.shutil.which", side_effect=lambda name: brave if name == "brave.exe" else None), \
-             patch("hermes_cli.browser_connect.os.path.isfile", side_effect=lambda path: path in {chrome, brave}):
+        with patch("openamer_cli.browser_connect.shutil.which", side_effect=lambda name: brave if name == "brave.exe" else None), \
+             patch("openamer_cli.browser_connect.os.path.isfile", side_effect=lambda path: path in {chrome, brave}):
             candidates = get_chrome_debug_candidates("Windows")
 
         assert candidates[:2] == [chrome, brave]
@@ -155,8 +155,8 @@ class TestChromeDebugLaunch:
     def test_linux_candidates_include_arch_brave_install_path(self):
         brave = "/opt/brave-bin/brave"
 
-        with patch("hermes_cli.browser_connect.shutil.which", return_value=None), \
-             patch("hermes_cli.browser_connect.os.path.isfile", side_effect=lambda path: path == brave):
+        with patch("openamer_cli.browser_connect.shutil.which", return_value=None), \
+             patch("openamer_cli.browser_connect.os.path.isfile", side_effect=lambda path: path == brave):
             candidates = get_chrome_debug_candidates("Linux")
             command = manual_chrome_debug_command(9222, "Linux")
 
@@ -167,8 +167,8 @@ class TestChromeDebugLaunch:
     def test_linux_candidates_include_brave_binary_name(self):
         brave = "/usr/bin/brave"
 
-        with patch("hermes_cli.browser_connect.shutil.which", side_effect=lambda name: brave if name == "brave" else None), \
-             patch("hermes_cli.browser_connect.os.path.isfile", side_effect=lambda path: path == brave):
+        with patch("openamer_cli.browser_connect.shutil.which", side_effect=lambda name: brave if name == "brave" else None), \
+             patch("openamer_cli.browser_connect.os.path.isfile", side_effect=lambda path: path == brave):
             candidates = get_chrome_debug_candidates("Linux")
             command = manual_chrome_debug_command(9222, "Linux")
 
@@ -180,8 +180,8 @@ class TestChromeDebugLaunch:
         brave = "/usr/bin/brave-browser-stable"
         edge = "/usr/bin/microsoft-edge-stable"
 
-        with patch("hermes_cli.browser_connect.shutil.which", return_value=None), \
-             patch("hermes_cli.browser_connect.os.path.isfile", side_effect=lambda path: path in {brave, edge}):
+        with patch("openamer_cli.browser_connect.shutil.which", return_value=None), \
+             patch("openamer_cli.browser_connect.os.path.isfile", side_effect=lambda path: path in {brave, edge}):
             candidates = get_chrome_debug_candidates("Linux")
 
         assert candidates == [brave, edge]
@@ -197,8 +197,8 @@ class TestChromeDebugLaunch:
                 raise OSError("broken brave install")
             return object()
 
-        with patch("hermes_cli.browser_connect.get_chrome_debug_candidates", return_value=[brave, chrome]), \
-             patch("hermes_cli.browser_connect._wait_for_browser_debug_ready_or_exit", return_value="ready"), \
+        with patch("openamer_cli.browser_connect.get_chrome_debug_candidates", return_value=[brave, chrome]), \
+             patch("openamer_cli.browser_connect._wait_for_browser_debug_ready_or_exit", return_value="ready"), \
              patch("subprocess.Popen", side_effect=fake_popen):
             assert HermesCLI._try_launch_chrome_debug(9222, "Linux") is True
 
@@ -213,8 +213,8 @@ class TestChromeDebugLaunch:
                 self.calls += 1
                 return 1 if self.calls >= 2 else None
 
-        monkeypatch.setattr("hermes_cli.browser_connect.time.sleep", lambda _seconds: None)
-        with patch("hermes_cli.browser_connect.is_browser_debug_ready", return_value=False):
+        monkeypatch.setattr("openamer_cli.browser_connect.time.sleep", lambda _seconds: None)
+        with patch("openamer_cli.browser_connect.is_browser_debug_ready", return_value=False):
             state = _wait_for_browser_debug_ready_or_exit(_Proc(), 9222, timeout=0.3, interval=0.01)
 
         assert state == "exited"
@@ -231,8 +231,8 @@ class TestChromeDebugLaunch:
             attempts.append(cmd[0])
             return _Proc()
 
-        with patch("hermes_cli.browser_connect.get_chrome_debug_candidates", return_value=[brave, chrome]), \
-             patch("hermes_cli.browser_connect._wait_for_browser_debug_ready_or_exit", side_effect=["exited", "ready"]), \
+        with patch("openamer_cli.browser_connect.get_chrome_debug_candidates", return_value=[brave, chrome]), \
+             patch("openamer_cli.browser_connect._wait_for_browser_debug_ready_or_exit", side_effect=["exited", "ready"]), \
              patch("subprocess.Popen", side_effect=fake_popen):
             assert HermesCLI._try_launch_chrome_debug(9222, "Linux") is True
 
@@ -251,10 +251,10 @@ class TestChromeDebugLaunch:
                 return 0
 
         monkeypatch.setattr(
-            "hermes_cli.browser_connect.chrome_debug_data_dir", lambda: str(tmp_path)
+            "openamer_cli.browser_connect.chrome_debug_data_dir", lambda: str(tmp_path)
         )
-        with patch("hermes_cli.browser_connect.get_chrome_debug_candidates", return_value=[chrome]), \
-             patch("hermes_cli.browser_connect.is_browser_debug_ready", return_value=False), \
+        with patch("openamer_cli.browser_connect.get_chrome_debug_candidates", return_value=[chrome]), \
+             patch("openamer_cli.browser_connect.is_browser_debug_ready", return_value=False), \
              patch("subprocess.Popen", return_value=_Proc()):
             result = launch_chrome_debug(9222, "Windows")
 
@@ -281,11 +281,11 @@ class TestChromeDebugLaunch:
                 return 127
 
         monkeypatch.setattr(
-            "hermes_cli.browser_connect.chrome_debug_data_dir", lambda: str(tmp_path)
+            "openamer_cli.browser_connect.chrome_debug_data_dir", lambda: str(tmp_path)
         )
         stderr_path = tmp_path / "launch-stderr.log"
-        with patch("hermes_cli.browser_connect.get_chrome_debug_candidates", return_value=[chrome]), \
-             patch("hermes_cli.browser_connect.is_browser_debug_ready", return_value=False), \
+        with patch("openamer_cli.browser_connect.get_chrome_debug_candidates", return_value=[chrome]), \
+             patch("openamer_cli.browser_connect.is_browser_debug_ready", return_value=False), \
              patch("subprocess.Popen", side_effect=lambda *a, **k: _Proc(stderr_path)):
             result = launch_chrome_debug(9222, "Linux")
 
@@ -296,7 +296,7 @@ class TestChromeDebugLaunch:
         assert "libnspr4.so" in result.hint
 
     def test_launch_result_no_hint_when_no_candidates(self):
-        with patch("hermes_cli.browser_connect.get_chrome_debug_candidates", return_value=[]):
+        with patch("openamer_cli.browser_connect.get_chrome_debug_candidates", return_value=[]):
             result = launch_chrome_debug(9222, "Linux")
 
         assert result.launched is False
@@ -306,8 +306,8 @@ class TestChromeDebugLaunch:
     def test_manual_command_uses_wsl_windows_chrome_when_available(self):
         chrome = "/mnt/c/Program Files/Google/Chrome/Application/chrome.exe"
 
-        with patch("hermes_cli.browser_connect.shutil.which", return_value=None), \
-             patch("hermes_cli.browser_connect.os.path.isfile", side_effect=lambda path: path == chrome):
+        with patch("openamer_cli.browser_connect.shutil.which", return_value=None), \
+             patch("openamer_cli.browser_connect.os.path.isfile", side_effect=lambda path: path == chrome):
             command = manual_chrome_debug_command(9222, "Linux")
 
         assert command is not None
@@ -317,8 +317,8 @@ class TestChromeDebugLaunch:
     def test_manual_command_uses_windows_quoting_on_windows(self):
         chrome = r"C:\Program Files\Google\Chrome\Application\chrome.exe"
 
-        with patch("hermes_cli.browser_connect.shutil.which", side_effect=lambda name: chrome if name == "chrome.exe" else None), \
-             patch("hermes_cli.browser_connect.os.path.isfile", side_effect=lambda path: path == chrome):
+        with patch("openamer_cli.browser_connect.shutil.which", side_effect=lambda name: chrome if name == "chrome.exe" else None), \
+             patch("openamer_cli.browser_connect.os.path.isfile", side_effect=lambda path: path == chrome):
             command = manual_chrome_debug_command(9222, "Windows")
 
         assert command is not None
@@ -327,8 +327,8 @@ class TestChromeDebugLaunch:
         assert "'" not in command
 
     def test_manual_command_returns_none_when_linux_browser_missing(self):
-        with patch("hermes_cli.browser_connect.shutil.which", return_value=None), \
-             patch("hermes_cli.browser_connect.os.path.isfile", return_value=False):
+        with patch("openamer_cli.browser_connect.shutil.which", return_value=None), \
+             patch("openamer_cli.browser_connect.os.path.isfile", return_value=False):
             assert manual_chrome_debug_command(9222, "Linux") is None
 
     def test_connect_context_note_allows_expected_browser_use(self, monkeypatch):
@@ -347,10 +347,10 @@ class TestChromeDebugLaunch:
         # mixin's import site so no real network probe or browser
         # launch happens on the test runner.
         with patch(
-                 "hermes_cli.cli_commands_mixin.discover_local_cdp_url",
+                 "openamer_cli.cli_commands_mixin.discover_local_cdp_url",
                  return_value="http://127.0.0.1:9222",
              ), \
-             patch("hermes_cli.cli_commands_mixin.is_browser_debug_ready", return_value=True), \
+             patch("openamer_cli.cli_commands_mixin.is_browser_debug_ready", return_value=True), \
              patch("tools.browser_tool.cleanup_all_browsers"), \
              patch("tools.browser_tool._ensure_cdp_supervisor"), \
              redirect_stdout(StringIO()):

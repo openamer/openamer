@@ -1,12 +1,12 @@
 ---
 sidebar_position: 18
 title: "Desktop Native Sign-In (RFC 8252)"
-description: "How the Hermes Desktop app signs in to a gated gateway using your system browser and PKCE — no embedded webview, no session cookies"
+description: "How the OpenAmer Desktop app signs in to a gated gateway using your system browser and PKCE — no embedded webview, no session cookies"
 ---
 
 # Desktop Native Sign-In (RFC 8252)
 
-When the Hermes Desktop app connects to a **gated gateway** (a hosted or
+When the OpenAmer Desktop app connects to a **gated gateway** (a hosted or
 self-hosted dashboard that sits behind an OAuth provider), it can sign in two
 ways:
 
@@ -31,7 +31,7 @@ and the app relies on reading a session cookie out of a private webview. RFC
 all of that: **do the authorization in the system browser and hand the app its
 own tokens.**
 
-For Hermes specifically, native sign-in means:
+For OpenAmer specifically, native sign-in means:
 
 - **No embedded webview.** The authorization happens in Safari / Chrome /
   Firefox / Edge — whatever you use — with your logins, extensions, and
@@ -116,4 +116,4 @@ The relevant endpoints (all public, pre-auth bootstrap, same as the existing
 
 - [OAuth over SSH / Remote Hosts](./oauth-over-ssh.md) — the loopback-callback
   pattern for provider/MCP OAuth on remote machines.
-- [Run Hermes with Nous Portal](./run-hermes-with-nous-portal.md)
+- [Run OpenAmer with Nous Portal](./run-openamer-with-nous-portal.md)

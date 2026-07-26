@@ -29,7 +29,7 @@ import time
 from pathlib import Path
 from typing import Any, Optional
 
-from hermes_constants import get_hermes_home
+from openamer_constants import get_openamer_home
 
 logger = logging.getLogger(__name__)
 
@@ -42,7 +42,7 @@ def _traces_enabled_and_dir() -> Optional[Path]:
     ``moa.trace_dir`` overrides the default ``<hermes_home>/moa-traces/``.
     """
     try:
-        from hermes_cli.config import load_config
+        from openamer_cli.config import load_config
 
         moa_cfg = (load_config() or {}).get("moa") or {}
     except Exception:  # pragma: no cover - defensive: never break a turn over tracing
@@ -53,7 +53,7 @@ def _traces_enabled_and_dir() -> Optional[Path]:
     if override:
         base = Path(os.path.expandvars(os.path.expanduser(str(override))))
     else:
-        base = get_hermes_home() / "moa-traces"
+        base = get_openamer_home() / "moa-traces"
     return base
 
 

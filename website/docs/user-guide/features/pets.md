@@ -6,7 +6,7 @@ description: "Adopt an animated mascot that reacts to agent activity across the 
 
 # Pets
 
-Hermes can show an animated **pet** — a small mascot sprite that reacts to what
+OpenAmer can show an animated **pet** — a small mascot sprite that reacts to what
 the agent is doing (idle, running a tool, thinking, finishing, failing) across
 the **CLI**, **TUI**, and **desktop app**. Pets come from the public
 [petdex](https://github.com/crafter-station/petdex) gallery.
@@ -39,7 +39,7 @@ the agent's behavior** — the sprite is a display concern only. The feature is
 
 ## Rendering
 
-In the terminal (CLI/TUI), Hermes renders the sprite at full fidelity when your
+In the terminal (CLI/TUI), OpenAmer renders the sprite at full fidelity when your
 terminal supports a graphics protocol (**kitty**, **Ghostty**, **WezTerm**,
 **iTerm2**, or **sixel**). Otherwise it falls back automatically to a truecolor
 Unicode **half-block** rendering. Inside a pipe or redirect (no TTY), terminal
@@ -52,34 +52,34 @@ from **Settings → Appearance**.
 
 ```bash
 # Browse the gallery (filter by substring)
-hermes pets list
-hermes pets list cat
+openamer pets list
+openamer pets list cat
 
 # Install a pet and make it active in one step
-hermes pets install boba --select
+openamer pets install boba --select
 
 # Preview / animate it in your terminal (Ctrl+C to stop)
-hermes pets show
+openamer pets show
 
 # Check your setup
-hermes pets doctor
+openamer pets doctor
 ```
 
-## `hermes pets` commands
+## `openamer pets` commands
 
 | Goal | Command |
 | --- | --- |
-| Browse the gallery | `hermes pets list [query] [--limit N]` |
-| List installed pets | `hermes pets list --installed` |
-| Install a pet | `hermes pets install <slug> [--select] [--force]` |
-| Set the active pet | `hermes pets select [slug]` (omit slug for a picker) |
-| Resize the pet everywhere | `hermes pets scale <factor>` (e.g. `0.5`, clamped 0.1–3.0) |
-| Preview/animate | `hermes pets show [slug] [--state <s>] [--cycle] [--once] [--mode <m>] [--scale <f>]` |
-| Disable the pet | `hermes pets off` |
-| Remove an installed pet | `hermes pets remove <slug>` |
-| Diagnose setup | `hermes pets doctor` |
+| Browse the gallery | `openamer pets list [query] [--limit N]` |
+| List installed pets | `openamer pets list --installed` |
+| Install a pet | `openamer pets install <slug> [--select] [--force]` |
+| Set the active pet | `openamer pets select [slug]` (omit slug for a picker) |
+| Resize the pet everywhere | `openamer pets scale <factor>` (e.g. `0.5`, clamped 0.1–3.0) |
+| Preview/animate | `openamer pets show [slug] [--state <s>] [--cycle] [--once] [--mode <m>] [--scale <f>]` |
+| Disable the pet | `openamer pets off` |
+| Remove an installed pet | `openamer pets remove <slug>` |
+| Diagnose setup | `openamer pets doctor` |
 
-`hermes pets show` flags:
+`openamer pets show` flags:
 
 - `--state` — play a single state (`idle`, `wave`, `run`, `failed`, `review`,
   `jump`).
@@ -105,22 +105,22 @@ it opens the Cmd+K pet palette.
 
 ## Generating a pet (`/hatch`)
 
-Beyond installing pre-made pets from the gallery, Hermes can **generate a brand-new pet** from a text description — its own AI sprite-generation pipeline.
+Beyond installing pre-made pets from the gallery, OpenAmer can **generate a brand-new pet** from a text description — its own AI sprite-generation pipeline.
 
-- CLI/TUI: `/hatch <description>` (alias `/generate-pet`), or `hermes pets` → the generate flow.
+- CLI/TUI: `/hatch <description>` (alias `/generate-pet`), or `openamer pets` → the generate flow.
 - Desktop app: the Pokédex-style **generate** UI — an animated egg, hatch FX, and a draft picker.
 
 How generation works (a two-step, cost-bounded flow):
 
 1. **Base drafts** — a handful of cheap, prompt-only "what should this pet look like" variants are generated. You pick one, or remix/retry for a fresh round.
-2. **Hatch** — the chosen base is used as a reference image to generate one grounded animation row per Hermes state (idle, thinking, tool use, etc.), which are deterministically sliced into frames and packed into a standard petdex/Codex atlas (8×9 grid of 192×208 cells). The result is a valid spritesheet you keep — and could `petdex submit`.
+2. **Hatch** — the chosen base is used as a reference image to generate one grounded animation row per OpenAmer state (idle, thinking, tool use, etc.), which are deterministically sliced into frames and packed into a standard petdex/Codex atlas (8×9 grid of 192×208 cells). The result is a valid spritesheet you keep — and could `petdex submit`.
 
 ### Image backend
 
 Generation uses the active [image-generation provider](/user-guide/features/image-generation), but it requires **reference-image grounding** so each animation row stays the same character as the base. Reference-capable backends: **Nous Portal**, **OpenRouter**, **OpenAI** (`gpt-image-2`), and **Krea**. OpenRouter/Nous run a quality-first model chain by default.
 
 - Resolution order prefers Nous Portal → OpenAI → OpenRouter.
-- If no reference-capable backend is configured, generation surfaces an actionable error pointing you to `hermes tools` → Image Generation. (Installing/adopting existing gallery pets needs no image backend.)
+- If no reference-capable backend is configured, generation surfaces an actionable error pointing you to `openamer tools` → Image Generation. (Installing/adopting existing gallery pets needs no image backend.)
 - Override the backend with the `HERMES_PET_IMAGE_PROVIDER` env var (e.g. `HERMES_PET_IMAGE_PROVIDER=openrouter`).
 
 ## Desktop app
@@ -138,7 +138,7 @@ instantly; adopting a new pet lights it up within a moment.
 ### Pop-out overlay
 
 **Shift-click** the floating pet to pop it out into its own transparent,
-always-on-top desktop window. Out there it stays visible while Hermes is
+always-on-top desktop window. Out there it stays visible while OpenAmer is
 minimized (Codex-style), so a glance tells you what the agent is doing.
 
 Gestures once it's popped out:
@@ -186,7 +186,7 @@ display:
 
 ## Troubleshooting
 
-Run `hermes pets doctor` — it reports:
+Run `openamer pets doctor` — it reports:
 
 - the pets directory and which pets are installed,
 - `display.pet.enabled`, `display.pet.slug`, and the resolved active pet,
@@ -201,11 +201,11 @@ Common gotchas:
 
 - A pet only shows once one is **installed AND selected** (`enabled: true`).
 - Inside a pipe/redirect (no TTY), terminal rendering is disabled by design.
-- The petdex npm CLI installs to `~/.codex/pets`; Hermes uses its own
-  profile-scoped `<HERMES_HOME>/pets/` instead — install through `hermes pets`.
+- The petdex npm CLI installs to `~/.codex/pets`; OpenAmer uses its own
+  profile-scoped `<HERMES_HOME>/pets/` instead — install through `openamer pets`.
 
 ## See also
 
-- The [`hermes-agent` skill](../skills/bundled/autonomous-ai-agents/autonomous-ai-agents-hermes-agent.md)
+- The [`openamer-agent` skill](../skills/bundled/autonomous-ai-agents/autonomous-ai-agents-openamer-agent.md)
   lets the agent install and switch pets for you on request (see its
   `references/petdex.md`).

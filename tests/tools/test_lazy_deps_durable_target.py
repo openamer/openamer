@@ -56,7 +56,7 @@ class TestGatingWithTarget:
         # config unreadable → fails open on the config check, but the sealed
         # env var with no target still blocks.
         monkeypatch.setattr(
-            "hermes_cli.config.load_config", lambda: {}, raising=False
+            "openamer_cli.config.load_config", lambda: {}, raising=False
         )
         assert ld._allow_lazy_installs() is False
 
@@ -64,7 +64,7 @@ class TestGatingWithTarget:
         monkeypatch.setenv("HERMES_DISABLE_LAZY_INSTALLS", "1")
         monkeypatch.setenv(ld._LAZY_TARGET_ENV, str(tmp_path))
         monkeypatch.setattr(
-            "hermes_cli.config.load_config", lambda: {}, raising=False
+            "openamer_cli.config.load_config", lambda: {}, raising=False
         )
         assert ld._allow_lazy_installs() is True
 
@@ -73,7 +73,7 @@ class TestGatingWithTarget:
         monkeypatch.setenv("HERMES_DISABLE_LAZY_INSTALLS", "1")
         monkeypatch.setenv(ld._LAZY_TARGET_ENV, str(tmp_path))
         monkeypatch.setattr(
-            "hermes_cli.config.load_config",
+            "openamer_cli.config.load_config",
             lambda: {"security": {"allow_lazy_installs": False}},
             raising=False,
         )
@@ -84,7 +84,7 @@ class TestGatingWithTarget:
         monkeypatch.delenv("HERMES_DISABLE_LAZY_INSTALLS", raising=False)
         monkeypatch.delenv(ld._LAZY_TARGET_ENV, raising=False)
         monkeypatch.setattr(
-            "hermes_cli.config.load_config", lambda: {}, raising=False
+            "openamer_cli.config.load_config", lambda: {}, raising=False
         )
         assert ld._allow_lazy_installs() is True
 

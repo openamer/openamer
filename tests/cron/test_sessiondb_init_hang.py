@@ -32,7 +32,7 @@ from cron.scheduler import run_job
 
 
 def _hanging_session_db(never_set: threading.Event):
-    """Stand-in for hermes_state.SessionDB() that blocks until released —
+    """Stand-in for openamer_state.SessionDB() that blocks until released —
     like the real incident's wedged sqlite3.connect, but bounded so the test
     process can still exit cleanly once the assertions are done."""
     never_set.wait(timeout=30)
@@ -49,11 +49,11 @@ class TestSessionDbInitTimeout:
         try:
             with patch("cron.scheduler._hermes_home", tmp_path), \
                  patch("cron.scheduler._resolve_origin", return_value=None), \
-                 patch("hermes_cli.env_loader.load_hermes_dotenv"), \
-                 patch("hermes_cli.env_loader.reset_secret_source_cache"), \
-                 patch("hermes_state.SessionDB", side_effect=lambda: _hanging_session_db(never_set)), \
+                 patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+                 patch("openamer_cli.env_loader.reset_secret_source_cache"), \
+                 patch("openamer_state.SessionDB", side_effect=lambda: _hanging_session_db(never_set)), \
                  patch(
-                     "hermes_cli.runtime_provider.resolve_runtime_provider",
+                     "openamer_cli.runtime_provider.resolve_runtime_provider",
                      return_value={
                          "api_key": "test-key",
                          "base_url": "https://example.invalid/v1",
@@ -90,11 +90,11 @@ class TestSessionDbInitTimeout:
 
         with patch("cron.scheduler._hermes_home", tmp_path), \
              patch("cron.scheduler._resolve_origin", return_value=None), \
-             patch("hermes_cli.env_loader.load_hermes_dotenv"), \
-             patch("hermes_cli.env_loader.reset_secret_source_cache"), \
-             patch("hermes_state.SessionDB", return_value=fake_db), \
+             patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+             patch("openamer_cli.env_loader.reset_secret_source_cache"), \
+             patch("openamer_state.SessionDB", return_value=fake_db), \
              patch(
-                 "hermes_cli.runtime_provider.resolve_runtime_provider",
+                 "openamer_cli.runtime_provider.resolve_runtime_provider",
                  return_value={
                      "api_key": "test-key",
                      "base_url": "https://example.invalid/v1",
@@ -127,7 +127,7 @@ class TestSessionDbInitTimeout:
         import yaml
 
         monkeypatch.delenv("HERMES_CRON_SESSION_DB_TIMEOUT", raising=False)
-        monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+        monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
         (tmp_path / "config.yaml").write_text(
             yaml.safe_dump({"cron": {"session_db_timeout_seconds": 0.2}})
         )
@@ -137,11 +137,11 @@ class TestSessionDbInitTimeout:
         try:
             with patch("cron.scheduler._hermes_home", tmp_path), \
                  patch("cron.scheduler._resolve_origin", return_value=None), \
-                 patch("hermes_cli.env_loader.load_hermes_dotenv"), \
-                 patch("hermes_cli.env_loader.reset_secret_source_cache"), \
-                 patch("hermes_state.SessionDB", side_effect=lambda: _hanging_session_db(never_set)), \
+                 patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+                 patch("openamer_cli.env_loader.reset_secret_source_cache"), \
+                 patch("openamer_state.SessionDB", side_effect=lambda: _hanging_session_db(never_set)), \
                  patch(
-                     "hermes_cli.runtime_provider.resolve_runtime_provider",
+                     "openamer_cli.runtime_provider.resolve_runtime_provider",
                      return_value={
                          "api_key": "test-key",
                          "base_url": "https://example.invalid/v1",
@@ -192,11 +192,11 @@ class TestDispatchGuardReleasedAfterHang:
         try:
             with patch("cron.scheduler._hermes_home", tmp_path), \
                  patch("cron.scheduler._resolve_origin", return_value=None), \
-                 patch("hermes_cli.env_loader.load_hermes_dotenv"), \
-                 patch("hermes_cli.env_loader.reset_secret_source_cache"), \
-                 patch("hermes_state.SessionDB", side_effect=lambda: _hanging_session_db(never_set)), \
+                 patch("openamer_cli.env_loader.load_hermes_dotenv"), \
+                 patch("openamer_cli.env_loader.reset_secret_source_cache"), \
+                 patch("openamer_state.SessionDB", side_effect=lambda: _hanging_session_db(never_set)), \
                  patch(
-                     "hermes_cli.runtime_provider.resolve_runtime_provider",
+                     "openamer_cli.runtime_provider.resolve_runtime_provider",
                      return_value={
                          "api_key": "test-key",
                          "base_url": "https://example.invalid/v1",

@@ -77,19 +77,19 @@ def _resolve_script_path(script_path: str) -> Path:
     """Resolve a cron ``script`` value the same way the scheduler does.
 
     The scheduler (``cron.scheduler``) resolves a bare/relative script path
-    under ``<HERMES_HOME>/scripts/`` and only accepts absolute paths as-is.
+    under ``<OPENAMER_HOME>/scripts/`` and only accepts absolute paths as-is.
     We MUST mirror that here so the guard scans the file that will actually
     run — otherwise a job whose script lives at the scheduler's real location
     (``~/.hermes/scripts/restart.sh``) but is passed as the bare name
     ``restart.sh`` would read as a nonexistent relative path and silently
     scan prompt-only content, letting the command through.
     """
-    from hermes_constants import get_hermes_home
+    from openamer_constants import get_openamer_home
 
     raw = Path(script_path).expanduser()
     if raw.is_absolute():
         return raw
-    return get_hermes_home() / "scripts" / raw
+    return get_openamer_home() / "scripts" / raw
 
 
 def _read_script_for_scanning(script_path: str) -> str:

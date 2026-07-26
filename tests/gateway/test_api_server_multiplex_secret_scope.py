@@ -48,7 +48,7 @@ class TestProfileScopeDefaultFallback:
             encoding="utf-8",
         )
         monkeypatch.setattr(
-            "hermes_constants.get_hermes_home",
+            "openamer_constants.get_hermes_home",
             lambda: tmp_path,
         )
         monkeypatch.setenv("OPENROUTER_BASE_URL", "https://leak.example/v1")
@@ -72,7 +72,7 @@ class TestProfileScopeDefaultFallback:
             "OPENROUTER_BASE_URL=https://worker.example/v1\n", encoding="utf-8"
         )
         monkeypatch.setattr(
-            "hermes_cli.profiles.get_profile_dir", lambda name: profile_home
+            "openamer_cli.profiles.get_profile_dir", lambda name: profile_home
         )
         ss.set_multiplex_active(True)
 

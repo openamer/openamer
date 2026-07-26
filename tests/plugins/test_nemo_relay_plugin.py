@@ -15,7 +15,7 @@ from types import SimpleNamespace
 import pytest
 import yaml
 
-from hermes_cli.plugins import PluginManager
+from openamer_cli.plugins import PluginManager
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -246,7 +246,7 @@ def test_manifest_fields():
 
 
 def test_nemo_relay_plugin_is_discoverable_as_bundled_plugin(tmp_path, monkeypatch):
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path / "hermes_test"))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / "hermes_test"))
 
     manager = PluginManager()
     manager.discover_and_load()
@@ -1452,11 +1452,11 @@ def test_nemo_relay_downstream_unwrap_matches_real_middleware_wrapper_shape(monk
     # if core middleware renames its private ``_DownstreamExecutionError`` or drops
     # ``.original`` -- the exact shape the plugin matches by name at
     # ``_original_downstream_error``. Capture the wrapper the REAL
-    # ``hermes_cli.middleware._run_execution_chain`` hands to a middleware
+    # ``openamer_cli.middleware._run_execution_chain`` hands to a middleware
     # callback's ``next_call`` and assert the plugin's detector unwraps it to the
     # original exception. If core middleware changes the wrapper shape, this fails
     # here instead of silently defeating the unwrap in production.
-    from hermes_cli import middleware
+    from openamer_cli import middleware
 
     from plugins.observability.nemo_relay import _original_downstream_error
 

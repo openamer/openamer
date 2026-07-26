@@ -12,7 +12,7 @@ import {
   DialogTitle
 } from '@/components/ui/dialog'
 import { SanitizedInput } from '@/components/ui/sanitized-input'
-import type { HermesGitBranch } from '@/global'
+import type { OpenAmerGitBranch } from '@/global'
 import { useI18n } from '@/i18n'
 import { gitRef } from '@/lib/sanitize'
 import { notifyError } from '@/store/notifications'
@@ -26,7 +26,7 @@ interface BranchActionCopy {
   branchSwitchHome: string
 }
 
-const branchActionLabel = (branch: HermesGitBranch, copy: BranchActionCopy) => {
+const branchActionLabel = (branch: OpenAmerGitBranch, copy: BranchActionCopy) => {
   if (branch.checkedOut) {
     return copy.branchOpenExisting
   }
@@ -63,7 +63,7 @@ export function WorktreeDialog({ repoPath, onStarted, open, onOpenChange, initia
   const [name, setName] = useState('')
   const [pending, setPending] = useState(false)
   const [convertMode, setConvertMode] = useState(false)
-  const [branches, setBranches] = useState<HermesGitBranch[]>([])
+  const [branches, setBranches] = useState<OpenAmerGitBranch[]>([])
   const [branchesLoading, setBranchesLoading] = useState(false)
   const [selectedBase, setSelectedBase] = useState('')
 
@@ -119,7 +119,7 @@ export function WorktreeDialog({ repoPath, onStarted, open, onOpenChange, initia
     }
   }
 
-  const convert = async (branch: HermesGitBranch) => {
+  const convert = async (branch: OpenAmerGitBranch) => {
     if (pending || !repoPath || !branch) {
       return
     }

@@ -1,13 +1,13 @@
 ---
 title: Home Assistant
-description: 通过 Home Assistant 集成，使用 Hermes Agent 控制您的智能家居。
+description: 通过 Home Assistant 集成，使用 OpenAmer Agent 控制您的智能家居。
 sidebar_label: Home Assistant
 sidebar_position: 5
 ---
 
 # Home Assistant 集成
 
-Hermes Agent 通过以下两种方式与 [Home Assistant](https://www.home-assistant.io/) 集成：
+OpenAmer Agent 通过以下两种方式与 [Home Assistant](https://www.home-assistant.io/) 集成：
 
 1. **Gateway 平台** — 通过 WebSocket 订阅实时状态变更并响应事件
 2. **智能家居工具** — 四个可供 LLM 调用的工具，通过 REST API 查询和控制设备
@@ -19,13 +19,13 @@ Hermes Agent 通过以下两种方式与 [Home Assistant](https://www.home-assis
 1. 打开您的 Home Assistant 实例
 2. 进入**个人资料**（点击侧边栏中的用户名）
 3. 滚动至**长期访问令牌**
-4. 点击**创建令牌**，命名为"Hermes Agent"
+4. 点击**创建令牌**，命名为"OpenAmer Agent"
 5. 复制令牌
 
 ### 2. 配置环境变量
 
 ```bash
-# Add to ~/.hermes/.env
+# Add to ~/.openamer/.env
 
 # Required: your Long-Lived Access Token
 HASS_TOKEN=your-long-lived-access-token
@@ -41,14 +41,14 @@ HASS_URL=http://192.168.1.100:8123
 ### 3. 启动 Gateway
 
 ```bash
-hermes gateway
+openamer gateway
 ```
 
 Home Assistant 将作为已连接平台出现，与其他消息平台（Telegram、Discord 等）并列显示。
 
 ## 可用工具
 
-Hermes Agent 注册了四个智能家居控制工具：
+OpenAmer Agent 注册了四个智能家居控制工具：
 
 ### `ha_list_entities`
 
@@ -130,7 +130,7 @@ Home Assistant gateway 适配器通过 WebSocket 连接并订阅 `state_changed`
 默认情况下，**不转发任何事件**。您必须配置 `watch_domains`、`watch_entities` 或 `watch_all` 中的至少一项才能接收事件。若未设置过滤器，启动时将记录警告日志，所有状态变更将被静默丢弃。
 :::
 
-在 `~/.hermes/config.yaml` 中，于 Home Assistant 平台的 `extra` 部分配置 agent 接收的事件：
+在 `~/.openamer/config.yaml` 中，于 Home Assistant 平台的 `extra` 部分配置 agent 接收的事件：
 
 ```yaml
 platforms:
@@ -178,7 +178,7 @@ platforms:
 
 ### Agent 响应
 
-Agent 发出的消息将以 **Home Assistant 持久通知**的形式推送（通过 `persistent_notification.create`），标题为"Hermes Agent"，显示在 HA 通知面板中。
+Agent 发出的消息将以 **Home Assistant 持久通知**的形式推送（通过 `persistent_notification.create`），标题为"OpenAmer Agent"，显示在 HA 通知面板中。
 
 ### 连接管理
 

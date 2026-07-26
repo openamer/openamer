@@ -1,7 +1,7 @@
 """Tests for the mcp-oauth-remote-gateway optional skill.
 
 Covers the diagnose-oauth-mcp.py decision tree (TOKEN_OK / REFRESH_FIXED /
-SESSION_REVOKED / REFRESH_DEAD), the HERMES_HOME resolution fallback, the
+SESSION_REVOKED / REFRESH_DEAD), the OPENAMER_HOME resolution fallback, the
 atomic --write persistence path, and SKILL.md frontmatter invariants.
 No live network calls — urllib is mocked throughout.
 """
@@ -83,10 +83,10 @@ def _run_main(mod, tokens_dir, argv, responses):
             raise item
         return item
 
-    with patch.object(mod.os, "environ", dict(mod.os.environ, HERMES_HOME=str(tokens_dir.parent))), \
+    with patch.object(mod.os, "environ", dict(mod.os.environ, OPENAMER_HOME=str(tokens_dir.parent))), \
          patch.object(mod.urllib.request, "urlopen", side_effect=fake_urlopen), \
          patch.object(sys, "argv", ["diagnose-oauth-mcp.py", *argv]):
-        # Force the env-var fallback path (ignore any importable hermes_constants).
+        # Force the env-var fallback path (ignore any importable openamer_constants).
         with patch.object(mod, "_hermes_home", lambda: str(tokens_dir.parent)):
             buf = io.StringIO()
             from contextlib import redirect_stdout
@@ -203,9 +203,9 @@ def test_session_revoked_branch(tmp_path):
 
 def test_hermes_home_env_fallback(tmp_path, monkeypatch):
     mod = load_module()
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path / "custom-home"))
-    # Block the hermes_constants import so the env fallback is exercised
-    with patch.dict(sys.modules, {"hermes_constants": None}):
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / "custom-home"))
+    # Block the openamer_constants import so the env fallback is exercised
+    with patch.dict(sys.modules, {"openamer_constants": None}):
         home = mod._hermes_home()
     assert home == str(tmp_path / "custom-home")
 

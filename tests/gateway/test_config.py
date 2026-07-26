@@ -12,7 +12,7 @@ from agent.secret_scope import (
     set_multiplex_active,
     set_secret_scope,
 )
-from hermes_constants import reset_hermes_home_override, set_hermes_home_override
+from openamer_constants import reset_openamer_home_override, set_openamer_home_override
 from gateway.config import (
     ChannelOverride,
     GatewayConfig,
@@ -72,7 +72,7 @@ class TestHomeChannelRoundtrip:
     def test_persisted_relay_home_survives_real_config_reload(self, tmp_path, monkeypatch):
         monkeypatch.setenv("SLACK_HOME_CHANNEL", "D123")
         monkeypatch.delenv("SLACK_BOT_TOKEN", raising=False)
-        home_token = set_hermes_home_override(str(tmp_path))
+        home_token = set_openamer_home_override(str(tmp_path))
         try:
             persist_home_channel(
                 HomeChannel(
@@ -84,7 +84,7 @@ class TestHomeChannelRoundtrip:
             )
             config = load_gateway_config()
         finally:
-            reset_hermes_home_override(home_token)
+            reset_openamer_home_override(home_token)
 
         slack = config.platforms[Platform.SLACK]
         assert slack.enabled is False
@@ -569,7 +569,7 @@ class TestLoadGatewayConfig:
         (hermes_home / "config.yaml").write_text(
             template.read_text(encoding="utf-8"), encoding="utf-8"
         )
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -579,7 +579,7 @@ class TestLoadGatewayConfig:
         """With no config.yaml at all, sessions must never auto-reset."""
         hermes_home = tmp_path / ".hermes"
         hermes_home.mkdir()
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -592,7 +592,7 @@ class TestLoadGatewayConfig:
         (hermes_home / "config.yaml").write_text(
             "session_reset:\n  idle_minutes: 60\n", encoding="utf-8"
         )
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -607,7 +607,7 @@ class TestLoadGatewayConfig:
             "session_reset:\n  mode: idle\n  idle_minutes: 30\n",
             encoding="utf-8",
         )
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -626,7 +626,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -642,7 +642,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         monkeypatch.delenv("SLACK_DISABLE_DMS", raising=False)
 
         load_gateway_config()
@@ -660,7 +660,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         monkeypatch.delenv("SLACK_IGNORED_CHANNELS", raising=False)
 
         load_gateway_config()
@@ -678,7 +678,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         monkeypatch.setenv("SLACK_IGNORED_CHANNELS", "C_FROM_ENV")
 
         load_gateway_config()
@@ -695,7 +695,7 @@ class TestLoadGatewayConfig:
             'slack:\n  typing_status_text: "is pouncing… 🐾"\n',
             encoding="utf-8",
         )
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -716,7 +716,7 @@ class TestLoadGatewayConfig:
             '    typing_status_text: "chasing yarn…"\n',
             encoding="utf-8",
         )
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -744,7 +744,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -761,7 +761,7 @@ class TestLoadGatewayConfig:
             "  websocket_max_latency_seconds: 30\n",
             encoding="utf-8",
         )
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         for key in (
             "HERMES_DISCORD_LIVENESS_INTERVAL_SECONDS",
             "HERMES_DISCORD_LIVENESS_FAILURE_THRESHOLD",
@@ -786,7 +786,7 @@ class TestLoadGatewayConfig:
             "gateway:\n  session_reset:\n    mode: idle\n    idle_minutes: 30\n",
             encoding="utf-8",
         )
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -801,7 +801,7 @@ class TestLoadGatewayConfig:
             "gateway:\n  quick_commands:\n    limits:\n      type: exec\n      command: echo ok\n",
             encoding="utf-8",
         )
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -818,7 +818,7 @@ class TestLoadGatewayConfig:
             "gateway:\n  stt:\n    enabled: false\n",
             encoding="utf-8",
         )
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -832,7 +832,7 @@ class TestLoadGatewayConfig:
             "gateway:\n  stt_echo_transcripts: false\n",
             encoding="utf-8",
         )
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -867,7 +867,7 @@ class TestLoadGatewayConfig:
             "gateway:\n  api_server:\n    enabled: true\n",
             encoding="utf-8",
         )
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -892,7 +892,7 @@ class TestLoadGatewayConfig:
             "    model_name: my-hermes\n",
             encoding="utf-8",
         )
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -918,7 +918,7 @@ class TestLoadGatewayConfig:
             "      port: 8642\n",
             encoding="utf-8",
         )
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -940,7 +940,7 @@ class TestLoadGatewayConfig:
             "    enabled: true\n",
             encoding="utf-8",
         )
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -965,7 +965,7 @@ class TestLoadGatewayConfig:
             "      port: 8643\n",
             encoding="utf-8",
         )
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -980,7 +980,7 @@ class TestLoadGatewayConfig:
             "gateway:\n  group_sessions_per_user: false\n",
             encoding="utf-8",
         )
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -994,7 +994,7 @@ class TestLoadGatewayConfig:
             "gateway:\n  thread_sessions_per_user: true\n",
             encoding="utf-8",
         )
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -1008,7 +1008,7 @@ class TestLoadGatewayConfig:
             "gateway:\n  reset_triggers:\n    - /new\n    - /clear\n",
             encoding="utf-8",
         )
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -1022,7 +1022,7 @@ class TestLoadGatewayConfig:
             "gateway:\n  always_log_local: false\n",
             encoding="utf-8",
         )
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -1036,7 +1036,7 @@ class TestLoadGatewayConfig:
             "gateway:\n  filter_silence_narration: false\n",
             encoding="utf-8",
         )
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -1050,7 +1050,7 @@ class TestLoadGatewayConfig:
             "gateway:\n  unauthorized_dm_behavior: ignore\n",
             encoding="utf-8",
         )
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -1069,7 +1069,7 @@ class TestLoadGatewayConfig:
             "  always_log_local: false\n",
             encoding="utf-8",
         )
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -1090,7 +1090,7 @@ class TestLoadGatewayConfig:
             "    idle_minutes: 30\n",
             encoding="utf-8",
         )
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -1110,7 +1110,7 @@ class TestLoadGatewayConfig:
             "    enabled: false\n",
             encoding="utf-8",
         )
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -1125,7 +1125,7 @@ class TestLoadGatewayConfig:
         'relay registered but no inbound' bug)."""
         hermes_home = tmp_path / ".hermes"
         hermes_home.mkdir()
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         monkeypatch.setenv("GATEWAY_RELAY_URL", "https://connector.example/relay/")
 
         config = load_gateway_config()
@@ -1142,7 +1142,7 @@ class TestLoadGatewayConfig:
         are unaffected."""
         hermes_home = tmp_path / ".hermes"
         hermes_home.mkdir()
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         monkeypatch.delenv("GATEWAY_RELAY_URL", raising=False)
 
         config = load_gateway_config()
@@ -1158,7 +1158,7 @@ class TestLoadGatewayConfig:
             "gateway:\n  platforms:\n    relay:\n      extra:\n        relay_url: https://connector.example/relay\n",
             encoding="utf-8",
         )
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         monkeypatch.delenv("GATEWAY_RELAY_URL", raising=False)
 
         config = load_gateway_config()
@@ -1172,7 +1172,7 @@ class TestLoadGatewayConfig:
         config_path = hermes_home / "config.yaml"
         config_path.write_text("group_sessions_per_user: false\n", encoding="utf-8")
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -1184,7 +1184,7 @@ class TestLoadGatewayConfig:
         config_path = hermes_home / "config.yaml"
         config_path.write_text("thread_sessions_per_user: true\n", encoding="utf-8")
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -1196,7 +1196,7 @@ class TestLoadGatewayConfig:
         config_path = hermes_home / "config.yaml"
         config_path.write_text("{}\n", encoding="utf-8")
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -1208,7 +1208,7 @@ class TestLoadGatewayConfig:
         config_path = hermes_home / "config.yaml"
         config_path.write_text("max_concurrent_sessions: 2\n", encoding="utf-8")
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -1224,7 +1224,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -1241,7 +1241,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -1253,7 +1253,7 @@ class TestLoadGatewayConfig:
         config_path = hermes_home / "config.yaml"
         config_path.write_text("gateway: disabled\n", encoding="utf-8")
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -1270,7 +1270,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         monkeypatch.delenv("DISCORD_THREAD_REQUIRE_MENTION", raising=False)
 
         load_gateway_config()
@@ -1288,7 +1288,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         monkeypatch.setenv("DISCORD_THREAD_REQUIRE_MENTION", "true")  # user override
 
         load_gateway_config()
@@ -1307,7 +1307,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         monkeypatch.delenv("DISCORD_BOTS_REQUIRE_INLINE_MENTION", raising=False)
 
         load_gateway_config()
@@ -1325,7 +1325,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         monkeypatch.setenv("DISCORD_BOTS_REQUIRE_INLINE_MENTION", "true")
 
         load_gateway_config()
@@ -1345,7 +1345,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         monkeypatch.delenv("DISCORD_ALLOWED_USERS", raising=False)
 
         config = load_gateway_config()
@@ -1372,7 +1372,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         monkeypatch.delenv("DISCORD_ALLOWED_USERS", raising=False)
 
         config = load_gateway_config()
@@ -1404,7 +1404,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         monkeypatch.delenv("DINGTALK_ALLOWED_USERS", raising=False)
 
         config = load_gateway_config()
@@ -1429,7 +1429,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         monkeypatch.delenv("DINGTALK_ALLOWED_USERS", raising=False)
 
         config = load_gateway_config()
@@ -1453,7 +1453,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         monkeypatch.setenv("DINGTALK_ALLOWED_USERS", "env-user")
 
         load_gateway_config()
@@ -1479,7 +1479,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         monkeypatch.delenv("DINGTALK_ALLOWED_USERS", raising=False)
 
         load_gateway_config()
@@ -1513,7 +1513,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         for var in (
             "DINGTALK_ALLOWED_USERS",
             "DINGTALK_ALLOW_ALL_USERS",
@@ -1551,7 +1551,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -1577,7 +1577,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -1612,7 +1612,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -1644,7 +1644,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -1673,7 +1673,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -1694,7 +1694,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -1709,7 +1709,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -1729,7 +1729,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -1752,7 +1752,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -1772,7 +1772,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         monkeypatch.delenv("DISCORD_HISTORY_BACKFILL", raising=False)
         monkeypatch.delenv("DISCORD_HISTORY_BACKFILL_LIMIT", raising=False)
 
@@ -1793,7 +1793,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -1813,7 +1813,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -1830,7 +1830,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         monkeypatch.delenv("FEISHU_ALLOW_BOTS", raising=False)
 
         load_gateway_config()
@@ -1846,7 +1846,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         monkeypatch.setenv("FEISHU_ALLOW_BOTS", "none")
 
         load_gateway_config()
@@ -1862,7 +1862,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         monkeypatch.delenv("TELEGRAM_ALLOW_BOTS", raising=False)
 
         load_gateway_config()
@@ -1878,7 +1878,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         monkeypatch.setenv("TELEGRAM_ALLOW_BOTS", "none")
 
         load_gateway_config()
@@ -1891,7 +1891,7 @@ class TestLoadGatewayConfig:
         config_path = hermes_home / "config.yaml"
         config_path.write_text("quick_commands: not-a-mapping\n", encoding="utf-8")
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -1908,7 +1908,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -1925,7 +1925,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -1944,7 +1944,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -1963,7 +1963,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -1973,9 +1973,9 @@ class TestLoadGatewayConfig:
         hermes_home = tmp_path / ".hermes"
         hermes_home.mkdir()
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
-        from hermes_cli.config import load_config
+        from openamer_cli.config import load_config
 
         config = load_config()
 
@@ -1993,7 +1993,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -2012,7 +2012,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -2028,7 +2028,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         monkeypatch.delenv("TELEGRAM_PROXY", raising=False)
 
         load_gateway_config()
@@ -2046,7 +2046,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         monkeypatch.setenv("TELEGRAM_PROXY", "socks5://from-env:1080")
 
         load_gateway_config()
@@ -2075,7 +2075,7 @@ class TestLoadGatewayConfig:
             encoding="utf-8",
         )
 
-        monkeypatch.setenv("HERMES_HOME", str(default_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(default_home))
         monkeypatch.setenv("API_SERVER_ENABLED", "true")
         monkeypatch.setenv("DISCORD_BOT_TOKEN", "default-token")
 
@@ -2085,13 +2085,13 @@ class TestLoadGatewayConfig:
         # os.environ (single-profile overlay semantics, #67827) and this test
         # would no longer exercise the cross-profile isolation it's about.
         set_multiplex_active(True)
-        home_token = set_hermes_home_override(str(secondary_home))
+        home_token = set_openamer_home_override(str(secondary_home))
         secret_token = set_secret_scope({"DISCORD_BOT_TOKEN": "worker-token"})
         try:
             config = load_gateway_config()
         finally:
             reset_secret_scope(secret_token)
-            reset_hermes_home_override(home_token)
+            reset_openamer_home_override(home_token)
             set_multiplex_active(False)
 
         assert config.multiplex_profiles is True
@@ -2128,7 +2128,7 @@ class TestWebhookPortBridging:
             "    port: 8649\n",
             encoding="utf-8",
         )
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         monkeypatch.delenv("WEBHOOK_ENABLED", raising=False)
         monkeypatch.delenv("WEBHOOK_PORT", raising=False)
 
@@ -2154,7 +2154,7 @@ class TestWebhookPortBridging:
             "    port: 8649\n",
             encoding="utf-8",
         )
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         monkeypatch.delenv("WEBHOOK_ENABLED", raising=False)
         monkeypatch.delenv("WEBHOOK_PORT", raising=False)
 
@@ -2175,7 +2175,7 @@ class TestWebhookPortBridging:
             "    port: 8648\n",
             encoding="utf-8",
         )
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         monkeypatch.delenv("API_SERVER_ENABLED", raising=False)
         monkeypatch.delenv("API_SERVER_PORT", raising=False)
 
@@ -2197,7 +2197,7 @@ class TestWebhookPortBridging:
             "    enabled: true\n",
             encoding="utf-8",
         )
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         monkeypatch.delenv("WEBHOOK_ENABLED", raising=False)
         monkeypatch.delenv("WEBHOOK_PORT", raising=False)
 
@@ -2224,7 +2224,7 @@ class TestWebhookPortBridging:
             "      secret: extra-secret\n",
             encoding="utf-8",
         )
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         monkeypatch.delenv("MSGRAPH_WEBHOOK_ENABLED", raising=False)
         monkeypatch.delenv("MSGRAPH_WEBHOOK_PORT", raising=False)
         monkeypatch.delenv("MSGRAPH_WEBHOOK_CLIENT_STATE", raising=False)
@@ -2336,7 +2336,7 @@ class TestMultiplexProfilesEnvOverride:
         hermes_home.mkdir(exist_ok=True)
         if config_text is not None:
             (hermes_home / "config.yaml").write_text(config_text, encoding="utf-8")
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
         return load_gateway_config()
 
     # ── Tier 1: env wins ──────────────────────────────────────────────────
@@ -2426,7 +2426,7 @@ class TestMultiplexProfilesConfig:
             "multiplex_profiles: true\n",
             encoding="utf-8",
         )
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -2444,7 +2444,7 @@ class TestMultiplexProfilesConfig:
             "gateway:\n  multiplex_profiles: true\n",
             encoding="utf-8",
         )
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -2458,7 +2458,7 @@ class TestMultiplexProfilesConfig:
         hermes_home = tmp_path / ".hermes"
         hermes_home.mkdir()
         (hermes_home / "config.yaml").write_text("", encoding="utf-8")
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -2474,7 +2474,7 @@ class TestMultiplexProfilesConfig:
             "gateway:\n  multiplex_profiles: false\n",
             encoding="utf-8",
         )
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 
@@ -2495,7 +2495,7 @@ class TestMultiplexProfilesConfig:
             "gateway:\n  multiplex_profiles: true\n",
             encoding="utf-8",
         )
-        monkeypatch.setenv("HERMES_HOME", str(hermes_home))
+        monkeypatch.setenv("OPENAMER_HOME", str(hermes_home))
 
         config = load_gateway_config()
 

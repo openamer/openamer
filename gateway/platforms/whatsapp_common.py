@@ -462,10 +462,10 @@ class WhatsAppBehaviorMixin:
 # ---------------------------------------------------------------------------
 
 def resolve_whatsapp_bridge_dir() -> Path:
-    """Resolve the WhatsApp bridge directory, mirroring to HERMES_HOME if needed.
+    """Resolve the WhatsApp bridge directory, mirroring to OPENAMER_HOME if needed.
 
     When the install tree is read-only (e.g., Docker /opt/hermes), this function
-    mirrors the bridge source to a writable HERMES_HOME location and returns that
+    mirrors the bridge source to a writable OPENAMER_HOME location and returns that
     path. This ensures npm install works in Docker environments.
 
     Returns the resolved bridge directory path.
@@ -474,11 +474,11 @@ def resolve_whatsapp_bridge_dir() -> Path:
     from pathlib import Path as _Path
 
     # Default location in install tree (may be read-only)
-    from hermes_constants import get_hermes_home
+    from openamer_constants import get_openamer_home
     install_bridge = _Path(__file__).resolve().parents[2] / "scripts" / "whatsapp-bridge"
 
-    # Try HERMES_HOME location first
-    hermes_home = get_hermes_home()
+    # Try OPENAMER_HOME location first
+    hermes_home = get_openamer_home()
     hermes_home_bridge = hermes_home / "scripts" / "whatsapp-bridge"
 
     # Check if install dir is writable
@@ -493,11 +493,11 @@ def resolve_whatsapp_bridge_dir() -> Path:
     if install_writable:
         return install_bridge
 
-    # Install dir is read-only, mirror to HERMES_HOME if needed
+    # Install dir is read-only, mirror to OPENAMER_HOME if needed
     if hermes_home_bridge.exists():
         return hermes_home_bridge
 
-    # Mirror the bridge source to HERMES_HOME
+    # Mirror the bridge source to OPENAMER_HOME
     try:
         hermes_home_bridge.parent.mkdir(parents=True, exist_ok=True)
         shutil.copytree(

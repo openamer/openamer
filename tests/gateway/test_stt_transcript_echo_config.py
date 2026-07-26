@@ -30,7 +30,7 @@ def test_top_level_stt_echo_transcripts_takes_precedence():
 
 
 def test_load_gateway_config_honors_top_level_stt_echo_transcripts(monkeypatch, tmp_path):
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     (tmp_path / "config.yaml").write_text(
         "stt:\n  echo_transcripts: true\nstt_echo_transcripts: false\n",
         encoding="utf-8",

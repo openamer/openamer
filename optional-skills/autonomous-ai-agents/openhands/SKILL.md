@@ -2,20 +2,20 @@
 name: openhands
 description: Delegate coding to OpenHands CLI (model-agnostic, LiteLLM).
 version: 0.1.0
-author: Tim Koepsel (xzessmedia), Hermes Agent
+author: Tim Koepsel (xzessmedia), OpenAmer Agent
 license: MIT
 platforms: [linux, macos]
 metadata:
-  hermes:
+  openamer:
     tags: [Coding-Agent, OpenHands, Model-Agnostic, LiteLLM]
-    related_skills: [claude-code, codex, opencode, hermes-agent]
+    related_skills: [claude-code, codex, opencode, openamer-agent]
 ---
 
 # OpenHands CLI
 
 Delegate coding tasks to the [OpenHands CLI](https://github.com/All-Hands-AI/OpenHands) via the `terminal` tool. OpenHands is model-agnostic: any LiteLLM-supported provider (OpenAI, Anthropic, OpenRouter, DeepSeek, Ollama, vLLM, etc.).
 
-This skill is the headless-mode wrapper for batch / one-shot delegation. The interactive textual UI is not used from Hermes.
+This skill is the headless-mode wrapper for batch / one-shot delegation. The interactive textual UI is not used from OpenAmer.
 
 ## When to Use
 
@@ -23,7 +23,7 @@ This skill is the headless-mode wrapper for batch / one-shot delegation. The int
 - User wants a coding agent that can run on a non-Anthropic / non-OpenAI provider (DeepSeek, Qwen, Ollama, vLLM, Nous, etc.) — sibling skills `claude-code` and `codex` are tied to one vendor.
 - Multi-step file edits + shell commands inside a workspace.
 
-For Claude-native, prefer `claude-code`. For OpenAI-native, prefer `codex`. For Hermes-native subagents, use `delegate_task`.
+For Claude-native, prefer `claude-code`. For OpenAI-native, prefer `codex`. For OpenAmer-native subagents, use `delegate_task`.
 
 ## Prerequisites
 
@@ -146,4 +146,4 @@ If the JSONL stream ends with a `FinishAction` whose `action.message` mentions `
 
 - [OpenHands GitHub](https://github.com/All-Hands-AI/OpenHands)
 - [OpenHands CLI command reference](https://docs.openhands.dev/openhands/usage/cli/command-reference)
-- Sibling skills: `claude-code` (Anthropic-only), `codex` (OpenAI-only), `opencode` (multi-provider via OpenCode), `hermes-agent` (Hermes subagents via `delegate_task`).
+- Sibling skills: `claude-code` (Anthropic-only), `codex` (OpenAI-only), `opencode` (multi-provider via OpenCode), `openamer-agent` (OpenAmer subagents via `delegate_task`).

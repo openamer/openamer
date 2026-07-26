@@ -14,8 +14,8 @@ from gateway.config import GatewayConfig
 
 def _pin_db(monkeypatch, tmp_path):
     """Force SessionDB() to write into tmp_path instead of the real ~/.hermes."""
-    import hermes_state
-    monkeypatch.setattr(hermes_state, "DEFAULT_DB_PATH", tmp_path / "state.db")
+    import openamer_state
+    monkeypatch.setattr(openamer_state, "DEFAULT_DB_PATH", tmp_path / "state.db")
 
 
 def test_recall_branch_a1_exact_id_match_round_trips_through_db(tmp_path, monkeypatch):

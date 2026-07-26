@@ -108,12 +108,12 @@ def _named_custom_provider_catalogs() -> list[tuple[str, str, list[tuple[str, st
     unchanged.
     """
     try:
-        from hermes_cli.config import (
+        from openamer_cli.config import (
             get_compatible_custom_providers,
             is_provider_enabled,
             load_config,
         )
-        from hermes_cli.models import fetch_api_models
+        from openamer_cli.models import fetch_api_models
     except ImportError:
         return []
 
@@ -190,7 +190,7 @@ def _named_custom_provider_catalogs() -> list[tuple[str, str, list[tuple[str, st
     return catalogs
 
 try:
-    from hermes_cli import __version__ as HERMES_VERSION
+    from openamer_cli import __version__ as HERMES_VERSION
 except Exception:
     HERMES_VERSION = "0.0.0"
 
@@ -204,7 +204,7 @@ _LIST_SESSIONS_PAGE_SIZE = 50
 # Per-provider cap for the ACP model selector. ACP clients (Zed, Buzz) render
 # the whole `availableModels` array in one dropdown, so an unbounded
 # cross-provider catalog degrades the picker. Mirrors the cap the MoA picker
-# already uses (`hermes_cli/moa_cmd.py`). This bounds each provider's row, not
+# already uses (`openamer_cli/moa_cmd.py`). This bounds each provider's row, not
 # the total; aggregator providers stay intentionally uncapped inside the shared
 # inventory, and the current model is always kept via the fallback insert below.
 ACP_MAX_MODELS_PER_PROVIDER = 200
@@ -706,8 +706,8 @@ class HermesACPAgent(acp.Agent):
         provider = getattr(state.agent, "provider", None) or detect_provider() or "openrouter"
 
         try:
-            from hermes_cli.inventory import build_models_payload, load_picker_context
-            from hermes_cli.models import normalize_provider, provider_label
+            from openamer_cli.inventory import build_models_payload, load_picker_context
+            from openamer_cli.models import normalize_provider, provider_label
 
             normalized_provider = normalize_provider(provider)
             context = load_picker_context().with_overrides(
@@ -826,7 +826,7 @@ class HermesACPAgent(acp.Agent):
         new_model = raw_model.strip()
 
         try:
-            from hermes_cli.models import detect_provider_for_model, parse_model_input
+            from openamer_cli.models import detect_provider_for_model, parse_model_input
 
             target_provider, new_model = parse_model_input(new_model, current_provider)
             if target_provider == current_provider:
@@ -936,7 +936,7 @@ class HermesACPAgent(acp.Agent):
 
         title = row.get("title")
         # The `sessions` table does not have an `updated_at` column (see
-        # hermes_state.py schema — only started_at/ended_at). Use "now" as
+        # openamer_state.py schema — only started_at/ended_at). Use "now" as
         # the updated_at since we're emitting this notification precisely
         # because the title was just refreshed.
         updated_at = datetime.now(timezone.utc).isoformat()

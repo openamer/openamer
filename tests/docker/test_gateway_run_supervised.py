@@ -402,7 +402,7 @@ def test_supervised_gateway_stdout_reaches_docker_logs(
 ) -> None:
     """The supervised gateway's stdout — including the rich-console
     startup banner — must reach ``docker logs``, not just the rotated
-    log file under ``${HERMES_HOME}/logs/gateways/<profile>/current``.
+    log file under ``${OPENAMER_HOME}/logs/gateways/<profile>/current``.
 
     Without the ``1`` action directive in ``_render_log_run``, s6-log
     swallows the gateway's stdout into the file and ``docker logs``

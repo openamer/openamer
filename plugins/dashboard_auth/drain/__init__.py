@@ -60,7 +60,7 @@ import os
 from collections import Counter
 from typing import Optional
 
-from hermes_cli.dashboard_auth import (
+from openamer_cli.dashboard_auth import (
     DashboardAuthProvider,
     LoginStart,
     Session,
@@ -212,7 +212,7 @@ class DrainSecretProvider(DashboardAuthProvider):
 def _load_config_drain_auth_section() -> dict:
     """Return ``dashboard.drain_auth`` from config.yaml, or ``{}``."""
     try:
-        from hermes_cli.config import cfg_get, load_config
+        from openamer_cli.config import cfg_get, load_config
 
         cfg = load_config()
     except Exception as exc:  # noqa: BLE001 — broad catch is intentional
@@ -275,7 +275,7 @@ def register(ctx) -> None:
     # Opt the begin/cancel-drain endpoint into the generic token-auth seam so
     # the dashboard's interactive cookie gate doesn't bounce NAS's bearer call.
     try:
-        from hermes_cli.dashboard_auth.token_auth import register_token_route
+        from openamer_cli.dashboard_auth.token_auth import register_token_route
 
         register_token_route(DRAIN_ROUTE_PATH)
     except Exception as exc:  # noqa: BLE001 — seam import must not crash plugin load

@@ -166,7 +166,7 @@ def _make_agent(tmp_path: Path, **overrides):
 
 def test_reasoning_floor_applies_to_nemotron_3_ultra(monkeypatch, tmp_path):
     """Nemotron 3 Ultra without explicit config gets the 600s floor."""
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     (tmp_path / ".env").write_text("", encoding="utf-8")
     monkeypatch.delenv("HERMES_API_CALL_STALE_TIMEOUT", raising=False)
     _write_config(tmp_path, "")
@@ -197,7 +197,7 @@ def test_reasoning_floor_applies_to_nemotron_3_ultra(monkeypatch, tmp_path):
 
 def test_reasoning_floor_applies_to_opus_4_thinking(monkeypatch, tmp_path):
     """Anthropic Opus 4.x thinking gets the 240s floor without explicit config."""
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     (tmp_path / ".env").write_text("", encoding="utf-8")
     monkeypatch.delenv("HERMES_API_CALL_STALE_TIMEOUT", raising=False)
     _write_config(tmp_path, "")
@@ -225,7 +225,7 @@ def test_reasoning_floor_never_overrides_explicit_user_config(monkeypatch, tmp_p
     on Nemotron 3 Ultra, that's what fires — even though the floor
     would otherwise be 600s.
     """
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     (tmp_path / ".env").write_text("", encoding="utf-8")
     monkeypatch.delenv("HERMES_API_CALL_STALE_TIMEOUT", raising=False)
 
@@ -250,7 +250,7 @@ def test_reasoning_floor_never_overrides_explicit_user_config(monkeypatch, tmp_p
 
 def test_reasoning_floor_loses_to_env_var_when_no_floor_match(monkeypatch, tmp_path):
     """For a non-reasoning model, env var still wins over the 90s default."""
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     (tmp_path / ".env").write_text("", encoding="utf-8")
     monkeypatch.setenv("HERMES_API_CALL_STALE_TIMEOUT", "300")
     _write_config(tmp_path, "")
@@ -272,7 +272,7 @@ def test_reasoning_floor_loses_to_env_var_when_no_floor_match(monkeypatch, tmp_p
 
 def test_non_reasoning_model_keeps_default(monkeypatch, tmp_path):
     """GPT-5 (non-reasoning) without env var / config -> 90s default, implicit."""
-    monkeypatch.setenv("HERMES_HOME", str(tmp_path))
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     (tmp_path / ".env").write_text("", encoding="utf-8")
     monkeypatch.delenv("HERMES_API_CALL_STALE_TIMEOUT", raising=False)
     _write_config(tmp_path, "")
