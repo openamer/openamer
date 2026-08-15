@@ -26,13 +26,13 @@ All fields are optional. Missing values inherit from the ``default`` skin.
       background: "#0e0e12"               # App/base surface — the seed the TUI
                                           # status bar and the desktop GUI derive
                                           # their whole palette from (see below).
-      banner_border: "#CD7F32"            # Panel border color
-      banner_title: "#FFD700"             # Panel title text color
-      banner_accent: "#FFBF00"            # Section headers (Available Tools, etc.)
-      banner_dim: "#B8860B"               # Dim/muted text (separators, labels)
-      banner_text: "#FFF8DC"              # Body text (tool names, skill names)
-      ui_accent: "#FFBF00"               # General UI accent
-      ui_label: "#DAA520"                # UI labels (warm gold; teal clashed w/ default banner gold)
+      banner_border: "#155E8A"            # Panel border color
+      banner_title: "#7DD3FC"             # Panel title text color
+      banner_accent: "#38BDF8"            # Section headers (Available Tools, etc.)
+      banner_dim: "#4A7BA6"               # Dim/muted text (separators, labels)
+      banner_text: "#E3F2FD"              # Primary body text
+      ui_accent: "#22D3EE"                # General UI accent
+      ui_label: "#38BDF8"                 # UI labels (tech blue; matches default banner)
       ui_ok: "#4caf50"                   # Success indicators
       ui_error: "#ef5350"                # Error indicators
       ui_warn: "#ffa726"                 # Warning indicators
@@ -200,76 +200,71 @@ class SkinConfig:
 
 _BUILTIN_SKINS: Dict[str, Dict[str, Any]] = {
     "default": {
-        "name": "default",
-        "description": "Classic OpenAmer — gold and kawaii",
-        # Dark-authored. Values match the TUI's DARK_THEME so the classic CLI
-        # and the TUI render the same OpenAmer gold.
-        "colors": {
-            "banner_border": "#CD7F32",
-            "banner_title": "#FFD700",
-            "banner_accent": "#FFBF00",
-            "banner_dim": "#B8860B",
-            "banner_text": "#FFF8DC",
-            "ui_accent": "#FFBF00",
-            "ui_label": "#DAA520",
-            "ui_ok": "#4caf50",
-            "ui_error": "#ef5350",
-            "ui_warn": "#ffa726",
-            "prompt": "#FFF8DC",
-            "input_rule": "#CD7F32",
-            "response_border": "#FFD700",
-            "status_bar_bg": "#1a1a2e",
-            "status_bar_text": "#C0C0C0",
-            "status_bar_strong": "#FFD700",
-            "status_bar_dim": "#8A7A4A",
-            "status_bar_good": "#8FBC8F",
-            "status_bar_warn": "#FFD700",
-            "status_bar_bad": "#FF8C00",
-            "status_bar_critical": "#FF6B6B",
-            "session_label": "#DAA520",
-            "session_border": "#8B8682",
-            "completion_menu_bg": "#1a1a2e",
-            "completion_menu_current_bg": "#333355",
-            "selection_bg": "#3a3a55",
-            "shell_dollar": "#4dabf7",
-            "voice_status_bg": "#1a1a2e",
-        },
-        # Light overlay (merged onto `colors`; dark mode renders the vivid
-        # block above untouched). The goldenrod ladder: on white, the vivid
-        # #FFD700/#FFBF00 read as glare and WCAG-darkened mustard (#867000)
-        # reads as mud — the sweet spot is the statusbar's goldenrod family
-        # (#B8860B/#DAA520): hue kept, saturation tamed, mid luminance.
-        # Hierarchy on white: ink body 8.9:1 > fade 5.2 > label 3.7 >
-        # muted 3.3 > title 2.7 > headers 2.4 (accents recede last, like
-        # slate's pastels — the raw-canon look, just not neon).
-        "light_colors": {
-            "banner_title": "#C8961E",
-            "banner_accent": "#D89B04",
-            "banner_dim": "#B8860B",
-            "banner_text": "#5C4718",
-            "ui_accent": "#D89B04",
-            "ui_label": "#A97E10",
-            "ui_ok": "#2E7D32",
-            "ui_error": "#C62828",
-            "ui_warn": "#D97706",
-            "prompt": "#5C4718",
-            "response_border": "#C8961E",
-            "session_label": "#A97E10",
-            "status_bar_text": "#6F6F6F",
-            "status_bar_strong": "#C8961E",
-            "status_bar_dim": "#9A8A5A",
-            "status_bar_good": "#2E7D32",
-            "status_bar_warn": "#C8961E",
-            "status_bar_bad": "#C2410C",
-            "status_bar_critical": "#B91C1C",
-            "shell_dollar": "#1E6FC0",
-            # Fills: flip the dark navy surfaces to light polarity.
-            "completion_menu_bg": "#F5F5F5",
-            "completion_menu_current_bg": "#E0D1BF",
-            "selection_bg": "#D4E4F7",
-            "status_bar_bg": "#F5F5F5",
-            "voice_status_bg": "#F5F5F5",
-        },
+            "name": "default",
+            "description": "OpenAmer — professional tech blue/cyan",
+            # Dark-authored. Values match the TUI's DARK_THEME so the classic CLI
+            # and the TUI render the same OpenAmer cyan-blue identity.
+            "colors": {
+                "banner_border": "#155E8A",
+                "banner_title": "#7DD3FC",
+                "banner_accent": "#38BDF8",
+                "banner_dim": "#4A7BA6",
+                "banner_text": "#E3F2FD",
+                "ui_accent": "#22D3EE",
+                "ui_label": "#38BDF8",
+                "ui_ok": "#4caf50",
+                "ui_error": "#ef5350",
+                "ui_warn": "#ffa726",
+                "prompt": "#E3F2FD",
+                "input_rule": "#22D3EE",
+                "response_border": "#38BDF8",
+                "status_bar_bg": "#0B1B2B",
+                "status_bar_text": "#BFD9EE",
+                "status_bar_strong": "#7DD3FC",
+                "status_bar_dim": "#4A7BA6",
+                "status_bar_good": "#8FBC8F",
+                "status_bar_warn": "#38BDF8",
+                "status_bar_bad": "#FB8C00",
+                "status_bar_critical": "#FF6B6B",
+                "session_label": "#38BDF8",
+                "session_border": "#1E3A5F",
+                "completion_menu_bg": "#0B1B2B",
+                "completion_menu_current_bg": "#16324F",
+                "selection_bg": "#1E3A5F",
+                "shell_dollar": "#22D3EE",
+                "voice_status_bg": "#0B1B2B",
+            },
+            # Light overlay (merged onto `colors`; dark mode renders the vivid
+            # block above untouched). Blue/cyan reads cleanly on white with the
+            # saturation tamed so accents stay legible.
+            "light_colors": {
+                "banner_title": "#0E7490",
+                "banner_accent": "#0E7490",
+                "banner_dim": "#3E7CB1",
+                "banner_text": "#0F3550",
+                "ui_accent": "#0891B2",
+                "ui_label": "#0369A1",
+                "ui_ok": "#2E7D32",
+                "ui_error": "#C62828",
+                "ui_warn": "#D97706",
+                "prompt": "#0F3550",
+                "response_border": "#0E7490",
+                "session_label": "#0369A1",
+                "status_bar_text": "#3E5A73",
+                "status_bar_strong": "#0E7490",
+                "status_bar_dim": "#6B8FAB",
+                "status_bar_good": "#2E7D32",
+                "status_bar_warn": "#0E7490",
+                "status_bar_bad": "#C2410C",
+                "status_bar_critical": "#B91C1C",
+                "shell_dollar": "#0369A1",
+                # Fills: flip the dark navy surfaces to light polarity.
+                "completion_menu_bg": "#F0F6FB",
+                "completion_menu_current_bg": "#D5E7F4",
+                "selection_bg": "#C9E3F2",
+                "status_bar_bg": "#EAF3F9",
+                "voice_status_bg": "#EAF3F9",
+            },
         "spinner": {
             # Empty = use hardcoded defaults in display.py
         },

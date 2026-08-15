@@ -30,7 +30,7 @@ logger = logging.getLogger(__name__)
 # ANSI building blocks for conversation display
 # =========================================================================
 
-_GOLD = "\033[1;38;2;255;215;0m"  # True-color #FFD700 bold
+_GOLD = "\033[1;38;2;34;211;238m"  # True-color #22D3EE cyan bold
 _BOLD = "\033[1m"
 _DIM = "\033[2m"
 _RST = "\033[0m"
@@ -60,28 +60,25 @@ def _skin_color(key: str, fallback: str) -> str:
 
 from openamer_cli import __version__ as VERSION, __release_date__ as RELEASE_DATE
 
-OPENAMER_AGENT_LOGO = """[bold #FFD700]██╗  ██╗███████╗██████╗ ███╗   ███╗███████╗███████╗       █████╗  ██████╗ ███████╗███╗   ██╗████████╗[/]
-[bold #FFD700]██║  ██║██╔════╝██╔══██╗████╗ ████║██╔════╝██╔════╝      ██╔══██╗██╔════╝ ██╔════╝████╗  ██║╚══██╔══╝[/]
-[#FFBF00]███████║█████╗  ██████╔╝██╔████╔██║█████╗  ███████╗█████╗███████║██║  ███╗█████╗  ██╔██╗ ██║   ██║[/]
-[#FFBF00]██╔══██║██╔══╝  ██╔══██╗██║╚██╔╝██║██╔══╝  ╚════██║╚════╝██╔══██║██║   ██║██╔══╝  ██║╚██╗██║   ██║[/]
-[#CD7F32]██║  ██║███████╗██║  ██║██║ ╚═╝ ██║███████╗███████║      ██║  ██║╚██████╔╝███████╗██║ ╚████║   ██║[/]
-[#CD7F32]╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝╚══════╝      ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═══╝   ╚═╝[/]"""
+OPENAMER_AGENT_LOGO = """[bold #38BDF8] █████╗  ██████╗  ███████╗ ██╗   ██╗  █████╗  ██╗    ██╗ ███████╗ ██████╗[/]
+[bold #38BDF8]██╔═══██╗ ██╔═══██╗ ██╔════╝  ██║   ██║ ██╔══██╗ ██║    ██║ ██╔════╝  ██╔══██╗[/]
+[#22D3EE]██║   ██║ ██████╔╝  ███████╗  ██║   ██║ ███████║ ██║ █╗ ██║ ███████╗  ██████╔╝[/]
+[#22D3EE]██║   ██║ ██╔═══╝   ╚════██╗  ██║   ██║ ██╔══██║ ██║███╗██║ ╚════██╗  ██╔══██╗[/]
+[#0EA5E9]╚██████╔╝ ██║       ███████║  ╚██████╔╝ ██║  ██║ ╚███╔███╔╝ ███████║  ██║  ██║[/]
+[#0EA5E9] ╚═════╝  ╚═╝       ╚══════╝   ╚═════╝  ╚═╝  ╚═╝  ╚══╝╚══╝ ╚══════╝  ╚═╝  ╚═╝[/]"""
 
-OPENAMER_CADUCEUS = """[#CD7F32]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⡀⠀⣀⣀⠀⢀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
-[#CD7F32]⠀⠀⠀⠀⠀⠀⢀⣠⣴⣾⣿⣿⣇⠸⣿⣿⠇⣸⣿⣿⣷⣦⣄⡀⠀⠀⠀⠀⠀⠀[/]
-[#FFBF00]⠀⢀⣠⣴⣶⠿⠋⣩⡿⣿⡿⠻⣿⡇⢠⡄⢸⣿⠟⢿⣿⢿⣍⠙⠿⣶⣦⣄⡀⠀[/]
-[#FFBF00]⠀⠀⠉⠉⠁⠶⠟⠋⠀⠉⠀⢀⣈⣁⡈⢁⣈⣁⡀⠀⠉⠀⠙⠻⠶⠈⠉⠉⠀⠀[/]
-[#FFD700]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣿⡿⠛⢁⡈⠛⢿⣿⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
-[#FFD700]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠿⣿⣦⣤⣈⠁⢠⣴⣿⠿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
-[#FFBF00]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠻⢿⣿⣦⡉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
-[#FFBF00]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢷⣦⣈⠛⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
-[#CD7F32]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣴⠦⠈⠙⠿⣦⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
-[#CD7F32]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣤⡈⠁⢤⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
-[#B8860B]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠷⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
-[#B8860B]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⠑⢶⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
-[#B8860B]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠁⢰⡆⠈⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
-[#B8860B]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠳⠈⣡⠞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
-[#B8860B]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]"""
+OPENAMER_CADUCEUS = """[#22D3EE]       ╭───────────╮    [/]
+[#22D3EE]      ╱             ╲   [/]
+[#38BDF8]     ◯               ◯  [/]
+[#7DD3FC]    ╱     ●     ●     ╲ [/]
+[#22D3EE]   ◯   ╱  ███████  ╲   ◯[/]
+[#0EA5E9]   │  │           │  │  [/]
+[#0EA5E9]   │  ╲  ███████  ╱  │  [/]
+[#22D3EE]   ◯     ●     ●     ◯  [/]
+[#7DD3FC]    ╲               ╱   [/]
+[#38BDF8]     ◯             ◯    [/]
+[#22D3EE]      ╲           ╱     [/]
+[#22D3EE]       ╰───────────╯    [/]"""
 
 
 
@@ -607,10 +604,10 @@ def build_welcome_banner(console: "Console", model: str, cwd: str,
     layout_table.add_column("right", justify="left")
 
     # Resolve skin colors once for the entire banner
-    accent = _skin_color("banner_accent", "#FFBF00")
-    dim = _skin_color("banner_dim", "#B8860B")
-    text = _skin_color("banner_text", "#FFF8DC")
-    session_color = _skin_color("session_border", "#8B8682")
+    accent = _skin_color("banner_accent", "#38BDF8")
+    dim = _skin_color("banner_dim", "#4A7BA6")
+    text = _skin_color("banner_text", "#E3F2FD")
+    session_color = _skin_color("session_border", "#1E3A5F")
 
     # Use skin's custom caduceus art if provided
     try:
@@ -858,8 +855,8 @@ def build_welcome_banner(console: "Console", model: str, cwd: str,
     right_content = "\n".join(right_lines)
     layout_table.add_row(left_content, right_content)
 
-    title_color = _skin_color("banner_title", "#FFD700")
-    border_color = _skin_color("banner_border", "#CD7F32")
+    title_color = _skin_color("banner_title", "#7DD3FC")
+    border_color = _skin_color("banner_border", "#155E8A")
     version_label = format_banner_version_label()
     release_info = get_latest_release_tag()
     if release_info:

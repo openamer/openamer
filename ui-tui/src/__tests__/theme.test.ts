@@ -51,7 +51,7 @@ describe('DEFAULT_THEME', () => {
   it('has color palette', async () => {
     const { DEFAULT_THEME } = await importThemeWithCleanEnv()
 
-    expect(DEFAULT_THEME.color.primary).toBe('#FFD700')
+    expect(DEFAULT_THEME.color.primary).toBe('#7DD3FC')
     expect(DEFAULT_THEME.color.error).toBe('#ef5350')
   })
 })
@@ -434,20 +434,20 @@ describe('derived tone ladder', () => {
     const light = await importThemeWithEnv({ OPENAMER_TUI_BACKGROUND: '#ffffff' })
 
     const cases: Array<[string, string, string]> = [
-      [dark.DARK_THEME.color.muted, '#CC9B1F', 'dark muted'],
-      [dark.DARK_THEME.color.label, '#DAA520', 'dark label'],
-      [dark.DARK_THEME.color.statusFg, '#C0C0C0', 'dark statusFg'],
-      [dark.DARK_THEME.color.completionBg, '#1a1a2e', 'dark surface'],
-      [dark.DARK_THEME.color.completionCurrentBg, '#333355', 'dark chip'],
-      [dark.DARK_THEME.color.selectionBg, '#3a3a55', 'dark selection'],
+      [dark.DARK_THEME.color.muted, '#31aabf', 'dark muted'],
+      [dark.DARK_THEME.color.label, '#33b5ca', 'dark label'],
+      [dark.DARK_THEME.color.statusFg, '#bbbbbb', 'dark statusFg'],
+      [dark.DARK_THEME.color.completionBg, '#0B1B2B', 'dark surface'],
+      [dark.DARK_THEME.color.completionCurrentBg, '#16324F', 'dark chip'],
+      [dark.DARK_THEME.color.selectionBg, '#1E3A5F', 'dark selection'],
       // Light canon = liftForContrast(dark literal, white, 4.5): the exact
-      // colors xterm's minimumContrastRatio rendered on light hosts.
-      [light.LIGHT_THEME.color.muted, '#946C08', 'light muted'],
-      [light.LIGHT_THEME.color.statusFg, '#6F6F6F', 'light statusFg'],
-      [light.LIGHT_THEME.color.completionBg, '#F5F5F5', 'light surface'],
-      [light.LIGHT_THEME.color.completionCurrentBg, '#e0d1bf', 'light chip'],
-      [light.LIGHT_THEME.color.selectionBg, '#D4E4F7', 'light selection']
-    ]
+          // colors xterm's minimumContrastRatio rendered on light hosts.
+      [light.LIGHT_THEME.color.muted, '#0e90af', 'light muted'],
+      [light.LIGHT_THEME.color.statusFg, '#6e6e6e', 'light statusFg'],
+      [light.LIGHT_THEME.color.completionBg, '#f5fafb', 'light surface'],
+      [light.LIGHT_THEME.color.completionCurrentBg, '#bae0e9', 'light chip'],
+      [light.LIGHT_THEME.color.selectionBg, '#cde1ec', 'light selection']
+      ]
 
     for (const [got, original, label] of cases) {
       expect(channelDelta(got, original), `${label}: ${got} vs original ${original}`).toBeLessThanOrEqual(8)

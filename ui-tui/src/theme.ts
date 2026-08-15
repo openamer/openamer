@@ -343,51 +343,46 @@ export function buildPalette(seeds: ThemeSeeds, isLight: boolean): ThemeColors {
 }
 
 export const DARK_SEEDS: ThemeSeeds = {
-  accent: '#FFBF00',
-  // The classic OpenAmer navy surfaces are IDENTITY, not derivation drift —
+  accent: '#22D3EE',
+  // The OpenAmer navy surfaces are IDENTITY, not derivation drift —
   // keep them as explicit fill seeds (the ladder derives them for skins
   // that don't care).
-  activeRow: '#333355',
-  bg: '#101014',
-  border: '#CD7F32',
+  activeRow: '#16324F',
+  bg: '#0B1520',
+  border: '#155E8A',
   error: '#ef5350',
   ok: '#4caf50',
-  primary: '#FFD700',
-  prompt: '#FFF8DC',
-  selection: '#3a3a55',
-  shellDollar: '#4dabf7',
-  statusBad: '#FF8C00',
+  primary: '#7DD3FC',
+  prompt: '#E3F2FD',
+  selection: '#1E3A5F',
+  shellDollar: '#22D3EE',
+  statusBad: '#FB8C00',
   statusCritical: '#FF6B6B',
   statusGood: '#8FBC8F',
-  statusWarn: '#FFD700',
-  surface: '#1a1a2e',
-  text: '#FFF8DC',
+  statusWarn: '#38BDF8',
+  surface: '#0B1B2B',
+  text: '#E3F2FD',
   warn: '#ffa726'
 }
 
-// Light-terminal seeds: darker golds/ambers that stay legible on white.
-// The classic light-mode OpenAmer look was never hand-authored: for years the
-// TUI emitted the DARK golds and hosts with xterm's minimumContrastRatio
-// (Cursor defaults to 4.5) lifted them against white — hue and saturation
-// kept, luminance clamped. These seeds are those exact lifts
-// (liftForContrast(dark, '#ffffff', 4.5)), so hosts WITHOUT a contrast pass
-// render the same thing Cursor always showed. Text/prompt stay ink — body
-// copy historically rendered in the terminal's default near-black fg.
+// Light-terminal seeds: darker blues/cyans that stay legible on white.
+// The light-mode OpenAmer look uses the same hue family as dark, with
+// saturation tamed so accents don't glare (see LIGHT_SEEDS ladder).
 export const LIGHT_SEEDS: ThemeSeeds = {
-  accent: '#956E00',
+  accent: '#0891B2',
   bg: '#ffffff',
-  border: '#A56628',
+  border: '#0E7490',
   error: '#C14240',
   ok: '#367E39',
-  primary: '#867000',
-  prompt: '#2B2014',
-  shellDollar: '#377BB3',
-  statusBad: '#A65A00',
+  primary: '#0E7490',
+  prompt: '#0F3550',
+  shellDollar: '#0369A1',
+  statusBad: '#C2410C',
   statusCritical: '#B94D4D',
   statusGood: '#5C7A5C',
-  statusWarn: '#867000',
-  text: '#3D2F13',
-  warn: '#956115'
+  statusWarn: '#0E7490',
+  text: '#0F3550',
+  warn: '#B45309'
 }
 
 export const DARK_THEME: Theme = {
@@ -525,7 +520,7 @@ function referenceBackground(isLight: boolean, env: NodeJS.ProcessEnv = process.
     return cached.startsWith('#') ? cached : `#${cached}`
   }
 
-  return isLight ? '#ffffff' : '#101014'
+  return isLight ? '#ffffff' : '#0B1520'
 }
 
 // ── Derived tone ladder (the desktop color-mix system) ──────────────
