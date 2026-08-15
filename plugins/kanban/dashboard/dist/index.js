@@ -1,18 +1,19 @@
 /**
- * Hermes Kanban — Dashboard Plugin
+ * OpenAmer Kanban — Dashboard Plugin
  *
- * Board view for the multi-agent collaboration board backed by
- * ~/.hermes/kanban.db. Calls the plugin's backend at /api/plugins/kanban/
- * and tails task_events over a WebSocket for live updates.
+ * Live board for multi-agent kanban: read/comment/write the SQLite board
+ * backing the dispatcher's task system (OPENAMER_HOME/kanban.db). Updates
+ * flow one way (dispatcher kicks the board as tasks move); this UI tails the
+ * event stream over a WebSocket to stay in sync with the backend.
  *
- * Plain IIFE, no build step. Uses window.__HERMES_PLUGIN_SDK__ for React +
+ * Plain IIFE, no build step. Uses window.__OPENAMER_PLUGIN_SDK__ for React +
  * shadcn primitives; HTML5 drag-and-drop for card movement on desktop and
  * a pointer-based fallback for touch.
  */
 (function () {
   "use strict";
 
-  const SDK = window.__HERMES_PLUGIN_SDK__;
+  const SDK = window.__OPENAMER_PLUGIN_SDK__;
   if (!SDK) return;
 
   const { React } = SDK;
@@ -4463,7 +4464,7 @@
   // Register
   // -------------------------------------------------------------------------
 
-  if (window.__HERMES_PLUGINS__ && typeof window.__HERMES_PLUGINS__.register === "function") {
-    window.__HERMES_PLUGINS__.register("kanban", KanbanPage);
+  if (window.__OPENAMER_PLUGINS__ && typeof window.__OPENAMER_PLUGINS__.register === "function") {
+    window.__OPENAMER_PLUGINS__.register("kanban", KanbanPage);
   }
 })();
