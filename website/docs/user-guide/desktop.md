@@ -82,7 +82,7 @@ The model picker lives in the **composer**, just left of the microphone. Click i
 
 ### File browser
 
-Explore and preview the working directory without leaving the app — useful for following along as the agent reads, writes, and edits files. Set the initial project directory with `openamer desktop --cwd <path>` (or the `HERMES_DESKTOP_CWD` environment variable).
+Explore and preview the working directory without leaving the app — useful for following along as the agent reads, writes, and edits files. Set the initial project directory with `openamer desktop --cwd <path>` (or the `OPENAMER_DESKTOP_CWD` environment variable).
 
 ### Voice
 
@@ -155,14 +155,14 @@ To launch via the CLI, simply run `openamer desktop`. By default it installs wor
 | `--force-build`      | Force a full rebuild even if the content stamp matches                                    |
 | `--build-only`       | Build the desktop app but do not launch it (used by `openamer update`)                      |
 | `--source`           | Launch via `electron .` against `apps/desktop/dist` instead of the packaged app           |
-| `--cwd PATH`         | Initial project directory for desktop chat sessions (sets `HERMES_DESKTOP_CWD`)           |
-| `--openamer-root PATH` | Override the OpenAmer source root the app uses (sets `HERMES_DESKTOP_HERMES_ROOT`)          |
+| `--cwd PATH`         | Initial project directory for desktop chat sessions (sets `OPENAMER_DESKTOP_CWD`)           |
+| `--openamer-root PATH` | Override the OpenAmer source root the app uses (sets `OPENAMER_DESKTOP_OPENAMER_ROOT`)          |
 | `--ignore-existing`  | Force the app to ignore any `openamer` CLI already on `PATH` during backend resolution      |
 | `--fake-boot`        | Enable deterministic boot delays for validating the startup UI                            |
 
 ## How it works
 
-The packaged app ships the Electron shell and a native React chat surface. On first launch it can install the OpenAmer Agent runtime into `HERMES_HOME` (`~/.openamer`, or `%LOCALAPPDATA%\openamer` on Windows) — **the same layout a CLI install uses**, which is why the two are interchangeable. Backend resolution first honours `HERMES_DESKTOP_HERMES_ROOT`, then a completed managed install, then a probed `openamer` on `PATH` (unless `--ignore-existing` / `HERMES_DESKTOP_IGNORE_EXISTING=1` is set), and finally an explicit `HERMES_DESKTOP_HERMES` command override for packagers such as Nix. The React renderer talks to a headless backend the app launches for you — a `openamer serve` process that serves the `tui_gateway` JSON-RPC/WebSocket API — and reuses the agent runtime rather than embedding `openamer --tui`. The desktop app is **self-contained**: it runs its own `openamer serve` backend and never opens or requires the [web dashboard](./features/web-dashboard.md). (Runtimes older than the `serve` command fall back to a headless `dashboard --no-open` automatically, so an app update never outruns its backend.) Install, backend-resolution, and self-update logic live in the Electron main process.
+The packaged app ships the Electron shell and a native React chat surface. On first launch it can install the OpenAmer Agent runtime into `OPENAMER_HOME` (`~/.openamer`, or `%LOCALAPPDATA%\openamer` on Windows) — **the same layout a CLI install uses**, which is why the two are interchangeable. Backend resolution first honours `OPENAMER_DESKTOP_OPENAMER_ROOT`, then a completed managed install, then a probed `openamer` on `PATH` (unless `--ignore-existing` / `OPENAMER_DESKTOP_IGNORE_EXISTING=1` is set), and finally an explicit `OPENAMER_DESKTOP_OVERRIDE` command override for packagers such as Nix. The React renderer talks to a headless backend the app launches for you — a `openamer serve` process that serves the `tui_gateway` JSON-RPC/WebSocket API — and reuses the agent runtime rather than embedding `openamer --tui`. The desktop app is **self-contained**: it runs its own `openamer serve` backend and never opens or requires the [web dashboard](./features/web-dashboard.md). (Runtimes older than the `serve` command fall back to a headless `dashboard --no-open` automatically, so an app update never outruns its backend.) Install, backend-resolution, and self-update logic live in the Electron main process.
 
 ## Connecting to a remote backend
 
@@ -188,12 +188,12 @@ Set a username and password, then start the backend bound to a reachable address
 ```bash
 # 1. Set the dashboard login credentials.
 cat >> ~/.openamer/.env <<'EOF'
-HERMES_DASHBOARD_BASIC_AUTH_USERNAME=admin
-HERMES_DASHBOARD_BASIC_AUTH_PASSWORD=choose-a-strong-password
+OPENAMER_DASHBOARD_BASIC_AUTH_USERNAME=admin
+OPENAMER_DASHBOARD_BASIC_AUTH_PASSWORD=choose-a-strong-password
 # Recommended: a stable signing secret so sessions survive restarts.
 # Without it a random key is generated per boot and you'll be logged out
 # on every restart.
-HERMES_DASHBOARD_BASIC_AUTH_SECRET=$(openssl rand -base64 32)
+OPENAMER_DASHBOARD_BASIC_AUTH_SECRET=$(openssl rand -base64 32)
 EOF
 chmod 600 ~/.openamer/.env
 
@@ -206,7 +206,7 @@ Keep that `openamer serve` process running for as long as you want the desktop a
 
 Separately, make sure the **gateway is running** on the remote host if you rely on messaging channels — the `openamer serve` backend is what the desktop app talks to, but your Telegram/Discord/Slack gateway sessions are a different process that you start and keep running on their own. See [Messaging](./messaging/index.md) for gateway setup.
 
-Prefer not to keep a plaintext password at rest? Set `HERMES_DASHBOARD_BASIC_AUTH_PASSWORD_HASH` to a scrypt hash instead — compute it with `python -c "from plugins.dashboard_auth.basic import hash_password; print(hash_password('PW'))"`. Full configuration surface (config.yaml keys, every env var, the rate limiter): [Web Dashboard → Username/password provider](./features/web-dashboard.md#usernamepassword-provider-no-oauth-idp).
+Prefer not to keep a plaintext password at rest? Set `OPENAMER_DASHBOARD_BASIC_AUTH_PASSWORD_HASH` to a scrypt hash instead — compute it with `python -c "from plugins.dashboard_auth.basic import hash_password; print(hash_password('PW'))"`. Full configuration surface (config.yaml keys, every env var, the rate limiter): [Web Dashboard → Username/password provider](./features/web-dashboard.md#usernamepassword-provider-no-oauth-idp).
 
 Running the backend as a systemd service? Give the unit `EnvironmentFile=%h/.openamer/.env` so the credentials are in the environment at boot.
 
@@ -220,9 +220,9 @@ The backend reads and writes your `.env` (API keys, secrets) and can run agent c
 
 1. **Remote URL** — `http://<backend-host>:9119` (path prefixes like `/openamer` work if you front it with a reverse proxy)
 2. **Sign in** — the app detects which provider the backend advertises and adapts the button. For a username/password backend it shows a **Sign in** button that opens a credential form (enter the credentials from step 1). For an OAuth backend it shows **Sign in with `<provider>`** (e.g. *Sign in with Nous Research*), which runs the provider's browser sign-in. Either way the app ends up with an authenticated session against the backend.
-3. **Save and reconnect** — switches the desktop shell onto the remote backend. The session refreshes automatically; you stay signed in across restarts when `HERMES_DASHBOARD_BASIC_AUTH_SECRET` is set.
+3. **Save and reconnect** — switches the desktop shell onto the remote backend. The session refreshes automatically; you stay signed in across restarts when `OPENAMER_DASHBOARD_BASIC_AUTH_SECRET` is set.
 
-You can also set the backend URL without the UI via the `HERMES_DESKTOP_REMOTE_URL` environment variable before launching the app (it overrides the in-app setting); you still sign in from the Gateway settings panel.
+You can also set the backend URL without the UI via the `OPENAMER_DESKTOP_REMOTE_URL` environment variable before launching the app (it overrides the in-app setting); you still sign in from the Gateway settings panel.
 
 :::note Per-profile remote hosts
 The remote gateway host is configured per [profile](./profiles.md), so each profile can point at its own remote backend (or stay on its local one). Switching profiles switches which remote host the app connects to.
@@ -230,9 +230,9 @@ The remote gateway host is configured per [profile](./profiles.md), so each prof
 
 ### Troubleshooting
 
-- **Sign-in fails with 401 / "Invalid credentials"** — the username or password doesn't match the backend's `HERMES_DASHBOARD_BASIC_AUTH_USERNAME` / `HERMES_DASHBOARD_BASIC_AUTH_PASSWORD`. The backend returns the same generic error for an unknown user and a wrong password (no enumeration oracle), so double-check both. Confirm the gate is on with `curl -s http://<host>:9119/api/status | jq '.auth_required, .auth_providers'` — it should report `true` and include `"basic"`.
+- **Sign-in fails with 401 / "Invalid credentials"** — the username or password doesn't match the backend's `OPENAMER_DASHBOARD_BASIC_AUTH_USERNAME` / `OPENAMER_DASHBOARD_BASIC_AUTH_PASSWORD`. The backend returns the same generic error for an unknown user and a wrong password (no enumeration oracle), so double-check both. Confirm the gate is on with `curl -s http://<host>:9119/api/status | jq '.auth_required, .auth_providers'` — it should report `true` and include `"basic"`.
 - **No "Sign in" button — it asks for a session token instead** — the backend's username/password provider isn't active. `/api/status` won't list `"basic"` in `auth_providers`. Make sure both the username and a password (or password hash) are set in `~/.openamer/.env` and that the dashboard process actually loaded them.
-- **Signed out on every restart** — set `HERMES_DASHBOARD_BASIC_AUTH_SECRET` to a stable value. Without it the token-signing key is regenerated per boot, invalidating all sessions.
+- **Signed out on every restart** — set `OPENAMER_DASHBOARD_BASIC_AUTH_SECRET` to a stable value. Without it the token-signing key is regenerated per boot, invalidating all sessions.
 - **Connection refused / times out** — the backend bound to `127.0.0.1` (the default) or a firewall/VPN is blocking the port. Bind to `0.0.0.0` or the tailscale IP and open the port to your trusted network.
 
 For the same setup from the web-dashboard angle, see [Web Dashboard → Connecting OpenAmer Desktop to a remote backend](./features/web-dashboard.md#connecting-openamer-desktop-to-a-remote-backend); the env vars are catalogued under [Environment Variables → Web Dashboard & OpenAmer Desktop](../reference/environment-variables.md#web-dashboard--openamer-desktop).
@@ -242,7 +242,7 @@ For the same setup from the web-dashboard angle, see [Web Dashboard → Connecti
 The desktop app is contribution-driven — panes, pages, sidebar nav, status-bar
 items, palette commands, keybinds, and themes all register through one SDK, and
 you can add your own. A plugin is a single ESM file dropped in
-`$HERMES_HOME/desktop-plugins/<id>/plugin.js`; the app loads it within seconds and
+`$OPENAMER_HOME/desktop-plugins/<id>/plugin.js`; the app loads it within seconds and
 hot-reloads every save. Manage installed plugins live in **Settings → Plugins**.
 
 See [Desktop Plugin SDK](../developer-guide/desktop-plugin-sdk.md) for the full
@@ -250,7 +250,7 @@ reference. (This is separate from the [web dashboard plugin system](./features/e
 
 ## Troubleshooting
 
-Boot logs land in `HERMES_HOME/logs/desktop.log` (it includes backend output and recent Python tracebacks) — check it first if the app reports a boot failure. You can also tail it from the CLI:
+Boot logs land in `OPENAMER_HOME/logs/desktop.log` (it includes backend output and recent Python tracebacks) — check it first if the app reports a boot failure. You can also tail it from the CLI:
 
 ```bash
 openamer logs gui -f
@@ -302,8 +302,8 @@ npm run dev          # Vite renderer + Electron, which boots the Python backend
 Point the app at a specific checkout, or sandbox it from your real config:
 
 ```bash
-HERMES_DESKTOP_HERMES_ROOT=/path/to/clone npm run dev
-HERMES_HOME=/tmp/throwaway npm run dev
+OPENAMER_DESKTOP_OPENAMER_ROOT=/path/to/clone npm run dev
+OPENAMER_HOME=/tmp/throwaway npm run dev
 npm run dev:fake-boot   # exercise the startup overlay with deterministic delays
 ```
 
