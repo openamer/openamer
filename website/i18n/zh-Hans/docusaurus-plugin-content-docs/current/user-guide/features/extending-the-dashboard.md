@@ -343,7 +343,7 @@ customCSS: |
 
 Dashboard 插件是一个包含 `manifest.json`、预构建 JS bundle，以及可选的 CSS 文件和带 FastAPI 路由的 Python 文件的目录。插件与其他 OpenAmer 插件一起存放在 `~/.openamer/plugins/<name>/`——dashboard 扩展是该插件目录内的 `dashboard/` 子文件夹，因此一个插件可以从单次安装中同时扩展 CLI/gateway 和 dashboard。
 
-插件不打包 React 或 UI 组件，而是使用暴露在 `window.__HERMES_PLUGIN_SDK__` 上的 **Plugin SDK**。这使插件 bundle 保持极小体积（通常只有几 KB），并避免版本冲突。
+插件不打包 React 或 UI 组件，而是使用暴露在 `window.__OPENAMER_PLUGIN_SDK__` 上的 **Plugin SDK**。这使插件 bundle 保持极小体积（通常只有几 KB），并避免版本冲突。
 
 ### 快速上手——你的第一个插件
 
@@ -377,7 +377,7 @@ mkdir -p ~/.openamer/plugins/my-plugin/dashboard/dist
 (function () {
   "use strict";
 
-  const SDK = window.__HERMES_PLUGIN_SDK__;
+  const SDK = window.__OPENAMER_PLUGIN_SDK__;
   const { React } = SDK;
   const { Card, CardHeader, CardTitle, CardContent } = SDK.components;
 
@@ -394,7 +394,7 @@ mkdir -p ~/.openamer/plugins/my-plugin/dashboard/dist
     );
   }
 
-  window.__HERMES_PLUGINS__.register("my-plugin", MyPage);
+  window.__OPENAMER_PLUGINS__.register("my-plugin", MyPage);
 })();
 ```
 
@@ -474,10 +474,10 @@ mkdir -p ~/.openamer/plugins/my-plugin/dashboard/dist
 
 ### Plugin SDK
 
-插件所需的一切均在 `window.__HERMES_PLUGIN_SDK__` 上。插件不应直接导入 React。
+插件所需的一切均在 `window.__OPENAMER_PLUGIN_SDK__` 上。插件不应直接导入 React。
 
 ```javascript
-const SDK = window.__HERMES_PLUGIN_SDK__;
+const SDK = window.__OPENAMER_PLUGIN_SDK__;
 
 // React + hooks
 SDK.React                    // the React instance
@@ -548,8 +548,8 @@ SDK.api.getSessions(10).then((resp) => console.log(resp.sessions.length));
 在插件 bundle 内部注册：
 
 ```javascript
-window.__HERMES_PLUGINS__.registerSlot("my-plugin", "sidebar", MySidebar);
-window.__HERMES_PLUGINS__.registerSlot("my-plugin", "header-left", MyCrest);
+window.__OPENAMER_PLUGINS__.registerSlot("my-plugin", "sidebar", MySidebar);
+window.__OPENAMER_PLUGINS__.registerSlot("my-plugin", "header-left", MyCrest);
 ```
 
 #### 插槽目录
@@ -593,7 +593,7 @@ function PinnedSessionsBanner() {
   );
 }
 
-window.__HERMES_PLUGINS__.registerSlot("my-plugin", "sessions:top", PinnedSessionsBanner);
+window.__OPENAMER_PLUGINS__.registerSlot("my-plugin", "sessions:top", PinnedSessionsBanner);
 ```
 
 如果插件只增强现有页面而不需要独立的侧边栏标签页，可将页面级插槽与 `tab.hidden: true` 结合使用。
@@ -655,7 +655,7 @@ Shell 只为上述插槽渲染 `<PluginSlot name="..." />`。注册表接受额�
 ```javascript
 // ~/.openamer/plugins/session-notes/dashboard/dist/index.js
 (function () {
-  const SDK = window.__HERMES_PLUGIN_SDK__;
+  const SDK = window.__OPENAMER_PLUGIN_SDK__;
   const { React } = SDK;
   const { Card, CardContent } = SDK.components;
 
@@ -667,10 +667,10 @@ Shell 只为上述插槽渲染 `<PluginSlot name="..." />`。注册表接受额�
   }
 
   // Placeholder for the hidden tab.
-  window.__HERMES_PLUGINS__.register("session-notes", function () { return null; });
+  window.__OPENAMER_PLUGINS__.register("session-notes", function () { return null; });
 
   // The real work.
-  window.__HERMES_PLUGINS__.registerSlot("session-notes", "sessions:top", Banner);
+  window.__OPENAMER_PLUGINS__.registerSlot("session-notes", "sessions:top", Banner);
 })();
 ```
 
@@ -791,7 +791,7 @@ Dashboard 扫描三个目录中的 `dashboard/manifest.json`：
 | 1（冲突时优先） | `~/.openamer/plugins/<name>/dashboard/` | `user` |
 | 2 | `<repo>/plugins/memory/<name>/dashboard/` | `bundled` |
 | 2 | `<repo>/plugins/<name>/dashboard/` | `bundled` |
-| 3 | `./.openamer/plugins/<name>/dashboard/` | `project`——仅在设置 `HERMES_ENABLE_PROJECT_PLUGINS` 时生效 |
+| 3 | `./.openamer/plugins/<name>/dashboard/` | `project`——仅在设置 `OPENAMER_ENABLE_PROJECT_PLUGINS` 时生效 |
 
 发现结果在每个 dashboard 进程中缓存。添加新插件后，可以：
 
@@ -804,10 +804,10 @@ curl http://127.0.0.1:9119/api/dashboard/plugins/rescan
 
 #### 插件加载生命周期
 
-1. Dashboard 加载。`main.tsx` 在 `window.__HERMES_PLUGIN_SDK__` 上暴露 SDK，在 `window.__HERMES_PLUGINS__` 上暴露注册表。
+1. Dashboard 加载。`main.tsx` 在 `window.__OPENAMER_PLUGIN_SDK__` 上暴露 SDK，在 `window.__OPENAMER_PLUGINS__` 上暴露注册表。
 2. `App.tsx` 调用 `usePlugins()` → 获取 `GET /api/dashboard/plugins`。
 3. 对于每个 manifest：注入 CSS `<link>`（如已声明），然后通过 `<script>` 标签加载 JS bundle。
-4. 插件的 IIFE 运行并调用 `window.__HERMES_PLUGINS__.register(name, Component)`——以及可选的 `.registerSlot(name, slot, Component)` 用于每个插槽。
+4. 插件的 IIFE 运行并调用 `window.__OPENAMER_PLUGINS__.register(name, Component)`——以及可选的 `.registerSlot(name, slot, Component)` 用于每个插槽。
 5. Dashboard 将注册的组件与 manifest 对应，将标签页添加到导航（除非 `hidden`），并将组件挂载为路由。
 
 插件在脚本加载后最多有 **2 秒**时间调用 `register()`。超时后 dashboard 停止等待并完成初始渲染。如果插件之后才注册，它仍会出现——导航是响应式的。
@@ -870,9 +870,9 @@ cp -r openamer-example-plugins/strike-freedom-cockpit ~/.openamer/plugins/
 
 | 全局变量 | 类型 | 提供方 |
 |--------|------|----------|
-| `window.__HERMES_PLUGIN_SDK__` | object | `registry.ts` — React、hooks、UI 组件、API 客户端、工具函数。 |
-| `window.__HERMES_PLUGINS__.register(name, Component)` | function | 注册插件的主组件。 |
-| `window.__HERMES_PLUGINS__.registerSlot(name, slot, Component)` | function | 注册到命名 shell 插槽。 |
+| `window.__OPENAMER_PLUGIN_SDK__` | object | `registry.ts` — React、hooks、UI 组件、API 客户端、工具函数。 |
+| `window.__OPENAMER_PLUGINS__.register(name, Component)` | function | 注册插件的主组件。 |
+| `window.__OPENAMER_PLUGINS__.registerSlot(name, slot, Component)` | function | 注册到命名 shell 插槽。 |
 
 ---
 
@@ -885,8 +885,8 @@ cp -r openamer-example-plugins/strike-freedom-cockpit ~/.openamer/plugins/
 1. 检查 manifest 是否在 `~/.openamer/plugins/<name>/dashboard/manifest.json`（注意 `dashboard/` 子目录）。
 2. 运行 `curl http://127.0.0.1:9119/api/dashboard/plugins/rescan` 强制重新发现。
 3. 打开浏览器开发工具 → Network——确认 `manifest.json`、`index.js` 和任何 CSS 均无 404 加载成功。
-4. 打开浏览器开发工具 → Console——查找 IIFE 执行期间的错误或 `window.__HERMES_PLUGINS__ is undefined`（表示 SDK 未初始化，通常是更早的 React 渲染崩溃导致）。
-5. 验证你的 bundle 以与 `manifest.json:name` **相同的名称**调用 `window.__HERMES_PLUGINS__.register(...)`。
+4. 打开浏览器开发工具 → Console——查找 IIFE 执行期间的错误或 `window.__OPENAMER_PLUGINS__ is undefined`（表示 SDK 未初始化，通常是更早的 React 渲染崩溃导致）。
+5. 验证你的 bundle 以与 `manifest.json:name` **相同的名称**调用 `window.__OPENAMER_PLUGINS__.register(...)`。
 
 **插槽注册的组件没有渲染。**
 `sidebar` 插槽仅在激活主题设置了 `layoutVariant: cockpit` 时渲染。其他插槽始终渲染。如果你注册到某个插槽但没有命中，在 `registerSlot` 内添加 `console.log` 以确认插件 bundle 是否已运行。
@@ -904,4 +904,4 @@ cp -r openamer-example-plugins/strike-freedom-cockpit ~/.openamer/plugins/
 `customCSS` 块每个主题上限为 32 KiB。可将大型样式表拆分到多个主题中，或改用通过 `css` 字段注入完整样式表的插件（无大小限制）。
 
 **我想在 PyPI 上发布插件。**
-Dashboard 插件通过目录结构安装，而非 pip 入口点。目前最简洁的分发方式是用户克隆到 `~/.openamer/plugins/` 的 git 仓库。基于 pip 的 dashboard 插件安装器目前尚未实现。
+Dashboard 插件通过目录结构安装，而非 pip 入口点。目前最简洁的分发方式是用户克隆到 `~/.openamer/plugins/` 的 git 仓库。基于 pip 的 dashboard 插件安装器目前尚未实现。

@@ -17,7 +17,7 @@ All three are **drop-in at runtime**: no repo clone, no `npm run build`, no patc
 If you just want to use the dashboard, see [Web Dashboard](./web-dashboard). If you want to reskin the terminal CLI (not the web dashboard), see [Skins & Themes](./skins) — the CLI skin system is unrelated to dashboard themes.
 
 :::note Not the desktop app
-This page covers the **web dashboard** (`openamer dashboard`) plugin system — `window.__HERMES_PLUGIN_SDK__`, a `manifest.json`, and a pre-built JS bundle. The **native desktop app** (`openamer desktop`) has its own, unrelated SDK — `@openamer/plugin-sdk`, a single ESM file, no build step — documented at [Desktop Plugin SDK](/developer-guide/desktop-plugin-sdk). Only the backend `plugin_api.py` namespace (`/api/plugins/<name>`) is shared between them.
+This page covers the **web dashboard** (`openamer dashboard`) plugin system — `window.__OPENAMER_PLUGIN_SDK__`, a `manifest.json`, and a pre-built JS bundle. The **native desktop app** (`openamer desktop`) has its own, unrelated SDK — `@openamer/plugin-sdk`, a single ESM file, no build step — documented at [Desktop Plugin SDK](/developer-guide/desktop-plugin-sdk). Only the backend `plugin_api.py` namespace (`/api/plugins/<name>`) is shared between them.
 :::
 
 :::note How the pieces compose
@@ -363,7 +363,7 @@ Refresh the dashboard after creating the file. Switch themes live from the heade
 
 A dashboard plugin is a directory with a `manifest.json`, a pre-built JS bundle, and optionally a CSS file and a Python file with FastAPI routes. Plugins live next to other OpenAmer plugins in `~/.openamer/plugins/<name>/` — the dashboard extension is a `dashboard/` subfolder inside that plugin directory, so one plugin can extend both the CLI/gateway and the dashboard from a single install.
 
-Plugins don't bundle React or UI components. They use the **Plugin SDK** exposed on `window.__HERMES_PLUGIN_SDK__`. This keeps plugin bundles tiny (typically a few KB) and avoids version conflicts.
+Plugins don't bundle React or UI components. They use the **Plugin SDK** exposed on `window.__OPENAMER_PLUGIN_SDK__`. This keeps plugin bundles tiny (typically a few KB) and avoids version conflicts.
 
 ### Quick start — your first plugin
 
@@ -397,7 +397,7 @@ Write the JS bundle (a plain IIFE — no build step needed):
 (function () {
   "use strict";
 
-  const SDK = window.__HERMES_PLUGIN_SDK__;
+  const SDK = window.__OPENAMER_PLUGIN_SDK__;
   const { React } = SDK;
   const { Card, CardHeader, CardTitle, CardContent } = SDK.components;
 
@@ -414,7 +414,7 @@ Write the JS bundle (a plain IIFE — no build step needed):
     );
   }
 
-  window.__HERMES_PLUGINS__.register("my-plugin", MyPage);
+  window.__OPENAMER_PLUGINS__.register("my-plugin", MyPage);
 })();
 ```
 
@@ -494,10 +494,10 @@ Need a different icon? Open a PR to `web/src/App.tsx`'s `ICON_MAP` — pure addi
 
 ### The Plugin SDK
 
-Everything a plugin needs is on `window.__HERMES_PLUGIN_SDK__`. Plugins should never import React directly.
+Everything a plugin needs is on `window.__OPENAMER_PLUGIN_SDK__`. Plugins should never import React directly.
 
 ```javascript
-const SDK = window.__HERMES_PLUGIN_SDK__;
+const SDK = window.__OPENAMER_PLUGIN_SDK__;
 
 // React + hooks
 SDK.React                    // the React instance
@@ -568,8 +568,8 @@ Slots let a plugin inject components into named locations of the app shell — t
 Register from inside the plugin bundle:
 
 ```javascript
-window.__HERMES_PLUGINS__.registerSlot("my-plugin", "sidebar", MySidebar);
-window.__HERMES_PLUGINS__.registerSlot("my-plugin", "header-left", MyCrest);
+window.__OPENAMER_PLUGINS__.registerSlot("my-plugin", "sidebar", MySidebar);
+window.__OPENAMER_PLUGINS__.registerSlot("my-plugin", "header-left", MyCrest);
 ```
 
 #### Slot catalogue
@@ -613,7 +613,7 @@ function PinnedSessionsBanner() {
   );
 }
 
-window.__HERMES_PLUGINS__.registerSlot("my-plugin", "sessions:top", PinnedSessionsBanner);
+window.__OPENAMER_PLUGINS__.registerSlot("my-plugin", "sessions:top", PinnedSessionsBanner);
 ```
 
 Combine page-scoped slots with `tab.hidden: true` if your plugin only augments existing pages and doesn't need a sidebar tab of its own.
@@ -675,7 +675,7 @@ Minimal example — pin a banner to the top of the Sessions page:
 ```javascript
 // ~/.openamer/plugins/session-notes/dashboard/dist/index.js
 (function () {
-  const SDK = window.__HERMES_PLUGIN_SDK__;
+  const SDK = window.__OPENAMER_PLUGIN_SDK__;
   const { React } = SDK;
   const { Card, CardContent } = SDK.components;
 
@@ -687,10 +687,10 @@ Minimal example — pin a banner to the top of the Sessions page:
   }
 
   // Placeholder for the hidden tab.
-  window.__HERMES_PLUGINS__.register("session-notes", function () { return null; });
+  window.__OPENAMER_PLUGINS__.register("session-notes", function () { return null; });
 
   // The real work.
-  window.__HERMES_PLUGINS__.registerSlot("session-notes", "sessions:top", Banner);
+  window.__OPENAMER_PLUGINS__.registerSlot("session-notes", "sessions:top", Banner);
 })();
 ```
 
@@ -811,7 +811,7 @@ The dashboard scans three directories for `dashboard/manifest.json`:
 | 1 (wins on conflict) | `~/.openamer/plugins/<name>/dashboard/` | `user` |
 | 2 | `<repo>/plugins/memory/<name>/dashboard/` | `bundled` |
 | 2 | `<repo>/plugins/<name>/dashboard/` | `bundled` |
-| 3 | `./.openamer/plugins/<name>/dashboard/` | `project` — only when `HERMES_ENABLE_PROJECT_PLUGINS` is set |
+| 3 | `./.openamer/plugins/<name>/dashboard/` | `project` — only when `OPENAMER_ENABLE_PROJECT_PLUGINS` is set |
 
 Discovery results are cached per dashboard process. After adding a new plugin, either:
 
@@ -824,10 +824,10 @@ curl http://127.0.0.1:9119/api/dashboard/plugins/rescan
 
 #### Plugin load lifecycle
 
-1. Dashboard loads. `main.tsx` exposes the SDK on `window.__HERMES_PLUGIN_SDK__` and the registry on `window.__HERMES_PLUGINS__`.
+1. Dashboard loads. `main.tsx` exposes the SDK on `window.__OPENAMER_PLUGIN_SDK__` and the registry on `window.__OPENAMER_PLUGINS__`.
 2. `App.tsx` calls `usePlugins()` → fetches `GET /api/dashboard/plugins`.
 3. For each manifest: CSS `<link>` is injected (if declared), then a `<script>` tag loads the JS bundle.
-4. The plugin's IIFE runs and calls `window.__HERMES_PLUGINS__.register(name, Component)` — and optionally `.registerSlot(name, slot, Component)` for each slot.
+4. The plugin's IIFE runs and calls `window.__OPENAMER_PLUGINS__.register(name, Component)` — and optionally `.registerSlot(name, slot, Component)` for each slot.
 5. The dashboard resolves the registered component against the manifest, adds the tab to navigation (unless `hidden`), and mounts the component as a route.
 
 Plugins have up to **2 seconds** after their script loads to call `register()`. After that the dashboard stops waiting and finishes initial render. If a plugin later registers, it still appears — the nav is reactive.
@@ -890,9 +890,9 @@ Read the plugin source (`strike-freedom-cockpit/dashboard/dist/index.js` in the 
 
 | Global | Type | Provider |
 |--------|------|----------|
-| `window.__HERMES_PLUGIN_SDK__` | object | `registry.ts` — React, hooks, UI components, API client, utils. |
-| `window.__HERMES_PLUGINS__.register(name, Component)` | function | Register a plugin's main component. |
-| `window.__HERMES_PLUGINS__.registerSlot(name, slot, Component)` | function | Register into a named shell slot. |
+| `window.__OPENAMER_PLUGIN_SDK__` | object | `registry.ts` — React, hooks, UI components, API client, utils. |
+| `window.__OPENAMER_PLUGINS__.register(name, Component)` | function | Register a plugin's main component. |
+| `window.__OPENAMER_PLUGINS__.registerSlot(name, slot, Component)` | function | Register into a named shell slot. |
 
 ---
 
@@ -905,8 +905,8 @@ Check that the file is in `~/.openamer/dashboard-themes/` and ends in `.yaml` or
 1. Check the manifest is at `~/.openamer/plugins/<name>/dashboard/manifest.json` (note the `dashboard/` subdirectory).
 2. `curl http://127.0.0.1:9119/api/dashboard/plugins/rescan` to force re-discovery.
 3. Open browser dev tools → Network — confirm `manifest.json`, `index.js`, and any CSS loaded without 404s.
-4. Open browser dev tools → Console — look for errors during the IIFE or `window.__HERMES_PLUGINS__ is undefined` (indicates the SDK didn't initialize, usually a React render crash earlier).
-5. Verify your bundle calls `window.__HERMES_PLUGINS__.register(...)` with the **same name** as `manifest.json:name`.
+4. Open browser dev tools → Console — look for errors during the IIFE or `window.__OPENAMER_PLUGINS__ is undefined` (indicates the SDK didn't initialize, usually a React render crash earlier).
+5. Verify your bundle calls `window.__OPENAMER_PLUGINS__.register(...)` with the **same name** as `manifest.json:name`.
 
 **Slot-registered components don't render.**
 The `sidebar` slot only renders when the active theme has `layoutVariant: cockpit`. Other slots always render. If you're registering into a slot with no hits, add `console.log` inside `registerSlot` to confirm the plugin bundle ran at all.
