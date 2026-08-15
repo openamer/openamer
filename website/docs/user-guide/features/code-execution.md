@@ -219,24 +219,24 @@ terminal:
 
 See the [Security guide](/user-guide/security#environment-variable-passthrough) for full details.
 
-### `HERMES_*` variables in the child
+### `OPENAMER_*` variables in the child
 
-The child process receives only a small, fixed set of operational `HERMES_*`
+The child process receives only a small, fixed set of operational `OPENAMER_*`
 variables by exact name:
 
-- `HERMES_HOME`
-- `HERMES_PROFILE`
-- `HERMES_CONFIG`
-- `HERMES_ENV`
+- `OPENAMER_HOME`
+- `OPENAMER_PROFILE`
+- `OPENAMER_CONFIG`
+- `OPENAMER_ENV`
 
-(plus `HERMES_RPC_DIR` / `HERMES_RPC_SOCKET` / `TZ` / `HOME`, which OpenAmer
+(plus `OPENAMER_RPC_DIR` / `OPENAMER_RPC_SOCKET` / `TZ` / `HOME`, which OpenAmer
 injects explicitly so the RPC channel works).
 
 :::note Behavior change
 Earlier versions passed **any** variable whose name began with `HERMES_`
 through to the child. That broad prefix was removed for security hardening: it
 could leak `HERMES_*`-named configuration that doesn't match a secret substring
-(for example `HERMES_BASE_URL`, `HERMES_KANBAN_DB`, or a `HERMES_*_WEBHOOK`
+(for example `OPENAMER_BASE_URL`, `OPENAMER_KANBAN_DB`, or a `HERMES_*_WEBHOOK`
 endpoint) into arbitrary sandboxed code.
 
 If an `execute_code` script — or a repo/plugin module it imports at import time
@@ -256,8 +256,8 @@ be re-allowed this way):
    ```yaml
    terminal:
      env_passthrough:
-       - HERMES_KANBAN_DB
-       - HERMES_BASE_URL
+       - OPENAMER_KANBAN_DB
+       - OPENAMER_BASE_URL
    ```
 
 2. **Per-skill, in the skill's frontmatter** — declare it so it is registered
@@ -265,7 +265,7 @@ be re-allowed this way):
 
    ```yaml
    required_environment_variables:
-     - HERMES_KANBAN_DB
+     - OPENAMER_KANBAN_DB
    ```
 
 **Diagnosing it.** When the child drops one or more non-allowlisted `HERMES_*`
