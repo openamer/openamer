@@ -79,11 +79,48 @@ def relay_note(*, identity_store: IdentityStore, envelope: Envelope) -> dict:
 
 
 class RelayMailbox:
-    """A local mirror directory of a relay node's inbox. Offline-testable."""
+    """A local mirror directory of a relay node's inbox. Offline-testable.
+
+    Consumption is tracked so the swarm loop processes each note exactly once:
+    ``claim()`` returns only notes not yet acked, ``ack()``/``claim()`` record
+    consumption in a small JSON ledger (*.acked) that stores *filenames only* —
+    never the envelope body — keeping the privacy guarantee intact.
+    """
+
+    ACK_MARK = ".acked.json"
 
     def __init__(self, dirpath: Path):
         self.dir = Path(dirpath)
         self.dir.mkdir(parents=True, exist_ok=True)
+        self._ack_file = self.dir / self.ACK_MARK
+
+    # -- ack ledger ----------------------------------------------------------
+
+    def _load_acked(self) -> set[str]:
+        if not self._ack_file.exists():
+            return set()
+        try:
+            data = json.loads(self._ack_file.read_text(encoding="utf-8"))
+            return set(data.get("acked", [])) if isinstance(data, dict) else set()
+        except Exception:
+            return set()
+
+    def _save_acked(self, acked: set[str]) -> None:
+        tmp = self._ack_file.with_suffix(".json.tmp")
+        tmp.write_text(
+            json.dumps({"acked": sorted(acked)}, ensure_ascii=False), encoding="utf-8"
+        )
+        tmp.replace(self._ack_file)
+
+    def is_consumed(self, fname: str) -> bool:
+        return fname in self._load_acked()
+
+    def ack(self, fname: str) -> None:
+        acked = self._load_acked()
+        acked.add(fname)
+        self._save_acked(acked)
+
+    # -- mailbox -------------------------------------------------------------
 
     def store(self, note: dict) -> Path:
         f = self.dir / sort_relay_filename(note.get("recipient") or "mailbox")
@@ -93,6 +130,8 @@ class RelayMailbox:
     def pull(self, mailbox: str) -> list[dict]:
         out = []
         for f in sorted(self.dir.glob("*.json")):
+            if f.name == self.ACK_MARK:
+                continue
             if mailbox not in f.name and mailbox != "*":
                 continue
             try:
@@ -100,6 +139,63 @@ class RelayMailbox:
             except Exception:
                 continue
         return out
+
+    def claim(self, mailbox: str = "*"):
+        """Yield every unconsumed note, acking it so it is surfaced exactly once.
+
+        Returns a list of ``(fname, note)`` tuples. Consumed-on-delivery means a
+        swarm loop can safely call ``claim("*")`` repeatedly — each note is seen
+        exactly once.
+        """
+        acked = self._load_acked()
+        claimed = []
+        for f in sorted(self.dir.glob("*.json")):
+            if f.name == self.ACK_MARK:
+                continue
+            if mailbox not in f.name and mailbox != "*":
+                continue
+            if f.name in acked:
+                continue
+            try:
+                note = json.loads(f.read_text(encoding="utf-8", errors="replace"))
+            except Exception:
+                continue
+            acked.add(f.name)
+            claimed.append((f.name, note))
+        if claimed:
+            self._save_acked(acked)
+        return claimed
+
+    def unclaim(self, fname: str) -> None:
+        """Undo an ack (e.g. the consumer failed and wants a retry)."""
+        acked = self._load_acked()
+        acked.discard(fname)
+        self._save_acked(acked)
+
+    def purge_consumed(self, max_age: int) -> int:
+        """Delete consumed notes older than ``max_age`` seconds. Returns count.
+
+        Unconsumed notes are never touched (the peer may still retry/harvest
+        them), so an inbox that is drained but not yet acked is safe.
+        """
+        acked = self._load_acked()
+        now = time.time()
+        purged = 0
+        for f in list(self.dir.glob("*.json")):
+            if f.name == self.ACK_MARK:
+                continue
+            if f.name not in acked:
+                continue
+            try:
+                age = now - f.stat().st_mtime
+            except OSError:
+                continue
+            if age > max_age:
+                f.unlink(missing_ok=True)
+                acked.discard(f.name)
+                purged += 1
+        self._save_acked(acked)
+        return purged
 
 
 def verify_note(note: dict, *, tolerance: int = 300) -> dict:

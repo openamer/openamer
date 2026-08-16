@@ -153,9 +153,13 @@ def _cmd_relay(args) -> int:
         return 0
     if act == "pull":
         mb = rl.RelayMailbox(_pl.Path(args.repo_dir or _pl.Path.cwd()/ "relay-inbox"))
-        got = mb.pull(args.mailbox or "*")
-        print(f"Pulled {len(got)} relay notes for mailbox {args.mailbox or '*'}.")
-        for n in got:
+        notes = mb.claim(args.mailbox or "*") if getattr(args, "once", False) \
+            else [(None, n) for n in mb.pull(args.mailbox or "*")]
+        if getattr(args, "purge", None) is not None:
+            pb = mb.purge_consumed(max_age=args.purge)
+            print(f"Purged {pb} consumed relay notes older than {args.purge}s.")
+        print(f"Pulled {len(notes)} relay notes for mailbox {args.mailbox or '*'}.")
+        for fname, n in notes:
             v = rl.verify_note(n)
             print(f"  [{'OK' if v['ok'] else v['reason']}] {n.get('sender')} -> {n.get('recipient')}")
         return 0
@@ -432,6 +436,10 @@ def build_a2a_parser(subparsers) -> None:
     rp.set_defaults(func=_cmd_relay)
     rpull = rl_sub.add_parser("pull", help="Pull + verify relay notes for a mailbox")
     rpull.add_argument("mailbox", nargs="?"); rpull.add_argument("--repo-dir", default=None)
+    rpull.add_argument("--once", action="store_true",
+                       help="Consume each note exactly once (dedup across pulls)")
+    rpull.add_argument("--purge", type=int, default=None, metavar="SECONDS",
+                       help="Delete already-consumed notes older than SECONDS")
     rpull.set_defaults(func=_cmd_relay)
     rl.set_defaults(func=_cmd_relay)
 
