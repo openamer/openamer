@@ -9,7 +9,7 @@
 <p align="center">
   <a href="https://github.com/openamer/openamer/blob/main/website/docs/"><img src="https://img.shields.io/badge/Docs-OpenAmer-22D3EE?style=for-the-badge" alt="Documentation"></a>
   <a href="https://discord.gg/openamer"><img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord"></a>
-  <a href="https://github.com/openamer/openamer/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License: MIT"></a>
+  <a href="https://github.com/openamer/openamer/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-Apache%202.0-blue?style=for-the-badge" alt="License: MIT"></a>
   <a href="README.md"><img src="https://img.shields.io/badge/Lang-English-lightgrey?style=for-the-badge" alt="English"></a>
   <a href="README.zh-CN.md"><img src="https://img.shields.io/badge/Lang-中文-red?style=for-the-badge" alt="中文"></a>
 </p>
@@ -234,7 +234,7 @@ scripts/run_tests.sh
 
 ## لائسنس (License)
 
-MIT — تفصیلات کے لیے [LICENSE](LICENSE) دیکھیں۔
+Apache License 2.0 — تفصیلات کے لیے [LICENSE](LICENSE) دیکھیں۔
 
 [OpenAmer Agent](https://github.com/openamer/openamer) کی جانب سے تیار کردہ۔
 

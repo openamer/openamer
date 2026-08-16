@@ -14,7 +14,7 @@ readme = "README.md"
 # build. Raise the ceiling once our Rust transitives ship cp314 wheels.
 requires-python = ">=3.11,<3.14"
 authors = [{ name = "OpenAmer" }]
-license = "MIT"
+license = "Apache-2.0"
 license-files = ["LICENSE"]
 dependencies = [
   # Core — every direct dep is exact-pinned to ==X.Y.Z (no ranges).

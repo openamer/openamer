@@ -62,7 +62,7 @@ Every use case in their blog post — backlog triage, docs drift, deploy verific
 | **Infrastructure** | Anthropic's servers | **Your infrastructure** — VPS, home server, laptop |
 | **Data residency** | Anthropic's cloud | **Your machines** |
 | **Cost** | Pro/Max/Team/Enterprise subscription | Your API key, your rates |
-| **Open source** | No | **Yes** — MIT license |
+| **Open source** | No | **Yes** — Apache License 2.0 |
 
 ---
 

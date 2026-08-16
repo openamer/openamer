@@ -29,7 +29,7 @@
     "type": "git",
     "url": "git+https://github.com/openamer/OpenAmer-Agent.git"
   },
-  "license": "MIT",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/openamer/OpenAmer-Agent/issues"
   },

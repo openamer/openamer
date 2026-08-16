@@ -346,7 +346,7 @@ name: my-skill
 description: Breve descripción (mostrada en los resultados de búsqueda de habilidades)
 version: 1.0.0
 author: Tu Nombre
-license: MIT
+license: Apache-2.0
 platforms: [macos, linux]          # Opcional — restringir a plataformas de SO específicas
 required_environment_variables:    # Opcional — metadatos de configuración segura al cargar
   - name: MY_API_KEY
@@ -599,4 +599,4 @@ test(tools): añadir tests unitarios para file_operations
 
 ## Licencia
 
-Al contribuir, aceptas que tus contribuciones serán licenciadas bajo la [Licencia MIT](LICENSE).
+Al contribuir, aceptas que tus contribuciones serán licenciadas bajo la [Licencia Apache 2.0](LICENSE).

@@ -4,7 +4,7 @@
   <a href="https://github.com/openamer/openamer/releases"><img src="https://img.shields.io/badge/Download-macOS%20%C2%B7%20Windows%20%C2%B7%20Linux-FFD700?style=for-the-badge" alt="Download"></a>
   <a href="https://github.com/openamer/openamer/blob/main/website/docs/"><img src="https://img.shields.io/badge/Docs-openamer--agent.openamer.com-FFD700?style=for-the-badge" alt="Documentation"></a>
   <a href="https://discord.gg/openamer"><img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord"></a>
-  <a href="https://github.com/openamer/openamer/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License: MIT"></a>
+  <a href="https://github.com/openamer/openamer/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-Apache%202.0-blue?style=for-the-badge" alt="License: MIT"></a>
 </p>
 
 **The native desktop app for [OpenAmer Agent](../../README.md) — the self-improving AI agent from [OpenAmer](https://openamer.com).** Same agent, same skills, same memory as the CLI and gateway, in a polished native window — chat with streaming tool output, side-by-side previews, a file browser, voice, and settings, no terminal required. Available for **macOS, Windows, and Linux**.
@@ -211,6 +211,6 @@ Remove-Item -Recurse -Force "$env:LOCALAPPDATA\openamer\openamer-agent\venv"
 
 ## License
 
-MIT — see [LICENSE](../../LICENSE).
+Apache License 2.0 — see [LICENSE](../../LICENSE).
 
 Built by [OpenAmer](https://openamer.com).
