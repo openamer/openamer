@@ -18,6 +18,7 @@ from typing import Callable
 from openamer_cli.a2a import core
 from openamer_cli.a2a import registry
 import json
+import os
 
 
 def _home() -> core.IdentityStore:
@@ -203,6 +204,37 @@ def _cmd_meshlearn(args) -> int:
     print("Unknown meshlearn subcommand."); return 2
 
 
+def _cmd_brain(args) -> int:
+    """Collect local learning material into a training dataset (feed the brain)."""
+    from openamer_cli.a2a import braindata
+    import pathlib as _pl
+    subject = args.brain_cmd
+    if subject != "collect":
+        print("Usage: openamer a2a brain collect [--out <path>] [--trajectories dir]")
+        return 2
+    home = _pl.Path.home() / ".openamer"
+    # gather trajectory files (both success + failure) under the home/openamer data dir
+    traj_dirs = [
+        home / "trajectories", home / "logs", home / "data",
+        _pl.Path(os.getenv("OPENAMER_HOME") or home),
+    ]
+    traj_files: list = []
+    for d in args.traj_dirs or [str(td) for td in traj_dirs]:
+        p = _pl.Path(d)
+        if p.exists():
+            for f in p.rglob("*.jsonl"):
+                if "traject" in f.name:
+                    traj_files.append(f)
+    # mesh memory
+    mem = _pl.Path(args.memory or home / "MEMORY-official-mesh.md")
+    outpath = _pl.Path(args.out or home / "a2a" / "openamer-brain.jsonl")
+    res = braindata.build_dataset(trajectories=traj_files, insights=mem, out=outpath,
+                                  skills=[])
+    print(f"OpenAmer brain dataset written: {outpath}")
+    print(f"  records: {res['records']}  ({res['sources']})")
+    return 0
+
+
 def _cmd_skill(args) -> int:
     """Sign / verify a skill for the A2A mesh."""
     from openamer_cli.a2a import skillshare
@@ -359,5 +391,13 @@ def build_a2a_parser(subparsers) -> None:
     ml_adopt.add_argument("json_file", nargs="?"); ml_adopt.add_argument("--memory", default=None)
     ml_adopt.set_defaults(func=_cmd_meshlearn)
     ml.set_defaults(func=_cmd_meshlearn)
+
+    br = sub.add_parser("brain", help="Collect learning material for the OpenAmer model (feed the brain)")
+    br_sub = br.add_subparsers(dest="brain_cmd")
+    bc = br_sub.add_parser("collect", help="Build a training dataset from trajectories + insights")
+    bc.add_argument("--out", default=None); bc.add_argument("--memory", default=None)
+    bc.add_argument("--traj-dirs", nargs="*", default=None)
+    bc.set_defaults(func=_cmd_brain)
+    br.set_defaults(func=_cmd_brain)
 
     p.set_defaults(func=_cmd_status)
