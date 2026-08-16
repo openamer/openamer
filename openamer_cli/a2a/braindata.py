@@ -135,3 +135,34 @@ def build_dataset(*, trajectories: list[Path], insights: Path, out: Path,
     for rec in uniq:
         counts[rec.engine] = counts.get(rec.engine, 0) + 1
     return {"records": len(uniq), "sources": counts, "path": str(out)}
+
+
+def publish_curated(*, insights: Path, out_dir: Path, prefix: str = "mesh") -> dict:
+    """Export *curated* (redacted) mesh insights to a shared directory.
+
+    PRIVACY: only genuinely curated insight lines are shared; every record is
+    passed through privacy.redact before being written, so phone numbers,
+    passwords, emails or document markers can never leak to the shared repo.
+    Returns a count + the redacted safety marker.
+    """
+    from openamer_cli.a2a import privacy as _pr
+    out_dir.mkdir(parents=True, exist_ok=True)
+    written = 0
+    for rec in insight_records(insights):
+        msgs = rec.messages
+        safe = []
+        leak = False
+        for m in msgs:
+            c = _pr.redact(m.get("content") or "")
+            if _pr.contains_private(c):  # defensive: still flagged => skip
+                leak = True
+                break
+            safe.append({"role": m.get("role"), "content": c})
+        if leak or not safe:
+            continue
+        fname = f"{prefix}{written:04d}.jsonl"
+        (out_dir / fname).write_text(
+            __import__("json").dumps({"messages": safe, "engine": rec.engine},
+                                     ensure_ascii=False) + "\n", encoding="utf-8")
+        written += 1
+    return written

@@ -320,3 +320,40 @@ def test_autolog_on_off_capture(tmp_path, monkeypatch):
     assert "user" in kinds and "thinking" in kinds and "tool_call" in kinds and "assistant" in kinds
     al.disable()
     assert al.enabled() is False
+
+def test_privacy_redact_core():
+    """Private data (phone, password, email, card, key) is replaced before storage."""
+    from openamer_cli.a2a import privacy as pr
+    assert pr.contains_private("call +49 152 1234567") is True
+    assert pr.contains_private("password=Hunter2") is True
+    out = pr.redact("card 4532015112830366 and pass=Sup3rSec and john@x.com")
+    assert "4532015112830366" not in out and "Sup3rSec" not in out and "john@x.com" not in out
+    assert "REDACTED" in out
+    assert pr.redact("Just a normal math question") == "Just a normal math question"
+
+
+def test_autolog_redacts_private(tmp_path, monkeypatch):
+    """No private data ever persisted by the activity log."""
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
+    from openamer_cli.a2a import autolog as al
+    al.enable()
+    a = al.Autolog()
+    a.user("my password=pw123456 and tel +49 152 1234567 and a@b.com", session="S")
+    a.assistant("ok", session="S")
+    raw = (tmp_path / "a2a" / "activity.jsonl").read_text(encoding="utf-8")
+    assert "pw123456" not in raw and "1234567" not in raw and "a@b.com" not in raw
+    assert "[REDACTED" in raw
+
+
+def test_publish_curated_redacts_private(tmp_path):
+    """brain publish shares only privacy-scrubbed curated insights."""
+    from openamer_cli.a2a import braindata as bd
+    mem = tmp_path / "MEMORY.md"
+    mem.write_text("#mesh:security: call +49 152 1234567 - urgent\n"
+                   "#mesh:devops: cache layers - speeds CI\n", encoding="utf-8")
+    out = tmp_path / "shared"
+    n = bd.publish_curated(insights=mem, out_dir=out)
+    assert n >= 2
+    blob = "".join(f.read_text(encoding="utf-8") for f in out.glob("*.jsonl"))
+    assert "+49 152 1234567" not in blob
+    assert "cache layers" in blob

@@ -221,9 +221,17 @@ def _cmd_brain(args) -> int:
             print("Autolog:", "ON" if autolog.enabled() else "OFF"); return 0
     if subject == "autolog":
         print("Usage: openamer a2a brain autolog on|off|status"); return 2
-    if subject != "collect":
-        print("Usage: openamer a2a brain collect|autolog <on|off|status>"); return 2
+    if subject != "collect" and subject != "publish":
+        print("Usage: openamer a2a brain collect|publish|autolog <on|off|status>"); return 2
     home = _pl.Path.home() / ".openamer"
+    if subject == "publish":
+        # Public ONLY curated, redacted insights -> shared directory/a2a/insights
+        repo_shared = _pl.Path(getattr(args, "out", "") or _pl.Path.cwd() / "directory" / "a2a" / "insights")
+        mem = _pl.Path(args.memory or home / "MEMORY-official-mesh.md")
+        n = braindata.publish_curated(insights=mem, out_dir=repo_shared)
+        print(f"Shared {n} curated (redacted) insights to {repo_shared}")
+        print("  (raw activity stays local; only verified, privacy-scrubbed knowledge is shared)")
+        return 0
     # gather trajectory files (both success + failure) under the home/openamer data dir
     traj_dirs = [
         home / "trajectories", home / "logs", home / "data",
@@ -409,6 +417,9 @@ def build_a2a_parser(subparsers) -> None:
     bc.add_argument("--out", default=None); bc.add_argument("--memory", default=None)
     bc.add_argument("--traj-dirs", nargs="*", default=None)
     bc.set_defaults(func=_cmd_brain)
+    bp = br_sub.add_parser("publish", help="Share ONLY curated, redacted insights to directory/a2a/insights")
+    bp.add_argument("--out", default=None); bp.add_argument("--memory", default=None)
+    bp.set_defaults(func=_cmd_brain)
     ba = br_sub.add_parser("autolog", help="Toggle automatic activity capture (on|off|status)")
     ba.add_argument("autolog_sub", nargs="?", default="status", choices=["on", "off", "status"])
     ba.set_defaults(func=_cmd_brain)

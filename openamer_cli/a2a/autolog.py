@@ -18,6 +18,7 @@ from pathlib import Path
 from typing import Optional
 
 from openamer_cli.a2a.brainlog import ActivityLog
+from openamer_cli.a2a import privacy as _privacy
 
 
 def brain_dir() -> Path:
@@ -79,7 +80,10 @@ class Autolog:
         if not self._enabled:
             return
         try:
-            self._log.append(kind, content=content, session=session)
+            # PRIVACY: redact any private data BEFORE it is persisted. The brain
+            # dataset must never contain phone numbers, passwords, secrets, etc.
+            safe = _privacy.redact(content or "")
+            self._log.append(kind, content=safe, session=session)
         except Exception:
             pass  # capture must never break the loop
 
