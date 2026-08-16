@@ -122,6 +122,62 @@ def _cmd_self(args) -> int:
     return 0
 
 
+def _cmd_ask(args) -> int:
+    """Ask a trusted remote node a question (Node-to-Node A2A routing).
+
+    Usage: openamer a2a ask <peer-http-url> "<question>"
+    """
+    if not args.peer_url or not args.question:
+        print("Usage: openamer a2a ask <peer-http-url> \"<question>\"")
+        return 2
+    from openamer_cli.a2a import transport
+    identity = core.IdentityStore()
+    trust_store = _trust()
+    res = transport.ask(identity, trust_store, args.peer_url, args.question,
+                        kind=args.kind or "ask")
+    if res.get("ok"):
+        print(f"OK ({res.get('kind')}): {res.get('result', {})}")
+    else:
+        print(f"Not answered: {res.get('error', res)}")
+    return 0 if res.get("ok") else 1
+
+
+def _trust() -> "TrustStore":
+    from openamer_cli.a2a.trust import TrustStore
+    return TrustStore()
+
+
+def _cmd_trust(args) -> int:
+    """Manage trusted peers (opt-in mesh membership)."""
+    from openamer_cli.a2a.trust import TrustStore
+    store = TrustStore()
+    act = args.trust_cmd
+    if act == "list":
+        peers = store.peers()
+        if not peers:
+            print("No trusted peers yet.")
+            return 0
+        for p in peers:
+            print(f"{p.fingerprint}  {p.name}")
+        return 0
+    if act == "add":
+        if not args.fingerprint or not args.public_key:
+            print("Usage: openamer a2a trust add <fingerprint> <public_key_hex> [name]")
+            return 2
+        store.add_peer(args.fingerprint, args.public_key, name=args.name or "")
+        print(f"Added peer {args.fingerprint}")
+        return 0
+    if act == "remove":
+        if not args.fingerprint:
+            print("Usage: openamer a2a trust remove <fingerprint>")
+            return 2
+        ok = store.remove_peer(args.fingerprint)
+        print("Removed." if ok else "Not found.")
+        return 0 if ok else 1
+    print("Unknown trust subcommand.")
+    return 2
+
+
 def build_a2a_parser(subparsers) -> None:
     """Attach the ``a2a`` subcommand tree."""
     p = subparsers.add_parser("a2a", help="Agent-to-Agent (A2A) identity & mesh")
@@ -157,5 +213,22 @@ def build_a2a_parser(subparsers) -> None:
     dc.add_argument("fingerprint", nargs="?", help="node fingerprint")
     dc.add_argument("--repo", default=None, help="registry base URL")
     dc.set_defaults(func=_cmd_directory)
+
+    aq = sub.add_parser("ask", help="Ask a trusted peer a question (A2A routing)")
+    aq.add_argument("peer_url", nargs="?", help="peer HTTP base URL")
+    aq.add_argument("question", nargs="?", help="the question to ask")
+    aq.add_argument("--kind", default="ask")
+    aq.set_defaults(func=_cmd_ask)
+
+    tr = sub.add_parser("trust", help="Manage trusted peers (opt-in)")
+    tr_sub = tr.add_subparsers(dest="trust_cmd")
+    tl = tr_sub.add_parser("list", help="List trusted peers"); tl.set_defaults(func=_cmd_trust)
+    ta = tr_sub.add_parser("add", help="Trust a peer by fingerprint + public key")
+    ta.add_argument("fingerprint", nargs="?"); ta.add_argument("public_key", nargs="?")
+    ta.add_argument("--name", default="")
+    ta.set_defaults(func=_cmd_trust)
+    trm = tr_sub.add_parser("remove", help="Remove a trusted peer")
+    trm.add_argument("fingerprint", nargs="?"); trm.set_defaults(func=_cmd_trust)
+    tr.set_defaults(func=_cmd_trust)
 
     p.set_defaults(func=_cmd_status)

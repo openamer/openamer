@@ -185,3 +185,40 @@ def fetch_card(url: str, timeout: float = 20.0) -> dict:
             data = {"error": body}
         data["http_status"] = e.code
         return data
+
+
+def ask(identity: IdentityStore, trust: TrustStore, peer_url: str,
+        question: str, kind: str = "ask", timeout: float = 60.0) -> dict:
+    """Ask a trusted remote node a question.
+
+    Flow (all verified): fetch the peer's /card -> confirm its fingerprint is a
+    peer we `trust add`ed -> build a signed Envelope carrying the question ->
+    POST to the peer's /message -> return its answer.
+
+    The semantic "switchable" question text is wrapped as a task the peer runs
+    under a capability grant. This is Node-to-Node A2A routing: a node can ask
+    a peer it trusts, and the peer's own operator must have granted the relevant
+    capability.
+    """
+    # 1) discover peer
+    card = fetch_card(peer_url.rstrip("/") + "/card")
+    if not card or "agent_card" not in card:
+        return {"ok": False, "error": "could not fetch peer card"}
+    agent = card["agent_card"]
+    remote_fp = agent.get("fingerprint", "")
+    remote_pub = agent.get("public_key", "")
+    # 2) is this peer trusted (by fingerprint)?
+    peer = trust.trusted(remote_fp)
+    if not peer:
+        return {"ok": False, "error": f"peer {remote_fp} is not trusted"}
+    # 3) build signed envelope from OUR identity
+    local = identity.ensure_identity()
+    env = Envelope.create(
+        private_key=identity.private_key(),
+        sender=local.fingerprint,
+        recipient=remote_fp,
+        kind=kind,
+        payload={"question": question},
+    )
+    # 4) send
+    return send_message(peer_url.rstrip("/") + "/message", env, timeout=timeout)

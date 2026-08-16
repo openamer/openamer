@@ -157,3 +157,26 @@ def test_transport_e2e_grant_and_reject(tmp_path):
     r3 = transport.send_message(f"{base}/message", env2)
     assert r3.get("ok") is True and r3.get("kind") == "sum"
     srv.shutdown()
+
+
+def test_a2a_ask_roundtrip(tmp_path):
+    """A questioner node asks a trusted, granted server node via HTTP and
+    receives the signed-server's answer."""
+    import threading as _th
+    idQ = core.IdentityStore(tmp_path / "q"); Q = idQ.ensure_identity()
+    idA = core.IdentityStore(tmp_path / "a"); A = idA.ensure_identity()
+    trA = trust.TrustStore(tmp_path / "a")
+    def on_task(env, pd=None):
+        return {"answer": "got " + str((env.payload or {}).get("question", ""))}
+    srv = transport.A2ANodeServer(host="127.0.0.1", port=0, trust=trA,
+                                  identity=idA, on_task=on_task)
+    th = _th.Thread(target=srv.serve_forever, daemon=True); th.start()
+    base = f"http://127.0.0.1:{srv.port}"
+    trQ = trust.TrustStore(tmp_path / "q")
+    trQ.add_peer(A.fingerprint, A.public_key, name="server")
+    trA.add_peer(Q.fingerprint, Q.public_key, name="questioner")
+    trA.grant(Q.fingerprint, "task.ask")
+    res = transport.ask(idQ, trQ, base, "what is 2+2?", kind="ask")
+    srv.shutdown()
+    assert res.get("ok") is True
+    assert "got what is 2+2?" in str(res.get("result", {}))
