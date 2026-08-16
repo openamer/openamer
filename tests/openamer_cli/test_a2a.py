@@ -383,3 +383,24 @@ def test_a2a_ask_many_swarm(tmp_path):
     for s in servers: s.shutdown()
     assert res["ok"] is True and res["answered"] == 2
     assert len(res["answers"]) == 2
+
+def test_selflearn_runtime_auto(tmp_path, monkeypatch):
+    """Runtime hook: tool-calling turns auto-learn; light/disabled turns skip."""
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
+    from openamer_cli.a2a import selflearn_runtime as sr
+    from openamer_cli.a2a import autolog as al
+    al.enable()
+    turn = {"messages": [
+        {"role": "user", "content": "how to fix DB lock?"},
+        {"role": "tool", "content": "sqlite.execute", "name": "terminal"},
+        {"role": "assistant", "content": "close connections in finally"},
+    ]}
+    res = sr.maybe_learn(turn)
+    assert res.get("ok") and res.get("learned")
+    mem = tmp_path / "MEMORY-official-mesh.md"
+    assert mem.exists() and "finally" in mem.read_text(encoding="utf-8")
+    # simple turn -> skip
+    assert sr.maybe_learn({"messages": [{"role": "user", "content": "hi"}]}) == {}
+    # disabled -> skip
+    al.disable()
+    assert sr.maybe_learn(turn) == {}
