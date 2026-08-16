@@ -16,6 +16,7 @@ import sys
 from typing import Callable
 
 from openamer_cli.a2a import core
+from openamer_cli.a2a import registry
 
 
 def _home() -> core.IdentityStore:
@@ -74,6 +75,53 @@ def _cmd_verify(args) -> int:
     return 0 if ok else 1
 
 
+def _cmd_announce(args) -> int:
+    """Create + sign this node's announcement and stage it for publication."""
+    ann = registry.sign_announcement(
+        name=args.name or "OpenAmer node",
+        endpoints=args.endpoints or [],
+        capabilities=args.capabilities or [],
+    )
+    out = registry.save_announcement(ann)
+    print(f"A2A announcement for {ann.fingerprint}@openamer")
+    print(f"  name        : {ann.name}")
+    print(f"  endpoints   : {', '.join(ann.endpoints) or '(none)'}")
+    print(f"  capabilities: {', '.join(ann.capabilities) or '(none)'}")
+    print(f"  staged      : {out}")
+    print("To publish on GitHub, commit this file to directory/a2a/ in")
+    print("  github.com/openamer/openamer.")
+    return 0
+
+
+def _cmd_directory(args) -> int:
+    """Fetch + verify a node announcement from the GitHub mesh directory."""
+    if not args.fingerprint:
+        print("Usage: openamer a2a directory <fingerprint>")
+        return 2
+    ann = registry.fetch_announcement(args.fingerprint, repo_base=args.repo or registry.REPO_BASE)
+    if ann is None:
+        print(f"No verified announcement for {args.fingerprint} in the registry.")
+        return 1
+    print(f"node: {ann.name}")
+    print(f"  fingerprint : {ann.fingerprint}")
+    print(f"  public key  : {ann.public_key}")
+    print(f"  endpoints   : {', '.join(ann.endpoints)}")
+    print(f"  capabilities: {', '.join(ann.capabilities)}")
+    return 0
+
+
+def _cmd_self(args) -> int:
+    """Show this node's signed announcement (dry run of what publish produces)."""
+    ann = registry.sign_announcement(
+        name=args.name or "OpenAmer node",
+        endpoints=args.endpoints or [],
+        capabilities=args.capabilities or [],
+    )
+    import json as _json
+    print(_json.dumps(ann.to_dict(), indent=2))
+    return 0
+
+
 def build_a2a_parser(subparsers) -> None:
     """Attach the ``a2a`` subcommand tree."""
     p = subparsers.add_parser("a2a", help="Agent-to-Agent (A2A) identity & mesh")
@@ -92,5 +140,22 @@ def build_a2a_parser(subparsers) -> None:
     v.add_argument("json_payload", nargs="?", help="signed envelope JSON")
     v.add_argument("sender_pubkey", nargs="?", help="sender public key hex")
     v.set_defaults(func=_cmd_verify)
+
+    an = sub.add_parser("announce", help="Create + sign this node's announcement, stage for GitHub")
+    an.add_argument("--name", default=None)
+    an.add_argument("--endpoints", nargs="*", default=None)
+    an.add_argument("--capabilities", nargs="*", default=None)
+    an.set_defaults(func=_cmd_announce)
+
+    sf = sub.add_parser("self", help="Print this node's signed announcement (JSON)")
+    sf.add_argument("--name", default=None)
+    sf.add_argument("--endpoints", nargs="*", default=None)
+    sf.add_argument("--capabilities", nargs="*", default=None)
+    sf.set_defaults(func=_cmd_self)
+
+    dc = sub.add_parser("directory", help="Fetch + verify a node from the GitHub mesh directory")
+    dc.add_argument("fingerprint", nargs="?", help="node fingerprint")
+    dc.add_argument("--repo", default=None, help="registry base URL")
+    dc.set_defaults(func=_cmd_directory)
 
     p.set_defaults(func=_cmd_status)
