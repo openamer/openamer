@@ -269,3 +269,30 @@ def test_braindata_build_dataset(tmp_path):
     tj.write_text(tj.read_text(encoding="utf-8") + json.dumps(rec) + "\n", encoding="utf-8")
     res2 = bd.build_dataset(trajectories=[tj], insights=mem, out=out)
     assert res2["records"] == 2
+
+
+def test_brainlog_full_activity_stream(tmp_path):
+    """Full activity (chat, thinking, tools, search, skill, background, a2a)
+    is logged and folded into chronological ChatML turns for training."""
+    from openamer_cli.a2a import brainlog as bl
+    log = bl.ActivityLog(tmp_path / "activity.jsonl", max_len=800)
+    log.append("user", "weather?", role="user", session="S", ts=1)
+    log.append("thinking", "user wants forecast", session="S", ts=2)
+    log.append("search", "berlin", session="S", ts=3)
+    log.append("tool_call", 'web({"q":"berlin"})', session="S", ts=4)
+    log.append("skill", "maps", session="S", ts=5)
+    log.append("subagent", "world", session="S", ts=6)
+    log.append("background", "cron", session="S", ts=7)
+    log.append("a2a", "ask to peer answered", session="S", ts=8)
+    log.append("assistant", "Cloudy 14C.", session="S", ts=9)
+    turns = list(log.to_chatml(include_thinking=True))
+    assert len(turns) == 1
+    roles = [m["role"] for m in turns[0]]
+    assert roles[0] == "system" and roles[1] == "user"
+    assert "thinking" in roles and "tool" in roles
+    # user content must be the actual user msg (chronological fold)
+    assert turns[0][1]["content"] == "weather?"
+    # all raw entries sanitized and persisted
+    raw = list(log.iter_events())
+    assert all(len(e["content"]) <= 800 for e in raw)
+    assert {e["kind"] for e in raw} >= {"user", "thinking", "search", "assistant"}
