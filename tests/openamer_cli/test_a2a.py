@@ -247,3 +247,25 @@ def test_selflearn_auto_loop(tmp_path):
                          publish_dir=out, skip_publish=False)
     assert res2["ok"]
     assert mem.read_text().count("Use staged builds") == 1
+
+
+def test_braindata_build_dataset(tmp_path):
+    """Collect learning material (trajectories + mesh insights) into JSONL."""
+    from openamer_cli.a2a import braindata as bd
+    import json
+    tj = tmp_path / "trajectory_samples.jsonl"
+    rec = {"messages": [{"role": "system", "content": "s"},
+                        {"role": "user", "content": "how to X?"},
+                        {"role": "assistant", "content": "do Y"}]}
+    tj.write_text(json.dumps(rec) + "\n", encoding="utf-8")
+    mem = tmp_path / "MEMORY.md"
+    mem.write_text("#mesh:debug: Close DB conn - use finally block.\n", encoding="utf-8")
+    out = tmp_path / "brain.jsonl"
+    res = bd.build_dataset(trajectories=[tj], insights=mem, out=out)
+    assert res["records"] == 2
+    lines = out.read_text(encoding="utf-8").splitlines()
+    assert len(lines) == 2 and all(json.loads(l) for l in lines)
+    # dedupe identical duplicate trajectory
+    tj.write_text(tj.read_text(encoding="utf-8") + json.dumps(rec) + "\n", encoding="utf-8")
+    res2 = bd.build_dataset(trajectories=[tj], insights=mem, out=out)
+    assert res2["records"] == 2
