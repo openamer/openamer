@@ -29,18 +29,30 @@ def _flag() -> Path:
     return brain_dir() / "brainlog.enabled"
 
 
+def _disabled_flag() -> Path:
+    return brain_dir() / "brainlog.disabled"
+
+
 def enabled() -> bool:
-    return _flag().exists()
+    """Activity capture is ON by default (privacy: it only writes LOCAL files,
+    never the public repo). A user can fully disable via `a2a brain autolog off`."""
+    return not _disabled_flag().exists()
 
 
 def enable(level: int = 1) -> bool:
     p = _flag()
     p.parent.mkdir(parents=True, exist_ok=True)
     p.write_text(f"{level}\n", encoding="utf-8")
+    d = _disabled_flag()
+    if d.exists():
+        d.unlink()
     return True
 
 
 def disable() -> bool:
+    d = _disabled_flag()
+    d.parent.mkdir(parents=True, exist_ok=True)
+    d.write_text("user opt-out\n", encoding="utf-8")
     p = _flag()
     if p.exists():
         p.unlink()

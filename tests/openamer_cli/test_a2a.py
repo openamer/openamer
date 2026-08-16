@@ -301,11 +301,13 @@ def test_autolog_on_off_capture(tmp_path, monkeypatch):
     """Auto activity capture: disabled = no-op; enabled = events written + flag toggles."""
     monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     from openamer_cli.a2a import autolog as al
-    assert al.enabled() is False
+    assert al.enabled() is True   # ON by default (local capture)
+    al.disable()
+    assert al.enabled() is False  # opt-out works
     a = al.Autolog()
     a.user("hello"); a.assistant("hi")
     logp = tmp_path / "a2a" / "activity.jsonl"
-    assert not logp.exists()
+    assert not logp.exists()      # disabled = no events
     al.enable()
     a2 = al.Autolog()
     a2.user("what is 2+2?", session="S")
