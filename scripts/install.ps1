@@ -41,22 +41,21 @@ param(
     [string]$Ensure = "",
     [switch]$PostInstall,
 
-    # --- Desktop GUI build (opt-in) ---
-    # When set, install.ps1 includes Stage-Desktop in the manifest and
-    # builds apps/desktop into a launchable OpenAmer.exe.
-    #
-    # Why opt-in:
-    #   * OpenAmer-Setup.exe (the signed Tauri bootstrap installer) passes
-    #     -IncludeDesktop so a user who installed via the GUI ends up
-    #     with a launchable desktop binary.
-    #   * The Electron desktop's own bootstrap-runner.ts runs install.ps1
-    #     from inside an already-launched OpenAmer.exe; if THAT recursively
-    #     built apps/desktop it would try to overwrite the live OpenAmer.exe
-    #     on disk and fail. The recursive path omits the flag.
-    #   * The canonical CLI one-liner (irm | iex) omits the flag too;
-    #     terminal users don't need a desktop binary built for them, and
-    #     `openamer desktop` already builds on demand.
-    [switch]$IncludeDesktop
+    # --- Desktop GUI build (default ON) ---
+        # Every install builds apps/desktop into a launchable OpenAmer.exe and
+        # creates Start-Menu + Desktop shortcuts, so desktop users get the app
+        # right away with no extra step.
+        #
+        # Opt-out:
+        #   -NoDesktop  builds without the desktop stage. Used by the recursive
+        #               bootstrap-runner.ts inside an already-launched OpenAmer.exe
+        #               (which must not overwrite the live binary), by CI/test
+        #               runs that never want a desktop binary, and by headless
+        #               terminal-only setups.
+        #   -IncludeDesktop is kept for backwards compatibility (no-op now that
+        #               the desktop build is the default).
+        [switch]$NoDesktop,
+        [switch]$IncludeDesktop
 )
 
 $ErrorActionPreference = "Stop"
@@ -2814,9 +2813,9 @@ function Try-RestoreElectronDist {
 }
 
 function Install-Desktop {
-    # Build apps/desktop into a launchable OpenAmer.exe. Only called from
-    # Stage-Desktop, which is itself only included in the manifest when
-    # -IncludeDesktop was passed to install.ps1.
+    # Build apps/desktop into a launchable OpenAmer.exe. Called from
+        # Stage-Desktop, which is in the manifest by default (unless -NoDesktop
+        # excluded it).
     #
     # The workspace npm install at repo root (done by Install-NodeDeps for
     # browser tools) does NOT pull apps/desktop's dependencies, because the
@@ -3525,10 +3524,11 @@ $InstallStages = @(
     @{ Name = "dependencies";     Title = "Installing Python dependencies";       Category = "install";      NeedsUserInput = $false; Worker = "Stage-Dependencies" }
     @{ Name = "node-deps";        Title = "Installing Node.js dependencies";      Category = "install";      NeedsUserInput = $false; Worker = "Stage-NodeDeps" }
 )
-if ($IncludeDesktop) {
-    # Insert AFTER node-deps so workspace npm is already installed when
-    # the desktop build runs. Inserted only when explicitly requested
-    # (OpenAmer-Setup.exe), never via the irm|iex CLI one-liner.
+if (-not $NoDesktop) {
+    # Desktop GUIBuild — included by default so every install ships a ready-to-
+    # launch OpenAmer desktop app. Skipped only when excluded explicitly
+    # (-NoDesktop) — e.g. the recursive bootstrap-runner inside an already-
+    # running OpenAmer.exe, or CI that never wants a desktop binary.
     $InstallStages += @{ Name = "desktop"; Title = "Building desktop app"; Category = "install"; NeedsUserInput = $false; Worker = "Stage-Desktop" }
 }
 $InstallStages += @(

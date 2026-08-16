@@ -952,7 +952,17 @@ async function runBootstrap(opts) {
     //    emits skipped=true. We trust the protocol rather than filtering
     //    client-side.
     for (const stage of manifest.stages) {
-      if (abortSignal && abortSignal.aborted) {
+          // The desktop stage builds apps/desktop into a new OpenAmer.exe. We are
+          // already running inside a launched OpenAmer.exe, so rebuilding here
+          // would try to overwrite the live binary on disk and fail. The desktop
+          // stage is intended for first-time GitHub/CLI installs, not for the
+          // recursive bootstrap this file drives — skip it.
+          if (stage.name === 'desktop') {
+            emit({ type: 'stage', name: stage.name, state: 'skipped', durationMs: 0 })
+            continue
+          }
+
+          if (abortSignal && abortSignal.aborted) {
         emit({ type: 'failed', error: 'bootstrap cancelled by user' })
 
         return { ok: false, cancelled: true }

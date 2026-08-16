@@ -79,7 +79,11 @@ MANIFEST_MODE=false
 STAGE_NAME=""
 JSON_OUTPUT=false
 NON_INTERACTIVE=false
-INCLUDE_DESKTOP=false
+# Desktop app is built by default so every install ships a ready-to-launch
+# OpenAmer desktop app. Set NO_DESKTOP=true (--no-desktop) to opt out — used by
+# recursive bootstrap inside a running OpenAmer.app and by headless/CI installs.
+INCLUDE_DESKTOP=true
+NO_DESKTOP=false
 
 # Detect non-interactive mode (e.g. curl | bash)
 # When stdin is not a terminal, read -p will fail with EOF,
@@ -88,6 +92,11 @@ if [ -t 0 ]; then
     IS_INTERACTIVE=true
 else
     IS_INTERACTIVE=false
+fi
+
+# --no-desktop overrides the default-on desktop build.
+if [ "$NO_DESKTOP" = true ]; then
+    INCLUDE_DESKTOP=false
 fi
 
 # Parse arguments
@@ -137,6 +146,10 @@ while [[ $# -gt 0 ]]; do
             INCLUDE_DESKTOP=true
             shift
             ;;
+        --no-desktop)
+            NO_DESKTOP=true
+            shift
+            ;;
         --dir)
             INSTALL_DIR="$2"
             INSTALL_DIR_EXPLICIT=true
@@ -169,8 +182,9 @@ while [[ $# -gt 0 ]]; do
             echo "  --stage NAME   Run one desktop bootstrap stage"
             echo "  --json         Print a JSON result frame for --stage"
             echo "  --non-interactive  Skip stages that require user input"
-            echo "  --include-desktop  Also build the desktop app (apps/desktop -> OpenAmer.app)"
-            echo "  --dir PATH     Installation directory"
+            echo "  --include-desktop  Build the desktop app (apps/desktop -> OpenAmer.app; now the default)"
+                        echo "  --no-desktop       Skip building the desktop app (default: built)"
+                        echo "  --dir PATH     Installation directory"
             echo "                   default (non-root):  ~/.openamer/openamer-agent"
             echo "                   default (root, Linux): /usr/local/lib/openamer-agent"
             echo "  --openamer-home PATH  Data directory (default: ~/.openamer, or \$OPENAMER_HOME)"
