@@ -1,19 +1,19 @@
 # OpenAmer Agent
 
-**An agent AI a tha a' feasgarachadh fhèin — ionnsaich bho eòlas, cruthaich sgilean, cuimhnich do thogail, agus obair air do shgiobalta an àite sam bith.**
+**An gniomhair AI fèin-leasachaidh — ionnsaich bho eòlas, cruthaich sgilean, cuimhnich air do roghainnean, agus obraich dhut àite sam bith.**
 
-Cleach an mòdel sam bith a tha thu ag iarraidh — OpenRouter, OpenAI, DeepSeek, agus barrachd. Atharraich le `openamer model` — gun atharrachaidhean còda.
+Cuir a-steach modail sam bith a tha thu ag iarraidh — OpenRouter, OpenAI, DeepSeek, agus barrachd. Atharraich le `openamer model` — gun atharrachaidhean còd.
 
-## Feumainnean
+## Feartan
 
-- **Interface terminal fhíosrach — TUI iomlan le fèum-uile-cuimhneachaidh, eachdraidh, agus toraidhean innealan sruthach**
-- **Bìdh e an coinneachadh far a bheil thu — Telegram, Discord, Slack, WhatsApp agus barrachd eile bho aon gheataway**
-- **Bìdh e ag ionnsachadh thar ùine — cuimhne, sgileanan a tha a' fealadh fhèin, agus cuimhneachadh thar seiseanan**
-- **Delegadaidh & parallelise — cruthaich sub-agents airson obair pharalail**
-- **Automatadhain dealbhaichte — cron toilichte airson raporatan làitheil, back-ups, agus sgrùdaidhean**
-- **Ruith e aig an àite samhain — ionadail, Docker, SSH, sgòir, serverless**
+- **Fìor eadar-aghaidh teirminn — TUI làn le freagairtean fèin-ghluasadach, eachdraidh, agus toradh sruthadh innealan**
+- **Beatha far a bheil thu — Telegram, Discord, Slack, WhatsApp agus barrachd bho aon gàirdean**
+- **Bidh e ag ionnsachadh thar ùine — cuimhne, sgilean fèin-leasachaidh, cuimhneachadh thar shèiseanan**
+- **Freagairtean & freagairtean gu h-eachdraidheil — cruthaich subagents airson obair h-eachdraidheil**
+- **Automataichean freagairte — cron a tha air a thogail a-steach airson aithisgean làitheil, freagairtean, sgrùdaidhean**
+- **Ruith àite sam bith — ionadail, Docker, SSH, neul, gun fhrithealaiche**
 
-## Stàladh Luath
+## Instaladh Luath
 
 Windows (PowerShell):
 ```powershell
@@ -25,23 +25,23 @@ Linux / macOS:
 curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | bash
 ```
 
-## Tòiseachadh
+## A' tòiseachadh
 
 ```bash
-openamer              # Tòisich air a comharrachadh
-openamer setup        # Suidheachaich na h-iuchairnan API agad & an solaraiche
-openamer model        # T our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our
-openamer update       # Nuिंग्सich gu an JUnit as ùire
+openamer              # Tòisich a' bruidhinn
+openamer setup        # Suidhich do chìrean API agus do sholaraiche
+openamer model        # Tagh do mhodail
+openamer update       # Freagair gu dreach as ùire.
 ```
 
-## Ùrachadh
+## A' freagairt
 
-Bidh OpenAmer a’ lorg ùearachaidhean gu fèin-obhailach agus bidh e a’ sealltainn rabhadh anns an t-sliseag fàilte. Ruith `openamer update` gus an t-seòrsa as ùire fhaighinn — bidh e a’ dèanamh back-up den dàta agad an toiseach.
+Bidh OpenAmer a’ sgrùdadh airson freagairtean gu fèin-ghluasadach agus a’ sealltainn rabhadh anns a’ bhana-uirsgeul fàilte. Ruith openamer update gus an dreach as ùire fhaighinn — bidh e a’ dèanamh cùl-taic air do dhàta an toiseach.
 
-## Cuideachadh
+## A' cur ris
 
-Tha cuireadh air a thoileachadh do chionntealaichean — fosgail cùiseanan, cuir iarrtas pull-request air adhart, no cuir thu fhèin an sàs anns a' choimhearsnachd.
+Tha fàilte air freagairtean — cùisean fosgailte, cuir iarrtasan tarraing a-steach, no thig a-steach don choimhearsnachd.
 
-## Cèilidhe/Cèilidh (or more formally: **Cèilidhe**) / **Cèilidhe** (Wait, "License" in a legal/software context is **Cèilidhe** is wrong. Correct term is **Cèilidhe** is for a party. For a license, it is **Cèilidhe** is wrong. The correct word is **Cèilidhe** is wrong. The correct word is **Cèilidhe** is wrong. The correct word is **Cèilidhe** is wrong. The correct word is **Cèilidhe** is wrong. The correct word is **Cèilidhe** is wrong. The correct word is **Cèilidhe** is wrong. The correct word is **Cèilidhe** is wrong. The correct word is **Cèilidhe** is wrong. The correct word is **Cèilidhe** is wrong. The correct word is **Cèilidhe** is wrong. The correct word is **Cèilidhe** is wrong. The correct word is **Cèilidhe** is wrong. The correct word is **Cèilidhe** is wrong. The correct word is **Cèilidhe** is wrong. The correct word is **Cèilidhe** is wrong. The correct word is **Cèilidhe** is wrong. The correct word is **Cèilidhe** is wrong. The correct word is **Cèilidhe** is wrong. The correct word is **Cèilidhe** is wrong. The correct word is **Cèilidhe** is wrong. The correct word is **Cèilidhe** is wrong. The correct word is **Cèilidhe** is wrong. The correct word is **Cèil
+## Cead
 
-Cèileadh Apache 2.0. Faighnich {LICENSE}.
+Cead Apache 2.0. Faic {LICENSE}.

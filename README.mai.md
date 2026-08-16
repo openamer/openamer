@@ -1,47 +1,47 @@
 # OpenAmer Agent
 
-**स्व-सुधारक AI एजेंट — अनुभव सँ सीखू, कौशल बनाउ, अपन पसंदक याद राखू, आ कतहुँ बी अहाँक लेल काज करू।**
+**स्व-सुधारक एआई एजेंट — अनुभव सँ सीखू, कौशल बनाउ, अपनेक प्राथमिकतासभ केँ याद रखू, आ कहींओ अपने लेल काज करू।**
 
-जे कोनो मॉडल उपयोग करू — OpenRouter, OpenAI, DeepSeek, आ अन्य। `openamer model` सँ स्विच करू — कोनो कोड परिवर्तनक आवश्यकता नै अछि।
+कोनो मोडल के उपयोग करू — OpenRouter, OpenAI, DeepSeek, आओर अधिक। `openamer model` संग स्विच करू — कोनो कोड परिवर्तन बिना।
 
 ## विशेषताएँ
 
-- **असली टर्मिनल इंटरफेस — ऑटोकम्प्लीट, हिस्ट्री, आ स्ट्रीमिंग टूल आउटपुटक संग पूर्ण TUI**
-- **our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our**
-- **समयक संगि संगि सिखैत अछि — स्मृति, स्वयं-सुधारक कौशल, सत्र-पार स्मरणशक्ति**
-- **प्रतिनिधित्व आ समानांतरककरण करैत छै — समानांतर कार्यक लेल उप-एजेंट्स (subagents) जनरेट करैत छै**
-- **अनुसूचित ऑटोमेशन — दैनिक रिपोर्ट, बैकअप, ऑडिट लेल इन-बिल्ट क्रोन (cron)**
-- **कहिओ चलत अछि — लोकल, Docker, SSH, क्लाउड, सर्वरलेस**
+- **वास्तविक टर्मिनल इंटरफेस — पूर्ण TUI संग ऑटो-कम्प्लीट, इतिहास, आ स्ट्रीमिंग टूल आउटपुट**
+- **जतए अहाँ रहैत छी — Telegram, Discord, Slack, WhatsApp आओर एकटा गेटवे सँ अधिक।**
+- **समय के संग सीखना — स्मृति, आत्म-सुधार कौशल, क्रॉस-सेशन पुनः स्मरण**
+- **प्रतिनिधि आ समांतरित करैत अछि — समांतर काजक लेल उपएजेंट सभकेँ जन्म दैत अछि**
+- **निर्धारित स्वचालन — दैनिक रिपोर्ट, बैकअप, ऑडिट के लिए अंतर्निहित क्रोन**
+- **कहीं भी चलैत अछि — स्थानीय, Docker, SSH, बादल, सर्वरलेस**
 
-## शीघ्र स्थापना
+## त्वरित स्थापना
 
-विंडोज (PowerShell):
+विंडोज (पावरशेल):
 ```powershell
 iex (irm https://github.com/openamer/openamer/raw/main/scripts/install.ps1)
 ```
 
-लिनक्स / मैक ओएस (Linux / macOS):
+लिनक्स / मैकओएस:
 ```bash
 curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | bash
 ```
 
-## शुरुआत क'यब
+## शुरू करब
 
 ```bash
-openamer              # गपशप शुरू करू
-openamer setup        # अपन API keys आ provider सेट करू
-openamer model        # अपन मॉडल चुनू
-openamer update       # नवीनतम संस्करण मे अपडेट करू
+openamer              # चर्चा शुरू करू
+openamer setup        # अपने API कीज आ प्रोवाइडर सेट अप करू।
+openamer model        # अपना मॉडल चुनू।
+openamer update       # नवीनतम संस्करण में अपडेट करू।
 ```
 
-## अपडेट कएल जा रहल अछि
+## अपडेटिंग
 
-OpenAmer स्वचालित रूप सँ अपडेट्स लेल जाँच करैत अछि आ स्वागत बैनर मे चेतावनी देखबैत अछि। नवीनतम संस्करण प्राप्त करबाक लेल `openamer update` रन करू — ई पहिने अहाँक डेटाक बैकअप लेत अछि।
+OpenAmer अपने आप अपडेट के लिए जाँच करता है और स्वागत बैनर में एक चेतावनी दिखाता है। नवीनतम संस्करण प्राप्त करने के लिए openamer update चलाएँ — यह पहले आपके डेटा का बैकअप लेता है।
 
-## योगदान देब
+## योगदान देनाइ
 
-योगदानक स्वागत अछि — ओपन इश्यूज (open issues) खोलू, पुल रिक्वेस्ट (pull requests) सबमिट करू, या समुदाय मे शामिल होऊ।
+योगदान स्वागत योग्य अछि — खुला मुद्दा, पुल अनुरोध सबमिट करू, या समुदाय में शामिल होउ।
 
 ## लाइसेंस
 
-अपाचे लाइसेंस 2.0 (Apache License 2.0)। {LICENSE} देखू।
+Apache लाइसेंस 2.0। देखू {LICENSE}।

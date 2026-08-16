@@ -1,17 +1,17 @@
 # OpenAmer Agent
 
-**Agen AI anu bisa ngamekarkeun dirina sorangan — diajar tina pangalaman, nyiptakeun kamampuh, nginget karesep anjeun, sarta digawé pikeun anjeun di mana waé.**
+**Agen AI anu tiasa ningkatkeun diri sorangan — diajar tina pangalaman, nyiptakeun kaahlian, émut kana kahoyong anjeun, sareng damel pikeun anjeun di mana waé.**
 
-Gunakeun modél naon waé nu dipikahayang — OpenRouter, OpenAI, DeepSeek, sareng nu sanésna. Ganti ku `openamer model` — teu kedah aya parobahan kode.
+Anggo modél naon waé anu anjeun pikahoyong — OpenRouter, OpenAI, DeepSeek, sareng seueur deui. Ganti nganggo `openamer model` — tanpa parobahan kode.
 
-## Fitur
+## Fitur-fitur
 
-- **Antarmuka terminal asli — TUI lengkep kalayan autocomplete, riwayat, sareng output alat streaming**
-- **Aya di mana waé anjeun aya — Telegram, Discord, Slack, WhatsApp jeung nu lianna tina hiji gateway**
-- **Diajar sapanjang waktu — ingetan, kamampuh anu beuki ningkat, nginget deui tina sesi sateuacanna**
-- **Ngadelegasikeun & ngaparalélkeun — nyieun sub-agen pikeun pagawéan paralel**
-- **Automasi anu dijadwalkeun — cron bawaan pikeun laporan harian, cadangan (backup), sareng audit**
-- **Bisa dijalankeun di mana waé — lokal, Docker, SSH, cloud, serverless**
+- **Antarmuka terminal nyata — TUI lengkep kalayan autocomplete, sajarah, sareng hasil alat streaming**
+- **Hirup di tempat anjeun — Telegram, Discord, Slack, WhatsApp sareng langkung seueur ti hiji gerbang**
+- **Diajar salami waktos — mémori, kaahlian anu ningkat sorangan, émutan lintas sesi**
+- **Delegasi & paralel — ngadamel subagen pikeun pagawean paralel**
+- **Automasi anu dijadwalkeun — cron bawaan pikeun laporan harian, cadangan, audit**
+- **Jalan di mana waé — lokal, Docker, SSH, awan, tanpa server**
 
 ## Pasang Gancang
 
@@ -28,20 +28,20 @@ curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | ba
 ## Mimitian
 
 ```bash
-openamer              # our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our
-openamer setup        # Atur konci API & provider anjeun
+openamer              # Mimitian obrolan
+openamer setup        # Atur konci API sareng panyadia anjeun
 openamer model        # Pilih modél anjeun
-openamer update       # Update ka vérsi panganyarna
+openamer update       # Apdet ka versi panganyarna
 ```
 
-## Nuju nganyari
+## Ngapdet
 
-OpenAmer mariksa pembaruan sacara otomatis sarta nembongkeun peringatan dina spanduk wilujeng sumping. Jalankeun `openamer update` pikeun kéngingkeun vérsi panganyarna — ieu bakal nyimpen cadangan (back up) data anjeun heula.
+OpenAmer sacara otomatis mariksa apdet sareng nembongkeun peringatan dina spanduk wilujeng sumping. Jalankeun openamer update pikeun meunangkeun vérsi panganyarna — éta nyadangkeun data anjeun heula.
 
-## Kontribusi
+## Nyumbang
 
-Kontribusi kacida ditarimana — buka *issues*, kirim *pull requests*, atanapi gabung sareng komunitas.
+Sumbangan dipikaresep — buka masalah, kirimkeun pull requests, atanapi gabung ka komunitas.
 
-## Lisénsi
+## Lisensi
 
 Lisensi Apache 2.0. Tingali {LICENSE}.

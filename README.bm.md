@@ -1,19 +1,19 @@
 # OpenAmer Agent
 
-**AI agent wa bɛ se ka kɛ k'a bɛn k'a yɛrɛ kɛna — a bɛ se ka sariya kɛ a kɛnɛya la, a bɛ se ka kɛnɛya kɛ, a bɛ se ka i ka sago kumanw kuman kɛ, wao a bɛ se ka i dɛmɛ fɛn bɛɛ la, fɛn bɛɛ kɛ i ye, mɔn fɛn bɛɛ la.**
+**Nye bɛɛ kɛlɛ fɛɛrɛ AI agent — a bɔ a fɛ, a yɛrɛ bɔ, a fɔ a bɔ a la, kɔ a fɛ a la kɔ a fɛ.**
 
-Kullan k'a sago kɛ a bɛnna — OpenRouter, OpenAI, DeepSeek, ani baara wagi. Ya a sago bago kɛ ni `openamer model` — kòdi (code) donke tɛ sago kɛ.
+Foli kɛlɛ kɛ a bɛɛ kɛlɛ — OpenRouter, OpenAI, DeepSeek, ni bɛɛ. Tɔgɔ `openamer model` — bɛɛ kɔdɔ kɛlɛ.
 
-## Kalan-ni-fanga-w
+## Fɛɛrɛ
 
-- **Terminal interface k’a kɔrɔ bɛɛ — TUI k’a bɛɛ ni autocomplete, history, ani streaming tool output ye**
-- **A bɛ sago kɛ y’a kɛ y’a kɛ o fɛyɛw lumanu kɔrɔ — Telegram, Discord, Slack, WhatsApp ani baara kurawo, k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ**
-- **A bɛ hakili kɛ k’a sago kɛ — hakili-kalan, kɛnɛya-duman-duman, k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a**
-- **A bɛ kɛ sariya-kalan-na k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a**
-- **Otomatisasi sariya-kalan — cron-kalan k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’**
-- **A bɛ se ka jamana bɛɛ k’a kɛ — **local**, **Docker**, **SSH**, **cloud**, **serverless****
+- **Real terminal interface — full TUI ka fɔlɔ, a yɛlɛma, a bɔ a la, ni a fɔlɔ kɔrɔkɔrɔ fɔlɔ.**
+- **Kɔrɔbaw ka kɛlɛ fɛ — Telegram, Discord, Slack, WhatsApp ni bɛɛ kɔrɔbaw la.**
+- **Furu kɛlɛ kɔrɔ — furu, ne fɛnw ka furu, kɔrɔ sisan furu**
+- **Delegates & parallelizes — subagents ka fɔlɔ ye parallel kɛlɛ.**
+- **Fɔlɔ fɛnw ka bɛɛ — fɔlɔ kɔn kɛlɛ fɛ ka bɔ dɔlɔ, bɔkɔ, tɛgɛ.**
+- **Kɔrɔ fɛ ka fɔlɔ — lokal, Docker, SSH, kɔlɔ, serverless**
 
-## Sabu-sabu kura-kura
+## Furu kelen
 
 Windows (PowerShell):
 ```powershell
@@ -25,23 +25,23 @@ Linux / macOS:
 curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | bash
 ```
 
-## Tɔlɔ kɛyɛ
+## Kɔrɔkɔrɔ fɔlɔ
 
 ```bash
-openamer              # K'a bamanankan k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'
-openamer setup        # Sabu-n-na API kɛnɛw k’a kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago
-openamer model        # Y’a model-ma sago kɛ
-openamer update       # Kalan k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a
+openamer              # Sisan bɔlɔ!
+openamer setup        # Kɔrɔkɔrɔ ni API kɛlɛ ni provider.
+openamer model        # Sèbè kà tìgèlen.
+openamer update       # Sikili kɔrɔkɔrɔ la.
 ```
 
-## Sabu kɛma (Updating)
+## Nye bɛɛ fɔlɔ.
 
-OpenAmer bɛ hakili kɛ bɛɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛ
+OpenAmer bɛɛ fɔlɔ kɔfɛ kɛlɛ ye tulu kɛlɛ, a bɛ bɔ fɔlɔ kɛlɛ ka bɔ a bɛɛ. Tɔgɔ openamer update ka fɔlɔ kɛlɛ ye — a bɛ fɔ a bɔ a kɛlɛ kɔrɔ.
 
-## Dɛmɛ kɛla
+## Kanu kɛlɛ
 
-An bɛ sago kɛ dɛmɛ kuma kɔnɔ — bɛn kɛ kɛnɛ kɔnɔ, yɛlɛmanw ladi, walima dɛmɛ kɛ kɔmɔn kɔnɔ.
+Kanu bɛɛ fɛ ka bɛ yɛrɛ — fɛ ka bɛ tɔgɔ, fɛ ka bɛ sɔrɔ pull requests, an ka bɛ jɔ kɔmmɔtɛ.
 
-## Lisansi
+## Furu
 
-Apache License 2.0. A k’a kɔrɔ {LICENSE}.
+Apache License 2.0. Kà a fɔ {LICENSE}.

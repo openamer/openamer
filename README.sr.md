@@ -1,17 +1,17 @@
 # OpenAmer Agent
 
-**AI agent koji se sam unapređuje — uči iz iskustva, kreira veštine, pamti vaše preferencije i radi za vas bilo gde.**
+**AI agent koji se samopoboljšava — uči iz iskustva, stvara veštine, pamti vaše preferencije i radi za vas bilo gde.**
 
-Koristite bilo koji model koji želite — OpenRouter, OpenAI, DeepSeek i ostale. Prebacite se pomoću `openamer model` — bez izmena u kodu.
+Користите било који модел који желите — OpenRouter, OpenAI, DeepSeek и више. Пребаците се са `openamer model` — без промена кода.
 
 ## Karakteristike
 
-- **Pravi terminalni interfejs — potpuni TUI sa auto-kompletovanjem, istorijom i strimovanjem izlaza alata**
-- **Tamo gde ste i vi — Telegram, Discord, Slack, WhatsApp i ostalo preko jednog gejtvaja**
-- **Учи током времена — меморија, вештине које се само унапређују, призивање података из претходних сесија**
-- **Делегира и паралелизује — ствара субагенте за паралелни рад**
-- **Zakazane automatizacije — ugrađeni cron za dnevne izveštaje, rezervne kopije i revizije**
-- **Radi bilo gde — lokalno, Docker, SSH, cloud, serverless**
+- **Pravi terminal interfejs — potpuni TUI sa automatskim dovršavanjem, istorijom i strimovanjem izlaza alata**
+- **Živi gde ti živiš — Telegram, Discord, Slack, WhatsApp i još mnogo toga iz jedne pristupne tačke**
+- **Uči tokom vremena — memorija, samopoboljšavajuće veštine, prisjećanje između sesija**
+- **Delegati i paralelizuje — pokreće podagente za paralelni rad**
+- **Zakazane automatizacije — ugrađeni cron za dnevne izveštaje, rezervne kopije, revizije**
+- **Radi bilo gde — lokalno, Docker, SSH, oblak, bezserverno**
 
 ## Brza instalacija
 
@@ -25,22 +25,22 @@ Linux / macOS:
 curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | bash
 ```
 
-## Prvi koraci
+## Kako početi
 
 ```bash
-openamer              # Započnite dopisivanje
+openamer              # Почни да ћаскаш
 openamer setup        # Podesite svoje API ključeve i provajdera
-openamer model        # Izaberite svoj model
+openamer model        # Изаберите свој модел
 openamer update       # Ažurirajte na najnoviju verziju
 ```
 
 ## Ažuriranje
 
-OpenAmer automatski proverava ažuriranja i prikazuje upozorenje u uvodnom baneru. Pokrenite `openamer update` kako biste dobili najnoviju verziju — on će prvo napraviti rezervnu kopiju vaših podataka.
+OpenAmer automatski proverava ažuriranja i prikazuje upozorenje u dobrodošlici. Pokrenite openamer update da biste dobili najnoviju verziju — prvo pravi rezervnu kopiju vaših podataka.
 
-## Контрибуирање
+## Doprinosjenje
 
-Приноси су добродо our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our
+Doprinosi su dobrodošli — otvorite probleme, pošaljite pull zahteve ili se pridružite zajednici.
 
 ## Licenca
 

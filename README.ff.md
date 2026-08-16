@@ -1,19 +1,19 @@
 # OpenAmer Agent
 
-**Agent AI mo woni e jamu mbeelu — jidda e nder jeyngol, mbinndu kabaaru, yidnaa mbeelu maa, kadi wonnaa ma e nder jamu mbeelu.**
+**Ajent AI ɗiɗo-ɗiɗo — jango e nder tef, waɗa leydi, waɗa hokkugo maa, e jango e nder ko ɓe njahi.**
 
-Mido mawnina model ng’u njobu — OpenRouter, OpenAI, DeepSeek, e joowe kadi. Jibbe mawnina e `openamer model` — haa on njiiden mbeelu kadi.
+Naatu model ɗe woni — OpenRouter, OpenAI, DeepSeek, e nden. Naatu e `openamer model` — wala ndiyam code.
 
-## **Kabaaru**
+## Cemmbungal
 
-- **Interface terminal moonɗum — TUI moonɗum e autocomplete, history, e streaming tool output**
-- **Ooji ɗoo a wi'ata — Telegram, Discord, Slack, WhatsApp e joɗɗi kadi, ha goɗɗo kadi (gateway)**
-- **Heenii e jam — mbeelu, kadi-mbeelu, mbeelu e jam-jam**
-- ****Wootira e wootira-mbe** — ɓiɗi jeyngal ngal ngam golle mbeela mbeela**
-- ****Automatisasi wonnde njaatititititititititititititititititititititititititititititititititititititititititititititititititititititititititititititititititititititititititititititititititititititititititititititititititititititititititititititit our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our**
-- **O nani e jamu mawnunde — e nder, Docker, SSH, cloud, serverless**
+- **Ndaari terminal ngol — TUI foti e njaafun, jaaɓnirde, e ɓeeydu tool ngol.**
+- **Nde nden e waɗi — Telegram, Discord, Slack, WhatsApp e waɗi ɗiɗi e nder goɗɗo.**
+- **Nde fota e jamma — ndiyam, jokkondiral e nder, heɓɓugol e jammaaji.**
+- **Daalde & parallelize — jokkondir subagents ngam work parallel**
+- **Ndeerɗe ɓe naatnude — cron ɓe njahi ɗum ngam jaɓɓorgo ɓe, ɓe njaɓɓude, ɓe njahi ɓe.**
+- **Nana e nderi — leydi, Docker, SSH, leydi ndiyam, serverless**
 
-## Installuure ɓernde
+## Njaɓɓorgo Kadi
 
 Windows (PowerShell):
 ```powershell
@@ -25,23 +25,23 @@ Linux / macOS:
 curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | bash
 ```
 
-## Woɗɗugo ɗon
+## Ndeer e nderi
 
 ```bash
-openamer              # Nooyna jeyndu
-openamer setup        # Haaɗu API keys youron e provider on
-openamer model        # Filma model ma
-openamer update       # Yaltina e version ɓuuraama
+openamer              # Nana jokkondir.
+openamer setup        # Naatnoy e keyji API maa e jeyaaɗi.
+openamer model        # Nana model maa.
+openamer update       # Naatnude e jammaaji mawɗo.
 ```
 
-## Yaltude/Yaltude njaayru
+## Ndeerndu
 
-OpenAmer njaaraa e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde mbele e nder ɓernde
+OpenAmer naatata e nder jooni e njaatata e nder banner ngol. Naatu openamer update ngam jogora version ngol jooni — o jogora data maa ko feewi.
 
-## Wurode/Jokkondirde
+## Nanaamaaji
 
-En njaaraama e kadi nde nani — foti mbeela nde nani, walla njaaraama e pull requests, walla jeyaa e nder community ɗonda.
+Ndeerɗe e jam — njahi e jeyaa, jokkondir pull requests, walla jokkondir e jam.
 
-## Lisans
+## Laaɓi
 
-Apache License 2.0. Heɓe {LICENSE}.
+Apache License 2.0. Nde {LICENSE}.

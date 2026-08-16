@@ -1,17 +1,17 @@
 # OpenAmer Agent
 
-**AI agent koji se sam unapređuje — uči iz iskustva, stvara vještine, pamti vaše preferencije i radi za vas bilo gdje.**
+**AI agent koji se samostalno poboljšava — uči iz iskustva, stvara vještine, pamti vaše preferencije i radi za vas bilo gdje.**
 
-Koristite bilo koji model koji želite — OpenRouter, OpenAI, DeepSeek i ostale. Prebacite se pomoću naredbe `openamer model` — bez izmjena u kodu.
+Koristite bilo koji model koji želite — OpenRouter, OpenAI, DeepSeek i više. Prebacite se s `openamer model` — bez promjena u kodu.
 
 ## Značajke
 
-- **Stvarni terminalni sučelje — potpuni TUI s autopunjenjem, poviješću i streamingom izlaza alata**
-- **Tamo gdje ste i vi — Telegram, Discord, Slack, WhatsApp i ostalo kroz jedan gateway**
-- **Uči s vremenom — memorija, vještine koje se same unapređuju, prisjećanje kroz sesije**
-- **Delegira i paralelizira — stvara podagente za paralelni rad**
-- **Zakazane automatizacije — ugrađeni cron za dnevne izvještaje, sigurnosne kopije i revizije**
-- **Radi bilo gdje — lokalno, Docker, SSH, cloud, serverless**
+- **Stvarno terminalsko sučelje — potpuni TUI s automatskim dovršavanjem, poviješću i izlazom alata u stvarnom vremenu**
+- **Živi gdje i ti — Telegram, Discord, Slack, WhatsApp i još mnogo toga iz jedne pristupne točke**
+- **Uči s vremenom — memorija, samopoboljšavajuće vještine, prisjećanje između sesija**
+- **Delegati i paralelizira — pokreće podagente za paralelni rad**
+- **Zakazane automatizacije — ugrađeni cron za dnevna izvješća, sigurnosne kopije, revizije**
+- **Radi bilo gdje — lokalno, Docker, SSH, u oblaku, bez poslužitelja**
 
 ## Brza instalacija
 
@@ -25,23 +25,23 @@ Linux / macOS:
 curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | bash
 ```
 
-## Prvi koraci
+## Započinjanje
 
 ```bash
-openamer              # Započnite dopisivanje
-openamer setup        # Postavite svoje API ključeve i pružatelja usluga
-openamer model        # our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our
+openamer              # Započni razgovor
+openamer setup        # Postavite svoje API ključeve i pružatelja
+openamer model        # Odaberite svoj model
 openamer update       # Ažurirajte na najnoviju verziju
 ```
 
 ## Ažuriranje
 
-OpenAmer automatski provjerava postoji li novija verzija i prikazuje upozorenje u početnom banneru. Pokrenite `openamer update` kako biste instalirali najnoviju verziju — program će prvo napraviti sigurnosnu kopiju vaših podataka.
+OpenAmer automatski provjerava ažuriranja i prikazuje upozorenje u dobrodošlici. Pokrenite openamer update kako biste dobili najnoviju verziju — prvo će napraviti sigurnosnu kopiju vaših podataka.
 
-## Pridruživanje
+## Doprinosi
 
-Kontribucije su dobrodošle — otvorite issue, pošaljite pull request ili pridružite se zajednici.
+Doprinosi su dobrodošli — otvorite probleme, pošaljite pull zahtjeve ili se pridružite zajednici.
 
 ## Licenca
 
-Apache licenca 2.0. Pogledajte {LICENSE}.
+Apache Licenca 2.0. Pogledajte {LICENSE}.

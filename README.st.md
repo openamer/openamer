@@ -1,19 +1,19 @@
 # OpenAmer Agent
 
-**Agent ea AI e itokisang ka boyena — ithute ka boiphihlelo, bopha boediti, hopola litaba tseo u li ratang, ebile e sebetse bakeng sa hao hohle moo.**
+**Mochini oa AI o itlhophoang — ithute ho tsoa phihlelo, bopa litsebo, hopola likhetho tsa hau, 'me o sebetse bakeng sa hau kae kapa kae.**
 
-Sebelisa mofuta ofe kapa ofe oo o o lakatsang — OpenRouter, OpenAI, DeepSeek, le tse ling. Phela ka `openamer model` — ha ho na le liphetoho tsa khoutu.
+Sebetsa mohlala ofe kapa ofe oo u batlang — OpenRouter, OpenAI, DeepSeek, le tse ling. Fetola ka `openamer model` — ha ho na liphetoho tse koding.
 
-## Litšobotsi
+## Likarolo
 
-- **Interface ea terminal ea sebeke — TUI e feletseng e nang le autocomplete, histori, le streaming ea litaba tsa lisebelisoa**
-- **Ena moo u lulang teng — Telegram, Discord, Slack, WhatsApp le tse bang mangolo ho tsoa gateway e le 'ngoe**
-- **E ithuta ha nako e ntse e tsamaea — mohopolo, litsebo tse itokisang, ho hopola lintho ho tloha litselisong tse fapaneng**
-- **E fetisetsa & e etsa ka nako e le ’ngoe — e hlahise li-subagent bakeng sa mosebetsi o tsamaeang ka nako e le ’ngoe**
-- **Litšebetso tse hlophisitsoeng — cron e kenngletsong bakeng sa litaba tsa letsatsi le letsatsi, litšebetso tsa ho boloka (backups), le litlhophiso (audits)**
-- **E sebetsa hohle — local, Docker, SSH, cloud, serverless**
+- **'Interface ea 'nete ea terminal - TUI e felletseng e nang le ho iketsetsa, histori, le output ea lisebelisoa tse phallang**
+- **Bophelo bo teng moo u leng teng — Telegram, Discord, Slack, WhatsApp le tse ling ho tsoa ka monyako o le mong**
+- **E ithuta ka nako — memori, tsebo e itlhahisang, ho hopola ho amanang le mekhahlelo**
+- **Bahlahlobi le ho arolelana — hlahisa subagents bakeng sa mosebetsi o amanang.**
+- **Mechana e behiloeng - cron e entsoeng ka hare bakeng sa liphetho tsa letsatsi le letsatsi, li-backup, le liphetho.**
+- **E sebetsa kae kapa kae — sebakeng, Docker, SSH, bulu, ntle le server**
 
-## Keketso e potlakileng
+## Kenya ka potlako
 
 Windows (PowerShell):
 ```powershell
@@ -25,23 +25,23 @@ Linux / macOS:
 curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | bash
 ```
 
-## Qalo
+## Ho qala
 
 ```bash
-openamer              # Qala ho qoqa
-openamer setup        # Beha litlhakolutšo tsa API (API keys) le our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our
-openamer model        # Kgetha mofuta wa hao
-openamer update       # ntlafatsa ho ea mofuta o latest
+openamer              # Qala ho buisana
+openamer setup        # Settinga likhoutu tsa hau tsa API le mofani
+openamer model        # Khetha mohlala oa hau
+openamer update       # Ntlafatsa ho ea mofuta o mocha ka ho fetisisa
 ```
 
 ## Ho ntlafatsa
 
-OpenAmer e hlahloba lintlafatso ka boiketlo ’me e bontša tlhokisiseho letsing la kamongolo ea kenyeletso. Matha **openamer update** ho fumana mokhatlo o latest — e rala data ea hau pele.
+OpenAmer e lekola ntlafatso ka boiketsetso 'me e bontša tsebiso ho banner ea amohelo. Sebelisa openamer update ho fumana version e ncha — e boloka data ea hau pele.
 
-## Ho fana ka tšebeletso
+## Ho kenya letsoho
 
-Litšebeletso li amohelwa — bula litaba (issues), romela litlhopo tsa ho ntlafatsa (pull requests), kapa u kenye letsoho sechabang.
+Mehato e amoheleha — buisana ka litlhoko, fa diphetho tse khelang, kapa ingolise sechabeng.
 
-## Laesense
+## Lefapha
 
-Laesene ea Apache 2.0. Bona {LICENSE}.
+Apache License 2.0. Sheba {LICENSE}.

@@ -1,17 +1,17 @@
 # OpenAmer Agent
 
-**Ajan AI ki amelyore tèt li a — aprann nan eksperyans, kreye konpetans, sonje preferans ou yo, epi travay pou ou nenpòt kote.**
+**Ajans AI ki amelyore tèt li — aprann nan eksperyans, kreye konpetans, sonje preferans ou, epi travay pou ou nenpòt kote.**
 
-Sèvi ak nenpòt modèl ou vle — OpenRouter, OpenAI, DeepSeek, ak plis ankò. Chanje yo ak `openamer model` — san our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our our
+Sèvi ak nenpòt modèl ou vle — OpenRouter, OpenAI, DeepSeek, ak plis ankò. Chanje ak `openamer model` — pa gen chanjman nan kòd la.
 
-## Karakteristik yo
+## Karakteristik
 
-- **Yon entèfas tèminal reyèl — yon TUI konplè ak otokomplè, istwa, ak sòti zouti an streaming**
-- **Viv kote ou ye a — Telegram, Discord, Slack, WhatsApp ak plis ankò soti nan yon sèl pasèl**
-- **Aprann plis plis ak tan — memwa, kapasite ki amelyore tèt yo, rapèl ant sesyon yo**
-- **Delege epi paralèlize — kreye sou-ajan pou travay an paralèl**
-- **Otomatizasyon planifye — cron entegre pou rapò chak jou, bakap, ak odit**
-- **Li mache nenpòt kote — lokal, Docker, SSH, cloud, serverless**
+- **Entèfas reyèl tèminal — TUI konplè ak otomatik konplè, istwa, ak pwodiksyon zouti ki ap koule**
+- **Viv kote ou ye — Telegram, Discord, Slack, WhatsApp ak plis ankò soti nan yon sèl pòtay**
+- **Aprann sou tan — memwa, konpetans ki amelyore tèt yo, rapèl atravè sesyon**
+- **Delegue & paralelize — kreye souajans pou travay paralel**
+- **Automatik ki pwograme — cron entegre pou rapò chak jou, sovgad, odits**
+- **Kouri nenpòt kote — lokal, Docker, SSH, nwaj, san sèvè**
 
 ## Enstalasyon Rapid
 
@@ -29,19 +29,19 @@ curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | ba
 
 ```bash
 openamer              # Kòmanse pale
-openamer setup        # Konfigire kle API ou yo ak founisè a
+openamer setup        # Mete kle API ou yo ak founisè a
 openamer model        # Chwazi modèl ou a
 openamer update       # Mete ajou nan dènye vèsyon an
 ```
 
-## Mizajou
+## Ap mete ajou
 
-OpenAmer tcheke si gen mizajou otomatikman epi li afiche yon avètisman nan banyè byenvini an. Ekzekite `openamer update` pou w jwenn dènye vèsyon an — li fè yon kopi sekirite (backup) done ou yo anvan.
+OpenAmer tcheke pou dènye nouvèl otomatikman epi li montre yon avètisman nan bann akeyi a. Kouri openamer update pou jwenn dènye vèsyon an — li fè yon sovgad done ou an premye.
 
 ## Kontribye
 
-Kontribisyon yo byenveni — louvri pwoblèm (issues), voye pull requests, oswa jwenn kominote a.
+Kontribisyon yo akeyi — ouvri pwoblèm, soumèt demann pou rale, oswa rantre nan kominote a.
 
 ## Lisans
 
-Lisans Apache 2.0. Gade {LICENSE}.
+Apache License 2.0. Gade {LICENSE}.
