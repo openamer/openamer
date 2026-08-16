@@ -755,7 +755,7 @@ def _openamer_extra_body() -> dict:
 OPENAMER_EXTRA_BODY = _openamer_extra_body()
 
 # Set at resolve time — True if the auxiliary client points to OpenAmer Portal
-auxiliary_is_nous: bool = False
+auxiliary_is_openamer: bool = False
 
 # Default auxiliary models per provider
 _OPENROUTER_MODEL = "google/gemini-3-flash-preview"
@@ -2176,8 +2176,8 @@ def _try_nous(vision: bool = False) -> Tuple[Optional[OpenAI], Optional[str]]:
             "Auxiliary OpenAmer: runtime JWT refresh failed; checking stored "
             "auth.json token."
         )
-    global auxiliary_is_nous
-    auxiliary_is_nous = True
+    global auxiliary_is_openamer
+    auxiliary_is_openamer = True
     logger.debug("Auxiliary client: OpenAmer Portal")
 
     # Ask the Portal which model it currently recommends for this task type.
@@ -4563,8 +4563,8 @@ def _resolve_auto(
       2. OpenRouter → OpenAmer → custom → Codex → API-key providers (fallback
          chain, only used when the main provider has no working client).
     """
-    global auxiliary_is_nous, _stale_base_url_warned
-    auxiliary_is_nous = False  # Reset — _try_nous() will set True if it wins
+    global auxiliary_is_openamer, _stale_base_url_warned
+    auxiliary_is_openamer = False  # Reset — _try_nous() will set True if it wins
     runtime = _normalize_main_runtime(main_runtime)
     runtime_provider = runtime.get("provider", "")
     runtime_model = str(runtime.get("model") or "")
@@ -5987,7 +5987,7 @@ def get_auxiliary_extra_body() -> dict:
     Includes OpenAmer Portal product tags when the auxiliary client is backed
     by OpenAmer Portal. Returns empty dict otherwise.
     """
-    return _openamer_extra_body() if auxiliary_is_nous else {}
+    return _openamer_extra_body() if auxiliary_is_openamer else {}
 
 
 def auxiliary_max_tokens_param(value: int, *, model: Optional[str] = None) -> dict:
@@ -7830,11 +7830,11 @@ def call_llm(
         # auxiliary call 404s with "model does not exist". Force a fresh
         # Portal fetch and retry once with the current recommendation (or the
         # known-good default). Only applies to OpenAmer-routed calls.
-        _heal_is_nous = (
+        _heal_is_openamer = (
             resolved_provider == "openamer"
             or base_url_host_matches(_base_info, "inference-api.openamer.com")
         )
-        if _is_model_not_found_error(first_err) and _heal_is_nous:
+        if _is_model_not_found_error(first_err) and _heal_is_openamer:
             healed_model = _refresh_openamer_recommended_model(
                 vision=(task == "vision"), stale_model=kwargs.get("model"))
             if healed_model and healed_model != kwargs.get("model"):
@@ -7851,13 +7851,13 @@ def call_llm(
                     first_err = retry_err
 
         # ── OpenAmer auth refresh parity with main agent ──────────────────
-        client_is_nous = (
+        client_is_openamer = (
             resolved_provider == "openamer"
             or base_url_host_matches(_base_info, "inference-api.openamer.com")
         )
         if (
             _is_payment_error(first_err)
-            and client_is_nous
+            and client_is_openamer
             and _openamer_portal_account_has_fresh_paid_access()
         ):
             refreshed_client, refreshed_model = _refresh_openamer_auxiliary_client(
@@ -7890,7 +7890,7 @@ def call_llm(
                         raise
                     first_err = retry_err
 
-        if _is_auth_error(first_err) and client_is_nous:
+        if _is_auth_error(first_err) and client_is_openamer:
             refreshed_client, refreshed_model = _refresh_openamer_auxiliary_client(
                 cache_provider=resolved_provider or "openamer",
                 model=final_model,
@@ -7914,7 +7914,7 @@ def call_llm(
             resolved_provider, _base_info)
         if (_is_auth_error(first_err)
                 and auth_refresh_provider not in {"auto", "", None}
-                and not client_is_nous):
+                and not client_is_openamer):
             if _refresh_provider_credentials(auth_refresh_provider):
                 if auth_refresh_provider != _normalize_aux_provider(resolved_provider):
                     # The stale client is cached under the route label
@@ -8411,11 +8411,11 @@ async def async_call_llm(
         # can pin a Portal-recommended model that has since been dropped from
         # the OpenAmer → OpenRouter catalog, 404'ing every auxiliary call. Force a
         # fresh Portal fetch and retry once with the current recommendation.
-        _heal_is_nous = (
+        _heal_is_openamer = (
             resolved_provider == "openamer"
             or base_url_host_matches(_client_base, "inference-api.openamer.com")
         )
-        if _is_model_not_found_error(first_err) and _heal_is_nous:
+        if _is_model_not_found_error(first_err) and _heal_is_openamer:
             healed_model = _refresh_openamer_recommended_model(
                 vision=(task == "vision"), stale_model=kwargs.get("model"))
             if healed_model and healed_model != kwargs.get("model"):
@@ -8432,13 +8432,13 @@ async def async_call_llm(
                     first_err = retry_err
 
         # ── OpenAmer auth refresh parity with main agent ──────────────────
-        client_is_nous = (
+        client_is_openamer = (
             resolved_provider == "openamer"
             or base_url_host_matches(_client_base, "inference-api.openamer.com")
         )
         if (
             _is_payment_error(first_err)
-            and client_is_nous
+            and client_is_openamer
             and _openamer_portal_account_has_fresh_paid_access()
         ):
             refreshed_client, refreshed_model = _refresh_openamer_auxiliary_client(
@@ -8470,7 +8470,7 @@ async def async_call_llm(
                         raise
                     first_err = retry_err
 
-        if _is_auth_error(first_err) and client_is_nous:
+        if _is_auth_error(first_err) and client_is_openamer:
             refreshed_client, refreshed_model = _refresh_openamer_auxiliary_client(
                 cache_provider=resolved_provider or "openamer",
                 model=final_model,
@@ -8493,7 +8493,7 @@ async def async_call_llm(
             resolved_provider, _client_base)
         if (_is_auth_error(first_err)
                 and auth_refresh_provider not in {"auto", "", None}
-                and not client_is_nous):
+                and not client_is_openamer):
             if _refresh_provider_credentials(auth_refresh_provider):
                 if auth_refresh_provider != _normalize_aux_provider(resolved_provider):
                     # The stale client is cached under the route label

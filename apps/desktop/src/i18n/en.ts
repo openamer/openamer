@@ -180,7 +180,7 @@ export const en: Translations = {
   },
 
   billingBlock: {
-    titleNous: 'Out of OpenAmer credits',
+    titleOpenamer: 'Out of OpenAmer credits',
     titleProvider: provider => `Out of credits — ${provider}`,
     fallbackMessage: 'Your account is out of credits. Add credits to keep going.',
     openBilling: 'Open billing',

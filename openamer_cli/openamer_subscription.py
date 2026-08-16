@@ -72,7 +72,7 @@ class OpenAmerFeatureState:
 class OpenAmerSubscriptionFeatures:
     subscribed: bool
     openamer_auth_present: bool
-    provider_is_nous: bool
+    provider_is_openamer: bool
     features: Dict[str, OpenAmerFeatureState]
     account_info: Optional[OpenAmerPortalAccountInfo] = None
 
@@ -335,7 +335,7 @@ def get_openamer_subscription_features(
         config = load_config() or {}
     config = dict(config)
     model_cfg = _model_config_dict(config)
-    provider_is_nous = str(model_cfg.get("provider") or "").strip().lower() == "openamer"
+    provider_is_openamer = str(model_cfg.get("provider") or "").strip().lower() == "openamer"
 
     try:
         if force_fresh:
@@ -357,7 +357,7 @@ def get_openamer_subscription_features(
 
     def _entitled_for(category: str) -> bool:
         return bool(account_info and account_info.tool_gateway_entitled_for(category))
-    subscribed = provider_is_nous or openamer_auth_present
+    subscribed = provider_is_openamer or openamer_auth_present
 
     web_tool_enabled = _toolset_enabled(config, "web")
     image_tool_enabled = _toolset_enabled(config, "image_gen")
@@ -728,7 +728,7 @@ def get_openamer_subscription_features(
     return OpenAmerSubscriptionFeatures(
         subscribed=subscribed,
         openamer_auth_present=openamer_auth_present,
-        provider_is_nous=provider_is_nous,
+        provider_is_openamer=provider_is_openamer,
         features=features,
         account_info=account_info,
     )
@@ -750,7 +750,7 @@ def apply_openamer_managed_defaults(
         and features.account_info.tool_gateway_entitled
     ):
         return set()
-    if not features.provider_is_nous:
+    if not features.provider_is_openamer:
         return set()
 
     selected_toolsets = set(enabled_toolsets or ())

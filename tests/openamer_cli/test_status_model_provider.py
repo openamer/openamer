@@ -84,7 +84,7 @@ def test_show_status_reports_managed_openamer_features(monkeypatch, capsys, tmp_
         lambda config: OpenAmerSubscriptionFeatures(
             subscribed=True,
             openamer_auth_present=True,
-            provider_is_nous=True,
+            provider_is_openamer=True,
             features={
                 "web": OpenAmerFeatureState("web", "Web tools", True, True, True, True, False, True, "firecrawl"),
                 "image_gen": OpenAmerFeatureState("image_gen", "Image generation", True, True, True, True, False, True, "OpenAmer Subscription"),

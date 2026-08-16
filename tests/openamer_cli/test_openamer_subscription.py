@@ -734,7 +734,7 @@ def test_apply_openamer_managed_defaults_flips_stt_provider_to_openai_for_openam
         lambda config, **kw: ns.OpenAmerSubscriptionFeatures(
             subscribed=True,
             openamer_auth_present=True,
-            provider_is_nous=True,
+            provider_is_openamer=True,
             account_info=_account(logged_in=True, paid=True),
             features={
                 key: ns.OpenAmerFeatureState(
@@ -759,7 +759,7 @@ def _stt_features_stub(*, account_info):
     return ns.OpenAmerSubscriptionFeatures(
         subscribed=True,
         openamer_auth_present=True,
-        provider_is_nous=True,
+        provider_is_openamer=True,
         account_info=account_info,
         features={
             key: ns.OpenAmerFeatureState(
@@ -825,7 +825,7 @@ def test_apply_openamer_managed_defaults_skips_stt_when_groq_key_present(monkeyp
         lambda config, **kw: ns.OpenAmerSubscriptionFeatures(
             subscribed=True,
             openamer_auth_present=True,
-            provider_is_nous=True,
+            provider_is_openamer=True,
             account_info=_account(logged_in=True, paid=True),
             features={
                 key: ns.OpenAmerFeatureState(

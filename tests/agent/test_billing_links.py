@@ -15,7 +15,7 @@ from agent.billing_links import (
 
 def test_openamer_route_by_provider_slug():
     block = build_billing_block(provider="openamer", base_url="", model="openamer-4")
-    assert block.is_nous is True
+    assert block.is_openamer is True
     assert block.provider_label == "OpenAmer Portal"
     # OpenAmer always resolves an in-app/portal billing URL as a fallback.
     assert block.billing_url and "openamer.com" in block.billing_url
@@ -27,7 +27,7 @@ def test_openamer_route_by_base_url_host():
         base_url="https://inference-api.openamer.com/v1",
         model="openamer-4",
     )
-    assert block.is_nous is True
+    assert block.is_openamer is True
 
 
 def test_is_openamer_inference_route_helper():
@@ -38,7 +38,7 @@ def test_is_openamer_inference_route_helper():
 
 def test_known_provider_by_slug_resolves_label_and_url():
     block = build_billing_block(provider="openai", base_url="", model="gpt-5")
-    assert block.is_nous is False
+    assert block.is_openamer is False
     assert block.provider_label == "OpenAI"
     assert block.billing_url is not None
     assert "openai.com" in block.billing_url
@@ -50,7 +50,7 @@ def test_openrouter_resolves_credits_page():
         base_url="https://openrouter.ai/api/v1",
         model="anthropic/claude",
     )
-    assert block.is_nous is False
+    assert block.is_openamer is False
     assert block.billing_url is not None
     assert "openrouter.ai" in block.billing_url
 
@@ -73,7 +73,7 @@ def test_unknown_provider_degrades_without_url():
         base_url="http://localhost:1234/v1",
         model="llama",
     )
-    assert block.is_nous is False
+    assert block.is_openamer is False
     # No invented URL for an unknown provider — but a readable label survives.
     assert block.billing_url is None
     assert block.provider_label  # non-empty, humanized
@@ -97,7 +97,7 @@ def test_to_dict_round_trips_all_fields():
         "provider_label",
         "model",
         "billing_url",
-        "is_nous",
+        "is_openamer",
         "message",
     }
     assert isinstance(block, BillingBlock)

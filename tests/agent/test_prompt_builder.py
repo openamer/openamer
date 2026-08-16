@@ -644,7 +644,7 @@ class TestBuildNousSubscriptionPrompt:
             lambda config=None: OpenAmerSubscriptionFeatures(
                 subscribed=True,
                 openamer_auth_present=True,
-                provider_is_nous=True,
+                provider_is_openamer=True,
                 features={
                     "web": OpenAmerFeatureState("web", "Web tools", True, True, True, True, False, True, "firecrawl"),
                     "image_gen": OpenAmerFeatureState("image_gen", "Image generation", True, True, True, True, False, True, "OpenAmer Subscription"),
@@ -670,7 +670,7 @@ class TestBuildNousSubscriptionPrompt:
             lambda config=None: OpenAmerSubscriptionFeatures(
                 subscribed=False,
                 openamer_auth_present=False,
-                provider_is_nous=False,
+                provider_is_openamer=False,
                 features={
                     "web": OpenAmerFeatureState("web", "Web tools", True, False, False, False, False, True, ""),
                     "image_gen": OpenAmerFeatureState("image_gen", "Image generation", True, False, False, False, False, True, ""),

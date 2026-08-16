@@ -175,7 +175,7 @@ export const zh: Translations = {
   },
 
   billingBlock: {
-    titleNous: 'OpenAmer 额度已用尽',
+    titleOpenamer: 'OpenAmer 额度已用尽',
     titleProvider: provider => `额度已用尽 — ${provider}`,
     fallbackMessage: '您的账户额度已用尽。请充值以继续使用。',
     openBilling: '打开账单',

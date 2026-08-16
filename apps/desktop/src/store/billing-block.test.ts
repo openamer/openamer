@@ -18,7 +18,7 @@ import {
 function makeBlock(overrides: Partial<BillingBlock> = {}): BillingBlock {
   return {
     billing_url: 'https://platform.openai.com/settings/organization/billing',
-    is_nous: false,
+    is_openamer: false,
     message: 'You are out of credits.',
     model: 'gpt-5',
     provider: 'openai',
@@ -55,7 +55,7 @@ test('clearBillingBlock with no arg clears any active block', () => {
 })
 
 test('runBillingRecovery routes OpenAmer to in-app Settings, never an external link', () => {
-  runBillingRecovery(makeBlock({ is_nous: true, provider: 'openamer', provider_label: 'OpenAmer Portal' }))
+  runBillingRecovery(makeBlock({ is_openamer: true, provider: 'openamer', provider_label: 'OpenAmer Portal' }))
   expect($billingSettingsRequest.get()).toBe(1)
   expect(openExternalLink).not.toHaveBeenCalled()
 })
@@ -81,6 +81,6 @@ test('requestBillingSettings increments the intent counter', () => {
 
 test('billingCtaLabel picks the right verb per route', () => {
   const copy = { addCredits: 'Add credits', openBilling: 'Open billing' }
-  expect(billingCtaLabel(makeBlock({ is_nous: true }), copy)).toBe('Open billing')
-  expect(billingCtaLabel(makeBlock({ is_nous: false }), copy)).toBe('Add credits')
+  expect(billingCtaLabel(makeBlock({ is_openamer: true }), copy)).toBe('Open billing')
+  expect(billingCtaLabel(makeBlock({ is_openamer: false }), copy)).toBe('Add credits')
 })

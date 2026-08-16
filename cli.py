@@ -13086,7 +13086,7 @@ class OpenAmerCLI(CLIAgentSetupMixin, CLICommandsMixin, CLIBillingMixin):
                 if result and result.get("failure_reason") == "billing":
                     _bb = result.get("billing_block") or {}
                     _prov_label = _bb.get("provider_label") or "your provider"
-                    if _bb.get("is_nous"):
+                    if _bb.get("is_openamer"):
                         _cta_lines = [
                             "Run [bold]/topup[/] to add credits, or "
                             "[bold]/subscription[/] to change plan.",

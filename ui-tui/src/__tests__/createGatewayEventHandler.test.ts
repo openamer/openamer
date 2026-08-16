@@ -103,7 +103,7 @@ describe('createGatewayEventHandler', () => {
       payload: {
         billing: {
           billing_url: null,
-          is_nous: true,
+          is_openamer: true,
           message: 'out of credits',
           model: 'm',
           provider: 'openamer',
@@ -132,7 +132,7 @@ describe('createGatewayEventHandler', () => {
       payload: {
         billing: {
           billing_url: 'https://openrouter.ai/settings/credits',
-          is_nous: false,
+          is_openamer: false,
           message: 'out of credits',
           model: 'm',
           provider: 'openrouter',

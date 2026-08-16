@@ -16,7 +16,7 @@ export interface BillingDialogCopy {
  * the wording is unit-tested without driving the gateway.
  */
 export function billingDialogCopy(block: BillingBlock): BillingDialogCopy {
-  if (block.is_nous) {
+  if (block.is_openamer) {
     return {
       cancelLabel: 'Dismiss',
       confirmLabel: 'Top up',

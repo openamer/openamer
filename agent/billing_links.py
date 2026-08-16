@@ -20,7 +20,7 @@ from utils import base_url_host_matches
 class BillingBlock:
     """Structured billing-wall descriptor shared across every surface.
 
-    ``is_nous`` is the routing bit: OpenAmer has a first-class in-app billing surface
+    ``is_openamer`` is the routing bit: OpenAmer has a first-class in-app billing surface
     (desktop Settings → Billing, TUI/CLI ``/topup``), so surfaces prefer that over
     ``billing_url``; third-party providers have no in-app flow, so ``billing_url``
     is the deep link the user actually needs.
@@ -30,7 +30,7 @@ class BillingBlock:
     provider_label: str
     model: str
     billing_url: Optional[str]
-    is_nous: bool
+    is_openamer: bool
     message: str
 
     def to_dict(self) -> dict:

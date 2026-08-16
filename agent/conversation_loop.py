@@ -5005,7 +5005,7 @@ def run_conversation(
                         # mean "quota wall, not a task error".
                         "failure_reason": classified.reason.value,
                         # Present only for billing walls: structured recovery
-                        # descriptor (provider, billing_url, is_nous, message).
+                        # descriptor (provider, billing_url, is_openamer, message).
                         "billing_block": _billing_block,
                     }
 

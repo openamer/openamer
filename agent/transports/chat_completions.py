@@ -302,7 +302,7 @@ class ChatCompletionsTransport(ProviderTransport):
             # (i.e. custom / unregistered providers). Known providers all go
             # through provider_profile.
             is_openrouter: bool
-            is_nous: bool
+            is_openamer: bool
             is_qwen_portal: bool
             is_github_models: bool
             is_nvidia_nim: bool
@@ -436,7 +436,7 @@ class ChatCompletionsTransport(ProviderTransport):
         extra_body: dict[str, Any] = {}
 
         is_openrouter = params.get("is_openrouter", False)
-        is_nous = params.get("is_nous", False)
+        is_openamer = params.get("is_openamer", False)
         is_github_models = params.get("is_github_models", False)
         provider_name = str(params.get("provider_name") or "").strip().lower()
         base_url = params.get("base_url")

@@ -30,7 +30,7 @@ export function BillingBanner({ sessionId }: { sessionId: null | string }) {
 
   const { block } = active
   const copy = t.billingBlock
-  const title = block.is_nous ? copy.titleNous : copy.titleProvider(block.provider_label)
+  const title = block.is_openamer ? copy.titleOpenamer : copy.titleProvider(block.provider_label)
   const message = firstLine(block.message) || copy.fallbackMessage
 
   return (

@@ -11597,7 +11597,7 @@ def _run_prompt_submit(
             if result.get("response_previewed"):
                 payload["response_previewed"] = True
             # Forward the structured billing-wall descriptor (provider,
-            # billing_url, is_nous, message) so the TUI/desktop render a
+            # billing_url, is_openamer, message) so the TUI/desktop render a
             # billing-specific recovery surface instead of re-parsing text.
             _billing_block = result.get("billing_block") if isinstance(result, dict) else None
             if _billing_block:

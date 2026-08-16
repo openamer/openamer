@@ -826,10 +826,10 @@ class TestBuildCallKwargsMaxTokens:
 
 
 class TestNousTagsScoping:
-    def test_tags_injected_when_provider_is_nous(self, monkeypatch):
+    def test_tags_injected_when_provider_is_openamer(self, monkeypatch):
         import agent.auxiliary_client as aux
 
-        monkeypatch.setattr(aux, "auxiliary_is_nous", False)
+        monkeypatch.setattr(aux, "auxiliary_is_openamer", False)
 
         kwargs = aux._build_call_kwargs(
             provider="openamer",
@@ -839,10 +839,10 @@ class TestNousTagsScoping:
 
         assert kwargs["extra_body"]["tags"] == aux._openamer_portal_tags()
 
-    def test_tags_not_injected_for_gemini_when_main_is_nous(self, monkeypatch):
+    def test_tags_not_injected_for_gemini_when_main_is_openamer(self, monkeypatch):
         import agent.auxiliary_client as aux
 
-        monkeypatch.setattr(aux, "auxiliary_is_nous", True)
+        monkeypatch.setattr(aux, "auxiliary_is_openamer", True)
 
         kwargs = aux._build_call_kwargs(
             provider="gemini",
@@ -852,10 +852,10 @@ class TestNousTagsScoping:
 
         assert "extra_body" not in kwargs
 
-    def test_tags_not_injected_for_openrouter_when_main_is_nous(self, monkeypatch):
+    def test_tags_not_injected_for_openrouter_when_main_is_openamer(self, monkeypatch):
         import agent.auxiliary_client as aux
 
-        monkeypatch.setattr(aux, "auxiliary_is_nous", True)
+        monkeypatch.setattr(aux, "auxiliary_is_openamer", True)
 
         kwargs = aux._build_call_kwargs(
             provider="openrouter",

@@ -221,7 +221,7 @@ export interface Translations {
   }
 
   billingBlock: {
-    titleNous: string
+    titleOpenamer: string
     titleProvider: (provider: string) => string
     fallbackMessage: string
     openBilling: string

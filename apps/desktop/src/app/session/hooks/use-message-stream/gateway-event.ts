@@ -94,8 +94,8 @@ function surfaceBillingBlock(sessionId: string, raw: unknown): void {
     id: `billing-block:${block.provider}`,
     kind: 'warning',
     icon: 'credit-card',
-    title: block.is_nous
-      ? translateNow('billingBlock.titleNous')
+    title: block.is_openamer
+      ? translateNow('billingBlock.titleOpenamer')
       : translateNow('billingBlock.titleProvider', block.provider_label),
     message: firstBillingLine(block.message) || translateNow('billingBlock.fallbackMessage'),
     // Sticky: a credit wall blocks every turn until resolved.

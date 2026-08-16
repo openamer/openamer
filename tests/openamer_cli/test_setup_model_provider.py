@@ -297,7 +297,7 @@ def test_setup_summary_shows_camofox_when_browser_feature_is_camofox(tmp_path, m
         lambda config: OpenAmerSubscriptionFeatures(
             subscribed=False,
             openamer_auth_present=False,
-            provider_is_nous=False,
+            provider_is_openamer=False,
             features={
                 "web": OpenAmerFeatureState("web", "Web tools", True, False, False, False, False, True, ""),
                 "image_gen": OpenAmerFeatureState("image_gen", "Image generation", True, False, False, False, False, True, ""),
@@ -325,7 +325,7 @@ def test_setup_summary_does_not_mark_incomplete_browserbase_as_available(tmp_pat
         lambda config: OpenAmerSubscriptionFeatures(
             subscribed=False,
             openamer_auth_present=False,
-            provider_is_nous=False,
+            provider_is_openamer=False,
             features={
                 "web": OpenAmerFeatureState("web", "Web tools", True, False, False, False, False, True, ""),
                 "image_gen": OpenAmerFeatureState("image_gen", "Image generation", True, False, False, False, False, True, ""),
