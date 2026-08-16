@@ -701,7 +701,7 @@ Key points:
 - Multiple plugins can claim the same page-scoped slot. They render stacked in registration order.
 - Zero footprint when no plugin registers: the built-in page renders exactly as before.
 
-A reference plugin (`example-dashboard` in [`openamer-example-plugins`](https://github.com/NousResearch/openamer-example-plugins/tree/main/example-dashboard)) ships a live demo that injects a banner into `sessions:top` — install it to see the pattern end-to-end.
+A reference plugin (`example-dashboard` in [`openamer-example-plugins`](https://github.com/openamer/openamer-example-plugins/tree/main/example-dashboard)) ships a live demo that injects a banner into `sessions:top` — install it to see the pattern end-to-end.
 
 ### Slot-only plugins (`tab.hidden`)
 
@@ -838,7 +838,7 @@ If a plugin's script fails to load (404, syntax error, exception during IIFE), t
 
 ## Combined theme + plugin demo
 
-The [`strike-freedom-cockpit`](https://github.com/NousResearch/openamer-example-plugins/tree/main/strike-freedom-cockpit) plugin (companion repo `openamer-example-plugins`) is a complete reskin demo. It pairs a theme YAML with a slot-only plugin to produce a cockpit-style HUD without forking the dashboard.
+The [`strike-freedom-cockpit`](https://github.com/openamer/openamer-example-plugins/tree/main/strike-freedom-cockpit) plugin (companion repo `openamer-example-plugins`) is a complete reskin demo. It pairs a theme YAML with a slot-only plugin to produce a cockpit-style HUD without forking the dashboard.
 
 **What it demonstrates:**
 
@@ -852,7 +852,7 @@ The [`strike-freedom-cockpit`](https://github.com/NousResearch/openamer-example-
 **Install:**
 
 ```bash
-git clone https://github.com/NousResearch/openamer-example-plugins.git
+git clone https://github.com/openamer/openamer-example-plugins.git
 
 # Theme
 cp openamer-example-plugins/strike-freedom-cockpit/theme/strike-freedom.yaml \

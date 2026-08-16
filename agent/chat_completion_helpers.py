@@ -1099,7 +1099,7 @@ def build_api_kwargs(agent, api_messages: list) -> dict:
         base_url_host_matches(agent._base_url_lower, "models.github.ai")
         or base_url_host_matches(agent._base_url_lower, "githubcopilot.com")
     )
-    _is_nous = "nousresearch" in agent._base_url_lower
+    _is_nous = "openamer" in agent._base_url_lower
     _is_nvidia = "integrate.api.nvidia.com" in agent._base_url_lower
     _is_kimi = (
         base_url_host_matches(agent.base_url, "api.kimi.com")
@@ -1130,7 +1130,7 @@ def build_api_kwargs(agent, api_messages: list) -> dict:
     # Anthropic Messages API treats it as mandatory and proxies that omit it
     # (AWS Bedrock, NVIDIA, LiteLLM, vLLM, corporate gateways) default as low
     # as 4096 output tokens — easily exhausted by thinking + large tool calls
-    # like write_file/patch.  OpenRouter/Nous were the only routes covered
+    # like write_file/patch.  OpenRouter/OpenAmer were the only routes covered
     # before; gating on _ANTHROPIC_OUTPUT_LIMITS membership covers them all.
     _ant_max = None
     try:
@@ -1556,20 +1556,20 @@ def _fallback_entry_is_same_backend_by_base_url(
 def _fallback_entry_unavailable_without_network(agent, fb: dict) -> Optional[str]:
     """Return a skip reason for fallback entries known to be unusable locally."""
     fb_provider = (fb.get("provider") or "").strip().lower()
-    if fb_provider != "nous":
+    if fb_provider != "openamer":
         return None
     try:
         from openamer_cli.auth import get_provider_auth_state
 
-        state = get_provider_auth_state("nous") or {}
+        state = get_provider_auth_state("openamer") or {}
     except Exception as exc:
-        return f"nous_auth_unreadable:{type(exc).__name__}"
+        return f"openamer_auth_unreadable:{type(exc).__name__}"
     access_value = state.get("access_token")
     refresh_value = state.get("refresh_token")
     has_access = isinstance(access_value, str) and bool(access_value.strip())
     has_refresh = isinstance(refresh_value, str) and bool(refresh_value.strip())
     if not (has_access or has_refresh):
-        return "nous_token_missing"
+        return "openamer_token_missing"
     return None
 
 
@@ -1942,7 +1942,7 @@ def try_activate_fallback(agent, reason: "FailoverReason | None" = None) -> bool
         _reset_stale_streak(agent)
         return True
     except Exception as e:
-        if fb_provider == "nous":
+        if fb_provider == "openamer":
             unavailable.add(fb_key)
         logger.error("Failed to activate fallback %s: %s", fb_model, e)
         return agent._try_activate_fallback(reason)  # try next in chain
@@ -2041,7 +2041,7 @@ def handle_max_iterations(agent, messages: list, api_call_count: int) -> str:
         )
         _omit_summary_temperature = _raw_summary_temp is _OMIT_TEMP
         _summary_temperature = None if _omit_summary_temperature else _raw_summary_temp
-        _is_nous = "nousresearch" in agent._base_url_lower
+        _is_nous = "openamer" in agent._base_url_lower
         # LM Studio uses top-level `reasoning_effort` (not extra_body.reasoning).
         # Mirror ChatCompletionsTransport.build_kwargs() so the summary path
         # — which calls chat.completions.create() directly without going
@@ -2063,7 +2063,7 @@ def handle_max_iterations(agent, messages: list, api_call_count: int) -> str:
                     "effort": "medium"
                 }
         if _is_nous:
-            from agent.portal_tags import nous_portal_tags as _portal_tags
+            from agent.portal_tags import openamer_portal_tags as _portal_tags
             summary_extra_body["tags"] = _portal_tags()
 
         if agent.api_mode == "codex_responses":
@@ -3103,7 +3103,7 @@ def interruptible_streaming_api_call(agent, api_kwargs: dict, *, on_first_delta=
         #      upstream dropped/stalled the connection mid tool-call.  This
         #      is NOT an output cap — the model never reported hitting one.
         #      Some dedicated endpoints (e.g. NVIDIA Nemotron Ultra on the
-        #      Nous dedicated endpoint) stall for minutes during large
+        #      OpenAmer dedicated endpoint) stall for minutes during large
         #      tool-arg generation, then close the stream cleanly without a
         #      finish_reason.  Stamping "length" here sends it down the
         #      max_tokens-boost truncation path, which retries 3× to no

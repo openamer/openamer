@@ -200,7 +200,7 @@ def get_optional_skills_dir(default: Path | None = None) -> Path:
 def get_optional_mcps_dir(default: Path | None = None) -> Path:
     """Return the optional-mcps directory, honoring package-manager wrappers.
 
-    Mirrors :func:`get_optional_skills_dir` for the MCP catalog (Nous-approved
+    Mirrors :func:`get_optional_skills_dir` for the MCP catalog (OpenAmer-approved
     Model Context Protocol servers shipped with the repo but disabled by
     default). Packaged installs may ship ``optional-mcps`` outside the Python
     package tree and expose it via ``OPENAMER_OPTIONAL_MCPS``.

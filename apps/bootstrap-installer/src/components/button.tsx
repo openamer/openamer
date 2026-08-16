@@ -8,7 +8,7 @@ import { cn } from '../lib/utils'
  * Button — copied verbatim from apps/desktop/src/components/ui/button.tsx.
  *
  * We import the desktop's local shadcn-style Button rather than
- * @nous-research/ui's <Button>, because the DS Button uses bg-midground /
+ * @openamer-research/ui's <Button>, because the DS Button uses bg-midground /
  * text-background-base utilities that resolve to the DS's hardcoded
  * gold/brown brand defaults (#ffac02 / #170d02) unless overridden in
  * runtime. The desktop never sets those vars; it routes through its

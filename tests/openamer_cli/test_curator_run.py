@@ -69,7 +69,7 @@ def test_run_sync_wins_over_background(monkeypatch):
     assert calls[0]["synchronous"] is True
 
 
-def test_dry_run_default_reports_synchronous_wording(monkeypatch, capsys):
+def test_dry_run_default_reports_synchroopenamer_wording(monkeypatch, capsys):
     import agent.curator as curator_state
     import openamer_cli.curator as curator_cli
 

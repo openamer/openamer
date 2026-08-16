@@ -1,4 +1,4 @@
-"""Tests for ``openamer_cli.diagnostics_upload`` — the Nous-S3 upload client.
+"""Tests for ``openamer_cli.diagnostics_upload`` — the OpenAmer-S3 upload client.
 
 All network I/O is mocked at ``urllib.request.urlopen``; no real requests
 are made.

@@ -27,19 +27,19 @@ import {
   Upload,
   X,
 } from "lucide-react";
-import { Badge } from "@nous-research/ui/ui/components/badge";
-import { Button } from "@nous-research/ui/ui/components/button";
-import { Spinner } from "@nous-research/ui/ui/components/spinner";
-import { H2 } from "@nous-research/ui/ui/components/typography/h2";
-import { Card, CardContent } from "@nous-research/ui/ui/components/card";
-import { Checkbox } from "@nous-research/ui/ui/components/checkbox";
-import { Input } from "@nous-research/ui/ui/components/input";
-import { Label } from "@nous-research/ui/ui/components/label";
-import { Select, SelectOption } from "@nous-research/ui/ui/components/select";
-import { Toast } from "@nous-research/ui/ui/components/toast";
-import { useToast } from "@nous-research/ui/hooks/use-toast";
-import { useConfirmDelete } from "@nous-research/ui/hooks/use-confirm-delete";
-import { ConfirmDialog } from "@nous-research/ui/ui/components/confirm-dialog";
+import { Badge } from "@openamer-research/ui/ui/components/badge";
+import { Button } from "@openamer-research/ui/ui/components/button";
+import { Spinner } from "@openamer-research/ui/ui/components/spinner";
+import { H2 } from "@openamer-research/ui/ui/components/typography/h2";
+import { Card, CardContent } from "@openamer-research/ui/ui/components/card";
+import { Checkbox } from "@openamer-research/ui/ui/components/checkbox";
+import { Input } from "@openamer-research/ui/ui/components/input";
+import { Label } from "@openamer-research/ui/ui/components/label";
+import { Select, SelectOption } from "@openamer-research/ui/ui/components/select";
+import { Toast } from "@openamer-research/ui/ui/components/toast";
+import { useToast } from "@openamer-research/ui/hooks/use-toast";
+import { useConfirmDelete } from "@openamer-research/ui/hooks/use-confirm-delete";
+import { ConfirmDialog } from "@openamer-research/ui/ui/components/confirm-dialog";
 import { useModalBehavior } from "@/hooks/useModalBehavior";
 import { DeleteConfirmDialog } from "@/components/DeleteConfirmDialog";
 import { OpenAmerConsoleModal } from "@/components/OpenAmerConsoleModal";
@@ -958,7 +958,7 @@ export default function SystemPage() {
       {/* ── Portal ────────────────────────────────────────────────── */}
       <section className="flex flex-col gap-3">
         <H2 variant="sm" className="flex items-center gap-2 text-muted-foreground">
-          <Globe className="h-4 w-4" /> Nous Portal
+          <Globe className="h-4 w-4" /> OpenAmer Portal
         </H2>
         <Card>
           <CardContent className="flex flex-col gap-3 py-4">
@@ -972,7 +972,7 @@ export default function SystemPage() {
                 </span>
               )}
               <a
-                href={portal?.subscription_url || "https://portal.nousresearch.com/manage-subscription"}
+                href={portal?.subscription_url || "https://portal.openamer.com/manage-subscription"}
                 target="_blank"
                 rel="noreferrer"
                 className="ml-auto text-xs text-primary underline"

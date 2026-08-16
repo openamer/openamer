@@ -157,4 +157,4 @@ GitHub: [github.com/openamer/openamer](https://github.com/openamer/openamer)
 
 ---
 
-*OpenAmer Agent is built by [Nous Research](https://nousresearch.com). Open source, model-agnostic, runs on your infrastructure.*
+*OpenAmer Agent is built by [OpenAmer](https://openamer.com). Open source, model-agnostic, runs on your infrastructure.*

@@ -35,7 +35,7 @@ dash_port="${OPENAMER_DASHBOARD_PORT:-9119}"
 # closed. Two zero-infra ways to satisfy it in a container:
 #   • Password: set OPENAMER_DASHBOARD_BASIC_AUTH_USERNAME + _PASSWORD (bundled
 #     dashboard_auth/basic provider — no external IDP).
-#   • OAuth:    set OPENAMER_DASHBOARD_OAUTH_CLIENT_ID (bundled nous provider).
+#   • OAuth:    set OPENAMER_DASHBOARD_OAUTH_CLIENT_ID (bundled openamer provider).
 #
 # OPENAMER_DASHBOARD_INSECURE no longer disables the gate (June 2026 hardening:
 # unauthenticated public dashboards were the entry point for the MCP-config

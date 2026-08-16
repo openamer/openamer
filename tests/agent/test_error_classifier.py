@@ -311,7 +311,7 @@ class TestClassifyApiError:
                 "status": 402,
                 "message": (
                     "Your API key has run out of funds. Please go visit the "
-                    "portal to sort that out: https://portal.nousresearch.com"
+                    "portal to sort that out: https://portal.openamer.com"
                 ),
             },
         )
@@ -339,11 +339,11 @@ class TestClassifyApiError:
                 "status": 404,
                 "message": (
                     "Model 'gpt-5' is not available on the Free Tier. "
-                    "Upgrade at https://portal.nousresearch.com or pick a free model."
+                    "Upgrade at https://portal.openamer.com or pick a free model."
                 ),
             },
         )
-        result = classify_api_error(e, provider="nous", model="gpt-5")
+        result = classify_api_error(e, provider="openamer", model="gpt-5")
         assert result.reason == FailoverReason.billing
         assert result.retryable is False
         assert result.should_fallback is True
@@ -1088,7 +1088,7 @@ class TestClassifyApiError:
                 }
             },
         )
-        result = classify_api_error(e, provider="nous", model="gpt-5")
+        result = classify_api_error(e, provider="openamer", model="gpt-5")
         assert result.reason == FailoverReason.billing
 
     # ── Message-only patterns (no status code) ──
@@ -1100,7 +1100,7 @@ class TestClassifyApiError:
 
     def test_message_free_tier_model_block_is_billing(self):
         e = Exception("Model 'gpt-5' is not available on the Free Tier.")
-        result = classify_api_error(e, provider="nous", model="gpt-5")
+        result = classify_api_error(e, provider="openamer", model="gpt-5")
         assert result.reason == FailoverReason.billing
 
     def test_message_rate_limit_pattern(self):

@@ -399,7 +399,7 @@ export function DesktopInstallOverlay({ enabled = true }: DesktopInstallOverlayP
   if (state.setupChoice) {
     return (
       <div className="fixed inset-0 z-[1400] flex items-center justify-center bg-background/90 p-4 backdrop-blur-md">
-        <div className="w-full max-w-2xl rounded-xl border border-(--stroke-nous) bg-card p-8 shadow-nous">
+        <div className="w-full max-w-2xl rounded-xl border border-(--stroke-openamer) bg-card p-8 shadow-openamer">
           <div className="flex items-start gap-4">
             <BrandMark className="size-11 shrink-0" />
             <div className="min-w-0">
@@ -479,13 +479,13 @@ export function DesktopInstallOverlay({ enabled = true }: DesktopInstallOverlayP
 
     return (
       <div className="fixed inset-0 z-[1400] flex items-center justify-center bg-background/90 backdrop-blur-md">
-        <div className="w-full max-w-xl rounded-xl border border-(--stroke-nous) bg-card p-8 shadow-nous">
+        <div className="w-full max-w-xl rounded-xl border border-(--stroke-openamer) bg-card p-8 shadow-openamer">
           <h2 className="text-xl font-semibold tracking-tight">{copy.oneTimeTitle}</h2>
           <p className="mt-2 text-sm text-muted-foreground">{copy.unsupportedDesc(platformLabel)}</p>
 
           <div className="mt-4">
             <div className="mb-1.5 text-xs font-medium text-muted-foreground">{copy.installCommand}</div>
-            <pre className="overflow-x-auto rounded-md border border-(--stroke-nous) px-3 py-2.5 font-mono text-[12px]">
+            <pre className="overflow-x-auto rounded-md border border-(--stroke-openamer) px-3 py-2.5 font-mono text-[12px]">
               <code>{ups.installCommand}</code>
             </pre>
             <div className="mt-2 flex items-center gap-2">
@@ -548,7 +548,7 @@ export function DesktopInstallOverlay({ enabled = true }: DesktopInstallOverlayP
 
   return (
     <div className="fixed inset-0 z-[1400] flex items-center justify-center bg-background/90 backdrop-blur-md p-4">
-      <div className="flex w-full max-w-2xl max-h-[90vh] flex-col rounded-xl border border-(--stroke-nous) bg-card shadow-nous">
+      <div className="flex w-full max-w-2xl max-h-[90vh] flex-col rounded-xl border border-(--stroke-openamer) bg-card shadow-openamer">
         {/* Header -- always visible, never scrolls */}
         <div className="flex flex-shrink-0 items-start gap-4 p-8 pb-4">
           {!failed && <BrandMark className="size-11 shrink-0" />}

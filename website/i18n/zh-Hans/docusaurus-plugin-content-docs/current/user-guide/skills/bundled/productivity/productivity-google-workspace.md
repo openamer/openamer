@@ -17,7 +17,7 @@ description: "通过 gws CLI 或 Python 使用 Gmail、Calendar、Drive、Docs�
 | 来源 | 内置（默认安装） |
 | 路径 | `skills/productivity/google-workspace` |
 | 版本 | `1.1.0` |
-| 作者 | Nous Research |
+| 作者 | OpenAmer |
 | 许可证 | MIT |
 | 平台 | linux, macos, windows |
 | 标签 | `Google`, `Gmail`, `Calendar`, `Drive`, `Sheets`, `Docs`, `Contacts`, `Email`, `OAuth` |

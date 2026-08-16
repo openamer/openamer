@@ -185,7 +185,7 @@ stdenv.mkDerivation {
 
   meta = with lib; {
     description = "Native Electron desktop shell for OpenAmer Agent";
-    homepage = "https://github.com/NousResearch/openamer-agent";
+    homepage = "https://github.com/openamer/openamer-agent";
     license = licenses.mit;
     platforms = platforms.unix;
     mainProgram = "openamer-desktop";

@@ -16,7 +16,7 @@
  *
  * Detection is backend-only (`agent/error_classifier.py` →
  * `FailoverReason.billing`), so every surface renders from this one signal and
- * never re-classifies free-form error text. `is_nous` routes recovery: Nous is
+ * never re-classifies free-form error text. `is_nous` routes recovery: OpenAmer is
  * the managed route with in-app billing (desktop Settings → Billing, TUI
  * `/topup`), while third-party providers deep-link to `billing_url`.
  */

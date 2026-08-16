@@ -4558,7 +4558,7 @@ def test_connect_sets_cell_size_check_on(tmp_path):
     assert row[0] == 1, f"expected cell_size_check=1, got {row[0]}"
 
 
-def test_connect_sets_synchronous_full(tmp_path):
+def test_connect_sets_synchroopenamer_full(tmp_path):
     """synchronous must be FULL (=2), not NORMAL (=1)."""
     db_path = tmp_path / "kanban.db"
     kb._INITIALIZED_PATHS.discard(str(db_path.resolve()))

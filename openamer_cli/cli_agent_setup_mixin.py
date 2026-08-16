@@ -427,7 +427,7 @@ class CLIAgentSetupMixin:
             # Hydrate credits notices at session OPEN (parity with the TUI), so a
             # depletion / usage-band warning shows before the first message. The
             # notice_callback is bound above → _on_notice renders the line. Idempotent
-            # + fail-open inside the helper; harmless for non-Nous providers.
+            # + fail-open inside the helper; harmless for non-OpenAmer providers.
             try:
                 from agent.credits_tracker import seed_credits_at_session_start
 

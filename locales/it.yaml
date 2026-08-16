@@ -376,7 +376,7 @@ Future messages in this room will use that transcript until `/reset` or another 
     reset_wrong_provider:     "I reset dei limiti accumulati sono disponibili solo con il provider openai-codex. Cambia prima con `/model`."
 
   credits:
-    not_logged_in:            "Non hai effettuato l'accesso a Nous Portal. Accedi per vedere il saldo dei crediti e ricaricare."
+    not_logged_in:            "Non hai effettuato l'accesso a OpenAmer Portal. Accedi per vedere il saldo dei crediti e ricaricare."
 
   verbose:
     not_enabled:           "Il comando `/verbose` non è abilitato per le piattaforme di messaggistica.\n\nAbilitalo in `config.yaml`:\n```yaml\ndisplay:\n  tool_progress_command: true\n```"

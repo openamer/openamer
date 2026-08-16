@@ -5,7 +5,7 @@ import { cn } from '../lib/utils'
 /*
  * HackeryButton — the onboarding "Begin" CTA, ported standalone.
  *
- * Bracketed [ LABEL ], mono/uppercase, primary accent on a --stroke-nous hairline.
+ * Bracketed [ LABEL ], mono/uppercase, primary accent on a --stroke-openamer hairline.
  * Lifted from apps/desktop's desktop-onboarding-overlay.tsx (sans the exit-scramble
  * choreography, which is overlay-specific). Self-contained: cn + lucide only.
  */
@@ -19,7 +19,7 @@ export function HackeryButton({
     <button
       {...props}
       className={cn(
-        'group inline-flex cursor-pointer items-center gap-2 rounded-md border border-(--stroke-nous) px-6 py-2.5',
+        'group inline-flex cursor-pointer items-center gap-2 rounded-md border border-(--stroke-openamer) px-6 py-2.5',
         'font-mono text-xs font-semibold uppercase text-primary',
         'transition-all duration-150 hover:border-primary/60 hover:bg-primary/[0.06]',
         'disabled:pointer-events-none disabled:opacity-50',

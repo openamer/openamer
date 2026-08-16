@@ -22,7 +22,7 @@
  * src/theme.ts tracks the Tauri window theme and toggles `.dark` on
  * <html>. The desktop's runtime applyTheme() normally PAINTS the dark seed
  * colors inline (its imported :root.dark below only flips the per-mode mix
- * knobs + neutral chrome), so we supply the Nous *dark* seeds ourselves in the
+ * knobs + neutral chrome), so we supply the OpenAmer *dark* seeds ourselves in the
  * :root.dark block at the end of this file.
  */
 @import '../../desktop/src/styles.css';
@@ -53,17 +53,17 @@
 }
 
 /*
- * Dark appearance — Nous dark seeds.
+ * Dark appearance — OpenAmer dark seeds.
  *
  * The imported desktop :root.dark only flips the per-mode mix knobs + neutral
  * chrome; the seed COLORS are normally painted at runtime by the desktop's
  * applyTheme(). The installer has no theme runtime, so we mirror them here from
- * apps/desktop/src/themes/presets.ts (nousTheme.darkColors). The whole
+ * apps/desktop/src/themes/presets.ts (openamerTheme.darkColors). The whole
  * --ui-* / --dt-* chain in the imported stylesheet derives from these seeds, so
  * flipping them is enough — we only additionally override the few tokens
  * applyTheme() sets inline that DON'T derive from a seed (primary-foreground on
  * the cream accent, destructive). Unlayered on purpose so it wins over the
- * imported @layer base :root light seeds. Keep in sync with nousTheme.darkColors
+ * imported @layer base :root light seeds. Keep in sync with openamerTheme.darkColors
  * if that palette is retuned.
  */
 :root.dark {
@@ -81,7 +81,7 @@
   --theme-elevated-seed: #123a96;
   --theme-bubble-seed: #143b91;
 
-  /* Non-derived shadcn tokens applyTheme() paints inline (Nous dark values). */
+  /* Non-derived shadcn tokens applyTheme() paints inline (OpenAmer dark values). */
   --dt-primary-foreground: #0d2f86;
   --dt-destructive: #c0473a;
   --dt-destructive-foreground: #fef2f2;

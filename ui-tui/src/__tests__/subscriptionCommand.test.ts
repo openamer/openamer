@@ -19,7 +19,7 @@ const loggedInState = (overrides: Partial<SubscriptionStateResponse> = {}): Subs
   org_name: 'Acme',
   role: 'OWNER',
   current: null,
-  portal_url: 'https://portal.nousresearch.com/billing',
+  portal_url: 'https://portal.openamer.com/billing',
   ...overrides
 })
 
@@ -88,7 +88,7 @@ describe('/subscription slash command', () => {
 
     await run('')
 
-    expect(printed(sys)).toContain('Not logged into Nous Portal')
+    expect(printed(sys)).toContain('Not logged into OpenAmer Portal')
     expect(getOverlayState().subscription).toBeNull()
   })
 

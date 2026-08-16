@@ -120,11 +120,11 @@ def test_set_model_override_allowed_on_running(conn):
     tid = kb.create_task(conn, title="t", assignee="worker")
     claimed = kb.claim_task(conn, tid, claimer="worker")
     assert claimed is not None
-    assert kb.set_model_override(conn, tid, "fallback-model", provider="nous")
+    assert kb.set_model_override(conn, tid, "fallback-model", provider="openamer")
     t = kb.get_task(conn, tid)
     assert t.status == "running"
     assert t.model_override == "fallback-model"
-    assert t.provider_override == "nous"
+    assert t.provider_override == "openamer"
 
 
 def test_create_task_with_model_and_provider(conn):
@@ -267,7 +267,7 @@ def test_bulk_model_override(client):
         json={
             "ids": [t1["id"], t2["id"]],
             "model_override": "fallback-model",
-            "provider_override": "nous",
+            "provider_override": "openamer",
         },
     )
     assert r.status_code == 200, r.text
@@ -275,7 +275,7 @@ def test_bulk_model_override(client):
     for tid in (t1["id"], t2["id"]):
         got = client.get(f"/api/plugins/kanban/tasks/{tid}").json()["task"]
         assert got["model_override"] == "fallback-model"
-        assert got["provider_override"] == "nous"
+        assert got["provider_override"] == "openamer"
 
 
 def test_model_options_endpoint_shape(client, monkeypatch):

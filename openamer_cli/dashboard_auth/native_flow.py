@@ -2,7 +2,7 @@
 
 The desktop app is a *native* OAuth client that wants to sign in to a gated
 gateway **without an embedded webview and without relying on browser session
-cookies**. It cannot be a direct OAuth client of the upstream IDP (Nous
+cookies**. It cannot be a direct OAuth client of the upstream IDP (OpenAmer
 Portal): the Portal ``client_id`` is per-gateway-instance
 (``agent:{instance_id}``) and the Portal validates that the ``redirect_uri``
 ends in ``/auth/callback`` on the gateway's own public origin — a desktop

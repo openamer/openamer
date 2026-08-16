@@ -367,7 +367,7 @@ def run_dump(args):
         ("OPENAI_API_KEY", "openai"),
         ("ANTHROPIC_API_KEY", "anthropic"),
         ("ANTHROPIC_TOKEN", "anthropic_token"),
-        ("NOUS_API_KEY", "nous"),
+        ("OPENAMER_API_KEY", "openamer"),
         ("GOOGLE_API_KEY", "google/gemini"),
         ("GEMINI_API_KEY", "gemini"),
         ("GLM_API_KEY", "glm/zai"),

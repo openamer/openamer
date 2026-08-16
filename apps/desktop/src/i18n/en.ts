@@ -180,7 +180,7 @@ export const en: Translations = {
   },
 
   billingBlock: {
-    titleNous: 'Out of Nous credits',
+    titleNous: 'Out of OpenAmer credits',
     titleProvider: provider => `Out of credits — ${provider}`,
     fallbackMessage: 'Your account is out of credits. Add credits to keep going.',
     openBilling: 'Open billing',
@@ -603,7 +603,7 @@ export const en: Translations = {
       cloudLoadingAgents: 'Loading your agents…',
       cloudNoAgents: {
         before: 'No agents found on this account. Create one in the ',
-        linkText: 'Nous portal',
+        linkText: 'OpenAmer portal',
         after: ', then refresh.'
       },
       cloudRefresh: 'Refresh',
@@ -887,13 +887,13 @@ export const en: Translations = {
       ready: 'Ready',
       needsSignIn: 'Needs sign-in',
       needsSetup: 'Needs setup',
-      nousIncluded: 'Included with a Nous subscription — sign in to Nous Portal to activate.',
-      nousAuthNeededTitle: 'Sign in to Nous Portal',
-      nousAuthNeededMessage: provider => `${provider} is saved but won't activate until you sign in to Nous Portal.`,
-      nousAuthSignIn: 'Sign in',
-      nousAuthDoneTitle: 'Nous Portal connected',
-      nousAuthDoneMessage: 'Your subscription backends are now active.',
-      nousAuthFailed: 'Nous Portal sign-in did not complete',
+      openamerIncluded: 'Included with a OpenAmer subscription — sign in to OpenAmer Portal to activate.',
+      openamerAuthNeededTitle: 'Sign in to OpenAmer Portal',
+      openamerAuthNeededMessage: provider => `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
+      openamerAuthSignIn: 'Sign in',
+      openamerAuthDoneTitle: 'OpenAmer Portal connected',
+      openamerAuthDoneMessage: 'Your subscription backends are now active.',
+      openamerAuthFailed: 'OpenAmer Portal sign-in did not complete',
       noApiKeyRequired: 'No API key required.',
       postSetupHint: step =>
         `This backend needs a one-time install (${step}). Runs on this machine — may take a few minutes.`,
@@ -2285,7 +2285,7 @@ export const en: Translations = {
     loadFailed: 'Could not load models',
     noAuthenticatedProviders: 'No authenticated providers.',
     pro: 'Pro',
-    proNeedsSubscription: 'Pro models need a paid Nous subscription.',
+    proNeedsSubscription: 'Pro models need a paid OpenAmer subscription.',
     free: 'Free',
     freeTier: 'Free tier',
     priceTitle: 'Input / Output price per million tokens',

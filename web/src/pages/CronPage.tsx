@@ -1,10 +1,10 @@
 import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 import { Clock, Pause, Pencil, Play, Trash2, X, Zap } from "lucide-react";
-import { Badge } from "@nous-research/ui/ui/components/badge";
-import { Button } from "@nous-research/ui/ui/components/button";
-import { Select, SelectOption } from "@nous-research/ui/ui/components/select";
-import { Spinner } from "@nous-research/ui/ui/components/spinner";
-import { H2 } from "@nous-research/ui/ui/components/typography/h2";
+import { Badge } from "@openamer-research/ui/ui/components/badge";
+import { Button } from "@openamer-research/ui/ui/components/button";
+import { Select, SelectOption } from "@openamer-research/ui/ui/components/select";
+import { Spinner } from "@openamer-research/ui/ui/components/spinner";
+import { H2 } from "@openamer-research/ui/ui/components/typography/h2";
 import { api } from "@/lib/api";
 import type {
   CronJob,
@@ -33,17 +33,17 @@ import {
   type ScheduleBuilderState,
   type ScheduleDescribeStrings,
 } from "@/lib/schedule";
-import { useToast } from "@nous-research/ui/hooks/use-toast";
-import { useConfirmDelete } from "@nous-research/ui/hooks/use-confirm-delete";
+import { useToast } from "@openamer-research/ui/hooks/use-toast";
+import { useConfirmDelete } from "@openamer-research/ui/hooks/use-confirm-delete";
 import { useModalBehavior } from "@/hooks/useModalBehavior";
-import { Toast } from "@nous-research/ui/ui/components/toast";
-import { Card, CardContent } from "@nous-research/ui/ui/components/card";
-import { Input } from "@nous-research/ui/ui/components/input";
-import { Label } from "@nous-research/ui/ui/components/label";
+import { Toast } from "@openamer-research/ui/ui/components/toast";
+import { Card, CardContent } from "@openamer-research/ui/ui/components/card";
+import { Input } from "@openamer-research/ui/ui/components/input";
+import { Label } from "@openamer-research/ui/ui/components/label";
 import { useI18n } from "@/i18n";
 import { usePageHeader } from "@/contexts/usePageHeader";
 import { PluginSlot } from "@/plugins";
-import { Segmented } from "@nous-research/ui/ui/components/segmented";
+import { Segmented } from "@openamer-research/ui/ui/components/segmented";
 import { AutomationBlueprints } from "@/components/AutomationBlueprints";
 import { cn, themedBody } from "@/lib/utils";
 

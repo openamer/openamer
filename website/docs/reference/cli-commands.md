@@ -49,7 +49,7 @@ openamer [global-options] <command> [subcommand/options]
 | `openamer whatsapp` | Configure and pair the WhatsApp bridge. |
 | `openamer whatsapp-cloud` | Configure the official Meta WhatsApp Business Cloud API adapter (Business account + public webhook required). Distinct from `openamer whatsapp` (Baileys personal-account bridge). |
 | `openamer slack` | Slack helpers (currently: generate the app manifest with every command as a native slash). |
-| `openamer auth` | Manage credentials — add, list, remove, reset, status, logout. Handles OAuth flows for Codex/Nous/Anthropic. |
+| `openamer auth` | Manage credentials — add, list, remove, reset, status, logout. Handles OAuth flows for Codex/OpenAmer/Anthropic. |
 | `openamer login` / `logout` | **Deprecated** — use `openamer auth` instead. |
 | `openamer send` | Send a one-shot message to a configured messaging platform (Telegram, Discord, Slack, Signal, SMS, …). Useful from shell scripts, cron jobs, CI hooks, and monitoring daemons — no agent loop, no LLM. |
 | `openamer secrets` | Manage external secret sources (currently Bitwarden Secrets Manager) for pulling API keys at process startup instead of from `~/.openamer/.env`. |
@@ -106,7 +106,7 @@ Common options:
 | `-q`, `--query "..."` | One-shot, non-interactive prompt. |
 | `-m`, `--model <model>` | Override the model for this run. |
 | `-t`, `--toolsets <csv>` | Enable a comma-separated set of toolsets. |
-| `--provider <provider>` | Force a provider: `auto`, `openrouter`, `nous`, `openai-codex`, `copilot-acp`, `copilot`, `anthropic`, `gemini`, `huggingface`, `novita` (aliases `novita-ai`, `novitaai`), `openai-api`, `zai`, `kimi-coding`, `kimi-coding-cn`, `minimax`, `minimax-cn`, `minimax-oauth`, `kilocode`, `xiaomi`, `arcee`, `gmi`, `upstage` (alias `solar`), `alibaba`, `alibaba-coding-plan` (alias `alibaba_coding`), `deepseek`, `nvidia`, `ollama-cloud`, `xai` (alias `grok`), `xai-oauth` (alias `grok-oauth`), `qwen-oauth`, `bedrock`, `opencode-zen`, `opencode-go`, `azure-foundry`, `lmstudio`, `stepfun`, `tencent-tokenhub` (alias `tencent`, `tokenhub`). |
+| `--provider <provider>` | Force a provider: `auto`, `openrouter`, `openamer`, `openai-codex`, `copilot-acp`, `copilot`, `anthropic`, `gemini`, `huggingface`, `novita` (aliases `novita-ai`, `novitaai`), `openai-api`, `zai`, `kimi-coding`, `kimi-coding-cn`, `minimax`, `minimax-cn`, `minimax-oauth`, `kilocode`, `xiaomi`, `arcee`, `gmi`, `upstage` (alias `solar`), `alibaba`, `alibaba-coding-plan` (alias `alibaba_coding`), `deepseek`, `nvidia`, `ollama-cloud`, `xai` (alias `grok`), `xai-oauth` (alias `grok-oauth`), `qwen-oauth`, `bedrock`, `opencode-zen`, `opencode-go`, `azure-foundry`, `lmstudio`, `stepfun`, `tencent-tokenhub` (alias `tencent`, `tokenhub`). |
 | `-s`, `--skills <name>` | Preload one or more skills for the session (can be repeated or comma-separated). |
 | `-v`, `--verbose` | Verbose output. |
 | `-Q`, `--quiet` | Programmatic mode: suppress banner/spinner/tool previews. |
@@ -326,8 +326,8 @@ Inspect your hosted provider auth, Tool Gateway routing, and reach the subscript
 | Subcommand | Description |
 |------------|-------------|
 | `status` (default) | Portal auth state + per-tool Tool Gateway routing summary. Also shown when no subcommand is given. |
-| `open` | Open `portal.nousresearch.com/manage-subscription` in your default browser. |
-| `tools` | List every Tool Gateway partner (Firecrawl, FAL, OpenAI TTS, Browser Use, Modal) and which are routed via Nous. |
+| `open` | Open `portal.openamer.com/manage-subscription` in your default browser. |
+| `tools` | List every Tool Gateway partner (Firecrawl, FAL, OpenAI TTS, Browser Use, Modal) and which are routed via OpenAmer. |
 
 For configuration of the gateway itself, see [Tool Gateway](../user-guide/features/tool-gateway.md). For the one-shot setup path, see `openamer setup --portal` above.
 
@@ -474,7 +474,7 @@ Run a local OpenAI-compatible HTTP server that forwards requests to an OAuth-aut
 
 | Subcommand | Description |
 |------------|-------------|
-| `start` | Run the proxy in the foreground. Flags: `--provider <nous\|xai>` (default `nous`), `--host <addr>` (default `127.0.0.1`; use `0.0.0.0` to expose on LAN), `--port <int>` (default `8645`). |
+| `start` | Run the proxy in the foreground. Flags: `--provider <openamer\|xai>` (default `openamer`), `--host <addr>` (default `127.0.0.1`; use `0.0.0.0` to expose on LAN), `--port <int>` (default `8645`). |
 | `status` | Show which proxy upstreams are ready (credentials present, OAuth valid). |
 | `providers` | List available proxy upstream providers. |
 
@@ -805,7 +805,7 @@ api_keys:
   openrouter           set
   openai               not set
   anthropic            set
-  nous                 not set
+  openamer                 not set
   firecrawl            set
   ...
 
@@ -848,13 +848,13 @@ Upload a debug report (system info + recent logs) to a paste service and get a s
 |--------|-------------|
 | `--lines <N>` | Number of log lines to include per log file (default: 200). |
 | `--expire <days>` | Paste expiry in days (default: 7). |
-| `--nous` | Upload to Nous-internal diagnostics storage instead of a public paste service. Use this when a hosted provider support asks for a private diagnostic bundle. |
+| `--openamer` | Upload to OpenAmer-internal diagnostics storage instead of a public paste service. Use this when a hosted provider support asks for a private diagnostic bundle. |
 | `--local` | Print the report locally instead of uploading. |
 | `--no-redact` | Disable upload-time secret redaction. By default, uploads are redacted. |
 
 The report includes system info (OS, Python version, OpenAmer version), recent agent, gateway, GUI/dashboard, and desktop logs (512 KB limit per file), and redacted API key status. By default, uploads are redacted so secrets are not included.
 
-Default uploads use public paste services tried in order: paste.rs, dpaste.com. `--nous` uploads the same debug bundle to private a hosted provider diagnostics storage instead; the returned viewer link is for the a hosted provider team and auto-deletes after 14 days.
+Default uploads use public paste services tried in order: paste.rs, dpaste.com. `--openamer` uploads the same debug bundle to private a hosted provider diagnostics storage instead; the returned viewer link is for the a hosted provider team and auto-deletes after 14 days.
 
 ### Examples
 
@@ -862,7 +862,7 @@ Default uploads use public paste services tried in order: paste.rs, dpaste.com. 
 openamer debug share              # Upload debug report, print URL
 openamer debug share --lines 500  # Include more log lines
 openamer debug share --expire 30  # Keep paste for 30 days
-openamer debug share --nous       # Upload a private diagnostics bundle for a hosted provider support
+openamer debug share --openamer       # Upload a private diagnostics bundle for a hosted provider support
 openamer debug share --local      # Print report to terminal (no upload)
 ```
 
@@ -1325,8 +1325,8 @@ Manage MCP (Model Context Protocol) server configurations and run OpenAmer as an
 
 | Subcommand | Description |
 |------------|-------------|
-| *(none)* or `picker` | Interactive catalog picker — browse Nous-approved MCPs and install/enable/disable. |
-| `catalog` | List Nous-approved MCPs (plain text, scriptable). |
+| *(none)* or `picker` | Interactive catalog picker — browse OpenAmer-approved MCPs and install/enable/disable. |
+| `catalog` | List OpenAmer-approved MCPs (plain text, scriptable). |
 | `install <name>` | Install a catalog entry (e.g. `openamer mcp install n8n`). |
 | `serve [-v\|--verbose]` | Run OpenAmer as an MCP server — expose conversations to other agents. |
 | `add <name> [--url URL] [--command CMD] [--auth oauth\|header] [--args ...]` | Add a custom MCP server with automatic tool discovery. `--args` passes the remaining argv to the stdio command, so put it last. |

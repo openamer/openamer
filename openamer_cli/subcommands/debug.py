@@ -30,7 +30,7 @@ Examples:
     openamer debug share --expire 30  Keep paste for 30 days
     openamer debug share --local      Print report locally (no upload)
     openamer debug share --no-redact  Disable upload-time secret redaction
-    openamer debug share --nous       Upload to Nous-internal storage (private)
+    openamer debug share --openamer       Upload to OpenAmer-internal storage (private)
     openamer debug delete <url>       Delete a previously uploaded paste
 """,
     )
@@ -77,12 +77,12 @@ Examples:
         ),
     )
     share_parser.add_argument(
-        "--nous",
+        "--openamer",
         action="store_true",
         help=(
-            "Upload the debug bundle to Nous-internal storage (AWS S3) instead "
+            "Upload the debug bundle to OpenAmer-internal storage (AWS S3) instead "
             "of a public paste service. The bundle is private — viewable only "
-            "by Nous staff (and allowlisted Discord mods) via a Google-login-"
+            "by OpenAmer staff (and allowlisted Discord mods) via a Google-login-"
             "gated viewer — and auto-deletes after 14 days. Still force-redacts "
             "secrets unless --no-redact is also passed."
         ),

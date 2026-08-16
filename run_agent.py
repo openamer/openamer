@@ -165,7 +165,7 @@ from agent.prompt_builder import (  # noqa: F401  # re-exported via _ra() / mock
     build_skills_system_prompt,
     build_context_files_prompt,
     build_environment_hints,
-    build_nous_subscription_prompt,
+    build_openamer_subscription_prompt,
     load_soul_md,
 )
 from agent.process_bootstrap import _get_proxy_from_env  # noqa: F401
@@ -1486,9 +1486,9 @@ class AIAgent:
     ) -> bool:
         """Return True when this provider/model pair should use Responses API."""
         normalized_provider = (provider or "").strip().lower()
-        # Nous serves GPT-5.x models via its OpenAI-compatible chat
+        # OpenAmer serves GPT-5.x models via its OpenAI-compatible chat
         # completions endpoint; its /v1/responses endpoint returns 404.
-        if normalized_provider == "nous":
+        if normalized_provider == "openamer":
             return False
         if normalized_provider == "custom":
             # Generic custom endpoints are conservative by default. They may
@@ -3476,7 +3476,7 @@ class AIAgent:
         return self._rate_limit_state
 
     def _capture_credits(self, http_response: Any) -> None:
-        """Parse x-nous-credits-* headers, cache CreditsState, fire threshold notices.
+        """Parse x-openamer-credits-* headers, cache CreditsState, fire threshold notices.
 
         Fail-open throughout — header issues never break the agent loop. The PARSE is
         swallowed (any error → treated as a miss → keep last-known). The notice
@@ -3525,8 +3525,8 @@ class AIAgent:
         if state is None:
             if _dev:
                 logger.info(
-                    "credits ▸ response had no valid x-nous-credits-* headers "
-                    "(miss — producer off / non-Nous path / >TTL stale)"
+                    "credits ▸ response had no valid x-openamer-credits-* headers "
+                    "(miss — producer off / non-OpenAmer path / >TTL stale)"
                 )
             return
 
@@ -4764,23 +4764,23 @@ class AIAgent:
 
         return True
 
-    def _try_refresh_nous_client_credentials(
+    def _try_refresh_openamer_client_credentials(
         self,
         *,
         force: bool = True,
     ) -> bool:
-        if self.api_mode != "chat_completions" or self.provider != "nous":
+        if self.api_mode != "chat_completions" or self.provider != "openamer":
             return False
 
         try:
-            from openamer_cli.auth import resolve_nous_runtime_credentials
+            from openamer_cli.auth import resolve_openamer_runtime_credentials
 
-            creds = resolve_nous_runtime_credentials(
-                timeout_seconds=env_float("OPENAMER_NOUS_TIMEOUT_SECONDS", 15),
+            creds = resolve_openamer_runtime_credentials(
+                timeout_seconds=env_float("OPENAMER_openamer_TIMEOUT_SECONDS", 15),
                 force_refresh=force,
             )
         except Exception as exc:
-            logger.debug("Nous credential refresh failed: %s", exc)
+            logger.debug("OpenAmer credential refresh failed: %s", exc)
             return False
 
         api_key = creds.get("api_key")
@@ -4794,10 +4794,10 @@ class AIAgent:
         self.base_url = base_url.strip().rstrip("/")
         self._client_kwargs["api_key"] = self.api_key
         self._client_kwargs["base_url"] = self.base_url
-        # Nous requests should not inherit OpenRouter-only attribution headers.
+        # OpenAmer requests should not inherit OpenRouter-only attribution headers.
         self._client_kwargs.pop("default_headers", None)
 
-        if not self._replace_primary_openai_client(reason="nous_credential_refresh"):
+        if not self._replace_primary_openai_client(reason="openamer_credential_refresh"):
             return False
 
         return True
@@ -6135,9 +6135,9 @@ class AIAgent:
 
         OpenRouter forwards unknown extra_body fields to upstream providers.
         Some providers/routes reject `reasoning` with 400s, so gate it to
-        known reasoning-capable model families and direct Nous Portal.
+        known reasoning-capable model families and direct OpenAmer Portal.
         """
-        if base_url_host_matches(self._base_url_lower, "nousresearch.com"):
+        if base_url_host_matches(self._base_url_lower, "openamer.com"):
             return True
         if (
             base_url_host_matches(self._base_url_lower, "models.github.ai")
@@ -6723,7 +6723,7 @@ class AIAgent:
             reset_conversation_context,
             set_conversation_context,
         )
-        # Publish the conversation id for ambient Nous Portal tagging. Every
+        # Publish the conversation id for ambient OpenAmer Portal tagging. Every
         # LLM call made inside this turn — main loop, compression, vision,
         # web_extract, session_search, MoA slots, background-review forks
         # (which copy this Context into their thread) — inherits the

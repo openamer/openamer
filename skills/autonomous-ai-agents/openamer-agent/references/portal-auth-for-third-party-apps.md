@@ -18,7 +18,7 @@ trips agents up.
 |---|---|---|
 | **OpenViking memory plugin** (`plugins/memory/openviking/`) | Code that runs **inside the OpenAmer process**. Its LLM calls go through OpenAmer's already-configured provider. | Already uses Portal if user's OpenAmer is configured for Portal. Nothing extra needed. `OPENVIKING_API_KEY` is the OpenViking *server's* own auth, not LLM auth. |
 | **OpenViking the standalone server** (separate container) | A separate context-DB service. If it ever calls an LLM on its own, that's a separate HTTP client. | Same as any external app — Layer 2/3 below. |
-| **Karakeep, n8n, LibreChat, OpenWebUI, any self-hosted app** | Different process, often different machine. Makes its own HTTPS calls to `inference-api.nousresearch.com`. | Layer 2/3 below. |
+| **Karakeep, n8n, LibreChat, OpenWebUI, any self-hosted app** | Different process, often different machine. Makes its own HTTPS calls to `inference-api.openamer.com`. | Layer 2/3 below. |
 
 **Pitfall to avoid**: do not pitch "OAuth into Portal" as the solution for a
 plugin that already runs inside OpenAmer. That LLM call is already authenticated
@@ -30,10 +30,10 @@ Portal.
 
 ## Layer 2 — For genuinely external apps, what does Portal actually expose?
 
-Portal at `https://inference-api.nousresearch.com/v1` is an OpenAI-compatible
+Portal at `https://inference-api.openamer.com/v1` is an OpenAI-compatible
 inference endpoint. It accepts **bearer-token authentication only**: either
 
-1. **A static API key** from `portal.nousresearch.com → API Keys`, or
+1. **A static API key** from `portal.openamer.com → API Keys`, or
 2. **An x402-protocol payment header** (Solana USDC, beta, anonymous, per-request).
 
 There is **no general OAuth 2.0 authorization server**. There is no
@@ -41,7 +41,7 @@ There is **no general OAuth 2.0 authorization server**. There is no
 against. There is no shared cookie or session that browser-Portal-login
 extends to other apps on the same machine.
 
-What OpenAmer Agent has that *feels* like OAuth — `openamer login --provider nous`
+What OpenAmer Agent has that *feels* like OAuth — `openamer login --provider openamer`
 opening a browser, user signs in, token lands in `~/.openamer/auth.json` — is a
 **OpenAmer-specific browser flow**. Under the hood it produces a credential
 OpenAmer uses as a bearer. It is not a public OAuth provider that Karakeep et al.
@@ -57,7 +57,7 @@ OAuth flow, an app on the user's machine can:
 
 1. Read OpenAmer's existing Portal credential out of `~/.openamer/auth.json`.
 2. Expose a local OpenAI-compatible endpoint at `http://localhost:NNNN/v1`.
-3. Forward incoming requests to `inference-api.nousresearch.com/v1` with that
+3. Forward incoming requests to `inference-api.openamer.com/v1` with that
    bearer attached.
 
 Karakeep/OpenWebUI/etc. then point at `http://localhost:NNNN/v1` with any
@@ -84,7 +84,7 @@ Portal sub with $external_app without copy-pasting keys."
 ## Real OAuth provider on Portal — when is it worth pitching?
 
 Only when the consumer is *another first-party a hosted provider thing* (a future SDK, a
-Nous-branded extension, a Discord-bot integration that needs per-user
+OpenAmer-branded extension, a Discord-bot integration that needs per-user
 delegation, etc.). Pitching it as the answer to "use my Portal sub with
 Karakeep" is selling the user a thing that won't reach them: even if Portal
 shipped OAuth tomorrow, Karakeep's LLM-provider config UI is `base_url +
@@ -111,7 +111,7 @@ When the user asks "can $APP use my Portal subscription":
 1. First decide: OpenAmer plugin (runs inside OpenAmer) or separate app? If plugin,
    it already uses Portal via OpenAmer's provider config — done.
 2. If separate app: today, paste the static API key from Portal → API Keys.
-   Base URL `https://inference-api.nousresearch.com/v1`. Rate limits are
+   Base URL `https://inference-api.openamer.com/v1`. Rate limits are
    subscription-tier based, applied per-key.
 3. If the user pushes back with "but I don't want to paste a key" — that's
    the local-broker-proxy answer (Layer 3). Worth building. Not a Portal-side

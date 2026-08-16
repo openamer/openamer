@@ -141,7 +141,7 @@ class TestPartialStreamStubFinishReason:
 class TestCleanStreamEndMidToolCall:
     """The upstream closes the SSE stream cleanly after delivering a tool
     name + the opening '{' of its arguments — NO exception, NO finish_reason,
-    NO [DONE].  Observed live on NVIDIA Nemotron Ultra via the Nous dedicated
+    NO [DONE].  Observed live on NVIDIA Nemotron Ultra via the OpenAmer dedicated
     endpoint: it stalls/drops during large tool-arg generation.
 
     The mock-builder must NOT stamp this as finish_reason='length' (which

@@ -20,18 +20,18 @@ def test_resolve_managed_tool_gateway_derives_vendor_origin_from_shared_domain()
     with patch.dict(
         os.environ,
         {
-            "TOOL_GATEWAY_DOMAIN": "nousresearch.com",
+            "TOOL_GATEWAY_DOMAIN": "openamer.com",
         },
         clear=False,
-    ), patch.object(managed_tool_gateway, "managed_nous_tools_enabled", return_value=True):
+    ), patch.object(managed_tool_gateway, "managed_openamer_tools_enabled", return_value=True):
         result = resolve_managed_tool_gateway(
             "firecrawl",
-            token_reader=lambda: "nous-token",
+            token_reader=lambda: "openamer-token",
         )
 
     assert result is not None
-    assert result.gateway_origin == "https://firecrawl-gateway.nousresearch.com"
-    assert result.nous_user_token == "nous-token"
+    assert result.gateway_origin == "https://firecrawl-gateway.openamer.com"
+    assert result.openamer_user_token == "openamer-token"
     assert result.managed_mode is True
 
 
@@ -42,24 +42,24 @@ def test_resolve_managed_tool_gateway_uses_vendor_specific_override():
             "BROWSER_USE_GATEWAY_URL": "http://browser-use-gateway.localhost:3009/",
         },
         clear=False,
-    ), patch.object(managed_tool_gateway, "managed_nous_tools_enabled", return_value=True):
+    ), patch.object(managed_tool_gateway, "managed_openamer_tools_enabled", return_value=True):
         result = resolve_managed_tool_gateway(
             "browser-use",
-            token_reader=lambda: "nous-token",
+            token_reader=lambda: "openamer-token",
         )
 
     assert result is not None
     assert result.gateway_origin == "http://browser-use-gateway.localhost:3009"
 
 
-def test_resolve_managed_tool_gateway_is_inactive_without_nous_token():
+def test_resolve_managed_tool_gateway_is_inactive_without_openamer_token():
     with patch.dict(
         os.environ,
         {
-            "TOOL_GATEWAY_DOMAIN": "nousresearch.com",
+            "TOOL_GATEWAY_DOMAIN": "openamer.com",
         },
         clear=False,
-    ), patch.object(managed_tool_gateway, "managed_nous_tools_enabled", return_value=True):
+    ), patch.object(managed_tool_gateway, "managed_openamer_tools_enabled", return_value=True):
         result = resolve_managed_tool_gateway(
             "firecrawl",
             token_reader=lambda: None,
@@ -69,23 +69,23 @@ def test_resolve_managed_tool_gateway_is_inactive_without_nous_token():
 
 
 def test_resolve_managed_tool_gateway_is_disabled_without_subscription():
-    with patch.dict(os.environ, {"TOOL_GATEWAY_DOMAIN": "nousresearch.com"}, clear=False), \
-         patch.object(managed_tool_gateway, "managed_nous_tools_enabled", return_value=False):
+    with patch.dict(os.environ, {"TOOL_GATEWAY_DOMAIN": "openamer.com"}, clear=False), \
+         patch.object(managed_tool_gateway, "managed_openamer_tools_enabled", return_value=False):
         result = resolve_managed_tool_gateway(
             "firecrawl",
-            token_reader=lambda: "nous-token",
+            token_reader=lambda: "openamer-token",
         )
 
     assert result is None
 
 
-def test_read_nous_access_token_refreshes_expiring_cached_token(tmp_path, monkeypatch):
+def test_read_openamer_access_token_refreshes_expiring_cached_token(tmp_path, monkeypatch):
     monkeypatch.delenv("TOOL_GATEWAY_USER_TOKEN", raising=False)
     monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     expires_at = (datetime.now(timezone.utc) + timedelta(seconds=30)).isoformat()
     (tmp_path / "auth.json").write_text(json.dumps({
         "providers": {
-            "nous": {
+            "openamer": {
                 "access_token": "stale-token",
                 "refresh_token": "refresh-token",
                 "expires_at": expires_at,
@@ -93,11 +93,11 @@ def test_read_nous_access_token_refreshes_expiring_cached_token(tmp_path, monkey
         }
     }))
     monkeypatch.setattr(
-        "openamer_cli.auth.resolve_nous_access_token",
+        "openamer_cli.auth.resolve_openamer_access_token",
         lambda refresh_skew_seconds=120: "fresh-token",
     )
 
-    assert managed_tool_gateway.read_nous_access_token() == "fresh-token"
+    assert managed_tool_gateway.read_openamer_access_token() == "fresh-token"
 
 
 def test_is_managed_tool_gateway_ready_skips_refresh_for_expired_cached_token(tmp_path, monkeypatch):
@@ -106,7 +106,7 @@ def test_is_managed_tool_gateway_ready_skips_refresh_for_expired_cached_token(tm
     expired_at = (datetime.now(timezone.utc) - timedelta(seconds=30)).isoformat()
     (tmp_path / "auth.json").write_text(json.dumps({
         "providers": {
-            "nous": {
+            "openamer": {
                 "access_token": "expired-token",
                 "refresh_token": "refresh-token",
                 "expires_at": expired_at,
@@ -120,15 +120,15 @@ def test_is_managed_tool_gateway_ready_skips_refresh_for_expired_cached_token(tm
         return "fresh-token"
 
     monkeypatch.setattr(
-        "openamer_cli.auth.resolve_nous_access_token",
+        "openamer_cli.auth.resolve_openamer_access_token",
         _record_refresh,
     )
 
     with patch.dict(
         os.environ,
-        {"TOOL_GATEWAY_DOMAIN": "nousresearch.com"},
+        {"TOOL_GATEWAY_DOMAIN": "openamer.com"},
         clear=False,
-    ), patch.object(managed_tool_gateway, "managed_nous_tools_enabled", return_value=True):
+    ), patch.object(managed_tool_gateway, "managed_openamer_tools_enabled", return_value=True):
         assert is_managed_tool_gateway_ready("modal") is True
 
     assert refresh_calls == []

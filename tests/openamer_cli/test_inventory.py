@@ -167,10 +167,10 @@ def _list_auth_returning(rows: list[dict]):
     )
 
 
-def _nous_row(model: str = "openai/gpt-5.5") -> dict:
+def _openamer_row(model: str = "openai/gpt-5.5") -> dict:
     return {
-        "slug": "nous",
-        "name": "Nous",
+        "slug": "openamer",
+        "name": "OpenAmer",
         "models": [model],
         "total_models": 1,
         "is_current": True,
@@ -203,7 +203,7 @@ def test_build_models_payload_does_not_call_provider_model_ids():
     caching). ``build_models_payload`` itself must not call the live fetcher
     directly; the test pins that boundary.
     """
-    rows = [{"slug": "nous", "name": "Nous", "models": ["openamer-4-405b"],
+    rows = [{"slug": "openamer", "name": "OpenAmer", "models": ["openamer-4-405b"],
              "total_models": 1, "is_current": False, "is_user_defined": False,
              "source": "built-in"}]
     ctx = _empty_ctx()
@@ -213,15 +213,15 @@ def test_build_models_payload_does_not_call_provider_model_ids():
     mock_pm.assert_not_called()
 
 
-def test_build_models_payload_uses_cached_nous_tier_by_default():
-    """Picker payloads should not force fresh Nous account checks.
+def test_build_models_payload_uses_cached_openamer_tier_by_default():
+    """Picker payloads should not force fresh OpenAmer account checks.
 
     Desktop/status picker opens are request/response UI paths. They can hit
     the short free-tier cache; explicit model/auth flows can still opt into a
     fresh account check when needed.
     """
-    ctx = _empty_ctx(provider="nous", model="openai/gpt-5.5")
-    rows = [_nous_row()]
+    ctx = _empty_ctx(provider="openamer", model="openai/gpt-5.5")
+    rows = [_openamer_row()]
     with patch(
         "openamer_cli.model_switch.list_authenticated_providers",
         return_value=rows,
@@ -229,20 +229,20 @@ def test_build_models_payload_uses_cached_nous_tier_by_default():
         build_models_payload(ctx)
 
     mock_list.assert_called_once()
-    assert mock_list.call_args.kwargs["force_fresh_nous_tier"] is False
+    assert mock_list.call_args.kwargs["force_fresh_openamer_tier"] is False
 
 
-def test_build_models_payload_can_force_fresh_nous_tier():
-    ctx = _empty_ctx(provider="nous", model="openai/gpt-5.5")
-    rows = [_nous_row()]
+def test_build_models_payload_can_force_fresh_openamer_tier():
+    ctx = _empty_ctx(provider="openamer", model="openai/gpt-5.5")
+    rows = [_openamer_row()]
     with patch(
         "openamer_cli.model_switch.list_authenticated_providers",
         return_value=rows,
     ) as mock_list:
-        build_models_payload(ctx, force_fresh_nous_tier=True)
+        build_models_payload(ctx, force_fresh_openamer_tier=True)
 
     mock_list.assert_called_once()
-    assert mock_list.call_args.kwargs["force_fresh_nous_tier"] is True
+    assert mock_list.call_args.kwargs["force_fresh_openamer_tier"] is True
 
 
 def test_build_models_payload_can_skip_custom_provider_probes():
@@ -314,7 +314,7 @@ def test_cli_model_picker_forwards_force_refresh_to_probe_flags():
 
 
 def test_list_authenticated_providers_force_fresh_is_keyword_only():
-    """``force_fresh_nous_tier`` must be keyword-only on the public listing API.
+    """``force_fresh_openamer_tier`` must be keyword-only on the public listing API.
 
     It was inserted between ``custom_providers`` and ``max_models``; making it
     keyword-only ensures no positional caller passing ``max_models`` as the 5th
@@ -326,14 +326,14 @@ def test_list_authenticated_providers_force_fresh_is_keyword_only():
     from openamer_cli.model_switch import list_authenticated_providers
 
     sig = inspect.signature(list_authenticated_providers)
-    param = sig.parameters["force_fresh_nous_tier"]
+    param = sig.parameters["force_fresh_openamer_tier"]
     assert param.kind is inspect.Parameter.KEYWORD_ONLY
     assert param.default is False
 
 
-def test_pricing_uses_cached_nous_tier_by_default():
-    rows = [_nous_row()]
-    ctx = _empty_ctx(provider="nous", model="openai/gpt-5.5")
+def test_pricing_uses_cached_openamer_tier_by_default():
+    rows = [_openamer_row()]
+    ctx = _empty_ctx(provider="openamer", model="openai/gpt-5.5")
     with (
         _list_auth_returning(rows),
         patch(
@@ -345,16 +345,16 @@ def test_pricing_uses_cached_nous_tier_by_default():
                 },
             },
         ),
-        patch("openamer_cli.models.check_nous_free_tier", return_value=False) as mock_free,
+        patch("openamer_cli.models.check_openamer_free_tier", return_value=False) as mock_free,
     ):
         build_models_payload(ctx, pricing=True)
 
     mock_free.assert_called_once_with(force_fresh=False)
 
 
-def test_pricing_can_force_fresh_nous_tier():
-    rows = [_nous_row()]
-    ctx = _empty_ctx(provider="nous", model="openai/gpt-5.5")
+def test_pricing_can_force_fresh_openamer_tier():
+    rows = [_openamer_row()]
+    ctx = _empty_ctx(provider="openamer", model="openai/gpt-5.5")
     with (
         _list_auth_returning(rows),
         patch(
@@ -366,9 +366,9 @@ def test_pricing_can_force_fresh_nous_tier():
                 },
             },
         ),
-        patch("openamer_cli.models.check_nous_free_tier", return_value=False) as mock_free,
+        patch("openamer_cli.models.check_openamer_free_tier", return_value=False) as mock_free,
     ):
-        build_models_payload(ctx, pricing=True, force_fresh_nous_tier=True)
+        build_models_payload(ctx, pricing=True, force_fresh_openamer_tier=True)
 
     mock_free.assert_called_once_with(force_fresh=True)
 
@@ -426,7 +426,7 @@ def test_explicit_only_filters_ambient_credentials_but_keeps_current_and_custom_
         {"slug": "copilot", "name": "Copilot", "models": ["gpt-5.4"],
          "total_models": 1, "is_current": False, "is_user_defined": False,
          "source": "openamer"},
-        {"slug": "nous", "name": "Nous", "models": ["anthropic/claude-sonnet-5"],
+        {"slug": "openamer", "name": "OpenAmer", "models": ["anthropic/claude-sonnet-5"],
          "total_models": 1, "is_current": False, "is_user_defined": False,
          "source": "openamer"},
         {"slug": "custom:lab", "name": "Lab", "models": ["lab-1"],

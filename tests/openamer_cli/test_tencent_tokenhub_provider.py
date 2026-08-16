@@ -186,12 +186,12 @@ class TestTencentTokenhubCanonicalProvider:
 
 
 # =============================================================================
-# OpenRouter / Nous Portal curated lists
+# OpenRouter / OpenAmer Portal curated lists
 # =============================================================================
 
 
 class TestTencentInOpenRouterAndNous:
-    """tencent/hy3:free and tencent/hy3 should appear in OpenRouter and Nous curated lists."""
+    """tencent/hy3:free and tencent/hy3 should appear in OpenRouter and OpenAmer curated lists."""
 
     def test_in_openrouter_fallback(self):
         from openamer_cli.models import OPENROUTER_MODELS
@@ -204,9 +204,9 @@ class TestTencentInOpenRouterAndNous:
         ids = [mid for mid, _ in OPENROUTER_MODELS]
         assert "tencent/hy3" in ids
 
-    def test_in_nous_provider_models(self):
+    def test_in_openamer_provider_models(self):
         from openamer_cli.models import _PROVIDER_MODELS
-        assert "tencent/hy3" in _PROVIDER_MODELS["nous"]
+        assert "tencent/hy3" in _PROVIDER_MODELS["openamer"]
 
 
 # =============================================================================

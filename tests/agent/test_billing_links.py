@@ -9,31 +9,31 @@ from __future__ import annotations
 from agent.billing_links import (
     BillingBlock,
     build_billing_block,
-    is_nous_inference_route,
+    is_openamer_inference_route,
 )
 
 
-def test_nous_route_by_provider_slug():
-    block = build_billing_block(provider="nous", base_url="", model="openamer-4")
+def test_openamer_route_by_provider_slug():
+    block = build_billing_block(provider="openamer", base_url="", model="openamer-4")
     assert block.is_nous is True
-    assert block.provider_label == "Nous Portal"
-    # Nous always resolves an in-app/portal billing URL as a fallback.
-    assert block.billing_url and "nousresearch.com" in block.billing_url
+    assert block.provider_label == "OpenAmer Portal"
+    # OpenAmer always resolves an in-app/portal billing URL as a fallback.
+    assert block.billing_url and "openamer.com" in block.billing_url
 
 
-def test_nous_route_by_base_url_host():
+def test_openamer_route_by_base_url_host():
     block = build_billing_block(
         provider="openai_compatible",
-        base_url="https://inference-api.nousresearch.com/v1",
+        base_url="https://inference-api.openamer.com/v1",
         model="openamer-4",
     )
     assert block.is_nous is True
 
 
-def test_is_nous_inference_route_helper():
-    assert is_nous_inference_route("nous", "") is True
-    assert is_nous_inference_route("", "https://inference-api.nousresearch.com/v1") is True
-    assert is_nous_inference_route("openai", "https://api.openai.com/v1") is False
+def test_is_openamer_inference_route_helper():
+    assert is_openamer_inference_route("openamer", "") is True
+    assert is_openamer_inference_route("", "https://inference-api.openamer.com/v1") is True
+    assert is_openamer_inference_route("openai", "https://api.openai.com/v1") is False
 
 
 def test_known_provider_by_slug_resolves_label_and_url():

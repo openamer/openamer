@@ -235,9 +235,9 @@ COMMAND_REGISTRY: list[CommandDef] = [
                gateway_only=True),
     CommandDef("usage", "Show token usage and rate limits; `reset` redeems a banked Codex limit reset", "Info",
                args_hint="[reset [--force]]"),
-    CommandDef("subscription", "View your Nous plan and change it in the browser", "Info",
+    CommandDef("subscription", "View your OpenAmer plan and change it in the browser", "Info",
                cli_only=True, aliases=("upgrade",)),
-    CommandDef("topup", "Show your Nous balance and manage billing on the portal", "Info"),
+    CommandDef("topup", "Show your OpenAmer balance and manage billing on the portal", "Info"),
     CommandDef("insights", "Show usage insights and analytics", "Info",
                args_hint="[days]"),
     CommandDef("platforms", "Show gateway/messaging platform status", "Info",
@@ -253,7 +253,7 @@ COMMAND_REGISTRY: list[CommandDef] = [
     CommandDef("update", "Update OpenAmer Agent to the latest version", "Info"),
     CommandDef("version", "Show OpenAmer Agent version", "Info", aliases=("v",)),
     CommandDef("debug", "Upload debug report (system info + logs) and get shareable links", "Info",
-               args_hint="[nous|local]"),
+               args_hint="[openamer|local]"),
 
     # Exit
     CommandDef("quit", "Exit the CLI (use --delete to also remove session history)", "Exit",

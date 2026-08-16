@@ -1,16 +1,16 @@
 @import 'tailwindcss';
-/* `fonts.css` must come BEFORE `globals.css`: as of @nous-research/ui 0.14.x,
+/* `fonts.css` must come BEFORE `globals.css`: as of @openamer-research/ui 0.14.x,
    `globals.css` only declares the `--font-*` CSS variables (Collapse, Rules
    Compressed/Expanded, Mondwest). The `@font-face` registrations live in
    `fonts.css`, so without this import the DS variables resolve to font
    families the browser never loads and components fall back to a system
    stack (Tabs, Segmented, Typography, Buttons, etc. all look unstyled). */
-@import '@nous-research/ui/styles/fonts.css';
-@import '@nous-research/ui/styles/globals.css';
+@import '@openamer-research/ui/styles/fonts.css';
+@import '@openamer-research/ui/styles/globals.css';
 
 /* Scan the published design-system bundle so its utility classes survive
    Tailwind's JIT purge. */
-@source '../node_modules/@nous-research/ui/dist';
+@source '../node_modules/@openamer-research/ui/dist';
 
 /* ------------------------------------------------------------------ */
 /* JetBrains Mono — bundled for the embedded TUI (/chat tab).          */
@@ -43,7 +43,7 @@
 }
 
 /* ------------------------------------------------------------------ */
-/* OpenAmer Agent — Nous DS with the LENS_0 (OpenAmer teal) palette applied
+/* OpenAmer Agent — OpenAmer DS with the LENS_0 (OpenAmer teal) palette applied
    statically as the default dashboard theme. */
 /* ------------------------------------------------------------------ */
 
@@ -141,16 +141,16 @@ code, kbd, pre, samp, .font-mono, .font-mono-ui {
   }
 }
 
-/* Nousnet's openamer-agent layout bumps `small` and `code` to readable
+/* OpenAmer-network's openamer-agent layout bumps `small` and `code` to readable
    dashboard sizes. Keep in sync. */
 small { font-size: 1.0625rem; }
 code { font-size: 0.875rem; }
 
 /* Shadcn-compat tokens.
-   The dashboard's page code predates the Nous DS and uses shadcn-style
+   The dashboard's page code predates the OpenAmer DS and uses shadcn-style
    utility classes (bg-card, text-muted-foreground, border-border, etc.)
    extensively. Rather than rewrite every call site, we expose those
-   tokens on top of the Nous palette so classes continue to resolve. */
+   tokens on top of the OpenAmer palette so classes continue to resolve. */
 @theme inline {
   /* Remap foreground to midground so `text-foreground` / `bg-foreground`
      stay visible — in LENS_0, `--foreground` itself has alpha 0. */

@@ -48,7 +48,7 @@ Each entry requires both `provider` and `model`. Entries missing either field ar
 | Provider | Value | Requirements |
 |----------|-------|-------------|
 | OpenRouter | `openrouter` | `OPENROUTER_API_KEY` |
-| your hosted provider | `nous` | `openamer setup --portal` (fresh) or `openamer auth add nous` (OAuth) |
+| your hosted provider | `openamer` | `openamer setup --portal` (fresh) or `openamer auth add openamer` (OAuth) |
 | OpenAI Codex | `openai-codex` | `openamer model` (ChatGPT OAuth) |
 | GitHub Copilot | `copilot` | `COPILOT_GITHUB_TOKEN`, `GH_TOKEN`, or `GITHUB_TOKEN` |
 | GitHub Copilot ACP | `copilot-acp` | External process (editor integration) |
@@ -144,8 +144,8 @@ model:
   default: anthropic/claude-opus-4
 
 fallback_providers:
-  - provider: nous
-    model: nous-openamer-3
+  - provider: openamer
+    model: openamer-openamer-3
 ```
 
 **Local model as fallback for cloud:**
@@ -231,7 +231,7 @@ Each task can be configured independently in `config.yaml`:
 ```yaml
 auxiliary:
   vision:
-    provider: "auto"              # auto | openrouter | nous | codex | main | anthropic
+    provider: "auto"              # auto | openrouter | openamer | codex | main | anthropic
     model: ""                     # e.g. "openai/gpt-4o"
     base_url: ""                  # direct endpoint (takes precedence over provider)
     api_key: ""                   # API key for base_url
@@ -287,7 +287,7 @@ These options apply to `auxiliary:`, `compression:`, and `fallback_providers:` e
 |----------|-------------|-------------|
 | `"auto"` | Try providers in order until one works (default) | At least one provider configured |
 | `"openrouter"` | Force OpenRouter | `OPENROUTER_API_KEY` |
-| `"nous"` | Force your hosted provider | `openamer auth` |
+| `"openamer"` | Force your hosted provider | `openamer auth` |
 | `"codex"` | Force Codex OAuth | `openamer model` → Codex |
 | `"main"` | Use whatever provider the main agent uses (auxiliary tasks only) | Active main provider configured |
 | `"anthropic"` | Force Anthropic native | `ANTHROPIC_API_KEY` or Claude Code credentials |
@@ -333,7 +333,7 @@ auxiliary:
     fallback_chain:
       - provider: openrouter
         model: google/gemini-3-flash-preview
-      - provider: nous
+      - provider: openamer
         model: anthropic/claude-sonnet-4
 
   compression:
@@ -367,7 +367,7 @@ Context compression uses the `auxiliary.compression` config block to control whi
 ```yaml
 auxiliary:
   compression:
-    provider: "auto"                              # auto | openrouter | nous | main
+    provider: "auto"                              # auto | openrouter | openamer | main
     model: "google/gemini-3-flash-preview"
 ```
 

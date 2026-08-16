@@ -503,7 +503,7 @@ class TestRunDebugShare:
         args.lines = 50
         args.expire = 7
         args.local = False
-        args.nous = False
+        args.openamer = False
 
         with patch("openamer_cli.dump.run_dump"), \
              patch("openamer_cli.debug._sweep_expired_pastes", return_value=(0, 0)) as mock_sweep, \
@@ -522,7 +522,7 @@ class TestRunDebugShare:
         args.lines = 50
         args.expire = 7
         args.local = False
-        args.nous = False
+        args.openamer = False
 
         with patch("openamer_cli.dump.run_dump"), \
              patch(
@@ -543,7 +543,7 @@ class TestRunDebugShare:
         args.lines = 50
         args.expire = 7
         args.local = True
-        args.nous = False
+        args.openamer = False
 
         with patch("openamer_cli.dump.run_dump"):
             run_debug_share(args)
@@ -561,7 +561,7 @@ class TestRunDebugShare:
         args.lines = 50
         args.expire = 7
         args.local = False
-        args.nous = False
+        args.openamer = False
 
         call_count = [0]
         uploaded_content = []
@@ -620,7 +620,7 @@ class TestRunDebugShare:
         args.lines = 50
         args.expire = 7
         args.local = False
-        args.nous = False
+        args.openamer = False
 
         uploaded_content = []
 
@@ -666,7 +666,7 @@ class TestRunDebugShare:
         args.lines = 50
         args.expire = 7
         args.local = False
-        args.nous = False
+        args.openamer = False
 
         call_count = [0]
         def _mock_upload(content, expiry_days=7):
@@ -691,7 +691,7 @@ class TestRunDebugShare:
         args.lines = 50
         args.expire = 7
         args.local = False
-        args.nous = False
+        args.openamer = False
 
         call_count = [0]
         def _mock_upload(content, expiry_days=7):
@@ -718,7 +718,7 @@ class TestRunDebugShare:
         args.lines = 50
         args.expire = 7
         args.local = False
-        args.nous = False
+        args.openamer = False
 
         with patch("openamer_cli.dump.run_dump"), \
              patch("openamer_cli.debug.upload_to_pastebin",
@@ -767,7 +767,7 @@ class TestRunDebugShareRedaction:
         args.lines = 50
         args.expire = 7
         args.local = False
-        args.nous = False
+        args.openamer = False
         args.no_redact = False
 
         captured: list[str] = []
@@ -798,7 +798,7 @@ class TestRunDebugShareRedaction:
         args.lines = 50
         args.expire = 7
         args.local = False
-        args.nous = False
+        args.openamer = False
         args.no_redact = False
 
         captured: list[str] = []
@@ -827,7 +827,7 @@ class TestRunDebugShareRedaction:
         args.lines = 50
         args.expire = 7
         args.local = False
-        args.nous = False
+        args.openamer = False
         args.no_redact = True
 
         captured: list[str] = []
@@ -878,7 +878,7 @@ class TestRunDebug:
         args.lines = 200
         args.expire = 7
         args.local = True
-        args.nous = False
+        args.openamer = False
 
         with patch("openamer_cli.dump.run_dump"):
             run_debug(args)
@@ -1257,7 +1257,7 @@ class TestShareIncludesAutoDelete:
         args.lines = 50
         args.expire = 7
         args.local = False
-        args.nous = False
+        args.openamer = False
 
         with patch("openamer_cli.dump.run_dump"), \
              patch("openamer_cli.debug.upload_to_pastebin",
@@ -1280,7 +1280,7 @@ class TestShareIncludesAutoDelete:
         args.lines = 50
         args.expire = 7
         args.local = False
-        args.nous = False
+        args.openamer = False
 
         with patch("openamer_cli.dump.run_dump"), \
              patch("openamer_cli.debug.upload_to_pastebin",
@@ -1299,7 +1299,7 @@ class TestShareIncludesAutoDelete:
         args.lines = 50
         args.expire = 7
         args.local = True
-        args.nous = False
+        args.openamer = False
 
         with patch("openamer_cli.dump.run_dump"):
             run_debug_share(args)
@@ -1416,7 +1416,7 @@ class TestBuildDebugShare:
 
 
 # ---------------------------------------------------------------------------
-# Shared bundle collection + Nous-S3 path
+# Shared bundle collection + OpenAmer-S3 path
 # ---------------------------------------------------------------------------
 
 class TestCollectShareBundle:
@@ -1488,10 +1488,10 @@ class TestBuildNousBundle:
         import gzip
         import json as _json
 
-        from openamer_cli.debug import build_nous_bundle
+        from openamer_cli.debug import build_openamer_bundle
 
         files = {"report": "hello", "agent.log": "log line"}
-        blob = build_nous_bundle(files, redact=True)
+        blob = build_openamer_bundle(files, redact=True)
 
         # It's gzip — magic bytes.
         assert blob[:2] == b"\x1f\x8b"
@@ -1505,9 +1505,9 @@ class TestBuildNousBundle:
         import gzip
         import json as _json
 
-        from openamer_cli.debug import build_nous_bundle
+        from openamer_cli.debug import build_openamer_bundle
 
-        blob = build_nous_bundle({"report": "x"}, redact=False)
+        blob = build_openamer_bundle({"report": "x"}, redact=False)
         envelope = _json.loads(gzip.decompress(blob).decode())
         assert envelope["redacted"] is False
 
@@ -1518,7 +1518,7 @@ class TestRunDebugShareNous:
             lines = 50
             expire = 7
             local = False
-            nous = True
+            openamer = True
             no_redact = False
             yes = True
 
@@ -1527,7 +1527,7 @@ class TestRunDebugShareNous:
             setattr(a, k, v)
         return a
 
-    def test_nous_success_prints_view_url(self, openamer_home, capsys):
+    def test_openamer_success_prints_view_url(self, openamer_home, capsys):
         from openamer_cli.debug import run_debug_share
 
         res = {
@@ -1541,14 +1541,14 @@ class TestRunDebugShareNous:
             run_debug_share(self._args())
 
         out = capsys.readouterr().out
-        assert "Nous-INTERNAL" in out
+        assert "OpenAmer-INTERNAL" in out
         assert "https://support.example.com/diagnostics/id-1" in out
         assert "2026-06-20T00:00:00Z" in out
         # The blob passed to share_to_nous must be gzip bytes.
         blob = share.call_args[0][0]
         assert isinstance(blob, (bytes, bytearray)) and blob[:2] == b"\x1f\x8b"
 
-    def test_nous_failure_suggests_local(self, openamer_home, capsys):
+    def test_openamer_failure_suggests_local(self, openamer_home, capsys):
         from openamer_cli.debug import run_debug_share
 
         with patch("openamer_cli.dump.run_dump"), patch(
@@ -1559,10 +1559,10 @@ class TestRunDebugShareNous:
                 run_debug_share(self._args())
         assert exc.value.code == 1
         err = capsys.readouterr().err
-        assert "Nous upload failed" in err
+        assert "OpenAmer upload failed" in err
         assert "--local" in err
 
-    def test_nous_does_not_touch_pastebin(self, openamer_home):
+    def test_openamer_does_not_touch_pastebin(self, openamer_home):
         from openamer_cli.debug import run_debug_share
 
         res = {"id": "id-1", "viewUrl": "https://v"}
@@ -1574,7 +1574,7 @@ class TestRunDebugShareNous:
 
 
 class TestDebugSlashCommand:
-    """`/debug [nous|local]` parsing in the CLI/TUI handler.
+    """`/debug [openamer|local]` parsing in the CLI/TUI handler.
 
     The classic CLI and the TUI slash worker both dispatch through
     ``OpenAmerCLI.process_command`` → ``_handle_debug_command(cmd_original)``,
@@ -1602,37 +1602,37 @@ class TestDebugSlashCommand:
 
     def test_bare_debug_defaults_to_paste(self):
         c = self._captured("/debug")
-        assert c["nous"] is False and c["local"] is False
+        assert c["openamer"] is False and c["local"] is False
         assert c["lines"] == 200 and c["expire"] == 7
         # The slash command IS the consent action → skip the [y/N] prompt
         # (input() would hang inside prompt_toolkit's event loop).
         assert c["yes"] is True
 
-    def test_nous_word_sets_nous(self):
-        c = self._captured("/debug nous")
-        assert c["nous"] is True and c["local"] is False
+    def test_openamer_word_sets_nous(self):
+        c = self._captured("/debug openamer")
+        assert c["openamer"] is True and c["local"] is False
 
     def test_local_word_sets_local(self):
         c = self._captured("/debug local")
-        assert c["local"] is True and c["nous"] is False
+        assert c["local"] is True and c["openamer"] is False
 
     def test_word_parsing_is_case_insensitive(self):
-        c = self._captured("/debug NOUS")
-        assert c["nous"] is True
+        c = self._captured("/debug OPENAMER")
+        assert c["openamer"] is True
 
     def test_local_wins_over_nous(self):
         # local never touches the network, so it takes precedence.
-        c = self._captured("/debug nous local")
-        assert c["local"] is True and c["nous"] is False
+        c = self._captured("/debug openamer local")
+        assert c["local"] is True and c["openamer"] is False
 
     def test_unknown_word_falls_back_to_default(self):
         c = self._captured("/debug paste")
-        assert c["nous"] is False and c["local"] is False
+        assert c["openamer"] is False and c["local"] is False
 
     def test_no_arg_default_keyword(self):
         # Calling with no cmd_original (legacy callers) must still work.
         c = self._captured("")
-        assert c["nous"] is False and c["local"] is False
+        assert c["openamer"] is False and c["local"] is False
 
 
 class TestShareConsentGate:
@@ -1646,7 +1646,7 @@ class TestShareConsentGate:
     def _args(self, **over):
         from types import SimpleNamespace
 
-        base = dict(lines=50, expire=7, local=False, nous=False,
+        base = dict(lines=50, expire=7, local=False, openamer=False,
                     no_redact=False, yes=False)
         base.update(over)
         return SimpleNamespace(**base)
@@ -1733,8 +1733,8 @@ class TestShareConsentGate:
 
         assert "https://paste.rs/test" in capsys.readouterr().out
 
-    def test_nous_path_also_gated(self, openamer_home, capsys, monkeypatch):
-        """The --nous S3 path enforces the same consent gate (sibling site)."""
+    def test_openamer_path_also_gated(self, openamer_home, capsys, monkeypatch):
+        """The --openamer S3 path enforces the same consent gate (sibling site)."""
         from openamer_cli.debug import run_debug_share
 
         monkeypatch.setattr("sys.stdin.isatty", lambda: True)
@@ -1742,7 +1742,7 @@ class TestShareConsentGate:
 
         with patch("openamer_cli.dump.run_dump"), \
              patch("openamer_cli.diagnostics_upload.share_to_nous") as mock_nous:
-            run_debug_share(self._args(nous=True))
+            run_debug_share(self._args(openamer=True))
 
         mock_nous.assert_not_called()
         assert "Aborted" in capsys.readouterr().out

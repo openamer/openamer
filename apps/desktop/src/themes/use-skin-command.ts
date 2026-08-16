@@ -2,13 +2,13 @@ import { useCallback } from 'react'
 
 import { useTheme } from './context'
 
-// Retired skin names land on the canonical Nous skin so old muscle memory works.
+// Retired skin names land on the canonical OpenAmer skin so old muscle memory works.
 const ALIASES: Record<string, string> = {
   ares: 'ember',
-  default: 'nous',
-  gold: 'nous',
-  openamer: 'nous',
-  'nous-light': 'nous'
+  default: 'openamer',
+  gold: 'openamer',
+  openamer: 'openamer',
+  'openamer-light': 'openamer'
 }
 
 export function useSkinCommand() {

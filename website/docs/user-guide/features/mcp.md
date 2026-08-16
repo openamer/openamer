@@ -47,7 +47,7 @@ List the files in /home/user/projects and summarize the repo structure.
 
 OpenAmer will discover the MCP server's tools and use them like any other tool.
 
-## Catalog: one-click install for Nous-approved MCPs
+## Catalog: one-click install for OpenAmer-approved MCPs
 
 OpenAmer ships a curated catalog of MCP servers that a hosted provider staff has reviewed
 and merged. They're disabled by default — install only what you actually
@@ -70,7 +70,7 @@ github       installed (disabled)   GitHub repo + PR tools
 Hit `Enter` on a row to install (and walk through any required credentials),
 enable, disable, or uninstall. Catalog entries are stored under
 `optional-mcps/` in the openamer-agent repo — presence in that directory means
-Nous approval. There is no community submission tier; entries are added by
+OpenAmer approval. There is no community submission tier; entries are added by
 merging a PR.
 
 Catalog entries can require:

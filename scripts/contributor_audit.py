@@ -49,18 +49,18 @@ IGNORED_PATTERNS = [
     re.compile(r"^dependabot", re.IGNORECASE),
     re.compile(r"^renovate", re.IGNORECASE),
     re.compile(r"^OpenAmer\s+(Agent|Audit)$", re.IGNORECASE),
-    re.compile(r"^nousbot(-eng)?$", re.IGNORECASE),
+    re.compile(r"^openamerbot(-eng)?$", re.IGNORECASE),
     re.compile(r"^Ubuntu$", re.IGNORECASE),
 ]
 
 IGNORED_EMAILS = {
     "noreply@anthropic.com",
     "noreply@github.com",
-    "noreply@nousresearch.com",
+    "noreply@openamer.com",
     "cursoragent@cursor.com",
-    "openamer@nousresearch.com",
+    "openamer@openamer.com",
     "openamer-audit@example.com",
-    "nousbot@nousresearch.com",
+    "openamerbot@openamer.com",
     "openamer@habibilabs.dev",
     "omx@oh-my-codex.dev",
     "codex@openai.com",

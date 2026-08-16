@@ -22,7 +22,7 @@ type Sys = (text: string) => void
  */
 function buildManageUrl(s: SubscriptionStateResponse, tierId?: string): string | null {
   // portal_url is already an absolute URL resolved by resolve_portal_base_url()
-  // on the Python side (e.g. https://portal.nousresearch.com/billing). Strip any
+  // on the Python side (e.g. https://portal.openamer.com/billing). Strip any
   // path so we can attach /manage-subscription cleanly.
   let base: string | null = null
 
@@ -142,7 +142,7 @@ const buildSubscriptionCtx = (
 
 export const subscriptionCommands: SlashCommand[] = [
   {
-    help: 'View or change your Nous subscription plan',
+    help: 'View or change your OpenAmer subscription plan',
     name: 'subscription',
     aliases: ['upgrade'],
     // ZERO sub-commands: bare `/subscription` fetches state and opens the
@@ -156,7 +156,7 @@ export const subscriptionCommands: SlashCommand[] = [
         .then(
           ctx.guarded<SubscriptionStateResponse>(s => {
             if (!s.logged_in) {
-              sys('Not logged into Nous Portal — run /portal to log in, then /subscription.')
+              sys('Not logged into OpenAmer Portal — run /portal to log in, then /subscription.')
 
               return
             }

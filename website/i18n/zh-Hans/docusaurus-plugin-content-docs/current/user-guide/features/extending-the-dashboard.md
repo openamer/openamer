@@ -681,7 +681,7 @@ Shell 只为上述插槽渲染 `<PluginSlot name="..." />`。注册表接受额�
 - 多个插件可以声明同一个页面级插槽。它们按注册顺序堆叠渲染。
 - 无插件注册时零开销：内置页面与之前完全相同地渲染。
 
-参考插件（[`openamer-example-plugins`](https://github.com/NousResearch/openamer-example-plugins/tree/main/example-dashboard) 中的 `example-dashboard`）提供了一个向 `sessions:top` 注入横幅的实时演示——安装它可端到端了解该模式。
+参考插件（[`openamer-example-plugins`](https://github.com/openamer/openamer-example-plugins/tree/main/example-dashboard) 中的 `example-dashboard`）提供了一个向 `sessions:top` 注入横幅的实时演示——安装它可端到端了解该模式。
 
 ### 仅插槽插件（`tab.hidden`）
 
@@ -818,7 +818,7 @@ curl http://127.0.0.1:9119/api/dashboard/plugins/rescan
 
 ## 主题 + 插件组合演示
 
-[`strike-freedom-cockpit`](https://github.com/NousResearch/openamer-example-plugins/tree/main/strike-freedom-cockpit) 插件（伴随仓库 `openamer-example-plugins`）是一个完整的换肤演示。它将主题 YAML 与仅插槽插件配对，在不 fork dashboard 的情况下生成驾驶舱风格的 HUD。
+[`strike-freedom-cockpit`](https://github.com/openamer/openamer-example-plugins/tree/main/strike-freedom-cockpit) 插件（伴随仓库 `openamer-example-plugins`）是一个完整的换肤演示。它将主题 YAML 与仅插槽插件配对，在不 fork dashboard 的情况下生成驾驶舱风格的 HUD。
 
 **演示内容：**
 
@@ -832,7 +832,7 @@ curl http://127.0.0.1:9119/api/dashboard/plugins/rescan
 **安装：**
 
 ```bash
-git clone https://github.com/NousResearch/openamer-example-plugins.git
+git clone https://github.com/openamer/openamer-example-plugins.git
 
 # Theme
 cp openamer-example-plugins/strike-freedom-cockpit/theme/strike-freedom.yaml \

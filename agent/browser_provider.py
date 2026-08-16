@@ -144,7 +144,7 @@ class BrowserProvider(abc.ABC):
             }
 
         Default: minimal entry derived from :attr:`display_name`. Override to
-        expose API key prompts, badges, managed-Nous gating, and the
+        expose API key prompts, badges, managed-OpenAmer gating, and the
         ``post_setup`` install hook.
         """
         return {

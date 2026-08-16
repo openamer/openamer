@@ -8,7 +8,7 @@ description: >
   API + WebSocket event stream and relays messages between Mattermost
   channels/DMs and the OpenAmer agent. Supports thread-mode replies, native
   file uploads, channel-scoped allowlists, and home-channel cron delivery.
-author: NousResearch
+author: openamer
 requires_env:
   - name: MATTERMOST_URL
     description: "Mattermost server URL (e.g. https://mm.example.com)"

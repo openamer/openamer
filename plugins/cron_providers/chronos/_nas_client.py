@@ -4,7 +4,7 @@ The Chronos provider speaks ONLY to NAS — it names no scheduler vendor and
 holds no scheduler credentials. NAS owns the external scheduler (an internal
 implementation detail) and that scheduler's account; the agent just asks NAS to
 "arm a one-shot at time T" / "cancel" / "list", authenticated with the agent's
-existing Nous Portal access token (the same token it already uses to call the
+existing OpenAmer Portal access token (the same token it already uses to call the
 portal — no new secret).
 
 Wire contract: ``docs/chronos-managed-cron-contract.md``.
@@ -30,7 +30,7 @@ class NasCronClientError(RuntimeError):
 class NasCronClient:
     """Minimal client for the agent→NAS provision/cancel/list endpoints.
 
-    Uses the agent's refresh-aware Nous access token for auth. No scheduler
+    Uses the agent's refresh-aware OpenAmer access token for auth. No scheduler
     vendor, no scheduler creds — NAS hides all of that behind these three calls.
     """
 
@@ -41,9 +41,9 @@ class NasCronClient:
     # -- auth -------------------------------------------------------------
 
     def _access_token(self) -> str:
-        """The agent's existing Nous Portal access token (refresh-aware)."""
-        from openamer_cli.auth import resolve_nous_access_token
-        return resolve_nous_access_token()
+        """The agent's existing OpenAmer Portal access token (refresh-aware)."""
+        from openamer_cli.auth import resolve_openamer_access_token
+        return resolve_openamer_access_token()
 
     def _headers(self) -> Dict[str, str]:
         return {

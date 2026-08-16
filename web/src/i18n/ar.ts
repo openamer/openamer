@@ -55,7 +55,7 @@ export const ar = defineLocale({
     closeNavigation: "إغلاق التنقل",
     closeModelTools: "إغلاق النموذج والأدوات",
     footer: {
-      org: "Nous Research",
+      org: "OpenAmer",
     },
     activeSessionsLabel: "الجلسات النشطة:",
     gatewayStatusLabel: "حالة البوابة:",

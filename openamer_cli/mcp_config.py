@@ -1092,7 +1092,7 @@ def mcp_command(args):
         run_picker()
         print(color("  Commands:", Colors.CYAN))
         _info("openamer mcp                                    Open the catalog picker (default)")
-        _info("openamer mcp catalog                            List Nous-approved MCPs")
+        _info("openamer mcp catalog                            List OpenAmer-approved MCPs")
         _info("openamer mcp install <name>                     Install a catalog MCP")
         _info("openamer mcp serve                              Run as MCP server")
         _info("openamer mcp add <name> --url <endpoint>        Add a custom MCP server")

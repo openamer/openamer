@@ -765,13 +765,13 @@ export interface Translations {
       ready: string
       needsSignIn: string
       needsSetup: string
-      nousIncluded: string
-      nousAuthNeededTitle: string
-      nousAuthNeededMessage: (provider: string) => string
-      nousAuthSignIn: string
-      nousAuthDoneTitle: string
-      nousAuthDoneMessage: string
-      nousAuthFailed: string
+      openamerIncluded: string
+      openamerAuthNeededTitle: string
+      openamerAuthNeededMessage: (provider: string) => string
+      openamerAuthSignIn: string
+      openamerAuthDoneTitle: string
+      openamerAuthDoneMessage: string
+      openamerAuthFailed: string
       noApiKeyRequired: string
       postSetupHint: (step: string) => string
       postSetupInstalledHint: string

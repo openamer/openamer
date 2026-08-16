@@ -35,16 +35,16 @@ def _reset():
 
 class TestMintAndConsume:
     def test_round_trip(self):
-        ticket = mint_ticket(user_id="u1", provider="nous")
+        ticket = mint_ticket(user_id="u1", provider="openamer")
         info = consume_ticket(ticket)
         assert info["user_id"] == "u1"
-        assert info["provider"] == "nous"
+        assert info["provider"] == "openamer"
         assert "minted_at" in info
 
     def test_ticket_has_minimum_length(self):
         # ``secrets.token_urlsafe(32)`` produces ~43 chars; enforce a floor
         # so a future refactor can't accidentally shrink the entropy.
-        ticket = mint_ticket(user_id="u1", provider="nous")
+        ticket = mint_ticket(user_id="u1", provider="openamer")
         assert len(ticket) >= 32
 
     def test_ticket_values_are_unique(self):
@@ -225,7 +225,7 @@ class TestInternalCredential:
         """The internal credential is not a ticket — minting tickets doesn't
         touch it, and consuming the credential doesn't consume tickets."""
         cred = ws_tickets.internal_ws_credential()
-        ticket = mint_ticket(user_id="u1", provider="nous")
+        ticket = mint_ticket(user_id="u1", provider="openamer")
         # Consuming the internal credential leaves the ticket intact.
         ws_tickets.consume_internal_credential(cred)
         assert consume_ticket(ticket)["user_id"] == "u1"

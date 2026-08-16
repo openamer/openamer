@@ -17,7 +17,7 @@ description: >
   ``PHOTON_PROJECT_SECRET``) like every other channel, with management
   metadata (device token, dashboard project id) in ``~/.openamer/auth.json``.
   Photon's free shared-line model lets users get started without a paid plan.
-author: NousResearch
+author: openamer
 requires_env:
   - name: PHOTON_PROJECT_ID
     description: "Spectrum project id (the project's spectrumProjectId; set by `openamer photon setup`)"

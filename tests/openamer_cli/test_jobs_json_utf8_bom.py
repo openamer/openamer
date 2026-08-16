@@ -57,7 +57,7 @@ def test_status_scheduled_jobs_accepts_utf8_bom(monkeypatch, capsys, tmp_path):
         status_mod, "resolve_provider", lambda requested=None, **kwargs: "openai-codex", raising=False
     )
     monkeypatch.setattr(status_mod, "provider_label", lambda provider: "OpenAI Codex", raising=False)
-    monkeypatch.setattr(auth_mod, "get_nous_auth_status", lambda: {}, raising=False)
+    monkeypatch.setattr(auth_mod, "get_openamer_auth_status", lambda: {}, raising=False)
     monkeypatch.setattr(auth_mod, "get_codex_auth_status", lambda: {}, raising=False)
     monkeypatch.setattr(auth_mod, "get_xai_oauth_auth_status", lambda: {}, raising=False)
     monkeypatch.setattr(gateway_mod, "find_gateway_pids", lambda exclude_pids=None: [], raising=False)

@@ -9,21 +9,21 @@ import {
   Webhook,
   X,
 } from "lucide-react";
-import { Badge } from "@nous-research/ui/ui/components/badge";
-import { Button } from "@nous-research/ui/ui/components/button";
-import { Select, SelectOption } from "@nous-research/ui/ui/components/select";
-import { Spinner } from "@nous-research/ui/ui/components/spinner";
-import { H2 } from "@nous-research/ui/ui/components/typography/h2";
+import { Badge } from "@openamer-research/ui/ui/components/badge";
+import { Button } from "@openamer-research/ui/ui/components/button";
+import { Select, SelectOption } from "@openamer-research/ui/ui/components/select";
+import { Spinner } from "@openamer-research/ui/ui/components/spinner";
+import { H2 } from "@openamer-research/ui/ui/components/typography/h2";
 import { api } from "@/lib/api";
 import type { WebhookRoute, WebhooksResponse } from "@/lib/api";
 import { DeleteConfirmDialog } from "@/components/DeleteConfirmDialog";
-import { useToast } from "@nous-research/ui/hooks/use-toast";
-import { useConfirmDelete } from "@nous-research/ui/hooks/use-confirm-delete";
+import { useToast } from "@openamer-research/ui/hooks/use-toast";
+import { useConfirmDelete } from "@openamer-research/ui/hooks/use-confirm-delete";
 import { useModalBehavior } from "@/hooks/useModalBehavior";
-import { Toast } from "@nous-research/ui/ui/components/toast";
-import { Card, CardContent } from "@nous-research/ui/ui/components/card";
-import { Input } from "@nous-research/ui/ui/components/input";
-import { Label } from "@nous-research/ui/ui/components/label";
+import { Toast } from "@openamer-research/ui/ui/components/toast";
+import { Card, CardContent } from "@openamer-research/ui/ui/components/card";
+import { Input } from "@openamer-research/ui/ui/components/input";
+import { Label } from "@openamer-research/ui/ui/components/label";
 import { usePageHeader } from "@/contexts/usePageHeader";
 import { cn, themedBody } from "@/lib/utils";
 

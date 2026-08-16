@@ -356,7 +356,7 @@ class TestBareCustomNoBaseUrlHealsFromConfig:
 #
 # The config-provider fallback above only heals when ``config.model.provider``
 # still points at the custom entry. A user whose global default is a built-in
-# provider (e.g. Nous) but who switched THIS session to a self-hosted model
+# provider (e.g. OpenAmer) but who switched THIS session to a self-hosted model
 # gets no heal: the bare provider is dropped, resume falls back to the default
 # provider, and the default provider's endpoint 404s with "Model '<x>' not
 # found" (the b200/openamer-ultra-sft report). The stored MODEL NAME is the one
@@ -368,7 +368,7 @@ ULTRA_URL = "http://b200-cluster:30090/v1"
 ULTRA_CONFIG = {
     # Global default deliberately points at a BUILT-IN provider — the config
     # fallback must not fire; only the model lookup can recover the entry.
-    "model": {"default": "some-nous-model", "provider": "nous"},
+    "model": {"default": "some-openamer-model", "provider": "openamer"},
     "providers": {
         "openamer-ultra": {
             "api": ULTRA_URL,
@@ -379,7 +379,7 @@ ULTRA_CONFIG = {
 }
 
 ULTRA_LEGACY_CONFIG = {
-    "model": {"default": "some-nous-model", "provider": "nous"},
+    "model": {"default": "some-openamer-model", "provider": "openamer"},
     "custom_providers": [
         {
             "name": "openamer-ultra",
@@ -417,7 +417,7 @@ class TestModelNameRecoversEntryIdentity:
     def test_canonical_identity_prefers_base_url_over_model(self, monkeypatch):
         """URL ownership beats model-name matching when both are present."""
         config = {
-            "model": {"default": "x", "provider": "nous"},
+            "model": {"default": "x", "provider": "openamer"},
             "providers": {
                 "by-url": {"api": ULTRA_URL, "api_key": "k1"},
                 "by-model": {
@@ -451,7 +451,7 @@ class TestModelNameRecoversEntryIdentity:
         """The b200/openamer-ultra-sft report: row has bare custom, no base_url,
         and the global default provider is a built-in. Before the model tier,
         the bare provider was dropped and resume silently rerouted the
-        session's model to the default provider (Nous 404: "Model
+        session's model to the default provider (OpenAmer 404: "Model
         'openamer-ultra-sft' not found... OpenRouter catalog")."""
         monkeypatch.setattr(rp, "load_config", lambda: ULTRA_CONFIG)
         monkeypatch.setattr(rp, "_get_model_config", lambda: ULTRA_CONFIG["model"])

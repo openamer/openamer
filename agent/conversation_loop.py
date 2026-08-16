@@ -242,15 +242,15 @@ def _ra():
     return run_agent
 
 
-def _nous_entitlement_message(capability: str) -> str:
+def _openamer_entitlement_message(capability: str) -> str:
     try:
-        from openamer_cli.nous_account import (
-            format_nous_portal_entitlement_message,
-            get_nous_portal_account_info,
+        from openamer_cli.openamer_account import (
+            format_openamer_portal_entitlement_message,
+            get_openamer_portal_account_info,
         )
 
-        account_info = get_nous_portal_account_info(force_fresh=True)
-        message = format_nous_portal_entitlement_message(
+        account_info = get_openamer_portal_account_info(force_fresh=True)
+        message = format_openamer_portal_entitlement_message(
             account_info,
             capability=capability,
         )
@@ -259,8 +259,8 @@ def _nous_entitlement_message(capability: str) -> str:
         return ""
 
 
-def _print_nous_entitlement_guidance(agent, capability: str) -> bool:
-    message = _nous_entitlement_message(capability)
+def _print_openamer_entitlement_guidance(agent, capability: str) -> bool:
+    message = _openamer_entitlement_message(capability)
     if not message:
         return False
     for line in message.splitlines():
@@ -268,13 +268,13 @@ def _print_nous_entitlement_guidance(agent, capability: str) -> bool:
     return True
 
 
-def _is_nous_inference_route(provider: str, base_url: str) -> bool:
+def _is_openamer_inference_route(provider: str, base_url: str) -> bool:
     provider = (provider or "").strip().lower()
-    if provider == "nous":
+    if provider == "openamer":
         return True
     base = str(base_url or "")
     return (
-        base_url_host_matches(base, "inference-api.nousresearch.com")
+        base_url_host_matches(base, "inference-api.openamer.com")
     )
 
 
@@ -285,8 +285,8 @@ def _billing_or_entitlement_message(
     base_url: str,
     model: str,
 ) -> str:
-    if _is_nous_inference_route(provider, base_url):
-        return _nous_entitlement_message(capability)
+    if _is_openamer_inference_route(provider, base_url):
+        return _openamer_entitlement_message(capability)
 
     provider_label = (provider or "").strip() or "the selected provider"
     model_label = (model or "").strip() or "the selected model"
@@ -369,15 +369,15 @@ def _print_billing_or_entitlement_guidance(
     return True
 
 
-def _try_refresh_nous_paid_entitlement_credentials(agent) -> bool:
-    """Refresh Nous runtime credentials after a fresh paid-entitlement check."""
+def _try_refresh_openamer_paid_entitlement_credentials(agent) -> bool:
+    """Refresh OpenAmer runtime credentials after a fresh paid-entitlement check."""
     try:
-        from openamer_cli.nous_account import get_nous_portal_account_info
+        from openamer_cli.openamer_account import get_openamer_portal_account_info
 
-        account_info = get_nous_portal_account_info(force_fresh=True)
+        account_info = get_openamer_portal_account_info(force_fresh=True)
         if account_info.paid_service_access is not True:
             return False
-        return agent._try_refresh_nous_client_credentials(
+        return agent._try_refresh_openamer_client_credentials(
             force=True,
         )
     except Exception:
@@ -1810,27 +1810,27 @@ def run_conversation(
         agent._current_api_request_id = api_request_id
 
         while retry_count < max_retries:
-            # ── Nous Portal rate limit guard ──────────────────────
-            # If another session already recorded that Nous is rate-
+            # ── OpenAmer Portal rate limit guard ──────────────────────
+            # If another session already recorded that OpenAmer is rate-
             # limited, skip the API call entirely.  Each attempt
             # (including SDK-level retries) counts against RPH and
             # deepens the rate limit hole.
-            if agent.provider == "nous":
+            if agent.provider == "openamer":
                 try:
-                    from agent.nous_rate_guard import (
-                        nous_rate_limit_remaining,
-                        format_remaining as _fmt_nous_remaining,
+                    from agent.openamer_rate_guard import (
+                        openamer_rate_limit_remaining,
+                        format_remaining as _fmt_openamer_remaining,
                     )
-                    _nous_remaining = nous_rate_limit_remaining()
-                    if _nous_remaining is not None and _nous_remaining > 0:
-                        _nous_msg = (
-                            f"Nous Portal rate limit active — "
-                            f"resets in {_fmt_nous_remaining(_nous_remaining)}."
+                    _openamer_remaining = openamer_rate_limit_remaining()
+                    if _openamer_remaining is not None and _openamer_remaining > 0:
+                        _openamer_msg = (
+                            f"OpenAmer Portal rate limit active — "
+                            f"resets in {_fmt_openamer_remaining(_openamer_remaining)}."
                         )
                         agent._buffer_vprint(
-                            f"⏳ {_nous_msg} Trying fallback..."
+                            f"⏳ {_openamer_msg} Trying fallback..."
                         )
-                        agent._buffer_status(f"⏳ {_nous_msg}")
+                        agent._buffer_status(f"⏳ {_openamer_msg}")
                         if agent._try_activate_fallback():
                             active_system_prompt = _sync_failover_system_message(
                                 agent, api_messages, active_system_prompt)
@@ -1844,7 +1844,7 @@ def run_conversation(
                         agent._persist_session(messages, conversation_history)
                         return {
                             "final_response": (
-                                f"⏳ {_nous_msg}\n\n"
+                                f"⏳ {_openamer_msg}\n\n"
                                 "No fallback provider available. "
                                 "Try again after the reset, or add a "
                                 "fallback provider in config.yaml."
@@ -1853,7 +1853,7 @@ def run_conversation(
                             "api_calls": api_call_count,
                             "completed": False,
                             "failed": True,
-                            "error": _nous_msg,
+                            "error": _openamer_msg,
                         }
                 except ImportError:
                     pass
@@ -3055,13 +3055,13 @@ def run_conversation(
                 # usable content. Empty responses still loop through the
                 # empty-retry path below; the buffer is cleared when
                 # genuinely successful content is detected later (~L4127).
-                # Clear Nous rate limit state on successful request —
+                # Clear OpenAmer rate limit state on successful request —
                 # proves the limit has reset and other sessions can
-                # resume hitting Nous.
-                if agent.provider == "nous":
+                # resume hitting OpenAmer.
+                if agent.provider == "openamer":
                     try:
-                        from agent.nous_rate_guard import clear_nous_rate_limit
-                        clear_nous_rate_limit()
+                        from agent.openamer_rate_guard import clear_openamer_rate_limit
+                        clear_openamer_rate_limit()
                     except Exception:
                         pass
                 agent._touch_activity(f"API call #{api_call_count} completed")
@@ -3430,16 +3430,16 @@ def run_conversation(
 
                 if (
                     classified.reason == FailoverReason.billing
-                    and _is_nous_inference_route(
+                    and _is_openamer_inference_route(
                         getattr(agent, "provider", "") or "",
                         getattr(agent, "base_url", "") or "",
                     )
-                    and not _retry.nous_paid_entitlement_refresh_attempted
+                    and not _retry.openamer_paid_entitlement_refresh_attempted
                 ):
-                    _retry.nous_paid_entitlement_refresh_attempted = True
-                    if _try_refresh_nous_paid_entitlement_credentials(agent):
+                    _retry.openamer_paid_entitlement_refresh_attempted = True
+                    if _try_refresh_openamer_paid_entitlement_credentials(agent):
                         agent._vprint(
-                            f"{agent.log_prefix}🔐 Nous paid access verified — "
+                            f"{agent.log_prefix}🔐 OpenAmer paid access verified — "
                             "refreshed runtime credentials and retrying request...",
                             force=True,
                         )
@@ -3560,13 +3560,13 @@ def run_conversation(
                         continue
                 if (
                     agent.api_mode == "chat_completions"
-                    and agent.provider == "nous"
+                    and agent.provider == "openamer"
                     and status_code == 401
-                    and not _retry.nous_auth_retry_attempted
+                    and not _retry.openamer_auth_retry_attempted
                 ):
-                    _retry.nous_auth_retry_attempted = True
-                    if agent._try_refresh_nous_client_credentials(force=True):
-                        print(f"{agent.log_prefix}🔐 Nous agent key refreshed after 401. Retrying request...")
+                    _retry.openamer_auth_retry_attempted = True
+                    if agent._try_refresh_openamer_client_credentials(force=True):
+                        print(f"{agent.log_prefix}🔐 OpenAmer agent key refreshed after 401. Retrying request...")
                         continue
                     # Credential refresh didn't help — show diagnostic info.
                     # Most common causes: Portal OAuth expired/revoked,
@@ -3580,14 +3580,14 @@ def run_conversation(
                             _body_text = str(_body)[:200]
                     except Exception:
                         pass
-                    print(f"{agent.log_prefix}🔐 Nous 401 — Portal authentication failed.")
+                    print(f"{agent.log_prefix}🔐 OpenAmer 401 — Portal authentication failed.")
                     if _body_text:
                         print(f"{agent.log_prefix}   Response: {_body_text}")
-                    if not _print_nous_entitlement_guidance(agent, "Nous model access"):
+                    if not _print_openamer_entitlement_guidance(agent, "OpenAmer model access"):
                         print(f"{agent.log_prefix}   Most likely: Portal OAuth expired, account out of credits, or agent key revoked.")
                     print(f"{agent.log_prefix}   Troubleshooting:")
-                    print(f"{agent.log_prefix}     • Re-authenticate: openamer auth add nous")
-                    print(f"{agent.log_prefix}     • Check credits / billing: https://portal.nousresearch.com")
+                    print(f"{agent.log_prefix}     • Re-authenticate: openamer auth add openamer")
+                    print(f"{agent.log_prefix}     • Check credits / billing: https://portal.openamer.com")
                     print(f"{agent.log_prefix}     • Verify stored credentials: {_dhh}/auth.json")
                     print(f"{agent.log_prefix}     • Switch providers temporarily: /model <model> --provider openrouter")
                 if (
@@ -4081,8 +4081,8 @@ def run_conversation(
                         _retry.primary_recovery_attempted = False
                         continue
 
-                # ── Nous Portal: record rate limit & skip retries ─────
-                # When Nous returns a 429 that is a genuine account-
+                # ── OpenAmer Portal: record rate limit & skip retries ─────
+                # When OpenAmer returns a 429 that is a genuine account-
                 # level rate limit, record the reset time to a shared
                 # file so ALL sessions (cron, gateway, auxiliary) know
                 # not to pile on, then skip further retries -- each
@@ -4090,55 +4090,55 @@ def run_conversation(
                 # The retry loop's top-of-iteration guard will catch
                 # this on the next pass and try fallback or bail.
                 #
-                # IMPORTANT: Nous Portal multiplexes multiple upstream
+                # IMPORTANT: OpenAmer Portal multiplexes multiple upstream
                 # providers (DeepSeek, Kimi, MiMo, OpenAmer).  A 429 can
                 # also mean an UPSTREAM provider is out of capacity
                 # for one specific model -- transient, clears in
                 # seconds, nothing to do with the caller's quota.
                 # Tripping the cross-session breaker on that would
-                # block every Nous model for minutes.  We use
-                # ``is_genuine_nous_rate_limit`` to tell the two
+                # block every OpenAmer model for minutes.  We use
+                # ``is_genuine_openamer_rate_limit`` to tell the two
                 # apart via the 429's own x-ratelimit-* headers and
                 # the last-known-good state captured on the previous
                 # successful response.
                 if (
                     is_rate_limited
-                    and agent.provider == "nous"
+                    and agent.provider == "openamer"
                     and classified.reason == FailoverReason.rate_limit
                     and not recovered_with_pool
                 ):
-                    _genuine_nous_rate_limit = False
+                    _genuine_openamer_rate_limit = False
                     try:
-                        from agent.nous_rate_guard import (
-                            is_genuine_nous_rate_limit,
-                            record_nous_rate_limit,
+                        from agent.openamer_rate_guard import (
+                            is_genuine_openamer_rate_limit,
+                            record_openamer_rate_limit,
                         )
                         _err_resp = getattr(api_error, "response", None)
                         _err_hdrs = (
                             getattr(_err_resp, "headers", None)
                             if _err_resp else None
                         )
-                        _genuine_nous_rate_limit = is_genuine_nous_rate_limit(
+                        _genuine_openamer_rate_limit = is_genuine_openamer_rate_limit(
                             headers=_err_hdrs,
                             last_known_state=agent._rate_limit_state,
                         )
-                        if _genuine_nous_rate_limit:
-                            record_nous_rate_limit(
+                        if _genuine_openamer_rate_limit:
+                            record_openamer_rate_limit(
                                 headers=_err_hdrs,
                                 error_context=error_context,
                             )
                         else:
                             logger.info(
-                                "Nous 429 looks like upstream capacity "
+                                "OpenAmer 429 looks like upstream capacity "
                                 "(no exhausted bucket in headers or "
                                 "last-known state) -- not tripping "
                                 "cross-session breaker."
                             )
                     except Exception:
                         pass
-                    if _genuine_nous_rate_limit:
+                    if _genuine_openamer_rate_limit:
                         # Re-enter the loop exactly once so the
-                        # top-of-loop Nous guard handles fallback or
+                        # top-of-loop OpenAmer guard handles fallback or
                         # bails cleanly. (Setting retry_count to
                         # max_retries would make the while condition
                         # false immediately and the guard would never
@@ -4653,12 +4653,12 @@ def run_conversation(
                             model=_model,
                         ):
                             pass
-                        elif _provider == "nous" and _print_nous_entitlement_guidance(
+                        elif _provider == "openamer" and _print_openamer_entitlement_guidance(
                             agent,
-                            "Nous model access",
+                            "OpenAmer model access",
                         ):
                             pass
-                        elif _provider in {"openai-codex", "xai-oauth", "nous"} and status_code == 401:
+                        elif _provider in {"openai-codex", "xai-oauth", "openamer"} and status_code == 401:
                             if _provider == "openai-codex":
                                 agent._vprint(f"{agent.log_prefix}   💡 Codex OAuth token was rejected (HTTP 401). Your token may have been", force=True)
                                 agent._vprint(f"{agent.log_prefix}      refreshed by another client (Codex CLI, VS Code). To fix:", force=True)
@@ -4667,17 +4667,17 @@ def run_conversation(
                             elif _provider == "xai-oauth":
                                 agent._vprint(f"{agent.log_prefix}   💡 xAI OAuth token was rejected (HTTP 401). To fix:", force=True)
                                 agent._vprint(f"{agent.log_prefix}      re-authenticate with xAI Grok OAuth (SuperGrok / Premium+) from `openamer model`.", force=True)
-                            else:  # nous
-                                agent._vprint(f"{agent.log_prefix}   💡 Nous Portal OAuth token was rejected (HTTP 401). Your token may be", force=True)
+                            else:  # openamer
+                                agent._vprint(f"{agent.log_prefix}   💡 OpenAmer Portal OAuth token was rejected (HTTP 401). Your token may be", force=True)
                                 agent._vprint(f"{agent.log_prefix}      expired, revoked, or your account may be out of credits. To fix:", force=True)
                                 agent._vprint(f"{agent.log_prefix}      1. Re-authenticate: openamer portal", force=True)
-                                agent._vprint(f"{agent.log_prefix}      2. Check your portal account: https://portal.nousresearch.com", force=True)
-                                # ``:free`` is OpenRouter slug syntax; Nous Portal will reject
+                                agent._vprint(f"{agent.log_prefix}      2. Check your portal account: https://portal.openamer.com", force=True)
+                                # ``:free`` is OpenRouter slug syntax; OpenAmer Portal will reject
                                 # the model name even after a successful re-auth.
                                 if isinstance(_model, str) and _model.endswith(":free"):
                                     agent._vprint(f"{agent.log_prefix}      ⚠️  Note: `{_model}` looks like an OpenRouter slug (`:free` suffix).", force=True)
-                                    agent._vprint(f"{agent.log_prefix}         Nous Portal won't recognize that model name. Either switch to a", force=True)
-                                    agent._vprint(f"{agent.log_prefix}         Nous catalog model, or run `/model openrouter:{_model}` to use OpenRouter.", force=True)
+                                    agent._vprint(f"{agent.log_prefix}         OpenAmer Portal won't recognize that model name. Either switch to a", force=True)
+                                    agent._vprint(f"{agent.log_prefix}         OpenAmer catalog model, or run `/model openrouter:{_model}` to use OpenRouter.", force=True)
                         else:
                             agent._vprint(f"{agent.log_prefix}   💡 Your API key was rejected by the provider. Check:", force=True)
                             agent._vprint(f"{agent.log_prefix}      • Is the key valid? Run: openamer setup", force=True)

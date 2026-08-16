@@ -264,7 +264,7 @@ stdenv.mkDerivation (finalAttrs: {
 
   meta = with lib; {
     description = "AI agent with advanced tool-calling capabilities";
-    homepage = "https://github.com/NousResearch/openamer-agent";
+    homepage = "https://github.com/openamer/openamer-agent";
     mainProgram = "openamer";
     license = licenses.mit;
     platforms = platforms.unix;

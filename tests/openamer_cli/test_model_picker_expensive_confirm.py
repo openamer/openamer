@@ -13,7 +13,7 @@ def test_prompt_toolkit_model_picker_defers_confirmation_off_key_handler(monkeyp
     result = ModelSwitchResult(
         success=True,
         new_model="openai/gpt-5.5-pro",
-        target_provider="nous",
+        target_provider="openamer",
     )
     monkeypatch.setattr(
         "openamer_cli.model_switch.switch_model",
@@ -37,13 +37,13 @@ def test_prompt_toolkit_model_picker_defers_confirmation_off_key_handler(monkeyp
         _app=object(),
         _model_picker_state={
             "stage": "model",
-            "provider_data": {"slug": "nous"},
+            "provider_data": {"slug": "openamer"},
             "model_list": ["openai/gpt-5.5-pro"],
             "selected": 0,
             "user_provs": None,
             "custom_provs": None,
         },
-        provider="nous",
+        provider="openamer",
         model="openai/gpt-5.5",
         base_url="",
         api_key="",

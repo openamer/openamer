@@ -244,7 +244,7 @@ AI vocalists don't read — they pronounce. Help them:
 PHONETIC RESPELLING:
 - Spell words as they SOUND: "through" -> "thru"
 - Proper nouns are highest failure rate — test early
-- "Nous" -> "Noose" (forces correct pronunciation)
+- "OpenAmer" -> "Noose" (forces correct pronunciation)
 - Hyphenate to guide syllables: "Re-search", "bio-engineering"
 
 DELIVERY CONTROL:

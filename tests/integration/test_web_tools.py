@@ -12,7 +12,7 @@ Usage:
 
 Requirements:
     - PARALLEL_API_KEY or FIRECRAWL_API_KEY environment variable must be set
-    - An auxiliary LLM provider (OPENROUTER_API_KEY or Nous Portal auth) (optional, for LLM tests)
+    - An auxiliary LLM provider (OPENROUTER_API_KEY or OpenAmer Portal auth) (optional, for LLM tests)
 """
 
 import pytest

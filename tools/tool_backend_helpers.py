@@ -14,10 +14,10 @@ _DEFAULT_MODAL_MODE = "auto"
 _VALID_MODAL_MODES = {"auto", "direct", "managed"}
 
 
-def managed_nous_tools_enabled(*, force_fresh: bool = False) -> bool:
-    """Return True when the user is entitled to the Nous Tool Gateway.
+def managed_openamer_tools_enabled(*, force_fresh: bool = False) -> bool:
+    """Return True when the user is entitled to the OpenAmer Tool Gateway.
 
-    Entitlement is paid Nous Portal service access OR a live free tool pool
+    Entitlement is paid OpenAmer Portal service access OR a live free tool pool
     (``tool_gateway_entitled``). Per-category coverage (the pool funds image but
     not video, etc.) is narrowed by callers via ``tool_gateway_entitled_for``;
     this coarse gate only answers "is any managed tool usable at all".
@@ -28,12 +28,12 @@ def managed_nous_tools_enabled(*, force_fresh: bool = False) -> bool:
     reflect a just-purchased subscription, credits, or pool grant immediately.
     """
     try:
-        from openamer_cli.nous_account import get_nous_portal_account_info
+        from openamer_cli.openamer_account import get_openamer_portal_account_info
 
         if force_fresh:
-            account_info = get_nous_portal_account_info(force_fresh=True)
+            account_info = get_openamer_portal_account_info(force_fresh=True)
         else:
-            account_info = get_nous_portal_account_info()
+            account_info = get_openamer_portal_account_info()
         if not account_info.logged_in:
             return False
         return account_info.tool_gateway_entitled
@@ -41,20 +41,20 @@ def managed_nous_tools_enabled(*, force_fresh: bool = False) -> bool:
         return False
 
 
-def nous_tool_gateway_unavailable_message(
-    capability: str = "the Nous Tool Gateway",
+def openamer_tool_gateway_unavailable_message(
+    capability: str = "the OpenAmer Tool Gateway",
     *,
     force_fresh: bool = False,
 ) -> str:
-    """Return account-aware guidance for an unavailable Nous Tool Gateway path."""
+    """Return account-aware guidance for an unavailable OpenAmer Tool Gateway path."""
     try:
-        from openamer_cli.nous_account import (
-            format_nous_portal_entitlement_message,
-            get_nous_portal_account_info,
+        from openamer_cli.openamer_account import (
+            format_openamer_portal_entitlement_message,
+            get_openamer_portal_account_info,
         )
 
-        account_info = get_nous_portal_account_info(force_fresh=force_fresh)
-        message = format_nous_portal_entitlement_message(
+        account_info = get_openamer_portal_account_info(force_fresh=force_fresh)
+        message = format_openamer_portal_entitlement_message(
             account_info,
             capability=capability,
         )
@@ -64,7 +64,7 @@ def nous_tool_gateway_unavailable_message(
         pass
     return (
         f"{capability} is unavailable. Run `openamer model` to refresh your "
-        "Nous Portal login and billing status."
+        "OpenAmer Portal login and billing status."
     )
 
 
@@ -116,7 +116,7 @@ def resolve_modal_backend_state(
     requested_mode = coerce_modal_mode(modal_mode)
     normalized_mode = normalize_modal_mode(modal_mode)
     if managed_enabled is None:
-        managed_enabled = managed_nous_tools_enabled()
+        managed_enabled = managed_openamer_tools_enabled()
     managed_mode_blocked = (
         requested_mode == "managed" and not managed_enabled
     )

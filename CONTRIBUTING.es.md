@@ -45,7 +45,7 @@ Las habilidades incluidas (en `skills/`) se envían con cada instalación de Ope
 
 Si tu habilidad es oficial y útil pero no universalmente necesaria (ej., una integración de servicio de pago, una dependencia pesada), ponla en **`optional-skills/`** — se envía con el repositorio pero no está activada por defecto. Los usuarios pueden descubrirla a través de `openamer skills browse` (etiquetada como "oficial") e instalarla con `openamer skills install` (sin advertencia de terceros, confianza integrada).
 
-Si tu habilidad es especializada, contribuida por la comunidad o de nicho, es mejor para un **Skills Hub** — súbela a un registro de habilidades y compártela en el [Discord de Nous Research](https://discord.gg/NousResearch). Los usuarios pueden instalarla con `openamer skills install`.
+Si tu habilidad es especializada, contribuida por la comunidad o de nicho, es mejor para un **Skills Hub** — súbela a un registro de habilidades y compártela en el [Discord de OpenAmer](https://discord.gg/openamer). Los usuarios pueden instalarla con `openamer skills install`.
 
 ---
 
@@ -154,7 +154,7 @@ openamer-agent/
 │   ├── main.py                   # Punto de entrada, análisis de argumentos, despacho de comandos
 │   ├── config.py                 # Gestión de configuración, migración, definiciones de variables de entorno
 │   ├── setup.py                  # Asistente de configuración interactivo
-│   ├── auth.py                   # Resolución de proveedor, OAuth, Nous Portal
+│   ├── auth.py                   # Resolución de proveedor, OAuth, OpenAmer Portal
 │   ├── models.py                 # Listas de selección de modelos de OpenRouter
 │   ├── banner.py                 # Banner de bienvenida, arte ASCII
 │   ├── commands.py               # Registro central de comandos de barra (CommandDef), autocompletado, ayudantes del gateway
@@ -206,7 +206,7 @@ openamer-agent/
 |------|-----------|
 | `~/.openamer/config.yaml` | Configuración (modelo, terminal, toolsets, compresión, etc.) |
 | `~/.openamer/.env` | Claves API y secretos |
-| `~/.openamer/auth.json` | Credenciales OAuth (Nous Portal) |
+| `~/.openamer/auth.json` | Credenciales OAuth (OpenAmer Portal) |
 | `~/.openamer/skills/` | Todas las habilidades activas (incluidas + instaladas desde hub + creadas por el agente) |
 | `~/.openamer/memories/` | Memoria persistente (MEMORY.md, USER.md) |
 | `~/.openamer/state.db` | Base de datos de sesiones SQLite |
@@ -591,7 +591,7 @@ test(tools): añadir tests unitarios para file_operations
 
 ## Comunidad
 
-- **Discord**: [discord.gg/NousResearch](https://discord.gg/NousResearch) — para preguntas, mostrar proyectos y compartir habilidades
+- **Discord**: [discord.gg/openamer](https://discord.gg/openamer) — para preguntas, mostrar proyectos y compartir habilidades
 - **GitHub Discussions**: Para propuestas de diseño y discusiones de arquitectura
 - **Skills Hub**: Sube habilidades especializadas a un registro y compártelas con la comunidad
 

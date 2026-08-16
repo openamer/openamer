@@ -64,8 +64,8 @@ async function stampExeIdentity(exe, desktopRoot = resolve(import.meta.dirname, 
     'version-string': {
       ProductName: 'OpenAmer',
       FileDescription: 'OpenAmer',
-      CompanyName: 'Nous Research',
-      LegalCopyright: 'Copyright (c) 2026 Nous Research'
+      CompanyName: 'OpenAmer',
+      LegalCopyright: 'Copyright (c) 2026 OpenAmer'
     }
   })
 

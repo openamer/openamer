@@ -64,7 +64,7 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
       "@openamer/shared": path.resolve(__dirname, "../apps/shared/src"),
     },
-    // When @nous-research/ui is symlinked via `file:../../design-language`,
+    // When @openamer-research/ui is symlinked via `file:../../design-language`,
     // Node's module resolution would pick up shared deps from
     // design-language/node_modules/*, giving us two copies + breaking
     // hooks (useRef-of-null), webgl contexts, etc. Force everything that

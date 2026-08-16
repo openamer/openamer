@@ -195,7 +195,7 @@ describe('renderRpcResult', () => {
 
   describe('session.status', () => {
     it('passes through the multi-line plain-text output verbatim', () => {
-      const output = 'OpenAmer TUI Status\n\nSession ID: s-1\nModel: nous-openamer-3 (unknown)'
+      const output = 'OpenAmer TUI Status\n\nSession ID: s-1\nModel: openamer-openamer-3 (unknown)'
       expect(renderRpcResult({ output }, 'status')).toBe(output)
     })
   })
@@ -214,14 +214,14 @@ describe('renderRpcResult', () => {
           input: 10,
           output: 20,
           total: 30,
-          credits_lines: ['Nous credits: 8,420 remaining', 'Resets: 2026-08-01']
+          credits_lines: ['OpenAmer credits: 8,420 remaining', 'Resets: 2026-08-01']
         },
         'usage'
       )
 
       expect(body.split('\n')).toEqual([
         'Usage: 1 calls · 10 in / 20 out · 30 total',
-        'Nous credits: 8,420 remaining',
+        'OpenAmer credits: 8,420 remaining',
         'Resets: 2026-08-01'
       ])
     })

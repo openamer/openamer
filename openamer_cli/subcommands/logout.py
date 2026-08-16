@@ -21,7 +21,7 @@ def build_logout_parser(subparsers, *, cmd_logout: Callable) -> None:
     )
     logout_parser.add_argument(
         "--provider",
-        choices=["nous", "openai-codex", "xai-oauth", "spotify"],
+        choices=["openamer", "openai-codex", "xai-oauth", "spotify"],
         default=None,
         help="Provider to log out from (default: active provider)",
     )

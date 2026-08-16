@@ -33,7 +33,7 @@ High-level categories:
 For the authoritative code-derived registry, see [Built-in Tools Reference](/reference/tools-reference) and [Toolsets Reference](/reference/toolsets-reference).
 
 :::tip a hosted provider Tool Gateway
-Paid [your hosted provider](https://portal.nousresearch.com) subscribers can use web search, image generation, TTS, and browser automation through the **[Tool Gateway](tool-gateway.md)** — no separate API keys needed. Run `openamer model` to enable it, or configure individual tools with `openamer tools`.
+Paid [your hosted provider](https://portal.openamer.com) subscribers can use web search, image generation, TTS, and browser automation through the **[Tool Gateway](tool-gateway.md)** — no separate API keys needed. Run `openamer model` to enable it, or configure individual tools with `openamer tools`.
 :::
 
 ## Using Toolsets

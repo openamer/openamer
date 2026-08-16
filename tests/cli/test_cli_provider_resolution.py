@@ -311,30 +311,30 @@ def test_codex_provider_replaces_incompatible_default_model(monkeypatch):
     assert shell.model == "gpt-5.2-codex"
 
 
-def test_model_flow_nous_prints_subscription_guidance_without_mutating_explicit_tts(monkeypatch, capsys):
+def test_model_flow_openamer_prints_subscription_guidance_without_mutating_explicit_tts(monkeypatch, capsys):
     monkeypatch.setattr(
-        "openamer_cli.nous_subscription.managed_nous_tools_enabled",
+        "openamer_cli.openamer_subscription.managed_openamer_tools_enabled",
         lambda *args, **kwargs: True,
     )
     config = {
-        "model": {"provider": "nous", "default": "claude-opus-4-6"},
+        "model": {"provider": "openamer", "default": "claude-opus-4-6"},
         "tts": {"provider": "elevenlabs"},
         "browser": {"cloud_provider": "browser-use"},
     }
 
     monkeypatch.setattr(
         "openamer_cli.auth.get_provider_auth_state",
-        lambda provider: {"access_token": "nous-token"},
+        lambda provider: {"access_token": "openamer-token"},
     )
     monkeypatch.setattr(
-        "openamer_cli.auth.resolve_nous_runtime_credentials",
+        "openamer_cli.auth.resolve_openamer_runtime_credentials",
         lambda *args, **kwargs: {
             "base_url": "https://inference.example.com/v1",
-            "api_key": "nous-key",
+            "api_key": "openamer-key",
         },
     )
     monkeypatch.setattr(
-        "openamer_cli.auth.fetch_nous_models",
+        "openamer_cli.auth.fetch_openamer_models",
         lambda *args, **kwargs: ["claude-opus-4-6"],
     )
     monkeypatch.setattr("openamer_cli.auth._prompt_model_selection", lambda model_ids, current_model="", pricing=None, **kw: "claude-opus-4-6")
@@ -349,7 +349,7 @@ def test_model_flow_nous_prints_subscription_guidance_without_mutating_explicit_
     assert config["browser"]["cloud_provider"] == "browser-use"
 
 
-def test_model_flow_nous_does_not_restore_stale_custom_api_key(tmp_path, monkeypatch):
+def test_model_flow_openamer_does_not_restore_stale_custom_api_key(tmp_path, monkeypatch):
     import yaml
 
     config_home = tmp_path / "openamer"
@@ -378,23 +378,23 @@ def test_model_flow_nous_does_not_restore_stale_custom_api_key(tmp_path, monkeyp
     monkeypatch.setattr(
         "openamer_cli.auth.get_provider_auth_state",
         lambda provider: {
-            "access_token": "nous-token",
+            "access_token": "openamer-token",
             "portal_base_url": "https://portal.example.com",
         },
     )
     monkeypatch.setattr(
-        "openamer_cli.auth.resolve_nous_runtime_credentials",
+        "openamer_cli.auth.resolve_openamer_runtime_credentials",
         lambda *args, **kwargs: {
-            "base_url": "https://inference-api.nousresearch.com/v1",
-            "api_key": "nous-key",
+            "base_url": "https://inference-api.openamer.com/v1",
+            "api_key": "openamer-key",
         },
     )
     monkeypatch.setattr(
-        "openamer_cli.models.get_curated_nous_model_ids",
+        "openamer_cli.models.get_curated_openamer_model_ids",
         lambda: [selected_model],
     )
     monkeypatch.setattr("openamer_cli.models.get_pricing_for_provider", lambda provider: {})
-    monkeypatch.setattr("openamer_cli.models.check_nous_free_tier", lambda **kwargs: False)
+    monkeypatch.setattr("openamer_cli.models.check_openamer_free_tier", lambda **kwargs: False)
     monkeypatch.setattr(
         "openamer_cli.models.union_with_portal_paid_recommendations",
         lambda model_ids, pricing, portal_url: (model_ids, pricing),
@@ -404,7 +404,7 @@ def test_model_flow_nous_does_not_restore_stale_custom_api_key(tmp_path, monkeyp
         lambda *args, **kwargs: selected_model,
     )
     monkeypatch.setattr(
-        "openamer_cli.nous_subscription.prompt_enable_tool_gateway",
+        "openamer_cli.openamer_subscription.prompt_enable_tool_gateway",
         lambda config: None,
     )
 
@@ -412,9 +412,9 @@ def test_model_flow_nous_does_not_restore_stale_custom_api_key(tmp_path, monkeyp
 
     config = yaml.safe_load(config_path.read_text()) or {}
     model = config.get("model")
-    assert model["provider"] == "nous"
+    assert model["provider"] == "openamer"
     assert model["default"] == selected_model
-    assert model["base_url"] == "https://inference-api.nousresearch.com/v1"
+    assert model["base_url"] == "https://inference-api.openamer.com/v1"
     assert "api_key" not in model
     assert "api_mode" not in model
 
@@ -512,14 +512,14 @@ def test_model_flow_anthropic_clears_stale_custom_key_and_mode(tmp_path, monkeyp
     assert "api_mode" not in model
 
 
-def test_model_flow_nous_offers_tool_gateway_prompt_when_unconfigured(monkeypatch, capsys):
-    from openamer_cli.nous_account import NousPortalAccountInfo
+def test_model_flow_openamer_offers_tool_gateway_prompt_when_unconfigured(monkeypatch, capsys):
+    from openamer_cli.openamer_account import OpenAmerPortalAccountInfo
 
     # Entitled account (paid → all tools eligible) drives the offer; the prompt
     # is a per-tool checklist now, so capture the call rather than scrape stdout.
     monkeypatch.setattr(
-        "openamer_cli.nous_subscription.get_nous_portal_account_info",
-        lambda **kwargs: NousPortalAccountInfo(
+        "openamer_cli.openamer_subscription.get_openamer_portal_account_info",
+        lambda **kwargs: OpenAmerPortalAccountInfo(
             logged_in=True,
             source="account_api",
             fresh=True,
@@ -536,7 +536,7 @@ def test_model_flow_nous_offers_tool_gateway_prompt_when_unconfigured(monkeypatc
     monkeypatch.setattr("openamer_cli.setup.prompt_checklist", _fake_checklist, raising=False)
 
     config = {
-        "model": {"provider": "nous", "default": "claude-opus-4-6"},
+        "model": {"provider": "openamer", "default": "claude-opus-4-6"},
         "tts": {"provider": "edge"},
     }
 
@@ -545,14 +545,14 @@ def test_model_flow_nous_offers_tool_gateway_prompt_when_unconfigured(monkeypatc
         lambda provider: {"access_token": "***"},
     )
     monkeypatch.setattr(
-        "openamer_cli.auth.resolve_nous_runtime_credentials",
+        "openamer_cli.auth.resolve_openamer_runtime_credentials",
         lambda *args, **kwargs: {
             "base_url": "https://inference.example.com/v1",
             "api_key": "***",
         },
     )
     monkeypatch.setattr(
-        "openamer_cli.auth.fetch_nous_models",
+        "openamer_cli.auth.fetch_openamer_models",
         lambda *args, **kwargs: ["claude-opus-4-6"],
     )
     monkeypatch.setattr("openamer_cli.auth._prompt_model_selection", lambda model_ids, current_model="", pricing=None, **kw: "claude-opus-4-6")
@@ -840,16 +840,16 @@ def test_model_flow_custom_persists_selected_api_mode(monkeypatch):
     assert saved_env[key_env] == "test-key"
 
 
-def test_cmd_model_forwards_nous_login_tls_options(monkeypatch):
+def test_cmd_model_forwards_openamer_login_tls_options(monkeypatch):
     monkeypatch.setattr(openamer_main, "_require_tty", lambda *a: None)
     monkeypatch.setattr(
         "openamer_cli.config.load_config",
-        lambda: {"model": {"default": "gpt-5", "provider": "nous"}},
+        lambda: {"model": {"default": "gpt-5", "provider": "openamer"}},
     )
     monkeypatch.setattr("openamer_cli.config.save_config", lambda cfg: None)
     monkeypatch.setattr("openamer_cli.config.get_env_value", lambda key: "")
     monkeypatch.setattr("openamer_cli.config.save_env_value", lambda key, value: None)
-    monkeypatch.setattr("openamer_cli.auth.resolve_provider", lambda requested, **kwargs: "nous")
+    monkeypatch.setattr("openamer_cli.auth.resolve_provider", lambda requested, **kwargs: "openamer")
     monkeypatch.setattr("openamer_cli.auth.get_provider_auth_state", lambda provider_id: None)
     monkeypatch.setattr(openamer_main, "_prompt_provider_choice", lambda choices, **kwargs: 0)
 
@@ -869,8 +869,8 @@ def test_cmd_model_forwards_nous_login_tls_options(monkeypatch):
 
     openamer_main.cmd_model(
         SimpleNamespace(
-            portal_url="https://portal.nousresearch.com",
-            inference_url="https://inference.nousresearch.com/v1",
+            portal_url="https://portal.openamer.com",
+            inference_url="https://inference.openamer.com/v1",
             client_id="openamer-local",
             scope="openid profile",
             no_browser=True,
@@ -881,8 +881,8 @@ def test_cmd_model_forwards_nous_login_tls_options(monkeypatch):
     )
 
     assert captured == {
-        "portal_url": "https://portal.nousresearch.com",
-        "inference_url": "https://inference.nousresearch.com/v1",
+        "portal_url": "https://portal.openamer.com",
+        "inference_url": "https://inference.openamer.com/v1",
         "client_id": "openamer-local",
         "scope": "openid profile",
         "no_browser": True,

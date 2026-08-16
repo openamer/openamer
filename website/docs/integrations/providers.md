@@ -62,7 +62,7 @@ In the `model:` config section, you can use either `default:` or `model:` as the
 
 ### your hosted provider
 
-[your hosted provider](https://portal.nousresearch.com) is the OpenAmer project's unified subscription gateway and **the recommended way to run OpenAmer Agent**. One OAuth login covers 300+ frontier agentic models (Claude, GPT, Gemini, DeepSeek, Qwen, Kimi, GLM, MiniMax, Grok, ...) plus the [Tool Gateway](/user-guide/features/tool-gateway) (web search, image generation, TTS, browser automation) — billed against your a hosted provider subscription instead of separate per-provider accounts.
+[your hosted provider](https://portal.openamer.com) is the OpenAmer project's unified subscription gateway and **the recommended way to run OpenAmer Agent**. One OAuth login covers 300+ frontier agentic models (Claude, GPT, Gemini, DeepSeek, Qwen, Kimi, GLM, MiniMax, Grok, ...) plus the [Tool Gateway](/user-guide/features/tool-gateway) (web search, image generation, TTS, browser automation) — billed against your a hosted provider subscription instead of separate per-provider accounts.
 
 ```bash
 openamer setup --portal     # fresh install — OAuth + provider + gateway in one command
@@ -70,9 +70,9 @@ openamer model              # existing install — pick "your hosted provider" f
 openamer portal info        # inspect login + routing at any time
 ```
 
-Don't have a subscription yet? Get one at [portal.nousresearch.com/manage-subscription](https://portal.nousresearch.com/manage-subscription).
+Don't have a subscription yet? Get one at [portal.openamer.com/manage-subscription](https://portal.openamer.com/manage-subscription).
 
-**For full details:** see the dedicated [your hosted provider integration page](/integrations/nous-portal) (what's in the subscription, model catalog, troubleshooting) and the step-by-step [Run OpenAmer Agent with your hosted provider guide](/guides/run-openamer-with-nous-portal).
+**For full details:** see the dedicated [your hosted provider integration page](/integrations/openamer-portal) (what's in the subscription, model catalog, troubleshooting) and the step-by-step [Run OpenAmer Agent with your hosted provider guide](/guides/run-openamer-with-openamer-portal).
 
 **Client identification.** Every Portal request from OpenAmer Agent carries a `client=openamer-client-v<version>` tag (e.g. `client=openamer-client-v0.13.0`) auto-aligned to your installed release. This is sent on all Portal pathways — main chat loop, auxiliary calls, compression summarizer, web extraction — and lets Portal-side telemetry distinguish OpenAmer traffic from other clients. No config required; the tag updates automatically when you `openamer update`.
 
@@ -1491,7 +1491,7 @@ fallback_model:
 
 When activated, the fallback swaps the model and provider mid-session without losing your conversation. The chain is tried entry-by-entry; activation is one-shot per session.
 
-Supported providers: `openrouter`, `nous`, `novita`, `openai-codex`, `copilot`, `copilot-acp`, `anthropic`, `gemini`, `qwen-oauth`, `huggingface`, `zai`, `kimi-coding`, `kimi-coding-cn`, `minimax`, `minimax-cn`, `minimax-oauth`, `deepseek`, `nvidia`, `xai`, `xai-oauth`, `ollama-cloud`, `bedrock`, `azure-foundry`, `opencode-zen`, `opencode-go`, `kilocode`, `xiaomi`, `arcee`, `gmi`, `stepfun`, `lmstudio`, `alibaba`, `alibaba-coding-plan`, `tencent-tokenhub`, `custom`.
+Supported providers: `openrouter`, `openamer`, `novita`, `openai-codex`, `copilot`, `copilot-acp`, `anthropic`, `gemini`, `qwen-oauth`, `huggingface`, `zai`, `kimi-coding`, `kimi-coding-cn`, `minimax`, `minimax-cn`, `minimax-oauth`, `deepseek`, `nvidia`, `xai`, `xai-oauth`, `ollama-cloud`, `bedrock`, `azure-foundry`, `opencode-zen`, `opencode-go`, `kilocode`, `xiaomi`, `arcee`, `gmi`, `stepfun`, `lmstudio`, `alibaba`, `alibaba-coding-plan`, `tencent-tokenhub`, `custom`.
 
 :::tip
 Fallback is configured exclusively through `config.yaml` — or interactively via `openamer fallback`. For full details on when it triggers, how the chain advances, and how it interacts with auxiliary tasks and delegation, see [Fallback Providers](/user-guide/features/fallback-providers).

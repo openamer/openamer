@@ -331,13 +331,13 @@ def _model_flow_moa(config, current_model=""):
 
 
 def _model_flow_nous(config, current_model="", args=None):
-    """Nous Portal provider: ensure logged in, then pick model."""
+    """OpenAmer Portal provider: ensure logged in, then pick model."""
     from openamer_cli.auth import (
         get_provider_auth_state,
         _prompt_model_selection,
         _save_model_choice,
         _update_config_for_provider,
-        resolve_nous_runtime_credentials,
+        resolve_openamer_runtime_credentials,
         AuthError,
         format_auth_error,
         _login_nous,
@@ -349,11 +349,11 @@ def _model_flow_nous(config, current_model="", args=None):
         save_config,
         save_env_value,
     )
-    from openamer_cli.nous_subscription import prompt_enable_tool_gateway
+    from openamer_cli.openamer_subscription import prompt_enable_tool_gateway
 
-    state = get_provider_auth_state("nous")
+    state = get_provider_auth_state("openamer")
     if not state or not state.get("access_token"):
-        print("Not logged into Nous Portal. Starting login...")
+        print("Not logged into OpenAmer Portal. Starting login...")
         print()
         try:
             mock_args = argparse.Namespace(
@@ -366,7 +366,7 @@ def _model_flow_nous(config, current_model="", args=None):
                 ca_bundle=getattr(args, "ca_bundle", None),
                 insecure=bool(getattr(args, "insecure", False)),
             )
-            _login_nous(mock_args, PROVIDER_REGISTRY["nous"])
+            _login_nous(mock_args, PROVIDER_REGISTRY["openamer"])
             # Offer Tool Gateway enablement for paid subscribers
             try:
                 _refreshed = load_config() or {}
@@ -386,28 +386,28 @@ def _model_flow_nous(config, current_model="", args=None):
     # The live /models endpoint returns hundreds of models; the curated list
     # shows only agentic models users recognize from OpenRouter.
     from openamer_cli.models import (
-        get_curated_nous_model_ids,
+        get_curated_openamer_model_ids,
         get_pricing_for_provider,
-        check_nous_free_tier,
-        partition_nous_models_by_tier,
+        check_openamer_free_tier,
+        partition_openamer_models_by_tier,
         union_with_portal_free_recommendations,
         union_with_portal_paid_recommendations,
     )
 
-    model_ids = get_curated_nous_model_ids()
+    model_ids = get_curated_openamer_model_ids()
     if not model_ids:
-        print("No curated models available for Nous Portal.")
+        print("No curated models available for OpenAmer Portal.")
         return
 
     # Verify credentials are still valid (catches expired sessions early)
     try:
-        creds = resolve_nous_runtime_credentials()
+        creds = resolve_openamer_runtime_credentials()
     except Exception as exc:
         relogin = isinstance(exc, AuthError) and exc.relogin_required
         msg = format_auth_error(exc) if isinstance(exc, AuthError) else str(exc)
         if relogin:
             print(f"Session expired: {msg}")
-            print("Re-authenticating with Nous Portal...\n")
+            print("Re-authenticating with OpenAmer Portal...\n")
             try:
                 mock_args = argparse.Namespace(
                     portal_url=None,
@@ -419,7 +419,7 @@ def _model_flow_nous(config, current_model="", args=None):
                     ca_bundle=None,
                     insecure=False,
                 )
-                _login_nous(mock_args, PROVIDER_REGISTRY["nous"])
+                _login_nous(mock_args, PROVIDER_REGISTRY["openamer"])
             except Exception as login_exc:
                 print(f"Re-login failed: {login_exc}")
             return
@@ -427,14 +427,14 @@ def _model_flow_nous(config, current_model="", args=None):
         return
 
     # Fetch live pricing (non-blocking — returns empty dict on failure)
-    pricing = get_pricing_for_provider("nous")
+    pricing = get_pricing_for_provider("openamer")
 
     # Force fresh account data for model selection so recent credit purchases
     # are reflected immediately.
-    free_tier = check_nous_free_tier(force_fresh=True)
+    free_tier = check_openamer_free_tier(force_fresh=True)
     if not free_tier:
         try:
-            refreshed_creds = resolve_nous_runtime_credentials(
+            refreshed_creds = resolve_openamer_runtime_credentials(
                 force_refresh=True,
             )
             if refreshed_creds:
@@ -446,11 +446,11 @@ def _model_flow_nous(config, current_model="", args=None):
 
     # Resolve portal URL early — needed both for upgrade links and for the
     # freeRecommendedModels endpoint below.
-    _nous_portal_url = ""
+    _openamer_portal_url = ""
     try:
-        _nous_state = get_provider_auth_state("nous")
-        if _nous_state:
-            _nous_portal_url = _nous_state.get("portal_base_url", "")
+        _openamer_state = get_provider_auth_state("openamer")
+        if _openamer_state:
+            _openamer_portal_url = _openamer_state.get("portal_base_url", "")
     except Exception:
         pass
 
@@ -467,42 +467,42 @@ def _model_flow_nous(config, current_model="", args=None):
     unavailable_message = ""
     if free_tier:
         try:
-            from openamer_cli.nous_account import (
-                format_nous_portal_entitlement_message,
-                get_nous_portal_account_info,
+            from openamer_cli.openamer_account import (
+                format_openamer_portal_entitlement_message,
+                get_openamer_portal_account_info,
             )
 
-            _account_info = get_nous_portal_account_info(force_fresh=True)
+            _account_info = get_openamer_portal_account_info(force_fresh=True)
             unavailable_message = (
-                format_nous_portal_entitlement_message(
+                format_openamer_portal_entitlement_message(
                     _account_info,
-                    capability="paid Nous models",
+                    capability="paid OpenAmer models",
                 )
                 or ""
             )
         except Exception:
             unavailable_message = ""
         model_ids, pricing = union_with_portal_free_recommendations(
-            model_ids, pricing, _nous_portal_url,
+            model_ids, pricing, _openamer_portal_url,
         )
-        model_ids, unavailable_models = partition_nous_models_by_tier(
+        model_ids, unavailable_models = partition_openamer_models_by_tier(
             model_ids, pricing, free_tier=True
         )
     else:
         model_ids, pricing = union_with_portal_paid_recommendations(
-            model_ids, pricing, _nous_portal_url,
+            model_ids, pricing, _openamer_portal_url,
         )
 
     if not model_ids and not unavailable_models:
-        print("No models available for Nous Portal after filtering.")
+        print("No models available for OpenAmer Portal after filtering.")
         return
 
     if free_tier and not model_ids:
         print("No free models currently available.")
         if unavailable_models:
-            from openamer_cli.auth import DEFAULT_NOUS_PORTAL_URL
+            from openamer_cli.auth import DEFAULT_openamer_PORTAL_URL
 
-            _url = (_nous_portal_url or DEFAULT_NOUS_PORTAL_URL).rstrip("/")
+            _url = (_openamer_portal_url or DEFAULT_openamer_PORTAL_URL).rstrip("/")
             print(unavailable_message or f"Upgrade at {_url} to access paid models.")
         return
 
@@ -515,17 +515,17 @@ def _model_flow_nous(config, current_model="", args=None):
         current_model=current_model,
         pricing=pricing,
         unavailable_models=unavailable_models,
-        portal_url=_nous_portal_url,
+        portal_url=_openamer_portal_url,
         unavailable_message=unavailable_message,
-        confirm_provider="nous",
+        confirm_provider="openamer",
         confirm_base_url=creds.get("base_url", ""),
         confirm_api_key=creds.get("api_key", ""),
     )
     if selected:
         _save_model_choice(selected)
-        # Reactivate Nous as the provider and update config
+        # Reactivate OpenAmer as the provider and update config
         inference_url = creds.get("base_url", "")
-        _update_config_for_provider("nous", inference_url)
+        _update_config_for_provider("openamer", inference_url)
         # Reload after the auth helper writes provider state. The incoming
         # config object may still contain stale custom-provider fields.
         config = load_config()
@@ -536,7 +536,7 @@ def _model_flow_nous(config, current_model="", args=None):
             model_cfg = {"default": current_model_cfg.strip()}
         else:
             model_cfg = {}
-        model_cfg["provider"] = "nous"
+        model_cfg["provider"] = "openamer"
         model_cfg["default"] = selected
         if inference_url and inference_url.strip():
             model_cfg["base_url"] = inference_url.rstrip("/")
@@ -549,7 +549,7 @@ def _model_flow_nous(config, current_model="", args=None):
             save_env_value("OPENAI_BASE_URL", "")
             save_env_value("OPENAI_API_KEY", "")
         save_config(config)
-        print(f"Default model set to: {selected} (via Nous Portal)")
+        print(f"Default model set to: {selected} (via OpenAmer Portal)")
         # Offer Tool Gateway enablement for paid subscribers
         prompt_enable_tool_gateway(config)
     else:
@@ -2698,7 +2698,7 @@ def _model_flow_api_key_provider(config, provider_id, current_model=""):
                 print()
                 print(
                     "   Alternatives with workable free usage: DeepSeek, "
-                    "OpenRouter (free models), Groq, Nous."
+                    "OpenRouter (free models), Groq, OpenAmer."
                 )
                 print()
                 print("Not saving Gemini as the default provider.")

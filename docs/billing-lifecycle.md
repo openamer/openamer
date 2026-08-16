@@ -18,7 +18,7 @@ Source: `ui-tui/src/components/billingOverlay.tsx` (`OverviewScreen`,
 
 | State shape | Render |
 |---|---|
-| Logged out (`s.logged_in === false`) | Overlay never opens. `sys`: `💳 Not logged into Nous Portal — run /portal to log in, then /topup.` |
+| Logged out (`s.logged_in === false`) | Overlay never opens. `sys`: `💳 Not logged into OpenAmer Portal — run /portal to log in, then /topup.` |
 | `billing.state` RPC fetch fails (transport/timeout) | **Fail-closed**: `.catch(ctx.guardedErr)` — overlay never opens, no state is assumed. `sys`: `error: <message or "request failed">`. Never renders "no card" or any other guessed state; user must retry `/topup`. |
 | `card: null` (no saved card), full menu (`is_admin && cli_billing_enabled`) | Overview shows `No saved card on file — "Add funds" walks you through adding one.` "Add funds" opens the **add-card path**: `Add a card on the portal` / `I've added it — check again` / `Back` (never an amount picker, which would 403 `no_payment_method`). |
 | `card` present, `resolved_via` set | `Card: {display}` (e.g. `Visa ····4242 — the card on your subscription`) using the provenance-aware `display` field. |

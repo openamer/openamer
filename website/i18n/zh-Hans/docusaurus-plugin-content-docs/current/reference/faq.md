@@ -17,7 +17,7 @@ description: "OpenAmer Agent 常见问题解答及常见问题解决方案"
 OpenAmer Agent 可与任何兼容 OpenAI 的 API 配合使用。支持的提供商包括：
 
 - **[OpenRouter](https://openrouter.ai/)** — 通过一个 API key 访问数百个模型（推荐，灵活性强）
-- **Nous Portal** — Nous Research 自有推理端点
+- **OpenAmer Portal** — OpenAmer 自有推理端点
 - **OpenAI** — GPT-5.4、GPT-5-codex、GPT-4.1、GPT-4o 等
 - **Anthropic** — Claude 模型（直接 API、通过 `openamer auth add anthropic` 进行 OAuth、OpenRouter 或任何兼容代理）
 - **Google** — Gemini 模型（通过 `gemini` 提供商直接调用 API、OpenRouter 或兼容代理）
@@ -855,5 +855,5 @@ openamer chat -q "hello" --model anthropic/claude-opus-4.7
 如果您的问题未在此处涵盖：
 
 1. **搜索现有 issue：** [GitHub Issues](https://github.com/openamer/openamer/issues)
-2. **向社区提问：** [Nous Research Discord](https://discord.gg/nousresearch)
+2. **向社区提问：** [OpenAmer Discord](https://discord.gg/openamer)
 3. **提交 bug 报告：** 请包含您的操作系统、Python 版本（`python3 --version`）、OpenAmer 版本（`openamer --version`）以及完整的错误信息

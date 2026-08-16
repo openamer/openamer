@@ -72,7 +72,7 @@ automatically when the bearer approaches expiry.
 openamer proxy providers
 ```
 
-Currently shipped: `nous` (your hosted provider) and `xai` (xAI / Grok). More
+Currently shipped: `openamer` (your hosted provider) and `xai` (xAI / Grok). More
 OAuth providers can be added by implementing the `UpstreamAdapter`
 interface in `openamer_cli/proxy/adapters/`.
 
@@ -85,7 +85,7 @@ openamer proxy status
 ```
 OpenAmer proxy upstream adapters
 
-  [nous    ] your hosted provider — ready (bearer expires 2026-05-15T06:43:21Z)
+  [openamer    ] your hosted provider — ready (bearer expires 2026-05-15T06:43:21Z)
 ```
 
 If you see `not logged in`, run `openamer portal`. If you see
@@ -95,7 +95,7 @@ happens if you signed out from the Portal web UI) — just re-run
 
 ## Allowed paths
 
-The proxy only forwards paths the upstream actually serves. For Nous
+The proxy only forwards paths the upstream actually serves. For OpenAmer
 Portal:
 
 | Path | Purpose |
@@ -142,7 +142,7 @@ openviking-server
 OpenViking's VLM calls now flow through your Portal subscription. The
 embedding model side still needs its own provider — Portal does serve
 `/v1/embeddings` but the model selection depends on what your tier
-supports; check `portal.nousresearch.com/models`.
+supports; check `portal.openamer.com/models`.
 
 ## Configuring Karakeep (or any bookmark/summarizer app)
 
@@ -178,7 +178,7 @@ this beyond your trusted network.
 Your Portal tier's RPM/TPM limits apply across the whole proxy. The
 proxy doesn't fan out or pool — it's a single bearer with your full
 subscription quota. Monitor usage at
-[portal.nousresearch.com](https://portal.nousresearch.com).
+[portal.openamer.com](https://portal.openamer.com).
 
 ## Architecture
 

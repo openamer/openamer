@@ -376,7 +376,7 @@ Future messages in this room will use that transcript until `/reset` or another 
     reset_wrong_provider:     "Gebankte gebruikslimiet-terugstellings is slegs beskikbaar op die openai-codex verskaffer. Skakel eers oor met `/model`."
 
   credits:
-    not_logged_in:            "Nie by Nous Portal aangemeld nie. Meld aan om jou kredietsaldo te sien en op te laai."
+    not_logged_in:            "Nie by OpenAmer Portal aangemeld nie. Meld aan om jou kredietsaldo te sien en op te laai."
 
   verbose:
     not_enabled:           "Die `/verbose`-opdrag is nie vir boodskapplatforms geaktiveer nie.\n\nAktiveer dit in `config.yaml`:\n```yaml\ndisplay:\n  tool_progress_command: true\n```"

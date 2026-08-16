@@ -48,7 +48,7 @@ class TestLongContextTierDetection:
             model="anthropic/claude-sonnet-4.6",
         )
 
-    def test_matches_nous_model_id(self):
+    def test_matches_openamer_model_id(self):
         assert self._is_long_context_tier_error(
             429,
             "Extra usage is required for long context requests.",

@@ -320,7 +320,7 @@ function ProviderHeading({ provider }: { provider: ModelOptionProvider }) {
   const { t } = useI18n()
   const copy = t.modelPicker
 
-  // free_tier is only set for Nous. true → "Free tier", false → "Pro".
+  // free_tier is only set for OpenAmer. true → "Free tier", false → "Pro".
   const tierBadge =
     provider.free_tier === true ? (
       <span className="rounded-sm bg-emerald-500/15 px-1 py-0.5 text-[0.6rem] font-semibold uppercase tracking-wide text-emerald-600 dark:text-emerald-400">

@@ -88,7 +88,7 @@ def test_status_reports_auth_disabled_in_loopback_mode(loopback_client):
     assert r.status_code == 200
     body = r.json()
     assert body["auth_required"] is False
-    # Loopback mode has no registered providers (the Nous plugin's env
+    # Loopback mode has no registered providers (the OpenAmer plugin's env
     # vars aren't set in test).
     assert body["auth_providers"] == []
 

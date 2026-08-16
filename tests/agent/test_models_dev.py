@@ -87,7 +87,7 @@ class TestProviderMapping:
         assert PROVIDER_TO_MODELS_DEV["xai-oauth"] == "xai"
 
     def test_unmapped_provider_not_in_dict(self):
-        assert "nous" not in PROVIDER_TO_MODELS_DEV
+        assert "openamer" not in PROVIDER_TO_MODELS_DEV
 
     def test_openai_codex_mapped_to_openai(self):
         assert PROVIDER_TO_MODELS_DEV["openai"] == "openai"
@@ -128,7 +128,7 @@ class TestLookupModelsDevContext:
     @patch("agent.models_dev.fetch_models_dev")
     def test_provider_not_mapped(self, mock_fetch):
         mock_fetch.return_value = SAMPLE_REGISTRY
-        assert lookup_models_dev_context("nous", "some-model") is None
+        assert lookup_models_dev_context("openamer", "some-model") is None
 
     @patch("agent.models_dev.fetch_models_dev")
     def test_model_not_found(self, mock_fetch):

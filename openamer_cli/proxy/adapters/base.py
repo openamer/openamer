@@ -26,7 +26,7 @@ class UpstreamCredential:
     """Authorization header value to send upstream (token only, no ``Bearer`` prefix)."""
 
     base_url: str
-    """Upstream base URL, e.g. ``https://inference-api.nousresearch.com/v1``."""
+    """Upstream base URL, e.g. ``https://inference-api.openamer.com/v1``."""
 
     token_type: str = "Bearer"
     """Auth scheme — currently always ``Bearer`` for supported providers."""
@@ -41,7 +41,7 @@ class UpstreamAdapter(ABC):
     @property
     @abstractmethod
     def name(self) -> str:
-        """Adapter key used on the CLI (e.g. ``"nous"``)."""
+        """Adapter key used on the CLI (e.g. ``"openamer"``)."""
 
     @property
     @abstractmethod

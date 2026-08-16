@@ -55,9 +55,9 @@ def test_reverse_index_matches_groups():
 
 
 def test_ungrouped_providers_pass_through_in_order():
-    rows = group_providers(["nous", "openrouter", "deepseek"])
+    rows = group_providers(["openamer", "openrouter", "deepseek"])
     assert all(r["kind"] == "single" for r in rows)
-    assert [r["slug"] for r in rows] == ["nous", "openrouter", "deepseek"]
+    assert [r["slug"] for r in rows] == ["openamer", "openrouter", "deepseek"]
 
 
 def test_multi_member_group_folds_to_one_row():
@@ -75,10 +75,10 @@ def test_multi_member_group_folds_to_one_row():
 def test_group_appears_at_first_member_position():
     """The group row takes the slot of its earliest-listed present member,
     and later members do not re-emit."""
-    rows = group_providers(["nous", "minimax", "deepseek", "minimax-cn"])
+    rows = group_providers(["openamer", "minimax", "deepseek", "minimax-cn"])
     kinds = [(r["kind"], r.get("group_id") or r.get("slug")) for r in rows]
     assert kinds == [
-        ("single", "nous"),
+        ("single", "openamer"),
         ("group", "minimax"),
         ("single", "deepseek"),
     ]
@@ -102,8 +102,8 @@ def test_member_order_follows_declaration_not_input():
 
 
 def test_duplicate_slugs_ignored():
-    rows = group_providers(["nous", "nous", "minimax", "minimax"])
-    assert [r.get("slug") or r["group_id"] for r in rows] == ["nous", "minimax"]
+    rows = group_providers(["openamer", "openamer", "minimax", "minimax"])
+    assert [r.get("slug") or r["group_id"] for r in rows] == ["openamer", "minimax"]
 
 
 def test_fold_is_lossless_for_present_slugs():

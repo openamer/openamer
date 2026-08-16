@@ -1,4 +1,4 @@
-import { Button } from "@nous-research/ui/ui/components/button";
+import { Button } from "@openamer-research/ui/ui/components/button";
 import { AlertTriangle } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";

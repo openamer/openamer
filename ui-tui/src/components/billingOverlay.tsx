@@ -485,7 +485,7 @@ function ConfirmScreen({
       {s.card && !s.card.resolved_via && (
         <Text color={t.color.muted}>Your card saved on the portal will be charged.</Text>
       )}
-      <Text color={t.color.muted}>By confirming, you allow Nous Research to charge your card.</Text>
+      <Text color={t.color.muted}>By confirming, you allow OpenAmer to charge your card.</Text>
       <Text />
       <ActionRow active={sel === 0} color={t.color.ok} label={`Pay $${amount} now`} t={t} />
       <ActionRow active={sel === 1} label="Cancel" t={t} />
@@ -887,7 +887,7 @@ function AutoReloadScreen({ ctx, onClose, onPatch, s, t }: ScreenProps) {
       {fieldBox('Reload balance to:', reloadTo, setReloadTo, row === 1, 'reloadTo')}
       <Text />
       <Text color={t.color.muted}>
-        By confirming, you authorize Nous Research to charge {chargeCardName} whenever your balance falls below the
+        By confirming, you authorize OpenAmer to charge {chargeCardName} whenever your balance falls below the
         threshold. Turn off any time here or on the portal.
       </Text>
       {error && <Text color={t.color.error}>{error}</Text>}

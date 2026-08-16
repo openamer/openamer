@@ -67,14 +67,14 @@ test('runNativeLogin completes the loopback round trip and returns tokens', asyn
           refresh_token: 'RT-native',
           token_type: 'Bearer',
           expires_at: 1893456000,
-          provider: 'nous',
+          provider: 'openamer',
           user_id: 'u-9'
         }
       },
       createServer,
       timeoutMs: 5_000
     },
-    { provider: 'nous' }
+    { provider: 'openamer' }
   )
 
   // Give the listen callback a tick to open the browser + capture the URL.

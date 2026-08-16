@@ -34,7 +34,7 @@ def cmd_proxy_start(args: Any) -> int:
         _print_aiohttp_missing()
         return 1
 
-    provider = getattr(args, "provider", None) or "nous"
+    provider = getattr(args, "provider", None) or "openamer"
     try:
         adapter = get_adapter(provider)
     except ValueError as exc:
@@ -121,7 +121,7 @@ def cmd_proxy(args: Any) -> int:
         "OAuth-authenticated provider credentials to outbound requests.\n"
         "\n"
         "Subcommands:\n"
-        "  openamer proxy start [--provider nous|xai] [--host 127.0.0.1] [--port 8645]\n"
+        "  openamer proxy start [--provider openamer|xai] [--host 127.0.0.1] [--port 8645]\n"
         "      Run the proxy in the foreground.\n"
         "  openamer proxy status\n"
         "      Show which upstream adapters are ready.\n"

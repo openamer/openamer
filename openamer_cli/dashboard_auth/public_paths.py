@@ -10,7 +10,7 @@ copies of this list:
 
 When the lists drifted, ``/api/status`` ended up public under the legacy
 gate but 401'd under the OAuth gate. That broke the portal's wildcard
-liveness probe (``nous-account-service`` ``fly-provider.ts``
+liveness probe (``openamer-account-service`` ``fly-provider.ts``
 ``getInstanceRuntimeStatus``), which fetches ``/api/status`` without a
 cookie as its sole signal of "agent dashboard is alive": every healthy
 wildcard-subdomain agent surfaced as STARTING/down in the portal UI even

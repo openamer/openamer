@@ -106,7 +106,7 @@ enumerate.
 - **Set `background`.** Without it the GUI has to guess a base surface from text
   luminance — usable, but you lose control of the app background.
 - **Name collisions**: a skin named like a desktop built-in (`mono`, `slate`,
-  `cyberpunk`, `nous`, `midnight`, `ember`) won't override that built-in on the
+  `cyberpunk`, `openamer`, `midnight`, `ember`) won't override that built-in on the
   GUI. Pick a fresh name.
 - **Never hand-edit `config.yaml` to activate.** Use `openamer config set
   display.skin <name>` — a stray indent in a manual edit corrupts the file and

@@ -352,7 +352,7 @@ describe('useModelControls', () => {
 
   it('refreshes legacy/default-derived composer state from the profile default', async () => {
     setCurrentModel('openai/gpt-5.5')
-    setCurrentProvider('nous')
+    setCurrentProvider('openamer')
     setCurrentModelSource('')
     vi.mocked(getGlobalModelInfo).mockResolvedValue({ model: 'gpt-5.5', provider: 'openai-codex' })
 

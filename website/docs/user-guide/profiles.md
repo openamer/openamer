@@ -25,7 +25,7 @@ That's it. `coder` is now its own OpenAmer profile with its own config, memory, 
 ## Creating a profile
 
 :::tip
-Quickest setup: run `openamer setup --portal` inside the new profile to wire up models + tools at once. See [your hosted provider](/integrations/nous-portal).
+Quickest setup: run `openamer setup --portal` inside the new profile to wire up models + tools at once. See [your hosted provider](/integrations/openamer-portal).
 :::
 
 ### Blank profile

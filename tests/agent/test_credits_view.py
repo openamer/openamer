@@ -15,15 +15,15 @@ import pytest
 
 import agent.account_usage as account_usage
 from agent.account_usage import CreditsView, build_credits_view
-from openamer_cli.nous_account import NousPortalAccountInfo, NousPaidServiceAccessInfo
+from openamer_cli.openamer_account import OpenAmerPortalAccountInfo, OpenAmerPaidServiceAccessInfo
 
 
-def _account(**kwargs) -> NousPortalAccountInfo:
+def _account(**kwargs) -> OpenAmerPortalAccountInfo:
     kwargs.setdefault("logged_in", True)
     kwargs.setdefault("source", "account_api")
     kwargs.setdefault("fresh", True)
     kwargs.setdefault("portal_base_url", "https://portal.example.test")
-    return NousPortalAccountInfo(**kwargs)
+    return OpenAmerPortalAccountInfo(**kwargs)
 
 
 @pytest.fixture
@@ -36,7 +36,7 @@ def _logged_in_account(monkeypatch):
 
     def _install(account):
         monkeypatch.setattr(
-            "openamer_cli.nous_account.get_nous_portal_account_info",
+            "openamer_cli.openamer_account.get_openamer_portal_account_info",
             lambda *a, **kw: account,
         )
 
@@ -59,7 +59,7 @@ def test_view_built_with_org_pinned_url_and_identity(_logged_in_account):
             org_name="Acme Inc",
             email="alice@example.test",
             paid_service_access=True,
-            paid_service_access_info=NousPaidServiceAccessInfo(
+            paid_service_access_info=OpenAmerPaidServiceAccessInfo(
                 purchased_credits_remaining=30.0,
                 total_usable_credits=30.0,
             ),
@@ -86,7 +86,7 @@ def test_view_depleted_flag(_logged_in_account):
             org_slug="acme",
             email="alice@example.test",
             paid_service_access=False,
-            paid_service_access_info=NousPaidServiceAccessInfo(
+            paid_service_access_info=OpenAmerPaidServiceAccessInfo(
                 total_usable_credits=0.0,
             ),
             subscription=None,
@@ -103,7 +103,7 @@ def test_view_falls_back_to_legacy_url_when_slug_null(_logged_in_account):
             org_slug=None,
             email="alice@example.test",
             paid_service_access=True,
-            paid_service_access_info=NousPaidServiceAccessInfo(
+            paid_service_access_info=OpenAmerPaidServiceAccessInfo(
                 purchased_credits_remaining=5.0,
                 total_usable_credits=5.0,
             ),
@@ -125,7 +125,7 @@ def test_view_fetch_failure_is_logged_out(monkeypatch):
     def _boom(*a, **kw):
         raise RuntimeError("portal down")
 
-    monkeypatch.setattr("openamer_cli.nous_account.get_nous_portal_account_info", _boom)
+    monkeypatch.setattr("openamer_cli.openamer_account.get_openamer_portal_account_info", _boom)
 
     view = build_credits_view()
     assert view.logged_in is False
@@ -152,7 +152,7 @@ def _make_gateway_stub():
 def test_gateway_topup_renders_block_and_url(monkeypatch):
     view = CreditsView(
         logged_in=True,
-        balance_lines=("📈 Nous credits", "Total usable: $52.50"),
+        balance_lines=("📈 OpenAmer credits", "Total usable: $52.50"),
         identity_line="Topping up as alice@example.test / org Acme",
         topup_url="https://portal.example.test/orgs/acme/billing?topup=open",
         depleted=False,
@@ -168,7 +168,7 @@ def test_gateway_topup_renders_block_and_url(monkeypatch):
     assert "https://portal.example.test/orgs/acme/billing?topup=open" in out
     assert "Manage billing on the portal" in out
     # The helper's own 📈 header line is dropped (we render our own 💳 header).
-    assert "📈 Nous credits" not in out
+    assert "📈 OpenAmer credits" not in out
 
 
 def test_gateway_topup_not_logged_in(monkeypatch):
@@ -177,7 +177,7 @@ def test_gateway_topup_not_logged_in(monkeypatch):
     )
     stub = _make_gateway_stub()
     out = asyncio.run(stub._handle_topup_command(_FakeEvent()))
-    assert "Not logged into Nous Portal" in out
+    assert "Not logged into OpenAmer Portal" in out
 
 
 def test_gateway_topup_fetch_exception_is_not_logged_in(monkeypatch):
@@ -187,7 +187,7 @@ def test_gateway_topup_fetch_exception_is_not_logged_in(monkeypatch):
     monkeypatch.setattr(account_usage, "build_credits_view", _boom)
     stub = _make_gateway_stub()
     out = asyncio.run(stub._handle_topup_command(_FakeEvent()))
-    assert "Not logged into Nous Portal" in out
+    assert "Not logged into OpenAmer Portal" in out
 
 
 # ── command registry ────────────────────────────────────────────────────────

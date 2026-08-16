@@ -332,12 +332,12 @@ def test_get_auxiliary_task_config_user_config_wins_over_plugin_defaults(
     # User overrides timeout + provider via config.yaml
     cfg = load_config()
     aux = cfg.setdefault("auxiliary", {})
-    aux["my_filter"] = {"timeout": 90, "provider": "nous"}
+    aux["my_filter"] = {"timeout": 90, "provider": "openamer"}
     save_config(cfg)
 
     resolved = _get_auxiliary_task_config("my_filter")
     assert resolved["timeout"] == 90  # user wins
-    assert resolved["provider"] == "nous"  # user wins
+    assert resolved["provider"] == "openamer"  # user wins
 
 
 def test_get_auxiliary_task_config_unknown_task_returns_empty(

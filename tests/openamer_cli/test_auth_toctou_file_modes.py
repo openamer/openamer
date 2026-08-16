@@ -108,14 +108,14 @@ def test_save_qwen_cli_tokens_writes_0o600_with_0o700_parent(tmp_path, monkeypat
 
 
 # ---------------------------------------------------------------------------
-# Nous shared-credential store write (inside _write_shared_nous_state)
+# OpenAmer shared-credential store write (inside _write_shared_openamer_state)
 # ---------------------------------------------------------------------------
 
 
-def test_shared_nous_store_writes_0o600_with_0o700_parent(tmp_path, monkeypatch):
-    """The Nous shared-credential store must land at 0o600 / parent 0o700."""
+def test_shared_openamer_store_writes_0o600_with_0o700_parent(tmp_path, monkeypatch):
+    """The OpenAmer shared-credential store must land at 0o600 / parent 0o700."""
     monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
-    # _nous_shared_store_path() refuses to touch the real shared store during
+    # _openamer_shared_store_path() refuses to touch the real shared store during
     # pytest runs; redirect it into tmp_path explicitly. Use a distinct
     # subdirectory name (``shared_override``) so the guard's "real user
     # home" reference — which currently tracks OPENAMER_HOME via
@@ -127,32 +127,32 @@ def test_shared_nous_store_writes_0o600_with_0o700_parent(tmp_path, monkeypatch)
         from openamer_cli import auth as auth_mod
 
         state = {
-            "access_token": "nous-access-xxx",
-            "refresh_token": "nous-refresh-xxx",
+            "access_token": "openamer-access-xxx",
+            "refresh_token": "openamer-refresh-xxx",
             "token_type": "Bearer",
             "scope": "openid profile",
             "client_id": "test-client",
             "obtained_at": "2026-01-01T00:00:00Z",
             "expires_at": "2026-01-01T01:00:00Z",
         }
-        auth_mod._write_shared_nous_state(state)
-        path = auth_mod._nous_shared_store_path()
+        auth_mod._write_shared_openamer_state(state)
+        path = auth_mod._openamer_shared_store_path()
     finally:
         os.umask(old_umask)
 
-    assert path.exists(), "shared Nous store was not written"
+    assert path.exists(), "shared OpenAmer store was not written"
     mode = stat.S_IMODE(path.stat().st_mode)
     parent_mode = stat.S_IMODE(path.parent.stat().st_mode)
 
     assert mode == 0o600, (
-        f"Nous shared store mode 0o{mode:o} != 0o600 — TOCTOU race regressed"
+        f"OpenAmer shared store mode 0o{mode:o} != 0o600 — TOCTOU race regressed"
     )
     assert parent_mode == 0o700, (
-        f"Nous shared store parent dir mode 0o{parent_mode:o} != 0o700"
+        f"OpenAmer shared store parent dir mode 0o{parent_mode:o} != 0o700"
     )
 
     data = json.loads(path.read_text())
-    assert data["refresh_token"] == "nous-refresh-xxx"
+    assert data["refresh_token"] == "openamer-refresh-xxx"
 
 
 # ---------------------------------------------------------------------------

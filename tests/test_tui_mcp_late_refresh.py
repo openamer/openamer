@@ -51,7 +51,7 @@ def _install(monkeypatch, *, in_flight, join_result, new_defs):
 
 def test_late_refresh_adds_tools_and_reemits_when_pre_first_turn(monkeypatch):
     base = [_tool("read_file"), _tool("write_file")]
-    full = base + [_tool("mcp__nous_support__a")]  # discovery added one tool
+    full = base + [_tool("mcp__openamer_support__a")]  # discovery added one tool
     agent = _make_fake_agent(base)
     sid = "sess-late-1"
     server._sessions[sid] = {"agent": agent}
@@ -61,7 +61,7 @@ def test_late_refresh_adds_tools_and_reemits_when_pre_first_turn(monkeypatch):
         _drain_refresh_threads()
 
         assert len(agent.tools) == 3
-        assert "mcp__nous_support__a" in agent.valid_tool_names
+        assert "mcp__openamer_support__a" in agent.valid_tool_names
         assert ("session.info", sid, {"tools_len": 3}) in emitted
     finally:
         server._sessions.pop(sid, None)

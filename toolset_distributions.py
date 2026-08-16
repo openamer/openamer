@@ -186,7 +186,7 @@ DISTRIBUTIONS = {
         }
     },
     
-    # Terminal-focused tasks distribution (for nous-terminal-tasks.jsonl)
+    # Terminal-focused tasks distribution (for openamer-terminal-tasks.jsonl)
     "terminal_tasks": {
         "description": "Terminal-focused distribution with high terminal/file availability, occasional other tools",
         "toolsets": {

@@ -11,7 +11,7 @@ API 服务器将 openamer-agent 作为 OpenAI 兼容的 HTTP 端点暴露出来�
 你的 agent 使用完整工具集（终端、文件操作、网络搜索、记忆、技能）处理请求，并返回最终响应。在流式传输时，工具进度指示器会内联显示，让前端能够展示 agent 正在执行的操作。
 
 :::tip 一个后端同时覆盖模型与工具
-OpenAmer 本身需要配置好 provider（提供商）和工具后端，API 服务器才能发挥作用。[Nous Portal](/user-guide/features/tool-gateway) 订阅同时处理两者——300+ 个模型，以及通过 Tool Gateway 提供的网络/图像/TTS/浏览器功能。在启动 API 服务器之前运行一次 `openamer setup --portal`，Open WebUI 或 LobeChat 等前端即可获得一个完整配备工具的后端。
+OpenAmer 本身需要配置好 provider（提供商）和工具后端，API 服务器才能发挥作用。[OpenAmer Portal](/user-guide/features/tool-gateway) 订阅同时处理两者——300+ 个模型，以及通过 Tool Gateway 提供的网络/图像/TTS/浏览器功能。在启动 API 服务器之前运行一次 `openamer setup --portal`，Open WebUI 或 LobeChat 等前端即可获得一个完整配备工具的后端。
 :::
 
 ## 快速开始

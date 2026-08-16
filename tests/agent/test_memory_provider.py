@@ -1243,10 +1243,10 @@ class TestOnMemoryWriteBridge:
     def test_memory_manager_tool_injection_deduplicates(self):
         """Memory manager tools already in self.tools (from plugin registry)
         must not be appended again.  Duplicate function names cause 400 errors
-        on providers that enforce unique names (e.g. Xiaomi MiMo via Nous Portal).
+        on providers that enforce unique names (e.g. Xiaomi MiMo via OpenAmer Portal).
 
         Regression test for: duplicate mnemosyne_recall / mnemosyne_remember /
-        mnemosyne_stats in tools array → 400 from Nous Portal.
+        mnemosyne_stats in tools array → 400 from OpenAmer Portal.
         """
         mgr = MemoryManager()
         p = FakeMemoryProvider("ext", tools=[

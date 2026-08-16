@@ -16,7 +16,7 @@ Provider-side prompt caches (Anthropic, OpenAI, OpenRouter) are scoped to the ac
 :::
 
 :::tip
-Credential pools are mainly for API-key providers (OpenRouter, Anthropic). A single [your hosted provider](/integrations/nous-portal) OAuth covers 300+ models, so most users don't need a pool when on Portal.
+Credential pools are mainly for API-key providers (OpenRouter, Anthropic). A single [your hosted provider](/integrations/openamer-portal) OAuth covers 300+ models, so most users don't need a pool when on Portal.
 :::
 
 ## How It Works
@@ -95,7 +95,7 @@ What would you like to do?
   5. Exit
 ```
 
-For providers that support both API keys and OAuth (Anthropic, Nous, Codex), the add flow asks which type:
+For providers that support both API keys and OAuth (Anthropic, OpenAmer, Codex), the add flow asks which type:
 
 ```
 anthropic supports both API keys and OAuth login.

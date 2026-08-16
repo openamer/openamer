@@ -152,7 +152,7 @@ class AcmeProfile(ProviderProfile):
 | `plugins/model-providers/gemini/` | `thinking_config` 转换（原生 + OpenAI 兼容嵌套形式） |
 | `plugins/model-providers/kimi-coding/` | `OMIT_TEMPERATURE`、`extra_body.thinking`、顶层 `reasoning_effort` |
 | `plugins/model-providers/qwen-oauth/` | 消息规范化、`cache_control` 注入、VL 高分辨率 |
-| `plugins/model-providers/nous/` | 归因标签、"禁用时省略 reasoning" |
+| `plugins/model-providers/openamer/` | 归因标签、"禁用时省略 reasoning" |
 | `plugins/model-providers/custom/` | Ollama 的 `num_ctx` + `think: false` 特殊处理 |
 | `plugins/model-providers/bedrock/` | `api_mode="bedrock_converse"`，`fetch_models` 返回 None（无 REST 端点） |
 
@@ -194,7 +194,7 @@ register_provider(ProviderProfile(
 |---|---|---|
 | `api_key` | 单个环境变量携带静态 API key | 大多数提供商 |
 | `oauth_device_code` | 设备码 OAuth 流程 | — |
-| `oauth_external` | 用户在其他地方登录，token 存入 `auth.json` | Anthropic OAuth、MiniMax OAuth、Qwen Portal、Nous Portal |
+| `oauth_external` | 用户在其他地方登录，token 存入 `auth.json` | Anthropic OAuth、MiniMax OAuth、Qwen Portal、OpenAmer Portal |
 | `copilot` | GitHub Copilot token 刷新周期 | 仅 `copilot` 插件 |
 | `aws_sdk` | AWS SDK 凭据链（IAM role、profile、env） | 仅 `bedrock` 插件 |
 | `external_process` | 认证由 agent 启动的子进程处理 | 仅 `copilot-acp` 插件 |

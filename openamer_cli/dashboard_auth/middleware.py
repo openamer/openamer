@@ -411,8 +411,8 @@ async def gated_auth_middleware(
         # unreachable, so it can neither confirm nor deny the token). With
         # multiple providers stacked, that MUST NOT abort the chain — the
         # token may belong to a *different*, reachable provider. (Concretely:
-        # a self-hosted-OIDC session hits the `nous` provider first, which
-        # tries to reach Nous Portal's JWKS; if that's unreachable it raises,
+        # a self-hosted-OIDC session hits the `openamer` provider first, which
+        # tries to reach OpenAmer Portal's JWKS; if that's unreachable it raises,
         # but the `self-hosted` provider can still verify the token.) So we
         # remember the unreachable error and keep going. Only if NO provider
         # verifies the token AND at least one was unreachable do we surface a

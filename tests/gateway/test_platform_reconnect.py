@@ -867,7 +867,7 @@ class TestSpawnSupervised:
     """Verify the task-level supervision wrapper around watcher launches."""
 
     @pytest.mark.asyncio
-    async def test_clean_synchronous_return_is_not_respawned(self):
+    async def test_clean_synchroopenamer_return_is_not_respawned(self):
         # A supervised coro that returns immediately (clean exit) must be
         # invoked EXACTLY ONCE — a clean return means deliberate shutdown or a
         # gated no-op watcher; respawning it would busy-spin the event loop.

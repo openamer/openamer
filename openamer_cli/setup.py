@@ -21,8 +21,8 @@ import copy
 from pathlib import Path
 from typing import Optional, Dict, Any
 
-from openamer_cli.nous_subscription import get_nous_subscription_features
-from tools.tool_backend_helpers import managed_nous_tools_enabled
+from openamer_cli.openamer_subscription import get_openamer_subscription_features
+from tools.tool_backend_helpers import managed_openamer_tools_enabled
 from utils import base_url_hostname
 from openamer_constants import get_optional_skills_dir
 
@@ -399,7 +399,7 @@ def _print_setup_summary(config: dict, openamer_home):
     print_header("Tool Availability Summary")
 
     tool_status = []
-    subscription_features = get_nous_subscription_features(config)
+    subscription_features = get_openamer_subscription_features(config)
 
     # Vision — use the same runtime resolver as the actual vision tools
     try:
@@ -417,7 +417,7 @@ def _print_setup_summary(config: dict, openamer_home):
 
     # Web tools (Exa, Parallel, Firecrawl, or Tavily)
     if subscription_features.web.managed_by_nous:
-        tool_status.append(("Web Search & Extract (Nous subscription)", True, None))
+        tool_status.append(("Web Search & Extract (OpenAmer subscription)", True, None))
     elif subscription_features.web.available:
         label = "Web Search & Extract"
         if subscription_features.web.current_provider:
@@ -429,7 +429,7 @@ def _print_setup_summary(config: dict, openamer_home):
     # Browser tools (local Chromium, Camofox, Browserbase, Browser Use, or Firecrawl)
     browser_provider = subscription_features.browser.current_provider
     if subscription_features.browser.managed_by_nous:
-        tool_status.append(("Browser Automation (Nous Browser Use)", True, None))
+        tool_status.append(("Browser Automation (OpenAmer Browser Use)", True, None))
     elif subscription_features.browser.available:
         label = "Browser Automation"
         if browser_provider:
@@ -456,10 +456,10 @@ def _print_setup_summary(config: dict, openamer_home):
             ("Browser Automation", False, missing_browser_hint)
         )
 
-    # Image generation — FAL (direct or via Nous), or any plugin-registered
+    # Image generation — FAL (direct or via OpenAmer), or any plugin-registered
     # provider (OpenAI, etc.)
     if subscription_features.image_gen.managed_by_nous:
-        tool_status.append(("Image Generation (Nous subscription)", True, None))
+        tool_status.append(("Image Generation (OpenAmer subscription)", True, None))
     elif subscription_features.image_gen.available:
         tool_status.append(("Image Generation", True, None))
     else:
@@ -491,7 +491,7 @@ def _print_setup_summary(config: dict, openamer_home):
     # Only show the row when a plugin reports available so we don't badger
     # users who don't care about video gen with a "missing" status line.
     if subscription_features.video_gen.managed_by_nous:
-        tool_status.append(("Video Generation (FAL via Nous subscription)", True, None))
+        tool_status.append(("Video Generation (FAL via OpenAmer subscription)", True, None))
     else:
         try:
             from agent.video_gen_registry import list_providers as _list_video_providers
@@ -513,7 +513,7 @@ def _print_setup_summary(config: dict, openamer_home):
     # TTS — show configured provider
     tts_provider = cfg_get(config, "tts", "provider", default="edge")
     if subscription_features.tts.managed_by_nous:
-        tool_status.append(("Text-to-Speech (OpenAI via Nous subscription)", True, None))
+        tool_status.append(("Text-to-Speech (OpenAI via OpenAmer subscription)", True, None))
     elif tts_provider == "elevenlabs" and get_env_value("ELEVENLABS_API_KEY"):
         tool_status.append(("Text-to-Speech (ElevenLabs)", True, None))
     elif tts_provider == "openai" and (
@@ -548,14 +548,14 @@ def _print_setup_summary(config: dict, openamer_home):
         tool_status.append(("Text-to-Speech (Edge TTS)", True, None))
 
     if subscription_features.modal.managed_by_nous:
-        tool_status.append(("Modal Execution (Nous subscription)", True, None))
+        tool_status.append(("Modal Execution (OpenAmer subscription)", True, None))
     elif cfg_get(config, "terminal", "backend") == "modal":
         if subscription_features.modal.direct_override:
             tool_status.append(("Modal Execution (direct Modal)", True, None))
         else:
             tool_status.append(("Modal Execution", False, "run 'openamer setup terminal'"))
-    elif managed_nous_tools_enabled() and subscription_features.nous_auth_present:
-        tool_status.append(("Modal Execution (optional via Nous subscription)", True, None))
+    elif managed_openamer_tools_enabled() and subscription_features.openamer_auth_present:
+        tool_status.append(("Modal Execution (optional via OpenAmer subscription)", True, None))
 
     # Home Assistant
     if get_env_value("HASS_TOKEN"):
@@ -936,7 +936,7 @@ def _setup_tts_provider(config: dict):
     """Interactive TTS provider selection with install flow for NeuTTS."""
     tts_config = config.get("tts", {})
     current_provider = tts_config.get("provider", "edge")
-    subscription_features = get_nous_subscription_features(config)
+    subscription_features = get_openamer_subscription_features(config)
 
     provider_labels = {
         "edge": "Edge TTS",
@@ -958,9 +958,9 @@ def _setup_tts_provider(config: dict):
 
     choices = []
     providers = []
-    if managed_nous_tools_enabled() and subscription_features.nous_auth_present:
-        choices.append("Nous Subscription (managed OpenAI TTS, billed to your subscription)")
-        providers.append("nous-openai")
+    if managed_openamer_tools_enabled() and subscription_features.openamer_auth_present:
+        choices.append("OpenAmer Subscription (managed OpenAI TTS, billed to your subscription)")
+        providers.append("openamer-openai")
     choices.extend(
         [
             "Edge TTS (free, cloud-based, no setup needed)",
@@ -983,10 +983,10 @@ def _setup_tts_provider(config: dict):
         return
 
     selected = providers[idx]
-    selected_via_nous = selected == "nous-openai"
-    if selected == "nous-openai":
+    selected_via_nous = selected == "openamer-openai"
+    if selected == "openamer-openai":
         selected = "openai"
-        print_info("OpenAI TTS will use the managed Nous gateway and bill to your subscription.")
+        print_info("OpenAI TTS will use the managed OpenAmer gateway and bill to your subscription.")
         if get_env_value("VOICE_TOOLS_OPENAI_KEY") or get_env_value("OPENAI_API_KEY"):
             print_warning(
                 "Direct OpenAI credentials are still configured and may take precedence until removed from ~/.openamer/.env."
@@ -1296,16 +1296,16 @@ def setup_terminal_backend(config: dict):
         from tools.tool_backend_helpers import normalize_modal_mode
 
         managed_modal_available = bool(
-            managed_nous_tools_enabled()
+            managed_openamer_tools_enabled()
             and
-            get_nous_subscription_features(config).nous_auth_present
+            get_openamer_subscription_features(config).openamer_auth_present
             and is_managed_tool_gateway_ready("modal")
         )
         modal_mode = normalize_modal_mode(cfg_get(config, "terminal", "modal_mode"))
         use_managed_modal = False
         if managed_modal_available:
             modal_choices = [
-                "Use my Nous subscription",
+                "Use my OpenAmer subscription",
                 "Use my own Modal account",
             ]
             if modal_mode == "managed":
@@ -1323,7 +1323,7 @@ def setup_terminal_backend(config: dict):
 
         if use_managed_modal:
             config["terminal"]["modal_mode"] = "managed"
-            print_info("Modal execution will use the managed Nous gateway and bill to your subscription.")
+            print_info("Modal execution will use the managed OpenAmer gateway and bill to your subscription.")
             if get_env_value("MODAL_TOKEN_ID") or get_env_value("MODAL_TOKEN_SECRET"):
                 print_info(
                     "Direct Modal credentials are still configured, but this backend is pinned to managed mode."
@@ -2233,7 +2233,7 @@ def _model_section_has_credentials(config: dict) -> bool:
       * ``PROVIDER_REGISTRY`` in ``openamer_cli.auth`` — lists every supported
         provider along with its ``api_key_env_vars``.
       * ``active_provider`` in the auth store — covers OAuth device-code /
-        external-OAuth providers (Nous, Codex, Qwen, Gemini CLI, ...).
+        external-OAuth providers (OpenAmer, Codex, Qwen, Gemini CLI, ...).
       * The legacy OpenRouter aggregator env vars, which route generic
         ``OPENAI_API_KEY`` / ``OPENROUTER_API_KEY`` values through OpenRouter.
     """
@@ -2634,10 +2634,10 @@ SETUP_SECTIONS = [
 
 
 def _run_portal_one_shot(config: dict) -> None:
-    """One-shot Nous Portal setup — OAuth + model pick + provider + Tool Gateway.
+    """One-shot OpenAmer Portal setup — OAuth + model pick + provider + Tool Gateway.
 
     Wired into ``openamer setup --portal`` and ``openamer portal``. This is the
-    Nous-Portal slice of the first-time quick setup, collapsed into a single
+    OpenAmer-Portal slice of the first-time quick setup, collapsed into a single
     shareable command so a brand-new user goes from zero to a fully working
     OpenAmer session — model selected, provider set, and web/image/tts/browser
     tools routed via their Portal sub — without being told to run
@@ -2646,9 +2646,9 @@ def _run_portal_one_shot(config: dict) -> None:
     The login + model selection + provider switch + Tool Gateway opt-in are all
     delegated to ``_model_flow_nous`` — the exact same flow quick setup uses
     (``_run_first_time_quick_setup``) and the same one ``openamer model`` runs
-    when you pick Nous. Routing through it (instead of hand-rolling the auth +
+    when you pick OpenAmer. Routing through it (instead of hand-rolling the auth +
     provider write here) means ``openamer portal`` always offers a model picker,
-    and there is a single source of truth for the Nous onboarding steps.
+    and there is a single source of truth for the OpenAmer onboarding steps.
     """
     from openamer_cli.config import load_config
 
@@ -2659,7 +2659,7 @@ def _run_portal_one_shot(config: dict) -> None:
             Colors.MAGENTA,
         )
     )
-    print(color("│     ⚕ OpenAmer Setup — Nous Portal (one-shot)             │", Colors.MAGENTA))
+    print(color("│     ⚕ OpenAmer Setup — OpenAmer Portal (one-shot)             │", Colors.MAGENTA))
     print(
         color(
             "└─────────────────────────────────────────────────────────┘",
@@ -2669,16 +2669,16 @@ def _run_portal_one_shot(config: dict) -> None:
     print()
     print_info("  One subscription, 300+ models, plus the Tool Gateway:")
     print_info("    web search, image generation, TTS, browser automation")
-    print_info("    — all routed through your Nous Portal sub.")
+    print_info("    — all routed through your OpenAmer Portal sub.")
     print()
-    print_info("  Sign up: https://portal.nousresearch.com/manage-subscription")
+    print_info("  Sign up: https://portal.openamer.com/manage-subscription")
     print()
 
     # _model_flow_nous handles BOTH the logged-out path (device-code OAuth,
     # which selects a model internally) and the already-logged-in path (curated
-    # Nous model picker), then offers the Tool Gateway opt-in and sets
-    # provider=nous via the login/model save. This is the same routine quick
-    # setup calls, so `openamer portal` == quick setup's Nous step.
+    # OpenAmer model picker), then offers the Tool Gateway opt-in and sets
+    # provider=openamer via the login/model save. This is the same routine quick
+    # setup calls, so `openamer portal` == quick setup's OpenAmer step.
     try:
         from openamer_cli.main import _model_flow_nous
 
@@ -2696,7 +2696,7 @@ def _run_portal_one_shot(config: dict) -> None:
     except Exception as exc:
         logger.debug("_model_flow_nous error during `openamer portal`: %s", exc)
         print()
-        print_error(f"  Nous Portal setup encountered an error: {exc}")
+        print_error(f"  OpenAmer Portal setup encountered an error: {exc}")
         print_info("  You can retry later with `openamer portal`.")
         return
 
@@ -2772,7 +2772,7 @@ def run_setup_wizard(args):
         )
         return
 
-    # --portal: one-shot Nous Portal setup. Skips the rest of the wizard.
+    # --portal: one-shot OpenAmer Portal setup. Skips the rest of the wizard.
     if bool(getattr(args, "portal", False)):
         _run_portal_one_shot(config)
         return
@@ -2892,7 +2892,7 @@ def run_setup_wizard(args):
         setup_mode = prompt_choice(
             "How would you like to set up OpenAmer?",
             [
-                "Quick Setup (Nous Portal) — free OAuth login, no API keys, model + tools (recommended)",
+                "Quick Setup (OpenAmer Portal) — free OAuth login, no API keys, model + tools (recommended)",
                 "Full setup — configure every provider, tool & option yourself (bring your own keys)",
                 "Blank Slate — everything off except the bare minimum; opt in to each capability",
             ],
@@ -2953,35 +2953,35 @@ def run_setup_wizard(args):
 
 
 def _run_first_time_quick_setup(config: dict, openamer_home, is_existing: bool):
-    """Streamlined first-time setup via Nous Portal: OAuth, model, terminal & messaging.
+    """Streamlined first-time setup via OpenAmer Portal: OAuth, model, terminal & messaging.
 
-    Routes straight to the Nous Portal provider — runs the device-code OAuth
-    login, picks a Nous model, then configures the terminal backend and (optionally)
+    Routes straight to the OpenAmer Portal provider — runs the device-code OAuth
+    login, picks a OpenAmer model, then configures the terminal backend and (optionally)
     a messaging platform. Applies sensible defaults for everything else (agent
     settings, tools); the user can customize later via ``openamer setup <section>``
     or switch providers with ``openamer model``.
     """
     from openamer_cli.config import load_config
 
-    # Step 1: Nous Portal — OAuth login + model selection.
+    # Step 1: OpenAmer Portal — OAuth login + model selection.
     # _model_flow_nous() handles both the logged-out path (device-code OAuth,
     # which selects a model internally) and the already-logged-in path (curated
-    # Nous model picker). Provider is set to "nous" by the login/model save.
+    # OpenAmer model picker). Provider is set to "openamer" by the login/model save.
     print()
-    print_header("Nous Portal")
+    print_header("OpenAmer Portal")
     print_info("One subscription, 300+ models, plus the Tool Gateway:")
     print_info("  web search, image generation, TTS, browser automation.")
-    print_info("Sign up: https://portal.nousresearch.com/manage-subscription")
+    print_info("Sign up: https://portal.openamer.com/manage-subscription")
     print()
     try:
         from openamer_cli.main import _model_flow_nous
         _model_flow_nous(config)
     except (KeyboardInterrupt, EOFError):
         print()
-        print_info("Nous Portal setup cancelled.")
+        print_info("OpenAmer Portal setup cancelled.")
     except Exception as exc:
         logger.debug("_model_flow_nous error during quick setup: %s", exc)
-        print_warning(f"Nous Portal setup encountered an error: {exc}")
+        print_warning(f"OpenAmer Portal setup encountered an error: {exc}")
         print_info("You can try again later with: openamer model")
 
     # Re-sync the wizard's config dict from disk — _model_flow_nous (and the

@@ -32,8 +32,8 @@ from agent.billing_view import (
     parse_money,
     validate_charge_amount,
 )
-import openamer_cli.nous_billing as nb
-from openamer_cli.nous_billing import (
+import openamer_cli.openamer_billing as nb
+from openamer_cli.openamer_billing import (
     BillingAuthError,
     BillingError,
     BillingRateLimited,
@@ -417,7 +417,7 @@ def test_portal_base_url_env_override(monkeypatch):
 
 def test_portal_base_url_falls_back_to_state(monkeypatch):
     monkeypatch.delenv("OPENAMER_PORTAL_BASE_URL", raising=False)
-    monkeypatch.delenv("NOUS_PORTAL_BASE_URL", raising=False)
+    monkeypatch.delenv("OPENAMER_PORTAL_BASE_URL", raising=False)
     assert (
         resolve_portal_base_url({"portal_base_url": "https://stored.example.com/"})
         == "https://stored.example.com"
@@ -426,7 +426,7 @@ def test_portal_base_url_falls_back_to_state(monkeypatch):
 
 def test_portal_base_url_default(monkeypatch):
     monkeypatch.delenv("OPENAMER_PORTAL_BASE_URL", raising=False)
-    monkeypatch.delenv("NOUS_PORTAL_BASE_URL", raising=False)
+    monkeypatch.delenv("OPENAMER_PORTAL_BASE_URL", raising=False)
     assert resolve_portal_base_url() == nb.DEFAULT_PORTAL_BASE_URL
 
 

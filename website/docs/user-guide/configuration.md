@@ -9,7 +9,7 @@ description: "Configure OpenAmer Agent — config.yaml, providers, models, API k
 All settings are stored in the `~/.openamer/` directory for easy access.
 
 :::tip Easiest path to a working `config.yaml`
-Run `openamer setup --portal` — one OAuth gets you a model provider and all four Tool Gateway tools without hand-editing YAML. Portal subscribers also get 10% off token-billed providers. See [your hosted provider](/integrations/nous-portal).
+Run `openamer setup --portal` — one OAuth gets you a model provider and all four Tool Gateway tools without hand-editing YAML. Portal subscribers also get 10% off token-billed providers. See [your hosted provider](/integrations/openamer-portal).
 :::
 
 ## Directory Structure
@@ -114,7 +114,7 @@ Before that stash step, OpenAmer also restores tracked `package-lock.json` diffs
 
 ## Terminal Backend Configuration
 
-OpenAmer supports six terminal backends. Each determines where the agent's shell commands actually execute — your local machine, a Docker container, a remote server via SSH, a Modal cloud sandbox (direct or via the Nous-managed gateway), a Daytona workspace, or a Singularity/Apptainer container.
+OpenAmer supports six terminal backends. Each determines where the agent's shell commands actually execute — your local machine, a Docker container, a remote server via SSH, a Modal cloud sandbox (direct or via the OpenAmer-managed gateway), a Daytona workspace, or a Singularity/Apptainer container.
 
 ```yaml
 terminal:
@@ -762,7 +762,7 @@ compression:
 auxiliary:
   compression:
     model: ""                                       # Empty = use main chat model. Override with e.g. "google/gemini-3-flash-preview" for cheaper/faster compression.
-    provider: "auto"                                # Provider: "auto", "openrouter", "nous", "codex", "main", etc.
+    provider: "auto"                                # Provider: "auto", "openrouter", "openamer", "codex", "main", etc.
     base_url: null                                  # Custom OpenAI-compatible endpoint (overrides provider)
 ```
 
@@ -806,10 +806,10 @@ Uses your main provider and main model. Override per-task (e.g. `auxiliary.compr
 ```yaml
 auxiliary:
   compression:
-    provider: nous
+    provider: openamer
     model: gemini-3-flash
 ```
-Works with any provider: `nous`, `openrouter`, `codex`, `anthropic`, `main`, etc.
+Works with any provider: `openamer`, `openrouter`, `codex`, `anthropic`, `main`, etc.
 
 **Custom endpoint** (self-hosted, Ollama, zai, DeepSeek, etc.):
 ```yaml
@@ -825,7 +825,7 @@ Points at a custom OpenAI-compatible endpoint. Uses `OPENAI_API_KEY` for auth.
 | `auxiliary.compression.provider` | `auxiliary.compression.base_url` | Result |
 |---------------------|---------------------|--------|
 | `auto` (default) | not set | Auto-detect best available provider |
-| `nous` / `openrouter` / etc. | not set | Force that provider, use its auth |
+| `openamer` / `openrouter` / etc. | not set | Force that provider, use its auth |
 | any | set | Use the custom endpoint directly (provider ignored) |
 
 :::warning Summary model context length requirement
@@ -1039,7 +1039,7 @@ auxiliary:
 
 When `base_url` is set, OpenAmer ignores the provider and calls that endpoint directly (using `api_key` or `OPENAI_API_KEY` for auth). When only `provider` is set, OpenAmer uses that provider's built-in auth and base URL.
 
-Available providers for auxiliary tasks: `auto`, `main`, plus any provider in the [provider registry](/reference/environment-variables) — `openrouter`, `nous`, `openai-codex`, `copilot`, `copilot-acp`, `anthropic`, `gemini`, `qwen-oauth`, `zai`, `kimi-coding`, `kimi-coding-cn`, `minimax`, `minimax-cn`, `minimax-oauth`, `deepseek`, `nvidia`, `xai`, `xai-oauth`, `ollama-cloud`, `alibaba`, `bedrock`, `huggingface`, `arcee`, `xiaomi`, `kilocode`, `opencode-zen`, `opencode-go`, `azure-foundry` — or any named custom provider from your `custom_providers` list (e.g. `provider: "beans"`).
+Available providers for auxiliary tasks: `auto`, `main`, plus any provider in the [provider registry](/reference/environment-variables) — `openrouter`, `openamer`, `openai-codex`, `copilot`, `copilot-acp`, `anthropic`, `gemini`, `qwen-oauth`, `zai`, `kimi-coding`, `kimi-coding-cn`, `minimax`, `minimax-cn`, `minimax-oauth`, `deepseek`, `nvidia`, `xai`, `xai-oauth`, `ollama-cloud`, `alibaba`, `bedrock`, `huggingface`, `arcee`, `xiaomi`, `kilocode`, `opencode-zen`, `opencode-go`, `azure-foundry` — or any named custom provider from your `custom_providers` list (e.g. `provider: "beans"`).
 
 :::tip MiniMax OAuth
 `minimax-oauth` logs in via browser OAuth (no API key needed). Run `openamer model` and select **MiniMax (OAuth)** to authenticate. Auxiliary tasks use `MiniMax-M2.7-highspeed` automatically. See the [MiniMax OAuth guide](../guides/minimax-oauth.md).
@@ -1059,7 +1059,7 @@ The `"main"` provider option means "use whatever provider my main agent uses" �
 auxiliary:
   # Image analysis (vision_analyze tool + browser screenshots)
   vision:
-    provider: "auto"           # "auto", "openrouter", "nous", "codex", "main", etc.
+    provider: "auto"           # "auto", "openrouter", "openamer", "codex", "main", etc.
     model: ""                  # e.g. "openai/gpt-4o", "google/gemini-2.5-flash"
     base_url: ""               # Custom OpenAI-compatible endpoint (overrides provider)
     api_key: ""                # API key for base_url (falls back to OPENAI_API_KEY)
@@ -1099,7 +1099,7 @@ auxiliary:
   compression:
     timeout: 120               # seconds — compression summarizes long conversations, needs more time
     # fallback_chain:           # Optional — providers to try on rate-limit / connectivity failure
-    #   - provider: nous
+    #   - provider: openamer
     #     model: deepseek/deepseek-chat
     #   - provider: openrouter
     #     model: google/gemini-2.5-flash
@@ -1164,7 +1164,7 @@ auxiliary:
     provider: openrouter
     model: openai/gpt-4o-mini
     fallback_chain:
-      - provider: nous
+      - provider: openamer
         model: deepseek/deepseek-chat
       - provider: openrouter
         model: google/gemini-2.5-flash
@@ -1176,7 +1176,7 @@ Each entry supports the same three knobs as any auxiliary task config:
 
 | Key | Description |
 |-----|-------------|
-| `provider` | Provider name (`nous`, `openrouter`, `anthropic`, `gemini`, `main`, etc.) |
+| `provider` | Provider name (`openamer`, `openrouter`, `anthropic`, `gemini`, `main`, etc.) |
 | `model` | Model name for that provider |
 | `base_url` | (Optional) Custom OpenAI-compatible endpoint |
 
@@ -1228,7 +1228,7 @@ These options apply to **auxiliary task configs** (`auxiliary:`, `compression:`)
 |----------|-------------|-------------|
 | `"auto"` | Best available (default). Vision tries OpenRouter → a hosted provider → Codex. | — |
 | `"openrouter"` | Force OpenRouter — routes to any model (Gemini, GPT-4o, Claude, etc.) | `OPENROUTER_API_KEY` |
-| `"nous"` | Force your hosted provider | `openamer auth` |
+| `"openamer"` | Force your hosted provider | `openamer auth` |
 | `"codex"` | Force Codex OAuth (ChatGPT account). Supports vision (gpt-5.3-codex). | `openamer model` → Codex |
 | `"minimax-oauth"` | Force MiniMax OAuth (browser login, no API key). Uses MiniMax-M2.7-highspeed for auxiliary tasks. | `openamer model` → MiniMax (OAuth) |
 | `"xai-oauth"` | Force xAI Grok OAuth (browser login for SuperGrok or X Premium+ subscribers, no API key). Same OAuth token covers chat, TTS, image, video, and transcription. | `openamer model` → xAI Grok OAuth (SuperGrok / Premium+) |
@@ -2057,7 +2057,7 @@ delegation:
 
 **Wire protocol (`api_mode`):** OpenAmer auto-detects the wire protocol from `delegation.base_url` (e.g. paths ending in `/anthropic` → `anthropic_messages`; Codex / native Anthropic / Kimi-coding hostnames keep their existing detection). For endpoints the heuristic can't classify — for example Azure AI Foundry, MiniMax, Zhipu GLM, or LiteLLM proxies fronting an Anthropic-shaped backend — set `delegation.api_mode` explicitly to one of `chat_completions`, `codex_responses`, or `anthropic_messages`. Leave it empty (the default) to keep auto-detection.
 
-The delegation provider uses the same credential resolution as CLI/gateway startup. All configured providers are supported: `openrouter`, `nous`, `copilot`, `zai`, `kimi-coding`, `minimax`, `minimax-cn`. When a provider is set, the system automatically resolves the correct base URL, API key, and API mode — no manual credential wiring needed.
+The delegation provider uses the same credential resolution as CLI/gateway startup. All configured providers are supported: `openrouter`, `openamer`, `copilot`, `zai`, `kimi-coding`, `minimax`, `minimax-cn`. When a provider is set, the system automatically resolves the correct base URL, API key, and API mode — no manual credential wiring needed.
 
 **Precedence:** `delegation.base_url` in config → `delegation.provider` in config → parent provider (inherited). `delegation.model` in config → parent model (inherited). Setting just `model` without `provider` changes only the model name while keeping the parent's credentials (useful for switching models within the same provider like OpenRouter).
 

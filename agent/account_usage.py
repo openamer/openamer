@@ -134,8 +134,8 @@ def _is_finite_num(v: Any) -> TypeGuard[float]:
     return isinstance(v, (int, float)) and not isinstance(v, bool) and math.isfinite(v)
 
 
-def build_nous_credits_snapshot(account_info) -> Optional[AccountUsageSnapshot]:
-    """Map a NousPortalAccountInfo into an AccountUsageSnapshot for /usage.
+def build_openamer_credits_snapshot(account_info) -> Optional[AccountUsageSnapshot]:
+    """Map a OpenAmerPortalAccountInfo into an AccountUsageSnapshot for /usage.
 
     Shows dollar magnitudes (subscription / top-up / total) + renewal date + a
     portal CTA. When the portal supplies a subscription denominator
@@ -145,7 +145,7 @@ def build_nous_credits_snapshot(account_info) -> Optional[AccountUsageSnapshot]:
     account info to show (fail-open: caller just shows nothing).
     """
     try:
-        from openamer_cli.nous_account import nous_portal_topup_url
+        from openamer_cli.openamer_account import openamer_portal_topup_url
 
         if account_info is None or not getattr(account_info, "logged_in", False):
             return None
@@ -213,15 +213,15 @@ def build_nous_credits_snapshot(account_info) -> Optional[AccountUsageSnapshot]:
         if not windows and not details:
             return None
 
-        details.append(f"Top up: {nous_portal_topup_url(account_info)}")
+        details.append(f"Top up: {openamer_portal_topup_url(account_info)}")
         details.append("(or run /topup)")
 
         plan = getattr(sub, "plan", None) if sub is not None else None
         return AccountUsageSnapshot(
-            provider="nous",
+            provider="openamer",
             source="portal-account",
             fetched_at=_utc_now(),
-            title="Nous credits",
+            title="OpenAmer credits",
             plan=plan,
             windows=tuple(windows),
             details=tuple(details),
@@ -230,10 +230,10 @@ def build_nous_credits_snapshot(account_info) -> Optional[AccountUsageSnapshot]:
         return None
 
 
-def nous_credits_lines(*, markdown: bool = False, timeout: float = 10.0) -> list[str]:
-    """Return rendered Nous-credits /usage lines, or [] when there's nothing to show.
+def openamer_credits_lines(*, markdown: bool = False, timeout: float = 10.0) -> list[str]:
+    """Return rendered OpenAmer-credits /usage lines, or [] when there's nothing to show.
 
-    Account-independent of any live agent: gated on "a Nous account is logged in"
+    Account-independent of any live agent: gated on "a OpenAmer account is logged in"
     (a cheap local auth-state check), then a wall-clock-bounded portal fetch. Shared
     by the CLI ``_show_usage`` and the TUI ``session.usage`` RPC so both surfaces show
     the same block regardless of session API-call count or resume state. Fail-open:
@@ -257,7 +257,7 @@ def nous_credits_lines(*, markdown: bool = False, timeout: float = 10.0) -> list
     try:
         from openamer_cli.auth import get_provider_auth_state
 
-        tok = (get_provider_auth_state("nous") or {}).get("access_token")
+        tok = (get_provider_auth_state("openamer") or {}).get("access_token")
         if not (isinstance(tok, str) and tok.strip()):
             return []
     except Exception:
@@ -265,13 +265,13 @@ def nous_credits_lines(*, markdown: bool = False, timeout: float = 10.0) -> list
     try:
         import concurrent.futures
 
-        from openamer_cli.nous_account import get_nous_portal_account_info
+        from openamer_cli.openamer_account import get_openamer_portal_account_info
 
         with concurrent.futures.ThreadPoolExecutor(max_workers=1) as pool:
             account = pool.submit(
-                get_nous_portal_account_info, force_fresh=True
+                get_openamer_portal_account_info, force_fresh=True
             ).result(timeout=timeout)
-        snapshot = build_nous_credits_snapshot(account)
+        snapshot = build_openamer_credits_snapshot(account)
         return render_account_usage_lines(snapshot, markdown=markdown)
     except Exception:
         # Fail-open (caller shows nothing), but leave a breadcrumb so a dead
@@ -327,10 +327,10 @@ def _snapshot_from_credits_state(state) -> Optional[AccountUsageSnapshot]:
 
         details.append("(dev fixture — OPENAMER_DEV_CREDITS_FIXTURE)")
         return AccountUsageSnapshot(
-            provider="nous",
+            provider="openamer",
             source="dev-fixture",
             fetched_at=_utc_now(),
-            title="Nous credits",
+            title="OpenAmer credits",
             windows=tuple(windows),
             details=tuple(details),
         )
@@ -367,7 +367,7 @@ def build_credits_view(*, markdown: bool = False, timeout: float = 10.0) -> Cred
     try:
         from openamer_cli.auth import get_provider_auth_state
 
-        tok = (get_provider_auth_state("nous") or {}).get("access_token")
+        tok = (get_provider_auth_state("openamer") or {}).get("access_token")
         if not (isinstance(tok, str) and tok.strip()):
             return not_logged_in
     except Exception:
@@ -376,13 +376,13 @@ def build_credits_view(*, markdown: bool = False, timeout: float = 10.0) -> Cred
     try:
         import concurrent.futures
 
-        from openamer_cli.nous_account import (
-            get_nous_portal_account_info,
-            nous_portal_topup_url,
+        from openamer_cli.openamer_account import (
+            get_openamer_portal_account_info,
+            openamer_portal_topup_url,
         )
 
         with concurrent.futures.ThreadPoolExecutor(max_workers=1) as pool:
-            account = pool.submit(get_nous_portal_account_info, force_fresh=True).result(
+            account = pool.submit(get_openamer_portal_account_info, force_fresh=True).result(
                 timeout=timeout
             )
     except Exception:
@@ -392,9 +392,9 @@ def build_credits_view(*, markdown: bool = False, timeout: float = 10.0) -> Cred
     if account is None or not getattr(account, "logged_in", False):
         return not_logged_in
 
-    snapshot = build_nous_credits_snapshot(account)
+    snapshot = build_openamer_credits_snapshot(account)
     # Balance lines = the snapshot block minus the two trailing affordance lines
-    # ("Top up: <url>" + "(or run /topup)") that build_nous_credits_snapshot
+    # ("Top up: <url>" + "(or run /topup)") that build_openamer_credits_snapshot
     # appends for the /usage surface. /topup renders its own button/panel.
     balance_lines: list[str] = []
     if snapshot is not None:
@@ -420,7 +420,7 @@ def build_credits_view(*, markdown: bool = False, timeout: float = 10.0) -> Cred
         logged_in=True,
         balance_lines=tuple(balance_lines),
         identity_line=identity_line,
-        topup_url=nous_portal_topup_url(account),
+        topup_url=openamer_portal_topup_url(account),
         depleted=getattr(account, "paid_service_access", None) is False,
     )
 

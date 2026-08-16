@@ -116,7 +116,7 @@ sudo mkdir -p /etc/openamer
 # Pin some config values for every user on this machine
 sudo tee /etc/openamer/config.yaml >/dev/null <<'YAML'
 model:
-  provider: nous
+  provider: openamer
 security:
   redact_secrets: true
 YAML

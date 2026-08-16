@@ -2,11 +2,11 @@
 
 from unittest.mock import patch, MagicMock
 
-from openamer_cli.nous_account import NousPortalAccountInfo
+from openamer_cli.openamer_account import OpenAmerPortalAccountInfo
 from openamer_cli.models import (
     OPENROUTER_MODELS, fetch_openrouter_models, model_ids, detect_provider_for_model,
-    is_nous_free_tier, partition_nous_models_by_tier,
-    check_nous_free_tier, _FREE_TIER_CACHE_TTL,
+    is_openamer_free_tier, partition_openamer_models_by_tier,
+    check_openamer_free_tier, _FREE_TIER_CACHE_TTL,
     union_with_portal_free_recommendations,
     union_with_portal_paid_recommendations,
 )
@@ -145,7 +145,7 @@ class TestFetchOpenRouterModels:
     def test_permissive_when_supported_parameters_missing(self, monkeypatch):
         """Models missing the supported_parameters field keep appearing in the picker.
 
-        Some OpenRouter-compatible gateways (Nous Portal, private mirrors, older
+        Some OpenRouter-compatible gateways (OpenAmer Portal, private mirrors, older
         catalog snapshots) don't populate supported_parameters. Treating missing
         as 'unknown → allow' prevents the picker from silently emptying on
         those gateways.
@@ -302,11 +302,11 @@ class TestDetectProviderForModel:
             assert detect_provider_for_model("nonexistent-model-xyz", "openai-codex") is None
 
     def test_aggregator_not_suggested(self):
-        """nous/openrouter should never be auto-suggested as target provider."""
+        """openamer/openrouter should never be auto-suggested as target provider."""
         with patch("openamer_cli.models.fetch_openrouter_models", return_value=LIVE_OPENROUTER_MODELS):
             result = detect_provider_for_model("claude-opus-4-6", "openai-codex")
         assert result is not None
-        assert result[0] not in {"nous",}  # nous has claude models but shouldn't be suggested
+        assert result[0] not in {"openamer",}  # openamer has claude models but shouldn't be suggested
 
     def test_custom_provider_not_overridden_by_static_catalog(self):
         """When current provider is custom:*, a static-catalog match must NOT
@@ -330,46 +330,46 @@ class TestDetectProviderForModel:
 
 
 class TestIsNousFreeTier:
-    """Tests for is_nous_free_tier — account tier detection."""
+    """Tests for is_openamer_free_tier — account tier detection."""
 
     def test_paid_service_access_allowed_true_is_not_free(self):
-        assert is_nous_free_tier({"paid_service_access": {"allowed": True}}) is False
+        assert is_openamer_free_tier({"paid_service_access": {"allowed": True}}) is False
 
     def test_paid_service_access_allowed_false_is_free(self):
-        assert is_nous_free_tier({"paid_service_access": {"allowed": False}}) is True
+        assert is_openamer_free_tier({"paid_service_access": {"allowed": False}}) is True
 
     def test_paid_service_access_paid_access_fallback(self):
-        assert is_nous_free_tier({"paid_service_access": {"paid_access": False}}) is True
+        assert is_openamer_free_tier({"paid_service_access": {"paid_access": False}}) is True
 
     def test_paid_plus_tier(self):
-        assert is_nous_free_tier({"subscription": {"plan": "Plus", "tier": 2, "monthly_charge": 20}}) is False
+        assert is_openamer_free_tier({"subscription": {"plan": "Plus", "tier": 2, "monthly_charge": 20}}) is False
 
     def test_free_tier_by_charge(self):
-        assert is_nous_free_tier({"subscription": {"plan": "Free", "tier": 0, "monthly_charge": 0}}) is True
+        assert is_openamer_free_tier({"subscription": {"plan": "Free", "tier": 0, "monthly_charge": 0}}) is True
 
     def test_no_charge_field_not_free(self):
         """Missing monthly_charge defaults to not-free (don't block users)."""
-        assert is_nous_free_tier({"subscription": {"plan": "Free", "tier": 0}}) is False
+        assert is_openamer_free_tier({"subscription": {"plan": "Free", "tier": 0}}) is False
 
     def test_plan_name_alone_not_free(self):
         """Plan name alone is not enough — monthly_charge is required."""
-        assert is_nous_free_tier({"subscription": {"plan": "free"}}) is False
+        assert is_openamer_free_tier({"subscription": {"plan": "free"}}) is False
 
     def test_empty_subscription_not_free(self):
         """Empty subscription dict defaults to not-free (don't block users)."""
-        assert is_nous_free_tier({"subscription": {}}) is False
+        assert is_openamer_free_tier({"subscription": {}}) is False
 
     def test_no_subscription_not_free(self):
         """Missing subscription key returns False."""
-        assert is_nous_free_tier({}) is False
+        assert is_openamer_free_tier({}) is False
 
     def test_empty_response_not_free(self):
         """Completely empty response defaults to not-free."""
-        assert is_nous_free_tier({}) is False
+        assert is_openamer_free_tier({}) is False
 
 
 class TestPartitionNousModelsByTier:
-    """Tests for partition_nous_models_by_tier — free vs paid tier model split."""
+    """Tests for partition_openamer_models_by_tier — free vs paid tier model split."""
 
     _PAID = {"prompt": "0.000003", "completion": "0.000015"}
     _FREE = {"prompt": "0", "completion": "0"}
@@ -378,7 +378,7 @@ class TestPartitionNousModelsByTier:
         """Paid users get all models as selectable, none unavailable."""
         models = ["anthropic/claude-opus-4.6", "xiaomi/mimo-v2-pro"]
         pricing = {"anthropic/claude-opus-4.6": self._PAID, "xiaomi/mimo-v2-pro": self._FREE}
-        sel, unav = partition_nous_models_by_tier(models, pricing, free_tier=False)
+        sel, unav = partition_openamer_models_by_tier(models, pricing, free_tier=False)
         assert sel == models
         assert unav == []
 
@@ -390,14 +390,14 @@ class TestPartitionNousModelsByTier:
             "xiaomi/mimo-v2-pro": self._FREE,
             "openai/gpt-5.4": self._PAID,
         }
-        sel, unav = partition_nous_models_by_tier(models, pricing, free_tier=True)
+        sel, unav = partition_openamer_models_by_tier(models, pricing, free_tier=True)
         assert sel == ["xiaomi/mimo-v2-pro"]
         assert unav == ["anthropic/claude-opus-4.6", "openai/gpt-5.4"]
 
     def test_no_pricing_returns_all(self):
         """Without pricing data, all models are selectable."""
         models = ["anthropic/claude-opus-4.6", "openai/gpt-5.4"]
-        sel, unav = partition_nous_models_by_tier(models, {}, free_tier=True)
+        sel, unav = partition_openamer_models_by_tier(models, {}, free_tier=True)
         assert sel == models
         assert unav == []
 
@@ -405,7 +405,7 @@ class TestPartitionNousModelsByTier:
         """When all models are free, free-tier users can select all."""
         models = ["xiaomi/mimo-v2-pro", "xiaomi/mimo-v2-omni"]
         pricing = {m: self._FREE for m in models}
-        sel, unav = partition_nous_models_by_tier(models, pricing, free_tier=True)
+        sel, unav = partition_openamer_models_by_tier(models, pricing, free_tier=True)
         assert sel == models
         assert unav == []
 
@@ -413,7 +413,7 @@ class TestPartitionNousModelsByTier:
         """When all models are paid, free-tier users have none selectable."""
         models = ["anthropic/claude-opus-4.6", "openai/gpt-5.4"]
         pricing = {m: self._PAID for m in models}
-        sel, unav = partition_nous_models_by_tier(models, pricing, free_tier=True)
+        sel, unav = partition_openamer_models_by_tier(models, pricing, free_tier=True)
         assert sel == []
         assert unav == models
 
@@ -442,7 +442,7 @@ class TestUnionWithPortalFreeRecommendations:
         curated = ["anthropic/claude-opus-4.6"]
         pricing = {"anthropic/claude-opus-4.6": self._PAID}
         with patch(
-            "openamer_cli.models.fetch_nous_recommended_models",
+            "openamer_cli.models.fetch_openamer_recommended_models",
             return_value=self._payload(["qwen/qwen3.6-plus"]),
         ):
             ids, p = union_with_portal_free_recommendations(curated, pricing, "")
@@ -463,7 +463,7 @@ class TestUnionWithPortalFreeRecommendations:
             "anthropic/claude-opus-4.6": self._PAID,
         }
         with patch(
-            "openamer_cli.models.fetch_nous_recommended_models",
+            "openamer_cli.models.fetch_openamer_recommended_models",
             return_value=self._payload(["qwen/qwen3.6-plus"]),
         ):
             ids, p = union_with_portal_free_recommendations(curated, pricing, "")
@@ -480,11 +480,11 @@ class TestUnionWithPortalFreeRecommendations:
         curated = ["qwen/qwen3.6-plus", "anthropic/claude-opus-4.6"]
         pricing = {"anthropic/claude-opus-4.6": self._PAID}  # qwen missing!
         with patch(
-            "openamer_cli.models.fetch_nous_recommended_models",
+            "openamer_cli.models.fetch_openamer_recommended_models",
             return_value=self._payload(["qwen/qwen3.6-plus"]),
         ):
             ids, p = union_with_portal_free_recommendations(curated, pricing, "")
-        sel, unav = partition_nous_models_by_tier(ids, p, free_tier=True)
+        sel, unav = partition_openamer_models_by_tier(ids, p, free_tier=True)
         assert "qwen/qwen3.6-plus" in sel
         assert "anthropic/claude-opus-4.6" in unav
 
@@ -492,7 +492,7 @@ class TestUnionWithPortalFreeRecommendations:
         """Empty Portal response leaves curated + pricing untouched."""
         curated = ["a", "b"]
         pricing = {"a": self._PAID}
-        with patch("openamer_cli.models.fetch_nous_recommended_models", return_value={}):
+        with patch("openamer_cli.models.fetch_openamer_recommended_models", return_value={}):
             ids, p = union_with_portal_free_recommendations(curated, pricing, "")
         assert ids == curated
         assert p == pricing
@@ -502,7 +502,7 @@ class TestUnionWithPortalFreeRecommendations:
         curated = ["a"]
         pricing = {"a": self._PAID}
         with patch(
-            "openamer_cli.models.fetch_nous_recommended_models",
+            "openamer_cli.models.fetch_openamer_recommended_models",
             return_value={"paidRecommendedModels": [{"modelName": "x"}]},
         ):
             ids, p = union_with_portal_free_recommendations(curated, pricing, "")
@@ -514,7 +514,7 @@ class TestUnionWithPortalFreeRecommendations:
         curated = ["a"]
         pricing = {"a": self._PAID}
         with patch(
-            "openamer_cli.models.fetch_nous_recommended_models",
+            "openamer_cli.models.fetch_openamer_recommended_models",
             side_effect=RuntimeError("network down"),
         ):
             ids, p = union_with_portal_free_recommendations(curated, pricing, "")
@@ -526,7 +526,7 @@ class TestUnionWithPortalFreeRecommendations:
         curated = ["a"]
         pricing = {"a": self._PAID}
         with patch(
-            "openamer_cli.models.fetch_nous_recommended_models",
+            "openamer_cli.models.fetch_openamer_recommended_models",
             return_value={
                 "freeRecommendedModels": [
                     "not-a-dict",
@@ -567,7 +567,7 @@ class TestUnionWithPortalPaidRecommendations:
         curated = ["anthropic/claude-opus-4.6"]
         pricing = {"anthropic/claude-opus-4.6": self._PAID}
         with patch(
-            "openamer_cli.models.fetch_nous_recommended_models",
+            "openamer_cli.models.fetch_openamer_recommended_models",
             return_value=self._payload(["openai/gpt-5.4"]),
         ):
             ids, p = union_with_portal_paid_recommendations(curated, pricing, "")
@@ -582,7 +582,7 @@ class TestUnionWithPortalPaidRecommendations:
         """Paid recommendations missing from live pricing get no synthetic entry.
 
         Synthesizing zero pricing (like the free helper does) would mislead
-        :func:`partition_nous_models_by_tier` into treating them as free;
+        :func:`partition_openamer_models_by_tier` into treating them as free;
         synthesizing a non-zero placeholder would lie to the user. The
         right thing is to leave pricing absent so the picker shows a blank
         column until the live pricing endpoint catches up.
@@ -590,7 +590,7 @@ class TestUnionWithPortalPaidRecommendations:
         curated = ["anthropic/claude-opus-4.6"]
         pricing = {"anthropic/claude-opus-4.6": self._PAID}
         with patch(
-            "openamer_cli.models.fetch_nous_recommended_models",
+            "openamer_cli.models.fetch_openamer_recommended_models",
             return_value=self._payload(["openai/gpt-5.4"]),
         ):
             _, p = union_with_portal_paid_recommendations(curated, pricing, "")
@@ -606,7 +606,7 @@ class TestUnionWithPortalPaidRecommendations:
             "anthropic/claude-opus-4.6": self._PAID,
         }
         with patch(
-            "openamer_cli.models.fetch_nous_recommended_models",
+            "openamer_cli.models.fetch_openamer_recommended_models",
             return_value=self._payload(["openai/gpt-5.4"]),
         ):
             ids, p = union_with_portal_paid_recommendations(curated, pricing, "")
@@ -618,7 +618,7 @@ class TestUnionWithPortalPaidRecommendations:
         """Empty Portal response leaves curated + pricing untouched."""
         curated = ["a", "b"]
         pricing = {"a": self._PAID}
-        with patch("openamer_cli.models.fetch_nous_recommended_models", return_value={}):
+        with patch("openamer_cli.models.fetch_openamer_recommended_models", return_value={}):
             ids, p = union_with_portal_paid_recommendations(curated, pricing, "")
         assert ids == curated
         assert p == pricing
@@ -628,7 +628,7 @@ class TestUnionWithPortalPaidRecommendations:
         curated = ["a"]
         pricing = {"a": self._PAID}
         with patch(
-            "openamer_cli.models.fetch_nous_recommended_models",
+            "openamer_cli.models.fetch_openamer_recommended_models",
             return_value={"freeRecommendedModels": [{"modelName": "x"}]},
         ):
             ids, p = union_with_portal_paid_recommendations(curated, pricing, "")
@@ -640,7 +640,7 @@ class TestUnionWithPortalPaidRecommendations:
         curated = ["a"]
         pricing = {"a": self._PAID}
         with patch(
-            "openamer_cli.models.fetch_nous_recommended_models",
+            "openamer_cli.models.fetch_openamer_recommended_models",
             side_effect=RuntimeError("network down"),
         ):
             ids, p = union_with_portal_paid_recommendations(curated, pricing, "")
@@ -652,7 +652,7 @@ class TestUnionWithPortalPaidRecommendations:
         curated = ["a"]
         pricing = {"a": self._PAID}
         with patch(
-            "openamer_cli.models.fetch_nous_recommended_models",
+            "openamer_cli.models.fetch_openamer_recommended_models",
             return_value={
                 "paidRecommendedModels": [
                     "not-a-dict",
@@ -672,7 +672,7 @@ class TestUnionWithPortalPaidRecommendations:
         curated = ["anthropic/claude-opus-4.6"]
         pricing = {"anthropic/claude-opus-4.6": self._PAID}
         with patch(
-            "openamer_cli.models.fetch_nous_recommended_models",
+            "openamer_cli.models.fetch_openamer_recommended_models",
             return_value=self._payload(["openai/gpt-5.4", "openai/gpt-5.5"]),
         ):
             ids, _ = union_with_portal_paid_recommendations(curated, pricing, "")
@@ -684,7 +684,7 @@ class TestUnionWithPortalPaidRecommendations:
 
 
 class TestCheckNousFreeTierCache:
-    """Tests for the TTL cache on check_nous_free_tier()."""
+    """Tests for the TTL cache on check_openamer_free_tier()."""
 
     def setup_method(self):
         _models_mod._free_tier_cache = None
@@ -692,54 +692,54 @@ class TestCheckNousFreeTierCache:
     def teardown_method(self):
         _models_mod._free_tier_cache = None
 
-    @patch("openamer_cli.nous_account.get_nous_portal_account_info")
+    @patch("openamer_cli.openamer_account.get_openamer_portal_account_info")
     def test_result_is_cached(self, mock_account):
         """Second call within TTL returns cached result without account lookup."""
-        mock_account.return_value = NousPortalAccountInfo(
+        mock_account.return_value = OpenAmerPortalAccountInfo(
             logged_in=True,
             source="jwt",
             fresh=False,
             paid_service_access=False,
         )
-        result1 = check_nous_free_tier()
-        result2 = check_nous_free_tier()
+        result1 = check_openamer_free_tier()
+        result2 = check_openamer_free_tier()
 
         assert result1 is True
         assert result2 is True
         assert mock_account.call_count == 1
 
-    @patch("openamer_cli.nous_account.get_nous_portal_account_info")
+    @patch("openamer_cli.openamer_account.get_openamer_portal_account_info")
     def test_cache_expires_after_ttl(self, mock_account):
         """After TTL expires, account info is resolved again."""
-        mock_account.return_value = NousPortalAccountInfo(
+        mock_account.return_value = OpenAmerPortalAccountInfo(
             logged_in=True,
             source="jwt",
             fresh=False,
             paid_service_access=True,
         )
-        result1 = check_nous_free_tier()
+        result1 = check_openamer_free_tier()
         assert mock_account.call_count == 1
 
         cached_result, cached_at = _models_mod._free_tier_cache
         _models_mod._free_tier_cache = (cached_result, cached_at - _FREE_TIER_CACHE_TTL - 1)
 
-        result2 = check_nous_free_tier()
+        result2 = check_openamer_free_tier()
         assert mock_account.call_count == 2
 
         assert result1 is False
         assert result2 is False
 
-    @patch("openamer_cli.nous_account.get_nous_portal_account_info")
+    @patch("openamer_cli.openamer_account.get_openamer_portal_account_info")
     def test_force_fresh_bypasses_cache(self, mock_account):
-        mock_account.return_value = NousPortalAccountInfo(
+        mock_account.return_value = OpenAmerPortalAccountInfo(
             logged_in=True,
             source="account_api",
             fresh=True,
             paid_service_access=True,
         )
 
-        assert check_nous_free_tier() is False
-        assert check_nous_free_tier(force_fresh=True) is False
+        assert check_openamer_free_tier() is False
+        assert check_openamer_free_tier(force_fresh=True) is False
 
         assert mock_account.call_count == 2
         mock_account.assert_called_with(force_fresh=True)
@@ -750,7 +750,7 @@ class TestCheckNousFreeTierCache:
 
 
 class TestNousRecommendedModels:
-    """Tests for fetch_nous_recommended_models + get_nous_recommended_aux_model."""
+    """Tests for fetch_openamer_recommended_models + get_openamer_recommended_aux_model."""
 
     _SAMPLE_PAYLOAD = {
         "paidRecommendedModels": [],
@@ -768,10 +768,10 @@ class TestNousRecommendedModels:
     }
 
     def setup_method(self):
-        _models_mod._nous_recommended_cache.clear()
+        _models_mod._openamer_recommended_cache.clear()
 
     def teardown_method(self):
-        _models_mod._nous_recommended_cache.clear()
+        _models_mod._openamer_recommended_cache.clear()
 
     def _mock_urlopen(self, payload):
         """Return a context-manager mock mimicking urllib.request.urlopen()."""
@@ -784,156 +784,156 @@ class TestNousRecommendedModels:
         return cm
 
     def test_fetch_caches_per_portal_url(self):
-        from openamer_cli.models import fetch_nous_recommended_models
+        from openamer_cli.models import fetch_openamer_recommended_models
         mock_cm = self._mock_urlopen(self._SAMPLE_PAYLOAD)
         with patch("openamer_cli.models._urlopen_model_catalog_request", return_value=mock_cm) as mock_urlopen:
-            a = fetch_nous_recommended_models("https://portal.example.com")
-            b = fetch_nous_recommended_models("https://portal.example.com")
+            a = fetch_openamer_recommended_models("https://portal.example.com")
+            b = fetch_openamer_recommended_models("https://portal.example.com")
         assert a == self._SAMPLE_PAYLOAD
         assert b == self._SAMPLE_PAYLOAD
         assert mock_urlopen.call_count == 1  # second call served from cache
 
     def test_fetch_cache_is_keyed_per_portal(self):
-        from openamer_cli.models import fetch_nous_recommended_models
+        from openamer_cli.models import fetch_openamer_recommended_models
         mock_cm = self._mock_urlopen(self._SAMPLE_PAYLOAD)
         with patch("openamer_cli.models._urlopen_model_catalog_request", return_value=mock_cm) as mock_urlopen:
-            fetch_nous_recommended_models("https://portal.example.com")
-            fetch_nous_recommended_models("https://portal.staging-nousresearch.com")
+            fetch_openamer_recommended_models("https://portal.example.com")
+            fetch_openamer_recommended_models("https://portal.staging-openamer.com")
         assert mock_urlopen.call_count == 2  # different portals → separate fetches
 
     def test_fetch_returns_empty_on_network_failure(self):
-        from openamer_cli.models import fetch_nous_recommended_models
+        from openamer_cli.models import fetch_openamer_recommended_models
         with patch("openamer_cli.models._urlopen_model_catalog_request", side_effect=OSError("boom")):
-            result = fetch_nous_recommended_models("https://portal.example.com")
+            result = fetch_openamer_recommended_models("https://portal.example.com")
         assert result == {}
 
     def test_fetch_force_refresh_bypasses_cache(self):
-        from openamer_cli.models import fetch_nous_recommended_models
+        from openamer_cli.models import fetch_openamer_recommended_models
         mock_cm = self._mock_urlopen(self._SAMPLE_PAYLOAD)
         with patch("openamer_cli.models._urlopen_model_catalog_request", return_value=mock_cm) as mock_urlopen:
-            fetch_nous_recommended_models("https://portal.example.com")
-            fetch_nous_recommended_models("https://portal.example.com", force_refresh=True)
+            fetch_openamer_recommended_models("https://portal.example.com")
+            fetch_openamer_recommended_models("https://portal.example.com", force_refresh=True)
         assert mock_urlopen.call_count == 2
 
     def test_get_aux_model_returns_vision_recommendation(self):
-        from openamer_cli.models import get_nous_recommended_aux_model
+        from openamer_cli.models import get_openamer_recommended_aux_model
         with patch(
-            "openamer_cli.models.fetch_nous_recommended_models",
+            "openamer_cli.models.fetch_openamer_recommended_models",
             return_value=self._SAMPLE_PAYLOAD,
         ):
             # Free tier → free vision recommendation.
-            model = get_nous_recommended_aux_model(vision=True, free_tier=True)
+            model = get_openamer_recommended_aux_model(vision=True, free_tier=True)
         assert model == "google/gemini-3-flash-preview"
 
     def test_get_aux_model_returns_compaction_recommendation(self):
-        from openamer_cli.models import get_nous_recommended_aux_model
+        from openamer_cli.models import get_openamer_recommended_aux_model
         payload = dict(self._SAMPLE_PAYLOAD)
         payload["freeRecommendedCompactionModel"] = {"modelName": "minimax/minimax-m2.7"}
         with patch(
-            "openamer_cli.models.fetch_nous_recommended_models",
+            "openamer_cli.models.fetch_openamer_recommended_models",
             return_value=payload,
         ):
-            model = get_nous_recommended_aux_model(vision=False, free_tier=True)
+            model = get_openamer_recommended_aux_model(vision=False, free_tier=True)
         assert model == "minimax/minimax-m2.7"
 
     def test_get_aux_model_returns_none_when_field_null(self):
-        from openamer_cli.models import get_nous_recommended_aux_model
+        from openamer_cli.models import get_openamer_recommended_aux_model
         payload = dict(self._SAMPLE_PAYLOAD)
         payload["freeRecommendedCompactionModel"] = None
         with patch(
-            "openamer_cli.models.fetch_nous_recommended_models",
+            "openamer_cli.models.fetch_openamer_recommended_models",
             return_value=payload,
         ):
-            model = get_nous_recommended_aux_model(vision=False, free_tier=True)
+            model = get_openamer_recommended_aux_model(vision=False, free_tier=True)
         assert model is None
 
     def test_get_aux_model_returns_none_on_empty_payload(self):
-        from openamer_cli.models import get_nous_recommended_aux_model
-        with patch("openamer_cli.models.fetch_nous_recommended_models", return_value={}):
-            assert get_nous_recommended_aux_model(vision=False, free_tier=True) is None
-            assert get_nous_recommended_aux_model(vision=True, free_tier=False) is None
+        from openamer_cli.models import get_openamer_recommended_aux_model
+        with patch("openamer_cli.models.fetch_openamer_recommended_models", return_value={}):
+            assert get_openamer_recommended_aux_model(vision=False, free_tier=True) is None
+            assert get_openamer_recommended_aux_model(vision=True, free_tier=False) is None
 
     def test_get_aux_model_returns_none_when_modelname_blank(self):
-        from openamer_cli.models import get_nous_recommended_aux_model
+        from openamer_cli.models import get_openamer_recommended_aux_model
         payload = {"freeRecommendedCompactionModel": {"modelName": "  "}}
         with patch(
-            "openamer_cli.models.fetch_nous_recommended_models",
+            "openamer_cli.models.fetch_openamer_recommended_models",
             return_value=payload,
         ):
-            assert get_nous_recommended_aux_model(vision=False, free_tier=True) is None
+            assert get_openamer_recommended_aux_model(vision=False, free_tier=True) is None
 
     def test_paid_tier_prefers_paid_recommendation(self):
         """Paid-tier users should get the paid model when it's populated."""
-        from openamer_cli.models import get_nous_recommended_aux_model
+        from openamer_cli.models import get_openamer_recommended_aux_model
         payload = {
             "paidRecommendedCompactionModel": {"modelName": "anthropic/claude-opus-4.7"},
             "freeRecommendedCompactionModel": {"modelName": "google/gemini-3-flash-preview"},
             "paidRecommendedVisionModel": {"modelName": "openai/gpt-5.4"},
             "freeRecommendedVisionModel": {"modelName": "google/gemini-3-flash-preview"},
         }
-        with patch("openamer_cli.models.fetch_nous_recommended_models", return_value=payload):
-            text = get_nous_recommended_aux_model(vision=False, free_tier=False)
-            vision = get_nous_recommended_aux_model(vision=True, free_tier=False)
+        with patch("openamer_cli.models.fetch_openamer_recommended_models", return_value=payload):
+            text = get_openamer_recommended_aux_model(vision=False, free_tier=False)
+            vision = get_openamer_recommended_aux_model(vision=True, free_tier=False)
         assert text == "anthropic/claude-opus-4.7"
         assert vision == "openai/gpt-5.4"
 
     def test_paid_tier_falls_back_to_free_when_paid_is_null(self):
         """If the Portal returns null for the paid field, fall back to free."""
-        from openamer_cli.models import get_nous_recommended_aux_model
+        from openamer_cli.models import get_openamer_recommended_aux_model
         payload = {
             "paidRecommendedCompactionModel": None,
             "freeRecommendedCompactionModel": {"modelName": "google/gemini-3-flash-preview"},
             "paidRecommendedVisionModel": None,
             "freeRecommendedVisionModel": {"modelName": "google/gemini-3-flash-preview"},
         }
-        with patch("openamer_cli.models.fetch_nous_recommended_models", return_value=payload):
-            text = get_nous_recommended_aux_model(vision=False, free_tier=False)
-            vision = get_nous_recommended_aux_model(vision=True, free_tier=False)
+        with patch("openamer_cli.models.fetch_openamer_recommended_models", return_value=payload):
+            text = get_openamer_recommended_aux_model(vision=False, free_tier=False)
+            vision = get_openamer_recommended_aux_model(vision=True, free_tier=False)
         assert text == "google/gemini-3-flash-preview"
         assert vision == "google/gemini-3-flash-preview"
 
     def test_free_tier_never_uses_paid_recommendation(self):
         """Free-tier users must not get paid-only recommendations."""
-        from openamer_cli.models import get_nous_recommended_aux_model
+        from openamer_cli.models import get_openamer_recommended_aux_model
         payload = {
             "paidRecommendedCompactionModel": {"modelName": "anthropic/claude-opus-4.7"},
             "freeRecommendedCompactionModel": None,  # no free recommendation
         }
-        with patch("openamer_cli.models.fetch_nous_recommended_models", return_value=payload):
-            model = get_nous_recommended_aux_model(vision=False, free_tier=True)
+        with patch("openamer_cli.models.fetch_openamer_recommended_models", return_value=payload):
+            model = get_openamer_recommended_aux_model(vision=False, free_tier=True)
         # Free tier must return None — never leak the paid model.
         assert model is None
 
     def test_auto_detects_tier_when_not_supplied(self):
-        """Default behaviour: call check_nous_free_tier() to pick the tier."""
-        from openamer_cli.models import get_nous_recommended_aux_model
+        """Default behaviour: call check_openamer_free_tier() to pick the tier."""
+        from openamer_cli.models import get_openamer_recommended_aux_model
         payload = {
             "paidRecommendedCompactionModel": {"modelName": "paid-model"},
             "freeRecommendedCompactionModel": {"modelName": "free-model"},
         }
         with (
-            patch("openamer_cli.models.fetch_nous_recommended_models", return_value=payload),
-            patch("openamer_cli.models.check_nous_free_tier", return_value=True),
+            patch("openamer_cli.models.fetch_openamer_recommended_models", return_value=payload),
+            patch("openamer_cli.models.check_openamer_free_tier", return_value=True),
         ):
-            assert get_nous_recommended_aux_model(vision=False) == "free-model"
+            assert get_openamer_recommended_aux_model(vision=False) == "free-model"
         with (
-            patch("openamer_cli.models.fetch_nous_recommended_models", return_value=payload),
-            patch("openamer_cli.models.check_nous_free_tier", return_value=False),
+            patch("openamer_cli.models.fetch_openamer_recommended_models", return_value=payload),
+            patch("openamer_cli.models.check_openamer_free_tier", return_value=False),
         ):
-            assert get_nous_recommended_aux_model(vision=False) == "paid-model"
+            assert get_openamer_recommended_aux_model(vision=False) == "paid-model"
 
     def test_tier_detection_error_defaults_to_paid(self):
         """If tier detection raises, assume paid so we don't downgrade silently."""
-        from openamer_cli.models import get_nous_recommended_aux_model
+        from openamer_cli.models import get_openamer_recommended_aux_model
         payload = {
             "paidRecommendedCompactionModel": {"modelName": "paid-model"},
             "freeRecommendedCompactionModel": {"modelName": "free-model"},
         }
         with (
-            patch("openamer_cli.models.fetch_nous_recommended_models", return_value=payload),
-            patch("openamer_cli.models.check_nous_free_tier", side_effect=RuntimeError("boom")),
+            patch("openamer_cli.models.fetch_openamer_recommended_models", return_value=payload),
+            patch("openamer_cli.models.check_openamer_free_tier", side_effect=RuntimeError("boom")),
         ):
-            assert get_nous_recommended_aux_model(vision=False) == "paid-model"
+            assert get_openamer_recommended_aux_model(vision=False) == "paid-model"
 
 
 class TestCodexSoftAcceptPlausibilityGate:
@@ -990,6 +990,6 @@ class TestClaudeSonnet5InCuratedLists:
         ids = [mid for mid, _ in OPENROUTER_MODELS]
         assert "anthropic/claude-sonnet-5" in ids
 
-    def test_nous_list_includes_sonnet_5(self):
+    def test_openamer_list_includes_sonnet_5(self):
         from openamer_cli.models import _PROVIDER_MODELS
-        assert "anthropic/claude-sonnet-5" in _PROVIDER_MODELS["nous"]
+        assert "anthropic/claude-sonnet-5" in _PROVIDER_MODELS["openamer"]

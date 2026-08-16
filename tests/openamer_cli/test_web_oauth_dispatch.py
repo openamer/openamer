@@ -41,13 +41,13 @@ def _make_profile_home(tmp_path, monkeypatch, profile="coder"):
     return profile_home
 
 
-def _fake_nous_device_data():
+def _fake_openamer_device_data():
     return {
         "device_code": "device-code",
-        "user_code": "NOUS-1234",
-        "verification_uri": "https://portal.nousresearch.com/device",
+        "user_code": "OPENAMER-1234",
+        "verification_uri": "https://portal.openamer.com/device",
         "verification_uri_complete": (
-            "https://portal.nousresearch.com/device?user_code=NOUS-1234"
+            "https://portal.openamer.com/device?user_code=OPENAMER-1234"
         ),
         "expires_in": 600,
         "interval": 5,
@@ -55,7 +55,7 @@ def _fake_nous_device_data():
 
 
 def _invoke_scope_refusal():
-    request = httpx.Request("POST", "https://portal.nousresearch.com/oauth/device/code")
+    request = httpx.Request("POST", "https://portal.openamer.com/oauth/device/code")
     response = httpx.Response(
         400,
         json={
@@ -107,7 +107,7 @@ def test_minimax_login_does_not_launch_anthropic_flow():
     assert body["expires_in"] == 600
 
 
-def test_nous_dashboard_device_flow_ignores_legacy_scope_override(monkeypatch):
+def test_openamer_dashboard_device_flow_ignores_legacy_scope_override(monkeypatch):
     from openamer_cli import auth as auth_mod
     from openamer_cli import web_server as ws
 
@@ -115,20 +115,20 @@ def test_nous_dashboard_device_flow_ignores_legacy_scope_override(monkeypatch):
 
     def fake_request_device_code(**kwargs):
         requested_scopes.append(kwargs["scope"])
-        return _fake_nous_device_data()
+        return _fake_openamer_device_data()
 
     monkeypatch.setenv("OPENAMER_AGENT_USE_LEGACY_SESSION_KEYS", "true")
     monkeypatch.setattr(auth_mod, "_request_device_code", fake_request_device_code)
-    monkeypatch.setattr(ws, "_nous_poller", lambda sid: None)
+    monkeypatch.setattr(ws, "_openamer_poller", lambda sid: None)
 
-    result = asyncio.run(ws._start_device_code_flow("nous"))
+    result = asyncio.run(ws._start_device_code_flow("openamer"))
     try:
-        assert requested_scopes == [auth_mod.DEFAULT_NOUS_SCOPE]
+        assert requested_scopes == [auth_mod.DEFAULT_openamer_SCOPE]
         assert result["flow"] == "device_code"
-        assert result["user_code"] == "NOUS-1234"
+        assert result["user_code"] == "OPENAMER-1234"
         assert (
             ws._oauth_sessions[result["session_id"]]["scope"]
-            == auth_mod.DEFAULT_NOUS_SCOPE
+            == auth_mod.DEFAULT_openamer_SCOPE
         )
     finally:
         ws._oauth_sessions.pop(result["session_id"], None)
@@ -195,7 +195,7 @@ def test_oauth_start_stores_profile_for_background_completion(tmp_path, monkeypa
         ws._oauth_sessions.pop(session_id, None)
 
 
-def test_nous_dashboard_device_flow_does_not_retry_legacy_scope_on_invoke_refusal(monkeypatch):
+def test_openamer_dashboard_device_flow_does_not_retry_legacy_scope_on_invoke_refusal(monkeypatch):
     from openamer_cli import auth as auth_mod
     from openamer_cli import web_server as ws
 
@@ -207,11 +207,11 @@ def test_nous_dashboard_device_flow_does_not_retry_legacy_scope_on_invoke_refusa
 
     monkeypatch.delenv("OPENAMER_AGENT_USE_LEGACY_SESSION_KEYS", raising=False)
     monkeypatch.setattr(auth_mod, "_request_device_code", fake_request_device_code)
-    monkeypatch.setattr(ws, "_nous_poller", lambda sid: None)
+    monkeypatch.setattr(ws, "_openamer_poller", lambda sid: None)
 
     with pytest.raises(httpx.HTTPStatusError):
-        asyncio.run(ws._start_device_code_flow("nous"))
-    assert requested_scopes == [auth_mod.DEFAULT_NOUS_SCOPE]
+        asyncio.run(ws._start_device_code_flow("openamer"))
+    assert requested_scopes == [auth_mod.DEFAULT_openamer_SCOPE]
 
 
 def test_codex_dashboard_worker_persists_runtime_provider(tmp_path, monkeypatch):
@@ -390,28 +390,28 @@ def test_codex_dashboard_start_rewords_device_authorization_error(monkeypatch):
             ws._oauth_sessions.pop(sid, None)
 
 
-def test_nous_dashboard_poller_preserves_effective_scope_when_token_omits_scope(monkeypatch):
+def test_openamer_dashboard_poller_preserves_effective_scope_when_token_omits_scope(monkeypatch):
     from openamer_cli import auth as auth_mod
     from openamer_cli import web_server as ws
 
-    session_id = "nous-effective-scope-test"
+    session_id = "openamer-effective-scope-test"
     ws._oauth_sessions[session_id] = {
         "session_id": session_id,
-        "provider": "nous",
+        "provider": "openamer",
         "flow": "device_code",
         "created_at": time.time(),
         "status": "pending",
         "error_message": None,
-        "portal_base_url": "https://portal.nousresearch.com",
+        "portal_base_url": "https://portal.openamer.com",
         "client_id": "openamer-cli",
         "device_code": "device-code",
         "interval": 5,
         "expires_at": time.time() + 600,
-        "scope": auth_mod.DEFAULT_NOUS_SCOPE,
+        "scope": auth_mod.DEFAULT_openamer_SCOPE,
     }
     captured_state = {}
 
-    def fake_refresh_nous_oauth_from_state(state, **kwargs):
+    def fake_refresh_openamer_oauth_from_state(state, **kwargs):
         captured_state.update(state)
         return {**state, "agent_key": "jwt-agent-key"}
 
@@ -427,14 +427,14 @@ def test_nous_dashboard_poller_preserves_effective_scope_when_token_omits_scope(
     )
     monkeypatch.setattr(
         auth_mod,
-        "refresh_nous_oauth_from_state",
-        fake_refresh_nous_oauth_from_state,
+        "refresh_openamer_oauth_from_state",
+        fake_refresh_openamer_oauth_from_state,
     )
-    monkeypatch.setattr(auth_mod, "persist_nous_credentials", lambda state: None)
+    monkeypatch.setattr(auth_mod, "persist_openamer_credentials", lambda state: None)
 
     try:
-        ws._nous_poller(session_id)
-        assert captured_state["scope"] == auth_mod.DEFAULT_NOUS_SCOPE
+        ws._openamer_poller(session_id)
+        assert captured_state["scope"] == auth_mod.DEFAULT_openamer_SCOPE
         assert ws._oauth_sessions[session_id]["status"] == "approved"
     finally:
         ws._oauth_sessions.pop(session_id, None)
@@ -790,15 +790,15 @@ def test_status_falls_through_to_generic_dispatcher_for_catalog_only_provider():
 
 
 def test_status_hardcoded_branch_wins_over_generic_fallback():
-    """An existing hardcoded branch (nous) is unaffected by the fallthrough."""
+    """An existing hardcoded branch (openamer) is unaffected by the fallthrough."""
     import openamer_cli.web_server as ws
 
     with patch(
-        "openamer_cli.auth.get_nous_auth_status",
+        "openamer_cli.auth.get_openamer_auth_status",
         return_value={"logged_in": True, "portal_base_url": "https://portal.test"},
     ):
-        out = ws._resolve_provider_status("nous", None)
-    assert out["source"] == "nous_portal"
+        out = ws._resolve_provider_status("openamer", None)
+    assert out["source"] == "openamer_portal"
     assert out["source_label"] == "https://portal.test"
 
 

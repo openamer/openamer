@@ -552,7 +552,7 @@ class TestSessionLifecycle:
             model_config={
                 "_branched_from": "parent-session",
                 "browser_model_lock": {
-                    "provider": "nous",
+                    "provider": "openamer",
                     "model": "x-ai/grok-4.5",
                     "confirmed": True,
                 },
@@ -6373,7 +6373,7 @@ class TestApplyWalProbe:
             "synchronous=FULL must not be issued off macOS"
         )
 
-    def test_macos_synchronous_full_enforced_fresh(self, tmp_path, monkeypatch):
+    def test_macos_synchroopenamer_full_enforced_fresh(self, tmp_path, monkeypatch):
         """On Darwin, apply_wal_with_fallback enforces synchronous=FULL (issue #63531)."""
         import sqlite3
         import openamer_state
@@ -6402,7 +6402,7 @@ class TestApplyWalProbe:
             "synchronous=FULL must be enforced on macOS"
         )
 
-    def test_macos_synchronous_full_enforced_already_wal(self, tmp_path, monkeypatch):
+    def test_macos_synchroopenamer_full_enforced_already_wal(self, tmp_path, monkeypatch):
         """synchronous=FULL is enforced even when DB is already in WAL mode (issue #63531)."""
         import sqlite3
         import openamer_state

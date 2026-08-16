@@ -1,7 +1,7 @@
 """Tests for inventory._apply_pricing — the pricing/tier enrichment that
 
 feeds the desktop GUI model picker (and onboarding) so it can show $/Mtok
-columns + Free/Pro badges and gate paid models on free Nous accounts, the
+columns + Free/Pro badges and gate paid models on free OpenAmer accounts, the
 same way the `openamer model` CLI picker does.
 """
 
@@ -11,9 +11,9 @@ import openamer_cli.models as models_mod
 
 def _patch_pricing(monkeypatch, *, free_tier, pricing, unavailable=None):
     monkeypatch.setattr(models_mod, "get_pricing_for_provider", lambda slug, **kw: pricing.get(slug, {}))
-    monkeypatch.setattr(models_mod, "check_nous_free_tier", lambda *, force_fresh=False: free_tier)
+    monkeypatch.setattr(models_mod, "check_openamer_free_tier", lambda *, force_fresh=False: free_tier)
     monkeypatch.setattr(
-        models_mod, "partition_nous_models_by_tier",
+        models_mod, "partition_openamer_models_by_tier",
         lambda ids, pr, free_tier: (
             [m for m in ids if m not in (unavailable or [])],
             list(unavailable or []),
@@ -42,20 +42,20 @@ def test_apply_pricing_formats_per_model_prices(monkeypatch):
     assert pricing["b/free"]["input"] == "free"
 
 
-def test_apply_pricing_nous_free_tier_gates_paid_models(monkeypatch):
-    """A free-tier Nous account marks paid models unavailable and sets the flag."""
+def test_apply_pricing_openamer_free_tier_gates_paid_models(monkeypatch):
+    """A free-tier OpenAmer account marks paid models unavailable and sets the flag."""
     _patch_pricing(
         monkeypatch,
         free_tier=True,
         pricing={
-            "nous": {
+            "openamer": {
                 "free/model": {"prompt": "0", "completion": "0"},
                 "paid/model": {"prompt": "0.000005", "completion": "0.00001"},
             }
         },
         unavailable=["paid/model"],
     )
-    rows = [{"slug": "nous", "models": ["free/model", "paid/model"]}]
+    rows = [{"slug": "openamer", "models": ["free/model", "paid/model"]}]
     inv._apply_pricing(rows)
 
     assert rows[0]["free_tier"] is True
@@ -63,14 +63,14 @@ def test_apply_pricing_nous_free_tier_gates_paid_models(monkeypatch):
     assert rows[0]["pricing"]["free/model"]["free"] is True
 
 
-def test_apply_pricing_nous_paid_tier_no_gating(monkeypatch):
-    """A paid Nous account gates nothing."""
+def test_apply_pricing_openamer_paid_tier_no_gating(monkeypatch):
+    """A paid OpenAmer account gates nothing."""
     _patch_pricing(
         monkeypatch,
         free_tier=False,
-        pricing={"nous": {"x/model": {"prompt": "0.000001", "completion": "0.000002"}}},
+        pricing={"openamer": {"x/model": {"prompt": "0.000001", "completion": "0.000002"}}},
     )
-    rows = [{"slug": "nous", "models": ["x/model"]}]
+    rows = [{"slug": "openamer", "models": ["x/model"]}]
     inv._apply_pricing(rows)
 
     assert rows[0]["free_tier"] is False
@@ -104,7 +104,7 @@ def test_apply_pricing_emits_sale_fields_when_original_cheaper(monkeypatch):
         monkeypatch,
         free_tier=False,
         pricing={
-            "nous": {
+            "openamer": {
                 "a/sale": {
                     "prompt": "0.0000016",
                     "completion": "0.000008",
@@ -120,7 +120,7 @@ def test_apply_pricing_emits_sale_fields_when_original_cheaper(monkeypatch):
             }
         },
     )
-    rows = [{"slug": "nous", "models": ["a/sale", "b/normal"]}]
+    rows = [{"slug": "openamer", "models": ["a/sale", "b/normal"]}]
     inv._apply_pricing(rows)
 
     sale = rows[0]["pricing"]["a/sale"]
@@ -142,7 +142,7 @@ def test_apply_pricing_omits_sale_for_free_models_even_with_original(monkeypatch
         monkeypatch,
         free_tier=False,
         pricing={
-            "nous": {
+            "openamer": {
                 "a/free": {
                     "prompt": "0",
                     "completion": "0",
@@ -154,7 +154,7 @@ def test_apply_pricing_omits_sale_for_free_models_even_with_original(monkeypatch
             }
         },
     )
-    rows = [{"slug": "nous", "models": ["a/free"]}]
+    rows = [{"slug": "openamer", "models": ["a/free"]}]
     inv._apply_pricing(rows)
     free = rows[0]["pricing"]["a/free"]
     assert free["free"] is True
@@ -168,7 +168,7 @@ def test_apply_pricing_omits_sale_when_original_not_cheaper(monkeypatch):
         monkeypatch,
         free_tier=False,
         pricing={
-            "nous": {
+            "openamer": {
                 "a/eq": {
                     "prompt": "0.000002",
                     "completion": "0.00001",
@@ -180,13 +180,13 @@ def test_apply_pricing_omits_sale_when_original_not_cheaper(monkeypatch):
             }
         },
     )
-    rows = [{"slug": "nous", "models": ["a/eq"]}]
+    rows = [{"slug": "openamer", "models": ["a/eq"]}]
     inv._apply_pricing(rows)
     assert "discount_percent" not in rows[0]["pricing"]["a/eq"]
 
 
-def test_apply_pricing_sale_chrome_nous_only(monkeypatch):
-    """OpenRouter (and other non-nous slugs) must never emit sale fields."""
+def test_apply_pricing_sale_chrome_openamer_only(monkeypatch):
+    """OpenRouter (and other non-openamer slugs) must never emit sale fields."""
     _patch_pricing(
         monkeypatch,
         free_tier=False,

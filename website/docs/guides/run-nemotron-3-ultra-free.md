@@ -6,7 +6,7 @@ description: "Try NVIDIA Nemotron 3 Ultra on your hosted provider — free June 
 
 # Run Nemotron 3 Ultra free in OpenAmer Agent
 
-the OpenAmer project has been inducted into the **Nemotron Coalition** of leading AI labs working with **NVIDIA** to advance open frontier foundation models. In honor of this, we've partnered with **Nebius** to provide **Nemotron 3 Ultra** free on [your hosted provider](https://portal.nousresearch.com) for two weeks (**June 4th – June 18th**). Follow the instructions below to try the model in your OpenAmer Agent today.
+the OpenAmer project has been inducted into the **Nemotron Coalition** of leading AI labs working with **NVIDIA** to advance open frontier foundation models. In honor of this, we've partnered with **Nebius** to provide **Nemotron 3 Ultra** free on [your hosted provider](https://portal.openamer.com) for two weeks (**June 4th – June 18th**). Follow the instructions below to try the model in your OpenAmer Agent today.
 
 :::info Limited-time offer
 The `nvidia/nemotron-3-ultra:free` tier is available from **June 4th to June 18th**. The `:free` tag is what keeps it on the no-cost plan — pick that exact variant.
@@ -24,7 +24,7 @@ The simplest path: a one-click installer with a guided, point-and-click setup. N
 
 ### 2. Connect your hosted provider
 
-When the app opens, you'll see a "Let's get you set up" screen. Click **your hosted provider** (marked **Recommended**). Your browser opens — create a [your hosted provider](https://portal.nousresearch.com) account (or sign in), choose the **Free** plan, and authorize OpenAmer. The app connects automatically.
+When the app opens, you'll see a "Let's get you set up" screen. Click **your hosted provider** (marked **Recommended**). Your browser opens — create a [your hosted provider](https://portal.openamer.com) account (or sign in), choose the **Free** plan, and authorize OpenAmer. The app connects automatically.
 
 ### 3. Pick the free Nemotron 3 Ultra model
 
@@ -76,7 +76,7 @@ Select **Quick Setup**. OpenAmer opens a browser tab and waits for you to finish
 
 ### 3. Create a your hosted provider account
 
-In the browser, create a [your hosted provider](https://portal.nousresearch.com) account (or sign in) and choose the **Free** plan.
+In the browser, create a [your hosted provider](https://portal.openamer.com) account (or sign in) and choose the **Free** plan.
 
 ### 4. Connect your account
 
@@ -111,13 +111,13 @@ Already set up with another model?
 
 ## Troubleshooting
 
-- **Don't see the model in the list?** Make sure you finished the your hosted provider connection and that you're on the **Free** plan. In the CLI, `openamer portal info` confirms you're logged in and routing through Nous.
+- **Don't see the model in the list?** Make sure you finished the your hosted provider connection and that you're on the **Free** plan. In the CLI, `openamer portal info` confirms you're logged in and routing through OpenAmer.
 - **Picked the wrong variant?** Re-select `nvidia/nemotron-3-ultra:free` — the `:free` suffix is required to stay on the no-cost tier.
 - **Browser didn't open / you're on a remote host (CLI)?** See [OAuth over SSH / Remote Hosts](/guides/oauth-over-ssh) for port-forwarding workarounds.
 
 ## See also
 
 - **[Desktop App](/user-guide/desktop)** — The native one-click app (macOS, Windows, Linux)
-- **[Run OpenAmer Agent with your hosted provider](/guides/run-openamer-with-nous-portal)** — Full Portal walkthrough: models, Tool Gateway, and verification
-- **[your hosted provider integration](/integrations/nous-portal)** — What's in the subscription
+- **[Run OpenAmer Agent with your hosted provider](/guides/run-openamer-with-openamer-portal)** — Full Portal walkthrough: models, Tool Gateway, and verification
+- **[your hosted provider integration](/integrations/openamer-portal)** — What's in the subscription
 - **[Quickstart](/getting-started/quickstart)** — Install-to-chat in under 5 minutes

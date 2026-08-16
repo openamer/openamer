@@ -10,7 +10,7 @@ fork inherits the cached prompt verbatim.
 Three tiers are joined with ``\\n\\n``:
 
 * ``stable``   — identity (SOUL.md or DEFAULT_AGENT_IDENTITY), tool
-  guidance, computer-use guidance, nous subscription block, tool-use
+  guidance, computer-use guidance, openamer subscription block, tool-use
   enforcement guidance + per-model operational guidance, skills prompt,
   alibaba model-name workaround, environment hints, coding guidance,
   platform hints.
@@ -56,7 +56,7 @@ def _ra():
     """Lazy reference to the ``run_agent`` module.
 
     Helpers like ``load_soul_md``, ``build_environment_hints``,
-    ``build_context_files_prompt``, ``build_nous_subscription_prompt``,
+    ``build_context_files_prompt``, ``build_openamer_subscription_prompt``,
     ``build_skills_system_prompt`` and ``get_toolset_for_tool`` are
     imported into ``run_agent``'s namespace.  Many tests
     ``patch("run_agent.load_soul_md", ...)``; if we imported them
@@ -267,9 +267,9 @@ def build_system_prompt_parts(agent: Any, system_message: Optional[str] = None) 
         from agent.prompt_builder import computer_use_guidance
         stable_parts.append(computer_use_guidance())
 
-    nous_subscription_prompt = _r.build_nous_subscription_prompt(agent.valid_tool_names)
-    if nous_subscription_prompt:
-        stable_parts.append(nous_subscription_prompt)
+    openamer_subscription_prompt = _r.build_openamer_subscription_prompt(agent.valid_tool_names)
+    if openamer_subscription_prompt:
+        stable_parts.append(openamer_subscription_prompt)
     # Tool-use enforcement: tells the model to actually call tools instead
     # of describing intended actions.  Controlled by config.yaml
     # agent.tool_use_enforcement:

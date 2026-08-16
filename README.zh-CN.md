@@ -6,7 +6,7 @@
 
 <p align="center">
   <a href="https://github.com/openamer/openamer/blob/main/website/docs/"><img src="https://img.shields.io/badge/Docs-OpenAmer-22D3EE?style=for-the-badge" alt="Documentation"></a>
-  <a href="https://discord.gg/NousResearch"><img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord"></a>
+  <a href="https://discord.gg/openamer"><img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord"></a>
   <a href="https://github.com/openamer/openamer/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License: MIT"></a>
   <a href="README.md"><img src="https://img.shields.io/badge/Lang-English-lightgrey?style=for-the-badge" alt="English"></a>
   <a href="README.ur-pk.md"><img src="https://img.shields.io/badge/Lang-اردو-green?style=for-the-badge" alt="اردو"></a>
@@ -177,7 +177,7 @@ python -m pytest tests/ -q
 
 ## 社区
 
-- 💬 [Discord](https://discord.gg/NousResearch)
+- 💬 [Discord](https://discord.gg/openamer)
 - 📚 [技能中心](https://agentskills.io)
 - 🐛 [问题反馈](https://github.com/openamer/openamer/issues)
 - 💡 [讨论区](https://github.com/openamer/openamer/discussions)

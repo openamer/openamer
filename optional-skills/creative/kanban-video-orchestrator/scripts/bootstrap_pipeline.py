@@ -8,7 +8,7 @@ initial kanban task.
 
 Profile-config patching, SOUL.md-per-profile, TEAM.md task-graph convention,
 and the `openamer kanban create --workspace dir:` initial-task pattern are
-adapted from alt-glitch's NousResearch/kanban-video-pipeline.
+adapted from alt-glitch's openamer/kanban-video-pipeline.
 
 Usage:
     bootstrap_pipeline.py plan.json [--out setup.sh]

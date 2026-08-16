@@ -59,10 +59,10 @@ def _arm(monkeypatch, *, url="wss://connector.example/relay", token="nas-token")
 
     Note there is intentionally no `managed` knob — self-provision no longer
     consults is_managed(). A test that wants the "no NAS identity" branch
-    monkeypatches resolve_nous_access_token to raise instead.
+    monkeypatches resolve_openamer_access_token to raise instead.
     """
     monkeypatch.setattr(relay, "relay_url", lambda: url)
-    monkeypatch.setattr("openamer_cli.auth.resolve_nous_access_token", lambda: token)
+    monkeypatch.setattr("openamer_cli.auth.resolve_openamer_access_token", lambda: token)
 
 
 # ─────────────────────────── config readers ───────────────────────────
@@ -360,7 +360,7 @@ def test_no_nas_token_is_non_fatal(monkeypatch):
     def _boom():
         raise RuntimeError("no token")
 
-    monkeypatch.setattr("openamer_cli.auth.resolve_nous_access_token", _boom)
+    monkeypatch.setattr("openamer_cli.auth.resolve_openamer_access_token", _boom)
     # Must not raise; returns False; no creds set.
     assert relay.self_provision_relay() is False
     assert relay.relay_connection_auth() == (None, None)

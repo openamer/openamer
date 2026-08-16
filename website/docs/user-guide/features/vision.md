@@ -10,7 +10,7 @@ sidebar_position: 7
 OpenAmer Agent supports **multimodal vision** — you can paste images from your clipboard directly into the CLI and ask the agent to analyze, describe, or work with them. Images are sent to the model as base64-encoded content blocks, so any vision-capable model can process them.
 
 :::tip
-Portal subscribers get vision-capable models (Claude, GPT-5, Gemini) in the same catalog — no extra credentials needed. See [your hosted provider](/integrations/nous-portal).
+Portal subscribers get vision-capable models (Claude, GPT-5, Gemini) in the same catalog — no extra credentials needed. See [your hosted provider](/integrations/openamer-portal).
 :::
 
 ## How It Works

@@ -176,10 +176,10 @@ The connection has two halves: on the backend you protect it with an **auth prov
 
 **Pick a provider based on where the backend lives:**
 
-- **OAuth (your hosted provider) — preferred for anything reachable beyond your own machine.** Logins are verified against your a hosted provider account, so this is the option suitable for a VPS, a public host, or any remote backend. Register the dashboard with `openamer dashboard register` (or the Portal [`/local-dashboards`](https://portal.nousresearch.com/local-dashboards) page) to provision its OAuth client, then sign in from the app with **Sign in with the OpenAmer project**. A self-hosted OIDC provider works the same way if you run your own identity provider.
+- **OAuth (your hosted provider) — preferred for anything reachable beyond your own machine.** Logins are verified against your a hosted provider account, so this is the option suitable for a VPS, a public host, or any remote backend. Register the dashboard with `openamer dashboard register` (or the Portal [`/local-dashboards`](https://portal.openamer.com/local-dashboards) page) to provision its OAuth client, then sign in from the app with **Sign in with the OpenAmer project**. A self-hosted OIDC provider works the same way if you run your own identity provider.
 - **Username/password — local / trusted-network use only.** The simplest option when the backend is on the same trusted LAN or reachable only over a VPN (e.g. Tailscale). It protects a single shared credential with no external identity provider, so **do not use it for a dashboard exposed to the public internet** — reach for OAuth there instead.
 
-The rest of this section shows the username/password path because it's the quickest to stand up on a trusted network; for the OAuth path see [Web Dashboard → Default provider: the OpenAmer project](./features/web-dashboard.md#default-provider-nous-research).
+The rest of this section shows the username/password path because it's the quickest to stand up on a trusted network; for the OAuth path see [Web Dashboard → Default provider: the OpenAmer project](./features/web-dashboard.md#default-provider-openamer-research).
 
 ### On the backend (the remote machine)
 
@@ -266,7 +266,7 @@ rm "$HOME/.openamer/openamer-agent/.openamer-bootstrap-complete"
 rm -rf "$HOME/.openamer/openamer-agent/venv"
 
 # Reset a stuck macOS microphone prompt
-tccutil reset Microphone com.nousresearch.openamer
+tccutil reset Microphone com.openamer.openamer
 ```
 
 ### "Build desktop app" stuck on Electron download

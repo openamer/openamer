@@ -268,7 +268,7 @@ def build_subscription_state(*, timeout: float = 15.0) -> SubscriptionState:
         return fixture
 
     try:
-        from openamer_cli.nous_billing import (
+        from openamer_cli.openamer_billing import (
             BillingAuthError,
             BillingError,
             _absolutize_portal_url,
@@ -416,7 +416,7 @@ def is_upgrade(state: SubscriptionState, tier_id: str) -> bool:
 # Dev fixtures (throwaway scaffolding — env-var driven, no live portal)
 # =============================================================================
 
-_DEV_FIXTURE_PORTAL = "https://portal.nousresearch.com/billing"
+_DEV_FIXTURE_PORTAL = "https://portal.openamer.com/billing"
 
 
 def _dev_current(**over: Any) -> CurrentSubscription:

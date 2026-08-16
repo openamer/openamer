@@ -378,7 +378,7 @@ gateway:
     reset_wrong_provider:     "إعادة تعيين الاستخدام المُدّخر متاحة فقط على مزوّد openai-codex. بدّل عبر `/model` أولًا."
 
   credits:
-    not_logged_in:            "لم تُسجّل الدخول إلى Nous Portal. سجّل الدخول لرؤية رصيد أرصدتك وإعادة الشحن."
+    not_logged_in:            "لم تُسجّل الدخول إلى OpenAmer Portal. سجّل الدخول لرؤية رصيد أرصدتك وإعادة الشحن."
 
   verbose:
     not_enabled:           "الأمر `/verbose` غير مُفعّل لمنصّات المراسلة.\n\nفعّله في `config.yaml`:\n```yaml\ndisplay:\n  tool_progress_command: true\n```"

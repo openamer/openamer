@@ -8,13 +8,13 @@ token. See :class:`UpstreamAdapter` for the contract.
 from typing import Dict, Type
 
 from openamer_cli.proxy.adapters.base import UpstreamAdapter
-from openamer_cli.proxy.adapters.nous_portal import NousPortalAdapter
+from openamer_cli.proxy.adapters.openamer_portal import OpenAmerPortalAdapter
 from openamer_cli.proxy.adapters.xai import XAIGrokAdapter
 
 # Registry of available adapter classes keyed by provider name as used on
 # the ``openamer proxy start --provider <name>`` CLI flag.
 ADAPTERS: Dict[str, Type[UpstreamAdapter]] = {
-    "nous": NousPortalAdapter,
+    "openamer": OpenAmerPortalAdapter,
     "xai": XAIGrokAdapter,
 }
 

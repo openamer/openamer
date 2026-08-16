@@ -474,7 +474,7 @@ def test_resolve_credentials_quarantines_dead_tokens_on_terminal_refresh_failure
     clear access_token/refresh_token/expires_* from auth.json and write a
     last_auth_error marker, so subsequent calls fail fast with not_logged_in
     instead of replaying the dead refresh token over the network.
-    Mirrors Nous / xAI-OAuth / Codex-OAuth quarantine pattern.
+    Mirrors OpenAmer / xAI-OAuth / Codex-OAuth quarantine pattern.
     """
     stale_state = {
         "access_token": "dead-access-token",

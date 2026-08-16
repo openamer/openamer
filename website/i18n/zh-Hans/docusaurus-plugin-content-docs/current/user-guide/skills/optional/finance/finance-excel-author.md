@@ -17,7 +17,7 @@ description: "使用 openpyxl 无头构建可审计的 Excel 工作簿——蓝/
 | 来源 | 可选——通过 `openamer skills install official/finance/excel-author` 安装 |
 | 路径 | `optional-skills/finance/excel-author` |
 | 版本 | `1.0.0` |
-| 作者 | Anthropic（由 Nous Research 改编） |
+| 作者 | Anthropic（由 OpenAmer 改编） |
 | 许可证 | Apache-2.0 |
 | 平台 | linux, macos, windows |
 | 标签 | `excel`, `openpyxl`, `finance`, `spreadsheet`, `modeling` |

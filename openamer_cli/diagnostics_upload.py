@@ -1,10 +1,10 @@
-"""Client for uploading ``openamer debug share`` bundles to Nous-internal S3.
+"""Client for uploading ``openamer debug share`` bundles to OpenAmer-internal S3.
 
-This is the opt-in (``--nous``) destination for ``openamer debug share``.
-Unlike the public paste.rs path, bundles uploaded here go to a Nous-owned
-S3 bucket via a short-lived signed URL minted by the Nous account service
+This is the opt-in (``--openamer``) destination for ``openamer debug share``.
+Unlike the public paste.rs path, bundles uploaded here go to a OpenAmer-owned
+S3 bucket via a short-lived signed URL minted by the OpenAmer account service
 (NAS).  The bucket auto-expires objects after 14 days, and the contents are
-only viewable by Nous staff (and allowlisted Discord mods) through a
+only viewable by OpenAmer staff (and allowlisted Discord mods) through a
 Google-OAuth-gated viewer.
 
 Flow:
@@ -24,11 +24,11 @@ import json
 import os
 import urllib.request
 
-# Base URL of the Nous account service that mints the signed upload URL.
+# Base URL of the OpenAmer account service that mints the signed upload URL.
 # Overridable via env so the feature can be pointed at staging / a local dev
 # NAS instance during testing.
 NAS_BASE = os.environ.get(
-    "OPENAMER_DIAGNOSTICS_BASE_URL", "https://portal.nousresearch.com"
+    "OPENAMER_DIAGNOSTICS_BASE_URL", "https://portal.openamer.com"
 )
 
 # Network timeout for each request (seconds). The upload itself can be larger
@@ -120,7 +120,7 @@ def put_bundle(
 
 
 def share_to_nous(report_bundle: bytes) -> dict:
-    """Orchestrate the full Nous-S3 upload of a gzipped *report_bundle*.
+    """Orchestrate the full OpenAmer-S3 upload of a gzipped *report_bundle*.
 
     Two steps: mint a presigned PUT URL (sending the exact ``sizeBytes`` NAS
     signs into the URL's ``ContentLength``), then PUT the bundle. NAS is

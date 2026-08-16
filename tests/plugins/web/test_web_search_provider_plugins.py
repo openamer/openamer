@@ -449,11 +449,11 @@ class TestErrorResponseShapes:
         if result:  # if anything came back, it should be an error entry
             assert "error" in result[0]
 
-    def test_firecrawl_config_error_points_paid_users_to_nous_subscription(self, monkeypatch):
+    def test_firecrawl_config_error_points_paid_users_to_openamer_subscription(self, monkeypatch):
         from plugins.web.firecrawl import provider as firecrawl_provider
 
         monkeypatch.setattr(
-            "tools.web_tools.managed_nous_tools_enabled",
+            "tools.web_tools.managed_openamer_tools_enabled",
             lambda: True,
             raising=False,
         )
@@ -462,20 +462,20 @@ class TestErrorResponseShapes:
             firecrawl_provider._raise_web_backend_configuration_error()
 
         message = str(exc_info.value)
-        assert "With your Nous subscription you can also use the Tool Gateway" in message
-        assert "select Nous Subscription as the web provider" in message
+        assert "With your OpenAmer subscription you can also use the Tool Gateway" in message
+        assert "select OpenAmer Subscription as the web provider" in message
         assert "managed Firecrawl web tools is unavailable" not in message
 
     def test_firecrawl_config_error_uses_entitlement_message_when_not_paid(self, monkeypatch):
         from plugins.web.firecrawl import provider as firecrawl_provider
 
         monkeypatch.setattr(
-            "tools.web_tools.managed_nous_tools_enabled",
+            "tools.web_tools.managed_openamer_tools_enabled",
             lambda: False,
             raising=False,
         )
         monkeypatch.setattr(
-            "tools.web_tools.nous_tool_gateway_unavailable_message",
+            "tools.web_tools.openamer_tool_gateway_unavailable_message",
             lambda capability: f"{capability} denied by test entitlement.",
             raising=False,
         )

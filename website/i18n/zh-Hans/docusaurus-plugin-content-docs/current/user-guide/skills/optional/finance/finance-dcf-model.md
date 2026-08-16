@@ -17,7 +17,7 @@ description: "在 Excel 中构建机构级 DCF 估值模型——收入预测、
 | 来源 | 可选——通过 `openamer skills install official/finance/dcf-model` 安装 |
 | 路径 | `optional-skills/finance/dcf-model` |
 | 版本 | `1.0.0` |
-| 作者 | Anthropic（由 Nous Research 改编） |
+| 作者 | Anthropic（由 OpenAmer 改编） |
 | 许可证 | Apache-2.0 |
 | 平台 | linux, macos, windows |
 | 标签 | `finance`, `valuation`, `dcf`, `excel`, `openpyxl`, `modeling`, `investment-banking` |

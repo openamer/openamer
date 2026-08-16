@@ -1182,9 +1182,9 @@ class TestModelsEndpoint:
 
         ctx = object()
         payload = {
-            "providers": [{"slug": "nous", "name": "Nous Portal", "models": ["gpt-5.5"]}],
+            "providers": [{"slug": "openamer", "name": "OpenAmer Portal", "models": ["gpt-5.5"]}],
             "model": "gpt-5.5",
-            "provider": "nous",
+            "provider": "openamer",
         }
         seen = {"thread_calls": 0}
 
@@ -5631,13 +5631,13 @@ class TestCreateAgentModelRecovery:
 
         monkeypatch.setattr(
             "gateway.run._resolve_runtime_agent_kwargs",
-            lambda: (_ for _ in ()).throw(RuntimeError("No credentials found for provider 'nous'")),
+            lambda: (_ for _ in ()).throw(RuntimeError("No credentials found for provider 'openamer'")),
         )
 
         adapter = APIServerAdapter(PlatformConfig(enabled=True))
         monkeypatch.setattr(adapter, "_ensure_session_db", lambda: None)
 
-        with pytest.raises(_ProviderAuthResolutionError, match="No credentials found for provider 'nous'"):
+        with pytest.raises(_ProviderAuthResolutionError, match="No credentials found for provider 'openamer'"):
             adapter._create_agent(session_id="api-session")
 
     def test_create_agent_session_model_pins_ahead_of_request(self, monkeypatch):

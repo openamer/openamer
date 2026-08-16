@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
-<title>NOUS · pretext</title>
+<title>OPENAMER · pretext</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=block" rel="stylesheet">
@@ -148,7 +148,7 @@
 
   @font-face {
     font-family: "Mondwest";
-    src: url("https://esm.sh/@nous-research/ui@0.4.0/dist/fonts/Mondwest-Regular.woff2") format("woff2");
+    src: url("https://esm.sh/@openamer-research/ui@0.4.0/dist/fonts/Mondwest-Regular.woff2") format("woff2");
     font-weight: 400; font-style: normal; font-display: block;
   }
   @font-face {
@@ -386,8 +386,8 @@ const SCENE = {
   orbBuildDuration: 1.45,
 };
 
-let nousStartTime = null;
-const AUTO_CUBE_AFTER_NOUS_RESOLVE = 0.0;
+let openamerStartTime = null;
+const AUTO_CUBE_AFTER_openamer_RESOLVE = 0.0;
 function setOrbShape(shape, { reveal = false, syncControl = true } = {}) {
   ORB.shape = shape;
   if (syncControl) {
@@ -411,9 +411,9 @@ function sceneTimeNow() {
   return (typeof performance !== "undefined" ? performance.now() : Date.now()) * 0.001 - sceneEpoch;
 }
 function armNous(atTime = sceneTimeNow()) {
-  if (nousStartTime !== null) return;
+  if (openamerStartTime !== null) return;
   const startAt = Math.max(0, atTime);
-  nousStartTime = startAt;
+  openamerStartTime = startAt;
   const delay = Math.max(0, startAt - sceneTimeNow()) + Math.max(0, ctrls.orbContainNous ?? 1.0);
   gsap.killTweensOf(orbCanvas);
   gsap.to(orbCanvas, {
@@ -423,8 +423,8 @@ function armNous(atTime = sceneTimeNow()) {
     ease: "power2.out",
   });
   autoCubeCall?.kill();
-  const nousResolveAt = startAt + (LOGO.length - 1) * 0.4 + 1.0;
-  const cubeAt = nousResolveAt + AUTO_CUBE_AFTER_NOUS_RESOLVE;
+  const openamerResolveAt = startAt + (LOGO.length - 1) * 0.4 + 1.0;
+  const cubeAt = openamerResolveAt + AUTO_CUBE_AFTER_openamer_RESOLVE;
   autoCubeCall = gsap.delayedCall(Math.max(0, cubeAt - sceneTimeNow()), () => {
     setOrbShape("cube", { reveal: true, syncControl: false });
   });
@@ -476,7 +476,7 @@ function startSceneTimeline() {
       ease: "power2.inOut",
       onUpdate: () => { lastTextSignature = ""; },
       onComplete: () => {
-        armNous(sceneTimeNow() + Math.max(0, ctrls.nousAfterWire));
+        armNous(sceneTimeNow() + Math.max(0, ctrls.openamerAfterWire));
       },
     });
 }
@@ -602,26 +602,26 @@ function rasterizeNOUS(time) {
   asciiGlyph.fill("");
   for (const r of obstacleRows) r.length = 0;
 
-  // NOUS uses the same cell-shader/reveal language as bb-ascii's source logo.
-  if (nousStartTime === null || time < nousStartTime) {
+  // OPENAMER uses the same cell-shader/reveal language as bb-ascii's source logo.
+  if (openamerStartTime === null || time < openamerStartTime) {
     mergeObstacleRows();
     return;
   }
-  const t = Math.max(0, time - nousStartTime);
+  const t = Math.max(0, time - openamerStartTime);
   const aspect = cols / rows / 2;
   const h = 0.38;
   const baseW = h * 2.6 * 0.55;
   const letterWidth = 7;
   const baseLetterPitch = 7.6;
-  const letterGap = Math.max(0, ctrls.nousLetterSpacing ?? 0);
+  const letterGap = Math.max(0, ctrls.openamerLetterSpacing ?? 0);
   const letterAdvance = baseLetterPitch + letterGap;
   const baseLogoUnits = LOGO.length * baseLetterPitch - 0.6;
   const logoUnits = LOGO.length * baseLetterPitch + (LOGO.length - 1) * letterGap - 0.6;
   const w = baseW * (logoUnits / baseLogoUnits);
-  const nousRowMin = new Float32Array(rows);
-  const nousRowMax = new Float32Array(rows);
-  nousRowMin.fill(Infinity);
-  nousRowMax.fill(-Infinity);
+  const openamerRowMin = new Float32Array(rows);
+  const openamerRowMax = new Float32Array(rows);
+  openamerRowMin.fill(Infinity);
+  openamerRowMax.fill(-Infinity);
 
   for (let y = 0; y < rows; y++) {
     const ny = y / rows - 0.5;
@@ -666,28 +666,28 @@ function rasterizeNOUS(time) {
       }
       const x0 = x * CELL_W;
       const x1 = x0 + CELL_W;
-      if (x0 < nousRowMin[y]) nousRowMin[y] = x0;
-      if (x1 > nousRowMax[y]) nousRowMax[y] = x1;
+      if (x0 < openamerRowMin[y]) openamerRowMin[y] = x0;
+      if (x1 > openamerRowMax[y]) openamerRowMax[y] = x1;
       // bb-ascii turns late morph cells into solid dark cell backgrounds. In
       // this transparent/lensed canvas, a full-block char carries that punch.
       if (cellIdx >= 0 && phase1 >= 1 && morph > 0.8) asciiChar[cellIdx] = CHARS.length - 1;
     }
   }
 
-  // Slightly dilate/smooth the measured NOUS silhouette so surrounding text
+  // Slightly dilate/smooth the measured OPENAMER silhouette so surrounding text
   // does not visually "kiss" sharp letter corners (notably on the S).
   const smoothMin = new Float32Array(rows);
   const smoothMax = new Float32Array(rows);
   smoothMin.fill(Infinity);
   smoothMax.fill(-Infinity);
   for (let y = 0; y < rows; y++) {
-    if (!Number.isFinite(nousRowMin[y])) continue;
+    if (!Number.isFinite(openamerRowMin[y])) continue;
     for (let oy = -1; oy <= 1; oy++) {
       const yy = y + oy;
       if (yy < 0 || yy >= rows) continue;
-      if (!Number.isFinite(nousRowMin[yy])) continue;
-      if (nousRowMin[yy] < smoothMin[y]) smoothMin[y] = nousRowMin[yy];
-      if (nousRowMax[yy] > smoothMax[y]) smoothMax[y] = nousRowMax[yy];
+      if (!Number.isFinite(openamerRowMin[yy])) continue;
+      if (openamerRowMin[yy] < smoothMin[y]) smoothMin[y] = openamerRowMin[yy];
+      if (openamerRowMax[yy] > smoothMax[y]) smoothMax[y] = openamerRowMax[yy];
     }
   }
 
@@ -945,7 +945,7 @@ function rasterizeOrb(time) {
     const y = r * CELL_H + CELL_H * 0.5;
     const stageY = y - canvasTop;
     for (let c = cMin; c <= cMax; c++) {
-      // Direct port of bb-ascii/app/nous/sphere/page.tsx:
+      // Direct port of bb-ascii/app/openamer/sphere/page.tsx:
       // px uses width/height normalization, py is row-normalized, then both
       // are offset by pan. This is what makes the sphere circular on screen.
       const stageX = c * CELL_W + CELL_W * 0.5 - canvasLeft;
@@ -1154,7 +1154,7 @@ function restartScene() {
   typedBudget = 0;
   typedPrepared = null;
   typedDirty = true;
-  nousStartTime = null;
+  openamerStartTime = null;
   sceneEpoch = (typeof performance !== "undefined" ? performance.now() : Date.now()) * 0.001;
   lastTextSignature = "";
   startSceneTimeline();
@@ -1202,8 +1202,8 @@ const ctrls = {
   wireDropDuration: 1.2,
   orbFadeDuration: 0.85,
   orbContainNous: 1.0,
-  nousAfterWire: 0,
-  nousLetterSpacing: 2.7,
+  openamerAfterWire: 0,
+  openamerLetterSpacing: 2.7,
   typeSpeed: 816,
   bgColor: "#041C1C",
   mgColor: "#ffe6cb",
@@ -1237,10 +1237,10 @@ if (DEV_MODE) {
   gui.add(ctrls, "orbWire", 0.01, 0.2, 0.005).name("wire start").onChange(v => { ORB.wire = v; });
   gui.add(ctrls, "orbWireLow", 0.005, 0.12, 0.001).name("wire low").onFinishChange(() => restartScene());
   gui.add(ctrls, "wireDropDuration", 0.4, 6, 0.05).name("wire drop (s)").onFinishChange(() => restartScene());
-  gui.add(ctrls, "orbContainNous", 0, 3, 0.05).name("orb contain NOUS");
-  gui.add(ctrls, "orbFadeDuration", 0.1, 3, 0.05).name("orb fade on NOUS");
-  gui.add(ctrls, "nousAfterWire", 0, 4, 0.05).name("NOUS after wire").onFinishChange(() => restartScene());
-  gui.add(ctrls, "nousLetterSpacing", 0, 4, 0.05).name("NOUS spacing");
+  gui.add(ctrls, "orbContainNous", 0, 3, 0.05).name("orb contain OPENAMER");
+  gui.add(ctrls, "orbFadeDuration", 0.1, 3, 0.05).name("orb fade on OPENAMER");
+  gui.add(ctrls, "openamerAfterWire", 0, 4, 0.05).name("OPENAMER after wire").onFinishChange(() => restartScene());
+  gui.add(ctrls, "openamerLetterSpacing", 0, 4, 0.05).name("OPENAMER spacing");
   gui.add(ctrls, "typeSpeed", 0, 4000, 10).name("type speed");
   gui.addColor(ctrls, "bgColor").name("background").onChange(applyColors);
   gui.addColor(ctrls, "mgColor").name("midground").onChange(applyColors);
@@ -1448,7 +1448,7 @@ function draw(time) {
 }
 
 resize();
-const DS_CDN = "https://esm.sh/@nous-research/ui@0.4.0/dist/fonts";
+const DS_CDN = "https://esm.sh/@openamer-research/ui@0.4.0/dist/fonts";
 const FACES = [new FontFace("Mondwest", `url(${DS_CDN}/Mondwest-Regular.woff2) format("woff2")`, { weight: "400", display: "block" })];
 (async () => {
   try {

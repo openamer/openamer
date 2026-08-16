@@ -71,8 +71,8 @@ def get_env_value(name, default=None):
     return default if value is None else value
 from tools.managed_tool_gateway import resolve_managed_tool_gateway
 from tools.tool_backend_helpers import (
-    managed_nous_tools_enabled,
-    nous_tool_gateway_unavailable_message,
+    managed_openamer_tools_enabled,
+    openamer_tool_gateway_unavailable_message,
     prefers_gateway,
     resolve_openai_audio_api_key,
 )
@@ -172,7 +172,7 @@ DEFAULT_ELEVENLABS_VOICE_ID = "pNInz6obpgDQGcFmaJgB"  # Adam
 DEFAULT_ELEVENLABS_MODEL_ID = "eleven_multilingual_v2"
 DEFAULT_ELEVENLABS_STREAMING_MODEL_ID = "eleven_flash_v2_5"
 DEFAULT_OPENAI_MODEL = "gpt-4o-mini-tts"
-# The managed OpenAI audio gateway (Nous portal proxy) only proxies these speech
+# The managed OpenAI audio gateway (OpenAmer portal proxy) only proxies these speech
 # models. A user's tts.openai.model set for *direct* OpenAI (e.g. "tts-1-hd")
 # is rejected with a 400 "Unsupported managed OpenAI speech model", so it must be
 # coerced to a supported model when routing through the gateway.
@@ -2689,7 +2689,7 @@ def check_tts_requirements() -> bool:
 def _resolve_openai_audio_client_config() -> tuple[str, str, bool]:
     """Return ``(api_key, base_url, is_managed)`` for the OpenAI audio client.
 
-    ``is_managed`` is True when the config resolves to the Nous managed audio
+    ``is_managed`` is True when the config resolves to the OpenAmer managed audio
     gateway (a restricted proxy), so callers can coerce the request to what the
     gateway supports. When ``tts.use_gateway`` is set the gateway is preferred
     even if direct OpenAI credentials are present.
@@ -2701,17 +2701,17 @@ def _resolve_openai_audio_client_config() -> tuple[str, str, bool]:
     managed_gateway = resolve_managed_tool_gateway("openai-audio")
     if managed_gateway is None:
         message = "Neither VOICE_TOOLS_OPENAI_KEY nor OPENAI_API_KEY is set"
-        if managed_nous_tools_enabled() or prefers_gateway("tts"):
+        if managed_openamer_tools_enabled() or prefers_gateway("tts"):
             message += (
                 ". "
-                + nous_tool_gateway_unavailable_message(
+                + openamer_tool_gateway_unavailable_message(
                     "managed OpenAI audio for TTS",
                 )
             )
         raise ValueError(message)
 
     return (
-        managed_gateway.nous_user_token,
+        managed_gateway.openamer_user_token,
         urljoin(f"{managed_gateway.gateway_origin.rstrip('/')}/", "v1"),
         True,
     )

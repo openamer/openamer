@@ -153,7 +153,7 @@ Look at these bundled plugins for idioms:
 | `plugins/model-providers/gemini/` | `thinking_config` translation (native + OpenAI-compat nested forms) |
 | `plugins/model-providers/kimi-coding/` | `OMIT_TEMPERATURE`, `extra_body.thinking`, top-level `reasoning_effort` |
 | `plugins/model-providers/qwen-oauth/` | Message normalization, `cache_control` injection, VL high-res |
-| `plugins/model-providers/nous/` | Attribution tags, "omit reasoning when disabled" |
+| `plugins/model-providers/openamer/` | Attribution tags, "omit reasoning when disabled" |
 | `plugins/model-providers/custom/` | Ollama `num_ctx` + `think: false` quirks |
 | `plugins/model-providers/bedrock/` | `api_mode="bedrock_converse"`, `fetch_models` returns None (no REST endpoint) |
 

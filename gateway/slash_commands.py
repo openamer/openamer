@@ -2104,7 +2104,7 @@ class GatewaySlashCommandsMixin:
             lines.append(t("gateway.model.provider_label", provider=provider_label))
 
             # Context: always resolve via the provider-aware chain so Codex OAuth,
-            # Copilot, and Nous-enforced caps win over the raw models.dev entry.
+            # Copilot, and OpenAmer-enforced caps win over the raw models.dev entry.
             mi = result.model_info
             from openamer_cli.model_switch import resolve_display_context_length
             _sw2_config_ctx = None
@@ -4246,7 +4246,7 @@ class GatewaySlashCommandsMixin:
         return t(key, title=branch_title, count=msg_count, parent=parent_session_id, new=new_session_id)
 
     async def _handle_topup_command(self, event: MessageEvent) -> str:
-        """Handle /topup -- show the Nous balance and hand off to the portal.
+        """Handle /topup -- show the OpenAmer balance and hand off to the portal.
 
         Renders the balance block + identity line + a tappable portal URL that
         opens the billing page. Remote spending is managed on the portal: this
@@ -4265,7 +4265,7 @@ class GatewaySlashCommandsMixin:
         if view is None or not view.logged_in:
             return t("gateway.credits.not_logged_in")
 
-        lines: list[str] = ["💳 **Nous balance**"]
+        lines: list[str] = ["💳 **OpenAmer balance**"]
         for line in view.balance_lines:
             if line.lstrip().startswith("📈"):
                 continue  # drop the helper's header; we print our own
@@ -4399,18 +4399,18 @@ class GatewaySlashCommandsMixin:
             if account_snapshot:
                 account_lines = render_account_usage_lines(account_snapshot, markdown=True)
 
-        # ── Nous credits magnitudes + monthly-grant % gauge ─────────────
-        # Shared with the CLI / TUI /usage block via nous_credits_lines(): a single
+        # ── OpenAmer credits magnitudes + monthly-grant % gauge ─────────────
+        # Shared with the CLI / TUI /usage block via openamer_credits_lines(): a single
         # auth-gate + portal-fetch + render path (which also honors the dev fixture).
-        # Run off the event loop. The helper gates on "a Nous account is logged in"
+        # Run off the event loop. The helper gates on "a OpenAmer account is logged in"
         # — NOT the inference provider and NOT nested under `if provider:` — so a
-        # Nous-credentialled user running inference elsewhere (or with none resident)
+        # OpenAmer-credentialled user running inference elsewhere (or with none resident)
         # still sees their balance. NO recovery trigger: messaging binds no notice
         # consumer, so /usage only displays. Fail-open: never break /usage.
         try:
-            from agent.account_usage import nous_credits_lines
+            from agent.account_usage import openamer_credits_lines
 
-            credits_lines = await asyncio.to_thread(nous_credits_lines, markdown=True)
+            credits_lines = await asyncio.to_thread(openamer_credits_lines, markdown=True)
         except Exception:
             credits_lines = []  # fail-open: never break /usage
 

@@ -2,7 +2,7 @@
 ``mark_exhausted_and_rotate()`` must be bounded and must not write cooldowns
 onto innocent healthy keys.
 
-With OAuth-token auth (provider ``nous``), the upstream 401's ``api_key_hint``
+With OAuth-token auth (provider ``openamer``), the upstream 401's ``api_key_hint``
 never matches any pool entry's ``runtime_api_key`` — the wrapper's runtime key
 rotates. The no-match branch deliberately marks nothing exhausted (marking
 would quarantine an innocent healthy key for the full cooldown TTL) and hands

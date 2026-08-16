@@ -54,12 +54,12 @@ vi.mock('../hooks/use-on-profile-switch', () => ({
 }))
 
 beforeEach(() => {
-  getGlobalModelInfo.mockResolvedValue({ provider: 'nous', model: 'openamer-4' })
+  getGlobalModelInfo.mockResolvedValue({ provider: 'openamer', model: 'openamer-4' })
   getGlobalModelOptions.mockResolvedValue({
     providers: [
       {
-        name: 'Nous',
-        slug: 'nous',
+        name: 'OpenAmer',
+        slug: 'openamer',
         models: ['openamer-4', 'openamer-4-mini'],
         authenticated: true,
         capabilities: { 'openamer-4': { reasoning: true, fast: true } }
@@ -67,12 +67,12 @@ beforeEach(() => {
     ]
   })
   getAuxiliaryModels.mockResolvedValue({
-    main: { provider: 'nous', model: 'openamer-4' },
+    main: { provider: 'openamer', model: 'openamer-4' },
     tasks: [{ task: 'vision', provider: 'auto', model: '', base_url: '' }]
   })
   getMoaModels.mockResolvedValue(null)
-  setModelAssignment.mockResolvedValue({ provider: 'nous', model: 'openamer-4', gateway_tools: [] })
-  getRecommendedDefaultModel.mockResolvedValue({ provider: 'nous', model: 'openamer-4', free_tier: null })
+  setModelAssignment.mockResolvedValue({ provider: 'openamer', model: 'openamer-4', gateway_tools: [] })
+  getRecommendedDefaultModel.mockResolvedValue({ provider: 'openamer', model: 'openamer-4', free_tier: null })
   setEnvVar.mockResolvedValue({ ok: true })
   getOpenAmerConfigRecord.mockResolvedValue({ agent: { reasoning_effort: 'medium', service_tier: 'normal' } })
   saveOpenAmerConfig.mockResolvedValue({ ok: true })
@@ -110,8 +110,8 @@ describe('ModelSettings', () => {
     const triggers = await screen.findAllByRole('combobox')
     fireEvent.click(triggers[0])
 
-    // "Nous" shows in both the trigger and the open list.
-    expect((await screen.findAllByText('Nous')).length).toBeGreaterThan(0)
+    // "OpenAmer" shows in both the trigger and the open list.
+    expect((await screen.findAllByText('OpenAmer')).length).toBeGreaterThan(0)
     expect(screen.queryByText(/DeepSeek/)).toBeNull()
   })
 
@@ -176,7 +176,7 @@ describe('ModelSettings', () => {
   it('replaces the selected provider and model when the active profile changes', async () => {
     getGlobalModelInfo
       .mockResolvedValueOnce({ provider: 'custom', model: 'local-a' })
-      .mockResolvedValueOnce({ provider: 'nous', model: 'openamer-4' })
+      .mockResolvedValueOnce({ provider: 'openamer', model: 'openamer-4' })
     getGlobalModelOptions
       .mockResolvedValueOnce({
         providers: [
@@ -191,8 +191,8 @@ describe('ModelSettings', () => {
       .mockResolvedValueOnce({
         providers: [
           {
-            name: 'Nous',
-            slug: 'nous',
+            name: 'OpenAmer',
+            slug: 'openamer',
             models: ['openamer-4'],
             authenticated: true,
             capabilities: { 'openamer-4': { reasoning: true, fast: true } }
@@ -208,7 +208,7 @@ describe('ModelSettings', () => {
     })
 
     await waitFor(() => expect(getGlobalModelInfo).toHaveBeenCalledTimes(2))
-    await waitFor(() => expect(screen.getAllByRole('combobox')[0].textContent).toContain('Nous'))
+    await waitFor(() => expect(screen.getAllByRole('combobox')[0].textContent).toContain('OpenAmer'))
     expect(screen.queryByRole('button', { name: 'Set up provider' })).toBeNull()
   })
 
@@ -230,8 +230,8 @@ describe('ModelSettings', () => {
     getGlobalModelOptions.mockResolvedValueOnce({
       providers: [
         {
-          name: 'Nous',
-          slug: 'nous',
+          name: 'OpenAmer',
+          slug: 'openamer',
           models: ['openamer-4'],
           authenticated: true,
           capabilities: { 'openamer-4': { reasoning: false, fast: false } }
@@ -262,7 +262,7 @@ describe('ModelSettings', () => {
     await waitFor(() =>
       expect(setModelAssignment).toHaveBeenCalledWith({
         model: 'openamer-4',
-        provider: 'nous',
+        provider: 'openamer',
         scope: 'auxiliary',
         task: 'vision'
       })
@@ -274,7 +274,7 @@ describe('ModelSettings', () => {
       provider: 'openrouter',
       model: 'anthropic/claude-opus-4.7',
       gateway_tools: [],
-      stale_aux: [{ task: 'compression', provider: 'nous', model: 'openamer-4' }]
+      stale_aux: [{ task: 'compression', provider: 'openamer', model: 'openamer-4' }]
     })
 
     await renderModelSettings()
@@ -285,12 +285,12 @@ describe('ModelSettings', () => {
 
     // The switch-time notice names the pinned provider and offers a reset.
     expect(await screen.findByText(/still run on/)).toBeTruthy()
-    expect(screen.getByText('nous')).toBeTruthy()
+    expect(screen.getByText('openamer')).toBeTruthy()
   })
 
   it('shows a persistent banner when a loaded aux slot mismatches the main provider', async () => {
     getAuxiliaryModels.mockResolvedValueOnce({
-      main: { provider: 'nous', model: 'openamer-4' },
+      main: { provider: 'openamer', model: 'openamer-4' },
       tasks: [{ task: 'curator', provider: 'openrouter', model: 'anthropic/claude-opus-4.7', base_url: '' }]
     })
 
@@ -308,7 +308,7 @@ describe('ModelSettings MoA preset editor', () => {
     presets: {
       default: {
         reference_models: [
-          { provider: 'nous', model: 'openamer-4' },
+          { provider: 'openamer', model: 'openamer-4' },
           { provider: 'openrouter', model: 'deepseek/deepseek-v4-pro' }
         ],
         aggregator: { provider: 'openrouter', model: 'anthropic/claude-opus-4.8' },
@@ -319,7 +319,7 @@ describe('ModelSettings MoA preset editor', () => {
       }
     },
     reference_models: [
-      { provider: 'nous', model: 'openamer-4' },
+      { provider: 'openamer', model: 'openamer-4' },
       { provider: 'openrouter', model: 'deepseek/deepseek-v4-pro' }
     ],
     aggregator: { provider: 'openrouter', model: 'anthropic/claude-opus-4.8' },
@@ -333,8 +333,8 @@ describe('ModelSettings MoA preset editor', () => {
     getGlobalModelOptions.mockResolvedValue({
       providers: [
         {
-          name: 'Nous',
-          slug: 'nous',
+          name: 'OpenAmer',
+          slug: 'openamer',
           models: ['openamer-4', 'openamer-4-mini'],
           authenticated: true,
           capabilities: { 'openamer-4': { reasoning: true, fast: true } }
@@ -424,13 +424,13 @@ describe('ModelSettings MoA preset editor', () => {
       await openReferenceEditor()
 
       fireEvent.click(slotSelects().ref1Provider)
-      fireEvent.click(await screen.findByRole('option', { name: 'Nous' }))
+      fireEvent.click(await screen.findByRole('option', { name: 'OpenAmer' }))
       await vi.advanceTimersByTimeAsync(700)
 
       // Radix treats re-picking the current value as a no-op (no
       // onValueChange), so nothing changes: no save, model still shown.
       expect(saveMoaModels).not.toHaveBeenCalled()
-      expect(screen.getByText('nous · openamer-4')).toBeTruthy()
+      expect(screen.getByText('openamer · openamer-4')).toBeTruthy()
     } finally {
       vi.useRealTimers()
     }
@@ -471,7 +471,7 @@ describe('ModelSettings MoA preset editor', () => {
           presets: expect.objectContaining({
             default: expect.objectContaining({
               reference_models: [
-                expect.objectContaining({ provider: 'nous', model: 'openamer-4', enabled: false }),
+                expect.objectContaining({ provider: 'openamer', model: 'openamer-4', enabled: false }),
                 expect.objectContaining({ provider: 'openrouter', model: 'deepseek/deepseek-v4-pro' })
               ]
             })

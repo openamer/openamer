@@ -1424,10 +1424,10 @@ class TestBuildSystemPrompt:
         else:
             assert False, "Expected a 'Conversation started:' line in the system prompt"
 
-    def test_includes_nous_subscription_prompt(self, agent, monkeypatch):
-        monkeypatch.setattr(run_agent, "build_nous_subscription_prompt", lambda tool_names: "NOUS SUBSCRIPTION BLOCK")
+    def test_includes_openamer_subscription_prompt(self, agent, monkeypatch):
+        monkeypatch.setattr(run_agent, "build_openamer_subscription_prompt", lambda tool_names: "OPENAMER SUBSCRIPTION BLOCK")
         prompt = agent._build_system_prompt()
-        assert "NOUS SUBSCRIPTION BLOCK" in prompt
+        assert "OPENAMER SUBSCRIPTION BLOCK" in prompt
 
     def test_skills_prompt_derives_available_toolsets_from_loaded_tools(self):
         tools = _make_tool_defs("web_search", "skills_list", "skill_view", "skill_manage")
@@ -2005,9 +2005,9 @@ class TestBuildApiKwargs:
         kwargs = agent._build_api_kwargs(messages)
         assert kwargs["extra_body"]["reasoning"]["effort"] == "medium"
 
-    def test_reasoning_sent_for_nous_route(self, agent):
-        agent.provider = "nous"
-        agent.base_url = "https://inference-api.nousresearch.com/v1"
+    def test_reasoning_sent_for_openamer_route(self, agent):
+        agent.provider = "openamer"
+        agent.base_url = "https://inference-api.openamer.com/v1"
         agent.model = "minimax/minimax-m2.5"
         messages = [{"role": "user", "content": "hi"}]
         kwargs = agent._build_api_kwargs(messages)
@@ -4008,7 +4008,7 @@ class TestHandleMaxIterations:
     def test_summary_keeps_provider_preferences_for_nous(self, agent):
         agent.base_url = "https://proxy.example.com/v1"
         agent._base_url_lower = agent.base_url.lower()
-        agent.provider = "nous"
+        agent.provider = "openamer"
         agent.providers_allowed = ["deepseek"]
         agent.providers_ignored = ["deepinfra"]
         agent.provider_sort = "throughput"
@@ -4021,9 +4021,9 @@ class TestHandleMaxIterations:
 
         assert result == "Summary"
         kwargs = agent.client.chat.completions.create.call_args.kwargs
-        from agent.portal_tags import nous_portal_tags
+        from agent.portal_tags import openamer_portal_tags
 
-        assert kwargs["extra_body"]["tags"] == nous_portal_tags(
+        assert kwargs["extra_body"]["tags"] == openamer_portal_tags(
             session_id=agent.session_id
         )
         assert kwargs["extra_body"]["provider"] == {
@@ -4034,10 +4034,10 @@ class TestHandleMaxIterations:
             "data_collection": "deny",
         }
 
-    def test_summary_keeps_nous_profile_body_without_routing_preferences(self, agent):
+    def test_summary_keeps_openamer_profile_body_without_routing_preferences(self, agent):
         agent.base_url = "https://proxy.example.com/v1"
         agent._base_url_lower = agent.base_url.lower()
-        agent.provider = "nous"
+        agent.provider = "openamer"
         agent.client.chat.completions.create.return_value = _mock_response(content="Summary")
         agent._cached_system_prompt = "You are helpful."
 
@@ -4045,9 +4045,9 @@ class TestHandleMaxIterations:
 
         assert result == "Summary"
         kwargs = agent.client.chat.completions.create.call_args.kwargs
-        from agent.portal_tags import nous_portal_tags
+        from agent.portal_tags import openamer_portal_tags
 
-        expected = {"tags": nous_portal_tags(session_id=agent.session_id)}
+        expected = {"tags": openamer_portal_tags(session_id=agent.session_id)}
         if agent.session_id:
             # Top-level sticky-routing key ships whenever a session exists.
             expected["session_id"] = agent.session_id
@@ -5038,9 +5038,9 @@ class TestRunConversation:
         assert result["final_response"].startswith(INTERRUPT_WAITING_FOR_MODEL_PREFIX)
         assert result["messages"][-1]["role"] == "user"
 
-    def test_nous_401_refreshes_after_remint_and_retries(self, agent):
+    def test_openamer_401_refreshes_after_remint_and_retries(self, agent):
         self._setup_agent(agent)
-        agent.provider = "nous"
+        agent.provider = "openamer"
         agent.api_mode = "chat_completions"
 
         calls = {"api": 0, "refresh": 0}
@@ -5069,7 +5069,7 @@ class TestRunConversation:
             patch.object(agent, "_cleanup_task_resources"),
             patch.object(agent, "_interruptible_api_call", side_effect=_fake_api_call),
             patch.object(
-                agent, "_try_refresh_nous_client_credentials", side_effect=_fake_refresh
+                agent, "_try_refresh_openamer_client_credentials", side_effect=_fake_refresh
             ),
         ):
             result = agent.run_conversation("hello")
@@ -6422,7 +6422,7 @@ class TestRetryExhaustion:
         content after retries".
 
         Regression: running a Claude refusal through an OpenAI-compatible
-        portal (Nous Portal fronting Anthropic) returns ``message.refusal``
+        portal (OpenAmer Portal fronting Anthropic) returns ``message.refusal``
         with empty content. The transport now promotes that to a
         ``content_filter`` finish reason and the loop surfaces it as a terminal
         ``content_policy_blocked`` result instead of retrying a deterministic
@@ -6541,12 +6541,12 @@ class TestConversationHistoryNotMutated:
 
 
 class TestNousCredentialRefresh:
-    """Verify Nous credential refresh rebuilds the runtime client."""
+    """Verify OpenAmer credential refresh rebuilds the runtime client."""
 
-    def test_try_refresh_nous_client_credentials_rebuilds_client(
+    def test_try_refresh_openamer_client_credentials_rebuilds_client(
         self, agent, monkeypatch
     ):
-        agent.provider = "nous"
+        agent.provider = "openamer"
         agent.api_mode = "chat_completions"
 
         closed = {"value": False}
@@ -6564,8 +6564,8 @@ class TestNousCredentialRefresh:
         def _fake_resolve(**kwargs):
             captured.update(kwargs)
             return {
-                "api_key": "new-nous-key",
-                "base_url": "https://inference-api.nousresearch.com/v1",
+                "api_key": "new-openamer-key",
+                "base_url": "https://inference-api.openamer.com/v1",
             }
 
         def _fake_openai(**kwargs):
@@ -6573,7 +6573,7 @@ class TestNousCredentialRefresh:
             return _RebuiltClient()
 
         monkeypatch.setattr(
-            "openamer_cli.auth.resolve_nous_runtime_credentials", _fake_resolve
+            "openamer_cli.auth.resolve_openamer_runtime_credentials", _fake_resolve
         )
 
         existing = _ExistingClient()
@@ -6589,7 +6589,7 @@ class TestNousCredentialRefresh:
         monkeypatch.setattr(agent, "_retire_shared_openai_client", _spy_retire)
 
         with patch("run_agent.OpenAI", side_effect=_fake_openai):
-            ok = agent._try_refresh_nous_client_credentials(force=True)
+            ok = agent._try_refresh_openamer_client_credentials(force=True)
 
         assert ok is True
         # #70773: the replaced shared client is RETIRED (sockets shutdown,
@@ -6599,9 +6599,9 @@ class TestNousCredentialRefresh:
         assert retired["value"] is True
         assert closed["value"] is False
         assert captured["force_refresh"] is True
-        assert rebuilt["kwargs"]["api_key"] == "new-nous-key"
+        assert rebuilt["kwargs"]["api_key"] == "new-openamer-key"
         assert (
-            rebuilt["kwargs"]["base_url"] == "https://inference-api.nousresearch.com/v1"
+            rebuilt["kwargs"]["base_url"] == "https://inference-api.openamer.com/v1"
         )
         assert "default_headers" not in rebuilt["kwargs"]
         assert isinstance(agent.client, _RebuiltClient)
@@ -7044,10 +7044,10 @@ class TestGpt5ApiModeRouting:
             agent.api_mode = "codex_responses"
         assert agent.api_mode == "codex_responses"
 
-    def test_nous_gpt5_stays_on_chat_completions(self, agent):
-        """Nous serves gpt-5.x on /chat/completions — must not upgrade to codex_responses."""
-        agent.provider = "nous"
-        agent.base_url = "https://inference-api.nousresearch.com/v1"
+    def test_openamer_gpt5_stays_on_chat_completions(self, agent):
+        """OpenAmer serves gpt-5.x on /chat/completions — must not upgrade to codex_responses."""
+        agent.provider = "openamer"
+        agent.base_url = "https://inference-api.openamer.com/v1"
         agent.api_mode = "chat_completions"
         agent.model = "openai/gpt-5.5"
         if (

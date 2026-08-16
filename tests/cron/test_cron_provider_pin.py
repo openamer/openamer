@@ -2,7 +2,7 @@
 
 Background: an UNPINNED cron job follows the global default provider. If that
 global state is changed (e.g. a temporary switch to a paid provider like
-nous/claude-fable-5), the job would silently inherit it on its next tick and
+openamer/claude-fable-5), the job would silently inherit it on its next tick and
 spend real money — the $7.73 incident.
 
 The fix has two halves:
@@ -95,7 +95,7 @@ class TestProviderDriftGuard:
         """
         job = _base_job(provider_snapshot="openrouter")
         success, output, final_response, error, agent_constructed = \
-            _run_with_current_provider(job, "nous", tmp_path)
+            _run_with_current_provider(job, "openamer", tmp_path)
 
         # Fail closed: no agent constructed, no inference call.
         assert agent_constructed is False
@@ -105,7 +105,7 @@ class TestProviderDriftGuard:
         # Loud + actionable: names both providers, mentions spend + pinning.
         blob = f"{error}\n{output}".lower()
         assert "openrouter" in blob
-        assert "nous" in blob
+        assert "openamer" in blob
         assert "spend" in blob
         assert "cronjob action=update" in blob
         assert "44585" in blob
@@ -120,7 +120,7 @@ class TestProviderDriftGuard:
         job = _base_job()
         job.pop("provider_snapshot", None)
         success, output, final_response, error, agent_constructed = \
-            _run_with_current_provider(job, "nous", tmp_path)
+            _run_with_current_provider(job, "openamer", tmp_path)
 
         assert success is True
         assert error is None
@@ -130,7 +130,7 @@ class TestProviderDriftGuard:
         """(c') Job with provider_snapshot explicitly None → runs (back-compat)."""
         job = _base_job(provider_snapshot=None)
         success, output, final_response, error, agent_constructed = \
-            _run_with_current_provider(job, "nous", tmp_path)
+            _run_with_current_provider(job, "openamer", tmp_path)
 
         assert success is True
         assert error is None
@@ -147,7 +147,7 @@ class TestProviderDriftGuard:
         # Current resolution differs from the (stale) snapshot, but the job is
         # pinned, so the guard must not engage.
         success, output, final_response, error, agent_constructed = \
-            _run_with_current_provider(job, "nous", tmp_path)
+            _run_with_current_provider(job, "openamer", tmp_path)
 
         assert success is True
         assert error is None
@@ -190,11 +190,11 @@ class TestCreateJobSnapshot:
         resolver = MagicMock(return_value={"provider": "openrouter"})
         with patch("openamer_cli.runtime_provider.resolve_runtime_provider", resolver):
             job = jobs.create_job(
-                prompt="do a thing", schedule="every 1 hour", provider="nous"
+                prompt="do a thing", schedule="every 1 hour", provider="openamer"
             )
 
         # Explicit provider → pinned → no snapshot needed, and resolution skipped.
-        assert job["provider"] == "nous"
+        assert job["provider"] == "openamer"
         assert job["provider_snapshot"] is None
         resolver.assert_not_called()
 

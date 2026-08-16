@@ -34,7 +34,7 @@ Published on every merge to `main` via the existing `deploy-site.yml` GitHub Pag
         {"id": "openai/gpt-5.4",       "description": ""}
       ]
     },
-    "nous": {
+    "openamer": {
       "metadata": {},
       "models": [
         {"id": "z-ai/glm-5.2", "default": true},
@@ -111,7 +111,7 @@ Maintainers:
 
 ```bash
 # Re-generate from the in-repo hardcoded lists (keeps manifest in sync after
-# editing OPENROUTER_MODELS or _PROVIDER_MODELS["nous"] in openamer_cli/models.py).
+# editing OPENROUTER_MODELS or _PROVIDER_MODELS["openamer"] in openamer_cli/models.py).
 python scripts/build_model_catalog.py
 ```
 

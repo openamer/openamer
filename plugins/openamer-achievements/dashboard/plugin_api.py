@@ -293,7 +293,7 @@ def model_provider(model_name: str) -> Optional[str]:
         return None
     if "/" in name:
         return name.split("/", 1)[0]
-    for provider in ["openai", "anthropic", "google", "gemini", "mistral", "meta", "qwen", "deepseek", "xai", "nous", "ollama", "groq", "openrouter", "codex"]:
+    for provider in ["openai", "anthropic", "google", "gemini", "mistral", "meta", "qwen", "deepseek", "xai", "openamer", "ollama", "groq", "openrouter", "codex"]:
         if provider in name:
             return "google" if provider == "gemini" else provider
     return name.split(":", 1)[0].split("-", 1)[0]

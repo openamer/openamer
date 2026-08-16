@@ -17,8 +17,8 @@ OpenAmer reads environment variables from the process environment and, for user-
 | `FIREWORKS_API_KEY` | Fireworks AI API key ([app.fireworks.ai](https://app.fireworks.ai/settings/users/api-keys)). Configure endpoint overrides with `model.base_url` in `config.yaml`. |
 | `OPENAMER_OPENROUTER_CACHE` | Enable OpenRouter response caching (`1`/`true`/`yes`/`on`). Overrides `openrouter.response_cache` in config.yaml. See [Response Caching](https://openrouter.ai/docs/guides/features/response-caching). |
 | `OPENAMER_OPENROUTER_CACHE_TTL` | Cache TTL in seconds (1-86400). Overrides `openrouter.response_cache_ttl` in config.yaml. |
-| `NOUS_BASE_URL` | Override your hosted provider base URL (rarely needed; development/testing only) |
-| `NOUS_INFERENCE_BASE_URL` | Override a hosted provider inference endpoint directly |
+| `OPENAMER_BASE_URL` | Override your hosted provider base URL (rarely needed; development/testing only) |
+| `OPENAMER_INFERENCE_BASE_URL` | Override a hosted provider inference endpoint directly |
 | `OPENAI_API_KEY` | API key for custom OpenAI-compatible endpoints (used with `OPENAI_BASE_URL`) |
 | `OPENAI_BASE_URL` | Base URL for custom endpoint (VLLM, SGLang, etc.) |
 | `LM_API_KEY` | API key for LM Studio (`lmstudio` provider). Often a placeholder for local servers |
@@ -119,9 +119,9 @@ For native Anthropic auth, OpenAmer prefers Claude Code's own credential files w
 | Variable | Description |
 |----------|-------------|
 | `OPENAMER_PORTAL_BASE_URL` | Override your hosted provider URL (for development/testing) |
-| `NOUS_INFERENCE_BASE_URL` | Override a hosted provider inference API URL |
-| `OPENAMER_NOUS_MIN_KEY_TTL_SECONDS` | Min agent key TTL before re-mint (default: 1800 = 30min) |
-| `OPENAMER_NOUS_TIMEOUT_SECONDS` | HTTP timeout for a hosted provider credential / token flows |
+| `OPENAMER_INFERENCE_BASE_URL` | Override a hosted provider inference API URL |
+| `OPENAMER_openamer_MIN_KEY_TTL_SECONDS` | Min agent key TTL before re-mint (default: 1800 = 30min) |
+| `OPENAMER_openamer_TIMEOUT_SECONDS` | HTTP timeout for a hosted provider credential / token flows |
 | `OPENAMER_DUMP_REQUESTS` | Dump API request payloads to log files (`true`/`false`) |
 | `OPENAMER_PREFILL_MESSAGES_FILE` | Path to a JSON file of ephemeral prefill messages injected at API-call time |
 | `OPENAMER_TIMEZONE` | IANA timezone override (for example `America/New_York`) |
@@ -198,7 +198,7 @@ These variables configure the [Tool Gateway](/user-guide/features/tool-gateway) 
 
 | Variable | Description |
 |----------|-------------|
-| `TOOL_GATEWAY_DOMAIN` | Base domain for Tool Gateway routing (default: `nousresearch.com`) |
+| `TOOL_GATEWAY_DOMAIN` | Base domain for Tool Gateway routing (default: `openamer.com`) |
 | `TOOL_GATEWAY_SCHEME` | HTTP or HTTPS scheme for gateway URLs (default: `https`) |
 | `TOOL_GATEWAY_USER_TOKEN` | Auth token for the Tool Gateway (normally auto-populated from a hosted provider auth) |
 | `FIRECRAWL_GATEWAY_URL` | Override URL for the Firecrawl gateway endpoint specifically |
@@ -518,7 +518,7 @@ Three dashboard-auth providers ship in the box. For a remote OpenAmer Desktop co
 | `OPENAMER_DASHBOARD_BASIC_AUTH_PASSWORD_HASH` | scrypt password hash for the basic provider (preferred — no plaintext at rest). Compute with `python -c "from plugins.dashboard_auth.basic import hash_password; print(hash_password('PW'))"`. Overrides `dashboard.basic_auth.password_hash`. |
 | `OPENAMER_DASHBOARD_BASIC_AUTH_SECRET` | HMAC key (32+ bytes, base64/hex/raw) signing the basic provider's stateless session tokens. Set explicitly so sessions survive restarts / span multiple workers; blank → random per-process (you'll be logged out on every restart). Overrides `dashboard.basic_auth.secret`. |
 | `OPENAMER_DASHBOARD_BASIC_AUTH_TTL_SECONDS` | Access-token lifetime for the basic provider (default 12h). Overrides `dashboard.basic_auth.session_ttl_seconds`. |
-| `OPENAMER_DASHBOARD_OAUTH_CLIENT_ID` | OAuth client id (`agent:{instance_id}`) for the gated/public dashboard, activating the a hosted provider (`plugins/dashboard_auth/nous`) provider. Overrides `dashboard.oauth.client_id`. Provision it with `openamer dashboard register`. |
+| `OPENAMER_DASHBOARD_OAUTH_CLIENT_ID` | OAuth client id (`agent:{instance_id}`) for the gated/public dashboard, activating the a hosted provider (`plugins/dashboard_auth/openamer`) provider. Overrides `dashboard.oauth.client_id`. Provision it with `openamer dashboard register`. |
 | `OPENAMER_DASHBOARD_PUBLIC_URL` | Complete public URL the dashboard is reached at, for OAuth callback construction behind reverse proxies. Overrides `dashboard.public_url`. |
 | `OPENAMER_DASHBOARD_OIDC_ISSUER` | OIDC issuer URL for the bundled self-hosted OIDC provider (`plugins/dashboard_auth/self_hosted`). Required to activate it. Overrides `dashboard.oauth.self_hosted.issuer`. |
 | `OPENAMER_DASHBOARD_OIDC_CLIENT_ID` | Public OIDC client id (authorization-code + PKCE) for the self-hosted OIDC provider. Required to activate it. Overrides `dashboard.oauth.self_hosted.client_id`. |

@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Palette, Check, Type } from "lucide-react";
-import { Button } from "@nous-research/ui/ui/components/button";
-import { ListItem } from "@nous-research/ui/ui/components/list-item";
-import { BottomSheet } from "@nous-research/ui/ui/components/bottom-sheet";
-import { Typography } from "@nous-research/ui/ui/components/typography/index";
-import { useBelowBreakpoint } from "@nous-research/ui/hooks/use-below-breakpoint";
+import { Button } from "@openamer-research/ui/ui/components/button";
+import { ListItem } from "@openamer-research/ui/ui/components/list-item";
+import { BottomSheet } from "@openamer-research/ui/ui/components/bottom-sheet";
+import { Typography } from "@openamer-research/ui/ui/components/typography/index";
+import { useBelowBreakpoint } from "@openamer-research/ui/hooks/use-below-breakpoint";
 import { BUILTIN_THEMES, THEME_DEFAULT_FONT_ID, useTheme } from "@/themes";
 import type { DashboardTheme, FontChoice, ThemeListEntry } from "@/themes";
 import { useI18n } from "@/i18n";

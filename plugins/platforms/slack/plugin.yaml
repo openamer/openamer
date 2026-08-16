@@ -8,7 +8,7 @@ description: >
   between Slack channels/DMs and the OpenAmer agent. Supports slash
   commands, threads, mrkdwn rendering, approval blocks, free-response
   channels, mention gating, and channel skill bindings.
-author: NousResearch
+author: openamer
 requires_env:
   - name: SLACK_BOT_TOKEN
     description: "Slack bot token (xoxb-...)"

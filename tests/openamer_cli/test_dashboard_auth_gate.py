@@ -259,13 +259,13 @@ def test_start_server_gate_without_provider_fails_closed(monkeypatch):
         )
 
 
-def test_start_server_surfaces_nous_skip_reason_when_unconfigured(monkeypatch):
-    """When the bundled Nous plugin loaded but skipped registration (no
+def test_start_server_surfaces_openamer_skip_reason_when_unconfigured(monkeypatch):
+    """When the bundled OpenAmer plugin loaded but skipped registration (no
     env vars set), the gate's fail-closed message should surface the
     plugin's LAST_SKIP_REASON so the operator knows the config fix is
     'set OPENAMER_DASHBOARD_OAUTH_CLIENT_ID', not 'install a plugin'."""
     from openamer_cli.dashboard_auth import clear_providers
-    from plugins.dashboard_auth import nous as nous_plugin
+    from plugins.dashboard_auth import openamer as openamer_plugin
 
     # Simulate the plugin running and skipping for "no client_id".
     clear_providers()
@@ -273,8 +273,8 @@ def test_start_server_surfaces_nous_skip_reason_when_unconfigured(monkeypatch):
     monkeypatch.delenv("OPENAMER_DASHBOARD_OAUTH_CLIENT_ID", raising=False)
     monkeypatch.delenv("OPENAMER_DASHBOARD_PORTAL_URL", raising=False)
     from unittest.mock import MagicMock
-    nous_plugin.register(MagicMock())  # populates LAST_SKIP_REASON
-    assert "OPENAMER_DASHBOARD_OAUTH_CLIENT_ID" in nous_plugin.LAST_SKIP_REASON
+    openamer_plugin.register(MagicMock())  # populates LAST_SKIP_REASON
+    assert "OPENAMER_DASHBOARD_OAUTH_CLIENT_ID" in openamer_plugin.LAST_SKIP_REASON
 
     web_server.app.state.auth_required = None
     with pytest.raises(SystemExit) as exc_info:
@@ -283,10 +283,10 @@ def test_start_server_surfaces_nous_skip_reason_when_unconfigured(monkeypatch):
             open_browser=False, allow_public=False,
         )
     # The error message embeds the plugin's specific skip reason rather
-    # than the generic "Install the default Nous provider" boilerplate.
+    # than the generic "Install the default OpenAmer provider" boilerplate.
     msg = str(exc_info.value)
     assert "OPENAMER_DASHBOARD_OAUTH_CLIENT_ID" in msg
-    assert "nous:" in msg
+    assert "openamer:" in msg
 
 
 def test_start_server_loopback_keeps_proxy_headers_off(monkeypatch):

@@ -43,7 +43,7 @@ export function stripGlyph(text: string): string {
   return text.replace(LEADING_GLYPH, '')
 }
 
-/** A `$12.34` money token, as the Nous notice policy formats amounts. */
+/** A `$12.34` money token, as the OpenAmer notice policy formats amounts. */
 const MONEY = /\$(\d+(?:\.\d{2})?)/g
 
 /**

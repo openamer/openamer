@@ -54,8 +54,8 @@ test('clearBillingBlock with no arg clears any active block', () => {
   expect($billingBlock.get()).toBeNull()
 })
 
-test('runBillingRecovery routes Nous to in-app Settings, never an external link', () => {
-  runBillingRecovery(makeBlock({ is_nous: true, provider: 'nous', provider_label: 'Nous Portal' }))
+test('runBillingRecovery routes OpenAmer to in-app Settings, never an external link', () => {
+  runBillingRecovery(makeBlock({ is_nous: true, provider: 'openamer', provider_label: 'OpenAmer Portal' }))
   expect($billingSettingsRequest.get()).toBe(1)
   expect(openExternalLink).not.toHaveBeenCalled()
 })

@@ -3,7 +3,7 @@
 The inner retry loop in ``run_conversation`` (``while retry_count <
 max_retries``) makes several distinct recovery attempts on a single model API
 call: a credential-pool 429 retry, a per-provider OAuth refresh (codex,
-anthropic, nous, copilot), a long-context compression restart, a length-
+anthropic, openamer, copilot), a long-context compression restart, a length-
 continuation restart, and a handful of format-recovery branches (thinking-
 signature stripping, multimodal-tool-content stripping, llama.cpp grammar
 fallback, image shrink, invalid-encrypted-content, 1M-beta header).
@@ -42,8 +42,8 @@ class TurnRetryState:
     # ── Per-provider OAuth / credential refresh guards ───────────────────
     codex_auth_retry_attempted: bool = False
     anthropic_auth_retry_attempted: bool = False
-    nous_auth_retry_attempted: bool = False
-    nous_paid_entitlement_refresh_attempted: bool = False
+    openamer_auth_retry_attempted: bool = False
+    openamer_paid_entitlement_refresh_attempted: bool = False
     copilot_auth_retry_attempted: bool = False
     vertex_auth_retry_attempted: bool = False
 

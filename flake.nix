@@ -1,5 +1,5 @@
 {
-  description = "OpenAmer Agent - AI agent framework by Nous Research";
+  description = "OpenAmer Agent - AI agent framework by OpenAmer";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";

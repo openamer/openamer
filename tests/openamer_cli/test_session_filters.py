@@ -131,11 +131,11 @@ class TestBuildPruneFilters:
         assert f["max_tool_calls"] == 40
 
     def test_describe_filters_extended(self):
-        f = build_prune_filters(_ns(model="gpt-5", provider="nous",
+        f = build_prune_filters(_ns(model="gpt-5", provider="openamer",
                                     max_cost=0.5))
         desc = describe_filters(f)
         assert "model contains 'gpt-5'" in desc
-        assert "provider 'nous'" in desc
+        assert "provider 'openamer'" in desc
         assert "<= $0.5" in desc
 
     def test_describe_filters_mentions_active_parts(self):

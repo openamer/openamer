@@ -5,7 +5,7 @@ Holds the stateless atoms that every FAL-backed tool needs:
 * :func:`import_fal_client` — lazy import + ``lazy_deps`` integration so
   ``fal_client`` isn't pulled at cold start (it added ~64 ms per CLI
   invocation when imported eagerly).
-* :class:`_ManagedFalSyncClient` — wrapper that drives a Nous-managed
+* :class:`_ManagedFalSyncClient` — wrapper that drives a OpenAmer-managed
   fal-queue gateway through the standard ``fal_client.SyncClient``
   primitives.
 * :func:`_normalize_fal_queue_url_format`, :func:`_extract_http_status`

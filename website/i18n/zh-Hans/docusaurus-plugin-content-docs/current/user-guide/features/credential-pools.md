@@ -87,7 +87,7 @@ What would you like to do?
   5. Exit
 ```
 
-对于同时支持 API 密钥和 OAuth 的提供商（Anthropic、Nous、Codex），添加流程会询问类型：
+对于同时支持 API 密钥和 OAuth 的提供商（Anthropic、OpenAmer、Codex），添加流程会询问类型：
 
 ```
 anthropic supports both API keys and OAuth login.
@@ -174,7 +174,7 @@ OpenAmer 在启动时自动从多个来源发现凭证并初始化池：
 | 来源 | 示例 | 自动初始化？ |
 |--------|---------|-------------|
 | 环境变量 | `OPENROUTER_API_KEY`、`ANTHROPIC_API_KEY` | 是 |
-| OAuth 令牌（auth.json） | Codex device code、Nous device code | 是 |
+| OAuth 令牌（auth.json） | Codex device code、OpenAmer device code | 是 |
 | Claude Code 凭证 | `~/.claude/.credentials.json` | 是（Anthropic） |
 | OpenAmer PKCE OAuth | `~/.openamer/auth.json` | 是（Anthropic） |
 | 自定义端点配置 | `config.yaml` 中的 `model.api_key` | 是（自定义端点） |

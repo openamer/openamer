@@ -109,14 +109,14 @@ openamer config set     # 设置单个配置项
 openamer setup          # 或运行完整的设置向导一次性配置所有内容
 ```
 
-:::tip 最快路径：Nous Portal
+:::tip 最快路径：OpenAmer Portal
 一个订阅涵盖 300+ 个模型以及 [Tool Gateway](/user-guide/features/tool-gateway)（网络搜索、图像生成、TTS、云端浏览器）。无需逐一管理各工具的密钥：
 
 ```bash
 openamer setup --portal
 ```
 
-该命令一次性完成登录、设置 Nous 为提供商并开启 Tool Gateway。
+该命令一次性完成登录、设置 OpenAmer 为提供商并开启 Tool Gateway。
 :::
 
 ---

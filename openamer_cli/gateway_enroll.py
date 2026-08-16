@@ -5,9 +5,9 @@ customer-managed and internet-exposed). This command is the gateway half of the
 zero-touch enrollment in the connector repo's
 ``docs/connector-gateway-auth-design.md``:
 
-  1. Resolve a fresh Nous Portal access token from the existing login
+  1. Resolve a fresh OpenAmer Portal access token from the existing login
      (``~/.openamer/auth.json``) — the same path ``openamer dashboard register``
-     uses (``resolve_nous_access_token``). This proves *which Nous org (tenant)*
+     uses (``resolve_openamer_access_token``). This proves *which OpenAmer org (tenant)*
      the caller owns; the connector derives the authoritative tenant from it via
      ``GET /api/oauth/account`` (never from anything the gateway asserts).
   2. POST ``{enrollmentToken, gatewayId}`` to the connector's ``/relay/enroll``
@@ -87,12 +87,12 @@ def _resolve_connector_url(override: Optional[str]) -> Optional[str]:
 
 
 def _resolve_identity_token() -> str:
-    """Resolve the caller-identity bearer token (generic-OIDC or Nous Portal).
+    """Resolve the caller-identity bearer token (generic-OIDC or OpenAmer Portal).
 
     Delegates to the canonical resolver in ``gateway.relay`` so the enroll CLI and
     the runtime self-provision path share ONE implementation (generic OAuth2
     client-credentials when ``gateway.idp.token_url`` is set — the air-gapped /
-    self-hosted-IdP path; otherwise Nous Portal). Raises RuntimeError on failure.
+    self-hosted-IdP path; otherwise OpenAmer Portal). Raises RuntimeError on failure.
     """
     from gateway.relay import _resolve_relay_identity_token
 
@@ -137,8 +137,8 @@ def _post_enroll(
             pass
         if exc.code == 401:
             raise RuntimeError(
-                "Connector rejected the caller identity (401). Your Nous Portal "
-                "token could not be verified — try `openamer auth add nous` and retry."
+                "Connector rejected the caller identity (401). Your OpenAmer Portal "
+                "token could not be verified — try `openamer auth add openamer` and retry."
             ) from exc
         if exc.code == 403:
             raise RuntimeError(
@@ -160,7 +160,7 @@ def _post_enroll(
 
 def cmd_gateway_enroll(args) -> None:
     """Enroll this gateway with a relay connector; persist the auth creds to .env."""
-    from openamer_cli.auth import AuthError, resolve_nous_access_token
+    from openamer_cli.auth import AuthError, resolve_openamer_access_token
     from openamer_cli.config import is_managed, save_env_value
 
     # Managed installs get GATEWAY_RELAY_* stamped in by the orchestrator (NAS
@@ -196,15 +196,15 @@ def cmd_gateway_enroll(args) -> None:
 
     # 1. Resolve the caller-identity token (the tenant-proving identity). Generic
     #    OIDC client-credentials when an IdP token endpoint is configured (air-
-    #    gapped / self-hosted-IdP, NO Nous Portal); otherwise the Nous Portal token.
+    #    gapped / self-hosted-IdP, NO OpenAmer Portal); otherwise the OpenAmer Portal token.
     try:
         access_token = _resolve_identity_token()
     except AuthError as exc:
         if getattr(exc, "relogin_required", False):
-            print("✗ You're not logged into Nous Portal.")
-            print("  Run `openamer setup` (or `openamer auth add nous`) first, then retry.")
+            print("✗ You're not logged into OpenAmer Portal.")
+            print("  Run `openamer setup` (or `openamer auth add openamer`) first, then retry.")
         else:
-            print(f"✗ Could not resolve a Nous Portal access token: {exc}")
+            print(f"✗ Could not resolve a OpenAmer Portal access token: {exc}")
         sys.exit(1)
     except Exception as exc:
         print(f"✗ Could not resolve a caller-identity token: {exc}")

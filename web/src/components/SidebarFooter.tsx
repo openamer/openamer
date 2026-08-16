@@ -1,4 +1,4 @@
-import { Typography } from "@nous-research/ui/ui/components/typography/index";
+import { Typography } from "@openamer-research/ui/ui/components/typography/index";
 import type { StatusResponse } from "@/lib/api";
 import { cn } from "@/lib/utils";
 import { useI18n } from "@/i18n";
@@ -21,7 +21,7 @@ export function SidebarFooter({ status }: SidebarFooterProps) {
       </Typography>
 
       <a
-        href="https://nousresearch.com"
+        href="https://openamer.com"
         target="_blank"
         rel="noopener noreferrer"
         className={cn(

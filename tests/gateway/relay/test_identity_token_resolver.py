@@ -1,4 +1,4 @@
-"""Unit tests for the generic-OIDC / Nous-Portal caller-identity token resolver.
+"""Unit tests for the generic-OIDC / OpenAmer-Portal caller-identity token resolver.
 
 Covers gateway.relay._resolve_relay_identity_token() — the canonical resolver
 shared by the runtime self-provision path and the `openamer gateway enroll` CLI.
@@ -6,9 +6,9 @@ shared by the runtime self-provision path and the `openamer gateway enroll` CLI.
 Two modes:
   1. Generic OAuth2 client_credentials when gateway.idp.token_url (or
      GATEWAY_RELAY_IDP_TOKEN_URL) is configured (air-gapped / self-hosted-IdP).
-  2. Nous Portal (resolve_nous_access_token) otherwise — the default.
+  2. OpenAmer Portal (resolve_openamer_access_token) otherwise — the default.
 
-The HTTP POST and the Nous resolver are monkeypatched; these prove the mode
+The HTTP POST and the OpenAmer resolver are monkeypatched; these prove the mode
 SELECTION, the client_credentials request shape, and the fail-closed paths.
 """
 
@@ -35,17 +35,17 @@ def _clean_env(monkeypatch):
     monkeypatch.setattr("gateway.run._load_gateway_config", lambda: {}, raising=False)
 
 
-def test_defaults_to_nous_portal_when_no_idp_configured(monkeypatch):
+def test_defaults_to_openamer_portal_when_no_idp_configured(monkeypatch):
     called = {}
 
     def fake_resolve():
         called["yes"] = True
-        return "nous-portal-token"
+        return "openamer-portal-token"
 
     monkeypatch.setattr(
-        "openamer_cli.auth.resolve_nous_access_token", fake_resolve, raising=False
+        "openamer_cli.auth.resolve_openamer_access_token", fake_resolve, raising=False
     )
-    assert relay._resolve_relay_identity_token() == "nous-portal-token"
+    assert relay._resolve_relay_identity_token() == "openamer-portal-token"
     assert called == {"yes": True}
 
 

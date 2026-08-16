@@ -1,17 +1,17 @@
 ---
-title: "Nous Tool Gateway（工具网关）"
-description: "通过 Nous 订阅统一使用网页搜索、文生图、语音合成与浏览器自动化，无需单独申请 Firecrawl、FAL、OpenAI、Browser Use 等 API Key"
+title: "OpenAmer Tool Gateway（工具网关）"
+description: "通过 OpenAmer 订阅统一使用网页搜索、文生图、语音合成与浏览器自动化，无需单独申请 Firecrawl、FAL、OpenAI、Browser Use 等 API Key"
 sidebar_label: "Tool Gateway"
 sidebar_position: 2
 ---
 
-# Nous Tool Gateway（工具网关）
+# OpenAmer Tool Gateway（工具网关）
 
 :::tip 快速开始
-Tool Gateway 包含在付费 Nous Portal 订阅中。**[管理订阅 →](https://portal.nousresearch.com/manage-subscription)**
+Tool Gateway 包含在付费 OpenAmer Portal 订阅中。**[管理订阅 →](https://portal.openamer.com/manage-subscription)**
 :::
 
-**Tool Gateway** 让已付费的 [Nous Portal](https://portal.nousresearch.com) 用户通过同一份订阅，直接使用网页搜索、文生图、语音合成（TTS）与浏览器自动化，而**不必**再分别注册 Firecrawl、FAL、OpenAI、Browser Use 等服务的 API Key。
+**Tool Gateway** 让已付费的 [OpenAmer Portal](https://portal.openamer.com) 用户通过同一份订阅，直接使用网页搜索、文生图、语音合成（TTS）与浏览器自动化，而**不必**再分别注册 Firecrawl、FAL、OpenAI、Browser Use 等服务的 API Key。
 
 ## 包含能力
 
@@ -22,11 +22,11 @@ Tool Gateway 包含在付费 Nous Portal 订阅中。**[管理订阅 →](https:
 | **语音合成** | 通过 OpenAI TTS 将文字转为语音 | `VOICE_TOOLS_OPENAI_KEY`、`ELEVENLABS_API_KEY` |
 | **浏览器自动化** | 通过 Browser Use 控制云端浏览器 | `BROWSER_USE_API_KEY`、`BROWSERBASE_API_KEY` |
 
-上述四类能力均计入 Nous 订阅计费。你可以按需组合——例如网页与文生图走网关，TTS 仍使用自己的 ElevenLabs Key。
+上述四类能力均计入 OpenAmer 订阅计费。你可以按需组合——例如网页与文生图走网关，TTS 仍使用自己的 ElevenLabs Key。
 
 ## 资格与账号
 
-Tool Gateway 仅对 **[付费](https://portal.nousresearch.com/manage-subscription)** Nous Portal 订阅开放；免费档不可用——请 [升级订阅](https://portal.nousresearch.com/manage-subscription) 后解锁。
+Tool Gateway 仅对 **[付费](https://portal.openamer.com/manage-subscription)** OpenAmer Portal 订阅开放；免费档不可用——请 [升级订阅](https://portal.openamer.com/manage-subscription) 后解锁。
 
 检查当前状态：
 
@@ -34,19 +34,19 @@ Tool Gateway 仅对 **[付费](https://portal.nousresearch.com/manage-subscripti
 openamer status
 ```
 
-在输出中找到 **Nous Tool Gateway** 小节：会标明哪些工具经订阅网关启用、哪些使用直连 Key、哪些尚未配置。
+在输出中找到 **OpenAmer Tool Gateway** 小节：会标明哪些工具经订阅网关启用、哪些使用直连 Key、哪些尚未配置。
 
 ## 如何启用 Tool Gateway
 
 ### 在模型配置流程中
 
-运行 `openamer model` 并选择 Nous Portal 作为提供商时，OpenAmer 会主动询问是否启用 Tool Gateway：
+运行 `openamer model` 并选择 OpenAmer Portal 作为提供商时，OpenAmer 会主动询问是否启用 Tool Gateway：
 
 ```
-Your Nous subscription includes the Tool Gateway.
+Your OpenAmer subscription includes the Tool Gateway.
 
   The Tool Gateway gives you access to web search, image generation,
-  text-to-speech, and browser automation through your Nous subscription.
+  text-to-speech, and browser automation through your OpenAmer subscription.
   No need to sign up for separate API keys — just pick the tools you want.
 
   ○ Web search & extract (Firecrawl) — not configured
@@ -70,7 +70,7 @@ Your Nous subscription includes the Tool Gateway.
 openamer tools
 ```
 
-选择工具类别（Web、Browser、Image Generation、TTS），再将提供商选为 **Nous Subscription**。这会在配置里把对应工具的 `use_gateway` 设为 `true`。
+选择工具类别（Web、Browser、Image Generation、TTS），再将提供商选为 **OpenAmer Subscription**。这会在配置里把对应工具的 `use_gateway` 设为 `true`。
 
 ### 手动编辑配置
 
@@ -95,14 +95,14 @@ browser:
 
 ## 工作原理
 
-当某工具的 `use_gateway: true` 时，运行时会把 API 调用路由到 Nous Tool Gateway，而不是使用直连 Key：
+当某工具的 `use_gateway: true` 时，运行时会把 API 调用路由到 OpenAmer Tool Gateway，而不是使用直连 Key：
 
 1. **网页工具** — `web_search` / `web_extract` 走网关的 Firecrawl 端点  
 2. **文生图** — `image_generate` 走网关的 FAL 端点  
 3. **TTS** — `text_to_speech` 走网关的 OpenAI Audio 端点  
 4. **浏览器** — `browser_navigate` 等走网关的 Browser Use 端点  
 
-网关使用 Nous Portal 凭据认证（在 `openamer model` 完成后写入 `~/.openamer/auth.json`）。
+网关使用 OpenAmer Portal 凭据认证（在 `openamer model` 完成后写入 `~/.openamer/auth.json`）。
 
 ### 优先级
 
@@ -137,26 +137,26 @@ web:
 openamer status
 ```
 
-**Nous Tool Gateway** 小节示例：
+**OpenAmer Tool Gateway** 小节示例：
 
 ```
-◆ Nous Tool Gateway
-  Nous Portal   ✓ managed tools available
-  Web tools       ✓ active via Nous subscription
-  Image gen       ✓ active via Nous subscription
-  TTS             ✓ active via Nous subscription
+◆ OpenAmer Tool Gateway
+  OpenAmer Portal   ✓ managed tools available
+  Web tools       ✓ active via OpenAmer subscription
+  Image gen       ✓ active via OpenAmer subscription
+  TTS             ✓ active via OpenAmer subscription
   Browser         ○ active via Browser Use key
   Modal           ○ available via subscription (optional)
 ```
 
-标记为 “active via Nous subscription” 的即经网关路由；带自有 Key 的会显示当前激活的提供商。
+标记为 “active via OpenAmer subscription” 的即经网关路由；带自有 Key 的会显示当前激活的提供商。
 
 ## 进阶：自建网关
 
 若使用自建或自定义网关，可在 `~/.openamer/.env` 中用环境变量覆盖端点：
 
 ```bash
-TOOL_GATEWAY_DOMAIN=nousresearch.com     # 网关路由基础域名
+TOOL_GATEWAY_DOMAIN=openamer.com     # 网关路由基础域名
 TOOL_GATEWAY_SCHEME=https                 # http 或 https（默认 https）
 TOOL_GATEWAY_USER_TOKEN=your-token        # 鉴权 Token（通常由程序自动填充）
 FIRECRAWL_GATEWAY_URL=https://...         # 单独覆盖 Firecrawl 端点
@@ -176,7 +176,7 @@ FIRECRAWL_GATEWAY_URL=https://...         # 单独覆盖 Firecrawl 端点
 
 ### 订阅到期会怎样？
 
-经网关路由的工具会停止工作，直到你 [续订](https://portal.nousresearch.com/manage-subscription) 或通过 `openamer tools` 改回直连 Key。
+经网关路由的工具会停止工作，直到你 [续订](https://portal.openamer.com/manage-subscription) 或通过 `openamer tools` 改回直连 Key。
 
 ### 与「消息网关」（各聊天平台）是否冲突？
 
@@ -184,4 +184,4 @@ FIRECRAWL_GATEWAY_URL=https://...         # 单独覆盖 Firecrawl 端点
 
 ### Modal 算在 Tool Gateway 里吗？
 
-Modal（无服务器终端后端）可作为 Nous 订阅的可选附加能力，但**不会**由 Tool Gateway 安装向导一并打开——请单独通过 `openamer setup terminal` 或在 `config.yaml` 中配置。
+Modal（无服务器终端后端）可作为 OpenAmer 订阅的可选附加能力，但**不会**由 Tool Gateway 安装向导一并打开——请单独通过 `openamer setup terminal` 或在 `config.yaml` 中配置。

@@ -1015,7 +1015,7 @@ def _has_any_provider_configured() -> bool:
     except Exception:
         pass
 
-    # Check for Nous Portal OAuth credentials
+    # Check for OpenAmer Portal OAuth credentials
     auth_file = get_openamer_home() / "auth.json"
     if auth_file.exists():
         try:
@@ -3320,7 +3320,7 @@ def select_provider_and_model(args=None):
         _model_flow_openrouter(config, current_model)
     elif selected_provider == "moa":
         _model_flow_moa(config, current_model)
-    elif selected_provider == "nous":
+    elif selected_provider == "openamer":
         _model_flow_nous(config, current_model, args=args)
     elif selected_provider == "openai-codex":
         _model_flow_openai_codex(config, current_model)
@@ -3581,7 +3581,7 @@ def _aux_config_menu() -> None:
         print("  Side tasks (vision, compression, web extraction, etc.) default")
         print('  to your main chat model.  "auto" means "use my main model" —')
         print("  OpenAmer only falls back to a lightweight backend (OpenRouter,")
-        print("  Nous Portal) if the main model is unavailable.  Override a")
+        print("  OpenAmer Portal) if the main model is unavailable.  Override a")
         print("  task below if you want it pinned to a specific provider/model.")
         print()
 
@@ -13883,7 +13883,7 @@ def _maybe_setup_dashboard_auth_interactively(args) -> None:
     print()
     print("  How do you want to authenticate the dashboard?")
     print("    [1] Username & password (quickest; for a trusted LAN / VPN)")
-    print("    [2] OAuth via Nous Portal (run `openamer dashboard register`)")
+    print("    [2] OAuth via OpenAmer Portal (run `openamer dashboard register`)")
     print("    [3] Cancel")
     print()
 
@@ -13899,7 +13899,7 @@ def _maybe_setup_dashboard_auth_interactively(args) -> None:
             "  Run this on the host where the dashboard lives, then start "
             "the dashboard again:\n"
             "    openamer dashboard register\n"
-            "  It provisions a Nous Portal OAuth client and writes "
+            "  It provisions a OpenAmer Portal OAuth client and writes "
             "OPENAMER_DASHBOARD_OAUTH_CLIENT_ID into ~/.openamer/.env for you.\n"
             "  Docs: https://github.com/openamer/openamer/blob/main/website/docs/"
             "user-guide/features/web-dashboard#authentication-gated-mode"
@@ -14335,7 +14335,7 @@ def cmd_dashboard(args):
         print(f"→ Using web dist from OPENAMER_WEB_DIST: {_dist_root}")
 
     # Discover and load plugins so any DashboardAuthProvider plugin
-    # (e.g. plugins/dashboard_auth/nous) registers BEFORE start_server's
+    # (e.g. plugins/dashboard_auth/openamer) registers BEFORE start_server's
     # fail-closed gate check runs. The top-level argparse setup skips
     # plugin discovery for built-in subcommands like ``dashboard`` to
     # save ~500ms startup; we have to trigger it explicitly here because
@@ -14395,7 +14395,7 @@ def cmd_dashboard(args):
 
 
 def cmd_dashboard_register(args):
-    """Register a self-hosted dashboard OAuth client with Nous Portal."""
+    """Register a self-hosted dashboard OAuth client with OpenAmer Portal."""
     from openamer_cli.dashboard_register import cmd_dashboard_register as _impl
 
     _impl(args)
@@ -14464,7 +14464,7 @@ def _build_provider_choices() -> list[str]:
     except Exception:
         # Fallback: static list guarantees the CLI always works
         return [
-            "auto", "openrouter", "nous", "openai-codex", "xai-oauth", "copilot-acp", "copilot",
+            "auto", "openrouter", "openamer", "openai-codex", "xai-oauth", "copilot-acp", "copilot",
             "anthropic", "gemini", "vertex", "xai", "bedrock", "azure-foundry",
             "ollama-cloud", "huggingface", "zai", "kimi-coding", "kimi-coding-cn",
             "stepfun", "minimax", "minimax-cn", "kilocode", "novita", "xiaomi", "arcee",
@@ -15284,7 +15284,7 @@ def main():
     build_webhook_parser(subparsers, cmd_webhook=cmd_webhook)
 
     # =========================================================================
-    # portal command — Nous Portal status + Tool Gateway routing
+    # portal command — OpenAmer Portal status + Tool Gateway routing
     # =========================================================================
     from openamer_cli.portal_cli import add_parser as _add_portal_parser
     _add_portal_parser(subparsers)
@@ -15797,7 +15797,7 @@ def main():
         p.add_argument(
             "--provider",
             help="Only match sessions billed through this provider "
-            "(e.g. openrouter, anthropic, nous)",
+            "(e.g. openrouter, anthropic, openamer)",
         )
         p.add_argument(
             "--user", help="Only match sessions from this user ID"

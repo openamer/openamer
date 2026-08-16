@@ -37,7 +37,7 @@ const fullBillingState = {
   },
   ok: true,
   org_name: 'Acme Research',
-  portal_url: 'https://portal.nousresearch.com/billing',
+  portal_url: 'https://portal.openamer.com/billing',
   role: 'OWNER',
   usage: {
     available: true,
@@ -101,7 +101,7 @@ const loggedOutSubscriptionState = {
   ok: true,
   org_id: null,
   org_name: null,
-  portal_url: 'https://portal.nousresearch.com/login',
+  portal_url: 'https://portal.openamer.com/login',
   role: null,
   tiers: []
 } satisfies SubscriptionStateResponse

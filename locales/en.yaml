@@ -388,7 +388,7 @@ gateway:
     reset_wrong_provider:     "Banked usage resets are only available on the openai-codex provider. Switch with `/model` first."
 
   credits:
-    not_logged_in:            "Not logged into Nous Portal. Log in to see your credit balance and top up."
+    not_logged_in:            "Not logged into OpenAmer Portal. Log in to see your credit balance and top up."
 
   verbose:
     not_enabled:           "The `/verbose` command is not enabled for messaging platforms.\n\nEnable it in `config.yaml`:\n```yaml\ndisplay:\n  tool_progress_command: true\n```"

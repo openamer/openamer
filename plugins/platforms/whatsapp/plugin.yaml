@@ -8,7 +8,7 @@ description: >
   an HTTP API and relays messages between WhatsApp chats and the OpenAmer agent.
   Supports DM/group policies, mention gating, free-response chats, and
   per-user allowlists.
-author: NousResearch
+author: openamer
 requires_env:
   - name: WHATSAPP_ENABLED
     description: "Enable the WhatsApp adapter (requires the Node.js bridge running)"

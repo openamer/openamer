@@ -13,7 +13,7 @@ readme = "README.md"
 # <3.14 makes uv refuse 3.14 with a clear error instead of attempting that
 # build. Raise the ceiling once our Rust transitives ship cp314 wheels.
 requires-python = ">=3.11,<3.14"
-authors = [{ name = "Nous Research" }]
+authors = [{ name = "OpenAmer" }]
 license = "MIT"
 license-files = ["LICENSE"]
 dependencies = [

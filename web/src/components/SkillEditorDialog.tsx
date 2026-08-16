@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import { api } from "@/lib/api";
-import { Button } from "@nous-research/ui/ui/components/button";
-import { Input } from "@nous-research/ui/ui/components/input";
-import { Label } from "@nous-research/ui/ui/components/label";
-import { Spinner } from "@nous-research/ui/ui/components/spinner";
+import { Button } from "@openamer-research/ui/ui/components/button";
+import { Input } from "@openamer-research/ui/ui/components/input";
+import { Label } from "@openamer-research/ui/ui/components/label";
+import { Spinner } from "@openamer-research/ui/ui/components/spinner";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
-} from "@nous-research/ui/ui/components/dialog";
+} from "@openamer-research/ui/ui/components/dialog";
 
 /* ------------------------------------------------------------------ */
 /*  SkillEditorDialog — create or edit a SKILL.md from the dashboard   */

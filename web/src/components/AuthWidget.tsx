@@ -5,7 +5,7 @@
  * Renders nothing in loopback / --insecure mode. In gated mode, fetches
  * /api/auth/me on mount and surfaces:
  *
- *   - the user_id (truncated to 14 chars + ellipsis) since the Nous Portal
+ *   - the user_id (truncated to 14 chars + ellipsis) since the OpenAmer Portal
  *     contract V1 doesn't emit email/display_name claims (Contract Anchor
  *     C4 in the plan; the API responds with empty strings for those
  *     fields, so we use user_id as the display value)

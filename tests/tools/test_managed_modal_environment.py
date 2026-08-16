@@ -83,7 +83,7 @@ def _install_fake_tools_package(*, credential_mounts=None):
         resolve_managed_tool_gateway=lambda vendor: types.SimpleNamespace(
             vendor=vendor,
             gateway_origin="https://modal-gateway.example.com",
-            nous_user_token="user-token",
+            openamer_user_token="user-token",
             managed_mode=True,
         )
     )

@@ -69,7 +69,7 @@ function firstBillingLine(text: string): string {
  * gateway forwards the structured descriptor built by `agent/billing_links.py`;
  * we cache it per-session (drives the in-chat banner) AND raise one sticky,
  * billing-specific toast — never the generic "OpenAmer error" — with a smart CTA
- * (Nous → in-app Settings → Billing, other providers → their billing page).
+ * (OpenAmer → in-app Settings → Billing, other providers → their billing page).
  */
 function surfaceBillingBlock(sessionId: string, raw: unknown): void {
   if (!raw || typeof raw !== 'object') {

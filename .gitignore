@@ -95,7 +95,7 @@ apps/shared/src/**/*.d.ts
 apps/desktop/release/
 *.tsbuildinfo
 
-# Web UI assets — synced from @nous-research/ui at build time via
+# Web UI assets — synced from @openamer-research/ui at build time via
 # `npm run sync-assets` (see web/package.json).
 web/public/fonts/
 web/public/ds-assets/

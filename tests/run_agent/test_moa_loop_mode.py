@@ -362,7 +362,7 @@ def test_moa_provider_backed_slot_survives_aux_resolution(monkeypatch, provider)
     resolution rather than being flattened to ``custom``.
 
     NOTE: providers in the ``_slot_runtime`` name-preservation set (anthropic,
-    bedrock, nous, openai-codex, xai-oauth) are intentionally NOT forwarded —
+    bedrock, openamer, openai-codex, xai-oauth) are intentionally NOT forwarded —
     they're covered by their own dedicated tests. This case covers the
     forward-the-resolved-endpoint path for providers that are NOT in the set.
     """

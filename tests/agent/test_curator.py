@@ -653,7 +653,7 @@ def test_dry_run_skips_automatic_transitions(curator_env, monkeypatch):
     assert called["n"] == 0, "dry-run must skip apply_automatic_transitions"
 
 
-def test_run_review_synchronous_invokes_llm_stub(curator_env, monkeypatch):
+def test_run_review_synchroopenamer_invokes_llm_stub(curator_env, monkeypatch):
     c = curator_env["curator"]
     u = curator_env["usage"]
     skills_dir = curator_env["home"] / "skills"
@@ -1190,13 +1190,13 @@ def test_review_model_new_slot_wins_over_legacy(curator_env):
     cfg = {
         "model": {"provider": "openrouter", "default": "openai/gpt-5.5"},
         "auxiliary": {
-            "curator": {"provider": "nous", "model": "new-winner"},
+            "curator": {"provider": "openamer", "model": "new-winner"},
         },
         "curator": {
             "auxiliary": {"provider": "openrouter", "model": "legacy-loser"},
         },
     }
-    assert curator._resolve_review_model(cfg) == ("nous", "new-winner")
+    assert curator._resolve_review_model(cfg) == ("openamer", "new-winner")
 
 
 def test_review_model_handles_missing_sections(curator_env):

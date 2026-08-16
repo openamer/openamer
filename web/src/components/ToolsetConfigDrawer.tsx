@@ -7,14 +7,14 @@ import type {
   ToolsetInfo,
   ToolsetProvider,
 } from "@/lib/api";
-import { useToast } from "@nous-research/ui/hooks/use-toast";
-import { Button } from "@nous-research/ui/ui/components/button";
-import { Input } from "@nous-research/ui/ui/components/input";
-import { Label } from "@nous-research/ui/ui/components/label";
-import { Badge } from "@nous-research/ui/ui/components/badge";
-import { Switch } from "@nous-research/ui/ui/components/switch";
-import { Spinner } from "@nous-research/ui/ui/components/spinner";
-import { Toast } from "@nous-research/ui/ui/components/toast";
+import { useToast } from "@openamer-research/ui/hooks/use-toast";
+import { Button } from "@openamer-research/ui/ui/components/button";
+import { Input } from "@openamer-research/ui/ui/components/input";
+import { Label } from "@openamer-research/ui/ui/components/label";
+import { Badge } from "@openamer-research/ui/ui/components/badge";
+import { Switch } from "@openamer-research/ui/ui/components/switch";
+import { Spinner } from "@openamer-research/ui/ui/components/spinner";
+import { Toast } from "@openamer-research/ui/ui/components/toast";
 import { cn, themedBody } from "@/lib/utils";
 
 interface Props {
@@ -300,9 +300,9 @@ export function ToolsetConfigDrawer({ toolset, profile, onClose, onChanged }: Pr
                           {provider.badge}
                         </Badge>
                       )}
-                      {provider.requires_nous_auth && (
+                      {provider.requires_openamer_auth && (
                         <Badge tone="outline" className="text-xs">
-                          Nous Portal
+                          OpenAmer Portal
                         </Badge>
                       )}
                     </div>

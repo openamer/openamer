@@ -115,12 +115,12 @@ test('profileRemoteOverride treats a cloud entry as a remote override', () => {
   // entry would (Q6) — the override must be returned, not dropped.
   const config = {
     profiles: {
-      coder: { mode: 'cloud', url: 'https://agent-1.agents.nousresearch.com', authMode: 'oauth' }
+      coder: { mode: 'cloud', url: 'https://agent-1.agents.openamer.com', authMode: 'oauth' }
     }
   }
 
   assert.deepEqual(profileRemoteOverride(config, 'coder'), {
-    url: 'https://agent-1.agents.nousresearch.com',
+    url: 'https://agent-1.agents.openamer.com',
     authMode: 'oauth',
     token: undefined
   })
@@ -312,7 +312,7 @@ test('buildGatewayWsUrlWithTicket url-encodes the ticket', () => {
 // --- authModeFromStatus ---
 
 test('authModeFromStatus returns oauth when auth_required is true', () => {
-  assert.equal(authModeFromStatus({ auth_required: true, auth_providers: ['nous'] }), 'oauth')
+  assert.equal(authModeFromStatus({ auth_required: true, auth_providers: ['openamer'] }), 'oauth')
 })
 
 test('authModeFromStatus returns token when auth_required is false/missing', () => {
@@ -427,7 +427,7 @@ test('cookiesHaveLiveSession is false for unrelated cookies and non-arrays', () 
   assert.equal(cookiesHaveLiveSession([]), false)
 })
 
-// --- cookiesHavePrivySession (Nous portal / Privy auth, NOT gateway cookies) ---
+// --- cookiesHavePrivySession (OpenAmer portal / Privy auth, NOT gateway cookies) ---
 
 test('cookiesHavePrivySession detects the privy-token access cookie', () => {
   assert.equal(cookiesHavePrivySession([{ name: 'privy-token', value: 'jwt' }]), true)

@@ -1656,14 +1656,14 @@ def test_launch_tui_exports_model_provider_and_toolsets(monkeypatch, main_mod):
 
     with pytest.raises(SystemExit):
         main_mod._launch_tui(
-            model="nous/openamer-test", provider="nous", toolsets="web, terminal"
+            model="openamer/openamer-test", provider="openamer", toolsets="web, terminal"
         )
 
     env = captured["env"]
-    assert env["OPENAMER_MODEL"] == "nous/openamer-test"
-    assert env["OPENAMER_INFERENCE_MODEL"] == "nous/openamer-test"
-    assert env["OPENAMER_TUI_PROVIDER"] == "nous"
-    assert env["OPENAMER_INFERENCE_PROVIDER"] == "nous"
+    assert env["OPENAMER_MODEL"] == "openamer/openamer-test"
+    assert env["OPENAMER_INFERENCE_MODEL"] == "openamer/openamer-test"
+    assert env["OPENAMER_TUI_PROVIDER"] == "openamer"
+    assert env["OPENAMER_INFERENCE_PROVIDER"] == "openamer"
     assert env["OPENAMER_TUI_TOOLSETS"] == "web,terminal"
     active_path = Path(env["OPENAMER_TUI_ACTIVE_SESSION_FILE"])
     assert active_path.name.startswith("openamer-tui-active-session-")

@@ -43,7 +43,7 @@ OpenAmer 拥有一个共享的 provider 运行时解析器，用于以下场景�
 当前 provider 系列包括（完整内置集合见 `plugins/model-providers/`）：
 
 - OpenRouter
-- Nous Portal
+- OpenAmer Portal
 - OpenAI Codex
 - Copilot / Copilot ACP
 - Anthropic（原生）

@@ -17,7 +17,7 @@ description: "将用户的 OpenClaw 自定义配置迁移到 OpenAmer Agent"
 | 来源 | 可选 — 通过 `openamer skills install official/migration/openclaw-migration` 安装 |
 | 路径 | `optional-skills/migration/openclaw-migration` |
 | 版本 | `1.0.0` |
-| 作者 | OpenAmer Agent (Nous Research) |
+| 作者 | OpenAmer Agent (OpenAmer) |
 | 许可证 | MIT |
 | 平台 | linux, macos, windows |
 | 标签 | `Migration`, `OpenClaw`, `OpenAmer`, `Memory`, `Persona`, `Import` |

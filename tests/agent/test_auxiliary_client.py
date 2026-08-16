@@ -24,7 +24,7 @@ from agent.auxiliary_client import (
     _is_rate_limit_error,
     _is_model_not_found_error,
     _is_model_incompatible_error,
-    _refresh_nous_recommended_model,
+    _refresh_openamer_recommended_model,
     _normalize_aux_provider,
     _try_payment_fallback,
     _try_openrouter,
@@ -63,7 +63,7 @@ def _clean_env(monkeypatch):
     """Strip provider env vars so each test starts clean."""
     for key in (
         "OPENROUTER_API_KEY", "OPENAI_BASE_URL", "OPENAI_API_KEY",
-        "OPENAI_MODEL", "LLM_MODEL", "NOUS_INFERENCE_BASE_URL",
+        "OPENAI_MODEL", "LLM_MODEL", "OPENAMER_INFERENCE_BASE_URL",
         "ANTHROPIC_API_KEY", "ANTHROPIC_TOKEN", "CLAUDE_CODE_OAUTH_TOKEN",
     ):
         monkeypatch.delenv(key, raising=False)
@@ -101,12 +101,12 @@ def codex_auth_dir(tmp_path, monkeypatch):
 class TestAuxiliaryMaxTokensParam:
     def test_uses_max_completion_tokens_for_github_copilot_custom_base(self):
         with patch("agent.auxiliary_client._resolve_custom_runtime", return_value=("https://api.githubcopilot.com", "key", None)), \
-             patch("agent.auxiliary_client._read_nous_auth", return_value=None):
+             patch("agent.auxiliary_client._read_openamer_auth", return_value=None):
             assert auxiliary_max_tokens_param(2048) == {"max_completion_tokens": 2048}
 
     def test_uses_max_completion_tokens_for_github_copilot_custom_base_path(self):
         with patch("agent.auxiliary_client._resolve_custom_runtime", return_value=("https://api.githubcopilot.com/chat/completions", "key", None)), \
-             patch("agent.auxiliary_client._read_nous_auth", return_value=None):
+             patch("agent.auxiliary_client._read_openamer_auth", return_value=None):
             assert auxiliary_max_tokens_param(2048) == {"max_completion_tokens": 2048}
 
 
@@ -116,7 +116,7 @@ class TestResolveTaskProviderModel:
         [
             "anthropic",
             "minimax-oauth",
-            "nous",
+            "openamer",
             "openai-codex",
             "qwen-oauth",
             "xai-oauth",
@@ -249,10 +249,10 @@ class TestResolveTaskProviderModel:
         with patch("agent.auxiliary_client._get_auxiliary_task_config", return_value=task_config):
             resolved_provider, model, base_url, api_key, api_mode = _resolve_task_provider_model(
                 task="vision",
-                provider="nous",
+                provider="openamer",
             )
 
-        assert resolved_provider == "nous"
+        assert resolved_provider == "openamer"
         assert base_url is None
         assert api_key is None
 
@@ -341,7 +341,7 @@ class TestResolveTaskProviderModel:
         default_preset when name is falsy; this just confirms the call site
         doesn't force a preset name where none was configured."""
         preset = {
-            "aggregator": {"provider": "nous", "model": "openamer-4-405b"},
+            "aggregator": {"provider": "openamer", "model": "openamer-4-405b"},
         }
 
         def fake_resolve(cfg, name):
@@ -359,7 +359,7 @@ class TestResolveTaskProviderModel:
             task="title_generation",
         )
 
-        assert resolved_provider == "nous"
+        assert resolved_provider == "openamer"
         assert model == "openamer-4-405b"
 
     def test_provider_moa_falls_back_to_literal_when_preset_resolution_fails(self, monkeypatch):
@@ -474,13 +474,13 @@ class TestMoaAggregatorSharedResolution:
                                     "model": "anthropic/claude-opus-4.8",
                                 },
                             },
-                            "nous-mix": {
+                            "openamer-mix": {
                                 "enabled": True,
                                 "reference_models": [
-                                    {"provider": "nous", "model": "openamer-4-70b"}
+                                    {"provider": "openamer", "model": "openamer-4-70b"}
                                 ],
                                 "aggregator": {
-                                    "provider": "nous",
+                                    "provider": "openamer",
                                     "model": "openamer-4-405b",
                                 },
                             },
@@ -515,7 +515,7 @@ class TestMoaAggregatorSharedResolution:
         """provider: moa with no model resolves the default preset's aggregator."""
         import yaml
 
-        home = self._write_moa_config(tmp_path, monkeypatch, default_preset="nous-mix")
+        home = self._write_moa_config(tmp_path, monkeypatch, default_preset="openamer-mix")
         cfg = yaml.safe_load((home / "config.yaml").read_text())
         cfg["auxiliary"] = {"compression": {"provider": "moa"}}
         (home / "config.yaml").write_text(yaml.safe_dump(cfg))
@@ -524,7 +524,7 @@ class TestMoaAggregatorSharedResolution:
             task="compression",
         )
 
-        assert resolved_provider == "nous"
+        assert resolved_provider == "openamer"
         assert model == "openamer-4-405b"
 
     def test_read_main_model_for_aux_unwraps_preset_name(self, tmp_path, monkeypatch):
@@ -606,7 +606,7 @@ class TestBuildCallKwargsMaxTokens:
             ("copilot", "gpt-5.5", "https://api.githubcopilot.com"),
             ("custom", "gpt-5", "https://api.openai.com/v1"),
             ("openrouter", "anthropic/claude-sonnet-4.6", "https://openrouter.ai/api/v1"),
-            ("nous", "openamer-4", "https://inference-api.nousresearch.com/v1"),
+            ("openamer", "openamer-4", "https://inference-api.openamer.com/v1"),
             ("custom", "qwen", "http://localhost:8080/v1"),
             ("zai", "glm-4v-flash", "https://open.bigmodel.cn/api/paas/v4"),
         ],
@@ -664,7 +664,7 @@ class TestBuildCallKwargsMaxTokens:
             ("zai", "glm-5.2", "https://api.z.ai/api/coding/paas/v4", "max_tokens"),
             ("openrouter", "deepseek/deepseek-v4-flash:nitro", "https://openrouter.ai/api/v1", "max_tokens"),
             ("copilot", "gpt-5.5", "https://api.githubcopilot.com", "max_completion_tokens"),
-            ("nous", "openamer-4", "https://inference-api.nousresearch.com/v1", "max_tokens"),
+            ("openamer", "openamer-4", "https://inference-api.openamer.com/v1", "max_tokens"),
         ],
     )
     def test_moa_task_sends_max_tokens_on_openai_compatible(self, provider, model, base_url, expected_key):
@@ -832,12 +832,12 @@ class TestNousTagsScoping:
         monkeypatch.setattr(aux, "auxiliary_is_nous", False)
 
         kwargs = aux._build_call_kwargs(
-            provider="nous",
+            provider="openamer",
             model="openamer-4",
             messages=[{"role": "user", "content": "hi"}],
         )
 
-        assert kwargs["extra_body"]["tags"] == aux._nous_portal_tags()
+        assert kwargs["extra_body"]["tags"] == aux._openamer_portal_tags()
 
     def test_tags_not_injected_for_gemini_when_main_is_nous(self, monkeypatch):
         import agent.auxiliary_client as aux
@@ -1231,7 +1231,7 @@ class TestResolveProviderClientUniversalModelFallback:
     ``(None, None)`` on an empty model — both lack a catalog default
     because their accepted-model lists drift on the backend.  That
     silent failure caused ``_resolve_auto`` to drop to its Step-2
-    fallback chain (OpenRouter / Nous / etc.), so aux tasks billed
+    fallback chain (OpenRouter / OpenAmer / etc.), so aux tasks billed
     against the wrong subscription.
     """
 
@@ -1292,7 +1292,7 @@ class TestResolveProviderClientUniversalModelFallback:
         assert mock_build.call_args.args[0] == "gpt-5.4"
 
     def test_empty_model_for_catalog_provider_uses_catalog_default(self):
-        """anthropic / nous / openrouter / etc.: catalog default wins
+        """anthropic / openamer / openrouter / etc.: catalog default wins
         over main model when no explicit model is passed.
 
         This preserves the original \"cheap aux model for direct API
@@ -1322,7 +1322,7 @@ class TestResolveProviderClientUniversalModelFallback:
                 return_value="sk-ant-***",
             ),
             patch(
-                "agent.auxiliary_client._read_nous_auth", return_value=None
+                "agent.auxiliary_client._read_openamer_auth", return_value=None
             ),
         ):
             client, model = resolve_provider_client("anthropic", "")
@@ -1645,7 +1645,7 @@ class TestGetTextAuxiliaryClient:
         monkeypatch.delenv("OPENAI_BASE_URL", raising=False)
         monkeypatch.delenv("OPENAI_API_KEY", raising=False)
         monkeypatch.delenv("OPENROUTER_API_KEY", raising=False)
-        with patch("agent.auxiliary_client._read_nous_auth", return_value=None), \
+        with patch("agent.auxiliary_client._read_openamer_auth", return_value=None), \
              patch("agent.auxiliary_client._read_codex_access_token", return_value=None), \
              patch("agent.auxiliary_client._resolve_api_key_provider", return_value=(None, None)):
             client, model = get_text_auxiliary_client()
@@ -1655,8 +1655,8 @@ class TestGetTextAuxiliaryClient:
     def test_custom_endpoint_uses_codex_wrapper_when_runtime_requests_responses_api(self):
         with patch("agent.auxiliary_client._resolve_custom_runtime",
                    return_value=("https://api.openai.com/v1", "sk-test", "codex_responses")), \
-             patch("agent.auxiliary_client._read_nous_auth", return_value=None), \
-             patch("agent.auxiliary_client._resolve_nous_runtime_api", return_value=None), \
+             patch("agent.auxiliary_client._read_openamer_auth", return_value=None), \
+             patch("agent.auxiliary_client._resolve_openamer_runtime_api", return_value=None), \
              patch("agent.auxiliary_client._read_main_model", return_value="gpt-5.3-codex"), \
              patch("agent.auxiliary_client.OpenAI") as mock_openai:
             client, model = get_text_auxiliary_client()
@@ -1675,7 +1675,7 @@ class TestVisionClientFallback:
         """Active provider appears in available backends when credentials exist."""
         monkeypatch.setenv("ANTHROPIC_API_KEY", "***")
         with (
-            patch("agent.auxiliary_client._read_nous_auth", return_value=None),
+            patch("agent.auxiliary_client._read_openamer_auth", return_value=None),
             patch("agent.auxiliary_client._read_main_provider", return_value="anthropic"),
             patch("agent.auxiliary_client._read_main_model", return_value="claude-sonnet-4"),
             patch("agent.anthropic_adapter.build_anthropic_client", return_value=MagicMock()),
@@ -1688,7 +1688,7 @@ class TestVisionClientFallback:
     def test_resolve_provider_client_returns_native_anthropic_wrapper(self, monkeypatch):
         monkeypatch.setenv("ANTHROPIC_API_KEY", "***")
         with (
-            patch("agent.auxiliary_client._read_nous_auth", return_value=None),
+            patch("agent.auxiliary_client._read_openamer_auth", return_value=None),
             patch("agent.anthropic_adapter.build_anthropic_client", return_value=MagicMock()),
             patch("agent.anthropic_adapter.resolve_anthropic_token", return_value="***"),
         ):
@@ -1774,7 +1774,7 @@ class TestVisionClientFallback:
 
 
 class TestAuxiliaryPoolAwareness:
-    def test_try_nous_uses_pool_entry(self):
+    def test_try_openamer_uses_pool_entry(self):
         pooled_token = _jwt_with_claims({
             "scope": "inference:invoke",
             "exp": int(time.time() + 3600),
@@ -1797,7 +1797,7 @@ class TestAuxiliaryPoolAwareness:
         with (
             patch("agent.auxiliary_client.load_pool", return_value=_Pool()),
             patch("agent.auxiliary_client.OpenAI") as mock_openai,
-            patch("openamer_cli.models.get_nous_recommended_aux_model", return_value=None),
+            patch("openamer_cli.models.get_openamer_recommended_aux_model", return_value=None),
         ):
             from agent.auxiliary_client import _try_nous
 
@@ -1808,7 +1808,7 @@ class TestAuxiliaryPoolAwareness:
         assert mock_openai.call_args.kwargs["api_key"] == pooled_token
         assert mock_openai.call_args.kwargs["base_url"] == "https://inference.pool.example/v1"
 
-    def test_try_nous_refreshes_stale_pool_entry(self):
+    def test_try_openamer_refreshes_stale_pool_entry(self):
         stale_token = _jwt_with_claims({
             "scope": "inference:invoke",
             "exp": int(time.time() - 60),
@@ -1843,7 +1843,7 @@ class TestAuxiliaryPoolAwareness:
         with (
             patch("agent.auxiliary_client.load_pool", return_value=pool),
             patch("agent.auxiliary_client.OpenAI") as mock_openai,
-            patch("openamer_cli.models.get_nous_recommended_aux_model", return_value=None),
+            patch("openamer_cli.models.get_openamer_recommended_aux_model", return_value=None),
         ):
             from agent.auxiliary_client import _try_nous
 
@@ -1855,7 +1855,7 @@ class TestAuxiliaryPoolAwareness:
         assert mock_openai.call_args.kwargs["api_key"] == fresh_token
         assert mock_openai.call_args.kwargs["base_url"] == "https://inference.pool.example/v1"
 
-    def test_resolve_nous_runtime_api_rejects_stale_pool_entry_when_refresh_fails(self):
+    def test_resolve_openamer_runtime_api_rejects_stale_pool_entry_when_refresh_fails(self):
         stale_token = _jwt_with_claims({
             "scope": "inference:invoke",
             "exp": int(time.time() - 60),
@@ -1881,23 +1881,23 @@ class TestAuxiliaryPoolAwareness:
         with (
             patch("agent.auxiliary_client.load_pool", return_value=_Pool()),
             patch(
-                "openamer_cli.auth.resolve_nous_runtime_credentials",
+                "openamer_cli.auth.resolve_openamer_runtime_credentials",
                 side_effect=RuntimeError("no singleton auth"),
             ),
         ):
-            from agent.auxiliary_client import _resolve_nous_runtime_api
+            from agent.auxiliary_client import _resolve_openamer_runtime_api
 
-            runtime = _resolve_nous_runtime_api()
+            runtime = _resolve_openamer_runtime_api()
 
         assert runtime is None
 
-    def test_try_nous_uses_portal_recommendation_for_text(self):
+    def test_try_openamer_uses_portal_recommendation_for_text(self):
         """When the Portal recommends a compaction model, _try_nous honors it."""
-        fresh_base = "https://inference-api.nousresearch.com/v1"
+        fresh_base = "https://inference-api.openamer.com/v1"
         with (
-            patch("agent.auxiliary_client._read_nous_auth", return_value={"access_token": "***"}),
-            patch("agent.auxiliary_client._resolve_nous_runtime_api", return_value=("fresh-agent-key", fresh_base)),
-            patch("openamer_cli.models.get_nous_recommended_aux_model", return_value="minimax/minimax-m2.7") as mock_rec,
+            patch("agent.auxiliary_client._read_openamer_auth", return_value={"access_token": "***"}),
+            patch("agent.auxiliary_client._resolve_openamer_runtime_api", return_value=("fresh-agent-key", fresh_base)),
+            patch("openamer_cli.models.get_openamer_recommended_aux_model", return_value="minimax/minimax-m2.7") as mock_rec,
             patch("agent.auxiliary_client.OpenAI") as mock_openai,
         ):
             from agent.auxiliary_client import _try_nous
@@ -1909,13 +1909,13 @@ class TestAuxiliaryPoolAwareness:
         assert model == "minimax/minimax-m2.7"
         assert mock_rec.call_args.kwargs["vision"] is False
 
-    def test_try_nous_uses_portal_recommendation_for_vision(self):
+    def test_try_openamer_uses_portal_recommendation_for_vision(self):
         """Vision tasks should ask for the vision-specific recommendation."""
-        fresh_base = "https://inference-api.nousresearch.com/v1"
+        fresh_base = "https://inference-api.openamer.com/v1"
         with (
-            patch("agent.auxiliary_client._read_nous_auth", return_value={"access_token": "***"}),
-            patch("agent.auxiliary_client._resolve_nous_runtime_api", return_value=("fresh-agent-key", fresh_base)),
-            patch("openamer_cli.models.get_nous_recommended_aux_model", return_value="google/gemini-3-flash-preview") as mock_rec,
+            patch("agent.auxiliary_client._read_openamer_auth", return_value={"access_token": "***"}),
+            patch("agent.auxiliary_client._resolve_openamer_runtime_api", return_value=("fresh-agent-key", fresh_base)),
+            patch("openamer_cli.models.get_openamer_recommended_aux_model", return_value="google/gemini-3-flash-preview") as mock_rec,
             patch("agent.auxiliary_client.OpenAI"),
         ):
             from agent.auxiliary_client import _try_nous
@@ -1925,13 +1925,13 @@ class TestAuxiliaryPoolAwareness:
         assert model == "google/gemini-3-flash-preview"
         assert mock_rec.call_args.kwargs["vision"] is True
 
-    def test_try_nous_falls_back_when_recommendation_lookup_raises(self):
+    def test_try_openamer_falls_back_when_recommendation_lookup_raises(self):
         """If the Portal lookup throws, we must still return a usable model."""
-        fresh_base = "https://inference-api.nousresearch.com/v1"
+        fresh_base = "https://inference-api.openamer.com/v1"
         with (
-            patch("agent.auxiliary_client._read_nous_auth", return_value={"access_token": "***"}),
-            patch("agent.auxiliary_client._resolve_nous_runtime_api", return_value=("fresh-agent-key", fresh_base)),
-            patch("openamer_cli.models.get_nous_recommended_aux_model", side_effect=RuntimeError("portal down")),
+            patch("agent.auxiliary_client._read_openamer_auth", return_value={"access_token": "***"}),
+            patch("agent.auxiliary_client._resolve_openamer_runtime_api", return_value=("fresh-agent-key", fresh_base)),
+            patch("openamer_cli.models.get_openamer_recommended_aux_model", side_effect=RuntimeError("portal down")),
             patch("agent.auxiliary_client.OpenAI"),
         ):
             from agent.auxiliary_client import _try_nous
@@ -1940,24 +1940,24 @@ class TestAuxiliaryPoolAwareness:
         assert client is not None
         assert model == "google/gemini-3-flash-preview"
 
-    def test_call_llm_retries_nous_after_401(self):
+    def test_call_llm_retries_openamer_after_401(self):
         class _Auth401(Exception):
             status_code = 401
 
         stale_client = MagicMock()
-        stale_client.base_url = "https://inference-api.nousresearch.com/v1"
-        stale_client.chat.completions.create.side_effect = _Auth401("stale nous key")
+        stale_client.base_url = "https://inference-api.openamer.com/v1"
+        stale_client.chat.completions.create.side_effect = _Auth401("stale openamer key")
 
         fresh_client = MagicMock()
-        fresh_client.base_url = "https://inference-api.nousresearch.com/v1"
+        fresh_client.base_url = "https://inference-api.openamer.com/v1"
         fresh_client.chat.completions.create.return_value = {"ok": True}
 
         with (
-            patch("agent.auxiliary_client._resolve_task_provider_model", return_value=("nous", "nous-model", None, None, None)),
-            patch("agent.auxiliary_client._get_cached_client", return_value=(stale_client, "nous-model")),
+            patch("agent.auxiliary_client._resolve_task_provider_model", return_value=("openamer", "openamer-model", None, None, None)),
+            patch("agent.auxiliary_client._get_cached_client", return_value=(stale_client, "openamer-model")),
             patch("agent.auxiliary_client.OpenAI", return_value=fresh_client),
             patch("agent.auxiliary_client._validate_llm_response", side_effect=lambda resp, _task, **_kw: resp),
-            patch("agent.auxiliary_client._resolve_nous_runtime_api", return_value=("fresh-agent-key", "https://inference-api.nousresearch.com/v1")),
+            patch("agent.auxiliary_client._resolve_openamer_runtime_api", return_value=("fresh-agent-key", "https://inference-api.openamer.com/v1")),
         ):
             result = call_llm(
                 task="compression",
@@ -1968,31 +1968,31 @@ class TestAuxiliaryPoolAwareness:
         assert stale_client.chat.completions.create.call_count == 1
         assert fresh_client.chat.completions.create.call_count == 1
 
-    def test_call_llm_refreshes_nous_after_free_tier_block_when_account_paid(self):
-        from openamer_cli.nous_account import NousPortalAccountInfo
+    def test_call_llm_refreshes_openamer_after_free_tier_block_when_account_paid(self):
+        from openamer_cli.openamer_account import OpenAmerPortalAccountInfo
 
         class _Payment404(Exception):
             status_code = 404
 
         stale_client = MagicMock()
-        stale_client.base_url = "https://inference-api.nousresearch.com/v1"
+        stale_client.base_url = "https://inference-api.openamer.com/v1"
         stale_client.chat.completions.create.side_effect = _Payment404(
             "model_not_supported_on_free_tier: model is not available on the free tier"
         )
 
         fresh_client = MagicMock()
-        fresh_client.base_url = "https://inference-api.nousresearch.com/v1"
+        fresh_client.base_url = "https://inference-api.openamer.com/v1"
         fresh_client.chat.completions.create.return_value = {"ok": True}
 
         with (
-            patch("agent.auxiliary_client._resolve_task_provider_model", return_value=("nous", "nous-model", None, None, None)),
-            patch("agent.auxiliary_client._get_cached_client", return_value=(stale_client, "nous-model")),
+            patch("agent.auxiliary_client._resolve_task_provider_model", return_value=("openamer", "openamer-model", None, None, None)),
+            patch("agent.auxiliary_client._get_cached_client", return_value=(stale_client, "openamer-model")),
             patch("agent.auxiliary_client.OpenAI", return_value=fresh_client),
             patch("agent.auxiliary_client._validate_llm_response", side_effect=lambda resp, _task, **_kw: resp),
-            patch("agent.auxiliary_client._resolve_nous_runtime_api", return_value=("fresh-agent-key", "https://inference-api.nousresearch.com/v1")),
+            patch("agent.auxiliary_client._resolve_openamer_runtime_api", return_value=("fresh-agent-key", "https://inference-api.openamer.com/v1")),
             patch(
-                "openamer_cli.nous_account.get_nous_portal_account_info",
-                return_value=NousPortalAccountInfo(
+                "openamer_cli.openamer_account.get_openamer_portal_account_info",
+                return_value=OpenAmerPortalAccountInfo(
                     logged_in=True,
                     source="account_api",
                     fresh=True,
@@ -2010,24 +2010,24 @@ class TestAuxiliaryPoolAwareness:
         assert fresh_client.chat.completions.create.call_count == 1
 
     @pytest.mark.asyncio
-    async def test_async_call_llm_retries_nous_after_401(self):
+    async def test_async_call_llm_retries_openamer_after_401(self):
         class _Auth401(Exception):
             status_code = 401
 
         stale_client = MagicMock()
-        stale_client.base_url = "https://inference-api.nousresearch.com/v1"
-        stale_client.chat.completions.create = AsyncMock(side_effect=_Auth401("stale nous key"))
+        stale_client.base_url = "https://inference-api.openamer.com/v1"
+        stale_client.chat.completions.create = AsyncMock(side_effect=_Auth401("stale openamer key"))
 
         fresh_async_client = MagicMock()
-        fresh_async_client.base_url = "https://inference-api.nousresearch.com/v1"
+        fresh_async_client.base_url = "https://inference-api.openamer.com/v1"
         fresh_async_client.chat.completions.create = AsyncMock(return_value={"ok": True})
 
         with (
-            patch("agent.auxiliary_client._resolve_task_provider_model", return_value=("nous", "nous-model", None, None, None)),
-            patch("agent.auxiliary_client._get_cached_client", return_value=(stale_client, "nous-model")),
-            patch("agent.auxiliary_client._to_async_client", return_value=(fresh_async_client, "nous-model")),
+            patch("agent.auxiliary_client._resolve_task_provider_model", return_value=("openamer", "openamer-model", None, None, None)),
+            patch("agent.auxiliary_client._get_cached_client", return_value=(stale_client, "openamer-model")),
+            patch("agent.auxiliary_client._to_async_client", return_value=(fresh_async_client, "openamer-model")),
             patch("agent.auxiliary_client._validate_llm_response", side_effect=lambda resp, _task, **_kw: resp),
-            patch("agent.auxiliary_client._resolve_nous_runtime_api", return_value=("fresh-agent-key", "https://inference-api.nousresearch.com/v1")),
+            patch("agent.auxiliary_client._resolve_openamer_runtime_api", return_value=("fresh-agent-key", "https://inference-api.openamer.com/v1")),
         ):
             result = await async_call_llm(
                 task="session_search",
@@ -2039,31 +2039,31 @@ class TestAuxiliaryPoolAwareness:
         assert fresh_async_client.chat.completions.create.await_count == 1
 
     @pytest.mark.asyncio
-    async def test_async_call_llm_refreshes_nous_after_free_tier_block_when_account_paid(self):
-        from openamer_cli.nous_account import NousPortalAccountInfo
+    async def test_async_call_llm_refreshes_openamer_after_free_tier_block_when_account_paid(self):
+        from openamer_cli.openamer_account import OpenAmerPortalAccountInfo
 
         class _Payment404(Exception):
             status_code = 404
 
         stale_client = MagicMock()
-        stale_client.base_url = "https://inference-api.nousresearch.com/v1"
+        stale_client.base_url = "https://inference-api.openamer.com/v1"
         stale_client.chat.completions.create = AsyncMock(side_effect=_Payment404(
             "model_not_supported_on_free_tier: model is not available on the free tier"
         ))
 
         fresh_async_client = MagicMock()
-        fresh_async_client.base_url = "https://inference-api.nousresearch.com/v1"
+        fresh_async_client.base_url = "https://inference-api.openamer.com/v1"
         fresh_async_client.chat.completions.create = AsyncMock(return_value={"ok": True})
 
         with (
-            patch("agent.auxiliary_client._resolve_task_provider_model", return_value=("nous", "nous-model", None, None, None)),
-            patch("agent.auxiliary_client._get_cached_client", return_value=(stale_client, "nous-model")),
-            patch("agent.auxiliary_client._to_async_client", return_value=(fresh_async_client, "nous-model")),
+            patch("agent.auxiliary_client._resolve_task_provider_model", return_value=("openamer", "openamer-model", None, None, None)),
+            patch("agent.auxiliary_client._get_cached_client", return_value=(stale_client, "openamer-model")),
+            patch("agent.auxiliary_client._to_async_client", return_value=(fresh_async_client, "openamer-model")),
             patch("agent.auxiliary_client._validate_llm_response", side_effect=lambda resp, _task, **_kw: resp),
-            patch("agent.auxiliary_client._resolve_nous_runtime_api", return_value=("fresh-agent-key", "https://inference-api.nousresearch.com/v1")),
+            patch("agent.auxiliary_client._resolve_openamer_runtime_api", return_value=("fresh-agent-key", "https://inference-api.openamer.com/v1")),
             patch(
-                "openamer_cli.nous_account.get_nous_portal_account_info",
-                return_value=NousPortalAccountInfo(
+                "openamer_cli.openamer_account.get_openamer_portal_account_info",
+                return_value=OpenAmerPortalAccountInfo(
                     logged_in=True,
                     source="account_api",
                     fresh=True,
@@ -2144,7 +2144,7 @@ class TestIsPaymentError:
     def test_404_free_tier_model_block_is_payment(self):
         exc = Exception(
             "Model 'gpt-5' is not available on the Free Tier. "
-            "Upgrade at https://portal.nousresearch.com or pick a free model."
+            "Upgrade at https://portal.openamer.com or pick a free model."
         )
         exc.status_code = 404
         assert _is_payment_error(exc) is True
@@ -2231,9 +2231,9 @@ class TestIsModelNotFoundError:
     """_is_model_not_found_error detects stale/invalid model 404s, distinct
     from payment errors."""
 
-    def test_nous_openrouter_catalog_404(self):
+    def test_openamer_openrouter_catalog_404(self):
         """The exact incident error: a Portal-recommended model dropped from
-        the Nous → OpenRouter catalog."""
+        the OpenAmer → OpenRouter catalog."""
         exc = Exception(
             "Model 'gpt-5.4-mini' not found. The requested model does not "
             "exist in our configuration or OpenRouter catalog."
@@ -2340,14 +2340,14 @@ class TestIsModelIncompatibleError:
 
 
 class TestRefreshNousRecommendedModel:
-    """_refresh_nous_recommended_model picks a fresh model after a stale 404."""
+    """_refresh_openamer_recommended_model picks a fresh model after a stale 404."""
 
     def test_returns_fresh_portal_recommendation(self, monkeypatch):
         monkeypatch.setattr(
-            "openamer_cli.models.get_nous_recommended_aux_model",
+            "openamer_cli.models.get_openamer_recommended_aux_model",
             lambda **kw: "stepfun/step-3.7-flash:free",
         )
-        out = _refresh_nous_recommended_model(
+        out = _refresh_openamer_recommended_model(
             vision=True, stale_model="openai/gpt-5.4-mini")
         assert out == "stepfun/step-3.7-flash:free"
 
@@ -2355,10 +2355,10 @@ class TestRefreshNousRecommendedModel:
         """If the Portal still recommends the model that just 404'd, fall back
         to the known-good default."""
         monkeypatch.setattr(
-            "openamer_cli.models.get_nous_recommended_aux_model",
+            "openamer_cli.models.get_openamer_recommended_aux_model",
             lambda **kw: "openai/gpt-5.4-mini",
         )
-        out = _refresh_nous_recommended_model(
+        out = _refresh_openamer_recommended_model(
             vision=True, stale_model="openai/gpt-5.4-mini")
         assert out == "google/gemini-3-flash-preview"
 
@@ -2366,8 +2366,8 @@ class TestRefreshNousRecommendedModel:
         def _boom(**kw):
             raise RuntimeError("portal down")
         monkeypatch.setattr(
-            "openamer_cli.models.get_nous_recommended_aux_model", _boom)
-        out = _refresh_nous_recommended_model(
+            "openamer_cli.models.get_openamer_recommended_aux_model", _boom)
+        out = _refresh_openamer_recommended_model(
             vision=False, stale_model="some/dead-model")
         assert out == "google/gemini-3-flash-preview"
 
@@ -2375,10 +2375,10 @@ class TestRefreshNousRecommendedModel:
         """When the failed model IS the default and the Portal has nothing
         else, there's no usable alternative."""
         monkeypatch.setattr(
-            "openamer_cli.models.get_nous_recommended_aux_model",
+            "openamer_cli.models.get_openamer_recommended_aux_model",
             lambda **kw: "google/gemini-3-flash-preview",
         )
-        out = _refresh_nous_recommended_model(
+        out = _refresh_openamer_recommended_model(
             vision=False, stale_model="google/gemini-3-flash-preview")
         assert out is None
 
@@ -2392,7 +2392,7 @@ class TestIsRateLimitError:
         assert _is_rate_limit_error(exc) is True
 
     def test_429_with_resets_in_message(self):
-        """Nous-style 429: 'resets in 3508s'."""
+        """OpenAmer-style 429: 'resets in 3508s'."""
         exc = Exception("Hold up for a bit, you've exceeded the rate limit on your API key")
         exc.status_code = 429
         assert _is_rate_limit_error(exc) is True
@@ -2449,7 +2449,7 @@ class TestGetProviderChain:
         chain = _get_provider_chain()
         assert len(chain) == 4
         labels = [label for label, _ in chain]
-        assert labels == ["openrouter", "nous", "local/custom", "api-key"]
+        assert labels == ["openrouter", "openamer", "local/custom", "api-key"]
         # Codex is deliberately NOT in this chain — see _get_provider_chain
         # docstring. ChatGPT-account Codex has a shifting model allow-list;
         # guessing a model to fall back on breaks more often than it helps.
@@ -2483,12 +2483,12 @@ class TestTryPaymentFallback:
     def test_skips_failed_provider(self):
         mock_client = MagicMock()
         with patch("agent.auxiliary_client._try_openrouter", return_value=(None, None)), \
-             patch("agent.auxiliary_client._try_nous", return_value=(mock_client, "nous-model")), \
+             patch("agent.auxiliary_client._try_nous", return_value=(mock_client, "openamer-model")), \
              patch("agent.auxiliary_client._read_main_provider", return_value="openrouter"):
             client, model, label = _try_payment_fallback("openrouter", task="compression")
         assert client is mock_client
-        assert model == "nous-model"
-        assert label == "nous"
+        assert model == "openamer-model"
+        assert label == "openamer"
 
     def test_returns_none_when_no_fallback(self):
         with patch("agent.auxiliary_client._try_openrouter", return_value=(None, None)), \
@@ -2512,7 +2512,7 @@ class TestTryPaymentFallback:
     def test_codex_not_in_fallback_chain(self):
         """Codex is deliberately NOT a fallback rung (shifting model allow-list).
 
-        When OR/Nous/custom/api-key all fail, payment-fallback returns None —
+        When OR/OpenAmer/custom/api-key all fail, payment-fallback returns None —
         Codex is never tried with a guessed model.
         """
         with patch("agent.auxiliary_client._try_openrouter", return_value=(None, None)), \
@@ -5143,7 +5143,7 @@ class TestVisionAutoSkipsKimiCoding:
         def fake_strict(provider, model=None):
             if provider == "openrouter":
                 return fake_or_client, "google/gemini-3-flash-preview"
-            if provider == "nous":
+            if provider == "openamer":
                 return None, None
             raise AssertionError(
                 f"strict vision backend should not be called for {provider!r} "
@@ -5886,14 +5886,14 @@ class TestOpenRouterExplicitApiKey:
             )
 
 
-def test_pool_runtime_base_url_uses_nous_env_override(monkeypatch):
+def test_pool_runtime_base_url_uses_openamer_env_override(monkeypatch):
     entry = SimpleNamespace(
-        provider="nous",
-        runtime_base_url="https://inference-api.nousresearch.com/v1",
-        inference_base_url="https://inference-api.nousresearch.com/v1",
-        base_url="https://inference-api.nousresearch.com/v1",
+        provider="openamer",
+        runtime_base_url="https://inference-api.openamer.com/v1",
+        inference_base_url="https://inference-api.openamer.com/v1",
+        base_url="https://inference-api.openamer.com/v1",
     )
-    monkeypatch.setenv("NOUS_INFERENCE_BASE_URL", "https://ai.wildebeest-newton.ts.net/v1")
+    monkeypatch.setenv("OPENAMER_INFERENCE_BASE_URL", "https://ai.wildebeest-newton.ts.net/v1")
 
     assert _pool_runtime_base_url(entry) == "https://ai.wildebeest-newton.ts.net/v1"
 
@@ -6007,18 +6007,18 @@ class TestAuxUnhealthyCache:
             _resolve_auto,
             _mark_provider_unhealthy,
         )
-        nous_client = MagicMock()
-        # Mark OpenRouter unhealthy → chain should skip it and pick nous.
+        openamer_client = MagicMock()
+        # Mark OpenRouter unhealthy → chain should skip it and pick openamer.
         _mark_provider_unhealthy("openrouter")
         with patch("agent.auxiliary_client._read_main_provider", return_value=""), \
              patch("agent.auxiliary_client._read_main_model", return_value=""), \
              patch("agent.auxiliary_client._try_openrouter") as or_try, \
-             patch("agent.auxiliary_client._try_nous", return_value=(nous_client, "nous-model")), \
+             patch("agent.auxiliary_client._try_nous", return_value=(openamer_client, "openamer-model")), \
              patch("agent.auxiliary_client._try_custom_endpoint", return_value=(None, None)), \
              patch("agent.auxiliary_client._resolve_api_key_provider", return_value=(None, None)):
             client, model = _resolve_auto()
-        assert client is nous_client
-        assert model == "nous-model"
+        assert client is openamer_client
+        assert model == "openamer-model"
         # The skipped provider's _try_* should NOT have been called at all.
         or_try.assert_not_called()
 
@@ -6030,21 +6030,21 @@ class TestAuxUnhealthyCache:
             _resolve_auto,
             _mark_provider_unhealthy,
         )
-        nous_client = MagicMock()
+        openamer_client = MagicMock()
         _mark_provider_unhealthy("openrouter")
         with patch("agent.auxiliary_client._read_main_provider", return_value="openrouter"), \
              patch("agent.auxiliary_client._read_main_model", return_value="anthropic/claude-sonnet-4.6"), \
              patch("agent.auxiliary_client.resolve_provider_client") as step1, \
              patch("agent.auxiliary_client._try_openrouter") as or_try, \
-             patch("agent.auxiliary_client._try_nous", return_value=(nous_client, "n-model")), \
+             patch("agent.auxiliary_client._try_nous", return_value=(openamer_client, "n-model")), \
              patch("agent.auxiliary_client._try_custom_endpoint", return_value=(None, None)), \
              patch("agent.auxiliary_client._resolve_api_key_provider", return_value=(None, None)):
             client, model = _resolve_auto()
         # Step-1 was bypassed — resolve_provider_client never invoked
         step1.assert_not_called()
-        # Step-2 also skipped openrouter and landed on nous
+        # Step-2 also skipped openrouter and landed on openamer
         or_try.assert_not_called()
-        assert client is nous_client
+        assert client is openamer_client
 
     def test_payment_fallback_skips_unhealthy(self):
         """_try_payment_fallback also consults the unhealthy cache so a 402
@@ -6054,18 +6054,18 @@ class TestAuxUnhealthyCache:
             _try_payment_fallback,
             _mark_provider_unhealthy,
         )
-        nous_client = MagicMock()
+        openamer_client = MagicMock()
         # Mark BOTH the failed provider (openrouter) and a sibling (custom)
-        # unhealthy. The chain should still find nous.
+        # unhealthy. The chain should still find openamer.
         _mark_provider_unhealthy("local/custom")
         with patch("agent.auxiliary_client._read_main_provider", return_value="openrouter"), \
              patch("agent.auxiliary_client._try_openrouter") as or_try, \
-             patch("agent.auxiliary_client._try_nous", return_value=(nous_client, "n-model")), \
+             patch("agent.auxiliary_client._try_nous", return_value=(openamer_client, "n-model")), \
              patch("agent.auxiliary_client._try_custom_endpoint") as custom_try, \
              patch("agent.auxiliary_client._resolve_api_key_provider", return_value=(None, None)):
             client, model, label = _try_payment_fallback("openrouter", task="compression")
-        assert client is nous_client
-        assert label == "nous"
+        assert client is openamer_client
+        assert label == "openamer"
         # OR is skipped via skip_chain_labels (failed provider), custom via unhealthy cache.
         or_try.assert_not_called()
         custom_try.assert_not_called()
@@ -6088,17 +6088,17 @@ class TestAuxUnhealthyCache:
         err.status_code = 402
         primary_client.chat.completions.create.side_effect = err
 
-        nous_client = MagicMock()
-        nous_resp = MagicMock()
-        nous_resp.choices = [MagicMock(message=MagicMock(content="ok"))]
-        nous_client.chat.completions.create.return_value = nous_resp
+        openamer_client = MagicMock()
+        openamer_resp = MagicMock()
+        openamer_resp.choices = [MagicMock(message=MagicMock(content="ok"))]
+        openamer_client.chat.completions.create.return_value = openamer_resp
 
         with patch("agent.auxiliary_client._get_cached_client",
                     return_value=(primary_client, "google/gemini-3-flash-preview")), \
              patch("agent.auxiliary_client._resolve_task_provider_model",
                     return_value=("auto", "google/gemini-3-flash-preview", None, None, None)), \
              patch("agent.auxiliary_client._try_payment_fallback",
-                    return_value=(nous_client, "n-model", "nous")), \
+                    return_value=(openamer_client, "n-model", "openamer")), \
              patch("agent.auxiliary_client._build_call_kwargs",
                     return_value={"model": "n-model", "messages": [{"role": "user", "content": "hi"}]}):
             assert _is_provider_unhealthy("openrouter") is False
@@ -6123,7 +6123,7 @@ class TestAuxiliaryMaxTokensParam:
         with (
             patch("agent.auxiliary_client._current_custom_base_url",
                   return_value="https://api.openai.com/v1"),
-            patch("agent.auxiliary_client._read_nous_auth", return_value=None),
+            patch("agent.auxiliary_client._read_openamer_auth", return_value=None),
         ):
             assert auxiliary_max_tokens_param(4096) == {"max_completion_tokens": 4096}
 
@@ -6131,7 +6131,7 @@ class TestAuxiliaryMaxTokensParam:
         with (
             patch("agent.auxiliary_client._current_custom_base_url",
                   return_value="http://localhost:11434/v1"),
-            patch("agent.auxiliary_client._read_nous_auth", return_value=None),
+            patch("agent.auxiliary_client._read_openamer_auth", return_value=None),
         ):
             assert auxiliary_max_tokens_param(4096) == {"max_tokens": 4096}
 
@@ -6140,7 +6140,7 @@ class TestAuxiliaryMaxTokensParam:
         with (
             patch("agent.auxiliary_client._current_custom_base_url",
                   return_value="https://openrouter.ai/api/v1"),
-            patch("agent.auxiliary_client._read_nous_auth", return_value=None),
+            patch("agent.auxiliary_client._read_openamer_auth", return_value=None),
         ):
             assert auxiliary_max_tokens_param(4096) == {"max_tokens": 4096}
 
@@ -6151,7 +6151,7 @@ class TestAuxiliaryMaxTokensParam:
         with (
             patch("agent.auxiliary_client._current_custom_base_url",
                   return_value="https://my-gateway.example.com/v1"),
-            patch("agent.auxiliary_client._read_nous_auth", return_value=None),
+            patch("agent.auxiliary_client._read_openamer_auth", return_value=None),
         ):
             assert auxiliary_max_tokens_param(4096, model="gpt-5.4") == {
                 "max_completion_tokens": 4096
@@ -6162,7 +6162,7 @@ class TestAuxiliaryMaxTokensParam:
         with (
             patch("agent.auxiliary_client._current_custom_base_url",
                   return_value="https://openrouter.ai/api/v1"),
-            patch("agent.auxiliary_client._read_nous_auth", return_value=None),
+            patch("agent.auxiliary_client._read_openamer_auth", return_value=None),
         ):
             assert auxiliary_max_tokens_param(4096, model="openai/gpt-4o-mini") == {
                 "max_completion_tokens": 4096
@@ -6172,7 +6172,7 @@ class TestAuxiliaryMaxTokensParam:
         with (
             patch("agent.auxiliary_client._current_custom_base_url",
                   return_value="https://my-gateway.example.com/v1"),
-            patch("agent.auxiliary_client._read_nous_auth", return_value=None),
+            patch("agent.auxiliary_client._read_openamer_auth", return_value=None),
         ):
             assert auxiliary_max_tokens_param(4096, model="llama3-70b") == {
                 "max_tokens": 4096
@@ -6183,7 +6183,7 @@ class TestAuxiliaryMaxTokensParam:
         with (
             patch("agent.auxiliary_client._current_custom_base_url",
                   return_value="https://my-gateway.example.com/v1"),
-            patch("agent.auxiliary_client._read_nous_auth", return_value=None),
+            patch("agent.auxiliary_client._read_openamer_auth", return_value=None),
         ):
             assert auxiliary_max_tokens_param(4096, model="") == {"max_tokens": 4096}
             assert auxiliary_max_tokens_param(4096, model=None) == {"max_tokens": 4096}

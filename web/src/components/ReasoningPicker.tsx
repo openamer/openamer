@@ -19,7 +19,7 @@
  * reads/writes the same config the chat PTY was launched from.
  */
 
-import { Select, SelectOption } from "@nous-research/ui/ui/components/select";
+import { Select, SelectOption } from "@openamer-research/ui/ui/components/select";
 import { Brain } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 

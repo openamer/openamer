@@ -3859,8 +3859,8 @@ def _build_compact_banner() -> str:
     dim_color = _skin.get_color("banner_dim", "#B8860B") if _skin else "#B8860B"
 
     if skin_name == "default":
-        line1 = "⚕ NOUS OPENAMER - AI Agent Framework"
-        tiny_line = "⚕ NOUS OPENAMER"
+        line1 = "⚕ OPENAMER OPENAMER - AI Agent Framework"
+        tiny_line = "⚕ OPENAMER OPENAMER"
     else:
         agent_name = _skin.get_branding("agent_name", "OpenAmer Agent") if _skin else "OpenAmer Agent"
         line1 = f"{agent_name} - AI Agent Framework"
@@ -3876,7 +3876,7 @@ def _build_compact_banner() -> str:
 
     w = min(shutil.get_terminal_size().columns - 2, 88)
     if w < 30:
-        return f"\n[{title_color}]{tiny_line}[/] [dim {dim_color}]- Nous Research[/]\n"
+        return f"\n[{title_color}]{tiny_line}[/] [dim {dim_color}]- OpenAmer[/]\n"
 
     inner = w - 2  # inside the box border
     bar = "═" * w
@@ -4096,7 +4096,7 @@ class OpenAmerCLI(CLIAgentSetupMixin, CLICommandsMixin, CLIBillingMixin):
         Args:
             model: Model to use (default: from env or claude-sonnet)
             toolsets: List of toolsets to enable (default: all)
-            provider: Inference provider ("auto", "openrouter", "nous", "openai-codex", "zai", "kimi-coding", "minimax", "minimax-cn")
+            provider: Inference provider ("auto", "openrouter", "openamer", "openai-codex", "zai", "kimi-coding", "minimax", "minimax-cn")
             api_key: API key (default: from environment)
             base_url: API base URL (default: OpenRouter)
             max_turns: Maximum tool-calling iterations shared with subagents (default: 90)
@@ -6773,14 +6773,14 @@ class OpenAmerCLI(CLIAgentSetupMixin, CLICommandsMixin, CLIBillingMixin):
                     "[dim]   Fix: Set model.context_length in config.yaml, or increase your server's context setting[/]"
                 )
 
-        # Warn if the configured model is a Nous OpenAmer LLM (not agentic)
-        from openamer_cli.model_switch import is_nous_openamer_non_agentic
+        # Warn if the configured model is a OpenAmer OpenAmer LLM (not agentic)
+        from openamer_cli.model_switch import is_openamer_openamer_non_agentic
 
         model_name = getattr(self, "model", "") or ""
-        if is_nous_openamer_non_agentic(model_name):
+        if is_openamer_openamer_non_agentic(model_name):
             self._console_print()
             self._console_print(
-                "[bold yellow]⚠  Nous Research OpenAmer 3 & 4 models are NOT agentic and are not "
+                "[bold yellow]⚠  OpenAmer OpenAmer 3 & 4 models are NOT agentic and are not "
                 "designed for use with OpenAmer Agent.[/]"
             )
             self._console_print(
@@ -8632,7 +8632,7 @@ class OpenAmerCLI(CLIAgentSetupMixin, CLICommandsMixin, CLIBillingMixin):
         _cprint(f"    Provider: {provider_label}")
 
         # Context: always resolve via the provider-aware chain so Codex OAuth,
-        # Copilot, and Nous-enforced caps win over the raw models.dev entry
+        # Copilot, and OpenAmer-enforced caps win over the raw models.dev entry
         # (e.g. gpt-5.5 is 1.05M on openai but 272K on Codex OAuth).
         mi = result.model_info
         try:
@@ -8984,7 +8984,7 @@ class OpenAmerCLI(CLIAgentSetupMixin, CLICommandsMixin, CLIBillingMixin):
         _cprint(f"    Provider: {provider_label}")
 
         # Context: always resolve via the provider-aware chain so Codex OAuth,
-        # Copilot, and Nous-enforced caps win over the raw models.dev entry
+        # Copilot, and OpenAmer-enforced caps win over the raw models.dev entry
         # (e.g. gpt-5.5 is 1.05M on openai but 272K on Codex OAuth).
         mi = result.model_info
         from openamer_cli.model_switch import resolve_display_context_length
@@ -10536,15 +10536,15 @@ class OpenAmerCLI(CLIAgentSetupMixin, CLICommandsMixin, CLIBillingMixin):
         print(f"  {result.message}")
 
     def _show_usage(self):
-        """Rate limits + session token usage (when a live agent exists) + Nous credits.
+        """Rate limits + session token usage (when a live agent exists) + OpenAmer credits.
 
-        The Nous credits block is agent-independent (a portal fetch), so it runs even
+        The OpenAmer credits block is agent-independent (a portal fetch), so it runs even
         with no live agent — important for the TUI, where /usage runs in a slash-worker
         subprocess that resumes the session WITHOUT building an agent (self.agent is None),
         which would otherwise early-return before any credits showed.
         """
         if not self.agent:
-            if self._print_nous_credits_block():
+            if self._print_openamer_credits_block():
                 self._print_usage_cta()
             else:
                 print("(._.) No active agent -- send a message first.")
@@ -10554,7 +10554,7 @@ class OpenAmerCLI(CLIAgentSetupMixin, CLICommandsMixin, CLIBillingMixin):
         calls = agent.session_api_calls
 
         if calls == 0:
-            if self._print_nous_credits_block():
+            if self._print_openamer_credits_block():
                 self._print_usage_cta()
             else:
                 print("(._.) No API calls made yet in this session.")
@@ -10625,9 +10625,9 @@ class OpenAmerCLI(CLIAgentSetupMixin, CLICommandsMixin, CLIBillingMixin):
             for line in account_lines:
                 print(line)
 
-        # Nous credits magnitudes + monthly-grant gauge (agent-independent — also
+        # OpenAmer credits magnitudes + monthly-grant gauge (agent-independent — also
         # runs at the no-agent / no-calls early-returns above). See the helper.
-        if self._print_nous_credits_block():
+        if self._print_openamer_credits_block():
             self._print_usage_cta()
 
         if self.verbose:
@@ -13081,7 +13081,7 @@ class OpenAmerCLI(CLIAgentSetupMixin, CLICommandsMixin, CLIBillingMixin):
 
                 # Durable, provider-agnostic billing CTA below the response. The
                 # response panel carries the full guidance; this pins the single
-                # action to take (Nous → /topup, other providers → their billing
+                # action to take (OpenAmer → /topup, other providers → their billing
                 # page) so it stays visible instead of scrolling away as prose.
                 if result and result.get("failure_reason") == "billing":
                     _bb = result.get("billing_block") or {}
@@ -16324,7 +16324,7 @@ def main(
         toolsets: Comma-separated list of toolsets to enable (e.g., "web,terminal")
         skills: Comma-separated or repeated list of skills to preload for the session
         model: Model to use (default: anthropic/claude-opus-4-20250514)
-        provider: Inference provider ("auto", "openrouter", "nous", "openai-codex", "zai", "kimi-coding", "minimax", "minimax-cn")
+        provider: Inference provider ("auto", "openrouter", "openamer", "openai-codex", "zai", "kimi-coding", "minimax", "minimax-cn")
         api_key: API key for authentication
         base_url: Base URL for the API
         max_turns: Maximum tool-calling iterations (default: 60)

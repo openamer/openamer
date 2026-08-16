@@ -63,7 +63,7 @@ Bundled skills (in `skills/`) ship with every OpenAmer install. They should be *
 
 If your skill is official and useful but not universally needed (e.g., a paid service integration, a heavyweight dependency), put it in **`optional-skills/`** — it ships with the repo but isn't activated by default. Users can discover it via `openamer skills browse` (labeled "official") and install it with `openamer skills install` (no third-party warning, built-in trust).
 
-If your skill is specialized, community-contributed, or niche, it's better suited for a **Skills Hub** — upload it to a skills registry and share it in the [Nous Research Discord](https://discord.gg/NousResearch). Users can install it with `openamer skills install`.
+If your skill is specialized, community-contributed, or niche, it's better suited for a **Skills Hub** — upload it to a skills registry and share it in the [OpenAmer Discord](https://discord.gg/openamer). Users can install it with `openamer skills install`.
 
 ---
 
@@ -96,7 +96,7 @@ Publish these as a **standalone plugin repo** instead:
 - Implement the relevant ABC and use the existing plugin discovery path (`~/.openamer/plugins/`, project `.openamer/plugins/`, or a pip entry point) — see [Build a OpenAmer Plugin](https://github.com/openamer/openamer/blob/main/website/docs/guides/build-a-openamer-plugin)
 - Register lifecycle hooks (`pre_tool_call`, `post_tool_call`, `pre_llm_call`, `post_llm_call`, `on_session_start`, `on_session_end`), tools (`ctx.register_tool`), and CLI subcommands (`ctx.register_cli_command`) through the surface we already expose — no core changes needed
 - If your plugin needs a capability the framework doesn't expose, that's a feature request to **widen the generic plugin surface** (a new hook or `ctx` method) — never special-case your plugin in core
-- Promote it in the [Nous Research Discord](https://discord.gg/NousResearch) `#plugins-skills-and-skins` channel so users can find and install it
+- Promote it in the [OpenAmer Discord](https://discord.gg/openamer) `#plugins-skills-and-skins` channel so users can find and install it
 
 A well-built third-party-product plugin can clear automated review and still be closed for this reason — it's a placement decision, not a verdict on the code. PRs that add such a directory under `plugins/` will be closed with a pointer to publish it as its own repo.
 
@@ -234,7 +234,7 @@ openamer-agent/
 │   ├── main.py                   # Entry point, argument parsing, command dispatch
 │   ├── config.py                 # Config management, migration, env var definitions
 │   ├── setup.py                  # Interactive setup wizard
-│   ├── auth.py                   # Provider resolution, OAuth, Nous Portal
+│   ├── auth.py                   # Provider resolution, OAuth, OpenAmer Portal
 │   ├── models.py                 # OpenRouter model selection lists
 │   ├── banner.py                 # Welcome banner, ASCII art
 │   ├── commands.py               # Central slash command registry (CommandDef), autocomplete, gateway helpers
@@ -286,7 +286,7 @@ openamer-agent/
 |------|---------|
 | `~/.openamer/config.yaml` | Settings (model, terminal, toolsets, compression, etc.) |
 | `~/.openamer/.env` | API keys and secrets |
-| `~/.openamer/auth.json` | OAuth credentials (Nous Portal) |
+| `~/.openamer/auth.json` | OAuth credentials (OpenAmer Portal) |
 | `~/.openamer/skills/` | All active skills (bundled + hub-installed + agent-created) |
 | `~/.openamer/memories/` | Persistent memory (MEMORY.md, USER.md) |
 | `~/.openamer/state.db` | SQLite session database |
@@ -321,7 +321,7 @@ User message → AIAgent._run_agent_loop()
 - **Toolset grouping**: Tools are grouped into toolsets (`web`, `terminal`, `file`, `browser`, etc.) that can be enabled/disabled per platform.
 - **Session persistence**: All conversations are stored in SQLite (`openamer_state.py`) with full-text search and unique session titles. Per-session JSON snapshots in `~/.openamer/sessions/` were superseded by the SQLite store and are off by default; opt back in with `sessions.write_json_snapshots: true` if you have external tooling that consumes the JSON files directly.
 - **Ephemeral injection**: System prompts and prefill messages are injected at API call time, never persisted to the database or logs.
-- **Provider abstraction**: The agent works with any OpenAI-compatible API. Provider resolution happens at init time (Nous Portal OAuth, OpenRouter API key, or custom endpoint).
+- **Provider abstraction**: The agent works with any OpenAI-compatible API. Provider resolution happens at init time (OpenAmer Portal OAuth, OpenRouter API key, or custom endpoint).
 - **Provider routing**: When using OpenRouter, `provider_routing` in config.yaml controls provider selection (sort by throughput/latency/price, allow/ignore specific providers, data retention policies). These are injected as `extra_body.provider` in API requests.
 
 ---
@@ -997,7 +997,7 @@ test(tools): add unit tests for file_operations
 
 ## Community
 
-- **Discord**: [discord.gg/NousResearch](https://discord.gg/NousResearch) — for questions, showcasing projects, and sharing skills
+- **Discord**: [discord.gg/openamer](https://discord.gg/openamer) — for questions, showcasing projects, and sharing skills
 - **GitHub Discussions**: For design proposals and architecture discussions
 - **Skills Hub**: Upload specialized skills to a registry and share them with the community
 

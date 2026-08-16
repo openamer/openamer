@@ -94,7 +94,7 @@ describe('createGatewayEventHandler', () => {
     expect(getTurnState().todos).toEqual([])
   })
 
-  it('opens a billing confirm dialog routing Nous to /topup', () => {
+  it('opens a billing confirm dialog routing OpenAmer to /topup', () => {
     const appended: Msg[] = []
     const ctx = buildCtx(appended)
     const onEvent = createGatewayEventHandler(ctx)
@@ -106,8 +106,8 @@ describe('createGatewayEventHandler', () => {
           is_nous: true,
           message: 'out of credits',
           model: 'm',
-          provider: 'nous',
-          provider_label: 'Nous Portal'
+          provider: 'openamer',
+          provider_label: 'OpenAmer Portal'
         },
         text: 'Billing or credits exhausted: ...'
       },
@@ -115,7 +115,7 @@ describe('createGatewayEventHandler', () => {
     } as any)
 
     const { confirm } = getOverlayState()
-    expect(confirm?.title).toContain('Nous')
+    expect(confirm?.title).toContain('OpenAmer')
     expect(confirm?.confirmLabel).toBe('Top up')
 
     confirm!.onConfirm()

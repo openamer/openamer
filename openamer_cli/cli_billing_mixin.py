@@ -1,6 +1,6 @@
 """Billing and subscription handlers for the interactive CLI (god-file decomposition).
 
-This module hosts the Nous billing/subscription methods lifted out of
+This module hosts the OpenAmer billing/subscription methods lifted out of
 ``cli.py``'s ``OpenAmerCLI`` class. ``OpenAmerCLI`` inherits
 ``CLIBillingMixin`` so every ``self.<handler>`` call resolves unchanged
 via the MRO — behavior-neutral apart from focused billing fixes.
@@ -21,14 +21,14 @@ import time
 class CLIBillingMixin:
     """Mixin holding interactive-CLI billing and subscription handlers."""
 
-    def _print_nous_credits_block(self) -> bool:
-        """Print the Nous dollar balance block (two-bar view) when a Nous account
+    def _print_openamer_credits_block(self) -> bool:
+        """Print the OpenAmer dollar balance block (two-bar view) when a OpenAmer account
         is logged in. Returns True if it printed anything.
 
         Prefers the shared dollar usage model (``agent.billing_usage`` — two-bar
         plan/top-up view, dollars-only, the /usage + /subscription source of
-        truth). Falls back to the legacy ``nous_credits_lines`` text only when the
-        model is unavailable. Agent-independent (a portal fetch gated on "a Nous
+        truth). Falls back to the legacy ``openamer_credits_lines`` text only when the
+        model is unavailable. Agent-independent (a portal fetch gated on "a OpenAmer
         account is logged in"), so /usage shows the block even in the TUI
         slash-worker subprocess that resumes WITHOUT a live agent. Fail-open and
         wall-clock-bounded; honors OPENAMER_DEV_CREDITS_FIXTURE for offline testing.
@@ -76,9 +76,9 @@ class CLIBillingMixin:
                 return True
 
         # Fallback: legacy text lines (only when the model is unavailable).
-        from agent.account_usage import nous_credits_lines
+        from agent.account_usage import openamer_credits_lines
 
-        lines = nous_credits_lines()
+        lines = openamer_credits_lines()
         if not lines:
             return False
         print()
@@ -90,8 +90,8 @@ class CLIBillingMixin:
         """Print the `/usage` call-to-action pointing at /subscription + /topup.
 
         Mirrors the TUI's ``USAGE_CTA`` (``session.ts``) so every surface ends a
-        usage read with the same nudge. Only called when a Nous account is logged
-        in (the balance block printed), since both commands are Nous-account only.
+        usage read with the same nudge. Only called when a OpenAmer account is logged
+        in (the balance block printed), since both commands are OpenAmer-account only.
         """
         from cli import _cprint, _d
 
@@ -102,7 +102,7 @@ class CLIBillingMixin:
     # ------------------------------------------------------------------
 
     def _show_subscription(self):
-        """`/subscription` (alias `/upgrade`) — view the Nous plan + browser hand-off.
+        """`/subscription` (alias `/upgrade`) — view the OpenAmer plan + browser hand-off.
 
         The CLI mirror of the TUI ``SubscriptionOverlay``: a read of the current
         plan, this cycle's subscription credits, renewal date, and the plans you
@@ -124,7 +124,7 @@ class CLIBillingMixin:
             if state.error:
                 _cprint(f"  💳 {_d(f'Could not load subscription: {state.error}')}")
             else:
-                _cprint(f"  💳 {_d('Not logged into Nous Portal.')}")
+                _cprint(f"  💳 {_d('Not logged into OpenAmer Portal.')}")
                 print("  Run `openamer portal` to log in, then /subscription.")
             return
 
@@ -457,7 +457,7 @@ class CLIBillingMixin:
         from cli import _cprint, _b, _d
 
         from agent.subscription_view import subscription_change_preview_from_payload
-        from openamer_cli.nous_billing import BillingError, BillingScopeRequired, post_subscription_preview
+        from openamer_cli.openamer_billing import BillingError, BillingScopeRequired, post_subscription_preview
 
         _cprint(f"  {_d('Checking the change…')}")
         try:
@@ -574,7 +574,7 @@ class CLIBillingMixin:
         """
         from cli import _cprint, _d, _DIM, _RST
 
-        from openamer_cli.nous_billing import (
+        from openamer_cli.openamer_billing import (
             BillingError,
             BillingTransient,
             BillingRemoteSpendingRevoked,
@@ -658,7 +658,7 @@ class CLIBillingMixin:
         """insufficient_scope → allow remote spending (step-up), then replay `retry`.
 
         Mirrors _billing_handle_scope_required: the classic CLI calls
-        step_up_nous_billing_scope directly (it opens the browser + blocks), then
+        step_up_openamer_billing_scope directly (it opens the browser + blocks), then
         replays the held preview/mutation so the user never re-runs the command.
         """
         from cli import _cprint, _d, _DIM, _RST
@@ -683,9 +683,9 @@ class CLIBillingMixin:
             return
         print("  Opening your browser to allow Remote Spending…")
         try:
-            from openamer_cli.auth import step_up_nous_billing_scope
+            from openamer_cli.auth import step_up_openamer_billing_scope
 
-            granted = step_up_nous_billing_scope(open_browser=True)
+            granted = step_up_openamer_billing_scope(open_browser=True)
         except Exception as exc:
             print(f"  Couldn't allow Remote Spending: {exc}")
             return
@@ -698,7 +698,7 @@ class CLIBillingMixin:
         # on a 401 (not a 403 scope denial) — without this, the replay would 403
         # again and (before the allow_stepup guard) re-prompt in a loop.
         try:
-            from openamer_cli import nous_billing as _nb
+            from openamer_cli import openamer_billing as _nb
 
             _nb.invalidate_cached_token()
         except Exception:
@@ -753,7 +753,7 @@ class CLIBillingMixin:
     # ------------------------------------------------------------------
 
     def _show_billing(self, command: str = "/topup"):
-        """`/topup` — Remote Spending for Nous (one interactive modal).
+        """`/topup` — Remote Spending for OpenAmer (one interactive modal).
 
         ZERO sub-commands: any argument is ignored. Bare ``/topup`` always
         opens the Overview (Screen 1), whose numbered menu is the *only* way to
@@ -777,7 +777,7 @@ class CLIBillingMixin:
                 _msg = f"Couldn't load billing: {state.error}"
                 _cprint(f"  💳 {_d(_msg)}")
             else:
-                _cprint(f"  💳 {_d('Not logged into Nous Portal.')}")
+                _cprint(f"  💳 {_d('Not logged into OpenAmer Portal.')}")
                 print("  Run `openamer portal` to log in, then /topup.")
             return
 
@@ -1109,7 +1109,7 @@ class CLIBillingMixin:
                 _cprint(f"  {_d('Your card saved on the portal will be charged.')}")
         print(f"  {'─' * 41}")
         _consent = (
-            "By confirming, you allow Nous Research to charge your card."
+            "By confirming, you allow OpenAmer to charge your card."
         )
         _cprint(f"  {_d(_consent)}")
 
@@ -1135,7 +1135,7 @@ class CLIBillingMixin:
             return
 
         # Submit the charge with a fresh idempotency key (reused on retry).
-        from openamer_cli.nous_billing import (
+        from openamer_cli.openamer_billing import (
             BillingError,
             BillingScopeRequired,
             post_charge,
@@ -1165,7 +1165,7 @@ class CLIBillingMixin:
         import time as _time
 
         from agent.billing_view import format_money
-        from openamer_cli.nous_billing import (
+        from openamer_cli.openamer_billing import (
             BillingError,
             BillingTransient,
             get_charge_status,
@@ -1220,7 +1220,7 @@ class CLIBillingMixin:
 
     def _billing_render_charge_error(self, state, exc):
         """Render a typed BillingError at submit time (pre-poll)."""
-        from openamer_cli.nous_billing import (
+        from openamer_cli.openamer_billing import (
             BillingTransient,
             BillingRemoteSpendingRevoked,
             BillingSessionRevoked,
@@ -1301,9 +1301,9 @@ class CLIBillingMixin:
             return
         print("  Opening your browser to allow Remote Spending…")
         try:
-            from openamer_cli.auth import step_up_nous_billing_scope
+            from openamer_cli.auth import step_up_openamer_billing_scope
 
-            granted = step_up_nous_billing_scope(open_browser=True)
+            granted = step_up_openamer_billing_scope(open_browser=True)
         except Exception as exc:
             print(f"  Couldn't allow Remote Spending: {exc}")
             return
@@ -1355,7 +1355,7 @@ class CLIBillingMixin:
 
         # Replay the held charge, reusing the original idempotency key so a
         # double-submit collapses to one charge.
-        from openamer_cli.nous_billing import BillingError, post_charge
+        from openamer_cli.openamer_billing import BillingError, post_charge
 
         from agent.billing_view import new_idempotency_key
 
@@ -1479,7 +1479,7 @@ class CLIBillingMixin:
 
         print()
         _ar_consent = (
-            f"By confirming, you authorize Nous Research to charge {card.masked} "
+            f"By confirming, you authorize OpenAmer to charge {card.masked} "
             f"whenever your balance reaches {format_money(threshold_amt)}. "
             f"Turn off any time here or on the portal."
         )
@@ -1498,7 +1498,7 @@ class CLIBillingMixin:
             print("  🟡 Cancelled.")
             return
 
-        from openamer_cli.nous_billing import (
+        from openamer_cli.openamer_billing import (
             BillingError,
             BillingScopeRequired,
             patch_auto_top_up,
@@ -1523,7 +1523,7 @@ class CLIBillingMixin:
         The endpoint requires ``threshold``/``topUpAmount`` in the body even when
         disabling, so we echo back the current values (falling back to 0).
         """
-        from openamer_cli.nous_billing import (
+        from openamer_cli.openamer_billing import (
             BillingError,
             BillingScopeRequired,
             patch_auto_top_up,

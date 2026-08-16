@@ -2,7 +2,7 @@
 """Build the OpenAmer Model Catalog — a centralized JSON manifest of curated models.
 
 This script reads the in-repo hardcoded curated lists (``OPENROUTER_MODELS``,
-``_PROVIDER_MODELS["nous"]``) and writes them to a JSON manifest that the
+``_PROVIDER_MODELS["openamer"]``) and writes them to a JSON manifest that the
 OpenAmer CLI fetches at runtime. Publishing the catalog through the docs site
 lets maintainers update model lists without shipping a OpenAmer release.
 
@@ -51,7 +51,7 @@ def _openrouter_entry(mid: str, desc: str) -> dict:
     return entry
 
 
-def _nous_entry(mid: str) -> dict:
+def _openamer_entry(mid: str) -> dict:
     entry: dict = {"id": mid}
     if mid == PREFERRED_SILENT_DEFAULT_MODEL:
         entry["default"] = True
@@ -82,19 +82,19 @@ def build_catalog() -> dict:
                     for mid, desc in OPENROUTER_MODELS
                 ],
             },
-            "nous": {
+            "openamer": {
                 "metadata": {
-                    "display_name": "Nous Portal",
+                    "display_name": "OpenAmer Portal",
                     "note": (
                         "Free-tier gating is determined live via Portal pricing "
-                        "(partition_nous_models_by_tier), not this manifest. "
+                        "(partition_openamer_models_by_tier), not this manifest. "
                         'The entry labeled "default": true is the model OpenAmer '
                         "silently lands on when the user never picked one."
                     ),
                 },
                 "models": [
-                    _nous_entry(mid)
-                    for mid in _PROVIDER_MODELS.get("nous", [])
+                    _openamer_entry(mid)
+                    for mid in _PROVIDER_MODELS.get("openamer", [])
                 ],
             },
         },

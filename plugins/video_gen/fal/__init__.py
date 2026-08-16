@@ -26,7 +26,7 @@ Selection precedence for the active family:
     4. ``video_gen.model`` in ``config.yaml`` (when it's one of our family IDs)
     5. ``DEFAULT_MODEL``
 
-Authentication via ``FAL_KEY`` or the managed Nous gateway. Output is an
+Authentication via ``FAL_KEY`` or the managed OpenAmer gateway. Output is an
 HTTPS URL from FAL's CDN; the gateway downloads and delivers it.
 """
 
@@ -319,7 +319,7 @@ def _load_fal_client() -> Any:
 
 
 # ---------------------------------------------------------------------------
-# Managed FAL gateway (Nous Subscription)
+# Managed FAL gateway (OpenAmer Subscription)
 # ---------------------------------------------------------------------------
 
 _managed_fal_video_client: Any = None
@@ -346,7 +346,7 @@ def _get_managed_fal_video_client(managed_gateway):
 
     client_config = (
         managed_gateway.gateway_origin.rstrip("/"),
-        managed_gateway.nous_user_token,
+        managed_gateway.openamer_user_token,
     )
     with _managed_fal_video_client_lock:
         if _managed_fal_video_client is not None and _managed_fal_video_client_config == client_config:
@@ -355,7 +355,7 @@ def _get_managed_fal_video_client(managed_gateway):
         _load_fal_client()
         _managed_fal_video_client = _ManagedFalSyncClient(
             _fal_client,
-            key=managed_gateway.nous_user_token,
+            key=managed_gateway.openamer_user_token,
             queue_run_origin=managed_gateway.gateway_origin,
         )
         _managed_fal_video_client_config = client_config
@@ -386,9 +386,9 @@ def _submit_fal_video_request(endpoint: str, arguments: Dict[str, Any]):
         status = _extract_http_status(exc)
         if status is not None and 400 <= status < 500:
             raise ValueError(
-                f"Nous Subscription gateway rejected endpoint '{endpoint}' "
+                f"OpenAmer Subscription gateway rejected endpoint '{endpoint}' "
                 f"(HTTP {status}). This model may not yet be enabled on "
-                f"the Nous Portal's FAL proxy. Either:\n"
+                f"the OpenAmer Portal's FAL proxy. Either:\n"
                 f"  • Set FAL_KEY in your environment to use FAL.ai directly, or\n"
                 f"  • Pick a different model via `openamer tools` → Video Generation."
             ) from exc
@@ -498,7 +498,7 @@ class FALVideoGenProvider(VideoGenProvider):
                 error=(
                     "No FAL backend available. Either set FAL_KEY "
                     "(run `openamer tools` → Video Generation → FAL to configure) "
-                    "or sign in to Nous (`openamer setup`) for managed gateway access."
+                    "or sign in to OpenAmer (`openamer setup`) for managed gateway access."
                 ),
                 error_type="auth_required",
                 provider="fal",

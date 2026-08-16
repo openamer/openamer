@@ -10,7 +10,7 @@ const config: Config = {
   url: 'https://github.com/openamer/openamer',
   baseUrl: '/docs/',
 
-  organizationName: 'NousResearch',
+  organizationName: 'openamer',
   projectName: 'openamer-agent',
 
   onBrokenLinks: 'warn',
@@ -164,7 +164,7 @@ const config: Config = {
           position: 'right',
         },
         {
-          href: 'https://discord.gg/NousResearch',
+          href: 'https://discord.gg/openamer',
           label: 'Discord',
           position: 'right',
         },
@@ -185,7 +185,7 @@ const config: Config = {
         {
           title: 'Community',
           items: [
-            { label: 'Discord', href: 'https://discord.gg/NousResearch' },
+            { label: 'Discord', href: 'https://discord.gg/openamer' },
             { label: 'GitHub Issues', href: 'https://github.com/openamer/openamer/issues' },
             { label: 'Skills Hub', href: 'https://agentskills.io' },
           ],
@@ -195,11 +195,11 @@ const config: Config = {
           items: [
             { label: 'Desktop Download', href: 'https://github.com/openamer/openamer/' },
             { label: 'GitHub', href: 'https://github.com/openamer/openamer' },
-            { label: 'Nous Research', href: 'https://nousresearch.com' },
+            { label: 'OpenAmer', href: 'https://openamer.com' },
           ],
         },
       ],
-      copyright: `Built by <a href="https://nousresearch.com">Nous Research</a> · MIT License · ${new Date().getFullYear()}`,
+      copyright: `Built by <a href="https://openamer.com">OpenAmer</a> · MIT License · ${new Date().getFullYear()}`,
     },
     prism: {
       theme: prismThemes.github,

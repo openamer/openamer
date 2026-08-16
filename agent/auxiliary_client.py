@@ -8,7 +8,7 @@ Resolution order for text tasks (auto mode):
   1. User's main provider + main model (used regardless of provider type —
      aggregators, direct API-key providers, native Anthropic, Codex, etc.)
   2. OpenRouter  (OPENROUTER_API_KEY)
-  3. Nous Portal (~/.openamer/auth.json active provider)
+  3. OpenAmer Portal (~/.openamer/auth.json active provider)
   4. Custom endpoint (config.yaml model.base_url + OPENAI_API_KEY)
   5. Native Anthropic
   6. Direct API-key providers (z.ai/GLM, Kimi/Moonshot, MiniMax, MiniMax-CN)
@@ -17,7 +17,7 @@ Resolution order for text tasks (auto mode):
 Resolution order for vision/multimodal tasks (auto mode):
   1. Selected main provider, if it is one of the supported vision backends below
   2. OpenRouter
-  3. Nous Portal
+  3. OpenAmer Portal
   4. Native Anthropic
   5. Custom endpoint (for local vision models: Qwen-VL, LLaVA, Pixtral, etc.)
   6. None
@@ -728,39 +728,39 @@ def build_nvidia_nim_headers(base_url: str | None) -> dict:
 
 
 
-# Nous Portal extra_body for product attribution.
+# OpenAmer Portal extra_body for product attribution.
 # Callers should pass this as extra_body in chat.completions.create()
-# when the auxiliary client is backed by Nous Portal.
+# when the auxiliary client is backed by OpenAmer Portal.
 #
 # The tags are computed from agent.portal_tags so the client= marker stays
 # in lockstep with openamer_cli.__version__ across every Portal call site
 # (main loop, aux, compression, web_extract). Do not inline a literal here;
 # see agent/portal_tags.py for the rationale.
-from agent.portal_tags import nous_portal_tags as _nous_portal_tags
+from agent.portal_tags import openamer_portal_tags as _openamer_portal_tags
 
 
-def _nous_extra_body() -> dict:
-    """Return a fresh Nous Portal ``extra_body`` dict.
+def _openamer_extra_body() -> dict:
+    """Return a fresh OpenAmer Portal ``extra_body`` dict.
 
     Computed at call time so a hot-reloaded ``openamer_cli.__version__`` is
     reflected without restarting long-running processes.
     """
-    return {"tags": _nous_portal_tags()}
+    return {"tags": _openamer_portal_tags()}
 
 
 # Backwards-compatible module attribute. Some callers (tests, third-party
-# plugins) read ``NOUS_EXTRA_BODY`` directly; keep it as a snapshot of the
+# plugins) read ``OPENAMER_EXTRA_BODY`` directly; keep it as a snapshot of the
 # current tags. Callers that need the freshest value should call
-# ``_nous_extra_body()`` or import ``nous_portal_tags`` directly.
-NOUS_EXTRA_BODY = _nous_extra_body()
+# ``_openamer_extra_body()`` or import ``openamer_portal_tags`` directly.
+OPENAMER_EXTRA_BODY = _openamer_extra_body()
 
-# Set at resolve time — True if the auxiliary client points to Nous Portal
+# Set at resolve time — True if the auxiliary client points to OpenAmer Portal
 auxiliary_is_nous: bool = False
 
 # Default auxiliary models per provider
 _OPENROUTER_MODEL = "google/gemini-3-flash-preview"
-_NOUS_MODEL = "google/gemini-3-flash-preview"
-_NOUS_DEFAULT_BASE_URL = "https://inference-api.nousresearch.com/v1"
+_openamer_MODEL = "google/gemini-3-flash-preview"
+_openamer_DEFAULT_BASE_URL = "https://inference-api.openamer.com/v1"
 _ANTHROPIC_DEFAULT_BASE_URL = "https://api.anthropic.com"
 _AUTH_JSON_PATH = get_openamer_home() / "auth.json"
 
@@ -887,7 +887,7 @@ def _pool_runtime_api_key(entry: Any) -> str:
     if entry is None:
         return ""
     # Use the PooledCredential.runtime_api_key property which handles
-    # provider-specific fallback (e.g. agent_key for nous).
+    # provider-specific fallback (e.g. agent_key for openamer).
     key = getattr(entry, "runtime_api_key", None) or getattr(entry, "access_token", "")
     return str(key or "").strip()
 
@@ -895,15 +895,15 @@ def _pool_runtime_api_key(entry: Any) -> str:
 def _pool_runtime_base_url(entry: Any, fallback: str = "") -> str:
     if entry is None:
         return str(fallback or "").strip().rstrip("/")
-    if getattr(entry, "provider", None) == "nous":
+    if getattr(entry, "provider", None) == "openamer":
         # Funnel through the canonical auth-layer reader so the env override
-        # shares one normalization path with the rest of the NOUS resolution.
-        from openamer_cli.auth import _nous_inference_env_override
+        # shares one normalization path with the rest of the OPENAMER resolution.
+        from openamer_cli.auth import _openamer_inference_env_override
 
-        env_url = _nous_inference_env_override()
+        env_url = _openamer_inference_env_override()
         if env_url:
             return env_url
-    # runtime_base_url handles provider-specific logic (e.g. nous prefers inference_base_url).
+    # runtime_base_url handles provider-specific logic (e.g. openamer prefers inference_base_url).
     # Fall back through inference_base_url and base_url for non-PooledCredential entries.
     url = (
         getattr(entry, "runtime_base_url", None)
@@ -936,9 +936,9 @@ def _is_anthropic_compatible_host(url: str) -> bool:
         return False
 
 
-def _nous_min_key_ttl_seconds() -> int:
+def _openamer_min_key_ttl_seconds() -> int:
     try:
-        return max(60, int(os.getenv("OPENAMER_NOUS_MIN_KEY_TTL_SECONDS", "1800")))
+        return max(60, int(os.getenv("OPENAMER_openamer_MIN_KEY_TTL_SECONDS", "1800")))
     except (TypeError, ValueError):
         return 1800
 
@@ -1750,13 +1750,13 @@ def _maybe_wrap_anthropic(
     )
 
 
-def _read_nous_auth() -> Optional[dict]:
-    """Read and validate ~/.openamer/auth.json for an active Nous provider.
+def _read_openamer_auth() -> Optional[dict]:
+    """Read and validate ~/.openamer/auth.json for an active OpenAmer provider.
 
-    Returns the provider state dict if Nous is active with tokens,
+    Returns the provider state dict if OpenAmer is active with tokens,
     otherwise None.
     """
-    pool_present, entry = _select_pool_entry("nous")
+    pool_present, entry = _select_pool_entry("openamer")
     if pool_present:
         if entry is None:
             return None
@@ -1764,7 +1764,7 @@ def _read_nous_auth() -> Optional[dict]:
             "access_token": getattr(entry, "access_token", ""),
             "refresh_token": getattr(entry, "refresh_token", None),
             "agent_key": getattr(entry, "agent_key", None),
-            "inference_base_url": _pool_runtime_base_url(entry, _NOUS_DEFAULT_BASE_URL),
+            "inference_base_url": _pool_runtime_base_url(entry, _openamer_DEFAULT_BASE_URL),
             "portal_base_url": getattr(entry, "portal_base_url", None),
             "client_id": getattr(entry, "client_id", None),
             "scope": getattr(entry, "scope", None),
@@ -1776,21 +1776,21 @@ def _read_nous_auth() -> Optional[dict]:
         if not _AUTH_JSON_PATH.is_file():
             return None
         data = json.loads(_AUTH_JSON_PATH.read_text(encoding="utf-8"))
-        if data.get("active_provider") != "nous":
+        if data.get("active_provider") != "openamer":
             return None
-        provider = data.get("providers", {}).get("nous", {})
+        provider = data.get("providers", {}).get("openamer", {})
         # Must have at least an access_token or agent_key
         if not provider.get("agent_key") and not provider.get("access_token"):
             return None
         return provider
     except Exception as exc:
-        logger.debug("Could not read Nous auth: %s", exc)
+        logger.debug("Could not read OpenAmer auth: %s", exc)
         return None
 
 
-def _nous_api_key(provider: dict) -> str:
-    """Extract a usable Nous inference JWT from stored auth state."""
-    from openamer_cli.auth import _nous_invoke_jwt_is_usable
+def _openamer_api_key(provider: dict) -> str:
+    """Extract a usable OpenAmer inference JWT from stored auth state."""
+    from openamer_cli.auth import _openamer_invoke_jwt_is_usable
 
     for token_key, expiry_key in (
         ("agent_key", "agent_key_expires_at"),
@@ -1799,7 +1799,7 @@ def _nous_api_key(provider: dict) -> str:
         token = provider.get(token_key)
         if not isinstance(token, str) or not token.strip():
             continue
-        if _nous_invoke_jwt_is_usable(
+        if _openamer_invoke_jwt_is_usable(
             token,
             scope=provider.get("scope"),
             expires_at=provider.get(expiry_key),
@@ -1808,19 +1808,19 @@ def _nous_api_key(provider: dict) -> str:
     return ""
 
 
-def _nous_base_url() -> str:
-    """Resolve the Nous inference base URL from env or default."""
-    return os.getenv("NOUS_INFERENCE_BASE_URL", _NOUS_DEFAULT_BASE_URL)
+def _openamer_base_url() -> str:
+    """Resolve the OpenAmer inference base URL from env or default."""
+    return os.getenv("OPENAMER_INFERENCE_BASE_URL", _openamer_DEFAULT_BASE_URL)
 
 
-def _resolve_nous_pool_runtime_api(*, force_refresh: bool = False) -> Optional[tuple[str, str]]:
-    """Resolve Nous auxiliary credentials from the selected pool entry."""
+def _resolve_openamer_pool_runtime_api(*, force_refresh: bool = False) -> Optional[tuple[str, str]]:
+    """Resolve OpenAmer auxiliary credentials from the selected pool entry."""
     try:
         from openamer_cli.auth import _agent_key_is_usable
 
-        pool = load_pool("nous")
+        pool = load_pool("openamer")
     except Exception as exc:
-        logger.debug("Auxiliary Nous pool credential resolution failed: %s", exc)
+        logger.debug("Auxiliary OpenAmer pool credential resolution failed: %s", exc)
         return None
 
     if not pool or not pool.has_credentials():
@@ -1829,7 +1829,7 @@ def _resolve_nous_pool_runtime_api(*, force_refresh: bool = False) -> Optional[t
     try:
         entry = pool.select()
     except Exception as exc:
-        logger.debug("Auxiliary Nous pool selection failed: %s", exc)
+        logger.debug("Auxiliary OpenAmer pool selection failed: %s", exc)
         return None
 
     if entry is None:
@@ -1840,11 +1840,11 @@ def _resolve_nous_pool_runtime_api(*, force_refresh: bool = False) -> Optional[t
         "agent_key_expires_at": getattr(entry, "agent_key_expires_at", None),
         "scope": getattr(entry, "scope", None),
     }
-    if force_refresh or not _agent_key_is_usable(state, _nous_min_key_ttl_seconds()):
+    if force_refresh or not _agent_key_is_usable(state, _openamer_min_key_ttl_seconds()):
         try:
             refreshed = pool.try_refresh_current()
         except Exception as exc:
-            logger.debug("Auxiliary Nous pool refresh failed: %s", exc)
+            logger.debug("Auxiliary OpenAmer pool refresh failed: %s", exc)
             refreshed = None
         if refreshed is None:
             return None
@@ -1857,34 +1857,34 @@ def _resolve_nous_pool_runtime_api(*, force_refresh: bool = False) -> Optional[t
         "expires_at": getattr(entry, "expires_at", None),
         "scope": getattr(entry, "scope", None),
     }
-    api_key = _nous_api_key(provider)
-    base_url = _pool_runtime_base_url(entry, _NOUS_DEFAULT_BASE_URL)
+    api_key = _openamer_api_key(provider)
+    base_url = _pool_runtime_base_url(entry, _openamer_DEFAULT_BASE_URL)
     if not api_key or not base_url:
         return None
     return api_key, base_url
 
 
-def _resolve_nous_runtime_api(*, force_refresh: bool = False) -> Optional[tuple[str, str]]:
-    """Return fresh Nous runtime credentials when available.
+def _resolve_openamer_runtime_api(*, force_refresh: bool = False) -> Optional[tuple[str, str]]:
+    """Return fresh OpenAmer runtime credentials when available.
 
     This mirrors the main agent's 401 recovery path and keeps auxiliary
     clients aligned with the singleton auth store + JWT refresh flow instead of
     relying only on whatever raw tokens happen to be sitting in auth.json
     or the credential pool.
     """
-    pooled = _resolve_nous_pool_runtime_api(force_refresh=force_refresh)
+    pooled = _resolve_openamer_pool_runtime_api(force_refresh=force_refresh)
     if pooled is not None:
         return pooled
 
     try:
-        from openamer_cli.auth import resolve_nous_runtime_credentials
+        from openamer_cli.auth import resolve_openamer_runtime_credentials
 
-        creds = resolve_nous_runtime_credentials(
-            timeout_seconds=env_float("OPENAMER_NOUS_TIMEOUT_SECONDS", 15),
+        creds = resolve_openamer_runtime_credentials(
+            timeout_seconds=env_float("OPENAMER_openamer_TIMEOUT_SECONDS", 15),
             force_refresh=force_refresh,
         )
     except Exception as exc:
-        logger.debug("Auxiliary Nous runtime credential resolution failed: %s", exc)
+        logger.debug("Auxiliary OpenAmer runtime credential resolution failed: %s", exc)
         return None
 
     api_key = str(creds.get("api_key") or "").strip()
@@ -2146,50 +2146,50 @@ def _describe_openrouter_unavailable() -> str:
 
 
 def _try_nous(vision: bool = False) -> Tuple[Optional[OpenAI], Optional[str]]:
-    # Check cross-session rate limit guard before attempting Nous —
-    # if another session already recorded a 429, skip Nous entirely
+    # Check cross-session rate limit guard before attempting OpenAmer —
+    # if another session already recorded a 429, skip OpenAmer entirely
     # to avoid piling more requests onto the tapped RPH bucket.
     try:
-        from agent.nous_rate_guard import nous_rate_limit_remaining
-        _remaining = nous_rate_limit_remaining()
+        from agent.openamer_rate_guard import openamer_rate_limit_remaining
+        _remaining = openamer_rate_limit_remaining()
         if _remaining is not None and _remaining > 0:
             logger.debug(
-                "Auxiliary: skipping Nous Portal (rate-limited, resets in %.0fs)",
+                "Auxiliary: skipping OpenAmer Portal (rate-limited, resets in %.0fs)",
                 _remaining,
             )
-            _mark_provider_unhealthy("nous", ttl=_remaining)
+            _mark_provider_unhealthy("openamer", ttl=_remaining)
             return None, None
     except Exception:
         pass
 
-    nous = _read_nous_auth()
-    runtime = _resolve_nous_runtime_api(force_refresh=False)
-    if runtime is None and not nous:
+    openamer = _read_openamer_auth()
+    runtime = _resolve_openamer_runtime_api(force_refresh=False)
+    if runtime is None and not openamer:
         logger.warning(
-            "Auxiliary Nous client unavailable: no Nous authentication found "
+            "Auxiliary OpenAmer client unavailable: no OpenAmer authentication found "
             "(run: openamer auth)."
         )
-        _mark_provider_unhealthy("nous", ttl=60)
+        _mark_provider_unhealthy("openamer", ttl=60)
         return None, None
-    if runtime is None and nous:
+    if runtime is None and openamer:
         logger.debug(
-            "Auxiliary Nous: runtime JWT refresh failed; checking stored "
+            "Auxiliary OpenAmer: runtime JWT refresh failed; checking stored "
             "auth.json token."
         )
     global auxiliary_is_nous
     auxiliary_is_nous = True
-    logger.debug("Auxiliary client: Nous Portal")
+    logger.debug("Auxiliary client: OpenAmer Portal")
 
     # Ask the Portal which model it currently recommends for this task type.
-    # The /api/nous/recommended-models endpoint is the authoritative source:
-    # it distinguishes paid vs free tier recommendations, and get_nous_recommended_aux_model
-    # auto-detects the caller's tier via check_nous_free_tier().  Fall back to
-    # _NOUS_MODEL (google/gemini-3-flash-preview) when the Portal is unreachable
+    # The /api/openamer/recommended-models endpoint is the authoritative source:
+    # it distinguishes paid vs free tier recommendations, and get_openamer_recommended_aux_model
+    # auto-detects the caller's tier via check_openamer_free_tier().  Fall back to
+    # _openamer_MODEL (google/gemini-3-flash-preview) when the Portal is unreachable
     # or returns a null recommendation for this task type.
-    model = _NOUS_MODEL
+    model = _openamer_MODEL
     try:
-        from openamer_cli.models import get_nous_recommended_aux_model
-        recommended = get_nous_recommended_aux_model(vision=vision)
+        from openamer_cli.models import get_openamer_recommended_aux_model
+        recommended = get_openamer_recommended_aux_model(vision=vision)
         if recommended:
             model = recommended
             logger.debug(
@@ -2211,15 +2211,15 @@ def _try_nous(vision: bool = False) -> Tuple[Optional[OpenAI], Optional[str]]:
     if runtime is not None:
         api_key, base_url = runtime
     else:
-        api_key = _nous_api_key(nous or {})
+        api_key = _openamer_api_key(openamer or {})
         if not api_key:
             logger.warning(
-                "Auxiliary Nous client unavailable: no usable inference JWT found "
-                "(run: openamer auth add nous)."
+                "Auxiliary OpenAmer client unavailable: no usable inference JWT found "
+                "(run: openamer auth add openamer)."
             )
-            _mark_provider_unhealthy("nous", ttl=60)
+            _mark_provider_unhealthy("openamer", ttl=60)
             return None, None
-        base_url = str((nous or {}).get("inference_base_url") or _nous_base_url()).rstrip("/")
+        base_url = str((openamer or {}).get("inference_base_url") or _openamer_base_url()).rstrip("/")
     return (
         _create_openai_client(
             api_key=api_key,
@@ -2229,21 +2229,21 @@ def _try_nous(vision: bool = False) -> Tuple[Optional[OpenAI], Optional[str]]:
     )
 
 
-def _refresh_nous_recommended_model(
+def _refresh_openamer_recommended_model(
     *, vision: bool, stale_model: Optional[str]
 ) -> Optional[str]:
-    """Re-fetch the Nous Portal's recommended model after a stale-model 404.
+    """Re-fetch the OpenAmer Portal's recommended model after a stale-model 404.
 
     Long-lived processes (gateway, watchers) cache the Portal's
     ``recommended-models`` payload for 10 minutes and, in practice, can pin a
     model for the whole process lifetime. When that model is later dropped from
-    the Nous → OpenRouter catalog, every auxiliary call 404s with
+    the OpenAmer → OpenRouter catalog, every auxiliary call 404s with
     "model does not exist". This forces a fresh Portal fetch and returns a
     model name to retry with:
 
       * the Portal's current recommendation for the task, if it differs from
         the model that just failed; otherwise
-      * ``_NOUS_MODEL`` (google/gemini-3-flash-preview), the known-good default,
+      * ``_openamer_MODEL`` (google/gemini-3-flash-preview), the known-good default,
         if it too differs from the failed model.
 
     Returns ``None`` when no usable alternative is available (e.g. the Portal
@@ -2253,20 +2253,20 @@ def _refresh_nous_recommended_model(
     stale = (stale_model or "").strip().lower()
     fresh: Optional[str] = None
     try:
-        from openamer_cli.models import get_nous_recommended_aux_model
+        from openamer_cli.models import get_openamer_recommended_aux_model
 
-        fresh = get_nous_recommended_aux_model(vision=vision, force_refresh=True)
+        fresh = get_openamer_recommended_aux_model(vision=vision, force_refresh=True)
     except Exception as exc:
         logger.debug(
-            "Nous recommended-model refresh failed (%s); using default %s",
-            exc, _NOUS_MODEL,
+            "OpenAmer recommended-model refresh failed (%s); using default %s",
+            exc, _openamer_MODEL,
         )
     if fresh and fresh.strip().lower() != stale:
         return fresh
     # Portal recommendation unchanged or unavailable — fall back to the
     # hardcoded known-good default, but only if it's actually different.
-    if _NOUS_MODEL.strip().lower() != stale:
-        return _NOUS_MODEL
+    if _openamer_MODEL.strip().lower() != stale:
+        return _openamer_MODEL
     return None
 
 
@@ -2989,7 +2989,7 @@ def _try_anthropic(explicit_api_key: str = None) -> Tuple[Optional[Any], Optiona
 
 _AUTO_PROVIDER_LABELS = {
     "_try_openrouter": "openrouter",
-    "_try_nous": "nous",
+    "_try_nous": "openamer",
     "_try_custom_endpoint": "local/custom",
     "_resolve_api_key_provider": "api-key",
 }
@@ -3048,7 +3048,7 @@ def _get_provider_chain() -> List[tuple]:
     """
     return [
         ("openrouter", _try_openrouter),
-        ("nous", _try_nous),
+        ("openamer", _try_nous),
         ("local/custom", _try_custom_endpoint),
         ("api-key", _resolve_api_key_provider),
     ]
@@ -3083,7 +3083,7 @@ _aux_unhealthy_logged_at: Dict[str, float] = {}
 # with the alias map in _try_payment_fallback below.
 _AUX_UNHEALTHY_LABEL_ALIASES = {
     "openrouter": "openrouter",
-    "nous": "nous",
+    "openamer": "openamer",
     "custom": "local/custom",
     "local/custom": "local/custom",
     "openai-codex": "openai-codex",
@@ -3203,15 +3203,15 @@ def _is_payment_error(exc: Exception) -> bool:
     return False
 
 
-def _nous_portal_account_has_fresh_paid_access() -> bool:
-    """Return True only when the fresh Nous account API says paid access is allowed."""
+def _openamer_portal_account_has_fresh_paid_access() -> bool:
+    """Return True only when the fresh OpenAmer account API says paid access is allowed."""
     try:
-        from openamer_cli.nous_account import get_nous_portal_account_info
+        from openamer_cli.openamer_account import get_openamer_portal_account_info
 
-        account_info = get_nous_portal_account_info(force_fresh=True)
+        account_info = get_openamer_portal_account_info(force_fresh=True)
         return account_info.paid_service_access is True
     except Exception as exc:
-        logger.debug("Auxiliary Nous paid-entitlement refresh check failed: %s", exc)
+        logger.debug("Auxiliary OpenAmer paid-entitlement refresh check failed: %s", exc)
         return False
 
 
@@ -3424,7 +3424,7 @@ def _is_model_not_found_error(exc: Exception) -> bool:
 
     This fires when a resolved model name is no longer served by the endpoint
     — most commonly when a long-lived process pinned a Portal-recommended model
-    that has since been dropped from the Nous → OpenRouter catalog. The Nous
+    that has since been dropped from the OpenAmer → OpenRouter catalog. The OpenAmer
     proxy returns 404 with a body like::
 
         Model 'gpt-5.4-mini' not found. The requested model does not exist
@@ -3625,8 +3625,8 @@ def _recoverable_pool_provider(
         return "openai-codex"
     if base_url_host_matches(base, "openrouter.ai"):
         return "openrouter"
-    if base_url_host_matches(base, "inference-api.nousresearch.com"):
-        return "nous"
+    if base_url_host_matches(base, "inference-api.openamer.com"):
+        return "openamer"
     if base_url_host_matches(base, "api.anthropic.com"):
         return "anthropic"
     if base_url_host_matches(base, "githubcopilot.com"):
@@ -3862,11 +3862,11 @@ def _refresh_provider_credentials(provider: str) -> bool:
                 return False
             _evict_cached_clients(normalized)
             return True
-        if normalized == "nous":
-            from openamer_cli.auth import resolve_nous_runtime_credentials
+        if normalized == "openamer":
+            from openamer_cli.auth import resolve_openamer_runtime_credentials
 
-            creds = resolve_nous_runtime_credentials(
-                timeout_seconds=env_float("OPENAMER_NOUS_TIMEOUT_SECONDS", 15),
+            creds = resolve_openamer_runtime_credentials(
+                timeout_seconds=env_float("OPENAMER_openamer_TIMEOUT_SECONDS", 15),
                 force_refresh=True,
             )
             if not str(creds.get("api_key", "") or "").strip():
@@ -3935,7 +3935,7 @@ def _auth_refresh_provider_for_route(
     Auto-routed auxiliary calls keep ``resolved_provider == "auto"`` even
     after _get_cached_client() selects a concrete backend. Infer the backend
     from the selected client's base URL so auth refresh works for auto →
-    Copilot/Codex/Anthropic/Nous routes too. (#20832)
+    Copilot/Codex/Anthropic/OpenAmer routes too. (#20832)
     """
     normalized = _normalize_aux_provider(resolved_provider)
     if normalized and normalized != "auto":
@@ -3946,8 +3946,8 @@ def _auth_refresh_provider_for_route(
         return "openai-codex"
     if base_url_host_matches(client_base_url, "api.anthropic.com"):
         return "anthropic"
-    if base_url_host_matches(client_base_url, "inference-api.nousresearch.com"):
-        return "nous"
+    if base_url_host_matches(client_base_url, "inference-api.openamer.com"):
+        return "openamer"
     return normalized
 
 
@@ -4155,7 +4155,7 @@ def _try_payment_fallback(
     if main_provider and main_provider.lower() in skip:
         skip_labels.add(main_provider.lower())
     # Map common resolved_provider values back to chain labels.
-    _alias_to_label = {"openrouter": "openrouter", "nous": "nous",
+    _alias_to_label = {"openrouter": "openrouter", "openamer": "openamer",
                        "openai-codex": "openai-codex", "codex": "openai-codex",
                        "custom": "local/custom", "local/custom": "local/custom"}
     skip_chain_labels = {_alias_to_label.get(s, s) for s in skip_labels}
@@ -4556,11 +4556,11 @@ def _resolve_auto(
       1. User's main provider + main model, regardless of provider type.
          This means auxiliary tasks (compression, vision, web extraction,
          session search, etc.) use the same model the user configured for
-         chat.  Users on OpenRouter/Nous get their chosen chat model; users
+         chat.  Users on OpenRouter/OpenAmer get their chosen chat model; users
          on DeepSeek/ZAI/Alibaba get theirs; etc.  Running aux tasks on the
          user's picked model keeps behavior predictable — no surprise
          switches to a cheap fallback model for side tasks.
-      2. OpenRouter → Nous → custom → Codex → API-key providers (fallback
+      2. OpenRouter → OpenAmer → custom → Codex → API-key providers (fallback
          chain, only used when the main provider has no working client).
     """
     global auxiliary_is_nous, _stale_base_url_warned
@@ -4596,7 +4596,7 @@ def _resolve_auto(
     #
     # This is the primary aux backend for every user.  "auto" means
     # "use my main chat model for side tasks as well" — including users
-    # on aggregators (OpenRouter, Nous) who previously got routed to a
+    # on aggregators (OpenRouter, OpenAmer) who previously got routed to a
     # cheap provider-side default.  Explicit per-task overrides set via
     # config.yaml (auxiliary.<task>.provider) still win over this.
     main_provider = str(runtime_provider or _read_main_provider() or "")
@@ -4845,7 +4845,7 @@ def resolve_provider_client(
 
     Args:
         provider: Provider identifier.  One of:
-            "openrouter", "nous", "openai-codex" (or "codex"),
+            "openrouter", "openamer", "openai-codex" (or "codex"),
             "zai", "kimi-coding", "minimax", "minimax-cn",
             "custom" (OPENAI_BASE_URL + OPENAI_API_KEY),
             "auto" (full auto-detection chain).
@@ -5019,8 +5019,8 @@ def resolve_provider_client(
         return (_to_async_client(client, final_model, is_vision=is_vision) if async_mode
                 else (client, final_model))
 
-    # ── Nous Portal (OAuth) ──────────────────────────────────────────
-    if provider == "nous":
+    # ── OpenAmer Portal (OAuth) ──────────────────────────────────────────
+    if provider == "openamer":
         # Detect vision tasks: either explicit model override from
         # _PROVIDER_VISION_MODELS, or caller passed a known vision model.
         _is_vision = (
@@ -5029,8 +5029,8 @@ def resolve_provider_client(
         )
         client, default = _try_nous(vision=_is_vision)
         if client is None:
-            logger.warning("resolve_provider_client: nous requested "
-                           "but Nous Portal not configured (run: openamer auth)")
+            logger.warning("resolve_provider_client: openamer requested "
+                           "but OpenAmer Portal not configured (run: openamer auth)")
             return None, None
         final_model = _normalize_resolved_model(model or default, provider)
         return (_to_async_client(client, final_model, is_vision=is_vision) if async_mode
@@ -5076,7 +5076,7 @@ def resolve_provider_client(
     # silently re-routing every auxiliary task (compression, web extract,
     # session search, curator, etc.) to whatever Step-2 fallback the user
     # has configured.  Users on xAI Grok OAuth would then see surprise
-    # OpenRouter / Nous bills for side tasks they thought were running on
+    # OpenRouter / OpenAmer bills for side tasks they thought were running on
     # their xAI subscription.
     if provider == "xai-oauth":
         client, default = _build_xai_oauth_aux_client(model)
@@ -5182,7 +5182,7 @@ def resolve_provider_client(
         # name, the custom entry is the intended target — the built-in alias
         # rewriting would otherwise hijack the request.  Only preferred when
         # the raw name is an alias (not a canonical provider name) so custom
-        # entries that coincidentally match a canonical provider (e.g. ``nous``)
+        # entries that coincidentally match a canonical provider (e.g. ``openamer``)
         # still defer to the built-in per `_get_named_custom_provider`'s guard.
         custom_entry = None
         if original_provider and original_provider != provider:
@@ -5567,8 +5567,8 @@ def resolve_provider_client(
 
     elif pconfig.auth_type in {"oauth_device_code", "oauth_external"}:
         # OAuth providers — route through their specific try functions
-        if provider == "nous":
-            return resolve_provider_client("nous", model, async_mode)
+        if provider == "openamer":
+            return resolve_provider_client("openamer", model, async_mode)
         if provider == "openai-codex":
             return resolve_provider_client("openai-codex", model, async_mode)
         if provider == "xai-oauth":
@@ -5639,7 +5639,7 @@ def get_async_text_auxiliary_client(task: str = "", *, main_runtime: Optional[Di
 
 _VISION_AUTO_PROVIDER_ORDER = (
     "openrouter",
-    "nous",
+    "openamer",
     "deepinfra",
 )
 
@@ -5688,7 +5688,7 @@ def _resolve_strict_vision_backend(
         return resolve_provider_client("copilot", model, is_vision=True)
     if provider == "openrouter":
         return _try_openrouter(model=model)
-    if provider == "nous":
+    if provider == "openamer":
         return _try_nous(vision=True)
     if provider == "openai-codex":
         # Route through resolve_provider_client so the caller's explicit
@@ -5724,7 +5724,7 @@ def _strict_vision_backend_available(provider: str) -> bool:
 def get_available_vision_backends() -> List[str]:
     """Return the currently available vision backends in auto-selection order.
 
-    Order: active provider → OpenRouter → Nous → stop.  This is the single
+    Order: active provider → OpenRouter → OpenAmer → stop.  This is the single
     source of truth for setup, tool gating, and runtime auto-routing of
     vision tasks.
     """
@@ -5739,7 +5739,7 @@ def get_available_vision_backends() -> List[str]:
             client, _ = resolve_provider_client(main_provider, _read_main_model())
             if client is not None:
                 available.append(main_provider)
-    # 2. OpenRouter, 3. Nous — skip if already covered by main provider.
+    # 2. OpenRouter, 3. OpenAmer — skip if already covered by main provider.
     for p in _VISION_AUTO_PROVIDER_ORDER:
         if p not in available and _strict_vision_backend_available(p):
             available.append(p)
@@ -5802,12 +5802,12 @@ def resolve_vision_provider_client(
         #      that differs from the chat model (e.g. xiaomi → mimo-v2-omni,
         #      zai → glm-5v-turbo). DeepInfra is similar but resolves its
         #      default vision model live from the catalog (see
-        #      :func:`_resolve_provider_vision_default`). Nous is the
+        #      :func:`_resolve_provider_vision_default`). OpenAmer is the
         #      exception: it has a dedicated strict vision backend with
         #      tier-aware defaults, so it must not fall through to the
         #      user's text chat model here.
         #   2. OpenRouter (vision-capable aggregator fallback)
-        #   3. Nous Portal (vision-capable aggregator fallback)
+        #   3. OpenAmer Portal (vision-capable aggregator fallback)
         #   4. DeepInfra   (OpenAI-compatible; vision model discovered
         #                   live from the catalog — tried when
         #                   DEEPINFRA_API_KEY is set)
@@ -5840,7 +5840,7 @@ def resolve_vision_provider_client(
             # trusted to catch that. Only fall back to the chat model when no
             # provider default is available (catalog unreachable).
             vision_model = _resolve_provider_vision_default(main_provider) or main_model
-            if main_provider == "nous":
+            if main_provider == "openamer":
                 sync_client, default_model = _resolve_strict_vision_backend(
                     main_provider, vision_model
                 )
@@ -5984,10 +5984,10 @@ def resolve_vision_provider_client(
 def get_auxiliary_extra_body() -> dict:
     """Return extra_body kwargs for auxiliary API calls.
     
-    Includes Nous Portal product tags when the auxiliary client is backed
-    by Nous Portal. Returns empty dict otherwise.
+    Includes OpenAmer Portal product tags when the auxiliary client is backed
+    by OpenAmer Portal. Returns empty dict otherwise.
     """
-    return _nous_extra_body() if auxiliary_is_nous else {}
+    return _openamer_extra_body() if auxiliary_is_nous else {}
 
 
 def auxiliary_max_tokens_param(value: int, *, model: Optional[str] = None) -> dict:
@@ -6006,7 +6006,7 @@ def auxiliary_max_tokens_param(value: int, *, model: Optional[str] = None) -> di
     # max_tokens on newer GPT-4o/o-series/GPT-5-style models.
     _custom_host = base_url_hostname(custom_base) or ""
     if (not or_key
-            and _read_nous_auth() is None
+            and _read_openamer_auth() is None
             and (
                 _custom_host == "api.openai.com"
                 or _custom_host == "api.githubcopilot.com"
@@ -6118,7 +6118,7 @@ def _store_cached_client(cache_key: tuple, client: Any, default_model: Optional[
         _client_cache[cache_key] = (client, default_model, bound_loop)
 
 
-def _refresh_nous_auxiliary_client(
+def _refresh_openamer_auxiliary_client(
     *,
     cache_provider: str,
     model: Optional[str],
@@ -6129,8 +6129,8 @@ def _refresh_nous_auxiliary_client(
     main_runtime: Optional[Dict[str, Any]] = None,
     is_vision: bool = False,
 ) -> Tuple[Optional[Any], Optional[str]]:
-    """Refresh Nous runtime creds, rebuild the client, and replace the cache entry."""
-    runtime = _resolve_nous_runtime_api(force_refresh=True)
+    """Refresh OpenAmer runtime creds, rebuild the client, and replace the cache entry."""
+    runtime = _resolve_openamer_runtime_api(force_refresh=True)
     if runtime is None:
         return None, model
 
@@ -6553,7 +6553,7 @@ def _resolve_task_provider_model(
                 "copilot",
                 "copilot-acp",
                 "minimax-oauth",
-                "nous",
+                "openamer",
                 "openai-codex",
                 "qwen-oauth",
                 "xai-oauth",
@@ -6986,7 +6986,7 @@ def _build_call_kwargs(
     # Build provider-aware reasoning kwargs through the same profile hooks used
     # by the standard chat-completions transport. Some providers require
     # top-level controls (Kimi/custom ``reasoning_effort``), others use nested
-    # body fields (Gemini ``thinking_config``), and OpenRouter/Nous use
+    # body fields (Gemini ``thinking_config``), and OpenRouter/OpenAmer use
     # ``extra_body.reasoning``. Profiles are the source of truth for those wire
     # shapes. Providers without a reasoning-aware profile retain the generic
     # ``extra_body.reasoning`` fallback used by Codex-compatible adapters.
@@ -7046,8 +7046,8 @@ def _build_call_kwargs(
         else:
             effort = reasoning_config.get("effort") or "medium"
             merged_extra["reasoning"] = {"enabled": True, "effort": effort}
-    if provider == "nous" and "tags" not in merged_extra:
-        merged_extra["tags"] = _nous_portal_tags()
+    if provider == "openamer" and "tags" not in merged_extra:
+        merged_extra["tags"] = _openamer_portal_tags()
     if merged_extra:
         kwargs["extra_body"] = merged_extra
 
@@ -7824,22 +7824,22 @@ def call_llm(
                     raise
                 first_err = retry_err
 
-        # ── Stale-model self-heal (Nous Portal recommendation drift) ───
+        # ── Stale-model self-heal (OpenAmer Portal recommendation drift) ───
         # A long-lived process can pin a Portal-recommended model that has
-        # since been dropped from the Nous → OpenRouter catalog, so every
+        # since been dropped from the OpenAmer → OpenRouter catalog, so every
         # auxiliary call 404s with "model does not exist". Force a fresh
         # Portal fetch and retry once with the current recommendation (or the
-        # known-good default). Only applies to Nous-routed calls.
+        # known-good default). Only applies to OpenAmer-routed calls.
         _heal_is_nous = (
-            resolved_provider == "nous"
-            or base_url_host_matches(_base_info, "inference-api.nousresearch.com")
+            resolved_provider == "openamer"
+            or base_url_host_matches(_base_info, "inference-api.openamer.com")
         )
         if _is_model_not_found_error(first_err) and _heal_is_nous:
-            healed_model = _refresh_nous_recommended_model(
+            healed_model = _refresh_openamer_recommended_model(
                 vision=(task == "vision"), stale_model=kwargs.get("model"))
             if healed_model and healed_model != kwargs.get("model"):
                 logger.warning(
-                    "Auxiliary %s: model %r no longer in Nous catalog; "
+                    "Auxiliary %s: model %r no longer in OpenAmer catalog; "
                     "retrying with refreshed recommendation %r",
                     task or "call", kwargs.get("model"), healed_model,
                 )
@@ -7850,18 +7850,18 @@ def call_llm(
                 except Exception as retry_err:
                     first_err = retry_err
 
-        # ── Nous auth refresh parity with main agent ──────────────────
+        # ── OpenAmer auth refresh parity with main agent ──────────────────
         client_is_nous = (
-            resolved_provider == "nous"
-            or base_url_host_matches(_base_info, "inference-api.nousresearch.com")
+            resolved_provider == "openamer"
+            or base_url_host_matches(_base_info, "inference-api.openamer.com")
         )
         if (
             _is_payment_error(first_err)
             and client_is_nous
-            and _nous_portal_account_has_fresh_paid_access()
+            and _openamer_portal_account_has_fresh_paid_access()
         ):
-            refreshed_client, refreshed_model = _refresh_nous_auxiliary_client(
-                cache_provider=resolved_provider or "nous",
+            refreshed_client, refreshed_model = _refresh_openamer_auxiliary_client(
+                cache_provider=resolved_provider or "openamer",
                 model=final_model,
                 async_mode=False,
                 base_url=resolved_base_url,
@@ -7872,7 +7872,7 @@ def call_llm(
             )
             if refreshed_client is not None:
                 logger.info(
-                    "Auxiliary %s: refreshed Nous runtime credentials after paid account check, retrying",
+                    "Auxiliary %s: refreshed OpenAmer runtime credentials after paid account check, retrying",
                     task or "call",
                 )
                 if refreshed_model and refreshed_model != kwargs.get("model"):
@@ -7891,8 +7891,8 @@ def call_llm(
                     first_err = retry_err
 
         if _is_auth_error(first_err) and client_is_nous:
-            refreshed_client, refreshed_model = _refresh_nous_auxiliary_client(
-                cache_provider=resolved_provider or "nous",
+            refreshed_client, refreshed_model = _refresh_openamer_auxiliary_client(
+                cache_provider=resolved_provider or "openamer",
                 model=final_model,
                 async_mode=False,
                 base_url=resolved_base_url,
@@ -7902,7 +7902,7 @@ def call_llm(
                 is_vision=(task == "vision"),
             )
             if refreshed_client is not None:
-                logger.info("Auxiliary %s: refreshed Nous runtime credentials after 401, retrying",
+                logger.info("Auxiliary %s: refreshed OpenAmer runtime credentials after 401, retrying",
                             task or "call")
                 if refreshed_model and refreshed_model != kwargs.get("model"):
                     kwargs["model"] = refreshed_model
@@ -8018,7 +8018,7 @@ def call_llm(
         # against the same rate-limited endpoint.
         #
         # ── Auth error fallback (#21165) ─────────────────────────────
-        # When the resolved provider returns 401 and neither the Nous
+        # When the resolved provider returns 401 and neither the OpenAmer
         # refresh path nor explicit provider credential refresh applies,
         # fall back to an alternative provider instead of dropping the
         # auxiliary task on the floor (silent compression failure /
@@ -8406,21 +8406,21 @@ async def async_call_llm(
                     raise
                 first_err = retry_err
 
-        # ── Stale-model self-heal (Nous Portal recommendation drift) ───
+        # ── Stale-model self-heal (OpenAmer Portal recommendation drift) ───
         # See the sync call_llm() path for the rationale: a long-lived process
         # can pin a Portal-recommended model that has since been dropped from
-        # the Nous → OpenRouter catalog, 404'ing every auxiliary call. Force a
+        # the OpenAmer → OpenRouter catalog, 404'ing every auxiliary call. Force a
         # fresh Portal fetch and retry once with the current recommendation.
         _heal_is_nous = (
-            resolved_provider == "nous"
-            or base_url_host_matches(_client_base, "inference-api.nousresearch.com")
+            resolved_provider == "openamer"
+            or base_url_host_matches(_client_base, "inference-api.openamer.com")
         )
         if _is_model_not_found_error(first_err) and _heal_is_nous:
-            healed_model = _refresh_nous_recommended_model(
+            healed_model = _refresh_openamer_recommended_model(
                 vision=(task == "vision"), stale_model=kwargs.get("model"))
             if healed_model and healed_model != kwargs.get("model"):
                 logger.warning(
-                    "Auxiliary %s (async): model %r no longer in Nous catalog; "
+                    "Auxiliary %s (async): model %r no longer in OpenAmer catalog; "
                     "retrying with refreshed recommendation %r",
                     task or "call", kwargs.get("model"), healed_model,
                 )
@@ -8431,18 +8431,18 @@ async def async_call_llm(
                 except Exception as retry_err:
                     first_err = retry_err
 
-        # ── Nous auth refresh parity with main agent ──────────────────
+        # ── OpenAmer auth refresh parity with main agent ──────────────────
         client_is_nous = (
-            resolved_provider == "nous"
-            or base_url_host_matches(_client_base, "inference-api.nousresearch.com")
+            resolved_provider == "openamer"
+            or base_url_host_matches(_client_base, "inference-api.openamer.com")
         )
         if (
             _is_payment_error(first_err)
             and client_is_nous
-            and _nous_portal_account_has_fresh_paid_access()
+            and _openamer_portal_account_has_fresh_paid_access()
         ):
-            refreshed_client, refreshed_model = _refresh_nous_auxiliary_client(
-                cache_provider=resolved_provider or "nous",
+            refreshed_client, refreshed_model = _refresh_openamer_auxiliary_client(
+                cache_provider=resolved_provider or "openamer",
                 model=final_model,
                 async_mode=True,
                 base_url=resolved_base_url,
@@ -8452,7 +8452,7 @@ async def async_call_llm(
             )
             if refreshed_client is not None:
                 logger.info(
-                    "Auxiliary %s (async): refreshed Nous runtime credentials after paid account check, retrying",
+                    "Auxiliary %s (async): refreshed OpenAmer runtime credentials after paid account check, retrying",
                     task or "call",
                 )
                 if refreshed_model and refreshed_model != kwargs.get("model"):
@@ -8471,8 +8471,8 @@ async def async_call_llm(
                     first_err = retry_err
 
         if _is_auth_error(first_err) and client_is_nous:
-            refreshed_client, refreshed_model = _refresh_nous_auxiliary_client(
-                cache_provider=resolved_provider or "nous",
+            refreshed_client, refreshed_model = _refresh_openamer_auxiliary_client(
+                cache_provider=resolved_provider or "openamer",
                 model=final_model,
                 async_mode=True,
                 base_url=resolved_base_url,
@@ -8481,7 +8481,7 @@ async def async_call_llm(
                 is_vision=(task == "vision"),
             )
             if refreshed_client is not None:
-                logger.info("Auxiliary %s (async): refreshed Nous runtime credentials after 401, retrying",
+                logger.info("Auxiliary %s (async): refreshed OpenAmer runtime credentials after 401, retrying",
                             task or "call")
                 if refreshed_model and refreshed_model != kwargs.get("model"):
                     kwargs["model"] = refreshed_model

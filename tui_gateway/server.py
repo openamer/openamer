@@ -212,7 +212,7 @@ _LONG_HANDLERS = frozenset(
         "complete.slash",
         "llm.oneshot",
         # model.options builds the full picker payload — per-provider credential
-        # pool checks, pricing fetch, Nous tier check, optional custom-provider
+        # pool checks, pricing fetch, OpenAmer tier check, optional custom-provider
         # probe — measured seconds inline. While it runs on the reader thread,
         # prompt.submit / session.interrupt sit unread (same class as #21123),
         # and the Desktop model pill / picker block on it every open.
@@ -8139,14 +8139,14 @@ def _(rid, params: dict) -> dict:
     usage: dict = _session_usage_snapshot(session)
     if agent is None and not usage:
         usage = {"calls": 0, "input": 0, "output": 0, "total": 0}
-    # Nous credits block — agent-independent (a portal fetch), so it shows even
+    # OpenAmer credits block — agent-independent (a portal fetch), so it shows even
     # with zero API calls or on a resumed session. The TUI /usage panel renders
-    # these lines regardless of `calls`. Fail-open: [] when not logged into Nous
+    # these lines regardless of `calls`. Fail-open: [] when not logged into OpenAmer
     # or on any portal hiccup.
     try:
-        from agent.account_usage import nous_credits_lines
+        from agent.account_usage import openamer_credits_lines
 
-        credits = nous_credits_lines()
+        credits = openamer_credits_lines()
         if credits:
             usage["credits_lines"] = credits
     except Exception:
@@ -8927,7 +8927,7 @@ def _(rid, params: dict) -> dict:
 def _(rid, params: dict) -> dict:
     """Whether pet generation is possible right now.
 
-    True only when a reference-capable image backend (Nous Portal / OpenRouter /
+    True only when a reference-capable image backend (OpenAmer Portal / OpenRouter /
     OpenAI gpt-image) is configured — the desktop checks this on open so it can
     offer setup instead of a dead prompt. Cheap (config + plugin discovery).
     """
@@ -9175,12 +9175,12 @@ def _(rid, params: dict) -> dict:
 # Ink side can branch on the typed billing error code (insufficient_scope,
 # rate_limited, no_payment_method, …) to render the right affordance instead of
 # landing in a generic catch. The data-building lives in the shared core
-# (agent/billing_view.py + openamer_cli/nous_billing.py) — same as /topup.
+# (agent/billing_view.py + openamer_cli/openamer_billing.py) — same as /topup.
 
 
 def _serialize_billing_error(exc) -> dict:
     """Map a BillingError into the result.error envelope the TUI branches on."""
-    from openamer_cli.nous_billing import (
+    from openamer_cli.openamer_billing import (
         BillingRemoteSpendingRevoked,
         BillingScopeRequired,
         BillingSessionRevoked,
@@ -9494,7 +9494,7 @@ def _(rid, params: dict) -> dict:
     drives the device step-up exactly like the mutations.
     """
     from agent.subscription_view import subscription_change_preview_from_payload
-    from openamer_cli.nous_billing import BillingError, post_subscription_preview
+    from openamer_cli.openamer_billing import BillingError, post_subscription_preview
 
     tier_id = params.get("subscription_type_id")
     if not tier_id:
@@ -9518,7 +9518,7 @@ def _(rid, params: dict) -> dict:
     same-price change OR a cancellation at period end (chargeless). Requires
     billing:manage.
     """
-    from openamer_cli.nous_billing import BillingError, put_subscription_pending_change
+    from openamer_cli.openamer_billing import BillingError, put_subscription_pending_change
 
     cancel = bool(params.get("cancel"))
     tier_id = params.get("subscription_type_id")
@@ -9540,7 +9540,7 @@ def _(rid, params: dict) -> dict:
     Clears a scheduled downgrade or cancellation (resume / undo). Chargeless, but it
     re-enables recurring spend → requires billing:manage and honors the kill-switch.
     """
-    from openamer_cli.nous_billing import BillingError, delete_subscription_pending_change
+    from openamer_cli.openamer_billing import BillingError, delete_subscription_pending_change
 
     try:
         result = delete_subscription_pending_change()
@@ -9562,7 +9562,7 @@ def _(rid, params: dict) -> dict:
     the TUI reuses it on retry of the SAME upgrade. Requires billing:manage.
     """
     from agent.billing_view import new_idempotency_key
-    from openamer_cli.nous_billing import BillingError, post_subscription_upgrade
+    from openamer_cli.openamer_billing import BillingError, post_subscription_upgrade
 
     tier_id = params.get("subscription_type_id")
     if not tier_id:
@@ -9598,7 +9598,7 @@ def _(rid, params: dict) -> dict:
     supplied, the server-side core mints a fresh one and returns it so the TUI can
     reuse it on retry of the SAME purchase.
     """
-    from openamer_cli.nous_billing import BillingError, post_charge
+    from openamer_cli.openamer_billing import BillingError, post_charge
     from agent.billing_view import new_idempotency_key
 
     amount = params.get("amount_usd")
@@ -9622,7 +9622,7 @@ def _(rid, params: dict) -> dict:
 
     The poll. Caller drives the 2s/5-min cadence; this is a single status read.
     """
-    from openamer_cli.nous_billing import BillingError, get_charge_status
+    from openamer_cli.openamer_billing import BillingError, get_charge_status
 
     charge_id = params.get("charge_id")
     if not charge_id:
@@ -9651,7 +9651,7 @@ def _(rid, params: dict) -> dict:
 
     params: {enabled: bool, threshold: number, top_up_amount: number}.
     """
-    from openamer_cli.nous_billing import BillingError, patch_auto_top_up
+    from openamer_cli.openamer_billing import BillingError, patch_auto_top_up
 
     try:
         enabled = bool(params.get("enabled"))
@@ -9683,8 +9683,8 @@ def _(rid, params: dict) -> dict:
     """
     sid = params.get("session_id") or ""
     try:
-        from openamer_cli.auth import step_up_nous_billing_scope
-        from openamer_cli.nous_billing import BillingError
+        from openamer_cli.auth import step_up_openamer_billing_scope
+        from openamer_cli.openamer_billing import BillingError
 
         def _on_verification(url: str, code: str) -> None:
             _emit(
@@ -9693,7 +9693,7 @@ def _(rid, params: dict) -> dict:
                 {"verification_url": url, "user_code": code},
             )
 
-        granted = step_up_nous_billing_scope(
+        granted = step_up_openamer_billing_scope(
             open_browser=False, on_verification=_on_verification
         )
         return _ok(rid, {"ok": True, "granted": bool(granted)})

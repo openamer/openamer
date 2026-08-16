@@ -396,7 +396,7 @@ function OverviewScreen({ onClose, onPatch, overlay, t }: ScreenProps) {
     if (s.portal_url) {
       void ctx.openManageLink()
     } else {
-      ctx.sys('🔴 No portal URL available — manage your subscription on the Nous portal.')
+      ctx.sys('🔴 No portal URL available — manage your subscription on the OpenAmer portal.')
     }
 
     return onClose()

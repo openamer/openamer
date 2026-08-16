@@ -3071,7 +3071,7 @@ class TestWebServerEndpoints:
             "/api/model/set",
             json={
                 "scope": "main",
-                "provider": "nous",
+                "provider": "openamer",
                 "model": "openai/gpt-5.5-pro",
             },
         )
@@ -3086,7 +3086,7 @@ class TestWebServerEndpoints:
             "/api/model/set",
             json={
                 "scope": "main",
-                "provider": "nous",
+                "provider": "openamer",
                 "model": "openai/gpt-5.5-pro",
                 "confirm_expensive_model": True,
             },
@@ -4121,11 +4121,11 @@ class TestWebServerEndpoints:
             assert resp.status_code == 404
             assert "web UI disabled" in resp.json()["error"]
 
-    def test_set_model_main_nous_applies_gateway_defaults(self, monkeypatch):
-        """Switching the main provider to Nous calls apply_nous_managed_defaults
+    def test_set_model_main_openamer_applies_gateway_defaults(self, monkeypatch):
+        """Switching the main provider to OpenAmer calls apply_openamer_managed_defaults
         (mirroring the CLI's post-model-selection Tool Gateway routing) and
         surfaces the routed tools in the response."""
-        import openamer_cli.nous_subscription as ns
+        import openamer_cli.openamer_subscription as ns
 
         called = {}
 
@@ -4137,27 +4137,27 @@ class TestWebServerEndpoints:
             web["backend"] = "firecrawl"
             return {"web"}
 
-        monkeypatch.setattr(ns, "apply_nous_managed_defaults", fake_apply)
+        monkeypatch.setattr(ns, "apply_openamer_managed_defaults", fake_apply)
 
         resp = self.client.post(
             "/api/model/set",
-            json={"scope": "main", "provider": "nous", "model": "openamer-4"},
+            json={"scope": "main", "provider": "openamer", "model": "openamer-4"},
         )
         assert resp.status_code == 200
         data = resp.json()
         assert data["ok"] is True
-        assert data["provider"] == "nous"
+        assert data["provider"] == "openamer"
         assert data["gateway_tools"] == ["web"]
         assert called["force_fresh"] is True
 
-    def test_set_model_main_non_nous_skips_gateway_defaults(self, monkeypatch):
-        """Non-Nous providers must NOT trigger Tool Gateway auto-routing."""
-        import openamer_cli.nous_subscription as ns
+    def test_set_model_main_non_openamer_skips_gateway_defaults(self, monkeypatch):
+        """Non-OpenAmer providers must NOT trigger Tool Gateway auto-routing."""
+        import openamer_cli.openamer_subscription as ns
 
         def boom(*args, **kwargs):  # pragma: no cover - must not be called
-            raise AssertionError("apply_nous_managed_defaults called for non-nous provider")
+            raise AssertionError("apply_openamer_managed_defaults called for non-openamer provider")
 
-        monkeypatch.setattr(ns, "apply_nous_managed_defaults", boom)
+        monkeypatch.setattr(ns, "apply_openamer_managed_defaults", boom)
 
         resp = self.client.post(
             "/api/model/set",
@@ -4413,10 +4413,10 @@ class TestWebServerEndpoints:
         from openamer_cli.config import load_config, save_config
 
         cfg = load_config()
-        cfg["model"] = {"provider": "nous", "default": "openamer-4"}
+        cfg["model"] = {"provider": "openamer", "default": "openamer-4"}
         cfg["auxiliary"] = {
-            # Pinned to nous — same as the OLD main, becomes stale after switch.
-            "compression": {"provider": "nous", "model": "anthropic/claude-sonnet-4.6"},
+            # Pinned to openamer — same as the OLD main, becomes stale after switch.
+            "compression": {"provider": "openamer", "model": "anthropic/claude-sonnet-4.6"},
             # Auto — follows main, never stale.
             "vision": {"provider": "auto", "model": ""},
             # Pinned to a third provider — also stale vs the new main.
@@ -4436,7 +4436,7 @@ class TestWebServerEndpoints:
         assert "vision" not in stale_tasks
         # Provider/model echoed back for the UI label.
         comp = next(e for e in stale if e["task"] == "compression")
-        assert comp["provider"] == "nous"
+        assert comp["provider"] == "openamer"
         assert comp["model"] == "anthropic/claude-sonnet-4.6"
 
     def test_set_model_main_no_stale_when_aux_matches_new_provider(self):
@@ -4444,7 +4444,7 @@ class TestWebServerEndpoints:
         from openamer_cli.config import load_config, save_config
 
         cfg = load_config()
-        cfg["model"] = {"provider": "nous", "default": "openamer-4"}
+        cfg["model"] = {"provider": "openamer", "default": "openamer-4"}
         cfg["auxiliary"] = {
             "compression": {"provider": "openrouter", "model": "google/gemini-2.5-flash"},
             "vision": {"provider": "auto", "model": ""},
@@ -5012,7 +5012,7 @@ class TestWebServerEndpoints:
         from openamer_cli.config import load_config, save_config
 
         save_config({
-            "model": {"provider": "nous", "default": "openamer-4"},
+            "model": {"provider": "openamer", "default": "openamer-4"},
             "providers": {
                 "axet-proxy": {
                     "name": "Axet Proxy",
@@ -5038,66 +5038,66 @@ class TestWebServerEndpoints:
 
     def test_set_model_main_gateway_failure_does_not_block_save(self, monkeypatch):
         """A Portal/gateway hiccup must never prevent saving the model."""
-        import openamer_cli.nous_subscription as ns
+        import openamer_cli.openamer_subscription as ns
 
         def boom(*args, **kwargs):
             raise RuntimeError("portal unreachable")
 
-        monkeypatch.setattr(ns, "apply_nous_managed_defaults", boom)
+        monkeypatch.setattr(ns, "apply_openamer_managed_defaults", boom)
 
         resp = self.client.post(
             "/api/model/set",
-            json={"scope": "main", "provider": "nous", "model": "openamer-4"},
+            json={"scope": "main", "provider": "openamer", "model": "openamer-4"},
         )
         assert resp.status_code == 200
         data = resp.json()
         assert data["ok"] is True
         assert data.get("gateway_tools", []) == []
 
-    def test_recommended_default_nous_honors_free_tier(self, monkeypatch):
-        """For a free-tier Nous user, the recommended default must be a free
+    def test_recommended_default_openamer_honors_free_tier(self, monkeypatch):
+        """For a free-tier OpenAmer user, the recommended default must be a free
         model (mirroring `openamer model`), not the first curated paid entry."""
         import openamer_cli.models as models_mod
 
-        monkeypatch.setattr(models_mod, "get_curated_nous_model_ids", lambda: ["paid/expensive", "free/cheap"])
+        monkeypatch.setattr(models_mod, "get_curated_openamer_model_ids", lambda: ["paid/expensive", "free/cheap"])
         monkeypatch.setattr(
             models_mod, "get_pricing_for_provider",
             lambda provider: {"paid/expensive": {"input": "1"}, "free/cheap": {"input": "0"}},
         )
-        monkeypatch.setattr(models_mod, "check_nous_free_tier", lambda *, force_fresh=False: True)
+        monkeypatch.setattr(models_mod, "check_openamer_free_tier", lambda *, force_fresh=False: True)
         monkeypatch.setattr(
             models_mod, "union_with_portal_free_recommendations",
             lambda ids, pricing, url: (ids, pricing),
         )
         # Free partition keeps only the free model selectable.
         monkeypatch.setattr(
-            models_mod, "partition_nous_models_by_tier",
+            models_mod, "partition_openamer_models_by_tier",
             lambda ids, pricing, free_tier: (["free/cheap"], ["paid/expensive"]),
         )
 
-        resp = self.client.get("/api/model/recommended-default?provider=nous")
+        resp = self.client.get("/api/model/recommended-default?provider=openamer")
         assert resp.status_code == 200
         data = resp.json()
-        assert data["provider"] == "nous"
+        assert data["provider"] == "openamer"
         assert data["model"] == "free/cheap"
         assert data["free_tier"] is True
 
-    def test_recommended_default_nous_paid_uses_curated_default(self, monkeypatch):
-        """A paid Nous user gets the first curated/paid-augmented model."""
+    def test_recommended_default_openamer_paid_uses_curated_default(self, monkeypatch):
+        """A paid OpenAmer user gets the first curated/paid-augmented model."""
         import openamer_cli.models as models_mod
 
-        monkeypatch.setattr(models_mod, "get_curated_nous_model_ids", lambda: ["top/model", "other/model"])
+        monkeypatch.setattr(models_mod, "get_curated_openamer_model_ids", lambda: ["top/model", "other/model"])
         monkeypatch.setattr(models_mod, "get_pricing_for_provider", lambda provider: {})
-        monkeypatch.setattr(models_mod, "check_nous_free_tier", lambda *, force_fresh=False: False)
+        monkeypatch.setattr(models_mod, "check_openamer_free_tier", lambda *, force_fresh=False: False)
         monkeypatch.setattr(
             models_mod, "union_with_portal_paid_recommendations",
             lambda ids, pricing, url: (ids, pricing),
         )
 
-        resp = self.client.get("/api/model/recommended-default?provider=nous")
+        resp = self.client.get("/api/model/recommended-default?provider=openamer")
         assert resp.status_code == 200
         data = resp.json()
-        assert data["provider"] == "nous"
+        assert data["provider"] == "openamer"
         assert data["model"] == "top/model"
         assert data["free_tier"] is False
 
@@ -5108,9 +5108,9 @@ class TestWebServerEndpoints:
         def boom():
             raise RuntimeError("portal down")
 
-        monkeypatch.setattr(models_mod, "get_curated_nous_model_ids", boom)
+        monkeypatch.setattr(models_mod, "get_curated_openamer_model_ids", boom)
 
-        resp = self.client.get("/api/model/recommended-default?provider=nous")
+        resp = self.client.get("/api/model/recommended-default?provider=openamer")
         assert resp.status_code == 200
         data = resp.json()
         assert data["model"] == ""
@@ -6356,17 +6356,17 @@ class TestNewEndpoints:
         """Each provider row carries a server-computed readiness `status`.
 
         Regression: the GUI pilled every zero-env-var row "Ready" — including
-        logged-out Nous Subscription rows, xAI TTS without Grok OAuth, and
+        logged-out OpenAmer Subscription rows, xAI TTS without Grok OAuth, and
         never-installed KittenTTS/Piper. The endpoint now reports the honest
         state so keyless ≠ ready.
         """
         import openamer_cli.tools_config as tools_config
-        from openamer_cli.nous_account import NousPortalAccountInfo
+        from openamer_cli.openamer_account import OpenAmerPortalAccountInfo
 
-        # Logged out of Nous Portal → managed subscription rows need sign-in.
+        # Logged out of OpenAmer Portal → managed subscription rows need sign-in.
         monkeypatch.setattr(
-            "openamer_cli.nous_subscription.get_nous_portal_account_info",
-            lambda *a, **k: NousPortalAccountInfo(
+            "openamer_cli.openamer_subscription.get_openamer_portal_account_info",
+            lambda *a, **k: OpenAmerPortalAccountInfo(
                 logged_in=False, source="none", fresh=False, paid_service_access=None
             ),
         )
@@ -6386,7 +6386,7 @@ class TestNewEndpoints:
         # Genuinely-free keyless row stays Ready.
         assert by_name["Microsoft Edge TTS"]["status"] == "ready"
         # Keyless ≠ ready for gated rows:
-        assert by_name["Nous Subscription"]["status"] == "needs_auth"
+        assert by_name["OpenAmer Subscription"]["status"] == "needs_auth"
         assert by_name["xAI TTS"]["status"] == "needs_auth"
         assert by_name["KittenTTS"]["status"] == "needs_setup"
         assert by_name["Piper"]["status"] == "needs_setup"
@@ -6482,59 +6482,59 @@ class TestNewEndpoints:
         )
         assert resp.status_code == 400
 
-    def test_select_managed_nous_provider_reports_needs_nous_auth(self, monkeypatch):
-        """Selecting a managed Nous row while logged out flags needs_nous_auth.
+    def test_select_managed_openamer_provider_reports_needs_openamer_auth(self, monkeypatch):
+        """Selecting a managed OpenAmer row while logged out flags needs_openamer_auth.
 
         Regression: the GUI PUT wrote browser.cloud_provider + use_gateway
         but skipped the Portal entitlement handshake the CLI runs inline
-        (ensure_nous_portal_access) — so the row never activated and nothing
+        (ensure_openamer_portal_access) — so the row never activated and nothing
         told the user to sign in. The endpoint now reports the entitlement
-        gap so the client can drive the existing Nous OAuth flow.
+        gap so the client can drive the existing OpenAmer OAuth flow.
         """
-        from openamer_cli.nous_account import NousPortalAccountInfo
+        from openamer_cli.openamer_account import OpenAmerPortalAccountInfo
 
         monkeypatch.setattr(
-            "openamer_cli.nous_subscription.get_nous_portal_account_info",
-            lambda *a, **k: NousPortalAccountInfo(
+            "openamer_cli.openamer_subscription.get_openamer_portal_account_info",
+            lambda *a, **k: OpenAmerPortalAccountInfo(
                 logged_in=False, source="none", fresh=False, paid_service_access=None
             ),
         )
 
         resp = self.client.put(
             "/api/tools/toolsets/browser/provider",
-            json={"provider": "Nous Subscription (Browser Use cloud)"},
+            json={"provider": "OpenAmer Subscription (Browser Use cloud)"},
         )
         assert resp.status_code == 200
         data = resp.json()
         assert data["ok"] is True
-        assert data["needs_nous_auth"] is True
+        assert data["needs_openamer_auth"] is True
         assert data["feature"] == "browser"
         # The selection is still persisted — activation is what's gated.
         from openamer_cli.config import load_config
         cfg = load_config()
         assert cfg["browser"]["cloud_provider"] == "browser-use"
 
-    def test_select_managed_nous_provider_entitled_no_auth_flag(self, monkeypatch):
-        """A signed-in, entitled subscriber gets no needs_nous_auth field."""
-        from openamer_cli.nous_account import NousPortalAccountInfo
+    def test_select_managed_openamer_provider_entitled_no_auth_flag(self, monkeypatch):
+        """A signed-in, entitled subscriber gets no needs_openamer_auth field."""
+        from openamer_cli.openamer_account import OpenAmerPortalAccountInfo
 
         monkeypatch.setattr(
-            "openamer_cli.nous_subscription.get_nous_portal_account_info",
-            lambda *a, **k: NousPortalAccountInfo(
+            "openamer_cli.openamer_subscription.get_openamer_portal_account_info",
+            lambda *a, **k: OpenAmerPortalAccountInfo(
                 logged_in=True, source="jwt", fresh=True, paid_service_access=True
             ),
         )
 
         resp = self.client.put(
             "/api/tools/toolsets/browser/provider",
-            json={"provider": "Nous Subscription (Browser Use cloud)"},
+            json={"provider": "OpenAmer Subscription (Browser Use cloud)"},
         )
         assert resp.status_code == 200
         data = resp.json()
         assert data["ok"] is True
-        assert "needs_nous_auth" not in data
+        assert "needs_openamer_auth" not in data
 
-    def test_select_unmanaged_provider_has_no_nous_auth_field(self):
+    def test_select_unmanaged_provider_has_no_openamer_auth_field(self):
         """Non-managed rows never carry the entitlement fields."""
         resp = self.client.put(
             "/api/tools/toolsets/web/provider",
@@ -6543,7 +6543,7 @@ class TestNewEndpoints:
         assert resp.status_code == 200
         data = resp.json()
         assert data["ok"] is True
-        assert "needs_nous_auth" not in data
+        assert "needs_openamer_auth" not in data
         assert "feature" not in data
 
     def test_select_toolset_provider_unknown_toolset_returns_400(self):

@@ -3,7 +3,7 @@
 These cover the bug where `/model ...` stored a session override, but fresh
 agent constructions still resolved model/provider from global config/runtime.
 That let helper agents (and cache-miss main agents) route GPT-5.4 to the wrong
-provider, e.g. Nous instead of OpenAI Codex.
+provider, e.g. OpenAmer instead of OpenAI Codex.
 """
 
 import asyncio

@@ -8,7 +8,7 @@ Covers the CLI half of self-hosted dashboard registration:
   - portal-URL write logic (only when non-default and not already set)
   - portal HTTP error mapping (401/403)
 
-The portal HTTP call and the Nous token resolution are both mocked — this
+The portal HTTP call and the OpenAmer token resolution are both mocked — this
 file proves the CLI wiring + env-write behaviour. The live end-to-end token
 round-trip against the Vercel preview build is a separate manual step.
 """
@@ -46,16 +46,16 @@ class TestFastFails:
     def test_not_logged_in_exits_1_with_setup_hint(self, capsys):
         from openamer_cli.auth import AuthError
 
-        err = AuthError("not logged in", provider="nous", relogin_required=True)
+        err = AuthError("not logged in", provider="openamer", relogin_required=True)
         with patch.object(dr, "cmd_dashboard_register", dr.cmd_dashboard_register):
             with patch(
-                "openamer_cli.auth.resolve_nous_access_token", side_effect=err
+                "openamer_cli.auth.resolve_openamer_access_token", side_effect=err
             ), patch("openamer_cli.config.is_managed", return_value=False):
                 with pytest.raises(SystemExit) as exc:
                     dr.cmd_dashboard_register(_ns())
         assert exc.value.code == 1
         out = capsys.readouterr().out
-        assert "not logged into Nous Portal" in out
+        assert "not logged into OpenAmer Portal" in out
         assert "openamer setup" in out
 
     def test_managed_install_refuses(self, capsys):
@@ -75,7 +75,7 @@ def _fake_http_ok(payload: dict):
 
 
 class TestHappyPath:
-    def _run(self, *, args, account_token="tok_abc", portal="https://portal.nousresearch.com",
+    def _run(self, *, args, account_token="tok_abc", portal="https://portal.openamer.com",
              response=None, captured=None, existing_client_id=None):
         response = response or {
             "client_id": "agent:selfhost-1",
@@ -108,7 +108,7 @@ class TestHappyPath:
             return None
 
         with patch(
-            "openamer_cli.auth.resolve_nous_access_token", return_value=account_token
+            "openamer_cli.auth.resolve_openamer_access_token", return_value=account_token
         ), patch("openamer_cli.config.is_managed", return_value=False), patch.object(
             dr, "_resolve_portal_base_url", return_value=portal
         ), patch(
@@ -158,11 +158,11 @@ class TestHappyPath:
     def test_non_default_portal_is_persisted(self, capsys):
         saved = self._run(
             args=_ns(),
-            portal="https://nous-account-service-git-feat-x.vercel.app",
+            portal="https://openamer-account-service-git-feat-x.vercel.app",
         )
         assert (
             saved["OPENAMER_DASHBOARD_PORTAL_URL"]
-            == "https://nous-account-service-git-feat-x.vercel.app"
+            == "https://openamer-account-service-git-feat-x.vercel.app"
         )
 
 
@@ -315,7 +315,7 @@ class TestCustomPortalPersistence:
             return None
 
         with patch(
-            "openamer_cli.auth.resolve_nous_access_token", return_value="tok"
+            "openamer_cli.auth.resolve_openamer_access_token", return_value="tok"
         ), patch("openamer_cli.config.is_managed", return_value=False), patch.dict(
             dr.os.environ, {}, clear=False
         ), patch.object(
@@ -358,12 +358,12 @@ class TestCustomPortalPersistence:
         # User explicitly asked for the production portal — honour the explicit
         # request and persist it (the no-flag path would skip the default).
         saved = self._run(
-            args=_ns(portal_url="https://portal.nousresearch.com"),
-            portal="https://portal.nousresearch.com",
+            args=_ns(portal_url="https://portal.openamer.com"),
+            portal="https://portal.openamer.com",
             existing_portal=None,
         )
         assert (
-            saved["OPENAMER_DASHBOARD_PORTAL_URL"] == "https://portal.nousresearch.com"
+            saved["OPENAMER_DASHBOARD_PORTAL_URL"] == "https://portal.openamer.com"
         )
 
     def test_explicit_custom_url_equal_to_existing_is_noop(self, capsys):
@@ -379,7 +379,7 @@ class TestCustomPortalPersistence:
         # No custom URL supplied, resolves to default → not written.
         saved = self._run(
             args=_ns(),
-            portal="https://portal.nousresearch.com",
+            portal="https://portal.openamer.com",
             existing_portal=None,
         )
         assert "OPENAMER_DASHBOARD_PORTAL_URL" not in saved
@@ -437,11 +437,11 @@ class TestPublicUrlPersistence:
             return None
 
         with patch(
-            "openamer_cli.auth.resolve_nous_access_token", return_value="tok"
+            "openamer_cli.auth.resolve_openamer_access_token", return_value="tok"
         ), patch("openamer_cli.config.is_managed", return_value=False), patch.dict(
             dr.os.environ, {}, clear=False
         ), patch.object(
-            dr, "_resolve_portal_base_url", return_value="https://portal.nousresearch.com"
+            dr, "_resolve_portal_base_url", return_value="https://portal.openamer.com"
         ), patch(
             "openamer_cli.config.get_env_value", side_effect=fake_get_env_value
         ), patch(
@@ -531,7 +531,7 @@ class TestPublicUrlPersistence:
             saved[key] = value
 
         with patch(
-            "openamer_cli.auth.resolve_nous_access_token", return_value="tok"
+            "openamer_cli.auth.resolve_openamer_access_token", return_value="tok"
         ), patch("openamer_cli.config.is_managed", return_value=False), patch.dict(
             dr.os.environ, {}, clear=False
         ), patch.object(
@@ -564,28 +564,28 @@ class TestPortalResolution:
     def test_falls_back_to_stored_login_portal(self):
         with patch(
             "openamer_cli.auth.get_provider_auth_state",
-            return_value={"portal_base_url": "https://portal.staging-nousresearch.com"},
+            return_value={"portal_base_url": "https://portal.staging-openamer.com"},
         ):
             assert (
                 dr._resolve_portal_base_url(None)
-                == "https://portal.staging-nousresearch.com"
+                == "https://portal.staging-openamer.com"
             )
 
     def test_blank_override_ignored(self):
         with patch(
             "openamer_cli.auth.get_provider_auth_state",
-            return_value={"portal_base_url": "https://portal.staging-nousresearch.com"},
+            return_value={"portal_base_url": "https://portal.staging-openamer.com"},
         ):
             assert (
                 dr._resolve_portal_base_url("   ")
-                == "https://portal.staging-nousresearch.com"
+                == "https://portal.staging-openamer.com"
             )
 
 
 class TestPortalErrors:
     def _run_http_error(self, code, body):
         err = urllib.error.HTTPError(
-            url="https://portal.nousresearch.com/api/oauth/self-hosted-client",
+            url="https://portal.openamer.com/api/oauth/self-hosted-client",
             code=code,
             msg="err",
             hdrs=None,
@@ -593,9 +593,9 @@ class TestPortalErrors:
         )
 
         with patch(
-            "openamer_cli.auth.resolve_nous_access_token", return_value="tok"
+            "openamer_cli.auth.resolve_openamer_access_token", return_value="tok"
         ), patch("openamer_cli.config.is_managed", return_value=False), patch.object(
-            dr, "_resolve_portal_base_url", return_value="https://portal.nousresearch.com"
+            dr, "_resolve_portal_base_url", return_value="https://portal.openamer.com"
         ), patch.object(dr.urllib.request, "urlopen", side_effect=err):
             with pytest.raises(SystemExit) as exc:
                 dr.cmd_dashboard_register(_ns())

@@ -227,8 +227,8 @@ TIPS = [
     "browser_vision with annotate=true overlays numbered labels on interactive elements.",
 
     # --- MCP ---
-    "openamer mcp opens an interactive picker of Nous-approved MCPs you can install in one keystroke.",
-    "openamer mcp catalog lists Nous-approved MCP servers shipped with the repo.",
+    "openamer mcp opens an interactive picker of OpenAmer-approved MCPs you can install in one keystroke.",
+    "openamer mcp catalog lists OpenAmer-approved MCP servers shipped with the repo.",
     "openamer mcp install <name> installs a catalog entry, prompts for credentials, and lets you pick which of its tools to enable.",
     "MCP servers are configured in config.yaml — both stdio and HTTP transports supported.",
     "Per-server tool filtering: tools.include whitelists and tools.exclude blacklists specific tools.",
@@ -263,7 +263,7 @@ TIPS = [
     "Custom providers: save named endpoints in config.yaml under custom_providers.",
     "OPENAMER_EPHEMERAL_SYSTEM_PROMPT injects a system prompt that's never persisted to history.",
     "credential_pool_strategies supports fill_first, round_robin, least_used, and random rotation.",
-    "openamer auth add nous or openamer auth add openai-codex sets up OAuth-based providers.",
+    "openamer auth add openamer or openamer auth add openai-codex sets up OAuth-based providers.",
     "The API server supports both Chat Completions and Responses API with server-side state.",
     "tool_preview_length: 0 in config shows full file paths in the spinner's activity feed.",
     "openamer status --deep runs deeper diagnostic checks across all components.",
@@ -335,7 +335,7 @@ TIPS = [
     "OPENAMER_DEV=1 bypasses container mode detection for local development.",
     "Each MCP server gets its own toolset (mcp-servername) that can be toggled independently via openamer tools.",
     "MCP ${ENV_VAR} placeholders in config are resolved at server spawn — including vars from ~/.openamer/.env.",
-    "Skills from trusted repos (NousResearch) get a 'trusted' security level; community skills get extra scanning.",
+    "Skills from trusted repos (openamer) get a 'trusted' security level; community skills get extra scanning.",
     "The skills quarantine at ~/.openamer/skills/.hub/quarantine/ holds skills pending security review.",
 
     # --- Advanced Slash Commands ---
@@ -371,7 +371,7 @@ TIPS = [
     # --- Credential Pools & Routing ---
     'openamer auth reset <provider> clears all cooldowns and exhaustion flags on a credential pool.',
     'credential_pool_strategies.<provider>: round_robin cycles keys evenly instead of the fill_first default.',
-    'use_gateway: true per-tool routes web, image, tts, or browser through your Nous subscription — no extra keys.',
+    'use_gateway: true per-tool routes web, image, tts, or browser through your OpenAmer subscription — no extra keys.',
     'provider_routing.data_collection: deny excludes data-storing providers on OpenRouter.',
     'provider_routing.require_parameters: true only routes to providers that support every param in your request.',
 

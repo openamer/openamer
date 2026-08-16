@@ -51,7 +51,7 @@ export function requestBillingSettings(): void {
 
 /**
  * The single recovery action for a billing wall, shared by the toast and the
- * in-chat banner so both behave identically: Nous routes to the in-app
+ * in-chat banner so both behave identically: OpenAmer routes to the in-app
  * Settings → Billing surface; a third-party provider deep-links to its own
  * billing page (falling back to the in-app surface only if we have no URL).
  */

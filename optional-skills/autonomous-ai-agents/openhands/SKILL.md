@@ -20,7 +20,7 @@ This skill is the headless-mode wrapper for batch / one-shot delegation. The int
 ## When to Use
 
 - User wants a coding task delegated to OpenHands specifically.
-- User wants a coding agent that can run on a non-Anthropic / non-OpenAI provider (DeepSeek, Qwen, Ollama, vLLM, Nous, etc.) — sibling skills `claude-code` and `codex` are tied to one vendor.
+- User wants a coding agent that can run on a non-Anthropic / non-OpenAI provider (DeepSeek, Qwen, Ollama, vLLM, OpenAmer, etc.) — sibling skills `claude-code` and `codex` are tied to one vendor.
 - Multi-step file edits + shell commands inside a workspace.
 
 For Claude-native, prefer `claude-code`. For OpenAI-native, prefer `codex`. For OpenAmer-native subagents, use `delegate_task`.

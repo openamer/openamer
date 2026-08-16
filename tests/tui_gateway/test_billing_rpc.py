@@ -14,7 +14,7 @@ from decimal import Decimal
 import pytest
 
 import tui_gateway.server as srv
-import openamer_cli.nous_billing as nb
+import openamer_cli.openamer_billing as nb
 import agent.billing_view as bv
 from agent.billing_view import BillingState, CardInfo, MonthlyCap
 
@@ -193,7 +193,7 @@ def test_billing_auto_reload_requires_fields():
 def test_billing_step_up_granted(monkeypatch):
     import openamer_cli.auth as auth
 
-    monkeypatch.setattr(auth, "step_up_nous_billing_scope", lambda **kw: True)
+    monkeypatch.setattr(auth, "step_up_openamer_billing_scope", lambda **kw: True)
     res = _call("billing.step_up", {})
     assert res["ok"] is True and res["granted"] is True
 
@@ -201,6 +201,6 @@ def test_billing_step_up_granted(monkeypatch):
 def test_billing_step_up_downscoped(monkeypatch):
     import openamer_cli.auth as auth
 
-    monkeypatch.setattr(auth, "step_up_nous_billing_scope", lambda **kw: False)
+    monkeypatch.setattr(auth, "step_up_openamer_billing_scope", lambda **kw: False)
     res = _call("billing.step_up", {})
     assert res["ok"] is True and res["granted"] is False

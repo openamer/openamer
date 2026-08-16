@@ -34,7 +34,7 @@ const PET_HEART_CONFIG: Partial<ParticleFieldConfig> = {
   bank: [6, 14]
 }
 
-// Pixel-art heart from @nous-research/ui (14×12), crisp + `currentColor`.
+// Pixel-art heart from @openamer-research/ui (14×12), crisp + `currentColor`.
 const HEART_GLYPH = (
   <svg fill="none" shapeRendering="crispEdges" viewBox="0 0 14 12" xmlns="http://www.w3.org/2000/svg">
     <path

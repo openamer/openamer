@@ -32,7 +32,7 @@ def test_billing_logged_out(cli, monkeypatch, capsys):
     monkeypatch.setattr(bv, "build_billing_state", lambda *a, **kw: BillingState(logged_in=False))
     cli._show_billing("/billing")
     out = capsys.readouterr().out
-    assert "Not logged into Nous Portal" in out
+    assert "Not logged into OpenAmer Portal" in out
     assert "openamer portal" in out
 
 

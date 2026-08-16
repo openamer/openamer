@@ -37,7 +37,7 @@ OpenAmer 会在 `Waiting for callback on ...` 一行打印实际绑定的端口�
 | `xai-oauth`（Grok SuperGrok） | 不适用 | 否——设备代码流程 |
 | `anthropic`（Claude Pro/Max） | 不适用 | 否——粘贴代码流程 |
 | `openai-codex`（ChatGPT Plus/Pro） | 不适用 | 否——设备码流程 |
-| `minimax`、`nous-portal` | 不适用 | 否——设备码流程 |
+| `minimax`、`openamer-portal` | 不适用 | 否——设备码流程 |
 
 如果你的提供商不在表中，则不需要隧道。
 

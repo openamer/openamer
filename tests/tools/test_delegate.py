@@ -1389,7 +1389,7 @@ class TestDelegationCredentialResolution(unittest.TestCase):
     def test_standard_provider_not_overwritten_by_configured_name(self, mock_resolve):
         """Standard (non-custom) providers must still return runtime identity,
         not the configured name, to preserve existing behaviour for openrouter,
-        nous, etc.
+        openamer, etc.
         """
         mock_resolve.return_value = {
             "provider": "openrouter",
@@ -1508,7 +1508,7 @@ class TestDelegationProviderIntegration(unittest.TestCase):
     @patch("tools.delegate_tool._load_config")
     @patch("tools.delegate_tool._resolve_delegation_credentials")
     def test_cross_provider_delegation(self, mock_creds, mock_cfg):
-        """Parent on Nous, subagent on OpenRouter — full credential switch."""
+        """Parent on OpenAmer, subagent on OpenRouter — full credential switch."""
         mock_cfg.return_value = {
             "max_iterations": 45,
             "model": "google/gemini-3-flash-preview",
@@ -1522,9 +1522,9 @@ class TestDelegationProviderIntegration(unittest.TestCase):
             "api_mode": "chat_completions",
         }
         parent = _make_mock_parent(depth=0)
-        parent.provider = "nous"
-        parent.base_url = "https://inference-api.nousresearch.com/v1"
-        parent.api_key = "nous-key-abc"
+        parent.provider = "openamer"
+        parent.base_url = "https://inference-api.openamer.com/v1"
+        parent.api_key = "openamer-key-abc"
 
         with patch("run_agent.AIAgent") as MockAgent:
             mock_child = MagicMock()
@@ -1536,7 +1536,7 @@ class TestDelegationProviderIntegration(unittest.TestCase):
             delegate_task(goal="Cross-provider test", parent_agent=parent)
 
             _, kwargs = MockAgent.call_args
-            # Child should use OpenRouter, NOT Nous
+            # Child should use OpenRouter, NOT OpenAmer
             self.assertEqual(kwargs["provider"], "openrouter")
             self.assertEqual(kwargs["base_url"], "https://openrouter.ai/api/v1")
             self.assertEqual(kwargs["api_key"], "sk-or-key")
@@ -1601,7 +1601,7 @@ class TestDelegationProviderIntegration(unittest.TestCase):
             "api_mode": None,
         }
         parent = _make_mock_parent(depth=0)
-        parent.provider = "nous"
+        parent.provider = "openamer"
         parent.providers_allowed = ["deepseek"]
         parent.providers_ignored = ["deepinfra"]
         parent.providers_order = ["anthropic"]

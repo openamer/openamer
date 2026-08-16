@@ -1,7 +1,7 @@
 name: nemo_relay
 version: "0.1.0"
 description: "Optional NeMo Relay observability for OpenAmer. Opt in with `openamer plugins enable observability/nemo_relay`; OPENAMER_NEMO_RELAY_* env vars configure exports after the plugin is enabled."
-author: NousResearch
+author: openamer
 hooks:
   - on_session_start
   - on_session_end

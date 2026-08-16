@@ -1,6 +1,6 @@
 """Tests for _snapshot_from_credits_state — the dev-fixture /usage renderer.
 
-``build_nous_credits_snapshot`` maps a live portal account; ``_snapshot_from_credits_state``
+``build_openamer_credits_snapshot`` maps a live portal account; ``_snapshot_from_credits_state``
 maps a header-shaped CreditsState (e.g. a OPENAMER_DEV_CREDITS_FIXTURE) into the SAME
 /usage snapshot shape, so the gauge + magnitudes are exercisable offline. These lock
 the gauge math, the verbatim *_usd magnitudes (never parseFloat'd), the depletion line,
@@ -26,7 +26,7 @@ def test_renders_gauge_magnitudes_and_fixture_marker():
         purchased_micros=12_340_000, purchased_usd="12.34",
         denominator_kind="subscription_cap", paid_access=True,
     ))
-    assert snap is not None and snap.provider == "nous"
+    assert snap is not None and snap.provider == "openamer"
 
     win = next(w for w in snap.windows if w.label == "Subscription")
     assert win.used_percent is not None and abs(win.used_percent - 50.0) < 1e-9

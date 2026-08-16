@@ -61,7 +61,7 @@ enable/disable live. Everything on this page is written against the disk door
 (what you and the agent write); [Bundled plugins](#bundled-plugins) notes the two
 differences. No desktop plugins ship in the core tree today — reference demos
 live in the companion
-[`openamer-example-plugins`](https://github.com/NousResearch/openamer-example-plugins)
+[`openamer-example-plugins`](https://github.com/openamer/openamer-example-plugins)
 repo.
 
 ## Quick start — your first plugin
@@ -551,7 +551,7 @@ enable/disable contract as a disk plugin. The two differences:
 
 No desktop plugins ship in the core tree today; the shipped app stays uncluttered
 and demos live in the
-[`openamer-example-plugins`](https://github.com/NousResearch/openamer-example-plugins)
+[`openamer-example-plugins`](https://github.com/openamer/openamer-example-plugins)
 companion repo.
 
 ## Security model

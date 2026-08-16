@@ -46,17 +46,17 @@ import type {
 import { timeAgo } from "@/lib/utils";
 import { Markdown } from "@/components/Markdown";
 import { PlatformsCard } from "@/components/PlatformsCard";
-import { Toast } from "@nous-research/ui/ui/components/toast";
-import { Button } from "@nous-research/ui/ui/components/button";
-import { Checkbox } from "@nous-research/ui/ui/components/checkbox";
-import { ListItem } from "@nous-research/ui/ui/components/list-item";
-import { Segmented } from "@nous-research/ui/ui/components/segmented";
-import { Spinner } from "@nous-research/ui/ui/components/spinner";
-import { Badge } from "@nous-research/ui/ui/components/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@nous-research/ui/ui/components/card";
+import { Toast } from "@openamer-research/ui/ui/components/toast";
+import { Button } from "@openamer-research/ui/ui/components/button";
+import { Checkbox } from "@openamer-research/ui/ui/components/checkbox";
+import { ListItem } from "@openamer-research/ui/ui/components/list-item";
+import { Segmented } from "@openamer-research/ui/ui/components/segmented";
+import { Spinner } from "@openamer-research/ui/ui/components/spinner";
+import { Badge } from "@openamer-research/ui/ui/components/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@openamer-research/ui/ui/components/card";
 import { DeleteConfirmDialog } from "@/components/DeleteConfirmDialog";
-import { useConfirmDelete } from "@nous-research/ui/hooks/use-confirm-delete";
-import { Input } from "@nous-research/ui/ui/components/input";
+import { useConfirmDelete } from "@openamer-research/ui/hooks/use-confirm-delete";
+import { Input } from "@openamer-research/ui/ui/components/input";
 import {
   Dialog,
   DialogContent,
@@ -64,9 +64,9 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@nous-research/ui/ui/components/dialog";
+} from "@openamer-research/ui/ui/components/dialog";
 import { useSystemActions } from "@/contexts/useSystemActions";
-import { useToast } from "@nous-research/ui/hooks/use-toast";
+import { useToast } from "@openamer-research/ui/hooks/use-toast";
 import { useI18n } from "@/i18n";
 import { usePageHeader } from "@/contexts/usePageHeader";
 import { PluginSlot } from "@/plugins";

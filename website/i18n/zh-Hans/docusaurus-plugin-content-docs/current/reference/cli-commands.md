@@ -45,7 +45,7 @@ openamer [global-options] <command> [subcommand/options]
 | `openamer setup` | 全部或部分配置的交互式设置向导。 |
 | `openamer whatsapp` | 配置并配对 WhatsApp 桥接。 |
 | `openamer slack` | Slack 辅助工具（当前功能：生成将每条命令注册为原生斜杠命令的 app manifest）。 |
-| `openamer auth` | 管理凭据——添加、列出、删除、重置、设置策略。处理 Codex/Nous/Anthropic 的 OAuth 流程。 |
+| `openamer auth` | 管理凭据——添加、列出、删除、重置、设置策略。处理 Codex/OpenAmer/Anthropic 的 OAuth 流程。 |
 | `openamer login` / `logout` | **已弃用** — 请改用 `openamer auth`。 |
 | `openamer status` | 显示 agent、auth 和平台状态。 |
 | `openamer cron` | 检查并触发 cron 调度器。 |
@@ -69,7 +69,7 @@ openamer [global-options] <command> [subcommand/options]
 | `openamer acp` | 将 OpenAmer 作为 ACP 服务器运行，用于编辑器集成。 |
 | `openamer mcp` | 管理 MCP 服务器配置，并将 OpenAmer 作为 MCP 服务器运行。 |
 | `openamer plugins` | 管理 OpenAmer Agent plugin（安装、启用、禁用、删除）。 |
-| `openamer portal` | Nous Portal 状态、订阅链接和 Tool Gateway 路由。参见 [Tool Gateway](../user-guide/features/tool-gateway.md)。 |
+| `openamer portal` | OpenAmer Portal 状态、订阅链接和 Tool Gateway 路由。参见 [Tool Gateway](../user-guide/features/tool-gateway.md)。 |
 | `openamer tools` | 按平台配置已启用的工具。 |
 | `openamer computer-use` | 安装或检查 cua-driver 后端（macOS Computer Use）。 |
 | `openamer sessions` | 浏览、导出、修剪、重命名和删除会话。 |
@@ -95,7 +95,7 @@ openamer chat [options]
 | `-q`, `--query "..."` | 单次非交互式 prompt。 |
 | `-m`, `--model <model>` | 覆盖本次运行的模型。 |
 | `-t`, `--toolsets <csv>` | 启用逗号分隔的 toolset 集合。 |
-| `--provider <provider>` | 强制指定 provider：`auto`、`openrouter`、`nous`、`openai-codex`、`copilot-acp`、`copilot`、`anthropic`、`gemini`、`huggingface`、`novita`（别名 `novita-ai`、`novitaai`）、`openai-api`、`zai`、`kimi-coding`、`kimi-coding-cn`、`minimax`、`minimax-cn`、`minimax-oauth`、`kilocode`、`xiaomi`、`arcee`、`gmi`、`alibaba`、`alibaba-coding-plan`（别名 `alibaba_coding`）、`deepseek`、`nvidia`、`ollama-cloud`、`xai`（别名 `grok`）、`xai-oauth`（别名 `grok-oauth`）、`qwen-oauth`、`bedrock`、`opencode-zen`、`opencode-go`、`azure-foundry`、`lmstudio`、`stepfun`、`tencent-tokenhub`（别名 `tencent`、`tokenhub`）。 |
+| `--provider <provider>` | 强制指定 provider：`auto`、`openrouter`、`openamer`、`openai-codex`、`copilot-acp`、`copilot`、`anthropic`、`gemini`、`huggingface`、`novita`（别名 `novita-ai`、`novitaai`）、`openai-api`、`zai`、`kimi-coding`、`kimi-coding-cn`、`minimax`、`minimax-cn`、`minimax-oauth`、`kilocode`、`xiaomi`、`arcee`、`gmi`、`alibaba`、`alibaba-coding-plan`（别名 `alibaba_coding`）、`deepseek`、`nvidia`、`ollama-cloud`、`xai`（别名 `grok`）、`xai-oauth`（别名 `grok-oauth`）、`qwen-oauth`、`bedrock`、`opencode-zen`、`opencode-go`、`azure-foundry`、`lmstudio`、`stepfun`、`tencent-tokenhub`（别名 `tencent`、`tokenhub`）。 |
 | `-s`, `--skills <name>` | 为会话预加载一个或多个 skill（可重复或逗号分隔）。 |
 | `-v`, `--verbose` | 详细输出。 |
 | `-Q`, `--quiet` | 程序化模式：抑制横幅/spinner/工具预览。 |
@@ -159,7 +159,7 @@ openamer model
 
 在以下情况使用此命令：
 - **添加新 provider**（OpenRouter、Anthropic、Copilot、DeepSeek、自定义等）
-- 登录基于 OAuth 的 provider（Anthropic、Copilot、Codex、Nous Portal）
+- 登录基于 OAuth 的 provider（Anthropic、Copilot、Codex、OpenAmer Portal）
 - 输入或更新 API 密钥
 - 从 provider 特定的模型列表中选择
 - 配置自定义/自托管端点
@@ -279,7 +279,7 @@ openamer setup [model|tts|terminal|gateway|tools|agent] [--non-interactive] [--r
 | `--non-interactive` | 使用默认值/环境变量，不显示提示。 |
 | `--reset` | 在设置前将配置重置为默认值。 |
 | `--reconfigure` | 向后兼容别名——在已有安装上裸运行 `openamer setup` 现在默认执行此操作。 |
-| `--portal` | 一键 Nous Portal 设置：通过 OAuth 登录，将 Nous 设为推理 provider，并选择加入 [Tool Gateway](../user-guide/features/tool-gateway.md)。跳过向导其余部分。 |
+| `--portal` | 一键 OpenAmer Portal 设置：通过 OAuth 登录，将 OpenAmer 设为推理 provider，并选择加入 [Tool Gateway](../user-guide/features/tool-gateway.md)。跳过向导其余部分。 |
 
 ## `openamer portal`
 
@@ -287,13 +287,13 @@ openamer setup [model|tts|terminal|gateway|tools|agent] [--non-interactive] [--r
 openamer portal [status|open|tools]
 ```
 
-检查 Nous Portal 认证、Tool Gateway 路由，并访问订阅页面。不带子命令时运行 `status`。
+检查 OpenAmer Portal 认证、Tool Gateway 路由，并访问订阅页面。不带子命令时运行 `status`。
 
 | 子命令 | 说明 |
 |------------|-------------|
 | `status`（默认） | Portal 认证状态 + 每个工具的 Tool Gateway 路由摘要。不带子命令时也会显示。 |
-| `open` | 在默认浏览器中打开 `portal.nousresearch.com/manage-subscription`。 |
-| `tools` | 列出每个 Tool Gateway 合作伙伴（Firecrawl、FAL、OpenAI TTS、Browser Use、Modal）及哪些通过 Nous 路由。 |
+| `open` | 在默认浏览器中打开 `portal.openamer.com/manage-subscription`。 |
+| `tools` | 列出每个 Tool Gateway 合作伙伴（Firecrawl、FAL、OpenAI TTS、Browser Use、Modal）及哪些通过 OpenAmer 路由。 |
 
 关于 gateway 本身的配置，请参阅 [Tool Gateway](../user-guide/features/tool-gateway.md)。关于一键设置路径，请参阅上方的 `openamer setup --portal`。
 
@@ -536,7 +536,7 @@ api_keys:
   openrouter           set
   openai               not set
   anthropic            set
-  nous                 not set
+  openamer                 not set
   firecrawl            set
   ...
 

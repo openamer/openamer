@@ -31,7 +31,7 @@ description: "配置、扩展或贡献 OpenAmer Agent"
 
 # OpenAmer Agent
 
-OpenAmer Agent 是 Nous Research 开发的开源 AI agent 框架，可在终端、消息平台和 IDE 中运行。它与 Claude Code（Anthropic）、Codex（OpenAI）和 OpenClaw 同属一类——使用工具调用（tool calling）与系统交互的自主编码和任务执行 agent。OpenAmer 支持任意 LLM 提供商（OpenRouter、Anthropic、OpenAI、DeepSeek、本地模型及 15+ 其他提供商），可在 Linux、macOS 和 WSL 上运行。
+OpenAmer Agent 是 OpenAmer 开发的开源 AI agent 框架，可在终端、消息平台和 IDE 中运行。它与 Claude Code（Anthropic）、Codex（OpenAI）和 OpenClaw 同属一类——使用工具调用（tool calling）与系统交互的自主编码和任务执行 agent。OpenAmer 支持任意 LLM 提供商（OpenRouter、Anthropic、OpenAI、DeepSeek、本地模型及 15+ 其他提供商），可在 Linux、macOS 和 WSL 上运行。
 
 OpenAmer 的差异化特性：
 
@@ -98,7 +98,7 @@ openamer chat [flags]
   -q, --query TEXT          Single query, non-interactive
   -m, --model MODEL         Model (e.g. anthropic/claude-sonnet-4)
   -t, --toolsets LIST       Comma-separated toolsets
-  --provider PROVIDER       Force provider (openrouter, anthropic, nous, etc.)
+  --provider PROVIDER       Force provider (openrouter, anthropic, openamer, etc.)
   -v, --verbose             Verbose output
   -Q, --quiet               Suppress banner, spinner, tool previews
   --checkpoints             Enable filesystem checkpoints (/rollback)
@@ -118,7 +118,7 @@ openamer config env-path      Print .env path
 openamer config check         Check for missing/outdated config
 openamer config migrate       Update config with new options
 openamer auth                 交互式凭据管理器
-openamer auth add PROVIDER    添加 OAuth 或 API key 凭据（例如 nous、openai-codex、qwen-oauth）
+openamer auth add PROVIDER    添加 OAuth 或 API key 凭据（例如 openamer、openai-codex、qwen-oauth）
 openamer auth list            列出已存储的凭据
 openamer auth remove PROVIDER 移除已存储的凭据
 openamer doctor [--fix]       Check dependencies and config
@@ -386,7 +386,7 @@ Profiles 使用 `~/.openamer/profiles/<name>/`，布局相同。
 |----------|------|-------------|
 | OpenRouter | API key | `OPENROUTER_API_KEY` |
 | Anthropic | API key | `ANTHROPIC_API_KEY` |
-| Nous Portal | OAuth | `openamer auth` |
+| OpenAmer Portal | OAuth | `openamer auth` |
 | OpenAI Codex | OAuth | `openamer auth` |
 | GitHub Copilot | Token | `COPILOT_GITHUB_TOKEN` |
 | Google Gemini | API key | `GOOGLE_API_KEY` 或 `GEMINI_API_KEY` |

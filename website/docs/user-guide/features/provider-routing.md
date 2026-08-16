@@ -7,7 +7,7 @@ sidebar_position: 7
 
 # Provider Routing
 
-When using [OpenRouter](https://openrouter.ai) or [your hosted provider](/integrations/nous-portal) as your LLM provider, OpenAmer Agent supports **provider routing** — fine-grained control over which underlying AI providers handle your requests and how they're prioritized.
+When using [OpenRouter](https://openrouter.ai) or [your hosted provider](/integrations/openamer-portal) as your LLM provider, OpenAmer Agent supports **provider routing** — fine-grained control over which underlying AI providers handle your requests and how they're prioritized.
 
 OpenRouter routes requests to many providers (e.g., Anthropic, Google, AWS Bedrock, Together AI). Provider routing lets you optimize for cost, speed, quality, or enforce specific provider requirements.
 

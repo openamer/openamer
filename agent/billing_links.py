@@ -20,7 +20,7 @@ from utils import base_url_host_matches
 class BillingBlock:
     """Structured billing-wall descriptor shared across every surface.
 
-    ``is_nous`` is the routing bit: Nous has a first-class in-app billing surface
+    ``is_nous`` is the routing bit: OpenAmer has a first-class in-app billing surface
     (desktop Settings → Billing, TUI/CLI ``/topup``), so surfaces prefer that over
     ``billing_url``; third-party providers have no in-app flow, so ``billing_url``
     is the deep link the user actually needs.
@@ -70,21 +70,21 @@ _PROVIDERS: tuple[_Provider, ...] = (
 _BY_SLUG: dict[str, _Provider] = {slug: p for p in _PROVIDERS for slug in p.slugs}
 
 
-def is_nous_inference_route(provider: str, base_url: str) -> bool:
-    """True when the failing route is the Nous-managed inference gateway."""
-    if (provider or "").strip().lower() == "nous":
+def is_openamer_inference_route(provider: str, base_url: str) -> bool:
+    """True when the failing route is the OpenAmer-managed inference gateway."""
+    if (provider or "").strip().lower() == "openamer":
         return True
-    return base_url_host_matches(str(base_url or ""), "inference-api.nousresearch.com")
+    return base_url_host_matches(str(base_url or ""), "inference-api.openamer.com")
 
 
-def _nous_billing_url() -> Optional[str]:
-    """Best-effort Nous portal billing URL (text-surface fallback; Nous prefers the in-app flow)."""
+def _openamer_billing_url() -> Optional[str]:
+    """Best-effort OpenAmer portal billing URL (text-surface fallback; OpenAmer prefers the in-app flow)."""
     try:
-        from openamer_cli.nous_account import nous_portal_billing_url
+        from openamer_cli.openamer_account import openamer_portal_billing_url
 
-        return nous_portal_billing_url(None)
+        return openamer_portal_billing_url(None)
     except Exception:
-        return "https://portal.nousresearch.com/billing"
+        return "https://portal.openamer.com/billing"
 
 
 def _resolve_provider_link(slug: str, base_url: str) -> tuple[str, Optional[str]]:
@@ -117,8 +117,8 @@ def build_billing_block(
     slug = (provider or "").strip().lower()
     model = (model or "").strip()
 
-    if is_nous_inference_route(slug, base_url):
-        return BillingBlock(slug or "nous", "Nous Portal", model, _nous_billing_url(), True, message or "")
+    if is_openamer_inference_route(slug, base_url):
+        return BillingBlock(slug or "openamer", "OpenAmer Portal", model, _openamer_billing_url(), True, message or "")
 
     label, url = _resolve_provider_link(slug, base_url)
     return BillingBlock(slug, label, model, url, False, message or "")

@@ -9,7 +9,7 @@ description: "Browser-based administration panel for managing configuration, API
 The web dashboard is a browser-based UI for managing your OpenAmer Agent installation. Instead of editing YAML files or running CLI commands, you can configure settings, manage API keys, and monitor sessions from a clean web interface.
 
 :::tip
-Hosted-mode auth uses your hosted provider OAuth; if you also want the dashboard to talk to a real backend, `openamer setup --portal` wires up the model and tool gateway too. See [your hosted provider](/integrations/nous-portal).
+Hosted-mode auth uses your hosted provider OAuth; if you also want the dashboard to talk to a real backend, `openamer setup --portal` wires up the model and tool gateway too. See [your hosted provider](/integrations/openamer-portal).
 :::
 
 ## Quick Start
@@ -310,7 +310,7 @@ block in `config.yaml` that `openamer mcp` reads from.
 - **Remove** — delete a server from the config
 - Secret-shaped env values are redacted in the list view
 
-**Catalog:** browse the Nous-approved MCP servers (the bundled `optional-mcps/`
+**Catalog:** browse the OpenAmer-approved MCP servers (the bundled `optional-mcps/`
 catalog) and install any of them with one click. Entries that need API keys
 prompt for them inline; the values go to `.env`. This is the same catalog
 `openamer mcp catalog` / `openamer mcp install` use.
@@ -518,7 +518,7 @@ same auth gate as the rest of `/api/`.
 | `POST /api/mcp/servers/{name}/test` | Connect, list tools, disconnect |
 | `PUT /api/mcp/servers/{name}/enabled` | Enable / disable a server |
 | `DELETE /api/mcp/servers/{name}` | Remove a server |
-| `GET /api/mcp/catalog` | Browse the Nous-approved MCP catalog |
+| `GET /api/mcp/catalog` | Browse the OpenAmer-approved MCP catalog |
 | `POST /api/mcp/catalog/install` | Install a catalog entry (with required env) |
 | `GET /api/messaging/platforms` | List every messaging channel with status + per-platform setup fields |
 | `PUT /api/messaging/platforms/{id}` | Configure a channel. Body: `{enabled?, env?, clear_env?}` (env writes to `.env`, enabled to `config.yaml`) |
@@ -560,7 +560,7 @@ same auth gate as the rest of `/api/`.
 When the dashboard is bound to a public or non-loopback address — anything other than `127.0.0.1` / `localhost` — OpenAmer Agent engages an auth gate. Every request must carry a verified session cookie or it's bounced to the login page. Three providers ship in the box:
 
 - **[Username/password](#usernamepassword-provider-no-oauth-idp)** — the simplest way to put auth on a self-hosted / on-prem / homelab dashboard. No external identity provider. **Use it only on a trusted network or behind a VPN — not for public-internet exposure.**
-- **[OAuth (your hosted provider)](#default-provider-nous-research)** — for hosted deployments and any dashboard reachable over the public internet, and the recommended path for a [remote OpenAmer Desktop connection](#connecting-openamer-desktop-to-a-remote-backend). Every login is verified against your a hosted provider account, so this is the provider suitable for internet-facing use.
+- **[OAuth (your hosted provider)](#default-provider-openamer-research)** — for hosted deployments and any dashboard reachable over the public internet, and the recommended path for a [remote OpenAmer Desktop connection](#connecting-openamer-desktop-to-a-remote-backend). Every login is verified against your a hosted provider account, so this is the provider suitable for internet-facing use.
 - **[Self-hosted OIDC](#self-hosted-oidc-provider)** — for bringing your own identity provider via standard OpenID Connect (Keycloak, Auth0, Okta, Google, GitHub via an OIDC bridge, etc.). No your hosted provider involved; suitable for public-internet exposure when fronted by a conformant OIDC server.
 
 Operator-owned dashboards bound to loopback are unaffected — no auth, no login page.
@@ -589,7 +589,7 @@ When you run `openamer dashboard --host 0.0.0.0` **interactively** (a real termi
 
 ### Default provider: the OpenAmer project
 
-The bundled `plugins/dashboard_auth/nous` plugin is **always installed** and auto-loaded. It auto-registers a `DashboardAuthProvider` named `nous` when a client ID is configured.
+The bundled `plugins/dashboard_auth/openamer` plugin is **always installed** and auto-loaded. It auto-registers a `DashboardAuthProvider` named `openamer` when a client ID is configured.
 
 Because every login is verified against your hosted provider and protected by your a hosted provider account, **the a hosted provider provider is the one suitable for exposing a dashboard to the public internet.**
 
@@ -605,7 +605,7 @@ To use the a hosted provider provider you need an OAuth client ID (shape `agent:
   # …writes OPENAMER_DASHBOARD_OAUTH_CLIENT_ID to ~/.openamer/.env
   ```
 
-- **GUI — the Local Dashboards page.** Open [`/local-dashboards`](https://portal.nousresearch.com/local-dashboards) in the your hosted provider to register, name, manage, and revoke self-hosted dashboards from the browser. Copy the resulting `agent:{id}` client ID into `OPENAMER_DASHBOARD_OAUTH_CLIENT_ID` (env) or `dashboard.oauth.client_id` (config.yaml). This is also where you revoke a dashboard registered via the CLI.
+- **GUI — the Local Dashboards page.** Open [`/local-dashboards`](https://portal.openamer.com/local-dashboards) in the your hosted provider to register, name, manage, and revoke self-hosted dashboards from the browser. Copy the resulting `agent:{id}` client ID into `OPENAMER_DASHBOARD_OAUTH_CLIENT_ID` (env) or `dashboard.oauth.client_id` (config.yaml). This is also where you revoke a dashboard registered via the CLI.
 
 #### Configuration
 
@@ -636,7 +636,7 @@ Refusing to bind dashboard to 0.0.0.0 — the OAuth auth gate engages on
 non-loopback binds, but no auth providers are registered.
 
 Bundled providers reported these issues:
-  • nous: OPENAMER_DASHBOARD_OAUTH_CLIENT_ID is not set (and
+  • openamer: OPENAMER_DASHBOARD_OAUTH_CLIENT_ID is not set (and
     dashboard.oauth.client_id in config.yaml is empty). The your hosted provider
     provisions this env var (shape 'agent:{instance_id}') when it
     deploys a OpenAmer Agent instance — set it to your provisioned
@@ -649,7 +649,7 @@ networks).
 
 #### Worked example: the OpenAmer project
 
-From a logged-in OpenAmer install to a Nous-gated dashboard in three steps.
+From a logged-in OpenAmer install to a OpenAmer-gated dashboard in three steps.
 
 **1. Log in and register the dashboard.** `openamer dashboard register` uses your existing a hosted provider login to provision an OAuth client and writes `OPENAMER_DASHBOARD_OAUTH_CLIENT_ID` into `~/.openamer/.env` for you:
 
@@ -660,7 +660,7 @@ openamer dashboard register
 # …writes OPENAMER_DASHBOARD_OAUTH_CLIENT_ID to ~/.openamer/.env
 ```
 
-**2. Run the dashboard on a reachable address.** A non-loopback bind without `--insecure` engages the OAuth gate, and the `client_id` just written activates the `nous` provider:
+**2. Run the dashboard on a reachable address.** A non-loopback bind without `--insecure` engages the OAuth gate, and the `client_id` just written activates the `openamer` provider:
 
 ```bash
 openamer dashboard --host 0.0.0.0 --port 9119 --no-open
@@ -671,10 +671,10 @@ openamer dashboard --host 0.0.0.0 --port 9119 --no-open
 ```bash
 curl -s http://<host>:9119/api/status | jq '.auth_required, .auth_providers'
 # true
-# ["nous"]
+# ["openamer"]
 ```
 
-`GET /api/auth/me` then returns the verified session (`provider: nous`). For an internet-facing host, register with `--redirect-uri https://openamer.example.com/auth/callback` and set `OPENAMER_DASHBOARD_PUBLIC_URL` so the OAuth callback resolves to your public URL (see [Public URL override](#public-url-override)).
+`GET /api/auth/me` then returns the verified session (`provider: openamer`). For an internet-facing host, register with `--redirect-uri https://openamer.example.com/auth/callback` and set `OPENAMER_DASHBOARD_PUBLIC_URL` so the OAuth callback resolves to your public URL (see [Public URL override](#public-url-override)).
 
 ### Username/password provider (no OAuth IDP)
 
@@ -683,7 +683,7 @@ If you don't want to wire up an OAuth identity provider — a self-hosted "just 
 It plugs into the same gate as the OAuth provider: the gate engages on a non-loopback bind without `--insecure`, the login page renders a credential form for this provider (instead of a "Log in with X" button), and everything downstream of login — session cookies, transparent refresh, WS tickets, logout, the audit log — is identical to the OAuth path. Sessions are stateless HMAC-signed tokens the provider mints itself, so there's **no database and no external IDP**. Password hashing uses stdlib `scrypt` (no third-party dependency).
 
 :::warning Use this on trusted networks only — not the public internet
-The username/password provider is intended for self-hosted / on-prem / homelab dashboards on a **trusted network**, or reachable only over a **VPN**. It protects a single shared credential with no external identity provider, MFA, or per-user accounts behind it, so it is **not suitable for exposing a dashboard directly to the public internet**. For an internet-facing dashboard, use the [the OpenAmer project provider](#default-provider-nous-research) (or your own [self-hosted OIDC](#self-hosted-oidc-provider) / [custom OAuth](#custom-providers) provider) instead.
+The username/password provider is intended for self-hosted / on-prem / homelab dashboards on a **trusted network**, or reachable only over a **VPN**. It protects a single shared credential with no external identity provider, MFA, or per-user accounts behind it, so it is **not suitable for exposing a dashboard directly to the public internet**. For an internet-facing dashboard, use the [the OpenAmer project provider](#default-provider-openamer-research) (or your own [self-hosted OIDC](#self-hosted-oidc-provider) / [custom OAuth](#custom-providers) provider) instead.
 :::
 
 #### Configuration
@@ -753,7 +753,7 @@ curl -s http://<host>:9119/api/status | jq '.auth_required, .auth_providers'
 # ["basic"]
 ```
 
-`GET /api/auth/me` then returns the verified session (`provider: basic`). Keep this behind a VPN — see the warning above; for a public host use the [the OpenAmer project](#default-provider-nous-research) or [self-hosted OIDC](#self-hosted-oidc-provider) provider instead.
+`GET /api/auth/me` then returns the verified session (`provider: basic`). Keep this behind a VPN — see the warning above; for a public host use the [the OpenAmer project](#default-provider-openamer-research) or [self-hosted OIDC](#self-hosted-oidc-provider) provider instead.
 
 #### Writing your own password provider
 
@@ -912,11 +912,11 @@ Validation rejects values without `http://` / `https://` scheme, without a host,
 
 ### OAuth flow
 
-The provider implements the [your hosted provider OAuth contract v1](https://github.com/NousResearch/nous-account-service/blob/main/docs/agent-dashboard-oauth-contract.md) — authorization-code grant with PKCE (S256):
+The provider implements the [your hosted provider OAuth contract v1](https://github.com/openamer/openamer-account-service/blob/main/docs/agent-dashboard-oauth-contract.md) — authorization-code grant with PKCE (S256):
 
 1. User hits `/` without a session cookie → gate redirects to `/login`.
-2. Login page shows a "Continue with the OpenAmer project" button → `/auth/login?provider=nous`.
-3. Server stashes PKCE state in a short-lived cookie, redirects user to `https://portal.nousresearch.com/oauth/authorize?…`.
+2. Login page shows a "Continue with the OpenAmer project" button → `/auth/login?provider=openamer`.
+3. Server stashes PKCE state in a short-lived cookie, redirects user to `https://portal.openamer.com/oauth/authorize?…`.
 4. User authenticates with Portal, lands at `/auth/callback?code=…&state=…`.
 5. Server exchanges the code for an access token at `POST /api/oauth/token`, verifies the JWT signature against the Portal's JWKS (`/.well-known/jwks.json`), and sets the `openamer_session_at` cookie.
 6. User is redirected to `/` (or to the original deep-link path via the `next=` query parameter).
@@ -935,7 +935,7 @@ All three are `Path=/` and `SameSite=Lax`. The `Secure` flag is set when the das
 
 ### Logout
 
-The sidebar widget shows `Logged in as <user_id…> via nous` with a logout icon. Clicking it POSTs `/auth/logout`, which clears all dashboard-auth cookies and redirects back to `/login`.
+The sidebar widget shows `Logged in as <user_id…> via openamer` with a logout icon. Clicking it POSTs `/auth/logout`, which clears all dashboard-auth cookies and redirects back to `/login`.
 
 ### Audit log
 
@@ -943,7 +943,7 @@ Every login start, success, failure, and session-verify failure is written as a 
 
 ### Custom providers
 
-To plug a non-Nous OAuth provider (e.g. Google, GitHub, custom OIDC), create a plugin that registers a `DashboardAuthProvider`:
+To plug a non-OpenAmer OAuth provider (e.g. Google, GitHub, custom OIDC), create a plugin that registers a `DashboardAuthProvider`:
 
 ```python
 # ~/.openamer/plugins/dashboard-auth-myidp/__init__.py
@@ -969,7 +969,7 @@ The login page lists all registered providers; multiple providers can be stacked
 
 Alongside interactive human login (session cookies + refresh), the `DashboardAuthProvider` ABC supports a **non-interactive, service-to-service** capability via `supports_token = True` + `verify_token(token=...)`. When a provider opts in, an inbound `Authorization: Bearer <token>` is verified and, on success, a `TokenPrincipal` is attached to the request (`request.state.token_principal`) for the endpoints that provider marks token-authable — no cookie, no redirect, no refresh.
 
-The bundled first consumer is the **drain** provider (`plugins/dashboard_auth/drain`): `nous-account-service` provisions a per-agent secret via `OPENAMER_DASHBOARD_DRAIN_SECRET`, and the provider verifies inbound bearer tokens against it with a constant-time compare, registering `/api/gateway/drain` as token-authable. It **fails closed** — a weak/short secret (< 256 bits) is rejected at registration and the endpoint stays disabled; it's a no-op when the env var is unset. Behavioural knobs (`scope`, `min_secret_chars`) live under `dashboard.drain_auth` in `config.yaml`.
+The bundled first consumer is the **drain** provider (`plugins/dashboard_auth/drain`): `openamer-account-service` provisions a per-agent secret via `OPENAMER_DASHBOARD_DRAIN_SECRET`, and the provider verifies inbound bearer tokens against it with a constant-time compare, registering `/api/gateway/drain` as token-authable. It **fails closed** — a weak/short secret (< 256 bits) is rejected at registration and the endpoint stays disabled; it's a no-op when the env var is unset. Behavioural knobs (`scope`, `min_secret_chars`) live under `dashboard.drain_auth` in `config.yaml`.
 
 Custom providers can implement `supports_token`/`verify_token` the same way to expose their own machine-authable endpoints.
 
@@ -992,7 +992,7 @@ openamer dashboard --host 0.0.0.0
 # Hit /api/status to see the gate state:
 curl -s http://127.0.0.1:9119/api/status | jq '.auth_required, .auth_providers'
 # true
-# ["nous"]
+# ["openamer"]
 ```
 
 The dashboard's React StatusPage shows the same fields under "Web server". A sidebar AuthWidget surfaces the current identity once you've signed in.
@@ -1003,7 +1003,7 @@ OpenAmer Desktop can drive a OpenAmer backend running on another machine (a VPS,
 
 You protect the remote dashboard with one of the bundled auth providers, and the desktop app signs in against whichever one the backend advertises. For a backend reachable beyond your own machine — a VPS, a public host, anything internet-facing — the recommended provider is **OAuth (your hosted provider)** (register it with [`openamer dashboard register`](#registering-a-dashboard) and sign in with *Sign in with the OpenAmer project*). The bundled [username/password provider](#usernamepassword-provider-no-oauth-idp) is the quickest option when the backend is on a trusted LAN or reachable only over a VPN, but is **not suitable for direct public-internet exposure**. Binding the dashboard to a non-loopback address engages its auth gate; once signed in, Desktop reuses the session for the chat WebSocket automatically — there is no token to copy or paste.
 
-The recipe below uses the username/password path because it's the quickest to stand up on a trusted network; for the OAuth path see [Default provider: the OpenAmer project](#default-provider-nous-research).
+The recipe below uses the username/password path because it's the quickest to stand up on a trusted network; for the OAuth path see [Default provider: the OpenAmer project](#default-provider-openamer-research).
 
 ### On the backend (the remote machine)
 
@@ -1102,7 +1102,7 @@ Built-in themes:
 |-------|-----------|
 | **OpenAmer Teal** (`default`) | Dark teal + cream, system fonts, comfortable spacing |
 | **OpenAmer Teal (Large)** (`default-large`) | Same as default with 18px text and roomier spacing |
-| **Nous Blue** (`nous-blue`) | Nous-branded blue accents with airy spacing |
+| **OpenAmer Blue** (`openamer-blue`) | OpenAmer-branded blue accents with airy spacing |
 | **Midnight** (`midnight`) | Deep blue-violet, Inter + JetBrains Mono |
 | **Ember** (`ember`) | Warm crimson + bronze, Spectral serif + IBM Plex Mono |
 | **Mono** (`mono`) | Grayscale, IBM Plex, compact |

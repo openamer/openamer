@@ -1,6 +1,6 @@
 """Tests for SessionDB.get_conversation_root — stable conversation id resolution.
 
-The conversation root is the Nous Portal ``conversation=`` tag value: one
+The conversation root is the OpenAmer Portal ``conversation=`` tag value: one
 stable id per user-facing conversation, surviving context-compression
 session rotation and covering delegate subagent trees.
 """

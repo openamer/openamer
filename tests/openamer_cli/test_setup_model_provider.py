@@ -8,7 +8,7 @@ that the setup wizard correctly syncs config from disk after the call.
 from __future__ import annotations
 
 from openamer_cli.config import load_config, save_config, save_env_value
-from openamer_cli.nous_subscription import NousFeatureState, NousSubscriptionFeatures
+from openamer_cli.openamer_subscription import OpenAmerFeatureState, OpenAmerSubscriptionFeatures
 from openamer_cli.setup import _print_setup_summary, setup_model_provider
 
 
@@ -293,18 +293,18 @@ def test_setup_summary_shows_camofox_when_browser_feature_is_camofox(tmp_path, m
     monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
     _clear_provider_env(monkeypatch)
     monkeypatch.setattr(
-        "openamer_cli.setup.get_nous_subscription_features",
-        lambda config: NousSubscriptionFeatures(
+        "openamer_cli.setup.get_openamer_subscription_features",
+        lambda config: OpenAmerSubscriptionFeatures(
             subscribed=False,
-            nous_auth_present=False,
+            openamer_auth_present=False,
             provider_is_nous=False,
             features={
-                "web": NousFeatureState("web", "Web tools", True, False, False, False, False, True, ""),
-                "image_gen": NousFeatureState("image_gen", "Image generation", True, False, False, False, False, True, ""),
-                "video_gen": NousFeatureState("video_gen", "Video generation", False, False, False, False, False, False, ""),
-                "tts": NousFeatureState("tts", "OpenAI TTS", True, False, False, False, False, True, ""),
-                "browser": NousFeatureState("browser", "Browser automation", True, True, True, False, True, True, "Camofox"),
-                "modal": NousFeatureState("modal", "Modal execution", False, False, False, False, False, True, "local"),
+                "web": OpenAmerFeatureState("web", "Web tools", True, False, False, False, False, True, ""),
+                "image_gen": OpenAmerFeatureState("image_gen", "Image generation", True, False, False, False, False, True, ""),
+                "video_gen": OpenAmerFeatureState("video_gen", "Video generation", False, False, False, False, False, False, ""),
+                "tts": OpenAmerFeatureState("tts", "OpenAI TTS", True, False, False, False, False, True, ""),
+                "browser": OpenAmerFeatureState("browser", "Browser automation", True, True, True, False, True, True, "Camofox"),
+                "modal": OpenAmerFeatureState("modal", "Modal execution", False, False, False, False, False, True, "local"),
             },
         ),
     )
@@ -321,18 +321,18 @@ def test_setup_summary_does_not_mark_incomplete_browserbase_as_available(tmp_pat
     _clear_provider_env(monkeypatch)
     monkeypatch.setenv("BROWSERBASE_API_KEY", "bb-key")
     monkeypatch.setattr(
-        "openamer_cli.setup.get_nous_subscription_features",
-        lambda config: NousSubscriptionFeatures(
+        "openamer_cli.setup.get_openamer_subscription_features",
+        lambda config: OpenAmerSubscriptionFeatures(
             subscribed=False,
-            nous_auth_present=False,
+            openamer_auth_present=False,
             provider_is_nous=False,
             features={
-                "web": NousFeatureState("web", "Web tools", True, False, False, False, False, True, ""),
-                "image_gen": NousFeatureState("image_gen", "Image generation", True, False, False, False, False, True, ""),
-                "video_gen": NousFeatureState("video_gen", "Video generation", False, False, False, False, False, False, ""),
-                "tts": NousFeatureState("tts", "OpenAI TTS", True, False, False, False, False, True, ""),
-                "browser": NousFeatureState("browser", "Browser automation", True, False, False, False, False, True, "Browserbase"),
-                "modal": NousFeatureState("modal", "Modal execution", False, False, False, False, False, True, "local"),
+                "web": OpenAmerFeatureState("web", "Web tools", True, False, False, False, False, True, ""),
+                "image_gen": OpenAmerFeatureState("image_gen", "Image generation", True, False, False, False, False, True, ""),
+                "video_gen": OpenAmerFeatureState("video_gen", "Video generation", False, False, False, False, False, False, ""),
+                "tts": OpenAmerFeatureState("tts", "OpenAI TTS", True, False, False, False, False, True, ""),
+                "browser": OpenAmerFeatureState("browser", "Browser automation", True, False, False, False, False, True, "Browserbase"),
+                "modal": OpenAmerFeatureState("modal", "Modal execution", False, False, False, False, False, True, "local"),
             },
         ),
     )
@@ -353,7 +353,7 @@ def test_setup_summary_local_browser_unavailable_without_chromium(
     render as unavailable with an install hint — not a false 'available'.
 
     Unlike the mocked-feature tests above, this drives the real
-    ``get_nous_subscription_features`` so the surface stays aligned with the
+    ``get_openamer_subscription_features`` so the surface stays aligned with the
     runtime gate in ``tools.browser_tool.check_browser_requirements``.
     """
     monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
@@ -368,9 +368,9 @@ def test_setup_summary_local_browser_unavailable_without_chromium(
     save_config(cfg)
 
     # Only stub the readiness probes; the feature resolver itself is real.
-    monkeypatch.setattr("openamer_cli.nous_subscription._has_agent_browser", lambda: True)
+    monkeypatch.setattr("openamer_cli.openamer_subscription._has_agent_browser", lambda: True)
     monkeypatch.setattr(
-        "openamer_cli.nous_subscription.get_nous_portal_account_info",
+        "openamer_cli.openamer_subscription.get_openamer_portal_account_info",
         lambda *a, **k: None,
     )
     monkeypatch.setattr("tools.browser_tool._chromium_installed", lambda: False)

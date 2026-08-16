@@ -99,11 +99,11 @@ class TestAuxiliaryConfigBridge:
     def test_web_extract_bridged(self, monkeypatch):
         config = {
             "auxiliary": {
-                "web_extract": {"provider": "nous", "model": "gemini-2.5-flash"},
+                "web_extract": {"provider": "openamer", "model": "gemini-2.5-flash"},
             }
         }
         _run_auxiliary_bridge(config, monkeypatch)
-        assert os.environ.get("AUXILIARY_WEB_EXTRACT_PROVIDER") == "nous"
+        assert os.environ.get("AUXILIARY_WEB_EXTRACT_PROVIDER") == "openamer"
         assert os.environ.get("AUXILIARY_WEB_EXTRACT_MODEL") == "gemini-2.5-flash"
 
     def test_direct_endpoint_bridged(self, monkeypatch):
@@ -164,13 +164,13 @@ class TestAuxiliaryConfigBridge:
         config = {
             "auxiliary": {
                 "vision": {"provider": "openrouter", "model": "google/gemini-2.5-flash"},
-                "web_extract": {"provider": "nous", "model": "gemini-3-flash"},
+                "web_extract": {"provider": "openamer", "model": "gemini-3-flash"},
             }
         }
         _run_auxiliary_bridge(config, monkeypatch)
         assert os.environ.get("AUXILIARY_VISION_PROVIDER") == "openrouter"
         assert os.environ.get("AUXILIARY_VISION_MODEL") == "google/gemini-2.5-flash"
-        assert os.environ.get("AUXILIARY_WEB_EXTRACT_PROVIDER") == "nous"
+        assert os.environ.get("AUXILIARY_WEB_EXTRACT_PROVIDER") == "openamer"
         assert os.environ.get("AUXILIARY_WEB_EXTRACT_MODEL") == "gemini-3-flash"
 
     def test_whitespace_in_values_stripped(self, monkeypatch):

@@ -6,7 +6,7 @@ the same inventory + live enable/disable contract as runtime plugins.
 
 None ship in-tree today — reference/demo plugins (the counter example, the
 gateway-pill 1:1 rebuild, the runtime-loader hello world) live in the companion
-[`openamer-example-plugins`](https://github.com/NousResearch/openamer-example-plugins)
+[`openamer-example-plugins`](https://github.com/openamer/openamer-example-plugins)
 repo so the shipped app stays uncluttered.
 
 User- and agent-authored plugins load at runtime from

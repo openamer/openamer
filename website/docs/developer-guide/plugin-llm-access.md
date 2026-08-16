@@ -186,11 +186,11 @@ def _paste_to_tasks(ctx, raw_args: str) -> str:
 ```
 
 A third worked example, this time with image input, lives in the
-[`openamer-example-plugins`](https://github.com/NousResearch/openamer-example-plugins/tree/main/plugin-llm-example)
+[`openamer-example-plugins`](https://github.com/openamer/openamer-example-plugins/tree/main/plugin-llm-example)
 repo (companion repo for reference plugins — not bundled with
 openamer-agent itself). For the async surface (`acomplete()` /
 `acomplete_structured()` with `asyncio.gather()`), see
-[`plugin-llm-async-example`](https://github.com/NousResearch/openamer-example-plugins/tree/main/plugin-llm-async-example)
+[`plugin-llm-async-example`](https://github.com/openamer/openamer-example-plugins/tree/main/plugin-llm-async-example)
 in the same repo.
 
 ## When to use which
@@ -459,7 +459,7 @@ own model call — for any reason, structured or not — `ctx.llm`.
 * Implementation: [`agent/plugin_llm.py`](https://github.com/openamer/openamer/blob/main/agent/plugin_llm.py)
 * Tests: [`tests/agent/test_plugin_llm.py`](https://github.com/openamer/openamer/blob/main/tests/agent/test_plugin_llm.py)
 * Reference plugins (companion repo):
-  * [`plugin-llm-example`](https://github.com/NousResearch/openamer-example-plugins/tree/main/plugin-llm-example) — sync structured extraction with image input
-  * [`plugin-llm-async-example`](https://github.com/NousResearch/openamer-example-plugins/tree/main/plugin-llm-async-example) — async with `asyncio.gather()`
+  * [`plugin-llm-example`](https://github.com/openamer/openamer-example-plugins/tree/main/plugin-llm-example) — sync structured extraction with image input
+  * [`plugin-llm-async-example`](https://github.com/openamer/openamer-example-plugins/tree/main/plugin-llm-async-example) — async with `asyncio.gather()`
 * Auxiliary client (the engine under the hood): see
   [Provider Runtime](/developer-guide/provider-runtime).

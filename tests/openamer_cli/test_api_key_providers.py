@@ -137,8 +137,8 @@ class TestProviderRegistry:
 
     def test_oauth_providers_unchanged(self):
         """Ensure we didn't break the existing OAuth providers."""
-        assert "nous" in PROVIDER_REGISTRY
-        assert PROVIDER_REGISTRY["nous"].auth_type == "oauth_device_code"
+        assert "openamer" in PROVIDER_REGISTRY
+        assert PROVIDER_REGISTRY["openamer"].auth_type == "oauth_device_code"
         assert "openai-codex" in PROVIDER_REGISTRY
         assert PROVIDER_REGISTRY["openai-codex"].auth_type == "oauth_external"
 
@@ -155,7 +155,7 @@ from openamer_cli.auth import PROVIDER_REGISTRY as _REGISTRY
 
 _EXTRA_ENV_VARS = (
     # Checked directly in resolve_provider("auto"), not via the registry.
-    "OPENROUTER_API_KEY", "NOUS_API_KEY",
+    "OPENROUTER_API_KEY", "OPENAMER_API_KEY",
     # Base URLs / paths that influence detection but aren't api_key_env_vars.
     "LM_BASE_URL", "KIMI_BASE_URL", "STEPFUN_BASE_URL", "KILOCODE_BASE_URL",
     "GMI_BASE_URL", "OPENAI_BASE_URL",
@@ -413,7 +413,7 @@ class TestApiKeyProviderStatus:
         assert status["provider"] == "copilot-acp"
 
     def test_non_api_key_provider(self):
-        status = get_api_key_provider_status("nous")
+        status = get_api_key_provider_status("openamer")
         assert status["configured"] is False
 
 
@@ -592,7 +592,7 @@ class TestResolveApiKeyProviderCredentials:
 
     def test_resolve_invalid_provider_raises(self):
         with pytest.raises(AuthError):
-            resolve_api_key_provider_credentials("nous")
+            resolve_api_key_provider_credentials("openamer")
 
     def test_glm_key_priority(self, monkeypatch):
         """GLM_API_KEY takes priority over ZAI_API_KEY."""

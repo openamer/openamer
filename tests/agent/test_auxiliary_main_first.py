@@ -1,6 +1,6 @@
 """Regression tests for the ``auto`` → main-model-first policy.
 
-Prior to this change, aggregator users (OpenRouter / Nous Portal) had aux
+Prior to this change, aggregator users (OpenRouter / OpenAmer Portal) had aux
 tasks routed through a cheap provider-side default (Gemini Flash) while
 non-aggregator users got their main model.  This made behavior inconsistent
 and surprising — users picked Claude but got Gemini Flash summaries.
@@ -111,11 +111,11 @@ class TestResolveAutoMainFirst:
         # aggregator's base_url.
         assert mock_resolve.call_args.kwargs.get("explicit_base_url") in (None, "")
 
-    def test_nous_main_uses_main_model_for_aux(self, monkeypatch):
-        """Nous Portal main user → aux uses their picked Nous model, not free-tier MiMo."""
+    def test_openamer_main_uses_main_model_for_aux(self, monkeypatch):
+        """OpenAmer Portal main user → aux uses their picked OpenAmer model, not free-tier MiMo."""
         # No OPENROUTER_API_KEY → ensures if main failed we'd fall to chain
         with patch(
-            "agent.auxiliary_client._read_main_provider", return_value="nous",
+            "agent.auxiliary_client._read_main_provider", return_value="openamer",
         ), patch(
             "agent.auxiliary_client._read_main_model",
             return_value="anthropic/claude-opus-4.6",
@@ -131,7 +131,7 @@ class TestResolveAutoMainFirst:
 
         assert client is mock_client
         assert model == "anthropic/claude-opus-4.6"
-        assert mock_resolve.call_args.args[0] == "nous"
+        assert mock_resolve.call_args.args[0] == "openamer"
 
     def test_non_aggregator_main_still_uses_main(self, monkeypatch):
         """Non-aggregator main (DeepSeek) → unchanged behavior, main model used."""
@@ -375,10 +375,10 @@ class TestResolveVisionMainFirst:
         assert mock_resolve.call_args.args[1] == "anthropic/claude-sonnet-4.6"
         assert mock_resolve.call_args.kwargs.get("is_vision") is True
 
-    def test_nous_main_vision_uses_paid_nous_vision_backend(self):
-        """Paid Nous main → aux vision uses the dedicated Nous vision backend."""
+    def test_openamer_main_vision_uses_paid_openamer_vision_backend(self):
+        """Paid OpenAmer main → aux vision uses the dedicated OpenAmer vision backend."""
         with patch(
-            "agent.auxiliary_client._read_main_provider", return_value="nous",
+            "agent.auxiliary_client._read_main_provider", return_value="openamer",
         ), patch(
             "agent.auxiliary_client._read_main_model",
             return_value="openai/gpt-5",
@@ -393,14 +393,14 @@ class TestResolveVisionMainFirst:
 
             provider, client, model = resolve_vision_provider_client()
 
-        assert provider == "nous"
+        assert provider == "openamer"
         assert client is not None
         assert model == "google/gemini-3-flash-preview"
 
-    def test_nous_main_vision_uses_free_tier_nous_vision_backend(self):
-        """Free-tier Nous main → aux vision uses MiMo omni, not the text main model."""
+    def test_openamer_main_vision_uses_free_tier_openamer_vision_backend(self):
+        """Free-tier OpenAmer main → aux vision uses MiMo omni, not the text main model."""
         with patch(
-            "agent.auxiliary_client._read_main_provider", return_value="nous",
+            "agent.auxiliary_client._read_main_provider", return_value="openamer",
         ), patch(
             "agent.auxiliary_client._read_main_model",
             return_value="xiaomi/mimo-v2-pro",
@@ -415,7 +415,7 @@ class TestResolveVisionMainFirst:
 
             provider, client, model = resolve_vision_provider_client()
 
-        assert provider == "nous"
+        assert provider == "openamer"
         assert client is not None
         assert model == "xiaomi/mimo-v2-omni"
 
@@ -524,7 +524,7 @@ class TestResolveVisionMainFirst:
         assert "default_headers" not in mock_openai.call_args.kwargs
 
     def test_main_unavailable_vision_falls_through_to_aggregators(self):
-        """Main provider fails → fall back to OpenRouter/Nous strict backends."""
+        """Main provider fails → fall back to OpenRouter/OpenAmer strict backends."""
         fallback_client = MagicMock()
         with patch(
             "agent.auxiliary_client._read_main_provider", return_value="deepseek",
@@ -545,7 +545,7 @@ class TestResolveVisionMainFirst:
             provider, client, model = resolve_vision_provider_client()
 
         assert client is fallback_client
-        assert provider in {"openrouter", "nous"}
+        assert provider in {"openrouter", "openamer"}
 
     def test_explicit_provider_override_still_wins(self):
         """Explicit config override bypasses main-first policy."""
@@ -556,19 +556,19 @@ class TestResolveVisionMainFirst:
             return_value="anthropic/claude-opus-4.6",
         ), patch(
             "agent.auxiliary_client._resolve_task_provider_model",
-            return_value=("nous", None, None, None, None),  # explicit override
+            return_value=("openamer", None, None, None, None),  # explicit override
         ), patch(
             "agent.auxiliary_client._resolve_strict_vision_backend"
         ) as mock_strict:
-            mock_strict.return_value = (MagicMock(), "nous-default-model")
+            mock_strict.return_value = (MagicMock(), "openamer-default-model")
 
             from agent.auxiliary_client import resolve_vision_provider_client
 
             provider, client, model = resolve_vision_provider_client()
 
-        # Explicit "nous" override → uses strict backend, NOT main model path
-        assert provider == "nous"
-        mock_strict.assert_called_once_with("nous", None)
+        # Explicit "openamer" override → uses strict backend, NOT main model path
+        assert provider == "openamer"
+        mock_strict.assert_called_once_with("openamer", None)
 
 
 # ── Vision — custom provider endpoint credential passthrough ────────────────
@@ -580,7 +580,7 @@ class TestResolveVisionCustomProvider:
     Regression: a ``custom:<name>`` main provider resolves to the bare
     runtime provider id ``"custom"``.  ``resolve_provider_client("custom")``
     has no built-in endpoint, so without forwarding the live base_url/api_key
-    it returns ``(None, None)`` and vision falls through to OpenRouter / Nous,
+    it returns ``(None, None)`` and vision falls through to OpenRouter / OpenAmer,
     which an offline / aggregator-less user has never configured — breaking
     vision entirely with ``No LLM provider configured for task=vision
     provider=auto``.  The fix recovers the live endpoint that

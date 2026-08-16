@@ -9,7 +9,7 @@ from unittest.mock import patch
 
 import pytest
 
-from openamer_cli.nous_account import NousPortalAccountInfo
+from openamer_cli.openamer_account import OpenAmerPortalAccountInfo
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -65,17 +65,17 @@ def _restore_tool_and_agent_modules():
 
 
 @pytest.fixture(autouse=True)
-def _enable_managed_nous_tools(monkeypatch):
-    """Ensure managed_nous_tools_enabled() returns True even after module reloads.
+def _enable_managed_openamer_tools(monkeypatch):
+    """Ensure managed_openamer_tools_enabled() returns True even after module reloads.
 
     The _install_fake_tools_package() helper resets and reimports tool modules,
     so a simple monkeypatch on tool_backend_helpers doesn't survive.  We patch
     the *source* modules that the reimported modules will import from — both
-    openamer_cli.nous_account — so the function body returns True.
+    openamer_cli.openamer_account — so the function body returns True.
     """
     monkeypatch.setattr(
-        "openamer_cli.nous_account.get_nous_portal_account_info",
-        lambda: NousPortalAccountInfo(
+        "openamer_cli.openamer_account.get_openamer_portal_account_info",
+        lambda: OpenAmerPortalAccountInfo(
             logged_in=True,
             source="jwt",
             fresh=False,
@@ -200,7 +200,7 @@ def test_browser_use_explicit_local_mode_stays_local_even_when_managed_gateway_i
     env.pop("BROWSER_USE_API_KEY", None)
     env.update({
         "OPENAMER_HOME": str(tmp_path),
-        "TOOL_GATEWAY_USER_TOKEN": "nous-token",
+        "TOOL_GATEWAY_USER_TOKEN": "openamer-token",
         "BROWSER_USE_GATEWAY_URL": "http://127.0.0.1:3009",
     })
 
@@ -220,7 +220,7 @@ def test_browserbase_does_not_use_gateway_only_configuration():
     env.pop("BROWSERBASE_API_KEY", None)
     env.pop("BROWSERBASE_PROJECT_ID", None)
     env.update({
-        "TOOL_GATEWAY_USER_TOKEN": "nous-token",
+        "TOOL_GATEWAY_USER_TOKEN": "openamer-token",
         "BROWSERBASE_GATEWAY_URL": "http://127.0.0.1:3009",
     })
 
@@ -239,7 +239,7 @@ def test_browser_use_availability_skips_refresh_for_expired_cached_gateway_token
     monkeypatch.delenv("TOOL_GATEWAY_USER_TOKEN", raising=False)
     expired_at = "2000-01-01T00:00:00+00:00"
     (tmp_path / "auth.json").write_text(
-        '{"providers":{"nous":{"access_token":"expired-token","refresh_token":"refresh-token","expires_at":"%s"}}}'
+        '{"providers":{"openamer":{"access_token":"expired-token","refresh_token":"refresh-token","expires_at":"%s"}}}'
         % expired_at,
         encoding="utf-8",
     )
@@ -250,7 +250,7 @@ def test_browser_use_availability_skips_refresh_for_expired_cached_gateway_token
         return "fresh-token"
 
     monkeypatch.setattr(
-        "openamer_cli.auth.resolve_nous_access_token",
+        "openamer_cli.auth.resolve_openamer_access_token",
         _record_refresh,
     )
 
@@ -277,7 +277,7 @@ def test_browser_use_managed_gateway_adds_idempotency_key_and_persists_external_
     env = os.environ.copy()
     env.pop("BROWSER_USE_API_KEY", None)
     env.update({
-        "TOOL_GATEWAY_USER_TOKEN": "nous-token",
+        "TOOL_GATEWAY_USER_TOKEN": "openamer-token",
         "BROWSER_USE_GATEWAY_URL": "http://127.0.0.1:3009",
     })
 
@@ -304,7 +304,7 @@ def test_browser_use_managed_gateway_adds_idempotency_key_and_persists_external_
             session = provider.create_session("task-browser-use-managed")
 
     sent_headers = post.call_args.kwargs["headers"]
-    assert sent_headers["X-Browser-Use-API-Key"] == "nous-token"
+    assert sent_headers["X-Browser-Use-API-Key"] == "openamer-token"
     assert sent_headers["X-Idempotency-Key"].startswith("browser-use-session-create:")
     sent_payload = post.call_args.kwargs["json"]
     assert sent_payload["timeout"] == 5
@@ -317,7 +317,7 @@ def test_browser_use_managed_gateway_reuses_pending_idempotency_key_after_timeou
     env = os.environ.copy()
     env.pop("BROWSER_USE_API_KEY", None)
     env.update({
-        "TOOL_GATEWAY_USER_TOKEN": "nous-token",
+        "TOOL_GATEWAY_USER_TOKEN": "openamer-token",
         "BROWSER_USE_GATEWAY_URL": "http://127.0.0.1:3009",
     })
 
@@ -365,7 +365,7 @@ def test_browser_use_managed_gateway_preserves_pending_idempotency_key_for_in_pr
     env = os.environ.copy()
     env.pop("BROWSER_USE_API_KEY", None)
     env.update({
-        "TOOL_GATEWAY_USER_TOKEN": "nous-token",
+        "TOOL_GATEWAY_USER_TOKEN": "openamer-token",
         "BROWSER_USE_GATEWAY_URL": "http://127.0.0.1:3009",
     })
 
@@ -426,7 +426,7 @@ def test_browser_use_managed_gateway_uses_new_idempotency_key_for_a_new_session_
     env = os.environ.copy()
     env.pop("BROWSER_USE_API_KEY", None)
     env.update({
-        "TOOL_GATEWAY_USER_TOKEN": "nous-token",
+        "TOOL_GATEWAY_USER_TOKEN": "openamer-token",
         "BROWSER_USE_GATEWAY_URL": "http://127.0.0.1:3009",
     })
 

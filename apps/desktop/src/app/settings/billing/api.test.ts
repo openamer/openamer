@@ -33,8 +33,8 @@ describe('createBillingApi', () => {
       min_usd: '10',
       monthly_cap: null,
       ok: true,
-      org_name: 'Nous',
-      portal_url: 'https://portal.nousresearch.com/billing',
+      org_name: 'OpenAmer',
+      portal_url: 'https://portal.openamer.com/billing',
       role: 'OWNER'
     } satisfies BillingStateResponse
 
@@ -52,7 +52,7 @@ describe('createBillingApi', () => {
       error: {
         kind: 'no_payment_method',
         message: 'No saved card.',
-        portal_url: 'https://portal.nousresearch.com/billing',
+        portal_url: 'https://portal.openamer.com/billing',
         retry_after: 30
       },
       ok: false
@@ -66,7 +66,7 @@ describe('createBillingApi', () => {
       refusal: {
         kind: 'no_payment_method',
         message: 'No saved card.',
-        portalUrl: 'https://portal.nousresearch.com/billing',
+        portalUrl: 'https://portal.openamer.com/billing',
         retryAfter: 30
       }
     })
@@ -79,7 +79,7 @@ describe('createBillingApi', () => {
       message: 'Monthly spend cap reached.',
       ok: false,
       payload: { remainingUsd: '4.50' },
-      portal_url: 'https://portal.nousresearch.com/billing'
+      portal_url: 'https://portal.openamer.com/billing'
     })
 
     const api = createBillingApi(requestGatewayMock)
@@ -91,7 +91,7 @@ describe('createBillingApi', () => {
         kind: 'monthly_cap_exceeded',
         message: 'Monthly spend cap reached.',
         payload: { remainingUsd: '4.50' },
-        portalUrl: 'https://portal.nousresearch.com/billing'
+        portalUrl: 'https://portal.openamer.com/billing'
       }
     })
     expect(requestGatewayMock).toHaveBeenCalledWith('billing.auto_reload', {

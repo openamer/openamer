@@ -11,7 +11,7 @@ export interface BillingDialogCopy {
  * Copy for the out-of-credits confirm dialog (the TUI's billing wall). The
  * dialog is the actionable layer — the full provider guidance already lands in
  * the transcript — so `detail` stays to one concise, non-truncating line and the
- * confirm button carries the recovery: Nous → `/topup`, other providers → their
+ * confirm button carries the recovery: OpenAmer → `/topup`, other providers → their
  * billing page (or `/model` to switch when we have no URL). Pure + exported so
  * the wording is unit-tested without driving the gateway.
  */
@@ -20,8 +20,8 @@ export function billingDialogCopy(block: BillingBlock): BillingDialogCopy {
     return {
       cancelLabel: 'Dismiss',
       confirmLabel: 'Top up',
-      detail: 'Your Nous credit balance is exhausted — top up to keep going.',
-      title: 'Out of Nous credits'
+      detail: 'Your OpenAmer credit balance is exhausted — top up to keep going.',
+      title: 'Out of OpenAmer credits'
     }
   }
 

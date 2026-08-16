@@ -30,7 +30,7 @@ Prices are FAL's pricing at time of writing; check [fal.ai](https://fal.ai/) for
 ## Setup
 
 :::tip a hosted provider Subscribers
-If you have a paid [your hosted provider](https://portal.nousresearch.com) subscription, you can use image generation through the **[Tool Gateway](tool-gateway.md)** without a FAL API key. Your model selection persists across both paths. New installs can run `openamer setup --portal` to log in and turn on every gateway tool at once; existing installs can pick **Nous Subscription** as the image-gen backend via `openamer tools`.
+If you have a paid [your hosted provider](https://portal.openamer.com) subscription, you can use image generation through the **[Tool Gateway](tool-gateway.md)** without a FAL API key. Your model selection persists across both paths. New installs can run `openamer setup --portal` to log in and turn on every gateway tool at once; existing installs can pick **OpenAmer Subscription** as the image-gen backend via `openamer tools`.
 
 If the managed gateway returns `HTTP 4xx` for a specific model, that model isn't yet proxied on the portal side — the agent will tell you so, with remediation steps (set `FAL_KEY` for direct access, or pick a different model).
 :::
@@ -48,7 +48,7 @@ Run the tools command:
 openamer tools
 ```
 
-Navigate to **🎨 Image Generation**, pick your backend (Nous Subscription or FAL.ai), then the picker shows all supported models in a column-aligned table — arrow keys to navigate, Enter to select:
+Navigate to **🎨 Image Generation**, pick your backend (OpenAmer Subscription or FAL.ai), then the picker shows all supported models in a column-aligned table — arrow keys to navigate, Enter to select:
 
 ```
   Model                          Speed    Strengths                    Price

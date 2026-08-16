@@ -9,7 +9,7 @@ description: >
   Feishu/Lark chats and the OpenAmer agent. Supports text, images, video,
   voice, documents, threads, DM pairing, group @mention gating, drive
   comment events, and meeting invites.
-author: NousResearch
+author: openamer
 requires_env:
   - name: FEISHU_APP_ID
     description: "Feishu/Lark app ID"

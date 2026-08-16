@@ -343,7 +343,7 @@ def _slot_runtime(slot: dict[str, Any]) -> dict[str, Any]:
         # so provider branches that add auth refresh / request metadata /
         # request-shape adapters — anthropic OAuth (Bearer + anthropic-beta),
         # openai-codex Responses wrapping + Cloudflare headers, xai-oauth,
-        # bedrock SigV4 signing, nous Portal tags — still fire. Those branches
+        # bedrock SigV4 signing, openamer Portal tags — still fire. Those branches
         # re-resolve their own credentials by name and ignore a forwarded
         # base_url/api_key, so forwarding is safe even for a placeholder key
         # (bedrock's "aws-sdk"). We used to maintain a name-preservation set here
@@ -783,7 +783,7 @@ def _run_references_parallel(
     workers = min(_MAX_REFERENCE_WORKERS, len(reference_models))
     # Reference slots run on bare executor threads, which start with an empty
     # contextvars.Context — propagate the parent turn's context (approval
-    # callbacks + the Nous Portal conversation tag) into each worker so
+    # callbacks + the OpenAmer Portal conversation tag) into each worker so
     # advisor calls attribute to the same conversation as the acting turn.
     from tools.thread_context import propagate_context_to_thread
 

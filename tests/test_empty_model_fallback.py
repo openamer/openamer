@@ -35,8 +35,8 @@ class TestGetDefaultModelForProvider:
         # Custom providers don't have entries in _PROVIDER_MODELS
         assert get_default_model_for_provider("some-random-custom") == ""
 
-    def test_nous_silent_default_is_not_the_expensive_flagship(self):
-        """Nous Portal is a metered aggregator whose curated list is ordered
+    def test_openamer_silent_default_is_not_the_expensive_flagship(self):
+        """OpenAmer Portal is a metered aggregator whose curated list is ordered
         most-capable-first, so entry [0] is the priciest flagship
         (anthropic/claude-fable-5). The silent fallback (provider set, no model)
         must NOT escalate to it — otherwise an unconfigured profile silently
@@ -48,21 +48,21 @@ class TestGetDefaultModelForProvider:
             get_preferred_silent_default_model,
         )
 
-        result = get_default_model_for_provider("nous")
-        assert result, "nous must resolve to a usable default model"
+        result = get_default_model_for_provider("openamer")
+        assert result, "openamer must resolve to a usable default model"
         assert "opus" not in result.lower(), (
             f"silent default escalated to an expensive flagship: {result!r}"
         )
         assert "claude" not in result.lower(), (
             f"silent default escalated to an expensive flagship: {result!r}"
         )
-        assert result != _PROVIDER_MODELS["nous"][0], (
+        assert result != _PROVIDER_MODELS["openamer"][0], (
             "silent default must not be the most-capable/priciest catalog entry"
         )
         # The default must resolve through the catalog-label helper and point
         # at a model that actually exists in the curated catalog.
-        assert result == get_preferred_silent_default_model("nous")
-        assert result in _PROVIDER_MODELS["nous"]
+        assert result == get_preferred_silent_default_model("openamer")
+        assert result in _PROVIDER_MODELS["openamer"]
 
     def test_catalog_label_overrides_constant(self):
         """A ``"default": true`` label in the cached catalog manifest wins over
@@ -77,12 +77,12 @@ class TestGetDefaultModelForProvider:
             return_value="qwen/qwen3.7-plus",
         ):
             assert (
-                models_mod.get_preferred_silent_default_model("nous")
+                models_mod.get_preferred_silent_default_model("openamer")
                 == "qwen/qwen3.7-plus"
             )
-            # nous catalog carries qwen3.7-plus, so the full resolver follows.
+            # openamer catalog carries qwen3.7-plus, so the full resolver follows.
             assert (
-                models_mod.get_default_model_for_provider("nous")
+                models_mod.get_default_model_for_provider("openamer")
                 == "qwen/qwen3.7-plus"
             )
 
@@ -113,33 +113,33 @@ class TestGetDefaultModelForProvider:
             "openamer_cli.model_catalog.get_default_model_from_cache",
             return_value="does-not-exist-model",
         ):
-            result = models_mod.get_default_model_for_provider("nous")
-            assert result == models_mod._PROVIDER_MODELS["nous"][0]
+            result = models_mod.get_default_model_for_provider("openamer")
+            assert result == models_mod._PROVIDER_MODELS["openamer"][0]
 
 
 class TestDetectStaticProviderCostSafeDefault:
     """detect_static_provider_for_model must apply the same cost-safe default
     as get_default_model_for_provider when a bare provider name is typed as a
-    model (e.g. ``/model nous``)."""
+    model (e.g. ``/model openamer``)."""
 
-    def test_bare_nous_does_not_escalate_to_flagship(self):
+    def test_bare_openamer_does_not_escalate_to_flagship(self):
         from openamer_cli.models import (
             _PROVIDER_MODELS,
             get_default_model_for_provider,
             detect_static_provider_for_model,
         )
 
-        result = detect_static_provider_for_model("nous", "openrouter")
+        result = detect_static_provider_for_model("openamer", "openrouter")
         assert result is not None
         provider, model = result
-        assert provider == "nous"
+        assert provider == "openamer"
         # Must match the cost-safe silent default, NOT the priciest catalog
-        # entry [0]. Regression: this path returned _PROVIDER_MODELS["nous"][0]
+        # entry [0]. Regression: this path returned _PROVIDER_MODELS["openamer"][0]
         # directly, re-introducing the billing footgun on the interactive
-        # ``/model nous`` path.
-        assert model == get_default_model_for_provider("nous")
+        # ``/model openamer`` path.
+        assert model == get_default_model_for_provider("openamer")
         assert "opus" not in model.lower()
-        assert model != _PROVIDER_MODELS["nous"][0]
+        assert model != _PROVIDER_MODELS["openamer"][0]
 
     def test_provider_without_override_still_uses_first_model(self):
         """Providers outside _SILENT_DEFAULT_PROVIDERS are unchanged."""

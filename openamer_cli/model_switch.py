@@ -179,22 +179,22 @@ def _bare_custom_provider_def(current_base_url: str) -> Optional[ProviderDef]:
 # ---------------------------------------------------------------------------
 
 _OPENAMER_MODEL_WARNING = (
-    "Nous Research OpenAmer 3 & 4 models are NOT agentic and are not designed "
+    "OpenAmer OpenAmer 3 & 4 models are NOT agentic and are not designed "
     "for use with OpenAmer Agent. They lack the tool-calling capabilities "
     "required for agent workflows. Consider using an agentic model instead "
     "(Claude, GPT, Gemini, DeepSeek, etc.)."
 )
 
-# Match only the real Nous Research OpenAmer 3 / OpenAmer 4 chat families.
+# Match only the real OpenAmer OpenAmer 3 / OpenAmer 4 chat families.
 # The previous substring check (`"openamer" in name.lower()`) false-positived on
 # unrelated local Modelfiles like ``openamer-brain:qwen3-14b-ctx16k`` that just
 # happen to carry "openamer" in their tag but are fully tool-capable.
 #
 # Positive examples the regex must match:
-#   NousResearch/OpenAmer-3-Llama-3.1-70B, openamer-4-405b, openrouter/openamer3:70b
+#   openamer/OpenAmer-3-Llama-3.1-70B, openamer-4-405b, openrouter/openamer3:70b
 # Negative examples it must NOT match:
 #   openamer-brain:qwen3-14b-ctx16k, qwen3:14b, claude-opus-4-6
-_NOUS_OPENAMER_NON_AGENTIC_RE = re.compile(
+_openamer_OPENAMER_NON_AGENTIC_RE = re.compile(
     r"(?:^|[/:])openamer[-_ ]?[34](?:[-_.:]|$)",
     re.IGNORECASE,
 )
@@ -245,8 +245,8 @@ def format_model_for_display(model_name: str) -> str:
 
 
 # ---------------------------------------------------------------------------
-def is_nous_openamer_non_agentic(model_name: str) -> bool:
-    """Return True if *model_name* is a real Nous OpenAmer 3/4 chat model.
+def is_openamer_openamer_non_agentic(model_name: str) -> bool:
+    """Return True if *model_name* is a real OpenAmer OpenAmer 3/4 chat model.
 
     Used to decide whether to surface the non-agentic warning at startup.
     Callers in :mod:`cli.py` and here should go through this single helper
@@ -254,12 +254,12 @@ def is_nous_openamer_non_agentic(model_name: str) -> bool:
     """
     if not model_name:
         return False
-    return bool(_NOUS_OPENAMER_NON_AGENTIC_RE.search(model_name))
+    return bool(_openamer_OPENAMER_NON_AGENTIC_RE.search(model_name))
 
 
 def _check_openamer_model_warning(model_name: str) -> str:
-    """Return a warning string if *model_name* is a Nous OpenAmer 3/4 chat model."""
-    if is_nous_openamer_non_agentic(model_name):
+    """Return a warning string if *model_name* is a OpenAmer OpenAmer 3/4 chat model."""
+    if is_openamer_openamer_non_agentic(model_name):
         return _OPENAMER_MODEL_WARNING
     return ""
 
@@ -819,10 +819,10 @@ def _resolve_alias_fallback(
 ) -> Optional[tuple[str, str, str]]:
     """Try to resolve an alias on the user's authenticated providers.
 
-    Falls back to ``("openrouter", "nous")`` only when no authenticated
+    Falls back to ``("openrouter", "openamer")`` only when no authenticated
     providers are supplied (backwards compat for non-interactive callers).
     """
-    providers = authenticated_providers or ("openrouter", "nous")
+    providers = authenticated_providers or ("openrouter", "openamer")
     for provider in providers:
         result = resolve_alias(raw_input, provider)
         if result is not None:
@@ -848,7 +848,7 @@ def resolve_display_context_length(
     but provider-enforced limits can be lower (e.g. Codex OAuth caps the
     same slug at 272k). The authoritative source is
     ``agent.model_metadata.get_model_context_length`` which already knows
-    about Codex OAuth, Copilot, Nous, and falls back to models.dev for the
+    about Codex OAuth, Copilot, OpenAmer, and falls back to models.dev for the
     rest.
 
     When ``custom_providers`` is provided, per-model ``context_length``
@@ -1704,7 +1704,7 @@ def list_authenticated_providers(
     user_providers: dict = None,
     custom_providers: list | None = None,
     *,
-    force_fresh_nous_tier: bool = False,
+    force_fresh_openamer_tier: bool = False,
     max_models: int | None = None,
     current_model: str = "",
     refresh: bool = False,
@@ -1729,7 +1729,7 @@ def list_authenticated_providers(
       - source: str — "built-in", "models.dev", "user-config"
 
     Only includes providers that have API keys set or are user-defined endpoints.
-    ``force_fresh_nous_tier`` bypasses the short Nous tier cache for explicit
+    ``force_fresh_openamer_tier`` bypasses the short OpenAmer tier cache for explicit
     account-sensitive flows. UI picker opens should leave it false so they do
     not block on fresh Portal/account checks every time.
 
@@ -1759,7 +1759,7 @@ def list_authenticated_providers(
     from openamer_cli.models import (
         OPENROUTER_MODELS, _PROVIDER_MODELS,
         _MODELS_DEV_PREFERRED, _merge_with_models_dev, cached_provider_model_ids,
-        clear_provider_models_cache, get_curated_nous_model_ids,
+        clear_provider_models_cache, get_curated_openamer_model_ids,
     )
 
     # Explicit refresh: drop every provider's cached model-id list so the
@@ -1863,12 +1863,12 @@ def list_authenticated_providers(
     # Build curated model lists keyed by openamer provider ID
     curated: dict[str, list[str]] = dict(_PROVIDER_MODELS)
     curated["openrouter"] = [mid for mid, _ in OPENROUTER_MODELS]
-    # "nous" pulls from the remote model-catalog manifest published at
+    # "openamer" pulls from the remote model-catalog manifest published at
     # https://github.com/openamer/openamer/blob/main/website/docs/api/model-catalog.json so
     # newly added Portal models surface in the /model picker without
     # requiring a OpenAmer release. Falls back to the in-repo
-    # _PROVIDER_MODELS["nous"] snapshot when the manifest is unreachable.
-    curated["nous"] = get_curated_nous_model_ids()
+    # _PROVIDER_MODELS["openamer"] snapshot when the manifest is unreachable.
+    curated["openamer"] = get_curated_openamer_model_ids()
     # Ollama Cloud uses dynamic discovery (no static curated list)
     if "ollama-cloud" not in curated:
         from openamer_cli.models import fetch_ollama_cloud_models
@@ -2035,7 +2035,7 @@ def list_authenticated_providers(
         seen_slugs.add(slug.lower())
         _record_builtin_endpoint(slug)
 
-    # --- 2. Check OpenAmer-only providers (nous, openai-codex, copilot, opencode-go) ---
+    # --- 2. Check OpenAmer-only providers (openamer, openai-codex, copilot, opencode-go) ---
     from openamer_cli.providers import OPENAMER_OVERLAYS
     from openamer_cli.auth import PROVIDER_REGISTRY as _auth_registry
 
@@ -2156,8 +2156,8 @@ def list_authenticated_providers(
                 model_ids = _ids if _ids else (curated.get(openamer_slug, []) or curated.get(pid, []))
             except Exception:
                 model_ids = curated.get(openamer_slug, []) or curated.get(pid, [])
-        elif openamer_slug == "nous":
-            # Nous serves a large live /v1/models catalog (vendor-prefixed
+        elif openamer_slug == "openamer":
+            # OpenAmer serves a large live /v1/models catalog (vendor-prefixed
             # models from many providers, returned alphabetically). The
             # `openamer model` picker deliberately shows ONLY the curated agentic
             # list — augmented with the Portal's free/paid recommendations so
@@ -2167,24 +2167,24 @@ def list_authenticated_providers(
             # cached_provider_model_ids, which dumped the full alphabetical
             # catalog; then: curated-only, which dropped the 4 Portal
             # recommendations (e.g. stepfun/step-3.7-flash:free).
-            model_ids = curated.get("nous", [])
+            model_ids = curated.get("openamer", [])
             try:
                 from openamer_cli.models import (
-                    get_pricing_for_provider as _nous_pricing,
-                    check_nous_free_tier as _nous_free,
+                    get_pricing_for_provider as _openamer_pricing,
+                    check_openamer_free_tier as _openamer_free,
                     union_with_portal_free_recommendations as _union_free,
                     union_with_portal_paid_recommendations as _union_paid,
                 )
-                from openamer_cli.auth import get_provider_auth_state as _nous_state
+                from openamer_cli.auth import get_provider_auth_state as _openamer_state
 
-                _pricing = _nous_pricing("nous") or {}
+                _pricing = _openamer_pricing("openamer") or {}
                 _portal = ""
                 try:
-                    _st = _nous_state("nous") or {}
+                    _st = _openamer_state("openamer") or {}
                     _portal = _st.get("portal_base_url", "") or ""
                 except Exception:
                     _portal = ""
-                if _nous_free(force_fresh=force_fresh_nous_tier):
+                if _openamer_free(force_fresh=force_fresh_openamer_tier):
                     model_ids, _ = _union_free(model_ids, _pricing, _portal)
                 else:
                     model_ids, _ = _union_paid(model_ids, _pricing, _portal)

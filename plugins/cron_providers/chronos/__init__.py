@@ -10,7 +10,7 @@ one-shot.
 
 The external scheduler NAS uses is an internal NAS implementation detail —
 Chronos names no vendor, holds no scheduler credentials, and speaks only to
-NAS's ``agent-cron`` endpoints with the agent's existing Nous token.
+NAS's ``agent-cron`` endpoints with the agent's existing OpenAmer token.
 
 Design constraints (see the plan's DQ-1):
   - start() arms all enabled jobs and RETURNS; it never blocks and never spawns
@@ -65,24 +65,24 @@ class ChronosCronScheduler(CronScheduler):
         """Config presence only — NO network.
 
         Chronos needs a portal base URL, the agent's own publicly-reachable
-        callback URL (for NAS→agent fires), and a usable Nous token (the agent
+        callback URL (for NAS→agent fires), and a usable OpenAmer token (the agent
         is logged into the portal). If any is missing, resolve_cron_scheduler
         falls back to the built-in ticker.
         """
         if not (_cfg("cron", "chronos", "portal_url") and _cfg("cron", "chronos", "callback_url")):
             return False
-        return self._have_nous_token()
+        return self._have_openamer_token()
 
-    def _have_nous_token(self) -> bool:
-        """True if the agent has a Nous Portal login (no network call).
+    def _have_openamer_token(self) -> bool:
+        """True if the agent has a OpenAmer Portal login (no network call).
 
-        Checks the stored auth state for a Nous access token — does NOT refresh
+        Checks the stored auth state for a OpenAmer access token — does NOT refresh
         or hit the network (is_available must stay offline). The actual
         refresh-aware token is resolved lazily at provision time.
         """
         try:
             from openamer_cli.auth import get_provider_auth_state
-            state = get_provider_auth_state("nous") or {}
+            state = get_provider_auth_state("openamer") or {}
             return bool(state.get("access_token"))
         except Exception:
             return False

@@ -118,7 +118,7 @@ jobs:
           # Ensure tests don't accidentally call real APIs
           OPENROUTER_API_KEY: ""
           OPENAI_API_KEY: ""
-          NOUS_API_KEY: ""
+          OPENAMER_API_KEY: ""
 
       - name: Upload per-slice durations
         # Advisory artifact (feeds slice balancing) — a transient artifact-
@@ -222,4 +222,4 @@ jobs:
         env:
           OPENROUTER_API_KEY: ""
           OPENAI_API_KEY: ""
-          NOUS_API_KEY: ""
+          OPENAMER_API_KEY: ""

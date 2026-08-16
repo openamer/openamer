@@ -451,7 +451,7 @@ def _apply_macos_checkpoint_barrier(conn: sqlite3.Connection) -> None:
         pass
 
 
-def _enforce_macos_synchronous_full(conn: sqlite3.Connection) -> None:
+def _enforce_macos_synchroopenamer_full(conn: sqlite3.Connection) -> None:
     """Enforce ``PRAGMA synchronous=FULL`` on macOS to prevent btree corruption.
 
     On Darwin, the default ``synchronous=NORMAL`` only calls ``fsync()``,
@@ -564,7 +564,7 @@ def apply_wal_with_fallback(
         current_mode = conn.execute("PRAGMA journal_mode").fetchone()
         if current_mode and current_mode[0] == "wal":
             _apply_macos_checkpoint_barrier(conn)
-            _enforce_macos_synchronous_full(conn)
+            _enforce_macos_synchroopenamer_full(conn)
             return "wal"
     except sqlite3.OperationalError:
         pass
@@ -572,7 +572,7 @@ def apply_wal_with_fallback(
     try:
         conn.execute("PRAGMA journal_mode=WAL")
         _apply_macos_checkpoint_barrier(conn)
-        _enforce_macos_synchronous_full(conn)
+        _enforce_macos_synchroopenamer_full(conn)
         return "wal"
     except sqlite3.OperationalError as exc:
         msg = str(exc).lower()
@@ -611,7 +611,7 @@ def _apply_delete_for_wal_reset_bug(
         # still hold this WAL DB open — same safety rule as the NFS path.
         _log_wal_reset_bug_once(db_label, kept_wal=True)
         _apply_macos_checkpoint_barrier(conn)
-        _enforce_macos_synchronous_full(conn)
+        _enforce_macos_synchroopenamer_full(conn)
         return "wal"
 
     try:
@@ -7230,7 +7230,7 @@ class SessionDB:
             if row["observed"]:
                 msg["observed"] = True
             # Restore reasoning fields on assistant messages so providers
-            # that replay reasoning (OpenRouter, OpenAI, Nous) receive
+            # that replay reasoning (OpenRouter, OpenAI, OpenAmer) receive
             # coherent multi-turn reasoning context.
             if row["role"] == "assistant":
                 if row["finish_reason"]:
@@ -7386,7 +7386,7 @@ class SessionDB:
         ``parent_session_id``, and delegate subagents hang off their
         parent the same way. Walking to the root gives every segment of
         one user-facing conversation (and its delegation tree) a single
-        identifier — used for Nous Portal ``conversation=`` usage tagging.
+        identifier — used for OpenAmer Portal ``conversation=`` usage tagging.
         Returns *session_id* unchanged when it has no recorded parent.
         """
         chain = self._session_lineage_root_to_tip(session_id)

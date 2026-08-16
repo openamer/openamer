@@ -9,7 +9,7 @@ description: >
   streaming edits, native media, inline keyboards, slash commands, fallback
   network transport (direct-IP failover), notification modes, mention gating,
   and per-user/chat allowlists.
-author: NousResearch
+author: openamer
 requires_env:
   - name: TELEGRAM_BOT_TOKEN
     description: "Telegram bot token from @BotFather"

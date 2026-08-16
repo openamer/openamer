@@ -923,7 +923,7 @@ class TestAuthFailureAborts:
     session unchanged) instead of rotating into a degraded child session
     with a placeholder summary — regardless of abort_on_summary_failure.
 
-    Real incident: a nous token pointed at a stale staging inference URL
+    Real incident: a openamer token pointed at a stale staging inference URL
     401'd on every compression attempt, and because abort_on_summary_failure
     defaults False the session rotated anyway (messages N->N), stranding the
     user on a fresh-but-broken session that kept failing the same way.
@@ -1245,7 +1245,7 @@ class TestSummaryFallbackToMainModel:
         mock_ok.choices = [MagicMock()]
         mock_ok.choices[0].message.content = "summary via main model"
 
-        # A 400 from OpenRouter / Nous portal with an opaque message — does
+        # A 400 from OpenRouter / OpenAmer portal with an opaque message — does
         # NOT match _is_model_not_found, but still an unrecoverable misconfig.
         err_400 = Exception("400 Bad Request: provider rejected model")
         err_400.status_code = 400

@@ -155,8 +155,8 @@ class TestAggregatorProviders:
         result = normalize_model_for_provider("claude-sonnet-4.6", "openrouter")
         assert result == "anthropic/claude-sonnet-4.6"
 
-    def test_nous_prepends_vendor(self):
-        result = normalize_model_for_provider("gpt-5.4", "nous")
+    def test_openamer_prepends_vendor(self):
+        result = normalize_model_for_provider("gpt-5.4", "openamer")
         assert result == "openai/gpt-5.4"
 
     def test_vendor_already_present(self):
@@ -203,7 +203,7 @@ class TestDeepseekVSeriesPassThrough:
     and future ``deepseek-v<N>-*`` variants) are first-class model IDs
     accepted directly by DeepSeek's Chat Completions API. Earlier code
     folded every non-reasoner name into ``deepseek-chat``, which on
-    aggregators (Nous portal, OpenRouter via DeepInfra) routes to V3 —
+    aggregators (OpenAmer portal, OpenRouter via DeepInfra) routes to V3 —
     silently downgrading users who picked V4.
     """
 

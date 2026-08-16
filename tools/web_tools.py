@@ -4,8 +4,8 @@ Standalone Web Tools Module
 
 This module provides generic web tools that work with multiple backend providers.
 Backend is selected during ``openamer tools`` setup (web.backend in config.yaml).
-When available, OpenAmer can route Firecrawl calls through a Nous-hosted tool-gateway
-for Nous Subscribers only.
+When available, OpenAmer can route Firecrawl calls through a OpenAmer-hosted tool-gateway
+for OpenAmer Subscribers only.
 
 Available tools:
 - web_search_tool: Search the web for information
@@ -13,7 +13,7 @@ Available tools:
 
 Backend compatibility:
 - Exa: https://exa.ai (search, extract)
-- Firecrawl: https://docs.firecrawl.dev/introduction (search, extract; direct or derived firecrawl-gateway.<domain> for Nous Subscribers)
+- Firecrawl: https://docs.firecrawl.dev/introduction (search, extract; direct or derived firecrawl-gateway.<domain> for OpenAmer Subscribers)
 - Parallel: https://docs.parallel.ai (search, extract)
 - Tavily: https://tavily.com (search, extract)
 
@@ -88,13 +88,13 @@ from tools.debug_helpers import DebugSession
 # tools.web_tools (the firecrawl plugin reads them via its own import chain).
 from tools.managed_tool_gateway import (  # noqa: F401 — backward-compat names for tests
     build_vendor_gateway_url,
-    peek_nous_access_token as _peek_nous_access_token,
-    read_nous_access_token as _read_nous_access_token,
+    peek_openamer_access_token as _peek_openamer_access_token,
+    read_openamer_access_token as _read_openamer_access_token,
     resolve_managed_tool_gateway,
 )
 from tools.tool_backend_helpers import (  # noqa: F401
-    managed_nous_tools_enabled,
-    nous_tool_gateway_unavailable_message,
+    managed_openamer_tools_enabled,
+    openamer_tool_gateway_unavailable_message,
     prefers_gateway,
 )
 from tools.url_safety import async_is_safe_url, normalize_url_for_request, sensitive_query_param_name
@@ -234,7 +234,7 @@ def _get_backend() -> str:
     # Fallback for manual / legacy config — pick the highest-priority
     # available backend. Explicit user credentials (TAVILY_API_KEY etc.)
     # beat the managed-tool-gateway probe so a deliberate setup is not
-    # pre-empted by a Nous OAuth token whose subscription tier may not
+    # pre-empted by a OpenAmer OAuth token whose subscription tier may not
     # actually grant web-search access (the gateway then fails at runtime
     # with "no subscription" and the tool returns an error to the agent
     # without falling back). Free-tier backends trail the paid ones.
@@ -381,9 +381,9 @@ def _web_requires_env() -> list[str]:
 
     The gateway env vars are always reported — they're metadata strings
     used by the tool registry to light up the tool when the variable is
-    set.  Gating them on ``managed_nous_tools_enabled()`` only saved
+    set.  Gating them on ``managed_openamer_tools_enabled()`` only saved
     string noise in the metadata list, but cost a synchronous HTTP
-    refresh against the Nous portal on every CLI startup (invoked at
+    refresh against the OpenAmer portal on every CLI startup (invoked at
     tool-registration time).  The behavioral contract is: if the env var
     is set, the tool sees it; if not, it doesn't.  Not-logged-in users
     simply don't have the vars set, so the extra entries are harmless.

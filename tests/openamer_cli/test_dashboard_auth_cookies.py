@@ -30,7 +30,7 @@ def _build_app(use_https: bool = True, prefix: str = ""):
         set_session_cookies(
             r, access_token="AT", refresh_token="RT",
             access_token_expires_in=3600, use_https=use_https,
-            prefix=prefix, provider="nous",
+            prefix=prefix, provider="openamer",
         )
         return r
 
@@ -65,7 +65,7 @@ def test_session_cookies_use_host_prefix_on_https_direct():
     cookies = r.headers.get_list("set-cookie")
     at = next(c for c in cookies if c.startswith(f"__Host-{SESSION_AT_COOKIE}="))
     rt = next(c for c in cookies if c.startswith(f"__Host-{SESSION_RT_COOKIE}="))
-    provider = next(c for c in cookies if c.startswith(f"__Host-{SESSION_PROVIDER_COOKIE}=nous"))
+    provider = next(c for c in cookies if c.startswith(f"__Host-{SESSION_PROVIDER_COOKIE}=openamer"))
     for c in (at, rt, provider):
         assert "HttpOnly" in c
         assert "samesite=lax" in c.lower()
@@ -173,10 +173,10 @@ def test_read_session_provider_from_request():
         "path": "/",
         "headers": [(
             b"cookie",
-            f"__Host-{SESSION_PROVIDER_COOKIE}=nous".encode(),
+            f"__Host-{SESSION_PROVIDER_COOKIE}=openamer".encode(),
         )],
     }
-    assert read_session_provider(Request(scope)) == "nous"
+    assert read_session_provider(Request(scope)) == "openamer"
 
 
 def test_read_session_cookies_from_request_host_prefix():

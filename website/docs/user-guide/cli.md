@@ -9,7 +9,7 @@ description: "Master the OpenAmer Agent terminal interface — commands, keybind
 OpenAmer Agent's CLI is a full terminal user interface (TUI) — not a web UI. It features multiline editing, slash-command autocomplete, conversation history, interrupt-and-redirect, and streaming tool output. Built for people who live in the terminal.
 
 :::tip First-time setup
-One command — `openamer setup --portal` — and you're ready to `openamer chat`. See [your hosted provider](/integrations/nous-portal).
+One command — `openamer setup --portal` — and you're ready to `openamer chat`. See [your hosted provider](/integrations/openamer-portal).
 :::
 
 :::tip
@@ -29,7 +29,7 @@ openamer chat -q "Hello"
 openamer chat --model "anthropic/claude-sonnet-4"
 
 # With a specific provider
-openamer chat --provider nous        # Use your hosted provider
+openamer chat --provider openamer        # Use your hosted provider
 openamer chat --provider openrouter  # Force OpenRouter
 
 # With specific toolsets

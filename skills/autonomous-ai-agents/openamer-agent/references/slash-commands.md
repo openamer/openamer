@@ -101,7 +101,7 @@ it. New commands land often; `/help` in-session is always authoritative.
 /image <path>            Attach a local image file (CLI)
 /update                  Update OpenAmer to latest
 /version (/v)            Show version
-/debug [nous|local]      Upload debug report, get shareable links
+/debug [openamer|local]      Upload debug report, get shareable links
 ```
 
 ### Exit

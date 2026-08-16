@@ -181,7 +181,7 @@ export const ja = defineLocale({
   },
 
   billingBlock: {
-    titleNous: 'Nous クレジットが不足しています',
+    titleNous: 'OpenAmer クレジットが不足しています',
     titleProvider: provider => `クレジット不足 — ${provider}`,
     fallbackMessage: 'アカウントのクレジットが不足しています。続行するにはクレジットを追加してください。',
     openBilling: '請求を開く',
@@ -935,14 +935,14 @@ export const ja = defineLocale({
       ready: '準備完了',
       needsSignIn: 'サインインが必要',
       needsSetup: 'セットアップが必要',
-      nousIncluded: 'Nous サブスクリプションに含まれています。有効にするには Nous Portal にサインインしてください。',
-      nousAuthNeededTitle: 'Nous Portal にサインイン',
-      nousAuthNeededMessage: provider =>
-        `${provider} は保存されましたが、Nous Portal にサインインするまで有効になりません。`,
-      nousAuthSignIn: 'サインイン',
-      nousAuthDoneTitle: 'Nous Portal に接続しました',
-      nousAuthDoneMessage: 'サブスクリプションのバックエンドが有効になりました。',
-      nousAuthFailed: 'Nous Portal のサインインが完了しませんでした',
+      openamerIncluded: 'OpenAmer サブスクリプションに含まれています。有効にするには OpenAmer Portal にサインインしてください。',
+      openamerAuthNeededTitle: 'OpenAmer Portal にサインイン',
+      openamerAuthNeededMessage: provider =>
+        `${provider} は保存されましたが、OpenAmer Portal にサインインするまで有効になりません。`,
+      openamerAuthSignIn: 'サインイン',
+      openamerAuthDoneTitle: 'OpenAmer Portal に接続しました',
+      openamerAuthDoneMessage: 'サブスクリプションのバックエンドが有効になりました。',
+      openamerAuthFailed: 'OpenAmer Portal のサインインが完了しませんでした',
       noApiKeyRequired: 'API キーは不要です。',
       postSetupHint: step =>
         `このバックエンドは一度だけインストールが必要です (${step})。このマシン上で実行され、数分かかる場合があります。`,
@@ -2157,7 +2157,7 @@ export const ja = defineLocale({
     loadFailed: 'モデルを読み込めませんでした',
     noAuthenticatedProviders: '認証済みプロバイダーがありません。',
     pro: 'Pro',
-    proNeedsSubscription: 'Pro モデルには有料の Nous サブスクリプションが必要です。',
+    proNeedsSubscription: 'Pro モデルには有料の OpenAmer サブスクリプションが必要です。',
     free: '無料',
     freeTier: '無料プラン',
     priceTitle: '100 万トークンあたりの入力/出力価格',

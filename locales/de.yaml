@@ -376,7 +376,7 @@ Future messages in this room will use that transcript until `/reset` or another 
     reset_wrong_provider:     "Gespeicherte Limit-Resets sind nur mit dem openai-codex-Anbieter verfügbar. Wechsle zuerst mit `/model`."
 
   credits:
-    not_logged_in:            "Nicht bei Nous Portal angemeldet. Melde dich an, um dein Guthaben zu sehen und aufzuladen."
+    not_logged_in:            "Nicht bei OpenAmer Portal angemeldet. Melde dich an, um dein Guthaben zu sehen und aufzuladen."
 
   verbose:
     not_enabled:           "Der Befehl `/verbose` ist für Messaging-Plattformen nicht aktiviert.\n\nIn `config.yaml` aktivieren:\n```yaml\ndisplay:\n  tool_progress_command: true\n```"

@@ -3,7 +3,7 @@ import { Users } from "lucide-react";
 import {
   Select,
   SelectOption,
-} from "@nous-research/ui/ui/components/select";
+} from "@openamer-research/ui/ui/components/select";
 import { useProfileScope } from "@/contexts/useProfileScope";
 import { useI18n } from "@/i18n";
 import { cn } from "@/lib/utils";

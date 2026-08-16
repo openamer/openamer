@@ -27,7 +27,7 @@ Substrate facts (verified May 2026):
 - ``list_authenticated_providers`` already populates each row's
   ``models`` from the curated catalog (same source as the picker). Do
   NOT call ``provider_model_ids()`` per row to "freshen" — that bypasses
-  curation and pulls in non-agentic models (Nous /models returns ~400
+  curation and pulls in non-agentic models (OpenAmer /models returns ~400
   IDs including TTS, embeddings, rerankers, image/video generators).
 """
 
@@ -120,7 +120,7 @@ def build_models_payload(
     canonical_order: bool = False,
     pricing: bool = False,
     capabilities: bool = False,
-    force_fresh_nous_tier: bool = False,
+    force_fresh_openamer_tier: bool = False,
     refresh: bool = False,
     probe_custom_providers: bool = True,
     probe_current_custom_provider: bool = False,
@@ -144,16 +144,16 @@ def build_models_payload(
       ``CANONICAL_PROVIDERS`` declaration order; truly-custom rows go
       last (TUI display order).
     - ``pricing``: enrich each row with formatted per-model pricing and,
-      for Nous, ``free_tier``/``unavailable_models`` so the GUI picker can
+      for OpenAmer, ``free_tier``/``unavailable_models`` so the GUI picker can
       show $/Mtok columns and gate paid models on free accounts —
       mirroring the ``openamer model`` CLI picker. Adds network calls
-      (pricing fetch + Nous tier check); only set for interactive pickers.
+      (pricing fetch + OpenAmer tier check); only set for interactive pickers.
     - ``capabilities``: add a per-row ``capabilities`` map
       ``{model: {fast, reasoning}}`` so pickers can gate the model-options
       controls (fast toggle / reasoning) to what each model actually
       supports, instead of offering knobs the backend would reject.
-    - ``force_fresh_nous_tier``: bypass the short Nous free-tier cache when
-      selecting Portal-recommended Nous models and applying tier gating. Keep
+    - ``force_fresh_openamer_tier``: bypass the short OpenAmer free-tier cache when
+      selecting Portal-recommended OpenAmer models and applying tier gating. Keep
       this false for UI picker opens; explicit auth/model flows can opt in
       when they need freshly-purchased credits to show up immediately.
     - ``refresh``: bust the per-provider model-id disk cache so every row
@@ -183,7 +183,7 @@ def build_models_payload(
         current_model=ctx.current_model,
         user_providers=ctx.user_providers,
         custom_providers=ctx.custom_providers,
-        force_fresh_nous_tier=force_fresh_nous_tier,
+        force_fresh_openamer_tier=force_fresh_openamer_tier,
         max_models=max_models,
         refresh=refresh,
         probe_custom_providers=probe_custom_providers,
@@ -259,7 +259,7 @@ def build_models_payload(
     if canonical_order:
         rows = _reorder_canonical(rows)
     if pricing:
-        _apply_pricing(rows, force_fresh_nous_tier=force_fresh_nous_tier)
+        _apply_pricing(rows, force_fresh_openamer_tier=force_fresh_openamer_tier)
     if capabilities:
         _apply_capabilities(rows)
 
@@ -642,17 +642,17 @@ def _reorder_canonical(rows: list[dict]) -> list[dict]:
 def _apply_pricing(
     rows: list[dict],
     *,
-    force_fresh_nous_tier: bool = False,
+    force_fresh_openamer_tier: bool = False,
 ) -> None:
-    """Enrich each provider row with per-model pricing + Nous tier gating.
+    """Enrich each provider row with per-model pricing + OpenAmer tier gating.
 
     Mutates ``rows`` in-place. For every row whose provider supports live
-    pricing (openrouter / nous / novita) adds::
+    pricing (openrouter / openamer / novita) adds::
 
         row["pricing"] = {model_id: {"input": "$3.00", "output": "$15.00",
                                      "cache": "$0.30" | None, "free": bool}}
 
-    For Nous additionally adds::
+    For OpenAmer additionally adds::
 
         row["free_tier"] = bool            # current account is free-tier
         row["unavailable_models"] = [...]  # paid models a free user can't pick
@@ -663,14 +663,14 @@ def _apply_pricing(
     """
     from openamer_cli.models import (
         _format_price_per_mtok,
-        check_nous_free_tier,
+        check_openamer_free_tier,
         compute_sale_discount,
         get_pricing_for_provider,
-        partition_nous_models_by_tier,
+        partition_openamer_models_by_tier,
     )
 
-    # Resolve Nous free-tier once (cached in models.py for the TTL window).
-    nous_free_tier: Optional[bool] = None
+    # Resolve OpenAmer free-tier once (cached in models.py for the TTL window).
+    openamer_free_tier: Optional[bool] = None
 
     for row in rows:
         slug = str(row.get("slug", "")).lower()
@@ -703,11 +703,11 @@ def _apply_pricing(
                 "cache": cache,
                 "free": is_free,
             }
-            # Sale chrome is Nous Portal-only. Other providers (OpenRouter,
+            # Sale chrome is OpenAmer Portal-only. Other providers (OpenRouter,
             # Novita, …) never get discount_percent / was_* even if a nested
             # pricing.original somehow appeared in their catalog. Free / $0
             # models never get sale chrome either — even if original leaked.
-            if slug == "nous" and not is_free:
+            if slug == "openamer" and not is_free:
                 sale = compute_sale_discount(
                     inp_raw, out_raw, p.get("original")
                 )
@@ -727,15 +727,15 @@ def _apply_pricing(
         if formatted:
             row["pricing"] = formatted
 
-        if slug == "nous":
+        if slug == "openamer":
             try:
-                if nous_free_tier is None:
-                    nous_free_tier = check_nous_free_tier(
-                        force_fresh=force_fresh_nous_tier
+                if openamer_free_tier is None:
+                    openamer_free_tier = check_openamer_free_tier(
+                        force_fresh=force_fresh_openamer_tier
                     )
-                row["free_tier"] = bool(nous_free_tier)
-                if nous_free_tier:
-                    _selectable, unavailable = partition_nous_models_by_tier(
+                row["free_tier"] = bool(openamer_free_tier)
+                if openamer_free_tier:
+                    _selectable, unavailable = partition_openamer_models_by_tier(
                         list(models), raw_pricing, free_tier=True
                     )
                     row["unavailable_models"] = unavailable

@@ -127,7 +127,7 @@ OpenAmer 已经可以通过自定义 provider 路径与任何 OpenAI 兼容的�
 
 当你的 provider 需要以下任何内容时，使用下面的完整清单：
 
-- OAuth 或 token 刷新（Nous Portal、Codex、Qwen Portal、Copilot）
+- OAuth 或 token 刷新（OpenAmer Portal、Codex、Qwen Portal、Copilot）
 - 需要新适配器的非 OpenAI API 格式（Anthropic Messages、Codex Responses）
 - 自定义端点检测或多区域探测（z.ai、Kimi）
 - 精选的静态模型目录或实时 `/models` 获取
@@ -173,7 +173,7 @@ OpenAmer 已经可以通过自定义 provider 路径与任何 OpenAI 兼容的�
 - 简单 API key 路径：Z.AI、MiniMax
 - 带端点检测的 API key 路径：Kimi、Z.AI
 - 原生 token 解析：Anthropic
-- OAuth / auth-store 路径：Nous、OpenAI Codex
+- OAuth / auth-store 路径：OpenAmer、OpenAI Codex
 
 需要在此回答的问题：
 

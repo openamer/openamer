@@ -7,7 +7,7 @@ description: >
   platforms: ``wecom`` (Smart Robot over WebSocket) and ``wecom_callback``
   (self-built apps over an HTTP callback endpoint with AES message crypto).
   Relays messages between WeCom chats and the OpenAmer agent.
-author: NousResearch
+author: openamer
 requires_env:
   - name: WECOM_BOT_ID
     description: "WeCom Smart Robot bot ID"

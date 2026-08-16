@@ -1,5 +1,5 @@
-name: nous-provider
+name: openamer-provider
 kind: model-provider
 version: 1.0.0
-description: Nous Research Portal
-author: Nous Research
+description: OpenAmer Portal
+author: OpenAmer

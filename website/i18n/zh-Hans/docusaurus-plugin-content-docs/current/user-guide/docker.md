@@ -92,7 +92,7 @@ Dashboard 由 s6 监管：若进程崩溃，`s6-supervise` 会在短暂退避后
 有三种内置方式可满足第二个条件：
 
 - **用户名/密码** —— 最简单的自托管 / 局域网 / VPN 内部署方式：设置 `OPENAMER_DASHBOARD_BASIC_AUTH_USERNAME` + `OPENAMER_DASHBOARD_BASIC_AUTH_PASSWORD`（以及用于跨重启稳定 session 的 `OPENAMER_DASHBOARD_BASIC_AUTH_SECRET`）。不适合直接暴露到公网上。
-- **OAuth（Nous Portal）** —— 适合托管/公网部署：设置 `OPENAMER_DASHBOARD_OAUTH_CLIENT_ID` 后，`dashboard_auth/nous` 提供者会自动激活。
+- **OAuth（OpenAmer Portal）** —— 适合托管/公网部署：设置 `OPENAMER_DASHBOARD_OAUTH_CLIENT_ID` 后，`dashboard_auth/openamer` 提供者会自动激活。
 - **自托管 OIDC** —— 通过标准 OpenID Connect 接入你自己的身份提供商：设置 `OPENAMER_DASHBOARD_OIDC_ISSUER` + `OPENAMER_DASHBOARD_OIDC_CLIENT_ID` 后，`dashboard_auth/self_hosted` 提供者会激活。
 
 无论选择哪种，调用方在访问受保护路由前都会先被重定向到登录页。完整说明见 [Web Dashboard → 鉴权](features/web-dashboard.md)。

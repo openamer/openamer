@@ -19,7 +19,7 @@
     <assemblyIdentity
         version="0.0.1.0"
         processorArchitecture="*"
-        name="NousResearch.OpenAmer.Setup"
+        name="openamer.OpenAmer.Setup"
         type="win32"
     />
     <description>OpenAmer Setup</description>

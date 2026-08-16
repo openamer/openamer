@@ -110,7 +110,7 @@ def test_fetch_models_with_pricing_copies_nested_original(monkeypatch):
         lambda req, timeout=8.0: resp,
     )
 
-    # Nous Portal opts in via include_sale_original=True.
+    # OpenAmer Portal opts in via include_sale_original=True.
     result = fetch_models_with_pricing(
         api_key="sk-test",
         base_url="https://example.test",
@@ -195,38 +195,38 @@ def test_fetch_models_with_pricing_ignores_original_unless_opted_in(monkeypatch)
     assert result["anthropic/claude-sonnet-5"]["prompt"] == "0.0000016"
 
 
-def test_resolve_nous_pricing_credentials_honors_inference_env_override(monkeypatch):
-    """Staging profiles set NOUS_INFERENCE_BASE_URL — pricing must follow it.
+def test_resolve_openamer_pricing_credentials_honors_inference_env_override(monkeypatch):
+    """Staging profiles set OPENAMER_INFERENCE_BASE_URL — pricing must follow it.
 
     Without this, anonymous/failed-auth fallback hits prod and sale
     ``pricing.original`` never reaches Desktop/CLI pickers.
     """
     monkeypatch.setenv(
-        "NOUS_INFERENCE_BASE_URL",
-        "https://stg-inference-api.nousresearch.com/v1",
+        "OPENAMER_INFERENCE_BASE_URL",
+        "https://stg-inference-api.openamer.com/v1",
     )
     # Auth resolution fails / returns nothing — the env override must still win.
     monkeypatch.setattr(
-        "openamer_cli.auth.resolve_nous_runtime_credentials",
+        "openamer_cli.auth.resolve_openamer_runtime_credentials",
         lambda: None,
     )
-    api_key, base_url = models_mod._resolve_nous_pricing_credentials()
+    api_key, base_url = models_mod._resolve_openamer_pricing_credentials()
     assert api_key == ""
-    assert base_url == "https://stg-inference-api.nousresearch.com/v1"
+    assert base_url == "https://stg-inference-api.openamer.com/v1"
 
 
-def test_resolve_nous_pricing_credentials_env_wins_over_stored_prod(monkeypatch):
+def test_resolve_openamer_pricing_credentials_env_wins_over_stored_prod(monkeypatch):
     monkeypatch.setenv(
-        "NOUS_INFERENCE_BASE_URL",
-        "https://stg-inference-api.nousresearch.com/v1",
+        "OPENAMER_INFERENCE_BASE_URL",
+        "https://stg-inference-api.openamer.com/v1",
     )
     monkeypatch.setattr(
-        "openamer_cli.auth.resolve_nous_runtime_credentials",
+        "openamer_cli.auth.resolve_openamer_runtime_credentials",
         lambda: {
             "api_key": "ak-test",
-            "base_url": "https://inference-api.nousresearch.com/v1",
+            "base_url": "https://inference-api.openamer.com/v1",
         },
     )
-    api_key, base_url = models_mod._resolve_nous_pricing_credentials()
+    api_key, base_url = models_mod._resolve_openamer_pricing_credentials()
     assert api_key == "ak-test"
-    assert base_url == "https://stg-inference-api.nousresearch.com/v1"
+    assert base_url == "https://stg-inference-api.openamer.com/v1"

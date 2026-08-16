@@ -1,9 +1,9 @@
 """SelfHostedOIDCProvider — generic self-hosted OpenID Connect dashboard auth.
 
 A standards-compliant OpenID Connect Relying Party for the ``openamer dashboard``
-OAuth gate. Unlike the bundled ``nous`` provider (which encodes Nous Portal's
+OAuth gate. Unlike the bundled ``openamer`` provider (which encodes OpenAmer Portal's
 bespoke contract — ``agent:{instance_id}`` client ids, a custom access-token
-JWT, the ``x-nous-refresh-token`` header, an ``oauth_contract_version`` claim),
+JWT, the ``x-openamer-refresh-token`` header, an ``oauth_contract_version`` claim),
 this provider speaks **plain OIDC** so it works against any conformant
 self-hosted identity provider:
 
@@ -28,8 +28,8 @@ Why the ID token (not the access token)? OIDC guarantees the ID token is a
 signed JWT carrying identity claims — that is its entire purpose. The access
 token's format is opaque to the client per the spec; many IDPs issue random
 opaque strings the client cannot verify locally. Verifying the ID token is the
-only choice that is universally correct across self-hosted IDPs. (The ``nous``
-provider verifies its *access* token because Nous Portal mints a custom JWT
+only choice that is universally correct across self-hosted IDPs. (The ``openamer``
+provider verifies its *access* token because OpenAmer Portal mints a custom JWT
 access token with the dashboard claims baked in — a non-OIDC shortcut.)
 
 Both **public** (PKCE-only) and **confidential** (PKCE + ``client_secret``)
@@ -46,7 +46,7 @@ PKCE (OAuth 2.1 / RFC 9700 keep PKCE mandatory regardless).
 
 Configuration surfaces (env wins over config.yaml when set non-empty, so a
 provisioned-but-not-populated secret can't shadow a valid config.yaml entry —
-same precedence convention as the ``nous`` plugin)::
+same precedence convention as the ``openamer`` plugin)::
 
     # config.yaml — canonical surface
     dashboard:
@@ -122,13 +122,13 @@ _TOKEN_ENDPOINT_TIMEOUT_SEC = 10.0
 # dashboard picks up an IDP endpoint migration within the hour.
 _DISCOVERY_CACHE_TTL_SEC = 3600
 
-# JWKS cache (PyJWKClient handles its own caching; this mirrors the nous
+# JWKS cache (PyJWKClient handles its own caching; this mirrors the openamer
 # provider's 5-minute lifespan so key rotation is picked up promptly).
 _JWKS_CACHE_SECONDS = 300
 
 
 # ---------------------------------------------------------------------------
-# Skip-reason channel (mirrors the nous plugin)
+# Skip-reason channel (mirrors the openamer plugin)
 # ---------------------------------------------------------------------------
 
 LAST_SKIP_REASON: str = ""
@@ -713,7 +713,7 @@ class SelfHostedOIDCProvider(DashboardAuthProvider):
         (not just localhost) so self-hosted dashboards reached over plain HTTP —
         LAN IPs, internal hostnames, reverse proxies that terminate TLS upstream
         — are not rejected here; the IDP makes the final call on which
-        redirect_uris are permitted. Mirrors the nous provider.
+        redirect_uris are permitted. Mirrors the openamer provider.
         """
         parsed = urllib.parse.urlparse(redirect_uri)
         if parsed.scheme not in ("https", "http"):

@@ -91,7 +91,7 @@ test('buildNativeAuthorizeUrl encodes params and honours a path prefix', () => {
     challenge: 'CHAL',
     redirectUri: 'http://127.0.0.1:51000/callback',
     state: 'STATE',
-    provider: 'nous'
+    provider: 'openamer'
   })
 
   const parsed = new URL(url)
@@ -102,7 +102,7 @@ test('buildNativeAuthorizeUrl encodes params and honours a path prefix', () => {
   assert.equal(parsed.searchParams.get('code_challenge_method'), 'S256')
   assert.equal(parsed.searchParams.get('redirect_uri'), 'http://127.0.0.1:51000/callback')
   assert.equal(parsed.searchParams.get('state'), 'STATE')
-  assert.equal(parsed.searchParams.get('provider'), 'nous')
+  assert.equal(parsed.searchParams.get('provider'), 'openamer')
 })
 
 test('buildNativeAuthorizeUrl omits provider when not given and preserves prefix', () => {
@@ -154,14 +154,14 @@ test('parseTokenResponse maps a well-formed body', () => {
     refresh_token: 'RT',
     token_type: 'Bearer',
     expires_at: 1893456000,
-    provider: 'nous',
+    provider: 'openamer',
     user_id: 'u-1'
   })
 
   assert.equal(t.accessToken, 'AT')
   assert.equal(t.refreshToken, 'RT')
   assert.equal(t.expiresAt, 1893456000)
-  assert.equal(t.provider, 'nous')
+  assert.equal(t.provider, 'openamer')
   assert.equal(t.userId, 'u-1')
 })
 

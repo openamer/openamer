@@ -17,7 +17,7 @@ description: "在 Excel 中构建完整集成的三表模型（利润表、资�
 | 来源 | 可选 — 通过 `openamer skills install official/finance/3-statement-model` 安装 |
 | 路径 | `optional-skills/finance/3-statement-model` |
 | 版本 | `1.0.0` |
-| 作者 | Anthropic（由 Nous Research 改编） |
+| 作者 | Anthropic（由 OpenAmer 改编） |
 | 许可证 | Apache-2.0 |
 | 平台 | linux, macos, windows |
 | 标签 | `finance`, `three-statement`, `income-statement`, `balance-sheet`, `cash-flow`, `excel`, `openpyxl`, `modeling` |

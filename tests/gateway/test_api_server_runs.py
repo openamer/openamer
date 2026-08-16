@@ -965,7 +965,7 @@ class TestRunsProviderAuthFailure:
         async with TestClient(TestServer(app)) as cli:
             with patch.object(adapter, "_create_agent") as mock_create:
                 mock_create.side_effect = _ProviderAuthResolutionError(
-                    "No credentials found for provider 'nous'"
+                    "No credentials found for provider 'openamer'"
                 )
 
                 resp = await cli.post("/v1/runs", json={"input": "hello"})
@@ -981,5 +981,5 @@ class TestRunsProviderAuthFailure:
                     await asyncio.sleep(0.05)
 
                 assert status["status"] == "failed"
-                assert status["error"] == "⚠️ Provider authentication failed: No credentials found for provider 'nous'"
+                assert status["error"] == "⚠️ Provider authentication failed: No credentials found for provider 'openamer'"
                 assert status["last_event"] == "run.failed"

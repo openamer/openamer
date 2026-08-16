@@ -9,7 +9,7 @@ description: >
   Outbound messages are delivered as HA persistent notifications via the
   REST API. Out-of-process cron delivery via the ``notify.notify``
   service is also supported.
-author: NousResearch
+author: openamer
 requires_env:
   - name: HASS_TOKEN
     description: "Home Assistant Long-Lived Access Token"

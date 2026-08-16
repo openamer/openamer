@@ -153,7 +153,7 @@ class TestAdapterSessionCancellation:
 
         # Follow-up must go through normally now that the session is clean.
         await adapter.handle_message(
-            _make_event("/model xiaomi/mimo-v2-pro --provider nous")
+            _make_event("/model xiaomi/mimo-v2-pro --provider openamer")
         )
         await asyncio.sleep(0)
         await asyncio.sleep(0)

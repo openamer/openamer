@@ -107,7 +107,7 @@ openamer profile rename A B | alias NAME | export NAME | import FILE
 
 ```
 openamer auth                 Interactive credential manager
-openamer auth add [PROVIDER]  Add OAuth or API-key credential (nous, openai-codex, qwen-oauth, …)
+openamer auth add [PROVIDER]  Add OAuth or API-key credential (openamer, openai-codex, qwen-oauth, …)
 openamer auth list|remove P IDX|reset PROVIDER|status
 ```
 Multiple credentials per provider form a pool that rotates automatically and skips exhausted keys.

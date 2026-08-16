@@ -10,7 +10,7 @@ Full docs: https://github.com/openamer/openamer/blob/main/website/docs/integrati
 |----------|------|----------------|
 | openrouter | API key | `OPENROUTER_API_KEY` |
 | anthropic | API key | `ANTHROPIC_API_KEY` (also `CLAUDE_CODE_OAUTH_TOKEN`) |
-| nous | OAuth device code | `openamer auth add nous` (or `NOUS_API_KEY`) |
+| openamer | OAuth device code | `openamer auth add openamer` (or `OPENAMER_API_KEY`) |
 | openai-codex | OAuth | `openamer auth add openai-codex` |
 | qwen-oauth | OAuth | `openamer auth add qwen-oauth` |
 | minimax-oauth | OAuth | `openamer auth add minimax-oauth` |

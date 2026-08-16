@@ -55,7 +55,7 @@ export const zhHant: Translations = {
     closeNavigation: "關閉導覽",
     closeModelTools: "關閉模型與工具",
     footer: {
-      org: "Nous Research",
+      org: "OpenAmer",
     },
     activeSessionsLabel: "使用中工作階段：",
     gatewayStatusLabel: "閘道狀態：",

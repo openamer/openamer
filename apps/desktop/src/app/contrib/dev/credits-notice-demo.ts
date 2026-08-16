@@ -24,7 +24,7 @@ interface NoticeStep {
   ttl_ms?: number
 }
 
-// Walks the same lifecycle the Nous credits tracker drives: usage escalates in
+// Walks the same lifecycle the OpenAmer credits tracker drives: usage escalates in
 // place (50→75→90, one key), then grant-spent, then the depleted/restored pair.
 // Wraps around. These are all separate SHOW steps; the stepper auto-clears the
 // previous notice when the key changes, so the demo shows one toast at a time

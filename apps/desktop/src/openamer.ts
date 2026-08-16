@@ -1051,11 +1051,11 @@ export interface SelectToolsetProviderResponse {
   provider: string
   /** Present when the selection was scoped to one web capability. */
   capability?: string
-  /** Present (true) when a managed Nous row was selected but the Portal
+  /** Present (true) when a managed OpenAmer row was selected but the Portal
    *  entitlement is missing — the row won't activate until the user signs
-   *  in to Nous Portal. */
-  needs_nous_auth?: boolean
-  /** The managed feature key (e.g. "browser") when needs_nous_auth is set. */
+   *  in to OpenAmer Portal. */
+  needs_openamer_auth?: boolean
+  /** The managed feature key (e.g. "browser") when needs_openamer_auth is set. */
   feature?: string
 }
 
@@ -1395,12 +1395,12 @@ export function getGlobalModelOptions(opts?: {
 export interface RecommendedDefaultModel {
   provider: string
   model: string
-  /** True/false for Nous (free vs paid tier); null for other providers. */
+  /** True/false for OpenAmer (free vs paid tier); null for other providers. */
   free_tier: boolean | null
 }
 
 // Recommended default model for a freshly-authenticated provider. Mirrors the
-// curation `openamer model` does — for Nous it honors the free/paid tier so a
+// curation `openamer model` does — for OpenAmer it honors the free/paid tier so a
 // free user gets a free model instead of a paid default.
 export function getRecommendedDefaultModel(provider: string): Promise<RecommendedDefaultModel> {
   return window.openamerDesktop.api<RecommendedDefaultModel>({

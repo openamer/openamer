@@ -1,5 +1,5 @@
-"""Regression guard: a genuine Nous 429 must re-enter the retry loop so the
-top-of-loop Nous rate-limit guard can activate the fallback chain.
+"""Regression guard: a genuine OpenAmer 429 must re-enter the retry loop so the
+top-of-loop OpenAmer rate-limit guard can activate the fallback chain.
 
 Bug (found in the #44061 audit): the genuine-rate-limit branch in
 ``agent/conversation_loop.py`` set ``retry_count = max_retries`` then
@@ -11,7 +11,7 @@ rate-limit message: the turn dies with the generic retry-exhaustion error.
 
 The fix sets ``retry_count = max(0, max_retries - 1)`` so the loop body runs
 exactly once more: the guard sees the breaker state recorded by
-``record_nous_rate_limit()`` moments earlier and either activates a fallback
+``record_openamer_rate_limit()`` moments earlier and either activates a fallback
 provider (resetting retry_count) or returns the explicit rate-limit failure.
 """
 from __future__ import annotations
@@ -46,7 +46,7 @@ class TestGenuineNous429ReentersLoop:
 
 class TestSourceUsesReentrantAssignment:
     """Belt-and-suspenders: the production source must use the re-entrant
-    form in the genuine-Nous-429 branch.  Protects against an accidental
+    form in the genuine-OpenAmer-429 branch.  Protects against an accidental
     revert (e.g. a stale-branch merge resolving in favor of the old code)."""
 
     def test_genuine_branch_does_not_skip_to_max_retries(self):
@@ -55,19 +55,19 @@ class TestSourceUsesReentrantAssignment:
         src = inspect.getsource(conversation_loop)
         # Locate the genuine-rate-limit branch.
         match = re.search(
-            r"if _genuine_nous_rate_limit:\n(?:.*\n)*?\s*continue\n",
+            r"if _genuine_openamer_rate_limit:\n(?:.*\n)*?\s*continue\n",
             src,
         )
-        # There are two `if _genuine_nous_rate_limit` sites (record + branch);
+        # There are two `if _genuine_openamer_rate_limit` sites (record + branch);
         # the regex above finds the first block ending in `continue`, which is
         # the retry-count branch.
         assert match is not None, (
-            "genuine-Nous-429 branch not found in conversation_loop — "
+            "genuine-OpenAmer-429 branch not found in conversation_loop — "
             "update this test if the branch was refactored"
         )
         block = match.group(0)
         assert "retry_count = max(0, max_retries - 1)" in block, (
-            "genuine-Nous-429 branch must re-enter the retry loop "
+            "genuine-OpenAmer-429 branch must re-enter the retry loop "
             "(retry_count = max(0, max_retries - 1)); "
             "`retry_count = max_retries` makes the while condition False "
             "and the fallback guard never runs."

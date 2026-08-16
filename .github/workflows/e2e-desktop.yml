@@ -105,7 +105,7 @@ jobs:
           # Ensure no real API keys leak into the test env.
           OPENROUTER_API_KEY: ""
           OPENAI_API_KEY: ""
-          NOUS_API_KEY: ""
+          OPENAMER_API_KEY: ""
 
       # ── Save updated baselines to cache (main only) ───────────────────
       - name: Save updated baselines to cache

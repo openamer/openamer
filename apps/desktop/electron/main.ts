@@ -899,12 +899,12 @@ app.setName(APP_NAME)
 // Windows toast notifications silently no-op unless an AppUserModelID is set:
 // `new Notification().show()` returns without error and nothing appears. The
 // AUMID must match the installed Start Menu shortcut's AUMID, which
-// electron-builder derives from the build `appId` (com.nousresearch.openamer) —
+// electron-builder derives from the build `appId` (com.openamer.openamer) —
 // keep this string in sync with package.json `build.appId`. macOS/Linux don't
 // need this, so gate it on Windows. (Fixes: desktop approval/turn notifications
 // never firing on Windows.)
 if (IS_WINDOWS) {
-  app.setAppUserModelId('com.nousresearch.openamer')
+  app.setAppUserModelId('com.openamer.openamer')
 }
 
 // Seed the native About panel with the live OpenAmer version. This is refreshed
@@ -914,7 +914,7 @@ if (IS_WINDOWS) {
 app.setAboutPanelOptions({
   applicationName: APP_NAME,
   applicationVersion: resolveOpenAmerVersion(),
-  copyright: 'Copyright © 2026 Nous Research'
+  copyright: 'Copyright © 2026 OpenAmer'
 })
 
 // Custom scheme for streaming local media (video/audio) into the renderer.
@@ -5499,7 +5499,7 @@ function installMediaPermissions() {
 // OAuth remote-gateway auth.
 //
 // Hosted OpenAmer gateways gate the dashboard behind an OAuth provider (e.g.
-// Nous Research) instead of a static session token. The auth model is
+// OpenAmer) instead of a static session token. The auth model is
 // fundamentally different from the token path:
 //
 //   * REST is authed by HttpOnly session cookies (``openamer_session_at``),
@@ -5512,7 +5512,7 @@ function installMediaPermissions() {
 //   * WebSocket upgrades require a single-use ``?ticket=`` minted at
 //     ``POST /api/auth/ws-ticket`` (cookie-authed). The legacy ``?token=``
 //     path is unconditionally rejected by gated gateways.
-//   * Nous Portal now issues a 24h ROTATING, reuse-detected refresh token
+//   * OpenAmer Portal now issues a 24h ROTATING, reuse-detected refresh token
 //     alongside the ~15-min access token (Portal NAS #293 / openamer #37247).
 //     Both are set as HttpOnly cookies (``openamer_session_at`` ~15 min,
 //     ``openamer_session_rt`` 24h). When the AT cookie lapses but the RT cookie
@@ -6178,7 +6178,7 @@ async function freshGatewayWsUrl(profile) {
 // --- OpenAmer Cloud discovery + silent per-agent sign-in (cloud-auto-discovery
 // Phase 3) ---------------------------------------------------------------
 //
-// The "cloud" connection mode lets a user sign in to the Nous portal ONCE in
+// The "cloud" connection mode lets a user sign in to the OpenAmer portal ONCE in
 // the OAuth session partition, then (a) discover their hosted agents and (b)
 // connect to any of them with no second interactive sign-in. Both ride the one
 // portal session cookie living in `persist:openamer-remote-oauth`:
@@ -6189,18 +6189,18 @@ async function freshGatewayWsUrl(profile) {
 //     with that agent's session cookie — no prompt. Each agent still completes
 //     its own PKCE exchange; SSO removes the human click, not a security check.
 
-// Canonical Nous portal base URL, overridable for staging/dev. Mirrors the CLI
-// convention (openamer_cli/auth.py DEFAULT_NOUS_PORTAL_URL + the same env names)
+// Canonical OpenAmer portal base URL, overridable for staging/dev. Mirrors the CLI
+// convention (openamer_cli/auth.py DEFAULT_openamer_PORTAL_URL + the same env names)
 // so a single override flips every OpenAmer surface to the same portal.
-const DEFAULT_NOUS_PORTAL_URL = 'https://portal.nousresearch.com'
+const DEFAULT_openamer_PORTAL_URL = 'https://portal.openamer.com'
 
 function resolvePortalBaseUrl() {
-  const raw = process.env.OPENAMER_PORTAL_BASE_URL || process.env.NOUS_PORTAL_BASE_URL || DEFAULT_NOUS_PORTAL_URL
+  const raw = process.env.OPENAMER_PORTAL_BASE_URL || process.env.OPENAMER_PORTAL_BASE_URL || DEFAULT_openamer_PORTAL_URL
 
   return String(raw).trim().replace(/\/+$/, '')
 }
 
-// Whether the OAuth partition currently holds a live Nous portal session — the
+// Whether the OAuth partition currently holds a live OpenAmer portal session — the
 // credential that powers both discovery and the silent cascade. The portal
 // authenticates via PRIVY, not the OpenAmer gateway session cookies, so this
 // checks for the `privy-token` cookie on the portal host (NOT
@@ -7424,7 +7424,7 @@ async function probeRemoteAuthMode(rawUrl) {
 
   if (authRequired) {
     // Best-effort: a gated gateway exposes the registered providers so the
-    // button can read "Sign in with Nous Research" instead of a generic
+    // button can read "Sign in with OpenAmer" instead of a generic
     // label, and so a username/password provider can be distinguished from
     // an OAuth-redirect one (``supports_password``). A failure here doesn't
     // change the auth mode, so swallow it.
@@ -10579,7 +10579,7 @@ function showAboutPanelFresh() {
   app.setAboutPanelOptions({
     applicationName: APP_NAME,
     applicationVersion: resolveOpenAmerVersion(),
-    copyright: 'Copyright © 2026 Nous Research'
+    copyright: 'Copyright © 2026 OpenAmer'
   })
   app.showAboutPanel()
 }

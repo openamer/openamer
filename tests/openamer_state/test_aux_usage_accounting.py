@@ -94,11 +94,11 @@ class TestRecordAuxiliaryUsage:
         db.create_session("s1", source="cli")
         db.update_token_counts(
             "s1", input_tokens=100, output_tokens=10,
-            model="main-model", billing_provider="nous", api_call_count=1,
+            model="main-model", billing_provider="openamer", api_call_count=1,
         )
         db.record_auxiliary_usage(
             "s1", "title_generation", model="main-model",
-            billing_provider="nous", input_tokens=40, output_tokens=8,
+            billing_provider="openamer", input_tokens=40, output_tokens=8,
         )
         rows = _usage_rows(db, "s1")
         tasks = sorted(r["task"] for r in rows)
@@ -311,7 +311,7 @@ class TestAnalyticsAuxRows:
         db.create_session("s1", source="cli")
         db.update_token_counts(
             "s1", input_tokens=1000, output_tokens=100,
-            model="main-model", billing_provider="nous", api_call_count=1,
+            model="main-model", billing_provider="openamer", api_call_count=1,
         )
         db.record_auxiliary_usage(
             "s1", "vision", model="vision-model",
@@ -319,7 +319,7 @@ class TestAnalyticsAuxRows:
         )
         db.record_auxiliary_usage(
             "s1", "compression", model="main-model",
-            billing_provider="nous", input_tokens=200, output_tokens=20,
+            billing_provider="openamer", input_tokens=200, output_tokens=20,
         )
 
         aux = _aux_usage_rows(db, cutoff=0)
@@ -351,7 +351,7 @@ class TestInsightsAuxTotals:
         db.create_session("s1", source="cli")
         db.update_token_counts(
             "s1", input_tokens=1000, output_tokens=100,
-            model="main-model", billing_provider="nous", api_call_count=1,
+            model="main-model", billing_provider="openamer", api_call_count=1,
         )
         db.record_auxiliary_usage(
             "s1", "compression", model="glm-5",
@@ -371,16 +371,16 @@ class TestInsightsAuxTotals:
         db.create_session("s2", source="telegram")
         db.update_token_counts(
             "s2", input_tokens=2000, output_tokens=200,
-            model="main-model", billing_provider="nous", api_call_count=1,
+            model="main-model", billing_provider="openamer", api_call_count=1,
         )
         db.update_token_counts(
             "s2", input_tokens=2000, output_tokens=200,
-            model="main-model", billing_provider="nous",
+            model="main-model", billing_provider="openamer",
             absolute=True, api_call_count=1,
         )
         db.record_auxiliary_usage(
             "s2", "title_generation", model="main-model",
-            billing_provider="nous", input_tokens=40, output_tokens=8,
+            billing_provider="openamer", input_tokens=40, output_tokens=8,
         )
         report = InsightsEngine(db).generate(days=30)
         ov = report["overview"]

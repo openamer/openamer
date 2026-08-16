@@ -6,14 +6,14 @@ import pytest
 
 import openamer_cli.auth as auth
 from openamer_cli.auth import (
-    NOUS_BILLING_MANAGE_SCOPE,
-    nous_token_has_billing_scope,
-    step_up_nous_billing_scope,
+    OPENAMER_BILLING_MANAGE_SCOPE,
+    openamer_token_has_billing_scope,
+    step_up_openamer_billing_scope,
 )
 
 
 # ---------------------------------------------------------------------------
-# nous_token_has_billing_scope
+# openamer_token_has_billing_scope
 # ---------------------------------------------------------------------------
 
 
@@ -23,19 +23,19 @@ def test_has_scope_true_when_present(monkeypatch):
         "get_provider_auth_state",
         lambda p: {"scope": "inference:invoke tool:invoke billing:manage"},
     )
-    assert nous_token_has_billing_scope() is True
+    assert openamer_token_has_billing_scope() is True
 
 
 def test_has_scope_false_when_absent(monkeypatch):
     monkeypatch.setattr(
         auth, "get_provider_auth_state", lambda p: {"scope": "inference:invoke tool:invoke"}
     )
-    assert nous_token_has_billing_scope() is False
+    assert openamer_token_has_billing_scope() is False
 
 
 def test_has_scope_false_when_no_state(monkeypatch):
     monkeypatch.setattr(auth, "get_provider_auth_state", lambda p: None)
-    assert nous_token_has_billing_scope() is False
+    assert openamer_token_has_billing_scope() is False
 
 
 def test_has_scope_no_substring_false_positive(monkeypatch):
@@ -43,11 +43,11 @@ def test_has_scope_no_substring_false_positive(monkeypatch):
     monkeypatch.setattr(
         auth, "get_provider_auth_state", lambda p: {"scope": "billing:manage-lite"}
     )
-    assert nous_token_has_billing_scope() is False
+    assert openamer_token_has_billing_scope() is False
 
 
 # ---------------------------------------------------------------------------
-# step_up_nous_billing_scope
+# step_up_openamer_billing_scope
 # ---------------------------------------------------------------------------
 
 
@@ -58,8 +58,8 @@ def _stub_persist(monkeypatch):
     monkeypatch.setattr(auth, "_load_auth_store", lambda: {})
     monkeypatch.setattr(auth, "_save_provider_state", lambda *a, **kw: None)
     monkeypatch.setattr(auth, "_save_auth_store", lambda *a, **kw: "auth.json")
-    monkeypatch.setattr(auth, "_write_shared_nous_state", lambda *a, **kw: None)
-    monkeypatch.setattr(auth, "_sync_nous_pool_from_auth_store", lambda: None)
+    monkeypatch.setattr(auth, "_write_shared_openamer_state", lambda *a, **kw: None)
+    monkeypatch.setattr(auth, "_sync_openamer_pool_from_auth_store", lambda: None)
 
 
 class _NullCtx:
@@ -88,12 +88,12 @@ def test_step_up_requests_billing_scope_and_reuses_prior_urls(monkeypatch, _stub
         # Simulate the admin ticking the box → token comes back WITH the scope.
         return {"scope": "inference:invoke tool:invoke billing:manage", "access_token": "t"}
 
-    monkeypatch.setattr(auth, "_nous_device_code_login", _fake_login)
+    monkeypatch.setattr(auth, "_openamer_device_code_login", _fake_login)
 
-    granted = step_up_nous_billing_scope()
+    granted = step_up_openamer_billing_scope()
     assert granted is True
     # Requested scope must include billing:manage, preserving prior scopes.
-    assert NOUS_BILLING_MANAGE_SCOPE in captured["scope"].split()
+    assert OPENAMER_BILLING_MANAGE_SCOPE in captured["scope"].split()
     assert "inference:invoke" in captured["scope"].split()
     # Reuses the prior credential's deployment URLs (so a preview stays a preview).
     assert captured["portal_base_url"] == "https://preview.example.com"
@@ -105,10 +105,10 @@ def test_step_up_returns_false_when_downscoped(monkeypatch, _stub_persist):
     monkeypatch.setattr(auth, "get_provider_auth_state", lambda p: {"scope": "inference:invoke"})
     monkeypatch.setattr(
         auth,
-        "_nous_device_code_login",
+        "_openamer_device_code_login",
         lambda **kw: {"scope": "inference:invoke", "access_token": "t"},
     )
-    assert step_up_nous_billing_scope() is False
+    assert step_up_openamer_billing_scope() is False
 
 
 def test_step_up_falls_back_to_standard_scope_when_no_prior(monkeypatch, _stub_persist):
@@ -119,12 +119,12 @@ def test_step_up_falls_back_to_standard_scope_when_no_prior(monkeypatch, _stub_p
         captured.update(kw)
         return {"scope": "inference:invoke tool:invoke billing:manage"}
 
-    monkeypatch.setattr(auth, "_nous_device_code_login", _fake_login)
-    step_up_nous_billing_scope()
+    monkeypatch.setattr(auth, "_openamer_device_code_login", _fake_login)
+    step_up_openamer_billing_scope()
     requested = captured["scope"].split()
     assert "inference:invoke" in requested
     assert "tool:invoke" in requested
-    assert NOUS_BILLING_MANAGE_SCOPE in requested
+    assert OPENAMER_BILLING_MANAGE_SCOPE in requested
 
 
 # ---------------------------------------------------------------------------
@@ -140,12 +140,12 @@ def test_step_up_forwards_on_verification_callback(monkeypatch, _stub_persist):
         captured.update(kw)
         return {"scope": "inference:invoke tool:invoke billing:manage"}
 
-    monkeypatch.setattr(auth, "_nous_device_code_login", _fake_login)
+    monkeypatch.setattr(auth, "_openamer_device_code_login", _fake_login)
 
     def _cb(url, code):
         pass
 
-    step_up_nous_billing_scope(on_verification=_cb)
+    step_up_openamer_billing_scope(on_verification=_cb)
     # The callback must be threaded straight through to the device-code login.
     assert captured["on_verification"] is _cb
 
@@ -184,7 +184,7 @@ def test_device_login_fires_on_verification_before_polling(monkeypatch):
     # validation (JWT usability checks) is out of scope and may raise on the
     # synthetic token — swallow it; the ordering assertion is what matters.
     try:
-        auth._nous_device_code_login(open_browser=False, on_verification=_cb)
+        auth._openamer_device_code_login(open_browser=False, on_verification=_cb)
     except Exception:
         pass
 

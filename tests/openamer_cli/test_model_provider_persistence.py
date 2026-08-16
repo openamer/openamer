@@ -79,7 +79,7 @@ class TestProviderPersistsAfterModelSave:
 
         def _boom(path, data, **kwargs):
             assert path == config_path
-            assert data["model"]["provider"] == "nous"
+            assert data["model"]["provider"] == "openamer"
             assert data["model"]["base_url"] == "https://inference.example.com/v1"
             assert data["model"]["default"] == "some-old-model"
             assert kwargs["sort_keys"] is False
@@ -88,7 +88,7 @@ class TestProviderPersistsAfterModelSave:
         with patch("openamer_cli.auth.atomic_yaml_write", side_effect=_boom) as mock_write:
             with pytest.raises(OSError, match="simulated atomic write failure"):
                 _update_config_for_provider(
-                    "nous",
+                    "openamer",
                     "https://inference.example.com/v1/",
                     default_model="llama-3.3",
                 )

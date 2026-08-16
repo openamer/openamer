@@ -216,7 +216,7 @@ tool_prefix: "▏"
 
 [OpenAmer Mod](https://github.com/cocktailpeanut/openamer-mod) is a community-built web UI for creating and managing skins visually. Instead of writing YAML by hand, you get a point-and-click editor with live preview.
 
-![OpenAmer Mod skin editor](https://raw.githubusercontent.com/cocktailpeanut/openamer-mod/master/nous.png)
+![OpenAmer Mod skin editor](https://raw.githubusercontent.com/cocktailpeanut/openamer-mod/master/openamer.png)
 
 **What it does:**
 
