@@ -1,9 +1,9 @@
 {
   "version": 1,
-  "updated_at": "2026-07-24T19:06:06Z",
+  "updated_at": "2026-08-16T00:55:52Z",
   "metadata": {
     "source": "openamer-agent repo",
-    "docs": "https://github.com/openamer/openamer/docs/reference/model-catalog"
+    "docs": "https://github.com/openamer/openamer/blob/main/website/docs/reference/model-catalog"
   },
   "providers": {
     "openrouter": {
