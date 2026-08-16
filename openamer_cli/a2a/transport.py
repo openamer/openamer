@@ -222,3 +222,50 @@ def ask(identity: IdentityStore, trust: TrustStore, peer_url: str,
     )
     # 4) send
     return send_message(peer_url.rstrip("/") + "/message", env, timeout=timeout)
+
+
+def ask_many(identity, trust, peer_urls, question, kind: str = "ask",
+             timeout: float = 60.0, concurrency: int = 3) -> dict:
+    """Ask several trusted peers the same question and collect their answers.
+
+    This is collective-swarm routing: the node fans the question out to every
+    peer URL it trusts, then bundles all verified answers into one result so
+    the agent can reason over the swarm's view (majority, corroboration, or the
+    best single answer). Non-trusted / unresponsive peers are reported, never
+    fatal.
+
+    Returns: {ok, total, answered, answers: [ {peer, ok, result|error}, ... ]}
+    """
+    import threading
+    from queue import Queue
+    results = []
+    lock = threading.Lock()
+
+    def worker(url):
+        try:
+            r = ask(identity, trust, url, question, kind=kind, timeout=timeout)
+            with lock:
+                results.append({"peer": url, "ok": bool(r.get("ok")), "result": r.get("result") or r.get("error") or r})
+        except Exception as e:  # noqa: BLE001 - report any peer failure
+            with lock:
+                results.append({"peer": url, "ok": False, "result": f"error: {e}"})
+
+    threads = []
+    # bounded concurrency to be polite to peers
+    idx = 0
+    while idx < len(peer_urls):
+        batch = peer_urls[idx:idx+concurrency]
+        for u in batch:
+            th = threading.Thread(target=worker, args=(u,), daemon=True)
+            th.start(); threads.append(th)
+        for th in threads[-concurrency:]: th.join(max(timeout, 5))  # wait batch
+        idx += concurrency
+    for th in threads: th.join()
+
+    answered = [r for r in results if r.get("ok")]
+    return {
+        "ok": len(answered) > 0,
+        "total": len(results),
+        "answered": len(answered),
+        "answers": results,
+    }

@@ -125,16 +125,26 @@ def _cmd_self(args) -> int:
 
 
 def _cmd_ask(args) -> int:
-    """Ask a trusted remote node a question (Node-to-Node A2A routing).
-
-    Usage: openamer a2a ask <peer-http-url> "<question>"
-    """
-    if not args.peer_url or not args.question:
-        print("Usage: openamer a2a ask <peer-http-url> \"<question>\"")
-        return 2
+    """Ask a trusted remote node a question (Node-to-Node A2A routing)."""
     from openamer_cli.a2a import transport
     identity = core.IdentityStore()
     trust_store = _trust()
+    if getattr(args, "peers", None):
+        # collective swarm ask: fan out to multiple peers
+        urls = [u for u in args.peers if u]
+        if not urls:
+            print("Usage: openamer a2a ask --peers url1 url2 ... \"<question>\"")
+            return 2
+        res = transport.ask_many(identity, trust_store, urls, args.question or "",
+                                 kind=args.kind or "ask")
+        print(f"Swarm asked {res['total']} peers; {res['answered']} answered.")
+        for a in res["answers"]:
+            ok = "OK " if a["ok"] else "ERR"
+            print(f"  [{ok}] {a['peer']}: {a['result']}")
+        return 0 if res.get("ok") else 1
+    if not args.peer_url or not args.question:
+        print("Usage: openamer a2a ask <peer-http-url> \"<question>\" [--peers url1 url2 ...]")
+        return 2
     res = transport.ask(identity, trust_store, args.peer_url, args.question,
                         kind=args.kind or "ask")
     if res.get("ok"):
@@ -373,6 +383,7 @@ def build_a2a_parser(subparsers) -> None:
     aq.add_argument("peer_url", nargs="?", help="peer HTTP base URL")
     aq.add_argument("question", nargs="?", help="the question to ask")
     aq.add_argument("--kind", default="ask")
+    aq.add_argument("--peers", nargs="*", default=None, help="ask multiple peers (collective swarm)")
     aq.set_defaults(func=_cmd_ask)
 
     tr = sub.add_parser("trust", help="Manage trusted peers (opt-in)")

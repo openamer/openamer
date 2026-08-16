@@ -357,3 +357,29 @@ def test_publish_curated_redacts_private(tmp_path):
     blob = "".join(f.read_text(encoding="utf-8") for f in out.glob("*.jsonl"))
     assert "+49 152 1234567" not in blob
     assert "cache layers" in blob
+
+def test_a2a_ask_many_swarm(tmp_path):
+    """Question fan-out to several trusted peers -> bundled collective answers."""
+    import threading as _th
+    from openamer_cli.a2a import transport as tr
+    idQ = core.IdentityStore(tmp_path / "q"); Q = idQ.ensure_identity()
+    trQ = trust.TrustStore(tmp_path / "q")
+    servers = []
+    peers = []
+    for i in range(2):
+        hs = tmp_path / f"s{i}"
+        idP = core.IdentityStore(hs); ident = idP.ensure_identity()
+        trP = trust.TrustStore(hs)
+        def on_task(env, pd=None):
+            return {"answer": "ok:" + str((env.payload or {}).get("question"))}
+        srv = transport.A2ANodeServer(host="127.0.0.1", port=0, trust=trP,
+                                      identity=idP, on_task=on_task)
+        _th.Thread(target=srv.serve_forever, daemon=True).start()
+        servers.append(srv)
+        trQ.add_peer(ident.fingerprint, ident.public_key, name=f"p{i}")
+        trP.add_peer(Q.fingerprint, Q.public_key, name="Q"); trP.grant(Q.fingerprint, "task.ask")
+    urls = [f"http://127.0.0.1:{s.port}" for s in servers]
+    res = transport.ask_many(idQ, trQ, urls, "meaning?", kind="ask")
+    for s in servers: s.shutdown()
+    assert res["ok"] is True and res["answered"] == 2
+    assert len(res["answers"]) == 2
