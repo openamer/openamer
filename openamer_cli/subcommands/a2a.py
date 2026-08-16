@@ -147,6 +147,54 @@ def _trust() -> "TrustStore":
     return TrustStore()
 
 
+def _cmd_skill(args) -> int:
+    """Sign / verify a skill for the A2A mesh."""
+    from openamer_cli.a2a import skillshare
+    act = args.skill_cmd
+    store = core.IdentityStore()
+    if act == "sign":
+        if not args.skill_dir:
+            print("Usage: openamer a2a skill sign <skill_dir>")
+            return 2
+        import pathlib as _pl
+        sd = _pl.Path(args.skill_dir)
+        try:
+            out = skillshare.publish(sd, _pl.Path(args.out or _pl.Path.home()/".openamer" / "a2a" / "skills"),
+                                     identity_store=store)
+        except ValueError as e:
+            print(f"Error: {e}"); return 1
+        print(f"Signed skill manifest: {out}")
+        m = skillshare.SkillManifest.from_dict(_json_load(out))
+        print(f"  publisher : {m.publisher}@openamer")
+        print(f"  files     : {len(m.files)}")
+        return 0
+    if act == "verify":
+        if not args.skill_dir:
+            print("Usage: openamer a2a skill verify <skill_dir> [--manifest <json>]")
+            return 2
+        import pathlib as _pl
+        sd = _pl.Path(args.skill_dir)
+        mpath = _pl.Path(args.manifest) if args.manifest else None
+        if mpath is None:
+            # find sibling manifest
+            cand = _pl.Path(str(sd) + ".json")
+            if cand.exists(): mpath = cand
+            else:
+                cand2 = sd / ".." / f"{sd.name}.json"
+                if cand2.exists(): mpath = cand2
+        if mpath is None or not mpath.exists():
+            print("Error: no manifest found (pass --manifest)."); return 1
+        m = skillshare.SkillManifest.from_dict(json.loads(mpath.read_text(encoding="utf-8")))
+        res = m.verify_all(sd)
+        print(f"signature_ok : {res['signature_ok']}")
+        print(f"content_ok   : {res['content_ok']}")
+        return 0 if (res["signature_ok"] and res.get("content_ok")) else 1
+    print("Unknown skill subcommand."); return 2
+
+def _json_load(p):
+    import json
+    return json.loads(p.read_text(encoding="utf-8"))
+
 def _cmd_trust(args) -> int:
     """Manage trusted peers (opt-in mesh membership)."""
     from openamer_cli.a2a.trust import TrustStore
@@ -230,5 +278,15 @@ def build_a2a_parser(subparsers) -> None:
     trm = tr_sub.add_parser("remove", help="Remove a trusted peer")
     trm.add_argument("fingerprint", nargs="?"); trm.set_defaults(func=_cmd_trust)
     tr.set_defaults(func=_cmd_trust)
+
+    sk = sub.add_parser("skill", help="Sign / verify skills for the A2A mesh")
+    sk_sub = sk.add_subparsers(dest="skill_cmd")
+    ss = sk_sub.add_parser("sign", help="Sign a skill into a verifiable manifest")
+    ss.add_argument("skill_dir", nargs="?"); ss.add_argument("--out", default=None)
+    ss.set_defaults(func=_cmd_skill)
+    sv = sk_sub.add_parser("verify", help="Verify a skill against its signed manifest")
+    sv.add_argument("skill_dir", nargs="?"); sv.add_argument("--manifest", default=None)
+    sv.set_defaults(func=_cmd_skill)
+    sk.set_defaults(func=_cmd_skill)
 
     p.set_defaults(func=_cmd_status)

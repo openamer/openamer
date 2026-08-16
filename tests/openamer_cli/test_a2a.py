@@ -180,3 +180,23 @@ def test_a2a_ask_roundtrip(tmp_path):
     srv.shutdown()
     assert res.get("ok") is True
     assert "got what is 2+2?" in str(res.get("result", {}))
+
+
+def test_skill_manifest_sign_verify(tmp_path):
+    """Signed skill manifest: publish, verify, and reject tampering."""
+    from openamer_cli.a2a import skillshare as sks
+    os = tmp_path
+    store = core.IdentityStore(tmp_path / "id")
+    ds = tmp_path / "demo"; ds.mkdir(parents=True, exist_ok=True)
+    (ds / "SKILL.md").write_text("# Demo", encoding="utf-8")
+    (ds / "tool.py").write_text("x=1", encoding="utf-8")
+    outdir = tmp_path / "pub"
+    mfile = sks.publish(ds, outdir, identity_store=store)
+    m = sks.SkillManifest.from_dict(__import__("json").loads(mfile.read_text()))
+    assert m.verify_signature() is True
+    assert m.verify_directory(ds) is True
+    (ds / "tool.py").write_text("x=2", encoding="utf-8")  # tamper
+    assert m.verify_directory(ds) is False
+    m2 = sks.SkillManifest.from_dict(__import__("json").loads(mfile.read_text()))
+    m2.name = "hack"
+    assert m2.verify_signature() is False
