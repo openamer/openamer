@@ -124,6 +124,44 @@ def _cmd_self(args) -> int:
     return 0
 
 
+def _cmd_relay(args) -> int:
+    """Post / pull A2A messages over the GitHub relay (not localhost)."""
+    from openamer_cli.a2a import relay as rl
+    from openamer_cli.a2a import core as a2a_core
+    import pathlib as _pl
+    act = args.relay_cmd
+    if act == "post":
+        if not (args.question and args.relay_peer):
+            print("Usage: openamer a2a relay post <peer_fingerprint> \"<question>\" [--repo-dir <dir>]")
+            return 2
+        # build a signed ask envelope
+        identity = a2a_core.IdentityStore()
+        me = identity.ensure_identity()
+        from openamer_cli.a2a.core import Envelope
+        env = Envelope.create(private_key=identity.private_key(), sender=me.fingerprint,
+                              recipient=args.relay_peer, kind="ask",
+                              payload={"question": args.question})
+        note = rl.relay_note(identity_store=identity, envelope=env)
+        # if a local relay repo dir is given, push it; else write to a mailbox dir
+        if args.repo_dir:
+            ok = rl.git_push_relay(_pl.Path(args.repo_dir), note)
+            print(f"Relay note pushed to {args.repo_dir} (ok={ok})")
+        else:
+            mb = rl.RelayMailbox(_pl.Path.cwd() / "relay-inbox")
+            f = mb.store(note)
+            print(f"Relay note staged locally: {f} (push repo to GitHub directory/a2a/relay/)")
+        return 0
+    if act == "pull":
+        mb = rl.RelayMailbox(_pl.Path(args.repo_dir or _pl.Path.cwd()/ "relay-inbox"))
+        got = mb.pull(args.mailbox or "*")
+        print(f"Pulled {len(got)} relay notes for mailbox {args.mailbox or '*'}.")
+        for n in got:
+            v = rl.verify_note(n)
+            print(f"  [{'OK' if v['ok'] else v['reason']}] {n.get('sender')} -> {n.get('recipient')}")
+        return 0
+    print("Usage: openamer a2a relay post|pull"); return 2
+
+
 def _cmd_ask(args) -> int:
     """Ask a trusted remote node a question (Node-to-Node A2A routing)."""
     from openamer_cli.a2a import transport
@@ -385,6 +423,17 @@ def build_a2a_parser(subparsers) -> None:
     aq.add_argument("--kind", default="ask")
     aq.add_argument("--peers", nargs="*", default=None, help="ask multiple peers (collective swarm)")
     aq.set_defaults(func=_cmd_ask)
+
+    rl = sub.add_parser("relay", help="GitHub relay transport (A2A over the repo, not localhost)")
+    rl_sub = rl.add_subparsers(dest="relay_cmd")
+    rp = rl_sub.add_parser("post", help="Post a signed, redacted message for a peer")
+    rp.add_argument("relay_peer", nargs="?"); rp.add_argument("question", nargs="?")
+    rp.add_argument("--repo-dir", default=None)
+    rp.set_defaults(func=_cmd_relay)
+    rpull = rl_sub.add_parser("pull", help="Pull + verify relay notes for a mailbox")
+    rpull.add_argument("mailbox", nargs="?"); rpull.add_argument("--repo-dir", default=None)
+    rpull.set_defaults(func=_cmd_relay)
+    rl.set_defaults(func=_cmd_relay)
 
     tr = sub.add_parser("trust", help="Manage trusted peers (opt-in)")
     tr_sub = tr.add_subparsers(dest="trust_cmd")
