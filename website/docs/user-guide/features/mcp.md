@@ -49,7 +49,7 @@ OpenAmer will discover the MCP server's tools and use them like any other tool.
 
 ## Catalog: one-click install for Nous-approved MCPs
 
-OpenAmer ships a curated catalog of MCP servers that Nous staff has reviewed
+OpenAmer ships a curated catalog of MCP servers that a hosted provider staff has reviewed
 and merged. They're disabled by default — install only what you actually
 want.
 
@@ -119,7 +119,7 @@ reachable to refine.
 Installing a catalog entry runs whatever the manifest specifies — `git clone`,
 the entry's `bootstrap` commands (`pip install`, `npm install`, etc.), and
 ultimately the MCP server's own code. Manifests are gated by PR review into
-the openamer-agent repo, so Nous has reviewed each entry before it shipped —
+the openamer-agent repo, so a hosted provider has reviewed each entry before it shipped —
 **but you should still read the manifest before installing**, especially the
 `source:` field's repository, the `install.bootstrap:` commands, and any
 `transport.command:` invocation.

@@ -2,7 +2,7 @@
 name: comps-analysis
 description: Build comparable-company valuation workbooks in Excel.
 version: 1.0.0
-author: Anthropic (adapted by Nous Research)
+author: Anthropic (adapted by the OpenAmer project)
 license: Apache-2.0
 platforms: [linux, macos, windows]
 metadata:

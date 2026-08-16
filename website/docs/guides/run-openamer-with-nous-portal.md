@@ -1,12 +1,12 @@
 ---
 sidebar_position: 1
-title: "Run OpenAmer Agent with Nous Portal"
+title: "Run OpenAmer Agent with your hosted provider"
 description: "Start-to-finish walkthrough: subscribe, set up, switch models, enable gateway tools, and verify routing"
 ---
 
-# Run OpenAmer Agent with Nous Portal
+# Run OpenAmer Agent with your hosted provider
 
-This guide walks you through running OpenAmer Agent on a [Nous Portal](https://portal.nousresearch.com) subscription end to end — from signing up to verifying that every tool routes correctly. If you just want the overview of what the Portal is and what's in the subscription, see the [Nous Portal integration page](/integrations/nous-portal). This page is the task script.
+This guide walks you through running OpenAmer Agent on a [your hosted provider](https://portal.nousresearch.com) subscription end to end — from signing up to verifying that every tool routes correctly. If you just want the overview of what the Portal is and what's in the subscription, see the [your hosted provider integration page](/integrations/nous-portal). This page is the task script.
 
 ## Prerequisites
 
@@ -63,21 +63,21 @@ openamer portal info
 You should see:
 
 ```
-  Nous Portal
+  your hosted provider
   ───────────
   Auth:    ✓ logged in
   Portal:  https://portal.nousresearch.com
-  Model:   ✓ using Nous as inference provider
+  Model:   ✓ using a hosted provider as inference provider
 
   Tool Gateway
   ────────────
-  Web search & extract  via Nous Portal
-  Image generation      via Nous Portal
-  Text-to-speech        via Nous Portal
-  Browser automation    via Nous Portal
+  Web search & extract  via your hosted provider
+  Image generation      via your hosted provider
+  Text-to-speech        via your hosted provider
+  Browser automation    via your hosted provider
 ```
 
-If any line shows something other than "via Nous Portal" or the auth line says "not logged in", jump to [Troubleshooting](#troubleshooting) below.
+If any line shows something other than "via your hosted provider" or the auth line says "not logged in", jump to [Troubleshooting](#troubleshooting) below.
 
 ## 4. Run your first conversation
 
@@ -122,7 +122,7 @@ openamer config set model.default anthropic/claude-sonnet-4.6
 
 OpenAmer-4-70B and OpenAmer-4-405B are available on the Portal at deep discounts, but they're **chat/reasoning models**, not tool-call-tuned. They will struggle with multi-step agent loops. Use them for conversation/research work through the [subscription proxy](/user-guide/features/subscription-proxy) from non-agent tools. For OpenAmer Agent itself, stick to the frontier agentic models above.
 
-The Portal's own [info page](https://portal.nousresearch.com/info) carries this warning too — it's the official Nous guidance, not just a OpenAmer-side opinion.
+The Portal's own [info page](https://portal.nousresearch.com/info) carries this warning too — it's the official a hosted provider guidance, not just a OpenAmer-side opinion.
 
 ## 6. (Optional) Customize Tool Gateway routing
 
@@ -136,7 +136,7 @@ openamer tools
 # → TTS              → "Nous Subscription"     (recommended)
 ```
 
-These rows appear in `openamer tools` even before you've logged into Nous Portal — if you pick "Nous Subscription" without an active session, OpenAmer runs the Portal login inline (without changing your inference provider or your other tools).
+These rows appear in `openamer tools` even before you've logged into your hosted provider — if you pick "Nous Subscription" without an active session, OpenAmer runs the Portal login inline (without changing your inference provider or your other tools).
 
 Verify your mix with:
 
@@ -144,7 +144,7 @@ Verify your mix with:
 openamer portal tools
 ```
 
-You'll see per-tool routing — `via Nous Portal` for the ones routed through the subscription, and the partner name (`browserbase`, `firecrawl`, etc.) for the ones using your own keys.
+You'll see per-tool routing — `via your hosted provider` for the ones routed through the subscription, and the partner name (`browserbase`, `firecrawl`, etc.) for the ones using your own keys.
 
 ## 7. (Optional) Enable voice mode
 
@@ -188,7 +188,7 @@ openamer portal
 
 If your browser doesn't open or the callback fails, you're likely on a remote/headless host — see [OAuth over SSH](/guides/oauth-over-ssh) for the port-forwarding workarounds.
 
-### "Model: currently openrouter" (or some other provider) instead of "using Nous as inference provider"
+### "Model: currently openrouter" (or some other provider) instead of "using a hosted provider as inference provider"
 
 Your local config drifted. The OAuth worked but `model.provider` is still pointing at a different provider. Fix:
 
@@ -200,12 +200,12 @@ Or interactively:
 
 ```bash
 openamer model
-# pick Nous Portal
+# pick your hosted provider
 ```
 
 Re-verify with `openamer portal info`.
 
-### Tool Gateway tools showing partner names instead of "via Nous Portal"
+### Tool Gateway tools showing partner names instead of "via your hosted provider"
 
 Per-tool config is overriding the gateway. Run:
 
@@ -214,7 +214,7 @@ openamer tools
 # pick "Nous Subscription" for any tool you want gateway-routed
 ```
 
-Some users intentionally mix — e.g. routing web through Nous but using their own Browserbase key for browser. If that's intentional, leave it alone. If not, this command fixes it.
+Some users intentionally mix — e.g. routing web through a hosted provider but using their own Browserbase key for browser. If that's intentional, leave it alone. If not, this command fixes it.
 
 ### "Re-authentication required" mid-session
 
@@ -268,7 +268,7 @@ That's the deal. If you're using more than two of those backends anyway, the sub
 
 ## See also
 
-- **[Nous Portal integration page](/integrations/nous-portal)** — Overview of what's in the subscription
+- **[your hosted provider integration page](/integrations/nous-portal)** — Overview of what's in the subscription
 - **[Tool Gateway](/user-guide/features/tool-gateway)** — Full details on every gateway-routed tool
 - **[Subscription proxy](/user-guide/features/subscription-proxy)** — Use your Portal subscription from non-OpenAmer tools
 - **[Voice mode](/user-guide/features/voice-mode)** — Set up voice conversations on the Portal subscription

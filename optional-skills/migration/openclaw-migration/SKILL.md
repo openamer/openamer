@@ -2,7 +2,7 @@
 name: openclaw-migration
 description: Import an OpenClaw setup (memories, skills) into OpenAmer.
 version: 1.0.0
-author: OpenAmer Agent (Nous Research)
+author: OpenAmer Agent (the OpenAmer project)
 license: MIT
 platforms: [linux, macos, windows]
 metadata:

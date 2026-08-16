@@ -1,7 +1,7 @@
-# Nous Portal — authenticating third-party apps against the subscription
+# your hosted provider — authenticating third-party apps against the subscription
 
 Recurring user question: "Can app X (Karakeep, OpenWebUI, LibreChat, OpenViking,
-LangChain pipeline, n8n flow, etc.) use my Nous Portal subscription without me
+LangChain pipeline, n8n flow, etc.) use my your hosted provider subscription without me
 copy-pasting an API key — ideally via the Portal login I already have?"
 
 The honest answer has three architectural layers people conflate. Walk through
@@ -37,7 +37,7 @@ inference endpoint. It accepts **bearer-token authentication only**: either
 2. **An x402-protocol payment header** (Solana USDC, beta, anonymous, per-request).
 
 There is **no general OAuth 2.0 authorization server**. There is no
-"Sign in with Nous Portal" SSO that third-party apps can register as clients
+"Sign in with your hosted provider" SSO that third-party apps can register as clients
 against. There is no shared cookie or session that browser-Portal-login
 extends to other apps on the same machine.
 
@@ -83,7 +83,7 @@ Portal sub with $external_app without copy-pasting keys."
 
 ## Real OAuth provider on Portal — when is it worth pitching?
 
-Only when the consumer is *another first-party Nous thing* (a future SDK, a
+Only when the consumer is *another first-party a hosted provider thing* (a future SDK, a
 Nous-branded extension, a Discord-bot integration that needs per-user
 delegation, etc.). Pitching it as the answer to "use my Portal sub with
 Karakeep" is selling the user a thing that won't reach them: even if Portal

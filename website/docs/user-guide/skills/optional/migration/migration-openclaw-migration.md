@@ -17,7 +17,7 @@ Import an OpenClaw setup (memories, skills) into OpenAmer.
 | Source | Optional — install with `openamer skills install official/migration/openclaw-migration` |
 | Path | `optional-skills/migration/openclaw-migration` |
 | Version | `1.0.0` |
-| Author | OpenAmer Agent (Nous Research) |
+| Author | OpenAmer Agent (the OpenAmer project) |
 | License | MIT |
 | Platforms | linux, macos, windows |
 | Tags | `Migration`, `OpenClaw`, `OpenAmer`, `Memory`, `Persona`, `Import` |

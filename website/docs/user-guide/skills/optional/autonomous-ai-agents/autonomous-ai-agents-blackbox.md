@@ -17,7 +17,7 @@ Delegate coding tasks to the Blackbox AI multi-model CLI.
 | Source | Optional — install with `openamer skills install official/autonomous-ai-agents/blackbox` |
 | Path | `optional-skills/autonomous-ai-agents/blackbox` |
 | Version | `1.0.0` |
-| Author | OpenAmer Agent (Nous Research) |
+| Author | OpenAmer Agent (the OpenAmer project) |
 | License | MIT |
 | Platforms | linux, macos, windows |
 | Tags | `Coding-Agent`, `Blackbox`, `Multi-Agent`, `Judge`, `Multi-Model` |

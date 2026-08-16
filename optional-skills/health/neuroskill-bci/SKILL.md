@@ -8,7 +8,7 @@ description: >
   running locally.
 platforms: [linux, macos, windows]
 version: 1.0.0
-author: OpenAmer Agent + Nous Research
+author: OpenAmer Agent + the OpenAmer project
 license: MIT
 metadata:
   openamer:

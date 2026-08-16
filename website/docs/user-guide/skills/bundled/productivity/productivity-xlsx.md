@@ -17,7 +17,7 @@ Create, read, edit Excel .xlsx spreadsheets and CSVs.
 | Source | Bundled (installed by default) |
 | Path | `skills/productivity/xlsx` |
 | Version | `1.0.0` |
-| Author | Anthropic (adapted by Nous Research) |
+| Author | Anthropic (adapted by the OpenAmer project) |
 | License | Proprietary. LICENSE.txt has complete terms |
 | Platforms | linux, macos, windows |
 | Tags | `Excel`, `XLSX`, `Spreadsheets`, `Office`, `Productivity` |

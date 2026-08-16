@@ -17,7 +17,7 @@ Build leveraged buyout workbooks with IRR/MOIC in Excel.
 | Source | Optional — install with `openamer skills install official/finance/lbo-model` |
 | Path | `optional-skills/finance/lbo-model` |
 | Version | `1.0.0` |
-| Author | Anthropic (adapted by Nous Research) |
+| Author | Anthropic (adapted by the OpenAmer project) |
 | License | Apache-2.0 |
 | Platforms | linux, macos, windows |
 | Tags | `finance`, `valuation`, `lbo`, `private-equity`, `excel`, `openpyxl`, `modeling` |

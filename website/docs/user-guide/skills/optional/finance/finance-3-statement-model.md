@@ -17,7 +17,7 @@ Build integrated IS/BS/CF financial workbooks in Excel.
 | Source | Optional — install with `openamer skills install official/finance/3-statement-model` |
 | Path | `optional-skills/finance/3-statement-model` |
 | Version | `1.0.0` |
-| Author | Anthropic (adapted by Nous Research) |
+| Author | Anthropic (adapted by the OpenAmer project) |
 | License | Apache-2.0 |
 | Platforms | linux, macos, windows |
 | Tags | `finance`, `three-statement`, `income-statement`, `balance-sheet`, `cash-flow`, `excel`, `openpyxl`, `modeling` |

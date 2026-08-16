@@ -17,7 +17,7 @@ Create, read, edit Word .docx documents and templates.
 | Source | Bundled (installed by default) |
 | Path | `skills/productivity/docx` |
 | Version | `1.0.0` |
-| Author | Anthropic (adapted by Nous Research) |
+| Author | Anthropic (adapted by the OpenAmer project) |
 | License | Proprietary. LICENSE.txt has complete terms |
 | Platforms | linux, macos, windows |
 | Tags | `Word`, `DOCX`, `Documents`, `Office`, `Productivity` |

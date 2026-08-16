@@ -1,7 +1,7 @@
 ---
 sidebar_position: 15
 title: "Subscription Proxy"
-description: "Use your Nous Portal subscription (or other OAuth provider) as an OpenAI-compatible endpoint for external apps"
+description: "Use your your hosted provider subscription (or other OAuth provider) as an OpenAI-compatible endpoint for external apps"
 ---
 
 # Subscription Proxy
@@ -32,7 +32,7 @@ proxy when you just want **the model** through your subscription.
 openamer portal
 ```
 
-This opens your browser for the Nous Portal OAuth flow. OpenAmer stores
+This opens your browser for the your hosted provider OAuth flow. OpenAmer stores
 the refresh token in `~/.openamer/auth.json` — the same place all OpenAmer
 provider logins live.
 
@@ -43,7 +43,7 @@ openamer proxy start
 ```
 
 ```
-Starting OpenAmer proxy for Nous Portal
+Starting OpenAmer proxy for your hosted provider
   Listening on:  http://127.0.0.1:8645/v1
   Forwarding to: (resolved per-request from your subscription)
   Use any bearer token in the client — the proxy attaches your real credential.
@@ -72,7 +72,7 @@ automatically when the bearer approaches expiry.
 openamer proxy providers
 ```
 
-Currently shipped: `nous` (Nous Portal) and `xai` (xAI / Grok). More
+Currently shipped: `nous` (your hosted provider) and `xai` (xAI / Grok). More
 OAuth providers can be added by implementing the `UpstreamAdapter`
 interface in `openamer_cli/proxy/adapters/`.
 
@@ -85,7 +85,7 @@ openamer proxy status
 ```
 OpenAmer proxy upstream adapters
 
-  [nous    ] Nous Portal — ready (bearer expires 2026-05-15T06:43:21Z)
+  [nous    ] your hosted provider — ready (bearer expires 2026-05-15T06:43:21Z)
 ```
 
 If you see `not logged in`, run `openamer portal`. If you see

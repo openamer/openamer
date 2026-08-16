@@ -105,7 +105,7 @@ Type `/` in the CLI to open the autocomplete menu. Built-in commands are case-in
 | `/reload` | Reload `.env` variables into the running session (picks up new API keys without restarting) |
 | `/plugins` | List installed plugins and their status |
 | `/pet [list\|<slug>]` | Toggle or adopt a [petdex](/user-guide/features/pets) mascot. `/pet` toggles the pane, `/pet list` shows installed pets, `/pet <slug>` adopts a specific one. |
-| `/hatch <description>` (alias: `/generate-pet`) | Generate a brand-new petdex pet from a text description, using the configured image backend (OpenRouter / Nous Portal). See [Pets](/user-guide/features/pets). |
+| `/hatch <description>` (alias: `/generate-pet`) | Generate a brand-new petdex pet from a text description, using the configured image backend (OpenRouter / your hosted provider). See [Pets](/user-guide/features/pets). |
 
 ### Info
 
@@ -114,8 +114,8 @@ Type `/` in the CLI to open the autocomplete menu. Built-in commands are case-in
 | `/help` | Show this help message |
 | `/version` | Show OpenAmer Agent version, build, and environment info. |
 | `/usage` | Show token usage, cost breakdown, session duration, and — when available from the active provider — an **Account limits** section with remaining quota / credits / plan usage pulled live from the provider's API. |
-| `/credits` | Show your Nous credit balance and a top-up handoff link. |
-| `/billing` | CLI Remote Spending flow for Nous — view balance, buy credits, and manage auto-reload / monthly limits. |
+| `/credits` | Show your a hosted provider credit balance and a top-up handoff link. |
+| `/billing` | CLI Remote Spending flow for a hosted provider — view balance, buy credits, and manage auto-reload / monthly limits. |
 | `/insights` | Show usage insights and analytics (last 30 days) |
 | `/platforms` (alias: `/gateway`) | Show gateway/messaging platform status (CLI-only summary view). |
 | `/paste` | Attach a clipboard image |
@@ -225,7 +225,7 @@ The messaging gateway supports the following built-in commands inside Telegram, 
 | `/title [name]` | Set or show the session title. |
 | `/resume [name]` | Resume a previously named session. |
 | `/usage` | Show token usage, estimated cost breakdown (input/output), context window state, session duration, and — when available from the active provider — an **Account limits** section with remaining quota / credits pulled live from the provider's API. |
-| `/credits` | Show your Nous credit balance and a top-up link that opens the portal billing page in a browser. |
+| `/credits` | Show your a hosted provider credit balance and a top-up link that opens the portal billing page in a browser. |
 | `/insights [days]` | Show usage analytics. |
 | `/reasoning [level\|show\|hide]` | Change reasoning effort or toggle reasoning display. |
 | `/voice [on\|off\|tts\|join\|channel\|leave\|status]` | Control spoken replies in chat. `join`/`channel`/`leave` manage Discord voice-channel mode. |

@@ -2,7 +2,7 @@
 name: google-workspace
 description: "Gmail, Calendar, Drive, Docs, Sheets via gws CLI or Python."
 version: 1.1.0
-author: Nous Research
+author: the OpenAmer project
 license: MIT
 platforms: [linux, macos, windows]
 required_credential_files:

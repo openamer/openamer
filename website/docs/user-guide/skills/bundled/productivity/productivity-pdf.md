@@ -17,7 +17,7 @@ Create, merge, split, fill, and secure PDF files.
 | Source | Bundled (installed by default) |
 | Path | `skills/productivity/pdf` |
 | Version | `1.0.0` |
-| Author | Anthropic (adapted by Nous Research) |
+| Author | Anthropic (adapted by the OpenAmer project) |
 | License | Proprietary. LICENSE.txt has complete terms |
 | Platforms | linux, macos, windows |
 | Tags | `PDF`, `Documents`, `Forms`, `Office`, `Productivity` |

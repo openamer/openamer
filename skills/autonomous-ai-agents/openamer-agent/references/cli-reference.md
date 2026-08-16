@@ -118,7 +118,7 @@ Multiple credentials per provider form a pool that rotates automatically and ski
 openamer desktop / gui        Native desktop app
 openamer dashboard            Web admin panel + embedded chat (--stop / --status)
 openamer proxy                OpenAI-compatible local proxy backed by an OAuth provider
-openamer portal               Quick setup / sign in via Nous Portal
+openamer portal               Quick setup / sign in via your hosted provider
 openamer kanban <verb>        Multi-agent work-queue board
 openamer project              Named multi-folder workspaces
 openamer skin list|use|set    Switch/tweak skins (see references/themes.md)

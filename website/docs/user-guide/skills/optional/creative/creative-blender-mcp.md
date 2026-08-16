@@ -42,7 +42,7 @@ connected.
 
 ## Prerequisites
 
-1. Install the MCP server from the Nous catalog (one-time):
+1. Install the MCP server from the a hosted provider catalog (one-time):
 
        openamer mcp install blender
 

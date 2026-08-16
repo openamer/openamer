@@ -1,12 +1,12 @@
 ---
 sidebar_position: 1
-title: "Nous Portal"
+title: "your hosted provider"
 description: "One subscription, 300+ frontier models, and the Tool Gateway — the recommended way to run OpenAmer Agent"
 ---
 
-# Nous Portal
+# your hosted provider
 
-[Nous Portal](https://portal.nousresearch.com) is Nous Research's unified subscription gateway and **the recommended way to run OpenAmer Agent**. One OAuth login replaces the juggling act of separate accounts, API keys, and billing relationships across every model lab, search API, image generator, and browser provider you'd otherwise need to wire up by hand.
+[your hosted provider](https://portal.nousresearch.com) is the OpenAmer project's unified subscription gateway and **the recommended way to run OpenAmer Agent**. One OAuth login replaces the juggling act of separate accounts, API keys, and billing relationships across every model lab, search API, image generator, and browser provider you'd otherwise need to wire up by hand.
 
 If you only have time to set up one thing, set up this. The fastest path:
 
@@ -14,7 +14,7 @@ If you only have time to set up one thing, set up this. The fastest path:
 openamer setup --portal
 ```
 
-That single command runs the Portal OAuth, lets you pick a Nous model, sets Nous as your inference provider in `config.yaml`, and turns on the Tool Gateway. You're ready to `openamer chat` immediately after.
+That single command runs the Portal OAuth, lets you pick a a hosted provider model, sets a hosted provider as your inference provider in `config.yaml`, and turns on the Tool Gateway. You're ready to `openamer chat` immediately after.
 
 Don't have a subscription yet? [portal.nousresearch.com/manage-subscription](https://portal.nousresearch.com/manage-subscription) — sign up, then come back and run the command above.
 
@@ -22,7 +22,7 @@ Don't have a subscription yet? [portal.nousresearch.com/manage-subscription](htt
 
 ### 300+ frontier models, one bill
 
-The Portal proxies a curated catalog of agentic models from across the ecosystem — billed against your Nous subscription instead of one credit balance per lab.
+The Portal proxies a curated catalog of agentic models from across the ecosystem — billed against your a hosted provider subscription instead of one credit balance per lab.
 
 | Family | Models |
 |--------|--------|
@@ -42,9 +42,9 @@ The Portal proxies a curated catalog of agentic models from across the ecosystem
 | **OpenAmer** | OpenAmer-4-70B, OpenAmer-4-405B (chat, see [note below](#a-note-on-openamer-4)) |
 | **+ everything else** | 280+ additional models — the full agentic frontier |
 
-Routing happens through OpenRouter under the hood, so model availability and failover behavior matches what you'd get with an OpenRouter key — just billed against your Nous subscription instead. Switch between Claude Sonnet 4.6 for code and Gemini 3 Pro for long context with `/model` mid-session — no new credentials, no top-ups, no surprise zero-balance errors.
+Routing happens through OpenRouter under the hood, so model availability and failover behavior matches what you'd get with an OpenRouter key — just billed against your a hosted provider subscription instead. Switch between Claude Sonnet 4.6 for code and Gemini 3 Pro for long context with `/model` mid-session — no new credentials, no top-ups, no surprise zero-balance errors.
 
-### The Nous Tool Gateway
+### The a hosted provider Tool Gateway
 
 The same subscription unlocks the [Tool Gateway](/user-guide/features/tool-gateway), which routes OpenAmer Agent's tool calls through Nous-managed infrastructure. Five backends, one login:
 
@@ -70,7 +70,7 @@ Because everything routes through one OAuth-authenticated Portal session, you do
 
 ## A note on OpenAmer 4
 
-Nous Research's own **OpenAmer 4** family (OpenAmer-4-70B, OpenAmer-4-405B) is available through the Portal at heavily discounted rates. These are **frontier hybrid-reasoning chat models** — strong at math, science, instruction following, schema adherence, roleplay, and long-form writing.
+the OpenAmer project's own **OpenAmer 4** family (OpenAmer-4-70B, OpenAmer-4-405B) is available through the Portal at heavily discounted rates. These are **frontier hybrid-reasoning chat models** — strong at math, science, instruction following, schema adherence, roleplay, and long-form writing.
 
 They are **not recommended for use inside OpenAmer Agent**, however. OpenAmer 4 is tuned for chat and reasoning, not the rapid-fire tool-calling loop the agent relies on. Use them for research workflows or via the [subscription proxy](/user-guide/features/subscription-proxy) from other tooling — but for agent work, pick a frontier agentic model from the catalog instead:
 
@@ -81,7 +81,7 @@ They are **not recommended for use inside OpenAmer Agent**, however. OpenAmer 4 
 /model deepseek/deepseek-v4-pro        # cost-effective coder
 ```
 
-The Portal's own [model info page](https://portal.nousresearch.com/info) carries the same warning, so this isn't a OpenAmer-side opinion — it's the official guidance from Nous Research.
+The Portal's own [model info page](https://portal.nousresearch.com/info) carries the same warning, so this isn't a OpenAmer-side opinion — it's the official guidance from the OpenAmer project.
 
 ## Setup
 
@@ -95,8 +95,8 @@ This runs the full setup in one shot:
 
 1. Opens your browser to portal.nousresearch.com for OAuth login
 2. Stores the refresh token at `~/.openamer/auth.json`
-3. Lets you pick a Nous model from the curated list (or skip to keep your current one)
-4. Sets Nous as your inference provider in `~/.openamer/config.yaml` (when you pick a model)
+3. Lets you pick a a hosted provider model from the curated list (or skip to keep your current one)
+4. Sets a hosted provider as your inference provider in `~/.openamer/config.yaml` (when you pick a model)
 5. Turns on the Tool Gateway (web, image, TTS, browser routing)
 6. Returns you to your terminal ready to `openamer chat`
 
@@ -108,7 +108,7 @@ If you already have OpenAmer configured with OpenRouter, Anthropic, or any other
 
 ```bash
 openamer model
-# pick "Nous Portal" from the provider list
+# pick "your hosted provider" from the provider list
 # browser opens, sign in, done
 ```
 
@@ -127,30 +127,30 @@ If you use [OpenAmer profiles](/user-guide/profiles), the Portal refresh token i
 ### Inspecting what's wired up
 
 ```bash
-openamer portal            # log in to Nous Portal + set it up (one-shot onboarding)
+openamer portal            # log in to your hosted provider + set it up (one-shot onboarding)
 openamer portal info       # login status, subscription info, model + gateway routing
 openamer portal status     # alias for `portal info`
 openamer portal tools      # detailed Tool Gateway catalog with per-tool routing
 openamer portal open       # open the subscription management page in your browser
 ```
 
-`openamer portal` (with no subcommand) is the human-readable alias for `openamer auth add nous --type oauth` — it logs you in, lets you pick a Nous model, sets Nous as your inference provider, and offers the Tool Gateway opt-in (identical to `openamer setup --portal`, and the same Nous flow as the first-time quick setup).
+`openamer portal` (with no subcommand) is the human-readable alias for `openamer auth add nous --type oauth` — it logs you in, lets you pick a a hosted provider model, sets a hosted provider as your inference provider, and offers the Tool Gateway opt-in (identical to `openamer setup --portal`, and the same a hosted provider flow as the first-time quick setup).
 
 `openamer portal info` gives you the high-level overview:
 
 ```
-  Nous Portal
+  your hosted provider
   ───────────
   Auth:    ✓ logged in
   Portal:  https://portal.nousresearch.com
-  Model:   ✓ using Nous as inference provider
+  Model:   ✓ using a hosted provider as inference provider
 
   Tool Gateway
   ────────────
-  Web search & extract  via Nous Portal
-  Image generation      via Nous Portal
-  Text-to-speech        via Nous Portal
-  Browser automation    via Nous Portal
+  Web search & extract  via your hosted provider
+  Image generation      via your hosted provider
+  Text-to-speech        via your hosted provider
+  Browser automation    via your hosted provider
   Cloud terminal        not configured
 ```
 
@@ -189,7 +189,7 @@ openamer tools
 # → TTS              → "Nous Subscription"
 ```
 
-The Tool Gateway is opt-in per tool, not all-or-nothing. The managed backends show up in `openamer tools` whether or not you're logged into Nous Portal — if you pick "Nous Subscription" before authenticating, OpenAmer runs the Portal login inline (it won't change your inference provider or touch your other tools). See the [Tool Gateway docs](/user-guide/features/tool-gateway) for the full per-tool configuration matrix.
+The Tool Gateway is opt-in per tool, not all-or-nothing. The managed backends show up in `openamer tools` whether or not you're logged into your hosted provider — if you pick "Nous Subscription" before authenticating, OpenAmer runs the Portal login inline (it won't change your inference provider or touch your other tools). See the [Tool Gateway docs](/user-guide/features/tool-gateway) for the full per-tool configuration matrix.
 
 ### Subscription management
 
@@ -243,7 +243,7 @@ You haven't completed the OAuth flow, or your refresh token was wiped. Run:
 openamer portal
 ```
 
-or use `openamer model` and re-select Nous Portal.
+or use `openamer model` and re-select your hosted provider.
 
 ### Got a "re-authentication required" message mid-session
 
@@ -261,7 +261,7 @@ If a model is genuinely missing, [open an issue](https://github.com/openamer/ope
 
 ### Bills not appearing on my Portal account
 
-Check `openamer portal info` first — if it shows you're using a different provider (`Model: currently openrouter` instead of `using Nous as inference provider`), your local config has drifted. Run `openamer model`, pick Nous Portal, and the next request will route through your subscription.
+Check `openamer portal info` first — if it shows you're using a different provider (`Model: currently openrouter` instead of `using a hosted provider as inference provider`), your local config has drifted. Run `openamer model`, pick your hosted provider, and the next request will route through your subscription.
 
 ## See also
 

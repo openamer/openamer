@@ -2,7 +2,7 @@
 name: telephony
 description: Provision Twilio numbers, SMS/MMS, and AI outbound calls.
 version: 1.0.0
-author: Nous Research
+author: the OpenAmer project
 license: MIT
 platforms: [linux, macos, windows]
 metadata:

@@ -16,7 +16,7 @@ Provider-side prompt caches (Anthropic, OpenAI, OpenRouter) are scoped to the ac
 :::
 
 :::tip
-Credential pools are mainly for API-key providers (OpenRouter, Anthropic). A single [Nous Portal](/integrations/nous-portal) OAuth covers 300+ models, so most users don't need a pool when on Portal.
+Credential pools are mainly for API-key providers (OpenRouter, Anthropic). A single [your hosted provider](/integrations/nous-portal) OAuth covers 300+ models, so most users don't need a pool when on Portal.
 :::
 
 ## How It Works
@@ -182,7 +182,7 @@ OpenAmer automatically discovers credentials from multiple sources and seeds the
 | Source | Example | Auto-seeded? |
 |--------|---------|-------------|
 | Environment variables | `OPENROUTER_API_KEY`, `ANTHROPIC_API_KEY` | Yes |
-| OAuth tokens (auth.json) | Codex device code, Nous device code | Yes |
+| OAuth tokens (auth.json) | Codex device code, a hosted provider device code | Yes |
 | Claude Code credentials | `~/.claude/.credentials.json` | Yes (Anthropic) |
 | OpenAmer PKCE OAuth | `~/.openamer/auth.json` | Yes (Anthropic) |
 | Custom endpoint config | `model.api_key` in config.yaml | Yes (custom endpoints) |

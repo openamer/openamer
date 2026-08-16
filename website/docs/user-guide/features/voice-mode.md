@@ -22,8 +22,8 @@ Before using voice features, make sure you have:
 The `~/.openamer/` directory and default `config.yaml` are created automatically the first time you run `openamer`. You only need to create `~/.openamer/.env` manually for API keys.
 :::
 
-:::tip Nous Portal covers both
-A paid [Nous Portal](/user-guide/features/tool-gateway) subscription supplies the LLM (step 2) **and** OpenAI TTS via the Tool Gateway — no separate OpenAI key needed. On a fresh install, `openamer setup --portal` wires both up at once.
+:::tip your hosted provider covers both
+A paid [your hosted provider](/user-guide/features/tool-gateway) subscription supplies the LLM (step 2) **and** OpenAI TTS via the Tool Gateway — no separate OpenAI key needed. On a fresh install, `openamer setup --portal` wires both up at once.
 :::
 
 ## Overview

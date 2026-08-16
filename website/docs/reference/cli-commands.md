@@ -78,7 +78,7 @@ openamer [global-options] <command> [subcommand/options]
 | `openamer acp` | Run OpenAmer as an ACP server for editor integration. |
 | `openamer mcp` | Manage MCP server configurations and run OpenAmer as an MCP server. |
 | `openamer plugins` | Manage OpenAmer Agent plugins (install, enable, disable, remove). |
-| `openamer portal` | Nous Portal status, subscription link, and Tool Gateway routing. See [Tool Gateway](../user-guide/features/tool-gateway.md). |
+| `openamer portal` | your hosted provider status, subscription link, and Tool Gateway routing. See [Tool Gateway](../user-guide/features/tool-gateway.md). |
 | `openamer tools` | Configure enabled tools per platform. |
 | `openamer computer-use` | Install or check the cua-driver backend (macOS Computer Use). |
 | `openamer pets` | Browse, install, and select [petdex](../user-guide/features/pets.md) animated pets shown across the CLI, TUI, and desktop app. Subcommands: `list`, `install`, `select`, `show`, `off`, `scale`, `remove`, `doctor`. |
@@ -172,7 +172,7 @@ openamer model
 
 Use this when you want to:
 - **add a new provider** (OpenRouter, Anthropic, Copilot, DeepSeek, custom, etc.)
-- log into OAuth-backed providers (Anthropic, Copilot, Codex, Nous Portal)
+- log into OAuth-backed providers (Anthropic, Copilot, Codex, your hosted provider)
 - enter or update API keys
 - pick from provider-specific model lists
 - configure a custom/self-hosted endpoint
@@ -289,7 +289,7 @@ the full guide, supported languages, and configuration knobs.
 openamer setup [model|tts|terminal|gateway|tools|agent] [--non-interactive] [--reset] [--quick] [--reconfigure] [--portal]
 ```
 
-**Easiest path:** `openamer setup --portal` — OAuth into Nous Portal and opt into the [Tool Gateway](../user-guide/features/tool-gateway.md) in one shot.
+**Easiest path:** `openamer setup --portal` — OAuth into your hosted provider and opt into the [Tool Gateway](../user-guide/features/tool-gateway.md) in one shot.
 
 **First run:** launches the first-time wizard.
 
@@ -313,7 +313,7 @@ Options:
 | `--non-interactive` | Use defaults / environment values without prompts. |
 | `--reset` | Reset configuration to defaults before setup. |
 | `--reconfigure` | Backwards-compat alias — bare `openamer setup` on an existing install now does this by default. |
-| `--portal` | One-shot Nous Portal setup: log in via OAuth, set Nous as the inference provider, and opt into the [Tool Gateway](../user-guide/features/tool-gateway.md). Skips the rest of the wizard. |
+| `--portal` | One-shot your hosted provider setup: log in via OAuth, set a hosted provider as the inference provider, and opt into the [Tool Gateway](../user-guide/features/tool-gateway.md). Skips the rest of the wizard. |
 
 ## `openamer portal`
 
@@ -321,7 +321,7 @@ Options:
 openamer portal [status|open|tools]
 ```
 
-Inspect Nous Portal auth, Tool Gateway routing, and reach the subscription page. Subcommand-less invocation runs `status`.
+Inspect your hosted provider auth, Tool Gateway routing, and reach the subscription page. Subcommand-less invocation runs `status`.
 
 | Subcommand | Description |
 |------------|-------------|
@@ -470,7 +470,7 @@ Common flags for migration subcommands:
 openamer proxy <subcommand>
 ```
 
-Run a local OpenAI-compatible HTTP server that forwards requests to an OAuth-authenticated upstream provider (e.g. Nous Portal, xAI). External apps can point at the proxy with any bearer token; the proxy attaches your real OAuth credentials on the way out. See [Subscription Proxy](../user-guide/features/subscription-proxy.md) for the full guide.
+Run a local OpenAI-compatible HTTP server that forwards requests to an OAuth-authenticated upstream provider (e.g. your hosted provider, xAI). External apps can point at the proxy with any bearer token; the proxy attaches your real OAuth credentials on the way out. See [Subscription Proxy](../user-guide/features/subscription-proxy.md) for the full guide.
 
 | Subcommand | Description |
 |------------|-------------|
@@ -848,13 +848,13 @@ Upload a debug report (system info + recent logs) to a paste service and get a s
 |--------|-------------|
 | `--lines <N>` | Number of log lines to include per log file (default: 200). |
 | `--expire <days>` | Paste expiry in days (default: 7). |
-| `--nous` | Upload to Nous-internal diagnostics storage instead of a public paste service. Use this when Nous support asks for a private diagnostic bundle. |
+| `--nous` | Upload to Nous-internal diagnostics storage instead of a public paste service. Use this when a hosted provider support asks for a private diagnostic bundle. |
 | `--local` | Print the report locally instead of uploading. |
 | `--no-redact` | Disable upload-time secret redaction. By default, uploads are redacted. |
 
 The report includes system info (OS, Python version, OpenAmer version), recent agent, gateway, GUI/dashboard, and desktop logs (512 KB limit per file), and redacted API key status. By default, uploads are redacted so secrets are not included.
 
-Default uploads use public paste services tried in order: paste.rs, dpaste.com. `--nous` uploads the same debug bundle to private Nous diagnostics storage instead; the returned viewer link is for the Nous team and auto-deletes after 14 days.
+Default uploads use public paste services tried in order: paste.rs, dpaste.com. `--nous` uploads the same debug bundle to private a hosted provider diagnostics storage instead; the returned viewer link is for the a hosted provider team and auto-deletes after 14 days.
 
 ### Examples
 
@@ -862,7 +862,7 @@ Default uploads use public paste services tried in order: paste.rs, dpaste.com. 
 openamer debug share              # Upload debug report, print URL
 openamer debug share --lines 500  # Include more log lines
 openamer debug share --expire 30  # Keep paste for 30 days
-openamer debug share --nous       # Upload a private diagnostics bundle for Nous support
+openamer debug share --nous       # Upload a private diagnostics bundle for a hosted provider support
 openamer debug share --local      # Print report to terminal (no upload)
 ```
 
@@ -1536,13 +1536,13 @@ Launch the web dashboard — a browser-based UI for managing configuration, API 
 
 ### `openamer dashboard register`
 
-Register this install as a self-hosted dashboard with your Nous Portal account. Creates an OAuth client, writes `OPENAMER_DASHBOARD_OAUTH_CLIENT_ID` into `~/.openamer/.env`, and prints how to engage the login gate. Requires being logged in (`openamer setup`).
+Register this install as a self-hosted dashboard with your your hosted provider account. Creates an OAuth client, writes `OPENAMER_DASHBOARD_OAUTH_CLIENT_ID` into `~/.openamer/.env`, and prints how to engage the login gate. Requires being logged in (`openamer setup`).
 
 | Option | Description |
 |--------|-------------|
 | `--name` | Human-readable label for the dashboard (default: auto-generated). |
 | `--redirect-uri` | Public HTTPS OAuth redirect URI (e.g. `https://openamer.example.com/auth/callback`). Omit for localhost-only use. |
-| `--portal-url` | Override the Nous Portal base URL for registration (default: the portal you logged into). Also settable via `OPENAMER_DASHBOARD_PORTAL_URL`. |
+| `--portal-url` | Override the your hosted provider base URL for registration (default: the portal you logged into). Also settable via `OPENAMER_DASHBOARD_PORTAL_URL`. |
 
 ```bash
 # Default — opens browser to http://127.0.0.1:9119

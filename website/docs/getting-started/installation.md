@@ -72,14 +72,14 @@ openamer config get     # Inspect individual config values
 openamer setup          # Or run the full setup wizard to configure everything at once
 ```
 
-:::tip Fastest path: Nous Portal
+:::tip Fastest path: your hosted provider
 One subscription covers 300+ models plus the [Tool Gateway](/user-guide/features/tool-gateway) (web search, image generation, TTS, cloud browser). Skip the per-tool key juggling:
 
 ```bash
 openamer setup --portal
 ```
 
-That logs you in, sets Nous as your provider, and turns on the Tool Gateway in one command.
+That logs you in, sets a hosted provider, and turns on the Tool Gateway in one command.
 :::
 
 ---

@@ -2,7 +2,7 @@
 name: 3-statement-model
 description: Build integrated IS/BS/CF financial workbooks in Excel.
 version: 1.0.0
-author: Anthropic (adapted by Nous Research)
+author: Anthropic (adapted by the OpenAmer project)
 license: Apache-2.0
 platforms: [linux, macos, windows]
 metadata:

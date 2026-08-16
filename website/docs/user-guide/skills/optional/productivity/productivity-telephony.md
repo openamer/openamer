@@ -17,7 +17,7 @@ Provision Twilio numbers, SMS/MMS, and AI outbound calls.
 | Source | Optional — install with `openamer skills install official/productivity/telephony` |
 | Path | `optional-skills/productivity/telephony` |
 | Version | `1.0.0` |
-| Author | Nous Research |
+| Author | the OpenAmer project |
 | License | MIT |
 | Platforms | linux, macos, windows |
 | Tags | `telephony`, `phone`, `sms`, `mms`, `voice`, `twilio`, `bland.ai`, `vapi`, `calling`, `texting` |

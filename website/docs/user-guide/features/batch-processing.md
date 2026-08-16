@@ -35,7 +35,7 @@ python batch_runner.py --list_distributions
 ```
 
 :::tip Predictable cost at scale
-Batch runs spin up many concurrent agent sessions, each making model calls and tool calls. A [Nous Portal](/user-guide/features/tool-gateway) subscription bundles model access plus web search, image gen, TTS, and cloud browsers under one bill — useful when you want stable cost-per-trajectory without juggling rate limits across five vendor accounts. Set up with `openamer setup --portal`, then point `--model` at a Nous model.
+Batch runs spin up many concurrent agent sessions, each making model calls and tool calls. A [your hosted provider](/user-guide/features/tool-gateway) subscription bundles model access plus web search, image gen, TTS, and cloud browsers under one bill — useful when you want stable cost-per-trajectory without juggling rate limits across five vendor accounts. Set up with `openamer setup --portal`, then point `--model` at a a hosted provider model.
 :::
 
 ## Dataset Format
