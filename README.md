@@ -77,7 +77,39 @@ openamer a2a brain collect    # build a local training dataset
 
 > **Honest note:** OpenAmer *collects* training material automatically (locally,
 > privacy-scrubbed) for a future **OpenAmer brain** fine-tune. It does **not** silently
-> train or upload a model: raw stays on your machine; only curated, signed, leak-free
+> train or upload a model: raw stays on your machine; only curated, signed, leak-free
+---
+
+## What you get when you install OpenAmer
+One command from GitHub gives you a **complete, standalone, private-first AI agent** — installed and working on your own machine:
+
+| What you get | Default |
+|---|---|
+| **Desktop app** | built by the installer (native chat, terminal, settings) |
+| **65 bundled skills** (apple, github, mlops, creative, programming …) | seeded automatically |
+| **99 tools** — internet, vision, voice, terminal, browser, files, code, sub-agents | included |
+| **Sub-agents & parallel delegation** | built-in (`delegate_task`) |
+| **A2A swarm** — every install is an agent node (works over GitHub relay, not localhost) | included; connect via `openamer a2a` |
+| **Autonomous learning** | the agent distills lessons from its own turns automatically |
+| **Brain data collection** — activity, thinking & tools → local training dataset | autolog ON by default |
+| **Privacy-by-default** | phone/password/email/card redacted before anything is stored |
+| **System self-knowledge** | your node's OS/hardware/model go into its system prompt |
+
+### Try it right away
+```bash
+openamer                      # start chatting
+openamer system               # what is this node running on?
+openamer security check       # your security posture
+openamer a2a status           # this node's A2A identity & mesh
+openamer a2a brain collect    # build a local training dataset (your first OpenAmer brain data)
+openamer a2a relay post <peer> "question"   # ask another node over GitHub, not localhost
+```
+
+> **Honest note:** OpenAmer *collects* training material automatically (locally,
+> privacy-scrubbed) for a future **OpenAmer brain** fine-tune. It does **not** silently
+> train or upload a model: raw stays on your machine; only curated, signed, leak-free knowledge is shared.
+
+
 > knowledge is shared.
 
 > The `README.md` (English) is the source; **all official translations are in this repo** so every reader gets a version in their own language.
