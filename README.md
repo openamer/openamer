@@ -37,7 +37,7 @@ Use any model you want — OpenRouter, OpenAI, your own endpoint, and [many othe
 ### Linux, macOS, WSL2, Termux
 
 ```bash
-curl -fsSL https://github.com/openamer/openamer/scripts/install.sh | bash
+curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | bash
 ```
 
 ### Windows (native, PowerShell)
@@ -47,7 +47,7 @@ curl -fsSL https://github.com/openamer/openamer/scripts/install.sh | bash
 Run this in PowerShell:
 
 ```powershell
-iex (irm https://github.com/openamer/openamer/scripts/install.ps1)
+iex (irm https://github.com/openamer/openamer/raw/main/scripts/install.ps1)
 ```
 
 The installer handles everything: uv, Python 3.11, Node.js, ripgrep, ffmpeg, **and a portable Git Bash** (MinGit, unpacked to `%LOCALAPPDATA%\openamer\git` — no admin required, completely isolated from any system Git install). OpenAmer uses this bundled Git Bash to run shell commands.
@@ -211,7 +211,7 @@ full git checkout it creates at `$OPENAMER_HOME/openamer-agent` (usually
 managed venv, lazy dependencies, gateway, and docs tooling.
 
 ```bash
-curl -fsSL https://github.com/openamer/openamer/scripts/install.sh | bash
+curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | bash
 cd "${OPENAMER_HOME:-$HOME/.openamer}/openamer-agent"
 uv pip install -e ".[all,dev]"
 scripts/run_tests.sh
