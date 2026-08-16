@@ -139,3 +139,38 @@ openamer a2a meshlearn auto "x" --topic test   # adopts a signed insight
 openamer a2a skill verify ./examples/skill-demo   # provenance check
 # successful runs show the signature fingerprint + "adopted".
 ```
+
+
+## 7. The collective brain & swarm ask
+
+Beyond one peer, ask the whole trusted swarm in parallel (bundled answers):
+
+```bash
+openamer a2a ask --peers http://a:9000 http://b:9000 "question"   # collective answer
+```
+
+Every node also collects its own **activity stream** for the OpenAmer brain
+(chat, thinking, tools, search, skills, background, a2a) -- locally, privacy-
+scrubbed:
+
+```bash
+openamer a2a brain autolog on|off|status   # capture local activity (ON by default)
+openamer a2a brain collect                 # fold into a ChatML training JSONL
+openamer a2a brain publish                 # share ONLY curated, redacted insights
+openamer a2a meshlearn auto "lesson" --topic t   # self-distill+sign+adopt
+```
+
+Privacy is non-negotiable: phone numbers, passwords, emails, cards and key
+material are redacted BEFORE anything is stored; raw activity never leaves the
+node, and only curated/signed, leak-checked knowledge is shared to
+`directory/a2a/` in the GitHub repo.
+
+## 8. Harden the node
+
+```bash
+openamer security check      # audit YOLO / approval / hardline / sudo guards
+openamer security posture    # one-line posture
+openamer security safe-mode  # tighten only (disable YOLO, write .safe-mode)
+openamer system              # OpenAmer self-system knowledge (also in system prompt)
+```
+
