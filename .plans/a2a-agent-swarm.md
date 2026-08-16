@@ -57,7 +57,7 @@ is the part that must be solved first.
 | **Node** | One installed OpenAmer (a host with its own identity key + `OPENAMER_HOME`). |
 | **A2A** | Agent-to-Agent protocol — the open standard (Linux Foundation / Google, 2025) for agent interop over HTTP/JSON, complementary to MCP. |
 | **Mesh** | The opt-in network of mutually-trusted OpenAmer nodes. |
-| **Hub / Discovery** | Optional rendezvous that helps nodes find each other (we host `openamer.com`), not a control plane. |
+| **Hub / Discovery** | Optional rendezvous that helps nodes find each other — hosted as a signed registry **inside the GitHub repo** (`github.com/openamer/openamer`, e.g. `directory/a2a/`), not a control plane. Nodes pin the repo; nothing depends on a separate domain. |
 | **Skill publish** | A node exporting an improved/bundled skill to the mesh for others to adopt. |
 | **Capability** | A named, approved permission (e.g. `terminal.write`, `network.fetch`, `model.budget`) a node may hand to a trusted peer for a specific task. |
 
@@ -66,7 +66,7 @@ is the part that must be solved first.
 ## 3. Architecture overview
 
 ```
-         openamer.com/discovery (optional, read-only registry of public keys)
+         github.com/openamer/openamer/directory/a2a  (optional, signed registry of public keys)
                              │
         ┌────────────────────┼───────────────────────┐
         ▼                    ▼                        ▼
@@ -86,8 +86,9 @@ is the part that must be solved first.
 - **Transport:** HTTP(S) JSON following the [A2A protocol](https://a2a-protocol.org)
   (AgentCard + `message/send`), backed by our own capability/trust envelope.
 - **Node local** logic lives in `openamer a2a` subcommand + a `a2a/` package.
-- **Shared memory/skills** use a publish/subscribe endpoint (either a pubkey-pinned
-  hub on `openamer.com` or direct node-to-node for fully self-hosted setups).
+- **Shared memory/skills** use a publish/subscribe endpoint hosted as signed
+  files inside the GitHub repo (`github.com/openamer/openamer`), peer-verified —
+  or direct node-to-node for fully self-hosted setups.
 
 ---
 
@@ -110,7 +111,7 @@ Remote work is expressed as **granted capabilities**, never unrestricted:
 ```
 # example: authorize trusted peer for a bounded task
 openamer a2a grant <peer> terminal.read   --max-bytes 2MB
-openamer a2a grant <peer> network.fetch   --allow "openamer.com"
+openamer a2a grant <peer> network.fetch   --allow "github.com/openamer/openamer"
 openamer a2a grant <peer> model.reason    --budget-cents 0.50
 openamer a2a grant <peer> file.write      --path "~/a2a-out/"
 ```
@@ -180,7 +181,7 @@ local approval/security net.
 - [ ] Skill publish/adopt (proposal + review)
 - [ ] Shared grounded-memory slices (publish/subscribe, pubkey-pinned)
 - [ ] `openamer a2a ask` routing to a trusted group
-- [ ] Hub/discovery on `openamer.com` (read-only registry), pubkey-pinned
+- [ ] Hub/discovery registry inside `github.com/openamer/openamer` (signed files, pubkey-pinned) — no separate domain
 - **Exit:** A solved task's skill/insight published to a trusted peer and
   reviewed/adopted there.
 
