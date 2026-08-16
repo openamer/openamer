@@ -117,6 +117,35 @@ openamer update       # Update to the latest version
 openamer doctor       # Diagnose any issues
 ```
 
+## Updating OpenAmer
+
+OpenAmer keeps itself current automatically. On every launch it checks (in the
+background, max a few times a day) whether a newer version is available on
+`github.com/openamer/openamer` — if so, the **welcome banner shows
+`⚠ N commits behind — run 'openamer update'`** right inside the chat.
+
+When you see that (or whenever you feel like it), update in one step:
+
+```bash
+openamer update
+```
+
+What it does, automatically:
+1. **Backs up** your `OPENAMER_HOME` data (sessions, config, skills) so nothing is lost.
+2. **Pulls** the latest code from `github.com/openamer/openamer`.
+3. **Reinstalls** Python + Node dependencies and rebuilds the app — including the
+   **OpenAmer desktop app** (icon, background, and all assets) when they change.
+
+Useful variants:
+
+```bash
+openamer update --check       # Check for an update without installing anything
+openamer update -y           # Skip interactive prompts (assumes yes)
+openamer update --branch main  # Update against main explicitly (default)
+```
+
+You're then always on the latest, best version of OpenAmer.
+
 📖 **[Full documentation →](https://github.com/openamer/openamer/blob/main/website/docs/)**
 
 ---
