@@ -34,15 +34,15 @@ OpenAmer Kanban 拥有生命周期的真实状态——`ready` → `running` →
 
 | 变量 | 携带内容 |
 |---|---|
-| `HERMES_KANBAN_TASK` | worker 正在操作的任务 id |
-| `HERMES_KANBAN_DB` | 每个看板 SQLite 文件的绝对路径 |
-| `HERMES_KANBAN_BOARD` | 看板 slug |
-| `HERMES_KANBAN_WORKSPACES_ROOT` | 看板工作区树的根目录 |
-| `HERMES_KANBAN_WORKSPACE` | *本*任务工作区的绝对路径 |
-| `HERMES_KANBAN_RUN_ID` | 当前运行的 id（用于生命周期门控） |
-| `HERMES_KANBAN_CLAIM_LOCK` | claim 锁字符串（`<host>:<pid>:<uuid>`） |
-| `HERMES_PROFILE` | worker 自身的 profile 名称（用于 `kanban_comment` 作者归因） |
-| `HERMES_TENANT` | 租户命名空间（如果任务有的话） |
+| `OPENAMER_KANBAN_TASK` | worker 正在操作的任务 id |
+| `OPENAMER_KANBAN_DB` | 每个看板 SQLite 文件的绝对路径 |
+| `OPENAMER_KANBAN_BOARD` | 看板 slug |
+| `OPENAMER_KANBAN_WORKSPACES_ROOT` | 看板工作区树的根目录 |
+| `OPENAMER_KANBAN_WORKSPACE` | *本*任务工作区的绝对路径 |
+| `OPENAMER_KANBAN_RUN_ID` | 当前运行的 id（用于生命周期门控） |
+| `OPENAMER_KANBAN_CLAIM_LOCK` | claim 锁字符串（`<host>:<pid>:<uuid>`） |
+| `OPENAMER_PROFILE` | worker 自身的 profile 名称（用于 `kanban_comment` 作者归因） |
+| `OPENAMER_TENANT` | 租户命名空间（如果任务有的话） |
 
 对于非 OpenAmer 通道（通过插件注册），插件提供自己的 `spawn_fn` 可调用对象，接收 `task`、`workspace` 和 `board`，并返回可选的 pid 用于崩溃检测。
 
@@ -90,7 +90,7 @@ profile 通道的特化形态：orchestrator 是一个 OpenAmer profile，其工
 
 ## 添加外部 CLI worker 通道
 
-将非 OpenAmer CLI 工具（Codex CLI、Claude Code CLI、OpenCode CLI、本地编码模型运行器等）接入 kanban worker 通道*尚未形成成熟路径*。调度器的 spawn 函数是可插拔的（`spawn_fn` 是 `dispatch_once` 的参数），插件可以为非 OpenAmer assignee 注册自己的 `spawn_fn`，但周边集成工作——将 CLI 的退出码封装为 `kanban_complete` / `kanban_block` 调用、将 CLI 的工作区/沙箱约定映射到调度器的 `HERMES_KANBAN_WORKSPACE` 环境变量、处理认证和每个 CLI 的策略——仍是每个集成各自的设计工作。
+将非 OpenAmer CLI 工具（Codex CLI、Claude Code CLI、OpenCode CLI、本地编码模型运行器等）接入 kanban worker 通道*尚未形成成熟路径*。调度器的 spawn 函数是可插拔的（`spawn_fn` 是 `dispatch_once` 的参数），插件可以为非 OpenAmer assignee 注册自己的 `spawn_fn`，但周边集成工作——将 CLI 的退出码封装为 `kanban_complete` / `kanban_block` 调用、将 CLI 的工作区/沙箱约定映射到调度器的 `OPENAMER_KANBAN_WORKSPACE` 环境变量、处理认证和每个 CLI 的策略——仍是每个集成各自的设计工作。
 
 如果你考虑添加 CLI 通道，请提交一个 issue，描述具体的 CLI 以及你希望实现的工作流。上述契约是任何此类通道必须满足的约束；实现形态（每个 CLI 一个插件，还是通过配置参数化的通用 CLI 运行器插件）尚未确定。
 

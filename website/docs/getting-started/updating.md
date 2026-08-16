@@ -24,7 +24,7 @@ This pulls the latest code from `main`, updates dependencies, and prompts you to
 
 When you run `openamer update`, the following steps occur:
 
-1. **Pre-update snapshot** — a lightweight state snapshot is saved by default (covers pairing data, cron jobs, `config.yaml`, `.env`, `auth.json`, and other state files that get modified at runtime; individual files over 1 GiB are skipped so a large sessions DB never slows the update down). Controlled by `updates.pre_update_backup` (`quick` by default, `full` for a zip of all of `HERMES_HOME`, `off` to disable). Recoverable via the snapshot restore flow described under [Snapshots and rollback](../user-guide/checkpoints-and-rollback.md).
+1. **Pre-update snapshot** — a lightweight state snapshot is saved by default (covers pairing data, cron jobs, `config.yaml`, `.env`, `auth.json`, and other state files that get modified at runtime; individual files over 1 GiB are skipped so a large sessions DB never slows the update down). Controlled by `updates.pre_update_backup` (`quick` by default, `full` for a zip of all of `OPENAMER_HOME`, `off` to disable). Recoverable via the snapshot restore flow described under [Snapshots and rollback](../user-guide/checkpoints-and-rollback.md).
 2. **Git pull** — pulls the latest code from the `main` branch and updates submodules
 3. **Post-pull syntax validation + auto-rollback** — after the pull, OpenAmer compiles the eight critical files every `openamer` invocation imports at startup. If any fails to parse (e.g. an orphan merge-conflict marker, an accidentally truncated file), OpenAmer runs `git reset --hard <pre-pull-sha>` to roll the install back so your shell stays bootable. Re-run `openamer update` once the upstream fix lands.
 4. **Dependency install** — runs `uv pip install -e ".[all]"` to pick up new or changed dependencies
@@ -66,7 +66,7 @@ Want to know if an update is available before pulling? Run `openamer update --ch
 
 ### Full pre-update backup: `--backup`
 
-For high-value profiles (production gateways, shared team installs) you can opt into a full pre-pull backup of `HERMES_HOME` (config, auth, sessions, skills, pairing):
+For high-value profiles (production gateways, shared team installs) you can opt into a full pre-pull backup of `OPENAMER_HOME` (config, auth, sessions, skills, pairing):
 
 ```bash
 openamer update --backup
@@ -80,7 +80,7 @@ updates:
   pre_update_backup: full
 ```
 
-`updates.pre_update_backup` is a single knob with three modes: `quick` (default — the lightweight state snapshot described above), `full` (the quick snapshot plus a complete `HERMES_HOME` zip; can add minutes on large homes), and `off` (no pre-update backup at all — `--no-backup` does the same for a single run). Legacy boolean values still work: `true` means `full`, `false` means `off`.
+`updates.pre_update_backup` is a single knob with three modes: `quick` (default — the lightweight state snapshot described above), `full` (the quick snapshot plus a complete `OPENAMER_HOME` zip; can add minutes on large homes), and `off` (no pre-update backup at all — `--no-backup` does the same for a single run). Legacy boolean values still work: `true` means `full`, `false` means `off`.
 
 ### Windows: another `openamer.exe` is running
 

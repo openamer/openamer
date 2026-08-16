@@ -63,7 +63,7 @@ pip install playwright websockets && python -m playwright install chromium
 #   Linux:  sudo apt install pulseaudio-utils
 #   macOS:  brew install blackhole-2ch ffmpeg
 #           → System Settings → Sound → Input → BlackHole 2ch
-#   Then set OPENAI_API_KEY or HERMES_MEET_REALTIME_KEY in ~/.openamer/.env
+#   Then set OPENAI_API_KEY or OPENAMER_MEET_REALTIME_KEY in ~/.openamer/.env
 ```
 
 For a remote node:
@@ -106,7 +106,7 @@ Run `openamer meet setup` to preflight local prereqs.
 
 - Captions are only as good as Google Meet's live captions. English-biased, lossy on overlapping speakers.
 - Guest mode sits in the lobby until a host admits. Warn the user; `openamer meet auth` avoids this.
-- **Lobby timeout**: if the host doesn't admit the bot within 5 minutes (configurable via `HERMES_MEET_LOBBY_TIMEOUT` env), the bot leaves and `meet_status` reports `leaveReason: "lobby_timeout"`.
+- **Lobby timeout**: if the host doesn't admit the bot within 5 minutes (configurable via `OPENAMER_MEET_LOBBY_TIMEOUT` env), the bot leaves and `meet_status` reports `leaveReason: "lobby_timeout"`.
 - **One active meeting per install per location.** A second `meet_join` leaves the first.
 - **Windows not supported.**
 - Realtime mode needs a virtual audio device. If the audio bridge setup fails, the bot falls back to transcribe mode and flags it in `meet_status().error`.
@@ -135,7 +135,7 @@ Run `openamer meet setup` to preflight local prereqs.
 
 Local:
 ```
-$HERMES_HOME/workspace/meetings/<meeting-id>/transcript.txt
+$OPENAMER_HOME/workspace/meetings/<meeting-id>/transcript.txt
 ```
 
 Remote node: transcript lives on the node host's disk. Use `meet_transcript(node=...)` to read it over RPC.
@@ -144,5 +144,5 @@ Remote node: transcript lives on the node host's disk. Use `meet_transcript(node
 
 - URL regex: only `https://meet.google.com/...` URLs pass.
 - No calendar scanning. No auto-dial.
-- Remote nodes use bearer-token auth; tokens are generated on the node (32 hex chars, persisted in `$HERMES_HOME/workspace/meetings/node_token.json`) and must be copied to the gateway via `openamer meet node approve`.
+- Remote nodes use bearer-token auth; tokens are generated on the node (32 hex chars, persisted in `$OPENAMER_HOME/workspace/meetings/node_token.json`) and must be copied to the gateway via `openamer meet node approve`.
 - `meet_say` text is rate-limited by the OpenAI Realtime session; spam-protection is the bot's problem, not yours, but still — don't queue hundreds of lines.

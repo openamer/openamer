@@ -82,10 +82,10 @@ These paths are always blocked from `@file:` references to prevent credential ex
 - SSH keys and config: `~/.ssh/id_rsa`, `~/.ssh/id_ed25519`, `~/.ssh/authorized_keys`, `~/.ssh/config`
 - Shell profiles: `~/.bashrc`, `~/.zshrc`, `~/.profile`, `~/.bash_profile`, `~/.zprofile`
 - Credential files: `~/.netrc`, `~/.pgpass`, `~/.npmrc`, `~/.pypirc`
-- OpenAmer env: `$HERMES_HOME/.env`
+- OpenAmer env: `$OPENAMER_HOME/.env`
 
 These directories are fully blocked (any file inside):
-- `~/.ssh/`, `~/.aws/`, `~/.gnupg/`, `~/.kube/`, `$HERMES_HOME/skills/.hub/`
+- `~/.ssh/`, `~/.aws/`, `~/.gnupg/`, `~/.kube/`, `$OPENAMER_HOME/skills/.hub/`
 
 ### Path Traversal Protection
 

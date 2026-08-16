@@ -74,7 +74,7 @@ iex (irm https://openamer-agent.nousresearch.com/install.ps1)
 5. **将仓库克隆**到 `%LOCALAPPDATA%\openamer\openamer-agent` 并在其中创建 virtualenv。
 6. **分层 `uv pip install`** — 先尝试 `.[all]`，如果 `git+https` 依赖在 GitHub 限速时失败，则逐步回退到更小的集合（`[messaging,dashboard,ext]` → `[messaging]` → `.`）。防止"单次失败导致裸安装"的故障模式。
 7. **根据 `.env` 自动安装消息 SDK** — 如果存在 `TELEGRAM_BOT_TOKEN` / `DISCORD_BOT_TOKEN` / `SLACK_BOT_TOKEN` / `SLACK_APP_TOKEN` / `WHATSAPP_ENABLED`，则运行 `python -m ensurepip --upgrade` 并针对性地调用 `pip install`，确保各平台 SDK 可正常导入。
-8. **设置 `HERMES_GIT_BASH_PATH`** 为解析后的 `bash.exe` 路径，使 OpenAmer 在新 shell 中能确定性地找到它。
+8. **设置 `OPENAMER_GIT_BASH_PATH`** 为解析后的 `bash.exe` 路径，使 OpenAmer 在新 shell 中能确定性地找到它。
 9. **将 `%LOCALAPPDATA%\openamer\bin` 添加到用户 PATH** — 打开新终端后即可使用 `openamer` 命令。
 10. **运行 `openamer setup`** — 正常的首次运行向导（模型、提供商、工具集）。使用 `-SkipSetup` 跳过。
 
@@ -107,13 +107,13 @@ OpenAmer 的终端工具通过 **Git Bash** 运行命令，与 Claude Code 采�
 
 `bash.exe` 的解析顺序：
 
-1. 如果设置了 `HERMES_GIT_BASH_PATH` 环境变量，优先使用。
+1. 如果设置了 `OPENAMER_GIT_BASH_PATH` 环境变量，优先使用。
 2. `%LOCALAPPDATA%\openamer\git\usr\bin\bash.exe`（安装程序管理的 PortableGit）。
 3. `%LOCALAPPDATA%\openamer\git\bin\bash.exe`（旧版 Git-for-Windows 布局）。
 4. 系统 Git-for-Windows 安装（`%ProgramFiles%\Git\bin\bash.exe` 等）。
 5. MSYS2、Cygwin 或 PATH 上任意 `bash.exe` 作为最后手段。
 
-安装程序会显式设置 `HERMES_GIT_BASH_PATH`，使新 PowerShell 会话无需重新发现。如果你想让 OpenAmer 使用特定的 bash——例如系统 Git Bash 或通过符号链接的 WSL bash——可以覆盖此变量。
+安装程序会显式设置 `OPENAMER_GIT_BASH_PATH`，使新 PowerShell 会话无需重新发现。如果你想让 OpenAmer 使用特定的 bash——例如系统 Git Bash 或通过符号链接的 WSL bash——可以覆盖此变量。
 
 **注意事项：** MinGit 的目录布局与完整 Git-for-Windows 安装程序不同——bash 位于 `usr\bin\bash.exe`，而非 `bin\bash.exe`。OpenAmer 会同时检查两个路径。如果你手动解压 MinGit zip，请确保选择**非 busybox** 变体（`MinGit-*-64-bit.zip`，而非 `MinGit-*-busybox*.zip`）——busybox 构建附带的是 `ash` 而非 `bash`，且大多数 coreutils 工具缺失。
 
@@ -130,7 +130,7 @@ Python 在 Windows 上的默认 stdio 使用控制台的活动代码页（通常
 
 此函数是幂等的，在非 Windows 系统上为空操作。
 
-**禁用方式：** 在环境中设置 `HERMES_DISABLE_WINDOWS_UTF8=1` 可回退到旧版 cp1252 stdio 路径。用于排查编码 bug；正常使用中不建议设置。
+**禁用方式：** 在环境中设置 `OPENAMER_DISABLE_WINDOWS_UTF8=1` 可回退到旧版 cp1252 stdio 路径。用于排查编码 bug；正常使用中不建议设置。
 
 ## 编辑器（`Ctrl-X Ctrl-E`、`/edit`）
 
@@ -210,7 +210,7 @@ openamer gateway uninstall   # 移除 schtasks 条目、Startup 快捷方式、p
 
 这种分离是有意为之：`%LOCALAPPDATA%\openamer` 是可丢弃的基础设施（可以删除后用一行命令恢复）。`%USERPROFILE%\.openamer` 是你的数据——配置、记忆、技能、会话历史——其结构与 Linux 安装完全相同。在机器间同步它，你的 OpenAmer 就随之迁移。
 
-**覆盖 `HERMES_HOME`：** 设置该环境变量以指向不同的数据目录。与 Linux 上的用法相同。
+**覆盖 `OPENAMER_HOME`：** 设置该环境变量以指向不同的数据目录。与 Linux 上的用法相同。
 
 ## 浏览器工具
 
@@ -250,8 +250,8 @@ TELEGRAM_BOT_TOKEN=...
 
 | 变量                          | 效果                                                                                                                                |
 | ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| `HERMES_GIT_BASH_PATH`        | 覆盖 bash.exe 的发现逻辑。可指向任意 bash——完整 Git-for-Windows、通过符号链接的 WSL bash、MSYS2、Cygwin。安装程序会自动设置此变量。 |
-| `HERMES_DISABLE_WINDOWS_UTF8` | 设为 `1` 可禁用 UTF-8 stdio 垫片，回退到区域设置代码页。用于排查编码 bug。                                                          |
+| `OPENAMER_GIT_BASH_PATH`        | 覆盖 bash.exe 的发现逻辑。可指向任意 bash——完整 Git-for-Windows、通过符号链接的 WSL bash、MSYS2、Cygwin。安装程序会自动设置此变量。 |
+| `OPENAMER_DISABLE_WINDOWS_UTF8` | 设为 `1` 可禁用 UTF-8 stdio 垫片，回退到区域设置代码页。用于排查编码 bug。                                                          |
 | `EDITOR` / `VISUAL`           | 用于 `/edit` 和 `Ctrl-X Ctrl-E` 的编辑器。如果两者均未设置，OpenAmer 默认使用 `notepad`。                                             |
 
 ## 卸载
@@ -296,7 +296,7 @@ Remove-Item -Recurse -Force "$env:LOCALAPPDATA\openamer"
 你下载的 `install.ps1` 携带了 UTF-8 BOM。`irm | iex` 形式会自动剥离 BOM；`[scriptblock]::Create((irm ...))` 不会。请改用简单的 `irm | iex` 形式，或手动下载脚本并通过 `[IO.File]::WriteAllText($path, $text, (New-Object Text.UTF8Encoding $false))` 保存为不带 BOM 的纯 UTF-8。
 
 **重启后 gateway 无法持续运行。**
-运行 `openamer gateway status`——它会合并 schtasks 条目、Startup 文件夹快捷方式（如有）和运行中的 PID。如果 schtasks 已注册但未运行，组策略可能阻止了 `ONLOGON` 触发器。运行 `schtasks /Query /TN OpenAmerGateway /V /FO LIST` 查看任务失败原因，或通过卸载后使用 `HERMES_GATEWAY_FORCE_STARTUP=1` 重新安装来回退到 Startup 文件夹路径。
+运行 `openamer gateway status`——它会合并 schtasks 条目、Startup 文件夹快捷方式（如有）和运行中的 PID。如果 schtasks 已注册但未运行，组策略可能阻止了 `ONLOGON` 触发器。运行 `schtasks /Query /TN OpenAmerGateway /V /FO LIST` 查看任务失败原因，或通过卸载后使用 `OPENAMER_GATEWAY_FORCE_STARTUP=1` 重新安装来回退到 Startup 文件夹路径。
 
 **设置 `$env:EDITOR` 后 `/edit` 仍然无响应。**
 你只在当前进程中设置了它；请关闭并重新打开 shell，或在系统属性 → 环境变量中以用户作用域设置。在新 PowerShell 窗口中用 `echo $env:EDITOR` 验证。
@@ -308,7 +308,7 @@ Chromium 在首次运行时自动安装。如果安装失败（GitHub 限速、P
 安装程序在 `%LOCALAPPDATA%\openamer\node` 配置了 Node 22，但你的 PATH 中可能有更靠前的旧版系统 Node 18。要么将 OpenAmer 的 node 目录移到 PATH 前面，要么如果你不在其他地方使用 Node，删除系统安装。
 
 **CLI 中中文/日文/阿拉伯文字符显示为 `?`。**
-UTF-8 stdio 垫片未激活。检查 `HERMES_DISABLE_WINDOWS_UTF8` 是否**未**设置（`Get-ChildItem env:HERMES_DISABLE_WINDOWS_UTF8`）。如果该变量为空但仍然看到 `?`，控制台宿主（非常旧的 `cmd.exe`）可能完全不支持 UTF-8——请切换到 Windows Terminal。
+UTF-8 stdio 垫片未激活。检查 `OPENAMER_DISABLE_WINDOWS_UTF8` 是否**未**设置（`Get-ChildItem env:OPENAMER_DISABLE_WINDOWS_UTF8`）。如果该变量为空但仍然看到 `?`，控制台宿主（非常旧的 `cmd.exe`）可能完全不支持 UTF-8——请切换到 Windows Terminal。
 
 **Gateway 无法发送 Telegram 图片——"`BadRequest: payload contains invalid characters`"。**
 这与 Windows 无关，但有时首先在 Windows 上暴露。通常意味着 JSON 请求体中的文件路径包含未转义的反斜杠。Telegram 应该收到 OpenAmer 规范化后的路径，而非原始 Windows 路径——如果你在自定义插件中看到此问题，请确保传递的是 OpenAmer 提供的路径，而非来自用户输入的 `str(Path(...))`。

@@ -144,7 +144,7 @@ import requests, json
 脚本超时默认为 120 秒。`_get_script_timeout()` 通过三层链路解析限制：
 
 1. **模块级覆盖** — `_SCRIPT_TIMEOUT`（用于测试/monkeypatching）。仅在与默认值不同时使用。
-2. **环境变量** — `HERMES_CRON_SCRIPT_TIMEOUT`
+2. **环境变量** — `OPENAMER_CRON_SCRIPT_TIMEOUT`
 3. **配置** — `config.yaml` 中的 `cron.script_timeout_seconds`（通过 `load_config()` 读取）
 4. **默认值** — 120 秒
 

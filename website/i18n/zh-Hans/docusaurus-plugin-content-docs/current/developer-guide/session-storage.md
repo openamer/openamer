@@ -381,6 +381,6 @@ db.delete_session("sess_abc123")
 
 默认路径：`~/.openamer/state.db`
 
-该路径由 `openamer_constants.get_openamer_home()` 推导，默认解析为 `~/.openamer/`，或 `HERMES_HOME` 环境变量的值。
+该路径由 `openamer_constants.get_openamer_home()` 推导，默认解析为 `~/.openamer/`，或 `OPENAMER_HOME` 环境变量的值。
 
 数据库文件、WAL 文件（`state.db-wal`）和共享内存文件（`state.db-shm`）均创建于同一目录。

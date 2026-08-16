@@ -571,7 +571,7 @@ Five touchpoints:
 
 ### 8. Toolsets
 
-1. **`toolsets.py`** — Add `"openamer-newplat"` toolset definition with `_HERMES_CORE_TOOLS`
+1. **`toolsets.py`** — Add `"openamer-newplat"` toolset definition with `_OPENAMER_CORE_TOOLS`
 2. **`toolsets.py`** — Add `"openamer-newplat"` to the `"openamer-gateway"` includes list
 
 ### 9. Optional: Platform Hints

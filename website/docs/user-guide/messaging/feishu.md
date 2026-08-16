@@ -436,9 +436,9 @@ When a user sends multiple text messages in quick succession, they are merged in
 
 | Setting | Env Var | Default |
 |---------|---------|---------|
-| Quiet period | `HERMES_FEISHU_TEXT_BATCH_DELAY_SECONDS` | 0.6s |
-| Max messages per batch | `HERMES_FEISHU_TEXT_BATCH_MAX_MESSAGES` | 8 |
-| Max characters per batch | `HERMES_FEISHU_TEXT_BATCH_MAX_CHARS` | 4000 |
+| Quiet period | `OPENAMER_FEISHU_TEXT_BATCH_DELAY_SECONDS` | 0.6s |
+| Max messages per batch | `OPENAMER_FEISHU_TEXT_BATCH_MAX_MESSAGES` | 8 |
+| Max characters per batch | `OPENAMER_FEISHU_TEXT_BATCH_MAX_CHARS` | 4000 |
 
 ### Media Batching
 
@@ -446,7 +446,7 @@ Multiple media attachments sent in quick succession (e.g., dragging several imag
 
 | Setting | Env Var | Default |
 |---------|---------|---------|
-| Quiet period | `HERMES_FEISHU_MEDIA_BATCH_DELAY_SECONDS` | 0.8s |
+| Quiet period | `OPENAMER_FEISHU_MEDIA_BATCH_DELAY_SECONDS` | 0.8s |
 
 ### Per-Chat Serialization
 
@@ -534,7 +534,7 @@ Inbound messages are deduplicated using message IDs with a 24-hour TTL. The dedu
 
 | Setting | Env Var | Default |
 |---------|---------|---------|
-| Cache size | `HERMES_FEISHU_DEDUP_CACHE_SIZE` | 2048 entries |
+| Cache size | `OPENAMER_FEISHU_DEDUP_CACHE_SIZE` | 2048 entries |
 
 ## All Environment Variables
 
@@ -557,11 +557,11 @@ Inbound messages are deduplicated using message IDs with a 24-hour TTL. The dedu
 | `FEISHU_WEBHOOK_HOST` | — | `127.0.0.1` | Webhook server bind address |
 | `FEISHU_WEBHOOK_PORT` | — | `8765` | Webhook server port |
 | `FEISHU_WEBHOOK_PATH` | — | `/feishu/webhook` | Webhook endpoint path |
-| `HERMES_FEISHU_DEDUP_CACHE_SIZE` | — | `2048` | Max deduplicated message IDs to track |
-| `HERMES_FEISHU_TEXT_BATCH_DELAY_SECONDS` | — | `0.6` | Text burst debounce quiet period |
-| `HERMES_FEISHU_TEXT_BATCH_MAX_MESSAGES` | — | `8` | Max messages merged per text batch |
-| `HERMES_FEISHU_TEXT_BATCH_MAX_CHARS` | — | `4000` | Max characters merged per text batch |
-| `HERMES_FEISHU_MEDIA_BATCH_DELAY_SECONDS` | — | `0.8` | Media burst debounce quiet period |
+| `OPENAMER_FEISHU_DEDUP_CACHE_SIZE` | — | `2048` | Max deduplicated message IDs to track |
+| `OPENAMER_FEISHU_TEXT_BATCH_DELAY_SECONDS` | — | `0.6` | Text burst debounce quiet period |
+| `OPENAMER_FEISHU_TEXT_BATCH_MAX_MESSAGES` | — | `8` | Max messages merged per text batch |
+| `OPENAMER_FEISHU_TEXT_BATCH_MAX_CHARS` | — | `4000` | Max characters merged per text batch |
+| `OPENAMER_FEISHU_MEDIA_BATCH_DELAY_SECONDS` | — | `0.8` | Media burst debounce quiet period |
 
 WebSocket and per-group ACL settings are configured via `config.yaml` under `platforms.feishu.extra` (see [WebSocket Tuning](#websocket-tuning) and [Per-Group Access Control](#per-group-access-control) above).
 

@@ -9,7 +9,7 @@ Supersedes: PR #31781 (prompt_toolkit `openamer profile wizard`)
 PR #31781 added a keyboard-driven `openamer profile wizard` in the terminal.
 The decision is to **not** build the profile-creation experience in the CLI.
 The dashboard already owns mature, separate pages for every element a profile
-needs, and a profile is just a HERMES_HOME directory — so the dashboard is the
+needs, and a profile is just a OPENAMER_HOME directory — so the dashboard is the
 right home for a full-featured builder, and it can reuse everything that
 already exists.
 
@@ -30,8 +30,8 @@ them.
 | Element | Existing page | Existing API | Profile-scopable? |
 |---|---|---|---|
 | Name / Description | ProfilesPage create modal | `POST /api/profiles` (`create_profile`) | yes (args) |
-| Model + Provider | ModelsPage | `_write_profile_model(profile_dir, …)` | yes — HERMES_HOME override, already wired into create endpoint |
-| MCPs | McpPage | `mcp_config._save_mcp_server` + `/api/mcp/catalog` | yes — wrap with HERMES_HOME override |
+| Model + Provider | ModelsPage | `_write_profile_model(profile_dir, …)` | yes — OPENAMER_HOME override, already wired into create endpoint |
+| MCPs | McpPage | `mcp_config._save_mcp_server` + `/api/mcp/catalog` | yes — wrap with OPENAMER_HOME override |
 | Skills (built-in/optional) | SkillsPage | `GET /api/skills`, `/api/skills/toggle` | yes — config write |
 | Skills (hub) | SkillsPage | `/api/skills/hub/search`, `/api/skills/hub/install` | **only via subprocess** — see seam #1 |
 
@@ -39,9 +39,9 @@ them.
 
 These are load-bearing — they change the implementation, not just the polish.
 
-### Seam #1 — hub-skill install cannot use the HERMES_HOME override
+### Seam #1 — hub-skill install cannot use the OPENAMER_HOME override
 
-`tools/skills_hub.py` binds `SKILLS_DIR = HERMES_HOME / "skills"` at **module
+`tools/skills_hub.py` binds `SKILLS_DIR = OPENAMER_HOME / "skills"` at **module
 import time**. The context-local `set_openamer_home_override()` swap (which makes
 `_write_profile_model` and the MCP write land in the target profile) does NOT
 retroactively rebind that already-imported module global. So a data-layer wrap
@@ -56,7 +56,7 @@ re-reads `sys.argv` at import in the fresh child. Prepend `-p <profile>`:
 _spawn_openamer_action(["-p", profile, "skills", "install", identifier], "skills-install")
 ```
 
-A fresh subprocess re-imports `skills_hub` with the profile's HERMES_HOME bound
+A fresh subprocess re-imports `skills_hub` with the profile's OPENAMER_HOME bound
 from the start, so `SKILLS_DIR` resolves to `<profile>/skills/`. Correct by
 construction.
 
@@ -68,8 +68,8 @@ spawned detached (`_spawn_openamer_action` returns a PID immediately). So the
 create flow is:
 
 1. `create_profile()` — make the dir (synchronous)
-2. write model (synchronous, HERMES_HOME override)
-3. write selected MCP servers (synchronous, HERMES_HOME override)
+2. write model (synchronous, OPENAMER_HOME override)
+3. write selected MCP servers (synchronous, OPENAMER_HOME override)
 4. seed/enable selected built-in + optional skills (synchronous)
 5. spawn `openamer -p <profile> skills install <id>` per hub skill (async, returns PIDs)
 
@@ -94,7 +94,7 @@ class ProfileCreate(BaseModel):
     provider: Optional[str] = None
     model: Optional[str] = None
     # NEW — all optional, all best-effort post-create (profile already exists)
-    mcp_servers: List[MCPServerCreate] = []      # synchronous, HERMES_HOME override
+    mcp_servers: List[MCPServerCreate] = []      # synchronous, OPENAMER_HOME override
     builtin_skills: List[str] = []               # synchronous enable/seed
     hub_skills: List[str] = []                   # async spawn, returns PIDs
 ```
@@ -103,7 +103,7 @@ The endpoint already does best-effort post-create steps (`seed_profile_skills`,
 `_write_profile_model`). Add two more best-effort blocks (MCP write, hub-skill
 spawn) in the same style — a failure in any of them must not 500 the create,
 since the profile dir already exists and the user can fix it from the relevant
-page afterward. Mirror `_write_profile_model`'s HERMES_HOME-override helper for
+page afterward. Mirror `_write_profile_model`'s OPENAMER_HOME-override helper for
 the MCP write (`_write_profile_mcp_servers(profile_dir, servers)`).
 
 ## Proposed frontend — dedicated builder page `/profiles/new`
@@ -137,7 +137,7 @@ Nothing writes to disk until ⑤.
 
 ## Verification plan (when built)
 
-- Backend E2E with isolated HERMES_HOME: POST a full create body
+- Backend E2E with isolated OPENAMER_HOME: POST a full create body
   (name + model + 2 MCPs + 3 builtin skills + 1 hub skill), assert the new
   profile dir has the model in config.yaml, both MCP servers in config.yaml,
   the builtin skills enabled, and a spawned PID for the hub skill. Negative:

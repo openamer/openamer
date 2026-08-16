@@ -159,7 +159,7 @@ TTS settings are read from **two** OpenClaw config locations with this priority:
 | Browser CDP URL | `browser.cdpUrl` | `config.yaml` → `browser.cdp_url` | |
 | Browser headless | `browser.headless` | `config.yaml` → `browser.headless` | |
 | Brave search key | `tools.web.search.brave.apiKey` | `.env` → `BRAVE_API_KEY` | Requires `--migrate-secrets` |
-| Gateway auth token | `gateway.auth.token` | `.env` → `HERMES_GATEWAY_TOKEN` | Requires `--migrate-secrets` |
+| Gateway auth token | `gateway.auth.token` | `.env` → `OPENAMER_GATEWAY_TOKEN` | Requires `--migrate-secrets` |
 | Working directory | `agents.defaults.workspace` | `config.yaml` → `terminal.cwd` | Legacy migrations may still emit `MESSAGING_CWD` as a compatibility fallback |
 
 ### Archived (no direct OpenAmer equivalent)

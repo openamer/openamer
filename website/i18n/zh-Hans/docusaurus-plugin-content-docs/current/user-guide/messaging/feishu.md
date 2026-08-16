@@ -379,9 +379,9 @@ Agent 工作期间，机器人会在你的消息上显示 `Typing` 表情回应�
 
 | 设置 | 环境变量 | 默认值 |
 |---------|---------|---------|
-| 静默期 | `HERMES_FEISHU_TEXT_BATCH_DELAY_SECONDS` | 0.6s |
-| 每批最大消息数 | `HERMES_FEISHU_TEXT_BATCH_MAX_MESSAGES` | 8 |
-| 每批最大字符数 | `HERMES_FEISHU_TEXT_BATCH_MAX_CHARS` | 4000 |
+| 静默期 | `OPENAMER_FEISHU_TEXT_BATCH_DELAY_SECONDS` | 0.6s |
+| 每批最大消息数 | `OPENAMER_FEISHU_TEXT_BATCH_MAX_MESSAGES` | 8 |
+| 每批最大字符数 | `OPENAMER_FEISHU_TEXT_BATCH_MAX_CHARS` | 4000 |
 
 ### 媒体批处理
 
@@ -389,7 +389,7 @@ Agent 工作期间，机器人会在你的消息上显示 `Typing` 表情回应�
 
 | 设置 | 环境变量 | 默认值 |
 |---------|---------|---------|
-| 静默期 | `HERMES_FEISHU_MEDIA_BATCH_DELAY_SECONDS` | 0.8s |
+| 静默期 | `OPENAMER_FEISHU_MEDIA_BATCH_DELAY_SECONDS` | 0.8s |
 
 ### 按聊天串行化
 
@@ -477,7 +477,7 @@ platforms:
 
 | 设置 | 环境变量 | 默认值 |
 |---------|---------|---------|
-| 缓存大小 | `HERMES_FEISHU_DEDUP_CACHE_SIZE` | 2048 条 |
+| 缓存大小 | `OPENAMER_FEISHU_DEDUP_CACHE_SIZE` | 2048 条 |
 
 ## 所有环境变量
 
@@ -500,11 +500,11 @@ platforms:
 | `FEISHU_WEBHOOK_HOST` | — | `127.0.0.1` | Webhook 服务器绑定地址 |
 | `FEISHU_WEBHOOK_PORT` | — | `8765` | Webhook 服务器端口 |
 | `FEISHU_WEBHOOK_PATH` | — | `/feishu/webhook` | Webhook 端点路径 |
-| `HERMES_FEISHU_DEDUP_CACHE_SIZE` | — | `2048` | 最大去重消息 ID 追踪数量 |
-| `HERMES_FEISHU_TEXT_BATCH_DELAY_SECONDS` | — | `0.6` | 文本突发防抖静默期 |
-| `HERMES_FEISHU_TEXT_BATCH_MAX_MESSAGES` | — | `8` | 每批文本合并的最大消息数 |
-| `HERMES_FEISHU_TEXT_BATCH_MAX_CHARS` | — | `4000` | 每批文本合并的最大字符数 |
-| `HERMES_FEISHU_MEDIA_BATCH_DELAY_SECONDS` | — | `0.8` | 媒体突发防抖静默期 |
+| `OPENAMER_FEISHU_DEDUP_CACHE_SIZE` | — | `2048` | 最大去重消息 ID 追踪数量 |
+| `OPENAMER_FEISHU_TEXT_BATCH_DELAY_SECONDS` | — | `0.6` | 文本突发防抖静默期 |
+| `OPENAMER_FEISHU_TEXT_BATCH_MAX_MESSAGES` | — | `8` | 每批文本合并的最大消息数 |
+| `OPENAMER_FEISHU_TEXT_BATCH_MAX_CHARS` | — | `4000` | 每批文本合并的最大字符数 |
+| `OPENAMER_FEISHU_MEDIA_BATCH_DELAY_SECONDS` | — | `0.8` | 媒体突发防抖静默期 |
 
 WebSocket 和按群 ACL 设置通过 `config.yaml` 的 `platforms.feishu.extra` 配置（参见上方 [WebSocket 调优](#websocket-tuning) 和[按群访问控制](#per-group-access-control)）。
 

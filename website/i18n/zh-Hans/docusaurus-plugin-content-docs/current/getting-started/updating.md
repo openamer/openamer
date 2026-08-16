@@ -24,7 +24,7 @@ openamer update
 
 运行 `openamer update` 时，将依次执行以下步骤：
 
-1. **更新前快照** — 默认保存一份轻量级状态快照（涵盖配对数据、cron 任务、`config.yaml`、`.env`、`auth.json` 及其他运行时修改的状态文件；单个超过 1 GiB 的文件会被跳过，因此大型会话数据库不会拖慢更新）。由 `updates.pre_update_backup` 控制（默认 `quick`，`full` 为整个 `HERMES_HOME` 的 zip 备份，`off` 为禁用）。可通过 [快照与回滚](../user-guide/checkpoints-and-rollback.md) 中描述的快照恢复流程进行恢复。
+1. **更新前快照** — 默认保存一份轻量级状态快照（涵盖配对数据、cron 任务、`config.yaml`、`.env`、`auth.json` 及其他运行时修改的状态文件；单个超过 1 GiB 的文件会被跳过，因此大型会话数据库不会拖慢更新）。由 `updates.pre_update_backup` 控制（默认 `quick`，`full` 为整个 `OPENAMER_HOME` 的 zip 备份，`off` 为禁用）。可通过 [快照与回滚](../user-guide/checkpoints-and-rollback.md) 中描述的快照恢复流程进行恢复。
 2. **Git pull** — 从 `main` 分支拉取最新代码并更新子模块
 3. **依赖安装** — 运行 `uv pip install -e ".[all]"` 以获取新增或变更的依赖项
 4. **配置迁移** — 检测自当前版本以来新增的配置选项并提示设置
@@ -36,7 +36,7 @@ openamer update
 
 ### 完整更新前备份：`--backup`
 
-对于高价值 profile（生产环境 gateway、团队共享安装），可选择在拉取前对 `HERMES_HOME`（配置、认证、会话、技能、配对数据）进行完整备份：
+对于高价值 profile（生产环境 gateway、团队共享安装），可选择在拉取前对 `OPENAMER_HOME`（配置、认证、会话、技能、配对数据）进行完整备份：
 
 ```bash
 openamer update --backup
@@ -50,7 +50,7 @@ updates:
   pre_update_backup: full
 ```
 
-`updates.pre_update_backup` 是单一开关，有三种模式：`quick`（默认 — 上述轻量级状态快照）、`full`（快速快照加上完整的 `HERMES_HOME` zip 备份；在大型 home 目录上可能增加数分钟）、`off`（完全不做更新前备份 — `--no-backup` 对单次运行有相同效果）。旧版布尔值仍然有效：`true` 等同于 `full`，`false` 等同于 `off`。
+`updates.pre_update_backup` 是单一开关，有三种模式：`quick`（默认 — 上述轻量级状态快照）、`full`（快速快照加上完整的 `OPENAMER_HOME` zip 备份；在大型 home 目录上可能增加数分钟）、`off`（完全不做更新前备份 — `--no-backup` 对单次运行有相同效果）。旧版布尔值仍然有效：`true` 等同于 `full`，`false` 等同于 `off`。
 
 ### Windows：另一个 `openamer.exe` 正在运行
 

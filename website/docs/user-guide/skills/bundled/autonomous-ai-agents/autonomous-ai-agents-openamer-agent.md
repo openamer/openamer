@@ -84,8 +84,8 @@ openamer proxy                   # OpenAI-compatible local proxy backed by your 
 
 ```
 ~/.openamer/config.yaml       Main configuration (settings — never secrets)
-~/.openamer/.env              API keys and secrets ONLY (under $HERMES_HOME if set)
-$HERMES_HOME/skills/        Installed skills
+~/.openamer/.env              API keys and secrets ONLY (under $OPENAMER_HOME if set)
+$OPENAMER_HOME/skills/        Installed skills
 ~/.openamer/skins/            Custom themes (see references/themes.md)
 ~/.openamer/desktop-plugins/  Desktop app UI plugins (see references/desktop-plugins.md)
 ~/.openamer/tui-widgets/      TUI widget apps (see references/tui-widgets.md)
@@ -97,7 +97,7 @@ $HERMES_HOME/skills/        Installed skills
 ~/.openamer/openamer-agent/     Source code (if git-installed)
 ```
 
-Profiles use `~/.openamer/profiles/<name>/` with the same layout. When a profile is active, resolve the real home from `$HERMES_HOME` — never hardcode `~/.openamer`.
+Profiles use `~/.openamer/profiles/<name>/` with the same layout. When a profile is active, resolve the real home from `$OPENAMER_HOME` — never hardcode `~/.openamer`.
 
 ## Routing Table — load the reference for the task
 
@@ -217,5 +217,5 @@ terminal(command="tmux new-session -d -s resumed 'openamer --resume 20260225_143
 - **Never break prompt caching** — don't change past context, toolsets, or the system prompt mid-conversation. The only exception is context compression.
 - **Message role alternation** — never two assistant or two user messages in a row; only `tool` results can repeat.
 - **Secrets in `.env`, settings in `config.yaml`** — never tell a user to put a non-credential setting in `.env`.
-- **Profile-safe paths** — `get_openamer_home()` in code, `$HERMES_HOME` when resolving paths in a session.
+- **Profile-safe paths** — `get_openamer_home()` in code, `$OPENAMER_HOME` when resolving paths in a session.
 - **Never hand-edit `config.yaml` for the user** — use `openamer config set KEY VAL`; a stray indent can corrupt the file and break the live gateway.

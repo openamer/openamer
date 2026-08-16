@@ -218,7 +218,7 @@ managed_persistence: true
 
 ##### 状态存储位置
 
-OpenAmer 从 profile 范围目录 `~/.openamer/browser_auth/camofox/`（非默认 profile 则在 `$HERMES_HOME` 下的对应位置）派生稳定的 `userId`。实际浏览器 profile 数据存储在 Camofox 服务器端，以该 `userId` 为键。要完全重置持久化 profile，请在 Camofox 服务器端清除对应数据，并删除相应 OpenAmer profile 的状态目录。
+OpenAmer 从 profile 范围目录 `~/.openamer/browser_auth/camofox/`（非默认 profile 则在 `$OPENAMER_HOME` 下的对应位置）派生稳定的 `userId`。实际浏览器 profile 数据存储在 Camofox 服务器端，以该 `userId` 为键。要完全重置持久化 profile，请在 Camofox 服务器端清除对应数据，并删除相应 OpenAmer profile 的状态目录。
 
 #### 外部管理的 Camofox 会话
 

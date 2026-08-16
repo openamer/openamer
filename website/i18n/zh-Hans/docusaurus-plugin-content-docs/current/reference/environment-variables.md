@@ -14,8 +14,8 @@ description: "OpenAmer Agent 使用的所有环境变量完整参考"
 |----------|-------------|
 | `OPENROUTER_API_KEY` | OpenRouter API 密钥（推荐，灵活性强） |
 | `OPENROUTER_BASE_URL` | 覆盖 OpenRouter 兼容的 base URL |
-| `HERMES_OPENROUTER_CACHE` | 启用 OpenRouter 响应缓存（`1`/`true`/`yes`/`on`）。覆盖 config.yaml 中的 `openrouter.response_cache`。参见 [Response Caching](https://openrouter.ai/docs/guides/features/response-caching)。 |
-| `HERMES_OPENROUTER_CACHE_TTL` | 缓存 TTL（秒，1-86400）。覆盖 config.yaml 中的 `openrouter.response_cache_ttl`。 |
+| `OPENAMER_OPENROUTER_CACHE` | 启用 OpenRouter 响应缓存（`1`/`true`/`yes`/`on`）。覆盖 config.yaml 中的 `openrouter.response_cache`。参见 [Response Caching](https://openrouter.ai/docs/guides/features/response-caching)。 |
+| `OPENAMER_OPENROUTER_CACHE_TTL` | 缓存 TTL（秒，1-86400）。覆盖 config.yaml 中的 `openrouter.response_cache_ttl`。 |
 | `NOUS_BASE_URL` | 覆盖 Nous Portal base URL（极少使用；仅用于开发/测试） |
 | `NOUS_INFERENCE_BASE_URL` | 直接覆盖 Nous 推理端点 |
 | `OPENAI_API_KEY` | 自定义 OpenAI 兼容端点的 API 密钥（与 `OPENAI_BASE_URL` 配合使用） |
@@ -23,9 +23,9 @@ description: "OpenAmer Agent 使用的所有环境变量完整参考"
 | `COPILOT_GITHUB_TOKEN` | 用于 Copilot API 的 GitHub token——最高优先级（OAuth `gho_*` 或细粒度 PAT `github_pat_*`；经典 PAT `ghp_*` **不支持**） |
 | `GH_TOKEN` | GitHub token——Copilot 第二优先级（也供 `gh` CLI 使用） |
 | `GITHUB_TOKEN` | GitHub token——Copilot 第三优先级 |
-| `HERMES_COPILOT_ACP_COMMAND` | 覆盖 Copilot ACP CLI 二进制路径（默认：`copilot`） |
-| `COPILOT_CLI_PATH` | `HERMES_COPILOT_ACP_COMMAND` 的别名 |
-| `HERMES_COPILOT_ACP_ARGS` | 覆盖 Copilot ACP 参数（默认：`--acp --stdio`） |
+| `OPENAMER_COPILOT_ACP_COMMAND` | 覆盖 Copilot ACP CLI 二进制路径（默认：`copilot`） |
+| `COPILOT_CLI_PATH` | `OPENAMER_COPILOT_ACP_COMMAND` 的别名 |
+| `OPENAMER_COPILOT_ACP_ARGS` | 覆盖 Copilot ACP 参数（默认：`--acp --stdio`） |
 | `COPILOT_ACP_BASE_URL` | 覆盖 Copilot ACP base URL |
 | `GLM_API_KEY` | z.ai / ZhipuAI GLM API 密钥（[z.ai](https://z.ai)） |
 | `ZAI_API_KEY` | `GLM_API_KEY` 的别名 |
@@ -83,24 +83,24 @@ description: "OpenAmer Agent 使用的所有环境变量完整参考"
 | `AWS_REGION` | Bedrock 推理的 AWS 区域（例如 `us-east-1`、`eu-central-1`）。由 boto3 读取。 |
 | `AWS_PROFILE` | Bedrock 认证的 AWS 命名配置文件（读取 `~/.aws/credentials`）。不设置则使用默认 boto3 凭证链。 |
 | `BEDROCK_BASE_URL` | 覆盖 Bedrock runtime base URL（默认：`https://bedrock-runtime.us-east-1.amazonaws.com`；通常不设置，改用 `AWS_REGION`） |
-| `HERMES_QWEN_BASE_URL` | Qwen Portal base URL 覆盖（默认：`https://portal.qwen.ai/v1`） |
+| `OPENAMER_QWEN_BASE_URL` | Qwen Portal base URL 覆盖（默认：`https://portal.qwen.ai/v1`） |
 | `OPENCODE_ZEN_API_KEY` | OpenCode Zen API 密钥——按需付费访问精选模型（[opencode.ai](https://opencode.ai/auth)） |
 | `OPENCODE_ZEN_BASE_URL` | 覆盖 OpenCode Zen base URL |
 | `OPENCODE_GO_API_KEY` | OpenCode Go API 密钥——$10/月订阅开源模型（[opencode.ai](https://opencode.ai/auth)） |
 | `OPENCODE_GO_BASE_URL` | 覆盖 OpenCode Go base URL |
 | `CLAUDE_CODE_OAUTH_TOKEN` | 手动导出时的显式 Claude Code token 覆盖 |
-| `HERMES_MODEL` | 在进程级别覆盖模型名称（供 cron 调度器使用；正常使用请优先在 `config.yaml` 中配置） |
+| `OPENAMER_MODEL` | 在进程级别覆盖模型名称（供 cron 调度器使用；正常使用请优先在 `config.yaml` 中配置） |
 | `VOICE_TOOLS_OPENAI_KEY` | OpenAI 语音转文字和文字转语音提供商的首选 OpenAI 密钥 |
-| `HERMES_LOCAL_STT_COMMAND` | 可选的本地语音转文字命令模板。支持 `{input_path}`、`{output_dir}`、`{language}` 和 `{model}` 占位符 |
-| `HERMES_LOCAL_STT_LANGUAGE` | 传递给 `HERMES_LOCAL_STT_COMMAND` 或自动检测的本地 `whisper` CLI 回退的默认语言（默认：`en`） |
-| `HERMES_HOME` | 覆盖 OpenAmer 配置目录（默认：`~/.openamer`）。同时限定 gateway PID 文件和 systemd 服务名称，允许多个安装并发运行 |
-| `HERMES_GIT_BASH_PATH` | **仅 Windows。** 覆盖终端工具的 `bash.exe` 发现路径。可指向任意 bash——完整 Git-for-Windows 安装、通过符号链接的 WSL bash、MSYS2、Cygwin。安装程序会自动将其设置为所配置的 PortableGit。参见 [Windows（原生）指南](../user-guide/windows-native.md#how-openamer-runs-shell-commands-on-windows) |
-| `HERMES_DISABLE_WINDOWS_UTF8` | **仅 Windows。** 设为 `1` 可禁用 UTF-8 stdio shim（`configure_windows_stdio()`），回退到控制台的本地代码页。用于排查编码问题；正常操作中极少需要 |
-| `HERMES_KANBAN_HOME` | 覆盖锚定 kanban 看板（数据库 + 工作区 + 工作日志）的共享 OpenAmer 根目录。回退到 `get_default_openamer_root()`（任意活动 profile 的父目录）。适用于测试和非常规部署 |
-| `HERMES_KANBAN_BOARD` | 为当前进程固定活动 kanban 看板。优先于 `~/.openamer/kanban/current`；调度器将其注入工作进程子进程环境，使工作进程无法看到其他看板上的任务。默认为 `default`。slug 验证：小写字母数字 + 连字符 + 下划线，1-64 字符 |
-| `HERMES_KANBAN_DB` | 直接固定 kanban 数据库文件路径（最高优先级；优先于 `HERMES_KANBAN_BOARD` 和 `HERMES_KANBAN_HOME`）。调度器将其注入工作进程子进程环境，使 profile 工作进程收敛到调度器的看板 |
-| `HERMES_KANBAN_WORKSPACES_ROOT` | 直接固定 kanban 工作区根目录（工作区最高优先级；优先于 `HERMES_KANBAN_HOME`）。调度器将其注入工作进程子进程环境 |
-| `HERMES_KANBAN_DISPATCH_IN_GATEWAY` | `kanban.dispatch_in_gateway` 的运行时覆盖。设为 `0`、`false`、`no` 或 `off` 可阻止 gateway 启动内嵌 Kanban 调度器；任何其他非空值则启用。适用于独立调度器进程拥有看板的场景。 |
+| `OPENAMER_LOCAL_STT_COMMAND` | 可选的本地语音转文字命令模板。支持 `{input_path}`、`{output_dir}`、`{language}` 和 `{model}` 占位符 |
+| `OPENAMER_LOCAL_STT_LANGUAGE` | 传递给 `OPENAMER_LOCAL_STT_COMMAND` 或自动检测的本地 `whisper` CLI 回退的默认语言（默认：`en`） |
+| `OPENAMER_HOME` | 覆盖 OpenAmer 配置目录（默认：`~/.openamer`）。同时限定 gateway PID 文件和 systemd 服务名称，允许多个安装并发运行 |
+| `OPENAMER_GIT_BASH_PATH` | **仅 Windows。** 覆盖终端工具的 `bash.exe` 发现路径。可指向任意 bash——完整 Git-for-Windows 安装、通过符号链接的 WSL bash、MSYS2、Cygwin。安装程序会自动将其设置为所配置的 PortableGit。参见 [Windows（原生）指南](../user-guide/windows-native.md#how-openamer-runs-shell-commands-on-windows) |
+| `OPENAMER_DISABLE_WINDOWS_UTF8` | **仅 Windows。** 设为 `1` 可禁用 UTF-8 stdio shim（`configure_windows_stdio()`），回退到控制台的本地代码页。用于排查编码问题；正常操作中极少需要 |
+| `OPENAMER_KANBAN_HOME` | 覆盖锚定 kanban 看板（数据库 + 工作区 + 工作日志）的共享 OpenAmer 根目录。回退到 `get_default_openamer_root()`（任意活动 profile 的父目录）。适用于测试和非常规部署 |
+| `OPENAMER_KANBAN_BOARD` | 为当前进程固定活动 kanban 看板。优先于 `~/.openamer/kanban/current`；调度器将其注入工作进程子进程环境，使工作进程无法看到其他看板上的任务。默认为 `default`。slug 验证：小写字母数字 + 连字符 + 下划线，1-64 字符 |
+| `OPENAMER_KANBAN_DB` | 直接固定 kanban 数据库文件路径（最高优先级；优先于 `OPENAMER_KANBAN_BOARD` 和 `OPENAMER_KANBAN_HOME`）。调度器将其注入工作进程子进程环境，使 profile 工作进程收敛到调度器的看板 |
+| `OPENAMER_KANBAN_WORKSPACES_ROOT` | 直接固定 kanban 工作区根目录（工作区最高优先级；优先于 `OPENAMER_KANBAN_HOME`）。调度器将其注入工作进程子进程环境 |
+| `OPENAMER_KANBAN_DISPATCH_IN_GATEWAY` | `kanban.dispatch_in_gateway` 的运行时覆盖。设为 `0`、`false`、`no` 或 `off` 可阻止 gateway 启动内嵌 Kanban 调度器；任何其他非空值则启用。适用于独立调度器进程拥有看板的场景。 |
 
 ## 提供商认证（OAuth）
 
@@ -108,13 +108,13 @@ description: "OpenAmer Agent 使用的所有环境变量完整参考"
 
 | 变量 | 描述 |
 |----------|-------------|
-| `HERMES_PORTAL_BASE_URL` | 覆盖 Nous Portal URL（用于开发/测试） |
+| `OPENAMER_PORTAL_BASE_URL` | 覆盖 Nous Portal URL（用于开发/测试） |
 | `NOUS_INFERENCE_BASE_URL` | 覆盖 Nous 推理 API URL |
-| `HERMES_NOUS_MIN_KEY_TTL_SECONDS` | 重新铸造前的最小 agent 密钥 TTL（默认：1800 = 30 分钟） |
-| `HERMES_NOUS_TIMEOUT_SECONDS` | Nous 凭证/token 流程的 HTTP 超时 |
-| `HERMES_DUMP_REQUESTS` | 将 API 请求载荷转储到日志文件（`true`/`false`） |
-| `HERMES_PREFILL_MESSAGES_FILE` | 包含在 API 调用时注入的临时预填消息的 JSON 文件路径 |
-| `HERMES_TIMEZONE` | IANA 时区覆盖（例如 `America/New_York`） |
+| `OPENAMER_NOUS_MIN_KEY_TTL_SECONDS` | 重新铸造前的最小 agent 密钥 TTL（默认：1800 = 30 分钟） |
+| `OPENAMER_NOUS_TIMEOUT_SECONDS` | Nous 凭证/token 流程的 HTTP 超时 |
+| `OPENAMER_DUMP_REQUESTS` | 将 API 请求载荷转储到日志文件（`true`/`false`） |
+| `OPENAMER_PREFILL_MESSAGES_FILE` | 包含在 API 调用时注入的临时预填消息的 JSON 文件路径 |
+| `OPENAMER_TIMEZONE` | IANA 时区覆盖（例如 `America/New_York`） |
 
 ## 工具 API
 
@@ -158,15 +158,15 @@ description: "OpenAmer Agent 使用的所有环境变量完整参考"
 
 | 变量 | 描述 |
 |----------|-------------|
-| `HERMES_LANGFUSE_PUBLIC_KEY` | Langfuse 项目公钥（`pk-lf-...`）。必填。 |
-| `HERMES_LANGFUSE_SECRET_KEY` | Langfuse 项目密钥（`sk-lf-...`）。必填。 |
-| `HERMES_LANGFUSE_BASE_URL` | Langfuse 服务器 URL（默认：`https://cloud.langfuse.com`）。自托管时设置。 |
-| `HERMES_LANGFUSE_ENV` | trace 上的环境标签（`production`、`staging` 等） |
-| `HERMES_LANGFUSE_RELEASE` | trace 上的发布/版本标签 |
-| `HERMES_LANGFUSE_SAMPLE_RATE` | SDK 采样率 0.0–1.0（默认：`1.0`） |
-| `HERMES_LANGFUSE_MAX_CHARS` | 序列化载荷的每字段截断长度（默认：`12000`） |
-| `HERMES_LANGFUSE_DEBUG` | `true` 可将详细插件日志输出到 `agent.log` |
-| `LANGFUSE_PUBLIC_KEY` / `LANGFUSE_SECRET_KEY` / `LANGFUSE_BASE_URL` | 标准 Langfuse SDK 变量名。当对应的 `HERMES_LANGFUSE_*` 未设置时作为回退。 |
+| `OPENAMER_LANGFUSE_PUBLIC_KEY` | Langfuse 项目公钥（`pk-lf-...`）。必填。 |
+| `OPENAMER_LANGFUSE_SECRET_KEY` | Langfuse 项目密钥（`sk-lf-...`）。必填。 |
+| `OPENAMER_LANGFUSE_BASE_URL` | Langfuse 服务器 URL（默认：`https://cloud.langfuse.com`）。自托管时设置。 |
+| `OPENAMER_LANGFUSE_ENV` | trace 上的环境标签（`production`、`staging` 等） |
+| `OPENAMER_LANGFUSE_RELEASE` | trace 上的发布/版本标签 |
+| `OPENAMER_LANGFUSE_SAMPLE_RATE` | SDK 采样率 0.0–1.0（默认：`1.0`） |
+| `OPENAMER_LANGFUSE_MAX_CHARS` | 序列化载荷的每字段截断长度（默认：`12000`） |
+| `OPENAMER_LANGFUSE_DEBUG` | `true` 可将详细插件日志输出到 `agent.log` |
+| `LANGFUSE_PUBLIC_KEY` / `LANGFUSE_SECRET_KEY` / `LANGFUSE_BASE_URL` | 标准 Langfuse SDK 变量名。当对应的 `OPENAMER_LANGFUSE_*` 未设置时作为回退。 |
 
 ### Nous Tool Gateway
 
@@ -184,7 +184,7 @@ description: "OpenAmer Agent 使用的所有环境变量完整参考"
 | 变量 | 描述 |
 |----------|-------------|
 | `TERMINAL_ENV` | 后端：`local`、`docker`、`ssh`、`singularity`、`modal`、`daytona` |
-| `HERMES_DOCKER_BINARY` | 覆盖 OpenAmer 调用的容器二进制（例如 `podman`、`/usr/local/bin/docker`）。未设置时，OpenAmer 自动在 `PATH` 上发现 `docker` 或 `podman`。当两者都已安装且需要非默认选项，或二进制不在 `PATH` 中时使用。 |
+| `OPENAMER_DOCKER_BINARY` | 覆盖 OpenAmer 调用的容器二进制（例如 `podman`、`/usr/local/bin/docker`）。未设置时，OpenAmer 自动在 `PATH` 上发现 `docker` 或 `podman`。当两者都已安装且需要非默认选项，或二进制不在 `PATH` 中时使用。 |
 | `TERMINAL_DOCKER_IMAGE` | Docker 镜像（默认：`nikolaik/python-nodejs:python3.11-nodejs20`） |
 | `TERMINAL_DOCKER_FORWARD_ENV` | 显式转发到 Docker 终端会话的环境变量名 JSON 数组。注意：技能声明的 `required_environment_variables` 会自动转发——仅对未被任何技能声明的变量使用此项。 |
 | `TERMINAL_DOCKER_VOLUMES` | 额外的 Docker 卷挂载（逗号分隔的 `host:container` 对） |
@@ -389,7 +389,7 @@ description: "OpenAmer Agent 使用的所有环境变量完整参考"
 | `MATRIX_ALLOWED_USERS` | 允许向 bot 发送消息的逗号分隔 Matrix 用户 ID（例如 `@alice:matrix.org`） |
 | `MATRIX_HOME_ROOM` | 主动消息投递的房间 ID（例如 `!abc123:matrix.org`） |
 | `MATRIX_ENCRYPTION` | 启用端到端加密（`true`/`false`，默认：`false`） |
-| `MATRIX_DEVICE_ID` | 用于 E2EE 跨重启持久化的稳定 Matrix 设备 ID（例如 `HERMES_BOT`）。不设置时，E2EE 密钥每次启动都会轮换，历史房间解密将失败。 |
+| `MATRIX_DEVICE_ID` | 用于 E2EE 跨重启持久化的稳定 Matrix 设备 ID（例如 `OPENAMER_BOT`）。不设置时，E2EE 密钥每次启动都会轮换，历史房间解密将失败。 |
 | `MATRIX_REACTIONS` | 对入站消息启用处理生命周期 emoji 反应（默认：`true`）。设为 `false` 可禁用。 |
 | `MATRIX_REQUIRE_MENTION` | 在房间中要求 `@mention`（默认：`true`）。设为 `false` 可响应所有消息。 |
 | `MATRIX_FREE_RESPONSE_ROOMS` | bot 无需 `@mention` 即可响应的逗号分隔房间 ID |
@@ -496,96 +496,96 @@ Graph 事件（Teams 会议、日历、聊天等）的入站变更通知监听�
 
 | 变量 | 描述 |
 |----------|-------------|
-| `HERMES_TELEGRAM_TEXT_BATCH_DELAY_SECONDS` | 刷新排队 Telegram 文本块前的宽限窗口（默认：`0.6`）。 |
-| `HERMES_TELEGRAM_TEXT_BATCH_SPLIT_DELAY_SECONDS` | 单条 Telegram 消息超过长度限制时分块之间的延迟（默认：`2.0`）。 |
-| `HERMES_TELEGRAM_MEDIA_BATCH_DELAY_SECONDS` | 刷新排队 Telegram 媒体前的宽限窗口（默认：`0.6`）。 |
-| `HERMES_TELEGRAM_FOLLOWUP_GRACE_SECONDS` | agent 完成后发送后续消息前的延迟，以避免与最后一个流块竞争。 |
-| `HERMES_TELEGRAM_HTTP_CONNECT_TIMEOUT` / `_READ_TIMEOUT` / `_WRITE_TIMEOUT` / `_POOL_TIMEOUT` | 覆盖底层 `python-telegram-bot` HTTP 超时（秒）。 |
-| `HERMES_TELEGRAM_HTTP_POOL_SIZE` | 到 Telegram API 的最大并发 HTTP 连接数。 |
-| `HERMES_TELEGRAM_DISABLE_FALLBACK_IPS` | 禁用 DNS 失败时使用的硬编码 Cloudflare 回退 IP（`true`/`false`）。 |
-| `HERMES_DISCORD_TEXT_BATCH_DELAY_SECONDS` | 刷新排队 Discord 文本块前的宽限窗口（默认：`0.6`）。 |
-| `HERMES_DISCORD_TEXT_BATCH_SPLIT_DELAY_SECONDS` | Discord 消息超过长度限制时分块之间的延迟（默认：`2.0`）。 |
-| `HERMES_MATRIX_TEXT_BATCH_DELAY_SECONDS` / `_SPLIT_DELAY_SECONDS` | Matrix 等同于 Telegram 批处理旋钮。 |
-| `HERMES_FEISHU_TEXT_BATCH_DELAY_SECONDS` / `_SPLIT_DELAY_SECONDS` / `_MAX_CHARS` / `_MAX_MESSAGES` | 飞书批处理器调优——延迟、分块延迟、每条消息最大字符数、每批最大消息数。 |
-| `HERMES_FEISHU_MEDIA_BATCH_DELAY_SECONDS` | 飞书媒体刷新延迟。 |
-| `HERMES_FEISHU_DEDUP_CACHE_SIZE` | 飞书 webhook 去重缓存大小（默认：`1024`）。 |
-| `HERMES_WECOM_TEXT_BATCH_DELAY_SECONDS` / `_SPLIT_DELAY_SECONDS` | 企业微信批处理器调优。 |
-| `HERMES_VISION_DOWNLOAD_TIMEOUT` | 将图片交给视觉模型前下载的超时（秒，默认：`30`）。 |
-| `HERMES_RESTART_DRAIN_TIMEOUT` | Gateway：`/restart` 时等待活跃运行排空的秒数，超时后强制重启（默认：`900`）。 |
-| `HERMES_GATEWAY_PLATFORM_CONNECT_TIMEOUT` | gateway 启动期间每个平台的连接超时（秒）。 |
-| `HERMES_GATEWAY_BUSY_INPUT_MODE` | 默认 gateway 繁忙输入行为：`queue`、`steer` 或 `interrupt`。可通过 `/busy` 按聊天覆盖。 |
-| `HERMES_GATEWAY_BUSY_ACK_ENABLED` | gateway 是否在用户 agent 繁忙时发送确认消息（⚡/⏳/⏩）（默认：`true`）。设为 `false` 可完全抑制这些消息——输入仍会正常排队/引导/中断，只是聊天回复被静默。从 `config.yaml` 中的 `display.busy_ack_enabled` 桥接。 |
-| `HERMES_GATEWAY_NO_SUPERVISE` | 在 s6-overlay Docker 镜像内部运行 `openamer gateway run` 时跳过 s6 自动监管，退回到 pre-s6 前台语义（无自动重启，gateway 作为容器主进程）。真值：`1`、`true`、`yes`。等同于 `--no-supervise` CLI 标志。在 s6 镜像之外为空操作。 |
-| `HERMES_GATEWAY_BOOTSTRAP_STATE` | 在 s6-overlay Docker 镜像内部，为**全新卷**声明 gateway 的初始受监管状态。空白卷上不存在持久化的 `gateway_state.json`，因此启动协调器会注册 `gateway-default` 槽位但保持其**关闭**（只有上次记录状态为 `running` 时才会自动启动）。将此变量设为 `running` 后，首次启动 hook 会在协调器运行前预写入 `gateway_state.json`，从而让 gateway 在第一次启动时就自动拉起。仅字面值 `running` 生效。仅影响首次启动：若已有 `gateway_state.json`，绝不会被覆盖，因此被刻意停止的 gateway 在重启后仍保持停止。在 s6 镜像之外为空操作。 |
-| `HERMES_FILE_MUTATION_VERIFIER` | 启用每轮文件变更验证器页脚（默认：`true`）。启用后，OpenAmer 附加一个建议列表，列出本轮中失败且未被成功写入覆盖的 `write_file`/`patch` 调用。设为 `0`、`false`、`no` 或 `off` 可抑制。镜像 `config.yaml` 中的 `display.file_mutation_verifier`；设置时环境变量优先。 |
-| `HERMES_CRON_TIMEOUT` | cron 任务 agent 运行的不活动超时（秒，默认：`600`）。agent 在主动调用工具或接收流 token 时可无限运行——仅在空闲时触发。设为 `0` 表示无限制。 |
-| `HERMES_CRON_SCRIPT_TIMEOUT` | cron 任务附加的预运行脚本超时（秒，默认：`120`）。对需要更长执行时间的脚本（例如随机延迟的反机器人计时）可增大此值。也可通过 `config.yaml` 中的 `cron.script_timeout_seconds` 配置。 |
-| `HERMES_CRON_MAX_PARALLEL` | 每次 tick 并行运行的最大 cron 任务数（默认：`4`）。 |
+| `OPENAMER_TELEGRAM_TEXT_BATCH_DELAY_SECONDS` | 刷新排队 Telegram 文本块前的宽限窗口（默认：`0.6`）。 |
+| `OPENAMER_TELEGRAM_TEXT_BATCH_SPLIT_DELAY_SECONDS` | 单条 Telegram 消息超过长度限制时分块之间的延迟（默认：`2.0`）。 |
+| `OPENAMER_TELEGRAM_MEDIA_BATCH_DELAY_SECONDS` | 刷新排队 Telegram 媒体前的宽限窗口（默认：`0.6`）。 |
+| `OPENAMER_TELEGRAM_FOLLOWUP_GRACE_SECONDS` | agent 完成后发送后续消息前的延迟，以避免与最后一个流块竞争。 |
+| `OPENAMER_TELEGRAM_HTTP_CONNECT_TIMEOUT` / `_READ_TIMEOUT` / `_WRITE_TIMEOUT` / `_POOL_TIMEOUT` | 覆盖底层 `python-telegram-bot` HTTP 超时（秒）。 |
+| `OPENAMER_TELEGRAM_HTTP_POOL_SIZE` | 到 Telegram API 的最大并发 HTTP 连接数。 |
+| `OPENAMER_TELEGRAM_DISABLE_FALLBACK_IPS` | 禁用 DNS 失败时使用的硬编码 Cloudflare 回退 IP（`true`/`false`）。 |
+| `OPENAMER_DISCORD_TEXT_BATCH_DELAY_SECONDS` | 刷新排队 Discord 文本块前的宽限窗口（默认：`0.6`）。 |
+| `OPENAMER_DISCORD_TEXT_BATCH_SPLIT_DELAY_SECONDS` | Discord 消息超过长度限制时分块之间的延迟（默认：`2.0`）。 |
+| `OPENAMER_MATRIX_TEXT_BATCH_DELAY_SECONDS` / `_SPLIT_DELAY_SECONDS` | Matrix 等同于 Telegram 批处理旋钮。 |
+| `OPENAMER_FEISHU_TEXT_BATCH_DELAY_SECONDS` / `_SPLIT_DELAY_SECONDS` / `_MAX_CHARS` / `_MAX_MESSAGES` | 飞书批处理器调优——延迟、分块延迟、每条消息最大字符数、每批最大消息数。 |
+| `OPENAMER_FEISHU_MEDIA_BATCH_DELAY_SECONDS` | 飞书媒体刷新延迟。 |
+| `OPENAMER_FEISHU_DEDUP_CACHE_SIZE` | 飞书 webhook 去重缓存大小（默认：`1024`）。 |
+| `OPENAMER_WECOM_TEXT_BATCH_DELAY_SECONDS` / `_SPLIT_DELAY_SECONDS` | 企业微信批处理器调优。 |
+| `OPENAMER_VISION_DOWNLOAD_TIMEOUT` | 将图片交给视觉模型前下载的超时（秒，默认：`30`）。 |
+| `OPENAMER_RESTART_DRAIN_TIMEOUT` | Gateway：`/restart` 时等待活跃运行排空的秒数，超时后强制重启（默认：`900`）。 |
+| `OPENAMER_GATEWAY_PLATFORM_CONNECT_TIMEOUT` | gateway 启动期间每个平台的连接超时（秒）。 |
+| `OPENAMER_GATEWAY_BUSY_INPUT_MODE` | 默认 gateway 繁忙输入行为：`queue`、`steer` 或 `interrupt`。可通过 `/busy` 按聊天覆盖。 |
+| `OPENAMER_GATEWAY_BUSY_ACK_ENABLED` | gateway 是否在用户 agent 繁忙时发送确认消息（⚡/⏳/⏩）（默认：`true`）。设为 `false` 可完全抑制这些消息——输入仍会正常排队/引导/中断，只是聊天回复被静默。从 `config.yaml` 中的 `display.busy_ack_enabled` 桥接。 |
+| `OPENAMER_GATEWAY_NO_SUPERVISE` | 在 s6-overlay Docker 镜像内部运行 `openamer gateway run` 时跳过 s6 自动监管，退回到 pre-s6 前台语义（无自动重启，gateway 作为容器主进程）。真值：`1`、`true`、`yes`。等同于 `--no-supervise` CLI 标志。在 s6 镜像之外为空操作。 |
+| `OPENAMER_GATEWAY_BOOTSTRAP_STATE` | 在 s6-overlay Docker 镜像内部，为**全新卷**声明 gateway 的初始受监管状态。空白卷上不存在持久化的 `gateway_state.json`，因此启动协调器会注册 `gateway-default` 槽位但保持其**关闭**（只有上次记录状态为 `running` 时才会自动启动）。将此变量设为 `running` 后，首次启动 hook 会在协调器运行前预写入 `gateway_state.json`，从而让 gateway 在第一次启动时就自动拉起。仅字面值 `running` 生效。仅影响首次启动：若已有 `gateway_state.json`，绝不会被覆盖，因此被刻意停止的 gateway 在重启后仍保持停止。在 s6 镜像之外为空操作。 |
+| `OPENAMER_FILE_MUTATION_VERIFIER` | 启用每轮文件变更验证器页脚（默认：`true`）。启用后，OpenAmer 附加一个建议列表，列出本轮中失败且未被成功写入覆盖的 `write_file`/`patch` 调用。设为 `0`、`false`、`no` 或 `off` 可抑制。镜像 `config.yaml` 中的 `display.file_mutation_verifier`；设置时环境变量优先。 |
+| `OPENAMER_CRON_TIMEOUT` | cron 任务 agent 运行的不活动超时（秒，默认：`600`）。agent 在主动调用工具或接收流 token 时可无限运行——仅在空闲时触发。设为 `0` 表示无限制。 |
+| `OPENAMER_CRON_SCRIPT_TIMEOUT` | cron 任务附加的预运行脚本超时（秒，默认：`120`）。对需要更长执行时间的脚本（例如随机延迟的反机器人计时）可增大此值。也可通过 `config.yaml` 中的 `cron.script_timeout_seconds` 配置。 |
+| `OPENAMER_CRON_MAX_PARALLEL` | 每次 tick 并行运行的最大 cron 任务数（默认：`4`）。 |
 
 ## Agent 行为
 
 | 变量 | 描述 |
 |----------|-------------|
-| `HERMES_MAX_ITERATIONS` | 每次对话的最大工具调用迭代次数（默认：90） |
-| `HERMES_INFERENCE_MODEL` | 在进程级别覆盖模型名称（优先于本次会话的 `config.yaml`）。也可通过 `-m`/`--model` 标志设置。 |
-| `HERMES_YOLO_MODE` | 设为 `1` 可绕过危险命令审批提示。等同于 `--yolo`。 |
-| `HERMES_ACCEPT_HOOKS` | 无需 TTY 提示自动批准 `config.yaml` 中声明的任何未见过的 shell hook。等同于 `--accept-hooks` 或 `hooks_auto_accept: true`。 |
-| `HERMES_IGNORE_USER_CONFIG` | 跳过 `~/.openamer/config.yaml` 并使用内置默认值（`.env` 中的凭证仍会加载）。等同于 `--ignore-user-config`。 |
-| `HERMES_IGNORE_RULES` | 跳过 `AGENTS.md`、`SOUL.md`、`.cursorrules`、记忆和预加载技能的自动注入。等同于 `--ignore-rules`。 |
-| `HERMES_SAFE_MODE` | 故障排查模式：禁用**所有**自定义项——跳过插件发现、MCP 服务器加载和 shell hook 注册。由 `--safe-mode` 自动设置（同时也会设置上面两个 flag）。 |
-| `HERMES_MD_NAMES` | 自动注入的规则文件名逗号分隔列表（默认：`AGENTS.md,CLAUDE.md,.cursorrules,SOUL.md`）。 |
-| `HERMES_TOOL_PROGRESS` | 工具进度显示的已弃用兼容变量。优先使用 `config.yaml` 中的 `display.tool_progress`。 |
-| `HERMES_TOOL_PROGRESS_MODE` | 工具进度模式的已弃用兼容变量。优先使用 `config.yaml` 中的 `display.tool_progress`。 |
-| `HERMES_HUMAN_DELAY_MODE` | 响应节奏：`off`/`natural`/`custom` |
-| `HERMES_HUMAN_DELAY_MIN_MS` | 自定义延迟范围最小值（毫秒） |
-| `HERMES_HUMAN_DELAY_MAX_MS` | 自定义延迟范围最大值（毫秒） |
-| `HERMES_QUIET` | 抑制非必要输出（`true`/`false`） |
+| `OPENAMER_MAX_ITERATIONS` | 每次对话的最大工具调用迭代次数（默认：90） |
+| `OPENAMER_INFERENCE_MODEL` | 在进程级别覆盖模型名称（优先于本次会话的 `config.yaml`）。也可通过 `-m`/`--model` 标志设置。 |
+| `OPENAMER_YOLO_MODE` | 设为 `1` 可绕过危险命令审批提示。等同于 `--yolo`。 |
+| `OPENAMER_ACCEPT_HOOKS` | 无需 TTY 提示自动批准 `config.yaml` 中声明的任何未见过的 shell hook。等同于 `--accept-hooks` 或 `hooks_auto_accept: true`。 |
+| `OPENAMER_IGNORE_USER_CONFIG` | 跳过 `~/.openamer/config.yaml` 并使用内置默认值（`.env` 中的凭证仍会加载）。等同于 `--ignore-user-config`。 |
+| `OPENAMER_IGNORE_RULES` | 跳过 `AGENTS.md`、`SOUL.md`、`.cursorrules`、记忆和预加载技能的自动注入。等同于 `--ignore-rules`。 |
+| `OPENAMER_SAFE_MODE` | 故障排查模式：禁用**所有**自定义项——跳过插件发现、MCP 服务器加载和 shell hook 注册。由 `--safe-mode` 自动设置（同时也会设置上面两个 flag）。 |
+| `OPENAMER_MD_NAMES` | 自动注入的规则文件名逗号分隔列表（默认：`AGENTS.md,CLAUDE.md,.cursorrules,SOUL.md`）。 |
+| `OPENAMER_TOOL_PROGRESS` | 工具进度显示的已弃用兼容变量。优先使用 `config.yaml` 中的 `display.tool_progress`。 |
+| `OPENAMER_TOOL_PROGRESS_MODE` | 工具进度模式的已弃用兼容变量。优先使用 `config.yaml` 中的 `display.tool_progress`。 |
+| `OPENAMER_HUMAN_DELAY_MODE` | 响应节奏：`off`/`natural`/`custom` |
+| `OPENAMER_HUMAN_DELAY_MIN_MS` | 自定义延迟范围最小值（毫秒） |
+| `OPENAMER_HUMAN_DELAY_MAX_MS` | 自定义延迟范围最大值（毫秒） |
+| `OPENAMER_QUIET` | 抑制非必要输出（`true`/`false`） |
 | `CODEX_HOME` | 启用 [Codex 应用服务器运行时](../user-guide/features/codex-app-server-runtime)时，覆盖 Codex CLI 读取其配置 + 认证的目录（默认：`~/.codex`）。OpenAmer 的迁移将托管块写入 `<CODEX_HOME>/config.toml`。 |
-| `HERMES_KANBAN_TASK` | kanban 调度器生成工作进程时设置（任务 UUID）。工作进程和生成的 `openamer-tools` MCP 子进程继承它，以便 kanban 工具正确门控。请勿手动设置。 |
-| `HERMES_API_TIMEOUT` | LLM API 调用超时（秒，默认：`1800`） |
-| `HERMES_API_CALL_STALE_TIMEOUT` | 非流式过期调用超时（秒，默认：`300`）。未设置时对本地提供商自动禁用。也可通过 `config.yaml` 中的 `providers.<id>.stale_timeout_seconds` 或 `providers.<id>.models.<model>.stale_timeout_seconds` 配置。 |
-| `HERMES_STREAM_READ_TIMEOUT` | 流式 socket 读取超时（秒，默认：`120`）。对本地提供商自动增大到 `HERMES_API_TIMEOUT`。如果本地 LLM 在长代码生成期间超时，请增大此值。 |
-| `HERMES_STREAM_STALE_TIMEOUT` | 过期流检测超时（秒，默认：`180`）。对本地提供商自动禁用。在此窗口内无块到达时触发连接终止。 |
-| `HERMES_STREAM_RETRIES` | 瞬时网络错误时的流中重连尝试次数（默认：`3`）。 |
-| `HERMES_AGENT_TIMEOUT` | gateway 中运行 agent 的不活动超时（秒，默认：`900`）。每次工具调用和流 token 时重置。设为 `0` 可禁用。 |
-| `HERMES_AGENT_TIMEOUT_WARNING` | Gateway：不活动超过此秒数后发送警告消息（默认：`HERMES_AGENT_TIMEOUT` 的 75%）。 |
-| `HERMES_AGENT_NOTIFY_INTERVAL` | Gateway：长时间运行的 agent 轮次中进度通知的间隔（秒）。 |
-| `HERMES_CHECKPOINT_TIMEOUT` | 文件系统检查点创建超时（秒，默认：`30`）。 |
-| `HERMES_EXEC_ASK` | 在 gateway 模式下启用执行审批提示（`true`/`false`） |
-| `HERMES_ENABLE_PROJECT_PLUGINS` | 为 agent 加载器和仪表板 Web 服务器启用从 `./.openamer/plugins/` 自动发现仓库本地插件。接受标准真值集：`1`/`true`/`yes`/`on`（不区分大小写）。其他所有值——包括 `0`、`false`、`no`、`off` 和空字符串——均视为**禁用**（默认）。注意：自 GHSA-5qr3-c538-wm9j（#29156）起，即使启用此变量，仪表板 Web 服务器也拒绝自动导入项目插件的 Python `api` 文件——项目插件可通过静态 JS/CSS 扩展 UI，但其后端路由仅在移至 `~/.openamer/plugins/` 后才会加载。 |
-| `HERMES_PLUGINS_DEBUG` | `1`/`true` 可在 stderr 上输出详细的插件发现日志——扫描的目录、解析的 manifest、跳过原因以及解析或 `register()` 失败时的完整回溯。面向插件作者。 |
-| `HERMES_BACKGROUND_NOTIFICATIONS` | gateway 中后台进程通知模式：`all`（默认）、`result`、`error`、`off` |
-| `HERMES_EPHEMERAL_SYSTEM_PROMPT` | 在 API 调用时注入的临时系统 prompt（永不持久化到会话） |
-| `HERMES_PREFILL_MESSAGES_FILE` | 包含在 API 调用时注入的临时预填消息的 JSON 文件路径。 |
-| `HERMES_ALLOW_PRIVATE_URLS` | `true`/`false`——允许工具获取 localhost/私有网络 URL。gateway 模式下默认关闭。 |
-| `HERMES_REDACT_SECRETS` | `true`/`false`——控制工具输出、日志和聊天响应中的密钥脱敏（默认：`true`）。 |
-| `HERMES_WRITE_SAFE_ROOT` | 可选目录前缀，**硬阻止** `write_file`/`patch` 写入列出的根目录之外的路径（无审批提示）。支持多个目录，使用 `os.pathsep` 分隔（Unix 为 `:`，Windows 为 `;`）。详见下方 [HERMES_WRITE_SAFE_ROOT](#openamer_write_safe_root)。 |
-| `HERMES_DISABLE_LAZY_INSTALLS` | 官方 Docker 镜像中自动设置的内部桥接变量，用于阻止运行时将依赖安装到不可变的 `/opt/openamer` 树。面向用户的等价配置是 `config.yaml` 中的 `security.allow_lazy_installs: false`；不要在 `.env` 中手动设置此变量。 |
-| `HERMES_DISABLE_FILE_STATE_GUARD` | 设为 `1` 可关闭 `patch`/`write_file` 上的"文件自上次读取后已更改"保护。 |
-| `HERMES_CORE_TOOLS` | 规范核心工具列表的逗号分隔覆盖（高级；极少需要）。 |
-| `HERMES_BUNDLED_SKILLS` | 启动时加载的内置技能列表的逗号分隔覆盖。 |
-| `HERMES_OPTIONAL_SKILLS` | 首次运行时自动安装的可选技能名称逗号分隔列表。 |
-| `HERMES_DEBUG_INTERRUPT` | 设为 `1` 可将详细的中断/取消追踪记录到 `agent.log`。 |
-| `HERMES_DUMP_REQUESTS` | 将 API 请求载荷转储到日志文件（`true`/`false`） |
-| `HERMES_DUMP_REQUEST_STDOUT` | 将 API 请求载荷转储到 stdout 而非日志文件。 |
-| `HERMES_OAUTH_TRACE` | 设为 `1` 可记录 OAuth token 交换和刷新尝试。包含脱敏的时序信息。 |
-| `HERMES_OAUTH_FILE` | 覆盖 OAuth 凭证存储路径（默认：`~/.openamer/auth.json`）。 |
-| `HERMES_AGENT_HELP_GUIDANCE` | 为自定义部署在系统 prompt 中追加额外指导文本。 |
-| `HERMES_AGENT_LOGO` | 覆盖 CLI 启动时的 ASCII 横幅 logo。 |
+| `OPENAMER_KANBAN_TASK` | kanban 调度器生成工作进程时设置（任务 UUID）。工作进程和生成的 `openamer-tools` MCP 子进程继承它，以便 kanban 工具正确门控。请勿手动设置。 |
+| `OPENAMER_API_TIMEOUT` | LLM API 调用超时（秒，默认：`1800`） |
+| `OPENAMER_API_CALL_STALE_TIMEOUT` | 非流式过期调用超时（秒，默认：`300`）。未设置时对本地提供商自动禁用。也可通过 `config.yaml` 中的 `providers.<id>.stale_timeout_seconds` 或 `providers.<id>.models.<model>.stale_timeout_seconds` 配置。 |
+| `OPENAMER_STREAM_READ_TIMEOUT` | 流式 socket 读取超时（秒，默认：`120`）。对本地提供商自动增大到 `OPENAMER_API_TIMEOUT`。如果本地 LLM 在长代码生成期间超时，请增大此值。 |
+| `OPENAMER_STREAM_STALE_TIMEOUT` | 过期流检测超时（秒，默认：`180`）。对本地提供商自动禁用。在此窗口内无块到达时触发连接终止。 |
+| `OPENAMER_STREAM_RETRIES` | 瞬时网络错误时的流中重连尝试次数（默认：`3`）。 |
+| `OPENAMER_AGENT_TIMEOUT` | gateway 中运行 agent 的不活动超时（秒，默认：`900`）。每次工具调用和流 token 时重置。设为 `0` 可禁用。 |
+| `OPENAMER_AGENT_TIMEOUT_WARNING` | Gateway：不活动超过此秒数后发送警告消息（默认：`OPENAMER_AGENT_TIMEOUT` 的 75%）。 |
+| `OPENAMER_AGENT_NOTIFY_INTERVAL` | Gateway：长时间运行的 agent 轮次中进度通知的间隔（秒）。 |
+| `OPENAMER_CHECKPOINT_TIMEOUT` | 文件系统检查点创建超时（秒，默认：`30`）。 |
+| `OPENAMER_EXEC_ASK` | 在 gateway 模式下启用执行审批提示（`true`/`false`） |
+| `OPENAMER_ENABLE_PROJECT_PLUGINS` | 为 agent 加载器和仪表板 Web 服务器启用从 `./.openamer/plugins/` 自动发现仓库本地插件。接受标准真值集：`1`/`true`/`yes`/`on`（不区分大小写）。其他所有值——包括 `0`、`false`、`no`、`off` 和空字符串——均视为**禁用**（默认）。注意：自 GHSA-5qr3-c538-wm9j（#29156）起，即使启用此变量，仪表板 Web 服务器也拒绝自动导入项目插件的 Python `api` 文件——项目插件可通过静态 JS/CSS 扩展 UI，但其后端路由仅在移至 `~/.openamer/plugins/` 后才会加载。 |
+| `OPENAMER_PLUGINS_DEBUG` | `1`/`true` 可在 stderr 上输出详细的插件发现日志——扫描的目录、解析的 manifest、跳过原因以及解析或 `register()` 失败时的完整回溯。面向插件作者。 |
+| `OPENAMER_BACKGROUND_NOTIFICATIONS` | gateway 中后台进程通知模式：`all`（默认）、`result`、`error`、`off` |
+| `OPENAMER_EPHEMERAL_SYSTEM_PROMPT` | 在 API 调用时注入的临时系统 prompt（永不持久化到会话） |
+| `OPENAMER_PREFILL_MESSAGES_FILE` | 包含在 API 调用时注入的临时预填消息的 JSON 文件路径。 |
+| `OPENAMER_ALLOW_PRIVATE_URLS` | `true`/`false`——允许工具获取 localhost/私有网络 URL。gateway 模式下默认关闭。 |
+| `OPENAMER_REDACT_SECRETS` | `true`/`false`——控制工具输出、日志和聊天响应中的密钥脱敏（默认：`true`）。 |
+| `OPENAMER_WRITE_SAFE_ROOT` | 可选目录前缀，**硬阻止** `write_file`/`patch` 写入列出的根目录之外的路径（无审批提示）。支持多个目录，使用 `os.pathsep` 分隔（Unix 为 `:`，Windows 为 `;`）。详见下方 [OPENAMER_WRITE_SAFE_ROOT](#openamer_write_safe_root)。 |
+| `OPENAMER_DISABLE_LAZY_INSTALLS` | 官方 Docker 镜像中自动设置的内部桥接变量，用于阻止运行时将依赖安装到不可变的 `/opt/openamer` 树。面向用户的等价配置是 `config.yaml` 中的 `security.allow_lazy_installs: false`；不要在 `.env` 中手动设置此变量。 |
+| `OPENAMER_DISABLE_FILE_STATE_GUARD` | 设为 `1` 可关闭 `patch`/`write_file` 上的"文件自上次读取后已更改"保护。 |
+| `OPENAMER_CORE_TOOLS` | 规范核心工具列表的逗号分隔覆盖（高级；极少需要）。 |
+| `OPENAMER_BUNDLED_SKILLS` | 启动时加载的内置技能列表的逗号分隔覆盖。 |
+| `OPENAMER_OPTIONAL_SKILLS` | 首次运行时自动安装的可选技能名称逗号分隔列表。 |
+| `OPENAMER_DEBUG_INTERRUPT` | 设为 `1` 可将详细的中断/取消追踪记录到 `agent.log`。 |
+| `OPENAMER_DUMP_REQUESTS` | 将 API 请求载荷转储到日志文件（`true`/`false`） |
+| `OPENAMER_DUMP_REQUEST_STDOUT` | 将 API 请求载荷转储到 stdout 而非日志文件。 |
+| `OPENAMER_OAUTH_TRACE` | 设为 `1` 可记录 OAuth token 交换和刷新尝试。包含脱敏的时序信息。 |
+| `OPENAMER_OAUTH_FILE` | 覆盖 OAuth 凭证存储路径（默认：`~/.openamer/auth.json`）。 |
+| `OPENAMER_AGENT_HELP_GUIDANCE` | 为自定义部署在系统 prompt 中追加额外指导文本。 |
+| `OPENAMER_AGENT_LOGO` | 覆盖 CLI 启动时的 ASCII 横幅 logo。 |
 | `DELEGATION_MAX_CONCURRENT_CHILDREN` | 每个 `delegate_task` 批次的最大并行子 agent 数（默认：`3`，下限为 1，无上限）。也可通过 `config.yaml` 中的 `delegation.max_concurrent_children` 配置——config 值优先。 |
 
-### HERMES_WRITE_SAFE_ROOT {#openamer_write_safe_root}
+### OPENAMER_WRITE_SAFE_ROOT {#openamer_write_safe_root}
 
 设置此变量后，`write_file` 和 `patch` 只能写入列出的目录前缀内的路径。超出这些根目录的路径会被**立即拒绝**——不会进入危险命令审批流程，也没有聊天界面可以覆盖。
 
-官方 Docker 镜像会设置 `HERMES_WRITE_SAFE_ROOT=/opt/data` 与 `HERMES_HOME=/opt/data`，防止 agent 逃出挂载的数据卷。
+官方 Docker 镜像会设置 `OPENAMER_WRITE_SAFE_ROOT=/opt/data` 与 `OPENAMER_HOME=/opt/data`，防止 agent 逃出挂载的数据卷。
 
-**除非有意沙箱化写入，否则不要将此变量加入 `~/.openamer/.env`。** 常见错误是将其指向项目目录，却期望 agent 编辑 `~/.openamer/cron/jobs.json`、`~/.openamer/skills/` 或 profile 下的脚本——这些路径在沙箱外，每次 `write_file`/`patch` 都会失败并返回 `outside HERMES_WRITE_SAFE_ROOT` 错误。
+**除非有意沙箱化写入，否则不要将此变量加入 `~/.openamer/.env`。** 常见错误是将其指向项目目录，却期望 agent 编辑 `~/.openamer/cron/jobs.json`、`~/.openamer/skills/` 或 profile 下的脚本——这些路径在沙箱外，每次 `write_file`/`patch` 都会失败并返回 `outside OPENAMER_WRITE_SAFE_ROOT` 错误。
 
 若需同时允许工作区和 OpenAmer 状态目录，列出两个前缀（顺序无关）：
 
 ```bash
-export HERMES_WRITE_SAFE_ROOT=/path/to/project:/home/you/.openamer
+export OPENAMER_WRITE_SAFE_ROOT=/path/to/project:/home/you/.openamer
 ```
 
 取消设置或从 `.env` 中移除此变量可恢复常规写入（仍受凭证路径拒绝列表约束——见[文件写入安全](../user-guide/security.md#file-write-safety)）。
@@ -594,11 +594,11 @@ export HERMES_WRITE_SAFE_ROOT=/path/to/project:/home/you/.openamer
 
 | 变量 | 描述 |
 |----------|-------------|
-| `HERMES_TUI` | 设为 `1` 时启动 [TUI](../user-guide/tui.md) 而非经典 CLI。等同于传入 `--tui`。 |
-| `HERMES_TUI_DIR` | 预构建 `ui-tui/` 目录的路径（必须包含 `dist/entry.js` 和已填充的 `node_modules`）。供发行版和 Nix 使用以跳过首次启动时的 `npm install`。 |
-| `HERMES_TUI_RESUME` | 启动时按 ID 恢复特定 TUI 会话。设置后，`openamer --tui` 跳过创建新会话并接续指定会话——适用于断开连接或终端崩溃后重新连接。 |
-| `HERMES_TUI_THEME` | 强制 TUI 颜色主题：`light`、`dark` 或原始 6 字符背景十六进制（例如 `ffffff` 或 `1a1a2e`）。未设置时，OpenAmer 使用 `COLORFGBG` 和终端背景查询自动检测；此变量覆盖不设置 `COLORFGBG` 的终端（Ghostty、Warp、iTerm2 等）上的检测。 |
-| `HERMES_INFERENCE_MODEL` | 为 `openamer -z`/`openamer chat` 强制指定模型而不修改 `config.yaml`。与 `--provider` 标志配合使用。适用于需要每次运行覆盖默认模型的脚本调用者（sweeper、CI、批量运行器）。 |
+| `OPENAMER_TUI` | 设为 `1` 时启动 [TUI](../user-guide/tui.md) 而非经典 CLI。等同于传入 `--tui`。 |
+| `OPENAMER_TUI_DIR` | 预构建 `ui-tui/` 目录的路径（必须包含 `dist/entry.js` 和已填充的 `node_modules`）。供发行版和 Nix 使用以跳过首次启动时的 `npm install`。 |
+| `OPENAMER_TUI_RESUME` | 启动时按 ID 恢复特定 TUI 会话。设置后，`openamer --tui` 跳过创建新会话并接续指定会话——适用于断开连接或终端崩溃后重新连接。 |
+| `OPENAMER_TUI_THEME` | 强制 TUI 颜色主题：`light`、`dark` 或原始 6 字符背景十六进制（例如 `ffffff` 或 `1a1a2e`）。未设置时，OpenAmer 使用 `COLORFGBG` 和终端背景查询自动检测；此变量覆盖不设置 `COLORFGBG` 的终端（Ghostty、Warp、iTerm2 等）上的检测。 |
+| `OPENAMER_INFERENCE_MODEL` | 为 `openamer -z`/`openamer chat` 强制指定模型而不修改 `config.yaml`。与 `--provider` 标志配合使用。适用于需要每次运行覆盖默认模型的脚本调用者（sweeper、CI、批量运行器）。 |
 
 ## 会话设置
 
@@ -606,7 +606,7 @@ export HERMES_WRITE_SAFE_ROOT=/path/to/project:/home/you/.openamer
 |----------|-------------|
 | `SESSION_IDLE_MINUTES` | 不活动 N 分钟后重置会话（默认：1440） |
 | `SESSION_RESET_HOUR` | 24 小时制每日重置时间（默认：4 = 凌晨 4 点） |
-| `HERMES_SESSION_ID` | **自动导出到 OpenAmer 生成的每个工具子进程**（`terminal`、`execute_code`、持久 shell、Docker/Singularity 后端、委托子 agent 运行）。由 agent 设置为当前会话 ID；从工具调用的用户脚本可读取它，以将其输出、遥测或副作用与原始 OpenAmer 会话关联。**不应手动设置**——从父 shell 覆盖仅在 agent 运行外生效，且 agent 启动会话时会被覆盖。 |
+| `OPENAMER_SESSION_ID` | **自动导出到 OpenAmer 生成的每个工具子进程**（`terminal`、`execute_code`、持久 shell、Docker/Singularity 后端、委托子 agent 运行）。由 agent 设置为当前会话 ID；从工具调用的用户脚本可读取它，以将其输出、遥测或副作用与原始 OpenAmer 会话关联。**不应手动设置**——从父 shell 覆盖仅在 agent 运行外生效，且 agent 启动会话时会被覆盖。 |
 
 ## 上下文压缩（仅 config.yaml）
 

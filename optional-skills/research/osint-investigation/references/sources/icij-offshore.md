@@ -85,7 +85,7 @@ python3 SKILL_DIR/scripts/fetch_icij_offshore.py --entity "EXAMPLE CORP" \
 ```
 
 First call downloads the ~70 MB ZIP under `~/.cache/openamer-osint/icij/`
-(or `$HERMES_OSINT_CACHE/icij/`). Subsequent calls reuse the cache for 30 days.
+(or `$OPENAMER_OSINT_CACHE/icij/`). Subsequent calls reuse the cache for 30 days.
 
 ## 8. Legal & Licensing
 

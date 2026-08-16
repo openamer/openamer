@@ -169,7 +169,7 @@ callback through to the verifier. (Also registered on the optional
   `get_job` returns `None` after the final fire → the agent does **not** re-arm
   → the schedule stops cleanly with no orphaned one-shot.
 - **Multi-replica agents:** the store CAS makes the fire at-most-once across N
-  gateway replicas sharing one `HERMES_HOME` — exactly one replica runs each
+  gateway replicas sharing one `OPENAMER_HOME` — exactly one replica runs each
   fire.
 
 ## Reconcile (self-healing)

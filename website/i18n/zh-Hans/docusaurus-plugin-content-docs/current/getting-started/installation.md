@@ -37,7 +37,7 @@ iex (irm https://openamer-agent.nousresearch.com/install.ps1)
 
 **为什么不使用 winget？** 早期设计通过 `winget install Git.Git` 自动安装 Git，但当系统 Git 安装处于部分损坏状态时，winget 会严重失败（而这恰恰是用户最需要安装程序正常工作的时候）。便携式 Git 方案绕过了 winget、Windows 安装程序注册表以及任何现有系统 Git。如果 OpenAmer 的 Git 安装本身出现问题，执行 `Remove-Item %LOCALAPPDATA%\openamer\git` 并重新运行安装程序即可——对系统无影响，无需卸载操作。
 
-安装程序还会将 `HERMES_GIT_BASH_PATH` 设置为找到的 `bash.exe` 路径，以便 OpenAmer 在新 shell 中确定性地解析它。
+安装程序还会将 `OPENAMER_GIT_BASH_PATH` 设置为找到的 `bash.exe` 路径，以便 OpenAmer 在新 shell 中确定性地解析它。
 
 如果你偏好 WSL2，上方的 Linux 安装程序可在其中运行；原生安装和 WSL 安装可以共存而不冲突（原生数据位于 `%LOCALAPPDATA%\openamer`，WSL 数据位于 `~/.openamer`）。
 
@@ -72,7 +72,7 @@ curl -fsSL https://openamer-agent.nousresearch.com/install.sh | bash
 - **MCP 服务器** — 原生（stdio 和 HTTP 传输均支持）
 - **Dashboard `/chat` 终端面板** — **仅限 WSL2**（使用 POSIX PTY（伪终端），原生 Windows 无等效实现）。Dashboard 的其余部分（会话、任务、指标）可原生运行——仅嵌入式 PTY 终端标签页受限。
 
-如果遇到编码相关的 bug 并希望回退到旧版 cp1252 stdio 路径（用于问题定位），请在环境中设置 `HERMES_DISABLE_WINDOWS_UTF8=1`。
+如果遇到编码相关的 bug 并希望回退到旧版 cp1252 stdio 路径（用于问题定位），请在环境中设置 `OPENAMER_DISABLE_WINDOWS_UTF8=1`。
 :::
 
 ### 安装程序做了什么
@@ -86,9 +86,9 @@ curl -fsSL https://openamer-agent.nousresearch.com/install.sh | bash
 | 安装方式                                | 代码位置                       | `openamer` 二进制                          | 数据目录                              |
 | --------------------------------------- | ------------------------------ | ---------------------------------------- | ------------------------------------- |
 | 用户级（git 安装程序）                  | `~/.openamer/openamer-agent/`      | `~/.local/bin/openamer`（符号链接）        | `~/.openamer/`                          |
-| Root 模式（`sudo curl … \| sudo bash`） | `/usr/local/lib/openamer-agent/` | `/usr/local/bin/openamer`                  | `/root/.openamer/`（或 `$HERMES_HOME`） |
+| Root 模式（`sudo curl … \| sudo bash`） | `/usr/local/lib/openamer-agent/` | `/usr/local/bin/openamer`                  | `/root/.openamer/`（或 `$OPENAMER_HOME`） |
 
-Root 模式的 **FHS 布局**（`/usr/local/lib/…`、`/usr/local/bin/openamer`）与其他系统级开发工具在 Linux 上的安装位置一致。适用于共享机器部署场景，一次系统安装可服务所有用户。每个用户的个人配置（认证、技能、会话）仍位于各自的 `~/.openamer/` 或显式指定的 `HERMES_HOME` 下。
+Root 模式的 **FHS 布局**（`/usr/local/lib/…`、`/usr/local/bin/openamer`）与其他系统级开发工具在 Linux 上的安装位置一致。适用于共享机器部署场景，一次系统安装可服务所有用户。每个用户的个人配置（认证、技能、会话）仍位于各自的 `~/.openamer/` 或显式指定的 `OPENAMER_HOME` 下。
 
 ### 安装后
 

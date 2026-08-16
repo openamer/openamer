@@ -84,7 +84,7 @@ conservative at the waist.
 - **E2E validation, not just green unit mocks.** For anything touching
   resolution chains, config propagation, security boundaries, remote
   backends, or file/network I/O, exercise the real path with real imports
-  against a temp `HERMES_HOME`. Mocks hide integration bugs.
+  against a temp `OPENAMER_HOME`. Mocks hide integration bugs.
 - **Cache-, alternation-, and invariant-safe.** Preserve prompt caching, strict
   message role alternation (never two same-role messages in a row; never a
   synthetic user message injected mid-loop), and a system prompt that is
@@ -99,7 +99,7 @@ conservative at the waist.
   concrete consumer. Adding a hook is easy; removing one after plugins depend
   on it is hard. A hook is NOT speculative if a contributor has a real, stated
   use case — even if the consumer ships separately.
-- **New `HERMES_*` env vars for non-secret config.** `.env` is for secrets
+- **New `OPENAMER_*` env vars for non-secret config.** `.env` is for secrets
   only (API keys, tokens, passwords). All behavioral settings — timeouts,
   thresholds, feature flags, display prefs — go in `config.yaml`. Bridge to an
   internal env var if the mechanism needs one, but user-facing docs point to
@@ -231,7 +231,7 @@ entry points you'll actually edit.
 openamer-agent/
 ├── run_agent.py          # AIAgent class — core conversation loop (~12k LOC)
 ├── model_tools.py        # Tool orchestration, discover_builtin_tools(), handle_function_call()
-├── toolsets.py           # Toolset definitions, _HERMES_CORE_TOOLS list
+├── toolsets.py           # Toolset definitions, _OPENAMER_CORE_TOOLS list
 ├── cli.py                # OpenAmerCLI class — interactive CLI orchestrator (~11k LOC)
 ├── openamer_state.py       # SessionDB — SQLite session store (FTS5 search)
 ├── openamer_constants.py   # get_openamer_home(), display_openamer_home() — profile-aware paths
@@ -427,7 +427,7 @@ if canonical == "mycommand":
 
 ## TUI Architecture (ui-tui + tui_gateway)
 
-The TUI is a full replacement for the classic (prompt_toolkit) CLI, activated via `openamer --tui` or `HERMES_TUI=1`.
+The TUI is a full replacement for the classic (prompt_toolkit) CLI, activated via `openamer --tui` or `OPENAMER_TUI=1`.
 
 ### Process Model
 
@@ -491,7 +491,7 @@ The dashboard embeds the real `openamer --tui` — **not** a rewrite.  See `open
 
 ### Electron Desktop Chat App (`apps/desktop/`)
 
-A **separate** chat surface from both the classic CLI and the dashboard's embedded TUI. It is an Electron + React + nanostore renderer (`@assistant-ui/react`) that talks to a `tui_gateway` backend over JSON-RPC (`requestGateway(method, params)`). The WebSocket/JSON-RPC transport lives in the framework-agnostic `apps/shared` package (`@openamer/shared` — `JsonRpcGatewayClient` + WS URL helpers), which the web dashboard (`web/`) also consumes; **desktop has no build/runtime dependency on the dashboard frontend** — it spawns a headless `openamer serve` backend server (the same gateway `dashboard` serves, minus the browser UI entirely: `serve` sets `headless_backend=True`, so `cmd_dashboard` skips `_build_web_ui` AND exports `HERMES_SERVE_HEADLESS=1` so `mount_spa()` disables the SPA even if a stray `web_dist/` exists — only the JSON-RPC/WS/API surface is reachable). `dashboard` and `serve` share `cmd_dashboard`/`start_server` but are independent surfaces — neither launches the other. The one exception is a backward-compat *fallback*: `serve` is newer, so the desktop spawn (`electron/backend-command.ts` + `backendSupportsServe()` in `electron/main.ts`) detects whether the resolved runtime registers `serve` and, only when it does not (an older managed install / PATH `openamer` the app hasn't updated yet), rewrites the argv to the legacy `dashboard --no-open`. Without that, a new app against an un-upgraded runtime would crash on an unknown subcommand and brick every mid-upgrade user. It does NOT embed `openamer --tui` — it has its own composer, transcript, and slash-command pipeline. For scoped Desktop architecture, state, resolver, transport, and testing rules, read `apps/desktop/AGENTS.md`.
+A **separate** chat surface from both the classic CLI and the dashboard's embedded TUI. It is an Electron + React + nanostore renderer (`@assistant-ui/react`) that talks to a `tui_gateway` backend over JSON-RPC (`requestGateway(method, params)`). The WebSocket/JSON-RPC transport lives in the framework-agnostic `apps/shared` package (`@openamer/shared` — `JsonRpcGatewayClient` + WS URL helpers), which the web dashboard (`web/`) also consumes; **desktop has no build/runtime dependency on the dashboard frontend** — it spawns a headless `openamer serve` backend server (the same gateway `dashboard` serves, minus the browser UI entirely: `serve` sets `headless_backend=True`, so `cmd_dashboard` skips `_build_web_ui` AND exports `OPENAMER_SERVE_HEADLESS=1` so `mount_spa()` disables the SPA even if a stray `web_dist/` exists — only the JSON-RPC/WS/API surface is reachable). `dashboard` and `serve` share `cmd_dashboard`/`start_server` but are independent surfaces — neither launches the other. The one exception is a backward-compat *fallback*: `serve` is newer, so the desktop spawn (`electron/backend-command.ts` + `backendSupportsServe()` in `electron/main.ts`) detects whether the resolved runtime registers `serve` and, only when it does not (an older managed install / PATH `openamer` the app hasn't updated yet), rewrites the argv to the legacy `dashboard --no-open`. Without that, a new app against an un-upgraded runtime would crash on an unknown subcommand and brick every mid-upgrade user. It does NOT embed `openamer --tui` — it has its own composer, transcript, and slash-command pipeline. For scoped Desktop architecture, state, resolver, transport, and testing rules, read `apps/desktop/AGENTS.md`.
 
 **Slash commands in the desktop app are curated client-side, then dispatched to the backend.** The pipeline:
 
@@ -542,13 +542,13 @@ registry.register(
 )
 ```
 
-**2. Add to `toolsets.py`** — either `_HERMES_CORE_TOOLS` (all platforms) or a new toolset. **This step is required:** auto-discovery imports the tool and registers its schema, but the tool is only *exposed to an agent* if its name appears in a toolset. `_HERMES_CORE_TOOLS` is not dead code — it's the default bundle every platform's base toolset inherits from.
+**2. Add to `toolsets.py`** — either `_OPENAMER_CORE_TOOLS` (all platforms) or a new toolset. **This step is required:** auto-discovery imports the tool and registers its schema, but the tool is only *exposed to an agent* if its name appears in a toolset. `_OPENAMER_CORE_TOOLS` is not dead code — it's the default bundle every platform's base toolset inherits from.
 
 Auto-discovery: any `tools/*.py` file with a top-level `registry.register()` call is imported automatically — no manual import list to maintain. Wiring into a toolset is still a deliberate, manual step.
 
 The registry handles schema collection, dispatch, availability checking, and error wrapping. All handlers MUST return a JSON string.
 
-**Path references in tool schemas**: If the schema description mentions file paths (e.g. default output directories), use `display_openamer_home()` to make them profile-aware. The schema is generated at import time, which is after `_apply_profile_override()` sets `HERMES_HOME`.
+**Path references in tool schemas**: If the schema description mentions file paths (e.g. default output directories), use `display_openamer_home()` to make them profile-aware. The schema is generated at import time, which is after `_apply_profile_override()` sets `OPENAMER_HOME`.
 
 **State files**: If a tool stores persistent state (caches, logs, checkpoints), use `get_openamer_home()` for the base directory — never `Path.home() / ".openamer"`. This ensures each profile gets its own state.
 
@@ -823,7 +823,7 @@ discovery system** — scanned on first `get_provider_profile()` or
 
 Scan order:
 1. Bundled: `<repo>/plugins/model-providers/<name>/`
-2. User: `$HERMES_HOME/plugins/model-providers/<name>/`
+2. User: `$OPENAMER_HOME/plugins/model-providers/<name>/`
 3. Legacy: `<repo>/providers/<name>.py` (back-compat)
 
 User plugins of the same name override bundled ones — `register_provider()`
@@ -965,7 +965,7 @@ contributor skill PRs.
 
 All toolsets are defined in `toolsets.py` as a single `TOOLSETS` dict.
 Each platform's adapter picks a base toolset (e.g. Telegram uses
-`"messaging"`); `_HERMES_CORE_TOOLS` is the default bundle most
+`"messaging"`); `_OPENAMER_CORE_TOOLS` is the default bundle most
 platforms inherit from.
 
 Current toolset keys: `browser`, `clarify`, `code_execution`, `cronjob`,
@@ -1115,7 +1115,7 @@ kanban task.
 
 Isolation model:
 - **Board** is the hard boundary — workers are spawned with
-  `HERMES_KANBAN_BOARD` pinned in their env so they can't see other
+  `OPENAMER_KANBAN_BOARD` pinned in their env so they can't see other
   boards.
 - **Tenant** is a soft namespace *within* a board — one specialist
   fleet can serve multiple businesses with workspace-path + memory-key
@@ -1149,7 +1149,7 @@ invalidation. See `/skills install --now` for the canonical pattern.
 When `terminal(background=true, notify_on_complete=true)` is used, the gateway runs a watcher that
 detects process completion and triggers a new agent turn. Control verbosity of background process
 messages with `display.background_process_notifications`
-in config.yaml (or `HERMES_BACKGROUND_NOTIFICATIONS` env var):
+in config.yaml (or `OPENAMER_BACKGROUND_NOTIFICATIONS` env var):
 
 - `all` — running-output updates + final message (default)
 - `result` — only the final completion message
@@ -1161,15 +1161,15 @@ in config.yaml (or `HERMES_BACKGROUND_NOTIFICATIONS` env var):
 ## Profiles: Multi-Instance Support
 
 OpenAmer supports **profiles** — multiple fully isolated instances, each with its own
-`HERMES_HOME` directory (config, API keys, memory, sessions, skills, gateway, etc.).
+`OPENAMER_HOME` directory (config, API keys, memory, sessions, skills, gateway, etc.).
 
 The core mechanism: `_apply_profile_override()` in `openamer_cli/main.py` sets
-`HERMES_HOME` before any module imports. All `get_openamer_home()` references
+`OPENAMER_HOME` before any module imports. All `get_openamer_home()` references
 automatically scope to the active profile.
 
 ### Rules for profile-safe code
 
-1. **Use `get_openamer_home()` for all HERMES_HOME paths.** Import from `openamer_constants`.
+1. **Use `get_openamer_home()` for all OPENAMER_HOME paths.** Import from `openamer_constants`.
    NEVER hardcode `~/.openamer` or `Path.home() / ".openamer"` in code that reads/writes state.
    ```python
    # GOOD
@@ -1195,11 +1195,11 @@ automatically scope to the active profile.
    which is AFTER `_apply_profile_override()` sets the env var. Just use `get_openamer_home()`,
    not `Path.home() / ".openamer"`.
 
-4. **Tests that mock `Path.home()` must also set `HERMES_HOME`** — since code now uses
+4. **Tests that mock `Path.home()` must also set `OPENAMER_HOME`** — since code now uses
    `get_openamer_home()` (reads env var), not `Path.home() / ".openamer"`:
    ```python
    with patch.object(Path, "home", return_value=tmp_path), \
-        patch.dict(os.environ, {"HERMES_HOME": str(tmp_path / ".openamer")}):
+        patch.dict(os.environ, {"OPENAMER_HOME": str(tmp_path / ".openamer")}):
        ...
    ```
 
@@ -1209,7 +1209,7 @@ automatically scope to the active profile.
    `disconnect()`/`stop()`. This prevents two profiles from using the same credential.
    See `plugins/platforms/irc/adapter.py` for the canonical pattern.
 
-6. **Profile operations are HOME-anchored, not HERMES_HOME-anchored** — `_get_profiles_root()`
+6. **Profile operations are HOME-anchored, not OPENAMER_HOME-anchored** — `_get_profiles_root()`
    returns `Path.home() / ".openamer" / "profiles"`, NOT `get_openamer_home() / "profiles"`.
    This is intentional — it lets `openamer -p coder profile list` see all profiles regardless
    of which one is active.
@@ -1219,7 +1219,7 @@ automatically scope to the active profile.
 ### DO NOT hardcode `~/.openamer` paths
 Use `get_openamer_home()` from `openamer_constants` for code paths. Use `display_openamer_home()`
 for user-facing print/log messages. Hardcoding `~/.openamer` breaks profiles — each profile
-has its own `HERMES_HOME` directory. This was the source of 5 bugs fixed in PR #3575.
+has its own `OPENAMER_HOME` directory. This was the source of 5 bugs fixed in PR #3575.
 
 ### DO NOT introduce new `simple_term_menu` usage
 Existing call sites in `openamer_cli/main.py` remain for legacy fallback only;
@@ -1259,10 +1259,10 @@ red flag.
 ### Don't wire in dead code without E2E validation
 Unused code that was never shipped was dead for a reason. Before wiring an
 unused module into a live code path, E2E test the real resolution chain
-with actual imports (not mocks) against a temp `HERMES_HOME`.
+with actual imports (not mocks) against a temp `OPENAMER_HOME`.
 
 ### Tests must not write to `~/.openamer/`
-The `_isolate_openamer_home` autouse fixture in `tests/conftest.py` redirects `HERMES_HOME` to a temp dir. Never hardcode `~/.openamer/` paths in tests.
+The `_isolate_openamer_home` autouse fixture in `tests/conftest.py` redirects `OPENAMER_HOME` to a temp dir. Never hardcode `~/.openamer/` paths in tests.
 
 **Profile tests**: When testing profile features, also mock `Path.home()` so that
 `_get_profiles_root()` and `_get_default_openamer_home()` resolve within the temp dir.
@@ -1273,7 +1273,7 @@ def profile_env(tmp_path, monkeypatch):
     home = tmp_path / ".openamer"
     home.mkdir()
     monkeypatch.setattr(Path, "home", lambda: tmp_path)
-    monkeypatch.setenv("HERMES_HOME", str(home))
+    monkeypatch.setenv("OPENAMER_HOME", str(home))
     return home
 ```
 
@@ -1296,7 +1296,7 @@ scripts/run_tests.sh -v --tb=long                     # pass-through pytest flag
 ```
 
 **Flake policy:** the runner auto-retries a failing test FILE once in a fresh
-subprocess (`--file-retries`, default 1; `HERMES_TEST_FILE_RETRIES=0` to
+subprocess (`--file-retries`, default 1; `OPENAMER_TEST_FILE_RETRIES=0` to
 disable). Pass-on-retry counts as green but is printed in a `⚠ FLAKY` summary
 section with both attempts' output. A FLAKY report is a bug to fix, not noise
 to ignore — timing-sensitive tests must not assume a quiet runner (loose

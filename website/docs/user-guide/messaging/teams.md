@@ -105,7 +105,7 @@ TEAMS_ALLOWED_USERS=<your-aad-object-id>
 ## Step 5: Start the Gateway
 
 ```bash
-HERMES_UID=$(id -u) HERMES_GID=$(id -g) docker compose up -d gateway
+OPENAMER_UID=$(id -u) OPENAMER_GID=$(id -g) docker compose up -d gateway
 ```
 
 This starts the gateway. The default webhook port is `3978` (override with `TEAMS_PORT`). Check that it's running:

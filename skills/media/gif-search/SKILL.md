@@ -23,7 +23,7 @@ Useful for finding reaction GIFs, creating visual content, and sending GIFs in c
 
 ## Setup
 
-Set your Tenor API key in your environment (add to `${HERMES_HOME:-~/.openamer}/.env`):
+Set your Tenor API key in your environment (add to `${OPENAMER_HOME:-~/.openamer}/.env`):
 
 ```bash
 TENOR_API_KEY=your_key_here

@@ -89,7 +89,7 @@ There are three distinct switch shapes, and conflating them is the classic bug:
 - A **connection/mode apply** (local ↔ remote ↔ cloud) is the soft re-home:
   shell mounted, gateway-bound stores explicitly wiped, then reconnect. Query
   invalidation alone cannot evict live session stores — wipe them.
-- A **runtime home change** (switching the underlying `HERMES_HOME` profile) is
+- A **runtime home change** (switching the underlying `OPENAMER_HOME` profile) is
   a hard re-home: the window legitimately reloads and state resets by remount.
 - A **live profile swap** in the same window activates another profile's socket
   while background profiles keep streaming; lists merge rather than wipe, and

@@ -32,7 +32,7 @@ Omitting `host` uses the dual-stack default and listens on both IPv4 and IPv6.
 Set a specific address only when you intentionally want to restrict the bind.
 
 ### Option 3: Environment variables
-Add to `${HERMES_HOME:-~/.openamer}/.env`:
+Add to `${OPENAMER_HOME:-~/.openamer}/.env`:
 ```bash
 WEBHOOK_ENABLED=true
 WEBHOOK_PORT=8644

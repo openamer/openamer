@@ -118,12 +118,12 @@ Middleware only runs for enabled plugins. For a bundled plugin:
 openamer plugins enable <plugin-name>
 ```
 
-For isolated local testing, use one `HERMES_HOME` for plugin enablement and the
+For isolated local testing, use one `OPENAMER_HOME` for plugin enablement and the
 agent run:
 
 ```bash
-export HERMES_HOME=/tmp/openamer-middleware-test
-mkdir -p "$HERMES_HOME"
+export OPENAMER_HOME=/tmp/openamer-middleware-test
+mkdir -p "$OPENAMER_HOME"
 openamer plugins enable <plugin-name>
 openamer chat --query 'Reply exactly ok'
 ```

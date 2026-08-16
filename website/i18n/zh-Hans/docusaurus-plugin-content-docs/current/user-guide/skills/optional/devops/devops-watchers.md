@@ -52,7 +52,7 @@ description: "使用水印去重轮询 RSS、JSON API 和 GitHub"
 
 ## 现成脚本
 
-安装 skill 后，三个脚本均位于 `$HERMES_HOME/skills/devops/watchers/scripts/`。每个脚本读取 `WATCHER_STATE_DIR`（默认为 `$HERMES_HOME/watcher-state/`）作为状态文件目录，以 `--name` 参数作为键名。
+安装 skill 后，三个脚本均位于 `$OPENAMER_HOME/skills/devops/watchers/scripts/`。每个脚本读取 `WATCHER_STATE_DIR`（默认为 `$OPENAMER_HOME/watcher-state/`）作为状态文件目录，以 `--name` 参数作为键名。
 
 | 脚本 | 监控对象 | 去重键 |
 |---|---|---|
@@ -73,21 +73,21 @@ description: "使用水印去重轮询 RSS、JSON API 和 GitHub"
 直接从终端工具运行 watcher：
 
 ```bash
-python $HERMES_HOME/skills/devops/watchers/scripts/watch_rss.py \
+python $OPENAMER_HOME/skills/devops/watchers/scripts/watch_rss.py \
   --name hn --url https://news.ycombinator.com/rss --max 5
 ```
 
 监控 GitHub 仓库（在 `~/.openamer/.env` 中设置 `GITHUB_TOKEN` 以避免匿名请求限制 60 次/小时）：
 
 ```bash
-python $HERMES_HOME/skills/devops/watchers/scripts/watch_github.py \
+python $OPENAMER_HOME/skills/devops/watchers/scripts/watch_github.py \
   --name openamer-issues --repo NousResearch/openamer-agent --scope issues
 ```
 
 轮询任意 JSON API：
 
 ```bash
-python $HERMES_HOME/skills/devops/watchers/scripts/watch_http_json.py \
+python $OPENAMER_HOME/skills/devops/watchers/scripts/watch_http_json.py \
   --name api --url https://api.example.com/events \
   --id-field event_id --items-path data.events
 ```
@@ -102,16 +102,16 @@ agent 在 cron 任务的 agent 循环中通过终端工具调用脚本，无需�
 
 ## 状态文件
 
-每个 watcher 将状态写入 `$HERMES_HOME/watcher-state/<name>.json`。查看状态：
+每个 watcher 将状态写入 `$OPENAMER_HOME/watcher-state/<name>.json`。查看状态：
 
 ```bash
-cat $HERMES_HOME/watcher-state/hn.json
+cat $OPENAMER_HOME/watcher-state/hn.json
 ```
 
 强制重放（下次运行视为首次轮询）：
 
 ```bash
-rm $HERMES_HOME/watcher-state/hn.json
+rm $OPENAMER_HOME/watcher-state/hn.json
 ```
 
 ## 自定义 watcher
@@ -123,4 +123,4 @@ rm $HERMES_HOME/watcher-state/hn.json
 1. **每次 tick 都打印"无新条目"的标题。** 调用方依赖 stdout 为空来判断静默。若在空 delta 时打印任何内容，将导致频道被刷屏。已提供的脚本已处理此问题；自定义脚本也必须如此。
 2. **期望首次运行就输出条目。** 首次运行只记录基线，不会输出内容。如需初始摘要，可在首次运行后删除状态文件，或在自定义脚本中添加 `--prime-with-latest N` 标志。
 3. **水印无限增长。** 共享辅助模块上限为 500 个 ID。对于高频更新的 feed 可适当提高；在存储受限的文件系统上可适当降低。
-4. **状态目录位于 agent 沙箱无法写入的位置。** `$HERMES_HOME/watcher-state/` 始终可写。Docker/Modal 后端可能无法访问任意宿主机路径。
+4. **状态目录位于 agent 沙箱无法写入的位置。** `$OPENAMER_HOME/watcher-state/` 始终可写。Docker/Modal 后端可能无法访问任意宿主机路径。

@@ -42,7 +42,7 @@ tools/environments/docker.py
   DockerEnvironment.__init__          Docker-side merge logic: collision
                                        detection against critical egress vars,
                                        NODE_OPTIONS append-merge via the
-                                       _HERMES_EGRESS_NODE_OPTIONS_APPEND
+                                       _OPENAMER_EGRESS_NODE_OPTIONS_APPEND
                                        sentinel, enforce_on_docker precedence.
 
 tests/test_iron_proxy.py              Hermetic tests (~70).  Binary install
@@ -56,7 +56,7 @@ tests/test_iron_proxy_cli.py          CLI handler unit tests (~20).  Argparse
                                        wire-up, dest='egress_command'
                                        regression guard.
 
-tests/test_iron_proxy_e2e.py          Live E2E (gated on HERMES_RUN_E2E=1).
+tests/test_iron_proxy_e2e.py          Live E2E (gated on OPENAMER_RUN_E2E=1).
                                        Real iron-proxy binary, real curl,
                                        end-to-end token swap verified.
 ```
@@ -283,7 +283,7 @@ _NON_BEARER_PROVIDERS: Tuple[str, ...] = (
 1. Reads `load_config().get("proxy", {})`; returns empty args if `enabled` is false.
 2. Calls `iron_proxy.get_status()`; surfaces `enforce` semantics on `configured` / `pid` / `listening` / `ca_cert_path` failure paths.
 3. Calls `iron_proxy.load_mappings()`; refuses to mount if empty AND `enforce_on_docker: true`.
-4. Sets the seven env vars (HTTPS_PROXY, NO_PROXY, REQUESTS_CA_BUNDLE, SSL_CERT_FILE, CURL_CA_BUNDLE, NODE_EXTRA_CA_CERTS, HERMES_EGRESS_PROXY) and the per-mapping `HERMES_PROXY_TOKEN_<NAME>` vars.
+4. Sets the seven env vars (HTTPS_PROXY, NO_PROXY, REQUESTS_CA_BUNDLE, SSL_CERT_FILE, CURL_CA_BUNDLE, NODE_EXTRA_CA_CERTS, OPENAMER_EGRESS_PROXY) and the per-mapping `OPENAMER_PROXY_TOKEN_<NAME>` vars.
 5. Distributes the CA cert into the sandbox at a path the runtime will trust (typically `/etc/ssl/certs/openamer-egress-ca.crt`).
 6. Implements collision detection against the user's backend-specific env config.
 
@@ -300,11 +300,11 @@ iron-proxy writes line-delimited JSON to `~/.openamer/proxy/iron-proxy.log` on t
 scripts/run_tests.sh tests/test_iron_proxy.py tests/test_iron_proxy_cli.py
 
 # Live E2E (real binary, real curl, real CONNECT tunnel)
-HERMES_RUN_E2E=1 scripts/run_tests.sh tests/test_iron_proxy_e2e.py
+OPENAMER_RUN_E2E=1 scripts/run_tests.sh tests/test_iron_proxy_e2e.py
 
 # Live PTY smoke against `openamer egress`
-HERMES_HOME=/tmp/openamer-egress-test python3 -m openamer_cli.main egress --help
-HERMES_HOME=/tmp/openamer-egress-test python3 -m openamer_cli.main egress setup --help
+OPENAMER_HOME=/tmp/openamer-egress-test python3 -m openamer_cli.main egress --help
+OPENAMER_HOME=/tmp/openamer-egress-test python3 -m openamer_cli.main egress setup --help
 ```
 
 The CLI uses argparse, so `--help` is a good first probe for "did my new flag register correctly".

@@ -44,7 +44,7 @@ openamer auth spotify
 
 7 个 Spotify 工具只有在完成第 1 步后才会出现在 agent 的工具集中——它们默认关闭，以避免不需要它们的用户在每次 API 调用时额外传输工具 schema。
 
-若未设置 `HERMES_SPOTIFY_CLIENT_ID`，OpenAmer 会内联引导你完成应用注册：
+若未设置 `OPENAMER_SPOTIFY_CLIENT_ID`，OpenAmer 会内联引导你完成应用注册：
 
 1. 在浏览器中打开 `https://developer.spotify.com/dashboard`
 2. 打印需要粘贴到 Spotify "Create app" 表单中的确切值
@@ -225,7 +225,7 @@ openamer cron add \
 openamer auth logout spotify
 ```
 
-从 `~/.openamer/auth.json` 中移除 token。若还需清除应用配置，请从 `~/.openamer/.env` 中删除 `HERMES_SPOTIFY_CLIENT_ID`（以及 `HERMES_SPOTIFY_REDIRECT_URI`，如果你设置了的话），或重新运行向导。
+从 `~/.openamer/auth.json` 中移除 token。若还需清除应用配置，请从 `~/.openamer/.env` 中删除 `OPENAMER_SPOTIFY_CLIENT_ID`（以及 `OPENAMER_SPOTIFY_REDIRECT_URI`，如果你设置了的话），或重新运行向导。
 
 若要在 Spotify 侧撤销应用，请访问[已连接到你账号的应用](https://www.spotify.com/account/apps/)并点击 **REMOVE ACCESS**。
 
@@ -237,7 +237,7 @@ openamer auth logout spotify
 
 **`get_currently_playing` 返回 `204 No Content`** — 当前所有设备上均无内容播放。这是 Spotify 的正常响应，不是错误；OpenAmer 将其呈现为说明性的空结果（`is_playing: false`）。
 
-**`INVALID_CLIENT: Invalid redirect URI`** — 你的 Spotify 应用设置中的 redirect URI 与 OpenAmer 使用的不匹配。默认值为 `http://127.0.0.1:43827/spotify/callback`。请将其添加到应用的允许 redirect URI 列表中，或在 `~/.openamer/.env` 中将 `HERMES_SPOTIFY_REDIRECT_URI` 设置为你注册的值。
+**`INVALID_CLIENT: Invalid redirect URI`** — 你的 Spotify 应用设置中的 redirect URI 与 OpenAmer 使用的不匹配。默认值为 `http://127.0.0.1:43827/spotify/callback`。请将其添加到应用的允许 redirect URI 列表中，或在 `~/.openamer/.env` 中将 `OPENAMER_SPOTIFY_REDIRECT_URI` 设置为你注册的值。
 
 **`429 Too Many Requests`** — Spotify 的速率限制。OpenAmer 会返回友好的错误提示；等待一分钟后重试。若持续出现，你可能在脚本中运行了紧密循环——Spotify 的配额大约每 30 秒重置一次。
 
@@ -264,8 +264,8 @@ openamer auth spotify --client-id <id> --redirect-uri http://localhost:3000/call
 或在 `~/.openamer/.env` 中永久设置：
 
 ```
-HERMES_SPOTIFY_CLIENT_ID=<your_id>
-HERMES_SPOTIFY_REDIRECT_URI=http://localhost:3000/callback
+OPENAMER_SPOTIFY_CLIENT_ID=<your_id>
+OPENAMER_SPOTIFY_REDIRECT_URI=http://localhost:3000/callback
 ```
 
 Redirect URI 必须在你的 Spotify 应用设置中加入白名单。默认值适用于绝大多数情况——只有在 43827 端口被占用时才需要更改。
@@ -275,5 +275,5 @@ Redirect URI 必须在你的 Spotify 应用设置中加入白名单。默认值�
 | 文件 | 内容 |
 |------|----------|
 | `~/.openamer/auth.json` → `providers.spotify` | access token、refresh token、过期时间、scope、redirect URI |
-| `~/.openamer/.env` | `HERMES_SPOTIFY_CLIENT_ID`，可选 `HERMES_SPOTIFY_REDIRECT_URI` |
+| `~/.openamer/.env` | `OPENAMER_SPOTIFY_CLIENT_ID`，可选 `OPENAMER_SPOTIFY_REDIRECT_URI` |
 | Spotify 应用 | 由你在 [developer.spotify.com/dashboard](https://developer.spotify.com/dashboard) 管理；包含 Client ID 和 redirect URI 白名单 |

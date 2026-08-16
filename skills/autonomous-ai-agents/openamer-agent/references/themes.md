@@ -17,7 +17,7 @@ editors or ship built-in presets.
 
 ## Prerequisites
 
-- Write access to the OpenAmer home dir — `~/.openamer` by default, or `$HERMES_HOME`
+- Write access to the OpenAmer home dir — `~/.openamer` by default, or `$OPENAMER_HOME`
   / the active profile's dir. Skins live in `<openamer-home>/skins/`.
 - Native tools: `write_file` (create the YAML), `read_file` / `search_files`
   (inspect existing skins), `terminal` (activate via `openamer config set`).
@@ -100,7 +100,7 @@ enumerate.
 ## Pitfalls
 
 - **Don't hardcode `~/.openamer`** when a profile is active — resolve the real home
-  from `$HERMES_HOME` first, falling back to `~/.openamer`.
+  from `$OPENAMER_HOME` first, falling back to `~/.openamer`.
 - **Keep `#rrggbb` hex.** Shorthand `#rgb`, `rgb()`, and named colors are not
   guaranteed to parse on every surface.
 - **Set `background`.** Without it the GUI has to guess a base surface from text

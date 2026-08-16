@@ -172,7 +172,7 @@ class MyBackendImageGenProvider(ImageGenProvider):
 
             # Two shapes supported:
             #   - URL string: return it as `image`
-            #   - base64 data: save under $HERMES_HOME/cache/images/ via save_b64_image()
+            #   - base64 data: save under $OPENAMER_HOME/cache/images/ via save_b64_image()
             if result.get("image_b64"):
                 path = save_b64_image(
                     result["image_b64"],
@@ -267,7 +267,7 @@ The tool wrapper JSON-serializes the dict and hands it to the LLM. Errors are su
 
 ## Handling base64 vs URL output
 
-Some backends return image URLs (fal, Replicate); others return base64 payloads (OpenAI gpt-image-2). For the base64 case, use `save_b64_image()` — it writes to `$HERMES_HOME/cache/images/<prefix>_<timestamp>_<uuid>.<ext>` and returns the absolute `Path`. Pass that path (as `str`) as `image=` in `success_response()`. Gateway delivery (Telegram photo bubble, Discord attachment) recognizes both URLs and absolute paths.
+Some backends return image URLs (fal, Replicate); others return base64 payloads (OpenAI gpt-image-2). For the base64 case, use `save_b64_image()` — it writes to `$OPENAMER_HOME/cache/images/<prefix>_<timestamp>_<uuid>.<ext>` and returns the absolute `Path`. Pass that path (as `str`) as `image=` in `success_response()`. Gateway delivery (Telegram photo bubble, Discord attachment) recognizes both URLs and absolute paths.
 
 ## User overrides
 
@@ -276,16 +276,16 @@ Drop a user plugin at `~/.openamer/plugins/image_gen/<name>/` with the same `nam
 ## Testing
 
 ```bash
-export HERMES_HOME=/tmp/openamer-imggen-test
-mkdir -p $HERMES_HOME/plugins/image_gen/my-backend
+export OPENAMER_HOME=/tmp/openamer-imggen-test
+mkdir -p $OPENAMER_HOME/plugins/image_gen/my-backend
 # …copy __init__.py + plugin.yaml into that dir…
 
 export MY_BACKEND_API_KEY=your-test-key
 openamer plugins enable my-backend
 
 # Pick it as the active provider
-echo "image_gen:" >> $HERMES_HOME/config.yaml
-echo "  provider: my-backend" >> $HERMES_HOME/config.yaml
+echo "image_gen:" >> $OPENAMER_HOME/config.yaml
+echo "  provider: my-backend" >> $OPENAMER_HOME/config.yaml
 
 # Exercise it
 openamer -z "Generate an image of a corgi in a spacesuit"

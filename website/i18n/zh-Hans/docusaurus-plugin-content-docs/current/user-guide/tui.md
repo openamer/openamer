@@ -31,7 +31,7 @@ openamer --tui --dev
 也可以通过环境变量启用：
 
 ```bash
-export HERMES_TUI=1
+export OPENAMER_TUI=1
 openamer          # 现在使用 TUI
 openamer chat     # 同上
 ```
@@ -75,7 +75,7 @@ TUI 启动 banner 将运行时信息分为四个可折叠区块，每个区块�
 发行版若附带预构建 bundle（如 Nix、系统包），可将 OpenAmer 指向该 bundle：
 
 ```bash
-export HERMES_TUI_DIR=/path/to/prebuilt/ui-tui
+export OPENAMER_TUI_DIR=/path/to/prebuilt/ui-tui
 openamer --tui
 ```
 
@@ -120,14 +120,14 @@ TUI 的 Markdown 渲染管线支持内联 LaTeX 数学：`$E = mc^2$` 和 `$$\fr
 
 TUI 自动检测浅色终端并相应切换到浅色主题。检测分三层进行：
 
-1. `HERMES_TUI_THEME` 环境变量——最高优先级。可选值：`light`、`dark`，或原始 6 位背景十六进制色值（如 `ffffff`、`1a1a2e`）。
+1. `OPENAMER_TUI_THEME` 环境变量——最高优先级。可选值：`light`、`dark`，或原始 6 位背景十六进制色值（如 `ffffff`、`1a1a2e`）。
 2. `COLORFGBG` 环境变量——xterm 衍生终端使用的经典"背景色查询"提示。
 3. 通过 OSC 11 探测终端背景——适用于不设置 `COLORFGBG` 的现代终端（Ghostty、Warp、iTerm2、WezTerm、Kitty）。
 
 若要无论终端如何都永久使用浅色主题：
 
 ```bash
-export HERMES_TUI_THEME=light
+export OPENAMER_TUI_THEME=light
 ```
 
 ## 忙碌指示器样式
@@ -146,9 +146,9 @@ display:
 默认情况下，`openamer --tui` 每次启动都会开启新会话。若要自动重新连接到最近的 TUI 会话（在终端或 SSH 连接意外断开时很有用），可选择启用：
 
 ```bash
-export HERMES_TUI_RESUME=1          # 最近的 TUI 会话
+export OPENAMER_TUI_RESUME=1          # 最近的 TUI 会话
 # 或：
-export HERMES_TUI_RESUME=<session-id>   # 指定会话
+export OPENAMER_TUI_RESUME=<session-id>   # 指定会话
 ```
 
 取消设置该变量，或在每次启动时显式传入 `--resume <id>` 以覆盖。
@@ -173,7 +173,7 @@ TUI 的状态栏实时跟踪 agent 状态：
 - **每条 prompt 的耗时** — 轮次运行时显示 `⏱ 12s/3m 45s`（实时），轮次完成后冻结为 `⏲ 32s / 3m 45s`。第一个数字是自上次用户消息以来的时间；第二个是会话总时长。每次新 prompt 时重置。
 - **`🗜️ N`** — 当前会话被自动压缩的次数。首次压缩触发后显示。
 - **`▶ N`** — 当前会话中正在运行的 `/background` 任务数量。至少有一个任务在执行时显示。
-- **`⚠ YOLO`** — 每当 YOLO 模式开启时（`openamer --yolo`、`/yolo` 或 `HERMES_YOLO_MODE=1`）显示的可见警告。同一徽章也出现在启动 banner 中，确保你不会在未注意到的情况下启动自动审批会话。
+- **`⚠ YOLO`** — 每当 YOLO 模式开启时（`openamer --yolo`、`/yolo` 或 `OPENAMER_YOLO_MODE=1`）显示的可见警告。同一徽章也出现在启动 banner 中，确保你不会在未注意到的情况下启动自动审批会话。
 
 ## 配置
 
@@ -233,15 +233,15 @@ TUI 附带有主见的按区块默认值，将轮次以实时转录形式流式�
 
 默认情况下，TUI 会在进程内启动自己的 gateway，因此每个 TUI 实例是自包含的——无需任何配置。
 
-你可能会在代码或日志中看到 `HERMES_TUI_GATEWAY_URL` 环境变量。它是 **Web 仪表板的内部接线细节**，并非面向用户的远程连接开关。当你打开仪表板的 "Chat" 标签页（`openamer dashboard` → `/chat`）时，仪表板的 Web 服务器会派生一个内嵌的 TUI 子进程，并注入 `HERMES_TUI_GATEWAY_URL`，让该子进程通过本地回环 WebSocket（`/api/ws`）连接到仪表板自己的进程内 `tui_gateway`。`/api/ws` 端点仅存在于仪表板服务器内部（`openamer_cli/web_server.py`），并绑定到该进程的生命周期和认证。
+你可能会在代码或日志中看到 `OPENAMER_TUI_GATEWAY_URL` 环境变量。它是 **Web 仪表板的内部接线细节**，并非面向用户的远程连接开关。当你打开仪表板的 "Chat" 标签页（`openamer dashboard` → `/chat`）时，仪表板的 Web 服务器会派生一个内嵌的 TUI 子进程，并注入 `OPENAMER_TUI_GATEWAY_URL`，让该子进程通过本地回环 WebSocket（`/api/ws`）连接到仪表板自己的进程内 `tui_gateway`。`/api/ws` 端点仅存在于仪表板服务器内部（`openamer_cli/web_server.py`），并绑定到该进程的生命周期和认证。
 
-不存在通用的"将任意 TUI 指向任意独立 gateway 端口"的模式。特别是，OpenAI 兼容 API 服务器（`openamer gateway` / `api_server` 平台）**不**提供 `/api/ws`——它是模型后端接口（`/v1/chat/completions`、`/v1/models` 等），并刻意不暴露 TUI 的 JSON-RPC 控制通道。将 `HERMES_TUI_GATEWAY_URL` 设置为该端口将返回 404。
+不存在通用的"将任意 TUI 指向任意独立 gateway 端口"的模式。特别是，OpenAI 兼容 API 服务器（`openamer gateway` / `api_server` 平台）**不**提供 `/api/ws`——它是模型后端接口（`/v1/chat/completions`、`/v1/models` 等），并刻意不暴露 TUI 的 JSON-RPC 控制通道。将 `OPENAMER_TUI_GATEWAY_URL` 设置为该端口将返回 404。
 
 如果你希望多个界面共享同一组会话，请使用共享的 `~/.openamer/state.db`（参见[会话](sessions.md)）或 Web 仪表板的内嵌聊天（参见 [Web Dashboard](features/web-dashboard.md#chat)）——而不是手动设置 gateway URL。
 
 ## 回退到 Classic CLI
 
-不带 `--tui` 启动 `openamer` 将继续使用 classic CLI。若要让某台机器默认使用 TUI，在 shell profile 中设置 `HERMES_TUI=1`。若要回退，取消设置即可。
+不带 `--tui` 启动 `openamer` 将继续使用 classic CLI。若要让某台机器默认使用 TUI，在 shell profile 中设置 `OPENAMER_TUI=1`。若要回退，取消设置即可。
 
 如果 TUI 启动失败（无 Node、缺少 bundle、TTY 问题），OpenAmer 会打印诊断信息并回退——而不是让你陷入困境。
 

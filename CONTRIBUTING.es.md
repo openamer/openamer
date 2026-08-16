@@ -311,7 +311,7 @@ importado por `discover_builtin_tools()` en `tools/registry.py` cuando `model_to
 se carga. **No** hay una lista de importaciones manual en `model_tools.py` que mantener.
 
 Todavía debes añadir el nombre de la herramienta a la lista apropiada en `toolsets.py`
-(por ejemplo `_HERMES_CORE_TOOLS` o un toolset dedicado); de lo contrario la herramienta
+(por ejemplo `_OPENAMER_CORE_TOOLS` o un toolset dedicado); de lo contrario la herramienta
 se registra pero nunca se expone al agente.
 
 Consulta `AGENTS.md` (sección **Adding New Tools**) para rutas conscientes del perfil y

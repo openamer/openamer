@@ -137,7 +137,7 @@ actual = str(n.width) + 'x' + str(n.height)
 
 ### Config location
 
-`$HERMES_HOME/config.yaml` (defaults to `~/.openamer/config.yaml` when `HERMES_HOME` is unset)
+`$OPENAMER_HOME/config.yaml` (defaults to `~/.openamer/config.yaml` when `OPENAMER_HOME` is unset)
 
 ### MCP entry format
 

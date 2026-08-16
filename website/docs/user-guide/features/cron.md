@@ -425,7 +425,7 @@ cron:
   script_timeout_seconds: 1800   # 30 minutes
 ```
 
-Or set the `HERMES_CRON_SCRIPT_TIMEOUT` environment variable. The resolution order is: env var → config.yaml → 3600s default.
+Or set the `OPENAMER_CRON_SCRIPT_TIMEOUT` environment variable. The resolution order is: env var → config.yaml → 3600s default.
 
 ## No-agent mode (script-only jobs)
 
@@ -747,7 +747,7 @@ The referenced jobs' most recent completed outputs are injected above the prompt
 Jobs are stored in `~/.openamer/cron/jobs.json`. Output from job runs is saved to `~/.openamer/cron/output/{job_id}/{timestamp}.md`.
 
 :::tip
-Ask the agent to manage jobs through the `cronjob` tool, `openamer cron edit`, or `/cron` — not by patching `jobs.json` directly. Direct edits can fail silently when [file write safety](../security.md#file-write-safety) blocks the path (for example when `HERMES_WRITE_SAFE_ROOT` is set), and the [file-mutation verifier](../configuration.md#file-mutation-verifier) footer is the authoritative signal that nothing was saved.
+Ask the agent to manage jobs through the `cronjob` tool, `openamer cron edit`, or `/cron` — not by patching `jobs.json` directly. Direct edits can fail silently when [file write safety](../security.md#file-write-safety) blocks the path (for example when `OPENAMER_WRITE_SAFE_ROOT` is set), and the [file-mutation verifier](../configuration.md#file-mutation-verifier) footer is the authoritative signal that nothing was saved.
 :::
 
 Jobs may store `model` and `provider` as `null`. When those fields are omitted, OpenAmer resolves them at execution time from the global configuration. They only appear in the job record when a per-job override is set.

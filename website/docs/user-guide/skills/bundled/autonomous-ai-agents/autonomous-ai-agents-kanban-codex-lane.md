@@ -70,7 +70,7 @@ Never run Codex directly in a shared dirty checkout. Use a branch/worktree name 
 Recommended variables:
 
 ```bash
-TASK_ID="${HERMES_KANBAN_TASK:-t_manual}"
+TASK_ID="${OPENAMER_KANBAN_TASK:-t_manual}"
 REPO="/path/to/repo"
 BASE="$(git -C "$REPO" rev-parse --abbrev-ref HEAD)"
 SAFE_TASK="$(printf '%s' "$TASK_ID" | tr -cd '[:alnum:]_-')"

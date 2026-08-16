@@ -1,6 +1,6 @@
 #!/command/with-contenv sh
 # shellcheck shell=sh
-# Main hermes service.
+# Main openamer service.
 #
 # IMPORTANT — this is NOT how the user's CMD runs.
 #
@@ -16,7 +16,7 @@
 # So why does this service exist at all? Two reasons:
 #   1. s6-rc requires at least one user service for the "user" bundle
 #      to be valid. We can't ship an empty bundle.
-#   2. Future work may want to supervise a long-lived hermes process
+#   2. Future work may want to supervise a long-lived openamer process
 #      (e.g. for gateway-server containers); having the slot already
 #      wired in keeps that change small.
 #

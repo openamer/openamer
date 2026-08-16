@@ -78,7 +78,7 @@ agent 对于语法正确但存在语义问题的文件，会看到 ``lint: ok`` 
 | Java | `jdtls` | 手动 |
 
 对于"手动"条目，请通过该语言对应的工具链管理器安装服务器（rustup、ghcup、opam、brew 等）。
-OpenAmer 会自动检测 PATH 上或 `<HERMES_HOME>/lsp/bin/` 中的二进制文件。
+OpenAmer 会自动检测 PATH 上或 `<OPENAMER_HOME>/lsp/bin/` 中的二进制文件。
 
 部分服务器需要与 npm 不会自动拉取的对等依赖一同安装。当前的典型情况是
 `typescript-language-server`，它要求 `typescript` SDK 可从同一 `node_modules`
@@ -114,7 +114,7 @@ lsp:
   wait_timeout: 5.0
 
   # 处理缺失服务器二进制文件的策略。
-  #   auto    — 通过 npm/pip/go install 安装到 <HERMES_HOME>/lsp/bin
+  #   auto    — 通过 npm/pip/go install 安装到 <OPENAMER_HOME>/lsp/bin
   #   manual  — 仅使用已在 PATH 上的二进制文件
   install_strategy: auto
 
@@ -142,8 +142,8 @@ lsp:
 
 ## 安装位置
 
-当 `install_strategy: auto` 时，OpenAmer 将二进制文件安装到 `<HERMES_HOME>/lsp/bin/`。
-NPM 包安装到 `<HERMES_HOME>/lsp/node_modules/`，bin 符号链接位于上一级目录。
+当 `install_strategy: auto` 时，OpenAmer 将二进制文件安装到 `<OPENAMER_HOME>/lsp/bin/`。
+NPM 包安装到 `<OPENAMER_HOME>/lsp/node_modules/`，bin 符号链接位于上一级目录。
 Go 二进制文件通过 `go install` 安装，`GOBIN` 指向暂存目录。
 
 任何内容都不会安装到 `/usr/local/`、`~/.local/` 或其他共享位置——暂存目录完全由
@@ -181,7 +181,7 @@ lsp:
 
 **`openamer lsp status` 显示某服务器为"missing"**
 
-该二进制文件不在 PATH 上，也不在 `<HERMES_HOME>/lsp/bin/` 中。运行
+该二进制文件不在 PATH 上，也不在 `<OPENAMER_HOME>/lsp/bin/` 中。运行
 `openamer lsp install <server_id>` 尝试自动安装，或通过该语言的常规工具链手动安装。
 
 **`openamer lsp status` 中出现 `Backend warnings` 部分**

@@ -399,7 +399,7 @@ unexpected exit). For each session updated within the last 120 seconds:
 
 ### Stuck-Loop Detection (`_suspend_stuck_loop_sessions`)
 
-Counts consecutive restarts via a JSON file (`{HERMES_HOME}/restart_counts.json`). If a
+Counts consecutive restarts via a JSON file (`{OPENAMER_HOME}/restart_counts.json`). If a
 session has been active across 3+ consecutive restarts, it's auto-suspended so the user
 gets a clean slate.
 

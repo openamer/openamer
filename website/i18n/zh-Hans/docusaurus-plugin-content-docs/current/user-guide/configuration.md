@@ -75,11 +75,11 @@ delegation:
 
 ### Provider 超时
 
-可以为 provider 设置 `providers.<id>.request_timeout_seconds` 作为全局请求超时，以及 `providers.<id>.models.<model>.timeout_seconds` 作为特定模型的覆盖值。适用于每种传输方式（OpenAI-wire、原生 Anthropic、Anthropic 兼容）上的主轮次客户端、回退链、凭据轮换后的重建，以及（对于 OpenAI-wire）每请求超时 kwarg —— 因此配置值优先于旧版 `HERMES_API_TIMEOUT` 环境变量。
+可以为 provider 设置 `providers.<id>.request_timeout_seconds` 作为全局请求超时，以及 `providers.<id>.models.<model>.timeout_seconds` 作为特定模型的覆盖值。适用于每种传输方式（OpenAI-wire、原生 Anthropic、Anthropic 兼容）上的主轮次客户端、回退链、凭据轮换后的重建，以及（对于 OpenAI-wire）每请求超时 kwarg —— 因此配置值优先于旧版 `OPENAMER_API_TIMEOUT` 环境变量。
 
-还可以设置 `providers.<id>.stale_timeout_seconds` 用于非流式陈旧调用检测器，以及 `providers.<id>.models.<model>.stale_timeout_seconds` 作为特定模型的覆盖值。此值优先于旧版 `HERMES_API_CALL_STALE_TIMEOUT` 环境变量。
+还可以设置 `providers.<id>.stale_timeout_seconds` 用于非流式陈旧调用检测器，以及 `providers.<id>.models.<model>.stale_timeout_seconds` 作为特定模型的覆盖值。此值优先于旧版 `OPENAMER_API_CALL_STALE_TIMEOUT` 环境变量。
 
-不设置这些值将保持旧版默认值（`HERMES_API_TIMEOUT=1800`s、`HERMES_API_CALL_STALE_TIMEOUT=90`s、原生 Anthropic 900s）。隐式的非流式 stale 检测会在本地端点上自动禁用，并且会在超大上下文下自动放宽。目前不适用于 AWS Bedrock（`bedrock_converse` 和 AnthropicBedrock SDK 路径均使用 boto3 及其自身的超时配置）。请参阅 [`cli-config.yaml.example`](https://github.com/NousResearch/openamer-agent/blob/main/cli-config.yaml.example) 中的注释示例。
+不设置这些值将保持旧版默认值（`OPENAMER_API_TIMEOUT=1800`s、`OPENAMER_API_CALL_STALE_TIMEOUT=90`s、原生 Anthropic 900s）。隐式的非流式 stale 检测会在本地端点上自动禁用，并且会在超大上下文下自动放宽。目前不适用于 AWS Bedrock（`bedrock_converse` 和 AnthropicBedrock SDK 路径均使用 boto3 及其自身的超时配置）。请参阅 [`cli-config.yaml.example`](https://github.com/NousResearch/openamer-agent/blob/main/cli-config.yaml.example) 中的注释示例。
 
 ## 终端后端配置
 
@@ -152,7 +152,7 @@ terminal:
 
 **`terminal.docker_extra_args`**（也可通过 `TERMINAL_DOCKER_EXTRA_ARGS='["--gpus=all"]'` 覆盖）允许传递 OpenAmer 未作为一级键公开的任意 `docker run` 标志 —— `--gpus`、`--network`、`--add-host`、替代 `--security-opt` 覆盖等。每个条目必须是字符串；该列表最后附加到组装好的 `docker run` 调用中，因此可以在需要时覆盖 OpenAmer 的默认值。请谨慎使用 —— 与沙箱加固（权限删除、`--user`、workspace 绑定挂载）冲突的标志将悄然削弱隔离性。
 
-**要求：** 已安装并运行 Docker Desktop 或 Docker Engine。OpenAmer 会探测 `$PATH` 以及常见的 macOS 安装位置（`/usr/local/bin/docker`、`/opt/homebrew/bin/docker`、Docker Desktop 应用包）。开箱即用支持 Podman：设置 `HERMES_DOCKER_BINARY=podman`（或完整路径）以在两者都安装时强制使用它。
+**要求：** 已安装并运行 Docker Desktop 或 Docker Engine。OpenAmer 会探测 `$PATH` 以及常见的 macOS 安装位置（`/usr/local/bin/docker`、`/opt/homebrew/bin/docker`、Docker Desktop 应用包）。开箱即用支持 Podman：设置 `OPENAMER_DOCKER_BINARY=podman`（或完整路径）以在两者都安装时强制使用它。
 
 **容器生命周期：** OpenAmer 为每个终端和文件工具调用重用单个长期运行的容器（`docker run -d ... sleep 2h`），跨会话、`/new`、`/reset` 和 `delegate_task` 子 agent，贯穿 OpenAmer 进程的整个生命周期。命令通过带登录 shell 的 `docker exec` 运行，因此工作目录更改、已安装的包以及 `/workspace` 中的文件都会从一次工具调用延续到下一次。容器在 OpenAmer 关闭时（或空闲清理回收时）停止并删除。
 
@@ -657,16 +657,16 @@ OpenAmer 对流式传输有单独的超时层，以及用于非流式调用的�
 
 | 超时 | 默认值 | 本地 providers | 配置/环境变量 |
 |---------|---------|----------------|--------------|
-| Socket 读取超时 | 120s | 自动提升至 1800s | `HERMES_STREAM_READ_TIMEOUT` |
-| 陈旧流检测 | 180s | 自动禁用 | `HERMES_STREAM_STALE_TIMEOUT` |
-| 陈旧非流检测 | 300s | 保持隐式时自动禁用 | `providers.<id>.stale_timeout_seconds` 或 `HERMES_API_CALL_STALE_TIMEOUT` |
-| API 调用（非流式） | 1800s | 不变 | `providers.<id>.request_timeout_seconds` / `timeout_seconds` 或 `HERMES_API_TIMEOUT` |
+| Socket 读取超时 | 120s | 自动提升至 1800s | `OPENAMER_STREAM_READ_TIMEOUT` |
+| 陈旧流检测 | 180s | 自动禁用 | `OPENAMER_STREAM_STALE_TIMEOUT` |
+| 陈旧非流检测 | 300s | 保持隐式时自动禁用 | `providers.<id>.stale_timeout_seconds` 或 `OPENAMER_API_CALL_STALE_TIMEOUT` |
+| API 调用（非流式） | 1800s | 不变 | `providers.<id>.request_timeout_seconds` / `timeout_seconds` 或 `OPENAMER_API_TIMEOUT` |
 
-**Socket 读取超时**控制 httpx 等待 provider 下一个数据块的时间。本地 LLM 在大上下文上预填充可能需要几分钟才能产生第一个 token，因此当 OpenAmer 检测到本地端点时，会将此值提升至 30 分钟。如果您显式设置 `HERMES_STREAM_READ_TIMEOUT`，无论端点检测如何，始终使用该值。
+**Socket 读取超时**控制 httpx 等待 provider 下一个数据块的时间。本地 LLM 在大上下文上预填充可能需要几分钟才能产生第一个 token，因此当 OpenAmer 检测到本地端点时，会将此值提升至 30 分钟。如果您显式设置 `OPENAMER_STREAM_READ_TIMEOUT`，无论端点检测如何，始终使用该值。
 
 **陈旧流检测**终止接收 SSE 保活 ping 但没有实际内容的连接。对于本地 providers，这完全禁用，因为它们在预填充期间不发送保活 ping。
 
-**陈旧非流检测**终止长时间没有响应的非流式调用。默认情况下，OpenAmer 在本地端点上禁用此功能，以避免长时间预填充期间的误报。如果您显式设置 `providers.<id>.stale_timeout_seconds`、`providers.<id>.models.<model>.stale_timeout_seconds` 或 `HERMES_API_CALL_STALE_TIMEOUT`，即使在本地端点上也会遵守该显式值。
+**陈旧非流检测**终止长时间没有响应的非流式调用。默认情况下，OpenAmer 在本地端点上禁用此功能，以避免长时间预填充期间的误报。如果您显式设置 `providers.<id>.stale_timeout_seconds`、`providers.<id>.models.<model>.stale_timeout_seconds` 或 `OPENAMER_API_CALL_STALE_TIMEOUT`，即使在本地端点上也会遵守该显式值。
 
 ## 上下文压力警告
 
@@ -1178,7 +1178,7 @@ display:
   • concepts/rag-pipeline.md — [patch] Could not find match for old_string
 ```
 
-设置 `file_mutation_verifier: false`（或 `HERMES_FILE_MUTATION_VERIFIER=0`）以禁止页脚。验证器仅在轮次结束时有真实失败未解决时触发 —— 在同一轮次内重试失败补丁并成功的模型不会为该文件触发它。
+设置 `file_mutation_verifier: false`（或 `OPENAMER_FILE_MUTATION_VERIFIER=0`）以禁止页脚。验证器仅在轮次结束时有真实失败未解决时触发 —— 在同一轮次内重试失败补丁并成功的模型不会为该文件触发它。
 
 ### 静态消息的 UI 语言
 
@@ -1186,7 +1186,7 @@ display:
 
 支持的值：`en`（默认）、`zh`（简体中文）、`zh-hant`（繁体中文）、`ja`（日语）、`de`（德语）、`es`（西班牙语）、`fr`（法语）、`tr`（土耳其语）、`uk`（乌克兰语）、`af`（南非荷兰语）、`ko`（韩语）、`it`（意大利语）、`ga`（爱尔兰语）、`pt`（葡萄牙语）、`ru`（俄语）、`hu`（匈牙利语）。未知值回退到英文。
 
-您也可以使用 `HERMES_LANGUAGE` 环境变量按会话设置，它会覆盖配置值。
+您也可以使用 `OPENAMER_LANGUAGE` 环境变量按会话设置，它会覆盖配置值。
 
 ```yaml
 display:
@@ -1590,7 +1590,7 @@ approvals:
 |------|----------|
 | `smart`（默认） | 使用辅助 LLM 评估被标记的命令是否真正危险。低风险命令仅对当前命令自动批准，真正危险的命令自动拒绝，不确定的情况升级给用户。 |
 | `manual` | 在执行任何被标记的命令之前提示用户。在 CLI 中显示交互式审批对话框。在消息中排队待处理的审批请求。 |
-| `off` | 跳过所有审批检查。等同于 `HERMES_YOLO_MODE=true`。**谨慎使用。** |
+| `off` | 跳过所有审批检查。等同于 `OPENAMER_YOLO_MODE=true`。**谨慎使用。** |
 
 智能模式对于减少审批疲劳特别有用 —— 它让 agent 在安全操作上更自主地工作，同时仍然捕获真正破坏性的命令。
 
@@ -1652,8 +1652,8 @@ OpenAmer 使用两种不同的上下文范围：
 
 | 文件 | 用途 | 范围 |
 |------|---------|-------|
-| `SOUL.md` | **主要 agent 身份** —— 定义 agent 是谁（系统提示词第 #1 槽位） | `~/.openamer/SOUL.md` 或 `$HERMES_HOME/SOUL.md` |
-| `.openamer.md` / `HERMES.md` | 项目特定指令（最高优先级） | 向上走到 git 根目录 |
+| `SOUL.md` | **主要 agent 身份** —— 定义 agent 是谁（系统提示词第 #1 槽位） | `~/.openamer/SOUL.md` 或 `$OPENAMER_HOME/SOUL.md` |
+| `.openamer.md` / `OPENAMER.md` | 项目特定指令（最高优先级） | 向上走到 git 根目录 |
 | `AGENTS.md` | 项目特定指令、编码规范 | 递归目录遍历 |
 | `CLAUDE.md` | Claude Code 上下文文件（也会检测） | 仅工作目录 |
 | `.cursorrules` | Cursor IDE 规则（也会检测） | 仅工作目录 |

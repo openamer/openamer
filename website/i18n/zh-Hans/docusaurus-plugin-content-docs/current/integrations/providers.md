@@ -193,8 +193,8 @@ model:
 | 环境变量 | 说明 |
 |---------------------|-------------|
 | `COPILOT_GITHUB_TOKEN` | Copilot API 的 GitHub token（最高优先级） |
-| `HERMES_COPILOT_ACP_COMMAND` | 覆盖 Copilot CLI 二进制路径（默认：`copilot`） |
-| `HERMES_COPILOT_ACP_ARGS` | 覆盖 ACP 参数（默认：`--acp --stdio`） |
+| `OPENAMER_COPILOT_ACP_COMMAND` | 覆盖 Copilot CLI 二进制路径（默认：`copilot`） |
+| `OPENAMER_COPILOT_ACP_ARGS` | 覆盖 ACP 参数（默认：`--acp --stdio`） |
 
 ### 一等 API Key 提供商
 
@@ -371,7 +371,7 @@ model:
   default: "qwen3-coder-plus"
 ```
 
-仅在 portal 端点迁移时才需设置 `HERMES_QWEN_BASE_URL`（默认：`https://portal.qwen.ai/v1`）。
+仅在 portal 端点迁移时才需设置 `OPENAMER_QWEN_BASE_URL`（默认：`https://portal.qwen.ai/v1`）。
 
 :::tip Qwen OAuth 与 Qwen Cloud（阿里 DashScope）
 `qwen-oauth` 使用面向消费者的 Qwen Portal，通过 OAuth 登录——适合个人用户。`alibaba` 提供商使用 Qwen Cloud（阿里 DashScope），需要 `DASHSCOPE_API_KEY`——适合程序化/生产工作负载。两者都路由到 Qwen 系列模型，但端点不同。

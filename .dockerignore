@@ -30,9 +30,9 @@ node_modules
 
 # Built artifacts that are regenerated inside the image.  Excluded so local
 # rebuilds on the developer's machine don't invalidate the npm-install layer
-# that now depends on the full ui-tui/packages/hermes-ink/ tree being present.
+# that now depends on the full ui-tui/packages/openamer-ink/ tree being present.
 ui-tui/dist/
-ui-tui/packages/hermes-ink/dist/
+ui-tui/packages/openamer-ink/dist/
 
 # CI/CD
 .github
@@ -57,11 +57,11 @@ htmlcov/
 
 # Runtime data (bind-mounted at /opt/data; must not leak into build context)
 data/
-.hermes-docker/
+.openamer-docker/
 .notebooklm-home/
 
 # Compose/profile runtime state (bind-mounted; avoid ownership/secret issues)
-hermes-config/
+openamer-config/
 runtime/
 
 # ---------- Not needed inside the Docker image ----------
@@ -84,8 +84,8 @@ docs/
 assets/
 infographic/
 
-# Plugin-level docs (hermes-achievements ships docs/ but the runtime doesn't read them)
-plugins/hermes-achievements/docs/
+# Plugin-level docs (openamer-achievements ships docs/ but the runtime doesn't read them)
+plugins/openamer-achievements/docs/
 
 # Nix / Homebrew / AUR packaging metadata — irrelevant to Docker
 nix/

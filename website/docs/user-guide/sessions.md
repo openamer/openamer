@@ -690,7 +690,7 @@ Key tables in `state.db`:
 - Before reset, the agent saves memories and skills from the expiring session
 - Opt-in auto-pruning: when `sessions.auto_prune` is `true`, ended sessions older than `sessions.retention_days` (default 90) are pruned at CLI/gateway startup
 - After a prune that actually removed rows, `state.db` is `VACUUM`ed to reclaim disk space (SQLite does not shrink the file on plain DELETE)
-- Pruning runs at most once per `sessions.min_interval_hours` (default 24); the last-run timestamp is tracked inside `state.db` itself so it's shared across every OpenAmer process in the same `HERMES_HOME`
+- Pruning runs at most once per `sessions.min_interval_hours` (default 24); the last-run timestamp is tracked inside `state.db` itself so it's shared across every OpenAmer process in the same `OPENAMER_HOME`
 
 Default is **off** — session history is valuable for `session_search` recall, and silently deleting it could surprise users. Enable in `~/.openamer/config.yaml`:
 

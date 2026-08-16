@@ -26,7 +26,7 @@ kanban:
   dispatch_in_gateway: false
 ```
 
-Or set the env var: `HERMES_KANBAN_DISPATCH_IN_GATEWAY=false`
+Or set the env var: `OPENAMER_KANBAN_DISPATCH_IN_GATEWAY=false`
 
 ## What each gateway does
 

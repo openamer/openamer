@@ -224,7 +224,7 @@ Error keys: `success`, `video` (None), `error`, `error_type`, `model`, `prompt`,
 
 ## Where to save artifacts
 
-If your backend returns base64, use `save_b64_video()` to write under `$HERMES_HOME/cache/videos/`. For raw bytes from a follow-up HTTP fetch, use `save_bytes_video()`. Otherwise return the upstream URL directly — the gateway resolves remote URLs on delivery.
+If your backend returns base64, use `save_b64_video()` to write under `$OPENAMER_HOME/cache/videos/`. For raw bytes from a follow-up HTTP fetch, use `save_bytes_video()`. Otherwise return the upstream URL directly — the gateway resolves remote URLs on delivery.
 
 ## Testing
 

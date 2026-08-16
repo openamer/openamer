@@ -57,7 +57,7 @@ Without v2: the "realtime" path is skipped; transcribe runs alone.
 | `audio_bridge.py` | v2: PulseAudio null-sink (Linux) + BlackHole probe (macOS) |
 | `realtime/openai_client.py` | v2: `RealtimeSession` + `RealtimeSpeaker` (file-queue → OpenAI Realtime WS → PCM) |
 | `node/protocol.py` | v3: message envelope + validation |
-| `node/registry.py` | v3: `$HERMES_HOME/workspace/meetings/nodes.json` |
+| `node/registry.py` | v3: `$OPENAMER_HOME/workspace/meetings/nodes.json` |
 | `node/server.py` | v3: `NodeServer` (runs on host machine) |
 | `node/client.py` | v3: `NodeClient` (used by tool handlers + CLI on gateway) |
 | `node/cli.py` | v3: `openamer meet node {run,list,approve,remove,status,ping}` |

@@ -10,7 +10,7 @@ Secret redaction is **on by default** — tool output (terminal stdout, `read_fi
 openamer config set security.redact_secrets true       # keep enabled globally
 ```
 
-**Restart required.** `security.redact_secrets` is snapshotted at import time — toggling it mid-session (e.g. via `export HERMES_REDACT_SECRETS=false` from a tool call) will NOT take effect for the running process. Tell the user to change it in config from a terminal, then start a new session. This is deliberate — it prevents an LLM from flipping the toggle on itself mid-task.
+**Restart required.** `security.redact_secrets` is snapshotted at import time — toggling it mid-session (e.g. via `export OPENAMER_REDACT_SECRETS=false` from a tool call) will NOT take effect for the running process. Tell the user to change it in config from a terminal, then start a new session. This is deliberate — it prevents an LLM from flipping the toggle on itself mid-task.
 
 Disable only when you deliberately need raw credential-like strings for debugging or redactor development:
 ```bash
@@ -41,7 +41,7 @@ openamer config set approvals.mode off         # bypass everything (not recommen
 
 Per-invocation bypass without changing config:
 - `openamer --yolo …`
-- `export HERMES_YOLO_MODE=1`
+- `export OPENAMER_YOLO_MODE=1`
 
 Note: YOLO / `approvals.mode: off` does NOT turn off secret redaction. They are independent.
 

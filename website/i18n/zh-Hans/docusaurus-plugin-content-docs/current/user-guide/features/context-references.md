@@ -82,10 +82,10 @@ Context references 受大小限制，以防止超出模型的 context window（�
 - SSH 密钥及配置：`~/.ssh/id_rsa`、`~/.ssh/id_ed25519`、`~/.ssh/authorized_keys`、`~/.ssh/config`
 - Shell 配置文件：`~/.bashrc`、`~/.zshrc`、`~/.profile`、`~/.bash_profile`、`~/.zprofile`
 - 凭据文件：`~/.netrc`、`~/.pgpass`、`~/.npmrc`、`~/.pypirc`
-- OpenAmer 环境文件：`$HERMES_HOME/.env`
+- OpenAmer 环境文件：`$OPENAMER_HOME/.env`
 
 以下目录被完全拦截（目录内的任意文件均不可访问）：
-- `~/.ssh/`、`~/.aws/`、`~/.gnupg/`、`~/.kube/`、`$HERMES_HOME/skills/.hub/`
+- `~/.ssh/`、`~/.aws/`、`~/.gnupg/`、`~/.kube/`、`$OPENAMER_HOME/skills/.hub/`
 
 ### 路径遍历防护
 

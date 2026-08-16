@@ -24,7 +24,7 @@ node scripts/dev-no-hmr.mjs
 
 # Terminal B — start Electron with CDP exposed
 cd apps/desktop
-XCURSOR_SIZE=24 HERMES_DESKTOP_DEV_SERVER=http://127.0.0.1:5174 \
+XCURSOR_SIZE=24 OPENAMER_DESKTOP_DEV_SERVER=http://127.0.0.1:5174 \
   ../../node_modules/.bin/electron --remote-debugging-port=9222 .
 ```
 

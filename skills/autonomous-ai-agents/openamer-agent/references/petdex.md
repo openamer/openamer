@@ -46,7 +46,7 @@ Use the `terminal` tool to run `openamer pets <subcommand>`.
 4. Confirm setup: `openamer pets doctor` — shows the resolved pet, configured
    render mode, detected terminal graphics protocol, and effective mode.
 
-Pets install into `<HERMES_HOME>/pets/<slug>/` (profile-aware). Selecting a pet
+Pets install into `<OPENAMER_HOME>/pets/<slug>/` (profile-aware). Selecting a pet
 writes `display.pet.slug` + `display.pet.enabled` to `config.yaml`.
 
 ## Configuration
@@ -67,7 +67,7 @@ Under `display.pet` in `config.yaml`:
 - A pet only shows once one is installed AND selected (`enabled: true`).
 - Inside a pipe/redirect (no TTY) terminal rendering is disabled by design.
 - The petdex npm CLI installs to `~/.codex/pets`; OpenAmer uses its own
-  profile-scoped `<HERMES_HOME>/pets/` instead — install through `openamer pets`.
+  profile-scoped `<OPENAMER_HOME>/pets/` instead — install through `openamer pets`.
 
 ## Verification
 

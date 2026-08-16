@@ -55,7 +55,7 @@ laptop and fails to connect. The callback never reaches the OpenAmer process, th
 flow times out, and `/reload-mcp` returns "No MCP tools available" with no detail.
 
 Symptoms to recognize: `[xdg-open] <defunct>` processes under the openamer user, an
-empty or missing tokens directory (`$HERMES_HOME/mcp-tokens/`), and a reload that
+empty or missing tokens directory (`$OPENAMER_HOME/mcp-tokens/`), and a reload that
 responds without any "Added/Reconnected: X" line in `change_detail`.
 
 ## Cheap First Fallbacks: the Built-in Flow's Own Escape Hatches
@@ -98,11 +98,11 @@ platforms inject it into the environment — grep for it rather than making the
 user hunt:
 
 ```bash
-env | grep -iE "HERMES_DASHBOARD_PUBLIC_URL|RAILWAY_PUBLIC_DOMAIN|RAILWAY_STATIC_URL|RAILWAY_SERVICE_.*_URL|PUBLIC_URL|BASE_URL|DOMAIN" \
+env | grep -iE "OPENAMER_DASHBOARD_PUBLIC_URL|RAILWAY_PUBLIC_DOMAIN|RAILWAY_STATIC_URL|RAILWAY_SERVICE_.*_URL|PUBLIC_URL|BASE_URL|DOMAIN" \
   | sed -E 's/(TOKEN|SECRET|KEY|PASSWORD)=.*/\1=***REDACTED***/I'
 ```
 
-`HERMES_DASHBOARD_PUBLIC_URL` is authoritative when present. On Railway also check
+`OPENAMER_DASHBOARD_PUBLIC_URL` is authoritative when present. On Railway also check
 `RAILWAY_PUBLIC_DOMAIN` / `RAILWAY_STATIC_URL` (the `*.up.railway.app` host) and
 `RAILWAY_SERVICE_*_URL` vars, which sometimes carry a friendlier custom domain.
 Hand the user the full `https://` URL and point them at the Connectors/MCP
@@ -111,7 +111,7 @@ to `*_TOKEN`/`*_SECRET` vars.
 
 **What the dashboard does NOT fix (still host-side / shell):** stdio servers that
 need shell auth state (a CLI `login` command whose credentials may not persist
-across restarts) and anything reading credentials from `$HERMES_HOME/.env`. Those
+across restarts) and anything reading credentials from `$OPENAMER_HOME/.env`. Those
 are out of the dashboard's scope regardless.
 
 ## The Workaround
@@ -128,7 +128,7 @@ the SAME code block as the token exchange (see pitfall 16).
 ### 1. Confirm it's a remote gateway
 
 ```bash
-env | grep -iE "HERMES|RAILWAY|CONTAINER"
+env | grep -iE "OPENAMER|RAILWAY|CONTAINER"
 echo "$DISPLAY $WAYLAND_DISPLAY $SSH_CLIENT"
 ```
 
@@ -136,12 +136,12 @@ No display + a remote indicator = remote gateway. `tools/mcp_oauth.py::_can_open
 uses these same env vars, so if OpenAmer' own auto-detect says "headless", the
 built-in flow won't work.
 
-### 2. Find HERMES_HOME and the config path
+### 2. Find OPENAMER_HOME and the config path
 
 ```bash
-HERMES_HOME=$(python3 -c 'from openamer_constants import get_openamer_home; print(get_openamer_home())')
-echo "config: $HERMES_HOME/config.yaml"
-echo "tokens: $HERMES_HOME/mcp-tokens/"
+OPENAMER_HOME=$(python3 -c 'from openamer_constants import get_openamer_home; print(get_openamer_home())')
+echo "config: $OPENAMER_HOME/config.yaml"
+echo "tokens: $OPENAMER_HOME/mcp-tokens/"
 ```
 
 ### 3. Discover OAuth metadata from the MCP server
@@ -243,7 +243,7 @@ When the user pastes the callback URL:
 ### 8. Write tokens in OpenAmer' exact schema
 
 `tools/mcp_oauth.py::OpenAmerTokenStorage` expects two files under
-`$HERMES_HOME/mcp-tokens/` (create dir with `0o700`, files with `0o600`):
+`$OPENAMER_HOME/mcp-tokens/` (create dir with `0o700`, files with `0o600`):
 
 **`<server_name>.json`** — the `OAuthToken` pydantic model:
 ```json

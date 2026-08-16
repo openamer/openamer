@@ -29,7 +29,7 @@ openamer [global-options] <command> [subcommand/options]
 | `--pass-session-id` | 在 agent 的 system prompt（系统提示词）中包含会话 ID。 |
 | `--ignore-user-config` | 忽略 `~/.openamer/config.yaml`，回退到内置默认值。`.env` 中的凭据仍会加载。 |
 | `--ignore-rules` | 跳过 `AGENTS.md`、`SOUL.md`、`.cursorrules`、memory（记忆）和预加载 skill 的自动注入。 |
-| `--tui` | 启动 [TUI](../user-guide/tui.md) 而非经典 CLI。等同于 `HERMES_TUI=1`。 |
+| `--tui` | 启动 [TUI](../user-guide/tui.md) 而非经典 CLI。等同于 `OPENAMER_TUI=1`。 |
 | `--dev` | 与 `--tui` 配合使用：通过 `tsx` 直接运行 TypeScript 源码而非预构建包（供 TUI 贡献者使用）。 |
 
 ## 顶级命令
@@ -79,7 +79,7 @@ openamer [global-options] <command> [subcommand/options]
 | `openamer profile` | 管理 profile——多个隔离的 OpenAmer 实例。 |
 | `openamer completion` | 打印 shell 补全脚本（bash/zsh/fish）。 |
 | `openamer version` | 显示版本信息。 |
-| `openamer update` | 拉取最新代码并重新安装依赖。`--check` 预览而不安装；`--backup` 在拉取前对 `HERMES_HOME` 进行快照。 |
+| `openamer update` | 拉取最新代码并重新安装依赖。`--check` 预览而不安装；`--backup` 在拉取前对 `OPENAMER_HOME` 进行快照。 |
 | `openamer uninstall` | 从系统中删除 OpenAmer。 |
 
 ## `openamer chat`
@@ -138,13 +138,13 @@ answer=$(openamer -z "summarize this" < /path/to/file.txt)
 
 | 标志 | 等效环境变量 | 用途 |
 |---|---|---|
-| `-m` / `--model <model>` | `HERMES_INFERENCE_MODEL` | 覆盖本次运行的模型 |
+| `-m` / `--model <model>` | `OPENAMER_INFERENCE_MODEL` | 覆盖本次运行的模型 |
 | `--provider <provider>` | _(无)_ | 覆盖本次运行的 provider |
 
 ```bash
 openamer -z "…" --provider openrouter --model openai/gpt-5.5
 # 或：
-HERMES_INFERENCE_MODEL=anthropic/claude-sonnet-4.6 openamer -z "…"
+OPENAMER_INFERENCE_MODEL=anthropic/claude-sonnet-4.6 openamer -z "…"
 ```
 
 相同的 agent、相同的工具、相同的 skill——只是剥离了所有交互式/装饰性层。如果你还需要在记录中包含工具输出，请改用 `openamer chat -q`；`-z` 专门用于"我只需要最终答案"的场景。
@@ -223,8 +223,8 @@ openamer gateway <subcommand>
 
 | 选项 | 说明 |
 |--------|-------------|
-| `--all` | 在 `start` / `restart` / `stop` 时：对**每个 profile** 的 gateway 执行操作，而不仅限于活跃的 `HERMES_HOME`。当你并行运行多个 profile 并希望在 `openamer update` 后全部重启时很有用。 |
-| `--no-supervise` | 在 `run` 时：在 s6-overlay Docker 镜像内部，跳过 s6 自动监管，退回到 pre-s6 前台语义——gateway 作为容器主进程运行，无自动重启。在 s6 镜像之外为空操作。等同于设置 `HERMES_GATEWAY_NO_SUPERVISE=1`。 |
+| `--all` | 在 `start` / `restart` / `stop` 时：对**每个 profile** 的 gateway 执行操作，而不仅限于活跃的 `OPENAMER_HOME`。当你并行运行多个 profile 并希望在 `openamer update` 后全部重启时很有用。 |
+| `--no-supervise` | 在 `run` 时：在 s6-overlay Docker 镜像内部，跳过 s6 自动监管，退回到 pre-s6 前台语义——gateway 作为容器主进程运行，无自动重启。在 s6 镜像之外为空操作。等同于设置 `OPENAMER_GATEWAY_NO_SUPERVISE=1`。 |
 
 :::tip WSL 用户
 使用 `openamer gateway run` 而非 `openamer gateway start`——WSL 的 systemd 支持不稳定。用 tmux 包裹以保持持久运行：`tmux new -s openamer 'openamer gateway run'`。详见 [WSL FAQ](/reference/faq#wsl-gateway-keeps-disconnecting-or-openamer-gateway-start-fails)。
@@ -317,7 +317,7 @@ openamer slack manifest --slashes-only  # 仅输出 features.slash_commands 数�
 
 | 标志 | 默认值 | 用途 |
 |------|---------|---------|
-| `--write [PATH]` | stdout | 写入文件而非 stdout。裸 `--write` 写入 `$HERMES_HOME/slack-manifest.json`。 |
+| `--write [PATH]` | stdout | 写入文件而非 stdout。裸 `--write` 写入 `$OPENAMER_HOME/slack-manifest.json`。 |
 | `--name NAME` | `OpenAmer` | Slack 中的机器人显示名称。 |
 | `--description DESC` | 默认简介 | Slack app 目录中显示的机器人描述。 |
 | `--slashes-only` | 关闭 | 仅输出 `features.slash_commands`，用于合并到手动维护的 manifest 中。 |
@@ -391,9 +391,9 @@ openamer kanban [--board <slug>] <action> [options]
 
 | 标志 | 用途 |
 |------|---------|
-| `--board <slug>` | 操作特定看板。默认为当前看板（通过 `openamer kanban boards switch`、`HERMES_KANBAN_BOARD` 环境变量或 `default` 设置）。 |
+| `--board <slug>` | 操作特定看板。默认为当前看板（通过 `openamer kanban boards switch`、`OPENAMER_KANBAN_BOARD` 环境变量或 `default` 设置）。 |
 
-**这是人工/脚本操作界面。** 调度器生成的 agent worker 通过专用的 `kanban_*` [toolset](/user-guide/features/kanban#how-workers-interact-with-the-board)（`kanban_show`、`kanban_complete`、`kanban_block`、`kanban_create`、`kanban_link`、`kanban_comment`、`kanban_heartbeat`；编排器 profile 还可使用 `kanban_list` 和 `kanban_unblock`）驱动看板，而非调用 `openamer kanban`。Worker 的环境中固定了 `HERMES_KANBAN_BOARD`，因此物理上无法看到其他看板。
+**这是人工/脚本操作界面。** 调度器生成的 agent worker 通过专用的 `kanban_*` [toolset](/user-guide/features/kanban#how-workers-interact-with-the-board)（`kanban_show`、`kanban_complete`、`kanban_block`、`kanban_create`、`kanban_link`、`kanban_comment`、`kanban_heartbeat`；编排器 profile 还可使用 `kanban_list` 和 `kanban_unblock`）驱动看板，而非调用 `openamer kanban`。Worker 的环境中固定了 `OPENAMER_KANBAN_BOARD`，因此物理上无法看到其他看板。
 
 | 操作 | 用途 |
 |--------|---------|
@@ -440,7 +440,7 @@ openamer kanban boards rm atm10-server
 openamer kanban boards rm atm10-server --delete
 ```
 
-看板解析顺序（优先级从高到低）：`--board <slug>` 标志 → `HERMES_KANBAN_BOARD` 环境变量 → `~/.openamer/kanban/current` 文件 → `default`。
+看板解析顺序（优先级从高到低）：`--board <slug>` 标志 → `OPENAMER_KANBAN_BOARD` 环境变量 → `~/.openamer/kanban/current` 文件 → `default`。
 
 所有操作也可作为 gateway 中的斜杠命令使用（`/kanban …`），参数界面相同——包括 `boards` 子命令和 `--board` 标志。
 
@@ -509,7 +509,7 @@ openamer dump [--show-keys]
 |---------|---------|
 | **Header** | OpenAmer 版本、发布日期、git commit hash |
 | **Environment** | 操作系统、Python 版本、OpenAI SDK 版本 |
-| **Identity** | 活跃 profile 名称、HERMES_HOME 路径 |
+| **Identity** | 活跃 profile 名称、OPENAMER_HOME 路径 |
 | **Model** | 已配置的默认模型和 provider |
 | **Terminal** | 后端类型（local、docker、ssh 等） |
 | **API keys** | 所有 22 个 provider/工具 API 密钥的存在性检查 |
@@ -1233,7 +1233,7 @@ openamer update [--check] [--backup] [--restart-gateway]
 | 选项 | 说明 |
 |--------|-------------|
 | `--check` | 并排打印当前 commit 和最新 `origin/main` commit，同步时退出码为 0，落后时为 1。不拉取、不安装、不重启任何内容。 |
-| `--backup` | 在拉取前创建 `HERMES_HOME` 的带标签预更新快照（config、auth、会话、skill、配对数据）。默认**关闭**——之前的始终备份行为在大型主目录上每次更新会增加数分钟。通过 `config.yaml` 中的 `update.backup: true` 永久开启。 |
+| `--backup` | 在拉取前创建 `OPENAMER_HOME` 的带标签预更新快照（config、auth、会话、skill、配对数据）。默认**关闭**——之前的始终备份行为在大型主目录上每次更新会增加数分钟。通过 `config.yaml` 中的 `update.backup: true` 永久开启。 |
 | `--restart-gateway` | 成功更新后重启正在运行的 gateway 服务。如果安装了多个 profile，隐含 `--all` 语义。 |
 
 附加行为：

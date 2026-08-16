@@ -394,7 +394,7 @@ db.delete_session("sess_abc123")
 Default path: `~/.openamer/state.db`
 
 This is derived from `openamer_constants.get_openamer_home()` which resolves to
-`~/.openamer/` by default, or the value of `HERMES_HOME` environment variable.
+`~/.openamer/` by default, or the value of `OPENAMER_HOME` environment variable.
 
 The database file, WAL file (`state.db-wal`), and shared-memory file
 (`state.db-shm`) are all created in the same directory.

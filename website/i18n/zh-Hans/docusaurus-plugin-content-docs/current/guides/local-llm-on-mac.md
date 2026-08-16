@@ -228,13 +228,13 @@ OpenAmer 会自动检测本地端点（localhost、局域网 IP）并放宽其�
 
 ```bash
 # 在 .env 中——将默认的 120s 提高到 30 分钟
-HERMES_STREAM_READ_TIMEOUT=1800
+OPENAMER_STREAM_READ_TIMEOUT=1800
 ```
 
 | 超时类型 | 默认值 | 本地自动调整 | 环境变量覆盖 |
 |---------|---------|----------------------|------------------|
-| 流式读取（socket 级别） | 120s | 提升至 1800s | `HERMES_STREAM_READ_TIMEOUT` |
-| 停滞流检测 | 180s | 完全禁用 | `HERMES_STREAM_STALE_TIMEOUT` |
-| API 调用（非流式） | 1800s | 无需调整 | `HERMES_API_TIMEOUT` |
+| 流式读取（socket 级别） | 120s | 提升至 1800s | `OPENAMER_STREAM_READ_TIMEOUT` |
+| 停滞流检测 | 180s | 完全禁用 | `OPENAMER_STREAM_STALE_TIMEOUT` |
+| API 调用（非流式） | 1800s | 无需调整 | `OPENAMER_API_TIMEOUT` |
 
 流式读取超时最容易引发问题——它是接收下一个数据块的 socket 级别截止时间。在大上下文的预填充（prefill）阶段，本地模型可能在处理 prompt 时数分钟内没有任何输出。自动检测机制会透明地处理这一情况。

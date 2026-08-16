@@ -54,7 +54,7 @@ Hub health check: `GET http://localhost:40404/mcp` returns JSON with instance PI
 Run the setup script to handle everything:
 
 ```bash
-bash "${HERMES_HOME:-$HOME/.openamer}/skills/creative/touchdesigner-mcp/scripts/setup.sh"
+bash "${OPENAMER_HOME:-$HOME/.openamer}/skills/creative/touchdesigner-mcp/scripts/setup.sh"
 ```
 
 The script will:

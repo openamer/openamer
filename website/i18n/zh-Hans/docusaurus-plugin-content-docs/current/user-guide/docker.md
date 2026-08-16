@@ -60,7 +60,7 @@ docker run -d \
 
 ## 运行 dashboard
 
-内置 Web dashboard 在同一容器内作为受 s6-rc 监管的服务与 gateway 并行运行。设置 `HERMES_DASHBOARD=1` 即可拉起它：
+内置 Web dashboard 在同一容器内作为受 s6-rc 监管的服务与 gateway 并行运行。设置 `OPENAMER_DASHBOARD=1` 即可拉起它：
 
 ```sh
 docker run -d \
@@ -69,7 +69,7 @@ docker run -d \
   -v ~/.openamer:/opt/data \
   -p 8642:8642 \
   -p 9119:9119 \
-  -e HERMES_DASHBOARD=1 \
+  -e OPENAMER_DASHBOARD=1 \
   nousresearch/openamer-agent gateway run
 ```
 
@@ -77,12 +77,12 @@ Dashboard 由 s6 监管：若进程崩溃，`s6-supervise` 会在短暂退避后
 
 | 环境变量 | 描述 | 默认值 |
 |---------------------|-------------|---------|
-| `HERMES_DASHBOARD` | 设为 `1`（或 `true` / `yes`）以启用受监管的 dashboard 服务 | *（未设置——服务已注册但保持关闭）* |
-| `HERMES_DASHBOARD_HOST` | dashboard HTTP 服务器的绑定地址 | `0.0.0.0` |
-| `HERMES_DASHBOARD_PORT` | dashboard HTTP 服务器的端口 | `9119` |
-| `HERMES_DASHBOARD_INSECURE` | **已弃用 / 空操作。** 以前用于绕过鉴权门控；自 2026 年 6 月的安全加固起，它不再禁用鉴权。任何非回环绑定都必须配置鉴权提供方 | *（被忽略——请改为配置提供方）* |
+| `OPENAMER_DASHBOARD` | 设为 `1`（或 `true` / `yes`）以启用受监管的 dashboard 服务 | *（未设置——服务已注册但保持关闭）* |
+| `OPENAMER_DASHBOARD_HOST` | dashboard HTTP 服务器的绑定地址 | `0.0.0.0` |
+| `OPENAMER_DASHBOARD_PORT` | dashboard HTTP 服务器的端口 | `9119` |
+| `OPENAMER_DASHBOARD_INSECURE` | **已弃用 / 空操作。** 以前用于绕过鉴权门控；自 2026 年 6 月的安全加固起，它不再禁用鉴权。任何非回环绑定都必须配置鉴权提供方 | *（被忽略——请改为配置提供方）* |
 
-容器内的 dashboard 默认绑定 `0.0.0.0`，否则发布的 `-p 9119:9119` 端口将无法从宿主机访问。若你要把它限制在容器回环地址（例如 sidecar / 反向代理拓扑），请显式设置 `HERMES_DASHBOARD_HOST=127.0.0.1`。
+容器内的 dashboard 默认绑定 `0.0.0.0`，否则发布的 `-p 9119:9119` 端口将无法从宿主机访问。若你要把它限制在容器回环地址（例如 sidecar / 反向代理拓扑），请显式设置 `OPENAMER_DASHBOARD_HOST=127.0.0.1`。
 
 当以下两项同时满足时，dashboard 的鉴权门控会自动启用：
 
@@ -91,21 +91,21 @@ Dashboard 由 s6 监管：若进程崩溃，`s6-supervise` 会在短暂退避后
 
 有三种内置方式可满足第二个条件：
 
-- **用户名/密码** —— 最简单的自托管 / 局域网 / VPN 内部署方式：设置 `HERMES_DASHBOARD_BASIC_AUTH_USERNAME` + `HERMES_DASHBOARD_BASIC_AUTH_PASSWORD`（以及用于跨重启稳定 session 的 `HERMES_DASHBOARD_BASIC_AUTH_SECRET`）。不适合直接暴露到公网上。
-- **OAuth（Nous Portal）** —— 适合托管/公网部署：设置 `HERMES_DASHBOARD_OAUTH_CLIENT_ID` 后，`dashboard_auth/nous` 提供者会自动激活。
-- **自托管 OIDC** —— 通过标准 OpenID Connect 接入你自己的身份提供商：设置 `HERMES_DASHBOARD_OIDC_ISSUER` + `HERMES_DASHBOARD_OIDC_CLIENT_ID` 后，`dashboard_auth/self_hosted` 提供者会激活。
+- **用户名/密码** —— 最简单的自托管 / 局域网 / VPN 内部署方式：设置 `OPENAMER_DASHBOARD_BASIC_AUTH_USERNAME` + `OPENAMER_DASHBOARD_BASIC_AUTH_PASSWORD`（以及用于跨重启稳定 session 的 `OPENAMER_DASHBOARD_BASIC_AUTH_SECRET`）。不适合直接暴露到公网上。
+- **OAuth（Nous Portal）** —— 适合托管/公网部署：设置 `OPENAMER_DASHBOARD_OAUTH_CLIENT_ID` 后，`dashboard_auth/nous` 提供者会自动激活。
+- **自托管 OIDC** —— 通过标准 OpenID Connect 接入你自己的身份提供商：设置 `OPENAMER_DASHBOARD_OIDC_ISSUER` + `OPENAMER_DASHBOARD_OIDC_CLIENT_ID` 后，`dashboard_auth/self_hosted` 提供者会激活。
 
 无论选择哪种，调用方在访问受保护路由前都会先被重定向到登录页。完整说明见 [Web Dashboard → 鉴权](features/web-dashboard.md)。
 
 如果未注册提供者且绑定为非回环地址，dashboard **会在启动时
 失败关闭**，并给出指向缺失环境变量的具体错误信息。现在已不再
 存在以无鉴权方式在公网绑定上提供 dashboard 的“逃生通道”：
-`HERMES_DASHBOARD_INSECURE=1` 现在是一个已弃用的空操作（它会
+`OPENAMER_DASHBOARD_INSECURE=1` 现在是一个已弃用的空操作（它会
 打印告警并被忽略）。请改为配置鉴权提供方，或设置
-`HERMES_DASHBOARD_HOST=127.0.0.1` 并通过 SSH 隧道 / Tailscale 访问。
+`OPENAMER_DASHBOARD_HOST=127.0.0.1` 并通过 SSH 隧道 / Tailscale 访问。
 
 :::warning 为什么移除了 `--insecure`
-无鉴权的公网 dashboard 是 2026 年 6 月 MCP 配置持久化攻击活动的入口：互联网扫描器访问到暴露的 dashboard（以及 OpenAI API 服务器），诱导 agent 植入 SSH 密钥后门。现在每个非回环绑定都强制启用鉴权门控。对于可信局域网 / homelab 主机，内置的用户名/密码提供方（`HERMES_DASHBOARD_BASIC_AUTH_USERNAME` + `_PASSWORD`）是满足该要求的零基础设施方式。
+无鉴权的公网 dashboard 是 2026 年 6 月 MCP 配置持久化攻击活动的入口：互联网扫描器访问到暴露的 dashboard（以及 OpenAI API 服务器），诱导 agent 植入 SSH 密钥后门。现在每个非回环绑定都强制启用鉴权门控。对于可信局域网 / homelab 主机，内置的用户名/密码提供方（`OPENAMER_DASHBOARD_BASIC_AUTH_USERNAME` + `_PASSWORD`）是满足该要求的零基础设施方式。
 :::
 
 当独立的 dashboard 容器与宿主机共享 PID 与网络命名空间时（例如 `network_mode: host`，正如仓库自带的 `docker-compose.yml` 中的 `dashboard` 服务那样），**是**支持将 dashboard 作为独立容器运行的。其 gateway 存活检测需要与 gateway 进程共享 PID 命名空间，因此该限制仅适用于在隔离的 bridge 网络容器中、且未共享 PID 命名空间的 dashboard。
@@ -150,7 +150,7 @@ docker run -it --rm \
 
 所有可变的 OpenAmer 状态都应位于 `/opt/data` 下：配置、`.env`、profiles、skills、memories、sessions、logs、dashboard 上传、plugins 以及其他用户管理的文件。官方镜像还会阻止在运行时向不可变的 `/opt/openamer` 树写入 `.pyc` 或执行 OpenAmer 的懒安装依赖流程。
 
-如果运维人员确实需要修复或检查 `/opt/data` 之外的文件，请有意识地使用 root shell。`openamer` shim 默认会把 `docker exec openamer openamer ...` 降回运行时用户；只有在你明确需要 root 语义时，才临时设置 `HERMES_DOCKER_EXEC_AS_ROOT=1`。
+如果运维人员确实需要修复或检查 `/opt/data` 之外的文件，请有意识地使用 root shell。`openamer` shim 默认会把 `docker exec openamer openamer ...` 降回运行时用户；只有在你明确需要 root 语义时，才临时设置 `OPENAMER_DOCKER_EXEC_AS_ROOT=1`。
 
 某些 skill CLI 会把凭据写到 `~` 下，因此在官方 Docker 布局里要针对子进程 HOME 初始化，而不是只针对数据卷根目录。例如 [xurl skill](./skills/bundled/social-media/social-media-xurl.md) 会把 OAuth 状态存到 `~/.xurl`；在容器里这对应 `/opt/data/home/.xurl`，因此手动认证时应使用 `HOME=/opt/data/home xurl auth status` 之类的调用。
 
@@ -166,7 +166,7 @@ OpenAmer 支持[多个 profile](../reference/profile-commands.md)——独立的
 
 - 一个专用的 s6 服务槽位 `/run/service/gateway-<name>/`，运行时动态注册，无需重建镜像。
 - 崩溃后的自动重启，由 `s6-supervise` 管理退避。
-- 每个 profile 独立的轮转日志：`${HERMES_HOME}/logs/gateways/<name>/current`。
+- 每个 profile 独立的轮转日志：`${OPENAMER_HOME}/logs/gateways/<name>/current`。
 - 跨容器重启的状态持久化：启动协调器会读取该 profile 的 `gateway_state.json`，仅在上次记录状态为 `running` 时自动拉起。
 
 容器内生命周期命令与宿主机上一致：
@@ -217,11 +217,11 @@ services:
     command: gateway run
     ports:
       - "8642:8642"   # gateway API
-      - "9119:9119"   # dashboard（仅在 HERMES_DASHBOARD=1 时生效）
+      - "9119:9119"   # dashboard（仅在 OPENAMER_DASHBOARD=1 时生效）
     volumes:
       - ~/.openamer:/opt/data
     environment:
-      - HERMES_DASHBOARD=1
+      - OPENAMER_DASHBOARD=1
       # 取消注释以直接转发特定环境变量而非使用 .env 文件：
       # - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
       # - OPENAI_API_KEY=${OPENAI_API_KEY}
@@ -273,7 +273,7 @@ docker run -d \
 
 容器的 `ENTRYPOINT` 是 s6-overlay 的 `/init`。启动时：
 1. 以 root 身份运行 `/etc/cont-init.d/01-openamer-setup`（即 `docker/stage2-hook.sh`）：可选的 UID/GID 重映射、修复卷所有权、首次启动时初始化 `.env` / `config.yaml` / `SOUL.md`、同步内置技能。
-2. 运行 `/etc/cont-init.d/02-reconcile-profiles`（即 `openamer_cli.container_boot`）：遍历 `$HERMES_HOME/profiles/<name>/`，在 `/run/service/gateway-<profile>/` 下重建各 profile 的 gateway s6 服务槽，并仅自动启动上次记录状态为 `running` 的 profile（参见 [Per-profile gateway 监管](#per-profile-gateway-supervision)）。
+2. 运行 `/etc/cont-init.d/02-reconcile-profiles`（即 `openamer_cli.container_boot`）：遍历 `$OPENAMER_HOME/profiles/<name>/`，在 `/run/service/gateway-<profile>/` 下重建各 profile 的 gateway s6 服务槽，并仅自动启动上次记录状态为 `running` 的 profile（参见 [Per-profile gateway 监管](#per-profile-gateway-supervision)）。
 3. 启动静态的 `main-openamer` 和 `dashboard` s6-rc 服务。
 4. 将容器的 CMD 作为主程序 exec（`/opt/openamer/docker/main-wrapper.sh`），根据用户传给 `docker run` 的参数进行路由：
    - 无参数 → `openamer`（默认）
@@ -286,7 +286,7 @@ docker run -d \
 :::
 
 :::warning 权限模型
-除非你在命令链中保留 `/init`（或等效的旧版 `docker/entrypoint.sh` shim，它会转发到 stage2 hook），否则不要覆盖镜像入口点。s6-overlay 的 `/init` 以 root 运行，以便在首次启动时对卷执行 chown，然后通过 `s6-setuidgid` 为每个受监管的服务**以及**主程序降权至 `openamer` 用户。在官方镜像内以 root 启动 `openamer gateway run` 默认会被拒绝，因为这可能在 `/opt/data` 中留下 root 所有的文件，导致后续 dashboard 或 gateway 启动失败。仅在你有意接受该风险时才设置 `HERMES_ALLOW_ROOT_GATEWAY=1`。
+除非你在命令链中保留 `/init`（或等效的旧版 `docker/entrypoint.sh` shim，它会转发到 stage2 hook），否则不要覆盖镜像入口点。s6-overlay 的 `/init` 以 root 运行，以便在首次启动时对卷执行 chown，然后通过 `s6-setuidgid` 为每个受监管的服务**以及**主程序降权至 `openamer` 用户。在官方镜像内以 root 启动 `openamer gateway run` 默认会被拒绝，因为这可能在 `/opt/data` 中留下 root 所有的文件，导致后续 dashboard 或 gateway 启动失败。仅在你有意接受该风险时才设置 `OPENAMER_ALLOW_ROOT_GATEWAY=1`。
 :::
 
 ### Per-profile gateway 监管
@@ -304,9 +304,9 @@ openamer profile delete coder            # 拆除 s6 槽
 **相比 pre-s6 镜像的监管优势：**
 
 - Gateway 崩溃后由 `s6-supervise` 在约 1 秒退避后自动重启。
-- Dashboard 崩溃后自动重启（设置 `HERMES_DASHBOARD=1` 以启动）。
-- `docker restart` 保留运行中的 gateway：cont-init 协调器读取 `$HERMES_HOME/profiles/<name>/gateway_state.json`，若上次记录状态为 `running` 则恢复该槽。已停止的 gateway 保持停止状态。
-- 各 profile 的 gateway 日志持久化于 `$HERMES_HOME/logs/gateways/<profile>/current`（由 `s6-log` 轮转），协调器的操作记录在每次启动时追加到 `$HERMES_HOME/logs/container-boot.log`。
+- Dashboard 崩溃后自动重启（设置 `OPENAMER_DASHBOARD=1` 以启动）。
+- `docker restart` 保留运行中的 gateway：cont-init 协调器读取 `$OPENAMER_HOME/profiles/<name>/gateway_state.json`，若上次记录状态为 `running` 则恢复该槽。已停止的 gateway 保持停止状态。
+- 各 profile 的 gateway 日志持久化于 `$OPENAMER_HOME/logs/gateways/<profile>/current`（由 `s6-log` 轮转），协调器的操作记录在每次启动时追加到 `$OPENAMER_HOME/logs/container-boot.log`。
 
 在容器内执行 `openamer status` 会显示 `Manager: s6 (container supervisor)`。使用 `/command/s6-svstat /run/service/gateway-<name>` 查看原始 supervisor 状态（注意 `/command/` 仅在监管树进程的 PATH 中；从 `docker exec` 调用时请传入绝对路径）。
 
@@ -560,7 +560,7 @@ model:
 
 ### "Permission denied" 错误
 
-容器的 stage2 hook 通过 `s6-setuidgid` 在每个受监管的服务内将权限降至非 root 用户 `openamer`（UID 10000）。如果宿主机的 `~/.openamer/` 由不同 UID 拥有，请设置 `HERMES_UID`/`HERMES_GID` 以匹配宿主机用户，或确保数据目录可写：
+容器的 stage2 hook 通过 `s6-setuidgid` 在每个受监管的服务内将权限降至非 root 用户 `openamer`（UID 10000）。如果宿主机的 `~/.openamer/` 由不同 UID 拥有，请设置 `OPENAMER_UID`/`OPENAMER_GID` 以匹配宿主机用户，或确保数据目录可写：
 
 ```sh
 chmod -R 755 ~/.openamer

@@ -57,7 +57,7 @@ openamer-agent/
 ├── model_tools.py            # 工具发现、schema 收集、分发
 ├── toolsets.py               # 工具分组与平台预设
 ├── openamer_state.py           # 带 FTS5 的 SQLite 会话/状态数据库
-├── openamer_constants.py       # HERMES_HOME、感知 profile 的路径
+├── openamer_constants.py       # OPENAMER_HOME、感知 profile 的路径
 ├── batch_runner.py           # 批量轨迹生成
 │
 ├── agent/                    # Agent 内部模块
@@ -260,7 +260,7 @@ CLI、gateway、cron、ACP 及辅助调用共用的运行时解析器。将 `(pr
 | **可中断** | API 调用和工具执行可被用户输入或信号在执行中途取消。 |
 | **平台无关的核心** | 单一 AIAgent 类同时服务于 CLI、gateway、ACP、批处理和 API 服务器。平台差异存在于入口点，而非 agent 内部。 |
 | **松耦合** | 可选子系统（MCP、插件、记忆提供者、RL 环境）使用注册表模式和 check_fn 门控，而非硬依赖。 |
-| **Profile 隔离** | 每个 profile（`openamer -p <name>`）拥有独立的 HERMES_HOME、配置、记忆、会话和 gateway PID。多个 profile 可并发运行。 |
+| **Profile 隔离** | 每个 profile（`openamer -p <name>`）拥有独立的 OPENAMER_HOME、配置、记忆、会话和 gateway PID。多个 profile 可并发运行。 |
 
 ## 文件依赖链
 

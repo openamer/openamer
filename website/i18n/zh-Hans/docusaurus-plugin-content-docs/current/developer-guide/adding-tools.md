@@ -27,7 +27,7 @@ description: "如何向 OpenAmer Agent 添加新工具——schema、handler、�
 添加一个工具涉及 **2 个文件**：
 
 1. **`tools/your_tool.py`** — handler、schema、check 函数、`registry.register()` 调用
-2. **`toolsets.py`** — 将工具名称添加到 `_HERMES_CORE_TOOLS`（或特定 toolset）
+2. **`toolsets.py`** — 将工具名称添加到 `_OPENAMER_CORE_TOOLS`（或特定 toolset）
 
 任何包含顶层 `registry.register()` 调用的 `tools/*.py` 文件都会在启动时被自动发现——无需手动维护导入列表。
 
@@ -122,7 +122,7 @@ registry.register(
 
 ```python
 # If it should be available on all platforms (CLI + messaging):
-_HERMES_CORE_TOOLS = [
+_OPENAMER_CORE_TOOLS = [
     ...
     "weather",  # <-- add here
 ]

@@ -78,7 +78,7 @@ CLI 会自动检测多行粘贴。直接粘贴代码块或错误堆栈——不�
 
 ### SOUL.md：自定义个性
 
-想让 OpenAmer 拥有稳定的默认风格？编辑 `~/.openamer/SOUL.md`（如果使用自定义 OpenAmer home，则为 `$HERMES_HOME/SOUL.md`）。OpenAmer 现在会自动生成一个初始 SOUL 文件，并将该全局文件作为实例级个性来源。
+想让 OpenAmer 拥有稳定的默认风格？编辑 `~/.openamer/SOUL.md`（如果使用自定义 OpenAmer home，则为 `$OPENAMER_HOME/SOUL.md`）。OpenAmer 现在会自动生成一个初始 SOUL 文件，并将该全局文件作为实例级个性来源。
 
 完整说明请参阅 [在 OpenAmer 中使用 SOUL.md](/guides/use-soul-with-openamer)。
 

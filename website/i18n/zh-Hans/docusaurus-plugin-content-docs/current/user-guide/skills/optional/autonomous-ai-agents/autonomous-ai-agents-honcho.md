@@ -352,7 +352,7 @@ honcho_reasoning query="<question>"  → synthesized answer, use when search isn
 
 ## 配置参考
 
-配置文件：`$HERMES_HOME/honcho.json`（配置文件本地）或 `~/.honcho/config.json`（全局）。
+配置文件：`$OPENAMER_HOME/honcho.json`（配置文件本地）或 `~/.honcho/config.json`（全局）。
 
 ### 关键设置
 

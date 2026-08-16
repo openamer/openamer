@@ -111,7 +111,7 @@ every platform goes through this path — not just Discord.
 ## Relationship to multiplexing
 
 `profile_routes` requires `gateway.multiplex_profiles: true`. Multiplexing is what
-activates the per-profile runtime scope (per-profile `HERMES_HOME`, secret scope, and
+activates the per-profile runtime scope (per-profile `OPENAMER_HOME`, secret scope, and
 profile-namespaced session keys); routing is the decision layer that picks *which*
 profile a given guild/channel/thread lands in. With multiplexing off, `profile_routes`
 is ignored entirely — behavior is byte-identical to a single-profile gateway.

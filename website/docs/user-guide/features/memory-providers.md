@@ -72,7 +72,7 @@ The legacy `openamer honcho setup` command still works (it now redirects to `ope
 
 **Headless / remote machines:** for cloud auth on a box without a browser (SSH, remote VM), pick **device** at the wizard's auth-method prompt. The CLI prints a short code and a verification link; open the link in a browser on any other machine, approve, and setup completes — no API key copy-paste. The wizard defaults to this option automatically when it detects no usable local browser.
 
-**Config:** `$HERMES_HOME/honcho.json` (profile-local) or `~/.honcho/config.json` (global). Resolution order: `$HERMES_HOME/honcho.json` > `~/.openamer/honcho.json` > `~/.honcho/config.json`. See the [config reference](https://github.com/NousResearch/openamer-agent/blob/main/plugins/memory/honcho/README.md) and the [Honcho integration guide](https://docs.honcho.dev/v3/guides/integrations/openamer).
+**Config:** `$OPENAMER_HOME/honcho.json` (profile-local) or `~/.honcho/config.json` (global). Resolution order: `$OPENAMER_HOME/honcho.json` > `~/.openamer/honcho.json` > `~/.honcho/config.json`. See the [config reference](https://github.com/NousResearch/openamer-agent/blob/main/plugins/memory/honcho/README.md) and the [Honcho integration guide](https://docs.honcho.dev/v3/guides/integrations/openamer).
 
 <details>
 <summary>Full config reference</summary>
@@ -389,7 +389,7 @@ or in `mem0.json`:
 
 The plugin authenticates with `X-API-Key` and uses the server's `/search` / `/memories` routes. `api_key` is optional (omit only for `AUTH_DISABLED` servers). Don't set `mode: oss` — it takes precedence over `host`.
 
-**Config:** `$HERMES_HOME/mem0.json` (behavioral settings). Only the secret `MEM0_API_KEY` belongs in `~/.openamer/.env`.
+**Config:** `$OPENAMER_HOME/mem0.json` (behavioral settings). Only the secret `MEM0_API_KEY` belongs in `~/.openamer/.env`.
 
 | Key | Default | Description |
 |-----|---------|-------------|
@@ -436,7 +436,7 @@ The setup wizard installs dependencies automatically and only installs what's ne
 
 **Local mode UI:** `hindsight-embed -p openamer ui start`
 
-**Config:** `$HERMES_HOME/hindsight/config.json`
+**Config:** `$OPENAMER_HOME/hindsight/config.json`
 
 | Key | Default | Description |
 |-----|---------|-------------|
@@ -482,7 +482,7 @@ openamer config set memory.provider holographic
 
 | Key | Default | Description |
 |-----|---------|-------------|
-| `db_path` | `$HERMES_HOME/memory_store.db` | SQLite database path |
+| `db_path` | `$OPENAMER_HOME/memory_store.db` | SQLite database path |
 | `auto_extract` | `false` | Auto-extract facts at session end |
 | `default_trust` | `0.5` | Default trust score (0.0–1.0) |
 
@@ -543,7 +543,7 @@ openamer config set memory.provider byterover
 
 **Key features:**
 - Automatic pre-compression extraction (saves insights before context compression discards them)
-- Knowledge tree stored at `$HERMES_HOME/byterover/` (profile-scoped)
+- Knowledge tree stored at `$OPENAMER_HOME/byterover/` (profile-scoped)
 - SOC2 Type II certified cloud sync (optional)
 
 ---
@@ -576,7 +576,7 @@ npx supermemory local
 ```
 
 Before running `openamer memory setup`, set `base_url` in
-`$HERMES_HOME/supermemory.json`:
+`$OPENAMER_HOME/supermemory.json`:
 
 ```json
 {
@@ -588,7 +588,7 @@ Then run `openamer memory setup` and enter the API key printed by the local
 server. Configuring the endpoint first ensures the setup connection probe also
 stays local.
 
-**Config:** `$HERMES_HOME/supermemory.json`
+**Config:** `$OPENAMER_HOME/supermemory.json`
 
 | Key | Default | Description |
 |-----|---------|-------------|
@@ -672,8 +672,8 @@ openamer memory setup
 
 Each provider's data is isolated per [profile](/user-guide/profiles):
 
-- **Local storage providers** (Holographic, ByteRover) use `$HERMES_HOME/` paths which differ per profile
-- **Config file providers** (Honcho, Mem0, Hindsight, Supermemory) store config in `$HERMES_HOME/` so each profile has its own credentials
+- **Local storage providers** (Holographic, ByteRover) use `$OPENAMER_HOME/` paths which differ per profile
+- **Config file providers** (Honcho, Mem0, Hindsight, Supermemory) store config in `$OPENAMER_HOME/` so each profile has its own credentials
 - **Cloud providers** (RetainDB) auto-derive profile-scoped project names
 - **Env var providers** (OpenViking) are configured via each profile's `.env` file
 

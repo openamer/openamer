@@ -48,9 +48,9 @@ Where the installer puts things depends on whether you're installing as a normal
 | Installer                              | Code lives at                  | `openamer` binary                         | Data directory                       |
 | -------------------------------------- | ------------------------------ | --------------------------------------- | ------------------------------------ |
 | Per-user (git installer)               | `~/.openamer/openamer-agent/`      | `~/.local/bin/openamer` (symlink)         | `~/.openamer/`                         |
-| Root-mode (`sudo curl … \| sudo bash`) | `/usr/local/lib/openamer-agent/` | `/usr/local/bin/openamer`                 | `/root/.openamer/` (or `$HERMES_HOME`) |
+| Root-mode (`sudo curl … \| sudo bash`) | `/usr/local/lib/openamer-agent/` | `/usr/local/bin/openamer`                 | `/root/.openamer/` (or `$OPENAMER_HOME`) |
 
-The root-mode **FHS layout** (`/usr/local/lib/…`, `/usr/local/bin/openamer`) matches where other system-wide developer tools land on Linux. It's useful for shared-machine deployments where one system install should serve every user. Per-user config (auth, skills, sessions) still lives under each user's `~/.openamer/` or explicit `HERMES_HOME`.
+The root-mode **FHS layout** (`/usr/local/lib/…`, `/usr/local/bin/openamer`) matches where other system-wide developer tools land on Linux. It's useful for shared-machine deployments where one system install should serve every user. Per-user config (auth, skills, sessions) still lives under each user's `~/.openamer/` or explicit `OPENAMER_HOME`.
 
 ### After Installation
 

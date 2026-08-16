@@ -251,9 +251,9 @@ eval "$(openamer completion zsh)"
 
 ## 工作原理
 
-profile 使用 `HERMES_HOME` 环境变量。运行 `coder chat` 时，包装脚本在启动 openamer 前将 `HERMES_HOME` 设置为 `~/.openamer/profiles/coder`。由于代码库中 119+ 个文件通过 `get_openamer_home()` 解析路径，OpenAmer 状态会自动限定在 profile 目录范围内——包括配置、会话、记忆、技能、状态数据库、gateway PID、日志和 cron 任务。
+profile 使用 `OPENAMER_HOME` 环境变量。运行 `coder chat` 时，包装脚本在启动 openamer 前将 `OPENAMER_HOME` 设置为 `~/.openamer/profiles/coder`。由于代码库中 119+ 个文件通过 `get_openamer_home()` 解析路径，OpenAmer 状态会自动限定在 profile 目录范围内——包括配置、会话、记忆、技能、状态数据库、gateway PID、日志和 cron 任务。
 
-这与终端工作目录是分开的。工具执行从 `terminal.cwd` 开始（或在 local 后端使用 `cwd: "."` 时从启动目录开始），而非自动从 `HERMES_HOME` 开始。
+这与终端工作目录是分开的。工具执行从 `terminal.cwd` 开始（或在 local 后端使用 `cwd: "."` 时从启动目录开始），而非自动从 `OPENAMER_HOME` 开始。
 
 默认 profile 就是 `~/.openamer` 本身。无需迁移——现有安装的工作方式完全不变。
 

@@ -109,7 +109,7 @@ OpenAmer 应用多层防护机制：
 ## 限制
 
 - **仅限 macOS。** cua-driver 使用的私有 Apple SPI 在 Linux 或 Windows 上不存在。跨平台 GUI 自动化请使用 `browser` 工具集。
-- **私有 SPI 风险。** Apple 可能在任何 OS 更新中更改 SkyLight 的符号接口。OpenAmer 始终安装最新版 cua-driver，并在已安装的二进制文件低于其测试基线版本（按操作系统分别设定）时发出警告。没有版本固定开关——如需可复现的版本，请将 `HERMES_CUA_DRIVER_CMD` 指向特定的二进制文件。
+- **私有 SPI 风险。** Apple 可能在任何 OS 更新中更改 SkyLight 的符号接口。OpenAmer 始终安装最新版 cua-driver，并在已安装的二进制文件低于其测试基线版本（按操作系统分别设定）时发出警告。没有版本固定开关——如需可复现的版本，请将 `OPENAMER_CUA_DRIVER_CMD` 指向特定的二进制文件。
 - **性能。** 后台模式比前台模式慢——SkyLight 路由事件耗时约 5–20ms，而直接 HID 投递更快。对于 Agent 速度的点击操作无明显影响；若尝试录制速通视频则会有感知。
 - **不支持键盘输入密码。** `type` 对命令行 payload 有硬性屏蔽模式；密码请使用系统自动填充功能。
 
@@ -118,13 +118,13 @@ OpenAmer 应用多层防护机制：
 覆盖驱动二进制路径（用于测试 / CI）：
 
 ```
-HERMES_CUA_DRIVER_CMD=/opt/homebrew/bin/cua-driver
+OPENAMER_CUA_DRIVER_CMD=/opt/homebrew/bin/cua-driver
 ```
 
 完全替换后端（用于测试）：
 
 ```
-HERMES_COMPUTER_USE_BACKEND=noop   # records calls, no side effects
+OPENAMER_COMPUTER_USE_BACKEND=noop   # records calls, no side effects
 ```
 
 ## 故障排查

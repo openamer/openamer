@@ -66,7 +66,7 @@ fallback_model:
 | xAI（Grok） | `xai`（别名 `grok`） | `XAI_API_KEY`（可选：`XAI_BASE_URL`） |
 | xAI Grok OAuth（SuperGrok） | `xai-oauth`（别名 `grok-oauth`） | `openamer model` → xAI Grok OAuth（浏览器登录；需 SuperGrok 订阅） |
 | AWS Bedrock | `bedrock` | 标准 boto3 认证（`AWS_REGION` + `AWS_PROFILE` 或 `AWS_ACCESS_KEY_ID`） |
-| Qwen Portal（OAuth） | `qwen-oauth` | `openamer model`（Qwen Portal OAuth；可选：`HERMES_QWEN_BASE_URL`） |
+| Qwen Portal（OAuth） | `qwen-oauth` | `openamer model`（Qwen Portal OAuth；可选：`OPENAMER_QWEN_BASE_URL`） |
 | MiniMax（OAuth） | `minimax-oauth` | `openamer model`（MiniMax 门户 OAuth） |
 | OpenCode Zen | `opencode-zen` | `OPENCODE_ZEN_API_KEY` |
 | OpenCode Go | `opencode-go` | `OPENCODE_GO_API_KEY` |

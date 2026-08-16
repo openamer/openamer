@@ -54,7 +54,7 @@ base URL 即你登录 Canvas 后浏览器地址栏中显示的地址（末尾不
 ## 使用方法
 
 ```bash
-CANVAS="python $HERMES_HOME/skills/productivity/canvas/scripts/canvas_api.py"
+CANVAS="python $OPENAMER_HOME/skills/productivity/canvas/scripts/canvas_api.py"
 
 # 列出所有已激活的课程
 $CANVAS list_courses --enrollment-state active

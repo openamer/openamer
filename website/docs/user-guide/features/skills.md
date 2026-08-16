@@ -900,7 +900,7 @@ The same command works in chat as a slash command:
 ```
 
 :::note Profiles
-Each profile has its own `.bundled_manifest` under its own `HERMES_HOME`, so `openamer -p coder skills reset <name>` only affects that profile.
+Each profile has its own `.bundled_manifest` under its own `OPENAMER_HOME`, so `openamer -p coder skills reset <name>` only affects that profile.
 :::
 
 ### Slash commands (inside chat)

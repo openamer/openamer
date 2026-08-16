@@ -1302,7 +1302,7 @@ printf '{}\n'
 三种方式可绕过交互式提示——满足其一即可：
 
 1. CLI 上的 `--accept-hooks` 标志（如 `openamer --accept-hooks chat`）
-2. `HERMES_ACCEPT_HOOKS=1` 环境变量
+2. `OPENAMER_ACCEPT_HOOKS=1` 环境变量
 3. `cli-config.yaml` 中的 `hooks_auto_accept: true`
 
 非 TTY 运行（gateway、cron、CI）需要这三种方式之一——否则任何新添加的 hook 会静默保持未注册状态并记录警告。

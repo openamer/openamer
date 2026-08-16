@@ -567,7 +567,7 @@ await self.handle_message(event)
 
 ### 8. Toolset
 
-1. **`toolsets.py`** — 添加带 `_HERMES_CORE_TOOLS` 的 `"openamer-newplat"` toolset 定义
+1. **`toolsets.py`** — 添加带 `_OPENAMER_CORE_TOOLS` 的 `"openamer-newplat"` toolset 定义
 2. **`toolsets.py`** — 将 `"openamer-newplat"` 添加到 `"openamer-gateway"` 的 includes 列表
 
 ### 9. 可选：平台提示

@@ -74,13 +74,13 @@ here.now 适用于两类任务：
 - 可选 Drive token 变量：`$HERENOW_DRIVE_TOKEN`
 - 可选凭据文件：`~/.herenow/credentials`
 - Skill 辅助脚本路径：
-  - `${HERMES_SKILL_DIR}/scripts/publish.sh` 用于发布站点
-  - `${HERMES_SKILL_DIR}/scripts/drive.sh` 用于私有 Drive 存储
+  - `${OPENAMER_SKILL_DIR}/scripts/publish.sh` 用于发布站点
+  - `${OPENAMER_SKILL_DIR}/scripts/drive.sh` 用于私有 Drive 存储
 
 ## 创建站点
 
 ```bash
-PUBLISH="${HERMES_SKILL_DIR}/scripts/publish.sh"
+PUBLISH="${OPENAMER_SKILL_DIR}/scripts/publish.sh"
 bash "$PUBLISH" {file-or-dir} --client openamer
 ```
 
@@ -98,7 +98,7 @@ bash "$PUBLISH" {file-or-dir} --client openamer
 ## 更新已有站点
 
 ```bash
-PUBLISH="${HERMES_SKILL_DIR}/scripts/publish.sh"
+PUBLISH="${OPENAMER_SKILL_DIR}/scripts/publish.sh"
 bash "$PUBLISH" {file-or-dir} --slug {slug} --client openamer
 ```
 
@@ -113,7 +113,7 @@ bash "$PUBLISH" {file-or-dir} --slug {slug} --client openamer
 每个已登录账户都有一个名为 `My Drive` 的默认 Drive。
 
 ```bash
-DRIVE="${HERMES_SKILL_DIR}/scripts/drive.sh"
+DRIVE="${OPENAMER_SKILL_DIR}/scripts/drive.sh"
 bash "$DRIVE" default
 bash "$DRIVE" ls "My Drive"
 bash "$DRIVE" put "My Drive" notes/today.md --from ./notes/today.md

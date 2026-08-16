@@ -6,16 +6,16 @@ description: "项目上下文文件 — .openamer.md、AGENTS.md、CLAUDE.md、�
 
 # 上下文文件
 
-OpenAmer Agent 会自动发现并加载上下文文件，以塑造其行为方式。部分文件属于项目本地文件，从工作目录中发现。`SOUL.md` 现在对整个 OpenAmer 实例全局生效，仅从 `HERMES_HOME` 加载。
+OpenAmer Agent 会自动发现并加载上下文文件，以塑造其行为方式。部分文件属于项目本地文件，从工作目录中发现。`SOUL.md` 现在对整个 OpenAmer 实例全局生效，仅从 `OPENAMER_HOME` 加载。
 
 ## 支持的上下文文件
 
 | 文件 | 用途 | 发现方式 |
 |------|---------|-----------| 
-| **.openamer.md** / **HERMES.md** | 项目指令（最高优先级） | 向上遍历至 git 根目录 |
+| **.openamer.md** / **OPENAMER.md** | 项目指令（最高优先级） | 向上遍历至 git 根目录 |
 | **AGENTS.md** | 项目指令、规范、架构说明 | 启动时的 CWD 及子目录（渐进式） |
 | **CLAUDE.md** | Claude Code 上下文文件（同样支持检测） | 启动时的 CWD 及子目录（渐进式） |
-| **SOUL.md** | 当前 OpenAmer 实例的全局个性与语气定制 | 仅 `HERMES_HOME/SOUL.md` |
+| **SOUL.md** | 当前 OpenAmer 实例的全局个性与语气定制 | 仅 `OPENAMER_HOME/SOUL.md` |
 | **.cursorrules** | Cursor IDE 编码规范 | 仅 CWD |
 | **.cursor/rules/*.mdc** | Cursor IDE 规则模块 | 仅 CWD |
 
@@ -84,12 +84,12 @@ This is a Next.js 14 web application with a Python FastAPI backend.
 **位置：**
 
 - `~/.openamer/SOUL.md`
-- 或 `$HERMES_HOME/SOUL.md`（若使用自定义主目录运行 OpenAmer）
+- 或 `$OPENAMER_HOME/SOUL.md`（若使用自定义主目录运行 OpenAmer）
 
 重要说明：
 
 - 若 `SOUL.md` 尚不存在，OpenAmer 会自动生成一个默认文件
-- OpenAmer 仅从 `HERMES_HOME` 加载 `SOUL.md`
+- OpenAmer 仅从 `OPENAMER_HOME` 加载 `SOUL.md`
 - OpenAmer 不会在工作目录中探测 `SOUL.md`
 - 若文件为空，`SOUL.md` 中的内容不会添加到 prompt
 - 若文件有内容，内容在扫描和截断后原样注入

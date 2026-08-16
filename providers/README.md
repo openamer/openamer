@@ -19,7 +19,7 @@ providers/
 
 The **profiles themselves** live as plugins under
 `plugins/model-providers/<name>/` (bundled in this repo) and
-`$HERMES_HOME/plugins/model-providers/<name>/` (per-user overrides). The
+`$OPENAMER_HOME/plugins/model-providers/<name>/` (per-user overrides). The
 registry in `providers/__init__.py` lazily discovers them the first time any
 consumer calls `get_provider_profile()` or `list_providers()`. See
 `plugins/model-providers/README.md` for the plugin contract and examples.
@@ -57,7 +57,7 @@ layer reads from it:
 ## Adding a provider
 
 See `plugins/model-providers/README.md` — drop a new directory there (or
-under `$HERMES_HOME/plugins/model-providers/` for a private plugin).
+under `$OPENAMER_HOME/plugins/model-providers/` for a private plugin).
 
 ---
 

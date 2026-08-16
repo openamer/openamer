@@ -207,8 +207,8 @@ model:
 | Environment variable | Description |
 |---------------------|-------------|
 | `COPILOT_GITHUB_TOKEN` | GitHub token for Copilot API (first priority) |
-| `HERMES_COPILOT_ACP_COMMAND` | Override the Copilot CLI binary path (default: `copilot`) |
-| `HERMES_COPILOT_ACP_ARGS` | Override ACP args (default: `--acp --stdio`) |
+| `OPENAMER_COPILOT_ACP_COMMAND` | Override the Copilot CLI binary path (default: `copilot`) |
+| `OPENAMER_COPILOT_ACP_ARGS` | Override ACP args (default: `--acp --stdio`) |
 
 ### First-Class API-Key Providers
 
@@ -425,7 +425,7 @@ model:
   default: "qwen3-coder-plus"
 ```
 
-Set `HERMES_QWEN_BASE_URL` only if the portal endpoint relocates (default: `https://portal.qwen.ai/v1`).
+Set `OPENAMER_QWEN_BASE_URL` only if the portal endpoint relocates (default: `https://portal.qwen.ai/v1`).
 
 :::tip Qwen OAuth vs Qwen Cloud (Alibaba DashScope)
 `qwen-oauth` uses the consumer-facing Qwen Portal with OAuth login — ideal for individual users. The `alibaba` provider uses Qwen Cloud (Alibaba DashScope) with a `DASHSCOPE_API_KEY` — ideal for programmatic / production workloads. Both route to Qwen-family models but live at different endpoints.

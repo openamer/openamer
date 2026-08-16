@@ -9,7 +9,7 @@ client, arg parsing, stats, and output (and never had a baseline).
 
 ```bash
 # Isolated instance (recommended) — no running app or LLM credits needed.
-# Its own --user-data-dir + HERMES_HOME means it never collides with `hgui`.
+# Its own --user-data-dir + OPENAMER_HOME means it never collides with `hgui`.
 npm run perf -- --spawn
 
 # Or: launch an isolated instance once, attach repeatedly (faster iteration).
@@ -39,7 +39,7 @@ captured with `--prod`.
 The measurement this harness exists to run was historically blocked: a running
 `hgui` holds the Electron single-instance lock, so a second instance quit
 immediately. `--spawn` / `perf:serve` launch with their own `--user-data-dir`
-(separate lock scope), their own `HERMES_HOME` (separate backend + sessions),
+(separate lock scope), their own `OPENAMER_HOME` (separate backend + sessions),
 and their own `--remote-debugging-port`. Synthetic scenarios drive `$messages`
 directly via `window.__PERF_DRIVE__`, so no LLM credits are spent.
 

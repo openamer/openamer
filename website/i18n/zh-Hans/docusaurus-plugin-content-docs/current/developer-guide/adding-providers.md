@@ -102,7 +102,7 @@ OpenAmer 已经可以通过自定义 provider 路径与任何 OpenAI 兼容的�
 1. 在 `plugins/model-providers/<your-provider>/` 下创建一个插件目录，包含：
    - `__init__.py`——在模块级别调用 `register_provider(profile)`
    - `plugin.yaml`——清单文件（name、kind: model-provider、version、description）
-2. 就这些。Provider 插件在任何代码首次调用 `get_provider_profile()` 或 `list_providers()` 时自动加载——捆绑插件（本仓库）和位于 `$HERMES_HOME/plugins/model-providers/` 的用户插件都会被加载。
+2. 就这些。Provider 插件在任何代码首次调用 `get_provider_profile()` 或 `list_providers()` 时自动加载——捆绑插件（本仓库）和位于 `$OPENAMER_HOME/plugins/model-providers/` 的用户插件都会被加载。
 
 当你添加一个插件并调用 `register_provider()` 时，以下内容会自动接线：
 
@@ -119,7 +119,7 @@ OpenAmer 已经可以通过自定义 provider 路径与任何 OpenAI 兼容的�
 11. `--provider <name>` CLI 标志接受该 provider id
 12. 回退模型激活可以干净地切换到该 provider
 
-位于 `$HERMES_HOME/plugins/model-providers/<name>/` 的用户插件会覆盖同名的捆绑插件（`register_provider()` 中后写者获胜）——因此第三方可以在不编辑本仓库的情况下对任何内置 profile 进行 monkey-patch 或替换。
+位于 `$OPENAMER_HOME/plugins/model-providers/<name>/` 的用户插件会覆盖同名的捆绑插件（`register_provider()` 中后写者获胜）——因此第三方可以在不编辑本仓库的情况下对任何内置 profile 进行 monkey-patch 或替换。
 
 参见 `plugins/model-providers/nvidia/` 或 `plugins/model-providers/gmi/` 作为模板，以及完整的 [Model Provider Plugin 指南](/developer-guide/model-provider-plugin)，了解字段参考、hook 用法和端到端示例。
 

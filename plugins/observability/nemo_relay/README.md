@@ -41,29 +41,29 @@ Enable the plugin before setting export options:
 openamer plugins enable observability/nemo_relay
 ```
 
-The `HERMES_NEMO_RELAY_*` environment variables below only configure an
+The `OPENAMER_NEMO_RELAY_*` environment variables below only configure an
 already-enabled plugin. They do not enable plugin discovery by themselves.
 
-For isolated test homes, enable the plugin in the same `HERMES_HOME` that the
+For isolated test homes, enable the plugin in the same `OPENAMER_HOME` that the
 agent run will use:
 
 ```bash
-env HERMES_HOME=/tmp/openamer-nemo-relay-test \
+env OPENAMER_HOME=/tmp/openamer-nemo-relay-test \
   openamer plugins enable observability/nemo_relay
 ```
 
 Runs started with `--ignore_user_config` skip the enabled-plugin state from
-`HERMES_HOME`, so local E2E tests should omit that flag unless the test harness
+`OPENAMER_HOME`, so local E2E tests should omit that flag unless the test harness
 loads `observability/nemo_relay` explicitly another way.
 
-`HERMES_HOME` is the OpenAmer profile/config home used by both
+`OPENAMER_HOME` is the OpenAmer profile/config home used by both
 `openamer plugins enable ...` and the later `openamer chat ...` run. If unset,
 OpenAmer uses the user's default home, usually `~/.openamer`. For isolated smoke
 tests, choose any writable temporary directory and use the same value for every
 command in that test:
 
 ```bash
-export HERMES_HOME=/tmp/openamer-nemo-relay-test
+export OPENAMER_HOME=/tmp/openamer-nemo-relay-test
 openamer plugins enable observability/nemo_relay
 openamer chat --query 'Reply exactly ok' --provider custom --model qwen3.6:35b
 ```
@@ -97,7 +97,7 @@ pip install "nemo-relay>=0.5,<1.0"
 
 ## Export Configuration
 
-The plugin can configure exporters directly from `HERMES_NEMO_RELAY_*`
+The plugin can configure exporters directly from `OPENAMER_NEMO_RELAY_*`
 environment variables, or delegate exporter setup to a NeMo Relay
 `plugins.toml` component config.
 
@@ -111,21 +111,21 @@ OpenInference.
 Useful local export settings after the plugin is enabled:
 
 ```bash
-export HERMES_NEMO_RELAY_ATOF_ENABLED=1
-export HERMES_NEMO_RELAY_ATOF_OUTPUT_DIRECTORY=.nemo-relay/atof
-export HERMES_NEMO_RELAY_ATIF_ENABLED=1
-export HERMES_NEMO_RELAY_ATIF_OUTPUT_DIRECTORY=.nemo-relay/atif
+export OPENAMER_NEMO_RELAY_ATOF_ENABLED=1
+export OPENAMER_NEMO_RELAY_ATOF_OUTPUT_DIRECTORY=.nemo-relay/atof
+export OPENAMER_NEMO_RELAY_ATIF_ENABLED=1
+export OPENAMER_NEMO_RELAY_ATIF_OUTPUT_DIRECTORY=.nemo-relay/atif
 ```
 
 Optional overrides:
 
-- `HERMES_NEMO_RELAY_ATOF_FILENAME`
-- `HERMES_NEMO_RELAY_ATOF_MODE` (`append` or `overwrite`)
-- `HERMES_NEMO_RELAY_ATIF_FILENAME_TEMPLATE`
-- `HERMES_NEMO_RELAY_ATIF_AGENT_NAME`
-- `HERMES_NEMO_RELAY_ATIF_AGENT_VERSION`
-- `HERMES_NEMO_RELAY_ATIF_MODEL_NAME`
-- `HERMES_NEMO_RELAY_ATIF_SUBAGENT_EXPORT_MODE` (`embedded` by default; set `all` to also write standalone child files)
+- `OPENAMER_NEMO_RELAY_ATOF_FILENAME`
+- `OPENAMER_NEMO_RELAY_ATOF_MODE` (`append` or `overwrite`)
+- `OPENAMER_NEMO_RELAY_ATIF_FILENAME_TEMPLATE`
+- `OPENAMER_NEMO_RELAY_ATIF_AGENT_NAME`
+- `OPENAMER_NEMO_RELAY_ATIF_AGENT_VERSION`
+- `OPENAMER_NEMO_RELAY_ATIF_MODEL_NAME`
+- `OPENAMER_NEMO_RELAY_ATIF_SUBAGENT_EXPORT_MODE` (`embedded` by default; set `all` to also write standalone child files)
 
 ### NeMo Relay Component Config
 
@@ -133,7 +133,7 @@ To initialize NeMo Relay from a component config, create a `plugins.toml` file
 and point OpenAmer at it:
 
 ```bash
-export HERMES_NEMO_RELAY_PLUGINS_TOML=.nemo-relay/plugins.toml
+export OPENAMER_NEMO_RELAY_PLUGINS_TOML=.nemo-relay/plugins.toml
 ```
 
 Minimal ATOF and ATIF config:
@@ -162,11 +162,11 @@ agent_name = "OpenAmer Agent"
 agent_version = "local"
 ```
 
-When `HERMES_NEMO_RELAY_PLUGINS_TOML` is set and initializes successfully, NeMo
+When `OPENAMER_NEMO_RELAY_PLUGINS_TOML` is set and initializes successfully, NeMo
 Relay owns exporter lifecycle through that config. The direct
-`HERMES_NEMO_RELAY_ATOF_*` fallback setup is skipped. If the same
+`OPENAMER_NEMO_RELAY_ATOF_*` fallback setup is skipped. If the same
 `plugins.toml` observability config enables `atif`, the direct
-`HERMES_NEMO_RELAY_ATIF_*` fallback setup is also skipped so OpenAmer does not
+`OPENAMER_NEMO_RELAY_ATIF_*` fallback setup is also skipped so OpenAmer does not
 double-export trajectories on teardown. If `plugins.toml` initialization fails,
 OpenAmer keeps the direct env-var fallbacks active for that run.
 
@@ -260,10 +260,10 @@ OpenAI-compatible API.
 ```bash
 pip install "nemo-relay>=0.5,<1.0"
 
-export HERMES_HOME=/tmp/openamer-nemo-relay-docs/openamer-home
-mkdir -p "$HERMES_HOME"
+export OPENAMER_HOME=/tmp/openamer-nemo-relay-docs/openamer-home
+mkdir -p "$OPENAMER_HOME"
 
-cat > "$HERMES_HOME/config.yaml" <<'YAML'
+cat > "$OPENAMER_HOME/config.yaml" <<'YAML'
 model:
   provider: custom
   default: qwen3.6:35b
@@ -289,16 +289,16 @@ This run starts a parent OpenAmer session, delegates to a child subagent, has th
 child call `terminal`, and writes both ATOF and ATIF.
 
 ```bash
-export HERMES_NEMO_RELAY_ATOF_ENABLED=1
-export HERMES_NEMO_RELAY_ATOF_OUTPUT_DIRECTORY=/tmp/openamer-nemo-relay-docs/subagent/atof
-export HERMES_NEMO_RELAY_ATOF_FILENAME=nested-subagent-atof.jsonl
-export HERMES_NEMO_RELAY_ATOF_MODE=overwrite
-export HERMES_NEMO_RELAY_ATIF_ENABLED=1
-export HERMES_NEMO_RELAY_ATIF_OUTPUT_DIRECTORY=/tmp/openamer-nemo-relay-docs/subagent/atif
-export HERMES_NEMO_RELAY_ATIF_FILENAME_TEMPLATE='nested-subagent-atif-{session_id}.json'
-export HERMES_NEMO_RELAY_ATIF_AGENT_NAME='OpenAmer Agent E2E'
-export HERMES_NEMO_RELAY_ATIF_AGENT_VERSION=docs-example
-export HERMES_NEMO_RELAY_ATIF_SUBAGENT_EXPORT_MODE=all
+export OPENAMER_NEMO_RELAY_ATOF_ENABLED=1
+export OPENAMER_NEMO_RELAY_ATOF_OUTPUT_DIRECTORY=/tmp/openamer-nemo-relay-docs/subagent/atof
+export OPENAMER_NEMO_RELAY_ATOF_FILENAME=nested-subagent-atof.jsonl
+export OPENAMER_NEMO_RELAY_ATOF_MODE=overwrite
+export OPENAMER_NEMO_RELAY_ATIF_ENABLED=1
+export OPENAMER_NEMO_RELAY_ATIF_OUTPUT_DIRECTORY=/tmp/openamer-nemo-relay-docs/subagent/atif
+export OPENAMER_NEMO_RELAY_ATIF_FILENAME_TEMPLATE='nested-subagent-atif-{session_id}.json'
+export OPENAMER_NEMO_RELAY_ATIF_AGENT_NAME='OpenAmer Agent E2E'
+export OPENAMER_NEMO_RELAY_ATIF_AGENT_VERSION=docs-example
+export OPENAMER_NEMO_RELAY_ATIF_SUBAGENT_EXPORT_MODE=all
 
 openamer chat \
   --query 'Use delegate_task exactly once. Ask the child subagent to use the terminal tool exactly once to run printf docs_nested_leaf_function. After the child returns, reply with exactly: parent received nested subagent result.' \
@@ -375,15 +375,15 @@ printf 'docs_parallel_alpha_function\n' > /tmp/openamer-nemo-relay-docs/workdir/
 printf 'docs_parallel_beta_function\n' > /tmp/openamer-nemo-relay-docs/workdir/beta.txt
 cd /tmp/openamer-nemo-relay-docs/workdir
 
-export HERMES_NEMO_RELAY_ATOF_ENABLED=1
-export HERMES_NEMO_RELAY_ATOF_OUTPUT_DIRECTORY=/tmp/openamer-nemo-relay-docs/parallel/atof
-export HERMES_NEMO_RELAY_ATOF_FILENAME=parallel-tools-atof.jsonl
-export HERMES_NEMO_RELAY_ATOF_MODE=overwrite
-export HERMES_NEMO_RELAY_ATIF_ENABLED=1
-export HERMES_NEMO_RELAY_ATIF_OUTPUT_DIRECTORY=/tmp/openamer-nemo-relay-docs/parallel/atif
-export HERMES_NEMO_RELAY_ATIF_FILENAME_TEMPLATE='parallel-tools-atif-{session_id}.json'
-export HERMES_NEMO_RELAY_ATIF_AGENT_NAME='OpenAmer Agent E2E'
-export HERMES_NEMO_RELAY_ATIF_AGENT_VERSION=docs-example
+export OPENAMER_NEMO_RELAY_ATOF_ENABLED=1
+export OPENAMER_NEMO_RELAY_ATOF_OUTPUT_DIRECTORY=/tmp/openamer-nemo-relay-docs/parallel/atof
+export OPENAMER_NEMO_RELAY_ATOF_FILENAME=parallel-tools-atof.jsonl
+export OPENAMER_NEMO_RELAY_ATOF_MODE=overwrite
+export OPENAMER_NEMO_RELAY_ATIF_ENABLED=1
+export OPENAMER_NEMO_RELAY_ATIF_OUTPUT_DIRECTORY=/tmp/openamer-nemo-relay-docs/parallel/atif
+export OPENAMER_NEMO_RELAY_ATIF_FILENAME_TEMPLATE='parallel-tools-atif-{session_id}.json'
+export OPENAMER_NEMO_RELAY_ATIF_AGENT_NAME='OpenAmer Agent E2E'
+export OPENAMER_NEMO_RELAY_ATIF_AGENT_VERSION=docs-example
 
 openamer chat \
   --query 'Use exactly two read_file tool calls in the same assistant message. Read alpha.txt and beta.txt. Do not call terminal. After both tool results are available, reply with exactly: parallel tools complete.' \
@@ -476,7 +476,7 @@ mode = "observe_only"
 Enable it for OpenAmer:
 
 ```bash
-export HERMES_NEMO_RELAY_PLUGINS_TOML=/tmp/openamer-middleware-test/plugins.toml
+export OPENAMER_NEMO_RELAY_PLUGINS_TOML=/tmp/openamer-middleware-test/plugins.toml
 ```
 
 When the adaptive component is enabled and the installed NeMo Relay runtime
@@ -508,10 +508,10 @@ supports `[components.config.tool_parallelism]`, as provided by the supported
 0.x release range beginning with 0.5.
 
 ```bash
-export HERMES_HOME=/tmp/openamer-middleware-test/openamer-home
-mkdir -p "$HERMES_HOME" /tmp/openamer-middleware-test/nemo-relay
+export OPENAMER_HOME=/tmp/openamer-middleware-test/openamer-home
+mkdir -p "$OPENAMER_HOME" /tmp/openamer-middleware-test/nemo-relay
 
-cat > "$HERMES_HOME/config.yaml" <<'YAML'
+cat > "$OPENAMER_HOME/config.yaml" <<'YAML'
 model:
   provider: custom
   default: qwen3.6:35b
@@ -553,7 +553,7 @@ enabled = true
 mode = "observe_only"
 TOML
 
-export HERMES_NEMO_RELAY_PLUGINS_TOML=/tmp/openamer-middleware-test/nemo-relay/plugins.toml
+export OPENAMER_NEMO_RELAY_PLUGINS_TOML=/tmp/openamer-middleware-test/nemo-relay/plugins.toml
 
 openamer chat \
   --query 'Use the terminal tool exactly once to run printf middleware_execution_ok. Then reply with exactly the command output.' \

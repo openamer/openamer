@@ -353,7 +353,7 @@ curl -s -X POST \
 ### 第一步：设置环境
 
 ```bash
-source "${HERMES_HOME:-$HOME/.openamer}/skills/github/github-auth/scripts/gh-env.sh"
+source "${OPENAMER_HOME:-$HOME/.openamer}/skills/github/github-auth/scripts/gh-env.sh"
 # 或运行本 skill 顶部的内联设置代码块
 ```
 

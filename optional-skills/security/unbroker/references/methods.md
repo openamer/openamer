@@ -271,7 +271,7 @@ run stalling in Phase 2.
   Turnstile, hCaptcha checkbox) and reads anti-bot people-search pages that `web_extract` and the
   proxyless agent browser cannot. This is what the skill's `browser_backend` setting governs
   (`auto` picks Browserbase when `BROWSERBASE_API_KEY` is present - now also read from
-  `$HERMES_HOME/.env`, not just the shell env, so `doctor`/`setup --auto` detect the key OpenAmer
+  `$OPENAMER_HOME/.env`, not just the shell env, so `doctor`/`setup --auto` detect the key OpenAmer
   already loads for its own tools).
 - **Phase 2 (execute: opt-out forms, webmail sends, session-bound multi-step gates):** the work must
   run in the **operator's own everyday browser** - real fingerprint, residential IP, AND the

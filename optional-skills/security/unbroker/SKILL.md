@@ -63,7 +63,7 @@ verifying re-scan.
 
 - `python3` (stdlib only; no extra packages needed for the core engine).
 - **Optional upgrades** (the skill works zero-config without these; `setup --auto` turns on every
-  one it detects, reading credentials from the shell env **and from `$HERMES_HOME/.env`** so keys
+  one it detects, reading credentials from the shell env **and from `$OPENAMER_HOME/.env`** so keys
   OpenAmer already loads for its own tools are picked up without re-exporting - each one converts a
   class of human tasks into agent actions):
   - **Cloud browser (recommended default): `BROWSERBASE_API_KEY`.** `setup --auto` selects it
@@ -101,7 +101,7 @@ Run everything through the `terminal` tool. From this skill's directory:
 PDD="python3 scripts/pdd.py"
 ```
 
-The engine stores data under `$PDD_DATA_DIR` (default `$HERMES_HOME/unbroker`), written
+The engine stores data under `$PDD_DATA_DIR` (default `$OPENAMER_HOME/unbroker`), written
 `0600`. Run via `terminal`, **not** `execute_code` (that sandbox scrubs env and redacts output, which
 breaks reading the dossier).
 
@@ -288,10 +288,10 @@ recording `found` and before any deletion.
   goes to the digest. The only mid-run question that's ever warranted is a missing-identity fact that
   blocks scanning (e.g. no city at all) - and that should have been collected at intake.
 - **Use `terminal`, not `execute_code`** for `pdd.py` (secret scrubbing + output redaction break it).
-- **Dossiers are plaintext by default** (JSON, `0600` under `HERMES_HOME`). For at-rest encryption run
+- **Dossiers are plaintext by default** (JSON, `0600` under `OPENAMER_HOME`). For at-rest encryption run
   `$PDD setup --encryption age` - it generates a local `age` key and encrypts dossiers + ledgers (the
   audit log holds field names only and stays plaintext). It guards casual/backup/commit exposure, not
-  a full-`HERMES_HOME` read; set `PDD_AGE_IDENTITY` to a separate volume for real key separation.
+  a full-`OPENAMER_HOME` read; set `PDD_AGE_IDENTITY` to a separate volume for real key separation.
   `$PDD doctor` shows whether encryption is *actually* engaged (not just whether `age` is installed).
 - **"Hidden from free search" ≠ deleted.** Only mark `confirmed_removed` after verifying the record is
   actually gone; note paid-tier retention in the report.

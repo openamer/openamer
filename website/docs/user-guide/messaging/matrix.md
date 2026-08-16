@@ -453,7 +453,7 @@ OpenAmer includes an opt-in Synapse harness for local validation:
 
 ```bash
 docker compose -f tests/e2e/matrix_synapse_gateway/docker-compose.yml up -d
-HERMES_MATRIX_SYNAPSE_INTEGRATION=1 \
+OPENAMER_MATRIX_SYNAPSE_INTEGRATION=1 \
   scripts/run_tests.sh -m "integration and matrix_synapse" \
   tests/e2e/matrix_synapse_gateway/test_gateway.py
 docker compose -f tests/e2e/matrix_synapse_gateway/docker-compose.yml down -v
@@ -810,7 +810,7 @@ services:
       MATRIX_ACCESS_TOKEN: "syt_..."
       MATRIX_ALLOWED_USERS: "@you:matrix.example.org"
       MATRIX_ENCRYPTION: "true"
-      MATRIX_DEVICE_ID: "HERMES_BOT"
+      MATRIX_DEVICE_ID: "OPENAMER_BOT"
 
       # Proxy mode — forward to host agent
       GATEWAY_PROXY_URL: "http://192.168.1.100:8642"

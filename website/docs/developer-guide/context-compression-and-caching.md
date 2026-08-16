@@ -156,7 +156,7 @@ GitHub Copilot). At the default 50% trigger, compaction would fire at ~136K —
 half the window the model can actually use. When the active route is Codex
 OAuth (`provider: openai-codex`) and the model is gpt-5.5, OpenAmer raises the
 trigger to **85%** (~231K) and shows a notice with the opt-out command. The
-notice is shown once per profile — a marker under `$HERMES_HOME`
+notice is shown once per profile — a marker under `$OPENAMER_HOME`
 (`.codex_gpt55_autoraise_notice`) records that it ran, so repeated agent/session
 inits (e.g. every inbound gateway message) don't re-emit it; if the raised
 threshold later changes it re-notifies once. Only this exact route is affected;

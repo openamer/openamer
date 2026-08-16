@@ -25,7 +25,7 @@ OpenAmer 有多种不同的可插拔接口——有些使用 Python `register_*`
 | **密钥管理器后端**（保险库 / 密码管理器 / 系统钥匙串） | [密钥源插件](/developer-guide/secret-source-plugin) |
 | **仪表盘 OIDC/认证提供商** | [Web 仪表盘 — 自定义提供商](/user-guide/features/web-dashboard#custom-providers) — `ctx.register_dashboard_auth_provider()` |
 | **TTS 后端**（任意 CLI——Piper、VoxCPM、Kokoro、声音克隆等） | [TTS 自定义命令提供商](/user-guide/features/tts#custom-command-providers)——配置驱动，无需 Python |
-| **STT 后端**（自定义 whisper / ASR CLI） | [语音消息转录](/user-guide/features/tts#voice-message-transcription-stt)——将 `HERMES_LOCAL_STT_COMMAND` 设置为 shell 模板 |
+| **STT 后端**（自定义 whisper / ASR CLI） | [语音消息转录](/user-guide/features/tts#voice-message-transcription-stt)——将 `OPENAMER_LOCAL_STT_COMMAND` 设置为 shell 模板 |
 | **通过 MCP 接入外部工具**（文件系统、GitHub、Linear、任意 MCP 服务器） | [MCP](/user-guide/features/mcp)——在 `config.yaml` 中声明 `mcp_servers.<name>` |
 | **网关事件钩子**（在启动、会话事件、命令时触发） | [事件钩子](/user-guide/features/hooks#gateway-event-hooks)——将 `HOOK.yaml` + `handler.py` 放入 `~/.openamer/hooks/<name>/` |
 | **Shell 钩子**（在事件发生时运行 shell 命令） | [Shell 钩子](/user-guide/features/hooks#shell-hooks)——在 `config.yaml` 的 `hooks:` 下声明 |
@@ -317,10 +317,10 @@ Plugins (1):
 
 ### 调试插件发现问题
 
-如果你的插件没有出现，或出现了但未加载——设置 `HERMES_PLUGINS_DEBUG=1` 可在 stderr 获取详细的发现日志：
+如果你的插件没有出现，或出现了但未加载——设置 `OPENAMER_PLUGINS_DEBUG=1` 可在 stderr 获取详细的发现日志：
 
 ```bash
-HERMES_PLUGINS_DEBUG=1 openamer plugins list
+OPENAMER_PLUGINS_DEBUG=1 openamer plugins list
 ```
 
 你将看到每个插件来源（内置、用户、项目、entry-points）的以下信息：
@@ -1050,7 +1050,7 @@ tts:
       voice_compatible: true
 ```
 
-对于 STT，将 `HERMES_LOCAL_STT_COMMAND` 指向一个 shell 模板。支持的占位符：`{input_path}`、`{output_path}`、`{format}`、`{voice}`、`{model}`、`{speed}`（TTS）；`{input_path}`、`{output_dir}`、`{language}`、`{model}`（STT）。任何与路径交互的 CLI 都自动成为插件。
+对于 STT，将 `OPENAMER_LOCAL_STT_COMMAND` 指向一个 shell 模板。支持的占位符：`{input_path}`、`{output_path}`、`{format}`、`{voice}`、`{model}`、`{speed}`（TTS）；`{input_path}`、`{output_dir}`、`{language}`、`{model}`（STT）。任何与路径交互的 CLI 都自动成为插件。
 
 **完整指南：** [TTS 自定义命令提供商](/user-guide/features/tts#custom-command-providers) · [STT](/user-guide/features/tts#voice-message-transcription-stt)。
 

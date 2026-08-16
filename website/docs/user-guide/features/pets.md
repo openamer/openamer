@@ -18,7 +18,7 @@ the agent's behavior** — the sprite is a display concern only. The feature is
 ## How it works
 
 - Pets are installed into your profile's `pets/` directory
-  (`<HERMES_HOME>/pets/<slug>/`), so each [profile](../profiles.md) keeps its
+  (`<OPENAMER_HOME>/pets/<slug>/`), so each [profile](../profiles.md) keeps its
   own set.
 - Selecting a pet writes `display.pet.slug` and `display.pet.enabled` to
   `config.yaml` — nothing is stored as a secret or env var.
@@ -121,7 +121,7 @@ Generation uses the active [image-generation provider](/user-guide/features/imag
 
 - Resolution order prefers Nous Portal → OpenAI → OpenRouter.
 - If no reference-capable backend is configured, generation surfaces an actionable error pointing you to `openamer tools` → Image Generation. (Installing/adopting existing gallery pets needs no image backend.)
-- Override the backend with the `HERMES_PET_IMAGE_PROVIDER` env var (e.g. `HERMES_PET_IMAGE_PROVIDER=openrouter`).
+- Override the backend with the `OPENAMER_PET_IMAGE_PROVIDER` env var (e.g. `OPENAMER_PET_IMAGE_PROVIDER=openrouter`).
 
 ## Desktop app
 
@@ -202,7 +202,7 @@ Common gotchas:
 - A pet only shows once one is **installed AND selected** (`enabled: true`).
 - Inside a pipe/redirect (no TTY), terminal rendering is disabled by design.
 - The petdex npm CLI installs to `~/.codex/pets`; OpenAmer uses its own
-  profile-scoped `<HERMES_HOME>/pets/` instead — install through `openamer pets`.
+  profile-scoped `<OPENAMER_HOME>/pets/` instead — install through `openamer pets`.
 
 ## See also
 

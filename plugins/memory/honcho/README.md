@@ -141,7 +141,7 @@ Config is read from the first file that exists:
 
 | Priority | Path | Scope |
 |----------|------|-------|
-| 1 | `$HERMES_HOME/honcho.json` | Profile-local (isolated OpenAmer instances) |
+| 1 | `$OPENAMER_HOME/honcho.json` | Profile-local (isolated OpenAmer instances) |
 | 2 | `~/.openamer/honcho.json` | Default profile (shared host blocks) |
 | 3 | `~/.honcho/config.json` | Global (cross-app interop) |
 
@@ -345,7 +345,7 @@ Presets:
 | `HONCHO_API_KEY` | `apiKey` |
 | `HONCHO_BASE_URL` | `baseUrl` |
 | `HONCHO_ENVIRONMENT` | `environment` |
-| `HERMES_HONCHO_HOST` | Host key override |
+| `OPENAMER_HONCHO_HOST` | Host key override |
 | `HONCHO_OAUTH_DASHBOARD` | OAuth authorize origin (default: cloud dashboard; local-dev `localhost:3000`) |
 | `HONCHO_OAUTH_AUTHORIZE_URL` | Full authorize URL (overrides the dashboard origin) |
 | `HONCHO_OAUTH_TOKEN_URL` | Token endpoint (default: cloud API; local-dev `localhost:8000`) |

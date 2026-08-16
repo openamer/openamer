@@ -313,8 +313,8 @@ Discord 行为通过两个文件控制：**`~/.openamer/.env`** 用于凭据和�
 | `DISCORD_PROXY` | 否 | — | Discord 连接的代理 URL（HTTP、WebSocket、REST）。覆盖 `HTTPS_PROXY`/`ALL_PROXY`。支持 `http://`、`https://` 和 `socks5://` 协议。 |
 | `DISCORD_ALLOW_ANY_ATTACHMENT` | 否 | `false` | 为 `true` 时，机器人接受任何文件类型的附件（不仅限于内置的 PDF/文本/zip/office 允许列表）。未知类型会被缓存到磁盘，并以 `application/octet-stream` MIME 类型作为本地路径提供给 agent，以便它可以使用 `terminal` / `read_file` / `ffprobe` 等工具检查。 |
 | `DISCORD_MAX_ATTACHMENT_BYTES` | 否 | `33554432` | 网关将下载并缓存的每个附件的最大字节数。默认 32 MiB。设置为 `0` 表示无上限（附件在写入时保存在内存中，因此无限制会带来真实的内存成本）。 |
-| `HERMES_DISCORD_TEXT_BATCH_DELAY_SECONDS` | 否 | `0.6` | 适配器在刷新排队文本块之前等待的宽限窗口。用于平滑流式输出。 |
-| `HERMES_DISCORD_TEXT_BATCH_SPLIT_DELAY_SECONDS` | 否 | `2.0` | 当单条消息超过 Discord 长度限制时，分割块之间的延迟。 |
+| `OPENAMER_DISCORD_TEXT_BATCH_DELAY_SECONDS` | 否 | `0.6` | 适配器在刷新排队文本块之前等待的宽限窗口。用于平滑流式输出。 |
+| `OPENAMER_DISCORD_TEXT_BATCH_SPLIT_DELAY_SECONDS` | 否 | `2.0` | 当单条消息超过 Discord 长度限制时，分割块之间的延迟。 |
 
 ### 配置文件（`config.yaml`）
 

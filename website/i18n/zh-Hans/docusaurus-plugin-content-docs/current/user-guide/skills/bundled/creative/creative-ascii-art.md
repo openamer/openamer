@@ -172,9 +172,9 @@ boxes -l                                       # List all 70+ designs
 ### 与 pyfiglet 或 asciified 组合使用
 
 ```bash
-python3 -m pyfiglet "HERMES" -f slant | boxes -d stone
+python3 -m pyfiglet "OPENAMER" -f slant | boxes -d stone
 # Or without pyfiglet installed:
-curl -s "https://asciified.thelicato.io/api/v2/ascii?text=HERMES&font=Slant" | boxes -d stone
+curl -s "https://asciified.thelicato.io/api/v2/ascii?text=OPENAMER&font=Slant" | boxes -d stone
 ```
 
 ## 工具 5：TOIlet（彩色文字艺术）

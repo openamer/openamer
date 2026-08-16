@@ -50,7 +50,7 @@ YOLO 模式会绕过当前会话中**所有**危险命令审批提示。可通�
 
 1. **CLI 标志**：使用 `openamer --yolo` 或 `openamer chat --yolo` 启动会话
 2. **斜杠命令**：在会话中输入 `/yolo` 以切换开/关
-3. **环境变量**：设置 `HERMES_YOLO_MODE=1`
+3. **环境变量**：设置 `OPENAMER_YOLO_MODE=1`
 
 `/yolo` 命令是一个**切换开关**——每次使用都会翻转模式的开/关状态：
 
@@ -62,7 +62,7 @@ YOLO 模式会绕过当前会话中**所有**危险命令审批提示。可通�
   ⚠ YOLO mode OFF — dangerous commands will require approval.
 ```
 
-YOLO 模式在 CLI 和 gateway 会话中均可使用。在内部，它会设置 `HERMES_YOLO_MODE` 环境变量，该变量在每次命令执行前都会被检查。
+YOLO 模式在 CLI 和 gateway 会话中均可使用。在内部，它会设置 `OPENAMER_YOLO_MODE` 环境变量，该变量在每次命令执行前都会被检查。
 
 当 YOLO 激活时，OpenAmer 会显示两个持久的视觉提醒，以确保用户不会忘记审批提示已被绕过：
 
@@ -174,7 +174,7 @@ approvals:
 - 回复 **yes**、**y**、**approve**、**ok** 或 **go** 以批准
 - 回复 **no**、**n**、**deny** 或 **cancel** 以拒绝
 
-运行 gateway 时，`HERMES_EXEC_ASK=1` 环境变量会自动设置。
+运行 gateway 时，`OPENAMER_EXEC_ASK=1` 环境变量会自动设置。
 
 ### 永久允许列表
 
@@ -397,7 +397,7 @@ terminal:
 
 ### 凭据文件透传（OAuth token 等） {#credential-file-passthrough}
 
-某些技能需要在沙箱中访问**文件**（而非仅环境变量）——例如，Google Workspace 将 OAuth token 存储为活跃 profile 的 `HERMES_HOME` 下的 `google_token.json`。技能在 frontmatter 中声明这些文件：
+某些技能需要在沙箱中访问**文件**（而非仅环境变量）——例如，Google Workspace 将 OAuth token 存储为活跃 profile 的 `OPENAMER_HOME` 下的 `google_token.json`。技能在 frontmatter 中声明这些文件：
 
 ```yaml
 required_credential_files:
@@ -407,7 +407,7 @@ required_credential_files:
     description: Google OAuth2 client credentials
 ```
 
-加载后，OpenAmer 会检查这些文件是否存在于活跃 profile 的 `HERMES_HOME` 中，并将其注册为挂载：
+加载后，OpenAmer 会检查这些文件是否存在于活跃 profile 的 `OPENAMER_HOME` 中，并将其注册为挂载：
 
 - **Docker**：只读绑定挂载（`-v host:container:ro`）
 - **Modal**：在沙箱创建时挂载，并在每次命令前同步（处理会话中途的 OAuth 配置）

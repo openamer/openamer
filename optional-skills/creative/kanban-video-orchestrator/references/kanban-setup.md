@@ -218,7 +218,7 @@ The director turns this into actual `kanban_create` calls.
 ## API-key prerequisites check
 
 Before firing the kanban, verify required keys are available. Check both
-the OpenAmer `.env` (`${HERMES_HOME:-$HOME/.openamer}/.env`) and macOS Keychain
+the OpenAmer `.env` (`${OPENAMER_HOME:-$HOME/.openamer}/.env`) and macOS Keychain
 (if on macOS):
 
 ```bash
@@ -226,7 +226,7 @@ check_key() {
     local var="$1"
     local kc_account="$2"
     local kc_service="$3"
-    local _openamer_env="${HERMES_HOME:-$HOME/.openamer}/.env"
+    local _openamer_env="${OPENAMER_HOME:-$HOME/.openamer}/.env"
     if grep -q "^${var}=" "$_openamer_env" 2>/dev/null && \
        [ -n "$(grep "^${var}=" "$_openamer_env" | cut -d= -f2-)" ]; then
         return 0

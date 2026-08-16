@@ -42,7 +42,7 @@ Read-only access to Canvas LMS for listing courses and assignments.
 2. Go to **Account → Settings** (click your profile icon, then Settings)
 3. Scroll to **Approved Integrations** and click **+ New Access Token**
 4. Name the token (e.g., "OpenAmer Agent"), set an optional expiry, and click **Generate Token**
-5. Copy the token and add to `${HERMES_HOME:-~/.openamer}/.env`:
+5. Copy the token and add to `${OPENAMER_HOME:-~/.openamer}/.env`:
 
 ```
 CANVAS_API_TOKEN=your_token_here
@@ -54,7 +54,7 @@ The base URL is whatever appears in your browser when you're logged into Canvas 
 ## Usage
 
 ```bash
-CANVAS="python $HERMES_HOME/skills/productivity/canvas/scripts/canvas_api.py"
+CANVAS="python $OPENAMER_HOME/skills/productivity/canvas/scripts/canvas_api.py"
 
 # List all active courses
 $CANVAS list_courses --enrollment-state active

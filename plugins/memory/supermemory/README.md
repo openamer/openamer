@@ -29,7 +29,7 @@ npx supermemory local
 ```
 
 Before running `openamer memory setup`, add the local endpoint to
-`$HERMES_HOME/supermemory.json`:
+`$OPENAMER_HOME/supermemory.json`:
 
 ```json
 {
@@ -42,7 +42,7 @@ the endpoint first ensures the setup connection probe also stays local.
 
 ## Config
 
-Config file: `$HERMES_HOME/supermemory.json`
+Config file: `$OPENAMER_HOME/supermemory.json`
 
 | Key | Default | Description |
 |-----|---------|-------------|

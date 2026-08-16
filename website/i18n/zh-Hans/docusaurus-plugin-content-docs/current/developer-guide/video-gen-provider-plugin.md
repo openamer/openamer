@@ -224,7 +224,7 @@ def generate(self, prompt, *, image_url=None, model=None, **kwargs):
 
 ## 产物保存位置
 
-如果你的后端返回 base64 数据，使用 `save_b64_video()` 将其写入 `$HERMES_HOME/cache/videos/`。对于通过后续 HTTP 请求获取的原始字节，使用 `save_bytes_video()`。否则直接返回上游 URL——gateway 在交付时会解析远程 URL。
+如果你的后端返回 base64 数据，使用 `save_b64_video()` 将其写入 `$OPENAMER_HOME/cache/videos/`。对于通过后续 HTTP 请求获取的原始字节，使用 `save_bytes_video()`。否则直接返回上游 URL——gateway 在交付时会解析远程 URL。
 
 ## 测试
 

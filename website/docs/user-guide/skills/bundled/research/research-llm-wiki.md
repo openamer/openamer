@@ -52,7 +52,7 @@ Use this skill when the user:
 
 ## Wiki Location
 
-**Location:** Set via `WIKI_PATH` environment variable (e.g. in `${HERMES_HOME:-~/.openamer}/.env`).
+**Location:** Set via `WIKI_PATH` environment variable (e.g. in `${OPENAMER_HOME:-~/.openamer}/.env`).
 
 If unset, defaults to `~/wiki`.
 

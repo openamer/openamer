@@ -21,7 +21,7 @@ echo "MEM0_API_KEY=your-key" >> ~/.openamer/.env
 
 ## Config
 
-Behavioral settings live in `$HERMES_HOME/mem0.json` (set them via `openamer memory setup`). Only the secret `MEM0_API_KEY` belongs in `~/.openamer/.env`.
+Behavioral settings live in `$OPENAMER_HOME/mem0.json` (set them via `openamer memory setup`). Only the secret `MEM0_API_KEY` belongs in `~/.openamer/.env`.
 
 | Key | Default | Description |
 |-----|---------|-------------|
@@ -53,7 +53,7 @@ Connect the plugin to a standalone Mem0 server you run yourself — the Docker-s
    echo "MEM0_HOST=http://localhost:8888" >> ~/.openamer/.env
    echo "MEM0_API_KEY=your-admin-api-key" >> ~/.openamer/.env
    ```
-   or in `$HERMES_HOME/mem0.json`:
+   or in `$OPENAMER_HOME/mem0.json`:
    ```json
    {
      "host": "http://localhost:8888",
@@ -114,7 +114,7 @@ openamer memory setup mem0 --mode oss \
 openamer memory setup mem0 --mode oss --oss-llm-key sk-...
 ```
 
-Or edit `$HERMES_HOME/mem0.json` directly:
+Or edit `$OPENAMER_HOME/mem0.json` directly:
 ```json
 {
   "mode": "oss",
@@ -184,4 +184,4 @@ curl http://localhost:11434/api/tags
 
 - `mem0_add` stores verbatim (no extraction). Use `sync_turn` for LLM extraction.
 - Search uses semantic matching — try broader queries.
-- Check `user_id` matches between sessions (`$HERMES_HOME/mem0.json`).
+- Check `user_id` matches between sessions (`$OPENAMER_HOME/mem0.json`).

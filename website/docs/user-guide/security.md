@@ -46,7 +46,7 @@ The full set of keys:
 | `timeout` | `300` | Seconds OpenAmer waits for an approval reply before timing out. |
 | `cron_mode` | `deny` | How [cron jobs](./features/cron.md) behave headlessly when they trigger a dangerous-command prompt. `deny` blocks the command (the agent must find another path); `approve` auto-approves everything in cron context. |
 | `mcp_reload_confirm` | `true` | When true, `/reload-mcp` asks before rebuilding the MCP tool set. Rebuilding invalidates the provider prompt cache (tool schemas live in the system prompt), so the next message re-sends full input tokens. Users who click **Always Approve** flip this key to `false`. |
-| `destructive_slash_confirm` | `true` | When true, destructive session slash commands (`/clear`, `/new`, `/reset`, `/undo`) prompt before discarding conversation state. Three-option dialog (Approve Once / Always Approve / Cancel) routed through native yes/no buttons on Telegram, Discord, and Slack; text fallback elsewhere. Users who click **Always Approve** flip this key to `false`. TUI uses its own modal overlay (set `HERMES_TUI_NO_CONFIRM=1` to opt out there). |
+| `destructive_slash_confirm` | `true` | When true, destructive session slash commands (`/clear`, `/new`, `/reset`, `/undo`) prompt before discarding conversation state. Three-option dialog (Approve Once / Always Approve / Cancel) routed through native yes/no buttons on Telegram, Discord, and Slack; text fallback elsewhere. Users who click **Always Approve** flip this key to `false`. TUI uses its own modal overlay (set `OPENAMER_TUI_NO_CONFIRM=1` to opt out there). |
 
 | Mode | Behavior |
 |------|----------|
@@ -64,7 +64,7 @@ YOLO mode bypasses **all** dangerous command approval prompts for the current se
 
 1. **CLI flag**: Start a session with `openamer --yolo` or `openamer chat --yolo`
 2. **Slash command**: Type `/yolo` during a session to toggle it on/off
-3. **Environment variable**: Set `HERMES_YOLO_MODE=1`
+3. **Environment variable**: Set `OPENAMER_YOLO_MODE=1`
 
 The `/yolo` command is a **toggle** — each use flips the mode on or off:
 
@@ -76,7 +76,7 @@ The `/yolo` command is a **toggle** — each use flips the mode on or off:
   ⚠ YOLO mode OFF — dangerous commands will require approval.
 ```
 
-YOLO mode is available in both CLI and gateway sessions. Internally, it sets the `HERMES_YOLO_MODE` environment variable which is checked before every command execution.
+YOLO mode is available in both CLI and gateway sessions. Internally, it sets the `OPENAMER_YOLO_MODE` environment variable which is checked before every command execution.
 
 When YOLO is active, OpenAmer shows two persistent visual reminders so it's hard to forget that approval prompts are bypassed:
 
@@ -214,7 +214,7 @@ On messaging platforms, the agent sends the dangerous command details to the cha
 - Reply **yes**, **y**, **approve**, **ok**, or **go** to approve
 - Reply **no**, **n**, **deny**, or **cancel** to deny
 
-The `HERMES_EXEC_ASK=1` environment variable is automatically set when running the gateway.
+The `OPENAMER_EXEC_ASK=1` environment variable is automatically set when running the gateway.
 
 ### Permanent Allowlist
 
@@ -239,33 +239,33 @@ Before `write_file` or `patch` touches disk, OpenAmer checks the target path aga
 
 ### Protected paths (always blocked)
 
-These categories are always denied, even when `HERMES_WRITE_SAFE_ROOT` is unset:
+These categories are always denied, even when `OPENAMER_WRITE_SAFE_ROOT` is unset:
 
 | Category | Examples |
 |----------|----------|
 | OS credential stores | `~/.ssh/`, `~/.aws/`, `~/.kube/`, `/etc/sudoers`, `~/.netrc` |
-| OpenAmer credential stores | `auth.json`, `.env`, `.anthropic_oauth.json`, `mcp-tokens/`, `pairing/` under HERMES_HOME (active profile and global root) |
+| OpenAmer credential stores | `auth.json`, `.env`, `.anthropic_oauth.json`, `mcp-tokens/`, `pairing/` under OPENAMER_HOME (active profile and global root) |
 | Project secret files | `.env`, `.env.local`, `.env.production`, `.envrc` anywhere on disk |
 
-Sensitive paths inside the safe root are still blocked — pointing `HERMES_WRITE_SAFE_ROOT` at `$HOME` does not allow writing `~/.ssh/id_rsa`.
+Sensitive paths inside the safe root are still blocked — pointing `OPENAMER_WRITE_SAFE_ROOT` at `$HOME` does not allow writing `~/.ssh/id_rsa`.
 
-Safe-root violations return `Write denied: '…' is outside HERMES_WRITE_SAFE_ROOT (…)`. Credential-path blocks use `Write denied: '…' is a protected system/credential file.`
+Safe-root violations return `Write denied: '…' is outside OPENAMER_WRITE_SAFE_ROOT (…)`. Credential-path blocks use `Write denied: '…' is a protected system/credential file.`
 
-### HERMES_WRITE_SAFE_ROOT (optional sandbox)
+### OPENAMER_WRITE_SAFE_ROOT (optional sandbox)
 
 When set, `write_file` and `patch` may only target paths inside the listed directory prefix(es). Anything outside is **hard-blocked** — not routed through dangerous-command approval.
 
-- Set automatically in the [official Docker image](https://github.com/NousResearch/openamer-agent) (`HERMES_WRITE_SAFE_ROOT=/opt/data`)
+- Set automatically in the [official Docker image](https://github.com/NousResearch/openamer-agent) (`OPENAMER_WRITE_SAFE_ROOT=/opt/data`)
 - Supports multiple roots separated by `:` on Unix or `;` on Windows
 - **Do not add to `~/.openamer/.env` casually.** If you set it to a project directory, the agent cannot write to `~/.openamer/cron/jobs.json`, profile skills, or other OpenAmer state outside that prefix
 
 To allow both a workspace and OpenAmer home:
 
 ```bash
-export HERMES_WRITE_SAFE_ROOT=/path/to/project:/home/you/.openamer
+export OPENAMER_WRITE_SAFE_ROOT=/path/to/project:/home/you/.openamer
 ```
 
-Unset the variable to restore unrestricted writes (subject to the protected-path denylist). Full reference: [HERMES_WRITE_SAFE_ROOT](../reference/environment-variables.md#openamer_write_safe_root).
+Unset the variable to restore unrestricted writes (subject to the protected-path denylist). Full reference: [OPENAMER_WRITE_SAFE_ROOT](../reference/environment-variables.md#openamer_write_safe_root).
 
 ### Cron and other OpenAmer state
 
@@ -499,7 +499,7 @@ terminal:
 
 ### Credential File Passthrough (OAuth tokens, etc.) {#credential-file-passthrough}
 
-Some skills need **files** (not just env vars) in the sandbox — for example, Google Workspace stores OAuth tokens as `google_token.json` under the active profile's `HERMES_HOME`. Skills declare these in frontmatter:
+Some skills need **files** (not just env vars) in the sandbox — for example, Google Workspace stores OAuth tokens as `google_token.json` under the active profile's `OPENAMER_HOME`. Skills declare these in frontmatter:
 
 ```yaml
 required_credential_files:
@@ -509,7 +509,7 @@ required_credential_files:
     description: Google OAuth2 client credentials
 ```
 
-When loaded, OpenAmer checks if these files exist in the active profile's `HERMES_HOME` and registers them for mounting:
+When loaded, OpenAmer checks if these files exist in the active profile's `OPENAMER_HOME` and registers them for mounting:
 
 - **Docker**: Read-only bind mounts (`-v host:container:ro`)
 - **Modal**: Mounted at sandbox creation + synced before each command (handles mid-session OAuth setup)

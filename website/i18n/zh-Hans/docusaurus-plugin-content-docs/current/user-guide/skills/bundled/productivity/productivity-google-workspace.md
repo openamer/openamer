@@ -49,7 +49,7 @@ Gmail、Calendar、Drive、Contacts、Sheets 和 Docs —— 通过 OpenAmer 管
 首先定义一个简写：
 
 ```bash
-GSETUP="python ${HERMES_HOME:-$HOME/.openamer}/skills/productivity/google-workspace/scripts/setup.py"
+GSETUP="python ${OPENAMER_HOME:-$HOME/.openamer}/skills/productivity/google-workspace/scripts/setup.py"
 ```
 
 ### 步骤 0：检查是否已完成设置
@@ -159,7 +159,7 @@ $GSETUP --check
 所有命令均通过 API 脚本执行。将 `GAPI` 设为简写：
 
 ```bash
-GAPI="python ${HERMES_HOME:-$HOME/.openamer}/skills/productivity/google-workspace/scripts/google_api.py"
+GAPI="python ${OPENAMER_HOME:-$HOME/.openamer}/skills/productivity/google-workspace/scripts/google_api.py"
 ```
 
 ### Gmail

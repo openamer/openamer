@@ -44,13 +44,13 @@ For most contributors, the best development bootstrap is the same path users
 take: run the standard installer, then work inside the repository it cloned.
 The installer creates the OpenAmer venv, wires the `openamer` command, stamps the
 install method for `openamer update`, and clones the full git project into
-`$HERMES_HOME/openamer-agent` (usually `~/.openamer/openamer-agent`). That keeps your
+`$OPENAMER_HOME/openamer-agent` (usually `~/.openamer/openamer-agent`). That keeps your
 development environment on the same layout the CLI, updater, lazy dependency
 installer, gateway, and docs assume.
 
 ```bash
 curl -fsSL https://openamer-agent.nousresearch.com/install.sh | bash
-cd "${HERMES_HOME:-$HOME/.openamer}/openamer-agent"
+cd "${OPENAMER_HOME:-$HOME/.openamer}/openamer-agent"
 
 # Add dev/test extras on top of the standard install.
 uv pip install -e ".[all,dev]"
@@ -66,7 +66,7 @@ git checkout -b fix/description
 scripts/run_tests.sh
 ```
 
-You can also run a fully isolated OpenAmer instance (throwaway HERMES_HOME, separate Electron
+You can also run a fully isolated OpenAmer instance (throwaway OPENAMER_HOME, separate Electron
 userData, distinct Electron app name to avoid the single-instance lock):
 
 ```bash

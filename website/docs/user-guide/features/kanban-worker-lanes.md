@@ -34,15 +34,15 @@ For OpenAmer profile lanes, the dispatcher's `_default_spawn` runs `openamer -p 
 
 | Variable | Carries |
 |---|---|
-| `HERMES_KANBAN_TASK` | the task id the worker is operating on |
-| `HERMES_KANBAN_DB` | absolute path to the per-board SQLite file |
-| `HERMES_KANBAN_BOARD` | board slug |
-| `HERMES_KANBAN_WORKSPACES_ROOT` | root of the board's workspace tree |
-| `HERMES_KANBAN_WORKSPACE` | absolute path to *this* task's workspace |
-| `HERMES_KANBAN_RUN_ID` | the current run's id (for the lifecycle gate) |
-| `HERMES_KANBAN_CLAIM_LOCK` | the claim lock string (`<host>:<pid>:<uuid>`) |
-| `HERMES_PROFILE` | the worker's own profile name (for `kanban_comment` author attribution) |
-| `HERMES_TENANT` | tenant namespace, if the task has one |
+| `OPENAMER_KANBAN_TASK` | the task id the worker is operating on |
+| `OPENAMER_KANBAN_DB` | absolute path to the per-board SQLite file |
+| `OPENAMER_KANBAN_BOARD` | board slug |
+| `OPENAMER_KANBAN_WORKSPACES_ROOT` | root of the board's workspace tree |
+| `OPENAMER_KANBAN_WORKSPACE` | absolute path to *this* task's workspace |
+| `OPENAMER_KANBAN_RUN_ID` | the current run's id (for the lifecycle gate) |
+| `OPENAMER_KANBAN_CLAIM_LOCK` | the claim lock string (`<host>:<pid>:<uuid>`) |
+| `OPENAMER_PROFILE` | the worker's own profile name (for `kanban_comment` author attribution) |
+| `OPENAMER_TENANT` | tenant namespace, if the task has one |
 
 For non-OpenAmer lanes (registered via a plugin), the plugin supplies its own `spawn_fn` callable that gets `task`, `workspace`, and `board` and returns an optional pid for crash detection.
 
@@ -90,7 +90,7 @@ A specialisation of the profile lane: an orchestrator is a OpenAmer profile whos
 
 ## Adding an external CLI worker lane
 
-Wiring a non-OpenAmer CLI tool (Codex CLI, Claude Code CLI, OpenCode CLI, a local coding-model runner, etc.) as a kanban worker lane is *not yet a paved path*. The dispatcher's spawn function is pluggable (`spawn_fn` is a parameter on `dispatch_once`), and a plugin could register its own `spawn_fn` for a non-OpenAmer assignee, but the surrounding integration work — wrapping the CLI's exit code into `kanban_complete` / `kanban_block` calls, mapping the CLI's workspace/sandbox conventions onto the dispatcher's `HERMES_KANBAN_WORKSPACE` env, handling auth and per-CLI policy — is still per-integration design work.
+Wiring a non-OpenAmer CLI tool (Codex CLI, Claude Code CLI, OpenCode CLI, a local coding-model runner, etc.) as a kanban worker lane is *not yet a paved path*. The dispatcher's spawn function is pluggable (`spawn_fn` is a parameter on `dispatch_once`), and a plugin could register its own `spawn_fn` for a non-OpenAmer assignee, but the surrounding integration work — wrapping the CLI's exit code into `kanban_complete` / `kanban_block` calls, mapping the CLI's workspace/sandbox conventions onto the dispatcher's `OPENAMER_KANBAN_WORKSPACE` env, handling auth and per-CLI policy — is still per-integration design work.
 
 If you're considering adding a CLI lane, open an issue describing the specific CLI and the workflow you're trying to enable. The contract above is the constraints any such lane must satisfy; the implementation shape (one plugin per CLI vs a generic CLI-runner plugin parameterised by config) is open.
 

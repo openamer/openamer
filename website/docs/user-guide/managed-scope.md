@@ -44,18 +44,18 @@ the feature.
 
 ### Relocating the directory
 
-The location can be relocated with the `HERMES_MANAGED_DIR` environment variable
+The location can be relocated with the `OPENAMER_MANAGED_DIR` environment variable
 (for containers or non-`/etc` deployments). This is a deployment/bootstrap path
-knob — like `HERMES_HOME` — set by the same administrator who owns the managed
+knob — like `OPENAMER_HOME` — set by the same administrator who owns the managed
 files. It is **never persisted** to any `.env` by OpenAmer.
 
 ```bash
 # Point managed scope at a custom directory (set by IT / the deployment, not the user)
-export HERMES_MANAGED_DIR=/opt/org/openamer-policy
+export OPENAMER_MANAGED_DIR=/opt/org/openamer-policy
 ```
 
 :::warning
-A user who can set `HERMES_MANAGED_DIR` can repoint managed scope at a directory
+A user who can set `OPENAMER_MANAGED_DIR` can repoint managed scope at a directory
 they control, defeating it. In a real deployment this variable should be fixed
 by the administrator (e.g. baked into the service unit / container image), not
 left user-settable. `openamer doctor` reports the *resolved* managed directory so

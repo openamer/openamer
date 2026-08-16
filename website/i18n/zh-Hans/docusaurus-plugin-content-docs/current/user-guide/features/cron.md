@@ -123,7 +123,7 @@ cronjob(
 
 ## 在指定 profile 中运行 cron 任务
 
-默认情况下，cron 任务继承创建它的 gateway/CLI 所属的 OpenAmer profile。传入 `--profile <name>`（CLI）或 `profile=`（cronjob 工具）可将任务重定向到不同的 profile——调度器会解析该 profile 的 `HERMES_HOME`，在运行期间临时切换到该 profile，加载其 `.env` 和 `config.yaml`，并在其中执行任务：
+默认情况下，cron 任务继承创建它的 gateway/CLI 所属的 OpenAmer profile。传入 `--profile <name>`（CLI）或 `profile=`（cronjob 工具）可将任务重定向到不同的 profile——调度器会解析该 profile 的 `OPENAMER_HOME`，在运行期间临时切换到该 profile，加载其 `.env` 和 `config.yaml`，并在其中执行任务：
 
 ```bash
 # 将任务固定到 `night-ops` profile，无论在哪里调度
@@ -147,7 +147,7 @@ cronjob(
 如果固定的 profile 后来被删除，调度器会记录警告并回退到在当前 profile 中运行该任务，而不是崩溃——因此过期的 `profile` 引用不会卡住任务。
 
 :::note 串行化
-设置了 `profile` 的任务也串行运行，原因与 `workdir` 固定任务相同：切换 `HERMES_HOME` 是进程全局变更，两个 profile 固定任务并行运行会产生竞争。未固定的任务仍在正常并行池中运行。
+设置了 `profile` 的任务也串行运行，原因与 `workdir` 固定任务相同：切换 `OPENAMER_HOME` 是进程全局变更，两个 profile 固定任务并行运行会产生竞争。未固定的任务仍在正常并行池中运行。
 :::
 
 ## 编辑任务
@@ -420,7 +420,7 @@ cron:
   script_timeout_seconds: 300   # 5 分钟
 ```
 
-或设置 `HERMES_CRON_SCRIPT_TIMEOUT` 环境变量。解析顺序为：环境变量 → config.yaml → 默认 120 秒。
+或设置 `OPENAMER_CRON_SCRIPT_TIMEOUT` 环境变量。解析顺序为：环境变量 → config.yaml → 默认 120 秒。
 
 ## 无 agent 模式（纯脚本任务）
 

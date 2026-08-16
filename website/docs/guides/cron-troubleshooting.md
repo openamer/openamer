@@ -157,7 +157,7 @@ The skill must be installed on the machine running the scheduler. If you move be
 Likely a delivery target issue (see Delivery Failures above), no output, or a response containing the cron quiet marker `[SILENT]`.
 
 **Job hangs or times out**
-The scheduler uses an inactivity-based timeout (default 600s, configurable via `HERMES_CRON_TIMEOUT` env var, `0` for unlimited). The agent can run as long as it's actively calling tools — the timer only fires after sustained inactivity. Long-running jobs should use scripts to handle data collection and deliver only the result.
+The scheduler uses an inactivity-based timeout (default 600s, configurable via `OPENAMER_CRON_TIMEOUT` env var, `0` for unlimited). The agent can run as long as it's actively calling tools — the timer only fires after sustained inactivity. Long-running jobs should use scripts to handle data collection and deliver only the result.
 
 ### Check 3: Lock contention
 

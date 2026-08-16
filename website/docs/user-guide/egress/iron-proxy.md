@@ -13,7 +13,7 @@ This release wires the egress proxy into the Docker backend only. Modal, Daytona
 - A `proxy.yaml` config at `~/.openamer/proxy/proxy.yaml` listing the upstream hosts you allow and the secrets-transform mapping
 - A `mappings.json` recording which proxy token corresponds to which real env var
 
-The sandbox gets `HTTPS_PROXY=http://host.docker.internal:9090`, `HTTP_PROXY=http://host.docker.internal:9091`, and standard provider env vars such as `OPENROUTER_API_KEY` set to opaque proxy tokens. Matching `HERMES_PROXY_TOKEN_<ENV_NAME>` aliases are also exported for diagnostics. Existing provider SDKs read the usual env names, send the proxy token in `Authorization`, and iron-proxy's `secrets` transform substitutes the real value sourced from the host-side daemon environment.
+The sandbox gets `HTTPS_PROXY=http://host.docker.internal:9090`, `HTTP_PROXY=http://host.docker.internal:9091`, and standard provider env vars such as `OPENROUTER_API_KEY` set to opaque proxy tokens. Matching `OPENAMER_PROXY_TOKEN_<ENV_NAME>` aliases are also exported for diagnostics. Existing provider SDKs read the usual env names, send the proxy token in `Authorization`, and iron-proxy's `secrets` transform substitutes the real value sourced from the host-side daemon environment.
 
 ## What it is not
 
@@ -48,7 +48,7 @@ Once running, the Docker terminal backend automatically:
 - Sets `HTTPS_PROXY`, `HTTP_PROXY`, `REQUESTS_CA_BUNDLE`, `SSL_CERT_FILE`, `CURL_CA_BUNDLE`, `NODE_EXTRA_CA_CERTS` to make every common HTTP runtime route through the proxy and trust the CA
 - Sets `NODE_OPTIONS=--use-openssl-ca` (appended to whatever you already have in `docker_env.NODE_OPTIONS`) so Node.js routes through the OpenSSL store the other CA-bundle vars control — see [Node.js asymmetric CA caveat](#nodejs-asymmetric-ca-caveat) below for the residual gap
 - Adds `--add-host=host.docker.internal:host-gateway` so the sandbox can reach the host-side proxy on Linux (Docker Desktop handles this automatically on macOS/Windows)
-- Exports the proxy token under the standard provider env name (for example `OPENROUTER_API_KEY`) plus one `HERMES_PROXY_TOKEN_<ENV_NAME>` diagnostic alias per minted mapping
+- Exports the proxy token under the standard provider env name (for example `OPENROUTER_API_KEY`) plus one `OPENAMER_PROXY_TOKEN_<ENV_NAME>` diagnostic alias per minted mapping
 
 ## Configuration
 
@@ -354,9 +354,9 @@ When the Docker backend starts a container with `proxy.enabled: true` and the da
 | `-e CURL_CA_BUNDLE=…ca.crt` | curl — **replaces** the system store |
 | `-e NODE_EXTRA_CA_CERTS=…ca.crt` | Node.js — **adds** to the system store |
 | `-e NODE_OPTIONS="<your value> --use-openssl-ca"` | Node.js — route through OpenSSL store (appended; your `--max-old-space-size` etc. are preserved) |
-| `-e HERMES_EGRESS_PROXY=1` | Sentinel the agent can read to know it's proxy-aware |
+| `-e OPENAMER_EGRESS_PROXY=1` | Sentinel the agent can read to know it's proxy-aware |
 | `-e OPENROUTER_API_KEY=<proxy-token>` | Standard provider env names receive proxy tokens so existing SDKs keep working |
-| `-e HERMES_PROXY_TOKEN_<NAME>=…` | Diagnostic alias for each mapping; same value as the standard provider env var |
+| `-e OPENAMER_PROXY_TOKEN_<NAME>=…` | Diagnostic alias for each mapping; same value as the standard provider env var |
 | `--add-host=host.docker.internal:host-gateway` | Linux-only; Docker Desktop maps it automatically |
 
 #### Node.js asymmetric CA caveat
@@ -394,7 +394,7 @@ The daemon's pidfile is written with `O_EXCL` + `O_NOFOLLOW` + ownership check. 
 
 Beyond that, every `start_proxy` plants a fresh random nonce in two places:
 
-- `HERMES_IRON_PROXY_NONCE=<nonce>` in the daemon's env
+- `OPENAMER_IRON_PROXY_NONCE=<nonce>` in the daemon's env
 - `~/.openamer/proxy/iron-proxy.nonce` (0o600 sibling of the pidfile)
 
 When `openamer egress stop` (or any other `_pid_alive` check) wants to confirm a PID still refers to *our* daemon — not an unrelated process that was assigned the same PID after iron-proxy crashed — it reads `/proc/<pid>/environ` and looks for the nonce. The on-disk copy is what makes this work across CLI invocations (the in-memory `_proxy_nonce` is per-process and resets on every `openamer` invocation).

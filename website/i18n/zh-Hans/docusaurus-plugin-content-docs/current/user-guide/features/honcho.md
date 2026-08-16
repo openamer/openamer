@@ -104,7 +104,7 @@ echo 'HONCHO_API_KEY=***' >> ~/.openamer/.env
 
 ## 配置选项
 
-Honcho 在 `~/.honcho/config.json`（全局）或 `$HERMES_HOME/honcho.json`（profile 本地）中配置。设置向导会自动处理。
+Honcho 在 `~/.honcho/config.json`（全局）或 `$OPENAMER_HOME/honcho.json`（profile 本地）中配置。设置向导会自动处理。
 
 ### 完整配置参考
 

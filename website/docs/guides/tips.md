@@ -82,7 +82,7 @@ Create an `AGENTS.md` in your project root with architecture decisions, coding c
 
 ### SOUL.md: Customize Personality
 
-Want OpenAmer to have a stable default voice? Edit `~/.openamer/SOUL.md` (or `$HERMES_HOME/SOUL.md` if you use a custom OpenAmer home). OpenAmer now seeds a starter SOUL automatically and uses that global file as the instance-wide personality source.
+Want OpenAmer to have a stable default voice? Edit `~/.openamer/SOUL.md` (or `$OPENAMER_HOME/SOUL.md` if you use a custom OpenAmer home). OpenAmer now seeds a starter SOUL automatically and uses that global file as the instance-wide personality source.
 
 For a full walkthrough, see [Use SOUL.md with OpenAmer](/guides/use-soul-with-openamer).
 

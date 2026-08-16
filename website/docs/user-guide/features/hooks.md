@@ -1452,7 +1452,7 @@ Each unique `(event, command)` pair prompts the user for approval the first time
 Three escape hatches bypass the interactive prompt — any one is sufficient:
 
 1. `--accept-hooks` flag on the CLI (e.g. `openamer --accept-hooks chat`)
-2. `HERMES_ACCEPT_HOOKS=1` environment variable
+2. `OPENAMER_ACCEPT_HOOKS=1` environment variable
 3. `hooks_auto_accept: true` in `cli-config.yaml`
 
 Non-TTY runs (gateway, cron, CI) need one of these three — otherwise any newly-added hook silently stays un-registered and logs a warning.

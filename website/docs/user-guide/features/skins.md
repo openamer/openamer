@@ -105,7 +105,7 @@ Text strings used throughout the CLI interface.
 |-----|------|-------------|---------|
 | `tool_prefix` | string | Character prefixed to tool output lines in the CLI | `┊` |
 | `tool_emojis` | dict | Per-tool emoji overrides for spinners and progress (`{tool_name: emoji}`) | `{}` |
-| `banner_logo` | string | Rich-markup ASCII art logo (replaces the default HERMES_AGENT banner) | `""` |
+| `banner_logo` | string | Rich-markup ASCII art logo (replaces the default OPENAMER_AGENT banner) | `""` |
 | `banner_hero` | string | Rich-markup hero art (replaces the default caduceus art) | `""` |
 
 ## Custom skins
@@ -259,7 +259,7 @@ npm start
 6. Click **Save** to write the skin YAML to `~/.openamer/skins/`.
 7. Click **Activate** to set it as the current skin (updates `display.skin` in `config.yaml`).
 
-OpenAmer Mod respects the `HERMES_HOME` environment variable, so it works with [profiles](/user-guide/profiles) too.
+OpenAmer Mod respects the `OPENAMER_HOME` environment variable, so it works with [profiles](/user-guide/profiles) too.
 
 ## Operational notes
 

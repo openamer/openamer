@@ -6,16 +6,16 @@ description: "Project context files — .openamer.md, AGENTS.md, CLAUDE.md, glob
 
 # Context Files
 
-OpenAmer Agent automatically discovers and loads context files that shape how it behaves. Some are project-local and discovered from your working directory. `SOUL.md` is now global to the OpenAmer instance and is loaded from `HERMES_HOME` only.
+OpenAmer Agent automatically discovers and loads context files that shape how it behaves. Some are project-local and discovered from your working directory. `SOUL.md` is now global to the OpenAmer instance and is loaded from `OPENAMER_HOME` only.
 
 ## Supported Context Files
 
 | File | Purpose | Discovery |
 |------|---------|-----------| 
-| **.openamer.md** / **HERMES.md** | Project instructions (highest priority) | Walks to git root |
+| **.openamer.md** / **OPENAMER.md** | Project instructions (highest priority) | Walks to git root |
 | **AGENTS.md** | Project instructions, conventions, architecture | CWD at startup + subdirectories progressively |
 | **CLAUDE.md** | Claude Code context files (also detected) | CWD at startup + subdirectories progressively |
-| **SOUL.md** | Global personality and tone customization for this OpenAmer instance | `HERMES_HOME/SOUL.md` only |
+| **SOUL.md** | Global personality and tone customization for this OpenAmer instance | `OPENAMER_HOME/SOUL.md` only |
 | **.cursorrules** | Cursor IDE coding conventions | CWD only |
 | **.cursor/rules/*.mdc** | Cursor IDE rule modules | CWD only |
 
@@ -84,12 +84,12 @@ This is a Next.js 14 web application with a Python FastAPI backend.
 **Location:**
 
 - `~/.openamer/SOUL.md`
-- or `$HERMES_HOME/SOUL.md` if you run OpenAmer with a custom home directory
+- or `$OPENAMER_HOME/SOUL.md` if you run OpenAmer with a custom home directory
 
 Important details:
 
 - OpenAmer seeds a default `SOUL.md` automatically if one does not exist yet
-- OpenAmer loads `SOUL.md` only from `HERMES_HOME`
+- OpenAmer loads `SOUL.md` only from `OPENAMER_HOME`
 - OpenAmer does not probe the working directory for `SOUL.md`
 - If the file is empty, nothing from `SOUL.md` is added to the prompt
 - If the file has content, the content is injected verbatim after scanning and truncation

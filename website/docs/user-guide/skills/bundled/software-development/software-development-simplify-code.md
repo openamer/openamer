@@ -259,7 +259,7 @@ Wait for all four to return (batch mode returns them together).
   note, not folded into cleanup fixes. Correctness review is a different
   pass with different verification standards.
 - **Respect project conventions.** If the repo has AGENTS.md / CLAUDE.md /
-  HERMES.md or a linter config, fold those rules into the reviewer prompts so
+  OPENAMER.md or a linter config, fold those rules into the reviewer prompts so
   suggestions match house style instead of fighting it.
 - **Large diffs blow context.** If the diff is huge, scope it down before
   delegating — four subagents each carrying a 5000-line diff is expensive and

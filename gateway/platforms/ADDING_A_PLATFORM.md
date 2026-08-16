@@ -238,7 +238,7 @@ Add a named toolset for your platform:
 ```python
 "openamer-your-platform": {
     "description": "Your Platform bot toolset",
-    "tools": _HERMES_CORE_TOOLS,
+    "tools": _OPENAMER_CORE_TOOLS,
     "includes": []
 },
 ```

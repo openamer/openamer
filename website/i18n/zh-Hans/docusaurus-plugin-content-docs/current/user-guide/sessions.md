@@ -580,7 +580,7 @@ state.db 后可安全删除。
 - 重置前，agent 保存即将过期 session 中的记忆和技能
 - 可选自动清理：当 `sessions.auto_prune` 为 `true` 时，在 CLI/gateway 启动时清理早于 `sessions.retention_days`（默认 90）天的已结束 session
 - 实际删除了行的清理操作完成后，`state.db` 会执行 `VACUUM` 以回收磁盘空间（SQLite 在普通 DELETE 后不会缩小文件）
-- 清理最多每 `sessions.min_interval_hours`（默认 24）小时运行一次；上次运行时间戳记录在 `state.db` 内部，因此在同一 `HERMES_HOME` 下的所有 OpenAmer 进程间共享
+- 清理最多每 `sessions.min_interval_hours`（默认 24）小时运行一次；上次运行时间戳记录在 `state.db` 内部，因此在同一 `OPENAMER_HOME` 下的所有 OpenAmer 进程间共享
 
 默认为**关闭**——session 历史对 `session_search` 召回很有价值，静默删除可能会让用户感到意外。在 `~/.openamer/config.yaml` 中启用：
 

@@ -87,7 +87,7 @@ def register(ctx):
 
 将两个文件放入 `~/.openamer/plugins/hello-world/`，重启 OpenAmer，模型即可立即调用 `hello_world`。每次工具调用后，hook 会打印一行日志。
 
-`./.openamer/plugins/` 下的项目本地插件默认禁用。仅对可信仓库启用，方法是在启动 OpenAmer 前设置 `HERMES_ENABLE_PROJECT_PLUGINS=true`。
+`./.openamer/plugins/` 下的项目本地插件默认禁用。仅对可信仓库启用，方法是在启动 OpenAmer 前设置 `OPENAMER_ENABLE_PROJECT_PLUGINS=true`。
 
 ## 插件能做什么
 
@@ -119,7 +119,7 @@ def register(ctx):
 |--------|------|----------|
 | 内置 | `<repo>/plugins/` | 随 OpenAmer 附带 — 参见 [Built-in Plugins](/user-guide/features/built-in-plugins) |
 | 用户 | `~/.openamer/plugins/` | 个人插件 |
-| 项目 | `.openamer/plugins/` | 项目专属插件（需要 `HERMES_ENABLE_PROJECT_PLUGINS=true`） |
+| 项目 | `.openamer/plugins/` | 项目专属插件（需要 `OPENAMER_ENABLE_PROJECT_PLUGINS=true`） |
 | pip | `openamer_agent.plugins` entry_points | 分发包 |
 | Nix | `services.openamer-agent.extraPlugins` / `extraPythonPackages` | NixOS 声明式安装 — 参见 [Nix Setup](/getting-started/nix-setup#plugins) |
 
@@ -233,7 +233,7 @@ Memory provider 和 context engine 是 **provider 插件** — 每种类型同�
 | **图像生成后端**（DALL·E、SDXL 等） | 后端插件 — `ctx.register_image_gen_provider()` | [Image Generation Provider Plugins](/developer-guide/image-gen-provider-plugin) |
 | **视频生成后端**（Veo、Kling、Pixverse、Grok-Imagine、Runway 等） | 后端插件 — `ctx.register_video_gen_provider()` | [Video Generation Provider Plugins](/developer-guide/video-gen-provider-plugin) |
 | **TTS 后端**（任意 CLI — Piper、VoxCPM、Kokoro、xtts、语音克隆脚本等） | 配置驱动（推荐）— 在 `config.yaml` 的 `tts.providers.<name>` 下以 `type: command` 声明。或 Python 后端插件 — 对需要超出 shell 模板的 Python SDK / 流式引擎使用 `ctx.register_tts_provider()`。 | [TTS Setup](/user-guide/features/tts#custom-command-providers) · [Python plugin guide](/user-guide/features/tts#python-plugin-providers) |
-| **STT 后端**（自定义 whisper 二进制、本地 ASR CLI） | 配置驱动 — 将 `HERMES_LOCAL_STT_COMMAND` 环境变量设置为 shell 模板 | [Voice Message Transcription (STT)](/user-guide/features/tts#voice-message-transcription-stt) |
+| **STT 后端**（自定义 whisper 二进制、本地 ASR CLI） | 配置驱动 — 将 `OPENAMER_LOCAL_STT_COMMAND` 环境变量设置为 shell 模板 | [Voice Message Transcription (STT)](/user-guide/features/tts#voice-message-transcription-stt) |
 | **通过 MCP 使用外部工具**（文件系统、GitHub、Linear、Notion、任意 MCP 服务器） | 配置驱动 — 在 `config.yaml` 中以 `command:` / `url:` 声明 `mcp_servers.<name>`。OpenAmer 自动发现服务器的工具并与内置工具一同注册。 | [MCP](/user-guide/features/mcp) |
 | **额外 skill 来源**（自定义 GitHub 仓库、私有 skill 索引） | CLI — `openamer skills tap add <repo>` | [Skills Hub](/user-guide/features/skills#skills-hub) · [发布自定义 tap](/user-guide/features/skills#publishing-a-custom-skill-tap) |
 | **Gateway 事件 hook**（在 `gateway:startup`、`session:start`、`agent:end`、`command:*` 时触发） | 将 `HOOK.yaml` + `handler.py` 放入 `~/.openamer/hooks/<name>/` | [Event Hooks](/user-guide/features/hooks#gateway-event-hooks) |

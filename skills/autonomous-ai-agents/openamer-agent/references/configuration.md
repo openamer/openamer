@@ -26,7 +26,7 @@ Full reference: https://openamer-agent.nousresearch.com/docs/user-guide/configur
 ### Toolsets
 
 Enable/disable via `openamer tools` (interactive) or `openamer tools enable/disable NAME`.
-Full enumeration: `TOOLSETS` dict in `toolsets.py` (`_HERMES_CORE_TOOLS` is the default bundle most platforms inherit).
+Full enumeration: `TOOLSETS` dict in `toolsets.py` (`_OPENAMER_CORE_TOOLS` is the default bundle most platforms inherit).
 
 | Toolset | What it provides |
 |---------|-----------------|

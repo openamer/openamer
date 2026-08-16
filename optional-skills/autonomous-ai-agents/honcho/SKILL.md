@@ -337,7 +337,7 @@ In `hybrid` and `context` modes, base context (user representation + card + sess
 
 ## Config Reference
 
-Config file: `$HERMES_HOME/honcho.json` (profile-local) or `~/.honcho/config.json` (global).
+Config file: `$OPENAMER_HOME/honcho.json` (profile-local) or `~/.honcho/config.json` (global).
 
 ### Key settings
 
