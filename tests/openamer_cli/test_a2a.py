@@ -296,3 +296,25 @@ def test_brainlog_full_activity_stream(tmp_path):
     raw = list(log.iter_events())
     assert all(len(e["content"]) <= 800 for e in raw)
     assert {e["kind"] for e in raw} >= {"user", "thinking", "search", "assistant"}
+
+def test_autolog_on_off_capture(tmp_path, monkeypatch):
+    """Auto activity capture: disabled = no-op; enabled = events written + flag toggles."""
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
+    from openamer_cli.a2a import autolog as al
+    assert al.enabled() is False
+    a = al.Autolog()
+    a.user("hello"); a.assistant("hi")
+    logp = tmp_path / "a2a" / "activity.jsonl"
+    assert not logp.exists()
+    al.enable()
+    a2 = al.Autolog()
+    a2.user("what is 2+2?", session="S")
+    a2.thinking("answer directly", session="S")
+    a2.tool("bash", "echo 4", ok=True, session="S")
+    a2.assistant("4", session="S")
+    assert logp.exists()
+    import json
+    kinds = [json.loads(l)["kind"] for l in logp.read_text(encoding="utf-8").splitlines()]
+    assert "user" in kinds and "thinking" in kinds and "tool_call" in kinds and "assistant" in kinds
+    al.disable()
+    assert al.enabled() is False

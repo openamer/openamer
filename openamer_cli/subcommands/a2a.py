@@ -205,13 +205,24 @@ def _cmd_meshlearn(args) -> int:
 
 
 def _cmd_brain(args) -> int:
-    """Collect local learning material into a training dataset (feed the brain)."""
+    """Collect learning material OR toggle automatic activity capture."""
     from openamer_cli.a2a import braindata
+    from openamer_cli.a2a import autolog
     import pathlib as _pl
     subject = args.brain_cmd
+    # --- autolog subcommand (on/off/status) ---
+    if subject == "autolog" or (subject in ("on", "off", "status") and hasattr(args, "autolog_sub")):
+        sub = getattr(args, "autolog_sub", subject)
+        if sub == "on":
+            autolog.enable(); print("Autolog ON — all OpenAmer activity now flows to the brain dataset."); return 0
+        if sub == "off":
+            autolog.disable(); print("Autolog OFF."); return 0
+        if sub == "status":
+            print("Autolog:", "ON" if autolog.enabled() else "OFF"); return 0
+    if subject == "autolog":
+        print("Usage: openamer a2a brain autolog on|off|status"); return 2
     if subject != "collect":
-        print("Usage: openamer a2a brain collect [--out <path>] [--trajectories dir]")
-        return 2
+        print("Usage: openamer a2a brain collect|autolog <on|off|status>"); return 2
     home = _pl.Path.home() / ".openamer"
     # gather trajectory files (both success + failure) under the home/openamer data dir
     traj_dirs = [
@@ -398,6 +409,9 @@ def build_a2a_parser(subparsers) -> None:
     bc.add_argument("--out", default=None); bc.add_argument("--memory", default=None)
     bc.add_argument("--traj-dirs", nargs="*", default=None)
     bc.set_defaults(func=_cmd_brain)
+    ba = br_sub.add_parser("autolog", help="Toggle automatic activity capture (on|off|status)")
+    ba.add_argument("autolog_sub", nargs="?", default="status", choices=["on", "off", "status"])
+    ba.set_defaults(func=_cmd_brain)
     br.set_defaults(func=_cmd_brain)
 
     p.set_defaults(func=_cmd_status)
