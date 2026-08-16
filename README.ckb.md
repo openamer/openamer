@@ -1,82 +1,47 @@
 # OpenAmer Agent
 
-**زۆرەوە بەرھەمەکەر ئەی ئی ئەژێن — لە بەرچاوەکان دەیەسە، بەرھەمەکەرەکان پێشکەوتن، خۆشەکارییەکان بەخۆشە، وەک کۆییەکەییەوە بەرھەمەکەر.**
+**ئەجێنتە ژیرییە دەستکردەی خۆ-پەرەپێدەر — لە ئەزموونەوە فێر ببە، کارامەیی دروست بکە، ئارەزووەکانت بیر بخە و لە هەر شوێنێک بێت بۆت کار بکات.**
 
-**بەهۆی کەمبوونەوەی ڕێکخراوەیەکانی کۆمپیوتەر و ڕێکخراوەیەکانی ئینتەرنێت، ڕێکخراوەی OpenRouter بەڕێژەیەکی Open Source پەیڤەر کراوە بۆ ڕێکخراوەیەکانی کۆمپیوتەر و ڕێکخراوەیەکانی ئینتەرنێت.
+هەر مۆدێلێک بتەوێت بەکاربهێنە — OpenRouter، OpenAI، DeepSeek و زیاتریش. بە `openamer model` گۆڕانیان بکە — بەبێ هیچ گۆڕانکارییەک لە کۆددا.
 
-## **Pêşniyazî**:
+## تایبەتمەندییەکان
 
-* **Pêşniyazî** û **Peyvaz**: 
-	+ **Peyvaz**: Peyvaz ji bo pêşniyazî û peyvazên wê ne.
-	+ **Pêşniyazî**: Pêşniyazî ji bo pêşniyazî û peyvazên wê ne.
-* **Peyvaz**: Peyvaz ji bo pêşniyazî û peyvazên wê ne.
-* **Pêşniyazî**: Pêşniyazî ji bo pêşniyazî û peyvazên wê ne.
-* **Hûn**: Hûn ji bo pêşniyazî û peyvazên wê ne.
-* **Hûn**: Hûn ji bo pêşniyazî û peyvazên wê ne.
-* **Hûn**: Hûn ji bo pêşniyazî û peyvazên wê ne.
-* **Hûn**: Hûn ji bo pêşniyazî û peyvazên wê ne.
-* **Hûn**: Hûn ji bo pêşniyazî û peyvazên wê ne.
-* **Hûn**: Hûn ji bo pêşniyazî û peyvazên wê ne.
-* **Hûn**: Hûn ji bo pêşniyazî û peyvazên wê ne.
-* **Hûn**: Hûn ji bo pêşniyazî û peyvazên wê ne.
-* **H
+- **ئینتەرفەیسێکی ڕاستەقینەی تێرمیناڵ — TUIیەکی تەواو لەگەڵ ئۆتۆکۆمپلێت (تەواوکردنی خۆکار)، مێژوو، و ستریمینگ کردنی دەرئەنجامی ئامرازەکان**
+- **لەو شوێنانەیە کە تۆی لێیە — تێلگرام، دیسکۆرد، سلاک، واتسئەپ و زیاتریش، هەموویان لە یەک دەروازەی پەیوەندییەوە.**
+- **بە تێپەڕبوونی کات فێر دەبێت — یادەوەری، لێهاتووییەکانی خۆشپەرستکردن، بیرهێنانی زانیارییەکان لە نێوان خولاتەکاندا**
+- **دەسپێرێت و هاوکات دەکات — دروستکردنی ساب-ئەجێنتەکان بۆ کاری هاوکات**
+- **ئۆتۆماتیکەشنەکانی خشتەکراو — کرۆنی ناوخۆیی بۆ ڕاپۆرتە ڕۆژانەکان، پاکاپاکردن (backups)، و وردبینیکردنەکان (audits)**
+- **لە هەموو شوێنێک کار دەکات — خۆراکی (local)، Docker، SSH، کلاود (cloud)، serverless**
 
-- ****Barvînî****
-- **پێویستە لەوێی کە تۆ دەژیت — Telegram, Discord, Slack, WhatsApp و زۆرتر لەوەیە لە یەک گەیەر**
-- ****Lêgerîn li demjîn** — **mêjîn**, **sêwkerêniya xwezîn**, **parvekirina ji berê****
-- **ڕەواندەنەرەکان و پەیوەندیکردن - ڕێگەدەدەن بە دروستکردنی ڕەواندەنەکانی پەیوەندکراو بۆ کارەکانی پەیوەندکراو**
-- ****Automationsêkê Yekê** — **Cronêkê yekê** ji bo raporekê rojane, bacupên, pêvajokan**
-- **Li ser kompiyuter, Docker, SSH, nûve, serverless, û li ser serverê.**
+## دامەزراندنی خێرا
 
-## **Bîrînî**
-
-Windows (PowerShell)
+ویندۆز (PowerShell):
 ```powershell
 iex (irm https://github.com/openamer/openamer/raw/main/scripts/install.ps1)
 ```
 
-Linux / macOS
+لینکس / مک ئۆ ئێس (Linux / macOS):
 ```bash
 curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | bash
 ```
 
-## **Sertifika xweşkarî**
-
-**Hêviya xweşkarî**
-
-**Dema xweşkarî**
-
-**Sertifika xweşkarî**
+## دەستپێکردن
 
 ```bash
-openamer              # **Hêlî bixwe**
-openamer setup        # `curl -X POST 'https://api.mymemory.translated.net/get?q=Hello&langpair=en|de'`
-openamer model        # **Choose your model**
-
-1. **Google Translate**: A popular and widely used machine translation service provided by Google.
-2. **Microsoft Translator**: A machine translation service provided by Microsoft, which can also be used in various applications and software.
-3. **DeepL**: A neural machine translation service that is known for its high-quality translations, especially for European languages.
-4. **MyMemory**: A large database of translations that can be used to improve the accuracy of machine translations.
-5. **OpenNMT**: An open-source neural machine translation platform that can be used to build and train custom translation models.
-
-Which one would you like to choose?
-openamer update       # **Lêgerînên nû**:
+openamer              # دەستپێکردنی چاتینگ
+openamer setup        # کلیلەکانی API و دابینکەرت (provider) ڕێکبخە
+openamer model        # مۆدێلەکەت هەڵبژێرە
+openamer update       # نوێکردنەوە بۆ نوێترین وەشان
 ```
 
-## **بەڕێژێژە**
+## نوێکردنەوە
 
-OpenAmer ji bo pêşniyariya nûvekirinên xwazî têkevin û li bannerê ya welcomê nîşana birêve dide. Openamer update bike, ji bo wersyona nûst. —  ew ji bo datayên xwe ji berî nûvekirinê sîstemeke bacûkê bike.
+OpenAmer بە شێوەیەکی ئۆتۆماتیکی بەدوای نوێکارییەکاندا دەگەڕێت و ئاگادارییەک لە بانەرى بەخێرهاتنەکەدا پیشان دەدات. بۆ بەدەستهێنانی نوێترین وەشان `openamer update` جێبەجێ بکە — ئەمە سەرەتا کۆپییەکی پشتیوان (backup)ی داتاکانت دەگرێت.
 
-## بەشدەرکردن
+## بەشداربوون
 
-بەخۆڕایییەکان بۆ بەخۆڕایییەکان — کەسایەتییەکانەکانی کۆکراوەیە، ڕیپۆرتەکان بەخۆڕایی بکەن، یان بەشداربێن لە کۆمەڵگایەکە.
+بەشداربوون پێشواز لێی دەکرێت — کێشەکان (issues) بکەرەوە، داواکاری گۆڕانکاری (pull requests) بنێرە، یان ببە بە ئەندامێکی کۆمەڵگەکە.
 
-## **Hawarên Licençê**
+## مۆڵەت
 
-- **[GNU General Public License](https://www.gnu.org/licenses/gpl-3.0.en.html)**: Licençên GNU ji bo vêrîyên open-source û software.
-- **[MIT License](https://opensource.org/licenses/MIT)**: Licençên MIT ji bo vêrîyên open-source û software.
-- **[Apache License](https://www.apache.org/licenses/)**: Licençên Apache ji bo vêrîyên open-source û software.
-- **[Creative Commons](https://creativecommons.org/)**: Licençên Creative Commons ji bo vêrîyên open-source û software.
-- **[Licençe BSD](https://opensource.org/licenses/BSD-3-Clause)**: Licençên BSD ji bo vêrîyên open-source û software.
-
-ڕێگەیەکەی ئەپاچ 2.0 ببینە {LICENSE}.
+لایسەنسى ئەپاچی ٢.٠ (Apache License 2.0). سەیری {LICENSE} بکە.

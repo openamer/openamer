@@ -1,70 +1,47 @@
 # OpenAmer Agent
 
-**स्व-सर्वोत्कर्षी एआई एजेंट - अनुभव से सीखे, कौशल बनाए, अपने पसंदीदा को याद रखे, और आपके लिए कहीं भी काम करें ।**
+**अपने आप सुधरे वाला AI एजेंट — अनुभव से सीखल, नया हुनर बनावल, राउर पसंद के याद रखल, अउर हर जगह राउर काम कइल।**
 
-**Kamal hai!** (कामल है!)
+जे कवनो मॉडल इस्तेमाल करीं — OpenRouter, OpenAI, DeepSeek, चाहे अउर कवनो। `openamer model` से बदलीं — कवनो कोड बदले के जरूरत नईखे।
 
-Aapke request ke anusaar, main aapke liye Bhojpuri translation kar sakta hoon. Kya aapke paas koi specific text hai jo main translate karna chahta hoon?
+## विशेषताहरू
 
-## **Bhumika**
+- **असली टर्मिनल इंटरफेस — ऑटोकम्प्लीट, हिस्ट्री, अउर स्ट्रीमिंग टूल आउटपुट के साथ पूरा TUI**
+- **उहवें रही जहाँ रउआ रही — Telegram, Discord, Slack, WhatsApp आ अउरी बहुत कुछ, बस एकही गेटवे से**
+- **समय के साथ सीखेला — याददाश्त, अपने आप सुधरे वाला कौशल, एक सेशन से दूसरा सेशन तक बात याद रखेला**
+- **सौंपेला अउर समानांतर करेला — समानांतर काम खातिर सब-एजेंटन के पैदा करेला**
+- **शेड्यूल कइल गइल ऑटोमेशन — डेली रिपोर्ट, बैकअप, ऑडिट खातिर इन-बिल्ट cron**
+- **कहिँ भी चली — लोकल, Docker, SSH, क्लाउड, सर्वरलेस**
 
-- ****Terminal interface** — **pura TUI** **jahaan autocomplete, history, aur streaming tool output ****
-- **भोजपुरी में अनुवाद:
+## जल्दी इंस्टाल करीं
 
-जे जहाँ तुम रहते हो — टेलीग्राम, डिस्कोर्ड, स्लैक, व्हाट्सएप आउलहि एक गेटवे**
-- **समय के साथ सीखता है — याद, आत्म-उन्नति कौशल, सत्र-आधारित पुनःस्मरण**
-- **देलिगेट्स आणि पैरलेलाइज़ — पैरलेल वर्क के लिए सब एजेंट्स को स्पॉन करें**
-- **भोजपुरी में अनुवाद: 
-स्केड्युल्ड ऑटोमेशन - दैनिक रिपोर्ट, बैकअप, ऑडिट के लिए इनबिल्ट क्रॉन**
-- **किसी भी ठिकाने चले सके — स्थानीय, डॉक्टर, SSH, cloud, serverless**
-
-## तेज़ स्थापना
-
-विंडोज़ (पावरशेल):
+विंडोज (PowerShell):
 ```powershell
 iex (irm https://github.com/openamer/openamer/raw/main/scripts/install.ps1)
 ```
 
-लिनुक्स / मैकओएस:
+लिनक्स / मैक ओएस (Linux / macOS):
 ```bash
 curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | bash
 ```
 
-## शुरुआत करे
+## शुरुआत कइल
 
 ```bash
-openamer              # **चैट शुरू करें**
-openamer setup        # **API Keys aur Provider ko Set Karein** 
-
-API Keys aur provider ko set karne ke liye, aapko nimnalikhit charanon ko poora karna hoga:
-
-1. **API Keys ki Prapti**: Aapko apne API provider ke website par jana hoga aur unke API keys ki prapti karna hoga. API keys aapko apne account mein access karne ke liye use hote hain.
-2. **API Keys ko Set Karein**: API keys ko set karne ke liye, aapko apne API provider ke dashboard par jana hoga aur unke API keys ko set karna hoga. Ismein aapko apne API keys ko enter karna hoga, jaise ki unke API keys ki prapti karne ke liye.
-3. **API Provider ko Set Karein**: API provider ko set karne ke liye, aapko apne API provider ke dashboard par jana hoga aur unke API provider ko set karna hoga. Ismein aapko apne API provider ki prapti karne ke liye unke API provider ke API keys ko enter karna hoga.
-
-**API Keys aur Provider ko Set Karein: Example**
-
-* **API Keys**: `1234567890abcdef`
-* **API Provider**: `Google Cloud Platform`
-* **API Keys ko Set Karein**: `https://console.cloud.google.com/apis/credentials`
-* **API Provider ko Set Karein**: `https://console.cloud.google.com/project`
-
-**API Keys aur Provider ko Set Karein: Tips**
-
-* API keys aur provider ko set karne se pehle, aapko apne API provider ke terms aur conditions ko padhna hoga.
-* API keys aur provider ko set karne ke baad, aapko apne API provider ke dashboard par jana h
-openamer model        # **भोजपुरी चुनें**
-openamer update       # **Aapko latest version mila hai.**
+openamer              # बातचीत शुरू करीं
+openamer setup        # अपना API की (keys) अउर प्रोवाइडर सेट करीं
+openamer model        # अपना मॉडल चुनल जाव
+openamer update       # सबसे नया वर्शन में अपडेट करीं
 ```
 
-## **नवीनीकरण**
+## अपडेट कइल जा रहल बा
 
-OpenAmer kuchhda update karke dekhega aur welcome banner mein ek warning dikhaega. OpenAmer update karke latest version laga, yah pehle se data ka backup karta hai.
+OpenAmer अपने आप अपडेट चेक करेला आ वेलकम बैनर में चेतावनी देखावेला। सबसे नया वर्जन पावे खातिर `openamer update` चलाइँ — ई पहिले राउर डेटा के बैकअप ले लेई।
 
-## काम करे के
+## योगदान देवल
 
-**अमला आभार** — खुले मुद्दा खोले, पुल रिक्वेस्ट सबमिट करे, या समुदाय में शामिल हो ।
+योगदान के स्वागत बा — खुला मुद्दा (open issues) देखावल जाव, पुल रिक्वेस्ट (pull requests) भेजल जाव, या समुदाय से जुड़ल जाव।
 
 ## लाइसेंस
 
-अपरा लाइसेंस 2.0. देखें {लाइसेंस}।
+अपाचे लाइसेंस 2.0 (Apache License 2.0)। {LICENSE} देखीं।

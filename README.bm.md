@@ -1,64 +1,47 @@
 # OpenAmer Agent
 
-****Ko kɔgɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔmɔɔm**
+**AI agent wa bɛ se ka kɛ k'a bɛn k'a yɛrɛ kɛna — a bɛ se ka sariya kɛ a kɛnɛya la, a bɛ se ka kɛnɛya kɛ, a bɛ se ka i ka sago kumanw kuman kɛ, wao a bɛ se ka i dɛmɛ fɛn bɛɛ la, fɛn bɛɛ kɛ i ye, mɔn fɛn bɛɛ la.**
 
-**Mɛnɛɛŋa**.
+Kullan k'a sago kɛ a bɛnna — OpenRouter, OpenAI, DeepSeek, ani baara wagi. Ya a sago bago kɛ ni `openamer model` — kòdi (code) donke tɛ sago kɛ.
 
-## **Kɛlɛŋɛ** (Features)
+## Kalan-ni-fanga-w
 
-- ****Terminal Interface** - **Bamanankan**
+- **Terminal interface k’a kɔrɔ bɛɛ — TUI k’a bɛɛ ni autocomplete, history, ani streaming tool output ye**
+- **A bɛ sago kɛ y’a kɛ y’a kɛ o fɛyɛw lumanu kɔrɔ — Telegram, Discord, Slack, WhatsApp ani baara kurawo, k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ**
+- **A bɛ hakili kɛ k’a sago kɛ — hakili-kalan, kɛnɛya-duman-duman, k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a kuman kɛ k’a sago kɛ k’a**
+- **A bɛ kɛ sariya-kalan-na k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a kɛ k’a**
+- **Otomatisasi sariya-kalan — cron-kalan k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’a k’**
+- **A bɛ se ka jamana bɛɛ k’a kɛ — **local**, **Docker**, **SSH**, **cloud**, **serverless****
 
-Kɔrɔn terminal interface - bamanankan ɲɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛ**
-- ****Mɔgɔ wɔrɔ wɔrɔ — Telegram, Discord, Slack, WhatsApp na n'ɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔnɔn**
-- ****Ko fii fii ka tere** — **yiri, kɔɔra kɔɔra kɔɔra, ka sɔɔra ka sɔɔra****
-- ****Tafidina & kɔɔrɔ — tafina subagɛnta kɔɔrɔ ɲɛŋŋa****
-- ****Kɔɔraɔraɔraɔra** — **ɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛɲɛ**
-- ****ɲɛŋa tɛrɛ wɛrɛ wɛrɛ — ɲɛŋa, Docker, SSH, kɛlɛdɛ, sɛrvɛrɛlɛs****
+## Sabu-sabu kura-kura
 
-## **Kɔnɔ kɛ bɛ sɔɔra** 
-
-* [https://www.python.org/downloads/](https://www.python.org/downloads/)
-* [https://docs.python.org/3/using/installing.html](https://docs.python.org/3/using/installing.html)
-
-Ko Windows (PowerShell)
+Windows (PowerShell):
 ```powershell
 iex (irm https://github.com/openamer/openamer/raw/main/scripts/install.ps1)
 ```
 
-Linux / macOS
+Linux / macOS:
 ```bash
 curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | bash
 ```
 
-## **Mɔgɔ** (Getting started)
+## Tɔlɔ kɛyɛ
 
 ```bash
-openamer              # **N'kora kɔɔra**.
-openamer setup        # **Kɔɔ kɔɔ API keya ka jɔɔrɔ** 
-
-Kɔɔɔ kɔɔɔ ka providera ka jɔɔɔ. 
-
-1. **Kɔɔɔ kɔɔɔ ka providera ka jɔɔɔ** 
-   - Kɔɔɔ kɔɔɔ ka providera ka jɔɔɔ ka kɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔɔ
-openamer model        # **Mɔgɔ**
-openamer update       # **Tafita ka kɔrɔnɔ**.
+openamer              # K'a bamanankan k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'a k'an bɛ k'
+openamer setup        # Sabu-n-na API kɛnɛw k’a kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago kɛ k’a sago
+openamer model        # Y’a model-ma sago kɛ
+openamer update       # Kalan k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a kɛ k'a y'a
 ```
 
-## **A kɔyɛrɛ**.
+## Sabu kɛma (Updating)
 
-OpenAmer ka jari tun ka fà. Bambo ni ka jari ka fà, ka fà ka bari. Bambo update ka fà, ka fà ka bari ka fà.
+OpenAmer bɛ hakili kɛ bɛɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛɛ kɛ k’a y’a fɛn bɛ
 
-## **Bamanankan:**
+## Dɛmɛ kɛla
 
-* **Kɔntribusi** (Contributing)
-* **Kɔntribusiɛ** (Contributor)
-* **Kɔntribusiɛɛ** (Contributors)
-* **Kɔntribusiɛɛn** (Contributing team)
+An bɛ sago kɛ dɛmɛ kuma kɔnɔ — bɛn kɛ kɛnɛ kɔnɔ, yɛlɛmanw ladi, walima dɛmɛ kɛ kɔmɔn kɔnɔ.
 
-**Kɔntribusi** n'ɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛnɛ
+## Lisansi
 
-**Ji a kɔnɔ, ɲɛma kɔnɔ, ɲɛma kɔnɔ, ɲɛma kɔnɔ.**
-
-## Kɔɔra
-
-Bamanankan: Licènsi Apache 2.0. See {LICENSE}.
+Apache License 2.0. A k’a kɔrɔ {LICENSE}.

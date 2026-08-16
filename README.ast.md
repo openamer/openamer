@@ -1,21 +1,21 @@
 # OpenAmer Agent
 
-**L'axente AI autoameyoráu — aprende de la so experiencia, crea habilidaes, recuerda les sos preferencies y trabaya por ti en cualquier llugar.**
+**L'axente d'IA que s'estime solo — aprende de l'esperiencia, crea habilidés, recuerda robotics preferencies y trabaja pa ti onde sea.**
 
-Non, nun hai que faer nada. Puedes usar el modelu de traducción que deseyes.
+Usa cualquier modelu que quieras — OpenRouter, OpenAI, DeepSeek, y más. Cambia con `openamer model` — sen cambios nel código.
 
 ## Característiques
 
-- **Interfaz de terminal real — TUI completa con autocompletar, historia y salida en streaming de ferramientu**
-- **Vives onde vives — Telegram, Discord, Slack, WhatsApp y más dende un portal**
-- **Aprende a lo llargu — memoria, habilidaes autoameyores, recuerdo ente sesiones**
-- **Delega y paraleliza — llanzar subaxentes pa la trabayu paralelu**
-- **Automatización programada — cron integráu pal rexistru diariu, copias de seguridá, auditorías**
-- **Tien equí — local, Docker, SSH, nube, serverless**
+- **Interfaz de terminal real — TUI completa con autocompletáu, historial y salida de herramientas en streaming**
+- **Vive onde tú vives — Telegram, Discord, Slack, WhatsApp y más dende una sola pasarela**
+- **Aprende col tiempu — memoria, habilidaes que s'emeyoran solines, recordó entre sesiones**
+- **Delegue y paralaliza — crea subaxentes pa trabayu paralelu**
+- **Automatizaciones programadas — cron integráu pa reportes diarios, copies de seguridad, auditoríes**
+- **Funza onde sea — local, Docker, SSH, na nube, serverless**
 
-## Instalación Rápida
+## Instalación rápida
 
-Windows (PowerShell)
+Windows (PowerShell):
 ```powershell
 iex (irm https://github.com/openamer/openamer/raw/main/scripts/install.ps1)
 ```
@@ -25,23 +25,23 @@ Linux / macOS:
 curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | bash
 ```
 
-## **Comenzar**
+## Primeros pasos
 
 ```bash
-openamer              # ¿Quieres empezar a charlar?
-openamer setup        # Configura les tos claves API y proveedor
-openamer model        # Elixe'l tuyo.
-openamer update       # **Actualiza a la versión más recién**
+openamer              # Empezar a chatear
+openamer setup        # Configura robotics claves API y el proveedor
+openamer model        # Escoy el tój modelu
+openamer update       # Actualiza a la última versión
 ```
 
 ## Actualizando
 
-OpenAmer comproba les actualizaciones de forma automática y amuesa un aviso nel banner de bienvenida. Executa openamer update pa tener la versión más recién, que tamién fa una copia de seguridá de los datos.
+OpenAmer busca actualizaciones automáticamente y amuestra un avisu nel banner de bienvenida. Ejecuta `openamer update` pa llograr la última versión; primero fai una copia de seguridad de los teus datos.
 
-## Collaborando
+## Contribuyendo
 
-Bienveníos — abren les issues, envíen solicitudes de revisión o xuntense a la comunidá.
+Las contribuciones son bienvenidas — abre issues, envía pull requests o únete a la comunidá.
 
-## Llicencia
+## Licencia
 
-Llicencia Apache 2.0. Ve [LICENSE].
+Licencia Apache 2.0. Ver {LICENSE}.
