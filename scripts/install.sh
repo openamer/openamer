@@ -71,6 +71,7 @@ USE_VENV=true
 RUN_SETUP=true
 SKIP_BROWSER=false
 NO_SKILLS=false
+ALL_SKILLS=false
 BRANCH="main"
 INSTALL_COMMIT=""
 ENSURE_DEPS=""
@@ -116,6 +117,10 @@ while [[ $# -gt 0 ]]; do
             ;;
         --no-skills)
             NO_SKILLS=true
+            shift
+            ;;
+        --all-skills)
+            ALL_SKILLS=true
             shift
             ;;
         --branch|-Branch)
@@ -1859,6 +1864,13 @@ SOUL_EOF
             if [ -d "$INSTALL_DIR/skills" ] && [ ! "$(ls -A "$OPENAMER_HOME/skills/" 2>/dev/null | grep -v '.bundled_manifest')" ]; then
                 cp -r "$INSTALL_DIR/skills/"* "$OPENAMER_HOME/skills/" 2>/dev/null || true
                 log_success "Skills copied to ~/.openamer/skills/"
+            fi
+        fi
+        if [ "$ALL_SKILLS" = true ]; then
+            log_info "Installing ALL optional skills (--all-skills) ..."
+            if [ -d "$INSTALL_DIR/optional-skills" ]; then
+                ( cd "$INSTALL_DIR/optional-skills" && cp -r . "$OPENAMER_HOME/skills/" 2>/dev/null )
+                log_success "All optional skills installed."
             fi
         fi
     fi

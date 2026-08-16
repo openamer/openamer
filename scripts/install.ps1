@@ -53,9 +53,12 @@ param(
         #               runs that never want a desktop binary, and by headless
         #               terminal-only setups.
         #   -IncludeDesktop is kept for backwards compatibility (no-op now that
-        #               the desktop build is the default).
-        [switch]$NoDesktop,
-        [switch]$IncludeDesktop
+            #               the desktop build is the default).
+            [switch]$NoDesktop,
+            [switch]$IncludeDesktop,
+            # Also seed every official optional-skill (optional-skills/, ~100+ extra
+            # skills) at install time. Off by default so a normal install stays lean.
+            [switch]$AllSkills
 )
 
 $ErrorActionPreference = "Stop"
@@ -2459,12 +2462,25 @@ You are OpenAmer Agent, an intelligent AI assistant created by OpenAmer. You are
             if ((Test-Path $bundledSkills) -and -not (Get-ChildItem $userSkills -Exclude '.bundled_manifest' -ErrorAction SilentlyContinue)) {
                 Copy-Item -Path "$bundledSkills\*" -Destination $userSkills -Recurse -Force -ErrorAction SilentlyContinue
                 Write-Success "Skills copied to $OpenAmerHome\skills"
-            }
-        }
-    }
-}
+                            }
+                        }
+                    }
+                    if ($AllSkills) {
+                        # --all-skills: also seed every official optional-skill (optional-skills/,
+                        # ~100+ extra skills) so a user who asks for the full set gets it in one
+                        # step. Normal installs stay lean (bundled skills only).
+                        $optionalSrc = "$InstallDir\optional-skills"
+                        $userSkills = "$OpenAmerHome\skills"
+                        if (Test-Path $optionalSrc) {
+                            Write-Info "Installing ALL optional skills (-AllSkills) ..."
+                            New-Item -ItemType Directory -Force -Path $userSkills | Out-Null
+                            Copy-Item -Path "$optionalSrc\*" -Destination $userSkills -Recurse -Force -ErrorAction SilentlyContinue
+                            Write-Success "All optional skills installed."
+                        }
+                    }
+                }
 
-function Install-NodeDeps {
+                function Install-NodeDeps {
     if (-not $HasNode) {
         # Cross-process driver mode (OpenAmer-Setup.exe runs each -Stage NAME
         # in a fresh powershell.exe) means $script:HasNode set by Stage-Node
