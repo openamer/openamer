@@ -686,4 +686,11 @@ def finalize_turn(
     agent._turn_preflight_display_snapshot = None
     agent._turn_received_provider_response = False
 
+    # Autonomous mesh learning (guarded; never affects this turn).
+    try:
+        from openamer_cli.a2a import selflearn_runtime as _sl
+        _sl.maybe_learn({"messages": messages}, publish=False)
+    except Exception as _e:
+        logger.debug("maybe_learn skipped: %s", _e)
+
     return result
