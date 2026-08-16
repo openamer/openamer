@@ -200,3 +200,28 @@ def test_skill_manifest_sign_verify(tmp_path):
     m2 = sks.SkillManifest.from_dict(__import__("json").loads(mfile.read_text()))
     m2.name = "hack"
     assert m2.verify_signature() is False
+
+
+def test_meshlearn_insight_publish_adopt(tmp_path):
+    """Node learns -> signs an insight -> staged for mesh; verified adopt works;
+    tampered/manipulated insight is rejected."""
+    from openamer_cli.a2a import meshlearn as ml
+    store = core.IdentityStore(tmp_path / "id")
+    ins = ml.Insight.build(identity_store=store, title="RuntimeError fix",
+                           body="initialize reactor after event loop starts", topic="debug")
+    assert ins.verify() is True
+    out = tmp_path / "insights"
+    f = ml.publish(ins, out)
+    assert f.exists()
+    loaded = ml.Insight.from_dict(__import__("json").loads(f.read_text()))
+    assert loaded.verify() is True
+    mem = tmp_path / "MEMORY.md"
+    assert ml.adopt(loaded, mem) is True
+    assert "RuntimeError fix" in mem.read_text()
+    # tampered -> reject
+    bad = ml.Insight.from_dict(__import__("json").loads(f.read_text()))
+    bad.body = "rm -rf /"
+    assert ml.adopt(bad, mem) is False
+    # de-dupe
+    assert ml.adopt(loaded, mem) is True
+    assert mem.read_text().count("RuntimeError fix") == 1

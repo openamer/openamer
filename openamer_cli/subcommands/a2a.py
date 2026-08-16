@@ -17,6 +17,7 @@ from typing import Callable
 
 from openamer_cli.a2a import core
 from openamer_cli.a2a import registry
+import json
 
 
 def _home() -> core.IdentityStore:
@@ -145,6 +146,43 @@ def _cmd_ask(args) -> int:
 def _trust() -> "TrustStore":
     from openamer_cli.a2a.trust import TrustStore
     return TrustStore()
+
+
+def _cmd_meshlearn(args) -> int:
+    """Sign + stage a learning insight for the mesh, or adopt a verified one."""
+    from openamer_cli.a2a import meshlearn
+    import pathlib as _pl
+    act = args.ml_cmd
+    store = core.IdentityStore()
+    if act == "learn":
+        title = args.title or ""
+        body = args.body or ""
+        topic = args.topic or "general"
+        if not title or not body:
+            print("Usage: openamer a2a meshlearn learn <title> \"<body>\" [--topic <t>]")
+            return 2
+        ins = meshlearn.Insight.build(identity_store=store, title=title, body=body, topic=topic)
+        out = _pl.Path(args.out or _pl.Path.home()/".openamer"/"a2a"/"insights")
+        f = meshlearn.publish(ins, out)
+        print(f"Signed insight staged for mesh: {f}")
+        print(f"  topic     : {topic}")
+        print(f"  source    : {ins.source}@openamer")
+        print("Commit this file to directory/a2a/insights/ in github.com/openamer/openamer to share.")
+        return 0
+    if act == "adopt":
+        if not args.json_file:
+            print("Usage: openamer a2a meshlearn adopt <insight.json>")
+            return 2
+        import pathlib as _p
+        pj = _p.Path(args.json_file)
+        if not pj.exists():
+            print(f"Error: {args.json_file} not found"); return 1
+        ins = meshlearn.Insight.from_dict(json.loads(pj.read_text(encoding="utf-8")))
+        mem = _pl.Path(args.memory or _pl.home()/".openamer"/"MEMORY-official-mesh.md")
+        ok = meshlearn.adopt(ins, mem)
+        print("Adopted into mesh memory" if ok else "REJECTED (bad signature or not fresh)")
+        return 0 if ok else 1
+    print("Unknown meshlearn subcommand."); return 2
 
 
 def _cmd_skill(args) -> int:
@@ -288,5 +326,16 @@ def build_a2a_parser(subparsers) -> None:
     sv.add_argument("skill_dir", nargs="?"); sv.add_argument("--manifest", default=None)
     sv.set_defaults(func=_cmd_skill)
     sk.set_defaults(func=_cmd_skill)
+
+    ml = sub.add_parser("meshlearn", help="Mesh learning memory (sign/share/adopt insights)")
+    ml_sub = ml.add_subparsers(dest="ml_cmd")
+    ml_learn = ml_sub.add_parser("learn", help="Sign + stage a learning insight")
+    ml_learn.add_argument("title", nargs="?"); ml_learn.add_argument("body", nargs="?")
+    ml_learn.add_argument("--topic", default="general"); ml_learn.add_argument("--out", default=None)
+    ml_learn.set_defaults(func=_cmd_meshlearn)
+    ml_adopt = ml_sub.add_parser("adopt", help="Adopt a verified insight into mesh memory")
+    ml_adopt.add_argument("json_file", nargs="?"); ml_adopt.add_argument("--memory", default=None)
+    ml_adopt.set_defaults(func=_cmd_meshlearn)
+    ml.set_defaults(func=_cmd_meshlearn)
 
     p.set_defaults(func=_cmd_status)

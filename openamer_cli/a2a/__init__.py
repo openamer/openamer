@@ -6,6 +6,6 @@ Phase 2: signed registry announcements for the GitHub mesh directory.
 Phase 3: a2a ask (task routing) + signed skill sharing.
 """
 
-from openamer_cli.a2a import (core, trust, transport, registry, skillshare)  # noqa: F401
+from openamer_cli.a2a import (core, trust, transport, registry, skillshare, meshlearn)  # noqa: F401
 
-__all__ = ["core", "trust", "transport", "registry", "skillshare"]
+__all__ = ["core", "trust", "transport", "registry", "skillshare", "meshlearn"]
