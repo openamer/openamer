@@ -225,3 +225,25 @@ def test_meshlearn_insight_publish_adopt(tmp_path):
     # de-dupe
     assert ml.adopt(loaded, mem) is True
     assert mem.read_text().count("RuntimeError fix") == 1
+
+
+def test_selflearn_auto_loop(tmp_path):
+    """Autonomous self-learn: distill -> sign -> adopt into mesh memory; dedupe."""
+    from openamer_cli.a2a import selflearn as sl
+    store = core.IdentityStore(tmp_path / "id")
+    mem = tmp_path / "MEMORY.md"
+    out = tmp_path / "insights"
+    def distill(exp, topic):
+        return ("Use staged builds", "cache layers to speed CI",)
+    res = sl.auto_learn(identity_store=store, memory_path=mem,
+                        learn_from="slow CI", topic="devops",
+                        distill=distill, publish_dir=out, skip_publish=False)
+    assert res["ok"] and res["signature_ok"] and res["adopted"] and res["staged"]
+    entries = sl.parse_mesh_memory(mem)
+    assert any("staged builds" in e["title"] for e in entries)
+    # second identical learn must not duplicate
+    res2 = sl.auto_learn(identity_store=store, memory_path=mem,
+                         learn_from="done CI", topic="devops", distill=distill,
+                         publish_dir=out, skip_publish=False)
+    assert res2["ok"]
+    assert mem.read_text().count("Use staged builds") == 1

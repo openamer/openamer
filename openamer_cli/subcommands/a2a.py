@@ -151,9 +151,27 @@ def _trust() -> "TrustStore":
 def _cmd_meshlearn(args) -> int:
     """Sign + stage a learning insight for the mesh, or adopt a verified one."""
     from openamer_cli.a2a import meshlearn
+    from openamer_cli.a2a import selflearn
     import pathlib as _pl
     act = args.ml_cmd
     store = core.IdentityStore()
+    if act == "auto":
+        # Autonomous self-learning loop (no distill callback -> deterministic)
+        mem = _pl.Path(args.memory or _pl.home()/".openamer"/"MEMORY-official-mesh.md")
+        src = args.text or ""
+        if not src:
+            print("Usage: openamer a2a meshlearn auto \"<lesson text>\" [--topic t]")
+            return 2
+        res = selflearn.auto_learn(identity_store=store, memory_path=mem,
+                                   learn_from=src, topic=args.topic or "general",
+                                   title=args.title, skip_publish=True)
+        if res.get("ok"):
+            print(f"Learned+adopted into mesh memory: {res['insight_path']}")
+            print(f"  source : {res['source']}@openamer | topic: {res['topic']} | sig: {res['signature_ok']}")
+        else:
+            print(f"Error: {res.get('error')}")
+            return 1
+        return 0
     if act == "learn":
         title = args.title or ""
         body = args.body or ""
@@ -333,6 +351,10 @@ def build_a2a_parser(subparsers) -> None:
     ml_learn.add_argument("title", nargs="?"); ml_learn.add_argument("body", nargs="?")
     ml_learn.add_argument("--topic", default="general"); ml_learn.add_argument("--out", default=None)
     ml_learn.set_defaults(func=_cmd_meshlearn)
+    ml_auto = ml_sub.add_parser("auto", help="Autonomous self-learning loop (distill+sign+adopt)")
+    ml_auto.add_argument("text", nargs="?"); ml_auto.add_argument("--topic", default="general")
+    ml_auto.add_argument("--title", default=None); ml_auto.add_argument("--memory", default=None)
+    ml_auto.set_defaults(func=_cmd_meshlearn)
     ml_adopt = ml_sub.add_parser("adopt", help="Adopt a verified insight into mesh memory")
     ml_adopt.add_argument("json_file", nargs="?"); ml_adopt.add_argument("--memory", default=None)
     ml_adopt.set_defaults(func=_cmd_meshlearn)
