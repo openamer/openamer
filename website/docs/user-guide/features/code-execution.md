@@ -233,14 +233,14 @@ variables by exact name:
 injects explicitly so the RPC channel works).
 
 :::note Behavior change
-Earlier versions passed **any** variable whose name began with `HERMES_`
+Earlier versions passed **any** variable whose name began with `OPENAMER_`
 through to the child. That broad prefix was removed for security hardening: it
-could leak `HERMES_*`-named configuration that doesn't match a secret substring
-(for example `OPENAMER_BASE_URL`, `OPENAMER_KANBAN_DB`, or a `HERMES_*_WEBHOOK`
+could leak `OPENAMER_*`-named configuration that doesn't match a secret substring
+(for example `OPENAMER_BASE_URL`, `OPENAMER_KANBAN_DB`, or a `OPENAMER_*_WEBHOOK`
 endpoint) into arbitrary sandboxed code.
 
 If an `execute_code` script — or a repo/plugin module it imports at import time
-— relied on a `HERMES_*` variable outside the four operational names above, it
+— relied on a `OPENAMER_*` variable outside the four operational names above, it
 will now find that variable **unset** in the child. The drop is intentional,
 not a bug.
 :::
@@ -268,12 +268,12 @@ be re-allowed this way):
      - OPENAMER_KANBAN_DB
    ```
 
-**Diagnosing it.** When the child drops one or more non-allowlisted `HERMES_*`
+**Diagnosing it.** When the child drops one or more non-allowlisted `OPENAMER_*`
 variables, OpenAmer emits a one-line `debug` log naming them and pointing at the
 `env_passthrough` escape hatch. Run with debug logging (`openamer logs --level
 DEBUG`, or check `~/.openamer/logs/agent.log`) and look for
-`execute_code: dropped N non-allowlisted HERMES_* var(s)` if a script behaves
-as though a `HERMES_*` variable is missing.
+`execute_code: dropped N non-allowlisted OPENAMER_* var(s)` if a script behaves
+as though a `OPENAMER_*` variable is missing.
 
 OpenAmer always writes the script and the auto-generated `openamer_tools.py` RPC stub into a temp staging directory that is cleaned up after execution. In `strict` mode the script also *runs* there; in `project` mode it runs in the session's working directory (the staging directory stays on `PYTHONPATH` so imports still resolve). The child process runs in its own process group so it can be cleanly killed on timeout or interruption.
 
