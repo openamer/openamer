@@ -3541,9 +3541,9 @@ $InstallStages = @(
     @{ Name = "node-deps";        Title = "Installing Node.js dependencies";      Category = "install";      NeedsUserInput = $false; Worker = "Stage-NodeDeps" }
 )
 if (-not $NoDesktop) {
-    # Desktop GUIBuild — included by default so every install ships a ready-to-
+    # Desktop GUIBuild -- included by default so every install ships a ready-to-
     # launch OpenAmer desktop app. Skipped only when excluded explicitly
-    # (-NoDesktop) — e.g. the recursive bootstrap-runner inside an already-
+    # (-NoDesktop) -- e.g. the recursive bootstrap-runner inside an already-
     # running OpenAmer.exe, or CI that never wants a desktop binary.
     $InstallStages += @{ Name = "desktop"; Title = "Building desktop app"; Category = "install"; NeedsUserInput = $false; Worker = "Stage-Desktop" }
 }
