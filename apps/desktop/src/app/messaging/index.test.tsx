@@ -80,7 +80,7 @@ describe('MessagingView setup-guide link', () => {
   })
 
   it('opens a real docs URL through the validated external opener', async () => {
-    const docsUrl = 'https://openamer-agent.nousresearch.com/docs/user-guide/messaging/teams'
+    const docsUrl = 'https://github.com/openamer/openamer/blob/main/website/docs/user-guide/messaging/teams'
     getMessagingPlatforms.mockResolvedValue({ platforms: [platform({ docs_url: docsUrl })] })
 
     await renderMessaging()

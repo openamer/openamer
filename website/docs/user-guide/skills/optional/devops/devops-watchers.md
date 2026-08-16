@@ -81,7 +81,7 @@ Watch a GitHub repo (set `GITHUB_TOKEN` in `${OPENAMER_HOME:-~/.openamer}/.env` 
 
 ```bash
 python $OPENAMER_HOME/skills/devops/watchers/scripts/watch_github.py \
-  --name openamer-issues --repo NousResearch/openamer-agent --scope issues
+  --name openamer-issues --repo openamer/openamer --scope issues
 ```
 
 Poll an arbitrary JSON API:

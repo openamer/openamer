@@ -119,7 +119,7 @@ def get_openamer_home() -> Path:
     callers that import this at load time.  Subprocess spawners are
     expected to propagate ``OPENAMER_HOME`` explicitly (see the systemd
     template in ``openamer_cli/gateway.py`` and the kanban dispatcher in
-    ``openamer_cli/kanban_db.py``).  See https://github.com/NousResearch/openamer-agent/issues/18594.
+    ``openamer_cli/kanban_db.py``).  See https://github.com/openamer/openamer/issues/18594.
     """
     override = get_openamer_home_override()
     if override:
@@ -662,7 +662,7 @@ def secure_parent_dir(path: Path) -> None:
     prevent catastrophic host bricking when ``OPENAMER_HOME`` or other path
     env vars resolve to an unexpected location.
 
-    See https://github.com/NousResearch/openamer-agent/issues/25821.
+    See https://github.com/openamer/openamer/issues/25821.
     """
     parent = path.parent.resolve()
     # Refuse root and its direct children (/usr, /home, /var, /tmp, …).
@@ -1106,7 +1106,7 @@ def is_container() -> bool:
 
     Result is cached for the process lifetime.  Import-safe — no heavy deps.
 
-    See: NousResearch/openamer-agent#47111
+    See: openamer/openamer#47111
     """
     global _container_detected
     if _container_detected is not None:

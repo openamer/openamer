@@ -1,9 +1,9 @@
 # Relatório técnico — Issue #69678 e PRs relacionados
 
 **Data da análise:** 22 de julho de 2026  
-**Repositório:** `NousResearch/openamer-agent`  
-**Issue principal:** [#69678 — SQLite connections leaked in delivery, async delegation, and verification evidence ledgers](https://github.com/NousResearch/openamer-agent/issues/69678)  
-**PR principal:** [#69681 — fix(gateway,tools,agent): close leaked SQLite connections in delivery](https://github.com/NousResearch/openamer-agent/pull/69681)
+**Repositório:** `openamer/openamer`  
+**Issue principal:** [#69678 — SQLite connections leaked in delivery, async delegation, and verification evidence ledgers](https://github.com/openamer/openamer/issues/69678)  
+**PR principal:** [#69681 — fix(gateway,tools,agent): close leaked SQLite connections in delivery](https://github.com/openamer/openamer/pull/69681)
 
 ## Resumo executivo
 
@@ -50,9 +50,9 @@ Em processo curto, encerramento ou coleta rápida pode mascarar o defeito. Em ga
 
 ## Relação com #69567 e PR #69594
 
-[Issue #69567](https://github.com/NousResearch/openamer-agent/issues/69567) encontrou a mesma falha em `cron/executions.py`. Uma execução normal de cron abre conexões em `create_execution()`, `mark_execution_running()` e `finish_execution()`. O relato mediu crescimento de descritores até atingir limite do processo.
+[Issue #69567](https://github.com/openamer/openamer/issues/69567) encontrou a mesma falha em `cron/executions.py`. Uma execução normal de cron abre conexões em `create_execution()`, `mark_execution_running()` e `finish_execution()`. O relato mediu crescimento de descritores até atingir limite do processo.
 
-[PR #69594](https://github.com/NousResearch/openamer-agent/pull/69594) propõe um `_transaction()` que:
+[PR #69594](https://github.com/openamer/openamer/pull/69594) propõe um `_transaction()` que:
 
 1. abre a conexão;
 2. preserva commit/rollback com `with conn:`;
@@ -163,12 +163,12 @@ tests/agent/test_verification_evidence.py
 
 Mesma classe geral de lifecycle SQLite, mas escopos diferentes:
 
-- [#69567](https://github.com/NousResearch/openamer-agent/issues/69567): cron execution ledger;
-- [#60859](https://github.com/NousResearch/openamer-agent/issues/60859): leak de `SessionDB` em early return;
-- [#30027](https://github.com/NousResearch/openamer-agent/issues/30027): listagem de boards kanban;
-- [#28802](https://github.com/NousResearch/openamer-agent/issues/28802): helpers kanban specify;
-- [#36111](https://github.com/NousResearch/openamer-agent/issues/36111): lifecycle de `ResponseStore` no API server;
-- [#37369](https://github.com/NousResearch/openamer-agent/issues/37369): crescimento de descritores de `response_store.db`.
+- [#69567](https://github.com/openamer/openamer/issues/69567): cron execution ledger;
+- [#60859](https://github.com/openamer/openamer/issues/60859): leak de `SessionDB` em early return;
+- [#30027](https://github.com/openamer/openamer/issues/30027): listagem de boards kanban;
+- [#28802](https://github.com/openamer/openamer/issues/28802): helpers kanban specify;
+- [#36111](https://github.com/openamer/openamer/issues/36111): lifecycle de `ResponseStore` no API server;
+- [#37369](https://github.com/openamer/openamer/issues/37369): crescimento de descritores de `response_store.db`.
 
 Essas issues demonstram padrão recorrente: uso de context manager transacional interpretado incorretamente como gerenciamento completo da conexão.
 

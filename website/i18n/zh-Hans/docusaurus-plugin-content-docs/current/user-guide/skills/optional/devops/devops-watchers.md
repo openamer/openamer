@@ -81,7 +81,7 @@ python $OPENAMER_HOME/skills/devops/watchers/scripts/watch_rss.py \
 
 ```bash
 python $OPENAMER_HOME/skills/devops/watchers/scripts/watch_github.py \
-  --name openamer-issues --repo NousResearch/openamer-agent --scope issues
+  --name openamer-issues --repo openamer/openamer --scope issues
 ```
 
 轮询任意 JSON API：

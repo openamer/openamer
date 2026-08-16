@@ -125,7 +125,7 @@ LEGACY_SUMMARY_PREFIX = "[CONTEXT SUMMARY]:"
 # Metadata key added to context compression summary messages so that frontends
 # (CLI, Desktop, gateway, TUI) can distinguish them from real assistant/user
 # messages and filter or render them appropriately without content-prefix
-# heuristics. See https://github.com/NousResearch/openamer-agent/issues/38389
+# heuristics. See https://github.com/openamer/openamer/issues/38389
 #
 # Underscore-prefixed ON PURPOSE: the wire sanitizers
 # (agent/transports/chat_completions.py convert_messages and the summary-path

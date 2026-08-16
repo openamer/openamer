@@ -181,7 +181,7 @@ When you send a message in Open WebUI:
 
 Your agent has access to the same tools and capabilities as that API-server OpenAmer instance. If the API server is remote, those tools are remote too.
 
-If you need tools to run against your **local** workspace today, run OpenAmer locally and point it at a pure LLM provider or pure OpenAI-compatible model proxy (for example vLLM, LiteLLM, Ollama, llama.cpp, OpenAI, OpenRouter, etc.). A future split-runtime mode for "remote brain, local hands" is being tracked in [#18715](https://github.com/NousResearch/openamer-agent/issues/18715); it is not the behavior of the current API server.
+If you need tools to run against your **local** workspace today, run OpenAmer locally and point it at a pure LLM provider or pure OpenAI-compatible model proxy (for example vLLM, LiteLLM, Ollama, llama.cpp, OpenAI, OpenRouter, etc.). A future split-runtime mode for "remote brain, local hands" is being tracked in [#18715](https://github.com/openamer/openamer/issues/18715); it is not the behavior of the current API server.
 
 :::tip Tool Progress
 With streaming enabled (the default), you'll see brief inline indicators as tools run — the tool emoji and its key argument. These appear in the response stream before the agent's final answer, giving you visibility into what's happening behind the scenes.

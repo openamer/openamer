@@ -8115,7 +8115,7 @@ _PLATFORM_OVERRIDES: dict[str, dict[str, Any]] = {
     "email": {
         "name": "Email",
         "description": "Talk to OpenAmer through an IMAP/SMTP mailbox.",
-        "docs_url": "https://openamer-agent.nousresearch.com/docs/user-guide/messaging/",
+        "docs_url": "https://github.com/openamer/openamer/blob/main/website/docs/user-guide/messaging/",
         "env_vars": (
             "EMAIL_ADDRESS",
             "EMAIL_PASSWORD",
@@ -8158,7 +8158,7 @@ _PLATFORM_OVERRIDES: dict[str, dict[str, Any]] = {
     "google_chat": {
         "name": "Google Chat",
         "description": "Connect OpenAmer to Google Chat via Cloud Pub/Sub.",
-        "docs_url": "https://openamer-agent.nousresearch.com/docs/user-guide/messaging/google_chat",
+        "docs_url": "https://github.com/openamer/openamer/blob/main/website/docs/user-guide/messaging/google_chat",
     },
     "wecom": {
         "name": "WeCom (group bot)",
@@ -8187,7 +8187,7 @@ _PLATFORM_OVERRIDES: dict[str, dict[str, Any]] = {
     "weixin": {
         "name": "Weixin / WeChat (Personal)",
         "description": "Connect a personal WeChat account through Tencent's iLink Bot API.",
-        "docs_url": "https://openamer-agent.nousresearch.com/docs/user-guide/messaging/weixin/",
+        "docs_url": "https://github.com/openamer/openamer/blob/main/website/docs/user-guide/messaging/weixin/",
         "env_vars": ("WEIXIN_ACCOUNT_ID", "WEIXIN_TOKEN", "WEIXIN_BASE_URL"),
         "required_env": ("WEIXIN_ACCOUNT_ID", "WEIXIN_TOKEN"),
     },
@@ -8213,7 +8213,7 @@ _PLATFORM_OVERRIDES: dict[str, dict[str, Any]] = {
     # plugin registry. Only the docs link needs an override here so the
     # Channels page can point at the Microsoft Teams setup guide.
     "teams": {
-        "docs_url": "https://openamer-agent.nousresearch.com/docs/user-guide/messaging/teams",
+        "docs_url": "https://github.com/openamer/openamer/blob/main/website/docs/user-guide/messaging/teams",
     },
     "yuanbao": {
         "name": "Yuanbao (元宝)",
@@ -8224,7 +8224,7 @@ _PLATFORM_OVERRIDES: dict[str, dict[str, Any]] = {
     "api_server": {
         "name": "API server",
         "description": "Expose OpenAmer as an OpenAI-compatible HTTP API for tools like Open WebUI.",
-        "docs_url": "https://openamer-agent.nousresearch.com/docs/user-guide/messaging/",
+        "docs_url": "https://github.com/openamer/openamer/blob/main/website/docs/user-guide/messaging/",
         "env_vars": (
             "API_SERVER_ENABLED",
             "API_SERVER_KEY",
@@ -8237,7 +8237,7 @@ _PLATFORM_OVERRIDES: dict[str, dict[str, Any]] = {
     "webhook": {
         "name": "Webhooks",
         "description": "Receive events from GitHub, GitLab, and other webhook sources.",
-        "docs_url": "https://openamer-agent.nousresearch.com/docs/user-guide/messaging/webhooks/",
+        "docs_url": "https://github.com/openamer/openamer/blob/main/website/docs/user-guide/messaging/webhooks/",
         "env_vars": ("WEBHOOK_ENABLED", "WEBHOOK_PORT", "WEBHOOK_SECRET"),
         "required_env": (),
     },
@@ -9235,7 +9235,7 @@ async def cancel_whatsapp_onboarding(pairing_id: str):
     return {"ok": True}
 
 
-_TELEGRAM_ONBOARDING_DEFAULT_URL = "https://setup.openamer-agent.nousresearch.com"
+_TELEGRAM_ONBOARDING_DEFAULT_URL = "https://github.com/openamer/openamer"
 _TELEGRAM_ONBOARDING_USER_AGENT = f"OpenAmerDashboard/{__version__}"
 @dataclass
 class _TelegramOnboardingPairing:
@@ -10004,7 +10004,7 @@ _OAUTH_PROVIDER_CATALOG: tuple[Dict[str, Any], ...] = (
         # 127.0.0.1 callback.
         "flow": "device_code",
         "cli_command": "openamer auth add xai-oauth",
-        "docs_url": "https://openamer-agent.nousresearch.com/docs/guides/xai-grok-oauth",
+        "docs_url": "https://github.com/openamer/openamer/blob/main/website/docs/guides/xai-grok-oauth",
         "status_fn": None,  # dispatched via auth.get_xai_oauth_auth_status
     },
     {

@@ -13,7 +13,7 @@ required_credential_files:
 metadata:
   openamer:
     tags: [Google, Gmail, Calendar, Drive, Sheets, Docs, Contacts, Email, OAuth]
-    homepage: https://github.com/NousResearch/openamer-agent
+    homepage: https://github.com/openamer/openamer
     related_skills: [himalaya]
 ---
 

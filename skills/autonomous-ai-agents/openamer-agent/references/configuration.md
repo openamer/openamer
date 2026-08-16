@@ -1,7 +1,7 @@
 # Configuration, Toolsets & Voice
 
 Edit with `openamer config edit` or `openamer config set section.key value`.
-Full reference: https://openamer-agent.nousresearch.com/docs/user-guide/configuration
+Full reference: https://github.com/openamer/openamer/blob/main/website/docs/user-guide/configuration
 
 ### Config Sections (most-used keys)
 

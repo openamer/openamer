@@ -13,7 +13,7 @@ When the manifest is unreachable (offline, network blocked, hosting failure), Op
 ## Live manifest URL
 
 ```
-https://openamer-agent.nousresearch.com/docs/api/model-catalog.json
+https://github.com/openamer/openamer/blob/main/website/docs/api/model-catalog.json
 ```
 
 Published on every merge to `main` via the existing `deploy-site.yml` GitHub Pages pipeline. The source of truth lives in the repo at `website/static/api/model-catalog.json`.
@@ -71,7 +71,7 @@ Cache location: `~/.openamer/cache/model_catalog.json`.
 ```yaml
 model_catalog:
   enabled: true
-  url: https://openamer-agent.nousresearch.com/docs/api/model-catalog.json
+  url: https://github.com/openamer/openamer/blob/main/website/docs/api/model-catalog.json
   ttl_hours: 1
   providers: {}
 ```

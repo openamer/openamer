@@ -255,7 +255,7 @@ Safe-root violations return `Write denied: '…' is outside OPENAMER_WRITE_SAFE_
 
 When set, `write_file` and `patch` may only target paths inside the listed directory prefix(es). Anything outside is **hard-blocked** — not routed through dangerous-command approval.
 
-- Set automatically in the [official Docker image](https://github.com/NousResearch/openamer-agent) (`OPENAMER_WRITE_SAFE_ROOT=/opt/data`)
+- Set automatically in the [official Docker image](https://github.com/openamer/openamer) (`OPENAMER_WRITE_SAFE_ROOT=/opt/data`)
 - Supports multiple roots separated by `:` on Unix or `;` on Windows
 - **Do not add to `~/.openamer/.env` casually.** If you set it to a project directory, the agent cannot write to `~/.openamer/cron/jobs.json`, profile skills, or other OpenAmer state outside that prefix
 
@@ -390,7 +390,7 @@ docker exec -u openamer openamer-agent openamer pairing approve telegram ABC12DE
 If you already ran the command as root and the user is still unauthorized,
 restart the container — the entrypoint will fix ownership on the next start.
 
-[i10270]: https://github.com/NousResearch/openamer-agent/issues/10270
+[i10270]: https://github.com/openamer/openamer/issues/10270
 :::
 
 **Storage:** Pairing data is stored in `~/.openamer/pairing/` with per-platform JSON files:

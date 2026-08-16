@@ -3031,7 +3031,7 @@ def test_normalize_codex_response_reasoning_only_completed_is_stop_for_other_bac
     When response.status == "completed" and no items are queued/in_progress,
     reasoning alone is a valid final state for non-Codex backends. Forcing
     "incomplete" here causes multi-minute stalls (3 retries x up to 240s each).
-    See https://github.com/NousResearch/openamer-agent/issues/64434
+    See https://github.com/openamer/openamer/issues/64434
     """
     agent = _build_agent(monkeypatch)
     from agent.codex_responses_adapter import _normalize_codex_response

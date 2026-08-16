@@ -8,7 +8,7 @@ platforms: [linux, macos, windows]
 metadata:
   openamer:
     tags: [openamer, setup, configuration, multi-agent, spawning, cli, gateway, themes, skins, desktop-plugins, tui-widgets, petdex, development]
-    homepage: https://github.com/NousResearch/openamer-agent
+    homepage: https://github.com/openamer/openamer
     related_skills: [claude-code, codex, opencode]
 ---
 
@@ -28,7 +28,7 @@ What makes OpenAmer different:
 
 **This skill is a hub.** The body covers identity, quick start, spawning/orchestration, and hard invariants. Everything else lives in reference files — **load the matching reference (below) before answering**; do not answer detail questions from the body alone.
 
-**Docs:** https://openamer-agent.nousresearch.com/docs/
+**Docs:** https://github.com/openamer/openamer/blob/main/website/docs/
 
 ## Scope & Verification
 
@@ -37,14 +37,14 @@ This skill is a concise operating guide, not the complete source of truth for ev
 Good verification targets:
 
 - CLI commands: `openamer --help`, `openamer <command> --help`, and `openamer_cli/main.py`
-- User documentation: https://openamer-agent.nousresearch.com/docs/
-- Source tree: https://github.com/NousResearch/openamer-agent
+- User documentation: https://github.com/openamer/openamer/blob/main/website/docs/
+- Source tree: https://github.com/openamer/openamer
 
 ## Quick Start
 
 ```bash
 # Install (shell installer — sets up uv, Python, the venv, and the launcher)
-curl -fsSL https://openamer-agent.nousresearch.com/install.sh | bash
+curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | bash
 
 # Interactive chat (default surface; set display.interface: tui to launch the Ink TUI instead)
 openamer

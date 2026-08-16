@@ -127,7 +127,7 @@ The app also surfaces the broader OpenAmer management surface so you don't have 
 
 The app checks for updates in the background and offers a one-click update when one is ready.
 
-The [manual update process](https://openamer-agent.nousresearch.com/docs/getting-started/updating) also works with the GUI.
+The [manual update process](https://github.com/openamer/openamer/blob/main/website/docs/getting-started/updating) also works with the GUI.
 
 ## Uninstalling
 

@@ -28,7 +28,7 @@ from openamer_cli.config import load_config
 
 DEFAULT_PORTAL_URL = "https://portal.nousresearch.com"
 SUBSCRIPTION_URL = "https://portal.nousresearch.com/manage-subscription"
-DOCS_URL = "https://openamer-agent.nousresearch.com/docs/user-guide/features/tool-gateway"
+DOCS_URL = "https://github.com/openamer/openamer/blob/main/website/docs/user-guide/features/tool-gateway"
 
 
 def _cmd_status(args) -> int:

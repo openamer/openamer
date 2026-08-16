@@ -100,7 +100,7 @@ def _discord_request(
         headers={
             "Authorization": f"Bot {token}",
             "Content-Type": "application/json",
-            "User-Agent": "OpenAmer-Agent (https://github.com/NousResearch/openamer-agent)",
+            "User-Agent": "OpenAmer-Agent (https://github.com/openamer/openamer)",
         },
     )
 

@@ -11,7 +11,7 @@
 #
 services:
   gateway:
-    image: nousresearch/openamer-agent:latest
+    image: openamer/openamer:latest
     container_name: openamer
     restart: unless-stopped
     volumes:
@@ -22,7 +22,7 @@ services:
     command: ["gateway", "run"]
 
   dashboard:
-    image: nousresearch/openamer-agent:latest
+    image: openamer/openamer:latest
     container_name: openamer-dashboard
     restart: unless-stopped
     depends_on:

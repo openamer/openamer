@@ -2,7 +2,7 @@
 
 Set via `openamer model` (picker) or `openamer setup`. 35+ provider profiles ship as
 plugins under `plugins/model-providers/`; user plugins of the same name override.
-Full docs: https://openamer-agent.nousresearch.com/docs/integrations/providers
+Full docs: https://github.com/openamer/openamer/blob/main/website/docs/integrations/providers
 
 ### Providers
 

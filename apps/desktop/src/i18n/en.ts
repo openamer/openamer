@@ -695,7 +695,7 @@ export const en: Translations = {
       sshErrHostKey:
         'The host key has CHANGED since you last connected. Verify this is expected, then run ssh-keygen -R <host> and reconnect.',
       sshErrNotInstalled:
-        'OpenAmer is not installed on the remote host. Install it there (curl -fsSL https://openamer-agent.nousresearch.com/install.sh | sh) or set the OpenAmer path.',
+        'OpenAmer is not installed on the remote host. Install it there (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) or set the OpenAmer path.',
       sshErrPlatform:
         'Unsupported remote platform. OpenAmer Desktop SSH mode supports Linux, macOS, and Windows remote hosts.',
       sshErrTimeout: 'SSH connection timed out. The host may be unreachable or asleep.',

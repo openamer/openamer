@@ -15,7 +15,7 @@
 
 [Unit]
 Description=OpenAmer Kanban dispatcher (DEPRECATED standalone daemon — prefer gateway-embedded dispatch)
-Documentation=https://openamer-agent.nousresearch.com/docs/user-guide/features/kanban
+Documentation=https://github.com/openamer/openamer/blob/main/website/docs/user-guide/features/kanban
 After=network.target
 
 [Service]

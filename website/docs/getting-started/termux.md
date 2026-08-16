@@ -51,7 +51,7 @@ That does not stop OpenAmer from working well as a phone-native CLI agent — it
 OpenAmer now ships a Termux-aware installer path:
 
 ```bash
-curl -fsSL https://openamer-agent.nousresearch.com/install.sh | bash
+curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | bash
 ```
 
 On Termux, the installer automatically:
@@ -87,7 +87,7 @@ Why these packages?
 ### 2. Clone OpenAmer
 
 ```bash
-git clone https://github.com/NousResearch/openamer-agent.git
+git clone https://github.com/openamer/openamer.git
 cd openamer-agent
 ```
 

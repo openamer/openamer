@@ -232,7 +232,7 @@ Portal 目录镜像了 OpenRouter 的模型列表（300+ 个）。如果某个�
 /model openai/o1-2025-12-17
 ```
 
-如果某个模型确实不可用，请[提交 issue](https://github.com/NousResearch/openamer-agent/issues)——大多数缺失是我们可以更新的路由配置问题。
+如果某个模型确实不可用，请[提交 issue](https://github.com/openamer/openamer/issues)——大多数缺失是我们可以更新的路由配置问题。
 
 ### 账单未出现在我的 Portal 账号中
 

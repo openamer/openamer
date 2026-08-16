@@ -34,7 +34,7 @@ _IN_NIX_BUILD = os.environ.get("OPENAMER_NIX_BUILD") == "1"
 _BLOCK_MESSAGE = (
     "Building wheels or sdists for openamer-agent is not supported.\n"
     "OpenAmer is distributed via the shell installer, Docker image, or Nix.\n"
-    "See: https://openamer-agent.nousresearch.com/docs/getting-started/installation\n"
+    "See: https://github.com/openamer/openamer/blob/main/website/docs/getting-started/installation\n"
     "\n"
     "If you are developing, use an editable install instead:\n"
     "  uv sync          # or: uv pip install -e .\n"

@@ -24,7 +24,7 @@ By default every profile is seeded with the bundled skill catalog, and each `ope
 **At install time** (applies to the default `~/.openamer` profile):
 
 ```bash
-curl -fsSL https://openamer-agent.nousresearch.com/install.sh | bash -s -- --no-skills
+curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | bash -s -- --no-skills
 ```
 
 **At profile-create time** (named profiles):
@@ -619,7 +619,7 @@ openamer skills tap add myorg/skills-repo
 [skills.sh schema](https://skills.sh/schemas/skills.sh.schema.json). Its
 `groupings` (each with a `title` and a list of skill names) are read at index
 time and become the category labels shown in the
-[Skills Hub](https://openamer-agent.nousresearch.com/docs) page — instead of a
+[Skills Hub](https://github.com/openamer/openamer/docs) page — instead of a
 tag-derived guess. This is generic: any tap that ships the file gets real
 categorization, no OpenAmer-side changes required.
 

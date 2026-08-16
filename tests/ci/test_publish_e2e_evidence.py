@@ -98,12 +98,12 @@ def test_upload_evidence_accepts_only_attachment_urls(tmp_path, monkeypatch):
     result = _mod.upload_evidence(
         [_mod.EvidenceFile("shot.png", "new screenshot: shot.png")],
         tmp_path,
-        "NousResearch/openamer-agent",
+        "openamer/openamer",
         "bot-session-token",
     )
 
     assert result == {"shot.png": "https://github.com/user-attachments/assets/12345678-1234-1234-1234-123456789abc"}
-    assert calls[0][0] == ["gh", "image", "--repo", "NousResearch/openamer-agent", str(shot)]
+    assert calls[0][0] == ["gh", "image", "--repo", "openamer/openamer", str(shot)]
     assert calls[0][1]["env"]["GH_SESSION_TOKEN"] == "bot-session-token"
 
 
@@ -119,7 +119,7 @@ def test_upload_evidence_rejects_unexpected_gh_image_output(tmp_path, monkeypatc
         _mod.upload_evidence(
             [_mod.EvidenceFile("shot.png", "new screenshot: shot.png")],
             tmp_path,
-            "NousResearch/openamer-agent",
+            "openamer/openamer",
             "bot-session-token",
         )
 
@@ -142,7 +142,7 @@ def test_upload_evidence_reports_gh_image_error(tmp_path, monkeypatch, capsys):
         _mod.upload_evidence(
             [_mod.EvidenceFile("shot.png", "new screenshot: shot.png")],
             tmp_path,
-            "NousResearch/openamer-agent",
+            "openamer/openamer",
             "bot-session-token",
         )
 
@@ -189,7 +189,7 @@ def test_publish_marks_evidence_upload_failure_in_pr_comment(tmp_path, monkeypat
     with pytest.raises(RuntimeError, match="Failed to upload shot.png"):
         _mod.publish(
             "github-token",
-            "NousResearch/openamer-agent",
+            "openamer/openamer",
             tmp_path,
             "69868",
             "image-token",
@@ -197,7 +197,7 @@ def test_publish_marks_evidence_upload_failure_in_pr_comment(tmp_path, monkeypat
 
     assert updates == [
         (
-            "https://api.github.com/repos/NousResearch/openamer-agent/issues/comments/123",
+            "https://api.github.com/repos/openamer/openamer/issues/comments/123",
             "github-token",
             "PATCH",
             {

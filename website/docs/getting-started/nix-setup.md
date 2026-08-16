@@ -41,17 +41,17 @@ No clone needed. Nix fetches, builds, and runs everything:
 
 ```bash
 # Run the desktop app
-nix run github:NousResearch/openamer-agent#desktop
+nix run github:openamer/openamer#desktop
 
 # Or install persistently
-nix profile install github:NousResearch/openamer-agent#desktop
+nix profile install github:openamer/openamer#desktop
 
 # run the tui
-nix run github:NousResearch/openamer-agent -- setup
-nix run github:NousResearch/openamer-agent -- --tui
+nix run github:openamer/openamer -- setup
+nix run github:openamer/openamer -- --tui
 
 # or install it in your profile
-nix profile install github:NousResearch/openamer-agent
+nix profile install github:openamer/openamer
 openamer setup
 openamer --tui
 ```
@@ -69,7 +69,7 @@ The `default` package adds ~700 MB to the closure. If you only need messaging pl
 <summary><strong>Running from a local clone</strong></summary>
 
 ```bash
-git clone https://github.com/NousResearch/openamer-agent.git
+git clone https://github.com/openamer/openamer.git
 cd openamer-agent
 nix develop
 openamer setup
@@ -94,7 +94,7 @@ This module requires NixOS. For non-NixOS systems (macOS, other Linux distros), 
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    openamer-agent.url = "github:NousResearch/openamer-agent";
+    openamer-agent.url = "github:openamer/openamer";
   };
 
   outputs = { nixpkgs, openamer-agent, ... }: {
@@ -733,7 +733,7 @@ External flakes can override the package directly:
 
 ```nix
 {
-  inputs.openamer-agent.url = "github:NousResearch/openamer-agent";
+  inputs.openamer-agent.url = "github:openamer/openamer";
   outputs = { openamer-agent, nixpkgs, ... }: {
     nixpkgs.overlays = [ openamer-agent.overlays.default ];
     # Then:

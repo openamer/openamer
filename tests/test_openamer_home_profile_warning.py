@@ -1,6 +1,6 @@
 """Tests for get_openamer_home() profile-mode fallback warning.
 
-Regression test for https://github.com/NousResearch/openamer-agent/issues/18594.
+Regression test for https://github.com/openamer/openamer/issues/18594.
 
 When OPENAMER_HOME is unset but an active_profile file indicates a non-default
 profile is active, get_openamer_home() should:

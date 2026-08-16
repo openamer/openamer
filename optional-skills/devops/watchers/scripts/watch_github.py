@@ -6,7 +6,7 @@ Usage (via cron with --no-agent):
     openamer cron create openamer-issues \\
       --schedule "*/5 * * * *" --no-agent \\
       --script "$OPENAMER_HOME/skills/devops/watchers/scripts/watch_github.py" \\
-      --script-args "--name openamer-issues --repo NousResearch/openamer-agent --scope issues"
+      --script-args "--name openamer-issues --repo openamer/openamer --scope issues"
 
 Set GITHUB_TOKEN (or GH_TOKEN) in the OpenAmer .env file
 (``${OPENAMER_HOME:-~/.openamer}/.env``) to avoid the 60 req/hr

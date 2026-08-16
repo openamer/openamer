@@ -34,7 +34,7 @@ result before hitting Enter.
 mkdir -p ~/.openamer
 docker run -it --rm \
   -v ~/.openamer:/opt/data \
-  nousresearch/openamer-agent setup
+  openamer/openamer setup
 ```
 
 This drops you into the setup wizard, which will prompt you for your API keys and write them to `~/.openamer/.env`. You only need to do this once. It is highly recommended to set up a chat system for the gateway to work with at this point.
@@ -53,7 +53,7 @@ docker run -d \
   --restart unless-stopped \
   -v ~/.openamer:/opt/data \
   -p 8642:8642 \
-  nousresearch/openamer-agent gateway run
+  openamer/openamer gateway run
 ```
 
 Port 8642 exposes the gateway's [OpenAI-compatible API server](./features/api-server.md) and health endpoint. It's optional if you only use chat platforms (Telegram, Discord, etc.), but required if you want the dashboard or external tools to reach the gateway.
@@ -94,7 +94,7 @@ docker run -d \
   -e API_SERVER_HOST=0.0.0.0 \
   -e API_SERVER_KEY="$(openssl rand -hex 32)" \
   -e API_SERVER_CORS_ORIGINS='*' \
-  nousresearch/openamer-agent gateway run
+  openamer/openamer gateway run
 ```
 
 Opening any port on an internet facing machine is a security risk. You should not do it unless you understand the risks.
@@ -111,7 +111,7 @@ docker run -d \
   -p 8642:8642 \
   -p 9119:9119 \
   -e OPENAMER_DASHBOARD=1 \
-  nousresearch/openamer-agent gateway run
+  openamer/openamer gateway run
 ```
 
 The dashboard is supervised by s6 — if it crashes, `s6-supervise` restarts it automatically after a short backoff. Dashboard stdout/stderr is forwarded to `docker logs <container>` (no prefix; the gateway's own output now lives in a per-profile s6-log file — see [Where the logs go](#where-the-logs-go) below — so the two streams don't clash).
@@ -153,7 +153,7 @@ To open an interactive chat session against a running data directory:
 ```sh
 docker run -it --rm \
   -v ~/.openamer:/opt/data \
-  nousresearch/openamer-agent
+  openamer/openamer
 ```
 
 Or if you have already opened a terminal in your running container (via Docker Desktop for instance), just run:
@@ -279,7 +279,7 @@ In those cases, declare one service per profile with distinct `container_name`, 
 ```yaml
 services:
   openamer-work:
-    image: nousresearch/openamer-agent:latest
+    image: openamer/openamer:latest
     container_name: openamer-work
     restart: unless-stopped
     command: gateway run
@@ -289,7 +289,7 @@ services:
       - ~/.openamer-work:/opt/data
 
   openamer-personal:
-    image: nousresearch/openamer-agent:latest
+    image: openamer/openamer:latest
     container_name: openamer-personal
     restart: unless-stopped
     command: gateway run
@@ -326,7 +326,7 @@ docker run -it --rm \
   -v ~/.openamer:/opt/data \
   -e ANTHROPIC_API_KEY="sk-ant-..." \
   -e OPENAI_API_KEY="sk-..." \
-  nousresearch/openamer-agent
+  openamer/openamer
 ```
 
 Direct `-e` flags override values from `.env`. This is useful for CI/CD or secrets-manager integrations where you don't want keys on disk.
@@ -342,7 +342,7 @@ For persistent deployment with both the gateway and dashboard, a `docker-compose
 ```yaml
 services:
   openamer:
-    image: nousresearch/openamer-agent:latest
+    image: openamer/openamer:latest
     container_name: openamer
     restart: unless-stopped
     command: gateway run
@@ -397,7 +397,7 @@ ctl.!default {
 Then build a small derived image with the ALSA PulseAudio plugin installed:
 
 ```dockerfile title="Dockerfile.audio"
-FROM nousresearch/openamer-agent:latest
+FROM openamer/openamer:latest
 
 USER root
 RUN apt-get update \
@@ -464,7 +464,7 @@ docker run -d \
   --restart unless-stopped \
   --memory=4g --cpus=2 \
   -v ~/.openamer:/opt/data \
-  nousresearch/openamer-agent gateway run
+  openamer/openamer gateway run
 ```
 
 ## What the Dockerfile does
@@ -534,13 +534,13 @@ When a migration is needed, OpenAmer writes timestamped backups next to
 `config.yaml` and `.env` first.
 
 ```sh
-docker pull nousresearch/openamer-agent:latest
+docker pull openamer/openamer:latest
 docker rm -f openamer
 docker run -d \
   --name openamer \
   --restart unless-stopped \
   -v ~/.openamer:/opt/data \
-  nousresearch/openamer-agent gateway run
+  openamer/openamer gateway run
 ```
 
 Or with Docker Compose:
@@ -577,10 +577,10 @@ This is a good fit for tools that are quick to install and used occasionally. Fo
 
 ### Durable installs — build a derived image
 
-When a tool must be available immediately on every container start with no re-install delay, build a new image that inherits from `nousresearch/openamer-agent` and installs the tool in a layer:
+When a tool must be available immediately on every container start with no re-install delay, build a new image that inherits from `openamer/openamer` and installs the tool in a layer:
 
 ```dockerfile
-FROM nousresearch/openamer-agent:latest
+FROM openamer/openamer:latest
 
 USER root
 RUN apt-get update \
@@ -601,7 +601,7 @@ docker run -d \
   my-openamer:latest gateway run
 ```
 
-The entrypoint script and `/opt/data` semantics are inherited unchanged, so the rest of this page still applies. Remember to rebuild the image when pulling a newer upstream `nousresearch/openamer-agent`.
+The entrypoint script and `/opt/data` semantics are inherited unchanged, so the rest of this page still applies. Remember to rebuild the image when pulling a newer upstream `openamer/openamer`.
 
 ### Complex tools or multi-service stacks — run a sidecar container
 
@@ -610,7 +610,7 @@ For tools that bring their own service (a database, a web server, a queue, a hea
 ```yaml
 services:
   openamer:
-    image: nousresearch/openamer-agent:latest
+    image: openamer/openamer:latest
     container_name: openamer
     restart: unless-stopped
     command: gateway run
@@ -637,7 +637,7 @@ From inside the OpenAmer container, the sidecar is reachable at `http://my-tool:
 
 ### Broadly useful tools — open an issue or pull request
 
-If a tool is likely to be useful to most OpenAmer Agent users, consider contributing it upstream rather than carrying it in a private derived image. Open an issue or pull request on the [openamer-agent repository](https://github.com/NousResearch/openamer-agent) describing the tool and its use case. Tools that get bundled into the official image benefit every user and avoid the maintenance overhead of a downstream fork.
+If a tool is likely to be useful to most OpenAmer Agent users, consider contributing it upstream rather than carrying it in a private derived image. Open an issue or pull request on the [openamer-agent repository](https://github.com/openamer/openamer) describing the tool and its use case. Tools that get bundled into the official image benefit every user and avoid the maintenance overhead of a downstream fork.
 
 ## Connecting to local inference servers (vLLM, Ollama, etc.)
 
@@ -668,7 +668,7 @@ services:
             - capabilities: [gpu]
 
   openamer:
-    image: nousresearch/openamer-agent:latest
+    image: openamer/openamer:latest
     container_name: openamer
     restart: unless-stopped
     command: gateway run
@@ -712,7 +712,7 @@ docker run -d \
   --name openamer \
   -v ~/.openamer:/opt/data \
   -p 8642:8642 \
-  nousresearch/openamer-agent gateway run
+  openamer/openamer gateway run
 ```
 
 ```yaml
@@ -731,7 +731,7 @@ docker run -d \
   --name openamer \
   --network host \
   -v ~/.openamer:/opt/data \
-  nousresearch/openamer-agent gateway run
+  openamer/openamer gateway run
 ```
 
 ```yaml
@@ -795,7 +795,7 @@ docker run -d \
   --name openamer \
   -e PUID=1000 -e PGID=10 \
   -v /volume1/docker/openamer:/opt/data \
-  nousresearch/openamer-agent gateway run
+  openamer/openamer gateway run
 ```
 
 `docker exec openamer <cmd>` automatically drops to UID 10000 too — see [`docker exec` automatically drops to the `openamer` user](#docker-exec-automatically-drops-to-the-openamer-user) for details and the per-invocation opt-out.
@@ -809,7 +809,7 @@ docker run -d \
   --name openamer \
   --shm-size=1g \
   -v ~/.openamer:/opt/data \
-  nousresearch/openamer-agent gateway run
+  openamer/openamer gateway run
 ```
 
 ### Gateway not reconnecting after network issues
@@ -824,6 +824,6 @@ docker restart openamer
 
 ```sh
 docker logs --tail 50 openamer          # Recent logs
-docker run -it --rm nousresearch/openamer-agent:latest version     # Verify version
+docker run -it --rm openamer/openamer:latest version     # Verify version
 docker stats openamer                    # Resource usage
 ```

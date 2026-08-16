@@ -48,21 +48,21 @@ Pick the row that matches your goal:
 
 ## 1. Install OpenAmer Agent
 ### With the OpenAmer Desktop installer on macOS or Windows (recommended)
-To easily install the command-line and desktop applications, [download the OpenAmer Desktop installer](https://openamer-agent.nousresearch.com/) from our website and run it.
+To easily install the command-line and desktop applications, [download the OpenAmer Desktop installer](https://github.com/openamer/openamer/) from our website and run it.
 
 ### Without OpenAmer Desktop:
 For a command-line only install without OpenAmer Desktop, run:
 
 #### Linux / macOS / WSL2 / Android (Termux)
 ```bash
-curl -fsSL https://openamer-agent.nousresearch.com/install.sh | bash
+curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | bash
 ```
 
 #### Windows (native)
 
 Run in powershell:
 ```powershell
-iex (irm https://openamer-agent.nousresearch.com/install.ps1) 
+iex (irm https://github.com/openamer/openamer/raw/main/scripts/install.ps1) 
 ```
 
 :::tip Android / Termux

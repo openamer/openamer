@@ -6726,7 +6726,7 @@ def _print_curator_first_run_notice() -> None:
     print("  Preview now:  openamer curator run --dry-run")
     print("  Pause it:     openamer curator pause")
     print(
-        "  Docs:         https://openamer-agent.nousresearch.com/docs/user-guide/features/curator"
+        "  Docs:         https://github.com/openamer/openamer/blob/main/website/docs/user-guide/features/curator"
     )
 
 
@@ -7239,7 +7239,7 @@ def _update_via_zip(args):
         )
         sys.exit(1)
     zip_url = (
-        f"https://github.com/NousResearch/openamer-agent/archive/refs/heads/{branch}.zip"
+        f"https://github.com/openamer/openamer/archive/refs/heads/{branch}.zip"
     )
 
     print("→ Downloading latest version...")
@@ -7823,12 +7823,12 @@ def _discard_stashed_changes(
 # =========================================================================
 
 OFFICIAL_REPO_URLS = {
-    "https://github.com/NousResearch/openamer-agent.git",
-    "git@github.com:NousResearch/openamer-agent.git",
-    "https://github.com/NousResearch/openamer-agent",
-    "git@github.com:NousResearch/openamer-agent",
+    "https://github.com/openamer/openamer.git",
+    "git@github.com:openamer/openamer.git",
+    "https://github.com/openamer/openamer",
+    "git@github.com:openamer/openamer",
 }
-OFFICIAL_REPO_URL = "https://github.com/NousResearch/openamer-agent.git"
+OFFICIAL_REPO_URL = "https://github.com/openamer/openamer.git"
 SKIP_UPSTREAM_PROMPT_FILE = ".skip_upstream_prompt"
 
 
@@ -7962,7 +7962,7 @@ def _sync_with_upstream_if_needed(git_cmd: list[str], cwd: Path) -> None:
         # Ask user if they want to add upstream
         print()
         print("ℹ Your fork is not tracking the official OpenAmer repository.")
-        print("  This means you may miss updates from NousResearch/openamer-agent.")
+        print("  This means you may miss updates from openamer/openamer.")
         print()
         try:
             response = (
@@ -7976,7 +7976,7 @@ def _sync_with_upstream_if_needed(git_cmd: list[str], cwd: Path) -> None:
             print("→ Adding upstream remote...")
             if _add_upstream_remote(git_cmd, cwd):
                 print(
-                    "  ✓ Added upstream: https://github.com/NousResearch/openamer-agent.git"
+                    "  ✓ Added upstream: https://github.com/openamer/openamer.git"
                 )
                 has_upstream = True
             else:
@@ -7984,7 +7984,7 @@ def _sync_with_upstream_if_needed(git_cmd: list[str], cwd: Path) -> None:
                 return
         else:
             print(
-                "  Skipped. Run 'git remote add upstream https://github.com/NousResearch/openamer-agent.git' to add later."
+                "  Skipped. Run 'git remote add upstream https://github.com/openamer/openamer.git' to add later."
             )
             _mark_skip_upstream_prompt()
             return
@@ -11332,7 +11332,7 @@ def _cmd_update_impl(args, gateway_mode: bool):
         else:
             print("✗ Not a git repository. Please reinstall:")
             print(
-                "  curl -fsSL https://openamer-agent.nousresearch.com/install.sh | bash"
+                "  curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | bash"
             )
             sys.exit(1)
 
@@ -13901,7 +13901,7 @@ def _maybe_setup_dashboard_auth_interactively(args) -> None:
             "    openamer dashboard register\n"
             "  It provisions a Nous Portal OAuth client and writes "
             "OPENAMER_DASHBOARD_OAUTH_CLIENT_ID into ~/.openamer/.env for you.\n"
-            "  Docs: https://openamer-agent.nousresearch.com/docs/"
+            "  Docs: https://github.com/openamer/openamer/blob/main/website/docs/"
             "user-guide/features/web-dashboard#authentication-gated-mode"
         )
         sys.exit(0)
@@ -15058,7 +15058,7 @@ def main():
             "Manage the fallback provider chain.  Fallback providers are tried "
             "in order when the primary model fails with rate-limit, overload, or "
             "connection errors.  See: "
-            "https://openamer-agent.nousresearch.com/docs/user-guide/features/fallback-providers"
+            "https://github.com/openamer/openamer/blob/main/website/docs/user-guide/features/fallback-providers"
         ),
     )
     fallback_subparsers = fallback_parser.add_subparsers(dest="fallback_command")
@@ -15092,7 +15092,7 @@ def main():
             "Pull API keys from an external secret manager at process startup "
             "instead of storing them in ~/.openamer/.env.  Supports Bitwarden "
             "Secrets Manager and 1Password.  See: "
-            "https://openamer-agent.nousresearch.com/docs/user-guide/secrets/"
+            "https://github.com/openamer/openamer/blob/main/website/docs/user-guide/secrets/"
         ),
     )
     secrets_subparsers = secrets_parser.add_subparsers(dest="secrets_command")
@@ -15142,7 +15142,7 @@ def main():
             "Manage iron-proxy, the optional TLS-intercepting egress firewall "
             "that swaps proxy tokens for real API credentials before outbound "
             "requests leave a sandbox.  Disabled by default.  See: "
-            "https://openamer-agent.nousresearch.com/docs/user-guide/egress/iron-proxy"
+            "https://github.com/openamer/openamer/blob/main/website/docs/user-guide/egress/iron-proxy"
         ),
     )
 

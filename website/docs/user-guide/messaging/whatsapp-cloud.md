@@ -309,7 +309,7 @@ Meta only allows **free-form messages** within a 24-hour window after the user's
 
 OpenAmer warns the agent about this window in its system prompt, so the model knows to mention it when scheduling delayed messages.
 
-Message-template support (the workaround for outside-window sends) is not yet implemented in OpenAmer. If you need it, please [open an issue](https://github.com/NousResearch/openamer-agent/issues) — it's planned but waiting on a clear demand signal.
+Message-template support (the workaround for outside-window sends) is not yet implemented in OpenAmer. If you need it, please [open an issue](https://github.com/openamer/openamer/issues) — it's planned but waiting on a clear demand signal.
 
 ### Group chats
 

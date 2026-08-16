@@ -1,7 +1,7 @@
 """Regression test: set_runtime_main() must pass base_url/api_key/api_mode
 so that _resolve_auto() can route custom: providers in Step 1.
 
-Fixes https://github.com/NousResearch/openamer-agent/issues/34777
+Fixes https://github.com/openamer/openamer/issues/34777
 """
 import pytest
 from unittest.mock import patch, MagicMock

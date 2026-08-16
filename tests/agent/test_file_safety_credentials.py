@@ -1,6 +1,6 @@
 """Tests for OPENAMER_HOME credential-file read blocking in file_safety.
 
-Regression for https://github.com/NousResearch/openamer-agent/issues/17656 —
+Regression for https://github.com/openamer/openamer/issues/17656 —
 ``read_file`` was previously only sandboxed against ``OPENAMER_HOME`` itself,
 which left ``auth.json`` and ``.anthropic_oauth.json`` (plaintext provider
 keys + OAuth tokens) readable by the agent. A prompt-injection reaching

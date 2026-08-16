@@ -3176,7 +3176,7 @@ class OptionalSkillSource(SkillSource):
     (search / install / inspect) and labelled "official" with "builtin" trust.
     """
 
-    OFFICIAL_REPO = "NousResearch/openamer-agent"
+    OFFICIAL_REPO = "openamer/openamer"
 
     def __init__(self):
         from openamer_constants import get_optional_skills_dir
@@ -3782,7 +3782,7 @@ def check_for_skill_updates(
 # OpenAmer centralized index source
 # ---------------------------------------------------------------------------
 
-OPENAMER_INDEX_URL = "https://openamer-agent.nousresearch.com/docs/api/skills-index.json"
+OPENAMER_INDEX_URL = "https://github.com/openamer/openamer/blob/main/website/docs/api/skills-index.json"
 OPENAMER_INDEX_TTL = 6 * 3600  # 6 hours
 
 

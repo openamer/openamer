@@ -260,7 +260,7 @@ OpenAmer command with its description.
 
 Under the hood: OpenAmer ships with a generated Slack app manifest (see
 Step 1, Option A) that declares every command in
-[`COMMAND_REGISTRY`](https://github.com/NousResearch/openamer-agent/blob/main/openamer_cli/commands.py)
+[`COMMAND_REGISTRY`](https://github.com/openamer/openamer/blob/main/openamer_cli/commands.py)
 as a slash command. In Socket Mode, Slack routes the command event
 through the WebSocket regardless of the manifest's `url` field.
 

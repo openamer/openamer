@@ -311,8 +311,8 @@ The CLI uses argparse, so `--help` is a good first probe for "did my new flag re
 
 ## See also
 
-- User-facing setup + troubleshooting: [Egress proxy](https://openamer-agent.nousresearch.com/docs/user-guide/egress/iron-proxy)
-- Docker backend internals: [Docker](https://openamer-agent.nousresearch.com/docs/user-guide/docker)
-- Bitwarden Secrets Manager integration: [`openamer secrets bitwarden`](https://openamer-agent.nousresearch.com/docs/user-guide/secrets/bitwarden)
-- CLI command reference: [`openamer egress`](https://openamer-agent.nousresearch.com/docs/reference/cli-commands#openamer-egress)
-- Sandbox-injected environment variables: [Egress proxy (sandbox-injected)](https://openamer-agent.nousresearch.com/docs/reference/environment-variables#egress-proxy-sandbox-injected)
+- User-facing setup + troubleshooting: [Egress proxy](https://github.com/openamer/openamer/blob/main/website/docs/user-guide/egress/iron-proxy)
+- Docker backend internals: [Docker](https://github.com/openamer/openamer/blob/main/website/docs/user-guide/docker)
+- Bitwarden Secrets Manager integration: [`openamer secrets bitwarden`](https://github.com/openamer/openamer/blob/main/website/docs/user-guide/secrets/bitwarden)
+- CLI command reference: [`openamer egress`](https://github.com/openamer/openamer/blob/main/website/docs/reference/cli-commands#openamer-egress)
+- Sandbox-injected environment variables: [Egress proxy (sandbox-injected)](https://github.com/openamer/openamer/blob/main/website/docs/reference/environment-variables#egress-proxy-sandbox-injected)

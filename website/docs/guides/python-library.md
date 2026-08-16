@@ -15,7 +15,7 @@ OpenAmer isn't just a CLI tool. You can import `AIAgent` directly and use it pro
 Clone OpenAmer and create its supported editable development environment:
 
 ```bash
-git clone https://github.com/NousResearch/openamer-agent.git
+git clone https://github.com/openamer/openamer.git
 cd openamer-agent
 uv sync
 ```

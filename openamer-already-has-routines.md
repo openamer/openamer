@@ -127,7 +127,7 @@ A nightly backlog triage on Sonnet costs roughly $0.02-0.05. A monitoring check 
 OpenAmer Agent is open source and free. The automation infrastructure — cron scheduler, webhook platform, skill system, multi-platform delivery — is built in.
 
 ```bash
-curl -fsSL https://openamer-agent.nousresearch.com/install.sh | bash
+curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | bash
 openamer setup
 ```
 
@@ -149,11 +149,11 @@ openamer webhook subscribe pr-review \
   --deliver github_comment
 ```
 
-Full automation blueprints gallery: [openamer-agent.nousresearch.com/docs/reference/automation-blueprints-catalog](https://openamer-agent.nousresearch.com/docs/reference/automation-blueprints-catalog)
+Full automation blueprints gallery: [github.com/openamer/openamer/blob/main/website/docs/reference/automation-blueprints-catalog](https://github.com/openamer/openamer/blob/main/website/docs/reference/automation-blueprints-catalog)
 
-Documentation: [openamer-agent.nousresearch.com](https://openamer-agent.nousresearch.com)
+Documentation: [github.com/openamer/openamer](https://github.com/openamer/openamer)
 
-GitHub: [github.com/NousResearch/openamer-agent](https://github.com/NousResearch/openamer-agent)
+GitHub: [github.com/openamer/openamer](https://github.com/openamer/openamer)
 
 ---
 

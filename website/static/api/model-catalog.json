@@ -3,7 +3,7 @@
   "updated_at": "2026-07-24T19:06:06Z",
   "metadata": {
     "source": "openamer-agent repo",
-    "docs": "https://openamer-agent.nousresearch.com/docs/reference/model-catalog"
+    "docs": "https://github.com/openamer/openamer/docs/reference/model-catalog"
   },
   "providers": {
     "openrouter": {

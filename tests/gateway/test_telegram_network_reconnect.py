@@ -1210,7 +1210,7 @@ async def test_handle_polling_network_error_updater_stop_timeout():
     This test simulates the hang by making stop() sleep forever and verifies
     that _drain_polling_connections() and start_polling() are still called
     after the timeout fires.
-    Refs: NousResearch/openamer-agent#58270
+    Refs: openamer/openamer#58270
     """
     adapter = _make_adapter()
     adapter._polling_network_error_count = 0

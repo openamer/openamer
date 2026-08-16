@@ -155,7 +155,7 @@ You no longer need to wrap `openamer update` in `screen` or `tmux` to survive a 
 openamer version
 ```
 
-Compare against the latest release at the [GitHub releases page](https://github.com/NousResearch/openamer-agent/releases).
+Compare against the latest release at the [GitHub releases page](https://github.com/openamer/openamer/releases).
 
 ### Updating from Messaging Platforms
 

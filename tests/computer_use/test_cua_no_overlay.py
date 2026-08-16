@@ -131,7 +131,7 @@ class TestDriverSupportsNoOverlay:
 
 
 class TestMcpInvocationUsesResolvedCommand:
-    """Surface 8 (NousResearch/openamer-agent#47072) + sweeper feedback
+    """Surface 8 (openamer/openamer#47072) + sweeper feedback
     #4701565902: when the manifest surfaces a relocated executable for
     ``mcp_invocation.command``, the support probe must run against THAT
     binary, not the system-resolved ``_CUA_DRIVER_CMD``. Otherwise a

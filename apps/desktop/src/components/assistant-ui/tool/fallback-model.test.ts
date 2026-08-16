@@ -115,28 +115,28 @@ describe('buildToolView browser_navigate title', () => {
     const view = buildToolView(
       part({
         toolName: 'browser_navigate',
-        args: { url: 'https://openamer-agent.nousresearch.com/docs' },
+        args: { url: 'https://github.com/openamer/openamer/docs' },
         result: { success: false, error: 'Command timed out after 60 seconds' }
       }),
       ''
     )
 
     expect(view.status).toBe('error')
-    expect(view.title).toBe('Failed to open openamer-agent.nousresearch.com/docs')
+    expect(view.title).toBe('Failed to open github.com/openamer/openamer/docs')
   })
 
   it('shows opened title on success', () => {
     const view = buildToolView(
       part({
         toolName: 'browser_navigate',
-        args: { url: 'https://openamer-agent.nousresearch.com/docs' },
-        result: { success: true, url: 'https://openamer-agent.nousresearch.com/docs', title: 'Docs' }
+        args: { url: 'https://github.com/openamer/openamer/docs' },
+        result: { success: true, url: 'https://github.com/openamer/openamer/docs', title: 'Docs' }
       }),
       ''
     )
 
     expect(view.status).toBe('success')
-    expect(view.title).toBe('Opened openamer-agent.nousresearch.com/docs')
+    expect(view.title).toBe('Opened github.com/openamer/openamer/docs')
   })
 })
 

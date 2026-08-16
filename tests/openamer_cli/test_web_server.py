@@ -2550,7 +2550,7 @@ class TestWebServerEndpoints:
         assert data["name"] == "openamer-update"
         assert data["pid"] is None
         assert data["error"] == "docker_update_unsupported"
-        assert "docker pull nousresearch/openamer-agent:latest" in data["message"]
+        assert "docker pull openamer/openamer:latest" in data["message"]
         assert spawned is False
 
         status = self.client.get("/api/actions/openamer-update/status")
@@ -2559,7 +2559,7 @@ class TestWebServerEndpoints:
         assert status_data["running"] is False
         assert status_data["exit_code"] == 1
         assert status_data["pid"] is None
-        assert any("docker pull nousresearch/openamer-agent:latest" in line for line in status_data["lines"])
+        assert any("docker pull openamer/openamer:latest" in line for line in status_data["lines"])
 
     def test_update_openamer_returns_nix_guidance_without_spawning(self, monkeypatch):
         import openamer_cli.web_server as web_server
@@ -3474,7 +3474,7 @@ class TestWebServerEndpoints:
         assert "personal WeChat" in weixin["description"]
         assert "Official Account" not in f"{weixin['name']} {weixin['description']}"
         assert weixin["docs_url"] == (
-            "https://openamer-agent.nousresearch.com/docs/user-guide/messaging/weixin/"
+            "https://github.com/openamer/openamer/blob/main/website/docs/user-guide/messaging/weixin/"
         )
 
         fields = {field["key"]: field for field in weixin["env_vars"]}
@@ -3492,7 +3492,7 @@ class TestWebServerEndpoints:
 
         teams = _build_catalog_entry("teams")
         assert teams["docs_url"] == (
-            "https://openamer-agent.nousresearch.com/docs/user-guide/messaging/teams"
+            "https://github.com/openamer/openamer/blob/main/website/docs/user-guide/messaging/teams"
         )
 
     def test_google_chat_messaging_metadata_links_setup_guide(self):
@@ -3505,7 +3505,7 @@ class TestWebServerEndpoints:
         google_chat = _build_catalog_entry("google_chat")
         assert google_chat["name"] == "Google Chat"
         assert google_chat["docs_url"] == (
-            "https://openamer-agent.nousresearch.com/docs/user-guide/messaging/google_chat"
+            "https://github.com/openamer/openamer/blob/main/website/docs/user-guide/messaging/google_chat"
         )
 
     def test_messaging_catalog_covers_gateway_platforms(self):

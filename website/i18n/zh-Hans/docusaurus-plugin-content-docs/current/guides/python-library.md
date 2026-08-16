@@ -15,7 +15,7 @@ OpenAmer 不仅仅是一个 CLI 工具。你可以直接导入 `AIAgent`，在�
 克隆 OpenAmer 并创建受支持的可编辑开发环境：
 
 ```bash
-git clone https://github.com/NousResearch/openamer-agent.git
+git clone https://github.com/openamer/openamer.git
 cd openamer-agent
 uv sync
 ```

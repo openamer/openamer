@@ -13,7 +13,7 @@ import urllib.request
 
 DEFAULT_UA = (
     "openamer-osint-investigation/0.2 "
-    "(+https://github.com/NousResearch/openamer-agent; "
+    "(+https://github.com/openamer/openamer; "
     "set OPENAMER_OSINT_UA env var to identify yourself per "
     "Wikimedia / SEC fair-use guidance)"
 )

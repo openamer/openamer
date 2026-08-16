@@ -147,7 +147,7 @@ _backend: Optional[ComputerUseBackend] = None
 # don't pass a session_id (e.g. the classic single-run CLI). Values:
 #   _session_auto_approve[sid] -> bool   ("always_approve everything")
 #   _always_allow[sid]         -> set of (action, delivery_mode) scope keys
-# See NousResearch/openamer-agent#67052 gap 4.
+# See openamer/openamer#67052 gap 4.
 _approval_lock = threading.Lock()
 _session_auto_approve: Dict[str, bool] = {}
 _always_allow: Dict[str, set] = {}
@@ -321,7 +321,7 @@ def _request_approval(action: str, args: Dict[str, Any],
     Approval is scoped by (action, delivery_mode) AND by session_id.
     Foreground delivery is a visible focus change, so a prior background
     approval — even ``approve_session`` on the same action — must NOT
-    silently authorize it (NousResearch/openamer-agent#67052).
+    silently authorize it (openamer/openamer#67052).
     ``always_approve`` (the blanket "auto-approve everything" unlock) still
     covers foreground, since the user explicitly opted into unattended
     operation. State is keyed on session_id so concurrent runs don't leak
@@ -700,7 +700,7 @@ def _capture_response(cap: CaptureResult, max_elements: int = _DEFAULT_MAX_ELEME
             return json.dumps(payload)
 
         # Prefer the explicit MIME type cua-driver attaches to its image
-        # parts (Surface 7 of NousResearch/openamer-agent#47072 — trycua/cua#1961
+        # parts (Surface 7 of openamer/openamer#47072 — trycua/cua#1961
         # made `mimeType` part of every MCP image-part response). Fall back
         # to base64-prefix sniffing for older cua-driver builds that didn't
         # carry the field. JPEG base64 starts with /9j/; PNG with iVBOR.

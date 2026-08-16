@@ -252,7 +252,7 @@ Portal 通过 OpenRouter 代理，因此 OpenRouter 支持的所有模型通常�
 /model anthropic/claude-opus-4.6
 ```
 
-如果某个模型确实缺失，请[提交 issue](https://github.com/NousResearch/openamer-agent/issues)——我们将 Portal 目录同步至 OpenAmer，缺口通常意味着可以更新的路由配置。
+如果某个模型确实缺失，请[提交 issue](https://github.com/openamer/openamer/issues)——我们将 Portal 目录同步至 OpenAmer，缺口通常意味着可以更新的路由配置。
 
 ### 账单未出现在我的 Portal 账号中
 

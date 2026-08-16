@@ -35,11 +35,11 @@ OpenAmer Agent 提供了一个 Nix flake，支持三个层级的集成：
 
 ```bash
 # 直接运行（首次使用时构建，之后使用缓存）
-nix run github:NousResearch/openamer-agent -- setup
-nix run github:NousResearch/openamer-agent -- chat
+nix run github:openamer/openamer -- setup
+nix run github:openamer/openamer -- chat
 
 # 或持久化安装
-nix profile install github:NousResearch/openamer-agent
+nix profile install github:openamer/openamer
 openamer setup
 openamer chat
 ```
@@ -50,7 +50,7 @@ openamer chat
 <summary><strong>从本地克隆构建</strong></summary>
 
 ```bash
-git clone https://github.com/NousResearch/openamer-agent.git
+git clone https://github.com/openamer/openamer.git
 cd openamer-agent
 nix build
 ./result/bin/openamer setup
@@ -75,7 +75,7 @@ nix build
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    openamer-agent.url = "github:NousResearch/openamer-agent";
+    openamer-agent.url = "github:openamer/openamer";
   };
 
   outputs = { nixpkgs, openamer-agent, ... }: {
@@ -685,7 +685,7 @@ services.openamer-agent = {
 
 ```nix
 {
-  inputs.openamer-agent.url = "github:NousResearch/openamer-agent";
+  inputs.openamer-agent.url = "github:openamer/openamer";
   outputs = { openamer-agent, nixpkgs, ... }: {
     nixpkgs.overlays = [ openamer-agent.overlays.default ];
     # 然后：

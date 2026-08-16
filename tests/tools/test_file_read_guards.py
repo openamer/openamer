@@ -828,7 +828,7 @@ class TestWriteInvalidatesDedup(unittest.TestCase):
     cache for the written path.  Without this, a read→write→read sequence
     within the same mtime second returns a stale 'File unchanged' stub.
 
-    Regression test for https://github.com/NousResearch/openamer-agent/issues/13144
+    Regression test for https://github.com/openamer/openamer/issues/13144
     """
 
     def setUp(self):

@@ -204,7 +204,7 @@ async function locateOpenAmer(ssh, remoteOpenAmerPath) {
 
   const err: any = new Error(
     'OpenAmer is not installed on the remote host (could not find a `openamer` executable). ' +
-      'Install it on the remote with:  curl -fsSL https://openamer-agent.nousresearch.com/install.sh | sh  ' +
+      'Install it on the remote with:  curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh  ' +
       '— or set the OpenAmer path explicitly in the SSH connection settings.'
   )
 

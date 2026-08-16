@@ -235,7 +235,7 @@ The Portal catalog mirrors OpenRouter's model list (300+). If a model is missing
 /model openai/o1-2025-12-17
 ```
 
-If a model is genuinely unavailable, [open an issue](https://github.com/NousResearch/openamer-agent/issues) — most gaps are routing config we can update.
+If a model is genuinely unavailable, [open an issue](https://github.com/openamer/openamer/issues) — most gaps are routing config we can update.
 
 ### Billing not appearing on my Portal account
 

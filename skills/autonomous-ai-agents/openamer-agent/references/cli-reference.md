@@ -1,7 +1,7 @@
 # OpenAmer CLI Reference
 
 Live sources when anything looks stale: `openamer --help`, `openamer <command> --help`,
-https://openamer-agent.nousresearch.com/docs/reference/cli-commands
+https://github.com/openamer/openamer/blob/main/website/docs/reference/cli-commands
 
 ### Global Flags
 
@@ -79,7 +79,7 @@ openamer gateway run|install|start|stop|restart|status|setup
 ```
 
 20+ platforms: Telegram, Discord, Slack, WhatsApp (Baileys + Business Cloud API), iMessage (Photon — `openamer photon setup`), Signal, Email, SMS, Matrix, Mattermost, Teams, LINE, SimpleX, ntfy, Google Chat, Home Assistant, DingTalk, Feishu, WeCom, Weixin, API Server, Webhooks. Open WebUI connects via the API Server adapter. Most adapters ship under `plugins/platforms/`.
-Docs: https://openamer-agent.nousresearch.com/docs/user-guide/messaging/
+Docs: https://github.com/openamer/openamer/blob/main/website/docs/user-guide/messaging/
 
 ### Sessions
 
@@ -141,10 +141,10 @@ Plugin- and provider-supplied subcommands (e.g. `openamer photon setup`) only ap
 
 | Looking for... | Location |
 |---|---|
-| Config options | `openamer config edit` · [Configuration docs](https://openamer-agent.nousresearch.com/docs/user-guide/configuration) |
-| Tools / toolsets | `openamer tools list` · [Tools reference](https://openamer-agent.nousresearch.com/docs/reference/tools-reference) |
-| Skills catalog | `openamer skills browse` · [Skills catalog](https://openamer-agent.nousresearch.com/docs/reference/skills-catalog) |
-| Provider setup | `openamer model` · [Providers guide](https://openamer-agent.nousresearch.com/docs/integrations/providers) |
-| Env variables | `openamer config env-path` · [Env vars reference](https://openamer-agent.nousresearch.com/docs/reference/environment-variables) |
+| Config options | `openamer config edit` · [Configuration docs](https://github.com/openamer/openamer/blob/main/website/docs/user-guide/configuration) |
+| Tools / toolsets | `openamer tools list` · [Tools reference](https://github.com/openamer/openamer/blob/main/website/docs/reference/tools-reference) |
+| Skills catalog | `openamer skills browse` · [Skills catalog](https://github.com/openamer/openamer/blob/main/website/docs/reference/skills-catalog) |
+| Provider setup | `openamer model` · [Providers guide](https://github.com/openamer/openamer/blob/main/website/docs/integrations/providers) |
+| Env variables | `openamer config env-path` · [Env vars reference](https://github.com/openamer/openamer/blob/main/website/docs/reference/environment-variables) |
 | Gateway logs | `~/.openamer/logs/gateway.log` (or `openamer logs`) |
 | Sessions | `openamer sessions browse` (reads state.db) |

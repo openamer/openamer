@@ -1,10 +1,10 @@
 # OpenAmer Desktop ☤
 
 <p align="center">
-  <a href="https://github.com/NousResearch/openamer-agent/releases"><img src="https://img.shields.io/badge/Download-macOS%20%C2%B7%20Windows%20%C2%B7%20Linux-FFD700?style=for-the-badge" alt="Download"></a>
-  <a href="https://openamer-agent.nousresearch.com/docs/"><img src="https://img.shields.io/badge/Docs-openamer--agent.nousresearch.com-FFD700?style=for-the-badge" alt="Documentation"></a>
+  <a href="https://github.com/openamer/openamer/releases"><img src="https://img.shields.io/badge/Download-macOS%20%C2%B7%20Windows%20%C2%B7%20Linux-FFD700?style=for-the-badge" alt="Download"></a>
+  <a href="https://github.com/openamer/openamer/blob/main/website/docs/"><img src="https://img.shields.io/badge/Docs-openamer--agent.nousresearch.com-FFD700?style=for-the-badge" alt="Documentation"></a>
   <a href="https://discord.gg/NousResearch"><img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord"></a>
-  <a href="https://github.com/NousResearch/openamer-agent/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License: MIT"></a>
+  <a href="https://github.com/openamer/openamer/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License: MIT"></a>
 </p>
 
 **The native desktop app for [OpenAmer Agent](../../README.md) — the self-improving AI agent from [Nous Research](https://nousresearch.com).** Same agent, same skills, same memory as the CLI and gateway, in a polished native window — chat with streaming tool output, side-by-side previews, a file browser, voice, and settings, no terminal required. Available for **macOS, Windows, and Linux**.
@@ -34,7 +34,7 @@ It builds and launches the GUI against your existing install — same config, ke
 
 ### Prebuilt installers
 
-Prebuilt installers are built and distributed via [the OpenAmer Desktop website.](https://openamer-agent.nousresearch.com/).
+Prebuilt installers are built and distributed via [the OpenAmer Desktop website.](https://github.com/openamer/openamer/).
 
 ---
 
@@ -204,8 +204,8 @@ Remove-Item -Recurse -Force "$env:LOCALAPPDATA\openamer\openamer-agent\venv"
 ## Community
 
 - 💬 [Discord](https://discord.gg/NousResearch)
-- 📖 [Documentation](https://openamer-agent.nousresearch.com/docs/)
-- 🐛 [Issues](https://github.com/NousResearch/openamer-agent/issues)
+- 📖 [Documentation](https://github.com/openamer/openamer/blob/main/website/docs/)
+- 🐛 [Issues](https://github.com/openamer/openamer/issues)
 
 ---
 

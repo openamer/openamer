@@ -2521,7 +2521,7 @@ class TestCuaCliFallbackResolution:
 
 
 class TestClickButtonPassthrough:
-    """Surface 5 (NousResearch/openamer-agent#47072) — `middle_click` must
+    """Surface 5 (openamer/openamer#47072) — `middle_click` must
     actually reach cua-driver as a middle button, not silently degrade to
     left. Pre-fix, the backend's `click()` chose the tool by name
     (`button == "right"` → `right_click`, everything else → `click` with
@@ -2810,7 +2810,7 @@ class TestZIndexSorting:
 
 
 class TestImageMimeTypePropagation:
-    """Surface 7 (NousResearch/openamer-agent#47072): trycua/cua#1961 made
+    """Surface 7 (openamer/openamer#47072): trycua/cua#1961 made
     `mimeType` part of every MCP image-part response, so the wrapper no
     longer has to sniff PNG vs JPEG by inspecting the first base64 bytes
     (`/9j/` for JPEG / `iVBOR` for PNG). The sniff is preserved as a
@@ -2915,7 +2915,7 @@ class TestImageMimeTypePropagation:
 
 
 class TestMcpInvocationResolution:
-    """Surface 8 (NousResearch/openamer-agent#47072): instead of hardcoding
+    """Surface 8 (openamer/openamer#47072): instead of hardcoding
     `["mcp"]` as the cua-driver subcommand, we ask the driver via its
     `manifest` JSON (trycua/cua#1961) so a future rename or relocation of
     the MCP subcommand doesn't require a OpenAmer patch.
@@ -3056,7 +3056,7 @@ class TestMcpInvocationResolution:
 
 
 class TestStructuredElementsConsumption:
-    """Surface 2 (NousResearch/openamer-agent#47072): trycua/cua#1961 made
+    """Surface 2 (openamer/openamer#47072): trycua/cua#1961 made
     `structuredContent.elements` part of every `get_window_state` MCP
     response. The wrapper used to parse the markdown AX tree with a
     regex — lossy because bounds always came back (0,0,0,0). The
@@ -3320,7 +3320,7 @@ class TestStructuredElementsConsumption:
 
 
 class TestCapabilityDiscovery:
-    """Surface 4 (NousResearch/openamer-agent#47072): the wrapper learns
+    """Surface 4 (openamer/openamer#47072): the wrapper learns
     what cua-driver supports from the per-tool `capabilities[]` array on
     `tools/list` (trycua/cua#1961) instead of name-checking. The infra
     here is consumed by other surfaces (e.g. Surface 6 only carries
@@ -3369,7 +3369,7 @@ class TestCapabilityDiscovery:
 
 
 class TestElementTokenAttachment:
-    """Surface 6 (NousResearch/openamer-agent#47072): trycua/cua#1961 added
+    """Surface 6 (openamer/openamer#47072): trycua/cua#1961 added
     an opaque `element_token` alongside `element_index` so the wrapper
     can carry per-snapshot handles instead of relying on raw indices that
     silently re-resolve when the snapshot is superseded.

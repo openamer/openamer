@@ -20,7 +20,7 @@ OpenAmer 可在 Windows 10 和 Windows 11 上原生运行——无需 WSL、Cygw
 打开 **PowerShell**（或 Windows Terminal）并运行：
 
 ```powershell
-iex (irm https://openamer-agent.nousresearch.com/install.ps1)
+iex (irm https://github.com/openamer/openamer/raw/main/scripts/install.ps1)
 ```
 
 无需管理员权限。安装程序会写入 `%LOCALAPPDATA%\openamer\`，并将 `openamer` 添加到你的**用户 PATH**——安装完成后打开新终端即可使用。
@@ -28,7 +28,7 @@ iex (irm https://openamer-agent.nousresearch.com/install.ps1)
 **安装程序选项**（需要使用 scriptblock 形式传递参数）：
 
 ```powershell
-& ([scriptblock]::Create((irm https://openamer-agent.nousresearch.com/install.ps1))) -NoVenv -SkipSetup -Branch main
+& ([scriptblock]::Create((irm https://github.com/openamer/openamer/raw/main/scripts/install.ps1))) -NoVenv -SkipSetup -Branch main
 ```
 
 | 参数          | 默认值                               | 用途                                            |
