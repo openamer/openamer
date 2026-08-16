@@ -454,6 +454,7 @@ from openamer_cli.subcommands.skin import build_skin_parser
 from openamer_cli.subcommands.console import build_console_parser
 from openamer_cli.subcommands.version import build_version_parser
 from openamer_cli.subcommands.update import build_update_parser
+from openamer_cli.subcommands.a2a import build_a2a_parser
 from openamer_cli.subcommands.uninstall import build_uninstall_parser
 from openamer_cli.subcommands.dashboard import build_dashboard_parser
 from openamer_cli.subcommands.gui import build_gui_parser
@@ -17146,6 +17147,8 @@ def main():
     # version command  (parser built in openamer_cli/subcommands/version.py)
     # =========================================================================
     build_version_parser(subparsers, cmd_version=cmd_version)
+
+    build_a2a_parser(subparsers)
 
     # =========================================================================
     # update command  (parser built in openamer_cli/subcommands/update.py)
