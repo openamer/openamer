@@ -2,7 +2,7 @@
 
 [project]
 name = "openamer-agent"
-version = "260817"
+version = "2026.8.17"
 description = "The self-improving AI agent — creates skills from experience, improves them during use, and runs anywhere"
 readme = "README.md"
 # Upper bound is load-bearing, not cosmetic. uv resolves the project's

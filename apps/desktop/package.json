@@ -2,7 +2,7 @@
   "name": "openamer",
   "productName": "OpenAmer",
   "private": true,
-  "version": "260817",
+  "version": "2026.8.17",
   "description": "Native desktop shell for OpenAmer Agent.",
   "author": "OpenAmer",
   "type": "module",
