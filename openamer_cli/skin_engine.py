@@ -205,7 +205,7 @@ _BUILTIN_SKINS: Dict[str, Dict[str, Any]] = {
             # Dark-authored. Values match the TUI's DARK_THEME so the classic CLI
             # and the TUI render the same OpenAmer cyan-blue identity.
             "colors": {
-                "banner_border": "#155E8A",
+                "banner_border": "#2A76B5",
                 "banner_title": "#7DD3FC",
                 "banner_accent": "#38BDF8",
                 "banner_dim": "#4A7BA6",
@@ -227,7 +227,7 @@ _BUILTIN_SKINS: Dict[str, Dict[str, Any]] = {
                 "status_bar_bad": "#FB8C00",
                 "status_bar_critical": "#FF6B6B",
                 "session_label": "#38BDF8",
-                "session_border": "#1E3A5F",
+                "session_border": "#3A6FA5",
                 "completion_menu_bg": "#0B1B2B",
                 "completion_menu_current_bg": "#16324F",
                 "selection_bg": "#1E3A5F",

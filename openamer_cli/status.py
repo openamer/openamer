@@ -238,7 +238,7 @@ def show_status(args):
     else:
         openamer_label = "not logged in (run: openamer portal)"
     print(
-        f"  {'OpenAmer Portal':<12}  {check_mark(openamer_logged_in)} "
+        f"  {'OpenAmer Portal':<12}   {check_mark(openamer_logged_in)} "
         f"{openamer_label}"
     )
     portal_url = openamer_status.get("portal_base_url") or "(unknown)"

@@ -142,10 +142,25 @@ def test_coding_prompt_preserves_legacy_workspace_order(monkeypatch):
     monkeypatch.setattr(system_prompt, "OPENAMER_AGENT_HELP_GUIDANCE", "HELP")
     monkeypatch.setattr(system_prompt, "STEER_CHANNEL_NOTE", "STEER")
     monkeypatch.setattr(system_prompt, "get_openamer_home", lambda: Path("/openamer"))
+    # This test asserts the exact legacy workspace ordering through the cache
+    # split, so pin the goals block empty — goal injection reads the host's own
+    # goal store (or seeds defaults in a fresh CI container) and would otherwise
+    # contaminate an ordering-only assertion with unpredictable content.
+    # system_prompt.py imports build_goal_block at call time via
+    # `from agent.goal_engine import build_goal_block`, so patch it on the
+    # defining module, not the system_prompt module attribute.
+    import agent.goal_engine as _ge
+    monkeypatch.setattr(
+        _ge, "build_goal_block", lambda *a, **k: "", raising=False
+    )
 
+    # Build the profile hint from the mocked home Path so the assertion is
+    # platform-agnostic: on Windows str(Path("/openamer")) renders as \\openamer,
+    # on POSIX /openamer.
+    _home_str = str(Path("/openamer"))
     expected_profile = (
         "Active OpenAmer profile: default. Other profiles (if any) live "
-        "under /openamer/profiles/<name>/. Each profile has its own skills/, "
+        f"under {_home_str}/profiles/<name>/. Each profile has its own skills/, "
         "plugins/, cron/, and memories/ that affect a different session than "
         "this one. Do not modify another profile's skills/plugins/cron/memories "
         "unless the user explicitly directs you to."
