@@ -17152,7 +17152,6 @@ def main():
 
     build_a2a_parser(subparsers)
     build_system_parser(subparsers)
-    build_security_parser(subparsers)
 
     # =========================================================================
     # update command  (parser built in openamer_cli/subcommands/update.py)

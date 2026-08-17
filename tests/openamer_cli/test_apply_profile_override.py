@@ -16,6 +16,8 @@ import sys
 from pathlib import Path
 from types import SimpleNamespace
 
+import pytest
+
 
 
 def _run_apply_profile_override(
@@ -111,6 +113,7 @@ class TestApplyProfileOverrideOpenAmerHomeGuard:
             "OPENAMER_HOME must remain unchanged when already pointing to a profile dir"
         )
 
+    @pytest.mark.skipif(sys.platform == "win32", reason="POSIX ~/.openamer home layout")
     def test_openamer_home_unset_reads_active_profile(self, tmp_path, monkeypatch):
         """Classic case: OPENAMER_HOME unset + active_profile=coder must set
         OPENAMER_HOME to the profile directory (existing behaviour must not regress).
@@ -125,6 +128,7 @@ class TestApplyProfileOverrideOpenAmerHomeGuard:
         assert result is not None
         assert "coder" in result
 
+    @pytest.mark.skipif(sys.platform == "win32", reason="POSIX ~/.openamer home layout")
     def test_sudo_explicit_profile_resolves_invoking_users_profile(self, tmp_path, monkeypatch):
         """sudo elias ... should resolve `-p elias` under SUDO_USER, not root."""
         root_home = tmp_path / "root"
@@ -199,6 +203,7 @@ class TestApplyProfileOverrideOpenAmerHomeGuard:
         assert os.environ.get("OPENAMER_HOME") is None
         assert sys.argv == argv
 
+    @pytest.mark.skipif(sys.platform == "win32", reason="POSIX ~/.openamer home layout")
     def test_profile_after_chat_subcommand_is_still_consumed(self, tmp_path, monkeypatch):
         """Profile flags historically work after normal OpenAmer subcommands."""
         result = _run_apply_profile_override(
@@ -213,6 +218,7 @@ class TestApplyProfileOverrideOpenAmerHomeGuard:
         assert result.endswith("coder")
         assert sys.argv == ["openamer", "chat", "-q", "hello"]
 
+    @pytest.mark.skipif(sys.platform == "win32", reason="POSIX ~/.openamer home layout")
     def test_top_level_profile_after_value_flag_is_consumed(self, tmp_path, monkeypatch):
         """Top-level --profile still works after other top-level value flags."""
         result = _run_apply_profile_override(
@@ -227,6 +233,7 @@ class TestApplyProfileOverrideOpenAmerHomeGuard:
         assert result.endswith("coder")
         assert sys.argv == ["openamer", "-m", "gpt-5", "chat"]
 
+    @pytest.mark.skipif(sys.platform == "win32", reason="POSIX ~/.openamer home layout")
     def test_top_level_profile_after_continue_flag_is_consumed(self, tmp_path, monkeypatch):
         """--continue has an optional value, so a following --profile is a flag."""
         result = _run_apply_profile_override(
@@ -285,6 +292,7 @@ class TestSupervisedChildIgnoresStickyProfile:
             f"hijacked by active_profile; got {os.environ.get('OPENAMER_HOME')!r}"
         )
 
+    @pytest.mark.skipif(sys.platform == "win32", reason="POSIX ~/.openamer home layout")
     def test_non_supervised_run_still_follows_active_profile(
         self, tmp_path, monkeypatch
     ):
@@ -301,6 +309,7 @@ class TestSupervisedChildIgnoresStickyProfile:
         assert result is not None
         assert result.endswith("briefer")
 
+    @pytest.mark.skipif(sys.platform == "win32", reason="POSIX ~/.openamer home layout")
     def test_supervised_named_profile_flag_still_wins(self, tmp_path, monkeypatch):
         """A supervised named-profile slot passes ``-p <name>`` explicitly;
         that must still resolve (the sentinel guard only skips the sticky
