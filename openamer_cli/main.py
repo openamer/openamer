@@ -11601,16 +11601,19 @@ def _cmd_update_impl(args, gateway_mode: bool):
                 # A managed install whose venv is gone entirely (interrupted
                 # repair after the old venv was moved aside) needs the venv
                 # recreated before dependencies can be installed into it.
+                # Use the same resolver as everywhere else so a dev checkout
+                # that lives under `.venv` is repaired there, not a fresh
+                # plain `venv` that nothing else points at.
+                repair_venv_dir = _project_venv_dir()
                 venv_python_missing = not (
-                    PROJECT_ROOT
-                    / "venv"
+                    repair_venv_dir
                     / ("Scripts" if _is_windows() else "bin")
                     / ("python.exe" if _is_windows() else "python")
                 ).exists()
                 if venv_python_missing and repair_uv:
                     print("→ Recreating virtual environment...")
                     subprocess.run(
-                        [repair_uv, "venv", "venv"],
+                        [repair_uv, "venv", str(repair_venv_dir)],
                         cwd=PROJECT_ROOT,
                         check=False,
                     )
