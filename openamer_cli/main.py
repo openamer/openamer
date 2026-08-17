@@ -8501,7 +8501,19 @@ def _openamer_exe_shims(scripts_dir: Path) -> list[Path]:
     # The gateway shim is not a [project.scripts] entry point, but older
     # update/install paths still rewrite and quarantine it.
     names.add("openamer-gateway")
-    return [scripts_dir / f"{name}.exe" for name in sorted(names)]
+    shims = [scripts_dir / f"{name}.exe" for name in sorted(names)]
+    # The venv's own python.exe launcher is a real holder of the shims too:
+    # the OpenAmer Desktop backend and other long-lived children run as
+    # `venv\\Scripts\\python.exe -m ...`, not via the `openamer.exe` shim, yet
+    # they keep `openamer.exe`/the venv package files open — which blocks the
+    # quarantine rename and makes the update's uv reinstall fail with os error
+    # 32. Include it so both the early concurrency gate and the quarantine
+    # retry treat a live venv-python as a blocking holder.
+    for py in ("python.exe", "pythonw.exe"):
+        vp = scripts_dir / py
+        if vp.exists():
+            shims.append(vp)
+    return shims
 
 
 def _detect_concurrent_openamer_instances(
@@ -8649,7 +8661,7 @@ def _format_concurrent_instances_message(
 
 def _quarantine_running_openamer_exe(
     scripts_dir: Path, *, max_attempts: int = 4
-) -> list[tuple[Path, Path]]:
+) -> tuple[list[tuple[Path, Path]], list[Path]]:
     """Pre-empt Windows file lock on the running ``openamer.exe``.
 
     Windows allows RENAMING a mapped/running executable (the kernel tracks the
@@ -8684,8 +8696,9 @@ def _quarantine_running_openamer_exe(
     are already deferred and roll-back is meaningless.
     """
     moved: list[tuple[Path, Path]] = []
+    failed: list[Path] = []
     if not _is_windows():
-        return moved
+        return moved, failed
 
     import time
 
@@ -8738,6 +8751,7 @@ def _quarantine_running_openamer_exe(
 
         # Truly couldn't budge the .exe. Print an actionable warning and let
         # uv try its luck — sometimes uv's own retry handling pulls through.
+        failed.append(shim)
         print(
             f"  ⚠ Could not quarantine {shim.name} ({last_exc.__class__.__name__}: "
             f"another process is holding it open)."
@@ -8747,7 +8761,7 @@ def _quarantine_running_openamer_exe(
             "gateway, or pause AV scanning, then re-run `openamer update`."
         )
 
-    return moved
+    return moved, failed
 
 
 def _schedule_replace_on_reboot(shim: Path, quarantine_target: Path) -> bool:
@@ -8817,8 +8831,18 @@ def _run_quarantined_install(
     Off-Windows (``scripts_dir is None``) this is a thin pass-through.
     """
     moved: list[tuple[Path, Path]] = []
+    failed: list[Path] = []
     if scripts_dir is not None:
-        moved = _quarantine_running_openamer_exe(scripts_dir)
+        moved, failed = _quarantine_running_openamer_exe(scripts_dir)
+        if failed:
+            names = ", ".join(sorted(p.name for p in failed))
+            print(
+                f"  ✗ Could not quarantine {names} — another process holds it open.\n"
+                "    The dependency install was NOT started, so no files were damaged.\n"
+                "    Close OpenAmer Desktop, exit other `openamer` REPLs, stop the "
+                "gateway, or pause AV scanning, then re-run `openamer update`."
+            )
+            raise SystemExit(2)
     try:
         _run_install_with_heartbeat(cmd, env=env)
     except BaseException:

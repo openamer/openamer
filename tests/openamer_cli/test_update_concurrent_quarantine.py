@@ -102,6 +102,31 @@ def test_detect_concurrent_matches_case_insensitively(_winp, tmp_path):
 
 
 @patch.object(cli_main, "_is_windows", return_value=True)
+def test_detect_concurrent_finds_venv_python_holding_shims(_winp, tmp_path):
+    """Regression: the Desktop backend runs as venv python.exe, not the .exe shim.
+
+    Field report: during `openamer update` the Desktop app's backend child was
+    `C:\\...\\venv\\Scripts\\python.exe` — NOT `openamer.exe`. The old detector
+    compared proc.exe() only against the .exe shim paths, so the holding
+    process was never flagged, quarantine failed, and uv died with os error 32.
+    A venv python.exe must be reported as a concurrent holder.
+    """
+    scripts_dir = tmp_path
+    shim = scripts_dir / "openamer.exe"
+    shim.write_bytes(b"")
+    venv_python = scripts_dir / "python.exe"
+    venv_python.write_bytes(b"")
+
+    other_pid = os.getpid() + 1
+    procs = [_make_proc(other_pid, str(venv_python), "python.exe")]
+    fake_psutil = types.SimpleNamespace(process_iter=lambda attrs: iter(procs))
+    with patch.dict(sys.modules, {"psutil": fake_psutil}):
+        result = cli_main._detect_concurrent_openamer_instances(scripts_dir)
+
+    assert result == [(other_pid, "python.exe")]
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
 def test_detect_concurrent_no_psutil_returns_empty(_winp, tmp_path):
     scripts_dir = tmp_path
     (scripts_dir / "openamer.exe").write_bytes(b"")
@@ -352,9 +377,10 @@ def test_quarantine_succeeds_first_attempt(_winp, tmp_path):
     shim = tmp_path / "openamer.exe"
     shim.write_bytes(b"old")
 
-    pairs = cli_main._quarantine_running_openamer_exe(tmp_path)
+    pairs, failed = cli_main._quarantine_running_openamer_exe(tmp_path)
 
     assert len(pairs) == 1
+    assert failed == []
     orig, quarantine = pairs[0]
     assert orig == shim
     assert quarantine.name.startswith("openamer.exe.old.")
@@ -382,10 +408,11 @@ def test_quarantine_retries_then_succeeds(_winp, tmp_path, monkeypatch):
     with patch.object(Path, "rename", flaky_rename), patch(
         "time.sleep", lambda *_a, **_k: None
     ):
-        pairs = cli_main._quarantine_running_openamer_exe(tmp_path)
+        pairs, failed = cli_main._quarantine_running_openamer_exe(tmp_path)
 
     assert call_count["n"] >= 2
     assert len(pairs) == 1
+    assert failed == []
     assert not shim.exists()
 
 
@@ -408,7 +435,7 @@ def test_quarantine_falls_back_to_reboot_schedule(_winp, tmp_path, capsys, monke
     with patch.object(Path, "rename", always_fails), patch.object(
         cli_main, "_schedule_replace_on_reboot", fake_schedule
     ), patch("time.sleep", lambda *_a, **_k: None):
-        pairs = cli_main._quarantine_running_openamer_exe(tmp_path)
+        pairs, failed = cli_main._quarantine_running_openamer_exe(tmp_path)
 
     captured = capsys.readouterr().out
 
@@ -417,6 +444,7 @@ def test_quarantine_falls_back_to_reboot_schedule(_winp, tmp_path, capsys, monke
     # It is NOT added to the returned roll-back list (the issue calls this
     # out — don't undo a deferred operation).
     assert pairs == []
+    assert failed == []
     # The user got a clear message, not raw [WinError 32].
     assert "scheduled" in captured.lower()
     assert "reboot" in captured.lower()
@@ -437,14 +465,59 @@ def test_quarantine_actionable_warning_when_everything_fails(
     with patch.object(Path, "rename", always_fails), patch.object(
         cli_main, "_schedule_replace_on_reboot", lambda *_a, **_k: False
     ), patch("time.sleep", lambda *_a, **_k: None):
-        pairs = cli_main._quarantine_running_openamer_exe(tmp_path)
+        moved, failed = cli_main._quarantine_running_openamer_exe(tmp_path)
 
     captured = capsys.readouterr().out
-    assert pairs == []
+    assert moved == []
+    assert failed == [shim]
     # New message format: no raw "[WinError 32]" dump; instead names the cause
     # and tells the user what to do.
     assert "another process" in captured.lower()
     assert "OpenAmer Desktop" in captured or "gateway" in captured.lower()
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_quarantined_install_aborts_before_uv_on_hard_failure(
+    _winp, tmp_path, capsys, monkeypatch
+):
+    """Regression: when quarantine fully fails, the install must NOT start uv.
+
+    Field report (os error 32 on `venv\\Scripts\\openamer.exe` during
+    `openamer update` while the Desktop app was running): the old code let uv
+    run anyway ("let uv try its luck"), uv then crashed with
+    `[WinError 32] The process cannot access the file` and the ENTIRE update
+    died with a raw traceback. The fix aborts BEFORE uv with a clear message
+    so nothing is half-written and the user knows exactly what to do.
+    """
+    shim = tmp_path / "openamer.exe"
+    shim.write_bytes(b"locked")
+
+    def always_fails(self, target):
+        raise OSError(32, "share violation")
+
+    uv_ran = []
+
+    def fake_uv(cmd, **kw):
+        uv_ran.append(cmd)
+        raise AssertionError("uv must NOT be started when quarantine failed")
+
+    monkeypatch.setattr(cli_main, "_openamer_exe_shims", lambda d: [shim])
+    monkeypatch.setattr(cli_main, "_run_install_with_heartbeat", fake_uv)
+    with patch.object(Path, "rename", always_fails), patch.object(
+        cli_main, "_schedule_replace_on_reboot", lambda *_a, **_k: False
+    ), patch("time.sleep", lambda *_a, **_k: None):
+        with pytest.raises(SystemExit) as exc:
+            cli_main._run_quarantined_install(
+                ["uv", "pip", "install", "-e", "."], scripts_dir=tmp_path
+            )
+
+    assert exc.value.code == 2
+    assert uv_ran == [], "uv must never be invoked after a hard quarantine failure"
+    captured = capsys.readouterr().out
+    assert "NOT started" in captured
+    assert "openamer.exe" in captured
+    # The shim is still in place — nothing was damaged.
+    assert shim.exists()
 
 
 # ---------------------------------------------------------------------------
