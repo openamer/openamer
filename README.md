@@ -198,6 +198,67 @@ If attestation says "Verification succeeded" and the last line prints `True`, yo
 
 For more context, see the upstream Astral reports: [astral-sh/uv#13553](https://github.com/astral-sh/uv/issues/13553), [astral-sh/uv#15011](https://github.com/astral-sh/uv/issues/15011), [astral-sh/uv#10079](https://github.com/astral-sh/uv/issues/10079).
 
+### Troubleshooting: Installation fails
+
+#### PowerShell says "Die Verbindung wurde unerwartet getrennt" / connection dropped
+
+This is almost always a **transient GitHub rate-limit or a dropped TLS connection**, not a problem with OpenAmer itself. GitHub was throttling the raw file host for a stretch. Wait 1–2 minutes and retry:
+
+```powershell
+iex (irm https://raw.githubusercontent.com/openamer/openamer/main/scripts/install.ps1)
+```
+
+Still failing? Download the installer first and confirm it's non-empty (~190 KB) before running:
+
+```powershell
+$install = "$env:TEMP\openamer-install.ps1"
+Invoke-WebRequest "https://raw.githubusercontent.com/openamer/openamer/main/scripts/install.ps1" -OutFile $install -UseBasicParsing
+(Get-Item $install).Length   # expect ~190,000+ bytes
+iex (Get-Content $install -Raw)
+```
+
+> **Legacy URL:** older README copies used
+> `https://github.com/openamer/openamer/raw/main/scripts/install.ps1`. That form
+> returns **404** and fails the install. Use the `raw.githubusercontent.com` URL above.
+
+#### PowerShell "Could not create SSL/TLS secure channel"
+
+Force TLS 1.2 (common on older Windows / PowerShell 5.1), then retry:
+
+```powershell
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+iex (irm https://raw.githubusercontent.com/openamer/openamer/main/scripts/install.ps1)
+```
+
+#### Install aborts early or "Access is denied"
+
+The installer writes under `%LOCALAPPDATA%\openamer` and extracts a portable Git Bash. If your user lacks write permission there (corporate policy, a previous partial install locked the folder, or the path was created under another account):
+
+1. Close PowerShell.
+2. Reopen PowerShell as administrator.
+3. If this is a fresh attempt (no data yet), remove any half-finished install:
+   `Remove-Item -Recurse -Force "$env:LOCALAPPDATA\openamer"`
+4. Run the installer again.
+
+#### Python/Node step fails mid-way
+
+A network hiccup fetching packages. The installer is resumable: run the full command again — it continues from where it stopped. If it fails at the same package repeatedly, a proxy/firewall may be filtering registries; allow `pypi.org` and `registry.npmjs.org`.
+
+#### Behind a proxy or strict corporate network
+
+Set the proxy for the session before installing:
+
+```powershell
+$env:HTTP_PROXY  = "http://proxy:port"
+$env:HTTPS_PROXY = "http://proxy:port"
+iex (irm https://raw.githubusercontent.com/openamer/openamer/main/scripts/install.ps1)
+```
+
+#### Nothing above helped
+
+After a successful install, run `openamer doctor` to diagnose the environment, and file an issue at https://github.com/openamer/openamer/issues with the exact error text (redact tokens/paths), your Windows version, and whether you're on a corporate network.
+
+
 ---
 
 ## Getting Started
