@@ -444,7 +444,10 @@ def test_quarantine_falls_back_to_reboot_schedule(_winp, tmp_path, capsys, monke
     # It is NOT added to the returned roll-back list (the issue calls this
     # out — don't undo a deferred operation).
     assert pairs == []
-    assert failed == []
+    # It IS reported as failed: the file still exists at the original path
+    # and is locked until reboot, so uv cannot overwrite it NOW — the install
+    # must abort instead of crashing with os error 32 (regression from field).
+    assert failed == [shim]
     # The user got a clear message, not raw [WinError 32].
     assert "scheduled" in captured.lower()
     assert "reboot" in captured.lower()

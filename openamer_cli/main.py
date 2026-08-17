@@ -8741,12 +8741,13 @@ def _quarantine_running_openamer_exe(
                 f"  ⚠ {shim.name} is locked by another process; scheduled "
                 f"replacement on next reboot."
             )
-            print(
-                "    The new shim was written at the same path, but a "
-                "reboot is needed to fully unload the old one."
-            )
-            # Do NOT append to ``moved``: we don't want roll-back to undo a
-            # reboot-deferred operation.
+            # The file still exists at the original path and is locked until
+            # reboot — uv cannot overwrite it NOW, so the install must abort
+            # rather than fail with os error 32 and leave a half-update.
+            # Treat it as failed for the caller's abort decision (we still do
+            # NOT append to ``moved`` so roll-back never undoes the deferred
+            # reboot rename).
+            failed.append(shim)
             continue
 
         # Truly couldn't budge the .exe. Print an actionable warning and let
