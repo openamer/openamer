@@ -17,12 +17,12 @@
 
 विण्डोज़ (PowerShell):
 ```powershell
-iex (irm https://github.com/openamer/openamer/raw/main/scripts/install.ps1)
+iex (irm https://raw.githubusercontent.com/openamer/openamer/main/scripts/install.ps1)
 ```
 
 लिनक्स / मॅक ओएस (Linux / macOS):
 ```bash
-curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/openamer/openamer/main/scripts/install.sh | bash
 ```
 
 ## आरम्भः

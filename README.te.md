@@ -19,12 +19,12 @@
 
 విండోస్ (పవర్‌షెల్)
 ```powershell
-iex (irm https://github.com/openamer/openamer/raw/main/scripts/install.ps1)
+iex (irm https://raw.githubusercontent.com/openamer/openamer/main/scripts/install.ps1)
 ```
 
 లినక్స్ / మాక్స్ ఓఎస్
 ```bash
-curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/openamer/openamer/main/scripts/install.sh | bash
 ```
 
 ## ప్రారంభించడం

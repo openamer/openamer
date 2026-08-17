@@ -17,12 +17,12 @@ Siv txhua lub model uas koj xav tau — OpenRouter, OpenAI, DeepSeek, thiab ntau
 
 Windows (PowerShell):
 ```powershell
-iex (irm https://github.com/openamer/openamer/raw/main/scripts/install.ps1)
+iex (irm https://raw.githubusercontent.com/openamer/openamer/main/scripts/install.ps1)
 ```
 
 Linux / macOS:
 ```bash
-curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/openamer/openamer/main/scripts/install.sh | bash
 ```
 
 ## Kev pib kawm

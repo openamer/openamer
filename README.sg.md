@@ -17,12 +17,12 @@ Sôngö model koua kue wâ — OpenRouter, OpenAI, DeepSeek, na e gue. Sôngö m
 
 Windows (PowerShell):
 ```powershell
-iex (irm https://github.com/openamer/openamer/raw/main/scripts/install.ps1)
+iex (irm https://raw.githubusercontent.com/openamer/openamer/main/scripts/install.ps1)
 ```
 
 Linux / macOS:
 ```bash
-curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/openamer/openamer/main/scripts/install.sh | bash
 ```
 
 ## Sengili kobe

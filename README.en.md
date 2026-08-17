@@ -127,12 +127,12 @@ Open your web browser and navigate to `http
 Windows (PowerShell): 
 **PowerShell** is a task automation and configuration management framework from Microsoft, consisting of a command-line shell and a scripting language built on top of it. Introduced with Windows XP in 2001, its most significant feature is its ability to use a command-line interface to automate the administrators' tasks on Windows operating system and provide a more flexible and customizable environment for administrators.
 ```powershell
-iex (irm https://github.com/openamer/openamer/raw/main/scripts/install.ps1)
+iex (irm https://raw.githubusercontent.com/openamer/openamer/main/scripts/install.ps1)
 ```
 
 Linux / macOS
 ```bash
-curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/openamer/openamer/main/scripts/install.sh | bash
 ```
 
 ## **Welcome to the World of Translation!**
