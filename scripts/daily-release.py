@@ -46,9 +46,20 @@ def current_version() -> str:
 
 
 def update_version_files(vernum: str, date_str: str) -> None:
-    """vernum is the bare build id (e.g. 260816); date_str is YYYY.M.D."""
+    """Stamp every version field with valid, punctuated CalVer.
+
+    ``vernum`` is the bare compact build id (e.g. 260816) used only for the
+    tag; ``date_str`` is YYYY.M.D. The *version written into files is always
+    ``date_str``* — a bare id (e.g. "260816") is not valid semver
+    (electron-builder rejects it with `Invalid version`) nor PEP-440. If a
+    caller passes a non-dotted id we defensively fall back to the dotted date
+    so the published version can never be malformed.
+    """
+    import re as _re
+
+    version = date_str if _re.fullmatch(r"\d+\.\d+\.\d+", date_str) else vernum
     content = VERSION_FILE.read_text(encoding="utf-8")
-    content = re.sub(r'__version__\s*=\s*"[^"]+"', f'__version__ = "{vernum}"', content)
+    content = re.sub(r'__version__\s*=\s*"[^"]+"', f'__version__ = "{version}"', content)
     content = re.sub(
         r'__release_date__\s*=\s*"[^"]+"',
         f'__release_date__ = "{date_str}"',
@@ -57,17 +68,24 @@ def update_version_files(vernum: str, date_str: str) -> None:
     VERSION_FILE.write_text(content, encoding="utf-8")
 
     py = PYPROJECT_FILE.read_text(encoding="utf-8")
-    py = re.sub(r'^version\s*=\s*"[^"]+"', f'version = "{vernum}"', py, flags=re.MULTILINE)
+    py = re.sub(r'^version\s*=\s*"[^"]+"', f'version = "{version}"', py, flags=re.MULTILINE)
     PYPROJECT_FILE.write_text(py, encoding="utf-8")
 
     if DESKTOP_PKG.exists():
         dkg = DESKTOP_PKG.read_text(encoding="utf-8")
-        dkg = re.sub(r'("version"\s*:\s*)"[^"]+"', rf'\g<1>"{vernum}"', dkg, count=1)
+        dkg = re.sub(r'("version"\s*:\s*)"[^"]+"', rf'\g<1>"{version}"', dkg, count=1)
         DESKTOP_PKG.write_text(dkg, encoding="utf-8")
 
 
 def git(*args: str) -> subprocess.CompletedProcess:
-    return subprocess.run(["git", *args], cwd=REPO_ROOT, capture_output=True, text=True)
+    return subprocess.run(
+        ["git", *args],
+        cwd=REPO_ROOT,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+    )
 
 
 def main() -> int:
@@ -90,6 +108,8 @@ def main() -> int:
         return 0
 
     # Update version files, commit, tag, push, release.
+    # Version uses the dotted CalVer date_str (valid semver + PEP-440);
+    # vernum stays the compact tag id.
     update_version_files(vernum, date_str)
 
     git("add", "-u")
