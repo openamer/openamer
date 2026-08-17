@@ -7,7 +7,7 @@ const config: Config = {
   tagline: 'The self-improving AI agent',
   favicon: 'img/favicon.ico',
 
-  url: 'https://github.com/openamer/openamer',
+  url: 'https://openamer.com',
   baseUrl: '/docs/',
 
   organizationName: 'openamer',
