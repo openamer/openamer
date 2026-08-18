@@ -11541,7 +11541,15 @@ def _cmd_update_impl(args, gateway_mode: bool):
             text=True, encoding="utf-8", errors="replace",
             check=True,
         )
-        commit_count = int(result.stdout.strip())
+        commit_count_raw = (result.stdout or "").strip()
+        # git rev-list --count always prints a non-negative integer, but guard
+        # against an empty/garbled stdout (locale/alias edge case) instead of
+        # crashing cmd_update with a ValueError mid-update.
+        try:
+            commit_count = int(commit_count_raw)
+        except ValueError:
+            logger.warning("Unexpected 'git rev-list --count' output %r; treating as 0 commits", commit_count_raw)
+            commit_count = 0
 
         if commit_count == 0:
             _invalidate_update_cache()

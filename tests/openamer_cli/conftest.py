@@ -54,3 +54,41 @@ def _suppress_concurrent_openamer_gate(request, monkeypatch):
         lambda *_a, **_k: [],
         raising=False,
     )
+    # The Windows venv-process guard (_detect_venv_python_processes) also
+    # refuses the update when another openamer python holds the venv (.pyd
+    # lock). On a dev Windows machine running the suite from the real venv
+    # while the desktop gateway is live, the real probe finds that process
+    # and every cmd_update test aborts with sys.exit(2) instead of reaching
+    # the assertion. Mock it to no holders by default so update tests behave
+    # like the Linux/CI environment. Unit tests for the probe itself opt out
+    # with @pytest.mark.real_concurrent_gate (same marker used by the shim
+    # guard above).
+    monkeypatch.setattr(
+        _cli_main,
+        "_detect_venv_python_processes",
+        lambda *_a, **_k: [],
+        raising=False,
+    )
+    # The Windows quarantine path (_quarantine_running_openamer_exe) renames
+    # the REAL venv's live shims to ``*.exe.old.*`` before `pip install -e .`
+    # so uv can overwrite a running openamer.exe. When a test drives the real
+    # cmd_update on Windows, that quarantine targets the dev checkout's actual
+    # venv and renames python.exe/openamer.exe away — corrupting the developer's
+    # working venv mid-test (observed: venv python.exe vanished, replaced by
+    # python.exe.old.*; plus a stray .lazy-refresh-incomplete marker). Neutralize
+    # both the quarantine and its opposite cleanup as no-ops so update tests
+    # never touch the real venv. The unit tests for the quarantine itself carry
+    # @pytest.mark.real_concurrent_gate (module-level in
+    # test_update_concurrent_quarantine.py) and keep the real function.
+    monkeypatch.setattr(
+        _cli_main,
+        "_quarantine_running_openamer_exe",
+        lambda *_a, **_k: ([], []),
+        raising=False,
+    )
+    monkeypatch.setattr(
+        _cli_main,
+        "_rollback_quarantined_exes",
+        lambda *_a, **_k: None,
+        raising=False,
+    )
