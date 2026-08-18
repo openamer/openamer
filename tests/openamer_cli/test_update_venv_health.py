@@ -212,6 +212,44 @@ def test_detect_venv_python_no_psutil_is_empty(_winp, tmp_path):
         assert cli_main._detect_venv_python_processes() == []
 
 
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_detect_venv_python_does_not_skip_serve_ancestor(_winp, tmp_path):
+    """A Desktop-app serve backend that happens to be an ancestor is still a
+    lock-holder and must be reported, not silently skipped.
+
+    Regression: an `openamer update` launched from a terminal the Desktop app
+    itself spawned had the serve backend in its ancestor chain, and the old
+    blanket ancestor-exclusion skipped it — letting a running Desktop app sail
+    through the guard and strand the venv on a locked openamer.exe.
+    """
+    import os as _os
+
+    venv_py = str(tmp_path / "venv" / "Scripts" / "python.exe")
+    serve_ancestor = MagicMock()
+    serve_ancestor.pid = 777
+    serve_ancestor.cmdline.return_value = [
+        "python.exe", "-m", "openamer_cli.main", "serve",
+    ]
+    me = MagicMock()
+    me.parents.return_value = [serve_ancestor]
+    fake_psutil = types.SimpleNamespace(
+        process_iter=lambda attrs: iter(
+            [
+                _proc(_os.getpid(), venv_py, "python.exe"),
+                _proc(777, venv_py, "python.exe", ["python.exe", "-m", "openamer_cli.main", "serve"]),
+            ]
+        ),
+        Process=lambda *a, **k: me,
+    )
+    with patch.object(cli_main, "PROJECT_ROOT", tmp_path), patch.dict(
+        sys.modules, {"psutil": fake_psutil}
+    ):
+        matches = cli_main._detect_venv_python_processes()
+
+    assert [m[0] for m in matches] == [777]
+    assert "serve" in matches[0][2]
+
+
 def test_format_venv_holders_message_flags_desktop_backend(tmp_path):
     matches = [
         (101, "python.exe", "python.exe -m openamer_cli.main serve --host 127.0.0.1"),
