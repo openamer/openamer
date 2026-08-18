@@ -37,7 +37,10 @@ export const fmtProjectCwdBranch = (cwd: string, branch: null | string, projectN
   const remaining = max - project.length - separator.length
 
   if (remaining < 8) {
-    return shortProject(project, max)
+    // The project name is the identity the user recognizes — show it in full
+    // even when the budget is tight (the cwd/branch is dropped). Truncating it
+    // here would defeat the label's purpose.
+    return shortProject(project)
   }
 
   return `${project}${separator}${fmtCwdBranch(cwd, branch, remaining)}`
