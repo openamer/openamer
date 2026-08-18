@@ -66,7 +66,14 @@ def test_venv_health_missing_venv_unhealthy_with_interrupted_marker(tmp_path):
     assert "venv python missing" in detail
 
 
-def _fake_venv_python(tmp_path, *, windows: bool = False):
+def _fake_venv_python(tmp_path, *, windows: bool | None = None):
+    # Default to the real platform's venv layout so the fake interpreter lands
+    # exactly where _venv_core_imports_healthy() looks (Scripts/python.exe on
+    # Windows, bin/python elsewhere). Previously this always used the POSIX
+    # "bin/python" path, so on a Windows dev machine the probe saw "missing
+    # venv" and reported healthy=True, breaking the "unhealthy" assertions.
+    if windows is None:
+        windows = cli_main._is_windows()
     bin_dir = tmp_path / "venv" / ("Scripts" if windows else "bin")
     bin_dir.mkdir(parents=True)
     py = bin_dir / ("python.exe" if windows else "python")
