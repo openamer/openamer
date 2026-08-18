@@ -32,9 +32,27 @@ marker lifecycle and walks through a clean reinstall.
 
 - A working `git` checkout of the install (the git stage usually succeeds even
   when deps fail).
-- The managed `uv` binary at `~/.openamer/bin/uv.exe` (or `$OPENAMER_HOME/bin/uv.exe`).
-- Shell access to the install directory (`~/.openamer/openamer-agent`, or
-  `$OPENAMER_HOME/openamer-agent`).
+- The managed `uv` binary (see "Locating the install" below).
+- Shell access to the install directory.
+
+## Locating the install
+
+The install directory and the managed `uv` binary are platform-specific. Do
+NOT hardcode `~/.openamer/openamer-agent` — that is the *data* directory, not
+the install. The reliable way to find the install directory is:
+
+```bash
+openamer --version
+# → "Install directory: <path>"  ← this is the install dir (contains openamer_cli/)
+```
+
+Typical locations:
+
+- **Windows (native):** `%LOCALAPPDATA%\openamer-laptop\openamer-agent`
+- **Linux/macOS (managed):** `~/.openamer/openamer-agent` (or `$OPENAMER_HOME/openamer-agent`)
+
+The managed `uv` binary lives at `$OPENAMER_HOME/bin/uv` (on Windows
+`%LOCALAPPDATA%\openamer-laptop\bin\uv.exe`), NOT inside the install dir.
 
 ## How to Run
 
@@ -46,8 +64,8 @@ one.
 ## Quick Reference
 
 ```bash
-cd ~/.openamer/openamer-agent   # or $OPENAMER_HOME/openamer-agent
-VIRTUAL_ENV="$(pwd)/venv" ~/.openamer/bin/uv.exe pip install -e ".[all]"
+cd <install-dir>                 # from `openamer --version` → "Install directory:"
+VIRTUAL_ENV="$(pwd)/venv" <uv> pip install -e ".[all]"
 rm -f .update-incomplete .update-incomplete.lock .lazy-refresh-incomplete
 rm -rf apps.openamer-update-staging apps.openamer-update-old
 openamer --version   # must print version with NO ⚠ warning
@@ -57,8 +75,8 @@ openamer --version   # must print version with NO ⚠ warning
 
 ### The marker lifecycle (root cause of the "stuck" symptom)
 
-A failed update writes a breadcrumb file at the project root
-(`~/.openamer/openamer-agent/.update-incomplete`, or under `$OPENAMER_HOME`).
+A failed update writes a breadcrumb file at the **install directory root**
+(the directory that contains `openamer_cli/`), NOT under `$OPENAMER_HOME`.
 On every launch, `openamer_cli/main.py::_recover_from_interrupted_install()`
 sees the marker and tries to finish the install. If that recovery itself
 fails, it **leaves the marker in place**, so the next launch tries again —
@@ -72,7 +90,7 @@ Key facts (from `openamer_cli/main.py` and `_early_recovery.py`):
 - `.lazy-refresh-incomplete` → lazy-backend refresh may have corrupted
   packages; recovered by import-probe repair.
 - `.update-incomplete.lock` → single-flight guard (O_EXCL); a stale lock is
-  broken after 1 hour.
+  broken after 1 hour (3600s).
 - The marker is intentionally NOT cleared by the stdlib-only early-recovery
   pass — only the full recovery in `main.py` clears it, and only on success.
 
@@ -81,7 +99,7 @@ Key facts (from `openamer_cli/main.py` and `_early_recovery.py`):
 1. **Confirm the code is actually current** — the git stage often succeeds even
    when deps fail:
    ```bash
-   cd ~/.openamer/openamer-agent   # or $OPENAMER_HOME/openamer-agent
+   cd <install-dir>
    git log --oneline -3
    openamer --version              # shows "Up to date" if git pulled fine
    ```
@@ -89,8 +107,8 @@ Key facts (from `openamer_cli/main.py` and `_early_recovery.py`):
 2. **Run the full `.[all]` reinstall manually** (this is what the auto-recovery
    tries and fails at). Use the managed uv binary, not a bare `pip`:
    ```bash
-   cd ~/.openamer/openamer-agent
-   VIRTUAL_ENV="$(pwd)/venv" ~/.openamer/bin/uv.exe pip install -e ".[all]"
+   cd <install-dir>
+   VIRTUAL_ENV="$(pwd)/venv" <uv> pip install -e ".[all]"
    # fallback if uv is missing:
    ./venv/Scripts/python.exe -m pip install -e ".[all]"
    ```
