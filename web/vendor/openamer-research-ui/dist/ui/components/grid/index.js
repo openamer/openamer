@@ -1,0 +1,17 @@
+import { createElement } from "react";
+import { cn, polyRef } from "../../../utils/index.js";
+export const Grid = polyRef(
+  ({ as, className, ...rest }, ref) => createElement(as ?? "div", {
+    ...rest,
+    className: cn("g", className),
+    ref
+  })
+);
+export const Cell = polyRef(
+  ({ as, className, ...rest }, ref) => createElement(as ?? "div", {
+    ...rest,
+    className: cn("gc", className),
+    ref
+  })
+);
+//# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAic291cmNlcyI6IFsiPHN0ZGluPiJdLAogICJzb3VyY2VzQ29udGVudCI6IFsiaW1wb3J0IHsgY3JlYXRlRWxlbWVudCB9IGZyb20gJ3JlYWN0J1xuXG5pbXBvcnQgeyBjbiwgcG9seVJlZiB9IGZyb20gJy4uLy4uLy4uL3V0aWxzJ1xuXG5leHBvcnQgY29uc3QgR3JpZCA9IHBvbHlSZWY8J2Rpdic+KCh7IGFzLCBjbGFzc05hbWUsIC4uLnJlc3QgfSwgcmVmKSA9PlxuICBjcmVhdGVFbGVtZW50KChhcyA/PyAnZGl2JykgYXMgUmVhY3QuRWxlbWVudFR5cGUsIHtcbiAgICAuLi5yZXN0LFxuICAgIGNsYXNzTmFtZTogY24oJ2cnLCBjbGFzc05hbWUpLFxuICAgIHJlZlxuICB9KVxuKVxuXG5leHBvcnQgY29uc3QgQ2VsbCA9IHBvbHlSZWY8J2Rpdic+KCh7IGFzLCBjbGFzc05hbWUsIC4uLnJlc3QgfSwgcmVmKSA9PlxuICBjcmVhdGVFbGVtZW50KChhcyA/PyAnZGl2JykgYXMgUmVhY3QuRWxlbWVudFR5cGUsIHtcbiAgICAuLi5yZXN0LFxuICAgIGNsYXNzTmFtZTogY24oJ2djJywgY2xhc3NOYW1lKSxcbiAgICByZWZcbiAgfSlcbilcbiJdLAogICJtYXBwaW5ncyI6ICJBQUFBLFNBQVMscUJBQXFCO0FBRTlCLFNBQVMsSUFBSSxlQUFlO0FBRXJCLGFBQU0sT0FBTztBQUFBLEVBQWUsQ0FBQyxFQUFFLElBQUksV0FBVyxHQUFHLEtBQUssR0FBRyxRQUM5RCxjQUFlLE1BQU0sT0FBNkI7QUFBQSxJQUNoRCxHQUFHO0FBQUEsSUFDSCxXQUFXLEdBQUcsS0FBSyxTQUFTO0FBQUEsSUFDNUI7QUFBQSxFQUNGLENBQUM7QUFDSDtBQUVPLGFBQU0sT0FBTztBQUFBLEVBQWUsQ0FBQyxFQUFFLElBQUksV0FBVyxHQUFHLEtBQUssR0FBRyxRQUM5RCxjQUFlLE1BQU0sT0FBNkI7QUFBQSxJQUNoRCxHQUFHO0FBQUEsSUFDSCxXQUFXLEdBQUcsTUFBTSxTQUFTO0FBQUEsSUFDN0I7QUFBQSxFQUNGLENBQUM7QUFDSDsiLAogICJuYW1lcyI6IFtdCn0K

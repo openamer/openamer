@@ -1,0 +1,13 @@
+import { jsx } from "react/jsx-runtime";
+export function CheckIcon(props) {
+  return /* @__PURE__ */ jsx("svg", { fill: "none", viewBox: "0 0 12 12", ...props, children: /* @__PURE__ */ jsx(
+    "path",
+    {
+      clipRule: "evenodd",
+      d: "M10.28 2.22a.75.75 0 0 1 0 1.06l-5.25 5.25a.75.75 0 0 1-1.06 0L1.72 6.28a.75.75 0 1 1 1.06-1.06L4.5 6.94l4.72-4.72a.75.75 0 0 1 1.06 0Z",
+      fill: "currentColor",
+      fillRule: "evenodd"
+    }
+  ) });
+}
+//# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAic291cmNlcyI6IFsiPHN0ZGluPiJdLAogICJzb3VyY2VzQ29udGVudCI6IFsiaW1wb3J0IHR5cGUgeyBTVkdQcm9wcyB9IGZyb20gJ3JlYWN0J1xuXG5leHBvcnQgZnVuY3Rpb24gQ2hlY2tJY29uKHByb3BzOiBTVkdQcm9wczxTVkdTVkdFbGVtZW50Pikge1xuICByZXR1cm4gKFxuICAgIDxzdmcgZmlsbD1cIm5vbmVcIiB2aWV3Qm94PVwiMCAwIDEyIDEyXCIgey4uLnByb3BzfT5cbiAgICAgIDxwYXRoXG4gICAgICAgIGNsaXBSdWxlPVwiZXZlbm9kZFwiXG4gICAgICAgIGQ9XCJNMTAuMjggMi4yMmEuNzUuNzUgMCAwIDEgMCAxLjA2bC01LjI1IDUuMjVhLjc1Ljc1IDAgMCAxLTEuMDYgMEwxLjcyIDYuMjhhLjc1Ljc1IDAgMSAxIDEuMDYtMS4wNkw0LjUgNi45NGw0LjcyLTQuNzJhLjc1Ljc1IDAgMCAxIDEuMDYgMFpcIlxuICAgICAgICBmaWxsPVwiY3VycmVudENvbG9yXCJcbiAgICAgICAgZmlsbFJ1bGU9XCJldmVub2RkXCJcbiAgICAgIC8+XG4gICAgPC9zdmc+XG4gIClcbn1cbiJdLAogICJtYXBwaW5ncyI6ICJBQUtNO0FBSEMsZ0JBQVMsVUFBVSxPQUFnQztBQUN4RCxTQUNFLG9CQUFDLFNBQUksTUFBSyxRQUFPLFNBQVEsYUFBYSxHQUFHLE9BQ3ZDO0FBQUEsSUFBQztBQUFBO0FBQUEsTUFDQyxVQUFTO0FBQUEsTUFDVCxHQUFFO0FBQUEsTUFDRixNQUFLO0FBQUEsTUFDTCxVQUFTO0FBQUE7QUFBQSxFQUNYLEdBQ0Y7QUFFSjsiLAogICJuYW1lcyI6IFtdCn0K
