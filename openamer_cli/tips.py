@@ -102,7 +102,7 @@ TIPS = [
     "openamer webhook subscribe creates event-driven webhook routes with HMAC validation.",
     "Save money: openamer tools disables unused tools, openamer skills config trims skills down.",
     "/reasoning low or /reasoning minimal cuts thinking depth below the default (medium) — faster, cheaper responses.",
-    "openamer models routes vision, compression, and aux tasks to cheaper models — cuts background token cost 85%+ without downgrading your main chat model.",
+    "openamer models routes vision, compression, and aux tasks to cheaper models — cuts background token cost 85% without downgrading your main chat model.",
 
     # --- Configuration ---
     "Set display.bell_on_complete: true in config.yaml to hear a bell when long tasks finish.",

@@ -192,7 +192,13 @@ def format_rate_limit_display(state: RateLimitState) -> str:
     else:
         freshness = f"{_fmt_seconds(age)} ago"
 
-    provider_label = state.provider.title() if state.provider else "Provider"
+    # .title() would render "openamer" as "Openamer" (incorrect brand casing);
+    # preserve the proper "OpenAmer" mark for our own provider.
+    provider_label = (
+        "OpenAmer"
+        if state.provider and state.provider.strip().lower() == "openamer"
+        else (state.provider.title() if state.provider else "Provider")
+    )
 
     lines = [
         f"{provider_label} Rate Limits (captured {freshness}):",

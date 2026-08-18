@@ -2220,9 +2220,10 @@ def _openamer_portal_env_override() -> Optional[str]:
     Returns a trailing-slash-stripped non-empty string, or ``None`` when
     neither env var is set/blank.
     """
-    return _optional_base_url(
-        os.getenv("OPENAMER_PORTAL_BASE_URL") or os.getenv("OPENAMER_PORTAL_BASE_URL")
-    )
+    # Single canonical var. (The rebrand collapsed the legacy
+    # PORTAL_BASE_URL pair into a single OPENAMER_PORTAL_BASE_URL, so an
+    # `or` fallback would just read the same var twice — dedupe it.)
+    return _optional_base_url(os.getenv("OPENAMER_PORTAL_BASE_URL"))
 
 
 def _decode_jwt_claims(token: Any) -> Dict[str, Any]:
@@ -6015,7 +6016,6 @@ def resolve_openamer_runtime_credentials(
             portal_url = (
                 _optional_base_url(state.get("portal_base_url"))
                 or os.getenv("OPENAMER_PORTAL_BASE_URL")
-                or os.getenv("OPENAMER_PORTAL_BASE_URL")
                 or DEFAULT_openamer_PORTAL_URL
             ).rstrip("/")
 
@@ -8410,7 +8410,6 @@ def _openamer_device_code_login(
     pconfig = PROVIDER_REGISTRY["openamer"]
     portal_base_url = (
         portal_base_url
-        or os.getenv("OPENAMER_PORTAL_BASE_URL")
         or os.getenv("OPENAMER_PORTAL_BASE_URL")
         or pconfig.portal_base_url
     ).rstrip("/")

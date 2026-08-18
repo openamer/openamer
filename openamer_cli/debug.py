@@ -927,7 +927,7 @@ def _run_debug_share_nous(args, *, log_lines: int, redact: bool) -> None:
         res = share_to_nous(blob)
     except Exception as exc:
         print(
-            f"\nNous upload failed: {exc}\n"
+            f"\nOpenAmer upload failed: {exc}\n"
             "\nThe OpenAmer diagnostics service may be unavailable or not yet "
             "provisioned.\n"
             "Run `openamer debug share --local` to print the report instead, "

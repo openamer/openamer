@@ -45,10 +45,12 @@ class TestPortalEnvOverrideHelper:
         assert _openamer_portal_env_override() is None
 
     def test_openamer_portal_base_url_wins(self, monkeypatch):
+        # Trailing slash must be stripped. (The legacy second env var
+        # was collapsed into OPENAMER_PORTAL_BASE_URL during rebrand, so
+        # only one canonical var to set — no legacy one to delete.)
         monkeypatch.setenv(
             "OPENAMER_PORTAL_BASE_URL", "https://portal.staging-openamer.com/"
         )
-        monkeypatch.delenv("OPENAMER_PORTAL_BASE_URL", raising=False)
         assert (
             _openamer_portal_env_override() == "https://portal.staging-openamer.com"
         )

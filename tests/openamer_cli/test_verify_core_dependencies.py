@@ -223,7 +223,7 @@ class TestVerifyCoreDependencies:
              patch("openamer_cli.main._is_windows", return_value=True), \
              patch("openamer_cli.main._venv_scripts_dir", return_value=fake_scripts), \
              patch("openamer_cli.main._run_install_with_heartbeat"), \
-             patch("openamer_cli.main._quarantine_running_openamer_exe", return_value=[]) as mock_quar:
+             patch("openamer_cli.main._quarantine_running_openamer_exe", return_value=([], [])) as mock_quar:
 
             from openamer_cli.main import _verify_core_dependencies_installed
             _verify_core_dependencies_installed(["uv", "pip"], env=env)

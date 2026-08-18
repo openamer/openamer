@@ -29,7 +29,7 @@ class TestGatewayLifecyclePattern:
         "openamer gateway restart",
         "openamer gateway stop",
         "openamer  gateway  restart",         # double spaces
-        "Hermez Gateway Restart".lower().replace("z", "s"),  # case handled
+        "OpenAmer Gateway Restart".lower(),                  # case handled
         "OPENAMER GATEWAY RESTART",           # uppercase
     ])
     def test_openamer_gateway_commands(self, text):
