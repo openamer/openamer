@@ -454,6 +454,7 @@ from openamer_cli.subcommands.skin import build_skin_parser
 from openamer_cli.subcommands.console import build_console_parser
 from openamer_cli.subcommands.version import build_version_parser
 from openamer_cli.subcommands.update import build_update_parser
+from openamer_cli.subcommands.feedback import build_feedback_parser
 from openamer_cli.subcommands.a2a import build_a2a_parser
 from openamer_cli.subcommands.system import build_system_parser
 from openamer_cli.subcommands.security import build_security_parser
@@ -17216,6 +17217,11 @@ def main():
     # update command  (parser built in openamer_cli/subcommands/update.py)
     # =========================================================================
     build_update_parser(subparsers, cmd_update=cmd_update)
+
+    # =========================================================================
+    # feedback command  (parser built in openamer_cli/subcommands/feedback.py)
+    # =========================================================================
+    build_feedback_parser(subparsers)
 
     # =========================================================================
     # uninstall command  (parser built in openamer_cli/subcommands/uninstall.py)
