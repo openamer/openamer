@@ -127,6 +127,39 @@ def test_detect_concurrent_finds_venv_python_holding_shims(_winp, tmp_path):
 
 
 @patch.object(cli_main, "_is_windows", return_value=True)
+def test_detect_concurrent_finds_running_desktop_app(_winp, tmp_path, monkeypatch):
+    """The Electron Desktop app (OpenAmer.exe) must be reported as a holder.
+
+    The Desktop app runs from apps/desktop/release/win-unpacked/OpenAmer.exe,
+    which is NOT a venv shim. It holds files under apps/ open, so the ZIP
+    fallback fails to rename apps/ with WinError 5. The detector must include
+    the packaged desktop executable so a running Desktop app is flagged.
+    """
+    scripts_dir = tmp_path
+    shim = scripts_dir / "openamer.exe"
+    shim.write_bytes(b"")
+
+    # Point _desktop_packaged_executable at a fake OpenAmer.exe under the
+    # project's apps/desktop tree.
+    desktop_exe = tmp_path / "apps" / "desktop" / "release" / "win-unpacked" / "OpenAmer.exe"
+    desktop_exe.parent.mkdir(parents=True)
+    desktop_exe.write_bytes(b"")
+    monkeypatch.setattr(
+        cli_main,
+        "_desktop_packaged_executable",
+        lambda _d: desktop_exe,
+    )
+
+    other_pid = os.getpid() + 1
+    procs = [_make_proc(other_pid, str(desktop_exe), "OpenAmer.exe")]
+    fake_psutil = types.SimpleNamespace(process_iter=lambda attrs: iter(procs))
+    with patch.dict(sys.modules, {"psutil": fake_psutil}):
+        result = cli_main._detect_concurrent_openamer_instances(scripts_dir)
+
+    assert result == [(other_pid, "OpenAmer.exe")]
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
 def test_detect_concurrent_no_psutil_returns_empty(_winp, tmp_path):
     scripts_dir = tmp_path
     (scripts_dir / "openamer.exe").write_bytes(b"")

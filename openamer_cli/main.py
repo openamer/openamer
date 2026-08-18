@@ -8604,6 +8604,20 @@ def _detect_concurrent_openamer_instances(
             shim_paths.add(str(shim.resolve()).lower())
         except OSError:
             shim_paths.add(str(shim).lower())
+    # The Electron Desktop app (OpenAmer.exe under apps/desktop/release/...)
+    # holds files under apps/ open, which blocks the ZIP fallback from
+    # renaming that directory during `openamer update`. It is NOT a venv shim,
+    # so the shim-only scan above misses it — include it so a running Desktop
+    # app is reported as a concurrent holder (issue: WinError 5 on apps/).
+    try:
+        desktop_exe = _desktop_packaged_executable(PROJECT_ROOT / "apps" / "desktop")
+    except Exception:
+        desktop_exe = None
+    if desktop_exe is not None:
+        try:
+            shim_paths.add(str(desktop_exe.resolve()).lower())
+        except OSError:
+            shim_paths.add(str(desktop_exe).lower())
     if not shim_paths:
         return []
 
