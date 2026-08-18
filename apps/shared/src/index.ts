@@ -58,8 +58,8 @@ export {
   GatewayReauthRequiredError,
   type GatewayWsConnection,
   type GatewayWsUrlResult,
-  type OpenAmerWebSocketUrlOptions,
   isGatewayReauthRequired,
+  type OpenAmerWebSocketUrlOptions,
   resolveGatewayWsUrl,
   type ResolveGatewayWsUrlDeps,
   type WebSocketAuthParam
