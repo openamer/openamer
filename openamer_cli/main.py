@@ -14589,7 +14589,7 @@ _BUILTIN_SUBCOMMANDS = frozenset(
         "acp", "auth", "backup", "bundles", "checkpoints", "claw", "completion",
         "computer-use",
         "config", "console", "cron", "curator", "dashboard", "serve", "debug", "doctor",
-        "dump", "egress", "fallback", "gateway", "hooks", "import", "insights",
+        "dump", "egress", "fallback", "feedback", "gateway", "hooks", "import", "insights",
         "gui", "desktop", "kanban", "login", "logout", "logs", "lsp", "mcp", "memory", "migrate", "moa",
         "journey", "memory-graph", "learning",
         "model", "pairing", "pets", "plugins", "portal", "profile",
