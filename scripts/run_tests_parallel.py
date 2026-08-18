@@ -649,6 +649,16 @@ def _slice_files(
 
 
 def main() -> int:
+    # On Windows the default stdout/stderr codec is cp1252, which cannot
+    # encode Unicode glyphs (e.g. ✓) emitted in per-file progress/failure
+    # output — printing one crashed the runner with UnicodeEncodeError
+    # even though the tests had passed. Force UTF-8 with lossless fallback.
+    for _stream in (sys.stdout, sys.stderr):
+        try:
+            _stream.reconfigure(encoding="utf-8", errors="replace")
+        except (AttributeError, ValueError):
+            pass  # stream not reconfigurable (e.g. already text-wrapped)
+
     parser = argparse.ArgumentParser(
         description=__doc__,
         formatter_class=argparse.RawDescriptionHelpFormatter,
