@@ -16,70 +16,27 @@
   <a href="README.es.md"><img src="https://img.shields.io/badge/Lang-Español-orange?style=for-the-badge" alt="Español"></a>
 </p>
 
-## Read this in your language
-
-<p align="center">
-<a href="README.af.md"><img src="https://img.shields.io/badge/OpenAmer-AF-22D3EE?style=flat-square" alt="Afrikaans"></a> <a href="README.am.md"><img src="https://img.shields.io/badge/OpenAmer-AM-22D3EE?style=flat-square" alt="Amharic"></a> <a href="README.ar.md"><img src="https://img.shields.io/badge/OpenAmer-AR-22D3EE?style=flat-square" alt="Arabic"></a> <a href="README.as.md"><img src="https://img.shields.io/badge/OpenAmer-AS-22D3EE?style=flat-square" alt="Assamese"></a> <a href="README.ast.md"><img src="https://img.shields.io/badge/OpenAmer-AST-22D3EE?style=flat-square" alt="Asturian"></a> <a href="README.ay.md"><img src="https://img.shields.io/badge/OpenAmer-AY-22D3EE?style=flat-square" alt="Aymara"></a> <a href="README.az.md"><img src="https://img.shields.io/badge/OpenAmer-AZ-22D3EE?style=flat-square" alt="Azerbaijani"></a> <a href="README.ba.md"><img src="https://img.shields.io/badge/OpenAmer-BA-22D3EE?style=flat-square" alt="Bashkir"></a> <a href="README.be.md"><img src="https://img.shields.io/badge/OpenAmer-BE-22D3EE?style=flat-square" alt="Belarusian"></a> <a href="README.bg.md"><img src="https://img.shields.io/badge/OpenAmer-BG-22D3EE?style=flat-square" alt="Bulgarian"></a>
-<br>
-<a href="README.bho.md"><img src="https://img.shields.io/badge/OpenAmer-BHO-22D3EE?style=flat-square" alt="Bhojpuri"></a> <a href="README.bm.md"><img src="https://img.shields.io/badge/OpenAmer-BM-22D3EE?style=flat-square" alt="Bambara"></a> <a href="README.bn.md"><img src="https://img.shields.io/badge/OpenAmer-BN-22D3EE?style=flat-square" alt="Bengali"></a> <a href="README.br.md"><img src="https://img.shields.io/badge/OpenAmer-BR-22D3EE?style=flat-square" alt="Breton"></a> <a href="README.bs.md"><img src="https://img.shields.io/badge/OpenAmer-BS-22D3EE?style=flat-square" alt="Bosnian"></a> <a href="README.ca.md"><img src="https://img.shields.io/badge/OpenAmer-CA-22D3EE?style=flat-square" alt="Catalan"></a> <a href="README.ceb.md"><img src="https://img.shields.io/badge/OpenAmer-CEB-22D3EE?style=flat-square" alt="Cebuano"></a> <a href="README.ckb.md"><img src="https://img.shields.io/badge/OpenAmer-CKB-22D3EE?style=flat-square" alt="Kurdish (Sorani)"></a> <a href="README.co.md"><img src="https://img.shields.io/badge/OpenAmer-CO-22D3EE?style=flat-square" alt="Corsican"></a> <a href="README.cs.md"><img src="https://img.shields.io/badge/OpenAmer-CS-22D3EE?style=flat-square" alt="Czech"></a>
-<br>
-<a href="README.da.md"><img src="https://img.shields.io/badge/OpenAmer-DA-22D3EE?style=flat-square" alt="Danish"></a> <a href="README.de.md"><img src="https://img.shields.io/badge/OpenAmer-DE-22D3EE?style=flat-square" alt="German"></a> <a href="README.dv.md"><img src="https://img.shields.io/badge/OpenAmer-DV-22D3EE?style=flat-square" alt="Dhivehi"></a> <a href="README.ee.md"><img src="https://img.shields.io/badge/OpenAmer-EE-22D3EE?style=flat-square" alt="Ewe"></a> <a href="README.el.md"><img src="https://img.shields.io/badge/OpenAmer-EL-22D3EE?style=flat-square" alt="Greek"></a> <a href="README.en.md"><img src="https://img.shields.io/badge/OpenAmer-EN-22D3EE?style=flat-square" alt="English"></a> <a href="README.eo.md"><img src="https://img.shields.io/badge/OpenAmer-EO-22D3EE?style=flat-square" alt="Esperanto"></a> <a href="README.es.md"><img src="https://img.shields.io/badge/OpenAmer-ES-22D3EE?style=flat-square" alt="Spanish"></a> <a href="README.et.md"><img src="https://img.shields.io/badge/OpenAmer-ET-22D3EE?style=flat-square" alt="Estonian"></a> <a href="README.eu.md"><img src="https://img.shields.io/badge/OpenAmer-EU-22D3EE?style=flat-square" alt="Basque"></a>
-<br>
-<a href="README.fa.md"><img src="https://img.shields.io/badge/OpenAmer-FA-22D3EE?style=flat-square" alt="Persian"></a> <a href="README.ff.md"><img src="https://img.shields.io/badge/OpenAmer-FF-22D3EE?style=flat-square" alt="Fulah"></a> <a href="README.fi.md"><img src="https://img.shields.io/badge/OpenAmer-FI-22D3EE?style=flat-square" alt="Finnish"></a> <a href="README.fj.md"><img src="https://img.shields.io/badge/OpenAmer-FJ-22D3EE?style=flat-square" alt="Fijian"></a> <a href="README.fo.md"><img src="https://img.shields.io/badge/OpenAmer-FO-22D3EE?style=flat-square" alt="Faroese"></a> <a href="README.fr.md"><img src="https://img.shields.io/badge/OpenAmer-FR-22D3EE?style=flat-square" alt="French"></a> <a href="README.frr.md"><img src="https://img.shields.io/badge/OpenAmer-FRR-22D3EE?style=flat-square" alt="North Frisian"></a> <a href="README.fy.md"><img src="https://img.shields.io/badge/OpenAmer-FY-22D3EE?style=flat-square" alt="Frisian"></a> <a href="README.ga.md"><img src="https://img.shields.io/badge/OpenAmer-GA-22D3EE?style=flat-square" alt="Irish"></a> <a href="README.gd.md"><img src="https://img.shields.io/badge/OpenAmer-GD-22D3EE?style=flat-square" alt="Scots Gaelic"></a>
-<br>
-<a href="README.gl.md"><img src="https://img.shields.io/badge/OpenAmer-GL-22D3EE?style=flat-square" alt="Galician"></a> <a href="README.gn.md"><img src="https://img.shields.io/badge/OpenAmer-GN-22D3EE?style=flat-square" alt="Guarani"></a> <a href="README.gsw.md"><img src="https://img.shields.io/badge/OpenAmer-GSW-22D3EE?style=flat-square" alt="Alemannic"></a> <a href="README.gu.md"><img src="https://img.shields.io/badge/OpenAmer-GU-22D3EE?style=flat-square" alt="Gujarati"></a> <a href="README.ha.md"><img src="https://img.shields.io/badge/OpenAmer-HA-22D3EE?style=flat-square" alt="Hausa"></a> <a href="README.haw.md"><img src="https://img.shields.io/badge/OpenAmer-HAW-22D3EE?style=flat-square" alt="Hawaiian"></a> <a href="README.he.md"><img src="https://img.shields.io/badge/OpenAmer-HE-22D3EE?style=flat-square" alt="Hebrew"></a> <a href="README.hi.md"><img src="https://img.shields.io/badge/OpenAmer-HI-22D3EE?style=flat-square" alt="Hindi"></a> <a href="README.hmn.md"><img src="https://img.shields.io/badge/OpenAmer-HMN-22D3EE?style=flat-square" alt="Hmong"></a> <a href="README.hne.md"><img src="https://img.shields.io/badge/OpenAmer-HNE-22D3EE?style=flat-square" alt="Chhattisgarhi"></a>
-<br>
-<a href="README.hr.md"><img src="https://img.shields.io/badge/OpenAmer-HR-22D3EE?style=flat-square" alt="Croatian"></a> <a href="README.ht.md"><img src="https://img.shields.io/badge/OpenAmer-HT-22D3EE?style=flat-square" alt="Haitian Creole"></a> <a href="README.hu.md"><img src="https://img.shields.io/badge/OpenAmer-HU-22D3EE?style=flat-square" alt="Hungarian"></a> <a href="README.hy.md"><img src="https://img.shields.io/badge/OpenAmer-HY-22D3EE?style=flat-square" alt="Armenian"></a> <a href="README.id.md"><img src="https://img.shields.io/badge/OpenAmer-ID-22D3EE?style=flat-square" alt="Indonesian"></a> <a href="README.ig.md"><img src="https://img.shields.io/badge/OpenAmer-IG-22D3EE?style=flat-square" alt="Igbo"></a> <a href="README.ilo.md"><img src="https://img.shields.io/badge/OpenAmer-ILO-22D3EE?style=flat-square" alt="Iloko"></a> <a href="README.is.md"><img src="https://img.shields.io/badge/OpenAmer-IS-22D3EE?style=flat-square" alt="Icelandic"></a> <a href="README.it.md"><img src="https://img.shields.io/badge/OpenAmer-IT-22D3EE?style=flat-square" alt="Italian"></a> <a href="README.ja.md"><img src="https://img.shields.io/badge/OpenAmer-JA-22D3EE?style=flat-square" alt="Japanese"></a>
-<br>
-<a href="README.jv.md"><img src="https://img.shields.io/badge/OpenAmer-JV-22D3EE?style=flat-square" alt="Javanese"></a> <a href="README.ka.md"><img src="https://img.shields.io/badge/OpenAmer-KA-22D3EE?style=flat-square" alt="Georgian"></a> <a href="README.kk.md"><img src="https://img.shields.io/badge/OpenAmer-KK-22D3EE?style=flat-square" alt="Kazakh"></a> <a href="README.km.md"><img src="https://img.shields.io/badge/OpenAmer-KM-22D3EE?style=flat-square" alt="Khmer"></a> <a href="README.kn.md"><img src="https://img.shields.io/badge/OpenAmer-KN-22D3EE?style=flat-square" alt="Kannada"></a> <a href="README.ko.md"><img src="https://img.shields.io/badge/OpenAmer-KO-22D3EE?style=flat-square" alt="Korean"></a> <a href="README.kri.md"><img src="https://img.shields.io/badge/OpenAmer-KRI-22D3EE?style=flat-square" alt="Krio"></a> <a href="README.ksh.md"><img src="https://img.shields.io/badge/OpenAmer-KSH-22D3EE?style=flat-square" alt="Kölsch"></a> <a href="README.ku.md"><img src="https://img.shields.io/badge/OpenAmer-KU-22D3EE?style=flat-square" alt="Kurdish (Kurmanji)"></a> <a href="README.ky.md"><img src="https://img.shields.io/badge/OpenAmer-KY-22D3EE?style=flat-square" alt="Kyrgyz"></a>
-<br>
-<a href="README.la.md"><img src="https://img.shields.io/badge/OpenAmer-LA-22D3EE?style=flat-square" alt="Latin"></a> <a href="README.lb.md"><img src="https://img.shields.io/badge/OpenAmer-LB-22D3EE?style=flat-square" alt="Luxembourgish"></a> <a href="README.lg.md"><img src="https://img.shields.io/badge/OpenAmer-LG-22D3EE?style=flat-square" alt="Luganda"></a> <a href="README.ln.md"><img src="https://img.shields.io/badge/OpenAmer-LN-22D3EE?style=flat-square" alt="Lingala"></a> <a href="README.lo.md"><img src="https://img.shields.io/badge/OpenAmer-LO-22D3EE?style=flat-square" alt="Lao"></a> <a href="README.lt.md"><img src="https://img.shields.io/badge/OpenAmer-LT-22D3EE?style=flat-square" alt="Lithuanian"></a> <a href="README.lv.md"><img src="https://img.shields.io/badge/OpenAmer-LV-22D3EE?style=flat-square" alt="Latvian"></a> <a href="README.mai.md"><img src="https://img.shields.io/badge/OpenAmer-MAI-22D3EE?style=flat-square" alt="Maithili"></a> <a href="README.mg.md"><img src="https://img.shields.io/badge/OpenAmer-MG-22D3EE?style=flat-square" alt="Malagasy"></a> <a href="README.mi.md"><img src="https://img.shields.io/badge/OpenAmer-MI-22D3EE?style=flat-square" alt="Maori"></a>
-<br>
-<a href="README.mk.md"><img src="https://img.shields.io/badge/OpenAmer-MK-22D3EE?style=flat-square" alt="Macedonian"></a> <a href="README.ml.md"><img src="https://img.shields.io/badge/OpenAmer-ML-22D3EE?style=flat-square" alt="Malayalam"></a> <a href="README.mr.md"><img src="https://img.shields.io/badge/OpenAmer-MR-22D3EE?style=flat-square" alt="Marathi"></a> <a href="README.ms.md"><img src="https://img.shields.io/badge/OpenAmer-MS-22D3EE?style=flat-square" alt="Malay"></a> <a href="README.mt.md"><img src="https://img.shields.io/badge/OpenAmer-MT-22D3EE?style=flat-square" alt="Maltese"></a> <a href="README.my.md"><img src="https://img.shields.io/badge/OpenAmer-MY-22D3EE?style=flat-square" alt="Myanmar (Burmese)"></a> <a href="README.mzn.md"><img src="https://img.shields.io/badge/OpenAmer-MZN-22D3EE?style=flat-square" alt="Mazanderani"></a> <a href="README.ne.md"><img src="https://img.shields.io/badge/OpenAmer-NE-22D3EE?style=flat-square" alt="Nepali"></a> <a href="README.nl.md"><img src="https://img.shields.io/badge/OpenAmer-NL-22D3EE?style=flat-square" alt="Dutch"></a> <a href="README.no.md"><img src="https://img.shields.io/badge/OpenAmer-NO-22D3EE?style=flat-square" alt="Norwegian"></a>
-<br>
-<a href="README.nso.md"><img src="https://img.shields.io/badge/OpenAmer-NSO-22D3EE?style=flat-square" alt="Northern Sotho"></a> <a href="README.ny.md"><img src="https://img.shields.io/badge/OpenAmer-NY-22D3EE?style=flat-square" alt="Chichewa"></a> <a href="README.om.md"><img src="https://img.shields.io/badge/OpenAmer-OM-22D3EE?style=flat-square" alt="Oromo"></a> <a href="README.or.md"><img src="https://img.shields.io/badge/OpenAmer-OR-22D3EE?style=flat-square" alt="Odia (Oriya)"></a> <a href="README.pa.md"><img src="https://img.shields.io/badge/OpenAmer-PA-22D3EE?style=flat-square" alt="Punjabi"></a> <a href="README.pap.md"><img src="https://img.shields.io/badge/OpenAmer-PAP-22D3EE?style=flat-square" alt="Papiamento"></a> <a href="README.pl.md"><img src="https://img.shields.io/badge/OpenAmer-PL-22D3EE?style=flat-square" alt="Polish"></a> <a href="README.ps.md"><img src="https://img.shields.io/badge/OpenAmer-PS-22D3EE?style=flat-square" alt="Pashto"></a> <a href="README.pt.md"><img src="https://img.shields.io/badge/OpenAmer-PT-22D3EE?style=flat-square" alt="Portuguese"></a> <a href="README.qu.md"><img src="https://img.shields.io/badge/OpenAmer-QU-22D3EE?style=flat-square" alt="Quechua"></a>
-<br>
-<a href="README.rm.md"><img src="https://img.shields.io/badge/OpenAmer-RM-22D3EE?style=flat-square" alt="Romansh"></a> <a href="README.rn.md"><img src="https://img.shields.io/badge/OpenAmer-RN-22D3EE?style=flat-square" alt="Rundi"></a> <a href="README.ro.md"><img src="https://img.shields.io/badge/OpenAmer-RO-22D3EE?style=flat-square" alt="Romanian"></a> <a href="README.ru.md"><img src="https://img.shields.io/badge/OpenAmer-RU-22D3EE?style=flat-square" alt="Russian"></a> <a href="README.rw.md"><img src="https://img.shields.io/badge/OpenAmer-RW-22D3EE?style=flat-square" alt="Kinyarwanda"></a> <a href="README.sa.md"><img src="https://img.shields.io/badge/OpenAmer-SA-22D3EE?style=flat-square" alt="Sanskrit"></a> <a href="README.sco.md"><img src="https://img.shields.io/badge/OpenAmer-SCO-22D3EE?style=flat-square" alt="Scots"></a> <a href="README.sd.md"><img src="https://img.shields.io/badge/OpenAmer-SD-22D3EE?style=flat-square" alt="Sindhi"></a> <a href="README.sg.md"><img src="https://img.shields.io/badge/OpenAmer-SG-22D3EE?style=flat-square" alt="Sango"></a> <a href="README.si.md"><img src="https://img.shields.io/badge/OpenAmer-SI-22D3EE?style=flat-square" alt="Sinhala"></a>
-<br>
-<a href="README.sk.md"><img src="https://img.shields.io/badge/OpenAmer-SK-22D3EE?style=flat-square" alt="Slovak"></a> <a href="README.sl.md"><img src="https://img.shields.io/badge/OpenAmer-SL-22D3EE?style=flat-square" alt="Slovenian"></a> <a href="README.sm.md"><img src="https://img.shields.io/badge/OpenAmer-SM-22D3EE?style=flat-square" alt="Samoan"></a> <a href="README.sn.md"><img src="https://img.shields.io/badge/OpenAmer-SN-22D3EE?style=flat-square" alt="Shona"></a> <a href="README.so.md"><img src="https://img.shields.io/badge/OpenAmer-SO-22D3EE?style=flat-square" alt="Somali"></a> <a href="README.sq.md"><img src="https://img.shields.io/badge/OpenAmer-SQ-22D3EE?style=flat-square" alt="Albanian"></a> <a href="README.sr.md"><img src="https://img.shields.io/badge/OpenAmer-SR-22D3EE?style=flat-square" alt="Serbian"></a> <a href="README.st.md"><img src="https://img.shields.io/badge/OpenAmer-ST-22D3EE?style=flat-square" alt="Sesotho"></a> <a href="README.su.md"><img src="https://img.shields.io/badge/OpenAmer-SU-22D3EE?style=flat-square" alt="Sundanese"></a> <a href="README.sv.md"><img src="https://img.shields.io/badge/OpenAmer-SV-22D3EE?style=flat-square" alt="Swedish"></a>
-<br>
-<a href="README.sw.md"><img src="https://img.shields.io/badge/OpenAmer-SW-22D3EE?style=flat-square" alt="Swahili"></a> <a href="README.szl.md"><img src="https://img.shields.io/badge/OpenAmer-SZL-22D3EE?style=flat-square" alt="Silesian"></a> <a href="README.ta.md"><img src="https://img.shields.io/badge/OpenAmer-TA-22D3EE?style=flat-square" alt="Tamil"></a> <a href="README.te.md"><img src="https://img.shields.io/badge/OpenAmer-TE-22D3EE?style=flat-square" alt="Telugu"></a> <a href="README.tg.md"><img src="https://img.shields.io/badge/OpenAmer-TG-22D3EE?style=flat-square" alt="Tajik"></a> <a href="README.tt.md"><img src="https://img.shields.io/badge/OpenAmer-TT-22D3EE?style=flat-square" alt="Tatar"></a> <a href="README.ur.md"><img src="https://img.shields.io/badge/OpenAmer-UR-22D3EE?style=flat-square" alt="Urdu"></a> <a href="README.vec.md"><img src="https://img.shields.io/badge/OpenAmer-VEC-22D3EE?style=flat-square" alt="Venetian"></a> <a href="README.vi.md"><img src="https://img.shields.io/badge/OpenAmer-VI-22D3EE?style=flat-square" alt="Vietnamese"></a> <a href="README.zh.md"><img src="https://img.shields.io/badge/OpenAmer-ZH-22D3EE?style=flat-square" alt="Chinese (Simplified)"></a>
-<br>
-<a href="README.zh-hant.md"><img src="https://img.shields.io/badge/OpenAmer-ZH-HANT-22D3EE?style=flat-square" alt="Chinese (Traditional)"></a>
-</p>
-
+> **OpenAmer** is a self-improving, self-learning personal AI agent — a
+> hardened, independently-developed fork of the
+> [Hermes Agent](https://github.com/NousResearch/hermes-agent) architecture
+> (MIT, by Nous Research). We say so openly: OpenAmer does not hide its
+> lineage. What we build on top of it — robustness, verifiability, and a real
+> learning loop — is our own. Read the [Vision](VISION.md).
+
+## Read this in your language
+
+<p align="center">
+<a href="README.de.md"><img src="https://img.shields.io/badge/OpenAmer-DE-22D3EE?style=flat-square" alt="Deutsch"></a>
+<a href="README.es.md"><img src="https://img.shields.io/badge/OpenAmer-ES-22D3EE?style=flat-square" alt="Español"></a>
+<a href="README.fr.md"><img src="https://img.shields.io/badge/OpenAmer-FR-22D3EE?style=flat-square" alt="Français"></a>
+<a href="README.zh.md"><img src="https://img.shields.io/badge/OpenAmer-ZH-22D3EE?style=flat-square" alt="中文"></a>
+<a href="README.ja.md"><img src="https://img.shields.io/badge/OpenAmer-JA-22D3EE?style=flat-square" alt="日本語"></a>
+<a href="README.ru.md"><img src="https://img.shields.io/badge/OpenAmer-RU-22D3EE?style=flat-square" alt="Русский"></a>
+<a href="README.pt.md"><img src="https://img.shields.io/badge/OpenAmer-PT-22D3EE?style=flat-square" alt="Português"></a>
+</p>
+
 ---
 
-## What you get when you install OpenAmer
-
-One command from GitHub gives you a **complete, standalone, private-first AI agent** — installed and working on your own machine:
-
-| What you get | Default |
-|---|---|
-| **Desktop app** | built by the installer (native chat, terminal, settings) |
-| **65 bundled skills** (apple, github, mlops, creative, programming …) | seeded automatically |
-| **99 tools** — internet, vision, voice, terminal, browser, files, code, sub-agents | included |
-| **Sub-agents & parallel delegation** | built-in (`delegate_task`) |
-| **A2A swarm** — every install is an agent node | included; connect via `openamer a2a` |
-| **Autonomous learning** | the agent distills lessons from its own turns automatically |
-| **Brain data collection** — activity, thinking & tools flow into a local training dataset | autolog ON by default |
-| **Privacy-by-default** | phone/password/email/card are redacted before anything is stored |
-| **System self-knowledge** | your node's OS/hardware/model go into its system prompt |
-
-### Try it right away
-```bash
-openamer                      # start chatting
-openamer system               # what is this node running on?
-openamer security check       # your security posture
-openamer a2a status           # this node's A2A identity & mesh
-openamer a2a brain collect    # build a local training dataset
-```
-
-> **Honest note:** OpenAmer *collects* training material automatically (locally,
-> privacy-scrubbed) for a future **OpenAmer brain** fine-tune. It does **not** silently
-> train or upload a model: raw stays on your machine; only curated, signed, leak-free
----
-
 ## What you get when you install OpenAmer
 One command from GitHub gives you a **complete, standalone, private-first AI agent** — installed and working on your own machine:
 
@@ -110,23 +67,37 @@ openamer a2a relay post <peer> "question"   # ask another node over GitHub, not 
 > train or upload a model: raw stays on your machine; only curated, signed, leak-free knowledge is shared.
 
 
-> knowledge is shared.
 
-> The `README.md` (English) is the source; **all official translations are in this repo** so every reader gets a version in their own language.
 
-**The self-improving, self-learning AI agent.** It's the only agent with a built-in learning loop — it creates skills from experience, improves them during use, nudges itself to persist knowledge, searches its own past conversations, and builds a deepening model of who you are across sessions. Run it on a $5 VPS, a GPU cluster, or serverless infrastructure that costs nearly nothing when idle. It's not tied to your laptop — talk to it from Telegram while it works on a cloud VM.
-
-Use any model you want — OpenRouter, OpenAI, your own endpoint, and [many others](https://github.com/openamer/openamer/blob/main/website/docs/integrations/providers). Switch with `openamer model` — no code changes, no lock-in.
-
-<table>
-<tr><td><b>A real terminal interface</b></td><td>Full TUI with multiline editing, slash-command autocomplete, conversation history, interrupt-and-redirect, and streaming tool output.</td></tr>
-<tr><td><b>Lives where you do</b></td><td>Telegram, Discord, Slack, WhatsApp, Signal, and CLI — all from a single gateway process. Voice memo transcription, cross-platform conversation continuity.</td></tr>
-<tr><td><b>A closed learning loop</b></td><td>Agent-curated memory with periodic nudges. Autonomous skill creation after complex tasks. Skills self-improve during use. FTS5 session search with LLM summarization for cross-session recall. <a href="https://github.com/plastic-labs/honcho">Honcho</a> dialectic user modeling. Compatible with the <a href="https://agentskills.io">agentskills.io</a> open standard.</td></tr>
-<tr><td><b>Scheduled automations</b></td><td>Built-in cron scheduler with delivery to any platform. Daily reports, nightly backups, weekly audits — all in natural language, running unattended.</td></tr>
-<tr><td><b>Delegates and parallelizes</b></td><td>Spawn isolated subagents for parallel workstreams. Write Python scripts that call tools via RPC, collapsing multi-step pipelines into zero-context-cost turns.</td></tr>
-<tr><td><b>Runs anywhere, not just your laptop</b></td><td>Six terminal backends — local, Docker, SSH, Singularity, Modal, and Daytona. Daytona and Modal offer serverless persistence — your agent's environment hibernates when idle and wakes on demand, costing nearly nothing between sessions. Run it on a $5 VPS or a GPU cluster.</td></tr>
-<tr><td><b>Research-ready</b></td><td>Batch trajectory generation, trajectory compression for training the next generation of tool-calling models.</td></tr>
-</table>
+**OpenAmer is the agent that does not break, and that provably improves with use.**
+
+It runs on your own machine, meets you in the channels you already use, and gets
+better the longer you use it. Two things set it apart:
+
+1. **It does not break.** Self-update is hardened against the failure modes that
+   leave other agents half-installed — file-locks, interrupted installs, stale
+   recovery markers. The agent verifies before it claims, and reports real errors
+   instead of inventing results.
+2. **It provably improves with use.** Memory persists across sessions, skills are
+   distilled from hard tasks and refined on reuse, and the A2A swarm shares curated,
+   signed, leak-free knowledge between nodes. This is learning you can observe,
+   not a marketing claim.
+
+Use any model you want — OpenRouter, OpenAI, your own endpoint, and
+[many others](https://github.com/openamer/openamer/blob/main/website/docs/integrations/providers).
+Switch with `openamer model` — no code changes, no lock-in.
+
+<table>
+<tr><td><b>Does not break</b></td><td>Hardened self-update that survives file-locks, interrupted installs, and stale recovery markers. The agent verifies before it claims and reports real errors instead of inventing results.</td></tr>
+<tr><td><b>Provably improves with use</b></td><td>Memory that persists across sessions, skills distilled from hard tasks and refined on reuse, and an A2A swarm that shares curated, signed, leak-free knowledge between nodes. Learning you can observe, not a slogan.</td></tr>
+<tr><td><b>A real terminal interface</b></td><td>A full TUI with multiline editing, slash-command autocomplete, conversation history, interrupt-and-redirect, and live streaming tool output.</td></tr>
+<tr><td><b>Lives where you do</b></td><td>Telegram, Discord, Slack, WhatsApp, Signal, and CLI — one gateway, one conversation that follows you across every channel. Voice memos are transcribed automatically.</td></tr>
+<tr><td><b>Scheduled automations</b></td><td>A built-in cron scheduler that delivers to any platform. Describe a daily report, a nightly backup, or a weekly audit in plain language and it runs unattended.</td></tr>
+<tr><td><b>Delegates and parallelizes</b></td><td>Spawn isolated subagents for parallel workstreams, or write Python scripts that call tools over RPC to collapse multi-step pipelines into a single turn.</td></tr>
+<tr><td><b>Runs anywhere, not just your laptop</b></td><td>Six terminal backends — local, Docker, SSH, Singularity, Modal, and Daytona. Daytona and Modal add serverless persistence, so your agent's environment hibernates when idle and wakes on demand — costing almost nothing between sessions.</td></tr>
+<tr><td><b>Private by default</b></td><td>Phone numbers, passwords, emails, and card numbers are redacted before anything is stored. Your node's OS, hardware, and model stay in your own system prompt.</td></tr>
+<tr><td><b>Research-ready</b></td><td>Batch trajectory generation and trajectory compression for training the next generation of tool-calling models.</td></tr>
+</table>
 
 ---
 
@@ -317,7 +288,7 @@ OpenAmer works with whatever provider you want — that's not changing. Configur
 
 ## CLI vs Messaging Quick Reference
 
-OpenAmer has two entry points: start the terminal UI with `openamer`, or run the gateway and talk to it from Telegram, Discord, Slack, WhatsApp, Signal, or Email. Once you're in a conversation, many slash commands are shared across both interfaces.
+OpenAmer has two entry points: start the terminal UI with `openamer`, or run the gateway and talk to it from Telegram, Discord, Slack, WhatsApp, Signal, or Email. Once a conversation starts, most slash commands work the same in both interfaces.
 
 | Action                         | CLI                                           | Messaging platforms                                                              |
 | ------------------------------ | --------------------------------------------- | -------------------------------------------------------------------------------- |

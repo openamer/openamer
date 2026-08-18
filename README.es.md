@@ -1,204 +1,74 @@
-<p align="center">
-  <img src="assets/banner.png" alt="OpenAmer Agent" width="100%">
-</p>
-
 # OpenAmer Agent
-<p align="center">
-  <a href="https://github.com/openamer/openamer/">OpenAmer Agent</a> | <a href="https://github.com/openamer/openamer/">OpenAmer Desktop</a>
-</p>
-<p align="center">
-  <a href="https://github.com/openamer/openamer/blob/main/website/docs/"><img src="https://img.shields.io/badge/Docs-OpenAmer-22D3EE?style=for-the-badge" alt="Documentación"></a>
-  <a href="https://discord.gg/openamer"><img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord"></a>
-  <a href="https://github.com/openamer/openamer/blob/main/LICENSE"><img src="https://img.shields.io/badge/Licencia-Apache%202.0-blue?style=for-the-badge" alt="Licencia: Apache 2.0"></a>
-  <a href="README.md"><img src="https://img.shields.io/badge/Lang-English-blue?style=for-the-badge" alt="English"></a>
-  <a href="README.zh-CN.md"><img src="https://img.shields.io/badge/Lang-中文-red?style=for-the-badge" alt="中文"></a>
-  <a href="README.ur-pk.md"><img src="https://img.shields.io/badge/Lang-اردو-green?style=for-the-badge" alt="اردو"></a>
-</p>
 
-**El agente de IA automejorable y autoaprendiz.** Es el único agente con un bucle de aprendizaje integrado: crea habilidades a partir de la experiencia, las mejora durante el uso, se impulsa a sí mismo a persistir el conocimiento, busca en sus propias conversaciones pasadas y construye un modelo cada vez más profundo de quién eres a lo largo de las sesiones. Ejecútalo en un VPS de $5, un clúster de GPUs o infraestructura sin servidor que cuesta casi nada cuando está inactivo. No está atado a tu laptop — habla con él desde Telegram mientras trabaja en una VM en la nube.
+**OpenAmer es el agente que no se rompe — y que mejora de forma demostrable con el uso.**
 
-Usa cualquier modelo que quieras — [OpenRouter](https://openrouter.ai) (más de 200 modelos), [NovitaAI](https://novita.ai), [NVIDIA NIM](https://build.nvidia.com) (Nemotron), [Xiaomi MiMo](https://platform.xiaomimimo.com), [z.ai/GLM](https://z.ai), [Kimi/Moonshot](https://platform.moonshot.ai), [MiniMax](https://www.minimax.io), [Hugging Face](https://huggingface.co), OpenAI, o tu propio endpoint. Cambia con `openamer model` — sin cambios de código, sin dependencias.
+Se ejecuta en tu propia máquina, te encuentra en los canales que ya usas y mejora cuanto más lo usas. Dos cosas lo distinguen:
 
-<table>
-<tr><td><b>Una interfaz de terminal real</b></td><td>TUI completa con edición multilínea, autocompletado de comandos, historial de conversaciones, interrupción y redirección, y salida de herramientas en streaming.</td></tr>
-<tr><td><b>Vive donde tú vives</b></td><td>Telegram, Discord, Slack, WhatsApp, Signal y CLI — todo desde un único proceso gateway. Transcripción de notas de voz, continuidad de conversación entre plataformas.</td></tr>
-<tr><td><b>Un bucle de aprendizaje cerrado</b></td><td>Memoria curada por el agente con recordatorios periódicos. Creación autónoma de habilidades tras tareas complejas. Las habilidades mejoran solas durante el uso. Búsqueda FTS5 de sesiones con resumención por LLM para recuperación entre sesiones. Modelado de usuario dialéctico <a href="https://github.com/plastic-labs/honcho">Honcho</a>. Compatible con el estándar abierto de <a href="https://agentskills.io">agentskills.io</a>.</td></tr>
-<tr><td><b>Automatizaciones programadas</b></td><td>Planificador cron integrado con entrega a cualquier plataforma. Informes diarios, copias de seguridad nocturnas, auditorías semanales — todo en lenguaje natural, ejecutándose de forma autónoma.</td></tr>
-<tr><td><b>Delega y paraleliza</b></td><td>Lanza subagentes aislados para flujos de trabajo paralelos. Escribe scripts de Python que llaman a herramientas vía RPC, convirtiendo pipelines de múltiples pasos en turnos de coste cero de contexto.</td></tr>
-<tr><td><b>Funciona en cualquier lugar, no solo en tu laptop</b></td><td>Seis backends de terminal — local, Docker, SSH, Singularity, Modal y Daytona. Daytona y Modal ofrecen persistencia sin servidor — el entorno de tu agente hiberna cuando está inactivo y se activa bajo demanda, costando casi nada entre sesiones. Ejecútalo en un VPS de $5 o un clúster de GPUs.</td></tr>
-<tr><td><b>Listo para investigación</b></td><td>Generación de trayectorias en lote, compresión de trayectorias para entrenar la próxima generación de modelos de llamadas a herramientas.</td></tr>
-</table>
+1. **No se rompe.** La auto-actualización está endurecida contra los modos de fallo que dejan a otros agentes a medio instalar — bloqueos de archivos, instalaciones interrumpidas, marcadores de recuperación obsoletos. El agente verifica antes de afirmar y reporta errores reales en lugar de inventar resultados.
+2. **Mejora de forma demostrable con el uso.** La memoria persiste entre sesiones, las habilidades se destilan de tareas difíciles y se refinan al reutilizarlas, y el enjambre A2A comparte conocimiento curado, firmado y sin fugas entre nodos. Aprendizaje que puedes observar, no un eslogan.
 
----
+Usa cualquier modelo — OpenRouter, OpenAI, tu propio endpoint y [muchos más](https://github.com/openamer/openamer/blob/main/website/docs/integrations/providers). Cambia con `openamer model` — sin cambios de código, sin dependencia.
+
+## Funciones
+
+| Función | Descripción |
+|---|---|
+| **No se rompe** | Auto-actualización endurecida que sobrevive a bloqueos de archivos, instalaciones interrumpidas y marcadores de recuperación obsoletos. El agente verifica antes de afirmar y reporta errores reales en lugar de inventar resultados. |
+| **Mejora de forma demostrable** | La memoria persiste entre sesiones, las habilidades se destilan de tareas difíciles y se refinan al reutilizarlas, y el enjambre A2A comparte conocimiento curado, firmado y sin fugas entre nodos. |
+| **Interfaz de terminal real** | TUI completo con edición multilínea, autocompletado de comandos slash, historial de conversación, interrupción-y-redirección y salida de herramientas en streaming en vivo. |
+| **Vive donde tú vives** | Telegram, Discord, Slack, WhatsApp, Signal y CLI — una puerta de enlace, una conversación que te sigue en cada canal. Las notas de voz se transcriben automáticamente. |
+| **Automatizaciones programadas** | Programador cron integrado con entrega a cualquier plataforma. Describe un informe diario, una copia de seguridad nocturna o una auditoría semanal en lenguaje natural y se ejecuta sin supervisión. |
+| **Delega y paraleliza** | Genera subagentes aislados para flujos de trabajo paralelos, o escribe scripts de Python que llaman herramientas por RPC para colapsar pipelines de varios pasos en un solo turno. |
+| **Se ejecuta en cualquier lugar, no solo en tu portátil** | Seis backends de terminal — local, Docker, SSH, Singularity, Modal y Daytona. Daytona y Modal añaden persistencia serverless, para que el entorno de tu agente hiberne en reposo y despierte bajo demanda — casi sin coste entre sesiones. |
+| **Privado por defecto** | Números de teléfono, contraseñas, correos y números de tarjeta se redactan antes de almacenarse. El sistema operativo, el hardware y el modelo de tu nodo permanecen en tu propio prompt de sistema. |
+| **Listo para investigación** | Generación de trayectorias por lotes y compresión de trayectorias para entrenar la próxima generación de modelos que llaman herramientas. |
 
 ## Instalación rápida
 
 ### Linux, macOS, WSL2, Termux
 
 ```bash
-curl -fsSL https://github.com/openamer/openamer/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/openamer/openamer/main/scripts/install.sh | bash
 ```
 
 ### Windows (nativo, PowerShell)
 
-> **Nota:** En Windows nativo, OpenAmer funciona sin WSL — la CLI, el gateway, la TUI y las herramientas funcionan de forma nativa. Si prefieres usar WSL2, el comando de Linux/macOS de arriba también funciona allí. ¿Encontraste un error? Por favor [crea un issue](https://github.com/openamer/openamer/issues).
-
-Ejecuta esto en PowerShell:
-
 ```powershell
-iex (irm https://github.com/openamer/openamer/install.ps1)
+iex (irm https://raw.githubusercontent.com/openamer/openamer/main/scripts/install.ps1)
 ```
 
-El instalador se encarga de todo: uv, Python 3.11, Node.js, ripgrep, ffmpeg, **y un Git Bash portátil** (MinGit, descomprimido en `%LOCALAPPDATA%\openamer\git` — no requiere administrador, completamente aislado de cualquier instalación de Git del sistema). OpenAmer usa este Git Bash incluido para ejecutar comandos de shell.
-
-Si ya tienes Git instalado, el instalador lo detecta y lo usa en su lugar. De lo contrario, una descarga de ~45MB de MinGit es todo lo que necesitas — no tocará ni interferirá con ningún Git del sistema.
-
-> **Android / Termux:** La ruta manual probada está documentada en la [guía de Termux](https://github.com/openamer/openamer/blob/main/website/docs/getting-started/termux). En Termux, OpenAmer instala el extra `.[termux]` curado porque el extra completo `.[all]` actualmente incluye dependencias de voz incompatibles con Android.
->
-> **Windows:** Windows nativo es totalmente compatible — el comando de PowerShell de arriba instala todo. Si prefieres usar WSL2, el comando de Linux también funciona allí. La instalación nativa de Windows se encuentra en `%LOCALAPPDATA%\openamer`; WSL2 instala en `~/.openamer` como en Linux.
-
-Después de la instalación:
-
-```bash
-source ~/.bashrc    # recargar shell (o: source ~/.zshrc)
-openamer              # ¡empieza a chatear!
-```
-
----
+El instalador se encarga de todo: uv, Python 3.11, Node.js, ripgrep, ffmpeg y un Git Bash portátil.
 
 ## Primeros pasos
 
 ```bash
-openamer              # CLI interactiva — inicia una conversación
-openamer model        # Elige tu proveedor y modelo LLM
-openamer tools        # Configura qué herramientas están habilitadas
-openamer config set   # Establece valores de configuración individuales
-openamer gateway      # Inicia el gateway de mensajería (Telegram, Discord, etc.)
-openamer setup        # Ejecuta el asistente de configuración completo
-openamer claw migrate # Migra desde OpenClaw (si vienes de OpenClaw)
-openamer update       # Actualiza a la última versión
-openamer doctor       # Diagnostica cualquier problema
+openamer              # CLI interactivo — iniciar una conversación
+openamer model        # Elegir proveedor y modelo de LLM
+openamer tools        # Configurar qué herramientas están activas
+openamer gateway      # Iniciar la puerta de enlace de mensajería (Telegram, Discord, …)
+openamer setup        # Ejecutar el asistente de configuración completo
+openamer update       # Actualizar a la última versión
+openamer doctor       # Diagnosticar problemas
 ```
 
-📖 **[Documentación completa →](https://github.com/openamer/openamer/blob/main/website/docs/)**
+## Actualización
 
----
+OpenAmer se mantiene actualizado automáticamente. En cada inicio comprueba en segundo plano si hay una versión más reciente — si la hay, el banner de bienvenida muestra `⚠ N commits atrás — ejecuta 'openamer update'` dentro del chat.
 
-
-## Usa tus propias claves
----
-
-## Referencia rápida: CLI vs Mensajería
-
-OpenAmer tiene dos puntos de entrada: inicia la interfaz de terminal con `openamer`, o ejecuta el gateway y habla con él desde Telegram, Discord, Slack, WhatsApp, Signal o Email. Una vez en una conversación, muchos comandos de barra son compartidos entre ambas interfaces.
-
-| Acción                              | CLI                                           | Plataformas de mensajería                                                         |
-| ----------------------------------- | --------------------------------------------- | --------------------------------------------------------------------------------- |
-| Empezar a chatear                   | `openamer`                                      | Ejecuta `openamer gateway setup` + `openamer gateway start`, luego envía un mensaje al bot |
-| Nueva conversación                  | `/new` o `/reset`                             | `/new` o `/reset`                                                                 |
-| Cambiar modelo                      | `/model [proveedor:modelo]`                   | `/model [proveedor:modelo]`                                                       |
-| Establecer personalidad             | `/personality [nombre]`                       | `/personality [nombre]`                                                           |
-| Reintentar o deshacer último turno  | `/retry`, `/undo`                             | `/retry`, `/undo`                                                                 |
-| Comprimir contexto / ver uso        | `/compress`, `/usage`, `/insights [--days N]` | `/compress`, `/usage`, `/insights [days]`                                         |
-| Explorar habilidades                | `/skills` o `/<nombre-habilidad>`             | `/<nombre-habilidad>`                                                             |
-| Interrumpir trabajo actual          | `Ctrl+C` o enviar un nuevo mensaje            | `/stop` o enviar un nuevo mensaje                                                 |
-| Estado específico de plataforma     | `/platforms`                                  | `/status`, `/sethome`                                                             |
-
-Para las listas de comandos completas, consulta la [guía de CLI](https://github.com/openamer/openamer/blob/main/website/docs/user-guide/cli) y la [guía del Gateway de Mensajería](https://github.com/openamer/openamer/blob/main/website/docs/user-guide/messaging).
-
----
+```bash
+openamer update
+```
 
 ## Documentación
 
-Toda la documentación está en **[OpenAmer Docs](https://github.com/openamer/openamer/blob/main/website/docs/)**:
-
-| Sección                                                                                             | Contenido                                                    |
-| --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| [Inicio rápido](https://github.com/openamer/openamer/blob/main/website/docs/getting-started/quickstart)              | Instalar → configurar → primera conversación en 2 minutos   |
-| [Uso de CLI](https://github.com/openamer/openamer/blob/main/website/docs/user-guide/cli)                             | Comandos, atajos de teclado, personalidades, sesiones        |
-| [Configuración](https://github.com/openamer/openamer/blob/main/website/docs/user-guide/configuration)               | Archivo de configuración, proveedores, modelos, todas las opciones |
-| [Gateway de Mensajería](https://github.com/openamer/openamer/blob/main/website/docs/user-guide/messaging)           | Telegram, Discord, Slack, WhatsApp, Signal, Home Assistant   |
-| [Seguridad](https://github.com/openamer/openamer/blob/main/website/docs/user-guide/security)                        | Aprobación de comandos, emparejamiento por DM, aislamiento en contenedor |
-| [Herramientas y Toolsets](https://github.com/openamer/openamer/blob/main/website/docs/user-guide/features/tools)   | Más de 40 herramientas, sistema de toolsets, backends de terminal |
-| [Sistema de Habilidades](https://github.com/openamer/openamer/blob/main/website/docs/user-guide/features/skills)   | Memoria procedimental, Skills Hub, creación de habilidades   |
-| [Memoria](https://github.com/openamer/openamer/blob/main/website/docs/user-guide/features/memory)                   | Memoria persistente, perfiles de usuario, mejores prácticas  |
-| [Integración MCP](https://github.com/openamer/openamer/blob/main/website/docs/user-guide/features/mcp)              | Conecta cualquier servidor MCP para capacidades extendidas   |
-| [Programación Cron](https://github.com/openamer/openamer/blob/main/website/docs/user-guide/features/cron)           | Tareas programadas con entrega a plataforma                  |
-| [Archivos de Contexto](https://github.com/openamer/openamer/blob/main/website/docs/user-guide/features/context-files) | Contexto de proyecto que da forma a cada conversación      |
-| [Arquitectura](https://github.com/openamer/openamer/blob/main/website/docs/developer-guide/architecture)            | Estructura del proyecto, bucle del agente, clases principales |
-| [Contribuir](https://github.com/openamer/openamer/blob/main/website/docs/developer-guide/contributing)              | Configuración de desarrollo, proceso de PR, estilo de código |
-| [Referencia de CLI](https://github.com/openamer/openamer/blob/main/website/docs/reference/cli-commands)             | Todos los comandos y flags                                   |
-| [Variables de Entorno](https://github.com/openamer/openamer/blob/main/website/docs/reference/environment-variables) | Referencia completa de variables de entorno                  |
-
----
-
-## Migración desde OpenClaw
-
-Si vienes de OpenClaw, OpenAmer puede importar automáticamente tu configuración, memorias, habilidades y claves API.
-
-**Durante la configuración inicial:** El asistente de configuración (`openamer setup`) detecta automáticamente `~/.openclaw` y ofrece migrar antes de que comience la configuración.
-
-**En cualquier momento después de instalar:**
-
-```bash
-openamer claw migrate              # Migración interactiva (preset completo)
-openamer claw migrate --dry-run    # Vista previa de qué se migraría
-openamer claw migrate --preset user-data   # Migrar sin secretos
-openamer claw migrate --overwrite  # Sobreescribir conflictos existentes
-```
-
-Qué se importa:
-
-- **SOUL.md** — archivo de personalidad
-- **Memorias** — entradas de MEMORY.md y USER.md
-- **Habilidades** — habilidades creadas por el usuario → `~/.openamer/skills/openclaw-imports/`
-- **Lista de comandos permitidos** — patrones de aprobación
-- **Configuración de mensajería** — configuración de plataformas, usuarios permitidos, directorio de trabajo
-- **Claves API** — secretos en lista de permitidos (Telegram, OpenRouter, OpenAI, Anthropic, ElevenLabs)
-- **Assets de TTS** — archivos de audio del espacio de trabajo
-- **Instrucciones del espacio de trabajo** — AGENTS.md (con `--workspace-target`)
-
-Consulta `openamer claw migrate --help` para todas las opciones, o usa la habilidad `openclaw-migration` para una migración guiada interactiva por el agente con vistas previas de dry-run.
-
----
-
-## Contribuir
-
-¡Las contribuciones son bienvenidas! Consulta la [Guía de Contribución](CONTRIBUTING.es.md) para la configuración del desarrollo, el estilo de código y el proceso de PR.
-
-Inicio rápido para colaboradores — clona y comienza con `setup-openamer.sh`:
-
-```bash
-git clone https://github.com/openamer/openamer.git
-cd openamer-agent
-./setup-openamer.sh     # instala uv, crea venv, instala .[all], enlaza ~/.local/bin/openamer
-./openamer              # detecta automáticamente el venv, no necesitas hacer `source` primero
-```
-
-Ruta manual (equivalente a lo anterior):
-
-```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh
-uv venv .venv --python 3.11
-source .venv/bin/activate
-uv pip install -e ".[all,dev]"
-scripts/run_tests.sh
-```
-
----
+La documentación completa está en **[OpenAmer Docs](https://github.com/openamer/openamer/blob/main/website/docs/)**.
 
 ## Comunidad
 
 - 💬 [Discord](https://discord.gg/openamer)
 - 📚 [Skills Hub](https://agentskills.io)
 - 🐛 [Issues](https://github.com/openamer/openamer/issues)
-- 🔌 [computer-use-linux](https://github.com/avifenesh/computer-use-linux) — Servidor MCP de control de escritorio Linux para OpenAmer y otros hosts MCP, con árboles de accesibilidad AT-SPI, entrada Wayland/X11, capturas de pantalla y targeting de ventanas del compositor.
-- 🔌 [OpenAmerClaw](https://github.com/AaronWong1999/openamerclaw) — Puente WeChat comunitario: Ejecuta OpenAmer Agent y OpenClaw en la misma cuenta de WeChat.
-
----
 
 ## Licencia
 
 Apache License 2.0 — ver [LICENSE](LICENSE).
-
-OpenAmer Agent.
