@@ -10860,6 +10860,20 @@ def _detect_venv_python_processes(
     skip.add(os.getpid())
     try:
         for anc in psutil.Process().parents():
+            # The Desktop app's serve backend (`-m openamer_cli.main serve`)
+            # and desktop shim (`openamer.exe desktop`) are real lock-holders
+            # even when they happen to be ancestors — e.g. an `openamer update`
+            # launched from a terminal the app itself spawned. Skipping them
+            # here is exactly the gap that let a running Desktop app sail
+            # through the guard and strand the venv on a locked openamer.exe.
+            # Only skip ancestors that are part of the update invocation
+            # itself (the `openamer update` shim and its shell).
+            try:
+                anc_cmd = " ".join(anc.cmdline() or []).lower()
+            except Exception:
+                anc_cmd = ""
+            if "serve" in anc_cmd or "desktop" in anc_cmd:
+                continue
             skip.add(int(anc.pid))
     except Exception:
         pass
