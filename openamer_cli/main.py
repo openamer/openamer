@@ -7314,6 +7314,7 @@ def _update_via_zip(args):
         # Copy updated files over existing installation, preserving venv/node_modules/.git
         preserve = {"venv", "node_modules", ".git", ".env"}
         update_count = 0
+        skipped: list[str] = []
         for item in os.listdir(extracted):
             if item in preserve:
                 continue
@@ -7322,10 +7323,27 @@ def _update_via_zip(args):
             if os.path.isdir(src):
                 # Atomic-ish replace: never leave dst half-deleted if the copy
                 # fails partway (the failure mode behind #49145 on Windows).
-                _atomic_replace_dir(src, dst)
+                try:
+                    _atomic_replace_dir(src, dst)
+                except OSError as e:
+                    # A live process (e.g. the OpenAmer Desktop app running
+                    # from apps/desktop/release/) can hold files in this
+                    # directory open, blocking the rename on Windows with
+                    # WinError 5 (access denied). Skip it rather than abort
+                    # the whole update — it will be refreshed on a later
+                    # update run once the process has exited.
+                    skipped.append(item)
+                    print(f"  ⚠ Skipped {item} (locked by a running process): {e}")
+                    continue
             else:
                 shutil.copy2(src, dst)
             update_count += 1
+
+        if skipped:
+            print(
+                "    Close OpenAmer Desktop / other openamer processes and "
+                "re-run `openamer update` to refresh these directories."
+            )
 
         print(f"✓ Updated {update_count} items from ZIP")
 
@@ -7382,6 +7400,15 @@ def _update_via_zip(args):
                 check=True,
             )
         _install_python_dependencies_with_optional_fallback(pip_cmd)
+
+    # The git-pull path writes `.update-incomplete` before its dependency
+    # install and clears it after. When that install fails and we fall back
+    # to the ZIP path (Windows), the marker is still present — clear it now
+    # that the ZIP path's own dependency install has completed, so the next
+    # launch doesn't trigger a failing auto-recovery loop. Clearing a
+    # non-existent marker is a no-op, so this is safe on the direct
+    # `use_zip_update` path too.
+    _clear_update_incomplete_marker()
 
     node_failures = _update_node_dependencies()
     _build_web_ui(PROJECT_ROOT / "web")
