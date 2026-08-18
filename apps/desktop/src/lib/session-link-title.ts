@@ -8,8 +8,8 @@
  */
 import { useEffect, useMemo, useState } from 'react'
 
-import { getSession } from '@/openamer'
 import { parseSessionRefValue, sessionRefCacheKey, sessionRefFallbackLabel } from '@/lib/session-refs'
+import { getSession } from '@/openamer'
 import { $sessions, sessionMatchesStoredId } from '@/store/session'
 import type { SessionInfo } from '@/types/openamer'
 

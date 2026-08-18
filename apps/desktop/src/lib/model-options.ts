@@ -1,4 +1,4 @@
-import { getGlobalModelOptions, type OpenAmerGateway, type ModelOptionsResponse } from '@/openamer'
+import { getGlobalModelOptions, type ModelOptionsResponse, type OpenAmerGateway } from '@/openamer'
 import type { ModelOptionProvider } from '@/types/openamer'
 
 /**

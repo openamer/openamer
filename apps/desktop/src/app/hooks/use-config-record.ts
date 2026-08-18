@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 
-import { getOpenAmerConfigRecord } from '@/openamer'
 import { queryClient, writeCache } from '@/lib/query-client'
+import { getOpenAmerConfigRecord } from '@/openamer'
 import type { OpenAmerConfigRecord } from '@/types/openamer'
 
 // One shared cache for the whole profile config record (`GET /api/config`).

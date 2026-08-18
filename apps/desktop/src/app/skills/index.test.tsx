@@ -5,8 +5,8 @@ import { MemoryRouter } from 'react-router-dom'
 import type * as ReactRouterDom from 'react-router-dom'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import type * as OpenAmerApi from '@/openamer'
 import { queryClient } from '@/lib/query-client'
+import type * as OpenAmerApi from '@/openamer'
 
 const getSkills = vi.fn()
 const getToolsets = vi.fn()

@@ -959,6 +959,7 @@ async function runBootstrap(opts) {
           // recursive bootstrap this file drives — skip it.
           if (stage.name === 'desktop') {
             emit({ type: 'stage', name: stage.name, state: 'skipped', durationMs: 0 })
+
             continue
           }
 

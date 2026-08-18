@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 
-import { getStatus } from '@/openamer'
 import { evaluateRuntimeReadiness, type RuntimeReadinessResult } from '@/lib/runtime-readiness'
+import { getStatus } from '@/openamer'
 import type { StatusResponse } from '@/types/openamer'
 
 const REFRESH_MS = 15_000

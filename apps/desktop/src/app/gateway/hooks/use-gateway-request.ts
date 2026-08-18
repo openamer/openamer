@@ -1,5 +1,5 @@
-import { isGatewayReauthRequired, resolveGatewayWsUrl } from '@openamer/shared'
 import { useStore } from '@nanostores/react'
+import { isGatewayReauthRequired, resolveGatewayWsUrl } from '@openamer/shared'
 import { useCallback, useEffect, useRef } from 'react'
 
 import type { OpenAmerGateway } from '@/openamer'

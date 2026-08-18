@@ -3,7 +3,6 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 import { codiconIcon } from '@/components/ui/codicon'
 import { Tip } from '@/components/ui/tooltip'
-import { getOpenAmerConfigDefaults, getOpenAmerConfigRecord, saveOpenAmerConfig } from '@/openamer'
 import { useI18n } from '@/i18n'
 import { triggerHaptic } from '@/lib/haptics'
 import {
@@ -22,6 +21,7 @@ import {
   Wrench,
   Zap
 } from '@/lib/icons'
+import { getOpenAmerConfigDefaults, getOpenAmerConfigRecord, saveOpenAmerConfig } from '@/openamer'
 import { notifyError } from '@/store/notifications'
 
 import { useRouteEnumParam } from '../hooks/use-route-enum-param'

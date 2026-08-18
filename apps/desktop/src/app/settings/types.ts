@@ -1,7 +1,7 @@
 import type { Dispatch, SetStateAction } from 'react'
 
-import type { OpenAmerGateway } from '@/openamer'
 import type { IconComponent } from '@/lib/icons'
+import type { OpenAmerGateway } from '@/openamer'
 import type { EnvVarInfo } from '@/types/openamer'
 
 export type SettingsView =

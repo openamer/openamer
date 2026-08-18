@@ -1,8 +1,8 @@
 import { type MutableRefObject, useCallback, useRef, useState } from 'react'
 
-import { getOpenAmerConfig, getOpenAmerConfigDefaults } from '@/openamer'
 import { BUILTIN_PERSONALITIES, normalizePersonalityValue, personalityNamesFromConfig } from '@/lib/chat-runtime'
 import { normalize } from '@/lib/text'
+import { getOpenAmerConfig, getOpenAmerConfigDefaults } from '@/openamer'
 import {
   getComposerSelectionGeneration,
   getCurrentModelSource,

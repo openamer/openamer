@@ -1,7 +1,7 @@
 import { atom } from 'nanostores'
 
-import { resetSidebarBatchCapability } from '@/openamer'
 import { invalidateProfileScopedQueries } from '@/lib/query-client'
+import { resetSidebarBatchCapability } from '@/openamer'
 import { resetSessionsLimit } from '@/store/layout'
 import {
   $unreadFinishedSessionIds,

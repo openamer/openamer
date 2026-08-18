@@ -9,17 +9,17 @@ import { ErrorBanner } from '@/components/ui/error-state'
 import { Input } from '@/components/ui/input'
 import { Switch } from '@/components/ui/switch'
 import { Tip } from '@/components/ui/tooltip'
+import { type Translations, useI18n } from '@/i18n'
+import { openExternalLink } from '@/lib/external-link'
+import { ExternalLink, Save, Trash2 } from '@/lib/icons'
+import { normalize } from '@/lib/text'
+import { cn } from '@/lib/utils'
 import {
   getMessagingPlatforms,
   type MessagingEnvVarInfo,
   type MessagingPlatformInfo,
   updateMessagingPlatform
 } from '@/openamer'
-import { type Translations, useI18n } from '@/i18n'
-import { openExternalLink } from '@/lib/external-link'
-import { ExternalLink, Save, Trash2 } from '@/lib/icons'
-import { normalize } from '@/lib/text'
-import { cn } from '@/lib/utils'
 import { notify, notifyError } from '@/store/notifications'
 import { runGatewayRestart } from '@/store/system-actions'
 

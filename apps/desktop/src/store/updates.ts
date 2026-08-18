@@ -13,9 +13,9 @@ import type {
   DesktopUpdateStatus,
   DesktopVersionInfo
 } from '@/global'
-import { checkOpenAmerUpdate, getActionStatus, updateOpenAmer } from '@/openamer'
 import { translateNow } from '@/i18n'
 import { persistString, storedString } from '@/lib/storage'
+import { checkOpenAmerUpdate, getActionStatus, updateOpenAmer } from '@/openamer'
 import { dismissNotification, notify } from '@/store/notifications'
 import { $connection } from '@/store/session'
 import type { BackendUpdateCheckResponse } from '@/types/openamer'

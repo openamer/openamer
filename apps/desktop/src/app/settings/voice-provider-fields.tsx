@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query'
 import { useEffect, useMemo, useRef, useState } from 'react'
 
-import { getElevenLabsVoices, getOpenAmerConfigSchema, saveOpenAmerConfig } from '@/openamer'
 import { useI18n } from '@/i18n'
+import { getElevenLabsVoices, getOpenAmerConfigSchema, saveOpenAmerConfig } from '@/openamer'
 import { notifyError } from '@/store/notifications'
 import type { OpenAmerConfigRecord } from '@/types/openamer'
 

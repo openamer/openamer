@@ -2,8 +2,8 @@
 import { act, renderHook } from '@testing-library/react'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { getOpenAmerConfig } from '@/openamer'
 import { persistString } from '@/lib/storage'
+import { getOpenAmerConfig } from '@/openamer'
 import {
   $currentCwd,
   $currentFastMode,

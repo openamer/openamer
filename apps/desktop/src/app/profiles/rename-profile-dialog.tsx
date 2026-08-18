@@ -12,9 +12,9 @@ import {
 } from '@/components/ui/dialog'
 import { Field, FieldHint } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
-import { renameProfile } from '@/openamer'
 import { useI18n } from '@/i18n'
 import { AlertTriangle } from '@/lib/icons'
+import { renameProfile } from '@/openamer'
 
 import { isValidProfileName } from './create-profile-dialog'
 

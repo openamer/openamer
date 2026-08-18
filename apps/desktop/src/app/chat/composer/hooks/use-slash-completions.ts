@@ -1,7 +1,6 @@
 import type { Unstable_TriggerAdapter, Unstable_TriggerItem } from '@assistant-ui/core'
 import { useCallback } from 'react'
 
-import type { OpenAmerGateway } from '@/openamer'
 import { sessionTitle } from '@/lib/chat-runtime'
 import {
   type CommandsCatalogLike,
@@ -13,6 +12,7 @@ import {
   isDesktopSlashSuggestion
 } from '@/lib/desktop-slash-commands'
 import { normalize } from '@/lib/text'
+import type { OpenAmerGateway } from '@/openamer'
 import { $sessions } from '@/store/session'
 
 import type { CompletionEntry, CompletionPayload } from './use-live-completion-adapter'

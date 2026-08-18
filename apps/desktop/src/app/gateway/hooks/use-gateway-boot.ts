@@ -2,9 +2,9 @@ import { isGatewayReauthRequired, resolveGatewayWsUrl } from '@openamer/shared'
 import { useEffect, useRef } from 'react'
 
 import type { OpenAmerConnection } from '@/global'
-import { OpenAmerGateway } from '@/openamer'
 import { translateNow } from '@/i18n'
 import { desktopDefaultCwd } from '@/lib/desktop-fs'
+import { OpenAmerGateway } from '@/openamer'
 import {
   $desktopBoot,
   applyDesktopBootProgress,

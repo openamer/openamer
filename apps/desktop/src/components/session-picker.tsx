@@ -3,11 +3,11 @@ import { Dialog as DialogPrimitive } from 'radix-ui'
 import { useEffect, useMemo, useState } from 'react'
 
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command'
-import { listAllProfileSessions } from '@/openamer'
 import { useI18n } from '@/i18n'
 import { sessionTitle } from '@/lib/chat-runtime'
 import { Check, MessageCircle } from '@/lib/icons'
 import { cn } from '@/lib/utils'
+import { listAllProfileSessions } from '@/openamer'
 
 interface SessionPickerDialogProps {
   /** Stored id of the session currently open, so it can be flagged in the list. */

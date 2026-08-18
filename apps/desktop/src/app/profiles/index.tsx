@@ -16,6 +16,12 @@ import {
 } from '@/components/ui/dialog'
 import { SanitizedInput } from '@/components/ui/sanitized-input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { useI18n } from '@/i18n'
+import { AlertTriangle, Save } from '@/lib/icons'
+import { profileColorSoft, resolveProfileColor } from '@/lib/profile-color'
+import { slug } from '@/lib/sanitize'
+import { normalize } from '@/lib/text'
+import { cn } from '@/lib/utils'
 import {
   createProfile,
   deleteProfile,
@@ -24,12 +30,6 @@ import {
   renameProfile,
   updateProfileSoul
 } from '@/openamer'
-import { useI18n } from '@/i18n'
-import { AlertTriangle, Save } from '@/lib/icons'
-import { profileColorSoft, resolveProfileColor } from '@/lib/profile-color'
-import { slug } from '@/lib/sanitize'
-import { normalize } from '@/lib/text'
-import { cn } from '@/lib/utils'
 import { notify, notifyError } from '@/store/notifications'
 import { $profileColors, refreshProfiles } from '@/store/profile'
 

@@ -2,9 +2,9 @@ import { type QueryClient } from '@tanstack/react-query'
 import { useCallback, useRef } from 'react'
 
 import type { ModelSelection } from '@/app/shell/model-menu-panel'
-import { getGlobalModelInfo } from '@/openamer'
 import { useI18n } from '@/i18n'
 import { manualPickRemoved, modelOptionsQueryKey } from '@/lib/model-options'
+import { getGlobalModelInfo } from '@/openamer'
 import { notifyError } from '@/store/notifications'
 import { $activeGatewayProfile } from '@/store/profile'
 import {
