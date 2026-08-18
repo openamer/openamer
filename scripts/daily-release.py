@@ -112,6 +112,20 @@ def main() -> int:
     # vernum stays the compact tag id.
     update_version_files(vernum, date_str)
 
+    # Re-sync uv.lock so the version bump doesn't desync it: CI runs
+    # `uv lock --check` (and every test slice installs with `--locked`), so
+    # committing a pyproject.toml version change without regenerating the
+    # lockfile red-lights the whole pipeline. (Regression: the v260818 daily
+    # release shipped pyproject 2026.8.18 against a lockfile still pinned to
+    # 2026.8.17, breaking every test slice.)
+    uv_resync = subprocess.run(
+        ["uv", "lock"], cwd=REPO_ROOT, capture_output=True, text=True,
+        encoding="utf-8", errors="replace",
+    )
+    if uv_resync.returncode != 0:
+        print(f"uv lock failed after version bump: {uv_resync.stderr.strip()[:400]}")
+        return 1
+
     git("add", "-u")
     cr = git("commit", "-m", f"chore: daily release v{vernum} ({date_str})")
     if cr.returncode != 0 and cr.stderr and "nothing to commit" not in cr.stderr:
