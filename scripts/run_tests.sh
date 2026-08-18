@@ -114,6 +114,8 @@ echo "▶ launching test runner"
 exec env -i \
   PATH="$PATH" \
   HOME="$HOME" \
+  ${USERPROFILE:+USERPROFILE="$USERPROFILE"} \
+  ${HOMEDRIVE:+HOMEDRIVE="$HOMEDRIVE"} ${HOMEPATH:+HOMEPATH="$HOMEPATH"} \
   TZ=UTC \
   LANG=C.UTF-8 \
   LC_ALL=C.UTF-8 \
