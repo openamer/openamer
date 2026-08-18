@@ -25,6 +25,13 @@ import pytest
 
 from openamer_cli import main as cli_main
 
+# This module deliberately exercises the REAL Windows venv-process probes
+# (_detect_venv_python_processes / _venv_core_imports_healthy) with their own
+# psutil/PROJECT_ROOT mocks. The autouse concurrent-gate fixture in conftest.py
+# neutralizes those to no-ops by default (so cmd_update tests don't corrupt the
+# dev venv); opt this whole module out so its assertions see the real behavior.
+pytestmark = pytest.mark.real_concurrent_gate
+
 
 # ---------------------------------------------------------------------------
 # _venv_core_imports_healthy
