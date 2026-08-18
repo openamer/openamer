@@ -1687,9 +1687,16 @@ class TestCuaDriverSessionReconnect:
         class FakeProc:
             returncode = 0
             stderr = ""
-            # Daemon returns a path, not inline base64.
-            stdout = ('{"element_count": 7, "tree_markdown": "- [0] AXButton",'
-                      ' "screenshot_file_path": "%s"}' % str(shot))
+            # Daemon returns a path, not inline base64. Build the JSON via
+            # json.dumps so the screenshot path is escaped correctly on every
+            # platform (raw Windows "C:\\Users\\..." in a hand-built string was
+            # invalid JSON, so json.loads failed only on Windows).
+            import json as _json
+            stdout = _json.dumps({
+                "element_count": 7,
+                "tree_markdown": "- [0] AXButton",
+                "screenshot_file_path": str(shot),
+            })
 
         import subprocess as _sp
         orig_run = _sp.run
