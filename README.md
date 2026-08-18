@@ -16,6 +16,13 @@
   <a href="README.es.md"><img src="https://img.shields.io/badge/Lang-Español-orange?style=for-the-badge" alt="Español"></a>
 </p>
 
+> **OpenAmer** is a self-improving, self-learning personal AI agent — a
+> hardened, independently-developed fork of the
+> [Hermes Agent](https://github.com/NousResearch/hermes-agent) architecture
+> (MIT, by Nous Research). We say so openly: OpenAmer does not hide its
+> lineage. What we build on top of it — robustness, verifiability, and a real
+> learning loop — is our own. Read the [Vision](VISION.md).
+
 ## Read this in your language
 
 <p align="center">
@@ -50,36 +57,6 @@
 
 ---
 
-## What you get when you install OpenAmer
-
-One command from GitHub gives you a **complete, standalone, private-first AI agent** — installed and working on your own machine:
-
-| What you get | Default |
-|---|---|
-| **Desktop app** | built by the installer (native chat, terminal, settings) |
-| **65 bundled skills** (apple, github, mlops, creative, programming …) | seeded automatically |
-| **99 tools** — internet, vision, voice, terminal, browser, files, code, sub-agents | included |
-| **Sub-agents & parallel delegation** | built-in (`delegate_task`) |
-| **A2A swarm** — every install is an agent node | included; connect via `openamer a2a` |
-| **Autonomous learning** | the agent distills lessons from its own turns automatically |
-| **Brain data collection** — activity, thinking & tools flow into a local training dataset | autolog ON by default |
-| **Privacy-by-default** | phone/password/email/card are redacted before anything is stored |
-| **System self-knowledge** | your node's OS/hardware/model go into its system prompt |
-
-### Try it right away
-```bash
-openamer                      # start chatting
-openamer system               # what is this node running on?
-openamer security check       # your security posture
-openamer a2a status           # this node's A2A identity & mesh
-openamer a2a brain collect    # build a local training dataset
-```
-
-> **Honest note:** OpenAmer *collects* training material automatically (locally,
-> privacy-scrubbed) for a future **OpenAmer brain** fine-tune. It does **not** silently
-> train or upload a model: raw stays on your machine; only curated, signed, leak-free
----
-
 ## What you get when you install OpenAmer
 One command from GitHub gives you a **complete, standalone, private-first AI agent** — installed and working on your own machine:
 
@@ -110,9 +87,7 @@ openamer a2a relay post <peer> "question"   # ask another node over GitHub, not 
 > train or upload a model: raw stays on your machine; only curated, signed, leak-free knowledge is shared.
 
 
-> knowledge is shared.
 
-> The `README.md` (English) is the source; **all official translations are in this repo** so every reader gets a version in their own language.
 
 **The self-improving, self-learning AI agent.** It's the only agent with a built-in learning loop — it creates skills from experience, improves them during use, nudges itself to persist knowledge, searches its own past conversations, and builds a deepening model of who you are across sessions. Run it on a $5 VPS, a GPU cluster, or serverless infrastructure that costs nearly nothing when idle. It's not tied to your laptop — talk to it from Telegram while it works on a cloud VM.
 
