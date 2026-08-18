@@ -108,6 +108,7 @@ Use any model you want — OpenRouter, OpenAI, your own endpoint, and
 Switch with `openamer model` — no code changes, no lock-in.
 
 <table>
+<tr><td><b>Does not break</b></td><td>Hardened self-update that survives file-locks, interrupted installs, and stale recovery markers. The agent verifies before it claims and reports real errors instead of inventing results.</td></tr>
 <tr><td><b>A real terminal interface</b></td><td>Full TUI with multiline editing, slash-command autocomplete, conversation history, interrupt-and-redirect, and streaming tool output.</td></tr>
 <tr><td><b>Lives where you do</b></td><td>Telegram, Discord, Slack, WhatsApp, Signal, and CLI — all from a single gateway process. Voice memo transcription, cross-platform conversation continuity.</td></tr>
 <tr><td><b>A closed learning loop</b></td><td>Agent-curated memory with periodic nudges. Autonomous skill creation after complex tasks. Skills self-improve during use. FTS5 session search with LLM summarization for cross-session recall. <a href="https://github.com/plastic-labs/honcho">Honcho</a> dialectic user modeling. Compatible with the <a href="https://agentskills.io">agentskills.io</a> open standard.</td></tr>
