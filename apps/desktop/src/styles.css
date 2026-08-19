@@ -458,6 +458,11 @@
     --ui-selection-background: color-mix(in srgb, #ffd24a 38%, transparent);
   }
 
+  @keyframes nn-pulse {
+    0%, 100% { opacity: 0.3; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+  }
+
   * {
     box-sizing: border-box;
     border-color: var(--dt-border);
