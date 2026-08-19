@@ -1073,16 +1073,16 @@ export function GatewaySettings({ embedded = false }: { embedded?: boolean } = {
             description={g.remoteDesc}
             disabled={state.envOverride}
             hint={g.remoteAuthHint}
-            icon={Globe}
-            onSelect={() => setState(current => ({ ...current, mode: 'remote' }))}
-            title={g.remoteTitle}
-          />
-          <ModeCard
-            active={state.mode === 'ssh'}
-            description={g.sshDesc}
-            disabled={state.envOverride}
-            hint={g.sshTrustHint}
-            icon={Terminal}
+            icon={Globe as any}
+                        onSelect={() => setState(current => ({ ...current, mode: 'remote' }))}
+                        title={g.remoteTitle}
+                      />
+                      <ModeCard
+                        active={state.mode === 'ssh'}
+                        description={g.sshDesc}
+                        disabled={state.envOverride}
+                        hint={g.sshTrustHint}
+                        icon={Terminal as any}
             onSelect={() => setState(current => ({ ...current, mode: 'ssh' }))}
             title={g.sshTitle}
           />
