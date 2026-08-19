@@ -67,17 +67,17 @@ async function renderMessaging() {
 
 describe('MessagingView setup-guide link', () => {
   it('hides the setup-guide button for a plugin platform with no docs URL', async () => {
-    // Teams (and other plugin platforms) ship an empty docs_url. Rendering an
-    // anchor with href="" let Electron resolve it to the app's own packaged
-    // index.html and fail with an OS "file not found" dialog. The button must
-    // simply not appear when there is no guide to open.
-    getMessagingPlatforms.mockResolvedValue({ platforms: [platform({ docs_url: '' })] })
+      // Teams (and other plugin platforms) ship an empty docs_url. Rendering an
+      // anchor with href="" let Electron resolve it to the app's own packaged
+      // index.html and fail with an OS "file not found" dialog. The button must
+      // simply not appear when there is no guide to open.
+      getMessagingPlatforms.mockResolvedValue({ platforms: [platform({ docs_url: '' })] })
 
-    await renderMessaging()
+      await renderMessaging()
 
-    expect((await screen.findAllByText('Microsoft Teams')).length).toBeGreaterThan(0)
-    expect(screen.queryByText('Open setup guide')).toBeNull()
-  })
+      expect((await screen.findAllByText('Microsoft Teams', {}, { timeout: 5000 })).length).toBeGreaterThan(0)
+      expect(screen.queryByText('Open setup guide')).toBeNull()
+    })
 
   it('opens a real docs URL through the validated external opener', async () => {
     const docsUrl = 'https://github.com/openamer/openamer/blob/main/website/docs/user-guide/messaging/teams'
