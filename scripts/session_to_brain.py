@@ -127,12 +127,67 @@ def _build_trajectory(session_id: str, title: str | None, messages: list[dict]) 
     return record
 
 
+def _watch_loop() -> int:
+    """Watch mode: poll the DB every 60 seconds for new sessions and export immediately."""
+    import time
+
+    print("▶ session-to-brain watch mode: polling DB every 60s")
+    while True:
+        try:
+            n = _run_export()
+            if n > 0:
+                print(f"  Exported {n} new trajectory/trajectories")
+        except KeyboardInterrupt:
+            print("\n  Stopped.")
+            return 0
+        except Exception as e:  # noqa: BLE001
+            print(f"  Error: {e}")
+        time.sleep(60)
+
+
+def _run_export() -> int:
+    """Run a single export cycle. Returns the number of new records added."""
+    import sqlite3
+    from pathlib import Path as _Path
+
+    db_path = _state_db()
+    if not db_path.exists():
+        return 0
+
+    dataset_path = _brain_dataset()
+    existing = _load_existing(dataset_path)
+
+    conn = sqlite3.connect(str(db_path))
+    conn.row_factory = sqlite3.Row
+
+    new_records = 0
+    for sid, title, started_at in _sessions(conn, False, None):
+        msg_rows = _messages(conn, sid)
+        messages = [dict(r) for r in msg_rows]
+        if not messages:
+            continue
+        record = _build_trajectory(sid, title, messages)
+        if record["_fingerprint"] in existing:
+            continue
+        with open(dataset_path, "a", encoding="utf-8") as f:
+            f.write(json.dumps(record, ensure_ascii=False) + "\n")
+        new_records += 1
+        existing.add(record["_fingerprint"])
+
+    conn.close()
+    return new_records
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Export session trajectories to the brain dataset.")
     parser.add_argument("--latest", action="store_true", help="Only the most recent session")
     parser.add_argument("--session", help="A specific session ID")
     parser.add_argument("--dry-run", action="store_true", help="Preview without writing")
+    parser.add_argument("--watch", action="store_true", help="Watch mode: poll DB every 60s for new sessions")
     args = parser.parse_args()
+
+    if args.watch:
+        return _watch_loop()
 
     db_path = _state_db()
     if not db_path.exists():
