@@ -210,7 +210,7 @@ def _cmd_meshlearn(args) -> int:
     store = core.IdentityStore()
     if act == "auto":
         # Autonomous self-learning loop (no distill callback -> deterministic)
-        mem = _pl.Path(args.memory or _pl.home()/".openamer"/"MEMORY-official-mesh.md")
+        mem = _pl.Path(args.memory or _pl.Path.home() / ".openamer" / "MEMORY-official-mesh.md")
         src = args.text or ""
         if not src:
             print("Usage: openamer a2a meshlearn auto \"<lesson text>\" [--topic t]")
