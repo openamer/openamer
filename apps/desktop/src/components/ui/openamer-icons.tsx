@@ -7,9 +7,10 @@
  * Tabler `Icon` type used throughout the app.
  */
 
-import * as React from 'react'
-import { cn } from '@/lib/utils'
 import type { Icon as IconComponent } from '@tabler/icons-react'
+import * as React from 'react'
+
+import { cn } from '@/lib/utils'
 
 function s(size?: string | number): number {
   return typeof size === 'number' ? size : 24
@@ -20,19 +21,22 @@ function toTablerIcon(
 ): IconComponent {
   const Icon: IconComponent = ({ className, size }: any) => {
     const n = s(size)
+
     return (
       <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width={n} height={n} viewBox="0 0 24 24"
-        fill="none" stroke="currentColor" strokeWidth="1.5"
-        strokeLinecap="round" strokeLinejoin="round"
         className={cn(className)}
+        fill="none" height={n} stroke="currentColor"
+        strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5"
+        viewBox="0 0 24 24" width={n}
+        xmlns="http://www.w3.org/2000/svg"
       >
         {render(n)}
       </svg>
     )
   }
+
   Icon.displayName = 'OaIcon'
+
   return Icon
 }
 
@@ -41,7 +45,7 @@ export const OaChat: IconComponent = toTablerIcon(n => (
   <>
     <path d="M21 12a9 9 0 1 0-8.5 9" />
     <path d="M12 7a5 5 0 0 0-4.5 5 5 5 0 0 0 4.5 5" />
-    <circle cx="12" cy="12" r="2" fill="currentColor" />
+    <circle cx="12" cy="12" fill="currentColor" r="2" />
     <path d="M17 17l3 3" />
     <path d="M20 17l-3 3" />
   </>
@@ -54,11 +58,11 @@ export const OaSkills: IconComponent = toTablerIcon(n => (
     <circle cx="6" cy="12" r="2" />
     <circle cx="18" cy="12" r="2" />
     <circle cx="12" cy="18" r="2" />
-    <line x1="10" y1="7" x2="7" y2="11" />
-    <line x1="14" y1="7" x2="17" y2="11" />
-    <line x1="7" y1="13" x2="10" y2="17" />
-    <line x1="17" y1="13" x2="14" y2="17" />
-    <circle cx="12" cy="12" r="1" fill="currentColor" />
+    <line x1="10" x2="7" y1="7" y2="11" />
+    <line x1="14" x2="17" y1="7" y2="11" />
+    <line x1="7" x2="10" y1="13" y2="17" />
+    <line x1="17" x2="14" y1="13" y2="17" />
+    <circle cx="12" cy="12" fill="currentColor" r="1" />
   </>
 ))
 
@@ -67,7 +71,7 @@ export const OaMessage: IconComponent = toTablerIcon(n => (
   <>
     <path d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z" />
     <polyline points="22,7 12,13 2,7" />
-    <circle cx="12" cy="13" r="1" fill="currentColor" />
+    <circle cx="12" cy="13" fill="currentColor" r="1" />
   </>
 ))
 
@@ -76,7 +80,7 @@ export const OaSettings: IconComponent = toTablerIcon(n => (
   <>
     <circle cx="12" cy="12" r="3" />
     <circle cx="12" cy="12" r="7" strokeDasharray="2 3" />
-    <circle cx="12" cy="12" r="1.5" fill="currentColor" />
+    <circle cx="12" cy="12" fill="currentColor" r="1.5" />
   </>
 ))
 
@@ -85,7 +89,7 @@ export const OaSend: IconComponent = toTablerIcon(n => (
   <>
     <path d="M3 12h14" />
     <path d="M12 5l7 7-7 7" />
-    <circle cx="4" cy="12" r="1" fill="currentColor" />
+    <circle cx="4" cy="12" fill="currentColor" r="1" />
   </>
 ))
 
@@ -94,7 +98,7 @@ export const OaSearch: IconComponent = toTablerIcon(n => (
   <>
     <circle cx="11" cy="11" r="5" />
     <path d="M20 20l-4.5-4.5" />
-    <circle cx="11" cy="11" r="2" fill="currentColor" />
+    <circle cx="11" cy="11" fill="currentColor" r="2" />
   </>
 ))
 
@@ -108,7 +112,7 @@ export const OaAttach: IconComponent = toTablerIcon(n => (
 // ── Mic ────────────────────────────────────────────────────────
 export const OaMic: IconComponent = toTablerIcon(n => (
   <>
-    <rect x="9" y="2" width="6" height="11" rx="3" />
+    <rect height="11" rx="3" width="6" x="9" y="2" />
     <path d="M5 12a7 7 0 0 0 14 0" />
     <path d="M12 19v3" />
   </>
@@ -118,18 +122,18 @@ export const OaMic: IconComponent = toTablerIcon(n => (
 export const OaPin: IconComponent = toTablerIcon(n => (
   <>
     <circle cx="12" cy="12" r="8" />
-    <circle cx="12" cy="12" r="3" fill="currentColor" />
-    <line x1="12" y1="4" x2="12" y2="2" />
-    <line x1="12" y1="22" x2="12" y2="20" />
+    <circle cx="12" cy="12" fill="currentColor" r="3" />
+    <line x1="12" x2="12" y1="4" y2="2" />
+    <line x1="12" x2="12" y1="22" y2="20" />
   </>
 ))
 
 // ── More / Dots ────────────────────────────────────────────────
 export const OaMore: IconComponent = toTablerIcon(n => (
   <>
-    <circle cx="12" cy="5" r="1.5" fill="currentColor" />
-    <circle cx="12" cy="12" r="1.5" fill="currentColor" />
-    <circle cx="12" cy="19" r="1.5" fill="currentColor" />
+    <circle cx="12" cy="5" fill="currentColor" r="1.5" />
+    <circle cx="12" cy="12" fill="currentColor" r="1.5" />
+    <circle cx="12" cy="19" fill="currentColor" r="1.5" />
   </>
 ))
 
@@ -137,8 +141,8 @@ export const OaMore: IconComponent = toTablerIcon(n => (
 export const OaClose: IconComponent = toTablerIcon(n => (
   <>
     <circle cx="12" cy="12" r="8" />
-    <line x1="9" y1="9" x2="15" y2="15" />
-    <line x1="15" y1="9" x2="9" y2="15" />
+    <line x1="9" x2="15" y1="9" y2="15" />
+    <line x1="15" x2="9" y1="9" y2="15" />
   </>
 ))
 
@@ -146,8 +150,8 @@ export const OaClose: IconComponent = toTablerIcon(n => (
 export const OaPlus: IconComponent = toTablerIcon(n => (
   <>
     <circle cx="12" cy="12" r="8" />
-    <line x1="12" y1="8" x2="12" y2="16" />
-    <line x1="8" y1="12" x2="16" y2="12" />
+    <line x1="12" x2="12" y1="8" y2="16" />
+    <line x1="8" x2="16" y1="12" y2="12" />
   </>
 ))
 

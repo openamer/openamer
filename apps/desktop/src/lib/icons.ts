@@ -98,11 +98,9 @@ import {
   IconZoomIn as ZoomIn,
   IconZoomOut as ZoomOut
 } from '@tabler/icons-react'
+
 import {
   OaAttach as Attach,
-  OaChat as MessageCircle,
-  OaChat as MessageQuestion,
-  OaChat as MessageSquareText,
   OaCheck as CheckCircle,
   OaChevronDown as ChevronDown,
   OaChevronDown as ChevronDownIcon,
@@ -110,8 +108,9 @@ import {
   OaChevronLeft as ChevronLeftIcon,
   OaChevronRight as ChevronRight,
   OaChevronRight as ChevronRightIcon,
-  OaClose as X,
-  OaClose as XIcon,
+  OaChat as MessageCircle,
+  OaChat as MessageQuestion,
+  OaChat as MessageSquareText,
   OaMic as Mic,
   OaMore as MoreHorizontal,
   OaMore as MoreHorizontalIcon,
@@ -121,6 +120,8 @@ import {
   OaSearch as SearchIcon,
   OaSend as Send,
   OaSettings as Settings,
+  OaClose as X,
+  OaClose as XIcon,
 } from '@/components/ui/openamer-icons'
 
 export {
