@@ -15139,6 +15139,14 @@ def main():
     if _try_termux_fast_cli_launch():
         return
 
+    # Start the session-to-brain background daemon.  This polls the state DB
+    # every 60s and exports closed sessions as training trajectories — no
+    # user action, no Cron job, no Gateway required.  Non-fatal: if the
+    # script is missing or fails, the rest of OpenAmer works fine.
+    from openamer_cli.session_to_brain_daemon import spawn as _spawn_session_to_brain
+
+    _spawn_session_to_brain()
+
     from openamer_cli._parser import build_top_level_parser
 
     parser, subparsers, chat_parser = build_top_level_parser()
