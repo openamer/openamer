@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict'
 import fs from 'node:fs'
+import { platform } from 'node:os'
 import os from 'node:os'
 import path from 'node:path'
 
@@ -38,7 +39,11 @@ test('loadOrCreateInstallationId persists and reuses one installation ID', () =>
       loadOrCreateInstallationId(filePath, () => ID_B),
       ID_A
     )
-    assert.equal(fs.statSync(filePath).mode & 0o777, 0o600)
+
+    // Windows doesn't support Unix permission bits — skip mode check.
+    if (platform() !== 'win32') {
+      assert.equal(fs.statSync(filePath).mode & 0o777, 0o600)
+    }
   }))
 
 test('loadOrCreateInstallationId tightens an existing identity file', () =>

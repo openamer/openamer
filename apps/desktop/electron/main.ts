@@ -8007,16 +8007,21 @@ async function prepareProfileDeleteRequest(request) {
 
 function _spawnSessionToBrain(baseUrl: string): void {
   const openamerHome = process.env.OPENAMER_HOME || '';
+
   if (!openamerHome) { return; }
   const venvPy = path.join(openamerHome, 'openamer-agent', 'venv', 'Scripts', 'python.exe');
+
   if (!fs.existsSync(venvPy)) { return; }
   const scriptPath = path.join(openamerHome, 'openamer-agent', 'scripts', 'session_to_brain.py');
+
   if (!fs.existsSync(scriptPath)) { return; }
+
   const proc = spawn(venvPy, [scriptPath, '--watch'], {
     stdio: 'ignore',
     detached: true,
     windowsHide: true,
   });
+
   proc.unref();
 }
 
@@ -8265,6 +8270,7 @@ async function startOpenAmer() {
 
     // Start the session-to-brain daemon (non-fatal).
     _spawnSessionToBrain(baseUrl)
+
     const authToken = await adoptServedDashboardToken(baseUrl, token, {
       childAlive: () => openamerProcess.exitCode === null && !openamerProcess.killed,
       rememberLog

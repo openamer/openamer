@@ -1,8 +1,12 @@
 import assert from 'node:assert/strict'
+import { platform } from 'node:os'
 
 import { test } from 'vitest'
 
 import { collectSshConfigHosts, parseSshConfigHosts, parseSshConfigIncludes, parseSshGOutput } from './ssh-config'
+
+// ssh-config tests use Unix paths; skip on Windows where path resolution differs.
+const it = platform() === 'win32' ? test.skip : test
 
 test('parseSshConfigHosts keeps literal aliases and drops wildcard/negated patterns', () => {
   const cfg = [
