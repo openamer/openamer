@@ -20,12 +20,12 @@ def test_state_db_not_found(tmp_path, monkeypatch):
     assert rc == 1
 
 
-def test_brain_dataset_writes_to_dot_openamer(monkeypatch):
-    """The brain dataset path must be ~/.openamer/a2a/openamer-brain.jsonl."""
+def test_brain_dataset_writes_to_trajectories_dir(monkeypatch):
+    """The brain dataset path must be ~/.openamer/trajectories/openamer-brain-trajectories.jsonl."""
     ds = stb._brain_dataset()
-    assert ".openamer" in str(ds)
-    assert ds.name == "openamer-brain.jsonl"
-    assert ds.parent.name == "a2a"
+    assert "trajectories" in str(ds)
+    assert ds.name == "openamer-brain-trajectories.jsonl"
+    assert ds.parent.name == "trajectories"
 
 
 def test_build_trajectory_fingerprint():

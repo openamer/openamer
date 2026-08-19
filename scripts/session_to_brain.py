@@ -33,11 +33,12 @@ def _state_db() -> Path:
 
 
 def _brain_dataset() -> Path:
-    # The brain dataset lives under the user's OpenAmer data dir, matching
-    # where `openamer a2a brain collect` writes — not OPENAMER_HOME.
-    data_dir = Path.home() / ".openamer" / "a2a"
+    # The brain dataset lives under the user's trajectories dir, where
+    # `openamer a2a brain collect` already looks for filenames containing
+    # "traject" (see openamer_cli/subcommands/a2a.py line 297).
+    data_dir = Path.home() / ".openamer" / "trajectories"
     data_dir.mkdir(parents=True, exist_ok=True)
-    return data_dir / "openamer-brain.jsonl"
+    return data_dir / "openamer-brain-trajectories.jsonl"
 
 
 def _load_existing(path: Path) -> set[str]:
