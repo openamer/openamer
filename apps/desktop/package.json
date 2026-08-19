@@ -2,7 +2,7 @@
   "name": "openamer",
   "productName": "OpenAmer",
   "private": true,
-  "version": "2026.08.18",
+  "version": "2026.08.19",
   "description": "Native desktop shell for OpenAmer Agent.",
   "author": "OpenAmer",
   "type": "module",

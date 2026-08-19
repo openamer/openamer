@@ -2457,7 +2457,7 @@ wheels = [
 
 [[package]]
 name = "openamer-agent"
-version = "2026.8.18"
+version = "2026.8.19"
 source = { editable = "." }
 dependencies = [
     { name = "certifi" },
