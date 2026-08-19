@@ -101,7 +101,8 @@ def main() -> int:
     args = parser.parse_args()
 
     target = _resolve_target(args.path)
-    original = target.read_text(encoding="utf-8")
+    # Preserve exact bytes (CRLF vs LF) so rollback is byte-identical.
+    original = target.read_bytes()
     backup = target.with_suffix(target.suffix + ".bak")
 
     # Determine the new content.
@@ -109,7 +110,7 @@ def main() -> int:
         patch_path = Path(args.patch).expanduser()
         if not patch_path.exists():
             raise SystemExit(f"patch file not found: {args.patch}")
-        backup.write_text(original, encoding="utf-8")
+        backup.write_bytes(original)
         try:
             r = subprocess.run(
                 ["git", "apply", str(patch_path)],
@@ -130,14 +131,14 @@ def main() -> int:
             new_content = Path(args.new_content_file).expanduser().read_text(encoding="utf-8")
         else:
             raise SystemExit("provide new_content_file, --content, or --patch")
-        backup.write_text(original, encoding="utf-8")
+        backup.write_bytes(original)
         target.write_text(new_content, encoding="utf-8")
 
     # Syntax gate first (always on, catches broken Python immediately and
     # cheaply, before spending time on the test suite).
     ok, err = _syntax_check(target)
     if not ok:
-        target.write_text(original, encoding="utf-8")
+        target.write_bytes(original)
         backup.unlink(missing_ok=True)
         print(f"✗ change rejected ({err}, rolled back)")
         return 1
@@ -146,7 +147,7 @@ def main() -> int:
     ok, tail = _run_tests(args.tests)
     if not ok:
         # Rollback.
-        target.write_text(original, encoding="utf-8")
+        target.write_bytes(original)
         backup.unlink(missing_ok=True)
         print(f"✗ change rejected (tests failed, rolled back):\n{tail[-800:]}")
         return 1
