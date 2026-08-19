@@ -218,7 +218,7 @@ export const de: Translations = {
     conflictWith: label => `Auch belegt mit „${label}”`,
     categories: {
       composer: 'Composer',
-      profiles: 'Profile',
+      profiles: 'Profil',
       session: 'Sitzung',
       navigation: 'Navigation',
       view: 'Ansicht'
@@ -330,7 +330,7 @@ export const de: Translations = {
       gateway: 'Gateway',
       apiKeys: 'Tools & Schlüssel',
       keybinds: 'Tastaturkürzel',
-      keysTools: 'Tools',
+      keysTools: 'Werkzeuge',
       keysSettings: 'Einstellungen',
       mcp: 'MCP',
       archivedChats: 'Archivierte Chats',
@@ -944,7 +944,7 @@ export const de: Translations = {
 
   skills: {
     tabSkills: 'Fähigkeiten',
-    tabToolsets: 'Tools',
+    tabToolsets: 'Werkzeuge',
     tabMcp: 'MCP',
     tabHub: 'Hub durchsuchen',
     all: 'Alle',
@@ -1193,7 +1193,7 @@ export const de: Translations = {
       newChat: { title: 'Neue Sitzung', detail: 'Eine neue Sitzung starten' },
       settings: { title: 'Einstellungen', detail: 'OpenAmer Desktop konfigurieren' },
       skills: { title: 'Fähigkeiten', detail: 'Fähigkeiten, Tools und MCP-Server' },
-      messaging: { title: 'Messaging', detail: 'Telegram, Slack, Discord und mehr einrichten' },
+      messaging: { title: 'Nachrichten', detail: 'Telegram, Slack, Discord und mehr einrichten' },
       artifacts: { title: 'Artefakte', detail: 'Generierte Ausgaben durchsuchen' }
     },
     sectionEntries: {
@@ -1493,8 +1493,8 @@ export const de: Translations = {
   profiles: {
     close: 'Profile schließen',
     nameHint: 'Kleinbuchstaben, Ziffern, Bindestriche und Unterstriche. Muss mit einem Buchstaben oder einer Ziffer beginnen.',
-    title: 'Profile',
-    count: count => `${count} ${count === 1 ? 'Profil' : 'Profile'}`,
+    title: 'Profil',
+    count: count => `${count} ${count === 1 ? 'Profil' : 'Profil'}`,
     search: 'Profile durchsuchen...',
     loading: 'Lade Profile...',
     newProfile: 'Neues Profil',
@@ -1712,13 +1712,13 @@ export const de: Translations = {
     tabAll: 'Alle',
     tabImages: 'Bilder',
     tabFiles: 'Dateien',
-    tabLinks: 'Links',
+    tabLinks: 'Verknüpfungen',
     noArtifactsTitle: 'Keine Artefakte gefunden',
     noArtifactsDesc: 'Generierte Bilder und Dateiausgaben werden hier angezeigt, sobald Sitzungen sie produzieren.',
     failedLoad: 'Artefakte konnten nicht geladen werden',
     openFailed: 'Öffnen fehlgeschlagen',
     itemsImage: 'Bilder',
-    itemsLink: 'Links',
+    itemsLink: 'Verknüpfungen',
     itemsFile: 'Dateien',
     itemsGeneric: 'Elemente',
     zero: '0',
@@ -1743,7 +1743,7 @@ export const de: Translations = {
     nav: {
       'new-session': 'Neue Sitzung',
       skills: 'Fähigkeiten',
-      messaging: 'Messaging',
+      messaging: 'Nachrichten',
       artifacts: 'Artefakte'
     },
     searchAria: 'Sitzungen durchsuchen',
@@ -1913,7 +1913,7 @@ export const de: Translations = {
     muteMic: 'Mikrofon stummschalten',
     unmuteMic: 'Mikrofon stummschalten aufheben',
     stopListening: 'Zuhören beenden und senden',
-    stopShort: 'Stop',
+    stopShort: 'Stopp',
     endConversation: 'Sprachkonversation beenden',
     endShort: 'Beenden',
     stopDictation: 'Diktat beenden',
@@ -2045,7 +2045,7 @@ export const de: Translations = {
       notRepo: 'Kein Git-Repository',
       noDiff: 'Kein Diff anzuzeigen',
       scopeUncommitted: 'Nicht abgeschlossen',
-      scopeBranch: 'Branch',
+      scopeBranch: 'Zweig',
       scopeLastTurn: 'Letzter Durchlauf',
       commit: 'Committen',
       commitAndPush: 'Committen & Pushen',
@@ -2062,7 +2062,7 @@ export const de: Translations = {
       branchOffFrom: base => `Neuer Branch von ${base}`,
       switchTo: branch => `Zu ${branch} wechseln`,
       switchFailed: branch => `Zu ${branch} konnte nicht gewechselt werden`,
-      worktrees: 'Worktrees'
+      worktrees: 'Arbeitsbäume'
     }
   },
 
@@ -2576,7 +2576,7 @@ export const de: Translations = {
     move: dir => `Nach ${dir} verschieben`,
     dirUp: 'oben',
     dirDown: 'unten',
-    dirLeft: 'links',
+    dirLeft: 'Links',
     dirRight: 'rechts',
     pluginDisabled: pluginId => `Plugin „${pluginId}” deaktiviert`,
     pluginDisabledBody: 'Reaktiviere es in Einstellungen → Plugins, um den Bereich zurückzubringen.',
