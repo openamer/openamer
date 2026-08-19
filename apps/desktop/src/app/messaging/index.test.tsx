@@ -75,7 +75,7 @@ describe('MessagingView setup-guide link', () => {
 
       await renderMessaging()
 
-      expect((await screen.findAllByText('Microsoft Teams', {}, { timeout: 5000 })).length).toBeGreaterThan(0)
+      expect((await screen.findAllByText('Microsoft Teams')).length).toBeGreaterThan(0)
       expect(screen.queryByText('Open setup guide')).toBeNull()
     })
 
