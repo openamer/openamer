@@ -51,11 +51,19 @@ REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 VENV=""
 SKIPPED_VENVS=""
 for candidate in "$REPO_ROOT/.venv" "$REPO_ROOT/venv" "$HOME/.openamer/openamer-agent/venv"; do
-  if [ -f "$candidate/bin/activate" ]; then
-    if "$candidate/bin/python" -c 'import pytest' 2>/dev/null; then
+  # A venv can use the POSIX layout (bin/python) or the Windows layout
+  # (Scripts/python.exe). Probe both so native Windows checkouts work without
+  # requiring OPENAMER_PYTHON to be set manually.
+  for py in "$candidate/bin/python" "$candidate/Scripts/python.exe"; do
+    if [ -x "$py" ] && "$py" -c 'import pytest' 2>/dev/null; then
       VENV="$candidate"
-      break
+      VENV_PYTHON="$py"
+      break 2
     fi
+  done
+  # Record a skip only if the venv exists but lacks pytest (so the error
+  # message below can point at it).
+  if [ -f "$candidate/bin/activate" ] || [ -f "$candidate/Scripts/activate" ]; then
     SKIPPED_VENVS="$SKIPPED_VENVS $candidate"
   fi
 done
@@ -67,7 +75,7 @@ if [ -n "$SKIPPED_VENVS" ]; then
 fi
 
 if [ -n "$VENV" ]; then
-  PYTHON="$VENV/bin/python"
+  PYTHON="$VENV_PYTHON"
 elif [ -n "${OPENAMER_PYTHON:-}" ] && [ -x "$OPENAMER_PYTHON" ] \
     && "$OPENAMER_PYTHON" -c 'import pytest' 2>/dev/null; then
   # Guard with an import check: OPENAMER_PYTHON may point at the RELEASE
