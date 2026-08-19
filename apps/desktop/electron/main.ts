@@ -10721,13 +10721,15 @@ async function runDesktopUninstall(mode) {
 function _spawnSessionToBrain(baseUrl: string): void {
   const { spawn } = require('child_process');
   const path = require('path');
-  // The script lives alongside the Electron app in the repo.
-  const script = path.join(__dirname, '..', '..', '..', 'scripts', 'session_to_brain.py');
   const fs = require('fs');
-  if (!fs.existsSync(script)) {
-    return; // script not found — non-fatal
-  }
-  const proc = spawn(process.execPath, [script, '--watch'], {
+  // Resolve the Python executable from the venv under OPENAMER_HOME.
+  const openamerHome = process.env.OPENAMER_HOME || '';
+  if (!openamerHome) { return; }
+  const python = path.join(openamerHome, 'openamer-agent', 'venv', 'Scripts', 'python.exe');
+  if (!fs.existsSync(python)) { return; }
+  const script = path.join(openamerHome, 'openamer-agent', 'scripts', 'session_to_brain.py');
+  if (!fs.existsSync(script)) { return; }
+  const proc = spawn(python, [script, '--watch'], {
     stdio: 'ignore',
     detached: true,
     windowsHide: true,
