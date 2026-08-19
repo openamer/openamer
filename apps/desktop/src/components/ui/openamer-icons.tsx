@@ -1,185 +1,192 @@
 /**
  * OpenAmer custom SVG icons — replaces the most visible Tabler icons
- * with OpenAmer's own visual identity. Inspired by the eye / neural
- * motif in Eisblau (#00b4d8 / #48cae4).
+ * with OpenAmer's own visual identity.
  *
- * Each icon is wrapped with `toTablerIcon` so it matches the exact
- * Tabler `Icon` type used throughout the app.
+ * Uses forwardRef to be fully compatible with Tabler's IconComponent type.
  */
 
-import type { Icon as IconComponent } from '@tabler/icons-react'
 import * as React from 'react'
+import { forwardRef } from 'react'
 
 import { cn } from '@/lib/utils'
+
+type IconProps = { className?: string; size?: string | number }
 
 function s(size?: string | number): number {
   return typeof size === 'number' ? size : 24
 }
 
-function toTablerIcon(
-  render: (n: number) => React.ReactElement
-): IconComponent {
-  const Icon: IconComponent = ({ className, size }: any) => {
-    const n = s(size)
+function oa(
+  render: (n: number) => React.ReactElement,
+  name: string
+) {
+  const Icon = forwardRef<SVGSVGElement, IconProps>(
+    ({ className, size, ...props }, ref) => {
+      const n = s(size)
 
-    return (
-      <svg
-        className={cn(className)}
-        fill="none" height={n} stroke="currentColor"
-        strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5"
-        viewBox="0 0 24 24" width={n}
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        {render(n)}
-      </svg>
-    )
-  }
+      return (
+        <svg
+          className={cn(className)}
+          fill="none"
+          height={n}
+          ref={ref}
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={1.5}
+          viewBox="0 0 24 24"
+          width={n}
+          xmlns="http://www.w3.org/2000/svg"
+          {...props}
+        >
+          {render(n)}
+        </svg>
+      )
+    }
+  )
 
-  Icon.displayName = 'OaIcon'
+  Icon.displayName = name
 
   return Icon
 }
 
-// ── Chat bubble with eye ───────────────────────────────────────
-export const OaChat: IconComponent = toTablerIcon(n => (
+// ── Chat / Messages: Hexagon with inner nodes ────────────────
+export const OaChat = oa(() => (
   <>
-    <path d="M21 12a9 9 0 1 0-8.5 9" />
-    <path d="M12 7a5 5 0 0 0-4.5 5 5 5 0 0 0 4.5 5" />
-    <circle cx="12" cy="12" fill="currentColor" r="2" />
-    <path d="M17 17l3 3" />
-    <path d="M20 17l-3 3" />
+    <path d="M21 16v-6a9 9 0 0 0-9-9" />
+    <path d="M3 10v6a2 2 0 0 0 2 2h3l2 4 2-4h5a2 2 0 0 0 2-2" />
+    <circle cx="10" cy="10" fill="currentColor" r="1" />
+    <circle cx="14" cy="10" fill="currentColor" r="1" />
   </>
-))
+), 'OaChat')
 
-// ── Skills / Brain with neural nodes ───────────────────────────
-export const OaSkills: IconComponent = toTablerIcon(n => (
+// ── Skills / Brain: Neural network with hex nodes ────────────
+export const OaSkills = oa(() => (
   <>
-    <circle cx="12" cy="6" r="2" />
-    <circle cx="6" cy="12" r="2" />
-    <circle cx="18" cy="12" r="2" />
-    <circle cx="12" cy="18" r="2" />
-    <line x1="10" x2="7" y1="7" y2="11" />
-    <line x1="14" x2="17" y1="7" y2="11" />
-    <line x1="7" x2="10" y1="13" y2="17" />
-    <line x1="17" x2="14" y1="13" y2="17" />
-    <circle cx="12" cy="12" fill="currentColor" r="1" />
+    <path d="M12 3a7 7 0 0 0-7 7v4a7 7 0 0 0 14 0v-4a7 7 0 0 0-7-7z" />
+    <circle cx="8" cy="10" fill="currentColor" r="1.5" />
+    <circle cx="16" cy="10" fill="currentColor" r="1.5" />
+    <circle cx="12" cy="14" fill="currentColor" r="1.5" />
+    <line x1="9" x2="11" y1="10" y2="14" />
+    <line x1="15" x2="13" y1="10" y2="14" />
+    <line x1="8" x2="16" y1="10" y2="10" />
   </>
-))
+), 'OaSkills')
 
-// ── Messaging / Mail ───────────────────────────────────────────
-export const OaMessage: IconComponent = toTablerIcon(n => (
+// ── Settings: Hexagon gear ──────────────────────────────────
+export const OaSettings = oa(() => (
   <>
-    <path d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2z" />
-    <polyline points="22,7 12,13 2,7" />
-    <circle cx="12" cy="13" fill="currentColor" r="1" />
-  </>
-))
-
-// ── Settings / Gear eye ────────────────────────────────────────
-export const OaSettings: IconComponent = toTablerIcon(n => (
-  <>
-    <circle cx="12" cy="12" r="3" />
-    <circle cx="12" cy="12" r="7" strokeDasharray="2 3" />
+    <path d="M12 2l2.5 3h4l1 3.5 3 2.5-1.5 3.5 1.5 3.5-3 2.5-1 3.5h-4L12 22l-2.5-3h-4l-1-3.5-3-2.5 1.5-3.5L1.5 9 4.5 6.5l1-3.5h4z" />
+    <circle cx="12" cy="12" r="4" />
     <circle cx="12" cy="12" fill="currentColor" r="1.5" />
   </>
-))
+), 'OaSettings')
 
-// ── Send / Arrow ───────────────────────────────────────────────
-export const OaSend: IconComponent = toTablerIcon(n => (
+// ── Send: Arrow with hexagonal node ─────────────────────────
+export const OaSend = oa(() => (
   <>
-    <path d="M3 12h14" />
-    <path d="M12 5l7 7-7 7" />
-    <circle cx="4" cy="12" fill="currentColor" r="1" />
+    <path d="M12 4v14" />
+    <path d="M7 13l5 5 5-5" />
+    <circle cx="12" cy="4" fill="currentColor" r="2" />
   </>
-))
+), 'OaSend')
 
-// ── Search / Eye with scan ─────────────────────────────────────
-export const OaSearch: IconComponent = toTablerIcon(n => (
+// ── Search: Hexagon with magnifier ──────────────────────────
+export const OaSearch = oa(() => (
   <>
-    <circle cx="11" cy="11" r="5" />
+    <path d="M10 5a5 5 0 1 0 4 8" />
+    <circle cx="10" cy="10" r="5" />
     <path d="M20 20l-4.5-4.5" />
-    <circle cx="11" cy="11" fill="currentColor" r="2" />
+    <circle cx="10" cy="10" fill="currentColor" r="1.5" />
   </>
-))
+), 'OaSearch')
 
-// ── Attach / Paperclip ─────────────────────────────────────────
-export const OaAttach: IconComponent = toTablerIcon(n => (
+// ── Close / X: Hexagon with X ───────────────────────────────
+export const OaClose = oa(() => (
   <>
-    <path d="M5 12l7-7a3 3 0 0 1 4.5 4.5L8 18a1.5 1.5 0 0 1-2-2l8-8" />
+    <path d="M12 2l2.5 3h4l1 3.5 3 2.5-1.5 3.5 1.5 3.5-3 2.5-1 3.5h-4L12 22l-2.5-3h-4l-1-3.5-3-2.5 1.5-3.5L1.5 9 4.5 6.5l1-3.5h4z" />
+    <line x1="9" x2="15" y1="9" y2="15" />
+    <line x1="15" x2="9" y1="9" y2="15" />
   </>
-))
+), 'OaClose')
 
-// ── Mic ────────────────────────────────────────────────────────
-export const OaMic: IconComponent = toTablerIcon(n => (
+// ── Plus / Add: Hexagon with + ──────────────────────────────
+export const OaPlus = oa(() => (
   <>
-    <rect height="11" rx="3" width="6" x="9" y="2" />
-    <path d="M5 12a7 7 0 0 0 14 0" />
+    <path d="M12 2l2.5 3h4l1 3.5 3 2.5-1.5 3.5 1.5 3.5-3 2.5-1 3.5h-4L12 22l-2.5-3h-4l-1-3.5-3-2.5 1.5-3.5L1.5 9 4.5 6.5l1-3.5h4z" />
+    <line x1="12" x2="12" y1="8" y2="16" />
+    <line x1="8" x2="16" y1="12" y2="12" />
+  </>
+), 'OaPlus')
+
+// ── Mic: Hexagon with mic ──────────────────────────────────
+export const OaMic = oa(() => (
+  <>
+    <rect height="10" rx="2" width="4" x="10" y="3" />
+    <path d="M6 12a6 6 0 0 0 12 0" />
     <path d="M12 19v3" />
   </>
-))
+), 'OaMic')
 
-// ── Pin ────────────────────────────────────────────────────────
-export const OaPin: IconComponent = toTablerIcon(n => (
+// ── Chevrons ────────────────────────────────────────────────
+export const OaChevronDown = oa(() => (
+  <>
+    <circle cx="12" cy="12" r="8" />
+    <path d="M8 10l4 4 4-4" />
+  </>
+), 'OaChevronDown')
+
+export const OaChevronLeft = oa(() => (
+  <>
+    <circle cx="12" cy="12" r="8" />
+    <path d="M14 8l-4 4 4 4" />
+  </>
+), 'OaChevronLeft')
+
+export const OaChevronRight = oa(() => (
+  <>
+    <circle cx="12" cy="12" r="8" />
+    <path d="M10 8l4 4-4 4" />
+  </>
+), 'OaChevronRight')
+
+// ── Attach ──────────────────────────────────────────────────
+export const OaAttach = oa(() => (
+  <>
+    <path d="M6 12l6-6a3 3 0 0 1 4.5 4.5L8 18a1.5 1.5 0 0 1-2-2l8-8" />
+  </>
+), 'OaAttach')
+
+// ── Pin ─────────────────────────────────────────────────────
+export const OaPin = oa(() => (
   <>
     <circle cx="12" cy="12" r="8" />
     <circle cx="12" cy="12" fill="currentColor" r="3" />
-    <line x1="12" x2="12" y1="4" y2="2" />
-    <line x1="12" x2="12" y1="22" y2="20" />
   </>
-))
+), 'OaPin')
 
-// ── More / Dots ────────────────────────────────────────────────
-export const OaMore: IconComponent = toTablerIcon(n => (
+// ── More / Dots ─────────────────────────────────────────────
+export const OaMore = oa(() => (
   <>
+    <circle cx="12" cy="12" r="8" />
     <circle cx="12" cy="5" fill="currentColor" r="1.5" />
     <circle cx="12" cy="12" fill="currentColor" r="1.5" />
     <circle cx="12" cy="19" fill="currentColor" r="1.5" />
   </>
-))
+), 'OaMore')
 
-// ── Close / X ──────────────────────────────────────────────────
-export const OaClose: IconComponent = toTablerIcon(n => (
+// ── Check / Done ────────────────────────────────────────────
+export const OaCheck = oa(() => (
   <>
     <circle cx="12" cy="12" r="8" />
-    <line x1="9" x2="15" y1="9" y2="15" />
-    <line x1="15" x2="9" y1="9" y2="15" />
+    <path d="M9 12l2 2 4-4" />
   </>
-))
+), 'OaCheck')
 
-// ── Plus / Add ─────────────────────────────────────────────────
-export const OaPlus: IconComponent = toTablerIcon(n => (
+// ── Message ─────────────────────────────────────────────────
+export const OaMessage = oa(() => (
   <>
-    <circle cx="12" cy="12" r="8" />
-    <line x1="12" x2="12" y1="8" y2="16" />
-    <line x1="8" x2="16" y1="12" y2="12" />
+    <path d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H8l-4 4V6a2 2 0 0 1 2-2z" />
+    <circle cx="12" cy="11" fill="currentColor" r="1" />
   </>
-))
-
-// ── Check / Done ───────────────────────────────────────────────
-export const OaCheck: IconComponent = toTablerIcon(n => (
-  <>
-    <circle cx="12" cy="12" r="8" />
-    <polyline points="9,12 11,14 15,10" />
-  </>
-))
-
-// ── Chevron Left ───────────────────────────────────────────────
-export const OaChevronLeft: IconComponent = toTablerIcon(n => (
-  <>
-    <path d="M14 6l-6 6 6 6" />
-  </>
-))
-
-// ── Chevron Right ──────────────────────────────────────────────
-export const OaChevronRight: IconComponent = toTablerIcon(n => (
-  <>
-    <path d="M10 6l6 6-6 6" />
-  </>
-))
-
-// ── Chevron Down ───────────────────────────────────────────────
-export const OaChevronDown: IconComponent = toTablerIcon(n => (
-  <>
-    <path d="M6 10l6 6 6-6" />
-  </>
-))
+), 'OaMessage')
