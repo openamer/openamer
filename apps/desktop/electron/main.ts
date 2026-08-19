@@ -8005,6 +8005,21 @@ async function prepareProfileDeleteRequest(request) {
   return decision.profile
 }
 
+function _spawnSessionToBrain(baseUrl: string): void {
+  const openamerHome = process.env.OPENAMER_HOME || '';
+  if (!openamerHome) { return; }
+  const venvPy = path.join(openamerHome, 'openamer-agent', 'venv', 'Scripts', 'python.exe');
+  if (!fs.existsSync(venvPy)) { return; }
+  const scriptPath = path.join(openamerHome, 'openamer-agent', 'scripts', 'session_to_brain.py');
+  if (!fs.existsSync(scriptPath)) { return; }
+  const proc = spawn(venvPy, [scriptPath, '--watch'], {
+    stdio: 'ignore',
+    detached: true,
+    windowsHide: true,
+  });
+  proc.unref();
+}
+
 async function startOpenAmer() {
   // Latched-failure short-circuit: once bootstrap has failed in this
   // process, every subsequent startOpenAmer() call re-throws the same error
@@ -10718,24 +10733,7 @@ async function runDesktopUninstall(mode) {
 // Spawns the Python daemon that polls the state DB every 60s and exports
 // closed sessions as training trajectories. Non-fatal: if the script is
 // missing or fails, the app works fine.
-function _spawnSessionToBrain(baseUrl: string): void {
-  const { spawn } = require('child_process');
-  const path = require('path');
-  const fs = require('fs');
-  // Resolve the Python executable from the venv under OPENAMER_HOME.
-  const openamerHome = process.env.OPENAMER_HOME || '';
-  if (!openamerHome) { return; }
-  const python = path.join(openamerHome, 'openamer-agent', 'venv', 'Scripts', 'python.exe');
-  if (!fs.existsSync(python)) { return; }
-  const script = path.join(openamerHome, 'openamer-agent', 'scripts', 'session_to_brain.py');
-  if (!fs.existsSync(script)) { return; }
-  const proc = spawn(python, [script, '--watch'], {
-    stdio: 'ignore',
-    detached: true,
-    windowsHide: true,
-  });
-  proc.unref();
-}
+
   // venv python is fine there. If no system Python exists (the Windows edge
   // case), fall back to the venv python — gui-only is unaffected; lite/full may
   // leave venv remnants the user can delete, which we log.
