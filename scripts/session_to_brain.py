@@ -33,12 +33,19 @@ def _state_db() -> Path:
 
 
 def _brain_dataset() -> Path:
-    # The brain dataset lives under the user's trajectories dir, where
-    # `openamer a2a brain collect` already looks for filenames containing
-    # "traject" (see openamer_cli/subcommands/a2a.py line 297).
-    data_dir = Path.home() / ".openamer" / "trajectories"
+    """Return the canonical brain dataset path.
+
+    The daemon writes directly into ``~/.openamer/a2a/openamer-brain.jsonl``,
+    the same file that ``openamer a2a brain collect`` reads and writes.  This
+    means the brain dataset is kept up-to-date in real time — no separate cron
+    job or manual ``brain collect`` step is needed for new installations.
+
+    ``openamer a2a brain collect`` also looks inside ``~/.openamer/trajectories/``
+    for fallback data, so the old path is still honoured during a transition.
+    """
+    data_dir = Path.home() / ".openamer" / "a2a"
     data_dir.mkdir(parents=True, exist_ok=True)
-    return data_dir / "openamer-brain-trajectories.jsonl"
+    return data_dir / "openamer-brain.jsonl"
 
 
 def _load_existing(path: Path) -> set[str]:
