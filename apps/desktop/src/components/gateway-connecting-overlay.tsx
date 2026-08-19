@@ -53,8 +53,8 @@ function prefersReducedMotion(): boolean {
 
 function NeuralNetwork() {
   const [tick, setTick] = useState(0)
-  const w = 360
-  const h = 300
+  const w = 600
+  const h = 400
   const cx = (x: number) => x * w
   const cy = (y: number) => y * h
 
@@ -70,10 +70,10 @@ function NeuralNetwork() {
   const pulseProgress = (pulsePhase * CONNECTIONS.length) % 1
 
   return (
-    <svg
-      aria-hidden="true"
-      className="w-[360px] h-[300px]"
-      viewBox={`0 0 ${w} ${h}`}
+      <svg
+        aria-hidden="true"
+        className="w-[600px] h-[400px]"
+        viewBox={`0 0 ${w} ${h}`}
     >
       <defs>
         <linearGradient id="nn-glow" x1="0" x2="1" y1="0" y2="1">
@@ -127,7 +127,31 @@ function NeuralNetwork() {
         )
       })()}
 
-      {NODES.map((node, i) => {
+            {/* OpenAmer eye icon in center */}
+            <g transform={`translate(${w/2}, ${h/2})`}>
+              {/* Outer ring */}
+              <circle
+                cx={0} cy={0} fill="none"
+                r={28} stroke="#00b4d8" strokeOpacity={0.6 + 0.4 * Math.sin(tick * 0.04)}
+                strokeWidth={2}
+                style={{ transition: 'stroke-opacity 0.3s' }}
+              />
+              {/* Inner eye */}
+              <ellipse
+                cx={0} cy={0} fill="#48cae4" fillOpacity={0.3 + 0.2 * Math.sin(tick * 0.03)}
+                rx={18} ry={12}
+                style={{ transition: 'fill-opacity 0.3s' }}
+              />
+              {/* Pupil */}
+              <circle
+                cx={0} cy={0} fill="#90e0ef"
+                filter="url(#nn-glow-filter)"
+                r={5}
+              />
+            </g>
+
+            {/* Nodes */}
+            {NODES.map((node, i) => {
         const isActive = Math.sin(tick * 0.05 + i * 0.7) > 0.3
         const r = isActive ? 4.5 : 3
 
