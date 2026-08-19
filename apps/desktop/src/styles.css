@@ -137,16 +137,16 @@
     color-scheme: light;
 
     --theme-foreground: #17171a;
-    --theme-primary: #0053fd;
-    --theme-secondary: color-mix(in srgb, #0053fd 7%, #ffffff);
-    --theme-accent-soft: color-mix(in srgb, #0053fd 10%, #ffffff);
-    --theme-midground: #0053fd;
-    --theme-warm: #cf806d;
-    --theme-background-seed: #f8faff;
-    --theme-sidebar-seed: #f3f7ff;
+    --theme-primary: #00b4d8;
+    --theme-secondary: color-mix(in srgb, #00b4d8 7%, #ffffff);
+    --theme-accent-soft: color-mix(in srgb, #00b4d8 10%, #ffffff);
+    --theme-midground: #00b4d8;
+    --theme-warm: #f0a88c;
+    --theme-background-seed: #f0f8ff;
+    --theme-sidebar-seed: #e8f4fd;
     --theme-card-seed: #ffffff;
     --theme-elevated-seed: #ffffff;
-    --theme-bubble-seed: color-mix(in srgb, #0053fd 6%, #ffffff);
+    --theme-bubble-seed: color-mix(in srgb, #00b4d8 6%, #ffffff);
     --theme-neutral-chrome: #f3f3f3;
     --theme-neutral-sidebar: #f3f3f3;
     --theme-neutral-card: #fcfcfc;
@@ -178,7 +178,7 @@
     --ui-yellow: #c08532;
     --ui-green: #1f8a65;
     --ui-cyan: #4c7f8c;
-    --ui-blue: #0053fd;
+    --ui-blue: #00b4d8;
     --ui-purple: #9e94d5;
     --context-usage-system: color-mix(in srgb, var(--ui-base) 55%, transparent);
     --context-usage-tools: var(--ui-purple);
@@ -439,6 +439,11 @@
     --ui-red: #e75e78;
     --ui-green: #55a583;
     --ui-cyan: #6f9ba6;
+    --theme-primary: #48cae4;
+    --theme-midground: #48cae4;
+    --theme-secondary: color-mix(in srgb, #48cae4 12%, #1a1a2e);
+    --theme-accent-soft: color-mix(in srgb, #48cae4 15%, #1a1a2e);
+    --theme-bubble-seed: color-mix(in srgb, #48cae4 8%, #1a1a2e);
 
     --sidebar-edge-border: color-mix(in srgb, var(--ui-base) 12%, transparent);
     --composer-ring-strength: 1.3;
