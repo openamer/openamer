@@ -8247,6 +8247,9 @@ async function startOpenAmer() {
     backendReady = true
     backendStartFailure = null
 
+
+    // Start the session-to-brain daemon (non-fatal).
+    _spawnSessionToBrain(baseUrl)
     const authToken = await adoptServedDashboardToken(baseUrl, token, {
       childAlive: () => openamerProcess.exitCode === null && !openamerProcess.killed,
       rememberLog
@@ -10709,6 +10712,28 @@ async function runDesktopUninstall(mode) {
   // rmtree must NOT be driven by the venv's own interpreter — use a system
   // Python with PYTHONPATH=<agentRoot> so `import openamer_cli` resolves from
   // source while the venv is torn down. gui-only doesn't touch the venv, so the
+
+
+// ── Session-to-brain daemon ─────────────────────────────────────────────────
+// Spawns the Python daemon that polls the state DB every 60s and exports
+// closed sessions as training trajectories. Non-fatal: if the script is
+// missing or fails, the app works fine.
+function _spawnSessionToBrain(baseUrl: string): void {
+  const { spawn } = require('child_process');
+  const path = require('path');
+  // The script lives alongside the Electron app in the repo.
+  const script = path.join(__dirname, '..', '..', '..', 'scripts', 'session_to_brain.py');
+  const fs = require('fs');
+  if (!fs.existsSync(script)) {
+    return; // script not found — non-fatal
+  }
+  const proc = spawn(process.execPath, [script, '--watch'], {
+    stdio: 'ignore',
+    detached: true,
+    windowsHide: true,
+  });
+  proc.unref();
+}
   // venv python is fine there. If no system Python exists (the Windows edge
   // case), fall back to the venv python — gui-only is unaffected; lite/full may
   // leave venv remnants the user can delete, which we log.
