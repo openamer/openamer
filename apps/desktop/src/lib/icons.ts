@@ -19,12 +19,6 @@ import {
   IconCheck as Check,
   IconCircleCheck as CheckCircle2,
   IconCheck as CheckIcon,
-  IconChevronDown as ChevronDown,
-  IconChevronDown as ChevronDownIcon,
-  IconChevronLeft as ChevronLeft,
-  IconChevronLeft as ChevronLeftIcon,
-  IconChevronRight as ChevronRight,
-  IconChevronRight as ChevronRightIcon,
   IconCircle as CircleIcon,
   IconCircleLetterA as CircleLetterA,
   IconClipboard as Clipboard,
@@ -58,23 +52,16 @@ import {
   IconLayoutDashboard as LayoutDashboard,
   IconLink as Link,
   IconLink as Link2,
-  IconLink as LinkIcon,
   IconLoader2 as Loader2,
   IconLoader2 as Loader2Icon,
   IconLock as Lock,
   IconLogin as LogIn,
   IconMail as Mail,
   IconMaximize as Maximize,
-  IconMessageCircle as MessageCircle,
-  IconMessageQuestion as MessageQuestion,
-  IconMessage2 as MessageSquareText,
-  IconMicrophone as Mic,
   IconMicrophoneOff as MicOff,
   IconDeviceDesktop as Monitor,
   IconDeviceDesktopAnalytics as MonitorPlay,
   IconMoon as Moon,
-  IconDots as MoreHorizontal,
-  IconDots as MoreHorizontalIcon,
   IconDotsVertical as MoreVertical,
   IconNotebook as NotebookTabs,
   IconPackage as Package,
@@ -86,16 +73,10 @@ import {
   IconPencil as Pencil,
   IconPencil as PencilIcon,
   IconPencil as PencilLine,
-  IconPin as Pin,
   IconPlayerPlay as Play,
-  IconPlus as Plus,
   IconRefresh as RefreshCw,
   IconRefresh as RefreshCwIcon,
   IconDeviceFloppy as Save,
-  IconSearch as Search,
-  IconSearch as SearchIcon,
-  IconSend as Send,
-  IconSettings as Settings,
   IconSettings2 as Settings2,
   IconAdjustmentsHorizontal as SlidersHorizontal,
   IconSquare as Square,
@@ -112,13 +93,35 @@ import {
   IconVolumeOff as VolumeX,
   IconVolumeOff as VolumeXIcon,
   IconTool as Wrench,
-  IconX as X,
-  IconX as XIcon,
   IconBolt as Zap,
   IconBoltFilled as ZapFilled,
   IconZoomIn as ZoomIn,
   IconZoomOut as ZoomOut
 } from '@tabler/icons-react'
+import {
+  OaAttach as Attach,
+  OaChat as MessageCircle,
+  OaChat as MessageQuestion,
+  OaChat as MessageSquareText,
+  OaCheck as CheckCircle,
+  OaChevronDown as ChevronDown,
+  OaChevronDown as ChevronDownIcon,
+  OaChevronLeft as ChevronLeft,
+  OaChevronLeft as ChevronLeftIcon,
+  OaChevronRight as ChevronRight,
+  OaChevronRight as ChevronRightIcon,
+  OaClose as X,
+  OaClose as XIcon,
+  OaMic as Mic,
+  OaMore as MoreHorizontal,
+  OaMore as MoreHorizontalIcon,
+  OaPin as Pin,
+  OaPlus as Plus,
+  OaSearch as Search,
+  OaSearch as SearchIcon,
+  OaSend as Send,
+  OaSettings as Settings,
+} from '@/components/ui/openamer-icons'
 
 export {
   Activity,
@@ -130,6 +133,7 @@ export {
   ArrowUp,
   ArrowUpRight,
   AtSign,
+  Attach,
   AudioLines,
   BarChart3,
   Bell,
@@ -139,6 +143,7 @@ export {
   Brain,
   Bug,
   Check,
+  CheckCircle,
   CheckCircle2,
   CheckIcon,
   ChevronDown,
@@ -180,7 +185,6 @@ export {
   LayoutDashboard,
   Link,
   Link2,
-  LinkIcon,
   Loader2,
   Loader2Icon,
   Lock,
@@ -239,23 +243,28 @@ export {
   Zap,
   ZapFilled,
   ZoomIn,
-  ZoomOut
+  ZoomOut,
 }
 
 export type { Icon as IconComponent } from '@tabler/icons-react'
 
-/**
- * Named icon-size scale — the single source of truth for SVG icon dimensions,
+/** Icon size tokens — maps shorthand names to Tailwind dimension classes,
  * replacing ad-hoc `h-N w-N` / `size={N}`. Use `<Icon className={iconSize.sm} />`
- * (Tailwind `size-*` sets w+h and beats the icon's default 24px); compose with
- * `cn()` for colour/animation classes.
+ * when a component needs a fixed icon size that isn't themed (e.g. in a row
+ * where the icon height must match the text line-height).
  */
 export const iconSize = {
-  xs: 'size-3', // 12px
-  sm: 'size-3.5', // 14px
-  md: 'size-4', // 16px
-  lg: 'size-5', // 20px
-  xl: 'size-6' // 24px
+  '2xs': 'size-3',
+  xs: 'size-3.5',
+  sm: 'size-4',
+  md: 'size-5',
+  lg: 'size-6',
+  xl: 'size-7',
+  '2xl': 'size-8',
+  '3xl': 'size-9',
+  '4xl': 'size-10',
+  '5xl': 'size-12',
+  '6xl': 'size-14',
 } as const
 
 export type IconSize = keyof typeof iconSize
