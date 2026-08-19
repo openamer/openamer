@@ -1122,6 +1122,113 @@ def _filter_plugin_entries(entries: list, args: Any, enabled: set, disabled: set
     return filtered
 
 
+def cmd_search(args: Any | None = None) -> None:
+    """Search GitHub for OpenAmer plugins.
+
+    Queries the GitHub API for repositories tagged with the ``openamer-plugin``
+    topic (the ecosystem convention, mirroring deepseek-harness's ``dsh-plugin``
+    topic and openclaw's ClawHub). Falls back to a name search when the topic
+    returns nothing, and always prints the install hint so a found plugin can
+    be installed in one step.
+    """
+    from rich.console import Console
+    from rich.table import Table
+
+    console = Console()
+    query = getattr(args, "query", None) or ""
+    limit = int(getattr(args, "limit", 10) or 10)
+
+    results = _github_plugin_search(query, limit)
+
+    if not results:
+        console.print("[yellow]No OpenAmer plugins found on GitHub.[/yellow]")
+        console.print(
+            "[dim]The ecosystem convention is the GitHub topic "
+            "`openamer-plugin`. Publish a plugin by adding that topic to its "
+            "repo, then it will show up here.[/dim]"
+        )
+        console.print(
+            "[dim]Install a plugin you already know:[/dim] "
+            "openamer plugins install owner/repo"
+        )
+        return
+
+    if getattr(args, "json", False):
+        print(json.dumps(results, indent=2))
+        return
+
+    table = Table(title="OpenAmer plugins on GitHub", show_lines=False)
+    table.add_column("Plugin", style="bold")
+    table.add_column("Stars", justify="right", style="dim")
+    table.add_column("Description")
+    for r in results:
+        table.add_row(
+            r["full_name"],
+            str(r.get("stargazers_count", 0)),
+            (r.get("description") or "")[:80],
+        )
+
+    console.print()
+    console.print(table)
+    console.print()
+    console.print(
+        "[dim]Install:[/dim] openamer plugins install <full_name>"
+    )
+
+
+def _github_plugin_search(query: str, limit: int) -> list[dict[str, Any]]:
+    """Query GitHub for OpenAmer plugins (topic first, then name)."""
+    import urllib.parse
+    import urllib.request
+
+    def _fetch(url: str) -> list[dict[str, Any]]:
+        req = urllib.request.Request(
+            url,
+            headers={"Accept": "application/vnd.github+json", "User-Agent": "openamer"},
+        )
+        try:
+            with urllib.request.urlopen(req, timeout=15) as resp:
+                data = json.loads(resp.read().decode("utf-8"))
+        except Exception:  # noqa: BLE001
+            return []
+        return data.get("items", [])
+
+    # Topic search first (the ecosystem convention).
+    q = f"topic:openamer-plugin"
+    if query:
+        q += f" {query}"
+    results = _fetch(
+        f"https://api.github.com/search/repositories?q={urllib.parse.quote(q)}&sort=stars&per_page={limit}"
+    )
+    if results:
+        return [
+            {
+                "full_name": r["full_name"],
+                "description": r.get("description"),
+                "stargazers_count": r.get("stargazers_count", 0),
+                "html_url": r.get("html_url"),
+            }
+            for r in results
+        ]
+
+    # Fallback: name search.
+    q = f"openamer-plugin in:name"
+    if query:
+        q += f" {query}"
+    results = _fetch(
+        f"https://api.github.com/search/repositories?q={urllib.parse.quote(q)}&sort=stars&per_page={limit}"
+    )
+    return [
+        {
+            "full_name": r["full_name"],
+            "description": r.get("description"),
+            "stargazers_count": r.get("stargazers_count", 0),
+            "html_url": r.get("html_url"),
+        }
+        for r in results
+    ]
+
+
 def cmd_list(args: Any | None = None) -> None:
     """List all plugins (bundled + user) with enabled/disabled state."""
     from rich.console import Console
@@ -2035,6 +2142,8 @@ def plugins_command(args) -> None:
         cmd_disable(args.name)
     elif action in {"list", "ls"}:
         cmd_list(args)
+    elif action == "search":
+        cmd_search(args)
     elif action is None:
         cmd_toggle()
     else:

@@ -82,6 +82,26 @@ def build_plugins_parser(subparsers, *, cmd_plugins: Callable) -> None:
         help="Print machine-readable JSON",
     )
 
+    plugins_search = plugins_subparsers.add_parser(
+        "search", help="Search GitHub for OpenAmer plugins"
+    )
+    plugins_search.add_argument(
+        "query",
+        nargs="?",
+        help="Optional search term to filter results",
+    )
+    plugins_search.add_argument(
+        "--limit",
+        type=int,
+        default=10,
+        help="Maximum number of results (default: 10)",
+    )
+    plugins_search.add_argument(
+        "--json",
+        action="store_true",
+        help="Print machine-readable JSON",
+    )
+
     plugins_enable = plugins_subparsers.add_parser(
         "enable", help="Enable a disabled plugin"
     )
