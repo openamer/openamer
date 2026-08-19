@@ -248,6 +248,7 @@ export {
 }
 
 export type { Icon as IconComponent } from '@tabler/icons-react'
+export type OaIconComponent = ({ className, size }: { className?: string; size?: string | number }) => React.ReactNode
 
 /** Icon size tokens — maps shorthand names to Tailwind dimension classes,
  * replacing ad-hoc `h-N w-N` / `size={N}`. Use `<Icon className={iconSize.sm} />`
