@@ -887,6 +887,10 @@ class _CuaDriverSession:
         self._session = None
         self._lock = threading.Lock()
         self._started = False
+        # Stable session identity declared via start_session. Remembered
+        # so we can revive it when the daemon-side session ends (e.g. after
+        # a foreground-mode action in Chromium resets the daemon state).
+        self._declared_session_id: Optional[str] = None
         # Surface 4 of openamer/openamer#47072: per-tool
         # capability-token sets, populated from `tools/list` at session
         # init. Keys are tool names (e.g. "click", "get_window_state");
@@ -1194,7 +1198,70 @@ class _CuaDriverSession:
             "Resource temporarily unavailable" in msg
             or "os error 35" in msg
             or "daemon transport error" in msg
-            or "daemon proxy" in msg
+        )
+
+    @staticmethod
+    def _logical_error_text(result: Dict[str, Any]) -> str:
+        """Flatten a logical MCP error into text for narrow classification."""
+        chunks: List[str] = []
+        for value in (result.get("data"), result.get("structuredContent")):
+            if isinstance(value, str):
+                chunks.append(value)
+            elif value is not None:
+                try:
+                    chunks.append(json.dumps(value, sort_keys=True))
+                except (TypeError, ValueError):
+                    chunks.append(str(value))
+        return "\\n".join(chunks)
+
+    @staticmethod
+    def _is_ended_session_result(result: Any) -> bool:
+        """Recognise cua-driver's explicit recoverable ended-session result."""
+        if not isinstance(result, dict) or result.get("isError") is not True:
+            return False
+        message = str(result.get("data", ""))
+        if not isinstance(message, str):
+            return False
+        message = message.lower()
+        return (
+            "session" in message
+            and ("has ended" in message or "session ended" in message)
+            and "start_session" in message
+        )
+
+    def _revive_declared_session_once(
+        self,
+        name: str,
+        args: Dict[str, Any],
+        first_result: Dict[str, Any],
+        timeout: float,
+    ) -> Dict[str, Any]:
+        """Revive the stable session and replay one rejected tool call once."""
+        session_id = self._declared_session_id
+        if not session_id or name in ("start_session", "end_session"):
+            return first_result
+
+        logger.warning(
+            "cua-driver session %s ended during %s; reviving and retrying once",
+            session_id,
+            name,
+        )
+        revive_result = self._bridge.run(
+            self._call_tool_async("start_session", {"session": session_id}),
+            timeout=timeout,
+        )
+        if revive_result.get("isError") is True:
+            logger.warning(
+                "cua-driver session %s could not be revived: %s",
+                session_id,
+                self._logical_error_text(revive_result),
+            )
+            return first_result
+
+        # Return the second result as-is. A second rejection is surfaced; no loop.
+        return self._bridge.run(
+            self._call_tool_async(name, args),
+            timeout=timeout,
         )
 
     def _restart_session_locked(self) -> None:
@@ -1360,7 +1427,10 @@ class _CuaDriverSession:
         # transport (which has its own retry + screenshot-to-file mitigation)
         # rather than burning a long backoff chain on a path that won't recover.
         try:
-            return self._bridge.run(self._call_tool_async(name, args), timeout=timeout)
+            result = self._bridge.run(
+                self._call_tool_async(name, args),
+                timeout=timeout,
+            )
         except Exception as e:
             if self._is_transient_daemon_error(e):
                 logger.warning(
@@ -1370,13 +1440,31 @@ class _CuaDriverSession:
                 return self._call_tool_via_cli(name, args, timeout)
             if not self._is_closed_session_error(e):
                 raise
-            # Daemon restart closes the cached stdio channel. Reconnect once and
-            # retry exactly one more time — never loop, to avoid hammering a
-            # genuinely dead daemon.
             logger.warning("cua-driver MCP session closed during %s; reconnecting once", name)
             with self._lock:
                 self._restart_session_locked()
-            return self._bridge.run(self._call_tool_async(name, args), timeout=timeout)
+            result = self._bridge.run(
+                self._call_tool_async(name, args),
+                timeout=timeout,
+            )
+
+        # Remember only a successfully declared stable identity. Failed
+        # start_session calls must not leave stale recovery state behind.
+        if name == "start_session" and result.get("isError") is not True:
+            declared_id = args.get("session")
+            if isinstance(declared_id, str) and declared_id:
+                self._declared_session_id = declared_id
+
+        if self._is_ended_session_result(result):
+            result = self._revive_declared_session_once(name, args, result, timeout)
+
+        if (
+            name == "end_session"
+            and result.get("isError") is not True
+            and args.get("session") == self._declared_session_id
+        ):
+            self._declared_session_id = None
+        return result
 
 
 def _extract_tool_result(mcp_result: Any) -> Dict[str, Any]:
