@@ -39,6 +39,7 @@ function forcedPreview(): boolean {
   if (!import.meta.env.DEV || typeof window === 'undefined') {
     return false
   }
+
   try {
     return new URLSearchParams(window.location.search).get('connecting') === '1'
   } catch {
@@ -59,6 +60,7 @@ function NeuralNetwork() {
 
   useEffect(() => {
     const id = window.setInterval(() => setTick(t => t + 1), 120)
+
     return () => window.clearInterval(id)
   }, [])
 
@@ -69,17 +71,17 @@ function NeuralNetwork() {
 
   return (
     <svg
-      viewBox={`0 0 ${w} ${h}`}
-      className="w-[360px] h-[300px]"
       aria-hidden="true"
+      className="w-[360px] h-[300px]"
+      viewBox={`0 0 ${w} ${h}`}
     >
       <defs>
-        <linearGradient id="nn-glow" x1="0" y1="0" x2="1" y2="1">
+        <linearGradient id="nn-glow" x1="0" x2="1" y1="0" y2="1">
           <stop offset="0%" stopColor="#00b4d8" stopOpacity="0.1" />
           <stop offset="100%" stopColor="#48cae4" stopOpacity="0.05" />
         </linearGradient>
         <filter id="nn-glow-filter">
-          <feGaussianBlur stdDeviation="3" result="blur" />
+          <feGaussianBlur result="blur" stdDeviation="3" />
           <feMerge>
             <feMergeNode in="blur" />
             <feMergeNode in="SourceGraphic" />
@@ -87,7 +89,7 @@ function NeuralNetwork() {
         </filter>
       </defs>
 
-      <ellipse cx={w/2} cy={h/2} rx={w*0.5} ry={h*0.5} fill="url(#nn-glow)" />
+      <ellipse cx={w/2} cy={h/2} fill="url(#nn-glow)" rx={w*0.5} ry={h*0.5} />
 
       {CONNECTIONS.map(([from, to], i) => {
         const f = NODES[from]
@@ -95,15 +97,16 @@ function NeuralNetwork() {
         const isPulsing = i === pulseEdge || i === pulseEdgeNext
         const opacity = isPulsing ? 0.6 + 0.4 * Math.sin(tick * 0.3 + i) : 0.15
         const width = isPulsing ? 2.5 : 1
+
         return (
           <line
             key={`conn-${i}`}
-            x1={cx(f.x)} y1={cy(f.y)}
-            x2={cx(t.x)} y2={cy(t.y)}
-            stroke={isPulsing ? '#48cae4' : '#00b4d8'}
-            strokeWidth={width}
-            strokeOpacity={opacity}
-            style={{ transition: 'stroke-opacity 0.3s, stroke-width 0.3s' }}
+            stroke={isPulsing ? '#48cae4' : '#00b4d8'} strokeOpacity={opacity}
+            strokeWidth={width} style={{ transition: 'stroke-opacity 0.3s, stroke-width 0.3s' }}
+            x1={cx(f.x)}
+            x2={cx(t.x)}
+            y1={cy(f.y)}
+            y2={cy(t.y)}
           />
         )
       })}
@@ -114,11 +117,12 @@ function NeuralNetwork() {
         const t = NODES[to]
         const px = cx(f.x) + (cx(t.x) - cx(f.x)) * pulseProgress
         const py = cy(f.y) + (cy(t.y) - cy(f.y)) * pulseProgress
+
         return (
           <circle
-            cx={px} cy={py} r={4}
-            fill="#90e0ef"
+            cx={px} cy={py} fill="#90e0ef"
             filter="url(#nn-glow-filter)"
+            r={4}
           />
         )
       })()}
@@ -126,12 +130,13 @@ function NeuralNetwork() {
       {NODES.map((node, i) => {
         const isActive = Math.sin(tick * 0.05 + i * 0.7) > 0.3
         const r = isActive ? 4.5 : 3
+
         return (
           <circle
+            cx={cx(node.x)}
+            cy={cy(node.y)} fill={isActive ? '#48cae4' : '#00b4d8'} fillOpacity={isActive ? 0.9 : 0.4}
             key={`node-${i}`}
-            cx={cx(node.x)} cy={cy(node.y)} r={r}
-            fill={isActive ? '#48cae4' : '#00b4d8'}
-            fillOpacity={isActive ? 0.9 : 0.4}
+            r={r}
             style={{ transition: 'r 0.4s, fill-opacity 0.4s' }}
           />
         )
@@ -165,10 +170,11 @@ export function GatewayConnectingOverlay() {
   }
 
   useEffect(() => {
-    if (phase !== 'live') return
+    if (phase !== 'live') {return}
 
     if (previewing) {
       const id = window.setTimeout(() => setPhase('overlay-out'), PREVIEW_CONNECT_MS)
+
       return () => window.clearTimeout(id)
     }
 
@@ -180,18 +186,22 @@ export function GatewayConnectingOverlay() {
   useEffect(() => {
     if (phase === 'overlay-out') {
       const id = window.setTimeout(() => setPhase('gone'), OVERLAY_OUT_MS)
+
       return () => window.clearTimeout(id)
     }
 
     if (phase === 'gone' && previewing) {
       const id = window.setTimeout(() => setPhase('live'), PREVIEW_REPLAY_MS)
+
       return () => window.clearTimeout(id)
     }
   }, [phase, previewing])
 
-  if (boot.error && !previewing) return null
-  if (phase === 'gone' && !previewing) return null
-  if (!previewing && !connecting && !shownRef.current) return null
+  if (boot.error && !previewing) {return null}
+
+  if (phase === 'gone' && !previewing) {return null}
+
+  if (!previewing && !connecting && !shownRef.current) {return null}
 
   const overlayHidden = phase === 'overlay-out' || phase === 'gone'
 
@@ -236,8 +246,8 @@ export function GatewayConnectingOverlay() {
           <div className="flex gap-1.5 mt-3">
             {[0, 1, 2].map(i => (
               <div
-                key={i}
                 className="w-1.5 h-1.5 rounded-full bg-(--theme-primary)"
+                key={i}
                 style={{
                   animation: reduce ? 'none' : `nn-pulse 1.4s ease-in-out ${i * 0.2}s infinite`,
                   opacity: reduce ? 0.5 : undefined,
