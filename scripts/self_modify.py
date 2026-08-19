@@ -2,8 +2,13 @@
 """Self-modification with a test gate and rollback — for OpenAmer Agent.
 
 This is the "does not break" axis made concrete for OpenAmer itself: a change
-to a core file is only kept if the test suite proves it does not break
+to a file is only kept if the right verification proves it does not break
 anything. On any failure the original is restored atomically.
+
+Three target kinds, each with the correct gate:
+  - core   (.py in the package)  -> syntax check + test suite
+  - skill  (SKILL.md)            -> frontmatter validation (real validator)
+  - plugin (.py under plugins/)   -> syntax check + import check
 
 Why a script + skill instead of a core tool: OpenAmer's design rule is "the
 core is a narrow waist; capability lives at the edges." A self-modify *tool*
@@ -14,9 +19,10 @@ Usage:
     python scripts/self_modify.py <path> <new_content_file>
     python scripts/self_modify.py <path> --content "new content"
     python scripts/self_modify.py <path> --patch <patch_file>
+    python scripts/self_modify.py <path> <file> --tests tests/agent/  # core only
 
 The target path must be inside the openamer-agent package. The change is
-applied, the test suite runs, and the change is kept only if tests pass.
+applied, verified, and kept only if the gate passes.
 """
 
 from __future__ import annotations
@@ -53,6 +59,65 @@ def _syntax_check(path: Path) -> tuple[bool, str]:
     except SyntaxError as e:
         return (False, f"syntax error: {e}")
     return (True, "")
+
+
+def _validate_skill(path: Path) -> tuple[bool, str]:
+    """Validate a SKILL.md's frontmatter using the real skill validator.
+
+    Reuses tools/skill_manager_tool.py's _validate_frontmatter so the gate
+    matches exactly what the skill manager enforces at load time.
+    """
+    try:
+        from tools.skill_manager_tool import _validate_frontmatter
+    except ImportError as e:
+        return (False, f"could not import skill validator: {e}")
+    content = path.read_text(encoding="utf-8")
+    err = _validate_frontmatter(content)
+    if err:
+        return (False, err)
+    return (True, "")
+
+
+def _validate_plugin(path: Path) -> tuple[bool, str]:
+    """Validate a plugin .py: syntax + importable (no runtime errors on load)."""
+    ok, err = _syntax_check(path)
+    if not ok:
+        return (False, err)
+    # Import the module to catch import-time errors (missing deps, bad code).
+    import importlib.util
+
+    module_name = f"_selfmod_plugin_{path.stem}"
+    spec = importlib.util.spec_from_file_location(module_name, path)
+    if spec is None or spec.loader is None:
+        return (False, "could not load plugin module")
+    module = importlib.util.module_from_spec(spec)
+    try:
+        spec.loader.exec_module(module)
+    except Exception as e:  # noqa: BLE001
+        return (False, f"plugin import failed: {e}")
+    return (True, "")
+
+
+def _detect_kind(path: Path) -> str:
+    """Classify the target so the right verifier runs."""
+    if path.name == "SKILL.md":
+        return "skill"
+    if "plugins" in path.parts and path.suffix == ".py":
+        return "plugin"
+    return "core"
+
+
+def _verify_target(path: Path, kind: str, test_scope: str | None) -> tuple[bool, str]:
+    """Run the right verification for the target kind."""
+    if kind == "skill":
+        return _validate_skill(path)
+    if kind == "plugin":
+        return _validate_plugin(path)
+    # core: syntax gate + test gate
+    ok, err = _syntax_check(path)
+    if not ok:
+        return (False, err)
+    return _run_tests(test_scope)
 
 
 def _run_tests(scope: str | None = None) -> tuple[bool, str]:
@@ -134,26 +199,18 @@ def main() -> int:
         backup.write_bytes(original)
         target.write_text(new_content, encoding="utf-8")
 
-    # Syntax gate first (always on, catches broken Python immediately and
-    # cheaply, before spending time on the test suite).
-    ok, err = _syntax_check(target)
-    if not ok:
-        target.write_bytes(original)
-        backup.unlink(missing_ok=True)
-        print(f"✗ change rejected ({err}, rolled back)")
-        return 1
-
-    # Test gate.
-    ok, tail = _run_tests(args.tests)
+    # Verify with the right gate for the target kind (skill/plugin/core).
+    kind = _detect_kind(target)
+    ok, err = _verify_target(target, kind, args.tests)
     if not ok:
         # Rollback.
         target.write_bytes(original)
         backup.unlink(missing_ok=True)
-        print(f"✗ change rejected (tests failed, rolled back):\n{tail[-800:]}")
+        print(f"✗ change rejected ({kind}: {err}, rolled back)")
         return 1
 
     backup.unlink(missing_ok=True)
-    print(f"✓ change to {args.path} applied and verified (tests pass)")
+    print(f"✓ change to {args.path} applied and verified ({kind})")
     return 0
 
 

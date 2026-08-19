@@ -44,7 +44,10 @@ Don't use for:
 
 1. **Scope guard** — the target must be inside the openamer-agent repo.
 2. **Backup** — the original is always saved to `<file>.bak` before any change.
-3. **Test gate** — the full suite (`scripts/run_tests.sh`) must pass.
+3. **Kind-aware gate** — the right verification runs for the target type:
+   - **core** (`.py` in the package) → syntax check + test suite
+   - **skill** (`SKILL.md`) → frontmatter validation (the real validator)
+   - **plugin** (`.py` under `plugins/`) → syntax check + import check
 4. **Rollback** — on any failure the original is restored atomically.
 
 ## Steps
@@ -60,9 +63,11 @@ Don't use for:
    python scripts/self_modify.py <path> --content "new content"
    # or, for a diff:
    python scripts/self_modify.py <path> --patch <patch_file>
+   # core only: narrow the test scope
+   python scripts/self_modify.py <path> <file> --tests tests/agent/
    ```
-   Completion: the script prints either `✓ change applied and verified` or
-   `✗ change rejected (tests failed, rolled back)`.
+   Completion: the script prints either `✓ change applied and verified (<kind>)`
+   or `✗ change rejected (<kind>: <reason>, rolled back)`.
 
 3. **On success**, verify the change is actually in place and the `.bak` is gone.
    Completion: `git diff` shows the change; no `.bak` file remains.
@@ -80,6 +85,8 @@ Don't use for:
 2. **Running `pytest` directly instead of `scripts/run_tests.sh`.** The script
    uses the canonical runner so the gate matches CI behavior (per-file
    isolation, deterministic env). A green `pytest` locally may not match CI.
+   (Note: for skills and plugins, the gate is frontmatter/import validation,
+   not the test suite — the script picks the right gate automatically.)
 
 3. **Ignoring a rollback.** If the script says "rolled back", the change is
    gone — do not assume it is still applied. Re-read the file before proceeding.
