@@ -3,6 +3,10 @@
 /venv.old/
 /venv.stale.runtime-*/
 /.openamer-runtime/
+
+# Stray pytest temp files that leak into the repo root (Git for Windows path mangling).
+C:*
+# End
 /_pycache/
 *.pyc*
 __pycache__/
