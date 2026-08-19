@@ -97,6 +97,8 @@ import {
 import * as React from 'react'
 
 function stub(path: string): React.FC<{className?: string; size?: string | number; style?: React.CSSProperties}> {
+  // Neural network wrapper: adds corner nodes + connection lines
+  // to every icon, giving it the OpenAmer superintelligence identity.
   const C: React.FC<any> = ({ className, style }) =>
     React.createElement('svg', {
       xmlns: 'http://www.w3.org/2000/svg',
@@ -109,8 +111,24 @@ function stub(path: string): React.FC<{className?: string; size?: string | numbe
       strokeLinejoin: 'round',
       className,
       style,
-    }, React.createElement('path', { d: path }))
-  C.displayName = 'OaStub'
+    },
+      // Neural network nodes (4 corners)
+      React.createElement('circle', { cx: 4, cy: 4, r: 1.5, fill: 'currentColor' }),
+      React.createElement('circle', { cx: 20, cy: 4, r: 1.5, fill: 'currentColor' }),
+      React.createElement('circle', { cx: 4, cy: 20, r: 1.5, fill: 'currentColor' }),
+      React.createElement('circle', { cx: 20, cy: 20, r: 1.5, fill: 'currentColor' }),
+      // Connection lines (frame)
+      React.createElement('line', { x1: 4, y1: 4, x2: 20, y2: 4, stroke: 'currentColor', strokeWidth: 1, opacity: 0.3 }),
+      React.createElement('line', { x1: 20, y1: 4, x2: 20, y2: 20, stroke: 'currentColor', strokeWidth: 1, opacity: 0.3 }),
+      React.createElement('line', { x1: 4, y1: 20, x2: 20, y2: 20, stroke: 'currentColor', strokeWidth: 1, opacity: 0.3 }),
+      React.createElement('line', { x1: 4, y1: 4, x2: 4, y2: 20, stroke: 'currentColor', strokeWidth: 1, opacity: 0.3 }),
+      // Diagonal connections
+      React.createElement('line', { x1: 4, y1: 4, x2: 20, y2: 20, stroke: 'currentColor', strokeWidth: 0.5, opacity: 0.15 }),
+      React.createElement('line', { x1: 20, y1: 4, x2: 4, y2: 20, stroke: 'currentColor', strokeWidth: 0.5, opacity: 0.15 }),
+      // Center icon path
+      React.createElement('path', { d: path })
+    )
+  C.displayName = 'OaNeural'
   return C
 }
 
