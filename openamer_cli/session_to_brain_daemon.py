@@ -43,10 +43,19 @@ def spawn() -> None:
     if pid_file.exists():
         try:
             old_pid = int(pid_file.read_text().strip())
-            # On Windows os.kill with signal 0 checks if the process exists.
-            os.kill(old_pid, 0)
-            return  # already running
-        except (ValueError, OSError, ProcessLookupError):
+            # On Windows os.kill with signal 0 raises SystemError.
+            # Use tasklist to check if the process exists.
+            if os.name == "nt":
+                r = subprocess.run(
+                    ["tasklist", "/FI", f"PID eq {old_pid}", "/NH"],
+                    capture_output=True, text=True, timeout=5,
+                )
+                if str(old_pid) in r.stdout:
+                    return  # already running
+            else:
+                os.kill(old_pid, 0)
+                return  # already running
+        except (ValueError, OSError, ProcessLookupError, subprocess.TimeoutExpired):
             # Stale pid file — remove and restart.
             pid_file.unlink(missing_ok=True)
 

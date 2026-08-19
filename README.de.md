@@ -23,6 +23,10 @@ Nutze jedes beliebige Modell — OpenRouter, OpenAI, deinen eigenen Endpunkt und
 | **Privat per Standard** | Telefonnummern, Passwörter, E-Mails und Kartennummern werden vor dem Speichern redigiert. Betriebssystem, Hardware und Modell deines Knotens bleiben in deinem eigenen System-Prompt. |
 | **Forschungsbereit** | Batch-Trajektoriengenerierung und Trajektorienkompression für das Training der nächsten Generation von Tool-aufrufenden Modellen. |
 
+
+| **Selbst-Modifikation mit Test-Gate** — Kern-Code, Skills oder Plugins ändern; bei Fehlschlag automatischer Rollback | `scripts/self_modify.py` + Skill |
+| **Plugin-Entdeckung** — GitHub nach Community-Plugins durchsuchen | `openamer plugins search` |
+
 ## Schnellinstallation
 
 ### Linux, macOS, WSL2, Termux

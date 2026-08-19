@@ -23,6 +23,12 @@ Use qualquer modelo — OpenRouter, OpenAI, seu próprio endpoint e [muitos outr
 | **Privado por padrão** | Números de telefone, senhas, e-mails e números de cartão são redigidos antes de qualquer armazenamento. O sistema operacional, o hardware e o modelo do seu nó permanecem no seu próprio prompt de sistema. |
 | **Pronto para pesquisa** | Geração de trajetórias em lote e compressão de trajetórias para treinar a próxima geração de modelos que chamam ferramentas. |
 
+
+| **Auto-modificação com gate de teste** — alterar código central, skills ou plugins; reversão automática se falhar | `scripts/self_modify.py` + Skill |
+| **Descoberta de plugins** — pesquisar plugins da comunidade no GitHub | `openamer plugins search` |
+
+| **Auto-modificação com gate de teste** — alterar código central, skills ou plugins; reversão automática se falhar | `scripts/self_modify.py` + Skill |
+| **Descoberta de plugins** — pesquisar plugins da comunidade no GitHub | `openamer plugins search` |
 ## Instalação rápida
 
 ### Linux, macOS, WSL2, Termux

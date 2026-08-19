@@ -23,6 +23,12 @@
 | **默认私密** | 电话号码、密码、电子邮件和卡号在存储前会被脱敏。你节点的操作系统、硬件和模型保留在你自己的系统提示中。 |
 | **研究就绪** | 批量轨迹生成和轨迹压缩，用于训练下一代调用工具的模型。 |
 
+
+| **带测试门的自我修改** — 修改核心代码、技能或插件；失败时自动回滚 | `scripts/self_modify.py` + Skill |
+| **插件发现** — 在GitHub上搜索社区插件 | `openamer plugins search` |
+
+| **带测试门的自我修改** — 修改核心代码、技能或插件；失败时自动回滚 | `scripts/self_modify.py` + Skill |
+| **插件发现** — 在GitHub上搜索社区插件 | `openamer plugins search` |
 ## 快速安装
 
 ### Linux、macOS、WSL2、Termux
