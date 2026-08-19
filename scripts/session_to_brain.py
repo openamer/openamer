@@ -6,9 +6,23 @@ agent response, every tool call and result is captured as a trajectory record
 in the brain dataset (``~/.openamer/a2a/openamer-brain.jsonl``), so the
 OpenAmer model can later be fine-tuned on real interaction data.
 
-Why a script instead of a core tool: the brain dataset is built offline,
-outside the API-call path. A cron job runs this periodically; the agent never
-calls it during a conversation (no cache invalidation, no prompt overhead).
+ARCHITECTURE — two files, two formats, one pipeline:
+
+  ┌──────────────────────────────┐
+  │  session_to_brain.py (watch) │  writes rich-format records (with
+  │  └─ ~/.openamer/trajectories/│  _fingerprint for dedup) every 60s
+  └──────────────┬───────────────┘
+                 │ every 5 min (or after new data)
+                 ▼
+  ┌──────────────────────────────┐
+  │  openamer a2a brain collect  │  reads ALL trajectory files +
+  │  └─ ~/.openamer/a2a/         │  memory insights → writes minimal
+  │     openamer-brain.jsonl     │  ChatML format (training-ready)
+  └──────────────────────────────┘
+
+The daemon NEVER writes to the brain dataset file directly — it writes to a
+staging trajectories file.  ``brain collect`` is the sole producer of the
+canonical ``openamer-brain.jsonl``, guaranteeing format consistency.
 
 Usage:
     python scripts/session_to_brain.py                    # all sessions
@@ -22,30 +36,26 @@ import argparse
 import json
 import os
 import sqlite3
+import subprocess
 from datetime import datetime, timezone
 from pathlib import Path
 
 
 def _state_db() -> Path:
-    # The state.db always lives under OPENAMER_HOME (the actual install dir).
     home = Path(os.environ.get("OPENAMER_HOME", Path.home() / ".openamer"))
     return home / "state.db"
 
 
-def _brain_dataset() -> Path:
-    """Return the canonical brain dataset path.
+def _trajectory_file() -> Path:
+    """Return the daemon's own staging file (rich format with _fingerprint).
 
-    The daemon writes directly into ``~/.openamer/a2a/openamer-brain.jsonl``,
-    the same file that ``openamer a2a brain collect`` reads and writes.  This
-    means the brain dataset is kept up-to-date in real time — no separate cron
-    job or manual ``brain collect`` step is needed for new installations.
-
-    ``openamer a2a brain collect`` also looks inside ``~/.openamer/trajectories/``
-    for fallback data, so the old path is still honoured during a transition.
+    ``openamer a2a brain collect`` scans ``~/.openamer/trajectories/`` for
+    files whose name contains ``traject``, so this path is automatically
+    picked up.
     """
-    data_dir = Path.home() / ".openamer" / "a2a"
+    data_dir = Path.home() / ".openamer" / "trajectories"
     data_dir.mkdir(parents=True, exist_ok=True)
-    return data_dir / "openamer-brain.jsonl"
+    return data_dir / "daemon-trajectories.jsonl"
 
 
 def _load_existing(path: Path) -> set[str]:
@@ -134,12 +144,55 @@ def _build_trajectory(session_id: str, title: str | None, messages: list[dict]) 
     return record
 
 
+def _run_brain_collect() -> None:
+    """Run ``openamer a2a brain collect`` to consolidate into ChatML format.
+
+    Runs silently — failures are logged but never crash the watch loop.
+    The brain-collect process reads ALL trajectory files (including the
+    daemon's staging file) plus mesh memory and writes the canonical
+    ``~/.openamer/a2a/openamer-brain.jsonl`` in minimal ChatML format.
+    """
+    try:
+        result = subprocess.run(
+            ["openamer", "a2a", "brain", "collect"],
+            capture_output=True, text=True, timeout=30,
+        )
+        if result.returncode == 0:
+            out = result.stdout.strip()
+            if out:
+                print(f"  [brain-collect] {out}")
+        else:
+            print(f"  [brain-collect] exit {result.returncode}: {result.stderr[:200]}")
+    except subprocess.TimeoutExpired:
+        print("  [brain-collect] timed out (30s) — will retry next cycle")
+    except Exception as exc:
+        print(f"  [brain-collect] error: {exc}")
+
+
+_COLLECT_INTERVAL = 5  # run brain collect every N export cycles
+_cycle_count = 0
+
+
 def _watch_loop() -> int:
-    """Watch mode: poll the DB every 60 seconds for new sessions and export immediately."""
+    """Watch mode: poll the DB every 60 seconds and export new sessions.
+
+    Also runs ``openamer a2a brain collect`` every N cycles to keep the
+    canonical brain dataset in sync.
+    """
     import time
 
+    global _cycle_count
+
     print("▶ session-to-brain watch mode: polling DB every 60s")
+    print("  ├─ writes rich-format trajectories to ~/.openamer/trajectories/")
+    print(f"  └─ runs 'brain collect' every {_COLLECT_INTERVAL} cycles → ~/.openamer/a2a/openamer-brain.jsonl")
+
+    # Run an initial consolidation on startup.
+    print("  [startup] running initial brain collect…")
+    _run_brain_collect()
+
     while True:
+        _cycle_count += 1
         try:
             n = _run_export()
             if n > 0:
@@ -149,6 +202,11 @@ def _watch_loop() -> int:
             return 0
         except Exception as e:  # noqa: BLE001
             print(f"  Error: {e}")
+
+        # Periodically consolidate into the canonical brain dataset.
+        if _cycle_count % _COLLECT_INTERVAL == 0:
+            _run_brain_collect()
+
         time.sleep(60)
 
 
@@ -161,7 +219,7 @@ def _run_export() -> int:
     if not db_path.exists():
         return 0
 
-    dataset_path = _brain_dataset()
+    dataset_path = _trajectory_file()
     existing = _load_existing(dataset_path)
 
     conn = sqlite3.connect(str(db_path))
@@ -201,7 +259,7 @@ def main() -> int:
         print(f"✗ state.db not found at {db_path}")
         return 1
 
-    dataset_path = _brain_dataset()
+    dataset_path = _trajectory_file()
     existing = _load_existing(dataset_path)
     print(f"Existing fingerprint count: {len(existing)}")
 
@@ -230,7 +288,6 @@ def main() -> int:
             new_records += 1
             continue
 
-        # Append to dataset.
         with open(dataset_path, "a", encoding="utf-8") as f:
             f.write(json.dumps(record, ensure_ascii=False) + "\n")
         new_records += 1
@@ -245,7 +302,13 @@ def main() -> int:
     print(f"Added {new_records} new trajectory/trajectories, skipped {skipped} existing.")
     if new_records:
         ds = Path(dataset_path)
-        print(f"Dataset now: {ds.stat().st_size} bytes, {sum(1 for _ in ds.open())} records")
+        print(f"Staging file now: {ds.stat().st_size} bytes, {sum(1 for _ in ds.open())} records")
+
+    # After a manual run, also consolidate into the brain dataset.
+    if new_records and not args.dry_run:
+        print("  Consolidating into brain dataset…")
+        _run_brain_collect()
+
     return 0
 
 
