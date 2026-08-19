@@ -70,7 +70,7 @@ One command from GitHub gives you a **complete, standalone, private-first AI age
 || **Plugin discovery** — search GitHub for community plugins | `openamer plugins search` |
 || **A2A swarm** — every install is an agent node (works over GitHub relay, not localhost) | included; connect via `openamer a2a` |
 | **Autonomous learning** | the agent distills lessons from its own turns automatically |
-| **Brain data collection** — activity, thinking & tools → local training dataset | autolog ON by default |
+| **Brain data collection** — activity, thinking & tools → local training dataset | **automatic** — daemon starts with every `openamer` invocation, exports every session within 60s |
 | **Privacy-by-default** | phone/password/email/card redacted before anything is stored |
 | **System self-knowledge** | your node's OS/hardware/model go into its system prompt |
 
