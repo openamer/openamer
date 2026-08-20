@@ -487,6 +487,7 @@ from openamer_cli.subcommands.claw import build_claw_parser
 from openamer_cli.subcommands.lint_fix import build_lint_fix_parser
 from openamer_cli.subcommands.code_review_bot import build_review_pr_parser
 from openamer_cli.subcommands.cost import build_cost_parser
+from openamer_cli.subcommands.sandbox import build_sandbox_parser
 
 
 def _require_tty(command_name: str) -> None:
@@ -13304,6 +13305,7 @@ def _coalesce_session_name_args(argv: list) -> list:
         "import",
         "completion",
         "logs",
+        "tracing",
     }
     _SESSION_FLAGS = {"-c", "--continue", "-r", "--resume"}
 
@@ -15230,6 +15232,43 @@ def cmd_skills(args):
         skills_command(args)
 
 
+def cmd_sandbox(args):
+    """Handle ``openamer sandbox <action>``."""
+    from openamer_cli.sandbox_exec import SandboxExecutor, SandboxPolicy
+
+    action = args.sandbox_action
+    if action == "config":
+        policy = SandboxPolicy()
+        print("SandboxPolicy:")
+        print(f"  max_timeout  = {policy.max_timeout}s")
+        print(f"  max_memory   = {policy.max_memory} MB")
+        print(f"  allowed_paths= {policy.allowed_paths}")
+        print(f"  blocked_paths= {policy.blocked_paths}")
+        return
+    exec_ = SandboxExecutor()
+    if action == "run":
+        file_path = args.file
+        if not os.path.exists(file_path):
+            print(f"Error: file not found - {file_path}", file=sys.stderr)
+            sys.exit(1)
+        with open(file_path, encoding="utf-8") as fh:
+            code = fh.read()
+        result = exec_.execute_python(code, timeout=getattr(args, "timeout", 30))
+    elif action == "python":
+        code = " ".join(args.code)
+        result = exec_.execute_python(code, timeout=getattr(args, "timeout", 30))
+    else:
+        print(f"Unknown sandbox action: {action}", file=sys.stderr)
+        sys.exit(1)
+    if result["stdout"]:
+        print(result["stdout"])
+    if result["stderr"]:
+        print(result["stderr"], file=sys.stderr)
+    if result["timed_out"]:
+        print("[Timed out]", file=sys.stderr)
+    print(f"[Exit code: {result['exit_code']}]", file=sys.stderr)
+
+
 def cmd_pairing(args):
     from openamer_cli.pairing import pairing_command
 
@@ -15240,6 +15279,89 @@ def cmd_plugins(args):
     from openamer_cli.plugins_cmd import plugins_command
 
     plugins_command(args)
+
+
+def cmd_plugin(args):
+    """Handle the ``openamer plugin`` subcommand — third-party plugin lifecycle."""
+    from openamer_cli.plugin_system import (
+        Plugin,
+        PluginManager,
+        PluginRegistry,
+        PluginState,
+    )
+    from pathlib import Path
+
+    registry = PluginRegistry()
+    manager = PluginManager(registry)
+
+    action = args.plugin_action
+
+    if action == "list":
+        plugins = manager.registry.list()
+        if not plugins:
+            print("No plugins registered.")
+            return
+        print(f"{'ID':<24} {'Name':<24} {'Version':<10} {'State':<12} {'Author':<20}")
+        print("-" * 90)
+        for p in plugins:
+            state = manager.registry.get_state(p.id) or PluginState.REGISTERED
+            print(
+                f"{p.id:<24} {p.name:<24} {p.version:<10} {state:<12} {p.author:<20}"
+            )
+
+    elif action == "install":
+        path = Path(args.path)
+        if not path.is_dir():
+            print(f"Error: {path} is not a directory", file=sys.stderr)
+            return
+        discovered = manager.registry.discover(path)
+        if not discovered:
+            print(f"No plugin manifests found in {path}")
+            return
+        for plugin in discovered:
+            manager.load(plugin.id)
+            manager.activate(plugin.id)
+            print(f"Installed & activated: {plugin.id} v{plugin.version}")
+
+    elif action == "uninstall":
+        plugin_id = args.id
+        manager.deactivate(plugin_id)
+        manager.unload(plugin_id)
+        removed = manager.registry.unregister(plugin_id)
+        if removed:
+            print(f"Uninstalled plugin: {plugin_id}")
+        else:
+            print(f"Plugin not found: {plugin_id}")
+
+    elif action == "status":
+        plugin_id = args.id
+        plugin = manager.registry.get(plugin_id)
+        if plugin is None:
+            print(f"Plugin not found: {plugin_id}")
+            return
+        state = manager.registry.get_state(plugin_id) or PluginState.REGISTERED
+        print(f"ID:          {plugin.id}")
+        print(f"Name:        {plugin.name}")
+        print(f"Version:     {plugin.version}")
+        print(f"Description: {plugin.description}")
+        print(f"Author:      {plugin.author}")
+        print(f"Entry Point: {plugin.entry_point}")
+        print(f"State:       {state}")
+        print(f"Dependencies: {', '.join(plugin.dependencies) if plugin.dependencies else '(none)'}")
+        hooks = manager.list_hooks(plugin_id)
+        if hooks:
+            print(f"Hooks:       {', '.join(sorted(hooks.keys()))}")
+        else:
+            print("Hooks:       (none resolved)")
+
+    elif action == "register":
+        plugin = Plugin(
+            id=args.name,
+            name=args.name,
+            entry_point=args.entry_point,
+        )
+        manager.registry.register(plugin)
+        print(f"Registered plugin: {plugin.id}")
 
 
 def cmd_mcp(args):
@@ -15696,6 +15818,47 @@ def main():
     # plugins command  (parser built in openamer_cli/subcommands/plugins.py)
     # =========================================================================
     build_plugins_parser(subparsers, cmd_plugins=cmd_plugins)
+
+    # =========================================================================
+    # plugin command  — third-party plugin system (openamer_cli/plugin_system.py)
+    # =========================================================================
+    plugin_parser = subparsers.add_parser(
+        "plugin",
+        help="Manage third-party plugins (plugin_system)",
+        description=(
+            "Register, install, uninstall, and inspect third-party Python "
+            "plugins.  Each plugin is a Python module with a plugin.yaml "
+            "or plugin.json manifest and lifecycle hooks."
+        ),
+    )
+    plugin_subparsers = plugin_parser.add_subparsers(dest="plugin_action")
+
+    plugin_list = plugin_subparsers.add_parser(
+        "list", aliases=["ls"], help="List all registered plugins"
+    )
+
+    plugin_install = plugin_subparsers.add_parser(
+        "install", help="Install a plugin from a directory containing plugin.yaml/json"
+    )
+    plugin_install.add_argument("path", help="Path to the plugin directory")
+
+    plugin_uninstall = plugin_subparsers.add_parser(
+        "uninstall", aliases=["rm"], help="Uninstall a plugin by ID"
+    )
+    plugin_uninstall.add_argument("id", help="Plugin ID to uninstall")
+
+    plugin_status = plugin_subparsers.add_parser(
+        "status", help="Show detailed status of a plugin"
+    )
+    plugin_status.add_argument("id", help="Plugin ID to inspect")
+
+    plugin_register = plugin_subparsers.add_parser(
+        "register", help="Directly register a plugin by name and entry_point"
+    )
+    plugin_register.add_argument("name", help="Plugin name/ID")
+    plugin_register.add_argument("entry_point", help="Python module path (e.g. my_plugin.hooks)")
+
+    plugin_parser.set_defaults(func=cmd_plugin)
 
     # =========================================================================
     # Plugin CLI commands — dynamically registered by memory/general plugins.
@@ -17542,6 +17705,7 @@ def main():
     build_super_parser(subparsers)
     build_initiative_parser(subparsers)
     build_cross_session_parser(subparsers)
+    build_sandbox_parser(subparsers, cmd_sandbox=cmd_sandbox)
     build_repomap_parser(subparsers)
     build_workflow_parser(subparsers)
     build_tree_parser(subparsers)
@@ -17634,6 +17798,18 @@ def main():
     # prompt-size command  (parser built in openamer_cli/subcommands/prompt_size.py)
     # =========================================================================
     build_prompt_size_parser(subparsers, cmd_prompt_size=cmd_prompt_size)
+
+    # =========================================================================
+    # tracing command — Trace-Repository und Debugging-Dashboard
+    # =========================================================================
+    try:
+        from openamer_cli.tracing import build_tracing_parser
+
+        build_tracing_parser(subparsers)
+    except Exception as _exc:
+        logging.getLogger(__name__).debug(
+            "tracing CLI wiring failed: %s", _exc
+        )
 
     # =========================================================================
     # Parse and execute
