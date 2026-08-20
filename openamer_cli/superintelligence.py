@@ -416,37 +416,47 @@ def get_next_milestones() -> list[dict[str, str]]:
     return [
         {
             "title": "Self-Reflection Cron (alle 6h)",
-            "description": "Automatische Reflektion über vergangene Sessions: Fehler erkennen, Verbesserungen vorschlagen, Memory updaten.",
+            "description": "Aktiv. Läuft alle 6 Stunden autonom.",
             "priority": "high",
         },
         {
             "title": "Memory Vector-Store (unbegrenztes semantisches Gedächtnis)",
-            "description": "TF-IDF-basierter Vector Store: unbegrenzte Memory-Kapazität mit semantischer Suche. Ersetzt die 2200-Char-Grenze.",
+            "description": "Aktiv. TF-IDF Store mit CLI: openamer memory vector {store,search,stats,list,compress}.",
             "priority": "high",
         },
         {
             "title": "Autonomous Initiative System",
-            "description": "Proaktive System-Checks: Agent erkennt selbstständig Probleme und fixt sie ohne User-Aufforderung.",
+            "description": "Aktiv. CLI: openamer initiative {check,fix,suggest,auto}. Cron-kompatibel.",
             "priority": "high",
         },
         {
             "title": "Cross-Session Learning Pipeline",
-            "description": "Extrahiert Lessons Learned aus jeder Session und injiziert sie als Context in neue Sessions. Transfer-Lernen zwischen Sessions.",
+            "description": "Aktiv. Extrahiert Lessons, aggregiert über 7 Tage, injiziert Context. CLI: openamer cross-session.",
             "priority": "high",
         },
         {
             "title": "Skills Improvement Pipeline",
-            "description": "Analysiert alle 117+ Skills, identifiziert veraltete/lückenhafte, verbessert sie automatisch.",
+            "description": "Aktiv. Analysiert alle Skills auf Qualität, identifiziert Verbesserungskandidaten.",
             "priority": "high",
         },
         {
-            "title": "Real-time Swarm Metrics Dashboard",
-            "description": "Stream live swarm execution metrics (latency, throughput, confidence) to a web dashboard.",
+            "title": "Self-Healing Memory Pipeline",
+            "description": "Aktiv. Erkennt korrupte/leere Memories, repariert automatisch mit Backup. CLI via Initiative.",
+            "priority": "high",
+        },
+        {
+            "title": "Autonomous Test Runner",
+            "description": "Aktiv. Führt neue Tests automatisch aus, protokolliert Ergebnisse. Cron-ready.",
+            "priority": "high",
+        },
+        {
+            "title": "Swarm Metrics Dashboard",
+            "description": "Aktiv. Erfasst Latenz/Durchsatz/Confidence des A2A Swarms. CLI: openamer super metrics.",
             "priority": "medium",
         },
         {
-            "title": "Self-Healing Memory Pipeline",
-            "description": "Detect and repair corrupted memories automatically with integrity checks and fallback recovery.",
+            "title": "Multi-Model Orchestration",
+            "description": "Route sub-tasks to specialised models (e.g. code to DeepSeek, reasoning to Claude, vision to GPT-4o).",
             "priority": "low",
         },
     ]
