@@ -456,6 +456,9 @@ from openamer_cli.subcommands.version import build_version_parser
 from openamer_cli.subcommands.update import build_update_parser
 from openamer_cli.subcommands.feedback import build_feedback_parser
 from openamer_cli.subcommands.a2a import build_a2a_parser
+from openamer_cli.subcommands.agent import build_agent_parser
+from openamer_cli.subcommands.marketplace import build_marketplace_parser
+from openamer_cli.durable_execution import build_checkpoint_parser
 from openamer_cli.subcommands.system import build_system_parser
 from openamer_cli.subcommands.security import build_security_parser
 from openamer_cli.subcommands.uninstall import build_uninstall_parser
@@ -17368,9 +17371,9 @@ def main():
     build_version_parser(subparsers, cmd_version=cmd_version)
 
     build_a2a_parser(subparsers)
+    build_agent_parser(subparsers)
+    build_marketplace_parser(subparsers)
     build_system_parser(subparsers)
-
-    # =========================================================================
     # update command  (parser built in openamer_cli/subcommands/update.py)
     # =========================================================================
     build_update_parser(subparsers, cmd_update=cmd_update)

@@ -273,6 +273,10 @@ def _cmd_brain(args) -> int:
             print("Autolog:", "ON" if autolog.enabled() else "OFF"); return 0
     if subject == "autolog":
         print("Usage: openamer a2a brain autolog on|off|status"); return 2
+    if subject == "share":
+        from openamer_cli.a2a.brain_share import cmd_brain_share
+        cmd_brain_share(args)
+        return 0
     if subject != "collect" and subject != "publish":
         print("Usage: openamer a2a brain collect|publish|autolog <on|off|status>"); return 2
     home = _pl.Path.home() / ".openamer"

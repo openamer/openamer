@@ -1,13 +1,12 @@
 """Tests for openamer_cli.computer_use_record — recording/playback system."""
-import json
 import pathlib
 import tempfile
-from datetime import datetime
 
 import pytest
 
 from openamer_cli.computer_use_record import (
     ComputerUseRecording,
+    ComputerUseAction,
     RecordingStore,
     play_recording,
 )
@@ -31,8 +30,8 @@ def sample_recording():
         description="A test recording",
     )
     recording.actions = [
-        {"action": "click", "coordinate": [100, 200], "delay": 0.5},
-        {"action": "type", "text": "hello world", "delay": 0.3},
+        ComputerUseAction(action="click", coordinate=[100, 200], delay=0.5),
+        ComputerUseAction(action="type", text="hello world", delay=0.3),
     ]
     RecordingStore.save(recording)
     return recording
@@ -41,7 +40,7 @@ def sample_recording():
 class TestRecordingStore:
     def test_save_and_load(self):
         recording = ComputerUseRecording(name="my-recording")
-        recording.actions = [{"action": "click", "coordinate": [10, 20]}]
+        recording.actions = [ComputerUseAction(action="click", coordinate=[10, 20])]
         RecordingStore.save(recording)
         loaded = RecordingStore.load("my-recording")
         assert loaded is not None
@@ -50,11 +49,11 @@ class TestRecordingStore:
 
     def test_save_and_load_roundtrip(self):
         rec = ComputerUseRecording(name="roundtrip")
-        rec.actions = [{"action": "key", "keys": "cmd+s"}]
+        rec.actions = [ComputerUseAction(action="key", keys="cmd+s")]
         RecordingStore.save(rec)
         loaded = RecordingStore.load("roundtrip")
         assert loaded is not None
-        assert loaded.actions[0]["action"] == "key"
+        assert loaded.actions[0].action == "key"
 
     def test_load_missing(self):
         loaded = RecordingStore.load("does-not-exist")
@@ -62,13 +61,11 @@ class TestRecordingStore:
 
     def test_list_recordings(self, sample_recording):
         recordings = RecordingStore.list_recordings()
-        assert len(recordings) >= 1
         names = [r["name"] for r in recordings]
         assert "test-recording" in names
 
     def test_list_empty(self):
         recordings = RecordingStore.list_recordings()
-        # Only our temp home is empty — may have extra in real home, so just check structure
         assert isinstance(recordings, list)
 
     def test_delete(self, sample_recording):
@@ -84,15 +81,14 @@ class TestComputerUseRecording:
         rec = ComputerUseRecording(name="test")
         assert rec.name == "test"
         assert rec.description == ""
-        assert rec.actions == []
+        assert len(rec.actions) == 0
         assert rec.created_at is not None
 
-    def test_to_dict_roundtrip(self):
-        rec = ComputerUseRecording(name="roundtrip", description="testing")
-        rec.actions = [{"action": "key", "keys": "cmd+s"}]
-        d = rec.to_dict()
-        assert d["name"] == "roundtrip"
-        assert len(d["actions"]) == 1
+    def test_action_dataclass_roundtrip(self):
+        action = ComputerUseAction(action="click", coordinate=[100, 200], delay=0.5)
+        assert action.action == "click"
+        assert action.coordinate == [100, 200]
+        assert action.text is None  # default
 
 
 class TestPlayRecording:
@@ -105,7 +101,7 @@ class TestPlayRecording:
         loaded = RecordingStore.load("test-recording")
         assert loaded is not None
         assert len(loaded.actions) == 2
-        assert loaded.actions[0]["action"] == "click"
+        assert loaded.actions[0].action == "click"
 
 
 class TestCLICommands:

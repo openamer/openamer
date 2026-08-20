@@ -95,11 +95,6 @@ class RecordingStore:
         recording.updated_at = datetime.now().isoformat()
         path = RecordingStore._recording_path(recording.name)
         data = asdict(recording)
-        # Convert actions from dataclass to dicts manually for clean JSON
-        data["actions"] = [
-            {k: v for k, v in asdict(a).items() if v is not None}
-            for a in recording.actions
-        ]
         path.write_text(json.dumps(data, indent=2, default=str), encoding="utf-8")
         logger.info("Recording saved to %s", path)
         return path
