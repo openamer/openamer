@@ -358,8 +358,7 @@ const SuperintelligencePage: React.FC = () => (
 const plugin: OpenAmerPlugin = {
   id: 'openamer-hub',
   name: 'OpenAmer Hub',
-  description:
-    'Agent Builder, Brain Dashboard, Crews & Swarm, Trace, Marketplace & Superintelligence',
+  // description is intentionally not set — the PluginSpec type doesn't carry one
   defaultEnabled: true,
 
   register(ctx) {
