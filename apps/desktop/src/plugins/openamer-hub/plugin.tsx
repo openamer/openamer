@@ -425,7 +425,7 @@ const plugin: OpenAmerPlugin = {
       {
         id: 'nav-brain',
         area: SIDEBAR_NAV_AREA,
-        data: { codicon: 'brain', label: 'Brain', path: '/hub/brain' } as SidebarNavContribution,
+        data: { codicon: 'lightbulb', label: 'Brain', path: '/hub/brain' } as SidebarNavContribution,
         order: PHASE_ORDER_BASE + 10,
       } as PluginContribution,
       {
