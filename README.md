@@ -113,6 +113,7 @@ One command from GitHub gives you a **complete, standalone, private-first AI age
 | What you get | Default |
 |---|---|
 | **Desktop app** | built by the installer (native chat, terminal, settings) |
+| **OpenAmer Hub Plugin** | 6 new sidebar pages: Agent Builder, Brain Dashboard, Crews & Swarm, Trace, Marketplace, Superintelligence |
 | **117 bundled skills** (apple, github, mlops, creative, programming …) | seeded automatically |
 | | **99 tools** — internet, vision, voice, terminal, browser, files, code, sub-agents | included |
 | | **Computer-Use (background)** — drive Windows/macOS/Linux desktop | included |

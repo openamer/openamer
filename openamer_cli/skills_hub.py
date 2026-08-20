@@ -1765,13 +1765,13 @@ def skills_command(args) -> None:
                 _console.print("Usage: openamer skills tap [list|add|remove]\n")
                 return
             do_tap(tap_action, repo=repo)
-        elif action == "stats":
-            from openamer_cli.skills_improve_cli import handle_skills_stats
-            handle_skills_stats(args)
-        elif action == "improve":
-            from openamer_cli.skills_improve_cli import handle_skills_improve
-            handle_skills_improve(args)
-        else:
+    elif action == "stats":
+        from openamer_cli.skills_improve_cli import handle_skills_stats
+        handle_skills_stats(args)
+    elif action == "improve":
+        from openamer_cli.skills_improve_cli import handle_skills_improve
+        handle_skills_improve(args)
+    else:
             _console.print("Usage: openamer skills [browse|search|install|inspect|list|list-modified|diff|check|update|audit|uninstall|reset|opt-out|opt-in|publish|snapshot|tap|stats|improve]\n")
             _console.print("Run 'openamer skills <command> --help' for details.\n")
 
