@@ -17834,6 +17834,13 @@ def main():
     build_voice_conversation_parser(subparsers)
 
     # =========================================================================
+    # web-agent command — Autonomous Web Agent
+    # =========================================================================
+    from openamer_cli.autonomous_web_agent import build_web_agent_parser
+
+    build_web_agent_parser(subparsers)
+
+    # =========================================================================
     # approvals command — Smart Approvals (Human-in-the-Loop)
     # =========================================================================
     approvals_parser = subparsers.add_parser(
