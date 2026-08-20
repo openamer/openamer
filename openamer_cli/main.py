@@ -488,6 +488,7 @@ from openamer_cli.subcommands.lint_fix import build_lint_fix_parser
 from openamer_cli.subcommands.code_review_bot import build_review_pr_parser
 from openamer_cli.subcommands.cost import build_cost_parser
 from openamer_cli.subcommands.sandbox import build_sandbox_parser
+from openamer_cli.subcommands.hermes import build_hermes_parser
 
 
 def _require_tty(command_name: str) -> None:
@@ -15269,6 +15270,12 @@ def cmd_sandbox(args):
     print(f"[Exit code: {result['exit_code']}]", file=sys.stderr)
 
 
+def cmd_hermes(args):
+    """Handle ``openamer hermes <action>``."""
+    from openamer_cli.hermes_migration import run_hermes_command
+    return run_hermes_command(args)
+
+
 def cmd_pairing(args):
     from openamer_cli.pairing import pairing_command
 
@@ -17706,6 +17713,7 @@ def main():
     build_initiative_parser(subparsers)
     build_cross_session_parser(subparsers)
     build_sandbox_parser(subparsers, cmd_sandbox=cmd_sandbox)
+    build_hermes_parser(subparsers, cmd_hermes=cmd_hermes)
     build_repomap_parser(subparsers)
     build_workflow_parser(subparsers)
     build_tree_parser(subparsers)
