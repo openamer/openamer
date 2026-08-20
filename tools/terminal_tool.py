@@ -1353,6 +1353,12 @@ def _get_env_config() -> Dict[str, Any]:
     _ensure_terminal_env_bridged()
     env_type = os.getenv("TERMINAL_ENV", "local")
     
+    # Check sandbox override: if sandbox is enabled and env_type is local,
+    # transparently redirect to the sandbox backend.
+    sandbox_enabled = os.getenv("TERMINAL_SANDBOX_ENABLED", "false").lower() in {"true", "1", "yes"}
+    if sandbox_enabled and env_type == "local":
+        env_type = "sandbox"
+    
     mount_docker_cwd = os.getenv("TERMINAL_DOCKER_MOUNT_CWD_TO_WORKSPACE", "false").lower() in {"true", "1", "yes"}
     container_backend = env_type in {"docker", "singularity", "modal", "daytona"}
     docker_backend = env_type == "docker"
@@ -1538,6 +1544,14 @@ def _create_environment(env_type: str, image: str, cwd: str, timeout: int,
             network=docker_network,
             extra_args=docker_extra_args,
             persist_across_processes=cc.get("docker_persist_across_processes", True),
+        )
+
+    elif env_type == "sandbox":
+        from openamer_cli.terminal import SandboxBackend
+        return SandboxBackend(
+            image=image,
+            cwd=cwd,
+            timeout=timeout,
         )
     
     elif env_type == "singularity":

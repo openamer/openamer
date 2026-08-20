@@ -4,9 +4,7 @@
 
 </p>
 
-
-
-# OpenAmer Agent
+# OpenAmer Agent — the one agent to rule them all
 
 <p align="center">
 
@@ -32,8 +30,6 @@
 
 </p>
 
-
-
 > **OpenAmer** is a self-improving, self-learning personal AI agent — a
 > hardened, independently-developed fork of the
 > [Hermes Agent](https://github.com/NousResearch/hermes-agent) architecture
@@ -55,22 +51,62 @@
 
 ---
 
+## 🔥 What makes OpenAmer UNIQUE
 
+5 things **no other agent** can do:
+
+| # | Superpower | What it means | Who else has it |
+|---|---|---|---|
+| 🖥️ | **Background Computer-Use** | Drive your desktop apps — click, type, scroll — **without stealing your cursor or focus**. You work, the agent works alongside you. | ❌ Nobody. Claude Code has "computer use" as a preview that *steals* focus. |
+| 🌐 | **A2A Agent Swarm** | Every OpenAmer install is a node in a peer-to-peer agent network. Ask the swarm, share skills, learn from other nodes — over GitHub relay, not localhost-only. | ❌ Nobody. Every other agent is an island. |
+| 🧠 | **Brain Learning Loop** | Automatic training data collection (chat + thinking + tools → local dataset). Your agent *provably improves with use* — not a slogan, a measurable loop. | ❌ Nobody. Hermes has skills but no brain training. |
+| 🪟 | **Windows-Native** | Full native Windows support — CLI, TUI, Desktop, Gateway, all tools. No WSL required. | ❌ Claude Code: macOS/Linux only. Codex: Linux/Mac. AutoGPT: Linux-first. |
+| 🛠️ | **99 Tools + 117 Skills** | The largest tool & skill library in the agent space. Vision, voice, browser, files, code, sub-agents, terminal, computer-use, cron, delegation — all built-in. | ❌ Hermes: ~65 tools. Everyone else: < 30. |
+
+---
+
+## 🆚 OpenAmer vs The Competition
+
+| Feature | **OpenAmer** | Claude Code | Codex CLI | AutoGPT | CrewAI | LangGraph | OpenAI Agents |
+|---|---|---|---|---|---|---|---|
+| **Computer-Use (background)** | ✅ **ONLY** | ⚠️ Preview* | ❌ | ❌ | ❌ | ❌ | ❌ |
+| **A2A Agent Swarm** | ✅ **ONLY** | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| **Brain Learning Loop** | ✅ **ONLY** | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| **Windows-Native** | ✅ **ONLY** | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| **99+ Tools / 117 Skills** | ✅ **BIGGEST** | ⚠️ Limited | ❌ | ⚠️ Plugin | ❌ | ❌ | ❌ |
+| **Human-in-the-Loop** | ✅ **NEW** | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ |
+| **Sandbox Execution** | ✅ **NEW** | ❌ | ✅ | ❌ | ❌ | ❌ | ✅ |
+| **VS Code Extension** | ✅ **NEW** | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| **Multi-Agent Orchestration** | 🔜 Phase 2 | ❌ | ❌ | ❌ | ✅ | ✅ | ❌ |
+| **Durable Execution** | 🔜 Phase 2 | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ |
+| **Visual Agent Builder** | 🔜 Phase 2 | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ |
+| **Cross-Platform Gateway** | ✅ 11+ channels | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| **Provider-Agnostic** | ✅ 99+ models | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ |
+| **Cron + Delegation** | ✅ Built-in | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ |
+| **Self-Modify with Test Gate** | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+
+> *Claude Code's "computer use" steals focus, requires explicit windows, and doesn't work in background mode. Ours is truly background.*
+
+---
 
 ## What you get when you install OpenAmer
+
 One command from GitHub gives you a **complete, standalone, private-first AI agent** — installed and working on your own machine:
 
 | What you get | Default |
 |---|---|
 | **Desktop app** | built by the installer (native chat, terminal, settings) |
-| **65 bundled skills** (apple, github, mlops, creative, programming …) | seeded automatically |
-|| **99 tools** — internet, vision, voice, terminal, browser, files, code, sub-agents | included |
-|| **Sub-agents & parallel delegation** | built-in (`delegate_task`) |
-|| **Self-modify with test gate** — change core code, skills, or plugins; rolled back atomically if tests fail | `scripts/self_modify.py` + skill |
-|| **Plugin discovery** — search GitHub for community plugins | `openamer plugins search` |
-|| **A2A swarm** — every install is an agent node (works over GitHub relay, not localhost) | included; connect via `openamer a2a` |
+| **117 bundled skills** (apple, github, mlops, creative, programming …) | seeded automatically |
+| | **99 tools** — internet, vision, voice, terminal, browser, files, code, sub-agents | included |
+| | **Computer-Use (background)** — drive Windows/macOS/Linux desktop | included |
+| | **A2A swarm** — every install is an agent node (GitHub relay) | included |
+| | **Brain data collection** — automatic, privacy-scrubbed | **automatic** — daemon runs on every `openamer` invocation |
+| | **Sub-agents & parallel delegation** | built-in (`delegate_task`) |
+| | **Self-modify with test gate** — change core code, skills, plugins; rolled back atomically if tests fail | `scripts/self_modify.py` + skill |
+| | **Plugin discovery** — search GitHub for community plugins | `openamer plugins search` |
+| | **Human-in-the-Loop** — approve risky actions | config option (`hitl.enabled`) |
+| | **Docker Sandbox** — safe containerized execution | config option (`terminal.sandbox`) |
 | **Autonomous learning** | the agent distills lessons from its own turns automatically |
-| **Brain data collection** — activity, thinking & tools → local training dataset | **automatic** — daemon starts with every `openamer` invocation, exports every session within 60s |
 | **Privacy-by-default** | phone/password/email/card redacted before anything is stored |
 | **System self-knowledge** | your node's OS/hardware/model go into its system prompt |
 
@@ -80,18 +116,16 @@ openamer                      # start chatting
 openamer system               # what is this node running on?
 openamer security check       # your security posture
 openamer a2a status           # this node's A2A identity & mesh
-openamer a2a brain collect    # build a local training dataset (your first OpenAmer brain data)
-openamer a2a relay post <peer> "question"   # ask another node over GitHub, not localhost
+openamer a2a brain collect    # build a local training dataset
+openamer a2a relay post <peer> "question"   # ask another node over GitHub
+openamer computer-use         # control your desktop in background
 ```
 
 > **Honest note:** OpenAmer *collects* training material automatically (locally,
 > privacy-scrubbed) for a future **OpenAmer brain** fine-tune. It does **not** silently
 > train or upload a model: raw stays on your machine; only curated, signed, leak-free knowledge is shared.
 
-
-
-
-
+---
 
 **OpenAmer is the agent that does not break, and that provably improves with use.**
 
@@ -114,11 +148,17 @@ Switch with `openamer model` — no code changes, no lock-in.
 <table>
 <tr><td><b>Does not break</b></td><td>Hardened self-update that survives file-locks, interrupted installs, and stale recovery markers. The agent verifies before it claims and reports real errors instead of inventing results.</td></tr>
 <tr><td><b>Provably improves with use</b></td><td>Memory that persists across sessions, skills distilled from hard tasks and refined on reuse, and an A2A swarm that shares curated, signed, leak-free knowledge between nodes. Learning you can observe, not a slogan.</td></tr>
+<tr><td><b>🖥️ Background Computer-Use</b></td><td><b>UNIQUE</b> — Drive your desktop without focus steal. Click, type, scroll in any app while you keep working.</td></tr>
+<tr><td><b>🌐 A2A Agent Swarm</b></td><td><b>UNIQUE</b> — Every install is a node. Ask the network, share knowledge, learn from peers. No other agent does this.</td></tr>
+<tr><td><b>🧠 Brain Learning Loop</b></td><td><b>UNIQUE</b> — Automatic training data collection. Your agent improves measurably the longer you use it.</td></tr>
 <tr><td><b>A real terminal interface</b></td><td>A full TUI with multiline editing, slash-command autocomplete, conversation history, interrupt-and-redirect, and live streaming tool output.</td></tr>
 <tr><td><b>Lives where you do</b></td><td>Telegram, Discord, Slack, WhatsApp, Signal, and CLI — one gateway, one conversation that follows you across every channel. Voice memos are transcribed automatically.</td></tr>
 <tr><td><b>Scheduled automations</b></td><td>A built-in cron scheduler that delivers to any platform. Describe a daily report, a nightly backup, or a weekly audit in plain language and it runs unattended.</td></tr>
 <tr><td><b>Delegates and parallelizes</b></td><td>Spawn isolated subagents for parallel workstreams, or write Python scripts that call tools over RPC to collapse multi-step pipelines into a single turn.</td></tr>
 <tr><td><b>Runs anywhere, not just your laptop</b></td><td>Six terminal backends — local, Docker, SSH, Singularity, Modal, and Daytona. Daytona and Modal add serverless persistence, so your agent's environment hibernates when idle and wakes on demand — costing almost nothing between sessions.</td></tr>
+<tr><td><b>VS Code Extension</b></td><td><b>NEW</b> — Chat with OpenAmer from your editor. Right-click to explain or fix code. MCP-powered.</td></tr>
+<tr><td><b>Human-in-the-Loop</b></td><td><b>NEW</b> — Approve or deny risky actions. Configurable timeout, action-type filtering. Enterprise-ready.</td></tr>
+<tr><td><b>Docker Sandbox</b></td><td><b>NEW</b> — Run terminal commands in isolated containers. Falls back gracefully if Docker isn't available.</td></tr>
 <tr><td><b>Private by default</b></td><td>Phone numbers, passwords, emails, and card numbers are redacted before anything is stored. Your node's OS, hardware, and model stay in your own system prompt.</td></tr>
 <tr><td><b>Research-ready</b></td><td>Batch trajectory generation and trajectory compression for training the next generation of tool-calling models.</td></tr>
 </table>
@@ -126,15 +166,9 @@ Switch with `openamer model` — no code changes, no lock-in.
 
 ---
 
-
-
 ## Quick Install
 
-
-
 ### Linux, macOS, WSL2, Termux
-
-
 
 ```bash
 
@@ -142,19 +176,11 @@ curl -fsSL https://raw.githubusercontent.com/openamer/openamer/main/scripts/inst
 
 ```
 
-
-
 ### Windows (native, PowerShell)
-
-
 
 > **Heads up:** Native Windows runs OpenAmer without WSL — CLI, gateway, TUI, and tools all work natively. If you'd rather use WSL2, the Linux/macOS one-liner above works there too. Found a bug? Please [file issues](https://github.com/openamer/openamer/issues).
 
-
-
 Run this in PowerShell:
-
-
 
 ```powershell
 
@@ -162,15 +188,9 @@ iex (irm https://raw.githubusercontent.com/openamer/openamer/main/scripts/instal
 
 ```
 
-
-
 The installer handles everything: uv, Python 3.11, Node.js, ripgrep, ffmpeg, **and a portable Git Bash** (MinGit, unpacked to `%LOCALAPPDATA%\openamer\git` — no admin required, completely isolated from any system Git install). OpenAmer uses this bundled Git Bash to run shell commands.
 
-
-
 If you already have Git installed, the installer detects it and uses that instead. Otherwise a ~45MB MinGit download is all you need — it won't touch or interfere with any system Git.
-
-
 
 > **Android / Termux:** The tested manual path is documented in the [Termux guide](https://github.com/openamer/openamer/blob/main/website/docs/getting-started/termux). On Termux, OpenAmer installs a curated `.[termux]` extra because the full `.[all]` extra currently pulls Android-incompatible voice dependencies.
 
@@ -178,11 +198,7 @@ If you already have Git installed, the installer detects it and uses that instea
 
 > **Windows:** Native Windows is fully supported — the PowerShell one-liner above installs everything. If you'd rather use WSL2, the Linux command works there too. Native Windows install lives under `%LOCALAPPDATA%\openamer`; WSL2 installs under `~/.openamer` as on Linux.
 
-
-
 After installation:
-
-
 
 ```bash
 
@@ -192,23 +208,13 @@ openamer              # start chatting!
 
 ```
 
-
-
 ### Troubleshooting
-
-
 
 #### Windows Defender or antivirus flags `uv.exe` as malware
 
-
-
 If your antivirus (Bitdefender, Windows Defender, etc.) quarantines `uv.exe` from the OpenAmer `bin` folder (`%LOCALAPPDATA%\openamer\bin\uv.exe`), this is a **false positive**. The file is Astral's `uv` — the Rust Python package manager OpenAmer bundles to manage its Python environment. ML-based antivirus engines commonly flag unsigned Rust binaries that download and install packages.
 
-
-
 **To verify your copy is authentic:**
-
-
 
 ```powershell
 
@@ -216,13 +222,9 @@ If your antivirus (Bitdefender, Windows Defender, etc.) quarantines `uv.exe` fro
 
 winget install --id GitHub.cli
 
-
-
 # Login to GitHub
 
 gh auth login
-
-
 
 # Run verification
 
@@ -244,11 +246,7 @@ Expand-Archive $zip "$env:TEMP\uv_x" -Force
 
 ```
 
-
-
 If attestation says "Verification succeeded" and the last line prints `True`, you're good.
-
-
 
 **To whitelist OpenAmer:**
 
@@ -258,23 +256,13 @@ If attestation says "Verification succeeded" and the last line prints `True`, yo
 
 - Whitelist the **folder**, not the file hash — OpenAmer updates `uv` and the hash changes every version
 
-
-
 For more context, see the upstream Astral reports: [astral-sh/uv#13553](https://github.com/astral-sh/uv/issues/13553), [astral-sh/uv#15011](https://github.com/astral-sh/uv/issues/15011), [astral-sh/uv#10079](https://github.com/astral-sh/uv/issues/10079).
-
-
 
 ### Troubleshooting: Installation fails
 
-
-
 #### PowerShell says "Die Verbindung wurde unerwartet getrennt" / connection dropped
 
-
-
 This is almost always a **transient GitHub rate-limit or a dropped TLS connection**, not a problem with OpenAmer itself. GitHub was throttling the raw file host for a stretch. Wait 1–2 minutes and retry:
-
-
 
 ```powershell
 
@@ -282,11 +270,7 @@ iex (irm https://raw.githubusercontent.com/openamer/openamer/main/scripts/instal
 
 ```
 
-
-
 Still failing? Download the installer first and confirm it's non-empty (~190 KB) before running:
-
-
 
 ```powershell
 
@@ -300,23 +284,15 @@ iex (Get-Content $install -Raw)
 
 ```
 
-
-
 > **Legacy URL:** older README copies used
 
 > `https://github.com/openamer/openamer/raw/main/scripts/install.ps1`. That form
 
 > returns **404** and fails the install. Use the `raw.githubusercontent.com` URL above.
 
-
-
 #### PowerShell "Could not create SSL/TLS secure channel"
 
-
-
 Force TLS 1.2 (common on older Windows / PowerShell 5.1), then retry:
-
-
 
 ```powershell
 
@@ -326,15 +302,9 @@ iex (irm https://raw.githubusercontent.com/openamer/openamer/main/scripts/instal
 
 ```
 
-
-
 #### Install aborts early or "Access is denied"
 
-
-
 The installer writes under `%LOCALAPPDATA%\openamer` and extracts a portable Git Bash. If your user lacks write permission there (corporate policy, a previous partial install locked the folder, or the path was created under another account):
-
-
 
 1. Close PowerShell.
 
@@ -346,23 +316,13 @@ The installer writes under `%LOCALAPPDATA%\openamer` and extracts a portable Git
 
 4. Run the installer again.
 
-
-
 #### Python/Node step fails mid-way
-
-
 
 A network hiccup fetching packages. The installer is resumable: run the full command again — it continues from where it stopped. If it fails at the same package repeatedly, a proxy/firewall may be filtering registries; allow `pypi.org` and `registry.npmjs.org`.
 
-
-
 #### Behind a proxy or strict corporate network
 
-
-
 Set the proxy for the session before installing:
-
-
 
 ```powershell
 
@@ -374,25 +334,15 @@ iex (irm https://raw.githubusercontent.com/openamer/openamer/main/scripts/instal
 
 ```
 
-
-
 #### Nothing above helped
-
-
 
 After a successful install, run `openamer doctor` to diagnose the environment, and file an issue at https://github.com/openamer/openamer/issues with the exact error text (redact tokens/paths), your Windows version, and whether you're on a corporate network.
 
 
 
-
-
 ---
 
-
-
 ## Getting Started
-
-
 
 ```bash
 
@@ -422,8 +372,6 @@ openamer doctor       # Diagnose any issues
 
 ## Updating OpenAmer
 
-
-
 OpenAmer keeps itself current automatically. On every launch it checks (in the
 
 background, max a few times a day) whether a newer version is available on
@@ -432,19 +380,13 @@ background, max a few times a day) whether a newer version is available on
 
 `⚠ N commits behind — run 'openamer update'`** right inside the chat.
 
-
-
 When you see that (or whenever you feel like it), update in one step:
-
-
 
 ```bash
 
 openamer update
 
 ```
-
-
 
 What it does, automatically:
 
@@ -456,11 +398,7 @@ What it does, automatically:
 
    **OpenAmer desktop app** (icon, background, and all assets) when they change.
 
-
-
 Useful variants:
-
-
 
 ```bash
 
@@ -472,11 +410,7 @@ openamer update --branch main  # Update against main explicitly (default)
 
 ```
 
-
-
 You're then always on the latest, best version of OpenAmer.
-
-
 
 📖 **[Full documentation →](https://github.com/openamer/openamer/blob/main/website/docs/)**
 
@@ -484,11 +418,7 @@ You're then always on the latest, best version of OpenAmer.
 
 ---
 
-
-
 ## Bring your own keys
-
-
 
 OpenAmer works with whatever provider you want — that's not changing. Configure each tool you use (model, web search, image generation, TTS, cloud browser) with whichever API keys you choose. The tools are wired per-backend, not all-or-nothing.
 
@@ -496,39 +426,21 @@ OpenAmer works with whatever provider you want — that's not changing. Configur
 
 ---
 
-
-
 ## CLI vs Messaging Quick Reference
-
-
 
 OpenAmer has two entry points: start the terminal UI with `openamer`, or run the gateway and talk to it from Telegram, Discord, Slack, WhatsApp, Signal, or Email. Once a conversation starts, most slash commands work the same in both interfaces.
 
-
-
 | Action                         | CLI                                           | Messaging platforms                                                              |
-
 | ------------------------------ | --------------------------------------------- | -------------------------------------------------------------------------------- |
-
 | Start chatting                 | `openamer`                                      | Run `openamer gateway setup` + `openamer gateway start`, then send the bot a message |
-
 | Start fresh conversation       | `/new` or `/reset`                            | `/new` or `/reset`                                                               |
-
 | Change model                   | `/model [provider:model]`                     | `/model [provider:model]`                                                        |
-
 | Set a personality              | `/personality [name]`                         | `/personality [name]`                                                            |
-
 | Retry or undo the last turn    | `/retry`, `/undo`                             | `/retry`, `/undo`                                                                |
-
 | Compress context / check usage | `/compress`, `/usage`, `/insights [--days N]` | `/compress`, `/usage`, `/insights [days]`                                        |
-
 | Browse skills                  | `/skills` or `/<skill-name>`                  | `/<skill-name>`                                                                  |
-
 | Interrupt current work         | `Ctrl+C` or send a new message                | `/stop` or send a new message                                                    |
-
 | Platform-specific status       | `/platforms`                                  | `/status`, `/sethome`                                                            |
-
-
 
 For the full command lists, see the [CLI guide](https://github.com/openamer/openamer/blob/main/website/docs/user-guide/cli) and the [Messaging Gateway guide](https://github.com/openamer/openamer/blob/main/website/docs/user-guide/messaging).
 
@@ -536,71 +448,39 @@ For the full command lists, see the [CLI guide](https://github.com/openamer/open
 
 ---
 
-
-
 ## Documentation
-
-
 
 All documentation lives at **[OpenAmer Docs](https://github.com/openamer/openamer/blob/main/website/docs/)**:
 
-
-
 | Section                                                                                             | What's Covered                                             |
-
 | --------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-
 | [Quickstart](https://github.com/openamer/openamer/blob/main/website/docs/getting-started/quickstart)                 | Install → setup → first conversation in 2 minutes          |
-
 | [CLI Usage](https://github.com/openamer/openamer/blob/main/website/docs/user-guide/cli)                              | Commands, keybindings, personalities, sessions             |
-
 | [Configuration](https://github.com/openamer/openamer/blob/main/website/docs/user-guide/configuration)                | Config file, providers, models, all options                |
-
 | [Messaging Gateway](https://github.com/openamer/openamer/blob/main/website/docs/user-guide/messaging)                | Telegram, Discord, Slack, WhatsApp, Signal, Home Assistant |
-
 | [Security](https://github.com/openamer/openamer/blob/main/website/docs/user-guide/security)                          | Command approval, DM pairing, container isolation          |
-
 | [Tools & Toolsets](https://github.com/openamer/openamer/blob/main/website/docs/user-guide/features/tools)            | 40+ tools, toolset system, terminal backends               |
-
 | [Skills System](https://github.com/openamer/openamer/blob/main/website/docs/user-guide/features/skills)              | Procedural memory, Skills Hub, creating skills             |
-
 | [Memory](https://github.com/openamer/openamer/blob/main/website/docs/user-guide/features/memory)                     | Persistent memory, user profiles, best practices           |
-
 | [MCP Integration](https://github.com/openamer/openamer/blob/main/website/docs/user-guide/features/mcp)               | Connect any MCP server for extended capabilities           |
-
 | [Cron Scheduling](https://github.com/openamer/openamer/blob/main/website/docs/user-guide/features/cron)              | Scheduled tasks with platform delivery                     |
-
 | [Context Files](https://github.com/openamer/openamer/blob/main/website/docs/user-guide/features/context-files)       | Project context that shapes every conversation             |
-
 | [Architecture](https://github.com/openamer/openamer/blob/main/website/docs/developer-guide/architecture)             | Project structure, agent loop, key classes                 |
-
 | [Contributing](https://github.com/openamer/openamer/blob/main/website/docs/developer-guide/contributing)             | Development setup, PR process, code style                  |
-
 | [CLI Reference](https://github.com/openamer/openamer/blob/main/website/docs/reference/cli-commands)                  | All commands and flags                                     |
-
 | [Environment Variables](https://github.com/openamer/openamer/blob/main/website/docs/reference/environment-variables) | Complete env var reference                                 |
 
 
 
 ---
 
-
-
 ## Migrating from OpenClaw
-
-
 
 If you're coming from OpenClaw, OpenAmer can automatically import your settings, memories, skills, and API keys.
 
-
-
 **During first-time setup:** The setup wizard (`openamer setup`) automatically detects `~/.openclaw` and offers to migrate before configuration begins.
 
-
-
 **Anytime after install:**
-
-
 
 ```bash
 
@@ -614,11 +494,7 @@ openamer claw migrate --overwrite  # Overwrite existing conflicts
 
 ```
 
-
-
 What gets imported:
-
-
 
 - **SOUL.md** — persona file
 
@@ -636,23 +512,15 @@ What gets imported:
 
 - **Workspace instructions** — AGENTS.md (with `--workspace-target`)
 
-
-
 See `openamer claw migrate --help` for all options, or use the `openclaw-migration` skill for an interactive agent-guided migration with dry-run previews.
 
 
 
 ---
 
-
-
 ## Contributing
 
-
-
 We welcome contributions! See the [Contributing Guide](https://github.com/openamer/openamer/blob/main/website/docs/developer-guide/contributing) for development setup, code style, and PR process.
-
-
 
 Quick start for contributors — use the standard installer, then work from the
 
@@ -661,8 +529,6 @@ full git checkout it creates at `$OPENAMER_HOME/openamer-agent` (usually
 `~/.openamer/openamer-agent`). This matches the layout used by `openamer update`, the
 
 managed venv, lazy dependencies, gateway, and docs tooling.
-
-
 
 ```bash
 
@@ -676,21 +542,15 @@ scripts/run_tests.sh
 
 ```
 
-
-
 Manual clone fallback (for throwaway clones/CI where you intentionally do not
 
 want the managed install layout):
-
-
 
 Create the venv outside the cloned source tree — a venv inside the directory
 
 the agent operates from can be wiped by a relative-path command the agent runs
 
 against its own checkout, destroying the running runtime mid-session.
-
-
 
 ```bash
 
@@ -710,11 +570,7 @@ scripts/run_tests.sh
 
 ---
 
-
-
 ## Community
-
-
 
 - 💬 [Discord](https://discord.gg/openamer)
 
@@ -730,15 +586,8 @@ scripts/run_tests.sh
 
 ---
 
-
-
 ## License
-
-
 
 Apache License 2.0 — see [LICENSE](LICENSE).
 
-
-
 OpenAmer Agent.
-

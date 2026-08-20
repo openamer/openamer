@@ -1234,7 +1234,17 @@ DEFAULT_CONFIG = {
         # Enabled by default for non-local backends (SSH); local is always opt-in
         # via TERMINAL_LOCAL_PERSISTENT env var.
         "persistent_shell": True,
-    },
+                # Docker sandbox terminal backend.
+                # When enabled, terminal commands run inside a Docker container
+                # instead of directly on the host. Falls back to local if Docker
+                # is not installed.
+                "sandbox": {
+                    "enabled": False,
+                    "image": "ubuntu:22.04",
+                    "timeout": 300,
+                    "auto_pull": True,
+                },
+            },
 
     "web": {
         "backend": "",           # shared fallback — applies to both search and extract
@@ -3700,8 +3710,28 @@ DEFAULT_CONFIG = {
         "region": "global",
     },
 
+    # Human-in-the-Loop (HITL) approval system.
+    # When enabled, the agent pauses before executing certain action types and
+    # asks the user for explicit approval or denial.  Configure which actions
+    # trigger HITL and the prompt timeout below.
+    # This is NOT a core tool — it is a service-gated check_fn wrapper wired in
+    # via config.yaml.  See AGENTS.md for the Footprint Ladder rationale.
+    "hitl": {
+        "enabled": False,      # master switch; default off
+        "timeout": 30,         # seconds before auto-deny
+        # Action types that trigger HITL approval when the system is enabled.
+        # Each maps to a class of tool calls the agent may attempt.
+        "actions": [
+            "file_write",
+            "terminal_command",
+            "network_request",
+            "code_execution",
+            "plugin_install",
+        ],
+    },
+
     # Config schema version - bump this when adding new required fields
-    "_config_version": 33,
+    "_config_version": 34,
 }
 
 # =============================================================================
@@ -7563,7 +7593,25 @@ def apply_terminal_config_to_env(
                 value = os.path.expanduser(value)
         if should_override or env_var not in target:
             target[env_var] = _terminal_env_value(value)
+
+    # Bridge nested terminal.sandbox.* config -> TERMINAL_SANDBOX_* env vars
+    sandbox_cfg = terminal_cfg.get("sandbox", {})
+    if isinstance(sandbox_cfg, dict):
+        _sandbox_env_map = {
+            "enabled": "TERMINAL_SANDBOX_ENABLED",
+            "image": "TERMINAL_SANDBOX_IMAGE",
+            "timeout": "TERMINAL_SANDBOX_TIMEOUT",
+            "auto_pull": "TERMINAL_SANDBOX_AUTO_PULL",
+        }
+        for cfg_key, env_var in _sandbox_env_map.items():
+            if cfg_key not in sandbox_cfg:
+                continue
+            value = sandbox_cfg[cfg_key]
+            if should_override or env_var not in target:
+                target[env_var] = _terminal_env_value(value)
+
     return target
+
 
 
 def _load_config_impl(*, want_deepcopy: bool) -> Dict[str, Any]:

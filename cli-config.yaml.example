@@ -1614,3 +1614,23 @@ updates:
 #     command: "cat /run/user/1000/openamer-secrets.env"
 #     helper_timeout_seconds: 3
 #     override_existing: false             # .env/shell win by default
+
+# =============================================================================
+# Human-in-the-Loop (HITL) approval system
+# =============================================================================
+# When enabled, the agent pauses before executing certain action types
+# and asks for your explicit approval (approve / deny / auto-deny on timeout).
+#
+# This is wired as a service-gated check_fn wrapper (not a new core tool).
+# See openamer_cli/hitl.py for the implementation and AGENTS.md for the
+# Footprint Ladder rationale.
+#
+# hitl:
+#   enabled: true                       # default: off
+#   timeout: 30                         # seconds before auto-deny (default: 30)
+#   actions:                            # action types that trigger approval
+#     - file_write                      # write_file, patch
+#     - terminal_command                # terminal() shell execution
+#     - network_request                 # HTTP requests (web_search, etc.)
+#     - code_execution                  # execute_code tool
+#     - plugin_install                  # plugin_manage install
