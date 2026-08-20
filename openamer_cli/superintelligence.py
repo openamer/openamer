@@ -91,10 +91,16 @@ def _age_days(path: Path) -> float:
     return (time.time() - mtime) / 86400.0
 
 
-def _count_files(directory: Path, glob: str = "*") -> int:
-    """Count files matching *glob* under *directory* (non-recursive)."""
+def _count_files(directory: Path, glob: str = "*", recursive: bool = True) -> int:
+    """Count files matching *glob* under *directory*.
+
+    Recursive by default because skills live in subdirectories
+    (``autonomous-ai-agents/super-intelligence/SKILL.md``).
+    """
     if not directory.is_dir():
         return 0
+    if recursive:
+        return len(list(directory.rglob(glob)))
     return len(list(directory.glob(glob)))
 
 
@@ -196,7 +202,7 @@ def check_memory_health() -> tuple[str, str]:
         return "fail", "fail"
 
     size_mb = _dir_size_mb(mem_dir)
-    count = _count_files(mem_dir, "*.json")
+    count = _count_files(mem_dir, "*.md")  # memories are Markdown files
 
     # Usage: warn if >500MB, fail if >1GB
     if size_mb > 1000:
@@ -246,7 +252,7 @@ def check_multi_agent() -> str:
     except ImportError:
         pass
     try:
-        from openamer_cli.hitl import delegate_task  # noqa: F401
+        import openamer_cli.a2a  # noqa: F401 — A2A package
         checks += 1
     except ImportError:
         pass
