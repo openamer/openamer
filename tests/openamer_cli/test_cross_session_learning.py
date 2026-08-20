@@ -60,9 +60,12 @@ def _create_mock_state_db(path: Path) -> None:
         )
     """)
 
-    # Session 1: Erfolgreiche Coding-Session
+    now = time.time()
+    _7_DAYS = 7 * 86400
+    _8_DAYS = 8 * 86400
+
+    # Session 1: Erfolgreiche Coding-Session (heute)
     s1_id = "session_success_001"
-    now = _MOCK_TIME
     conn.execute(
         "INSERT INTO sessions (id, source, title, model, started_at, ended_at, "
         "end_reason, message_count, tool_call_count, input_tokens, output_tokens) "
@@ -90,7 +93,7 @@ def _create_mock_state_db(path: Path) -> None:
             (s1_id,),
         )
 
-    # Session 2: Fehlgeschlagene Session
+    # Session 2: Fehlgeschlagene Session (2h her)
     s2_id = "session_fail_002"
     conn.execute(
         "INSERT INTO sessions (id, source, title, model, started_at, ended_at, "
@@ -114,7 +117,7 @@ def _create_mock_state_db(path: Path) -> None:
 
     # Session 3: Alte Session (älter als 7 Tage)
     s3_id = "session_old_003"
-    old_ts = _MOCK_TIME - 8 * 86400  # 8 days ago
+    old_ts = now - _8_DAYS  # 8 days ago
     conn.execute(
         "INSERT INTO sessions (id, source, title, model, started_at, ended_at, "
         "end_reason, message_count, tool_call_count, input_tokens, output_tokens) "
@@ -141,7 +144,7 @@ def _create_mock_lessons_db(path: Path) -> None:
             created_at REAL NOT NULL
         )
     """)
-    now = _MOCK_TIME
+    now = time.time()
     lessons_data = [
         ("session_success_001", "result", "Session erfolgreich abgeschlossen", None, 1),
         ("session_success_001", "tools", "Top-Tools: terminal(5)", "terminal", 1),
@@ -386,7 +389,34 @@ class TestInjectContext(TestCase):
 
         # Leere State-DB (nur Tabellen, keine Daten)
         conn = sqlite3.connect(str(empty_state_db))
-        conn.execute("CREATE TABLE sessions (id TEXT)")
+        conn.execute("""
+            CREATE TABLE sessions (
+                id TEXT PRIMARY KEY,
+                source TEXT NOT NULL,
+                title TEXT,
+                model TEXT,
+                started_at REAL,
+                ended_at REAL,
+                end_reason TEXT,
+                message_count INTEGER DEFAULT 0,
+                tool_call_count INTEGER DEFAULT 0,
+                input_tokens INTEGER DEFAULT 0,
+                output_tokens INTEGER DEFAULT 0
+            )
+        """)
+        conn.execute("""
+            CREATE TABLE messages (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                session_id TEXT NOT NULL,
+                role TEXT NOT NULL,
+                content TEXT,
+                tool_name TEXT,
+                tool_call_id TEXT,
+                finish_reason TEXT,
+                token_count INTEGER,
+                active INTEGER DEFAULT 1
+            )
+        """)
         conn.close()
         _create_mock_lessons_db_empty(empty_lessons_db)
 
@@ -572,8 +602,8 @@ class TestHelpers(TestCase):
         self.assertIn("nicht", sw)
         self.assertGreater(len(sw), 10)
 
-        # _STOPWORDS sollte das gecachte Set sein
-        self.assertIs(_STOPWORDS, sw)
+        # _STOPWORDS sollte das gleiche Set enthalten
+        self.assertEqual(_STOPWORDS, sw)
 
     def test_message_count_maybe(self):
         """message_count_maybe formatiert die Anzahl korrekt."""

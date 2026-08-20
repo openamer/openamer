@@ -198,7 +198,7 @@ def extract_lessons(
             "lesson": (
                 f"Session erfolgreich abgeschlossen (end_reason={end_reason}). "
                 f"{message_count_maybe(session)} Messages, "
-                f"{tool_call_count} Tool-Aufrufe."
+                f"{tool_call_count_from_session} Tool-Aufrufe."
             ),
             "tool_name": None,
             "success": 1,
@@ -222,7 +222,7 @@ def extract_lessons(
             "category": "tools",
             "lesson": (
                 f"Top-Tools in dieser Session: {tools_str}. "
-                f"Insgesamt {tool_call_count} Tool-Aufrufe."
+                f"Insgesamt {tool_call_count_from_session} Tool-Aufrufe."
             ),
             "tool_name": top_tools[0][0] if top_tools else None,
             "success": 1,
