@@ -17,6 +17,18 @@ from pathlib import Path
 from typing import Any
 
 
+# ---------------------------------------------------------------------------
+# Circuit Breaker Integration
+# ---------------------------------------------------------------------------
+
+from openamer_cli.circuit_breaker import check_action, record_success, record_failure
+
+CB_MODULE = "memory_healing"
+
+
+# ---------------------------------------------------------------------------
+
+
 def _home() -> Path:
     return Path(os.environ.get("OPENAMER_HOME", Path.home() / ".openamer"))
 
@@ -129,17 +141,24 @@ def fix_memory_issues() -> dict[str, Any]:
 
 def run_healing_cycle() -> dict[str, Any]:
     """Vollständiger Self-Healing Zyklus: Check → Fix → Report."""
-    check = check_memory_integrity()
-    fix = fix_memory_issues() if check["issues_count"] > 0 else {"fixed": [], "fixed_count": 0}
+    if not check_action(CB_MODULE):
+        return {"status": "blocked", "message": "Circuit breaker is RED — manual reset required", "issues_found": 0, "issues_fixed": 0}
 
-    return {
-        "check_status": check["status"],
-        "issues_found": check["issues_count"],
-        "issues_fixed": fix["fixed_count"],
-        "details": fix.get("fixed", []),
-        "errors": fix.get("errors", []),
-        "completed_at": datetime.now(timezone.utc).isoformat(),
-    }
+    try:
+        check = check_memory_integrity()
+        fix = fix_memory_issues() if check["issues_count"] > 0 else {"fixed": [], "fixed_count": 0}
+        record_success(CB_MODULE)
+        return {
+            "check_status": check["status"],
+            "issues_found": check["issues_count"],
+            "issues_fixed": fix["fixed_count"],
+            "details": fix.get("fixed", []),
+            "errors": fix.get("errors", []),
+            "completed_at": datetime.now(timezone.utc).isoformat(),
+        }
+    except Exception as e:
+        record_failure(CB_MODULE, str(e))
+        return {"status": "error", "message": str(e), "issues_found": 0, "issues_fixed": 0}
 
 
 def run_cron_entry() -> str:

@@ -25,6 +25,18 @@ from typing import Any
 
 
 # ---------------------------------------------------------------------------
+# Circuit Breaker Integration
+# ---------------------------------------------------------------------------
+
+from openamer_cli.circuit_breaker import check_action, record_success, record_failure
+
+CB_MODULE = "autonomous_initiative"
+
+
+# ---------------------------------------------------------------------------
+
+
+# ---------------------------------------------------------------------------
 # Path helpers (konsistent mit superintelligence.py)
 # ---------------------------------------------------------------------------
 
@@ -98,50 +110,61 @@ def auto_fix_issues(dry_run: bool = False) -> list[dict[str, str]]:
     Returns:
         Liste von Actions: [{check, status, action, result}]
     """
-    health = check_system_health()
-    actions: list[dict[str, str]] = []
+    # Circuit Breaker Check
+    if not check_action(CB_MODULE):
+        return [{"check": "circuit_breaker", "status": "blocked",
+                  "action": "blocked_by_circuit_breaker",
+                  "result": "Circuit breaker is RED — manual reset required"}]
+    try:
+        health = check_system_health()
+        actions: list[dict[str, str]] = []
 
-    # -- Brain Learning Loop --
-    if health.get("brain_learning_loop") in ("fail", "warn"):
-        actions.append(_fix_brain_learning_loop(dry_run))
+        # -- Brain Learning Loop --
+        if health.get("brain_learning_loop") in ("fail", "warn"):
+            actions.append(_fix_brain_learning_loop(dry_run))
 
-    # -- A2A Swarm Connectivity --
-    if health.get("a2a_swarm_connectivity") in ("fail", "warn"):
-        actions.append(_fix_a2a_connectivity(dry_run))
+        # -- A2A Swarm Connectivity --
+        if health.get("a2a_swarm_connectivity") in ("fail", "warn"):
+            actions.append(_fix_a2a_connectivity(dry_run))
 
-    # -- Skills Count --
-    if health.get("skills_count") in ("fail", "warn"):
-        actions.append(_fix_skills_count(dry_run))
+        # -- Skills Count --
+        if health.get("skills_count") in ("fail", "warn"):
+            actions.append(_fix_skills_count(dry_run))
 
-    # -- Skills Improvement Rate --
-    if health.get("skills_improvement_rate") in ("fail", "warn"):
-        actions.append(_fix_skills_improvement(dry_run))
+        # -- Skills Improvement Rate --
+        if health.get("skills_improvement_rate") in ("fail", "warn"):
+            actions.append(_fix_skills_improvement(dry_run))
 
-    # -- Memory Usage --
-    if health.get("memory_usage") in ("fail", "warn"):
-        actions.append(_fix_memory_usage(dry_run))
+        # -- Memory Usage --
+        if health.get("memory_usage") in ("fail", "warn"):
+            actions.append(_fix_memory_usage(dry_run))
 
-    # -- Memory Growth --
-    if health.get("memory_growth") in ("fail", "warn"):
-        actions.append(_fix_memory_growth(dry_run))
+        # -- Memory Growth --
+        if health.get("memory_growth") in ("fail", "warn"):
+            actions.append(_fix_memory_growth(dry_run))
 
-    # -- Computer-Use Readiness --
-    if health.get("computer_use_readiness") in ("fail", "warn"):
-        actions.append(_fix_computer_use(dry_run))
+        # -- Computer-Use Readiness --
+        if health.get("computer_use_readiness") in ("fail", "warn"):
+            actions.append(_fix_computer_use(dry_run))
 
-    # -- Multi-Agent Orchestration --
-    if health.get("multi_agent_orchestration") in ("fail", "warn"):
-        actions.append(_fix_multi_agent(dry_run))
+        # -- Multi-Agent Orchestration --
+        if health.get("multi_agent_orchestration") in ("fail", "warn"):
+            actions.append(_fix_multi_agent(dry_run))
 
-    if not actions:
-        actions.append({
-            "check": "all",
-            "status": "pass",
-            "action": "none_needed",
-            "result": "All systems healthy — no fixes required.",
-        })
+        if not actions:
+            actions.append({
+                "check": "all",
+                "status": "pass",
+                "action": "none_needed",
+                "result": "All systems healthy — no fixes required.",
+            })
 
-    return actions
+        record_success(CB_MODULE)
+        return actions
+    except Exception as e:
+        record_failure(CB_MODULE, str(e))
+        return [{"check": "circuit_breaker", "status": "error",
+                  "action": "record_failure", "result": str(e)}]
 
 
 def _fix_brain_learning_loop(dry_run: bool) -> dict[str, str]:
