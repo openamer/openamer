@@ -134,11 +134,13 @@ class MarketplaceStore:
         if self._path.exists():
             try:
                 raw = json.loads(self._path.read_text(encoding="utf-8"))
-                if not isinstance(raw, list):
-                    raise TypeError("expected JSON array")
-                for entry in raw:
-                    item = MarketListing.from_dict(entry)
-                    self._items[item.name] = item
+                if isinstance(raw, list):
+                    for entry in raw:
+                        item = MarketListing.from_dict(entry)
+                        self._items[item.name] = item
+                else:
+                    # null, object etc. → treat as empty registry
+                    logger.info("Marketplace registry is not a list (got %s) — starting fresh", type(raw).__name__)
             except (json.JSONDecodeError, OSError) as exc:
                 logger.warning("Failed to load marketplace registry: %s", exc)
         self._loaded = True

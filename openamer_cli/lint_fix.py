@@ -307,6 +307,11 @@ class LintFixEngine:
         """
         linter = self._detect_linter(file_path)
 
+        # Check file exists after detecting linter (so unsupported ext raises ValueError first)
+        path = Path(file_path)
+        if not path.exists():
+            raise FileNotFoundError(f"File not found: {file_path}")
+
         # Try linter auto-fix first
         if linter == "ruff" and _apply_ruff_fix(file_path, issue):
             return True
