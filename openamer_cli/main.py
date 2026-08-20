@@ -462,6 +462,8 @@ from openamer_cli.subcommands.crew import build_crew_parser
 from openamer_cli.subcommands.swarm import build_swarm_parser
 from openamer_cli.subcommands.superintelligence import build_super_parser
 from openamer_cli.subcommands.repomap import build_repomap_parser
+from openamer_cli.subcommands.workflow import build_workflow_parser
+from openamer_cli.subcommands.tree import build_tree_parser
 from openamer_cli.durable_execution import build_checkpoint_parser
 from openamer_cli.observability import build_trace_parser
 from openamer_cli.subcommands.system import build_system_parser
@@ -482,6 +484,7 @@ from openamer_cli.subcommands.mcp import build_mcp_parser
 from openamer_cli.subcommands.claw import build_claw_parser
 from openamer_cli.subcommands.lint_fix import build_lint_fix_parser
 from openamer_cli.subcommands.code_review_bot import build_review_pr_parser
+from openamer_cli.subcommands.cost import build_cost_parser
 
 
 def _require_tty(command_name: str) -> None:
@@ -14648,6 +14651,24 @@ def cmd_logs(args):
     )
 
 
+def cmd_cost_report(args):
+    """Print a cost report to the terminal."""
+    from openamer_cli.cost_dashboard import print_cost_report
+
+    print_cost_report(days=getattr(args, "days", 30))
+
+
+def cmd_cost_stats(args):
+    """Show cost statistics as JSON."""
+    import json
+
+    from openamer_cli.cost_dashboard import get_cost_stats
+
+    stats = get_cost_stats(days=getattr(args, "days", 30))
+    indent = 2 if getattr(args, "pretty", False) else None
+    print(json.dumps(stats, indent=indent))
+
+
 def cmd_console(args):
     """Open the safe OpenAmer command console."""
     from openamer_cli.console_engine import run_console_repl
@@ -17466,6 +17487,8 @@ def main():
     build_swarm_parser(subparsers)
     build_super_parser(subparsers)
     build_repomap_parser(subparsers)
+    build_workflow_parser(subparsers)
+    build_tree_parser(subparsers)
     build_system_parser(subparsers)
 
     # =========================================================================
@@ -17543,6 +17566,13 @@ def main():
     # logs command  (parser built in openamer_cli/subcommands/logs.py)
     # =========================================================================
     build_logs_parser(subparsers, cmd_logs=cmd_logs)
+
+    # =========================================================================
+    # cost command  (parser built in openamer_cli/subcommands/cost.py)
+    # =========================================================================
+    build_cost_parser(
+        subparsers,
+    )
 
     # =========================================================================
     # prompt-size command  (parser built in openamer_cli/subcommands/prompt_size.py)

@@ -1,0 +1,1 @@
+"""Tests for the openamer_cli.integrations package."""
