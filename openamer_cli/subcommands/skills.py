@@ -312,4 +312,21 @@ def build_skills_parser(subparsers, *, cmd_skills: Callable) -> None:
         "config",
         help="Interactive skill configuration — enable/disable individual skills",
     )
+    # ---------- Self-improving skills (stats / improve) ----------
+    skills_stats = skills_subparsers.add_parser(
+        "stats", help="Show skill usage statistics"
+    )
+    skills_stats.add_argument(
+        "name", nargs="?", default=None,
+        help="Skill name to show stats for (default: all skills)"
+    )
+
+    skills_improve = skills_subparsers.add_parser(
+        "improve", help="Suggest skill improvements"
+    )
+    skills_improve.add_argument(
+        "name", nargs="?", default=None,
+        help="Skill name to analyze (default: all skills with data)"
+    )
+
     skills_parser.set_defaults(func=cmd_skills)

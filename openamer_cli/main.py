@@ -459,6 +459,8 @@ from openamer_cli.subcommands.a2a import build_a2a_parser
 from openamer_cli.subcommands.agent import build_agent_parser
 from openamer_cli.subcommands.marketplace import build_marketplace_parser
 from openamer_cli.subcommands.crew import build_crew_parser
+from openamer_cli.subcommands.swarm import build_swarm_parser
+from openamer_cli.subcommands.superintelligence import build_super_parser
 from openamer_cli.durable_execution import build_checkpoint_parser
 from openamer_cli.observability import build_trace_parser
 from openamer_cli.subcommands.system import build_system_parser
@@ -17376,6 +17378,8 @@ def main():
     build_agent_parser(subparsers)
     build_marketplace_parser(subparsers)
     build_crew_parser(subparsers)
+    build_swarm_parser(subparsers)
+    build_super_parser(subparsers)
     build_system_parser(subparsers)
     # update command  (parser built in openamer_cli/subcommands/update.py)
     # =========================================================================

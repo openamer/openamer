@@ -1759,15 +1759,21 @@ def skills_command(args) -> None:
         else:
             _console.print("Usage: openamer skills snapshot [export|import]\n")
     elif action == "tap":
-        tap_action = getattr(args, "tap_action", None)
-        repo = getattr(args, "repo", "") or getattr(args, "name", "")
-        if not tap_action:
-            _console.print("Usage: openamer skills tap [list|add|remove]\n")
-            return
-        do_tap(tap_action, repo=repo)
-    else:
-        _console.print("Usage: openamer skills [browse|search|install|inspect|list|list-modified|diff|check|update|audit|uninstall|reset|opt-out|opt-in|publish|snapshot|tap]\n")
-        _console.print("Run 'openamer skills <command> --help' for details.\n")
+            tap_action = getattr(args, "tap_action", None)
+            repo = getattr(args, "repo", "") or getattr(args, "name", "")
+            if not tap_action:
+                _console.print("Usage: openamer skills tap [list|add|remove]\n")
+                return
+            do_tap(tap_action, repo=repo)
+        elif action == "stats":
+            from openamer_cli.skills_improve_cli import handle_skills_stats
+            handle_skills_stats(args)
+        elif action == "improve":
+            from openamer_cli.skills_improve_cli import handle_skills_improve
+            handle_skills_improve(args)
+        else:
+            _console.print("Usage: openamer skills [browse|search|install|inspect|list|list-modified|diff|check|update|audit|uninstall|reset|opt-out|opt-in|publish|snapshot|tap|stats|improve]\n")
+            _console.print("Run 'openamer skills <command> --help' for details.\n")
 
 
 # ---------------------------------------------------------------------------

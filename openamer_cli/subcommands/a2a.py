@@ -450,6 +450,76 @@ def _cmd_query(args) -> int:
     return 0 if res.peers_answered > 0 else 1
 
 
+def _cmd_mesh(args) -> int:
+    """Handle ``openamer a2a mesh learn|publish|import|stats``."""
+    from openamer_cli.a2a.mesh_learning import MeshLearningCoordinator
+    import json as _json
+
+    coord = MeshLearningCoordinator()
+    cmd = args.mesh_cmd
+
+    if cmd == "publish":
+        lesson = getattr(args, "lesson", None)
+        title = getattr(args, "title", None)
+        body = getattr(args, "body", None)
+        topic = getattr(args, "topic", "general")
+
+        if lesson:
+            try:
+                lesson_dict = _json.loads(lesson)
+            except _json.JSONDecodeError:
+                print("Invalid JSON for lesson argument.")
+                return 2
+        elif title and body:
+            lesson_dict = {"title": title, "body": body, "topic": topic}
+        else:
+            print("Usage: openamer a2a mesh publish '<json>' or --title <title> --body <body> [--topic <topic>]")
+            return 2
+
+        result = coord.publish_lesson(lesson_dict)
+        print(f"Lesson published: {result['lesson_id']}")
+        print(f"  source: {result['source']}")
+        print(f"  topic: {result['topic']}")
+        print(f"  path: {result['path']}")
+        return 0
+
+    elif cmd == "import":
+        max_lessons = getattr(args, "max_lessons", 20)
+        lessons = coord.import_lessons_from_mesh(max_lessons=max_lessons)
+        if not lessons:
+            print("No lessons found in the mesh.")
+            return 0
+        print(f"Found {len(lessons)} lessons from the mesh:")
+        for i, les in enumerate(lessons, 1):
+            title = les.get("title", "(untitled)")
+            topic = les.get("topic", "general")
+            source = les.get("source", "unknown")[:12]
+            print(f"  #{i} [{topic}] {title} (from {source})")
+        return 0
+
+    elif cmd == "stats":
+        stats = coord.get_mesh_learning_stats()
+        print("Mesh Learning Statistics:")
+        print(f"  Lessons published   : {stats['lessons_published']}")
+        print(f"  Lessons imported    : {stats['lessons_imported']}")
+        print(f"  Memory entries      : {stats['memory_entries']}")
+        print(f"  Local skills        : {stats['local_skills']}")
+        print(f"  Last published      : {stats['last_published'] or 'never'}")
+        print(f"  Topics              : {stats['topics']}")
+        return 0
+
+    elif cmd == "learn":
+        result = coord.run_mesh_learning_cycle()
+        print("Mesh Learning Cycle complete:")
+        print(f"  Lessons published: {result.get('published', 0)}")
+        print(f"  Lessons imported : {result.get('imported', 0)}")
+        print(f"  Lessons applied  : {result.get('applied', 0)}")
+        return 0
+
+    print("Unknown mesh subcommand.")
+    return 2
+
+
 def build_a2a_parser(subparsers) -> None:
     """Attach the ``a2a`` subcommand tree."""
     p = subparsers.add_parser("a2a", help="Agent-to-Agent (A2A) identity & mesh")
@@ -502,9 +572,9 @@ def build_a2a_parser(subparsers) -> None:
     rpull = rl_sub.add_parser("pull", help="Pull + verify relay notes for a mailbox")
     rpull.add_argument("mailbox", nargs="?"); rpull.add_argument("--repo-dir", default=None)
     rpull.add_argument("--once", action="store_true",
-                       help="Consume each note exactly once (dedup across pulls)")
+                   help="Consume each note exactly once (dedup across pulls)")
     rpull.add_argument("--purge", type=int, default=None, metavar="SECONDS",
-                       help="Delete already-consumed notes older than SECONDS")
+                   help="Delete already-consumed notes older than SECONDS")
     rpull.set_defaults(func=_cmd_relay)
     rl.set_defaults(func=_cmd_relay)
 
@@ -571,4 +641,25 @@ def build_a2a_parser(subparsers) -> None:
     q.add_argument("--max-peers", type=int, default=5, help="max peers to contact (default 5)")
     q.set_defaults(func=_cmd_query)
 
+    # =========================================================================
+    # mesh subcommand — advanced mesh learning (coordinate, publish, import)
+    # =========================================================================
+    mesh = sub.add_parser(
+    "mesh",
+    help="Advanced mesh learning — publish, import, and coordinate cross-node learning",
+    )
+    mesh_sub = mesh.add_subparsers(dest="mesh_cmd")
+    ml = mesh_sub.add_parser("learn", help="Run the full mesh learning cycle (publish local + import peers)")
+    ml.set_defaults(func=_cmd_mesh)
+    mp = mesh_sub.add_parser("publish", help="Publish a signed lesson to the mesh")
+    mp.add_argument("lesson", nargs="?", help="JSON string with title/body/topic for the lesson")
+    mp.add_argument("--title", default=None, help="Lesson title")
+    mp.add_argument("--body", default=None, help="Lesson body")
+    mp.add_argument("--topic", default="general", help="Lesson topic")
+    mp.set_defaults(func=_cmd_mesh)
+    mi = mesh_sub.add_parser("import", help="Import lessons from peer mesh nodes")
+    mi.add_argument("--max", type=int, default=20, dest="max_lessons", help="Maximum lessons to import (default 20)")
+    mi.set_defaults(func=_cmd_mesh)
+    ms = mesh_sub.add_parser("stats", help="Show mesh learning statistics")
+    ms.set_defaults(func=_cmd_mesh)
     p.set_defaults(func=_cmd_status)
