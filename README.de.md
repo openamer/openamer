@@ -1,31 +1,113 @@
-# OpenAmer Agent
+# OpenAmer Agent — der eine Agent, der alle beherrscht
 
 **OpenAmer ist der Agent, der nicht kaputtgeht — und der sich nachweislich mit der Nutzung verbessert.**
 
-Er läuft auf deiner eigenen Maschine, trifft dich in den Kanälen, die du bereits nutzt, und wird mit der Zeit besser. Zwei Dinge heben ihn ab:
+Er läuft auf deiner eigenen Maschine, trifft dich in den Kanälen, die du bereits nutzt, und wird mit der Zeit besser. OpenAmer ist ein gehärteter, unabhängig entwickelter Fork der [Hermes Agent](https://github.com/NousResearch/hermes-agent)-Architektur (MIT, von Nous Research). Wir sagen das offen: OpenAmer versteckt seine Herkunft nicht. Was wir darauf aufbauen — Robustheit, Verifizierbarkeit und eine echte Lernschleife — ist unser Eigenes.
 
-1. **Er geht nicht kaputt.** Das Selbst-Update ist gegen die Fehlerquellen gehärtet, die andere Agenten halb installiert zurücklassen — Datei-Sperren, unterbrochene Installationen, veraltete Recovery-Marker. Der Agent verifiziert, bevor er etwas behauptet, und meldet echte Fehler statt Ergebnisse zu erfinden.
-2. **Er verbessert sich nachweislich mit der Nutzung.** Erinnerungen bleiben über Sitzungen hinweg erhalten, Fähigkeiten werden aus schwierigen Aufgaben destilliert und bei Wiederverwendung verfeinert, und der A2A-Schwarm teilt kuratiertes, signiertes, leckfreies Wissen zwischen Knoten. Lernen, das du beobachten kannst — kein Marketing-Versprechen.
+---
 
-Nutze jedes beliebige Modell — OpenRouter, OpenAI, deinen eigenen Endpunkt und [viele weitere](https://github.com/openamer/openamer/blob/main/website/docs/integrations/providers). Wechsle mit `openamer model` — ohne Codeänderungen, ohne Bindung.
+## 🔥 Was OpenAmer EINZIGARTIG macht
 
-## Funktionen
+**15 Dinge, die kein anderer Agent kann** — ausgeliefert, getestet, verifiziert.
 
-| Funktion | Beschreibung |
+| # | Superkraft | Was es bedeutet | Wer hat es sonst? |
+|---|---|---|---|
+| 🖥️ | **Background Computer-Use** | Steuere deinen Desktop ohne Fokus-Klau. Aufnehmen und abspielen. | ❌ Niemand |
+| 🌐 | **A2A Agentenschwarm** | Jede Installation ist ein Peer-to-Peer-Knoten. Frage das Netzwerk. | ❌ Niemand |
+| 🧠 | **Brain Learning Loop** | Automatische Trainingsdatensammlung. Statistiken und Wachstumsgrafiken. | ❌ Niemand |
+| 🪟 | **Windows-Nativ** | Volle native Windows-Unterstützung. Kein WSL nötig. | ❌ Niemand |
+| 🛠️ | **99 Tools + 117 Skills** | Größte Bibliothek im Agenten-Bereich. | ❌ Niemand |
+| 👥 | **Multi-Agenten-Crews** | Rollenbasierte Teams (Rechercheur, Schreiber, Analyst). | ❌ Nur CrewAI |
+| 🏪 | **Agenten-Marktplatz** | Suche, installiere, veröffentliche Community-Agenten. | ❌ Niemand |
+| 💾 | **Durable Execution** | Checkpoint/Resume überlebt Abstürze. | ❌ Nur LangGraph |
+| 🤖 | **Visueller Agent-Builder** | `openamer agent create` aus NL-Beschreibung + Web UI. | ❌ Nur AutoGPT |
+| 📊 | **Observability/Tracing** | Schritt-für-Schritt-Agenten-Ausführungsbrowser. | ❌ Niemand |
+| 🧩 | **Selbstverbessernde Skills** | Skills, die sich bei Nutzung verbessern. | ❌ Niemand |
+| 📋 | **Profilsystem** | Lernt deine Muster und Präferenzen. | ❌ Niemand |
+| 🧠 | **Mesh Learning** | Netzwerkweiter Wissensaustausch. | ❌ Niemand |
+| 🎯 | **Superintelligenz-Dashboard** | Systemweiter Gesundheits-Score (0-100). | ❌ Niemand |
+| 🛡️ | **Human-in-the-Loop** | Riskante Aktionen genehmigen. Auto-Ablehnung bei Timeout. | ❌ Nur Enterprise |
+
+---
+
+## Was du bekommst, wenn du OpenAmer installierst
+
+Ein Befehl von GitHub gibt dir einen **kompletten, eigenständigen, privaten AI-Agenten** — installiert und lauffähig auf deiner eigenen Maschine:
+
+| Was du bekommst | Standard |
 |---|---|
-| **Geht nicht kaputt** | Gehärtetes Selbst-Update, das Datei-Sperren, unterbrochene Installationen und veraltete Recovery-Marker übersteht. Der Agent verifiziert, bevor er etwas behauptet, und meldet echte Fehler statt Ergebnisse zu erfinden. |
-| **Verbessert sich nachweislich** | Erinnerungen bleiben über Sitzungen erhalten, Fähigkeiten werden aus schwierigen Aufgaben destilliert und bei Wiederverwendung verfeinert, und der A2A-Schwarm teilt kuratiertes, signiertes, leckfreies Wissen zwischen Knoten. |
-| **Echte Terminal-Oberfläche** | Vollständiges TUI mit mehrzeiligem Bearbeiten, Slash-Command-Autovervollständigung, Gesprächsverlauf, Unterbrechen-und-Umleiten und Live-Streaming der Tool-Ausgabe. |
-| **Lebt, wo du bist** | Telegram, Discord, Slack, WhatsApp, Signal und CLI — ein Gateway, ein Gespräch, das dir über jeden Kanal folgt. Sprachnachrichten werden automatisch transkribiert. |
-| **Geplante Automatisierungen** | Eingebauter Cron-Scheduler mit Zustellung an jede Plattform. Beschreibe einen Tagesbericht, ein nächtliches Backup oder ein wöchentliches Audit in einfacher Sprache — es läuft unbeaufsichtigt. |
-| **Delegiert und parallelisiert** | Starte isolierte Subagenten für parallele Arbeitsströme oder schreibe Python-Skripte, die Tools über RPC aufrufen, um mehrstufige Pipelines in einen einzigen Turn zu verdichten. |
-| **Läuft überall, nicht nur auf deinem Laptop** | Sechs Terminal-Backends — lokal, Docker, SSH, Singularity, Modal und Daytona. Daytona und Modal bieten Serverless-Persistenz, sodass die Umgebung deines Agenten im Leerlauf ruht und bei Bedarf aufwacht — fast ohne Kosten zwischen den Sitzungen. |
-| **Privat per Standard** | Telefonnummern, Passwörter, E-Mails und Kartennummern werden vor dem Speichern redigiert. Betriebssystem, Hardware und Modell deines Knotens bleiben in deinem eigenen System-Prompt. |
-| **Forschungsbereit** | Batch-Trajektoriengenerierung und Trajektorienkompression für das Training der nächsten Generation von Tool-aufrufenden Modellen. |
+| **Desktop-App** | vom Installer gebaut (native Chat, Terminal, Einstellungen) |
+| **117 gebündelte Skills** (apple, github, mlops, kreativ, Programmierung…) | automatisch gesät |
+| **99 Tools** — Internet, Vision, Sprache, Terminal, Browser, Dateien, Code, Sub-Agenten | inklusive |
+| **Computer-Use (Background)** — steuere Windows/macOS/Linux-Desktop | inklusive |
+| **Computer-Use Record/Play** — nimm Desktop-Aktionen auf, spiele sie ab, cron-plane sie | inklusive |
+| **A2A Schwarm** — jede Installation ist ein Agenten-Knoten (GitHub Relay) | inklusive |
+| **A2A Peer Query** — stelle Fragen quer durch den Schwarm | inklusive |
+| **Brain Learning Loop** — automatische Trainingsdatensammlung | **automatisch** |
+| **Multi-Agenten-Crews** — rollenbasierte Teams (Rechercheur, Schreiber, Analyst…) | inklusive |
+| **Agenten-Marktplatz** — suche, installiere, veröffentliche Community-Agenten | inklusive |
+| **Durable Execution** — Checkpoint/Resume überlebt Abstürze | inklusive |
+| **Visueller Agent-Builder** — `openamer agent create` aus Beschreibung | inklusive |
+| **Agenten-Schwarm** — parallele, hierarchische, Debatten-Strategien | inklusive |
+| **Superintelligenz-Dashboard** — System-Gesundheits-Score 0-100 | inklusive |
+| **Selbstverbessernde Skills** — Skills verbessern sich bei Nutzung | inklusive |
+| **A2A Mesh Learning** — netzwerkweiter Wissensaustausch | inklusive |
+| **Observability/Tracing** — Agenten-Ausführungsbrowser | inklusive |
+| **Profilsystem** — lernt deine Muster und Präferenzen | inklusive |
+| **Human-in-the-Loop** — riskante Aktionen genehmigen | Konfigurationsoption |
+| **Docker Sandbox** — sichere containerisierte Ausführung | Konfigurationsoption |
+| **Autonomes Lernen** | der Agent destilliert Lektionen aus eigenen Durchläufen |
+| **Privatsphäre by default** | Telefon/Passwort/E-Mail/Karte werden vor Speicherung redigiert |
 
+### Probiere es gleich aus
+```bash
+openamer                      # Chat starten
+openamer system               # Was läuft auf diesem Knoten?
+openamer computer-use record mein-task   # Desktop-Aktionen aufnehmen
+openamer computer-use play mein-task     # Aufnahme abspielen
+openamer a2a status           # A2A-Identität & Mesh
+openamer a2a query "Frage"    # Den A2A-Schwarm fragen
+openamer brain stats          # Lernschleifen-Statistiken
+openamer brain graph          # Hirnwachstum anzeigen
+openamer agent create "Sende täglichen Bericht"  # NL-Agent-Builder
+openamer agent ui             # Visueller Agent-Builder Web UI
+openamer crew create mein-team --members researcher,writer  # Crew
+openamer crew run mein-team "Erforsche KI-Trends"
+openamer swarm run "Aufgabe" --agents 3 --strategy debate
+openamer trace list           # Agenten-Ablaufverfolgung
+openamer super status         # Superintelligenz-Status
+```
 
-| **Selbst-Modifikation mit Test-Gate** — Kern-Code, Skills oder Plugins ändern; bei Fehlschlag automatischer Rollback | `scripts/self_modify.py` + Skill |
-| **Plugin-Entdeckung** — GitHub nach Community-Plugins durchsuchen | `openamer plugins search` |
+---
+
+## 🆚 OpenAmer vs. die Konkurrenz
+
+| Feature | **OpenAmer** | Claude Code | Codex CLI | AutoGPT | CrewAI | LangGraph | OpenAI Agents |
+|---|---|---|---|---|---|---|---|
+| **Computer-Use (Background)** | ✅ **EINZIG** | ⚠️ Preview | ❌ | ❌ | ❌ | ❌ | ❌ |
+| **A2A Agentenschwarm** | ✅ **EINZIG** | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| **Brain Learning Loop** | ✅ **EINZIG** | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| **Windows-Nativ** | ✅ **EINZIG** | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| **99+ Tools / 117 Skills** | ✅ **GRÖSSTE** | ⚠️ Begrenzt | ❌ | ⚠️ Plugin | ❌ | ❌ | ❌ |
+| **Multi-Agenten-Crews** | ✅ **EINGEBAUT** | ❌ | ❌ | ❌ | ✅ | ✅ | ❌ |
+| **Agenten-Marktplatz** | ✅ **EINGEBAUT** | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ |
+| **Durable Execution** | ✅ **EINGEBAUT** | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ |
+| **Visueller Agent-Builder** | ✅ **EINGEBAUT** | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ |
+| **Observability/Tracing** | ✅ **EINGEBAUT** | ❌ | ❌ | ✅ | ✅ | ✅ | ✅ |
+| **Selbstverbessernde Skills** | ✅ **EINZIG** | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| **Human-in-the-Loop** | ✅ | ❌ | ❌ | ❌ | ❌ | ✅ | ✅ |
+| **Sandbox-Ausführung** | ✅ | ❌ | ✅ | ❌ | ❌ | ❌ | ✅ |
+| **VS Code Erweiterung** | ✅ | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| **Agentenschwarm (Debatte)** | ✅ **EINZIG** | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| **Superintelligenz-Dashboard** | ✅ **EINZIG** | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| **Mesh Learning Netzwerk** | ✅ **EINZIG** | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| **Computer-Use Record/Play** | ✅ **EINZIG** | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| **Plattformübergreifendes Gateway** | ✅ 11+ Kanäle | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+| **Anbieter-unabhängig** | ✅ 99+ Modelle | ❌ | ❌ | ❌ | ❌ | ✅ | ❌ |
+| **Cron + Delegation** | ✅ Eingebaut | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ |
+| **Selbst-Modifikation mit Test-Gate** | ✅ | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+
+---
 
 ## Schnellinstallation
 
@@ -41,38 +123,25 @@ curl -fsSL https://raw.githubusercontent.com/openamer/openamer/main/scripts/inst
 iex (irm https://raw.githubusercontent.com/openamer/openamer/main/scripts/install.ps1)
 ```
 
-Der Installer erledigt alles: uv, Python 3.11, Node.js, ripgrep, ffmpeg und ein portables Git Bash.
-
-## Einstieg
+Nach der Installation:
 
 ```bash
-openamer              # Interaktive CLI — ein Gespräch starten
-openamer model        # LLM-Anbieter und Modell wählen
-openamer tools        # Konfigurieren, welche Tools aktiviert sind
-openamer gateway      # Messaging-Gateway starten (Telegram, Discord, …)
-openamer setup        # Vollständigen Setup-Assistenten ausführen
-openamer update       # Auf die neueste Version aktualisieren
-openamer doctor       # Probleme diagnostizieren
+source ~/.bashrc
+openamer  # Chat starten!
 ```
 
-## Aktualisierung
+---
 
-OpenAmer hält sich automatisch aktuell. Beim Start prüft es im Hintergrund, ob eine neuere Version verfügbar ist — falls ja, zeigt das Willkommensbanner `⚠ N Commits zurück — 'openamer update' ausführen` direkt im Chat an.
+## Dokumentation & Community
 
-```bash
-openamer update
-```
-
-## Dokumentation
-
-Die vollständige Dokumentation findest du unter **[OpenAmer Docs](https://github.com/openamer/openamer/blob/main/website/docs/)**.
-
-## Community
-
+- 📚 [Dokumentation](https://github.com/openamer/openamer/blob/main/website/docs/)
 - 💬 [Discord](https://discord.gg/openamer)
-- 📚 [Skills Hub](https://agentskills.io)
 - 🐛 [Issues](https://github.com/openamer/openamer/issues)
+
+---
 
 ## Lizenz
 
 Apache License 2.0 — siehe [LICENSE](LICENSE).
+
+OpenAmer Agent.
