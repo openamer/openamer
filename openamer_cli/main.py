@@ -461,6 +461,7 @@ from openamer_cli.subcommands.marketplace import build_marketplace_parser
 from openamer_cli.subcommands.crew import build_crew_parser
 from openamer_cli.subcommands.swarm import build_swarm_parser
 from openamer_cli.subcommands.superintelligence import build_super_parser
+from openamer_cli.subcommands.repomap import build_repomap_parser
 from openamer_cli.durable_execution import build_checkpoint_parser
 from openamer_cli.observability import build_trace_parser
 from openamer_cli.subcommands.system import build_system_parser
@@ -479,6 +480,8 @@ from openamer_cli.subcommands.pairing import build_pairing_parser
 from openamer_cli.subcommands.plugins import build_plugins_parser
 from openamer_cli.subcommands.mcp import build_mcp_parser
 from openamer_cli.subcommands.claw import build_claw_parser
+from openamer_cli.subcommands.lint_fix import build_lint_fix_parser
+from openamer_cli.subcommands.code_review_bot import build_review_pr_parser
 
 
 def _require_tty(command_name: str) -> None:
@@ -4569,6 +4572,78 @@ def cmd_hooks(args):
     from openamer_cli.hooks import hooks_command
 
     hooks_command(args)
+
+
+def cmd_lint_fix(args):
+    """Run lint-and-fix cycle on a source file."""
+    from openamer_cli.lint_fix import LintFixEngine
+
+    engine = LintFixEngine()
+    file_path = args.file
+
+    if getattr(args, "watch", False):
+        engine.watch_and_fix(file_path, poll_interval=getattr(args, "poll_interval", 2.0))
+        return
+
+    max_iter = getattr(args, "max_iterations", 3)
+    try:
+        result = engine.run_lint_fix_cycle(file_path, max_iterations=max_iter)
+    except (FileNotFoundError, ValueError, RuntimeError) as e:
+        print(f"Error: {e}", file=sys.stderr)
+        sys.exit(1)
+
+    print(f"Results for {file_path}:")
+    print(f"  Success: {result['success']}")
+    print(f"  Iterations used: {result['iterations_used']}")
+    print(f"  Issues found: {result['total_issues_found']}")
+    print(f"  Issues fixed: {result['total_issues_fixed']}")
+    if result["remaining_issues"]:
+        print(f"  Remaining issues: {len(result['remaining_issues'])}")
+        for issue in result["remaining_issues"][:10]:
+            print(f"    - [{issue['severity']}] line {issue['line']}: {issue['code']} {issue['message']}")
+    sys.exit(0 if result["success"] else 1)
+
+
+def cmd_review_pr(args):
+    """Review a GitHub Pull Request."""
+    from openamer_cli.code_review_bot import CodeReviewBot
+
+    token = getattr(args, "token", None)
+    try:
+        bot = CodeReviewBot(token=token) if token else CodeReviewBot()
+    except RuntimeError as e:
+        print(f"Error: {e}", file=sys.stderr)
+        sys.exit(1)
+
+    try:
+        result = bot.review_pr(args.pr_number, args.repo)
+    except RuntimeError as e:
+        print(f"Error reviewing PR: {e}", file=sys.stderr)
+        sys.exit(1)
+
+    print(f"Review for PR #{args.pr_number} ({args.repo}):")
+    print(f"  Score: {result.score}/10")
+    print(f"  Summary: {result.summary}")
+    if result.issues:
+        print(f"  Issues ({len(result.issues)}):")
+        for issue in result.issues[:10]:
+            print(f"    - {issue}")
+    if result.suggestions:
+        print(f"  Suggestions ({len(result.suggestions)}):")
+        for sug in result.suggestions[:5]:
+            print(f"    - {sug}")
+
+    if getattr(args, "post", False):
+        print("  Posting review to GitHub...")
+        comments = bot.generate_review_comments(result.to_dict())
+        try:
+            response = bot.post_review_to_github(comments, args.pr_number, args.repo)
+            print(f"  Posted review: {response.get('html_url', 'done')}")
+        except RuntimeError as e:
+            print(f"  Error posting review: {e}", file=sys.stderr)
+            sys.exit(1)
+
+    sys.exit(0)
 
 
 def cmd_doctor(args):
@@ -15517,6 +15592,16 @@ def main():
     build_skills_parser(subparsers, cmd_skills=cmd_skills)
 
     # =========================================================================
+    # lint-fix command  (parser built in openamer_cli/subcommands/lint_fix.py)
+    # =========================================================================
+    build_lint_fix_parser(subparsers, cmd_lint_fix=cmd_lint_fix, cmd_lint_fix_watch=cmd_lint_fix)
+
+    # =========================================================================
+    # review-pr command  (parser built in openamer_cli/subcommands/code_review_bot.py)
+    # =========================================================================
+    build_review_pr_parser(subparsers, cmd_review_pr=cmd_review_pr)
+
+    # =========================================================================
     # bundles command — skill bundles (alias /<name> for multiple skills)
     # =========================================================================
     bundles_parser = subparsers.add_parser(
@@ -17380,7 +17465,17 @@ def main():
     build_crew_parser(subparsers)
     build_swarm_parser(subparsers)
     build_super_parser(subparsers)
+    build_repomap_parser(subparsers)
     build_system_parser(subparsers)
+
+    # =========================================================================
+    # observe command — Web Observability Portal
+    # =========================================================================
+    from openamer_cli.observability_ui import build_observe_parser
+
+    build_observe_parser(subparsers)
+
+    # =========================================================================
     # update command  (parser built in openamer_cli/subcommands/update.py)
     # =========================================================================
     build_update_parser(subparsers, cmd_update=cmd_update)

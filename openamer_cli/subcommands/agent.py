@@ -99,12 +99,19 @@ def _cmd_delete(args) -> int:
         return 1
 
 
+def _cmd_ui(args) -> int:
+    """Start the Agent Builder web UI."""
+    from openamer_cli.agent_ui import cmd_agent_ui
+    cmd_agent_ui(args)
+    return 0
+
+
 def build_agent_parser(subparsers) -> None:
     """Attach the ``agent`` subcommand tree to ``subparsers``."""
     p = subparsers.add_parser(
         "agent",
-        help="Manage autonomous agents (create, list, show, delete)",
-        description="Create, list, show, and delete OpenAmer agents built from natural-language descriptions.",
+        help="Manage autonomous agents (create, list, show, delete, ui)",
+        description="Create, list, show, delete OpenAmer agents, or launch the visual drag-drop builder UI.",
     )
     sub = p.add_subparsers(dest="agent_command")
 
@@ -146,3 +153,12 @@ def build_agent_parser(subparsers) -> None:
     )
     d.add_argument("name", help="Agent name to delete")
     d.set_defaults(func=_cmd_delete)
+
+    # agent ui
+    ui = sub.add_parser(
+        "ui",
+        help="Launch the visual drag-drop Agent Builder UI",
+        description="Start a local web server with a visual drag-drop agent builder interface.",
+    )
+    ui.add_argument("--port", "-p", type=int, default=8080, help="Port to listen on (default: 8080)")
+    ui.set_defaults(func=_cmd_ui)

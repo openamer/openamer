@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ~ OpenAmer Agent — JetBrains IDE Extension
+  ~
+  ~ Plugin descriptor for the OpenAmer Agent plugin.
+  ~ Registers actions, tool window, and listeners.
+  -->
+<idea-plugin>
+    <id>com.openamer.jetbrains</id>
+    <name>OpenAmer Agent</name>
+    <vendor email="support@openamer.com" url="https://openamer.com">OpenAmer</vendor>
+    <description><![CDATA[
+      AI-powered code assistance via the OpenAmer Agent.
+
+      <ul>
+        <li><b>Chat</b> — Ctrl+Shift+A to open the OpenAmer Chat sidebar</li>
+        <li><b>Explain</b> — Right-click any file → Ask OpenAmer to explain it</li>
+        <li><b>Fix</b> — Select code, right-click → Ask OpenAmer to fix it</li>
+      </ul>
+
+      Connects to the OpenAmer MCP server running on your machine.
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Tool Window -->
+        <toolWindow
+                id="OpenAmerChat"
+                anchor="right"
+                icon="AllIcons.General.Chat"
+                factoryClass="com.openamer.OpenAmerToolWindowFactory"
+                doNotActivateOnStart="true"
+        />
+    </extensions>
+
+    <actions>
+        <!-- Chat: Ctrl+Shift+A -->
+        <action
+                id="OpenAmer.Chat"
+                class="com.openamer.ActionOpenAmerChat"
+                text="OpenAmer Chat"
+                description="Open the OpenAmer Agent chat panel"
+                icon="AllIcons.General.Chat">
+            <keyboard-shortcut
+                    keymap="$default"
+                    first-keystroke="control shift A"/>
+        </action>
+
+        <!-- Explain: right-click a file -->
+        <action
+                id="OpenAmer.Explain"
+                class="com.openamer.ActionOpenAmerExplain"
+                text="Ask OpenAmer to explain this"
+                description="Send the current file to OpenAmer for explanation">
+            <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+        </action>
+
+        <!-- Fix: right-click a selection -->
+        <action
+                id="OpenAmer.Fix"
+                class="com.openamer.ActionOpenAmerFix"
+                text="Ask OpenAmer to fix this"
+                description="Send the selected code to OpenAmer for fixing">
+            <add-to-group group-id="EditorPopupMenu" anchor="after"
+                          relative-to-action="OpenAmer.Explain"/>
+        </action>
+    </actions>
+</idea-plugin>
