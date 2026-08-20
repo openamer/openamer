@@ -385,6 +385,67 @@ def _cmd_trust(args) -> int:
     return 2
 
 
+def _cmd_query(args) -> int:
+    """Ask a question across the A2A swarm mesh (peer-to-peer query)."""
+    from openamer_cli.a2a import query as a2a_query
+    from openamer_cli.a2a.trust import TrustStore
+    from openamer_cli.a2a.core import IdentityStore
+    import time as _time
+
+    if not args.question:
+        print("Usage: openamer a2a query \"<question>\" [--timeout N] [--max-peers N] [--local]")
+        return 2
+
+    t0 = _time.monotonic()
+    identity = IdentityStore()
+    trust_store = TrustStore()
+
+    # Optionally query local brain first
+    local_text = ""
+    if args.local:
+        local_text = a2a_query.answer_locally(args.question)
+        elapsed = int((_time.monotonic() - t0) * 1000)
+        print(f"Local answer ({elapsed}ms):")
+        print(f"  {local_text}")
+        print()
+
+    res = a2a_query.query_mesh(
+        args.question,
+        max_peers=args.max_peers or 5,
+        timeout=args.timeout or 60,
+        identity=identity,
+        trust_store=trust_store,
+    )
+
+    elapsed = int((_time.monotonic() - t0) * 1000)
+    print(f"Mesh query: {res.peers_contacted} peers contacted, "
+          f"{res.peers_answered} answered ({elapsed}ms total)")
+    print()
+
+    if res.answers:
+        # Show ranked answers
+        for i, a in enumerate(res.answers, 1):
+            status = "OK" if a.ok else "ERR"
+            trust_str = f"trust={a.trust_score:.2f}"
+            lat_str = f"latency={a.latency_ms}ms"
+            name = a.peer_name or a.peer_fingerprint[:12]
+            print(f"  #{i} [{status}] {name} ({trust_str}, {lat_str})")
+            if a.ok and a.answer:
+                # Truncate long answers for display
+                disp = a.answer[:300] + "..." if len(a.answer) > 300 else a.answer
+                print(f"      {disp}")
+            elif not a.ok and a.error:
+                print(f"      error: {a.error}")
+    elif res.local_answer:
+        if not args.local:
+            print("No peer answers received.")
+            print(f"Fallback: {res.local_answer}")
+    else:
+        print("No answers received from the mesh.")
+
+    return 0 if res.peers_answered > 0 else 1
+
+
 def build_a2a_parser(subparsers) -> None:
     """Attach the ``a2a`` subcommand tree."""
     p = subparsers.add_parser("a2a", help="Agent-to-Agent (A2A) identity & mesh")
@@ -492,5 +553,12 @@ def build_a2a_parser(subparsers) -> None:
     ba.add_argument("autolog_sub", nargs="?", default="status", choices=["on", "off", "status"])
     ba.set_defaults(func=_cmd_brain)
     br.set_defaults(func=_cmd_brain)
+
+    q = sub.add_parser("query", help="Ask a question across the A2A swarm mesh (peer-to-peer)")
+    q.add_argument("question", nargs="?", help="the question to ask peers")
+    q.add_argument("--local", action="store_true", help="query local brain first, then peers")
+    q.add_argument("--timeout", type=int, default=60, help="per-peer timeout in seconds (default 60)")
+    q.add_argument("--max-peers", type=int, default=5, help="max peers to contact (default 5)")
+    q.set_defaults(func=_cmd_query)
 
     p.set_defaults(func=_cmd_status)

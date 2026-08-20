@@ -15752,6 +15752,79 @@ def main():
         help="Request the grants (opens the dialog attributed to CuaDriver)",
     )
 
+    # ── recording / playback ────────────────────────────────────────
+    computer_use_record = computer_use_sub.add_parser(
+        "record",
+        help="Record a sequence of computer_use actions for later replay",
+        description=(
+            "Start an interactive recording session. Type one action per line "
+            "(click, type, key, scroll, wait, capture, ...). Empty line to stop. "
+            "The recording is saved to ~/.openamer/recordings/<name>.json and "
+            "can be replayed later with ."
+        ),
+    )
+    computer_use_record.add_argument(
+        "recording_name",
+        help="Name for the recording (used as filename)",
+    )
+    computer_use_record.add_argument(
+        "--description", "-d",
+        default="",
+        help="Optional description for the recording",
+    )
+
+    computer_use_play = computer_use_sub.add_parser(
+        "play",
+        help="Replay a recorded sequence of computer_use actions",
+        description=(
+            "Replay a previously recorded sequence of actions. The recording "
+            "must exist at ~/.openamer/recordings/<name>.json."
+        ),
+    )
+    computer_use_play.add_argument(
+        "recording_name",
+        help="Name of the recording to replay",
+    )
+
+    computer_use_list = computer_use_sub.add_parser(
+        "list",
+        help="List all saved recordings",
+        description="List all computer_use recordings stored in ~/.openamer/recordings/.",
+    )
+
+    computer_use_delete = computer_use_sub.add_parser(
+        "delete",
+        help="Delete a saved recording",
+        description="Permanently remove a recording from ~/.openamer/recordings/.",
+    )
+    computer_use_delete.add_argument(
+        "recording_name",
+        help="Name of the recording to delete",
+    )
+
+    computer_use_schedule = computer_use_sub.add_parser(
+        "schedule",
+        help="Schedule a recording for periodic playback via cron",
+        description=(
+            "Create a cron job that replays the recording on a schedule. "
+            "The schedule can be an -style expression "
+            "like 'every 1h', 'every day', '0 9 * * *', etc."
+        ),
+    )
+    computer_use_schedule.add_argument(
+        "recording_name",
+        help="Name of the recording to schedule",
+    )
+    computer_use_schedule.add_argument(
+        "schedule",
+        help="Cron schedule expression (e.g. 'every 1h', '0 9 * * *')",
+    )
+    computer_use_schedule.add_argument(
+        "--name",
+        default=None,
+        help="Optional friendly job name (default: play-<recording_name>)",
+    )
+
     def cmd_computer_use(args):
         action = getattr(args, "computer_use_action", None)
         if action == "install":
@@ -15841,6 +15914,27 @@ def main():
                     print(f"  ⚠ {st['error']}")
                 sys.exit(0 if st["ready"] else 1)
             computer_use_perms.print_help()
+            return
+        # Recording / playback subcommands
+        if action == "record":
+            from openamer_cli.computer_use_record import cmd_record
+            cmd_record(args)
+            return
+        if action == "play":
+            from openamer_cli.computer_use_record import cmd_play
+            cmd_play(args)
+            return
+        if action == "list":
+            from openamer_cli.computer_use_record import cmd_list_recordings as cmd_list
+            cmd_list(args)
+            return
+        if action == "delete":
+            from openamer_cli.computer_use_record import cmd_delete_recording as cmd_delete
+            cmd_delete(args)
+            return
+        if action == "schedule":
+            from openamer_cli.computer_use_record import cmd_schedule_recording as cmd_sched
+            cmd_sched(args)
             return
         # No subcommand → show help
         computer_use_parser.print_help()
