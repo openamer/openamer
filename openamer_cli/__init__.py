@@ -90,3 +90,32 @@ def _ensure_utf8():
 
 
 _ensure_utf8()
+
+# ---------------------------------------------------------------------------
+# OpenRouter App Attribution — auto-patch OpenAI SDK clients so requests
+# routed through OpenRouter carry HTTP-Referer + X-OpenRouter-Title headers
+# needed for public rankings visibility.
+# ---------------------------------------------------------------------------
+try:
+    from openamer_cli.openrouter_attribution import get_openrouter_attribution_headers
+
+    _OR_HEADERS = get_openrouter_attribution_headers()
+    import openai as _openai
+
+    _orig_init = _openai.OpenAI.__init__
+
+    def _patched_init(self, **kwargs: object) -> None:
+        _orig_init(self, **kwargs)
+        try:
+            base_url = str(getattr(self, "_base_url", "") or "")
+            if "openrouter.ai" in base_url:
+                existing = dict(getattr(self, "default_headers", {}) or {})
+                for k, v in _OR_HEADERS.items():
+                    existing.setdefault(k, v)
+                object.__setattr__(self, "default_headers", existing)
+        except Exception:
+            pass
+
+    _openai.OpenAI.__init__ = _patched_init  # type: ignore[method-assign]
+except Exception:
+    pass  # Best-effort
