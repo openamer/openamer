@@ -415,34 +415,34 @@ def get_next_milestones() -> list[dict[str, str]]:
     """Return the next planned improvements for the superintelligence platform."""
     return [
         {
+            "title": "Self-Reflection Cron (alle 6h)",
+            "description": "Automatische Reflektion über vergangene Sessions: Fehler erkennen, Verbesserungen vorschlagen, Memory updaten.",
+            "priority": "high",
+        },
+        {
+            "title": "Memory Vector-Store (unbegrenztes semantisches Gedächtnis)",
+            "description": "TF-IDF-basierter Vector Store: unbegrenzte Memory-Kapazität mit semantischer Suche. Ersetzt die 2200-Char-Grenze.",
+            "priority": "high",
+        },
+        {
+            "title": "Autonomous Initiative System",
+            "description": "Proaktive System-Checks: Agent erkennt selbstständig Probleme und fixt sie ohne User-Aufforderung.",
+            "priority": "high",
+        },
+        {
+            "title": "Cross-Session Learning Pipeline",
+            "description": "Extrahiert Lessons Learned aus jeder Session und injiziert sie als Context in neue Sessions. Transfer-Lernen zwischen Sessions.",
+            "priority": "high",
+        },
+        {
+            "title": "Skills Improvement Pipeline",
+            "description": "Analysiert alle 117+ Skills, identifiziert veraltete/lückenhafte, verbessert sie automatisch.",
+            "priority": "high",
+        },
+        {
             "title": "Real-time Swarm Metrics Dashboard",
             "description": "Stream live swarm execution metrics (latency, throughput, confidence) to a web dashboard.",
-            "priority": "high",
-        },
-        {
-            "title": "Adaptive Agent Selection",
-            "description": "Route tasks to the optimal agent based on historical performance, skill match, and load.",
-            "priority": "high",
-        },
-        {
-            "title": "Cross-Session Brain Consolidation",
-            "description": "Merge insights from multiple brain sessions into a unified knowledge graph.",
             "priority": "medium",
-        },
-        {
-            "title": "Automated Skill Improvement Pipeline",
-            "description": "Analyse execution logs and auto-suggest skill updates for recurring failure patterns.",
-            "priority": "medium",
-        },
-        {
-            "title": "Human-in-the-Loop Escalation",
-            "description": "When swarm confidence is low, escalate ambiguous decisions to the user for resolution.",
-            "priority": "medium",
-        },
-        {
-            "title": "Multi-Model Orchestration",
-            "description": "Route sub-tasks to specialised models (e.g. code to DeepSeek, reasoning to Claude, vision to GPT-4o).",
-            "priority": "low",
         },
         {
             "title": "Self-Healing Memory Pipeline",

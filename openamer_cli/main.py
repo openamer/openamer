@@ -461,6 +461,8 @@ from openamer_cli.subcommands.marketplace import build_marketplace_parser
 from openamer_cli.subcommands.crew import build_crew_parser
 from openamer_cli.subcommands.swarm import build_swarm_parser
 from openamer_cli.subcommands.superintelligence import build_super_parser
+from openamer_cli.subcommands.initiative import build_initiative_parser
+from openamer_cli.subcommands.cross_session import build_cross_session_parser
 from openamer_cli.subcommands.repomap import build_repomap_parser
 from openamer_cli.subcommands.workflow import build_workflow_parser
 from openamer_cli.subcommands.tree import build_tree_parser
@@ -15103,6 +15105,58 @@ def cmd_memory(args):
             "\n  Memory reset complete. New sessions will start with a blank slate."
         )
         print(f"  Files were in: {display_openamer_home()}/memories/\n")
+    elif sub == "vector":
+        from openamer_cli.vector_memory import get_store
+
+        vec_cmd = getattr(args, "memory_vector_command", None)
+        s = get_store()
+
+        if vec_cmd == "store":
+            entry = s.store(args.key, args.content)
+            print(f"\n  ✓ Stored: [{entry.id}] {args.key}\n")
+        elif vec_cmd == "search":
+            results = s.search(args.query, top_k=getattr(args, "top_k", 5))
+            if not results:
+                print(f"\n  No results for: {args.query}\n")
+            else:
+                print(f"\n  Top {len(results)} results for: '{args.query}'\n")
+                for entry, score in results:
+                    print(f"  [{score:.4f}] {entry.key}: {entry.content[:120]}...")
+                print()
+        elif vec_cmd == "stats":
+            stats = s.get_stats()
+            print(f"\n  Vector Memory Store Stats:")
+            print(f"    Total entries:     {stats['total_entries']}")
+            print(f"    Vector dimensions: {stats['vector_dimensions']}")
+            print(f"    IDF vocabulary:    {stats['idf_vocab_size']} terms")
+            print(f"    Storage path:      {stats['storage_path']}")
+            print(f"    Last updated:      {stats['last_updated']}\n")
+        elif vec_cmd == "list":
+            entries = s.get_all_entries()
+            if not entries:
+                print("\n  No entries in vector store.\n")
+            else:
+                print(f"\n  {len(entries)} entries in vector store:\n")
+                for e in entries:
+                    preview = e.content[:80].replace("\n", " ")
+                    print(f"  [{e.id}] {e.key}: {preview}...")
+                print()
+        elif vec_cmd == "compress":
+            max_e = getattr(args, "max_entries", 1000)
+            removed = s.compress(max_entries=max_e)
+            print(f"\n  ✓ Compressed: {removed} entries removed (max {max_e} kept)\n")
+        else:
+            print(
+                "usage: openamer memory vector <subcommand>\n"
+                "\n"
+                "subcommands:\n"
+                "  store <key> <content>    Store a memory entry\n"
+                "  search <query>            Search memory entries\n"
+                "  stats                    Show store statistics\n"
+                "  list                     List all entries\n"
+                "  compress                 Compact the store\n",
+                file=sys.stderr,
+            )
     else:
         from openamer_cli.memory_setup import memory_command
 
@@ -17486,6 +17540,8 @@ def main():
     build_crew_parser(subparsers)
     build_swarm_parser(subparsers)
     build_super_parser(subparsers)
+    build_initiative_parser(subparsers)
+    build_cross_session_parser(subparsers)
     build_repomap_parser(subparsers)
     build_workflow_parser(subparsers)
     build_tree_parser(subparsers)
