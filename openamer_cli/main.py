@@ -11472,7 +11472,7 @@ def _cmd_update_impl(args, gateway_mode: bool):
     # open. Continuing would result in a string of WinError 32 warnings and
     # then either a deferred-rename leftover or a failed git-pull fast path
     # that silently falls back to the slower ZIP route. See issue #26670.
-    if _is_windows() and not getattr(args, "force", False):
+    if _is_windows() and not getattr(args, "force", False) and not getattr(args, "force_venv", False):
         scripts_dir = _venv_scripts_dir()
         if scripts_dir is not None:
             concurrent = _detect_concurrent_openamer_instances(scripts_dir)
