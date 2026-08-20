@@ -10,7 +10,7 @@ import argparse
 from typing import Callable
 
 
-def build_crew_parser(subparsers, *, cmd_crew: Callable) -> None:
+def build_crew_parser(subparsers, *, cmd_crew: Callable | None = None) -> None:
     """Attach the ``crew`` subcommand (and sub-actions) to ``subparsers``."""
     crew_parser = subparsers.add_parser(
         "crew",
