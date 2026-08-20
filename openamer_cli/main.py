@@ -14708,11 +14708,11 @@ def _build_provider_choices() -> list[str]:
 # to parse.
 _BUILTIN_SUBCOMMANDS = frozenset(
     {
-        "acp", "auth", "backup", "bundles", "checkpoints", "claw", "completion",
+        "acp", "approvals", "auth", "backup", "bundles", "checkpoints", "claw", "completion",
         "computer-use",
         "config", "console", "cron", "curator", "dashboard", "serve", "debug", "doctor",
         "dump", "egress", "fallback", "feedback", "gateway", "hooks", "import", "insights",
-        "gui", "desktop", "kanban", "login", "logout", "logs", "lsp", "mcp", "memory", "migrate", "moa",
+        "gui", "desktop", "hub", "kanban", "login", "logout", "logs", "lsp", "mcp", "memory", "migrate", "moa",
         "journey", "memory-graph", "learning",
         "model", "pairing", "pets", "plugins", "portal", "profile",
         "project", "proxy",
@@ -17818,6 +17818,33 @@ def main():
         logging.getLogger(__name__).debug(
             "tracing CLI wiring failed: %s", _exc
         )
+
+    # =========================================================================
+    # hub command  (openamer_cli/hub_portal.py)
+    # =========================================================================
+    from openamer_cli.hub_portal import add_parser as add_hub_parser
+
+    add_hub_parser(subparsers)
+
+    # =========================================================================
+    # voice command — Conversational Voice (Barge-in + Wake Word)
+    # =========================================================================
+    from openamer_cli.voice_conversation import build_voice_conversation_parser
+
+    build_voice_conversation_parser(subparsers)
+
+    # =========================================================================
+    # approvals command — Smart Approvals (Human-in-the-Loop)
+    # =========================================================================
+    approvals_parser = subparsers.add_parser(
+        "approvals",
+        help="Manage approval requests (Human-in-the-Loop)",
+        description="View, approve, or reject pending human-in-the-loop approval "
+        "requests. Configure risk levels and auto-reject timeouts.",
+    )
+    from openamer_cli.smart_approvals import register_cli as _register_approvals_cli
+
+    _register_approvals_cli(approvals_parser)
 
     # =========================================================================
     # Parse and execute
