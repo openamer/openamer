@@ -558,6 +558,12 @@ def build_a2a_parser(subparsers) -> None:
     ba.set_defaults(func=_cmd_brain)
     br.set_defaults(func=_cmd_brain)
 
+    # brain share subcommand
+    bs = br_sub.add_parser("share", help="Share and import brain insights across the A2A swarm")
+    bs.add_argument("brain_share_action", nargs="?", choices=["export", "import", "list"], default=None, help="Action")
+    bs.add_argument("source", nargs="?", default="", help="Source file (for import)")
+    bs.set_defaults(func=_cmd_brain)
+
     q = sub.add_parser("query", help="Ask a question across the A2A swarm mesh (peer-to-peer)")
     q.add_argument("question", nargs="?", help="the question to ask peers")
     q.add_argument("--local", action="store_true", help="query local brain first, then peers")
