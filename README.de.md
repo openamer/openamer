@@ -25,7 +25,13 @@ Er läuft auf deiner eigenen Maschine, trifft dich in den Kanälen, die du berei
 | 🧩 | **Selbstverbessernde Skills** | Skills, die sich bei Nutzung verbessern. | ❌ Niemand |
 | 📋 | **Profilsystem** | Lernt deine Muster und Präferenzen. | ❌ Niemand |
 | 🧠 | **Mesh Learning** | Netzwerkweiter Wissensaustausch. | ❌ Niemand |
-| 🎯 | **Superintelligenz-Dashboard** | Systemweiter Gesundheits-Score (0-100). | ❌ Niemand |
+| 🎯 | **Superintelligenz-Dashboard** | Systemweiter Gesundheits-Score 0-100, aktuell 100/100. | ❌ Niemand |
+| 📚 | **Vector Memory Store** | Unbegrenztes semantisches Gedächtnis mit TF-IDF-Suche. | ❌ Niemand |
+| 🔄 | **Cross-Session Learning** | Lektionen aus jeder Session werden extrahiert und über 7 Tage aggregiert. Wissen wandert zwischen Gesprächen. | ❌ Niemand |
+| 🤖 | **Autonome Initiative** | Proaktive System-Checks. Automatische Fehlerbehebung. Circuit Breaker verhindert Selbstzerstörung. | ❌ Niemand |
+| 🛡️ | **Self-Healing Pipeline** | Erkennt korrupte/leere Memories, repariert automatisch mit Backup. Läuft alle 30 Minuten. | ❌ Niemand |
+| 🧪 | **Auto Test Runner** | Führt Tests automatisch alle 60 Minuten aus. Meldet nur Fehler. | ❌ Niemand |
+| 📈 | **Swarm Metrics Dashboard** | Echtzeit-A2A-Latenz-, Durchsatz- und Konfidenz-Tracking. | ❌ Niemand |
 | 🛡️ | **Human-in-the-Loop** | Riskante Aktionen genehmigen. Auto-Ablehnung bei Timeout. | ❌ Nur Enterprise |
 
 ---
@@ -49,7 +55,13 @@ Ein Befehl von GitHub gibt dir einen **kompletten, eigenständigen, privaten AI-
 | **Durable Execution** — Checkpoint/Resume überlebt Abstürze | inklusive |
 | **Visueller Agent-Builder** — `openamer agent create` aus Beschreibung | inklusive |
 | **Agenten-Schwarm** — parallele, hierarchische, Debatten-Strategien | inklusive |
-| **Superintelligenz-Dashboard** — System-Gesundheits-Score 0-100 | inklusive |
+| **Superintelligenz-Dashboard** — System-Gesundheits-Score 0-100, aktuell 100/100 | inklusive |
+| **Vector Memory Store** — unbegrenztes semantisches TF-IDF-Gedächtnis | inklusive |
+| **Cross-Session Learning** — Lektionen wandern zwischen Gesprächen | inklusive |
+| **Autonome Initiative** — proaktive Health-Checks + Auto-Fix | inklusive |
+| **Self-Healing Pipeline** — korrupte Memories automatisch reparieren | inklusive |
+| **Auto Test Runner** — Tests automatisch alle 60 Minuten | inklusive |
+| **Swarm Metrics** — A2A-Latenz/Durchsatz-Tracking | inklusive |
 | **Selbstverbessernde Skills** — Skills verbessern sich bei Nutzung | inklusive |
 | **A2A Mesh Learning** — netzwerkweiter Wissensaustausch | inklusive |
 | **Observability/Tracing** — Agenten-Ausführungsbrowser | inklusive |
@@ -75,7 +87,15 @@ openamer crew create mein-team --members researcher,writer  # Crew
 openamer crew run mein-team "Erforsche KI-Trends"
 openamer swarm run "Aufgabe" --agents 3 --strategy debate
 openamer trace list           # Agenten-Ablaufverfolgung
-openamer super status         # Superintelligenz-Status
+openamer super status         # Superintelligenz-Status (100/100)
+openamer super report         # Umfassender Systembericht
+openamer initiative check     # Autonomer Health-Check
+openamer initiative auto      # Kompletter Zyklus: check → fix → suggest
+openamer memory vector store <key> <content>  # Semantischen Speicher anlegen
+openamer memory vector search <query>         # Semantische Suche
+openamer memory vector stats  # Vector-Store-Statistiken
+openamer cross-session extract <session_id>   # Lektionen aus Session extrahieren
+openamer cross-session auto   # Kompletter Cross-Session-Zyklus
 ```
 
 ---

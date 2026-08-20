@@ -113,7 +113,7 @@ One command from GitHub gives you a **complete, standalone, private-first AI age
 | What you get | Default |
 |---|---|
 | **Desktop app** | built by the installer (native chat, terminal, settings) |
-| **OpenAmer Hub Plugin** | 6 new sidebar pages: Agent Builder, Brain Dashboard, Crews & Swarm, Trace, Marketplace, Superintelligence |
+|| **OpenAmer Hub Plugin** | 9 new sidebar pages: Agent Builder, Brain Dashboard, Crews & Swarm, Trace, Marketplace, Superintelligence, Vector Memory, Cross-Session, Initiative |
 | **117 bundled skills** (apple, github, mlops, creative, programming …) | seeded automatically |
 | | **99 tools** — internet, vision, voice, terminal, browser, files, code, sub-agents | included |
 | | **Computer-Use (background)** — drive Windows/macOS/Linux desktop | included |
@@ -126,7 +126,14 @@ One command from GitHub gives you a **complete, standalone, private-first AI age
 | | **Durable Execution** — checkpoint/resume survives crashes | included |
 | | **Visual Agent Builder** — `openamer agent create "describe…"` | included |
 | | **Agent Swarm** — parallel, hierarchical, debate strategies | included |
-| | **Superintelligence Dashboard** — system health score 0-100 | included |
+| | **Superintelligence Dashboard** — system health score 0-100, currently 100/100 | included |
+| | **Vector Memory Store** — unlimited TF-IDF semantic memory | included |
+| | **Cross-Session Learning** — lessons transfer between conversations | included |
+| | **Autonomous Initiative** — proactive health checks + auto-fix | included |
+| | **Self-Healing Memory Pipeline** — auto-repair corrupt memories with backup | included |
+| | **Auto Test Runner** — runs tests every 60min | included |
+| | **Swarm Metrics Dashboard** — A2A latency/throughput tracking | included |
+| | **Circuit Breaker Safety** — 3 failures = automatic shutdown | included |
 | | **Self-Improving Skills** — skills that improve during use | included |
 | | **A2A Mesh Learning** — network-wide knowledge sharing | included |
 | | **Observability/Tracing** — agent execution browser | included |
@@ -165,8 +172,15 @@ openamer trace show           # step-by-step execution browser
 openamer checkpoint list      # view durable execution checkpoints
 openamer skills stats         # self-improving skills stats
 openamer profile insights     # your behavioral profile
-openamer super status         # superintelligence system health
-openamer super report         # comprehensive status report
+openamer super status         # superintelligence health score (100/100)
+openamer super report         # comprehensive system report
+openamer initiative check     # autonomous health check
+openamer initiative auto      # full cycle: check → fix → suggest
+openamer memory vector store <key> <content>  # store semantic memory
+openamer memory vector search <query>         # search memories semantically
+openamer memory vector stats  # vector store statistics
+openamer cross-session extract <session_id>   # extract lessons from session
+openamer cross-session auto   # full cross-session learning cycle
 ```
 
 > **Honest note:** OpenAmer *collects* training material automatically (locally,
@@ -205,7 +219,13 @@ Switch with `openamer model` — no code changes, no lock-in.
 <tr><td><b>🧩 Self-Improving Skills</b></td><td><b>UNIQUE</b> — Skills improve during use. Usage tracking, improvement suggestions, auto-optimize.</td></tr>
 <tr><td><b>📋 Profile System</b></td><td><b>UNIQUE</b> — Learns your tool chains, preferences, coding style from sessions.</td></tr>
 <tr><td><b>🧠 A2A Mesh Learning</b></td><td><b>UNIQUE</b> — Publish/import lessons across the swarm. The network learns as a collective.</td></tr>
-<tr><td><b>🎯 Superintelligence Dashboard</b></td><td><b>UNIQUE</b> — System health score 0-100, milestone tracker, comprehensive report.</td></tr>
+<tr><td><b>🎯 Superintelligence Dashboard</b></td><td><b>UNIQUE</b> — System health score 0-100, milestone tracker, comprehensive report. Currently 100/100.</td></tr>
+<tr><td><b>📚 Vector Memory Store</b></td><td><b>UNIQUE</b> — Unlimited semantic memory with TF-IDF cosine-similarity search. No more 2200-char limit.</td></tr>
+<tr><td><b>🔄 Cross-Session Learning</b></td><td><b>UNIQUE</b> — Lessons from every session are extracted, consolidated over 7 days, and injected as context into new sessions. Knowledge transfers across conversations.</td></tr>
+<tr><td><b>🤖 Autonomous Initiative</b></td><td><b>UNIQUE</b> — Proactive system health monitoring. Auto-fixes detected problems, circuit breaker prevents self-destruction.</td></tr>
+<tr><td><b>🛡️ Self-Healing Memory Pipeline</b></td><td><b>UNIQUE</b> — Detects corrupt/empty memories, auto-repairs with backup, runs every 30 minutes.</td></tr>
+<tr><td><b>🧪 Auto Test Runner</b></td><td><b>UNIQUE</b> — Runs test suite automatically every 60 minutes. Only alerts on failures.</td></tr>
+<tr><td><b>📈 Swarm Metrics Dashboard</b></td><td><b>UNIQUE</b> — Real-time A2A swarm latency, throughput, and confidence tracking.</td></tr>
 <tr><td><b>🪟 Windows-Native</b></td><td><b>UNIQUE</b> — Full native Windows support. No WSL, no Linux VM needed.</td></tr>
 <tr><td><b>A real terminal interface</b></td><td>A full TUI with multiline editing, slash-command autocomplete, conversation history, interrupt-and-redirect, and live streaming tool output.</td></tr>
 <tr><td><b>Lives where you do</b></td><td>Telegram, Discord, Slack, WhatsApp, Signal, and CLI — one gateway, one conversation that follows you across every channel. Voice memos are transcribed automatically.</td></tr>
