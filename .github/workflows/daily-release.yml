@@ -1,0 +1,41 @@
+name: Daily Release
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Every day at midnight UTC
+  workflow_dispatch:  # Manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate release tag
+        id: tag
+        run: |
+          TAG="v$(date +'%y%m%d')"
+          echo "tag=$TAG" >> $GITHUB_OUTPUT
+          echo "name=OpenAmer Agent $TAG - Daily Release" >> $GITHUB_OUTPUT
+
+      - name: Create Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="${{ steps.tag.outputs.tag }}"
+          # Check if tag already exists
+          if git rev-parse "$TAG" >/dev/null 2>&1; then
+            echo "Tag $TAG already exists - skipping"
+            exit 0
+          fi
+          git tag "$TAG"
+          git push origin "$TAG"
+          gh release create "$TAG" \
+            --title "${{ steps.tag.outputs.name }}" \
+            --notes "Daily automated release. See commit history for details." \
+            --generate-notes
