@@ -1,60 +1,115 @@
-# OpenAmer JetBrains IDE Extension
+# OpenAmer Agent — IntelliJ Plugin
 
-AI-powered code assistance inside IntelliJ IDEA, PyCharm, and other JetBrains IDEs.
+OpenAmer AI Agent integration for JetBrains IDEs (IntelliJ IDEA, PyCharm, WebStorm, etc.).
 
 ## Features
 
-- **Chat** (`Ctrl+Shift+A`) — Open the OpenAmer Agent chat sidebar
-- **Explain** (right-click a file) — Ask OpenAmer to explain the current file
-- **Fix** (right-click a selection) — Ask OpenAmer to fix selected code
+- **Chat Panel** — Sidebar tool window with a JCEF-based webview chat UI
+- **Explain Code** — Select code in the editor, right-click → "Ask OpenAmer to explain this"
+- **Fix Code** — Select code, right-click → "Ask OpenAmer to fix this"
+- **MCP Backend** — Communicates with the OpenAmer MCP server over stdio JSON-RPC
 
-All actions connect to the OpenAmer MCP server running on your machine via stdio JSON-RPC 2.0.
-
-## Project Structure
+## Architecture
 
 ```
-apps/jetbrains/
-├── plugin.xml                       # Plugin descriptor (actions, tool window, extensions)
-├── gradle.build.kts                 # IntelliJ Platform Gradle build
-├── README.md                        # This file
-└── src/
-    └── com/openamer/
-        ├── ActionOpenAmerChat.kt       # Ctrl+Shift+A → Open Chat sidebar
-        ├── ActionOpenAmerExplain.kt    # Right-click file → Explain
-        ├── ActionOpenAmerFix.kt        # Right-click selection → Fix
-        ├── OpenAmerToolWindow.kt       # Tool window factory + chat panel
-        ├── MCPClient.kt                # MCP JSON-RPC client (ProcessBuilder → openamer mcp)
-        └── OpenAmerNotifications.kt    # IDE notification helpers
+┌─────────────────────────────────────────────────┐
+│                 IntelliJ IDE                     │
+│  ┌───────────────────────────────────────────┐  │
+│  │   ToolWindow "OpenAmerChat"               │  │
+│  │   ┌─────────────────────────────────┐     │  │
+│  │   │  JCEFHtmlPanel (Webview)        │     │  │
+│  │   │  - Dark-themed chat UI          │     │  │
+│  │   │  - User/assistant messages      │     │  │
+│  │   │  - Typing indicator             │     │  │
+│  │   └─────────────────────────────────┘     │  │
+│  │                                            │  │
+│  │   MCPClient (stdio JSON-RPC)               │  │
+│  │   └─ ProcessBuilder("openamer mcp")        │  │
+│  └───────────────────────────────────────────┘  │
+│                                                  │
+│  Actions:                                        │
+│  - Ctrl+Shift+A  → OpenAmer Chat                 │
+│  - EditorPopup   → Explain / Fix (selected code) │
+└─────────────────────────────────────────────────┘
 ```
 
-## How It Works
+## Build
 
-1. **MCP Client** (`MCPClient.kt`) spawns `openamer mcp` as a subprocess via `ProcessBuilder`
-2. Communication is over stdio using JSON-RPC 2.0 (MCP protocol)
-3. The **Chat tool window** embeds a JCEF (Chromium) webview with a minimal HTML chat UI
-4. **Explain** and **Fix** actions send file content / selected code as chat messages to the MCP server
+### Prerequisites
+- JDK 21+
+- IntelliJ IDEA Community or Ultimate 2024.3+
+- OpenAmer CLI installed and available on `PATH`
 
-## Building
-
-The scaffold requires the IntelliJ Platform Gradle Plugin. It does not need to compile as-is — it demonstrates the complete source structure.
+### Build from source
 
 ```bash
-# Inside IntelliJ IDEA:
-# Open the jetbrains/ directory as a project
-# IntelliJ will detect the Gradle build file and import it
-# Run or debug with the Gradle runIde task
+cd apps/jetbrains
+./gradlew buildPlugin
 ```
 
-## Prerequisites
+The plugin artifact will be at `build/distributions/OpenAmerAgent-0.1.0.zip`.
 
-- OpenAmer CLI installed and on PATH (`openamer mcp` must work)
-- IntelliJ IDEA 2024.3+ (or any JetBrains IDE with the Platform Plugin SDK)
-- JDK 21+
+### Install
+
+1. Open IntelliJ IDEA → **Settings** → **Plugins** → ⚙️ → **Install Plugin from Disk...**
+2. Select the built `.zip` file
+3. Restart the IDE
+
+## Usage
+
+### Chat
+1. Press `Ctrl+Shift+A` or use **Tools** → **OpenAmer Chat**
+2. Type your question in the chat panel and press Enter
+3. The plugin communicates with the OpenAmer MCP server running in the background
+
+### Explain Code
+1. Select code in the editor
+2. Right-click → **Ask OpenAmer to explain this**
+3. The chat panel opens with the selected code sent as an explain request
+
+### Fix Code
+1. Select code in the editor
+2. Right-click → **Ask OpenAmer to fix this**
+3. The chat panel opens with the selected code sent as a fix request
+
+## Development
+
+### Project structure
+```
+apps/jetbrains/
+├── build.gradle.kts          # Gradle build with IntelliJ Platform Plugin
+├── resources/
+│   └── META-INF/
+│       └── plugin.xml         # Plugin descriptor
+├── src/
+│   └── com/
+│       └── openamer/
+│           ├── ActionOpenAmerChat.kt       # Chat action (Ctrl+Shift+A)
+│           ├── ActionOpenAmerExplain.kt    # Explain context action
+│           ├── ActionOpenAmerFix.kt        # Fix context action
+│           ├── MCPClient.kt               # JSON-RPC MCP client
+│           ├── OpenAmerNotifications.kt   # Notification helpers
+│           └── OpenAmerToolWindow.kt      # ToolWindow + JCEF chat panel
+└── README.md
+```
+
+### Key classes
+
+| Class | Responsibility |
+|-------|---------------|
+| `MCPClient` | Spawns `openamer mcp` as subprocess, sends/receives JSON-RPC 2.0 over stdio |
+| `OpenAmerToolWindowFactory` | Registers the tool window; companion `openAndSend()` for actions |
+| `ChatPanel` | JCEF HTML panel with dark-themed chat UI and JS bridge |
+| `ActionOpenAmerChat` | Opens the chat panel, bound to `Ctrl+Shift+A` |
+| `ActionOpenAmerExplain` | Sends selected code as explain request via context menu |
+| `ActionOpenAmerFix` | Sends selected code as fix request via context menu |
+| `OpenAmerNotifications` | IDE balloon notifications for connection status and results |
 
 ## Configuration
 
-The extension auto-connects to `openamer mcp` on startup. You can set the `OPENAMER_PATH` environment variable to use a specific OpenAmer binary, or ensure `openamer` is on your PATH.
+The MCP client spawns `openamer mcp` with default PATH. If `openamer` is not on PATH,
+update the command in `ChatPanel.connectMCP()` to use the absolute path.
 
----
+## License
 
-*Part of the [OpenAmer Agent](https://github.com/openamer/openamer) project.*
+MIT

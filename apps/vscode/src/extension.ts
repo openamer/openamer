@@ -1,504 +1,647 @@
 import * as vscode from 'vscode';
 import * as cp from 'child_process';
 import * as path from 'path';
+import * as crypto from 'crypto';
 
-/* ------------------------------------------------------------------ */
-/*  MCP Client — lightweight stdio JSON-RPC 2.0                       */
-/* ------------------------------------------------------------------ */
+// ─── MCP Protocol Types ──────────────────────────────────────────────────────
 
-interface MCPRequest {
+interface JSONRPCRequest {
   jsonrpc: '2.0';
   id: number;
   method: string;
-  params?: unknown;
+  params?: Record<string, unknown>;
 }
 
-interface MCPResponse {
+interface JSONRPCResponse {
   jsonrpc: '2.0';
   id: number;
   result?: unknown;
   error?: { code: number; message: string; data?: unknown };
 }
 
-interface MCPNotification {
-  jsonrpc: '2.0';
-  method: string;
-  params?: unknown;
-}
-
-type MCPMessage = MCPResponse | MCPNotification;
+// ─── MCP Client ──────────────────────────────────────────────────────────────
 
 class MCPClient {
-  private proc: cp.ChildProcess | null = null;
-  private buf = '';
-  private reqId = 0;
+  private process: cp.ChildProcess | null = null;
+  private buffer = '';
   private pending = new Map<number, { resolve: (v: unknown) => void; reject: (e: Error) => void }>();
-  private onNotification: ((method: string, params: unknown) => void) | null = null;
-  private onClose: (() => void) | null = null;
+  private nextId = 1;
+  private connected = false;
+  private onMessage: ((msg: string) => void) | null = null;
+  private onStatusChange: ((connected: boolean) => void) | null = null;
 
-  get connected(): boolean {
-    return this.proc !== null && this.proc.pid !== undefined && !this.proc.killed;
+  set onMessageCallback(cb: ((msg: string) => void) | null) {
+    this.onMessage = cb;
   }
 
-  async connect(command: string, args: string[] = []): Promise<void> {
-    this.proc = cp.spawn(command, args, {
-      stdio: ['pipe', 'pipe', 'pipe'],
-      windowsHide: true,
-    });
-
-    this.proc.stdout?.on('data', (chunk: Buffer) => {
-      this.buf += chunk.toString();
-      this.processBuffer();
-    });
-
-    this.proc.stderr?.on('data', (chunk: Buffer) => {
-      console.error('[openamer:mcp]', chunk.toString());
-    });
-
-    this.proc.on('exit', () => {
-      for (const [, p] of this.pending) p.reject(new Error('MCP server disconnected'));
-      this.pending.clear();
-      this.proc = null;
-      this.onClose?.();
-    });
-
-    await this.request('initialize', {
-      protocolVersion: '2024-11-05',
-      capabilities: { tools: {} },
-      clientInfo: { name: 'openamer-vscode', version: '0.1.0' },
-    });
-
-    this.notify('notifications/initialized');
+  set onStatusChangeCallback(cb: ((connected: boolean) => void) | null) {
+    this.onStatusChange = cb;
   }
 
-  disconnect(): void {
-    this.proc?.kill();
-    this.proc = null;
+  get isConnected(): boolean {
+    return this.connected;
   }
 
-  async request(method: string, params?: unknown): Promise<unknown> {
-    const id = ++this.reqId;
-    const msg: MCPRequest = { jsonrpc: '2.0', id, method, params };
+  async connect(command: string): Promise<void> {
+    if (this.process) {
+      this.disconnect();
+    }
 
     return new Promise((resolve, reject) => {
-      const timer = setTimeout(() => {
-        this.pending.delete(id);
-        reject(new Error(`MCP request timed out: ${method}`));
-      }, 30_000);
-
-      this.pending.set(id, {
-        resolve: (v) => { clearTimeout(timer); resolve(v); },
-        reject: (e) => { clearTimeout(timer); reject(e); },
-      });
-
-      this.write(JSON.stringify(msg) + '\n');
-    });
-  }
-
-  notify(method: string, params?: unknown): void {
-    const msg: MCPNotification = { jsonrpc: '2.0', method, params };
-    this.write(JSON.stringify(msg) + '\n');
-  }
-
-  /** Send a chat message to the MCP server and stream back the response. */
-  async chat(
-    message: string,
-    onToken: (text: string) => void,
-  ): Promise<string> {
-    try {
-      const result = await this.request('tools/call', {
-        name: 'openamer_chat',
-        arguments: { message },
-      });
-
-      const r = result as { content?: Array<{ type: string; text?: string }> };
-      const full =
-        r?.content?.map((c) => (c.type === 'text' ? c.text ?? '' : '')).join('') ?? '';
-      if (full) onToken(full);
-      return full;
-    } catch {
-      // Fallback: treat the message as a prompt request
-      const result = await this.request('prompts/get', {
-        name: 'openamer_chat',
-        arguments: { message },
-      });
-      const r = result as { messages?: Array<{ content: { text?: string } }> };
-      const full =
-        r?.messages?.map((m) => m.content?.text ?? '').join('') ?? '';
-      if (full) onToken(full);
-      return full;
-    }
-  }
-
-  async listTools(): Promise<Array<{ name: string; description?: string }>> {
-    const result = await this.request('tools/list');
-    const r = result as { tools?: Array<{ name: string; description?: string }> };
-    return r?.tools ?? [];
-  }
-
-  // ------------------------------------------------------------------ //
-  private processBuffer(): void {
-    const lines = this.buf.split('\n');
-    this.buf = lines.pop() ?? '';
-
-    for (const line of lines) {
-      if (!line.trim()) continue;
       try {
-        const msg: MCPMessage = JSON.parse(line);
-        if ('id' in msg) {
-          const p = this.pending.get(msg.id);
-          if (p) {
-            this.pending.delete(msg.id);
-            if (msg.error) p.reject(new Error(msg.error.message));
-            else p.resolve(msg.result);
+        // Split command into program and args
+        const parts = command.split(' ');
+        const program = parts[0];
+        const args = parts.slice(1);
+
+        this.process = cp.spawn(program, args, {
+          stdio: ['pipe', 'pipe', 'pipe'],
+          shell: process.platform === 'win32',
+        });
+
+        const timeout = setTimeout(() => {
+          reject(new Error('MCP connection timeout'));
+        }, 15000);
+
+        this.process.stdout?.on('data', (data: Buffer) => {
+          this.buffer += data.toString('utf-8');
+          this.processBuffer();
+        });
+
+        this.process.stderr?.on('data', (data: Buffer) => {
+          console.error(`[openamer-mcp:stderr] ${data.toString().trim()}`);
+        });
+
+        this.process.on('error', (err) => {
+          clearTimeout(timeout);
+          this.setConnected(false);
+          reject(new Error(`MCP process error: ${err.message}`));
+        });
+
+        this.process.on('exit', (code) => {
+          this.setConnected(false);
+          this.process = null;
+          // Reject all pending requests
+          for (const [, pending] of this.pending) {
+            pending.reject(new Error(`MCP process exited with code ${code}`));
           }
-        } else if ('method' in msg) {
-          this.onNotification?.(msg.method, msg.params);
-        }
-      } catch { /* skip malformed lines */ }
-    }
-  }
+          this.pending.clear();
+        });
 
-  private write(data: string): void {
-    if (this.proc?.stdin?.writable) {
-      this.proc.stdin.write(data);
-    }
-  }
-
-  set onNotificationCb(cb: ((method: string, params: unknown) => void) | null) {
-    this.onNotification = cb;
-  }
-
-  set onCloseCb(cb: (() => void) | null) {
-    this.onClose = cb;
-  }
-}
-
-/* ------------------------------------------------------------------ */
-/*  Chat Webview Provider                                              */
-/* ------------------------------------------------------------------ */
-
-class ChatWebviewProvider implements vscode.WebviewViewProvider {
-  public static readonly viewType = 'openamerChat';
-  private _view?: vscode.WebviewView;
-
-  constructor(private readonly _extensionUri: vscode.Uri) {}
-
-  resolveWebviewView(
-    webviewView: vscode.WebviewView,
-    _context: vscode.WebviewViewResolveContext,
-    _token: vscode.CancellationToken,
-  ): void {
-    this._view = webviewView;
-    webviewView.webview.options = { enableScripts: true };
-    webviewView.webview.html = this._getHtml(webviewView.webview);
-
-    webviewView.webview.onDidReceiveMessage(async (msg) => {
-      if (msg.type === 'chat') {
-        const text = (msg.text ?? '').trim();
-        if (!text) return;
-
-        webviewView.webview.postMessage({ type: 'addMessage', role: 'user', text });
-
-        const mcp = getMCP();
-        if (!mcp?.connected) {
-          webviewView.webview.postMessage({
-            type: 'addMessage',
-            role: 'assistant',
-            text: '❌ Not connected to OpenAmer MCP server. Make sure `openamer mcp` is running.',
+        // Send initialize request
+        this.request('initialize', {
+          protocolVersion: '2024-11-05',
+          capabilities: {},
+          clientInfo: { name: 'openamer-vscode', version: '0.1.0' },
+        })
+          .then(() => {
+            clearTimeout(timeout);
+            this.setConnected(true);
+            resolve();
+          })
+          .catch((err) => {
+            clearTimeout(timeout);
+            reject(err);
           });
-          return;
-        }
-
-        webviewView.webview.postMessage({ type: 'addMessage', role: 'assistant', text: '⏳ Thinking…' });
-
-        try {
-          const full = await mcp.chat(text, (token) => {
-            // Replace the thinking indicator with the real response
-            webviewView.webview.postMessage({
-              type: 'updateLastAssistant',
-              text: token,
-            });
-          });
-          webviewView.webview.postMessage({
-            type: 'updateLastAssistant',
-            text: full,
-          });
-        } catch (err: unknown) {
-          const msg = err instanceof Error ? err.message : String(err);
-          webviewView.webview.postMessage({
-            type: 'addMessage',
-            role: 'assistant',
-            text: `❌ Error: ${msg}`,
-          });
-        }
+      } catch (err) {
+        reject(err);
       }
     });
   }
 
-  private _getHtml(webview: vscode.Webview): string {
-    const csp = webview.cspSource;
-    const nonce = Date.now().toString(36);
+  async request(method: string, params?: Record<string, unknown>): Promise<unknown> {
+    if (!this.process || !this.process.stdin) {
+      throw new Error('MCP not connected');
+    }
 
-    return /* html */`<!DOCTYPE html>
+    const id = this.nextId++;
+    const request: JSONRPCRequest = {
+      jsonrpc: '2.0',
+      id,
+      method,
+      params,
+    };
+
+    return new Promise((resolve, reject) => {
+      this.pending.set(id, { resolve, reject });
+      const message = JSON.stringify(request) + '\n';
+      this.process!.stdin!.write(message, 'utf-8');
+    });
+  }
+
+  async chat(message: string): Promise<string> {
+    const result = await this.request('tools/call', {
+      name: 'chat',
+      arguments: { message },
+    });
+    return JSON.stringify(result);
+  }
+
+  async listTools(): Promise<unknown[]> {
+    const result = await this.request('tools/list');
+    return (result as { tools: unknown[] }).tools || [];
+  }
+
+  disconnect(): void {
+    if (this.process) {
+      try {
+        this.process.stdin?.end();
+        this.process.kill();
+      } catch {
+        // ignore
+      }
+      this.process = null;
+    }
+    this.setConnected(false);
+    this.pending.clear();
+  }
+
+  private processBuffer(): void {
+    const lines = this.buffer.split('\n');
+    // Keep the last incomplete line in the buffer
+    this.buffer = lines.pop() || '';
+
+    for (const line of lines) {
+      const trimmed = line.trim();
+      if (!trimmed) continue;
+
+      try {
+        const msg: JSONRPCRequest | JSONRPCResponse = JSON.parse(trimmed);
+
+        if ('id' in msg && 'result' in msg) {
+          // Response
+          const pending = this.pending.get(msg.id);
+          if (pending) {
+            this.pending.delete(msg.id);
+            if (msg.error) {
+              pending.reject(new Error(msg.error.message));
+            } else {
+              pending.resolve(msg.result);
+            }
+          }
+        } else if ('id' in msg && 'error' in msg) {
+          // Error response
+          const pending = this.pending.get(msg.id);
+          if (pending) {
+            this.pending.delete(msg.id);
+            pending.reject(new Error((msg as JSONRPCResponse).error!.message));
+          }
+        } else if ('method' in msg && !('id' in msg)) {
+          // Notification from server
+          const notification = msg as JSONRPCRequest;
+          if (notification.method === 'message' && this.onMessage) {
+            this.onMessage(JSON.stringify(notification.params));
+          }
+        }
+      } catch {
+        // Skip malformed JSON
+      }
+    }
+  }
+
+  private setConnected(state: boolean): void {
+    if (this.connected !== state) {
+      this.connected = state;
+      this.onStatusChange?.(state);
+    }
+  }
+}
+
+// ─── Chat Webview Provider ───────────────────────────────────────────────────
+
+class ChatWebviewProvider implements vscode.WebviewViewProvider {
+  public static readonly viewType = 'openamerChat';
+  private _view?: vscode.WebviewView;
+  private _mcpClient: MCPClient;
+
+  constructor(private readonly _extensionUri: vscode.Uri, mcpClient: MCPClient) {
+    this._mcpClient = mcpClient;
+  }
+
+  resolveWebviewView(
+    webviewView: vscode.WebviewView,
+    _context: vscode.WebviewViewResolveContext,
+    _token: vscode.CancellationToken
+  ): void {
+    this._view = webviewView;
+
+    webviewView.webview.options = {
+      enableScripts: true,
+      localResourceRoots: [this._extensionUri],
+    };
+
+    webviewView.webview.html = this._getHtmlForWebview(webviewView.webview);
+
+    webviewView.webview.onDidReceiveMessage(async (data: { type: string; text?: string }) => {
+      switch (data.type) {
+        case 'sendMessage':
+          if (data.text) {
+            webviewView.webview.postMessage({
+              type: 'addMessage',
+              role: 'user',
+              content: data.text,
+            });
+            try {
+              const response = await this._mcpClient.chat(data.text);
+              webviewView.webview.postMessage({
+                type: 'addMessage',
+                role: 'assistant',
+                content: response,
+              });
+            } catch (err) {
+              webviewView.webview.postMessage({
+                type: 'addMessage',
+                role: 'assistant',
+                content: `**Error:** ${err instanceof Error ? err.message : 'Unknown error'}`,
+              });
+            }
+          }
+          break;
+      }
+    });
+  }
+
+  postMessage(message: Record<string, unknown>): void {
+    this._view?.webview.postMessage(message);
+  }
+
+  private _getHtmlForWebview(webview: vscode.Webview): string {
+    const nonce = crypto.randomBytes(16).toString('base64');
+
+    return `<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${csp} 'unsafe-inline'; script-src 'nonce-${nonce}';">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' ${webview.cspSource}; script-src 'nonce-${nonce}';">
   <title>OpenAmer Chat</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--vscode-font-family); font-size: 13px; color: var(--vscode-editor-foreground); background: var(--vscode-sideBar-background); display: flex; flex-direction: column; height: 100vh; }
-    #messages { flex: 1; overflow-y: auto; padding: 8px; }
-    .msg { margin-bottom: 8px; padding: 6px 8px; border-radius: 4px; white-space: pre-wrap; word-break: break-word; }
-    .msg.user { background: var(--vscode-textBlockQuote-background); border-left: 3px solid var(--vscode-textLink-foreground); }
-    .msg.assistant { background: var(--vscode-editor-inactiveSelectionBackground); border-left: 3px solid var(--vscode-editorInfo-foreground); }
-    #input-bar { display: flex; border-top: 1px solid var(--vscode-panel-border); padding: 6px; gap: 4px; }
-    #input { flex: 1; resize: none; border: 1px solid var(--vscode-input-border); background: var(--vscode-input-background); color: var(--vscode-input-foreground); padding: 6px; border-radius: 2px; font-family: inherit; font-size: inherit; }
-    #input:focus { outline: 1px solid var(--vscode-focusBorder); }
-    #send { background: var(--vscode-button-background); color: var(--vscode-button-foreground); border: none; padding: 4px 12px; border-radius: 2px; cursor: pointer; }
-    #send:hover { background: var(--vscode-button-hoverBackground); }
+    body {
+      font-family: var(--vscode-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
+      font-size: var(--vscode-font-size, 13px);
+      color: var(--vscode-editor-foreground, #ccc);
+      background: var(--vscode-sideBar-background, #1e1e1e);
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+    #messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 8px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .message {
+      padding: 8px 12px;
+      border-radius: 6px;
+      max-width: 90%;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+      line-height: 1.4;
+    }
+    .message.user {
+      background: var(--vscode-textBlockQuote-background, #2a2d2e);
+      align-self: flex-end;
+      border: 1px solid var(--vscode-input-border, #3c3c3c);
+    }
+    .message.assistant {
+      background: var(--vscode-editor-background, #1e1e1e);
+      align-self: flex-start;
+      border: 1px solid var(--vscode-input-border, #3c3c3c);
+    }
+    .message .role-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      opacity: 0.6;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+    .message .content {
+      font-size: var(--vscode-font-size, 13px);
+    }
+    #input-area {
+      display: flex;
+      gap: 6px;
+      padding: 8px 12px;
+      border-top: 1px solid var(--vscode-input-border, #3c3c3c);
+      background: var(--vscode-sideBar-background, #1e1e1e);
+    }
+    #input {
+      flex: 1;
+      background: var(--vscode-input-background, #3c3c3c);
+      color: var(--vscode-input-foreground, #ccc);
+      border: 1px solid var(--vscode-input-border, #555);
+      border-radius: 4px;
+      padding: 6px 10px;
+      font-family: inherit;
+      font-size: inherit;
+      resize: none;
+      outline: none;
+    }
+    #input:focus {
+      border-color: var(--vscode-focusBorder, #007acc);
+    }
+    #send {
+      background: var(--vscode-button-background, #007acc);
+      color: var(--vscode-button-foreground, #fff);
+      border: none;
+      border-radius: 4px;
+      padding: 6px 14px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: 600;
+    }
+    #send:hover {
+      background: var(--vscode-button-hoverBackground, #005f9e);
+    }
+    #send:disabled {
+      opacity: 0.5;
+      cursor: default;
+    }
+    .status-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      font-size: 11px;
+      border-top: 1px solid var(--vscode-input-border, #3c3c3c);
+    }
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+    .status-dot.connected { background: #4ecdc4; }
+    .status-dot.disconnected { background: #ff6b6b; }
+    .status-text { opacity: 0.7; }
   </style>
 </head>
 <body>
   <div id="messages"></div>
-  <div id="input-bar">
-    <textarea id="input" rows="3" placeholder="Ask OpenAmer…"></textarea>
+  <div id="input-area">
+    <textarea id="input" rows="2" placeholder="Ask OpenAmer..."></textarea>
     <button id="send">Send</button>
   </div>
+  <div class="status-bar">
+    <div class="status-dot disconnected" id="statusDot"></div>
+    <span class="status-text" id="statusText">Disconnected</span>
+  </div>
   <script nonce="${nonce}">
-    const vscode = acquireVsCodeApi();
-    const messages = document.getElementById('messages');
-    const input = document.getElementById('input');
-    const send = document.getElementById('send');
+    (function() {
+      const vscode = acquireVsCodeApi();
+      const messagesEl = document.getElementById('messages');
+      const inputEl = document.getElementById('input');
+      const sendBtn = document.getElementById('send');
+      const statusDot = document.getElementById('statusDot');
+      const statusText = document.getElementById('statusText');
 
-    function addMessage(role, text) {
-      const div = document.createElement('div');
-      div.className = 'msg ' + role;
-      div.textContent = text;
-      messages.appendChild(div);
-      messages.scrollTop = messages.scrollHeight;
-      return div;
-    }
+      function addMessage(role, content) {
+        const div = document.createElement('div');
+        div.className = 'message ' + role;
+        div.innerHTML = '<div class="role-label">' + role + '</div><div class="content">' + escapeHtml(content) + '</div>';
+        messagesEl.appendChild(div);
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+      }
 
-    function updateLastAssistant(text) {
-      const els = messages.querySelectorAll('.msg.assistant');
-      if (els.length) els[els.length - 1].textContent = text;
-    }
+      function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+      }
 
-    window.addEventListener('message', e => {
-      const msg = e.data;
-      if (msg.type === 'addMessage') addMessage(msg.role, msg.text);
-      else if (msg.type === 'updateLastAssistant') updateLastAssistant(msg.text);
-    });
+      function sendMessage() {
+        const text = inputEl.value.trim();
+        if (!text) return;
+        inputEl.value = '';
+        sendBtn.disabled = true;
+        vscode.postMessage({ type: 'sendMessage', text: text });
+      }
 
-    function sendMessage() {
-      const text = input.value.trim();
-      if (!text) return;
-      input.value = '';
-      vscode.postMessage({ type: 'chat', text });
-    }
+      inputEl.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault();
+          sendMessage();
+        }
+      });
 
-    input.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } });
-    send.addEventListener('click', sendMessage);
+      sendBtn.addEventListener('click', sendMessage);
 
-    addMessage('assistant', '👋 Connected. Ask me anything about your code.');
+      window.addEventListener('message', function(event) {
+        const msg = event.data;
+        switch (msg.type) {
+          case 'addMessage':
+            addMessage(msg.role, msg.content);
+            sendBtn.disabled = false;
+            break;
+          case 'setStatus':
+            statusDot.className = 'status-dot ' + (msg.connected ? 'connected' : 'disconnected');
+            statusText.textContent = msg.connected ? 'Connected' : 'Disconnected';
+            break;
+        }
+      });
+    })();
   </script>
 </body>
 </html>`;
   }
 }
 
-/* ------------------------------------------------------------------ */
-/*  Extension Entry Point                                              */
-/* ------------------------------------------------------------------ */
+// ─── Extension Activation ────────────────────────────────────────────────────
 
-let mcpClient: MCPClient | null = null;
-let statusBarItem: vscode.StatusBarItem | null = null;
+let mcpClient: MCPClient | undefined;
+let statusBarItem: vscode.StatusBarItem | undefined;
 
-function getMCP(): MCPClient | null {
-  return mcpClient;
-}
-
-function updateStatusBar(text: string, tooltip?: string): void {
-  if (statusBarItem) {
-    statusBarItem.text = text;
-    if (tooltip) statusBarItem.tooltip = tooltip;
-  }
-}
-
-export async function activate(context: vscode.ExtensionContext): Promise<void> {
-  // --- Status Bar ---
-  statusBarItem = vscode.window.createStatusBarItem('openamer.status', vscode.StatusBarAlignment.Right, 100);
-  statusBarItem.name = 'OpenAmer Connection Status';
-  statusBarItem.text = '$(debug-disconnect) OpenAmer: disconnected';
-  statusBarItem.tooltip = 'Click to connect to OpenAmer MCP server';
-  statusBarItem.command = 'openamer.chat';
-  statusBarItem.show();
-  context.subscriptions.push(statusBarItem);
-
-  // --- MCP Client ---
+export function activate(context: vscode.ExtensionContext): void {
   mcpClient = new MCPClient();
-  mcpClient.onCloseCb = () => {
-    updateStatusBar('$(debug-disconnect) OpenAmer: disconnected');
+
+  // Status bar
+  statusBarItem = vscode.window.createStatusBarItem('openamer.status', vscode.StatusBarAlignment.Right, 100);
+  statusBarItem.text = '$(comment-discussion) OpenAmer';
+  statusBarItem.tooltip = 'OpenAmer Agent - Click to open chat';
+  statusBarItem.command = 'openamer.chat';
+  statusBarItem.backgroundColor = new vscode.ThemeColor('statusBarItem.warningBackground');
+  statusBarItem.show();
+  updateStatusBar(false);
+
+  mcpClient.onStatusChangeCallback = (connected) => {
+    updateStatusBar(connected);
   };
 
-  // Auto-connect
-  connectMCP(context);
-
-  // --- Chat Webview ---
-  const provider = new ChatWebviewProvider(context.extensionUri);
+  // Webview provider
+  const provider = new ChatWebviewProvider(context.extensionUri, mcpClient);
   context.subscriptions.push(
     vscode.window.registerWebviewViewProvider(ChatWebviewProvider.viewType, provider, {
       webviewOptions: { retainContextWhenHidden: true },
-    }),
+    })
   );
 
-  // --- Commands ---
-
-  // openamer.chat – focus the sidebar
+  // Register commands
   context.subscriptions.push(
     vscode.commands.registerCommand('openamer.chat', () => {
       vscode.commands.executeCommand('workbench.view.extension.openamer');
-    }),
+    })
   );
 
-  // openamer.explain – explain current file / selected file
   context.subscriptions.push(
     vscode.commands.registerCommand('openamer.explain', async (uri?: vscode.Uri) => {
-      const fileUri = uri ?? vscode.window.activeTextEditor?.document.uri;
-      if (!fileUri) {
-        vscode.window.showErrorMessage('No file selected to explain.');
-        return;
-      }
-      const doc = await vscode.workspace.openTextDocument(fileUri);
-      const text = doc.getText();
+      let filePath = '';
+      let fileContent = '';
 
-      const mcp = getMCP();
-      if (!mcp?.connected) {
-        vscode.window.showErrorMessage('OpenAmer MCP server is not connected.');
-        return;
+      if (uri) {
+        // Called from explorer context menu
+        filePath = uri.fsPath;
+        try {
+          const doc = await vscode.workspace.openTextDocument(uri);
+          fileContent = doc.getText().substring(0, 8000);
+        } catch {
+          fileContent = '(unable to read file)';
+        }
+      } else {
+        // Called from command palette - use active editor
+        const editor = vscode.window.activeTextEditor;
+        if (editor) {
+          filePath = editor.document.uri.fsPath;
+          fileContent = editor.document.getText().substring(0, 8000);
+        } else {
+          vscode.window.showErrorMessage('No file selected');
+          return;
+        }
       }
 
-      updateStatusBar('$(sync~spin) OpenAmer: explaining…');
+      const message = `Explain this file:\n\n\`\`\`\nPath: ${filePath}\n\n${fileContent}\n\`\`\``;
+      vscode.window.showInformationMessage(`OpenAmer: Explaining ${path.basename(filePath)}...`);
+
       try {
-        await sendToMCPChat(mcp, `Explain this code:\n\n\`\`\`${doc.languageId}\n${text.slice(0, 8000)}\n\`\`\``);
-        vscode.commands.executeCommand('workbench.view.extension.openamer');
-      } catch (err: unknown) {
-        const msg = err instanceof Error ? err.message : String(err);
-        vscode.window.showErrorMessage(`Explain failed: ${msg}`);
-      } finally {
-        updateStatusBar('$(check) OpenAmer: connected');
+        if (mcpClient?.isConnected) {
+          const response = await mcpClient.chat(message);
+          vscode.window.showInformationMessage(`OpenAmer: ${response.substring(0, 200)}...`);
+          // Open chat view to show result
+          vscode.commands.executeCommand('workbench.view.extension.openamer');
+          provider.postMessage({ type: 'addMessage', role: 'user', content: message });
+          provider.postMessage({ type: 'addMessage', role: 'assistant', content: response });
+        } else {
+          vscode.window.showWarningMessage('OpenAmer MCP is not connected. Open the chat view to connect.');
+          vscode.commands.executeCommand('workbench.view.extension.openamer');
+        }
+      } catch (err) {
+        vscode.window.showErrorMessage(`OpenAmer error: ${err instanceof Error ? err.message : 'Unknown error'}`);
       }
-    }),
+    })
   );
 
-  // openamer.fix – fix selected text
   context.subscriptions.push(
     vscode.commands.registerCommand('openamer.fix', async () => {
       const editor = vscode.window.activeTextEditor;
       if (!editor) {
-        vscode.window.showErrorMessage('No active editor.');
+        vscode.window.showErrorMessage('No active editor');
         return;
       }
+
       const selection = editor.selection;
-      if (selection.isEmpty) {
-        vscode.window.showErrorMessage('No text selected to fix.');
-        return;
-      }
-      const text = editor.document.getText(selection);
-
-      const mcp = getMCP();
-      if (!mcp?.connected) {
-        vscode.window.showErrorMessage('OpenAmer MCP server is not connected.');
+      const text = editor.document.getText(selection).substring(0, 6000);
+      if (!text) {
+        vscode.window.showErrorMessage('No text selected');
         return;
       }
 
-      updateStatusBar('$(sync~spin) OpenAmer: fixing…');
+      const filePath = editor.document.uri.fsPath;
+      const message = `Fix this code from ${path.basename(filePath)}:\n\n\`\`\`\n${text}\n\`\`\`\n\nReturn the fixed code only.`;
+
+      vscode.window.showInformationMessage('OpenAmer: Fixing selected code...');
+
       try {
-        await sendToMCPChat(mcp, `Fix this code:\n\n\`\`\`${editor.document.languageId}\n${text.slice(0, 8000)}\n\`\`\``);
-        vscode.commands.executeCommand('workbench.view.extension.openamer');
-      } catch (err: unknown) {
-        const msg = err instanceof Error ? err.message : String(err);
-        vscode.window.showErrorMessage(`Fix failed: ${msg}`);
-      } finally {
-        updateStatusBar('$(check) OpenAmer: connected');
+        if (mcpClient?.isConnected) {
+          const response = await mcpClient.chat(message);
+          // Show result in chat
+          vscode.commands.executeCommand('workbench.view.extension.openamer');
+          provider.postMessage({ type: 'addMessage', role: 'user', content: message });
+          provider.postMessage({ type: 'addMessage', role: 'assistant', content: response });
+          vscode.window.showInformationMessage('OpenAmer: Fix suggestion ready in chat');
+        } else {
+          vscode.window.showWarningMessage('OpenAmer MCP is not connected. Open the chat view to connect.');
+          vscode.commands.executeCommand('workbench.view.extension.openamer');
+        }
+      } catch (err) {
+        vscode.window.showErrorMessage(`OpenAmer error: ${err instanceof Error ? err.message : 'Unknown error'}`);
       }
-    }),
+    })
   );
+
+  // Auto-connect to MCP
+  autoConnectMCP();
 }
 
-/** Attempt to connect to the MCP server, with retries. */
-async function connectMCP(context: vscode.ExtensionContext, retries = 3): Promise<void> {
-  const mcpPath = resolveMcpCommand();
-  if (!mcpPath) {
-    updateStatusBar('$(error) OpenAmer: mcp not found');
+function updateStatusBar(connected: boolean): void {
+  if (!statusBarItem) return;
+  if (connected) {
+    statusBarItem.text = '$(comment-discussion) OpenAmer';
+    statusBarItem.backgroundColor = new vscode.ThemeColor('statusBarItem.prominentForeground');
+    statusBarItem.tooltip = 'OpenAmer Agent - Connected';
+  } else {
+    statusBarItem.text = '$(comment-discussion) OpenAmer';
+    statusBarItem.backgroundColor = new vscode.ThemeColor('statusBarItem.warningBackground');
+    statusBarItem.tooltip = 'OpenAmer Agent - Disconnected';
+  }
+}
+
+async function autoConnectMCP(): Promise<void> {
+  // Try to find openamer in PATH or known locations
+  const config = vscode.workspace.getConfiguration('openamer');
+  let mcpCommand = config.get<string>('mcpCommand', '');
+
+  if (!mcpCommand) {
+    // Try common locations
+    const candidates = ['openamer', 'openamer.exe'];
+    const home = process.env.OPENAMER_HOME || '';
+
+    if (home) {
+      candidates.unshift(path.join(home, 'openamer'));
+      candidates.unshift(path.join(home, 'openamer.exe'));
+    }
+
+    for (const cmd of candidates) {
+      try {
+        await execCommand(`${cmd} --version`);
+        mcpCommand = cmd;
+        break;
+      } catch {
+        continue;
+      }
+    }
+  }
+
+  if (!mcpCommand) {
     vscode.window.showWarningMessage(
-      'OpenAmer CLI not found on PATH. Install it or set the OPENAMER_PATH environment variable.',
+      'OpenAmer CLI not found. Set "openamer.mcpCommand" in settings or ensure openamer is in PATH.'
     );
     return;
   }
 
-  updateStatusBar('$(sync~spin) OpenAmer: connecting…');
-
-  for (let attempt = 0; attempt < retries; attempt++) {
-    try {
-      await mcpClient!.connect(mcpPath, ['mcp']);
-      updateStatusBar('$(check) OpenAmer: connected', 'Click to open chat');
-
-      // Log available tools
-      const tools = await mcpClient!.listTools();
-      console.log(`[openamer] MCP connected. Tools available: ${tools.map(t => t.name).join(', ') || 'none'}`);
-
-      return;
-    } catch (err: unknown) {
-      const msg = err instanceof Error ? err.message : String(err);
-      console.warn(`[openamer] MCP connect attempt ${attempt + 1}/${retries} failed: ${msg}`);
-      if (attempt < retries - 1) await sleep(1000);
-    }
+  try {
+    await mcpClient!.connect(`${mcpCommand} mcp`);
+    vscode.window.showInformationMessage('OpenAmer MCP connected');
+  } catch (err) {
+    vscode.window.showWarningMessage(
+      `OpenAmer MCP connection failed: ${err instanceof Error ? err.message : 'Unknown error'}`
+    );
   }
-
-  updateStatusBar('$(debug-disconnect) OpenAmer: disconnected');
 }
 
-/** Resolve the `openamer` binary to an absolute path. */
-function resolveMcpCommand(): string | null {
-  const envPath = process.env.OPENAMER_PATH;
-  if (envPath) return envPath;
-
-  const paths = (process.env.PATH ?? '').split(path.delimiter);
-  for (const dir of paths) {
-    try {
-      const full = path.join(dir, 'openamer');
-      if (process.platform === 'win32') {
-        for (const ext of ['', '.cmd', '.exe', '.bat']) {
-          try { cp.execSync(`where "${full}${ext}"`, { stdio: 'ignore' }); return full + ext; }
-          catch { /* not here */ }
-        }
-      } else {
-        try { cp.execSync(`command -v "${full}"`, { stdio: 'ignore' }); return full; }
-        catch { /* not here */ }
-      }
-    } catch { /* skip */ }
-  }
-
-  // Fallback: try openamer on PATH directly
-  return 'openamer';
-}
-
-/** Send a message to the MCP chat and show a notification. */
-async function sendToMCPChat(mcp: MCPClient, text: string): Promise<void> {
-  const full = await mcp.chat(text, () => {});
-  const preview = full.slice(0, 200);
-  vscode.window.showInformationMessage(`OpenAmer response: ${preview}${full.length > 200 ? '…' : ''}`);
-}
-
-function sleep(ms: number): Promise<void> {
-  return new Promise((r) => setTimeout(r, ms));
+function execCommand(command: string): Promise<string> {
+  return new Promise((resolve, reject) => {
+    cp.exec(command, { timeout: 5000 }, (err, stdout) => {
+      if (err) reject(err);
+      else resolve(stdout.trim());
+    });
+  });
 }
 
 export function deactivate(): void {
   mcpClient?.disconnect();
-  mcpClient = null;
+  mcpClient = undefined;
 }

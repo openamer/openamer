@@ -1,31 +1,10 @@
 {
   "name": "openamer-vscode",
   "displayName": "OpenAmer Agent",
-  "description": "AI-powered code assistance via the OpenAmer Agent",
+  "description": "OpenAmer AI Agent - background computer-use, swarm, tools",
   "version": "0.1.0",
-  "publisher": "openamer",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/openamer/openamer"
-  },
-  "engines": {
-    "vscode": "^1.90.0"
-  },
-  "categories": [
-    "Chat",
-    "Programming Languages",
-    "Other"
-  ],
-  "keywords": [
-    "ai",
-    "agent",
-    "openamer",
-    "chat",
-    "code",
-    "assistant"
-  ],
-  "icon": "icon.png",
+  "engines": { "vscode": "^1.90.0" },
+  "categories": ["Programming Languages", "Chat", "Other"],
   "activationEvents": [
     "onCommand:openamer.chat",
     "onCommand:openamer.explain",
@@ -35,78 +14,40 @@
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
-      {
-        "command": "openamer.chat",
-        "title": "OpenAmer: Chat",
-        "icon": "$(comment-discussion)"
-      },
-      {
-        "command": "openamer.explain",
-        "title": "Ask OpenAmer to explain this"
-      },
-      {
-        "command": "openamer.fix",
-        "title": "Ask OpenAmer to fix this"
-      }
+      { "command": "openamer.chat", "title": "OpenAmer: Chat" },
+      { "command": "openamer.explain", "title": "Ask OpenAmer to explain this" },
+      { "command": "openamer.fix", "title": "Ask OpenAmer to fix this" }
     ],
     "menus": {
       "editor/context": [
-        {
-          "command": "openamer.explain",
-          "when": "editorHasDocumentation",
-          "group": "openamer@1"
-        },
-        {
-          "command": "openamer.fix",
-          "when": "editorHasSelection",
-          "group": "openamer@2"
-        }
+        { "command": "openamer.fix", "when": "editorHasSelection", "group": "openamer@2" }
       ],
       "explorer/context": [
-        {
-          "command": "openamer.explain",
-          "group": "openamer@1"
-        }
+        { "command": "openamer.explain", "group": "openamer@1" }
       ]
     },
     "viewsContainers": {
       "activitybar": [
-        {
-          "id": "openamer",
-          "title": "OpenAmer Agent",
-          "icon": "$(comment-discussion)"
-        }
+        { "id": "openamer", "title": "OpenAmer Agent", "icon": "$(comment-discussion)" }
       ]
     },
     "views": {
       "openamer": [
-        {
-          "type": "webview",
-          "id": "openamerChat",
-          "name": "Chat",
-          "icon": "$(comment-discussion)"
-        }
+        { "type": "webview", "id": "openamerChat", "name": "Chat" }
       ]
     },
     "statusBar": [
-      {
-        "id": "openamer.status",
-        "name": "OpenAmer Connection Status",
-        "alignment": "right",
-        "priority": 100
-      }
+      { "id": "openamer.status", "name": "OpenAmer Connection Status", "alignment": "right", "priority": 100 }
     ]
   },
   "scripts": {
-    "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "lint": "eslint src --ext ts"
   },
   "devDependencies": {
-    "@types/node": "^20.0.0",
+    "@types/node": "^20",
     "@types/vscode": "^1.90.0",
-    "typescript": "^5.5.0"
-  },
-  "dependencies": {}
+    "typescript": "^5.5"
+  }
 }

@@ -1,0 +1,38 @@
+<idea-plugin>
+  <id>com.openamer.jetbrains</id>
+  <name>OpenAmer Agent</name>
+  <version>0.1.0</version>
+  <vendor email="hello@openamer.ai" url="https://openamer.ai">OpenAmer</vendor>
+  <description><![CDATA[
+    OpenAmer AI Agent - background computer-use, swarm, personal AI assistant.
+    Chat with OpenAmer, explain code, fix bugs directly from your IDE.
+  ]]></description>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij">
+    <toolWindow
+      id="OpenAmerChat"
+      anchor="right"
+      icon="AllIcons.General.Chat"
+      factoryClass="com.openamer.OpenAmerToolWindowFactory"
+      doNotActivateOnStart="true"/>
+  </extensions>
+  <actions>
+    <action id="OpenAmer.Chat"
+      class="com.openamer.ActionOpenAmerChat"
+      text="OpenAmer Chat"
+      description="Open the OpenAmer Agent chat panel"
+      icon="AllIcons.General.Chat">
+      <keyboard-shortcut keymap="$default" first-keystroke="control shift A"/>
+    </action>
+    <action id="OpenAmer.Explain"
+      class="com.openamer.ActionOpenAmerExplain"
+      text="Ask OpenAmer to explain this">
+      <add-to-group group-id="EditorPopupMenu" anchor="first"/>
+    </action>
+    <action id="OpenAmer.Fix"
+      class="com.openamer.ActionOpenAmerFix"
+      text="Ask OpenAmer to fix this">
+      <add-to-group group-id="EditorPopupMenu" anchor="after" relative-to-action="OpenAmer.Explain"/>
+    </action>
+  </actions>
+</idea-plugin>
