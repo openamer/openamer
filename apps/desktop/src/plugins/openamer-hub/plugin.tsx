@@ -21,14 +21,13 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import type { PluginContribution, OpenAmerPlugin } from '@/contrib/plugin'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
 import {
   ROUTES_AREA,
   SIDEBAR_NAV_AREA,
   type SidebarNavContribution,
 } from '@/app/routes'
+import { Button } from '@/components/ui/button'
+import type { OpenAmerPlugin, PluginContribution } from '@/contrib/plugin'
 
 // ── Constants ───────────────────────────────────────────────────────────
 
@@ -64,8 +63,8 @@ const GrowthBarChart = ({ data }: { data: readonly number[] }) => (
     <div className="flex items-end gap-1 h-20">
       {data.map((v, i) => (
         <div
-          key={i}
           className="flex-1 bg-cyan-400/60 rounded-t transition-all"
+          key={i}
           style={{ height: `${v * 10}px` }}
         />
       ))}
@@ -111,6 +110,7 @@ const HealthRow = ({
 }) => {
   const barColour =
     score >= 80 ? 'bg-emerald-400/60' : score >= 60 ? 'bg-amber-400/60' : 'bg-red-400/60'
+
   const textColour =
     score >= 80
       ? 'text-emerald-400'
@@ -155,15 +155,15 @@ const AgentBuilderPage: React.FC = () => {
           <h2 className="mb-2 text-lg font-semibold">🧠 Natural Language Creator</h2>
           <textarea
             className="w-full min-h-[100px] rounded-md border bg-background p-3 text-sm resize-y"
+            onChange={e => setDesc(e.target.value)}
             placeholder="e.g. Send a daily summary of Hacker News to Telegram every morning at 9am"
             value={desc}
-            onChange={e => setDesc(e.target.value)}
           />
           <Button
             className="mt-2"
             disabled={!desc.trim()}
             onClick={() => {
-              if (!desc.trim()) return
+              if (!desc.trim()) {return}
               setResult(`✨ Agent created from: &ldquo;${desc.substring(0, 80)}&hellip;&rdquo;`)
             }}
           >
@@ -199,9 +199,9 @@ const BrainDashboardPage: React.FC = () => (
     </div>
 
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-      <StatCard value="&mdash;" label="Brain Records" color="text-cyan-400" />
-      <StatCard value="117" label="Skills" color="text-emerald-400" />
-      <StatCard value="25" label="Phases Active" color="text-violet-400" />
+      <StatCard color="text-cyan-400" label="Brain Records" value="&mdash;" />
+      <StatCard color="text-emerald-400" label="Skills" value="117" />
+      <StatCard color="text-violet-400" label="Phases Active" value="25" />
     </div>
 
     <section className="rounded-lg border bg-card p-4 mb-4">
@@ -234,9 +234,9 @@ const CrewsSwarmPage: React.FC = () => (
           Role-based agent teams: researcher, writer, analyst, coder
         </p>
         <div className="flex flex-wrap gap-2">
-          <TagBubble label="researcher" className="bg-blue-100 dark:bg-blue-900/30" />
-          <TagBubble label="writer" className="bg-green-100 dark:bg-green-900/30" />
-          <TagBubble label="analyst" className="bg-amber-100 dark:bg-amber-900/30" />
+          <TagBubble className="bg-blue-100 dark:bg-blue-900/30" label="researcher" />
+          <TagBubble className="bg-green-100 dark:bg-green-900/30" label="writer" />
+          <TagBubble className="bg-amber-100 dark:bg-amber-900/30" label="analyst" />
         </div>
       </section>
 
@@ -246,9 +246,9 @@ const CrewsSwarmPage: React.FC = () => (
           Strategies: Parallel, Hierarchical, Debate
         </p>
         <div className="flex flex-wrap gap-2">
-          <TagBubble label="parallel" className="bg-violet-100 dark:bg-violet-900/30" />
-          <TagBubble label="hierarchical" className="bg-cyan-100 dark:bg-cyan-900/30" />
-          <TagBubble label="debate" className="bg-rose-100 dark:bg-rose-900/30" />
+          <TagBubble className="bg-violet-100 dark:bg-violet-900/30" label="parallel" />
+          <TagBubble className="bg-cyan-100 dark:bg-cyan-900/30" label="hierarchical" />
+          <TagBubble className="bg-rose-100 dark:bg-rose-900/30" label="debate" />
         </div>
       </section>
     </div>
@@ -278,7 +278,7 @@ const TracePage: React.FC = () => (
       <h3 className="font-semibold mb-2">🔧 Tool Usage (All-Time)</h3>
       <div className="space-y-2">
         {RECENT_TOOLS.map(tool => (
-          <div key={tool} className="flex items-center gap-3 text-sm">
+          <div className="flex items-center gap-3 text-sm" key={tool}>
             <span className="text-cyan-400 font-mono w-28">{tool}</span>
             <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
               <div className="h-full bg-cyan-400/60 rounded-full" style={{ width: '70%' }} />
@@ -351,7 +351,7 @@ const WebAgentPage: React.FC = () => {
   }, [])
 
   const handleExecute = React.useCallback(() => {
-    if (!goal.trim()) return
+    if (!goal.trim()) {return}
 
     const trimmedGoal = goal.trim()
     setStatus('running')
@@ -369,6 +369,7 @@ const WebAgentPage: React.FC = () => {
       '3. Extrahiere und verarbeite die Informationen',
       '4. Fasse die Ergebnisse zusammen und präsentiere sie',
     ]
+
     setPlannedPlan(plan)
     plan.forEach(p => addLog(`📋 ${p}`))
     setCurrentStep(plan[0])
@@ -440,10 +441,10 @@ const WebAgentPage: React.FC = () => {
           <h2 className="mb-2 text-lg font-semibold">🎯 Ziel definieren</h2>
           <textarea
             className="w-full min-h-[80px] rounded-md border bg-background p-3 text-sm resize-y"
+            disabled={status === 'running'}
+            onChange={e => setGoal(e.target.value)}
             placeholder="Was soll ich im Internet erledigen?"
             value={goal}
-            onChange={e => setGoal(e.target.value)}
-            disabled={status === 'running'}
           />
           <div className="flex items-center justify-between mt-2">
             <Button
@@ -465,12 +466,12 @@ const WebAgentPage: React.FC = () => {
             <ol className="list-decimal list-inside space-y-1 text-sm text-muted-foreground">
               {plannedPlan.map((step, i) => (
                 <li
-                  key={i}
                   className={
                     currentStep === step
                       ? 'text-cyan-400 font-medium'
                       : ''
                   }
+                  key={i}
                 >
                   {step}
                 </li>
@@ -500,11 +501,11 @@ const WebAgentPage: React.FC = () => {
           <section className="rounded-lg border bg-card p-4">
             <h2 className="mb-2 text-lg font-semibold">📝 Log-Viewer</h2>
             <div
-              ref={scrollRef}
               className="max-h-48 overflow-y-auto rounded-md bg-background p-3 font-mono text-xs space-y-1"
+              ref={scrollRef}
             >
               {logs.map((entry, i) => (
-                <div key={i} className="text-muted-foreground">
+                <div className="text-muted-foreground" key={i}>
                   <span className="text-muted-foreground/50">[{entry.timestamp}]</span>{' '}
                   {entry.message}
                 </div>
