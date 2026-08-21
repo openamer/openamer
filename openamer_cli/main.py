@@ -458,7 +458,10 @@ from openamer_cli.subcommands.feedback import build_feedback_parser
 from openamer_cli.subcommands.a2a import build_a2a_parser
 from openamer_cli.subcommands.agent import build_agent_parser
 from openamer_cli.subcommands.marketplace import build_marketplace_parser
-from openamer_cli.subcommands.crew import build_crew_parser
+from openamer_cli.subcommands.crew import (
+    build_crew_parser,
+    crew_command as cmd_crew,
+)
 from openamer_cli.subcommands.swarm import build_swarm_parser
 from openamer_cli.subcommands.superintelligence import build_super_parser
 from openamer_cli.subcommands.initiative import build_initiative_parser
@@ -483,6 +486,7 @@ from openamer_cli.subcommands.skills import build_skills_parser
 from openamer_cli.subcommands.pairing import build_pairing_parser
 from openamer_cli.subcommands.plugins import build_plugins_parser
 from openamer_cli.subcommands.mcp import build_mcp_parser
+from openamer_cli.subcommands.sandbox import build_sandbox_parser
 from openamer_cli.subcommands.claw import build_claw_parser
 from openamer_cli.subcommands.lint_fix import build_lint_fix_parser
 from openamer_cli.subcommands.code_review_bot import build_review_pr_parser
@@ -15282,6 +15286,48 @@ def cmd_pairing(args):
     pairing_command(args)
 
 
+def cmd_sandbox(args):
+    """Handle ``openamer sandbox <action>``."""
+    from openamer_cli.sandbox_exec import SandboxExecutor, SandboxPolicy
+
+    action = args.sandbox_action
+
+    if action == "config":
+        policy = SandboxPolicy()
+        print("SandboxPolicy:")
+        print(f"  max_timeout  = {policy.max_timeout}s")
+        print(f"  max_memory   = {policy.max_memory} MB")
+        print(f"  allowed_paths= {policy.allowed_paths}")
+        print(f"  blocked_paths= {policy.blocked_paths}")
+        return
+
+    exec_ = SandboxExecutor()
+
+    if action == "run":
+        file_path = args.file
+        if not os.path.exists(file_path):
+            print(f"Error: file not found — {file_path}", file=sys.stderr)
+            sys.exit(1)
+        with open(file_path, encoding="utf-8") as fh:
+            code = fh.read()
+        result = exec_.execute_python(code, timeout=args.timeout)
+    elif action == "python":
+        code = " ".join(args.code)
+        result = exec_.execute_python(code, timeout=args.timeout)
+    else:
+        print(f"Unknown sandbox action: {action}", file=sys.stderr)
+        sys.exit(1)
+
+    # Print results
+    if result["stdout"]:
+        print(result["stdout"])
+    if result["stderr"]:
+        print(result["stderr"], file=sys.stderr)
+    if result["timed_out"]:
+        print("[Timed out]", file=sys.stderr)
+    print(f"[Exit code: {result['exit_code']}]", file=sys.stderr)
+
+
 def cmd_plugins(args):
     from openamer_cli.plugins_cmd import plugins_command
 
@@ -15766,6 +15812,20 @@ def main():
     _register_checkpoints_cli(checkpoints_parser)
 
     # =========================================================================
+    # approvals command — Smart Approvals (Human-in-the-Loop)
+    # =========================================================================
+    approvals_parser = subparsers.add_parser(
+        "approvals",
+        help="Manage approval requests (Human-in-the-Loop)",
+        description="View, approve, or reject pending human-in-the-loop approval "
+        "requests. Configure risk levels and auto-reject timeouts. Integrates "
+        "with the HITL circuit breaker for --auto / initiative mode.",
+    )
+    from openamer_cli.smart_approvals import register_cli as _register_approvals_cli
+
+    _register_approvals_cli(approvals_parser)
+
+    # =========================================================================
     # import command  (parser built in openamer_cli/subcommands/import_cmd.py)
     # =========================================================================
     build_import_cmd_parser(subparsers, cmd_import=cmd_import)
@@ -15789,6 +15849,11 @@ def main():
     # pairing command  (parser built in openamer_cli/subcommands/pairing.py)
     # =========================================================================
     build_pairing_parser(subparsers, cmd_pairing=cmd_pairing)
+
+    # =========================================================================
+    # sandbox command  (parser built in openamer_cli/subcommands/sandbox.py)
+    # =========================================================================
+    build_sandbox_parser(subparsers, cmd_sandbox=cmd_sandbox)
 
     # =========================================================================
     # skills command  (parser built in openamer_cli/subcommands/skills.py)
@@ -17707,7 +17772,7 @@ def main():
     build_a2a_parser(subparsers)
     build_agent_parser(subparsers)
     build_marketplace_parser(subparsers)
-    build_crew_parser(subparsers)
+    build_crew_parser(subparsers, cmd_crew=cmd_crew)
     build_swarm_parser(subparsers)
     build_super_parser(subparsers)
     build_initiative_parser(subparsers)

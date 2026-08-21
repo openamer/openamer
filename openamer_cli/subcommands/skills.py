@@ -329,4 +329,56 @@ def build_skills_parser(subparsers, *, cmd_skills: Callable) -> None:
         help="Skill name to analyze (default: all skills with data)"
     )
 
+    # ---------- Skill improvement pipeline (analyze / suggest / pipeline) ----------
+    skills_analyze = skills_subparsers.add_parser(
+        "analyze",
+        help="Deep-analyze a skill's SKILL.md content and usage patterns",
+        description=(
+            "Reads the skill's SKILL.md file and checks for frontmatter "
+            "completeness, section coverage, stale/placeholder content, "
+            "platform assumptions, and usage statistics. Prints a structured "
+            "report with an urgency score (0-10) and improvement suggestions."
+        ),
+    )
+    skills_analyze.add_argument(
+        "name",
+        help="Skill name to analyze (e.g. 'openamer-agent')",
+    )
+
+    skills_suggest = skills_subparsers.add_parser(
+        "suggest",
+        help="Show detailed improvement suggestions for a skill",
+        description=(
+            "Analyze a skill's content and usage patterns, then print "
+            "actionable improvement suggestions. Less verbose than analyze, "
+            "focused on the 'what to fix' output."
+        ),
+    )
+    skills_suggest.add_argument(
+        "name",
+        help="Skill name to get suggestions for",
+    )
+
+    skills_pipeline = skills_subparsers.add_parser(
+        "pipeline",
+        help="Run the full improvement pipeline across ALL installed skills",
+        description=(
+            "Scans every installed skill's SKILL.md, analyzes content quality, "
+            "usage patterns, and generates an urgency-ranked report. Shows the "
+            "top 10 skills most in need of improvement."
+        ),
+    )
+    skills_pipeline.add_argument(
+        "--top", type=int, default=10,
+        help="Number of most-urgent skills to show (default: 10)",
+    )
+    skills_pipeline.add_argument(
+        "--min-urgency", type=float, default=0.0,
+        help="Minimum urgency score to include (default: 0 = all)",
+    )
+    skills_pipeline.add_argument(
+        "--json", action="store_true",
+        help="Output results as structured JSON",
+    )
+
     skills_parser.set_defaults(func=cmd_skills)

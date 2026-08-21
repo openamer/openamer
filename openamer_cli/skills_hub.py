@@ -1771,9 +1771,60 @@ def skills_command(args) -> None:
     elif action == "improve":
         from openamer_cli.skills_improve_cli import handle_skills_improve
         handle_skills_improve(args)
+    elif action == "analyze":
+        from openamer_cli.skills_pipeline import get_analysis, print_analysis
+        from openamer_cli.skills_pipeline import ContentAnalysisResult
+        result_dict = get_analysis(args.name)
+        result = ContentAnalysisResult(
+            skill_name=result_dict["skill_name"],
+            category=result_dict["category"],
+            path=result_dict["path"],
+            total_lines=result_dict["total_lines"],
+            total_chars=result_dict["total_chars"],
+            body_chars=result_dict["body_chars"],
+            has_frontmatter=result_dict["has_frontmatter"],
+            frontmatter_keys=result_dict["frontmatter_keys"],
+            missing_required=result_dict["missing_required"],
+            missing_recommended=result_dict["missing_recommended"],
+            description_length=result_dict["description_length"],
+            description_truncated=result_dict["description_truncated"],
+            found_sections=result_dict["found_sections"],
+            missing_common_sections=result_dict["missing_common_sections"],
+            has_prerequisites=result_dict["has_prerequisites"],
+            has_verification=result_dict["has_verification"],
+            has_troubleshooting=result_dict["has_troubleshooting"],
+            has_pitfalls=result_dict["has_pitfalls"],
+            has_stale_content=result_dict["has_stale_content"],
+            stale_matches=result_dict["stale_matches"],
+            has_placeholders=result_dict["has_placeholders"],
+            placeholder_matches=result_dict["placeholder_matches"],
+            has_non_windows_paths=result_dict["has_non_windows_paths"],
+            non_windows_paths=result_dict["non_windows_paths"],
+            has_windows_hints=result_dict["has_windows_hints"],
+            is_substantive=result_dict["is_substantive"],
+            usage_data=result_dict["usage_data"],
+            times_used=result_dict["times_used"],
+            success_rate=result_dict["success_rate"],
+            avg_duration=result_dict["avg_duration"],
+            urgency_score=result_dict["urgency_score"],
+            suggested_improvements=result_dict["suggested_improvements"],
+        )
+        print_analysis(result)
+    elif action == "suggest":
+        from openamer_cli.skills_pipeline import suggest_improvements, print_suggestions
+        suggestions = suggest_improvements(args.name)
+        print_suggestions(suggestions, args.name)
+    elif action == "pipeline":
+        from openamer_cli.skills_pipeline import run_full_pipeline, print_pipeline_report
+        report = run_full_pipeline(top_n=args.top, min_urgency=args.min_urgency)
+        if args.json:
+            import json
+            print(json.dumps(report.to_dict(top_n=args.top), indent=2))
+        else:
+            print_pipeline_report(report)
     else:
-            _console.print("Usage: openamer skills [browse|search|install|inspect|list|list-modified|diff|check|update|audit|uninstall|reset|opt-out|opt-in|publish|snapshot|tap|stats|improve]\n")
-            _console.print("Run 'openamer skills <command> --help' for details.\n")
+        _console.print("Usage: openamer skills [browse|search|install|inspect|list|list-modified|diff|check|update|audit|uninstall|reset|opt-out|opt-in|publish|snapshot|tap|stats|improve]\n")
+        _console.print("Run 'openamer skills <command> --help' for details.\n")
 
 
 # ---------------------------------------------------------------------------
