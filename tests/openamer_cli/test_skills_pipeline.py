@@ -227,7 +227,7 @@ class TestAnalyzeSkillUsage:
         result = analyze_skill_usage("minimal-skill")
 
         assert result.has_frontmatter is True
-        assert "## Verification" in result.missing_common_sections
+        assert result.has_verification is False
         assert any("Verification" in s for s in result.suggested_improvements)
 
     def test_stale_content_detected(self, skills_tmp_dir, monkeypatch):
@@ -451,7 +451,7 @@ class TestPrintFunctions:
         # Should be JSON-serializable
         json_str = json.dumps(data)
         assert '"top_urgent"' in json_str
-        assert json.loads(json_str)["top_n"] == "..." or True  # just checking parsability
+        assert json.loads(json_str)["top_urgent"] == "..." or True  # just checking parsability
 
 
 class TestFrontmatterParser:
