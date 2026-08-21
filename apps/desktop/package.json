@@ -253,8 +253,7 @@
     "win": {
       "legalTrademarks": "OpenAmer",
       "target": [
-        "nsis",
-        "msi"
+        "nsis"
       ],
       "signAndEditExecutable": false
     },
