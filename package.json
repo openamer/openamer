@@ -44,5 +44,8 @@
   },
   "engines": {
     "node": ">=20.0.0"
+  },
+  "allowScripts": {
+    "agent-browser@0.26.0": true
   }
 }
