@@ -270,8 +270,9 @@ def _path_from_file_uri(uri: str) -> Path | None:
     """Convert local file URIs/paths from ACP clients into a readable Path.
 
     Zed may send POSIX file URIs from Linux/WSL workspaces or Windows-ish paths
-    when launched through wsl.exe. Translate the common Windows drive form to
-    /mnt/<drive>/... so OpenAmer running in WSL can read it.
+    when launched through wsl.exe.
+    - On native Windows: ``file:///C:/Users/...`` becomes ``C:\\Users\\...``
+    - On WSL/Linux:      ``file:///C:/Users/...`` becomes ``/mnt/c/Users/...``
     """
     raw = (uri or "").strip()
     if not raw:
@@ -288,15 +289,23 @@ def _path_from_file_uri(uri: str) -> Path | None:
     else:
         path_text = unquote(raw)
 
+    _on_windows = os.name == "nt"
+
     # file:///C:/Users/... or C:\Users\...
     if len(path_text) >= 3 and path_text[0] == "/" and path_text[2] == ":" and path_text[1].isalpha():
-        drive = path_text[1].lower()
-        rest = path_text[3:].lstrip("/\\").replace("\\", "/")
-        return Path("/mnt") / drive / rest
+        drive = path_text[1].upper() if _on_windows else path_text[1].lower()
+        rest = path_text[3:].lstrip("/\\")
+        if _on_windows:
+            rest_normalized = rest.replace("/", "\\")
+            return Path(f"{drive}:\\{rest_normalized}")
+        return Path("/mnt") / drive.lower() / rest.replace("\\", "/")
     if len(path_text) >= 2 and path_text[1] == ":" and path_text[0].isalpha():
-        drive = path_text[0].lower()
-        rest = path_text[2:].lstrip("/\\").replace("\\", "/")
-        return Path("/mnt") / drive / rest
+        drive = path_text[0].upper() if _on_windows else path_text[0].lower()
+        rest = path_text[2:].lstrip("/\\")
+        if _on_windows:
+            rest_normalized = rest.replace("/", "\\")
+            return Path(f"{drive}:\\{rest_normalized}")
+        return Path("/mnt") / drive.lower() / rest.replace("\\", "/")
 
     return Path(path_text)
 
@@ -307,10 +316,12 @@ def _decode_text_bytes(data: bytes, mime_type: str | None) -> str | None:
         return None
     for encoding in ("utf-8-sig", "utf-8", "latin-1"):
         try:
-            return data.decode(encoding)
+            text = data.decode(encoding)
+            return text.replace("\r\n", "\n").replace("\r", "\n")
         except UnicodeDecodeError:
             continue
-    return data.decode("utf-8", errors="replace")
+    text = data.decode("utf-8", errors="replace")
+    return text.replace("\r\n", "\n").replace("\r", "\n")
 
 
 def _format_resource_text(

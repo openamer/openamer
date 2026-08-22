@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import base64
+import os
 from pathlib import Path
 from unittest.mock import patch
 
@@ -548,6 +549,21 @@ class TestLargeImageHandling:
 # ─── extract_image_refs ──────────────────────────────────────────────────────
 
 
+def _posix_path_str(p: Path) -> str:
+    """Convert a WindowsPath to a /-prefixed forward-slash absolute path
+    that works in body text for extract_image_refs.
+
+    On POSIX this is a no-op. On Windows, strips the drive letter so the
+    path starts with ``/`` (matching ``_LOCAL_IMAGE_PATH_RE``) while still
+    resolving correctly via ``os.path.isfile`` and ``os.path.expanduser``.
+    Example: ``C:\\Users\\alice\\img.png`` → ``/Users/alice/img.png``.
+    """
+    posix = p.as_posix()
+    if ":" in posix:
+        return "/" + posix.split(":", 1)[1].lstrip("/")
+    return posix
+
+
 class TestExtractImageRefs:
     """Scan task body / inbound text for image paths and URLs (kanban worker
     enrichment, issue raised May 2026)."""
@@ -557,21 +573,27 @@ class TestExtractImageRefs:
         assert extract_image_refs(None) == ([], [])  # type: ignore[arg-type]
 
     def test_finds_absolute_path(self, tmp_path: Path):
-        img = tmp_path / "screenshot.png"
-        img.write_bytes(_png_bytes())
-        body = f"Look at {img} and tell me what's wrong."
-        paths, urls = extract_image_refs(body)
-        assert paths == [str(img)]
-        assert urls == []
+            img = tmp_path / "screenshot.png"
+            img.write_bytes(_png_bytes())
+            body = f"Look at {_posix_path_str(img)} and tell me what's wrong."
+            paths, urls = extract_image_refs(body)
+            assert [os.path.abspath(p) for p in paths] == [os.path.abspath(str(img))]
+            assert urls == []
 
-    def test_finds_home_relative_path(self, tmp_path: Path, monkeypatch):
-        # Simulate ~/foo.png by pointing HOME at tmp_path and creating the file
-        monkeypatch.setenv("HOME", str(tmp_path))
-        img = tmp_path / "foo.png"
-        img.write_bytes(_png_bytes())
-        paths, urls = extract_image_refs("see ~/foo.png please")
-        assert paths == [str(img)]
-        assert urls == []
+    def test_finds_home_relative_path(self, monkeypatch):
+            # Simulate ~/foo.png by pointing at the actual home directory.
+            # On Windows, os.path.expanduser('~/foo.png') does not respect
+            # the HOME env var, so we create the file where expanduser
+            # actually looks.
+            actual_home = Path(os.path.expanduser("~")).resolve()
+            img = actual_home / "test_img_routing_foo.png"
+            try:
+                img.write_bytes(_png_bytes())
+                paths, urls = extract_image_refs("see ~/test_img_routing_foo.png please")
+                assert [os.path.abspath(p) for p in paths] == [os.path.abspath(str(img))]
+                assert urls == []
+            finally:
+                img.unlink(missing_ok=True)
 
     def test_skips_nonexistent_paths(self, tmp_path: Path):
         # Path-shaped but no file on disk → skipped.
@@ -603,42 +625,42 @@ class TestExtractImageRefs:
         assert urls == []
 
     def test_dedupes_paths_and_urls(self, tmp_path: Path):
-        img = tmp_path / "dup.png"
-        img.write_bytes(_png_bytes())
-        body = (
-            f"First {img} then again {img}. "
-            "Also https://example.com/x.png and https://example.com/x.png again."
-        )
-        paths, urls = extract_image_refs(body)
-        assert paths == [str(img)]
-        assert urls == ["https://example.com/x.png"]
+            img = tmp_path / "dup.png"
+            img.write_bytes(_png_bytes())
+            body = (
+                f"First {_posix_path_str(img)} then again {_posix_path_str(img)}. "
+                "Also https://example.com/x.png and https://example.com/x.png again."
+            )
+            paths, urls = extract_image_refs(body)
+            assert [os.path.abspath(p) for p in paths] == [os.path.abspath(str(img))]
+            assert urls == ["https://example.com/x.png"]
 
     def test_ignores_paths_in_fenced_code_block(self, tmp_path: Path):
-        img = tmp_path / "real.png"
-        img.write_bytes(_png_bytes())
-        body = (
-            "Outside the block, attach this:\n"
-            f"{img}\n"
-            "But not these examples:\n"
-            "```\n"
-            f"some_other_image: /tmp/example.png\n"
-            f"url: https://example.com/example.png\n"
-            "```\n"
-        )
-        paths, urls = extract_image_refs(body)
-        assert paths == [str(img)]
-        assert urls == []
+            img = tmp_path / "real.png"
+            img.write_bytes(_png_bytes())
+            body = (
+                "Outside the block, attach this:\n"
+                f"{_posix_path_str(img)}\n"
+                "But not these examples:\n"
+                "```\n"
+                f"some_other_image: /tmp/example.png\n"
+                f"url: https://example.com/example.png\n"
+                "```\n"
+            )
+            paths, urls = extract_image_refs(body)
+            assert [os.path.abspath(p) for p in paths] == [os.path.abspath(str(img))]
+            assert urls == []
 
-    def test_ignores_paths_in_inline_code(self, tmp_path: Path):
-        img = tmp_path / "real.jpg"
-        img.write_bytes(_png_bytes())
-        body = (
-            f"Attach {img}, but ignore the example "
-            "`https://example.com/skip.png` in backticks."
-        )
-        paths, urls = extract_image_refs(body)
-        assert paths == [str(img)]
-        assert urls == []
+        def test_ignores_paths_in_inline_code(self, tmp_path: Path):
+            img = tmp_path / "real.jpg"
+            img.write_bytes(_png_bytes())
+            body = (
+                f"Attach {_posix_path_str(img)}, but ignore the example "
+                "`https://example.com/skip.png` in backticks."
+            )
+            paths, urls = extract_image_refs(body)
+            assert [os.path.abspath(p) for p in paths] == [os.path.abspath(str(img))]
+            assert urls == []
 
     def test_does_not_match_paths_inside_urls(self, tmp_path: Path):
         # The lookbehind in the regex prevents matching the path-portion of
