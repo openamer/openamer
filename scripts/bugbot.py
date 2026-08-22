@@ -16,12 +16,23 @@ from pathlib import Path
 
 # ─── Config ───────────────────────────────────────────────────────────────────
 REPO_DIR = Path(os.environ.get("OPENAMER_REPO",
-    r"C:\Users\damir\AppData\Local\openamer-laptop\openamer-agent"))
+    r"C:\Users\damir\openamer-repo"))
 STATE_FILE = REPO_DIR / ".bugbot" / "state.json"
 LOG_FILE = REPO_DIR / ".bugbot" / "bugbot.log"
 MAX_BUGS_PER_RUN = 2
 BUG_LABEL = "bug"
 FIX_BRANCH_PREFIX = "bugbot/fix-"
+
+# ─── Auth ─────────────────────────────────────────────────────────────────────
+# Auto-configure GH_TOKEN from ~/.git-credentials if not set
+if not os.environ.get("GH_TOKEN") and not os.environ.get("GITHUB_TOKEN"):
+    git_creds = Path.home() / ".git-credentials"
+    if git_creds.exists():
+        import re as _re
+        match = _re.search(r"https://[^:]+:([^@]+)@github\.com", git_creds.read_text())
+        if match:
+            os.environ["GH_TOKEN"] = match.group(1)
+            os.environ["GITHUB_TOKEN"] = match.group(1)
 
 # ─── Setup ────────────────────────────────────────────────────────────────────
 Path(REPO_DIR / ".bugbot").mkdir(parents=True, exist_ok=True)
