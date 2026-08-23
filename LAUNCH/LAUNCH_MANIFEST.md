@@ -138,3 +138,19 @@ Empfehlung: **Dienstag 00:01 PST / 09:01 MEZ** für maximale Frontpage-Sichtbark
 - [ ] Kategorie + Tags gewählt
 - [ ] Ersten Kommentar zum Posten bereithalten
 - [ ] Launch-Zeit gewählt
+
+
+---
+
+## 🆕 OpenAmer Browser v1.0.0
+
+**Released alongside OpenAmer Agent**
+
+Jetzt mit eigenem Browser! Vollwertiger Chromium-Webbrowser mit CDP-Steuerung.
+
+### Downloads
+- [Setup Installer](https://github.com/openamer/openamer/releases/download/v1.0.0-browser/OpenAmer-Browser-Setup-1.0.0.exe)
+- [Portable Version](https://github.com/openamer/openamer/releases/download/v1.0.0-browser/OpenAmer-Browser-1.0.0-Portable.exe)
+
+### CDP Control Port
+`127.0.0.1:9333` — vollständig von OpenAmer Agent steuerbar
