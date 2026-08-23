@@ -651,7 +651,7 @@ class TestExtractImageRefs:
             assert [os.path.abspath(p) for p in paths] == [os.path.abspath(str(img))]
             assert urls == []
 
-        def test_ignores_paths_in_inline_code(self, tmp_path: Path):
+    def test_ignores_paths_in_inline_code(self, tmp_path: Path):
             img = tmp_path / "real.jpg"
             img.write_bytes(_png_bytes())
             body = (
