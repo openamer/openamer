@@ -62,4 +62,6 @@ OpenAmer drives your REAL Windows desktop in the background — click, type, sea
 
 100% open-source → github.com/openamer/openamer
 
+@openamer_agent
+
 #AI #OpenSource #Agent #Automation #BuildInPublic
