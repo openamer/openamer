@@ -4,28 +4,30 @@ OpenAmer uses a **dual-license model**: free for individuals, fair for businesse
 
 ---
 
-## 🔓 MIT License (Free — Individuals & Open Source)
+## 🔓 Apache 2.0 License (Free — Forever)
 
-**Who:** Individuals, hobbyists, students, open-source projects  
+**Who:** Everyone — individuals, businesses, governments  
+**License:** Apache 2.0 — patent protection, no discrimination  
 **What:** Full access to OpenAmer core, all 250+ skills, plugin system, browser  
 **Cost:** **$0** — forever  
-**Commercial use:** ✅ Allowed if < 5 employees AND < $100K annual revenue  
 **Support:** Community (GitHub Discussions, Issues)
 
 ```
-MIT License
+Apache License 2.0
 
 Copyright (c) 2026 Damir Sacirovic / OpenAmer
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 ```
 
 ---
@@ -101,4 +103,4 @@ copies or substantial portions of the Software.
 
 ---
 
-*OpenAmer — MIT for individuals, fair for business. Built in public, funded by users.*
+*OpenAmer — Apache 2.0 for everyone, Enterprise for teams. Built in public, funded by users.*
