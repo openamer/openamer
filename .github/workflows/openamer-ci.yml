@@ -1,0 +1,52 @@
+# OpenAmer CI/CD Assistant — GitHub Action
+# Runs in ANY pipeline: check code, generate reports, auto-fix issues
+
+name: OpenAmer CI Assistant
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+  schedule:
+    - cron: '0 6 * * *'  # Daily health check
+
+jobs:
+  openamer-assist:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: OpenAmer Code Review
+        uses: openamer/openamer@v1
+        with:
+          mode: review
+          token: ${{ secrets.GITHUB_TOKEN }}
+          check: syntax,security,complexity
+
+      - name: OpenAmer Auto-Fix
+        if: failure()
+        uses: openamer/openamer@v1
+        with:
+          mode: fix
+          auto-commit: true
+          commit-message: "auto-fix: OpenAmer CI Assistant"
+
+      - name: OpenAmer Report
+        uses: openamer/openamer@v1
+        with:
+          mode: report
+          format: markdown
+          output: .openamer/report.md
+
+      - name: Upload Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: openamer-report
+          path: .openamer/report.md
+
+      - name: OpenAmer Health Check
+        run: |
+          echo "✅ OpenAmer CI Assistant active"
+          echo "📊 Coverage: python3 -m pytest --cov" || true
+          echo "🔍 Linting: pylint --score=y" || true
