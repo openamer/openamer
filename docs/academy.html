@@ -80,9 +80,18 @@
     </p>
     <div id="paypal-container-3HMBFYC9CQTMS"></div>
     <script>
-      paypal.HostedButtons({
-        hostedButtonId: "3HMBFYC9CQTMS",
-      });
+      function renderPayPalButton() {
+        if (typeof paypal !== 'undefined' && paypal.HostedButtons) {
+          paypal.HostedButtons({
+            hostedButtonId: "3HMBFYC9CQTMS",
+          }).render("#paypal-container-3HMBFYC9CQTMS");
+        }
+      }
+      if (document.readyState === 'complete') {
+        renderPayPalButton();
+      } else {
+        window.addEventListener('load', renderPayPalButton);
+      }
     </script>
   </div>
 </div>
