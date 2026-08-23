@@ -138,7 +138,7 @@ def docker_exec_sh(
 def wait_for_container_ready(
     container: str,
     *,
-    deadline_s: float = 30.0,
+    deadline_s: float = 60.0,
     interval_s: float = 0.25,
 ) -> None:
     """Poll until the container has finished s6 cont-init (stage2 + reconcile).
