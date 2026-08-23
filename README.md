@@ -20,6 +20,12 @@
 
   <a href="https://github.com/openamer/openamer/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-Apache%202.0-blue?style=for-the-badge" alt="License: Apache 2.0"></a>
 
+  <a href="https://github.com/sponsors/openamer"><img src="https://img.shields.io/badge/Sponsor-OpenAmer-22D3EE?style=for-the-badge&logo=githubsponsors" alt="Sponsor on GitHub"></a>
+
+  <a href="https://ko-fi.com/openamer_agent"><img src="https://img.shields.io/badge/Buy_me_a_coffee-OpenAmer-FF813F?style=for-the-badge&logo=ko-fi" alt="Buy me a coffee"></a>
+
+  <a href="https://www.paypal.com/paypalme/openamer"><img src="https://img.shields.io/badge/PayPal-OpenAmer-00457C?style=for-the-badge&logo=paypal" alt="Donate via PayPal"></a>
+
   <a href="https://github.com/openamer/openamer/releases"><img src="https://img.shields.io/badge/Releases-OpenAmer-38BDF8?style=for-the-badge" alt="Releases"></a>
 
   <a href="README.zh-CN.md"><img src="https://img.shields.io/badge/Lang-中文-red?style=for-the-badge" alt="中文"></a>
