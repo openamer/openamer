@@ -5,11 +5,19 @@ But building a world-class AI agent platform costs time, infrastructure, and cof
 
 ## How to support
 
+### 💳 PayPal (One-time / Custom Amount)
+Support OpenAmer directly via PayPal. Choose your own amount — every contribution counts.
+
+[**→ Pay via PayPal**](https://www.paypal.com/ncp/payment/3HMBFYC9CQTMS)
+
+Or scan the QR code on the website.
+
 ### ☕ Buy Me a Coffee
 One-time support — every coffee fuels late-night coding sessions.
 
-[buymeacoffee.com/openamer](https://buymeacoffee.com/openamer)  
-[ko-fi.com/openamer_agent](https://ko-fi.com/openamer_agent)
+| **💳 PayPal** | One-time | Any amount via PayPal hosted button |
+| **☕ Buy Me a Coffee** | One-time | [buymeacoffee.com/openamer](https://buymeacoffee.com/openamer) |
+| **☕ Ko-fi** | One-time | [ko-fi.com/openamer_agent](https://ko-fi.com/openamer_agent) |
 
 ### ⭐ GitHub Sponsors
 Monthly sponsorship with perks:

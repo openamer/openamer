@@ -12,7 +12,10 @@
   <meta property="og:image" content="https://github.com/openamer/openamer/raw/main/.github/social-preview.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:creator" content="@openamer_agent">
-  <style>
+    <!-- PayPal SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=BAApuQJllkY1E5zO5E-pMbGFzr3EiBEiXjPy8e_sR0yz8a3PNTVjSjnt3BCngGLXQsjeHI1IoPqZmpBpa4&components=hosted-buttons&disable-funding=venmo&currency=EUR">
+    </script>
+    <style>
     *{margin:0;padding:0;box-sizing:border-box}
     body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;background:#f5f5f5;color:#222;line-height:1.6}
     .container{max-width:800px;margin:0 auto;padding:40px 20px}
@@ -55,14 +58,31 @@
   </div>
 
   <div class="social">
-    <a href="https://x.com/openamer_agent">𝕏 @openamer_agent</a>
-    <a href="https://github.com/openamer/openamer">GitHub</a>
-    <a href="https://www.producthunt.com/posts/openamer">Product Hunt</a>
-  <a href="https://github.com/sponsors/openamer">Sponsor</a>
-  <a href="https://ko-fi.com/openamer_agent">Donate</a>
-    <a href="academy.html">Academy</a>
-    <a href="wiki/">Wiki</a>
-  </div>
+      <a href="https://x.com/openamer_agent">𝕏 @openamer_agent</a>
+      <a href="https://github.com/openamer/openamer">GitHub</a>
+      <a href="https://www.producthunt.com/posts/openamer">Product Hunt</a>
+    <a href="https://github.com/sponsors/openamer">Sponsor</a>
+    <a href="https://ko-fi.com/openamer_agent">Donate</a>
+      <a href="academy.html">Academy</a>
+      <a href="wiki/">Wiki</a>
+    </div>
+
+    <div style="text-align:center;padding:20px 0">
+      <h3 style="margin-bottom:12px;color:#0088ff">💜 Support OpenAmer</h3>
+      <p style="font-size:14px;color:#666;margin-bottom:16px">
+        OpenAmer is 100% open-source and free forever.<br>
+        Your support keeps it growing.
+      </p>
+      <div id="paypal-container-3HMBFYC9CQTMS"></div>
+      <script>
+        paypal.HostedButtons({
+          hostedButtonId: "3HMBFYC9CQTMS",
+        });
+      </script>
+      <p style="margin-top:12px;font-size:12px;color:#999">
+        Secure via PayPal · One-time or custom amount
+      </p>
+    </div>
 
   <footer>
     OpenAmer — MIT License — Built with ❤️

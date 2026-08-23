@@ -24,7 +24,7 @@
 
   <a href="https://ko-fi.com/openamer_agent"><img src="https://img.shields.io/badge/Buy_me_a_coffee-OpenAmer-FF813F?style=for-the-badge&logo=ko-fi" alt="Buy me a coffee"></a>
 
-  <a href="https://www.paypal.com/paypalme/openamer"><img src="https://img.shields.io/badge/PayPal-OpenAmer-00457C?style=for-the-badge&logo=paypal" alt="Donate via PayPal"></a>
+  <a href="https://www.paypal.com/ncp/payment/3HMBFYC9CQTMS"><img src="https://img.shields.io/badge/PayPal-OpenAmer-00457C?style=for-the-badge&logo=paypal" alt="Donate via PayPal"></a>
 
   <a href="https://github.com/openamer/openamer/releases"><img src="https://img.shields.io/badge/Releases-OpenAmer-38BDF8?style=for-the-badge" alt="Releases"></a>
 

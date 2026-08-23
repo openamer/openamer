@@ -28,6 +28,9 @@
     .badge{display:inline-block;background:#ff0000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;margin-right:4px}
     .footer{text-align:center;padding:40px;color:#555;font-size:13px}
   </style>
+  <!-- PayPal SDK -->
+  <script src="https://www.paypal.com/sdk/js?client-id=BAApuQJllkY1E5zO5E-pMbGFzr3EiBEiXjPy8e_sR0yz8a3PNTVjSjnt3BCngGLXQsjeHI1IoPqZmpBpa4&components=hosted-buttons&disable-funding=venmo&currency=EUR">
+  </script>
 </head>
 <body>
 <div class="container">
@@ -68,6 +71,20 @@
   <footer class="footer">
     OpenAmer — Open-source · MIT License · Built for the community
   </footer>
+
+  <!-- Support Section -->
+  <div style="text-align:center;padding:30px;background:#1a1a1a;border-radius:12px;margin:30px 0;border:1px solid #333">
+    <h3 style="color:#0088ff;margin-bottom:12px">💜 Support OpenAmer</h3>
+    <p style="font-size:14px;color:#888;margin-bottom:16px">
+      100% open-source and free forever. Your support keeps it growing.
+    </p>
+    <div id="paypal-container-3HMBFYC9CQTMS"></div>
+    <script>
+      paypal.HostedButtons({
+        hostedButtonId: "3HMBFYC9CQTMS",
+      });
+    </script>
+  </div>
 </div>
 </body>
 </html>
