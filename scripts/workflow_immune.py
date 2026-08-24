@@ -153,42 +153,44 @@ FINGERPRINT_JS = """
 
 HEAL_SEARCH_JS = """
 ((spec) => {
+    // DARWIN MODE: each strategy runs ISOLATED and reports which one produced
+    // the winning candidate. spec.strategy is one of:
+    //   TOKENS | TEXT | ROLE | CLASSES
     const byText = [];
     const push = (el) => { if (el && byText.length < 5 && !byText.includes(el)) byText.push(el); };
+    const strat = spec.strategy || 'TOKENS';
 
-    // 0. Tokens from the DEAD selector (strongest signal: redesigns often keep
-    //    meaningful ids/names/placeholders like 'login_field' or 'search')
-    for (const tok of (spec.selector_tokens || [])) {
-        document.querySelectorAll(
-            `[id*="${tok}" i],[name*="${tok}" i],[placeholder*="${tok}" i],[aria-label*="${tok}" i]`
-        ).forEach(push);
-        // class-token only for non-input elements
-        document.querySelectorAll(`[class*="${tok}" i]`).forEach(el => {
-            if ((el.tagName||'').toLowerCase() !== 'input') push(el);
-        });
-        if (byText.length >= 3) break;
-    }
-
-    // 1. Exact text (only when real text is known - empty string matches everything!)
-    const wanted = spec.text_match || '';
-    if (wanted && wanted.length > 2) {
-        document.querySelectorAll('*').forEach(el => {
-            const t = (el.innerText || '').trim();
-            if (!t || t.length > 200) return;
-            if (t === wanted || t.includes(wanted)) push(el);
-        });
-    }
-    // 2. Role/ARIA
-    if (byText.length === 0 && spec.role) {
-        document.querySelectorAll(`[role="${spec.role}"]`).forEach(push);
-    }
-    // 3. Tag + class vocabulary
-    if (byText.length === 0 && spec.cls_words && spec.cls_words.length) {
-        outer:
-        for (const w of spec.cls_words) {
-            for (const el of document.querySelectorAll('*')) {
-                const c = (typeof el.className === 'string') ? el.className : '';
-                if (c && c.includes(w)) { push(el); if (byText.length >= 5) break outer; }
+    if (strat === 'TOKENS') {
+        // Tokens from the DEAD selector (redesigns often keep meaningful ids/names)
+        for (const tok of (spec.selector_tokens || [])) {
+            document.querySelectorAll(
+                `[id*="${tok}" i],[name*="${tok}" i],[placeholder*="${tok}" i],[aria-label*="${tok}" i]`
+            ).forEach(push);
+            document.querySelectorAll(`[class*="${tok}" i]`).forEach(el => {
+                if ((el.tagName||'').toLowerCase() !== 'input') push(el);
+            });
+            if (byText.length >= 3) break;
+        }
+    } else if (strat === 'TEXT') {
+        // Exact text (only when real text is known - empty string matches everything!)
+        const wanted = spec.text_match || '';
+        if (wanted && wanted.length > 2) {
+            document.querySelectorAll('*').forEach(el => {
+                const t = (el.innerText || '').trim();
+                if (!t || t.length > 200) return;
+                if (t === wanted || t.includes(wanted)) push(el);
+            });
+        }
+    } else if (strat === 'ROLE') {
+        if (spec.role) document.querySelectorAll(`[role="${spec.role}"]`).forEach(push);
+    } else if (strat === 'CLASSES') {
+        if (spec.cls_words && spec.cls_words.length) {
+            outer:
+            for (const w of spec.cls_words) {
+                for (const el of document.querySelectorAll('*')) {
+                    const c = (typeof el.className === 'string') ? el.className : '';
+                    if (c && c.includes(w)) { push(el); if (byText.length >= 5) break outer; }
+                }
             }
         }
     }
@@ -298,7 +300,9 @@ def run_action(ws, step):
 
 
 def heal_selector(ws, wf, i, step, base):
-    """Heal step i of the workflow. Returns (new_selector, fix_info) or (None, None)."""
+    """Darwin-mode heal: try strategies in epsilon-greedy order (win-rate weighted,
+    25% exploration), track every win/loss in strategies.json.
+    Returns (new_selector, fix_info) or (None, None)."""
     sel = step["selector"]
     raw_toks = [t.lower() for t in re.split(r"[^a-zA-Z0-9]+", sel)
                 if len(t) > 3 and not t.isdigit()]
@@ -309,18 +313,92 @@ def heal_selector(ws, wf, i, step, base):
         "cls_words": [w for w in ((base or {}).get("cls", "").split()) if len(w) > 3][:4],
         "selector_tokens": raw_toks[:4],
     }
-    fix = heal_search(ws, spec)
-    if not (fix and fix.get("selector")):
-        return None, None
-    nf = fingerprint(ws, fix["selector"])
-    if not (nf and nf.get("found")):
-        return None, None
-    old_sel = sel
-    wf["steps"][i]["selector"] = fix["selector"]
-    wf["steps"][i][f"healed_from_{datetime.now(timezone.utc).date()}"] = old_sel
-    wf["baseline"][str(i)] = nf
-    wf["heals"] = wf.get("heals", 0) + 1
-    return fix["selector"], {"old": old_sel, "new": fix["selector"], "how": fix.get("how")}
+    order = strategy_order()
+    for strat in order:
+        spec["strategy"] = strat
+        fix = heal_search(ws, spec)
+        if not (fix and fix.get("selector")):
+            record_strategy(strat, win=False)
+            continue
+        nf = fingerprint(ws, fix["selector"])
+        if not (nf and nf.get("found")):
+            record_strategy(strat, win=False)
+            continue
+        record_strategy(strat, win=True)
+        old_sel = sel
+        wf["steps"][i]["selector"] = fix["selector"]
+        wf["steps"][i][f"healed_from_{datetime.now(timezone.utc).date()}"] = old_sel
+        wf["baseline"][str(i)] = nf
+        wf["heals"] = wf.get("heals", 0) + 1
+        fix = dict(fix)
+        fix["strategy"] = strat
+        return fix["selector"], {"old": old_sel, "new": fix["selector"],
+                                 "how": fix.get("how"), "strategy": strat}
+    return None, None
+
+
+# ---------------- Darwin evolution stats ----------------
+
+STRATEGIES_FILE = STATE_DIR / "strategies.json"
+ALL_STRATEGIES = ["TOKENS", "TEXT", "ROLE", "CLASSES"]
+EXPLORATION_RATE = 0.25  # epsilon: try underdogs first this often
+
+
+def load_strategies():
+    if STRATEGIES_FILE.exists():
+        return json.loads(STRATEGIES_FILE.read_text(encoding="utf-8"))
+    return {s: {"wins": 0, "tries": 0} for s in ALL_STRATEGIES}
+
+
+def record_strategy(name, win):
+    stats = load_strategies()
+    if name not in stats:
+        stats[name] = {"wins": 0, "tries": 0}
+    stats[name]["tries"] += 1
+    if win:
+        stats[name]["wins"] += 1
+    STRATEGIES_FILE.write_text(json.dumps(stats, indent=2, ensure_ascii=False), encoding="utf-8")
+
+
+def strategy_order():
+    """Epsilon-greedy ordering: with p=EXPLORATION_RATE put the least-tried
+    strategy first (exploration), otherwise sort by win-rate desc."""
+    import random
+    stats = load_strategies()
+    if random.random() < EXPLORATION_RATE:
+        least = min(ALL_STRATEGIES, key=lambda s: stats.get(s, {}).get("tries", 0))
+        rest = [s for s in ALL_STRATEGIES if s != least]
+        random.shuffle(rest)
+        return [least] + rest
+
+    def score(s):
+        st = stats.get(s, {"wins": 0, "tries": 0})
+        # Laplace-smoothed win rate: (wins+1)/(tries+2) - untried strategies get a chance
+        return (st["wins"] + 1) / (st["tries"] + 2)
+
+    return sorted(ALL_STRATEGIES, key=score, reverse=True)
+
+
+def cmd_darwin():
+    """Leaderboard: which healing strategy evolves best?"""
+    stats = load_strategies()
+    print("DARWIN LEADERBOARD - healing strategy evolution")
+    print("=" * 52)
+    print(f"{'Strategy':<10} {'Wins':>6} {'Tries':>7} {'Win-rate':>10}  Score")
+    rows = []
+    for s in ALL_STRATEGIES:
+        st = stats.get(s, {"wins": 0, "tries": 0})
+        wr = (st["wins"] / st["tries"] * 100) if st["tries"] else 0.0
+        score = (st["wins"] + 1) / (st["tries"] + 2)
+        rows.append((score, s, st, wr))
+    rows.sort(reverse=True)
+    for score, s, st, wr in rows:
+        bar = "#" * int(score * 20)
+        print(f"{s:<10} {st['wins']:>6} {st['tries']:>7} {wr:>9.1f}%  {bar} {score:.3f}")
+    print("=" * 52)
+    print(f"exploration rate: {EXPLORATION_RATE:.0%} (underdogs get tried first)")
+    print("strategies evolve automatically with every nightly heal.")
+    return 0
 
 
 # ---------------- Persistence ----------------
@@ -504,6 +582,8 @@ def main():
         return cmd_check(rest[0] if rest else None, heal=heal)
     if cmd == "list":
         return cmd_list()
+    if cmd == "darwin":
+        return cmd_darwin()
     print(f"Unknown command: {cmd}")
     return 1
 
