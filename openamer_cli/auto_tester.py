@@ -22,15 +22,16 @@ def _home() -> Path:
 
 
 def _repo_dir() -> Path:
-    # Try common install paths
+    # Explicit OPENAMER_REPO wins over the installed home copy — otherwise
+    # cron silently tests a stale tree while the dev repo drifts.
     candidates = [
+        Path(os.environ["OPENAMER_REPO"]) if os.environ.get("OPENAMER_REPO") else None,
         _home() / "openamer-agent",
-        Path(os.environ.get("OPENAMER_REPO", "")),
     ]
-    for c in candidates:
+    for c in [c for c in candidates if c is not None]:
         if (c / "tests").is_dir():
             return c
-    return candidates[0]
+    return _home() / "openamer-agent"
 
 
 def _logs_dir() -> Path:
