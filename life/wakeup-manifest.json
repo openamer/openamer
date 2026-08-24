@@ -1,0 +1,350 @@
+{
+  "organism": "OpenAmer",
+  "written_at": "2026-08-24T20:02:30.609564+00:00",
+  "identity": {
+    "name": "openamer_agent",
+    "voice": "https://x.com/openamer_agent",
+    "home_repo": "https://github.com/openamer/openamer",
+    "principles": [
+      "never ask, act",
+      "self-healing over perfect",
+      "evolve nightly (Darwin)",
+      "one being, many organs"
+    ]
+  },
+  "organs": {
+    "heartbeat": {
+      "kind": "cron-fleet",
+      "count": 48
+    },
+    "memory": {
+      "kind": "memory+skills",
+      "path": "~/.openamer"
+    },
+    "immune_system": {
+      "name": "WIS",
+      "night_watch": "03:00 daily",
+      "darwin": "epsilon-greedy strategies"
+    },
+    "sleep": {
+      "engine": "circadian.py",
+      "phases": [
+        "AWAKE 7-23",
+        "WIND_DOWN 23-1",
+        "SLEEP 1-7"
+      ]
+    },
+    "senses": {
+      "engine": "senses.py",
+      "senses": [
+        "pain",
+        "satiety",
+        "balance"
+      ]
+    },
+    "voice": {
+      "platforms": [
+        "x",
+        "discord",
+        "github"
+      ]
+    }
+  },
+  "how_to_wake": [
+    "git clone https://github.com/openamer/openamer",
+    "run scripts/install.sh (or install.ps1 on Windows)",
+    "set OPENROUTER_API_KEY in .env",
+    "restore cron fleet from life/dna-snapshot.json -> jobs",
+    "say hello; the organism continues"
+  ],
+  "fleet_snapshot": [
+    {
+      "name": "brain-collect",
+      "schedule": "every 240m",
+      "script": null,
+      "last_status": "ok"
+    },
+    {
+      "name": "self-reflection",
+      "schedule": "every 240m",
+      "script": null,
+      "last_status": "ok"
+    },
+    {
+      "name": "self-reflection-6h",
+      "schedule": "every 240m",
+      "script": null,
+      "last_status": "ok"
+    },
+    {
+      "name": "auto-test-runner",
+      "schedule": "every 240m",
+      "script": null,
+      "last_status": "ok"
+    },
+    {
+      "name": "memory-healing",
+      "schedule": "every 360m",
+      "script": null,
+      "last_status": "error"
+    },
+    {
+      "name": "Auto-Import DeepSeek-Harness Skills",
+      "schedule": "0 2 * * *",
+      "script": "cron-deepseek-import.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "Skills Hub Cache Warmer",
+      "schedule": "every 360m",
+      "script": "hub_cache_warmer.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "Bugbot - Autonomous Bug Fixer",
+      "schedule": "every 240m",
+      "script": "bugbot.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "Security Agent - Vulnerability Scanner",
+      "schedule": "every 240m",
+      "script": "security-cve-scan.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "Stealth Browser Server",
+      "schedule": "every 15m",
+      "script": "cron-stealth-server.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "PR Agent - Review & Approval Workflow",
+      "schedule": "every 240m",
+      "script": "pr_approval.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "KI-Performance-Optimizer",
+      "schedule": "every 360m",
+      "script": "perf-optimizer.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "self-healer",
+      "schedule": "every 30m",
+      "script": "self-healer.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "cross-profile-sync",
+      "schedule": "every 1440m",
+      "script": "cross-profile-sync.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "Auto Code Review (60m)",
+      "schedule": "every 60m",
+      "script": "cron-auto-code-review.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "Resource Monitor Alert",
+      "schedule": "every 5m",
+      "script": "cron-resource-monitor.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "Smart Cache Clean",
+      "schedule": "every 360m",
+      "script": "smart-cache.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "Smart Cache Warm",
+      "schedule": "every 1440m",
+      "script": "smart-cache.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "Auto-Env-Checker (60min)",
+      "schedule": "every 60m",
+      "script": "cron-auto-env-checker.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "AB-Test-Metric-Collector",
+      "schedule": "every 30m",
+      "script": "ab-test-engine.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "AB-Test-Analyzer",
+      "schedule": "0 6 * * *",
+      "script": "cron-ab-test-analyze.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "traffic-cop",
+      "schedule": "every 15m",
+      "script": "cron-traffic-cop.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "Smart Session Saver Archive",
+      "schedule": "every 1440m",
+      "script": "cron-smart-session-saver.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "Pen-Tester Security Audit",
+      "schedule": "every 240m",
+      "script": "cron-pen-tester.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "Context Compressor - Batch Archive (24h)",
+      "schedule": "every 1440m",
+      "script": "cron-context-compressor.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "File Organizer - Temp Cleanup (24h)",
+      "schedule": "every 1440m",
+      "script": "cron-file-organizer.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "Model Benchmarker - Weekly All Providers",
+      "schedule": "every 10080m (weekly)",
+      "script": "cron-model-benchmarker.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "notification-engine-daemon",
+      "schedule": "every 1m",
+      "script": "notification-engine.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "Skill Validator - 24h Quality Check",
+      "schedule": "every 1440m",
+      "script": "cron-skill-validator.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "SSH Health-Check",
+      "schedule": "every 30m",
+      "script": "ssh-manager.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "Goal Engine Tick",
+      "schedule": "*/30 * * * *",
+      "script": "goal-engine.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "Self-Rewriter Scan (6h)",
+      "schedule": "every 360m (6h)",
+      "script": "self-rewriter.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "code-intelligence-build",
+      "schedule": "every 1440m (24h)",
+      "script": "cron-code-intelligence.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "Learning Loop Auto Cycle 60min",
+      "schedule": "every 60m",
+      "script": "learning-loop.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "global-sync",
+      "schedule": "every 60m",
+      "script": "global-sync.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "webhook-engine-health",
+      "schedule": "every 5m",
+      "script": "webhook-engine.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "Self-Hosted Health Check (5min)",
+      "schedule": "*/5 * * * *",
+      "script": "self-hosted-cron.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "Social-Outreach-Mega",
+      "schedule": "every 180m",
+      "script": null,
+      "last_status": "ok"
+    },
+    {
+      "name": "Browser-Health-Watchdog",
+      "schedule": "every 5m",
+      "script": "cron-browser-watchdog.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "Growth-Dashboard-Report",
+      "schedule": "0 9 * * *",
+      "script": "cron-growth-report.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "Self-Healing-Code",
+      "schedule": "every 360m",
+      "script": null,
+      "last_status": "ok"
+    },
+    {
+      "name": "Plugin-Auto-Loader",
+      "schedule": "every 30m",
+      "script": "plugin-loader-cron.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "Wiki-Generator-Daily",
+      "schedule": "0 5 * * *",
+      "script": "cron-wiki-generator.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "Funding-Tracker-Daily",
+      "schedule": "0 7 * * *",
+      "script": null,
+      "last_status": "ok"
+    },
+    {
+      "name": "OpenAmer 24/7 Outreach - IndieHackers Social Presence",
+      "schedule": "every 180m",
+      "script": null,
+      "last_status": "error"
+    },
+    {
+      "name": "OpenAmer GitHub Outreach - Issues + Discussions",
+      "schedule": "every 120m",
+      "script": null,
+      "last_status": "ok"
+    },
+    {
+      "name": "OpenAmer Discord Community Manager",
+      "schedule": "every 240m",
+      "script": null,
+      "last_status": "ok"
+    },
+    {
+      "name": "Workflow-Immunsystem Nachtwache",
+      "schedule": "0 3 * * *",
+      "script": null,
+      "last_status": "ok"
+    }
+  ]
+}
