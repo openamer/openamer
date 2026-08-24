@@ -9,7 +9,7 @@ Reale Einnahmequellen (keine Theorie):
 Jede Spende tracked in store/funding.json
 Läuft als Cron-Job: prüft auf neue Sponsors, sendet Dankes-Nachricht.
 """
-import json, os, time, uuid
+import json, os, sys, time, uuid
 from pathlib import Path
 from datetime import datetime
 
@@ -151,14 +151,17 @@ if __name__ == "__main__":
     print(f"  One-time: ${f.dashboard()['total_raised']}")
     print()
     
-    # Demo: record some activity
-    f.record_payment("ko-fi", 5, "Alice", "Love OpenAmer! 🔥")
-    f.record_payment("paypal", 25, "Bob", "Keep building!")
-    f.add_sponsor("Alice", "supporter", 3)
-    f.add_sponsor("Bob", "sponsor", 25)
+    # Demo-Daten nur mit explizitem --demo Flag seeden. Ohne diesen Guard
+    # wuerde jeder Cron-Lauf +$30 Fake-Umsatz erzeugen (Alice/Bob immer
+    # wieder als neue Transaktionen) und total_raised endlos aufblaehen.
+    if "--demo" in sys.argv:
+        f.record_payment("ko-fi", 5, "Alice", "Love OpenAmer! 🔥")
+        f.record_payment("paypal", 25, "Bob", "Keep building!")
+        f.add_sponsor("Alice", "supporter", 3)
+        f.add_sponsor("Bob", "sponsor", 25)
     
     d = f.dashboard()
-    print("  After demo transactions:")
+    print("  Current funding state:" + (" (--demo seeded)" if "--demo" in sys.argv else ""))
     print(f"    ${d['total_raised']:.0f} raised | ${d['monthly_recurring']}/mo recurring")
     print(f"    {d['active_sponsors']} active sponsors")
     print(f"    Progress: {d['goal_progress']}%")

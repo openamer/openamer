@@ -481,6 +481,25 @@ All documentation lives at **[OpenAmer Docs](https://github.com/openamer/opename
 
 ---
 
+## ❤️ Sponsor & Fund
+
+OpenAmer is free & open source. If it saves you time or money, consider supporting development — funding goes directly into servers, API costs and new features.
+
+**Goal: $500/month**
+
+```
+$0 raised / $500 goal
+░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 0%
+```
+
+- 🥉 Supporter $3/mo · 🥈 Backer $10/mo · 🥇 Sponsor $25/mo · 🏆 Enterprise $250/mo
+- All tiers & perks: **[SPONSORS.md](SPONSORS.md)**
+- One-time: [GitHub Sponsors](https://github.com/sponsors/openamer) · [Ko-fi](https://ko-fi.com/openamer_agent) · [Buy Me a Coffee](https://www.buymeacoffee.com/openamer) · [PayPal](https://www.paypal.com/ncp/payment/3HMBFYC9CQTMS)
+
+<!-- openamer-funding-bar (auto-updated by scripts/funding.py cron): total_raised=$0 | monthly_recurring=$0 | progress=0% | updated=2026-08-24 -->
+
+---
+
 ## Community
 
 - 💬 [Discord](https://discord.gg/openamer)
