@@ -16,6 +16,7 @@ Exit 0 always; exit 2 if a systemic cluster was found (for watchdogs).
 """
 import json
 import re
+import subprocess
 import sys
 from collections import defaultdict
 from datetime import datetime
@@ -104,6 +105,23 @@ def main():
         print(report["verdict"])
         print("!" * 60)
         rc = 2
+        # AUTO-RESPONSE: bei 429-Hunger die Reserve aktivieren und das beste
+        # Fallback-Modell in den State schreiben (Wrapper-Jobs koennen es lesen).
+        if "rate_limited_429" in systemic or "rate_limited" in systemic:
+            try:
+                r = subprocess.run(
+                    [sys.executable, str(Path(__file__).parent / "hunger_reserve.py"), "best"],
+                    capture_output=True, text=True, timeout=120)
+                best = (r.stdout or "").strip()
+                if r.returncode == 0 and best:
+                    report["fallback_model"] = best
+                    print(f"[auto] hunger reserve ready: {best}")
+                else:
+                    report["fallback_model"] = None
+                    print("[auto] hunger reserve: kein Fallback lebendig!")
+            except Exception as e:
+                report["fallback_model"] = None
+                print(f"[auto] hunger reserve check failed: {e}")
     else:
         report["verdict"] = "no systemic pattern - failures are individual"
         print(report["verdict"])

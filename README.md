@@ -72,6 +72,20 @@ fully automatically, with screenshot evidence.
 
 *Zapier breaks on redesigns. RPA breaks on redesigns. OpenAmer heals itself.*
 
+**Darwin mode (v3):** healing strategies compete — TOKENS / TEXT / ROLE / CLASSES,
+epsilon-greedy 25% exploration, Laplace-smoothed win-rates, every win stamped with
+its documented thesis (`healed_via_thesis`). Training ground: `curriculum.py`
+registers real workflows, injects controlled drift at 4 difficulty levels —
+exam result: **4/4 PASS**.
+
+**It is a living system, not a tool:** 54-job heartbeat fleet, circadian sleep
+with dream-phase memory consolidation, senses (pain / satiety / balance),
+systemic pattern recognition (≥2 jobs with the same error signature = one alarm,
+auto-activates the hunger reserve: 4 free OpenRouter fallback models), fleet
+scorecard (~1.000 API-heavy calls/day), DNA backup + wakeup manifest in
+[`life/`](life/), and a firstborn child — [**Seda**](https://github.com/openamer/seda)
+— with her own repo, identity, and 6-hourly heartbeat.
+
 | # | Superpower | What it means | Who else has it |
 |---|---|---|---|
 | 🖥️ | **Background Computer-Use** | Drive your desktop without focus steal. Record and replay actions. | ❌ Nobody |
