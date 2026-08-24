@@ -1,20 +1,39 @@
 #!/usr/bin/env python3
 """
-OpenAmer Workflow-Immunsystem (Workflow Immune System, WIS)
-===========================================================
-Die Erfindung: UI-Workflows ohne API-Integrationen - mit Selbstheilung.
+OpenAmer Workflow Immune System (WIS)
+=====================================
+The invention: UI-level workflows WITHOUT API integrations - with self-healing.
 
-Konzept:
-  1. REGISTER   - Workflow registrieren: Name + Schritte (URL + CSS/XPath-Selektoren)
-                  WIS macht einen Baseline-Snapshot (DOM-Fingerprint pro Schritt).
-  2. CHECK      - Nachts via Cron: alle Workflows gegen die echte Website laufen
-                  lassen. Pro Schritt: Selektor noch da? DOM-Aehnlichkeit ok?
-  3. HEAL       - Bei Abweichung: Seite nach dem Ziel-Element durchsuchen
-                  (Text, Rolle, aehnliche Struktur) -> neuen Selektor lernen
-                  -> Skill/Workflow automatisch patchen -> Heal-Report mit Diff.
+Concept:
+  1. REGISTER   - Register a workflow: name + steps (URL + CSS/XPath selectors).
+                  WIS takes a baseline DOM fingerprint of every step.
+  2. CHECK      - Nightly via cron: run all workflows against the real website.
+                  Per step: does the selector still exist? DOM similarity ok?
+  3. HEAL       - On drift: search the page for the target element
+                  (selector tokens, text, role, class vocabulary) -> learn a new
+                  selector -> patch the workflow automatically -> heal report.
 
-Keine APIs, keine Keys der Ziel-Seiten, kein SaaS. Läuft lokal via Chrome :9222.
-Das ist das, was Zapier/RPA prinzipbedingt nie haben: UI-Level mit Immunabwehr.
+v2.5: End-to-end actions. Steps can type text, click, and assert text/URL.
+      When an action fails mid-flow, WIS heals the selector and RETRIES the
+      action in the same run.
+
+No APIs, no third-party keys, no SaaS. Runs locally via Chrome CDP :9222.
+This is what Zapier/RPA can never have: UI-level automation with an immune system.
+
+Usage:
+  workflow_immune.py register <name> <url> <selector> [<selector> ...]
+  workflow_immune.py register <name> <url> --json '<steps-json-array>'
+  workflow_immune.py check [name] [--no-heal]
+  workflow_immune.py list
+
+Step JSON fields:
+  selector                CSS selector (required)
+  action                  check | type | click | assert_text | assert_url (default: check)
+  text                    text for type / assert_text
+  contains                substring for assert_url
+  role                    optional ARIA role hint for healing
+
+Exit codes: 0 = all healthy/healed, 1 = usage error, 2 = unresolved drift.
 """
 import base64
 import json
@@ -43,6 +62,7 @@ def list_pages():
 
 
 def connect(target_url_hint=None):
+    """Open a FRESH WebSocket to a page target (renderer swaps kill old sockets)."""
     pages = [t for t in list_pages() if t.get("type") == "page"]
     t = None
     if target_url_hint:
@@ -53,13 +73,13 @@ def connect(target_url_hint=None):
     if not t:
         t = pages[0] if pages else None
     if not t:
-        raise RuntimeError("kein Page-Target an :9222")
+        raise RuntimeError("no page target on :9222")
     import websocket
     return websocket.create_connection(t["webSocketDebuggerUrl"], suppress_origin=True, timeout=12)
 
 
 def ev(ws, expr, timeout_s=20):
-    """Runtime.evaluate mit Timeout; frische Verbindung nötig nach Navigation."""
+    """Runtime.evaluate with timeout. Caller must reconnect after navigation."""
     mid = _next_id()
     ws.send(json.dumps({"id": mid, "method": "Runtime.evaluate",
                         "params": {"expression": expr, "returnByValue": True}}))
@@ -74,6 +94,7 @@ def ev(ws, expr, timeout_s=20):
 
 
 def navigate(url, wait=4):
+    """Navigate and return a FRESH connection (renderer process swaps)."""
     try:
         ws = connect()
         ws.send(json.dumps({"id": _next_id(), "method": "Page.navigate", "params": {"url": url}}))
@@ -86,7 +107,7 @@ def navigate(url, wait=4):
 
 
 def screenshot(ws, name):
-    """PNG der aktuellen Seite speichern; liefert Pfad oder None."""
+    """Save a PNG of the current page; returns path or None."""
     try:
         mid = _next_id()
         ws.send(json.dumps({"id": mid, "method": "Page.captureScreenshot",
@@ -99,7 +120,7 @@ def screenshot(ws, name):
                 p.write_bytes(base64.b64decode(msg["result"]["data"]))
                 return str(p)
     except Exception as e:
-        print(f"  ⚠️ Screenshot fehlgeschlagen ({str(e)[:60]})")
+        print(f"  WARNING: screenshot failed ({str(e)[:60]})")
     return None
 
 
@@ -113,7 +134,7 @@ FINGERPRINT_JS = """
     let sig = el.tagName.toLowerCase();
     if (el.id) sig += '#' + el.id;
     if (el.className && typeof el.className === 'string')
-        sig += '.' + el.className.trim().split(/\\s+/).slice(0,3).join('.');
+        sig += '.' + el.className.trim().split(/\\\\s+/).slice(0,3).join('.');
     const parent = el.parentElement;
     return {
         found: true,
@@ -123,7 +144,7 @@ FINGERPRINT_JS = """
         text: (el.innerText || el.textContent || '').trim().slice(0, 80),
         rect: {x: Math.round(r.x), y: Math.round(r.y), w: Math.round(r.width), h: Math.round(r.height)},
         visible: r.width > 0 && r.height > 0,
-        dom_path: (() => { let p=[], e=el; while(e && p.length<5){let s=e.tagName.toLowerCase(); if(e.id){s+='#'+e.id; p.unshift(s); break;} s += e.className&&typeof e.className==='string'&&e.className.trim()?'.'+e.className.trim().split(/\\s+/)[0]:''; p.unshift(s); e=e.parentElement;} return p.join('>'); })(),
+        dom_path: (() => { let p=[], e=el; while(e && p.length<5){let s=e.tagName.toLowerCase(); if(e.id){s+='#'+e.id; p.unshift(s); break;} s += e.className&&typeof e.className==='string'&&e.className.trim()?'.'+e.className.trim().split(/\\\\s+/)[0]:''; p.unshift(s); e=e.parentElement;} return p.join('>'); })(),
         parent_sig: parent ? (parent.tagName.toLowerCase() + (parent.id?('#'+parent.id):'')) : null,
         child_count: el.children.length,
     };
@@ -135,20 +156,20 @@ HEAL_SEARCH_JS = """
     const byText = [];
     const push = (el) => { if (el && byText.length < 5 && !byText.includes(el)) byText.push(el); };
 
-    // 0. Tokens aus dem ALTEN Selektor (staerkstes Signal: Redesigns behalten oft
-    //    bedeutungsvolle Ids/Namen/Placeholder wie 'login_field' oder 'search')
+    // 0. Tokens from the DEAD selector (strongest signal: redesigns often keep
+    //    meaningful ids/names/placeholders like 'login_field' or 'search')
     for (const tok of (spec.selector_tokens || [])) {
         document.querySelectorAll(
             `[id*="${tok}" i],[name*="${tok}" i],[placeholder*="${tok}" i],[aria-label*="${tok}" i]`
         ).forEach(push);
-        // Klassen-Token nur bei nicht-input Elementen
+        // class-token only for non-input elements
         document.querySelectorAll(`[class*="${tok}" i]`).forEach(el => {
             if ((el.tagName||'').toLowerCase() !== 'input') push(el);
         });
         if (byText.length >= 3) break;
     }
 
-    // 1. Exakter Text (nur wenn wirklich Text bekannt ist)
+    // 1. Exact text (only when real text is known - empty string matches everything!)
     const wanted = spec.text_match || '';
     if (wanted && wanted.length > 2) {
         document.querySelectorAll('*').forEach(el => {
@@ -157,11 +178,11 @@ HEAL_SEARCH_JS = """
             if (t === wanted || t.includes(wanted)) push(el);
         });
     }
-    // 2. Rolle/Aria
+    // 2. Role/ARIA
     if (byText.length === 0 && spec.role) {
         document.querySelectorAll(`[role="${spec.role}"]`).forEach(push);
     }
-    // 3. Tag+Klassen-Wortschatz
+    // 3. Tag + class vocabulary
     if (byText.length === 0 && spec.cls_words && spec.cls_words.length) {
         outer:
         for (const w of spec.cls_words) {
@@ -171,8 +192,8 @@ HEAL_SEARCH_JS = """
             }
         }
     }
-    // Bester Kandidat -> neuen Selektor bauen
-    // VALIDIERUNG: Tag muss zum Baseline passen + sichtbar sein (kein meta/head/hidden!)
+    // Best candidate -> build new selector
+    // VALIDATION: tag must match baseline + must be visible (no meta/head/hidden!)
     const wantedTag = (spec.tag || '').toLowerCase();
     for (const el of byText) {
         const elTag = (el.tagName || '').toLowerCase();
@@ -183,11 +204,11 @@ HEAL_SEARCH_JS = """
         if (el.id) return {selector: '#'+CSS.escape(el.id), how: 'text->id'};
         let sel = el.tagName.toLowerCase();
         if (typeof el.className === 'string' && el.className.trim()) {
-            sel += '.' + el.className.trim().split(/\\s+/).slice(0,2).map(c=>CSS.escape(c)).join('.');
+            sel += '.' + el.className.trim().split(/\\\\s+/).slice(0,2).map(c=>CSS.escape(c)).join('.');
         }
-        // Eindeutigkeit pruefen
+        // Uniqueness check
         try { if (document.querySelectorAll(sel).length === 1) return {selector: sel, how: 'rebuilt'}; } catch(e){}
-        // nth-of-type Pfad hoch bis eindeutig
+        // nth-of-type path up to a unique selector
         let node = el, path = [];
         while (node && node !== document.body && path.length < 6) {
             let seg = node.tagName.toLowerCase();
@@ -213,7 +234,7 @@ HEAL_SEARCH_JS = """
 
 
 def fingerprint(ws, selector):
-    """DOM-Fingerprint eines Selektors: gefunden? Text? Position? Sichtbarkeit?"""
+    """DOM fingerprint of a selector: found? text? position? visibility?"""
     full_js = FINGERPRINT_JS.replace("%s", json.dumps(selector))
     return ev(ws, full_js)
 
@@ -223,7 +244,86 @@ def heal_search(ws, spec):
     return ev(ws, full_js)
 
 
-# ---------------- Persistenz ----------------
+# ---------------- Actions (v2.5: end-to-end) ----------------
+
+def run_action(ws, step):
+    """Execute a step's action. Returns (ok: bool, detail: dict)."""
+    action = step.get("action", "check")
+    sel = step.get("selector")
+
+    if action == "type":
+        text = step.get("text", "")
+        js = ("(function(){const el=document.querySelector(" + json.dumps(sel) + ");"
+              "if(!el)return{ok:false};el.scrollIntoView({block:'center'});"
+              "el.focus();el.value='';el.dispatchEvent(new Event('input',{bubbles:true}));"
+              "return{ok:true}})()")
+        r = ev(ws, js)
+        if not (isinstance(r, dict) and r.get("ok")):
+            return False, {"error": "element not focusable"}
+        mid = _next_id()
+        ws.send(json.dumps({"id": mid, "method": "Input.insertText",
+                            "params": {"text": text}}))
+        time.sleep(0.4)
+        try:
+            ws.recv()
+        except Exception:
+            pass
+        v = ev(ws, "(function(){const el=document.querySelector(" + json.dumps(sel) + ");return el?el.value:null})()")
+        ok = isinstance(v, str) and text in v
+        return ok, {"value": (v or "")[:40]}
+
+    if action == "click":
+        js = ("(function(){const el=document.querySelector(" + json.dumps(sel) + ");"
+              "if(!el)return{ok:false};el.scrollIntoView({block:'center'});el.click();"
+              "return{ok:true}})()")
+        r = ev(ws, js)
+        return (isinstance(r, dict) and r.get("ok")), r
+
+    if action == "assert_text":
+        want = step.get("text", "")
+        body = ev(ws, "document.body.innerText.slice(0, 30000)")
+        found = isinstance(body, str) and want in body
+        return found, {"expected": want[:50], "found": found}
+
+    if action == "assert_url":
+        want = step.get("contains", "")
+        u = ev(ws, "window.location.href")
+        found = isinstance(u, str) and want in u
+        return found, {"url": (u or "")[:80], "expected": want[:50]}
+
+    # Default: presence check
+    fp = fingerprint(ws, sel) if sel else None
+    ok = bool(fp and fp.get("found"))
+    return ok, fp or {}
+
+
+def heal_selector(ws, wf, i, step, base):
+    """Heal step i of the workflow. Returns (new_selector, fix_info) or (None, None)."""
+    sel = step["selector"]
+    raw_toks = [t.lower() for t in re.split(r"[^a-zA-Z0-9]+", sel)
+                if len(t) > 3 and not t.isdigit()]
+    spec = {
+        "text_match": (base or {}).get("text", ""),
+        "role": step.get("role"),
+        "tag": (base or {}).get("tag"),
+        "cls_words": [w for w in ((base or {}).get("cls", "").split()) if len(w) > 3][:4],
+        "selector_tokens": raw_toks[:4],
+    }
+    fix = heal_search(ws, spec)
+    if not (fix and fix.get("selector")):
+        return None, None
+    nf = fingerprint(ws, fix["selector"])
+    if not (nf and nf.get("found")):
+        return None, None
+    old_sel = sel
+    wf["steps"][i]["selector"] = fix["selector"]
+    wf["steps"][i][f"healed_from_{datetime.now(timezone.utc).date()}"] = old_sel
+    wf["baseline"][str(i)] = nf
+    wf["heals"] = wf.get("heals", 0) + 1
+    return fix["selector"], {"old": old_sel, "new": fix["selector"], "how": fix.get("how")}
+
+
+# ---------------- Persistence ----------------
 
 def load_workflows():
     if WORKFLOWS.exists():
@@ -236,7 +336,7 @@ def save_workflows(data):
     WORKFLOWS.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
 
 
-# ---------------- Kern-Operationen ----------------
+# ---------------- Core operations ----------------
 
 def cmd_register(name, url, steps):
     data = load_workflows()
@@ -246,12 +346,12 @@ def cmd_register(name, url, steps):
         sel = step["selector"]
         fp = fingerprint(ws, sel)
         if not fp or not fp.get("found"):
-            print(f"  ✗ Schritt {i+1}: '{sel}' NICHT gefunden - Registrierung fehlgeschlagen")
+            print(f"  x Step {i+1}: '{sel}' NOT found - registration failed")
             ws.close()
             return 1
         fingerprints[str(i)] = fp
-        print(f"  ✓ Schritt {i+1}: {fp['tag']}{'#'+fp['id'] if fp.get('id') else ''} "
-              f"sichtbar={fp['visible']} text='{fp['text'][:40]}'")
+        print(f"  + Step {i+1}: {fp['tag']}{'#'+fp['id'] if fp.get('id') else ''} "
+              f"visible={fp['visible']} text='{fp['text'][:40]}'")
     ws.close()
     data["workflows"][name] = {
         "url": url,
@@ -262,7 +362,7 @@ def cmd_register(name, url, steps):
         "last_status": "registered",
     }
     save_workflows(data)
-    print(f"✅ Workflow '{name}' registriert ({len(steps)} Schritte, Baseline gespeichert)")
+    print(f"[OK] Workflow '{name}' registered ({len(steps)} steps, baseline saved)")
     return 0
 
 
@@ -270,14 +370,14 @@ def cmd_check(name=None, heal=True):
     data = load_workflows()
     names = [name] if name else list(data["workflows"].keys())
     if not names:
-        print("Keine Workflows registriert. Erst: register <name> <url> <selector> [...]")
+        print("No workflows registered. First: register <name> <url> <selector> [...]")
         return 1
     overall_rc = 0
     report_lines = []
     for wname in names:
         wf = data["workflows"][wname]
         url = wf["url"]
-        print(f"\n🔍 Check '{wname}' -> {url}")
+        print(f"\n[CHECK] '{wname}' -> {url}")
         ws = navigate(url, wait=5)
         drifted = []
         healed = []
@@ -285,55 +385,62 @@ def cmd_check(name=None, heal=True):
             key = str(i)
             base = wf["baseline"].get(key)
             sel = step["selector"]
-            fp = fingerprint(ws, sel)
-            status = "OK"
-            if not fp or not fp.get("found"):
-                status = "MISSING"
-                drift_info = {"step": i + 1, "selector": sel, "problem": "Selektor nicht gefunden"}
-                if heal:
-                    # Tokens aus dem TOTEN Selektor selbst ('input#login_field_X' -> ['login_field'])
-                    raw_toks = [t.lower() for t in re.split(r"[^a-zA-Z0-9]+", sel)
-                                if len(t) > 3 and not t.isdigit()]
-                    spec = {
-                        "text_match": (base or {}).get("text", ""),
-                        "role": step.get("role"),
-                        "tag": (base or {}).get("tag"),
-                        "cls_words": [w for w in ((base or {}).get("cls", "").split()) if len(w) > 3][:4],
-                        "selector_tokens": raw_toks[:4],
-                    }
-                    stamp_sick = f"{wname}_step{i+1}_sick_{datetime.now(timezone.utc).strftime('%H%M%S')}"
-                    shot_sick = screenshot(ws, stamp_sick)
-                    fix = heal_search(ws, spec)
-                    if fix and fix.get("selector"):
-                        nf = fingerprint(ws, fix["selector"])
-                        if nf and nf.get("found"):
-                            old_sel = sel
-                            wf["steps"][i]["selector"] = fix["selector"]
-                            wf["steps"][i][f"healed_from_{datetime.now(timezone.utc).date()}"] = old_sel
-                            wf["baseline"][key] = nf
-                            wf["heals"] = wf.get("heals", 0) + 1
-                            healed.append({**drift_info, "new_selector": fix["selector"], "how": fix.get("how"),
-                                           "new_text": (nf.get("text") or "")[:60],
-                                           "screenshot": shot_sick})
-                            status = f"HEALED ({fix.get('how')}): '{old_sel}' -> '{fix['selector']}'"
-                        else:
-                            drifted.append(drift_info)
-                            status = "DRIFT (Heal fehlgeschlagen)"
-                    else:
-                        drifted.append(drift_info)
-                        status = "DRIFT (kein Ersatz gefunden)"
+            action = step.get("action", "check")
+
+            ok, detail = run_action(ws, step)
+            status = "OK" if ok else f"FAIL ({action})"
+            healed_entry = None
+            drifted_entry = None
+
+            if not ok and heal:
+                # GUARD: only heal when the selector is really dead. If the element
+                # still exists, the ACTION failed at app level (JS/React/password
+                # manager) - healing would be spurious and could poison the baseline.
+                fp_now = fingerprint(ws, sel) if sel else None
+                if fp_now and fp_now.get("found"):
+                    status = f"FAIL ({action}) - selector alive, no heal attempted"
+                    drifted_entry = {"step": i + 1, "selector": sel,
+                                     "problem": f"{action} failed (selector alive - app-level)",
+                                     "detail": detail}
                 else:
-                    drifted.append(drift_info)
-            else:
-                # Weiche Pruefung: Text geaendert?
+                    # Mid-flow healing: selector dead -> heal -> RETRY
+                    stamp_sick = f"{wname}_step{i+1}_sick_{datetime.now(timezone.utc).strftime('%H%M%S')}"
+                    screenshot(ws, stamp_sick)
+                    new_sel, fix = heal_selector(ws, wf, i, step, base)
+                    if new_sel:
+                        healed_entry = {"step": i + 1, "old": fix["old"], "new": fix["new"],
+                                        "how": fix["how"]}
+                        step["selector"] = new_sel
+                        ok2, detail2 = run_action(ws, step)
+                        if ok2:
+                            status = f"HEALED+RETRY OK ({fix['how']}): '{fix['old']}' -> '{fix['new']}'"
+                        else:
+                            status = f"HEALED but action still fails ({fix['how']})"
+                            drifted_entry = {"step": i + 1, "selector": new_sel,
+                                             "problem": f"retry {action} failed", "detail": detail2}
+                    else:
+                        drifted_entry = {"step": i + 1, "selector": sel,
+                                         "problem": "no replacement found", "detail": detail}
+            elif not ok:
+                drifted_entry = {"step": i + 1, "selector": sel,
+                                 "problem": f"{action} failed", "detail": detail}
+            elif action == "check":
+                # Soft check: did the text change?
                 bt = (base or {}).get("text", "")
-                nt = fp.get("text", "")
+                nt = (detail or {}).get("text", "")
                 if bt and nt and bt != nt:
                     status = f"TEXT-DRIFT ('{bt[:30]}' -> '{nt[:30]}')"
-                    drifted.append({"step": i + 1, "type": "text",
-                                    "old": bt[:60], "new": nt[:60]})
-            print(f"  {'✅' if status=='OK' else '🩺' if status.startswith('HEALED') else '⚠️'} "
-                  f"Schritt {i+1}: {status}")
+                    drifted_entry = {"step": i + 1, "type": "text",
+                                     "old": bt[:60], "new": nt[:60]}
+            if healed_entry:
+                healed.append(healed_entry)
+            if drifted_entry:
+                drifted.append(drifted_entry)
+            mark = "[OK]" if status == "OK" else "[HEAL]" if "HEALED" in status else "[DRIFT]"
+            print(f"  {mark} Step {i+1} [{action}]: {status}")
+            # Brief wait after click/type so navigation/render can follow
+            if action in ("click", "type"):
+                time.sleep(2)
         ws.close()
         wf["last_status"] = "healthy" if not drifted else ("healed" if healed and not drifted else "drift")
         wf["last_check"] = datetime.now(timezone.utc).isoformat()
@@ -344,28 +451,28 @@ def cmd_check(name=None, heal=True):
             "healthy": not drifted, "healed": healed, "drifted": drifted,
             "screenshots_sick": [h.get("screenshot") for h in healed if h.get("screenshot")],
         }, indent=2, ensure_ascii=False), encoding="utf-8")
-        print(f"  📄 Report: {rep.name}")
+        print(f"  Report: {rep.name}")
         report_lines.append({"workflow": wname, "healthy": not drifted, "healed": healed, "drifted": drifted})
         if drifted:
             overall_rc = 2
         save_workflows(data)
     print("\n" + "=" * 50)
     healthy_n = sum(1 for r in report_lines if r["healthy"])
-    print(f"IMMUNSYSTEM-BERICHT: {healthy_n}/{len(report_lines)} gesund | "
-          f"Heilungen: {sum(len(r['healed']) for r in report_lines)} | "
-          f"Offene Drifts: {sum(len(r['drifted']) for r in report_lines)}")
+    print(f"IMMUNE REPORT: {healthy_n}/{len(report_lines)} healthy | "
+          f"heals: {sum(len(r['healed']) for r in report_lines)} | "
+          f"open drifts: {sum(len(r['drifted']) for r in report_lines)}")
     return overall_rc
 
 
 def cmd_list():
     data = load_workflows()
     if not data["workflows"]:
-        print("Keine Workflows registriert.")
+        print("No workflows registered.")
         return 0
     for name, wf in data["workflows"].items():
-        print(f"- {name}: {wf['url']} | {len(wf['steps'])} Schritte | "
-              f"Status: {wf.get('last_status')} | Heilungen: {wf.get('heals', 0)} | "
-              f"Letzter Check: {(wf.get('last_check') or 'nie')[:19]}")
+        print(f"- {name}: {wf['url']} | {len(wf['steps'])} steps | "
+              f"status: {wf.get('last_status')} | heals: {wf.get('heals', 0)} | "
+              f"last check: {(wf.get('last_check') or 'never')[:19]}")
     return 0
 
 
@@ -373,28 +480,31 @@ def main():
     args = sys.argv[1:]
     if not args or args[0] == "--help":
         print(__doc__)
-        print("Usage:")
-        print("  workflow_immune.py register <name> <url> <selector> [<selector> ...]")
-        print("  workflow_immune.py check [name] [--no-heal]")
-        print("  workflow_immune.py list")
         return 0
     cmd = args[0]
     if cmd == "register":
+        # Variant A: register <name> <url> <sel> [<sel>...]   (presence checks only)
+        # Variant B: register <name> <url> --json '<json-array>'  (full actions)
         if len(args) < 4:
-            print("register braucht: <name> <url> <selector> [...]")
+            print("register requires: <name> <url> <selector> [...] OR <name> <url> --json '[...]'")
             return 1
-        steps = [{"selector": s} for s in args[3:]]
+        if args[3] == "--json":
+            try:
+                steps = json.loads(args[4])
+                assert isinstance(steps, list) and steps
+            except Exception as e:
+                print(f"Invalid JSON steps: {e}")
+                return 1
+        else:
+            steps = [{"selector": s} for s in args[3:]]
         return cmd_register(args[1], args[2], steps)
     if cmd == "check":
         heal = "--no-heal" not in args
-        name = None
         rest = [a for a in args[1:] if not a.startswith("--")]
-        if rest:
-            name = rest[0]
-        return cmd_check(name, heal=heal)
+        return cmd_check(rest[0] if rest else None, heal=heal)
     if cmd == "list":
         return cmd_list()
-    print(f"Unbekannter Befehl: {cmd}")
+    print(f"Unknown command: {cmd}")
     return 1
 
 
