@@ -61,6 +61,17 @@
 
 **15 things no other agent can do** — verified, shipped, tested.
 
+### 🩺 NEW: Workflow Immune System — UI automation that heals itself
+
+The world's first self-healing UI automation. Register a workflow once (selectors only,
+no APIs). When a website redesigns overnight, WIS detects the drift, finds the element
+again (token search + tag/visibility validation), patches its own workflow, and retries —
+fully automatically, with screenshot evidence.
+
+![Workflow Immune System: self-healing UI automation demo](docs/assets/wis-self-healing-demo.gif)
+
+*Zapier breaks on redesigns. RPA breaks on redesigns. OpenAmer heals itself.*
+
 | # | Superpower | What it means | Who else has it |
 |---|---|---|---|
 | 🖥️ | **Background Computer-Use** | Drive your desktop without focus steal. Record and replay actions. | ❌ Nobody |
