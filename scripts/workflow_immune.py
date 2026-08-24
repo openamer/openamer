@@ -84,6 +84,26 @@ def navigate(url, wait=4):
     return connect()
 
 
+def screenshot(ws, name):
+    """PNG der aktuellen Seite speichern; liefert Pfad oder None."""
+    try:
+        mid = _next_id()
+        ws.send(json.dumps({"id": mid, "method": "Page.captureScreenshot",
+                            "params": {"format": "png"}}))
+        deadline = time.time() + 15
+        while time.time() < deadline:
+            msg = json.loads(ws.recv())
+            if msg.get("id") == mid:
+                import base64
+                REPORTS.mkdir(parents=True, exist_ok=True)
+                p = REPORTS / f"{name}.png"
+                p.write_bytes(base64.b64decode(msg["result"]["data"]))
+                return str(p)
+    except Exception as e:
+        print(f"  ⚠️ Screenshot fehlgeschlagen ({str(e)[:60]})")
+    return None
+
+
 # ---------------- Fingerprint & Match ----------------
 
 FINGERPRINT_JS = """
@@ -282,6 +302,8 @@ def cmd_check(name=None, heal=True):
                         "cls_words": [w for w in ((base or {}).get("cls", "").split()) if len(w) > 3][:4],
                         "selector_tokens": raw_toks[:4],
                     }
+                    stamp_sick = f"{wname}_step{i+1}_sick_{datetime.now(timezone.utc).strftime('%H%M%S')}"
+                    shot_sick = screenshot(ws, stamp_sick)
                     fix = heal_search(ws, spec)
                     if fix and fix.get("selector"):
                         nf = fingerprint(ws, fix["selector"])
@@ -292,7 +314,8 @@ def cmd_check(name=None, heal=True):
                             wf["baseline"][key] = nf
                             wf["heals"] = wf.get("heals", 0) + 1
                             healed.append({**drift_info, "new_selector": fix["selector"], "how": fix.get("how"),
-                                           "new_text": (nf.get("text") or "")[:60]})
+                                           "new_text": (nf.get("text") or "")[:60],
+                                           "screenshot": shot_sick})
                             status = f"HEALED ({fix.get('how')}): '{old_sel}' -> '{fix['selector']}'"
                         else:
                             drifted.append(drift_info)
@@ -320,6 +343,7 @@ def cmd_check(name=None, heal=True):
         rep.write_text(json.dumps({
             "workflow": wname, "url": url, "time": wf["last_check"],
             "healthy": not drifted, "healed": healed, "drifted": drifted,
+            "screenshots_sick": [h.get("screenshot") for h in healed if h.get("screenshot")],
         }, indent=2, ensure_ascii=False), encoding="utf-8")
         print(f"  📄 Report: {rep.name}")
         report_lines.append({"workflow": wname, "healthy": not drifted, "healed": healed, "drifted": drifted})
