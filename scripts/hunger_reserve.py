@@ -13,8 +13,8 @@ Der Output von 'best' kann von Wrapper-Jobs als OPENAMER_FALLBACK_MODEL
 gelesen werden. Kein Key im Repo - .env bleibt die einzige Key-Quelle.
 """
 import json
-import os
 import sys
+import time
 import urllib.error
 import urllib.request
 from datetime import datetime, timezone
@@ -76,7 +76,6 @@ def cmd_check():
         results[m] = {"ok": ok, "error": err}
         print(f"{m:<48} {'✓ lebt' if ok else '✗ ' + err}")
         # freundlich bleiben: kleiner Abstand zwischen Pings
-        import time
         time.sleep(1)
     state = {"checked_at": datetime.now(timezone.utc).isoformat(), "models": results}
     STATE.write_text(json.dumps(state, indent=2), encoding="utf-8")
