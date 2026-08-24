@@ -4,11 +4,12 @@ title: system
 
 # 🖥️ system
 
-24 skills
+25 skills
 
 - [ab-test-engine](ab-test-engine/) — Use for A/B experiments on OpenAmer configs and skills.
 - [auto-updater](auto-updater/) — Use for multi-source update management: git, pip, hub.
 - [context-compressor](context-compressor/) — Use for session compression and full-text search.
+- [cron-job-repair](cron-job-repair/) — Use when cron jobs fail (last_status error). Diagnose, fix.
 - [cross-profile-sync](cross-profile-sync/) — Sync skills/cron/config between OpenAmer profiles.
 - [dashboard](dashboard/) — Use for the Live-Web-Dashboard on port 8899.
 - [file-organizer](file-organizer/) — Clean Desktop/DL: temp, MD5 dedupe, type-sort, undo.

@@ -1,28 +1,29 @@
 {
-  "total_skills": 243,
-  "categories": 20,
-  "generated": "2026-08-23T18:02:51.856482",
+  "total_skills": 249,
+  "categories": 21,
+  "generated": "2026-08-24T06:34:28.998139",
   "repos": "C:\\Users\\damir\\openamer-repo\\docs",
   "per_category": {
     "apple": 4,
     "autonomous-ai-agents": 26,
     "creative": 16,
     "desktop": 2,
-    "devops": 5,
+    "devops": 6,
+    "ecommerce": 1,
     "email": 1,
     "github": 6,
     "imported": 61,
     "imported-deepseek-harness": 11,
-    "marketing": 2,
+    "marketing": 3,
     "media": 3,
     "mlops": 2,
     "note-taking": 1,
-    "productivity": 12,
+    "productivity": 13,
     "research": 7,
     "security": 2,
     "smart-home": 1,
     "social-media": 1,
-    "software-development": 56,
-    "system": 24
+    "software-development": 57,
+    "system": 25
   }
 }

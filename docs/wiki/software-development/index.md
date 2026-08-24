@@ -4,7 +4,7 @@ title: software-development
 
 # 💻 software-development
 
-56 skills
+57 skills
 
 - [adapting-external-skills](adapting-external-skills/) — Port skills from another agent project into OpenAmer.
 - [api-drift-recovery](api-drift-recovery/) — ImportError after refactor? Map old→new API and fix tests.
@@ -34,6 +34,7 @@ title: software-development
 - [greenfield-agent-architecture](greenfield-agent-architecture/) — Use when building a new agent/CLI project from scratch.
 - [greenfield-agent-project](greenfield-agent-project/) — Build a new agent/CLI project, architecture-first.
 - [hello-plugin](hello-plugin/) — A simple hello plugin skill.
+- [hosted-payments](hosted-payments/) — PayPal hosted buttons on static pages. Needs async guard.
 - [intellij-plugin-build](intellij-plugin-build/) — Build IntelliJ plugins with Gradle — plugin.xml, JCEF, MCP.
 - [massive-upgrade-deployment](massive-upgrade-deployment/) — Batch-deploy parallel upgrades via sub-agents + git push.
 - [node-inspect-debugger](node-inspect-debugger/) — Debug Node.js via --inspect + Chrome DevTools Protocol CLI.

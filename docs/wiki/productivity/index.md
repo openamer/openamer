@@ -4,10 +4,11 @@ title: productivity
 
 # 📋 productivity
 
-12 skills
+13 skills
 
 - [airtable](airtable/) — Airtable REST API via curl. Records CRUD, filters, upserts.
 - [docx](docx/) — Create, read, edit Word .docx documents and templates.
+- [donation-buttons](donation-buttons/) — Embed PayPal donate buttons on static sites. Async SDK CDN.
 - [google-workspace](google-workspace/) — Gmail, Calendar, Drive, Docs, Sheets via gws CLI or Python.
 - [maps](maps/) — Geocode, POIs, routes, timezones via OpenStreetMap/OSRM.
 - [nano-pdf](nano-pdf/) — Edit text in existing PDFs via natural-language prompts.

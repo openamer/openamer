@@ -6,7 +6,7 @@ description: Launch OSS on Product Hunt, HN, Reddit, and Twitter.
 # open-source-project-launch
 
 **Description:** Launch OSS on Product Hunt, HN, Reddit, and Twitter.
-**Lines:** 101 | **Code:** 0 | **Dir:** `open-source-project-launch`
+**Lines:** 224 | **Code:** 22 | **Dir:** `open-source-project-launch`
 
 ---
 
