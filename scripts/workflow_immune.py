@@ -37,6 +37,7 @@ Exit codes: 0 = all healthy/healed, 1 = usage error, 2 = unresolved drift.
 """
 import base64
 import json
+import random
 import re
 import sys
 import time
@@ -363,7 +364,6 @@ def record_strategy(name, win):
 def strategy_order():
     """Epsilon-greedy ordering: with p=EXPLORATION_RATE put the least-tried
     strategy first (exploration), otherwise sort by win-rate desc."""
-    import random
     stats = load_strategies()
     if random.random() < EXPLORATION_RATE:
         least = min(ALL_STRATEGIES, key=lambda s: stats.get(s, {}).get("tries", 0))
