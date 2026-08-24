@@ -303,6 +303,8 @@ def run_action(ws, step):
 def heal_selector(ws, wf, i, step, base):
     """Darwin-mode heal: try strategies in epsilon-greedy order (win-rate weighted,
     25% exploration), track every win/loss in strategies.json.
+    Each strategy carries a documented THESIS (AEON-style lineage): the winning
+    thesis is recorded on the workflow step as healed_via_thesis.
     Returns (new_selector, fix_info) or (None, None)."""
     sel = step["selector"]
     raw_toks = [t.lower() for t in re.split(r"[^a-zA-Z0-9]+", sel)
@@ -327,14 +329,17 @@ def heal_selector(ws, wf, i, step, base):
             continue
         record_strategy(strat, win=True)
         old_sel = sel
+        thesis = STRATEGY_THESIS.get(strat, "undocumented")
         wf["steps"][i]["selector"] = fix["selector"]
         wf["steps"][i][f"healed_from_{datetime.now(timezone.utc).date()}"] = old_sel
+        wf["steps"][i]["healed_via_thesis"] = f"{strat}: {thesis}"
         wf["baseline"][str(i)] = nf
         wf["heals"] = wf.get("heals", 0) + 1
         fix = dict(fix)
         fix["strategy"] = strat
         return fix["selector"], {"old": old_sel, "new": fix["selector"],
-                                 "how": fix.get("how"), "strategy": strat}
+                                 "how": fix.get("how"), "strategy": strat,
+                                 "thesis": thesis}
     return None, None
 
 
@@ -343,6 +348,16 @@ def heal_selector(ws, wf, i, step, base):
 STRATEGIES_FILE = STATE_DIR / "strategies.json"
 ALL_STRATEGIES = ["TOKENS", "TEXT", "ROLE", "CLASSES"]
 EXPLORATION_RATE = 0.25  # epsilon: try underdogs first this often
+
+# AEON-style lineage: every strategy has a documented thesis it stands for.
+# When a heal wins, the thesis is stamped onto the workflow step so the
+# evolution history is readable ("this workflow now relies on: sharper text").
+STRATEGY_THESIS = {
+    "TOKENS": "better inputs - redesigns keep semantic ids/names/placeholders",
+    "TEXT": "sharper output - the visible label survived the redesign",
+    "ROLE": "more robust - ARIA roles are stable across visual redesigns",
+    "CLASSES": "rethink - styling vocabulary outlives structure",
+}
 
 
 def load_strategies():

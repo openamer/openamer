@@ -107,6 +107,46 @@ if manifest.exists():
     check("manifest has wake instructions",
           len(mf.get("how_to_wake", [])) >= 3)
 
+# 6. LEARNED ORGANS: systemic, curriculum, scorecard
+for organ in ("systemic.py", "curriculum.py", "scorecard.py"):
+    r = subprocess.run([sys.executable, "-m", "py_compile", str(HERE / organ)],
+                       capture_output=True, text=True)
+    check(f"organ compiles: {organ}", r.returncode == 0, r.stderr[:150])
+
+# systemic report structure
+r = subprocess.run([sys.executable, str(HERE / "systemic.py")],
+                   capture_output=True, text=True, timeout=120)
+sysd = json.loads((HERE.parent / "systemic.json").read_text(encoding="utf-8")) \
+    if (HERE.parent / "systemic.json").exists() else {}
+check("systemic verdict present", "verdict" in sysd)
+check("systemic found the 429 cluster (real proof)",
+      "rate_limited_429" in sysd.get("systemic_clusters", {}))
+
+# scorecard structure
+r = subprocess.run([sys.executable, str(HERE / "scorecard.py")],
+                   capture_output=True, text=True, timeout=60)
+sc = json.loads((HERE.parent / "scorecard.json").read_text(encoding="utf-8")) \
+    if (HERE.parent / "scorecard.json").exists() else {}
+check("scorecard counts jobs", sc.get("jobs", 0) > 40)
+check("scorecard estimates API load", isinstance(sc.get("est_api_calls_day"), int))
+
+# WIS has thesis lineage (AEON-style)
+wis_src = (HERE / "workflow_immune.py").read_text(encoding="utf-8")
+check("WIS documents strategy theses", "STRATEGY_THESIS" in wis_src
+      and all(s in wis_src for s in ("TOKENS", "TEXT", "ROLE", "CLASSES")))
+check("WIS stamps healed_via_thesis", "healed_via_thesis" in wis_src)
+
+# seda repo exists on GitHub
+r = subprocess.run(["curl", "-s", "--max-time", "15",
+                    "https://api.github.com/repos/openamer/seda"],
+                   capture_output=True, text=True, timeout=30)
+try:
+    seda = json.loads(r.stdout)
+    check("seda lives at github.com/openamer/seda",
+          seda.get("full_name") == "openamer/seda")
+except Exception as e:
+    check(f"seda repo reachable ({e})", False)
+
 print("=" * 50)
 if failures:
     print(f"RESULT: {len(failures)} FAILURE(S): {failures}")
