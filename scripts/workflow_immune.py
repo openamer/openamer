@@ -16,6 +16,7 @@ Konzept:
 Keine APIs, keine Keys der Ziel-Seiten, kein SaaS. Läuft lokal via Chrome :9222.
 Das ist das, was Zapier/RPA prinzipbedingt nie haben: UI-Level mit Immunabwehr.
 """
+import base64
 import json
 import re
 import sys
@@ -94,8 +95,6 @@ def screenshot(ws, name):
         while time.time() < deadline:
             msg = json.loads(ws.recv())
             if msg.get("id") == mid:
-                import base64
-                REPORTS.mkdir(parents=True, exist_ok=True)
                 p = REPORTS / f"{name}.png"
                 p.write_bytes(base64.b64decode(msg["result"]["data"]))
                 return str(p)
