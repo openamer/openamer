@@ -97,4 +97,4 @@ def cmd_status():
 
 if __name__ == "__main__":
     cmd = sys.argv[1] if len(sys.argv) > 1 else "status"
-    print(cmd_spawn() if cmd == "spawn" else cmd_status())
+    sys.exit(cmd_spawn() if cmd == "spawn" else cmd_status())
