@@ -18,16 +18,16 @@
  *     them automatically. No import graph edit needed.
  */
 
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
-
 import {
+  Button,
+  type OpenAmerPlugin,
+  type PluginContribution,
   ROUTES_AREA,
   SIDEBAR_NAV_AREA,
   type SidebarNavContribution,
-} from '@/app/routes'
-import { Button } from '@/components/ui/button'
-import type { OpenAmerPlugin, PluginContribution } from '@/contrib/plugin'
+} from '@openamer/plugin-sdk'
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 // ── Constants ───────────────────────────────────────────────────────────
 
