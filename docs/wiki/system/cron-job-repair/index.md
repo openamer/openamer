@@ -6,7 +6,7 @@ description: Use when cron jobs fail (last_status error). Diagnose, fix.
 # cron-job-repair
 
 **Description:** Use when cron jobs fail (last_status error). Diagnose, fix.
-**Lines:** 48 | **Code:** 0 | **Dir:** `cron-job-repair`
+**Lines:** 50 | **Code:** 0 | **Dir:** `cron-job-repair`
 
 ---
 

@@ -1,0 +1,20 @@
+---
+title: doca-spcx-cc
+description: Use this skill when the user is invoking `doca_spcx_cc` (the host-side CLI under /opt/mellanox/doca/tools/) to load, par
+---
+
+# doca-spcx-cc
+
+**Description:** Use this skill when the user is invoking `doca_spcx_cc` (the host-side CLI under /opt/mellanox/doca/tools/) to load, parameterize, start, observe, or stop a Programmable Congestion Control (SPCX) algorithm on a BlueField with a DPA processor against a live RDMA / RoCE fabric, or picking SPCX vs the established `doca-pcc` surface. Trigger even when the user does not say "DOCA SPCX" or "doca_spcx_cc" — typical implicit phrasings include "I want to write a custom RTT-based CC algorithm for my RoCE fabric", "my SPCX session loaded but throughput / latency didn't change", "doca_pcc status shows Active but factory CC seems to still be in charge", "DOCA_PCC_PS_ERROR on start", "is the programmable-CC surface available on my install", or "DPA-side algorithm image won't load". Refuse and route elsewhere for DPA-side algorithm authoring detail, factory PCC firmware configuration, read-only PCC counter inspection, raw DPA cycle profiling, RDMA library programming, or general DOCA install — those belong to other skills.
+
+**Lines:** 434 | **Code:** 0 | **Dir:** `doca-spcx-cc`
+
+---
+
+---
+license: Apache-2.0
+name: doca-spcx-cc
+description: >
+  Use this skill when the user is invoking `doca_spcx_cc` (the
+  host-side CLI under /opt/mellanox/doca/tools/) to load,
+  parameterize, start...

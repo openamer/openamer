@@ -4,7 +4,7 @@ title: research
 
 # 🔬 research
 
-7 skills
+8 skills
 
 - [arxiv](arxiv/) — Search arXiv papers by keyword, author, category, or ID.
 - [blogwatcher](blogwatcher/) — Monitor blogs and RSS/Atom feeds via blogwatcher-cli tool.
@@ -13,3 +13,4 @@ title: research
 - [polymarket](polymarket/) — Query Polymarket: markets, prices, orderbooks, history.
 - [research-paper-writing](research-paper-writing/) — Write ML papers for NeurIPS/ICML/ICLR: design→submit.
 - [web-research](web-research/) — Captcha-blocked web research. Multi-source fallback method.
+- [workflow-immune-system](workflow-immune-system/) — Self-healing UI workflows without APIs: WIS detects website drift nightly and au

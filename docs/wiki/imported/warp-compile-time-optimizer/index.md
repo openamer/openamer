@@ -1,0 +1,17 @@
+---
+title: warp-compile-time-optimizer
+description: Use when compile time or startup time is the problem in code that uses Warp: a request to improve, optimize, or cut comp
+---
+
+# warp-compile-time-optimizer
+
+**Description:** Use when compile time or startup time is the problem in code that uses Warp: a request to improve, optimize, or cut compile times; an app that is slow to start or stalls at the first wp.launch; seconds of compiling before real work begins; JIT modules recompiling on every run or every CI job. Only applies when the code being optimized uses Warp kernels. Not for steady-state kernel runtime, memory, correctness, building Warp itself from source, or nvcc/C++ build times.
+**Lines:** 316 | **Code:** 15 | **Dir:** `warp-compile-time-optimizer`
+
+---
+
+---
+name: warp-compile-time-optimizer
+description: >-
+  Use when compile time or startup time is the problem in code that uses Warp:
+  a request to improve, optimize, or cut compile times; an app that...

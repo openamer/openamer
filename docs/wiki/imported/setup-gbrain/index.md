@@ -6,7 +6,7 @@ description: Set up gbrain for this coding agent: install the CLI, initialize a 
 # setup-gbrain
 
 **Description:** Set up gbrain for this coding agent: install the CLI, initialize a local PGLite or Supabase brain, register MCP, capture per-remote trust policy. (gstack)
-**Lines:** 1915 | **Code:** 537 | **Dir:** `setup-gbrain`
+**Lines:** 1919 | **Code:** 541 | **Dir:** `setup-gbrain`
 
 ---
 

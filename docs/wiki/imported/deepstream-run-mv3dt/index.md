@@ -1,0 +1,15 @@
+---
+title: deepstream-run-mv3dt
+description: Run and operate the DeepStream Multi-View 3D Tracking reference app, also known as MV3DT. Use when the user asks to set 
+---
+
+# deepstream-run-mv3dt
+
+**Description:** Run and operate the DeepStream Multi-View 3D Tracking reference app, also known as MV3DT. Use when the user asks to set up prerequisites, run shipped MV3DT samples, run Multi-View 3D Tracking on custom synchronized MP4 datasets, import camera calibration, delegate missing calibration to AutoMagicCalib, inspect OSD or BEV visualization, consume MV3DT Kafka metadata, or clean up MV3DT run state in the DeepStream MV3DT app directory.
+**Lines:** 197 | **Code:** 43 | **Dir:** `deepstream-run-mv3dt`
+
+---
+
+---
+name: "deepstream-run-mv3dt"
+description: "Run and operate the DeepStream Multi-View 3D Tracking reference app, also known as MV3DT. Use when the user asks to set up prerequisites, run shipped MV3...

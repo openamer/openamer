@@ -28,7 +28,7 @@ from pathlib import Path
 
 STATE_DIR = Path(r"C:\Users\damir\AppData\Local\openamer-laptop")
 STATE_FILE = STATE_DIR / "circadian.json"
-LEARNINGS = STATE_DIR / "learnings.json"
+LEARNINGS = STATE_DIR / "cache" / "learnings.json"
 DREAM_LOG = STATE_DIR / "dreams.json"
 
 # Phase boundaries (local hours). A young organism sleeps a lot: 8h.
@@ -101,17 +101,31 @@ def cmd_dream():
 
     today = datetime.now().strftime("%Y-%m-%d")
     entry = {"date": today, "insights": [], "intentions": []}
+    now = datetime.now(timezone.utc)
 
     if LEARNINGS.exists():
         try:
             learn = json.loads(LEARNINGS.read_text(encoding="utf-8"))
             items = learn if isinstance(learn, list) else learn.get("learnings", [])
-            recent = [i for i in items if str(i.get("date", "")).startswith(today)]
-            for i in recent[-10:]:
-                msg = str(i.get("error") or i.get("message") or "")[:120]
-                fix = str(i.get("fix") or i.get("solution") or "")[:120]
-                if msg:
-                    entry["insights"].append({"error": msg, "fix": fix})
+            # Learning-Loop items: {category, text, title, timestamp} - take the
+            # last 48h, dedupe by text, and skip useless one-word entries.
+            from datetime import timedelta
+            cutoff = (now - timedelta(hours=48)).isoformat()
+            seen_texts = set()
+            for i in reversed(items):
+                ts = str(i.get("timestamp", ""))
+                if ts < cutoff:
+                    continue
+                msg = str(i.get("text", "")).strip()
+                if len(msg) < 8 or msg.lower() in ("error", "fail", "failed"):
+                    continue  # noise from log-scan
+                if msg in seen_texts:
+                    continue
+                seen_texts.add(msg)
+                entry["insights"].append(
+                    {"error": msg[:120], "fix": "", "from": i.get("title", "")})
+                if len(entry["insights"]) >= 10:
+                    break
         except Exception as e:
             entry["insights"].append({"error": f"learnings unreadable: {e}", "fix": ""})
 

@@ -1,0 +1,19 @@
+---
+title: warp-eval
+description: Evaluate whether an existing hot path is a credible NVIDIA Warp candidate. Use for irregular or spatial queries, particl
+---
+
+# warp-eval
+
+**Description:** Evaluate whether an existing hot path is a credible NVIDIA Warp candidate. Use for irregular or spatial queries, particle or geometry simulation, branch-heavy loops, many small launches, host fallbacks, or large intermediates. CPU-only code and absent GPU dependencies are normal unless NVIDIA is prohibited. Exclude required cross-vendor or CPU-only deployment, vendor-lowered dense or NN layers, general Warp API questions, and already-selected Warp kernels. Contribution policy alone is not exclusion.
+
+**Lines:** 375 | **Code:** 1 | **Dir:** `warp-eval`
+
+---
+
+---
+name: warp-eval
+description: >
+  Evaluate whether an existing hot path is a credible NVIDIA Warp candidate.
+  Use for irregular or spatial queries, particle or geometry simulation,
+  branch-heavy ...

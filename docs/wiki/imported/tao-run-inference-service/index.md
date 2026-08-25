@@ -1,0 +1,18 @@
+---
+title: tao-run-inference-service
+description: Start, query, and stop a network-specific TAO inference microservice ({network_arch}-inference-microservice) by delegati
+---
+
+# tao-run-inference-service
+
+**Description:** Start, query, and stop a network-specific TAO inference microservice ({network_arch}-inference-microservice) by delegating container execution to the appropriate platform skill. Handles container image resolution, job-payload JSON construction, and the service registry. Use when the user wants to run inference on a TAO model checkpoint using a microservice container, deploy a TAO inference endpoint, or stop a running inference container.
+
+**Lines:** 243 | **Code:** 5 | **Dir:** `tao-run-inference-service`
+
+---
+
+---
+name: tao-run-inference-service
+description: >
+  Start, query, and stop a network-specific TAO inference microservice
+  ({network_arch}-inference-microservice) by delegating container execution to...

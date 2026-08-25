@@ -1,0 +1,20 @@
+---
+title: doca-pcc
+description: Use this skill when the user is doing hands-on host-side DOCA PCC work to load a CUSTOM Programmable Congestion Control 
+---
+
+# doca-pcc
+
+**Description:** Use this skill when the user is doing hands-on host-side DOCA PCC work to load a CUSTOM Programmable Congestion Control algorithm onto a BlueField DPU — creating per-port `doca_pcc` contexts, loading a `dpacc`-compiled `doca_pcc_app` onto the `doca_dev` for the RoCE-bearing port, parameterizing it, walking triple-axis capability discovery (DOCA cap-query + DPA-capable BlueField + firmware custom-PCC slot enabled), or debugging `DOCA_ERROR_*` from `doca_pcc_*`. Trigger even without explicit "DOCA PCC" phrasing — implicit forms include "loading my own congestion control onto a BF port", "DOCA_ERROR_NOT_PERMITTED on algorithm load", "DOCA_ERROR_DRIVER when I attach my custom algorithm", "my custom rate-update isn't affecting RoCE traffic", or "load succeeds but no on-wire change". Refuse and route elsewhere for DPA-side algorithm-body design, the `pcc_counters` CLI, default factory PCC in ConnectX firmware, or setting up the RDMA / RoCE traffic — those belong to other skills.
+
+**Lines:** 372 | **Code:** 0 | **Dir:** `doca-pcc`
+
+---
+
+---
+license: Apache-2.0
+name: doca-pcc
+description: >
+  Use this skill when the user is doing hands-on host-side DOCA
+  PCC work to load a CUSTOM Programmable Congestion Control
+  algorithm onto a Blu...

@@ -4,9 +4,16 @@ title: imported
 
 # 📦 imported
 
-61 skills
+404 skills
 
+- [accelerated-computing-cudf](accelerated-computing-cudf/) — Official NVIDIA-authored guidance for NVIDIA cuDF GPU DataFrames, pandas acceler
+- [aiq-deploy](aiq-deploy/) — Use when asked to install, deploy, run, validate, troubleshoot, or stop NVIDIA A
+- [aiq-research](aiq-research/) — Use when asked to run deep research or AI-Q research through a reachable NVIDIA 
 - [alpha](alpha/) — Fixture dispatcher with a mode table and forced-read references.
+- [amc-run-rtsp-calibration](amc-run-rtsp-calibration/) — Calibrate a new dataset from live RTSP camera streams via the AutoMagicCalib RES
+- [amc-run-sample-calibration](amc-run-sample-calibration/) — Run end-to-end calibration on the shipped sample dataset (sdg_08_2_sample_data_0
+- [amc-run-video-calibration](amc-run-video-calibration/) — Calibrate a new dataset from pre-recorded video files via the AutoMagicCalib RES
+- [amc-setup-calibration-stack](amc-setup-calibration-stack/) — Launch AutoMagicCalib microservice and web UI from NGC release images via Docker
 - [autoplan](autoplan/) — Auto-review pipeline — reads the full CEO, design, eng, and DX review skills fro
 - [benchmark](benchmark/) — Performance regression detection using the browse daemon. (gstack)
 - [benchmark-models](benchmark-models/) — Cross-model benchmark for gstack skills. (gstack)
@@ -18,14 +25,112 @@ title: imported
 - [context-restore](context-restore/) — Restore working context saved earlier by /context-save. (gstack)
 - [context-save](context-save/) — Save working context. (gstack)
 - [cso](cso/) — Chief Security Officer mode. (gstack)
+- [cudaq-guide](cudaq-guide/) — CUDA-Q onboarding guide for installation, test programs, GPU simulation, QPU har
+- [cuopt-developer](cuopt-developer/) — Modify, build, test, debug, and contribute to NVIDIA cuOpt (C++/CUDA, Python, se
+- [cuopt-install](cuopt-install/) — Install cuOpt for Python, C, or server via pip, conda, or Docker; verify the ins
+- [cuopt-multi-objective-exploration](cuopt-multi-objective-exploration/) — Trace, complete, and interpret the Pareto frontier across competing objectives u
+- [cuopt-numerical-optimization-api](cuopt-numerical-optimization-api/) — LP, MILP, and QP (beta) with cuOpt — Python, C, and CLI. Use when the user is so
+- [cuopt-numerical-optimization-formulation](cuopt-numerical-optimization-formulation/) — LP, MILP, QP — concepts, problem-text parsing, and formulation patterns (paramet
+- [cuopt-routing-api-python](cuopt-routing-api-python/) — Vehicle routing (VRP, TSP, PDP) with cuOpt — Python API only. Use when the user 
+- [cuopt-server-api-python](cuopt-server-api-python/) — cuOpt REST server — start server, endpoints, Python/curl client examples. Use wh
+- [cupynumeric-hdf5](cupynumeric-hdf5/) — Read and write large cuPyNumeric arrays to HDF5 with Legate's parallel, distribu
+- [cupynumeric-install](cupynumeric-install/) — Install and verify cuPyNumeric for Python — requirements, commands, verification
+- [cupynumeric-migration-readiness](cupynumeric-migration-readiness/) — Pre-migration readiness assessor for porting NumPy to cuPyNumeric. Use BEFORE su
+- [cupynumeric-parallel-data-load](cupynumeric-parallel-data-load/) — Load a sharded, on-disk dataset (sharded .npy, Parquet/Arrow, raw binary, sharde
+- [dali-dynamic-mode](dali-dynamic-mode/) — DALI imperative dynamic mode (`nvidia.dali.experimental.dynamic`, ndd): use when
+- [data-designer](data-designer/) — Use when the user wants to create a dataset, generate synthetic data, or build a
+- [deepstream-dev](deepstream-dev/) — NVIDIA DeepStream SDK development with Python pyservicemaker API. Use when build
+- [deepstream-generate-pipeline](deepstream-generate-pipeline/) — Build DeepStream GStreamer pipelines interactively. Use when the user asks about
+- [deepstream-import-vision-model](deepstream-import-vision-model/) — Use this skill to bring any vision model from HuggingFace or NVIDIA NGC into an 
+- [deepstream-profile-pipeline](deepstream-profile-pipeline/) — Profile a DeepStream pipeline with Nsight Systems and derive its configs from th
+- [deepstream-run-mv3dt](deepstream-run-mv3dt/) — Run and operate the DeepStream Multi-View 3D Tracking reference app, also known 
+- [deepstream-sop](deepstream-sop/) — Use this skill when building, deploying, evaluating, debugging, or measuring lat
 - [design-consultation](design-consultation/) — Design consultation: understands your product, researches the landscape, propose
 - [design-html](design-html/) — Design finalization: generates production-quality Pretext-native HTML/CSS. (gsta
 - [design-review](design-review/) — Designer's eye QA: finds visual inconsistency, spacing issues, hierarchy problem
 - [design-shotgun](design-shotgun/) — Design shotgun: generate multiple AI design variants, open a comparison board, c
 - [devex-review](devex-review/) — Live developer experience audit. (gstack)
 - [diagram](diagram/) — Turn an English description (or mermaid source) into a diagram triplet: the sour
+- [dicom-metadata-extract](dicom-metadata-extract/) — Used for extracting selected metadata from one DICOM file and flagging standard-
+- [dicom-series-preflight](dicom-series-preflight/) — Used for header-only preflight of one DICOM series folder before conversion or i
+- [dicom-series-to-volume](dicom-series-to-volume/) — Used for converting one CT DICOM series folder to a HU NIfTI volume with affine 
+- [digital-health-clinical-asr-build](digital-health-clinical-asr-build/) — Stage 2 of the Clinical ASR Flywheel. Use when curating clinical terms, tagging 
+- [digital-health-clinical-asr-eval](digital-health-clinical-asr-eval/) — Stage 3 of Clinical ASR Flywheel. Score a NeMo manifest, produce the five-sectio
+- [digital-health-clinical-asr-finetune](digital-health-clinical-asr-finetune/) — Stage 4 of the Clinical ASR Flywheel. Use when priority KER is above 0.3 to run 
+- [digital-health-clinical-asr-setup](digital-health-clinical-asr-setup/) — Stage 1 of Clinical ASR Flywheel. Use when bootstrapping a cycle: NVCF+MW disclo
+- [doca-aes-gcm](doca-aes-gcm/) — Use this skill when the user is doing hands-on DOCA AES-GCM work on a BlueField 
+- [doca-argp](doca-argp/) — Use this skill for hands-on DOCA Arg Parser CLI work on a shipped sample or new 
+- [doca-argus](doca-argus/) — Use this skill when the user is deploying or operating the DOCA Argus Service — 
+- [doca-bare-metal-deployment](doca-bare-metal-deployment/) — Use this skill for launching, supervising, debugging, OR platform lifecycle on a
+- [doca-bench](doca-bench/) — Run `doca_bench` (DOCA 2.7.0 or newer) to measure throughput, bulk latency, prec
+- [doca-bench-extension](doca-bench-extension/) — Use this skill when the operator is authoring, building, loading, or debugging a
+- [doca-bf3-deployment](doca-bf3-deployment/) — Use this skill for BlueField-3 (BF3) day-1 platform bring-up via the classic RSh
+- [doca-bf4-deployment](doca-bf4-deployment/) — WARNING: guides potentially IRREVERSIBLE BlueField-4 hardware operations (PLDM f
+- [doca-caps](doca-caps/) — Use this skill when the user wants to invoke the read-only doca_caps CLI to ask 
+- [doca-collectx-deployment](doca-collectx-deployment/) — Use this skill to deploy and operate a CollectX (clx) based DOCA telemetry colle
+- [doca-comch](doca-comch/) — Use this skill when the user is doing hands-on DOCA Comch work on a host + BlueF
+- [doca-comm-channel-admin](doca-comm-channel-admin/) — Use this skill to enumerate host↔DPU DOCA comch (formerly Comm Channel) servers 
+- [doca-common](doca-common/) — Use this skill whenever the user is doing hands-on DOCA programming on a BlueFie
+- [doca-compress](doca-compress/) — Use this skill for hands-on DOCA Compress programming on a BlueField DPU, Connec
+- [doca-container-deployment](doca-container-deployment/) — Use this skill when the user is hands-on deploying an in-bundle DOCA service con
+- [doca-debug](doca-debug/) — Use this skill when the user is debugging any DOCA symptom — a build that won't 
+- [doca-devemu](doca-devemu/) — Use this skill when the user is doing hands-on DOCA Device Emulation on a BlueFi
+- [doca-dma](doca-dma/) — Use this skill when the user is doing hands-on DOCA DMA programming — bringing u
+- [doca-dms](doca-dms/) — Operate NVIDIA DOCA Management Service (`dmsd` + `dmspe`) on a BlueField, Arm/x8
+- [doca-dpa](doca-dpa/) — Use this skill when the user is doing hands-on DOCA DPA host-side work on a Blue
+- [doca-dpa-hl-tracer](doca-dpa-hl-tracer/) — Use this skill when the user runs doca_dpa_hl_tracer to capture/decode DPA-side 
+- [doca-dpdk-bridge](doca-dpdk-bridge/) — Use this skill when the user has an existing DPDK application and is adding DOCA
+- [doca-erasure-coding](doca-erasure-coding/) — Use this skill when the user is doing hands-on DOCA Erasure Coding programming o
+- [doca-eth](doca-eth/) — Use this skill for hands-on DOCA Ethernet packet-queue work on a BlueField DPU o
+- [doca-firefly](doca-firefly/) — Use this skill when the user is operating the DOCA Firefly Service container on 
+- [doca-flow](doca-flow/) — Build and debug DOCA Flow applications on supported NVIDIA NICs/DPUs: define mat
+- [doca-flow-dpa-perf](doca-flow-dpa-perf/) — Use this skill when the user is invoking doca_flow_dpa_perf on DPA-capable hardw
+- [doca-flow-dpa-provider](doca-flow-dpa-provider/) — Use this skill when the user is doing hands-on DOCA Flow DPA Provider work — exp
+- [doca-flow-grpc-server](doca-flow-grpc-server/) — PLAINTEXT-ONLY: the shipped `doca_flow_grpc` server uses `grpc::InsecureServerCr
+- [doca-flow-perf](doca-flow-perf/) — Use this skill when the user is measuring the host or DPU-CPU control-plane rate
+- [doca-flow-tune](doca-flow-tune/) — Use this skill when the user is tuning a live or captured `doca-flow` pipeline w
+- [doca-gpi](doca-gpi/) — Use this skill for hands-on DOCA GPI programming — wiring a GPU-Packet-Initiator
+- [doca-gpunetio](doca-gpunetio/) — Use this skill when the user is doing hands-on DOCA GPUNetIO programming — wirin
+- [doca-gpunetio-ib-write-bw](doca-gpunetio-ib-write-bw/) — Use this skill when the user is building, running, or interpreting the doca/tool
+- [doca-gpunetio-ib-write-lat](doca-gpunetio-ib-write-lat/) — Use this skill when the user is measuring GPU-kernel-initiated RDMA WRITE latenc
+- [doca-hardware-safety](doca-hardware-safety/) — Use this skill whenever the agent is about to recommend or apply a change that t
+- [doca-mgmt](doca-mgmt/) — Use this skill when the user is doing hands-on DOCA Management programming again
+- [doca-pcc](doca-pcc/) — Use this skill when the user is doing hands-on host-side DOCA PCC work to load a
+- [doca-pcc-counters](doca-pcc-counters/) — Use this skill when the user is invoking the DOCA PCC Counters tool — the `pcc_c
+- [doca-pcc-ztr-rttcc-algo](doca-pcc-ztr-rttcc-algo/) — Use this skill when the user is doing hands-on deployment, tuning, or evaluation
+- [doca-programming-guide](doca-programming-guide/) — Use this skill when the user is writing their first DOCA app or asking a library
+- [doca-public-knowledge-map](doca-public-knowledge-map/) — Use this skill when the user needs to locate authoritative information about NVI
+- [doca-rdma](doca-rdma/) — Use this skill when the user is doing hands-on DOCA RDMA programming on a BlueFi
+- [doca-rdmi](doca-rdmi/) — Use this skill when the user is doing hands-on DOCA RDMI (RDMA Initiator) progra
+- [doca-rmax](doca-rmax/) — Use this skill when the user is doing hands-on DOCA Rivermax work on a BlueField
+- [doca-setup](doca-setup/) — Use this skill when the user is dealing with the DOCA environment around their w
+- [doca-sha](doca-sha/) — Use this skill when the user is doing hands-on DOCA SHA programming — offloading
+- [doca-sha-offload-engine](doca-sha-offload-engine/) — Use this skill when wiring the DOCA SHA Offload Engine (an OpenSSL ENGINE) into 
+- [doca-socket-relay](doca-socket-relay/) — Use this skill when the operator is driving the DOCA Socket Relay to bridge a so
+- [doca-spcx-cc](doca-spcx-cc/) — Use this skill when the user is invoking `doca_spcx_cc` (the host-side CLI under
+- [doca-sta](doca-sta/) — Use this skill when the user is doing hands-on NVMe-over-Fabrics storage-target 
+- [doca-structured-tools-contract](doca-structured-tools-contract/) — Use this skill whenever another DOCA skill says "prefer the structured tool per 
+- [doca-telemetry](doca-telemetry/) — Use this skill to read DOCA hardware-counter events from a `doca_dev` through th
+- [doca-telemetry-exporter](doca-telemetry-exporter/) — Use this skill when the user is doing hands-on DOCA Telemetry Exporter programmi
+- [doca-telemetry-utils](doca-telemetry-utils/) — Use this skill when the user is invoking `doca_telemetry_utils` on a host with D
+- [doca-upgrade](doca-upgrade/) — Use this skill when the user is contemplating a DOCA upgrade or downgrade — movi
+- [doca-urom](doca-urom/) — Use this skill when the user is doing hands-on DOCA UROM library work from the h
+- [doca-urom-svc](doca-urom-svc/) — Operate the DOCA UROM Service container on BlueField Arm for remote memory opera
+- [doca-verbs](doca-verbs/) — Use this skill when the user is dropping below the higher-level DOCA libraries (
+- [doca-version](doca-version/) — Use this skill when the user is doing DOCA version handling — detecting the inst
 - [document-generate](document-generate/) — Generate missing documentation from scratch for a feature, module, or entire pro
 - [document-release](document-release/) — Post-ship documentation update. (gstack)
+- [dynamo-interconnect-check](dynamo-interconnect-check/) — Validate that a Dynamo deployment's NIXL/UCX/NCCL interconnect is ready for disa
+- [dynamo-recipe-runner](dynamo-recipe-runner/) — Select, validate, patch, and deploy existing NVIDIA Dynamo Kubernetes recipes. U
+- [dynamo-router-starter](dynamo-router-starter/) — Start or patch Dynamo router modes and run router endpoint smoke checks. Use for
+- [dynamo-troubleshoot](dynamo-troubleshoot/) — Diagnose failed or unhealthy Dynamo deployments. Use when pods, model-cache jobs
+- [earth2studio-create-datasource](earth2studio-create-datasource/) — Create and validate Earth2Studio data source wrappers (DataSource, ForecastSourc
+- [earth2studio-create-diagnostic](earth2studio-create-diagnostic/) — Create Earth2Studio diagnostic model wrappers for single-step data transformatio
+- [earth2studio-create-prognostic](earth2studio-create-prognostic/) — Create Earth2Studio prognostic (time-stepping forecast) model wrappers. Do NOT u
+- [earth2studio-data-fetch](earth2studio-data-fetch/) — Fetch weather/climate data via Earth2Studio data sources for specific variables 
+- [earth2studio-deterministic-forecast](earth2studio-deterministic-forecast/) — Build deterministic forecast scripts with Earth2Studio (model, data source, IO, 
+- [earth2studio-discover](earth2studio-discover/) — Find Earth2Studio models, data sources, and examples for a weather/climate use c
+- [earth2studio-install](earth2studio-install/) — Guide installing Earth2Studio via uv or pip, selecting model extras, and configu
 - [freeze](freeze/) — Restrict file edits to a specific directory for the session. (gstack)
 - [gstack](gstack/) — Router for the gstack skill suite. (gstack)
 - [gstack-openclaw-ceo-review](gstack-openclaw-ceo-review/) — Use when asked to review a plan, challenge a proposal, run a CEO review, poke ho
@@ -36,34 +141,272 @@ title: imported
 - [guard](guard/) — Full safety mode: destructive command warnings + directory-scoped edits. (gstack
 - [hackernews-frontpage](hackernews-frontpage/) — Scrape the Hacker News front page (titles, points, comment counts).
 - [health](health/) — Code quality dashboard. (gstack)
+- [holohub-app-lifecycle](holohub-app-lifecycle/) — Use for non-failing HoloHub app work with ./holohub: scaffold, build, run, test,
+- [holohub-debug-build-run](holohub-debug-build-run/) — Use when a concrete ./holohub command fails, hangs, regresses, or returns wrong 
+- [holohub-module-lifecycle](holohub-module-lifecycle/) — Use for reusable Holoscan Module work with ./holohub: scaffold, tests, editable 
+- [holoscan-install-conda](holoscan-install-conda/) — Install Holoscan SDK v4.3+ via Conda in a CUDA 13 environment. Use for Conda ins
+- [holoscan-install-container](holoscan-install-container/) — Install Holoscan SDK via the NGC Docker container. Use for container-based insta
+- [holoscan-install-debian](holoscan-install-debian/) — Install Holoscan SDK natively on Ubuntu via apt. Use for C++ installs on Ubuntu;
+- [holoscan-install-source](holoscan-install-source/) — Build Holoscan SDK from source via the in-tree ./run script. Use only when publi
+- [holoscan-install-wheel](holoscan-install-wheel/) — Install Holoscan SDK Python wheel via pip into a venv. Use for Python installs; 
+- [holoscan-setup](holoscan-setup/) — Guides Holoscan SDK installation: inspects the host, assesses platform compatibi
+- [hsb-app](hsb-app/) — Discover and run Holoscan Sensor Bridge example applications on a connected devk
+- [hsb-flash](hsb-flash/) — Flash the FPGA on an HSB board connected to an NVIDIA devkit. Supports HSB Latti
+- [hsb-ip-create-top](hsb-ip-create-top/) — Create or explain fixed-format HSB FPGA_top.sv wrappers from validated HOLOLINK_
+- [hsb-ip-def](hsb-ip-def/) — Generate, validate, compare, or explain HSB HOLOLINK_def.svh macros. Do not use 
+- [hsb-ip-packetizer](hsb-ip-packetizer/) — Choose or explain HSB Sensor RX packetizer fields for HOLOLINK_def.svh. Do not u
+- [hsb-setup](hsb-setup/) — Clone the latest NVIDIA Holoscan Sensor Bridge repo, ask which supported devkit 
+- [hsb-test](hsb-test/) — Execute QA test plans on Holoscan Sensor Bridge hardware. Reads a user-provided 
+- [i4h-catheter-navigation](i4h-catheter-navigation/) — Overview of `workflows/catheter_navigation/` (fluorosim DRR, XPBD physics, vascu
+- [i4h-catheter-navigation-digital-twin](i4h-catheter-navigation-digital-twin/) — Build a patient vasculature digital twin from CT (preprocess + segment). Use whe
+- [i4h-catheter-navigation-e2e](i4h-catheter-navigation-e2e/) — End-to-end smoke for catheter navigation covering setup, digital twin, DRR, and 
+- [i4h-catheter-navigation-render-drr](i4h-catheter-navigation-render-drr/) — Render a single DRR fluoroscopy frame from a CT cache or synthetic phantom. Use 
+- [i4h-catheter-navigation-setup](i4h-catheter-navigation-setup/) — Verify host/GPU requirements and PYTHONPATH for the catheter navigation workflow
+- [i4h-catheter-navigation-smoke](i4h-catheter-navigation-smoke/) — Run CPU-only fluorosim smoke tests (imports, preprocessing, CLI parsers). Use wh
+- [i4h-catheter-navigation-viewport](i4h-catheter-navigation-viewport/) — Launch the interactive Slang fluoroscopy viewport with XPBD catheter physics. Us
+- [i4h-lerobot-viz](i4h-lerobot-viz/) — Serve the LeRobot HTML visualizer for a converted dataset in a browser. Use when
+- [i4h-workflow](i4h-workflow/) — Overview of `workflows/agentic/` (IsaacLab-Arena + GR00T/openpi). Use when the u
+- [i4h-workflow-create](i4h-workflow-create/) — Create a new agentic env by forking an existing env. Use for new env/task scaffo
+- [i4h-workflow-dataset-annotate](i4h-workflow-dataset-annotate/) — Use a VLM to verify whether each episode satisfies the env's task description. U
+- [i4h-workflow-dataset-convert](i4h-workflow-dataset-convert/) — Convert an agentic HDF5 recording into a LeRobot dataset (parquet, meta, videos)
+- [i4h-workflow-dataset-mimic](i4h-workflow-dataset-mimic/) — Expand an HDF5 recording by cloning trajectories with action/state noise. Use wh
+- [i4h-workflow-dataset-replay](i4h-workflow-dataset-replay/) — Replay a recorded HDF5 episode inside Isaac Sim for visual verification. Use whe
+- [i4h-workflow-dataset-teleop](i4h-workflow-dataset-teleop/) — Record episodes for an agentic env via teleoperation (keyboard, SO-ARM leader, o
+- [i4h-workflow-e2e](i4h-workflow-e2e/) — Run the full end-to-end agentic pipeline (record → mimic → annotate → replay → c
+- [i4h-workflow-finetune](i4h-workflow-finetune/) — Fine-tune a GR00T or openpi PI0 policy on a LeRobot dataset. Use when asked to f
+- [i4h-workflow-scene-edit](i4h-workflow-scene-edit/) — Edit an env's scene in place — objects, cameras, task, success bounds, randomiza
+- [i4h-workflow-setup](i4h-workflow-setup/) — Verify host requirements and run `workflows/agentic/setup.sh`. Use when asked to
+- [i4h-workflow-validate](i4h-workflow-validate/) — Validate, evaluate, or run i4h envs. Use for policy/checkpoint rollouts and scri
 - [investigate](investigate/) — Systematic debugging with root cause investigation. (gstack)
 - [ios-clean](ios-clean/) — Remove the DebugBridge SPM package and all #if DEBUG wiring from an iOS app. (gs
 - [ios-design-review](ios-design-review/) — Visual design audit for iOS apps on real hardware. (gstack)
 - [ios-fix](ios-fix/) — Autonomous iOS bug fixer. (gstack)
 - [ios-qa](ios-qa/) — Live-device iOS QA for SwiftUI apps. (gstack)
 - [ios-sync](ios-sync/) — Regenerate the iOS debug bridge against the latest upstream gstack templates. (g
+- [jetson-build-source](jetson-build-source/) — Use when you need to rebuild the BSP overlay — DT, OOT modules, or kernel — from
+- [jetson-customize-camera](jetson-customize-camera/) — Enable MIPI/GMSL camera sensors on a Jetson Thor or Orin custom carrier by rende
+- [jetson-customize-clocks](jetson-customize-clocks/) — Use to lock/cap Jetson CPU/GPU/EMC clocks, toggle EMC/CPU DVFS, or change cpufre
+- [jetson-customize-fan](jetson-customize-fan/) — Use when you need to add, remove, edit, list, or change the boot default of an n
+- [jetson-customize-mgbe](jetson-customize-mgbe/) — Enable Jetson Thor 25G/10G/1G MGBE QSFP via kernel-DT overlay. Do NOT use for UP
+- [jetson-customize-nvpmodel](jetson-customize-nvpmodel/) — Use when you need to add, remove, edit, list, or change the boot default of an n
+- [jetson-customize-pcie](jetson-customize-pcie/) — Per-controller PCIe enable / disable / lanes / link-speed for a Jetson Thor or O
+- [jetson-customize-pinmux](jetson-customize-pinmux/) — Per-pin SFIO / direction / initial-state configurator for a Jetson Orin or Thor 
+- [jetson-customize-uphy](jetson-customize-uphy/) — Configure Jetson UPHY lane allocation (uphy0/uphy1-config) on Orin/Thor custom c
+- [jetson-customize-usb](jetson-customize-usb/) — Enable/disable Jetson USB2/USB3 SS ports via kernel-DT overlay. Do NOT use for U
+- [jetson-derive-carrier](jetson-derive-carrier/) — Bootstrap a custom carrier board by forking carrier files and scaffolding a DT o
+- [jetson-diagnostic](jetson-diagnostic/) — Read-only Jetson health snapshot for identity, memory, GPU, thermal, power, stor
+- [jetson-download-bsp](jetson-download-bsp/) — Download NVIDIA Jetson Linux BSP artifacts (BSP tarball, sample rootfs, public_s
+- [jetson-flash-image](jetson-flash-image/) — Use to flash a promoted BSP image to a Jetson DUT in RCM mode via flash.sh or l4
+- [jetson-generate-kb](jetson-generate-kb/) — Build a per-target knowledge-base markdown next to the active profile by walking
+- [jetson-headless-mode](jetson-headless-mode/) — Plan and apply safe Jetson headless-mode changes to reclaim GUI and daemon memor
+- [jetson-inference-mem-tune](jetson-inference-mem-tune/) — Pick the serving stack and per-runtime memory flags (vLLM, SGLang, llama.cpp, Te
+- [jetson-init-image](jetson-init-image/) — Extract Jetson Linux + sample-rootfs tarballs and run apply_binaries.sh for the 
+- [jetson-init-source](jetson-init-source/) — Set up the BSP source workspace: Linux_for_Tegra overlay tracker, bsp_sources, C
+- [jetson-init-target](jetson-init-target/) — Author a new Jetson target-platform profile (reference_devkit + optional custom_
+- [jetson-link-docs](jetson-link-docs/) — Bind pre-downloaded Jetson reference docs (developer guide, design guide, pinmux
+- [jetson-llm-benchmark](jetson-llm-benchmark/) — Benchmark Jetson LLM/VLM serving performance across vLLM, llama.cpp, and Ollama 
+- [jetson-llm-serve](jetson-llm-serve/) — Stand up vLLM or SGLang serving on Jetson, using upstream vLLM on Thor and Orin 
+- [jetson-memory-audit](jetson-memory-audit/) — Measure Jetson DRAM/NvMap usage and verify before/after memory reclamation with 
+- [jetson-optimize-memory](jetson-optimize-memory/) — Reclaim DRAM by disabling unused subsystems across MB1 BCT, MB2 BCT, kernel rese
+- [jetson-package](jetson-package/) — Pick Jetson-compatible containers, vLLM runtime images, and Jetson AI Lab PyPI i
+- [jetson-print-bsp-info](jetson-print-bsp-info/) — Use when you need to print Jetson BSP info (L4T version, board configs, rootfs s
+- [jetson-print-device-info](jetson-print-device-info/) — Use when you need to print Jetson device info (module model, L4T version, kernel
+- [jetson-promote-image](jetson-promote-image/) — Use to promote overlay files and built artifacts into the staged BSP image. Do N
+- [jetson-quick-start](jetson-quick-start/) — Entry skill for Jetson / IGX BSP customization. Asks one core click-to-select se
+- [jetson-set-target](jetson-set-target/) — Switch the active Jetson target-platform pointer to an existing profile YAML. Us
+- [jetson-speculative-decoding](jetson-speculative-decoding/) — Add EAGLE-3 or draft-model speculative decoding to a Jetson vLLM server when TPO
+- [jetson-validate-image](jetson-validate-image/) — Use after jetson-flash-image to run static BSP checks, on-target smoke/regressio
+- [jetson-video-benchmark](jetson-video-benchmark/) — Use when measuring Jetson Video Codec SDK or PyNvVideoCodec encode/decode throug
+- [jetson-video-capability](jetson-video-capability/) — Use when Jetson codec, profile, chroma, bit-depth, dimension, engine-count, or o
+- [jetson-video-pipeline](jetson-video-pipeline/) — Use when executing and verifying Jetson Video Codec SDK or PyNvVideoCodec encode
+- [jetson-video-recipe](jetson-video-recipe/) — Use when turning a Jetson encoder use case into one validated surface-neutral re
+- [jetson-video-setup](jetson-video-setup/) — Use when installing, repairing, probing, or verifying native NVIDIA Video Codec 
 - [land-and-deploy](land-and-deploy/) — Land and deploy workflow. (gstack)
 - [landing-report](landing-report/) — Read-only queue dashboard for workspace-aware ship. (gstack)
+- [launch-nemo-rl](launch-nemo-rl/) — Playbook for launching, monitoring, stopping, and debugging NeMo-RL recipes on a
 - [learn](learn/) — Manage project learnings.
 - [make-pdf](make-pdf/) — Turn any markdown file into a publication-quality PDF. (gstack)
+- [mcore-create-issue](mcore-create-issue/) — Investigate a failing GitHub Actions run or job and create a GitHub issue for th
+- [mcore-linting-and-formatting](mcore-linting-and-formatting/) — Linting and formatting for Megatron-LM. Covers running autoformat.sh, tools (ruf
+- [mcore-run-on-slurm](mcore-run-on-slurm/) — How to launch distributed Megatron-LM training jobs on a SLURM cluster. Covers a
+- [mcore-split-pr](mcore-split-pr/) — Split a PR into multiple PRs to reduce the number of required CODEOWNERS reviewe
+- [mcore-testing](mcore-testing/) — Test system for Megatron-LM. Covers test layout, recipe YAML structure, adding a
+- [nemo-automodel-distributed-training](nemo-automodel-distributed-training/) — Guide for selecting and configuring distributed training strategies in NeMo Auto
+- [nemo-automodel-launcher-config](nemo-automodel-launcher-config/) — Configure NeMo AutoModel job launches for interactive runs, Slurm clusters, and 
+- [nemo-automodel-model-onboarding](nemo-automodel-model-onboarding/) — Guide for onboarding new model architectures into NeMo AutoModel, including arch
+- [nemo-automodel-recipe-development](nemo-automodel-recipe-development/) — Create and modify NeMo AutoModel training and evaluation recipes, including YAML
+- [nemo-fabric-build-adapter](nemo-fabric-build-adapter/) — Build, migrate, review, and maintain third-party NVIDIA NeMo Fabric adapters aga
+- [nemo-fabric-integrate](nemo-fabric-integrate/) — Use this skill when integrating NVIDIA NeMo Fabric into a consumer application, 
+- [nemo-mbridge-mlm-bridge-training](nemo-mbridge-mlm-bridge-training/) — Run Megatron-LM (MLM) and Megatron Bridge training with mock or real data. Cover
+- [nemo-mbridge-multi-node-slurm](nemo-mbridge-multi-node-slurm/) — Convert single-node scripts to multi-node Slurm sbatch jobs and debug common mul
+- [nemo-mbridge-perf-activation-recompute](nemo-mbridge-perf-activation-recompute/) — Validate and use selective and full activation recompute in Megatron Bridge to r
+- [nemo-mbridge-perf-cpu-offloading](nemo-mbridge-perf-cpu-offloading/) — Validate and use CPU offloading in Megatron Bridge, including layer-level activa
+- [nemo-mbridge-perf-cuda-graphs](nemo-mbridge-perf-cuda-graphs/) — Validate and use CUDA graph capture in Megatron Bridge, including local full-ite
+- [nemo-mbridge-perf-expert-parallel-overlap](nemo-mbridge-perf-expert-parallel-overlap/) — Validate and use MoE expert-parallel communication overlap in Megatron-Bridge, i
+- [nemo-mbridge-perf-hierarchical-context-parallel](nemo-mbridge-perf-hierarchical-context-parallel/) — Operational guide for enabling hierarchical context parallelism in Megatron-Brid
+- [nemo-mbridge-perf-megatron-fsdp](nemo-mbridge-perf-megatron-fsdp/) — Operational guide for enabling Megatron FSDP in Megatron-Bridge, including confi
+- [nemo-mbridge-perf-memory-tuning](nemo-mbridge-perf-memory-tuning/) — Techniques for reducing peak GPU memory in Megatron Bridge — expandable segments
+- [nemo-mbridge-perf-moe-comm-overlap](nemo-mbridge-perf-moe-comm-overlap/) — MoE expert-parallel communication overlap in Megatron Bridge. Covers dispatch/co
+- [nemo-mbridge-perf-moe-dispatcher-selection](nemo-mbridge-perf-moe-dispatcher-selection/) — Choose the right MoE token dispatcher (`alltoall`, DeepEP, or HybridEP) for the 
+- [nemo-mbridge-perf-moe-hardware-configs](nemo-mbridge-perf-moe-hardware-configs/) — Representative, point-in-time MoE training playbooks by hardware and model famil
+- [nemo-mbridge-perf-moe-long-context](nemo-mbridge-perf-moe-long-context/) — Long-context MoE training guidance for Megatron Bridge. Covers CP sizing, select
+- [nemo-mbridge-perf-moe-optimization-workflow](nemo-mbridge-perf-moe-optimization-workflow/) — Evidence-gated workflow for MoE performance optimization in Megatron Bridge. Cov
+- [nemo-mbridge-perf-moe-vlm-training](nemo-mbridge-perf-moe-vlm-training/) — Practical guidance for training MoE VLMs in Megatron Bridge. Compares FSDP and 3
+- [nemo-mbridge-perf-parallelism-strategies](nemo-mbridge-perf-parallelism-strategies/) — Operational guide for choosing and combining parallelism strategies in Megatron 
+- [nemo-mbridge-perf-sequence-packing](nemo-mbridge-perf-sequence-packing/) — Validate and use packed sequences and long-context training in Megatron-Bridge, 
+- [nemo-mbridge-perf-tp-dp-comm-overlap](nemo-mbridge-perf-tp-dp-comm-overlap/) — Operational guide for enabling TP, DP, and PP communication overlap in Megatron-
+- [nemo-mbridge-recipe-recommender](nemo-mbridge-recipe-recommender/) — Recommend and customize Megatron Bridge library and benchmark recipes for a user
+- [nemo-mbridge-resiliency](nemo-mbridge-resiliency/) — Resiliency features in Megatron Bridge including fault tolerance, straggler dete
+- [nemo-relay-debug-runtime-integration](nemo-relay-debug-runtime-integration/) — Use this skill when NeMo Relay is installed or imported but application-side run
+- [nemo-relay-get-started](nemo-relay-get-started/) — Use this skill when first-time NeMo Relay users want to try Relay, choose the le
+- [nemo-relay-install](nemo-relay-install/) — Use this skill when choosing or running NeMo Relay installation for the CLI, Pyt
+- [nemo-relay-instrument-calls](nemo-relay-instrument-calls/) — Use this skill when an application owns tool or LLM/provider call sites and need
+- [nemo-relay-instrument-context-isolation](nemo-relay-instrument-context-isolation/) — Use this skill when concurrent requests, async tasks, threads, workers, goroutin
+- [nemo-relay-instrument-typed-wrappers](nemo-relay-instrument-typed-wrappers/) — Use this skill when adding NeMo Relay typed wrappers, domain types, or provider 
+- [nemo-relay-migrate-from-flow](nemo-relay-migrate-from-flow/) — Use this skill when migrating applications, examples, integrations, documentatio
+- [nemo-relay-plugin-adaptive-tuning](nemo-relay-plugin-adaptive-tuning/) — Use this skill when baseline NeMo Relay instrumentation exists and the user want
+- [nemo-relay-plugin-build](nemo-relay-plugin-build/) — Use this skill when building or packaging reusable NeMo Relay runtime behavior a
+- [nemo-relay-plugin-observability](nemo-relay-plugin-observability/) — Use this skill when choosing or configuring NeMo Relay 0.6 or 0.7 observability 
+- [nemo-retriever](nemo-retriever/) — Use when the user wants to search, query, extract, transcribe, describe, quote, 
+- [nemo-rl-auto-research](nemo-rl-auto-research/) — Autonomous NeMo-RL research agent workflow for directed hypothesis testing and o
+- [nemo-rl-brev-etiquette](nemo-rl-brev-etiquette/) — Brev instance operating guidance for NeMo-RL agents working in /home/ubuntu/RL w
+- [nemo-rl-docs](nemo-rl-docs/) — Documentation conventions for NeMo-RL. Covers docs/index.md updates and docstrin
+- [nemo-rl-session-memory](nemo-rl-session-memory/) — Manage durable working-session memory for coding agents. Use when a user asks to
+- [nemoclaw-user-guide](nemoclaw-user-guide/) — Guides human users' AI agents to the NemoClaw docs MCP server and canonical Fern
+- [nemotron-asr-finetune](nemotron-asr-finetune/) — Orchestration skill for NVIDIA Nemotron Speech (Riva) / NeMo ASR domain and lang
+- [nemotron-customize](nemotron-customize/) — Plan, configure, and chain repo-native Nemotron customization steps into single-
+- [nemotron-policy-generator](nemotron-policy-generator/) — Generates BYO custom safety policies for NVIDIA Nemotron content-safety guardrai
+- [nemotron-retrieval-recipes](nemotron-retrieval-recipes/) — Use when planning, debugging, tuning, evaluating, exporting, or deploying public
+- [nemotron-speech](nemotron-speech/) — Routes NVIDIA Nemotron Speech (Riva) NIM tasks — deploys, runs, and tests ASR, T
+- [nv-generate-ct-rflow](nv-generate-ct-rflow/) — Used for generating synthetic CT volumes and masks with NV-Generate-CTMR rflow-c
+- [nv-generate-mr](nv-generate-mr/) — Used for generating synthetic body MRI volumes with NV-Generate-CTMR rflow-mr. N
+- [nv-generate-mr-brain](nv-generate-mr-brain/) — Used for generating synthetic brain MRI volumes with NV-Generate-CTMR rflow-mr-b
+- [nv-generate-mr-brain-finetune](nv-generate-mr-brain-finetune/) — Used for finetuning NV-Generate-CTMR MR-brain diffusion UNet from a NIfTI datali
+- [nv-generate-vae-finetune](nv-generate-vae-finetune/) — Used for finetuning the NV-Generate-CTMR MAISI VAE from CT/MRI NIfTI datalists. 
+- [nv-reason-cxr](nv-reason-cxr/) — Used for command-shape or live NV-Reason-CXR chest X-ray reasoning smoke tests. 
+- [nv-segment-ct](nv-segment-ct/) — Used for running NV-Segment-CT VISTA3D on CT NIfTI volumes and recording label-m
+- [nv-segment-ct-finetune](nv-segment-ct-finetune/) — Used for smoke or dataset finetuning of NV-Segment-CT VISTA3D on CT NIfTI labels
+- [nv-segment-ctmr](nv-segment-ctmr/) — Used for running NV-Segment-CTMR on CT or MRI NIfTI volumes and recording label-
+- [nvidia-skill-finder](nvidia-skill-finder/) — Use for NVIDIA-related requests where an NVIDIA skill might help, even if the us
 - [office-hours](office-hours/) — YC Office Hours — two modes. (gstack)
+- [omniverse-cad-to-simready](omniverse-cad-to-simready/) — Coordinate the end-to-end CAD/source-asset to SimReady workflow. Use for broad r
+- [omniverse-realtime-viewer](omniverse-realtime-viewer/) — Use as the top-level router for Omniverse Realtime Viewer USD app requests and f
+- [omniverse-usd-performance-tuning](omniverse-usd-performance-tuning/) — Top-level workflow skill for USD performance diagnosis and optimization. Handles
 - [open-gstack-browser](open-gstack-browser/) — Launch GStack Browser — AI-controlled Chromium with the sidebar extension baked 
+- [paidf-anomalygen](paidf-anomalygen/) — Full PAIDF AnomalyGen pipeline — fine-tune on a new anomaly dataset, generate sy
 - [pair-agent](pair-agent/) — Pair a remote AI agent with your browser. (gstack)
+- [physical-ai-defect-image-generation](physical-ai-defect-image-generation/) — Use when the user wants to orchestrate defect image generation with NVIDIA Cosmo
+- [physical-ai-image-attribute-augmentation](physical-ai-image-attribute-augmentation/) — Use when running image attribute augmentation and auto-labeling workflows on OSM
+- [physical-ai-infrastructure-setup-and-resilient-scaling](physical-ai-infrastructure-setup-and-resilient-scaling/) — Use when the user wants to set up, scale, validate, or harden NVIDIA physical AI
+- [physical-ai-neural-reconstruction](physical-ai-neural-reconstruction/) — Router for NVIDIA NuRec/NRE: USDZ rendering, NCore conversion, 3DGS, gRPC sensor
+- [physical-ai-video-data-augmentation](physical-ai-video-data-augmentation/) — Use when running video data augmentation and auto-labeling workflows on OSMO: fl
+- [physicsnemo-discover](physicsnemo-discover/) — Official NVIDIA-authored guidance for navigating PhysicsNeMo — pick the model, d
+- [physicsnemo-shard-tensor](physicsnemo-shard-tensor/) — Official NVIDIA-authored guidance for PhysicsNeMo ShardTensor domain parallelism
 - [plan-ceo-review](plan-ceo-review/) — CEO/founder-mode plan review. (gstack)
 - [plan-design-review](plan-design-review/) — Designer's eye plan review — interactive, like CEO and Eng review. (gstack)
 - [plan-devex-review](plan-devex-review/) — Interactive developer experience plan review. (gstack)
 - [plan-eng-review](plan-eng-review/) — Eng manager-mode plan review. (gstack)
 - [plan-tune](plan-tune/) — Self-tuning question sensitivity + developer psychographic for gstack (v1: obser
+- [portfolio-optimization](portfolio-optimization/) — Use when a user asks to build, optimize, backtest, rebalance, or analyze a stock
 - [qa](qa/) — Systematically QA test a web application and fix bugs found. (gstack)
 - [qa-only](qa-only/) — Report-only QA testing. (gstack)
+- [rag-blueprint](rag-blueprint/) — NVIDIA RAG Blueprint — deploy, configure, troubleshoot, and manage. Handles any 
+- [rag-eval](rag-eval/) — Filesystem RAG benchmarks: corpus/, train.json, evaluate_rag.py (RAGAS quality).
+- [rag-perf](rag-perf/) — Performance benchmarking for a deployed NVIDIA RAG Blueprint server: profiling p
 - [retro](retro/) — Weekly engineering retrospective. (gstack)
 - [review](review/) — Pre-landing PR review. (gstack)
+- [rtvi-cv-customize-model](rtvi-cv-customize-model/) — How to swap the DeepStream CV detection model in the VSS Alerts Blueprint verifi
+- [rtvi-cv-scaffold-vss-service](rtvi-cv-scaffold-vss-service/) — Scaffold a standalone RTVI CV microservice that plugs into VSS Search and Alerts
+- [rtvi-vlm-customize-model](rtvi-vlm-customize-model/) — How to swap the VLM in the VSS Alerts Blueprint — covers RTVI-VLM microservice d
 - [scrape](scrape/) — Pull data from a web page. (gstack)
 - [setup-browser-cookies](setup-browser-cookies/) — Import cookies from your real Chromium browser into the headless browse session.
 - [setup-deploy](setup-deploy/) — Configure deployment settings for /land-and-deploy.
 - [setup-gbrain](setup-gbrain/) — Set up gbrain for this coding agent: install the CLI, initialize a local PGLite 
 - [ship](ship/) — Ship workflow: detect + merge base branch, run tests, review diff, bump VERSION,
+- [skill-card-generator](skill-card-generator/) — Use only to generate or update a governance skill card for a specified existing 
 - [skillify](skillify/) — Codify the most recent successful /scrape flow into a permanent browser-skill on
 - [spec](spec/) — Turn vague intent into a precise, executable spec in five phases. (gstack)
 - [sync-gbrain](sync-gbrain/) — Keep gbrain current with this repo's code and refresh agent search guidance in C
+- [tao-analyze-changenet-rca](tao-analyze-changenet-rca/) — Performs deep Root Cause Analysis (RCA) on NVIDIA TAO Visual ChangeNet classific
+- [tao-analyze-gaps-visual-changenet](tao-analyze-gaps-visual-changenet/) — Performs gap analysis on NVIDIA TAO VCN Classify (Visual Component Net) experime
+- [tao-analyze-gaps-vlm-bcq](tao-analyze-gaps-vlm-bcq/) — Extract false-positive and false-negative gaps from VLM binary-classification-qu
+- [tao-convert-dataset-format](tao-convert-dataset-format/) — Run `tao-daft convert` to convert NVIDIA TAO DAFT datasets between supported for
+- [tao-finetune-clip](tao-finetune-clip/) — CLIP vision-language model for image-text retrieval, zero-shot classification, e
+- [tao-finetune-cosmos-embed](tao-finetune-cosmos-embed/) — Cosmos-Embed1 video-text embedding for text-to-video retrieval, video-to-video s
+- [tao-finetune-cosmos-reason](tao-finetune-cosmos-reason/) — Cosmos3-Nano video QA supervised fine-tuning with FSDP parallelism. Use when tra
+- [tao-finetune-huggingface-model](tao-finetune-huggingface-model/) — Fine-tune any HuggingFace CV / VLM / LLM model on local NVIDIA GPUs inside an NG
+- [tao-generate-image-grounding](tao-generate-image-grounding/) — Two-step image grounding pipeline: extracts referring expressions from (image, c
+- [tao-generate-referring-expressions](tao-generate-referring-expressions/) — Four-step image referring-expression pipeline: turns images plus KITTI bounding-
+- [tao-generate-video-reasoning-annotations](tao-generate-video-reasoning-annotations/) — Multi-step video annotation pipeline that turns raw videos into Chain-of-Thought
+- [tao-launch-workflow](tao-launch-workflow/) — Shared launch intake for any TAO workflow or action. Use when the user wants to 
+- [tao-list-capabilities](tao-list-capabilities/) — Answer what the TAO Skill Bank plugin can do by generating the response from pac
+- [tao-mine-aoi-images](tao-mine-aoi-images/) — Runs the DEFT embed-then-mine workflow for VCN AOI iterations — embeds the gap-a
+- [tao-port-huggingface-model](tao-port-huggingface-model/) — Integrate a HuggingFace Computer Vision model into the NVIDIA TAO Toolkit ecosys
+- [tao-route-visual-changenet-samples](tao-route-visual-changenet-samples/) — Routes the weakest VCN samples (output of `tao-analyze-gaps-visual-changenet`) i
+- [tao-run-automl](tao-run-automl/) — Run AutoML / hyperparameter optimization (HPO) for NVIDIA TAO networks using Aut
+- [tao-run-automl-deft-pipeline](tao-run-automl-deft-pipeline/) — Run the canonical NVIDIA AOI three-phase training pipeline — Phase 1 AutoML base
+- [tao-run-deft-aoi](tao-run-deft-aoi/) — Run the full DEFT AOI improvement loop for NVIDIA TAO VisualChangeNet / ChangeNe
+- [tao-run-inference-service](tao-run-inference-service/) — Start, query, and stop a network-specific TAO inference microservice ({network_a
+- [tao-run-on-brev](tao-run-on-brev/) — Brev managed GPU instances with Docker support. Use when running TAO training, e
+- [tao-run-on-docker](tao-run-on-docker/) — Docker conventions for running NVIDIA GPU container workloads — NGC authenticati
+- [tao-run-on-kubernetes](tao-run-on-kubernetes/) — Kubernetes execution platform — submits TAO container jobs as single-pod k8s Job
+- [tao-run-on-local-docker](tao-run-on-local-docker/) — Local or remote Docker execution for TAO SDK job containers using a Docker daemo
+- [tao-run-on-slurm](tao-run-on-slurm/) — Remote SLURM GPU cluster execution over SSH with sbatch/srun, Pyxis/Enroot conta
+- [tao-run-platform](tao-run-platform/) — TAO Execution SDK for submitting and monitoring GPU training jobs on supported p
+- [tao-setup-nvidia-gpu-host](tao-setup-nvidia-gpu-host/) — Host setup for TAO GPU backends. Checks and, after user approval, installs NVIDI
+- [tao-train-action-recognition](tao-train-action-recognition/) — Action recognition from video sequences. Supports RGB, optical flow, and joint (
+- [tao-train-bevfusion](tao-train-bevfusion/) — BEVFusion for multi-sensor 3D object detection. Fuses LiDAR point clouds and cam
+- [tao-train-centerpose](tao-train-centerpose/) — CenterPose for keypoint / pose estimation. Detects object centers and regresses 
+- [tao-train-deformable-detr](tao-train-deformable-detr/) — Deformable DETR for 2D object detection. Uses deformable attention for efficient
+- [tao-train-depth-anything-v2](tao-train-depth-anything-v2/) — Monocular depth estimation using Metric Depth Anything v2 or Relative Depth Anyt
+- [tao-train-dino](tao-train-dino/) — DINO (DETR with Improved DeNoising Anchor Boxes) for 2D object detection. Transf
+- [tao-train-fast-foundation-stereo](tao-train-fast-foundation-stereo/) — Real-time stereo depth estimation using FastFoundationStereo (FFS), the distille
+- [tao-train-foundation-stereo](tao-train-foundation-stereo/) — Stereo depth estimation using FoundationStereo. Predicts disparity maps from ste
+- [tao-train-grounding-dino](tao-train-grounding-dino/) — Grounding DINO for open-set object detection. Combines DINO-style detection with
+- [tao-train-image-classification](tao-train-image-classification/) — PyTorch-based TAO image classification. Supports a wide range of backbones (FAN,
+- [tao-train-mask-auto-encoder](tao-train-mask-auto-encoder/) — Masked Auto-Encoder (MAE) for self-supervised pretraining and fine-tuning. Masks
+- [tao-train-mask-auto-label](tao-train-mask-auto-label/) — MAL (Mask Auto-Label) for weakly-supervised segmentation. Produces segmentation 
+- [tao-train-mask-grounding-dino](tao-train-mask-grounding-dino/) — Mask Grounding DINO for grounded instance segmentation. Extends Grounding DINO w
+- [tao-train-mask2former](tao-train-mask2former/) — Mask2Former for universal image segmentation (panoptic, instance, and semantic).
+- [tao-train-metric-learning-recognition](tao-train-metric-learning-recognition/) — Metric-learning recognition (ml-recog) for fine-grained visual recognition. Lear
+- [tao-train-nvdinov2](tao-train-nvdinov2/) — NVDINOv2 for self-supervised visual representation learning. Trains vision trans
+- [tao-train-nvpanoptix3d](tao-train-nvpanoptix3d/) — NVPanoptix3D for panoptic 3D scene reconstruction from posed RGB images. Produce
+- [tao-train-ocdnet](tao-train-ocdnet/) — OCDNet for scene text detection. Detects arbitrary-oriented text regions in natu
+- [tao-train-ocrnet](tao-train-ocrnet/) — OCRNet for scene text recognition. Recognizes text content from cropped text-reg
+- [tao-train-oneformer](tao-train-oneformer/) — OneFormer for universal image segmentation. Unifies panoptic, instance, and sema
+- [tao-train-optical-inspection](tao-train-optical-inspection/) — Optical Inspection for defect detection using Siamese networks. Compares image p
+- [tao-train-pointpillars](tao-train-pointpillars/) — PointPillars for 3D object detection from LiDAR point clouds. Encodes point clou
+- [tao-train-pose-classification](tao-train-pose-classification/) — Pose classification using ST-GCN (Spatial Temporal Graph Convolutional Network).
+- [tao-train-reid](tao-train-reid/) — Person re-identification (ReID). Learns discriminative embeddings to match the s
+- [tao-train-rtdetr](tao-train-rtdetr/) — RT-DETR (Real-Time DEtection TRansformer) for 2D object detection. Designed for 
+- [tao-train-segformer](tao-train-segformer/) — SegFormer for semantic segmentation. Lightweight transformer-based architecture 
+- [tao-train-single-step](tao-train-single-step/) — Standard single-step train/eval/export workflow for any TAO model. Use when trai
+- [tao-train-sparse4d](tao-train-sparse4d/) — Sparse4D for multi-camera temporal 3D object detection and tracking. Uses sparse
+- [tao-train-visual-changenet](tao-train-visual-changenet/) — Visual ChangeNet for binary image classification and segmentation in AOI defect 
+- [tao-validate-dataset-format](tao-validate-dataset-format/) — Run `tao-daft validate` to check NVIDIA TAO DAFT datasets for structure, schema,
+- [tilegym-adding-cutile-kernel](tilegym-adding-cutile-kernel/) — Add a new cuTile GPU kernel operator to TileGym. Covers dispatch registration in
+- [tilegym-converting-cutile-to-julia](tilegym-converting-cutile-to-julia/) — Converts cuTile Python GPU kernels (@ct.kernel) to cuTile.jl Julia equivalents. 
+- [tilegym-converting-cutile-to-triton](tilegym-converting-cutile-to-triton/) — Converts cuTile GPU kernels (@ct.kernel) to Triton (@triton.jit). Handles standa
+- [tilegym-cutile-autotuning](tilegym-cutile-autotuning/) — Use when adding, modifying, optimizing, or debugging CuTile autotuning code. Tri
+- [tilegym-cutile-python](tilegym-cutile-python/) — Expert cuTile programming assistant. Write high-performance GPU kernels using cu
+- [tilegym-improve-cutile-kernel-perf](tilegym-improve-cutile-kernel-perf/) — Iteratively optimize cuTile kernel performance through systematic profiling, bot
+- [tilegym-monkey-patch-kernels-to-transformers](tilegym-monkey-patch-kernels-to-transformers/) — Integrate TileGym kernels into Hugging Face `transformers` models by replacing t
 - [unfreeze](unfreeze/) — Clear the freeze boundary set by /freeze, allowing edits to all directories agai
+- [vss-ask-video](vss-ask-video/) — Use this skill to ask the VSS agent's video_understanding tool a fresh visual qu
+- [vss-deploy-dense-captioning](vss-deploy-dense-captioning/) — Use this skill when deploying standalone RT-VLM dense captioning or calling its 
+- [vss-deploy-detection-tracking-2d](vss-deploy-detection-tracking-2d/) — Use this skill when the user wants to deploy, run, debug, tear down, or call the
+- [vss-deploy-detection-tracking-3d](vss-deploy-detection-tracking-3d/) — Deploy and operate the RTVI-CV-3D microservice as MV3DT (`MODE=mv3dt`): per-came
+- [vss-deploy-profile](vss-deploy-profile/) — Use to select, configure, deploy, verify, debug, or tear down a VSS profile (bas
+- [vss-deploy-video-embedding](vss-deploy-video-embedding/) — Use this skill when deploying, operating, or integrating the VSS 3.2 GA RT-Embed
+- [vss-generate-video-calibration](vss-generate-video-calibration/) — Use to run AutoMagicCalib on local MP4s, RTSP, or the bundled sample dataset, an
+- [vss-generate-video-report](vss-generate-video-report/) — Use this skill when producing a VSS analysis report — Mode A per-clip VLM, Mode 
+- [vss-manage-alerts](vss-manage-alerts/) — Use for VSS alert workflows — real-time monitoring, Alert-Bridge subscriptions, 
+- [vss-manage-video-io-storage](vss-manage-video-io-storage/) — Use to call the VIOS REST API (sensor list, timelines, clip extraction, snapshot
+- [vss-query-analytics](vss-query-analytics/) — Use this skill when reading video-analytics metrics, incidents, alerts, and sens
+- [vss-search-archive](vss-search-archive/) — Use this skill to run top-level VSS fusion search on archived video, or to inges
+- [vss-setup-behavior-analytics](vss-setup-behavior-analytics/) — Use to deploy the vss-behavior-analytics service standalone (entrypoint, config-
+- [vss-setup-video-analytics-api](vss-setup-video-analytics-api/) — Use to deploy the vss-video-analytics-api REST service standalone (config-source
+- [vss-summarize-video](vss-summarize-video/) — Use to summarize a recorded video via the LVS summarization microservice (HITL-g
+- [warp-compile-time-optimizer](warp-compile-time-optimizer/) — Use when compile time or startup time is the problem in code that uses Warp: a r
+- [warp-debug-gradients](warp-debug-gradients/) — Use to diagnose and fix incorrect gradients in differentiable Warp programs. Any
+- [warp-eval](warp-eval/) — Evaluate whether an existing hot path is a credible NVIDIA Warp candidate. Use f
