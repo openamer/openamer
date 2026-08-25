@@ -10996,6 +10996,22 @@ app.whenReady().then(() => {
   keepAwake.set(readPersistedKeepAwake())
   createWindow()
 
+  // Self-healing: register the app to launch automatically at OS login so the
+  // desktop surface (and its local gateway) comes back on every boot without
+  // manual action. Best-effort — a failure here must never block startup.
+  if (IS_WINDOWS) {
+    try {
+      app.setLoginItemSettings({
+        openAtLogin: true,
+        path: process.execPath,
+        args: []
+      })
+      rememberLog('[openamer] registered OpenAmer to launch at Windows login')
+    } catch (error) {
+      rememberLog(`[openamer] could not register login autostart: ${error?.message || error}`)
+    }
+  }
+
   // Win/Linux cold start: the launching openamer:// URL is in our own argv.
   const _coldStartLink = _extractDeepLink(process.argv)
 
