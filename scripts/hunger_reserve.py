@@ -25,12 +25,28 @@ ENV_FILE = OA_HOME / ".env"
 STATE = OA_HOME / "hunger_reserve.json"
 
 # Reihenfolge = Praeferenz (klein+schnell zuerst, groessere danach)
+# Alle 17 OpenRouter :free Modelle (Stand 2026-08-25, via /api/v1/models)
 FALLBACK_MODELS = [
+    # Schnelle/kleine zuerst (fuer Chat + Agent-Aufgaben)
     "nvidia/nemotron-3.5-lightning:free",
     "dots-studio/dots-3-note-preview:free",
     "thinkingmachines/inkling-small:free",
     "poolside/laguna-xs-2.1:free",
     "liquid/lfm-2.5-2.6b:free",
+    "cohere/north-mini-code:free",
+    # Mittlere
+    "google/gemma-4-26b-a4b-it:free",
+    "google/gemma-4-31b-it:free",
+    "minimax/minimax-m2.7:free",
+    "poolside/laguna-s-2.1:free",
+    "nvidia/nemotron-3-nano-omni-30b-a3b-reasoning:free",
+    # Grosse / Reasoning / Spezial
+    "minimax/minimax-m3:free",
+    "nvidia/nemotron-3-super-120b-a12b:free",
+    "nvidia/nemotron-3-ultra-550b-a55b:free",
+    "nvidia/nemotron-3.5-content-safety:free",
+    "thinkingmachines/inkling:free",
+    "z-ai/glm-5.2:free",
 ]
 
 
