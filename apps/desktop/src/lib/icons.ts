@@ -7,6 +7,12 @@
  * simple SVG shapes.
  */
 
+import * as React from 'react'
+
+// ── Legacy Tabler-only utility icons ─────────────────────────
+// These are rarely-used utility icons that were previously from
+// @tabler/icons-react. They now use simple SVG shapes.
+// If a component imports one and it's missing, add it here.
 import {
   OaActivity as Activity,
   OaAlertCircle as AlertCircle,
@@ -19,8 +25,6 @@ import {
   OaBookmark as Bookmark,
   OaBookmark as BookmarkFilled,
   OaBrain as Brain,
-  OaChat as MessageCircle,
-  OaChat as MessageQuestion,
   OaCheck as CheckCircle,
   OaChevronDown as ChevronDown,
   OaChevronDown as ChevronDownIcon,
@@ -31,12 +35,11 @@ import {
   OaClipboard as Clipboard,
   OaClock as Clock,
   OaCopy as Copy,
-  OaClose as X,
-  OaClose as XIcon,
   OaDownload as Download,
   OaExternalLink as ExternalLink,
   OaEye as Eye,
   OaEyeOff as EyeOff,
+  OaImage as FileImage,
   OaFileText as FileText,
   OaFilter as Filter,
   OaFlag as Flag,
@@ -45,7 +48,6 @@ import {
   OaHash as Hash,
   OaHeart as Heart,
   OaHelpCircle as HelpCircle,
-  OaImage as FileImage,
   OaImage as ImageIcon,
   OaInfo as Info,
   OaLink as Link,
@@ -54,6 +56,8 @@ import {
   OaMail as Mail,
   OaMaximize as Maximize,
   OaMenu as Menu,
+  OaChat as MessageCircle,
+  OaChat as MessageQuestion,
   OaMessage as MessageSquareText,
   OaMic as Mic,
   OaMic as MicOff,
@@ -86,15 +90,10 @@ import {
   OaVolume as Volume2Icon,
   OaVolumeX as VolumeX,
   OaVolumeX as VolumeXIcon,
+  OaClose as X,
+  OaClose as XIcon,
   OaZap as Zap,
 } from '@/components/ui/openamer-icons'
-
-// ── Legacy Tabler-only utility icons ─────────────────────────
-// These are rarely-used utility icons that were previously from
-// @tabler/icons-react. They now use simple SVG shapes.
-// If a component imports one and it's missing, add it here.
-
-import * as React from 'react'
 
 function stub(path: string): React.FC<{className?: string; size?: string | number; style?: React.CSSProperties}> {
   // Neural network wrapper: adds corner nodes + connection lines
@@ -128,7 +127,9 @@ function stub(path: string): React.FC<{className?: string; size?: string | numbe
       // Center icon path
       React.createElement('path', { d: path })
     )
+
   C.displayName = 'OaNeural'
+
   return C
 }
 
@@ -187,33 +188,33 @@ export type { Icon as IconComponent } from '@tabler/icons-react'
 // Re-export all OpenAmer custom icons
 export {
   Activity, AlertCircle, AlertTriangle,
-  ArrowUp, ArrowUpRight, AtSign, Attach,
-  Bell, Bookmark, BookmarkFilled, Brain,
-  MessageCircle, MessageQuestion, CheckCircle,
-  ChevronDown, ChevronDownIcon, ChevronLeft, ChevronLeftIcon,
-  ChevronRight, ChevronRightIcon, Clipboard, Clock, Copy,
-  X, XIcon, Download, ExternalLink, Eye, EyeOff,
-  FileText, Filter, Flag, FolderOpen, Globe, Hash, Heart,
-  HelpCircle, FileImage, ImageIcon, Info, Link, Link2,
-  Lock, Mail, Maximize, Menu, MessageSquareText,
-  Mic, MicOff, Minimize, Moon,
-  MoreHorizontal, MoreHorizontalIcon, Pause,
-  Pencil, PencilIcon, PencilLine, Pin, Play, Plus,
-  RefreshCw, Search, SearchIcon, Send, Settings,
-  Skills, SlidersHorizontal, Star, Sun, Tag, Terminal,
-  Trash2, Upload, Users, Volume2, Volume2Icon,
-  VolumeX, VolumeXIcon, Zap,
   // Legacy stub icons
-  AppWindow, Archive, ArchiveOff, AudioLines, Box, Bug, BarChart3,
-  Check, CheckIcon, CheckCircle2, CircleIcon, CircleLetterA,
-  Cloud, Command, CopyIcon, Cpu, CreditCard,
-  GitBranch, GitBranchIcon, GitFork, GitForkIcon,
-  Monitor, MonitorPlay, MoreVertical, Egg,
-  PanelBottom, LayoutDashboard, PanelLeftIcon, Layers3,
-  Loader2, Loader2Icon, KeyRound, Keyboard, LogIn,
-  NotebookTabs, Package, Palette, StopFilled, PawPrint, RefreshCwIcon,
-  Save, Settings2, Square, Starmap, SteeringWheel,
-  Wrench, ZapFilled, ZoomIn, ZoomOut,
+  AppWindow, Archive, ArchiveOff, ArrowUp,
+  ArrowUpRight, AtSign, Attach, AudioLines,
+  BarChart3, Bell, Bookmark,
+  BookmarkFilled, Box, Brain, Bug,
+  Check, CheckCircle, CheckCircle2, CheckIcon, ChevronDown,
+  ChevronDownIcon, ChevronLeft, ChevronLeftIcon, ChevronRight, ChevronRightIcon, CircleIcon,
+  CircleLetterA, Clipboard, Clock, Cloud, Command, Copy, CopyIcon,
+  Cpu, CreditCard, Download, Egg, ExternalLink, Eye,
+  EyeOff, FileImage, FileText, Filter, Flag,
+  FolderOpen, GitBranch, GitBranchIcon, GitFork,
+  GitForkIcon, Globe, Hash,
+  Heart, HelpCircle, ImageIcon, Info, Keyboard, KeyRound,
+  Layers3, LayoutDashboard, Link, Link2, Loader2,
+  Loader2Icon, Lock, LogIn, Mail, Maximize, Menu,
+  MessageCircle, MessageQuestion, MessageSquareText, Mic, MicOff,
+  Minimize, Monitor, MonitorPlay,
+  Moon, MoreHorizontal, MoreHorizontalIcon, MoreVertical, NotebookTabs, Package, Palette,
+  PanelBottom, PanelLeftIcon, Pause, PawPrint, Pencil,
+  PencilIcon, PencilLine, Pin, Play, Plus,
+  RefreshCw, RefreshCwIcon, Save, Search,
+  SearchIcon, Send, Settings, Settings2,
+  Skills, SlidersHorizontal, Square, Star,
+  Starmap, SteeringWheel, StopFilled, Sun, Tag,
+  Terminal, Trash2, Upload, Users, Volume2, Volume2Icon,
+  VolumeX, VolumeXIcon, Wrench, X, XIcon,
+  Zap, ZapFilled, ZoomIn, ZoomOut,
 }
 
 export const iconSize = {
