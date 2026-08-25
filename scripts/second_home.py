@@ -31,14 +31,15 @@ OA_HOME = Path(r"C:\Users\damir\AppData\Local\openamer-laptop")
 GIT_TIMEOUT = 120  # seconds - a hung push must never block the cron fleet
 
 
-def git(cmd):
+def git(cmd, timeout_s=None):
     # NOTE: capture_output (OS pipes) hangs forever on Windows when a
     # grandchild process (git-remote-https) outlives the shell after a
     # timeout kill - communicate() waits for pipe EOF. Temp FILES avoid this.
     with tempfile.TemporaryFile() as out_f, tempfile.TemporaryFile() as err_f:
         try:
             p = subprocess.run(cmd, shell=True, cwd=str(REPO),
-                               stdout=out_f, stderr=err_f, timeout=GIT_TIMEOUT)
+                               stdout=out_f, stderr=err_f,
+                               timeout=timeout_s or GIT_TIMEOUT)
             rc, so, se = p.returncode, None, None
         except subprocess.TimeoutExpired:
             rc = 124
