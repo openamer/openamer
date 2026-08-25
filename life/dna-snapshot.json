@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-08-25T13:54:19.324608+00:00",
+  "snapshot_at": "2026-08-25T20:17:44.763641+00:00",
   "circadian": {
     "phase": "AWAKE",
     "at": "2026-08-25T13:45:44.298046+00:00",
@@ -30,9 +30,9 @@
     }
   },
   "senses": {
-    "time": "2026-08-25T15:54:18",
+    "time": "2026-08-25T21:52:19",
     "pain": {
-      "score": 1,
+      "score": 2,
       "level": "uncomfortable"
     },
     "satiety": {
@@ -41,10 +41,10 @@
       "dead_providers": 1
     },
     "balance": {
-      "state": "steady",
+      "state": "wobbly",
       "jobs": 54,
-      "errors": 1,
-      "error_ratio": 0.019
+      "errors": 3,
+      "error_ratio": 0.056
     },
     "overall": "uneasy"
   },
