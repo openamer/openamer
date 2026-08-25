@@ -41,10 +41,11 @@
     ]
   },
   "scripts": {
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
-    "lint": "eslint src --ext ts"
-  },
+      "compile": "tsc -p ./",
+      "watch": "tsc -watch -p ./",
+      "lint": "eslint src --ext ts",
+      "check": "npm run compile"
+    },
   "devDependencies": {
     "@types/node": "^20",
     "@types/vscode": "^1.90.0",
