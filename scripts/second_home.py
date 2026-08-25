@@ -26,8 +26,48 @@ LIFE = REPO / "life"
 OA_HOME = Path(r"C:\Users\damir\AppData\Local\openamer-laptop")
 
 
+GIT_TIMEOUT = 120  # seconds - a hung push must never block the cron fleet
+
+
 def git(cmd):
-    return subprocess.run(cmd, shell=True, cwd=str(REPO), capture_output=True, text=True)
+    # NOTE: capture_output (OS pipes) hangs forever on Windows when a
+    # grandchild process (git-remote-https) outlives the shell after a
+    # timeout kill - communicate() waits for pipe EOF. Temp FILES avoid this.
+    import tempfile
+    with tempfile.TemporaryFile() as out_f, tempfile.TemporaryFile() as err_f:
+        try:
+            p = subprocess.run(cmd, shell=True, cwd=str(REPO),
+                               stdout=out_f, stderr=err_f, timeout=GIT_TIMEOUT)
+            rc, so, se = p.returncode, None, None
+        except subprocess.TimeoutExpired:
+            rc = 124
+        out_f.seek(0)
+        err_f.seek(0)
+        so = out_f.read().decode("utf-8", "replace")
+        se = err_f.read().decode("utf-8", "replace")
+
+    class _R:
+        pass
+    r = _R()
+    r.returncode = rc
+    r.stdout = so or ""
+    r.stderr = se or ""
+    return r
+
+
+def push_token_url():
+    """Fallback push using the x-access-token URL from ~/.git-credentials
+    (plain 'git push origin main' hangs on this machine)."""
+    import re
+    creds = Path.home() / ".git-credentials"
+    if not creds.exists():
+        return None
+    for line in creds.read_text(encoding="utf-8").splitlines():
+        m = re.match(r"https://([^:@/]+):([^@]+)@github\.com", line.strip())
+        if m:
+            url = f"https://{m.group(1)}:{m.group(2)}@github.com/openamer/openamer.git"
+            return git(f'git push "{url}" main')
+    return None
 
 
 def main():
@@ -96,6 +136,10 @@ def main():
     if "nothing to commit" not in (c.stdout or ""):
         p = git("git push origin main")
         pushed = p.returncode == 0
+        if not pushed:
+            # known Git-Push-Hang workaround: token URL from ~/.git-credentials
+            p2 = push_token_url()
+            pushed = bool(p2 and p2.returncode == 0)
     else:
         pushed = None  # nothing new - fine
     print(f"[second-home] manifest + DNA written ({len(fleet)} organs in fleet), "
