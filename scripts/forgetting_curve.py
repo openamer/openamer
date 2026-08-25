@@ -14,7 +14,6 @@ Usage: forgetting_curve.py [--dry-run]
 Exit 0 always.
 """
 import json
-import math
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
