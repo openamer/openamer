@@ -32,6 +32,7 @@
 
 import fs from 'node:fs'
 import path from 'node:path'
+import { posix as posixPath } from 'node:path'
 
 /**
  * Build the ordered list of extensions findOnPath() should try when
@@ -141,7 +142,7 @@ export function getVenvSitePackagesEntries(
     return entries
   }
 
-  const cfg = readFile(path.join(venvRoot, 'pyvenv.cfg'))
+  const cfg = readFile(posixPath.join(venvRoot, 'pyvenv.cfg'))
 
   const version = (() => {
     if (!cfg) {
@@ -154,7 +155,7 @@ export function getVenvSitePackagesEntries(
   })()
 
   if (version) {
-    const sitePackages = path.join(venvRoot, 'lib', `python${version}`, 'site-packages')
+    const sitePackages = posixPath.join(venvRoot, 'lib', `python${version}`, 'site-packages')
 
     if (directoryExists(sitePackages)) {
       entries.push(sitePackages)
@@ -163,7 +164,6 @@ export function getVenvSitePackagesEntries(
 
   return entries
 }
-
 export interface ResolveVenvOpenAmerCommandDeps {
   isWindows: boolean
   isCommandScript: (command: string) => boolean

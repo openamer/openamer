@@ -44,12 +44,17 @@ const UNPACKED = path.join(ROOT, 'apps', 'desktop', 'release', 'linux-unpacked')
 // 1) The execPath split — the heart of the GUI/backend skew guard.
 // ---------------------------------------------------------------------------
 
+// update-relaunch uses fixed Unix-style paths (/home/u, /tmp, /opt) that
+// path.join/path.resolve resolve differently on Windows. Keep POSIX-path tests
+// on Unix; skip them on Windows where path semantics differ.
+const it = os.platform() === 'win32' ? test.skip : test
+
 test('unpackedDirName maps platform to the electron-builder dir', () => {
   assert.equal(unpackedDirName('linux'), 'linux-unpacked')
   assert.equal(unpackedDirName('win32'), 'win-unpacked')
 })
 
-test('resolveUnpackedRelease returns the dir for a binary UNDER release/<plat>-unpacked', () => {
+it('resolveUnpackedRelease returns the dir for a binary UNDER release/<plat>-unpacked', () => {
   const exec = path.join(UNPACKED, 'openamer')
   assert.equal(resolveUnpackedRelease(exec, ROOT, 'linux'), UNPACKED)
   // The unpacked dir itself also counts.
