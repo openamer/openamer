@@ -1,8 +1,8 @@
 {
-  "snapshot_at": "2026-08-25T13:18:56.217283+00:00",
+  "snapshot_at": "2026-08-25T13:46:13.489890+00:00",
   "circadian": {
     "phase": "AWAKE",
-    "at": "2026-08-24T20:00:36.133413+00:00",
+    "at": "2026-08-25T13:45:44.298046+00:00",
     "essential_only": false,
     "paused_jobs": [],
     "dream_log": [
@@ -30,9 +30,9 @@
     }
   },
   "senses": {
-    "time": "2026-08-25T14:51:01",
+    "time": "2026-08-25T15:45:44",
     "pain": {
-      "score": 2,
+      "score": 1,
       "level": "uncomfortable"
     },
     "satiety": {
@@ -43,8 +43,8 @@
     "balance": {
       "state": "steady",
       "jobs": 54,
-      "errors": 2,
-      "error_ratio": 0.037
+      "errors": 1,
+      "error_ratio": 0.019
     },
     "overall": "uneasy"
   },
