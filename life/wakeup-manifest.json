@@ -1,6 +1,6 @@
 {
   "organism": "OpenAmer",
-  "written_at": "2026-08-25T08:04:48.497465+00:00",
+  "written_at": "2026-08-25T13:06:09.693702+00:00",
   "identity": {
     "name": "openamer_agent",
     "voice": "https://x.com/openamer_agent",
@@ -62,7 +62,7 @@
       "name": "brain-collect",
       "schedule": "every 240m",
       "script": null,
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "self-reflection",
@@ -74,7 +74,7 @@
       "name": "self-reflection-6h",
       "schedule": "every 240m",
       "script": null,
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "auto-test-runner",
@@ -290,7 +290,7 @@
       "name": "Browser-Health-Watchdog",
       "schedule": "every 5m",
       "script": "cron-browser-watchdog.py",
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "Growth-Dashboard-Report",
@@ -302,13 +302,13 @@
       "name": "Self-Healing-Code",
       "schedule": "every 360m",
       "script": null,
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "Plugin-Auto-Loader",
       "schedule": "every 30m",
       "script": "plugin-loader-cron.py",
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "Wiki-Generator-Daily",
@@ -368,7 +368,7 @@
       "name": "second-home-dna-backup",
       "schedule": "every 720m",
       "script": "second_home.py",
-      "last_status": null
+      "last_status": "error"
     },
     {
       "name": "dream-consolidation",
@@ -380,7 +380,7 @@
       "name": "hunger-reserve-check",
       "schedule": "every 720m",
       "script": "hunger_reserve.py",
-      "last_status": null
+      "last_status": "ok"
     }
   ]
 }
