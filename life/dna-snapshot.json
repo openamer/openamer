@@ -1,37 +1,38 @@
 {
-  "snapshot_at": "2026-08-24T20:02:30.609564+00:00",
+  "snapshot_at": "2026-08-25T08:04:48.498639+00:00",
   "circadian": {
     "phase": "AWAKE",
     "at": "2026-08-24T20:00:36.133413+00:00",
     "essential_only": false,
     "paused_jobs": [],
     "dream_log": [
-      "2026-08-24"
+      "2026-08-24",
+      "2026-08-25"
     ],
-    "last_dream": "2026-08-24T20:00:36.286291+00:00"
+    "last_dream": "2026-08-25T03:57:53.941951+00:00"
   },
   "strategies": {
     "TOKENS": {
-      "wins": 1,
-      "tries": 1
+      "wins": 16,
+      "tries": 26
     },
     "TEXT": {
-      "wins": 0,
-      "tries": 0
+      "wins": 3,
+      "tries": 12
     },
     "ROLE": {
       "wins": 0,
-      "tries": 0
+      "tries": 12
     },
     "CLASSES": {
-      "wins": 0,
-      "tries": 0
+      "wins": 6,
+      "tries": 12
     }
   },
   "senses": {
-    "time": "2026-08-24T22:01:45",
+    "time": "2026-08-25T09:50:47",
     "pain": {
-      "score": 3,
+      "score": 2,
       "level": "uncomfortable"
     },
     "satiety": {
@@ -40,16 +41,21 @@
       "dead_providers": 1
     },
     "balance": {
-      "state": "steady",
-      "jobs": 48,
-      "errors": 2,
-      "error_ratio": 0.042
+      "state": "wobbly",
+      "jobs": 54,
+      "errors": 4,
+      "error_ratio": 0.074
     },
     "overall": "uneasy"
   },
   "dreams": [
     {
       "date": "2026-08-24",
+      "insights": [],
+      "intentions": []
+    },
+    {
+      "date": "2026-08-25",
       "insights": [],
       "intentions": []
     }

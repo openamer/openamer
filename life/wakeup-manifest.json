@@ -1,6 +1,6 @@
 {
   "organism": "OpenAmer",
-  "written_at": "2026-08-24T20:02:30.609564+00:00",
+  "written_at": "2026-08-25T08:04:48.497465+00:00",
   "identity": {
     "name": "openamer_agent",
     "voice": "https://x.com/openamer_agent",
@@ -15,7 +15,7 @@
   "organs": {
     "heartbeat": {
       "kind": "cron-fleet",
-      "count": 48
+      "count": 54
     },
     "memory": {
       "kind": "memory+skills",
@@ -62,7 +62,7 @@
       "name": "brain-collect",
       "schedule": "every 240m",
       "script": null,
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "self-reflection",
@@ -86,7 +86,7 @@
       "name": "memory-healing",
       "schedule": "every 360m",
       "script": null,
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "Auto-Import DeepSeek-Harness Skills",
@@ -290,7 +290,7 @@
       "name": "Browser-Health-Watchdog",
       "schedule": "every 5m",
       "script": "cron-browser-watchdog.py",
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "Growth-Dashboard-Report",
@@ -302,13 +302,13 @@
       "name": "Self-Healing-Code",
       "schedule": "every 360m",
       "script": null,
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "Plugin-Auto-Loader",
       "schedule": "every 30m",
       "script": "plugin-loader-cron.py",
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "Wiki-Generator-Daily",
@@ -326,7 +326,7 @@
       "name": "OpenAmer 24/7 Outreach - IndieHackers Social Presence",
       "schedule": "every 180m",
       "script": null,
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "OpenAmer GitHub Outreach - Issues + Discussions",
@@ -345,6 +345,42 @@
       "schedule": "0 3 * * *",
       "script": null,
       "last_status": "ok"
+    },
+    {
+      "name": "seda-heartbeat",
+      "schedule": "every 360m",
+      "script": "seda-heartbeat.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "circadian-enforce",
+      "schedule": "every 30m",
+      "script": "circadian.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "senses-nervous-system",
+      "schedule": "every 30m",
+      "script": "senses.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "second-home-dna-backup",
+      "schedule": "every 720m",
+      "script": "second_home.py",
+      "last_status": null
+    },
+    {
+      "name": "dream-consolidation",
+      "schedule": "30 3 * * *",
+      "script": "dream-cron.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "hunger-reserve-check",
+      "schedule": "every 720m",
+      "script": "hunger_reserve.py",
+      "last_status": null
     }
   ]
 }
