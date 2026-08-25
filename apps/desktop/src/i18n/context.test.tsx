@@ -134,23 +134,41 @@ describe('I18nProvider', () => {
   })
 
   it('does not overwrite unsupported configured languages', async () => {
-    const configClient: I18nConfigClient = {
-      getConfig: vi.fn().mockResolvedValue({ display: { language: 'de' } }),
-      saveConfig: vi.fn()
-    }
+      const configClient: I18nConfigClient = {
+        getConfig: vi.fn().mockResolvedValue({ display: { language: 'xx-XX' } }),
+        saveConfig: vi.fn()
+      }
 
-    render(
-      <I18nProvider configClient={configClient} initialLocale="zh">
-        <LanguageProbe />
-      </I18nProvider>
-    )
+      render(
+        <I18nProvider configClient={configClient} initialLocale="zh">
+          <LanguageProbe />
+        </I18nProvider>
+      )
 
-    await waitFor(() => expect(screen.getByTestId('loading').textContent).toBe('false'))
+      await waitFor(() => expect(screen.getByTestId('loading').textContent).toBe('false'))
 
-    expect(screen.getByTestId('locale').textContent).toBe('en')
-    expect(screen.getByTestId('label').textContent).toBe('Language')
-    expect(configClient.saveConfig).not.toHaveBeenCalled()
-  })
+      expect(screen.getByTestId('locale').textContent).toBe('en')
+      expect(screen.getByTestId('label').textContent).toBe('Language')
+      expect(configClient.saveConfig).not.toHaveBeenCalled()
+    })
+
+    it('applies a supported configured language without overwriting', async () => {
+      const configClient: I18nConfigClient = {
+        getConfig: vi.fn().mockResolvedValue({ display: { language: 'de' } }),
+        saveConfig: vi.fn()
+      }
+
+      render(
+        <I18nProvider configClient={configClient} initialLocale="zh">
+          <LanguageProbe />
+        </I18nProvider>
+      )
+
+      await waitFor(() => expect(screen.getByTestId('loading').textContent).toBe('false'))
+
+      expect(screen.getByTestId('locale').textContent).toBe('de')
+      expect(configClient.saveConfig).not.toHaveBeenCalled()
+    })
 
   it('reads latest config before saving language and preserves unrelated values', async () => {
     const saveConfig = vi.fn().mockResolvedValue({ ok: true })

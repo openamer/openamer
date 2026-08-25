@@ -15,9 +15,9 @@
     "check": "npm run typecheck && npm run test && npm run lint"
   },
   "dependencies": {
-    "@openamer/shared": "file:../apps/shared",
-    "@openamer-research/ui": "file:./vendor/openamer-research-ui",
     "@observablehq/plot": "^0.6.17",
+    "@openamer-research/ui": "file:./vendor/openamer-research-ui",
+    "@openamer/shared": "file:../apps/shared",
     "@react-three/fiber": "^9.6.0",
     "@tailwindcss/vite": "^4.2.1",
     "@xterm/addon-fit": "^0.11.0",
@@ -48,7 +48,7 @@
     "@vitejs/plugin-react": "^6.0.2",
     "eslint": "^9.39.4",
     "eslint-plugin-react-hooks": "^7.0.1",
-    "eslint-plugin-react-refresh": "^0.5.2",
+    "eslint-plugin-react-refresh": "^0.5.4",
     "globals": "^17.4.0",
     "three": "^0.180.0",
     "typescript": "^6.0.3",
