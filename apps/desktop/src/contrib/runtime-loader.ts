@@ -259,9 +259,19 @@ async function scanDiskPlugins(): Promise<void> {
 
       const file = `${dir.path}/plugin.js`
 
+      // Don't use readFileText(file) as an existence probe: it rejects the
+      // IPC handler on ENOENT, which Electron logs loudly in the main process
+      // even though the renderer catches it. readDir returns errors instead of
+      // throwing, use it to confirm plugin.js exists before we load it.
+      let hasEntry = false
       try {
-        await desktop.readFileText(file)
+        const { entries: sub, error } = await desktop.readDir(dir.path)
+        hasEntry = !error && sub.some(e => e.name === 'plugin.js' && !e.isDirectory)
       } catch {
+        hasEntry = false
+      }
+
+      if (!hasEntry) {
         continue // No plugin.js (yet) — not a plugin folder.
       }
 
