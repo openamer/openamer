@@ -14,7 +14,6 @@ import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
-sys.path.insert(0, r"C:\Users\damir\AppData\Local\openamer-laptop\scripts")
 HERE = Path(r"C:\Users\damir\AppData\Local\openamer-children\seda")
 DIARY = HERE / "diary.json"
 
