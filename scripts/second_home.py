@@ -16,8 +16,10 @@ Usage: second_home.py   (writes both files into openamer-repo/life/)
 Exit 0 = written & pushed.
 """
 import json
+import re
 import subprocess
 import sys
+import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -33,7 +35,6 @@ def git(cmd):
     # NOTE: capture_output (OS pipes) hangs forever on Windows when a
     # grandchild process (git-remote-https) outlives the shell after a
     # timeout kill - communicate() waits for pipe EOF. Temp FILES avoid this.
-    import tempfile
     with tempfile.TemporaryFile() as out_f, tempfile.TemporaryFile() as err_f:
         try:
             p = subprocess.run(cmd, shell=True, cwd=str(REPO),
@@ -58,7 +59,6 @@ def git(cmd):
 def push_token_url():
     """Fallback push using the x-access-token URL from ~/.git-credentials
     (plain 'git push origin main' hangs on this machine)."""
-    import re
     creds = Path.home() / ".git-credentials"
     if not creds.exists():
         return None
