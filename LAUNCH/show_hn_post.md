@@ -27,7 +27,7 @@ AI agents are all talk. They reply, they plan, but they can't *do* anything on y
 
 Most "computer use" agents need a VM or run headless. OpenAmer runs **on your Windows machine**, controls the real screen in the background, and you can watch it work — or just let it finish and check results.
 
-It's a fork of the hermes-agent architecture, heavily extended.
+It's a fork of the open-agent architecture from Nous Research, heavily extended.
 
 ## Tech
 

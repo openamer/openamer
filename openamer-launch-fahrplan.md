@@ -57,7 +57,7 @@
 
 ## Warum OpenAmer gewinnen wird
 
-- **Bessere Features als Hermes** (233k Stars) — und `openamer hermes migrate`
+- **Bessere Features als die bekannten Agenten** — und `openamer migrate`
 - **Mehr Tools als Claude Code** (99+ vs ~15)
 - **Windows-native** — kein anderer Open-Source Agent
 - **Background Computer-Use** — kein Focus-Klau

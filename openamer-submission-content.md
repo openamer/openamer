@@ -25,7 +25,7 @@ Copy & paste these values into → https://forms.gle/UXQFCogLYrPFvfoUA
 
 ### Body
 
-After months of building on top of the Hermes Agent architecture, I'm releasing **OpenAmer** — an open-source AI agent that runs **entirely on your own machine** with no external dependency, no telemetry-by-default, and no vendor lock-in.
+After months of building on top of a modern open-source agent architecture, I'm releasing **OpenAmer** — an open-source AI agent that runs **entirely on your own machine** with no external dependency, no telemetry-by-default, and no vendor lock-in.
 
 **Why self-hosted?**
 - Every install is a standalone, private-first node. Your data stays local.
@@ -102,7 +102,7 @@ OpenAmer is a self-improving, self-learning open-source AI agent that runs entir
 
 Everything is open-source under Apache 2.0: https://github.com/openamer/openamer
 
-The project is a hardened, independently-developed fork of Nous Research's Hermes Agent — we say so openly and don't hide our lineage. Our own contributions are: robustness, verifiability, the learning loop, computer-use record/play, A2A swarm protocol, self-improving skills, and the full observability stack.
+The project is a hardened, independently-developed agent built on the open-source agent architecture from Nous Research — we say so openly and don't hide our lineage. Our own contributions are: robustness, verifiability, the learning loop, computer-use record/play, A2A swarm protocol, self-improving skills, and the full observability stack.
 
 Install in one command:
 ```bash
@@ -159,7 +159,7 @@ Oh, and you can tell it to edit its own code. If tests fail, it rolls back atomi
 | Windows-Native | ✅ ONLY | ❌ | ❌ | ❌ |
 | Super Dashboard | ✅ ONLY | ❌ | ❌ | ❌ |
 
-The full table has **22 features** where OpenAmer leads. Built on Hermes Agent by Nous Research — we give credit where it's due.
+The full table has **22 features** where OpenAmer leads. Built on the open-source agent foundation by Nous Research — we give credit where it's due.
 
 ### Tweet 4 — Call to Action
 

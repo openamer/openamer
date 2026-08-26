@@ -12,7 +12,7 @@
 
 > The self-improving, self-learning open-source AI agent. Background Computer-Use, A2A Swarm, Vector Memory, Voice, Plugin System, Smart Approvals — 100/100 Superintelligence Score. Any model, any platform.
 
-> OpenAmer is the most advanced open-source AI agent ever built. Forked from Hermes (NousResearch), it now surpasses every alternative with 99 tools, 126+ skills, cross-session learning, sandboxed code execution, a full web dashboard, background computer-use (no focus steal), A2A multi-agent swarms, voice with barge-in + wake words, and a plugin ecosystem. Runs on any LLM — local GGUF, OpenAI, Claude, DeepSeek, OpenRouter, you name it. 100/100 Superintelligence score. 226+ passing tests. Zero lock-in, zero license fees. MIT.
+> OpenAmer is the most advanced open-source AI agent ever built. Built on the Nous Research agent architecture, it now surpasses every alternative with 99 tools, 126+ skills, cross-session learning, sandboxed code execution, a full web dashboard, background computer-use (no focus steal), A2A multi-agent swarms, voice with barge-in + wake words, and a plugin ecosystem. Runs on any LLM — local GGUF, OpenAI, Claude, DeepSeek, OpenRouter, you name it. 100/100 Superintelligence score. 226+ passing tests. Zero lock-in, zero license fees. MIT.
 
 ---
 
@@ -31,7 +31,7 @@
 
 > We're incredibly excited to launch **OpenAmer Agent** — the self-improving, open-source AI agent that we believe is the most complete agent framework on the market.
 
-> What started as a fork of NousResearch's Hermes has become something entirely its own: a production-grade agent with **99 tools, 126+ skills, background computer-use, vector memory, a plugin system, sandboxed execution, voice barge-in + wake words, an A2A multi-agent swarm, and a beautiful web dashboard (Hub Portal)**.
+> What started as a build on the Nous Research agent architecture has become something entirely its own: a production-grade agent with **99 tools, 126+ skills, background computer-use, vector memory, a plugin system, sandboxed execution, voice barge-in + wake words, an A2A multi-agent swarm, and a beautiful web dashboard (Hub Portal)**.
 
 > Here's what makes OpenAmer different:
 
@@ -90,14 +90,6 @@
 | **Was zeigen** | Eine saubere Vergleichstabelle (als Web-UI oder CLI-Output). Spalten: **OpenAmer**, **AutoGPT**, **CrewAI**, **Claude Code**, **OpenCode**. Zeilen: Computer Use, Self-Learning, Multi-Agent, Voice, Plugins, Sandbox, Dashboard, Local Models, Open Source, Score. OpenAmer hat grüne Haken in ALLEN Zeilen, alle anderen haben rote Kreuze in mindestens 5. |
 | **Zweck** | Visueller Beweis der Überlegenheit. Kein anderes Open-Source-Tool hat ALL diese Features. |
 
-### Screenshot 5: Migration von Hermes
-
-| Feld | Wert |
-|------|------|
-| **Titel** | `openamer hermes migrate` — Smooth Migration |
-| **Was zeigen** | CLI-Screenshot: `openamer hermes migrate` wird ausgeführt. Ausgabe zeigt: "🔍 Scanning existing Hermes config... ✅ Found ~/.openamer/hermes/config.yaml", "📦 Migrating tools... ✅ 12 tools migrated", "📦 Migrating skills... ✅ 8 skills migrated", "🧪 Running post-migration checks... ✅ All checks passed", "🎉 Migration complete! Run 'openamer --help' to start." |
-| **Zweck** | Zielgruppe: Bestehende Hermes/Hermes-Fork-User. Zeigt, dass Migration einfach und schmerzlos ist. Kein Vendor-Lock-in, kein Datenverlust. |
-
 ---
 
 ## 5. Hunter Pitch
@@ -143,7 +135,7 @@
 | **@bramk** | Product Hunt Curator | Hunted viele AI-Tools, große Reichweite |
 | **@chris_messina** | Product Hunt Influencer | "Hashtag-Erfinder", hohe Sichtbarkeit |
 | **@alexq** | Product Hunt Hunter | Fokus auf Developer-Tools |
-| **@nousresearch** | Twitter/X | Original-Autor von Hermes — Respekt zollen |
+| **@nousresearch** | Twitter/X | Ursprüngliche Agent-Grundlage — Respekt zollen |
 | **@khoj** | Ähnliches Produkt | Community-Building, teilen gegenseitig |
 | **@openinterpreter** | Ähnliches Produkt | Komplementär, nicht Konkurrenz |
 

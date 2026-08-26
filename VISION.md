@@ -7,7 +7,7 @@ your own machine, meets you in the channels you already use, and gets better
 the longer you use it.
 
 It is a **hardened, independently-developed fork** of the
-[Hermes Agent](https://github.com/NousResearch/hermes-agent) architecture
+[Agent architecture](https://github.com/NousResearch/hermes-agent), MIT by Nous Research
 (MIT-licensed, by Nous Research). We are grateful for that foundation and say
 so openly — OpenAmer does not hide its lineage. What we build on top of it is
 our own.

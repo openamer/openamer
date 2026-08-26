@@ -2,7 +2,7 @@
 
 **OpenAmer ist der Agent, der nicht kaputtgeht — und der sich nachweislich mit der Nutzung verbessert.**
 
-Er läuft auf deiner eigenen Maschine, trifft dich in den Kanälen, die du bereits nutzt, und wird mit der Zeit besser. OpenAmer ist ein gehärteter, unabhängig entwickelter Fork der [Hermes Agent](https://github.com/NousResearch/hermes-agent)-Architektur (MIT, von Nous Research). Wir sagen das offen: OpenAmer versteckt seine Herkunft nicht. Was wir darauf aufbauen — Robustheit, Verifizierbarkeit und eine echte Lernschleife — ist unser Eigenes.
+Er läuft auf deiner eigenen Maschine, trifft dich in den Kanälen, die du bereits nutzt, und wird mit der Zeit besser. OpenAmer ist ein gehärteter, unabhängig entwickelter Fork der [Agent-Architektur](https://github.com/NousResearch/hermes-agent) von Nous Research (MIT). Wir sagen das offen: OpenAmer versteckt seine Herkunft nicht. Was wir darauf aufbauen — Robustheit, Verifizierbarkeit und eine echte Lernschleife — ist unser Eigenes.
 
 ---
 
