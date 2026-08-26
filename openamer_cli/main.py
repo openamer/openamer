@@ -17896,19 +17896,6 @@ def main():
     build_web_agent_parser(subparsers)
 
     # =========================================================================
-    # approvals command — Smart Approvals (Human-in-the-Loop)
-    # =========================================================================
-    approvals_parser = subparsers.add_parser(
-        "approvals",
-        help="Manage approval requests (Human-in-the-Loop)",
-        description="View, approve, or reject pending human-in-the-loop approval "
-        "requests. Configure risk levels and auto-reject timeouts.",
-    )
-    from openamer_cli.smart_approvals import register_cli as _register_approvals_cli
-
-    _register_approvals_cli(approvals_parser)
-
-    # =========================================================================
     # Parse and execute
     # =========================================================================
     # Pre-process argv so unquoted multi-word session names after -c / -r
