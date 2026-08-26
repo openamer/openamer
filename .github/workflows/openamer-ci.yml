@@ -15,7 +15,7 @@ jobs:
   openamer-assist:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: OpenAmer Code Review
         uses: openamer/openamer@v1
