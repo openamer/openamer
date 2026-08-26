@@ -50,9 +50,9 @@
 
   function api(path, options) {
     // Delegate to the host SDK's fetchJSON so auth is handled correctly in
-    // BOTH dashboard modes: loopback (X-Hermes-Session-Token header) and
+    // BOTH dashboard modes: loopback (X-OpenAmer-Session-Token header) and
     // gated OAuth (openamer_session_at cookie via credentials:'include').
-    // Hand-rolling fetch + reading window.__HERMES_SESSION_TOKEN__ directly
+    // Hand-rolling fetch + reading window.__OPENAMER_SESSION_TOKEN__ directly
     // 401s in gated mode (the token isn't injected there). fetchJSON throws
     // Error("<status>: <body>") on non-2xx â€” the call sites' .catch() relies
     // on that to surface errors, so we let it propagate (don't swallow).
@@ -257,7 +257,7 @@
     ctx.fillStyle = "#8b95a8";
     ctx.font = "600 20px ui-monospace, 'SF Mono', Menlo, monospace";
     ctx.textBaseline = "bottom";
-    ctx.fillText("HERMES AGENT  Â·  openamer-agent.nousresearch.com", 70, H - 40);
+    ctx.fillText("OPENAMER AGENT  Â·  openamer-agent.nousresearch.com", 70, H - 40);
 
     // "UNLOCKED" stamp upper-right
     ctx.textBaseline = "top";
@@ -335,7 +335,7 @@
     // paste in the same flow.
     function tweetText() {
       const tierPart = achievement.tier ? (achievement.tier + " tier ") : "";
-      const tmpl = tx(t, "share.tweet_text", "Just unlocked {tier_part}\"{name}\" in Hermes Agent â˜¤", {
+      const tmpl = tx(t, "share.tweet_text", "Just unlocked {tier_part}\"{name}\" in OpenAmer Agent â˜¤", {
         tier_part: tierPart,
         name: achievement.name,
       });
@@ -443,8 +443,8 @@
       React.createElement("section", { className: "ha-hero ha-loading-hero" },
         React.createElement("div", null,
           React.createElement("div", { className: "ha-kicker" }, tx(t, "hero.kicker", "Agentic Gamerscore")),
-          React.createElement("h1", null, tx(t, "hero.title", "Hermes Achievements")),
-          React.createElement("p", null, tx(t, "hero.scan_subtitle", "Scanning Hermes session history. First scan can take 5â€“10 seconds on large histories."))
+          React.createElement("h1", null, tx(t, "hero.title", "OpenAmer Achievements")),
+          React.createElement("p", null, tx(t, "hero.scan_subtitle", "Scanning OpenAmer session history. First scan can take 5â€“10 seconds on large histories."))
         ),
         React.createElement("div", { className: "ha-scan-status", role: "status", "aria-live": "polite" },
           React.createElement("span", { className: "ha-scan-pulse", "aria-hidden": "true" }),
@@ -475,7 +475,7 @@
       React.createElement("section", { className: "ha-guide ha-loading-guide" },
         React.createElement("div", null,
           React.createElement("strong", null, tx(t, "guide.scan_status_header", "Scan status")),
-          React.createElement("p", null, tx(t, "guide.scan_status_body", "Hermes is scanning local history once, then cards will appear automatically. Nothing is stuck if this takes a few seconds."))
+          React.createElement("p", null, tx(t, "guide.scan_status_body", "OpenAmer is scanning local history once, then cards will appear automatically. Nothing is stuck if this takes a few seconds."))
         ),
         React.createElement("div", null,
           React.createElement("strong", null, tx(t, "guide.what_scanned_header", "What is scanned")),
@@ -666,8 +666,8 @@
       React.createElement("section", { className: "ha-hero" },
         React.createElement("div", null,
           React.createElement("div", { className: "ha-kicker" }, tx(t, "hero.kicker", "Agentic Gamerscore")),
-          React.createElement("h1", null, tx(t, "hero.title", "Hermes Achievements")),
-          React.createElement("p", null, tx(t, "hero.subtitle", "Collectible Hermes badges earned from real session history. Known unfinished achievements are shown as Discovered; Secret achievements stay hidden until the first matching behavior appears."))
+          React.createElement("h1", null, tx(t, "hero.title", "OpenAmer Achievements")),
+          React.createElement("p", null, tx(t, "hero.subtitle", "Collectible OpenAmer badges earned from real session history. Known unfinished achievements are shown as Discovered; Secret achievements stay hidden until the first matching behavior appears."))
         ),
         React.createElement(C.Button, { onClick: load, className: "ha-refresh" }, tx(t, "actions.rescan", "Rescan"))
       ),
@@ -687,7 +687,7 @@
         ),
         React.createElement("div", null,
           React.createElement("strong", null, tx(t, "guide.secret_header", "Secret achievements")),
-          React.createElement("p", null, tx(t, "guide.secret_body", "Secrets hide their exact trigger. Once Hermes sees a related signal, the card becomes Discovered and shows its requirement."))
+          React.createElement("p", null, tx(t, "guide.secret_body", "Secrets hide their exact trigger. Once OpenAmer sees a related signal, the card becomes Discovered and shows its requirement."))
         )
       ),
       React.createElement("div", { className: "ha-toolbar" },
