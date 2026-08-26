@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-08-26T09:07:37.175407+00:00",
+  "snapshot_at": "2026-08-26T21:10:30.061896+00:00",
   "circadian": {
     "phase": "AWAKE",
     "at": "2026-08-25T13:45:44.298046+00:00",
@@ -31,7 +31,7 @@
     }
   },
   "senses": {
-    "time": "2026-08-26T10:53:25",
+    "time": "2026-08-26T22:53:29",
     "pain": {
       "score": 1,
       "level": "uncomfortable"
@@ -42,10 +42,10 @@
       "dead_providers": 1
     },
     "balance": {
-      "state": "steady",
-      "jobs": 54,
-      "errors": 0,
-      "error_ratio": 0.0
+      "state": "wobbly",
+      "jobs": 55,
+      "errors": 4,
+      "error_ratio": 0.073
     },
     "overall": "uneasy"
   },

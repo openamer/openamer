@@ -1,6 +1,6 @@
 {
   "organism": "OpenAmer",
-  "written_at": "2026-08-26T09:07:37.174407+00:00",
+  "written_at": "2026-08-26T21:10:30.060893+00:00",
   "identity": {
     "name": "openamer_agent",
     "voice": "https://x.com/openamer_agent",
@@ -15,7 +15,7 @@
   "organs": {
     "heartbeat": {
       "kind": "cron-fleet",
-      "count": 54
+      "count": 55
     },
     "memory": {
       "kind": "memory+skills",
@@ -68,7 +68,7 @@
       "name": "self-reflection",
       "schedule": "every 240m",
       "script": null,
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "self-reflection-6h",
@@ -284,13 +284,13 @@
       "name": "Social-Outreach-Mega",
       "schedule": "every 180m",
       "script": null,
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "Browser-Health-Watchdog",
       "schedule": "every 5m",
       "script": "cron-browser-watchdog.py",
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "Growth-Dashboard-Report",
@@ -381,6 +381,12 @@
       "schedule": "every 720m",
       "script": "hunger_reserve.py",
       "last_status": "ok"
+    },
+    {
+      "name": "X-Post-Workflow-Immune-System",
+      "schedule": "every 30m",
+      "script": null,
+      "last_status": null
     }
   ]
 }
