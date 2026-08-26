@@ -1,7 +1,7 @@
-(function () {
+﻿(function () {
   "use strict";
   // openamer-achievements dashboard plugin
-    // Originally authored by @PCinkusz — https://github.com/PCinkusz/hermes-achievements (MIT).
+    // Originally authored by @PCinkusz â€” https://github.com/PCinkusz/openamer-achievements (MIT).
     // Bundled into openamer-agent. Upstream repo remains the staging ground for new
   // badges and UI iteration; the in-progress scan banner below is a small addition
   // layered on top of the original dist bundle.
@@ -51,12 +51,12 @@
   function api(path, options) {
     // Delegate to the host SDK's fetchJSON so auth is handled correctly in
     // BOTH dashboard modes: loopback (X-Hermes-Session-Token header) and
-    // gated OAuth (hermes_session_at cookie via credentials:'include').
+    // gated OAuth (openamer_session_at cookie via credentials:'include').
     // Hand-rolling fetch + reading window.__HERMES_SESSION_TOKEN__ directly
     // 401s in gated mode (the token isn't injected there). fetchJSON throws
-    // Error("<status>: <body>") on non-2xx — the call sites' .catch() relies
+    // Error("<status>: <body>") on non-2xx â€” the call sites' .catch() relies
     // on that to surface errors, so we let it propagate (don't swallow).
-    const url = "/api/plugins/hermes-achievements" + path;
+    const url = "/api/plugins/openamer-achievements" + path;
     return SDK.fetchJSON(url, options);
   }
 
@@ -144,7 +144,7 @@
   }
 
   // Build a 1200x630 share card PNG for a single achievement. Returns a Blob.
-  // Pure client-side render via Canvas2D — no external deps, no network.
+  // Pure client-side render via Canvas2D â€” no external deps, no network.
   async function buildShareImage(achievement) {
     const W = 1200;
     const H = 630;
@@ -172,7 +172,7 @@
     ctx.lineWidth = 2;
     ctx.strokeRect(1, 1, W - 2, H - 2);
 
-    // Icon block — 380x380 on the left
+    // Icon block â€” 380x380 on the left
     try {
       const svg = iconSvgForCanvas(achievement.icon || "secret", color);
       const iconImg = await loadSvgImage(svg);
@@ -199,7 +199,7 @@
     ctx.textBaseline = "top";
     ctx.fillText((achievement.category || "").toUpperCase(), rx, 112);
 
-    // Achievement name — wrap to 2 lines if needed
+    // Achievement name â€” wrap to 2 lines if needed
     ctx.fillStyle = "#ffffff";
     ctx.font = "780 68px system-ui, -apple-system, 'Segoe UI', sans-serif";
     const nameLines = wrapText(ctx, achievement.name || "Achievement", rMaxWidth).slice(0, 2);
@@ -228,7 +228,7 @@
     ctx.fillText(badgeLabel, badgeX + 16, badgeY + badgeH / 2 + 1);
     ctx.textBaseline = "top";
 
-    // Description — wrap up to 3 lines
+    // Description â€” wrap up to 3 lines
     ctx.fillStyle = "#c3cad6";
     ctx.font = "400 26px system-ui, -apple-system, 'Segoe UI', sans-serif";
     const descLines = wrapText(ctx, achievement.description || "", rMaxWidth).slice(0, 3);
@@ -257,13 +257,13 @@
     ctx.fillStyle = "#8b95a8";
     ctx.font = "600 20px ui-monospace, 'SF Mono', Menlo, monospace";
     ctx.textBaseline = "bottom";
-    ctx.fillText("HERMES AGENT  ·  hermes-agent.nousresearch.com", 70, H - 40);
+    ctx.fillText("HERMES AGENT  Â·  openamer-agent.nousresearch.com", 70, H - 40);
 
     // "UNLOCKED" stamp upper-right
     ctx.textBaseline = "top";
     ctx.fillStyle = color;
     ctx.font = "800 24px ui-monospace, 'SF Mono', Menlo, monospace";
-    const stamp = "◆ UNLOCKED";
+    const stamp = "â—† UNLOCKED";
     const stampW = ctx.measureText(stamp).width;
     ctx.fillText(stamp, W - 70 - stampW, 70);
 
@@ -306,7 +306,7 @@
       const url = URL.createObjectURL(blobRef.current);
       const a = document.createElement("a");
       a.href = url;
-      a.download = "hermes-achievement-" + (achievement.id || "badge") + ".png";
+      a.download = "openamer-achievement-" + (achievement.id || "badge") + ".png";
       document.body.appendChild(a);
       a.click();
       a.remove();
@@ -317,7 +317,7 @@
       if (!blobRef.current) return;
       try {
         if (!navigator.clipboard || !window.ClipboardItem) {
-          throw new Error(tx(t, "share.clipboard_unsupported", "Clipboard image copy not supported in this browser — use Download instead."));
+          throw new Error(tx(t, "share.clipboard_unsupported", "Clipboard image copy not supported in this browser â€” use Download instead."));
         }
         await navigator.clipboard.write([
           new window.ClipboardItem({ "image/png": blobRef.current }),
@@ -331,15 +331,15 @@
     }
 
     // Build the pre-filled tweet text. Keep it short so X doesn't truncate
-    // when the user hasn't attached the PNG yet — they'll copy-image and
+    // when the user hasn't attached the PNG yet â€” they'll copy-image and
     // paste in the same flow.
     function tweetText() {
       const tierPart = achievement.tier ? (achievement.tier + " tier ") : "";
-      const tmpl = tx(t, "share.tweet_text", "Just unlocked {tier_part}\"{name}\" in Hermes Agent ☤", {
+      const tmpl = tx(t, "share.tweet_text", "Just unlocked {tier_part}\"{name}\" in Hermes Agent â˜¤", {
         tier_part: tierPart,
         name: achievement.name,
       });
-      return tmpl + "\n\n@NousResearch · https://hermes-agent.nousresearch.com";
+      return tmpl + "\n\n@NousResearch Â· https://openamer-agent.nousresearch.com";
     }
 
     function shareOnX() {
@@ -354,10 +354,10 @@
       React.createElement("div", { className: "ha-share-dialog", role: "dialog", "aria-label": tx(t, "share.dialog_label", "Share achievement") },
         React.createElement("div", { className: "ha-share-head" },
           React.createElement("strong", null, tx(t, "share.header", "Share: {name}", { name: achievement.name })),
-          React.createElement("button", { className: "ha-share-close", onClick: onClose, "aria-label": tx(t, "share.close", "Close") }, "×")
+          React.createElement("button", { className: "ha-share-close", onClick: onClose, "aria-label": tx(t, "share.close", "Close") }, "Ã—")
         ),
         React.createElement("div", { className: "ha-share-preview" },
-          status === "rendering" && React.createElement("div", { className: "ha-share-placeholder" }, tx(t, "share.rendering", "Rendering…")),
+          status === "rendering" && React.createElement("div", { className: "ha-share-placeholder" }, tx(t, "share.rendering", "Renderingâ€¦")),
           previewUrl && React.createElement("img", { src: previewUrl, alt: tx(t, "share.card_alt", "{name} share card", { name: achievement.name }) })
         ),
         status === "error" && React.createElement("div", { className: "ha-share-error" }, errorMsg || tx(t, "share.error_generic", "Something went wrong.")),
@@ -372,7 +372,7 @@
             onClick: copyToClipboard,
             disabled: status !== "ready" && status !== "copied",
             title: tx(t, "share.copy_title", "Copy the image to paste into your post"),
-          }, status === "copied" ? tx(t, "share.copied", "Copied ✓") : tx(t, "share.copy_button", "Copy image")),
+          }, status === "copied" ? tx(t, "share.copied", "Copied âœ“") : tx(t, "share.copy_button", "Copy image")),
           React.createElement("button", {
             className: "ha-share-btn",
             onClick: download,
@@ -380,7 +380,7 @@
           }, tx(t, "share.download_button", "Download PNG"))
         ),
         React.createElement("p", { className: "ha-share-hint" },
-          tx(t, "share.hint", "Share on X opens a pre-filled post in a new tab. Click Copy image first if you want the 1200×630 badge attached — X lets you paste it right into the tweet composer. Download PNG saves the file for use anywhere.")
+          tx(t, "share.hint", "Share on X opens a pre-filled post in a new tab. Click Copy image first if you want the 1200Ã—630 badge attached â€” X lets you paste it right into the tweet composer. Download PNG saves the file for use anywhere.")
         )
       )
     );
@@ -404,7 +404,7 @@
             React.createElement("i", null),
             tier
           ),
-          index < arr.length - 1 && React.createElement("span", { className: "ha-tier-arrow" }, "→")
+          index < arr.length - 1 && React.createElement("span", { className: "ha-tier-arrow" }, "â†’")
         );
       })
     );
@@ -444,12 +444,12 @@
         React.createElement("div", null,
           React.createElement("div", { className: "ha-kicker" }, tx(t, "hero.kicker", "Agentic Gamerscore")),
           React.createElement("h1", null, tx(t, "hero.title", "Hermes Achievements")),
-          React.createElement("p", null, tx(t, "hero.scan_subtitle", "Scanning Hermes session history. First scan can take 5–10 seconds on large histories."))
+          React.createElement("p", null, tx(t, "hero.scan_subtitle", "Scanning Hermes session history. First scan can take 5â€“10 seconds on large histories."))
         ),
         React.createElement("div", { className: "ha-scan-status", role: "status", "aria-live": "polite" },
           React.createElement("span", { className: "ha-scan-pulse", "aria-hidden": "true" }),
           React.createElement("div", null,
-            React.createElement("strong", null, tx(t, "scan.building_headline", "Building achievement profile…")),
+            React.createElement("strong", null, tx(t, "scan.building_headline", "Building achievement profileâ€¦")),
             React.createElement("p", null, tx(t, "scan.building_detail", "Reading sessions, tool calls, model metadata, and unlock state."))
           )
         )
@@ -576,7 +576,7 @@
         .catch(function (err) { setError(String(err)); })
         .finally(function () { setLoading(false); });
     }
-    // refresh() re-fetches without flipping the loading state — used by the
+    // refresh() re-fetches without flipping the loading state â€” used by the
     // auto-poller during an in-progress background scan so the page updates
     // with growing unlock counts instead of flashing the loading skeleton.
     function refresh() {
@@ -615,7 +615,7 @@
 
     // Build the in-progress scan banner once so the JSX below stays readable.
     // Shows nothing when the scan is idle. When a scan is running it renders
-    // a pulsing status row with "X / Y sessions · Z%" and a filling bar, so
+    // a pulsing status row with "X / Y sessions Â· Z%" and a filling bar, so
     // the user gets continuous visual feedback during long cold scans on
     // large session databases (can take several minutes on 8000+ sessions).
     let scanBanner = null;
@@ -625,10 +625,10 @@
       const total = Number(meta.sessions_expected_total || 0);
       const pct = total > 0 ? Math.max(0, Math.min(100, Math.floor((scanned / total) * 100))) : 0;
       const headline = scanMode === "pending"
-        ? tx(t, "scan.starting_headline", "Starting achievement scan…")
-        : tx(t, "scan.building_headline", "Building achievement profile…");
+        ? tx(t, "scan.starting_headline", "Starting achievement scanâ€¦")
+        : tx(t, "scan.building_headline", "Building achievement profileâ€¦");
       const detail = total > 0
-        ? tx(t, "scan.progress_detail", "Scanned {scanned} of {total} sessions · {pct}%. Badges unlock as more history streams in.", {
+        ? tx(t, "scan.progress_detail", "Scanned {scanned} of {total} sessions Â· {pct}%. Badges unlock as more history streams in.", {
             scanned: scanned.toLocaleString(),
             total: total.toLocaleString(),
             pct: String(pct),
@@ -677,7 +677,7 @@
         React.createElement(StatCard, { label: tx(t, "stats.unlocked", "Unlocked"), value: (data ? data.unlocked_count : 0) + " / " + (data ? data.total_count : 0), hint: tx(t, "stats.unlocked_hint", "earned badges") }),
         React.createElement(StatCard, { label: tx(t, "stats.discovered", "Discovered"), value: discovered.length, hint: tx(t, "stats.discovered_hint", "known, not earned yet") }),
         React.createElement(StatCard, { label: tx(t, "stats.secrets", "Secrets"), value: secret.length, hint: tx(t, "stats.secrets_hint", "hidden until first signal") }),
-        React.createElement(StatCard, { label: tx(t, "stats.highest_tier", "Highest tier"), value: highest, hint: tx(t, "stats.highest_tier_hint", "Copper → Silver → Gold → Diamond → Olympian") }),
+        React.createElement(StatCard, { label: tx(t, "stats.highest_tier", "Highest tier"), value: highest, hint: tx(t, "stats.highest_tier_hint", "Copper â†’ Silver â†’ Gold â†’ Diamond â†’ Olympian") }),
         React.createElement(StatCard, { label: tx(t, "stats.latest", "Latest"), value: latest[0] ? latest[0].name : tx(t, "stats.none_yet", "None yet"), hint: latest[0] ? latest[0].category : tx(t, "stats.latest_hint_empty", "run Hermes more") })
       ),
       React.createElement("section", { className: "ha-guide" },
@@ -713,7 +713,7 @@
       visibility === "secret" && visible.length === 0 && React.createElement(C.Card, { className: "ha-secret-empty" },
         React.createElement(C.CardContent, { className: "ha-secret-empty-content" },
           React.createElement("strong", null, tx(t, "empty.no_secrets_header", "No hidden secrets left in this scan.")),
-          React.createElement("p", null, tx(t, "empty.no_secrets_body", "Clue: secrets usually start from unusual failure or power-user patterns — port conflicts, permission walls, missing env vars, YAML mistakes, Docker collisions, rollback/checkpoint use, cache hits, or tiny fixes after lots of red text."))
+          React.createElement("p", null, tx(t, "empty.no_secrets_body", "Clue: secrets usually start from unusual failure or power-user patterns â€” port conflicts, permission walls, missing env vars, YAML mistakes, Docker collisions, rollback/checkpoint use, cache hits, or tiny fixes after lots of red text."))
         )
       ),
       React.createElement("section", { className: "ha-grid" }, visible.map(function (a) {
