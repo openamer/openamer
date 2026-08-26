@@ -4,7 +4,7 @@ title: system
 
 # 🖥️ system
 
-25 skills
+26 skills
 
 - [ab-test-engine](ab-test-engine/) — Use for A/B experiments on OpenAmer configs and skills.
 - [auto-updater](auto-updater/) — Use for multi-source update management: git, pip, hub.
@@ -16,6 +16,7 @@ title: system
 - [global-sync](global-sync/) — Use for multi-machine HTTP delta sync with peer management.
 - [learning-loop](learning-loop/) — Use for auto error capture, categorization and skill gen.
 - [log-analyzer](log-analyzer/) — Use for log analysis, error tracking, alerts, and dashboard.
+- [memory-store-upkeep](memory-store-upkeep/) — Use when writing or updating persistent memory stores.
 - [model-benchmarker](model-benchmarker/) — Use when: benchmark model latency, throughput, or quality.
 - [notification-engine](notification-engine/) — 'Use for alerting: desktop, sound, log, webhook, daemon.'
 - [perf-optimizer](perf-optimizer/) — Use when running or debugging the perf-optimizer on Windows.

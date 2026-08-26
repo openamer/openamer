@@ -4,27 +4,15 @@ title: imported
 
 # 📦 imported
 
-404 skills
+343 skills
 
 - [accelerated-computing-cudf](accelerated-computing-cudf/) — Official NVIDIA-authored guidance for NVIDIA cuDF GPU DataFrames, pandas acceler
 - [aiq-deploy](aiq-deploy/) — Use when asked to install, deploy, run, validate, troubleshoot, or stop NVIDIA A
 - [aiq-research](aiq-research/) — Use when asked to run deep research or AI-Q research through a reachable NVIDIA 
-- [alpha](alpha/) — Fixture dispatcher with a mode table and forced-read references.
 - [amc-run-rtsp-calibration](amc-run-rtsp-calibration/) — Calibrate a new dataset from live RTSP camera streams via the AutoMagicCalib RES
 - [amc-run-sample-calibration](amc-run-sample-calibration/) — Run end-to-end calibration on the shipped sample dataset (sdg_08_2_sample_data_0
 - [amc-run-video-calibration](amc-run-video-calibration/) — Calibrate a new dataset from pre-recorded video files via the AutoMagicCalib RES
 - [amc-setup-calibration-stack](amc-setup-calibration-stack/) — Launch AutoMagicCalib microservice and web UI from NGC release images via Docker
-- [autoplan](autoplan/) — Auto-review pipeline — reads the full CEO, design, eng, and DX review skills fro
-- [benchmark](benchmark/) — Performance regression detection using the browse daemon. (gstack)
-- [benchmark-models](benchmark-models/) — Cross-model benchmark for gstack skills. (gstack)
-- [beta](beta/) — Clean fixture tool skill with no forced reads and no mode table.
-- [browse](browse/) — Fast headless browser for QA testing and site dogfooding. (gstack)
-- [canary](canary/) — Post-deploy canary monitoring. (gstack)
-- [careful](careful/) — Safety guardrails for destructive commands. (gstack)
-- [codex](codex/) — OpenAI Codex CLI wrapper — three modes. (gstack)
-- [context-restore](context-restore/) — Restore working context saved earlier by /context-save. (gstack)
-- [context-save](context-save/) — Save working context. (gstack)
-- [cso](cso/) — Chief Security Officer mode. (gstack)
 - [cudaq-guide](cudaq-guide/) — CUDA-Q onboarding guide for installation, test programs, GPU simulation, QPU har
 - [cuopt-developer](cuopt-developer/) — Modify, build, test, debug, and contribute to NVIDIA cuOpt (C++/CUDA, Python, se
 - [cuopt-install](cuopt-install/) — Install cuOpt for Python, C, or server via pip, conda, or Docker; verify the ins
@@ -45,12 +33,6 @@ title: imported
 - [deepstream-profile-pipeline](deepstream-profile-pipeline/) — Profile a DeepStream pipeline with Nsight Systems and derive its configs from th
 - [deepstream-run-mv3dt](deepstream-run-mv3dt/) — Run and operate the DeepStream Multi-View 3D Tracking reference app, also known 
 - [deepstream-sop](deepstream-sop/) — Use this skill when building, deploying, evaluating, debugging, or measuring lat
-- [design-consultation](design-consultation/) — Design consultation: understands your product, researches the landscape, propose
-- [design-html](design-html/) — Design finalization: generates production-quality Pretext-native HTML/CSS. (gsta
-- [design-review](design-review/) — Designer's eye QA: finds visual inconsistency, spacing issues, hierarchy problem
-- [design-shotgun](design-shotgun/) — Design shotgun: generate multiple AI design variants, open a comparison board, c
-- [devex-review](devex-review/) — Live developer experience audit. (gstack)
-- [diagram](diagram/) — Turn an English description (or mermaid source) into a diagram triplet: the sour
 - [dicom-metadata-extract](dicom-metadata-extract/) — Used for extracting selected metadata from one DICOM file and flagging standard-
 - [dicom-series-preflight](dicom-series-preflight/) — Used for header-only preflight of one DICOM series folder before conversion or i
 - [dicom-series-to-volume](dicom-series-to-volume/) — Used for converting one CT DICOM series folder to a HU NIfTI volume with affine 
@@ -118,8 +100,6 @@ title: imported
 - [doca-urom-svc](doca-urom-svc/) — Operate the DOCA UROM Service container on BlueField Arm for remote memory opera
 - [doca-verbs](doca-verbs/) — Use this skill when the user is dropping below the higher-level DOCA libraries (
 - [doca-version](doca-version/) — Use this skill when the user is doing DOCA version handling — detecting the inst
-- [document-generate](document-generate/) — Generate missing documentation from scratch for a feature, module, or entire pro
-- [document-release](document-release/) — Post-ship documentation update. (gstack)
 - [dynamo-interconnect-check](dynamo-interconnect-check/) — Validate that a Dynamo deployment's NIXL/UCX/NCCL interconnect is ready for disa
 - [dynamo-recipe-runner](dynamo-recipe-runner/) — Select, validate, patch, and deploy existing NVIDIA Dynamo Kubernetes recipes. U
 - [dynamo-router-starter](dynamo-router-starter/) — Start or patch Dynamo router modes and run router endpoint smoke checks. Use for
@@ -131,16 +111,6 @@ title: imported
 - [earth2studio-deterministic-forecast](earth2studio-deterministic-forecast/) — Build deterministic forecast scripts with Earth2Studio (model, data source, IO, 
 - [earth2studio-discover](earth2studio-discover/) — Find Earth2Studio models, data sources, and examples for a weather/climate use c
 - [earth2studio-install](earth2studio-install/) — Guide installing Earth2Studio via uv or pip, selecting model extras, and configu
-- [freeze](freeze/) — Restrict file edits to a specific directory for the session. (gstack)
-- [gstack](gstack/) — Router for the gstack skill suite. (gstack)
-- [gstack-openclaw-ceo-review](gstack-openclaw-ceo-review/) — Use when asked to review a plan, challenge a proposal, run a CEO review, poke ho
-- [gstack-openclaw-investigate](gstack-openclaw-investigate/) — Use when asked to debug, fix a bug, investigate an error, or do root cause analy
-- [gstack-openclaw-office-hours](gstack-openclaw-office-hours/) — Use when asked to brainstorm, evaluate whether an idea is worth building, run of
-- [gstack-openclaw-retro](gstack-openclaw-retro/) — Weekly engineering retrospective. Analyzes commit history, work patterns, and co
-- [gstack-upgrade](gstack-upgrade/) — Upgrade gstack to the latest version.
-- [guard](guard/) — Full safety mode: destructive command warnings + directory-scoped edits. (gstack
-- [hackernews-frontpage](hackernews-frontpage/) — Scrape the Hacker News front page (titles, points, comment counts).
-- [health](health/) — Code quality dashboard. (gstack)
 - [holohub-app-lifecycle](holohub-app-lifecycle/) — Use for non-failing HoloHub app work with ./holohub: scaffold, build, run, test,
 - [holohub-debug-build-run](holohub-debug-build-run/) — Use when a concrete ./holohub command fails, hangs, regresses, or returns wrong 
 - [holohub-module-lifecycle](holohub-module-lifecycle/) — Use for reusable Holoscan Module work with ./holohub: scaffold, tests, editable 
@@ -177,12 +147,6 @@ title: imported
 - [i4h-workflow-scene-edit](i4h-workflow-scene-edit/) — Edit an env's scene in place — objects, cameras, task, success bounds, randomiza
 - [i4h-workflow-setup](i4h-workflow-setup/) — Verify host requirements and run `workflows/agentic/setup.sh`. Use when asked to
 - [i4h-workflow-validate](i4h-workflow-validate/) — Validate, evaluate, or run i4h envs. Use for policy/checkpoint rollouts and scri
-- [investigate](investigate/) — Systematic debugging with root cause investigation. (gstack)
-- [ios-clean](ios-clean/) — Remove the DebugBridge SPM package and all #if DEBUG wiring from an iOS app. (gs
-- [ios-design-review](ios-design-review/) — Visual design audit for iOS apps on real hardware. (gstack)
-- [ios-fix](ios-fix/) — Autonomous iOS bug fixer. (gstack)
-- [ios-qa](ios-qa/) — Live-device iOS QA for SwiftUI apps. (gstack)
-- [ios-sync](ios-sync/) — Regenerate the iOS debug bridge against the latest upstream gstack templates. (g
 - [jetson-build-source](jetson-build-source/) — Use when you need to rebuild the BSP overlay — DT, OOT modules, or kernel — from
 - [jetson-customize-camera](jetson-customize-camera/) — Enable MIPI/GMSL camera sensors on a Jetson Thor or Orin custom carrier by rende
 - [jetson-customize-clocks](jetson-customize-clocks/) — Use to lock/cap Jetson CPU/GPU/EMC clocks, toggle EMC/CPU DVFS, or change cpufre
@@ -221,11 +185,7 @@ title: imported
 - [jetson-video-pipeline](jetson-video-pipeline/) — Use when executing and verifying Jetson Video Codec SDK or PyNvVideoCodec encode
 - [jetson-video-recipe](jetson-video-recipe/) — Use when turning a Jetson encoder use case into one validated surface-neutral re
 - [jetson-video-setup](jetson-video-setup/) — Use when installing, repairing, probing, or verifying native NVIDIA Video Codec 
-- [land-and-deploy](land-and-deploy/) — Land and deploy workflow. (gstack)
-- [landing-report](landing-report/) — Read-only queue dashboard for workspace-aware ship. (gstack)
 - [launch-nemo-rl](launch-nemo-rl/) — Playbook for launching, monitoring, stopping, and debugging NeMo-RL recipes on a
-- [learn](learn/) — Manage project learnings.
-- [make-pdf](make-pdf/) — Turn any markdown file into a publication-quality PDF. (gstack)
 - [mcore-create-issue](mcore-create-issue/) — Investigate a failing GitHub Actions run or job and create a GitHub issue for th
 - [mcore-linting-and-formatting](mcore-linting-and-formatting/) — Linting and formatting for Megatron-LM. Covers running autoformat.sh, tools (ruf
 - [mcore-run-on-slurm](mcore-run-on-slurm/) — How to launch distributed Megatron-LM training jobs on a SLURM cluster. Covers a
@@ -288,13 +248,10 @@ title: imported
 - [nv-segment-ct-finetune](nv-segment-ct-finetune/) — Used for smoke or dataset finetuning of NV-Segment-CT VISTA3D on CT NIfTI labels
 - [nv-segment-ctmr](nv-segment-ctmr/) — Used for running NV-Segment-CTMR on CT or MRI NIfTI volumes and recording label-
 - [nvidia-skill-finder](nvidia-skill-finder/) — Use for NVIDIA-related requests where an NVIDIA skill might help, even if the us
-- [office-hours](office-hours/) — YC Office Hours — two modes. (gstack)
 - [omniverse-cad-to-simready](omniverse-cad-to-simready/) — Coordinate the end-to-end CAD/source-asset to SimReady workflow. Use for broad r
 - [omniverse-realtime-viewer](omniverse-realtime-viewer/) — Use as the top-level router for Omniverse Realtime Viewer USD app requests and f
 - [omniverse-usd-performance-tuning](omniverse-usd-performance-tuning/) — Top-level workflow skill for USD performance diagnosis and optimization. Handles
-- [open-gstack-browser](open-gstack-browser/) — Launch GStack Browser — AI-controlled Chromium with the sidebar extension baked 
 - [paidf-anomalygen](paidf-anomalygen/) — Full PAIDF AnomalyGen pipeline — fine-tune on a new anomaly dataset, generate sy
-- [pair-agent](pair-agent/) — Pair a remote AI agent with your browser. (gstack)
 - [physical-ai-defect-image-generation](physical-ai-defect-image-generation/) — Use when the user wants to orchestrate defect image generation with NVIDIA Cosmo
 - [physical-ai-image-attribute-augmentation](physical-ai-image-attribute-augmentation/) — Use when running image attribute augmentation and auto-labeling workflows on OSM
 - [physical-ai-infrastructure-setup-and-resilient-scaling](physical-ai-infrastructure-setup-and-resilient-scaling/) — Use when the user wants to set up, scale, validate, or harden NVIDIA physical AI
@@ -302,31 +259,14 @@ title: imported
 - [physical-ai-video-data-augmentation](physical-ai-video-data-augmentation/) — Use when running video data augmentation and auto-labeling workflows on OSMO: fl
 - [physicsnemo-discover](physicsnemo-discover/) — Official NVIDIA-authored guidance for navigating PhysicsNeMo — pick the model, d
 - [physicsnemo-shard-tensor](physicsnemo-shard-tensor/) — Official NVIDIA-authored guidance for PhysicsNeMo ShardTensor domain parallelism
-- [plan-ceo-review](plan-ceo-review/) — CEO/founder-mode plan review. (gstack)
-- [plan-design-review](plan-design-review/) — Designer's eye plan review — interactive, like CEO and Eng review. (gstack)
-- [plan-devex-review](plan-devex-review/) — Interactive developer experience plan review. (gstack)
-- [plan-eng-review](plan-eng-review/) — Eng manager-mode plan review. (gstack)
-- [plan-tune](plan-tune/) — Self-tuning question sensitivity + developer psychographic for gstack (v1: obser
 - [portfolio-optimization](portfolio-optimization/) — Use when a user asks to build, optimize, backtest, rebalance, or analyze a stock
-- [qa](qa/) — Systematically QA test a web application and fix bugs found. (gstack)
-- [qa-only](qa-only/) — Report-only QA testing. (gstack)
 - [rag-blueprint](rag-blueprint/) — NVIDIA RAG Blueprint — deploy, configure, troubleshoot, and manage. Handles any 
 - [rag-eval](rag-eval/) — Filesystem RAG benchmarks: corpus/, train.json, evaluate_rag.py (RAGAS quality).
 - [rag-perf](rag-perf/) — Performance benchmarking for a deployed NVIDIA RAG Blueprint server: profiling p
-- [retro](retro/) — Weekly engineering retrospective. (gstack)
-- [review](review/) — Pre-landing PR review. (gstack)
 - [rtvi-cv-customize-model](rtvi-cv-customize-model/) — How to swap the DeepStream CV detection model in the VSS Alerts Blueprint verifi
 - [rtvi-cv-scaffold-vss-service](rtvi-cv-scaffold-vss-service/) — Scaffold a standalone RTVI CV microservice that plugs into VSS Search and Alerts
 - [rtvi-vlm-customize-model](rtvi-vlm-customize-model/) — How to swap the VLM in the VSS Alerts Blueprint — covers RTVI-VLM microservice d
-- [scrape](scrape/) — Pull data from a web page. (gstack)
-- [setup-browser-cookies](setup-browser-cookies/) — Import cookies from your real Chromium browser into the headless browse session.
-- [setup-deploy](setup-deploy/) — Configure deployment settings for /land-and-deploy.
-- [setup-gbrain](setup-gbrain/) — Set up gbrain for this coding agent: install the CLI, initialize a local PGLite 
-- [ship](ship/) — Ship workflow: detect + merge base branch, run tests, review diff, bump VERSION,
 - [skill-card-generator](skill-card-generator/) — Use only to generate or update a governance skill card for a specified existing 
-- [skillify](skillify/) — Codify the most recent successful /scrape flow into a permanent browser-skill on
-- [spec](spec/) — Turn vague intent into a precise, executable spec in five phases. (gstack)
-- [sync-gbrain](sync-gbrain/) — Keep gbrain current with this repo's code and refresh agent search guidance in C
 - [tao-analyze-changenet-rca](tao-analyze-changenet-rca/) — Performs deep Root Cause Analysis (RCA) on NVIDIA TAO Visual ChangeNet classific
 - [tao-analyze-gaps-visual-changenet](tao-analyze-gaps-visual-changenet/) — Performs gap analysis on NVIDIA TAO VCN Classify (Visual Component Net) experime
 - [tao-analyze-gaps-vlm-bcq](tao-analyze-gaps-vlm-bcq/) — Extract false-positive and false-negative gaps from VLM binary-classification-qu
@@ -343,7 +283,7 @@ title: imported
 - [tao-mine-aoi-images](tao-mine-aoi-images/) — Runs the DEFT embed-then-mine workflow for VCN AOI iterations — embeds the gap-a
 - [tao-port-huggingface-model](tao-port-huggingface-model/) — Integrate a HuggingFace Computer Vision model into the NVIDIA TAO Toolkit ecosys
 - [tao-route-visual-changenet-samples](tao-route-visual-changenet-samples/) — Routes the weakest VCN samples (output of `tao-analyze-gaps-visual-changenet`) i
-- [tao-run-automl](tao-run-automl/) — Run AutoML / hyperparameter optimization (HPO) for NVIDIA TAO networks using Aut
+- [tao-run-automl](tao-run-automl/) — Run container-backed AutoML / hyperparameter optimization (HPO) for NVIDIA TAO n
 - [tao-run-automl-deft-pipeline](tao-run-automl-deft-pipeline/) — Run the canonical NVIDIA AOI three-phase training pipeline — Phase 1 AutoML base
 - [tao-run-deft-aoi](tao-run-deft-aoi/) — Run the full DEFT AOI improvement loop for NVIDIA TAO VisualChangeNet / ChangeNe
 - [tao-run-inference-service](tao-run-inference-service/) — Start, query, and stop a network-specific TAO inference microservice ({network_a
@@ -391,7 +331,6 @@ title: imported
 - [tilegym-cutile-python](tilegym-cutile-python/) — Expert cuTile programming assistant. Write high-performance GPU kernels using cu
 - [tilegym-improve-cutile-kernel-perf](tilegym-improve-cutile-kernel-perf/) — Iteratively optimize cuTile kernel performance through systematic profiling, bot
 - [tilegym-monkey-patch-kernels-to-transformers](tilegym-monkey-patch-kernels-to-transformers/) — Integrate TileGym kernels into Hugging Face `transformers` models by replacing t
-- [unfreeze](unfreeze/) — Clear the freeze boundary set by /freeze, allowing edits to all directories agai
 - [vss-ask-video](vss-ask-video/) — Use this skill to ask the VSS agent's video_understanding tool a fresh visual qu
 - [vss-deploy-dense-captioning](vss-deploy-dense-captioning/) — Use this skill when deploying standalone RT-VLM dense captioning or calling its 
 - [vss-deploy-detection-tracking-2d](vss-deploy-detection-tracking-2d/) — Use this skill when the user wants to deploy, run, debug, tear down, or call the

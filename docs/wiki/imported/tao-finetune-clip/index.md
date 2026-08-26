@@ -6,7 +6,7 @@ description: CLIP vision-language model for image-text retrieval, zero-shot clas
 # tao-finetune-clip
 
 **Description:** CLIP vision-language model for image-text retrieval, zero-shot classification, embedding extraction, ONNX export, and TensorRT deployment. Use when fine-tuning or training CLIP, running zero-shot classification, computing image embeddings, or deploying CLIP to ONNX/TensorRT.
-**Lines:** 197 | **Code:** 39 | **Dir:** `tao-finetune-clip`
+**Lines:** 200 | **Code:** 39 | **Dir:** `tao-finetune-clip`
 
 ---
 

@@ -6,7 +6,7 @@ description: Use for batch CI failures: check-runs, job logs, main-first.
 # github-ci-debugging
 
 **Description:** Use for batch CI failures: check-runs, job logs, main-first.
-**Lines:** 100 | **Code:** 37 | **Dir:** `github-ci-debugging`
+**Lines:** 131 | **Code:** 43 | **Dir:** `github-ci-debugging`
 
 ---
 

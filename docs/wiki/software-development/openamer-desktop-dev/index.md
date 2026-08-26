@@ -6,7 +6,7 @@ description: Use when debugging or building the OpenAmer desktop app.
 # openamer-desktop-dev
 
 **Description:** Use when debugging or building the OpenAmer desktop app.
-**Lines:** 474 | **Code:** 130 | **Dir:** `openamer-desktop-dev`
+**Lines:** 477 | **Code:** 130 | **Dir:** `openamer-desktop-dev`
 
 ---
 

@@ -6,7 +6,7 @@ description: Make minimal, clean diffs when editing code in a git repo.
 # clean-code-edits
 
 **Description:** Make minimal, clean diffs when editing code in a git repo.
-**Lines:** 286 | **Code:** 69 | **Dir:** `clean-code-edits`
+**Lines:** 324 | **Code:** 80 | **Dir:** `clean-code-edits`
 
 ---
 

@@ -6,7 +6,7 @@ description: ImportError after refactor? Map old→new API and fix tests.
 # api-drift-recovery
 
 **Description:** ImportError after refactor? Map old→new API and fix tests.
-**Lines:** 142 | **Code:** 26 | **Dir:** `api-drift-recovery`
+**Lines:** 146 | **Code:** 26 | **Dir:** `api-drift-recovery`
 
 ---
 
