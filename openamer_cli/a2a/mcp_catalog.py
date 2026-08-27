@@ -107,6 +107,19 @@ def _matches(e, clauses) -> bool:
     return all(any(t in text for t in alt) for alt in clauses)
 
 
+def _matches_slice(entries, query: str, limit: int = 10) -> list:
+    """Filter an already-parsed entry list by ``query`` without fetching.
+
+    Hermetic counterpart to :func:`search` (which fetches the live catalog).
+    Lets callers/tests run the same clause logic over a list of entries.
+    """
+    clauses = _tokenize_clauses(query)
+    if not clauses:
+        return entries[:limit]
+    hits = [e for e in entries if _matches(e, clauses)]
+    return hits[:limit]
+
+
 def _fetch(raw: str = RAW, timeout: float = 25.0) -> str:
     global CACHE
     if CACHE is not None:
@@ -118,8 +131,21 @@ def _fetch(raw: str = RAW, timeout: float = 25.0) -> str:
 
 
 _ROW_RE = re.compile(
-    r"-\s*\[([^\]]+)\]\((https://github\.com/[^)]+)\)\s*\[!\[",
+    r"- \[([^\]]+)\]\((https://github\.com/[^)]+)\) \[!\[[^\]]*\]\([^)]*\)\]\([^)]*\)(.*)",
     re.M)
+
+
+def _clean_markdown(s: str) -> str:
+    """Flatten markdown noise in a description to plain searchable text.
+
+    Inline links become their label, backticks are stripped, and runs of
+    whitespace collapse to a single space (the raw file uses one description
+    per line, so there is no intra-cell newline to preserve).
+    """
+    s = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", s)  # [label](url) -> label
+    s = s.replace("`", "")
+    s = re.sub(r"\s+", " ", s)
+    return s.strip()
 
 
 def _parse(text: str) -> list[dict]:
@@ -128,7 +154,13 @@ def _parse(text: str) -> list[dict]:
         name, url = m.group(1), m.group(2)
         if not name or not url:
             continue
-        out.append({"name": name, "url": url, "description": ""})
+        rest = m.group(3) or ""
+        # Platform hints (emoji) + trailing meta end at the first dash; the
+        # human-readable description follows it. Handle both hyphen and dash.
+        parts = re.split(r"\s+[-–—]\s+", rest, maxsplit=1)
+        desc = parts[1] if len(parts) > 1 else parts[0]
+        desc = _clean_markdown(desc)
+        out.append({"name": name, "url": url, "description": desc})
     return out
 
 
