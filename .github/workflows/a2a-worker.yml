@@ -1,0 +1,39 @@
+name: a2a-worker
+
+# A remotely-hosted OpenAmer sub-agent node. It runs on real GitHub runners
+# (live, over the internet) and answers tasks left in the shared a2a relay
+# (directory/a2a/relay/). Triggered explicitly (never on relay path, so it
+# cannot loop on its own replies).
+on:
+  workflow_dispatch: {}
+  repository_dispatch:
+    types: [a2a-task]
+
+permissions:
+  contents: write
+
+jobs:
+  worker:
+    name: A2A worker node (ubuntu runner)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install minimal crypto dep
+        run: pip install -q cryptography
+
+      - name: Configure git for authenticated push
+        run: |
+          git config --local user.name "openamer a2a-worker"
+          git config --local user.email "a2a-worker@openamer"
+          git remote set-url origin \
+            "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+
+      - name: Run a2a worker (process relay tasks)
+        env:
+          OPENAMER_PYTHONPATH: .
+        run: python scripts/a2a_worker.py .
