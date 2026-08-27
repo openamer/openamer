@@ -42,39 +42,70 @@ def _now_utc() -> str:
 
 
 def _ask_llm(prompt: str, model: str = DEFAULT_MODEL) -> dict:
-    """Answer via OpenRouter; fall back to local Ollama, then HuggingFace.
+    """Answer via the first AVAILABLE provider, most-capable first — agnostic.
 
-    Rule (per operator): prefer free/zero-cost when the API key is absent/blocked.
-      OpenRouter (if OPENROUTER_API_KEY) -> Ollama (if reachable & has a model)
-      -> HuggingFace Inference (free, no key) -> error.
-    Each phase is guarded so a failure just moves to the next backend.
+    Operator preference / reality:
+      1. Cloud, IF the operator has a key for it (their choice; costs their credits):
+         OpenRouter / generic OpenAI-compatible (OpenAI, DeepSeek, Groq, Gemini
+         via /chat/completions) / Anthropic. Each tried only when its env key is set.
+      2. Local zero-cost: Ollama (if installed).
+      3. HuggingFace public Inference (free, no key).
+    No key anywhere -> we never dial a paid API; we silently drop to Ollama then HF.
+    Each adapter is guarded so a failure just moves to the next available backend.
     """
-    import urllib.request
-    model = model or DEFAULT_MODEL                     # guard empty model
-    key = os.environ.get("OPENROUTER_API_KEY", "")
+    import os as _os
 
-    # 1) OpenRouter (cloud, if key present)
-    if key:
-        r = _ask_openrouter(prompt, model, key)
+    # --- order of preference, one of which will answer ---
+    candidates = []
+
+    # 1a) OpenRouter
+    or_key = _os.environ.get("OPENROUTER_API_KEY", "")
+    if or_key:
+        candidates.append(("openrouter", lambda: _ask_openrouter(prompt, model, or_key)))
+
+    # 1b) generic OpenAI-compatible (any of several keys / base url)
+    oai_key = _os.environ.get("OPENAI_API_KEY", "")
+    oai_base = _os.environ.get("OPENAI_BASE_URL", "")
+    groq = _os.environ.get("GROQ_API_KEY", "")
+    deepseek = _os.environ.get("DEEPSEEK_API_KEY", "")
+    gemini = _os.environ.get("GEMINI_API_KEY", "")
+    for name, k, base, default_model in (
+                ("openai", oai_key, oai_base, model),
+                ("groq", groq, "https://api.groq.com/openai/v1", "llama-3.3-70b-versatile"),
+                ("deepseek", deepseek, "https://api.deepseek.com/v1", "deepseek-chat"),
+                ("gemini", gemini, "https://generativelanguage.googleapis.com/v1beta/openai",
+                 "gemini-2.0-flash"),
+        ):
+            if k:
+                b = (base or oai_base) if name == "openai" else base
+                candidates.append((name,
+                    lambda _m=default_model, _k=k, _b=b: _ask_openai_compat(prompt, _m, _k, _b)))
+    # local base url without a key -> probably a local/vLLM server (free)
+    if not oai_key and oai_base:
+        candidates.append(("local-openai", lambda: _ask_openai_compat(prompt, "local-model", "", oai_base)))
+
+    # 1c) Anthropic
+    anthro = _os.environ.get("ANTHROPIC_API_KEY", "")
+    if anthro:
+        candidates.append(("anthropic", lambda: _ask_anthropic(prompt, "claude-sonnet-4-5", anthro)))
+
+    # 2) Local Ollama (zero-cost)
+    candidates.append(("ollama", lambda: _ask_ollama(prompt)))
+
+    # 3) HuggingFace (free, no key)
+    candidates.append(("huggingface", lambda: _ask_huggingface(prompt)))
+
+    errs = []
+    for name, call in candidates:
+        try:
+            r = call()
+        except Exception as e:
+            errs.append(f"{name}: {e}")
+            continue
         if r.get("ok"):
             return r
-        last_err = r.get("error", "")
-    else:
-        last_err = "no OPENROUTER_API_KEY"
-
-    # 2) Local Ollama (zero-cost, no key)
-    r = _ask_ollama(prompt)
-    if r.get("ok"):
-        return r
-    last_err = f"{last_err}; ollama: {r.get('error','')}"
-
-    # 3) HuggingFace Inference (free, no key for public tiny models)
-    r = _ask_huggingface(prompt)
-    if r.get("ok"):
-        return r
-    last_err = f"{last_err}; hf: {r.get('error','')}"
-
-    return {"ok": False, "error": last_err}
+        errs.append(f"{name}: {r.get('error','')}")
+    return {"ok": False, "error": " ; ".join(errs)}
 
 
 def _ask_openrouter(prompt: str, model: str, key: str) -> dict:
@@ -109,34 +140,104 @@ def _ask_openrouter(prompt: str, model: str, key: str) -> dict:
         return {"ok": False, "error": f"openrouter: {err}"}
 
 
+def _ask_openai_compat(prompt, model, key, base_url=None):
+    """Generic OpenAI-compatible chat-completion POST (covers OpenAI, DeepSeek,
+    Groq, Gemini's OpenAI adapter, vLLM/local servers — anything with a
+    '/chat/completions' endpoint). Zero-cost unless the operator configured a key."""
+    import urllib.request, urllib.error
+    import json as _json
+    base = (base_url or "https://api.openai.com/v1").rstrip("/")
+    url = f"{base}/chat/completions"
+    body = _json.dumps({
+        "model": model,
+        "messages": [{"role": "system",
+                      "content": "You are the OpenAmer remote worker sub-agent. "
+                      "Be concise, accurate, and helpful."},
+                     {"role": "user", "content": prompt}],
+        "max_tokens": 400,
+    }).encode()
+    headers = {"Content-Type": "application/json"}
+    if key:
+        headers["Authorization"] = f"Bearer {key}"
+    req = urllib.request.Request(url, data=body, method="POST", headers=headers)
+    try:
+        with urllib.request.urlopen(req, timeout=120) as resp:
+            data = _json.loads(resp.read().decode("utf-8", "replace"))
+        text = (data.get("choices") or [{}])[0].get("message", {}).get("content", "")
+        return {"ok": bool(text), "text": (text or "").strip(),
+                "model": data.get("model", model)} if text else \
+            {"ok": False, "error": f"openai-compat empty ({url})"}
+    except urllib.error.HTTPError as e:
+        return {"ok": False, "error": f"openai-compat {e.code} ({url})"}
+    except Exception as e:
+        return {"ok": False, "error": f"openai-compat {e} ({url})"}
+
+
+def _ask_anthropic(prompt, model, key):
+    """Anthropic Messages API (needs a key; no silent cost without one)."""
+    import urllib.request, urllib.error
+    import json as _json
+    url = "https://api.anthropic.com/v1/messages"
+    body = _json.dumps({
+        "model": model,
+        "system": "You are the OpenAmer remote worker sub-agent. Be concise, accurate, helpful.",
+        "messages": [{"role": "user", "content": prompt}],
+        "max_tokens": 400,
+    }).encode()
+    req = urllib.request.Request(url, data=body, method="POST", headers={
+        "x-api-key": key, "anthropic-version": "2023-06-01",
+        "content-type": "application/json"})
+    try:
+        with urllib.request.urlopen(req, timeout=120) as resp:
+            data = _json.loads(resp.read().decode("utf-8", "replace"))
+        text = "".join(b.get("text", "") for b in data.get("content", []) if b.get("type") == "text")
+        return {"ok": bool(text), "text": text.strip(), "model": data.get("model", model)} if text else \
+            {"ok": False, "error": "anthropic empty"}
+    except urllib.error.HTTPError as e:
+        return {"ok": False, "error": f"anthropic {e.code}"}
+    except Exception as e:
+        return {"ok": False, "error": f"anthropic {e}"}
+
+
 def _ask_ollama(prompt: str) -> dict:
-    """Local Ollama (zero-cost). Uses whichever small local model is present."""
+    """Local Ollama (zero-cost). Uses whichever small local model is present,
+    else auto-pulls a tiny model on first need so every user has a local brain."""
     import subprocess as _sp
     import shutil as _sh
     if not _sh.which("ollama"):
         return {"ok": False, "error": "ollama not installed"}
     # Pick a small, fast locally-installed model (prefer ours; fall back).
-    candidates = ("qwen3.5:9b", "qwen3.5:4b-q4_K_M", "qwen3.5:4b")
+    candidates = ("qwen3.5:9b", "qwen3.5:4b-q4_K_M", "qwen3.5:4b",
+                  "qwen2.5:0.5b", "qwen2.5:1.5b", "tinyllama:1.1b",
+                  "llama3.2:1b", "llama3.2:3b")
     picked = None
+    try:
+        installed = _sp.run(["ollama", "list"], capture_output=True, text=True,
+                            timeout=20).stdout or ""
+    except Exception:
+        installed = ""
     for c in candidates:
+        if c in installed:
+            picked = c
+            break
+    if not picked:
+        # Auto-provision a tiny local model on first need (zero cost, local).
+        model_auto = "qwen2.5:0.5b"
         try:
-            lst = _sp.run(["ollama", "list"], capture_output=True, text=True,
-                          timeout=20).stdout
-            if c in lst:
-                picked = c
-                break
-        except Exception:
-            continue
-    model = picked or "llama3.2:3b"          # last-ditch guess
+            _sp.run(["ollama", "pull", model_auto], capture_output=True, text=True,
+                    timeout=600)
+            picked = model_auto
+        except Exception as e:
+            return {"ok": False, "error": f"ollama auto-pull failed: {e}"}
+    model = picked or "qwen2.5:0.5b"
     sys_prompt = ("System: Answer ONLY the final answer, no reasoning/thinking, "
                   "in a short sentence.\nUser: ")
     try:
         rr = _sp.run(["ollama", "run", model, sys_prompt + prompt],
-                     capture_output=True, text=True, timeout=120)
+                     capture_output=True, text=True, timeout=180)
         out = (rr.stdout or "").strip()
         if not out:
             return {"ok": False, "error": f"ollama {model} empty"}
-        # Extract the LAST plausible sentence to strip internal thinking noise.
         final = _extract_answer(out)
         return {"ok": True, "text": final, "model": f"ollama:{model}"}
     except Exception as e:
@@ -170,18 +271,39 @@ def _ask_huggingface(prompt: str) -> dict:
 
 
 def _extract_answer(text: str) -> str:
-    """Deliberately drop Ollama/qwen-style chain-of-thought noise and return
-    the final concise sentence. Naive but practical for short asks."""
+    """Strip Ollama/qwen-style chain-of-thought noise and return the final
+    concise answer. The tail after the last GPT thought-block is usually the
+    real final answer; we take the LAST sentence that looks like a statement."""
+    import re as _re
+    if not text:
+        return ""
+    # Chop everything after a closing thought block "final:\n ..." or keep tail
+    # Split into lines, drop empty, drop obvious thinking heads.
     lines = [l.strip() for l in text.splitlines() if l.strip()]
-    if not lines:
-        return text
-    # Prefer the LAST sentence-ish token, but cap at 3 lines to stay concise.
-    pick = lines[-1] if len(lines) <= 6 else " ".join(lines[-2:])
-    # Trim to first sentence on a single line (stop at the natural end).
-    for sep in (".\n", "?\n", "—\n"):
-        pass
-    # simple: strip double-space + leading bullets
+    # Heuristic: the usable answer usually sits in the last 1-2 non-trivial
+    # lines after any "**Final**", "Answer:", ">>", or a pure "</think>"
+    cleaned = []
+    for l in lines:
+        low = l.lower()
+        if low.startswith(("thinking", "thought", "reasoning", "*thinking*",
+                           "step ", "**thought", "let me", "we need", "notes")):
+            continue
+        cleaned.append(l)
+    if not cleaned:
+        cleaned = lines
+    # Prefer the LAST line, but avoid chains where the real answer is 2 lines.
+    pick = cleaned[-1]
+    if len(cleaned) >= 2 and _looks_answer(cleaned[-1]) is False:
+        pick = " ".join(cleaned[-2:])
+    # strip markdown /**/ and leading bullets, collapse spaces
+    pick = _re.sub(r"\*+|`+", "", pick)
+    pick = _re.sub(r"^\s*[-•–>]\s*", "", pick)
     return pick.strip(" .\n").replace("  ", " ").strip()
+
+
+def _looks_answer(line: str) -> bool:
+    # A sentence ending with terminator, or a compact statement, is "final".
+    return line.rstrip().endswith((".", "!", "?")) or len(line) < 90
 
 
 def _task_executor(task: str, payload: dict) -> dict:
