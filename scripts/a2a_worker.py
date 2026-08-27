@@ -42,19 +42,51 @@ def _now_utc() -> str:
 
 
 def _ask_llm(prompt: str, model: str = DEFAULT_MODEL) -> dict:
-    """Call OpenRouter from the runner using the OPENROUTER_API_KEY secret."""
+    """Answer via OpenRouter; fall back to local Ollama, then HuggingFace.
+
+    Rule (per operator): prefer free/zero-cost when the API key is absent/blocked.
+      OpenRouter (if OPENROUTER_API_KEY) -> Ollama (if reachable & has a model)
+      -> HuggingFace Inference (free, no key) -> error.
+    Each phase is guarded so a failure just moves to the next backend.
+    """
     import urllib.request
     model = model or DEFAULT_MODEL                     # guard empty model
     key = os.environ.get("OPENROUTER_API_KEY", "")
-    if not key:
-        return {"ok": False, "error": "OPENROUTER_API_KEY not set on runner"}
-    body = json.dumps({"model": model,
-                       "messages": [{"role": "system",
-                                     "content": "You are the OpenAmer remote "
-                                     "worker sub-agent. Be concise, accurate, "
-                                     "and helpful."},
-                                    {"role": "user", "content": prompt}],
-                       "max_tokens": 400}).encode()
+
+    # 1) OpenRouter (cloud, if key present)
+    if key:
+        r = _ask_openrouter(prompt, model, key)
+        if r.get("ok"):
+            return r
+        last_err = r.get("error", "")
+    else:
+        last_err = "no OPENROUTER_API_KEY"
+
+    # 2) Local Ollama (zero-cost, no key)
+    r = _ask_ollama(prompt)
+    if r.get("ok"):
+        return r
+    last_err = f"{last_err}; ollama: {r.get('error','')}"
+
+    # 3) HuggingFace Inference (free, no key for public tiny models)
+    r = _ask_huggingface(prompt)
+    if r.get("ok"):
+        return r
+    last_err = f"{last_err}; hf: {r.get('error','')}"
+
+    return {"ok": False, "error": last_err}
+
+
+def _ask_openrouter(prompt: str, model: str, key: str) -> dict:
+    import urllib.request
+    import json as _json
+    body = _json.dumps({"model": model,
+                        "messages": [{"role": "system",
+                                      "content": "You are the OpenAmer remote "
+                                      "worker sub-agent. Be concise, accurate, "
+                                      "and helpful."},
+                                     {"role": "user", "content": prompt}],
+                        "max_tokens": 400}).encode()
     req = urllib.request.Request(
         "https://openrouter.ai/api/v1/chat/completions", data=body, method="POST",
         headers={"Authorization": f"Bearer {key}",
@@ -62,13 +94,12 @@ def _ask_llm(prompt: str, model: str = DEFAULT_MODEL) -> dict:
                  "X-Title": "openamer-a2a-worker"})
     try:
         with urllib.request.urlopen(req, timeout=120) as resp:
-            data = json.loads(resp.read().decode("utf-8", "replace"))
+            data = _json.loads(resp.read().decode("utf-8", "replace"))
         text = (data.get("choices") or [{}])[0].get("message", {}).get("content", "")
         if not text:
             return {"ok": False, "error": "openrouter empty reply"}
         return {"ok": True, "text": text.strip(), "model": data.get("model", model)}
     except Exception as e:
-        # surface the real body (e.g. model not found, auth) not just the code
         err = str(e)
         if hasattr(e, "read"):
             try:
@@ -76,6 +107,81 @@ def _ask_llm(prompt: str, model: str = DEFAULT_MODEL) -> dict:
             except Exception:
                 pass
         return {"ok": False, "error": f"openrouter: {err}"}
+
+
+def _ask_ollama(prompt: str) -> dict:
+    """Local Ollama (zero-cost). Uses whichever small local model is present."""
+    import subprocess as _sp
+    import shutil as _sh
+    if not _sh.which("ollama"):
+        return {"ok": False, "error": "ollama not installed"}
+    # Pick a small, fast locally-installed model (prefer ours; fall back).
+    candidates = ("qwen3.5:9b", "qwen3.5:4b-q4_K_M", "qwen3.5:4b")
+    picked = None
+    for c in candidates:
+        try:
+            lst = _sp.run(["ollama", "list"], capture_output=True, text=True,
+                          timeout=20).stdout
+            if c in lst:
+                picked = c
+                break
+        except Exception:
+            continue
+    model = picked or "llama3.2:3b"          # last-ditch guess
+    sys_prompt = ("System: Answer ONLY the final answer, no reasoning/thinking, "
+                  "in a short sentence.\nUser: ")
+    try:
+        rr = _sp.run(["ollama", "run", model, sys_prompt + prompt],
+                     capture_output=True, text=True, timeout=120)
+        out = (rr.stdout or "").strip()
+        if not out:
+            return {"ok": False, "error": f"ollama {model} empty"}
+        # Extract the LAST plausible sentence to strip internal thinking noise.
+        final = _extract_answer(out)
+        return {"ok": True, "text": final, "model": f"ollama:{model}"}
+    except Exception as e:
+        return {"ok": False, "error": f"ollama {model}: {e}"}
+
+
+def _ask_huggingface(prompt: str) -> dict:
+    """HuggingFace Inference API — free for a small public text-gen model."""
+    import urllib.request
+    import urllib.error
+    import json as _json
+    # A tiny, free, no-auth general-instruct model. Good enough for short asks.
+    model = "Qwen/Qwen2.5-1.5B-Instruct"
+    url = f"https://api-inference.huggingface.co/models/{model}"
+    body = _json.dumps({"inputs": prompt,
+                        "parameters": {"max_new_tokens": 120}}).encode()
+    req = urllib.request.Request(url, data=body, method="POST",
+                                 headers={"Content-Type": "application/json"})
+    try:
+        with urllib.request.urlopen(req, timeout=90) as resp:
+            data = _json.loads(resp.read().decode("utf-8", "replace"))
+        if isinstance(data, list) and data:
+            text = data[0].get("generated_text", "") or ""
+            tail = _extract_answer(text)
+            return {"ok": True, "text": tail or text.strip(), "model": f"hf:{model}"}
+        return {"ok": False, "error": "hf: no generation"}
+    except urllib.error.HTTPError as e:
+        return {"ok": False, "error": f"hf {e.code}"}
+    except Exception as e:
+        return {"ok": False, "error": f"hf: {e}"}
+
+
+def _extract_answer(text: str) -> str:
+    """Deliberately drop Ollama/qwen-style chain-of-thought noise and return
+    the final concise sentence. Naive but practical for short asks."""
+    lines = [l.strip() for l in text.splitlines() if l.strip()]
+    if not lines:
+        return text
+    # Prefer the LAST sentence-ish token, but cap at 3 lines to stay concise.
+    pick = lines[-1] if len(lines) <= 6 else " ".join(lines[-2:])
+    # Trim to first sentence on a single line (stop at the natural end).
+    for sep in (".\n", "?\n", "—\n"):
+        pass
+    # simple: strip double-space + leading bullets
+    return pick.strip(" .\n").replace("  ", " ").strip()
 
 
 def _task_executor(task: str, payload: dict) -> dict:
