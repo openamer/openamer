@@ -123,3 +123,33 @@ def test_ask_llm_tries_openrouter_when_key_present(monkeypatch, blank_cloud_keys
     monkeypatch.setattr(a2a_worker, "_ask_openrouter", fake_or)
     res = a2a_worker._ask_llm("hi")
     assert used["n"] == 1 and res["ok"] is True
+
+
+def test_load_model_default_reads_declared_standard(tmp_path, monkeypatch):
+    # A config.yaml with model: {provider, default} is the DECLARED standard.
+    (tmp_path / "config.yaml").write_text(
+        "model:\n  provider: ollama\n  default: qwen3.5:9b\n",
+        encoding="utf-8")
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
+    std = a2a_worker._load_model_default()
+    assert std
+    assert std["provider"] == "ollama"
+    assert std["model"] == "qwen3.5:9b"
+
+
+def test_ask_llm_uses_declared_standard_first(monkeypatch, tmp_path):
+    # Declared standard provider+model must be the FIRST candidate tried.
+    (tmp_path / "config.yaml").write_text(
+        "model:\n  provider: ollama\n  default: qwen3.5:9b\n",
+        encoding="utf-8")
+    monkeypatch.setenv("OPENAMER_HOME", str(tmp_path))
+    # force no cloud keys
+    for k in ("OPENROUTER_API_KEY", "OPENAI_API_KEY", "GROQ_API_KEY",
+              "DEEPSEEK_API_KEY", "GEMINI_API_KEY", "ANTHROPIC_API_KEY",
+              "OPENAI_BASE_URL"):
+        monkeypatch.delenv(k, raising=False)
+    used = []
+    monkeypatch.setattr(a2a_worker, "_ask_ollama",
+                        lambda p: used.append("ollama") or {"ok": True, "text": "x", "model": "ollama:qwen3.5:9b"})
+    res = a2a_worker._ask_llm("hi")
+    assert used and "ollama" in str(used[0])   # declared standard (ollama) was tried

@@ -41,58 +41,134 @@ def _now_utc() -> str:
     return time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
 
 
-def _ask_llm(prompt: str, model: str = DEFAULT_MODEL) -> dict:
-    """Answer via the first AVAILABLE provider, most-capable first — agnostic.
+def _load_model_default() -> dict:
+    """Read the operator's DECLARED standard provider + model from OpenAmer's
+    config.yaml (model: {provider, default, base_url}). Every user has their own
+    standard; A2A should use exactly that, not a hardcoded one.
+    Returns {'provider':..., 'model':..., 'base_url':...} or None if absent.
+    """
+    import os as _os
+    # Candidate config locations (most-specific first), NO secrets printed.
+    candidates = []
+    home_openamer = _os.environ.get("OPENAMER_HOME", "")
+    if home_openamer:
+        candidates.append(str(Path(home_openamer) / "config.yaml"))
+    candidates.append(str(Path.home() / ".openamer" / "config.yaml"))
+    # On this laptop the profile-level config lives here:
+    laptop = r"C:\Users\damir\AppData\Local\openamer-laptop\config.yaml"
+    candidates.append(laptop)
+    for p in candidates:
+        if not Path(p).exists():
+            continue
+        try:
+            import yaml  # noqa
+            d = yaml.safe_load(Path(p).read_text(encoding="utf-8", errors="replace")) or {}
+        except Exception:
+            # fall back to a naive parse when PyYAML missing
+            try:
+                txt = Path(p).read_text(encoding="utf-8", errors="replace")
+                sect = txt.split("model:")[-1].split("\n")[0:6]
+                model = provider = base = ""
+                for line in sect:
+                    l = line.strip()
+                    if l.startswith("default:") and "qwen" not in l:
+                        model = l.split(":", 1)[1].strip().strip("'\"")
+                    elif l.startswith("provider:"):
+                        provider = l.split(":", 1)[1].strip().strip("'\"")
+                    elif l.startswith("base_url:"):
+                        base = l.split(":", 1)[1].strip().strip("'\"")
+                return {"provider": provider or "", "model": model or "",
+                        "base_url": base or ""}
+            except Exception:
+                return None
+        m = d.get("model") or {}
+        if not m.get("default"):
+            return None
+        return {"provider": str(m.get("provider") or ""),
+                "model": str(m.get("default") or ""),
+                "base_url": str(m.get("base_url") or "")}
+    return None
 
-    Operator preference / reality:
-      1. Cloud, IF the operator has a key for it (their choice; costs their credits):
-         OpenRouter / generic OpenAI-compatible (OpenAI, DeepSeek, Groq, Gemini
-         via /chat/completions) / Anthropic. Each tried only when its env key is set.
-      2. Local zero-cost: Ollama (if installed).
-      3. HuggingFace public Inference (free, no key).
-    No key anywhere -> we never dial a paid API; we silently drop to Ollama then HF.
-    Each adapter is guarded so a failure just moves to the next available backend.
+
+def _ask_llm(prompt: str, model: str = DEFAULT_MODEL) -> dict:
+    """Answer using the operator's DECLARED default provider+model from config,
+    then their available cloud keys, then local/HF as zero-cost fallback.
+
+    Priority (every user's own reality):
+      1. EXACTLY what the user declared in config.yaml `model:` (provider+default).
+      2. Any other cloud key they have (OpenRouter/OpenAI/Groq/DeepSeek/Gemini/
+         Anthropic) via the matching adapter.
+      3. Local Ollama (auto-pull tiny model) — zero cost.
+      4. HuggingFace public inference — free, no key.
+    Each adapter is guarded; a failure moves to the next available backend.
     """
     import os as _os
 
-    # --- order of preference, one of which will answer ---
     candidates = []
 
-    # 1a) OpenRouter
-    or_key = _os.environ.get("OPENROUTER_API_KEY", "")
-    if or_key:
-        candidates.append(("openrouter", lambda: _ask_openrouter(prompt, model, or_key)))
+    # 0) The operator's declared standard (provider + model + base_url)
+    std = _load_model_default()
+    if std:
+        std_model = std.get("model") or "deepseek/deepseek-v4-flash-0731"
+        std_prov = (std.get("provider") or "openrouter").lower()
+        or_key = _os.environ.get("OPENROUTER_API_KEY", "")
+        std_call = None
+        if std_prov in ("openrouter", "openai", "azure", "deepseek", "groq", "gemini"):
+            # openai-compat covers most; openrouter is the same shape
+            key = {"openrouter": or_key, "openai": _os.environ.get("OPENAI_API_KEY", ""),
+                   "deepseek": _os.environ.get("DEEPSEEK_API_KEY", ""),
+                   "groq": _os.environ.get("GROQ_API_KEY", ""),
+                   "gemini": _os.environ.get("GEMINI_API_KEY", ""),
+                   "azure": _os.environ.get("OPENAI_API_KEY", "")}.get(std_prov, or_key)
+            base = std.get("base_url") or {
+                "openrouter": "https://openrouter.ai/api/v1",
+                "openai": "",
+                "deepseek": "https://api.deepseek.com/v1",
+                "groq": "https://api.groq.com/openai/v1",
+                "gemini": "https://generativelanguage.googleapis.com/v1beta/openai",
+                "azure": std.get("base_url") or "",
+            }.get(std_prov)
+            std_call = lambda: _ask_openai_compat(prompt, std_model, key, base)
+        elif std_prov == "anthropic" and _os.environ.get("ANTHROPIC_API_KEY"):
+            std_call = lambda: _ask_anthropic(prompt, std_model, _os.environ["ANTHROPIC_API_KEY"])
+        elif std_prov == "ollama":
+            std_call = lambda: _ask_ollama(prompt)
+        if std_call:
+            candidates.append((f"config-standard:{std_prov}", std_call))
 
-    # 1b) generic OpenAI-compatible (any of several keys / base url)
+    # 1) OpenRouter (if key)
+    or_key2 = _os.environ.get("OPENROUTER_API_KEY", "")
+    if or_key2:
+        candidates.append(("openrouter", lambda: _ask_openrouter(prompt, model, or_key2)))
+
+    # 2) generic OpenAI-compatible (any other key)
     oai_key = _os.environ.get("OPENAI_API_KEY", "")
     oai_base = _os.environ.get("OPENAI_BASE_URL", "")
     groq = _os.environ.get("GROQ_API_KEY", "")
     deepseek = _os.environ.get("DEEPSEEK_API_KEY", "")
     gemini = _os.environ.get("GEMINI_API_KEY", "")
-    for name, k, base, default_model in (
-                ("openai", oai_key, oai_base, model),
-                ("groq", groq, "https://api.groq.com/openai/v1", "llama-3.3-70b-versatile"),
-                ("deepseek", deepseek, "https://api.deepseek.com/v1", "deepseek-chat"),
-                ("gemini", gemini, "https://generativelanguage.googleapis.com/v1beta/openai",
-                 "gemini-2.0-flash"),
-        ):
-            if k:
-                b = (base or oai_base) if name == "openai" else base
-                candidates.append((name,
-                    lambda _m=default_model, _k=k, _b=b: _ask_openai_compat(prompt, _m, _k, _b)))
-    # local base url without a key -> probably a local/vLLM server (free)
-    if not oai_key and oai_base:
-        candidates.append(("local-openai", lambda: _ask_openai_compat(prompt, "local-model", "", oai_base)))
+    for name, k, base, dm in (
+            ("openai", oai_key, oai_base or "", model),
+            ("groq", groq, "https://api.groq.com/openai/v1", "llama-3.3-70b-versatile"),
+            ("deepseek", deepseek, "https://api.deepseek.com/v1", "deepseek-chat"),
+            ("gemini", gemini, "https://generativelanguage.googleapis.com/v1beta/openai",
+             "gemini-2.0-flash"),
+    ):
+        if k:
+            b = (base or "") if name == "openai" else base
+            candidates.append((name,
+                lambda _m=dm, _k=k, _b=b: _ask_openai_compat(prompt, _m, _k, _b)))
+    if oai_key == "" and oai_base:
+        candidates.append(("local-openai",
+                           lambda: _ask_openai_compat(prompt, "local-model", "", oai_base)))
 
-    # 1c) Anthropic
+    # 3) Anthropic
     anthro = _os.environ.get("ANTHROPIC_API_KEY", "")
     if anthro:
         candidates.append(("anthropic", lambda: _ask_anthropic(prompt, "claude-sonnet-4-5", anthro)))
 
-    # 2) Local Ollama (zero-cost)
+    # 4) Local Ollama (zero-cost)  + 5) HuggingFace (free)
     candidates.append(("ollama", lambda: _ask_ollama(prompt)))
-
-    # 3) HuggingFace (free, no key)
     candidates.append(("huggingface", lambda: _ask_huggingface(prompt)))
 
     errs = []
