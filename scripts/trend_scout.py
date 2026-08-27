@@ -86,17 +86,21 @@ def _google_news():
     return out
 
 
-def main() -> int:
-    OUT_DIR.mkdir(parents=True, exist_ok=True)
-    items = _hn() + _arxiv() + _google_news()
-    # dedupe + sort by points desc, cap
+def _dedupe(items, cap=25):
+    """Sort by score desc, drop duplicates, cap at `cap`."""
     seen, uniq = set(), []
     for score, line in sorted(items, key=lambda x: -x[0]):
         if line in seen:
             continue
         seen.add(line)
         uniq.append(line)
-    uniq = uniq[:25]
+    return uniq[:cap]
+
+
+def main() -> int:
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    items = _hn() + _arxiv() + _google_news()
+    uniq = _dedupe(items, cap=25)
 
     now = _dt.datetime.now(_dt.timezone.utc).isoformat(timespec="minutes")
     out = OUT_DIR / "trend-scout-latest.md"
