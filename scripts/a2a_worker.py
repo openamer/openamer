@@ -3,12 +3,12 @@
 It talks to the shared GitHub repo (the a2a relay), never opens a port:
   1. reads every un*consumed* task-note in directory/a2a/relay/ for its mailbox
   2. verifies Ed25519 signature + freshness (tampered / stale rejected)
-  3. executes a WHITELISTED task (ping / echo / time / sum) — no shell, safe
-  4. signs and writes a reply-note addressed back to the task sender
-  5. commits + pushes the reply to the same repo (GITHUB_TOKEN / credential)
+  3. executes a WHITELISTED task (ping / echo / time / sum / ask) — no shell
+  4. asks an LLM (OpenRouter) for task==handle == ask
+  5. signs and writes a reply-note addressed back to the task sender
+  6. commits + pushes the reply to the same repo (GITHUB_TOKEN / credential)
 
 Usage: python scripts/a2a_worker.py <repo> [--no-push]
-White-listed task kinds only; unknown tasks are recorded consumed and skipped.
 """
 from __future__ import annotations
 
@@ -19,7 +19,6 @@ import sys
 import time
 from pathlib import Path
 
-# allow running straight out of the checkout (verbatim a2a importable)
 sys.path.insert(0, os.environ.get("OPENAMER_PYTHONPATH", "."))
 
 from openamer_cli.a2a.core import IdentityStore, Envelope          # noqa: E402
@@ -28,6 +27,9 @@ from openamer_cli.a2a.relay import verify_note                       # noqa: E40
 
 WORKER_MAILBOX = "nodeworker"
 APP_VERSION = "a2a-worker/1.0"
+
+# task kinds this worker will run
+ALLOWED = ("ping", "echo", "time", "sum", "ask")
 
 
 def _runner_name() -> str:
@@ -41,6 +43,38 @@ def _now_utc() -> str:
     return time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
 
 
+def _ask_llm(prompt: str, model: str = "deepseek/deepseek-v4-flash-0731") -> dict:
+    """Call OpenRouter from the runner using the OPENROUTER_API_KEY secret."""
+    import urllib.request
+    key = os.environ.get("OPENROUTER_API_KEY", "")
+    if not key:
+        return {"ok": False, "error": "OPENROUTER_API_KEY not set on runner"}
+    body = json.dumps({
+        "model": model,
+        "messages": [
+            {"role": "system",
+             "content": "You are the OpenAmer remote worker sub-agent. Be concise, "
+                        "accurate, and helpful."},
+            {"role": "user", "content": prompt},
+        ],
+        "max_tokens": 400,
+    }).encode()
+    req = urllib.request.Request(
+        "https://openrouter.ai/api/v1/chat/completions", data=body, method="POST",
+        headers={"Authorization": f"Bearer {key}",
+                 "Content-Type": "application/json",
+                 "X-Title": "openamer-a2a-worker"})
+    try:
+        with urllib.request.urlopen(req, timeout=120) as resp:
+            data = json.loads(resp.read().decode("utf-8", "replace"))
+        text = (data.get("choices") or [{}])[0].get("message", {}).get("content", "")
+        if not text:
+            return {"ok": False, "error": "openrouter empty reply"}
+        return {"ok": True, "text": text.strip(), "model": data.get("model", model)}
+    except Exception as e:
+        return {"ok": False, "error": f"openrouter: {e}"}
+
+
 def _task_executor(task: str, payload: dict) -> dict:
     if task == "ping":
         return {"ok": True, "pong": payload.get("msg", "pong"),
@@ -51,6 +85,8 @@ def _task_executor(task: str, payload: dict) -> dict:
         return {"ok": True, "utc": _now_utc()}
     if task == "sum":
         return {"ok": True, "sum": int(payload.get("a", 0)) + int(payload.get("b", 0))}
+    if task == "ask":
+        return _ask_llm(payload.get("msg", ""), payload.get("model", ""))
     return {"error": "unknown task"}
 
 
@@ -90,7 +126,7 @@ def run(repo: Path, no_push: bool = False) -> int:
             done.add(f.name); continue
         env     = ver["env"]
         task    = (env.payload or {}).get("task")
-        if task not in ("ping", "echo", "time", "sum"):
+        if task not in ALLOWED:
             print("skip unsupported task:", task); done.add(f.name); continue
         result  = _task_executor(task, env.payload or {})
         reply   = Envelope.create(
