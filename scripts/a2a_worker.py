@@ -46,6 +46,7 @@ def _now_utc() -> str:
 def _ask_llm(prompt: str, model: str = "deepseek/deepseek-v4-flash-0731") -> dict:
     """Call OpenRouter from the runner using the OPENROUTER_API_KEY secret."""
     import urllib.request
+    model = model or "deepseek/deepseek-v4-flash-0731"   # guard empty model
     key = os.environ.get("OPENROUTER_API_KEY", "")
     if not key:
         return {"ok": False, "error": "OPENROUTER_API_KEY not set on runner"}
@@ -86,7 +87,7 @@ def _task_executor(task: str, payload: dict) -> dict:
     if task == "sum":
         return {"ok": True, "sum": int(payload.get("a", 0)) + int(payload.get("b", 0))}
     if task == "ask":
-        return _ask_llm(payload.get("msg", ""), payload.get("model", ""))
+            return _ask_llm(payload.get("msg", ""), payload.get("model") or "")
     return {"error": "unknown task"}
 
 
