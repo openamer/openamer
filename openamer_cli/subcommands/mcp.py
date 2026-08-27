@@ -85,6 +85,17 @@ def build_mcp_parser(subparsers, *, cmd_mcp: Callable) -> None:
     )
     mcp_cfg_p.add_argument("name", help="Server name to configure")
 
+    mcp_search_p = mcp_sub.add_parser(
+        "search-tools", aliases=["st"],
+        help="Search tool names+descriptions across installed MCP servers",
+    )
+    mcp_search_p.add_argument(
+        "query", nargs="?",
+        help="keyword(s), e.g. 'update salesforce' or 'postgres|mysql' or '\"semantic search\"'",
+    )
+    mcp_search_p.add_argument("--limit", type=int, default=10)
+    mcp_search_p.add_argument("--server", help="Restrict search to one configured server")
+
     mcp_login_p = mcp_sub.add_parser(
         "login",
         help="Force re-authentication for an OAuth-based MCP server",

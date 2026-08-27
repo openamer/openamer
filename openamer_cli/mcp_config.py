@@ -1069,6 +1069,14 @@ def mcp_command(args):
             _sys.exit(rc)
         return
 
+    if action in ("search-tools", "st"):
+        from openamer_cli.mcp_search import cmd_mcp_search_tools
+        import sys as _sys
+        rc = cmd_mcp_search_tools(args)
+        if rc:
+            _sys.exit(rc)
+        return
+
     handlers = {
         "add": cmd_mcp_add,
         "remove": cmd_mcp_remove,
