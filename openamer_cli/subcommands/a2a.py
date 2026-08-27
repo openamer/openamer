@@ -83,6 +83,25 @@ def _cmd_serve(args) -> int:
     return serve_cmd(args)
 
 
+def _cmd_discover(args) -> int:
+    """Search the public ARD registry for agents/skills/MCP resources."""
+    from openamer_cli.a2a import ard_client
+    q = getattr(args, "query", "")
+    if not q:
+        print("Usage: openamer a2a discover <natural-language query> [--registry URL] [--limit N]")
+        return 2
+    reg = getattr(args, "registry", None) or ard_client.DEFAULT_REGISTRY
+    limit = int(getattr(args, "limit", 5))
+    results = ard_client.search_results(q, registry=reg, page_size=limit)
+    print(f"[a2a discover] '{q}' — {len(results)} result(s) from ARD registry")
+    if not results:
+        print("  (no matches)")
+        return 1
+    for r in results:
+        print(ard_client.format_result(r))
+    return 0
+
+
 def _cmd_delegate(args) -> int:
     """Delegate a task to the remote GitHub Actions worker via the new module."""
     from openamer_cli.a2a.delegate_cli import delegate_cmd
@@ -599,6 +618,12 @@ def build_a2a_parser(subparsers) -> None:
     sv.add_argument("--catalog", default=None,
                     help="path to ai-catalog.json (default: repo docs/)")
     sv.set_defaults(func=_cmd_serve)
+
+    di = sub.add_parser("discover", help="Search the public ARD registry for agents/skills/MCP resources")
+    di.add_argument("query", nargs="?", help="natural-language query")
+    di.add_argument("--registry", default=None, help="ARD registry URL (default: HF public)")
+    di.add_argument("--limit", type=int, default=5, help="max results")
+    di.set_defaults(func=_cmd_discover)
 
     rl = sub.add_parser("relay", help="GitHub relay transport (A2A over the repo, not localhost)")
     rl_sub = rl.add_subparsers(dest="relay_cmd")
