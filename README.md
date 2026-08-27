@@ -506,6 +506,30 @@ All documentation lives at **[OpenAmer Docs](https://github.com/openamer/opename
 
 ---
 
+## 🤝 A2A: delegate tasks over the real internet (bring your own model)
+
+OpenAmer agents can talk **agent-to-agent over the real internet** — not just
+locally. Delegating a task to a GitHub Actions runner and getting a signed,
+verified result back is one command, using **your own declared provider/model**:
+
+```bash
+# Uses the model+provider you declared in config.yaml (model: {provider, default})
+openamer a2a delegate ping --msg "hello from the machine"
+openamer a2a delegate ask --msg "explain A2A in one sentence"   # runs on the runner
+```
+
+- **No login wall.** Tasks upload via the GitHub Contents API, the worker runs on
+  Microsoft's free GitHub-Actions runners, and the reply is Ed25519-signed + verified.
+- **Bring-your-own model**: you are never forced to a specific provider. The
+  worker routes to the provider you configured (any OpenAI-compatible endpoint,
+  OpenRouter, Anthropic, local Ollama auto-pull, or free HuggingFace) — cloud
+  only if you have a key, otherwise zero-cost local/free.
+- Just `openamer a2a status` to see your node identity.
+
+Learn more in the [`a2a-swarm` skill](skills/autonomous-ai-agents/a2a-swarm/SKILL.md).
+
+---
+
 ## ❤️ Sponsor & Fund
 
 OpenAmer is free & open source. If it saves you time or money, consider supporting development — funding goes directly into servers, API costs and new features.
