@@ -102,6 +102,21 @@ def _cmd_discover(args) -> int:
     return 0
 
 
+def _cmd_mcp_catalog(args) -> int:
+    """Search the MCP server catalog (keyless) for a ready-made tool."""
+    from openamer_cli.a2a import mcp_catalog
+    q = getattr(args, "query", "")
+    limit = int(getattr(args, "limit", 10))
+    entries = mcp_catalog.search(q, limit=limit)
+    print(f"[a2a mcp-catalog] '{q or ''}' — {len(entries)} MCP server(s)")
+    if not entries:
+        print("  (catalog unreachable or no matches — check network)")
+        return 1
+    for e in entries:
+        print(mcp_catalog.format_entry(e))
+    return 0
+
+
 def _cmd_delegate(args) -> int:
     """Delegate a task to the remote GitHub Actions worker via the new module."""
     from openamer_cli.a2a.delegate_cli import delegate_cmd
@@ -624,6 +639,11 @@ def build_a2a_parser(subparsers) -> None:
     di.add_argument("--registry", default=None, help="ARD registry URL (default: HF public)")
     di.add_argument("--limit", type=int, default=5, help="max results")
     di.set_defaults(func=_cmd_discover)
+
+    mc = sub.add_parser("mcp-catalog", help="Search the (keyless) MCP server catalog for a ready-made tool")
+    mc.add_argument("query", nargs="?", help="keyword(s), e.g. 'github' or 'postgres'")
+    mc.add_argument("--limit", type=int, default=10)
+    mc.set_defaults(func=_cmd_mcp_catalog)
 
     rl = sub.add_parser("relay", help="GitHub relay transport (A2A over the repo, not localhost)")
     rl_sub = rl.add_subparsers(dest="relay_cmd")
