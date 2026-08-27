@@ -48,9 +48,12 @@ def spawn() -> None:
             if os.name == "nt":
                 r = subprocess.run(
                     ["tasklist", "/FI", f"PID eq {old_pid}", "/NH"],
-                    capture_output=True, text=True, timeout=5,
+                    capture_output=True, text=False, timeout=5,
                 )
-                if str(old_pid) in r.stdout:
+                # text=False -> bytes; check robustly, tolerate non-UTF-8
+                # Windows codepages (bytes 0x80+) and empty output.
+                out = (r.stdout or b"").decode("utf-8", errors="replace")
+                if str(old_pid) in out:
                     return  # already running
             else:
                 os.kill(old_pid, 0)
