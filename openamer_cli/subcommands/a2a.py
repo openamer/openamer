@@ -77,6 +77,19 @@ def _cmd_verify(args) -> int:
     return 0 if ok else 1
 
 
+def _cmd_delegate(args) -> int:
+    """Delegate a task to the remote GitHub Actions worker via the new module."""
+    from openamer_cli.a2a.delegate_cli import delegate_cmd
+    return delegate_cmd(args.task, {
+        "msg": getattr(args, "msg", ""),
+        "text": getattr(args, "text", ""),
+        "model": getattr(args, "model", ""),
+        "wait": getattr(args, "wait", 300),
+        "repo": getattr(args, "repo", None),
+        "gh_repo": getattr(args, "gh_repo", None),
+    })
+
+
 def _cmd_announce(args) -> int:
     """Create + sign this node's announcement and stage it for publication."""
     ann = registry.sign_announcement(
@@ -562,6 +575,17 @@ def build_a2a_parser(subparsers) -> None:
     aq.add_argument("--kind", default="ask")
     aq.add_argument("--peers", nargs="*", default=None, help="ask multiple peers (collective swarm)")
     aq.set_defaults(func=_cmd_ask)
+
+    dv = sub.add_parser("delegate",
+                            help="Delegate a task to the remote GitHub Actions worker (A2A over the internet)")
+    dv.add_argument("task", nargs="?", choices=["ping", "echo", "time", "sum", "ask"])
+    dv.add_argument("--msg", default="", help="prompt / message")
+    dv.add_argument("--text", default="", help="payload text (echo)")
+    dv.add_argument("--model", default="", help="LLM model (ask)")
+    dv.add_argument("--wait", type=int, default=300, help="poll seconds")
+    dv.add_argument("--repo", default=None, help="path to the relay repo checkout")
+    dv.add_argument("--gh-repo", default="openamer/openamer", help="GitHub relay repo owner/name")
+    dv.set_defaults(func=_cmd_delegate)
 
     rl = sub.add_parser("relay", help="GitHub relay transport (A2A over the repo, not localhost)")
     rl_sub = rl.add_subparsers(dest="relay_cmd")
