@@ -220,3 +220,46 @@ local approval/security net.
 
 *This is the design contract. Building follows it phase by phase; each phase
 ends with working, tested, verifiable code.*
+## 🔴 LIVE (2026-08-27) — A2A proven over the real internet
+
+Not only unit-tested — Node A (laptop) ↔ Node B (a real GitHub Actions runner
+over the internet) exchanged signed tasks and results via `directory/a2a/relay/`
+on this repo. No localhost, no open ports, no self-hosted server.
+
+**What was verified end-to-end:**
+1. Signed relay note pushed to GitHub and pulled back by a fresh reader
+   — `scripts (laptop) a2a_live_relay_test.py` (`SIGNED+FRESH OK`).
+2. A task delegated from the laptop is executed on a real `ubuntu` runner and
+   the signed result returns to the sender: `a2a_delegate.py time`
+   → `utc: 2026-08-27T14:45:47Z · from: nodeworker · signed+verified`.
+
+**Artifacts (make it repeatable):**
+- `scripts/a2a_worker.py` — the remote worker node. Reads relay tasks in
+  `directory/a2a/relay/`, verifies Ed25519+freshness, executes a WHITELIST
+  (`ping`/`echo`/`time`/`sum` — no shell), writes a signed reply back.
+- `.github/workflows/a2a-worker.yml` — runs `a2a_worker.py` on a real runner;
+  triggered via `repository_dispatch` (event `a2a-task`) or `workflow_dispatch`.
+- `scripts/a2a_delegate.py` (laptop) — uploads a signed task via GitHub Contents
+  API to `directory/a2a/relay/`, dispatches the worker, polls `main` for the
+  reply, verifies signature+freshness, prints the result.
+- `tests/openamer_cli/test_a2a_worker.py` — offline unit tests (worker sum /
+  unknown-task skip / stale reject).
+
+**How to run the live demo (laptop → internet → worker → back):**
+```
+python scripts/a2a_delegate.py sum --a 20 --b 22   # from the laptop
+python scripts/a2a_delegate.py ping --msg hi
+python scripts/a2a_delegate.py time
+```
+
+**Pitfalls learned:**
+- Relay notes are signed over their REDACted payload; `relay_note` hence turns
+  ints/bools into strings (`"42"`) — parse on read.
+- Replay tolerance is **300 s** (`verify` = signature AND freshness). The client
+  must read the reply before it ages out; GitHub Actions RTT is comfortably
+  inside that window if you poll from ~the dispatch.
+- The a2a "kind" lives inside `note["envelope"]["kind"]`, not on the note root.
+- Git pushes from scripts should disable the credential helper
+  (`git -c credential.helper= push <token-url>`) and, if rebasing a shared
+  checkout, `pull --rebase` first — plain pushes on a busied main get
+  non-fast-forward. The Contents-API upload path avoids branch juggling.
