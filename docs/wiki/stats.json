@@ -1,7 +1,7 @@
 {
-  "total_skills": 535,
+  "total_skills": 536,
   "categories": 21,
-  "generated": "2026-08-26T05:00:42.120232",
+  "generated": "2026-08-27T05:00:07.347457",
   "repos": "C:\\Users\\damir\\openamer-repo\\docs",
   "per_category": {
     "apple": 4,
@@ -16,7 +16,7 @@
     "imported-deepseek-harness": 11,
     "marketing": 3,
     "media": 3,
-    "mlops": 2,
+    "mlops": 3,
     "note-taking": 1,
     "productivity": 13,
     "research": 8,

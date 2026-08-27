@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-08-26T21:10:30.061896+00:00",
+  "snapshot_at": "2026-08-27T09:10:49.821641+00:00",
   "circadian": {
     "phase": "AWAKE",
     "at": "2026-08-25T13:45:44.298046+00:00",
@@ -8,9 +8,10 @@
     "dream_log": [
       "2026-08-24",
       "2026-08-25",
-      "2026-08-26"
+      "2026-08-26",
+      "2026-08-27"
     ],
-    "last_dream": "2026-08-26T01:30:36.729931+00:00"
+    "last_dream": "2026-08-27T01:30:03.442147+00:00"
   },
   "strategies": {
     "TOKENS": {
@@ -31,7 +32,7 @@
     }
   },
   "senses": {
-    "time": "2026-08-26T22:53:29",
+    "time": "2026-08-27T10:54:22",
     "pain": {
       "score": 1,
       "level": "uncomfortable"
@@ -42,10 +43,10 @@
       "dead_providers": 1
     },
     "balance": {
-      "state": "wobbly",
-      "jobs": 55,
-      "errors": 4,
-      "error_ratio": 0.073
+      "state": "steady",
+      "jobs": 56,
+      "errors": 1,
+      "error_ratio": 0.018
     },
     "overall": "uneasy"
   },
@@ -62,6 +63,11 @@
     },
     {
       "date": "2026-08-26",
+      "insights": [],
+      "intentions": []
+    },
+    {
+      "date": "2026-08-27",
       "insights": [],
       "intentions": []
     }
