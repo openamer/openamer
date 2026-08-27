@@ -13298,6 +13298,45 @@ async def list_mcp_catalog(profile: Optional[str] = None):
     return {"entries": entries, "diagnostics": diagnostics}
 
 
+
+
+@app.get("/api/a2a/mcp-catalog")
+async def a2a_mcp_catalog(q: str = "", limit: int = 10):
+    """Keyless search over the broad community MCP catalog (awesome-mcp-servers).
+
+    Unlike /api/mcp/catalog (the OpenAmer-approved, supply-chain-pinned set),
+    this searches the much larger third-party registry so the UI can surface a
+    ready-made tool the agent might otherwise build by hand. Hits are annotated
+    with ``curated`` (the approved catalog name this server maps to, if any)
+    and ``installed``, so the UI can offer the safe install path only where one
+    exists.
+    """
+    try:
+        from openamer_cli.a2a import mcp_catalog
+    except Exception as exc:
+        _log.exception("a2a mcp_catalog import failed")
+        raise HTTPException(status_code=500, detail=f"MCP catalog unavailable: {exc}")
+    limit = max(1, min(int(limit), 50))
+    try:
+        entries = mcp_catalog.search(q or "", limit=limit)
+    except Exception as exc:
+        _log.exception("a2a mcp_catalog search failed")
+        raise HTTPException(status_code=502, detail=f"Search failed: {exc}")
+    return {
+        "query": q or "",
+        "count": len(entries),
+        "entries": [
+            {
+                "name": e.get("name"),
+                "url": e.get("url"),
+                "description": e.get("description", ""),
+                "curated": e.get("curated"),
+                "installed": bool(e.get("installed")),
+            }
+            for e in entries
+        ],
+    }
+
 class MCPCatalogInstall(BaseModel):
     name: str
     # env: KEY=VALUE map for catalog entries that declare required env vars.

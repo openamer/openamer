@@ -103,7 +103,27 @@ def _cmd_discover(args) -> int:
 
 
 def _cmd_mcp_catalog(args) -> int:
-    """Search the MCP server catalog (keyless) for a ready-made tool."""
+    """Search the MCP server catalog (keyless) for a ready-made tool.
+
+    ``--install <name>`` routes a found server to the safe, supply-chain-pinned
+    OpenAmer-approved catalog install path — never pins an arbitrary community
+    repo without a manifest.
+    """
+    install_name = (getattr(args, "install", "") or "").strip()
+    if install_name:
+        from openamer_cli import mcp_catalog as curated
+        entry = curated.get_entry(install_name)
+        if entry is None:
+            print(
+                f"  ✗ '{install_name}' is not in OpenAmer's approved catalog. "
+                "Only approved manifests are installable (supply-chain-pinned). "
+                "Propose it as a manifest PR, or add a custom server with "
+                "`openamer mcp add`."
+            )
+            return 1
+        curated.install_entry(entry, enable=True)
+        return 0
+
     from openamer_cli.a2a import mcp_catalog
     q = getattr(args, "query", "")
     limit = int(getattr(args, "limit", 10))
@@ -641,14 +661,18 @@ def build_a2a_parser(subparsers) -> None:
     di.set_defaults(func=_cmd_discover)
 
     mc = sub.add_parser("mcp-catalog", help="Search the (keyless) MCP server catalog for a ready-made tool")
-    mc.add_argument("query", nargs="?", help="keyword(s), e.g. 'github' or 'postgres'")
+    mc.add_argument("query", nargs="?",
+                    help="keyword(s), e.g. 'github' or 'postgres|mysql' or '\"web scraping\"'")
     mc.add_argument("--limit", type=int, default=10)
+    mc.add_argument("--install", metavar="NAME",
+                    help="install an approved entry by catalog name (safe, pinned path) instead of searching")
     mc.set_defaults(func=_cmd_mcp_catalog)
 
     rl = sub.add_parser("relay", help="GitHub relay transport (A2A over the repo, not localhost)")
     rl_sub = rl.add_subparsers(dest="relay_cmd")
     rp = rl_sub.add_parser("post", help="Post a signed, redacted message for a peer")
-    rp.add_argument("relay_peer", nargs="?"); rp.add_argument("question", nargs="?")
+    rp.add_argument("relay_peer", nargs="?")
+    rp.add_argument("question", nargs="?")
     rp.add_argument("--repo-dir", default=None)
     rp.set_defaults(func=_cmd_relay)
     rpull = rl_sub.add_parser("pull", help="Pull + verify relay notes for a mailbox")
