@@ -77,6 +77,12 @@ def _cmd_verify(args) -> int:
     return 0 if ok else 1
 
 
+def _cmd_serve(args) -> int:
+    """Serve the ARD ai-catalog over HTTP so `navigate <host>` autodiscovers."""
+    from openamer_cli.a2a.catalog_serve import serve_cmd
+    return serve_cmd(args)
+
+
 def _cmd_delegate(args) -> int:
     """Delegate a task to the remote GitHub Actions worker via the new module."""
     from openamer_cli.a2a.delegate_cli import delegate_cmd
@@ -586,6 +592,13 @@ def build_a2a_parser(subparsers) -> None:
     dv.add_argument("--repo", default=None, help="path to the relay repo checkout")
     dv.add_argument("--gh-repo", default="openamer/openamer", help="GitHub relay repo owner/name")
     dv.set_defaults(func=_cmd_delegate)
+
+    sv = sub.add_parser("serve", help="Serve the ARD ai-catalog over HTTP (so navigate <host> can autodiscover the agent)")
+    sv.add_argument("--port", type=int, default=8799)
+    sv.add_argument("--host", default="127.0.0.1")
+    sv.add_argument("--catalog", default=None,
+                    help="path to ai-catalog.json (default: repo docs/)")
+    sv.set_defaults(func=_cmd_serve)
 
     rl = sub.add_parser("relay", help="GitHub relay transport (A2A over the repo, not localhost)")
     rl_sub = rl.add_subparsers(dest="relay_cmd")
