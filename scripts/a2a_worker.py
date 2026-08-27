@@ -4,7 +4,7 @@ It talks to the shared GitHub repo (the a2a relay), never opens a port:
   1. reads every un*consumed* task-note in directory/a2a/relay/ for its mailbox
   2. verifies Ed25519 signature + freshness (tampered / stale rejected)
   3. executes a WHITELISTED task (ping / echo / time / sum / ask) — no shell
-  4. asks an LLM (OpenRouter) for task==handle == ask
+  4. task "ask" calls an LLM (OpenRouter using the OPENROUTER_API_KEY secret)
   5. signs and writes a reply-note addressed back to the task sender
   6. commits + pushes the reply to the same repo (GITHUB_TOKEN / credential)
 
@@ -26,9 +26,7 @@ from openamer_cli.a2a import relay as R                              # noqa: E40
 from openamer_cli.a2a.relay import verify_note                       # noqa: E402
 
 WORKER_MAILBOX = "nodeworker"
-APP_VERSION = "a2a-worker/1.0"
-
-# task kinds this worker will run
+DEFAULT_MODEL = "deepseek/deepseek-v4-flash-0731"
 ALLOWED = ("ping", "echo", "time", "sum", "ask")
 
 
@@ -43,23 +41,20 @@ def _now_utc() -> str:
     return time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
 
 
-def _ask_llm(prompt: str, model: str = "deepseek/deepseek-v4-flash-0731") -> dict:
+def _ask_llm(prompt: str, model: str = DEFAULT_MODEL) -> dict:
     """Call OpenRouter from the runner using the OPENROUTER_API_KEY secret."""
     import urllib.request
-    model = model or "deepseek/deepseek-v4-flash-0731"   # guard empty model
+    model = model or DEFAULT_MODEL                     # guard empty model
     key = os.environ.get("OPENROUTER_API_KEY", "")
     if not key:
         return {"ok": False, "error": "OPENROUTER_API_KEY not set on runner"}
-    body = json.dumps({
-        "model": model,
-        "messages": [
-            {"role": "system",
-             "content": "You are the OpenAmer remote worker sub-agent. Be concise, "
-                        "accurate, and helpful."},
-            {"role": "user", "content": prompt},
-        ],
-        "max_tokens": 400,
-    }).encode()
+    body = json.dumps({"model": model,
+                       "messages": [{"role": "system",
+                                     "content": "You are the OpenAmer remote "
+                                     "worker sub-agent. Be concise, accurate, "
+                                     "and helpful."},
+                                    {"role": "user", "content": prompt}],
+                       "max_tokens": 400}).encode()
     req = urllib.request.Request(
         "https://openrouter.ai/api/v1/chat/completions", data=body, method="POST",
         headers={"Authorization": f"Bearer {key}",
@@ -73,7 +68,14 @@ def _ask_llm(prompt: str, model: str = "deepseek/deepseek-v4-flash-0731") -> dic
             return {"ok": False, "error": "openrouter empty reply"}
         return {"ok": True, "text": text.strip(), "model": data.get("model", model)}
     except Exception as e:
-        return {"ok": False, "error": f"openrouter: {e}"}
+        # surface the real body (e.g. model not found, auth) not just the code
+        err = str(e)
+        if hasattr(e, "read"):
+            try:
+                err = e.read().decode("utf-8", "replace")[:400]
+            except Exception:
+                pass
+        return {"ok": False, "error": f"openrouter: {err}"}
 
 
 def _task_executor(task: str, payload: dict) -> dict:
@@ -87,7 +89,7 @@ def _task_executor(task: str, payload: dict) -> dict:
     if task == "sum":
         return {"ok": True, "sum": int(payload.get("a", 0)) + int(payload.get("b", 0))}
     if task == "ask":
-            return _ask_llm(payload.get("msg", ""), payload.get("model") or "")
+        return _ask_llm(payload.get("msg", ""), payload.get("model") or "")
     return {"error": "unknown task"}
 
 

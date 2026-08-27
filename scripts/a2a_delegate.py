@@ -75,7 +75,7 @@ def git_fetch_main():
     subprocess.run(["git","-C",str(REPO),"checkout","-q","FETCH_HEAD","--",
                     R.RELAY_PREFIX.replace("\\","/")], env=env, capture_output=True, timeout=90)
 
-def latest_reply(li):
+def latest_reply(li, after_ts=0):
     cands = []
     for p in (REPO / R.RELAY_PREFIX).glob("*.json"):
         try:
@@ -83,8 +83,10 @@ def latest_reply(li):
             k = (n.get("envelope") or {}).get("kind", "")
         except Exception: continue
         if n.get("recipient","").startswith(li.fingerprint) and k.endswith("result"):
-            cands.append(n)
-    return max(cands, key=lambda n: (n.get("envelope") or {}).get("ts", 0)) if cands else None
+            ts = (n.get("envelope") or {}).get("ts", 0)
+            if ts > after_ts:
+                cands.append((ts, n))
+    return max(cands, key=lambda t: t[0])[1] if cands else None
 
 def main():
     import os
@@ -98,12 +100,13 @@ def main():
     a = ap.parse_args()
 
     store = IdentityStore(IDENT); li = store.ensure_identity()
+    client_ts = int(time.time())
     env = Envelope.create(private_key=store.private_key(),
                           sender=f"{li.fingerprint}@openamer", recipient="nodeworker",
                           kind="task.ask",
                           payload={"task": a.task, "text": a.text,
                                    "model": a.model, "msg": a.msg,
-                                   "client_ts": int(time.time())})
+                                   "client_ts": client_ts})
     note = R.relay_note(identity_store=store, envelope=env)
     fname = R.sort_relay_filename("nodeworker")
     path  = f"{R.RELAY_PREFIX}/{fname}"
@@ -117,7 +120,7 @@ def main():
     while time.time() < deadline:
         time.sleep(12)
         git_fetch_all()
-        mine = latest_reply(li)
+        mine = latest_reply(li, after_ts=client_ts)
         if mine:
             v = verify_note(mine)
             if v["ok"]:
