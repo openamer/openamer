@@ -1,0 +1,23 @@
+{
+  "specVersion": "0.9",
+  "host": "https://openamer.github.io/openamer",
+  "entries": [
+    {
+      "identifier": "urn:air:openamer.github.io:mesh:openamer-agent",
+      "displayName": "OpenAmer",
+      "type": "application/agent",
+      "url": "https://github.com/openamer/openamer",
+      "description": "OpenAmer — an autonomous AI agent with agent-to-agent (A2A) task delegation over the real internet, self-healing operations, and bring-your-own-model provider routing.",
+      "tags": ["ai-agent", "a2a", "agentic", "autonomous", "open-source", "computer-use"],
+      "capabilities": ["a2a.task.ask", "a2a.task.delegate", "agent-card", "self-healing"],
+      "representativeQueries": [
+        "delegate a task to an autonomous agent",
+        "ask an autonomous AI agent a question over the internet",
+        "find an A2A-capable open-source agent",
+        "an agent that heals itself when its tools break"
+      ],
+      "endpoints": [],
+      "publisher": "openamer"
+    }
+  ]
+}
