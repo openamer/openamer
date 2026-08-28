@@ -1283,6 +1283,34 @@ export interface McpCatalogResponse {
   entries: McpCatalogEntry[]
   diagnostics: { name: string; kind: string; message: string }[]
 }
+export interface McpSearchToolMatch {
+  server: string | null
+  name: string
+  description: string
+}
+
+export interface McpSearchToolsResponse {
+  query: string
+  total_servers: number
+  matches: McpSearchToolMatch[]
+  probe_errors: string[]
+  count: number
+}
+
+export interface McpCommunityEntry {
+  name: string
+  url: string
+  description: string
+  curated: string | null
+  installed: boolean
+}
+
+export interface McpCommunityResponse {
+  query: string
+  count: number
+  entries: McpCommunityEntry[]
+}
+
 
 /** `GET /api/memory` — active provider + built-in memory file sizes. */
 export interface MemoryStatusResponse {

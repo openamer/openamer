@@ -27,6 +27,7 @@ import { TextTab } from '@/components/ui/text-tab'
 import { Tip } from '@/components/ui/tooltip'
 import { type Translations, useI18n } from '@/i18n'
 import { completeMcpDesktopOAuth } from '@/lib/mcp-dashboard-oauth'
+import { McpToolSearch } from '@/components/McpToolSearch'
 import { countEnabledTools, isToolEnabled, toggleToolInServer } from '@/lib/mcp-tool-filter'
 import { cn } from '@/lib/utils'
 import {
@@ -1087,6 +1088,9 @@ export function McpTab({ gateway }: { gateway: OpenAmerGateway | null }) {
           <McpLogs emptyLabel={m.noOutput} server={selected && savedEntry ? selected : null} source={logSource} />
         </DetailPane>
       </main>
+
+      {/* Discovery: find a tool already installed, or a ready-made community server. */}
+      <McpToolSearch />
     </div>
   )
 }

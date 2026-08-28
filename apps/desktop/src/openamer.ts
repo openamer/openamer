@@ -1634,6 +1634,32 @@ export function installMcpCatalogEntry(
   })
 }
 
+export function searchMcpTools(
+  q: string,
+  server = "",
+  limit = 20
+): Promise<McpSearchToolsResponse> {
+  const params = new URLSearchParams({ q, server, limit: String(limit) })
+  return window.openamerDesktop.api<McpSearchToolsResponse>({
+    ...profileScoped(),
+    path: `/api/mcp/search-tools?${params.toString()}`,
+    timeoutMs: 60_000
+  })
+}
+
+export function searchCommunityMcpCatalog(
+  q: string,
+  limit = 10
+): Promise<McpCommunityResponse> {
+  const params = new URLSearchParams({ q, limit: String(limit) })
+  return window.openamerDesktop.api<McpCommunityResponse>({
+    ...profileScoped(),
+    path: `/api/a2a/mcp-catalog?${params.toString()}`,
+    timeoutMs: 60_000
+  })
+}
+
+
 // ---------------------------------------------------------------------------
 // Memory data + curator (parity with `openamer memory` / `openamer curator`).
 // ---------------------------------------------------------------------------
@@ -1710,4 +1736,30 @@ export function runDebugShare(): Promise<DebugShareResponse> {
     // Synchronous upload of report + logs to the paste service.
     timeoutMs: 120_000
   })
+}
+
+// Discovery responses (declared locally to avoid cross-file type import drift).
+export interface McpSearchToolMatch {
+  server: string | null
+  name: string
+  description: string
+}
+export interface McpSearchToolsResponse {
+  query: string
+  total_servers: number
+  matches: McpSearchToolMatch[]
+  probe_errors: string[]
+  count: number
+}
+export interface McpCommunityEntry {
+  name: string
+  url: string
+  description: string
+  curated: string | null
+  installed: boolean
+}
+export interface McpCommunityResponse {
+  query: string
+  count: number
+  entries: McpCommunityEntry[]
 }
