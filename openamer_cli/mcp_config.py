@@ -1077,6 +1077,14 @@ def mcp_command(args):
             _sys.exit(rc)
         return
 
+    if action == "audit":
+        from openamer_cli.mcp_audit import cmd_mcp_audit
+        import sys as _sys
+        rc = cmd_mcp_audit(args)
+        if rc:
+            _sys.exit(rc)
+        return
+
     handlers = {
         "add": cmd_mcp_add,
         "remove": cmd_mcp_remove,

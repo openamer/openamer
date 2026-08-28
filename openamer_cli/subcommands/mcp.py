@@ -133,5 +133,12 @@ def build_mcp_parser(subparsers, *, cmd_mcp: Callable) -> None:
         help="Catalog entry name (or `official/<name>`)",
     )
 
+    mcp_audit_p = mcp_sub.add_parser(
+        "audit", help="Show security posture of configured MCP servers"
+    )
+    mcp_audit_p.add_argument(
+        "--json", action="store_true", help="Emit machine-readable JSON"
+    )
+
     add_accept_hooks_flag(mcp_parser)
     mcp_parser.set_defaults(func=cmd_mcp)
