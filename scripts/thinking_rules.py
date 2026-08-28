@@ -89,6 +89,44 @@ def purge(rule_id: str) -> list[dict]:
     return rules
 
 
+def consolidate() -> int:
+    """Remove exact-duplicate rules (same normalised text); merge hits + proof."""
+    rules = _load()
+    seen: dict[str, dict] = {}
+    out: list[dict] = []
+    removed = 0
+    for r in rules:
+        norm = " ".join((r.get("rule") or "").strip().lower().split())
+        if not norm:
+            continue
+        if norm in seen:
+            base = seen[norm]
+            base["hits"] = int(base.get("hits", 0)) + int(r.get("hits", 0))
+            if r.get("proof") and not base.get("proof"):
+                base["proof"] = r.get("proof")
+            removed += 1
+        else:
+            seen[norm] = r
+            out.append(r)
+    _save(out)
+    print(f"consolidated: removed {removed} duplicates, kept {len(out)}")
+    return removed
+
+
+def prune(max_rules: int = 12) -> int:
+    """Trim the store to at most ``max_rules``, dropping least-hit oldest."""
+    rules = _load()
+    if len(rules) <= max_rules:
+        print(f"prune: {len(rules)} <= {max_rules}, nothing to remove")
+        return 0
+    rules_sorted = sorted(rules, key=lambda r: (int(r.get("hits", 0)), r.get("created", "")))
+    keep_ids = {r["id"] for r in rules_sorted[len(rules) - max_rules:]}
+    out = [r for r in _load() if r.get("id") in keep_ids]
+    _save(out)
+    print(f"prune: removed {len(rules) - max_rules} (kept top {max_rules} by hits)")
+    return len(rules) - max_rules
+
+
 def context(sort_by_hits: bool = True) -> str:
     rules = _load()
     if sort_by_hits:
@@ -110,6 +148,7 @@ def main(argv: list[str] | None = None) -> int:
     sp.add_argument("--trigger", default=""); sp.add_argument("--proof", default="")
     bp = sub.add_parser("bump"); bp.add_argument("rule_id")
     pp = sub.add_parser("purge"); pp.add_argument("rule_id")
+    cl = sub.add_parser("consolidate"); cl.add_argument("--max", type=int, default=12)
     sub.add_parser("context")
     a = ap.parse_args(argv)
 
@@ -125,6 +164,8 @@ def main(argv: list[str] | None = None) -> int:
         return 0 if bump(a.rule_id) else 1
     if a.cmd == "purge":
         purge(a.rule_id); return 0
+    if a.cmd == "consolidate":
+        consolidate(); prune(max_rules=a.max); return 0
     if a.cmd == "context":
         print(context()); return 0
     return 2

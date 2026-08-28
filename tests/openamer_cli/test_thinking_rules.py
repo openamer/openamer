@@ -77,3 +77,36 @@ def test_file_is_valid_json_and_utf8(store):
     raw = store.read_text(encoding="utf-8")
     data = json.loads(raw)
     assert data[0]["rule"] == "ünïcode — Regel"
+
+
+def test_consolidate_dedupes_and_merges_hits(store):
+    # `add` already dedupes, so inject duplicates directly via _save.
+    tr.add("same", proof="p1")
+    base = tr._load()[0]
+    dup = dict(base, id="zz", hits=3, proof="p2")
+    tr._save([base, dup])
+    assert len(tr._load()) == 2
+    removed = tr.consolidate()
+    assert removed == 1
+    rules = tr._load()
+    assert len(rules) == 1
+    assert rules[0]["hits"] == base["hits"] + 3  # merged
+
+
+def test_prune_trims_to_max_by_hits(store):
+    # add 5 rules, bump different counts
+    for i in range(5):
+        tr.add(f"rule{i}", proof=f"p{i}")
+    rules = tr._load()
+    # bump only rule0 and rule1 -> they should survive a prune to 2
+    tr.bump(rules[0]["id"]); tr.bump(rules[1]["id"])
+    removed = tr.prune(max_rules=2)
+    assert removed == 3
+    remaining = {r["rule"] for r in tr._load()}
+    assert remaining == {"rule0", "rule1"}
+
+
+def test_prune_noop_under_limit(store):
+    tr.add("only")
+    assert tr.prune(max_rules=5) == 0
+    assert len(tr._load()) == 1
