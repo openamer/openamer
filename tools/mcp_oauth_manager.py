@@ -579,8 +579,7 @@ class MCPOAuthManager:
             storage=storage,
             redirect_handler=redirect_handler,
             callback_handler=callback_handler,
-            timeout=float(cfg.get("timeout", 300)),
-        )
+                    )
 
     def remove(
         self,
