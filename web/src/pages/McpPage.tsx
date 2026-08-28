@@ -28,6 +28,7 @@ import {
   type McpTransport,
 } from "@/lib/mcp-server-create";
 import { completeMcpDashboardOAuth } from "@/lib/mcp-dashboard-oauth";
+import McpToolSearch from "@/components/McpToolSearch";
 
 function isHttpUrl(value: string): boolean {
   return /^https?:\/\//i.test(value.trim());
@@ -897,6 +898,8 @@ export default function McpPage() {
           );
         })}
       </div>
+
+      <McpToolSearch />
     </div>
   );
 }

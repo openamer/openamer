@@ -13337,6 +13337,40 @@ async def a2a_mcp_catalog(q: str = "", limit: int = 10):
         ],
     }
 
+@app.get("/api/mcp/search-tools")
+async def mcp_search_tools(
+    q: str = "", server: str = "", limit: int = 20,
+    profile: Optional[str] = None,
+):
+    """Layer-1 catalog: search tool names+descriptions across installed MCP servers.
+
+    Mirrors ``openamer mcp search-tools`` over HTTP. Probes each enabled
+    server's tool list and returns only the matching names (grouped by source
+    server), so the dashboard UI can offer discovery instead of dumping every
+    tool into context. Non-fatal on probe errors -- a failing server is skipped
+    and reported in ``probe_errors``.
+    """
+    from openamer_cli.mcp_search import search_tools
+    effective_profile = profile
+    try:
+        with _profile_scope(effective_profile):
+            result = search_tools(
+                q or "",
+                server=(server or "").strip() or None,
+                limit=max(1, min(int(limit), 100)),
+                on_probe_error="skip",
+            )
+    except Exception as exc:
+        _log.exception("mcp_search_tools failed")
+        raise HTTPException(status_code=500, detail=f"Search failed: {exc}")
+    return {
+        "query": q or "",
+        "total_servers": result["total_servers"],
+        "matches": result["matches"],
+        "probe_errors": result["probe_errors"],
+        "count": len(result["matches"]),
+    }
+
 class MCPCatalogInstall(BaseModel):
     name: str
     # env: KEY=VALUE map for catalog entries that declare required env vars.

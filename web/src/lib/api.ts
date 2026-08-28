@@ -1039,6 +1039,14 @@ export const api = {
         body: JSON.stringify({ name, env, enable }),
       },
     ),
+  searchMcpTools: (q: string, server = "", limit = 20) =>
+    fetchJSON<McpSearchToolsResponse>(
+      `/api/mcp/search-tools?q=${encodeURIComponent(q)}&server=${encodeURIComponent(server)}&limit=${limit}`,
+    ),
+  searchCommunityMcpCatalog: (q: string, limit = 10) =>
+    fetchJSON<McpCommunityResponse>(
+      `/api/a2a/mcp-catalog?q=${encodeURIComponent(q)}&limit=${limit}`,
+    ),
 
   // ── Admin: Pairing ──────────────────────────────────────────────────
   getPairing: () => fetchJSON<PairingResponse>("/api/pairing"),
@@ -1467,6 +1475,34 @@ export interface McpTestResult {
   ok: boolean;
   error?: string;
   tools: Array<{ name: string; description: string }>;
+}
+
+export interface McpSearchToolMatch {
+  server: string;
+  name: string;
+  description: string;
+}
+
+export interface McpSearchToolsResponse {
+  query: string;
+  total_servers: number;
+  matches: McpSearchToolMatch[];
+  probe_errors: string[];
+  count: number;
+}
+
+export interface McpCommunityEntry {
+  name: string;
+  url: string;
+  description: string;
+  curated: string | null;
+  installed: boolean;
+}
+
+export interface McpCommunityResponse {
+  query: string;
+  count: number;
+  entries: McpCommunityEntry[];
 }
 
 export interface McpOAuthFlow {
