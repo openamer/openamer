@@ -172,6 +172,72 @@ after a OpenAmer update if a manifest version changed.
 To add an MCP to the catalog, open a PR against
 [`optional-mcps/`](https://github.com/openamer/openamer/tree/main/optional-mcps).
 
+## Discovering tools and servers at scale
+
+As your setup accumulates many MCP servers, the naive "load every tool into
+context" approach stops scaling (the 2026 MCP client best-practice calls this
+out directly). OpenAmer ships two lightweight, keyless discovery commands plus
+a dashboard panel so an agent can *find* the right tool without stuffing
+hundreds of definitions into its prompt — the **Layer-1 catalog** pattern.
+
+### `openamer mcp search-tools` — find a tool across installed servers
+
+Queries the tool names + descriptions of every **enabled, configured** MCP
+server (via a live probe), and returns only matches grouped by their source
+server. No network, no API key, works entirely against what you've installed.
+
+```bash
+openamer mcp search-tools "update salesforce record"   # find the tool
+openamer mcp search-tools '"semantic search"'          # exact phrase
+openamer mcp search-tools postgres --limit 5           # limit to 5
+openamer mcp search-tools update --server n8n          # one server only
+```
+
+Query syntax matches the catalog search: `space` = AND, `a|b` = OR,
+`"exact phrase"` = grouped substring. Output is grouped by server so the model
+can reason about related capabilities:
+
+```
+[mcp search-tools] 'update' across 2 server(s) — 1 tool match(es)
+
+  salesforce:
+  - **salesforce::updateRecord** — Update fields on a Salesforce object
+```
+
+A server that fails to probe is skipped and reported, never fatal. Exposed
+over HTTP as `GET /api/mcp/search-tools` (dashboard Discovery panel uses it).
+
+### `openamer a2a mcp-catalog` — find a server in the community catalog
+
+Searches **punkpeye/awesome-mcp-servers** (~1,900 third-party MCP servers) so
+you can discover a ready-made tool instead of building one. Keyless, fetches a
+single raw markdown, parses real descriptions.
+
+```bash
+openamer a2a mcp-catalog github               # AND across terms
+openamer a2a mcp-catalog postgres|mysql       # OR alternatives
+openamer a2a mcp-catalog '"web scraping"'     # exact phrase
+openamer a2a mcp-catalog --install n8n        # route to the safe installed path
+```
+
+Hits are annotated when they map to an **OpenAmer-approved** (supply-chain
+pinned) catalog entry:
+
+```
+- firecrawl/firecrawl-mcp-server — Web scraping & crawling ... [approved: openamer mcp install firecrawl]
+```
+
+`--install <name>` installs only through the reviewed manifest path (never pins
+an arbitrary third-party repo); an unapproved name is rejected with a clear
+message. Exposed over HTTP as `GET /api/a2a/mcp-catalog`.
+
+### Security note
+
+Both discovery tools are **read-only**. They never mutate your config; only
+the explicit `openamer mcp install <name>` (or `--install <name>`) writes
+anything, and that goes through the supply-chain-pinned manifest pipeline. The
+dashboard endpoints are auth-gated under `/api/` and require the session token.
+
 ## Two kinds of MCP servers
 
 ### Stdio servers
