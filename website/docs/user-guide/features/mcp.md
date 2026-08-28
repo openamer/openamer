@@ -238,6 +238,29 @@ the explicit `openamer mcp install <name>` (or `--install <name>`) writes
 anything, and that goes through the supply-chain-pinned manifest pipeline. The
 dashboard endpoints are auth-gated under `/api/` and require the session token.
 
+### Security posture audit
+
+The recurring "agentic AI security" trend is a concrete, checkable concern for
+your MCP layer. `openamer mcp audit` gives a read-only zero-trust / defense-in-
+depth posture score for every configured server across four checks:
+
+- **auth** — OAuth > static bearer > none; a stdio (local subprocess) server
+  isn't penalised since it needs no remote auth.
+- **secret** — flags a literal credential (e.g. `bearer_token: sk-...`) baked
+  into config; env-var references (`${VAR}`) are fine.
+- **pin** — flags an unpinned package launcher (e.g. bare `npx @scope/pkg`);
+  a real version pin (`pkg@1.2.3`) passes.
+- **transport** — flags a plaintext `http://` remote endpoint.
+
+```bash
+openamer mcp audit          # human-readable posture
+openamer mcp audit --json   # machine-readable (for the dashboard / scripts)
+```
+
+A check that fails never blocks anything — the audit is read-only and purely
+reports, so an operator or agent can decide what to harden.
+
+## Two kinds of MCP servers
 ## Two kinds of MCP servers
 
 ### Stdio servers
