@@ -56,12 +56,15 @@ def test_purge(store):
 
 
 def test_context_orders_by_hits(store):
-    tr.add("lo")
+    tr.add("lo", proof="p")
     tr.add("hi", proof="p")
-    high = max(tr._load(), key=lambda r: r["hits"])  # both 0; sort stable
-    # bump "hi" so it sorts first
+    # promote both (proof + bump a hit each) so they're active and loadable
+    for r in tr._load():
+        tr.bump(r["id"])
+    tr.promote()
     hi = next(r for r in tr._load() if r["rule"] == "hi")
-    tr.bump(hi["id"])
+    for _ in range(2):
+        tr.bump(hi["id"])  # hi ends with more hits than lo
     ctx = tr.context()
     assert ctx.startswith("THINKING RULES")
     assert ctx.index("hi") < ctx.index("lo")
@@ -110,3 +113,30 @@ def test_prune_noop_under_limit(store):
     tr.add("only")
     assert tr.prune(max_rules=5) == 0
     assert len(tr._load()) == 1
+
+
+def test_dual_buffer_promotion_requires_proof_and_hit(store):
+    # New rules are pending (hot buffer). Promotion needs proof AND a hit.
+    tr.add("ruleX", proof="real proof")
+    tr.add("ruleY")  # no proof
+    x = next(r for r in tr._load() if r["rule"] == "ruleX")
+    y = next(r for r in tr._load() if r["rule"] == "ruleY")
+    # y gets a hit but no proof; x has proof but no hit yet.
+    tr.bump(y["id"])
+    assert tr.promote() == 0  # neither qualifies
+    tr.bump(x["id"])  # now x has proof + hit
+    assert tr.promote() == 1
+    after = {r["rule"]: r.get("status") for r in tr._load()}
+    assert after["ruleX"] == "active"
+    assert after["ruleY"] == "pending"
+
+
+def test_dual_buffer_context_excludes_pending(store):
+    tr.add("activeR", proof="p")
+    ar = next(r for r in tr._load() if r["rule"] == "activeR")
+    tr.bump(ar["id"])
+    tr.promote()  # activeR -> active
+    tr.add("pendingR")  # stays pending
+    ctx = tr.context()
+    assert "activeR" in ctx
+    assert "pendingR" not in ctx  # hot-buffer rules don't steer tasks yet

@@ -63,6 +63,9 @@ def add(rule: str, trigger: str = "", proof: str = "") -> int:
         "proof": proof.strip(),
         "hits": 0,
         "created": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        # Dual-buffer (Memory survey 9.1): new rules enter the hot buffer as
+        # pending and are promoted to active only once they earn their place.
+        "status": "pending",
     }
     rules.append(r)
     _save(rules)
@@ -87,6 +90,26 @@ def purge(rule_id: str) -> list[dict]:
     _save(rules)
     print(f"purged {rule_id}")
     return rules
+
+
+def promote() -> int:
+    """Dual-buffer promotion (Memory survey 9.1): pending -> active.
+
+    A rule earns promotion to the long-term (active) set when it has BOTH a
+    concrete proof (evidence, not a slogan) AND at least one real hit (applied).
+    This is the re-verify + importance gate before a hot-buffer entry survives
+    consolidation. Returns how many were promoted.
+    """
+    rules=_load()
+    promoted=0
+    for r in rules:
+        if r.get("status")=="pending" and r.get("proof") and int(r.get("hits",0))>=1:
+            r["status"]="active"
+            promoted+=1
+    _save(rules)
+    print(f"promote: {promoted} pending -> active")
+    return promoted
+
 
 
 def consolidate() -> int:
@@ -129,6 +152,9 @@ def prune(max_rules: int = 12) -> int:
 
 def context(sort_by_hits: bool = True) -> str:
     rules = _load()
+    # Dual-buffer: only ACTIVE (promoted) rules steer tasks; pending rules that
+    # are still in the hot buffer / probation are excluded from the load block.
+    rules = [r for r in rules if r.get("status", "active") == "active"]
     if sort_by_hits:
         rules = sorted(rules, key=lambda r: r.get("hits", 0), reverse=True)
     if not rules:
@@ -149,6 +175,7 @@ def main(argv: list[str] | None = None) -> int:
     bp = sub.add_parser("bump"); bp.add_argument("rule_id")
     pp = sub.add_parser("purge"); pp.add_argument("rule_id")
     cl = sub.add_parser("consolidate"); cl.add_argument("--max", type=int, default=12)
+    sub.add_parser("promote")
     sub.add_parser("context")
     a = ap.parse_args(argv)
 
@@ -164,6 +191,8 @@ def main(argv: list[str] | None = None) -> int:
         return 0 if bump(a.rule_id) else 1
     if a.cmd == "purge":
         purge(a.rule_id); return 0
+    if a.cmd == "promote":
+        promote(); return 0
     if a.cmd == "consolidate":
         consolidate(); prune(max_rules=a.max); return 0
     if a.cmd == "context":
