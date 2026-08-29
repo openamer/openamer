@@ -83,7 +83,7 @@ dependencies = [
   "urllib3>=2.7.0,<3",
   # cryptography is pulled in transitively by PyJWT[crypto]; pin it explicitly
   # so the WeCom/Weixin crypto paths can't drift below the CVE-fixed floor.
-  "cryptography==48.0.1",  # CVE-2026-39892, CVE-2026-34073, GHSA-537c-gmf6-5ccf
+  "cryptography==50.0.0",  # CVE-2026-39892, CVE-2026-34073, GHSA-537c-gmf6-5ccf; GHSA-g6cj-pr64-35w5/jwv3 (fixed 50.0.0/49.0.0)
   # Windows has no IANA tzdata shipped with the OS, so Python's ``zoneinfo``
   # (PEP 615) raises ``ZoneInfoNotFoundError`` for every non-UTC timezone
   # out of the box.  ``tzdata`` ships the Olson database as a data package
@@ -121,7 +121,7 @@ dependencies = [
   # libs required for the codecs we use, so it's safe to ship in the base
   # install rather than gating it behind an extra + a mid-session lazy install
   # (which deadlocked the CLI under prompt_toolkit — see #40490).
-  "Pillow==12.2.0",
+  "Pillow==12.3.0",
   # Vector memory (openamer_cli/vector_memory.py) imports numpy at module load.
   # It was previously only in the optional `voice` extra, so a base install
   # (pip install -e . / uv pip install -e .) could not run `openamer memory
