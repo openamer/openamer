@@ -34,7 +34,7 @@ HOME = Path.home() / "AppData/Local/openamer-laptop" \
 BUDGET_FILE = HOME / "ai_deep_budget.json"
 
 # Defaults: vision uses a cheap multimodal; reason uses a deep model.
-DEFAULT_VISION = "openai/gpt-5-mini-class"  # multimodal, low cost
+DEFAULT_VISION = "google/gemini-3.1-flash-lite-image"  # cheap, real multimodal model ID
 DEFAULT_REASON = "anthropic/claude-sonnet-4"  # strong but capped
 DEFAULT_MAX_SPEND = 0.50  # USD per rolling day
 
