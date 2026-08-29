@@ -1,0 +1,24 @@
+name: provenance
+version: 1.0.0
+description: "PROV-AGENT-inspiriertes Provenance-Tracking. Trackt jeden Tool-Call mit Kontext (Prompt, Reasoning, Ergebnis) als W3C-PROV-JSON — Sidecar zu Session-Saves."
+author: OpenAmer
+kind: backend
+license: MIT
+hooks:
+  - onReady
+  - onMessage
+  - onToolCall
+config:
+  schema:
+    output_dir:
+      type: string
+      default: "reports/provenance"
+      description: "Verzeichnis für Provenance-JSONs (relativ zum Repo-Root)"
+    max_entries_per_file:
+      type: integer
+      default: 500
+      description: "Maximale Anzahl Tool-Call-Einträge pro Datei (danach Rotation)"
+    enabled:
+      type: boolean
+      default: true
+      description: "Provenance-Tracking aktivieren/deaktivieren"
