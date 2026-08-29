@@ -427,6 +427,7 @@ function ApplyingView({ apply, isBackend }: { apply: UpdateApplyState; isBackend
 function ErrorView({ errorCode, message, onDismiss, onRetry }: { errorCode: string | null; message: string; onDismiss: () => void; onRetry: () => void }) {
   const { t } = useI18n()
   const u = t.updates
+
   // Map our known app-driven error codes to a localised string. These codes
   // come from the Electron main process, which has no access to the renderer
   // i18n; the process sends a stable code and we translate here. Unknown/
