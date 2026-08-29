@@ -122,6 +122,12 @@ dependencies = [
   # install rather than gating it behind an extra + a mid-session lazy install
   # (which deadlocked the CLI under prompt_toolkit — see #40490).
   "Pillow==12.2.0",
+  # Vector memory (openamer_cli/vector_memory.py) imports numpy at module load.
+  # It was previously only in the optional `voice` extra, so a base install
+  # (pip install -e . / uv pip install -e .) could not run `openamer memory
+  # vector` — numpy was simply absent. Move it to core so the vector store is
+  # always usable. Pure wheel, no system libs required.
+  "numpy==2.4.3",
   # Windows log rotation. Stdlib ``RotatingFileHandler.doRollover()`` uses
   # ``os.rename()`` which fails with ``PermissionError [WinError 32]`` on
   # Windows whenever any other process holds an append-mode handle on
@@ -170,9 +176,10 @@ cli = ["simple-term-menu==1.6.6"]
 tts-premium = ["elevenlabs==1.59.0"]
 voice = [
   # Local STT pulls in wheel-only transitive deps (ctranslate2, onnxruntime).
+  # NOTE: numpy is already a CORE dependency (see the main `dependencies`
+  # list) for the vector memory store, so it is not repeated here.
   "faster-whisper==1.2.1",
   "sounddevice==0.5.5",
-  "numpy==2.4.3",
 ]
 honcho = ["honcho-ai==2.2.0"]
 # Cloud memory providers — opt-in, lazy-installed via tools/lazy_deps.py
