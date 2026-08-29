@@ -53,3 +53,24 @@ def test_refactor_refuses_without_test(tmp_path, monkeypatch):
     monkeypatch.setattr(sr, "REPO", tmp_path.parent)
     # point _run_tests at a non-existent test -> gate refuses
     assert sr._run_tests(m, target=str(tmp_path / "nope.py")) is False
+
+
+# ── anti-test-poisoning: AST-logic hash ───────────────────────────────────
+
+def test_logic_hash_stable_across_whitespace(tmp_path):
+    m = tmp_path / "w.py"
+    m.write_text("def f():\n    return 1\n", encoding="utf-8")
+    h1 = sr._logic_hash(m)
+    # trailing whitespace + blank-line churn must NOT change the logic hash
+    m.write_text("def f():\n    return 1  \n\n\n", encoding="utf-8")
+    h2 = sr._logic_hash(m)
+    assert h1 == h2
+
+
+def test_logic_hash_changes_on_logic_edit(tmp_path):
+    m = tmp_path / "l.py"
+    m.write_text("def f():\n    return 1\n", encoding="utf-8")
+    h1 = sr._logic_hash(m)
+    m.write_text("def f():\n    return 999\n", encoding="utf-8")
+    h2 = sr._logic_hash(m)
+    assert h1 != h2

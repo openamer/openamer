@@ -102,6 +102,19 @@ def _apply_safe(path: Path, drop_comments: bool) -> int:
     return 1
 
 
+def _logic_hash(path: Path) -> str:
+    """Cryptographic hash of the module's AST *logic* (excludes whitespace,
+    comments, blank-line churn). If it changes across a refactor, real code
+    changed - protection the test-gate cannot give (tests can be poisoned).
+    """
+    import hashlib
+    import ast as _ast
+    tree = _ast.parse(path.read_text(encoding="utf-8"))
+    # ast.dump() is layout-stable: whitespace/comments/blank-lines don't appear;
+    # only code structure does. (no exclude_defaults — it wasn't valid for dump)
+    return hashlib.sha256(_ast.dump(tree).encode("utf-8")).hexdigest()
+
+
 def _run_tests(path: Path, target: str | None) -> bool:
     """Run the module's test file (or an explicit --test) and report pass."""
     test = None
@@ -132,12 +145,20 @@ def refactor(path: Path, drop_comments: bool, test: str | None) -> int:
     if not _run_tests(path, test):
         print(f"GATE: {path} has no passing test target — refusing unsupervised refactor.")
         return 3
+    # anti-poison: logic hash BEFORE any write
+    pre_logic = _logic_hash(path)
     # backup
     BACKUP_DIR.mkdir(parents=True, exist_ok=True)
     backup = BACKUP_DIR / f"{path.name}.bak"
     shutil.copy2(path, backup)
     _apply_safe(path, drop_comments)
-    # safety gate 2: tests must still pass AFTER
+    # safety gate 2a: LOGIC must be unchanged (whitespace only)
+    if _logic_hash(path) != pre_logic:
+        print("LOGIC-CHANGED: refactor altered code structure. restoring.")
+        shutil.copy2(backup, path)
+        _record({"path": str(path), "ok": False, "action": "restored-logic", "reason": "AST-logic hash changed"})
+        return 5
+    # safety gate 2b: tests must still pass AFTER
     if not _run_tests(path, test):
         print(f"REGRESS! restoring {path} from backup; refactor unsafe here.")
         shutil.copy2(backup, path)
