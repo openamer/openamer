@@ -481,6 +481,29 @@ def consolidate_lessons(
 # 3. inject_context
 # ═══════════════════════════════════════════════════════════════════════════
 
+def _thinking_rules_block(max_rules: int = 8) -> str:
+    """Load ACTIVE reasoning rules into a ready-to-inject block so each
+    new session starts with the distilled, verified lessons as behaviour,
+    not just a .md pointer. Safe no-op when the store is absent/empty."""
+    try:
+        import sys as _sys
+        import json as _json
+        from pathlib import Path as _Path
+        home = _Path.home() / "AppData/Local/openamer-laptop" if _sys.platform == "win32" else _Path.home() / ".openamer"
+        store = home / "thinking_rules.json"
+        if not store.exists(): return ""
+        rules = _json.loads(store.read_text(encoding="utf-8"))
+        if not isinstance(rules, list): return ""
+        active = [r for r in rules if r.get("status", "active") == "active"]
+        active.sort(key=lambda r: int(r.get("hits", 0)), reverse=True)
+        if not active: return ""
+        lines = ["[Self-improvement-Rules (active, aus echten Fehlern)]", "-" * 45]
+        for r in active[:max_rules]:
+            lines.append("  - " + (r.get("rule", "") or ""))
+        lines.append("-" * 45)
+        return chr(10).join(lines)
+    except Exception:
+        return ""
 def inject_context(
     *,
     days: int = _MAX_LESSON_AGE_DAYS,
@@ -516,6 +539,10 @@ def inject_context(
         )
 
     lines: list[str] = []
+    tr_block = _thinking_rules_block(max_rules=max_lessons)
+    if tr_block:
+        lines = [tr_block, ""] + lines
+
     lines.append("🧠 Cross-Session Learning — Kontext")
     lines.append("═" * 45)
     lines.append(
