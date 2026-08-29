@@ -131,7 +131,7 @@ def main() -> int:
     actions = []
 
     # 1) session_to_brain daemon
-    pidf = HOME / ".openamer" / "session_to_brain.pid"
+    pidf = Path(os.environ.get("OPENAMER_HOME", Path.home() / ".openamer")) / "session_to_brain.pid"
     if not _pid_alive(pidf):
         problems.append("session_to_brain daemon down")
         if _start_session_to_brain():
