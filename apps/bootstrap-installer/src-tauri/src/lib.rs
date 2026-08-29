@@ -11,8 +11,8 @@
 mod bootstrap;
 mod events;
 mod install_script;
-mod powershell;
 mod paths;
+mod powershell;
 mod update;
 
 use std::sync::Arc;
@@ -160,9 +160,41 @@ pub fn run() {
                     }
                 }
                 None => {
-                    tracing::error!("main installer window not found; installer UI will not appear");
+                    tracing::error!(
+                        "main installer window not found; installer UI will not appear"
+                    );
                 }
             }
+
+            // Update mode is a hand-off from the desktop: the desktop already
+            // exited and re-launched us as `--update`. Do NOT depend on the
+            // WebView frontend to kick off `start_update` — if the embedded
+            // frontend fails to load (missing/stale dist assets, WebView2 GPU
+            // init lag, etc.) the async `start_update` never fires and the
+            // updater hangs forever, stranding the desktop in its update-wait
+            // loop. Start the update from Rust directly on setup. Re-entrancy
+            // is safe: `update::start_update` is guarded by the `UPDATE_RUNNING`
+            // compare-exchange, so a late frontend `startUpdate()` call simply
+            // re-emits the manifest instead of racing a second update.
+            //
+            // Windows desktop is openamer-bootstrap-lib's primary target; this
+            // hardening deliberately applies on every platform so the update
+            // hand-off is never hostage to a GUI-loading race.
+            if mode == AppMode::Update {
+                tracing::info!(
+                    "update mode: auto-starting update from Rust (no WebView dependency)"
+                );
+                let handle = app.handle().clone();
+                tauri::async_runtime::spawn(async move {
+                    match update::start_update(handle).await {
+                        Ok(()) => tracing::info!("Rust auto-start update triggered"),
+                        Err(err) => {
+                            tracing::error!(?err, "Rust auto-start update failed");
+                        }
+                    }
+                });
+            }
+
             Ok(())
         })
         .invoke_handler(tauri::generate_handler![
