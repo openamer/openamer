@@ -99,6 +99,33 @@ def _start_chrome():
     return True
 
 
+def _dashboard_serve_alive() -> bool:
+    """Dashboard/serve on 127.0.0.1:9119 — the API the renderer/browser dashboard needs."""
+    try:
+        r = urllib.request.urlopen("http://127.0.0.1:9119/api/health", timeout=4)
+        return r.status == 200
+    except Exception:
+        return False
+
+
+def _start_dashboard_serve() -> bool:
+    """Start `serve --host 127.0.0.1 --port 9119` so the dashboard frontend never
+    hits ERR_CONNECTION_REFUSED. Uses the managed venv python, no new window."""
+    py = OPENAMER / "openamer-agent" / "venv" / "Scripts" / "python.exe"
+    if not py.exists():
+        return False
+    try:
+        subprocess.Popen(
+            [str(py), "-m", "openamer_cli.main", "serve",
+             "--host", "127.0.0.1", "--port", "9119", "--insecure"],
+            cwd=str(OPENAMER / "openamer-agent"),
+            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+            creationflags=subprocess.CREATE_NO_WINDOW)
+        return True
+    except Exception:
+        return False
+
+
 def main() -> int:
     problems = []
     actions = []
@@ -117,9 +144,28 @@ def main() -> int:
         if _start_chrome():
             actions.append("restarting Chrome CDP :9222")
 
+    # 2b) Dashboard serve :9119 — API the renderer/browser dashboard needs.
+    if not _dashboard_serve_alive():
+        problems.append("Dashboard serve :9119 down")
+        if _start_dashboard_serve():
+            actions.append("starting dashboard serve :9119")
+
     # 3) config standard resolvable (A2A uses the user's declared provider)
     if not _config_standard_ok():
         problems.append("config model standard unresolved")
+
+    # 4b) reboot-flag pending (safe_restart.py) - tell user a restart is due
+    _oa_home = Path(os.environ.get("OPENAMER_HOME") or Path.home() / "AppData/Local/openamer-laptop")
+    rb = _oa_home / "reboot-flag.json"
+    if rb.exists():
+        try:
+            _rf = json.loads(rb.read_text(encoding="utf-8"))
+            if not _rf.get("handled"):
+                problems.append(f"REBOOT PENDING: {_rf.get('reason')} - run: openamer desktop")
+                actions.append("flag reboot-pending")
+        except Exception:
+            pass
+
 
     # 4) A2A worker present
     if not (REPO / ".github/workflows/a2a-worker.yml").exists():
