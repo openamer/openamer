@@ -126,14 +126,17 @@ def _train_qlora():
         import unsloth  # noqa: F401
         import trl  # noqa: F401
     except ImportError as e:
-        print(f"✗ Training libs missing ({e}). On the GPU PC install: "
-              "pip install unsloth trl peft datasets")
-        print("   (laptop: use --smoke / --dataset only)")
+        print(f"✗ Training libs missing ({e}).")
+        print("   Install them reproducibly (official repo):")
+        print("       cd <openamer-agent repo root>")
+        print("       pip install -e '.[train]'     (Windows: maybe .\\venv\\Scripts\\pip install -e '.[train]')")
+        print("   Or with uv:  uv pip install -e '.[train]'")
+        print("   (laptop without NVIDIA GPU: use --smoke / --dataset only)")
         return
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     print("  [train] QLoRA path — base chat model, LoRA low rank, split 95/5.")
     print("  [train] Implement according to openamer-finetune-plan; output -> " + str(OUT_DIR))
-    # Placeholder guard: do not claim a real model was trained here unless the libs allowed it.
+    # Placeholder guard: do not claim a real model trained unless libs allowed a run.
     print("  [train] libs present; full run implemented by extending _train_qlora.")
 
 
