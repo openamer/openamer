@@ -371,7 +371,7 @@ def _cmd_brain(args) -> int:
         return 0
     if subject != "collect" and subject != "publish":
         print("Usage: openamer a2a brain collect|publish|autolog <on|off|status>"); return 2
-    home = _pl.Path.home() / ".openamer"
+    home = _pl.Path(os.getenv("OPENAMER_HOME") or (_pl.Path.home() / ".openamer"))
     if subject == "publish":
         # Public ONLY curated, redacted insights -> shared directory/a2a/insights
         repo_shared = _pl.Path(getattr(args, "out", "") or _pl.Path.cwd() / "directory" / "a2a" / "insights")
