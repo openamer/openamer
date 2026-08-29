@@ -24,6 +24,7 @@ scrolling, draggi
 - [goal-engine](goal-engine/) — Use for mission: define, prioritize, --tick, progress, scan.
 - [multi-agent-orchestration](multi-agent-orchestration/) — Parallel, hierarchical, or debate multi-agent orchestration.
 - [openamer-agent](openamer-agent/) — Use, configure, theme, extend, and orchestrate OpenAmer Agent.
+- [openamer-brain-train](openamer-brain-train/) — Train your OWN OpenAmer-specific small model from collected brain data: dataset, QLoRA, eval, export.
 - [openamer-finetune-plan](openamer-finetune-plan/) — Plan and prepare an OpenAmer-specific fine-tune from the collected brain data: d
 - [openamer-update-recovery](openamer-update-recovery/) — Use when `openamer update` fails or leaves a broken install.
 - [openamer-vision](openamer-vision/) — Use to recall the 5-pillar strategic vision for OpenAmer.
