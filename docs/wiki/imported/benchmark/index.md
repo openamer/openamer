@@ -6,7 +6,7 @@ description: Performance regression detection using the browse daemon. (gstack)
 # benchmark
 
 **Description:** Performance regression detection using the browse daemon. (gstack)
-**Lines:** 810 | **Code:** 382 | **Dir:** `benchmark`
+**Lines:** 413 | **Code:** 132 | **Dir:** `benchmark`
 
 ---
 

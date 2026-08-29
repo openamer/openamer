@@ -6,7 +6,7 @@ description: Fast headless browser for QA testing and site dogfooding. (gstack)
 # browse
 
 **Description:** Fast headless browser for QA testing and site dogfooding. (gstack)
-**Lines:** 1081 | **Code:** 404 | **Dir:** `browse`
+**Lines:** 543 | **Code:** 139 | **Dir:** `browse`
 
 ---
 

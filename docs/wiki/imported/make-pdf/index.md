@@ -6,7 +6,7 @@ description: Turn any markdown file into a publication-quality PDF. (gstack)
 # make-pdf
 
 **Description:** Turn any markdown file into a publication-quality PDF. (gstack)
-**Lines:** 812 | **Code:** 338 | **Dir:** `make-pdf`
+**Lines:** 409 | **Code:** 82 | **Dir:** `make-pdf`
 
 ---
 

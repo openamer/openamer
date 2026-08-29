@@ -6,7 +6,7 @@ description: Pull data from a web page. (gstack)
 # scrape
 
 **Description:** Pull data from a web page. (gstack)
-**Lines:** 723 | **Code:** 267 | **Dir:** `scrape`
+**Lines:** 320 | **Code:** 11 | **Dir:** `scrape`
 
 ---
 

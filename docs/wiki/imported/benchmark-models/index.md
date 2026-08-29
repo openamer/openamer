@@ -6,7 +6,7 @@ description: Cross-model benchmark for gstack skills. (gstack)
 # benchmark-models
 
 **Description:** Cross-model benchmark for gstack skills. (gstack)
-**Lines:** 685 | **Code:** 271 | **Dir:** `benchmark-models`
+**Lines:** 282 | **Code:** 15 | **Dir:** `benchmark-models`
 
 ---
 

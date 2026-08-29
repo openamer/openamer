@@ -6,7 +6,7 @@ description: Weekly engineering retrospective. (gstack)
 # retro
 
 **Description:** Weekly engineering retrospective. (gstack)
-**Lines:** 1844 | **Code:** 590 | **Dir:** `retro`
+**Lines:** 1214 | **Code:** 242 | **Dir:** `retro`
 
 ---
 

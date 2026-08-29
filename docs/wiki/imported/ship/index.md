@@ -6,7 +6,7 @@ description: Ship workflow: detect + merge base branch, run tests, review diff, 
 # ship
 
 **Description:** Ship workflow: detect + merge base branch, run tests, review diff, bump VERSION, update CHANGELOG, commit, push, create PR. (gstack)
-**Lines:** 1505 | **Code:** 408 | **Dir:** `ship`
+**Lines:** 1089 | **Code:** 152 | **Dir:** `ship`
 
 ---
 

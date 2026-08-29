@@ -6,7 +6,7 @@ description: Extend OpenAmer CLI: add subcommands, modules, tests.
 # openamer-feature-engineering
 
 **Description:** Extend OpenAmer CLI: add subcommands, modules, tests.
-**Lines:** 676 | **Code:** 225 | **Dir:** `openamer-feature-engineering`
+**Lines:** 695 | **Code:** 225 | **Dir:** `openamer-feature-engineering`
 
 ---
 

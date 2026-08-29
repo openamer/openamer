@@ -6,7 +6,7 @@ description: Launch GStack Browser — AI-controlled Chromium with the sidebar e
 # open-gstack-browser
 
 **Description:** Launch GStack Browser — AI-controlled Chromium with the sidebar extension baked in.
-**Lines:** 779 | **Code:** 312 | **Dir:** `open-gstack-browser`
+**Lines:** 382 | **Code:** 62 | **Dir:** `open-gstack-browser`
 
 ---
 

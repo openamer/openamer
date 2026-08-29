@@ -6,7 +6,7 @@ description: Pre-landing PR review. (gstack)
 # review
 
 **Description:** Pre-landing PR review. (gstack)
-**Lines:** 1903 | **Code:** 496 | **Dir:** `review`
+**Lines:** 925 | **Code:** 92 | **Dir:** `review`
 
 ---
 

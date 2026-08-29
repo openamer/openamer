@@ -4,7 +4,7 @@ title: software-development
 
 # 💻 software-development
 
-57 skills
+61 skills
 
 - [adapting-external-skills](adapting-external-skills/) — Port skills from another agent project into OpenAmer.
 - [api-drift-recovery](api-drift-recovery/) — ImportError after refactor? Map old→new API and fix tests.
@@ -17,6 +17,7 @@ title: software-development
 - [code-intelligence](code-intelligence/) — Use for AST/dep graph/complexity analysis of Python code.
 - [commander](commander/) — Use for OpenAmer central CLI Commander with 28 subcommands.
 - [competitive-overtake](competitive-overtake/) — Research competitors and overtake them feature-by-feature.
+- [desktop-copy-deploy](desktop-copy-deploy/) — Use when syncing repo into the Desktop agent copy.
 - [dogfood](dogfood/) — Exploratory QA of web apps: find bugs, evidence, reports.
 - [dsh-archive-agent-notes](dsh-archive-agent-notes/) — Archive DeepSeek Harness agent notes.
 - [dsh-code-review](dsh-code-review/) — Review DeepSeek Harness PRs.
@@ -29,6 +30,7 @@ title: software-development
 - [dsh-translate-docs](dsh-translate-docs/) — Translate DeepSeek Harness docs bilingual workflow.
 - [dsh-trim-cot-leakage](dsh-trim-cot-leakage/) — Trim Chain-of-Thought leakage in DeepSeek Harness prose.
 - [electron-windows-build](electron-windows-build/) — Build/debug Electron apps on Windows (CJS, CDP, webview).
+- [eol-safe-editing](eol-safe-editing/) — Use when editing CRLF files — patch bytes, avoid CRLF flips.
 - [fork-differentiation](fork-differentiation/) — Differentiate a fork from its upstream honestly.
 - [github-ci-debugging](github-ci-debugging/) — Use for batch CI failures: check-runs, job logs, main-first.
 - [greenfield-agent-architecture](greenfield-agent-architecture/) — Use when building a new agent/CLI project from scratch.
@@ -64,3 +66,5 @@ title: software-development
 - [vision-audio](vision-audio/) — vision-audio: screenshot, describe, transcribe, diagram.
 - [voice-assistant](voice-assistant/) — Use for the Windows TTS+STT voice interface in OpenAmer.
 - [voice-audio-integration](voice-audio-integration/) — Use when building voice in Python: STT, TTS, barge-in.
+- [windows-aware-file-edits](windows-aware-file-edits/) — Safe Windows file editing: CRLF + heredoc traps.
+- [windows-subprocess-robustness](windows-subprocess-robustness/) — Use when parsing Windows subprocess output in Python.

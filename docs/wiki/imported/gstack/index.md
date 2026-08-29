@@ -6,7 +6,7 @@ description: Router for the gstack skill suite. (gstack)
 # gstack
 
 **Description:** Router for the gstack skill suite. (gstack)
-**Lines:** 627 | **Code:** 265 | **Dir:** `gstack`
+**Lines:** 224 | **Code:** 9 | **Dir:** `gstack`
 
 ---
 

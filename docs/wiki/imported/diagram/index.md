@@ -6,7 +6,7 @@ description: Turn an English description (or mermaid source) into a diagram trip
 # diagram
 
 **Description:** Turn an English description (or mermaid source) into a diagram triplet: the source, an editable .excalidraw file you can open on excalidraw.com, and rendered SVG + PNG. (gstack)
-**Lines:** 685 | **Code:** 291 | **Dir:** `diagram`
+**Lines:** 282 | **Code:** 35 | **Dir:** `diagram`
 
 ---
 

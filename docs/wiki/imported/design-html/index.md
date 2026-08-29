@@ -6,7 +6,7 @@ description: Design finalization: generates production-quality Pretext-native HT
 # design-html
 
 **Description:** Design finalization: generates production-quality Pretext-native HTML/CSS. (gstack)
-**Lines:** 1540 | **Code:** 557 | **Dir:** `design-html`
+**Lines:** 909 | **Code:** 179 | **Dir:** `design-html`
 
 ---
 

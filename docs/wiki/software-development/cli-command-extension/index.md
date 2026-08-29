@@ -6,7 +6,7 @@ description: Extend OpenAmer CLI. Parser, dispatch, main.py file edits.
 # cli-command-extension
 
 **Description:** Extend OpenAmer CLI. Parser, dispatch, main.py file edits.
-**Lines:** 585 | **Code:** 254 | **Dir:** `cli-command-extension`
+**Lines:** 592 | **Code:** 261 | **Dir:** `cli-command-extension`
 
 ---
 

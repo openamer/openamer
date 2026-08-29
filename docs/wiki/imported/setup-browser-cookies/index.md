@@ -6,7 +6,7 @@ description: Import cookies from your real Chromium browser into the headless br
 # setup-browser-cookies
 
 **Description:** Import cookies from your real Chromium browser into the headless browse session. (gstack)
-**Lines:** 657 | **Code:** 292 | **Dir:** `setup-browser-cookies`
+**Lines:** 260 | **Code:** 42 | **Dir:** `setup-browser-cookies`
 
 ---
 

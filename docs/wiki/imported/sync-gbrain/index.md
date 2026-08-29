@@ -6,7 +6,7 @@ description: Keep gbrain current with this repo's code and refresh agent search 
 # sync-gbrain
 
 **Description:** Keep gbrain current with this repo's code and refresh agent search guidance in CLAUDE.md. (gstack)
-**Lines:** 1283 | **Code:** 431 | **Dir:** `sync-gbrain`
+**Lines:** 865 | **Code:** 175 | **Dir:** `sync-gbrain`
 
 ---
 

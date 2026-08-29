@@ -6,7 +6,7 @@ description: Self-reflection loop to review outputs and update memory.
 # self-reflection-loop
 
 **Description:** Self-reflection loop to review outputs and update memory.
-**Lines:** 99 | **Code:** 8 | **Dir:** `self-reflection-loop`
+**Lines:** 128 | **Code:** 17 | **Dir:** `self-reflection-loop`
 
 ---
 

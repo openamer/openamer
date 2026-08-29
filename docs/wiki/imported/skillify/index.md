@@ -6,7 +6,7 @@ description: Codify the most recent successful /scrape flow into a permanent bro
 # skillify
 
 **Description:** Codify the most recent successful /scrape flow into a permanent browser-skill on disk. (gstack)
-**Lines:** 1255 | **Code:** 457 | **Dir:** `skillify`
+**Lines:** 837 | **Code:** 201 | **Dir:** `skillify`
 
 ---
 

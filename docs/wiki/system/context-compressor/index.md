@@ -6,7 +6,7 @@ description: Use for session compression and full-text search.
 # context-compressor
 
 **Description:** Use for session compression and full-text search.
-**Lines:** 84 | **Code:** 30 | **Dir:** `context-compressor`
+**Lines:** 100 | **Code:** 30 | **Dir:** `context-compressor`
 
 ---
 

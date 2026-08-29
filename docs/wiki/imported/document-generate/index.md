@@ -6,7 +6,7 @@ description: Generate missing documentation from scratch for a feature, module, 
 # document-generate
 
 **Description:** Generate missing documentation from scratch for a feature, module, or entire project. (gstack)
-**Lines:** 1281 | **Code:** 459 | **Dir:** `document-generate`
+**Lines:** 863 | **Code:** 203 | **Dir:** `document-generate`
 
 ---
 

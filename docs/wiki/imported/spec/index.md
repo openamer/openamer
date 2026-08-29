@@ -6,7 +6,7 @@ description: Turn vague intent into a precise, executable spec in five phases. (
 # spec
 
 **Description:** Turn vague intent into a precise, executable spec in five phases. (gstack)
-**Lines:** 1647 | **Code:** 493 | **Dir:** `spec`
+**Lines:** 901 | **Code:** 160 | **Dir:** `spec`
 
 ---
 

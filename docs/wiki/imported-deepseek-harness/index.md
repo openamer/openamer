@@ -4,10 +4,11 @@ title: imported-deepseek-harness
 
 # 📦 imported-deepseek-harness
 
-11 skills
+12 skills
 
 - [dsh-archive-agent-notes](dsh-archive-agent-notes/) — Use when adding, auditing, pruning, archiving, restoring, or reviewing Agent Not
 - [dsh-code-review](dsh-code-review/) — Use when reviewing a pull request in the deepseek-harness repo — orients the rev
+- [dsh-doc](dsh-doc/) — Create, restructure, review, audit, or migrate DeepSeek Harness Markdown documen
 - [dsh-doc-site-sync](dsh-doc-site-sync/) — Use when publishing, updating, moving, or removing DeepSeek Harness documentatio
 - [dsh-doc-standards](dsh-doc-standards/) — Use when writing, moving, reviewing, or auditing documentation in the deepseek-h
 - [dsh-find-simplifications](dsh-find-simplifications/) — Use when working in the deepseek-harness repo to find non-obvious simplification

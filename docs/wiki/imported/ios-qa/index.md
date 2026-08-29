@@ -6,7 +6,7 @@ description: Live-device iOS QA for SwiftUI apps. (gstack)
 # ios-qa
 
 **Description:** Live-device iOS QA for SwiftUI apps. (gstack)
-**Lines:** 1059 | **Code:** 350 | **Dir:** `ios-qa`
+**Lines:** 641 | **Code:** 94 | **Dir:** `ios-qa`
 
 ---
 
