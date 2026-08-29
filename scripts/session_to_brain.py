@@ -49,11 +49,14 @@ def _state_db() -> Path:
 def _trajectory_file() -> Path:
     """Return the daemon's own staging file (rich format with _fingerprint).
 
-    ``openamer a2a brain collect`` scans ``~/.openamer/trajectories/`` for
+    ``openamer a2a brain collect`` scans ``<OPENAMER_HOME>/trajectories/`` for
     files whose name contains ``traject``, so this path is automatically
-    picked up.
+    picked up. Uses the same home as ``_state_db()`` so it honours a custom
+    ``OPENAMER_HOME`` (a ``Path.home() / ".openamer"`` here used to diverge
+    from the app's home, leaving the brain file stale/unread).
     """
-    data_dir = Path.home() / ".openamer" / "trajectories"
+    home = Path(os.environ.get("OPENAMER_HOME", Path.home() / ".openamer"))
+    data_dir = home / "trajectories"
     data_dir.mkdir(parents=True, exist_ok=True)
     return data_dir / "daemon-trajectories.jsonl"
 
