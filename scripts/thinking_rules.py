@@ -150,6 +150,36 @@ def prune(max_rules: int = 12) -> int:
     return len(rules) - max_rules
 
 
+def recall(focus: str = "", limit: int = 6) -> list[dict]:
+    """Causal/domain retrieval (survey 9.2): ACTIVE rules most relevant to focus."""
+    rules=[r for r in _load() if r.get("status","active")=="active"]
+    if not focus:
+        rules=sorted(rules, key=lambda r: int(r.get("hits",0)), reverse=True)
+        return rules[:limit]
+    focus_toks=set(focus.lower().split())
+    def score(r):
+        hay=(r.get("trigger","")+" "+r.get("rule","")).lower()
+        return (sum(1 for t in focus_toks if t in hay), int(r.get("hits",0)))
+    rules.sort(key=score, reverse=True)
+    return rules[:limit]
+
+
+def forget(max_age_days: int = 30, min_hits: int = 1) -> int:
+    """Learning-to-forget (survey 9.4): propose pruning stale, hit-less rules."""
+    from datetime import datetime
+    rules=_load(); now=datetime.now(timezone.utc); stale=0
+    for r in rules:
+        created=r.get("created","")
+        if not created: continue
+        try: age=(now-datetime.fromisoformat(created)).days
+        except Exception: continue
+        if age>max_age_days and int(r.get("hits",0))<min_hits:
+            stale+=1
+            print(f"  stale: {r['id']} ({age}d, {r.get('hits',0)} hits) {r.get('rule','')[:60]}")
+    if stale==0: print("  forget: no stale hit-less rules")
+    return stale
+
+
 def context(sort_by_hits: bool = True) -> str:
     rules = _load()
     # Dual-buffer: only ACTIVE (promoted) rules steer tasks; pending rules that
@@ -176,6 +206,8 @@ def main(argv: list[str] | None = None) -> int:
     pp = sub.add_parser("purge"); pp.add_argument("rule_id")
     cl = sub.add_parser("consolidate"); cl.add_argument("--max", type=int, default=12)
     sub.add_parser("promote")
+    rc = sub.add_parser("recall"); rc.add_argument("--focus", default=""); rc.add_argument("--limit", type=int, default=6)
+    sub.add_parser("forget")
     sub.add_parser("context")
     a = ap.parse_args(argv)
 
@@ -191,6 +223,11 @@ def main(argv: list[str] | None = None) -> int:
         return 0 if bump(a.rule_id) else 1
     if a.cmd == "purge":
         purge(a.rule_id); return 0
+    if a.cmd == "recall":
+        for r in recall(a.focus, a.limit): print(f"- {r['rule']}")
+        return 0
+    if a.cmd == "forget":
+        forget(max_age_days=30, min_hits=1); return 0
     if a.cmd == "promote":
         promote(); return 0
     if a.cmd == "consolidate":

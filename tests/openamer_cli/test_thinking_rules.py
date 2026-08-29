@@ -140,3 +140,31 @@ def test_dual_buffer_context_excludes_pending(store):
     ctx = tr.context()
     assert "activeR" in ctx
     assert "pendingR" not in ctx  # hot-buffer rules don't steer tasks yet
+
+
+def test_recall_ranks_by_focus_then_hits(store):
+    tr.add("crlf-rule", trigger="edit crlf file", proof="p")
+    tr.add("desktop-rule", trigger="desktop sync", proof="p")
+    for r in tr._load():
+        tr.bump(r["id"])
+    tr.promote()
+    # focus "crlf" should surface the crlf-rule first
+    top = tr.recall(focus="crlf", limit=2)
+    assert top[0]["rule"] == "crlf-rule"
+    # alphabetic-overlap fallback still returns both
+    assert len(tr.recall(limit=5)) == 2
+
+
+def test_recall_only_active(store):
+    tr.add("activeZ", proof="p", trigger="z")
+    az = next(r for r in tr._load() if r["rule"] == "activeZ")
+    tr.bump(az["id"]); tr.promote()
+    tr.add("pendingZ")  # never promoted
+    assert all(r["rule"] == "activeZ" for r in tr.recall(focus="z"))
+
+
+def test_forget_noop_for_fresh(store):
+    tr.add("fresh", proof="p", trigger="f")
+    fr = next(r for r in tr._load() if r["rule"] == "fresh")
+    tr.bump(fr["id"]); tr.promote()
+    assert tr.forget(max_age_days=1, min_hits=1) == 0  # fresh, has hit
