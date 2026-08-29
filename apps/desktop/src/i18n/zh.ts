@@ -2309,6 +2309,10 @@ export const zh: Translations = {
       notAvailable: '此后端无法更新。',
       failed: '后端更新失败。',
       noReturn: '后端未恢复在线。更新可能未完成——请检查后端主机。'
+    },
+    appErrors: {
+      updateLocked: '更新已中止：另一个 OpenAmer 窗口或正在运行 openamer 的终端正占用此安装。请关闭它并重试。',
+      updateFailed: '更新未完成。别担心——没有丢失任何内容。你现在可以重试。'
     }
   },
 

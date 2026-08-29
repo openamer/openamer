@@ -2807,7 +2807,7 @@ async function applyUpdates(opts = {}) {
         'Update aborted: another process is holding the OpenAmer install open ' +
         '(a second OpenAmer window or a terminal running openamer?). Close it and retry.'
 
-      emitUpdateProgress({ stage: 'error', message, percent: null })
+      emitUpdateProgress({ stage: 'error', message, percent: null, error: 'update-locked' })
       startOpenAmer().catch(() => {})
 
       return { ok: false, error: message }

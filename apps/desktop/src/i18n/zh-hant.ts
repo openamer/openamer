@@ -1932,6 +1932,10 @@ export const zhHant = defineLocale({
       notAvailable: '此後端無法更新。',
       failed: '後端更新失敗。',
       noReturn: '後端未恢復連線。更新可能未完成——請檢查後端主機。'
+    },
+    appErrors: {
+      updateLocked: '更新已中止：另一個 OpenAmer 視窗或正在執行 openamer 的終端正佔用此安裝。請關閉它並重試。',
+      updateFailed: '更新未完成。別擔心——沒有任何內容遺失。你現在可以重試。'
     }
   },
 

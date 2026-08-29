@@ -117,7 +117,12 @@ export function UpdatesOverlay() {
         {phase === 'guiSkew' && <GuiSkewView message={apply.message} onDone={() => handleClose(false)} />}
 
         {phase === 'error' && (
-          <ErrorView message={apply.message} onDismiss={() => handleClose(false)} onRetry={handleInstall} />
+          <ErrorView
+            errorCode={apply.error}
+            message={apply.message}
+            onDismiss={() => handleClose(false)}
+            onRetry={handleInstall}
+          />
         )}
 
         {phase === 'idle' && (
@@ -419,16 +424,26 @@ function ApplyingView({ apply, isBackend }: { apply: UpdateApplyState; isBackend
   )
 }
 
-function ErrorView({ message, onDismiss, onRetry }: { message: string; onDismiss: () => void; onRetry: () => void }) {
+function ErrorView({ errorCode, message, onDismiss, onRetry }: { errorCode: string | null; message: string; onDismiss: () => void; onRetry: () => void }) {
   const { t } = useI18n()
   const u = t.updates
+  // Map our known app-driven error codes to a localised string. These codes
+  // come from the Electron main process, which has no access to the renderer
+  // i18n; the process sends a stable code and we translate here. Unknown/
+  // backend-streamed codes fall back to the raw message or the generic body.
+  const localizedError =
+    errorCode === 'update-locked'
+      ? u.appErrors.updateLocked
+      : errorCode === 'update-failed'
+        ? u.appErrors.updateFailed
+        : null
 
   return (
     <ErrorState
       className="px-6 pb-6 pt-7 pr-8"
       description={
         <DialogDescription className="max-w-prose text-center text-sm leading-5 text-muted-foreground">
-          {message || u.errorBody}
+          {localizedError || message || u.errorBody}
         </DialogDescription>
       }
       title={<DialogTitle className="text-center text-xl font-semibold tracking-tight">{u.errorTitle}</DialogTitle>}

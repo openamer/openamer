@@ -1763,6 +1763,10 @@ export interface Translations {
       failed: string
       noReturn: string
     }
+    appErrors: {
+      updateLocked: string
+      updateFailed: string
+    }
   }
 
   install: {

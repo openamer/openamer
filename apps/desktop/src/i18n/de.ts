@@ -2122,6 +2122,10 @@ export const de: Translations = {
       notAvailable: 'Update für dieses Backend nicht verfügbar.',
       failed: 'Backend-Update fehlgeschlagen.',
       noReturn: 'Backend kam nicht wieder online. Das Update wurde möglicherweise nicht abgeschlossen — überprüfe den Backend-Host.'
+    },
+    appErrors: {
+      updateLocked: 'Update abgebrochen: Ein anderes OpenAmer-Fenster oder ein Terminal mit laufendem openamer hält diese Installation offen. Schließe es und versuche es erneut.',
+      updateFailed: 'Das Update wurde nicht abgeschlossen. Keine Sorge — nichts ist verloren. Du kannst es jetzt erneut versuchen.'
     }
   },
 
