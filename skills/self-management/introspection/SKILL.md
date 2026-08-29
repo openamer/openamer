@@ -41,27 +41,32 @@ find skills -iname "SKILL.md" | wc -l
 
 > Ergebnis = Anzahl der gebündelten Skills.
 
-### Modell-Tool-Anzahl (eindeutige Tool-Namen aus toolsets.py)
+### Modell-Tool-Anzahl (eindeutige Tool-Namen)
 
-Die Tool-Namen stehen als String-Listen (z.B. `_OPENAMER_CORE_TOOLS = [ ... ]`). Zähle alle String-Listen-Elemente, die wie Tool-Namen aussehen:
+Die tatsächlichen, aufrufbaren Modell-Tools sind die `"name": "..."`-Einträge in
+`tools/*.py` (Core) + Plugins. Zähle sie exakt (toolset-Kategorien in `toolsets.py`
+sind nur Gruppierungen; die echte Zahl sind die registrierten Funktionen):
 
 ```bash
 python - <<'PY'
-import ast
-tree = ast.parse(open('toolsets.py', encoding='utf-8').read())
+import os, re
+root = "."  # openamer-agent repo root
 names = set()
-for node in ast.walk(tree):
-    if isinstance(node, ast.List):
-        for e in node.elts:
-            if (isinstance(e, ast.Constant) and isinstance(e.value, str)
-                    and e.value.isidentifier()   # snake_case-Toolname
-                    and '/' not in e.value):      # kein Pfad
-                names.add(e.value)
-print(f"{len(names)} eindeutige Tool-Namen")
+for d in ("tools", "openamer_cli"):
+    for f in os.listdir(os.path.join(root, d)):
+        if f.endswith(".py") and not f.startswith("__"):
+            try:
+                names |= set(re.findall(r'"name":\s*"([a-z_]+)"',
+                                        open(os.path.join(root, d, f), encoding="utf-8").read()))
+            except Exception:
+                pass
+print(f"{len(names)} eindeutige Modell-Tool-Funktionen")
 PY
 ```
 
-> Ergebnis = Anzahl der nativen Modell-Tools (typisch 40-99).
+> Damit bekommst du die echte Zahl aller Core-Funktionen (typisch ~95–115, steigend mit
+> Updates und Plugins). Das ist genauer als "99" oder "87" — die Toolsets sind nur
+> Kategorien.
 
 ### Gateway-Plattformen (optionale Ergänzung)
 
