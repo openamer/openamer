@@ -29,6 +29,23 @@ def _pid_file() -> Path:
     return _DAEMON_PID_FILE
 
 
+def _acquire_spawn_lock() -> Path | None:
+    """Atomically claim the spawn lock so concurrent spawn() callers don't
+    race. On Windows, TWO spawn() calls can both read a missing/empty pid file
+    before either writes it, then start duplicate daemons (~30 in one incident).
+    O_CREAT|O_EXCL guarantees only one caller wins; losers return None and skip
+    starting. The winner's lock file is removed in spawn()'s finally."""
+    lock_file = _pid_file().with_suffix(".lock")
+    try:
+        fd = os.open(lock_file, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+        os.close(fd)
+        return lock_file
+    except FileExistsError:
+        return None
+    except OSError:
+        return None
+
+
 def spawn() -> None:
     """Start the session-to-brain background daemon if it isn't already running.
 
@@ -62,14 +79,19 @@ def spawn() -> None:
             # Stale pid file — remove and restart.
             pid_file.unlink(missing_ok=True)
 
-    # Locate the script relative to this file's location.
-    script = Path(__file__).resolve().parent.parent / "scripts" / "session_to_brain.py"
-    if not script.exists():
-        logger.debug("session_to_brain.py not found at %s", script)
+    # Serialize concurrent spawns (a lost race would start duplicate daemons).
+    lock_file = _acquire_spawn_lock()
+    if lock_file is None:
+        logger.debug("session_to_brain spawn skipped: concurrent spawn in flight")
         return
-
-    python = sys.executable
     try:
+        # Locate the script relative to this file's location.
+        script = Path(__file__).resolve().parent.parent / "scripts" / "session_to_brain.py"
+        if not script.exists():
+            logger.debug("session_to_brain.py not found at %s", script)
+            return
+
+        python = sys.executable
         proc = subprocess.Popen(
             [python, str(script), "--watch"],
             stdout=subprocess.DEVNULL,
@@ -80,3 +102,5 @@ def spawn() -> None:
         logger.debug("session_to_brain daemon started (pid=%d)", proc.pid)
     except Exception as exc:
         logger.debug("session_to_brain daemon failed: %s", exc)
+    finally:
+        lock_file.unlink(missing_ok=True)
