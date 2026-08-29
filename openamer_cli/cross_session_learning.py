@@ -501,6 +501,8 @@ def _thinking_rules_block(max_rules: int = 8) -> str:
         for r in active[:max_rules]:
             lines.append("  - " + (r.get("rule", "") or ""))
         lines.append("-" * 45)
+        # Wissen-Radar: breites Wissen (skill/module/rules) ist abrufbar.
+        lines.append("[Wissens-Radar] scripts/knowledge_inventory.py --find <aufgabe> - surfere relevante Skills/Module/Regeln.")
         return chr(10).join(lines)
     except Exception:
         return ""
