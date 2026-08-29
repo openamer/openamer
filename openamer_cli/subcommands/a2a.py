@@ -56,18 +56,37 @@ def _cmd_fingerprint(args) -> int:
 
 
 def _cmd_verify(args) -> int:
-    """Verify a signed envelope from --json (a dict) against a sender pubkey.
+    """Verify a signed A2A object against a sender pubkey.
 
-    Usage: openamer a2a verify '{"sender": "...", ..., "signature": "..."}' <sender_public_key_hex>
+    Accepts two formats:
+      - a signed Envelope (has ``sender``/``recipient``/``kind``)
+      - a node Announcement (has ``fingerprint``/``public_key`` — as produced
+        by ``openamer a2a self``)
+
+    Usage: openamer a2a verify '<json>' <sender_public_key_hex>
     """
     if not args.json_payload or not args.sender_pubkey:
-        print("Usage: openamer a2a verify '<envelope-json>' <sender_public_key_hex>")
+        print("Usage: openamer a2a verify '<envelope-or-announcement-json>' <sender_public_key_hex>")
         return 2
     try:
         data = json.loads(args.json_payload)
     except json.JSONDecodeError as e:
         print(f"Invalid envelope JSON: {e}")
         return 2
+    if not isinstance(data, dict):
+        print("Invalid object: expected a JSON object")
+        return 2
+    # Announcement format (as produced by `openamer a2a self`)
+    if "fingerprint" in data and "public_key" in data:
+        from openamer_cli.a2a.registry import Announcement
+        ann = Announcement.from_dict(data)
+        ok = ann.verify(trusted_pubkey_hex=args.sender_pubkey)
+        print("VERIFIED" if ok else "INVALID")
+        print(f"  fingerprint : {ann.fingerprint}")
+        print(f"  name        : {ann.name}")
+        print(f"  ts          : {ann.ts}")
+        return 0 if ok else 1
+    # Envelope format (sender/recipient/kind)
     env = core.Envelope.from_dict(data)
     ok = env.verify(args.sender_pubkey)
     print("VERIFIED" if ok else "INVALID")
