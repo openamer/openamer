@@ -1640,6 +1640,7 @@ export function searchMcpTools(
   limit = 20
 ): Promise<McpSearchToolsResponse> {
   const params = new URLSearchParams({ q, server, limit: String(limit) })
+
   return window.openamerDesktop.api<McpSearchToolsResponse>({
     ...profileScoped(),
     path: `/api/mcp/search-tools?${params.toString()}`,
@@ -1652,6 +1653,7 @@ export function searchCommunityMcpCatalog(
   limit = 10
 ): Promise<McpCommunityResponse> {
   const params = new URLSearchParams({ q, limit: String(limit) })
+
   return window.openamerDesktop.api<McpCommunityResponse>({
     ...profileScoped(),
     path: `/api/a2a/mcp-catalog?${params.toString()}`,

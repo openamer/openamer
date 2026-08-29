@@ -35,9 +35,14 @@ export default [
     }
   },
   {
-    files: ['**/*.test.tsx'],
+    // Tests run under jsdom, where `document` is a global by definition — the
+    // no-restricted-globals rule is meant for renderer source that could
+    // accidentally depend on DOM at module scope. Test files legitimately touch
+    // document.querySelector/body/etc., so disable it entirely there instead of
+    // scattering eslint-disable comments through every spec.
+    files: ['**/*.test.tsx', '**/*.test.ts'],
     rules: {
-      'no-restricted-globals': ['warn', 'document']
+      'no-restricted-globals': 'off'
     }
   },
   {

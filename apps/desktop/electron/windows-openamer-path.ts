@@ -164,6 +164,7 @@ export function getVenvSitePackagesEntries(
 
   return entries
 }
+
 export interface ResolveVenvOpenAmerCommandDeps {
   isWindows: boolean
   isCommandScript: (command: string) => boolean

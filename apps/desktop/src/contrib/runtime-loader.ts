@@ -264,6 +264,7 @@ async function scanDiskPlugins(): Promise<void> {
       // even though the renderer catches it. readDir returns errors instead of
       // throwing, use it to confirm plugin.js exists before we load it.
       let hasEntry = false
+
       try {
         const { entries: sub, error } = await desktop.readDir(dir.path)
         hasEntry = !error && sub.some(e => e.name === 'plugin.js' && !e.isDirectory)

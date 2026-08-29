@@ -194,13 +194,7 @@ function Harness({
         act(async () => actions.submitText(...args)) as Promise<boolean>
     })
   }, [
-    actions.cancelRun,
-    actions.editMessage,
-    actions.reloadFromMessage,
-    actions.restoreToMessage,
-    actions.redirectPrompt,
-    actions.steerPrompt,
-    actions.submitText,
+    actions,
     activeSessionIdRef,
     onReady
   ])

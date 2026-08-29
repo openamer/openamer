@@ -1,9 +1,10 @@
 import { useState } from "react"
+
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 import { Codicon } from "@/components/ui/codicon"
-import type { McpCommunityResponse, McpSearchToolsResponse } from "@/types/openamer"
+import { Input } from "@/components/ui/input"
 import { searchCommunityMcpCatalog, searchMcpTools } from "@/openamer"
+import type { McpCommunityResponse, McpSearchToolsResponse } from "@/types/openamer"
 
 /**
  * Tool / server discovery for the MCP tab (Desktop renderer).
@@ -26,9 +27,10 @@ export function McpToolSearch() {
   const [communityRan, setCommunityRan] = useState(false)
 
   async function runTools() {
-    if (!toolQ.trim()) return
+    if (!toolQ.trim()) {return}
     setToolLoading(true)
     setToolRan(true)
+
     try {
       setToolResult(await searchMcpTools(toolQ.trim()))
     } catch {
@@ -39,9 +41,10 @@ export function McpToolSearch() {
   }
 
   async function runCommunity() {
-    if (!communityQ.trim()) return
+    if (!communityQ.trim()) {return}
     setCommunityLoading(true)
     setCommunityRan(true)
+
     try {
       setCommunity(await searchCommunityMcpCatalog(communityQ.trim()))
     } catch {
@@ -65,12 +68,12 @@ export function McpToolSearch() {
       <div className="flex flex-col gap-1.5">
         <div className="flex gap-1.5">
           <Input
-            value={toolQ}
-            placeholder="Find a tool across installed servers"
             onChange={e => setToolQ(e.target.value)}
             onKeyDown={e => e.key === "Enter" && runTools()}
+            placeholder="Find a tool across installed servers"
+            value={toolQ}
           />
-          <Button size="sm" onClick={runTools} disabled={toolLoading || !toolQ.trim()}>
+          <Button disabled={toolLoading || !toolQ.trim()} onClick={runTools} size="sm">
             {toolLoading ? "…" : "Search"}
           </Button>
         </div>
@@ -82,7 +85,7 @@ export function McpToolSearch() {
         {toolRan && toolResult && toolResult.matches.length > 0 && (
           <div className="flex flex-col gap-1">
             {toolResult.matches.map(m => (
-              <div key={`${m.server}::${m.name}`} className="flex items-start gap-2 text-xs">
+              <div className="flex items-start gap-2 text-xs" key={`${m.server}::${m.name}`}>
                 <code className="shrink-0 text-primary">{m.server}::{m.name}</code>
                 <span className="opacity-70">{m.description}</span>
               </div>
@@ -103,12 +106,12 @@ export function McpToolSearch() {
       <div className="flex flex-col gap-1.5">
         <div className="flex gap-1.5">
           <Input
-            value={communityQ}
-            placeholder="Search community MCP catalog (e.g. github, postgres)"
             onChange={e => setCommunityQ(e.target.value)}
             onKeyDown={e => e.key === "Enter" && runCommunity()}
+            placeholder="Search community MCP catalog (e.g. github, postgres)"
+            value={communityQ}
           />
-          <Button size="sm" onClick={runCommunity} disabled={communityLoading || !communityQ.trim()}>
+          <Button disabled={communityLoading || !communityQ.trim()} onClick={runCommunity} size="sm">
             {communityLoading ? "…" : "Search"}
           </Button>
         </div>
@@ -121,12 +124,12 @@ export function McpToolSearch() {
         {community && community.entries.length > 0 && (
           <div className="flex flex-col gap-1">
             {community.entries.map(e => (
-              <div key={e.url} className="flex items-start gap-2 text-xs">
+              <div className="flex items-start gap-2 text-xs" key={e.url}>
                 <a
-                  href={e.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="shrink-0 text-primary underline underline-offset-2 hover:opacity-80"
+                  href={e.url}
+                  rel="noopener noreferrer"
+                  target="_blank"
                 >
                   {e.name}
                 </a>
