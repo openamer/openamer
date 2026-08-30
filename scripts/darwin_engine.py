@@ -1217,6 +1217,103 @@ def status_overview() -> dict:
     }
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+# 15. PHASE 14: explainability + species-aware rollback
+# ─────────────────────────────────────────────────────────────────────────────
+
+def explain_skill(name: str) -> dict:
+    """Full evidence chain for one skill: WHY does it have its fitness?
+
+    Assembles every signal Darwin holds: fitness breakdown, lineage events,
+    genome W/L, trial history, op-stats for mutations it carries, cron
+    references. No black box - every promotion/prune decision is auditable.
+    """
+    fitness = _load_json(FITNESS_FILE, {}).get("skills", {}).get(name)
+    population = _load_json(POPULATION_FILE, {})
+    genome = population.get(name, {"wins": 0, "losses": 0})
+
+    # lineage: everything that ever happened to this skill
+    graph = _load_json(LINEAGE_FILE, {"events": []})
+    as_parent = [e for e in graph["events"] if e.get("parent") == name]
+    as_child = [e for e in graph["events"] if e.get("child") == name]
+
+    # trials involving this skill
+    trials_dir = DARWIN_DIR / "trials"
+    trial_records = []
+    if trials_dir.exists():
+        for tp in trials_dir.glob("*.json"):
+            t = _load_json(tp, {})
+            if name in (t.get("parent"), t.get("child")):
+                trial_records.append({
+                    "job": t.get("job_name"), "role":
+                    "parent" if t.get("parent") == name else "child",
+                    "ended": bool(t.get("ended")), "won": t.get("won")})
+
+    # cron protection status
+    referenced_by_cron = name in _cron_referenced_skills()
+
+    # op contribution: if this is a mutation child, how good is its op?
+    op_note = None
+    if "__mut" in name:
+        op = name.split("__mut")[1]
+        s = _load_op_stats().get(op)
+        if s:
+            op_note = {"op": op, "uses": s["uses"], "wins": s["wins"],
+                       "win_rate": round(s["wins"] / max(s["uses"], 1), 2)}
+
+    # species origin?
+    is_species = False
+    sp_meta = DARWIN_DIR / "species" / f"{name}.json"
+    if sp_meta.exists():
+        is_species = _load_json(sp_meta, {}).get("kind") == "speciation"
+
+    return {
+        "skill": name,
+        "exists": fitness is not None or (SKILLS_DIR / name).exists(),
+        "fitness": fitness,
+        "breakdown": {
+            "usage_points": (fitness or {}).get("usage", 0) * 3,
+            "health_points": (fitness or {}).get("health", 0) * 5,
+            "mutation_bonus": genome.get("wins", 0) * 2 - genome.get("losses", 0),
+            "age_penalty": -min((fitness or {}).get("age_days", 0) / 30.0, 10),
+        },
+        "genome": genome,
+        "lineage_as_parent": len(as_parent),
+        "lineage_as_child": len(as_child),
+        "last_events": (as_parent + as_child)[-5:],
+        "trials": trial_records,
+        "referenced_by_cron": referenced_by_cron,
+        "operator_quality": op_note,
+        "is_species": is_species,
+        "when": _now(),
+    }
+
+
+def rollback_species(name: str) -> bool:
+    """Undo a species retirement: return it from quarantine to the species
+    dir (not SKILLS_DIR - it is a species, not a regular skill)."""
+    import shutil
+    q = DARWIN_DIR / "quarantine" / name
+    sp = DARWIN_DIR / "species" / name
+    if not q.exists():
+        return False
+    if sp.exists():
+        return False  # already there
+    shutil.move(str(q), str(sp))
+    meta_path = DARWIN_DIR / "species" / f"{name}.json"
+    meta = _load_json(meta_path, {})
+    if meta:
+        meta["status"] = "installed"
+        meta["unretired"] = _now()
+        _save_json(meta_path, meta)
+    # drop the retirement from the rollback log so --rollback won't re-add it
+    log = _load_json(ROLLBACK_LOG, [])
+    log = [e for e in log
+           if not (e.get("skill") == name and e.get("reason") == "arena-loses")]
+    _save_json(ROLLBACK_LOG, log)
+    return True
+
+
 
 def compute_fitness() -> dict:
     """Fitness pro Skill: Usage + Gesundheit - Strafen."""
@@ -1575,6 +1672,10 @@ def main() -> int:
                     help="retire species with >= 3 arena losses (reversible)")
     ap.add_argument("--status", action="store_true",
                     help="one-glance ecosystem overview")
+    ap.add_argument("--explain", metavar="SKILL",
+                    help="full evidence chain: why does this skill have its fitness?")
+    ap.add_argument("--unretire", metavar="SPECIES",
+                    help="undo a species retirement (back to species dir)")
     ap.add_argument("--report", action="store_true")
     ap.add_argument("--full", action="store_true")
     args = ap.parse_args()
@@ -1712,6 +1813,39 @@ def main() -> int:
         print(f" Genome records:    {s['genome_records']}")
         print("═" * 50)
         return 0
+
+    if args.explain:
+        e = explain_skill(args.explain)
+        if not e["exists"]:
+            print(f"❌ unknown skill: {args.explain}")
+            return 1
+        print(f"🔍 EXPLAIN: {e['skill']}")
+        print(f"   Fitness:      {e['fitness']['fitness'] if e['fitness'] else '?'}")
+        b = e["breakdown"]
+        print(f"   Breakdown:    usage {b['usage_points']:+} | health "
+              f"{b['health_points']:+} | mutation {b['mutation_bonus']:+} | "
+              f"age {b['age_penalty']:+}")
+        g = e["genome"]
+        print(f"   Genome:       {g.get('wins', 0)}W / {g.get('losses', 0)}L")
+        print(f"   Lineage:      parent {e['lineage_as_parent']}x, "
+              f"child {e['lineage_as_child']}x")
+        print(f"   Cron-protected: {e['referenced_by_cron']}")
+        print(f"   Species:      {e['is_species']}")
+        if e["operator_quality"]:
+            oq = e["operator_quality"]
+            print(f"   Operator:     {oq['op']} win-rate {oq['win_rate']} "
+                  f"({oq['wins']}/{oq['uses']})")
+        if e["trials"]:
+            print(f"   Trials:       {len(e['trials'])}")
+        for ev in e["last_events"][-3:]:
+            print(f"   Event:        {ev.get('kind')}: {ev.get('parent')} "
+                  f"-> {ev.get('child')}")
+        return 0
+
+    if args.unretire:
+        ok = rollback_species(args.unretire)
+        print(f"♻️  species '{args.unretire}' restored: {ok}")
+        return 0 if ok else 1
 
     if args.rollback:
         restored = rollback(args.rollback)
