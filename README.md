@@ -7,6 +7,12 @@
 # OpenAmer Agent — the one agent to rule them all
 
 <p align="center">
+  <a href="https://www.youtube.com/watch?v=SJ2ODpyn234"><b>🧬 Watch: My AI Agent Evolves Itself</b></a>
+  ·
+  <a href="https://github.com/openamer/darwin-grid"><b>🌐 Darwin Grid</b></a>
+</p>
+
+<p align="center">
 
   <a href="https://github.com/openamer/openamer/">OpenAmer Agent</a> | <a href="https://github.com/openamer/openamer/">OpenAmer Desktop</a>
 
