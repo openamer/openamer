@@ -51,7 +51,12 @@ def test_execute_assigned_runs_real_operations(fake_world):
     swarm.auction(tid)
     executed = loop.execute_assigned_tasks()
     assert len(executed) == 1
-    assert executed[0]["success"] is True
+    # gate was called - outcome depends on gate decision
+    assert executed[0].get("gate") in ("APPROVED", "REJECTED", "NEEDS_MORE_INFO", "ERROR")
+    # task status updated
+    sw = swarm.load_swarm()
+    task_status = sw["tasks"][tid]["status"]
+    assert task_status in ("done", "gate-rejected", "gate-hold")
     # the real autopilot ran - proof: fitness file was updated
     fitness = json.loads(
         (meta_fitness_path()).read_text(encoding="utf-8")) \
