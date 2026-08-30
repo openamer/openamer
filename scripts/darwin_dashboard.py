@@ -29,6 +29,12 @@ swarm_os_mod = importlib.util.module_from_spec(_spec_sw)
 sys.modules["swarm_os"] = swarm_os_mod
 _spec_sw.loader.exec_module(swarm_os_mod)
 
+_spec_id = importlib.util.spec_from_file_location(
+    "darwin_identity", REPO / "scripts" / "darwin_identity.py")
+darwin_identity = importlib.util.module_from_spec(_spec_id)
+sys.modules["darwin_identity"] = darwin_identity
+_spec_id.loader.exec_module(darwin_identity)
+
 HTML = """<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -141,7 +147,8 @@ def build_world() -> dict:
     stats = {"population": len(fitness), "workers": len(sw.get("workers", {})),
              "species_count": sum(1 for o in organisms if o["type"] == "species"),
              "events": len(events)}
-    return {"organisms": organisms, "events": events,
+    identified = darwin_identity.identities_batch(organisms)
+    return {"organisms": identified, "events": events,
             "territories": territories, "stats": stats}
 
 
