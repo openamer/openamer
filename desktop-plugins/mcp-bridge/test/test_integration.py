@@ -23,7 +23,7 @@ import time
 REPO_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.insert(0, os.path.join(REPO_DIR))  # for plugin_utils
 
-echo_server_path = os.path.join(os.path.dirname(__file__), "test", "mcp_echo_server.py")
+echo_server_path = os.path.join(os.path.dirname(__file__), "mcp_echo_server.py")
 echo_server_abs = os.path.abspath(echo_server_path)
 
 # ── Remove old __pycache__ so we get a clean import ──────────────────────

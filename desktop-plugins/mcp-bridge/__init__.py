@@ -631,20 +631,16 @@ def register(ctx) -> None:
     """Plugin entry point — called by the plugin loader on startup.
 
     Reads MCP server configurations from the agent config and starts
-    connections to each configured server.
+    connections to each configured server in background threads.
     """
-    @ctx.on_ready
-    def on_ready() -> None:
-        """Start all configured MCP servers after the agent is fully loaded."""
-        servers: list[dict] = ctx.get_config("servers", [])
+    servers: list[dict] = ctx.get_config("servers", [])
 
-        if not servers:
-            ctx.log_info(
-                "MCP bridge: no servers configured — "
-                "add plugin.mcp-bridge.servers to config.yaml"
-            )
-            return
-
+    if not servers:
+        ctx.log_info(
+            "MCP bridge: no servers configured — "
+            "add plugin.mcp-bridge.servers to config.yaml"
+        )
+    else:
         manager = _get_manager(ctx)
 
         for server_cfg in servers:
@@ -672,3 +668,12 @@ def register(ctx) -> None:
                 ctx.log_error(
                     f"MCP bridge: failed to add server '{name}': {e}"
                 )
+
+    @ctx.on_ready
+    def on_ready() -> None:
+        """Log MCP bridge status after agent is fully loaded."""
+        manager = _get_manager(ctx)
+        num = len(manager._connections)
+        ctx.log_info(
+            f"MCP bridge ready — {num} server connection(s) active"
+        )
