@@ -109,6 +109,11 @@ Tuning:      adjusts itself
 *68 tests · 15 phases · one ecosystem that feeds itself, selects itself,
 remembers itself, explains itself, and tunes itself.*
 
+**Phase 17 · The Grid.** The world's first natural-selection registry:
+[github.com/openamer/darwin-grid](https://github.com/openamer/darwin-grid).
+Machines worldwide push genomes, duel each other's skills with real exit
+codes, and skills spread by proven superiority — not popularity.
+
 **Darwin is not a feature. It is a living population.**
 
 — Part of [OpenAmer Agent](https://github.com/openamer/openamer)
