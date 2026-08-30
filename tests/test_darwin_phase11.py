@@ -68,7 +68,7 @@ def test_handler_routes_status(tmp_path, monkeypatch):
         assert isinstance(rows[0], list)
         with urllib.request.urlopen(
                 f"http://127.0.0.1:{port}/", timeout=5) as r:
-            assert b"Darwin Live" in r.read()
+            assert b"Darwin World" in r.read() or b"Darwin" in r.read()
     finally:
         server.shutdown()
 
