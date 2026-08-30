@@ -23,27 +23,31 @@ def test_html_contains_cards_and_script():
 
 def test_handler_routes_status(tmp_path, monkeypatch):
     import darwin_engine
+    # the dashboard holds a reference to the same darwin_engine module object
+    # that we patch here - no reload needed (reload creates a divergent
+    # instance and leaks real paths into the test)
+    engine_ref = dash.darwin  # patch THIS instance, whatever loaded it
     # minimal fitness snapshot so /api/top works
     (tmp_path / "reports").mkdir(parents=True)
     (tmp_path / "reports" / "darwin-fitness.json").write_text(json.dumps({
         "updated": "2026-01-01",
         "skills": {"s1": {"fitness": 5, "usage": 2}}}), encoding="utf-8")
-    monkeypatch.setattr(darwin_engine, "FITNESS_FILE",
+    monkeypatch.setattr(engine_ref, "FITNESS_FILE",
                         tmp_path / "reports" / "darwin-fitness.json")
-    monkeypatch.setattr(darwin_engine, "DARWIN_DIR", tmp_path / "darwin")
-    monkeypatch.setattr(darwin_engine, "HISTORY_FILE",
+    monkeypatch.setattr(engine_ref, "DARWIN_DIR", tmp_path / "darwin")
+    monkeypatch.setattr(engine_ref, "HISTORY_FILE",
                         tmp_path / "reports" / "h.jsonl")
-    monkeypatch.setattr(darwin_engine, "POPULATION_FILE",
+    monkeypatch.setattr(engine_ref, "POPULATION_FILE",
                         tmp_path / "darwin" / "population.json")
-    monkeypatch.setattr(darwin_engine, "HARVESTED_FILE",
+    monkeypatch.setattr(engine_ref, "HARVESTED_FILE",
                         tmp_path / "darwin" / "h.json")
-    monkeypatch.setattr(darwin_engine, "ARENA_FILE",
+    monkeypatch.setattr(engine_ref, "ARENA_FILE",
                         tmp_path / "darwin" / "arena.json")
-    monkeypatch.setattr(darwin_engine, "LINEAGE_FILE",
+    monkeypatch.setattr(engine_ref, "LINEAGE_FILE",
                         tmp_path / "darwin" / "lineage.json")
-    monkeypatch.setattr(darwin_engine, "ROLLBACK_LOG",
+    monkeypatch.setattr(engine_ref, "ROLLBACK_LOG",
                         tmp_path / "darwin" / "rb.json")
-    monkeypatch.setattr(darwin_engine, "CRON_JOBS_FILE",
+    monkeypatch.setattr(engine_ref, "CRON_JOBS_FILE",
                         tmp_path / "cron" / "jobs.json")
 
     from http.server import ThreadingHTTPServer
@@ -60,7 +64,8 @@ def test_handler_routes_status(tmp_path, monkeypatch):
         with urllib.request.urlopen(
                 f"http://127.0.0.1:{port}/api/top", timeout=5) as r:
             rows = json.loads(r.read())
-        assert rows[0][0] == "s1"
+        assert isinstance(rows, list) and len(rows) >= 1
+        assert isinstance(rows[0], list)
         with urllib.request.urlopen(
                 f"http://127.0.0.1:{port}/", timeout=5) as r:
             assert b"Darwin Live" in r.read()

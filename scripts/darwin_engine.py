@@ -410,6 +410,16 @@ def autopilot(min_executions: int = 2) -> int:
             print(f"[autopilot] tournament: trialing `{s['child']}` "
                   f"on job '{s['job_name']}'")
 
+    # report operator learning state (meta-evolution visibility)
+    op_stats = _load_op_stats()
+    if op_stats:
+        ranked_ops = sorted(op_stats.items(),
+                            key=lambda kv: kv[1]["wins"] / max(kv[1]["uses"], 1),
+                            reverse=True)
+        top_op, s = ranked_ops[0]
+        print(f"[autopilot] best operator: {top_op} "
+              f"({s['wins']}/{s['uses']} wins)")
+
     # full species pipeline: harvest -> speciate -> promote -> arena -> retire
     harvested = harvest_knowledge(min_hits=3)
     if harvested:
@@ -723,6 +733,10 @@ def resolve_stuck_trials(timeout_hours: float = 24.0, do_run: bool = False) -> l
             continue
         h2h = head_to_head(trial["parent"], trial["child"])
         won = h2h["winner"] == "child"
+        # meta-evolution: credit/blame the operator that created this child
+        op = (trial.get("child") or "").split("__mut")
+        if len(op) == 2:
+            record_op_outcome(op[1], won)
         end_trial(trial["job_id"], won)
         population = _load_json(POPULATION_FILE, {})
         genome = population.setdefault(trial["parent"], {"wins": 0, "losses": 0})
@@ -1258,6 +1272,37 @@ def compute_fitness() -> dict:
 
 MUTATION_OPS = ["tighten_trigger", "broaden_trigger", "add_pitfall", "add_verification_step"]
 
+OP_STATS_FILE = DARWIN_DIR / "op-stats.json"
+
+
+def _load_op_stats() -> dict:
+    return _load_json(OP_STATS_FILE, {})
+
+
+def record_op_outcome(op: str, won: bool) -> None:
+    """Track which mutation operators produce winning children.
+    This is meta-evolution: the operators themselves are selected on."""
+    stats = _load_op_stats()
+    s = stats.setdefault(op, {"uses": 0, "wins": 0})
+    s["uses"] += 1
+    if won:
+        s["wins"] += 1
+    _save_json(OP_STATS_FILE, stats)
+
+
+def weighted_op_choice(rng: random.Random, epsilon: float = 0.3) -> str:
+    """Epsilon-greedy operator selection: 70% pick the historically best
+    operator (win-rate with Laplace smoothing), 30% explore uniformly.
+    Evolves the evolution: operators that breed winners get used more."""
+    stats = _load_op_stats()
+    if not stats or rng.random() < epsilon:
+        return rng.choice(MUTATION_OPS)
+    def score(op):
+        s = stats.get(op, {"uses": 0, "wins": 0})
+        # Laplace smoothing: unseen ops keep a fair chance
+        return (s["wins"] + 1) / (s["uses"] + 2)
+    return max(MUTATION_OPS, key=lambda op: score(op) + rng.random() * 1e-9)
+
 _PITFALL_POOL = [
     "Check Windows paths (MSYS vs native) before running commands.",
     "Verify tool output exists before reporting success - never fabricate results.",
@@ -1325,7 +1370,7 @@ def mutate(fitness: dict, top_n: int = 5, apply: bool = False) -> list[dict]:
         if not src.exists():
             continue
         text = src.read_text("utf-8", errors="replace")
-        op = rng.choice(MUTATION_OPS)
+        op = weighted_op_choice(rng)
         mutated = _mutate_skill_md(text, op)
         child_name = f"{parent}__mut{op}"
         offspring.append({
