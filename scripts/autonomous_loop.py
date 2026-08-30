@@ -130,25 +130,61 @@ def generate_tasks_from_gaps() -> list[str]:
 
 
 def execute_assigned_tasks() -> list[dict]:
-    """Run REAL operations for every assigned task, then report results."""
+    """Run REAL operations for assigned tasks - but ONLY after the gate
+    approves them. Each task goes through OpenAmer's brain first."""
+    import importlib.util as _ilu
+    gate_spec = _ilu.spec_from_file_location(
+        "darwin_gate", REPO / "scripts" / "darwin_gate.py")
+    gate = importlib.util.module_from_spec(gate_spec)
+    sys.modules["darwin_gate"] = gate
+    gate_spec.loader.exec_module(gate)
+
     sw = swarm.load_swarm()
     executed = []
     for tid, task in sw["tasks"].items():
         if task["status"] != "assigned":
             continue
         caps = task.get("capabilities") or []
-        runner = None
-        for c in caps:
-            if c in TASK_RUNNERS:
-                runner = TASK_RUNNERS[c]
-                break
-        if runner is None:
-            # fall back: any known runner (the task must get done)
-            runner = next(iter(TASK_RUNNERS.values()))
-        ok, output = _run(runner["cmd"])
-        swarm.complete_task(tid, output, success=ok)
-        executed.append({"task": tid, "capabilities": caps,
-                         "success": ok, "output_tail": output[-120:]})
+        task_text = task.get("task", "")
+
+        # ── GATE CHECK: OpenAmer decides, not the agent ──────────────────
+        worker = task.get("winner", "swarm-agent")
+        proposal = gate.submit_proposal(
+            worker=worker,
+            action=task_text[:80],
+            description=f"Swarm task: {task_text}. Capabilities: {caps}. "
+                        f"This task was generated autonomously by the "
+                        f"Darwin swarm from metacognition gap analysis.")
+        gate_status = proposal.get("gate_status", "ERROR")
+        gate_reason = proposal.get("gate_reason", "")
+
+        if gate_status == "APPROVE":
+            # approved -> execute for real
+            runner = None
+            for c in caps:
+                if c in TASK_RUNNERS:
+                    runner = TASK_RUNNERS[c]
+                    break
+            if runner is None:
+                runner = next(iter(TASK_RUNNERS.values()))
+            ok, output = _run(runner["cmd"])
+            swarm.complete_task(tid, output, success=ok)
+            executed.append({"task": tid, "capabilities": caps,
+                             "success": ok, "gate": "APPROVED",
+                             "output_tail": output[-120:]})
+        elif gate_status == "REJECT":
+            # rejected -> mark task as gate-rejected, don't execute
+            task["status"] = "gate-rejected"
+            task["gate_reason"] = gate_reason
+            executed.append({"task": tid, "gate": "REJECTED",
+                             "reason": gate_reason[:150]})
+        else:
+            # needs more info or error -> hold
+            task["status"] = "gate-hold"
+            task["gate_reason"] = gate_reason
+            executed.append({"task": tid, "gate": gate_status,
+                             "reason": gate_reason[:150]})
+        swarm.save_swarm(sw)
     return executed
 
 
@@ -239,6 +275,9 @@ def run_autonomous_loop() -> dict:
     # 4. execute assigned tasks with REAL operations
     executed = execute_assigned_tasks()
     report["executed"] = executed
+    gate_ok = sum(1 for e in executed if e.get("gate") == "APPROVED")
+    gate_rej = sum(1 for e in executed if e.get("gate") == "REJECTED")
+    report["gate"] = {"approved": gate_ok, "rejected": gate_rej}
 
     # 5. promote gap-closure species into trials
     promoted = promote_gap_closure_species()
