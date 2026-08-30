@@ -459,6 +459,23 @@ def autopilot(min_executions: int = 2) -> int:
         elif r["status"] == "no-prey":
             print("[autopilot] predation: no redundant skills found")
 
+    # phase 19: memory darwinism - memories compete too
+    try:
+        import importlib.util as _ilu
+        _spec = _ilu.spec_from_file_location(
+            "memory_darwinism", REPO / "scripts" / "memory_darwinism.py")
+        _mem = _ilu.module_from_spec(_spec)
+        sys.modules["memory_darwinism"] = _mem
+        _spec.loader.exec_module(_mem)
+        _mem.scan_memories()
+        _duels = _mem.duel_contradictions()
+        _dead = _mem.cull_weak(dry_run=False)
+        if _duels or _dead:
+            print(f"[autopilot] memory darwinism: {len(_duels)} duels, "
+                  f"{len(_dead)} culled")
+    except Exception:
+        pass  # memory evolution is best-effort, never blocks skill evolution
+
     quarantined = quarantine(fitness, threshold=0, dry_run=False)
     if quarantined:
         print(f"[autopilot] quarantined {len(quarantined)} dead skills: "
