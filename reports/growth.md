@@ -33,7 +33,19 @@
 
 ---
 
-### Offene Baustellen / Nächste Schritte
+## 2026-08-30 (Session 2)
+
+### Neue Fähigkeiten
+- **MCP-Bridge Live-Test** — Echo-Server initialize→tools/list→tools/call ✅
+- **Self-Modify** — Core-Code durch Test-Gate: timeout 600→120s ✅
+- **Provenance Dashboard** — Auf :8899/provenance integriert ✅
+- **Skill Knowledge Graph** — 288 Skills, 451 Edges, Force-Directed-Vis ✅
+
+### Gelernt heute
+- Path('') in Path.home() bei env-Var-Fallbacks ist eine Falle ('.' statt leer)
+- Subagent-Dispatch gut für parallele Builds, aber finale Integration braucht manuelle Path-Korrektur
+- SPA Catch-All Routes (/{full_path:path}) überschreiben Static-Mounts → besser FileResponse-Routes
+- Self-Modify funktioniert! 1. Temp-File mit Änderungen 2. self_modify.py --tests 3. ✅
 
 - MCP-Bridge: E2E-Test mit echtem MCP-Echo-Server
 - MCP-Bridge: Integration in OpenAmer Dashboard (port 8899)

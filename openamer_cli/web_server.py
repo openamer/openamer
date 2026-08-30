@@ -19880,6 +19880,61 @@ _mount_plugin_api_routes()
 from openamer_cli.dashboard_auth.routes import router as _dashboard_auth_router  # noqa: E402
 app.include_router(_dashboard_auth_router)
 
+# ---------------------------------------------------------------------------
+# Provenance dashboard — serve reports/provenance/ as a dedicated tab
+# ---------------------------------------------------------------------------
+_PATH_ENV_PROV = os.environ.get("OPENAMER_REPO", "")
+if _PATH_ENV_PROV:
+    _PROVENANCE_ROOT = Path(_PATH_ENV_PROV).resolve() / "reports" / "provenance"
+else:
+    _PROVENANCE_ROOT = Path.home() / "openamer-repo" / "reports" / "provenance"
+
+
+@app.get("/provenance")
+@app.get("/provenance/")
+async def serve_provenance_index():
+    """Serve the Provenance dashboard HTML."""
+    index = _PROVENANCE_ROOT / "dashboard.html"
+    if not index.is_file():
+        raise HTTPException(status_code=404, detail="Provenance dashboard not found")
+    return FileResponse(index, media_type="text/html")
+
+
+@app.get("/provenance/{file_path:path}")
+async def serve_provenance_file(file_path: str):
+    """Serve static files from the reports/provenance/ directory."""
+    target = (_PROVENANCE_ROOT / file_path).resolve()
+    if not target.is_relative_to(_PROVENANCE_ROOT.resolve()):
+        raise HTTPException(status_code=403, detail="Path traversal blocked")
+    if not target.exists() or not target.is_file():
+        raise HTTPException(status_code=404, detail="File not found")
+
+    suffix = target.suffix.lower()
+    content_types = {
+        ".js": "application/javascript",
+        ".json": "application/json",
+        ".html": "text/html",
+        ".css": "text/css",
+        ".svg": "image/svg+xml",
+        ".png": "image/png",
+        ".jpg": "image/jpeg",
+        ".jpeg": "image/jpeg",
+        ".gif": "image/gif",
+        ".webp": "image/webp",
+        ".ico": "image/x-icon",
+        ".woff2": "font/woff2",
+        ".woff": "font/woff",
+        ".ttf": "font/ttf",
+        ".otf": "font/otf",
+    }
+    media_type = content_types.get(suffix, "application/octet-stream")
+    return FileResponse(
+        target,
+        media_type=media_type,
+        headers={"Cache-Control": "no-store, no-cache, must-revalidate"},
+    )
+
+
 mount_spa(app)
 
 
