@@ -111,6 +111,195 @@ def _cron_skill_status() -> dict[str, str]:
     return status
 
 
+CRON_JOBS_FILE = HOME / "cron" / "jobs.json"
+
+
+def _load_cron_jobs() -> dict:
+    return _load_json(CRON_JOBS_FILE, {})
+
+
+def _save_cron_jobs(jobs: dict) -> None:
+    CRON_JOBS_FILE.write_text(
+        json.dumps(jobs, indent=2, ensure_ascii=False), "utf-8")
+
+
+def _job_skills(job: dict) -> list:
+    return job.get("skills") or ([job["skill"]] if job.get("skill") else [])
+
+
+def start_trial(parent: str, child: str, job_id: str | None = None) -> dict | None:
+    """Temporarily swap a cron job's skill from `parent` to `child`.
+
+    Picks the first enabled job that references the parent skill (or the
+    explicit job_id). Records the original skill(s) so end_trial() can
+    restore them. Returns trial metadata or None if no job matches.
+    """
+    jobs = _load_cron_jobs()
+    if not jobs:
+        return None
+    items = jobs.get("jobs") if isinstance(jobs, dict) else jobs
+    if items is None:
+        return None
+    for job in items:
+        if job_id and job.get("id") != job_id:
+            continue
+        if not job_id and (not job.get("enabled") or parent not in _job_skills(job)):
+            continue
+        trial = {
+            "child": child,
+            "parent": parent,
+            "job_id": job.get("id"),
+            "job_name": job.get("name"),
+            "original_skills": _job_skills(job),
+            "started": _now(),
+            "executions_before": _execution_count(job.get("id")),
+        }
+        # swap skills on the job
+        if "skills" in job and isinstance(job.get("skills"), list):
+            job["skills"] = [child if s == parent else s for s in job["skills"]]
+        elif job.get("skill") == parent:
+            job["skill"] = child
+        _save_cron_jobs(jobs)
+        trial_path = DARWIN_DIR / "trials" / f"{job.get('id')}.json"
+        _save_json(trial_path, trial)
+        return trial
+    return None
+
+
+def end_trial(job_id: str, won: bool) -> dict | None:
+    """Restore the original skill on a trial job (if the child lost)."""
+    trial_path = DARWIN_DIR / "trials" / f"{job_id}.json"
+    trial = _load_json(trial_path, {})
+    if not trial:
+        return None
+    jobs = _load_cron_jobs()
+    items = jobs.get("jobs") if isinstance(jobs, dict) else jobs
+    if items is None:
+        return None
+    for job in items:
+        if job.get("id") != job_id:
+            continue
+        if "skills" in job and isinstance(job.get("skills"), list):
+            job["skills"] = [
+                trial["parent"] if s == trial["child"] else s for s in job["skills"]
+            ]
+        elif job.get("skill") == trial["child"]:
+            job["skill"] = trial["parent"]
+        _save_cron_jobs(jobs)
+        break
+    trial["ended"] = _now()
+    trial["won"] = won
+    _save_json(trial_path, trial)
+    return trial
+
+
+def _execution_count(job_id: str | None) -> int:
+    """Number of completed executions for a job (from executions.db)."""
+    if not job_id:
+        return 0
+    db = HOME / "cron" / "executions.db"
+    if not db.exists():
+        return 0
+    try:
+        import sqlite3
+        conn = sqlite3.connect(str(db))
+        n = conn.execute(
+            "SELECT COUNT(*) FROM executions WHERE job_id=? AND status='completed'",
+            (job_id,),
+        ).fetchone()[0]
+        conn.close()
+        return n
+    except Exception:
+        return 0
+
+
+def _execution_outcomes(job_id: str, since_count: int) -> dict:
+    """Post-trial execution outcomes: completed vs error counts."""
+    db = HOME / "cron" / "executions.db"
+    result = {"completed": 0, "error": 0}
+    if not db.exists() or not job_id:
+        return result
+    try:
+        import sqlite3
+        conn = sqlite3.connect(str(db))
+        rows = conn.execute(
+            "SELECT status FROM executions WHERE job_id=?", (job_id,)
+        ).fetchall()
+        conn.close()
+        # newest executions are at the end of the table
+        new_rows = rows[since_count:]
+        for (st,) in new_rows:
+            if st == "completed":
+                result["completed"] += 1
+            else:
+                result["error"] += 1
+    except Exception:
+        pass
+    return result
+
+
+def evaluate_trials(min_executions: int = 2) -> list[dict]:
+    """Evaluate running trials with REAL execution evidence.
+
+    A child wins when it has at least `min_executions` completed runs and
+    zero errors during the trial window. Otherwise the parent is restored.
+    """
+    results = []
+    trials_dir = DARWIN_DIR / "trials"
+    if not trials_dir.exists():
+        return results
+    for tp in sorted(trials_dir.glob("*.json")):
+        trial = _load_json(tp, {})
+        if trial.get("ended"):
+            continue
+        job_id = trial.get("job_id", "")
+        outcomes = _execution_outcomes(job_id, trial.get("executions_before", 0))
+        total = outcomes["completed"] + outcomes["error"]
+        if total < min_executions:
+            results.append({"job_id": job_id, "child": trial.get("child"),
+                            "status": "waiting", "outcomes": outcomes})
+            continue
+        won = outcomes["completed"] >= min_executions and outcomes["error"] == 0
+        end_trial(job_id, won)
+        results.append({"job_id": job_id, "child": trial.get("child"),
+                        "status": "won" if won else "lost", "outcomes": outcomes})
+        # record in population genome
+        population = _load_json(POPULATION_FILE, {})
+        genome = population.setdefault(trial.get("parent", ""), {"wins": 0, "losses": 0})
+        if won:
+            genome["losses"] = genome.get("losses", 0) + 1  # parent lost a slot
+            promote_child(trial["parent"], trial["child"])
+        else:
+            genome["wins"] = genome.get("wins", 0) + 1
+        _save_json(POPULATION_FILE, population)
+    return results
+
+
+def promote_child(parent: str, child: str) -> bool:
+    """Install the winning child: replace parent's SKILL.md content and
+    archive the parent. Never deletes data."""
+    import shutil
+    child_dir = DARWIN_DIR / "offspring" / child
+    parent_dir = SKILLS_DIR / parent
+    if not (child_dir / "SKILL.md").exists() or not parent_dir.exists():
+        return False
+    archive = DARWIN_DIR / "archive"
+    archive.mkdir(parents=True, exist_ok=True)
+    target = archive / f"{parent}_{NOW.strftime('%Y%m%d_%H%M%S')}"
+    if not target.exists():
+        shutil.copytree(str(parent_dir), str(target))
+        shutil.rmtree(str(parent_dir))
+    shutil.copytree(str(child_dir), str(parent_dir))
+    # mark offspring meta installed
+    meta_path = DARWIN_DIR / "offspring" / f"{child}.json"
+    meta = _load_json(meta_path, {})
+    meta["status"] = "installed"
+    meta["installed"] = _now()
+    _save_json(meta_path, meta)
+    return True
+
+
+
 def compute_fitness() -> dict:
     """Fitness pro Skill: Usage + Gesundheit - Strafen."""
     hits = _session_skill_hits()
@@ -344,12 +533,16 @@ def report(fitness: dict, offspring: list, competitions: list) -> str:
 # ─────────────────────────────────────────────────────────────────────────────
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description="Darwin Engine — Skill-Evolution")
+    ap = argparse.ArgumentParser(description="Darwin Engine - skill evolution")
     ap.add_argument("--scan", action="store_true")
     ap.add_argument("--mutate", action="store_true")
     ap.add_argument("--apply", action="store_true", help="actually write mutations")
     ap.add_argument("--crossover", nargs=2, metavar=("SKILL_A", "SKILL_B"))
     ap.add_argument("--compete", action="store_true")
+    ap.add_argument("--trial", nargs=2, metavar=("PARENT", "CHILD"),
+                    help="swap a cron job's skill to CHILD for a live trial")
+    ap.add_argument("--trials", action="store_true",
+                    help="evaluate running trials from real execution evidence")
     ap.add_argument("--report", action="store_true")
     ap.add_argument("--full", action="store_true")
     args = ap.parse_args()
@@ -359,6 +552,25 @@ def main() -> int:
         return 1
 
     changed = False
+
+    if args.trial:
+        parent, child = args.trial
+        trial = start_trial(parent, child)
+        if trial:
+            print(f"🧪 Trial started: job '{trial['job_name']}' now runs "
+                  f"`{child}` instead of `{parent}` (job {trial['job_id']})")
+            changed = True
+        else:
+            print(f"❌ No enabled cron job references skill '{parent}'.")
+            return 1
+
+    if args.trials or args.full:
+        trials = evaluate_trials()
+        for t in trials:
+            emoji = {"won": "🏆", "lost": "↩️", "waiting": "⏳"}.get(t["status"], "?")
+            print(f"{emoji} Trial {t['job_id']}: {t['child']} -> {t['status']} {t['outcomes']}")
+        if any(t["status"] in ("won", "lost") for t in trials):
+            changed = True
 
     if args.scan or args.full or args.report:
         fitness = compute_fitness()
