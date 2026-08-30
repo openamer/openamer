@@ -84,6 +84,16 @@ fetch('/api/top').then(r=>r.json()).then(rows=>{
 </body></html>"""
 
 
+def _load_thoughts():
+    """Read recent agent decisions from the agent log."""
+    try:
+        log = json.loads((Path(HOME / "darwin" / "agent-log.json"))
+                         .read_text("utf-8"))
+        return log[-10:]  # last 10 thoughts
+    except Exception:
+        return []
+
+
 def build_world() -> dict:
     """Ecosystem as 3D world entities: workers, skills, species, memories,
     events, territories. The frontend renders this as a living game world."""
@@ -204,6 +214,14 @@ class Handler(BaseHTTPRequestHandler):
                 rows = [[n, s.get("fitness", 0), s.get("usage", 0)]
                         for n, s in ranked]
                 self._send(200, json.dumps(rows), "application/json")
+            elif self.path == "/api/thoughts":
+                try:
+                    thoughts = _load_thoughts()
+                    self._send(200, json.dumps(thoughts, indent=1),
+                               "application/json")
+                except Exception as e:
+                    self._send(200, json.dumps({"error": str(e)}),
+                               "application/json")
             elif self.path == "/api/world":
                 self._send(200, json.dumps(build_world(), indent=1),
                            "application/json")

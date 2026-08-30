@@ -11,16 +11,18 @@ body{overflow:hidden;background:#020406;font-family:'Inter','Segoe UI',system-ui
 #hud h2{font-size:.68rem;letter-spacing:3px;text-transform:uppercase;color:#7ee787;margin-bottom:10px;font-weight:600}
 .st{display:flex;justify-content:space-between;font-size:.8rem;color:#7a8494;padding:3px 0}
 .st b{color:#79c0ff;font-weight:600}
-#feed{position:fixed;top:20px;right:20px;z-index:10;width:290px;background:rgba(6,10,14,.55);backdrop-filter:blur(20px);border:1px solid rgba(126,231,135,.08);border-radius:18px;padding:14px 18px;max-height:230px;overflow-y:auto}
+#feed{position:fixed;top:20px;right:20px;z-index:10;width:290px;background:rgba(6,10,14,.55);backdrop-filter:blur(20px);border:1px solid rgba(126,231,135,.08);border-radius:18px;padding:14px 18px;max-height:250px;overflow-y:auto}
 #feed h3{font-size:.6rem;letter-spacing:2px;text-transform:uppercase;color:#3d4854;margin-bottom:6px}
 #feed .f{padding:4px 0;font-size:.72rem;color:#6e7a86;border-bottom:1px solid rgba(48,54,61,.25)}
+#feed .new{color:#7ee787;animation:slidein .5s}
+@keyframes slidein{from{opacity:0;transform:translateX(12px)}to{opacity:1}}
 #legend{position:fixed;bottom:20px;left:20px;z-index:10;color:#3d4854;font-size:.68rem;background:rgba(6,10,14,.55);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.04);border-radius:16px;padding:10px 16px}
 .ld{display:inline-block;width:8px;height:8px;border-radius:50%;margin:0 4px 0 12px;vertical-align:middle}
 #card{position:fixed;bottom:24px;right:24px;z-index:30;width:310px;background:rgba(8,12,18,.88);backdrop-filter:blur(28px);border:1px solid rgba(126,231,135,.12);border-radius:24px;padding:24px;color:#c9d1d9;display:none;box-shadow:0 16px 48px rgba(0,0,0,.8)}
 #card .em{font-size:2.6rem;float:right;margin-top:-6px}
 #card .nm{font-size:1.25rem;font-weight:600;color:#7ee787}
 #card .md{font-size:.7rem;color:#485258;margin:2px 0 12px}
-#card .bio{font-size:.8rem;line-height:1.65;color:#7a8494;margin:10px 0;padding:12px 14px;background:rgba(126,231,135,.03);border-radius:12px;border-left:2px solid rgba(126,231,135,.2)}
+#card .bio{font-size:.8rem;line-height:1.65;color:#7a8494;margin:10px 0;padding:12px;background:rgba(126,231,135,.03);border-radius:12px;border-left:2px solid rgba(126,231,135,.2)}
 #card .tr{display:inline-block;background:rgba(121,192,255,.05);border:1px solid rgba(121,192,255,.1);border-radius:16px;padding:3px 12px;font-size:.68rem;margin:3px 2px;color:#79c0ff;text-transform:capitalize}
 #card .cl{position:absolute;top:12px;right:16px;cursor:pointer;color:#3d4854;font-size:1rem}
 .br{display:flex;align-items:center;gap:10px;margin:5px 0;font-size:.65rem;color:#3d4854;text-transform:uppercase;letter-spacing:1px}
@@ -31,32 +33,42 @@ body{overflow:hidden;background:#020406;font-family:'Inter','Segoe UI',system-ui
 .name-label .n{font-size:.72rem;font-weight:600;text-shadow:0 2px 8px rgba(0,0,0,.9)}
 .name-label .s{font-size:.6rem;color:#566069;font-weight:300}
 .name-label .e{font-size:1.1rem;display:block;margin-bottom:2px}
+/* thought bubble above agents */
+.thought{position:fixed;pointer-events:none;z-index:6;transform:translate(-50%,-100%);
+  background:rgba(121,192,255,.12);border:1px solid rgba(121,192,255,.25);
+  border-radius:12px;padding:4px 10px;font-size:.65rem;color:#79c0ff;
+  max-width:180px;text-align:center;backdrop-filter:blur(4px)}
+.thought .act{font-weight:700;font-size:.72rem}
+.thought .why{color:#8b949e;font-size:.6rem}
 </style>
 </head>
 <body>
 <div id="hud"><h2>🧬 DARWIN — Living Civilization</h2>
 <div class="st"><span>Population</span><b id="s-p">–</b></div>
-<div class="st"><span>Swarm Agents</span><b id="s-w">–</b></div>
+<div class="st"><span>Workers</span><b id="s-w">–</b></div>
 <div class="st"><span>Species</span><b id="s-sp">–</b></div>
 <div class="st"><span>Energy Pool</span><b id="s-e">–</b></div>
-<div class="st"><span>Status</span><b style="color:#7ee787">● SELF-EVOLVING</b></div>
+<div class="st"><span>Status</span><b style="color:#7ee787">● THINKING</b></div>
 </div>
-<div id="feed" style="position:fixed;top:20px;right:20px;z-index:10;width:290px;background:rgba(6,10,14,.55);backdrop-filter:blur(20px);border:1px solid rgba(126,231,135,.08);border-radius:18px;padding:14px 18px;max-height:220px;overflow-y:auto"><h3>CHRONICLE — LIVE</h3></div>
+<div id="feed" style="position:fixed;top:20px;right:20px;z-index:10;width:290px;background:rgba(6,10,14,.55);backdrop-filter:blur(20px);border:1px solid rgba(126,231,135,.08);border-radius:18px;padding:14px 18px;max-height:250px;overflow-y:auto"><h3>THOUGHTS & EVOLUTION</h3></div>
 <div id="legend" style="position:fixed;bottom:20px;left:20px;z-index:10;color:#3d4854;font-size:.68rem;background:rgba(6,10,14,.55);backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.04);border-radius:16px;padding:10px 16px">
-<span class="ld" style="background:#7ee787"></span>thriving<span class="ld" style="background:#79c0ff"></span>worker<span class="ld" style="background:#d2a8ff"></span>species<span class="ld" style="background:#f85149"></span>struggling<span style="margin-left:12px">drag=orbit · scroll=zoom · click=meet</span></div>
+<span class="ld" style="background:#7ee787"></span>thriving<span class="ld" style="background:#79c0ff"></span>worker<span class="ld" style="background:#d2a8ff"></span>species<span class="ld" style="background:#f85149"></span>struggling<span style="margin-left:12px">drag=orbit · click=meet</span></div>
 <div id="card" style="display:none"><span onclick="this.parentElement.style.display='none'" style="position:absolute;top:12px;right:16px;cursor:pointer;color:#3d4854;font-size:1rem">✕</span>
 <div style="font-size:2.4rem;float:right;margin-top:-4px" id="ce">🙂</div>
 <div style="font-size:1.25rem;font-weight:600;color:#7ee787" id="cn">–</div>
 <div style="font-size:.7rem;color:#485258;margin:2px 0 12px" id="cm">–</div>
 <div style="font-size:.8rem;line-height:1.65;color:#7a8494;margin:10px 0;padding:12px;background:rgba(126,231,135,.03);border-radius:12px" id="cb">–</div>
 <div style="margin:10px 0" id="ct"></div>
-<div style="margin-top:8px"><div style="display:flex;align-items:center;gap:10px;font-size:.65rem;color:#3d4854;margin:4px 0"><span style="width:55px">FITNESS</span><div style="flex:1;height:5px;background:rgba(255,255,255,.04);border-radius:3px;overflow:hidden"><div id="cf" style="height:100%;background:linear-gradient(90deg,#1a7f4b,#7ee787);border-radius:3px;transition:width .8s"></div></div><b id="cfv" style="color:#79c0ff;min-width:40px;text-align:right">–</b></div>
-<div style="display:flex;align-items:center;gap:10px;font-size:.65rem;color:#3d4854;margin:6px 0"><span style="width:55px">ENERGY</span><div style="flex:1;height:5px;background:rgba(255,255,255,.04);border-radius:3px;overflow:hidden"><div id="ce2" style="height:100%;background:linear-gradient(90deg,#883e1f,#f0883e);border-radius:3px;transition:width .8s"></div></div><b id="cev" style="color:#f0883e;min-width:40px;text-align:right">–</b></div></div>
-<div style="font-size:.7rem;color:#3d4854;margin-top:8px;letter-spacing:.5px" id="cr">–</div>
+<div style="margin-top:8px">
+<div style="display:flex;align-items:center;gap:10px;font-size:.65rem;color:#3d4854;margin:4px 0"><span style="width:55px">FITNESS</span><div style="flex:1;height:5px;background:rgba(255,255,255,.04);border-radius:3px;overflow:hidden"><div id="cf" style="height:100%;background:linear-gradient(90deg,#1a7f4b,#7ee787);border-radius:3px;transition:width .8s"></div></div><b id="cfv" style="color:#79c0ff;min-width:40px;text-align:right">–</b></div>
+<div style="display:flex;align-items:center;gap:10px;font-size:.65rem;color:#3d4854;margin:6px 0">
+<span style="width:50px">ENERGY</span><div style="flex:1;height:5px;background:rgba(255,255,255,.04);border-radius:3px;overflow:hidden"><div id="ce2" style="height:100%;background:linear-gradient(90deg,#883e1f,#f0883e);border-radius:3px;transition:width .8s"></div></div><b id="cev" style="color:#f0883e;min-width:40px;text-align:right">–</b></div>
+</div>
+<div style="font-size:.7rem;color:#3d4854;margin-top:8px" id="cr">–</div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
 <script>
-// ═══ Darwin World — 3D Civilization Renderer ═══════════════════════════════
+// ── SCENE ────────────────────────────────────────────────────────────────────
 const scene=new THREE.Scene();
 scene.fog=new THREE.FogExp2(0x020406,.009);
 const camera=new THREE.PerspectiveCamera(55,innerWidth/innerHeight,.1,500);
@@ -68,20 +80,17 @@ renderer.toneMappingExposure=1.2;
 renderer.setClearColor(0x020406);
 document.body.appendChild(renderer.domElement);
 
-// lights: cinematic 3-point + green key
 scene.add(new THREE.AmbientLight(0x16233a,2.5));
 const kl=new THREE.DirectionalLight(0x7ee787,2.5);kl.position.set(15,45,10);scene.add(kl);
 const fl=new THREE.DirectionalLight(0x79c0ff,.5);fl.position.set(-25,20,-15);scene.add(fl);
 const rl=new THREE.DirectionalLight(0xd2a8ff,1.3);rl.position.set(0,8,-30);scene.add(rl);
 const glow=new THREE.PointLight(0x7ee787,4,50);glow.position.set(0,5,0);scene.add(glow);
 
-// floor: dark mirror with green grid
 const floor=new THREE.Mesh(new THREE.CircleGeometry(45,64),
   new THREE.MeshStandardMaterial({color:0x050810,metalness:.92,roughness:.3}));
 floor.rotation.x=-Math.PI/2;scene.add(floor);
 scene.add(new THREE.PolarGridHelper(34,12,6,64,0x1a4a28,0x081a0e));
 
-// evolution core: pulsing sphere + wireframe shell + orbit rings
 const core=new THREE.Mesh(new THREE.SphereGeometry(1.3,32,32),
   new THREE.MeshStandardMaterial({color:0x7ee787,emissive:0x7ee787,emissiveIntensity:3}));
 core.position.y=5;scene.add(core);
@@ -91,22 +100,17 @@ core.add(shell);
 const ring1=new THREE.Mesh(new THREE.TorusGeometry(16,.012,8,100),
   new THREE.MeshBasicMaterial({color:0x7ee787,transparent:true,opacity:.08}));
 ring1.rotation.x=Math.PI/2;scene.add(ring1);
-const ring2=new THREE.Mesh(new THREE.TorusGeometry(24,.008,8,100),
-  new THREE.MeshBasicMaterial({color:0x79c0ff,transparent:true,opacity:.05}));
-ring2.rotation.x=Math.PI/2;scene.add(ring2);
 
-// starfield
 const sg=new THREE.BufferGeometry();const sp=[];
-for(let i=0;i<400;i++){const r=100+Math.random()*60,t=Math.random()*6.28,p2=Math.random()*3.14;
-  sp.push(r*Math.sin(p2)*Math.cos(t),r*Math.cos(p2),r*Math.sin(p2)*Math.sin(t));}
+for(let i=0;i<400;i++){const r=100+Math.random()*60,a=Math.random()*6.28,p=Math.random()*3.14;
+  sp.push(r*Math.sin(p)*Math.cos(a),r*Math.cos(p),r*Math.sin(p)*Math.sin(a));}
 sg.setAttribute('position',new THREE.Float32BufferAttribute(sp,3));
 scene.add(new THREE.Points(sg,new THREE.PointsMaterial({color:0x667788,size:.5,transparent:true,opacity:.35})));
 
-// state
-const orgs={};const labels={};const bursts=[];
+// ── STATE ────────────────────────────────────────────────────────────────────
+const orgs={};const labels={};const thoughts={};const bursts=[];
 const ray=new THREE.Raycaster();const mv=new THREE.Vector2();
 
-// camera orbit
 let mx=0,my=0,mD=false,th=.7,ph=1.08,cd=52;
 addEventListener('mousemove',e=>{if(mD){th+=(e.clientX-mx)*.004;ph-=(e.clientY-my)*.004;ph=Math.max(.3,Math.min(1.45,ph));}mx=e.clientX;my=e.clientY;});
 addEventListener('mousedown',e=>{if(e.target===renderer.domElement)mD=true;});
@@ -114,41 +118,40 @@ addEventListener('mouseup',()=>mD=false);
 addEventListener('wheel',e=>{cd=Math.max(14,Math.min(120,cd+e.deltaY*.04));});
 function updCam(){camera.position.set(cd*Math.sin(ph)*Math.cos(th),cd*Math.cos(ph),cd*Math.sin(ph)*Math.sin(th));camera.lookAt(0,4,0);}
 
-// face: procedural eyes + mouth + blush per organism
+// ── FACES ────────────────────────────────────────────────────────────────────
 function buildFace(g,ident,mood){
   const fp=ident.face_params||{eye_spacing:.4,mouth_curve:.3};
-  const scale=fp.eye_size||.8;
+  const sc=fp.eye_size||.8;
   [-1,1].forEach(sd=>{
-    const white=new THREE.Mesh(new THREE.SphereGeometry(.14*scale,10,10),
+    const w=new THREE.Mesh(new THREE.SphereGeometry(.14*sc,10,10),
       new THREE.MeshBasicMaterial({color:0xf0f4f8}));
-    white.position.set(sd*fp.eye_spacing,.28,.5);g.add(white);
-    const iris=new THREE.Mesh(new THREE.SphereGeometry(.09*scale,8,8),
+    w.position.set(sd*fp.eye_spacing,.28,.5);g.add(w);
+    const ir=new THREE.Mesh(new THREE.SphereGeometry(.09*sc,8,8),
       new THREE.MeshStandardMaterial({color:0x79c0ff,emissive:0x79c0ff,emissiveIntensity:1}));
-    iris.position.set(sd*fp.eye_spacing,.28,.56);g.add(iris);
-    const pupil=new THREE.Mesh(new THREE.SphereGeometry(.05,6,6),
+    ir.position.set(sd*fp.eye_spacing,.28,.56);g.add(ir);
+    const pu=new THREE.Mesh(new THREE.SphereGeometry(.05,6,6),
       new THREE.MeshBasicMaterial({color:0x000000}));
-    pupil.position.set(sd*fp.eye_spacing,.28,.61);g.add(pupil);
+    pu.position.set(sd*fp.eye_spacing,.28,.61);g.add(pu);
   });
-  // mouth: happy=curved up, sad=curved down
-  const curve=mood==='thriving'||mood==='healthy'?.5:mood==='hungry'||mood==='hurt'?-.5:0;
+  const curve=fp.mouth_curve||0;
   const path=new THREE.QuadraticBezierCurve3(
-    new THREE.Vector3(-.18,-.02, .52),
+    new THREE.Vector3(-.18,-.02,.52),
     new THREE.Vector3(0,-.02+curve*.3,.58),
     new THREE.Vector3(.18,-.02,.52));
-  const mouth=new THREE.Mesh(new THREE.TubeGeometry(path,8,.025,6),
+  const mt=new THREE.Mesh(new THREE.TubeGeometry(path,8,.025,6),
     new THREE.MeshBasicMaterial({color:0x111820}));
-  g.add(mouth);
+  g.add(mt);
   if(curve>.3){[-1,1].forEach(sd=>{
     const bl=new THREE.Mesh(new THREE.SphereGeometry(.08,6,6),
       new THREE.MeshBasicMaterial({color:0xff6b81,transparent:true,opacity:.4}));
     bl.position.set(sd*.38,0,.48);g.add(bl);});}
 }
 
+// ── SYNC ─────────────────────────────────────────────────────────────────────
 function syncWorld(world){
   document.getElementById('s-p').textContent=world.stats.population;
   document.getElementById('s-w').textContent=world.stats.workers;
   document.getElementById('s-sp').textContent=world.stats.species_count;
-  document.getElementById('s-tick')?.remove();
   const seen=new Set();
   world.organisms.forEach(o=>{
     seen.add(o.id);const id=o.identity||{};let g=orgs[o.id];
@@ -162,7 +165,7 @@ function syncWorld(world){
       else geo=new THREE.SphereGeometry(.5+Math.min((o.fitness||0)/40,1)*.7,20,20);
       const body=new THREE.Mesh(geo,new THREE.MeshPhysicalMaterial({
         color:col,metalness:.3,roughness:.15,clearcoat:1,clearcoatRoughness:.1,
-        emissive:col.clone().multiplyScalar(.3),emissiveIntensity:.4}));
+        emissive:col.clone().multiplyScalar(.3)}));
       g.add(body);
       buildFace(g,id,id.mood||'healthy');
       g.position.set(o.x,.2,o.z);
@@ -170,11 +173,9 @@ function syncWorld(world){
         energy:o.energy,wins:o.wins,losses:o.losses,age:o.age_days,
         spin:(Math.random()-.5)*.01,phase:Math.random()*6.28};
       scene.add(g);orgs[o.id]=g;
-      // name label
       const lb=document.createElement('div');lb.className='name-label';
       lb.innerHTML=`<span class="e">${id.emoji||'🙂'}</span><span class="n" style="color:${id.color}">${id.name||o.id}</span><br><span class="s">${o.type}</span>`;
       document.body.appendChild(lb);labels[o.id]=lb;
-      // birth particles
       for(let k=0;k<8;k++){
         const p=new THREE.Mesh(new THREE.SphereGeometry(.04,4,4),
           new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:.8}));
@@ -185,28 +186,42 @@ function syncWorld(world){
     }
     g.userData.ty=o.y||2;
   });
-  // death: sink + remove
   Object.keys(orgs).forEach(id=>{
     if(!seen.has(id)){const g=orgs[id];g.userData.dying=true;
       logEv(`💀 ${g.userData.ident?.name||id} faded away`,'#485258');}
   });
-  // chronicle
+  // agent thoughts from /api/thoughts
+  fetch('/api/thoughts').then(r=>r.json()).then(thoughts=>{
+    world.organisms.forEach(o=>{
+      if(o.type!=='worker'||!o.identity)return;
+      const t=thoughts.find(t2=>t2.agent===o.identity.name);
+      const existing=document.querySelector(`.thought[data-agent="${o.identity.name}"]`);
+      if(t && !existing){
+        const div=document.createElement('div');div.className='thought';
+        div.dataset.agent=o.identity.name;
+        div.innerHTML=`<div class="act">${t.action}</div><div class="why">${t.reason?.slice(0,60)}</div>`;
+        document.body.appendChild(div);
+        thoughts_map[o.id]=div;
+      }
+    });
+  }).catch(()=>{});
+  // evolution events
   world.events.slice(-4).forEach(e=>{
     const ic={speciation:'🌍',trial_win:'🏆',predation:'🦅',gap_closure:'🎯',
       crossover:'💞',mutation:'🧬'}[e.kind]||'✦';
     logEv(`${ic} ${e.kind}: ${e.parent?.slice(0,15)} → ${e.child?.slice(0,15)}`,'#f0883e');
   });
 }
-
+const thoughts_map={};
 function logEv(text,color){
-  const d=document.createElement('div');d.className='f';
+  const d=document.createElement('div');d.className='f new';
   d.style.color=color||'#6e7a86';d.textContent=text;
   const feed=document.getElementById('feed');
-  feed.appendChild(d);
+  feed.prepend(d);
   while(feed.children.length>18)feed.removeChild(feed.children[2]);
 }
 
-// click → identity card
+// ── CLICK → IDENTITY CARD ────────────────────────────────────────────────────
 addEventListener('click',e=>{
   mv.x=(e.clientX/innerWidth)*2-1;mv.y=-(e.clientY/innerHeight)*2+1;
   ray.setFromCamera(mv,camera);
@@ -215,12 +230,8 @@ addEventListener('click',e=>{
   if(hits.length){
     for(const[id,g]of Object.entries(orgs)){
       if(g.children.includes(hits[0].object)&&g.userData.ident){
-        showCard(g.userData);return;
-      }
-    }
-  }
+        showCard(g.userData);return;}}}
 });
-
 function showCard(u){
   const id=u.ident||{};
   document.getElementById('card').style.display='block';
@@ -238,20 +249,19 @@ function showCard(u){
   document.getElementById('cr').textContent=`⚔️ ${u.wins||0} victories · ${u.losses||0} defeats · ${u.age||0} days old`;
 }
 
-// data sync
+// ── DATA SYNC ────────────────────────────────────────────────────────────────
 function fetchWorld(){
   fetch('/api/world').then(r=>r.json()).then(w=>syncWorld(w)).catch(()=>{});
 }
 fetchWorld();setInterval(fetchWorld,5000);
 
-// animation loop
+// ── ANIMATION ────────────────────────────────────────────────────────────────
 const clock=new THREE.Clock();const tmpV=new THREE.Vector3();
 function animate(){
   requestAnimationFrame(animate);
   const t=clock.getElapsedTime();
-  core.rotation.y=t*.25;shell.rotation.y=-t*.15;shell.rotation.x=t*.08;
+  core.rotation.y=t*.25;shell.rotation.y=-t*.15;
   core.scale.setScalar(1+Math.sin(t*3)*.08);
-  ring1.rotation.z=t*.05;ring2.rotation.z=-t*.03;
   Object.values(orgs).forEach(m=>{
     const u=m.userData;
     if(u.dying){m.position.y-=.1;m.scale.multiplyScalar(.97);
@@ -261,25 +271,28 @@ function animate(){
       return;}
     m.position.y+=((u.ty||2)-m.position.y)*.04;
     m.rotation.y+=u.spin;
-    // breathing: organic oscillation
     const br=1+Math.sin(t*1.5+u.phase)*.03;
     m.scale.setScalar(br);
-    // gentle bob
     m.position.y+=Math.sin(t*1.2+u.phase)*.003;
-    // face the camera
     m.lookAt(camera.position.x,m.position.y*.8,camera.position.z);
-    // labels
     if(labels[u.id]){
       tmpV.copy(m.position);tmpV.y+=2;tmpV.project(camera);
       const lb=labels[u.id];
       if(tmpV.z<1){lb.style.display='block';
         lb.style.left=(tmpV.x*.5+.5)*innerWidth+'px';
-        lb.style.top=(-tmpV.y*.5+.5)*innerHeight+'px';
-        lb.style.opacity='1';
-      }else lb.style.display='none';
+        lb.style.top=(-tmpV.y*.5+.5)*innerHeight+'px';}
+      else lb.style.display='none';
+    }
+    // thought bubbles follow agents
+    if(thoughts_map[u.id]){
+      tmpV.copy(m.position);tmpV.y+=2.5;tmpV.project(camera);
+      const th=thoughts_map[u.id];
+      if(tmpV.z<1){th.style.display='block';
+        th.style.left=(tmpV.x*.5+.5)*innerWidth+'px';
+        th.style.top=(-tmpV.y*.5+.5)*innerHeight+'px';}
+      else th.style.display='none';
     }
   });
-  // particles fade up
   for(let i=bursts.length-1;i>=0;i--){
     const b=bursts[i];b.m.position.add(b.v);b.m.material.opacity-=.02;
     if(b.m.material.opacity<=0){scene.remove(b.m);bursts.splice(i,1);}
