@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Darwin Engine — The Self-Evolving Skill Ecosystem</title>
+<style>
+  :root {
+    --bg: #0d1117; --panel: #161b22; --border: #30363d;
+    --text: #c9d1d9; --dim: #8b949e; --accent: #7ee787; --accent2: #79c0ff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: -apple-system, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6; padding: 2rem 1rem;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; }
+  h1 { font-size: 2.6rem; color: var(--accent); margin-bottom: .5rem; }
+  .tagline { font-size: 1.25rem; color: var(--dim); margin-bottom: 2.5rem; }
+  .tagline b { color: var(--text); }
+  .card {
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1.5rem 1.75rem; margin-bottom: 1.25rem;
+  }
+  h2 { color: var(--accent2); font-size: 1.35rem; margin-bottom: .75rem; }
+  .phases { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 1rem; margin: 1rem 0; }
+  .phase { border: 1px solid var(--border); border-radius: 8px; padding: 1rem; }
+  .phase .n { color: var(--accent); font-weight: 700; font-size: 1.5rem; }
+  .phase h3 { font-size: 1rem; margin: .25rem 0 .35rem; }
+  .phase p { color: var(--dim); font-size: .85rem; }
+  pre {
+    background: #0a0d12; border: 1px solid var(--border); border-radius: 8px;
+    padding: 1rem; overflow-x: auto; font-size: .85rem; margin: .75rem 0;
+  }
+  code { font-family: 'Cascadia Code', Consolas, monospace; color: var(--accent); }
+  ul { padding-left: 1.25rem; }
+  li { margin-bottom: .4rem; }
+  .guarantee b { color: var(--accent); }
+  footer { color: var(--dim); font-size: .85rem; text-align: center; margin-top: 2.5rem; }
+  footer a { color: var(--accent2); text-decoration: none; }
+  .cta {
+    display: inline-block; background: var(--accent); color: #0d1117;
+    font-weight: 700; padding: .7rem 1.6rem; border-radius: 8px;
+    text-decoration: none; margin-top: 1rem;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>🧬 Darwin Engine</h1>
+  <p class="tagline">The <b>self-evolving skill ecosystem</b> for OpenAmer.
+  No other agent framework lets its skill population evolve itself.</p>
+
+  <div class="card">
+    <h2>Natural selection, applied to agent capability</h2>
+    <p>Skills are scored on <b>real usage signals</b>. The fittest breed mutated
+    children. Children compete against their parents <b>live in production
+    cron jobs</b> — the winner decided by real exit codes, not benchmarks.
+    Dead weight is quarantined, reversibly. Every step of the family tree is
+    preserved forever.</p>
+  </div>
+
+  <div class="card">
+    <h2>The 5 phases</h2>
+    <div class="phases">
+      <div class="phase"><div class="n">1</div><h3>Fitness</h3>
+        <p>Real signals: session usage, cron health, stagnation penalty.</p></div>
+      <div class="phase"><div class="n">2</div><h3>Live Trials</h3>
+        <p>Child replaces parent in a real cron job. executions.db decides.</p></div>
+      <div class="phase"><div class="n">3</div><h3>Autopilot</h3>
+        <p>Semantic mutations, quarantine with rollback, zero human input.</p></div>
+      <div class="phase"><div class="n">4</div><h3>Lineage</h3>
+        <p>Mermaid family tree + portable genomes for fleet evolution.</p></div>
+      <div class="phase"><div class="n">5</div><h3>Tournament</h3>
+        <p>Auto-trials the best candidates, max 2 concurrent, double-book safe.</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>One command runs the whole cycle</h2>
+    <pre><code>python scripts/darwin_engine.py --autopilot
+# [autopilot] fitness computed for 9 skills
+# [autopilot] 5 mutations generated
+# [autopilot] trial self_rewriter_6h: waiting {'completed': 0, 'error': 0}
+# [autopilot] tournament: trialing `auto-env-checker__mutadd_pitfall`
+# [autopilot] report -&gt; reports/darwin-report.md</code></pre>
+    <p style="color:var(--dim)">Real output from a live system — the trial you
+    see above is running in production right now.</p>
+  </div>
+
+  <div class="card guarantee">
+    <h2>Guarantees</h2>
+    <ul>
+      <li><b>Never deletes</b> — parents archived, quarantined skills restorable</li>
+      <li><b>Never guesses</b> — every promotion backed by real execution evidence</li>
+      <li><b>Never breaks cron</b> — job-referenced skills are protected from pruning</li>
+      <li><b>Reproducible</b> — fixed seed mutations, fully auditable</li>
+      <li><b>Fleet-ready</b> — genomes merge across machines, highest W/L wins</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Why it matters</h2>
+    <p>Every other agent framework curates skills by hand — humans deciding what
+    stays, what goes, what improves. Darwin removes the human from the loop:
+    improvement pressure comes from <b>actual usage</b>, selection from
+    <b>actual failures</b>, and the lineage of every improvement is kept forever.</p>
+    <a class="cta" href="https://github.com/openamer/openamer">Star on GitHub →</a>
+  </div>
+
+  <footer>Part of <a href="https://github.com/openamer/openamer">OpenAmer Agent</a>
+  — the personal AI agent that runs the same core everywhere.</footer>
+</div>
+</body>
+</html>

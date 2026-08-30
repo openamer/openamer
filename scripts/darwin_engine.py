@@ -388,6 +388,12 @@ def autopilot(min_executions: int = 2) -> int:
     if any(c["won"] for c in comps):
         print(f"[autopilot] {sum(1 for c in comps if c['won'])} candidate(s) promoted")
 
+    started = tournament(fitness, max_trials=2)
+    if started:
+        for s in started:
+            print(f"[autopilot] tournament: trialing `{s['child']}` "
+                  f"on job '{s['job_name']}'")
+
     quarantined = quarantine(fitness, threshold=0, dry_run=False)
     if quarantined:
         print(f"[autopilot] quarantined {len(quarantined)} dead skills: "
@@ -398,7 +404,7 @@ def autopilot(min_executions: int = 2) -> int:
     REPORT_FILE.write_text(md, "utf-8")
     print(f"[autopilot] report -> {REPORT_FILE}")
 
-    changed = bool(offspring or trials or comps or quarantined)
+    changed = bool(offspring or trials or comps or quarantined or started)
     return 2 if changed else 0
 
 
@@ -491,6 +497,70 @@ def import_genome(path: Path) -> dict:
             _save_json(mp, meta)
             merged["offspring"] += 1
     return merged
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 8. PHASE 5: tournament - auto-trial the best offspring
+# ─────────────────────────────────────────────────────────────────────────────
+
+TRIAL_STATE_FILE = DARWIN_DIR / "trial-state.json"
+
+
+def _active_trial_jobs() -> set[str]:
+    """Job IDs that already have a running trial (never double-book)."""
+    active = set()
+    trials_dir = DARWIN_DIR / "trials"
+    if trials_dir.exists():
+        for tp in trials_dir.glob("*.json"):
+            t = _load_json(tp, {})
+            if not t.get("ended"):
+                active.add(t.get("job_id", ""))
+    return active
+
+
+def tournament(fitness: dict, max_trials: int = 2) -> list[dict]:
+    """Rank candidate offspring by (op impact, parent fitness) and start
+    live trials for the top candidates whose parent owns a cron job.
+
+    Guards: never exceed max_trials at once, never double-book a job,
+    never trial a child whose parent has no cron job.
+    """
+    if len(_active_trial_jobs()) >= max_trials:
+        return []
+    protected = _cron_referenced_skills()
+    ranked = sorted(fitness.items(), key=lambda kv: kv[1]["fitness"], reverse=True)
+    parent_rank = {name: i for i, (name, _) in enumerate(ranked)}
+
+    off_dir = DARWIN_DIR / "offspring"
+    candidates = []
+    if off_dir.exists():
+        for mp in off_dir.glob("*.json"):
+            meta = _load_json(mp, {})
+            if meta.get("status") != "candidate":
+                continue
+            parent = meta.get("parent", "")
+            if parent not in protected:
+                continue  # parent must own a cron job to trial
+            candidates.append({
+                "child": meta.get("child"),
+                "parent": parent,
+                "op": meta.get("op", ""),
+                "parent_rank": parent_rank.get(parent, 999),
+            })
+    candidates.sort(key=lambda c: (c["parent_rank"], c["op"]))
+
+    started = []
+    jobs = _load_cron_jobs()
+    items = jobs.get("jobs") if isinstance(jobs, dict) else jobs or []
+    busy = _active_trial_jobs()
+    for cand in candidates:
+        if len(busy) + len(started) >= max_trials:
+            break
+        trial = start_trial(cand["parent"], cand["child"])
+        if trial:
+            started.append({**cand, "job_id": trial["job_id"],
+                            "job_name": trial["job_name"]})
+    return started
 
 
 
