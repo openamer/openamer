@@ -245,21 +245,98 @@ def retire_losing_workers() -> list[dict]:
     return retired
 
 
+# ── Phase 23: teaching + territoriality ──────────────────────────────────────
+
+SWARM_KNOWLEDGE_FILE = HOME / "darwin" / "swarm-knowledge.json"
+TERRITORIES_FILE = HOME / "darwin" / "territories.json"
+
+
+def teach_before_death(swarm: dict, dying_worker: str) -> dict | None:
+    """A dying worker passes its life's knowledge to the fittest survivor.
+
+    Knowledge transferred:
+    - capabilities the survivor lacks (up to 2)
+    - a fitness grant proportional to the dying worker's wins
+    - recorded in the swarm knowledge base (generational memory)
+    """
+    dying = swarm["workers"].get(dying_worker)
+    if not dying:
+        return None
+    survivors = {n: w for n, w in swarm["workers"].items()
+                 if n != dying_worker}
+    if not survivors:
+        return None
+    heir_name = max(survivors, key=lambda n: survivors[n].get("genome_fitness", 0))
+    heir = survivors[heir_name]
+    dying_caps = set(dying.get("capabilities") or [])
+    heir_caps = set(heir.get("capabilities") or [])
+    transferred = list(dying_caps - heir_caps)[:2]
+    for c in transferred:
+        heir_caps.add(c)
+    heir["capabilities"] = list(heir_caps)
+    grant = round(dying.get("wins", 0) * 0.5, 2)
+    heir["genome_fitness"] = round(
+        heir.get("genome_fitness", 0) + grant, 2)
+    # knowledge base: the swarm remembers its teachers forever
+    kb = _load(SWARM_KNOWLEDGE_FILE, {"teachers": []})
+    kb["teachers"].append({
+        "teacher": dying_worker, "heir": heir_name,
+        "taught": transferred, "fitness_grant": grant, "when": _now(),
+    })
+    _save(SWARM_KNOWLEDGE_FILE, kb)
+    return {"heir": heir_name, "taught": transferred, "fitness_grant": grant}
+
+
+def claim_territory(domain: str, worker: str) -> dict:
+    """A worker claims a task domain for the local swarm."""
+    territories = _load(TERRITORIES_FILE, {})
+    existing = territories.get(domain)
+    if existing and existing.get("holder") != "local":
+        # foreign territory - must be contested via duel
+        return {"claimed": False, "reason": "held by foreign swarm",
+                "holder": existing.get("holder")}
+    territories[domain] = {"holder": "local", "worker": worker,
+                           "claimed": _now()}
+    _save(TERRITORIES_FILE, territories)
+    return {"claimed": True, "domain": domain, "worker": worker}
+
+
+def contest_territory(domain: str, foreign_champion: str,
+                      local_champion: str) -> dict:
+    """A foreign swarm contests a domain we hold: real duel decides."""
+    territories = _load(TERRITORIES_FILE, {})
+    existing = territories.get(domain)
+    if not existing or existing.get("holder") != "local":
+        return {"contested": False, "reason": "not ours to defend"}
+    duel = darwin.head_to_head(local_champion, foreign_champion)
+    won = duel["winner"] == "parent"
+    if not won:
+        territories[domain] = {"holder": "foreign",
+                               "worker": foreign_champion,
+                               "lost": _now()}
+        _save(TERRITORIES_FILE, territories)
+    return {"contested": True, "domain": domain, "won": won,
+            "local_exit": duel["parent_result"].get("exit_code"),
+            "foreign_exit": duel["child_result"].get("exit_code")}
+
+
 def tick() -> dict:
     """One autonomous swarm cycle: auction pending tasks, reproduce
-    successful workers, drain idle energy, starve the broke, retire losers."""
+    successful workers, drain idle energy, starve the broke (with
+    knowledge transfer to children), retire losers."""
     swarm = load_swarm()
     # idle drain: existing costs energy for every worker
     for name, w in swarm["workers"].items():
         _pay_energy(swarm, name, -ENERGY_IDLE_DRAIN)
-    # starvation: workers with no energy die (unless the last one standing)
+    # starvation: workers with no energy die - but they TEACH first
     starved = []
     for name in list(swarm["workers"].keys()):
         w = swarm["workers"].get(name)
         if w and w.get("energy", 0) < ENERGY_STARVATION \
                 and len(swarm["workers"]) > 1:
+            teachings = teach_before_death(swarm, name)
             del swarm["workers"][name]
-            starved.append(name)
+            starved.append({"worker": name, "taught": teachings})
     save_swarm(swarm)
 
     pending = [tid for tid, t in swarm["tasks"].items()
