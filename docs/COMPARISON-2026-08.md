@@ -53,3 +53,17 @@ The field's biggest open-source agent struggles with exactly what OpenAmer treat
 table stakes: setup friction, security posture, and self-maintenance. The gap is not
 capability — it is visibility. This document exists to close that gap with verifiable
 artifacts instead of claims.
+
+## Third-party-verified usage (added 2026-08-30)
+
+OpenAmer ships OpenRouter app-attribution headers by default in every install
+(`agent/auxiliary_client.py::_OR_HEADERS_BASE` — HTTP-Referer, X-OpenRouter-Title,
+categories `productivity,cli-agent`). Result:
+
+- **Public app page:** https://openrouter.ai/apps?url=https://github.com/openamer/openamer
+- **4.54B tokens** processed in the last 30 days, across 11 models
+- **Ranked #36 in OpenRouter's global CLI-Agents ranking** (same leaderboard as
+  Hermes Agent, Claude Code, Cline, Kilo Code)
+
+This is independent, third-party-measured growth data that updates daily — no
+self-reporting involved.
