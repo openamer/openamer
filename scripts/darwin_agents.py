@@ -35,7 +35,7 @@ _spec.loader.exec_module(darwin)
 AGENT_LOG = HOME / "darwin" / "agent-log.json"
 
 OLLAMA_URL = "http://localhost:11434/api/generate"
-DEFAULT_MODEL = "qwen3:1.7b"  # fast, local, free
+DEFAULT_MODEL = "gemma3:4b"  # fast, local, free
 FALLBACK_MODEL = "qwen3.5:2b"
 
 
