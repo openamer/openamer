@@ -31,7 +31,7 @@ SERVICES = [
 ]
 
 
-def probe(port: int, path: str):
+def probe(port: int, path: str) -> int | None:
     try:
         req = urllib.request.Request(f"http://127.0.0.1:{port}{path}")
         with urllib.request.urlopen(req, timeout=5) as resp:
@@ -40,7 +40,7 @@ def probe(port: int, path: str):
         return None
 
 
-def ensure_running(name, port, path, cmd, restart=True):
+def ensure_running(name: str, port: int, path: str, cmd: list, restart: bool = True) -> tuple[bool, str | None]:
     if probe(port, path) is not None:
         return True, None
     if not restart:
@@ -58,7 +58,7 @@ def ensure_running(name, port, path, cmd, restart=True):
     return False, "no answer after 12s"
 
 
-def main():
+def main() -> int:
     failures, started = [], []
     for name, port, path, cmd in SERVICES:
         was = probe(port, path)
@@ -76,7 +76,7 @@ def main():
         "failures": failures,
         "ts": time.strftime("%Y-%m-%dT%H:%M:%S"),
     }
-    print(json.dumps(result, ensure_ascii=False))
+    print(json.dumps(result, ensure_ascii=False))  # noqa:SEC machine-readable cron report
     return 0 if not failures else 1
 
 

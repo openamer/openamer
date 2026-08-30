@@ -179,7 +179,7 @@ def execute_action(action_def, event_data):
                 subprocess.run(kill_cmd, capture_output=True, timeout=10)
                 time.sleep(1)
                 start_cmd = ["start", "", service]
-                subprocess.run(start_cmd, capture_output=True, timeout=10, shell=True)
+                subprocess.run(start_cmd, capture_output=True, timeout=10, shell=True)  # noqa:SEC "start" is a cmd builtin, service name is static
             else:
                 subprocess.run(["systemctl", "restart", service], capture_output=True, timeout=30)
             return True, f"Restart issued for '{service}'"
@@ -569,8 +569,11 @@ def cmd_ensure_running():
     # Start in background (platform-appropriate)
     script_path = Path(__file__).resolve()
     if sys.platform == "win32":
-        cmd = f'start /B "" "{sys.executable}" "{script_path}" --start'
-        subprocess.Popen(cmd, shell=True, creationflags=subprocess.CREATE_NEW_PROCESS_GROUP)
+        # DETACHED_PROCESS | CREATE_NEW_PROCESS_GROUP — survives console close,
+        # no shell indirection needed (start /B is a cmd builtin, not required here)
+        subprocess.Popen([sys.executable, str(script_path), "--start"],
+                         stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+                         creationflags=0x00000008 | 0x00000200)
     else:
         subprocess.Popen(
             [sys.executable, str(script_path), "--start"],
