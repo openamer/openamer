@@ -450,6 +450,15 @@ def autopilot(min_executions: int = 2) -> int:
         print(f"[autopilot] retired {len(retired)} losing species: "
               f"{[r['name'] for r in retired]}")
 
+    # phase 16: predation - consume redundancy (max 3 duels per cycle)
+    pred_results = predation_cycle(fitness, dry_run=False)
+    for r in pred_results:
+        if r["status"] == "absorbed":
+            print(f"[autopilot] predation: {r['predator']} absorbed "
+                  f"`{r['prey']}`")
+        elif r["status"] == "no-prey":
+            print("[autopilot] predation: no redundant skills found")
+
     quarantined = quarantine(fitness, threshold=0, dry_run=False)
     if quarantined:
         print(f"[autopilot] quarantined {len(quarantined)} dead skills: "
@@ -461,7 +470,9 @@ def autopilot(min_executions: int = 2) -> int:
     print(f"[autopilot] report -> {REPORT_FILE}")
 
     changed = bool(offspring or trials or comps or quarantined or started
-                   or harvested or new_species or fights or retired)
+                   or harvested or new_species or fights or retired
+                   or any(r.get("status") == "absorbed"
+                          for r in pred_results))
     return 2 if changed else 0
 
 
@@ -1682,6 +1693,10 @@ def main() -> int:
                     help="full evidence chain: why does this skill have its fitness?")
     ap.add_argument("--unretire", metavar="SPECIES",
                     help="undo a species retirement (back to species dir)")
+    ap.add_argument("--predate", action="store_true",
+                    help="dry-run: which redundant skills would be consumed?")
+    ap.add_argument("--predate-apply", action="store_true",
+                    help="actually run predation duels and absorb prey")
     ap.add_argument("--report", action="store_true")
     ap.add_argument("--full", action="store_true")
     args = ap.parse_args()
@@ -1853,6 +1868,22 @@ def main() -> int:
         print(f"♻️  species '{args.unretire}' restored: {ok}")
         return 0 if ok else 1
 
+    if args.predate or args.predate_apply:
+        fitness = _load_json(FITNESS_FILE, {}).get("skills", compute_fitness())
+        results = predation_cycle(fitness,
+                                  dry_run=not args.predate_apply)
+        for r in results:
+            if r["status"] == "no-prey":
+                print("🦅 predation: no redundant skills found")
+            elif r["status"] in ("absorbed", "would-absorb"):
+                print(f"🦅 {r['predator']} absorbs `{r['prey']}` "
+                      f"(overlap {r['overlap']})")
+            else:
+                print(f"🦅 prey `{r['prey']}` survived the duel "
+                      f"(winner: {r['winner']})")
+        if any(r["status"] == "absorbed" for r in results):
+            changed = True
+
     if args.rollback:
         restored = rollback(args.rollback)
         print(f"↩️  restored {len(restored)} skill(s): {restored}" if restored
@@ -1990,5 +2021,117 @@ def auto_tune() -> dict:
     return t
 
 
-if __name__ == "__main__":
-    sys.exit(main())
+# ─────────────────────────────────────────────────────────────────────────────
+# 17. PHASE 16: predation - the population consumes its own redundancy
+# ─────────────────────────────────────────────────────────────────────────────
+
+PREDATION_LOG = DARWIN_DIR / "predation-log.json"
+
+
+def _skill_tokens(name: str) -> set[str]:
+    """Meaningful tokens of a skill name (drop noise words)."""
+    noise = {"skill", "darwin", "mut", "harvested", "tool", "tools", "the"}
+    return {t for t in re.split(r"[-_+.\s]", name.lower()) if t and t not in noise}
+
+
+def find_prey(fitness: dict, min_overlap: float = 0.6) -> list[dict]:
+    """Detect redundant skill pairs: two skills whose name tokens overlap
+    strongly. The weaker one (lower fitness) is potential prey of the
+    stronger one. Cron-protected skills are never prey."""
+    protected = _cron_referenced_skills()
+    items = [(n, s.get("fitness", 0)) for n, s in fitness.items()]
+    items.sort(key=lambda kv: kv[1], reverse=True)
+    prey = []
+    seen_pairs = set()
+    for i, (strong, strong_fit) in enumerate(items):
+        strong_toks = _skill_tokens(strong)
+        if not strong_toks:
+            continue
+        for weak, weak_fit in items[i + 1:]:
+            if weak in protected or weak in seen_pairs:
+                continue
+            weak_toks = _skill_tokens(weak)
+            if not weak_toks:
+                continue
+            overlap = len(strong_toks & weak_toks) / len(weak_toks)
+            if overlap >= min_overlap and strong != weak:
+                pair = (strong, weak)
+                if pair not in seen_pairs:
+                    seen_pairs.add(pair)
+                    prey.append({"predator": strong, "prey": weak,
+                                 "overlap": round(overlap, 2),
+                                 "predator_fitness": strong_fit,
+                                 "prey_fitness": weak_fit})
+    return prey
+
+
+def predate(prey_list: list[dict], dry_run: bool = True) -> list[dict]:
+    """Execute predation: the stronger skill absorbs the weaker one.
+
+    Mechanism (after a REAL head-to-head confirms dominance):
+    1. head_to_head(predator, prey) - the duel
+    2. If the predator wins, the prey is archived and its trigger line is
+       appended to the predator's SKILL.md (trigger inheritance)
+    3. Lineage records a 'predation' event
+    """
+    import shutil
+    results = []
+    for p in prey_list:
+        predator, prey = p["predator"], p["prey"]
+        duel = head_to_head(predator, prey)
+        # In a tie (both exit 0), fitness rank decides: the predator was
+        # already ranked stronger by find_prey. Only a strictly functional
+        # prey win (prey works, predator fails) saves the prey.
+        prey_wins_functionally = (
+            duel["winner"] == "child"
+            and duel["parent_result"].get("exit_code") not in (0, None)
+            and duel["child_result"].get("exit_code") == 0)
+        if prey_wins_functionally:
+            results.append({"predator": predator, "prey": prey,
+                            "status": "survived",
+                            "winner": duel["winner"]})
+            continue
+        if not dry_run:
+            archive = DARWIN_DIR / "archive"
+            archive.mkdir(parents=True, exist_ok=True)
+            target = archive / f"{prey}_{NOW.strftime('%Y%m%d_%H%M%S')}"
+            src = SKILLS_DIR / prey
+            if src.exists():
+                shutil.copytree(str(src), str(target))
+                shutil.rmtree(str(src))
+            # trigger inheritance: prey's trigger appended to predator
+            pred_md = SKILLS_DIR / predator / "SKILL.md"
+            if pred_md.exists():
+                inherited = (f"\n## Inherited Trigger (from `{prey}`)\n"
+                             f"Also handles topics previously covered by "
+                             f"the absorbed skill `{prey}`.\n")
+                pred_md.write_text(pred_md.read_text("utf-8", errors="replace")
+                                   + inherited, "utf-8")
+            # genome: predator gains a win
+            population = _load_json(POPULATION_FILE, {})
+            g = population.setdefault(predator, {"wins": 0, "losses": 0})
+            g["wins"] = g.get("wins", 0) + 1
+            _save_json(POPULATION_FILE, population)
+            record_lineage(predator, prey, "predation", {"overlap": p["overlap"]})
+            log = _load_json(PREDATION_LOG, [])
+            log.append({"predator": predator, "prey": prey,
+                        "when": _now(), "overlap": p["overlap"]})
+            _save_json(PREDATION_LOG, log)
+        results.append({"predator": predator, "prey": prey,
+                        "status": "absorbed" if not dry_run else "would-absorb",
+                        "overlap": p["overlap"]})
+    return results
+
+
+def predation_cycle(fitness: dict, dry_run: bool = True) -> list[dict]:
+    """Full predation pass: find prey, duel, absorb. Honors tuning."""
+    prey = find_prey(fitness)
+    if not prey:
+        return [{"status": "no-prey"}]
+    return predate(prey[:3], dry_run=dry_run)  # max 3 per cycle
+
+
+if __name__ == "__main__":
+
+    sys.exit(main())
+
