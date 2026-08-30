@@ -563,6 +563,136 @@ def tournament(fitness: dict, max_trials: int = 2) -> list[dict]:
     return started
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+# 9. PHASE 6: head-to-head runner - REAL skill execution, not just labels
+# ─────────────────────────────────────────────────────────────────────────────
+
+def run_skill_check(skill_name: str, timeout: int = 90) -> dict:
+    """Actually execute a skill and measure its real behavior.
+
+    A skill's SKILL.md contains executable context: any fenced bash block
+    under a '## Verification' or '## Quick start' section, else the first
+    fenced bash block in the file. Returns real stdout/stderr/exit_code.
+    """
+    import subprocess
+    skill_md = SKILLS_DIR / skill_name / "SKILL.md"
+    if not skill_md.exists():
+        # offspring live outside SKILLS_DIR
+        alt = DARWIN_DIR / "offspring" / skill_name / "SKILL.md"
+        if not alt.exists():
+            return {"ok": False, "reason": "no SKILL.md", "exit_code": None}
+        skill_md = alt
+    text = skill_md.read_text("utf-8", errors="replace")
+
+    blocks = re.findall(r"```(?:bash|sh|shell)\n(.*?)```", text, re.S)
+    if not blocks:
+        return {"ok": False, "reason": "no executable block", "exit_code": None}
+    # prefer a verification/quick-start block if present
+    script = blocks[-1]
+    for i, b in enumerate(blocks):
+        section = text[:text.find("```" + b)].lower() if "```" + b in text else ""
+        if "verification" in section or "quick start" in section:
+            script = b
+            break
+
+    script = script.strip()
+    # resolve repo-root-relative script paths against the repo, not SKILLS_DIR
+    repo = Path(__file__).resolve().parents[1]
+    script = script.replace(r"C:\Users\damir\openamer-repo", str(repo))
+
+    first_line = script.split("\n")[0]
+    if first_line.startswith("python "):
+        # extract a quoted script path if present; strip inline quotes
+        parts = first_line.split()
+        cmd = [parts[0]]
+        for tok in parts[1:]:
+            cmd.append(tok.strip('"').strip("'"))
+    else:
+        cmd = ["bash", "-c", script]
+    try:
+        r = subprocess.run(cmd, capture_output=True, text=True,
+                           timeout=timeout, cwd=str(repo))
+        return {"ok": True, "exit_code": r.returncode,
+                "stdout_tail": r.stdout[-300:], "stderr_tail": r.stderr[-200:]}
+    except subprocess.TimeoutExpired:
+        return {"ok": True, "exit_code": 124, "stdout_tail": "", "stderr_tail": "timeout"}
+
+
+def head_to_head(parent: str, child: str, timeout: int = 90) -> dict:
+    """Execute parent and child skills REALLY, compare outcomes.
+
+    Scoring (real evidence only):
+      - exit_code 0 beats non-zero
+      - both zero: child wins on having executable proof at all
+      - a skill that cannot execute cannot defend its title
+    """
+    p_res = run_skill_check(parent, timeout)
+    c_res = run_skill_check(child, timeout)
+    p_ok = p_res.get("ok") and p_res.get("exit_code") == 0
+    c_ok = c_res.get("ok") and c_res.get("exit_code") == 0
+    if c_ok and not p_ok:
+        winner = "child"
+    elif p_ok and not c_ok:
+        winner = "parent"
+    elif c_ok and p_ok:
+        winner = "child"  # both fine: child carries the newer mutation
+    else:
+        winner = "neither"  # neither executable -> no verdict
+    result = {"parent": parent, "child": child, "winner": winner,
+              "parent_result": p_res, "child_result": c_res, "when": _now()}
+    h2h_dir = DARWIN_DIR / "head2head"
+    h2h_dir.mkdir(parents=True, exist_ok=True)
+    stamp = NOW.strftime("%Y%m%d_%H%M%S")
+    _save_json(h2h_dir / f"{child}_{stamp}.json", result)
+    return result
+
+
+def resolve_stuck_trials(timeout_hours: float = 24.0, do_run: bool = False) -> list[dict]:
+    """For trials that produced no cron evidence (e.g. no_agent jobs where the
+    skill is only a label), settle them with a REAL head-to-head execution.
+
+    Without this, such trials stay 'waiting' forever. With do_run=True the
+    head-to-head actually executes both skills.
+    """
+    settled = []
+    trials_dir = DARWIN_DIR / "trials"
+    if not trials_dir.exists():
+        return settled
+    from datetime import timedelta
+    for tp in sorted(trials_dir.glob("*.json")):
+        trial = _load_json(tp, {})
+        if trial.get("ended"):
+            continue
+        outcomes = _execution_outcomes(trial.get("job_id", ""),
+                                       trial.get("executions_before", 0))
+        if outcomes["completed"] + outcomes["error"] > 0:
+            continue  # cron gave evidence - normal path handles it
+        started = datetime.fromisoformat(trial["started"])
+        if NOW - started < timedelta(hours=timeout_hours):
+            continue  # give cron a chance first
+        if not do_run:
+            settled.append({"child": trial.get("child"), "status": "stuck",
+                            "reason": "no execution evidence, overdue"})
+            continue
+        h2h = head_to_head(trial["parent"], trial["child"])
+        won = h2h["winner"] == "child"
+        end_trial(trial["job_id"], won)
+        population = _load_json(POPULATION_FILE, {})
+        genome = population.setdefault(trial["parent"], {"wins": 0, "losses": 0})
+        if won:
+            genome["losses"] = genome.get("losses", 0) + 1
+            promote_child(trial["parent"], trial["child"])
+            record_lineage(trial["parent"], trial["child"], "trial_win",
+                           {"via": "head_to_head"})
+        else:
+            genome["wins"] = genome.get("wins", 0) + 1
+        _save_json(POPULATION_FILE, population)
+        settled.append({"child": trial.get("child"), "status":
+                        "won" if won else "lost", "via": "head_to_head",
+                        "winner": h2h["winner"]})
+    return settled
+
+
 
 def compute_fitness() -> dict:
     """Fitness pro Skill: Usage + Gesundheit - Strafen."""
@@ -866,6 +996,12 @@ def main() -> int:
                     help="export evolution state to reports/darwin-genome.json")
     ap.add_argument("--import-genome", metavar="PATH",
                     help="merge another machine's genome into this one")
+    ap.add_argument("--head-to-head", nargs=2, metavar=("PARENT", "CHILD"),
+                    help="really execute both skills, winner by exit code")
+    ap.add_argument("--resolve-stuck", action="store_true",
+                    help="settle overdue evidence-less trials via head-to-head (dry: list only)")
+    ap.add_argument("--resolve-stuck-run", action="store_true",
+                    help="like --resolve-stuck but actually executes the duels")
     ap.add_argument("--report", action="store_true")
     ap.add_argument("--full", action="store_true")
     args = ap.parse_args()
@@ -894,6 +1030,24 @@ def main() -> int:
         merged = import_genome(Path(args.import_genome))
         print(f"🧬 genome merged: {merged}")
         changed = any(merged.values())
+
+    if args.head_to_head:
+        h2h = head_to_head(args.head_to_head[0], args.head_to_head[1])
+        print(f"⚔️  winner: {h2h['winner']} "
+              f"(parent exit={h2h['parent_result'].get('exit_code')}, "
+              f"child exit={h2h['child_result'].get('exit_code')})")
+        changed = h2h["winner"] != "neither"
+
+    if args.resolve_stuck or args.resolve_stuck_run:
+        settled = resolve_stuck_trials(timeout_hours=0.001,
+                                       do_run=args.resolve_stuck_run)
+        for s in settled:
+            print(f"⚔️  {s.get('child')}: {s['status']}"
+                  + (f" (winner={s['winner']})" if "winner" in s else ""))
+        if not settled:
+            print("✅ no stuck trials")
+        if any(s["status"] in ("won", "lost") for s in settled):
+            changed = True
 
     if args.rollback:
         restored = rollback(args.rollback)
