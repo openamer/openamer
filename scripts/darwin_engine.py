@@ -602,11 +602,14 @@ def run_skill_check(skill_name: str, timeout: int = 90) -> dict:
 
     first_line = script.split("\n")[0]
     if first_line.startswith("python "):
-        # extract a quoted script path if present; strip inline quotes
-        parts = first_line.split()
-        cmd = [parts[0]]
-        for tok in parts[1:]:
-            cmd.append(tok.strip('"').strip("'"))
+        # the -c argument is the REST of the line; naive whitespace-splitting
+        # breaks `python -c "import sys; print('x')"` into fragments
+        import shlex
+        try:
+            cmd = shlex.split(first_line)
+        except ValueError:
+            cmd = first_line.split()
+        cmd = [t.strip('"').strip("'") for t in cmd]
     else:
         cmd = ["bash", "-c", script]
     try:
@@ -691,6 +694,112 @@ def resolve_stuck_trials(timeout_hours: float = 24.0, do_run: bool = False) -> l
                         "won" if won else "lost", "via": "head_to_head",
                         "winner": h2h["winner"]})
     return settled
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 10. PHASE 7: speciation - synthesize NEW skills from evolution knowledge
+# ─────────────────────────────────────────────────────────────────────────────
+
+SYNTHESIS_LOG = DARWIN_DIR / "synthesis-log.json"
+
+# Capability blueprints: proven pitfalls/verification knowledge recombined
+# into genuinely NEW skills (not mutations of existing ones).
+BLUEPRINTS = [
+    {
+        "name": "darwin-evidence-hygiene",
+        "description": "Use when reporting build, test, or deploy results - "
+                       "enforces real tool output over plausible claims.",
+        "trigger": "Use before any success claim about a build, install, or test run.",
+        "body": "1. Run the command and capture its REAL exit code.\n"
+                "2. Quote the last 3 lines of actual stdout/stderr as evidence.\n"
+                "3. If the command failed, report the failure verbatim - never\n"
+                "   substitute a plausible-looking result.\n"
+                "4. A green lint is not a green test run; run the tests.",
+        "pitfall": "Never fabricate results for output you could not produce.",
+    },
+    {
+        "name": "darwin-session-recall",
+        "description": "Use when the user references past work or you suspect "
+                       "cross-session context exists.",
+        "trigger": "Use before asking the user to repeat prior decisions or paths.",
+        "body": "1. Search session history for the referenced topic first.\n"
+                "2. Prefer direct sources (files, repos, DBs) over memory.\n"
+                "3. Link the found session inline rather than restating it.\n"
+                "4. If nothing found, say so plainly - do not guess.",
+        "pitfall": "Session history is context, not proof of current state.",
+    },
+    {
+        "name": "darwin-cron-guard",
+        "description": "Use when creating or editing cron jobs - prevents "
+                       "timeouts, silent failures, and delivery gaps.",
+        "trigger": "Use whenever a scheduled job is created, edited, or diagnosed.",
+        "body": "1. Terminal timeouts must be <= 120s inside cron runs.\n"
+                "2. Background processes need notify_on_complete=true.\n"
+                "3. Exit code 2 may be a SUCCESS-with-changes convention -\n"
+                "   check the tool's documented exit semantics before alerting.\n"
+                "4. Verify last_status after the first scheduled run.",
+        "pitfall": "A job that exits 0 with empty output may have done nothing.",
+    },
+]
+
+
+def synthesize_species(fitness: dict, max_new: int = 2, apply: bool = False) -> list[dict]:
+    """Create genuinely NEW skills (speciation) from recombined evolution
+    knowledge. Only blueprints whose name is not already in the population
+    are used. Parent = the fittest skill (knowledge donor, not ancestor)."""
+    existing = {n for n in fitness}
+    donor = max(fitness.items(), key=lambda kv: kv[1]["fitness"])[0] if fitness else None
+    created = []
+    for bp in BLUEPRINTS:
+        if len(created) >= max_new:
+            break
+        if bp["name"] in existing:
+            continue
+        text = (
+            f"---\n"
+            f"name: {bp['name']}\n"
+            f"description: {bp['description']}\n"
+            f"---\n\n"
+            f"# {bp['name'].replace('-', ' ').title()}\n\n"
+            f"## Trigger\n{bp['trigger']}\n\n"
+            f"## Procedure\n{bp['body']}\n\n"
+            f"## Pitfall\n{bp['pitfall']}\n\n"
+            f"## Verification\nAfter following the procedure: confirm the outcome\n"
+            f"with real evidence (exit code, file, or API response).\n"
+            f"```bash\npython -c \"import sys; print('darwin-species-ok')\"\n```\n"
+        )
+        created.append({"name": bp["name"], "donor": donor, "applied": apply})
+        if apply:
+            dst = DARWIN_DIR / "species" / bp["name"]
+            dst.mkdir(parents=True, exist_ok=True)
+            (dst / "SKILL.md").write_text(text, "utf-8")
+            _save_json(DARWIN_DIR / "species" / f"{bp['name']}.json", {
+                "child": bp["name"], "parent": donor, "kind": "speciation",
+                "born": _now(), "status": "candidate", "wins": 0, "losses": 0,
+            })
+            record_lineage(donor or "void", bp["name"], "speciation")
+    if created and apply:
+        log = _load_json(SYNTHESIS_LOG, [])
+        log.extend({"name": c["name"], "donor": c["donor"], "when": _now()}
+                   for c in created)
+        _save_json(SYNTHESIS_LOG, log)
+    return created
+
+
+def promote_species(name: str) -> bool:
+    """Promote a synthesized species into the live skill population."""
+    import shutil
+    src = DARWIN_DIR / "species" / name
+    dst = SKILLS_DIR / name
+    if not (src / "SKILL.md").exists() or dst.exists():
+        return False
+    shutil.copytree(str(src), str(dst))
+    meta_path = DARWIN_DIR / "species" / f"{name}.json"
+    meta = _load_json(meta_path, {})
+    meta["status"] = "installed"
+    meta["installed"] = _now()
+    _save_json(meta_path, meta)
+    return True
 
 
 
@@ -1002,6 +1111,12 @@ def main() -> int:
                     help="settle overdue evidence-less trials via head-to-head (dry: list only)")
     ap.add_argument("--resolve-stuck-run", action="store_true",
                     help="like --resolve-stuck but actually executes the duels")
+    ap.add_argument("--speciate", action="store_true",
+                    help="dry-run: which new species would be synthesized")
+    ap.add_argument("--speciate-apply", action="store_true",
+                    help="synthesize new species skills into darwin/species/")
+    ap.add_argument("--promote-species", metavar="NAME",
+                    help="install a synthesized species into the live population")
     ap.add_argument("--report", action="store_true")
     ap.add_argument("--full", action="store_true")
     args = ap.parse_args()
@@ -1048,6 +1163,23 @@ def main() -> int:
             print("✅ no stuck trials")
         if any(s["status"] in ("won", "lost") for s in settled):
             changed = True
+
+    if args.speciate or args.speciate_apply or args.promote_species:
+        fitness = _load_json(FITNESS_FILE, {}).get("skills", compute_fitness())
+        if args.speciate or args.speciate_apply:
+            created = synthesize_species(
+                fitness, max_new=2, apply=args.speciate_apply)
+            label = "synthesized" if args.speciate_apply else "would synthesize"
+            print(f"🧬 {label} {len(created)} species: "
+                  f"{[c['name'] for c in created]} (donor: "
+                  f"{created[0]['donor'] if created else '-'})")
+            if created and args.speciate_apply:
+                changed = True
+        if args.promote_species:
+            ok = promote_species(args.promote_species)
+            print(f"🌍 species '{args.promote_species}' promoted: {ok}")
+            if ok:
+                changed = True
 
     if args.rollback:
         restored = rollback(args.rollback)
