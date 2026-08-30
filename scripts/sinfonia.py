@@ -221,6 +221,32 @@ def render(events, movements_meta, out_wav, out_json, program_notes):
     return len(buf) / SR, peak
 
 
+def compose_and_render(db_path, out_prefix, sessions=5, tempo=96, tonic=57):
+    """Convenience wrapper used by tests and CLI."""
+    history = load_history(db_path, sessions)
+    events, metas = [], []
+    t_offset = 0.0
+    for i, mov in enumerate(history):
+        ev, meta = compose_movement(mov, tonic, tempo, session_key(mov["session"]))
+        if meta is None:
+            continue
+        ev = [(t + t_offset, m, d, v) for (t, m, d, v) in ev]
+        t_offset = (ev[-1][0] + ev[-1][2] + 1.2) if ev else t_offset
+        events.extend(ev)
+        meta["movement"] = i + 1
+        metas.append(meta)
+    program = (
+        f"Sinfonia aus {len(metas)} Satzen, komponiert aus {sum(m['messages'] for m in metas)} "
+        f"echten Nachrichten, {sum(m['tokens'] for m in metas)} Tokens, "
+        f"{sum(m['errors'] for m in metas)} Fehlern."
+    )
+    out_wav = Path(out_prefix).with_suffix(".wav")
+    out_json = Path(out_prefix).with_suffix(".json")
+    out_wav.parent.mkdir(parents=True, exist_ok=True)
+    dur, peak = render(events, metas, out_wav, out_json, program)
+    return dur
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--db", required=True)
