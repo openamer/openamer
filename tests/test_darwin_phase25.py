@@ -53,7 +53,7 @@ def test_execute_assigned_runs_real_operations(fake_world):
     assert len(executed) == 1
     # gate was called - outcome depends on gate decision
     assert executed[0].get("gate") in ("APPROVED", "REJECTED", "NEEDS_MORE_INFO", "ERROR")
-    # task status updated
+    # task status updated (done if approved, gate-hold/rejected otherwise)
     sw = swarm.load_swarm()
     task_status = sw["tasks"][tid]["status"]
     assert task_status in ("done", "gate-rejected", "gate-hold")
