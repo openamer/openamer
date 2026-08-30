@@ -102,11 +102,12 @@ def test_tick_starves_broke_workers(fake_world):
     swarm.register_worker("rich", ["code"], starting_energy=100.0)
     swarm.register_worker("dying", ["code"], starting_energy=0.3)
     t = swarm.tick()
-    assert "dying" in t["starved"]
+    # dying starves, but teaches rich first (phase 23)
+    assert any(e["worker"] == "dying" for e in t["starved"])
+    assert t["starved"][0]["taught"]["heir"] == "rich"
     swarm_w = swarm.load_swarm()
     assert "dying" not in swarm_w["workers"]
-    assert "rich" in swarm_w["workers"]  # last-one-standing protection not
-    # triggered because rich still lives
+    assert "rich" in swarm_w["workers"]
 
 
 def test_last_worker_never_starves(fake_world):
