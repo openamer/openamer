@@ -2,8 +2,9 @@ import { cn } from '@/lib/utils'
 
 const assetPath = (path: string) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`
 
-// Brand badge: openamer-girl mark on a white tile, identical in light/dark.
-// Fills the tile (softly rounded); size via className (default size-14).
+// Brand badge: the OpenAmer eye mark (openamer.png — same art as the taskbar
+// icon), identical in light/dark. Fills the tile (softly rounded); size via
+// className (default size-14).
 export function BrandMark({ className, ...props }: React.ComponentProps<'span'>) {
   return (
     <span
@@ -13,7 +14,11 @@ export function BrandMark({ className, ...props }: React.ComponentProps<'span'>)
       )}
       {...props}
     >
-      <img alt="" className="size-full object-contain" src={assetPath('openamer-girl.jpg')} />
+      <img
+        alt=""
+        className="size-full object-contain"
+        src={assetPath('openamer.png')}
+      />
     </span>
   )
 }
