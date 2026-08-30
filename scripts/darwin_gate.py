@@ -39,7 +39,7 @@ load_dotenv(Path.home() / "AppData/Local/openamer-laptop/.env")
 OPENROUTER_KEY = os.environ.get("OPENROUTER_API_KEY", "")
 OPENROUTER_MODEL = os.environ.get("OPENAMER_MODEL", "z-ai/glm-4.6")
 # fallback to strong model for gate decisions
-GATE_MODEL = "z-ai/glm-4.6"  # GLM-5.3-Flash equivalent on OpenRouter
+GATE_MODEL = "z-ai/glm-5.3-flash"  # OpenAmer default brain
 
 
 def _now() -> str:
@@ -59,7 +59,7 @@ def _save(path: Path, data):
 
 
 def ask_openrouter(prompt: str, system: str = "") -> tuple[bool, str]:
-    """Ask OpenAmer's brain (GLM-5.3-Flash / GLM-4.6) for a decision."""
+    """Ask OpenAmer's brain (GLM-5.3-Flash) for a decision."""
     if not OPENROUTER_KEY:
         return False, "no API key"
     messages = []
@@ -89,7 +89,7 @@ def ask_openrouter(prompt: str, system: str = "") -> tuple[bool, str]:
         content = msg.get("content")
         if content and content.strip():
             return True, content.strip()
-        # GLM-4.6 reasoning model: answer may be at end of reasoning
+        # GLM-5.3-Flash reasoning model: answer may be at end of reasoning
         reasoning = msg.get("reasoning", "")
         if reasoning:
             for line in reversed(reasoning.splitlines()):
