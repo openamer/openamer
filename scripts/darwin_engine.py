@@ -396,6 +396,30 @@ def autopilot(min_executions: int = 2) -> int:
             print(f"[autopilot] tournament: trialing `{s['child']}` "
                   f"on job '{s['job_name']}'")
 
+    # full species pipeline: harvest -> speciate -> promote -> arena -> retire
+    harvested = harvest_knowledge(min_hits=3)
+    if harvested:
+        print(f"[autopilot] harvested {len(harvested)} new blueprint(s)")
+    new_species = synthesize_species_v2(fitness, max_new=2, apply=True)
+    if new_species:
+        print(f"[autopilot] synthesized {len(new_species)} species: "
+              f"{[c['name'] for c in new_species]}")
+        for c in new_species:
+            if promote_species(c["name"]):
+                print(f"[autopilot] promoted species `{c['name']}`")
+
+    fights = species_arena()
+    for f in fights:
+        if f["status"] == "fought":
+            print(f"[autopilot] arena: {f['a']} vs {f['b']} -> {f['winner']}")
+        else:
+            print(f"[autopilot] arena: {f['status']}")
+
+    retired = retire_losers(max_losses=3)
+    if retired:
+        print(f"[autopilot] retired {len(retired)} losing species: "
+              f"{[r['name'] for r in retired]}")
+
     quarantined = quarantine(fitness, threshold=0, dry_run=False)
     if quarantined:
         print(f"[autopilot] quarantined {len(quarantined)} dead skills: "
@@ -406,7 +430,8 @@ def autopilot(min_executions: int = 2) -> int:
     REPORT_FILE.write_text(md, "utf-8")
     print(f"[autopilot] report -> {REPORT_FILE}")
 
-    changed = bool(offspring or trials or comps or quarantined or started)
+    changed = bool(offspring or trials or comps or quarantined or started
+                   or harvested or new_species or fights or retired)
     return 2 if changed else 0
 
 
@@ -1075,6 +1100,76 @@ def species_arena(min_interval_minutes: int = 30) -> list[dict]:
              "b_exit": h2h["child_result"].get("exit_code")}]
 
 
+def retire_losers(max_losses: int = 3) -> list[dict]:
+    """Species that accumulated >= max_losses arena defeats are retired:
+    moved to quarantine (reversible), keeping the population healthy.
+    A species with a losing record blocks nothing - but it must not crowd
+    the arena forever."""
+    import shutil
+    sp_dir = DARWIN_DIR / "species"
+    if not sp_dir.exists():
+        return []
+    population = _load_json(POPULATION_FILE, {})
+    retired = []
+    for mp in list(sp_dir.glob("*.json")):
+        meta = _load_json(mp, {})
+        if meta.get("status") != "installed":
+            continue
+        name = meta.get("child", "")
+        genome = population.get(name, {})
+        losses = genome.get("losses", 0)
+        wins = genome.get("wins", 0)
+        if losses < max_losses or losses <= wins:
+            continue  # healthy record or not enough evidence
+        q_dir = DARWIN_DIR / "quarantine"
+        q_dir.mkdir(parents=True, exist_ok=True)
+        target = q_dir / name
+        if (sp_dir / name).exists() and not target.exists():
+            shutil.move(str(sp_dir / name), str(target))
+            meta["status"] = "retired"
+            meta["retired"] = _now()
+            _save_json(mp, meta)
+            retired.append({"name": name, "wins": wins, "losses": losses})
+            log = _load_json(ROLLBACK_LOG, [])
+            log.append({"skill": name, "fitness": 0, "when": _now(),
+                        "reason": "arena-loses"})
+            _save_json(ROLLBACK_LOG, log)
+    return retired
+
+
+def status_overview() -> dict:
+    """One-glance state of the whole ecosystem."""
+    fitness = _load_json(FITNESS_FILE, {}).get("skills", {})
+    ranked = sorted(fitness.items(), key=lambda kv: kv[1].get("fitness", 0),
+                    reverse=True)
+    species = {"installed": 0, "candidate": 0, "retired": 0}
+    sp_dir = DARWIN_DIR / "species"
+    if sp_dir.exists():
+        for mp in sp_dir.glob("*.json"):
+            st = _load_json(mp, {}).get("status", "candidate")
+            species[st if st in species else "candidate"] = \
+                species.get(st if st in species else "candidate", 0) + 1
+    population = _load_json(POPULATION_FILE, {})
+    trials_dir = DARWIN_DIR / "trials"
+    active_trials = 0
+    if trials_dir.exists():
+        active_trials = sum(
+            1 for tp in trials_dir.glob("*.json")
+            if not _load_json(tp, {}).get("ended"))
+    harvest_n = len(_load_json(HARVESTED_FILE, []))
+    return {
+        "when": _now(),
+        "population": len(fitness),
+        "fittest": ranked[0][0] if ranked else None,
+        "weakest": ranked[-1][0] if ranked else None,
+        "species": species,
+        "active_trials": active_trials,
+        "harvested_blueprints": harvest_n,
+        "genome_records": len(population),
+        "trend": fitness_trend().get("population_trend", "unknown"),
+    }
+
+
 
 def compute_fitness() -> dict:
     """Fitness pro Skill: Usage + Gesundheit - Strafen."""
@@ -1398,6 +1493,10 @@ def main() -> int:
                     help="mine real session history for new blueprints")
     ap.add_argument("--speciate-v2", action="store_true",
                     help="speciation using hardcoded + harvested blueprints")
+    ap.add_argument("--retire", action="store_true",
+                    help="retire species with >= 3 arena losses (reversible)")
+    ap.add_argument("--status", action="store_true",
+                    help="one-glance ecosystem overview")
     ap.add_argument("--report", action="store_true")
     ap.add_argument("--full", action="store_true")
     args = ap.parse_args()
@@ -1506,6 +1605,35 @@ def main() -> int:
               f"{[c['name'] for c in created]}")
         if created:
             changed = True
+
+    if args.retire:
+        retired = retire_losers(max_losses=3)
+        if retired:
+            summary = ", ".join(
+                "{0} ({1}W/{2}L)".format(r["name"], r["wins"], r["losses"])
+                for r in retired)
+            print(f" coffin retired {len(retired)} species: {summary}")
+            changed = True
+        else:
+            print("✅ no species above the loss threshold")
+
+    if args.status:
+        s = status_overview()
+        print("═" * 50)
+        print(f" 🧬 DARWIN ECOSYSTEM - {s['when'][:19]}")
+        print("═" * 50)
+        print(f" Population:        {s['population']} skills "
+              f"(trend: {s['trend']})")
+        print(f" Fittest:           {s['fittest']}")
+        print(f" Weakest:           {s['weakest']}")
+        print(f" Species:           {s['species']['installed']} installed, "
+              f"{s['species']['candidate']} candidate, "
+              f"{s['species']['retired']} retired")
+        print(f" Active trials:     {s['active_trials']}")
+        print(f" Harvested ideas:   {s['harvested_blueprints']}")
+        print(f" Genome records:    {s['genome_records']}")
+        print("═" * 50)
+        return 0
 
     if args.rollback:
         restored = rollback(args.rollback)
