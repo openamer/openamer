@@ -1,6 +1,6 @@
 {
   "organism": "OpenAmer",
-  "written_at": "2026-08-31T09:25:53.583075+00:00",
+  "written_at": "2026-08-30T21:24:57.089479+00:00",
   "identity": {
     "name": "openamer_agent",
     "voice": "https://x.com/openamer_agent",
@@ -410,7 +410,7 @@
       "name": "provenance-cleanup",
       "schedule": "0 3 * * *",
       "script": null,
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "self-evolve",
@@ -428,13 +428,13 @@
       "name": "Darwin Weekly GitHub Report",
       "schedule": "0 9 * * 1",
       "script": "darwin-cron.py",
-      "last_status": "ok"
+      "last_status": null
     },
     {
       "name": "Darwin Grid Sync (6h)",
       "schedule": "every 360m",
       "script": null,
-      "last_status": "ok"
+      "last_status": null
     },
     {
       "name": "Swarm OS - Autonomous Loop (30m)",
