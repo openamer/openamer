@@ -1,115 +1,114 @@
-# 🧬 Darwin Engine — 15 Phasen eines selbst-evolvierenden Ökosystems
+# 🧬 Darwin Engine — 15 Phases of a Self-Evolving Ecosystem
 
-> **Die Fähigkeit, die kein anderes Agent-Framework hat: eine Skill-Population,
-> die sich ohne menschliches Zutun selbst entwickelt — und jede ihrer
-> Entscheidungen auf Verlangen beweisen kann.**
+> **The capability no other agent framework has: a skill population that
+> evolves itself without human intervention — and can prove every one of
+> its decisions on request.**
 
-Dies ist die Chronik von 15 Phasen. Jede Phase wurde live gebaut, mit echten
-Tests bewiesen und auf GitHub gepusht. Keine Simulation.
-
----
-
-## Act I — Grundlagen (Phase 1–3)
-
-**Phase 1 · Fitness.** Skills werden nach *echten* Signalen bewertet:
-Session-Nutzung (60k+ Messages gescannt), Cron-Gesundheit, Strafpunkte für
-Stagnation. Keine Schätzungen — echte Ausführungsdaten aus `state.db`.
-
-**Phase 2 · Live-Trials.** Ein Kind-Skill ersetzt seinen Eltern-Skill
-*temporär in einem echten Cron-Job*. Der Sieger wird von `executions.db`
-entschieden — realen Exit-Codes, nicht Benchmarks. Verliert das Kind,
-kehrt der Elternteil zurück, als wäre nichts gewesen.
-
-**Phase 3 · Autopilot.** Semantische, section-bewusste Mutationen (kein
-Text-Boilerplate). Ein Befehl (`--autopilot`) läuft den kompletten Zyklus.
-Quarantäne statt Löschung — alles reversibel, mit Cron-Schutzschild.
-
-## Act II — Autonomie (Phase 4–6)
-
-**Phase 4 · Lineage & Genome.** Jedes Evolutionsereignis wird in einer
-persistenten Familie verzeichnet (Mermaid-Baum im Report). Portable Genome
-ermöglichen Fleet-Evolution über mehrere Maschinen — höchster W/L-Score
-gewinnt Konflikte.
-
-**Phase 5 · Turnier.** Der Autopilot wählt selbst, welche Kandidaten er
-testet: gerankt nach Eltern-Fitness, max 2 parallel, doppelbuchungs-sicher.
-
-**Phase 6 · Echte Ausführung.** Der Head-to-Head-Runner führt Skills
-*wirklich* aus und misst echte Exit-Codes. Bewies er zwei Pfad-Bugs auf
-einen Schlag — und sagt ehrlich `neither`, wenn kein Operator gewinnt.
-
-## Act III — Evolution der Evolution (Phase 7–10)
-
-**Phase 7 · Speciation.** Arten entstehen aus Blueprints —
-genuin neue Skills ohne Elternteil. Live: Population 9 → 11.
-
-**Phase 8 · Gedächtnis & Arena.** Fitness-Historie (append-only), Trend-
-analyse, und ein Arena-Ring, in dem Arten mit echten Ausführungen kämpfen.
-
-**Phase 9 · Selbsternährung.** Der Blueprint-Pool wächst aus der eigenen
-Vergangenheit: wiederkehrende Fehler-Muster werden aus 28k Messages geerntet
-(642 Treffer gefunden, 31 Blueprints gewonnen).
-
-**Phase 10 · Kreislauf.** Ruhestand nach 3 Arena-Niederlagen (reversibel),
-Pipeline vollständig: *harvest → speciate → promote → arena → retire.*
-
-## Act IV — Beweis & Reife (Phase 11–12)
-
-**Phase 11 · Sichtbarkeit.** Live-HTTP-Dashboard (Port 8910, Auto-Refresh),
-wöchentlicher GitHub-Report als Issue, generiert vom Cron.
-
-**Phase 12 · Reife.** Fitness-Cache: 0.82s → 0.003s (273×). Lesbare
-Artnamen (`git-credentials` statt `c-users-damir-...`). gh-Fallback mit
-Pending-Queue — nichts geht verloren.
-
-## Act V — Rekursion & Rechenschaft (Phase 13–15)
-
-**Phase 13 · Meta-Evolution.** Die Mutations-Operatoren *selbst* werden
-selektiert: Epsilon-Greedy mit Laplace-Glättung — Operatoren, die Champions
-zeugen, dominieren; der Rest wird erforscht.
-
-**Phase 14 · Rechenschaft.** `--explain <skill>` liefert die volle
-Beweiskette: Fitness-Dekomposition, Genome W/L, Lineage, Trials, Operator-
-Qualität, Cron-Schutz. Jede Entscheidung in Sekunden auditierbar.
-`--unretire` holt pensionierte Arten korrekt in ihr Art-Verzeichnis zurück.
-
-**Phase 15 · Selbstabstimmung.** Die Konstanten des Systems (explorations-
-rate, parallel-trials, retire-schwelle) stellen sich selbst ein — abgeleitet
-aus der Ökosystem-Gesundheit:
-- *Stagnierend* → mehr Exploration (ε=0.5), mehr Experimente
-- *Fallend* → bewährte Operatoren nutzen (ε=0.15), schneller ausmerzen
-- *Steigend* → Defaults bestätigen
-
-Live bewiesen: `tuning: healthy (rising) -> defaults`.
+This is the chronicle of 15 phases. Every phase was built live, proven with
+real tests, and pushed to GitHub. No simulation.
 
 ---
 
-## Der Beweis (Live-Stand)
+## Act I — Foundations (Phase 1–3)
+
+**Phase 1 · Fitness.** Skills are scored on *real* signals: session usage
+(60k+ messages scanned), cron health, stagnation penalties. No estimates —
+real execution data from `state.db`.
+
+**Phase 2 · Live Trials.** A child skill temporarily replaces its parent
+*in a real production cron job*. The winner is decided by `executions.db`
+— actual exit codes, not benchmarks. If the child loses, the parent returns
+as if nothing happened.
+
+**Phase 3 · Autopilot.** Semantic, section-aware mutations (no text
+boilerplate). One command (`--autopilot`) runs the full cycle. Quarantine
+instead of deletion — everything reversible, with a cron-protection shield.
+
+## Act II — Autonomy (Phase 4–6)
+
+**Phase 4 · Lineage & Genome.** Every evolution event is recorded in a
+persistent family tree (Mermaid graph in the report). Portable genomes
+enable fleet evolution across machines — highest W/L score wins conflicts.
+
+**Phase 5 · Tournament.** The autopilot chooses which candidates to trial:
+ranked by parent fitness, max 2 concurrent, double-booking safe.
+
+**Phase 6 · Real Execution.** The head-to-head runner *actually executes*
+skills and measures real exit codes. It exposed two path bugs on first run
+— and honestly reports `neither` when no operator can win.
+
+## Act III — Evolution of Evolution (Phase 7–10)
+
+**Phase 7 · Speciation.** Species are born from blueprints — genuinely new
+skills with no parent. Live result: population 9 → 11.
+
+**Phase 8 · Memory & Arena.** Fitness history (append-only), trend analysis,
+and an arena where species duel with real executions.
+
+**Phase 9 · Self-Feeding.** The blueprint pool grows from the system's own
+past: recurring error patterns are harvested from 28k messages (642 matches
+found, 31 blueprints won).
+
+**Phase 10 · Full Cycle.** Retirement after 3 arena losses (reversible),
+pipeline complete: *harvest → speciate → promote → arena → retire.*
+
+## Act IV — Proof & Maturity (Phase 11–12)
+
+**Phase 11 · Visibility.** Live HTTP dashboard (port 8910, auto-refresh),
+weekly GitHub report posted as an issue, generated by cron.
+
+**Phase 12 · Maturity.** Fitness cache: 0.82s → 0.003s (273×). Readable
+species names (`git-credentials` instead of `c-users-damir-...`). gh
+fallback with pending queue — nothing is lost.
+
+## Act V — Recursion & Accountability (Phase 13–15)
+
+**Phase 13 · Meta-Evolution.** The mutation *operators themselves* are
+selected: epsilon-greedy with Laplace smoothing — operators that breed
+champions dominate; the rest are still explored.
+
+**Phase 14 · Accountability.** `--explain <skill>` returns the full
+evidence chain: fitness decomposition, genome W/L, lineage, trials,
+operator quality, cron protection. Every decision auditable in seconds.
+`--unretire` returns retired species to their species directory correctly.
+
+**Phase 15 · Self-Tuning.** The system's own constants (exploration rate,
+parallel trials, retirement threshold) tune themselves — derived from
+ecosystem health:
+- *Stagnating* → more exploration (ε=0.5), more experiments
+- *Declining* → exploit proven operators (ε=0.15), prune faster
+- *Rising* → confirm defaults
+
+Live-proven: `tuning: healthy (rising) -> defaults`.
+
+---
+
+## The Evidence (Live State)
 
 ```
 Population:  18 skills, trend rising
-Arten:       installiert, Kandidaten, Ruhestand — alles laufend
-Trials:      laufen in Produktions-Crons
-Harvest:     19+ Blueprints aus echter Systemerfahrung
-Tuning:      passt sich selbst an
+Species:     installed, candidates, retirement — all running
+Trials:      running in production crons
+Harvest:     19+ blueprints from real system experience
+Tuning:      adjusts itself
 ```
 
-## Garantien (über alle Phasen)
+## Guarantees (across all phases)
 
-| Garantie | Beweis |
+| Guarantee | Evidence |
 |---|---|
-| Löscht nie | Archive + Quarantäne + Rollback-Log, Phase 3/10/14 |
-| Rät nie | Jede Entscheidung aus echten Exit-Codes, Phase 2/6 |
-| Bricht Cron nie | Referenz-Schutzschild, Phase 3 |
-| Reproduzierbar | Seed 42, deterministische Mutationen |
-| Erklärbar | `--explain` für jeden Skill, Phase 14 |
-| Selbstanpassend | Tuning aus Gesundheitssignalen, Phase 15 |
+| Never deletes | Archive + quarantine + rollback log, Phase 3/10/14 |
+| Never guesses | Every decision from real exit codes, Phase 2/6 |
+| Never breaks cron | Reference protection shield, Phase 3 |
+| Reproducible | Seed 42, deterministic mutations |
+| Explainable | `--explain` for every skill, Phase 14 |
+| Self-tuning | Tuning from health signals, Phase 15 |
 
 ---
 
-*68 Tests · 15 Phasen · ein Ökosystem, das sich selbst ernährt, selektiert,
-erinnert, erklärt und abstimmt.*
+*68 tests · 15 phases · one ecosystem that feeds itself, selects itself,
+remembers itself, explains itself, and tunes itself.*
 
-**Darwin ist keine Funktion. Es ist eine lebende Population.**
+**Darwin is not a feature. It is a living population.**
 
-— Teil von [OpenAmer Agent](https://github.com/openamer/openamer)
+— Part of [OpenAmer Agent](https://github.com/openamer/openamer)
