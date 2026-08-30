@@ -8,7 +8,7 @@ description: Use when a tool fails — fix at root. Check competitors.
 
 **Description:** Use when a tool fails — fix at root. Check competitors.
 
-**Lines:** 137 | **Code:** 3 | **Dir:** `tool-repair-workflow`
+**Lines:** 193 | **Code:** 24 | **Dir:** `tool-repair-workflow`
 
 ---
 

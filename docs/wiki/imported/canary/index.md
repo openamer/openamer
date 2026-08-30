@@ -6,7 +6,7 @@ description: Post-deploy canary monitoring. (gstack)
 # canary
 
 **Description:** Post-deploy canary monitoring. (gstack)
-**Lines:** 669 | **Code:** 146 | **Dir:** `canary`
+**Lines:** 676 | **Code:** 146 | **Dir:** `canary`
 
 ---
 

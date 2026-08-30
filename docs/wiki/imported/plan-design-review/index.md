@@ -6,7 +6,7 @@ description: Designer's eye plan review — interactive, like CEO and Eng review
 # plan-design-review
 
 **Description:** Designer's eye plan review — interactive, like CEO and Eng review. (gstack)
-**Lines:** 1132 | **Code:** 158 | **Dir:** `plan-design-review`
+**Lines:** 1149 | **Code:** 158 | **Dir:** `plan-design-review`
 
 ---
 

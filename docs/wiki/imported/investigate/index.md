@@ -6,7 +6,7 @@ description: Systematic debugging with root cause investigation. (gstack)
 # investigate
 
 **Description:** Systematic debugging with root cause investigation. (gstack)
-**Lines:** 687 | **Code:** 95 | **Dir:** `investigate`
+**Lines:** 694 | **Code:** 95 | **Dir:** `investigate`
 
 ---
 

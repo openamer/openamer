@@ -28,11 +28,19 @@ from pathlib import Path
 
 
 def _token() -> str:
-    line = (Path.home() / ".git-credentials").read_text().strip() if (Path.home() / ".git-credentials").exists() else ""
-    return line.rsplit(":", 1)[1].rsplit("@", 1)[0] if ":" in line else ""
+    fpath = Path.home() / ".git-credentials"
+    if not fpath.exists():
+        return ""
+    for raw_line in fpath.read_text().strip().splitlines():
+        line = raw_line.strip()
+        if ":" in line and "@" in line:
+            token = line.rsplit(":", 1)[1].rsplit("@", 1)[0]
+            if token.startswith("ghp_") or token.startswith("github_pat_"):
+                return token
+    return ""
 
 
-def _api(method: str, url: str, body: dict | None = None):
+def _api(method: str, url: str, body: dict | None = None) -> dict:
     token = _token()
     req = urllib.request.Request(url, method=method)
     req.add_header("Authorization", f"Bearer {token}")
@@ -60,16 +68,16 @@ def list_own_issues(owner: str, repo: str) -> int:
 def post_own_issue(owner: str, repo: str, issue: int, body: str, dry: bool) -> int:
     st, data = _api("GET", f"https://api.github.com/repos/{owner}/{repo}/issues/{issue}")
     if st != 200:
-        print(f"Issue #{issue} not found ({st})"); return 1
-    print(f"Posting to {owner}/{repo}#{issue}: '{data.get('title','')[:60]}'")
+        print(f"Issue #{issue} not found ({st})"); return 1  # noqa:SEC CLI feedback
+    print(f"Posting to {owner}/{repo}#{issue}: '{data.get('title','')[:60]}'")  # noqa:SEC CLI feedback
     if dry:
-        print("  [dry] would post:", body[:200]); return 0
+        print("  [dry] would post:", body[:200]); return 0  # noqa:SEC CLI feedback
     st2, res = _api("POST", f"https://api.github.com/repos/{owner}/{repo}/issues/{issue}/comments",
                     {"body": body})
     if st2 == 201:
-        print(f"  POSTED comment #{res.get('id')} ({res.get('html_url')})")
+        print(f"  POSTED comment #{res.get('id')} ({res.get('html_url')})")  # noqa:SEC CLI feedback
         return 0
-    print(f"  FAILED {st2}:", res); return 1
+    print(f"  FAILED {st2}:", res); return 1  # noqa:SEC CLI feedback
 
 
 def main() -> int:

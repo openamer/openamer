@@ -6,7 +6,7 @@ description: Use when an agent edits its own core code safely.
 # safe-self-modification
 
 **Description:** Use when an agent edits its own core code safely.
-**Lines:** 194 | **Code:** 0 | **Dir:** `safe-self-modification`
+**Lines:** 212 | **Code:** 3 | **Dir:** `safe-self-modification`
 
 ---
 

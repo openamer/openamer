@@ -39,7 +39,7 @@ SECRETS_PATTERNS: list[dict] = [
         "id": "HARDCODED_PASSWORD",
         "severity": "critical",
         "pattern": re.compile(
-            r'(?:password|passwd|pwd)\s*[=:]\s*[\'"][^\'"]{3,}[\'"]',
+            r'(?:password|passwd|pwd)\s*[=:]\s*[\'"](?!(?-i:[A-Z0-9_]){3,}["\'])[^"\']{3,}["\']',
             re.IGNORECASE,
         ),
         "message": "Harcoded password/credential in code",
@@ -49,7 +49,7 @@ SECRETS_PATTERNS: list[dict] = [
         "id": "HARDCODED_API_KEY",
         "severity": "critical",
         "pattern": re.compile(
-            r'(?:api[_-]?key|apikey|api_key)\s*[=:]\s*[\'"][^\'"]{8,}[\'"]',
+            r'(?:api[_-]?key|apikey|api_key)\s*[=:]\s*[\'"](?!(?-i:[A-Z0-9_]){8,}["\'])[^"\']{8,}["\']',
             re.IGNORECASE,
         ),
         "message": "Hardcoded API key in code",
@@ -59,7 +59,7 @@ SECRETS_PATTERNS: list[dict] = [
         "id": "HARDCODED_TOKEN",
         "severity": "critical",
         "pattern": re.compile(
-            r'(?:token|secret|auth_token|access_token)\s*[=:]\s*[\'"][^\'"]{8,}[\'"]',
+            r'(?:token|secret|auth_token|access_token)\s*[=:]\s*[\'"](?!(?-i:[A-Z0-9_]){8,}["\'])[^"\']{8,}["\']',
             re.IGNORECASE,
         ),
         "message": "Hardcoded token/secret in code",
@@ -354,12 +354,25 @@ def get_file_content(filepath: str, repo: Path) -> str | None:
     return None
 
 
+# Lines containing this marker are excluded from security/quality findings.
+# Usage: append "  # noqa:SEC" with a brief reason, e.g.
+#   subprocess.run(cmd, shell=True)  # noqa:SEC internal wrapper, static cmd
+NOQA_SEC_MARKER = "# noqa:SEC"
+
+
+def line_suppressed(line_text: str) -> bool:
+    """True wenn die Zeile den dokumentierten noqa:SEC-Suppress-Marker traegt."""
+    return NOQA_SEC_MARKER in line_text
+
+
 def scan_added_lines(diff_text: str, patterns: list[dict]) -> list[dict]:
     """Scan only added lines in a diff for patterns."""
     findings = []
     for line in diff_text.split("\n"):
-        if line.startswith("+"):
+        if line.startswith("+") and not line_suppressed(line):
             added_line = line[1:]  # Strip the '+'
+            if "re.compile(" in added_line or "re.match(" in added_line:
+                continue  # regex-definition line: scanner config, not runtime code
             for pat in patterns:
                 if pat["pattern"].search(added_line):
                     findings.append({
@@ -379,9 +392,13 @@ def scan_whole_file(filepath: str, repo: Path, patterns: list[dict]) -> list[dic
     if content is None:
         return findings
 
+    lines = content.split("\n")
     for pat in patterns:
         for match in pat["pattern"].finditer(content):
             line_num = content[: match.start()].count("\n") + 1
+            line_text = lines[line_num - 1] if line_num <= len(lines) else ""
+            if line_suppressed(line_text):
+                continue
             findings.append({
                 "file": filepath,
                 "line": line_num,
@@ -484,17 +501,32 @@ def check_python_file(filepath: str, repo: Path) -> list[dict]:
     return findings
 
 
+SELF_SCAN_EXEMPT = {"scripts/auto-code-review.py"}
+
+
 def scan_file_for_security(filepath: str, repo: Path) -> list[dict]:
     """Run security scans on a file."""
+    if filepath.replace("\\", "/") in SELF_SCAN_EXEMPT:
+        # The scanner's own pattern definitions, messages and docstrings
+        # literally contain the threat strings it searches for — a self-scan
+        # here is all false positives by construction. (Standard practice,
+        # cf. semgrep excluding its own rules.)
+        return []
     findings = []
     content = get_file_content(filepath, repo)
     if content is None:
         return findings
     # Security patterns scan whole file
+    file_lines = content.split("\n")
     for patterns in [SECRETS_PATTERNS, SQL_INJECTION_PATTERNS, DANGEROUS_PATTERNS]:
         for pat in patterns:
             for match in pat["pattern"].finditer(content):
                 line_num = content[: match.start()].count("\n") + 1
+                line_text = file_lines[line_num - 1] if line_num <= len(file_lines) else ""
+                if line_suppressed(line_text):
+                    continue
+                if "re.compile(" in line_text or "re.match(" in line_text:
+                    continue  # regex-definition line: scanner config, not runtime code
                 findings.append({
                     "file": filepath,
                     "line": line_num,

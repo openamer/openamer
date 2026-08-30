@@ -6,7 +6,7 @@ description: Use for multi-source update management: git, pip, hub.
 # auto-updater
 
 **Description:** Use for multi-source update management: git, pip, hub.
-**Lines:** 118 | **Code:** 34 | **Dir:** `auto-updater`
+**Lines:** 161 | **Code:** 46 | **Dir:** `auto-updater`
 
 ---
 

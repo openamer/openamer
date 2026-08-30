@@ -6,7 +6,7 @@ description: Build/debug Electron apps on Windows (CJS, CDP, webview).
 # electron-windows-build
 
 **Description:** Build/debug Electron apps on Windows (CJS, CDP, webview).
-**Lines:** 253 | **Code:** 84 | **Dir:** `electron-windows-build`
+**Lines:** 335 | **Code:** 90 | **Dir:** `electron-windows-build`
 
 ---
 

@@ -6,7 +6,7 @@ description: Live developer experience audit. (gstack)
 # devex-review
 
 **Description:** Live developer experience audit. (gstack)
-**Lines:** 923 | **Code:** 140 | **Dir:** `devex-review`
+**Lines:** 940 | **Code:** 140 | **Dir:** `devex-review`
 
 ---
 

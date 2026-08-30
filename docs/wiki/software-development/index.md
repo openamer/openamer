@@ -4,12 +4,13 @@ title: software-development
 
 # 💻 software-development
 
-61 skills
+67 skills
 
 - [adapting-external-skills](adapting-external-skills/) — Port skills from another agent project into OpenAmer.
 - [api-drift-recovery](api-drift-recovery/) — ImportError after refactor? Map old→new API and fix tests.
 - [auto-code-review](auto-code-review/) — Security scan + code quality + auto-fix on git push.
 - [auto-docs](auto-docs/) — Generate docs from live git+skills+cron state.
+- [best-in-world-workflow](best-in-world-workflow/) — Use before non-trivial tasks: radar-first, verify, no title.
 - [capture-thinking](capture-thinking/) — Save reasoning as A2A insight after key responses.
 - [clean-code-edits](clean-code-edits/) — Make minimal, clean diffs when editing code in a git repo.
 - [cli-command-extension](cli-command-extension/) — Extend OpenAmer CLI. Parser, dispatch, main.py file edits.
@@ -32,6 +33,7 @@ title: software-development
 - [electron-windows-build](electron-windows-build/) — Build/debug Electron apps on Windows (CJS, CDP, webview).
 - [eol-safe-editing](eol-safe-editing/) — Use when editing CRLF files — patch bytes, avoid CRLF flips.
 - [fork-differentiation](fork-differentiation/) — Differentiate a fork from its upstream honestly.
+- [git-clean-verification](git-clean-verification/) — Use when verifying a clean git state on autocrlf repos.
 - [github-ci-debugging](github-ci-debugging/) — Use for batch CI failures: check-runs, job logs, main-first.
 - [greenfield-agent-architecture](greenfield-agent-architecture/) — Use when building a new agent/CLI project from scratch.
 - [greenfield-agent-project](greenfield-agent-project/) — Build a new agent/CLI project, architecture-first.
@@ -48,10 +50,14 @@ title: software-development
 - [openamer-ide-extensions](openamer-ide-extensions/) — Build both VS Code and JetBrains IDE extensions.
 - [parallel-feature-development](parallel-feature-development/) — Build features concurrently via sub-agent delegation.
 - [plan](plan/) — Write a markdown plan to .openamer/plans/; no execution.
+- [plugin-advanced-patterns](plugin-advanced-patterns/) — Use for subprocess and onToolCall plugin patterns.
+- [plugin-dashboard-reporting](plugin-dashboard-reporting/) — Dashboard, Export & Cron für OpenAmer-Plugins.
+- [plugin-external-integration](plugin-external-integration/) — Plugins connecting OpenAmer to external processes via stdio.
 - [python-debugpy](python-debugpy/) — Debug Python: pdb REPL + debugpy remote (DAP).
 - [record-browser-gif](record-browser-gif/) — Record browser interactions as GIFs.
 - [requesting-code-review](requesting-code-review/) — Pre-commit review: security scan, quality gates, auto-fix.
 - [safe-self-modification](safe-self-modification/) — Use when an agent edits its own core code safely.
+- [self-introspection](self-introspection/) — Use to count real SKILL.md files and registered tool names.
 - [self-modify](self-modify/) — Use when modifying OpenAmer's own core code safely. Gate every change behind the
 - [simplify-code](simplify-code/) — Parallel 4-agent cleanup of recent code changes.
 - [skill-knowledge-graph](skill-knowledge-graph/) — Knowledge Graph: Skill-Netzwerk aus 630 Skills + Vorschlags-Engine + JSON/DOT-Ex

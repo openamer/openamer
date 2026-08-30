@@ -4,15 +4,17 @@ title: autonomous-ai-agents
 
 # 🤖 autonomous-ai-agents
 
-28 skills
+32 skills
 
 - [a2a-swarm](a2a-swarm/) — Run and grow the OpenAmer Agent-to-Agent swarm: identity, trust, node-to-node as
 - [agent-mesh](agent-mesh/) — Agent mesh: master/worker nodes, HTTP delegation, heartbeat.
+- [agent-self-improvement](agent-self-improvement/) — Use when extending the agent's self-improvement scaffold.
 - [agent-self-setup](agent-self-setup/) — Fix and enable tools autonomously. Never ask the user to.
 
 - [auto-import-deepseek-harness](auto-import-deepseek-harness/) — Auto import DeepSeek Harness skills.
 - [autonomous-bootstrapping](autonomous-bootstrapping/) — When tools are blocked, find free workarounds autonomously.
 - [autonomous-completion](autonomous-completion/) — Use when given an autonomy mandate — complete, verify.
+- [autonomous-execution-discipline](autonomous-execution-discipline/) — Trusted with autonomy: act, don't ask, edit code safely.
 - [bug-bounty](bug-bounty/) — Use for autonomous bug-hunt: scan, reproduce, fix, bounty.
 - [claude-code](claude-code/) — Delegate coding to Claude Code CLI (features, PRs).
 - [codex](codex/) — Delegate coding to OpenAI Codex CLI (features, PRs).
@@ -24,7 +26,7 @@ scrolling, draggi
 - [goal-engine](goal-engine/) — Use for mission: define, prioritize, --tick, progress, scan.
 - [multi-agent-orchestration](multi-agent-orchestration/) — Parallel, hierarchical, or debate multi-agent orchestration.
 - [openamer-agent](openamer-agent/) — Use, configure, theme, extend, and orchestrate OpenAmer Agent.
-- [openamer-brain-train](openamer-brain-train/) — Train your OWN OpenAmer-specific small model from collected brain data: dataset, QLoRA, eval, export.
+- [openamer-brain-train](openamer-brain-train/) — Train an OpenAmer-specific small model from the collected brain data (QLoRA on N
 - [openamer-finetune-plan](openamer-finetune-plan/) — Plan and prepare an OpenAmer-specific fine-tune from the collected brain data: d
 - [openamer-update-recovery](openamer-update-recovery/) — Use when `openamer update` fails or leaves a broken install.
 - [openamer-vision](openamer-vision/) — Use to recall the 5-pillar strategic vision for OpenAmer.
@@ -32,6 +34,7 @@ scrolling, draggi
 - [plugin-system](plugin-system/) — Use to load, create, and manage OpenAmer plugins.
 - [remote-agent-worker](remote-agent-worker/) — Delegate work to a remote agent via a git-repo message bus.
 - [security-agent](security-agent/) — Use for pip CVE scanning and auto-patching via OSV.dev API.
+- [self-improvement-tooling](self-improvement-tooling/) — Use for OpenAmer self-improvement tooling scripts.
 - [self-reflection-loop](self-reflection-loop/) — Self-reflection loop to review outputs and update memory.
 - [skill-discovery](skill-discovery/) — Discover and import external skills into OpenAmer.
 - [skills-hub-cache](skills-hub-cache/) — Skills Hub rate-limited? Git clone repos, no API key needed.

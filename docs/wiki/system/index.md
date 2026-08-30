@@ -4,7 +4,7 @@ title: system
 
 # 🖥️ system
 
-26 skills
+27 skills
 
 - [ab-test-engine](ab-test-engine/) — Use for A/B experiments on OpenAmer configs and skills.
 - [auto-updater](auto-updater/) — Use for multi-source update management: git, pip, hub.
@@ -14,6 +14,7 @@ title: system
 - [dashboard](dashboard/) — Use for the Live-Web-Dashboard on port 8899.
 - [file-organizer](file-organizer/) — Clean Desktop/DL: temp, MD5 dedupe, type-sort, undo.
 - [global-sync](global-sync/) — Use for multi-machine HTTP delta sync with peer management.
+- [growth-tracking](growth-tracking/) — Use for cross-session growth tracking via git.
 - [learning-loop](learning-loop/) — Use for auto error capture, categorization and skill gen.
 - [log-analyzer](log-analyzer/) — Use for log analysis, error tracking, alerts, and dashboard.
 - [memory-store-upkeep](memory-store-upkeep/) — Use when writing or updating persistent memory stores.

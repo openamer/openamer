@@ -6,7 +6,7 @@ description: Regenerate the iOS debug bridge against the latest upstream gstack 
 # ios-sync
 
 **Description:** Regenerate the iOS debug bridge against the latest upstream gstack templates. (gstack)
-**Lines:** 464 | **Code:** 57 | **Dir:** `ios-sync`
+**Lines:** 471 | **Code:** 57 | **Dir:** `ios-sync`
 
 ---
 

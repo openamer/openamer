@@ -6,7 +6,7 @@ description: Use when rebuilding the OpenAmer desktop app on Windows.
 # openamer-desktop-build
 
 **Description:** Use when rebuilding the OpenAmer desktop app on Windows.
-**Lines:** 68 | **Code:** 5 | **Dir:** `openamer-desktop-build`
+**Lines:** 110 | **Code:** 14 | **Dir:** `openamer-desktop-build`
 
 ---
 

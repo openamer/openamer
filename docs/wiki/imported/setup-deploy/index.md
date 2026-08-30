@@ -6,7 +6,7 @@ description: Configure deployment settings for /land-and-deploy.
 # setup-deploy
 
 **Description:** Configure deployment settings for /land-and-deploy.
-**Lines:** 606 | **Code:** 101 | **Dir:** `setup-deploy`
+**Lines:** 613 | **Code:** 101 | **Dir:** `setup-deploy`
 
 ---
 

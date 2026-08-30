@@ -6,7 +6,7 @@ description: Safe Windows file editing: CRLF + heredoc traps.
 # windows-aware-file-edits
 
 **Description:** Safe Windows file editing: CRLF + heredoc traps.
-**Lines:** 84 | **Code:** 7 | **Dir:** `windows-aware-file-edits`
+**Lines:** 137 | **Code:** 7 | **Dir:** `windows-aware-file-edits`
 
 ---
 

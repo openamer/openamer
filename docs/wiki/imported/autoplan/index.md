@@ -6,7 +6,7 @@ description: Auto-review pipeline — reads the full CEO, design, eng, and DX re
 # autoplan
 
 **Description:** Auto-review pipeline — reads the full CEO, design, eng, and DX review skills from disk and runs them sequentially with auto-decisions using 6 decision principles. (gstack)
-**Lines:** 1046 | **Code:** 184 | **Dir:** `autoplan`
+**Lines:** 1076 | **Code:** 184 | **Dir:** `autoplan`
 
 ---
 

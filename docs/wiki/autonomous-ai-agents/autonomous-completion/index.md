@@ -6,7 +6,7 @@ description: Use when given an autonomy mandate — complete, verify.
 # autonomous-completion
 
 **Description:** Use when given an autonomy mandate — complete, verify.
-**Lines:** 79 | **Code:** 0 | **Dir:** `autonomous-completion`
+**Lines:** 111 | **Code:** 0 | **Dir:** `autonomous-completion`
 
 ---
 

@@ -45,7 +45,12 @@
 - Path('') in Path.home() bei env-Var-Fallbacks ist eine Falle ('.' statt leer)
 - Subagent-Dispatch gut für parallele Builds, aber finale Integration braucht manuelle Path-Korrektur
 - SPA Catch-All Routes (/{full_path:path}) überschreiben Static-Mounts → besser FileResponse-Routes
-- Self-Modify funktioniert! 1. Temp-File mit Änderungen 2. self_modify.py --tests 3. ✅
+- **Self-Modify funktioniert!** 1. Temp-File mit Änderungen 2. self_modify.py --tests 3. ✅
+
+### ⚠️ Push-Status
+- 2 Commits lokal (origin/main um 2 ahead)
+- GitHub-Token abgelaufen → Push hängt
+- Muss beim nächsten mal neu authentifiziert werden
 
 - MCP-Bridge: E2E-Test mit echtem MCP-Echo-Server
 - MCP-Bridge: Integration in OpenAmer Dashboard (port 8899)
