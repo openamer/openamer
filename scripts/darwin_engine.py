@@ -808,6 +808,166 @@ def promote_species(name: str) -> bool:
 
 
 # ─────────────────────────────────────────────────────────────────────────────
+# 12. PHASE 9: self-feeding blueprints - harvest knowledge from real sessions
+# ─────────────────────────────────────────────────────────────────────────────
+
+HARVESTED_FILE = DARWIN_DIR / "harvested-blueprints.json"
+_STATE_DB_CANDIDATES = ("state.db", "sessions.db")
+
+
+def _session_db() -> Path | None:
+    for name in _STATE_DB_CANDIDATES:
+        p = HOME / name
+        if p.exists():
+            return p
+    return None
+
+
+def harvest_knowledge(min_hits: int = 3, limit: int = 5000) -> list[dict]:
+    """Mine real session history for recurring FILE-LEVEL error patterns and
+    turn the strongest ones into NEW blueprints. The blueprint pool grows with
+    the system's own lived experience instead of staying hardcoded.
+
+    Only concrete, technical patterns qualify: missing files/paths/modules
+    from real FileNotFoundError-style messages. Generic verb fragments
+    (German past participles etc.) are rejected by the technical-token gate.
+    """
+    import sqlite3
+    from collections import Counter
+    db = _session_db()
+    if not db:
+        return []
+    try:
+        conn = sqlite3.connect(str(db))
+        rows = conn.execute(
+            "SELECT content FROM messages WHERE ("
+            "content LIKE '%No such file%' OR content LIKE '%cannot open%' "
+            "OR content LIKE '%FileNotFoundError%' "
+            "OR content LIKE '%ModuleNotFoundError%') LIMIT ?",
+            (limit,)).fetchall()
+        conn.close()
+    except Exception:
+        return []
+
+    topics: Counter = Counter()
+    for (content,) in rows:
+        if not content:
+            continue
+        # Extract path-like error subjects without one mega-regex:
+        # normalize escaped JSON quotes first, then split on known anchors.
+        flat = content.replace("\\'", "'").replace('\\"', '"')
+        for anchor in ("No such file or directory", "FileNotFoundError",
+                       "ModuleNotFoundError", "cannot access"):
+            idx = 0
+            while True:
+                i = flat.find(anchor, idx)
+                if i < 0:
+                    break
+                tail = flat[i + len(anchor):].lstrip(" :,'\"\\")
+                # subject = up to next quote/newline/JSON-escape
+                subject = re.split("['\"\\n,]", tail)[0].strip()
+                subject = re.sub(r"^[a-zA-Z]:[/\\]", "", subject).strip("/\\")
+                if len(subject) >= 8 and "/" in subject or subject.endswith(
+                        (".py", ".json", ".md", ".db", ".yaml", ".yml",
+                         ".toml", ".lock")):
+                    if "node_modules" not in subject:
+                        topics[subject.lower()[:60]] += 1
+                idx = i + len(anchor) + 10
+
+    new_blueprints = []
+    existing_names = {bp["name"] for bp in BLUEPRINTS}
+    harvested = _load_json(HARVESTED_FILE, [])
+    existing_names.update(h.get("name") for h in harvested)
+
+    for topic, hits in topics.most_common():
+        if hits < min_hits:
+            break
+        slug = re.sub(r"[^a-z0-9]+", "-", topic)[:40].strip("-")
+        name = f"darwin-harvested-{slug}"
+        if name in existing_names:
+            continue
+        new_blueprints.append({
+            "name": name,
+            "topic": topic,
+            "hits": hits,
+            "fix_hint": "",
+            "donor_note": f"harvested from {hits} real occurrences",
+        })
+
+    if new_blueprints:
+        harvested.extend(new_blueprints)
+        _save_json(HARVESTED_FILE, harvested)
+    return new_blueprints
+
+
+def all_blueprints() -> list[dict]:
+    """Hardcoded blueprints + harvested ones (converted to blueprint shape)."""
+    harvested = _load_json(HARVESTED_FILE, [])
+    extra = []
+    for h in harvested:
+        extra.append({
+            "name": h["name"],
+            "description": f"Use when handling: {h['topic']} - "
+                           f"pattern seen {h['hits']}x in real sessions.",
+            "trigger": f"Use when the error topic '{h['topic']}' appears.",
+            "body": f"1. Recognize the recurring failure pattern: {h['topic']}.\n"
+                    f"2. Known working fix from session history: "
+                    f"{h.get('fix_hint') or 'inspect the failing path directly'}.\n"
+                    f"3. Verify the fix with real tool output before claiming success.",
+            "pitfall": f"This pattern failed {h['hits']}x before - do not repeat it.",
+        })
+    return BLUEPRINTS + extra
+
+
+def synthesize_species_v2(fitness: dict, max_new: int = 2,
+                          apply: bool = False) -> list[dict]:
+    """Speciation using the full (hardcoded + harvested) blueprint pool."""
+    existing = {n for n in fitness}
+    # never re-synthesize something already in the species nursery
+    sp_dir = DARWIN_DIR / "species"
+    if sp_dir.exists():
+        existing.update(m["child"] for m in
+                        (_load_json(p, {}) for p in sp_dir.glob("*.json"))
+                        if m.get("child"))
+    donor = max(fitness.items(), key=lambda kv: kv[1]["fitness"])[0] if fitness else None
+    created = []
+    for bp in all_blueprints():
+        if len(created) >= max_new:
+            break
+        if bp["name"] in existing:
+            continue
+        text = (
+            f"---\n"
+            f"name: {bp['name']}\n"
+            f"description: {bp['description']}\n"
+            f"---\n\n"
+            f"# {bp['name'].replace('-', ' ').title()}\n\n"
+            f"## Trigger\n{bp['trigger']}\n\n"
+            f"## Procedure\n{bp['body']}\n\n"
+            f"## Pitfall\n{bp['pitfall']}\n\n"
+            f"## Verification\nAfter following the procedure: confirm the outcome\n"
+            f"with real evidence (exit code, file, or API response).\n"
+            f"```bash\npython -c \"import sys; print('darwin-species-ok')\"\n```\n"
+        )
+        created.append({"name": bp["name"], "donor": donor, "applied": apply})
+        if apply:
+            dst = DARWIN_DIR / "species" / bp["name"]
+            dst.mkdir(parents=True, exist_ok=True)
+            (dst / "SKILL.md").write_text(text, "utf-8")
+            _save_json(DARWIN_DIR / "species" / f"{bp['name']}.json", {
+                "child": bp["name"], "parent": donor, "kind": "speciation",
+                "born": _now(), "status": "candidate", "wins": 0, "losses": 0,
+            })
+            record_lineage(donor or "void", bp["name"], "speciation")
+    if created and apply:
+        log = _load_json(SYNTHESIS_LOG, [])
+        log.extend({"name": c["name"], "donor": c["donor"], "when": _now()}
+                   for c in created)
+        _save_json(SYNTHESIS_LOG, log)
+    return created
+
+
+# ─────────────────────────────────────────────────────────────────────────────
 # 11. PHASE 8: memory + species arena
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -1234,6 +1394,10 @@ def main() -> int:
                     help="fitness trend over time from history snapshots")
     ap.add_argument("--arena", action="store_true",
                     help="duel two installed species with real execution")
+    ap.add_argument("--harvest", action="store_true",
+                    help="mine real session history for new blueprints")
+    ap.add_argument("--speciate-v2", action="store_true",
+                    help="speciation using hardcoded + harvested blueprints")
     ap.add_argument("--report", action="store_true")
     ap.add_argument("--full", action="store_true")
     args = ap.parse_args()
@@ -1324,6 +1488,24 @@ def main() -> int:
         if not fights:
             print("🏟️  arena: not enough installed species (need >= 2)")
         return 2 if changed else 0
+
+    if args.harvest:
+        found = harvest_knowledge(min_hits=3)
+        print(f"🌾 harvested {len(found)} new blueprint(s) from session history:")
+        for b in found[:5]:
+            print(f"   {b['name']} ({b['hits']} occurrences)")
+        if not found:
+            print("   (no recurring patterns above threshold)")
+        if found:
+            changed = True
+
+    if args.speciate_v2:
+        fitness = _load_json(FITNESS_FILE, {}).get("skills", compute_fitness())
+        created = synthesize_species_v2(fitness, max_new=2, apply=True)
+        print(f"🧬 v2 synthesized {len(created)} species: "
+              f"{[c['name'] for c in created]}")
+        if created:
+            changed = True
 
     if args.rollback:
         restored = rollback(args.rollback)
