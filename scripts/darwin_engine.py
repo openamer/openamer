@@ -327,7 +327,7 @@ def report(fitness: dict, offspring: list, competitions: list) -> str:
     if offspring:
         lines += ["", "## New mutations", ""]
         for o in offspring:
-            lines.append(f"- {o['parent']} → `{o['child']}` (op={o['op']}, applied={o['applied']})")
+            lines.append(f"- {o.get('parent', '?')} → `{o.get('child', '?')}` (op={o.get('op', '?')}, applied={o.get('applied', False)})")
     if competitions:
         lines += ["", "## Competitions", ""]
         for c in competitions:
