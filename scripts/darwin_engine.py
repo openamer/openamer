@@ -72,6 +72,7 @@ def _session_skill_hits() -> dict[str, int]:
     """Count how often each skill is mentioned across past sessions."""
     hits: dict[str, int] = {}
     db_candidates = [
+        HOME / "state.db",
         HOME / "sessions.db",
         HOME / "data" / "sessions.db",
     ]
