@@ -366,8 +366,9 @@ def start_server():
             # Check if process is still alive (Windows-friendly)
             if sys.platform == "win32":
                 check = subprocess.run(["tasklist", "/FI", f"PID eq {pid}"],
-                                       capture_output=True, text=True, timeout=5)
-                if str(pid) in check.stdout:
+                                       capture_output=True, timeout=5)
+                tasklist_out = (check.stdout or b"").decode("cp1252", errors="replace")
+                if str(pid) in tasklist_out:
                     print(f"Server already running (PID {pid}) on port {PORT}")
                     return
             else:
