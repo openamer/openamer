@@ -23,6 +23,8 @@ python scripts/darwin_engine.py --mutate    # generate mutations (dry-run)
 python scripts/darwin_engine.py --mutate --apply   # write offspring
 python scripts/darwin_engine.py --crossover skillA skillB --apply
 python scripts/darwin_engine.py --compete   # evaluate candidates vs parents
+python scripts/darwin_engine.py --trial skillA skillA__mutX  # live A/B: cron job runs child
+python scripts/darwin_engine.py --trials  # evaluate trials from real execution evidence
 python scripts/darwin_engine.py --report    # reports/darwin-report.md
 python scripts/darwin_engine.py --full      # scan+mutate+compete+report
 ```
