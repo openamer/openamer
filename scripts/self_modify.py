@@ -140,7 +140,7 @@ def _run_tests(scope: str | None = None) -> tuple[bool, str]:
                 cwd=root,
                 capture_output=True,
                 text=True,
-                timeout=600,
+                timeout=120,
             )
         except subprocess.TimeoutExpired:
             return (False, "(tests timed out)")
