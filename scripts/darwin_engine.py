@@ -269,6 +269,8 @@ def evaluate_trials(min_executions: int = 2) -> list[dict]:
         if won:
             genome["losses"] = genome.get("losses", 0) + 1  # parent lost a slot
             promote_child(trial["parent"], trial["child"])
+            record_lineage(trial["parent"], trial["child"], "trial_win",
+                           {"job_id": job_id, "outcomes": outcomes})
         else:
             genome["wins"] = genome.get("wins", 0) + 1
         _save_json(POPULATION_FILE, population)
@@ -398,6 +400,97 @@ def autopilot(min_executions: int = 2) -> int:
 
     changed = bool(offspring or trials or comps or quarantined)
     return 2 if changed else 0
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 7. PHASE 4: lineage, mermaid tree, genome sync
+# ─────────────────────────────────────────────────────────────────────────────
+
+LINEAGE_FILE = DARWIN_DIR / "lineage.json"
+
+
+def record_lineage(parent: str, child: str, kind: str, extra: dict | None = None) -> None:
+    """Append an evolution event to the lineage graph (persistent family tree)."""
+    graph = _load_json(LINEAGE_FILE, {"events": []})
+    event = {"parent": parent, "child": child, "kind": kind, "when": _now()}
+    if extra:
+        event.update(extra)
+    graph["events"].append(event)
+    _save_json(LINEAGE_FILE, graph)
+
+
+def lineage_mermaid(limit: int = 40) -> str:
+    """Render the evolution family tree as a Mermaid graph for the report."""
+    graph = _load_json(LINEAGE_FILE, {"events": []})
+    events = graph["events"][-limit:]
+    if not events:
+        return ""
+    lines = ["```mermaid", "graph TD"]
+    seen: set[str] = set()
+    for e in events:
+        child = (e.get("child") or "unknown").replace('"', "")
+        parent = (e.get("parent") or "unknown").replace('"', "")
+        style = {"mutation": "-->", "crossover": "==>", "trial_win": "-.->"}\
+            .get(e.get("kind", "mutation"), "-->")
+        lines.append(f'    {parent}["{parent}"] {style} {child}["{child}"]')
+        seen.add(parent)
+        seen.add(child)
+    lines.append("```")
+    return "\n".join(lines)
+
+
+def export_genome(path: Path | None = None) -> Path:
+    """Export the full evolution state (fitness, lineage, population, archive
+    manifest) as one portable genome file - for fleet sync across machines."""
+    state = {
+        "exported": _now(),
+        "population": _load_json(POPULATION_FILE, {}),
+        "lineage": _load_json(LINEAGE_FILE, {"events": []}),
+        "offspring": [
+            _load_json(p, {}) for p in (DARWIN_DIR / "offspring").glob("*.json")
+        ] if (DARWIN_DIR / "offspring").exists() else [],
+        "quarantine_log": _load_json(ROLLBACK_LOG, []),
+    }
+    out = path or (REPORTS_DIR / "darwin-genome.json")
+    _save_json(out, state)
+    return out
+
+
+def import_genome(path: Path) -> dict:
+    """Merge an exported genome (another machine's evolution state) into
+    this one. Conflicts resolved by keeping the higher W/L count."""
+    incoming = _load_json(path, {})
+    if not incoming:
+        return {"merged": 0}
+    merged = {"population": 0, "lineage": 0, "offspring": 0}
+    local_pop = _load_json(POPULATION_FILE, {})
+    for name, genome in (incoming.get("population") or {}).items():
+        local = local_pop.get(name, {})
+        if (genome.get("wins", 0) + genome.get("losses", 0)) > \
+           (local.get("wins", 0) + local.get("losses", 0)):
+            local_pop[name] = genome
+            merged["population"] += 1
+    _save_json(POPULATION_FILE, local_pop)
+
+    local_lin = _load_json(LINEAGE_FILE, {"events": []})
+    known = {(e.get("child"), e.get("when")) for e in local_lin["events"]}
+    for e in (incoming.get("lineage") or {}).get("events", []):
+        if (e.get("child"), e.get("when")) not in known:
+            local_lin["events"].append(e)
+            merged["lineage"] += 1
+    _save_json(LINEAGE_FILE, local_lin)
+
+    off_dir = DARWIN_DIR / "offspring"
+    off_dir.mkdir(parents=True, exist_ok=True)
+    for meta in incoming.get("offspring", []):
+        child = meta.get("child")
+        if not child:
+            continue
+        mp = off_dir / f"{child}.json"
+        if not mp.exists():
+            _save_json(mp, meta)
+            merged["offspring"] += 1
+    return merged
 
 
 
@@ -539,6 +632,7 @@ def mutate(fitness: dict, top_n: int = 5, apply: bool = False) -> list[dict]:
                 "child": child_name, "parent": parent, "op": op, "born": _now(),
                 "status": "candidate", "wins": 0, "losses": 0,
             })
+            record_lineage(parent, child_name, "mutation", {"op": op})
     return offspring
 
 
@@ -578,6 +672,7 @@ def crossover(name_a: str, name_b: str, apply: bool = False) -> dict | None:
         (dst / "SKILL.md").write_text(child_text, "utf-8")
         _save_json(DARWIN_DIR / "offspring" / f"{child_name}.json",
                    {**result, "status": "candidate", "wins": 0, "losses": 0})
+        record_lineage(name_a, child_name, "crossover")
     return result
 
 
@@ -665,6 +760,9 @@ def report(fitness: dict, offspring: list, competitions: list) -> str:
             emoji = "🏆" if c["won"] else "⏳"
             lines.append(f"- {emoji} `{c['child']}` ({c['child_fitness']}) vs "
                          f"`{c['parent']}` ({c['parent_fitness']})")
+    tree = lineage_mermaid()
+    if tree:
+        lines += ["", "## Evolution Tree", "", tree]
     lines.append("")
     return "\n".join(lines)
 
@@ -692,6 +790,12 @@ def main() -> int:
                     help="restore the last N quarantined skills")
     ap.add_argument("--autopilot", action="store_true",
                     help="full unattended cycle: scan+mutate+trials+compete+prune+report")
+    ap.add_argument("--lineage", action="store_true",
+                    help="print the evolution family tree (mermaid)")
+    ap.add_argument("--export-genome", action="store_true",
+                    help="export evolution state to reports/darwin-genome.json")
+    ap.add_argument("--import-genome", metavar="PATH",
+                    help="merge another machine's genome into this one")
     ap.add_argument("--report", action="store_true")
     ap.add_argument("--full", action="store_true")
     args = ap.parse_args()
@@ -705,6 +809,21 @@ def main() -> int:
     if args.autopilot:
         code = autopilot(min_executions=2)
         return code
+
+    if args.lineage:
+        tree = lineage_mermaid()
+        print(tree if tree else "(empty lineage - no evolution events yet)")
+        return 0
+
+    if args.export_genome:
+        out = export_genome()
+        print(f"🧬 genome exported -> {out}")
+        return 0
+
+    if args.import_genome:
+        merged = import_genome(Path(args.import_genome))
+        print(f"🧬 genome merged: {merged}")
+        changed = any(merged.values())
 
     if args.rollback:
         restored = rollback(args.rollback)

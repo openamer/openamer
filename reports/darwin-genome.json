@@ -1,0 +1,136 @@
+{
+  "exported": "2026-08-30T13:52:43.154569+00:00",
+  "population": {},
+  "lineage": {
+    "events": [
+      {
+        "parent": "self-rewriter",
+        "child": "self-rewriter__muttighten_trigger",
+        "kind": "mutation",
+        "when": "2026-08-30T13:52:32.590646+00:00",
+        "op": "tighten_trigger"
+      },
+      {
+        "parent": "discord-server-management",
+        "child": "discord-server-management__muttighten_trigger",
+        "kind": "mutation",
+        "when": "2026-08-30T13:52:32.590646+00:00",
+        "op": "tighten_trigger"
+      },
+      {
+        "parent": "auto-env-checker",
+        "child": "auto-env-checker__mutadd_pitfall",
+        "kind": "mutation",
+        "when": "2026-08-30T13:52:32.590646+00:00",
+        "op": "add_pitfall"
+      },
+      {
+        "parent": "train-from-usage",
+        "child": "train-from-usage__mutbroaden_trigger",
+        "kind": "mutation",
+        "when": "2026-08-30T13:52:32.590646+00:00",
+        "op": "broaden_trigger"
+      },
+      {
+        "parent": "plugin-api",
+        "child": "plugin-api__mutbroaden_trigger",
+        "kind": "mutation",
+        "when": "2026-08-30T13:52:32.590646+00:00",
+        "op": "broaden_trigger"
+      }
+    ]
+  },
+  "offspring": [
+    {
+      "child": "auto-env-checker__mutadd_pitfall",
+      "parent": "auto-env-checker",
+      "op": "add_pitfall",
+      "born": "2026-08-30T13:52:32.590646+00:00",
+      "status": "candidate",
+      "wins": 0,
+      "losses": 1
+    },
+    {
+      "child": "discord-server-management__muttighten_trigger",
+      "parent": "discord-server-management",
+      "op": "tighten_trigger",
+      "born": "2026-08-30T13:52:32.590646+00:00",
+      "status": "candidate",
+      "wins": 0,
+      "losses": 1
+    },
+    {
+      "child": "github-readme-summary__mutbroaden_trigger",
+      "parent": "github-readme-summary",
+      "op": "broaden_trigger",
+      "born": "2026-08-30T13:32:13.672239+00:00",
+      "status": "candidate",
+      "wins": 0,
+      "losses": 5
+    },
+    {
+      "child": "openamer-plugin-development__muttighten_trigger",
+      "parent": "openamer-plugin-development",
+      "op": "tighten_trigger",
+      "born": "2026-08-30T13:32:13.672239+00:00",
+      "status": "candidate",
+      "wins": 0,
+      "losses": 5
+    },
+    {
+      "child": "plugin-api__mutbroaden_trigger",
+      "parent": "plugin-api",
+      "op": "broaden_trigger",
+      "born": "2026-08-30T13:52:32.590646+00:00",
+      "status": "candidate",
+      "wins": 0,
+      "losses": 1
+    },
+    {
+      "child": "self-rewriter__muttighten_trigger",
+      "parent": "self-rewriter",
+      "op": "tighten_trigger",
+      "born": "2026-08-30T13:52:32.590646+00:00",
+      "status": "candidate",
+      "wins": 0,
+      "losses": 1
+    },
+    {
+      "child": "train-from-usage__mutadd_pitfall",
+      "parent": "train-from-usage",
+      "op": "add_pitfall",
+      "born": "2026-08-30T13:32:13.672239+00:00",
+      "status": "candidate",
+      "wins": 0,
+      "losses": 5
+    },
+    {
+      "child": "train-from-usage__mutbroaden_trigger",
+      "parent": "train-from-usage",
+      "op": "broaden_trigger",
+      "born": "2026-08-30T13:52:32.590646+00:00",
+      "status": "candidate",
+      "wins": 0,
+      "losses": 1
+    },
+    {
+      "child": "undetectable-browsing__muttighten_trigger",
+      "parent": "undetectable-browsing",
+      "op": "tighten_trigger",
+      "born": "2026-08-30T13:32:13.672239+00:00",
+      "status": "candidate",
+      "wins": 0,
+      "losses": 5
+    },
+    {
+      "child": "vscode-extension-scaffold__mutbroaden_trigger",
+      "parent": "vscode-extension-scaffold",
+      "op": "broaden_trigger",
+      "born": "2026-08-30T13:32:13.672239+00:00",
+      "status": "candidate",
+      "wins": 0,
+      "losses": 5
+    }
+  ],
+  "quarantine_log": []
+}
