@@ -393,6 +393,12 @@ def autopilot(min_executions: int = 2) -> int:
     print(f"[autopilot] fitness computed for {len(fitness)} skills "
           f"(history snapshot #{n_snaps})")
 
+    # phase 15: self-tuning before using any constant
+    tuning = auto_tune()
+    print(f"[autopilot] tuning: {tuning['reason']} "
+          f"(epsilon={tuning['epsilon']}, max_trials={tuning['max_trials']}, "
+          f"max_losses={tuning['max_losses']})")
+
     offspring = mutate(fitness, apply=True)
     print(f"[autopilot] {len(offspring)} mutations generated")
 
@@ -404,7 +410,7 @@ def autopilot(min_executions: int = 2) -> int:
     if any(c["won"] for c in comps):
         print(f"[autopilot] {sum(1 for c in comps if c['won'])} candidate(s) promoted")
 
-    started = tournament(fitness, max_trials=2)
+    started = tournament(fitness, max_trials=tuning['max_trials'])
     if started:
         for s in started:
             print(f"[autopilot] tournament: trialing `{s['child']}` "
@@ -439,7 +445,7 @@ def autopilot(min_executions: int = 2) -> int:
         else:
             print(f"[autopilot] arena: {f['status']}")
 
-    retired = retire_losers(max_losses=3)
+    retired = retire_losers(max_losses=tuning['max_losses'])
     if retired:
         print(f"[autopilot] retired {len(retired)} losing species: "
               f"{[r['name'] for r in retired]}")
@@ -1786,7 +1792,7 @@ def main() -> int:
             changed = True
 
     if args.retire:
-        retired = retire_losers(max_losses=3)
+        retired = retire_losers(max_losses=tuning['max_losses'])
         if retired:
             summary = ", ".join(
                 "{0} ({1}W/{2}L)".format(r["name"], r["wins"], r["losses"])
@@ -1924,5 +1930,65 @@ def main() -> int:
     return 2 if changed else 0
 
 
-if __name__ == "__main__":
-    sys.exit(main())
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+
+
+# 16. PHASE 15: self-tuning - the ecosystem adjusts its own constants
+# ─────────────────────────────────────────────────────────────────────────────
+
+TUNING_FILE = DARWIN_DIR / "tuning.json"
+TUNING_DEFAULTS = {
+    "epsilon": 0.3,        # exploration rate for operator selection
+    "max_trials": 2,       # concurrent live trials
+    "max_losses": 3,       # arena defeats before species retirement
+    "tuned_at": None,
+}
+
+
+def get_tuning() -> dict:
+    """Current tuning constants (persisted so they survive restarts)."""
+    t = dict(TUNING_DEFAULTS)
+    t.update(_load_json(TUNING_FILE, {}))
+    return t
+
+
+def auto_tune() -> dict:
+    """Adjust Darwin's own constants based on ecosystem health signals.
+
+    Rules (each evidence-driven, conservative bounds):
+    - Stagnating population (flat trend, >=3 snapshots):
+      raise epsilon to 0.5 (explore more) and max_trials to 3 (more experiments)
+    - Volatile population (falling trend): lower epsilon to 0.15 (exploit
+      proven operators), tighten retirement to max_losses=2 (prune faster)
+    - Healthy (rising): keep defaults, log the decision
+    Returns the applied tuning for the report."""
+    t = get_tuning()
+    trend_data = fitness_trend()
+    trend = trend_data.get("population_trend", "unknown")
+    snapshots = trend_data.get("snapshots", 0)
+    old = dict(t)
+    t["tuned_at"] = _now()
+
+    if snapshots >= 3 and trend == "flat":
+        t["epsilon"] = 0.5
+        t["max_trials"] = 3
+        t["reason"] = "stagnating -> explore more"
+    elif snapshots >= 3 and trend == "falling":
+        t["epsilon"] = 0.15
+        t["max_losses"] = 2
+        t["reason"] = "declining -> exploit winners, prune faster"
+    else:
+        t["epsilon"] = TUNING_DEFAULTS["epsilon"]
+        t["max_trials"] = TUNING_DEFAULTS["max_trials"]
+        t["max_losses"] = TUNING_DEFAULTS["max_losses"]
+        t["reason"] = f"healthy ({trend}) -> defaults"
+
+    if t != old:
+        _save_json(TUNING_FILE, t)
+    return t
+
+
+if __name__ == "__main__":
+    sys.exit(main())
