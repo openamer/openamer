@@ -299,6 +299,107 @@ def promote_child(parent: str, child: str) -> bool:
     return True
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+# 6. PHASE 3: autopilot, quarantine prune, rollback
+# ─────────────────────────────────────────────────────────────────────────────
+
+ROLLBACK_LOG = DARWIN_DIR / "rollback-log.json"
+
+
+def _cron_referenced_skills() -> set[str]:
+    """All skills referenced by any cron job (jobs.json + legacy *.json)."""
+    protected: set[str] = set()
+    jobs = _load_cron_jobs()
+    items = jobs.get("jobs") if isinstance(jobs, dict) else jobs
+    if items:
+        for job in items:
+            protected.update(_job_skills(job))
+    for f in (HOME / "cron").glob("*.json"):
+        if f.name == "jobs.json":
+            continue
+        data = _load_json(f, {})
+        protected.update(data.get("skills") or [])
+    return protected
+
+
+def quarantine(fitness: dict, threshold: int = 0, dry_run: bool = True) -> list[dict]:
+    """Move zero-signal skills to quarantine (reversible, not deleted).
+
+    A skill is quarantined when fitness <= threshold AND usage == 0 AND it
+    has no active cron job. Quarantine dir keeps them out of the population
+    scan while remaining fully recoverable via --rollback.
+    """
+    import shutil
+    protected = _cron_referenced_skills()
+    q_dir = DARWIN_DIR / "quarantine"
+    q_dir.mkdir(parents=True, exist_ok=True)
+    moved = []
+    for name, s in fitness.items():
+        if s["fitness"] > threshold or s["usage"] > 0:
+            continue
+        if name in protected:
+            continue  # skill referenced by a job -> never quarantine blindly
+        src = SKILLS_DIR / name
+        if not src.exists():
+            continue
+        moved.append({"skill": name, "fitness": s["fitness"], "when": _now()})
+        if not dry_run:
+            shutil.move(str(src), str(q_dir / name))
+    if moved and not dry_run:
+        log = _load_json(ROLLBACK_LOG, [])
+        log.extend(moved)
+        _save_json(ROLLBACK_LOG, log)
+    return moved
+
+
+def rollback(count: int = 1) -> list[str]:
+    """Restore the last N quarantined skills to the live population."""
+    import shutil
+    log = _load_json(ROLLBACK_LOG, [])
+    restored = []
+    for entry in reversed(log[-count:]):
+        name = entry.get("skill")
+        src = DARWIN_DIR / "quarantine" / name
+        dst = SKILLS_DIR / name
+        if src.exists() and not dst.exists():
+            shutil.move(str(src), str(dst))
+            restored.append(name)
+    if restored:
+        _save_json(ROLLBACK_LOG, [e for e in log if e.get("skill") not in restored])
+    return restored
+
+
+def autopilot(min_executions: int = 2) -> int:
+    """Full unattended evolution cycle. Returns exit code (2 = changes made)."""
+    fitness = compute_fitness()
+    _save_json(FITNESS_FILE, {"updated": _now(), "skills": fitness})
+    print(f"[autopilot] fitness computed for {len(fitness)} skills")
+
+    offspring = mutate(fitness, apply=True)
+    print(f"[autopilot] {len(offspring)} mutations generated")
+
+    trials = evaluate_trials(min_executions)
+    for t in trials:
+        print(f"[autopilot] trial {t['job_id']}: {t['status']} {t['outcomes']}")
+
+    comps = compete()
+    if any(c["won"] for c in comps):
+        print(f"[autopilot] {sum(1 for c in comps if c['won'])} candidate(s) promoted")
+
+    quarantined = quarantine(fitness, threshold=0, dry_run=False)
+    if quarantined:
+        print(f"[autopilot] quarantined {len(quarantined)} dead skills: "
+              f"{[q['skill'] for q in quarantined]}")
+
+    md = report(fitness, offspring, comps)
+    REPORT_FILE.parent.mkdir(parents=True, exist_ok=True)
+    REPORT_FILE.write_text(md, "utf-8")
+    print(f"[autopilot] report -> {REPORT_FILE}")
+
+    changed = bool(offspring or trials or comps or quarantined)
+    return 2 if changed else 0
+
+
 
 def compute_fitness() -> dict:
     """Fitness pro Skill: Usage + Gesundheit - Strafen."""
@@ -354,20 +455,60 @@ def compute_fitness() -> dict:
 
 MUTATION_OPS = ["tighten_trigger", "broaden_trigger", "add_pitfall", "add_verification_step"]
 
+_PITFALL_POOL = [
+    "Check Windows paths (MSYS vs native) before running commands.",
+    "Verify tool output exists before reporting success - never fabricate results.",
+    "Long-running commands need a timeout; foreground shells cap at 600s.",
+    "Test after edit: a green lint is not a green test run.",
+]
+_TRIGGER_TIGHTEN = [
+    "Only on explicit user request - no auto-triggers.",
+    "Skip when the task is a one-off; require a recurring pattern first.",
+    "Do not trigger while a similar skill already handled the request.",
+]
+_TRIGGER_BROADEN = [
+    "Also activate on adjacent topics and near-miss phrasings.",
+    "Run opportunistically when related context appears in the session.",
+]
+
+
+def _replace_or_append_section(text: str, header_re: str, new_body: str) -> str:
+    """Replace the BODY of the first matching section, or append a new one."""
+    pattern = rf"(##\s*{header_re}[^\n]*\n)(.*?)(?=\n##|\Z)"
+    m = re.search(pattern, text, re.S)
+    if m:
+        return text[:m.start(2)] + new_body.rstrip() + "\n" + text[m.end(2):]
+    return text.rstrip() + f"\n\n## {header_re}\n{new_body.rstrip()}\n"
+
+
+def _has_variant_marker(text: str, marker: str) -> bool:
+    """Dedup: did this skill already receive this mutation family?"""
+    return marker in text
+
+
+def _semantic_mutation(text: str, op: str, rng: random.Random) -> str:
+    """Section-aware mutation: rewrites the section body, not appended boilerplate."""
+    if op == "tighten_trigger":
+        body = rng.choice(_TRIGGER_TIGHTEN)
+        out = _replace_or_append_section(text, "Trigger", body)
+        return out if out != text else text + f"\n\n## Trigger\n{body}\n"
+    if op == "broaden_trigger":
+        body = rng.choice(_TRIGGER_BROADEN)
+        return _replace_or_append_section(text, "Trigger", body)
+    if op == "add_pitfall":
+        if _has_variant_marker(text, "## Pitfall"):
+            return _replace_or_append_section(text, "Pitfall", rng.choice(_PITFALL_POOL))
+        return text.rstrip() + f"\n\n## Pitfall\n{rng.choice(_PITFALL_POOL)}\n"
+    if op == "add_verification_step":
+        body = ("After the last step: back the result with real tool output "
+                "(exit code, file path, or API response).")
+        return _replace_or_append_section(text, "Verification", body)
+    return text
+
 
 def _mutate_skill_md(text: str, op: str) -> str:
-    """Generate a skill text variant (deterministic mutation)."""
-    if op == "tighten_trigger":
-        if "## Trigger" in text:
-            return text.replace("## Trigger", "## Trigger (tightened: fewer false positives)", 1)
-        return text + "\n\n## Trigger\nOnly on explicit user request - no auto-triggers.\n"
-    if op == "broaden_trigger":
-        return text + "\n\n## Trigger (broad)\nAlso activate on adjacent topics.\n"
-    if op == "add_pitfall":
-        return text + "\n\n## Pitfall\nCheck Windows paths (MSYS vs native) before running commands.\n"
-    if op == "add_verification_step":
-        return text + "\n\n## Verification\nAfter the last step: back the result with real tool output.\n"
-    return text
+    """Generate a skill text variant (deterministic mutation, section-aware)."""
+    return _semantic_mutation(text, op, random.Random(42))
 
 
 def mutate(fitness: dict, top_n: int = 5, apply: bool = False) -> list[dict]:
@@ -543,6 +684,14 @@ def main() -> int:
                     help="swap a cron job's skill to CHILD for a live trial")
     ap.add_argument("--trials", action="store_true",
                     help="evaluate running trials from real execution evidence")
+    ap.add_argument("--quarantine", action="store_true",
+                    help="dry-run: which dead skills would be quarantined")
+    ap.add_argument("--quarantine-apply", action="store_true",
+                    help="actually quarantine dead skills (reversible)")
+    ap.add_argument("--rollback", type=int, metavar="N", default=0,
+                    help="restore the last N quarantined skills")
+    ap.add_argument("--autopilot", action="store_true",
+                    help="full unattended cycle: scan+mutate+trials+compete+prune+report")
     ap.add_argument("--report", action="store_true")
     ap.add_argument("--full", action="store_true")
     args = ap.parse_args()
@@ -552,6 +701,26 @@ def main() -> int:
         return 1
 
     changed = False
+
+    if args.autopilot:
+        code = autopilot(min_executions=2)
+        return code
+
+    if args.rollback:
+        restored = rollback(args.rollback)
+        print(f"↩️  restored {len(restored)} skill(s): {restored}" if restored
+              else "↩️  nothing to restore")
+        if restored:
+            changed = True
+
+    if args.quarantine or args.quarantine_apply:
+        fitness = compute_fitness()
+        moved = quarantine(fitness, threshold=0,
+                           dry_run=not args.quarantine_apply)
+        label = "quarantined" if args.quarantine_apply else "would quarantine"
+        print(f"🧊 {label} {len(moved)} skill(s): {[m['skill'] for m in moved]}")
+        if moved and args.quarantine_apply:
+            changed = True
 
     if args.trial:
         parent, child = args.trial
