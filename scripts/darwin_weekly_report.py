@@ -99,9 +99,26 @@ def main():
             capture_output=True, text=True, cwd=str(REPO))
         if r.returncode == 0:
             print(f"posted: {r.stdout.strip()}")
-        else:
-            print(f"gh failed: {r.stderr.strip()[:200]}")
-            sys.exit(1)
+            return
+        # graceful fallback: gh may be missing or unauthenticated - the report
+        # file itself is the artifact; queue it so nothing is lost
+        err = (r.stderr or "").strip()[:200]
+        pending = WEEKLY_FILE.parent / "darwin-weekly-pending.json"
+        queue = []
+        if pending.exists():
+            try:
+                queue = json.loads(pending.read_text(encoding="utf-8"))
+            except Exception:
+                queue = []
+        queue.append({"title": f"🧬 Darwin Weekly Report - "
+                               f"{datetime.now(timezone.utc).strftime('%Y-%W')}",
+                      "file": str(WEEKLY_FILE),
+                      "error": err})
+        pending.write_text(json.dumps(queue, indent=1, ensure_ascii=False),
+                           encoding="utf-8")
+        print(f"gh unavailable ({err[:60]}...) - queued in {pending.name}, "
+              f"report file kept as artifact")
+        sys.exit(0)  # not an engine failure: report exists
 
 
 if __name__ == "__main__":

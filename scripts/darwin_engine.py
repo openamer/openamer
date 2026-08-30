@@ -68,8 +68,20 @@ def _save_json(path: Path, data):
 # 1. FITNESS — echte Signale aus dem System sammeln
 # ─────────────────────────────────────────────────────────────────────────────
 
+_HITS_CACHE: dict = {"ts": 0.0, "hits": None}
+_HITS_TTL_SECONDS = 600  # session scan is expensive; cache 10 minutes
+
+
 def _session_skill_hits() -> dict[str, int]:
-    """Count how often each skill is mentioned across past sessions."""
+    """Count how often each skill is mentioned across past sessions.
+
+    The full-table scan is expensive (~1s on large DBs) and autopilot calls
+    compute_fitness() multiple times per run - results are cached for
+    _HITS_TTL_SECONDS and invalidated by explicit reset in tests."""
+    import time as _time
+    now = _time.time()
+    if _HITS_CACHE["hits"] is not None and now - _HITS_CACHE["ts"] < _HITS_TTL_SECONDS:
+        return _HITS_CACHE["hits"]
     hits: dict[str, int] = {}
     db_candidates = [
         HOME / "state.db",
@@ -95,6 +107,8 @@ def _session_skill_hits() -> dict[str, int]:
                     hits[name] = hits.get(name, 0) + 1
     except Exception:
         pass
+    _HITS_CACHE["ts"] = now
+    _HITS_CACHE["hits"] = hits
     return hits
 
 
@@ -907,7 +921,7 @@ def harvest_knowledge(min_hits: int = 3, limit: int = 5000) -> list[dict]:
     for topic, hits in topics.most_common():
         if hits < min_hits:
             break
-        slug = re.sub(r"[^a-z0-9]+", "-", topic)[:40].strip("-")
+        slug = _pretty_slug(topic)
         name = f"darwin-harvested-{slug}"
         if name in existing_names:
             continue
@@ -923,6 +937,25 @@ def harvest_knowledge(min_hits: int = 3, limit: int = 5000) -> list[dict]:
         harvested.extend(new_blueprints)
         _save_json(HARVESTED_FILE, harvested)
     return new_blueprints
+
+
+def _pretty_slug(topic: str) -> str:
+    """Turn an error topic into a short, readable, thematic slug.
+
+    Long machine paths ('c/users/damir/appdata/...') become their meaningful
+    tail ('openamer-browser'); generic fragments keep a compact form."""
+    # take the last 2 meaningful path segments instead of the whole path
+    parts = [s for s in topic.replace("\\", "/").split("/") if s]
+    if len(parts) >= 2:
+        tail = "-".join(parts[-2:])
+    else:
+        tail = topic
+    slug = re.sub(r"[^a-z0-9]+", "-", tail).strip("-")
+    # drop pure user-dir noise segments
+    slug = re.sub(r"(^|-)(c|users|damir|appdata|local|openamer-laptop)(-|$)",
+                  lambda m: m.group(1) == "-" and "-" or "", slug)
+    slug = re.sub(r"-+", "-", slug).strip("-")[:36]
+    return slug or "unknown-pattern"
 
 
 def all_blueprints() -> list[dict]:
