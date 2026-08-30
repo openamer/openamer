@@ -1,6 +1,6 @@
 {
   "organism": "OpenAmer",
-  "written_at": "2026-08-30T09:24:52.489144+00:00",
+  "written_at": "2026-08-30T21:24:57.089479+00:00",
   "identity": {
     "name": "openamer_agent",
     "voice": "https://x.com/openamer_agent",
@@ -15,7 +15,7 @@
   "organs": {
     "heartbeat": {
       "kind": "cron-fleet",
-      "count": 60
+      "count": 64
     },
     "memory": {
       "kind": "memory+skills",
@@ -308,7 +308,7 @@
       "name": "Plugin-Auto-Loader",
       "schedule": "every 30m",
       "script": "plugin-loader-cron.py",
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "Wiki-Generator-Daily",
@@ -392,7 +392,7 @@
       "name": "OpenAmer-Autonom-Growth",
       "schedule": "every 60m",
       "script": null,
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "Autonom-Watchtower 24/7",
@@ -416,6 +416,30 @@
       "name": "self-evolve",
       "schedule": "0 */6 * * *",
       "script": "self_evolve.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "Darwin Engine - hourly skill evolution",
+      "schedule": "every 120m",
+      "script": "darwin-cron.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "Darwin Weekly GitHub Report",
+      "schedule": "0 9 * * 1",
+      "script": "darwin-cron.py",
+      "last_status": null
+    },
+    {
+      "name": "Darwin Grid Sync (6h)",
+      "schedule": "every 360m",
+      "script": null,
+      "last_status": null
+    },
+    {
+      "name": "Swarm OS - Autonomous Loop (30m)",
+      "schedule": "every 30m",
+      "script": null,
       "last_status": "ok"
     }
   ]
