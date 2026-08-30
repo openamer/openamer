@@ -375,7 +375,9 @@ def autopilot(min_executions: int = 2) -> int:
     """Full unattended evolution cycle. Returns exit code (2 = changes made)."""
     fitness = compute_fitness()
     _save_json(FITNESS_FILE, {"updated": _now(), "skills": fitness})
-    print(f"[autopilot] fitness computed for {len(fitness)} skills")
+    n_snaps = record_history(fitness)
+    print(f"[autopilot] fitness computed for {len(fitness)} skills "
+          f"(history snapshot #{n_snaps})")
 
     offspring = mutate(fitness, apply=True)
     print(f"[autopilot] {len(offspring)} mutations generated")
@@ -577,11 +579,14 @@ def run_skill_check(skill_name: str, timeout: int = 90) -> dict:
     import subprocess
     skill_md = SKILLS_DIR / skill_name / "SKILL.md"
     if not skill_md.exists():
-        # offspring live outside SKILLS_DIR
-        alt = DARWIN_DIR / "offspring" / skill_name / "SKILL.md"
-        if not alt.exists():
+        # candidates live outside SKILLS_DIR: offspring and species
+        for alt_dir in ("offspring", "species"):
+            alt = DARWIN_DIR / alt_dir / skill_name / "SKILL.md"
+            if alt.exists():
+                skill_md = alt
+                break
+        else:
             return {"ok": False, "reason": "no SKILL.md", "exit_code": None}
-        skill_md = alt
     text = skill_md.read_text("utf-8", errors="replace")
 
     blocks = re.findall(r"```(?:bash|sh|shell)\n(.*?)```", text, re.S)
@@ -800,6 +805,114 @@ def promote_species(name: str) -> bool:
     meta["installed"] = _now()
     _save_json(meta_path, meta)
     return True
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# 11. PHASE 8: memory + species arena
+# ─────────────────────────────────────────────────────────────────────────────
+
+HISTORY_FILE = REPORTS_DIR / "darwin-history.jsonl"
+ARENA_FILE = DARWIN_DIR / "arena.json"
+
+
+def record_history(fitness: dict) -> int:
+    """Append a fitness snapshot to the append-only history log.
+    Returns the number of snapshots stored so far."""
+    HISTORY_FILE.parent.mkdir(parents=True, exist_ok=True)
+    entry = {"when": _now(), "skills": {n: s["fitness"] for n, s in fitness.items()}}
+    with open(HISTORY_FILE, "a", encoding="utf-8") as f:
+        f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+    return sum(1 for _ in open(HISTORY_FILE, encoding="utf-8"))
+
+
+def fitness_trend() -> dict:
+    """Analyze the history: per-skill trend and population health.
+    trend: 'rising' | 'falling' | 'flat' (needs >= 2 snapshots)."""
+    if not HISTORY_FILE.exists():
+        return {"snapshots": 0}
+    entries = [json.loads(l) for l in
+               open(HISTORY_FILE, encoding="utf-8") if l.strip()]
+    if len(entries) < 2:
+        return {"snapshots": len(entries)}
+    first, last = entries[0], entries[-1]
+    trends = {}
+    for name, now_fit in last["skills"].items():
+        before = first["skills"].get(name)
+        if before is None:
+            trends[name] = {"delta": None, "trend": "new"}
+            continue
+        d = round(now_fit - before, 2)
+        trends[name] = {"delta": d,
+                        "trend": "rising" if d > 0 else ("falling" if d < 0 else "flat")}
+    pop_now = sum(last["skills"].values())
+    pop_first = sum(v for v in first["skills"].values())
+    return {
+        "snapshots": len(entries),
+        "first": first["when"], "last": last["when"],
+        "population_delta": round(pop_now - pop_first, 2),
+        "population_trend": ("rising" if pop_now > pop_first
+                             else "falling" if pop_now < pop_first else "flat"),
+        "skills": trends,
+    }
+
+
+def species_arena(min_interval_minutes: int = 30) -> list[dict]:
+    """Duel installed species against each other with REAL execution.
+
+    Species bypass cron-trials (they have no parent job), so the arena is
+    their only selection pressure. Each round pairs the two species whose
+    last duel is oldest; results feed the genome W/L record.
+    Rate-limited: at most one arena round per min_interval_minutes.
+    """
+    import shutil
+    sp_dir = DARWIN_DIR / "species"
+    if not sp_dir.exists():
+        return []
+    installed = []
+    for mp in sp_dir.glob("*.json"):
+        meta = _load_json(mp, {})
+        if meta.get("status") == "installed":
+            installed.append(meta)
+    if len(installed) < 2:
+        return []
+
+    # rate limit via arena state
+    state = _load_json(ARENA_FILE, {"last_round": None, "fights": 0})
+    if state.get("last_round"):
+        last = datetime.fromisoformat(state["last_round"])
+        if (NOW - last).total_seconds() < min_interval_minutes * 60:
+            return [{"status": "cooldown"}]
+
+    from datetime import timedelta
+    installed.sort(key=lambda m: m.get("last_fight") or "0000")
+    a, b = installed[0], installed[1]
+    h2h = head_to_head(a["child"], b["child"])
+    winner_meta = a if h2h["winner"] == "child" else b
+    loser_meta = b if h2h["winner"] == "child" else a
+    # head_to_head uses child=param2; map to metas properly
+    if h2h["winner"] == "child":
+        winner_meta, loser_meta = b, a
+    else:
+        winner_meta, loser_meta = a, b
+
+    population = _load_json(POPULATION_FILE, {})
+    w = population.setdefault(winner_meta["child"], {"wins": 0, "losses": 0})
+    w["wins"] = w.get("wins", 0) + 1
+    l = population.setdefault(loser_meta["child"], {"wins": 0, "losses": 0})
+    l["losses"] = l.get("losses", 0) + 1
+    _save_json(POPULATION_FILE, population)
+
+    for m in (a, b):
+        m["last_fight"] = _now()
+        _save_json(sp_dir / f"{m['child']}.json", m)
+    state["last_round"] = _now()
+    state["fights"] = state.get("fights", 0) + 1
+    _save_json(ARENA_FILE, state)
+
+    return [{"status": "fought", "a": a["child"], "b": b["child"],
+             "winner": h2h["winner"],
+             "a_exit": h2h["parent_result"].get("exit_code"),
+             "b_exit": h2h["child_result"].get("exit_code")}]
 
 
 
@@ -1117,6 +1230,10 @@ def main() -> int:
                     help="synthesize new species skills into darwin/species/")
     ap.add_argument("--promote-species", metavar="NAME",
                     help="install a synthesized species into the live population")
+    ap.add_argument("--trend", action="store_true",
+                    help="fitness trend over time from history snapshots")
+    ap.add_argument("--arena", action="store_true",
+                    help="duel two installed species with real execution")
     ap.add_argument("--report", action="store_true")
     ap.add_argument("--full", action="store_true")
     args = ap.parse_args()
@@ -1180,6 +1297,33 @@ def main() -> int:
             print(f"🌍 species '{args.promote_species}' promoted: {ok}")
             if ok:
                 changed = True
+
+    if args.trend:
+        t = fitness_trend()
+        if t["snapshots"] < 2:
+            print(f"📈 only {t['snapshots']} snapshot(s) - need >= 2 for a trend")
+        else:
+            print(f"📈 {t['snapshots']} snapshots | population "
+                  f"{t['population_trend']} ({t['population_delta']:+})")
+            for n, s in sorted(t["skills"].items(),
+                               key=lambda kv: kv[1]["trend"] == "falling",
+                               reverse=False)[:10]:
+                d = s["delta"]
+                print(f"   {n}: {s['trend']}" + (f" ({d:+})" if d is not None else " (new)"))
+        return 0
+
+    if args.arena:
+        fights = species_arena()
+        for f in fights:
+            if f["status"] == "fought":
+                print(f"🏟️  {f['a']} (exit {f['a_exit']}) vs {f['b']} "
+                      f"(exit {f['b_exit']}) -> winner: {f['winner']}")
+                changed = True
+            else:
+                print(f"🏟️  arena: {f['status']}")
+        if not fights:
+            print("🏟️  arena: not enough installed species (need >= 2)")
+        return 2 if changed else 0
 
     if args.rollback:
         restored = rollback(args.rollback)
