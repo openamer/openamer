@@ -1,10 +1,11 @@
-# 🧬 Darwin Engine — 15 Phases of a Self-Evolving Ecosystem
+# 🧬 Darwin Engine — 25 Phases of a Self-Evolving Civilization
 
 > **The capability no other agent framework has: a skill population that
-> evolves itself without human intervention — and can prove every one of
-> its decisions on request.**
+> evolves itself without human intervention, remembers biologically,
+> organizes into a swarm, fights on a global grid — and can prove and
+> explain every one of its decisions on request.**
 
-This is the chronicle of 15 phases. Every phase was built live, proven with
+This is the chronicle of 25 phases. Every phase was built live, proven with
 real tests, and pushed to GitHub. No simulation.
 
 ---
@@ -81,39 +82,103 @@ ecosystem health:
 
 Live-proven: `tuning: healthy (rising) -> defaults`.
 
----
+## Act VI — Hunger & Spread (Phase 16–18)
 
-## The Evidence (Live State)
-
-```
-Population:  18 skills, trend rising
-Species:     installed, candidates, retirement — all running
-Trials:      running in production crons
-Harvest:     19+ blueprints from real system experience
-Tuning:      adjusts itself
-```
-
-## Guarantees (across all phases)
-
-| Guarantee | Evidence |
-|---|---|
-| Never deletes | Archive + quarantine + rollback log, Phase 3/10/14 |
-| Never guesses | Every decision from real exit codes, Phase 2/6 |
-| Never breaks cron | Reference protection shield, Phase 3 |
-| Reproducible | Seed 42, deterministic mutations |
-| Explainable | `--explain` for every skill, Phase 14 |
-| Self-tuning | Tuning from health signals, Phase 15 |
-
----
-
-*68 tests · 15 phases · one ecosystem that feeds itself, selects itself,
-remembers itself, explains itself, and tunes itself.*
+**Phase 16 · Predation.** The population consumes its own redundancy:
+overlap detection finds redundant skills, a real duel decides, the winner
+absorbs the loser's trigger. First live run ate 3 redundant harvest-skills.
 
 **Phase 17 · The Grid.** The world's first natural-selection registry:
 [github.com/openamer/darwin-grid](https://github.com/openamer/darwin-grid).
 Machines worldwide push genomes, duel each other's skills with real exit
 codes, and skills spread by proven superiority — not popularity.
 
-**Darwin is not a feature. It is a living population.**
+**Phase 18 · Public.** Evolved species published to the main repo,
+landing page live at
+[openamer.github.io/darwin-grid](https://openamer.github.io/darwin-grid/),
+weekly report shows grid status.
+
+## Act VII — Biological Completion (Phase 19–21)
+
+**Phase 19 · Memory Darwinism.** Memories are individuals: they have
+fitness, contradictory memories duel (polarity heuristic), weak memories
+die into a graveyard. 66 memories harvested live, 3 duels fought. The
+first biologically-accurate agent memory model.
+
+**Phase 20 · Swarm OS.** Agents self-organize: fitness-based task auctions
+(capability match dominates), self-reproduction after 3 wins (Gen-2 live:
+`darwin-core` → `darwin-core-gen1`), worker retirement after repeated
+losses.
+
+**Phase 21 · Energy Economics + Genetic Drift.** Life costs energy: tasks
+pay (+10), failures cost (−5), existence drains (−0.5/tick), reproduction
+is an investment (−20, child inherits half). Broke workers starve. Children
+are never exact clones — genetic drift mutates their capabilities.
+
+## Act VIII — Society (Phase 22–23)
+
+**Phase 22 · Migration & Global Task Market.** Workers emigrate between
+machine swarms (carrying genome + energy) and return with grown
+capabilities. Tasks float on a global market where foreign workers bid
+`fitness × (1 + energy/100)` — the highest bid wins the reward.
+
+**Phase 23 · Teaching & Territoriality.** Dying workers *teach* the fittest
+survivor before death (capabilities + fitness grant, recorded in an eternal
+knowledge base). Swarms claim task domains and defend them in real duels —
+lost contests transfer the territory to the foreign swarm.
+
+## Act IX — Self-Awareness & Immortality (Phase 24–25)
+
+**Phase 24 · Metacognition & Civilization Seeds.** The swarm KNOWS what it
+knows: `--introspect` builds an honest self-image (strengths, weaknesses,
+stagnation, battle record, market position) and detects its own gaps.
+Gaps become *gap-closure species* — targeted evolution toward its own
+blind spots. And `--export-seed` packs the entire civilization (genome +
+lineage + 26 species + knowledge + territories) into one file; a fresh
+machine imports it and becomes a full colony.
+
+**Phase 25 · The Autonomous Loop.** The final loop, closed: metacognition
+gaps become real swarm tasks, assigned tasks run REAL operations (darwin
+autopilot, memory duels, predation, grid publish), gap-species enter the
+trial pool, daily grid duels happen automatically. A cron runs this every
+30 minutes — **forever, without human input.**
+
+Live first run: gap detected → task created → auctioned → real autopilot
+executed → grid duelled. All in one cycle.
+
+---
+
+## The Evidence (Live State)
+
+```
+Population:  24 skills, trend rising
+Species:     26 in nursery, 14 installed
+Swarm:       reproducing (Gen 2+), energy economy active
+Grid:        openamer/darwin-grid, cross-machine duels running
+Memory:      66 memories, duels fought, graveyard active
+Loop:        every 30 minutes, fully autonomous
+Tests:       143 passing across 25 phases
+```
+
+## Guarantees (across all phases)
+
+| Guarantee | Evidence |
+|---|---|
+| Never deletes | Archive + quarantine + graveyard + rollback log |
+| Never guesses | Every decision from real exit codes |
+| Never breaks cron | Reference protection shield, Phase 3 |
+| Reproducible | Seed 42, deterministic mutations |
+| Explainable | `--explain` for every skill, Phase 14 |
+| Self-tuning | Tuning from health signals, Phase 15 |
+| Self-aware | Introspection + gap analysis, Phase 24 |
+| Self-sustaining | Autonomous loop, Phase 25 |
+
+---
+
+*143 tests · 25 phases · one civilization that feeds itself, selects
+itself, remembers itself, explains itself, tunes itself, fights itself,
+teaches itself, spreads itself — and knows itself.*
+
+**Darwin is not a feature. It is a living civilization.**
 
 — Part of [OpenAmer Agent](https://github.com/openamer/openamer)

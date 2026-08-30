@@ -1,49 +1,76 @@
 ---
 name: darwin-engine
-description: Use when evolving the skill population automatically - fitness scoring, mutation, crossover, and parent/child competition. Run `python scripts/darwin_engine.py --full` from the repo root.
+description: Use for the self-evolving civilization - skills, memories, swarm agents, energy economy, grid duels, metacognition. Run `python scripts/autonomous_loop.py --loop` from the repo root (or `darwin_engine.py --full` for skill evolution only).
 ---
 
-# Darwin Engine — Evolutionary Skill Ecosystem
+# Darwin Engine — Self-Evolving Civilization (25 Phases)
 
-Treats skills as an evolving population: fitness from real usage signals,
-mutations from top parents, crossover of two parents, and competition where
-a winning child replaces (archived, never deleted) its parent.
+The skill population, memories, and swarm agents evolve autonomously:
+fitness from real usage signals, live trials in production cron jobs,
+speciation from harvested knowledge, energy economy, cross-machine grid
+duels, metacognitive gap analysis, and a 30-minute autonomous loop that
+runs everything without human input.
 
-## When to use
-
-- Periodic (cron) skill-population evolution
-- Deciding which skills are weak and should be pruned or mutated
-- Generating improved skill variants without human curation
-
-## Commands (repo root)
+## Quick reference (repo root)
 
 ```bash
-python scripts/darwin_engine.py --scan      # fitness for all skills
-python scripts/darwin_engine.py --mutate    # generate mutations (dry-run)
-python scripts/darwin_engine.py --mutate --apply   # write offspring
-python scripts/darwin_engine.py --crossover skillA skillB --apply
-python scripts/darwin_engine.py --compete   # evaluate candidates vs parents
-python scripts/darwin_engine.py --trial skillA skillA__mutX  # live A/B: cron job runs child
-python scripts/darwin_engine.py --trials  # evaluate trials from real execution evidence
-python scripts/darwin_engine.py --report    # reports/darwin-report.md
-python scripts/darwin_engine.py --full      # scan+mutate+compete+report
+# THE one command - full autonomous cycle (also runs via cron every 30 min)
+python scripts/autonomous_loop.py --loop
+
+# skill evolution only
+python scripts/darwin_engine.py --autopilot
+python scripts/darwin_engine.py --full
+
+# trials & tournaments
+python scripts/darwin_engine.py --trial skillA skillA__mutX
+python scripts/darwin_engine.py --trials
+python scripts/darwin_engine.py --compete
+
+# predation & quarantine
+python scripts/darwin_engine.py --predate            # dry-run
+python scripts/darwin_engine.py --predate-apply      # real duels
+python scripts/darwin_engine.py --quarantine         # dry-run
+python scripts/darwin_engine.py --rollback N
+
+# metacognition & species
+python scripts/darwin_metacognition.py --introspect
+python scripts/darwin_metacognition.py --evolve-gaps --apply
+python scripts/darwin_engine.py --explain <skill>
+python scripts/darwin_engine.py --status
+
+# memory darwinism
+python scripts/memory_darwinism.py --scan --duel --cull --stats
+
+# swarm os
+python scripts/swarm_os.py --status
+python scripts/swarm_os.py --tick
+python scripts/swarm_migration.py --emigrate worker target
+
+# grid (cross-machine natural selection)
+python scripts/darwin_grid_github.py --publish <machine-id>
+python scripts/darwin_grid_github.py --list
+python scripts/darwin_grid_github.py --duel <machine-id>
+
+# reporting
+python scripts/darwin_engine.py --report
+python scripts/darwin_weekly_report.py --post
+python scripts/darwin_dashboard.py --port 8910   # live dashboard
 ```
 
-## Outputs
+## Exit codes
 
-- `reports/darwin-fitness.json` — per-skill fitness (usage, health, age, W/L)
-- `reports/darwin-report.md` — human-readable leaderboard
-- `~/.openamer.../darwin/offspring/` — candidate child skills
-- `~/.openamer.../darwin/archive/` — archived (defeated) parents
+`0` = ok, `1` = error, `2` = evolution made changes (SUCCESS for cron).
 
-## Fitness model
+## Full chronicle
 
-`usage*3 + health*5 + mutation_bonus - age_penalty + structure_bonus`
-
-Exit codes: 0 = ok, 1 = no data, 2 = evolution made changes.
+See [PHASES.md](PHASES.md) — all 25 phases with live evidence.
 
 ## Pitfalls
 
-- Exit code 2 from `--full`/`--mutate` is SUCCESS with changes — cron must treat it as ok.
-- Fitness needs the sessions DB to count usage; without it, usage = 0 and ranking is age-driven only.
-- Mutations are deterministic (seed 42) for auditability.
+- Exit code 2 is success-with-changes, not failure.
+- Starvation: workers with energy <= 0 die in tick (last worker never dies).
+- Predation tie-break: fitness rank decides when both duel participants
+  exit 0 — only a *functional* prey win saves it.
+- Harvested blueprint slugs come from `_pretty_slug` (readable names).
+- Memory duels need opposite polarity texts to count as contradictions.
+- Grid genome is only as fresh as the last `--publish` (cron runs every 6h).
