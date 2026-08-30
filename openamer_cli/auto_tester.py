@@ -43,15 +43,25 @@ def _logs_dir() -> Path:
 # ----- Test Runner -----
 
 
+def _python_exe() -> str:
+    """Wähle den venv-Interpreter, falls vorhanden, sonst sys.executable."""
+    repo = _repo_dir()
+    venv_py = repo / "venv" / "Scripts" / "python.exe"
+    if venv_py.exists():
+        return str(venv_py)
+    return sys.executable
+
+
 def run_all_tests(verbose: bool = False) -> dict[str, Any]:
     """Führt ALLE Tests aus und gibt strukturiertes Ergebnis zurück."""
     repo = _repo_dir()
     if not (repo / "tests").is_dir():
         return {"status": "error", "message": "Tests-Verzeichnis nicht gefunden", "test_results": {}}
 
+    py = _python_exe()
     start = time.time()
     result = subprocess.run(
-        [sys.executable, "-m", "pytest", "tests/", "-x", "--tb=short"],
+        [py, "-m", "pytest", "tests/", "-x", "--tb=short"],
         capture_output=True,
         text=True,
         timeout=300,
@@ -107,9 +117,10 @@ def run_new_tests() -> dict[str, Any]:
     if not existing:
         return {"status": "error", "message": "Keine neuen Tests gefunden"}
 
+    py = _python_exe()
     start = time.time()
     result = subprocess.run(
-        [sys.executable, "-m", "pytest"] + existing + ["-v", "--tb=short"],
+        [py, "-m", "pytest"] + existing + ["-v", "--tb=short"],
         capture_output=True,
         text=True,
         timeout=120,
