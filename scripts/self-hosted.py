@@ -239,7 +239,7 @@ def check_local_health(config: dict) -> dict:
             "model": local_model,
             "prompt": "Hello",
             "stream": False,
-            "options": {"num_predict": 10},
+            "options": {"num_predict": 10, "num_ctx": 2048},
         }).encode()
         req = urllib.request.Request(
             f"{OLLAMA_URL}/api/generate",
