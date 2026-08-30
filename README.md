@@ -63,6 +63,14 @@
 
 ---
 
+## 🧬 Darwin Engine — Skills That Evolve Themselves
+
+> **Exclusive to OpenAmer.** No other agent framework has this.
+
+Skills are not a static library. They are a **living population** that mutates, competes, and survives through natural selection — with real exit codes as evidence. Weak skills die. Strong skills reproduce. New species emerge from harvested patterns.
+
+[▶️ **Watch it live**](https://www.youtube.com/watch?v=SJ2ODpyn234) · [🌐 **Join the Grid**](https://github.com/openamer/darwin-grid) · [📖 **25-phase chronicle**](skills/darwin-engine/PHASES.md)
+
 ## 🔥 What makes OpenAmer UNIQUE
 
 **15 things no other agent can do** — verified, shipped, tested.
