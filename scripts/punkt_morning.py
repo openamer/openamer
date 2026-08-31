@@ -95,9 +95,52 @@ def darwin_status() -> str:
         return "Darwin: Status nicht verfügbar"
 
 
+def opportunities() -> str:
+    """Derive the day's top-3 actionable opportunities from real signals."""
+    items: list[str] = []
+
+    # 1) failing crons = immediate fix opportunities
+    try:
+        data = json.loads(CRON_JOBS.read_text(encoding="utf-8"))
+        jobs = data.get("jobs", data) if isinstance(data, dict) else data
+        if isinstance(jobs, dict):
+            jobs = list(jobs.values())
+        errs = [j for j in jobs if isinstance(j, dict) and j.get("enabled")
+                and j.get("last_status") == "error"]
+        for j in errs[:2]:
+            items.append(f"🔴 Cron '{j.get('name')}' schlug fehl — jetzt fixen "
+                         f"(openamer cron run {j.get('job_id', '')})")
+    except Exception:
+        pass
+
+    # 2) trend radar: newest arxiv entries = content/outreach material
+    try:
+        text = TREND_LATEST.read_text(encoding="utf-8", errors="replace")
+        arxiv = [l.strip() for l in text.splitlines() if "[arXiv]" in l][:2]
+        for a in arxiv:
+            items.append(f"📈 Trend-Signal für GitHub/Post nutzen: {a[:120]}")
+    except Exception:
+        pass
+
+    # 3) darwin candidates awaiting promotion
+    try:
+        cand = list((REPO / "darwin" / "species-candidates").glob("*/SKILL.md"))
+        if cand:
+            names = ", ".join(c.parent.name for c in cand[:3])
+            items.append(f"🧬 {len(cand)} Darwin-Kandidat(en) bereit zur Prüfung: {names}")
+    except Exception:
+        pass
+
+    if not items:
+        items.append("✅ Keine blockierenden Aufgaben — Fokus auf Wachstum/Outreach.")
+    return "Top-Chancen:\n" + "\n".join(f"  {i}" for i in items[:3])
+
+
 def main() -> int:
     now = datetime.datetime.now().strftime("%d.%m.%Y %H:%M")
-    parts = [f"# ☀️ PUNKT — Morgen-Briefing {now}", "", cron_health(), "", git_activity(), "", trends(), "", darwin_status(), ""]
+    parts = [f"# ☀️ PUNKT — Morgen-Briefing {now}", "",
+             cron_health(), "", git_activity(), "", trends(), "", darwin_status(), "",
+             opportunities(), ""]
     OUT.write_text("\n".join(parts), encoding="utf-8")
     print("\n".join(parts))
     return 0
