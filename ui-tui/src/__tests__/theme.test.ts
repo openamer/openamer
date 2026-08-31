@@ -441,13 +441,13 @@ describe('derived tone ladder', () => {
       [dark.DARK_THEME.color.completionCurrentBg, '#16324F', 'dark chip'],
       [dark.DARK_THEME.color.selectionBg, '#1E3A5F', 'dark selection'],
       // Light canon = liftForContrast(dark literal, white, 4.5): the exact
-          // colors xterm's minimumContrastRatio rendered on light hosts.
+      // colors xterm's minimumContrastRatio rendered on light hosts.
       [light.LIGHT_THEME.color.muted, '#0e90af', 'light muted'],
       [light.LIGHT_THEME.color.statusFg, '#6e6e6e', 'light statusFg'],
       [light.LIGHT_THEME.color.completionBg, '#f5fafb', 'light surface'],
       [light.LIGHT_THEME.color.completionCurrentBg, '#bae0e9', 'light chip'],
       [light.LIGHT_THEME.color.selectionBg, '#cde1ec', 'light selection']
-      ]
+    ]
 
     for (const [got, original, label] of cases) {
       expect(channelDelta(got, original), `${label}: ${got} vs original ${original}`).toBeLessThanOrEqual(8)

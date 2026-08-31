@@ -93,11 +93,13 @@ export const de: Translations = {
       gatewaySettings: 'Gateway-Einstellungen',
       back: 'Zurück',
       openLogs: 'Logs öffnen',
-      repairHint: 'Die Reparatur führt das Installationsprogramm erneut aus und kann auf einem neuen Rechner einige Minuten dauern.',
+      repairHint:
+        'Die Reparatur führt das Installationsprogramm erneut aus und kann auf einem neuen Rechner einige Minuten dauern.',
       remoteSignInHint: signInLabel =>
         `Meldet die gespeicherte Remote-Browser-Sitzung ab und öffnet dann ${signInLabel}. Verwende „Lokales Gateway", um stattdessen zum mitgelieferten Backend zu wechseln.`,
       signOutAndSignIn: 'Abmelden & anmelden',
-      remoteFailureHint: 'Überprüfe die Gateway-URL und die Anmeldung in den Gateway-Einstellungen oder wechsle zum lokalen Gateway.',
+      remoteFailureHint:
+        'Überprüfe die Gateway-URL und die Anmeldung in den Gateway-Einstellungen oder wechsle zum lokalen Gateway.',
       hideRecentLogs: 'Letzte Logs ausblenden',
       showRecentLogs: 'Letzte Logs anzeigen',
       signedInTitle: 'Angemeldet',
@@ -389,10 +391,12 @@ export const de: Translations = {
       test: 'Testbenachrichtigung senden',
       testTitle: 'OpenAmer',
       testBody: 'Benachrichtigungen funktionieren.',
-      testSent: 'Test gesendet. Wenn nichts erscheint, überprüfe die OS-Benachrichtigungsberechtigungen und den Fokus/Nicht-stören-Modus.',
+      testSent:
+        'Test gesendet. Wenn nichts erscheint, überprüfe die OS-Benachrichtigungsberechtigungen und den Fokus/Nicht-stören-Modus.',
       testUnsupported: 'Dieses System unterstützt keine nativen Benachrichtigungen.',
       completionSoundTitle: 'Abschlusston',
-      completionSoundDesc: 'Wird abgespielt, wenn ein Agentendurchlauf abgeschlossen ist. Wähle einen Klang und höre hier eine Vorschau.',
+      completionSoundDesc:
+        'Wird abgespielt, wenn ein Agentendurchlauf abgeschlossen ist. Wähle einen Klang und höre hier eine Vorschau.',
       completionSoundPreview: 'Vorschau'
     },
     sections: {
@@ -472,7 +476,8 @@ export const de: Translations = {
         chooseTitle: 'Ein Haustier wählen',
         chooseDesc: 'Durch die Auswahl wird es installiert (falls nötig) und aktiviert.',
         searchPlaceholder: 'Haustiere durchsuchen…',
-        unreachable: 'Die Petdex-Galerie konnte nicht erreicht werden. Überprüfe deine Verbindung und öffne diese Seite erneut.',
+        unreachable:
+          'Die Petdex-Galerie konnte nicht erreicht werden. Überprüfe deine Verbindung und öffne diese Seite erneut.',
         noMatch: query => `Keine Haustiere gefunden für „${query}".`,
         installedTag: 'installiert',
         generatedTag: 'Generiert',
@@ -541,7 +546,8 @@ export const de: Translations = {
       imported: 'Konfiguration importiert',
       invalidJson: 'Ungültiges Konfig-JSON',
       keepAwakeTitle: 'Computer wach halten',
-      keepAwakeDesc: 'Verhindert, dass dieser Rechner in den Schlafmodus fällt, damit lange oder nächtliche Durchläufe weiterlaufen. Der Bildschirm kann sich trotzdem dimmen.'
+      keepAwakeDesc:
+        'Verhindert, dass dieser Rechner in den Schlafmodus fällt, damit lange oder nächtliche Durchläufe weiterlaufen. Der Bildschirm kann sich trotzdem dimmen.'
     },
     credentials: {
       pasteKey: 'Schlüssel einfügen',
@@ -582,14 +588,17 @@ export const de: Translations = {
         'Setze OPENAMER_DESKTOP_REMOTE_URL und OPENAMER_DESKTOP_REMOTE_TOKEN zurück, um die unten gespeicherte Einstellung zu verwenden.',
       modeTitle: 'Verbindungsmodus',
       localTitle: 'Lokales Gateway',
-      localDesc: 'Starte ein privates OpenAmer-Backend auf localhost. Dies ist die Standardeinstellung und funktioniert offline.',
+      localDesc:
+        'Starte ein privates OpenAmer-Backend auf localhost. Dies ist die Standardeinstellung und funktioniert offline.',
       inheritTitle: 'Standard-Gateway verwenden',
       inheritDesc: 'Entferne die Überschreibung dieses Profils und verwende die Standardverbindung.',
       remoteTitle: 'Remote-Gateway',
       remoteDesc: 'Verbinde diese Desktop-Shell mit einem entfernten OpenAmer-Backend.',
-      remoteAuthHint: 'Gehostete Gateways verwenden OAuth oder einen Benutzernamen und ein Passwort; selbst gehostete können ein Sitzungstoken verwenden.',
+      remoteAuthHint:
+        'Gehostete Gateways verwenden OAuth oder einen Benutzernamen und ein Passwort; selbst gehostete können ein Sitzungstoken verwenden.',
       cloudTitle: 'OpenAmer Cloud',
-      cloudDesc: 'Melde dich einmal bei OpenAmer Cloud an und wähle aus den Agenten deines Kontos — keine URL zum Einfügen.',
+      cloudDesc:
+        'Melde dich einmal bei OpenAmer Cloud an und wähle aus den Agenten deines Kontos — keine URL zum Einfügen.',
       cloudSignInTitle: 'OpenAmer Cloud',
       cloudSignIn: 'Bei OpenAmer Cloud anmelden',
       cloudSignedIn: 'Bei OpenAmer Cloud angemeldet',
@@ -622,7 +631,8 @@ export const de: Translations = {
       remoteUrlTitle: 'Remote-URL',
       remoteUrlDesc: 'Basis-URL für das Remote-Dashboard-Backend. Pfadpräfixe werden unterstützt, z. B. /openamer.',
       probing: 'Prüfe, wie dieses Gateway authentifiziert…',
-      probeError: 'Dieses Gateway konnte noch nicht erreicht werden. Überprüfe die URL — die Authentifizierungsmethode wird angezeigt, sobald es antwortet.',
+      probeError:
+        'Dieses Gateway konnte noch nicht erreicht werden. Überprüfe die URL — die Authentifizierungsmethode wird angezeigt, sobald es antwortet.',
       signedIn: 'Angemeldet',
       signIn: 'Anmelden',
       signOut: 'Abmelden',
@@ -630,11 +640,15 @@ export const de: Translations = {
       authTitle: 'Authentifizierung',
       authSignedInPassword:
         'Dieses Gateway verwendet einen Benutzernamen und ein Passwort. Du bist angemeldet; die Sitzung wird automatisch aktualisiert.',
-      authSignedInOauth: 'Dieses Gateway verwendet OAuth. Du bist angemeldet; die Sitzung wird automatisch aktualisiert.',
-      authNeedsPassword: 'Dieses Gateway verwendet einen Benutzernamen und ein Passwort. Melde dich an, um diese Desktop-App zu autorisieren.',
-      authNeedsOauth: provider => `Dieses Gateway verwendet OAuth. Melde dich mit ${provider} an, um diese Desktop-App zu autorisieren.`,
+      authSignedInOauth:
+        'Dieses Gateway verwendet OAuth. Du bist angemeldet; die Sitzung wird automatisch aktualisiert.',
+      authNeedsPassword:
+        'Dieses Gateway verwendet einen Benutzernamen und ein Passwort. Melde dich an, um diese Desktop-App zu autorisieren.',
+      authNeedsOauth: provider =>
+        `Dieses Gateway verwendet OAuth. Melde dich mit ${provider} an, um diese Desktop-App zu autorisieren.`,
       tokenTitle: 'Sitzungstoken',
-      tokenDesc: 'Das Dashboard-Sitzungstoken für REST- und WebSocket-Zugriff. Leer lassen, um das gespeicherte Token zu behalten.',
+      tokenDesc:
+        'Das Dashboard-Sitzungstoken für REST- und WebSocket-Zugriff. Leer lassen, um das gespeicherte Token zu behalten.',
       existingToken: value => `Vorhandenes Token ${value}`,
       savedToken: 'gespeichert',
       pasteSessionToken: 'Sitzungstoken einfügen',
@@ -652,7 +666,8 @@ export const de: Translations = {
       enterUrlFirst: 'Gib zuerst eine Remote-URL ein.',
       restartingTitle: 'Gateway-Verbindung wird neu gestartet',
       savedTitle: 'Gateway-Einstellungen gespeichert',
-      restartingMessage: 'OpenAmer Desktop wird mit den gespeicherten Einstellungen neu verbinden — die Shell bleibt geöffnet.',
+      restartingMessage:
+        'OpenAmer Desktop wird mit den gespeicherten Einstellungen neu verbinden — die Shell bleibt geöffnet.',
       savedMessage: 'Für den nächsten Neustart gespeichert.',
       connectedTo: (baseUrl, version) => `Verbunden mit ${baseUrl}${version ? ` · OpenAmer ${version}` : ''}`,
       reachableTitle: 'Remote-Gateway erreichbar',
@@ -698,7 +713,8 @@ export const de: Translations = {
         'OpenAmer ist nicht auf dem entfernten Host installiert. Installiere es dort (curl -fsSL https://github.com/openamer/openamer/raw/main/scripts/install.sh | sh) oder setze den OpenAmer-Pfad.',
       sshErrPlatform:
         'Nicht unterstützte entfernte Plattform. Der SSH-Modus von OpenAmer Desktop unterstützt Linux-, macOS- und Windows-Remote-Hosts.',
-      sshErrTimeout: 'SSH-Verbindung hat Zeitüberschreitung. Der Host ist möglicherweise nicht erreichbar oder im Ruhezustand.',
+      sshErrTimeout:
+        'SSH-Verbindung hat Zeitüberschreitung. Der Host ist möglicherweise nicht erreichbar oder im Ruhezustand.',
       sshErrUpdateRequired: 'Aktualisiere OpenAmer auf dem entfernten Host, bevor du dich mit Desktop SSH verbindest.',
       sshErrUnknown: 'SSH-Verbindung fehlgeschlagen.'
     },
@@ -785,14 +801,16 @@ export const de: Translations = {
       defaultsFailed: 'Standardmodelleinstellungen konnten nicht gespeichert werden',
       auxiliaryTitle: 'Hilfsmodelle',
       resetAllToMain: 'Alle auf Hauptmodell zurücksetzen',
-      auxiliaryDesc: 'Hilfsaufgaben werden standardmäßig auf dem Hauptmodell ausgeführt. Weise einer Aufgabe ein dediziertes Modell zu, um dies zu überschreiben.',
+      auxiliaryDesc:
+        'Hilfsaufgaben werden standardmäßig auf dem Hauptmodell ausgeführt. Weise einer Aufgabe ein dediziertes Modell zu, um dies zu überschreiben.',
       setToMain: 'Auf Hauptmodell setzen',
       change: 'Ändern',
       autoUseMain: 'auto · Hauptmodell verwenden',
       providerDefault: '(Anbietervorgabe)',
       fallbackAdd: 'Fallback hinzufügen',
       fallbackEmpty: 'Keine Fallback-Modelle — das Standardmodell wird verwendet, es sei denn, es schlägt fehl.',
-      notInCatalog: "ist nicht in der Modellliste dieses Anbieters — Aufrufe können auf ein Backup-Modell zurückfallen.",
+      notInCatalog:
+        'ist nicht in der Modellliste dieses Anbieters — Aufrufe können auf ein Backup-Modell zurückfallen.',
       tasks: {
         vision: { label: 'Vision', hint: 'Bildanalyse' },
         web_extract: { label: 'Web-Extraktion', hint: 'Seitenzusammenfassung' },
@@ -817,7 +835,8 @@ export const de: Translations = {
       disconnectInTerminal: 'Trennen (führt Entfernungsbefehl im Terminal aus)',
       removeConfirm: provider => `${provider} entfernen?`,
       removeExternalGeneric: provider => `${provider} wird von einer eigenen CLI verwaltet — entferne es dort.`,
-      removeKeyManaged: provider => `${provider} wird über einen API-Schlüssel konfiguriert. Entferne es unter API-Schlüssel.`,
+      removeKeyManaged: provider =>
+        `${provider} wird über einen API-Schlüssel konfiguriert. Entferne es unter API-Schlüssel.`,
       removeTerminalConfirm: (provider, command) =>
         `${provider} trennen? Dabei wird „${command}” im Terminal ausgeführt, um die Anmeldedaten zu löschen.`,
       removeTerminalRunning: provider => `Führe Trennung von ${provider} im Terminal aus…`,
@@ -829,7 +848,8 @@ export const de: Translations = {
       noKeysMatch: 'Keine Anbieter entsprechen deiner Suche.',
       localEndpoint: {
         title: 'Lokaler / benutzerdefinierter Endpunkt',
-        description: 'Richte OpenAmer auf einen beliebigen OpenAI-kompatiblen Endpunkt aus (Zyphra, vLLM, llama.cpp, Ollama, etc).'
+        description:
+          'Richte OpenAmer auf einen beliebigen OpenAI-kompatiblen Endpunkt aus (Zyphra, vLLM, llama.cpp, Ollama, etc).'
       },
       loading: 'Lade Anbieter...'
     },
@@ -854,7 +874,8 @@ export const de: Translations = {
       defaultDirTitle: 'Standard-Projektverzeichnis',
       defaultDirDesc:
         'Neue Sitzungen starten in diesem Ordner, sofern kein anderer ausgewählt wird. Leer lassen, um das Benutzerverzeichnis zu verwenden.',
-      defaultDirUpdated: 'Standard-Projektverzeichnis aktualisiert — starte einen neuen Chat (Strg/⌘+N), damit die Änderung wirksam wird',
+      defaultDirUpdated:
+        'Standard-Projektverzeichnis aktualisiert — starte einen neuen Chat (Strg/⌘+N), damit die Änderung wirksam wird',
       defaultsTo: label => `Standardmäßig ${label}.`,
       change: 'Ändern',
       choose: 'Auswählen',
@@ -882,14 +903,16 @@ export const de: Translations = {
       selectedMessage: provider => `${provider} ist jetzt aktiv.`,
       failedSelect: provider => `${provider} konnte nicht ausgewählt werden`,
       failedLoad: 'Tool-Konfiguration konnte nicht geladen werden',
-      noProviderOptions: 'Dieses Toolset hat keine Anbieteroptionen — aktiviere es und es funktioniert mit deinem aktuellen Setup.',
+      noProviderOptions:
+        'Dieses Toolset hat keine Anbieteroptionen — aktiviere es und es funktioniert mit deinem aktuellen Setup.',
       noProviders: 'Derzeit sind keine Anbieter für dieses Toolset verfügbar.',
       ready: 'Bereit',
       needsSignIn: 'Anmeldung erforderlich',
       needsSetup: 'Einrichtung erforderlich',
       openamerIncluded: 'Im OpenAmer-Abonnement enthalten — melde dich im OpenAmer-Portal an, um zu aktivieren.',
       openamerAuthNeededTitle: 'Im OpenAmer-Portal anmelden',
-      openamerAuthNeededMessage: provider => `${provider} ist gespeichert, wird aber erst aktiviert, wenn du dich im OpenAmer-Portal anmeldest.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} ist gespeichert, wird aber erst aktiviert, wenn du dich im OpenAmer-Portal anmeldest.`,
       openamerAuthSignIn: 'Anmelden',
       openamerAuthDoneTitle: 'OpenAmer-Portal verbunden',
       openamerAuthDoneMessage: 'Deine Abonnement-Backends sind jetzt aktiv.',
@@ -937,7 +960,8 @@ export const de: Translations = {
         selectedTitle: 'Backend ausgewählt',
         selectedMessage: backend => `Terminalbefehle werden jetzt über ${backend} ausgeführt. Gilt für neue Sitzungen.`,
         failedSelect: backend => `${backend} konnte nicht ausgewählt werden`,
-        needsSetupHint: 'Du kannst dieses Backend jetzt auswählen — Befehle schlagen fehl, bis die Einrichtung abgeschlossen ist.'
+        needsSetupHint:
+          'Du kannst dieses Backend jetzt auswählen — Befehle schlagen fehl, bis die Einrichtung abgeschlossen ist.'
       }
     }
   },
@@ -1254,7 +1278,8 @@ export const de: Translations = {
       backup: 'Backup erstellen',
       backupDesc: 'Konfiguration, Erinnerungen, Fähigkeiten und Sitzungen als ZIP',
       debugShare: 'Debug-Share',
-      debugShareDesc: 'Geschwärzten Bericht + Protokolle hochladen, freigebbare Links erhalten (automatische Löschung nach 6h)',
+      debugShareDesc:
+        'Geschwärzten Bericht + Protokolle hochladen, freigebbare Links erhalten (automatische Löschung nach 6h)',
       debugShareRunning: 'Lade Debug-Bericht hoch...',
       debugShareLinks: 'Freigabelinks',
       debugShareFailed: 'Debug-Share fehlgeschlagen',
@@ -1317,7 +1342,8 @@ export const de: Translations = {
     required: 'Erforderlich',
     recommended: 'Empfohlen',
     advanced: count => `Erweitert (${count})`,
-    noTokenNeeded: 'Diese Plattform benötigt hier kein Token. Verwende die obige Einrichtungsanleitung und aktiviere sie dann unten.',
+    noTokenNeeded:
+      'Diese Plattform benötigt hier kein Token. Verwende die obige Einrichtungsanleitung und aktiviere sie dann unten.',
     enabled: 'Aktiviert',
     disabled: 'Deaktiviert',
     unsavedChanges: 'Nicht gespeicherte Änderungen',
@@ -1390,7 +1416,10 @@ export const de: Translations = {
         help: 'Verwende das App-Level-Token, das für den Socket-Modus erforderlich ist.',
         placeholder: 'Slack-App-Token einfügen'
       },
-      SLACK_ALLOWED_USERS: { label: 'Erlaubte Slack-Benutzer-IDs', help: 'Empfohlen. Komma-getrennte Slack-Benutzer-IDs.' },
+      SLACK_ALLOWED_USERS: {
+        label: 'Erlaubte Slack-Benutzer-IDs',
+        help: 'Empfohlen. Komma-getrennte Slack-Benutzer-IDs.'
+      },
       MATTERMOST_URL: { label: 'Server-URL', placeholder: 'https://mattermost.example.com' },
       MATTERMOST_TOKEN: { label: 'Bot-Token' },
       MATTERMOST_ALLOWED_USERS: {
@@ -1410,7 +1439,10 @@ export const de: Translations = {
         help: 'URL einer laufenden signal-cli REST-Bridge.'
       },
       SIGNAL_ACCOUNT: { label: 'Telefonnummer', help: 'Die Nummer, die mit deiner signal-cli-Bridge registriert ist.' },
-      SIGNAL_ALLOWED_USERS: { label: 'Erlaubte Signal-Benutzer', help: 'Empfohlen. Komma-getrennte Signal-Identifikatoren.' },
+      SIGNAL_ALLOWED_USERS: {
+        label: 'Erlaubte Signal-Benutzer',
+        help: 'Empfohlen. Komma-getrennte Signal-Identifikatoren.'
+      },
       WHATSAPP_ENABLED: {
         label: 'WhatsApp-Bridge aktivieren',
         help: 'Wird automatisch durch den untenstehenden Schalter gesetzt. In Ruhe lassen, es sei denn, du weißt, dass du es brauchst.'
@@ -1450,7 +1482,8 @@ export const de: Translations = {
     toggleFailed: (name: string) => `„${name}” konnte nicht aktualisiert werden`,
     newSubscription: 'Neues Abonnement',
     restarting: 'Gateway wird neu gestartet...',
-    restartNeeded: 'Webhooks sind aktiviert, aber das Gateway muss noch neu gestartet werden, bevor der Empfänger online gehen kann.',
+    restartNeeded:
+      'Webhooks sind aktiviert, aber das Gateway muss noch neu gestartet werden, bevor der Empfänger online gehen kann.',
     restartGateway: 'Gateway neu starten',
     restartingGateway: 'Starte neu...',
     restartFailed: (detail: string) => `Gateway-Neustart fehlgeschlagen${detail}`,
@@ -1492,7 +1525,8 @@ export const de: Translations = {
 
   profiles: {
     close: 'Profile schließen',
-    nameHint: 'Kleinbuchstaben, Ziffern, Bindestriche und Unterstriche. Muss mit einem Buchstaben oder einer Ziffer beginnen.',
+    nameHint:
+      'Kleinbuchstaben, Ziffern, Bindestriche und Unterstriche. Muss mit einem Buchstaben oder einer Ziffer beginnen.',
     title: 'Profil',
     count: count => `${count} ${count === 1 ? 'Profil' : 'Profil'}`,
     search: 'Profile durchsuchen...',
@@ -1525,7 +1559,8 @@ export const de: Translations = {
     notSet: 'Nicht gesetzt',
     soulDesc: 'Die Systemaufforderung und Persona-Anweisungen, die in dieses Profil eingebettet sind.',
     soulOptional: 'optional',
-    soulPlaceholder: mode => `Die Systemaufforderung / Persona für dieses Profil.\\nLeer lassen, um die ${mode}-Voreinstellung zu behalten.`,
+    soulPlaceholder: mode =>
+      `Die Systemaufforderung / Persona für dieses Profil.\\nLeer lassen, um die ${mode}-Voreinstellung zu behalten.`,
     soulPlaceholderCloned: 'geklont',
     soulPlaceholderEmpty: 'leer',
     unsavedChanges: 'Nicht gespeicherte Änderungen',
@@ -1663,8 +1698,10 @@ export const de: Translations = {
     failedSave: 'Cron-Aufgabe konnte nicht gespeichert werden',
     editTitle: 'Cron-Aufgabe bearbeiten',
     createTitle: 'Neue Cron-Aufgabe',
-    editDesc: 'Aktualisiere den Zeitplan, Prompt oder das Zustellungsziel. Änderungen gelten bei der nächsten Ausführung.',
-    createDesc: 'Plane einen Prompt zur automatischen Ausführung. Verwende Cron-Syntax oder einen natürlichen Ausdruck wie „alle 15 Minuten".',
+    editDesc:
+      'Aktualisiere den Zeitplan, Prompt oder das Zustellungsziel. Änderungen gelten bei der nächsten Ausführung.',
+    createDesc:
+      'Plane einen Prompt zur automatischen Ausführung. Verwende Cron-Syntax oder einen natürlichen Ausdruck wie „alle 15 Minuten".',
     nameLabel: 'Name',
     namePlaceholder: 'Morgenbriefing',
     promptLabel: 'Prompt',
@@ -1798,7 +1835,8 @@ export const de: Translations = {
       createFailed: 'Projekt konnte nicht erstellt werden',
       staleBackend:
         'Aktualisiere das OpenAmer-Backend, um Projekte zu erstellen — dein Backend ist älter als diese Desktop-App (Einstellungen → Updates → Backend).',
-      deleteConfirm: 'Dies entfernt das gespeicherte Projekt aus OpenAmer. Dateien, Git-Repos und Worktrees bleiben unberührt.',
+      deleteConfirm:
+        'Dies entfernt das gespeicherte Projekt aus OpenAmer. Dateien, Git-Repos und Worktrees bleiben unberührt.',
       startWork: 'Neuer Worktree',
       newWorktreeTitle: 'Neuer Worktree',
       newWorktreeDesc: 'Benenne den Branch für diesen Worktree.',
@@ -1965,7 +2003,8 @@ export const de: Translations = {
     queueResume: 'Fortsetzen',
     queueResumeTip: 'Durch „Anhalten" pausiert — setze das Senden der eingereihten Durchläufe fort',
     queueStuckTitle: 'Eingereihte Nachricht nicht gesendet',
-    queueStuckBody: 'Ein eingereihter Durchlauf konnte nicht gesendet werden. Er ist noch in der Warteschlange — versuche es erneut.',
+    queueStuckBody:
+      'Ein eingereihter Durchlauf konnte nicht gesendet werden. Er ist noch in der Warteschlange — versuche es erneut.',
     previewUnavailable: 'Vorschau nicht verfügbar',
     previewLabel: label => `Vorschau von ${label}`,
     couldNotPreview: label => `Vorschau von ${label} nicht möglich`,
@@ -2038,8 +2077,10 @@ export const de: Translations = {
       viewAsList: 'Als Liste anzeigen',
       revert: 'Rückgängig',
       revertAll: 'Alle rückgängig',
-      revertConfirm: 'Änderungen an dieser Datei verwerfen und in den ursprünglichen Zustand zurückversetzen? Dies kann nicht rückgängig gemacht werden.',
-      revertAllConfirm: 'Alle Änderungen verwerfen und Dateien in den ursprünglichen Zustand zurückversetzen? Dies kann nicht rückgängig gemacht werden.',
+      revertConfirm:
+        'Änderungen an dieser Datei verwerfen und in den ursprünglichen Zustand zurückversetzen? Dies kann nicht rückgängig gemacht werden.',
+      revertAllConfirm:
+        'Alle Änderungen verwerfen und Dateien in den ursprünglichen Zustand zurückversetzen? Dies kann nicht rückgängig gemacht werden.',
       staged: 'Gestaged',
       noChanges: 'Keine Änderungen',
       notRepo: 'Kein Git-Repository',
@@ -2094,12 +2135,14 @@ export const de: Translations = {
     availableBody: 'Eine neue Version von OpenAmer kann installiert werden.',
     availableTitleBackend: 'Backend-Update verfügbar',
     availableBodyBackend: 'Eine neuere Version des verbundenen OpenAmer-Backends kann installiert werden.',
-    availableBodyNoChangelog: 'Eine neuere Version ist bereit. Für diesen Installationstyp sind keine Versionshinweise verfügbar.',
+    availableBodyNoChangelog:
+      'Eine neuere Version ist bereit. Für diesen Installationstyp sind keine Versionshinweise verfügbar.',
     updateNow: 'Jetzt aktualisieren',
     maybeLater: 'Vielleicht später',
     moreChanges: count => `+ ${count} weitere Änderung${count === 1 ? '' : 'en'} enthalten.`,
     manualTitle: 'Vom Terminal aus aktualisieren',
-    manualBody: 'Du hast OpenAmer von der Befehlszeile aus installiert, daher werden Updates auch dort ausgeführt. Füge dies in dein Terminal ein:',
+    manualBody:
+      'Du hast OpenAmer von der Befehlszeile aus installiert, daher werden Updates auch dort ausgeführt. Füge dies in dein Terminal ein:',
     manualPickedUp: 'OpenAmer verwendet die neue Version beim nächsten Start.',
     guiSkewTitle: 'Desktop-App aktualisieren',
     guiSkewBody:
@@ -2121,11 +2164,14 @@ export const de: Translations = {
       restarting: 'Backend wird neu gestartet, um das Update zu laden…',
       notAvailable: 'Update für dieses Backend nicht verfügbar.',
       failed: 'Backend-Update fehlgeschlagen.',
-      noReturn: 'Backend kam nicht wieder online. Das Update wurde möglicherweise nicht abgeschlossen — überprüfe den Backend-Host.'
+      noReturn:
+        'Backend kam nicht wieder online. Das Update wurde möglicherweise nicht abgeschlossen — überprüfe den Backend-Host.'
     },
     appErrors: {
-      updateLocked: 'Update abgebrochen: Ein anderes OpenAmer-Fenster oder ein Terminal mit laufendem openamer hält diese Installation offen. Schließe es und versuche es erneut.',
-      updateFailed: 'Das Update wurde nicht abgeschlossen. Keine Sorge — nichts ist verloren. Du kannst es jetzt erneut versuchen.'
+      updateLocked:
+        'Update abgebrochen: Ein anderes OpenAmer-Fenster oder ein Terminal mit laufendem openamer hält diese Installation offen. Schließe es und versuche es erneut.',
+      updateFailed:
+        'Das Update wurde nicht abgeschlossen. Keine Sorge — nichts ist verloren. Du kannst es jetzt erneut versuchen.'
     }
   },
 
@@ -2150,14 +2196,19 @@ export const de: Translations = {
       'Verbinde diese App mit einem OpenAmer-Gateway, das du bereits betreibst, oder installiere OpenAmer lokal auf diesem Computer.',
     connectExistingTitle: 'Mit vorhandenem OpenAmer verbinden',
     connectExistingShort: 'Vorhandenes verbinden',
-    connectExistingDesc: 'Verwende ein Remote-Backend mit Sitzungstoken oder Browser-Anmeldung. Keine lokale Installation wird gestartet.',
+    connectExistingDesc:
+      'Verwende ein Remote-Backend mit Sitzungstoken oder Browser-Anmeldung. Keine lokale Installation wird gestartet.',
     installLocalTitle: 'OpenAmer lokal installieren',
-    installLocalDesc: 'Lade OpenAmer herunter, erstelle die Python-Umgebung und führe das Backend auf diesem Computer aus.',
-    localStartUnavailable: 'Lokale Installation konnte nicht gestartet werden. Starte OpenAmer Desktop neu und versuche es erneut.',
+    installLocalDesc:
+      'Lade OpenAmer herunter, erstelle die Python-Umgebung und führe das Backend auf diesem Computer aus.',
+    localStartUnavailable:
+      'Lokale Installation konnte nicht gestartet werden. Starte OpenAmer Desktop neu und versuche es erneut.',
     remoteSetupTitle: 'Mit vorhandenem OpenAmer verbinden',
-    remoteSetupDesc: 'Gib deine Gateway-URL ein. OpenAmer Desktop erkennt, ob ein Token oder eine Browser-Anmeldung erforderlich ist.',
+    remoteSetupDesc:
+      'Gib deine Gateway-URL ein. OpenAmer Desktop erkennt, ob ein Token oder eine Browser-Anmeldung erforderlich ist.',
     remoteUrlTitle: 'Gateway-URL',
-    remoteUrlDesc: 'Verwende die Basis-URL des OpenAmer-Gateways, inklusive https://, wenn es sich um ein Remote-Gateway handelt.',
+    remoteUrlDesc:
+      'Verwende die Basis-URL des OpenAmer-Gateways, inklusive https://, wenn es sich um ein Remote-Gateway handelt.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
     probing: 'Erkenne Gateway-Authentifizierung...',
     probeError: 'Dieses OpenAmer-Gateway konnte nicht erreicht werden.',
@@ -2204,8 +2255,10 @@ export const de: Translations = {
 
   onboarding: {
     headerTitle: 'Richte OpenAmer Agent ein',
-    headerDesc: 'Verbinde einen Modellanbieter, um mit dem Chatten zu beginnen. Die meisten Optionen erfordern nur einen Klick.',
-    preparingInstall: 'OpenAmer schließt die Installation ab. Dies dauert beim ersten Start normalerweise weniger als eine Minute.',
+    headerDesc:
+      'Verbinde einen Modellanbieter, um mit dem Chatten zu beginnen. Die meisten Optionen erfordern nur einen Klick.',
+    preparingInstall:
+      'OpenAmer schließt die Installation ab. Dies dauert beim ersten Start normalerweise weniger als eine Minute.',
     starting: 'Starte OpenAmer…',
     lookingUpProviders: 'Suche Anbieter...',
     collapse: 'Einklappen',
@@ -2224,14 +2277,16 @@ export const de: Translations = {
       },
       openrouter: {
         short: 'ein Schlüssel, viele Modelle',
-        description: 'Hostet hunderte Modelle hinter einem einzigen Schlüssel. Gute Standardeinstellung für neue Installationen.'
+        description:
+          'Hostet hunderte Modelle hinter einem einzigen Schlüssel. Gute Standardeinstellung für neue Installationen.'
       },
       openai: { short: 'GPT-Klasse-Modelle', description: 'Direkter Zugriff auf OpenAI-Modelle.' },
       gemini: { short: 'Gemini-Modelle', description: 'Direkter Zugriff auf Google Gemini-Modelle.' },
       xai: { short: 'Grok-Modelle', description: 'Direkter Zugriff auf xAI Grok-Modelle.' },
       local: {
         short: 'selbst gehostet',
-        description: 'Richte OpenAmer auf einen lokalen oder selbst gehosteten OpenAI-kompatiblen Endpunkt aus (vLLM, llama.cpp, Ollama, etc).'
+        description:
+          'Richte OpenAmer auf einen lokalen oder selbst gehosteten OpenAI-kompatiblen Endpunkt aus (vLLM, llama.cpp, Ollama, etc).'
       }
     },
     backToSignIn: 'Zurück zur Anmeldung',
@@ -2420,8 +2475,10 @@ export const de: Translations = {
       openContextUsage: 'Kontextnutzungs-Aufschlüsselung öffnen',
       session: 'Sitzung',
       runtimeSessionElapsed: 'Laufzeit der Sitzung',
-      yoloOn: 'YOLO an — gefährliche Befehle werden automatisch genehmigt. Klicken zum Ausschalten. Umschalt+Klick schaltet global um.',
-      yoloOff: 'YOLO aus — klicken, um gefährliche Befehle automatisch zu genehmigen. Umschalt+Klick schaltet global um.',
+      yoloOn:
+        'YOLO an — gefährliche Befehle werden automatisch genehmigt. Klicken zum Ausschalten. Umschalt+Klick schaltet global um.',
+      yoloOff:
+        'YOLO aus — klicken, um gefährliche Befehle automatisch zu genehmigen. Umschalt+Klick schaltet global um.',
       modelNone: 'keines',
       noModel: 'kein Modell',
       switchModel: 'Modell wechseln',
@@ -2541,7 +2598,8 @@ export const de: Translations = {
       showConsole: 'Vorschaukonsole anzeigen',
       hideDevTools: 'Vorschau-Entwicklertools ausblenden',
       openDevTools: 'Vorschau-Entwicklertools öffnen',
-      finishedRestarting: message => `OpenAmer hat den Neustart des Vorschau-Servers abgeschlossen${message ? `: ${message}` : ''}`,
+      finishedRestarting: message =>
+        `OpenAmer hat den Neustart des Vorschau-Servers abgeschlossen${message ? `: ${message}` : ''}`,
       failedRestarting: message => `Server-Neustart fehlgeschlagen: ${message}`,
       unknownError: 'unbekannter Fehler',
       restartedTitle: 'Vorschau-Server neu gestartet',
@@ -2596,7 +2654,8 @@ export const de: Translations = {
     deletePreset: name => `${name} löschen`,
     zoneEditorTitle: 'Zonen-Editor',
     editorHintPre: 'klicken zum Teilen · ',
-    editorHintPost: ' kippt die Linie · Zonen übereinander ziehen zum Zusammenführen · gemeinsame Kanten ziehen zum Größe ändern',
+    editorHintPost:
+      ' kippt die Linie · Zonen übereinander ziehen zum Zusammenführen · gemeinsame Kanten ziehen zum Größe ändern',
     templateColumns: 'Spalten',
     templateRows: 'Zeilen',
     templateGrid: 'Raster',
@@ -2725,8 +2784,16 @@ export const de: Translations = {
         runningTool: action => `Führe ${action.toLowerCase()} aus`
       },
       titles: {
-        browser_click: { done: 'Seitenelement angeklickt', pending: 'Klicke Seitenelement an', pendingAction: 'Klicke an' },
-        browser_fill: { done: 'Formularfeld ausgefüllt', pending: 'Fülle Formularfeld aus', pendingAction: 'Fülle aus' },
+        browser_click: {
+          done: 'Seitenelement angeklickt',
+          pending: 'Klicke Seitenelement an',
+          pendingAction: 'Klicke an'
+        },
+        browser_fill: {
+          done: 'Formularfeld ausgefüllt',
+          pending: 'Fülle Formularfeld aus',
+          pendingAction: 'Fülle aus'
+        },
         browser_navigate: { done: 'Seite geöffnet', pending: 'Öffne Seite', pendingAction: 'Öffne' },
         browser_snapshot: {
           done: 'Seitenmomentaufnahme erstellt',
@@ -2768,7 +2835,8 @@ export const de: Translations = {
     sudoSendFailed: 'Sudo-Passwort konnte nicht gesendet werden',
     secretSendFailed: 'Geheimnis konnte nicht gesendet werden',
     sudoTitle: 'Administrator-Passwort',
-    sudoDesc: 'OpenAmer benötigt dein Sudo-Passwort, um einen privilegierten Befehl auszuführen. Es wird nur an deinen lokalen Agenten gesendet.',
+    sudoDesc:
+      'OpenAmer benötigt dein Sudo-Passwort, um einen privilegierten Befehl auszuführen. Es wird nur an deinen lokalen Agenten gesendet.',
     sudoPlaceholder: 'Sudo-Passwort',
     secretTitle: 'Geheimnis erforderlich',
     secretDesc: 'OpenAmer benötigt eine Anmeldeinformation, um fortzufahren.',
