@@ -71,15 +71,24 @@ def summarize_tool_calls(raw: str | None) -> list[dict]:
         calls = json.loads(raw)
     except (json.JSONDecodeError, TypeError):
         return []
+    if isinstance(calls, dict):
+        calls = [calls]
+    if not isinstance(calls, list):
+        return []
     out = []
-    for c in calls if isinstance(calls, list) else [calls]:
+    for c in calls:
+        if not isinstance(c, dict):
+            continue
         name = c.get("name") or c.get("function", {}).get("name", "?")
         args = c.get("arguments") or c.get("function", {}).get("arguments") or ""
         if isinstance(args, str):
-            try:
-                args = json.loads(args)
-            except (json.JSONDecodeError, TypeError):
-                args = {"raw": args[:300]}
+            if not args.strip():
+                args = {}
+            else:
+                try:
+                    args = json.loads(args)
+                except (json.JSONDecodeError, TypeError):
+                    args = {"raw": args[:300]}
         out.append({"name": name, "args": args})
     return out
 
