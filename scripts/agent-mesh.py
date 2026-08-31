@@ -602,6 +602,9 @@ def cmd_node(args: argparse.Namespace) -> None:
     """Start a worker node (registers with master if --master-url given)."""
     port = args.port or DEFAULT_WORKER_PORT
     host = args.host or "0.0.0.0"
+    # Advertise a routable address: 0.0.0.0 is a wildcard bind, not reachable
+    # by the master when it later delegates tasks back to us.
+    advertised_host = host if host not in ("0.0.0.0", "::") else _get_local_ip()
     capabilities = args.capabilities or ["code", "shell"]
     node_id = f"node-{uuid.uuid4().hex[:8]}"
     state = MeshState()
@@ -619,7 +622,7 @@ def cmd_node(args: argparse.Namespace) -> None:
             headers["X-Mesh-Token"] = secret
         payload = json.dumps({
             "node_id": node_id,
-            "host": _get_local_ip(),
+            "host": advertised_host,
             "port": port,
             "capabilities": capabilities,
             "role": "worker",
