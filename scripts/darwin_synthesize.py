@@ -77,23 +77,44 @@ platforms: [linux, macos, windows]
 
 # {title} (Darwin Candidate)
 
-## Origin
+## Overview
+{scope}
+
 Synthesized by `darwin_synthesize.py` on {date} from trend-radar signals:
 {signals}
 
-## Scope
-{scope}
+## When to use
+Whenever a task touches {human}: research, tool selection, or workflow design
+in this area.
 
-## Procedure (starter — evolve via trials)
+## Usage
 1. Collect the 3 most relevant sources from the origin signals.
 2. Extract concrete practices applicable to OpenAmer (commands, configs, policies).
 3. Turn each practice into a verifiable step with a health check.
-4. Record outcomes in reports/darwin-autopatch.md for fitness scoring.
+
+## Setup / Installation
+No external setup required — this skill guides analysis and synthesis work
+using the standard OpenAmer toolset (terminal, web, file).
+
+## Example
+
+```bash
+# scan the trend report for this topic's latest signals
+grep -i "{keyword}" reports/trend-scout-latest.md
+```
 
 ## Verification
 - Candidate is only promotable after `darwin_engine --head-to-head` shows it
   beating an existing related skill OR no related skill exists and a cron
   trial runs error-free.
+- Record outcomes in reports/darwin-autopatch.md for fitness scoring.
+
+## Pitfalls
+- Do not promote without real execution evidence (see Verification).
+- Trend hype != practice: only extract steps that were demonstrated to work.
+
+## Troubleshooting
+- If signals are stale (>48h), re-run the trend scout before acting.
 """
 
 
@@ -131,6 +152,7 @@ def main() -> int:
             date=today,
             signals=signal_lines,
             scope=scope,
+            keyword=cname.split("-")[0],
         )
         target = CAND_DIR / cname / "SKILL.md"
         if args.apply:
