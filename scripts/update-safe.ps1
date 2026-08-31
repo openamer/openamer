@@ -32,15 +32,24 @@ Write-Host "[1/7] Stoppe OpenAmer-eigene Prozesse..." -ForegroundColor Yellow
 $stopped = @()
 $hermesPattern = "hermes|emilija"
 
+# Bei DryRun nur anzeigen, was gestoppt WÜRDE — nie wirklich beenden.
+function Stop-OAProcess {
+    param([int]$TargetPid, [string]$Label)
+    if ($DryRun) {
+        Write-Host "  [DRYRUN] wuerde stoppen: $Label (PID $TargetPid)"
+        $script:stopped += $Label
+        return
+    }
+    Write-Host "  -> Stoppe $Label (PID $TargetPid)"
+    Stop-Process -Id $TargetPid -Force -ErrorAction SilentlyContinue
+    $script:stopped += $Label
+}
+
 # --- OpenAmer.exe (Desktop-App) ---
 $openamerProcs = Get-CimInstance -ClassName Win32_Process -Filter "Name='OpenAmer.exe'" -ErrorAction SilentlyContinue
 foreach ($p in $openamerProcs) {
-    $cmd = $p.CommandLine
-    if ($cmd -match $hermesPattern) { continue }  # NIE hermes/emilija
-    $msg = "  -> Stoppe OpenAmer.exe (PID $($p.ProcessId))"
-    Write-Host $msg
-    Stop-Process -Id $p.ProcessId -Force -ErrorAction SilentlyContinue
-    $stopped += "OpenAmer.exe"
+    if ($p.CommandLine -match $hermesPattern) { continue }  # NIE hermes/emilija
+    Stop-OAProcess -TargetPid $p.ProcessId -Label "OpenAmer.exe"
 }
 
 # --- Chrome mit openamer-laptop\chrome-profile ---
@@ -49,10 +58,7 @@ foreach ($p in $chromeProcs) {
     $cmd = $p.CommandLine
     if ($cmd -match [regex]::Escape("openamer-laptop") -and $cmd -match "chrome-profile") {
         if ($cmd -match $hermesPattern) { continue }
-        $msg = "  -> Stoppe Chrome (chrome-profile) PID $($p.ProcessId)"
-        Write-Host $msg
-        Stop-Process -Id $p.ProcessId -Force -ErrorAction SilentlyContinue
-        $stopped += "Chrome (chrome-profile)"
+        Stop-OAProcess -TargetPid $p.ProcessId -Label "Chrome (chrome-profile)"
     }
 }
 
@@ -62,11 +68,23 @@ foreach ($p in $brainProcs) {
     $cmd = $p.CommandLine
     if ($cmd -match "session_to_brain" -and $cmd -match "--watch") {
         if ($cmd -match $hermesPattern) { continue }
-        $msg = "  -> Stoppe session_to_brain --watch PID $($p.ProcessId)"
-        Write-Host $msg
-        Stop-Process -Id $p.ProcessId -Force -ErrorAction SilentlyContinue
-        $stopped += "session_to_brain"
+        Stop-OAProcess -TargetPid $p.ProcessId -Label "session_to_brain"
     }
+}
+
+# --- Generische venv-Blocker aus openamer-agent (fängt brain collect, REPLs, alles das
+#     die venv-Scripts offen hält: openamer.exe, python.exe unter venv\). SCHÜTZT hermes/emilija.
+$venvProcs = Get-CimInstance -ClassName Win32_Process -ErrorAction SilentlyContinue |
+    Where-Object { $_.CommandLine -match [regex]::Escape("openamer-agent\venv") -and $_.CommandLine -notmatch $hermesPattern -and $_.Name -in @("python.exe","openamer.exe") }
+foreach ($p in $venvProcs) {
+    Stop-OAProcess -TargetPid $p.ProcessId -Label "venv($($p.Name))"
+}
+
+# --- Hängengebliebener Updater (openamer-setup.exe) ---
+$setupProcs = Get-CimInstance -ClassName Win32_Process -Filter "Name='openamer-setup.exe'" -ErrorAction SilentlyContinue
+foreach ($p in $setupProcs) {
+    if ($p.CommandLine -match $hermesPattern) { continue }
+    Stop-OAProcess -TargetPid $p.ProcessId -Label "openamer-setup"
 }
 
 if ($stopped.Count -eq 0) {
