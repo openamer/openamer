@@ -1,0 +1,120 @@
+{
+  "timestamp": "2026-08-31T21:30:04",
+  "mode": "apply",
+  "population": 664,
+  "avg_score": 40.0,
+  "kept": [
+    {
+      "skill": "discord-server-management",
+      "before": 21,
+      "after": 25,
+      "delta": 4,
+      "fixes": [
+        "✅ metadata.openamer Block hinzugefügt",
+        "✅ platforms Feld hinzugefügt",
+        "✅ version Feld hinzugefügt"
+      ]
+    },
+    {
+      "skill": "beta",
+      "before": 21,
+      "after": 25,
+      "delta": 4,
+      "fixes": [
+        "✅ metadata.openamer Block hinzugefügt",
+        "✅ platforms Feld hinzugefügt",
+        "✅ version Feld hinzugefügt"
+      ]
+    },
+    {
+      "skill": "mcore-split-pr",
+      "before": 21,
+      "after": 25,
+      "delta": 4,
+      "fixes": [
+        "✅ metadata.openamer Block hinzugefügt",
+        "✅ platforms Feld hinzugefügt",
+        "✅ version Feld hinzugefügt"
+      ]
+    },
+    {
+      "skill": "nemo-rl-docs",
+      "before": 21,
+      "after": 25,
+      "delta": 4,
+      "fixes": [
+        "✅ metadata.openamer Block hinzugefügt",
+        "✅ platforms Feld hinzugefügt",
+        "✅ version Feld hinzugefügt"
+      ]
+    },
+    {
+      "skill": "tilegym-monkey-patch-kernels-to-transformers",
+      "before": 21,
+      "after": 25,
+      "delta": 4,
+      "fixes": [
+        "✅ metadata.openamer Block hinzugefügt",
+        "✅ platforms Feld hinzugefügt",
+        "✅ version Feld hinzugefügt"
+      ]
+    },
+    {
+      "skill": "alpha",
+      "before": 23,
+      "after": 27,
+      "delta": 4,
+      "fixes": [
+        "✅ metadata.openamer Block hinzugefügt",
+        "✅ platforms Feld hinzugefügt",
+        "✅ version Feld hinzugefügt"
+      ]
+    },
+    {
+      "skill": "jetson-video-setup",
+      "before": 23,
+      "after": 27,
+      "delta": 4,
+      "fixes": [
+        "✅ metadata.openamer Block hinzugefügt",
+        "✅ platforms Feld hinzugefügt",
+        "✅ version Feld hinzugefügt"
+      ]
+    },
+    {
+      "skill": "cron-model-pinning",
+      "before": 24,
+      "after": 28,
+      "delta": 4,
+      "fixes": [
+        "✅ metadata.openamer Block hinzugefügt",
+        "✅ platforms Feld hinzugefügt",
+        "✅ version Feld hinzugefügt"
+      ]
+    },
+    {
+      "skill": "doca-argus",
+      "before": 24,
+      "after": 28,
+      "delta": 4,
+      "fixes": [
+        "✅ metadata.openamer Block hinzugefügt",
+        "✅ platforms Feld hinzugefügt",
+        "✅ version Feld hinzugefügt"
+      ]
+    },
+    {
+      "skill": "doca-bare-metal-deployment",
+      "before": 24,
+      "after": 28,
+      "delta": 4,
+      "fixes": [
+        "✅ metadata.openamer Block hinzugefügt",
+        "✅ platforms Feld hinzugefügt",
+        "✅ version Feld hinzugefügt"
+      ]
+    }
+  ],
+  "reverted": [],
+  "candidates": []
+}
