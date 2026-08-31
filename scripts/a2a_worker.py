@@ -288,7 +288,7 @@ def _ask_ollama(prompt: str) -> dict:
                   "llama3.2:1b", "llama3.2:3b")
     picked = None
     try:
-        installed = _sp.run(["ollama", "list"], capture_output=True, text=True,
+        installed = _sp.run(["ollama", "list"], capture_output=True, text=True, encoding='utf-8', errors='replace',
                             timeout=20).stdout or ""
     except Exception:
         installed = ""
@@ -300,7 +300,7 @@ def _ask_ollama(prompt: str) -> dict:
         # Auto-provision a tiny local model on first need (zero cost, local).
         model_auto = "qwen2.5:0.5b"
         try:
-            _sp.run(["ollama", "pull", model_auto], capture_output=True, text=True,
+            _sp.run(["ollama", "pull", model_auto], capture_output=True, text=True, encoding='utf-8', errors='replace',
                     timeout=600)
             picked = model_auto
         except Exception as e:
@@ -310,7 +310,7 @@ def _ask_ollama(prompt: str) -> dict:
                   "in a short sentence.\nUser: ")
     try:
         rr = _sp.run(["ollama", "run", model, sys_prompt + prompt],
-                     capture_output=True, text=True, timeout=180)
+                     capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=180)
         out = (rr.stdout or "").strip()
         if not out:
             return {"ok": False, "error": f"ollama {model} empty"}
@@ -457,7 +457,7 @@ def run(repo: Path, no_push: bool = False) -> int:
             subprocess.run(["git", "-C", str(repo), "commit", "-q", "-m",
                             "a2a worker: replies"], capture_output=True)
             push = subprocess.run(["git", "-C", str(repo), "push", "-q"],
-                                  capture_output=True, text=True)
+                                  capture_output=True, text=True, encoding='utf-8', errors='replace')
             if push.returncode != 0:
                 print("[worker] push:", (push.stderr or "").strip()[-300:])
             else:

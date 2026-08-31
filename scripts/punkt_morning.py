@@ -26,7 +26,7 @@ OUT = REPO / "reports" / "punkt-briefing.md"
 
 def _git(args: list[str]) -> str:
     try:
-        r = subprocess.run(["git"] + args, capture_output=True, text=True,
+        r = subprocess.run(["git"] + args, capture_output=True, text=True, encoding='utf-8', errors='replace',
                            timeout=20, cwd=str(REPO))
         return r.stdout.strip()
     except Exception:
@@ -89,7 +89,7 @@ def darwin_status() -> str:
         pass
     try:
         r = subprocess.run(["python", str(REPO / "scripts" / "darwin_engine.py"), "--status"],
-                           capture_output=True, text=True, timeout=30, cwd=str(REPO))
+                           capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=30, cwd=str(REPO))
         return "Darwin: " + " | ".join(l.strip() for l in r.stdout.splitlines() if "Population" in l or "Species" in l)
     except Exception:
         return "Darwin: Status nicht verfügbar"

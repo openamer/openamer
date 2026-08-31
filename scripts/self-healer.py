@@ -77,7 +77,7 @@ def _w_pid_restart(context: dict) -> dict:
             # Prüfen ob Process läuft (Windows)
             r = subprocess.run(
                 ["tasklist", "/FI", f"PID eq {pid}", "/NH"],
-                capture_output=True, text=True, timeout=10
+                capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=10
             )
             if pid in r.stdout:
                 # Prozess läuft — alles OK
@@ -99,7 +99,7 @@ def _w_pid_restart(context: dict) -> dict:
 
     if start_cmd:
         try:
-            r = subprocess.run(start_cmd, shell=True, capture_output=True, text=True, timeout=30)
+            r = subprocess.run(start_cmd, shell=True, capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=30)
             if r.returncode == 0:
                 result["applied"] = True
                 result["detail"] = f"Neustart erfolgreich: `{start_cmd}` → exit 0"
@@ -171,7 +171,7 @@ def _w_check_and_restart_stealth(context: dict) -> dict:
     try:
         r = subprocess.run(
             ["bash", str(stealth_script), "status"],
-            capture_output=True, text=True, timeout=15
+            capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=15
         )
         if "läuft" in r.stdout.lower() or "running" in r.stdout.lower():
             result["applied"] = True
@@ -179,7 +179,7 @@ def _w_check_and_restart_stealth(context: dict) -> dict:
         else:
             r2 = subprocess.run(
                 ["bash", str(stealth_script), "start"],
-                capture_output=True, text=True, timeout=30
+                capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=30
             )
             if r2.returncode == 0:
                 result["applied"] = True

@@ -537,14 +537,14 @@ class Validator:
 
             result = subprocess.run(
                 ["patch", "-p0", "-i", str(patch_file)],
-                capture_output=True, text=True, timeout=30,
+                capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=30,
                 cwd=str(tmp_path),
             )
             if result.returncode != 0:
                 # Versuche -p1
                 result = subprocess.run(
                     ["patch", "-p1", "-i", str(patch_file)],
-                    capture_output=True, text=True, timeout=30,
+                    capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=30,
                     cwd=str(tmp_path),
                 )
                 if result.returncode != 0:
@@ -553,7 +553,7 @@ class Validator:
             # py_compile check
             result = subprocess.run(
                 [sys.executable, "-m", "py_compile", str(cloned_file)],
-                capture_output=True, text=True, timeout=30,
+                capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=30,
             )
             if result.returncode != 0:
                 return False, f"py_compile failed:\n{result.stderr or result.stdout}"
@@ -575,7 +575,7 @@ class GitOps:
         if self.dry_run:
             print(f"  [dry-run] git {' '.join(args)}")
             return subprocess.CompletedProcess(args, 0, "", "")
-        return subprocess.run(cmd, capture_output=True, text=True, timeout=60)
+        return subprocess.run(cmd, capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=60)
 
     def ensure_branch(self) -> bool:
         """Erstellt 'rewriter-tmp' Branch von main, falls nötig."""
@@ -604,14 +604,14 @@ class GitOps:
 
         result = subprocess.run(
             ["patch", "-p0", "-i", str(patch_path)],
-            capture_output=True, text=True, timeout=30,
+            capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=30,
             cwd=str(self.repo),
         )
         if result.returncode != 0:
             # Versuche -p1
             result = subprocess.run(
                 ["patch", "-p1", "-i", str(patch_path)],
-                capture_output=True, text=True, timeout=30,
+                capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=30,
                 cwd=str(self.repo),
             )
         if result.returncode != 0:

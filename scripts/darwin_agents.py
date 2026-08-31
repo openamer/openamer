@@ -136,7 +136,7 @@ def execute_action(agent_name: str, action: str) -> dict:
     if cmd is None:
         return {"action": action, "executed": False, "result": "rested"}
     try:
-        r = subprocess.run(cmd, capture_output=True, text=True,
+        r = subprocess.run(cmd, capture_output=True, text=True, encoding='utf-8', errors='replace',
                            timeout=110, cwd=str(REPO))
         success = r.returncode in (0, 2)
         return {"action": action, "executed": True, "success": success,

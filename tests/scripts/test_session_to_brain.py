@@ -21,10 +21,11 @@ def test_state_db_not_found(tmp_path, monkeypatch):
 
 
 def test_brain_dataset_writes_to_trajectories_dir(monkeypatch):
-    """The brain dataset path must be ~/.openamer/trajectories/openamer-brain-trajectories.jsonl."""
-    ds = stb._brain_dataset()
+    """The staging dataset must live under <OPENAMER_HOME>/trajectories/."""
+    monkeypatch.setenv("OPENAMER_HOME", str(Path.home() / ".openamer-test-nonexistent"))
+    ds = stb._trajectory_file()
     assert "trajectories" in str(ds)
-    assert ds.name == "openamer-brain-trajectories.jsonl"
+    assert ds.name == "daemon-trajectories.jsonl"
     assert ds.parent.name == "trajectories"
 
 
@@ -55,8 +56,8 @@ def test_build_trajectory_stats():
 
 def test_dry_run_does_not_write(tmp_path, monkeypatch):
     """--dry-run must not create the dataset file."""
-    ds = tmp_path / "brain.jsonl"
-    monkeypatch.setattr(stb, "_brain_dataset", lambda: ds)
+    ds = tmp_path / "daemon-trajectories.jsonl"
+    monkeypatch.setattr(stb, "_trajectory_file", lambda: ds)
     db = sqlite3.connect(str(tmp_path / "state.db"))
     db.execute("CREATE TABLE sessions (id TEXT, title TEXT, started_at REAL)")
     db.execute("INSERT INTO sessions VALUES ('s1', 'test', 1.0)")

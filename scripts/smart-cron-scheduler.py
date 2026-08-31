@@ -103,7 +103,7 @@ def get_cpu_usage() -> float:
             "powershell", "-NoProfile", "-Command",
             "(Get-CimInstance Win32_Processor | Measure-Object -Property LoadPercentage -Average).Average"
         ]
-        result = subprocess.run(cmd, capture_output=True, text=True, timeout=10)
+        result = subprocess.run(cmd, capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=10)
         output = result.stdout.strip()
         if output:
             return float(output)
@@ -118,7 +118,7 @@ def get_cpu_usage() -> float:
                 if os.path.exists(wmic_path):
                     result = subprocess.run(
                         [wmic_path, "cpu", "get", "loadpercentage", "/format:csv"],
-                        capture_output=True, text=True, timeout=10,
+                        capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=10,
                     )
                     for line in result.stdout.strip().splitlines():
                         parts = line.split(",")
@@ -143,7 +143,7 @@ def get_memory_usage() -> Tuple[float, float, float]:
             "$used=[math]::Round(($total-$free)/$total*100,1); "
             "Write-Output \"$free,$total,$used\""
         ]
-        result = subprocess.run(cmd, capture_output=True, text=True, timeout=10)
+        result = subprocess.run(cmd, capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=10)
         output = result.stdout.strip()
         if output and "," in output:
             parts = output.split(",")
@@ -164,7 +164,7 @@ def get_disk_usage(path: str = "C:") -> Tuple[float, float, float]:
             f"$used=[math]::Round(($d.Size-$d.FreeSpace)/$d.Size*100,1); "
             "Write-Output \"$free,$total,$used\""
         ]
-        result = subprocess.run(cmd, capture_output=True, text=True, timeout=10)
+        result = subprocess.run(cmd, capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=10)
         output = result.stdout.strip()
         if output and "," in output:
             parts = output.split(",")
@@ -456,7 +456,7 @@ def apply_suggestion(suggestion: Dict[str, Any], verbose: bool = False) -> Dict[
     try:
         result = subprocess.run(
             ["openamer", "cron", "edit", job_id, "--schedule", new_schedule],
-            capture_output=True, text=True, timeout=30,
+            capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=30,
         )
         success = result.returncode == 0
         return {

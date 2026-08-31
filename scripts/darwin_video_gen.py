@@ -55,7 +55,7 @@ def main():
     cmd = [FFMPEG, "-y", "-i", str(webm), "-c:v", "libx264",
            "-preset", "fast", "-crf", "23", "-pix_fmt", "yuv420p",
            str(MP4_OUT)]
-    r = subprocess.run(cmd, capture_output=True, text=True)
+    r = subprocess.run(cmd, capture_output=True, text=True, encoding='utf-8', errors='replace')
     if r.returncode == 0:
         size = MP4_OUT.stat().st_size / (1024 * 1024)
         print(f"OK: {MP4_OUT} ({size:.1f} MB)")

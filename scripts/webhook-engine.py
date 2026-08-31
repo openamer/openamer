@@ -151,7 +151,7 @@ def execute_action(action_def, event_data):
 
             # Build command
             cmd = [sys.executable, str(full_path)] + script_args
-            result = subprocess.run(cmd, capture_output=True, text=True, timeout=60)
+            result = subprocess.run(cmd, capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=60)
             if result.returncode == 0:
                 return True, f"Script '{full_path.name}' OK: {result.stdout.strip()[:200]}"
             else:

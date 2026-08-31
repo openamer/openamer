@@ -494,7 +494,7 @@ def run_setup(models: list[str] | None = None) -> dict:
 
     # 1. Prüf ob Ollama schon installiert ist
     try:
-        subprocess.run(["ollama", "--version"], capture_output=True, text=True, timeout=10)
+        subprocess.run(["ollama", "--version"], capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=10)
         result["ollama_installed"] = True
         result["ollama_version"] = "present"
     except (FileNotFoundError, subprocess.TimeoutExpired):
@@ -508,7 +508,7 @@ def run_setup(models: list[str] | None = None) -> dict:
             # Versuch winget
             wp = subprocess.run(
                 ["winget", "install", "Ollama.Ollama", "--accept-source-agreements", "--accept-package-agreements"],
-                capture_output=True, text=True, timeout=120,
+                capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=120,
             )
             if wp.returncode == 0:
                 result["ollama_installed"] = True
@@ -555,7 +555,7 @@ def run_setup(models: list[str] | None = None) -> dict:
             try:
                 sp = subprocess.run(
                     ["ollama", "pull", model],
-                    capture_output=True, text=True, timeout=300,
+                    capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=300,
                 )
                 if sp.returncode == 0:
                     result["models_pulled"].append(model)

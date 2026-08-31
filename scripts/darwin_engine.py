@@ -701,7 +701,7 @@ def run_skill_check(skill_name: str, timeout: int = 90) -> dict:
     else:
         cmd = ["bash", "-c", script]
     try:
-        r = subprocess.run(cmd, capture_output=True, text=True,
+        r = subprocess.run(cmd, capture_output=True, text=True, encoding='utf-8', errors='replace',
                            timeout=timeout, cwd=str(repo))
         return {"ok": True, "exit_code": r.returncode,
                 "stdout_tail": r.stdout[-300:], "stderr_tail": r.stderr[-200:]}

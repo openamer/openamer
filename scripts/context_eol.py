@@ -65,7 +65,7 @@ def _compact(session_key: str) -> int:
     if not script.exists():
         script = Path(__file__).parent / "context-compressor.py"
     cmd = [sys.executable, str(script), "--session", session_key]
-    r = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
+    r = subprocess.run(cmd, capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=120)
     print(r.stdout[-400:])
     return 0 if r.returncode == 0 else 1
 

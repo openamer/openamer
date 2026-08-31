@@ -82,7 +82,7 @@ TASK_RUNNERS = {
 
 def _run(cmd: list[str], timeout: int = 110) -> tuple[bool, str]:
     try:
-        r = subprocess.run(cmd, capture_output=True, text=True,
+        r = subprocess.run(cmd, capture_output=True, text=True, encoding='utf-8', errors='replace',
                            timeout=timeout, cwd=str(REPO))
         return r.returncode in (0, 2), (r.stdout or r.stderr)[-300:]
     except subprocess.TimeoutExpired:
@@ -205,7 +205,7 @@ def challenge_grid_daily() -> dict:
     r = subprocess.run(
         [sys.executable, str(REPO / "scripts" / "darwin_grid_github.py"),
          "--duel", "damir-desktop"],
-        capture_output=True, text=True, timeout=110, cwd=str(REPO))
+        capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=110, cwd=str(REPO))
     state["last_duel"] = _now_iso()
     _save_file(state_file, state)
     return {"status": "duelled", "output": (r.stdout or r.stderr)[-200:]}
