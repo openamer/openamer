@@ -1,0 +1,208 @@
+{
+  "updated": "2026-08-31T20:39:23+00:00",
+  "population": 676,
+  "avg_score": 39.9,
+  "fittest": [
+    {
+      "name": "openamer-desktop-dev",
+      "score": 76
+    },
+    {
+      "name": "python-debugpy",
+      "score": 73
+    },
+    {
+      "name": "windows-computer-use",
+      "score": 71
+    },
+    {
+      "name": "claude-design",
+      "score": 71
+    },
+    {
+      "name": "xlsx",
+      "score": 71
+    },
+    {
+      "name": "parallel-feature-development",
+      "score": 71
+    },
+    {
+      "name": "sketch",
+      "score": 70
+    },
+    {
+      "name": "windows-compatibility",
+      "score": 70
+    },
+    {
+      "name": "train-from-usage",
+      "score": 70
+    },
+    {
+      "name": "openamer-update-recovery",
+      "score": 69
+    }
+  ],
+  "autopatch": {
+    "timestamp": "2026-08-31T21:30:04",
+    "kept": [
+      {
+        "skill": "discord-server-management",
+        "before": 21,
+        "after": 25,
+        "delta": 4,
+        "fixes": [
+          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
+          "\u2705 platforms Feld hinzugef\u00fcgt",
+          "\u2705 version Feld hinzugef\u00fcgt"
+        ]
+      },
+      {
+        "skill": "beta",
+        "before": 21,
+        "after": 25,
+        "delta": 4,
+        "fixes": [
+          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
+          "\u2705 platforms Feld hinzugef\u00fcgt",
+          "\u2705 version Feld hinzugef\u00fcgt"
+        ]
+      },
+      {
+        "skill": "mcore-split-pr",
+        "before": 21,
+        "after": 25,
+        "delta": 4,
+        "fixes": [
+          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
+          "\u2705 platforms Feld hinzugef\u00fcgt",
+          "\u2705 version Feld hinzugef\u00fcgt"
+        ]
+      },
+      {
+        "skill": "nemo-rl-docs",
+        "before": 21,
+        "after": 25,
+        "delta": 4,
+        "fixes": [
+          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
+          "\u2705 platforms Feld hinzugef\u00fcgt",
+          "\u2705 version Feld hinzugef\u00fcgt"
+        ]
+      },
+      {
+        "skill": "tilegym-monkey-patch-kernels-to-transformers",
+        "before": 21,
+        "after": 25,
+        "delta": 4,
+        "fixes": [
+          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
+          "\u2705 platforms Feld hinzugef\u00fcgt",
+          "\u2705 version Feld hinzugef\u00fcgt"
+        ]
+      },
+      {
+        "skill": "alpha",
+        "before": 23,
+        "after": 27,
+        "delta": 4,
+        "fixes": [
+          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
+          "\u2705 platforms Feld hinzugef\u00fcgt",
+          "\u2705 version Feld hinzugef\u00fcgt"
+        ]
+      },
+      {
+        "skill": "jetson-video-setup",
+        "before": 23,
+        "after": 27,
+        "delta": 4,
+        "fixes": [
+          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
+          "\u2705 platforms Feld hinzugef\u00fcgt",
+          "\u2705 version Feld hinzugef\u00fcgt"
+        ]
+      },
+      {
+        "skill": "cron-model-pinning",
+        "before": 24,
+        "after": 28,
+        "delta": 4,
+        "fixes": [
+          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
+          "\u2705 platforms Feld hinzugef\u00fcgt",
+          "\u2705 version Feld hinzugef\u00fcgt"
+        ]
+      },
+      {
+        "skill": "doca-argus",
+        "before": 24,
+        "after": 28,
+        "delta": 4,
+        "fixes": [
+          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
+          "\u2705 platforms Feld hinzugef\u00fcgt",
+          "\u2705 version Feld hinzugef\u00fcgt"
+        ]
+      },
+      {
+        "skill": "doca-bare-metal-deployment",
+        "before": 24,
+        "after": 28,
+        "delta": 4,
+        "fixes": [
+          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
+          "\u2705 platforms Feld hinzugef\u00fcgt",
+          "\u2705 version Feld hinzugef\u00fcgt"
+        ]
+      }
+    ]
+  },
+  "trends": [
+    {
+      "source": "arXiv",
+      "title": "AI Agents: Evolution, Architecture, and Real-World Applications",
+      "url": "http://arxiv.org/abs/2510.27051v1"
+    },
+    {
+      "source": "arXiv",
+      "title": "ASTELD: A Six-Axis Classification Framework for Autonomous AI Agents - Design, Evaluation, and an OpenClaw Case Study",
+      "url": "http://arxiv.org/abs/2603.05031v1"
+    },
+    {
+      "source": "arXiv",
+      "title": "Hardware Keystores for AI Agent Signing Workflows: A Zero-Trust MCP Enforcement Architecture",
+      "url": "http://arxiv.org/abs/2508.02866v3"
+    },
+    {
+      "source": "arXiv",
+      "title": "ANX: Protocol-First Design for AI Agent Interaction with a Supporting 3EX Decoupled Architecture",
+      "url": "http://arxiv.org/abs/2502.18359v1"
+    },
+    {
+      "source": "News",
+      "title": "Can agentic commerce make in-store payments unsafe? - American Banker",
+      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQOURBNml1VEZHV090Q1ctNzVhM2Q0dGFYSkg2aDRQX1BsRWVlUFVWUjFSamlIaUZFWlhXb1FUZ0JoY2VXa25aeFo3RUtNWXVCVnRpRklKQWJSZFM0a2xWNkg3MTgwNzUyUDdodlNmNi1qMDduZzA3Y2V3V0I2SUdDdUJoT0ZoMnpWZkZaMlNEUlRvWDFrRnd0di0wWmpGckU?oc=5"
+    },
+    {
+      "source": "News",
+      "title": "Agents Without Guardrails: Why Agentic AI Governance Must Focus on Behavior, Not Just Identity - Security Boulevard",
+      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQX1hKOGRzQUpra0pVWUZhRTRKd1lWN1E1SjhLV0tTSjROdDZwZVdzdWp2SU1ZQW1VN1UxY2hPLWtid3VrSUZ1WENhdUYxakdKWll6MkMxaU9sVkRVR3A2SlRxc1UtbmRnNlNSZXNTbjlLWnEyWlRKQVlBX0Q4cUMtNzhzbjNhdkJmaDMxR3ktd09ua2MzWGxfSjdxNkFHakNZWGVNNURIRHRCNHB3SnR6SU1uYnBreWRIUUhlazFZaW1vZEpQUUUzLW0xd2REUQ?oc=5"
+    },
+    {
+      "source": "News",
+      "title": "CX Providers Set the Pace for Agentic CX This Fall - CMSWire",
+      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQWW9fbGltVUxlcko0MHBDSklGMmZrNW40eDRjZHRWam5lTlljalFPN20yYmRHYWJVcFNOMGhKMmVMdXljZEhRLTRzSXdCcmtYUGd5ei0wWUx6d3diNmNKa3ZYdEtiQzlzT0xPTlc4QmRBYW5ELUhJNXFLaVdhUlkyLVMwR2p2aHVyQV9qdUlCQnlJaG81VHVCV3BHaw?oc=5"
+    },
+    {
+      "source": "News",
+      "title": "Agentic AI is shifting the pricing models CIOs rely on - ciodive.com",
+      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBlenpLMVVFWXRZb1RDbC1JM3VzRDdEUmF2bWpwN3FEUThkVm9WQWJJeUtfa21sNDFNMi1TOGZRS1Jyb0x1TWUzQTdZZmJkQkV1S09MdWtEUEc3TlFsM2RlTW1xXzBsaHNzVFNfdjBGQnR3bG1UNWtOWDZn?oc=5"
+    }
+  ],
+  "population_engine": 44,
+  "species": 45,
+  "trials": 2,
+  "harvested": 47
+}
