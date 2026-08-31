@@ -1,6 +1,6 @@
 {
   "organism": "OpenAmer",
-  "written_at": "2026-08-31T09:25:53.583075+00:00",
+  "written_at": "2026-08-31T21:26:26.240379+00:00",
   "identity": {
     "name": "openamer_agent",
     "voice": "https://x.com/openamer_agent",
@@ -15,7 +15,7 @@
   "organs": {
     "heartbeat": {
       "kind": "cron-fleet",
-      "count": 64
+      "count": 68
     },
     "memory": {
       "kind": "memory+skills",
@@ -146,7 +146,7 @@
       "name": "Auto Code Review (60m)",
       "schedule": "every 60m",
       "script": "cron-auto-code-review.py",
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "Resource Monitor Alert",
@@ -407,12 +407,6 @@
       "last_status": "ok"
     },
     {
-      "name": "provenance-cleanup",
-      "schedule": "0 3 * * *",
-      "script": null,
-      "last_status": "error"
-    },
-    {
       "name": "self-evolve",
       "schedule": "0 */6 * * *",
       "script": "self_evolve.py",
@@ -441,6 +435,36 @@
       "schedule": "every 30m",
       "script": null,
       "last_status": "ok"
+    },
+    {
+      "name": "Darwin Skill AutoPatch (daily)",
+      "schedule": "0 4 * * *",
+      "script": "darwin-autopatch-cron.py",
+      "last_status": null
+    },
+    {
+      "name": "Punkt Morgen-Briefing 07:30",
+      "schedule": "30 7 * * *",
+      "script": "punkt_morning.py",
+      "last_status": null
+    },
+    {
+      "name": "provenance-cleanup",
+      "schedule": "0 3 * * *",
+      "script": "provenance_cleanup.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "Darwin Publish + Synthesize (daily)",
+      "schedule": "0 5 * * *",
+      "script": null,
+      "last_status": null
+    },
+    {
+      "name": "Go Mesh-Daemon Watchdog (5m)",
+      "schedule": "*/5 * * * *",
+      "script": "cron_mesh_daemon.py",
+      "last_status": null
     }
   ]
 }
