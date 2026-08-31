@@ -538,10 +538,11 @@ def run_server(
     handler = _make_handler(state, node_id, capabilities)
     server = HTTPServer((host, port), handler)
     logger.info("Mesh node %s listening on %s:%d", node_id, host, port)
-    # Register self
+    # Register self — persist a routable address, never the wildcard bind
+    persist_host = host if host not in ("0.0.0.0", "::") else _get_local_ip()
     local_node = NodeInfo(
         node_id=node_id,
-        host=host,
+        host=persist_host,
         port=port,
         capabilities=capabilities,
         role="master" if "master" in node_id else "worker",
