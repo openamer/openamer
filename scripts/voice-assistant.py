@@ -330,7 +330,29 @@ def list_conversations(days: int = 7) -> list[Path]:
 
 # ── Chat-Modus (interaktiv) ────────────────────────────────────────────────────
 
-def run_chat(voice: str | None = None) -> int:
+def _agent_reply(user_text: str) -> str:
+    """Get a real agent answer via the OpenAmer CLI (one-shot, tool-enabled).
+
+    Returns the agent's text reply; falls back to an echo answer if the CLI
+    is unavailable so the voice loop never dies.
+    """
+    try:
+        r = subprocess.run(
+            ["openamer", "-z", user_text, "--no-restore-cwd"],
+            capture_output=True, text=True, encoding="utf-8", errors="replace",
+            timeout=110, cwd=str(Path.home()),
+        )
+        out = (r.stdout or "").strip()
+        if r.returncode == 0 and out:
+            return out
+        return f"Agent-Fehler (exit {r.returncode}): {(r.stderr or out or 'keine Ausgabe')[:160]}"
+    except FileNotFoundError:
+        return "OpenAmer CLI nicht gefunden — Echo-Modus. " + user_text
+    except subprocess.TimeoutExpired:
+        return "Der Agent brauchte zu lange. Bitte erneut versuchen."
+
+
+def run_chat(voice: str | None = None, agent: bool = False) -> int:
     """Interaktiver Chat-Modus: Hört zu → zeigt Text → gibt Antwort aus.
     
     Der Benutzer kann sprechen oder 'exit' / 'quit' / 'bye' eingeben, um
@@ -410,8 +432,12 @@ def run_chat(voice: str | None = None) -> int:
                 print(f"    - {v['name']} ({v['culture']}, {v['gender']})")
             continue
 
-        # Echo-Antwort (Demo-Modus): wiederhole, was der Benutzer gesagt hat
-        answer = user_text
+        # Echte Agent-Antwort (Agent-Modus) oder Echo (Demo-Modus)
+        if agent:
+            print("  Assistent: (denkt nach...)")
+            answer = _agent_reply(user_text)
+        else:
+            answer = user_text
         print(f"  Assistent: {answer}")
 
         tts_result = tts_powershell(answer, voice=voice)
@@ -457,6 +483,10 @@ def main() -> int:
     mode.add_argument(
         "--chat", action="store_true",
         help="Interaktiver Modus: hört zu → verarbeitet → antwortet"
+    )
+    mode.add_argument(
+        "--agent", action="store_true",
+        help="Agent-Modus: wie --chat, aber Antworten kommen vom echten OpenAmer-Agenten"
     )
     mode.add_argument(
         "--selftest", action="store_true",
@@ -537,9 +567,9 @@ def main() -> int:
         code = tts_powershell(args.speak, voice=args.voice)
         return code
 
-    # ── --chat ──
-    if args.chat:
-        return run_chat(voice=args.voice)
+    # ── --chat / --agent ──
+    if args.chat or args.agent:
+        return run_chat(voice=args.voice, agent=args.agent)
 
     # Kein Modus → Hilfe anzeigen
     parser.print_help()
