@@ -101,6 +101,80 @@ def tts_powershell(text: str, voice: str | None = None) -> int:
         return 2
 
 
+def tts_to_wav(text: str, out_path: str | Path, voice: str | None = None) -> int:
+    """Rendert Text in eine WAV-Datei (offline-Smoketest, kein Lautsprecher nötig).
+
+    Returns: 0 bei Erfolg, 2 bei Fehler.
+    """
+    try:
+        out = str(out_path).replace("'", "''")
+        select = f'$s.SelectVoice("{voice}"); ' if voice else ""
+        ps_script = (
+            'Add-Type -AssemblyName System.Speech; '
+            '$s = New-Object System.Speech.Synthesis.SpeechSynthesizer; '
+            f'{select}'
+            f'$s.SetOutputToWaveFile(\'{out}\'); '
+            f'$s.Speak([System.Security.SecurityElement]::Escape(\'{text}\')); '
+            '$s.Dispose()'
+        )
+        result = _powershell(ps_script, timeout=60)
+        if result.returncode != 0:
+            log(f"TTS-WAV fehlgeschlagen: {result.stderr.strip()}", "ERROR")
+            return 2
+        size = Path(out).stat().st_size if Path(out).exists() else 0
+        if size <= 44:  # nur Header = keine Audio-Daten
+            log(f"TTS-WAV leer/ungueltig ({size} Bytes)", "ERROR")
+            return 2
+        log(f"TTS-WAV erzeugt: {out} ({size} Bytes)")
+        return 0
+    except Exception as e:
+        log(f"TTS-WAV-Fehler: {e}", "ERROR")
+        return 2
+
+
+def selftest(voice: str | None = None) -> int:
+    """End-to-End-Smoketest: Text in -> WAV-Datei out -> Lautsprecherausgabe."""
+    print("== Voice-Assistant Selftest ==")
+    ok = True
+
+    # 1) Stimmen
+    voices = list_tts_voices()
+    print(f"[1] TTS-Stimmen: {len(voices)} gefunden")
+    if not voices:
+        print("    FAIL: keine Stimmen installiert")
+        ok = False
+
+    # 2) Offline-TTS: WAV erzeugen
+    wav = Path(tempfile.gettempdir()) / "voice-assistant-selftest.wav"
+    wav.unlink(missing_ok=True)
+    rc = tts_to_wav("Selbsttest: hallo, das ist ein Sprachtest.", wav, voice=voice)
+    if rc == 0:
+        print(f"[2] TTS->WAV: OK ({wav.stat().st_size} Bytes: {wav})")
+    else:
+        print("    FAIL: WAV-Erzeugung fehlgeschlagen")
+        ok = False
+
+    # 3) Live-TTS über Lautsprecher
+    rc = tts_powershell("Selbsttest abgeschlossen.", voice=voice)
+    if rc == 0:
+        print("[3] TTS (Lautsprecher): OK")
+    else:
+        print("    FAIL: Lautsprecher-TTS fehlgeschlagen")
+        ok = False
+
+    # 4) STT-Verfügbarkeit (kurzer Probe-Lauf, kein Mikrofon erforderlich um zu 'passen',
+    #    aber ERROR-Codes (z. B. kein Audiogerät) schlagen fehl)
+    text, code = stt_listen(timeout=2)
+    if code == 0:
+        print(f"[4] STT: verfügbar (erkannt: {text!r})" if text else "[4] STT: verfügbar (keine Sprache)")
+    else:
+        print("    FAIL: STT nicht verfügbar (Exit 1)")
+        ok = False
+
+    print("== ERGEBNIS:", "PASS" if ok else "FAIL", "==")
+    return 0 if ok else 1
+
+
 def list_tts_voices() -> list[dict]:
     """Listet alle installierten TTS-Stimmen auf."""
     ps_script = (
@@ -385,6 +459,10 @@ def main() -> int:
         help="Interaktiver Modus: hört zu → verarbeitet → antwortet"
     )
     mode.add_argument(
+        "--selftest", action="store_true",
+        help="Smoketest: Stimmen, TTS->WAV-Datei, Lautsprecher-TTS und STT prüfen"
+    )
+    mode.add_argument(
         "--list-voices", action="store_true",
         help="Listet installierte TTS-Stimmen auf"
     )
@@ -429,7 +507,11 @@ def main() -> int:
             print()
         return 0
 
-    # ── Stimmen auflisten ──
+    # ── --selftest ──
+    if args.selftest:
+        return selftest(voice=args.voice)
+
+    # ── --list-voices ──
     if args.list_voices:
         voices = list_tts_voices()
         if not voices:
