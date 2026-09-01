@@ -1,6 +1,6 @@
 {
   "organism": "OpenAmer",
-  "written_at": "2026-08-31T21:26:26.240379+00:00",
+  "written_at": "2026-09-01T09:26:36.729897+00:00",
   "identity": {
     "name": "openamer_agent",
     "voice": "https://x.com/openamer_agent",
@@ -15,7 +15,7 @@
   "organs": {
     "heartbeat": {
       "kind": "cron-fleet",
-      "count": 68
+      "count": 69
     },
     "memory": {
       "kind": "memory+skills",
@@ -146,7 +146,7 @@
       "name": "Auto Code Review (60m)",
       "schedule": "every 60m",
       "script": "cron-auto-code-review.py",
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "Resource Monitor Alert",
@@ -200,7 +200,7 @@
       "name": "Pen-Tester Security Audit",
       "schedule": "every 240m",
       "script": "cron-pen-tester.py",
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "Context Compressor - Batch Archive (24h)",
@@ -440,13 +440,13 @@
       "name": "Darwin Skill AutoPatch (daily)",
       "schedule": "0 4 * * *",
       "script": "darwin-autopatch-cron.py",
-      "last_status": null
+      "last_status": "ok"
     },
     {
       "name": "Punkt Morgen-Briefing 07:30",
       "schedule": "30 7 * * *",
       "script": "punkt_morning.py",
-      "last_status": null
+      "last_status": "ok"
     },
     {
       "name": "provenance-cleanup",
@@ -458,12 +458,18 @@
       "name": "Darwin Publish + Synthesize (daily)",
       "schedule": "0 5 * * *",
       "script": null,
-      "last_status": null
+      "last_status": "ok"
     },
     {
       "name": "Go Mesh-Daemon Watchdog (5m)",
       "schedule": "*/5 * * * *",
       "script": "cron_mesh_daemon.py",
+      "last_status": "error"
+    },
+    {
+      "name": "dream-cycle",
+      "schedule": "30 3 * * *",
+      "script": null,
       "last_status": null
     }
   ]
