@@ -60,8 +60,24 @@ def existing_skill_names() -> set[str]:
 
 
 def coverage_gap(names: set[str], keywords: list[str]) -> bool:
-    joined = " ".join(names)
-    return not any(k in joined for k in keywords)
+    """True = no existing skill covers this topic.
+
+    Old version: substring match of ANY keyword -> with 618 skills a generic
+    token like 'agent' matched almost everything and blocked all candidates.
+    New version: coverage only counts if a skill name matches the MAJORITY of
+    the topic tokens (specific compound, e.g. 'agent-security' needs both
+    'agent' AND 'security' in one name) or an exact multi-word phrase.
+    """
+    # require >= 2 tokens so single generic words can never claim coverage
+    tokens = [t for t in keywords if len(t) > 3]
+    if len(tokens) < 2:
+        tokens = keywords
+    need = max(2, len(tokens)) if len(tokens) >= 2 else len(tokens)
+    for name in names:
+        hits = sum(1 for t in tokens if t in name)
+        if hits >= need:
+            return False
+    return True
 
 
 TEMPLATE = """---
