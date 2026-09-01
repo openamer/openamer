@@ -6,7 +6,7 @@ description: Use for the Windows TTS+STT voice interface in OpenAmer.
 # voice-assistant
 
 **Description:** Use for the Windows TTS+STT voice interface in OpenAmer.
-**Lines:** 93 | **Code:** 16 | **Dir:** `voice-assistant`
+**Lines:** 107 | **Code:** 18 | **Dir:** `voice-assistant`
 
 ---
 

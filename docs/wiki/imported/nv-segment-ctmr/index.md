@@ -6,7 +6,7 @@ description: Used for running NV-Segment-CTMR on CT or MRI NIfTI volumes and rec
 # nv-segment-ctmr
 
 **Description:** Used for running NV-Segment-CTMR on CT or MRI NIfTI volumes and recording label-map evidence. Not for clinical interpretation.
-**Lines:** 165 | **Code:** 28 | **Dir:** `nv-segment-ctmr`
+**Lines:** 166 | **Code:** 28 | **Dir:** `nv-segment-ctmr`
 
 ---
 

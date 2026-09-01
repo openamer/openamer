@@ -6,7 +6,7 @@ description: Use when reviewing a pull request in the deepseek-harness repo — 
 # dsh-code-review
 
 **Description:** Use when reviewing a pull request in the deepseek-harness repo — orients the reviewer to this codebase's standards (AGENTS.md conventions, defensive patterns, ADRs, quality gates) and the review-specific checks that code alone can't show
-**Lines:** 51 | **Code:** 0 | **Dir:** `dsh-code-review`
+**Lines:** 53 | **Code:** 0 | **Dir:** `dsh-code-review`
 
 ---
 

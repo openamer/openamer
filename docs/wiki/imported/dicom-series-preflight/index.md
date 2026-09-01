@@ -6,7 +6,7 @@ description: Used for header-only preflight of one DICOM series folder before co
 # dicom-series-preflight
 
 **Description:** Used for header-only preflight of one DICOM series folder before conversion or inference. Not for de-identification or clinical clearance.
-**Lines:** 76 | **Code:** 8 | **Dir:** `dicom-series-preflight`
+**Lines:** 77 | **Code:** 8 | **Dir:** `dicom-series-preflight`
 
 ---
 

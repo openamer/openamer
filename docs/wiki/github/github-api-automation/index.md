@@ -6,7 +6,7 @@ description: Script GitHub via REST API without gh/CLI login.
 # github-api-automation
 
 **Description:** Script GitHub via REST API without gh/CLI login.
-**Lines:** 87 | **Code:** 2 | **Dir:** `github-api-automation`
+**Lines:** 88 | **Code:** 2 | **Dir:** `github-api-automation`
 
 ---
 

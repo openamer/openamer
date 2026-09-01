@@ -6,7 +6,7 @@ description: Use on Windows. UIA quirks, Edge failures, MCP recovery.
 # windows-computer-use
 
 **Description:** Use on Windows. UIA quirks, Edge failures, MCP recovery.
-**Lines:** 352 | **Code:** 94 | **Dir:** `windows-computer-use`
+**Lines:** 368 | **Code:** 94 | **Dir:** `windows-computer-use`
 
 ---
 

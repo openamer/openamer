@@ -6,7 +6,7 @@ description: Used for extracting selected metadata from one DICOM file and flagg
 # dicom-metadata-extract
 
 **Description:** Used for extracting selected metadata from one DICOM file and flagging standard-tag PHI presence. Not for anonymization or clinical use.
-**Lines:** 71 | **Code:** 5 | **Dir:** `dicom-metadata-extract`
+**Lines:** 72 | **Code:** 5 | **Dir:** `dicom-metadata-extract`
 
 ---
 

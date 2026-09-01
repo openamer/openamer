@@ -6,12 +6,12 @@ description: cuOpt REST server — start server, endpoints, Python/curl client e
 # cuopt-server-api-python
 
 **Description:** cuOpt REST server — start server, endpoints, Python/curl client examples. Use when the user is deploying or calling the REST API.
-**Lines:** 109 | **Code:** 20 | **Dir:** `cuopt-server-api-python`
+**Lines:** 138 | **Code:** 20 | **Dir:** `cuopt-server-api-python`
 
 ---
 
 ---
 name: cuopt-server-api-python
-version: "26.08.00"
+version: "26.10.00"
 description: cuOpt REST server — start server, endpoints, Python/curl client examples. Use when the user is deploying or calling the REST API.
 lic...

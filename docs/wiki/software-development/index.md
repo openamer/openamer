@@ -4,7 +4,7 @@ title: software-development
 
 # 💻 software-development
 
-67 skills
+72 skills
 
 - [adapting-external-skills](adapting-external-skills/) — Port skills from another agent project into OpenAmer.
 - [api-drift-recovery](api-drift-recovery/) — ImportError after refactor? Map old→new API and fix tests.
@@ -18,6 +18,7 @@ title: software-development
 - [code-intelligence](code-intelligence/) — Use for AST/dep graph/complexity analysis of Python code.
 - [commander](commander/) — Use for OpenAmer central CLI Commander with 28 subcommands.
 - [competitive-overtake](competitive-overtake/) — Research competitors and overtake them feature-by-feature.
+- [darwin-skill-evolution](darwin-skill-evolution/) — Use when running, debugging, or extending the Darwin evolution engine, swarm OS,
 - [desktop-copy-deploy](desktop-copy-deploy/) — Use when syncing repo into the Desktop agent copy.
 - [dogfood](dogfood/) — Exploratory QA of web apps: find bugs, evidence, reports.
 - [dsh-archive-agent-notes](dsh-archive-agent-notes/) — Archive DeepSeek Harness agent notes.
@@ -32,9 +33,11 @@ title: software-development
 - [dsh-trim-cot-leakage](dsh-trim-cot-leakage/) — Trim Chain-of-Thought leakage in DeepSeek Harness prose.
 - [electron-windows-build](electron-windows-build/) — Build/debug Electron apps on Windows (CJS, CDP, webview).
 - [eol-safe-editing](eol-safe-editing/) — Use when editing CRLF files — patch bytes, avoid CRLF flips.
+- [evolutionary-skill-engineering](evolutionary-skill-engineering/) — Use when evolving skill populations via the Darwin Engine.
 - [fork-differentiation](fork-differentiation/) — Differentiate a fork from its upstream honestly.
 - [git-clean-verification](git-clean-verification/) — Use when verifying a clean git state on autocrlf repos.
 - [github-ci-debugging](github-ci-debugging/) — Use for batch CI failures: check-runs, job logs, main-first.
+- [go-mesh-daemon](go-mesh-daemon/) — Use for the Go mesh-daemon on :18920 — health probing, restart, memory footprint
 - [greenfield-agent-architecture](greenfield-agent-architecture/) — Use when building a new agent/CLI project from scratch.
 - [greenfield-agent-project](greenfield-agent-project/) — Build a new agent/CLI project, architecture-first.
 - [hello-plugin](hello-plugin/) — A simple hello plugin skill.
@@ -57,11 +60,13 @@ title: software-development
 - [record-browser-gif](record-browser-gif/) — Record browser interactions as GIFs.
 - [requesting-code-review](requesting-code-review/) — Pre-commit review: security scan, quality gates, auto-fix.
 - [safe-self-modification](safe-self-modification/) — Use when an agent edits its own core code safely.
+- [security-scanner-authoring](security-scanner-authoring/) — Fix regex scanner FPs, suppression, self-scan, cron gates.
 - [self-introspection](self-introspection/) — Use to count real SKILL.md files and registered tool names.
 - [self-modify](self-modify/) — Use when modifying OpenAmer's own core code safely. Gate every change behind the
 - [simplify-code](simplify-code/) — Parallel 4-agent cleanup of recent code changes.
 - [skill-knowledge-graph](skill-knowledge-graph/) — Knowledge Graph: Skill-Netzwerk aus 630 Skills + Vorschlags-Engine + JSON/DOT-Ex
 - [skill-md-frontmatter-analysis](skill-md-frontmatter-analysis/) — Parse SKILL.md frontmatter: variants, tags, edge cases.
+- [skill-population-evolution](skill-population-evolution/) — Use when building self-evolving skill ecosystems for agents.
 - [skill-validator](skill-validator/) — Use for 100-point QA validation of all skills + auto-fix + report.
 - [smart-test-runner](smart-test-runner/) — Git-diff auto-test-runner: prioritize + parallel tests.
 - [spike](spike/) — Throwaway experiments to validate an idea before build.

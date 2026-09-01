@@ -6,7 +6,7 @@ description: Split a PR into multiple PRs to reduce the number of required CODEO
 # mcore-split-pr
 
 **Description:** Split a PR into multiple PRs to reduce the number of required CODEOWNERS reviewer groups.
-**Lines:** 83 | **Code:** 0 | **Dir:** `mcore-split-pr`
+**Lines:** 85 | **Code:** 0 | **Dir:** `mcore-split-pr`
 
 ---
 

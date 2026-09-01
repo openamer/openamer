@@ -6,7 +6,7 @@ description: Use when invisible. GitHub Topics, Product Hunt, Reddit, HN.
 # open-source-project-visibility
 
 **Description:** Use when invisible. GitHub Topics, Product Hunt, Reddit, HN.
-**Lines:** 132 | **Code:** 4 | **Dir:** `open-source-project-visibility`
+**Lines:** 152 | **Code:** 4 | **Dir:** `open-source-project-visibility`
 
 ---
 

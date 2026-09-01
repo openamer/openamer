@@ -6,7 +6,7 @@ description: Use to export sessions to brain dataset for fine-tuning.
 # training-data-collection
 
 **Description:** Use to export sessions to brain dataset for fine-tuning.
-**Lines:** 240 | **Code:** 37 | **Dir:** `training-data-collection`
+**Lines:** 238 | **Code:** 37 | **Dir:** `training-data-collection`
 
 ---
 
