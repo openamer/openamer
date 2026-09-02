@@ -117,6 +117,14 @@ def loop():
                 res = mini_step()
                 steps_since_swap += 1
                 print(f"[online-learning] mini-step {i+1}/{STEPS_PER_CYCLE}: {res}", flush=True)
+            # cross-domain transfer: skeletonize 1 episode per cycle (best-effort)
+            try:
+                r = subprocess.run([sys.executable, str(T / "analogy_engine.py"), "extract-batch"],
+                    capture_output=True, text=True, timeout=600,
+                    encoding="utf-8", errors="replace")
+                print(f"[online-learning] analogy extraction: {r.stdout.strip()[-60:]}", flush=True)
+            except Exception as e:
+                print(f"[online-learning] analogy skip: {e}", flush=True)
             if steps_since_swap >= SWAP_EVERY:
                 msg = hot_swap()
                 steps_since_swap = 0
