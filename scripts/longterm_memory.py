@@ -14,21 +14,45 @@ CLI:
   python longterm_memory.py query "..."  # top-5 relevant episodes
   python longterm_memory.py stats
 """
-import json, sys, math, os, datetime, urllib.request
+import json, sys, math, os, datetime, urllib.request, hashlib
 
 BASE = r"C:/Users/damir/AppData/Local/openamer-laptop"
 STORE = os.path.join(BASE, "memory", "longterm_episodes.jsonl")
+EMBED_CACHE = os.path.join(BASE, "memory", "embed_cache.json")   # energy-saving: skip re-embed
 BRAIN = r"C:/Users/damir/.openamer/a2a/openamer-brain.jsonl"
 EMBED_MODEL = "nomic-embed-text"
 
 os.makedirs(os.path.dirname(STORE), exist_ok=True)
 
+def _load_cache():
+    if not os.path.exists(EMBED_CACHE):
+        return {}
+    try:
+        return json.load(open(EMBED_CACHE, encoding="utf-8"))
+    except json.JSONDecodeError:
+        return {}
+
+def _save_cache(cache):
+    # keep cache bounded (LRU-ish: drop oldest beyond 5000 entries)
+    if len(cache) > 5000:
+        cache = dict(list(cache.items())[-5000:])
+    with open(EMBED_CACHE, "w", encoding="utf-8") as f:
+        json.dump(cache, f)
+
 def embed(text):
+    """Embedding with persistent cache — identical text costs 0 compute."""
+    key = hashlib.sha256(text[:4000].encode("utf-8")).hexdigest()[:24]
+    cache = _load_cache()
+    if key in cache:
+        return cache[key]
     req = urllib.request.Request(
         "http://localhost:11434/api/embeddings",
         data=json.dumps({"model": EMBED_MODEL, "prompt": text[:4000]}).encode(),
         headers={"Content-Type": "application/json"})
-    return json.load(urllib.request.urlopen(req, timeout=30))["embedding"]
+    vec = json.load(urllib.request.urlopen(req, timeout=30))["embedding"]
+    cache[key] = vec
+    _save_cache(cache)
+    return vec
 
 def _load():
     if not os.path.exists(STORE):
