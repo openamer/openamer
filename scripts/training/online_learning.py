@@ -120,6 +120,13 @@ def loop():
                 # repeating old knowledge strengthens it (no downtime needed).
                 try:
                     buf_lines = open(BUFFER, encoding="utf-8").readlines()
+                    # cap the buffer: training on unbounded duplicates degrades
+                    # the loss (gradient noise). Keep a fixed window instead.
+                    MAX_BUF = 300
+                    if len(buf_lines) > MAX_BUF:
+                        open(BUFFER, "w", encoding="utf-8").writelines(buf_lines[-MAX_BUF:])
+                        buf_lines = buf_lines[-MAX_BUF:]
+                        print(f"[online-learning] buffer trimmed to {MAX_BUF}", flush=True)
                     if len(buf_lines) >= 4:
                         import random as _r
                         picks = _r.sample(buf_lines, 2)
