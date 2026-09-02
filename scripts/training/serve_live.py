@@ -25,7 +25,7 @@ IDLE_TIMEOUT = 1800  # energy saver — but server PROCESS stays up, only RAM fr
 print("loading live model...", flush=True)
 tok = AutoTokenizer.from_pretrained(BASE)
 model = AutoModelForCausalLM.from_pretrained(BASE, dtype=torch.bfloat16, low_cpu_mem_usage=True)
-model = PeftModel.from_pretrained(model, ADAPTER_DEFAULT, adapter_name="default")
+model = PeftModel.from_pretrained(model, ADAPTER_DEFAULT, adapter_name="default", is_trainable=True)
 model.eval()
 print("MODEL_READY", flush=True)
 
@@ -57,9 +57,44 @@ def do_swap(new_adapter_path):
             except Exception as e2:
                 return f"ERR: {e} | fallback: {e2}"
 
+# optimizer for inline test-time training (only LoRA params are trainable)
+learn_stats = {"steps": 0, "last_loss": None, "last_error": None}
+_lora_params = [p for p in model.parameters() if p.requires_grad]
+opt = torch.optim.AdamW(_lora_params, lr=5e-5) if _lora_params else None
+
 class H(BaseHTTPRequestHandler):
     def log_message(self, *a):
         pass
+
+    def _learn_inline(self, user_text, assistant_text):
+        """TEST-TIME TRAINING: the model learns from THIS exchange while serving.
+
+        Runs 1 gradient step on the LoRA weights with the just-finished exchange
+        in a background thread (lock-protected so it never collides with
+        generation). This is sleepless learning at its purest: every
+        conversation instantly becomes training signal. Fire-and-forget.
+        """
+        def _train():
+            try:
+                with lock:
+                    model.train()
+                    text = tok.apply_chat_template(
+                        [{"role": "user", "content": user_text[:1500]},
+                         {"role": "assistant", "content": assistant_text[:1500]}],
+                        tokenize=False)
+                    ids = tok(text, truncation=True, max_length=512,
+                              return_tensors="pt")
+                    out = model(**ids, labels=ids["input_ids"])
+                    out.loss.backward()
+                    opt.step()
+                    opt.zero_grad()
+                    model.eval()
+                    learn_stats["steps"] += 1
+                    learn_stats["last_loss"] = round(out.loss.item(), 3)
+            except Exception as e:
+                learn_stats["last_error"] = str(e)[:120]
+
+        threading.Thread(target=_train, daemon=True).start()
 
     def _json(self, obj, code=200):
         body = json.dumps(obj).encode()
@@ -73,7 +108,9 @@ class H(BaseHTTPRequestHandler):
         last_request["ts"] = time.time()
         if self.path == "/health":
             self._json({"status": "alive", "uptime_s": round(time.time()-START,1),
-                        "swaps": swap_count["n"]})
+                        "swaps": swap_count["n"], "learn_steps": learn_stats["steps"],
+                        "last_loss": learn_stats["last_loss"],
+                        "last_learn_error": learn_stats["last_error"]})
         else:
             self._json({"error": "not found"}, 404)
 
@@ -99,6 +136,13 @@ class H(BaseHTTPRequestHandler):
             out = model.generate(**ids, max_new_tokens=max_new, do_sample=False,
                                  pad_token_id=tok.eos_token_id)
         content = tok.decode(out[0][ids["input_ids"].shape[1]:], skip_special_tokens=True).strip()
+        # TEST-TIME TRAINING: learn from this exchange immediately (async, non-blocking)
+        try:
+            u_text = next((m["content"] for m in reversed(msgs) if m.get("role") == "user"), "")
+            if u_text:
+                self._learn_inline(u_text, content)
+        except Exception:
+            pass
         self._json({
             "id": "mini-openamer", "object": "chat.completion", "model": "mini-openamer",
             "choices": [{"index": 0, "finish_reason": "stop",
