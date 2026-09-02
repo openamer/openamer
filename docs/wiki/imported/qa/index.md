@@ -6,7 +6,7 @@ description: Systematically QA test a web application and fix bugs found. (gstac
 # qa
 
 **Description:** Systematically QA test a web application and fix bugs found. (gstack)
-**Lines:** 906 | **Code:** 131 | **Dir:** `qa`
+**Lines:** 907 | **Code:** 131 | **Dir:** `qa`
 
 ---
 

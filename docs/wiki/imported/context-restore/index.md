@@ -6,7 +6,7 @@ description: Restore working context saved earlier by /context-save. (gstack)
 # context-restore
 
 **Description:** Restore working context saved earlier by /context-save. (gstack)
-**Lines:** 561 | **Code:** 115 | **Dir:** `context-restore`
+**Lines:** 562 | **Code:** 115 | **Dir:** `context-restore`
 
 ---
 

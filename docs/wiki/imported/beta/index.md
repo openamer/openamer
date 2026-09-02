@@ -6,13 +6,15 @@ description: Clean fixture tool skill with no forced reads and no mode table.
 # beta
 
 **Description:** Clean fixture tool skill with no forced reads and no mode table.
-**Lines:** 9 | **Code:** 0 | **Dir:** `beta`
+**Lines:** 11 | **Code:** 0 | **Dir:** `beta`
 
 ---
 
 ---
 name: beta
 description: Clean fixture tool skill with no forced reads and no mode table.
+version: 1.0.0
+
 ---
 
 # Beta

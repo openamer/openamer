@@ -6,7 +6,7 @@ description: Read-only queue dashboard for workspace-aware ship. (gstack)
 # landing-report
 
 **Description:** Read-only queue dashboard for workspace-aware ship. (gstack)
-**Lines:** 537 | **Code:** 107 | **Dir:** `landing-report`
+**Lines:** 538 | **Code:** 107 | **Dir:** `landing-report`
 
 ---
 

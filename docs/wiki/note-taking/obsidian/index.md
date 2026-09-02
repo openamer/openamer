@@ -6,7 +6,7 @@ description: Read, search, create, and edit notes in the Obsidian vault.
 # obsidian
 
 **Description:** Read, search, create, and edit notes in the Obsidian vault.
-**Lines:** 62 | **Code:** 0 | **Dir:** `obsidian`
+**Lines:** 64 | **Code:** 0 | **Dir:** `obsidian`
 
 ---
 
@@ -14,8 +14,10 @@ description: Read, search, create, and edit notes in the Obsidian vault.
 name: obsidian
 description: Read, search, create, and edit notes in the Obsidian vault.
 platforms: [linux, macos, windows]
+version: 1.0.0
+
 ---
 
 # Obsidian Vault
 
-Use this skill for filesystem-first Obsidian vault...
+Use this skill for filesystem-firs...

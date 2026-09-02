@@ -6,7 +6,7 @@ description: OpenAI Codex CLI wrapper — three modes. (gstack)
 # codex
 
 **Description:** OpenAI Codex CLI wrapper — three modes. (gstack)
-**Lines:** 903 | **Code:** 80 | **Dir:** `codex`
+**Lines:** 904 | **Code:** 80 | **Dir:** `codex`
 
 ---
 

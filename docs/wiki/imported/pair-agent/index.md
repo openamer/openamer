@@ -6,7 +6,7 @@ description: Pair a remote AI agent with your browser. (gstack)
 # pair-agent
 
 **Description:** Pair a remote AI agent with your browser. (gstack)
-**Lines:** 777 | **Code:** 100 | **Dir:** `pair-agent`
+**Lines:** 778 | **Code:** 100 | **Dir:** `pair-agent`
 
 ---
 

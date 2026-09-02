@@ -6,7 +6,7 @@ description: Interactive developer experience plan review. (gstack)
 # plan-devex-review
 
 **Description:** Interactive developer experience plan review. (gstack)
-**Lines:** 1112 | **Code:** 142 | **Dir:** `plan-devex-review`
+**Lines:** 1113 | **Code:** 142 | **Dir:** `plan-devex-review`
 
 ---
 

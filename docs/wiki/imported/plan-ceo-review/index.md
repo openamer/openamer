@@ -6,7 +6,7 @@ description: CEO/founder-mode plan review. (gstack)
 # plan-ceo-review
 
 **Description:** CEO/founder-mode plan review. (gstack)
-**Lines:** 1128 | **Code:** 174 | **Dir:** `plan-ceo-review`
+**Lines:** 1129 | **Code:** 174 | **Dir:** `plan-ceo-review`
 
 ---
 

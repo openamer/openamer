@@ -6,7 +6,7 @@ description: Chief Security Officer mode. (gstack)
 # cso
 
 **Description:** Chief Security Officer mode. (gstack)
-**Lines:** 903 | **Code:** 181 | **Dir:** `cso`
+**Lines:** 904 | **Code:** 181 | **Dir:** `cso`
 
 ---
 

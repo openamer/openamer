@@ -6,7 +6,7 @@ description: Designer's eye QA: finds visual inconsistency, spacing issues, hier
 # design-review
 
 **Description:** Designer's eye QA: finds visual inconsistency, spacing issues, hierarchy problems, AI slop patterns, and slow interactions — then fixes them. (gstack)
-**Lines:** 1659 | **Code:** 251 | **Dir:** `design-review`
+**Lines:** 1660 | **Code:** 251 | **Dir:** `design-review`
 
 ---
 

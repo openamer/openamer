@@ -6,7 +6,7 @@ description: Remove the DebugBridge SPM package and all #if DEBUG wiring from an
 # ios-clean
 
 **Description:** Remove the DebugBridge SPM package and all #if DEBUG wiring from an iOS app. (gstack)
-**Lines:** 474 | **Code:** 54 | **Dir:** `ios-clean`
+**Lines:** 475 | **Code:** 54 | **Dir:** `ios-clean`
 
 ---
 

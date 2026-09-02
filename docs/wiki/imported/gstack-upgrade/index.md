@@ -6,7 +6,7 @@ description: Upgrade gstack to the latest version.
 # gstack-upgrade
 
 **Description:** Upgrade gstack to the latest version.
-**Lines:** 364 | **Code:** 140 | **Dir:** `gstack-upgrade`
+**Lines:** 375 | **Code:** 151 | **Dir:** `gstack-upgrade`
 
 ---
 

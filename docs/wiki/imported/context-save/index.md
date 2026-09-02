@@ -6,7 +6,7 @@ description: Save working context. (gstack)
 # context-save
 
 **Description:** Save working context. (gstack)
-**Lines:** 646 | **Code:** 164 | **Dir:** `context-save`
+**Lines:** 647 | **Code:** 164 | **Dir:** `context-save`
 
 ---
 

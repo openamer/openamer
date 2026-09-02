@@ -1,7 +1,7 @@
 {
-  "updated": "2026-08-31T21:56:28+00:00",
-  "population": 676,
-  "avg_score": 39.9,
+  "updated": "2026-09-02T03:01:03+00:00",
+  "population": 360,
+  "avg_score": 45.3,
   "fittest": [
     {
       "name": "openamer-desktop-dev",
@@ -45,10 +45,10 @@
     }
   ],
   "autopatch": {
-    "timestamp": "2026-08-31T21:30:04",
+    "timestamp": "2026-09-02T04:00:47",
     "kept": [
       {
-        "skill": "discord-server-management",
+        "skill": "academy-guide",
         "before": 21,
         "after": 25,
         "delta": 4,
@@ -70,7 +70,7 @@
         ]
       },
       {
-        "skill": "mcore-split-pr",
+        "skill": "brand-guidelines",
         "before": 21,
         "after": 25,
         "delta": 4,
@@ -81,7 +81,7 @@
         ]
       },
       {
-        "skill": "nemo-rl-docs",
+        "skill": "frontend-design",
         "before": 21,
         "after": 25,
         "delta": 4,
@@ -92,7 +92,18 @@
         ]
       },
       {
-        "skill": "tilegym-monkey-patch-kernels-to-transformers",
+        "skill": "internal-comms",
+        "before": 21,
+        "after": 25,
+        "delta": 4,
+        "fixes": [
+          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
+          "\u2705 platforms Feld hinzugef\u00fcgt",
+          "\u2705 version Feld hinzugef\u00fcgt"
+        ]
+      },
+      {
+        "skill": "theme-factory",
         "before": 21,
         "after": 25,
         "delta": 4,
@@ -114,18 +125,7 @@
         ]
       },
       {
-        "skill": "jetson-video-setup",
-        "before": 23,
-        "after": 27,
-        "delta": 4,
-        "fixes": [
-          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
-          "\u2705 platforms Feld hinzugef\u00fcgt",
-          "\u2705 version Feld hinzugef\u00fcgt"
-        ]
-      },
-      {
-        "skill": "cron-model-pinning",
+        "skill": "dsh-ci-test-reliability",
         "before": 24,
         "after": 28,
         "delta": 4,
@@ -136,7 +136,7 @@
         ]
       },
       {
-        "skill": "doca-argus",
+        "skill": "dsh-doc",
         "before": 24,
         "after": 28,
         "delta": 4,
@@ -147,13 +147,12 @@
         ]
       },
       {
-        "skill": "doca-bare-metal-deployment",
+        "skill": "obsidian",
         "before": 24,
         "after": 28,
         "delta": 4,
         "fixes": [
           "\u2705 metadata.openamer Block hinzugef\u00fcgt",
-          "\u2705 platforms Feld hinzugef\u00fcgt",
           "\u2705 version Feld hinzugef\u00fcgt"
         ]
       }
@@ -161,48 +160,48 @@
   },
   "trends": [
     {
-      "source": "arXiv",
-      "title": "AI Agents: Evolution, Architecture, and Real-World Applications",
-      "url": "http://arxiv.org/abs/2510.27051v1"
-    },
-    {
-      "source": "arXiv",
-      "title": "ASTELD: A Six-Axis Classification Framework for Autonomous AI Agents - Design, Evaluation, and an OpenClaw Case Study",
-      "url": "http://arxiv.org/abs/2603.05031v1"
-    },
-    {
-      "source": "arXiv",
-      "title": "Hardware Keystores for AI Agent Signing Workflows: A Zero-Trust MCP Enforcement Architecture",
-      "url": "http://arxiv.org/abs/2508.02866v3"
-    },
-    {
-      "source": "arXiv",
-      "title": "ANX: Protocol-First Design for AI Agent Interaction with a Supporting 3EX Decoupled Architecture",
-      "url": "http://arxiv.org/abs/2502.18359v1"
+      "source": "News",
+      "title": "India preparing rollout of agentic payments on UPI, sources say - reuters.com",
+      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNWnNNcVFja2UtMGZyMWpMWm02ZERpdzVqTVBjYnQwYmhISjlYZnViaHUtME1raWRuZHhqNXpYUVFKaEhjb1pVQnJMTkl2cThfYVVhejJGRk1fM29Id3FpNl9Dek8tX0lUaEVPSV9SLWRDTVRmQ3MzOVQ5bFpZWWhZdU93VlFGeHhWQ2VfQm5nNDFsaDVLcVozNVVRTVJMX3JYajBOR29INA?oc=5"
     },
     {
       "source": "News",
-      "title": "Can agentic commerce make in-store payments unsafe? - American Banker",
-      "url": "https://news.google.com/rss/articles/CBMinwFBVV95cUxQOURBNml1VEZHV090Q1ctNzVhM2Q0dGFYSkg2aDRQX1BsRWVlUFVWUjFSamlIaUZFWlhXb1FUZ0JoY2VXa25aeFo3RUtNWXVCVnRpRklKQWJSZFM0a2xWNkg3MTgwNzUyUDdodlNmNi1qMDduZzA3Y2V3V0I2SUdDdUJoT0ZoMnpWZkZaMlNEUlRvWDFrRnd0di0wWmpGckU?oc=5"
+      "title": "A roadmap for agentic 7G AI-powered wireless networks - Tech Xplore",
+      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTE5yd05nNmtoaWwwUEhVMGJvQnhFLUxidUc0TU1qQ3lrak5WcFpPbGk2TTZTdlJJN3FWdEF2QU9LRlZVYWt5STFNR0dZeWUwTWx3SVJhRk02VHRxeG1RTXFnRDkxU2cxR3h1SThja19HSlhlU3AweFhzbEhB?oc=5"
     },
     {
       "source": "News",
-      "title": "Agents Without Guardrails: Why Agentic AI Governance Must Focus on Behavior, Not Just Identity - Security Boulevard",
-      "url": "https://news.google.com/rss/articles/CBMizgFBVV95cUxQX1hKOGRzQUpra0pVWUZhRTRKd1lWN1E1SjhLV0tTSjROdDZwZVdzdWp2SU1ZQW1VN1UxY2hPLWtid3VrSUZ1WENhdUYxakdKWll6MkMxaU9sVkRVR3A2SlRxc1UtbmRnNlNSZXNTbjlLWnEyWlRKQVlBX0Q4cUMtNzhzbjNhdkJmaDMxR3ktd09ua2MzWGxfSjdxNkFHakNZWGVNNURIRHRCNHB3SnR6SU1uYnBreWRIUUhlazFZaW1vZEpQUUUzLW0xd2REUQ?oc=5"
+      "title": "From theory to delivery: How Atos upskilled 400 engineers in agentic AI - Amazon Web Services (AWS)",
+      "url": "https://news.google.com/rss/articles/CBMiuAFBVV95cUxNaHhraHplN25xbHhtcWozTFBFX0o3T2c0bVg0clQyTXRlcDROMUtxQkhEeUpwY3hwNVdPMnc1cm5WNUVZUHNDbS1CRk5mRWMtSGE5eDJrclpuam9OcnA2Nkw2T3c3MzZ2ZUJRdktmYzBRTnlEaGF3dWp1UTJsV2xaYmloX0pfeS1tcTFYRGZiT08tX1hSVXYzWnJCVGdZWnlUQ1ZiNTdLanBoajFXU2xJaTR1MEVPeDQ3?oc=5"
     },
     {
       "source": "News",
-      "title": "CX Providers Set the Pace for Agentic CX This Fall - CMSWire",
-      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQWW9fbGltVUxlcko0MHBDSklGMmZrNW40eDRjZHRWam5lTlljalFPN20yYmRHYWJVcFNOMGhKMmVMdXljZEhRLTRzSXdCcmtYUGd5ei0wWUx6d3diNmNKa3ZYdEtiQzlzT0xPTlc4QmRBYW5ELUhJNXFLaVdhUlkyLVMwR2p2aHVyQV9qdUlCQnlJaG81VHVCV3BHaw?oc=5"
+      "title": "Quiq launches Voice Assist: agentic AI that acts during live calls - PR Newswire",
+      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxPSWI1dVVmTTdDc003RTltNkYwUzFmQ0NPOVlTZHJhbmd2b01QdnR3ZTVCcFV6QWkzOG4zZVpQSHN2VVJQMUpLMDBRQ0xlNUtyM2tFSEhxaGcxUjA2bUs4bHhPWm9sZkRCNF9vUFlpM2FWRHhpQ19UZzZEWUdmcmcxZm05c0FMMmJ5LUxLa3VFZUo5Z25fQWp3Rjk1VHlKTzd0QUl1Q3NjY3cxNi1Oa3pSUFRkU09wMDRCd0QzX2VB?oc=5"
     },
     {
       "source": "News",
-      "title": "Agentic AI is shifting the pricing models CIOs rely on - CIO Dive",
-      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBlenpLMVVFWXRZb1RDbC1JM3VzRDdEUmF2bWpwN3FEUThkVm9WQWJJeUtfa21sNDFNMi1TOGZRS1Jyb0x1TWUzQTdZZmJkQkV1S09MdWtEUEc3TlFsM2RlTW1xXzBsaHNzVFNfdjBGQnR3bG1UNWtOWDZn?oc=5"
+      "title": "Regulating Agentic Artificial Intelligence - The Regulatory Review",
+      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOaVBPZVdfcW1VS0NVSDJPRmY5cXhnUnNqX0tzbk5uajRaSUVVRVlqajhfbl9EbjZSTks2Zm1xanVfZjczeWdKZnlxNlF5RlRzektYdk01LTdJZmQ1Uk1fYmJUYXNTTlBZclJPRElER0tBNmk2clc5UXNqVjlTQmlDZkpEWktxNDBPNzN1SXk4MTVoMEwxOGc?oc=5"
+    },
+    {
+      "source": "News",
+      "title": "AuditFile Launches Agentic AI Orchestrator Suite - CPA Practice Advisor",
+      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxPVkFlZFM3VHFhTXdZX0otdGRpQ1JzcVd5SGlURnZ0M013ZlpFT1BMMEFlYlR3Vi1kbktYRU5yZzAzcFN3VnY2UFZQVmhzck1jWV9XNVRoWkFKd0FLNGk1ZFh0d0N3eENDNDVNYXBJSmF1S0g5ZXN3Nzl0cHN3ODM4cXlPcFI5U1A1aHdETHh6ZXl0cXdzNlBiZjQ4c0k0eFoxQ25JSw?oc=5"
+    },
+    {
+      "source": "News",
+      "title": "Verifiable LEI model answers who sent an AI agent, what it can do, and for how long - Biometric Update",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOUFlmTDJfZloyS3d5SUJkZ2JIX1JIMjZBYndaRzh4QkZvc1l6UFBkX0lRWUEwOFRlSGZ1SWVsYk9XUS1YeVJLaklnb1lFQmhBZW8xeE9RVVJldjRBdnVfQkVGUE12TFhYVTdaa3BXUVp6VzF6ZDVfOWFBTGEzMUVMNTVxaWxyT2JHOHZraGoxQXVqZDM4UVVBdHA4dTR4U1BFNnBqQW0yZFpCU01UcmFIQ2RFWU54UFdrZmJabA?oc=5"
+    },
+    {
+      "source": "News",
+      "title": "Building an AI Agent Takes a Weekend. Governing It Takes Much Longer - HackerNoon",
+      "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPMmVITlZDdDhoRVVvc1pWTm9FQ3FDQlZMbnJHaS1pSTJObWprZ3pFem5JamdwZDZfMDBxVkg3d190X1Q0Z3BFZ280dnBxc0NFMFNGZWRqanZ2RVVXa243ODIxRzc2RDBlRXV3cDMxXzFRQi1WamVDVldHZS1fZ3o5dDIxX0U4X3BsWkVHdTd0cm1qYkRf?oc=5"
     }
   ],
-  "population_engine": 44,
-  "species": 45,
+  "population_engine": 48,
+  "species": 47,
   "trials": 2,
-  "harvested": 47
+  "harvested": 49
 }

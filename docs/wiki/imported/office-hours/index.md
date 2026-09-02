@@ -6,7 +6,7 @@ description: YC Office Hours — two modes. (gstack)
 # office-hours
 
 **Description:** YC Office Hours — two modes. (gstack)
-**Lines:** 1157 | **Code:** 166 | **Dir:** `office-hours`
+**Lines:** 1158 | **Code:** 166 | **Dir:** `office-hours`
 
 ---
 

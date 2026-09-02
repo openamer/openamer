@@ -6,7 +6,7 @@ description: Visual design audit for iOS apps on real hardware. (gstack)
 # ios-design-review
 
 **Description:** Visual design audit for iOS apps on real hardware. (gstack)
-**Lines:** 477 | **Code:** 54 | **Dir:** `ios-design-review`
+**Lines:** 478 | **Code:** 54 | **Dir:** `ios-design-review`
 
 ---
 

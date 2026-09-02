@@ -6,7 +6,7 @@ description: Code quality dashboard. (gstack)
 # health
 
 **Description:** Code quality dashboard. (gstack)
-**Lines:** 694 | **Code:** 157 | **Dir:** `health`
+**Lines:** 695 | **Code:** 157 | **Dir:** `health`
 
 ---
 

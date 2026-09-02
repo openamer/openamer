@@ -6,7 +6,7 @@ description: Land and deploy workflow. (gstack)
 # land-and-deploy
 
 **Description:** Land and deploy workflow. (gstack)
-**Lines:** 989 | **Code:** 179 | **Dir:** `land-and-deploy`
+**Lines:** 990 | **Code:** 179 | **Dir:** `land-and-deploy`
 
 ---
 
