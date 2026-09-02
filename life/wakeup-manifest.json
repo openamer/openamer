@@ -1,6 +1,6 @@
 {
   "organism": "OpenAmer",
-  "written_at": "2026-09-02T09:27:05.844986+00:00",
+  "written_at": "2026-09-02T21:27:11.002949+00:00",
   "identity": {
     "name": "openamer_agent",
     "voice": "https://x.com/openamer_agent",
@@ -15,7 +15,7 @@
   "organs": {
     "heartbeat": {
       "kind": "cron-fleet",
-      "count": 67
+      "count": 70
     },
     "memory": {
       "kind": "memory+skills",
@@ -146,7 +146,7 @@
       "name": "Resource Monitor Alert",
       "schedule": "every 5m",
       "script": "cron-resource-monitor.py",
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "Smart Cache Clean",
@@ -457,6 +457,24 @@
     {
       "name": "mini-openamer-retrain",
       "schedule": "0 4 * * *",
+      "script": null,
+      "last_status": "ok"
+    },
+    {
+      "name": "longterm-memory-indexer",
+      "schedule": "0 */6 * * *",
+      "script": null,
+      "last_status": "ok"
+    },
+    {
+      "name": "nightly-outreach-poster",
+      "schedule": "0 10 * * *",
+      "script": null,
+      "last_status": null
+    },
+    {
+      "name": "online-learning-watchdog",
+      "schedule": "*/30 * * * *",
       "script": null,
       "last_status": "ok"
     }
