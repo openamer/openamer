@@ -106,13 +106,30 @@ def hot_swap():
 
 def loop():
     print(f"[online-learning] loop started: cycle={CYCLE_SECONDS}s, "
-          f"steps/cycle={STEPS_PER_CYCLE}, swap-every={SWAP_EVERY}", flush=True)
+          f"steps/cycle={STEPS_PER_CYCLE}, swap-every={SWAP_EVERY}, "
+          f"replay-mode=on", flush=True)
     steps_since_swap = 0
     while True:
         try:
             new = collect_new()
             if new:
                 print(f"[online-learning] +{new} new buffer examples", flush=True)
+            else:
+                # REPLAY MODE: no new data — re-inject 2 random old episodes so
+                # the 24/7 loop never starves. Like human memory rehearsal:
+                # repeating old knowledge strengthens it (no downtime needed).
+                try:
+                    buf_lines = open(BUFFER, encoding="utf-8").readlines()
+                    if len(buf_lines) >= 4:
+                        import random as _r
+                        picks = _r.sample(buf_lines, 2)
+                        with open(BUFFER, "a", encoding="utf-8") as out:
+                            for p in picks:
+                                out.write(p if p.endswith("\n") else p + "\n")
+                        print(f"[online-learning] replay: +2 old episodes re-injected "
+                              f"(buffer={len(buf_lines)})", flush=True)
+                except Exception as e:
+                    print(f"[online-learning] replay skip: {e}", flush=True)
             for i in range(STEPS_PER_CYCLE):
                 res = mini_step()
                 steps_since_swap += 1
