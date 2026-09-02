@@ -1,6 +1,6 @@
 {
   "organism": "OpenAmer",
-  "written_at": "2026-09-01T21:26:43.860091+00:00",
+  "written_at": "2026-09-02T09:27:05.844986+00:00",
   "identity": {
     "name": "openamer_agent",
     "voice": "https://x.com/openamer_agent",
@@ -452,13 +452,13 @@
       "name": "dream-cycle",
       "schedule": "30 3 * * *",
       "script": null,
-      "last_status": null
+      "last_status": "ok"
     },
     {
       "name": "mini-openamer-retrain",
       "schedule": "0 4 * * *",
       "script": null,
-      "last_status": null
+      "last_status": "ok"
     }
   ]
 }
