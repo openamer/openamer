@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-09-02T21:27:11.003954+00:00",
+  "snapshot_at": "2026-09-03T09:27:26.013043+00:00",
   "circadian": {
     "phase": "AWAKE",
     "at": "2026-08-25T13:45:44.298046+00:00",
@@ -37,10 +37,10 @@
     }
   },
   "senses": {
-    "time": "2026-09-02T23:09:47",
+    "time": "2026-09-03T11:10:24",
     "pain": {
-      "score": 1,
-      "level": "uncomfortable"
+      "score": 0,
+      "level": "calm"
     },
     "satiety": {
       "state": "satisfied",
@@ -50,10 +50,10 @@
     "balance": {
       "state": "steady",
       "jobs": 70,
-      "errors": 2,
-      "error_ratio": 0.029
+      "errors": 3,
+      "error_ratio": 0.043
     },
-    "overall": "uneasy"
+    "overall": "well"
   },
   "dreams": [
     {
@@ -152,6 +152,13 @@
       "date": "2026-09-02",
       "replayed_messages": 729,
       "fragments": 383,
+      "insights": [],
+      "intentions": []
+    },
+    {
+      "date": "2026-09-03",
+      "replayed_messages": 132,
+      "fragments": 58,
       "insights": [],
       "intentions": []
     }

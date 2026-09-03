@@ -1,6 +1,6 @@
 {
   "organism": "OpenAmer",
-  "written_at": "2026-09-02T21:27:11.002949+00:00",
+  "written_at": "2026-09-03T09:27:26.009426+00:00",
   "identity": {
     "name": "openamer_agent",
     "voice": "https://x.com/openamer_agent",
@@ -92,7 +92,7 @@
       "name": "Skills Hub Cache Warmer",
       "schedule": "every 360m",
       "script": "hub_cache_warmer.py",
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "Bugbot - Autonomous Bug Fixer",
@@ -140,13 +140,13 @@
       "name": "Auto Code Review (60m)",
       "schedule": "every 60m",
       "script": "cron-auto-code-review.py",
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "Resource Monitor Alert",
       "schedule": "every 5m",
       "script": "cron-resource-monitor.py",
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "Smart Cache Clean",
@@ -464,17 +464,17 @@
       "name": "longterm-memory-indexer",
       "schedule": "0 */6 * * *",
       "script": null,
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "nightly-outreach-poster",
       "schedule": "0 10 * * *",
       "script": null,
-      "last_status": null
+      "last_status": "ok"
     },
     {
       "name": "online-learning-watchdog",
-      "schedule": "*/30 * * * *",
+      "schedule": "*/15 * * * *",
       "script": null,
       "last_status": "ok"
     }
