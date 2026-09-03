@@ -46,6 +46,8 @@ TOOLS = [
      "params": {"question": "string"}},
     {"name": "run_python", "desc": "Execute python code for exact calculations. Input: {code}. Output: stdout.",
      "params": {"code": "string"}},
+    {"name": "listen", "desc": "Listen to microphone and transcribe speech. Input: {}. Output: transcript.",
+     "params": {}},
 ]
 
 # ---- Tool implementations (delegate to existing systems) ----
@@ -133,25 +135,49 @@ def t_browser_action(params):
 def t_speak(params):
     text = params.get("text", "")[:500]
     try:
-        # openamer voice system
-        r = subprocess.run(["openamer", "voice", "--speak", text],
+        # Windows SAPI TTS (built-in, 0 Energie-Overhead)
+        r = subprocess.run(["powershell", "-NoProfile", "-Command",
+            f"Add-Type -AssemblyName System.Speech; "
+            f"$s = New-Object System.Speech.Synthesis.SpeechSynthesizer; "
+            f"$s.Speak('{text.replace(chr(39), chr(39)*2)}')"],
+            capture_output=True, text=True, timeout=30)
+        return {"spoken": text[:100], "rc": r.returncode}
+    except Exception as e:
+        return {"error": str(e)[:200]}
+
+def t_listen(params):
+    """Capture audio from mic and transcribe via whisper (openamer config)."""
+    try:
+        # whisper via openamer CLI (uses configured whisper-1)
+        r = subprocess.run(["openamer", "voice", "--listen", "--transcribe"],
                            capture_output=True, text=True, timeout=30,
                            encoding="utf-8", errors="replace")
-        return {"spoken": text[:100], "rc": r.returncode}
+        return {"transcript": (r.stdout or "").strip()[:500]}
     except Exception as e:
         return {"error": str(e)[:200]}
 
 def t_see(params):
     try:
+        img_path = r"C:/Users/damir/AppData/Local/openamer-laptop/memory/see_screenshot.png"
         r = subprocess.run(["powershell", "-NoProfile", "-Command",
             "Add-Type -AssemblyName System.Windows.Forms,System.Drawing; "
             "$b=[System.Windows.Forms.Screen]::PrimaryScreen.Bounds; "
             "$bmp=New-Object System.Drawing.Bitmap($b.Width,$b.Height); "
             "$g=[System.Drawing.Graphics]::FromImage($bmp); "
             "$g.CopyFromScreen(0,0,0,0,$b.Size); "
-            "$bmp.Save('C:/Users/damir/AppData/Local/openamer-laptop/memory/see_screenshot.png')"],
+            f"$bmp.Save('{img_path}')"],
             capture_output=True, text=True, timeout=20)
-        return {"screenshot_saved": True, "note": "Use vision tool to interpret. SmolVLM integration pending."}
+        # local vision via moondream (Ollama)
+        import base64
+        with open(img_path, "rb") as f:
+            b64 = base64.b64encode(f.read()).decode()
+        req = urllib.request.Request("http://localhost:11434/api/generate",
+            data=json.dumps({"model": "moondream",
+                             "prompt": "Describe this screenshot briefly: what is shown?",
+                             "images": [b64], "stream": False}).encode(),
+            headers={"Content-Type": "application/json"})
+        vision = json.load(urllib.request.urlopen(req, timeout=120)).get("response", "")
+        return {"seen": vision[:500], "screenshot": img_path}
     except Exception as e:
         return {"error": str(e)[:200]}
 
@@ -188,6 +214,7 @@ EXECUTORS = {
     "browser_action": t_browser_action, "speak": t_speak,
     "see": t_see, "read_memory": t_read_memory,
     "reason_deep": t_reason_deep, "run_python": t_run_python,
+    "listen": t_listen,
 }
 
 # ---- 2B model (loaded once) ----

@@ -164,7 +164,7 @@ DANGEROUS_PATTERNS: list[dict] = [
     {
         "id": "EVAL",
         "severity": "critical",
-        "pattern": re.compile(r'\beval\s*\('),
+        "pattern": re.compile(r'(?<!\.)\beval\s*\('),
         "message": "eval() — arbitrary code execution risk",
         "category": "dangerous",
     },
