@@ -206,6 +206,7 @@ print("MODEL_READY", flush=True)
 
 lock = threading.Lock()
 last_request = {"ts": time.time()}
+swap_count = {"n": 0}
 IDLE_TIMEOUT = 1800
 
 def idle_watcher():
@@ -249,14 +250,37 @@ class H(BaseHTTPRequestHandler):
         if self.path == "/tools":
             self._json({"tools": TOOLS})
         elif self.path == "/health":
-            self._json({"status": "alive", "tools": len(TOOLS)})
+            self._json({"status": "alive", "tools": len(TOOLS), "swaps": swap_count["n"]})
         else:
             self._json({"error": "not found"}, 404)
 
     def do_POST(self):
         last_request["ts"] = time.time()
+        # lazy adapter swap: check for pending swap request
+        flag = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".swap_request")
+        if os.path.exists(flag):
+            new_adapter = open(flag).read().strip()
+            os.remove(flag)
+            try:
+                with lock:
+                    model.load_adapter(new_adapter, adapter_name="default", is_trainable=True)
+                    model.set_adapter("default")
+                    print(f"[lazy-swap] adapter reloaded from {new_adapter}", flush=True)
+            except Exception as e:
+                print(f"[lazy-swap] failed: {str(e)[:200]}", flush=True)
         n = int(self.headers.get("Content-Length", 0))
         req = json.loads(self.rfile.read(n) or b"{}")
+
+        if self.path == "/admin/swap":
+            # write a swap-request file; the server checks it before each request
+            # and reloads the adapter lazily (avoids in-memory PEFT issues on CPU)
+            new_adapter = req.get("adapter", ADAPTER)
+            flag = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".swap_request")
+            with open(flag, "w") as f:
+                f.write(new_adapter)
+            swap_count["n"] += 1
+            self._json({"result": f"OK: swap queued (#{swap_count['n']}) — applied on next request"})
+            return
 
         if self.path == "/execute_tool":
             # direct tool execution (for external callers / testing)
