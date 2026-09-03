@@ -402,6 +402,16 @@ def autopilot(min_executions: int = 2) -> int:
     offspring = mutate(fitness, apply=True)
     print(f"[autopilot] {len(offspring)} mutations generated")
 
+    # phase: crossover — combine best skills for stronger offspring
+    if len(fitness) >= 2:
+        ranked = sorted(fitness.items(), key=lambda kv: kv[1].get("score", 0), reverse=True)
+        top_two = [k for k, _ in ranked[:2]]
+        if top_two[0] != top_two[1]:
+            cross_result = crossover(top_two[0], top_two[1], apply=True)
+            if cross_result:
+                print(f"[autopilot] crossover: {top_two[0]} x {top_two[1]} -> "
+                      f"{cross_result.get('name', 'child')}")
+
     trials = evaluate_trials(min_executions)
     for t in trials:
         print(f"[autopilot] trial {t['job_id']}: {t['status']} {t['outcomes']}")
