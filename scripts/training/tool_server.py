@@ -230,7 +230,7 @@ ADAPTER = r"C:/Users/damir/AppData/Local/openamer-laptop/scripts/training/lora_o
 tok = AutoTokenizer.from_pretrained(BASE)
 model = AutoModelForCausalLM.from_pretrained(BASE, dtype=torch.bfloat16, low_cpu_mem_usage=True)
 model = PeftModel.from_pretrained(model, ADAPTER)
-model.eval()
+model.eval()  # CPU only on laptop (no GPU)
 print("MODEL_READY", flush=True)
 
 lock = threading.Lock()
