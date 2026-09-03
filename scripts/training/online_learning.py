@@ -28,9 +28,9 @@ LIVE_SWAP_URL = "http://localhost:8081/admin/swap"
 LIVE_SWAP_TIMEOUT = 120
 
 MINI_STEP_SCRIPT = T / "mini_step.py"          # trains 1-2 steps on a few examples
-STEPS_PER_CYCLE = 2                             # examples per mini-step
-CYCLE_SECONDS = 900                             # every 15 min
-SWAP_EVERY = 8                                  # hot-swap after 8 mini-steps (~2h)
+STEPS_PER_CYCLE = 3                             # examples per mini-step
+CYCLE_SECONDS = 300                             # every 15 min
+SWAP_EVERY = 6                                  # hot-swap after 8 mini-steps (~2h)
 
 def _brain_count():
     try:
