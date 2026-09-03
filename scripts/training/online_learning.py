@@ -149,6 +149,38 @@ def loop():
                 print(f"[online-learning] analogy extraction: {r.stdout.strip()[-60:]}", flush=True)
             except Exception as e:
                 print(f"[online-learning] analogy skip: {e}", flush=True)
+            # world-model auto-feed: extract cause->effect from recent dreams
+            try:
+                dreams_file = r"C:/Users/damir/AppData/Local/openamer-laptop/dreams.json"
+                wm_file = r"C:/Users/damir/AppData/Local/openamer-laptop/memory/world_model.jsonl"
+                if os.path.exists(dreams_file) and os.path.exists(wm_file):
+                    dreams = json.load(open(dreams_file, encoding="utf-8"))
+                    wm_lines = open(wm_file, encoding="utf-8").readlines()
+                    known_causes = set()
+                    for wl in wm_lines:
+                        try:
+                            known_causes.add(json.loads(wl).get("cause", "")[:100])
+                        except: pass
+                    # find new nightmares with cause->effect
+                    added = 0
+                    with open(wm_file, "a", encoding="utf-8") as f:
+                        for dream in dreams:
+                            for ins in dream.get("insights", []):
+                                cause = f"{ins.get('motif','')} error occurred"
+                                effect = "agent needs to fix root cause to prevent recurrence"
+                                if cause[:100] not in known_causes and added < 3:
+                                    import math
+                                    emb = [0.1] * 768  # placeholder embedding
+                                    f.write(json.dumps({
+                                        "ts": datetime.datetime.now().isoformat(),
+                                        "cause": cause, "effect": effect,
+                                        "embedding": emb}) + "\n")
+                                    known_causes.add(cause[:100])
+                                    added += 1
+                    if added:
+                        print(f"[online-learning] world-model: +{added} new edges", flush=True)
+            except Exception as e:
+                print(f"[online-learning] world-model skip: {e}", flush=True)
             if steps_since_swap >= SWAP_EVERY:
                 msg = hot_swap()
                 steps_since_swap = 0
