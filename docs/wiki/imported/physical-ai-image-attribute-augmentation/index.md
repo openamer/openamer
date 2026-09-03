@@ -1,18 +1,15 @@
 ---
 title: physical-ai-image-attribute-augmentation
-description: Use when running image attribute augmentation and auto-labeling workflows on OSMO: flow selection, preflight, submit-tim
+description: Run the PAIDF Orchestration Image Attribute Augmentation DAG on Kubernetes - person-crop clothing augmentation, attribut
 ---
 
 # physical-ai-image-attribute-augmentation
 
-**Description:** Use when running image attribute augmentation and auto-labeling workflows on OSMO: flow selection, preflight, submit-time interpolation, monitoring, and output retrieval. Trigger keywords: people attribute search, Image Attribute Augmentation, person augmentation, attribute search, person re-identification, clothing augmentation, person crop augmentation.
-**Lines:** 310 | **Code:** 29 | **Dir:** `physical-ai-image-attribute-augmentation`
+**Description:** Run the PAIDF Orchestration Image Attribute Augmentation DAG on Kubernetes - person-crop clothing augmentation, attribute search, and augmented dataset generation. Select for requests about image attribute augmentation, person attribute search, person re-identification data, clothing augmentation, attribute captions, augmentation payloads, run status, or result retrieval. Runs environment setup first when controller readiness is unknown. Not for video or defect-image generation.
+**Lines:** 328 | **Code:** 39 | **Dir:** `physical-ai-image-attribute-augmentation`
 
 ---
 
 ---
 name: physical-ai-image-attribute-augmentation
-description: >-
-  Use when running image attribute augmentation and
-  auto-labeling workflows on OSMO: flow selection, preflight, submit-time
-  inter...
+description: Run the PAIDF Orchestration Image Attribute Augmentation DAG on Kubernetes - person-crop clothing augmentation, attribute search, and au...

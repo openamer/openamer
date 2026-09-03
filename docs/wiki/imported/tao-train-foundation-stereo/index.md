@@ -6,7 +6,7 @@ description: Stereo depth estimation using FoundationStereo. Predicts disparity 
 # tao-train-foundation-stereo
 
 **Description:** Stereo depth estimation using FoundationStereo. Predicts disparity maps from stereo image pairs for 3D reconstruction. Use when training, evaluating, exporting, or running inference for a TAO FoundationStereo model. Trigger phrases include "train stereo depth", "FoundationStereo", "stereo disparity estimation", "3D reconstruction from stereo".
-**Lines:** 177 | **Code:** 28 | **Dir:** `tao-train-foundation-stereo`
+**Lines:** 179 | **Code:** 28 | **Dir:** `tao-train-foundation-stereo`
 
 ---
 
