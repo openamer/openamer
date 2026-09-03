@@ -35,8 +35,8 @@ def main():
         model = PeftModel.from_pretrained(model, ROLLING, is_trainable=True)
         fresh = False
     else:
-        lora = LoraConfig(r=8, lora_alpha=16, lora_dropout=0.05,
-                          target_modules=["q_proj", "v_proj"], task_type="CAUSAL_LM")
+        lora = LoraConfig(r=16, lora_alpha=32, lora_dropout=0.05,
+                          target_modules=["o_proj", "q_proj", "k_proj", "v_proj"], task_type="CAUSAL_LM")
         model = get_peft_model(model, lora)
         fresh = True
 
