@@ -25,6 +25,8 @@ The 2B model receives tool definitions in the system prompt and responds
 with JSON tool calls; this server executes them and feeds results back.
 """
 import json, os, sys, time, threading, subprocess, urllib.request, re
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from smart_router import smart_route
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 sys.path.insert(0, r"C:/Users/damir/AppData/Local/openamer-laptop/scripts")
@@ -329,6 +331,18 @@ class H(BaseHTTPRequestHandler):
         if use_tools:
             msgs = [{"role": "system", "content": TOOLS_PROMPT}] + \
                    [m for m in msgs if m.get("role") != "system"]
+
+        # SMART ROUTING: complex queries go to free cloud models
+        routing = smart_route(msgs, max_tokens=max_new)
+        if routing.get("routed_to") == "cloud" and routing.get("content"):
+            self._json({
+                "id": "mini-openamer-smart", "object": "chat.completion",
+                "model": routing.get("source", "cloud"),
+                "choices": [{"index": 0, "finish_reason": "stop",
+                             "message": {"role": "assistant", "content": routing["content"]}}],
+                "routed_to": "cloud", "cloud_model": routing.get("source"),
+            })
+            return
 
         text = tok.apply_chat_template(msgs, tokenize=False, add_generation_prompt=True)
         ids = tok(text, return_tensors="pt")
