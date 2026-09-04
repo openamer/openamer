@@ -29,7 +29,7 @@ LIVE_SWAP_TIMEOUT = 120
 
 MINI_STEP_SCRIPT = T / "mini_step.py"          # trains 1-2 steps on a few examples
 STEPS_PER_CYCLE = 3                             # examples per mini-step
-CYCLE_SECONDS = 300                             # every 15 min
+CYCLE_SECONDS = 300  # every 5 min
 SWAP_EVERY = 6                                  # hot-swap after 8 mini-steps (~2h)
 
 def _brain_count():
@@ -141,6 +141,12 @@ def loop():
                 res = mini_step()
                 steps_since_swap += 1
                 print(f"[online-learning] mini-step {i+1}/{STEPS_PER_CYCLE}: {res}", flush=True)
+            # META-LEARNING: measure and adapt how we learn (Stage 4)
+            try:
+                import meta_learn
+                meta_learn.meta_cycle()
+            except Exception as me:
+                print(f"[online-learning] meta-learn skip: {me}", flush=True)
             # cross-domain transfer: skeletonize 1 episode per cycle (best-effort)
             try:
                 r = subprocess.run([sys.executable, str(T / "analogy_engine.py"), "extract-batch"],
