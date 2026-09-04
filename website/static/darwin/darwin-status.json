@@ -1,7 +1,7 @@
 {
-  "updated": "2026-09-03T03:00:09+00:00",
-  "population": 631,
-  "avg_score": 40.0,
+  "updated": "2026-09-04T03:00:50+00:00",
+  "population": 633,
+  "avg_score": 39.9,
   "fittest": [
     {
       "name": "openamer-desktop-dev",
@@ -45,7 +45,7 @@
     }
   ],
   "autopatch": {
-    "timestamp": "2026-09-03T04:00:27",
+    "timestamp": "2026-09-04T04:00:27",
     "kept": [
       {
         "skill": "mcore-split-pr",
@@ -162,26 +162,6 @@
   "trends": [
     {
       "source": "News",
-      "title": "CrowdStrike Announces Agentic Identity Provider - CrowdStrike",
-      "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOejEzb1Rhc1MxM3RHS1F3eHlEYUZ4cFA3eTMzYW4yd0lrbVp5Z1BKVFlIUU5PVHBaNFZIOExHV2oyLUpVZXpMZ3I1QVozaUxrYXRnNzVHYVNBZkstMVRIMUZjUFJQbmRDOEQxd0lmcFp5QlJqRF9BTTBacC02OW1nclh1MUJWNVAzcGUwZjdJODY?oc=5"
-    },
-    {
-      "source": "News",
-      "title": "Trinity: Agentic AI-powered transition planning for students with disabilities - Amazon Web Services (AWS)",
-      "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxNRnh3NllyMXh0aGtZRjZUS25yNklLblFFc1hfSmR0WXRuNXc2XzVNczA3NjBFZWxicGpHdDVvTVJuU1FTTlk0bVpCNVhISzRUYWwtQ0RTd0ZxbnJkR3pFT1BJZTM2ODczVzhENFpBLWgtVDdXclp1dEhGSE41dTlYU2dYLWVGRExfODF3bWw0cFpsSHJqcEhSQXN4ajZEVUt2bDlRbVhkNU1lRkZsVUt6cXdIelp1RzdBWDlxRUZCZFBWQQ?oc=5"
-    },
-    {
-      "source": "News",
-      "title": "Genesys Is Moving Beyond The Contact Center To Orchestrate Agentic AI - Forbes",
-      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPSzZiall0RmJrLWltc1VUbDlCUllDYjJnQzZ6Mk5TN2ZIUmpqMGlVQzQ2T1dsbTdIUUpyOWVsLTMxdWRpUVdPenFTZXZMV01OZ1hzQUVSWUcwbkJqX0ptTG5IajZXQmxmeFF6X1Z1Y09sbnQxYzJreVllS0RvWUNfMkgtaHQ5bXR4WlpUTVVfU1VsN3VaUERuVEQ4dGozZWhZSHhWQUdLOGx5VXRwb1F1NGhvdl9aWTRIa3pDbQ?oc=5"
-    },
-    {
-      "source": "News",
-      "title": "CrowdStrike gives AI agents an identity provider, parallel SOC investigations and package blocking - SiliconANGLE",
-      "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxOZ2p5aVhhWVphS2VwRDZldnhoZnRETTBDVDhpLWZMQ3k2WFlxN0lydzAxMGZVSElmTE5lOVBXWlFEdktzdlUzbzVPMUxqOXZDSVVsTUlwWXpiRUc0ODJ4TEc4WXV3TGxPbGY3NzdFSnhYZi01UWpSUllTQWk5eE5tWnE3Rkx5MjVrMi1FaGlZNmw3VXFzOVlKWnhtaVBaMVh6QkV0dG5JSlUtZjN2X3lhaW1mTXllbElvZExnUzFheWhhN3JJUjNFdjRMU1hyOEE?oc=5"
-    },
-    {
-      "source": "News",
       "title": "India preparing rollout of agentic payments on UPI, sources say - Reuters",
       "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNWnNNcVFja2UtMGZyMWpMWm02ZERpdzVqTVBjYnQwYmhISjlYZnViaHUtME1raWRuZHhqNXpYUVFKaEhjb1pVQnJMTkl2cThfYVVhejJGRk1fM29Id3FpNl9Dek8tX0lUaEVPSV9SLWRDTVRmQ3MzOVQ5bFpZWWhZdU93VlFGeHhWQ2VfQm5nNDFsaDVLcVozNVVRTVJMX3JYajBOR29INA?oc=5"
     },
@@ -192,17 +172,37 @@
     },
     {
       "source": "News",
-      "title": "How AI agents can string together a fragmented cybersecurity stack - Spiceworks",
-      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxNaU81Rm1wNEQxUndDSFBMX0pQcFA2dWpXS251ZnRDUmhrWVNCSTMwSXlBdnRaRW5kajl0b3NvaGpPX0NieHdvaEpYZ041bXNKSDIxdHRmdXM1SjAyb2lfcXBNeHQwLTdWV19BVV9WSkVTN0xTOFN5WU1yR29aN2pQRU1EQWhjNzdIMlVpU0wycDB3S0ZrdU4yTzJrU0x0Zw?oc=5"
+      "title": "CrowdStrike Announces Agentic Identity Provider - CrowdStrike",
+      "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOejEzb1Rhc1MxM3RHS1F3eHlEYUZ4cFA3eTMzYW4yd0lrbVp5Z1BKVFlIUU5PVHBaNFZIOExHV2oyLUpVZXpMZ3I1QVozaUxrYXRnNzVHYVNBZkstMVRIMUZjUFJQbmRDOEQxd0lmcFp5QlJqRF9BTTBacC02OW1nclh1MUJWNVAzcGUwZjdJODY?oc=5"
     },
     {
       "source": "News",
-      "title": "Genesys launches agentic orchestration features - No Jitter",
-      "url": "https://news.google.com/rss/articles/CBMijwFBVV95cUxQWURjRkVJaTdyZkJXUXltT2hlUzJ5UVdIdFFvSlV4Y3RaTHIzQVlfUWRHa1cxcVIxQjJQVWtwVTd5UXp3TDNsLVFkM1ZwNWlNcGdvbWo0WFRRTHZTaVdUMjlyMk5ZTUktVUl6cDNJc0QybGd5Y1RheW9oZVFvSG9lV0thcWpXbVlmbjc5ZG5kVQ?oc=5"
+      "title": "5 Real-World Applications of Agentic AI in Enterprise Automation - KDnuggets",
+      "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPSlBiWURXRUNKMFM5RDJub0Q5MFBra2lMLXBWNlVOY1R2WUVLQTg3QmU5QVB5NG1tanN0cmxpLUVhODNwTmZjLWN0QzNNc1cyQU5rTGRjTnhQWXU5aXhKMWF3a1gwbEtFU01BSzZHRExUVUJhc2dBZlBIMU1zTFZYMTZKaFJSdG90cFRETTJYTDNVZFFS?oc=5"
+    },
+    {
+      "source": "News",
+      "title": "Agentic AI security: when trusted agents become the risk - SiliconANGLE",
+      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPb2pRS3NxXzk2b3YzSXNCZkhTTDhYU2FmR0FZWVl1cjlGczNmSEZ1WW1vdkIzd09BRVlCUjNBSWdzMzFmd2docXAtYXFmdWI2VXBDZDRoeVB0UWlzQ1pPZW9BTHd3bFBBZjVBR0pIRUc5WU54ZmF6dTNFNUtURDQ1eGdlcjNzTGZBMGJDNkZ0el9jakZRN2xRQzhjYw?oc=5"
+    },
+    {
+      "source": "News",
+      "title": "The three layers of agentic AI security: A defense-in-depth architecture for autonomous agents - VentureBeat",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQR0RYS2dqbGk1cU5uOVk0eE56SWg5ZFZnbEtjSzduV1BYWk9wWU9XRGUwVzFqQkhQUWthTlBZS1h5Z0lqWXQ5Q2x3SlVUdktTbWxpVEJhSlNJTlpIekNIcENxajFTNDNoVFVjbGdFLTA4YTZBWlR6Vy1iZXFRY3VEcUlldHJvLVF2RjB1dm5YLWMzcEhzMklvSGtOMEVfTmVnaGR5VFNIeUg5bXpILTJBeE1BVVFqQWk0QjIwSnhQVExVNnZm?oc=5"
+    },
+    {
+      "source": "News",
+      "title": "Where AI agents pay off: A practical guide to the economics of agentic workflows - McKinsey & Company",
+      "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQTTJ0UFZvQ1podXBjWHZoS0lKbDh2UkhQRDJ0Y1htVERBelVYQ1YtU1FKLTFpV2k5bGlGSms2ZjRaWXhleWtLNW8xaWFOTWdGbUs5Sk9TaHJVMENRamFFdVpZRThfTjltWDVpSWxHWk95dVVicF9kZEtiWEpKNUo4eVJFblFtZXU1azNFSmk1R0NJQm8xelF1R3VCeUpwZERNX0RlMW9fVDhEUi13cmxLb1BEVzJiY1VBV3I2c3g4S1JCeEpYNDF3VklKd1ZINmZ6S1pOelpiQzM5RUU?oc=5"
+    },
+    {
+      "source": "News",
+      "title": "Agentic Resource Discovery (ARD): An open specification for agent discovery | Artificial Intelligence - Amazon Web Services (AWS)",
+      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOZzdXdThDSmI2OWxlUmNpd3VDU0FoOW9MRktNeXZURWY1TV9xMzR4a3dfNy11bFdyakpBSWktUnlLRnM1VFNhT1lzRVJNSGFzSDZOMmhoZE9PWm9BbEdVc1NOREEzcUdoSFN0dDRVcUdCZExfeEV4eVIwSmdKRjRRRFVVVDEwNktwcDNJSlRMN3dCZndpMnYyMk1Hd0NreVRMV2IyRE1UREtoR3k1blFJSng1ZUdaR0ljNS1Z?oc=5"
     }
   ],
-  "population_engine": 50,
-  "species": 47,
+  "population_engine": 51,
+  "species": 46,
   "trials": 2,
-  "harvested": 49
+  "harvested": 51
 }

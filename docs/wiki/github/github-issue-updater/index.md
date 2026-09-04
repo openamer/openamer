@@ -6,7 +6,7 @@ description: Post verified feature updates to own GitHub issues via cron.
 # github-issue-updater
 
 **Description:** Post verified feature updates to own GitHub issues via cron.
-**Lines:** 241 | **Code:** 33 | **Dir:** `github-issue-updater`
+**Lines:** 262 | **Code:** 33 | **Dir:** `github-issue-updater`
 
 ---
 

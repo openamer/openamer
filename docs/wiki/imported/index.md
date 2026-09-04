@@ -4,7 +4,7 @@ title: imported
 
 # 📦 imported
 
-349 skills
+350 skills
 
 - [accelerated-computing-cudf](accelerated-computing-cudf/) — Official NVIDIA-authored guidance for NVIDIA cuDF GPU DataFrames, pandas acceler
 - [aiq-deploy](aiq-deploy/) — Use when asked to install, deploy, run, validate, troubleshoot, or stop NVIDIA A
@@ -255,6 +255,7 @@ title: imported
 - [paidf-anomalygen](paidf-anomalygen/) — Full PAIDF AnomalyGen pipeline — fine-tune on a new anomaly dataset, generate sy
 - [paidf-augmentation](paidf-augmentation/) — Use when authoring or validating PAIDF augmentation YAML configs, or running rem
 - [paidf-auto-labeling](paidf-auto-labeling/) — Use when a user needs to get started with PAIDF Auto-Labeling, plan a scenario, 
+- [paidf-curation-and-retrieval](paidf-curation-and-retrieval/) — Use when operating PAIDF Curation and Retrieval or NVIDIA Cosmos Curator pipelin
 - [paidf-orchestration-setup](paidf-orchestration-setup/) — Audit, prepare, and deploy PAIDF Orchestration on a Kubernetes GPU cluster - sin
 - [paidf-orchestration-write-dag](paidf-orchestration-write-dag/) — Use when a user describes a custom PAIDF Orchestration pipeline — a specific ord
 - [physical-ai-defect-image-generation](physical-ai-defect-image-generation/) — Use when the user wants to orchestrate defect image generation with NVIDIA Cosmo
