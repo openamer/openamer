@@ -6,7 +6,7 @@ description: Fix regex scanner FPs, suppression, self-scan, cron gates.
 # security-scanner-authoring
 
 **Description:** Fix regex scanner FPs, suppression, self-scan, cron gates.
-**Lines:** 130 | **Code:** 0 | **Dir:** `security-scanner-authoring`
+**Lines:** 121 | **Code:** 0 | **Dir:** `security-scanner-authoring`
 
 ---
 

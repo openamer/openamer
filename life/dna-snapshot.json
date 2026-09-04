@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-09-05T09:29:05.001706+00:00",
+  "snapshot_at": "2026-09-04T21:28:30.661268+00:00",
   "circadian": {
     "phase": "AWAKE",
     "at": "2026-08-25T13:45:44.298046+00:00",
@@ -21,25 +21,25 @@
   "strategies": {
     "TOKENS": {
       "wins": 16,
-      "tries": 38
+      "tries": 31
     },
     "TEXT": {
       "wins": 3,
-      "tries": 24
+      "tries": 17
     },
     "ROLE": {
       "wins": 0,
-      "tries": 24
+      "tries": 17
     },
     "CLASSES": {
       "wins": 6,
-      "tries": 24
+      "tries": 17
     }
   },
   "senses": {
-    "time": "2026-09-05T11:18:04",
+    "time": "2026-09-04T23:15:29",
     "pain": {
-      "score": 2,
+      "score": 1,
       "level": "uncomfortable"
     },
     "satiety": {
@@ -50,8 +50,8 @@
     "balance": {
       "state": "steady",
       "jobs": 78,
-      "errors": 3,
-      "error_ratio": 0.038
+      "errors": 0,
+      "error_ratio": 0.0
     },
     "overall": "uneasy"
   },
@@ -166,13 +166,6 @@
       "date": "2026-09-04",
       "replayed_messages": 225,
       "fragments": 89,
-      "insights": [],
-      "intentions": []
-    },
-    {
-      "date": "2026-09-05",
-      "replayed_messages": 290,
-      "fragments": 87,
       "insights": [],
       "intentions": []
     }

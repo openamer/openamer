@@ -6,7 +6,7 @@ description: Use for OpenAmer self-improvement tooling scripts.
 # self-improvement-tooling
 
 **Description:** Use for OpenAmer self-improvement tooling scripts.
-**Lines:** 42 | **Code:** 0 | **Dir:** `self-improvement-tooling`
+**Lines:** 38 | **Code:** 0 | **Dir:** `self-improvement-tooling`
 
 ---
 

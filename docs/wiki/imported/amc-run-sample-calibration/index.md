@@ -6,7 +6,7 @@ description: Run end-to-end calibration on the shipped sample dataset (sdg_08_2_
 # amc-run-sample-calibration
 
 **Description:** Run end-to-end calibration on the shipped sample dataset (sdg_08_2_sample_data_010926.zip) against a running AMC microservice. Use when user says 'test sample dataset', 'run sample calibration', 'verify AMC install', or 'launch and test'.
-**Lines:** 243 | **Code:** 72 | **Dir:** `amc-run-sample-calibration`
+**Lines:** 242 | **Code:** 72 | **Dir:** `amc-run-sample-calibration`
 
 ---
 
