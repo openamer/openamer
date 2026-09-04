@@ -31,7 +31,7 @@ title: OpenAmer Wiki — Knowledge Base
 - 📦 **self-management** — 2 skills
 - 🏠 **smart-home** — 1 skills
 - 📦 **social-media** — 1 skills
-- 💻 **software-development** — 73 skills
+- 💻 **software-development** — 72 skills
 - 🖥️ **system** — 27 skills
 
 ---
@@ -293,7 +293,6 @@ scrolling, draggi...
 - **[api-drift-recovery](software-development/api-drift-recovery/)** — ImportError after refactor? Map old→new API and fix tests.
 - **[auto-code-review](software-development/auto-code-review/)** — Security scan + code quality + auto-fix on git push.
 - **[auto-docs](software-development/auto-docs/)** — Generate docs from live git+skills+cron state.
-- **[autonomous-learning-loops](software-development/autonomous-learning-loops/)** — Use when building self-improving agents with learning loops.
 - **[best-in-world-workflow](software-development/best-in-world-workflow/)** — Use before non-trivial tasks: radar-first, verify, no title.
 - **[capture-thinking](software-development/capture-thinking/)** — Save reasoning as A2A insight after key responses.
 - **[clean-code-edits](software-development/clean-code-edits/)** — Make minimal, clean diffs when editing code in a git repo.

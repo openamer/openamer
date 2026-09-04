@@ -6,7 +6,7 @@ description: Use when parsing Windows subprocess output in Python.
 # windows-subprocess-robustness
 
 **Description:** Use when parsing Windows subprocess output in Python.
-**Lines:** 149 | **Code:** 19 | **Dir:** `windows-subprocess-robustness`
+**Lines:** 108 | **Code:** 14 | **Dir:** `windows-subprocess-robustness`
 
 ---
 

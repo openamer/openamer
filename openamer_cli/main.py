@@ -11511,43 +11511,12 @@ def _cmd_update_impl(args, gateway_mode: bool):
     # and app.asar — a non-desktop venv python holding a .pyd would sail
     # through and corrupt the sync (the exact failure this guard exists for).
     # --force-venv is the explicit escape hatch.
-
-    # FIX: Instead of refusing the update, gracefully stop venv-holder
-    # processes (SIGTERM → the desktop app respawns the backend after the
-    # update finishes). This makes `openamer update` work without requiring
-    # the user to manually close the desktop app. If graceful stop fails,
-    # fall back to the old behavior (refuse + instruct).
     if _is_windows() and not getattr(args, "force_venv", False):
         _venv_holders = _detect_venv_python_processes()
         if _venv_holders:
-            import signal as _signal
-            stopped = []
-            for pid, name, _cmd in _venv_holders:
-                try:
-                    os.kill(pid, _signal.SIGTERM)
-                    stopped.append(pid)
-                except OSError:
-                    continue
-            if stopped:
-                print(
-                    f"  → Gracefully stopped {len(stopped)} venv process(es) "
-                    f"({', '.join(str(p) for p in stopped)}). The desktop app "
-                    f"will respawn the backend after the update completes."
-                )
-                import time as _time
-                _time.sleep(3)  # give processes time to release .pyd locks
-                # re-check: if processes are gone, proceed
-                _remaining = _detect_venv_python_processes()
-                if not _remaining:
-                    print("  → All venv processes stopped. Proceeding with update.")
-                else:
-                    print(_format_venv_python_holders_message(_remaining))
-                    _resume_windows_gateways_after_update(_windows_gateway_resume)
-                    sys.exit(2)
-            else:
-                print(_format_venv_python_holders_message(_venv_holders))
-                _resume_windows_gateways_after_update(_windows_gateway_resume)
-                sys.exit(2)
+            print(_format_venv_python_holders_message(_venv_holders))
+            _resume_windows_gateways_after_update(_windows_gateway_resume)
+            sys.exit(2)
 
     # Try git-based update first, fall back to ZIP download on Windows
     # when git file I/O is broken (antivirus, NTFS filter drivers, etc.)

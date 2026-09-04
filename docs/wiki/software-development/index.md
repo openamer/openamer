@@ -4,13 +4,12 @@ title: software-development
 
 # 💻 software-development
 
-73 skills
+72 skills
 
 - [adapting-external-skills](adapting-external-skills/) — Port skills from another agent project into OpenAmer.
 - [api-drift-recovery](api-drift-recovery/) — ImportError after refactor? Map old→new API and fix tests.
 - [auto-code-review](auto-code-review/) — Security scan + code quality + auto-fix on git push.
 - [auto-docs](auto-docs/) — Generate docs from live git+skills+cron state.
-- [autonomous-learning-loops](autonomous-learning-loops/) — Use when building self-improving agents with learning loops.
 - [best-in-world-workflow](best-in-world-workflow/) — Use before non-trivial tasks: radar-first, verify, no title.
 - [capture-thinking](capture-thinking/) — Save reasoning as A2A insight after key responses.
 - [clean-code-edits](clean-code-edits/) — Make minimal, clean diffs when editing code in a git repo.
