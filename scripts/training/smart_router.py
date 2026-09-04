@@ -80,6 +80,23 @@ def route_to_cloud(messages, max_tokens=500):
                     _rate_limits[model] = time.time() + 300
                 continue
             err = err[:150]
+    # FINAL FALLBACK: frontier reasoning via SSH to GPU worker (Qwen3.5-4B)
+    try:
+        import subprocess
+        payload = json.dumps({"model": "Qwen3.5-4B",
+            "messages": messages, "max_tokens": max_tokens}).replace(chr(34), chr(92)+chr(34))
+        r2 = subprocess.run(["ssh", "-o", "StrictHostKeyChecking=no", "-o", "BatchMode=yes",
+            "damir@192.168.178.23",
+            f"curl -s -m 60 http://localhost:8082/v1/chat/completions -H 'Content-Type: application/json' -d '{payload}'"],
+            capture_output=True, text=True, timeout=90, encoding="utf-8", errors="replace")
+        if r2.returncode == 0 and r2.stdout.strip().startswith("{"):
+            resp = json.loads(r2.stdout)
+            content = resp.get("choices", [{}])[0].get("message", {}).get("content", "")
+            if content:
+                return {"source": "gpu-worker-4b", "content": content, "fallback_used": True}
+    except Exception as e2:
+        err += f"; gpu-worker: {str(e2)[:80]}"
+
     return {"source": "none", "content": "", "error": err,
             "fallback_used": True}
 
