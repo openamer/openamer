@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-09-04T09:27:58.466745+00:00",
+  "snapshot_at": "2026-09-04T21:28:30.661268+00:00",
   "circadian": {
     "phase": "AWAKE",
     "at": "2026-08-25T13:45:44.298046+00:00",
@@ -37,7 +37,7 @@
     }
   },
   "senses": {
-    "time": "2026-09-04T11:13:57",
+    "time": "2026-09-04T23:15:29",
     "pain": {
       "score": 1,
       "level": "uncomfortable"
@@ -49,7 +49,7 @@
     },
     "balance": {
       "state": "steady",
-      "jobs": 71,
+      "jobs": 78,
       "errors": 0,
       "error_ratio": 0.0
     },
