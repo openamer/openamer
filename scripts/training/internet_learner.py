@@ -166,8 +166,30 @@ def cycle_e_competitors():
                   f"OpenAmer should evaluate: {insight[:100]}")
     return f"competitor-learn: {insight[:80]}"
 
+def cycle_f_multi_domain():
+    """Learn from ANY domain: medicine, law, science, philosophy, business."""
+    domains = [
+        "medical diagnosis AI breakthrough",
+        "legal AI automation 2026",
+        "physics simulation AI advances",
+        "philosophy of consciousness AI",
+        "business automation AI agents",
+        "climate science AI models",
+        "education AI personalization",
+        "financial markets AI prediction",
+    ]
+    q = random.choice(domains)
+    raw = search(q)
+    if not raw:
+        return "no results"
+    insight = extract_insight(q, raw)
+    if not insight:
+        return "no insight"
+    add_to_buffer(f"Multi-domain learning ({q}): What should an intelligent agent know?", insight)
+    return f"domain-learn: {insight[:80]}"
+
 CYCLES = [cycle_a_technews, cycle_b_papers, cycle_c_github,
-          cycle_d_docs, cycle_e_competitors]
+          cycle_d_docs, cycle_e_competitors, cycle_f_multi_domain]
 
 def next_cycle():
     n = 0
