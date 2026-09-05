@@ -11,7 +11,7 @@ title: imported
 - [aiq-research](aiq-research/) — Use when asked to run deep research or AI-Q research through a reachable NVIDIA 
 - [amc-run-rtsp-calibration](amc-run-rtsp-calibration/) — Calibrate a new dataset from live RTSP camera streams via the AutoMagicCalib RES
 - [amc-run-sample-calibration](amc-run-sample-calibration/) — Run end-to-end calibration on the shipped sample dataset (sdg_08_2_sample_data_0
-- [amc-run-video-calibration](amc-run-video-calibration/) — Calibrate a new dataset from pre-recorded video files via the AutoMagicCalib RES
+- [amc-run-video-calibration](amc-run-video-calibration/) — Calibrates pre-recorded `cam_*.mp4` datasets through the AutoMagicCalib REST API
 - [amc-setup-calibration-stack](amc-setup-calibration-stack/) — Launch AutoMagicCalib microservice and web UI from NGC release images via Docker
 - [cudaq-guide](cudaq-guide/) — CUDA-Q onboarding guide for installation, test programs, GPU simulation, QPU har
 - [cuopt-developer](cuopt-developer/) — Modify, build, test, debug, and contribute to NVIDIA cuOpt (C++/CUDA, Python, se
@@ -29,7 +29,7 @@ title: imported
 - [data-designer](data-designer/) — Use when the user wants to create a dataset, generate synthetic data, or build a
 - [deepstream-dev](deepstream-dev/) — NVIDIA DeepStream SDK development with Python pyservicemaker API. Use when build
 - [deepstream-generate-pipeline](deepstream-generate-pipeline/) — Build DeepStream GStreamer pipelines interactively. Use when the user asks about
-- [deepstream-import-vision-model](deepstream-import-vision-model/) — Use this skill to bring any vision model from HuggingFace or NVIDIA NGC into an 
+- [deepstream-import-vision-model](deepstream-import-vision-model/) — Use this skill to bring a supported object-detection vision model from HuggingFa
 - [deepstream-profile-pipeline](deepstream-profile-pipeline/) — Profile a DeepStream pipeline with Nsight Systems and derive its configs from th
 - [deepstream-run-mv3dt](deepstream-run-mv3dt/) — Run and operate the DeepStream Multi-View 3D Tracking reference app, also known 
 - [deepstream-sop](deepstream-sop/) — Use this skill when building, deploying, evaluating, debugging, or measuring lat

@@ -1,7 +1,7 @@
 {
-  "updated": "2026-09-04T03:00:50+00:00",
-  "population": 633,
-  "avg_score": 39.9,
+  "updated": "2026-09-05T03:00:38+00:00",
+  "population": 636,
+  "avg_score": 40.0,
   "fittest": [
     {
       "name": "openamer-desktop-dev",
@@ -17,6 +17,10 @@
     },
     {
       "name": "claude-design",
+      "score": 71
+    },
+    {
+      "name": "system-performance-monitoring",
       "score": 71
     },
     {
@@ -36,16 +40,12 @@
       "score": 70
     },
     {
-      "name": "train-from-usage",
+      "name": "windows-subprocess-robustness",
       "score": 70
-    },
-    {
-      "name": "openamer-update-recovery",
-      "score": 69
     }
   ],
   "autopatch": {
-    "timestamp": "2026-09-04T04:00:27",
+    "timestamp": "2026-09-05T04:00:40",
     "kept": [
       {
         "skill": "mcore-split-pr",
@@ -162,11 +162,6 @@
   "trends": [
     {
       "source": "News",
-      "title": "India preparing rollout of agentic payments on UPI, sources say - Reuters",
-      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNWnNNcVFja2UtMGZyMWpMWm02ZERpdzVqTVBjYnQwYmhISjlYZnViaHUtME1raWRuZHhqNXpYUVFKaEhjb1pVQnJMTkl2cThfYVVhejJGRk1fM29Id3FpNl9Dek8tX0lUaEVPSV9SLWRDTVRmQ3MzOVQ5bFpZWWhZdU93VlFGeHhWQ2VfQm5nNDFsaDVLcVozNVVRTVJMX3JYajBOR29INA?oc=5"
-    },
-    {
-      "source": "News",
       "title": "The Agent Within the Agentic Minded Donald Trump | Opinion - Newsweek",
       "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOaWxmb2l0RldLMHdLdEItbUhaa2RmTUNwUElKU3ExWHlkLXF0MHh2dnQtaEs0ME1hTnplLUZ6ZGppM1RMQ0hCWVp0cWlPbFZCUjAxdmg1UlczaWU3MEM5RXd2bldXbjZadXpVNWNla0tmc19pYzA3cmc5dkRFTnRWM3VYbm5yUkRreFh2SENOelFYeHJx?oc=5"
     },
@@ -177,13 +172,18 @@
     },
     {
       "source": "News",
-      "title": "5 Real-World Applications of Agentic AI in Enterprise Automation - KDnuggets",
-      "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxPSlBiWURXRUNKMFM5RDJub0Q5MFBra2lMLXBWNlVOY1R2WUVLQTg3QmU5QVB5NG1tanN0cmxpLUVhODNwTmZjLWN0QzNNc1cyQU5rTGRjTnhQWXU5aXhKMWF3a1gwbEtFU01BSzZHRExUVUJhc2dBZlBIMU1zTFZYMTZKaFJSdG90cFRETTJYTDNVZFFS?oc=5"
+      "title": "Agentic AI security: when trusted agents become the risk - SiliconANGLE",
+      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPb2pRS3NxXzk2b3YzSXNCZkhTTDhYU2FmR0FZWVl1cjlGczNmSEZ1WW1vdkIzd09BRVlCUjNBSWdzMzFmd2docXAtYXFmdWI2VXBDZDRoeVB0UWlzQ1pPZW9BTHd3bFBBZjVBR0pIRUc5WU54ZmF6dTNFNUtURDQ1eGdlcjNzTGZBMGJDNkZ0el9jakZRN2xRQzhjYw?oc=5"
     },
     {
       "source": "News",
-      "title": "Agentic AI security: when trusted agents become the risk - SiliconANGLE",
-      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPb2pRS3NxXzk2b3YzSXNCZkhTTDhYU2FmR0FZWVl1cjlGczNmSEZ1WW1vdkIzd09BRVlCUjNBSWdzMzFmd2docXAtYXFmdWI2VXBDZDRoeVB0UWlzQ1pPZW9BTHd3bFBBZjVBR0pIRUc5WU54ZmF6dTNFNUtURDQ1eGdlcjNzTGZBMGJDNkZ0el9jakZRN2xRQzhjYw?oc=5"
+      "title": "CrowdStrike introduces agentic identity provider for AI agents - MSSP Alert",
+      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNaGZkSVE1MHR1LUNuQUdwN2xhdVJQRFZ2NDh2bVNEWWp2ckU1dWU4SUJtWGxYdmNjTEJIVWZDMWM5SG5MM3k3M0IwdHBRY000YWpZMkI1S2ZkYm5hcl9ZYXBEZUhzYThGQ2VTOHl6R3RkcVNMcHRpNXIyU0hpdzBpVEEtRVFLZEI3bnU2MmQ1R3ZqdDJTcGdJVUdn?oc=5"
+    },
+    {
+      "source": "News",
+      "title": "India preparing rollout of agentic payments on UPI, sources say - Reuters",
+      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNWnNNcVFja2UtMGZyMWpMWm02ZERpdzVqTVBjYnQwYmhISjlYZnViaHUtME1raWRuZHhqNXpYUVFKaEhjb1pVQnJMTkl2cThfYVVhejJGRk1fM29Id3FpNl9Dek8tX0lUaEVPSV9SLWRDTVRmQ3MzOVQ5bFpZWWhZdU93VlFGeHhWQ2VfQm5nNDFsaDVLcVozNVVRTVJMX3JYajBOR29INA?oc=5"
     },
     {
       "source": "News",
@@ -201,8 +201,8 @@
       "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOZzdXdThDSmI2OWxlUmNpd3VDU0FoOW9MRktNeXZURWY1TV9xMzR4a3dfNy11bFdyakpBSWktUnlLRnM1VFNhT1lzRVJNSGFzSDZOMmhoZE9PWm9BbEdVc1NOREEzcUdoSFN0dDRVcUdCZExfeEV4eVIwSmdKRjRRRFVVVDEwNktwcDNJSlRMN3dCZndpMnYyMk1Hd0NreVRMV2IyRE1UREtoR3k1blFJSng1ZUdaR0ljNS1Z?oc=5"
     }
   ],
-  "population_engine": 51,
-  "species": 46,
+  "population_engine": 53,
+  "species": 30,
   "trials": 2,
-  "harvested": 51
+  "harvested": 52
 }
