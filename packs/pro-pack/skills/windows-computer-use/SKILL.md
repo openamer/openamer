@@ -113,7 +113,7 @@ method auto-detects "this session has ended" in the tool result via
 `_is_ended_session_result()`, revives the session via `_revive_declared_session_once()`,
 and retries the original call — all transparently.
 
-The fix was ported from Hermes which had already solved this. Pattern: when
+Note: the session-recovery pattern below was independently re-derived for OpenAmer.
 cua-driver returns a logical "session ended" error (not an MCP protocol error),
 `call_tool` in `_CuaDriverSession` now:
 1. Detects `isError: true` + "this session has ended" in the data
