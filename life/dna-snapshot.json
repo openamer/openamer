@@ -39,7 +39,7 @@
   "senses": {
     "time": "2026-09-05T23:19:58",
     "pain": {
-      "score": 1,
+      "score": 2,
       "level": "uncomfortable"
     },
     "satiety": {
@@ -50,8 +50,8 @@
     "balance": {
       "state": "steady",
       "jobs": 78,
-      "errors": 0,
-      "error_ratio": 0.0
+      "errors": 3,
+      "error_ratio": 0.038
     },
     "overall": "uneasy"
   },
