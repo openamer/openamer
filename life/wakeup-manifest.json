@@ -1,6 +1,6 @@
 {
   "organism": "OpenAmer",
-  "written_at": "2026-09-04T21:28:30.659266+00:00",
+  "written_at": "2026-09-05T21:29:59.087672+00:00",
   "identity": {
     "name": "openamer_agent",
     "voice": "https://x.com/openamer_agent",
@@ -127,7 +127,7 @@
     {
       "name": "self-healer",
       "schedule": "every 30m",
-      "script": "self-healer.py",
+      "script": "cron-self-healer.py",
       "last_status": "ok"
     },
     {
