@@ -20,6 +20,10 @@
       "score": 71
     },
     {
+      "name": "system-performance-monitoring",
+      "score": 71
+    },
+    {
       "name": "xlsx",
       "score": 71
     },
@@ -36,12 +40,8 @@
       "score": 70
     },
     {
-      "name": "train-from-usage",
+      "name": "windows-subprocess-robustness",
       "score": 70
-    },
-    {
-      "name": "openamer-update-recovery",
-      "score": 69
     }
   ],
   "autopatch": {
@@ -204,5 +204,5 @@
   "population_engine": 53,
   "species": 21,
   "trials": 2,
-  "harvested": 51
+  "harvested": 52
 }

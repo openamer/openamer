@@ -6,7 +6,7 @@ description: NVIDIA DeepStream SDK development with Python pyservicemaker API. U
 # deepstream-dev
 
 **Description:** NVIDIA DeepStream SDK development with Python pyservicemaker API. Use when building video analytics pipelines, GStreamer-based video processing, TensorRT inference integration, object detection/tracking, or Kafka/message broker integration.
-**Lines:** 183 | **Code:** 15 | **Dir:** `deepstream-dev`
+**Lines:** 201 | **Code:** 15 | **Dir:** `deepstream-dev`
 
 ---
 
