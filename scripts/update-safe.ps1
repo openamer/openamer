@@ -87,6 +87,22 @@ foreach ($p in $setupProcs) {
     Stop-OAProcess -TargetPid $p.ProcessId -Label "openamer-setup"
 }
 
+# --- ALLE OpenAmer-Hintergrund-Daemons (dashboard-server, remote-web, system-snapshot,
+#     webhook-engine, stealth-server, tool_server, mesh-daemon, ...) die zusätzlich
+#     venv\Lib offen halten können. Generisch: jeder Prozess mit 'openamer-laptop' oder
+#     'openamer-repo' im Pfad. SCHÜTZT strikt hermes/emilija.
+$daemonProcs = Get-CimInstance -ClassName Win32_Process -ErrorAction SilentlyContinue |
+    Where-Object {
+        ($_.CommandLine -match [regex]::Escape("openamer-laptop") -or $_.CommandLine -match [regex]::Escape("openamer-repo")) `
+        -and $_.CommandLine -notmatch $hermesPattern `
+        -and $_.Name -notin @("bash.exe","powershell.exe","cmd.exe","grep.exe")
+    }
+foreach ($p in $daemonProcs) {
+    # Nicht den eigenen PowerShell-Prozess / Terminal-Shell stoppen
+    if ($p.ProcessId -eq $PID) { continue }
+    Stop-OAProcess -TargetPid $p.ProcessId -Label "daemon($($p.Name))"
+}
+
 if ($stopped.Count -eq 0) {
     Write-Host "  [OK] Keine OpenAmer-Prozesse aktiv." -ForegroundColor Green
 } else {
