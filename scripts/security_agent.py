@@ -8,7 +8,7 @@ Läuft als Cron-Job: openamer cronjob create --schedule 'every 6h' --script scri
 import os as _os
 import os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
-    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer')
 import json
 import logging
 import re

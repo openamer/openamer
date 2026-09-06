@@ -22,7 +22,7 @@ Exit 0 with clean state -> cron stays quiet (deliver local, silent watchdog).
 import os as _os
 import os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
-    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer')
 import json
 import socket
 import subprocess

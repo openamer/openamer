@@ -15,7 +15,7 @@ from __future__ import annotations
 # --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
 import os as _os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
-    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer')
 import json
 import subprocess
 import sys

@@ -21,7 +21,7 @@ Exit-Codes:
 import os as _os
 import os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
-    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer')
 
 import argparse
 import datetime
