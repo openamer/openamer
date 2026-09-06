@@ -1,7 +1,7 @@
 {
-  "updated": "2026-09-05T03:00:38+00:00",
-  "population": 636,
-  "avg_score": 40.0,
+  "updated": "2026-09-06T03:00:40+00:00",
+  "population": 361,
+  "avg_score": 45.1,
   "fittest": [
     {
       "name": "openamer-desktop-dev",
@@ -45,10 +45,10 @@
     }
   ],
   "autopatch": {
-    "timestamp": "2026-09-05T04:00:40",
+    "timestamp": "2026-09-06T04:00:23",
     "kept": [
       {
-        "skill": "mcore-split-pr",
+        "skill": "auto-best-practice-from-official",
         "before": 21,
         "after": 25,
         "delta": 4,
@@ -59,7 +59,7 @@
         ]
       },
       {
-        "skill": "nemo-rl-docs",
+        "skill": "auto-competitor-intelligence-autogpt-improvem",
         "before": 21,
         "after": 25,
         "delta": 4,
@@ -70,7 +70,7 @@
         ]
       },
       {
-        "skill": "tilegym-monkey-patch-kernels-to-transformers",
+        "skill": "auto-competitor-intelligence-devin-ai",
         "before": 21,
         "after": 25,
         "delta": 4,
@@ -81,9 +81,9 @@
         ]
       },
       {
-        "skill": "jetson-video-setup",
-        "before": 23,
-        "after": 27,
+        "skill": "auto-competitor-intelligence-openhands-agent",
+        "before": 21,
+        "after": 25,
         "delta": 4,
         "fixes": [
           "\u2705 metadata.openamer Block hinzugef\u00fcgt",
@@ -92,9 +92,9 @@
         ]
       },
       {
-        "skill": "doca-argus",
-        "before": 24,
-        "after": 28,
+        "skill": "auto-internet-learning-llm-agents",
+        "before": 21,
+        "after": 25,
         "delta": 4,
         "fixes": [
           "\u2705 metadata.openamer Block hinzugef\u00fcgt",
@@ -103,9 +103,9 @@
         ]
       },
       {
-        "skill": "doca-bare-metal-deployment",
-        "before": 24,
-        "after": 28,
+        "skill": "auto-latest-research-insight-arxiv",
+        "before": 21,
+        "after": 25,
         "delta": 4,
         "fixes": [
           "\u2705 metadata.openamer Block hinzugef\u00fcgt",
@@ -114,9 +114,9 @@
         ]
       },
       {
-        "skill": "doca-bf3-deployment",
-        "before": 24,
-        "after": 28,
+        "skill": "auto-multidomain-learning-climate-science",
+        "before": 21,
+        "after": 25,
         "delta": 4,
         "fixes": [
           "\u2705 metadata.openamer Block hinzugef\u00fcgt",
@@ -125,9 +125,9 @@
         ]
       },
       {
-        "skill": "doca-bf4-deployment",
-        "before": 24,
-        "after": 28,
+        "skill": "auto-multidomain-learning-medical-diagnosis",
+        "before": 21,
+        "after": 25,
         "delta": 4,
         "fixes": [
           "\u2705 metadata.openamer Block hinzugef\u00fcgt",
@@ -136,9 +136,9 @@
         ]
       },
       {
-        "skill": "doca-caps",
-        "before": 24,
-        "after": 28,
+        "skill": "auto-multidomain-learning-philosophy-of",
+        "before": 21,
+        "after": 25,
         "delta": 4,
         "fixes": [
           "\u2705 metadata.openamer Block hinzugef\u00fcgt",
@@ -147,9 +147,9 @@
         ]
       },
       {
-        "skill": "doca-collectx-deployment",
-        "before": 24,
-        "after": 28,
+        "skill": "auto-what-are-the-most",
+        "before": 21,
+        "after": 25,
         "delta": 4,
         "fixes": [
           "\u2705 metadata.openamer Block hinzugef\u00fcgt",
@@ -162,8 +162,8 @@
   "trends": [
     {
       "source": "News",
-      "title": "The Agent Within the Agentic Minded Donald Trump | Opinion - Newsweek",
-      "url": "https://news.google.com/rss/articles/CBMilAFBVV95cUxOaWxmb2l0RldLMHdLdEItbUhaa2RmTUNwUElKU3ExWHlkLXF0MHh2dnQtaEs0ME1hTnplLUZ6ZGppM1RMQ0hCWVp0cWlPbFZCUjAxdmg1UlczaWU3MEM5RXd2bldXbjZadXpVNWNla0tmc19pYzA3cmc5dkRFTnRWM3VYbm5yUkRreFh2SENOelFYeHJx?oc=5"
+      "title": "Rogue Agents No Longer A Theory. World Must Regulate Agentic AI Now - ndtv.com",
+      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNbTg1X0E3djllU0IzTFpRd19ibXNwVENkbWw4YmkzR09zUV9IWDluVVFlU0dUMnRuVjNubTh0M05Ud3lLU1N0UFM3UHRfdDJsa1k3YW9KOGtDX3A3SEcyMHFPbjZScHlCV3ZYMHhPQ21pMHVzdjNDdHJ1MGltcHVWU2NBQm1GTjVfY2ROOWltQ2s5bnZub0ZvVlJ6SWVxOHNETEpnODNPSdIBrwFBVV95cUxOOWRuU21pZmV4cHktMTdqaXEzemk4YWRBbTdVZHlURjFNSVc1YVFGdmJWUEpuSjBkMS1BdmZtR0RRWXFhRGtnM050b0hHRkl3ejZYSEJNdENNaktMVVFKaVkyMTRReE1BUUtUZFVfQTV6V3hnTGVKb1B6dFZ6MDJEZXRxcGxFV0J2Smw0MklianpvWjlqLXhRdU9mWXBWLWtNNDRtUnJHdDRBSzRpdDZJ?oc=5"
     },
     {
       "source": "News",
@@ -172,18 +172,13 @@
     },
     {
       "source": "News",
-      "title": "Agentic AI security: when trusted agents become the risk - SiliconANGLE",
-      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPb2pRS3NxXzk2b3YzSXNCZkhTTDhYU2FmR0FZWVl1cjlGczNmSEZ1WW1vdkIzd09BRVlCUjNBSWdzMzFmd2docXAtYXFmdWI2VXBDZDRoeVB0UWlzQ1pPZW9BTHd3bFBBZjVBR0pIRUc5WU54ZmF6dTNFNUtURDQ1eGdlcjNzTGZBMGJDNkZ0el9jakZRN2xRQzhjYw?oc=5"
+      "title": "How Agentic AI Can Supplement K\u201312 IT Help Desks - EdTech Magazine",
+      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxQdWpUaEpLZVJhaHpvWXh2cG9TWm9ydW1CWGVjem9LR1NkcGs4bDdLWDd2RzkxNDU5U25vNnpJTklCMlFhNC0wcGhPV3hSVDAzcXB0RmFmRnZrNldaSUxWcFdhMEpoZ0hjOEVPQkgyOVVSbnEyaGJMV3BzcjhQdDJBTmVNb1o4czBvOFE?oc=5"
     },
     {
       "source": "News",
       "title": "CrowdStrike introduces agentic identity provider for AI agents - MSSP Alert",
       "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNaGZkSVE1MHR1LUNuQUdwN2xhdVJQRFZ2NDh2bVNEWWp2ckU1dWU4SUJtWGxYdmNjTEJIVWZDMWM5SG5MM3k3M0IwdHBRY000YWpZMkI1S2ZkYm5hcl9ZYXBEZUhzYThGQ2VTOHl6R3RkcVNMcHRpNXIyU0hpdzBpVEEtRVFLZEI3bnU2MmQ1R3ZqdDJTcGdJVUdn?oc=5"
-    },
-    {
-      "source": "News",
-      "title": "India preparing rollout of agentic payments on UPI, sources say - Reuters",
-      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNWnNNcVFja2UtMGZyMWpMWm02ZERpdzVqTVBjYnQwYmhISjlYZnViaHUtME1raWRuZHhqNXpYUVFKaEhjb1pVQnJMTkl2cThfYVVhejJGRk1fM29Id3FpNl9Dek8tX0lUaEVPSV9SLWRDTVRmQ3MzOVQ5bFpZWWhZdU93VlFGeHhWQ2VfQm5nNDFsaDVLcVozNVVRTVJMX3JYajBOR29INA?oc=5"
     },
     {
       "source": "News",
@@ -197,12 +192,17 @@
     },
     {
       "source": "News",
-      "title": "Agentic Resource Discovery (ARD): An open specification for agent discovery | Artificial Intelligence - Amazon Web Services (AWS)",
-      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxOZzdXdThDSmI2OWxlUmNpd3VDU0FoOW9MRktNeXZURWY1TV9xMzR4a3dfNy11bFdyakpBSWktUnlLRnM1VFNhT1lzRVJNSGFzSDZOMmhoZE9PWm9BbEdVc1NOREEzcUdoSFN0dDRVcUdCZExfeEV4eVIwSmdKRjRRRFVVVDEwNktwcDNJSlRMN3dCZndpMnYyMk1Hd0NreVRMV2IyRE1UREtoR3k1blFJSng1ZUdaR0ljNS1Z?oc=5"
+      "title": "Managing the cyber risk of agentic AI - ncsc.gov.uk",
+      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5UZ2hPZ2poYUtzNVRSbzFYX2dzNGpqSGxOVGtickdodjc5ZVBTZ3poYlVYUkhUclVEckFBMXFfeDNwSGIxeWNnbElGTFpiRGZiRFByN2dhNUt5ejlUb0RKYmo0aFJRc0VONU9FVV85aTd4V1lXY1E?oc=5"
+    },
+    {
+      "source": "News",
+      "title": "The agentic organization: Contours of the next paradigm for the AI era - McKinsey & Company",
+      "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxORkNhWUJRcExzeER3VlFfZ095c2F0c2F6LXlXczFIOFhuUUdFZXdTcDFwQ0poamtFWWIyZ3lEam95bVNYSWNvRmkxUUotVWUtMkF2UmdaZ04wbjVCOGJiS3pTN2xyZ0k4SkxFaXJrZ3NjbnRCLWlqTDJWSVd3UWZvNHgzUTdkQy02T1pPSWhRRjc3WDhkeFZidkFfdExOMnNFMjVqZmlfLUJtRW0tWUc1UGNIdmItNWpGUnd1UnZIOG8tNDhDT2tLTjF2WlRXRnpPWVJ4aEp4QkhGUHpI?oc=5"
     }
   ],
   "population_engine": 53,
-  "species": 30,
+  "species": 21,
   "trials": 2,
   "harvested": 52
 }

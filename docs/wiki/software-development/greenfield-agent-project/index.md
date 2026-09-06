@@ -6,7 +6,7 @@ description: Build a new agent/CLI project, architecture-first.
 # greenfield-agent-project
 
 **Description:** Build a new agent/CLI project, architecture-first.
-**Lines:** 350 | **Code:** 0 | **Dir:** `greenfield-agent-project`
+**Lines:** 352 | **Code:** 0 | **Dir:** `greenfield-agent-project`
 
 ---
 

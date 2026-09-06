@@ -6,7 +6,7 @@ description: Use when building a new agent/CLI project from scratch.
 # greenfield-agent-architecture
 
 **Description:** Use when building a new agent/CLI project from scratch.
-**Lines:** 215 | **Code:** 0 | **Dir:** `greenfield-agent-architecture`
+**Lines:** 274 | **Code:** 0 | **Dir:** `greenfield-agent-architecture`
 
 ---
 

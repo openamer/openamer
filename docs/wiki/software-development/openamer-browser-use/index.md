@@ -6,7 +6,7 @@ description: CDP :9222 Chrome + Session Manager + 11-Social-Platform Outreach + 
 # openamer-browser-use
 
 **Description:** CDP :9222 Chrome + Session Manager + 11-Social-Platform Outreach + GitHub API Auto-Actions
-**Lines:** 796 | **Code:** 177 | **Dir:** `openamer-browser-use`
+**Lines:** 822 | **Code:** 187 | **Dir:** `openamer-browser-use`
 
 ---
 

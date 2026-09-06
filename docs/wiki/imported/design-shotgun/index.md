@@ -6,7 +6,7 @@ description: Design shotgun: generate multiple AI design variants, open a compar
 # design-shotgun
 
 **Description:** Design shotgun: generate multiple AI design variants, open a comparison board, collect structured feedback, and iterate. (gstack)
-**Lines:** 923 | **Code:** 146 | **Dir:** `design-shotgun`
+**Lines:** 926 | **Code:** 146 | **Dir:** `design-shotgun`
 
 ---
 
