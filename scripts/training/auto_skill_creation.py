@@ -9,11 +9,12 @@ Safety: new skills start in DRAFT state, must pass Darwin trials before promotio
 """
 import os
 import json, os, sys, datetime, re
+from pathlib import Path
 
 T = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "scripts", "training")
 BUFFER = os.path.join(T, "online_buffer.jsonl")
 KTA_LOG = os.path.join(T, "kta_log.jsonl")
-SKILLS_DIR = r"C:/Users/damir/openamer-repo/skills"
+SKILLS_DIR = os.path.join(str(Path.home()), "openamer-repo", "skills")
 AUTO_SKILLS = os.path.join(SKILLS_DIR, "auto-generated")
 REGISTRY = os.path.join(T, "auto_skills.json")
 

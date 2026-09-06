@@ -23,7 +23,7 @@ BUFFER = os.path.join(T, "online_buffer.jsonl")
 LOG = os.path.join(T, "internet_learn_log.jsonl")
 ROT = os.path.join(T, ".il_rotation")
 LIVE = "http://localhost:8081"
-REPO = r"C:/Users/damir/openamer-repo"
+REPO = os.path.join(str(Path.home()), "openamer-repo")
 
 def log(entry):
     with open(LOG, "a", encoding="utf-8") as f:

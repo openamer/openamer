@@ -15,11 +15,12 @@ Safety rails:
 """
 import os
 import json, os, sys, time, subprocess, shutil, datetime, re
+from pathlib import Path
 
 T = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "scripts", "training")
 LOG = os.path.join(T, "improvements.jsonl")
 SANDBOX = os.path.join(T, "sandbox")
-REPO = r"C:/Users/damir/openamer-repo"
+REPO = os.path.join(str(Path.home()), "openamer-repo")
 
 # Targets that are SAFE for self-modification (no inference/auth/network core)
 SAFE_TARGETS = {
@@ -149,10 +150,10 @@ def improve_once():
                 entry["live"] = True
             else:
                 # ROLLBACK
-                git_result = run(["git", "-C", r"C:/Users/damir/openamer-repo",
+                git_result = run(["git", "-C", REPO,
                                   "checkout", "--", f"scripts/training/{target}"])
                 # restore from repo
-                repo_file = os.path.join(r"C:/Users/damir/openamer-repo", "scripts", "training", target)
+                repo_file = os.path.join(REPO, "scripts", "training", target)
                 if os.path.exists(repo_file):
                     shutil.copy2(repo_file, live_path)
                 entry["status"] = "ROLLED_BACK"

@@ -8,8 +8,9 @@ Output: scripts/training/sft_openamer.jsonl  ({"messages":[...]})
 """
 import os
 import json, os, random, re
+from pathlib import Path
 
-SRC = r"C:/Users/damir/.openamer/a2a/openamer-brain.jsonl"
+SRC = os.path.join(str(Path.home()), ".openamer", "a2a", "openamer-brain.jsonl")
 OUT = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "scripts", "training", "sft_openamer.jsonl")
 MAX_TURN_CHARS = 6000    # cap per example
 MIN_ANSWER = 30          # too short = "yes"/"ok" noise

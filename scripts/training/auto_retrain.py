@@ -6,9 +6,10 @@ Guards: >= 10 NEW pairs, RAM check, min 24h between runs (marker file).
 """
 import os
 import json, os, subprocess, sys, datetime, pathlib, shutil
+from pathlib import Path
 
 T = pathlib.Path(os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "scripts", "training"))
-BRAIN = pathlib.Path(r"C:/Users/damir/.openamer/a2a/openamer-brain.jsonl")
+BRAIN = pathlib.Path(Path.home()) / ".openamer" / "a2a" / "openamer-brain.jsonl"
 MARKER = T / ".last_retrain"
 MIN_INTERVAL_H = 24
 MIN_NEW_PAIRS = 10

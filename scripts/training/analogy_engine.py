@@ -21,10 +21,11 @@ CLI:
 """
 import os
 import json, sys, os, math, urllib.request, datetime, pathlib
+from pathlib import Path
 
 BASE = os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer"))
 STRUCTS = os.path.join(BASE, "memory", "structures.jsonl")
-BRAIN = r"C:/Users/damir/.openamer/a2a/openamer-brain.jsonl"
+BRAIN = os.path.join(str(Path.home()), ".openamer", "a2a", "openamer-brain.jsonl")
 LIVE = "http://localhost:8081"
 OLLAMA_EMBED = "http://localhost:11434/api/embeddings"
 MAX_STRUCTURED = 500
