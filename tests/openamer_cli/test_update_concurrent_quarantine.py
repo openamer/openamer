@@ -400,6 +400,98 @@ def test_format_message_mentions_pids_and_remediation(tmp_path):
 
 
 # ---------------------------------------------------------------------------
+# _auto_kill_blocking_processes + _desktop_managed_pids (--auto-kill)
+# ---------------------------------------------------------------------------
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_auto_kill_terminates_all_pids(_winp, monkeypatch):
+    """--auto-kill helper force-kills every PID it is handed (Windows taskkill)."""
+    calls: list[list[str]] = []
+
+    def fake_run(cmd, **kwargs):
+        calls.append(cmd)
+        return SimpleNamespace(returncode=0, stdout="", stderr="")
+
+    monkeypatch.setattr(cli_main.subprocess, "run", fake_run)
+    killed, failed = cli_main._auto_kill_blocking_processes([111, 222])
+
+    assert killed == [111, 222]
+    assert failed == []
+    assert calls == [
+        ["taskkill", "/PID", "111", "/F"],
+        ["taskkill", "/PID", "222", "/F"],
+    ]
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_auto_kill_reports_failures(_winp, monkeypatch):
+    """A non-zero taskkill return code is surfaced as a failure, not swallowed."""
+
+    def fake_run(cmd, **kwargs):
+        if cmd[2] == "222":
+            return SimpleNamespace(returncode=1, stdout="", stderr="not found")
+        return SimpleNamespace(returncode=0, stdout="", stderr="")
+
+    monkeypatch.setattr(cli_main.subprocess, "run", fake_run)
+    killed, failed = cli_main._auto_kill_blocking_processes([111, 222])
+
+    assert killed == [111]
+    assert failed == [(222, "not found")]
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_desktop_managed_pids_finds_desktop_children(_winp, monkeypatch):
+    """A venv-python whose ancestor is OpenAmer.exe is flagged as desktop-managed."""
+
+    class _Anc:
+        def name(self):
+            return "OpenAmer.exe"
+
+    class _Proc:
+        def __init__(self, pid):
+            self.pid = pid
+
+        def parents(self):
+            return [_Anc()]
+
+    fake_psutil = types.SimpleNamespace(
+        process_iter=lambda attrs: iter([_make_proc(500, "x", "python.exe")]),
+        Process=lambda pid: _Proc(pid),
+    )
+    with patch.dict(sys.modules, {"psutil": fake_psutil}):
+        managed = cli_main._desktop_managed_pids()
+    assert 500 in managed
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_desktop_managed_pids_ignores_standalone_daemons(_winp, monkeypatch):
+    """A daemon with no OpenAmer.exe ancestor is NOT desktop-managed (killable)."""
+
+    class _Proc:
+        def __init__(self, pid):
+            self.pid = pid
+
+        def parents(self):
+            return []  # no desktop ancestor
+
+    fake_psutil = types.SimpleNamespace(
+        process_iter=lambda attrs: iter([_make_proc(600, "x", "python.exe")]),
+        Process=lambda pid: _Proc(pid),
+    )
+    with patch.dict(sys.modules, {"psutil": fake_psutil}):
+        managed = cli_main._desktop_managed_pids()
+    assert managed == set()
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_desktop_managed_pids_no_psutil_returns_empty(_winp, monkeypatch):
+    """Without psutil the helper degrades to an empty set (never raises)."""
+    with patch.dict(sys.modules, {"psutil": None}):
+        assert cli_main._desktop_managed_pids() == set()
+
+
+# ---------------------------------------------------------------------------
 # _quarantine_running_openamer_exe — retry + reboot-deferred fallback
 # ---------------------------------------------------------------------------
 

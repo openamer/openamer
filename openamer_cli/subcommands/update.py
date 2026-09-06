@@ -73,4 +73,10 @@ def build_update_parser(subparsers, *, cmd_update: Callable) -> None:
         default=False,
         help="Windows: mutate the venv even while other processes are running from its interpreter (desktop backend, gateway, terminals). Those processes keep native .pyd files locked, so the dependency sync will likely fail partway and strand the install half-updated. Use only if you know the detected holders are false positives.",
     )
+    update_parser.add_argument(
+        "--auto-kill",
+        action="store_true",
+        default=False,
+        help="Windows: automatically terminate the background processes that block the update (standalone gateway, session_to_brain watchers, stray venv-python daemons) instead of aborting. The Desktop app's own supervised backend is left alone — close the app separately if it is the blocker. Watchdog cron jobs restart the killed daemons automatically.",
+    )
     update_parser.set_defaults(func=cmd_update)

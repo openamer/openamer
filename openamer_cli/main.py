@@ -11436,6 +11436,91 @@ def cmd_update(args):
         _finalize_update_output(_update_io_state)
 
 
+def _auto_kill_blocking_processes(pids: list[int]) -> tuple[list[int], list[tuple[int, str]]]:
+    """Terminate the background processes that block ``openamer update``.
+
+    Used by ``--auto-kill``: instead of aborting with a "close these processes"
+    message, we force-kill the detected holders so the update can proceed. The
+    Desktop app's own supervised backend is deliberately NOT in the kill set —
+    the caller filters it out before invoking this helper (killing it is futile:
+    the app respawns it within seconds).
+
+    Windows: ``taskkill /PID <pid> /F`` (no clean SIGTERM for console apps).
+    Returns ``(killed, failed)`` where ``failed`` is ``(pid, reason)`` pairs.
+    Never raises.
+    """
+    killed: list[int] = []
+    failed: list[tuple[int, str]] = []
+    for pid in pids:
+        try:
+            result = subprocess.run(
+                ["taskkill", "/PID", str(pid), "/F"],
+                capture_output=True,
+                text=True, encoding="utf-8", errors="replace",
+                timeout=10,
+            )
+            if result.returncode == 0:
+                killed.append(pid)
+            else:
+                failed.append((pid, (result.stderr or result.stdout or "").strip()))
+        except (FileNotFoundError, subprocess.TimeoutExpired, OSError) as e:
+            failed.append((pid, str(e)))
+    return killed, failed
+
+
+def _desktop_managed_pids() -> set[int]:
+    """Return PIDs that are descendants of the OpenAmer Desktop app.
+
+    The Electron app (``OpenAmer.exe``) supervises its own backend child
+    (``python.exe -m openamer_cli.main serve --port 0``) and respawns it within
+    seconds of a kill, so ``--auto-kill`` must NOT target those — killing them
+    is futile and would race the update. Standalone daemons (``session_to_brain
+    --watch``, a fixed-port ``serve --port 9119`` gateway) are NOT desktop
+    children and ARE safe to kill (watchdog cron jobs restart them).
+
+    Walks every process's ancestor chain looking for an ``OpenAmer.exe`` /
+    ``openamer.exe`` desktop launcher. Best-effort; returns an empty set on any
+    error. Never raises.
+    """
+    if not _is_windows():
+        return set()
+    try:
+        import psutil
+    except Exception:
+        return set()
+
+    desktop_names = {"openamer.exe", "openamer"}
+    managed: set[int] = set()
+    try:
+        proc_iter = psutil.process_iter(["pid", "name"])
+    except Exception:
+        return set()
+    for proc in proc_iter:
+        try:
+            info = proc.info
+        except Exception:
+            continue
+        pid = info.get("pid")
+        name = (info.get("name") or "").lower()
+        if pid is None:
+            continue
+        # Only walk processes that are themselves venv-python holders; a cheap
+        # pre-filter avoids walking the whole tree for every unrelated process.
+        try:
+            parents = psutil.Process(pid).parents()
+        except Exception:
+            continue
+        for anc in parents:
+            try:
+                anc_name = (anc.name() or "").lower()
+            except Exception:
+                continue
+            if anc_name in desktop_names:
+                managed.add(int(pid))
+                break
+    return managed
+
+
 def _cmd_update_impl(args, gateway_mode: bool):
     """Body of ``cmd_update`` — kept separate so the wrapper can always
     restore stdio even on ``sys.exit``."""
@@ -11483,8 +11568,26 @@ def _cmd_update_impl(args, gateway_mode: bool):
         if scripts_dir is not None:
             concurrent = _detect_concurrent_openamer_instances(scripts_dir)
             if concurrent:
-                print(_format_concurrent_instances_message(concurrent, scripts_dir))
-                sys.exit(2)
+                if getattr(args, "auto_kill", False):
+                    _managed = _desktop_managed_pids()
+                    _killable = [p for p, _ in concurrent if p not in _managed]
+                    _survivors = [c for c in concurrent if c[0] in _managed]
+                    if _killable:
+                        print(
+                            f"⟲ --auto-kill: terminating {len(_killable)} blocking "
+                            f"shim holder(s)…"
+                        )
+                        _killed, _failed = _auto_kill_blocking_processes(_killable)
+                        for _pid in _killed:
+                            print(f"    ✓ stopped PID {_pid}")
+                        for _pid, _reason in _failed:
+                            print(f"    ✗ could not stop PID {_pid}: {_reason}")
+                    if _survivors:
+                        print(_format_concurrent_instances_message(_survivors, scripts_dir))
+                        sys.exit(2)
+                else:
+                    print(_format_concurrent_instances_message(concurrent, scripts_dir))
+                    sys.exit(2)
 
     # Pre-update backup — runs before any git/file mutation so users can
     # always roll back to the exact state they had before this update.
@@ -11514,9 +11617,33 @@ def _cmd_update_impl(args, gateway_mode: bool):
     if _is_windows() and not getattr(args, "force_venv", False):
         _venv_holders = _detect_venv_python_processes()
         if _venv_holders:
-            print(_format_venv_python_holders_message(_venv_holders))
-            _resume_windows_gateways_after_update(_windows_gateway_resume)
-            sys.exit(2)
+            if getattr(args, "auto_kill", False):
+                # --auto-kill: terminate the standalone daemons (session_to_brain
+                # watchers, fixed-port gateway) but leave the Desktop app's own
+                # supervised backend alone — killing it is futile (the app
+                # respawns it). If only desktop-managed holders remain, fall
+                # through to the normal abort so the user closes the app.
+                _managed = _desktop_managed_pids()
+                _killable = [p for p, _, _ in _venv_holders if p not in _managed]
+                _survivors = [h for h in _venv_holders if h[0] in _managed]
+                if _killable:
+                    print(
+                        f"⟲ --auto-kill: terminating {len(_killable)} blocking "
+                        f"background process(es)…"
+                    )
+                    _killed, _failed = _auto_kill_blocking_processes(_killable)
+                    for _pid in _killed:
+                        print(f"    ✓ stopped PID {_pid}")
+                    for _pid, _reason in _failed:
+                        print(f"    ✗ could not stop PID {_pid}: {_reason}")
+                if _survivors:
+                    print(_format_venv_python_holders_message(_survivors))
+                    _resume_windows_gateways_after_update(_windows_gateway_resume)
+                    sys.exit(2)
+            else:
+                print(_format_venv_python_holders_message(_venv_holders))
+                _resume_windows_gateways_after_update(_windows_gateway_resume)
+                sys.exit(2)
 
     # Try git-based update first, fall back to ZIP download on Windows
     # when git file I/O is broken (antivirus, NTFS filter drivers, etc.)
