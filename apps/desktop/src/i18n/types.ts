@@ -5,7 +5,7 @@
 // partial locales should use `defineLocale()` so missing desktop-only strings
 // fall back to English while new keys remain type-checked.
 
-export type Locale = 'en' | 'zh' | 'zh-hant' | 'ja' | 'ar' | 'de' | 'es' | 'pt' | 'sq' | 'bs' | 'fr' | 'it' | 'tr' | 'ru' | 'hi' | 'fa' | 'uk' | 'ko' | 'id' | 'th' | 'vi'
+export type Locale = 'en' | 'zh' | 'zh-hant' | 'ja' | 'ar' | 'de' | 'es' | 'pt' | 'sq' | 'bs' | 'fr' | 'it' | 'tr' | 'ru' | 'hi' | 'fa' | 'uk' | 'ko' | 'id' | 'th' | 'vi' | 'eo'
 
 export type ToolTitleKey =
   | 'browser_click'
