@@ -64,6 +64,12 @@ export const LOCALE_OPTIONS = [
     name: 'Bosanski',
     englishName: 'Bosnian',
     configValue: 'bs'
+  },
+  {
+    id: 'fr',
+    name: 'Français',
+    englishName: 'French',
+    configValue: 'fr'
   }
 ] as const satisfies readonly { configValue: string; englishName: string; id: Locale; name: string }[]
 
@@ -144,7 +150,14 @@ const LOCALE_ALIASES: Record<string, Locale> = {
   'bs-ba': 'bs',
   bs_ba: 'bs',
   bosnian: 'bs',
-  bosanski: 'bs'
+  bosanski: 'bs',
+  fr: 'fr',
+  'fr-fr': 'fr',
+  fr_fr: 'fr',
+  'fr-ca': 'fr',
+  fr_ca: 'fr',
+  french: 'fr',
+  français: 'fr'
 }
 
 export function isLocale(value: unknown): value is Locale {
