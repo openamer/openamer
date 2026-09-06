@@ -9,6 +9,7 @@ API-Endpunkte für:
 
 Läuft als API-Server oder via Plugin-System.
 """
+import os
 import json, os, time, uuid, hashlib
 from pathlib import Path
 from datetime import datetime

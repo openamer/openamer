@@ -8,6 +8,7 @@ Ein Agent der Berater-Arbeit automatisiert:
 
 Preise: Festpreis pro Deliverable (nicht pro Stunde).
 """
+import os
 import json, os, time
 from pathlib import Path
 from datetime import datetime

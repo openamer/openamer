@@ -9,6 +9,7 @@ Reale Einnahmequellen (keine Theorie):
 Jede Spende tracked in store/funding.json
 Läuft als Cron-Job: prüft auf neue Sponsors, sendet Dankes-Nachricht.
 """
+import os
 import json, os, sys, time, uuid
 from pathlib import Path
 from datetime import datetime

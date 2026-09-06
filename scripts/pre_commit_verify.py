@@ -1,4 +1,5 @@
 """Pre-commit verification for wiki-generator, academy.html, CI YAML"""
+import os
 import py_compile, yaml, json, os
 
 REPO = r"C:\Users\damir\openamer-repo"

@@ -8,6 +8,7 @@ Key optimizations for 8GB:
   - maxlen=512 (reduced context)
   - expandable_segments alloc conf
 """
+import os
 import json, os, sys, torch
 
 os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"

@@ -8,6 +8,7 @@ The 2B model cannot reason 5 levels deep in one pass. But it CAN:
   4. SYNTHESIZE — combine verified results into the final answer
 
 Each subtask is small enough for a 2B model to handle reliably. Depth comes
+import os
 from the pipeline, not from a single heroic generation. This is how humans
 solve hard problems too.
 

@@ -10,6 +10,7 @@ Energy math:
 
 Serves OpenAI-compatible API on :8081 (same as quantized_server).
 """
+import os
 import json, os, sys, time, threading
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import torch

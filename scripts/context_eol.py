@@ -28,7 +28,7 @@ import sys
 from pathlib import Path
 
 DB = Path.home() / "AppData/Local/openamer/state.db"
-HOME = os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer"))
+HOME = Path(os.environ.get("OPENAMER_HOME") or (Path.home() / "AppData" / "Local" / "openamer"))
 
 
 def _session_size(session_id: str | None) -> tuple[str | None, int]:
