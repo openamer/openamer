@@ -559,7 +559,7 @@ $0 raised / $500 goal
 - All tiers & perks: **[SPONSORS.md](SPONSORS.md)**
 - One-time: [GitHub Sponsors](https://github.com/sponsors/openamer) · [Ko-fi](https://ko-fi.com/openamer_agent) · [Buy Me a Coffee](https://www.buymeacoffee.com/openamer) · [PayPal](https://www.paypal.com/ncp/payment/3HMBFYC9CQTMS)
 
-<!-- openamer-funding-bar (auto-updated by scripts/funding.py cron): total_raised=$0 | monthly_recurring=$0 | progress=0% | updated=2026-08-24 -->
+<!-- openamer-funding-bar (auto-updated by scripts/funding.py cron): total_raised=$30 | monthly_recurring=$28 | progress=6% | updated=2026-09-05 -->
 
 ---
 

@@ -1,17 +1,17 @@
-# 🧬 Darwin Auto-Patch Report — 2026-08-31T21:30:04
+# 🧬 Darwin Auto-Patch Report — 2026-09-06T04:00:23
 
-- Population: 664 skills, avg 40.0
+- Population: 349 skills, avg 45.5
 - Mode: **apply**
 
 ## Improved (kept)
 
-- ✅ `discord-server-management`: 21 → 25 (+4)
-- ✅ `beta`: 21 → 25 (+4)
-- ✅ `mcore-split-pr`: 21 → 25 (+4)
-- ✅ `nemo-rl-docs`: 21 → 25 (+4)
-- ✅ `tilegym-monkey-patch-kernels-to-transformers`: 21 → 25 (+4)
-- ✅ `alpha`: 23 → 27 (+4)
-- ✅ `jetson-video-setup`: 23 → 27 (+4)
-- ✅ `cron-model-pinning`: 24 → 28 (+4)
-- ✅ `doca-argus`: 24 → 28 (+4)
-- ✅ `doca-bare-metal-deployment`: 24 → 28 (+4)
+- ✅ `auto-best-practice-from-official`: 21 → 25 (+4)
+- ✅ `auto-competitor-intelligence-autogpt-improvem`: 21 → 25 (+4)
+- ✅ `auto-competitor-intelligence-devin-ai`: 21 → 25 (+4)
+- ✅ `auto-competitor-intelligence-openhands-agent`: 21 → 25 (+4)
+- ✅ `auto-internet-learning-llm-agents`: 21 → 25 (+4)
+- ✅ `auto-latest-research-insight-arxiv`: 21 → 25 (+4)
+- ✅ `auto-multidomain-learning-climate-science`: 21 → 25 (+4)
+- ✅ `auto-multidomain-learning-medical-diagnosis`: 21 → 25 (+4)
+- ✅ `auto-multidomain-learning-philosophy-of`: 21 → 25 (+4)
+- ✅ `auto-what-are-the-most`: 21 → 25 (+4)

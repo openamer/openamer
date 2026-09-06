@@ -1,11 +1,11 @@
 {
-  "timestamp": "2026-08-31T21:30:04",
+  "timestamp": "2026-09-06T04:00:23",
   "mode": "apply",
-  "population": 664,
-  "avg_score": 40.0,
+  "population": 349,
+  "avg_score": 45.5,
   "kept": [
     {
-      "skill": "discord-server-management",
+      "skill": "auto-best-practice-from-official",
       "before": 21,
       "after": 25,
       "delta": 4,
@@ -16,7 +16,7 @@
       ]
     },
     {
-      "skill": "beta",
+      "skill": "auto-competitor-intelligence-autogpt-improvem",
       "before": 21,
       "after": 25,
       "delta": 4,
@@ -27,7 +27,7 @@
       ]
     },
     {
-      "skill": "mcore-split-pr",
+      "skill": "auto-competitor-intelligence-devin-ai",
       "before": 21,
       "after": 25,
       "delta": 4,
@@ -38,7 +38,7 @@
       ]
     },
     {
-      "skill": "nemo-rl-docs",
+      "skill": "auto-competitor-intelligence-openhands-agent",
       "before": 21,
       "after": 25,
       "delta": 4,
@@ -49,7 +49,7 @@
       ]
     },
     {
-      "skill": "tilegym-monkey-patch-kernels-to-transformers",
+      "skill": "auto-internet-learning-llm-agents",
       "before": 21,
       "after": 25,
       "delta": 4,
@@ -60,9 +60,9 @@
       ]
     },
     {
-      "skill": "alpha",
-      "before": 23,
-      "after": 27,
+      "skill": "auto-latest-research-insight-arxiv",
+      "before": 21,
+      "after": 25,
       "delta": 4,
       "fixes": [
         "✅ metadata.openamer Block hinzugefügt",
@@ -71,9 +71,9 @@
       ]
     },
     {
-      "skill": "jetson-video-setup",
-      "before": 23,
-      "after": 27,
+      "skill": "auto-multidomain-learning-climate-science",
+      "before": 21,
+      "after": 25,
       "delta": 4,
       "fixes": [
         "✅ metadata.openamer Block hinzugefügt",
@@ -82,9 +82,9 @@
       ]
     },
     {
-      "skill": "cron-model-pinning",
-      "before": 24,
-      "after": 28,
+      "skill": "auto-multidomain-learning-medical-diagnosis",
+      "before": 21,
+      "after": 25,
       "delta": 4,
       "fixes": [
         "✅ metadata.openamer Block hinzugefügt",
@@ -93,9 +93,9 @@
       ]
     },
     {
-      "skill": "doca-argus",
-      "before": 24,
-      "after": 28,
+      "skill": "auto-multidomain-learning-philosophy-of",
+      "before": 21,
+      "after": 25,
       "delta": 4,
       "fixes": [
         "✅ metadata.openamer Block hinzugefügt",
@@ -104,9 +104,9 @@
       ]
     },
     {
-      "skill": "doca-bare-metal-deployment",
-      "before": 24,
-      "after": 28,
+      "skill": "auto-what-are-the-most",
+      "before": 21,
+      "after": 25,
       "delta": 4,
       "fixes": [
         "✅ metadata.openamer Block hinzugefügt",
