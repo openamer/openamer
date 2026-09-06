@@ -56,6 +56,52 @@ def test_no_placeholder_embeddings_in_code():
     assert not hits, f"placeholder embedding still present:\n{chr(10).join(hits)}"
 
 
+def test_schema_migration_v1_to_v2():
+    """Old v1 edges (type/predicted) must migrate to v2 (kind/cause/effect)."""
+    old_pred = {"ts": "2026-09-01", "type": "prediction",
+                "predicted": "If X recurs expect Y", "confidence": 0.6}
+    m = wm._migrate_edge(dict(old_pred))
+    assert m["kind"] == "prediction", m
+    assert m["cause"] == "If X recurs expect Y", m
+    assert m["effect"] == "", m
+    assert m["schema_version"] == wm.SCHEMA_VERSION, m
+    assert "type" not in m and "predicted" not in m, m
+
+    old_fact = {"ts": "2026-09-01", "cause": "A", "effect": "B",
+                "embedding": [0.0] * wm.DIM}
+    m = wm._migrate_edge(dict(old_fact))
+    assert m["kind"] == "fact", m
+    assert m["schema_version"] == wm.SCHEMA_VERSION, m
+
+
+def test_schema_migration_idempotent():
+    """A v2 edge must pass through unchanged."""
+    v2 = {"ts": "x", "schema_version": wm.SCHEMA_VERSION, "kind": "fact",
+          "cause": "A", "effect": "B"}
+    assert wm._migrate_edge(dict(v2)) == v2
+
+
+def test_migrate_rewrites_store():
+    """migrate() must rewrite a temp store to the current schema."""
+    tmp = tempfile.mkdtemp()
+    old_wm = wm.WM
+    try:
+        wm.WM = os.path.join(tmp, "wm.jsonl")
+        with open(wm.WM, "w", encoding="utf-8") as f:
+            f.write(json.dumps({"ts": "x", "type": "prediction",
+                                "predicted": "If A recurs expect B"}) + "\n")
+            f.write(json.dumps({"ts": "x", "cause": "A", "effect": "B",
+                                "embedding": [0.0] * wm.DIM}) + "\n")
+        r = wm.migrate()
+        assert r["migrated"] == 2, r
+        loaded = wm._load()
+        assert all(e.get("schema_version") == wm.SCHEMA_VERSION for e in loaded)
+    finally:
+        wm.WM = old_wm
+        import shutil
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
 def _cleanup_test_edges():
     """Remove edges added by these tests so the model isn't polluted."""
     test_causes = {

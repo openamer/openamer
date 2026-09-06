@@ -29,7 +29,38 @@ EMBED_URL = "http://localhost:11434/api/embeddings"
 EMBED_MODEL = "nomic-embed-text"
 DIM = 768
 
+# Schema versioning: every edge carries its schema_version. When the shape
+# changes, bump SCHEMA_VERSION and add a migration in _migrate_edge(). This
+# is what stops silent schema breaks (the kind that made predict_validate
+# find 0 predictions after the kind/type rename).
+SCHEMA_VERSION = 2
+
 _lock = threading.Lock()
+
+
+def _migrate_edge(d):
+    """Migrate an edge from any older schema to the current one.
+
+    v1 -> v2: predictions used "type": "prediction" + a single "predicted"
+              field; v2 uses "kind": "prediction" + cause/effect. Facts used
+              no "kind" at all. Normalize everything to v2.
+    """
+    v = d.get("schema_version", 1)
+    if v >= SCHEMA_VERSION:
+        return d
+    # v1 -> v2
+    if "type" in d and "kind" not in d:
+        d["kind"] = d["type"]
+        del d["type"]
+    if "predicted" in d and "cause" not in d:
+        # old prediction shape: "predicted" held the full text
+        d["cause"] = d["predicted"]
+        d["effect"] = ""
+        del d["predicted"]
+    if "kind" not in d:
+        d["kind"] = "fact"
+    d["schema_version"] = SCHEMA_VERSION
+    return d
 
 
 def embed(text):
@@ -61,7 +92,7 @@ def _load():
     out = []
     for line in open(WM, encoding="utf-8"):
         try:
-            out.append(json.loads(line))
+            out.append(_migrate_edge(json.loads(line)))
         except Exception:
             continue
     return out
@@ -73,6 +104,7 @@ def observe(cause, effect, kind="fact", confidence=None):
     emb = embed(f"{cause} -> {effect}")
     edge = {
         "ts": datetime.datetime.now().isoformat(),
+        "schema_version": SCHEMA_VERSION,
         "kind": kind,               # fact | prediction | correction
         "cause": cause[:500],
         "effect": effect[:500],
@@ -127,7 +159,20 @@ def stats():
         "corrections": corr,
         "real_embeddings": ok_emb,
         "embed_health": round(ok_emb / len(edges), 3) if edges else 0.0,
+        "schema_version": SCHEMA_VERSION,
     }
+
+
+def migrate():
+    """Rewrite the store on disk to the current schema (idempotent)."""
+    if not os.path.exists(WM):
+        return {"migrated": 0, "schema_version": SCHEMA_VERSION}
+    edges = _load()  # _load already migrates in-memory
+    with _lock:
+        with open(WM, "w", encoding="utf-8") as f:
+            for e in edges:
+                f.write(json.dumps(e, ensure_ascii=False) + "\n")
+    return {"migrated": len(edges), "schema_version": SCHEMA_VERSION}
 
 
 if __name__ == "__main__":
@@ -144,3 +189,5 @@ if __name__ == "__main__":
         print(json.dumps(predict(sys.argv[2]), indent=2, ensure_ascii=False))
     elif sys.argv[1] == "stats":
         print(json.dumps(stats(), indent=2))
+    elif sys.argv[1] == "migrate":
+        print(json.dumps(migrate(), indent=2))
