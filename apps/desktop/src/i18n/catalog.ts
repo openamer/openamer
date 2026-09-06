@@ -7,6 +7,7 @@ import { pt } from './pt'
 import { bs } from './bs'
 import { fr } from './fr'
 import { it } from './it'
+import { ru } from './ru'
 import { tr } from './tr'
 import { sq } from './sq'
 import type { Locale, Translations } from './types'
@@ -26,5 +27,6 @@ export const TRANSLATIONS: Record<Locale, Translations> = {
   bs,
   fr,
   it,
-  tr
+  tr,
+  ru
 }
