@@ -10,6 +10,7 @@ import { it } from './it'
 import { fa } from './fa'
 import { id } from './id'
 import { th } from './th'
+import { vi } from './vi'
 import { ko } from './ko'
 import { uk } from './uk'
 import { hi } from './hi'
@@ -40,5 +41,6 @@ export const TRANSLATIONS: Record<Locale, Translations> = {
   uk,
   ko,
   id,
-  th
+  th,
+  vi
 }
