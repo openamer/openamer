@@ -22,7 +22,7 @@ import sys
 import time
 from pathlib import Path
 
-sys.path.insert(0, os.environ.get("OPENAMER_PYTHONPATH", "."))
+sys.path.insert(0, _os.environ.get("OPENAMER_PYTHONPATH", "."))
 
 from openamer_cli.a2a.core import IdentityStore, Envelope          # noqa: E402
 from openamer_cli.a2a import relay as R                              # noqa: E402
@@ -58,7 +58,7 @@ def _load_model_default() -> dict:
         candidates.append(str(Path(home_openamer) / "config.yaml"))
     candidates.append(str(Path.home() / ".openamer" / "config.yaml"))
     # On this laptop the profile-level config lives here:
-    laptop = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "config.yaml")
+    laptop = _os.path.join(_os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "config.yaml")
     candidates.append(laptop)
     for p in candidates:
         if not Path(p).exists():
