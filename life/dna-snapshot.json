@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-09-05T21:29:59.090672+00:00",
+  "snapshot_at": "2026-09-06T09:30:19.374259+00:00",
   "circadian": {
     "phase": "AWAKE",
     "at": "2026-08-25T13:45:44.298046+00:00",
@@ -21,26 +21,26 @@
   "strategies": {
     "TOKENS": {
       "wins": 16,
-      "tries": 31
+      "tries": 44
     },
     "TEXT": {
       "wins": 3,
-      "tries": 17
+      "tries": 30
     },
     "ROLE": {
       "wins": 0,
-      "tries": 17
+      "tries": 30
     },
     "CLASSES": {
       "wins": 6,
-      "tries": 17
+      "tries": 30
     }
   },
   "senses": {
-    "time": "2026-09-05T23:19:58",
+    "time": "2026-09-06T11:22:25",
     "pain": {
-      "score": 1,
-      "level": "uncomfortable"
+      "score": 0,
+      "level": "calm"
     },
     "satiety": {
       "state": "satisfied",
@@ -50,10 +50,10 @@
     "balance": {
       "state": "steady",
       "jobs": 78,
-      "errors": 0,
-      "error_ratio": 0.0
+      "errors": 2,
+      "error_ratio": 0.026
     },
-    "overall": "uneasy"
+    "overall": "well"
   },
   "dreams": [
     {
@@ -168,6 +168,31 @@
       "fragments": 89,
       "insights": [],
       "intentions": []
+    },
+    {
+      "date": "2026-09-05",
+      "replayed_messages": 290,
+      "fragments": 87,
+      "insights": [],
+      "intentions": []
+    },
+    {
+      "date": "2026-09-06",
+      "replayed_messages": 272,
+      "fragments": 89,
+      "insights": [
+        {
+          "motif": "timeout",
+          "occurrences": 1,
+          "recurrence_days": 0,
+          "nightmare": false
+        }
+      ],
+      "intentions": [
+        {
+          "action": "Review motif 'timeout' if it recurs"
+        }
+      ]
     }
   ]
 }
