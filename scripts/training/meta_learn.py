@@ -13,6 +13,7 @@ Feeds lessons into: meta_lessons.jsonl (the system's self-knowledge).
 """
 import os
 import json, os, sys, time, datetime, random
+from pathlib import Path
 
 T = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "scripts", "training")
 STATE = os.path.join(T, "meta_state.json")

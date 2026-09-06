@@ -12,6 +12,7 @@ Promotion/demotion is driven by USEFULNESS (from meta_learn's tracking):
 """
 import os
 import json, os, sys, datetime, hashlib
+from pathlib import Path
 
 T = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "scripts", "training")
 EPISODES = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "memory", "longterm_episodes.jsonl")

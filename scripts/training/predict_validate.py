@@ -13,6 +13,7 @@ a GEIST and a HALLUZINATION.
 """
 import os
 import json, os, sys, datetime, re
+from pathlib import Path
 
 T = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "scripts", "training")
 WM = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "memory", "world_model.jsonl")
@@ -80,7 +81,7 @@ def validate_predictions():
         # also check learning buffer for related events
         buf_path = os.path.join(T, "online_buffer.jsonl")
         if os.path.exists(buf_path) and not matched:
-            for line in open(buf_path, encoding="utf-8")[-50:]:
+            for line in open(buf_path, encoding="utf-8").readlines()[-50:]:
                 d = json.loads(line)
                 if predicted_text[:30] in d.get("a", "").lower():
                     matched = True

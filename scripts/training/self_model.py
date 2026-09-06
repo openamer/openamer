@@ -15,6 +15,7 @@ over time as the system evolves. Identity that CHANGES is identity.
 """
 import os
 import json, os, sys, datetime
+from pathlib import Path
 
 T = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "scripts", "training")
 SELF_DIR = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "memory", "self_model")

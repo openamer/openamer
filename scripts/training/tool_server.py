@@ -26,6 +26,7 @@ with JSON tool calls; this server executes them and feeds results back.
 """
 import os
 import json, os, sys, time, threading, subprocess, urllib.request, re
+from pathlib import Path
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from smart_router import smart_route
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer

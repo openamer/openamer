@@ -7,6 +7,7 @@ Rate-limited -> rotate through free model chain
 """
 import os
 import json, os, sys, time, re, urllib.request, threading, datetime
+from pathlib import Path
 
 def _load_env():
     env_path = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), ".env")

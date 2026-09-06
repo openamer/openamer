@@ -11,6 +11,7 @@ Runs over the Agent Mesh (Go-daemon :18920) + SSH to PC.
 """
 import os
 import json, os, sys, time, datetime, subprocess, urllib.request, threading
+from pathlib import Path
 
 T = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "scripts", "training")
 SWARM_DIR = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "memory", "swarm")

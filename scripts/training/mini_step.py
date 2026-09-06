@@ -8,6 +8,7 @@ Output: last stdout line = JSON result for the parent loop.
 """
 import os
 import json, os, sys, torch, pathlib
+from pathlib import Path
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from peft import LoraConfig, get_peft_model
 
