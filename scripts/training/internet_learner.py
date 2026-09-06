@@ -51,16 +51,34 @@ def search(query, k=3):
         return ""
 
 
+def _strip_html(html):
+    """Strip tags/scripts/styles from HTML to plain text (pure, testable)."""
+    text = re.sub(r"<script.*?</script>|<style.*?</style>", "", html, flags=re.DOTALL)
+    text = re.sub(r"<[^>]+>", " ", text)
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def _decode_bing_url(redirect):
+    """Decode a Bing ck/a redirect to its real target URL (pure, testable)."""
+    import base64
+    u = re.search(r"[?&]u=a1([^&]+)", redirect)
+    if not u:
+        return ""
+    b64 = u.group(1).replace("-", "+").replace("_", "/")
+    b64 += "=" * (-len(b64) % 4)
+    try:
+        return base64.b64decode(b64).decode("utf-8", "replace")
+    except Exception:
+        return ""
+
+
 def _fetch_page(url, max_chars=6000):
     """Fetch and strip a real web page to plain text (deep reading, not titles)."""
     try:
         req = urllib.request.Request(url, headers={
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"})
         html = urllib.request.urlopen(req, timeout=20).read().decode("utf-8", "replace")
-        text = re.sub(r"<script.*?</script>|<style.*?</style>", "", html, flags=re.DOTALL)
-        text = re.sub(r"<[^>]+>", " ", text)
-        text = re.sub(r"\s+", " ", text).strip()
-        return text[:max_chars]
+        return _strip_html(html)[:max_chars]
     except Exception:
         return ""
 
@@ -68,7 +86,7 @@ def _fetch_page(url, max_chars=6000):
 def _search_urls(query, k=3):
     """Return real result URLs for a query (Bing ck/a redirect decode)."""
     try:
-        import base64, html as _html
+        import html as _html
         q = urllib.parse.quote(query)
         req = urllib.request.Request(f"https://www.bing.com/search?q={q}",
                                      headers={"User-Agent": "Mozilla/5.0"})
@@ -77,15 +95,7 @@ def _search_urls(query, k=3):
         urls = []
         seen = set()
         for m in re.finditer(r"href=\"(https://www\.bing\.com/ck/a\?[^\"]+)\"", raw):
-            u = re.search(r"[?&]u=a1([^&]+)", m.group(1))
-            if not u:
-                continue
-            b64 = u.group(1).replace("-", "+").replace("_", "/")
-            b64 += "=" * (-len(b64) % 4)
-            try:
-                dec = base64.b64decode(b64).decode("utf-8", "replace")
-            except Exception:
-                continue
+            dec = _decode_bing_url(m.group(1))
             if dec.startswith("http") and "microsoft" not in dec and dec not in seen:
                 seen.add(dec)
                 urls.append(dec)
