@@ -16,6 +16,7 @@ import { ro } from './ro'
 import { bg } from './bg'
 import { bs } from './bs'
 import { fr } from './fr'
+import { ga } from './ga'
 import { it } from './it'
 import { fa } from './fa'
 import { id } from './id'
@@ -68,5 +69,6 @@ export const TRANSLATIONS: Record<Locale, Translations> = {
   da,
   fi,
   sk,
-  no
+  no,
+  ga
 }
