@@ -21,8 +21,12 @@ CLI:
 import os
 import json, os, sys, time, threading, subprocess, argparse, datetime, pathlib
 
-T = pathlib.Path(os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "scripts", "training"))
-BRAIN = pathlib.Path(r"C:/Users/damir/.openamer/a2a/openamer-brain.jsonl")
+_HOME = pathlib.Path(os.environ.get(
+    "OPENAMER_HOME",
+    pathlib.Path.home() / "AppData" / "Local" / "openamer-laptop"
+))
+T = _HOME / "scripts" / "training"
+BRAIN = _HOME / "a2a" / "openamer-brain.jsonl"
 BUFFER = T / "online_buffer.jsonl"
 MARKER = T / ".online_marker"
 LIVE_SWAP_URL = "http://localhost:8081/admin/swap"
