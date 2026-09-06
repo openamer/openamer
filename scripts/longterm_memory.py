@@ -14,6 +14,7 @@ CLI:
   python longterm_memory.py query "..."  # top-5 relevant episodes
   python longterm_memory.py stats
 """
+import os
 # --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
 import os as _os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(

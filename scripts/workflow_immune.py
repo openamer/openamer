@@ -35,6 +35,7 @@ Step JSON fields:
 
 Exit codes: 0 = all healthy/healed, 1 = usage error, 2 = unresolved drift.
 """
+import os
 # --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
 import os as _os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(

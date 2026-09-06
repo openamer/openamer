@@ -14,6 +14,7 @@ Three senses a living being needs that were missing:
 Usage: senses.py  ->  JSON {pain, satiety, balance, overall}
 Exit 0 always (a sense reports, it does not fail).
 """
+import os
 # --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
 import os as _os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(

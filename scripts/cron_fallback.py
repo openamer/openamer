@@ -13,6 +13,7 @@ Usage (from a wrapper):
     ...
     report_429("my-job-name")   # on HTTP 429
 """
+import os
 # --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
 import os as _os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(

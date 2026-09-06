@@ -10,6 +10,7 @@ After internet_learner collects insights, this script:
 
 This closes the gap between "learning" and "implementing".
 """
+import os
 # --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
 import os as _os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(

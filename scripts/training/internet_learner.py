@@ -14,6 +14,7 @@ train (mini-step) -> record (buffer + world model + log).
 Runs as a daemon: python internet_learner.py --loop
 Single run:       python internet_learner.py --once
 """
+import os
 # --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
 import os as _os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(

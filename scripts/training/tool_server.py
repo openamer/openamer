@@ -24,6 +24,7 @@ Endpoint: POST /v1/chat/completions (OpenAI-compatible, with tool support)
 The 2B model receives tool definitions in the system prompt and responds
 with JSON tool calls; this server executes them and feeds results back.
 """
+import os
 # --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
 import os as _os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(

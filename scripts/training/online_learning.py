@@ -18,6 +18,7 @@ CLI:
   python online_learning.py --step-once     # single mini-step (test)
   python online_learning.py --stats
 """
+import os
 # --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
 import os as _os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(

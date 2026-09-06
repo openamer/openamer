@@ -19,6 +19,7 @@ CLI:
   python analogy_engine.py find "<new problem>"       # find analogies
   python analogy_engine.py stats
 """
+import os
 # --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
 import os as _os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(

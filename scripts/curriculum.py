@@ -21,6 +21,7 @@ Usage:
   curriculum.py exam              # run all levels sequentially
   curriculum.py run --level N     # single level
 """
+import os
 # --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
 import os as _os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(

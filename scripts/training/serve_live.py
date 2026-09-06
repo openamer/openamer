@@ -11,6 +11,7 @@ Endpoints:
   POST /admin/swap            — hot-load a new adapter from disk (no restart)
   GET  /health                — liveness probe
 """
+import os
 # --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
 import os as _os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(

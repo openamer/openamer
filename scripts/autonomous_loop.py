@@ -17,6 +17,7 @@ This is the entrypoint cron calls every 30 minutes. One run = the swarm
 organizes itself completely without human input.
 """
 from __future__ import annotations
+import os
 
 import json
 import subprocess

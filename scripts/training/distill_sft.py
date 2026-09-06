@@ -6,6 +6,7 @@ small teaching examples: each user message + the assistant answer that
 followed, filtered by quality heuristics (length, tool-free, German-friendly).
 Output: scripts/training/sft_openamer.jsonl  ({"messages":[...]})
 """
+import os
 # --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
 import os as _os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(

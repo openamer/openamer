@@ -4,6 +4,7 @@
 Watchdog-style: stays silent (exit 0) unless it actually retrained, or an error occurs.
 Guards: >= 10 NEW pairs, RAM check, min 24h between runs (marker file).
 """
+import os
 # --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
 import os as _os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(

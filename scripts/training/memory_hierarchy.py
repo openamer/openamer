@@ -10,6 +10,7 @@ Promotion/demotion is driven by USEFULNESS (from meta_learn's tracking):
   - Memories that led to solutions → promote to Tier 1
   - Memories never retrieved → demote toward ephemeral
 """
+import os
 # --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
 import os as _os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(

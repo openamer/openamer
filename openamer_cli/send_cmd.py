@@ -209,6 +209,7 @@ def _list_targets(platform_filter: Optional[str], *, json_mode: bool) -> int:
 
 
 def _load_openamer_env() -> None:
+import os
     """Populate ``os.environ`` from ``~/.openamer/.env`` AND bridge top-level
     ``config.yaml`` keys into the environment so the underlying gateway
     config loader sees platform credentials and home channel IDs.
@@ -254,7 +255,6 @@ def _load_openamer_env() -> None:
     # Step 2: bridge top-level config.yaml values into the environment so
     # gateway.config.load_gateway_config() sees them. Scalars only; don't
     # override values already in the env.
-    import os
     config_path = home / "config.yaml"
     if not config_path.exists():
         return

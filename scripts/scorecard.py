@@ -13,6 +13,7 @@ cron fleet + model-benchmarker outputs and computes:
 Usage: scorecard.py   -> prints table + writes scorecard.json
 Exit 0 always.
 """
+import os
 # --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
 import os as _os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(

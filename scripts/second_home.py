@@ -15,6 +15,7 @@ SECRETS NEVER LEAVE THE MACHINE. Only structure and state.
 Usage: second_home.py   (writes both files into openamer-repo/life/)
 Exit 0 = written & pushed.
 """
+import os
 # --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
 import os as _os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(

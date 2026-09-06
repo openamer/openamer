@@ -7,6 +7,7 @@ new skills from internet insights — fresh genetic material for Darwin.
 Pipeline: insight (buffer) -> skill template -> SKILL.md -> Darwin registry
 Safety: new skills start in DRAFT state, must pass Darwin trials before promotion.
 """
+import os
 # --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
 import os as _os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(

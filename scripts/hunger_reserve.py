@@ -12,6 +12,7 @@ Usage:
 Der Output von 'best' kann von Wrapper-Jobs als OPENAMER_FALLBACK_MODEL
 gelesen werden. Kein Key im Repo - .env bleibt die einzige Key-Quelle.
 """
+import os
 # --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
 import os as _os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(

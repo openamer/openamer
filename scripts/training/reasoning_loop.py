@@ -21,6 +21,7 @@ CLI:
   python reasoning_loop.py predict "situation"    # retrieve relevant causes
   python reasoning_loop.py graph-stats
 """
+import os
 # --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
 import os as _os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(

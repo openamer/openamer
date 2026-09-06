@@ -12,6 +12,7 @@ The swarm KNOWS what it knows:
     civilization in one import
 """
 from __future__ import annotations
+import os
 
 import json
 import re

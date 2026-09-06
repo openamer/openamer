@@ -11,6 +11,7 @@ Measures after every training cycle which strategy worked best and adapts:
 State file: meta_state.json — everything measured, nothing guessed.
 Feeds lessons into: meta_lessons.jsonl (the system's self-knowledge).
 """
+import os
 # --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
 import os as _os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(

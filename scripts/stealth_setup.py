@@ -6,10 +6,10 @@ Installiert Preload-Scripte + Chrome Flags + Nutzerprofil.
 """
 # --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
 import os as _os
+import os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
     _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json
-import os
 import shutil
 import subprocess
 import sys

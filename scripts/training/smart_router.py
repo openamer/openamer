@@ -5,6 +5,7 @@ Simple -> local 2B (0ms, 0 EUR, offline)
 Complex -> OpenRouter free model (0 EUR, frontier reasoning)
 Rate-limited -> rotate through free model chain
 """
+import os
 # --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
 import os as _os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(

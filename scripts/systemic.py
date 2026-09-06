@@ -14,6 +14,7 @@ FileNotFoundError, timeouts...), groups them, and reports:
 Usage: systemic.py   -> prints report + writes systemic.json
 Exit 0 always; exit 2 if a systemic cluster was found (for watchdogs).
 """
+import os
 # --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
 import os as _os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(

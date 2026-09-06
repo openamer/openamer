@@ -16,6 +16,7 @@ Usage:
 """
 # --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
 import os as _os
+import os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
     _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 from __future__ import annotations
@@ -93,7 +94,6 @@ def latest_reply(li, after_ts=0):
     return max(cands, key=lambda t: t[0])[1] if cands else None
 
 def main():
-    import os
     cred_token()
     ap = argparse.ArgumentParser()
     ap.add_argument("task", choices=["ping","echo","time","sum","ask"])

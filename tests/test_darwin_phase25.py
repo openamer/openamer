@@ -1,6 +1,7 @@
 """Phase-25 tests: the autonomous loop - tasks from gaps, real execution."""
 import importlib.util
 import json
+import os
 import sys
 from pathlib import Path
 

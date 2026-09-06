@@ -9,6 +9,7 @@ Laptop agent + PC agent work TOGETHER as a collective:
 
 Runs over the Agent Mesh (Go-daemon :18920) + SSH to PC.
 """
+import os
 # --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
 import os as _os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(

@@ -13,6 +13,7 @@ Safety rails:
   - Always reversible: git tracks every change
   - Proof-first: no live switch without passing tests
 """
+import os
 # --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
 import os as _os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(

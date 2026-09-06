@@ -28,6 +28,7 @@ Exit codes: 0 = ok, 1 = no data, 2 = evolution made changes.
 """
 
 from __future__ import annotations
+import os
 
 import argparse
 import json

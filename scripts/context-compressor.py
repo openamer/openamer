@@ -11,6 +11,7 @@ CLI:
   --stats            Kompressionsrate anzeigen (input chars → output chars)
   --search <query>   Volltextsuche in komprimierten Sessions
 """
+import os
 
 import sqlite3, json, sys, os, re, time
 from datetime import datetime, timezone

@@ -11,6 +11,7 @@ Runs every 10 min and performs ONE learning action from a rotation:
 Each action feeds results into: brain buffer + world model + structures.
 The agent GROWS actively instead of waiting passively.
 """
+import os
 # --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
 import os as _os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(

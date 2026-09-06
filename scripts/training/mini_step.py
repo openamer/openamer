@@ -6,6 +6,7 @@ adapter (separate from the night-batch 'adapter'). CPU-only, ~5s.
 
 Output: last stdout line = JSON result for the parent loop.
 """
+import os
 # --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
 import os as _os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(

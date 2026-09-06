@@ -12,6 +12,7 @@ Exit 0 when ALL expected services are up (or were successfully restarted);
 exit 1 listing failures — so the cron status is truthful.
 Runs detached starts (survive console close) unlike `start /B`.
 """
+import os
 # --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
 import os as _os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(

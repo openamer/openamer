@@ -9,6 +9,7 @@ Offline checks (no browser needed):
 
 Exit 0 = all pass, 1 = any failure.
 """
+import os
 # --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
 import os as _os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(

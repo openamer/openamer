@@ -17,6 +17,7 @@ Message types:
 Storage: ~/AppData/Local/openamer-laptop/darwin/messages.json
 """
 from __future__ import annotations
+import os
 
 import json
 import sys

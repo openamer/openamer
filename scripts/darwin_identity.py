@@ -6,6 +6,7 @@ a real name, a face (facial parameters), a personality, a mood, a biography.
 Deterministic per entity-id: the same skill always gets the same identity.
 """
 from __future__ import annotations
+import os
 
 import hashlib
 import json

@@ -13,6 +13,7 @@ The LLM decides WHICH action to take based on ecosystem state.
 No hardcoded if/else - the worker thinks and acts.
 """
 from __future__ import annotations
+import os
 
 import importlib.util
 import json

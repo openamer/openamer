@@ -2,6 +2,7 @@
 """Mini-OpenAmer: local OpenAI-compatible server for the tuned Qwen3.5-2B LoRA.
 CPU inference via transformers. Endpoint: http://localhost:8081/v1/chat/completions
 """
+import os
 # --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
 import os as _os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(

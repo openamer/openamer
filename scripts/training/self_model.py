@@ -13,6 +13,7 @@ Every cycle, the self-model updates itself. It reads its own state,
 observes its own changes, and writes its own identity — which drifts
 over time as the system evolves. Identity that CHANGES is identity.
 """
+import os
 # --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
 import os as _os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(

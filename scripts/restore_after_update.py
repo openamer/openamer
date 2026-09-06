@@ -9,6 +9,7 @@ This script restores everything Mini-OpenAmer needs:
   4. World model + self model (verify files intact)
   5. GPU worker (restart on PC via SSH)
 """
+import os
 # --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
 import os as _os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
