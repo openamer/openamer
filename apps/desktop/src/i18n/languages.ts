@@ -214,6 +214,12 @@ export const LOCALE_OPTIONS = [
     name: 'Gaeilge',
     englishName: 'Irish',
     configValue: 'ga'
+  },
+  {
+    id: 'sl',
+    name: 'Slovenščina',
+    englishName: 'Slovenian',
+    configValue: 'sl'
   }
 ] as const satisfies readonly { configValue: string; englishName: string; id: Locale; name: string }[]
 
@@ -424,7 +430,12 @@ const LOCALE_ALIASES: Record<string, Locale> = {
   'ga-ie': 'ga',
   ga_ie: 'ga',
   irish: 'ga',
-  gaeilge: 'ga'
+  gaeilge: 'ga',
+  sl: 'sl',
+  'sl-si': 'sl',
+  sl_si: 'sl',
+  slovenian: 'sl',
+  slovenščina: 'sl'
 }
 
 export function isLocale(value: unknown): value is Locale {
