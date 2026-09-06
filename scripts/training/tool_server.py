@@ -227,6 +227,40 @@ import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from peft import PeftModel
 
+
+def _strip_thinking(content):
+    """Remove Qwen3.5 'thinking' traces from model output.
+
+    The 2B model (Qwen3.5 thinking family) wraps its reasoning in
+    <think>...</think> and the real answer follows after </think>.
+    If the marker is present, keep only what comes after it. Also handle
+    the case where the model emits a prose thinking preamble without tags.
+    """
+    if not content:
+        return content
+    # PRIMARY: if the model emitted <think>...</think>, the answer follows.
+    if "</think>" in content:
+        answer = content.rsplit("</think>", 1)[1].strip()
+        return answer if answer else content
+    # SECONDARY: prose thinking preamble without tags
+    markers = ("here's a thinking process", "here is a thinking process",
+               "thinking process:", "let me think")
+    low = content.lower()
+    for mk in markers:
+        idx = low.find(mk)
+        if idx != -1:
+            tail = content[idx:]
+            paras = [p.strip() for p in re.split(r"\n\s*\n", tail) if p.strip()]
+            answer_paras = [p for p in paras
+                            if not re.match(r"^\s*\d+\.\s", p)
+                            and not p.lower().startswith(("analyze", "formulate", "step",
+                                                          "the user", "no tools", "the system"))]
+            if answer_paras:
+                return answer_paras[-1].strip()
+            if paras:
+                return paras[-1].strip()
+    return content
+
 BASE = "Qwen/Qwen3.5-2B"
 ADAPTER = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "scripts", "training", "lora_out", "adapter")
 tok = AutoTokenizer.from_pretrained(BASE)
@@ -352,6 +386,7 @@ class H(BaseHTTPRequestHandler):
             out = model.generate(**ids, max_new_tokens=max_new, do_sample=False,
                                  pad_token_id=tok.eos_token_id)
         content = tok.decode(out[0][ids["input_ids"].shape[1]:], skip_special_tokens=True).strip()
+        content = _strip_thinking(content)
 
         # check if model wants to call a tool
         tool_call = None

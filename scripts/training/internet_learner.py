@@ -137,18 +137,19 @@ def deep_learn(query, k=2):
             if any(n in low for n in _NAV):
                 continue  # skip navigation/boilerplate
             return s
-    # SECONDARY: distill via the 2B model (best-effort, may be noisy)
+    # SECONDARY: distill via the bigger 4B model via Ollama (background task,
+    # speed doesn't matter here — quality does). Strips <think> traces.
     try:
-        req = urllib.request.Request(LIVE + "/v1/chat/completions",
-            data=json.dumps({"model": "mini-openamer", "max_tokens": 120,
-                "messages": [
-                    {"role": "user", "content":
-                     f"Summarize the key technical insight from this in ONE sentence "
-                     f"(no preamble, no thinking, just the sentence):\n\n{combined}"}
-                ]}).encode(),
+        req = urllib.request.Request("http://localhost:11434/api/generate",
+            data=json.dumps({"model": "qwen3.5:4b-q4_K_M",
+                "prompt": f"Summarize the key technical insight from this in ONE sentence "
+                          f"(no preamble, just the sentence):\n\n{combined}",
+                "stream": False}).encode(),
             headers={"Content-Type": "application/json"})
-        r = json.load(urllib.request.urlopen(req, timeout=120))
-        content = r["choices"][0]["message"]["content"].strip()
+        r = json.load(urllib.request.urlopen(req, timeout=600))
+        content = r.get("response", "").strip()
+        if "</think>" in content:
+            content = content.rsplit("</think>", 1)[1].strip()
         content = re.sub(r"^\s*\{.*?\}\s*", "", content, flags=re.DOTALL)
         content = re.sub(r"^(Here is|Here's|The key|Sure|Okay|I'll|Let me).*?:\s*", "", content, flags=re.IGNORECASE)
         return content[:200] if len(content) > 20 else ""
