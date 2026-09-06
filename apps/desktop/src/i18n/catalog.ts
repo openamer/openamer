@@ -20,6 +20,7 @@ import { vi } from './vi'
 import { ko } from './ko'
 import { uk } from './uk'
 import { hi } from './hi'
+import { hu } from './hu'
 import { ru } from './ru'
 import { tr } from './tr'
 import { sq } from './sq'
@@ -56,5 +57,6 @@ export const TRANSLATIONS: Record<Locale, Translations> = {
   ro,
   el,
   cs,
-  sv
+  sv,
+  hu
 }
