@@ -30,7 +30,7 @@ Write-Host "DryRun:" ($DryRun -eq $true)
 Write-Host ""
 
 # -- Schritt 1: Prozesse stoppen ------------------------------------------------
-Write-Host "[1/7] Stoppe OpenAmer-eigene Prozesse..." -ForegroundColor Yellow
+Write-Host "[1/8] Stoppe OpenAmer-eigene Prozesse..." -ForegroundColor Yellow
 
 $stopped = @()
 $hermesPattern = "hermes|emilija"
@@ -115,7 +115,7 @@ if ($stopped.Count -eq 0) {
 Write-Host ""
 
 # -- Schritt 2: Stale Marker entfernen -------------------------------------------
-Write-Host "[2/7] Entferne stale Marker..." -ForegroundColor Yellow
+Write-Host "[2/8] Entferne stale Marker..." -ForegroundColor Yellow
 if (Test-Path $MarkerFile) {
     Remove-Item $MarkerFile -Force -ErrorAction SilentlyContinue
     Write-Host "  [OK] .update-incomplete entfernt" -ForegroundColor Green
@@ -124,9 +124,31 @@ if (Test-Path $MarkerFile) {
 }
 Write-Host ""
 
-# -- Schritt 3: Paketquellen aktualisieren -----------------------------------------
+# -- Schritt 3: Self-Healing-Watchdog-Task deaktivieren (sonst respawnt sie die Daemons
+#     sofort wieder und blockiert den venv — die Wurzel des Update-Lock-Problems) --------
+$WatchdogTask = "OpenAmer Self-Healing Watchdog"
+Write-Host "[3/8] Deaktiviere '$WatchdogTask' Task (verhindert Respawn-Loop)..." -ForegroundColor Yellow
+$wt = Get-ScheduledTask -TaskName $WatchdogTask -ErrorAction SilentlyContinue
+if ($wt) {
+    if (-not $DryRun) {
+        Disable-ScheduledTask -TaskName $WatchdogTask | Out-Null
+        Write-Host "  [OK] Task deaktiviert (State: $( (Get-ScheduledTask -TaskName $WatchdogTask).State ))" -ForegroundColor Green
+    } else {
+        Write-Host "  [DRYRUN] wuerde Task deaktivieren" -ForegroundColor DarkYellow
+    }
+} else {
+    Write-Host "  [OK] Task nicht gefunden — kein Eingriff" -ForegroundColor Green
+}
+# Erneut alle session_to_brain/watchdog Prozesse stoppen (die Task hat evtl. noch welche gestartet)
+Get-CimInstance -ClassName Win32_Process -ErrorAction SilentlyContinue |
+    Where-Object { $_.CommandLine -match 'session_to_brain|openamer_watchdog' -and $_.CommandLine -notmatch $hermesPattern } |
+    ForEach-Object { Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue }
+Start-Sleep -Milliseconds 800
+Write-Host ""
+
+# -- Schritt 4: Paketquellen aktualisieren -----------------------------------------
 if (-not $DryRun) {
-    Write-Host "[3/7] Fuehre openamer update aus..." -ForegroundColor Yellow
+    Write-Host "[4/8] Fuehre openamer update aus..." -ForegroundColor Yellow
     try {
         & $VenvOpenAmer update
         if ($LASTEXITCODE -ne 0) { throw "openamer update exit code $LASTEXITCODE" }
@@ -137,12 +159,12 @@ if (-not $DryRun) {
         exit 1
     }
 } else {
-    Write-Host "[3/7] [TROCKENLAUF] openamer update uebersprungen" -ForegroundColor DarkYellow
+    Write-Host "[4/8] [TROCKENLAUF] openamer update uebersprungen" -ForegroundColor DarkYellow
 }
 Write-Host ""
 
-# -- Schritt 4: Venv-Pruefung und -Reparatur ---------------------------------------
-Write-Host "[4/7] Pruefe venv..." -ForegroundColor Yellow
+# -- Schritt 5: Venv-Pruefung und -Reparatur ---------------------------------------
+Write-Host "[5/8] Pruefe venv..." -ForegroundColor Yellow
 if (-not (Test-Path $VenvPython)) {
     Write-Host "  [WARN] python.exe fehlt! Baue venv neu..." -ForegroundColor Yellow
     try {
@@ -162,16 +184,16 @@ if (-not (Test-Path $VenvPython)) {
 }
 Write-Host ""
 
-# -- Schritt 5: Version verifizieren -----------------------------------------------
-Write-Host "[5/7] Verifiziere openamer --version..." -ForegroundColor Yellow
+# -- Schritt 6: Version verifizieren -----------------------------------------------
+Write-Host "[6/8] Verifiziere openamer --version..." -ForegroundColor Yellow
 try {
     $versionOutput = & $VenvOpenAmer --version
     if ($LASTEXITCODE -ne 0) { throw "exit code $LASTEXITCODE" }
     Write-Host "  [OK] $versionOutput" -ForegroundColor Green
     Write-Host ""
 
-    # -- Schritt 6: UPDATE OK ------------------------------------------------------
-    Write-Host "[6/7] Ergebnis:" -ForegroundColor Yellow
+    # -- Schritt 7: UPDATE OK ------------------------------------------------------
+    Write-Host "[7/8] Ergebnis:" -ForegroundColor Yellow
     Write-Host "  [OK] UPDATE OK" -ForegroundColor Green
 } catch {
     Write-Host "  [FEHLER] Version check fehlgeschlagen: $_" -ForegroundColor Red
@@ -181,7 +203,7 @@ try {
 Write-Host ""
 
 # -- Schritt 7: OpenAmer neustarten ------------------------------------------------
-Write-Host "[7/7] Starte OpenAmer..." -ForegroundColor Yellow
+Write-Host "[7/8] Starte OpenAmer..." -ForegroundColor Yellow
 try {
     if (-not $DryRun) {
         Start-Process -FilePath $VenvOpenAmer -ArgumentList "desktop"
@@ -193,6 +215,21 @@ try {
     Write-Host "  [WARN] Neustart fehlgeschlagen: $_" -ForegroundColor Yellow
     Write-Host "  (Starte 'openamer desktop' manuell)" -ForegroundColor Yellow
 }
-
 Write-Host ""
+
+# -- Schritt 8: Self-Healing-Watchdog-Task wieder AKTIVIEREN (normaler Betrieb) ------
+Write-Host "[8/8] Aktiviere '$WatchdogTask' Task wieder (normales Selbstlern-Betrieb)..." -ForegroundColor Yellow
+$wt2 = Get-ScheduledTask -TaskName $WatchdogTask -ErrorAction SilentlyContinue
+if ($wt2) {
+    if (-not $DryRun) {
+        Enable-ScheduledTask -TaskName $WatchdogTask | Out-Null
+        Write-Host "  [OK] Task wieder aktiviert (State: $( (Get-ScheduledTask -TaskName $WatchdogTask).State ))" -ForegroundColor Green
+    } else {
+        Write-Host "  [DRYRUN] wuerde Task wieder aktivieren" -ForegroundColor DarkYellow
+    }
+} else {
+    Write-Host "  [OK] Task nicht gefunden — kein Eingriff" -ForegroundColor Green
+}
+Write-Host ""
+
 Write-Host "=== update-safe.ps1 abgeschlossen ===" -ForegroundColor Cyan
