@@ -121,28 +121,38 @@ def deep_learn(query, k=2):
     if not texts:
         return ""
     combined = " ".join(texts)[:4000]
-    # distill via the 2B model (or fall back to first sentences)
+    # PRIMARY: deterministic extraction — first meaningful sentence of the page.
+    # Reliable, no model dependency. The 2B model (Qwen3.5 thinking family)
+    # emits reasoning traces that are not reliably parseable, so we don't
+    # depend on it for the core learning signal.
+    _NAV = ("search", "log in", "create account", "donate", "upload file",
+            "community portal", "recent changes", "personal tools", "contents",
+            "move to sidebar", "toggle", "navigation", "main menu", "appearance",
+            "special pages", "random article", "about wikipedia", "contact us",
+            "cookie", "privacy", "terms of use", "jump to", "skip to")
+    for t in texts:
+        for m in re.finditer(r"([A-Z][^.!?]{40,250}[.!?])", t):
+            s = m.group(1).strip()
+            low = s.lower()
+            if any(n in low for n in _NAV):
+                continue  # skip navigation/boilerplate
+            return s
+    # SECONDARY: distill via the 2B model (best-effort, may be noisy)
     try:
         req = urllib.request.Request(LIVE + "/v1/chat/completions",
             data=json.dumps({"model": "mini-openamer", "max_tokens": 120,
                 "messages": [
-                    {"role": "system", "content":
-                     "Extract ONE concrete, actionable insight for an autonomous AI agent. "
-                     "Format: [INSIGHT] <one specific sentence with a technique or fact>."},
-                    {"role": "user", "content": f"Topic: {query}\n\nContent: {combined}"}
+                    {"role": "user", "content":
+                     f"Summarize the key technical insight from this in ONE sentence "
+                     f"(no preamble, no thinking, just the sentence):\n\n{combined}"}
                 ]}).encode(),
             headers={"Content-Type": "application/json"})
         r = json.load(urllib.request.urlopen(req, timeout=120))
         content = r["choices"][0]["message"]["content"].strip()
-        if "[INSIGHT]" in content:
-            return content.split("[INSIGHT]")[1].strip()
-        return content[:150] if len(content) > 20 else ""
+        content = re.sub(r"^\s*\{.*?\}\s*", "", content, flags=re.DOTALL)
+        content = re.sub(r"^(Here is|Here's|The key|Sure|Okay|I'll|Let me).*?:\s*", "", content, flags=re.IGNORECASE)
+        return content[:200] if len(content) > 20 else ""
     except Exception:
-        # fallback: first meaningful sentence of the page
-        for t in texts:
-            m = re.search(r"([A-Z][^.!?]{40,200}[.!?])", t)
-            if m:
-                return m.group(1).strip()
         return ""
 
 def extract_insight(topic, raw, max_tokens=100):
