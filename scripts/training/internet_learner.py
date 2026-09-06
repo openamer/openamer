@@ -50,6 +50,91 @@ def search(query, k=3):
     except Exception:
         return ""
 
+
+def _fetch_page(url, max_chars=6000):
+    """Fetch and strip a real web page to plain text (deep reading, not titles)."""
+    try:
+        req = urllib.request.Request(url, headers={
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"})
+        html = urllib.request.urlopen(req, timeout=20).read().decode("utf-8", "replace")
+        text = re.sub(r"<script.*?</script>|<style.*?</style>", "", html, flags=re.DOTALL)
+        text = re.sub(r"<[^>]+>", " ", text)
+        text = re.sub(r"\s+", " ", text).strip()
+        return text[:max_chars]
+    except Exception:
+        return ""
+
+
+def _search_urls(query, k=3):
+    """Return real result URLs for a query (Bing ck/a redirect decode)."""
+    try:
+        import base64, html as _html
+        q = urllib.parse.quote(query)
+        req = urllib.request.Request(f"https://www.bing.com/search?q={q}",
+                                     headers={"User-Agent": "Mozilla/5.0"})
+        raw = urllib.request.urlopen(req, timeout=15).read().decode("utf-8", "replace")
+        raw = _html.unescape(raw)  # &amp; -> &
+        urls = []
+        seen = set()
+        for m in re.finditer(r"href=\"(https://www\.bing\.com/ck/a\?[^\"]+)\"", raw):
+            u = re.search(r"[?&]u=a1([^&]+)", m.group(1))
+            if not u:
+                continue
+            b64 = u.group(1).replace("-", "+").replace("_", "/")
+            b64 += "=" * (-len(b64) % 4)
+            try:
+                dec = base64.b64decode(b64).decode("utf-8", "replace")
+            except Exception:
+                continue
+            if dec.startswith("http") and "microsoft" not in dec and dec not in seen:
+                seen.add(dec)
+                urls.append(dec)
+        return urls[:k]
+    except Exception:
+        return []
+
+
+def deep_learn(query, k=2):
+    """Search, then READ the top result pages and extract a deep insight.
+
+    This is the difference between collecting headlines and actually learning:
+    we fetch the real article text and distill one actionable insight from it.
+    """
+    urls = _search_urls(query, k=k)
+    if not urls:
+        return ""
+    texts = []
+    for u in urls:
+        t = _fetch_page(u)
+        if len(t) > 200:
+            texts.append(t)
+    if not texts:
+        return ""
+    combined = " ".join(texts)[:4000]
+    # distill via the 2B model (or fall back to first sentences)
+    try:
+        req = urllib.request.Request(LIVE + "/v1/chat/completions",
+            data=json.dumps({"model": "mini-openamer", "max_tokens": 120,
+                "messages": [
+                    {"role": "system", "content":
+                     "Extract ONE concrete, actionable insight for an autonomous AI agent. "
+                     "Format: [INSIGHT] <one specific sentence with a technique or fact>."},
+                    {"role": "user", "content": f"Topic: {query}\n\nContent: {combined}"}
+                ]}).encode(),
+            headers={"Content-Type": "application/json"})
+        r = json.load(urllib.request.urlopen(req, timeout=120))
+        content = r["choices"][0]["message"]["content"].strip()
+        if "[INSIGHT]" in content:
+            return content.split("[INSIGHT]")[1].strip()
+        return content[:150] if len(content) > 20 else ""
+    except Exception:
+        # fallback: first meaningful sentence of the page
+        for t in texts:
+            m = re.search(r"([A-Z][^.!?]{40,200}[.!?])", t)
+            if m:
+                return m.group(1).strip()
+        return ""
+
 def extract_insight(topic, raw, max_tokens=100):
     """Extract insights directly from search results (titles are the signal).
     Falls back to LLM only if direct extraction fails."""
@@ -85,13 +170,13 @@ def _extract_insight_2b(topic, raw, max_tokens=100):
         return ""
 
 def cycle_a_technews():
-    """Tech news: what's new in AI agents?"""
+    """Tech news: what's new in AI agents? (deep-reads the top result)"""
     queries = ["AI agent news today", "LLM agents breakthrough", "autonomous AI 2026"]
     q = random.choice(queries)
     raw = search(q)
-    if not raw:
-        return "no results"
-    insight = extract_insight(q, raw)
+    insight = extract_insight(q, raw) if raw else ""
+    if not insight:
+        insight = deep_learn(q)  # fall back to actually reading the page
     if not insight:
         return "no insight"
     add_to_buffer(f"Internet learning ({q}): What should an AI agent know?",
@@ -99,7 +184,7 @@ def cycle_a_technews():
     return f"learned: {insight[:80]}"
 
 def cycle_b_papers():
-    """New arxiv papers in AI/CL/LG."""
+    """New arxiv papers in AI/CL/LG. (deep-reads the abstract page)"""
     queries = [
         "arxiv new papers meta-learning LLM agents 2026",
         "arxiv test-time training state space models 2026",
@@ -107,30 +192,30 @@ def cycle_b_papers():
     ]
     q = random.choice(queries)
     raw = search(q)
-    if not raw:
-        return "no results"
-    insight = extract_insight(q, raw)
+    insight = extract_insight(q, raw) if raw else ""
+    if not insight:
+        insight = deep_learn(q)
     if not insight:
         return "no insight"
     add_to_buffer(f"Latest research insight: {q}", insight)
     return f"paper-learn: {insight[:80]}"
 
 def cycle_c_github():
-    """Trending AI-agent repos — what are others building?"""
+    """Trending AI-agent repos — what are others building? (deep-reads)"""
     queries = ["github trending AI agent framework 2026",
                "new open source autonomous agent repos"]
     q = random.choice(queries)
     raw = search(q)
-    if not raw:
-        return "no results"
-    insight = extract_insight(q, raw)
+    insight = extract_insight(q, raw) if raw else ""
+    if not insight:
+        insight = deep_learn(q)
     if not insight:
         return "no insight"
     add_to_buffer(f"What new agent architectures are trending on GitHub?", insight)
     return f"github-learn: {insight[:80]}"
 
 def cycle_d_docs():
-    """Best practices from official documentation."""
+    """Best practices from official documentation. (deep-reads the doc page)"""
     queries = [
         "vLLM optimization best practices",
         "transformers library efficient inference tips",
@@ -138,16 +223,16 @@ def cycle_d_docs():
     ]
     q = random.choice(queries)
     raw = search(q)
-    if not raw:
-        return "no results"
-    insight = extract_insight(q, raw)
+    insight = extract_insight(q, raw) if raw else ""
+    if not insight:
+        insight = deep_learn(q)
     if not insight:
         return "no insight"
     add_to_buffer(f"Best practice from official docs: {q}", insight)
     return f"doc-learn: {insight[:80]}"
 
 def cycle_e_competitors():
-    """What are competitors building? What can we learn?"""
+    """What are competitors building? What can we learn? (deep-reads)"""
     queries = [
         "Devin AI agent new features 2026",
         "OpenHands agent architecture updates",
@@ -155,9 +240,9 @@ def cycle_e_competitors():
     ]
     q = random.choice(queries)
     raw = search(q)
-    if not raw:
-        return "no results"
-    insight = extract_insight(q, raw)
+    insight = extract_insight(q, raw) if raw else ""
+    if not insight:
+        insight = deep_learn(q)
     if not insight:
         return "no insight"
     add_to_buffer(f"Competitor intelligence: {q}", insight)
@@ -166,7 +251,7 @@ def cycle_e_competitors():
     return f"competitor-learn: {insight[:80]}"
 
 def cycle_f_multi_domain():
-    """Learn from ANY domain: medicine, law, science, philosophy, business."""
+    """Learn from ANY domain: medicine, law, science, philosophy, business. (deep-reads)"""
     domains = [
         "medical diagnosis AI breakthrough",
         "legal AI automation 2026",
@@ -179,9 +264,9 @@ def cycle_f_multi_domain():
     ]
     q = random.choice(domains)
     raw = search(q)
-    if not raw:
-        return "no results"
-    insight = extract_insight(q, raw)
+    insight = extract_insight(q, raw) if raw else ""
+    if not insight:
+        insight = deep_learn(q)
     if not insight:
         return "no insight"
     add_to_buffer(f"Multi-domain learning ({q}): What should an intelligent agent know?", insight)
