@@ -178,6 +178,12 @@ export const LOCALE_OPTIONS = [
     name: 'Magyar',
     englishName: 'Hungarian',
     configValue: 'hu'
+  },
+  {
+    id: 'bg',
+    name: 'Български',
+    englishName: 'Bulgarian',
+    configValue: 'bg'
   }
 ] as const satisfies readonly { configValue: string; englishName: string; id: Locale; name: string }[]
 
@@ -356,7 +362,12 @@ const LOCALE_ALIASES: Record<string, Locale> = {
   'hu-hu': 'hu',
   hu_hu: 'hu',
   hungarian: 'hu',
-  magyar: 'hu'
+  magyar: 'hu',
+  bg: 'bg',
+  'bg-bg': 'bg',
+  bg_bg: 'bg',
+  bulgarian: 'bg',
+  български: 'bg'
 }
 
 export function isLocale(value: unknown): value is Locale {

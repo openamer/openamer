@@ -10,6 +10,7 @@ import { es } from './es'
 import { ja } from './ja'
 import { pt } from './pt'
 import { ro } from './ro'
+import { bg } from './bg'
 import { bs } from './bs'
 import { fr } from './fr'
 import { it } from './it'
@@ -58,5 +59,6 @@ export const TRANSLATIONS: Record<Locale, Translations> = {
   el,
   cs,
   sv,
-  hu
+  hu,
+  bg
 }
