@@ -94,6 +94,12 @@ export const LOCALE_OPTIONS = [
     name: 'हिन्दी',
     englishName: 'Hindi',
     configValue: 'hi'
+  },
+  {
+    id: 'fa',
+    name: 'فارسی',
+    englishName: 'Persian',
+    configValue: 'fa'
   }
 ] as const satisfies readonly { configValue: string; englishName: string; id: Locale; name: string }[]
 
@@ -201,7 +207,13 @@ const LOCALE_ALIASES: Record<string, Locale> = {
   'hi-in': 'hi',
   hi_in: 'hi',
   hindi: 'hi',
-  हिन्दी: 'hi'
+  हिन्दी: 'hi',
+  fa: 'fa',
+  'fa-ir': 'fa',
+  fa_ir: 'fa',
+  persian: 'fa',
+  farsi: 'fa',
+  فارسی: 'fa'
 }
 
 export function isLocale(value: unknown): value is Locale {
