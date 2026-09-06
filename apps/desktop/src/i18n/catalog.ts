@@ -8,6 +8,7 @@ import { bs } from './bs'
 import { fr } from './fr'
 import { it } from './it'
 import { fa } from './fa'
+import { ko } from './ko'
 import { uk } from './uk'
 import { hi } from './hi'
 import { ru } from './ru'
@@ -34,5 +35,6 @@ export const TRANSLATIONS: Record<Locale, Translations> = {
   ru,
   hi,
   fa,
-  uk
+  uk,
+  ko
 }
