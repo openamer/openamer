@@ -184,6 +184,12 @@ export const LOCALE_OPTIONS = [
     name: 'Български',
     englishName: 'Bulgarian',
     configValue: 'bg'
+  },
+  {
+    id: 'da',
+    name: 'Dansk',
+    englishName: 'Danish',
+    configValue: 'da'
   }
 ] as const satisfies readonly { configValue: string; englishName: string; id: Locale; name: string }[]
 
@@ -367,7 +373,12 @@ const LOCALE_ALIASES: Record<string, Locale> = {
   'bg-bg': 'bg',
   bg_bg: 'bg',
   bulgarian: 'bg',
-  български: 'bg'
+  български: 'bg',
+  da: 'da',
+  'da-dk': 'da',
+  da_dk: 'da',
+  danish: 'da',
+  dansk: 'da'
 }
 
 export function isLocale(value: unknown): value is Locale {
