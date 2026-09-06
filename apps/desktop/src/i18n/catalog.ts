@@ -26,6 +26,7 @@ import { hi } from './hi'
 import { hu } from './hu'
 import { ru } from './ru'
 import { tr } from './tr'
+import { sk } from './sk'
 import { sq } from './sq'
 import { sv } from './sv'
 import type { Locale, Translations } from './types'
@@ -64,5 +65,6 @@ export const TRANSLATIONS: Record<Locale, Translations> = {
   hu,
   bg,
   da,
-  fi
+  fi,
+  sk
 }
