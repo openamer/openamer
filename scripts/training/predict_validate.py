@@ -40,7 +40,9 @@ def validate_predictions():
     for line in lines:
         try:
             d = json.loads(line)
-            if d.get("type") == "prediction":
+            # world_model.py writes "kind": "prediction"; older edges used
+            # "type": "prediction". Accept both so no prediction is missed.
+            if d.get("kind") == "prediction" or d.get("type") == "prediction":
                 predictions.append(d)
             elif "cause" in d:
                 facts.append(d.get("cause", "") + " " + d.get("effect", ""))
@@ -54,7 +56,11 @@ def validate_predictions():
     results = []
 
     for pred in predictions:
+        # New world_model.py predictions store cause/effect; older ones used
+        # a single "predicted" field. Reconstruct the text from either shape.
         predicted_text = pred.get("predicted", "").lower()
+        if not predicted_text:
+            predicted_text = (f"{pred.get('cause','')} {pred.get('effect','')}").lower()
         pred_ts = pred.get("ts", "")
         confidence = pred.get("confidence", 0.5)
 
