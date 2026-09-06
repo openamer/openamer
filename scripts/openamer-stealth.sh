@@ -4,7 +4,7 @@
 # 
 # Usage: ./openamer-stealth.sh start|stop|status|connect
 
-STEALTH_DIR="/c/Users/damir/AppData/Local/openamer-laptop/stealth"
+STEALTH_DIR="${OPENAMER_HOME:-$LOCALAPPDATA/openamer-laptop}/stealth"
 SCRIPT="$STEALTH_DIR/../scripts/stealth-server.mjs"
 LOCK="$STEALTH_DIR/browser.lock"
 LOG="$STEALTH_DIR/server.log"

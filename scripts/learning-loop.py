@@ -48,7 +48,6 @@ def _resolve_home() -> Path:
     candidates = [
         user_home / "AppData/Local/openamer-laptop",
         Path(str(_OAH) + ""),
-        Path("/c/Users/damir/AppData/Local/openamer-laptop"),
         Path.home() / "openamer-laptop",
     ]
     # 2. OPENAMER_HOME Umgebungsvariable (MSYS-korrigiert)
