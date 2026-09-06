@@ -13,9 +13,13 @@ Safety rails:
   - Always reversible: git tracks every change
   - Proof-first: no live switch without passing tests
 """
+# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
+import os as _os
+_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json, os, sys, time, subprocess, shutil, datetime, re
 
-T = r"C:/Users/damir/AppData/Local/openamer-laptop/scripts/training"
+T = str(_OAH) + "/scripts/training"
 LOG = os.path.join(T, "improvements.jsonl")
 SANDBOX = os.path.join(T, "sandbox")
 REPO = r"C:/Users/damir/openamer-repo"

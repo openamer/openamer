@@ -4,6 +4,10 @@ PR Approval Agent — Automated Pull Request Review & Approval Workflow.
 Reviews open PRs, runs tests, approves or requests changes, auto-merges.
 Läuft als Cron-Job: openamer cronjob create --schedule 'every 2h' --script scripts/pr_approval.py
 """
+# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
+import os as _os
+_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json
 import logging
 import os
@@ -15,7 +19,7 @@ from pathlib import Path
 
 # ─── Config ───────────────────────────────────────────────────────────────────
 REPO_DIR = Path(os.environ.get("OPENAMER_REPO",
-    r"C:\Users\damir\AppData\Local\openamer-laptop\openamer-agent"))
+    str(_OAH) + "\openamer-agent"))
 STATE_FILE = REPO_DIR / ".pr-agent" / "state.json"
 LOG_FILE = REPO_DIR / ".pr-agent" / "pr_approval.log"
 MAX_PRS_PER_RUN = 3

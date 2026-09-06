@@ -10,6 +10,10 @@ Silent-failure safe: every block is wrapped, missing sources are skipped.
 
 Used by cron job "Punkt Morgen-Briefing" (07:30 daily).
 """
+# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
+import os as _os
+_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 from __future__ import annotations
 
 import datetime
@@ -19,7 +23,7 @@ import urllib.request
 from pathlib import Path
 
 REPO = Path(r"C:\Users\damir\openamer-repo")
-CRON_JOBS = Path(r"C:\Users\damir\AppData\Local\openamer-laptop\cron\jobs.json")
+CRON_JOBS = Path(str(_OAH) + "\cron\jobs.json")
 TREND_LATEST = REPO / "reports" / "trend-scout-latest.md"
 OUT = REPO / "reports" / "punkt-briefing.md"
 

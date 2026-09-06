@@ -2,13 +2,17 @@
 """Mini-OpenAmer: local OpenAI-compatible server for the tuned Qwen3.5-2B LoRA.
 CPU inference via transformers. Endpoint: http://localhost:8081/v1/chat/completions
 """
+# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
+import os as _os
+_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json, torch, threading, time, os
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from peft import PeftModel
 
 BASE = "Qwen/Qwen3.5-2B"
-ADAPTER = r"C:/Users/damir/AppData/Local/openamer-laptop/scripts/training/lora_out/adapter"
+ADAPTER = str(_OAH) + "/scripts/training/lora_out/adapter"
 PORT = 8081
 IDLE_TIMEOUT = 1800  # seconds — auto-shutdown after 30 min without requests (energy saver)
 

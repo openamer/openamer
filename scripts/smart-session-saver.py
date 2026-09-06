@@ -12,6 +12,10 @@ CLI:
 
 Keine Datenlöschung — arbeitet nur auf Metadaten.
 """
+# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
+import os as _os
+_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 
 import argparse
 import datetime
@@ -37,7 +41,7 @@ _oh_val = os.environ.get("OPENAMER_HOME")
 if _oh_val:
     _oh_val = _resolve_msys_path(_oh_val)
 else:
-    _oh_val = r"C:\Users\damir\AppData\Local\openamer-laptop"
+    _oh_val = str(_OAH) + ""
 OPENAMER_HOME = Path(_oh_val)
 STATE_DB = OPENAMER_HOME / "state.db"
 ARCHIVE_ROOT = OPENAMER_HOME / ".session-archive"

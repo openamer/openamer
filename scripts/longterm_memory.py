@@ -14,9 +14,13 @@ CLI:
   python longterm_memory.py query "..."  # top-5 relevant episodes
   python longterm_memory.py stats
 """
+# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
+import os as _os
+_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json, sys, math, os, datetime, urllib.request, hashlib
 
-BASE = r"C:/Users/damir/AppData/Local/openamer-laptop"
+BASE = str(_OAH) + ""
 STORE = os.path.join(BASE, "memory", "longterm_episodes.jsonl")
 EMBED_CACHE = os.path.join(BASE, "memory", "embed_cache.json")   # energy-saving: skip re-embed
 BRAIN = r"C:/Users/damir/.openamer/a2a/openamer-brain.jsonl"

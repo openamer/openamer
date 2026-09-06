@@ -12,6 +12,10 @@ reports/darwin-status-latest.json. Zero LLM tokens.
 
 Usage:  python scripts/darwin_publish.py
 """
+# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
+import os as _os
+_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 from __future__ import annotations
 
 import json
@@ -21,8 +25,8 @@ import sys
 from pathlib import Path
 
 REPO = Path(r"C:\Users\damir\openamer-repo")
-SKILLS_DIR = Path(r"C:\Users\damir\AppData\Local\openamer-laptop\skills")
-VALIDATOR_LOG = Path(r"C:\Users\damir\AppData\Local\openamer-laptop\logs\skill-validator-latest.json")
+SKILLS_DIR = Path(str(_OAH) + "\skills")
+VALIDATOR_LOG = Path(str(_OAH) + "\logs\skill-validator-latest.json")
 AUTOpatch_JSON = REPO / "reports" / "darwin-autopatch.json"
 TRENDS_MD = REPO / "reports" / "trend-scout-latest.md"
 OUT_STATIC = REPO / "website" / "static" / "darwin" / "darwin-status.json"

@@ -37,7 +37,7 @@ scripts/brain_train.py --detect
 
 ### 1. Prüfen & Daten vorbereiten
 ```bash
-OPENAMER_HOME="C:/Users/damir/AppData/Local/openamer-laptop" \
+OPENAMER_HOME="$OPENAMER_HOME" \
   python scripts/brain_train.py --dataset
 ```
 - Liest `<OPENAMER_HOME>/a2a/openamer-brain.jsonl`.
@@ -89,7 +89,7 @@ python scripts/brain_train.py --all
 
 ## Verify
 ```bash
-OPENAMER_HOME="C:/Users/damir/AppData/Local/openamer-laptop" \
+OPENAMER_HOME="$OPENAMER_HOME" \
   python scripts/brain_train.py --dataset && \
   python scripts/brain_train.py --smoke
 ```

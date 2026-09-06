@@ -9,6 +9,10 @@ Offline checks (no browser needed):
 
 Exit 0 = all pass, 1 = any failure.
 """
+# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
+import os as _os
+_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import ast
 import json
 import subprocess
@@ -17,7 +21,7 @@ from pathlib import Path
 
 HERE = Path(__file__).parent
 WIS = HERE / "workflow_immune.py"
-STATE = Path(r"C:\Users\damir\AppData\Local\openamer-laptop\workflow-immune")
+STATE = Path(str(_OAH) + "\workflow-immune")
 
 failures = []
 

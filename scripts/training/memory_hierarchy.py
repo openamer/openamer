@@ -10,12 +10,16 @@ Promotion/demotion is driven by USEFULNESS (from meta_learn's tracking):
   - Memories that led to solutions → promote to Tier 1
   - Memories never retrieved → demote toward ephemeral
 """
+# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
+import os as _os
+_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json, os, sys, datetime, hashlib
 
-T = r"C:/Users/damir/AppData/Local/openamer-laptop/scripts/training"
-EPISODES = r"C:/Users/damir/AppData/Local/openamer-laptop/memory/longterm_episodes.jsonl"
+T = str(_OAH) + "/scripts/training"
+EPISODES = str(_OAH) + "/memory/longterm_episodes.jsonl"
 HIERARCHY_FILE = os.path.join(T, "memory_hierarchy.json")
-ARCHIVE = r"C:/Users/damir/AppData/Local/openamer-laptop/memory/compressed_episodes.jsonl"
+ARCHIVE = str(_OAH) + "/memory/compressed_episodes.jsonl"
 
 def load_json(path, default):
     try:

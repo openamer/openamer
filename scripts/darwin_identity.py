@@ -12,7 +12,7 @@ import json
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
-HOME = Path.home() / "AppData" / "Local" / "openamer-laptop"
+HOME = Path(os.environ.get("OPENAMER_HOME") or str(Path.home() / "AppData" / "Local" / "openamer-laptop"))
 IDENTITY_FILE = HOME / "darwin" / "identities.json"
 
 FIRST_NAMES = [

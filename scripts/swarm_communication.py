@@ -34,7 +34,7 @@ darwin = importlib.util.module_from_spec(_spec)
 sys.modules["darwin_engine"] = darwin
 _spec.loader.exec_module(darwin)
 
-HOME = Path.home() / "AppData" / "Local" / "openamer-laptop"
+HOME = Path(os.environ.get("OPENAMER_HOME") or str(Path.home() / "AppData" / "Local" / "openamer-laptop"))
 MESSAGES_FILE = HOME / "darwin" / "messages.json"
 
 OLLAMA_URL = "http://localhost:11434/api/generate"

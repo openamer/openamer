@@ -5,10 +5,14 @@ Simple -> local 2B (0ms, 0 EUR, offline)
 Complex -> OpenRouter free model (0 EUR, frontier reasoning)
 Rate-limited -> rotate through free model chain
 """
+# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
+import os as _os
+_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json, os, sys, time, re, urllib.request, threading, datetime
 
 def _load_env():
-    env_path = r"C:/Users/damir/AppData/Local/openamer-laptop/.env"
+    env_path = str(_OAH) + "/.env"
     if os.path.exists(env_path):
         for line in open(env_path, encoding="utf-8", errors="replace"):
             line = line.strip()

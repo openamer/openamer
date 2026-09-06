@@ -39,7 +39,7 @@ def _state_db_path() -> Path:
     """Pfad zur OpenAmer State-Datenbank (die Sessions + Messages enthält)."""
     home = Path(os.environ.get(
         "OPENAMER_HOME",
-        Path.home() / "AppData" / "Local" / "openamer-laptop",
+        Path(os.environ.get("OPENAMER_HOME") or str(Path.home() / "AppData" / "Local" / "openamer-laptop")),
     ))
     return home / "state.db"
 
@@ -50,7 +50,7 @@ def _lessons_db_path() -> Path:
         "OPENAMER_LESSONS_DB",
         Path(os.environ.get(
             "OPENAMER_HOME",
-            Path.home() / "AppData" / "Local" / "openamer-laptop",
+            Path(os.environ.get("OPENAMER_HOME") or str(Path.home() / "AppData" / "Local" / "openamer-laptop")),
         )),
     ))
     return home / _CROSS_SESSION_DB_RELPATH

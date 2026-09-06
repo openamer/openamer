@@ -1,5 +1,5 @@
 # detect-monitors.ps1 — Run this from PowerShell (not bash) to detect all monitors
-# Usage: powershell.exe -File "C:\Users\damir\AppData\Local\openamer-laptop\scripts\detect-monitors.ps1"
+# Usage: powershell.exe -File "$env:OPENAMER_HOME\scripts\detect-monitors.ps1"
 
 Add-Type -AssemblyName System.Windows.Forms
 

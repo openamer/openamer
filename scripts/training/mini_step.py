@@ -6,12 +6,16 @@ adapter (separate from the night-batch 'adapter'). CPU-only, ~5s.
 
 Output: last stdout line = JSON result for the parent loop.
 """
+# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
+import os as _os
+_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json, os, sys, torch, pathlib
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from peft import LoraConfig, get_peft_model
 
 BASE = "Qwen/Qwen3.5-2B"
-T = pathlib.Path(r"C:/Users/damir/AppData/Local/openamer-laptop/scripts/training")
+T = pathlib.Path(str(_OAH) + "/scripts/training")
 BUFFER = T / "online_buffer.jsonl"
 ROLLING = T / "lora_out" / "adapter_rolling"
 MAXLEN = 512

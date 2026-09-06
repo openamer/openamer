@@ -72,7 +72,7 @@ python scripts/code-intelligence.py --build --report
 ## Graph-Daten
 
 Der Graph wird gespeichert als JSON unter:
-`C:\Users\damir\AppData\Local\openamer-laptop\.code-intelligence\graph.json`
+`$OPENAMER_HOME\.code-intelligence\graph.json`
 
 Struktur:
 ```json

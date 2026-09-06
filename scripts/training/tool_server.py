@@ -24,12 +24,16 @@ Endpoint: POST /v1/chat/completions (OpenAI-compatible, with tool support)
 The 2B model receives tool definitions in the system prompt and responds
 with JSON tool calls; this server executes them and feeds results back.
 """
+# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
+import os as _os
+_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json, os, sys, time, threading, subprocess, urllib.request, re
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from smart_router import smart_route
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
-sys.path.insert(0, r"C:/Users/damir/AppData/Local/openamer-laptop/scripts")
+sys.path.insert(0, str(_OAH) + "/scripts")
 
 TOOLS = [
     {"name": "web_search", "desc": "Search the internet. Input: {query}. Output: results.",
@@ -160,7 +164,7 @@ def t_listen(params):
 
 def t_see(params):
     try:
-        img_path = r"C:/Users/damir/AppData/Local/openamer-laptop/memory/see_screenshot.png"
+        img_path = str(_OAH) + "/memory/see_screenshot.png"
         r = subprocess.run(["powershell", "-NoProfile", "-Command",
             "Add-Type -AssemblyName System.Windows.Forms,System.Drawing; "
             "$b=[System.Windows.Forms.Screen]::PrimaryScreen.Bounds; "
@@ -226,7 +230,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 from peft import PeftModel
 
 BASE = "Qwen/Qwen3.5-2B"
-ADAPTER = r"C:/Users/damir/AppData/Local/openamer-laptop/scripts/training/lora_out/adapter"
+ADAPTER = str(_OAH) + "/scripts/training/lora_out/adapter"
 tok = AutoTokenizer.from_pretrained(BASE)
 model = AutoModelForCausalLM.from_pretrained(BASE, dtype=torch.bfloat16, low_cpu_mem_usage=True)
 model = PeftModel.from_pretrained(model, ADAPTER)

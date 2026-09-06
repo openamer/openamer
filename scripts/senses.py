@@ -14,15 +14,19 @@ Three senses a living being needs that were missing:
 Usage: senses.py  ->  JSON {pain, satiety, balance, overall}
 Exit 0 always (a sense reports, it does not fail).
 """
+# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
+import os as _os
+_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json
 import re
 import sys
 from datetime import datetime
 from pathlib import Path
 
-CRON_OUTPUT = Path(r"C:\Users\damir\AppData\Local\openamer-laptop\cron\output")
-JOBS_FILE = Path(r"C:\Users\damir\AppData\Local\openamer-laptop\cron\jobs.json")
-SENSES_FILE = Path(r"C:\Users\damir\AppData\Local\openamer-laptop\senses.json")
+CRON_OUTPUT = Path(str(_OAH) + "\cron\output")
+JOBS_FILE = Path(str(_OAH) + "\cron\jobs.json")
+SENSES_FILE = Path(str(_OAH) + "\senses.json")
 
 
 def read_text_safe(p, limit=4000):

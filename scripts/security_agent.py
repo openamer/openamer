@@ -4,6 +4,10 @@ Security Agent — Automated Security Scanning & Vulnerability Detection.
 Scans npm, Python, codebase patterns, and env config for security issues.
 Läuft als Cron-Job: openamer cronjob create --schedule 'every 6h' --script scripts/security_agent.py
 """
+# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
+import os as _os
+_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json
 import logging
 import os
@@ -15,7 +19,7 @@ from pathlib import Path
 
 # ─── Config ───────────────────────────────────────────────────────────────────
 REPO_DIR = Path(os.environ.get("OPENAMER_REPO",
-    r"C:\Users\damir\AppData\Local\openamer-laptop\openamer-agent"))
+    str(_OAH) + "\openamer-agent"))
 STATE_FILE = REPO_DIR / ".security-agent" / "state.json"
 LOG_FILE = REPO_DIR / ".security-agent" / "security.log"
 MAX_ALERTS_PER_RUN = 10

@@ -20,7 +20,7 @@ from urllib.parse import urlparse
 # ── Paths ──────────────────────────────────────────────────────────────────
 OPENAMER_HOME = Path(os.environ.get(
     "OPENAMER_HOME",
-    str(Path.home() / "AppData" / "Local" / "openamer-laptop"),
+    str(Path(os.environ.get("OPENAMER_HOME") or str(Path.home() / "AppData" / "Local" / "openamer-laptop"))),
 ))
 CRON_DIR = OPENAMER_HOME / "cron"
 SCRIPTS_DIR = OPENAMER_HOME / "scripts"

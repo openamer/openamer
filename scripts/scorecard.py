@@ -13,12 +13,16 @@ cron fleet + model-benchmarker outputs and computes:
 Usage: scorecard.py   -> prints table + writes scorecard.json
 Exit 0 always.
 """
+# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
+import os as _os
+_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json
 import re
 from datetime import datetime
 from pathlib import Path
 
-OA_HOME = Path(r"C:\Users\damir\AppData\Local\openamer-laptop")
+OA_HOME = Path(str(_OAH) + "")
 JOBS_FILE = OA_HOME / "cron" / "jobs.json"
 OUT_FILE = OA_HOME / "scorecard.json"
 

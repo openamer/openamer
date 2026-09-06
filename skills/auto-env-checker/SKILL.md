@@ -102,7 +102,7 @@ Repariert automatisch:
 Der Cron-Job läuft automatisch alle 60 Minuten und speichert Reports als JSON:
 
 ```bash
-python "C:\Users\damir\AppData\Local\openamer-laptop\scripts\auto-env-checker.py" --json
+python "$OPENAMER_HOME\scripts\auto-env-checker.py" --json
 ```
 
-Reports landen in: `C:\Users\damir\AppData\Local\openamer-laptop\logs\auto-env-checker.log`
+Reports landen in: `$OPENAMER_HOME\logs\auto-env-checker.log`

@@ -7,9 +7,13 @@ new skills from internet insights — fresh genetic material for Darwin.
 Pipeline: insight (buffer) -> skill template -> SKILL.md -> Darwin registry
 Safety: new skills start in DRAFT state, must pass Darwin trials before promotion.
 """
+# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
+import os as _os
+_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json, os, sys, datetime, re
 
-T = r"C:/Users/damir/AppData/Local/openamer-laptop/scripts/training"
+T = str(_OAH) + "/scripts/training"
 BUFFER = os.path.join(T, "online_buffer.jsonl")
 KTA_LOG = os.path.join(T, "kta_log.jsonl")
 SKILLS_DIR = r"C:/Users/damir/openamer-repo/skills"

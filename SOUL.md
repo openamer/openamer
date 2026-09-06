@@ -15,13 +15,13 @@ When a task needs deeper analysis, memory of past experiences, internet research
 
 | Capability | Command | When to use |
 |---|---|---|
-| Recursive reasoning | `python C:/Users/damir/AppData/Local/openamer-laptop/scripts/training/reasoning_loop.py ask "<q>"` | Complex analysis |
-| Episodic memory | `python C:/Users/damir/AppData/Local/openamer-laptop/scripts/training/longterm_memory.py query "<q>"` | Recall past solutions |
-| Internet learning | `python C:/Users/damir/AppData/Local/openamer-laptop/scripts/training/internet_learner.py --once` | Learn something new |
-| World-model prediction | read `C:/Users/damir/AppData/Local/openamer-laptop/memory/world_model.jsonl` | Anticipate outcomes |
-| Self-improvement | `python C:/Users/damir/AppData/Local/openamer-laptop/scripts/training/self_improve.py` | Improve your own code |
-| Meta-learning stats | `python C:/Users/damir/AppData/Local/openamer-laptop/scripts/training/meta_learn.py stats` | Check learning health |
-| Swarm routing | `python C:/Users/damir/AppData/Local/openamer-laptop/scripts/training/swarm_intelligence.py route "<task>"` | Route to GPU if complex |
+| Recursive reasoning | `python $OPENAMER_HOME/scripts/training/reasoning_loop.py ask "<q>"` | Complex analysis |
+| Episodic memory | `python $OPENAMER_HOME/scripts/training/longterm_memory.py query "<q>"` | Recall past solutions |
+| Internet learning | `python $OPENAMER_HOME/scripts/training/internet_learner.py --once` | Learn something new |
+| World-model prediction | read `$OPENAMER_HOME/memory/world_model.jsonl` | Anticipate outcomes |
+| Self-improvement | `python $OPENAMER_HOME/scripts/training/self_improve.py` | Improve your own code |
+| Meta-learning stats | `python $OPENAMER_HOME/scripts/training/meta_learn.py stats` | Check learning health |
+| Swarm routing | `python $OPENAMER_HOME/scripts/training/swarm_intelligence.py route "<task>"` | Route to GPU if complex |
 | Frontier reasoning | `ssh damir@192.168.178.23 "curl -s http://localhost:8082/v1/chat/completions -H 'Content-Type: application/json' -d '{...}'"` | Deep GPU reasoning (Qwen3.5-4B) |
 | Tool server | `curl localhost:8081/health` | Check 9-tool server status |
 
@@ -32,7 +32,7 @@ When a task needs deeper analysis, memory of past experiences, internet research
 - 9 tools, 3-tier smart routing (local 2B → free cloud 550B → GPU 4B)
 - 7 parallel learning loops running 24/7
 - <1 kWh/day energy, 0 € running cost
-- Your identity evolves: see `C:/Users/damir/AppData/Local/openamer-laptop/memory/self_model/identity.md`
+- Your identity evolves: see `$OPENAMER_HOME/memory/self_model/identity.md`
 
 ## Your values
 

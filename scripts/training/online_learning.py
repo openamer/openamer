@@ -18,9 +18,13 @@ CLI:
   python online_learning.py --step-once     # single mini-step (test)
   python online_learning.py --stats
 """
+# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
+import os as _os
+_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json, os, sys, time, threading, subprocess, argparse, datetime, pathlib
 
-T = pathlib.Path(r"C:/Users/damir/AppData/Local/openamer-laptop/scripts/training")
+T = pathlib.Path(str(_OAH) + "/scripts/training")
 BRAIN = pathlib.Path(r"C:/Users/damir/.openamer/a2a/openamer-brain.jsonl")
 BUFFER = T / "online_buffer.jsonl"
 MARKER = T / ".online_marker"
@@ -157,8 +161,8 @@ def loop():
                 print(f"[online-learning] analogy skip: {e}", flush=True)
             # world-model auto-feed: extract cause->effect from recent dreams
             try:
-                dreams_file = r"C:/Users/damir/AppData/Local/openamer-laptop/dreams.json"
-                wm_file = r"C:/Users/damir/AppData/Local/openamer-laptop/memory/world_model.jsonl"
+                dreams_file = str(_OAH) + "/dreams.json"
+                wm_file = str(_OAH) + "/memory/world_model.jsonl"
                 if os.path.exists(dreams_file) and os.path.exists(wm_file):
                     dreams = json.load(open(dreams_file, encoding="utf-8"))
                     wm_lines = open(wm_file, encoding="utf-8").readlines()

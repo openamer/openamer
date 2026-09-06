@@ -24,7 +24,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "scripts"))
 
-HOME = Path.home() / "AppData" / "Local" / "openamer-laptop"
+HOME = Path(os.environ.get("OPENAMER_HOME") or str(Path.home() / "AppData" / "Local" / "openamer-laptop"))
 
 import importlib.util as _ilu
 _spec = _ilu.spec_from_file_location(

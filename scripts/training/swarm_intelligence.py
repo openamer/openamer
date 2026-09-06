@@ -9,10 +9,14 @@ Laptop agent + PC agent work TOGETHER as a collective:
 
 Runs over the Agent Mesh (Go-daemon :18920) + SSH to PC.
 """
+# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
+import os as _os
+_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json, os, sys, time, datetime, subprocess, urllib.request, threading
 
-T = r"C:/Users/damir/AppData/Local/openamer-laptop/scripts/training"
-SWARM_DIR = r"C:/Users/damir/AppData/Local/openamer-laptop/memory/swarm"
+T = str(_OAH) + "/scripts/training"
+SWARM_DIR = str(_OAH) + "/memory/swarm"
 SHARED_WM = os.path.join(SWARM_DIR, "shared_world_model.jsonl")
 SWARM_STATE = os.path.join(SWARM_DIR, "swarm_state.json")
 SWARM_IDENTITY = os.path.join(SWARM_DIR, "swarm_identity.md")
@@ -132,7 +136,7 @@ def update_swarm_identity():
     total_memory = 0
 
     # laptop stats
-    wm_path = r"C:/Users/damir/AppData/Local/openamer-laptop/memory/world_model.jsonl"
+    wm_path = str(_OAH) + "/memory/world_model.jsonl"
     if os.path.exists(wm_path):
         total_events = sum(1 for _ in open(wm_path, encoding="utf-8"))
 

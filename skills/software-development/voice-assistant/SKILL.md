@@ -71,7 +71,7 @@ Der Voice-Assistent kann aus anderen Skills/OA-Scripts importiert werden:
 
 ```python
 import sys
-sys.path.insert(0, r'C:\Users\damir\AppData\Local\openamer-laptop\scripts')
+sys.path.insert(0, r'$OPENAMER_HOME\scripts')
 from voice_assistant import tts_powershell, stt_listen, log_conversation
 ```
 

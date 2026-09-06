@@ -18,6 +18,10 @@ Exit-Codes:
   1 = neue Muster erkannt
   2 = neue Skills vorgeschlagen
 """
+# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
+import os as _os
+_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 
 import os
 import sys
@@ -43,7 +47,7 @@ def _resolve_home() -> Path:
     user_home = Path.home()
     candidates = [
         user_home / "AppData/Local/openamer-laptop",
-        Path("C:/Users/damir/AppData/Local/openamer-laptop"),
+        Path(str(_OAH) + ""),
         Path("/c/Users/damir/AppData/Local/openamer-laptop"),
         Path.home() / "openamer-laptop",
     ]

@@ -49,5 +49,5 @@ Skills die > 30 Tage nicht benutzt wurden werden nach `/.skill-archives/` als ZI
 
 ## Pfad
 
-OpenAmer Home: `C:\Users\damir\AppData\Local\openamer-laptop`
+OpenAmer Home: `$OPENAMER_HOME`
 Skript: `scripts/smart-cache.py`

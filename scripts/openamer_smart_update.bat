@@ -21,7 +21,7 @@ if %errorlevel% neq 0 (
 )
 
 echo [4/4] Restarting Desktop App...
-start "" "C:\Users\damir\AppData\Local\openamer-laptop\openamer-agent\apps\desktop\OpenAmer.exe" 2>nul
+start "" "%OPENAMER_HOME%\openamer-agent\apps\desktop\OpenAmer.exe" 2>nul
 if %errorlevel% neq 0 (
     echo [INFO] Please start the Desktop App manually.
 )

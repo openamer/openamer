@@ -10,6 +10,10 @@ It talks to the shared GitHub repo (the a2a relay), never opens a port:
 
 Usage: python scripts/a2a_worker.py <repo> [--no-push]
 """
+# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
+import os as _os
+_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 from __future__ import annotations
 
 import json
@@ -55,7 +59,7 @@ def _load_model_default() -> dict:
         candidates.append(str(Path(home_openamer) / "config.yaml"))
     candidates.append(str(Path.home() / ".openamer" / "config.yaml"))
     # On this laptop the profile-level config lives here:
-    laptop = r"C:\Users\damir\AppData\Local\openamer-laptop\config.yaml"
+    laptop = str(_OAH) + "\config.yaml"
     candidates.append(laptop)
     for p in candidates:
         if not Path(p).exists():

@@ -14,6 +14,10 @@ FileNotFoundError, timeouts...), groups them, and reports:
 Usage: systemic.py   -> prints report + writes systemic.json
 Exit 0 always; exit 2 if a systemic cluster was found (for watchdogs).
 """
+# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
+import os as _os
+_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json
 import re
 import subprocess
@@ -22,9 +26,9 @@ from collections import defaultdict
 from datetime import datetime
 from pathlib import Path
 
-CRON_OUTPUT = Path(r"C:\Users\damir\AppData\Local\openamer-laptop\cron\output")
-JOBS_FILE = Path(r"C:\Users\damir\AppData\Local\openamer-laptop\cron\jobs.json")
-OUT_FILE = Path(r"C:\Users\damir\AppData\Local\openamer-laptop\systemic.json")
+CRON_OUTPUT = Path(str(_OAH) + "\cron\output")
+JOBS_FILE = Path(str(_OAH) + "\cron\jobs.json")
+OUT_FILE = Path(str(_OAH) + "\systemic.json")
 
 # signature patterns -> short name (order matters: first match wins)
 SIGNATURES = [

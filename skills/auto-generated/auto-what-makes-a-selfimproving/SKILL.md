@@ -1,6 +1,7 @@
 ---
 name: auto-what-makes-a-selfimproving
-description: [TOOL_RESULT:read_memory] {"episodes": [{"sim": 0.716, "text": "Research self-improvement and self-r GAP: OpenHands has a modular SDK design — our too
+description: {"tool": "reason_deep", "params": {"question": "What makes a self-improvement system safe?"}
+{"tool"
 auto_generated: true
 created: 2026-09-05
 source_insight: "What makes a self-improving system safe?"
@@ -13,7 +14,8 @@ wins: 0
 # Auto What Makes A Selfimproving
 
 ## Trigger
-Use when the agent encounters: [TOOL_RESULT:read_memory] {"episodes": [{"sim": 0.716, "text": "Research self-improvement and self-r
+Use when the agent encounters: {"tool": "reason_deep", "params": {"question": "What makes a self-improvement system safe?"}
+{"tool"
 
 ## Verification
 - [ ] The skill produces the expected output for its domain

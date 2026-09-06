@@ -45,7 +45,7 @@ mem = importlib.util.module_from_spec(_spec3)
 sys.modules["memory_darwinism"] = mem
 _spec3.loader.exec_module(mem)
 
-HOME = Path.home() / "AppData" / "Local" / "openamer-laptop"
+HOME = Path(os.environ.get("OPENAMER_HOME") or str(Path.home() / "AppData" / "Local" / "openamer-laptop"))
 LOOP_LOG = HOME / "darwin" / "autonomous-loop.json"
 
 # real operations mapped by capability

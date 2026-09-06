@@ -30,7 +30,7 @@ Die Remote Web Platform ist ein vollständiges Web-Dashboard für OpenAmer, erre
 
 ```bash
 # Standard (Port 8901, alle Interfaces)
-python "C:\Users\damir\AppData\Local\openamer-laptop\scripts\remote-web.py"
+python "$OPENAMER_HOME\scripts\remote-web.py"
 
 # Nur lokal (127.0.0.1)
 python remote-web.py --local

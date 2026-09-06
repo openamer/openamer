@@ -29,7 +29,7 @@ def _resolve_home() -> Path:
             rest = "\\" + s[3:]
             p = Path(f"{drive}:{rest}")
         return p
-    return Path.home() / "AppData" / "Local" / "openamer-laptop"
+    return Path(os.environ.get("OPENAMER_HOME") or str(Path.home() / "AppData" / "Local" / "openamer-laptop"))
 
 HOME = _resolve_home()
 STATE_DB = HOME / "state.db"

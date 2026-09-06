@@ -14,9 +14,9 @@ Intelligente Session-Komprimierung aus der OpenAmer `state.db`:
 
 ## Standort
 
-- **Script:** `C:\Users\damir\AppData\Local\openamer-laptop\scripts\context-compressor.py`
-- **Archiv:** `C:\Users\damir\AppData\Local\openamer-laptop\context-compressor\archives\`
-- **Index:** `C:\Users\damir\AppData\Local\openamer-laptop\context-compressor\index.json`
+- **Script:** `$OPENAMER_HOME\scripts\context-compressor.py`
+- **Archiv:** `$OPENAMER_HOME\context-compressor\archives\`
+- **Index:** `$OPENAMER_HOME\context-compressor\index.json`
 
 ## CLI-Übersicht
 
@@ -79,6 +79,6 @@ python scripts/context-compressor.py --search "entscheidung"
 
 ## Datenquelle
 
-- **state.db** aus `OPENAMER_HOME` (default: `C:\Users\damir\AppData\Local\openamer-laptop\state.db`)
+- **state.db** aus `OPENAMER_HOME` (default: `$OPENAMER_HOME\state.db`)
 - **Tabellen:** `sessions`, `messages`
 - **Komprimierte Sessions:** `context-compressor/archives/batch_<timestamp>.json`

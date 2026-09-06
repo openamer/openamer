@@ -23,7 +23,7 @@ import sqlite3
 from datetime import datetime, timezone
 from pathlib import Path
 
-HOME = Path.home() / "AppData" / "Local" / "openamer-laptop"
+HOME = Path(os.environ.get("OPENAMER_HOME") or str(Path.home() / "AppData" / "Local" / "openamer-laptop"))
 DARWIN_DIR = HOME / "darwin"
 MEMORY_POP = DARWIN_DIR / "memory-population.json"
 LESSONS_DB = HOME / "cross_session_lessons.db"

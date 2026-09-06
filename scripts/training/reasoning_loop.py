@@ -21,9 +21,13 @@ CLI:
   python reasoning_loop.py predict "situation"    # retrieve relevant causes
   python reasoning_loop.py graph-stats
 """
+# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
+import os as _os
+_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json, sys, os, time, urllib.request, math, hashlib, datetime, pathlib
 
-BASE = r"C:/Users/damir/AppData/Local/openamer-laptop"
+BASE = str(_OAH) + ""
 WORLD = os.path.join(BASE, "memory", "world_model.jsonl")
 LIVE = "http://localhost:8081"
 MAX_ROUNDS = 2

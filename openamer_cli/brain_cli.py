@@ -43,7 +43,7 @@ def _memory_file() -> Path:
 
 def _skills_dir() -> Path:
     # OpenAmer skills live under the profile home
-    return Path.home() / "AppData" / "Local" / "openamer-laptop" / "skills"
+    return Path(os.environ.get("OPENAMER_HOME") or str(Path.home() / "AppData" / "Local" / "openamer-laptop")) / "skills"
 
 
 def _load_jsonl(path: Path) -> list[dict]:

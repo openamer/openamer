@@ -11,7 +11,7 @@ Autonomer Security Agent, der alle installierten pip-Pakete gegen die [OSV.dev](
 
 ### 1. CVE-Scan-Script (`scripts/security-cve-scan.py`)
 
-**Standort:** `C:\Users\damir\AppData\Local\openamer-laptop\scripts\security-cve-scan.py`
+**Standort:** `$OPENAMER_HOME\scripts\security-cve-scan.py`
 
 **Funktionsweise:**
 1. Holt alle installierten pip-Pakete per `pip list --format=json`
@@ -21,7 +21,7 @@ Autonomer Security Agent, der alle installierten pip-Pakete gegen die [OSV.dev](
 5. Speichert Report als JSON in `.security-cve/last-report.json`
 6. Dedupliziert bekannte CVEs via `.security-cve/state.json`
 
-**State-Verzeichnis:** `C:\Users\damir\AppData\Local\openamer-laptop\.security-cve\`
+**State-Verzeichnis:** `$OPENAMER_HOME\.security-cve\`
 - `state.json` – bekannte CVEs, Scan-Stats
 - `cve-scan.log` – detailliertes Log
 - `last-report.json` – letzter Scan-Report

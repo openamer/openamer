@@ -33,7 +33,7 @@ from pathlib import Path
 # ── Konfiguration ──────────────────────────────────────────────────────────
 OPENAMER_HOME = Path(os.environ.get(
     "OPENAMER_HOME",
-    str(Path.home() / "AppData" / "Local" / "openamer-laptop"),
+    str(Path(os.environ.get("OPENAMER_HOME") or str(Path.home() / "AppData" / "Local" / "openamer-laptop"))),
 ))
 REPO_DIR = Path(os.environ.get("OPENAMER_REPO", str(Path.home() / "openamer-repo")))
 REMOTE_WEB_DIR = OPENAMER_HOME / ".remote-web"

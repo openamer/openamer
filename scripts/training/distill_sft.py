@@ -6,10 +6,14 @@ small teaching examples: each user message + the assistant answer that
 followed, filtered by quality heuristics (length, tool-free, German-friendly).
 Output: scripts/training/sft_openamer.jsonl  ({"messages":[...]})
 """
+# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
+import os as _os
+_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json, os, random, re
 
 SRC = r"C:/Users/damir/.openamer/a2a/openamer-brain.jsonl"
-OUT = r"C:/Users/damir/AppData/Local/openamer-laptop/scripts/training/sft_openamer.jsonl"
+OUT = str(_OAH) + "/scripts/training/sft_openamer.jsonl"
 MAX_TURN_CHARS = 6000    # cap per example
 MIN_ANSWER = 30          # too short = "yes"/"ok" noise
 MAX_ANSWER = 4000

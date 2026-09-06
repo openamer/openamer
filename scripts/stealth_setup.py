@@ -4,6 +4,10 @@ OpenAmer Stealth Browser Plugin — Anti-Detection für agent-browser.
 Macht automatisierte Browseranfragen für Websites unsichtbar.
 Installiert Preload-Scripte + Chrome Flags + Nutzerprofil.
 """
+# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
+import os as _os
+_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json
 import os
 import shutil
@@ -13,9 +17,9 @@ import tempfile
 from pathlib import Path
 
 REPO_DIR = Path(os.environ.get("OPENAMER_REPO",
-    r"C:\Users\damir\AppData\Local\openamer-laptop\openamer-agent"))
+    str(_OAH) + "\openamer-agent"))
 OPENAMER_HOME = Path(os.environ.get("OPENAMER_HOME",
-    r"C:\Users\damir\AppData\Local\openamer-laptop"))
+    str(_OAH) + ""))
 STEALTH_DIR = OPENAMER_HOME / "stealth"
 PRELOAD_SCRIPT = STEALTH_DIR / "preload.js"
 PROFILE_DIR = STEALTH_DIR / "chrome-profile"

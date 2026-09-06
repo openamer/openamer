@@ -9,10 +9,14 @@ This script restores everything Mini-OpenAmer needs:
   4. World model + self model (verify files intact)
   5. GPU worker (restart on PC via SSH)
 """
+# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
+import os as _os
+_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json, os, subprocess, sys, time, urllib.request
 
-T = r"C:/Users/damir/AppData/Local/openamer-laptop/scripts/training"
-HOME = r"C:/Users/damir/AppData/Local/openamer-laptop"
+T = str(_OAH) + "/scripts/training"
+HOME = str(_OAH) + ""
 SOUL = os.path.join(HOME, "SOUL.md")
 
 def check_and_start(name, url, start_cmd=None, timeout=30):
@@ -80,8 +84,8 @@ def restore():
         print("  OK restarted")
 
     # 4. World model + self model
-    wm = r"C:/Users/damir/AppData/Local/openamer-laptop/memory/world_model.jsonl"
-    sm = r"C:/Users/damir/AppData/Local/openamer-laptop/memory/self_model/identity.md"
+    wm = str(_OAH) + "/memory/world_model.jsonl"
+    sm = str(_OAH) + "/memory/self_model/identity.md"
     for path, name in [(wm, "World model"), (sm, "Self model identity")]:
         if os.path.exists(path) and os.path.getsize(path) > 100:
             print(f"  OK {name}: intact ({os.path.getsize(path)} bytes)")

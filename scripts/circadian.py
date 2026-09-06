@@ -21,12 +21,16 @@ Usage:
 
 Exit codes: 0 = ok.
 """
+# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
+import os as _os
+_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-STATE_DIR = Path(r"C:\Users\damir\AppData\Local\openamer-laptop")
+STATE_DIR = Path(str(_OAH) + "")
 STATE_FILE = STATE_DIR / "circadian.json"
 LEARNINGS = STATE_DIR / "cache" / "learnings.json"
 DREAM_LOG = STATE_DIR / "dreams.json"

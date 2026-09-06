@@ -35,6 +35,10 @@ Step JSON fields:
 
 Exit codes: 0 = all healthy/healed, 1 = usage error, 2 = unresolved drift.
 """
+# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
+import os as _os
+_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import base64
 import json
 import random
@@ -45,7 +49,7 @@ import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
-STATE_DIR = Path(r"C:\Users\damir\AppData\Local\openamer-laptop\workflow-immune")
+STATE_DIR = Path(str(_OAH) + "\workflow-immune")
 WORKFLOWS = STATE_DIR / "workflows.json"
 REPORTS = STATE_DIR / "reports"
 CDP = "http://localhost:9222"

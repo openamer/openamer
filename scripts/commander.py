@@ -86,7 +86,7 @@ class Style:
 
 OPENAMER_HOME = Path(os.environ.get(
     "OPENAMER_HOME",
-    str(Path.home() / "AppData" / "Local" / "openamer-laptop")
+    str(Path(os.environ.get("OPENAMER_HOME") or str(Path.home() / "AppData" / "Local" / "openamer-laptop")))
 ))
 SCRIPTS_DIR = OPENAMER_HOME / "scripts"
 REPO_SCRIPTS_DIR = Path(__file__).parent.resolve()

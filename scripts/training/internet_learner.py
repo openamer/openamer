@@ -14,9 +14,13 @@ train (mini-step) -> record (buffer + world model + log).
 Runs as a daemon: python internet_learner.py --loop
 Single run:       python internet_learner.py --once
 """
+# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
+import os as _os
+_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json, os, sys, time, random, datetime, urllib.request, urllib.parse, re
 
-T = r"C:/Users/damir/AppData/Local/openamer-laptop/scripts/training"
+T = str(_OAH) + "/scripts/training"
 BUFFER = os.path.join(T, "online_buffer.jsonl")
 LOG = os.path.join(T, "internet_learn_log.jsonl")
 ROT = os.path.join(T, ".il_rotation")
@@ -33,7 +37,7 @@ def add_to_buffer(user_text, assistant_text):
                            ensure_ascii=False) + "\n")
 
 def observe_world(cause, effect):
-    wm = r"C:/Users/damir/AppData/Local/openamer-laptop/memory/world_model.jsonl"
+    wm = str(_OAH) + "/memory/world_model.jsonl"
     os.makedirs(os.path.dirname(wm), exist_ok=True)
     with open(wm, "a", encoding="utf-8") as f:
         f.write(json.dumps({"ts": datetime.datetime.now().isoformat(),

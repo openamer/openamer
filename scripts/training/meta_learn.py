@@ -11,9 +11,13 @@ Measures after every training cycle which strategy worked best and adapts:
 State file: meta_state.json — everything measured, nothing guessed.
 Feeds lessons into: meta_lessons.jsonl (the system's self-knowledge).
 """
+# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
+import os as _os
+_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json, os, sys, time, datetime, random
 
-T = r"C:/Users/damir/AppData/Local/openamer-laptop/scripts/training"
+T = str(_OAH) + "/scripts/training"
 STATE = os.path.join(T, "meta_state.json")
 LESSONS = os.path.join(T, "meta_lessons.jsonl")
 BUFFER = os.path.join(T, "online_buffer.jsonl")

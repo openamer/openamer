@@ -33,7 +33,7 @@ swarm = importlib.util.module_from_spec(_spec)
 sys.modules["swarm_os"] = swarm
 _spec.loader.exec_module(swarm)
 
-HOME = Path.home() / "AppData" / "Local" / "openamer-laptop"
+HOME = Path(os.environ.get("OPENAMER_HOME") or str(Path.home() / "AppData" / "Local" / "openamer-laptop"))
 MARKET_FILE = HOME / "darwin" / "task-market.json"
 MIGRATION_LOG = HOME / "darwin" / "migration-log.json"
 

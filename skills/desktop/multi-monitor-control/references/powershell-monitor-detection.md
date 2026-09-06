@@ -157,7 +157,7 @@ API sind zuverlässiger.
 python /c/Users/damir/AppData/Local/openamer-laptop/scripts/multi-monitor.py --json
 
 # 2. PowerShell direkt
-powershell.exe -File "C:\Users\damir\AppData\Local\openamer-laptop\scripts\detect-monitors.ps1"
+powershell.exe -File "$OPENAMER_HOME\scripts\detect-monitors.ps1"
 
 # 3. cua-driver Capture testen
 computer_use(action="capture", app="screen")

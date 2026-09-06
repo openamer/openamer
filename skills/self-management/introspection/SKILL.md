@@ -31,7 +31,7 @@ Beantworte Fragen wie *"wie viele Tools hast du?"*, *"wie viele Skills hast du?"
 ## Echte Zahlen messen
 
 Führe die folgenden Zählungen in der Repo-Wurzel aus:
-(`PROJECT_ROOT = C:\Users\damir\AppData\Local\openamer-laptop\openamer-agent`)
+(`PROJECT_ROOT = $OPENAMER_HOME\openamer-agent`)
 
 ### Skills-Anzahl (SKILL.md-Dateien)
 

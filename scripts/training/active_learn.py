@@ -11,11 +11,15 @@ Runs every 10 min and performs ONE learning action from a rotation:
 Each action feeds results into: brain buffer + world model + structures.
 The agent GROWS actively instead of waiting passively.
 """
+# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
+import os as _os
+_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json, os, sys, time, random, datetime, urllib.request, subprocess
-sys.path.insert(0, r"C:/Users/damir/AppData/Local/openamer-laptop/scripts")
-sys.path.insert(0, r"C:/Users/damir/AppData/Local/openamer-laptop/scripts/training")
+sys.path.insert(0, str(_OAH) + "/scripts")
+sys.path.insert(0, str(_OAH) + "/scripts/training")
 
-T = r"C:/Users/damir/AppData/Local/openamer-laptop/scripts/training"
+T = str(_OAH) + "/scripts/training"
 BUFFER = os.path.join(T, "online_buffer.jsonl")
 LIVE = "http://localhost:8081"
 ROTATION_FILE = os.path.join(T, ".learn_rotation")
@@ -34,7 +38,7 @@ def add_to_buffer(user_text, assistant_text):
                            ensure_ascii=False) + "\n")
 
 def observe_world(cause, effect):
-    wm = r"C:/Users/damir/AppData/Local/openamer-laptop/memory/world_model.jsonl"
+    wm = str(_OAH) + "/memory/world_model.jsonl"
     os.makedirs(os.path.dirname(wm), exist_ok=True)
     edge = {"ts": datetime.datetime.now().isoformat(),
             "cause": cause[:500], "effect": effect[:500], "embedding": [0.1]*768}
@@ -109,7 +113,7 @@ def world_explore():
     """Find new cause-effect pairs from system logs and recent errors."""
     try:
         # scan recent cron outputs for errors
-        output_dir = r"C:/Users/damir/AppData/Local/openamer-laptop/cron/output"
+        output_dir = str(_OAH) + "/cron/output"
         recent_errors = []
         now = time.time()
         for jdir in os.listdir(output_dir):

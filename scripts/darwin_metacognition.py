@@ -36,7 +36,7 @@ swarm = importlib.util.module_from_spec(_spec2)
 sys.modules["swarm_os"] = swarm
 _spec2.loader.exec_module(swarm)
 
-HOME = Path.home() / "AppData" / "Local" / "openamer-laptop"
+HOME = Path(os.environ.get("OPENAMER_HOME") or str(Path.home() / "AppData" / "Local" / "openamer-laptop"))
 INTROSPECTION_FILE = HOME / "darwin" / "introspection.json"
 SEED_FILE = HOME / "darwin" / "civilization-seed.json"
 

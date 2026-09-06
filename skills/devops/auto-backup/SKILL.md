@@ -19,7 +19,7 @@ Automatische Sicherung aller wichtigen OpenAmer-Daten.
 | security-cve | `HOME/.security-cve/` |
 | logs | `HOME/logs/` |
 
-**HOME** = `%LOCALAPPDATA%\openamer-laptop` (C:\Users\damir\AppData\Local\openamer-laptop)
+**HOME** = `%LOCALAPPDATA%\openamer-laptop` ($OPENAMER_HOME)
 
 ## CLI
 

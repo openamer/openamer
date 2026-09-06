@@ -12,7 +12,7 @@ Automatische Session-Archivierung + Volltextsuche + Wiederherstellung + Metrik-S
 
 - **Script:** `C:\Users\damir\scripts\smart-session-saver.py`
 - **Repo:** `C:\Users\damir\openamer-repo\scripts\smart-session-saver.py`
-- **Archiv:** `C:\Users\damir\AppData\Local\openamer-laptop\.session-archive\`
+- **Archiv:** `$OPENAMER_HOME\.session-archive\`
 
 ## CLI-Übersicht
 

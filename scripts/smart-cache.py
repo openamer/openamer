@@ -17,6 +17,10 @@ Exit-Codes:
   1 = Cache > 1 GB (Warnung)
   2 = Kein Cleanup nötig
 """
+# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
+import os as _os
+_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 
 import argparse
 import datetime
@@ -46,7 +50,7 @@ def _detect_openamer_home() -> Path:
         if p.exists():
             return p
     # Fallback
-    return Path(r"C:\Users\damir\AppData\Local\openamer-laptop")
+    return Path(str(_OAH) + "")
 
 OPENAMER_HOME = _detect_openamer_home()
 

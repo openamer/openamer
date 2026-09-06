@@ -11,10 +11,14 @@ This script:
 This is ERROR-CORRECTION for the world model — the difference between
 a GEIST and a HALLUZINATION.
 """
+# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
+import os as _os
+_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json, os, sys, datetime, re
 
-T = r"C:/Users/damir/AppData/Local/openamer-laptop/scripts/training"
-WM = r"C:/Users/damir/AppData/Local/openamer-laptop/memory/world_model.jsonl"
+T = str(_OAH) + "/scripts/training"
+WM = str(_OAH) + "/memory/world_model.jsonl"
 VALID_LOG = os.path.join(T, "prediction_validation.jsonl")
 CONFIDENCE_FILE = os.path.join(T, "prediction_confidence.json")
 

@@ -18,6 +18,10 @@ Recovery it may take (bounded, never destructive):
 Prints only on (a) a failure + recovery/action, or (b) a summary when requested.
 Exit 0 with clean state -> cron stays quiet (deliver local, silent watchdog).
 """
+# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
+import os as _os
+_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json
 import os
 import socket
@@ -28,7 +32,7 @@ import urllib.request
 from pathlib import Path
 
 HOME = Path.home()
-OPENAMER = Path(r"C:\Users\damir\AppData\Local\openamer-laptop")
+OPENAMER = Path(str(_OAH) + "")
 REPO = Path(r"C:\Users\damir\openamer-repo")
 CHROME_PROFILE = OPENAMER / "chrome-profile"
 STATE = OPENAMER / "autonom-state.json"

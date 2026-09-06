@@ -83,7 +83,7 @@ computer_use(action="click", coordinate=[abs_x, abs_y])
 ```python
 # Schritt 1: Monitore erkennen
 import sys
-sys.path.insert(0, r"C:\Users\damir\AppData\Local\openamer-laptop\scripts")
+sys.path.insert(0, r"$OPENAMER_HOME\scripts")
 from multi_monitor import MonitorManager
 
 mgr = MonitorManager()
@@ -115,7 +115,7 @@ else:
 powershell.exe -Command "Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.Screen]::AllScreens | ForEach-Object { Write-Host ($_.DeviceName + ': ' + $_.Bounds.Width + 'x' + $_.Bounds.Height + ' at (' + $_.Bounds.X + ',' + $_.Bounds.Y + ') Primary=' + $_.Primary) }"
 
 # JSON-Ausgabe
-powershell.exe -File "C:\Users\damir\AppData\Local\openamer-laptop\scripts\detect-monitors.ps1"
+powershell.exe -File "$OPENAMER_HOME\scripts\detect-monitors.ps1"
 ```
 
 ## cua-driver: App-spezifisch auf Secondary
@@ -177,5 +177,5 @@ dann via `app=` Name, nicht via `app='screen'`.
 
 - `windows-computer-use` Skill — Chromium Scroll, UIA Quirks, Edge Problematik
 - `computer-use` Skill — Canonical Cross-Plattform cua-driver Workflow
-- `C:\Users\damir\AppData\Local\openamer-laptop\scripts\multi_monitor.py` — Das Skript
-- `C:\Users\damir\AppData\Local\openamer-laptop\scripts\detect-montors.ps1` — PowerShell Helper
+- `$OPENAMER_HOME\scripts\multi_monitor.py` — Das Skript
+- `$OPENAMER_HOME\scripts\detect-montors.ps1` — PowerShell Helper

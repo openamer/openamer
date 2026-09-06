@@ -14,6 +14,10 @@ Usage:
   python scripts/darwin_synthesize.py            # generate candidates (dry-run listing)
   python scripts/darwin_synthesize.py --apply    # write candidate SKILL.md files
 """
+# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
+import os as _os
+_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 from __future__ import annotations
 
 import argparse
@@ -25,7 +29,7 @@ from pathlib import Path
 
 REPO = Path(r"C:\Users\damir\openamer-repo")
 TRENDS_MD = REPO / "reports" / "trend-scout-latest.md"
-SKILLS_DIR = Path(r"C:\Users\damir\AppData\Local\openamer-laptop\skills")
+SKILLS_DIR = Path(str(_OAH) + "\skills")
 CAND_DIR = REPO / "darwin" / "species-candidates"
 MAX_PER_RUN = 2
 

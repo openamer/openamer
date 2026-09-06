@@ -13,10 +13,14 @@ Every cycle, the self-model updates itself. It reads its own state,
 observes its own changes, and writes its own identity — which drifts
 over time as the system evolves. Identity that CHANGES is identity.
 """
+# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
+import os as _os
+_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json, os, sys, datetime
 
-T = r"C:/Users/damir/AppData/Local/openamer-laptop/scripts/training"
-SELF_DIR = r"C:/Users/damir/AppData/Local/openamer-laptop/memory/self_model"
+T = str(_OAH) + "/scripts/training"
+SELF_DIR = str(_OAH) + "/memory/self_model"
 IDENTITY = os.path.join(SELF_DIR, "identity.md")
 STATE = os.path.join(SELF_DIR, "current_state.json")
 HISTORY = os.path.join(SELF_DIR, "identity_history.jsonl")
@@ -39,9 +43,9 @@ def count_lines(path):
 
 def gather_state():
     """Collect everything that defines my current state."""
-    d = load_json(r"C:/Users/damir/AppData/Local/openamer-laptop/darwin/lineage.json", {"events": []})
+    d = load_json(str(_OAH) + "/darwin/lineage.json", {"events": []})
     buf = count_lines(os.path.join(T, "online_buffer.jsonl"))
-    wm = r"C:/Users/damir/AppData/Local/openamer-laptop/memory/world_model.jsonl"
+    wm = str(_OAH) + "/memory/world_model.jsonl"
     wm_n = count_lines(wm)
     meta = load_json(os.path.join(T, "meta_state.json"), {})
     lessons = count_lines(os.path.join(T, "meta_lessons.jsonl"))

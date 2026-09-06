@@ -14,7 +14,7 @@ auf Ineffizienzen scannt, Patches generiert, validiert und automatisch committed
 ## Standort
 
 - **Script**: `C:\Users\damir\openamer-repo\scripts\self-rewriter.py`
-- **Cron-Kopie**: `C:\Users\damir\AppData\Local\openamer-laptop\scripts\self-rewriter.py`
+- **Cron-Kopie**: `$OPENAMER_HOME\scripts\self-rewriter.py`
 - **Arbeitsverzeichnis**: `.rewriter/` im Repository-Root
   - `pending/` — generierte Patches (unified diff)
   - `applied/` — angewandte Patches (Archiv)
