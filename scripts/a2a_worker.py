@@ -10,13 +10,12 @@ It talks to the shared GitHub repo (the a2a relay), never opens a port:
 
 Usage: python scripts/a2a_worker.py <repo> [--no-push]
 """
+
+from __future__ import annotations
 # --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
 import os as _os
-import os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
     _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
-from __future__ import annotations
-
 import json
 import subprocess
 import sys

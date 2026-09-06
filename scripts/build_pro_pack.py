@@ -9,13 +9,12 @@ Usage:
   python scripts/build_pro_pack.py            # build pack + zip
   python scripts/build_pro_pack.py --list     # only show selected skills
 """
+
+from __future__ import annotations
 # --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
 import os as _os
-import os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
     _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
-from __future__ import annotations
-
 import argparse
 import json
 import re

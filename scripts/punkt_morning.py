@@ -10,13 +10,12 @@ Silent-failure safe: every block is wrapped, missing sources are skipped.
 
 Used by cron job "Punkt Morgen-Briefing" (07:30 daily).
 """
+
+from __future__ import annotations
 # --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
 import os as _os
-import os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
     _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
-from __future__ import annotations
-
 import datetime
 import json
 import subprocess

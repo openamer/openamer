@@ -13,13 +13,12 @@ Usage:
   python scripts/darwin_skill_autopatch.py --apply    # actually patch
   python scripts/darwin_skill_autopatch.py --apply --top 15 --threshold 40
 """
+
+from __future__ import annotations
 # --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
 import os as _os
-import os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
     _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
-from __future__ import annotations
-
 import argparse
 import datetime
 import json
