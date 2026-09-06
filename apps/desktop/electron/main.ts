@@ -85,6 +85,11 @@ import { readDirForIpc } from './fs-read-dir'
 import { probeGatewayWebSocket } from './gateway-ws-probe'
 import { scanGitRepos } from './git-repo-scan'
 import {
+  killOtherOpenAmerProcesses,
+  killProcessTreeViaTaskkill,
+  listOpenAmerProcessesViaPowerShell
+} from './kill-openamer-processes'
+import {
   fileDiffVsHead,
   repoStatus,
   reviewCommit,
@@ -11113,6 +11118,35 @@ app.on('before-quit', event => {
 
   stopBackendChild(backendConnectionState.getProcess())
   stopAllPoolBackends()
+
+  // On Windows, closing the app (the X button) must also tear down every OTHER
+  // OpenAmer process that holds the install tree / venv shim locked — the
+  // detached `session_to_brain.py --watch` watcher, the `openamer.exe` launcher
+  // shim, and any stray `openamer serve` backend. These are spawned detached
+  // (`proc.unref()`) or by other entry points, so they survive a normal quit
+  // and keep `openamer update` from replacing the venv (WinError 32 /
+  // access-denied). We scope the enumeration to ACTIVE_OPENAMER_ROOT (the
+  // `openamer-agent` tree the updater replaces) — NOT the whole OPENAMER_HOME,
+  // which also holds the CDP Chrome profile and uv helper scripts that don't
+  // lock the shim. The app's own ancestor chain (openamer.exe shim -> venv
+  // python -> uv python) is skipped: those exit on their own once the app
+  // quits, and tree-killing them would reap the app mid-before-quit. Skip
+  // during update / uninstall hand-off: the updater binary lives under
+  // OPENAMER_HOME and must survive to finish the job (releaseBackendLock
+  // already handled the backend there). Idempotent — a second before-quit
+  // pass finds nothing left to kill.
+  if (IS_WINDOWS && !isQuittingForHandoff) {
+    const killed = killOtherOpenAmerProcesses(ACTIVE_OPENAMER_ROOT, {
+      listOpenAmerProcesses: listOpenAmerProcessesViaPowerShell,
+      killProcessTree: killProcessTreeViaTaskkill
+    })
+
+    if (killed.length > 0) {
+      rememberLog(
+        `[quit] killed ${killed.length} other OpenAmer process(es) to release the install tree: ${killed.join(', ')}`
+      )
+    }
+  }
 })
 
 app.on('window-all-closed', () => {
