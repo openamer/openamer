@@ -136,6 +136,12 @@ export const LOCALE_OPTIONS = [
     name: 'Esperanto',
     englishName: 'Esperanto',
     configValue: 'eo'
+  },
+  {
+    id: 'pl',
+    name: 'Polski',
+    englishName: 'Polish',
+    configValue: 'pl'
   }
 ] as const satisfies readonly { configValue: string; englishName: string; id: Locale; name: string }[]
 
@@ -276,7 +282,12 @@ const LOCALE_ALIASES: Record<string, Locale> = {
   vietnamese: 'vi',
   'tiếng việt': 'vi',
   eo: 'eo',
-  esperanto: 'eo'
+  esperanto: 'eo',
+  pl: 'pl',
+  'pl-pl': 'pl',
+  pl_pl: 'pl',
+  polish: 'pl',
+  polski: 'pl'
 }
 
 export function isLocale(value: unknown): value is Locale {

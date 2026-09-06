@@ -1,6 +1,7 @@
 import { ar } from './ar'
 import { de } from './de'
 import { eo } from './eo'
+import { pl } from './pl'
 import { en } from './en'
 import { es } from './es'
 import { ja } from './ja'
@@ -44,5 +45,6 @@ export const TRANSLATIONS: Record<Locale, Translations> = {
   id,
   th,
   vi,
-  eo
+  eo,
+  pl
 }
