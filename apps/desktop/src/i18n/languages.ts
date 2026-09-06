@@ -76,6 +76,12 @@ export const LOCALE_OPTIONS = [
     name: 'Italiano',
     englishName: 'Italian',
     configValue: 'it'
+  },
+  {
+    id: 'tr',
+    name: 'Türkçe',
+    englishName: 'Turkish',
+    configValue: 'tr'
   }
 ] as const satisfies readonly { configValue: string; englishName: string; id: Locale; name: string }[]
 
@@ -168,7 +174,12 @@ const LOCALE_ALIASES: Record<string, Locale> = {
   'it-it': 'it',
   it_it: 'it',
   italian: 'it',
-  italiano: 'it'
+  italiano: 'it',
+  tr: 'tr',
+  'tr-tr': 'tr',
+  tr_tr: 'tr',
+  turkish: 'tr',
+  türkçe: 'tr'
 }
 
 export function isLocale(value: unknown): value is Locale {
