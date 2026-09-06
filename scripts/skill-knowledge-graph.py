@@ -37,11 +37,11 @@ OPENAMER_HOME = pathlib.Path(os.environ.get(
 ))
 # Fallback: AppData on Windows
 if not OPENAMER_HOME.exists() and sys.platform == "win32":
-    alt = pathlib.Path(os.environ.get("APPDATA", "")) / "openamer-laptop"
+    alt = pathlib.Path(os.environ.get("APPDATA", "")) / "openamer"
     if alt.exists():
         OPENAMER_HOME = alt
 if not OPENAMER_HOME.exists() and sys.platform == "win32":
-    alt2 = pathlib.Path(os.environ.get("LOCALAPPDATA", "")) / "openamer-laptop"
+    alt2 = pathlib.Path(os.environ.get("LOCALAPPDATA", "")) / "openamer"
     if alt2.exists():
         OPENAMER_HOME = alt2
 

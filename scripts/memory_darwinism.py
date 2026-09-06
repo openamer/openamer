@@ -13,7 +13,7 @@ CLI (usually invoked via darwin_engine.py --memory-* flags):
   cull      sterilize memories below survival threshold
   report    memory population stats
 
-Storage: ~/AppData/Local/openamer-laptop/darwin/memory-population.json
+Storage: ~/AppData/Local/openamer/darwin/memory-population.json
 """
 from __future__ import annotations
 import os

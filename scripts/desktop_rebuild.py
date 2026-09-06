@@ -33,7 +33,7 @@ import sys
 from pathlib import Path
 
 # The Desktop agent copy that holds the actual packaged app + source we build.
-DEFAULT_AGENT_DIR = Path.home() / "AppData/Local/openamer-laptop/openamer-agent"
+DEFAULT_AGENT_DIR = Path.home() / "AppData/Local/openamer/openamer-agent"
 DESKTOP_DIR = DEFAULT_AGENT_DIR / "apps/desktop"
 PACKED_EXE = DESKTOP_DIR / "release/win-unpacked/OpenAmer.exe"
 

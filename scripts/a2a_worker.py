@@ -58,7 +58,7 @@ def _load_model_default() -> dict:
         candidates.append(str(Path(home_openamer) / "config.yaml"))
     candidates.append(str(Path.home() / ".openamer" / "config.yaml"))
     # On this laptop the profile-level config lives here:
-    laptop = str(_OAH) + "\config.yaml"
+    laptop = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "config.yaml")
     candidates.append(laptop)
     for p in candidates:
         if not Path(p).exists():

@@ -32,7 +32,7 @@ import urllib.request
 from pathlib import Path
 
 HOME = Path.home()
-OPENAMER = Path(str(_OAH) + "")
+OPENAMER = Path(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")))
 REPO = Path(r"C:\Users\damir\openamer-repo")
 CHROME_PROFILE = OPENAMER / "chrome-profile"
 STATE = OPENAMER / "autonom-state.json"
@@ -159,7 +159,7 @@ def main() -> int:
         problems.append("config model standard unresolved")
 
     # 4b) reboot-flag pending (safe_restart.py) - tell user a restart is due
-    _oa_home = Path(os.environ.get("OPENAMER_HOME") or Path.home() / "AppData/Local/openamer-laptop")
+    _oa_home = Path(os.environ.get("OPENAMER_HOME") or os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")))
     rb = _oa_home / "reboot-flag.json"
     if rb.exists():
         try:

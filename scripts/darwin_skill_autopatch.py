@@ -14,11 +14,7 @@ Usage:
   python scripts/darwin_skill_autopatch.py --apply --top 15 --threshold 40
 """
 
-from __future__ import annotations
-# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
-import os as _os
-_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
-    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
+import os
 import argparse
 import datetime
 import json
@@ -27,7 +23,7 @@ import sys
 from pathlib import Path
 
 REPO = Path(r"C:\Users\damir\openamer-repo")
-SKILLS_DIR = Path(str(_OAH) + "\skills")
+SKILLS_DIR = Path(os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "skills"))
 REPORT_MD = REPO / "reports" / "darwin-autopatch.md"
 REPORT_JSON = REPO / "reports" / "darwin-autopatch.json"
 VALIDATOR = REPO / "scripts" / "skill-validator.py"

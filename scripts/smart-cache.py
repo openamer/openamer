@@ -50,7 +50,7 @@ def _detect_openamer_home() -> Path:
         if p.exists():
             return p
     # Fallback
-    return Path(str(_OAH) + "")
+    return Path(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")))
 
 OPENAMER_HOME = _detect_openamer_home()
 

@@ -14,16 +14,12 @@ Usage (from a wrapper):
     report_429("my-job-name")   # on HTTP 429
 """
 import os
-# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
-import os as _os
-_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
-    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json
 import subprocess
 import sys
 from pathlib import Path
 
-OA_HOME = Path(str(_OAH) + "")
+OA_HOME = Path(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")))
 SYSTEMIC = OA_HOME / "systemic.json"
 SCRIPTS = Path(__file__).parent
 

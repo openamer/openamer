@@ -22,7 +22,7 @@ Exit-Codes:
 import os as _os
 import os
 _OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
-    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
+    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer')
 
 import sys
 import json
@@ -38,17 +38,18 @@ from typing import Dict, List, Optional, Tuple
 
 # ── Konfiguration ────────────────────────────────────────────────────────────
 # HOME = OpenAmer-Installationsverzeichnis
-# Auf Windows: C:\Users\<user>\AppData\Local\openamer-laptop
-# In MSYS/git-bash: /c/Users/<user>/AppData/Local/openamer-laptop
+# Auf Windows: C:\Users\<user>\AppData\Local\openamer
+# In MSYS/git-bash: /c/Users/<user>/AppData/Local/openamer
 
 def _resolve_home() -> Path:
     """Ermittle das OpenAmer-Home-Verzeichnis robust (Windows/MSYS-kompatibel)."""
     # 1. Standard-Pfad aus HOME + AppData
     user_home = Path.home()
     candidates = [
-        user_home / "AppData/Local/openamer-laptop",
-        Path(str(_OAH) + ""),
-        Path.home() / "openamer-laptop",
+        user_home / "AppData/Local/openamer",
+        Path(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer"))),
+        Path("/c/Users/damir/AppData/Local/openamer"),
+        Path.home() / "openamer",
     ]
     # 2. OPENAMER_HOME Umgebungsvariable (MSYS-korrigiert)
     env_home = os.environ.get("OPENAMER_HOME")
@@ -63,8 +64,8 @@ def _resolve_home() -> Path:
                 return c.resolve()
         except (OSError, RuntimeError):
             continue
-    # Fallback: user_home / AppData/Local/openamer-laptop
-    return user_home / "AppData/Local/openamer-laptop"
+    # Fallback: user_home / AppData/Local/openamer
+    return user_home / "AppData/Local/openamer"
 
 HOME = _resolve_home()
 LOGS_DIR = HOME / "logs"

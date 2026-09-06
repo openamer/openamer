@@ -70,7 +70,7 @@ SERVICES = {
 
 class ConsultingAutomation:
     def __init__(self):
-        self.orders_file = Path(os.path.expanduser("~")) / "AppData" / "Local" / "openamer-laptop" / "store" / "consulting.json"
+        self.orders_file = Path(os.path.expanduser("~")) / "AppData" / "Local" / "openamer" / "store" / "consulting.json"
         os.makedirs(self.orders_file.parent, exist_ok=True)
     
     def list_services(self):

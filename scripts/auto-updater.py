@@ -40,7 +40,7 @@ SCRIPT_DIR = Path(__file__).resolve().parent
 REPO_DIR = SCRIPT_DIR.parent  # openamer-repo root
 OPENAMER_HOME = Path(os.environ.get(
     "OPENAMER_HOME",
-    os.path.join(os.environ.get("LOCALAPPDATA", ""), "openamer-laptop")
+    os.path.join(os.environ.get("LOCALAPPDATA", ""), "openamer")
 ))
 # MSYS/POSIX-Stil (/c/...) auf Windows normalisieren
 s = str(OPENAMER_HOME)

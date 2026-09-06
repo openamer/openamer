@@ -13,10 +13,6 @@ exit 1 listing failures — so the cron status is truthful.
 Runs detached starts (survive console close) unlike `start /B`.
 """
 import os
-# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
-import os as _os
-_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
-    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json
 import subprocess
 import sys
@@ -24,7 +20,7 @@ import time
 import urllib.request
 from pathlib import Path
 
-SC = Path(str(_OAH) + "\scripts")
+SC = Path(os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "scripts"))
 DETACHED = 0x00000008 | 0x00000200  # DETACHED_PROCESS | CREATE_NEW_PROCESS_GROUP
 
 SERVICES = [

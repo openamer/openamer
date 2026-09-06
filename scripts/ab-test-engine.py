@@ -45,7 +45,7 @@ EXPERIMENTS_DIR.mkdir(parents=True, exist_ok=True)
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 METRICS_DIR.mkdir(parents=True, exist_ok=True)
 
-OPENAMER_HOME = Path(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData/Local/openamer-laptop")))
+OPENAMER_HOME = Path(os.environ.get("OPENAMER_HOME", str(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")))))
 
 
 # ── Hilfsfunktionen ──────────────────────────────────────────────────

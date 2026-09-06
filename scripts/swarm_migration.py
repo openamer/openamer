@@ -18,6 +18,7 @@ This module works with BOTH backends:
 from __future__ import annotations
 import os
 
+import os
 import json
 import sys
 import uuid
@@ -34,7 +35,7 @@ swarm = importlib.util.module_from_spec(_spec)
 sys.modules["swarm_os"] = swarm
 _spec.loader.exec_module(swarm)
 
-HOME = Path(os.environ.get("OPENAMER_HOME") or str(Path.home() / "AppData" / "Local" / "openamer-laptop"))
+HOME = os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer"))
 MARKET_FILE = HOME / "darwin" / "task-market.json"
 MIGRATION_LOG = HOME / "darwin" / "migration-log.json"
 

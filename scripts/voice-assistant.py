@@ -30,7 +30,7 @@ from pathlib import Path
 
 CONV_DIR = Path.home() / ".voice-assistant" / "conversations"
 SCRIPT_DIR = Path(__file__).parent.resolve()
-HOME_DIR = SCRIPT_DIR.parent  # openamer-laptop root
+HOME_DIR = SCRIPT_DIR.parent  # openamer root
 LOG_FILE = HOME_DIR / "logs" / "voice-assistant.log"
 
 # Stelle sicher, dass Log-Verzeichnis existiert

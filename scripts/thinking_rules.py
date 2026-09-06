@@ -17,6 +17,7 @@ complex tasks so the rules actually steer behaviour — not just get stored.
 """
 from __future__ import annotations
 
+import os
 import argparse
 import json
 import sys
@@ -26,7 +27,7 @@ from pathlib import Path
 
 
 def rules_path() -> Path:
-    home = Path.home() / "AppData/Local/openamer-laptop" \
+    home = os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")) \
         if sys.platform == "win32" else Path.home() / ".openamer"
     return home / "thinking_rules.json"
 

@@ -27,7 +27,7 @@ from pathlib import Path
 
 OPENAMER_HOME = Path(os.environ.get(
     "OPENAMER_HOME",
-    Path(os.environ.get("OPENAMER_HOME") or str(Path.home() / "AppData" / "Local" / "openamer-laptop"))
+    os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer"))
 ))
 USER_HOME = Path.home()  # C:\\Users\\damir
 

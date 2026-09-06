@@ -15,13 +15,14 @@ Commands:
 """
 from __future__ import annotations
 
+import os
 import argparse
 import json
 import re
 import sys
 from pathlib import Path
 
-HOME = Path.home() / "AppData/Local/openamer-laptop" \
+HOME = os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")) \
     if sys.platform == "win32" else Path.home() / ".openamer"
 SKILLS_ROOT = HOME / "skills"
 CACHE = HOME / "cache" / "knowledge_inventory.json"

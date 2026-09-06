@@ -93,9 +93,9 @@ def _openamer_home() -> Path:
     env = os.environ.get("OPENAMER_HOME") or ""
     if env:
         return Path(env)
-    # Default: ~/.openamer on Linux/macOS, %LOCALAPPDATA%/openamer-laptop on Windows
+    # Default: ~/.openamer on Linux/macOS, %LOCALAPPDATA%/openamer on Windows
     if sys.platform == "win32":
-        return Path(os.environ.get("LOCALAPPDATA", "")) / "openamer-laptop"
+        return Path(os.environ.get("LOCALAPPDATA", "")) / "openamer"
     return Path.home() / ".openamer"
 
 

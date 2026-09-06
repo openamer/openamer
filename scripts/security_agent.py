@@ -19,7 +19,7 @@ from pathlib import Path
 
 # ─── Config ───────────────────────────────────────────────────────────────────
 REPO_DIR = Path(os.environ.get("OPENAMER_REPO",
-    str(_OAH) + "\openamer-agent"))
+    os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "openamer-agent")))
 STATE_FILE = REPO_DIR / ".security-agent" / "state.json"
 LOG_FILE = REPO_DIR / ".security-agent" / "security.log"
 MAX_ALERTS_PER_RUN = 10

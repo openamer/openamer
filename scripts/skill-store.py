@@ -15,7 +15,7 @@ from datetime import datetime
 from dataclasses import dataclass, asdict
 from typing import Optional
 
-STORE_DIR = Path(os.path.expanduser("~")) / "AppData" / "Local" / "openamer-laptop" / "store"
+STORE_DIR = Path(os.path.expanduser("~")) / "AppData" / "Local" / "openamer" / "store"
 SKILLS_REGISTRY = STORE_DIR / "registry.json"
 TRANSACTIONS = STORE_DIR / "transactions.json"
 CREATORS = STORE_DIR / "creators.json"

@@ -13,10 +13,6 @@ Der Output von 'best' kann von Wrapper-Jobs als OPENAMER_FALLBACK_MODEL
 gelesen werden. Kein Key im Repo - .env bleibt die einzige Key-Quelle.
 """
 import os
-# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
-import os as _os
-_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
-    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json
 import sys
 import time
@@ -25,7 +21,7 @@ import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
-OA_HOME = Path(str(_OAH) + "")
+OA_HOME = Path(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")))
 ENV_FILE = OA_HOME / ".env"
 STATE = OA_HOME / "hunger_reserve.json"
 

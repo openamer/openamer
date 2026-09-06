@@ -10,11 +10,7 @@ Usage:
   python scripts/build_pro_pack.py --list     # only show selected skills
 """
 
-from __future__ import annotations
-# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
-import os as _os
-_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
-    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
+import os
 import argparse
 import json
 import re
@@ -25,8 +21,8 @@ import zipfile
 from pathlib import Path
 
 REPO = Path(r"C:\Users\damir\openamer-repo")
-SKILLS_DIR = Path(str(_OAH) + "\skills")
-VALIDATOR_LOG = Path(str(_OAH) + "\logs\skill-validator-latest.json")
+SKILLS_DIR = Path(os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "skills"))
+VALIDATOR_LOG = Path(os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "logs", "skill-validator-latest.json"))
 PACK_DIR = REPO / "packs" / "pro-pack"
 MIN_SCORE = 70
 HARDCODED_RE = re.compile(r"C:\\Users\\damir|C:/Users/damir|/c/Users/damir", re.I)

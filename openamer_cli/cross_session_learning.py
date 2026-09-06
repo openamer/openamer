@@ -39,7 +39,7 @@ def _state_db_path() -> Path:
     """Pfad zur OpenAmer State-Datenbank (die Sessions + Messages enthält)."""
     home = Path(os.environ.get(
         "OPENAMER_HOME",
-        Path(os.environ.get("OPENAMER_HOME") or str(Path.home() / "AppData" / "Local" / "openamer-laptop")),
+        Path.home() / "AppData" / "Local" / "openamer",
     ))
     return home / "state.db"
 
@@ -50,7 +50,7 @@ def _lessons_db_path() -> Path:
         "OPENAMER_LESSONS_DB",
         Path(os.environ.get(
             "OPENAMER_HOME",
-            Path(os.environ.get("OPENAMER_HOME") or str(Path.home() / "AppData" / "Local" / "openamer-laptop")),
+            Path.home() / "AppData" / "Local" / "openamer",
         )),
     ))
     return home / _CROSS_SESSION_DB_RELPATH
@@ -489,7 +489,7 @@ def _thinking_rules_block(max_rules: int = 8) -> str:
         import sys as _sys
         import json as _json
         from pathlib import Path as _Path
-        home = _Path.home() / "AppData/Local/openamer-laptop" if _sys.platform == "win32" else _Path.home() / ".openamer"
+        home = _Path(os.environ.get("OPENAMER_HOME") or (_Path.home() / "AppData/Local/openamer" if _sys.platform == "win32" else _Path.home() / ".openamer"))
         store = home / "thinking_rules.json"
         if not store.exists(): return ""
         rules = _json.loads(store.read_text(encoding="utf-8"))

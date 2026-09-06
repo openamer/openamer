@@ -29,7 +29,7 @@ import urllib.request
 from datetime import date, datetime, timezone
 from pathlib import Path
 
-HOME = Path.home() / "AppData/Local/openamer-laptop" \
+HOME = os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")) \
     if sys.platform == "win32" else Path.home() / ".openamer"
 BUDGET_FILE = HOME / "ai_deep_budget.json"
 

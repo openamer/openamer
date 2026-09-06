@@ -15,10 +15,6 @@ Usage: systemic.py   -> prints report + writes systemic.json
 Exit 0 always; exit 2 if a systemic cluster was found (for watchdogs).
 """
 import os
-# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
-import os as _os
-_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
-    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json
 import re
 import subprocess
@@ -27,9 +23,9 @@ from collections import defaultdict
 from datetime import datetime
 from pathlib import Path
 
-CRON_OUTPUT = Path(str(_OAH) + "\cron\output")
-JOBS_FILE = Path(str(_OAH) + "\cron\jobs.json")
-OUT_FILE = Path(str(_OAH) + "\systemic.json")
+CRON_OUTPUT = Path(os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "cron", "output"))
+JOBS_FILE = Path(os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "cron", "jobs.json"))
+OUT_FILE = Path(os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "systemic.json"))
 
 # signature patterns -> short name (order matters: first match wins)
 SIGNATURES = [

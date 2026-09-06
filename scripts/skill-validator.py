@@ -33,7 +33,7 @@ from typing import Any, Dict, List, Optional, Set, Tuple
 OPENAMER_HOME = Path(os.environ.get(
     "LOCALAPPDATA",
     str(Path.home() / "AppData/Local"),
-)) / "openamer-laptop"
+)) / "openamer"
 
 SKILLS_DIR = OPENAMER_HOME / "skills"
 LOGS_DIR = OPENAMER_HOME / "logs"

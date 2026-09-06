@@ -15,13 +15,9 @@ Runs as a daemon: python internet_learner.py --loop
 Single run:       python internet_learner.py --once
 """
 import os
-# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
-import os as _os
-_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
-    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json, os, sys, time, random, datetime, urllib.request, urllib.parse, re
 
-T = str(_OAH) + "/scripts/training"
+T = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "scripts", "training")
 BUFFER = os.path.join(T, "online_buffer.jsonl")
 LOG = os.path.join(T, "internet_learn_log.jsonl")
 ROT = os.path.join(T, ".il_rotation")
@@ -38,7 +34,7 @@ def add_to_buffer(user_text, assistant_text):
                            ensure_ascii=False) + "\n")
 
 def observe_world(cause, effect):
-    wm = str(_OAH) + "/memory/world_model.jsonl"
+    wm = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "memory", "world_model.jsonl")
     os.makedirs(os.path.dirname(wm), exist_ok=True)
     with open(wm, "a", encoding="utf-8") as f:
         f.write(json.dumps({"ts": datetime.datetime.now().isoformat(),

@@ -42,7 +42,7 @@ def get_home() -> Path:
     env = os.environ.get("OPENAMER_HOME")
     if env:
         return Path(env).resolve()
-    return Path(os.environ.get("OPENAMER_HOME") or str(Path.home() / "AppData" / "Local" / "openamer-laptop"))
+    return os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer"))
 
 OPENAMER_HOME = get_home()
 SYNC_DIR = Path.home() / ".global-sync"

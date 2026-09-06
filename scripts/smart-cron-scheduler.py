@@ -31,7 +31,7 @@ from typing import Any, Dict, List, Optional, Tuple
 OPENAMER_HOME = Path(os.environ.get(
     "LOCALAPPDATA",
     str(Path.home() / "AppData/Local"),
-)) / "openamer-laptop"
+)) / "openamer"
 
 JOBS_PATH = OPENAMER_HOME / "cron" / "jobs.json"
 

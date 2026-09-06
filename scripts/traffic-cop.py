@@ -30,7 +30,7 @@ if _raw_openamer_home:
     _norm = re.sub(r"^/([a-zA-Z])/", lambda m: f"{m.group(1).upper()}:/", _raw_openamer_home)
     OPENAMER_HOME = Path(_norm).resolve()
 else:
-    OPENAMER_HOME = HOME / "AppData" / "Local" / "openamer-laptop"
+    OPENAMER_HOME = HOME / "AppData" / "Local" / "openamer"
 TRAFFIC_COP_DIR = HOME / ".traffic-cop"
 STATE_FILE = TRAFFIC_COP_DIR / "state.json"
 SCRIPTS_DIR = HOME / "scripts"

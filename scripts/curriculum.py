@@ -22,10 +22,6 @@ Usage:
   curriculum.py run --level N     # single level
 """
 import os
-# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
-import os as _os
-_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
-    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json
 import subprocess
 import sys
@@ -34,7 +30,7 @@ from pathlib import Path
 
 HERE = Path(__file__).parent
 WIS = HERE / "workflow_immune.py"
-STATE = Path(str(_OAH) + "\workflow-immune")
+STATE = Path(os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "workflow-immune"))
 WORKFLOWS = STATE / "workflows.json"
 RESULTS = STATE / "curriculum.json"
 

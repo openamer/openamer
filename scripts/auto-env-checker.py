@@ -58,10 +58,10 @@ def _resolve_home() -> Path:
         return Path(_msys_to_win(env)).resolve()
     localappdata = os.environ.get("LOCALAPPDATA", "")
     if localappdata:
-        return Path(_msys_to_win(localappdata)) / "openamer-laptop"
+        return Path(_msys_to_win(localappdata)) / "openamer"
     # Fallback
     home = Path.home()
-    return home / "AppData" / "Local" / "openamer-laptop"
+    return home / "AppData" / "Local" / "openamer"
 
 def _resolve_repo() -> Path:
     env = os.environ.get("OPENAMER_REPO")

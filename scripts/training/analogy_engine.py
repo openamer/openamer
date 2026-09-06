@@ -20,13 +20,9 @@ CLI:
   python analogy_engine.py stats
 """
 import os
-# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
-import os as _os
-_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
-    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json, sys, os, math, urllib.request, datetime, pathlib
 
-BASE = str(_OAH) + ""
+BASE = os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer"))
 STRUCTS = os.path.join(BASE, "memory", "structures.jsonl")
 BRAIN = r"C:/Users/damir/.openamer/a2a/openamer-brain.jsonl"
 LIVE = "http://localhost:8081"

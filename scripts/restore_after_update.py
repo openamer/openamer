@@ -10,14 +10,10 @@ This script restores everything Mini-OpenAmer needs:
   5. GPU worker (restart on PC via SSH)
 """
 import os
-# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
-import os as _os
-_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
-    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json, os, subprocess, sys, time, urllib.request
 
-T = str(_OAH) + "/scripts/training"
-HOME = str(_OAH) + ""
+T = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "scripts", "training")
+HOME = os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer"))
 SOUL = os.path.join(HOME, "SOUL.md")
 
 def check_and_start(name, url, start_cmd=None, timeout=30):
@@ -85,8 +81,8 @@ def restore():
         print("  OK restarted")
 
     # 4. World model + self model
-    wm = str(_OAH) + "/memory/world_model.jsonl"
-    sm = str(_OAH) + "/memory/self_model/identity.md"
+    wm = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "memory", "world_model.jsonl")
+    sm = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "memory", "self_model", "identity.md")
     for path, name in [(wm, "World model"), (sm, "Self model identity")]:
         if os.path.exists(path) and os.path.getsize(path) > 100:
             print(f"  OK {name}: intact ({os.path.getsize(path)} bytes)")

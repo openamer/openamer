@@ -83,7 +83,7 @@ if OPENAMER_HOME_ENV:
             raw = f"{parts[1].upper()}:\\" + "\\".join(parts[2:])
     OPENAMER_HOME = Path(raw)
 else:
-    OPENAMER_HOME = Path.home() / "AppData/Local/openamer-laptop"
+    OPENAMER_HOME = os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer"))
 
 SENSITIVE_FILES = [
     OPENAMER_HOME / "config.yaml",

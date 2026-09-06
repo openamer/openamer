@@ -12,13 +12,9 @@ State file: meta_state.json — everything measured, nothing guessed.
 Feeds lessons into: meta_lessons.jsonl (the system's self-knowledge).
 """
 import os
-# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
-import os as _os
-_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
-    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json, os, sys, time, datetime, random
 
-T = str(_OAH) + "/scripts/training"
+T = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "scripts", "training")
 STATE = os.path.join(T, "meta_state.json")
 LESSONS = os.path.join(T, "meta_lessons.jsonl")
 BUFFER = os.path.join(T, "online_buffer.jsonl")

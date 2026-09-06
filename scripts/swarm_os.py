@@ -11,7 +11,7 @@ Unlike agent-mesh.py (static registration + manual delegation), Swarm OS is
 *a population*: workers reproduce when successful, retire when failing,
 and the swarm distributes work by evolutionary fitness.
 
-Storage: ~/AppData/Local/openamer-laptop/darwin/swarm.json
+Storage: ~/AppData/Local/openamer/darwin/swarm.json
 
 CLI:
   --auction '<task>'     run an auction for a task

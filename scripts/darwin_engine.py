@@ -1012,7 +1012,7 @@ def _pretty_slug(topic: str) -> str:
         tail = topic
     slug = re.sub(r"[^a-z0-9]+", "-", tail).strip("-")
     # drop pure user-dir noise segments
-    slug = re.sub(r"(^|-)(c|users|damir|appdata|local|openamer-laptop)(-|$)",
+    slug = re.sub(r"(^|-)(c|users|damir|appdata|local|openamer)(-|$)",
                   lambda m: m.group(1) == "-" and "-" or "", slug)
     slug = re.sub(r"-+", "-", slug).strip("-")[:36]
     return slug or "unknown-pattern"

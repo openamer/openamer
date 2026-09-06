@@ -8,12 +8,13 @@ Deterministic per entity-id: the same skill always gets the same identity.
 from __future__ import annotations
 import os
 
+import os
 import hashlib
 import json
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
-HOME = Path(os.environ.get("OPENAMER_HOME") or str(Path.home() / "AppData" / "Local" / "openamer-laptop"))
+HOME = os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer"))
 IDENTITY_FILE = HOME / "darwin" / "identities.json"
 
 FIRST_NAMES = [

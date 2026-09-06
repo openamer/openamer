@@ -5,13 +5,9 @@ Watchdog-style: stays silent (exit 0) unless it actually retrained, or an error 
 Guards: >= 10 NEW pairs, RAM check, min 24h between runs (marker file).
 """
 import os
-# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
-import os as _os
-_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
-    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json, os, subprocess, sys, datetime, pathlib, shutil
 
-T = pathlib.Path(str(_OAH) + "/scripts/training")
+T = pathlib.Path(os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "scripts", "training"))
 BRAIN = pathlib.Path(r"C:/Users/damir/.openamer/a2a/openamer-brain.jsonl")
 MARKER = T / ".last_retrain"
 MIN_INTERVAL_H = 24

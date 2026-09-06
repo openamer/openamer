@@ -21,7 +21,7 @@ print("=" * 60)
 
 REPO = os.path.join(os.path.expanduser("~"), "openamer-repo")
 HOME = os.path.join(os.environ.get("USERPROFILE", os.path.expanduser("~")),
-                    "AppData", "Local", "openamer-laptop")
+                    "AppData", "Local", "openamer")
 
 def run(cmd, **kw):
     print(f"  > {cmd[:80]}...")

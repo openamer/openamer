@@ -40,7 +40,7 @@ from pathlib import Path
 HOME = Path.home()
 OPENAMER_HOME = Path(os.environ.get(
     "OPENAMER_HOME",
-    HOME / "AppData" / "Local" / "openamer-laptop",
+    HOME / "AppData" / "Local" / "openamer",
 ))
 DATA_DIR = OPENAMER_HOME / ".predictive-health"
 HISTORY_CSV = DATA_DIR / "history.csv"

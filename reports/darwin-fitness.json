@@ -1,0 +1,77 @@
+{
+  "updated": "2026-09-06T04:36:20.347702+00:00",
+  "skills": {
+    "auto-env-checker": {
+      "fitness": 5.0,
+      "usage": 0,
+      "health": 1,
+      "age_days": 0,
+      "mutations_won": 0,
+      "mutations_lost": 0
+    },
+    "darwin-cron-guard": {
+      "fitness": 5.0,
+      "usage": 0,
+      "health": 1,
+      "age_days": 0,
+      "mutations_won": 0,
+      "mutations_lost": 0
+    },
+    "darwin-engine": {
+      "fitness": 5.0,
+      "usage": 0,
+      "health": 1,
+      "age_days": 0,
+      "mutations_won": 0,
+      "mutations_lost": 0
+    },
+    "darwin-evidence-hygiene": {
+      "fitness": 5.0,
+      "usage": 0,
+      "health": 1,
+      "age_days": 0,
+      "mutations_won": 0,
+      "mutations_lost": 0
+    },
+    "darwin-session-recall": {
+      "fitness": 5.0,
+      "usage": 0,
+      "health": 1,
+      "age_days": 0,
+      "mutations_won": 0,
+      "mutations_lost": 0
+    },
+    "mini-openamer": {
+      "fitness": 5.0,
+      "usage": 0,
+      "health": 1,
+      "age_days": 0,
+      "mutations_won": 0,
+      "mutations_lost": 0
+    },
+    "plugin-api": {
+      "fitness": 5.0,
+      "usage": 0,
+      "health": 1,
+      "age_days": 0,
+      "mutations_won": 0,
+      "mutations_lost": 0
+    },
+    "self-rewriter": {
+      "fitness": 5.0,
+      "usage": 0,
+      "health": 1,
+      "age_days": 0,
+      "mutations_won": 0,
+      "mutations_lost": 0
+    },
+    "windows-ollama-management": {
+      "fitness": 20.0,
+      "usage": 4,
+      "health": 1,
+      "age_days": 0,
+      "mutations_won": 0,
+      "mutations_lost": 0
+    }
+  }
+}

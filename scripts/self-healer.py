@@ -24,7 +24,7 @@ from collections import defaultdict
 HOME = Path.home()
 OPENAMER_HOME = Path(os.environ.get(
     "OPENAMER_HOME",
-    HOME / "AppData" / "Local" / "openamer-laptop",
+    HOME / "AppData" / "Local" / "openamer",
 ))
 
 CRON_OUTPUT_DIR = OPENAMER_HOME / "cron" / "output"

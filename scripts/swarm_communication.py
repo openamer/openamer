@@ -14,11 +14,12 @@ Message types:
   - INSIGHT: "I learned something"
   - COORDINATE: "Let's work together on Y"
 
-Storage: ~/AppData/Local/openamer-laptop/darwin/messages.json
+Storage: ~/AppData/Local/openamer/darwin/messages.json
 """
 from __future__ import annotations
 import os
 
+import os
 import json
 import sys
 import urllib.request
@@ -35,7 +36,7 @@ darwin = importlib.util.module_from_spec(_spec)
 sys.modules["darwin_engine"] = darwin
 _spec.loader.exec_module(darwin)
 
-HOME = Path(os.environ.get("OPENAMER_HOME") or str(Path.home() / "AppData" / "Local" / "openamer-laptop"))
+HOME = os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer"))
 MESSAGES_FILE = HOME / "darwin" / "messages.json"
 
 OLLAMA_URL = "http://localhost:11434/api/generate"

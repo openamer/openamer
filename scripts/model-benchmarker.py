@@ -35,7 +35,7 @@ from urllib.error import URLError, HTTPError
 # ── Konfiguration ──────────────────────────────────────────────────────────────
 OPENAMER_HOME = Path(os.environ.get(
     "OPENAMER_HOME",
-    os.path.join(os.environ.get("LOCALAPPDATA", ""), "openamer-laptop"),
+    os.path.join(os.environ.get("LOCALAPPDATA", ""), "openamer"),
 ))
 CONFIG_PATH = OPENAMER_HOME / "config.yaml"
 ENV_PATH = OPENAMER_HOME / ".env"

@@ -46,7 +46,7 @@ _raw_home = os.environ.get("OPENAMER_HOME", "")
 if _raw_home:
     OPENAMER_HOME = _resolve_path(_raw_home)
 else:
-    OPENAMER_HOME = HOME / "AppData" / "Local" / "openamer-laptop"
+    OPENAMER_HOME = HOME / "AppData" / "Local" / "openamer"
 SCRIPTS_DIR = OPENAMER_HOME / "scripts"
 SKILLS_DIR = OPENAMER_HOME / "skills"
 GOAL_ENGINE_DIR = HOME / ".goal-engine"

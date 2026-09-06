@@ -40,7 +40,7 @@ if _RAW_OPENAMER_HOME:
     _NORM = re.sub(r"^/([a-zA-Z])/", lambda m: f"{m.group(1).upper()}:\\", _RAW_OPENAMER_HOME)
     OPENAMER_HOME = Path(_NORM).resolve()
 else:
-    OPENAMER_HOME = HOME / "AppData" / "Local" / "openamer-laptop"
+    OPENAMER_HOME = HOME / "AppData" / "Local" / "openamer"
 
 SELF_HOSTED_DIR = HOME / ".self-hosted"
 CONFIG_FILE = SELF_HOSTED_DIR / "config.json"

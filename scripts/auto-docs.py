@@ -32,7 +32,7 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 # OPENAMER_HOME = lokale OpenAmer-Installation (Skills + Cron)
 OPENAMER_HOME = Path(os.environ.get(
     "OPENAMER_HOME",
-    os.path.join(os.path.expanduser("~"), "AppData", "Local", "openamer-laptop"),
+    os.path.join(os.path.expanduser("~"), "AppData", "Local", "openamer"),
 ))
 SKILLS_DIR = OPENAMER_HOME / "skills"
 CRON_JOBS_FILE = OPENAMER_HOME / "cron" / "jobs.json"

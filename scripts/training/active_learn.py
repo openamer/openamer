@@ -12,15 +12,11 @@ Each action feeds results into: brain buffer + world model + structures.
 The agent GROWS actively instead of waiting passively.
 """
 import os
-# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
-import os as _os
-_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
-    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json, os, sys, time, random, datetime, urllib.request, subprocess
-sys.path.insert(0, str(_OAH) + "/scripts")
-sys.path.insert(0, str(_OAH) + "/scripts/training")
+sys.path.insert(0, os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "scripts"))
+sys.path.insert(0, os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "scripts", "training"))
 
-T = str(_OAH) + "/scripts/training"
+T = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "scripts", "training")
 BUFFER = os.path.join(T, "online_buffer.jsonl")
 LIVE = "http://localhost:8081"
 ROTATION_FILE = os.path.join(T, ".learn_rotation")
@@ -39,7 +35,7 @@ def add_to_buffer(user_text, assistant_text):
                            ensure_ascii=False) + "\n")
 
 def observe_world(cause, effect):
-    wm = str(_OAH) + "/memory/world_model.jsonl"
+    wm = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "memory", "world_model.jsonl")
     os.makedirs(os.path.dirname(wm), exist_ok=True)
     edge = {"ts": datetime.datetime.now().isoformat(),
             "cause": cause[:500], "effect": effect[:500], "embedding": [0.1]*768}
@@ -114,7 +110,7 @@ def world_explore():
     """Find new cause-effect pairs from system logs and recent errors."""
     try:
         # scan recent cron outputs for errors
-        output_dir = str(_OAH) + "/cron/output"
+        output_dir = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "cron", "output")
         recent_errors = []
         now = time.time()
         for jdir in os.listdir(output_dir):

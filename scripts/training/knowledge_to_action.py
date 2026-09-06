@@ -11,13 +11,9 @@ After internet_learner collects insights, this script:
 This closes the gap between "learning" and "implementing".
 """
 import os
-# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
-import os as _os
-_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
-    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json, os, sys, time, datetime, subprocess, re
 
-T = str(_OAH) + "/scripts/training"
+T = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "scripts", "training")
 BUFFER = os.path.join(T, "online_buffer.jsonl")
 KTA_LOG = os.path.join(T, "kta_log.jsonl")
 LIVE = "http://localhost:8081"
@@ -53,7 +49,7 @@ def experiment_lora_rank():
 
 def experiment_predict_world():
     """Insight: 'project future states'. Add a prediction to the world model."""
-    wm = str(_OAH) + "/memory/world_model.jsonl"
+    wm = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "memory", "world_model.jsonl")
     if not os.path.exists(wm):
         return {"action": "world-model prediction", "result": "no world model yet"}
     lines = open(wm, encoding="utf-8").readlines()

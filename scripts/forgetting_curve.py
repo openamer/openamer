@@ -14,16 +14,12 @@ Usage: forgetting_curve.py [--dry-run]
 Exit 0 always.
 """
 import os
-# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
-import os as _os
-_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
-    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-MEM_DIR = Path(str(_OAH) + "\memories")
+MEM_DIR = Path(os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "memories"))
 ARCHIVE = MEM_DIR / "memory-archive.json"
 STATS = MEM_DIR / "memory-stats.json"
 TARGET_CHARS = 1900   # keep MEMORY.md below this

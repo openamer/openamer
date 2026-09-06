@@ -14,11 +14,7 @@ Zero LLM tokens.
 Usage: python scripts/darwin_promote.py [--list|--promote NAME|--promote-all]
 """
 
-from __future__ import annotations
-# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
-import os as _os
-_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
-    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
+import os
 import argparse
 import importlib.util
 import shutil
@@ -28,7 +24,7 @@ from pathlib import Path
 REPO = Path(r"C:\Users\damir\openamer-repo")
 CAND_DIR = REPO / "darwin" / "species-candidates"
 PROMOTED_DIR = REPO / "darwin" / "promoted"
-SKILLS_DIR = Path(str(_OAH) + "\skills")
+SKILLS_DIR = Path(os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "skills"))
 VALIDATOR = REPO / "scripts" / "skill-validator.py"
 PROMOTE_SCORE = 45
 HARDCODED = ("C:\\Users\\damir", "C:/Users/damir", "/c/Users/damir")

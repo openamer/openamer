@@ -7,7 +7,7 @@ import os, json, yaml, re
 from pathlib import Path
 from datetime import datetime
 
-SKILLS_DIR = Path(os.path.expanduser("~")) / "AppData" / "Local" / "openamer-laptop" / "skills"
+SKILLS_DIR = Path(os.path.expanduser("~")) / "AppData" / "Local" / "openamer" / "skills"
 REPO_DOCS = Path(r"C:\Users\damir\openamer-repo\docs")
 OUTPUT = REPO_DOCS / "wiki"
 

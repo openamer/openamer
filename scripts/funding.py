@@ -13,7 +13,7 @@ import json, os, sys, time, uuid
 from pathlib import Path
 from datetime import datetime
 
-STORE_DIR = Path(os.path.expanduser("~")) / "AppData" / "Local" / "openamer-laptop" / "store"
+STORE_DIR = Path(os.path.expanduser("~")) / "AppData" / "Local" / "openamer" / "store"
 FUNDING_FILE = STORE_DIR / "funding.json"
 SPONSORS_FILE = STORE_DIR / "sponsors.json"
 

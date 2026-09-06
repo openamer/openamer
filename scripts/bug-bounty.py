@@ -40,11 +40,11 @@ if _OPENAMER_HOME_ENV.startswith("/"):
     rest = _OPENAMER_HOME_ENV[3:].replace("/", "\\")
     _OPENAMER_HOME_ENV = f"{drive}:\\{rest}"
 
-OPENAMER_HOME = Path(_OPENAMER_HOME_ENV) if _OPENAMER_HOME_ENV else HOME / "AppData" / "Local" / "openamer-laptop"
+OPENAMER_HOME = Path(_OPENAMER_HOME_ENV) if _OPENAMER_HOME_ENV else HOME / "AppData" / "Local" / "openamer"
 REPO_DIR = Path(os.environ.get(
     "OPENAMER_REPO", r"C:\Users\damir\openamer-repo"
 ))
-OPENAMER_AGENT_DIR = HOME / "AppData" / "Local" / "openamer-laptop" / "openamer-agent"
+OPENAMER_AGENT_DIR = HOME / "AppData" / "Local" / "openamer" / "openamer-agent"
 
 BUG_BOUNTY_DIR = HOME / ".bug-bounty"
 STATE_FILE = BUG_BOUNTY_DIR / "state.json"

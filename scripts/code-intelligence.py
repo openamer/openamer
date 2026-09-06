@@ -32,7 +32,7 @@ from typing import Any, Dict, List, Optional, Set, Tuple
 
 # ── Pfade ──────────────────────────────────────────────────────────────────────
 _LOCALAPPDATA = os.environ.get("LOCALAPPDATA", str(Path.home()))
-OPENAMER_HOME = Path(_LOCALAPPDATA) / "openamer-laptop"
+OPENAMER_HOME = Path(_LOCALAPPDATA) / "openamer"
 REPO_DIR = OPENAMER_HOME / ".." / ".." / "openamer-repo"
 if not REPO_DIR.exists():
     REPO_DIR = Path.cwd()

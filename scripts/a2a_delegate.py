@@ -15,17 +15,13 @@ Usage:
   python a2a_delegate.py sum --a 20 --b 22
 """
 
-from __future__ import annotations
-# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
-import os as _os
-_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
-    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
+import os
 import argparse, base64, json, subprocess, sys, time, urllib.request
 from pathlib import Path
 
 REPO   = Path(r"C:\Users\damir\openamer-repo")
 GH     = "openamer/openamer"
-IDENT  = Path(str(_OAH) + "\.a2a-relay-laptop")
+IDENT  = Path(os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), ".a2a-relay-laptop"))
 
 sys.path.insert(0, str(REPO))
 from openamer_cli.a2a.core import IdentityStore, Envelope          # noqa: E402

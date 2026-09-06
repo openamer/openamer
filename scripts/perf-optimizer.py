@@ -30,7 +30,7 @@ HOME = Path(os.path.expanduser("~"))
 OPENAMER_HOME = Path(
     os.environ.get(
         "OPENAMER_HOME",
-        str(HOME / "AppData" / "Local" / "openamer-laptop"),
+        str(HOME / "AppData" / "Local" / "openamer"),
     )
 )
 SCRIPTS_DIR = OPENAMER_HOME / "scripts"

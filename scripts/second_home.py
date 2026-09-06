@@ -16,10 +16,6 @@ Usage: second_home.py   (writes both files into openamer-repo/life/)
 Exit 0 = written & pushed.
 """
 import os
-# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
-import os as _os
-_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
-    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json
 import re
 import subprocess
@@ -30,7 +26,7 @@ from pathlib import Path
 
 REPO = Path(r"C:\Users\damir\openamer-repo")
 LIFE = REPO / "life"
-OA_HOME = Path(str(_OAH) + "")
+OA_HOME = Path(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")))
 
 
 GIT_TIMEOUT = 120  # seconds - a hung push must never block the cron fleet

@@ -35,7 +35,7 @@ from typing import Any, Dict, List, Optional
 
 # ── Pfade ──────────────────────────────────────────────────────────────────────
 _LOCALAPPDATA = os.environ.get("LOCALAPPDATA", str(Path.home()))
-OPENAMER_HOME = Path(_LOCALAPPDATA) / "openamer-laptop"
+OPENAMER_HOME = Path(_LOCALAPPDATA) / "openamer"
 SCRIPTS_DIR = OPENAMER_HOME / "scripts"
 SKILLS_DIR = OPENAMER_HOME / "skills"
 PLUGINS_DIR = OPENAMER_HOME / "desktop-plugins" / "examples"
@@ -99,7 +99,7 @@ TEMPLATES: Dict[str, Dict[str, Any]] = {
             # ── Pfade ──────────────────────────────────────────────────────────────────────
             OPENAMER_HOME = Path(os.environ.get(
                 "OPENAMER_HOME",
-                os.path.join(os.environ.get("LOCALAPPDATA", str(Path.home())), "openamer-laptop"),
+                os.path.join(os.environ.get("LOCALAPPDATA", str(Path.home())), "openamer"),
             ))
 
             VERSION = "{{version}}"

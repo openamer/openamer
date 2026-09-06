@@ -56,7 +56,7 @@ _raw_home = os.environ.get("OPENAMER_HOME", "")
 if _raw_home:
     OPENAMER_HOME = Path(_resolve_msys2_path(_raw_home))
 else:
-    OPENAMER_HOME = HOME / "AppData" / "Local" / "openamer-laptop"
+    OPENAMER_HOME = HOME / "AppData" / "Local" / "openamer"
 PROFILES_DIR = OPENAMER_HOME / "profiles"
 LOG_DIR = OPENAMER_HOME / "logs"
 SNAPSHOT_DIR = OPENAMER_HOME / "profiles" / ".snapshots"

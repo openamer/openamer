@@ -41,7 +41,7 @@ _oh_val = os.environ.get("OPENAMER_HOME")
 if _oh_val:
     _oh_val = _resolve_msys_path(_oh_val)
 else:
-    _oh_val = str(_OAH) + ""
+    _oh_val = os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer"))
 OPENAMER_HOME = Path(_oh_val)
 STATE_DB = OPENAMER_HOME / "state.db"
 ARCHIVE_ROOT = OPENAMER_HOME / ".session-archive"

@@ -14,13 +14,9 @@ Safety rails:
   - Proof-first: no live switch without passing tests
 """
 import os
-# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
-import os as _os
-_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
-    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json, os, sys, time, subprocess, shutil, datetime, re
 
-T = str(_OAH) + "/scripts/training"
+T = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "scripts", "training")
 LOG = os.path.join(T, "improvements.jsonl")
 SANDBOX = os.path.join(T, "sandbox")
 REPO = r"C:/Users/damir/openamer-repo"

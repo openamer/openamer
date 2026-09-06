@@ -34,7 +34,7 @@ import time
 from pathlib import Path
 
 # ── Konfiguration ──────────────────────────────────────────────────────────
-_default_home = Path(os.environ.get("OPENAMER_HOME") or str(Path.home() / "AppData" / "Local" / "openamer-laptop"))
+_default_home = os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer"))
 _env_home = os.environ.get("OPENAMER_HOME", "")
 if _env_home and _env_home.startswith("/"):
     if _env_home.startswith("/c/"):

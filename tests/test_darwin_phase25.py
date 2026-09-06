@@ -68,7 +68,7 @@ def test_execute_assigned_runs_real_operations(fake_world):
 
 
 def meta_fitness_path():
-    return Path(os.environ.get("OPENAMER_HOME") or str(Path.home() / "AppData" / "Local" / "openamer-laptop")) / \
+    return Path.home() / "AppData" / "Local" / "openamer" / \
         "reports" / "darwin-fitness.json"
 
 

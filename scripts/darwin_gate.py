@@ -27,14 +27,13 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "scripts"))
 
-import os
-HOME = Path(os.environ.get("OPENAMER_HOME") or str(Path.home() / "AppData" / "Local" / "openamer-laptop"))
+HOME = os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer"))
 GATE_LOG = HOME / "darwin" / "gate-log.json"
 GATE_QUEUE = HOME / "darwin" / "gate-queue.json"
 
 # OpenRouter credentials (from .env / config)
 from dotenv import load_dotenv
-load_dotenv(Path.home() / "AppData/Local/openamer-laptop/.env")
+load_dotenv(Path.home() / "AppData/Local/openamer/.env")
 
 OPENROUTER_KEY = os.environ.get("OPENROUTER_API_KEY", "")
 OPENROUTER_MODEL = os.environ.get("OPENAMER_MODEL", "z-ai/glm-4.6")

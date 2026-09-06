@@ -45,7 +45,7 @@ STATE = REPO / "build" / "self_refactor_state.json"
 
 def _py() -> str:
     # prefer the active venv interpreter for running the module's tests
-    venv = Path.home() / "AppData/Local/openamer-laptop/openamer-agent/venv/Scripts/python.exe"
+    venv = Path.home() / "AppData/Local/openamer/openamer-agent/venv/Scripts/python.exe"
     return str(venv) if venv.exists() else sys.executable
 
 

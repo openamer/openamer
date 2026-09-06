@@ -17,9 +17,9 @@ import tempfile
 from pathlib import Path
 
 REPO_DIR = Path(os.environ.get("OPENAMER_REPO",
-    str(_OAH) + "\openamer-agent"))
+    os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "openamer-agent")))
 OPENAMER_HOME = Path(os.environ.get("OPENAMER_HOME",
-    str(_OAH) + ""))
+    os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer"))))
 STEALTH_DIR = OPENAMER_HOME / "stealth"
 PRELOAD_SCRIPT = STEALTH_DIR / "preload.js"
 PROFILE_DIR = STEALTH_DIR / "chrome-profile"

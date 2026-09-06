@@ -13,6 +13,7 @@ CLI:
 """
 import os
 
+import os
 import sqlite3, json, sys, os, re, time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -30,7 +31,7 @@ def _resolve_home() -> Path:
             rest = "\\" + s[3:]
             p = Path(f"{drive}:{rest}")
         return p
-    return Path(os.environ.get("OPENAMER_HOME") or str(Path.home() / "AppData" / "Local" / "openamer-laptop"))
+    return os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer"))
 
 HOME = _resolve_home()
 STATE_DB = HOME / "state.db"

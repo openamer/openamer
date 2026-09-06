@@ -12,17 +12,13 @@ Endpoints:
   GET  /health                — liveness probe
 """
 import os
-# --- portable OpenAmer home (auto-fixed; resolves OPENAMER_HOME) ---
-import os as _os
-_OAH = _os.environ.get('OPENAMER_HOME') or _os.path.join(
-    _os.environ.get('LOCALAPPDATA', _os.path.expanduser('~')), 'openamer-laptop')
 import json, torch, threading, time, os
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from peft import PeftModel
 
 BASE = "Qwen/Qwen3.5-2B"
-ADAPTER_DIR = str(_OAH) + "/scripts/training/lora_out"
+ADAPTER_DIR = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "scripts", "training", "lora_out")
 ADAPTER_DEFAULT = os.path.join(ADAPTER_DIR, "adapter")
 PORT = 8081
 IDLE_TIMEOUT = 1800  # energy saver — but server PROCESS stays up, only RAM freed on swap
