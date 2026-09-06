@@ -312,12 +312,6 @@ class CoreAnalyzer(ast.NodeVisitor):
                     "lines": lines,
                     "severity": IssueType.SEVERITY[IssueType.DUPLICATE_IMPORT],
                 })
-                # Nicht doppelt zu den issues hinzufügen wenn schon da
-                existing_types = {i["type"] for i in self.issues}
-                if IssueType.DUPLICATE_IMPORT not in existing_types or not any(
-                    i.get("import_name") == name for i in self.issues
-                ):
-                    pass  # wird später hinzugefügt
 
         # Deduplizierte imports zu issues hinzufügen
         for dup in duplicates:

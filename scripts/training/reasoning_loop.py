@@ -23,6 +23,7 @@ CLI:
 """
 import os
 import json, sys, os, time, urllib.request, math, hashlib, datetime, pathlib
+from pathlib import Path
 
 BASE = os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer"))
 WORLD = os.path.join(BASE, "memory", "world_model.jsonl")
@@ -67,42 +68,30 @@ def recursive_ask(question, rounds=MAX_ROUNDS):
         history.append(answer)
     return {"answer": answer, "rounds": len(history), "history": history}
 
-# ---- World Model ----
+# ---- World Model (delegated to the central module) ----
 def observe(cause, effect):
-    """Store a cause->effect edge with embedding for similarity retrieval."""
-    edge = {"ts": datetime.datetime.now().isoformat(),
-            "cause": cause[:500], "effect": effect[:500],
-            "embedding": embed(cause + " → " + effect)}
-    with open(WORLD, "a", encoding="utf-8") as f:
-        f.write(json.dumps(edge, ensure_ascii=False) + "\n")
+    """Store a cause->effect edge via the central world model."""
+    import world_model
+    world_model.observe(cause, effect)
     return "observed"
 
 def _load_world():
-    if not os.path.exists(WORLD):
-        return []
-    out = []
-    for l in open(WORLD, encoding="utf-8"):
-        try: out.append(json.loads(l))
-        except: continue
-    return out
+    import world_model
+    return world_model._load()
 
 def _cos(a, b):
-    dot = sum(x*y for x, y in zip(a, b))
-    na = math.sqrt(sum(x*x for x in a)) or 1
-    nb = math.sqrt(sum(y*y for y in b)) or 1
-    return dot / (na * nb)
+    import world_model
+    return world_model._cosine(a, b)
 
 def predict(situation, k=3):
     """Given a new situation, retrieve the most relevant known cause-effect pairs."""
-    edges = _load_world()
-    if not edges: return []
-    qv = embed(situation)
-    scored = sorted(((_cos(qv, e["embedding"]), e) for e in edges), key=lambda x: -x[0])
-    return [(round(s,3), e) for s, e in scored[:k]]
+    import world_model
+    hits = world_model.recall(situation, k=k)
+    return [(h["score"], {"cause": h["cause"], "effect": h["effect"]}) for h in hits]
 
 def graph_stats():
-    edges = _load_world()
-    return {"edges": len(edges)}
+    import world_model
+    return {"edges": world_model.stats()["total_edges"]}
 
 if __name__ == "__main__":
     cmd = sys.argv[1] if len(sys.argv) > 1 else "help"

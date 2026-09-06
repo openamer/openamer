@@ -13,6 +13,7 @@ The agent GROWS actively instead of waiting passively.
 """
 import os
 import json, os, sys, time, random, datetime, urllib.request, subprocess
+from pathlib import Path
 sys.path.insert(0, os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "scripts"))
 sys.path.insert(0, os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "scripts", "training"))
 
@@ -35,12 +36,9 @@ def add_to_buffer(user_text, assistant_text):
                            ensure_ascii=False) + "\n")
 
 def observe_world(cause, effect):
-    wm = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "memory", "world_model.jsonl")
-    os.makedirs(os.path.dirname(wm), exist_ok=True)
-    edge = {"ts": datetime.datetime.now().isoformat(),
-            "cause": cause[:500], "effect": effect[:500], "embedding": [0.1]*768}
-    with open(wm, "a", encoding="utf-8") as f:
-        f.write(json.dumps(edge, ensure_ascii=False) + "\n")
+    """Write through the central world model (single source of truth)."""
+    import world_model
+    return world_model.observe(cause, effect)
 
 # ---- Learning Actions ----
 
@@ -108,6 +106,13 @@ def self_test():
 
 def world_explore():
     """Find new cause-effect pairs from system logs and recent errors."""
+    # Known-benign patterns that are NOT real errors — filtering these out
+    # stops the world model from being polluted with false "system errors".
+    BENIGN = (
+        "llama.cpp", "llama-server", "localhost:8080", "WinError 10061",
+        "Verbindung konnte nicht hergestellt", "Nicht verfügbar",
+        "kein API-Key gefunden", "OPENROUTER_API_KEY", "OPENAI_API_KEY",
+    )
     try:
         # scan recent cron outputs for errors
         output_dir = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "cron", "output")
@@ -125,6 +130,8 @@ def world_explore():
                         # extract cause-effect
                         for line in content.splitlines():
                             if "error" in line.lower() or "failed" in line.lower():
+                                if any(b in line for b in BENIGN):
+                                    continue  # skip known-benign status lines
                                 recent_errors.append(line.strip()[:200])
         if not recent_errors:
             # generate a synthetic learning from known patterns

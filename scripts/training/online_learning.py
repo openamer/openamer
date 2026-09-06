@@ -20,6 +20,7 @@ CLI:
 """
 import os
 import json, os, sys, time, threading, subprocess, argparse, datetime, pathlib
+from pathlib import Path
 
 _HOME = pathlib.Path(os.environ.get(
     "OPENAMER_HOME",
@@ -162,32 +163,20 @@ def loop():
                 print(f"[online-learning] analogy skip: {e}", flush=True)
             # world-model auto-feed: extract cause->effect from recent dreams
             try:
+                import world_model
                 dreams_file = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "dreams.json")
-                wm_file = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "memory", "world_model.jsonl")
-                if os.path.exists(dreams_file) and os.path.exists(wm_file):
+                if os.path.exists(dreams_file):
                     dreams = json.load(open(dreams_file, encoding="utf-8"))
-                    wm_lines = open(wm_file, encoding="utf-8").readlines()
-                    known_causes = set()
-                    for wl in wm_lines:
-                        try:
-                            known_causes.add(json.loads(wl).get("cause", "")[:100])
-                        except: pass
-                    # find new nightmares with cause->effect
+                    known_causes = {e.get("cause", "")[:100] for e in world_model._load()}
                     added = 0
-                    with open(wm_file, "a", encoding="utf-8") as f:
-                        for dream in dreams:
-                            for ins in dream.get("insights", []):
-                                cause = f"{ins.get('motif','')} error occurred"
-                                effect = "agent needs to fix root cause to prevent recurrence"
-                                if cause[:100] not in known_causes and added < 3:
-                                    import math
-                                    emb = [0.1] * 768  # placeholder embedding
-                                    f.write(json.dumps({
-                                        "ts": datetime.datetime.now().isoformat(),
-                                        "cause": cause, "effect": effect,
-                                        "embedding": emb}) + "\n")
-                                    known_causes.add(cause[:100])
-                                    added += 1
+                    for dream in dreams:
+                        for ins in dream.get("insights", []):
+                            cause = f"{ins.get('motif','')} error occurred"
+                            effect = "agent needs to fix root cause to prevent recurrence"
+                            if cause[:100] not in known_causes and added < 3:
+                                world_model.observe(cause, effect)
+                                known_causes.add(cause[:100])
+                                added += 1
                     if added:
                         print(f"[online-learning] world-model: +{added} new edges", flush=True)
             except Exception as e:

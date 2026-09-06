@@ -12,6 +12,7 @@ This closes the gap between "learning" and "implementing".
 """
 import os
 import json, os, sys, time, datetime, subprocess, re
+from pathlib import Path
 
 T = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "scripts", "training")
 BUFFER = os.path.join(T, "online_buffer.jsonl")
@@ -49,24 +50,21 @@ def experiment_lora_rank():
 
 def experiment_predict_world():
     """Insight: 'project future states'. Add a prediction to the world model."""
-    wm = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "memory", "world_model.jsonl")
-    if not os.path.exists(wm):
-        return {"action": "world-model prediction", "result": "no world model yet"}
-    lines = open(wm, encoding="utf-8").readlines()
-    if len(lines) < 3:
+    import world_model
+    edges = world_model._load()
+    if len(edges) < 3:
         return {"action": "world-model prediction", "result": "not enough edges to predict from"}
-    # predict: based on the last cause, what will happen next?
-    last = json.loads(lines[-1])
-    prediction = {
-        "ts": datetime.datetime.now().isoformat(),
-        "type": "prediction",
-        "predicted": f"If '{last.get('cause','')[:80]}' recurs, expect: {last.get('effect','')[:80]}",
-        "confidence": 0.6,  # based on pattern recurrence
-    }
-    with open(wm, "a", encoding="utf-8") as f:
-        f.write(json.dumps(prediction, ensure_ascii=False) + "\n")
-    return {"action": "world-model: added first PREDICTION edge (future-state projection)",
-            "result": prediction["predicted"][:100],
+    last = edges[-1]
+    cause = last.get("cause", "")
+    effect = last.get("effect", "")
+    world_model.observe(
+        f"If '{cause[:80]}' recurs",
+        f"expect: {effect[:80]}",
+        kind="prediction",
+        confidence=0.6,
+    )
+    return {"action": "world-model: added PREDICTION edge (future-state projection)",
+            "result": f"If '{cause[:80]}' recurs, expect {effect[:80]}",
             "measurable": True}
 
 def experiment_tune_buffer():
