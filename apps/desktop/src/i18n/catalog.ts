@@ -7,6 +7,7 @@ import { en } from './en'
 import { es } from './es'
 import { ja } from './ja'
 import { pt } from './pt'
+import { ro } from './ro'
 import { bs } from './bs'
 import { fr } from './fr'
 import { it } from './it'
@@ -48,5 +49,6 @@ export const TRANSLATIONS: Record<Locale, Translations> = {
   vi,
   eo,
   pl,
-  nl
+  nl,
+  ro
 }
