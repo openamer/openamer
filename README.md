@@ -384,7 +384,18 @@ openamer update -y           # Skip prompts
 
 openamer update --branch main  # Update against main
 
+openamer update --auto-kill   # Windows: auto-terminate blocking background daemons
+
 ```
+
+On Windows, `openamer update` refuses to run while other processes hold the
+venv's file locks (a running gateway, `session_to_brain` watchers, stray
+venv-python daemons) and prints a "close these processes" message. `--auto-kill`
+terminates those standalone daemons automatically and proceeds — watchdog cron
+jobs restart them afterwards. It deliberately leaves the Desktop app's own
+supervised backend alone (killing it is futile: the app respawns it within
+seconds), so if the Desktop app itself is the blocker, close it first or use the
+in-app update button.
 
 
 
