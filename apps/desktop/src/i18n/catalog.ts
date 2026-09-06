@@ -8,6 +8,7 @@ import { nl } from './nl'
 import { pl } from './pl'
 import { en } from './en'
 import { es } from './es'
+import { fi } from './fi'
 import { ja } from './ja'
 import { pt } from './pt'
 import { ro } from './ro'
@@ -62,5 +63,6 @@ export const TRANSLATIONS: Record<Locale, Translations> = {
   sv,
   hu,
   bg,
-  da
+  da,
+  fi
 }

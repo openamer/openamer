@@ -190,6 +190,12 @@ export const LOCALE_OPTIONS = [
     name: 'Dansk',
     englishName: 'Danish',
     configValue: 'da'
+  },
+  {
+    id: 'fi',
+    name: 'Suomi',
+    englishName: 'Finnish',
+    configValue: 'fi'
   }
 ] as const satisfies readonly { configValue: string; englishName: string; id: Locale; name: string }[]
 
@@ -378,7 +384,12 @@ const LOCALE_ALIASES: Record<string, Locale> = {
   'da-dk': 'da',
   da_dk: 'da',
   danish: 'da',
-  dansk: 'da'
+  dansk: 'da',
+  fi: 'fi',
+  'fi-fi': 'fi',
+  fi_fi: 'fi',
+  finnish: 'fi',
+  suomi: 'fi'
 }
 
 export function isLocale(value: unknown): value is Locale {
