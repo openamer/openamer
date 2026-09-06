@@ -5,6 +5,7 @@ import { de } from './de'
 import { el } from './el'
 import { eo } from './eo'
 import { nl } from './nl'
+import { no } from './no'
 import { pl } from './pl'
 import { en } from './en'
 import { es } from './es'
@@ -66,5 +67,6 @@ export const TRANSLATIONS: Record<Locale, Translations> = {
   bg,
   da,
   fi,
-  sk
+  sk,
+  no
 }
