@@ -39,7 +39,7 @@ darwin = importlib.util.module_from_spec(_spec)
 sys.modules["darwin_engine"] = darwin
 _spec.loader.exec_module(darwin)
 
-HOME = Path(os.environ.get("OPENAMER_HOME") or str(Path.home() / "AppData" / "Local" / "openamer-laptop"))
+HOME = Path(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")))
 SWARM_FILE = HOME / "darwin" / "swarm.json"
 TASKS_FILE = HOME / "darwin" / "swarm-tasks.json"
 

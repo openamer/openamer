@@ -19,12 +19,13 @@ from __future__ import annotations
 import os
 
 import json
+import os
 import re
 import sqlite3
 from datetime import datetime, timezone
 from pathlib import Path
 
-HOME = Path(os.environ.get("OPENAMER_HOME") or str(Path.home() / "AppData" / "Local" / "openamer-laptop"))
+HOME = Path(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")))
 DARWIN_DIR = HOME / "darwin"
 MEMORY_POP = DARWIN_DIR / "memory-population.json"
 LESSONS_DB = HOME / "cross_session_lessons.db"

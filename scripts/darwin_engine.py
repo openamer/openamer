@@ -33,12 +33,13 @@ import os
 import argparse
 import json
 import random
+import os
 import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-HOME = Path(os.environ.get("OPENAMER_HOME") or str(Path.home() / "AppData" / "Local" / "openamer-laptop"))
+HOME = Path(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")))
 SKILLS_DIR = HOME / "skills"
 REPORTS_DIR = Path("reports")
 DARWIN_DIR = HOME / "darwin"
