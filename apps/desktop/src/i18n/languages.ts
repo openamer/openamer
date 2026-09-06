@@ -142,6 +142,12 @@ export const LOCALE_OPTIONS = [
     name: 'Polski',
     englishName: 'Polish',
     configValue: 'pl'
+  },
+  {
+    id: 'nl',
+    name: 'Nederlands',
+    englishName: 'Dutch',
+    configValue: 'nl'
   }
 ] as const satisfies readonly { configValue: string; englishName: string; id: Locale; name: string }[]
 
@@ -287,7 +293,15 @@ const LOCALE_ALIASES: Record<string, Locale> = {
   'pl-pl': 'pl',
   pl_pl: 'pl',
   polish: 'pl',
-  polski: 'pl'
+  polski: 'pl',
+  nl: 'nl',
+  'nl-nl': 'nl',
+  nl_nl: 'nl',
+  'nl-be': 'nl',
+  nl_be: 'nl',
+  dutch: 'nl',
+  nederlands: 'nl',
+  flemish: 'nl'
 }
 
 export function isLocale(value: unknown): value is Locale {
