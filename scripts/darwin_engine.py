@@ -1731,8 +1731,10 @@ def main() -> int:
     args = ap.parse_args()
 
     if not SKILLS_DIR.exists():
-        print(f"❌ Skills directory not found: {SKILLS_DIR}")
-        return 1
+        # Fresh install: create the skills dir instead of refusing — every
+        # GitHub install must work out of the box (portability rule).
+        SKILLS_DIR.mkdir(parents=True, exist_ok=True)
+        print(f"📁 Fresh install: created skills directory {SKILLS_DIR}")
 
     changed = False
 
