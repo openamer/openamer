@@ -1,7 +1,7 @@
 {
-  "updated": "2026-09-06T03:00:40+00:00",
-  "population": 361,
-  "avg_score": 45.1,
+  "updated": "2026-09-07T03:00:39+00:00",
+  "population": 382,
+  "avg_score": 44.4,
   "fittest": [
     {
       "name": "openamer-desktop-dev",
@@ -161,9 +161,24 @@
   },
   "trends": [
     {
-      "source": "News",
-      "title": "Rogue Agents No Longer A Theory. World Must Regulate Agentic AI Now - ndtv.com",
-      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNbTg1X0E3djllU0IzTFpRd19ibXNwVENkbWw4YmkzR09zUV9IWDluVVFlU0dUMnRuVjNubTh0M05Ud3lLU1N0UFM3UHRfdDJsa1k3YW9KOGtDX3A3SEcyMHFPbjZScHlCV3ZYMHhPQ21pMHVzdjNDdHJ1MGltcHVWU2NBQm1GTjVfY2ROOWltQ2s5bnZub0ZvVlJ6SWVxOHNETEpnODNPSdIBrwFBVV95cUxOOWRuU21pZmV4cHktMTdqaXEzemk4YWRBbTdVZHlURjFNSVc1YVFGdmJWUEpuSjBkMS1BdmZtR0RRWXFhRGtnM050b0hHRkl3ejZYSEJNdENNaktMVVFKaVkyMTRReE1BUUtUZFVfQTV6V3hnTGVKb1B6dFZ6MDJEZXRxcGxFV0J2Smw0MklianpvWjlqLXhRdU9mWXBWLWtNNDRtUnJHdDRBSzRpdDZJ?oc=5"
+      "source": "arXiv",
+      "title": "AI Agents: Evolution, Architecture, and Real-World Applications",
+      "url": "http://arxiv.org/abs/2510.27051v1"
+    },
+    {
+      "source": "arXiv",
+      "title": "ASTELD: A Six-Axis Classification Framework for Autonomous AI Agents - Design, Evaluation, and an OpenClaw Case Study",
+      "url": "http://arxiv.org/abs/2603.05031v1"
+    },
+    {
+      "source": "arXiv",
+      "title": "Hardware Keystores for AI Agent Signing Workflows: A Zero-Trust MCP Enforcement Architecture",
+      "url": "http://arxiv.org/abs/2508.02866v3"
+    },
+    {
+      "source": "arXiv",
+      "title": "ANX: Protocol-First Design for AI Agent Interaction with a Supporting 3EX Decoupled Architecture",
+      "url": "http://arxiv.org/abs/2502.18359v1"
     },
     {
       "source": "News",
@@ -172,18 +187,8 @@
     },
     {
       "source": "News",
-      "title": "How Agentic AI Can Supplement K\u201312 IT Help Desks - EdTech Magazine",
-      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxQdWpUaEpLZVJhaHpvWXh2cG9TWm9ydW1CWGVjem9LR1NkcGs4bDdLWDd2RzkxNDU5U25vNnpJTklCMlFhNC0wcGhPV3hSVDAzcXB0RmFmRnZrNldaSUxWcFdhMEpoZ0hjOEVPQkgyOVVSbnEyaGJMV3BzcjhQdDJBTmVNb1o4czBvOFE?oc=5"
-    },
-    {
-      "source": "News",
-      "title": "CrowdStrike introduces agentic identity provider for AI agents - MSSP Alert",
-      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNaGZkSVE1MHR1LUNuQUdwN2xhdVJQRFZ2NDh2bVNEWWp2ckU1dWU4SUJtWGxYdmNjTEJIVWZDMWM5SG5MM3k3M0IwdHBRY000YWpZMkI1S2ZkYm5hcl9ZYXBEZUhzYThGQ2VTOHl6R3RkcVNMcHRpNXIyU0hpdzBpVEEtRVFLZEI3bnU2MmQ1R3ZqdDJTcGdJVUdn?oc=5"
-    },
-    {
-      "source": "News",
-      "title": "The three layers of agentic AI security: A defense-in-depth architecture for autonomous agents - VentureBeat",
-      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQR0RYS2dqbGk1cU5uOVk0eE56SWg5ZFZnbEtjSzduV1BYWk9wWU9XRGUwVzFqQkhQUWthTlBZS1h5Z0lqWXQ5Q2x3SlVUdktTbWxpVEJhSlNJTlpIekNIcENxajFTNDNoVFVjbGdFLTA4YTZBWlR6Vy1iZXFRY3VEcUlldHJvLVF2RjB1dm5YLWMzcEhzMklvSGtOMEVfTmVnaGR5VFNIeUg5bXpILTJBeE1BVVFqQWk0QjIwSnhQVExVNnZm?oc=5"
+      "title": "\"Agentic AI is about to recreate the identity sprawl problem a hundredfold\" - calcalistech.com",
+      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9MSEVOUWZJVV9wQjBFRlhjTnNwRW9taE11Yk5ZaVN6ekpDQzlJVVlTLVYwWVRYUWZKYjZGXzhCc2MtZjJIVmx1WUE3ejBqTGVSc1RxYWxlUm1XdzNEQUJnUl8yQ3FqbTQ?oc=5"
     },
     {
       "source": "News",
@@ -192,17 +197,12 @@
     },
     {
       "source": "News",
-      "title": "Managing the cyber risk of agentic AI - ncsc.gov.uk",
-      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5UZ2hPZ2poYUtzNVRSbzFYX2dzNGpqSGxOVGtickdodjc5ZVBTZ3poYlVYUkhUclVEckFBMXFfeDNwSGIxeWNnbElGTFpiRGZiRFByN2dhNUt5ejlUb0RKYmo0aFJRc0VONU9FVV85aTd4V1lXY1E?oc=5"
-    },
-    {
-      "source": "News",
-      "title": "The agentic organization: Contours of the next paradigm for the AI era - McKinsey & Company",
-      "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxORkNhWUJRcExzeER3VlFfZ095c2F0c2F6LXlXczFIOFhuUUdFZXdTcDFwQ0poamtFWWIyZ3lEam95bVNYSWNvRmkxUUotVWUtMkF2UmdaZ04wbjVCOGJiS3pTN2xyZ0k4SkxFaXJrZ3NjbnRCLWlqTDJWSVd3UWZvNHgzUTdkQy02T1pPSWhRRjc3WDhkeFZidkFfdExOMnNFMjVqZmlfLUJtRW0tWUc1UGNIdmItNWpGUnd1UnZIOG8tNDhDT2tLTjF2WlRXRnpPWVJ4aEp4QkhGUHpI?oc=5"
+      "title": "First ever Finnish AI Agent payment: Mastercard and Nordea completes live agentic transaction - Nordea",
+      "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQbWZlV1JRdUJsYTY4bWpDSndmTjVMUm1tMTdDS1JGU3Z4MXBwbUI1ellrS2JiQkZsTnAwbzY3Y1E5RlNvWDBjRVJqX21iU2pkaTdiSjNoLVUyLUN4Ri12eHctSlEwUEo0WWp0Szk1TGFVLUlHTEZkQXRWdEItdXBvelQ1aThLT254cWdPeU45MERBdXlHMzJxSGZGZXY0Y2V2SDAwaUhFczNINm9jQ0thOHhUbC1wSmVxR2kxcGpKaTQ?oc=5"
     }
   ],
-  "population_engine": 53,
-  "species": 21,
+  "population_engine": 59,
+  "species": 25,
   "trials": 2,
-  "harvested": 52
+  "harvested": 63
 }
