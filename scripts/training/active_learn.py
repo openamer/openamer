@@ -112,6 +112,10 @@ def world_explore():
         "llama.cpp", "llama-server", "localhost:8080", "WinError 10061",
         "Verbindung konnte nicht hergestellt", "Nicht verfügbar",
         "kein API-Key gefunden", "OPENROUTER_API_KEY", "OPENAI_API_KEY",
+        # autopilot/self-rewriter trial status lines: waiting trials are
+        # progress reports, not errors (64 false edges in one night)
+        "[autopilot]", "self_rewriter", "trial fb69", "trial self_rewriter",
+        "Trials:", "wartend", "wartet",
     )
     try:
         # scan recent cron outputs for errors

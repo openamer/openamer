@@ -84,14 +84,52 @@ def _fetch_page(url, max_chars=6000):
 
 
 def _search_urls(query, k=3):
-    """Return real result URLs for a query (Bing ck/a redirect decode)."""
+    """Return real result URLs for a query.
+
+    PRIMARY: via the CDP browser (:9222, real Chrome session) — Bing serves
+    anonymous crawlers regional garbage (Chinese CSDN for a LoRA query),
+    while the browser session gets relevant results.
+    FALLBACK: direct HTTP with ck/a redirect decode.
+    """
     try:
         import html as _html
         q = urllib.parse.quote(query)
+        # PRIMARY: navigate the CDP browser and read result links from the DOM
+        try:
+            req = urllib.request.Request(LIVE + "/execute_tool",
+                data=json.dumps({"tool": "browser_action",
+                                 "params": {"action": "navigate",
+                                            "url_or_selector": f"https://www.bing.com/search?q={q}"}}).encode(),
+                headers={"Content-Type": "application/json"})
+            urllib.request.urlopen(req, timeout=30)
+            time.sleep(3)  # let the page render
+            req = urllib.request.Request(LIVE + "/execute_tool",
+                data=json.dumps({"tool": "browser_action", "params": {"action": "read"}}).encode(),
+                headers={"Content-Type": "application/json"})
+            r = json.load(urllib.request.urlopen(req, timeout=30))
+            content = r.get("result", {}).get("content", "")
+            # Bing renders result URLs as "domain › path › subpath" sequences
+            # next to each result. Reconstruct full URLs from that pattern.
+            urls = []
+            seen = set()
+            # find "https://domain › path" patterns and rebuild them
+            for m in re.finditer(r"(https?://[a-zA-Z0-9.\-]+\.[a-z]{2,})((?:\s*›\s*[^\s›│]+)*)", content):
+                host = m.group(1)
+                path = re.sub(r"\s*›\s*", "/", m.group(2)).strip()
+                u = host + path if path else host + "/"
+                u = u.rstrip("/.,;")
+                if u not in seen and len(u) > 15:
+                    seen.add(u)
+                    urls.append(u)
+            if urls:
+                return urls[:k]
+        except Exception:
+            pass
+        # FALLBACK: direct HTTP with ck/a redirect decode
         req = urllib.request.Request(f"https://www.bing.com/search?q={q}",
                                      headers={"User-Agent": "Mozilla/5.0"})
         raw = urllib.request.urlopen(req, timeout=15).read().decode("utf-8", "replace")
-        raw = _html.unescape(raw)  # &amp; -> &
+        raw = _html.unescape(raw)
         urls = []
         seen = set()
         for m in re.finditer(r"href=\"(https://www\.bing\.com/ck/a\?[^\"]+)\"", raw):
@@ -129,13 +167,19 @@ def deep_learn(query, k=2):
             "community portal", "recent changes", "personal tools", "contents",
             "move to sidebar", "toggle", "navigation", "main menu", "appearance",
             "special pages", "random article", "about wikipedia", "contact us",
-            "cookie", "privacy", "terms of use", "jump to", "skip to")
+            "cookie", "privacy", "terms of use", "jump to", "skip to",
+            # site chrome / docs navigation (huggingface etc.)
+            "alle docs anzeigen", "docs anzeigen", "tools", "developer tools",
+            "hub python bibliothek", "alle docs", "bersicht", "übersicht")
     for t in texts:
         for m in re.finditer(r"([A-Z][^.!?]{40,250}[.!?])", t):
             s = m.group(1).strip()
             low = s.lower()
             if any(n in low for n in _NAV):
                 continue  # skip navigation/boilerplate
+            # skip sentences that are mostly link-lists (many "›" separators)
+            if s.count("›") > 0 or s.count("&amp;") > 1:
+                continue
             return s
     # SECONDARY: distill via the bigger 4B model via Ollama (background task,
     # speed doesn't matter here — quality does). Strips <think> traces.
