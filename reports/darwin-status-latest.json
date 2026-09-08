@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-07T03:00:39+00:00",
+  "updated": "2026-09-08T03:00:36+00:00",
   "population": 382,
   "avg_score": 44.4,
   "fittest": [
@@ -161,34 +161,19 @@
   },
   "trends": [
     {
-      "source": "arXiv",
-      "title": "AI Agents: Evolution, Architecture, and Real-World Applications",
-      "url": "http://arxiv.org/abs/2510.27051v1"
-    },
-    {
-      "source": "arXiv",
-      "title": "ASTELD: A Six-Axis Classification Framework for Autonomous AI Agents - Design, Evaluation, and an OpenClaw Case Study",
-      "url": "http://arxiv.org/abs/2603.05031v1"
-    },
-    {
-      "source": "arXiv",
-      "title": "Hardware Keystores for AI Agent Signing Workflows: A Zero-Trust MCP Enforcement Architecture",
-      "url": "http://arxiv.org/abs/2508.02866v3"
-    },
-    {
-      "source": "arXiv",
-      "title": "ANX: Protocol-First Design for AI Agent Interaction with a Supporting 3EX Decoupled Architecture",
-      "url": "http://arxiv.org/abs/2502.18359v1"
+      "source": "News",
+      "title": "New agentic AI platform sounds death knell for manual presentation tools - Yahoo Finance Singapore",
+      "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNRDJiZTl6eWp2QS04YlJ5b0RBUFAwZzl0VTRDcldINUtkVnNETlBOSXZQaGxpLXFqaDJ2WV9pbnE1RlN4M25rMHFKZFhFcEgwT1hoT0ZBWjlhM1lTM3FMRFlrdkFRVWJ1Z0tFR1dJZmJpSFM5WHNNMm5UYnhOcmpKdi12b1ZsbkF6?oc=5"
     },
     {
       "source": "News",
-      "title": "CrowdStrike Announces Agentic Identity Provider - CrowdStrike",
-      "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOejEzb1Rhc1MxM3RHS1F3eHlEYUZ4cFA3eTMzYW4yd0lrbVp5Z1BKVFlIUU5PVHBaNFZIOExHV2oyLUpVZXpMZ3I1QVozaUxrYXRnNzVHYVNBZkstMVRIMUZjUFJQbmRDOEQxd0lmcFp5QlJqRF9BTTBacC02OW1nclh1MUJWNVAzcGUwZjdJODY?oc=5"
+      "title": "Agentic AI Could Force FIs To Rethink KYC, GlobalData Says - CU Today",
+      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxOczJnT1JJVDJPYlVPNXF0OFB2R01mSHdxU0FhZ0pOOWVRU2Q1b21meElpN192MzhnNkRaMzlSaFVKZnFEUlpqQlVGZmpLeDdTLTd1QUprU0kyZWRFVWM5MU9JejY3cGlpQ0RRVHhBSWR5RDdnMWZGXzdKNUduZFBhVXpMRXhJdFp2R05SSDVWSUF3NHcxazNCZ2Jn?oc=5"
     },
     {
       "source": "News",
-      "title": "\"Agentic AI is about to recreate the identity sprawl problem a hundredfold\" - calcalistech.com",
-      "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9MSEVOUWZJVV9wQjBFRlhjTnNwRW9taE11Yk5ZaVN6ekpDQzlJVVlTLVYwWVRYUWZKYjZGXzhCc2MtZjJIVmx1WUE3ejBqTGVSc1RxYWxlUm1XdzNEQUJnUl8yQ3FqbTQ?oc=5"
+      "title": "Why Microcooling Will Be a Critical Enabler of Agentic AI - EE Times",
+      "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxQVHFoenkyRDRTdDc4UmVMZ3lSOEYyVnEtM2xReF9nQmY5TERZX3ZHTENCLXlVYlc0ck5TTEh2ak5OYXFRclFwTEVHcFc2ZVFvV095c05EcFRaZjI3bEl0SzdTUnhkZmx0RWJuREE4dWpJamo5alBWbzZYQ3hvZ1ItRTBiejhKT3h4OWc?oc=5"
     },
     {
       "source": "News",
@@ -199,10 +184,25 @@
       "source": "News",
       "title": "First ever Finnish AI Agent payment: Mastercard and Nordea completes live agentic transaction - Nordea",
       "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxQbWZlV1JRdUJsYTY4bWpDSndmTjVMUm1tMTdDS1JGU3Z4MXBwbUI1ellrS2JiQkZsTnAwbzY3Y1E5RlNvWDBjRVJqX21iU2pkaTdiSjNoLVUyLUN4Ri12eHctSlEwUEo0WWp0Szk1TGFVLUlHTEZkQXRWdEItdXBvelQ1aThLT254cWdPeU45MERBdXlHMzJxSGZGZXY0Y2V2SDAwaUhFczNINm9jQ0thOHhUbC1wSmVxR2kxcGpKaTQ?oc=5"
+    },
+    {
+      "source": "News",
+      "title": "Dubai is training 14,000 companies to run AI agents, on a two-year clock - The Next Web",
+      "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxPSXZHZlhuQXZxRTBxUXVZUVhNZFZCNE1XalF5RUI2MlQ0SkIwQ0M4SnBJWkh3SGpJSHVHYng5T3BYQ21fd3FudXVmSFRPMHFqMXNyOGNtV043NUxKMWNNWkUwVTZmdmVhMFZhNU5qSkp6RzRuc3N1T2d1SHJNN1dPeVhINk4?oc=5"
+    },
+    {
+      "source": "News",
+      "title": "Paid: Reshaping SaaS Monetisation for Agentic AI Models - FinTech Magazine",
+      "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQdlpSV3gteHpOcUJGSW91eVBnbjlLdkxacDdwNy10Z040d3FuVm1Xbjg4U2tpaDNUamVMS1Brczd1OEsxbk10akhVY1NxNVdJUVBsYmtLclczSmRPNHVEd1RlTVBycnQybTUwUm1UaUU0RXNST01COHZRd21oUnB4NW1MM2NOcEdfTGt3X3ppb2k?oc=5"
+    },
+    {
+      "source": "News",
+      "title": "CrowdStrike introduces agentic identity provider for AI agents - MSSP Alert",
+      "url": "https://news.google.com/rss/articles/CBMimgFBVV95cUxNaGZkSVE1MHR1LUNuQUdwN2xhdVJQRFZ2NDh2bVNEWWp2ckU1dWU4SUJtWGxYdmNjTEJIVWZDMWM5SG5MM3k3M0IwdHBRY000YWpZMkI1S2ZkYm5hcl9ZYXBEZUhzYThGQ2VTOHl6R3RkcVNMcHRpNXIyU0hpdzBpVEEtRVFLZEI3bnU2MmQ1R3ZqdDJTcGdJVUdn?oc=5"
     }
   ],
-  "population_engine": 59,
-  "species": 25,
+  "population_engine": 60,
+  "species": 20,
   "trials": 2,
-  "harvested": 63
+  "harvested": 64
 }
