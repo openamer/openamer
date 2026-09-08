@@ -1,6 +1,6 @@
 {
   "organism": "OpenAmer",
-  "written_at": "2026-09-08T09:32:34.434193+00:00",
+  "written_at": "2026-09-08T21:33:36.192861+00:00",
   "identity": {
     "name": "openamer_agent",
     "voice": "https://x.com/openamer_agent",
@@ -140,7 +140,7 @@
       "name": "Auto Code Review (60m)",
       "schedule": "every 60m",
       "script": "cron-auto-code-review.py",
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "Resource Monitor Alert",
@@ -272,7 +272,7 @@
       "name": "Self-Hosted Health Check (5min)",
       "schedule": "*/5 * * * *",
       "script": "self-hosted-cron.py",
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "Social-Outreach-Mega",
@@ -480,7 +480,7 @@
     },
     {
       "name": "active-learning-loop",
-      "schedule": "*/10 * * * *",
+      "schedule": "*/7 * * * *",
       "script": null,
       "last_status": "ok"
     },
@@ -492,7 +492,7 @@
     },
     {
       "name": "internet-learner-247",
-      "schedule": "*/10 * * * *",
+      "schedule": "every 5m",
       "script": null,
       "last_status": "ok"
     },
