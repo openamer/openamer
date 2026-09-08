@@ -164,10 +164,24 @@ def stats():
 
 
 def migrate():
-    """Rewrite the store on disk to the current schema (idempotent)."""
+    """Rewrite the store on disk to the current schema (idempotent).
+
+    Guard: refuses to write an EMPTY store over a non-empty file — that is
+    always a bug (empty read, wrong path, concurrent truncation), never an
+    intent. A 599-edge world model must never silently become 0.
+    """
     if not os.path.exists(WM):
         return {"migrated": 0, "schema_version": SCHEMA_VERSION}
     edges = _load()  # _load already migrates in-memory
+    existing = sum(1 for _ in open(WM, encoding="utf-8"))
+    if edges and existing > 0 and len(edges) < existing // 2:
+        return {"error": f"refusing to shrink {existing} -> {len(edges)} edges "
+                         f"(would lose {existing - len(edges)} memories)",
+                "schema_version": SCHEMA_VERSION}
+    if not edges and existing > 0:
+        return {"error": f"refusing to truncate {existing} edges to 0 "
+                         f"(empty read = bug, not intent)",
+                "schema_version": SCHEMA_VERSION}
     with _lock:
         with open(WM, "w", encoding="utf-8") as f:
             for e in edges:
