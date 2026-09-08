@@ -337,8 +337,45 @@ def cycle_f_multi_domain():
     add_to_buffer(f"Multi-domain learning ({q}): What should an intelligent agent know?", insight)
     return f"domain-learn: {insight[:80]}"
 
+def cycle_g_security():
+    """Learn from AI security research — adversarial attacks, guardrails, safety. (deep-reads)"""
+    queries = [
+        "LLM prompt injection defense techniques 2026",
+        "AI agent security vulnerabilities guardrails",
+        "jailbreak prevention large language models",
+    ]
+    q = random.choice(queries)
+    raw = search(q)
+    insight = extract_insight(q, raw) if raw else ""
+    if not insight:
+        insight = deep_learn(q)
+    if not insight:
+        return "no insight"
+    add_to_buffer(f"Security learning ({q}): What should a safe agent know?", insight)
+    return f"security-learn: {insight[:80]}"
+
+
+def cycle_h_efficiency():
+    """Learn from efficiency research — energy, quantization, small models. (deep-reads)"""
+    queries = [
+        "small language model energy efficient inference",
+        "quantization techniques GGUF int4 int8 comparison",
+        "edge AI deployment low power LLM",
+    ]
+    q = random.choice(queries)
+    raw = search(q)
+    insight = extract_insight(q, raw) if raw else ""
+    if not insight:
+        insight = deep_learn(q)
+    if not insight:
+        return "no insight"
+    add_to_buffer(f"Efficiency learning ({q}): How do agents run leaner?", insight)
+    return f"efficiency-learn: {insight[:80]}"
+
+
 CYCLES = [cycle_a_technews, cycle_b_papers, cycle_c_github,
-          cycle_d_docs, cycle_e_competitors, cycle_f_multi_domain]
+          cycle_d_docs, cycle_e_competitors, cycle_f_multi_domain,
+          cycle_g_security, cycle_h_efficiency]
 
 def next_cycle():
     n = 0
@@ -372,9 +409,10 @@ def run_loop(interval=600):
         time.sleep(interval)
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1 and sys.argv[1] == "loop":
+    mode = sys.argv[1].lstrip("-") if len(sys.argv) > 1 else ""
+    if mode == "loop":
         run_loop(int(sys.argv[2]) if len(sys.argv) > 2 else 600)
-    elif len(sys.argv) > 1 and sys.argv[1] == "once":
+    elif mode == "once":
         run_one()
     else:
         print("=== RUNNING ALL 5 SOURCES ONCE (test) ===")
