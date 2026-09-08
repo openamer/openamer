@@ -39,6 +39,8 @@ COMPLEX_WORDS = frozenset([
     "architecture", "design", "wissenschaftlich", "beweis", "herleiten",
     "komplex", "mehrschrittig", "vergleiche", "differences", "implications",
     "alternatives", "scalability", "why", "because", "describe", "evaluate",
+    # deep-learning distillation prompts (internet_learner deep_learn)
+    "distill", "insight", "technical insight",
 ])
 
 def is_complex(text):

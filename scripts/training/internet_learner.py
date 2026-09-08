@@ -118,6 +118,8 @@ def _search_urls(query, k=3):
                 path = re.sub(r"\s*›\s*", "/", m.group(2)).strip()
                 u = host + path if path else host + "/"
                 u = u.rstrip("/.,;")
+                if "…" in u or u.endswith("."):
+                    continue  # truncated by Bing's display — unfetchable
                 if u not in seen and len(u) > 15:
                     seen.add(u)
                     urls.append(u)
@@ -181,24 +183,44 @@ def deep_learn(query, k=2):
             if s.count("›") > 0 or s.count("&amp;") > 1:
                 continue
             return s
-    # SECONDARY: distill via the bigger 4B model via Ollama (background task,
-    # speed doesn't matter here — quality does). Strips <think> traces.
+    # SECONDARY: deep distillation via smart_route — the free cloud chain
+    # (nemotron-550b, minimax-m2.7, glm-5.2 ...) gives ASI-grade extraction
+    # at 0 EUR. Falls back to local 4B via Ollama if cloud fails.
     try:
-        req = urllib.request.Request("http://localhost:11434/api/generate",
-            data=json.dumps({"model": "qwen3.5:4b-q4_K_M",
-                "prompt": f"Summarize the key technical insight from this in ONE sentence "
-                          f"(no preamble, just the sentence):\n\n{combined}",
-                "stream": False}).encode(),
+        req = urllib.request.Request(LIVE + "/v1/chat/completions",
+            data=json.dumps({"model": "mini-openamer", "max_tokens": 900,
+                "use_tools": False,
+                "messages": [
+                    {"role": "user", "content":
+                     f"{combined}\n\nDistill the ONE most valuable technical insight "
+                     f"from this for an autonomous AI agent. One sentence, no preamble. "
+                     f"Start with [INSIGHT]"}
+                ]}).encode(),
             headers={"Content-Type": "application/json"})
-        r = json.load(urllib.request.urlopen(req, timeout=600))
-        content = r.get("response", "").strip()
-        if "</think>" in content:
-            content = content.rsplit("</think>", 1)[1].strip()
+        r = json.load(urllib.request.urlopen(req, timeout=300))
+        content = r["choices"][0]["message"]["content"].strip()
+        src = r.get("routed_to", "local")
+        if "[INSIGHT]" in content:
+            content = content.split("[INSIGHT]", 1)[1].strip()
         content = re.sub(r"^\s*\{.*?\}\s*", "", content, flags=re.DOTALL)
         content = re.sub(r"^(Here is|Here's|The key|Sure|Okay|I'll|Let me).*?:\s*", "", content, flags=re.IGNORECASE)
-        return content[:200] if len(content) > 20 else ""
+        return content[:250] if len(content) > 20 else ""
     except Exception:
-        return ""
+        # fallback: local 4B via Ollama (background task, speed irrelevant)
+        try:
+            req = urllib.request.Request("http://localhost:11434/api/generate",
+                data=json.dumps({"model": "qwen3.5:4b-q4_K_M",
+                    "prompt": f"Summarize the key technical insight from this in ONE sentence "
+                              f"(no preamble, just the sentence):\n\n{combined}",
+                    "stream": False}).encode(),
+                headers={"Content-Type": "application/json"})
+            r = json.load(urllib.request.urlopen(req, timeout=600))
+            content = r.get("response", "").strip()
+            if "</think>" in content:
+                content = content.rsplit("</think>", 1)[1].strip()
+            return content[:200] if len(content) > 20 else ""
+        except Exception:
+            return ""
 
 def extract_insight(topic, raw, max_tokens=100):
     """Extract insights directly from search results (titles are the signal).
