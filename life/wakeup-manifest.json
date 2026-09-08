@@ -1,6 +1,6 @@
 {
   "organism": "OpenAmer",
-  "written_at": "2026-09-07T21:31:35.008860+00:00",
+  "written_at": "2026-09-08T09:32:34.434193+00:00",
   "identity": {
     "name": "openamer_agent",
     "voice": "https://x.com/openamer_agent",
@@ -152,7 +152,7 @@
       "name": "Smart Cache Clean",
       "schedule": "every 360m",
       "script": "smart-cache.py",
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "Smart Cache Warm",
@@ -200,7 +200,7 @@
       "name": "Context Compressor - Batch Archive (24h)",
       "schedule": "every 1440m",
       "script": "cron-context-compressor.py",
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "File Organizer - Temp Cleanup (24h)",
@@ -224,7 +224,7 @@
       "name": "Skill Validator - 24h Quality Check",
       "schedule": "every 1440m",
       "script": "cron-skill-validator.py",
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "SSH Health-Check",
@@ -248,7 +248,7 @@
       "name": "code-intelligence-build",
       "schedule": "every 1440m (24h)",
       "script": "cron-code-intelligence.py",
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "Learning Loop Auto Cycle 60min",
@@ -272,7 +272,7 @@
       "name": "Self-Hosted Health Check (5min)",
       "schedule": "*/5 * * * *",
       "script": "self-hosted-cron.py",
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "Social-Outreach-Mega",

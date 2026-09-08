@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-09-07T21:31:35.010859+00:00",
+  "snapshot_at": "2026-09-08T09:32:34.435191+00:00",
   "circadian": {
     "phase": "AWAKE",
     "at": "2026-08-25T13:45:44.298046+00:00",
@@ -21,11 +21,11 @@
   "strategies": {
     "TOKENS": {
       "wins": 16,
-      "tries": 51
+      "tries": 52
     },
     "TEXT": {
       "wins": 3,
-      "tries": 37
+      "tries": 38
     },
     "ROLE": {
       "wins": 0,
@@ -33,13 +33,13 @@
     },
     "CLASSES": {
       "wins": 6,
-      "tries": 37
+      "tries": 38
     }
   },
   "senses": {
-    "time": "2026-09-07T23:03:49",
+    "time": "2026-09-08T11:32:03",
     "pain": {
-      "score": 3,
+      "score": 1,
       "level": "uncomfortable"
     },
     "satiety": {
@@ -48,10 +48,10 @@
       "dead_providers": 1
     },
     "balance": {
-      "state": "wobbly",
+      "state": "steady",
       "jobs": 78,
-      "errors": 5,
-      "error_ratio": 0.064
+      "errors": 3,
+      "error_ratio": 0.038
     },
     "overall": "uneasy"
   },
@@ -200,6 +200,24 @@
       "fragments": 87,
       "insights": [],
       "intentions": []
+    },
+    {
+      "date": "2026-09-08",
+      "replayed_messages": 424,
+      "fragments": 71,
+      "insights": [
+        {
+          "motif": "timeout",
+          "occurrences": 2,
+          "recurrence_days": 0,
+          "nightmare": false
+        }
+      ],
+      "intentions": [
+        {
+          "action": "Review motif 'timeout' if it recurs"
+        }
+      ]
     }
   ]
 }
