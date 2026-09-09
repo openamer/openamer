@@ -16,16 +16,24 @@ def _count_edges():
 
 
 def test_observe_writes_real_embedding():
-    before = _count_edges()
-    e = wm.observe("disk full causes write failures", "free space or rotate logs")
-    assert e["embed_ok"] is True, "embedding must be real"
-    assert len(e["embedding"]) == wm.DIM, "embedding must be 768-dim"
-    assert any(abs(x) > 0.5 for x in e["embedding"]), "embedding must not be a constant"
-    # observe deduplicates exact repeats: first call adds, repeat increments only
-    assert _count_edges() == before + 1
-    e2 = wm.observe("disk full causes write failures", "free space or rotate logs")
-    assert e2.get("dup_count", 1) >= 2, "repeat observe must increment dup_count"
-    assert _count_edges() == before + 1, "repeat observe must NOT append a new edge"
+    # deterministic: unique edge per run — the test must not depend on
+    # (nor pollute) the shared world-model store state
+    import time
+    tag = f"pytest-{time.time()}"
+    cause, effect = f"disk full causes write failures {tag}", f"free space or rotate logs {tag}"
+    try:
+        before = _count_edges()
+        e = wm.observe(cause, effect)
+        assert e["embed_ok"] is True, "embedding must be real"
+        assert len(e["embedding"]) == wm.DIM, "embedding must be 768-dim"
+        assert any(abs(x) > 0.5 for x in e["embedding"]), "embedding must not be a constant"
+        # observe deduplicates exact repeats: first call adds, repeat increments only
+        assert _count_edges() == before + 1
+        e2 = wm.observe(cause, effect)
+        assert e2.get("dup_count", 1) >= 2, "repeat observe must increment dup_count"
+        assert _count_edges() == before + 1, "repeat observe must NOT append a new edge"
+    finally:
+        _remove_edge(cause)
 
 
 def test_recall_finds_semantic_neighbour():
@@ -104,6 +112,21 @@ def test_migrate_rewrites_store():
         wm.WM = old_wm
         import shutil
         shutil.rmtree(tmp, ignore_errors=True)
+
+
+def _remove_edge(cause):
+    """Remove one edge by exact cause (test cleanup — guarded, never truncates)."""
+    try:
+        lines = open(wm.WM, encoding="utf-8").readlines()
+        kept = [l for l in lines if l.strip()
+                and json.loads(l).get("cause") != cause]
+        if len(kept) == len(lines):
+            return  # nothing to remove
+        if not kept:
+            return  # never write an empty store
+        open(wm.WM, "w", encoding="utf-8").writelines(kept)
+    except Exception:
+        pass
 
 
 def _cleanup_test_edges():
