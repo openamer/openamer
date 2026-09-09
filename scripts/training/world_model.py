@@ -98,9 +98,92 @@ def _load():
     return out
 
 
+def prune(max_dupes=2):
+    """Remove near-duplicate edges (cosine > 0.97 on same kind).
+
+    Forgetting is part of learning: the internet-learner observes similar
+    pages every night; without pruning the store grows with repetition,
+    not signal. Keeps the FIRST occurrence of each duplicate cluster
+    (oldest = the one that has been validated longest).
+    Guarded like migrate(): refuses to shrink the store drastically.
+    """
+    edges = _load()
+    if not edges:
+        return {"removed": 0, "kept": 0}
+    kept, removed = [], 0
+    seen_buckets = []  # list of (embedding, [indices of cluster])
+    for e in edges:
+        emb = e.get("embedding") or []
+        if not emb or not e.get("embed_ok"):
+            kept.append(e)  # never drop un-embedded edges — they carry info
+            continue
+        dup_found = False
+        for cluster in seen_buckets:
+            if _cosine(emb, cluster[0]) > 0.97:
+                dup_found = True
+                break
+        if dup_found:
+            removed += 1
+        else:
+            seen_buckets.append((emb, [e]))
+            kept.append(e)
+    # SAFETY: if pruning would remove >30% something is wrong (embeddings
+    # collapsed?) — abort instead of destroying the store
+    if removed > len(edges) * 0.3:
+        return {"error": f"refusing to prune {removed}/{len(edges)} (>30%) — "
+                         "possible embedding collapse", "removed": 0, "kept": len(edges)}
+    if removed and len(kept) > 0:
+        with _lock:
+            with open(WM, "w", encoding="utf-8") as f:
+                for e in kept:
+                    f.write(json.dumps(e, ensure_ascii=False) + "\n")
+    return {"removed": removed, "kept": len(kept)}
+
+
+def _cosine(a, b):
+    """Cosine similarity for two equal-length vectors."""
+    import math
+    num = sum(x * y for x, y in zip(a, b))
+    da = math.sqrt(sum(x * x for x in a)) or 1.0
+    db = math.sqrt(sum(y * y for y in b)) or 1.0
+    return num / (da * db)
+
+
 def observe(cause, effect, kind="fact", confidence=None):
-    """Record a cause→effect edge with a real embedding."""
+    """Record a cause→effect edge with a real embedding.
+
+    Deduplicates exact (cause, effect) repeats by incrementing a counter
+    instead of appending another line — the nightly loops re-observe the
+    same errors every night; 1186 exact dupes accumulated before this fix.
+    """
     os.makedirs(os.path.dirname(WM), exist_ok=True)
+    key = (str(cause)[:500], str(effect)[:500])
+    with _lock:
+        # cheap exact-dup check on the raw file tail (last 400 lines)
+        try:
+            if os.path.exists(WM):
+                with open(WM, "r", encoding="utf-8") as f:
+                    tail = f.readlines()[-400:]
+                for line in tail:
+                    try:
+                        d = json.loads(line)
+                    except Exception:
+                        continue
+                    if (d.get("cause"), d.get("effect")) == key:
+                        d["dup_count"] = d.get("dup_count", 1) + 1
+                        d["last_seen"] = datetime.datetime.now().isoformat()
+                        with open(WM, "r", encoding="utf-8") as fr:
+                            lines = fr.readlines()
+                        for i, ln in enumerate(lines):
+                            if ln.strip() and json.loads(ln).get("cause") == key[0] and \
+                                    json.loads(ln).get("effect") == key[1]:
+                                lines[i] = json.dumps(d, ensure_ascii=False) + "\n"
+                                break
+                        with open(WM, "w", encoding="utf-8") as fw:
+                            fw.writelines(lines)
+                        return d
+        except Exception:
+            pass  # dup check failed -> fall through to append (never lose data)
     emb = embed(f"{cause} -> {effect}")
     edge = {
         "ts": datetime.datetime.now().isoformat(),

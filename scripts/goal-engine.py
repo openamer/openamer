@@ -34,20 +34,12 @@ from pathlib import Path
 # ── Pfade ──────────────────────────────────────────────────────────────────
 
 HOME = Path.home()
-
-def _resolve_path(p: str) -> Path:
-    """Convert MSYS-style paths (/c/...) to Windows paths (C:/...)."""
-    if p.startswith("/") and len(p) > 2 and p[2] == "/":
-        # /c/Users/... → C:/Users/...
-        return Path(f"{p[1].upper()}:{p[2:]}")
-    return Path(p)
-
-_raw_home = os.environ.get("OPENAMER_HOME", "")
-if _raw_home:
-    OPENAMER_HOME = _resolve_path(_raw_home)
-else:
-    OPENAMER_HOME = HOME / "AppData" / "Local" / "openamer"
+OPENAMER_HOME = Path(os.environ.get(
+    "OPENAMER_HOME",
+    HOME / "AppData" / "Local" / "openamer-laptop",
+))
 SCRIPTS_DIR = OPENAMER_HOME / "scripts"
+TRAINING_DIR = OPENAMER_HOME / "scripts" / "training"
 SKILLS_DIR = OPENAMER_HOME / "skills"
 GOAL_ENGINE_DIR = HOME / ".goal-engine"
 MISSIONS_FILE = GOAL_ENGINE_DIR / "missions.json"
@@ -406,12 +398,81 @@ def cmd_next(args):
 
 # ── CLI: --tick ────────────────────────────────────────────────────────────
 
+def _inject_outcome_tasks(missions: list[dict]) -> int:
+    """Import recurring failure patterns from session_outcome as tasks.
+
+    The outcome analyzer produces playbooks (pattern -> concrete fix).
+    Every recurring failure pattern that has no matching pending task yet
+    becomes one automatically — failures fix themselves into the goal
+    engine instead of being re-discovered by hand every night.
+    Returns the number of injected tasks (0 = nothing new).
+    """
+    try:
+        sys.path.insert(0, str(TRAINING_DIR))
+        import session_outcome as so
+    except Exception:
+        return 0
+    try:
+        report = so.analyze()
+    except Exception:
+        return 0
+    injected = 0
+    # collect existing task descriptions to avoid duplicates
+    existing = set()
+    for m in missions:
+        for g in m.get("goals", []):
+            for t in g.get("tasks", []):
+                existing.add(t.get("description", "").lower()[:60])
+    # find a mission to attach to (highest priority active one)
+    act = [m for m in missions if m.get("status") == "active"]
+    if not act:
+        return 0
+    m = sorted(act, key=lambda x: -x.get("priority", 0))[0]
+    # find or create the stability goal
+    stab = next((g for g in m.get("goals", [])
+                 if "stabilität" in g.get("description", "").lower()
+                 or "stability" in g.get("description", "").lower()), None)
+    if not stab:
+        stab = {
+            "id": _new_id("g"),
+            "description": "Stabilität & Selbst-Reparatur (auto)",
+            "priority": 2,
+            "status": "active",
+            "tasks": [],
+        }
+        m.setdefault("goals", []).append(stab)
+    for pat, count in report.get("patterns", {}).items():
+        pb = (report.get("playbooks") or {}).get(pat, {})
+        fix = pb.get("fix") or f"Root-cause failure pattern {pat}"
+        desc = f"[auto/outcome] Fix failure pattern '{pat}' (x{count}): {fix[:120]}"
+        if desc.lower()[:60] in existing:
+            continue
+        stab.setdefault("tasks", []).append({
+            "id": _new_id("t"),
+            "description": desc,
+            "priority": 2,
+            "status": "pending",
+            "created_at": now_iso(),
+        })
+        existing.add(desc.lower()[:60])
+        injected += 1
+    if injected:
+        _save_missions(missions)
+    return injected
+
+
 def cmd_tick(args):
     """Execute the next pending task via subprocess."""
     missions = _load_missions()
     if not missions:
         print("📭 Keine Missionen. --define zuerst.")
         return 1
+
+    # OUTCOME INTEGRATION: recurring failure patterns become tasks
+    n = _inject_outcome_tasks(missions)
+    if n:
+        print(f"📥 {n} Outcome-Task(s) aus Fehler-Mustern injiziert")
+        missions = _load_missions()  # reload with injected tasks
 
     candidates = []
     for m in missions:

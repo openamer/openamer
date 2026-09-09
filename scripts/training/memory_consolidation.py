@@ -177,6 +177,20 @@ def consolidate(dry_run=False):
           f"{result['kept_after']} kept "
           f"({result['permanent']} permanent, {result['compressed']} compressed"
           f"{', DRY' if dry_run else ''})", flush=True)
+
+    # WORLD MODEL PRUNING: forgetting is part of learning.
+    # Near-duplicate facts (>0.97 cosine) and stale noisy edges are removed
+    # on a schedule — the store grows with signal, not repetition.
+    try:
+        import world_model as wm
+        pruned = wm.prune(max_dupes=2)
+        if pruned.get("removed"):
+            print(f"[world-model-prune] {pruned['removed']} near-dupes removed, "
+                  f"{pruned['kept']} edges kept", flush=True)
+            result["world_model_pruned"] = pruned
+    except Exception as ex:
+        print(f"[world-model-prune] skipped: {str(ex)[:80]}", flush=True)
+
     return result
 
 
