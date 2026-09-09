@@ -21,7 +21,11 @@ def test_observe_writes_real_embedding():
     assert e["embed_ok"] is True, "embedding must be real"
     assert len(e["embedding"]) == wm.DIM, "embedding must be 768-dim"
     assert any(abs(x) > 0.5 for x in e["embedding"]), "embedding must not be a constant"
+    # observe deduplicates exact repeats: first call adds, repeat increments only
     assert _count_edges() == before + 1
+    e2 = wm.observe("disk full causes write failures", "free space or rotate logs")
+    assert e2.get("dup_count", 1) >= 2, "repeat observe must increment dup_count"
+    assert _count_edges() == before + 1, "repeat observe must NOT append a new edge"
 
 
 def test_recall_finds_semantic_neighbour():
