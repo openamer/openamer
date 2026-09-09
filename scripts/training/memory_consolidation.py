@@ -191,6 +191,17 @@ def consolidate(dry_run=False):
     except Exception as ex:
         print(f"[world-model-prune] skipped: {str(ex)[:80]}", flush=True)
 
+    # Self-repair: re-embed edges whose embedding failed transiently
+    try:
+        import world_model as wm
+        repaired = wm.repair_store()
+        if repaired.get("repaired"):
+            print(f"[world-model-repair] {repaired['repaired']} edges re-embedded, "
+                  f"{repaired.get('remaining', 0)} still dead", flush=True)
+            result["world_model_repaired"] = repaired
+    except Exception as ex:
+        print(f"[world-model-repair] skipped: {str(ex)[:80]}", flush=True)
+
     return result
 
 
