@@ -40,7 +40,7 @@ if _RAW_OPENAMER_HOME:
     _NORM = re.sub(r"^/([a-zA-Z])/", lambda m: f"{m.group(1).upper()}:\\", _RAW_OPENAMER_HOME)
     OPENAMER_HOME = Path(_NORM).resolve()
 else:
-    OPENAMER_HOME = HOME / "AppData" / "Local" / "openamer"
+    OPENAMER_HOME = HOME / "AppData" / "Local" / "openamer-laptop"
 
 SELF_HOSTED_DIR = HOME / ".self-hosted"
 CONFIG_FILE = SELF_HOSTED_DIR / "config.json"
@@ -51,7 +51,7 @@ OPENAMER_CONFIG = OPENAMER_HOME / "config.yaml"
 # ── Defaults ────────────────────────────────────────────────────────────────
 OLLAMA_URL = "http://localhost:11434"
 OLLAMA_TAGS_URL = f"{OLLAMA_URL}/api/tags"
-DEFAULT_LOCAL_MODEL = "qwen3.5:latest"
+DEFAULT_LOCAL_MODEL = "qwen3.5:4b-q4_K_M"  # 9.7B ('latest') eats 6GB RAM and OOMs the loops; 4b-q4 costs ~3.4GB (verified tag)
 LOCAL_MODEL_FALLBACK = "phi4-mini:latest"
 TINY_MODEL = "qwen3:1.7b"  # CPU-Modus (kleines Modell)
 
@@ -494,7 +494,7 @@ def run_setup(models: list[str] | None = None) -> dict:
 
     # 1. Prüf ob Ollama schon installiert ist
     try:
-        subprocess.run(["ollama", "--version"], capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=10)
+        subprocess.run(["ollama", "--version"], capture_output=True, text=True, timeout=10)
         result["ollama_installed"] = True
         result["ollama_version"] = "present"
     except (FileNotFoundError, subprocess.TimeoutExpired):
@@ -508,7 +508,7 @@ def run_setup(models: list[str] | None = None) -> dict:
             # Versuch winget
             wp = subprocess.run(
                 ["winget", "install", "Ollama.Ollama", "--accept-source-agreements", "--accept-package-agreements"],
-                capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=120,
+                capture_output=True, text=True, timeout=120,
             )
             if wp.returncode == 0:
                 result["ollama_installed"] = True
@@ -555,7 +555,7 @@ def run_setup(models: list[str] | None = None) -> dict:
             try:
                 sp = subprocess.run(
                     ["ollama", "pull", model],
-                    capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=300,
+                    capture_output=True, text=True, timeout=300,
                 )
                 if sp.returncode == 0:
                     result["models_pulled"].append(model)
