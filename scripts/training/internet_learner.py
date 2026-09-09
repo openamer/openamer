@@ -212,7 +212,7 @@ def deep_learn(query, k=2):
                 data=json.dumps({"model": "qwen3.5:4b-q4_K_M",
                     "prompt": f"Summarize the key technical insight from this in ONE sentence "
                               f"(no preamble, just the sentence):\n\n{combined}",
-                    "stream": False}).encode(),
+                    "stream": False, "keep_alive": 0}).encode(),
                 headers={"Content-Type": "application/json"})
             r = json.load(urllib.request.urlopen(req, timeout=600))
             content = r.get("response", "").strip()
