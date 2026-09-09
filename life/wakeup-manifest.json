@@ -1,6 +1,6 @@
 {
   "organism": "OpenAmer",
-  "written_at": "2026-09-08T21:33:36.192861+00:00",
+  "written_at": "2026-09-09T12:09:12.048916+00:00",
   "identity": {
     "name": "openamer_agent",
     "voice": "https://x.com/openamer_agent",
@@ -92,7 +92,7 @@
       "name": "Skills Hub Cache Warmer",
       "schedule": "every 360m",
       "script": "hub_cache_warmer.py",
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "Bugbot - Autonomous Bug Fixer",
@@ -140,7 +140,7 @@
       "name": "Auto Code Review (60m)",
       "schedule": "every 60m",
       "script": "cron-auto-code-review.py",
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "Resource Monitor Alert",
@@ -200,7 +200,7 @@
       "name": "Context Compressor - Batch Archive (24h)",
       "schedule": "every 1440m",
       "script": "cron-context-compressor.py",
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "File Organizer - Temp Cleanup (24h)",
@@ -248,7 +248,7 @@
       "name": "code-intelligence-build",
       "schedule": "every 1440m (24h)",
       "script": "cron-code-intelligence.py",
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "Learning Loop Auto Cycle 60min",
@@ -272,7 +272,7 @@
       "name": "Self-Hosted Health Check (5min)",
       "schedule": "*/5 * * * *",
       "script": "self-hosted-cron.py",
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "Social-Outreach-Mega",
