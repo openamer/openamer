@@ -3,7 +3,7 @@
 # Verified live 2026-09-09: paypal (200), issuehunt (200).
 # Removed: ko-fi (403), buymeacoffee (404) — dead links cost trust.
 
-github: [openamer]
+# github: [openamer]  # Sponsors-Setup nie abgeschlossen (404) — re-add after dashboard setup
 patreon: # Replace with Patreon username
 open_collective: # Replace with OpenCollective username
 ko_fi: # dead 403 — re-add when account exists

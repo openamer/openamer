@@ -26,7 +26,7 @@
 
   <a href="https://github.com/openamer/openamer/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-Apache%202.0-blue?style=for-the-badge" alt="License: Apache 2.0"></a>
 
-  <a href="https://github.com/sponsors/openamer"><img src="https://img.shields.io/badge/Sponsor-OpenAmer-22D3EE?style=for-the-badge&logo=githubsponsors" alt="Sponsor on GitHub"></a>
+  <a href="https://www.paypal.com/ncp/payment/3HMBFYC9CQTMS"><img src="https://img.shields.io/badge/Sponsor-OpenAmer-00457C?style=for-the-badge&logo=paypal" alt="Sponsor OpenAmer via PayPal"></a>
 
 
   <a href="https://www.paypal.com/ncp/payment/3HMBFYC9CQTMS"><img src="https://img.shields.io/badge/PayPal-OpenAmer-00457C?style=for-the-badge&logo=paypal" alt="Donate via PayPal"></a>
