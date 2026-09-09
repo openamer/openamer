@@ -19,7 +19,7 @@ Design principles:
   - Append-only JSONL for durability + an in-memory index for fast recall.
 """
 
-import json, os, math, datetime, urllib.request, threading, pathlib
+import json, os, math, time, datetime, urllib.request, threading, pathlib
 
 _HOME = pathlib.Path(os.environ.get(
     "OPENAMER_HOME", str(pathlib.Path.home() / "AppData" / "Local" / "openamer-laptop")))
@@ -63,16 +63,39 @@ def _migrate_edge(d):
     return d
 
 
-def embed(text):
+def embed(text, retries=2):
     """Return a real 768-dim embedding, or None on failure (never a fake)."""
-    try:
-        req = urllib.request.Request(
-            EMBED_URL,
-            data=json.dumps({"model": EMBED_MODEL, "prompt": text[:2000]}).encode(),
-            headers={"Content-Type": "application/json"})
-        return json.load(urllib.request.urlopen(req, timeout=30))["embedding"]
-    except Exception:
-        return None
+    for attempt in range(retries + 1):
+        try:
+            req = urllib.request.Request(
+                EMBED_URL,
+                data=json.dumps({"model": EMBED_MODEL, "prompt": text[:2000]}).encode(),
+                headers={"Content-Type": "application/json"})
+            return json.load(urllib.request.urlopen(req, timeout=30))["embedding"]
+        except Exception:
+            if attempt < retries:
+                time.sleep(1.5 * (attempt + 1))  # transient embed-server hiccup
+    return None
+
+
+def repair_store():
+    """Re-embed edges whose embedding failed transiently (embed_ok=False)."""
+    edges = _load()
+    bad = [e for e in edges if not e.get("embed_ok")]
+    if not bad:
+        return {"repaired": 0}
+    fixed = 0
+    for e in bad:
+        emb = embed(f"{e.get('cause', '')} -> {e.get('effect', '')}", retries=3)
+        if emb is not None:
+            e["embedding"] = emb
+            e["embed_ok"] = True
+            fixed += 1
+    if fixed:
+        with _lock, open(WM, "w", encoding="utf-8") as f:
+            for e in edges:
+                f.write(json.dumps(e, ensure_ascii=False) + "\n")
+    return {"repaired": fixed, "remaining": len(bad) - fixed}
 
 
 def _cosine(a, b):
