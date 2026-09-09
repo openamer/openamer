@@ -1,8 +1,8 @@
 ---
 name: auto-what-new-agent-architectures
-description: Top 20 GitHub Repositories for AI Agents in 2026 … — 6. Apr. 2026 · Discover the 20 most popular open-source AI agent repositories on GitHub in 2026.
+description: 30 Best AI Agents GitHub Repos (September 2026) — 1. Sept. 2026 · The best open-source AI agent frameworks and tools on GitHub, ranked daily by stars
 auto_generated: true
-created: 2026-09-05
+created: 2026-09-09
 source_insight: "What new agent architectures are trending on GitHub?"
 status: draft
 fitness_score: 0
@@ -13,7 +13,7 @@ wins: 0
 # Auto What New Agent Architectures
 
 ## Trigger
-Use when the agent encounters: Top 20 GitHub Repositories for AI Agents in 2026 … — 6. Apr. 2026 · Discover the 20 most popular ope
+Use when the agent encounters: 30 Best AI Agents GitHub Repos (September 2026) — 1. Sept. 2026 · The best open-source AI agent fram
 
 ## Verification
 - [ ] The skill produces the expected output for its domain

@@ -1,0 +1,93 @@
+{
+  "engine": "Sinfonia v1",
+  "sample_rate": 22050,
+  "duration_sec": 25.59,
+  "movements": [
+    {
+      "title": "Plugin-Auto-Loader · Aug 30 22:55",
+      "started_at": 1788123298.3595257,
+      "mode": "minor",
+      "messages": 4,
+      "tokens": 0,
+      "tool_calls": 1,
+      "errors": 1,
+      "cost": 0.00215896,
+      "chords": [
+        "vii"
+      ],
+      "movement": 1
+    },
+    {
+      "title": "Swarm OS - Autonomous Loop (30m) · Aug 30 23:01",
+      "started_at": 1788123625.3661559,
+      "mode": "minor",
+      "messages": 4,
+      "tokens": 0,
+      "tool_calls": 1,
+      "errors": 1,
+      "cost": 0.000418175,
+      "chords": [
+        "vii"
+      ],
+      "movement": 2
+    },
+    {
+      "title": "Plugin-Auto-Loader · Aug 30 23:25",
+      "started_at": 1788125129.6889749,
+      "mode": "minor",
+      "messages": 4,
+      "tokens": 0,
+      "tool_calls": 1,
+      "errors": 1,
+      "cost": 0.002028835,
+      "chords": [
+        "vii"
+      ],
+      "movement": 3
+    },
+    {
+      "title": "Swarm OS - Autonomous Loop (30m) · Aug 30 23:33",
+      "started_at": 1788125527.8074934,
+      "mode": "major",
+      "messages": 4,
+      "tokens": 0,
+      "tool_calls": 1,
+      "errors": 1,
+      "cost": 0.000461285,
+      "chords": [
+        "vii"
+      ],
+      "movement": 4
+    },
+    {
+      "title": "Darwin Engine - hourly skill evolution · Aug 30 23:33",
+      "started_at": 1788125596.2402668,
+      "mode": "minor",
+      "messages": 4,
+      "tokens": 0,
+      "tool_calls": 1,
+      "errors": 1,
+      "cost": 0.000419655,
+      "chords": [
+        "vii"
+      ],
+      "movement": 5
+    },
+    {
+      "title": "(ohne Titel)",
+      "started_at": 1788126065.7610042,
+      "mode": "major",
+      "messages": 14,
+      "tokens": 0,
+      "tool_calls": 7,
+      "errors": 5,
+      "cost": 0.010927129999999998,
+      "chords": [
+        "vii",
+        "vii"
+      ],
+      "movement": 6
+    }
+  ],
+  "program_notes": "Sinfonia aus 6 Satzen, komponiert aus 34 echten Nachrichten, 0 Tokens, 10 Fehlern. Tonika: A-Moll, Tempo 96. Fehler werden zu Dissonanzen, Erfolge zu Dur-Aufloesungen."
+}

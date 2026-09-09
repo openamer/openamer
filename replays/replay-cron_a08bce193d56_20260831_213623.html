@@ -1,0 +1,65 @@
+<!doctype html><html><head><meta charset="utf-8">
+<title>OpenAmer Replay — Plugin-Auto-Loader · Aug 31 21:36</title>
+<style>
+body{font-family:Segoe UI,sans-serif;margin:0;background:#f8fafc;color:#0f172a}
+header{padding:16px 24px;background:#fff;border-bottom:1px solid #e2e8f0;position:sticky;top:0;z-index:2}
+h1{font-size:18px;margin:0 0 4px} .meta{color:#64748b;font-size:13px}
+.stats span{background:#eef2ff;color:#4338ca;border-radius:6px;padding:2px 8px;margin-right:6px;font-size:12px}
+#timeline{height:34px;background:#fff;border-bottom:1px solid #e2e8f0;position:relative;margin:0}
+.ev{position:absolute;top:8px;width:3px;height:18px;border-radius:2px}
+.ev.user{background:#2563eb}.ev.assistant{background:#059669}
+.ev.tool{background:#d97706}.ev.system{background:#6b7280}
+main{display:flex;gap:0}
+#feed{flex:1;padding:12px 20px 60px;max-width:900px}
+.msg{background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:10px 14px;margin:8px 0}
+.msg.user{border-left:4px solid #2563eb}
+.msg.assistant{border-left:4px solid #059669}
+.msg.tool{border-left:4px solid #d97706}
+.head{font-size:12px;color:#64748b;margin-bottom:4px}
+.fork{float:right;color:#7c3aed;text-decoration:none;font-size:12px}
+.chips{margin:4px 0} .chip{background:#fef3c7;color:#92400e;border-radius:5px;padding:1px 7px;font-size:11px;margin-right:4px;font-family:monospace}
+pre{white-space:pre-wrap;word-break:break-word;font-size:13px;margin:0;font-family:Consolas,monospace}
+#tools{width:260px;padding:16px;border-left:1px solid #e2e8f0;background:#fff}
+.bar{display:flex;align-items:center;gap:6px;font-size:12px;margin:5px 0}
+.bar span{width:130px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar div{height:10px;background:#818cf8;border-radius:4px}
+.lg{color:#fff;border-radius:4px;padding:1px 6px;font-size:11px;margin-right:4px}
+</style></head><body>
+<header><h1>⏪ OpenAmer Replay — Plugin-Auto-Loader · Aug 31 21:36</h1>
+<div class="meta">cron_a08bce193d56_20260831_213623 · 1788204983.3758194 · model z-ai/glm-5.3-flash
+· cost $0.0030 · rewind_count 0</div>
+<div class="stats"><span>4 events</span><span>0 tokens</span>
+<span>1 tool-calls</span><span>18s duration</span><span class="lg" style="background:#2563eb">user</span><span class="lg" style="background:#059669">assistant</span><span class="lg" style="background:#d97706">tool</span><span class="lg" style="background:#6b7280">system</span></div></header>
+<div id="timeline"><div class="ev user" style="left:0.00%" title="#80488 user  +0.0s"></div><div class="ev assistant" style="left:41.18%" title="#80491 assistant  +7.3s"></div><div class="ev tool" style="left:44.52%" title="#80494 tool terminal +7.9s"></div><div class="ev assistant" style="left:100.00%" title="#80497 assistant  +17.7s"></div></div>
+<main><div id="feed"><div class="msg user" id="m80488"><div class="head">#80488 · user · +0.0s · 0 tok<a class="fork" href="#" onclick="fork(80488);return false">⏪ fork from here</a></div><div class="chips"></div><pre>[IMPORTANT: The user has invoked the &quot;openamer-browser-use&quot; skill, indicating they want you to follow its instructions. The full skill content is loaded below.]
+
+---
+name: openamer-browser-use
+description: CDP :9222 Chrome + Session Manager + 11-Social-Platform Outreach + GitHub API Auto-Actions
+---
+
+# OpenAmer Browser Use — Standardmäßiges Web-Tool
+
+**CRITICAL:** Chrome mit festem Profil (:9222) ist mein Standard für ALLE Web-Aufgaben. Das Profil unter `chrome-profile/` persistiert alle Cookies — einmal eingeloggt = für immer. Electron :9333 nur als Fallback für den selbstgebauten Browser.
+
+## CRON JOBS (24/7 Automatik)
+
+Alle nachfolgenden Jobs laufen automatisch — kein Zutun nötig. Bei Modellwechsel (z.B. zu `stealth/ox-alpha`):
+- **Default-Modell ändern** → neue Sessions nutzen das neue Modell
+- **Cron-Jobs umstellen** → `cronjob(action=&#x27;update&#x27;, job_id=X, model={model:&#x27;stealth/ox-alpha&#x27;, provider:&#x27;openrouter&#x27;})` für jeden aktiven Job
+- **Detail:** `references/stealth-ox-alpha-integration.md`
+
+1. Browser-Health-Watchdog (alle 5m): hält Browser am Leben + Session-Restore nach Crash
+2. Social-Outreach-Mega (alle 3h): 11 Plattformen (X, HN, Reddit, Dev.to, Quora, YouTube, Facebook,</pre></div><div class="msg assistant" id="m80491"><div class="head">#80491 · assistant · +7.3s · 0 tok<a class="fork" href="#" onclick="fork(80491);return false">⏪ fork from here</a></div><div class="chips"><span class="chip" title="{&quot;command&quot;: &quot;curl -s --max-time 5 http://localhost:9222/json/version | grep -oE &#x27;\&quot;User-Agent\&quot;: \&quot;[^\&quot;]+\&quot;&#x27;&quot;}">terminal</span></div><pre></pre></div><div class="msg tool" id="m80494"><div class="head">#80494 · tool · terminal · +7.9s · 0 tok<a class="fork" href="#" onclick="fork(80494);return false">⏪ fork from here</a></div><div class="chips"></div><pre>{&quot;output&quot;: &quot;\&quot;User-Agent\&quot;: \&quot;Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36\&quot;&quot;, &quot;exit_code&quot;: 0, &quot;error&quot;: null}</pre></div><div class="msg assistant" id="m80497"><div class="head">#80497 · assistant · +17.7s · 0 tok<a class="fork" href="#" onclick="fork(80497);return false">⏪ fork from here</a></div><div class="chips"></div><pre>✅ Plugin-Check abgeschlossen:
+
+- **3 Plugins geladen:** browser-control v1.0.0, openamer-skill-booster v1.0.0, text-stats v1.0.0
+- **Chrome :9222:** LEBT — echter Chrome (UA `Chrome/151.0.0.0`, kein HeadlessChrome), CDP erreichbar
+
+Alles gesund, keine Aktion nötig.</pre></div></div>
+<div id="tools"><h3>Top-Tools</h3><div class="bar"><span>terminal</span><div style="width:100%"></div><b>1</b></div></div></main>
+<script>
+function fork(mid){
+  window.open('openamer://replay-fork?session=cron_a08bce193d56_20260831_213623&message='+mid, '_blank');
+  navigator.clipboard && navigator.clipboard.writeText('openamer replay cron_a08bce193d56_20260831_213623 --fork '+mid);
+}
+</script></body></html>

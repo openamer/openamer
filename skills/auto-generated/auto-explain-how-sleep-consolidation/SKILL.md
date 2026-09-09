@@ -1,8 +1,8 @@
 ---
 name: auto-explain-how-sleep-consolidation
-description: We need to answer the question: explain how sleep consolidation improves memory in biological and ar GAP: OpenHands has a modular SDK design — our too
+description: We need to answer the question: "Explain how sleep consolidation improves memory in biological and a
 auto_generated: true
-created: 2026-09-05
+created: 2026-09-08
 source_insight: "Explain how sleep consolidation improves memory in biological and artificial systems."
 status: draft
 fitness_score: 0
@@ -13,7 +13,7 @@ wins: 0
 # Auto Explain How Sleep Consolidation
 
 ## Trigger
-Use when the agent encounters: We need to answer the question: explain how sleep consolidation improves memory in biological and ar
+Use when the agent encounters: We need to answer the question: "Explain how sleep consolidation improves memory in biological and a
 
 ## Verification
 - [ ] The skill produces the expected output for its domain

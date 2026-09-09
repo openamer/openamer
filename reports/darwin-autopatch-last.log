@@ -1,0 +1,12 @@
+[autopatch] validating population (2026-09-09T04:00:05) ...
+Traceback (most recent call last):
+  File "C:\Users\damir\openamer-repo\scripts\darwin_skill_autopatch.py", line 161, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "C:\Users\damir\openamer-repo\scripts\darwin_skill_autopatch.py", line 82, in main
+    before_report = run_validator_json()
+                    ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\damir\openamer-repo\scripts\darwin_skill_autopatch.py", line 43, in run_validator_json
+    raise RuntimeError(f"validator produced no JSON (exit {r.return_code}): {out[:300]}")
+                                                           ^^^^^^^^^^^^^
+AttributeError: 'CompletedProcess' object has no attribute 'return_code'. Did you mean: 'returncode'?

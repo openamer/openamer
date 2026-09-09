@@ -1,8 +1,8 @@
 ---
 name: auto-competitor-intelligence-autogpt-improvem
-description: AutoGPT Review 2026: From Viral Experiment to Autonomous Engine — 4. Aug. 2026 · Once a viral curiosity on GitHub, AutoGPT has matured into a sophisti
+description: Ctrl k GitBook Assistant Ask License GitHub More Home AutoGPT Platform Integrations Contribute AutoGPT Classic GitBook Assistant GitBook Assistant arr
 auto_generated: true
-created: 2026-09-04
+created: 2026-09-08
 source_insight: "Competitor intelligence: AutoGPT improvements 2026"
 status: draft
 fitness_score: 0
@@ -13,7 +13,7 @@ wins: 0
 # Auto Competitor Intelligence Autogpt Improvem
 
 ## Trigger
-Use when the agent encounters: AutoGPT Review 2026: From Viral Experiment to Autonomous Engine — 4. Aug. 2026 · Once a viral curios
+Use when the agent encounters: Ctrl k GitBook Assistant Ask License GitHub More Home AutoGPT Platform Integrations Contribute AutoG
 
 ## Verification
 - [ ] The skill produces the expected output for its domain

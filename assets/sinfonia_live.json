@@ -1,0 +1,135 @@
+{
+  "engine": "Sinfonia v1",
+  "sample_rate": 22050,
+  "duration_sec": 66.12,
+  "movements": [
+    {
+      "title": "Swarm OS - Autonomous Loop (30m) · Aug 31 04:12",
+      "started_at": 1788142320.5096889,
+      "mode": "minor",
+      "messages": 4,
+      "tokens": 0,
+      "tool_calls": 1,
+      "errors": 1,
+      "cost": 0.00018235000000000001,
+      "chords": [
+        "vii"
+      ],
+      "movement": 1
+    },
+    {
+      "title": "OpenAmer 24/7 Outreach - IndieHackers Social Presence · Aug 31 04:16",
+      "started_at": 1788142320.5196881,
+      "mode": "minor",
+      "messages": 76,
+      "tokens": 0,
+      "tool_calls": 41,
+      "errors": 20,
+      "cost": 0.022180815986,
+      "chords": [
+        "vii",
+        "vi",
+        "vii",
+        "vii",
+        "vii",
+        "vii",
+        "vii",
+        "vii",
+        "vii",
+        "vii"
+      ],
+      "movement": 2
+    },
+    {
+      "title": "Plugin-Auto-Loader · Aug 31 04:32",
+      "started_at": 1788143552.6212156,
+      "mode": "minor",
+      "messages": 6,
+      "tokens": 0,
+      "tool_calls": 2,
+      "errors": 2,
+      "cost": 0.00239705,
+      "chords": [
+        "vii"
+      ],
+      "movement": 3
+    },
+    {
+      "title": "Swarm OS - Autonomous Loop (30m) · Aug 31 04:43",
+      "started_at": 1788144192.348814,
+      "mode": "major",
+      "messages": 4,
+      "tokens": 0,
+      "tool_calls": 1,
+      "errors": 1,
+      "cost": 0.00040415,
+      "chords": [
+        "vii"
+      ],
+      "movement": 4
+    },
+    {
+      "title": "brain-collect · Aug 31 04:46",
+      "started_at": 1788144361.63573,
+      "mode": "minor",
+      "messages": 6,
+      "tokens": 0,
+      "tool_calls": 2,
+      "errors": 2,
+      "cost": 0.0006141262707999999,
+      "chords": [
+        "vii"
+      ],
+      "movement": 5
+    },
+    {
+      "title": "OpenAmer GitHub Outreach - Issues + Discussions · Aug 31 04:56",
+      "started_at": 1788144941.296177,
+      "mode": "major",
+      "messages": 18,
+      "tokens": 0,
+      "tool_calls": 8,
+      "errors": 8,
+      "cost": 0.002287555,
+      "chords": [
+        "vii",
+        "vii",
+        "vii"
+      ],
+      "movement": 6
+    },
+    {
+      "title": "Plugin-Auto-Loader · Aug 31 05:03",
+      "started_at": 1788145395.708722,
+      "mode": "minor",
+      "messages": 6,
+      "tokens": 0,
+      "tool_calls": 2,
+      "errors": 2,
+      "cost": 0.00230471,
+      "chords": [
+        "vii"
+      ],
+      "movement": 7
+    },
+    {
+      "title": "(ohne Titel)",
+      "started_at": 1788145442.3214595,
+      "mode": "minor",
+      "messages": 38,
+      "tokens": 0,
+      "tool_calls": 18,
+      "errors": 16,
+      "cost": 0.015491204999999997,
+      "chords": [
+        "vii",
+        "vii",
+        "vii",
+        "vii",
+        "vii"
+      ],
+      "movement": 8
+    }
+  ],
+  "program_notes": "Sinfonia aus 8 Satzen, komponiert aus 158 echten Nachrichten, 0 Tokens, 52 Fehlern. Tonika: A-Moll, Tempo 92. Fehler werden zu Dissonanzen, Erfolge zu Dur-Aufloesungen."
+}
