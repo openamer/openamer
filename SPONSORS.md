@@ -16,8 +16,6 @@ Or scan the QR code on the website.
 One-time support — every coffee fuels late-night coding sessions.
 
 | **💳 PayPal** | One-time | Any amount via PayPal hosted button |
-| **☕ Buy Me a Coffee** | One-time | [buymeacoffee.com/openamer](https://buymeacoffee.com/openamer) |
-| **☕ Ko-fi** | One-time | [ko-fi.com/openamer_agent](https://ko-fi.com/openamer_agent) |
 
 ### ⭐ GitHub Sponsors
 Monthly sponsorship with perks:

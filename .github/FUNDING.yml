@@ -1,13 +1,15 @@
 # GitHub Sponsors — Support OpenAmer
 # These are the funding platforms we accept
+# Verified live 2026-09-09: paypal (200), issuehunt (200).
+# Removed: ko-fi (403), buymeacoffee (404) — dead links cost trust.
 
 github: [openamer]
 patreon: # Replace with Patreon username
 open_collective: # Replace with OpenCollective username
-ko_fi: openamer_agent
+ko_fi: # dead 403 — re-add when account exists
 tidelift: # Replace with Tidelift platform
 community_bridge: # Replace with Community Bridge project
 liberapay: # Replace with Liberapay username
 issuehunt: openamer
 otechie: # Replace with Otechie username
-custom: ['https://www.producthunt.com/posts/openamer', 'https://buymeacoffee.com/openamer']
+custom: ['https://www.paypal.com/ncp/payment/3HMBFYC9CQTMS']
