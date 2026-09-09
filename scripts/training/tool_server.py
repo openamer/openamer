@@ -351,10 +351,17 @@ class H(BaseHTTPRequestHandler):
             # direct tool execution (for external callers / testing)
             tname = req.get("tool", "")
             params = req.get("params", {})
+            # SECURITY GATE: analyze every action before execution
+            # (OpenHands-style security validation, 4th core responsibility)
+            import security_analyzer
+            verdict, reason = security_analyzer.check(tname, params)
+            if verdict == "block":
+                self._json({"error": f"blocked by security analyzer: {reason}"}, 403)
+                return
             fn = EXECUTORS.get(tname)
             if not fn:
                 self._json({"error": f"unknown tool: {tname}"}, 400); return
-            self._json({"result": fn(params)})
+            self._json({"result": fn(params), "security": verdict})
             return
 
         if not self.path.startswith("/v1/chat/completions"):
