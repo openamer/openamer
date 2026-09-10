@@ -132,25 +132,20 @@ def world_explore():
         "alle 5 aktionen", "5/5 actions", "aktiv-lern-loop", "tool-server :8081",
     )
     try:
-        # scan recent cron outputs for errors
-        output_dir = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "cron", "output")
+        # REAL failure source: cron scheduler job status (exit codes), not
+        # text-mining of report files. Measured 2026-09-10: ~95% of
+        # output-line matches were docs/monitor content, not failures.
+        jobs_path = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "cron", "jobs.json")
         recent_errors = []
-        now = time.time()
-        for jdir in os.listdir(output_dir):
-            jpath = os.path.join(output_dir, jdir)
-            if not os.path.isdir(jpath):
-                continue
-            for f in os.listdir(jpath):
-                fp = os.path.join(jpath, f)
-                if os.path.getmtime(fp) > now - 3600:  # last hour
-                    content = open(fp, encoding="utf-8", errors="replace").read()
-                    if "error" in content.lower() or "failed" in content.lower():
-                        # extract cause-effect
-                        for line in content.splitlines():
-                            if "error" in line.lower() or "failed" in line.lower():
-                                if any(b.lower() in line.lower() for b in BENIGN):
-                                    continue  # skip known-benign status lines
-                                recent_errors.append(line.strip()[:200])
+        try:
+            data = json.load(open(jobs_path, encoding="utf-8"))
+            jobs = data.get("jobs") if isinstance(data, dict) else data
+            for j in jobs or []:
+                if (j.get("last_status") or "").lower() in ("error", "failed"):
+                    err = str(j.get("last_error", ""))[:180] or j.get("name", "?")
+                    recent_errors.append(f"{j.get('name')}: {err}")
+        except Exception:
+            pass  # no jobs.json -> fall through to synthetic patterns
         if not recent_errors:
             # generate a synthetic learning from known patterns
             patterns = [
