@@ -116,6 +116,20 @@ def world_explore():
         # progress reports, not errors (64 false edges in one night)
         "[autopilot]", "self_rewriter", "trial fb69", "trial self_rewriter",
         "Trials:", "wartend", "wartet",
+        # documentation/help lines that merely contain the word "error"
+        # (measured 2026-09-10: ~90% of cron-output 'error' hits were these)
+        "run the active learning loop", "run the autonomous swarm",
+        "syntaxerror-scan", "echter error-output", "bei problemen",
+        "self-healing daemon", "fehlerpfad", "connect_err",
+        "trial status", "waiting {'completed'", "waiting {",
+        "self-healer.py", "scannt alle .py",
+        # cron reports ABOUT our own learners (world_explore counts, trial
+        # tables, timeout watchdogs) — the monitor, not the failure
+        "active-learn", "active-learn-loop", "world_explore:", "world-explore:",
+        "0 completed, 0 error", "completed/error", "— ⏳ waiting",
+        "cron job 'online-learning-watchdog'", "idle for 601s",
+        "kein error", "button wird nicht gerendert",
+        "alle 5 aktionen", "5/5 actions", "aktiv-lern-loop", "tool-server :8081",
     )
     try:
         # scan recent cron outputs for errors
@@ -134,7 +148,7 @@ def world_explore():
                         # extract cause-effect
                         for line in content.splitlines():
                             if "error" in line.lower() or "failed" in line.lower():
-                                if any(b in line for b in BENIGN):
+                                if any(b.lower() in line.lower() for b in BENIGN):
                                     continue  # skip known-benign status lines
                                 recent_errors.append(line.strip()[:200])
         if not recent_errors:
