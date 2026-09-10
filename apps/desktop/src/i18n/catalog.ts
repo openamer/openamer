@@ -31,6 +31,10 @@ import { tr } from './tr'
 import { sk } from './sk'
 import { sq } from './sq'
 import { sl } from './sl'
+import { hr } from './hr'
+import { et } from './et'
+import { lv } from './lv'
+import { lt } from './lt'
 import { sv } from './sv'
 import type { Locale, Translations } from './types'
 import { zh } from './zh'
@@ -72,5 +76,9 @@ export const TRANSLATIONS: Record<Locale, Translations> = {
   sk,
   no,
   ga,
-  sl
+  sl,
+  hr,
+  et,
+  lv,
+  lt
 }

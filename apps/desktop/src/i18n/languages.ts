@@ -220,6 +220,30 @@ export const LOCALE_OPTIONS = [
     name: 'Slovenščina',
     englishName: 'Slovenian',
     configValue: 'sl'
+  },
+  {
+    id: 'hr',
+    name: 'Hrvatski',
+    englishName: 'Croatian',
+    configValue: 'hr'
+  },
+  {
+    id: 'et',
+    name: 'Eesti',
+    englishName: 'Estonian',
+    configValue: 'et'
+  },
+  {
+    id: 'lv',
+    name: 'Latviešu',
+    englishName: 'Latvian',
+    configValue: 'lv'
+  },
+  {
+    id: 'lt',
+    name: 'Lietuvių',
+    englishName: 'Lithuanian',
+    configValue: 'lt'
   }
 ] as const satisfies readonly { configValue: string; englishName: string; id: Locale; name: string }[]
 
@@ -435,7 +459,28 @@ const LOCALE_ALIASES: Record<string, Locale> = {
   'sl-si': 'sl',
   sl_si: 'sl',
   slovenian: 'sl',
-  slovenščina: 'sl'
+  slovenščina: 'sl',
+  hr: 'hr',
+  'hr-hr': 'hr',
+  hr_hr: 'hr',
+  croatian: 'hr',
+  hrvatski: 'hr',
+  et: 'et',
+  'et-ee': 'et',
+  et_ee: 'et',
+  estonian: 'et',
+  'eesti keel': 'et',
+  eesti: 'et',
+  lv: 'lv',
+  'lv-lv': 'lv',
+  lv_lv: 'lv',
+  latvian: 'lv',
+  latviešu: 'lv',
+  lt: 'lt',
+  'lt-lt': 'lt',
+  lt_lt: 'lt',
+  lithuanian: 'lt',
+  lietuvių: 'lt'
 }
 
 export function isLocale(value: unknown): value is Locale {
