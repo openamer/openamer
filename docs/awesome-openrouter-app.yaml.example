@@ -1,0 +1,9 @@
+name: "OpenAmer Agent"
+description: "Open-source self-improving AI agent with a built-in learning loop, background computer-use, A2A swarm, Darwin skill evolution, episodic + world-model memory, and a nightly self-narrating diary. Runs 24/7 on your own hardware at 0 EUR/day and <1 kWh/day."
+url: "https://openamer.github.io/openamer/"
+docs: "https://github.com/openamer/openamer#bring-your-own-keys"
+tags:
+  - productivity
+  - coding
+open_source: "https://github.com/openamer/openamer"
+date_added: "2026-09-10"
