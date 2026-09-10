@@ -503,6 +503,11 @@ def check_python_file(filepath: str, repo: Path) -> list[dict]:
 
 SELF_SCAN_EXEMPT = {"scripts/auto-code-review.py"}
 
+# i18n translation files use keys like `openaiRejectedApiKey: '...'` where the
+# word "ApiKey" is a translation key, not a credential. Skip SECRETS_PATTERNS
+# there (SQL/Dangerous scans still run).
+I18N_DIR_MARKERS = ("/i18n/", "/locales/", "/translations/")
+
 
 def scan_file_for_security(filepath: str, repo: Path) -> list[dict]:
     """Run security scans on a file."""
@@ -518,7 +523,11 @@ def scan_file_for_security(filepath: str, repo: Path) -> list[dict]:
         return findings
     # Security patterns scan whole file
     file_lines = content.split("\n")
+    norm_path = filepath.replace("\\", "/")
+    is_i18n = any(m in norm_path for m in I18N_DIR_MARKERS)
     for patterns in [SECRETS_PATTERNS, SQL_INJECTION_PATTERNS, DANGEROUS_PATTERNS]:
+        if is_i18n and patterns is SECRETS_PATTERNS:
+            continue  # i18n keys like `openaiRejectedApiKey:` are not secrets
         for pat in patterns:
             for match in pat["pattern"].finditer(content):
                 line_num = content[: match.start()].count("\n") + 1

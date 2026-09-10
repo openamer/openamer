@@ -34,7 +34,7 @@ GATE_QUEUE = HOME / "darwin" / "gate-queue.json"
 
 # OpenRouter credentials (from .env / config)
 from dotenv import load_dotenv
-load_dotenv(Path.home() / "AppData/Local/openamer/.env")
+load_dotenv(HOME / ".env")
 
 OPENROUTER_KEY = os.environ.get("OPENROUTER_API_KEY", "")
 OPENROUTER_MODEL = os.environ.get("OPENAMER_MODEL", "z-ai/glm-4.6")
