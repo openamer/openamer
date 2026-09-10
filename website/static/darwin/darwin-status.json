@@ -1,7 +1,7 @@
 {
-  "updated": "2026-09-09T03:00:25+00:00",
-  "population": 382,
-  "avg_score": 44.4,
+  "updated": "2026-09-10T03:00:42+00:00",
+  "population": 388,
+  "avg_score": 44.3,
   "fittest": [
     {
       "name": "openamer-desktop-dev",
@@ -10,6 +10,10 @@
     {
       "name": "python-debugpy",
       "score": 73
+    },
+    {
+      "name": "windows-subprocess-robustness",
+      "score": 72
     },
     {
       "name": "windows-computer-use",
@@ -37,10 +41,6 @@
     },
     {
       "name": "windows-compatibility",
-      "score": 70
-    },
-    {
-      "name": "windows-subprocess-robustness",
       "score": 70
     }
   ],
@@ -162,47 +162,47 @@
   "trends": [
     {
       "source": "News",
-      "title": "How to upskill IT for agentic AI: 7 pathways to success - cio.com",
-      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxQTk1zS1lBWHZUc3VMV3pMRXJuTXl0Y2w4OTA4ZGtOY1RrQy0wd0lPa1ZOYVlaYkpydWl2SG5UNnJkd2t2WnJmQVU5VzluNVZWNWQ3WXJQM05zZ1lzOVdobTNsUGNQbGp2TG5BS2JORWNydGdEendxWkJjR3d6c2dGUHFYY3czVHBTcHI1bmJyVlF0alJpOFh6Y09uNA?oc=5"
+      "title": "4 issues with agentic AI personas - No Jitter",
+      "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE54WGstZE16LUJrYmpFTGhlcllWM3ZLblRjYS1VTTJrWWFYRG1ITVpTTVgtUGNRV3RPc3hkVUtGU01YSHBBdXNMWVZNa21rUzA2SEtKUnFEOFN2UGVVU2pLc2xLMUg1SG9saHpIY0psaUJHS0hQWGd2dFNOcXI?oc=5"
     },
     {
       "source": "News",
-      "title": "Meta\u2019s New AI Agent Wants to Get Personal With You - CNET",
-      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxQOFBSWjJES3l2TU1QNG9ucnVfYXBYQ004ZjRSLVZlbkJUanozX2hmdndEMDVGb0xjUERSVThPS0JlTS0yTWlIUjRFMjVJc1M4RWdHdVpPbnRILTFkQU1IYS1XN0hlRGh2eW1RZFJxemVpYnU3T2lvZC02MlVjTDM4WTBNckRlZUZJRkExZjJvVlNkWmJZQkNtaGV4YU1YZw?oc=5"
+      "title": "Why AI agents cannot be trusted to secure agentic AI yet - Computer Weekly",
+      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPckwxcTFpaXIxbFU2RnMzNGFyd3o4U0ZYZFBRTXNkVGpTZzVSNlVvX1ZVaVduUGxsaEI5N0hIVjFiYXRpZkVvRlZCeTcyZzBBSS1vZzJHaXhaRkhoV3NCQ1V4VDRKY1VzNlMta3JYNy1YNks1YTA0Q1ptcVk3Mm9qOXpNdjdPeGotZEpGSV8tXzlFeG1hckpTaC1mcw?oc=5"
     },
     {
       "source": "News",
-      "title": "Why Can\u2019t My AI Agent Renew My Driver's License? - HackerNoon",
-      "url": "https://news.google.com/rss/articles/CBMid0FVX3lxTE4tNTVqYTNtY09OTGJXOEMwcjhBd2xuNWlqeWdORXBIY2JYT2RqRC1nWndQUUdwVGd1MkdKY3F2R1doNUVtNFZQRGRrRXFXbDc4TExyUHNXZy04emNySEM5NEZxcTg2MEZ0ZFpfOWs2YkVkMmpXdmVn?oc=5"
+      "title": "ARPA-H Selects Teams for Cardiovascular Agentic AI System Development - hcinnovationgroup.com",
+      "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQVW5rTklxYkNFRHJkM2U5YXc0UVlBNmozc2FlaHRYN0phbDZYZ3YwMnRLWWxuVE1iZ2EtN0c4SEdYTXVqREkwY3l0SVpod1JOZFg4YU9qTnhGU3ZXOGZGZGJEeTBPSHZCRWJPMEU4bW5XMnBxLTBpZF9jd0ZrLUNqZjNWSC0tYnhmakNkbXFmRVN4QzZVR181d1FWclMyNWo4WGI0V3NqN1pwcFhQMTZGMllxTWxkUWk0cWtjeEZiUDVqckt1Mm5JQkJpTzZLZDQwRF9LcFVXZ24?oc=5"
     },
     {
       "source": "News",
-      "title": "Airties introduces Aura for agentic AI - telecompetitor.com",
-      "url": "https://news.google.com/rss/articles/CBMiekFVX3lxTFBwVm9qZzdBUmZYRWFGUTBENjRGT1JXTUZyZUNNcGFnWHdHSW1qcHdmbnMzX2wxUE4ydUFnWUdlZlRhNHZPLWlOeU9ISXRWYzUyWHJVTTBRS3ZGTzNBRDlnU3U2T2F3M1pZTVd5OHhqbnFobTc2NFFZaFpB?oc=5"
+      "title": "Securing the agentic enterprise starts with identity - IBM",
+      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNZElWbkRvZXpoQ3ZwUmJFdWlMcjZYSldYVVZzUEZtVVN0XzYwYmFHVjhYMTJEQlZNMC1JdGItWThiNnNTdVlleGlDWmVKdjE5VlFhekVRdWFIN2VEMWZQMlJ6QnJQdlluTVpGWnNUaUVZLVlvT2NmbEZaWldHRFJLR3dWVFNlOV9BcHU1cnBDT0lGbUpqZVE?oc=5"
     },
     {
       "source": "News",
-      "title": "Focal AI Launches Agentic AI Platform for Canadian Wealth Management - Business Wire",
-      "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxNUFJCSFVSaC0zMWk0cEEyRVg4dEp5NDF3OVNtMm5QTkN2ZGttVDdsdG14S1VvMnZFbTlWNklrSnRLaHRLM2xPSTRZUHpSRWxDMHNiZjVpbnFvM2hiMmJlYThoVi16MVZPaEVkQ1VySEhoTmdFWWVsWkdOTDU2aU9wMWlGZ0x6ZktlQ29STzQzcnVKQnMyak54dFpKY0YwRXhERVZvU0d2SVRGX0dXeEkyc3RSNk93aEduS1RNdEk4eHZWS2c?oc=5"
+      "title": "Preparing physical security infrastructure for the age of agentic AI - cio.com",
+      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOTUhTcEJGZFFRQ0F1c25kdFpxWWpQdjZhLXdfWUZ3U0t0RzB4LTA1V1RTRC1SSEkycV83cG5FSFQ2ekUybkt6Qzd6S05Wak5hTkgxWUhGcFpFLXlfTEx4VE1BamY5WGdpYXU0XzFCNVBSdHQxMDZtUDV2cU9iNlZvLVpaTE9UNTRFa0htVktDVWhWd2R4dTFRaVBGc2VmS1BuRGIzeGFEcUtLa2VVWmc?oc=5"
     },
     {
       "source": "News",
-      "title": "Visa CEO Says AI Shopping Has Arrived but Agentic Payments Haven\u2019t - PYMNTS.com",
-      "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQeW1ENWViX0MxcHhIdzY4UGhkZkcwYWZ2WHpxdTJ6U0hKeHVya28teC1BWm45dGxiQXAzcFR3UDBuaHVKNzEwSXFkUU1wSUI4MEZSTjVYdlROaDdxQ0Rza1dnSlUwZWdLQnRqam9hQmFTRWlpU29IcFlkMWZCMHhoN0lJSHE0TFdIVFBTMTlZOEVXUXlqbEp0LWZwR0pQVnRj?oc=5"
+      "title": "Mastercard Expands Agentic Suite to Help Merchants Scale AI Shopping - PYMNTS.com",
+      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQNWNDQnI5WHppNGRiN1JjT1EtUjczSURNTjFsa1pZa25kWE12U1A3RlpCZ3kwUHpYZm1hSWwyMFR3cGw1aEdmTHZHaVlXVVNmLS0zc2NtbzdfbFpER1BhN2JEMlM5Q3R3dVRuZklDaHN2T2ZXbC1OTTZiaHFFcFg4UzBGaDk5QXdPQThBcEFlbWszRXA0Zk1yVkhYSVR1VzhiU2p6LXdpUjZEVVZkLUZsYV9uMVAtX2I1aXQtdmZhRWUzUWRp?oc=5"
     },
     {
       "source": "News",
-      "title": "Whalet Embraces Agentic Commerce, Advancing Its Global Payment Infrastructure Platform - Yahoo Finance Singapore",
-      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxOcW5xeWJ2YWJmNWc0LTBobGRpLVpxdW4wWHF0Yl9OdTh4XzJubXl1NEljS0stRV9HMEdRbWVSUUFkYVlkZ0hrdWZyMnlLenVpeVkzSTlsUE9MVE80ZUhmTEpYczlWMGpEVUFTc0xob3dnUjN2ZVRNVUlYbHp6VXVTME1URWgzZmZSS190WnFsbWhuQ2FUR0E?oc=5"
+      "title": "The Ungoverned Frontier of Agentic AI Cyberattacks - orfonline.org",
+      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQWjhfTy14MWpabV9CYjRMMUVGdXRzVzVBUDJfZ29sYXRGQ1kwamlMQ0NQbjZ3MzhjeGlGeTBlTnJPaTBFVl9XZkwxeEc1LUllZjhrYzg1V2NuekFUa3lQMHBmYzB1MkhsQW5pcE1PZXlRaW1tQ1REWktCVWJQRFpWVnZ4akhqeFBNZnVMd2gza1dRVTg?oc=5"
     },
     {
       "source": "News",
-      "title": "Meta tackles agentic AI with the launch of Muse - Android Authority",
-      "url": "https://news.google.com/rss/articles/CBMiZEFVX3lxTE12QkpoZWRmQUFLUnh1V0JVQUdDTU1yVkVhU3pDbVNoT2VRSkVLWHVrRGZBdnNIbndRODJlQWJpR21vWWZaZ2pEdTNQbEJhMk1JeUR3eGxINXluY1R2aVVuZTJWMGM?oc=5"
+      "title": "Caseware Puts Agentic AI Inside the Audit - cpapracticeadvisor.com",
+      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxORHRUblRjSjlyLV91Q1JOdlhpeGFtaFNsVlFGSzVsYlJrWDZYOENZN2lWSUJTNFNsWFFBVHh2SlVmT2NKczI4bW1YOXRJbkJVVGVPOGpPYVJoQlFOOUhrMWJZU1dRRFNxMXMzS01JQ1RFSUY0bktCQ29JbV9DMEVncldJaDNkQkoxandoWElMOGZuMTVQdGFKYlNDVQ?oc=5"
     }
   ],
   "population_engine": 63,
-  "species": 20,
+  "species": 17,
   "trials": 2,
   "harvested": 67
 }
