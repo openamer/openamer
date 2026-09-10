@@ -72,11 +72,27 @@ def validate_predictions():
             continue
 
         # check: did the predicted pattern appear in world-model facts?
+        # Semantic matching via embeddings (substring matching was blind to
+        # paraphrases: "disk full" never matched "Speicherplatz erschöpft").
         matched = False
-        for fact in facts:
-            if fact.lower()[:80] in predicted_text or predicted_text[:40] in fact.lower():
-                matched = True
-                break
+        try:
+            import world_model as wm
+            hits = wm.recall(predicted_text[:300], k=3)
+            for h in hits or []:
+                if h.get("score", 0) > 0.55 and h.get("embed_ok", True):
+                    matched = True
+                    break
+            # fallback to substring when semantic search finds nothing
+            if not matched:
+                for fact in facts:
+                    if fact.lower()[:80] in predicted_text or predicted_text[:40] in fact.lower():
+                        matched = True
+                        break
+        except Exception:
+            for fact in facts:
+                if fact.lower()[:80] in predicted_text or predicted_text[:40] in fact.lower():
+                    matched = True
+                    break
 
         # also check learning buffer for related events
         buf_path = os.path.join(T, "online_buffer.jsonl")
