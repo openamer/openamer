@@ -87,29 +87,32 @@ def _diary_yesterday():
 
 
 def build():
-    now = datetime.datetime.now().strftime("%H:%M")
-    fleet, njobs = _cron_fleet()
-    ok = fleet.get("ok", 0)
-    bad = sum(v for k, v in fleet.items() if k not in ("ok", "never-run"))
-    edges, health = _world_model()
-    insights = _night_insights()
-    today_line = _diary_today()
-    yest_line = _diary_yesterday()
+    try:
+        now = datetime.datetime.now().strftime("%H:%M")
+        fleet, njobs = _cron_fleet()
+        ok = fleet.get("ok", 0)
+        bad = sum(v for k, v in fleet.items() if k not in ("ok", "never-run"))
+        edges, health = _world_model()
+        insights = _night_insights()
+        today_line = _diary_today()
+        yest_line = _diary_yesterday()
 
-    lines = [f"🌅 Morgen-Brief — {datetime.date.today().strftime('%d.%m.%Y')} {now_s() if False else now_h()}"]
-    lines.append("")
-    lines.append(f"**System:** {ok}/{njobs} Crons ok" + (f", {bad} Fehler" if bad else ", keine Fehler"))
-    lines.append(f"**Weltmodell:** {edges} Edges (embed_health {health:.0%})")
-    if insights:
+        lines = [f"🌅 Morgen-Brief — {datetime.date.today().strftime('%d.%m.%Y')} {now_h()}"]
         lines.append("")
-        lines.append("**Nacht-Lernen:**")
-        for i in insights:
-            lines.append(f"- {i}")
-    refl = today_line or yest_line
-    if refl:
-        lines.append("")
-        lines.append(f"**Meine letzte Selbst-Reflexion:** {refl}")
-    return "\n".join(lines)
+        lines.append(f"**System:** {ok}/{njobs} Crons ok" + (f", {bad} Fehler" if bad else ", keine Fehler"))
+        lines.append(f"**Weltmodell:** {edges} Edges (embed_health {health:.0%})")
+        if insights:
+            lines.append("")
+            lines.append("**Nacht-Lernen:**")
+            for i in insights:
+                lines.append(f"- {i}")
+        refl = today_line or yest_line
+        if refl:
+            lines.append("")
+            lines.append(f"**Meine letzte Selbst-Reflexion:** {refl}")
+        return "\n".join(lines)
+    except Exception as e:
+        return f"[morning-brief] degraded: {e}"
 
 
 def now_h():

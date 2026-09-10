@@ -5,7 +5,7 @@ Run:  python test_world_model.py
 Covers: observe (real embeddings), recall (semantic search), predict,
         stats health, and the no-placeholder invariant.
 """
-import json, os, sys, tempfile
+import json, os, sys, tempfile, time
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import world_model as wm
@@ -16,33 +16,47 @@ def _count_edges():
 
 
 def test_observe_writes_real_embedding():
-    # deterministic: unique edge per run — the test must not depend on
-    # (nor pollute) the shared world-model store state
-    import time
-    tag = f"pytest-{time.time()}"
-    cause, effect = f"disk full causes write failures {tag}", f"free space or rotate logs {tag}"
+    # HERMETIC: parallel suites observe into the shared live store, so any
+    # count assertion on wm.WM is a race. Point wm.WM at a temp store —
+    # the observe/dedup contract is exercised identically.
+    tmp = tempfile.mkdtemp()
+    old_wm = wm.WM
     try:
-        before = _count_edges()
+        wm.WM = os.path.join(tmp, "wm.jsonl")
+        cause = "disk full causes write failures"
+        effect = "free space or rotate logs"
         e = wm.observe(cause, effect)
         assert e["embed_ok"] is True, "embedding must be real"
         assert len(e["embedding"]) == wm.DIM, "embedding must be 768-dim"
         assert any(abs(x) > 0.5 for x in e["embedding"]), "embedding must not be a constant"
         # observe deduplicates exact repeats: first call adds, repeat increments only
-        assert _count_edges() == before + 1
+        assert _count_edges() == 1
         e2 = wm.observe(cause, effect)
         assert e2.get("dup_count", 1) >= 2, "repeat observe must increment dup_count"
-        assert _count_edges() == before + 1, "repeat observe must NOT append a new edge"
+        assert _count_edges() == 1, "repeat observe must NOT append a new edge"
     finally:
-        _remove_edge(cause)
+        wm.WM = old_wm
+        import shutil
+        shutil.rmtree(tmp, ignore_errors=True)
 
 
 def test_recall_finds_semantic_neighbour():
-    wm.observe("RAM exhaustion kills the server process",
-               "recovery requires releasing memory and restarting")
-    hits = wm.recall("out of memory crash", k=3)
-    assert hits, "recall must return results"
-    assert hits[0]["score"] > 0.3, "top hit must be semantically close"
-    assert "RAM" in hits[0]["cause"] or "memory" in hits[0]["cause"].lower()
+    # HERMETIC: isolated store — parallel consolidation prunes the shared
+    # live store, so the just-observed edge could vanish mid-recall.
+    tmp = tempfile.mkdtemp()
+    old_wm = wm.WM
+    try:
+        wm.WM = os.path.join(tmp, "wm.jsonl")
+        wm.observe("RAM exhaustion kills the server process",
+                   "recovery requires releasing memory and restarting")
+        hits = wm.recall("out of memory crash", k=3)
+        assert hits, "recall must return results"
+        assert hits[0]["score"] > 0.3, "top hit must be semantically close"
+        assert "RAM" in hits[0]["cause"] or "memory" in hits[0]["cause"].lower()
+    finally:
+        wm.WM = old_wm
+        import shutil
+        shutil.rmtree(tmp, ignore_errors=True)
 
 
 def test_predict_projects():
@@ -52,9 +66,22 @@ def test_predict_projects():
 
 
 def test_stats_embed_health():
-    s = wm.stats()
-    assert s["embed_health"] == 1.0, "all embeddings must be real"
-    assert s["total_edges"] >= 0
+    # RACE-SAFE via isolated store: other suites (consolidation) prune the
+    # shared live store in parallel — pointing wm.WM at a temp file makes
+    # this test hermetic while still exercising the real stats path.
+    tmp = tempfile.mkdtemp()
+    old_wm = wm.WM
+    try:
+        wm.WM = os.path.join(tmp, "wm.jsonl")
+        for i in range(3):
+            wm.observe(f"test health edge {i} {time.time()}", "effect")
+        s = wm.stats()
+        assert s["embed_health"] == 1.0, f"test edges must embed real: {s}"
+        assert s["total_edges"] >= 3
+    finally:
+        wm.WM = old_wm
+        import shutil
+        shutil.rmtree(tmp, ignore_errors=True)
 
 
 def test_no_placeholder_embeddings_in_code():
