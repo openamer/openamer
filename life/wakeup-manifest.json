@@ -1,6 +1,6 @@
 {
   "organism": "OpenAmer",
-  "written_at": "2026-09-09T12:09:12.048916+00:00",
+  "written_at": "2026-09-10T00:10:13.678628+00:00",
   "identity": {
     "name": "openamer_agent",
     "voice": "https://x.com/openamer_agent",
@@ -15,7 +15,7 @@
   "organs": {
     "heartbeat": {
       "kind": "cron-fleet",
-      "count": 78
+      "count": 80
     },
     "memory": {
       "kind": "memory+skills",
@@ -92,7 +92,7 @@
       "name": "Skills Hub Cache Warmer",
       "schedule": "every 360m",
       "script": "hub_cache_warmer.py",
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "Bugbot - Autonomous Bug Fixer",
@@ -223,8 +223,8 @@
     {
       "name": "Skill Validator - 24h Quality Check",
       "schedule": "every 1440m",
-      "script": "cron-skill-validator.py",
-      "last_status": "error"
+      "script": "scripts/cron-skill-validator.py",
+      "last_status": "ok"
     },
     {
       "name": "SSH Health-Check",
@@ -525,6 +525,18 @@
       "schedule": "0 * * * *",
       "script": null,
       "last_status": "ok"
+    },
+    {
+      "name": "session-outcome-analyzer",
+      "schedule": "every 60m",
+      "script": "scripts/training/session_outcome.py",
+      "last_status": "error"
+    },
+    {
+      "name": "security-dashboard-watchdog",
+      "schedule": "daily",
+      "script": "scripts/training/security_dashboard.py",
+      "last_status": "error"
     }
   ]
 }
