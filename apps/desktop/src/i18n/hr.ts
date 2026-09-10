@@ -184,13 +184,13 @@ export const hr = defineLocale({
   },
 
   titlebar: {
-    hideSidebar: 'Sakiji bočnu traku',
+    hideSidebar: 'Sakrij bočnu traku',
     showSidebar: 'Prikaži bočnu traku',
     search: 'Pretraži',
     searchTitle: 'Pretraži sesije, prikaze i radnje',
     swapSidebarSides: 'Zamijeni stranu bočne trake',
     swapSidebarSidesTitle: 'Zamijeni strane sesija i preglednika datoteka',
-    hideRightSidebar: 'Sakiji desnu bočnu traku',
+    hideRightSidebar: 'Sakrij desnu bočnu traku',
     showRightSidebar: 'Prikaži desnu bočnu traku',
     muteHaptics: 'Isključi haptiku',
     unmuteHaptics: 'Uključi haptiku',
