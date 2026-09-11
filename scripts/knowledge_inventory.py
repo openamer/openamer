@@ -22,7 +22,7 @@ import re
 import sys
 from pathlib import Path
 
-HOME = os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")) \
+HOME = Path(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer"))) \
     if sys.platform == "win32" else Path.home() / ".openamer"
 SKILLS_ROOT = HOME / "skills"
 CACHE = HOME / "cache" / "knowledge_inventory.json"

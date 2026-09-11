@@ -30,7 +30,7 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-HOME = os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")) \
+HOME = Path(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer"))) \
     if sys.platform == "win32" else Path.home() / ".openamer"
 FLAG = HOME / "reboot-flag.json"
 REPO = Path(__file__).resolve().parent.parent
