@@ -1,10 +1,10 @@
 ---
 name: auto-what-is-the-difference
-description: Here's the difference between correlation and causation in system diagnostics:
-user
-"Question: What  GAP: OpenHands has a modular SDK design — our too
+description: user
+
+Self-critique: We have a user asking: "Question: What is the difference between correlation an
 auto_generated: true
-created: 2026-09-07
+created: 2026-09-10
 source_insight: "What is the difference between correlation and causation in system diagnostics?"
 status: draft
 fitness_score: 0
@@ -15,9 +15,9 @@ wins: 0
 # Auto What Is The Difference
 
 ## Trigger
-Use when the agent encounters: Here's the difference between correlation and causation in system diagnostics:
-user
-"Question: What 
+Use when the agent encounters: user
+
+Self-critique: We have a user asking: "Question: What is the difference between correlation an
 
 ## Verification
 - [ ] The skill produces the expected output for its domain

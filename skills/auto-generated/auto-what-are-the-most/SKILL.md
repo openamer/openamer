@@ -1,10 +1,8 @@
 ---
 name: auto-what-are-the-most
-description: 1.
-
-Self-critique: We need to critique the answer: "What are the most common causes of system failur GAP: OpenHands has a modular SDK design — our too
+description: [TOOL_RESULT:web_search] {"results": "Why Most AI Systems Fail at Scale: Problem faced with … :: 12. GAP: OpenHands has a modular SDK design — our too
 auto_generated: true
-created: 2026-09-09
+created: 2026-09-10
 source_insight: "What are the most common causes of system failures in distributed AI systems?"
 status: draft
 fitness_score: 0
@@ -15,9 +13,7 @@ wins: 0
 # Auto What Are The Most
 
 ## Trigger
-Use when the agent encounters: 1.
-
-Self-critique: We need to critique the answer: "What are the most common causes of system failur
+Use when the agent encounters: [TOOL_RESULT:web_search] {"results": "Why Most AI Systems Fail at Scale: Problem faced with … :: 12.
 
 ## Verification
 - [ ] The skill produces the expected output for its domain

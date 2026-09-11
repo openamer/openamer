@@ -1,8 +1,8 @@
 ---
 name: auto-latest-research-insight-arxiv
-description: [2603.17187] MetaClaw: Just Talk -- An Agent That Meta … — 17. März 2026 · We present MetaClaw, a continual meta-learning framework that jointly evolv
+description: No thanks “Sebastian is an incredible educator and always has invaluable insights--do keep up with his work!
 auto_generated: true
-created: 2026-09-09
+created: 2026-09-11
 source_insight: "Latest research insight: arxiv new papers meta-learning LLM agents 2026"
 status: draft
 fitness_score: 0
@@ -13,7 +13,7 @@ wins: 0
 # Auto Latest Research Insight Arxiv
 
 ## Trigger
-Use when the agent encounters: [2603.17187] MetaClaw: Just Talk -- An Agent That Meta … — 17. März 2026 · We present MetaClaw, a co
+Use when the agent encounters: No thanks “Sebastian is an incredible educator and always has invaluable insights--do keep up with h
 
 ## Verification
 - [ ] The skill produces the expected output for its domain

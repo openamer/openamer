@@ -1,8 +1,8 @@
 ---
 name: auto-competitor-intelligence-devin-ai
-description: Recent Updates - Devin Docs — 2. Sept. 2026 · The latest Devin updates: recently released features, improvements, and bug fixes across the product, up
+description: Recent Updates - Devin Docs — Vor 2 Tagen · The latest Devin updates: recently released features, improvements, and bug fixes across the product, upda
 auto_generated: true
-created: 2026-09-09
+created: 2026-09-11
 source_insight: "Competitor intelligence: Devin AI agent new features 2026"
 status: draft
 fitness_score: 0
@@ -13,7 +13,7 @@ wins: 0
 # Auto Competitor Intelligence Devin Ai
 
 ## Trigger
-Use when the agent encounters: Recent Updates - Devin Docs — 2. Sept. 2026 · The latest Devin updates: recently released features, 
+Use when the agent encounters: Recent Updates - Devin Docs — Vor 2 Tagen · The latest Devin updates: recently released features, im
 
 ## Verification
 - [ ] The skill produces the expected output for its domain

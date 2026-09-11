@@ -1,9 +1,9 @@
 ---
 name: auto-share-a-lesson-you
-description: Terminal-Dashboard CPU/RAM/DISK/NET + — Drei unabhängige Verifikationen bestanden:
+description: Fertig, Damir! ✅ Das 3-Tier-Routing ist eingerichtet und **live verifiziert**.
 auto_generated: true
-created: 2026-09-08
-source_insight: "Share a lesson you learned: Resource Monitor: Live"
+created: 2026-09-10
+source_insight: "Share a lesson you learned: guten Abend"
 status: draft
 fitness_score: 0
 trials: 0
@@ -13,7 +13,7 @@ wins: 0
 # Auto Share A Lesson You
 
 ## Trigger
-Use when the agent encounters: Terminal-Dashboard CPU/RAM/DISK/NET + — Drei unabhängige Verifikationen bestanden:
+Use when the agent encounters: Fertig, Damir! ✅ Das 3-Tier-Routing ist eingerichtet und **live verifiziert**.
 
 ## Verification
 - [ ] The skill produces the expected output for its domain

@@ -1,8 +1,8 @@
 ---
 name: auto-security-learning-ai-agent
-description: AI Agent Risks & Guardrails: 2026 Enterprise Security Guide — 10. Apr. 2026 · AI agents introduce au
+description: Symbolic Guardrails for Domain-Specific Agents: Stronger … — 16. Apr. 2026 · We study symbolic guard GAP: OpenHands has a modular SDK design — our too
 auto_generated: true
-created: 2026-09-09
+created: 2026-09-10
 source_insight: "Security learning (AI agent security vulnerabilities guardrails): What should a safe agent know?"
 status: draft
 fitness_score: 0
@@ -13,7 +13,7 @@ wins: 0
 # Auto Security Learning Ai Agent
 
 ## Trigger
-Use when the agent encounters: AI Agent Risks & Guardrails: 2026 Enterprise Security Guide — 10. Apr. 2026 · AI agents introduce au
+Use when the agent encounters: Symbolic Guardrails for Domain-Specific Agents: Stronger … — 16. Apr. 2026 · We study symbolic guard
 
 ## Verification
 - [ ] The skill produces the expected output for its domain
