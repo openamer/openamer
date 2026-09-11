@@ -168,7 +168,8 @@ def kta_cycle():
         **result,
     }
     log(entry)
-    print(f"[kta] {entry['experiment']}: {entry.get('result', '')[:100]}", flush=True)
+    summary = entry.get("result") or entry.get("identified_gap") or entry.get("lesson") or entry.get("action", "")
+    print(f"[kta] {entry['experiment']}: {str(summary)[:160]}", flush=True)
     return entry
 
 if __name__ == "__main__":
