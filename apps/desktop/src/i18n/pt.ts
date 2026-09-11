@@ -97,7 +97,8 @@ export const pt = defineLocale({
       remoteSignInHint: signInLabel =>
         `Termina a sessão guardada do navegador remoto e depois abre ${signInLabel}. Use "Usar gateway local" para mudar para o backend incluído.`,
       signOutAndSignIn: 'Terminar sessão e iniciar sessão',
-      remoteFailureHint: 'Verifique o URL e o início de sessão nas configurações do gateway, ou mude para o gateway local.',
+      remoteFailureHint:
+        'Verifique o URL e o início de sessão nas configurações do gateway, ou mude para o gateway local.',
       hideRecentLogs: 'Ocultar registos recentes',
       showRecentLogs: 'Mostrar registos recentes',
       signedInTitle: 'Sessão iniciada',
@@ -272,7 +273,8 @@ export const pt = defineLocale({
       embedsAsk: 'Perguntar',
       embedsAlways: 'Sempre',
       embedsOff: 'Desligado',
-      embedsReset: (count: number) => `Restaurar ${count} serviço${count === 1 ? '' : 's'} permitido${count === 1 ? '' : 's'}`,
+      embedsReset: (count: number) =>
+        `Restaurar ${count} serviço${count === 1 ? '' : 's'} permitido${count === 1 ? '' : 's'}`,
       product: 'Produto',
       productDesc: 'Atividade de ferramentas amigável com resumos concisos.',
       technical: 'Técnico',
@@ -306,7 +308,8 @@ export const pt = defineLocale({
       cantUpdate: 'Esta compilação não se consegue atualizar de dentro da aplicação.',
       cantReach: 'Não conseguimos contactar o servidor de atualizações.',
       tapCheck: 'Toque em "Verificar agora" para procurar atualizações.',
-      updateReady: count => `Uma nova atualização está pronta (${count} alteração${count === 1 ? '' : 'ões'} incluída${count === 1 ? '' : 's'}).`,
+      updateReady: count =>
+        `Uma nova atualização está pronta (${count} alteração${count === 1 ? '' : 'ões'} incluída${count === 1 ? '' : 's'}).`,
       lastChecked: age => `Verificado pela última vez ${age}`,
       justNowSuffix: ' · neste momento',
       automaticUpdates: 'Atualizações automáticas',

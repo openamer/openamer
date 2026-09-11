@@ -272,7 +272,8 @@ export const lv = defineLocale({
       embedsAsk: 'Vaicāt',
       embedsAlways: 'Vienmēr',
       embedsOff: 'Izslēgts',
-      embedsReset: (count: number) => `Atjaunot ${count} atļaut${count === 1 ? 'o' : 'us'} pakalpojum${count === 1 ? 'u' : 'us'}`,
+      embedsReset: (count: number) =>
+        `Atjaunot ${count} atļaut${count === 1 ? 'o' : 'us'} pakalpojum${count === 1 ? 'u' : 'us'}`,
       product: 'Produkts',
       productDesc: 'Draudzīgs rīku darbību attēlojums ar kodolīgiem kopsavilkumiem.',
       technical: 'Tehniskais',
@@ -306,12 +307,12 @@ export const lv = defineLocale({
       cantUpdate: 'Šo versiju nevar atjaunināt no lietotnes iekšpuses.',
       cantReach: 'Nevarējām sasniegt atjauninājumu serveri.',
       tapCheck: 'Pieskarieties “Pārbaudīt tagad”, lai meklētu atjauninājumus.',
-      updateReady: count => `Jauns atjauninājums ir gatavs (${count} iekļaut${count === 1 ? 'a' : 'as'} izmaiņ${count === 1 ? 'as' : 'as'}).`,
+      updateReady: count =>
+        `Jauns atjauninājums ir gatavs (${count} iekļaut${count === 1 ? 'a' : 'as'} izmaiņ${count === 1 ? 'as' : 'as'}).`,
       lastChecked: age => `Pēdējoreiz pārbaudīts ${age}`,
       justNowSuffix: ' · tikko',
       automaticUpdates: 'Automātiskie atjauninājumi',
-      automaticUpdatesDesc:
-        'OpenAmer automātiski meklē atjauninājumus fonā un brīdina, kad tie ir gatavi.',
+      automaticUpdatesDesc: 'OpenAmer automātiski meklē atjauninājumus fonā un brīdina, kad tie ir gatavi.',
       branchCommit: (branch, commit) => `Atzars ${branch} · Commit ${commit}`,
       never: 'nekad',
       justNow: 'tikko',

@@ -92,38 +92,89 @@ import {
   OaVolumeX as VolumeXIcon,
   OaClose as X,
   OaClose as XIcon,
-  OaZap as Zap,
+  OaZap as Zap
 } from '@/components/ui/openamer-icons'
 
-function stub(path: string): React.FC<{className?: string; size?: string | number; style?: React.CSSProperties}> {
+function stub(path: string): React.FC<{ className?: string; size?: string | number; style?: React.CSSProperties }> {
   // Neural network wrapper: adds corner nodes + connection lines
   // to every icon, giving it the OpenAmer superintelligence identity.
   const C: React.FC<any> = ({ className, style }) =>
-    React.createElement('svg', {
-      xmlns: 'http://www.w3.org/2000/svg',
-      width: 24, height: 24,
-      viewBox: '0 0 24 24',
-      fill: 'none',
-      stroke: 'currentColor',
-      strokeWidth: 1.5,
-      strokeLinecap: 'round',
-      strokeLinejoin: 'round',
-      className,
-      style,
-    },
+    React.createElement(
+      'svg',
+      {
+        xmlns: 'http://www.w3.org/2000/svg',
+        width: 24,
+        height: 24,
+        viewBox: '0 0 24 24',
+        fill: 'none',
+        stroke: 'currentColor',
+        strokeWidth: 1.5,
+        strokeLinecap: 'round',
+        strokeLinejoin: 'round',
+        className,
+        style
+      },
       // Neural network nodes (4 corners)
       React.createElement('circle', { cx: 4, cy: 4, r: 1.5, fill: 'currentColor' }),
       React.createElement('circle', { cx: 20, cy: 4, r: 1.5, fill: 'currentColor' }),
       React.createElement('circle', { cx: 4, cy: 20, r: 1.5, fill: 'currentColor' }),
       React.createElement('circle', { cx: 20, cy: 20, r: 1.5, fill: 'currentColor' }),
       // Connection lines (frame)
-      React.createElement('line', { x1: 4, y1: 4, x2: 20, y2: 4, stroke: 'currentColor', strokeWidth: 1, opacity: 0.3 }),
-      React.createElement('line', { x1: 20, y1: 4, x2: 20, y2: 20, stroke: 'currentColor', strokeWidth: 1, opacity: 0.3 }),
-      React.createElement('line', { x1: 4, y1: 20, x2: 20, y2: 20, stroke: 'currentColor', strokeWidth: 1, opacity: 0.3 }),
-      React.createElement('line', { x1: 4, y1: 4, x2: 4, y2: 20, stroke: 'currentColor', strokeWidth: 1, opacity: 0.3 }),
+      React.createElement('line', {
+        x1: 4,
+        y1: 4,
+        x2: 20,
+        y2: 4,
+        stroke: 'currentColor',
+        strokeWidth: 1,
+        opacity: 0.3
+      }),
+      React.createElement('line', {
+        x1: 20,
+        y1: 4,
+        x2: 20,
+        y2: 20,
+        stroke: 'currentColor',
+        strokeWidth: 1,
+        opacity: 0.3
+      }),
+      React.createElement('line', {
+        x1: 4,
+        y1: 20,
+        x2: 20,
+        y2: 20,
+        stroke: 'currentColor',
+        strokeWidth: 1,
+        opacity: 0.3
+      }),
+      React.createElement('line', {
+        x1: 4,
+        y1: 4,
+        x2: 4,
+        y2: 20,
+        stroke: 'currentColor',
+        strokeWidth: 1,
+        opacity: 0.3
+      }),
       // Diagonal connections
-      React.createElement('line', { x1: 4, y1: 4, x2: 20, y2: 20, stroke: 'currentColor', strokeWidth: 0.5, opacity: 0.15 }),
-      React.createElement('line', { x1: 20, y1: 4, x2: 4, y2: 20, stroke: 'currentColor', strokeWidth: 0.5, opacity: 0.15 }),
+      React.createElement('line', {
+        x1: 4,
+        y1: 4,
+        x2: 20,
+        y2: 20,
+        stroke: 'currentColor',
+        strokeWidth: 0.5,
+        opacity: 0.15
+      }),
+      React.createElement('line', {
+        x1: 20,
+        y1: 4,
+        x2: 4,
+        y2: 20,
+        stroke: 'currentColor',
+        strokeWidth: 0.5,
+        opacity: 0.15
+      }),
       // Center icon path
       React.createElement('path', { d: path })
     )
@@ -150,10 +201,18 @@ const Command = stub('M8 4h8a4 4 0 0 1 0 8H8a4 4 0 0 1 0-8zM8 12h8a4 4 0 0 1 0 8
 const CopyIcon = stub('M8 8V4h12v12h-4M4 8h10v12H4z')
 const Cpu = stub('M6 6h12v12H6zM3 9h2M3 15h2M19 9h2M19 15h2M9 3v2M15 3v2M9 19v2M15 19v2')
 const CreditCard = stub('M3 6h18v12H3zM3 10h18M7 15h4')
-const GitBranch = stub('M8 6a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM20 18a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 6v12M8 18a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 6h4a4 4 0 0 1 4 4v6')
-const GitBranchIcon = stub('M8 6a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM20 18a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 6v12M8 18a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 6h4a4 4 0 0 1 4 4v6')
-const GitFork = stub('M8 6a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM20 6a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM12 12v6M12 12a4 4 0 0 0 4-4M12 12a4 4 0 0 1-4-4')
-const GitForkIcon = stub('M8 6a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM20 6a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM12 12v6M12 12a4 4 0 0 0 4-4M12 12a4 4 0 0 1-4-4')
+const GitBranch = stub(
+  'M8 6a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM20 18a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 6v12M8 18a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 6h4a4 4 0 0 1 4 4v6'
+)
+const GitBranchIcon = stub(
+  'M8 6a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM20 18a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 6v12M8 18a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM8 6h4a4 4 0 0 1 4 4v6'
+)
+const GitFork = stub(
+  'M8 6a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM20 6a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM12 12v6M12 12a4 4 0 0 0 4-4M12 12a4 4 0 0 1-4-4'
+)
+const GitForkIcon = stub(
+  'M8 6a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM20 6a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM12 12v6M12 12a4 4 0 0 0 4-4M12 12a4 4 0 0 1-4-4'
+)
 const Monitor = stub('M4 4h16v12H4zM8 20h8M12 16v4')
 const MonitorPlay = stub('M4 4h16v12H4zM8 20h8M12 16v4M10 8l5 3-5 3z')
 const MoreVertical = stub('M12 4v.01M12 12v.01M12 20v.01')
@@ -162,23 +221,37 @@ const PanelBottom = stub('M4 4h16v12H4zM4 14h16')
 const LayoutDashboard = stub('M4 4h7v9H4zM13 4h7v5h-7zM13 13h7v7h-7zM4 17h5v4H4z')
 const PanelLeftIcon = stub('M4 4h16v16H4zM9 4v16')
 const Layers3 = stub('M12 2l9 5-9 5-9-5zM12 9l9 5-9 5-9-5zM12 16l9 5-9 5-9-5z')
-const Loader2 = stub('M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83')
-const Loader2Icon = stub('M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83')
+const Loader2 = stub(
+  'M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83'
+)
+const Loader2Icon = stub(
+  'M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83'
+)
 const KeyRound = stub('M12 2l-3 5h-3l-2 5h4l2 8h4l2-8h4l-2-5h-3z')
 const Keyboard = stub('M3 6h18v12H3zM6 9h.01M10 9h.01M14 9h.01M18 9h.01M6 15h12')
 const LogIn = stub('M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3')
 const NotebookTabs = stub('M4 4h16v16H4zM4 9h16M4 15h16M9 4v16')
 const Package = stub('M12 3l-9 5v8l9 5 9-5V8zM12 12l9-5M12 12v10')
-const Palette = stub('M12 3a9 9 0 0 0 0 18c3 0 3-2 3-3a2 2 0 0 1 2-2c2 0 3-1 3-3a9 9 0 0 0-8-10zM8 11a1 1 0 1 0 0-2 1 1 0 0 0 0 2zM14 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2z')
+const Palette = stub(
+  'M12 3a9 9 0 0 0 0 18c3 0 3-2 3-3a2 2 0 0 1 2-2c2 0 3-1 3-3a9 9 0 0 0-8-10zM8 11a1 1 0 1 0 0-2 1 1 0 0 0 0 2zM14 8a1 1 0 1 0 0-2 1 1 0 0 0 0 2z'
+)
 const StopFilled = stub('M6 6h12v12H6z')
-const PawPrint = stub('M6 7a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM18 7a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM12 5a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM4 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM20 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM12 17c-3 0-5 3-5 5h10c0-2-2-5-5-5z')
-const RefreshCwIcon = stub('M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8M3 3v5h5M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16M21 21v-5h-5')
+const PawPrint = stub(
+  'M6 7a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM18 7a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM12 5a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM4 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM20 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM12 17c-3 0-5 3-5 5h10c0-2-2-5-5-5z'
+)
+const RefreshCwIcon = stub(
+  'M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8M3 3v5h5M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16M21 21v-5h-5'
+)
 const Save = stub('M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2zM17 21v-8H7v8M7 3v5h9')
-const Settings2 = stub('M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z')
+const Settings2 = stub(
+  'M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z'
+)
 const Square = stub('M3 3h18v18H3z')
 const Starmap = stub('M12 2l3 7 7 2-5 5 1 7-6-3-6 3 1-7-5-5 7-2z')
 const SteeringWheel = stub('M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zM12 12l5-5M12 12l-5 5M12 12l-5-5M12 12l5 5')
-const Wrench = stub('M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a1 1 0 0 0 0-1.4l-1.6-1.6a1 1 0 0 0-1.4 0l-3.8 3.8zM4 20l7.5-7.5')
+const Wrench = stub(
+  'M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.8-3.8a1 1 0 0 0 0-1.4l-1.6-1.6a1 1 0 0 0-1.4 0l-3.8 3.8zM4 20l7.5-7.5'
+)
 const ZapFilled = stub('M13 2L3 14h9l-1 8 10-12h-9l1-8z')
 const ZoomIn = stub('M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0-14 0M21 21l-6-6M10 7v6M7 10h6')
 const ZoomOut = stub('M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0-14 0M21 21l-6-6M7 10h6')
@@ -187,34 +260,135 @@ export type { Icon as IconComponent } from '@tabler/icons-react'
 
 // Re-export all OpenAmer custom icons
 export {
-  Activity, AlertCircle, AlertTriangle,
+  Activity,
+  AlertCircle,
+  AlertTriangle,
   // Legacy stub icons
-  AppWindow, Archive, ArchiveOff, ArrowUp,
-  ArrowUpRight, AtSign, Attach, AudioLines,
-  BarChart3, Bell, Bookmark,
-  BookmarkFilled, Box, Brain, Bug,
-  Check, CheckCircle, CheckCircle2, CheckIcon, ChevronDown,
-  ChevronDownIcon, ChevronLeft, ChevronLeftIcon, ChevronRight, ChevronRightIcon, CircleIcon,
-  CircleLetterA, Clipboard, Clock, Cloud, Command, Copy, CopyIcon,
-  Cpu, CreditCard, Download, Egg, ExternalLink, Eye,
-  EyeOff, FileImage, FileText, Filter, Flag,
-  FolderOpen, GitBranch, GitBranchIcon, GitFork,
-  GitForkIcon, Globe, Hash,
-  Heart, HelpCircle, ImageIcon, Info, Keyboard, KeyRound,
-  Layers3, LayoutDashboard, Link, Link2, Loader2,
-  Loader2Icon, Lock, LogIn, Mail, Maximize, Menu,
-  MessageCircle, MessageQuestion, MessageSquareText, Mic, MicOff,
-  Minimize, Monitor, MonitorPlay,
-  Moon, MoreHorizontal, MoreHorizontalIcon, MoreVertical, NotebookTabs, Package, Palette,
-  PanelBottom, PanelLeftIcon, Pause, PawPrint, Pencil,
-  PencilIcon, PencilLine, Pin, Play, Plus,
-  RefreshCw, RefreshCwIcon, Save, Search,
-  SearchIcon, Send, Settings, Settings2,
-  Skills, SlidersHorizontal, Square, Star,
-  Starmap, SteeringWheel, StopFilled, Sun, Tag,
-  Terminal, Trash2, Upload, Users, Volume2, Volume2Icon,
-  VolumeX, VolumeXIcon, Wrench, X, XIcon,
-  Zap, ZapFilled, ZoomIn, ZoomOut,
+  AppWindow,
+  Archive,
+  ArchiveOff,
+  ArrowUp,
+  ArrowUpRight,
+  AtSign,
+  Attach,
+  AudioLines,
+  BarChart3,
+  Bell,
+  Bookmark,
+  BookmarkFilled,
+  Box,
+  Brain,
+  Bug,
+  Check,
+  CheckCircle,
+  CheckCircle2,
+  CheckIcon,
+  ChevronDown,
+  ChevronDownIcon,
+  ChevronLeft,
+  ChevronLeftIcon,
+  ChevronRight,
+  ChevronRightIcon,
+  CircleIcon,
+  CircleLetterA,
+  Clipboard,
+  Clock,
+  Cloud,
+  Command,
+  Copy,
+  CopyIcon,
+  Cpu,
+  CreditCard,
+  Download,
+  Egg,
+  ExternalLink,
+  Eye,
+  EyeOff,
+  FileImage,
+  FileText,
+  Filter,
+  Flag,
+  FolderOpen,
+  GitBranch,
+  GitBranchIcon,
+  GitFork,
+  GitForkIcon,
+  Globe,
+  Hash,
+  Heart,
+  HelpCircle,
+  ImageIcon,
+  Info,
+  Keyboard,
+  KeyRound,
+  Layers3,
+  LayoutDashboard,
+  Link,
+  Link2,
+  Loader2,
+  Loader2Icon,
+  Lock,
+  LogIn,
+  Mail,
+  Maximize,
+  Menu,
+  MessageCircle,
+  MessageQuestion,
+  MessageSquareText,
+  Mic,
+  MicOff,
+  Minimize,
+  Monitor,
+  MonitorPlay,
+  Moon,
+  MoreHorizontal,
+  MoreHorizontalIcon,
+  MoreVertical,
+  NotebookTabs,
+  Package,
+  Palette,
+  PanelBottom,
+  PanelLeftIcon,
+  Pause,
+  PawPrint,
+  Pencil,
+  PencilIcon,
+  PencilLine,
+  Pin,
+  Play,
+  Plus,
+  RefreshCw,
+  RefreshCwIcon,
+  Save,
+  Search,
+  SearchIcon,
+  Send,
+  Settings,
+  Settings2,
+  Skills,
+  SlidersHorizontal,
+  Square,
+  Star,
+  Starmap,
+  SteeringWheel,
+  StopFilled,
+  Sun,
+  Tag,
+  Terminal,
+  Trash2,
+  Upload,
+  Users,
+  Volume2,
+  Volume2Icon,
+  VolumeX,
+  VolumeXIcon,
+  Wrench,
+  X,
+  XIcon,
+  Zap,
+  ZapFilled,
+  ZoomIn,
+  ZoomOut
 }
 
 export const iconSize = {
@@ -228,7 +402,7 @@ export const iconSize = {
   '3xl': 'size-9',
   '4xl': 'size-10',
   '5xl': 'size-12',
-  '6xl': 'size-14',
+  '6xl': 'size-14'
 } as const
 
 export type IconSize = keyof typeof iconSize
