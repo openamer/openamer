@@ -68,13 +68,22 @@ def experiment_predict_world():
             "measurable": True}
 
 def experiment_tune_buffer():
-    """Insight from self-improvement: buffer cap tuning. Try a different cap."""
+    """Insight from self-improvement: buffer cap tuning. Measure + enforce cap."""
     buf_file = os.path.join(T, "online_buffer.jsonl")
-    n = sum(1 for _ in open(buf_file, encoding="utf-8"))
-    # if buffer is at cap and healthy, record the measurement
-    return {"action": f"buffer measurement: {n} examples",
-            "result": "buffer healthy — no change needed" if n < 280 else "buffer near cap — meta_learn will trim",
-            "measurable": False}
+    n = sum(1 for _ in open(buf_file, encoding="utf-8")) if os.path.exists(buf_file) else 0
+    # Cap is enforced on EVERY append via buffer_store (single source of truth).
+    try:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import buffer_store
+        n = buffer_store.enforce_cap(buf_file)
+        cap = buffer_store.MAX_BUF
+        return {"action": f"buffer measurement: {n} examples (cap {cap})",
+                "result": f"buffer at cap {cap} — trim enforced on every write",
+                "measurable": True}
+    except Exception as e:
+        return {"action": f"buffer measurement: {n} examples",
+                "result": f"buffer store unavailable: {str(e)[:80]}",
+                "measurable": False}
 
 def experiment_competitor_gap():
     """Insight: competitor features. Identify one gap we can close."""

@@ -31,9 +31,10 @@ def chat(messages, max_tokens=200):
     return r["choices"][0]["message"]["content"].strip()
 
 def add_to_buffer(user_text, assistant_text):
-    with open(BUFFER, "a", encoding="utf-8") as f:
-        f.write(json.dumps({"u": user_text[:3000], "a": assistant_text[:4000]},
-                           ensure_ascii=False) + "\n")
+    # Single source of truth: append + enforce cap on EVERY write.
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import buffer_store
+    return buffer_store.append(user_text, assistant_text, buffer=BUFFER)
 
 def observe_world(cause, effect):
     """Write through the central world model (single source of truth)."""

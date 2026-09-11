@@ -32,6 +32,8 @@ BUFFER = T / "online_buffer.jsonl"
 MARKER = T / ".online_marker"
 LIVE_SWAP_URL = "http://localhost:8081/admin/swap"
 LIVE_SWAP_TIMEOUT = 120
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import buffer_store  # single source of truth for buffer writes + cap
 
 MINI_STEP_SCRIPT = T / "mini_step.py"          # trains 1-2 steps on a few examples
 STEPS_PER_CYCLE = 3                             # examples per mini-step
@@ -57,33 +59,35 @@ def collect_new(max_new=50):
     if total <= last:
         return 0
     new = 0
-    with open(BUFFER, "a", encoding="utf-8") as out:
-        for i, line in enumerate(open(BRAIN, encoding="utf-8")):
-            if i < last:
-                continue
-            if new >= max_new:
+    for i, line in enumerate(open(BRAIN, encoding="utf-8")):
+        if i < last:
+            continue
+        if new >= max_new:
+            break
+        try:
+            d = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        # extract one (user, assistant) pair per record (first clean pair)
+        lu = None
+        for m in d.get("messages", []):
+            r = m.get("role")
+            if r == "user":
+                lu = (m.get("content") or "").strip()
+            elif r == "assistant" and lu:
+                ac = (m.get("content") or "").strip()
+                ok = (30 <= len(ac) <= 4000 and 3 <= len(lu) <= 4000
+                      and not lu.startswith("[IMPORTANT:")
+                      and not lu.startswith("[System note:"))
+                if ok:
+                    # write through the store: cap enforced on EVERY append
+                    buffer_store.append(lu, ac, buffer=str(BUFFER))
+                    new += 1
+                lu = None
                 break
-            try:
-                d = json.loads(line)
-            except json.JSONDecodeError:
-                continue
-            # extract one (user, assistant) pair per record (first clean pair)
-            lu = None
-            for m in d.get("messages", []):
-                r = m.get("role")
-                if r == "user":
-                    lu = (m.get("content") or "").strip()
-                elif r == "assistant" and lu:
-                    ac = (m.get("content") or "").strip()
-                    if 30 <= len(ac) <= 4000 and 3 <= len(lu) <= 4000 and ac \
-                       and not lu.startswith("[IMPORTANT:") and not lu.startswith("[System note:"):
-                        out.write(json.dumps({"u": lu[:3000], "a": ac[:4000]},
-                                             ensure_ascii=False) + "\n")
-                        new += 1
-                    lu = None
-                    break
     MARKER.write_text(str(min(total, last + max_new)))
     return new
+
 
 def mini_step():
     """Run ONE mini training step on the newest buffer examples (isolated proc)."""
@@ -125,22 +129,25 @@ def loop():
                 # the 24/7 loop never starves. Like human memory rehearsal:
                 # repeating old knowledge strengthens it (no downtime needed).
                 try:
-                    buf_lines = open(BUFFER, encoding="utf-8").readlines()
                     # cap the buffer: training on unbounded duplicates degrades
                     # the loss (gradient noise). Keep a fixed window instead.
-                    MAX_BUF = 300
-                    if len(buf_lines) > MAX_BUF:
-                        open(BUFFER, "w", encoding="utf-8").writelines(buf_lines[-MAX_BUF:])
-                        buf_lines = buf_lines[-MAX_BUF:]
-                        print(f"[online-learning] buffer trimmed to {MAX_BUF}", flush=True)
-                    if len(buf_lines) >= 4:
+                    n_before = buffer_store.enforce_cap(str(BUFFER))
+                    if n_before == buffer_store.MAX_BUF:
+                        print(f"[online-learning] buffer trimmed to {buffer_store.MAX_BUF}",
+                              flush=True)
+                    if n_before >= 4:
                         import random as _r
+                        buf_lines = open(BUFFER, encoding="utf-8").readlines()
                         picks = _r.sample(buf_lines, 2)
-                        with open(BUFFER, "a", encoding="utf-8") as out:
-                            for p in picks:
-                                out.write(p if p.endswith("\n") else p + "\n")
+                        for pk in picks:
+                            try:
+                                rec = json.loads(pk)
+                                buffer_store.append(rec.get("u", ""), rec.get("a", ""),
+                                                    buffer=str(BUFFER))
+                            except json.JSONDecodeError:
+                                continue
                         print(f"[online-learning] replay: +2 old episodes re-injected "
-                              f"(buffer={len(buf_lines)})", flush=True)
+                              f"(buffer={buffer_store.count(str(BUFFER))})", flush=True)
                 except Exception as e:
                     print(f"[online-learning] replay skip: {e}", flush=True)
             for i in range(STEPS_PER_CYCLE):
