@@ -1,11 +1,11 @@
 {
-  "timestamp": "2026-09-06T04:00:23",
+  "timestamp": "2026-09-11T10:34:03",
   "mode": "apply",
-  "population": 349,
-  "avg_score": 45.5,
+  "population": 347,
+  "avg_score": 44.3,
   "kept": [
     {
-      "skill": "auto-best-practice-from-official",
+      "skill": "auto-structural-connection-between-learning",
       "before": 21,
       "after": 25,
       "delta": 4,
@@ -16,7 +16,7 @@
       ]
     },
     {
-      "skill": "auto-competitor-intelligence-autogpt-improvem",
+      "skill": "auto-structural-connection-between-tool",
       "before": 21,
       "after": 25,
       "delta": 4,
@@ -27,7 +27,7 @@
       ]
     },
     {
-      "skill": "auto-competitor-intelligence-devin-ai",
+      "skill": "auto-what-makes-a-selfimproving",
       "before": 21,
       "after": 25,
       "delta": 4,
@@ -38,7 +38,7 @@
       ]
     },
     {
-      "skill": "auto-competitor-intelligence-openhands-agent",
+      "skill": "auto-efficiency-learning-edge-ai",
       "before": 21,
       "after": 25,
       "delta": 4,
@@ -49,7 +49,7 @@
       ]
     },
     {
-      "skill": "auto-internet-learning-llm-agents",
+      "skill": "auto-efficiency-learning-quantization-techniq",
       "before": 21,
       "after": 25,
       "delta": 4,
@@ -60,7 +60,7 @@
       ]
     },
     {
-      "skill": "auto-latest-research-insight-arxiv",
+      "skill": "auto-efficiency-learning-small-language",
       "before": 21,
       "after": 25,
       "delta": 4,
@@ -71,7 +71,7 @@
       ]
     },
     {
-      "skill": "auto-multidomain-learning-climate-science",
+      "skill": "auto-explain-how-sleep-consolidation",
       "before": 21,
       "after": 25,
       "delta": 4,
@@ -82,7 +82,7 @@
       ]
     },
     {
-      "skill": "auto-multidomain-learning-medical-diagnosis",
+      "skill": "auto-how-does-energy-efficiency",
       "before": 21,
       "after": 25,
       "delta": 4,
@@ -93,7 +93,7 @@
       ]
     },
     {
-      "skill": "auto-multidomain-learning-philosophy-of",
+      "skill": "auto-internet-learning-ai-agent",
       "before": 21,
       "after": 25,
       "delta": 4,
@@ -104,7 +104,7 @@
       ]
     },
     {
-      "skill": "auto-what-are-the-most",
+      "skill": "auto-internet-learning-autonomous-ai",
       "before": 21,
       "after": 25,
       "delta": 4,

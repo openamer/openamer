@@ -30,10 +30,12 @@ from typing import Any, Dict, List, Optional, Set, Tuple
 # ──────────────────────────────────────────────────────────────────────
 # Pfade
 # ──────────────────────────────────────────────────────────────────────
-OPENAMER_HOME = Path(os.environ.get(
-    "LOCALAPPDATA",
-    str(Path.home() / "AppData/Local"),
-)) / "openamer"
+_env_home = os.environ.get("OPENAMER_HOME")
+OPENAMER_HOME = (
+    Path(_env_home)
+    if _env_home
+    else Path(os.environ.get("LOCALAPPDATA", str(Path.home() / "AppData/Local"))) / "openamer"
+)
 
 SKILLS_DIR = OPENAMER_HOME / "skills"
 LOGS_DIR = OPENAMER_HOME / "logs"

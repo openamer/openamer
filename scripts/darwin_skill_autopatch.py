@@ -40,7 +40,7 @@ def run_validator_json() -> dict:
     # validator prints progress lines before JSON; find first '{'
     idx = out.find("{")
     if idx == -1:
-        raise RuntimeError(f"validator produced no JSON (exit {r.return_code}): {out[:300]}")
+        raise RuntimeError(f"validator produced no JSON (exit {r.returncode}): {out[:300]}")
     return json.loads(out[idx:])
 
 
