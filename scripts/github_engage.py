@@ -88,13 +88,22 @@ def main() -> int:
     po = sub.add_parser("post-own")
     po.add_argument("--owner", default="openamer"); po.add_argument("--repo", default="openamer")
     po.add_argument("--issue", type=int, required=True)
-    po.add_argument("--body", required=True)
+    po.add_argument("--body")
+    # Markdown bodies contain backticks and $, which the shell would expand
+    # inside "$(...)". A file argument keeps the payload byte-exact.
+    po.add_argument("--body-file", dest="body_file",
+                    help="read the comment body from this file (UTF-8)")
     po.add_argument("--dry", action="store_true")
     a = ap.parse_args()
     if a.cmd == "list-own":
         return list_own_issues(a.owner, a.repo)
     if a.cmd == "post-own":
-        return post_own_issue(a.owner, a.repo, a.issue, a.body, a.dry)
+        body = a.body
+        if a.body_file:
+            body = Path(a.body_file).read_text(encoding="utf-8")
+        if not (body or "").strip():
+            print("error: --body or --body-file is required"); return 2  # noqa:SEC CLI feedback
+        return post_own_issue(a.owner, a.repo, a.issue, body, a.dry)
     ap.print_help(); return 2
 
 
