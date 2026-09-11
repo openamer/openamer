@@ -1,12 +1,14 @@
 # GitHub Sponsors — Support OpenAmer
 # These are the funding platforms we accept
-# Verified live 2026-09-09: paypal (200), issuehunt (200).
-# Removed: ko-fi (403), buymeacoffee (404) — dead links cost trust.
+# Verified live 2026-09-11: paypal (200), issuehunt (200, moved to oss.issuehunt.io).
+# Removed: ko-fi (redirects to homepage — profile does not exist),
+#          buymeacoffee (404), github sponsors (redirects to profile — not set up).
+# A redirect to the platform homepage/profile == dead link; it costs trust.
 
-# github: [openamer]  # Sponsors-Setup nie abgeschlossen (404) — re-add after dashboard setup
+# github: [openamer]  # Sponsors-Setup nie abgeschlossen (redirects to profile) — re-add after dashboard setup
 patreon: # Replace with Patreon username
 open_collective: # Replace with OpenCollective username
-ko_fi: # dead 403 — re-add when account exists
+ko_fi: # dead — /openamer_agent redirects to ko-fi.com homepage; re-add when account exists
 tidelift: # Replace with Tidelift platform
 community_bridge: # Replace with Community Bridge project
 liberapay: # Replace with Liberapay username

@@ -1,10 +1,12 @@
 """OpenAmer Funding Engine — Einnahmen generieren und verfolgen
 
 Reale Einnahmequellen (keine Theorie):
-1. GitHub Sponsors — monatliche Tiers ($3/$10/$25/$250)
-2. Ko-fi / Buy Me a Coffee — Einmalspenden (☕ $3-$50)
-3. PayPal — Direktspenden (jeder Betrag)
-4. Enterprise — Rechnungen (€499-€9999, Stripe)
+1. PayPal — Direktspenden (jeder Betrag)          [verified live 2026-09-11]
+2. IssueHunt — Bounties (oss.issuehunt.io/r/openamer)  [verified live 2026-09-11]
+3. Enterprise — Rechnungen (€499-€9999, Stripe)
+
+Dead links removed (redirect-to-homepage or 404 cost trust):
+  GitHub Sponsors (not set up), Ko-fi (redirects to homepage), Buy Me a Coffee (404).
 
 Jede Spende tracked in store/funding.json
 Läuft als Cron-Job: prüft auf neue Sponsors, sendet Dankes-Nachricht.
@@ -25,11 +27,14 @@ TIERS = {
     "enterprise": {"price": 250, "name": "🏆 Enterprise", "badge": "Enterprise"},
 }
 
+# Verified live 2026-09-11: paypal (200), issuehunt (200).
+# Removed dead links (redirect-to-homepage or 404) — dead links cost trust:
+#   github_sponsors -> redirects to profile (not set up)
+#   ko-fi           -> /openamer_agent redirects to ko-fi.com homepage
+#   buymeacoffee    -> HTTP 404
 PAYMENT_LINKS = {
-    "github_sponsors": "https://github.com/sponsors/openamer",
-    "ko-fi": "https://ko-fi.com/openamer_agent",
-    "buymeacoffee": "https://buymeacoffee.com/openamer",
     "paypal": "https://www.paypal.com/paypalme/openamer",
+    "issuehunt": "https://oss.issuehunt.io/r/openamer",
     "enterprise": "mailto:openamer@openamer.ai",
 }
 
@@ -106,10 +111,8 @@ class FundingEngine:
             "active_sponsors": len(sponsors["active"]),
             "total_transactions": len(funding["transactions"]),
             "payment_options": [
-                {"name": "GitHub Sponsors", "url": PAYMENT_LINKS["github_sponsors"], "type": "monthly"},
-                {"name": "Ko-fi", "url": PAYMENT_LINKS["ko-fi"], "type": "one-time"},
-                {"name": "Buy Me a Coffee", "url": PAYMENT_LINKS["buymeacoffee"], "type": "one-time"},
                 {"name": "PayPal", "url": PAYMENT_LINKS["paypal"], "type": "one-time"},
+                {"name": "IssueHunt", "url": PAYMENT_LINKS["issuehunt"], "type": "bounty"},
                 {"name": "Enterprise Invoice", "url": PAYMENT_LINKS["enterprise"], "type": "custom"},
             ],
             "tiers": {k: {"name": v["name"], "price": v["price"]} for k, v in TIERS.items()},
@@ -177,7 +180,6 @@ if __name__ == "__main__":
     print(f"    {f.progress_bar()}")
     print()
     print("✅ Funding Engine ready — payment links live in README")
-    print(f"  → {PAYMENT_LINKS['github_sponsors']}")
-    print(f"  → {PAYMENT_LINKS['ko-fi']}")
-    print(f"  → {PAYMENT_LINKS['buymeacoffee']}")
-    print(f"  → {PAYMENT_LINKS['paypal']}")
+    for name, url in PAYMENT_LINKS.items():
+        if url.startswith("http"):
+            print(f"  → {url}")

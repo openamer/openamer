@@ -10,24 +10,14 @@ Support OpenAmer directly via PayPal. Choose your own amount — every contribut
 
 [**→ Pay via PayPal**](https://www.paypal.com/ncp/payment/3HMBFYC9CQTMS)
 
-Or scan the QR code on the website.
+### 🐛 IssueHunt (Bounties)
+Fund specific issues and get the fix you need.
 
-### ☕ Buy Me a Coffee
-One-time support — every coffee fuels late-night coding sessions.
+[**→ Fund an issue on IssueHunt**](https://oss.issuehunt.io/r/openamer)
 
-| **💳 PayPal** | One-time | Any amount via PayPal hosted button |
-
-### ⭐ GitHub Sponsors
-Monthly sponsorship with perks:
-
-| Tier | Price | Perks |
-|------|-------|-------|
-| **🥉 Supporter** | $3/mo | Name in README, supporter badge on GitHub |
-| **🥈 Backer** | $10/mo | All above + priority support in Discord |
-| **🥇 Sponsor** | $25/mo | All above + your logo in our GitHub repo |
-| **🏆 Enterprise** | $250/mo | All above + custom skill development, SLA, SSO |
-
-[sponsor on GitHub](https://github.com/sponsors/openamer)
+> Note: recurring sponsorship (GitHub Sponsors) is not set up yet. Links are
+> verified live before being listed — a redirect to a profile/homepage is
+> treated as dead and removed (verified 2026-09-11).
 
 ### 🏢 Enterprise
 Running OpenAmer in your company? We offer:

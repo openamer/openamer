@@ -74,6 +74,12 @@ Skills are not a static library. They are a **living population** that mutates, 
 
 **15 things no other agent can do** — verified, shipped, tested.
 
+### ⚡ Runs on your hardware, for nearly nothing
+
+OpenAmer is the only persistent agent that runs at **0 €/day and <1 kWh/day** —
+on your laptop, with a local 2B brain, learning from a free-cloud reasoning
+chain. No VM costs, no hosted tier, no phone-home. Your prompts stay yours.
+
 ### 🩺 NEW: Workflow Immune System — UI automation that heals itself
 
 The world's first self-healing UI automation. Register a workflow once (selectors only,
@@ -565,9 +571,8 @@ $0 raised / $500 goal
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 0%
 ```
 
-- 🥉 Supporter $3/mo · 🥈 Backer $10/mo · 🥇 Sponsor $25/mo · 🏆 Enterprise $250/mo
-- All tiers & perks: **[SPONSORS.md](SPONSORS.md)**
-- One-time: [PayPal](https://www.paypal.com/ncp/payment/3HMBFYC9CQTMS) · [IssueHunt](https://issuehunt.com/r/openamer)
+- One-time: [PayPal](https://www.paypal.com/ncp/payment/3HMBFYC9CQTMS) · [IssueHunt bounties](https://oss.issuehunt.io/r/openamer)
+- Enterprise & managed hosting: **[SPONSORS.md](SPONSORS.md)**
 
 <!-- openamer-funding-bar (auto-updated by scripts/funding.py cron): total_raised=$30 | monthly_recurring=$28 | progress=6% | updated=2026-09-05 -->
 
