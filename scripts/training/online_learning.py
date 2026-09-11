@@ -93,9 +93,15 @@ def mini_step():
     """Run ONE mini training step on the newest buffer examples (isolated proc)."""
     if not MINI_STEP_SCRIPT.exists():
         return {"error": f"mini_step.py missing at {MINI_STEP_SCRIPT}"}
+    # Sanitize env: a globally-exported PYTHONPATH (e.g. the agent shell's
+    # openamer-agent venv) shadows this venv's transformers/huggingface_hub and
+    # breaks training with a bogus version-conflict ImportError. The child must
+    # resolve against its OWN interpreter's site-packages.
+    env = dict(os.environ)
+    env.pop("PYTHONPATH", None)
     r = subprocess.run([sys.executable, str(MINI_STEP_SCRIPT)],
                        capture_output=True, text=True, timeout=600,
-                       encoding="utf-8", errors="replace")
+                       encoding="utf-8", errors="replace", env=env)
     try:
         return json.loads(r.stdout.strip().splitlines()[-1])
     except Exception:
