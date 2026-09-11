@@ -34,27 +34,40 @@ TRAIN_LOG = r"C:\Users\damir\train.log"
 def training_active():
     """True when a finetune currently holds the GPU box's card.
 
-    Two signals, because neither alone is reliable over SSH: the scheduled
-    task's status field is locale-dependent AND gets truncated by the
-    transport's binary-match filter, so the completion MARKER in the training
-    log is the dependable one — a log that has not yet printed EXIT_CODE and
-    was written within the last 20 minutes means a run is in flight.
+    Primary signal: PowerShell's `Get-ScheduledTask .State` — an invariant
+    English enum (Running/Ready/Disabled) that survives the SSH transport. The
+    localized `schtasks` "Status:" text does not: German "Wird ausgeführt"
+    arrives as raw cp850 bytes (0x81), so under encoding="utf-8",
+    errors="replace" the umlaut becomes U+FFFD and a UTF-8 substring match
+    never fires. Observed live 2026-09-11: training_active() returned False for
+    a whole run, so the watchdog restarted the 4B worker into an active
+    finetune and both contended for the 8 GB card.
+
+    Secondary signal: an in-flight training log (no EXIT_CODE yet, fresh mtime).
     """
-    rc, out = _ssh(f'schtasks /query /tn {LOCK_REMOTE_TASK} /fo LIST /v')
-    low = (out or "").lower()
-    if "running" in low or "wird ausgeführt" in low:
+    rc, out = _ssh(
+        "powershell -NoProfile -Command "
+        "\"(Get-ScheduledTask -TaskName '" + LOCK_REMOTE_TASK + "').State\"")
+    if rc == 0 and "running" in (out or "").lower():
         return True
     # Fallback: an in-flight training log (no EXIT_CODE yet, fresh mtime).
+    # NOTE: build the value with Write-Output, NOT an escaped \"...\" — inner
+    # double quotes do not survive cmd.exe on the far side of ssh (that call
+    # died with "Das System kann den angegebenen Pfad nicht finden.", rc=255),
+    # so this branch never executed either.
     rc2, log = _ssh(
-        f'powershell -NoProfile -Command "'
+        'powershell -NoProfile -Command "'
         f"$f=Get-Item '{TRAIN_LOG}' -EA SilentlyContinue; "
         f"if($f){{ $age=(New-TimeSpan -Start $f.LastWriteTime).TotalMinutes; "
         f"$done=(Select-String -Path '{TRAIN_LOG}' -Pattern 'EXIT_CODE' -Quiet); "
-        f'\\"$age|$done\\" }}"')
+        f"Write-Output ($age.ToString() + '|' + $done) }}\"")
     if rc2 == 0 and "|" in log:
         try:
-            age_s, done_s = log.strip().splitlines()[-1].strip().strip('"').split("|")
-            age = float(age_s)
+            line = [l for l in log.strip().splitlines() if "|" in l][-1]
+            age_s, done_s = line.strip().strip('"').split("|")
+            # $age.ToString() is locale-formatted (German uses a decimal comma),
+            # so normalize before float() — the old float(age_s) raised here too.
+            age = float(age_s.replace(",", "."))
             done = done_s.strip().lower() == "true"
             return (not done) and age < 20
         except Exception:
@@ -73,10 +86,20 @@ def probe(timeout=6):
 
 
 def _ssh(cmd, timeout=60):
+    """Run cmd on the GPU PC over SSH. Returns (rc, stdout).
+
+    stdout only: OpenSSH prints a post-quantum warning banner on connect to
+    stderr, and folding it into the parsed value is what made the training
+    probe's "|" split ambiguous. stderr is folded back in only when a failed
+    run produced no stdout at all, so real errors stay visible.
+    """
     try:
         p = subprocess.run(SSH + [cmd], capture_output=True, text=True,
                            timeout=timeout, encoding="utf-8", errors="replace")
-        return p.returncode, (p.stdout or "") + (p.stderr or "")
+        out = p.stdout or ""
+        if p.returncode != 0 and not out.strip():
+            out = p.stderr or ""
+        return p.returncode, out
     except Exception as e:
         return 99, f"ssh failed: {e}"
 
