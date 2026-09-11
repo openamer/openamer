@@ -74,3 +74,32 @@ def test_chat_default_posts_to_v1_path(monkeypatch=None):
     src = inspect.getsource(mc.chat_default)
     assert 'endpoint_for_default() + "/v1/chat/completions"' in src, src[:400]
     assert "auth_headers()" in src
+
+
+# --- thinking-trace post-processing (a truncated cloud reply must not leak CoT) ---
+
+_TRACE_CASES = [
+    ("We need answer in German. Need evaluate the previous answer.", True, "meta-opener"),
+    ("1. **Analyze** the request\nblah", True, "list-opener"),
+    ("The user asks about skills. So the final should be short.", True, "meta-mid"),
+    ("", True, "empty"),
+    ("Eine Woche hat sieben Tage.", False, "clean-answer"),
+    ("Die Hauptstadt von Frankreich ist Paris.", False, "clean-answer-2"),
+    ("Thinking... </think>Berlin ist die Hauptstadt.", False, "tagged-answer"),
+]
+
+
+def test_meta_rambling_classifier_both_directions():
+    """Every trace case rejects; every real answer passes."""
+    wrong = [n for t, want, n in _TRACE_CASES if mc._is_meta_rambling(t) != want]
+    assert not wrong, f"misclassified: {wrong}"
+
+
+def test_last_clean_block_recovers_answer_from_truncated_trace():
+    trace = "We need answer.\n\n1. Analyze\n2. Decide\n\nDie Antwort lautet zweiundvierzig."
+    assert mc._last_clean_block(trace) == "Die Antwort lautet zweiundvierzig."
+
+
+def test_strip_thinking_keeps_text_after_close_tag():
+    assert mc._strip_thinking("Thinking... </think>Berlin.") == "Berlin."
+    assert mc._strip_thinking("Eine Woche hat sieben Tage.") == "Eine Woche hat sieben Tage."

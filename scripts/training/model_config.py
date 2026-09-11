@@ -133,6 +133,63 @@ def auth_headers() -> dict:
     return {}
 
 
+"""Thinking-trace post-processing.
+
+Cloud thinking models (DeepSeek via Ollama Cloud, nemotron, ...) wrap their
+answer differently depending on whether the token budget ran out:
+  * enough budget  -> `content` holds the clean answer
+  * truncated      -> `content` is empty and `reasoning` holds an English
+                      chain-of-thought that must NOT be returned as an answer.
+"""
+import re as _re
+
+# English self-referential planning phrases that mark a reasoning trace.
+_META = _re.compile(
+    r"\b(we need|i need to|the user|the question|the prompt|let me|"
+    r"so the final|should be|thinking process|analy[sz]e the)", _re.I)
+# Markdown list / bold openers that a trace uses but an answer rarely starts with.
+_TRACE_OPEN = _re.compile(r"^\s*(?:\d+\.|[-*]\s|\*\*)")
+# A sentence the caller can actually use.
+_GOOD_SENT = _re.compile(r"([A-ZÄÖÜ][^.!?]{20,300}[.!?])")
+
+
+def _is_meta_rambling(text: str) -> bool:
+    """True when text reads like a reasoning trace rather than an answer."""
+    t = (text or "").strip()
+    if not t:
+        return True
+    if "</think>" in t:
+        return False  # an explicit answer follows the tag
+    if _TRACE_OPEN.match(t):
+        return True
+    head = t[:200]
+    if _META.match(head.lstrip()):
+        return True  # starts with a planning phrase -> trace, however short
+    return len(t) > 120 and bool(_META.search(head))
+
+
+def _last_clean_block(text: str) -> str:
+    """Recover the answer from a truncated trace: last usable sentence/para."""
+    t = (text or "").strip()
+    if not t:
+        return ""
+    # Prefer the tail after the last blank line — models often drop the answer there.
+    tail = t.rsplit("\n\n", 1)[-1].strip()
+    for cand in (tail, t):
+        if cand and not _is_meta_rambling(cand):
+            return cand
+    sents = _GOOD_SENT.findall(t)
+    return sents[-1].strip() if sents else ""
+
+
+def _strip_thinking(text: str) -> str:
+    """Drop  thinking...</think> and known prose preambles from a final answer."""
+    t = (text or "").strip()
+    if "</think>" in t:
+        t = t.rsplit("</think>", 1)[1].strip()
+    return t
+
+
 def summary() -> dict:
     return {
         "default": resolve_default_model(),
@@ -165,11 +222,19 @@ def chat_default(messages, max_tokens=400):
     req = urllib.request.Request(
         url, data=json.dumps(body).encode(), headers=headers)
     r = json.load(urllib.request.urlopen(req, timeout=300))
-    msg = r["choices"][0]["message"]
+    choice = r["choices"][0]
+    msg = choice["message"]
     content = (msg.get("content") or "").strip()
     if not content:
-        content = (msg.get("reasoning") or "").strip()
-    return content
+        # DeepSeek-style models put the answer in `reasoning` when `content` is
+        # empty — but on a truncated call (finish_reason=length) that field is
+        # the raw chain-of-thought, not an answer. Only fall back when the trace
+        # still yields something that is not meta-rambling.
+        trace = (msg.get("reasoning") or "").strip()
+        if choice.get("finish_reason") == "length":
+            trace = _last_clean_block(trace)
+        content = trace if not _is_meta_rambling(trace) else ""
+    return _strip_thinking(content)
 
 
 if __name__ == "__main__":
