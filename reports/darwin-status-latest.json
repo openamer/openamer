@@ -1,5 +1,5 @@
 {
-  "updated": "2026-09-10T03:00:42+00:00",
+  "updated": "2026-09-11T03:09:26+00:00",
   "population": 388,
   "avg_score": 44.3,
   "fittest": [
@@ -162,47 +162,47 @@
   "trends": [
     {
       "source": "News",
-      "title": "4 issues with agentic AI personas - No Jitter",
-      "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE54WGstZE16LUJrYmpFTGhlcllWM3ZLblRjYS1VTTJrWWFYRG1ITVpTTVgtUGNRV3RPc3hkVUtGU01YSHBBdXNMWVZNa21rUzA2SEtKUnFEOFN2UGVVU2pLc2xLMUg1SG9saHpIY0psaUJHS0hQWGd2dFNOcXI?oc=5"
+      "title": "The Agentic AI Revolution in Biopharma - Pharmaceutical Executive",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE10eFF1eHBTYmdxbXVPQWR6TEJqeXN0NHlYdm5GS1F4V3dwN3RsdFdySldqNzBsYm9JcE5ld2tZNGI4S0NDV3hrczRZVkJkeUZGdzhpeFRrUjEtNHVpYTN3SFJORmlWUm9GX1FUUlVlaw?oc=5"
     },
     {
       "source": "News",
-      "title": "Why AI agents cannot be trusted to secure agentic AI yet - Computer Weekly",
-      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPckwxcTFpaXIxbFU2RnMzNGFyd3o4U0ZYZFBRTXNkVGpTZzVSNlVvX1ZVaVduUGxsaEI5N0hIVjFiYXRpZkVvRlZCeTcyZzBBSS1vZzJHaXhaRkhoV3NCQ1V4VDRKY1VzNlMta3JYNy1YNks1YTA0Q1ptcVk3Mm9qOXpNdjdPeGotZEpGSV8tXzlFeG1hckpTaC1mcw?oc=5"
+      "title": "How to Build an AI Agent (From Scratch) - HackerNoon",
+      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1rS0NFOXNhZmZKUFdWazU5VlNOOWRUUUdUNEJEQXVZb3J2SHozWHdZTFlwQWF1VW53QS1UcUJNckZsWnRTNWxGN1cyQ3c2UDdsSWp6MkJDUzE5Vmp5bVZOeW9SSE1nTk95SFAwQg?oc=5"
     },
     {
       "source": "News",
-      "title": "ARPA-H Selects Teams for Cardiovascular Agentic AI System Development - hcinnovationgroup.com",
-      "url": "https://news.google.com/rss/articles/CBMi2AFBVV95cUxQVW5rTklxYkNFRHJkM2U5YXc0UVlBNmozc2FlaHRYN0phbDZYZ3YwMnRLWWxuVE1iZ2EtN0c4SEdYTXVqREkwY3l0SVpod1JOZFg4YU9qTnhGU3ZXOGZGZGJEeTBPSHZCRWJPMEU4bW5XMnBxLTBpZF9jd0ZrLUNqZjNWSC0tYnhmakNkbXFmRVN4QzZVR181d1FWclMyNWo4WGI0V3NqN1pwcFhQMTZGMllxTWxkUWk0cWtjeEZiUDVqckt1Mm5JQkJpTzZLZDQwRF9LcFVXZ24?oc=5"
+      "title": "Amazon makes its agentic AI platform Quick generally available for desktop on Windows and macOS - SiliconANGLE",
+      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxPU19udjBJN0NUbUlGZ0NQQUtCZmluTHJiR3JLZ190QVNzQUhKcG9WTHJJajRHV2FNNExzbU1ZT3NtVnZFcEpqQkVjVmd3XzVURWxBc1R0WUVfRE9JRlFFSDhmSGpHMlZRazF5QWpLRDZzRHZUYjdRMHVPYXlQSVRUX1hWYlBib1NjY01nWjJldXZ2NlhsVHhvRjQ3eS1mNkVval9GTUc4SlR1d1pKajE1WHF1aXUtMUZXRjE4dlF1bHhIcjRLYzUyMkZydmk?oc=5"
     },
     {
       "source": "News",
-      "title": "Securing the agentic enterprise starts with identity - IBM",
-      "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxNZElWbkRvZXpoQ3ZwUmJFdWlMcjZYSldYVVZzUEZtVVN0XzYwYmFHVjhYMTJEQlZNMC1JdGItWThiNnNTdVlleGlDWmVKdjE5VlFhekVRdWFIN2VEMWZQMlJ6QnJQdlluTVpGWnNUaUVZLVlvT2NmbEZaWldHRFJLR3dWVFNlOV9BcHU1cnBDT0lGbUpqZVE?oc=5"
+      "title": "AI Agents Need Permissioned Funding Sources. Not Company Bank Accounts. - PYMNTS.com",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQSWZhY0ZtdFhnLUQ4bEhJSjZlZFEzWk1VWjNtZ1BaWjNPY1R5S25CTXg2UHFKbWhxVkkxVnRrNl84TEc0UW0tcUdUTWh3M29rUlpuTm1NYzloekFFNUs5cklheHEwS3ZKS2tBVkJHYUhvRTdoMUtfVFE3ZGdTUUZMb3JwTFpKb245SEVRTmxrbnZqSFRHaWNra3dUNTYySmZ1V3FnODNrVzNTVjAxTXU3WDR4b1VON2pOYkx5d2x5NVd4SUtMaGc?oc=5"
     },
     {
       "source": "News",
-      "title": "Preparing physical security infrastructure for the age of agentic AI - cio.com",
-      "url": "https://news.google.com/rss/articles/CBMirgFBVV95cUxOTUhTcEJGZFFRQ0F1c25kdFpxWWpQdjZhLXdfWUZ3U0t0RzB4LTA1V1RTRC1SSEkycV83cG5FSFQ2ekUybkt6Qzd6S05Wak5hTkgxWUhGcFpFLXlfTEx4VE1BamY5WGdpYXU0XzFCNVBSdHQxMDZtUDV2cU9iNlZvLVpaTE9UNTRFa0htVktDVWhWd2R4dTFRaVBGc2VmS1BuRGIzeGFEcUtLa2VVWmc?oc=5"
+      "title": "India plans AI registry as it looks to roll out agentic payments, sources say - Reuters",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNVVNCTTRPWDZrd1cwM2NQVG84dHJQSHVmMnNJRU5TdGZMc3l2LUFLRlJoNDZQemUtdGF4T3BhdFhtUFhZSXZwQV9PZGxpTW9fMWFJMU4wZENTaTl3Q2tmUGVEVFpIelZFWjJ5R1J5c3dvYk5xUDNmX2Fha0daQUV5eS1RNU1zZXBhQ1Z5VW1JNF9UdzRvdDlzb2U1NW5UUm9vYWM0VGxLcUxzbkttR2cxYU5JWnp6NkJ6Y1E?oc=5"
     },
     {
       "source": "News",
-      "title": "Mastercard Expands Agentic Suite to Help Merchants Scale AI Shopping - PYMNTS.com",
-      "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxQNWNDQnI5WHppNGRiN1JjT1EtUjczSURNTjFsa1pZa25kWE12U1A3RlpCZ3kwUHpYZm1hSWwyMFR3cGw1aEdmTHZHaVlXVVNmLS0zc2NtbzdfbFpER1BhN2JEMlM5Q3R3dVRuZklDaHN2T2ZXbC1OTTZiaHFFcFg4UzBGaDk5QXdPQThBcEFlbWszRXA0Zk1yVkhYSVR1VzhiU2p6LXdpUjZEVVZkLUZsYV9uMVAtX2I1aXQtdmZhRWUzUWRp?oc=5"
+      "title": "How Card Issuers and Banks Can Avoid Being Shut Out of Agentic Commerce - Bain & Company",
+      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNM3lYbi1PU1ZWSkRsT3B5ZXRnRlpEejB6SFJMbC1Pb0xBaHBzVGRvTDRWQXVwdWFXelRkZGlSbURfdkl3NTNQdXFfZEhLSzRTOGZoaUd3dVFwaTQwanNleHczQi01RTRJejJGZ2ZnZWlSQVBkbk1PMlNjb3FfdHloclZxNUczLWl5U0Z2R294RjBGaTNEenVfaTFnaFFFVmZuRm9Jbg?oc=5"
     },
     {
       "source": "News",
-      "title": "The Ungoverned Frontier of Agentic AI Cyberattacks - orfonline.org",
-      "url": "https://news.google.com/rss/articles/CBMikwFBVV95cUxQWjhfTy14MWpabV9CYjRMMUVGdXRzVzVBUDJfZ29sYXRGQ1kwamlMQ0NQbjZ3MzhjeGlGeTBlTnJPaTBFVl9XZkwxeEc1LUllZjhrYzg1V2NuekFUa3lQMHBmYzB1MkhsQW5pcE1PZXlRaW1tQ1REWktCVWJQRFpWVnZ4akhqeFBNZnVMd2gza1dRVTg?oc=5"
+      "title": "How Casap is rethinking dispute resolution with agentic AI - Tearsheet",
+      "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOeXhYLXJmTVFhZndNcnZJTC1RdVFNU0xmd0U2OGNvM1lXdWtMMGVtR2d4Z3gxcFFtMl9mQTkxcUtBVm1UVXVqN2hSUWplNnMzTzBmZTlyRWJHOFdsVGF0WDNsWWpIbThPOGtKOWpPVHZnekFXdEpBWEk3NzNGMGZBUndFeGU0QmRyVl9NTW5oc0I?oc=5"
     },
     {
       "source": "News",
-      "title": "Caseware Puts Agentic AI Inside the Audit - cpapracticeadvisor.com",
-      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxORHRUblRjSjlyLV91Q1JOdlhpeGFtaFNsVlFGSzVsYlJrWDZYOENZN2lWSUJTNFNsWFFBVHh2SlVmT2NKczI4bW1YOXRJbkJVVGVPOGpPYVJoQlFOOUhrMWJZU1dRRFNxMXMzS01JQ1RFSUY0bktCQ29JbV9DMEVncldJaDNkQkoxandoWElMOGZuMTVQdGFKYlNDVQ?oc=5"
+      "title": "Enterprises Are Scrapping Agentic AI Pilots but Leaving Them Logged In - Cybersecurity Insiders",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5NZEFfWUE2X2xNRjlvVVJ3ZXg1Qjh4VXM1TDJwV3JPSVAyNUhZYndldmh1ajZXVXJXandhT3QzRlZTYzJ5WEFnZjJOcnNPSHU0akZ1SklWc2xpaWtiQTlZaS1lV1liQm05NVNqLXZXQ1pUOVE0VDFqeXZLTUFFYTQ?oc=5"
     }
   ],
-  "population_engine": 63,
-  "species": 17,
+  "population_engine": 65,
+  "species": 18,
   "trials": 2,
-  "harvested": 67
+  "harvested": 69
 }
