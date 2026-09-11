@@ -10,6 +10,7 @@ import importlib.util
 import json
 import os
 import sys
+import tempfile
 import unittest
 from pathlib import Path
 from unittest import mock
@@ -49,10 +50,17 @@ class TestCompetitorScan(unittest.TestCase):
         cls.cs = _load("competitor_scan", os.path.join(T, "competitor_scan.py"))
 
     def test_seen_logic_is_persistent(self):
-        self.cs._mark_seen(["testid1", "testid2"])
-        seen = self.cs._seen_ids()
-        self.assertIn("testid1", seen)
-        self.assertIn("testid2", seen)
+        # isolate: never pollute the production seen-file with test ids
+        real = self.cs.SEEN
+        with tempfile.TemporaryDirectory() as td:
+            self.cs.SEEN = os.path.join(td, "seen.txt")
+            try:
+                self.cs._mark_seen(["testid1", "testid2"])
+                seen = self.cs._seen_ids()
+                self.assertIn("testid1", seen)
+                self.assertIn("testid2", seen)
+            finally:
+                self.cs.SEEN = real
 
     def test_no_fake_data(self):
         src = open(os.path.join(T, "competitor_scan.py"), encoding="utf-8").read()
