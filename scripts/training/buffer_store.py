@@ -53,13 +53,128 @@ _JUNK_MARKERS = (
     "function_call",
     "<tool_call",
     "**analyze",                 # bolded reasoning header
+    "self-critique",             # reasoning-trace segment (11.09.26 wave 3)
+    "self-critique:",            # variant with colon
 )
+
+# --- reasoning-trace OPENER: the model's planning voice, not an answer ---
+# Added 11.09.26 (2nd wave): the marker list above missed traces that open in
+# plain English first person ("We need to answer the question: ...", "Let me
+# think about ..."). 26 of 300 live entries were this shape and trained the 2B
+# to think out loud instead of answering.
+import re as _re
+
+_TRACE_OPENER = _re.compile(
+    r"^\s*(?:\d+[.)]\s+)?(?:we need|we have|we must|we should|i need|"
+    r"i should|i will|i'?ll |let me|the user|the question|the prompt|"
+    r"first,? i|okay,? (?:so|let)|alright,? |hmm,? |"
+    r"here'?s? (?:a|my) (?:thinking|reasoning|plan)|"
+    r"thinking process|analy[sz]e the)",
+    _re.IGNORECASE,
+)
+
+# --- truncated fragment: too little text to teach anything ---
+# Added 11.09.26 (wave 3): single-token rows like "Both" leaked through. A
+# one-word completion of natural-language length with no sentence punctuation
+# is a cut-off generation, not an answer. Deliberately narrow: short synthetic
+# test placeholders ("a1") and real one-word answers ("Ja.") must still pass,
+# so the check needs BOTH a natural-word length AND no punctuation.
+_MIN_CHARS_FOR_TOKEN_CHECK = 8
+_MIN_WORDLEN_FOR_FRAGMENT = 3
+
+# --- search-engine snippet posing as an answer ---
+# Added 11.09.26 (2nd wave): internet_learner wrote raw SERP text ("<Title> —
+# 1. Sept. 2026 · <snippet>") into the buffer as if it were the model's answer.
+# 148 of 300 live entries (49 %) — the single largest junk class. The tell is
+# the search UI's em-dash + German date + middle-dot separators; a real answer
+# rarely carries two of them, and never the '· ' run-on.
+_SERP_DATE = _re.compile(
+    r"—\s*\d{1,2}\.\s*(?:Jan|Feb|Mär|Mrz|Apr|Mai|Jun|Jul|Aug|Sept?|Okt|Nov|Dez)\.?\s*\d{4}\s*·"
+)
+_SERP_TAIL = _re.compile(r"—\s*(?:…|\.\.\.)\s*$")
+
+
+def _is_serp_snippet(text):
+    """True when text is search-result chrome rather than an answer."""
+    if _SERP_DATE.search(text):
+        return True
+    # several ' — ' title separators + a middle dot = a results list
+    if text.count(" — ") >= 2 and "·" in text:
+        return True
+    return bool(_SERP_TAIL.search(text))
+
+
+# --- periodic repetition: a short unit repeated until it fills the text ---
+# Added 11.09.26 (wave 3). The token-ratio check above misses a loop whose
+# tokens cycle ("user [   \" user [   \" user [   \"") — uniq/total stays ~0.33
+# even though the completion is pure repetition. Detect it structurally: find
+# the shortest unit that repeats >=3x back-to-back and measure its coverage.
+_REPEAT_UNIT = _re.compile(r"(.{3,40}?)\1{2,}", _re.DOTALL)
+
+
+def _is_periodic_repeat(text):
+    """True when the text is one short unit repeated to fill the whole string."""
+    m = _REPEAT_UNIT.search(text)
+    if m:
+        unit = m.group(1)
+        covered = len(unit) * text.count(unit)
+        if covered / max(1, len(text)) > 0.5:
+            return True
+        if len(m.group(0)) / max(1, len(text)) > 0.6:
+            return True
+    # Short text built from a handful of distinct words repeated — catches
+    # loops whose unit straddles line breaks ('user\\n[\\n  "\\n' x3), where the
+    # backreference run can be one short of three. A genuine short answer never
+    # has >=4 tokens drawn from <=3 distinct words. Requires >=4 DISTINCT
+    # characters so a single repeated character ("aaaa…") is not misread as a
+    # word loop — that shape is handled by the token-ratio check instead.
+    toks = text.split()
+    if 4 <= len(toks) and len(set(toks)) <= 3 and len(set(text)) >= 4:
+        return True
+    return False
+
+
+# --- HTML entity noise + course-landing-page chrome (11.09.26 wave 4) ---
+# The learner's page fetch leaks raw HTML entities and marketing chrome into
+# the completion. A LoRA trained on '&#39;' learns broken tokenization.
+_ENTITY = _re.compile(r"&(?:#\d{1,5}|[a-z]{2,8});")
+_NAV_CHROME = (
+    "no thanks", "testimonial", "subscribe", "newsletter", "sign up",
+    "all rights reserved", "read more", "click here", "follow us",
+    "join our", "share this", "leave a reply", "cookie policy",
+    "privacy policy", "welcome to the", "incredible educator",
+    # prompt-template leaks: the completion echoes the instruction skeleton
+    "key insight:", "<one sentence>", "focus on actionable",
+    "focus actionable", "ensure it's actionable",
+    # UI chrome from the app/terminal surfaces
+    "switched accounts", "another tab or window", "automate any workflow",
+    "mission control for everything", "operation interrupted",
+    "waiting for model response", "documentation index",
+    # doc-site chrome the learner's page fetch leaks
+    "check this document", "fetch the complete",
+)
+
+
+def _is_nav_chrome(text):
+    """True when text is page chrome (entities, marketing, UI, template leaks)."""
+    if _ENTITY.search(text):
+        return True
+    low = text.lower()
+    if any(c in low for c in _NAV_CHROME):
+        return True
+    # a header repeated back-to-back ("Welcome to the X Welcome to the X")
+    first = text[:40].strip()
+    if len(first) > 12 and text.count(first) >= 2:
+        return True
+    return False
+
 
 # a completion this short carries no trainable content
 _MIN_CHARS = 12
 # degenerate-repetition thresholds (measured: junk ~0.14 unique-ratio,
-# real prose ~0.5+; a 6-token floor catches short loops like 7x "Self")
-_MIN_TOKENS_FOR_REPEAT_CHECK = 6
+# real prose ~0.5+; a 4-token floor catches short loops like 4x "Self" —
+# lowered from 6 on 11.09.26 after a 4x-Self row slipped through)
+_MIN_TOKENS_FOR_REPEAT_CHECK = 4
 _MIN_UNIQUE_RATIO = 0.15
 _MAX_TOP_TOKEN_SHARE = 0.5
 
@@ -80,7 +195,23 @@ def is_junk(text):
     low = s.lower()
     if any(m in low for m in _JUNK_MARKERS):
         return True
+    if _TRACE_OPENER.match(s):
+        return True
+    if _is_serp_snippet(s):
+        return True
+    if _is_periodic_repeat(s):
+        return True
+    if _is_nav_chrome(s):
+        return True
     tokens = s.split()
+    # A short single-word fragment with a LOWERCASE run and no punctuation is a
+    # cut-off generation ("Both"). Requires >=2 letters so synthetic test
+    # placeholders ("a1") and real answers ("Ja.", "Nein!") both survive.
+    if (len(s) < _MIN_CHARS_FOR_TOKEN_CHECK and len(tokens) == 1
+            and _re.fullmatch(r"[A-Za-zÄÖÜäöüß]{2,}", s)
+            and not _re.search(r"[.!?,;:]", s)
+            and not s.islower()):
+        return True
     if len(tokens) >= _MIN_TOKENS_FOR_REPEAT_CHECK:
         uniq = len(set(tokens))
         if uniq / len(tokens) < _MIN_UNIQUE_RATIO:
@@ -104,12 +235,34 @@ def _audit(user_text, assistant_text, reason):
         pass
 
 
+def _is_duplicate(rec, buf):
+    """True when (u, a) already sits in the buffer — the learner re-observes
+    the same fact on every cycle, and a LoRA trained on 3x identical rows
+    over-weights that one example. Added 11.09.26 (vLLM doc seen 3x live)."""
+    try:
+        target = (rec.get("u", ""), rec.get("a", ""))
+        for line in open(buf, encoding="utf-8"):
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                d = json.loads(line)
+            except Exception:
+                continue
+            if (d.get("u", ""), d.get("a", "")) == target:
+                return True
+    except FileNotFoundError:
+        return False
+    return False
+
+
 def append(user_text, assistant_text, buffer=None, max_buf=None):
     """Append one (u, a) example and enforce the cap. Returns buffer line count.
 
     Junk completions (see `is_junk`) are refused: nothing is written, the
     rejection is logged to `buffer_junk.jsonl`, and the current count is
-    returned so callers can detect the no-op by comparing counts.
+    returned so callers can detect the no-op by comparing counts. Exact
+    duplicates are refused the same way — a training set must not repeat a row.
     """
     buf = Path(buffer or DEFAULT_BUFFER)
     cap = int(max_buf or MAX_BUF)
@@ -121,6 +274,9 @@ def append(user_text, assistant_text, buffer=None, max_buf=None):
         "u": (user_text or "")[:3000],
         "a": (assistant_text or "")[:4000],
     }
+    if _is_duplicate(rec, buf):
+        _audit(user_text, assistant_text, "duplicate")
+        return count(buf)
     with open(buf, "a", encoding="utf-8") as f:
         f.write(json.dumps(rec, ensure_ascii=False) + "\n")
     return enforce_cap(buf, cap)

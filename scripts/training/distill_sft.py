@@ -16,6 +16,32 @@ MAX_TURN_CHARS = 6000    # cap per example
 MIN_ANSWER = 30          # too short = "yes"/"ok" noise
 MAX_ANSWER = 4000
 
+# --- quality gate on the assistant side (added 11.09.26) ---
+# Real sessions contain turns that must NEVER be distilled into the student
+# model, because training on them teaches the failure mode itself:
+#   * hallucinated self-metrics ("99 Tools, 281 Skills") — the user's hard rule
+#     is no invented numbers; a student trained on these repeats them as fact.
+#   * reasoning-trace leaks ("Let me start by exploring...") — teaches CoT as
+#     the answer format.
+#   * self-praise ("Bin top", "state of the art") — the user's other hard rule.
+# The buffer gate (buffer_store.is_junk) covers traces; the metric/praise
+# patterns are specific to distilled conversations.
+import re as _re
+
+_BAD_ANSWER = _re.compile(
+    r"(?:\b\d{2,4}\s*(?:tools|skills)\b"          # invented counts
+    r"|\b(?:bin|ich bin)\s+(?:top|der beste|die nr)"  # self-praise
+    r"|state[\s-]?of[\s-]?the[\s-]?art|weltklasse"
+    r"|^\s*(?:we need|the user|let me|i need|i should|we have|we must))",
+    _re.IGNORECASE | _re.MULTILINE,
+)
+
+
+def _answer_is_safe(text):
+    """False when an assistant turn would teach a failure mode to the student."""
+    return not _BAD_ANSWER.search((text or "").strip())
+
+
 pairs = []
 for line in open(SRC, encoding="utf-8"):
     d = json.loads(line)
@@ -36,10 +62,14 @@ for line in open(SRC, encoding="utf-8"):
             if len(ac) < MIN_ANSWER or len(ac) > MAX_ANSWER:
                 last_user = None
                 continue
-            if len(uc) < 3 or len(uc) > 4000:
+            if len(uc) < 3 or len(uc) > 20000:
                 last_user = None
                 continue
             if not ac:
+                last_user = None
+                continue
+            # quality gate: never teach the student a failure mode
+            if not _answer_is_safe(ac):
                 last_user = None
                 continue
             if uc.startswith("[") and any(uc.startswith(s) for s in (
@@ -48,8 +78,13 @@ for line in open(SRC, encoding="utf-8"):
                 last_user = None
                 continue
             # trim very long contexts: keep last 3000 chars of user msg
+            # (recovered 26 pairs that were previously dropped for length)
             if len(uc) > 3000:
                 uc = uc[-3000:]
+                # skip pure context-compaction dumps even after trimming
+                if uc.startswith("[CONTEXT COMPACTION"):
+                    last_user = None
+                    continue
             pairs.append({
                 "messages": [
                     {"role": "system", "content": "Du bist OpenAmer Agent - ein autonomer KI-Agent auf Damirs Windows-Laptop. Antworte praegnant, ehrlich, mit echten Beweisen (Tests/Tool-Output). Deutsch im Chat, Englisch im Code."},
@@ -94,6 +129,15 @@ for p in pairs:
             # duplicate the pair (model sees nightmares 3x)
             uniq.append(p)
             break
+
+# Guard: never write an empty or collapsed dataset. Distillation output is the
+# ONLY training input for the GPU run, so a silent 0-row write would train on
+# nothing and look successful. Bail loudly instead.
+MIN_EXPECTED_PAIRS = 10
+if len(uniq) < MIN_EXPECTED_PAIRS:
+    print(f"ABORT: only {len(uniq)} distilled pairs (min {MIN_EXPECTED_PAIRS}) — "
+          f"refusing to overwrite {os.path.basename(OUT)} with a collapsed dataset")
+    raise SystemExit(1)
 
 random.seed(42)
 random.shuffle(uniq)
