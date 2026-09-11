@@ -81,6 +81,54 @@ def test_none_values_are_tolerated():
     assert rec["u"] == "" and rec["a"] == ""
 
 
+# --- junk gate (regression: 112 of 300 live buffer entries on 11.09.26 were
+# reasoning-trace leaks, degenerate "Self Self Self" repetition, or raw
+# tool-call JSON — all three would be trained on) ---
+
+def test_junk_classifier_catches_the_three_observed_classes():
+    # 1. reasoning-trace leak
+    assert bs.is_junk("Self-critique: Here's a thinking process:\n\n1. **Analyze "
+                      "User Input:**\n   - User asks a question")
+    # 2. degenerate repetition
+    assert bs.is_junk("Self\n\nSelf\n\nSelf\n\nSelf\n\nSelf\n\nSelf\n\nSelf")
+    # 3. raw tool-call JSON instead of an answer
+    assert bs.is_junk('{"tool": "web_search", "params": {"query": "x"}}')
+
+
+def test_real_answers_are_not_junk():
+    for good in (
+        "LoRA adapters inject trainable low-rank matrices into each layer.",
+        "Sleep consolidation replays the day's episodes and promotes the "
+        "high-usefulness ones into permanent memory.",
+        "Prompt injection is blocked by a deterministic pre-execution gate "
+        "that never calls a model.",
+    ):
+        assert not bs.is_junk(good), good
+
+
+def test_append_refuses_junk_and_logs_it():
+    """A junk write must not change the buffer, but must be auditable."""
+    buf = _tmp_buf()
+    junk_log = buf + ".junk.jsonl"
+    orig = bs.JUNK_LOG
+    bs.JUNK_LOG = junk_log
+    try:
+        bs.append("q", "a good answer with real content", buffer=buf)
+        assert bs.count(buf) == 1
+        n = bs.append("q", "Self\n\nSelf\n\nSelf\n\nSelf\n\nSelf\n\nSelf", buffer=buf)
+        assert n == 1, "junk must not be appended"
+        assert bs.count(buf) == 1
+        assert json.loads(open(junk_log, encoding="utf-8").readline())["reason"] == "junk"
+    finally:
+        bs.JUNK_LOG = orig
+
+
+def test_empty_completion_still_appends():
+    """The historical contract tolerates placeholders; only junk is refused."""
+    buf = _tmp_buf()
+    assert bs.append("q", "", buffer=buf) == 1
+
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in sorted(globals().items()):

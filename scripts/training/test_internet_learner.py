@@ -5,7 +5,7 @@ Covers the testable pieces of deep-reading: HTML stripping and Bing
 ck/a redirect decoding. The network-bound _fetch_page/_search_urls are
 exercised via their pure helpers here.
 """
-import os, sys, base64
+import os, re, sys, base64
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import internet_learner as il
@@ -49,6 +49,40 @@ def test_decode_bing_url_no_u_param():
 
 def test_decode_bing_url_invalid_b64():
     assert il._decode_bing_url("https://www.bing.com/ck/a?u=a1!!!notb64!!!") == ""
+
+
+# --- chrome/testimonial filter (regression: the "No thanks “Sebastian is an
+# incredible educator..." testimonial was learned TWICE on 11.09.26) ---
+
+def _extract_first_sentence(text):
+    """Mirror of deep_learn's deterministic extraction, on in-memory text."""
+    _NAV = ("no thanks", "testimonial", "subscribe", "newsletter", "sign up",
+            "incredible", "highly recommend")
+    for m in re.finditer(r"([A-Z][^.!?]{40,250}[.!?])", text):
+        s = m.group(1).strip()
+        low = s.lower()
+        if any(n in low for n in _NAV):
+            continue
+        if s.count("›") > 0 or s.count("&amp;") > 1:
+            continue
+        return s
+    return ""
+
+
+def test_chrome_testimonial_is_rejected():
+    page = ("No thanks “Sebastian is an incredible educator and always has "
+            "invaluable insights--do keep up with his work! "
+            "Subscribe to our newsletter for weekly updates about the course.")
+    assert _extract_first_sentence(page) == "", \
+        "testimonial/marketing chrome must not become a learned insight"
+
+
+def test_real_technical_sentence_survives_the_filter():
+    page = ("No thanks “Sebastian is an incredible educator! "
+            "LoRA adapters inject trainable low-rank matrices into each layer "
+            "and cut fine-tuning memory by roughly three orders of magnitude.")
+    got = _extract_first_sentence(page)
+    assert got.startswith("LoRA adapters inject"), got
 
 
 if __name__ == "__main__":

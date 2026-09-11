@@ -173,7 +173,15 @@ def deep_learn(query, k=2):
             "cookie", "privacy", "terms of use", "jump to", "skip to",
             # site chrome / docs navigation (huggingface etc.)
             "alle docs anzeigen", "docs anzeigen", "tools", "developer tools",
-            "hub python bibliothek", "alle docs", "bersicht", "übersicht")
+            "hub python bibliothek", "alle docs", "bersicht", "übersicht",
+            # marketing chrome / testimonials (live 11.09.26): the extractor
+            # returned "No thanks “Sebastian is an incredible educator and
+            # always has invaluable insights" TWICE in one day — that is a
+            # course-landing-page testimonial, not a research insight.
+            "no thanks", "testimonial", "subscribe", "newsletter",
+            "sign up", "signup", "register", "all rights reserved",
+            "read more", "click here", "follow us", "join our",
+            "share this", "leave a reply", "cookie policy", "privacy policy")
     for t in texts:
         for m in re.finditer(r"([A-Z][^.!?]{40,250}[.!?])", t):
             s = m.group(1).strip()
@@ -182,6 +190,11 @@ def deep_learn(query, k=2):
                 continue  # skip navigation/boilerplate
             # skip sentences that are mostly link-lists (many "›" separators)
             if s.count("›") > 0 or s.count("&amp;") > 1:
+                continue
+            # skip pure praise / first-person marketing voice — no technical
+            # content (a testimonial carries no learning signal)
+            if re.search(r"\b(incredible|amazing|awesome|best (course|teacher)|"
+                         r"highly recommend|thank you|thanks)\b", low):
                 continue
             return s
     # SECONDARY: deep distillation via smart_route — the free cloud chain
