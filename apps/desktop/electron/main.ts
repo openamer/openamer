@@ -85,11 +85,6 @@ import { readDirForIpc } from './fs-read-dir'
 import { probeGatewayWebSocket } from './gateway-ws-probe'
 import { scanGitRepos } from './git-repo-scan'
 import {
-  killOtherOpenAmerProcesses,
-  killProcessTreeViaTaskkill,
-  listOpenAmerProcessesViaPowerShell
-} from './kill-openamer-processes'
-import {
   fileDiffVsHead,
   repoStatus,
   reviewCommit,
@@ -122,6 +117,11 @@ import {
   resolveTimeoutMs,
   TEXT_PREVIEW_SOURCE_MAX_BYTES
 } from './hardening'
+import {
+  killOtherOpenAmerProcesses,
+  killProcessTreeViaTaskkill,
+  listOpenAmerProcessesViaPowerShell
+} from './kill-openamer-processes'
 import { createLinkTitleWindow, guardLinkTitleSession, readLinkTitleWindowTitle } from './link-title-window'
 import { ensureMainWindow } from './main-window-lifecycle'
 import {
