@@ -150,3 +150,30 @@ def test_main_without_body_returns_2(monkeypatch):
                         lambda self: _args())
     assert G.main() == 2
     assert posted == []
+
+
+def test_main_splits_owner_slash_repo(monkeypatch):
+    """--repo owner/name must split, not build repos/owner/owner/name.
+
+    The docstring advertises `--repo openamer/openamer`; joining that straight
+    into the URL path produced a 404 (repos/openamer/openamer/openamer), which
+    silently broke the documented invocation.
+    """
+    seen = {}
+    monkeypatch.setattr(G, "post_own_issue",
+                        lambda owner, repo, issue, body, dry: seen.update(owner=owner, repo=repo) or 0)
+    monkeypatch.setattr(G.argparse.ArgumentParser, "parse_args",
+                        lambda self: _args(owner=None, repo="openamer/openamer", body="hi"))
+    assert G.main() == 0
+    assert seen == {"owner": "openamer", "repo": "openamer"}
+
+
+def test_main_plain_repo_defaults_owner(monkeypatch):
+    """Bare --repo openamer keeps working (owner falls back to the default)."""
+    seen = {}
+    monkeypatch.setattr(G, "post_own_issue",
+                        lambda owner, repo, issue, body, dry: seen.update(owner=owner, repo=repo) or 0)
+    monkeypatch.setattr(G.argparse.ArgumentParser, "parse_args",
+                        lambda self: _args(owner="", repo="openamer", body="hi"))
+    assert G.main() == 0
+    assert seen == {"owner": "openamer", "repo": "openamer"}

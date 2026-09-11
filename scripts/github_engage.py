@@ -95,6 +95,14 @@ def main() -> int:
                     help="read the comment body from this file (UTF-8)")
     po.add_argument("--dry", action="store_true")
     a = ap.parse_args()
+    # Accept both "--repo openamer" and "--repo owner/name" — the docstring
+    # advertised the latter, which used to build a 404 URL
+    # (repos/openamer/openamer/openamer). Split it instead of footgunning.
+    repo = getattr(a, "repo", None)
+    if repo and "/" in repo:
+        a.owner, a.repo = repo.split("/", 1)
+    elif repo is not None and not getattr(a, "owner", ""):
+        a.owner = "openamer"
     if a.cmd == "list-own":
         return list_own_issues(a.owner, a.repo)
     if a.cmd == "post-own":
