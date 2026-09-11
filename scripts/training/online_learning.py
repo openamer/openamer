@@ -203,6 +203,11 @@ def loop():
             except Exception as e:
                 print(f"[online-learning] world-model skip: {e}", flush=True)
             if steps_since_swap >= SWAP_EVERY:
+                # NOTE: no batch-adapter guard here on purpose. The real fix is
+                # in mini_step.py, which now seeds the rolling chain from the
+                # NEWEST adapter (incl. batch GPU runs), so a swap cannot
+                # discard batch training — it accumulates. Deferring the swap
+                # here would only have masked the bug for one cycle.
                 msg = hot_swap()
                 steps_since_swap = 0
                 print(f"[online-learning] hot-swap: {msg}", flush=True)
