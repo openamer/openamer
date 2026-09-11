@@ -144,15 +144,23 @@ def loop():
                     if n_before >= 4:
                         import random as _r
                         buf_lines = open(BUFFER, encoding="utf-8").readlines()
-                        picks = _r.sample(buf_lines, 2)
-                        for pk in picks:
+                        # Replay re-injects OLD rows, so it bypasses the
+                        # first-write gate: a row that predates the current
+                        # junk rules would come back forever. Filter on the way
+                        # in, and only sample from rows that still pass.
+                        ok_lines = []
+                        for ln in buf_lines:
                             try:
-                                rec = json.loads(pk)
-                                buffer_store.append(rec.get("u", ""), rec.get("a", ""),
-                                                    buffer=str(BUFFER))
+                                rec = json.loads(ln)
                             except json.JSONDecodeError:
                                 continue
-                        print(f"[online-learning] replay: +2 old episodes re-injected "
+                            if not buffer_store.is_junk(rec.get("a", "")):
+                                ok_lines.append(rec)
+                        picks = _r.sample(ok_lines, min(2, len(ok_lines))) if ok_lines else []
+                        for rec in picks:
+                            buffer_store.append(rec.get("u", ""), rec.get("a", ""),
+                                                buffer=str(BUFFER))
+                        print(f"[online-learning] replay: +{len(picks)} old episodes re-injected "
                               f"(buffer={buffer_store.count(str(BUFFER))})", flush=True)
                 except Exception as e:
                     print(f"[online-learning] replay skip: {e}", flush=True)
