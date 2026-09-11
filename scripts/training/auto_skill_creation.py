@@ -59,10 +59,20 @@ def slugify(text):
     text = re.sub(r"[^a-zA-Z0-9\s]", "", text.lower())
     return "-".join(text.split()[:4])[:40]
 
-def dedupe_check(description, registry):
-    """Skip if we already created a similar skill."""
+def dedupe_check(name, description, registry):
+    """Skip if we already created this skill (same slug) or a near-identical insight.
+
+    Name-match is the primary guard: the same insight question always slugifies to
+    the same skill name, while the answer TEXT drifts run-to-run, so a
+    description-only check let every run re-create (and overwrite) a known skill.
+    Live 11.09: registry held 195 entries across just 33 unique names.
+    """
+    if os.path.isdir(os.path.join(AUTO_SKILLS, name)):
+        return True
     for prev in registry["created"]:
-        if prev["description"][:50] == description[:50]:
+        if prev.get("name") == name:
+            return True
+        if prev.get("description", "")[:50] == description[:50]:
             return True
     return False
 
@@ -74,8 +84,8 @@ def create_skill_from_insight(insight_question, insight_answer, source_tag):
 
     registry = load_registry()
 
-    if dedupe_check(desc, registry):
-        return None  # duplicate
+    if dedupe_check(name, desc, registry):
+        return None  # duplicate (same slug or same insight text)
 
     os.makedirs(AUTO_SKILLS, exist_ok=True)
     skill_dir = os.path.join(AUTO_SKILLS, name)
