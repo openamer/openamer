@@ -104,3 +104,49 @@ def test_list_own_prints_issues(monkeypatch, capsys):
     assert rc == 0
     assert "#1" in out and "A" in out
     assert "#2" not in out    # pull requests excluded
+
+
+def _args(**kw):
+    base = {"cmd": "post-own", "owner": "openamer", "repo": "openamer",
+            "issue": 18, "body": None, "body_file": None, "dry": True}
+    return type("A", (), {**base, **kw})()
+
+
+def test_main_body_file_is_read_verbatim(monkeypatch, tmp_path):
+    """--body-file is the byte-exact path: markdown reaches the API unescaped.
+
+    Inlining a body through --body in a shell expands `$(...)` and eats
+    backticks; reading a UTF-8 file does not. Cover backticks, $, braces, and
+    non-ASCII in one payload.
+    """
+    payload = '**bold** `code` $HOME {"tool": "x"} — umlaut: äöü ✅\nsecond line\n'
+    f = tmp_path / "body.md"
+    f.write_text(payload, encoding="utf-8")
+    seen = {}
+    monkeypatch.setattr(G, "post_own_issue",
+                        lambda owner, repo, issue, body, dry: seen.update(body=body, dry=dry) or 0)
+    monkeypatch.setattr(G.argparse.ArgumentParser, "parse_args",
+                        lambda self: _args(body_file=str(f)))
+    assert G.main() == 0
+    assert seen["body"] == payload
+    assert seen["dry"] is True
+
+
+def test_main_body_arg_still_works(monkeypatch):
+    seen = {}
+    monkeypatch.setattr(G, "post_own_issue",
+                        lambda owner, repo, issue, body, dry: seen.update(body=body) or 0)
+    monkeypatch.setattr(G.argparse.ArgumentParser, "parse_args",
+                        lambda self: _args(body="inline"))
+    assert G.main() == 0
+    assert seen["body"] == "inline"
+
+
+def test_main_without_body_returns_2(monkeypatch):
+    """Neither --body nor --body-file: fail before touching the network."""
+    posted = []
+    monkeypatch.setattr(G, "post_own_issue", lambda *a, **k: posted.append(a) or 0)
+    monkeypatch.setattr(G.argparse.ArgumentParser, "parse_args",
+                        lambda self: _args())
+    assert G.main() == 2
+    assert posted == []
