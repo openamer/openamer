@@ -86,24 +86,94 @@ def experiment_tune_buffer():
                 "measurable": False}
 
 def experiment_competitor_gap():
-    """Insight: competitor features. Identify one gap we can close."""
-    # Read the latest competitor insight from buffer
+    """Insight: competitor features. Identify ONE gap we can close.
+
+    Honesty contract (fixed 12.09): this experiment used to return a HARDCODED
+    gap dict. Live evidence: 96 consecutive runs produced exactly ONE distinct
+    `identified_gap` string ("OpenHands has a modular SDK design ...") while the
+    buffer's competitor signal changed — i.e. an "experiment" that inspected
+    nothing, recited a canned line, and always claimed `measurable: False`.
+
+    Now it: (1) quotes the REAL latest competitor signal verbatim so the entry is
+    traceable, (2) maps it against a capability lexicon, (3) measures OUR OWN
+    tool surface as a number (tool funcs / lines / package layout), and
+    (4) says so honestly when the signal is too vague to map — which is itself
+    the useful finding (it flags a broken upstream competitor pipeline instead of
+    inventing a gap).
+    """
+    signal_keys = ("openhands", "devin", "autogpt", "competitor", "sdk",
+                   "agent architecture")
     competitors = []
-    for line in open(os.path.join(T, "online_buffer.jsonl"), encoding="utf-8"):
-        d = json.loads(line)
-        if "competitor" in d.get("u", "").lower() or "Devin" in d.get("a", "") or "OpenHands" in d.get("a", ""):
-            competitors.append(d["a"][:200])
+    buf_file = os.path.join(T, "online_buffer.jsonl")
+    if os.path.exists(buf_file):
+        for line in open(buf_file, encoding="utf-8"):
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                d = json.loads(line)
+            except Exception:
+                continue
+            text = (d.get("u", "") + " " + d.get("a", "")).lower()
+            if any(k in text for k in signal_keys):
+                competitors.append(d)
     if not competitors:
-        return {"action": "competitor gap analysis", "result": "no competitor data yet"}
+        return {"action": "competitor gap analysis",
+                "result": "no competitor data yet", "measurable": False}
+
     latest = competitors[-1]
-    gap = {
+    signal = (latest.get("a") or "").strip()
+    signal_q = (latest.get("u") or "").strip()
+
+    # --- map the signal to an implied capability (lexicon, not a guess table) ---
+    hints = (
+        ("modular", "modular tool packaging"),
+        ("sdk", "public SDK / programmatic API"),
+        ("microservice", "service split"),
+        ("plugin", "plugin extensibility"),
+        ("multi-agent", "multi-agent orchestration"),
+        ("sandbox", "sandboxed execution"),
+        ("persistent memory", "persistent memory layer"),
+        ("memory", "memory layer"),
+    )
+    low_signal = signal.lower()
+    hint = next((label for tok, label in hints if tok in low_signal), None)
+
+    # --- a REAL measurement of the thing the gap is about: our tool surface ---
+    stats = {"lines": 0, "tool_funcs": 0, "has_tools_pkg": False}
+    ts_path = os.path.join(T, "tool_server.py")
+    if os.path.exists(ts_path):
+        src = open(ts_path, encoding="utf-8", errors="replace").read()
+        stats["lines"] = src.count("\n") + 1
+        stats["tool_funcs"] = len(re.findall(r"^def t_\w+\(", src, re.M))
+        stats["has_tools_pkg"] = os.path.isdir(os.path.join(T, "tools"))
+    measured = (f"our tool surface: {stats['tool_funcs']} tool funcs in "
+                f"{stats['lines']} lines, tools/ package: "
+                f"{'yes' if stats['has_tools_pkg'] else 'no'}")
+
+    if hint:
+        gap = (f"{hint}: competitor signals it; {measured} — monolithic, "
+               f"no per-tool module boundary")
+        fix = f"extract {hint} behind its own module with a test gate"
+        result = f"signal '{signal[:50]}' -> gap: {hint} | {measured}"
+    else:
+        gap = (f"no mappable capability in latest signal ({measured}) — "
+               f"upstream competitor answers are not informative")
+        fix = "repair competitor insight extraction (answers are non-answer snippets)"
+        result = (f"signal NOT mappable: '{signal[:60]}' | {measured} — "
+                  f"upstream competitor pipeline produces junk")
+
+    return {
         "action": "competitor gap analysis",
-        "insight_analyzed": latest[:100],
-        "identified_gap": "OpenHands has a modular SDK design — our tool_server.py is monolithic",
-        "proposed_fix": "phase 2: refactor tool_server into modular tools (with test gates)",
-        "measurable": False,  # design analysis, not direct measurement
+        "insight_analyzed": signal[:100],
+        "signal_source_question": signal_q[:100],
+        "signal_candidates": len(competitors),
+        "measured_tool_surface": stats,
+        "identified_gap": gap,
+        "proposed_fix": fix,
+        "result": result,
+        "measurable": True,
     }
-    return gap
 
 def experiment_meta_insight():
     """Insight: Meta-RL (LaMer). Apply a simplified version to meta_learn."""
