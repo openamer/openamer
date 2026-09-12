@@ -111,7 +111,15 @@ def test_entry_carries_a_real_measurement():
 
 
 def test_unmappable_signal_reported_honestly():
-    """A non-answer snippet must NOT be turned into an invented gap."""
+    """A snippet with no known capability token must NOT be turned into an
+    invented gap, and must NOT be blamed on upstream ("junk") either.
+
+    Live 12.09.26: the real non-answer snippet ("Foray into the Web, Windows 95,
+    ...") hit this branch, but so did a GENUINE capability description (the Kiro
+    one) that the lexicon simply had no token for. The honest report names the
+    actual cause on our side — a lexicon gap — instead of asserting a defect in
+    someone else's pipeline we never inspected.
+    """
     old = kta.T
     try:
         kta.T = _tmp_env([
@@ -122,7 +130,32 @@ def test_unmappable_signal_reported_honestly():
         assert r["measurable"] is True, r
         assert "NOT mappable" in r["result"], r["result"]
         assert "no mappable capability" in r["identified_gap"], r["identified_gap"]
-        assert "non-answer" in r["proposed_fix"], r["proposed_fix"]
+        # the fix must point at OUR lexicon, not at "upstream is broken"
+        assert "lexicon" in r["proposed_fix"], r["proposed_fix"]
+        assert "upstream" not in r["result"].lower() or "not proof" in r["result"].lower(), r["result"]
+    finally:
+        kta.T = old
+
+
+def test_real_capability_snippet_maps_instead_of_being_called_junk():
+    """Regression (live 12.09.26): a genuine capability description must map.
+
+    This is the exact signal that produced the false "upstream competitor
+    pipeline produces junk" claim — it is a real product description, so the
+    lexicon must resolve it to a capability and report measurable: True.
+    """
+    old = kta.T
+    try:
+        kta.T = _tmp_env([
+            ("What new agent architectures are trending on GitHub?",
+             "Kiro helps developers and teams do their best work: turn prompts "
+             "into executable specs, validate code correctness to find bugs unit "
+             "tests miss, and build across large codebases with parallel agents."),
+        ], tool_server_src=FAKE_TOOL_SERVER)
+        r = kta.experiment_competitor_gap()
+        assert r["measurable"] is True, r
+        assert "NOT mappable" not in r["result"], r["result"]
+        assert "parallel multi-agent execution" in r["identified_gap"], r["identified_gap"]
     finally:
         kta.T = old
 
