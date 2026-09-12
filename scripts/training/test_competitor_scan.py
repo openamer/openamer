@@ -29,8 +29,13 @@ class _FakeResponse:
         return self._payload
 
 
-def _capture_urls(hits=None):
-    """Run _fetch once, capturing every URL it builds (no network)."""
+def _capture_urls(hits=None, min_points=None):
+    """Run _fetch once, capturing every URL it builds (no network).
+
+    Defaults to `AGENT_MIN_POINTS` because that is what `scan()` actually
+    passes on the agent path — the helper must mirror production, not the
+    older LOG_THRESHOLD call site.
+    """
     urls = []
     real = cs.urllib.request.urlopen
 
@@ -38,9 +43,11 @@ def _capture_urls(hits=None):
         urls.append(url)
         return _FakeResponse(json.dumps({"hits": hits or []}).encode())
 
+    if min_points is None:
+        min_points = cs.AGENT_MIN_POINTS
     cs.urllib.request.urlopen = fake_open
     try:
-        cs._fetch("AI agent", int(time.time()) - 7200, cs.LOG_THRESHOLD)
+        cs._fetch("AI agent", int(time.time()) - 7200, min_points)
     finally:
         cs.urllib.request.urlopen = real
     return urls
@@ -60,6 +67,74 @@ def test_fetch_keeps_points_filter_and_paging():
     assert "numericFilters=" in url and "points>" in url
     assert "created_at_i>" in url
     assert "hitsPerPage=30" in url
+
+
+def test_agent_queries_do_not_impose_a_points_floor():
+    """Regression 2026-09-12: the agent path was fetched with the *log*
+    threshold, so a brand-new agent story (HN stories start at ~1 pt) was
+    filtered out server-side and never logged. Agent hits must not carry a
+    points floor."""
+    urls = _capture_urls()
+    assert urls
+    assert all(f"points>{cs.AGENT_MIN_POINTS}" in u for u in urls), urls[0]
+    assert cs.AGENT_MIN_POINTS == 0
+
+
+def test_quiet_window_is_not_reported_as_a_failure(tmp_path):
+    """Regression 2026-09-12: a genuinely quiet 2h window (both result sets
+    empty) returned exit 1, so a healthy watchdog looked broken ~92% of runs.
+    Requests that ANSWER with zero hits are success, not failure."""
+    real_open, real_out, real_seen = cs.urllib.request.urlopen, cs.OUT, cs.SEEN
+    cs.OUT = str(tmp_path / "out.jsonl")
+    cs.SEEN = str(tmp_path / "seen.txt")
+
+    def empty(url, timeout=None):
+        return _FakeResponse(json.dumps({"hits": []}).encode())
+
+    cs.urllib.request.urlopen = empty
+    try:
+        rc = cs.scan()
+    finally:
+        cs.urllib.request.urlopen = real_open
+        cs.OUT, cs.SEEN = real_out, real_seen
+    assert rc == 0, "a quiet window must exit 0 (watchdog), not 1"
+
+
+def test_all_requests_erroring_is_still_a_failure(tmp_path):
+    """The fix must not swallow real breakage: if every request errors, the
+    scan is genuinely broken and has to say so with a non-zero exit."""
+    real_open, real_out, real_seen = cs.urllib.request.urlopen, cs.OUT, cs.SEEN
+    cs.OUT = str(tmp_path / "out.jsonl")
+    cs.SEEN = str(tmp_path / "seen.txt")
+
+    def boom(url, timeout=None):
+        raise OSError("network down")
+
+    cs.urllib.request.urlopen = boom
+    try:
+        rc = cs.scan()
+    finally:
+        cs.urllib.request.urlopen = real_open
+        cs.OUT, cs.SEEN = real_out, real_seen
+    assert rc == 1, "all-requests-errored must exit non-zero"
+
+
+def test_fetch_collects_errors_when_asked():
+    """`errors` is how scan() distinguishes quiet from broken."""
+    real = cs.urllib.request.urlopen
+
+    def boom(url, timeout=None):
+        raise OSError("nope")
+
+    cs.urllib.request.urlopen = boom
+    try:
+        errs = []
+        assert cs._fetch("AI agent", 0, 0, errors=errs) == []
+        assert len(errs) == 1 and "AI agent" in errs[0]
+        # omitting the list must stay backward compatible (no crash)
+        assert cs._fetch("AI agent", 0, 0) == []
+    finally:
+        cs.urllib.request.urlopen = real
 
 
 def test_fetch_survives_a_dead_endpoint():

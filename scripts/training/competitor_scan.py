@@ -10,7 +10,19 @@ Fix 2026-09-11: QUERIES were dead code — the scan queried the global HN
 front feed and alerted on *every* story >50 pts (politics, math, TUIs).
 Now each query in QUERIES is actually sent as Algolia `query=`, results are
 merged + deduped by objectID, and only agent-relevant hits raise an alert.
-The broad feed is still logged (points >= 30) for context, but silently.
+The broad feed is still logged (points >= LOG_THRESHOLD) for context, silently.
+
+Fix 2026-09-12: a *quiet* 2h window was reported as a scan FAILURE.
+`scan()` returned 1 whenever both result sets were empty, so a normal
+low-traffic window (measured: the top story of any 2h HN window is ~24 pts,
+so `points>=30` matches in only 7 of 84 windows) looked identical to a dead
+API. The watchdog therefore exited non-zero ~92% of its runs — the exact
+opposite of a watchdog. Empty results are now a healthy silent state; exit 1
+is reserved for "every request actually errored". Thresholds were also
+re-measured against live data: LOG_THRESHOLD 30 -> 10 so the store receives
+real context, and agent hits are fetched from AGENT_MIN_POINTS so a fresh
+agent story below the log threshold is still seen (not silently dropped by a
+server-side floor).
 """
 import datetime
 import json
@@ -25,8 +37,10 @@ OUT = os.path.join(_HOME, "reports", "competitor-watch.jsonl")
 SEEN = os.path.join(_HOME, "reports", "competitor-watch-seen.txt")
 
 QUERIES = ["AI agent", "autonomous agent", "personal AI agent", "AI coding agent"]
-ALERT_THRESHOLD = 50   # points for an agent-relevant hit -> alert
-LOG_THRESHOLD = 30     # points for the broad feed -> log only
+ALERT_THRESHOLD = 50    # points for an agent-relevant hit -> alert
+LOG_THRESHOLD = 10      # points for the broad context feed -> log only
+AGENT_MIN_POINTS = 0    # floor for the agent queries: do not let a server-side
+                        # floor hide a fresh agent story (they start at ~1 pt)
 
 
 def _seen_ids():
@@ -49,8 +63,13 @@ def _mark_seen(ids, seen=None):
             f.write("\n".join(fresh) + "\n")
 
 
-def _fetch(query, since, min_points, pages=1):
-    """One Algolia search for a single query. Returns list of hits."""
+def _fetch(query, since, min_points, pages=1, errors=None):
+    """One Algolia search for a single query. Returns list of hits.
+
+    `errors` (a list) collects failures so the caller can tell a genuinely
+    quiet window apart from a dead endpoint. A failed request must never
+    raise — the watchdog stays alive.
+    """
     hits = []
     for page in range(pages):
         url = (
@@ -64,22 +83,29 @@ def _fetch(query, since, min_points, pages=1):
                 hits.extend(json.load(r).get("hits", []))
         except Exception as e:
             print(f"[competitor] query '{query}' page {page} failed: {e}")
+            if errors is not None:
+                errors.append(f"{query!r} p{page}: {e}")
     return hits
 
 
 def scan():
     since = int(datetime.datetime.now().timestamp()) - 2 * 3600
+    failures = []   # real request errors (used to tell "quiet" from "broken")
 
     # 1) agent-relevant hits (each query actually used now)
     relevant = {}
     for q in QUERIES:
-        for h in _fetch(q, since, LOG_THRESHOLD):
+        for h in _fetch(q, since, AGENT_MIN_POINTS, errors=failures):
             hid = h.get("objectID")
             if hid:
                 relevant.setdefault(hid, h)
+    # agent queries that actually answered (0 hits is a valid answer)
+    agent_ok = len([q for q in QUERIES
+                    if not any(f.startswith(f"{q!r} ") for f in failures)])
 
     # 2) broad front-feed hits, context only (never alert on these)
     broad = {}
+    broad_ok = False
     try:
         url = ("https://hn.algolia.com/api/v1/search?tags=story"
                f"&numericFilters=created_at_i>{since},points>{LOG_THRESHOLD}&hitsPerPage=30")
@@ -87,12 +113,21 @@ def scan():
             for h in json.load(r).get("hits", []):
                 if h.get("objectID"):
                     broad[h["objectID"]] = h
+        broad_ok = True
     except Exception as e:
         print(f"[competitor] broad feed failed: {e}")
+        failures.append(f"broad: {e}")
 
-    if not relevant and not broad:
-        print("[competitor] scan failed: no hits from any source")
+    if not agent_ok and not broad_ok:
+        # every single request errored -> this really is a broken scan
+        print(f"[competitor] scan failed: all requests errored ({len(failures)})")
         return 1
+    if not relevant and not broad:
+        # requests answered, HN is simply quiet in this window. That is the
+        # watchdog's normal state, NOT a failure (returning 1 here made ~92%
+        # of runs look broken and drowned the signal).
+        print("")
+        return 0
 
     seen = _seen_ids()
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
