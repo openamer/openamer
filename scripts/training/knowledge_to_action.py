@@ -77,8 +77,14 @@ def experiment_tune_buffer():
         import buffer_store
         n = buffer_store.enforce_cap(buf_file)
         cap = buffer_store.MAX_BUF
+        # Honesty: report the REAL fill state, not a canned "at cap" claim.
+        # (This asserted "at cap" on runs where n was far below cap, e.g. 138/300.)
+        fill = f"{n}/{cap}"
+        state = (f"buffer at cap {fill} — trim enforced on every write" if n >= cap
+                 else f"buffer at {fill} ({cap - n} slots free) — trim enforced on every write")
         return {"action": f"buffer measurement: {n} examples (cap {cap})",
-                "result": f"buffer at cap {cap} — trim enforced on every write",
+                "buffer_count": n, "buffer_cap": cap,
+                "result": state,
                 "measurable": True}
     except Exception as e:
         return {"action": f"buffer measurement: {n} examples",
