@@ -225,11 +225,26 @@ def observe(cause, effect, kind="fact", confidence=None):
     return edge
 
 
-def recall(query, k=5, kind=None):
-    """Semantic nearest-neighbour search over the world model."""
+def edge_key(edge):
+    """Stable identity for an edge: (ts, cause). Used to exclude an edge from
+    its own recall results — a validation that can match itself proves nothing."""
+    return f"{edge.get('ts', '')}|{edge.get('cause', '')[:120]}"
+
+
+def recall(query, k=5, kind=None, exclude=None):
+    """Semantic nearest-neighbour search over the world model.
+
+    `exclude` is a set of edge keys (see edge_key()) to omit from the results.
+    This matters for validation: an edge is ALWAYS its own nearest neighbour
+    (cosine 1.0 against its own embedding), so any checker that asks "did this
+    come true?" while leaving the edge in the index will find itself and answer
+    yes. That is how the prediction validator reported 32/32 correct while
+    verifying nothing.
+    """
     q = embed(query)
     if q is None:
         return []
+    skip = set(exclude or ())
     edges = _load()
     scored = []
     for e in edges:
@@ -237,11 +252,13 @@ def recall(query, k=5, kind=None):
             continue
         if not e.get("embed_ok", True):
             continue
+        if skip and edge_key(e) in skip:
+            continue
         scored.append((_cosine(q, e.get("embedding", [])), e))
     scored.sort(key=lambda x: -x[0])
     return [{"score": round(s, 4), "cause": e.get("cause", ""),
              "effect": e.get("effect", ""), "kind": e.get("kind", "fact"),
-             "ts": e.get("ts", "")} for s, e in scored[:k]]
+             "ts": e.get("ts", ""), "key": edge_key(e)} for s, e in scored[:k]]
 
 
 def predict(situation, k=3):

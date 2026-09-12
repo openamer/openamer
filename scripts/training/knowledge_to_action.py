@@ -49,21 +49,63 @@ def experiment_lora_rank():
                 "measurable": False}
 
 def experiment_predict_world():
-    """Insight: 'project future states'. Add a prediction to the world model."""
+    """Insight: 'project future states'. Add a prediction to the world model.
+
+    Honesty contract (fixed 12.09.2026): this used to predict FROM the last
+    prediction — `cause = last['cause']`, then observe "If '{cause}' recurs".
+    Every rotation cycle therefore wrapped the previous prediction in another
+    "If ... recurs" shell. Live evidence: the newest world-model entry was
+    literally `If 'If 'Competitor update: ...' recurs' recurs`. A prediction
+    about a prediction is not a projection of the world; it is a sentence
+    growing a tail. It also made the validator's job impossible, because
+    prediction N+1 was near-identical to prediction N by construction.
+
+    Now it predicts from the most recent FACT (an observed cause→effect edge),
+    skipping predictions/corrections and already-predicted causes.
+    """
     import world_model
     edges = world_model._load()
-    if len(edges) < 3:
-        return {"action": "world-model prediction", "result": "not enough edges to predict from"}
-    last = edges[-1]
-    cause = last.get("cause", "")
-    effect = last.get("effect", "")
+    facts = [e for e in edges
+             if e.get("kind", "fact") == "fact" and e.get("cause")]
+    if len(facts) < 3:
+        return {"action": "world-model prediction",
+                "result": "not enough observed facts to predict from",
+                "measurable": False}
+
+    sources = [e for e in facts if not e.get("cause", "").startswith("If '")]
+    if not sources:
+        return {"action": "world-model prediction",
+                "result": "no prediction-free fact available",
+                "measurable": False}
+
+    already = {e.get("cause", "") for e in edges if e.get("kind") == "prediction"}
+    picked = None
+    for e in reversed(sources):        # newest fact first
+        if f"If '{e['cause'][:80]}' recurs" not in already:
+            picked = e
+            break
+    if picked is None:
+        return {"action": "world-model prediction",
+                "result": "every recent fact already has a projection",
+                "measurable": False}
+
+    cause = picked["cause"]
+    effect = picked.get("effect", "")
+    # Do not observe when the effect is empty — a prediction with no
+    # consequence attached carries no information and only pads the store.
+    if not effect.strip():
+        return {"action": "world-model prediction",
+                "result": f"latest fact '{cause[:60]}' has no effect recorded",
+                "measurable": False}
+
     world_model.observe(
         f"If '{cause[:80]}' recurs",
         f"expect: {effect[:80]}",
         kind="prediction",
         confidence=0.6,
     )
-    return {"action": "world-model: added PREDICTION edge (future-state projection)",
+    return {"action": "world-model: added PREDICTION edge (from an observed fact)",
+            "predicted_from": cause[:100],
             "result": f"If '{cause[:80]}' recurs, expect {effect[:80]}",
             "measurable": True}
 
