@@ -14,8 +14,32 @@ MARKER = T / ".last_retrain"
 MIN_INTERVAL_H = 24
 MIN_NEW_PAIRS = 10
 
+def _train_python():
+    """Return the interpreter that owns the training deps (torch/transformers/peft).
+
+    The cron wrapper runs under the AGENT venv (openamer-agent/venv), whose
+    huggingface-hub (1.2.3) is too old for its transformers build — training
+    children must use the dedicated training venv (hub 1.30.0), which lives at
+    ``$OPENAMER_HOME/venv`` next to the scripts tree.
+    """
+    env_py = os.environ.get("OPENAMER_TRAIN_PYTHON")
+    if env_py and Path(env_py).exists():
+        return env_py
+    home = Path(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")))
+    for cand in (home / "venv" / "Scripts" / "python.exe",
+                 T.parent / "venv" / "Scripts" / "python.exe",
+                 home / "openamer-agent" / "venv" / "Scripts" / "python.exe"):
+        if cand.exists():
+            return str(cand)
+    return sys.executable
+
+PY = _train_python()
+
+
 def sh(cmd, timeout=7200):
-    r = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout, encoding="utf-8", errors="replace")
+    env = os.environ.copy()
+    env.pop("PYTHONPATH", None)  # agent-shell PYTHONPATH shadows the training venv
+    r = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout, encoding="utf-8", errors="replace", env=env)
     if r.returncode != 0:
         raise RuntimeError(f"cmd failed: {cmd}\n{r.stdout[-500:]}\n{r.stderr[-500:]}")
     return r.stdout
@@ -51,14 +75,15 @@ def main():
         sys.exit(1)
 
     print(f"RETRAIN: {new} new brain records ({brain_ct} total)")
-    out = sh([sys.executable, str(T / "distill_sft.py")], timeout=600)
+    out = sh([PY, str(T / "distill_sft.py")], timeout=600)
     print(out.strip())
     pairs = sum(1 for _ in open(T / "sft_openamer.jsonl", encoding="utf-8"))
     if pairs < 20:
         print(f"ABORT: only {pairs} distilled pairs")
         sys.exit(1)
 
-    out = sh([sys.executable, str(T / "finetune_cpu.py")], timeout=7200)
+    print(f"[auto_retrain] using train interpreter: {PY}", flush=True)
+    out = sh([PY, str(T / "finetune_cpu.py")], timeout=7200)
     print(out.strip()[-800:])
 
     # hot-swap: backup old adapter, move new one in, then tell the LIVE server
