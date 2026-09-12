@@ -78,10 +78,14 @@ def experiment_tune_buffer():
         n = buffer_store.enforce_cap(buf_file)
         cap = buffer_store.MAX_BUF
         # Honesty: report the REAL fill state, not a canned "at cap" claim.
-        # (This asserted "at cap" on runs where n was far below cap, e.g. 138/300.)
+        # (This string asserted "at cap" on runs where n was far below cap,
+        #  e.g. 138/300 — a measurement that did not measure.)
         fill = f"{n}/{cap}"
-        state = (f"buffer at cap {fill} — trim enforced on every write" if n >= cap
-                 else f"buffer at {fill} ({cap - n} slots free) — trim enforced on every write")
+        if n >= cap:
+            state = f"buffer at cap {fill} — trim enforced on every write"
+        else:
+            state = (f"buffer at {fill} ({cap - n} slots free) — "
+                     f"trim enforced on every write")
         return {"action": f"buffer measurement: {n} examples (cap {cap})",
                 "buffer_count": n, "buffer_cap": cap,
                 "result": state,
@@ -132,15 +136,26 @@ def experiment_competitor_gap():
     signal_q = (latest.get("u") or "").strip()
 
     # --- map the signal to an implied capability (lexicon, not a guess table) ---
+    # Lexicon grows from REAL signals we have seen (12.09.26): the Kiro snippet
+    # ("turn prompts into executable specs, validate code correctness ..., build
+    # across large codebases with parallel agents") is a genuine capability
+    # description, not junk — the lexicon just had no token for it. Absence of a
+    # token is a lexicon gap, not evidence that upstream is broken.
     hints = (
         ("modular", "modular tool packaging"),
         ("sdk", "public SDK / programmatic API"),
         ("microservice", "service split"),
         ("plugin", "plugin extensibility"),
         ("multi-agent", "multi-agent orchestration"),
+        ("parallel agent", "parallel multi-agent execution"),
+        ("spec-driven", "spec-driven development workflow"),
+        ("executable spec", "spec -> executable-plan pipeline"),
         ("sandbox", "sandboxed execution"),
         ("persistent memory", "persistent memory layer"),
         ("memory", "memory layer"),
+        ("unit test", "automated verification gate"),
+        ("validate code", "automated code-conformance check"),
+        ("code correctness", "automated code-conformance check"),
     )
     low_signal = signal.lower()
     hint = next((label for tok, label in hints if tok in low_signal), None)
@@ -164,10 +179,11 @@ def experiment_competitor_gap():
         result = f"signal '{signal[:50]}' -> gap: {hint} | {measured}"
     else:
         gap = (f"no mappable capability in latest signal ({measured}) — "
-               f"upstream competitor answers are not informative")
-        fix = "repair competitor insight extraction (answers are non-answer snippets)"
+               f"signal contains no token our lexicon knows")
+        fix = "grow the capability lexicon from the raw signal before blaming upstream"
         result = (f"signal NOT mappable: '{signal[:60]}' | {measured} — "
-                  f"upstream competitor pipeline produces junk")
+                  f"lexicon has no token for this signal (lexicon gap, "
+                  f"not proof upstream is broken)")
 
     return {
         "action": "competitor gap analysis",
