@@ -10,6 +10,9 @@ After internet_learner collects insights, this script:
 
 This closes the gap between "learning" and "implementing".
 """
+# KTA_SYS_PATH_BOOTSTRAP: sibling imports (world_model) need script dir on sys.path when run via runpy/gateway
+import os as _os, sys as _sys
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
 import os
 import json, os, sys, time, datetime, subprocess, re
 from pathlib import Path
