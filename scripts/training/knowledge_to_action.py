@@ -293,8 +293,8 @@ def kta_cycle():
     rot_file = os.path.join(T, ".kta_rotation")
     n = 0
     if os.path.exists(rot_file):
-        n = int(open(rot_file).read().strip() or 0)
-    with open(rot_file, "w") as f:
+        n = int(open(rot_file, encoding="utf-8").read().strip() or 0)
+    with open(rot_file, "w", encoding="utf-8") as f:
         f.write(str(n + 1))
     experiment = EXPERIMENTS[n % len(EXPERIMENTS)][1]
 
