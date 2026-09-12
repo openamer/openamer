@@ -1,7 +1,7 @@
 {
-  "updated": "2026-09-11T03:09:26+00:00",
-  "population": 388,
-  "avg_score": 44.3,
+  "updated": "2026-09-12T03:00:53+00:00",
+  "population": 701,
+  "avg_score": 39.2,
   "fittest": [
     {
       "name": "openamer-desktop-dev",
@@ -32,23 +32,33 @@
       "score": 71
     },
     {
+      "name": "failure-attribution",
+      "score": 71
+    },
+    {
       "name": "parallel-feature-development",
       "score": 71
     },
     {
       "name": "sketch",
       "score": 70
-    },
-    {
-      "name": "windows-compatibility",
-      "score": 70
     }
   ],
   "autopatch": {
-    "timestamp": "2026-09-06T04:00:23",
+    "timestamp": "2026-09-12T04:00:15",
     "kept": [
       {
-        "skill": "auto-best-practice-from-official",
+        "skill": "auto-structural-connection-between-tool",
+        "before": 21,
+        "after": 28,
+        "delta": 7,
+        "fixes": [
+          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
+          "\u2705 platforms Feld hinzugef\u00fcgt"
+        ]
+      },
+      {
+        "skill": "auto-multidomain-learning-business-automation",
         "before": 21,
         "after": 25,
         "delta": 4,
@@ -59,7 +69,7 @@
         ]
       },
       {
-        "skill": "auto-competitor-intelligence-autogpt-improvem",
+        "skill": "auto-multidomain-learning-education-ai",
         "before": 21,
         "after": 25,
         "delta": 4,
@@ -70,7 +80,7 @@
         ]
       },
       {
-        "skill": "auto-competitor-intelligence-devin-ai",
+        "skill": "auto-multidomain-learning-financial-markets",
         "before": 21,
         "after": 25,
         "delta": 4,
@@ -81,7 +91,7 @@
         ]
       },
       {
-        "skill": "auto-competitor-intelligence-openhands-agent",
+        "skill": "auto-multidomain-learning-legal-ai",
         "before": 21,
         "after": 25,
         "delta": 4,
@@ -92,7 +102,7 @@
         ]
       },
       {
-        "skill": "auto-internet-learning-llm-agents",
+        "skill": "auto-security-learning-ai-agent",
         "before": 21,
         "after": 25,
         "delta": 4,
@@ -103,7 +113,7 @@
         ]
       },
       {
-        "skill": "auto-latest-research-insight-arxiv",
+        "skill": "auto-security-learning-jailbreak-prevention",
         "before": 21,
         "after": 25,
         "delta": 4,
@@ -114,7 +124,7 @@
         ]
       },
       {
-        "skill": "auto-multidomain-learning-climate-science",
+        "skill": "auto-security-learning-llm-prompt",
         "before": 21,
         "after": 25,
         "delta": 4,
@@ -125,7 +135,7 @@
         ]
       },
       {
-        "skill": "auto-multidomain-learning-medical-diagnosis",
+        "skill": "auto-share-a-lesson-you",
         "before": 21,
         "after": 25,
         "delta": 4,
@@ -136,18 +146,7 @@
         ]
       },
       {
-        "skill": "auto-multidomain-learning-philosophy-of",
-        "before": 21,
-        "after": 25,
-        "delta": 4,
-        "fixes": [
-          "\u2705 metadata.openamer Block hinzugef\u00fcgt",
-          "\u2705 platforms Feld hinzugef\u00fcgt",
-          "\u2705 version Feld hinzugef\u00fcgt"
-        ]
-      },
-      {
-        "skill": "auto-what-are-the-most",
+        "skill": "auto-structural-connection-between-energy",
         "before": 21,
         "after": 25,
         "delta": 4,
@@ -162,47 +161,47 @@
   "trends": [
     {
       "source": "News",
-      "title": "The Agentic AI Revolution in Biopharma - Pharmaceutical Executive",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE10eFF1eHBTYmdxbXVPQWR6TEJqeXN0NHlYdm5GS1F4V3dwN3RsdFdySldqNzBsYm9JcE5ld2tZNGI4S0NDV3hrczRZVkJkeUZGdzhpeFRrUjEtNHVpYTN3SFJORmlWUm9GX1FUUlVlaw?oc=5"
+      "title": "ARPA-H to invest $62M to build agentic AI agent for heart care - Healthcare Dive",
+      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPUGp2SHBZU1BCZk9GWVdFX1lSY190alJLOVBCWWNMalM0aVdOcDR6dVNWTU9kaWExWDltZElhc2VLakZGdHFyRDRJUTRrNFhwdS1uQ1k1ZnZ0d2NmRGFZdUN3TVNWMTVxcDlTWlNUNHdLTFlxSTRUQ0tXS3Z6UWl2VGtvMlY0bFhlQnZiMjR6RFdDc2tmN3dSVkdsNkdUcGtfTFNhVHlNcEQ?oc=5"
     },
     {
       "source": "News",
-      "title": "How to Build an AI Agent (From Scratch) - HackerNoon",
-      "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1rS0NFOXNhZmZKUFdWazU5VlNOOWRUUUdUNEJEQXVZb3J2SHozWHdZTFlwQWF1VW53QS1UcUJNckZsWnRTNWxGN1cyQ3c2UDdsSWp6MkJDUzE5Vmp5bVZOeW9SSE1nTk95SFAwQg?oc=5"
+      "title": "AI & Tech Brief: Agentic AI crimes - The Washington Post",
+      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNZGFPdVpxOENwdkRHMklwR1BjMjhuLVAxSko2YVlCaURKRGhKN2FTY05DdVZlYTB1LUJ2WjkxNFdGTTdEamh2QkJ5VXphODg5NkdnZFMtSXJVZ2tiUFNWbldPb3p1aW1OVmY1eDBmNENyX3N6Mm1lM3BrZG9qNjNDRzdLNDhveU5weG5yWnBQY0dQSGRvX3V0bkJYc0lkLWhsa0ZjVXpYTQ?oc=5"
     },
     {
       "source": "News",
-      "title": "Amazon makes its agentic AI platform Quick generally available for desktop on Windows and macOS - SiliconANGLE",
-      "url": "https://news.google.com/rss/articles/CBMizAFBVV95cUxPU19udjBJN0NUbUlGZ0NQQUtCZmluTHJiR3JLZ190QVNzQUhKcG9WTHJJajRHV2FNNExzbU1ZT3NtVnZFcEpqQkVjVmd3XzVURWxBc1R0WUVfRE9JRlFFSDhmSGpHMlZRazF5QWpLRDZzRHZUYjdRMHVPYXlQSVRUX1hWYlBib1NjY01nWjJldXZ2NlhsVHhvRjQ3eS1mNkVval9GTUc4SlR1d1pKajE1WHF1aXUtMUZXRjE4dlF1bHhIcjRLYzUyMkZydmk?oc=5"
+      "title": "How the CIO role is shifting in the agentic AI era - CIO Dive",
+      "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE5mVVQzRHVMcjdLS2dHTzVETWJaNlBFbWdlNmZBVUdaWDIzdHZ4Qk9zMERQVHd6OFdqU1U4TU1wRHNfRkNmbTdFMVFKUVJpWHNjRW9odlVDeVNFNkJWYlJxQ082bG1qa1Z0NHRQRDFaUnp4aU9zSWtHTQ?oc=5"
     },
     {
       "source": "News",
-      "title": "AI Agents Need Permissioned Funding Sources. Not Company Bank Accounts. - PYMNTS.com",
-      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQSWZhY0ZtdFhnLUQ4bEhJSjZlZFEzWk1VWjNtZ1BaWjNPY1R5S25CTXg2UHFKbWhxVkkxVnRrNl84TEc0UW0tcUdUTWh3M29rUlpuTm1NYzloekFFNUs5cklheHEwS3ZKS2tBVkJHYUhvRTdoMUtfVFE3ZGdTUUZMb3JwTFpKb245SEVRTmxrbnZqSFRHaWNra3dUNTYySmZ1V3FnODNrVzNTVjAxTXU3WDR4b1VON2pOYkx5d2x5NVd4SUtMaGc?oc=5"
+      "title": "Salesforce\u2019s Job-Ready Agents Target Enterprise AI\u2019s Biggest Gap - The Futurum Group",
+      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPV3JKWEhrNHlBdno1b215Y28wdG05RzBYVTJ3aXNwUUJzUG9yczB6OEJpTzFNTnN2anJiMUdoenY3a1g2MWhBN0F2V0JIbkxpN2ZSc0xVOFdHX25ST09wSWItbkpTWU9MNm8wNkxIMTNreDd3OEtNUF82YU55YjNFdVpfN3ZMZ1RkLTQwTXRxQlFaSUpuZGtJVFFzODRqUQ?oc=5"
     },
     {
       "source": "News",
-      "title": "India plans AI registry as it looks to roll out agentic payments, sources say - Reuters",
-      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNVVNCTTRPWDZrd1cwM2NQVG84dHJQSHVmMnNJRU5TdGZMc3l2LUFLRlJoNDZQemUtdGF4T3BhdFhtUFhZSXZwQV9PZGxpTW9fMWFJMU4wZENTaTl3Q2tmUGVEVFpIelZFWjJ5R1J5c3dvYk5xUDNmX2Fha0daQUV5eS1RNU1zZXBhQ1Z5VW1JNF9UdzRvdDlzb2U1NW5UUm9vYWM0VGxLcUxzbkttR2cxYU5JWnp6NkJ6Y1E?oc=5"
+      "title": "ARPA-H launches $63M effort to build FDA-authorized AI agents for heart failure care - Fierce Healthcare",
+      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxONHl4NVV1U2NpZDV4SXgzTFh4UDd1RTc2eGJsWHRFbldBeU9KalkyLUQ3eUdqSHVEUFlCYzB2WGF4eGtYWGFUcF9lNjc1dlNVNnJSTC1TcnBfVnIzY3JYWkhjWXlrVjU4OFF1NzduS2tBSFJSMTlmTDRvQXJoRmdvWXZsa2ZoLTA1RWFSTXg5aTFHdEEtWHBjbjZIVnE4VzRHdGZPS2F2cjFfU0Y5eUtCZGVOc0JEVXdqYldaX1NfTG5sQ2h6aUZJ?oc=5"
     },
     {
       "source": "News",
-      "title": "How Card Issuers and Banks Can Avoid Being Shut Out of Agentic Commerce - Bain & Company",
-      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNM3lYbi1PU1ZWSkRsT3B5ZXRnRlpEejB6SFJMbC1Pb0xBaHBzVGRvTDRWQXVwdWFXelRkZGlSbURfdkl3NTNQdXFfZEhLSzRTOGZoaUd3dVFwaTQwanNleHczQi01RTRJejJGZ2ZnZWlSQVBkbk1PMlNjb3FfdHloclZxNUczLWl5U0Z2R294RjBGaTNEenVfaTFnaFFFVmZuRm9Jbg?oc=5"
+      "title": "Agentic AI adoption is outpacing governance: report - hcamag.com",
+      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOWktVVGxIVEhzZUtUR25EbEczQl9LY2JnekVGajNBa1QyNWZSd2p4WFVJRDdyVF9OSGZjZ2NxRzFrVHFxcFJ5MDVSWHBYdzBQQm0tRkdkNDJ3M3hpQVFuMDZ0OTdtTTc1clBKYTlBeFlVdDlSTEk5M2dUckpHRFUxZkpZUUlqN2NvanNDbmY3MHdabXBFQnhjTG1SZWc?oc=5"
     },
     {
       "source": "News",
-      "title": "How Casap is rethinking dispute resolution with agentic AI - Tearsheet",
-      "url": "https://news.google.com/rss/articles/CBMikAFBVV95cUxOeXhYLXJmTVFhZndNcnZJTC1RdVFNU0xmd0U2OGNvM1lXdWtMMGVtR2d4Z3gxcFFtMl9mQTkxcUtBVm1UVXVqN2hSUWplNnMzTzBmZTlyRWJHOFdsVGF0WDNsWWpIbThPOGtKOWpPVHZnekFXdEpBWEk3NzNGMGZBUndFeGU0QmRyVl9NTW5oc0I?oc=5"
+      "title": "Building the Analytics Flywheel for Conversational and Agentic AI | - Opus Research |",
+      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOUGJ6RjhoRzM5Y0lOV1NtRExySUVXekUtZkIwb2RYRnpKbTVXVlgxc0ZaTTd3UmtaYmdhLVhaY0NQekU3bHV2Q2I5Tk5XZkcxU2V3dEpSWGRVekV0VnJjV2swaVpJOWlDQVlGUHlMdzRzSHBWcjJXSGdkLXJkd1BIUGU4STg0RnpaN3ZZUlRualNKZEZzSUNLR0hwamhJVldFU2FTbQ?oc=5"
     },
     {
       "source": "News",
-      "title": "Enterprises Are Scrapping Agentic AI Pilots but Leaving Them Logged In - Cybersecurity Insiders",
-      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE5NZEFfWUE2X2xNRjlvVVJ3ZXg1Qjh4VXM1TDJwV3JPSVAyNUhZYndldmh1ajZXVXJXandhT3QzRlZTYzJ5WEFnZjJOcnNPSHU0akZ1SklWc2xpaWtiQTlZaS1lV1liQm05NVNqLXZXQ1pUOVE0VDFqeXZLTUFFYTQ?oc=5"
+      "title": "Consuming Oracle Fusion Agents aka Headless - blogs.oracle.com",
+      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBVclN2ZnFSUDJienFCVEg4SmNiWUZmR2NoaGNBYWNjUGgtcUVXclJ0eXpKRWl5aTB4Y3E1bGFKRGtZSXd2T2lXNmRKakVzMDF3cU1XYWI2VTMzOHY3WG9ZTWhCd0dtUEFabkJ0azhNb3VOcVcyeUk0QlliNA?oc=5"
     }
   ],
-  "population_engine": 65,
-  "species": 18,
+  "population_engine": 77,
+  "species": 28,
   "trials": 2,
-  "harvested": 69
+  "harvested": 82
 }

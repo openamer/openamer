@@ -6,7 +6,7 @@ description: Use for pip CVE scanning and auto-patching via OSV.dev API.
 # security-agent
 
 **Description:** Use for pip CVE scanning and auto-patching via OSV.dev API.
-**Lines:** 108 | **Code:** 5 | **Dir:** `security-agent`
+**Lines:** 87 | **Code:** 5 | **Dir:** `security-agent`
 
 ---
 

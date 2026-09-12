@@ -6,10 +6,21 @@ description:
 # auto-what-makes-a-selfimproving
 
 **Description:** 
-**Lines:** 26 | **Code:** 0 | **Dir:** `auto-what-makes-a-selfimproving`
+**Lines:** 42 | **Code:** 0 | **Dir:** `auto-what-makes-a-selfimproving`
 
 ---
 
 ---
 name: auto-what-makes-a-selfimproving
-description: [TOOL_RESULT:read_memory] {"episodes": [{"sim": 0.716, "text": "Research self-improvement and self-r GAP: OpenHands has a modular SDK design — ou...
+description: [
+  "Question:
+user
+[
+  "
+
+Self-critique: We have a user prompt: 
+
+"Question: What makes a self-impr
+auto_generated: true
+created: 2026-09-10
+sou...

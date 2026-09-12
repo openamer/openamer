@@ -12,6 +12,7 @@ description:
 
 ---
 name: auto-structural-connection-between-learning
-description: [TOOL_RESULT:web_search] {"error": "search failed: Handshake status 403 Forbidden -+-+- {'content-le
+description: {"tool": "web_search", "params": {"query": "Continuous Learning Loop: Fehler-Capture +
 auto_generated: true
-created: 20...
+created: 2026-09-10
+sourc...

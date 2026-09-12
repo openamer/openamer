@@ -1,21 +1,16 @@
 ---
 title: capture-thinking
-description: Save reasoning as A2A insight after key responses.
+description: Use at the end of every important response. Save your decision-making thoughts as a signed A2A insight so they become tr
 ---
 
 # capture-thinking
 
-**Description:** Save reasoning as A2A insight after key responses.
-**Lines:** 65 | **Code:** 1 | **Dir:** `capture-thinking`
+**Description:** Use at the end of every important response. Save your decision-making thoughts as a signed A2A insight so they become training data for future fine-tuning.
+**Lines:** 63 | **Code:** 1 | **Dir:** `capture-thinking`
 
 ---
 
 ---
 name: capture-thinking
-description: Save reasoning as A2A insight after key responses.
-version: 1.0.0
-author: OpenAmer Agent
-license: MIT
-metadata:
-  openamer:
-    tags: [self-improvement, trainin...
+description: Use at the end of every important response. Save your decision-making thoughts as a signed A2A insight so they become training data for future fine-tuning.
+vers...

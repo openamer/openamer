@@ -1,15 +1,15 @@
 ---
 title: auto-best-practice-from-official
-description: Artificial Intelligence in Physics | Optimization, Modeling … — 29. Mai 2024 · Simulations play a critical role in physi
+description: LoRA · Hugging Face — We propose Low-Rank Adaptation, or LoRA, which freezes the pre-trained model weights and injects t
 ---
 
 # auto-best-practice-from-official
 
-**Description:** Artificial Intelligence in Physics | Optimization, Modeling … — 29. Mai 2024 · Simulations play a critical role in physics, allowing scientists to exp
-**Lines:** 28 | **Code:** 0 | **Dir:** `auto-best-practice-from-official`
+**Description:** LoRA · Hugging Face — We propose Low-Rank Adaptation, or LoRA, which freezes the pre-trained model weights and injects trainable rank decomposition …;
+**Lines:** 26 | **Code:** 0 | **Dir:** `auto-best-practice-from-official`
 
 ---
 
 ---
 name: auto-best-practice-from-official
-description: Artificial Intelligence in Physics | Optimization, Modeling … — 29. Mai 2024 · Simulations play a critical role in physics, allowing scientists ...
+description: LoRA · Hugging Face — We propose Low-Rank Adaptation, or LoRA, which freezes the pre-trained model weights and injects trainable rank decomposit...
