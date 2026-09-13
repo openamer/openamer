@@ -378,6 +378,12 @@ def build_top_level_parser():
         help="Enable filesystem checkpoints before destructive file operations (use /rollback to restore)",
     )
     chat_parser.add_argument(
+        "--plan",
+        action="store_true",
+        default=False,
+        help="Plan mode: refuse state-changing tools for this run so the agent presents a plan first",
+    )
+    chat_parser.add_argument(
         "--max-turns",
         type=int,
         default=None,

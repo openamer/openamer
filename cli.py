@@ -4087,6 +4087,7 @@ class OpenAmerCLI(CLIAgentSetupMixin, CLICommandsMixin, CLIBillingMixin):
         compact: bool = False,
         resume: str = None,
         checkpoints: bool = False,
+        plan_mode: bool = False,
         pass_session_id: bool = False,
         ignore_rules: bool = False,
     ):
@@ -4294,6 +4295,9 @@ class OpenAmerCLI(CLIAgentSetupMixin, CLICommandsMixin, CLIBillingMixin):
         if isinstance(cp_cfg, bool):
             cp_cfg = {"enabled": cp_cfg}
         self.checkpoints_enabled = checkpoints or cp_cfg.get("enabled", False)
+        # Plan mode: CLI flag wins over config ($agent.plan_mode).
+        pm_cfg = CLI_CONFIG.get("agent") or {}
+        self.plan_mode = plan_mode or pm_cfg.get("plan_mode", False)
         self.checkpoint_max_snapshots = cp_cfg.get("max_snapshots", 20)
         self.checkpoint_max_total_size_mb = cp_cfg.get("max_total_size_mb", 500)
         self.checkpoint_max_file_size_mb = cp_cfg.get("max_file_size_mb", 10)
