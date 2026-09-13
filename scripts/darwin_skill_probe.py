@@ -119,10 +119,15 @@ def _basename_index() -> dict[str, str]:
     return index
 
 
-def resolve(ref: str) -> bool:
+def resolve(ref: str, skill_dir: Path | None = None) -> bool:
     ref = ref.strip()
     if not ref or ref.startswith(("http", "~")):
         return True  # not a filesystem claim; nothing to verify
+    # A skill that ships scripts next to its own SKILL.md is well-formed, and
+    # most do. Without this, `scripts/extract_metadata.py` counted as broken for
+    # every skill that carries its own tooling.
+    if skill_dir is not None and (skill_dir / ref).exists():
+        return True
     for root in candidate_roots():
         if (root / ref).exists():
             return True
@@ -139,7 +144,7 @@ def resolve(ref: str) -> bool:
 # both were documentation, not damage.
 _PLACEHOLDER_RE = re.compile(
     r"(?:^|/)(?:script|test_x|example|sample|foo|bar|your_script|my_script)\."
-    r"|/path/to/|<[^>]+>|YOUR_|XXX",
+    r"|path/to/|<[^>]+>|YOUR_|XXX",
     re.IGNORECASE,
 )
 
@@ -148,7 +153,7 @@ def _is_placeholder(ref: str) -> bool:
     return bool(_PLACEHOLDER_RE.search(ref))
 
 
-def score_text(text: str) -> dict:
+def score_text(text: str, skill_dir: Path | None = None) -> dict:
     """Score a SKILL.md body without touching disk.
 
     Split out so Darwin can judge a candidate that exists only in memory:
@@ -167,7 +172,7 @@ def score_text(text: str) -> dict:
     # `/path/to/scripts/session_to_brain.py` with that file present is a real
     # reference that happens to carry a placeholder prefix. Filtering at
     # collection time hid that one; filtering here only forgives fiction.
-    missing = [r for r in refs if not resolve(r) and not _is_placeholder(r)]
+    missing = [r for r in refs if not resolve(r, skill_dir) and not _is_placeholder(r)]
     total = len(refs)
     ok = total - len(missing)
     return {
@@ -179,8 +184,10 @@ def score_text(text: str) -> dict:
 
 
 def probe_skill(skill_md: Path) -> dict:
-    """Score the SKILL.md at *skill_md*."""
-    return score_text(skill_md.read_text(encoding="utf-8", errors="replace"))
+    """Score the SKILL.md at *skill_md*, resolving against its own directory."""
+    return score_text(
+        skill_md.read_text(encoding="utf-8", errors="replace"), skill_dir=skill_md.parent
+    )
 
 
 def main() -> int:
@@ -193,12 +200,15 @@ def main() -> int:
         return 1
 
     skills: dict[str, dict] = {}
-    for d in sorted(SKILLS_DIR.iterdir()):
-        if not d.is_dir():
-            continue
-        md = d / "SKILL.md"
-        if md.is_file():
-            skills[d.name] = probe_skill(md)
+    # rglob, not iterdir. Skills live in category subdirectories too
+    # (bundled/productivity/..., darwin-harvested-*/...), and iterating only the
+    # top level judged 81 of the 714 SKILL.md files on this machine. The
+    # validator has always used rglob; the probe silently disagreed with it, so
+    # "0 broken, average 1.0" was a statement about 11% of the population.
+    # First match wins on a name collision, and sorted() makes that the
+    # shallowest path.
+    for md in sorted(SKILLS_DIR.rglob("SKILL.md")):
+        skills.setdefault(md.parent.name, probe_skill(md))
 
     report = {
         "updated": datetime.now(timezone.utc).isoformat(),
