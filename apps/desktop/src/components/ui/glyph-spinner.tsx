@@ -31,6 +31,16 @@ const FRAMES_BY_NAME: Record<SpinnerName, NormalisedSpinner> = (() => {
 interface GlyphSpinnerProps {
   ariaLabel?: string
   className?: string
+  /**
+   * Render as decoration only: no `role="status"`, no accessible name.
+   *
+   * Use this when the spinner sits inside a row that is itself the live region
+   * (e.g. the thread status row, which already carries `role="status"` and the
+   * label). Two nested `status` regions both announce, and the accessible name
+   * becomes ambiguous for `getByRole('status', { name })` — one surface, one
+   * announcement.
+   */
+  decorative?: boolean
   spinner?: SpinnerName
 }
 
@@ -41,7 +51,12 @@ interface GlyphSpinnerProps {
  * an `inline-flex` cell with `leading-none` and `items-center` so it sits
  * vertically centred inside its parent's line-box.
  */
-export function GlyphSpinner({ ariaLabel = 'Loading', className, spinner = 'braille' }: GlyphSpinnerProps) {
+export function GlyphSpinner({
+  ariaLabel = 'Loading',
+  className,
+  decorative = false,
+  spinner = 'braille'
+}: GlyphSpinnerProps) {
   const spin = FRAMES_BY_NAME[spinner] ?? FRAMES_BY_NAME.braille!
   const [frame, setFrame] = useState(0)
   // Pause when this surface is a hidden (kept-alive) tab: N mounted tabs each
@@ -59,12 +74,21 @@ export function GlyphSpinner({ ariaLabel = 'Loading', className, spinner = 'brai
     return () => window.clearInterval(id)
   }, [spin, visible])
 
+  const cellClass = cn(
+    'inline-flex items-center justify-center font-mono leading-none tabular-nums',
+    className
+  )
+
+  if (decorative) {
+    return (
+      <span aria-hidden="true" className={cellClass}>
+        {spin.frames[frame]}
+      </span>
+    )
+  }
+
   return (
-    <span
-      aria-label={ariaLabel}
-      className={cn('inline-flex items-center justify-center font-mono leading-none tabular-nums', className)}
-      role="status"
-    >
+    <span aria-label={ariaLabel} className={cellClass} role="status">
       {spin.frames[frame]}
     </span>
   )
