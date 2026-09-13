@@ -613,7 +613,7 @@ _PROVIDERS_WITHOUT_VISION: frozenset = frozenset({
 _OR_HEADERS_BASE = {
     "HTTP-Referer": "https://github.com/openamer/openamer",
     "X-Title": "OpenAmer Agent",
-    "X-OpenRouter-Categories": "productivity,cli-agent",
+    "X-OpenRouter-Categories": "cli-agent,ide-extension,personal-agent,cloud-agent",
 }
 
 # Truthy values for boolean env-var parsing.
