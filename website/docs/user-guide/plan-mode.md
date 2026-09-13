@@ -15,7 +15,15 @@ This is enforcement, not a request. The `/plan` skill writes a markdown plan but
 leaves every write tool available, so "plan first" stays something the model can
 ignore. Plan mode removes the tools instead.
 
-## Enable it
+## Turn it on
+
+For one run, without touching config:
+
+```bash
+openamer chat --plan
+```
+
+Or for every session:
 
 ```yaml
 # ~/.openamer/config.yaml
@@ -23,8 +31,9 @@ agent:
   plan_mode: true
 ```
 
-The setting is read once per session and cached, like the terminal backend's
-other settings — change it, then restart the session.
+The flag wins over the config. The config value is read once per session and
+cached, like the terminal backend's other settings — change it, then restart
+the session.
 
 ## What is refused
 
@@ -48,8 +57,8 @@ plan mode.
 ## Leaving plan mode
 
 The refusal message asks the agent to present the plan and request approval.
-Approval is the human's to give: once you confirm, set `plan_mode: false` and
-restart the session.
+Approval is the human's to give: once you confirm, drop `--plan` (or set
+`plan_mode: false`) and restart the session.
 
 ## Verifying it on your machine
 

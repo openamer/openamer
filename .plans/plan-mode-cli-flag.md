@@ -1,8 +1,11 @@
 # Plan: `openamer --plan` CLI flag
 
-Status: **not implemented.** `website/docs/user-guide/plan-mode.md` documents plan
-mode as config-only, and says so explicitly — do not add the flag to the docs
-before it exists. (This file exists because that promise needs an address.)
+Status: **implemented** (commit `f30e93299`). The flag parses, is threaded to the
+agent, and `website/docs/user-guide/plan-mode.md` now documents it — the docs no
+longer say config is the only switch, because it no longer is.
+
+Kept as the record of the traps hit while finding this (see the bottom), not as
+outstanding work.
 
 ## Why
 
