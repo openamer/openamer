@@ -98,3 +98,23 @@ def test_the_score_is_the_ratio_of_resolved_references(probe, tmp_path, monkeypa
     assert result["refs"] == 3
     assert result["ok"] == 1
     assert result["score"] == pytest.approx(0.333, abs=0.001)
+
+
+def test_a_variant_that_adds_a_dead_reference_scores_lower(probe, tmp_path, monkeypatch):
+    """The A/B Darwin now runs must be able to see *something*.
+
+    Measured against the live population every mutation delta is currently 0.00,
+    because mutations vary trigger prose while the probe measures referenced
+    artifacts — the two do not intersect. What the probe can still catch is
+    damage: a variant that names an artifact which does not exist must score
+    below its parent, otherwise the whole A/B is decoration.
+    """
+    monkeypatch.setattr(probe, "candidate_roots", lambda: [tmp_path])
+    (tmp_path / "real.py").write_text("ok\n", encoding="utf-8")
+
+    parent = probe.score_text("Run `real.py` to check the thing.\n")
+    variant = probe.score_text("Run `real.py`, then `ghost.py` to check.\n")
+
+    assert parent["score"] == 1.0
+    assert variant["score"] < parent["score"]
+    assert variant["missing"] == ["ghost.py"]

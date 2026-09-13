@@ -71,8 +71,14 @@ def resolve(ref: str) -> bool:
     return Path(ref).exists()
 
 
-def probe_skill(skill_md: Path) -> dict:
-    text = skill_md.read_text(encoding="utf-8", errors="replace")
+def score_text(text: str) -> dict:
+    """Score a SKILL.md body without touching disk.
+
+    Split out so Darwin can judge a candidate that exists only in memory:
+    mutate() generates the variant, measures it against the parent, and only
+    then decides whether to keep it. The regex and the arithmetic live here;
+    reading a path is the thin wrapper below.
+    """
     refs: list[str] = []
     for m in REF_RE.finditer(text):
         ref = m.group(1) or m.group(2)
@@ -88,6 +94,11 @@ def probe_skill(skill_md: Path) -> dict:
         "score": round(ok / total, 3) if total else 1.0,
         "missing": missing[:5],
     }
+
+
+def probe_skill(skill_md: Path) -> dict:
+    """Score the SKILL.md at *skill_md*."""
+    return score_text(skill_md.read_text(encoding="utf-8", errors="replace"))
 
 
 def main() -> int:

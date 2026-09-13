@@ -1511,6 +1511,27 @@ def _semantic_mutation(text: str, op: str, rng: random.Random) -> str:
     return text
 
 
+_PROBE_MOD = None
+
+
+def _probe_text(text: str) -> dict:
+    """Score a SKILL.md body with the outcome probe.
+
+    Loaded by path because scripts/ is not a package; cached because mutate()
+    scores two bodies per parent and the module is stdlib-only.
+    """
+    global _PROBE_MOD
+    if _PROBE_MOD is None:
+        import importlib.util
+
+        spec = importlib.util.spec_from_file_location(
+            "darwin_skill_probe", Path(__file__).resolve().parent / "darwin_skill_probe.py"
+        )
+        _PROBE_MOD = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(_PROBE_MOD)
+    return _PROBE_MOD.score_text(text)
+
+
 def _mutate_skill_md(text: str, op: str) -> str:
     """Generate a skill text variant (deterministic mutation, section-aware)."""
     return _semantic_mutation(text, op, random.Random(42))
@@ -1529,12 +1550,19 @@ def mutate(fitness: dict, top_n: int = 5, apply: bool = False) -> list[dict]:
         text = src.read_text("utf-8", errors="replace")
         op = weighted_op_choice(rng)
         mutated = _mutate_skill_md(text, op)
+        # A/B against one yardstick: same probe, same roots, parent vs variant.
+        # The delta is a result, where win/loss bookkeeping only stood in for one.
+        parent_probe = _probe_text(text)
+        variant_probe = _probe_text(mutated)
         child_name = f"{parent}__mut{op}"
         offspring.append({
             "parent": parent,
             "child": child_name,
             "op": op,
             "applied": apply,
+            "parent_probe": parent_probe["score"],
+            "variant_probe": variant_probe["score"],
+            "delta": round(variant_probe["score"] - parent_probe["score"], 3),
         })
         if apply:
             dst = DARWIN_DIR / "offspring" / child_name
@@ -1543,6 +1571,11 @@ def mutate(fitness: dict, top_n: int = 5, apply: bool = False) -> list[dict]:
             _save_json(DARWIN_DIR / "offspring" / f"{child_name}.json", {
                 "child": child_name, "parent": parent, "op": op, "born": _now(),
                 "status": "candidate", "wins": 0, "losses": 0,
+                # Both bodies measured by the same probe, so the delta means
+                # something the win/loss counters never did.
+                "parent_probe": parent_probe["score"],
+                "variant_probe": variant_probe["score"],
+                "delta": round(variant_probe["score"] - parent_probe["score"], 3),
             })
             record_lineage(parent, child_name, "mutation", {"op": op})
     return offspring
