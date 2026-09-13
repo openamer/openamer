@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-09-12T12:13:03.992154+00:00",
+  "snapshot_at": "2026-09-13T00:13:27.039346+00:00",
   "circadian": {
     "phase": "AWAKE",
     "at": "2026-08-25T13:45:44.298046+00:00",
@@ -37,10 +37,10 @@
     }
   },
   "senses": {
-    "time": "2026-09-12T14:00:02",
+    "time": "2026-09-13T01:44:23",
     "pain": {
-      "score": 4,
-      "level": "uncomfortable"
+      "score": 0,
+      "level": "calm"
     },
     "satiety": {
       "state": "satisfied",
@@ -50,8 +50,8 @@
     "balance": {
       "state": "falling",
       "jobs": 85,
-      "errors": 23,
-      "error_ratio": 0.271
+      "errors": 25,
+      "error_ratio": 0.294
     },
     "overall": "uneasy"
   },
