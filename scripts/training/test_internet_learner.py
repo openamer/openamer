@@ -85,6 +85,51 @@ def test_real_technical_sentence_survives_the_filter():
     assert got.startswith("LoRA adapters inject"), got
 
 
+# --- junk gate (regression: 13.09.26 the github cycle "learned" GitHub's
+# anti-bot page — "You switched accounts on another tab or window." — and the
+# technews cycle learned a newsletter footer. Page chrome is not knowledge.) ---
+
+def test_login_wall_is_junk():
+    assert il._is_junk("You switched accounts on another tab or window.")
+    assert il._is_junk("Please sign in to continue")
+    assert il._is_junk("Verify you are human")
+    assert il._is_junk("404 Not Found")
+
+
+def test_real_technical_insight_is_not_junk():
+    real = ("Speculative decoding with a small draft model cuts decode latency "
+            "by ~40% at equal output quality.")
+    assert not il._is_junk(real)
+
+
+def test_filter_junk_drops_the_login_result_but_keeps_nothing_invented():
+    raw = ("You switched accounts on another tab or window. :: Please sign in to continue. "
+           "|| Methods to reduce inference cost in production :: "
+           "We reduce cost by 40 percent with speculative decoding and caching.")
+    kept = il._filter_junk(raw)
+    assert "switched accounts" not in kept
+    assert "reduce cost by 40 percent" in kept
+
+
+def test_extract_insight_rejects_login_wall():
+    raw = "You switched accounts on another tab or window. :: Please sign in to continue."
+    assert il.extract_insight("github trending agents", raw) == "", \
+        "an anti-bot page must not become a learned insight"
+
+
+def test_extract_insight_keeps_a_real_title():
+    raw = ("State space models reach transformer quality at half the decode cost :: "
+           "The paper reports equal benchmark scores with a 2x faster decode path.")
+    got = il.extract_insight("arxiv ssm", raw)
+    assert "State space models" in got, got
+
+
+def test_add_to_buffer_refuses_junk():
+    """The write gate must reject page chrome before it reaches the buffer."""
+    before = il.add_to_buffer("q", "You switched accounts on another tab or window.")
+    assert before is False, "junk must never enter the training buffer"
+
+
 if __name__ == "__main__":
     tests = [v for k, v in sorted(globals().items())
              if k.startswith("test_") and callable(v)]

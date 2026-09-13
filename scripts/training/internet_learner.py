@@ -31,6 +31,9 @@ def log(entry):
 
 def add_to_buffer(user_text, assistant_text):
     # Single source of truth: append + enforce cap on EVERY write.
+    # Quality gate: never train on boilerplate (newsletter footers, nav text).
+    if not assistant_text or _is_junk(assistant_text):
+        return False
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     import buffer_store
     return buffer_store.append(user_text, assistant_text, buffer=BUFFER)
@@ -40,14 +43,59 @@ def observe_world(cause, effect):
     import world_model
     return world_model.observe(cause, effect)
 
+# Boilerplate / nav text that is NOT knowledge (newsletter footers, cookie
+# banners, paywall CTAs). Learned 2026-09-13: a technews cycle once "learned"
+# the literal string "No spam, ever — we'll never share your email address".
+# 2026-09-13 (second time): the GitHub cycle "learned" GitHub's anti-bot page
+# — "You switched accounts on another tab or window." — because no pattern
+# covered login walls. Every entry here must be a CONCRETE page-chrome phrase,
+# never a bare word like "login"/"forbidden" (real content would die with it).
+_JUNK_RE = re.compile(
+    r"(unsubscribe|no spam|opt out|opt-out|cookie|privacy policy|terms of service|"
+    r"sign up for|subscribe to our|all rights reserved|we'?ll never share|"
+    r"click here|read more|accept all|newsletter|advertisement|"
+    r"enable javascript|skip to content|manage your preferences|"
+    # login walls / anti-bot / error pages (serve no learning signal)
+    r"switched accounts on another tab|another tab or window|"
+    r"sign in to continue|log in to continue|you need to log in|"
+    r"are you a robot|verify you are human|prove you'?re human|"
+    r"captcha|access denied|403 forbidden|404 not found|page not found|"
+    r"please enable cookies|too many requests|rate limit exceeded)",
+    re.IGNORECASE)
+
+
+def _is_junk(text):
+    """True if `text` looks like boilerplate rather than actual content."""
+    t = (text or "").strip()
+    if len(t) < 25:
+        return True
+    return bool(_JUNK_RE.search(t))
+
+
+def _filter_junk(results):
+    """Drop junk 'Title :: snippet' entries from a raw search-result string."""
+    if not results or "||" not in results:
+        return results
+    keep = []
+    for p in results.split("||"):
+        if "::" not in p:
+            continue
+        title, _, snippet = p.partition("::")
+        if _is_junk(snippet) or _is_junk(title):
+            continue
+        keep.append(p.strip())
+    return " || ".join(keep) if keep else ""
+
+
 def search(query, k=3):
-    """Web search via the tool server (CDP browser)."""
+    """Web search via the tool server (CDP browser). Junk parts are dropped."""
     try:
         req = urllib.request.Request(LIVE + "/execute_tool",
             data=json.dumps({"tool": "web_search", "params": {"query": query}}).encode(),
             headers={"Content-Type": "application/json"})
         r = json.load(urllib.request.urlopen(req, timeout=90))
-        return r.get("result", {}).get("results", "")[:2000]
+        raw = r.get("result", {}).get("results", "")[:2000]
+        return _filter_junk(raw) or raw
     except Exception:
         return ""
 
@@ -181,7 +229,12 @@ def deep_learn(query, k=2):
             "no thanks", "testimonial", "subscribe", "newsletter",
             "sign up", "signup", "register", "all rights reserved",
             "read more", "click here", "follow us", "join our",
-            "share this", "leave a reply", "cookie policy", "privacy policy")
+            "share this", "leave a reply", "cookie policy", "privacy policy",
+            # login walls / anti-bot pages (live 13.09: the github cycle stored
+            # the literal "You switched accounts on another tab or window.")
+            "switched accounts", "another tab or window", "sign in to",
+            "are you a robot", "verify you are human", "captcha",
+            "access denied", "not found")
     for t in texts:
         for m in re.finditer(r"([A-Z][^.!?]{40,250}[.!?])", t):
             s = m.group(1).strip()
@@ -249,7 +302,10 @@ def extract_insight(topic, raw, max_tokens=100):
         snippet = p.split("::")[1].strip()[:150]
         if len(title) > 15:
             insights.append(f"{title} — {snippet}")
-    return "; ".join(insights[:2])[:300] if insights else ""
+    out = "; ".join(insights[:2])[:300] if insights else ""
+    # Quality gate: a login wall / anti-bot page is NOT knowledge. Reject it so
+    # the cycle falls back to deep_learn() instead of buffering page chrome.
+    return "" if (not out or _is_junk(out)) else out
 
 def _extract_insight_2b(topic, raw, max_tokens=100):
     try:
