@@ -2956,7 +2956,7 @@ def _run_first_time_quick_setup(config: dict, openamer_home, is_existing: bool):
     """Streamlined first-time setup via OpenAmer Portal: OAuth, model, terminal & messaging.
 
     Routes straight to the OpenAmer Portal provider — runs the device-code OAuth
-    login, picks a OpenAmer model, then configures the terminal backend and (optionally)
+    login, picks an OpenAmer model, then configures the terminal backend and (optionally)
     a messaging platform. Applies sensible defaults for everything else (agent
     settings, tools); the user can customize later via ``openamer setup <section>``
     or switch providers with ``openamer model``.

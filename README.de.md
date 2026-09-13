@@ -36,6 +36,29 @@ openamer          # Agent starten
 
 ---
 
+## 🔑 Oder die Key-Sammelei komplett überspringen
+
+Keine Lust, fünf einzelne Keys für Modell, Websuche, Bildgenerierung, TTS und
+einen Cloud-Browser zusammenzusuchen? Ein Befehl loggt dich per OAuth ein,
+wählt dein Modell, setzt OpenAmer als Inferenz-Provider und aktiviert das
+Tool-Gateway:
+
+```bash
+openamer setup --portal
+```
+
+Jederzeit prüfen, was verdrahtet ist: `openamer portal`. Kein Lock-in — jeder
+Provider funktioniert weiter, nichts davon ist Pflicht.
+
+**Du kommst von OpenClaw?** OpenAmer importiert deine Einstellungen,
+Erinnerungen, Skills und API-Keys:
+
+```bash
+openamer claw migrate --dry-run    # erst Vorschau, dann ohne --dry-run
+```
+
+---
+
 ## 🔥 Was OpenAmer EINZIGARTIG macht
 
 **15 Dinge, die kein anderer Agent kann** — ausgeliefert, getestet, verifiziert.

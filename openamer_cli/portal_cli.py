@@ -1,7 +1,7 @@
 """``openamer portal`` — the human-readable entry point for OpenAmer Portal.
 
 Running ``openamer portal`` with no subcommand performs the one-shot Portal
-onboarding: OAuth login, pick a OpenAmer model, switch the inference provider to
+onboarding: OAuth login, pick an OpenAmer model, switch the inference provider to
 OpenAmer, and offer to enable the Tool Gateway. It is the friendly alias for
 ``openamer auth add openamer --type oauth`` (which still works), is identical to
 ``openamer setup --portal``, and runs the same OpenAmer flow as the first-time quick
@@ -173,7 +173,7 @@ def _cmd_login(args) -> int:
     This is the human-readable front door for `openamer auth add openamer --type
     oauth`. It reuses the exact wiring behind `openamer setup --portal` (which in
     turn runs the same OpenAmer flow as the first-time quick setup), so the
-    commands stay in lockstep: device-code login, pick a OpenAmer model, switch the
+    commands stay in lockstep: device-code login, pick an OpenAmer model, switch the
     inference provider to OpenAmer, then offer the Tool Gateway opt-in.
     """
     from openamer_cli.setup import _run_portal_one_shot

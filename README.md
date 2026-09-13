@@ -92,6 +92,29 @@ openamer          # start the agent
 
 ---
 
+## 🔑 Or skip the API-key collection entirely
+
+Don't want to hunt down five separate keys for the model, web search, image
+generation, TTS and a cloud browser? One command logs you in via OAuth, picks
+your model, sets OpenAmer as the inference provider, and opts into the Tool
+Gateway:
+
+```bash
+openamer setup --portal
+```
+
+Check what's wired up at any time with `openamer portal`. No lock-in — any
+provider still works, and nothing here is required.
+
+**Coming from OpenClaw?** OpenAmer imports your settings, memories, skills and
+API keys:
+
+```bash
+openamer claw migrate --dry-run    # preview first, then drop --dry-run
+```
+
+---
+
 ## 🧬 Darwin Engine — Skills That Evolve Themselves
 
 > **Exclusive to OpenAmer.** No other agent framework has this.
