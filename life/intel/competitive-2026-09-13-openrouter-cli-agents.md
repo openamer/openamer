@@ -32,13 +32,13 @@ quality score.
 | 12 | Strix | 12.9B | | **OpenAmer Agent** | **absent** |
 | 14 | Letta | 8.09B | | | |
 
-### 1.1 The finding that mattered most
+### 1.1 The finding that mattered most — and a correction
 
-Our own app page (<https://openrouter.ai/apps?url=https://github.com/openamer/openamer>)
-reports **7.71B total tokens, active since Aug 2026, 12 models used** — that would
-place us around **#16**, ahead of Qwen Code (7.20B) and every app below it.
-
-We appeared in **none** of the four category listings:
+Our own app page
+(<https://openrouter.ai/apps?url=https://github.com/openamer/openamer>) reports
+**7.73B total tokens, active since 2026-08-16, 13 models used**, app id `4725109`
+— that would place us around **#16**, ahead of Qwen Code (7.20B) and every app
+below it. We appear in **none** of the four category listings:
 
 ```
 cli-agent:absent    (50 listed, leader Hermes Agent)
@@ -47,14 +47,51 @@ cloud-agent:absent  (26 listed, leader CodeGPT)
 personal-agent:absent (41 listed, leader Hermes Agent)
 ```
 
-**Cause:** `X-OpenRouter-Categories` carried the *group* names `coding` /
-`productivity` instead of category names. Per
-<https://openrouter.ai/docs/app-attribution>, only recognised category names are
-accepted and **unrecognised ones are dropped without an error**. The app page keeps
-existing and keeps counting tokens, so nothing looked broken from the inside.
+**Correction — the first diagnosis was wrong and is retracted.** The initial
+reading was: "our `X-OpenRouter-Categories` header carried the group names
+`coding`/`productivity`, so OpenRouter silently dropped them and we were invisible."
+Three checks refute that:
 
-**Fixed and pushed** — see §4. This is the single highest-leverage item found:
-7.7B tokens of real usage were being thrown away by a header string.
+1. **Crush is ranked #22 with `"categories":[]`.** Fetching
+   `openrouter.ai/apps?url=https://github.com/charmbracelet/crush` returns
+   `"categories":[], "totalTokens":2277349119` — an app in the leaderboard with
+   *zero* categories. Categories are therefore **not** required for listing.
+2. `cli-agent` was already present before the change (`agent/auxiliary_client.py`
+   sent `productivity,cli-agent`, half of which is valid).
+3. After the change the category set is recorded as `["cli-agent","ide-extension"]`
+   — and we are **still absent**. So the header was not the gate.
+
+**What the evidence actually shows.** The leaderboard links every row to a
+*registered app page* (`openrouter.ai/apps/<slug>`). Those pages carry a
+description and two categories:
+
+| | slug page | description | categories |
+|---|---|---|---|
+| Hermes Agent | `/apps/hermes-agent` | present | `["personal-agent","cli-agent"]` |
+| Cline | `/apps/cline` | present | `["ide-extension","cli-agent"]` |
+| **OpenAmer** | **none** (`"slug":null`) | **`null`** | `["cli-agent","ide-extension"]` |
+
+Our record is a bare *origin* record: `slug: null`, `description: null`,
+`main_url: null`, `favicon_url: null`, `source_code_url: null`. The
+`?url=` view is the unranked per-origin attribution view; the leaderboard is keyed
+by registered apps. **The likely gate is a registered/claimed app profile for
+OpenAmer — not token volume, not the category header.**
+
+Superseded claim in the table below: the category correction is still kept (valid
+names beat invalid ones), but it is **not** the cause of the invisibility, and
+`rank: null` on a `?url=` page is *normal* (Crush shows `rank: null` too), so it is
+not a signal of exclusion either.
+
+**Concrete next action (needs the OpenRouter account, i.e. a human):** register or
+claim the OpenAmer app — OpenRouter's docs note apps can be created via an OAuth
+authorization, and that changing an existing app requires contacting support
+(<https://openrouter.ai/docs/app-attribution>). Until that exists, 7.73B tokens of
+real usage sit on an identifier that is not on any leaderboard.
+
+**Open question, stated as open:** the exact leaderboard-inclusion rule could not
+be reproduced from the outside. Two candidate rules remain — "app must be
+registered with a slug" and "app must be created/verified through OpenRouter's app
+flow". The daily watchdog (§4) will settle it empirically.
 
 ---
 
@@ -227,7 +264,7 @@ swarm, background computer-use.
 
 | Commit | What | Why it matters |
 |---|---|---|
-| `15b82a0ed` | Send only **recognised** OpenRouter categories (`cli-agent,ide-extension,personal-agent,cloud-agent`); contract test asserting every advertised category is recognised, lowercase-hyphenated, ≤30 chars, and that both call paths agree | 7.71B → a real listing instead of silence |
+| `15b82a0ed` | Send only **recognised** OpenRouter categories (`cli-agent,ide-extension,personal-agent,cloud-agent`); contract test asserting every advertised category is recognised, lowercase-hyphenated, ≤30 chars, and that both call paths agree | Still correct to do — invalid values are silently dropped, and the recorded set is now `["cli-agent","ide-extension"]`. **But it did not make us visible (see §1.1 correction) — announced too early as a fix.** |
 | `e4a3fdf56` | `scripts/openrouter_rank_watch.py` — outside-in listing watchdog (JSON-LD ItemList, curl) + daily `no_agent` cron; silent unless the listing changes | the internal view cannot see this class of failure |
 | `c9bd6d713` | One-line install moved into the README hero (EN + DE), installers verified live first | distribution is the measured gap, not features |
 
