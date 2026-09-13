@@ -73,13 +73,12 @@ def test_clean_insight_drops_short_chrome_and_keeps_prose():
 
 def test_store_refuses_chrome_and_writes_real_insights(tmp_path):
     buf = tmp_path / "buf.jsonl"
-    with patch.object(IL, "_is_junk", IL._is_junk):
-        import buffer_store  # noqa: F401  (imported lazily by store())
+    import buffer_store  # imported lazily by store()
 
-        with patch.object(buffer_store, "_audit", lambda *a, **k: None):
-            for text in CHROME:
-                assert IL.store("q", text, buffer=buf) is False, text
-            assert IL.store("q", REAL[0], buffer=buf) is True
+    with patch.object(buffer_store, "_audit", lambda *a, **k: None):
+        for text in CHROME:
+            assert IL.store("q", text, buffer=buf) is False, text
+        assert IL.store("q", REAL[0], buffer=buf) is True
     lines = [ln for ln in buf.read_text(encoding="utf-8").splitlines() if ln.strip()]
     assert len(lines) == 1, "only the real insight may reach the training buffer"
     assert REAL[0][:40] in lines[0]

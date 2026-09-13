@@ -583,9 +583,9 @@ CYCLES = [cycle_a_technews, cycle_b_papers, cycle_c_github,
 def next_cycle():
     n = 0
     if os.path.exists(ROT):
-        n = int(open(ROT).read().strip() or 0)
+        n = int(open(ROT, encoding="utf-8").read().strip() or 0)
     c = CYCLES[n % len(CYCLES)]
-    with open(ROT, "w") as f:
+    with open(ROT, "w", encoding="utf-8") as f:
         f.write(str(n + 1))
     return c
 
