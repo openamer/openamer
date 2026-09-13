@@ -60,7 +60,18 @@ _JUNK_RE = re.compile(
     r"sign in to continue|log in to continue|you need to log in|"
     r"are you a robot|verify you are human|prove you'?re human|"
     r"captcha|access denied|403 forbidden|404 not found|page not found|"
-    r"please enable cookies|too many requests|rate limit exceeded)",
+    r"please enable cookies|too many requests|rate limit exceeded|"
+    # nav chrome of wiki-style sites (live 13.09.26: the docs cycle returned the
+    # German Wikipedia donation banner "Jetzt spenden Benutzerkonto erstellen
+    # Anmelden Meine Werkzeuge" — the English-only patterns missed it).
+    r"jetzt spenden|benutzerkonto erstellen|meine werkzeuge|meine beitr|"
+    r"letzte ?nderungen|zuf?llige seite|community-portal|"
+    r"\ber wikipedia|datenschutz|impressum|"
+    # bare marketing slogans carry no learning signal
+    r"developers, agents, and code come together|build software better, together|"
+    # German ad/classified chrome (live 13.09.26: a competitor cycle "learned"
+    # "Unsere Werbepartner Einkaufen Ferienwohnungen Freizeit und Reise …")
+    r"werbepartner|ferienwohnungen|kleinanzeigen|anzeigenmarkt)",
     re.IGNORECASE)
 
 
@@ -130,6 +141,32 @@ def _fetch_page(url, max_chars=6000):
         return _strip_html(html)[:max_chars]
     except Exception:
         return ""
+
+
+# A candidate sentence must carry technical signal, otherwise the extractor is
+# merely returning whatever chrome the page rendered FIRST. Live 13.09.26, two
+# cycles in a row "learned" ad/nav chrome as the insight:
+#   docs      -> "LoRA PEFT 🏡 View all docs AWS Trainium &amp; Inferentia …"
+#   competitor-> "Unsere Werbepartner Einkaufen Ferienwohnungen Freizeit und …"
+# A number or a technical noun/verb is the cheapest reliable signal that a
+# sentence is worth learning from; if NO sentence qualifies we fall through to
+# LLM distillation instead of storing page furniture.
+_TECH_HINT_RE = re.compile(
+    r"\b(\d+|model|models|agent|agents|llms?|tokens?|train(?:ing|ed|s)?|"
+    r"inference|latency|throughput|memory|benchmarks?|datasets?|embeddings?|"
+    r"attention|transformers?|fine-?tun\w*|quantiz\w*|distill\w*|prompts?|"
+    r"context|weights?|layers?|gpus?|cpus?|optimizers?|gradients?|loss|"
+    r"accuracy|architectures?|frameworks?|apis?|pipelines?|retrieval|rag|"
+    r"reasoning|polic(?:y|ies)|evaluation|scaling|sparse|mixture|state space|"
+    r"mamba|rlhf|lora|peft|vllm|openai|hugging\s?face|pytorch|tensorflow|"
+    r"nvidia|cuda|modell\w*|inferenz|trainings?\w*|agenten\w*|sprach\w*|"
+    r"sicherheit\w*|lern\w*)\b",
+    re.IGNORECASE)
+
+
+def _looks_like_content(sentence):
+    """True when a candidate sentence carries real technical signal."""
+    return bool(_TECH_HINT_RE.search(sentence or ""))
 
 
 def _search_urls(query, k=3):
@@ -252,6 +289,8 @@ def deep_learn(query, k=2):
             if re.search(r"\b(incredible|amazing|awesome|best (course|teacher)|"
                          r"highly recommend|thank you|thanks)\b", low):
                 continue
+            if not _looks_like_content(s):
+                continue  # page furniture, not a learning signal
             return s
     # SECONDARY: deep distillation via smart_route — the free cloud chain
     # (nemotron-550b, minimax-m2.7, glm-5.2 ...) gives ASI-grade extraction
