@@ -116,7 +116,17 @@ _JUNK_RE = re.compile(
     # Leaderboards … Tokenizers Trackio Transformers". At 200 chars it cleared
     # the >=90 length trust, so it needs its own narrow signature.)
     r"inference providers kernels|lerobot leaderboards|reachy mini|"
-    r"openenv optimum|tokenizers trackio)",
+    r"openenv optimum|tokenizers trackio|"
+    # Leaked LLM meta/instruction text (live 14.09.26: the multi-domain cycle
+    # stored the model's OWN extraction template verbatim — "Identify the Core
+    # Task: Extract ONE technical insight ... No preamble before the insight.
+    # Target audience: autonomous AI agent." — 200+ chars of prompt scaffolding
+    # that cleared the >=90 "long prose" trust. Each phrase below is a concrete
+    # template fragment, never a bare word.)
+    r"identify the core task|extract one technical insight|"
+    r"no preamble before|target audience: autonomous|"
+    r"format it as a single sentence|self-critique: reply with|"
+    r"here'?s a thinking process)",
     re.IGNORECASE)
 
 # Percent-escapes mean the "insight" is a URL fragment, not prose. Their digits

@@ -40,6 +40,12 @@ CHROME = [
     "OpenEnv Optimum PEFT Reachy Mini Safetensors Sentence Transformers TRL Tasks "
     "Text Embeddings Inference Text Generation Inference Tokenizers Trackio "
     "Transformers Transformers.",
+    # Leaked LLM instruction template (live 14.09.26): the multi-domain cycle
+    # stored the 2B model's own extraction scaffolding verbatim.
+    "\"\n\n2.  **Identify the Core Task:**\n   - Extract ONE technical insight "
+    "from the provided text.\n   - Format it as a single sentence.\n   - Must "
+    "start with \"[INSIGHT]\".\n   - No preamble before the insight.\n   - "
+    "Target audience: autonomous AI agent.\n\n3.",
 ]
 
 # Link-shrapnel with no junk keyword and no sentence shape: caught by the
