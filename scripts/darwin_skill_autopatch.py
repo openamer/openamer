@@ -37,7 +37,15 @@ VALIDATOR_TIMEOUT_S = 1800
 
 
 def run_validator_json() -> dict:
-    """Run skill-validator --all --json, return parsed report."""
+    """Run skill-validator --all --json, return parsed report.
+
+    The exit code is deliberately NOT checked: skill-validator.py ends with
+    ``sys.exit(min(failed, 127))`` where ``failed`` is the number of F-graded
+    skills. A non-zero status therefore means "some skills scored poorly" — the
+    exact condition this autopatch exists to fix — not that the run broke.
+    Success is judged by parsing the JSON, which is why the stdout is scanned
+    for the first '{' instead of testing the return code.
+    """
     r = subprocess.run(
         [sys.executable, str(VALIDATOR), "--all", "--json"],
         capture_output=True, text=True, timeout=VALIDATOR_TIMEOUT_S,
