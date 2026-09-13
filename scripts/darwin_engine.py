@@ -1563,6 +1563,7 @@ def mutate(fitness: dict, top_n: int = 5, apply: bool = False) -> list[dict]:
             "parent_probe": parent_probe["score"],
             "variant_probe": variant_probe["score"],
             "delta": round(variant_probe["score"] - parent_probe["score"], 3),
+            "status": "candidate" if variant_probe["score"] >= parent_probe["score"] else "rejected",
         })
         if apply:
             dst = DARWIN_DIR / "offspring" / child_name
@@ -1570,7 +1571,12 @@ def mutate(fitness: dict, top_n: int = 5, apply: bool = False) -> list[dict]:
             (dst / "SKILL.md").write_text(mutated, "utf-8")
             _save_json(DARWIN_DIR / "offspring" / f"{child_name}.json", {
                 "child": child_name, "parent": parent, "op": op, "born": _now(),
-                "status": "candidate", "wins": 0, "losses": 0,
+                # Floor: a variant that measurably damages the skill never
+                # enters as a candidate. tournament() trials only offspring whose
+                # status is exactly "candidate" (line 640), so this excludes it
+                # for real rather than merely labelling it.
+                "status": "candidate" if variant_probe["score"] >= parent_probe["score"] else "rejected",
+                "wins": 0, "losses": 0,
                 # Both bodies measured by the same probe, so the delta means
                 # something the win/loss counters never did.
                 "parent_probe": parent_probe["score"],
