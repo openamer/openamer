@@ -46,6 +46,13 @@ CHROME = [
     "from the provided text.\n   - Format it as a single sentence.\n   - Must "
     "start with \"[INSIGHT]\".\n   - No preamble before the insight.\n   - "
     "Target audience: autonomous AI agent.\n\n3.",
+    # German/marketplace ad CTA (live 14.09.26): the multi-domain cycle stored
+    # this exact CTA copy (Advolux + a Udemy-style course ad), 300 chars long so
+    # it cleared the >=90 "long prose" trust.
+    "Legal-Tech-Software - Kanzleimanagement mit Advolux — Advolux, die optimale "
+    "Anwaltssoftware für moderne Kanzleiarbeit. Jetzt kostenlos testen. Mit Advolux "
+    "arbeiten Sie besser, schneller und entspannter in; AI Law Course - AI for Legal "
+    "Professionals — Find the right instructor for you. Choose from ma",
 ]
 
 # Link-shrapnel with no junk keyword and no sentence shape: caught by the

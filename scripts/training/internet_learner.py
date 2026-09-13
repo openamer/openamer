@@ -126,7 +126,28 @@ _JUNK_RE = re.compile(
     r"identify the core task|extract one technical insight|"
     r"no preamble before|target audience: autonomous|"
     r"format it as a single sentence|self-critique: reply with|"
-    r"here'?s a thinking process)",
+    # GitHub page chrome (live 13.09.26: the github cycle stored "Dismiss alert
+    # {{ message }} Explore Topics Trending Collections Events GitHub Sponsors #
+    # autonomous-agents Star Here are 5,319 public repositories matching this
+    # topic." — nav text whose digits and '#' topic satisfied the technical gate.)
+    r"dismiss alert|explore topics trending collections|"
+    r"github sponsors|public repositories matching this topic|"
+    r"star here are|events github sponsors|"
+    # FR Wikipedia TOC + section-toggle chrome (live 13.09.26: the competitor
+    # cycle stored "Début 1 Conjecture liée à la forme de la Terre ... 5
+    # Géographie Afficher / masquer la sous-section" — same class as the DE
+    # jargon above, different language.)
+    r"afficher\s*/\s*masquer|masquer la sous-section|"
+    r"wikip\u00e9dia|modifier le code|sous-section|"
+    r"here'?s a thinking process|"
+    # German + course-marketplace ad CTAs (live 14.09.26: the multi-domain cycle
+    # stored "Legal-Tech-Software - Kanzleimanagement mit Advolux … Jetzt kostenlos
+    # testen. … AI Law Course … Find the right instructor for you. Choose from ma"
+    # — CTA copy whose >=90 length cleared the prose trust. Concrete phrases only.)
+    r"jetzt kostenlos testen|kostenlos testen|kostenlos registrieren|"
+    r"find the right instructor|right instructor for you|"
+    r"choose from [\d,]+ (?:online )?courses|"
+    r"jetzt angebot sichern|jetzt kaufen|jetzt bestellen)",
     re.IGNORECASE)
 
 # Percent-escapes mean the "insight" is a URL fragment, not prose. Their digits
