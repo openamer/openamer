@@ -513,6 +513,7 @@ def init_agent(
     fallback_model: Dict[str, Any] = None,
     credential_pool=None,
     checkpoints_enabled: bool = False,
+    plan_mode: "Optional[bool]" = None,
     checkpoint_max_snapshots: int = 20,
     checkpoint_max_total_size_mb: int = 500,
     checkpoint_max_file_size_mb: int = 10,
@@ -1499,6 +1500,23 @@ def init_agent(
     # from the persisted string and is used only to place an early cache marker.
     agent._cached_system_prompt_static: Optional[str] = None
     
+    # Plan mode: enforced read-only tool gating (agent/plan_mode.py). Not a
+    # model tool and not a prompt change — a gate consulted next to the
+    # guardrails, inert when disabled. ``None`` falls back to config
+    # (``agent.plan_mode``) so it can be switched on without threading a CLI
+    # flag through every constructor; an explicit True/False always wins.
+    if plan_mode is None:
+        try:
+            from openamer_cli.config import cfg_get
+
+            plan_mode = bool(cfg_get("agent.plan_mode", False))
+        except Exception:
+            plan_mode = False
+
+    from agent.plan_mode import PlanModeGate
+
+    agent._plan_mode = PlanModeGate(enabled=bool(plan_mode))
+
     # Filesystem checkpoint manager (transparent — not a tool)
     from tools.checkpoint_manager import CheckpointManager
     agent._checkpoint_mgr = CheckpointManager(

@@ -946,6 +946,15 @@ DEFAULT_CONFIG = {
     "max_live_sessions": 16,
     "agent": {
         "max_turns": 90,
+        # Enforced plan mode: while true, tools that change state (write_file,
+        # patch, terminal, execute_code, computer_use, delegate_task, cronjob,
+        # skill_manage, memory, …) are refused before they run and the refusal
+        # tells the model to present a plan and ask for approval. Read-only
+        # tools keep working. See agent/plan_mode.py.
+        #
+        # This is enforcement, not a prompt request: the existing `/plan` skill
+        # writes a markdown plan but leaves the write tools available.
+        "plan_mode": False,
         # Inactivity timeout for gateway agent execution (seconds).
         # The agent can run indefinitely as long as it's actively calling
         # tools or receiving API responses.  Only fires when the agent has

@@ -519,6 +519,29 @@ def execute_tool_calls_concurrent(agent, assistant_message, messages: list, effe
                         middleware_trace=list(middleware_trace),
                     )
 
+        # ── Plan mode: enforced read-only gate (agent/plan_mode.py) ──
+        # Consulted here, next to the guardrails, so a refusal is indistinguishable
+        # from any other block to the rest of the pipeline. Inert unless the gate
+        # is enabled for this session.
+        if block_result is None:
+            _plan_gate = getattr(agent, "_plan_mode", None)
+            if _plan_gate is not None:
+                _plan_allowed, _plan_reason = _plan_gate.check(function_name)
+                if not _plan_allowed:
+                    block_result = json.dumps({"error": _plan_reason}, ensure_ascii=False)
+                    _emit_terminal_post_tool_call(
+                        agent,
+                        function_name=function_name,
+                        function_args=function_args,
+                        result=block_result,
+                        effective_task_id=effective_task_id,
+                        tool_call_id=getattr(tool_call, "id", "") or "",
+                        status="blocked",
+                        error_type="plan_mode_block",
+                        error_message=_plan_reason,
+                        middleware_trace=list(middleware_trace),
+                    )
+
         # ── Checkpoint preflight (only for tools that will execute) ──
         if block_result is None:
             # Checkpoint for file-mutating tools
@@ -1158,6 +1181,17 @@ def execute_tool_calls_sequential(agent, assistant_message, messages: list, effe
             guardrail_decision = agent._tool_guardrails.before_call(function_name, function_args)
             if not guardrail_decision.allows_execution:
                 _guardrail_block_decision = guardrail_decision
+
+        # Plan mode: enforced read-only gate (agent/plan_mode.py). This is the
+        # SEQUENTIAL path — the concurrent path has its own check. Both must
+        # exist or plan mode leaks whenever the agent picks the other path.
+        if _block_msg is None and _guardrail_block_decision is None:
+            _plan_gate = getattr(agent, "_plan_mode", None)
+            if _plan_gate is not None:
+                _plan_allowed, _plan_reason = _plan_gate.check(function_name)
+                if not _plan_allowed:
+                    _block_msg = json.dumps({"error": _plan_reason}, ensure_ascii=False)
+                    _block_error_type = "plan_mode_block"
 
         _execution_blocked = _block_msg is not None or _guardrail_block_decision is not None
 
