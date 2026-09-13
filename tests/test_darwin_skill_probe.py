@@ -118,3 +118,33 @@ def test_a_variant_that_adds_a_dead_reference_scores_lower(probe, tmp_path, monk
     assert parent["score"] == 1.0
     assert variant["score"] < parent["score"]
     assert variant["missing"] == ["ghost.py"]
+
+
+def test_a_placeholder_shaped_reference_that_resolves_is_counted(probe, tmp_path, monkeypatch):
+    """The lesson from auditing the placeholder rule.
+
+    `/path/to/scripts/session_to_brain.py` exists under the runtime scripts dir.
+    Excluding it at collection time because of the `/path/to/` prefix made the
+    probe blind to a file it should be verifying. Forgiveness belongs at the
+    missing stage, where it can only ever apply to references that do not
+    resolve.
+    """
+    monkeypatch.setattr(probe, "candidate_roots", lambda: [tmp_path])
+    (tmp_path / "real.py").write_text("ok\n", encoding="utf-8")
+
+    result = probe.score_text("Run `python /path/to/real.py` to start.\n")
+
+    assert result["refs"] == 1, "a resolving reference must be counted"
+    assert result["score"] == 1.0
+
+
+def test_an_unresolved_placeholder_is_forgiven_not_flagged(probe, tmp_path, monkeypatch):
+    """Documentation of an invocation's *shape* is not a claim about a file."""
+    monkeypatch.setattr(probe, "candidate_roots", lambda: [tmp_path])
+    (tmp_path / "real.py").write_text("ok\n", encoding="utf-8")
+
+    result = probe.score_text("Run `python real.py`, e.g. `python script.py --once`.\n")
+
+    assert result["refs"] == 2, "both are references"
+    assert result["missing"] == [], "the example is forgiven; the real file resolves"
+    assert result["score"] == 1.0

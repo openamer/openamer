@@ -159,10 +159,15 @@ def score_text(text: str) -> dict:
     refs: list[str] = []
     for m in REF_RE.finditer(text):
         ref = m.group(1) or m.group(2)
-        if ref and not _is_placeholder(ref) and ref not in refs:
+        if ref and ref not in refs:
             refs.append(ref)
 
-    missing = [r for r in refs if not resolve(r)]
+    # Placeholder-shaped names are forgiven only when they do NOT resolve: an
+    # example like `python script.py --once` documents a shape, while
+    # `/path/to/scripts/session_to_brain.py` with that file present is a real
+    # reference that happens to carry a placeholder prefix. Filtering at
+    # collection time hid that one; filtering here only forgives fiction.
+    missing = [r for r in refs if not resolve(r) and not _is_placeholder(r)]
     total = len(refs)
     ok = total - len(missing)
     return {
