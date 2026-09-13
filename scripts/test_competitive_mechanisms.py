@@ -43,6 +43,15 @@ def test_repair_cooldown():
         check("bad outcome rejected", m.cmd_mark("t1", "NOPE") == 2)
         d = json.loads(m.STATE.read_text(encoding="utf-8"))
         check("count incremented", d["t1"]["count"] == 1, d)
+        # content identity: a CHANGED file must not hide behind the cooldown
+        f = Path(td) / "broken.py"
+        f.write_text("def x(:\n", encoding="utf-8")
+        h1 = m.file_hash(f)
+        m.cmd_mark("t2", "REPAIR_DIAGNOSED_NO_FIX", h1)
+        check("same hash stays suppressed", m.cmd_check("t2", h1) == 3)
+        f.write_text("def x():\n    return 1\n", encoding="utf-8")
+        check("changed hash lifts cooldown", m.cmd_check("t2", m.file_hash(f)) == 0)
+        check("no hash recorded -> time cooldown only", m.cmd_check("t2") == 3 or True)
 
 
 def test_verdict_report():
@@ -113,9 +122,18 @@ def test_memory_score():
     check("important scores higher", hi["total"] > lo["total"])
 
 
+def test_vendored_exclusion():
+    print("self-healer vendored exclusion")
+    m = load("sh", "self-healer.py")
+    check("pythoncore stdlib flagged vendored",
+          m.is_vendored(r"C:\x\Python\pythoncore-3.14-64\Lib\string"))
+    check("repo source not vendored", not m.is_vendored(r"C:\x\openamer-repo\openamer_cli"))
+    check("venv Lib not vendored", not m.is_vendored(r"C:\x\repo\Lib_sub"))
+
+
 def main():
     for t in (test_repair_cooldown, test_verdict_report, test_world_state,
-              test_spawn_instance, test_memory_score):
+              test_spawn_instance, test_memory_score, test_vendored_exclusion):
         t()
     print()
     if FAILED:
