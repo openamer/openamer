@@ -226,6 +226,66 @@ def test_darwin_topic_guard():
     check("key truncates at a path boundary", key.split("/")[-1] == "agents", key)
     check("key stays within the 60-char budget", len(key) <= 60, len(key))
 
+def test_calibration():
+    print("calibration")
+    m = load("cal", "calibration.py")
+    with tempfile.TemporaryDirectory() as td:
+        m.LEDGER = Path(td) / "ledger.jsonl"
+        check("empty ledger is a WARN, not a clean record",
+              m.score()["verdict"] == "WARN")
+        check("out-of-range probability refused", m.record(1.4, 1) == 1)
+        check("non-numeric probability refused", m.record("x", 1) == 1)
+        for pr, y in ((0.9, 1), (0.1, 0), (0.8, 1), (0.2, 0)):
+            m.record(pr, y)
+        sc = m.score()
+        # brier for these four: (0.01+0.01+0.04+0.04)/4 = 0.025
+        check("brier matches the arithmetic", sc["brier"] == 0.025, sc["brier"])
+        check("beats the always-50% baseline", sc["brier"] < sc["baseline_brier"])
+        check("buckets below MIN_BUCKET_N are not reportable",
+              all(not b["reportable"] for b in sc["buckets"]), sc["buckets"])
+        # one-sided evidence: a model that is never wrong is not calibrated
+        m.LEDGER = Path(td) / "one_sided.jsonl"
+        for _ in range(12):
+            m.record(0.9, 1)
+        sc2 = m.score()
+        check("all-one-way ledger FAILS", sc2["verdict"] == "FAIL", sc2)
+
+
+def test_abduction():
+    print("abduction")
+    m = load("ab", "abduction.py")
+    check("uniform entropy of 4 = 2 bits", round(m.entropy([0.25] * 4), 4) == 2.0)
+    checked = m.toks("c/users/damir/openamer-laptop/openamer-agent/agents file.py", k=6)
+    check("tokens drop short noise", all(len(t) >= 4 for t in checked), checked)
+    check("schema keys are dropped from documents",
+          "last_delivery_error" not in m.doc_toks("last_delivery_error provider_snapshot"))
+
+    # THE regression: boilerplate shared by every document must not outrank the
+    # one document carrying the rare, discriminating token.
+    boiler = "timeouterror idle limit non streaming response activity cron"
+    docs = [m.doc_toks(boiler + " memoryhealing"),
+            m.doc_toks(boiler + " selfhealingcode"),
+            m.doc_toks(boiler + " nachtwache workflowimmunsystem")]
+    q = m.toks("nachtwache workflowimmunsystem timeouterror idle limit response", k=8)
+    ranked = m.rank_docs(q, docs)
+    check("rare tokens beat shared boilerplate", ranked[0][0] == 2, ranked)
+
+    # an unseen query token must stay in the denominator, or one accidental
+    # match scores 1.0 on a decoy
+    decoy = m.toks("kubernetes ingress tls certificate expired api", k=8)
+    top = m.rank_docs(decoy, docs)[0][1]
+    check("decoy scores far below a signal", top < 0.3, top)
+
+    # a test that every hypothesis predicts cannot discriminate anything
+    h_all = [{"predicts": ["provider_fault"]} for _ in range(4)]
+    check("a test splitting nothing yields 0 bits",
+          m.expected_information_gain(h_all, "provider_fault") == 0.0)
+    h_mix = [{"predicts": ["a"]}, {"predicts": ["a"]}, {"predicts": []}, {"predicts": []}]
+    check("a splitting test yields positive gain",
+          m.expected_information_gain(h_mix, "a") > 0)
+    check("lenient: 1 hypothesis has nothing to discriminate",
+          m.expected_information_gain([{"predicts": []}], "a") == 0.0)
+
 def test_vendored_exclusion():
     print("self-healer vendored exclusion")
     m = load("sh", "self-healer.py")
@@ -239,7 +299,8 @@ def main():
     for t in (test_repair_cooldown, test_verdict_report, test_world_state,
               test_spawn_instance, test_memory_score, test_vendored_exclusion,
               test_text_encoding_fixer, test_homeostasis,
-              test_darwin_topic_guard):
+              test_darwin_topic_guard, test_calibration,
+              test_abduction):
         t()
     print()
     if FAILED:
