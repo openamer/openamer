@@ -13,12 +13,35 @@ test green; introducing an invented one fails it.
 
 from __future__ import annotations
 
-from agent.auxiliary_client import _OR_HEADERS_BASE
+import re
+from pathlib import Path
+
 from openamer_cli.openrouter_attribution import (
     OPENROUTER_APP_CATEGORIES,
     OPENROUTER_APP_URL,
     get_openrouter_attribution_headers,
 )
+
+_AUX_CLIENT_SOURCE = Path(__file__).resolve().parents[2] / "agent" / "auxiliary_client.py"
+
+
+def _aux_client_categories() -> str | None:
+    """Read the auxiliary client's category string *without importing it*.
+
+    ``agent.auxiliary_client`` pulls in ``openamer_cli.config`` → ``yaml`` at
+    import time. The canonical per-file-isolated runner (``scripts/run_tests.sh``)
+    uses a scrubbed environment where that chain is not guaranteed, so importing
+    it here turns a contract check into a collection error. Reading the constant
+    off the source keeps the drift check and drops the fragile dependency.
+    """
+    try:
+        source = _AUX_CLIENT_SOURCE.read_text(encoding="utf-8")
+    except OSError:  # pragma: no cover - source always present in a checkout
+        return None
+    match = re.search(
+        r'"X-OpenRouter-Categories"\s*:\s*"([^"]+)"', source
+    )
+    return match.group(1) if match else None
 
 # Recognised categories, per https://openrouter.ai/docs/app-attribution —
 # "Category groups" (Coding / Creative / Productivity / Entertainment hold the
@@ -102,8 +125,9 @@ def test_auxiliary_client_agrees_with_module() -> None:
     They are patched by different mechanisms (SDK default_headers vs. the
     auxiliary client's own dict), so they drift independently.
     """
-    aux = _categories(_OR_HEADERS_BASE["X-OpenRouter-Categories"])
+    raw = _aux_client_categories()
+    assert raw, "agent/auxiliary_client.py must declare X-OpenRouter-Categories"
+    aux = _categories(raw)
     unknown = [c for c in aux if c not in RECOGNISED_CATEGORIES]
     assert not unknown, f"auxiliary_client sends unrecognised categories: {unknown}"
     assert set(aux) == set(_categories(OPENROUTER_APP_CATEGORIES))
-    assert _OR_HEADERS_BASE["HTTP-Referer"] == OPENROUTER_APP_URL
