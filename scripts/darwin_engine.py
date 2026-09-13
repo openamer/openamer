@@ -6,7 +6,10 @@ Darwin Engine — Evolutionary skill ecosystem for OpenAmer
 The first engine that treats skills like populations:
 
   1. FITNESS   : Jedes Skill bekommt einen fitness score from REAL signals
-                 (session usage, cron failure rate, age).
+                 (session usage, cron failure rate, age) AND an outcome term:
+                 the probe score (scripts/darwin_skill_probe.py) measures how
+                 many of the artifacts the skill names still resolve. Usage is
+                 demand, the probe is effect — effect carries more weight.
   2. SELEKTION : Weak skills get flagged (archive/deprecate), strong ones become parents.
   3. MUTATION  : Variants are generated from strong skills (prompts, trigger conditions) - one genome per skill.
   4. KREUZUNG  : Two parent skills produce a child combining their strengths.
@@ -45,6 +48,7 @@ REPORTS_DIR = Path("reports")
 DARWIN_DIR = HOME / "darwin"
 POPULATION_FILE = DARWIN_DIR / "population.json"
 FITNESS_FILE = REPORTS_DIR / "darwin-fitness.json"
+PROBE_FILE = REPORTS_DIR / "darwin-probe.json"
 REPORT_FILE = REPORTS_DIR / "darwin-report.md"
 
 NOW = datetime.now(timezone.utc)
@@ -1366,6 +1370,10 @@ def compute_fitness() -> dict:
     hits = _session_skill_hits()
     cron_status = _cron_skill_status()
     population = _load_json(POPULATION_FILE, {})
+    # Outcome signal: fraction of the artifacts this skill points at that still
+    # resolve. Written by scripts/darwin_skill_probe.py; a skill that names a
+    # file that no longer exists is unfit however often it gets invoked.
+    probe_scores = _load_json(PROBE_FILE, {}).get("skills", {})
 
     scores = {}
     for d in sorted(SKILLS_DIR.iterdir()):
@@ -1387,10 +1395,16 @@ def compute_fitness() -> dict:
         # Genome: past mutations improve/degrade fitness
         genome = population.get(name, {})
         mutation_bonus = genome.get("wins", 0) * 2 - genome.get("losses", 0)
+        # Demand is not effect. `usage` counts sessions that mentioned this
+        # skill; it carried triple weight, so a popular-but-wrong skill
+        # outranked a rarely needed correct one. The probe supplies the outcome
+        # half — see scripts/darwin_skill_probe.py.
+        probe = probe_scores.get(name, {}).get("score", 1.0)
 
         fitness = round(
-            usage * 3
+            usage * 1
             + health * 5
+            + probe * 5
             + mutation_bonus
             - min(age_days / 30.0, 10)   # 
             + (2 if (d / "scripts").exists() else 0)
