@@ -169,6 +169,63 @@ def _compiles(src):
     except SyntaxError:
         return False
 
+def test_homeostasis():
+    print("homeostasis")
+    m = load("ho", "homeostasis.py")
+    check("OK is in the tolerance table", m.TOLERANCE.get("OK") == 0)
+
+    # REGRESSION: a healthy organ must not outrank a WARN one. The first
+    # version omitted "OK" from TOLERANCE, so .get(status, 2) scored a healthy
+    # organ as the WORST severity and the audit reported OVERALL: OK while
+    # skills was WARN.
+    orig = dict(m.ORGANS)
+    try:
+        m.ORGANS = {"a": lambda: {"organ": "a", "status": "OK", "findings": []},
+                    "b": lambda: {"organ": "b", "status": "WARN", "findings": []}}
+        check("overall takes the worst organ", m.run()["overall"] == "WARN",
+              m.run()["overall"])
+        m.ORGANS = {"a": lambda: {"organ": "a", "status": "WARN", "findings": []},
+                    "b": lambda: {"organ": "b", "status": "FAIL", "findings": []}}
+        check("FAIL outranks WARN", m.run()["overall"] == "FAIL")
+        m.ORGANS = {"a": lambda: {"organ": "a", "status": "OK", "findings": []}}
+        check("all healthy is OK", m.run()["overall"] == "OK")
+    finally:
+        m.ORGANS = orig
+
+    # quarantined tissue must not count as living population
+    with tempfile.TemporaryDirectory() as td:
+        root = Path(td)
+        (root / "live").mkdir()
+        (root / "live" / "SKILL.md").write_text("name: live" + chr(10) +
+                                                "description: d", encoding="utf-8")
+        (root / "_quarantine" / "dead").mkdir(parents=True)
+        (root / "_quarantine" / "dead" / "SKILL.md").write_text(
+            "name: dead" + chr(10) + "description: d", encoding="utf-8")
+        old = m.SKILLS
+        m.SKILLS = root
+        try:
+            check("quarantine excluded from the population",
+                  m.osmostat_skills()["total"] == 1, m.osmostat_skills())
+        finally:
+            m.SKILLS = old
+
+
+def test_darwin_topic_guard():
+    print("darwin topic guard")
+    m = load("de", "darwin_engine.py")
+    cases = [("c/users/x/op", "torn_segment"),
+             ("| a | b |", "table_row"),
+             ("14-verify-the-deps-import-under-the-", "not_a_path"),
+             ("", "empty")]
+    for probe, want in cases:
+        got = m._topic_reject_reason(probe)
+        check("names the reason: " + want, got == want, got)
+    check("keeps a real path", m._topic_reject_reason("a/b/agents") == "")
+    check("keeps a filename", m._topic_reject_reason("dir/package-lock.json") == "")
+    key = m._topic_key("c/users/damir/appdata/local/openamer-laptop/openamer-agent/agents")
+    check("key truncates at a path boundary", key.split("/")[-1] == "agents", key)
+    check("key stays within the 60-char budget", len(key) <= 60, len(key))
+
 def test_vendored_exclusion():
     print("self-healer vendored exclusion")
     m = load("sh", "self-healer.py")
@@ -181,7 +238,8 @@ def test_vendored_exclusion():
 def main():
     for t in (test_repair_cooldown, test_verdict_report, test_world_state,
               test_spawn_instance, test_memory_score, test_vendored_exclusion,
-              test_text_encoding_fixer):
+              test_text_encoding_fixer, test_homeostasis,
+              test_darwin_topic_guard):
         t()
     print()
     if FAILED:

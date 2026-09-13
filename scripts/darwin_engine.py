@@ -926,6 +926,76 @@ def _session_db() -> Path | None:
     return None
 
 
+_TOPIC_MIN_SEG = 4
+# built from chr() so no literal backslash-escape appears in this file
+CTRL_ESCAPES = (chr(92) + 'n', chr(92) + 'r', chr(10), chr(13))
+FILE_EXTS = (".py", ".json", ".md", ".db", ".yaml", ".yml", ".toml", ".lock",
+             ".ini", ".cfg", ".zip", ".log", ".csv", ".txt", ".bat", ".ps1",
+             ".exe", ".dll", ".whl", ".gz", ".tar")
+
+
+def _topic_key(subject: str) -> str:
+    """Aggregation key for an error subject, truncated at a PATH BOUNDARY.
+
+    The previous key was ``subject.lower()[:60]``, which shears a long path
+    mid-segment: '.../openamer-laptop/openamer-agent/agents' became
+    '.../openamer-laptop/op'. That torn fragment then passed the technical-token
+    gate and _pretty_slug turned it into a "skill" -- 25 path-fragment skills
+    (darwin-harvested-agent-o, -agent-a, -scripts-p, ...) were found polluting
+    the live population. Truncating to whole trailing segments removes the
+    fragment at its source instead of trying to clean it up later.
+    """
+    s = str(subject or "").replace("\\", "/").lower()
+    if "/" not in s:
+        return s[:60]
+    parts = [p for p in s.split("/") if p]
+    keep: list[str] = []
+    for p in reversed(parts):
+        if len("/".join([p] + keep)) > 60:
+            break
+        keep.insert(0, p)
+    return "/".join(keep) if keep else parts[-1][:60]
+
+
+def _topic_reject_reason(topic: str) -> str:
+    """Why this topic must not become a skill. "" means it may.
+
+    Returns a NAMED reason instead of a bare boolean: when a guard rejects real
+    data, "which rule fired" has to be answerable, otherwise a false positive is
+    indistinguishable from a correct rejection. (Learned the hard way here: one
+    rejection could not be explained from the outside, which is a defect in the
+    guard, not in the topic.)
+
+    Rejections observed in real harvested data (25 of 85 entries):
+      table_row     - a markdown table row (a pytest/metrics table line)
+      ctrl_escape   - log-escaped control chars ("r
+=== short test summary")
+      torn_segment  - the 60-char cut sheared a path (".../openamer-laptop/op")
+      empty_segment - the topic ends on a separator (".../openamer-laptop/")
+    """
+    t = str(topic or "").strip()
+    if not t:
+        return "empty"
+    if "|" in t:
+        return "table_row"
+    if any(e in t for e in CTRL_ESCAPES):
+        return "ctrl_escape"
+    # A topic must be a PATH or a FILENAME. Without this, whole sentences
+    # harvested from log prose passed the segment-length test and became skills
+    # (live examples: '14-verify-the-deps-import-under-the-',
+    # 'nposting-to-openamer-18', 'n3-pid-restart-pr-ft-ob-ein-prozess-').
+    if "/" not in t and not t.lower().endswith(FILE_EXTS):
+        return "not_a_path"
+    seg = t.replace(chr(92), "/").split("/")[-1]
+    if len(re.sub(r"[^a-z0-9]", "", seg.lower())) < _TOPIC_MIN_SEG:
+        return "torn_segment" if seg else "empty_segment"
+    return ""
+
+def _meaningful_topic(topic: str) -> bool:
+    """True when a topic may become a skill (see _topic_reject_reason)."""
+    return _topic_reject_reason(topic) == ""
+
+
 def harvest_knowledge(min_hits: int = 3, limit: int = 5000) -> list[dict]:
     """Mine real session history for recurring FILE-LEVEL error patterns and
     turn the strongest ones into NEW blueprints. The blueprint pool grows with
@@ -974,7 +1044,7 @@ def harvest_knowledge(min_hits: int = 3, limit: int = 5000) -> list[dict]:
                         (".py", ".json", ".md", ".db", ".yaml", ".yml",
                          ".toml", ".lock")):
                     if "node_modules" not in subject:
-                        topics[subject.lower()[:60]] += 1
+                        topics[_topic_key(subject)] += 1
                 idx = i + len(anchor) + 10
 
     new_blueprints = []
@@ -985,6 +1055,10 @@ def harvest_knowledge(min_hits: int = 3, limit: int = 5000) -> list[dict]:
     for topic, hits in topics.most_common():
         if hits < min_hits:
             break
+        if not _meaningful_topic(topic):
+            # a torn path fragment or table row is not a pattern; creating a
+            # skill from it pollutes the population (see _meaningful_topic).
+            continue
         slug = _pretty_slug(topic)
         name = f"darwin-harvested-{slug}"
         if name in existing_names:
