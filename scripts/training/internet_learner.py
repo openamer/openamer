@@ -110,7 +110,13 @@ _JUNK_RE = re.compile(
     # German ad/classified chrome (live 13.09.26: a competitor cycle "learned"
     # "Unsere Werbepartner Einkaufen Ferienwohnungen Freizeit und Reise …")
     r"werbepartner|ferienwohnungen|kleinanzeigen|anzeigenmarkt|"
-    r"przepisy|kuchnia|inspiracje|porady|dania na grilla)",
+    r"przepisy|kuchnia|inspiracje|porady|dania na grilla|"
+    # HuggingFace docs sidebar nav (live 14.09.26: the docs cycle stored the
+    # verbatim product-label list "Inference Providers Kernels LeRobot
+    # Leaderboards … Tokenizers Trackio Transformers". At 200 chars it cleared
+    # the >=90 length trust, so it needs its own narrow signature.)
+    r"inference providers kernels|lerobot leaderboards|reachy mini|"
+    r"openenv optimum|tokenizers trackio)",
     re.IGNORECASE)
 
 # Percent-escapes mean the "insight" is a URL fragment, not prose. Their digits

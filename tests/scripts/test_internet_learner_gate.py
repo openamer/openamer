@@ -34,6 +34,12 @@ CHROME = [
     "With GitHub, developers, agents, and code come together on one platform.",
     "You switched accounts on another tab or window.",
     "View all docs AWS Trainium &amp; Inferentia",
+    # HuggingFace docs sidebar (live 14.09.26): 200 chars of product labels, so
+    # it passed the >=90 "long prose" trust until the nav signature was added.
+    "Inference Providers Kernels LeRobot Leaderboards Lighteval Microsoft Azure "
+    "OpenEnv Optimum PEFT Reachy Mini Safetensors Sentence Transformers TRL Tasks "
+    "Text Embeddings Inference Text Generation Inference Tokenizers Trackio "
+    "Transformers Transformers.",
 ]
 
 # Link-shrapnel with no junk keyword and no sentence shape: caught by the
