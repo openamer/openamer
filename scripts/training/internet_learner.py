@@ -29,14 +29,46 @@ def log(entry):
     with open(LOG, "a", encoding="utf-8") as f:
         f.write(json.dumps(entry, ensure_ascii=False) + "\n")
 
-def add_to_buffer(user_text, assistant_text):
-    # Single source of truth: append + enforce cap on EVERY write.
-    # Quality gate: never train on boilerplate (newsletter footers, nav text).
-    if not assistant_text or _is_junk(assistant_text):
+def store(user_text, insight, buffer=None):
+    """Quality-gated write to the training buffer. True only on a real append.
+
+    Two gates, in order:
+      1. page chrome / boilerplate (`_is_junk`) — nav text, ads, login walls,
+         marketing slogans.
+      2. no technical signal (`_looks_like_content`) — a candidate with neither
+         a number nor a technical noun/verb is page furniture, not knowledge.
+         Live 13.09.26: the competitor cycle "learned" Polish classified-ad
+         chrome ("Pomysły na rodzinne spotkania Dania na grilla ... Przepisy").
+    Rejections are audited to buffer_junk.jsonl so the gate stays observable.
+    """
+    if not insight:
         return False
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     import buffer_store
-    return buffer_store.append(user_text, assistant_text, buffer=BUFFER)
+    buf = buffer or BUFFER
+    reason = ""
+    if _is_junk(insight):
+        reason = "junk"
+    elif not _looks_like_content(insight):
+        reason = "no-tech-signal"
+    if reason:
+        try:
+            buffer_store._audit(user_text, insight, reason)
+        except Exception:
+            pass
+        return False
+    try:
+        before = buffer_store.count(buf)
+        after = buffer_store.append(user_text, insight, buffer=buf)
+    except Exception as e:
+        print(f"[internet-learn] buffer write failed: {e}", flush=True)
+        return False
+    return after > before
+
+
+def add_to_buffer(user_text, assistant_text):
+    """Back-compat alias for `store` (older call sites)."""
+    return store(user_text, assistant_text)
 
 def observe_world(cause, effect):
     """Write through the central world model (single source of truth)."""
@@ -71,7 +103,8 @@ _JUNK_RE = re.compile(
     r"developers, agents, and code come together|build software better, together|"
     # German ad/classified chrome (live 13.09.26: a competitor cycle "learned"
     # "Unsere Werbepartner Einkaufen Ferienwohnungen Freizeit und Reise …")
-    r"werbepartner|ferienwohnungen|kleinanzeigen|anzeigenmarkt)",
+    r"werbepartner|ferienwohnungen|kleinanzeigen|anzeigenmarkt|"
+    r"przepisy|kuchnia|inspiracje|porady|dania na grilla)",
     re.IGNORECASE)
 
 
@@ -313,7 +346,7 @@ def deep_learn(query, k=2):
             content = content.split("[INSIGHT]", 1)[1].strip()
         content = re.sub(r"^\s*\{.*?\}\s*", "", content, flags=re.DOTALL)
         content = re.sub(r"^(Here is|Here's|The key|Sure|Okay|I'll|Let me).*?:\s*", "", content, flags=re.IGNORECASE)
-        return content[:250] if len(content) > 20 else ""
+        return _clean_insight(content, 250)
     except Exception:
         # fallback: local 4B via Ollama (background task, speed irrelevant)
         try:
@@ -327,9 +360,26 @@ def deep_learn(query, k=2):
             content = r.get("response", "").strip()
             if "</think>" in content:
                 content = content.rsplit("</think>", 1)[1].strip()
-            return content[:200] if len(content) > 20 else ""
+            return _clean_insight(content, 200)
         except Exception:
             return ""
+
+
+def _clean_insight(text, max_len=250):
+    """Final gate on a distilled insight. Returns "" for page furniture.
+
+    Live 13.09.26: once the sentence extractor started rejecting chrome, the
+    LLM fallback became the last door junk could walk through — it distilled
+    the literal "Download PDF Download PDF Review Article Open access Publish".
+    Short candidates must therefore carry a technical signal; longer prose
+    (>= 90 chars) is trusted on its own merit so non-tech domains survive.
+    """
+    t = (text or "").strip()
+    if len(t) < 20 or _is_junk(t):
+        return ""
+    if len(t) < 90 and not _looks_like_content(t):
+        return ""
+    return t[:max_len]
 
 def extract_insight(topic, raw, max_tokens=100):
     """Extract insights directly from search results (titles are the signal).
@@ -378,8 +428,8 @@ def cycle_a_technews():
         insight = deep_learn(q)  # fall back to actually reading the page
     if not insight:
         return "no insight"
-    add_to_buffer(f"Internet learning ({q}): What should an AI agent know?",
-                  insight)
+    if not store(f"Internet learning ({q}): What should an AI agent know?", insight):
+        return f"rejected, not trained ({insight[:60]})"
     return f"learned: {insight[:80]}"
 
 def cycle_b_papers():
@@ -396,7 +446,8 @@ def cycle_b_papers():
         insight = deep_learn(q)
     if not insight:
         return "no insight"
-    add_to_buffer(f"Latest research insight: {q}", insight)
+    if not store(f"Latest research insight: {q}", insight):
+        return f"rejected, not trained ({insight[:60]})"
     return f"paper-learn: {insight[:80]}"
 
 def cycle_c_github():
@@ -410,7 +461,8 @@ def cycle_c_github():
         insight = deep_learn(q)
     if not insight:
         return "no insight"
-    add_to_buffer(f"What new agent architectures are trending on GitHub?", insight)
+    if not store("What new agent architectures are trending on GitHub?", insight):
+        return f"rejected, not trained ({insight[:60]})"
     return f"github-learn: {insight[:80]}"
 
 def cycle_d_docs():
@@ -427,7 +479,8 @@ def cycle_d_docs():
         insight = deep_learn(q)
     if not insight:
         return "no insight"
-    add_to_buffer(f"Best practice from official docs: {q}", insight)
+    if not store(f"Best practice from official docs: {q}", insight):
+        return f"rejected, not trained ({insight[:60]})"
     return f"doc-learn: {insight[:80]}"
 
 def cycle_e_competitors():
@@ -444,7 +497,8 @@ def cycle_e_competitors():
         insight = deep_learn(q)
     if not insight:
         return "no insight"
-    add_to_buffer(f"Competitor intelligence: {q}", insight)
+    if not store(f"Competitor intelligence: {q}", insight):
+        return f"rejected, not trained ({insight[:60]})"
     observe_world(f"Competitor update: {q}",
                   f"OpenAmer should evaluate: {insight[:100]}")
     return f"competitor-learn: {insight[:80]}"
@@ -468,7 +522,8 @@ def cycle_f_multi_domain():
         insight = deep_learn(q)
     if not insight:
         return "no insight"
-    add_to_buffer(f"Multi-domain learning ({q}): What should an intelligent agent know?", insight)
+    if not store(f"Multi-domain learning ({q}): What should an intelligent agent know?", insight):
+        return f"rejected, not trained ({insight[:60]})"
     return f"domain-learn: {insight[:80]}"
 
 def cycle_g_security():
@@ -485,7 +540,8 @@ def cycle_g_security():
         insight = deep_learn(q)
     if not insight:
         return "no insight"
-    add_to_buffer(f"Security learning ({q}): What should a safe agent know?", insight)
+    if not store(f"Security learning ({q}): What should a safe agent know?", insight):
+        return f"rejected, not trained ({insight[:60]})"
     return f"security-learn: {insight[:80]}"
 
 
@@ -503,7 +559,8 @@ def cycle_h_efficiency():
         insight = deep_learn(q)
     if not insight:
         return "no insight"
-    add_to_buffer(f"Efficiency learning ({q}): How do agents run leaner?", insight)
+    if not store(f"Efficiency learning ({q}): How do agents run leaner?", insight):
+        return f"rejected, not trained ({insight[:60]})"
     return f"efficiency-learn: {insight[:80]}"
 
 
