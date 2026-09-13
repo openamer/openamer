@@ -25,6 +25,35 @@ ROT = os.path.join(T, ".il_rotation")
 LIVE = "http://localhost:8081"
 REPO = os.path.join(str(Path.home()), "openamer-repo")
 
+def _rotate(queries):
+    """Append a day-rotating qualifier so cycles don't saturate into duplicates.
+
+    Learned 2026-09-14: of the last 200 store() attempts, 126 were rejected with
+    reason 'duplicate'. Each cycle carries only 2-3 static queries, so every seed
+    is fully learned within a day and the learner then idles forever, reporting
+    'rejected, not trained' while burning cycles. Appending a qualifier that
+    advances once per day probes a genuinely new angle (8-day full rotation);
+    the duplicate gate in buffer_store still guards exact repeats.
+    """
+    angles = [
+        "",                        # plain seed (1 in 8 days)
+        "limitations and failure modes",
+        "benchmark comparison",
+        "production case study",
+        "best practices 2026",
+        "common pitfalls",
+        "alternative approaches",
+        "lessons learned postmortem",
+    ]
+    try:
+        a = angles[datetime.date.today().timetuple().tm_yday % len(angles)]
+    except Exception:
+        a = ""
+    if not a:
+        return list(queries)
+    return [q if a in q else f"{q} {a}" for q in queries]
+
+
 def log(entry):
     with open(LOG, "a", encoding="utf-8") as f:
         f.write(json.dumps(entry, ensure_ascii=False) + "\n")
@@ -470,7 +499,7 @@ def _extract_insight_2b(topic, raw, max_tokens=100):
 def cycle_a_technews():
     """Tech news: what's new in AI agents? (deep-reads the top result)"""
     queries = ["AI agent news today", "LLM agents breakthrough", "autonomous AI 2026"]
-    q = random.choice(queries)
+    q = random.choice(_rotate(queries))
     raw = search(q)
     insight = extract_insight(q, raw) if raw else ""
     if not insight:
@@ -488,7 +517,7 @@ def cycle_b_papers():
         "arxiv test-time training state space models 2026",
         "arxiv efficient fine-tuning small language models",
     ]
-    q = random.choice(queries)
+    q = random.choice(_rotate(queries))
     raw = search(q)
     insight = extract_insight(q, raw) if raw else ""
     if not insight:
@@ -503,7 +532,7 @@ def cycle_c_github():
     """Trending AI-agent repos — what are others building? (deep-reads)"""
     queries = ["github trending AI agent framework 2026",
                "new open source autonomous agent repos"]
-    q = random.choice(queries)
+    q = random.choice(_rotate(queries))
     raw = search(q)
     insight = extract_insight(q, raw) if raw else ""
     if not insight:
@@ -521,7 +550,7 @@ def cycle_d_docs():
         "transformers library efficient inference tips",
         "PEFT LoRA training best practices",
     ]
-    q = random.choice(queries)
+    q = random.choice(_rotate(queries))
     raw = search(q)
     insight = extract_insight(q, raw) if raw else ""
     if not insight:
@@ -539,7 +568,7 @@ def cycle_e_competitors():
         "OpenHands agent architecture updates",
         "AutoGPT improvements 2026",
     ]
-    q = random.choice(queries)
+    q = random.choice(_rotate(queries))
     raw = search(q)
     insight = extract_insight(q, raw) if raw else ""
     if not insight:
@@ -582,7 +611,7 @@ def cycle_g_security():
         "AI agent security vulnerabilities guardrails",
         "jailbreak prevention large language models",
     ]
-    q = random.choice(queries)
+    q = random.choice(_rotate(queries))
     raw = search(q)
     insight = extract_insight(q, raw) if raw else ""
     if not insight:
@@ -601,7 +630,7 @@ def cycle_h_efficiency():
         "quantization techniques GGUF int4 int8 comparison",
         "edge AI deployment low power LLM",
     ]
-    q = random.choice(queries)
+    q = random.choice(_rotate(queries))
     raw = search(q)
     insight = extract_insight(q, raw) if raw else ""
     if not insight:
