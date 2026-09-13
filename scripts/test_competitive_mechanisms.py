@@ -122,6 +122,53 @@ def test_memory_score():
     check("important scores higher", hi["total"] > lo["total"])
 
 
+def test_text_encoding_fixer():
+    print("fix_text_encoding")
+    m = load("fte", "fix_text_encoding.py")
+    J = chr(10).join
+    with tempfile.TemporaryDirectory() as td:
+        f = Path(td) / "a.py"
+        f.write_text(J(["import subprocess",
+                        "subprocess.run(['x'], capture_output=True, text=True)", ""]),
+                     encoding="utf-8")
+        check("detects a real gap", len(m.gaps_in(f)) == 1, m.gaps_in(f))
+        m.apply_to(f, m.gaps_in(f))
+        txt = f.read_text(encoding="utf-8")
+        check("inserts encoding", 'encoding="utf-8"' in txt, txt)
+        check("scan is clean after apply", m.gaps_in(f) == [], m.gaps_in(f))
+        check("result compiles", _compiles(txt))
+
+        # REGRESSION: a call that already passes errors= must not receive a
+        # second one -- "keyword argument repeated" is a SyntaxError, and that
+        # is exactly what the first sweep did to ssh-manager.py.
+        g = Path(td) / "b.py"
+        g.write_text(J(["import subprocess",
+                        'subprocess.run(["x"], capture_output=True,',
+                        "               text=True,",
+                        '               errors="replace")', ""]), encoding="utf-8")
+        m.apply_to(g, m.gaps_in(g))
+        t2 = g.read_text(encoding="utf-8")
+        check("no duplicate errors kwarg", t2.count("errors=") == 1, t2)
+        check("existing errors preserved", 'errors="replace"' in t2)
+        check("regression case compiles", _compiles(t2))
+
+        # an already-correct call is left completely alone (idempotent)
+        h = Path(td) / "c.py"
+        h.write_text(J(['import subprocess',
+                        'subprocess.run(["x"], text=True, encoding="utf-8")', ""]),
+                     encoding="utf-8")
+        before = h.read_text(encoding="utf-8")
+        check("clean call has no gaps", m.gaps_in(h) == [])
+        check("clean call is untouched", h.read_text(encoding="utf-8") == before)
+
+
+def _compiles(src):
+    try:
+        compile(src, "<test>", "exec")
+        return True
+    except SyntaxError:
+        return False
+
 def test_vendored_exclusion():
     print("self-healer vendored exclusion")
     m = load("sh", "self-healer.py")
@@ -133,7 +180,8 @@ def test_vendored_exclusion():
 
 def main():
     for t in (test_repair_cooldown, test_verdict_report, test_world_state,
-              test_spawn_instance, test_memory_score, test_vendored_exclusion):
+              test_spawn_instance, test_memory_score, test_vendored_exclusion,
+              test_text_encoding_fixer):
         t()
     print()
     if FAILED:
