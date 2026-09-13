@@ -3,6 +3,7 @@
 import base64
 import json
 import logging
+import os
 import time
 from datetime import datetime, timezone
 from pathlib import Path
@@ -1677,9 +1678,13 @@ def test_shared_store_write_and_read_roundtrip(shared_store_env):
     path = _openamer_shared_store_path()
     assert path.is_file()
 
-    # Permissions should be 0600 where the platform supports it.
-    mode = path.stat().st_mode & 0o777
-    assert mode == 0o600 or mode == 0o644  # 0o644 on platforms without chmod
+    # Permissions: 0600 where the platform models POSIX modes. Windows ignores
+    # the mode passed to os.open and reports 0o666 for any regular file, so
+    # asserting it there would test the platform rather than the code. The
+    # writer still requests 0o600 atomically via os.open(O_EXCL) — see
+    # _write_shared_openamer_state in openamer_cli/auth.py.
+    if hasattr(os, "fchmod"):
+        assert path.stat().st_mode & 0o777 == 0o600
 
     loaded = _read_shared_openamer_state()
     assert loaded is not None

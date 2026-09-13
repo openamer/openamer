@@ -7,6 +7,7 @@ import os
 import shutil
 import stat
 import tempfile
+import time
 from pathlib import Path
 from typing import Any, Union
 from urllib.parse import urlparse
@@ -88,6 +89,27 @@ def _restore_file_mode(path: Path, mode: "int | None") -> None:
         pass
 
 
+def _replace_retrying_transient_lock(tmp_path: str, target: str) -> None:
+    """``os.replace`` with a short retry for Windows' transient ``EACCES``.
+
+    ``MoveFileEx`` refuses with ``EACCES``/``EPERM`` when the destination is open
+    in another thread or held by a scanner, so concurrent writers to the same
+    path fail intermittently even though the rename itself is legal. Retrying
+    does not weaken atomicity: the destination keeps its previous contents until
+    a rename actually succeeds.
+    """
+    attempts = 6
+
+    for attempt in range(attempts):
+        try:
+            os.replace(tmp_path, target)
+            return
+        except OSError as exc:
+            if exc.errno not in (errno.EACCES, errno.EPERM) or attempt == attempts - 1:
+                raise
+            time.sleep(0.01 * (attempt + 1))
+
+
 def atomic_replace(tmp_path: Union[str, Path], target: Union[str, Path]) -> str:
     """Atomically move *tmp_path* onto *target*, preserving symlinks.
 
@@ -112,7 +134,7 @@ def atomic_replace(tmp_path: Union[str, Path], target: Union[str, Path]) -> str:
     real_path = os.path.realpath(target_str) if os.path.islink(target_str) else target_str
     tmp_str = str(tmp_path)
     try:
-        os.replace(tmp_str, real_path)
+        _replace_retrying_transient_lock(tmp_str, real_path)
     except OSError as exc:
         if exc.errno not in (errno.EXDEV, errno.EBUSY):
             raise

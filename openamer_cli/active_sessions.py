@@ -197,7 +197,19 @@ def _pid_alive(pid: Any, process_start_time: Any = None) -> bool:
 
         exists = bool(_pid_exists(pid_int))
     except Exception:
-        return False
+        # The authoritative probe imports gateway.config -> openamer_cli.config
+        # -> yaml, so a stripped install cannot load it. Returning dead here
+        # would prune every live lease and silently disable the session cap
+        # (a pruned entry frees the slot), so fall back to the lightweight
+        # probe — and if even that cannot tell, assume alive.
+        probe = _pid_exists_lightweight(pid_int)
+        if probe is None:
+            logger.warning(
+                "active session liveness probe unavailable; treating pid %s as alive",
+                pid_int,
+            )
+            return True
+        exists = probe
     if not exists:
         return False
     expected_start = _optional_float(process_start_time)
@@ -207,6 +219,56 @@ def _pid_alive(pid: Any, process_start_time: Any = None) -> bool:
     if current_start is None:
         return True
     return abs(current_start - expected_start) < 0.001
+
+
+def _pid_exists_lightweight(pid: int) -> Optional[bool]:
+    """Liveness without importing the heavy ``gateway`` package.
+
+    ``gateway.status._pid_exists`` is authoritative but pulls
+    ``gateway.config`` -> ``openamer_cli.config`` -> ``yaml``, so it cannot be
+    imported in a stripped install (no PyYAML) or during scaffolding. That is
+    exactly the environment where a session cap is most likely to be relied on.
+
+    Mirrors the parent implementation's one hard-won rule: never
+    ``os.kill(pid, 0)`` on Windows, where CPython routes signal 0 through
+    ``GenerateConsoleCtrlEvent`` and kills the target's console group
+    (bpo-14484).
+
+    Returns ``None`` when liveness cannot be determined at all.
+    """
+    try:
+        import psutil  # type: ignore
+
+        return bool(psutil.pid_exists(int(pid)))
+    except ImportError:
+        pass
+    except Exception:
+        return None
+
+    if os.name == "nt":
+        try:
+            import ctypes
+
+            kernel32 = ctypes.windll.kernel32  # type: ignore[attr-defined]
+            kernel32.OpenProcess.restype = ctypes.c_void_p
+            kernel32.WaitForSingleObject.restype = ctypes.c_uint
+            kernel32.GetLastError.restype = ctypes.c_uint
+            handle = kernel32.OpenProcess(0x1000 | 0x00100000, False, int(pid))
+            if not handle:
+                # 87 = ERROR_INVALID_PARAMETER (pid gone); 5 = ERROR_ACCESS_DENIED
+                # (exists, owned by someone else).
+                return kernel32.GetLastError() == 5
+            try:
+                return kernel32.WaitForSingleObject(handle, 0) == 0x00000102
+            finally:
+                kernel32.CloseHandle(handle)
+        except Exception:
+            return None
+
+    try:
+        return os.path.exists(f"/proc/{int(pid)}")
+    except Exception:
+        return None
 
 
 def _prune_dead(entries: list[dict[str, Any]]) -> list[dict[str, Any]]:
