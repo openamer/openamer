@@ -44,7 +44,7 @@ def test_a_real_reference_scores_fully(probe, tmp_path, monkeypatch):
     real.write_text("print('ok')\n", encoding="utf-8")
     monkeypatch.setattr(probe, "candidate_roots", lambda: [tmp_path])
 
-    md = _write_skill(tmp_path, "Run `helper.py` to do the thing.\n")
+    md = _write_skill(tmp_path, "Run `python helper.py` to do the thing.\n")
     result = probe.probe_skill(md)
 
     assert result["refs"] == 1
@@ -56,7 +56,7 @@ def test_a_dangling_reference_is_penalised(probe, tmp_path, monkeypatch):
     """The whole point: a skill naming a file that is gone is unfit."""
     monkeypatch.setattr(probe, "candidate_roots", lambda: [tmp_path])
 
-    md = _write_skill(tmp_path, "Run `ghost.py` to do the thing.\n")
+    md = _write_skill(tmp_path, "Run `python ghost.py` to do the thing.\n")
     result = probe.probe_skill(md)
 
     assert result["refs"] == 1
@@ -91,7 +91,7 @@ def test_the_score_is_the_ratio_of_resolved_references(probe, tmp_path, monkeypa
 
     md = _write_skill(
         tmp_path,
-        "First `here.py`, then `gone.py`, and also `nowhere.py`.\n",
+        "First `python here.py`, then `python gone.py`, and also `python nowhere.py`.\n",
     )
     result = probe.probe_skill(md)
 
@@ -112,8 +112,8 @@ def test_a_variant_that_adds_a_dead_reference_scores_lower(probe, tmp_path, monk
     monkeypatch.setattr(probe, "candidate_roots", lambda: [tmp_path])
     (tmp_path / "real.py").write_text("ok\n", encoding="utf-8")
 
-    parent = probe.score_text("Run `real.py` to check the thing.\n")
-    variant = probe.score_text("Run `real.py`, then `ghost.py` to check.\n")
+    parent = probe.score_text("Run `python real.py` to check the thing.\n")
+    variant = probe.score_text("Run `python real.py`, then `python ghost.py` to check.\n")
 
     assert parent["score"] == 1.0
     assert variant["score"] < parent["score"]

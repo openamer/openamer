@@ -34,7 +34,7 @@ def engine(monkeypatch, tmp_path):
     skill_dir = skills / "sample-skill"
     skill_dir.mkdir(parents=True)
     (skill_dir / "SKILL.md").write_text(
-        "Run `real.py` to verify the thing.\n", encoding="utf-8"
+        "Run `python real.py` to verify the thing.\n", encoding="utf-8"
     )
     (tmp_path / "real.py").write_text("ok\n", encoding="utf-8")
 
@@ -77,7 +77,7 @@ def _run(engine, monkeypatch, variant_text: str) -> dict:
 
 
 def test_a_variant_that_breaks_a_reference_is_rejected(engine, monkeypatch):
-    result = _run(engine, monkeypatch, "Run `ghost.py` to verify the thing.\n")
+    result = _run(engine, monkeypatch, "Run `python ghost.py` to verify the thing.\n")
 
     assert result["delta"] < 0
     assert result["status"] == "rejected"
@@ -90,7 +90,7 @@ def test_a_variant_that_breaks_a_reference_is_rejected(engine, monkeypatch):
 
 def test_a_harmless_variant_stays_a_candidate(engine, monkeypatch):
     """Positive control: equal or better must not be filtered out."""
-    result = _run(engine, monkeypatch, "Run `real.py` to verify the thing.\n")
+    result = _run(engine, monkeypatch, "Run `python real.py` to verify the thing.\n")
 
     assert result["delta"] == 0.0
     assert result["status"] == "candidate"

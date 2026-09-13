@@ -47,18 +47,76 @@ HOME = Path(os.environ.get("OPENAMER_HOME") or (Path.home() / "AppData" / "Local
 SKILLS_DIR = HOME / "skills"
 REPORT = REPO / "reports" / "darwin-probe.json"
 
-# Paths the instructions point at: `scripts/x.py`, `./tools/y.sh`, `agent/z.py`.
-# Deliberately conservative — only things that look like repo/home artifacts,
-# never bare words, so real prose never counts as a broken reference.
+# A *claim* is an invocation: the skill tells the agent to run this. A bare
+# backtick mention is prose — `script.py` as an example, or `src/extension.ts`
+# as a file the skill is about to create. Scoring mentions flagged four healthy
+# skills as broken, so only invocation forms count.
 REF_RE = re.compile(
-    r"`(\.{0,2}/?[\w./-]*?[\w-]+\.(?:py|sh|ps1|js|ts))`"
-    r"|(?:python3?|bash|sh|\./)\s+(\.{0,2}/?[\w./-]*?[\w-]+\.(?:py|sh|ps1|js|ts))"
+    r"(?:python3?|bash|sh|pwsh|powershell|node|npx|uv|pip3?)\s+"
+    r"`?(\.{0,2}/?[\w./-]*?[\w-]+\.(?:py|sh|ps1|js|ts))`?"
+    r"|`(\.{1,2}/[\w./-]+\.(?:py|sh|ps1|js|ts))`"
 )
+
+
+# Directories never worth walking for a skill's referenced artifact.
+_SKIP_DIRS = {
+    ".git", ".venv", "venv", "node_modules", "__pycache__",
+    ".mypy_cache", ".pytest_cache", "dist", "build", "release", "release-alt",
+}
+
+# Subtrees that legitimately hold a skill's referenced scripts. Bounded on
+# purpose: walking all of $HOME is minutes of I/O across a venv, node_modules
+# and two Electron builds.
+_SEARCH_ROOTS = (
+    "openamer-agent/scripts",
+    "openamer-agent/tools",
+    "openamer-browser",
+    "scripts",
+    "tools",
+    "openamer-repo/scripts",
+    "openamer-repo/tools",
+    "openamer-repo/agent",
+    "openamer-repo/openamer_cli",
+)
+
+_INDEX: dict[str, str] | None = None
 
 
 def candidate_roots() -> list[Path]:
     """Where a referenced path may legitimately live."""
-    return [HOME, REPO, REPO / "scripts", REPO / "tools", HOME / "scripts"]
+    roots = [HOME, REPO, REPO / "scripts", REPO / "tools", HOME / "scripts"]
+    roots += [HOME / r for r in _SEARCH_ROOTS]
+    return roots
+
+
+def _basename_index() -> dict[str, str]:
+    """basename -> path of the first match under the search roots.
+
+    A SKILL.md says "run `active_learn.py`", not an absolute path — the file
+    lives wherever the runtime keeps it. Resolving only exact relative paths
+    made an earlier version of this probe report ten perfectly healthy skills as
+    broken, because their scripts sit under openamer-agent/scripts/training/ and
+    openamer-browser/ rather than inside the repo. A probe that punishes working
+    skills is worse than no probe, since it feeds fitness.
+    """
+    global _INDEX
+    if _INDEX is not None:
+        return _INDEX
+
+    index: dict[str, str] = {}
+    for rel in _SEARCH_ROOTS:
+        base = HOME / rel
+        if not base.is_dir():
+            base = REPO / rel
+        if not base.is_dir():
+            continue
+        for dirpath, dirnames, filenames in os.walk(base):
+            dirnames[:] = [d for d in dirnames if d not in _SKIP_DIRS]
+            for filename in filenames:
+                index.setdefault(filename, os.path.join(dirpath, filename))
+
+    _INDEX = index
+    return index
 
 
 def resolve(ref: str) -> bool:
@@ -68,7 +126,26 @@ def resolve(ref: str) -> bool:
     for root in candidate_roots():
         if (root / ref).exists():
             return True
-    return Path(ref).exists()
+    if Path(ref).exists():
+        return True
+    # Last resort: does a file of that name exist anywhere we ship scripts?
+    return Path(ref).name in _basename_index()
+
+
+# Placeholder names used in examples. `python script.py --once` documents the
+# *shape* of an invocation; `C:/path/to/script.py` shows where a file goes. They
+# are not claims that a file exists. Excluded by name, because after the
+# invocation filter landed these two were the only remaining "broken" hits and
+# both were documentation, not damage.
+_PLACEHOLDER_RE = re.compile(
+    r"(?:^|/)(?:script|test_x|example|sample|foo|bar|your_script|my_script)\."
+    r"|/path/to/|<[^>]+>|YOUR_|XXX",
+    re.IGNORECASE,
+)
+
+
+def _is_placeholder(ref: str) -> bool:
+    return bool(_PLACEHOLDER_RE.search(ref))
 
 
 def score_text(text: str) -> dict:
@@ -82,7 +159,7 @@ def score_text(text: str) -> dict:
     refs: list[str] = []
     for m in REF_RE.finditer(text):
         ref = m.group(1) or m.group(2)
-        if ref and ref not in refs:
+        if ref and not _is_placeholder(ref) and ref not in refs:
             refs.append(ref)
 
     missing = [r for r in refs if not resolve(r)]
