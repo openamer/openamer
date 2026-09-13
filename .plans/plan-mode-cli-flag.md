@@ -21,8 +21,8 @@ missing is the path from the argument parser to that parameter.
 
 ### 1. Argument parser
 
-`--checkpoints` is not defined in `openamer_cli/main.py`; search
-`openamer_cli/_parser.py` and the agent-run parser it builds. Add:
+`openamer_cli/_parser.py:375` — that is where `"--checkpoints"` is declared. Add
+`--plan` next to it, same shape:
 
 ```python
 parser.add_argument(
