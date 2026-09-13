@@ -56,6 +56,36 @@ TOOLS = [
 
 # ---- Tool implementations (delegate to existing systems) ----
 
+def _ddg_search(q, k=5):
+    """Dependency-free HTTP fallback search (DuckDuckGo html endpoint).
+
+    Root cause it addresses (live 13.09.26): t_web_search only spoke to the
+    CDP browser on :9222. When that Chrome is not running, search raised
+    WinError 10061 and every caller (internet_learner cycles) fell back to
+    deep_learn page chrome, so 100% of cycles were junk-rejected.
+    """
+    import urllib.parse as _up
+    import html as _html
+    data = _up.urlencode({"q": q}).encode()
+    req = urllib.request.Request(
+        "https://html.duckduckgo.com/html/", data=data,
+        headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                               "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36",
+                 "Content-Type": "application/x-www-form-urlencoded"})
+    page = urllib.request.urlopen(req, timeout=25).read().decode("utf-8", "replace")
+    out = []
+    for block in re.findall(r'<a rel="nofollow" class="result__a".*?</a>.*?(?=<a rel="nofollow" class="result__a"|$)',
+                            page, re.DOTALL)[:k]:
+        m = re.search(r'class="result__a"[^>]*href="([^"]+)"[^>]*>(.*?)</a>', block, re.DOTALL)
+        if not m:
+            continue
+        link, title = _html.unescape(m.group(1)), _html.unescape(re.sub("<[^>]+>", "", m.group(2))).strip()
+        s = re.search(r'class="result__snippet"[^>]*>(.*?)</a>', block, re.DOTALL)
+        snip = _html.unescape(re.sub("<[^>]+>", "", s.group(1))).strip() if s else ""
+        out.append(f"{title} :: {snip[:200]} [{link[:120]}]")
+    return " || ".join(out)
+
+
 def t_web_search(params):
     q = params.get("query", "")
     # search via the RUNNING BROWSER (CDP :9222) — real session, no captcha
@@ -90,6 +120,14 @@ def t_web_search(params):
         ws.close()
         return {"results": m["result"]["result"].get("value", "(empty)")[:1500]}
     except Exception as e:
+        # CDP browser dead / no tab -> HTTP fallback so learning cycles keep working
+        try:
+            fb = _ddg_search(q)
+            if fb:
+                return {"results": fb[:1500], "via": "ddg-http-fallback",
+                        "cdp_error": str(e)[:120]}
+        except Exception as e2:
+            return {"error": "search failed: " + str(e)[:120] + " | fallback: " + str(e2)[:120]}
         return {"error": "search failed: " + str(e)[:200]}
 
 def t_pc_action(params):
