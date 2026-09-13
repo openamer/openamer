@@ -1148,6 +1148,51 @@ def _path_env_key(run_env: dict) -> str | None:
     return None
 
 
+_TERMINAL_SANDBOX_POLICY = None
+
+
+def _terminal_sandbox_policy():
+    """Cached native-Windows containment policy.
+
+    Reads ``terminal.sandbox.windows`` (default: disabled) — see
+    ``docs/security/windows-sandbox.md``. Cached because it is consulted on every
+    command; a config change needs a restart, which matches how the terminal
+    backend treats its other settings.
+    """
+    global _TERMINAL_SANDBOX_POLICY
+    if _TERMINAL_SANDBOX_POLICY is None:
+        try:
+            from agent.win_sandbox import SandboxPolicy, policy_from_config
+
+            _TERMINAL_SANDBOX_POLICY = policy_from_config()
+        except Exception as exc:  # pragma: no cover - import wiring
+            logger.warning("terminal sandbox policy unavailable (%s); disabled", exc)
+            from agent.win_sandbox import SandboxPolicy
+
+            _TERMINAL_SANDBOX_POLICY = SandboxPolicy()
+    return _TERMINAL_SANDBOX_POLICY
+
+
+def _contain_windows_process(proc, policy) -> None:
+    """Put a spawned command under the Windows job object, fail-closed.
+
+    With ``fail_closed`` (the default) a command that cannot be contained is
+    killed rather than allowed to run uncontained — a sandbox that silently
+    degrades is worse than no sandbox, because it is still trusted.
+    """
+    if not policy.enabled:
+        return
+    from agent.win_sandbox import contain_process
+
+    ok, detail = contain_process(proc, policy)
+    if not ok:
+        try:
+            proc.kill()
+        finally:
+            raise RuntimeError(f"terminal sandbox refused to run uncontained: {detail}")
+    logger.debug("terminal sandbox: %s", detail)
+
+
 def _make_run_env(env: dict) -> dict:
     """Build a run environment with a sane PATH and provider-var stripping."""
     try:
@@ -1372,6 +1417,15 @@ class LocalEnvironment(BaseEnvironment):
         args = [bash, "-l", "-c", cmd_string] if login else [bash, "-c", cmd_string]
         run_env = _make_run_env(self.env)
 
+        # Optional native-Windows containment (terminal.sandbox.windows.enabled,
+        # default off). Applying the credential-suffix filter here rather than in
+        # _make_run_env keeps the default path byte-identical to before.
+        _sandbox = _terminal_sandbox_policy()
+        if _sandbox.enabled and _sandbox.strip_secrets:
+            from agent.win_sandbox import strip_credential_suffixes
+
+            strip_credential_suffixes(run_env)
+
         # Recover when the cwd has been deleted out from under us — usually by
         # a previous tool call that ran ``rm -rf`` on its own working dir
         # (issue #17558).  Popen would otherwise raise FileNotFoundError on
@@ -1419,6 +1473,8 @@ class LocalEnvironment(BaseEnvironment):
                 proc._openamer_pgid = os.getpgid(proc.pid)
             except ProcessLookupError:
                 pass
+        else:
+            _contain_windows_process(proc, _sandbox)
 
         if stdin_data is not None:
             _pipe_stdin(proc, stdin_data)
@@ -1427,6 +1483,13 @@ class LocalEnvironment(BaseEnvironment):
 
     def _kill_process(self, proc):
         """Kill the entire process group (all children)."""
+        # Closing the containment job is part of killing: KILL_ON_JOB_CLOSE
+        # takes the whole tree, including grandchildren the process-group kill
+        # would miss. Do it first so nothing can outlive the kill.
+        if _IS_WINDOWS and getattr(proc, "_openamer_sandbox_job", None) is not None:
+            from agent.win_sandbox import release_process
+
+            release_process(proc)
 
         def _group_alive(pgid: int) -> bool:
             try:

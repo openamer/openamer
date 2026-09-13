@@ -71,9 +71,14 @@ from typing import Any, Iterable, Mapping, Optional
 __all__ = [
     "JobLimits",
     "JobHandle",
+    "SandboxPolicy",
     "build_job_object",
     "assign_pid_to_job",
+    "contain_process",
+    "release_process",
+    "policy_from_config",
     "enforce_environment",
+    "strip_credential_suffixes",
     "canonical_path",
     "check_write_path",
     "protected_paths",
@@ -378,29 +383,36 @@ def enforce_environment(
         ) from exc
 
     env = _sanitize_subprocess_env(base, extra)
+    return strip_credential_suffixes(env)
 
-    # Gap-closer, verified live (scripts/verify_win_sandbox.py): the existing
-    # sanitizer strips by *name* against ``_OPENAMER_PROVIDER_ENV_BLOCKLIST``
-    # plus two narrow prefixes. A provider key whose variable name it does not
-    # know — ``TOKENHARBOR_API_KEY``, ``OPENVID_LLM_KEY``, ``OPENAMER_MESH_SECRET``
-    # were all observed surviving it — rides straight through. So on top of the
-    # blocklist we also drop anything that *looks* like a credential by suffix,
-    # unless it is explicitly allowlisted via ``tools.env_passthrough`` (the
-    # skill-declaration path), which is the one legitimate reason a secret-like
-    # name needs to reach a child.
+
+def strip_credential_suffixes(env: dict[str, str]) -> dict[str, str]:
+    """Drop any remaining credential-shaped variable from ``env``, in place.
+
+    Gap-closer over the local backend's name-based provider blocklist, verified
+    live (``scripts/verify_win_sandbox.py``): a provider key whose variable name
+    that blocklist does not know — ``TOKENHARBOR_API_KEY``, ``OPENVID_LLM_KEY``,
+    ``OPENAMER_MESH_SECRET`` and ``OPENAMER_SESSION_KEY`` were all observed
+    surviving it — rides straight through. Anything matching a credential suffix
+    is removed unless it is explicitly allowlisted via ``tools.env_passthrough``
+    (the skill-declaration path), the one legitimate reason a secret-shaped name
+    needs to reach a child.
+
+    Kept separate from :func:`enforce_environment` so a caller that already built
+    its environment (e.g. the local terminal's ``_make_run_env``) can apply the
+    same rule without sanitising twice.
+    """
     try:
         from tools.env_passthrough import is_env_passthrough
     except Exception:  # pragma: no cover - passthrough is optional
         is_env_passthrough = lambda _name: False  # noqa: E731
 
     for name in list(env):
-        upper = name.upper()
-        if not _CREDENTIAL_SUFFIX_PATTERN.search(upper):
+        if not _CREDENTIAL_SUFFIX_PATTERN.search(name.upper()):
             continue
         if is_env_passthrough(name):
             continue
         env.pop(name, None)
-
     return env
 
 
@@ -533,3 +545,108 @@ def describe_enforcement(limits: JobLimits | None = None) -> dict[str, Any]:
         },
         "unsupported": [] if supported else ["job objects require Windows"],
     }
+
+
+# --------------------------------------------------------------------------
+# Wiring entry point for the local terminal backend
+# --------------------------------------------------------------------------
+
+
+@dataclass(frozen=True)
+class SandboxPolicy:
+    """Resolved ``terminal.sandbox.windows`` configuration."""
+
+    enabled: bool = False
+    writable_root: Optional[str] = None
+    limits: JobLimits = field(default_factory=JobLimits)
+    fail_closed: bool = True
+    strip_secrets: bool = True
+
+
+def policy_from_config(get: Any | None = None) -> SandboxPolicy:
+    """Build a :class:`SandboxPolicy` from config.
+
+    ``get`` is a ``cfg_get(path, default)``-shaped callable; when omitted we
+    import the real one lazily so this module stays import-cheap and usable
+    without the CLI package present.
+    """
+    if get is None:
+        try:
+            from openamer_cli.config import cfg_get as get  # type: ignore[no-redef]
+        except Exception:  # pragma: no cover - config always present in-repo
+            return SandboxPolicy()
+
+    def _get(key: str, default: Any) -> Any:
+        try:
+            value = get(f"terminal.sandbox.windows.{key}", default)
+        except Exception:  # pragma: no cover - malformed config
+            return default
+        return default if value is None else value
+
+    return SandboxPolicy(
+        enabled=bool(_get("enabled", False)),
+        writable_root=_get("writable_root", "") or None,
+        limits=JobLimits(
+            kill_on_close=bool(_get("kill_on_close", True)),
+            max_processes=_get("max_processes", 64),
+            max_memory_mb=_get("max_memory_mb", 4096),
+            deny_ui=bool(_get("deny_ui", True)),
+        ),
+        fail_closed=bool(_get("fail_closed", True)),
+        strip_secrets=bool(_get("strip_secrets", True)),
+    )
+
+
+def contain_process(proc: Any, policy: SandboxPolicy) -> tuple[bool, str]:
+    """Put a freshly spawned ``subprocess.Popen`` under containment.
+
+    Returns ``(ok, detail)``. On failure the caller decides what happens, but
+    with ``fail_closed`` the policy is to kill the process rather than let it
+    run uncontained — a sandbox that silently degrades is worse than none,
+    because it is trusted.
+
+    The job handle is attached to ``proc`` as ``_openamer_sandbox_job`` so the
+    caller can close it when the command finishes. Closing kills the tree
+    (``kill_on_close``), so the handle deliberately outlives the immediate
+    ``Popen.wait()`` only as long as the command is considered live.
+    """
+    if not policy.enabled:
+        return True, "sandbox disabled"
+
+    if not is_supported():
+        if policy.fail_closed:
+            return False, f"containment requested but unsupported on {sys.platform}"
+        return True, f"containment unavailable on {sys.platform} (not fail-closed)"
+
+    job = build_job_object(policy.limits)
+    if not job.active:
+        if policy.fail_closed:
+            return False, f"job object creation failed: {job.error}"
+        return True, f"job object creation failed (not fail-closed): {job.error}"
+
+    ok, detail = assign_pid_to_job(job, proc.pid)
+    if not ok:
+        job.close()
+        if policy.fail_closed:
+            return False, f"could not contain pid {proc.pid}: {detail}"
+        return True, f"could not contain pid {proc.pid} (not fail-closed): {detail}"
+
+    try:
+        proc._openamer_sandbox_job = job
+    except AttributeError:  # pragma: no cover - Popen always allows attributes
+        pass
+    return True, f"contained pid {proc.pid}"
+
+
+def release_process(proc: Any) -> None:
+    """Close the containment job for ``proc``, killing anything still inside."""
+    job = getattr(proc, "_openamer_sandbox_job", None)
+    if job is None:
+        return
+    try:
+        job.close()
+    finally:
+        try:
+            proc._openamer_sandbox_job = None
+        except AttributeError:  # pragma: no cover
+            pass

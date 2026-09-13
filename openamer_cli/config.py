@@ -1243,6 +1243,28 @@ DEFAULT_CONFIG = {
                     "image": "ubuntu:22.04",
                     "timeout": 300,
                     "auto_pull": True,
+                    # Native-Windows containment for the LOCAL terminal backend
+                    # (Windows Job Object: process-tree kill, process/memory caps,
+                    # clipboard + handle isolation, no breakaway). See
+                    # docs/security/windows-sandbox.md. Default off — enabling it
+                    # changes how commands are spawned, so it is opt-in.
+                    "windows": {
+                        "enabled": False,
+                        # Confine writes to this directory (empty = no write
+                        # boundary claimed). Junctions/symlinks are resolved
+                        # before comparison; .git/.hg/.svn stay protected.
+                        "writable_root": "",
+                        "kill_on_close": True,
+                        "max_processes": 64,
+                        "max_memory_mb": 4096,
+                        "deny_ui": True,
+                        # Refuse to run a command that cannot be contained
+                        # instead of silently degrading to uncontained.
+                        "fail_closed": True,
+                        # Also drop credential-shaped env vars the name-based
+                        # provider blocklist does not know.
+                        "strip_secrets": True,
+                    },
                 },
             },
 

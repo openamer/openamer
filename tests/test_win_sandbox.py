@@ -18,14 +18,18 @@ import pytest
 
 from agent.win_sandbox import (
     JobLimits,
+    SandboxPolicy,
     assign_pid_to_job,
     build_job_object,
     canonical_path,
     check_write_path,
+    contain_process,
     describe_enforcement,
     enforce_environment,
     is_supported,
+    policy_from_config,
     protected_paths,
+    release_process,
 )
 
 WINDOWS = sys.platform == "win32"
@@ -306,3 +310,109 @@ def test_unsupported_platform_reports_cleanly(monkeypatch):
     assert "unsupported platform" in (job.error or "")
     assert describe_enforcement()["mechanism"] == "unavailable"
     assert is_supported() is False
+
+
+# --------------------------------------------------------------------------
+# Wiring: policy resolution + containment of a real process
+# --------------------------------------------------------------------------
+
+
+def test_policy_defaults_to_disabled():
+    policy = policy_from_config(get=lambda _key, default: default)
+    assert policy.enabled is False
+    assert policy.fail_closed is True
+    assert policy.limits.kill_on_close is True
+
+
+def test_policy_reads_config_values():
+    values = {
+        "terminal.sandbox.windows.enabled": True,
+        "terminal.sandbox.windows.writable_root": "C:/work",
+        "terminal.sandbox.windows.max_processes": 7,
+        "terminal.sandbox.windows.max_memory_mb": 256,
+        "terminal.sandbox.windows.deny_ui": False,
+        "terminal.sandbox.windows.fail_closed": False,
+        "terminal.sandbox.windows.strip_secrets": False,
+    }
+    policy = policy_from_config(get=lambda key, default: values.get(key, default))
+    assert policy.enabled is True
+    assert policy.writable_root == "C:/work"
+    assert policy.limits.max_processes == 7
+    assert policy.limits.max_memory_mb == 256
+    assert policy.limits.deny_ui is False
+    assert policy.fail_closed is False
+    assert policy.strip_secrets is False
+
+
+def test_policy_treats_blank_writable_root_as_unset():
+    policy = policy_from_config(
+        get=lambda key, default: "" if key.endswith("writable_root") else default
+    )
+    assert policy.writable_root is None
+
+
+def test_contain_process_is_a_noop_when_disabled():
+    class _Fake:
+        pid = 4242
+
+    ok, detail = contain_process(_Fake(), SandboxPolicy(enabled=False))
+    assert ok and detail == "sandbox disabled"
+    assert not hasattr(_Fake(), "_openamer_sandbox_job")
+
+
+@requires_windows
+def test_contain_process_assigns_and_release_kills_the_tree():
+    policy = SandboxPolicy(
+        enabled=True, limits=JobLimits(kill_on_close=True, max_processes=8, max_memory_mb=512)
+    )
+    child = subprocess.Popen(
+        ["cmd", "/c", "ping -n 60 127.0.0.1 > NUL"],
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+    )
+    try:
+        ok, detail = contain_process(child, policy)
+        assert ok, detail
+        assert getattr(child, "_openamer_sandbox_job", None) is not None
+        assert child.poll() is None
+        release_process(child)
+        for _ in range(50):
+            if child.poll() is not None:
+                break
+            time.sleep(0.1)
+        assert child.poll() is not None, "release_process must kill the tree"
+        assert getattr(child, "_openamer_sandbox_job", None) is None
+    finally:
+        if child.poll() is None:  # pragma: no cover
+            child.kill()
+
+
+@requires_windows
+def test_release_process_is_safe_without_a_job():
+    class _Fake:
+        pid = 1
+
+    release_process(_Fake())  # must not raise
+
+
+def test_contain_process_fails_closed_on_unsupported_platform(monkeypatch):
+    monkeypatch.setattr("agent.win_sandbox.sys.platform", "linux")
+
+    class _Fake:
+        pid = 1234
+
+    ok, detail = contain_process(_Fake(), SandboxPolicy(enabled=True, fail_closed=True))
+    assert not ok
+    assert "unsupported" in detail
+
+    # …and does not block when the operator explicitly opted out of fail-closed.
+    ok, detail = contain_process(_Fake(), SandboxPolicy(enabled=True, fail_closed=False))
+    assert ok
+    assert "not fail-closed" in detail
+
+
+def test_local_backend_defaults_to_no_containment():
+    """The default path must be byte-identical to before the wiring."""
+    from tools.environments.local import _terminal_sandbox_policy
+
+    assert _terminal_sandbox_policy().enabled is False

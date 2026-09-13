@@ -14,6 +14,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from agent.win_sandbox import (  # noqa: E402
     JobLimits,
+    SandboxPolicy,
     assign_pid_to_job,
     build_job_object,
     check_write_path,
@@ -74,6 +75,28 @@ def main() -> int:
         print(f"  {label:<28}: {allowed} ({reason[:60]})")
     print("  no root configured         :", check_write_path(os.path.join(root, "x"), writable_root=None))
     print("  protected dirs             :", len(protected_paths()), "entries")
+
+    print("== 5. terminal wiring (real spawn via tools.environments.local) ==")
+    try:
+        # NOTE: only import what is not already imported at module level —
+        # a local `from ... import JobLimits` here makes JobLimits local to the
+        # whole function and shadows the module-level import above.
+        from tools.environments import local as local_env
+
+        # Force the opt-in policy for this check without touching config.yaml.
+        local_env._TERMINAL_SANDBOX_POLICY = SandboxPolicy(
+            enabled=True,
+            limits=JobLimits(kill_on_close=True, max_processes=8, max_memory_mb=512),
+        )
+        env_obj = local_env.LocalEnvironment()
+        proc = env_obj._run_bash("echo wiring-ok")
+        out = (proc.communicate(timeout=60)[0] or "")
+        print("  command still works        :", "wiring-ok" in out)
+        print("  proc carries containment   :", getattr(proc, "_openamer_sandbox_job", None) is not None)
+        env_obj._kill_process(proc)
+        print("  job released after kill    :", getattr(proc, "_openamer_sandbox_job", None) is None)
+    except Exception as exc:  # noqa: BLE001 - report, do not hide
+        print("  wiring check FAILED:", type(exc).__name__, exc)
     return 0
 
 

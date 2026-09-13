@@ -1,7 +1,27 @@
 # Native Windows containment (`agent/win_sandbox.py`)
 
-Status: module + tests + live verification script shipped. **Not yet wired into a
-default execution path** — callers opt in explicitly.
+Status: **wired into the local terminal backend** (opt-in, default off) —
+`tools/environments/local.py` builds a job object for each command whenever
+`terminal.sandbox.windows.enabled` is true, and closes it in `_kill_process()`.
+
+## Enabling it
+
+```yaml
+# ~/.openamer/config.yaml
+terminal:
+  sandbox:
+    windows:
+      enabled: true
+      writable_root: "C:/Users/me/projects/thing"   # empty = no write boundary claimed
+      max_processes: 64
+      max_memory_mb: 4096
+      fail_closed: true      # kill rather than run uncontained
+      strip_secrets: true
+```
+
+The policy is read once and cached, like the backend's other settings — a change
+needs a restart. With `enabled: false` (the default) the spawn path is
+byte-identical to before.
 
 ## Why this exists
 
