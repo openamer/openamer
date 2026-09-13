@@ -6,7 +6,7 @@ description:
 # auto-structural-connection-between-energy
 
 **Description:** 
-**Lines:** 26 | **Code:** 0 | **Dir:** `auto-structural-connection-between-energy`
+**Lines:** 28 | **Code:** 0 | **Dir:** `auto-structural-connection-between-energy`
 
 ---
 

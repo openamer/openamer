@@ -6,7 +6,7 @@ description:
 # auto-security-learning-jailbreak-prevention
 
 **Description:** 
-**Lines:** 26 | **Code:** 0 | **Dir:** `auto-security-learning-jailbreak-prevention`
+**Lines:** 28 | **Code:** 0 | **Dir:** `auto-security-learning-jailbreak-prevention`
 
 ---
 

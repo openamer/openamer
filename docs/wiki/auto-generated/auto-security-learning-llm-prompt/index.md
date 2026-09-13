@@ -6,7 +6,7 @@ description:
 # auto-security-learning-llm-prompt
 
 **Description:** 
-**Lines:** 26 | **Code:** 0 | **Dir:** `auto-security-learning-llm-prompt`
+**Lines:** 28 | **Code:** 0 | **Dir:** `auto-security-learning-llm-prompt`
 
 ---
 

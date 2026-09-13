@@ -6,7 +6,7 @@ description: Fertig, Damir! ✅ Das 3-Tier-Routing ist eingerichtet und **live v
 # auto-share-a-lesson-you
 
 **Description:** Fertig, Damir! ✅ Das 3-Tier-Routing ist eingerichtet und **live verifiziert**.
-**Lines:** 26 | **Code:** 0 | **Dir:** `auto-share-a-lesson-you`
+**Lines:** 28 | **Code:** 0 | **Dir:** `auto-share-a-lesson-you`
 
 ---
 

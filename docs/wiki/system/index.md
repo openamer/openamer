@@ -4,7 +4,7 @@ title: system
 
 # 🖥️ system
 
-19 skills
+20 skills
 
 - [ab-test-engine](ab-test-engine/) — Use for A/B experiments on OpenAmer configs and skills.
 - [context-compressor](context-compressor/) — Use for session compression and full-text search.
@@ -20,6 +20,7 @@ title: system
 - [remote-web](remote-web/) — Use when starting/stopping the Remote Web UI on port 8901.
 - [resource-monitor](resource-monitor/) — Live-CPU/RAM/DISK/NET-Dashboard + Top-Prozesse + Alarm.
 - [self-hosted](self-hosted/) — Use for local LLM fallback, failover, and Ollama health.
+- [self-learning-pipeline-ops](self-learning-pipeline-ops/) — Use for the autonomous self-learning stack and reporting.
 - [smart-cache](smart-cache/) — Use for cache scan, cleanup, skill archiving, and warm-cache reports.
 - [smart-session-saver](smart-session-saver/) — Use for session archiving, search, restore, and stats.
 - [system-snapshot](system-snapshot/) — Use for full system-state snapshot + diff + HTTP:8898.

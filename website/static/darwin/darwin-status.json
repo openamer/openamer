@@ -1,7 +1,7 @@
 {
-  "updated": "2026-09-12T03:00:53+00:00",
-  "population": 701,
-  "avg_score": 39.2,
+  "updated": "2026-09-13T03:00:48+00:00",
+  "population": 709,
+  "avg_score": 39.9,
   "fittest": [
     {
       "name": "openamer-desktop-dev",
@@ -161,47 +161,47 @@
   "trends": [
     {
       "source": "News",
-      "title": "ARPA-H to invest $62M to build agentic AI agent for heart care - Healthcare Dive",
-      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPUGp2SHBZU1BCZk9GWVdFX1lSY190alJLOVBCWWNMalM0aVdOcDR6dVNWTU9kaWExWDltZElhc2VLakZGdHFyRDRJUTRrNFhwdS1uQ1k1ZnZ0d2NmRGFZdUN3TVNWMTVxcDlTWlNUNHdLTFlxSTRUQ0tXS3Z6UWl2VGtvMlY0bFhlQnZiMjR6RFdDc2tmN3dSVkdsNkdUcGtfTFNhVHlNcEQ?oc=5"
+      "title": "India plans AI registry as it looks to roll out agentic payments, sources say - Reuters",
+      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNVVNCTTRPWDZrd1cwM2NQVG84dHJQSHVmMnNJRU5TdGZMc3l2LUFLRlJoNDZQemUtdGF4T3BhdFhtUFhZSXZwQV9PZGxpTW9fMWFJMU4wZENTaTl3Q2tmUGVEVFpIelZFWjJ5R1J5c3dvYk5xUDNmX2Fha0daQUV5eS1RNU1zZXBhQ1Z5VW1JNF9UdzRvdDlzb2U1NW5UUm9vYWM0VGxLcUxzbkttR2cxYU5JWnp6NkJ6Y1E?oc=5"
     },
     {
       "source": "News",
-      "title": "AI & Tech Brief: Agentic AI crimes - The Washington Post",
-      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxNZGFPdVpxOENwdkRHMklwR1BjMjhuLVAxSko2YVlCaURKRGhKN2FTY05DdVZlYTB1LUJ2WjkxNFdGTTdEamh2QkJ5VXphODg5NkdnZFMtSXJVZ2tiUFNWbldPb3p1aW1OVmY1eDBmNENyX3N6Mm1lM3BrZG9qNjNDRzdLNDhveU5weG5yWnBQY0dQSGRvX3V0bkJYc0lkLWhsa0ZjVXpYTQ?oc=5"
+      "title": "3 Agentic AI Stocks to Own Before AI Changes the World as We Know It - The Motley Fool",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxQeDVIMDVKYlBtR0YtalpPQmpUMlZNSFdQTW15OGM4c2dITmd3cnZQalBnaDJaWDd4bTN6Nkh5Z09TRVpPSTROU0ZNTmQxdlJGeVRWZXg0azZnUUxuSE1sSmFpZFpDWXFuWHhjTmFYU2dlWTFodmVoT2FjUWRJOTNhMFhsYTlZQWdWTEtMYVZLY3NCZw?oc=5"
     },
     {
       "source": "News",
-      "title": "How the CIO role is shifting in the agentic AI era - CIO Dive",
-      "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE5mVVQzRHVMcjdLS2dHTzVETWJaNlBFbWdlNmZBVUdaWDIzdHZ4Qk9zMERQVHd6OFdqU1U4TU1wRHNfRkNmbTdFMVFKUVJpWHNjRW9odlVDeVNFNkJWYlJxQ082bG1qa1Z0NHRQRDFaUnp4aU9zSWtHTQ?oc=5"
+      "title": "ServiceNow: The Agentic AI Frontier (NYSE:NOW) - Seeking Alpha",
+      "url": "https://news.google.com/rss/articles/CBMigAFBVV95cUxOZlpqNktrd2ZpZ2FKaTJxVTlvMU5jSnZsN1pXMm9kNXh0ekJjS3BGOFdVR21Tc2FpMXhfNmhpa2hTQ293S3ZqYmM3ekdCRkszSmt6cGlxeGdjMlZMeWVBM1IzMkc4ZThRaHJnQ0VFMzdaUER4WU1NVEljb1F1SlJOWg?oc=5"
     },
     {
       "source": "News",
-      "title": "Salesforce\u2019s Job-Ready Agents Target Enterprise AI\u2019s Biggest Gap - The Futurum Group",
-      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPV3JKWEhrNHlBdno1b215Y28wdG05RzBYVTJ3aXNwUUJzUG9yczB6OEJpTzFNTnN2anJiMUdoenY3a1g2MWhBN0F2V0JIbkxpN2ZSc0xVOFdHX25ST09wSWItbkpTWU9MNm8wNkxIMTNreDd3OEtNUF82YU55YjNFdVpfN3ZMZ1RkLTQwTXRxQlFaSUpuZGtJVFFzODRqUQ?oc=5"
+      "title": "Payment firms Visa, Mastercard and Ant International team up on AI agent trust framework - Reuters",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxONjFMLWdlN2p4R0h2Q0hDU2ktaWNJLW1HME5HbnBoWGxPcnJDMHYyQjluN2VhclJYNENmd3BuOGh4TElfTTJhdWYxWXBUTG1ua3VhNl9kYUx4ZGJkM2dLYUhxYVFzQjN0alY2SXNKM2lORHVqaDh4bmJHbm9ITmE3OUpNMDYwUFlSTlNSUFBCQzJPTXBfY1N4ejNzRzRxQVdMMGFheHhWQnF6OEc1RnlJdTEzVF80QXJoYW5uQWF4dkcyaG4wWWc?oc=5"
     },
     {
       "source": "News",
-      "title": "ARPA-H launches $63M effort to build FDA-authorized AI agents for heart failure care - Fierce Healthcare",
-      "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxONHl4NVV1U2NpZDV4SXgzTFh4UDd1RTc2eGJsWHRFbldBeU9KalkyLUQ3eUdqSHVEUFlCYzB2WGF4eGtYWGFUcF9lNjc1dlNVNnJSTC1TcnBfVnIzY3JYWkhjWXlrVjU4OFF1NzduS2tBSFJSMTlmTDRvQXJoRmdvWXZsa2ZoLTA1RWFSTXg5aTFHdEEtWHBjbjZIVnE4VzRHdGZPS2F2cjFfU0Y5eUtCZGVOc0JEVXdqYldaX1NfTG5sQ2h6aUZJ?oc=5"
+      "title": "The agentic organization: Contours of the next paradigm for the AI era - McKinsey & Company",
+      "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxORkNhWUJRcExzeER3VlFfZ095c2F0c2F6LXlXczFIOFhuUUdFZXdTcDFwQ0poamtFWWIyZ3lEam95bVNYSWNvRmkxUUotVWUtMkF2UmdaZ04wbjVCOGJiS3pTN2xyZ0k4SkxFaXJrZ3NjbnRCLWlqTDJWSVd3UWZvNHgzUTdkQy02T1pPSWhRRjc3WDhkeFZidkFfdExOMnNFMjVqZmlfLUJtRW0tWUc1UGNIdmItNWpGUnd1UnZIOG8tNDhDT2tLTjF2WlRXRnpPWVJ4aEp4QkhGUHpI?oc=5"
     },
     {
       "source": "News",
-      "title": "Agentic AI adoption is outpacing governance: report - hcamag.com",
-      "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxOWktVVGxIVEhzZUtUR25EbEczQl9LY2JnekVGajNBa1QyNWZSd2p4WFVJRDdyVF9OSGZjZ2NxRzFrVHFxcFJ5MDVSWHBYdzBQQm0tRkdkNDJ3M3hpQVFuMDZ0OTdtTTc1clBKYTlBeFlVdDlSTEk5M2dUckpHRFUxZkpZUUlqN2NvanNDbmY3MHdabXBFQnhjTG1SZWc?oc=5"
+      "title": "Managing the cyber risk of agentic AI - National Cyber Security Centre",
+      "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTE5UZ2hPZ2poYUtzNVRSbzFYX2dzNGpqSGxOVGtickdodjc5ZVBTZ3poYlVYUkhUclVEckFBMXFfeDNwSGIxeWNnbElGTFpiRGZiRFByN2dhNUt5ejlUb0RKYmo0aFJRc0VONU9FVV85aTd4V1lXY1E?oc=5"
     },
     {
       "source": "News",
-      "title": "Building the Analytics Flywheel for Conversational and Agentic AI | - Opus Research |",
-      "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxOUGJ6RjhoRzM5Y0lOV1NtRExySUVXekUtZkIwb2RYRnpKbTVXVlgxc0ZaTTd3UmtaYmdhLVhaY0NQekU3bHV2Q2I5Tk5XZkcxU2V3dEpSWGRVekV0VnJjV2swaVpJOWlDQVlGUHlMdzRzSHBWcjJXSGdkLXJkd1BIUGU4STg0RnpaN3ZZUlRualNKZEZzSUNLR0hwamhJVldFU2FTbQ?oc=5"
+      "title": "Where AI agents pay off: A practical guide to the economics of agentic workflows - McKinsey & Company",
+      "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxQTTJ0UFZvQ1podXBjWHZoS0lKbDh2UkhQRDJ0Y1htVERBelVYQ1YtU1FKLTFpV2k5bGlGSms2ZjRaWXhleWtLNW8xaWFOTWdGbUs5Sk9TaHJVMENRamFFdVpZRThfTjltWDVpSWxHWk95dVVicF9kZEtiWEpKNUo4eVJFblFtZXU1azNFSmk1R0NJQm8xelF1R3VCeUpwZERNX0RlMW9fVDhEUi13cmxLb1BEVzJiY1VBV3I2c3g4S1JCeEpYNDF3VklKd1ZINmZ6S1pOelpiQzM5RUU?oc=5"
     },
     {
       "source": "News",
-      "title": "Consuming Oracle Fusion Agents aka Headless - blogs.oracle.com",
-      "url": "https://news.google.com/rss/articles/CBMie0FVX3lxTFBVclN2ZnFSUDJienFCVEg4SmNiWUZmR2NoaGNBYWNjUGgtcUVXclJ0eXpKRWl5aTB4Y3E1bGFKRGtZSXd2T2lXNmRKakVzMDF3cU1XYWI2VTMzOHY3WG9ZTWhCd0dtUEFabkJ0azhNb3VOcVcyeUk0QlliNA?oc=5"
+      "title": "3 Agentic AI Stocks to Own Before AI Changes the World as We Know It - Currently.com",
+      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE4wY0dMeFQwUVNGVXFjM3FlVUNBc252MENobWk4LU9oUV80UHppRjZBUzhJanRDUk1QQlFDa2g1NS0zSk1iWHRMRzVpMzVMY3Q2a0gxd2dQektLUXZCcmhKUDZKWTJ5a3R4SDFzZkNObnYtSk9OUlNrTE9POENUcE0?oc=5"
     }
   ],
-  "population_engine": 77,
-  "species": 28,
+  "population_engine": 79,
+  "species": 22,
   "trials": 2,
-  "harvested": 82
+  "harvested": 84
 }
