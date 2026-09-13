@@ -188,7 +188,8 @@ def cmd_heartbeat(slug):
     if not hb.exists():
         print(f"no heartbeat.py at {hb}")
         return 1
-    r = subprocess.run([sys.executable, str(hb)], capture_output=True, text=True)
+    r = subprocess.run([sys.executable, str(hb)], capture_output=True,
+                   text=True, encoding="utf-8", errors="replace")
     print(r.stdout.strip() or r.stderr.strip())
     return r.returncode
 

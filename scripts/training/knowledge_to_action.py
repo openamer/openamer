@@ -27,8 +27,9 @@ def log(entry):
         f.write(json.dumps(entry, ensure_ascii=False) + "\n")
 
 def run(cmd, timeout=120):
-    return subprocess.run(cmd, capture_output=True, text=True,
-                          encoding="utf-8", errors="replace", timeout=timeout)
+    return subprocess.run(cmd, capture_output=True,
+                          text=True, encoding="utf-8", errors="replace",
+                          timeout=timeout)
 
 # ---- Action Library: insight patterns -> concrete experiments ----
 

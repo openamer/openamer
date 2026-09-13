@@ -25,8 +25,8 @@ HOME = os.path.join(os.environ.get("USERPROFILE", os.path.expanduser("~")),
 
 def run(cmd, **kw):
     print(f"  > {cmd[:80]}...")
-    r = subprocess.run(cmd, shell=True, capture_output=True, text=True,
-                       encoding="utf-8", errors="replace", **kw)
+    r = subprocess.run(cmd, shell=True, capture_output=True,
+                       text=True, encoding="utf-8", errors="replace", **kw)
     if r.returncode != 0 and kw.get("check", False):
         print(f"  ERROR: {r.stderr[:300]}")
     return r
