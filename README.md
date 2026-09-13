@@ -62,6 +62,36 @@
 
 ---
 
+## ⚡ Install in one line
+
+**Linux / macOS / Termux:**
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/openamer/openamer/main/scripts/install.sh | bash
+```
+
+**Windows** (PowerShell) — native, no WSL, no admin:
+
+```powershell
+iex (irm https://raw.githubusercontent.com/openamer/openamer/main/scripts/install.ps1)
+```
+
+**Prefer a download?** [OpenAmer-2026.9.12-win-x64.exe](https://github.com/openamer/openamer/releases/latest) — the signed Windows installer.
+
+Then:
+
+```bash
+openamer setup    # choose a model provider (incl. free-of-cost routes)
+openamer          # start the agent
+```
+
+> **Runs on your hardware, for nearly nothing.** Local 2B brain + a free-cloud
+> reasoning chain — **0 €/day, <1 kWh/day**, no hosted tier, no telemetry. Use the
+> OpenAmer free tier, a local Ollama/vLLM server, or any OpenAI-compatible endpoint;
+> a paid frontier key is optional, never required.
+
+---
+
 ## 🧬 Darwin Engine — Skills That Evolve Themselves
 
 > **Exclusive to OpenAmer.** No other agent framework has this.

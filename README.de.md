@@ -6,6 +6,36 @@ Er läuft auf deiner eigenen Maschine, trifft dich in den Kanälen, die du berei
 
 ---
 
+## ⚡ Installation in einer Zeile
+
+**Linux / macOS / Termux:**
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/openamer/openamer/main/scripts/install.sh | bash
+```
+
+**Windows** (PowerShell) — nativ, kein WSL, kein Admin:
+
+```powershell
+iex (irm https://raw.githubusercontent.com/openamer/openamer/main/scripts/install.ps1)
+```
+
+**Lieber als Download?** [OpenAmer-2026.9.12-win-x64.exe](https://github.com/openamer/openamer/releases/latest) — der Windows-Installer.
+
+Danach:
+
+```bash
+openamer setup    # Modell-Provider wählen (auch kostenlose Routen)
+openamer          # Agent starten
+```
+
+> **Läuft auf deiner Hardware, für fast nichts.** Lokales 2B-Gehirn + kostenlose
+> Cloud-Reasoning-Kette — **0 €/Tag, <1 kWh/Tag**, kein Hosted-Tier, keine Telemetrie.
+> Nutze das OpenAmer-Free-Tier, einen lokalen Ollama-/vLLM-Server oder jeden
+> OpenAI-kompatiblen Endpoint; ein bezahlter Frontier-Key ist optional, nie Pflicht.
+
+---
+
 ## 🔥 Was OpenAmer EINZIGARTIG macht
 
 **15 Dinge, die kein anderer Agent kann** — ausgeliefert, getestet, verifiziert.
