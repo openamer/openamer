@@ -1,5 +1,12 @@
 # Native Windows containment (`agent/win_sandbox.py`)
 
+> **Which file is which.** This is the *engineering record* — design, the exact
+> OS mechanisms, the leak that live verification found, and what is deliberately
+> not enforced. The user-facing version that ships on the docs site is
+> `website/docs/user-guide/windows-sandbox.md`; keep the two in sync when the
+> behaviour changes (they will drift otherwise — this note is here because that
+> already happened once with the "not yet wired" status line).
+
 Status: **wired into the local terminal backend** (opt-in, default off) —
 `tools/environments/local.py` builds a job object for each command whenever
 `terminal.sandbox.windows.enabled` is true, and closes it in `_kill_process()`.

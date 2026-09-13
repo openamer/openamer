@@ -27,6 +27,7 @@ const sidebars: SidebarsConfig = {
         'user-guide/desktop',
         'user-guide/windows-native',
         'user-guide/windows-wsl-quickstart',
+        'user-guide/windows-sandbox',
         'user-guide/configuration',
         'user-guide/managed-scope',
         'user-guide/configuring-models',
@@ -57,6 +58,7 @@ const sidebars: SidebarsConfig = {
         'user-guide/docker',
         'user-guide/security',
         'user-guide/checkpoints-and-rollback',
+        'user-guide/plan-mode',
       ],
     },
     {
