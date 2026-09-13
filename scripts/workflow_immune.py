@@ -35,7 +35,6 @@ Step JSON fields:
 
 Exit codes: 0 = all healthy/healed, 1 = usage error, 2 = unresolved drift.
 """
-import os
 import base64
 import json
 import random
@@ -46,10 +45,34 @@ import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
-STATE_DIR = Path(os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "workflow-immune"))
+STATE_DIR = Path(r"C:\Users\damir\AppData\Local\openamer-laptop\workflow-immune")
 WORKFLOWS = STATE_DIR / "workflows.json"
 REPORTS = STATE_DIR / "reports"
 CDP = "http://localhost:9222"
+
+PRED_LOG = STATE_DIR / "prediction_log.jsonl"
+
+
+def _log_prediction(wf, step_i, risk, verdict, ok, status):
+    """Close the loop: record what the World State Model predicted BEFORE the
+    run against what actually happened. A predictor nobody scores is a
+    liability -- this is the only honest measure of the model.
+
+    Reasons NOT to pre-heal blindly from the prediction: WIS's own heal guard
+    exists because healing a step whose element still exists is spurious and
+    can poison the baseline. So we predict, observe, and score.
+    """
+    try:
+        STATE_DIR.mkdir(parents=True, exist_ok=True)
+        rec = {"at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+               "workflow": wf, "step": step_i, "risk": risk, "verdict": verdict,
+               "ok": bool(ok), "status": str(status)[:60]}
+        with PRED_LOG.open("a", encoding="utf-8") as f:
+            f.write(json.dumps(rec, ensure_ascii=False))
+            f.write(chr(10))
+    except Exception:
+        pass
+
 
 _id = [0]
 
@@ -466,6 +489,14 @@ def cmd_check(name=None, heal=True):
     if not names:
         print("No workflows registered. First: register <name> <url> <selector> [...]")
         return 1
+    # World State Model (world_state.py): pre-run risk per step, if available.
+    pred_ws = None
+    try:
+        import world_state as _wsmod
+        pred_ws = _wsmod.assess()
+    except Exception:
+        pred_ws = None
+
     overall_rc = 0
     report_lines = []
     for wname in names:
@@ -532,6 +563,10 @@ def cmd_check(name=None, heal=True):
                 drifted.append(drifted_entry)
             mark = "[OK]" if status == "OK" else "[HEAL]" if "HEALED" in status else "[DRIFT]"
             print(f"  {mark} Step {i+1} [{action}]: {status}")
+            if pred_ws is not None:
+                p = ((pred_ws.get(wname) or {}).get("steps") or {}).get(key) or {}
+                _log_prediction(wname, i, p.get("risk"), p.get("verdict"),
+                                status == "OK", status)
             # Brief wait after click/type so navigation/render can follow
             if action in ("click", "type"):
                 time.sleep(2)
@@ -556,6 +591,42 @@ def cmd_check(name=None, heal=True):
           f"heals: {sum(len(r['healed']) for r in report_lines)} | "
           f"open drifts: {sum(len(r['drifted']) for r in report_lines)}")
     return overall_rc
+
+
+def cmd_predict_accuracy():
+    """Score the World State Model against real outcomes from prediction_log.jsonl."""
+    if not PRED_LOG.exists():
+        print("no predictions recorded yet -- run: workflow_immune.py check")
+        return 0
+    rows = []
+    for line in PRED_LOG.read_text(encoding="utf-8", errors="ignore").splitlines():
+        try:
+            rows.append(json.loads(line))
+        except Exception:
+            continue
+    if not rows:
+        print("prediction log empty")
+        return 0
+    bands = {}
+    for r in rows:
+        v = r.get("verdict") or "UNSCORED"
+        b = bands.setdefault(v, {"n": 0, "fails": 0})
+        b["n"] += 1
+        if not r.get("ok"):
+            b["fails"] += 1
+    print("WORLD STATE MODEL -- predicted vs actual (real workflow runs)")
+    print("=" * 68)
+    print(f"{'verdict':<12} {'n':>4} {'failed':>7} {'fail-rate':>10}")
+    print("-" * 68)
+    for v in ("HEAL_FIRST", "WATCH", "TRUST", "UNSCORED"):
+        if v in bands:
+            b = bands[v]
+            rate = 100.0 * b["fails"] / b["n"]
+            print(f"{v:<12} {b['n']:>4} {b['fails']:>7} {rate:>9.1f}%")
+    print("=" * 68)
+    print(f"records: {len(rows)}")
+    print("A model is only useful if HEAL_FIRST/WATCH fail more often than TRUST.")
+    return 0
 
 
 def cmd_list():
@@ -600,6 +671,8 @@ def main():
         return cmd_list()
     if cmd == "darwin":
         return cmd_darwin()
+    if cmd == "predict-accuracy":
+        return cmd_predict_accuracy()
     print(f"Unknown command: {cmd}")
     return 1
 
