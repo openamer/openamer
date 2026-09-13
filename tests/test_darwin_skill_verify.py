@@ -164,7 +164,12 @@ def test_a_trailing_comment_does_not_break_the_path_check(verify, tmp_path, monk
 
     assert result["executed"] is True
     argv, _ = calls[0]
-    assert argv == ["python", "-m", "pytest", "tests/test_real.py", "-q"]
+    # argv[0] is now the running interpreter rather than the literal "python":
+    # a SKILL.md's bare `python` means the project interpreter, not whatever the
+    # PATH holds at sweep time. The point of this test is unchanged - the
+    # trailing comment must never become path tokens.
+    assert "python" in argv[0].lower()
+    assert argv[1:] == ["-m", "pytest", "tests/test_real.py", "-q"]
 
 
 def test_only_the_first_allowlisted_command_runs(verify, tmp_path, monkeypatch):

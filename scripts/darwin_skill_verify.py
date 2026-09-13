@@ -325,13 +325,22 @@ def _run(argv: list[str], repo: Path) -> tuple[int | None, str | None]:
     """Run *argv* without a shell. Returns (returncode, error_reason).
 
     No ``shell=True`` and no string is ever built and handed to a shell: the
-    argv from ``allowlisted`` is passed through verbatim. The environment is
-    inherited (no ``env=``) so the check runs under the same interpreter and
-    PATH as the caller - a skill's own documented command expects that.
+    argv from ``allowlisted`` is passed through verbatim.
+
+    A bare ``python`` is rewritten to the interpreter running this sweep. A
+    SKILL.md says "python" and means the project interpreter, not whatever the
+    PATH happens to hold at sweep time. Without this, `python -m pytest
+    tests/...` picked up a different interpreter, failed on a missing
+    dependency, and recorded that as the skill being broken - a false negative
+    produced by the harness, which is the worst kind because it looks like
+    evidence.
     """
+    effective = list(argv)
+    if effective and effective[0] in {"python", "python3"}:
+        effective[0] = sys.executable
     try:
         proc = subprocess.run(
-            argv,
+            effective,
             cwd=str(repo),
             timeout=TIMEOUT_SECONDS,
             capture_output=True,

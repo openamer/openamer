@@ -27,8 +27,18 @@ from pathlib import Path
 
 
 def rules_path() -> Path:
-    home = os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")) \
-        if sys.platform == "win32" else Path.home() / ".openamer"
+    # Path, not str. os.environ.get returns a str, and `str / str` raised
+    # TypeError, so every call into this module died on Windows. The POSIX branch
+    # was a Path already, which is why the bug lived on win32 only and went
+    # unnoticed: it cannot be reproduced where it was written.
+    if sys.platform == "win32":
+        home = Path(
+            os.environ.get(
+                "OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer-laptop")
+            )
+        )
+    else:
+        home = Path.home() / ".openamer"
     return home / "thinking_rules.json"
 
 
