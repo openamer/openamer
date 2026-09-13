@@ -57,13 +57,13 @@ def test_decode_bing_url_invalid_b64():
 def _extract_first_sentence(text):
     """Mirror of deep_learn's deterministic extraction, on in-memory text."""
     _NAV = ("no thanks", "testimonial", "subscribe", "newsletter", "sign up",
-            "incredible", "highly recommend")
+            "incredible", "highly recommend", "view all docs")
     for m in re.finditer(r"([A-Z][^.!?]{40,250}[.!?])", text):
         s = m.group(1).strip()
         low = s.lower()
         if any(n in low for n in _NAV):
             continue
-        if s.count("›") > 0 or s.count("&amp;") > 1:
+        if s.count("›") > 0 or "&amp;" in s or "&#" in s:
             continue
         return s
     return ""
@@ -128,6 +128,23 @@ def test_add_to_buffer_refuses_junk():
     """The write gate must reject page chrome before it reaches the buffer."""
     before = il.add_to_buffer("q", "You switched accounts on another tab or window.")
     assert before is False, "junk must never enter the training buffer"
+
+
+# --- docs-site chrome in the deterministic extractor (13.09.26: the docs cycle
+# returned "LoRA PEFT 🏡 View all docs AWS Trainium &amp; Inferentia ...") ---
+
+def test_docs_nav_line_is_classified_junk():
+    assert il._is_junk("LoRA PEFT View all docs AWS Trainium &amp; Inferentia")
+
+
+def test_docs_nav_is_skipped_and_the_next_real_sentence_wins():
+    page = ("LoRA PEFT View all docs AWS Trainium &amp; Inferentia Accelerate "
+            "Argilla AutoTrain. "
+            "LoRA adapters inject trainable low-rank matrices into each layer "
+            "of a frozen model and cut fine-tuning memory by roughly 3 orders "
+            "of magnitude.")
+    got = _extract_first_sentence(page)
+    assert got.startswith("LoRA adapters inject"), got
 
 
 if __name__ == "__main__":

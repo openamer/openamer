@@ -56,7 +56,7 @@ _JUNK_RE = re.compile(
     r"click here|read more|accept all|newsletter|advertisement|"
     r"enable javascript|skip to content|manage your preferences|"
     # login walls / anti-bot / error pages (serve no learning signal)
-    r"switched accounts on another tab|another tab or window|"
+    r"switched accounts on another tab|another tab or window|view all docs|"
     r"sign in to continue|log in to continue|you need to log in|"
     r"are you a robot|verify you are human|prove you'?re human|"
     r"captcha|access denied|403 forbidden|404 not found|page not found|"
@@ -234,7 +234,7 @@ def deep_learn(query, k=2):
             # the literal "You switched accounts on another tab or window.")
             "switched accounts", "another tab or window", "sign in to",
             "are you a robot", "verify you are human", "captcha",
-            "access denied", "not found")
+            "access denied", "not found", "view all docs")
     for t in texts:
         for m in re.finditer(r"([A-Z][^.!?]{40,250}[.!?])", t):
             s = m.group(1).strip()
@@ -242,7 +242,10 @@ def deep_learn(query, k=2):
             if any(n in low for n in _NAV):
                 continue  # skip navigation/boilerplate
             # skip sentences that are mostly link-lists (many "›" separators)
-            if s.count("›") > 0 or s.count("&amp;") > 1:
+            # A single raw entity (&amp;/&#39;) means the sentence is doc-site
+            # navigation chrome, not prose — live 13.09: the docs cycle returned
+            # the literal "LoRA PEFT 🏡 View all docs AWS Trainium &amp; ...".
+            if s.count("›") > 0 or "&amp;" in s or "&#" in s:
                 continue
             # skip pure praise / first-person marketing voice — no technical
             # content (a testimonial carries no learning signal)
