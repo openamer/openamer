@@ -75,6 +75,36 @@ Then remove the "config is the only switch" paragraph from
 
 ## Process notes from the session that wrote this
 
+### The autostart path is a registry value, not a shortcut
+
+The desktop app is started at login by an `HKCU` Run key — no Desktop or Start
+Menu shortcut exists on this machine:
+
+```
+HKCU\Software\Microsoft\Windows\CurrentVersion\Run
+  com.openamer.openamer = "…\openamer-agent\apps\desktop\release\win-unpacked\OpenAmer.exe"
+```
+
+**Trap:** a normal `npm run pack` writes to `release\win-unpacked`, but the new
+build was produced in `release-alt\win-unpacked` (the running app locked the
+original path with `EBUSY`). The Run key was therefore repointed to
+`release-alt` so the fix would actually start after a reboot.
+
+That means the install now runs from a **non-standard directory**. Either:
+
+- keep building with `-c.directories.output=release-alt`, or
+- once the app is closed, rebuild into `release\` and repoint the Run key back:
+
+```powershell
+Set-ItemProperty 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Run' `
+  -Name com.openamer.openamer `
+  -Value '"C:\Users\damir\AppData\Local\openamer-laptop\openamer-agent\apps\desktop\release\win-unpacked\OpenAmer.exe"'
+```
+
+Leaving the Run key on `release-alt` while future builds land in `release` would
+make every later change silently invisible — the exact class of bug this whole
+session was about.
+
 - **Never pipe a command through `tail` when its exit code is the result.**
   `npm run pack 2>&1 | tail -25` reported exit 0 while npm had exited 1 — the pipe
   returns `tail`'s status. Use `cmd; echo "EXIT=$?"` (bash) or
