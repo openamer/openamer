@@ -28,10 +28,11 @@ REPORT_MD = REPO / "reports" / "darwin-autopatch.md"
 REPORT_JSON = REPO / "reports" / "darwin-autopatch.json"
 VALIDATOR = REPO / "scripts" / "skill-validator.py"
 
-# 300s was too tight. With a few hundred skills the validator needs minutes on
-# this machine, so the daily autopatch died with TimeoutExpired before it could
-# apply anything (see reports/darwin-autopatch-last.log). The whole run is a
-# daily no-agent cron, so a generous cap costs nothing — a silent kill does.
+# The validator walks all 713 skills — measured at 34s idle on this machine, so
+# 300s looks generous. It still died with TimeoutExpired
+# (reports/darwin-autopatch-last.log) because the cron shares the box with
+# builds and test runs that saturate every core. The cap has to absorb a loaded
+# machine, not an idle one, and a daily no-agent cron can afford a long ceiling.
 VALIDATOR_TIMEOUT_S = 1800
 
 
