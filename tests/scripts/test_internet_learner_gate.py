@@ -39,7 +39,12 @@ CHROME = [
 # Link-shrapnel with no junk keyword and no sentence shape: caught by the
 # "short candidate needs a technical signal" rule in _clean_insight (the
 # multi-domain cycle distilled exactly this string from a PDF landing page).
-SHORT_FURNITURE = ["Download PDF Download PDF Review Article Open access Publish"]
+SHORT_FURNITURE = [
+    "Download PDF Download PDF Review Article Open access Publish",
+    # a search "title" that is really a URL: the bare digits of %20 satisfied the
+    # technical-signal gate until the candidate was decoded first
+    "Which%20Programming%20Language%20used%20behind%20Microsoft%20Edge%20Browser%20.",
+]
 
 REAL = [
     "vLLM PagedAttention raises serving throughput about 24x over naive HF generation.",
@@ -78,6 +83,12 @@ def test_store_refuses_chrome_and_writes_real_insights(tmp_path):
     lines = [ln for ln in buf.read_text(encoding="utf-8").splitlines() if ln.strip()]
     assert len(lines) == 1, "only the real insight may reach the training buffer"
     assert REAL[0][:40] in lines[0]
+
+
+def test_clean_insight_decodes_percent_escapes_before_judging():
+    """Percent-escapes must be decoded, not judged raw (digits fake a signal)."""
+    assert IL._clean_insight("LoRA%20adapters%20cut%20VRAM%20by%2040%25%20at%20int4.") \
+        == "LoRA adapters cut VRAM by 40% at int4."
 
 
 def test_every_learning_cycle_reports_a_rejection_honestly():

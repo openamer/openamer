@@ -46,10 +46,16 @@ def store(user_text, insight, buffer=None):
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     import buffer_store
     buf = buffer or BUFFER
+    # Normalise percent-escapes first: a search-result "title" that is really a
+    # URL ("Which%20Programming%20Language%20used%20behind%20Microsoft%20Edge")
+    # must be judged on its decoded words — the bare digits of %20 otherwise
+    # satisfy the technical-signal gate and let the fragment through (live
+    # 13.09.26, efficiency cycle).
+    cleaned = _clean_insight(insight, 300)
     reason = ""
     if _is_junk(insight):
         reason = "junk"
-    elif not _looks_like_content(insight):
+    elif not cleaned:
         reason = "no-tech-signal"
     if reason:
         try:
@@ -59,7 +65,7 @@ def store(user_text, insight, buffer=None):
         return False
     try:
         before = buffer_store.count(buf)
-        after = buffer_store.append(user_text, insight, buffer=buf)
+        after = buffer_store.append(user_text, cleaned, buffer=buf)
     except Exception as e:
         print(f"[internet-learn] buffer write failed: {e}", flush=True)
         return False
@@ -106,6 +112,10 @@ _JUNK_RE = re.compile(
     r"werbepartner|ferienwohnungen|kleinanzeigen|anzeigenmarkt|"
     r"przepisy|kuchnia|inspiracje|porady|dania na grilla)",
     re.IGNORECASE)
+
+# Percent-escapes mean the "insight" is a URL fragment, not prose. Their digits
+# would otherwise satisfy the technical-signal gate (live 13.09.26).
+_URL_ESC_RE = re.compile(r"%(?:[0-9A-Fa-f]{2})")
 
 
 def _is_junk(text):
@@ -375,6 +385,8 @@ def _clean_insight(text, max_len=250):
     (>= 90 chars) is trusted on its own merit so non-tech domains survive.
     """
     t = (text or "").strip()
+    if _URL_ESC_RE.search(t):
+        t = urllib.parse.unquote(t).strip()  # judge the decoded words, not %20
     if len(t) < 20 or _is_junk(t):
         return ""
     if len(t) < 90 and not _looks_like_content(t):
