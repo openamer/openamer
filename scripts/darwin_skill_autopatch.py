@@ -28,12 +28,18 @@ REPORT_MD = REPO / "reports" / "darwin-autopatch.md"
 REPORT_JSON = REPO / "reports" / "darwin-autopatch.json"
 VALIDATOR = REPO / "scripts" / "skill-validator.py"
 
+# 300s was too tight. With a few hundred skills the validator needs minutes on
+# this machine, so the daily autopatch died with TimeoutExpired before it could
+# apply anything (see reports/darwin-autopatch-last.log). The whole run is a
+# daily no-agent cron, so a generous cap costs nothing — a silent kill does.
+VALIDATOR_TIMEOUT_S = 1800
+
 
 def run_validator_json() -> dict:
     """Run skill-validator --all --json, return parsed report."""
     r = subprocess.run(
         [sys.executable, str(VALIDATOR), "--all", "--json"],
-        capture_output=True, text=True, timeout=300,
+        capture_output=True, text=True, timeout=VALIDATOR_TIMEOUT_S,
         cwd=str(REPO),
     )
     out = r.stdout
