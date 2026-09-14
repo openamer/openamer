@@ -7,8 +7,14 @@ CDP probe. Nothing here is a guess.
 ## The blocker in one line
 
 **Chrome's CDP endpoint (`localhost:9222`) was DOWN when measured** — so no
-automated posting channel is live right now, regardless of which accounts exist.
+automated posting channel was live, regardless of which accounts exist.
 Everything below is *potential* reach, gated first on the browser being up.
+
+**Update, same session:** the dedicated watchdog
+(`scripts/cron-browser-watchdog.py`) brought Chrome back — it started the
+browser visibly and `http://localhost:9222/json/version` now answers
+(`Chrome/152.0.7977.84`). So the browser gate is currently OPEN; the remaining
+gate is whether each individual session is still valid.
 
 ## Accounts with an auth cookie present
 
