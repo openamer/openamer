@@ -94,9 +94,8 @@ def _ssh(cmd, timeout=60):
     run produced no stdout at all, so real errors stay visible.
     """
     try:
-        p = subprocess.run(SSH + [cmd], capture_output=True,
-                           text=True, encoding="utf-8", errors="replace",
-                           timeout=timeout)
+        p = subprocess.run(SSH + [cmd], capture_output=True, text=True,
+                           timeout=timeout, encoding="utf-8", errors="replace")
         out = p.stdout or ""
         if p.returncode != 0 and not out.strip():
             out = p.stderr or ""
@@ -110,6 +109,23 @@ def restart():
     rc, out = _ssh("schtasks /run /tn OpenAmerFrontier")
     ok = rc == 0 or "ERFOLGREICH" in out or "SUCCESS" in out
     return ok, out.strip().splitlines()[-1] if out.strip() else ""
+
+
+def _host_offline(info: str) -> bool:
+    """True when the SSH attempt never reached the host — i.e. the box is off.
+
+    The GPU PC is not a 24/7 machine: when it is powered down it simply is not
+    on the network, and ssh fails before authentication with a TCP-level error.
+    That is a normal, user-controlled state, not a defect in the worker, so it
+    must not be reported as a red cron status (observed 2026-09-14: the daily
+    probe logged `Connection timed out` every cycle and turned the job red even
+    though nothing was broken and nothing could be fixed from the laptop).
+    """
+    low = (info or "").lower()
+    return any(s in low for s in (
+        "connection timed out", "no route to host", "host is unreachable",
+        "connection refused", "ssh failed", "network is unreachable",
+    ))
 
 
 def main():
@@ -128,6 +144,16 @@ def main():
     # try to bring it up. Qwen3.5-4B needs ~40-60s to load into VRAM.
     started, info = restart()
     if not started:
+        if _host_offline(info):
+            # The box is powered down — nothing to fix here, and not a defect.
+            # Report it as a normal "down" (like the training-lock branch) so
+            # the cron status stays truthful: green means "the watchdog ran and
+            # the outcome is expected", red is reserved for real failures.
+            print(json.dumps({"ok": True, "worker": "down",
+                              "action": "host offline (GPU PC powered down)",
+                              "detail": info,
+                              "ts": time.strftime("%Y-%m-%dT%H:%M:%S")}))
+            return 0
         print(json.dumps({"ok": False, "worker": "down", "restart": "failed",
                           "detail": info, "ts": time.strftime("%Y-%m-%dT%H:%M:%S")}))
         return 1

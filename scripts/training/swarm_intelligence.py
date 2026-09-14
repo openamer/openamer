@@ -46,11 +46,15 @@ def discover_agents():
                        "energy": "low", "capabilities": ["reasoning", "memory", "tools"]})
     except Exception:
         pass
-    # PC — frontier server
+    # PC — frontier server. ConnectTimeout is essential: the GPU box is not a
+    # 24/7 machine, and without it a powered-down host makes ssh hang until the
+    # subprocess kill (observed 2026-09-14: the whole cycle blocked for >60s and
+    # the cron job was killed by a gateway shutdown mid-run).
     try:
         r = subprocess.run(["ssh", "-o", "StrictHostKeyChecking=no", "-o", "BatchMode=yes",
+            "-o", "ConnectTimeout=8", "-o", "ServerAliveInterval=5", "-o", "ServerAliveCountMax=1",
             "damir@192.168.178.23", "curl -s -m 5 http://localhost:8082/health"],
-            capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=15)
+            capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=20)
         if "alive" in r.stdout:
             agents.append({"id": "pc-gpu-4b", "url": "http://localhost:8082 (via SSH)",
                           "role": "frontier-reasoning", "tools": 1,
@@ -66,9 +70,10 @@ def synthesize_knowledge(local_insight, remote_insight=None):
     try:
         if remote_insight is None:
             r = subprocess.run(["ssh", "-o", "StrictHostKeyChecking=no", "-o", "BatchMode=yes",
+                "-o", "ConnectTimeout=8", "-o", "ServerAliveInterval=5", "-o", "ServerAliveCountMax=1",
                 "damir@192.168.178.23",
                 "curl -s -m 5 http://localhost:8081/health"],
-                capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=15)
+                capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=20)
             if "alive" not in r.stdout:
                 return "remote agent down"
             remote_insight = r.stdout.strip()
@@ -127,9 +132,15 @@ def resolve_conflict(claim_a, claim_b, evidence_a, evidence_b):
 
 # ---- E. Shared Identity ----
 
-def update_swarm_identity():
-    """The 'WE' identity — collective self-model across agents."""
-    agents = discover_agents()
+def update_swarm_identity(agents=None):
+    """The 'WE' identity — collective self-model across agents.
+
+    `agents` is passed in by the caller when discovery already ran, so a full
+    cycle pays the (possibly slow, when the GPU PC is off) SSH probe once
+    instead of twice.
+    """
+    if agents is None:
+        agents = discover_agents()
     total_events = 0
     total_memory = 0
 
@@ -197,4 +208,4 @@ if __name__ == "__main__":
         print(f"[swarm] agents discovered: {len(agents)}")
         for a in agents:
             print(f"  • {a['id']} ({a['role']}, {a['energy']} energy)")
-        update_swarm_identity()
+        update_swarm_identity(agents)
