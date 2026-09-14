@@ -112,14 +112,19 @@ def _fresh_headline(domain_kw, avoid):
     # Unchained" product page and learned nothing but ad copy — correctly
     # junk-gated, but a wasted cycle).
     _SELF = ("show hn:", "launch hn:", "ask hn:", "tell hn:")
-    for want_article in (True, False):
-        for h in hits:
-            t = (h.get("title") or "").strip()
-            if len(t) < 20 or t.lower() in avoidset or _is_junk(t):
-                continue
-            if want_article and t.lower().startswith(_SELF):
-                continue
-            return t
+    for h in hits:
+        t = (h.get("title") or "").strip()
+        if len(t) < 20 or t.lower() in avoidset or _is_junk(t):
+            continue
+        if t.lower().startswith(_SELF):
+            continue
+        return t
+    # No article-grade headline (only Show/Ask HN product pages, which carry
+    # marketing chrome instead of knowledge - live 15.09.26: cycle_c_github
+    # pulled "Show HN: A murder mystery game built on an open-source gen-AI
+    # agent framework" and deep-read ad copy, so the cycle was gated and
+    # wasted). Return "" so _novel_query falls through to the LLM-synthesised
+    # query, which yields a narrow technical term instead.
     return ""
 
 
@@ -238,6 +243,14 @@ def store_or_deep(user_text, query, insight):
     deep = deep_learn(query) if query else ""
     if deep and deep != insight and store(user_text, deep):
         return deep
+    # Second chance, wider net: the first deep pass reads k=2 pages, and a page
+    # with no verb/tech-hint sentence leaves both gates unsatisfied, so the
+    # whole cycle is wasted (live 15.09.26: cycle_e/cycle_g logged "rejected,
+    # not trained" ~1 cycle in 3). k=6 fetches more candidates for the same
+    # query before giving up.
+    deep2 = deep_learn(query, k=6) if query else ""
+    if deep2 and deep2 not in (insight, deep) and store(user_text, deep2):
+        return deep2
     return ""
 
 
