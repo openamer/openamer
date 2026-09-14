@@ -53,6 +53,10 @@ CHROME = [
     "Anwaltssoftware für moderne Kanzleiarbeit. Jetzt kostenlos testen. Mit Advolux "
     "arbeiten Sie besser, schneller und entspannter in; AI Law Course - AI for Legal "
     "Professionals — Find the right instructor for you. Choose from ma",
+    # vendor first-person boilerplate (live 14.09.26): the efficiency cycle
+    # stored this exact SSL-compliance chrome — the bare digit 256 satisfied the
+    # technical-signal gate, so the junk gate keys on the vendor voice instead.
+    "Bit-TLS-Verschlüsselung Für die sichere Datenübertragung nutzen wir 256-Bit-TLS-",
 ]
 
 # Link-shrapnel with no junk keyword and no sentence shape: caught by the
@@ -70,6 +74,10 @@ REAL = [
     "PEFT LoRA reduces trainable parameters to under 1% of the base model at int4.",
     "Continuous batching lets a serving engine process many prompts per GPU step, "
     "which cuts cost per token substantially for high-traffic agent workloads.",
+    # the vendor-voice pattern must key on first-person boilerplate, never on the
+    # topic — a genuine TLS/encryption insight still has to survive
+    "TLS 1.3 removes a round trip from the handshake; session resumption cuts "
+    "per-connection CPU cost.",
 ]
 
 
