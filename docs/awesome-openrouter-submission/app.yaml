@@ -1,0 +1,10 @@
+name: "OpenAmer Agent"
+description: "Open-source self-improving AI agent with a built-in learning loop, background computer-use, and reusable skills. Runs across CLI, TUI, messaging gateway and desktop — bring your own OpenRouter key to pick any model."
+url: "https://openamer.github.io/openamer/"
+docs: "https://github.com/openamer/openamer#bring-your-own-keys"
+tags:
+  - chat
+  - coding
+  - productivity
+open_source: "https://github.com/openamer/openamer"
+date_added: "2026-09-14"
