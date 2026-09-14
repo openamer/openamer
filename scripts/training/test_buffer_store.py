@@ -158,6 +158,9 @@ _JUNK_WAVE = [
     ("prompt-template leak", "Key insight: <one sentence>. Focus on actionable knowledge."),
     ("UI chrome", "You switched accounts on another tab or window."),
     ("truncated fragment", "Both"),
+    # reasoning-trace leaks found live 14.09.26 (active_learn + internet_learner)
+    ("reasoning opener (okay, the user)", "Okay, the user wants me to find the structural connection between two situations"),
+    ("bolded reasoning header + leading quote", '"\n\n2.  **Identify the Core "Technical Insight":**\n   - The text is mostly meta-information about arXiv.'),
 ]
 
 _REAL_ANSWERS = [
@@ -170,6 +173,9 @@ _REAL_ANSWERS = [
     "Es gibt vier Jahreszeiten: Fruehling, Sommer, Herbst und Winter.",
     "Ja.",
     "Nein!",
+    # 14.09.26 near-misses: the new markers must NOT swallow these
+    "To cut tail latency, identify the core bottleneck in the tokenizer first.",
+    "Okay, the result is 42 because the probe checks out.",
     "Loss sank von 2.88 auf 1.68 ueber 72 Steps — das Training konvergierte sauber.",
 ]
 

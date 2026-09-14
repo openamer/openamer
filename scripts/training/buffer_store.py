@@ -55,6 +55,13 @@ _JUNK_MARKERS = (
     "**analyze",                 # bolded reasoning header
     "self-critique",             # reasoning-trace segment (11.09.26 wave 3)
     "self-critique:",            # variant with colon
+    # reasoning-header phrases that leaked on 14.09.26. Kept PRECISE: the
+    # bolded header form, not the bare phrase, so real prose survives.
+    "**identify the core",       # "2. **Identify the Core \"Technical Insight\"**"
+    "text is mostly meta",       # "The text is mostly meta-information ..."
+    "possible angles:",          # planning bullet header
+    "first situation:",          # structural-connection reasoning step
+    "let me break this down",    # planning voice, mid-text
 )
 
 # --- reasoning-trace OPENER: the model's planning voice, not an answer ---
@@ -65,9 +72,9 @@ _JUNK_MARKERS = (
 import re as _re
 
 _TRACE_OPENER = _re.compile(
-    r"^\s*(?:\d+[.)]\s+)?(?:we need|we have|we must|we should|i need|"
+    r"^[\s\"'\u201c\u201d]*(?:\d+[.)]\s+)?(?:we need|we have|we must|we should|i need|"
     r"i should|i will|i'?ll |let me|the user|the question|the prompt|"
-    r"first,? i|okay,? (?:so|let)|alright,? |hmm,? |"
+    r"first,? i|okay,?\s+(?:so|let|the user|i\b|we\b)|alright,? |hmm,? |"
     r"here'?s? (?:a|my) (?:thinking|reasoning|plan)|"
     r"thinking process|analy[sz]e the)",
     _re.IGNORECASE,
