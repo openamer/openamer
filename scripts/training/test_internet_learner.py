@@ -65,8 +65,6 @@ def _extract_first_sentence(text):
             continue
         if s.count("›") > 0 or "&amp;" in s or "&#" in s:
             continue
-        if not il._looks_like_content(s):
-            continue
         return s
     return ""
 
@@ -165,6 +163,23 @@ def test_docs_nav_is_skipped_and_the_next_real_sentence_wins():
             "of magnitude.")
     got = _extract_first_sentence(page)
     assert got.startswith("LoRA adapters inject"), got
+
+
+# --- degenerate result URLs that starved deep_learn (14.09.26: the CDP/Bing
+# path returned a bare domain and an "arxiv.org/abs" stub; the old
+# `if urls: return urls[:k]` handed them on and the HTTP fallback never ran) ---
+
+def test_usable_urls_drops_bare_domains_and_stubs():
+    raw = ["https://the-agent-report.com", "https://arxiv.org/abs",  # unfetchable
+           "https://arxiv.org/html", "https://example.com/",
+           "https://arxiv.org/abs/2601.01743"]                       # the real one
+    assert il._usable_urls(raw, 5) == ["https://arxiv.org/abs/2601.01743"]
+
+
+def test_usable_urls_honours_k_and_empty_input():
+    urls = ["https://a.com/p1", "https://b.com/p2", "https://c.com/p3"]
+    assert il._usable_urls(urls, 2) == urls[:2]
+    assert il._usable_urls([], 3) == []
 
 
 if __name__ == "__main__":

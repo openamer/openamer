@@ -65,6 +65,107 @@ def _rotate(queries):
     return [q if a in q else f"{q} {a}" for q in queries]
 
 
+_SEEN_Q = os.path.join(T, ".il_seen_queries")
+
+
+def _recent_queries(n=60):
+    """Last N queries this learner already issued (novelty ledger)."""
+    try:
+        lines = [l.strip() for l in open(_SEEN_Q, encoding="utf-8") if l.strip()]
+        return lines[-n:]
+    except FileNotFoundError:
+        return []
+
+
+def _remember_query(q):
+    """Append one query to the novelty ledger, trimmed to the last 800."""
+    try:
+        lines = [l.strip() for l in open(_SEEN_Q, encoding="utf-8") if l.strip()]
+    except FileNotFoundError:
+        lines = []
+    lines.append(q.replace("\n", " ").strip())
+    try:
+        with open(_SEEN_Q, "w", encoding="utf-8") as f:
+            f.write("\n".join(lines[-800:]) + "\n")
+    except Exception:
+        pass
+
+
+def _fresh_headline(domain_kw, avoid):
+    """One REAL, current HN headline matching the domain (Algolia, free, no key).
+
+    Root cause fixed 2026-09-14: every cycle drew from a static seed list, so
+    once all (seed x rotation-angle) pairs were learned the exact-duplicate gate
+    rejected EVERY later cycle forever ("rejected, not trained (shallow + deep
+    read both gated)" on all 5 sources for hours, buffer stuck at its 300 cap).
+    A live headline is novel by construction, so the learner keeps learning.
+    """
+    q = urllib.parse.quote(domain_kw)
+    url = (f"https://hn.algolia.com/api/v1/search?query={q}&tags=story"
+           f"&numericFilters=points%3E10&hitsPerPage=12")
+    raw = urllib.request.urlopen(url, timeout=15).read()
+    avoidset = {a.lower() for a in avoid}
+    hits = json.loads(raw).get("hits", [])
+    # Prefer real articles/repos over Show/Launch/Ask HN posts: those usually
+    # point at a product landing page whose copy is marketing chrome, not
+    # knowledge (live 14.09.26: the security cycle pulled a "Show HN: Pingu
+    # Unchained" product page and learned nothing but ad copy — correctly
+    # junk-gated, but a wasted cycle).
+    _SELF = ("show hn:", "launch hn:", "ask hn:", "tell hn:")
+    for want_article in (True, False):
+        for h in hits:
+            t = (h.get("title") or "").strip()
+            if len(t) < 20 or t.lower() in avoidset or _is_junk(t):
+                continue
+            if want_article and t.lower().startswith(_SELF):
+                continue
+            return t
+    return ""
+
+
+def _llm_novel_query(domain_kw, avoid):
+    """Ask the free local/cloud route for ONE narrow, fresh query."""
+    prompt = (
+        f"Propose ONE specific, narrow, technical SEARCH QUERY an autonomous AI agent "
+        f"should study about: {domain_kw}. Prefer a concrete tool, library, version or "
+        f"technique. Output ONLY the query (max 12 words, no quotes, no numbering)."
+    )
+    try:
+        req = urllib.request.Request(LIVE + "/v1/chat/completions",
+            data=json.dumps({"model": "mini-openamer", "max_tokens": 60,
+                             "use_tools": False,
+                             "messages": [{"role": "user", "content": prompt}]}).encode(),
+            headers={"Content-Type": "application/json"})
+        r = json.load(urllib.request.urlopen(req, timeout=120))
+        q = r["choices"][0]["message"]["content"].strip().split("\n")[0]
+        q = re.sub(r"^[\-\*\d\.\)\s\"'`]+", "", q).strip().strip("\"'`")
+        if 8 <= len(q) <= 120 and q.lower() not in {a.lower() for a in avoid}:
+            return q
+    except Exception:
+        pass
+    return ""
+
+
+def _novel_query(domain_kw, seeds):
+    """A genuinely fresh query per invocation — kills the duplicate wall.
+
+    Order: real live headline -> LLM-synthesised -> rotating static seed. The
+    exact-duplicate gate in buffer_store still guards true repeats.
+    """
+    avoid = _recent_queries()
+    q = ""
+    try:
+        q = _fresh_headline(domain_kw, avoid)
+    except Exception:
+        q = ""
+    if not q:
+        q = _llm_novel_query(domain_kw, avoid)
+    if not q:
+        q = random.choice(_rotate(seeds))
+    _remember_query(q)
+    return q
+
+
 def log(entry):
     with open(LOG, "a", encoding="utf-8") as f:
         f.write(json.dumps(entry, ensure_ascii=False) + "\n")
@@ -103,13 +204,22 @@ def store(user_text, insight, buffer=None):
         except Exception:
             pass
         return False
+    rec = {"u": (user_text or "")[:3000], "a": (cleaned or "")[:4000]}
     try:
-        before = buffer_store.count(buf)
-        after = buffer_store.append(user_text, cleaned, buffer=buf)
+        if buffer_store._is_duplicate(rec, buf):
+            buffer_store._audit(user_text, cleaned, "duplicate")
+            return False
+        buffer_store.append(user_text, cleaned, buffer=buf)
     except Exception as e:
         print(f"[internet-learn] buffer write failed: {e}", flush=True)
         return False
-    return after > before
+    # Success = the record is NOW present. Do NOT compare line counts: once the
+    # buffer is at its cap, enforce_cap trims it back to MAX_BUF, so a real
+    # append leaves the count unchanged (before == after) and the old
+    # `after > before` test reported "rejected, not trained" on every cycle
+    # while the buffer was actually rotating. Live 14.09.26: buffer pinned at
+    # exactly 300 rows with all cycles logged as rejected.
+    return buffer_store._is_duplicate(rec, buf)
 
 
 def store_or_deep(user_text, query, insight):
@@ -317,6 +427,59 @@ def _looks_like_content(sentence):
     return bool(_TECH_HINT_RE.search(sentence or ""))
 
 
+# A real sentence has a verb; a nav/menu fragment ("Blog - Neutree Projects ▾
+# ... and project updates.") has none. Cheapest reliable way to tell prose from
+# a link list before it reaches the buffer (live 14.09.26).
+_VERB_RE = re.compile(
+    r"\b(is|are|was|were|be|been|being|has|have|had|do|does|did|can|could|will|"
+    r"would|should|may|might|must|use[sd]?|using|show[s]?|provide[sd]?|"
+    r"require[sd]?|enable[sd]?|reduce[sd]?|improve[sd]?|allow[sd]?|makes?|"
+    r"gives?|give|offers?|supports?|achieve[sd]?|increases?|decreases?|"
+    r"runs?|run|works?|work|means?|helps?|needs?|lets?|let|takes?|"
+    r"reports?|finds?|found|adds?|added|removes?|introduces?|keeps?|gets|"
+    r"become[s]?|remains?|appears?|seems?|contains?|includes?|"
+    r"verwendet|bietet|erm\u00f6glicht|reduziert|verbessert|nutzt|ist|sind|wird|werden)\b",
+    re.IGNORECASE)
+
+
+def _is_nav_list(text):
+    """True when `text` is a link/nav list, not prose.
+
+    Live 14.09.26: deep_learn returned vLLM's docs sidebar verbatim
+    ("Generation RunPod SkyPilot Streamlit NVIDIA Triton Integrations ... What
+    is Layerwise (Re)loading?"). At >=90 chars it cleared the length-based
+    prose trust in `_clean_insight` and would have been stored as a "learning".
+    Real prose mixes case and uses commas; a run of >=6 TitleCase tokens with no
+    comma/semicolon is a menu. Narrow by design — untitled lowercase prose and
+    ordinary sentences (few capitalised words, commas present) never match.
+    """
+    t = text or ""
+    words = re.findall(r"[A-Za-z][A-Za-z'\-]*", t)
+    if len(words) < 6:
+        return False
+    titlecase = sum(1 for w in words if w[:1].isupper() and w[1:].islower())
+    return titlecase >= 6 and ("," not in t) and (";" not in t)
+
+
+# Result URLs Bing's DOM sometimes collapses to a bare domain
+# ("the-agent-report.com") or a stub with no article id ("arxiv.org/abs",
+# "arxiv.org/html"). Those are unfetchable, yet the old `if urls: return
+# urls[:k]` handed them straight to deep_learn and starved it — 4 consecutive
+# cycles (14.09.26) were gated with zero learning because nothing reachable was
+# ever fetched. Rejecting them lets the HTTP ck/a fallback below run.
+_URL_STUB_PATHS = frozenset({"abs", "html", "index.html"})
+
+
+def _usable_urls(urls, k):
+    """Keep only fetchable result URLs (drop bare domains and known stubs)."""
+    good = []
+    for u in urls:
+        path = re.sub(r"^https?://[^/]+", "", u).strip("/")
+        if path and path not in _URL_STUB_PATHS:
+            good.append(u)
+    return good[:k]
+
+
 def _search_urls(query, k=3):
     """Return real result URLs for a query.
 
@@ -357,8 +520,9 @@ def _search_urls(query, k=3):
                 if u not in seen and len(u) > 15:
                     seen.add(u)
                     urls.append(u)
-            if urls:
-                return urls[:k]
+            good = _usable_urls(urls, k)
+            if good:
+                return good
         except Exception:
             pass
         # FALLBACK: direct HTTP with ck/a redirect decode
@@ -420,6 +584,7 @@ def deep_learn(query, k=2):
             "switched accounts", "another tab or window", "sign in to",
             "are you a robot", "verify you are human", "captcha",
             "access denied", "not found", "view all docs")
+    best, best_score = "", 0
     for t in texts:
         for m in re.finditer(r"([A-Z][^.!?]{40,250}[.!?])", t):
             s = m.group(1).strip()
@@ -437,9 +602,27 @@ def deep_learn(query, k=2):
             if re.search(r"\b(incredible|amazing|awesome|best (course|teacher)|"
                          r"highly recommend|thank you|thanks)\b", low):
                 continue
-            if not _looks_like_content(s):
-                continue  # page furniture, not a learning signal
-            return s
+            if _is_nav_list(s):
+                continue  # sidebar/menu run, not a sentence
+            # SCORE, don't take the first match. Live 14.09.26: the first
+            # sentence-shaped string on most pages is chrome ("Blog - Neutree
+            # Projects ▾ ... Product notes, architecture, and project updates.")
+            # which cleared every gate and was stored as a "learning". Real
+            # prose has a verb and usually technical nouns; a menu has neither.
+            tech = len(_TECH_HINT_RE.findall(s))
+            has_verb = bool(_VERB_RE.search(s))
+            if not has_verb and tech == 0:
+                continue  # fragment, not a sentence with content
+            score = tech * 10 + (5 if has_verb else 0)
+            n = len(s)
+            if n < 60 or n > 220:
+                score -= 5  # prefer mid-length full sentences
+            if any(ch in s for ch in "\u25be\u2502\u00bb\u00b7"):
+                score -= 8  # menu glyphs
+            if score > best_score:
+                best_score, best = score, s
+    if best:
+        return best
     # SECONDARY: deep distillation via smart_route — the free cloud chain
     # (nemotron-550b, minimax-m2.7, glm-5.2 ...) gives ASI-grade extraction
     # at 0 EUR. Falls back to local 4B via Ollama if cloud fails.
@@ -494,6 +677,8 @@ def _clean_insight(text, max_len=250):
         t = urllib.parse.unquote(t).strip()  # judge the decoded words, not %20
     if len(t) < 20 or _is_junk(t):
         return ""
+    if _is_nav_list(t):
+        return ""  # doc-site sidebar/menu, not prose
     if len(t) < 90 and not _looks_like_content(t):
         return ""
     return t[:max_len]
@@ -538,7 +723,7 @@ def _extract_insight_2b(topic, raw, max_tokens=100):
 def cycle_a_technews():
     """Tech news: what's new in AI agents? (deep-reads the top result)"""
     queries = ["AI agent news today", "LLM agents breakthrough", "autonomous AI 2026"]
-    q = random.choice(_rotate(queries))
+    q = _novel_query("AI agent news", queries)
     raw = search(q)
     insight = extract_insight(q, raw) if raw else ""
     if not insight:
@@ -557,7 +742,7 @@ def cycle_b_papers():
         "arxiv test-time training state space models 2026",
         "arxiv efficient fine-tuning small language models",
     ]
-    q = random.choice(_rotate(queries))
+    q = _novel_query("arxiv meta-learning LLM agents", queries)
     raw = search(q)
     insight = extract_insight(q, raw) if raw else ""
     if not insight:
@@ -573,7 +758,7 @@ def cycle_c_github():
     """Trending AI-agent repos — what are others building? (deep-reads)"""
     queries = ["github trending AI agent framework 2026",
                "new open source autonomous agent repos"]
-    q = random.choice(_rotate(queries))
+    q = _novel_query("open source AI agent framework", queries)
     raw = search(q)
     insight = extract_insight(q, raw) if raw else ""
     if not insight:
@@ -592,7 +777,7 @@ def cycle_d_docs():
         "transformers library efficient inference tips",
         "PEFT LoRA training best practices",
     ]
-    q = random.choice(_rotate(queries))
+    q = _novel_query("vLLM inference optimization", queries)
     raw = search(q)
     insight = extract_insight(q, raw) if raw else ""
     if not insight:
@@ -611,7 +796,7 @@ def cycle_e_competitors():
         "OpenHands agent architecture updates",
         "AutoGPT improvements 2026",
     ]
-    q = random.choice(_rotate(queries))
+    q = _novel_query("AI coding agent", queries)
     raw = search(q)
     insight = extract_insight(q, raw) if raw else ""
     if not insight:
@@ -637,7 +822,8 @@ def cycle_f_multi_domain():
         "education AI personalization",
         "financial markets AI prediction",
     ]
-    q = random.choice(_rotate(domains))
+    d = random.choice(domains)
+    q = _novel_query(d, [d])
     raw = search(q)
     insight = extract_insight(q, raw) if raw else ""
     if not insight:
@@ -665,7 +851,7 @@ def cycle_g_security():
         "AI supply chain model weight backdoor detection",
         "OWASP LLM Top 10 agentic threat model 2026",
     ]
-    q = random.choice(_rotate(queries))
+    q = _novel_query("LLM prompt injection security", queries)
     raw = search(q)
     insight = extract_insight(q, raw) if raw else ""
     if not insight:
@@ -685,7 +871,7 @@ def cycle_h_efficiency():
         "quantization techniques GGUF int4 int8 comparison",
         "edge AI deployment low power LLM",
     ]
-    q = random.choice(_rotate(queries))
+    q = _novel_query("quantization LLM inference efficiency", queries)
     raw = search(q)
     insight = extract_insight(q, raw) if raw else ""
     if not insight:
