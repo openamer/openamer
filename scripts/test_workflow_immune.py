@@ -14,6 +14,7 @@ import ast
 import json
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 HERE = Path(__file__).parent
@@ -140,16 +141,26 @@ check("WIS documents strategy theses", "STRATEGY_THESIS" in wis_src
       and all(s in wis_src for s in ("TOKENS", "TEXT", "ROLE", "CLASSES")))
 check("WIS stamps healed_via_thesis", "healed_via_thesis" in wis_src)
 
-# seda repo exists on GitHub
-r = subprocess.run(["curl", "-s", "--max-time", "15",
-                    "https://api.github.com/repos/openamer/seda"],
-                   capture_output=True, text=True, timeout=30)
+# seda repo exists on GitHub (network check: retry, transient 5xx timeouts are common)
+seda = None
+last_err = None
+for _attempt in range(4):
+    try:
+        r = subprocess.run(["curl", "-s", "--max-time", "15",
+                            "https://api.github.com/repos/openamer/seda"],
+                           capture_output=True, text=True, encoding="utf-8",
+                           errors="replace", timeout=30)
+        seda = json.loads(r.stdout)
+        if seda.get("full_name") == "openamer/seda":
+            break
+    except Exception as e:
+        last_err = e
+    time.sleep(3)
 try:
-    seda = json.loads(r.stdout)
     check("seda lives at github.com/openamer/seda",
-          seda.get("full_name") == "openamer/seda")
+          seda is not None and seda.get("full_name") == "openamer/seda")
 except Exception as e:
-    check(f"seda repo reachable ({e})", False)
+    check(f"seda repo reachable ({last_err or e})", False)
 
 print("=" * 50)
 if failures:
