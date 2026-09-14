@@ -655,6 +655,15 @@ def cycle_g_security():
         "LLM prompt injection defense techniques 2026",
         "AI agent security vulnerabilities guardrails",
         "jailbreak prevention large language models",
+        # Diversified 2026-09-14: the three seeds above saturated (66 duplicate
+        # rejects for this cycle in buffer_junk.jsonl, 28 on the prompt-injection
+        # seed alone) — the rotation advanced the angle but every (seed, angle)
+        # pair had already been learned. New sub-domains give the cycle fresh
+        # ground without touching the gates.
+        "MCP server tool poisoning attack mitigation",
+        "agent sandboxing permission model best practices",
+        "AI supply chain model weight backdoor detection",
+        "OWASP LLM Top 10 agentic threat model 2026",
     ]
     q = random.choice(_rotate(queries))
     raw = search(q)
