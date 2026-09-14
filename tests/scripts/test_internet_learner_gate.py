@@ -117,7 +117,16 @@ def test_clean_insight_decodes_percent_escapes_before_judging():
         == "LoRA adapters cut VRAM by 40% at int4."
 
 
-def test_every_learning_cycle_reports_a_rejection_honestly():
+def test_every_learning_cycle_gates_its_write_and_reports_honestly():
+    """Invariant, not a snapshot: one gate call and one honest rejection path per
+    cycle. The gate helper's concrete name is an implementation detail, so key
+    the assertion on the number of cycles rather than a literal call shape — a
+    change-detector on `if not store(` broke when the cycles switched to
+    store_or_deep() (14.09.26)."""
     src = (TRAINING / "internet_learner.py").read_text(encoding="utf-8")
-    assert src.count("if not store(") == 8, "all 8 cycles must gate their write"
-    assert "rejected, not trained" in src
+    cycles = src.count("\ndef cycle_")
+    assert cycles == 8, f"expected 8 cycles, found {cycles}"
+    assert src.count("store_or_deep(") - 1 == cycles, \
+        "every cycle must route its write through the gate helper"
+    assert src.count('return "rejected, not trained') == cycles, \
+        "every cycle must report a rejection honestly when both reads are gated"

@@ -101,6 +101,25 @@ def store(user_text, insight, buffer=None):
     return after > before
 
 
+def store_or_deep(user_text, query, insight):
+    """Store a shallow (title-level) insight; if a gate rejects it, READ the
+    page and store the substantive prose instead.
+
+    Root cause fixed 2026-09-14: extract_insight() returns search-result titles,
+    so repeating the same seed+angle inside one day produced an identical title
+    and tripped the 'duplicate' gate — the learner idled at ~50% rejection
+    (31 of the last 60 cycles) while burning ~7s each. deep_learn() fetches the
+    page, whose prose differs cycle-to-cycle and clears both gates.
+    Returns the stored text, or "" if both attempts were gated.
+    """
+    if store(user_text, insight):
+        return insight
+    deep = deep_learn(query) if query else ""
+    if deep and deep != insight and store(user_text, deep):
+        return deep
+    return ""
+
+
 def add_to_buffer(user_text, assistant_text):
     """Back-compat alias for `store` (older call sites)."""
     return store(user_text, assistant_text)
@@ -155,6 +174,15 @@ _JUNK_RE = re.compile(
     r"identify the core task|extract one technical insight|"
     r"no preamble before|target audience: autonomous|"
     r"format it as a single sentence|self-critique: reply with|"
+    # Corporate first-person boilerplate (live 14.09.26: the efficiency cycle
+    # stored "Bit-TLS-Verschlüsselung Für die sichere Datenübertragung nutzen
+    # wir 256-Bit-TLS-…" — site chrome, but the bare digit 256 satisfied the
+    # technical-signal gate). The giveaway is the vendor's first-person-plural
+    # voice plus website/SSL-compliance vocabulary; each phrase is specific
+    # enough never to appear in a genuine technical insight.
+    r"nutzen wir|verwenden wir|wir nutzen|wir verwenden|wir setzen ein|"
+    r"unsere website|unsere webseite|auf dieser website|ssl-?zertifikat|"
+    r"f\u00fcr die sichere daten\u00fcbertragung|for secure data transmission|"
     # GitHub page chrome (live 13.09.26: the github cycle stored "Dismiss alert
     # {{ message }} Explore Topics Trending Collections Events GitHub Sponsors #
     # autonomous-agents Star Here are 5,319 public repositories matching this
@@ -176,15 +204,6 @@ _JUNK_RE = re.compile(
     r"jetzt kostenlos testen|kostenlos testen|kostenlos registrieren|"
     r"find the right instructor|right instructor for you|"
     r"choose from [\d,]+ (?:online )?courses|"
-    # Corporate first-person boilerplate (live 14.09.26: the efficiency cycle
-    # stored "Bit-TLS-Verschlüsselung Für die sichere Datenübertragung nutzen
-    # wir 256-Bit-TLS-…" — site chrome, but the bare digit 256 satisfied the
-    # technical-signal gate). The giveaway is the vendor's first-person-plural
-    # voice plus website/SSL-compliance vocabulary; each phrase is specific
-    # enough never to appear in a genuine technical insight.
-    r"nutzen wir|verwenden wir|wir nutzen|wir verwenden|wir setzen ein|"
-    r"unsere website|unsere webseite|auf dieser website|ssl-?zertifikat|"
-    r"f\u00fcr die sichere daten\u00fcbertragung|for secure data transmission|"
     r"jetzt angebot sichern|jetzt kaufen|jetzt bestellen)",
     re.IGNORECASE)
 
@@ -515,8 +534,9 @@ def cycle_a_technews():
         insight = deep_learn(q)  # fall back to actually reading the page
     if not insight:
         return "no insight"
-    if not store(f"Internet learning ({q}): What should an AI agent know?", insight):
-        return f"rejected, not trained ({insight[:60]})"
+    insight = store_or_deep(f"Internet learning ({q}): What should an AI agent know?", q, insight)
+    if not insight:
+        return "rejected, not trained (shallow + deep read both gated)"
     return f"learned: {insight[:80]}"
 
 def cycle_b_papers():
@@ -533,8 +553,9 @@ def cycle_b_papers():
         insight = deep_learn(q)
     if not insight:
         return "no insight"
-    if not store(f"Latest research insight: {q}", insight):
-        return f"rejected, not trained ({insight[:60]})"
+    insight = store_or_deep(f"Latest research insight: {q}", q, insight)
+    if not insight:
+        return "rejected, not trained (shallow + deep read both gated)"
     return f"paper-learn: {insight[:80]}"
 
 def cycle_c_github():
@@ -548,8 +569,9 @@ def cycle_c_github():
         insight = deep_learn(q)
     if not insight:
         return "no insight"
-    if not store("What new agent architectures are trending on GitHub?", insight):
-        return f"rejected, not trained ({insight[:60]})"
+    insight = store_or_deep("What new agent architectures are trending on GitHub?", q, insight)
+    if not insight:
+        return "rejected, not trained (shallow + deep read both gated)"
     return f"github-learn: {insight[:80]}"
 
 def cycle_d_docs():
@@ -566,8 +588,9 @@ def cycle_d_docs():
         insight = deep_learn(q)
     if not insight:
         return "no insight"
-    if not store(f"Best practice from official docs: {q}", insight):
-        return f"rejected, not trained ({insight[:60]})"
+    insight = store_or_deep(f"Best practice from official docs: {q}", q, insight)
+    if not insight:
+        return "rejected, not trained (shallow + deep read both gated)"
     return f"doc-learn: {insight[:80]}"
 
 def cycle_e_competitors():
@@ -584,8 +607,9 @@ def cycle_e_competitors():
         insight = deep_learn(q)
     if not insight:
         return "no insight"
-    if not store(f"Competitor intelligence: {q}", insight):
-        return f"rejected, not trained ({insight[:60]})"
+    insight = store_or_deep(f"Competitor intelligence: {q}", q, insight)
+    if not insight:
+        return "rejected, not trained (shallow + deep read both gated)"
     observe_world(f"Competitor update: {q}",
                   f"OpenAmer should evaluate: {insight[:100]}")
     return f"competitor-learn: {insight[:80]}"
@@ -609,8 +633,9 @@ def cycle_f_multi_domain():
         insight = deep_learn(q)
     if not insight:
         return "no insight"
-    if not store(f"Multi-domain learning ({q}): What should an intelligent agent know?", insight):
-        return f"rejected, not trained ({insight[:60]})"
+    insight = store_or_deep(f"Multi-domain learning ({q}): What should an intelligent agent know?", q, insight)
+    if not insight:
+        return "rejected, not trained (shallow + deep read both gated)"
     return f"domain-learn: {insight[:80]}"
 
 def cycle_g_security():
@@ -627,8 +652,9 @@ def cycle_g_security():
         insight = deep_learn(q)
     if not insight:
         return "no insight"
-    if not store(f"Security learning ({q}): What should a safe agent know?", insight):
-        return f"rejected, not trained ({insight[:60]})"
+    insight = store_or_deep(f"Security learning ({q}): What should a safe agent know?", q, insight)
+    if not insight:
+        return "rejected, not trained (shallow + deep read both gated)"
     return f"security-learn: {insight[:80]}"
 
 
@@ -646,8 +672,9 @@ def cycle_h_efficiency():
         insight = deep_learn(q)
     if not insight:
         return "no insight"
-    if not store(f"Efficiency learning ({q}): How do agents run leaner?", insight):
-        return f"rejected, not trained ({insight[:60]})"
+    insight = store_or_deep(f"Efficiency learning ({q}): How do agents run leaner?", q, insight)
+    if not insight:
+        return "rejected, not trained (shallow + deep read both gated)"
     return f"efficiency-learn: {insight[:80]}"
 
 
