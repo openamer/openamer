@@ -5,7 +5,7 @@ Covers the testable pieces of deep-reading: HTML stripping and Bing
 ck/a redirect decoding. The network-bound _fetch_page/_search_urls are
 exercised via their pure helpers here.
 """
-import os, re, sys, base64
+import os, re, sys, base64, json
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import internet_learner as il
@@ -181,6 +181,68 @@ def test_usable_urls_honours_k_and_empty_input():
     assert il._usable_urls(urls, 2) == urls[:2]
     assert il._usable_urls([], 3) == []
 
+
+
+
+class _FakeResp:
+    """Minimal urlopen() stand-in: .read() returns the bytes we handed in."""
+    def __init__(self, text):
+        self._b = text.encode()
+
+    def read(self):
+        return self._b
+
+
+
+def test_fresh_headline_never_returns_a_self_post():
+    """Show/Ask HN product pages carry ad copy, so they must be skipped.
+
+    Regression, live 15.09.26: cycle_c_github took "Show HN: A murder mystery
+    game built on an open-source gen-AI agent framework", deep-read ad copy and
+    was gated — the whole cycle wasted. "" hands over to the LLM query instead.
+    """
+    hits = [{"title": "Show HN: A murder mystery game built on an open-source gen-AI agent framework"},
+            {"title": "Ask HN: who is hiring agents right now"}]
+    real = il.urllib.request.urlopen
+    il.urllib.request.urlopen = lambda *a, **k: _FakeResp(json.dumps({"hits": hits}))
+    try:
+        assert il._fresh_headline("AI agent framework", []) == ""
+    finally:
+        il.urllib.request.urlopen = real
+
+
+def test_fresh_headline_takes_a_real_article_over_a_self_post():
+    hits = [{"title": "Show HN: my agent framework, please star it"},
+            {"title": "A practical guide to agent memory architectures with benchmarks"}]
+    real = il.urllib.request.urlopen
+    il.urllib.request.urlopen = lambda *a, **k: _FakeResp(json.dumps({"hits": hits}))
+    try:
+        assert il._fresh_headline("AI agent", []).startswith("A practical guide")
+    finally:
+        il.urllib.request.urlopen = real
+
+
+def test_store_or_deep_retries_deep_with_wider_k():
+    """First deep pass (k=2) empty -> second pass must use k=6 before giving up."""
+    ks, good = [], "vLLM 0.9 adds disaggregated prefill and 2x throughput."
+    real_store, real_deep = il.store, il.deep_learn
+    il.store = lambda user, ins: ins == good
+    il.deep_learn = lambda q, k=2: (ks.append(k), good if k == 6 else "")[1]
+    try:
+        assert il.store_or_deep("u", "q", "") == good
+        assert ks == [2, 6], f"expected k=2 then k=6, got {ks}"
+    finally:
+        il.store, il.deep_learn = real_store, real_deep
+
+
+def test_store_or_deep_returns_empty_when_both_gates_reject():
+    real_store, real_deep = il.store, il.deep_learn
+    il.store = lambda user, ins: False
+    il.deep_learn = lambda q, k=2: ""
+    try:
+        assert il.store_or_deep("u", "q", "chrome") == ""
+    finally:
+        il.store, il.deep_learn = real_store, real_deep
 
 if __name__ == "__main__":
     tests = [v for k, v in sorted(globals().items())
