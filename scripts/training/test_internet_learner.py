@@ -65,6 +65,8 @@ def _extract_first_sentence(text):
             continue
         if s.count("›") > 0 or "&amp;" in s or "&#" in s:
             continue
+        if not il._looks_like_content(s):
+            continue
         return s
     return ""
 
@@ -99,6 +101,24 @@ def test_login_wall_is_junk():
 def test_real_technical_insight_is_not_junk():
     real = ("Speculative decoding with a small draft model cuts decode latency "
             "by ~40% at equal output quality.")
+    assert not il._is_junk(real)
+
+
+# --- corporate first-person boilerplate (regression: 14.09.26 the efficiency
+# cycle stored "Bit-TLS-Verschlüsselung Für die sichere Datenübertragung nutzen
+# wir 256-Bit-TLS-…" — site chrome whose bare digit 256 satisfied the
+# technical-signal gate, so the junk gate has to catch it on the vendor voice).
+def test_vendor_tls_boilerplate_is_junk():
+    chrome = ("Bit-TLS-Verschlüsselung Für die sichere Datenübertragung "
+              "nutzen wir 256-Bit-TLS-")
+    assert il._is_junk(chrome)
+
+
+def test_real_tls_encryption_insight_is_not_junk():
+    # A genuine security insight must survive the new pattern — the gate keys on
+    # the vendor's first-person voice, never on the topic (TLS/encryption).
+    real = ("TLS 1.3 removes a round trip from the handshake; session "
+            "resumption cuts per-connection CPU cost.")
     assert not il._is_junk(real)
 
 

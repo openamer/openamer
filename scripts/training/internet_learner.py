@@ -176,6 +176,15 @@ _JUNK_RE = re.compile(
     r"jetzt kostenlos testen|kostenlos testen|kostenlos registrieren|"
     r"find the right instructor|right instructor for you|"
     r"choose from [\d,]+ (?:online )?courses|"
+    # Corporate first-person boilerplate (live 14.09.26: the efficiency cycle
+    # stored "Bit-TLS-Verschlüsselung Für die sichere Datenübertragung nutzen
+    # wir 256-Bit-TLS-…" — site chrome, but the bare digit 256 satisfied the
+    # technical-signal gate). The giveaway is the vendor's first-person-plural
+    # voice plus website/SSL-compliance vocabulary; each phrase is specific
+    # enough never to appear in a genuine technical insight.
+    r"nutzen wir|verwenden wir|wir nutzen|wir verwenden|wir setzen ein|"
+    r"unsere website|unsere webseite|auf dieser website|ssl-?zertifikat|"
+    r"f\u00fcr die sichere daten\u00fcbertragung|for secure data transmission|"
     r"jetzt angebot sichern|jetzt kaufen|jetzt bestellen)",
     re.IGNORECASE)
 
