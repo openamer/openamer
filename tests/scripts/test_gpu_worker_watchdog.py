@@ -161,8 +161,57 @@ def test_ssh_requires_explicit_utf8_encoding(monkeypatch, wd):
     assert wd._ssh("x") == (0, "ok")
 
 
+# --- host-offline is not a defect (2026-09-14) ----------------------------
+#
+# The GPU PC is not a 24/7 box: when it is powered down ssh fails at the TCP
+# layer before auth ("Connection timed out"). That turned the job red every
+# cycle although nothing was broken and nothing could be fixed from the laptop.
+
+def test_host_offline_recognises_unreachable_signatures(wd):
+    for detail in (
+        "ssh: connect to host 192.168.178.23 port 22: Connection timed out",
+        "ssh: connect to host x port 22: No route to host",
+        "Host is unreachable",
+        "ssh: connect to host x port 22: Connection refused",
+        "ssh failed: timed out",
+        "Network is unreachable",
+    ):
+        assert wd._host_offline(detail) is True, detail
+
+
+def test_host_offline_false_for_real_failures(wd):
+    # A reachable host whose restart genuinely failed is still a red condition.
+    for detail in ("Access is denied.", "ERROR: The system cannot find the file",
+                   "", "schtasks: task not found"):
+        assert wd._host_offline(detail) is False, detail
+
+
+def test_powered_down_host_reports_ok(monkeypatch, wd, capsys):
+    """Down + unreachable => expected state, exit 0 (like the training lock)."""
+    import json
+    monkeypatch.setattr(wd, "probe", lambda *a, **k: None)
+    monkeypatch.setattr(wd, "training_active", lambda: False)
+    monkeypatch.setattr(wd, "restart", lambda: (
+        False, "ssh: connect to host 192.168.178.23 port 22: Connection timed out"))
+    assert wd.main() == 0
+    out = json.loads(capsys.readouterr().out)
+    assert out["ok"] is True and out["worker"] == "down"
+    assert "offline" in out["action"]
+
+
+def test_reachable_host_with_failed_restart_stays_red(monkeypatch, wd, capsys):
+    """Same 'restart failed' path, but the host answered => real failure, exit 1."""
+    import json
+    monkeypatch.setattr(wd, "probe", lambda *a, **k: None)
+    monkeypatch.setattr(wd, "training_active", lambda: False)
+    monkeypatch.setattr(wd, "restart", lambda: (False, "Access is denied."))
+    assert wd.main() == 1
+    out = json.loads(capsys.readouterr().out)
+    assert out["ok"] is False and out["restart"] == "failed"
+
+
 # --- the module still holds together --------------------------------------
 
 def test_module_exposes_expected_api(wd):
-    for name in ("training_active", "probe", "restart", "main", "_ssh"):
+    for name in ("training_active", "probe", "restart", "main", "_ssh", "_host_offline"):
         assert callable(getattr(wd, name))
