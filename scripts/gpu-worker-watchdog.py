@@ -94,8 +94,8 @@ def _ssh(cmd, timeout=60):
     run produced no stdout at all, so real errors stay visible.
     """
     try:
-        p = subprocess.run(SSH + [cmd], capture_output=True, text=True,
-                           timeout=timeout, encoding="utf-8", errors="replace")
+        p = subprocess.run(SSH + [cmd], capture_output=True, text=True, encoding="utf-8",
+                           errors="replace", timeout=timeout)
         out = p.stdout or ""
         if p.returncode != 0 and not out.strip():
             out = p.stderr or ""
