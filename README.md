@@ -4,7 +4,19 @@
 
 </p>
 
-# OpenAmer Agent — the one agent to rule them all
+# OpenAmer Agent
+
+**Drives your Windows desktop in the background — without taking your mouse.**
+
+<p align="center">
+  <img src="docs/demo/background-computer-use.gif" alt="OpenAmer acting on a window it never clicked, while the real mouse pointer stays at 0 px" width="80%">
+</p>
+<p align="center"><sub>
+Not an illustration — a recording. The agent's own cursor acts on a window that
+was never clicked, while the window's live <code>GetCursorPos</code> readout
+shows the human pointer moved <b>0 px</b>.
+<a href="docs/demo/README.md">How it was recorded, and what it does <i>not</i> claim →</a>
+</sub></p>
 
 <p align="center">
   <a href="https://www.youtube.com/watch?v=SJ2ODpyn234"><b>🧬 Watch: My AI Agent Evolves Itself</b></a>

@@ -1,4 +1,14 @@
-# OpenAmer Agent — der eine Agent, der alle beherrscht
+# OpenAmer Agent
+
+**Steuert deinen Windows-Desktop im Hintergrund — ohne dir die Maus zu nehmen.**
+
+<p align="center">
+  <img src="docs/demo/background-computer-use.gif" alt="OpenAmer bedient ein Fenster, das nie angeklickt wurde, während der echte Mauszeiger bei 0 px bleibt" width="80%">
+</p>
+<p align="center"><sub>
+Keine Illustration — eine Aufnahme. Der eigene Cursor des Agenten bedient ein Fenster, das nie angeklickt wurde, während die Live-<code>GetCursorPos</code>-Anzeige des Fensters <b>0 px</b> Zeigerbewegung zeigt.
+<a href="docs/demo/README.md">Wie es aufgenommen wurde und was es <i>nicht</i> behauptet →</a>
+</sub></p>
 
 **OpenAmer ist der Agent, der nicht kaputtgeht — und der sich nachweislich mit der Nutzung verbessert.**
 
