@@ -15,6 +15,7 @@ store chrome, so `store()` returns False and the caller can be honest.
 import importlib.util
 import sys
 from pathlib import Path
+import json
 from unittest.mock import patch
 
 REPO = Path(__file__).resolve().parent.parent.parent
@@ -116,6 +117,46 @@ def test_clean_insight_decodes_percent_escapes_before_judging():
     assert IL._clean_insight("LoRA%20adapters%20cut%20VRAM%20by%2040%25%20at%20int4.") \
         == "LoRA adapters cut VRAM by 40% at int4."
 
+
+
+class _Resp:
+    """urlopen() stand-in: .read() hands back the JSON we seeded."""
+
+    def __init__(self, payload):
+        self._b = json.dumps(payload).encode()
+
+    def read(self):
+        return self._b
+
+
+def test_headline_prefers_real_articles_and_refuses_self_posts():
+    """Show/Ask HN landing pages are ad copy, never a seed for a cycle.
+
+    Live 15.09.26: cycle_c_github took "Show HN: A murder mystery game built on
+    an open-source gen-AI agent framework", deep-read the product page and was
+    gated — the whole cycle wasted. "" must hand over to the LLM query instead.
+    """
+    only_self = [{"title": "Show HN: A murder mystery game built on an open-source gen-AI agent framework"},
+                 {"title": "Ask HN: who is hiring agent engineers right now"}]
+    with patch.object(IL.urllib.request, "urlopen", lambda *a, **k: _Resp({"hits": only_self})):
+        assert IL._fresh_headline("AI agent framework", []) == ""
+
+    with_article = [{"title": "Show HN: my agent framework, please star it"},
+                    {"title": "A practical guide to agent memory architectures with benchmarks"}]
+    with patch.object(IL.urllib.request, "urlopen", lambda *a, **k: _Resp({"hits": with_article})):
+        assert IL._fresh_headline("AI agent", []).startswith("A practical guide")
+
+
+def test_store_or_deep_retries_the_read_with_a_wider_k():
+    """A page with no qualifying sentence must not waste the cycle: retry k=6.
+
+    Live 15.09.26: cycle_e/cycle_g logged "rejected, not trained" every other
+    run because the first pass (k=2) found nothing storable.
+    """
+    ks, good = [], "vLLM 0.9 adds disaggregated prefill and 2x throughput."
+    with patch.object(IL, "store", lambda u, i: i == good),          patch.object(IL, "deep_learn", lambda q, k=2: (ks.append(k), good if k == 6 else "")[1]):
+        assert IL.store_or_deep("u", "q", "") == good
+    assert ks == [2, 6], f"expected k=2 then k=6, got {ks}"
 
 def test_every_learning_cycle_gates_its_write_and_reports_honestly():
     """Invariant, not a snapshot: one gate call and one honest rejection path per
