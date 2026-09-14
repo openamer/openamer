@@ -61,6 +61,8 @@ Not "developers" — that is everyone's audience and therefore nobody's.
   the fold. It is evidence, not the headline.
 - Every outward post (HN, Reddit, PH, Dev.to) opens with the same sentence, so
   the brand is one idea repeated, not twenty ideas scattered.
-- The demo asset we still lack is a **GIF of the background click** — the
-  sentence converted into ten seconds of proof. That is the next build, not
-  another feature.
+- The demo asset is **built**: `docs/demo/background-computer-use.gif` — a real,
+  unedited screen recording showing the agent's own cursor acting on a window
+  that was never clicked, with `GetCursorPos` proving the human pointer moved
+  **0 px**. That is the sentence converted into ten seconds of proof. See
+  `docs/demo/README.md` for the reproduction steps and its measured limits.
