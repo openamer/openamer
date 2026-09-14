@@ -163,10 +163,11 @@ working hosted button.
 
 ---
 
-## Remove these (dead) — owner action required
+## Remove these (dead) — **REMOVED 2026-09-14**
 
-Do **not** delete from published pages without the owner's decision; they are
-listed here precisely so the owner can choose. Ordered by user impact:
+All six were removed from every user-facing surface, on the owner's standing
+autonomy mandate. Kept here as the record of *why*, in the order they were
+removed — a re-add should re-run the rendered-page check first:
 
 1. **`https://github.com/sponsors/openamer`** — appears as a *"Become a sponsor"*
    / *"Sponsor"* button on the **live landing page** (`docs/landing.html:37,68`)

@@ -636,7 +636,7 @@ $0 raised / $500 goal
 ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 0%
 ```
 
-- One-time: [PayPal](https://www.paypal.com/ncp/payment/3HMBFYC9CQTMS) · [IssueHunt bounties](https://oss.issuehunt.io/r/openamer)
+- One-time: [PayPal](https://www.paypal.com/ncp/payment/3HMBFYC9CQTMS)
 - Enterprise & managed hosting: **[SPONSORS.md](SPONSORS.md)**
 
 <!-- openamer-funding-bar (auto-updated by scripts/funding.py cron): total_raised=$30 | monthly_recurring=$28 | progress=6% | updated=2026-09-05 -->

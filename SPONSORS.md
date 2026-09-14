@@ -10,14 +10,11 @@ Support OpenAmer directly via PayPal. Choose your own amount — every contribut
 
 [**→ Pay via PayPal**](https://www.paypal.com/ncp/payment/3HMBFYC9CQTMS)
 
-### 🐛 IssueHunt (Bounties)
-Fund specific issues and get the fix you need.
-
-[**→ Fund an issue on IssueHunt**](https://oss.issuehunt.io/r/openamer)
-
-> Note: recurring sponsorship (GitHub Sponsors) is not set up yet. Links are
-> verified live before being listed — a redirect to a profile/homepage is
-> treated as dead and removed (verified 2026-09-11).
+> **Recurring sponsorship is not set up yet.** GitHub Sponsors was never
+> configured (its URL 302-redirects to the plain profile), Ko-fi and Buy Me a
+> Coffee are dead, and IssueHunt was removed on 2026-09-14 — it answers HTTP
+> `200` while the body is a 404 page. Links here are verified by *rendered
+> page*, never by status code: a redirect to a profile/homepage counts as dead.
 
 ### 🏢 Enterprise
 Running OpenAmer in your company? We offer:

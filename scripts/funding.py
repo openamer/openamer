@@ -1,15 +1,20 @@
 """OpenAmer Funding Engine — Einnahmen generieren und verfolgen
 
 Reale Einnahmequellen (keine Theorie):
-1. PayPal — Direktspenden (jeder Betrag)          [verified live 2026-09-11]
-2. IssueHunt — Bounties (oss.issuehunt.io/r/openamer)  [verified live 2026-09-11]
-3. Enterprise — Rechnungen (€499-€9999, Stripe)
+1. PayPal — Direktspenden (jeder Betrag)          [verified live 2026-09-14]
+2. Enterprise — Rechnungen (€499-€9999)
 
-Dead links removed (redirect-to-homepage or 404 cost trust):
-  GitHub Sponsors (not set up), Ko-fi (redirects to homepage), Buy Me a Coffee (404).
-
-Jede Spende tracked in store/funding.json
-Läuft als Cron-Job: prüft auf neue Sponsors, sendet Dankes-Nachricht.
+Re-verified 2026-09-14 by rendered-page check. An HTTP 200 is NOT proof: several
+of these answer 200 while the body is a 404 / "profile not found" page.
+  LIVE  paypal.com/ncp/payment/3HMBFYC9CQTMS
+  DEAD  paypalme/openamer            -> body says "Profil nicht gefunden"
+  DEAD  GitHub Sponsors              -> 302 to the bare profile (never set up)
+  DEAD  ko-fi/openamer_agent         -> redirects to ko-fi.com homepage
+  DEAD  buymeacoffee/openamer        -> HTTP 404
+  DEAD  oss.issuehunt.io/r/openamer  -> soft-404 (200 + "404" body)
+The earlier note claiming "issuehunt (200) — verified live" was wrong: it read
+the status code, not the page. Dead links cost trust at the moment someone
+tries to give money.
 """
 import os
 import json, os, sys, time, uuid
@@ -27,14 +32,10 @@ TIERS = {
     "enterprise": {"price": 250, "name": "🏆 Enterprise", "badge": "Enterprise"},
 }
 
-# Verified live 2026-09-11: paypal (200), issuehunt (200).
-# Removed dead links (redirect-to-homepage or 404) — dead links cost trust:
-#   github_sponsors -> redirects to profile (not set up)
-#   ko-fi           -> /openamer_agent redirects to ko-fi.com homepage
-#   buymeacoffee    -> HTTP 404
+# Only URLs proven live on 2026-09-14 live here. Anything that redirects to a
+# profile/homepage or renders a not-found body is treated as dead and removed.
 PAYMENT_LINKS = {
-    "paypal": "https://www.paypal.com/paypalme/openamer",
-    "issuehunt": "https://oss.issuehunt.io/r/openamer",
+    "paypal": "https://www.paypal.com/ncp/payment/3HMBFYC9CQTMS",
     "enterprise": "mailto:openamer@openamer.ai",
 }
 
@@ -112,7 +113,6 @@ class FundingEngine:
             "total_transactions": len(funding["transactions"]),
             "payment_options": [
                 {"name": "PayPal", "url": PAYMENT_LINKS["paypal"], "type": "one-time"},
-                {"name": "IssueHunt", "url": PAYMENT_LINKS["issuehunt"], "type": "bounty"},
                 {"name": "Enterprise Invoice", "url": PAYMENT_LINKS["enterprise"], "type": "custom"},
             ],
             "tiers": {k: {"name": v["name"], "price": v["price"]} for k, v in TIERS.items()},

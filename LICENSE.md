@@ -91,9 +91,13 @@ limitations under the License.
 ## 📋 Funding
 
 **OpenAmer accepts contributions via:**
-- [GitHub Sponsors](https://github.com/sponsors/openamer) — One-time or monthly
-- [Buy Me a Coffee](https://buymeacoffee.com/openamer) — Small tips
+- [PayPal](https://www.paypal.com/ncp/payment/3HMBFYC9CQTMS) — One-time or custom amount (verified live 2026-09-14)
 - **Enterprise sales** — The real revenue engine
+
+> Dead funding links were removed on 2026-09-14 (verified by *rendered page*,
+> not by status code): GitHub Sponsors (302 → plain profile, never set up) and
+> Buy Me a Coffee (404). A dead "support us" button costs trust exactly at the
+> moment someone wants to give.
 
 **What funding goes to:**
 - 40% — Infrastructure (cloud, CDN, API costs)
