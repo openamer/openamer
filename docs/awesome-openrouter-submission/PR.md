@@ -78,8 +78,10 @@ cp "$PKG/app.yaml"   apps/openamer-agent/app.yaml
 cp "$PKG/logo.png"   apps/openamer-agent/logo.png
 
 # 4) Validate locally with the repo's own validator
+#    NOTE: pass the bare dir NAME, not a path — validate.js prepends apps/ itself
+#    ("npm run validate apps/openamer-agent" FAILS: the "/" breaks the name pattern)
 npm install
-npm run validate apps/openamer-agent      # expect: "✅ Valid"
+npm run validate openamer-agent           # expect: "✅ Valid"
 
 # 5) Commit (do NOT edit README.md — it is auto-generated after merge)
 git add apps/openamer-agent/app.yaml apps/openamer-agent/logo.png
@@ -101,6 +103,8 @@ gh pr create \
 
 ## Validation recorded (2026-09-14)
 
+- **Upstream validator**: `npm run validate openamer-agent` against the real
+  `scripts/validate.js` → `✅ Valid` / `All validations passed`.
 - `app.yaml` — parsed with Python `yaml.safe_load`, validated PASS against the upstream
   `schema/app.schema.json` (`required` present, `additionalProperties:false` satisfied).
   `description` = 215 chars (limit 300); `tags` = chat, coding, productivity (valid enum).
