@@ -26,17 +26,18 @@ LIVE = "http://localhost:8081"
 REPO = os.path.join(str(Path.home()), "openamer-repo")
 
 def _rotate(queries):
-    """Append a day-rotating qualifier so cycles don't saturate into duplicates.
+    """Append a rotating qualifier so cycles don't saturate into duplicates.
 
     Learned 2026-09-14: of the last 200 store() attempts, 126 were rejected with
     reason 'duplicate'. Each cycle carries only 2-3 static queries, so every seed
     is fully learned within a day and the learner then idles forever, reporting
-    'rejected, not trained' while burning cycles. Appending a qualifier that
-    advances once per day probes a genuinely new angle (8-day full rotation);
-    the duplicate gate in buffer_store still guards exact repeats.
+    'rejected, not trained' while burning cycles. The qualifier now advances PER
+    INVOCATION via the .il_rotation counter (8 angles x day rotation), so each
+    run probes a genuinely new angle; the exact-duplicate gate in buffer_store
+    still guards repeats.
     """
     angles = [
-        "",                        # plain seed (1 in 8 days)
+        "",                        # plain seed (1 in 8 invocations)
         "limitations and failure modes",
         "benchmark comparison",
         "production case study",
@@ -46,7 +47,17 @@ def _rotate(queries):
         "lessons learned postmortem",
     ]
     try:
-        a = angles[datetime.date.today().timetuple().tm_yday % len(angles)]
+        day = datetime.date.today().timetuple().tm_yday
+        # Advance the angle PER INVOCATION, not per day. A day-static angle made
+        # every same-day repeat of a source issue an identical query, so after
+        # the first success each later cycle hit the exact (u, a) duplicate gate
+        # and idled (live 14.09.26: 18 'both gated' + ~30 duplicate rejects in
+        # one day). The .il_rotation counter advances once per run, so
+        # (day + n) % 8 probes a new angle each invocation.
+        n = 0
+        if os.path.exists(ROT):
+            n = int(open(ROT, encoding="utf-8").read().strip() or 0)
+        a = angles[(day + n) % len(angles)]
     except Exception:
         a = ""
     if not a:
@@ -626,7 +637,7 @@ def cycle_f_multi_domain():
         "education AI personalization",
         "financial markets AI prediction",
     ]
-    q = random.choice(domains)
+    q = random.choice(_rotate(domains))
     raw = search(q)
     insight = extract_insight(q, raw) if raw else ""
     if not insight:
