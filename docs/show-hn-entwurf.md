@@ -1,34 +1,24 @@
-# Show HN: OpenAmer — self-improving AI agent, runs 24/7 at 0 EUR (<1 kWh/day)
+# Show HN draft — moved
 
-## Title (max 80 chars)
-Show HN: OpenAmer — a self-improving agent that runs on your laptop for free
+This draft has been **superseded**. The Show HN copy was rewritten around the
+single agreed wedge sentence (see `docs/positioning.md`) so the brand is one idea
+repeated across every outward post, instead of a feature list.
 
-## Text (first comment)
-Hi HN! I've spent the last years building OpenAmer, an open-source AI agent
-that runs persistently on your own hardware — no VM, no hosted tier, no
-phone-home.
+**Canonical Show HN copy: [`docs/launch/hn-show.md`](launch/hn-show.md).**
 
-What makes it different:
+All outward-facing launch copy now lives under `docs/launch/`, each opening with
+the same wedge line:
 
-- **Built-in learning loop**: it creates skills from experience, improves
-  them during use, and evolves its skill population genetically (Darwin
-  engine: mutation + crossover + fitness-based selection, 243 skills).
-- **Continuity of self**: a world-model of cause→effect edges with real
-  embeddings, nightly memory consolidation (REM replay + deep sleep
-  phases), and a nightly diary written in first person about what
-  happened, what was learned, what was decided.
-- **Workflow Immune System**: register a UI workflow once (selectors only);
-  when a site redesigns overnight, it detects the drift, re-finds the
-  element, patches itself, and retries — with healing-strategy
-  competitions (epsilon-greedy over tokens/text/role/classes).
-- **Runs for nearly nothing**: local 2B model for tool orchestration,
-  free-cloud reasoning chain for deep distillation. 0 €/day, <1 kWh/day.
-- **Yours**: state, memory, credentials on your hardware. Windows-native,
-  no WSL required.
+- `docs/launch/hn-show.md` — Show HN (title, URL, first comment)
+- `docs/launch/reddit.md` — r/LocalLLaMA and r/selfhosted (tailored separately)
+- `docs/launch/producthunt.md` — Product Hunt (tagline, description, first comment)
+- `docs/launch/devto.md` — Dev.to technical article
 
-It's early (single-digit stars) but every superpower is shipped and
-verified with test evidence. I'm here to answer questions.
+The old draft led with the self-improvement loop and a "runs at 0 EUR" framing.
+That was twenty-ideas-scattered; the wedge is desktop background control without
+stealing focus. Do not post from the old text.
 
-Repo: https://github.com/openamer/openamer
-Landing: https://openamer.github.io/openamer/
-Docs: https://github.com/openamer/openamer/tree/main/website/docs
+Wedge (used verbatim as the opening line of every post):
+
+> OpenAmer drives your Windows desktop in the background — without taking your
+> mouse.
