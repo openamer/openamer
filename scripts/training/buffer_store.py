@@ -173,7 +173,7 @@ _GLUED_MOTIF_MIN_COUNT = 12
 _GLUED_MOTIF_MIN_RATE = 0.045
 
 
-def _is_glued_motif(text):
+def is_glued_motif(text):
     """True when ONE 4-char motif is glued into most tokens of the text.
 
     A distinct 4-char window repeated >=12 times AND covering >=4.5% of the
@@ -267,7 +267,7 @@ def is_junk(text):
         return True
     if _is_periodic_repeat(s):
         return True
-    if _is_glued_motif(s):
+    if is_glued_motif(s):
         return True
     if _is_nav_chrome(s):
         return True

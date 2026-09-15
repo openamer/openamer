@@ -395,6 +395,10 @@ _JUNK_RE = re.compile(
     # given text. - **Text Source:** The provided text is a lengthy table of
     # con…` from a docs page — the model echoed its own template.)
     r"must be a single technical insight|\*\*text source|"
+    # GitHub org/user-page chrome (live 15.09.26: cycle_b_papers stored
+    # "Updated Dec 19, 2013 People This organization has no public
+    # members." as a research insight)
+    r"has no public members|"
     # Corporate first-person boilerplate (live 14.09.26: the efficiency cycle
     # stored "Bit-TLS-Verschlüsselung Für die sichere Datenübertragung nutzen
     # wir 256-Bit-TLS-…" — site chrome, but the bare digit 256 satisfied the
@@ -448,7 +452,19 @@ def _is_junk(text):
     t = (text or "").strip()
     if len(t) < 25:
         return True
-    return bool(_JUNK_RE.search(t))
+    if _JUNK_RE.search(t):
+        return True
+    # Ask the writer gate too: a 2B word salad scores a HIGH unique-token
+    # ratio (the motif sits inside otherwise-distinct words), so only
+    # buffer_store.is_glued_motif sees it. Rejecting it HERE lets the cycle
+    # retry (k=6) instead of burning itself on a write the writer drops.
+    try:
+        # same sibling-import idiom as store() below
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        from buffer_store import is_glued_motif
+    except Exception:
+        return False
+    return bool(is_glued_motif(t))
 
 
 def _filter_junk(results):
