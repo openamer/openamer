@@ -119,6 +119,7 @@ def test_binary_blobs_are_rejected_and_prose_is_not():
     for text in REAL:
         assert not IL._looks_binary(text), text
 
+
 def test_real_insights_survive_the_junk_gate():
     for text in REAL:
         assert not IL._is_junk(text), text
@@ -148,8 +149,6 @@ def test_clean_insight_decodes_percent_escapes_before_judging():
     """Percent-escapes must be decoded, not judged raw (digits fake a signal)."""
     assert IL._clean_insight("LoRA%20adapters%20cut%20VRAM%20by%2040%25%20at%20int4.") \
         == "LoRA adapters cut VRAM by 40% at int4."
-
-
 
 
 class _Resp:
