@@ -11044,6 +11044,49 @@ def _format_venv_python_holders_message(matches: list[tuple[int, str, str]]) -> 
     return "\n".join(lines)
 
 
+def _norm_install_path(raw: str) -> str:
+    """Case/separator-normalized path for prefix comparison."""
+    norm = os.path.normcase(os.path.normpath(raw.replace("/", os.sep)))
+    return norm.rstrip("\\/") if len(norm) > 3 else norm
+
+
+def _update_install_roots() -> tuple[str, ...]:
+    """Roots that identify *this* install — the one being updated.
+
+    Both the package root (``<install>/openamer_cli``) and the active venv
+    (``<install>/venv``) live under the install root, so the package root alone
+    covers a gateway started from either.
+    """
+    roots = [Path(__file__).resolve().parents[1]]
+    try:
+        roots.append(Path(sys.prefix).resolve())
+    except Exception:
+        pass
+    # Deterministic order (package root first) — callers and tests may index it.
+    return tuple(dict.fromkeys(_norm_install_path(str(r)) for r in roots))
+
+
+def _paths_belong_to_other_install(paths: list[str], roots: tuple[str, ...]) -> bool:
+    """True only when a path *proves* the process lives in another install.
+
+    Unprovable is not foreign. A bare ``pythonw.exe -m openamer_cli.main
+    gateway run`` argv names no location at all — and the Windows scheduled-task
+    gateways look exactly like that, so they must keep being paused for the
+    update to proceed (that is the #50090 fix). They answer False here.
+    """
+    candidates = [
+        _norm_install_path(p)
+        for p in paths
+        if p and (os.sep in p or "/" in p or ":" in p)
+    ]
+    if not candidates:
+        return False
+    if any(c.startswith(r) for c in candidates for r in roots):
+        return False
+    # Names another OpenAmer install or venv → proof enough to leave it alone.
+    return any("openamer" in c or "venv" in c for c in candidates)
+
+
 def _pause_windows_gateways_for_update() -> dict | None:
     """Stop running Windows gateways before mutating the checkout or venv.
 
@@ -11099,6 +11142,42 @@ def _pause_windows_gateways_for_update() -> dict | None:
                 exc,
             )
         return None
+
+    # Scope the stop to OUR install. An update run from install B was
+    # force-killing install A's live gateway (it shows up as "unmapped" here
+    # because B's profile scan cannot map A's PID files), and A's ticker stayed
+    # dead because B's resume path only replays PIDs it stopped itself.
+    # A foreign gateway also cannot be holding THIS checkout's files open, so
+    # leaving it alone costs the update nothing.
+    roots = _update_install_roots()
+    ours: list[int] = []
+    foreign: list[int] = []
+    for pid in running_pids:
+        paths: list[str] = []
+        try:
+            paths.extend(_capture_gateway_argv(int(pid)) or [])
+        except Exception:
+            pass
+        try:
+            import psutil  # type: ignore
+
+            exe = psutil.Process(int(pid)).exe()
+            if exe:
+                paths.append(exe)
+        except Exception:
+            pass
+        (foreign if _paths_belong_to_other_install(paths, roots) else ours).append(
+            int(pid)
+        )
+
+    if foreign:
+        print(
+            f"  → Left {len(foreign)} gateway process(es) from another OpenAmer "
+            "install running (they do not hold this checkout)"
+        )
+        running_pids = ours
+        if not running_pids:
+            return None
 
     profile_processes = {}
     try:
