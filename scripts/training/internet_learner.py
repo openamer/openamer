@@ -338,7 +338,17 @@ _JUNK_RE = re.compile(
     r"jetzt kostenlos testen|kostenlos testen|kostenlos registrieren|"
     r"find the right instructor|right instructor for you|"
     r"choose from [\d,]+ (?:online )?courses|"
-    r"jetzt angebot sichern|jetzt kaufen|jetzt bestellen)",
+    # Blog pagination + newsletter footer chrome (live 15.09.26: the papers
+    # cycle stored "Onboarding Code Comprehension ... 1 2 3 4 5 6 7 8 9 10 11
+    # Next Stay Updated Get the latest insights on software development ...
+    # delivered to your inbox." -- the pagination digits satisfied the tech
+    # gate and the footer CTA cleared the >=90 length trust. Concrete
+    # phrases only; the pagination rule needs 6+ run-together short numbers
+    # immediately followed by "Next", which real English prose never has.)
+    r"delivered to your inbox|stay updated|get the latest insights|"
+    r"subscribe to our newsletter|"
+    r"jetzt angebot sichern|jetzt kaufen|jetzt bestellen|"
+    r"(?:\b\d{1,3} ){6,}\s*next\b)",
     re.IGNORECASE)
 
 # Percent-escapes mean the "insight" is a URL fragment, not prose. Their digits
