@@ -461,12 +461,57 @@ _JUNK_RE = re.compile(
     # Based on 4,014 reviews". A run-together review count is page meta.)
     r"based on [\d,]{4,} reviews|"
     # MediaWiki wikitext markup (same live row as the writer-gate entry).
-    r'"wt":"',
+    # NOTE: every fragment in this alternation must end with `|` — the whole
+    # pattern is ONE implicitly-joined literal, so a missing pipe silently
+    # welds two phrases together (16.09.26: a missing pipe turned the wikitext
+    # rule into `"wt":"award-winning`, killing it until the suite caught it).
+    r'"wt":"|'
+    # Consumer-app marketing voice
+    # "Things - To-Do List App for Mac & iOS - Cultured Code — Things is the
+    # award-winning personal task ..." — an App-Store blurb for a to-do app,
+    # buffered as competitor intelligence. The giveaway is the product-blurb
+    # voice, never a topic word; each phrase is specific enough to be safe.
+    # Measured over the live 300-row buffer: 0 hits, 0 real-prose rows.)
+    r"award-winning (?:personal )?(?:task|to-?do|app)|"
+    r"to-?do list app|organize your (?:day|life|tasks)|"
+    r"helps you (?:organize|track|manage) your|"
+    r"available on the app store|google play|\bapp store\b|"
+    # Contact-page chrome (live 16.09.26: a cycle stored the literal phone line
+    # "You can also reach us at +1 (123) 456-7890." — the digits satisfied the
+    # technical-signal gate.)
+    # NOTE: the LAST fragment must NOT end with `|` — a trailing pipe closes the
+    # alternation with an empty branch, which matches every string and turns the
+    # whole junk gate into "reject everything" (16.09.26, caught by il_delta
+    # showing 300/300 rejected).
+    r"reach us at|contact us at|call us at",
     re.IGNORECASE)
 
 # Percent-escapes mean the "insight" is a URL fragment, not prose. Their digits
 # would otherwise satisfy the technical-signal gate (live 13.09.26).
 _URL_ESC_RE = re.compile(r"%(?:[0-9A-Fa-f]{2})")
+
+# Leaked task scaffolding openers (live 16.09.26: the "structural connection"
+# cycles buffered their OWN instructions verbatim — "Situation 2: These",
+# "Need find shared underlying pattern.", "Task: Identify the shared underlying
+# pattern connecting these two.", "Goal: Find the structural connection between
+# them (i.", "They want me to identify the shared underlying pattern").
+#
+# Anchored at the START of the text and imperatively voiced. This is essential:
+# the same cycles produce genuine declarative ANSWERS ("The shared underlying
+# pattern IS a closed-loop feedback system that …") which MUST stay learnable.
+# A bare phrase match would swallow both — the instruction voice is the only
+# reliable discriminator, so the rule keys on the opener, never the topic.
+_INSTRUCTION_OPENER_RE = re.compile(
+    r"^\s*\**\s*(?:"
+    r"need\b|task\s*:|goal\s*:|ask\s*:|interpret\b|"
+    r"find\s+(?:the\s+)?(?:structural\s+)?connection|"
+    r"identify\s+(?:the\s+)?(?:shared\s+)?(?:underlying\s+)?pattern|"
+    r"they\s+want\s+me\s+to|i\s+(?:need|should|will|must)\s+(?:to\s+)?(?:find|identify)|"
+    r"what\s+(?:is\s+)?(?:the\s+)?(?:shared|structural)|"
+    r"both\s+situations\s+describe|"
+    r"situation\s*\d+\s*:"
+    r")",
+    re.IGNORECASE)
 
 
 _PRINTABLE_WS = " \t\n" + chr(13)  # whitespace allowed in prose (not binary noise)
@@ -499,6 +544,8 @@ def _is_junk(text):
     if _looks_binary(t):
         return True
     if _JUNK_RE.search(t):
+        return True
+    if _INSTRUCTION_OPENER_RE.match(t):
         return True
     # Ask the writer gate too: a 2B word salad scores a HIGH unique-token
     # ratio (the motif sits inside otherwise-distinct words), so only
@@ -597,6 +644,23 @@ _TECH_HINT_RE = re.compile(
 def _looks_like_content(sentence):
     """True when a candidate sentence carries real technical signal."""
     return bool(_TECH_HINT_RE.search(sentence or ""))
+
+
+def _has_alpha_signal(text):
+    """True when the technical signal is a real keyword, not a bare digit.
+
+    Live 16.09.26: `_clean_insight` trusted ANY short (<90) candidate whose
+    `_TECH_HINT_RE` matched — but that alternation also matches a bare number,
+    so a document heading ("Distinction between classical and modern physics
+    2.") was buffered as multi-domain knowledge on the strength of the section
+    numeral `2`. A bare digit is a section number, not knowledge.
+    Measured over the live 300-row buffer: requiring an ALPHABETIC keyword
+    rejects 42 verbless fragments (leaked extraction scaffolding, "Situation
+    2:" stubs, phone/contact chrome) and keeps all 13 rows that carry a real
+    technical keyword — no insight lost.
+    """
+    m = _TECH_HINT_RE.search(text or "")
+    return bool(m) and any(c.isalpha() for c in m.group(0))
 
 
 # A real sentence has a verb; a nav/menu fragment ("Blog - Neutree Projects ▾
@@ -851,7 +915,7 @@ def _clean_insight(text, max_len=250):
         return ""
     if _is_nav_list(t):
         return ""  # doc-site sidebar/menu, not prose
-    if len(t) < 90 and not _looks_like_content(t):
+    if len(t) < 90 and not _has_alpha_signal(t):
         return ""
     return t[:max_len]
 

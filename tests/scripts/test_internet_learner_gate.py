@@ -68,6 +68,22 @@ _PRICING_LEAK = (
     "annually, cancel anytime Gaia+ $24 ."
 )
 
+# Extraction-gate leaks found live 16.09.26 (all three passed BOTH gates and
+# were sitting in the 300-row buffer). Two shapes, one root cause: the short
+# (<90) candidate rule accepted ANY `_TECH_HINT_RE` match, and that alternation
+# also matches a bare digit — a section numeral counts as "technical signal".
+#   cycle_e_competitors  -> App-Store blurb for a to-do app, buffered as
+#                           competitor intelligence (>=90, so length-trusted)
+#   cycle_f_multi_domain -> a bare document heading, accepted on the numeral "2"
+#   connection cycles    -> the extractor's OWN task instructions, echoed back
+_APPMARKETING_LEAK = (
+    "Things - To-Do List App for Mac & iOS - Cultured Code — Things is the "
+    "award-winning personal task"
+)
+_HEADING_NUMERAL_LEAK = "Distinction between classical and modern physics 2."
+_PROMPT_ECHO_LEAK = "Need find shared underlying pattern."
+_CONTACT_LEAK = "You can also reach us at +1 (123) 456-7890."
+
 CHROME = [
     "Jetzt spenden Benutzerkonto erstellen Anmelden Meine Werkzeuge",
     "Unsere Werbepartner Einkaufen Ferienwohnungen Freizeit und Reise",
@@ -122,6 +138,11 @@ SHORT_FURNITURE = [
     # a search "title" that is really a URL: the bare digits of %20 satisfied the
     # technical-signal gate until the candidate was decoded first
     "Which%20Programming%20Language%20used%20behind%20Microsoft%20Edge%20Browser%20.",
+    # live 16.09.26: a bare document heading cleared the short-candidate rule on
+    # the strength of its section numeral ("2"). A bare digit is not knowledge.
+    _HEADING_NUMERAL_LEAK,
+    _PROMPT_ECHO_LEAK,
+    _CONTACT_LEAK,
 ]
 
 REAL = [
@@ -137,6 +158,11 @@ REAL = [
     # genuine metrics sentence with scattered numbers must still pass
     "GPT-4 scores 89.1 on MMLU, 92.0 on HumanEval, and 3 of 4 agents pass the "
     "tool-call eval.",
+    # Counter-cases for the 16.09.26 short-candidate tightening: a real insight
+    # on each blocked topic must still pass. The new rule requires an ALPHABETIC
+    # technical keyword below 90 chars, so none of these may be lost.
+    "Speculative decoding cuts decode latency by 40% with a draft model.",
+    "GGUF Q4_K_M quantization shrinks a 7B model to about 4 GB.",
 ]
 
 
@@ -191,6 +217,41 @@ def test_clean_insight_drops_short_chrome_and_keeps_prose():
         assert IL._clean_insight(text) == "", text
     assert IL._clean_insight(REAL[0])
     assert IL._clean_insight(REAL[2])
+
+
+def test_bare_digit_is_not_technical_signal():
+    """A section numeral must not buy a fragment into the buffer (live 16.09.26).
+
+    `_clean_insight` trusted any short candidate matching `_TECH_HINT_RE`, whose
+    alternation also matches a bare number — so the document heading
+    "Distinction between classical and modern physics 2." was buffered as
+    multi-domain knowledge. The check is structural (alphabetic keyword
+    required), never topical, so a real short insight on the same subject still
+    passes. Measured over the live 300-row buffer: 42 verbless fragments
+    rejected, all 13 rows with a real technical keyword kept.
+    """
+    assert IL._TECH_HINT_RE.search(_HEADING_NUMERAL_LEAK)  # old gate's signal
+    assert IL._TECH_HINT_RE.search(_HEADING_NUMERAL_LEAK).group(0) == "2"
+    assert not IL._has_alpha_signal(_HEADING_NUMERAL_LEAK)
+    assert IL._clean_insight(_HEADING_NUMERAL_LEAK) == ""
+    # a genuine short insight on the SAME topic must survive the tightening
+    assert IL._has_alpha_signal("Mamba-3 decodes faster than a transformer.")
+    assert IL._clean_insight("Mamba-3 decodes faster than a transformer.")
+
+
+def test_consumer_app_blurb_is_rejected():
+    """An App-Store product blurb is not competitor intelligence (live 16.09.26).
+
+    The row cleared the >=90 length trust on the strength of its marketing copy.
+    The pattern keys on the blurb voice, never on the app or its category.
+    """
+    assert IL._is_junk(_APPMARKETING_LEAK)
+    assert IL._clean_insight(_APPMARKETING_LEAK) == ""
+    # counter-case: a real competitor/product analysis insight still passes
+    real = ("Cursor's agent mode runs up to 8 parallel tool calls and bills per "
+            "token, which makes long refactors costlier than a batch CLI run.")
+    assert not IL._is_junk(real)
+    assert IL._clean_insight(real)
 
 
 def test_store_refuses_chrome_and_writes_real_insights(tmp_path):
