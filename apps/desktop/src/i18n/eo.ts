@@ -310,8 +310,7 @@ export const eo = defineLocale({
       lastChecked: age => `Lasta kontrolo ${age}`,
       justNowSuffix: ' · ĵus',
       automaticUpdates: 'Aŭtomataj ĝisdatigoj',
-      automaticUpdatesDesc:
-        'OpenAmer aŭtomate kontrolas ĝisdatigojn fone kaj sciigas vin kiam unu pretas.',
+      automaticUpdatesDesc: 'OpenAmer aŭtomate kontrolas ĝisdatigojn fone kaj sciigas vin kiam unu pretas.',
       branchCommit: (branch, commit) => `Branĉo ${branch} · Enmetiĝo ${commit}`,
       never: 'neniam',
       justNow: 'ĵus',

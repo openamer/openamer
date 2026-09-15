@@ -337,7 +337,8 @@ export const zhHant = defineLocale({
         title: '寵物',
         intro:
           '領養一隻懸浮在應用上的 petdex 動畫寵物，它會根據 OpenAmer 的狀態做出反應——工具執行時奔跑、成功時歡呼、出錯時沮喪。',
-        restartHint: '寵物功能需要重新啟動——目前執行的應用在此功能加入前啟動。請結束並重新開啟 OpenAmer，然後回到此處。',
+        restartHint:
+          '寵物功能需要重新啟動——目前執行的應用在此功能加入前啟動。請結束並重新開啟 OpenAmer，然後回到此處。',
         scaleTitle: '大小',
         scaleDesc: '調整懸浮寵物的大小，所有介面即時生效。',
         roamTitle: '漫遊',
@@ -672,7 +673,8 @@ export const zhHant = defineLocale({
       defaultConnection: '預設連線適用於所有沒有自訂覆寫的設定檔。',
       profileConnection: profile => `僅當「${profile}」為作用中設定檔時使用此連線。選擇「使用預設閘道」可移除其覆寫。`,
       envOverrideTitle: '環境變數正在控制此桌面工作階段。',
-      envOverrideDesc: '取消設定 OPENAMER_DESKTOP_REMOTE_URL 和 OPENAMER_DESKTOP_REMOTE_TOKEN 後才會使用下方儲存的設定。',
+      envOverrideDesc:
+        '取消設定 OPENAMER_DESKTOP_REMOTE_URL 和 OPENAMER_DESKTOP_REMOTE_TOKEN 後才會使用下方儲存的設定。',
       localTitle: '本機閘道',
       localDesc: '在 localhost 啟動私有 OpenAmer 後端。這是預設方式，可離線使用。',
       inheritTitle: '使用預設閘道',

@@ -215,7 +215,10 @@ export function projectIdForCwd(cwd: string): null | string {
 // keep the cwd-leaf label — matching the backend `_project_info_for_cwd`, which
 // only resolves projects.db rows, so the desktop and TUI name the same session
 // identically without threading a second per-session copy through session.info.
-export function projectNameForCwd(cwd: string, tree: readonly SidebarProjectTree[] = $projectTree.get()): null | string {
+export function projectNameForCwd(
+  cwd: string,
+  tree: readonly SidebarProjectTree[] = $projectTree.get()
+): null | string {
   const target = (cwd || '').trim()
 
   if (!target) {

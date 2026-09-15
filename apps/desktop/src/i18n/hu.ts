@@ -97,7 +97,8 @@ export const hu = defineLocale({
       remoteSignInHint: signInLabel =>
         `Kijelentkezteti a mentett távoli böngésző-munkamenetből, majd megnyitja: ${signInLabel}. A beépített backendhez való visszatéréshez használja a „Helyi gateway használata” opciót.`,
       signOutAndSignIn: 'Kijelentkezés és bejelentkezés',
-      remoteFailureHint: 'Ellenőrizze az URL-t és a bejelentkezést a gateway-beállításokban, vagy váltson helyi gatewayre.',
+      remoteFailureHint:
+        'Ellenőrizze az URL-t és a bejelentkezést a gateway-beállításokban, vagy váltson helyi gatewayre.',
       hideRecentLogs: 'Legutóbbi naplók elrejtése',
       showRecentLogs: 'Legutóbbi naplók megjelenítése',
       signedInTitle: 'Bejelentkezve',
@@ -310,8 +311,7 @@ export const hu = defineLocale({
       lastChecked: age => `Utolsó ellenőrzés: ${age}`,
       justNowSuffix: ' · éppen most',
       automaticUpdates: 'Automatikus frissítések',
-      automaticUpdatesDesc:
-        'Az OpenAmer automatikusan keres frissítéseket a háttérben, és értesít, ha egyik kész.',
+      automaticUpdatesDesc: 'Az OpenAmer automatikusan keres frissítéseket a háttérben, és értesít, ha egyik kész.',
       branchCommit: (branch, commit) => `Ág: ${branch} · Véglegesítés: ${commit}`,
       never: 'soha',
       justNow: 'éppen most',

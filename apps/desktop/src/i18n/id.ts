@@ -310,8 +310,7 @@ export const id = defineLocale({
       lastChecked: age => `Terakhir diperiksa ${age}`,
       justNowSuffix: ' · baru saja',
       automaticUpdates: 'Pembaruan otomatis',
-      automaticUpdatesDesc:
-        'OpenAmer memeriksa pembaruan otomatis di latar belakang dan memberi tahu saat satu siap.',
+      automaticUpdatesDesc: 'OpenAmer memeriksa pembaruan otomatis di latar belakang dan memberi tahu saat satu siap.',
       branchCommit: (branch, commit) => `Cabang ${branch} · Komit ${commit}`,
       never: 'tidak pernah',
       justNow: 'baru saja',

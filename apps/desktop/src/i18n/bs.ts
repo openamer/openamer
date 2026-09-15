@@ -310,8 +310,7 @@ export const bs = defineLocale({
       lastChecked: age => `Zadnja provjera ${age}`,
       justNowSuffix: ' · upravo sada',
       automaticUpdates: 'Automatska ažuriranja',
-      automaticUpdatesDesc:
-        'OpenAmer automatski provjerava ažuriranja u pozadini i obavještava kad je jedno spremno.',
+      automaticUpdatesDesc: 'OpenAmer automatski provjerava ažuriranja u pozadini i obavještava kad je jedno spremno.',
       branchCommit: (branch, commit) => `Grana ${branch} · Commit ${commit}`,
       never: 'nikad',
       justNow: 'upravo sada',

@@ -91,7 +91,16 @@ test('fresh bootstrap args include the packaged commit pin', () => {
       activeRoot: '/tmp/openamer-agent',
       openamerHome: '/tmp/openamer'
     }),
-    ['--dir', '/tmp/openamer-agent', '--openamer-home', '/tmp/openamer', '--branch', 'main', '--commit', installStamp.commit]
+    [
+      '--dir',
+      '/tmp/openamer-agent',
+      '--openamer-home',
+      '/tmp/openamer',
+      '--branch',
+      'main',
+      '--commit',
+      installStamp.commit
+    ]
   )
 })
 
