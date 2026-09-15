@@ -11102,6 +11102,60 @@ def _belongs_to_other_install(
     return any("openamer" in c or "venv" in c for c in candidates)
 
 
+def _split_gateways_by_install(pids: list[int]) -> tuple[list[int], list[int]]:
+    """Split discovered gateway PIDs into ``(ours, foreign)`` by evidence.
+
+    Best-effort by design: a process whose argv, exe AND environment are all
+    unreadable yields no evidence and counts as ours, so the scheduled-task
+    pause from #50090 keeps working. See `_belongs_to_other_install`.
+    """
+    roots = _update_install_roots()
+    our_home = os.environ.get("OPENAMER_HOME")
+    ours: list[int] = []
+    foreign: list[int] = []
+
+    from openamer_cli.gateway import _capture_gateway_argv
+
+    for pid in pids:
+        paths: list[str] = []
+        home = None
+        try:
+            paths.extend(_capture_gateway_argv(int(pid)) or [])
+        except Exception:
+            pass
+
+        proc = None
+        try:
+            import psutil  # type: ignore
+
+            proc = psutil.Process(int(pid))
+        except Exception:
+            pass
+        if proc is not None:
+            # Read the two signals independently: a denied exe() must not cost us
+            # the environment, which is the only thing that identifies a gateway
+            # started from the shared base interpreter.
+            try:
+                exe = proc.exe()
+                if exe:
+                    paths.append(exe)
+            except Exception:
+                pass
+            try:
+                home = (proc.environ() or {}).get("OPENAMER_HOME")
+            except Exception:
+                pass
+
+        target = (
+            foreign
+            if _belongs_to_other_install(paths, roots, home, our_home)
+            else ours
+        )
+        target.append(int(pid))
+
+    return ours, foreign
+
+
 def _pause_windows_gateways_for_update() -> dict | None:
     """Stop running Windows gateways before mutating the checkout or venv.
 
@@ -11164,40 +11218,7 @@ def _pause_windows_gateways_for_update() -> dict | None:
     # dead because B's resume path only replays PIDs it stopped itself.
     # A foreign gateway also cannot be holding THIS checkout's files open, so
     # leaving it alone costs the update nothing.
-    roots = _update_install_roots()
-    our_home = os.environ.get("OPENAMER_HOME")
-    ours: list[int] = []
-    foreign: list[int] = []
-    for pid in running_pids:
-        paths: list[str] = []
-        home = None
-        try:
-            paths.extend(_capture_gateway_argv(int(pid)) or [])
-        except Exception:
-            pass
-        proc = None
-        try:
-            import psutil  # type: ignore
-
-            proc = psutil.Process(int(pid))
-        except Exception:
-            pass
-        if proc is not None:
-            # Read the two signals independently: a denied exe() must not cost us
-            # the environment, which is the only thing that identifies a gateway
-            # started from the shared base interpreter.
-            try:
-                exe = proc.exe()
-                if exe:
-                    paths.append(exe)
-            except Exception:
-                pass
-            try:
-                home = (proc.environ() or {}).get("OPENAMER_HOME")
-            except Exception:
-                pass
-        is_foreign = _belongs_to_other_install(paths, roots, home, our_home)
-        (foreign if is_foreign else ours).append(int(pid))
+    ours, foreign = _split_gateways_by_install(running_pids)
 
     if foreign:
         print(
