@@ -232,12 +232,21 @@ def _novel_query(domain_kw, seeds):
     """
     avoid = _recent_queries()
     q = ""
-    try:
-        q = _fresh_headline(domain_kw, avoid)
-    except Exception:
-        q = ""
+    # domain_kw may be a list of keyword fallbacks: a narrow term can have ZERO
+    # article-grade HN hits (live 15.09.2026: "quantization LLM inference
+    # efficiency" -> 2 Algolia hits, both Show HN -> _fresh_headline "" on every
+    # page, so cycle_h_efficiency fell through to the LLM/static-seed path and
+    # was gated every cycle: 0/3 on 15.09.). Try each keyword before giving up.
+    kws = domain_kw if isinstance(domain_kw, (list, tuple)) else [domain_kw]
+    for _kw in kws:
+        try:
+            q = _fresh_headline(_kw, avoid)
+        except Exception:
+            q = ""
+        if q:
+            break
     if not q:
-        q = _llm_novel_query(domain_kw, avoid)
+        q = _llm_novel_query(kws[0], avoid)
     if not q:
         q = random.choice(_rotate(seeds))
     _remember_query(q)
@@ -838,7 +847,8 @@ def cycle_b_papers():
         "arxiv test-time training state space models 2026",
         "arxiv efficient fine-tuning small language models",
     ]
-    q = _novel_query("arxiv meta-learning LLM agents", queries)
+    q = _novel_query(["arxiv meta-learning LLM agents", "self-improving LLM agents",
+                      "arxiv LLM"], queries)
     raw = search(q)
     insight = extract_insight(q, raw) if raw else ""
     if not insight:
@@ -967,7 +977,8 @@ def cycle_h_efficiency():
         "quantization techniques GGUF int4 int8 comparison",
         "edge AI deployment low power LLM",
     ]
-    q = _novel_query("quantization LLM inference efficiency", queries)
+    q = _novel_query(["quantization LLM inference efficiency", "quantization LLM",
+                      "GGUF quantization", "energy efficient LLM"], queries)
     raw = search(q)
     insight = extract_insight(q, raw) if raw else ""
     if not insight:

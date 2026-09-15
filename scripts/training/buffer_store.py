@@ -182,6 +182,10 @@ _NAV_CHROME = (
     # cycle_c_github stored "... Public Notifications You must be signed in to
     # change notification settings Fork 925 Star 6." as a learning)
     "signed in to change notification",
+    # GitHub org/user-page chrome the learner's deep read leaks (live
+    # 15.09.26: cycle_b_papers stored "Updated Dec 19, 2013 People This
+    # organization has no public members." as a research insight)
+    "has no public members",
 )
 
 
