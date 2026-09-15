@@ -3,6 +3,10 @@ import { describe, expect, it, vi } from 'vitest'
 import { terminalParityHints } from '../lib/terminalParity.js'
 
 describe('terminalParityHints', () => {
+  // APPDATA keeps the win32 settings-dir branch resolvable; POSIX uses
+  // homeDir instead, so this stays correct on every host.
+  const VSCODE_ENV = { APPDATA: '/tmp/fake-appdata', TERM_PROGRAM: 'vscode' } as NodeJS.ProcessEnv
+
   it('warns for Apple Terminal and SSH/tmux sessions', async () => {
     const hints = await terminalParityHints({
       TERM_PROGRAM: 'Apple_Terminal',
@@ -17,7 +21,7 @@ describe('terminalParityHints', () => {
   it('suggests IDE setup only for VS Code-family terminals that still need bindings', async () => {
     const readFile = vi.fn().mockRejectedValue(Object.assign(new Error('missing'), { code: 'ENOENT' }))
 
-    const hints = await terminalParityHints({ TERM_PROGRAM: 'vscode' } as NodeJS.ProcessEnv, {
+    const hints = await terminalParityHints(VSCODE_ENV, {
       fileOps: { readFile },
       homeDir: '/tmp/fake-home'
     })
@@ -67,7 +71,7 @@ describe('terminalParityHints', () => {
       ])
     )
 
-    const hints = await terminalParityHints({ TERM_PROGRAM: 'vscode' } as NodeJS.ProcessEnv, {
+    const hints = await terminalParityHints(VSCODE_ENV, {
       fileOps: { readFile },
       homeDir: '/tmp/fake-home'
     })

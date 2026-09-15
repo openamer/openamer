@@ -16,6 +16,9 @@ const exe = (dir: string, name: string): string => {
 }
 
 describe('resolveEditor', () => {
+  // These cases exercise the POSIX fallback chain; on Windows resolveEditor
+  // short-circuits to notepad.exe, so pin the platform rather than inherit it.
+  const POSIX = 'linux' as const
   let dir: string
 
   beforeEach(() => {
@@ -38,7 +41,7 @@ describe('resolveEditor', () => {
   it('ignores whitespace-only env vars', () => {
     const expected = exe(dir, 'editor')
 
-    expect(resolveEditor({ EDITOR: '   ', PATH: dir, VISUAL: '' })).toEqual([expected])
+    expect(resolveEditor({ EDITOR: '   ', PATH: dir, VISUAL: '' }, POSIX)).toEqual([expected])
   })
 
   it('prefers `editor` over nano over vi on $PATH', () => {
@@ -46,18 +49,18 @@ describe('resolveEditor', () => {
     exe(dir, 'vi')
     const expected = exe(dir, 'editor')
 
-    expect(resolveEditor({ PATH: dir })).toEqual([expected])
+    expect(resolveEditor({ PATH: dir }, POSIX)).toEqual([expected])
   })
 
   it('falls back to nano before vi when both exist', () => {
     exe(dir, 'vi')
     const expected = exe(dir, 'nano')
 
-    expect(resolveEditor({ PATH: dir })).toEqual([expected])
+    expect(resolveEditor({ PATH: dir }, POSIX)).toEqual([expected])
   })
 
   it('returns ["vi"] when $PATH is empty', () => {
-    expect(resolveEditor({ PATH: '' })).toEqual(['vi'])
+    expect(resolveEditor({ PATH: '' }, POSIX)).toEqual(['vi'])
   })
 
   it('walks multi-entry $PATH', () => {
@@ -65,7 +68,7 @@ describe('resolveEditor', () => {
     const b = mkdtempSync(join(tmpdir(), 'editor-b-'))
     const expected = exe(b, 'editor')
 
-    expect(resolveEditor({ PATH: [a, b].join(delimiter) })).toEqual([expected])
+    expect(resolveEditor({ PATH: [a, b].join(delimiter) }, POSIX)).toEqual([expected])
   })
 
   it('uses notepad.exe on Windows when no env override', () => {
