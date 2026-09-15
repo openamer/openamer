@@ -14,6 +14,14 @@ from pathlib import Path
 
 _profile_fallback_warned: bool = False
 _UNSET = object()
+
+# Resolved keys, keyed by the path string that was handed in. Path.resolve()
+# is a filesystem call, and this function sits under every ToolRegistry
+# lookup through current_scope_key(), so without this the registry pays a
+# syscall per lookup. A process only ever sees a handful of home paths, so
+# the dict stays tiny. Only paths that really exist are stored, see below.
+_HOME_KEY_CACHE: dict[str, str] = {}
+
 _OPENAMER_HOME_OVERRIDE: ContextVar[str | object] = ContextVar(
     "_OPENAMER_HOME_OVERRIDE", default=_UNSET
 )
@@ -181,6 +189,37 @@ def get_default_openamer_root() -> Path:
 
     # Not a profile path — OPENAMER_HOME itself is the root
     return env_path
+
+
+def openamer_home_key(path: str | Path | None = None) -> str:
+    """Stable registry key for an OpenAmer home/profile dir.
+
+    ``strict=False`` so profiles whose directories don't exist yet still get a key.
+
+    The resolved value is remembered per input path. A directory that does
+    not exist yet is resolved without touching the cache, because the answer
+    can change once it is created (e.g. part of the path turns out to be a symlink).
+    """
+    candidate = Path(path) if path is not None else get_openamer_home()
+    raw = str(candidate)
+    cached = _HOME_KEY_CACHE.get(raw)
+    if cached is not None:
+        return cached
+    expanded = candidate.expanduser()
+    try:
+        resolved = expanded.resolve(strict=True)
+    except OSError:
+        # Not on disk yet: lenient resolve, not stored, so the real answer is
+        # picked up once the directory appears.
+        return os.path.normcase(str(expanded.resolve(strict=False)))
+    key = os.path.normcase(str(resolved))
+    _HOME_KEY_CACHE[raw] = key
+    return key
+
+
+def reset_openamer_home_key_cache() -> None:
+    """Forget every remembered home key (for tests that move a home dir on disk)."""
+    _HOME_KEY_CACHE.clear()
 
 
 def get_optional_skills_dir(default: Path | None = None) -> Path:

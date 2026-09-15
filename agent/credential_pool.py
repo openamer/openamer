@@ -270,7 +270,7 @@ class PooledCredential:
 
     @property
     def runtime_api_key(self) -> str:
-        if self.provider == "nous":
+        if self.provider == "openamer":
             # Nous stores the runtime inference credential in agent_key for
             # compatibility. It must be a NAS invoke JWT.
             for token, expires_at in (
@@ -280,7 +280,7 @@ class PooledCredential:
                 if (
                     isinstance(token, str)
                     and token.strip()
-                    and auth_mod._nous_invoke_jwt_is_usable(
+                    and auth_mod._openamer_invoke_jwt_is_usable(
                         token, scope=getattr(self, "scope", None), expires_at=expires_at,
                     )
                 ):
@@ -290,7 +290,7 @@ class PooledCredential:
 
     @property
     def runtime_base_url(self) -> Optional[str]:
-        if self.provider == "nous":
+        if self.provider == "openamer":
             return self.inference_base_url or self.base_url
         return self.base_url
 
@@ -861,7 +861,7 @@ _TOKENS_SINGLETON_PROVIDERS: Dict[str, Tuple[str, str, str, str]] = {
 
 # Providers whose pooled OAuth entries ``_refresh_entry_impl`` can actually refresh. Any other
 # provider is returned unchanged by that path, so callers must not report a refresh for them.
-REFRESHABLE_OAUTH_PROVIDERS = frozenset({"anthropic", "nous", *_TOKENS_SINGLETON_PROVIDERS})
+REFRESHABLE_OAUTH_PROVIDERS = frozenset({"anthropic", "openamer", *_TOKENS_SINGLETON_PROVIDERS})
 
 # Providers whose refresh tokens are single-use: the sync -> POST -> write-back
 # sequence must be serialized across processes under the auth-store flock.
@@ -876,7 +876,7 @@ _REFRESH_TIMEOUT_ENV_VARS = {
 # re-auth another process wrote to the provider's store.
 _RESYNC_SOURCE = {
     "anthropic": "claude_code",
-    "nous": "device_code",
+    "openamer": "device_code",
     "openai-codex": "device_code",
     "xai-oauth": "device_code",
 }
@@ -1255,11 +1255,11 @@ class CredentialPool(CredentialPoolAdminMixin):
         writes fresh tokens under ``_auth_store_lock``; adopting them avoids a
         "refresh token reuse" revocation on the Nous Portal.
         """
-        if self.provider != "nous" or entry.source != "device_code":
+        if self.provider != "openamer" or entry.source != "device_code":
             return entry
         try:
             with _auth_store_lock():
-                state = _load_provider_state(_load_auth_store(), "nous")
+                state = _load_provider_state(_load_auth_store(), "openamer")
             if not state:
                 return entry
             comparable = {
@@ -1304,7 +1304,7 @@ class CredentialPool(CredentialPoolAdminMixin):
         """
         # Only singleton-seeded entries sync back; ``manual:*`` entries are
         # independent credentials and must not write to the singleton.
-        if entry.source != "device_code" or self.provider not in ("nous", *_TOKENS_SINGLETON_PROVIDERS):
+        if entry.source != "device_code" or self.provider not in ("openamer", *_TOKENS_SINGLETON_PROVIDERS):
             return
         try:
             with _auth_store_lock():
@@ -1328,7 +1328,7 @@ class CredentialPool(CredentialPoolAdminMixin):
 
     def _apply_entry_to_singleton_state(self, entry: PooledCredential, state: Dict[str, Any]) -> bool:
         """Copy *entry*'s tokens into the provider's auth.json ``state`` in place."""
-        if self.provider == "nous":
+        if self.provider == "openamer":
             state["access_token"] = entry.access_token
             for key in ("refresh_token", "expires_at", "agent_key", "agent_key_expires_at"):
                 if getattr(entry, key):
@@ -1548,7 +1548,7 @@ class CredentialPool(CredentialPoolAdminMixin):
             elif self.provider in _TOKENS_SINGLETON_PROVIDERS:
                 entry = self._sync_entry_from_auth_store(entry)
                 updated = self._post_tokens_refresh(entry)
-            elif self.provider == "nous":
+            elif self.provider == "openamer":
                 stale_key = entry.runtime_api_key or entry.agent_key or entry.access_token
                 synced = self._sync_nous_entry_from_auth_store(entry)
                 if synced is not entry:
@@ -1558,7 +1558,7 @@ class CredentialPool(CredentialPoolAdminMixin):
                     if force and entry.runtime_api_key and entry.runtime_api_key != stale_key:
                         logger.debug("Nous entry %s: adopting peer-rotated token, skipping refresh", entry.id)
                         return entry
-                auth_mod.resolve_nous_runtime_credentials(force_refresh=force, stale_access_token=stale_key or None)
+                auth_mod.resolve_openamer_runtime_credentials(force_refresh=force, stale_access_token=stale_key or None)
                 updated = self._sync_nous_entry_from_auth_store(entry)
             else:
                 return entry
@@ -1638,7 +1638,7 @@ class CredentialPool(CredentialPoolAdminMixin):
                 self._clear_terminal_tokens_state(entry, exc)
                 self._quarantine_sources(entry, {"device_code"})
                 return None
-        elif self.provider == "nous":
+        elif self.provider == "openamer":
             synced = self._sync_nous_entry_from_auth_store(entry)
             if synced.refresh_token != entry.refresh_token:
                 logger.debug("Nous refresh failed but auth.json has newer tokens — adopting")
@@ -1652,12 +1652,12 @@ class CredentialPool(CredentialPoolAdminMixin):
                 # 0"). The caller's retry re-syncs once the winner persisted.
                 logger.debug("Nous refresh skipped: auth store lock busy; not benching entry")
                 return entry
-            if auth_mod._is_terminal_nous_refresh_error(exc):
+            if auth_mod._is_terminal_openamer_refresh_error(exc):
                 logger.debug("Nous refresh token is terminally invalid; clearing local token state")
                 self._clear_terminal_nous_state(entry, exc)
                 self._quarantine_sources(
                     entry,
-                    {auth_mod.NOUS_DEVICE_CODE_SOURCE, f"manual:{auth_mod.NOUS_DEVICE_CODE_SOURCE}"},
+                    {auth_mod.OPENAMER_DEVICE_CODE_SOURCE, f"manual:{auth_mod.OPENAMER_DEVICE_CODE_SOURCE}"},
                 )
                 return None
         self._mark_exhausted(entry, None)
@@ -1694,7 +1694,7 @@ class CredentialPool(CredentialPoolAdminMixin):
         try:
             with _auth_store_lock():
                 auth_store = _load_auth_store()
-                state = _load_provider_state(auth_store, "nous") or {
+                state = _load_provider_state(auth_store, "openamer") or {
                     "client_id": entry.client_id,
                     "portal_base_url": entry.portal_base_url,
                     "inference_base_url": entry.inference_base_url,
@@ -1704,9 +1704,9 @@ class CredentialPool(CredentialPoolAdminMixin):
                 }
                 store_refresh = str(state.get("refresh_token") or "").strip()
                 if not store_refresh or store_refresh == str(entry.refresh_token or "").strip():
-                    auth_mod._quarantine_nous_oauth_state(state, exc, reason="credential_pool_refresh_failure")
-                    auth_mod._quarantine_nous_pool_entries(auth_store, exc, reason="credential_pool_refresh_failure")
-                    _save_provider_state(auth_store, "nous", state)
+                    auth_mod._quarantine_openamer_oauth_state(state, exc, reason="credential_pool_refresh_failure")
+                    auth_mod._quarantine_openamer_pool_entries(auth_store, exc, reason="credential_pool_refresh_failure")
+                    _save_provider_state(auth_store, "openamer", state)
                     _save_auth_store(auth_store)
         except Exception as clear_exc:
             logger.debug("Failed to clear terminal Nous OAuth state: %s", clear_exc)
@@ -1790,7 +1790,7 @@ class CredentialPool(CredentialPoolAdminMixin):
             return entry
         if self.provider == "anthropic":
             return self._sync_anthropic_entry_from_credentials_file(entry)
-        if self.provider == "nous":
+        if self.provider == "openamer":
             return self._sync_nous_entry_from_auth_store(entry)
         return self._sync_entry_from_auth_store(entry)
 
@@ -2319,7 +2319,7 @@ def _seed_anthropic_singletons(seed: _Seeder) -> None:
 
 
 def _seed_nous_singleton(seed: _Seeder, auth_store: Dict[str, Any]) -> None:
-    state = _load_provider_state(auth_store, "nous")
+    state = _load_provider_state(auth_store, "openamer")
     has_runtime_material = bool(
         isinstance(state, dict)
         and (str(state.get("access_token") or "").strip() or str(state.get("agent_key") or "").strip())
@@ -2479,7 +2479,7 @@ def _seed_from_singletons(provider: str, entries: List[PooledCredential]) -> Tup
     auth_store = _load_auth_store()
     if provider == "anthropic":
         _seed_anthropic_singletons(seed)
-    elif provider == "nous":
+    elif provider == "openamer":
         _seed_nous_singleton(seed, auth_store)
     elif provider == "copilot":
         _seed_copilot_singleton(seed)

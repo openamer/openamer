@@ -15,6 +15,10 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 
+class SkillImproverError(Exception):
+    """Raised when the self-improving skills subsystem cannot complete an operation."""
+
+
 # ---------------------------------------------------------------------------
 # Data structures
 # ---------------------------------------------------------------------------

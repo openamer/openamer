@@ -16314,6 +16314,7 @@ def main(
     worktree: bool = False,
     w: bool = False,
     checkpoints: bool = False,
+    plan_mode: bool = False,
     pass_session_id: bool = False,
     ignore_user_config: bool = False,
     ignore_rules: bool = False,
@@ -16450,6 +16451,7 @@ def main(
         compact=compact,
         resume=resume,
         checkpoints=checkpoints,
+        plan_mode=plan_mode,
         pass_session_id=pass_session_id,
         ignore_rules=ignore_rules,
     )

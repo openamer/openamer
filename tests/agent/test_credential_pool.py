@@ -456,7 +456,7 @@ def test_unmatched_api_key_hint_rotates_without_benching_innocent_key(tmp_path, 
     # Keep the dev machine's live ~/.claude credentials from seeding a
     # claude_code singleton entry into this pool (same isolation as the
     # other anthropic pool tests in this file).
-    monkeypatch.setattr("agent.anthropic_adapter.read_claude_code_credentials", lambda: None)
+    monkeypatch.setattr("agent.anthropic_credentials.read_claude_code_credentials", lambda: None)
     _write_auth_store(
         tmp_path,
         {
@@ -1711,11 +1711,11 @@ def test_load_pool_removes_stale_file_backed_singleton_entry(tmp_path, monkeypat
     )
 
     monkeypatch.setattr(
-        "agent.anthropic_adapter.read_openamer_oauth_credentials",
+        "agent.anthropic_credentials.read_openamer_oauth_credentials",
         lambda: None,
     )
     monkeypatch.setattr(
-        "agent.anthropic_adapter.read_claude_code_credentials",
+        "agent.anthropic_credentials.read_claude_code_credentials",
         lambda: None,
     )
 
@@ -1803,7 +1803,7 @@ def test_singleton_seed_does_not_clobber_manual_oauth_entry(tmp_path, monkeypatc
     )
 
     monkeypatch.setattr(
-        "agent.anthropic_adapter.read_openamer_oauth_credentials",
+        "agent.anthropic_credentials.read_openamer_oauth_credentials",
         lambda: {
             "accessToken": "seeded-token",
             "refreshToken": "seeded-refresh",
@@ -1811,7 +1811,7 @@ def test_singleton_seed_does_not_clobber_manual_oauth_entry(tmp_path, monkeypatc
         },
     )
     monkeypatch.setattr(
-        "agent.anthropic_adapter.read_claude_code_credentials",
+        "agent.anthropic_credentials.read_claude_code_credentials",
         lambda: None,
     )
 
@@ -1832,7 +1832,7 @@ def test_load_pool_prefers_anthropic_env_token_over_file_backed_oauth(tmp_path, 
     _write_auth_store(tmp_path, {"version": 1, "providers": {}})
 
     monkeypatch.setattr(
-        "agent.anthropic_adapter.read_openamer_oauth_credentials",
+        "agent.anthropic_credentials.read_openamer_oauth_credentials",
         lambda: {
             "accessToken": "file-backed-token",
             "refreshToken": "refresh-token",
@@ -1840,7 +1840,7 @@ def test_load_pool_prefers_anthropic_env_token_over_file_backed_oauth(tmp_path, 
         },
     )
     monkeypatch.setattr(
-        "agent.anthropic_adapter.read_claude_code_credentials",
+        "agent.anthropic_credentials.read_claude_code_credentials",
         lambda: None,
     )
 
@@ -1893,8 +1893,8 @@ def test_load_pool_api_key_path_skips_oauth_autodiscovery(tmp_path, monkeypatch)
             "expiresAt": int(time.time() * 1000) + 3_600_000,
         }
 
-    monkeypatch.setattr("agent.anthropic_adapter.read_openamer_oauth_credentials", _fake_pkce)
-    monkeypatch.setattr("agent.anthropic_adapter.read_claude_code_credentials", _fake_cc)
+    monkeypatch.setattr("agent.anthropic_credentials.read_openamer_oauth_credentials", _fake_pkce)
+    monkeypatch.setattr("agent.anthropic_credentials.read_claude_code_credentials", _fake_cc)
 
     from agent.credential_pool import load_pool
 
@@ -1947,8 +1947,8 @@ def test_load_pool_api_key_path_prunes_stale_oauth_entries(tmp_path, monkeypatch
         },
     )
     monkeypatch.setattr("openamer_cli.auth.is_provider_explicitly_configured", lambda pid: True)
-    monkeypatch.setattr("agent.anthropic_adapter.read_openamer_oauth_credentials", lambda: None)
-    monkeypatch.setattr("agent.anthropic_adapter.read_claude_code_credentials", lambda: None)
+    monkeypatch.setattr("agent.anthropic_credentials.read_openamer_oauth_credentials", lambda: None)
+    monkeypatch.setattr("agent.anthropic_credentials.read_claude_code_credentials", lambda: None)
 
     from agent.credential_pool import load_pool
 
@@ -1976,11 +1976,11 @@ def test_load_pool_oauth_path_still_autodiscovers(tmp_path, monkeypatch):
     monkeypatch.setattr("openamer_cli.auth.is_provider_explicitly_configured", lambda pid: True)
 
     monkeypatch.setattr(
-        "agent.anthropic_adapter.read_openamer_oauth_credentials",
+        "agent.anthropic_credentials.read_openamer_oauth_credentials",
         lambda: None,
     )
     monkeypatch.setattr(
-        "agent.anthropic_adapter.read_claude_code_credentials",
+        "agent.anthropic_credentials.read_claude_code_credentials",
         lambda: {
             "accessToken": "sk-ant-oat01-autodiscovered-cc",
             "refreshToken": "cc-refresh",
@@ -2447,11 +2447,11 @@ def test_load_pool_does_not_seed_claude_code_when_anthropic_not_configured(tmp_p
 
     # Claude Code credentials exist on disk
     monkeypatch.setattr(
-        "agent.anthropic_adapter.read_claude_code_credentials",
+        "agent.anthropic_credentials.read_claude_code_credentials",
         lambda: {"accessToken": "sk-ant...oken", "refreshToken": "rt", "expiresAt": 9999999999999},
     )
     monkeypatch.setattr(
-        "agent.anthropic_adapter.read_openamer_oauth_credentials",
+        "agent.anthropic_credentials.read_openamer_oauth_credentials",
         lambda: None,
     )
     # User configured kimi-coding, NOT anthropic
@@ -2709,7 +2709,7 @@ def test_sync_openamer_entry_from_auth_store_adopts_newer_tokens(tmp_path, monke
         },
     )
 
-    synced = pool._sync_openamer_entry_from_auth_store(entry)
+    synced = pool._sync_nous_entry_from_auth_store(entry)
     assert synced is not entry
     assert synced.access_token == "access-NEW"
     assert synced.refresh_token == "refresh-NEW"
@@ -2747,7 +2747,7 @@ def test_sync_openamer_entry_noop_when_tokens_match(tmp_path, monkeypatch):
     entry = pool.select()
     assert entry is not None
 
-    synced = pool._sync_openamer_entry_from_auth_store(entry)
+    synced = pool._sync_nous_entry_from_auth_store(entry)
     assert synced is entry
 
 def test_openamer_exhausted_entry_recovers_via_auth_store_sync(tmp_path, monkeypatch):
@@ -2815,7 +2815,7 @@ def test_openamer_exhausted_entry_recovers_via_auth_store_sync(tmp_path, monkeyp
         },
     )
 
-    available = pool._available_entries(clear_expired=True)
+    available, _pending = pool._available_entries(clear_expired=True)
     assert len(available) == 1
     assert available[0].refresh_token == "refresh-FRESH"
     assert available[0].last_status is None
@@ -2857,7 +2857,7 @@ def test_sync_codex_entry_from_auth_store_adopts_newer_tokens(tmp_path, monkeypa
     # Simulate `openamer auth openai-codex` replacing the token pair on disk.
     _write_auth_store(tmp_path, _codex_auth_store("access-NEW", "refresh-NEW"))
 
-    synced = pool._sync_codex_entry_from_auth_store(entry)
+    synced = pool._sync_entry_from_auth_store(entry)
     assert synced is not entry
     assert synced.access_token == "access-NEW"
     assert synced.refresh_token == "refresh-NEW"
@@ -2877,7 +2877,7 @@ def test_sync_codex_entry_noop_when_tokens_match(tmp_path, monkeypatch):
     entry = pool.select()
     assert entry is not None
 
-    synced = pool._sync_codex_entry_from_auth_store(entry)
+    synced = pool._sync_entry_from_auth_store(entry)
     assert synced is entry
 
 
@@ -2916,13 +2916,13 @@ def test_codex_exhausted_entry_recovers_via_auth_store_sync(tmp_path, monkeypatc
     # Sanity: before the reauth, _available_entries refuses to return
     # this entry because last_error_reset_at is in the future.
     # (clear_expired would only clear it AFTER exhausted_until elapsed.)
-    available_before = pool._available_entries(clear_expired=True, refresh=False)
+    available_before, _pending = pool._available_entries(clear_expired=True, refresh=False)
     assert available_before == []
 
     # Simulate `openamer model` / `openamer auth` refreshing the tokens.
     _write_auth_store(tmp_path, _codex_auth_store("access-FRESH", "refresh-FRESH"))
 
-    available = pool._available_entries(clear_expired=True, refresh=False)
+    available, _pending = pool._available_entries(clear_expired=True, refresh=False)
     assert len(available) == 1
     assert available[0].access_token == "access-FRESH"
     assert available[0].refresh_token == "refresh-FRESH"
@@ -2957,7 +2957,7 @@ def test_codex_exhausted_entry_stays_stuck_without_auth_store_update(tmp_path, m
 
     # auth.json unchanged → sync returns same entry → exhausted_until check
     # still skips it.
-    available = pool._available_entries(clear_expired=True, refresh=False)
+    available, _pending = pool._available_entries(clear_expired=True, refresh=False)
     assert available == []
 
 
@@ -3318,8 +3318,8 @@ def test_persist_preserves_concurrent_disk_only_entry(tmp_path, monkeypatch):
     # Block external-credential autodiscovery: a real ~/.claude/.credentials.json
     # on a dev machine would seed an extra claude_code entry and break the
     # exact-id assertions below (passes on CI where no such file exists).
-    monkeypatch.setattr("agent.anthropic_adapter.read_openamer_oauth_credentials", lambda: None)
-    monkeypatch.setattr("agent.anthropic_adapter.read_claude_code_credentials", lambda: None)
+    monkeypatch.setattr("agent.anthropic_credentials.read_openamer_oauth_credentials", lambda: None)
+    monkeypatch.setattr("agent.anthropic_credentials.read_claude_code_credentials", lambda: None)
     _write_auth_store(
         tmp_path,
         {
@@ -3382,8 +3382,8 @@ def test_persist_preserves_concurrent_disk_only_entry(tmp_path, monkeypatch):
 def test_remove_index_does_not_resurrect_via_disk_merge(tmp_path, monkeypatch):
     monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / "openamer"))
     # Block external-credential autodiscovery (see note in the test above).
-    monkeypatch.setattr("agent.anthropic_adapter.read_openamer_oauth_credentials", lambda: None)
-    monkeypatch.setattr("agent.anthropic_adapter.read_claude_code_credentials", lambda: None)
+    monkeypatch.setattr("agent.anthropic_credentials.read_openamer_oauth_credentials", lambda: None)
+    monkeypatch.setattr("agent.anthropic_credentials.read_claude_code_credentials", lambda: None)
     _write_auth_store(
         tmp_path,
         {
@@ -3434,11 +3434,11 @@ def _make_anthropic_claude_code_pool(tmp_path, monkeypatch, *, access_token, ref
     _write_auth_store(tmp_path, {"version": 1, "credential_pool": {}})
     monkeypatch.setattr("openamer_cli.auth.is_provider_explicitly_configured", lambda pid: pid == "anthropic")
     monkeypatch.setattr(
-        "agent.anthropic_adapter.read_openamer_oauth_credentials",
+        "agent.anthropic_credentials.read_openamer_oauth_credentials",
         lambda: None,
     )
     monkeypatch.setattr(
-        "agent.anthropic_adapter.read_claude_code_credentials",
+        "agent.anthropic_credentials.read_claude_code_credentials",
         lambda: {"accessToken": access_token, "refreshToken": refresh_token, "expiresAt": expires_at_ms},
     )
     from agent.credential_pool import load_pool
@@ -3463,7 +3463,7 @@ def test_sync_anthropic_entry_access_token_only_changed(tmp_path, monkeypatch):
 
     # Credentials file: new access_token, same refresh_token
     monkeypatch.setattr(
-        "agent.anthropic_adapter.read_claude_code_credentials",
+        "agent.anthropic_credentials.read_claude_code_credentials",
         lambda: {"accessToken": "new-access", "refreshToken": "shared-refresh", "expiresAt": 9_999_999_999_000},
     )
 
@@ -3483,7 +3483,7 @@ def test_sync_anthropic_entry_refresh_token_changed(tmp_path, monkeypatch):
     )
 
     monkeypatch.setattr(
-        "agent.anthropic_adapter.read_claude_code_credentials",
+        "agent.anthropic_credentials.read_claude_code_credentials",
         lambda: {"accessToken": "access-v2", "refreshToken": "refresh-v2", "expiresAt": 9_999_999_999_000},
     )
 
@@ -3503,7 +3503,7 @@ def test_sync_anthropic_entry_tokens_unchanged_no_op(tmp_path, monkeypatch):
     )
 
     monkeypatch.setattr(
-        "agent.anthropic_adapter.read_claude_code_credentials",
+        "agent.anthropic_credentials.read_claude_code_credentials",
         lambda: {"accessToken": "same-access", "refreshToken": "same-refresh", "expiresAt": 9_999_999_999_000},
     )
 
@@ -3541,7 +3541,7 @@ def test_sync_anthropic_entry_clears_all_error_fields(tmp_path, monkeypatch):
     pool._replace_entry(entry, exhausted)
 
     monkeypatch.setattr(
-        "agent.anthropic_adapter.read_claude_code_credentials",
+        "agent.anthropic_credentials.read_claude_code_credentials",
         lambda: {"accessToken": "fresh-access", "refreshToken": "fresh-refresh", "expiresAt": 9_999_999_999_000},
     )
 

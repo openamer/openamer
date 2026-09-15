@@ -42,7 +42,10 @@ from typing import Any, Callable, Dict, FrozenSet, Iterable, List, Optional, Tup
 from urllib.parse import parse_qs, urlencode, urlparse
 
 import httpx
-
+from openamer_cli.auth_oauth_grants import (  # noqa: F401  re-exported
+    SINGLE_USE_REFRESH_POOL_PROVIDERS, _oauth_heal_clean_marks, _oauth_heal_notices,
+    consume_oauth_heal_notices, heal_forked_single_use_oauth_grants,
+    strip_cloned_single_use_oauth_grants)
 from openamer_cli.config import (
     get_openamer_home,
     get_config_path,
@@ -1530,6 +1533,7 @@ def write_credential_pool(
     entries: List[Dict[str, Any]],
     *,
     removed_ids: Optional[Iterable[str]] = None,
+    status_cleared_ids: Optional[Iterable[str]] = None,
 ) -> Path:
     """Persist one provider's credential pool under auth.json.
 
@@ -1548,8 +1552,14 @@ def write_credential_pool(
 
     Pass ``removed_ids`` for entries the caller intentionally removed, so the
     merge does not resurrect them from the on-disk copy.
+
+    Pass ``status_cleared_ids`` for entries whose status was cleared on purpose
+    (``openamer auth reset``): they skip the recency merge, which would
+    otherwise read the cleared ``last_status_at`` (None -> epoch 0) as a stale
+    snapshot and copy a still-binding cooldown back onto the reset entry.
     """
     removed = {rid for rid in (removed_ids or ()) if rid}
+    status_cleared = {cid for cid in (status_cleared_ids or ()) if cid}
     with _auth_store_lock():
         auth_store = _load_auth_store()
         pool = auth_store.get("credential_pool")
@@ -1575,7 +1585,9 @@ def write_credential_pool(
         }
         merged: List[Dict[str, Any]] = [
             _merge_disk_cooldown_state(
-                entry, existing_by_id.get(entry.get("id")), provider_id
+                entry,
+                None if entry.get("id") in status_cleared else existing_by_id.get(entry.get("id")),
+                provider_id,
             )
             if isinstance(entry, dict)
             else entry

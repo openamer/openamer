@@ -219,7 +219,7 @@ _REGISTRY: List[RemovalStep] = [
         description="~/.openamer/.anthropic_oauth.json",
     ),
     RemovalStep(
-        provider="nous", source_id="device_code",
+        provider="openamer", source_id="device_code",
         remove_fn=_remove_auth_store_oauth,
         description="auth.json providers.nous",
     ),

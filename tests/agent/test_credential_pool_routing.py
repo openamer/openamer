@@ -575,31 +575,31 @@ class TestFailureAttribution:
         assert self._statuses(pool)["cred-0"] != "exhausted"
         agent._swap_credential.assert_not_called()
 
-    def test_stable_id_rotates_from_failed_entry_when_cursor_points_elsewhere(
-        self, tmp_path, monkeypatch
-    ):
-        """Stable identity wins over both a stale key and the shared cursor."""
+    def test_stale_credential_id_prefers_api_key_hint(self, tmp_path, monkeypatch):
+        """#79156: a disagreeing credential_id must not win over the key that failed.
+
+        After a per-turn env refresh rewrites ``api_key`` without rebinding the
+        pool entry id, recovery still passes the STALE id of a healthy fallback
+        together with the key that actually failed. Marking the stale id would
+        bench an innocent credential, so the api_key_hint wins.
+
+        Supersedes an earlier assertion that the stable id always wins: upstream
+        inverted that behavior deliberately (the id can go stale, the key cannot).
+        """
         pool = self._make_pool(
             tmp_path, monkeypatch,
             [self._entry(0, "key-a"), self._entry(1, "key-b-new")],
         )
         assert pool.select().id == "cred-0"
-        agent = self._agent(
-            pool,
-            failing_key="key-b-old",
-            credential_id="cred-1",
-        )
-        agent._is_entitlement_failure = MagicMock(return_value=False)
 
-        from agent.agent_runtime_helpers import recover_with_credential_pool
-
-        recovered, _ = recover_with_credential_pool(
-            agent, status_code=401, has_retried_429=False
+        next_entry = pool.mark_exhausted_and_rotate(
+            status_code=429,
+            api_key_hint="key-b-old",   # the key that really failed, not in the pool
+            credential_id="cred-1",     # stale id of the healthy entry
         )
 
-        assert recovered is True
         statuses = self._statuses(pool)
-        assert statuses["cred-1"] == "exhausted"
-        assert statuses["cred-0"] != "exhausted"
-        swapped = agent._swap_credential.call_args[0][0]
-        assert swapped.id == "cred-0"
+        assert statuses["cred-1"] != "exhausted",             "a stale credential_id must not bench the healthy entry (#79156)"
+        if next_entry is not None:
+            assert next_entry.id == "cred-0"
+

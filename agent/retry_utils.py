@@ -6,9 +6,11 @@ rate-limited provider concurrently.
 """
 
 import random
+import re
 import threading
 import time
-from typing import Any
+from datetime import datetime, timedelta
+from typing import Any, Optional
 
 # Monotonic counter for jitter seed uniqueness within the same process.
 # Protected by a lock to avoid race conditions in concurrent retry paths
@@ -152,3 +154,196 @@ def zai_coding_overload_retry_ceiling(short_attempts: int = _ZAI_CODING_OVERLOAD
     value for Z.AI Coding overload 429s so the 30/60/90/120s waits run.
     """
     return short_attempts + len(_ZAI_CODING_OVERLOAD_LONG_BACKOFF) + 1
+
+
+# ---------------------------------------------------------------------------
+# Provider "retry after / resets in" message parsing
+# ---------------------------------------------------------------------------
+
+# "4.5s", "30 sec", "2 minutes", "1h30m", "1 hour 30 min"
+_DURATION_UNIT_SECONDS = {
+    "ms": 0.001,
+    "millisecond": 0.001,
+    "milliseconds": 0.001,
+    "s": 1.0,
+    "sec": 1.0,
+    "secs": 1.0,
+    "second": 1.0,
+    "seconds": 1.0,
+    "m": 60.0,
+    "min": 60.0,
+    "mins": 60.0,
+    "minute": 60.0,
+    "minutes": 60.0,
+    "h": 3600.0,
+    "hr": 3600.0,
+    "hrs": 3600.0,
+    "hour": 3600.0,
+    "hours": 3600.0,
+    "d": 86400.0,
+    "day": 86400.0,
+    "days": 86400.0,
+}
+
+# Provider phrasings that introduce a relative delay. Kept narrow on purpose so
+# an unrelated number in the message body (a token count, a request id) can't
+# be mistaken for a reset delay. The trailing ``\b`` matters: without it the
+# bare ``in`` alternative matches inside ordinary words ("invalid", "input").
+_DURATION_ANCHOR_RE = re.compile(
+    r"\b(?:retry|try again|resets?|reset|available|come back|wait|in)\b\D{0,20}?"
+    r"(\d+(?:\.\d+)?)\s*"
+    r"(milliseconds?|ms|seconds?|secs?|sec|s|minutes?|mins?|min|m|hours?|hrs?|hr|h|days?|d)\b",
+    re.IGNORECASE,
+)
+
+# "1h30m", "1 hour 30 min", "2m30s", "2 min 30 sec" — no anchor word needed,
+# the digits+unit shape is unambiguous. Hours and minutes/seconds are separate
+# patterns because "2m30s" has no hour component at all.
+_COMPOUND_HMS_RE = re.compile(
+    r"\b(\d+(?:\.\d+)?)\s*(h|hr|hrs|hour|hours)\s*"
+    r"(?:(\d+(?:\.\d+)?)\s*(m|min|mins|minute|minutes))?\s*"
+    r"(?:(\d+(?:\.\d+)?)\s*(s|sec|secs|second|seconds))?\b",
+    re.IGNORECASE,
+)
+_COMPOUND_MS_RE = re.compile(
+    r"\b(\d+(?:\.\d+)?)\s*(m|min|mins|minute|minutes)\s*"
+    r"(\d+(?:\.\d+)?)\s*(s|sec|secs|second|seconds)\b",
+    re.IGNORECASE,
+)
+
+
+# "resets at 14:30:00Z", "available after 2026-09-15T23:10:00Z"
+_CLOCK_TIME_RE = re.compile(r"\b(\d{1,2}):(\d{2})(?::(\d{2}))?\s*(am|pm)?\b", re.IGNORECASE)
+_ISO_TIMESTAMP_RE = re.compile(
+    r"\b(\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}(?::\d{2})?(?:\.\d+)?(?:Z|[+-]\d{2}:?\d{2})?)\b"
+)
+
+
+def _unit_to_seconds(unit: str) -> Optional[float]:
+    return _DURATION_UNIT_SECONDS.get(unit.lower())
+
+
+# Upper bound on a parsed reset delay. Generous enough for multi-day quota
+# windows, small enough that a misparsed number can never park a credential
+# (or a scheduled retry) for weeks.
+_MAX_RESET_DELAY_SECONDS = 7 * 86400.0
+
+
+def _clamp_delay(seconds: float) -> float:
+    return max(0.0, min(float(seconds), _MAX_RESET_DELAY_SECONDS))
+
+
+def _clock_offset_seconds(match: "re.Match[str]", *, now: Optional[float] = None) -> Optional[float]:
+    """Seconds from now until a wall-clock time appearing in the text.
+
+    Only used as a fallback when no relative delay is present. Sub-day precision
+    only — provider messages that mean "tomorrow at 09:00" are indistinguishable
+    from "today at 09:00" without a date, so the result is clamped to 24h.
+    """
+    now_dt = datetime.fromtimestamp(now if now is not None else time.time())
+    hour = int(match.group(1))
+    minute = int(match.group(2))
+    second = int(match.group(3) or 0)
+    meridiem = (match.group(4) or "").lower()
+    if meridiem:
+        if hour == 12:
+            hour = 0
+        if meridiem == "pm":
+            hour += 12
+    if hour > 23 or minute > 59 or second > 59:
+        return None
+    target = now_dt.replace(hour=hour, minute=minute, second=second, microsecond=0)
+    if target <= now_dt:
+        target += timedelta(days=1)
+    offset = (target - now_dt).total_seconds()
+    return max(0.0, min(offset, 86400.0))
+
+
+def reset_delay_from_message(message: Any, *, now: Optional[float] = None) -> Optional[float]:
+    """Extract a relative retry delay in seconds from a provider error message.
+
+    Credential-pool entries record provider errors as free text (``error_context``
+    / ``last_error``); this recovers the reset delay the provider stated in prose
+    ("Please retry after 4 seconds", "Rate limit reached, resets in 2 minutes",
+    "try again in 1h30m") so a depleted credential can be parked for the right
+    amount of time instead of a blanket TTL. Absolute ISO timestamps embedded in
+    the message are honoured as well, since several providers report ``resets_at``
+    inline.
+
+    Args:
+        message: Raw provider error text. Non-strings return ``None``.
+        now: Optional epoch-seconds reference point (injectable for tests).
+
+    Returns:
+        Non-negative seconds to wait, or ``None`` when the message states no
+        parseable reset time. Values are clamped to 24h so a misparsed clock
+        reading can never park a credential indefinitely.
+    """
+    if not isinstance(message, str):
+        return None
+    raw = message.strip()
+    if not raw:
+        return None
+    now_ts = now if now is not None else time.time()
+
+    lowered = raw.lower()
+    if any(
+        marker in lowered
+        for marker in ("weekly", "monthly", "daily limit", "billing period", "next month")
+    ):
+        # Period-scale messages carry no precise delay we should act on.
+        return None
+
+    # 1. Compound shapes ("1h30m", "2m30s") — unambiguous, no anchor required.
+    best: Optional[float] = None
+    for match in _COMPOUND_HMS_RE.finditer(raw):
+        if match.group(2) is None:
+            continue
+        total = float(match.group(1)) * 3600.0
+        if match.group(3) is not None:
+            total += float(match.group(3)) * 60.0
+        if match.group(5) is not None:
+            total += float(match.group(5))
+        best = total if best is None else min(best, total)
+    for match in _COMPOUND_MS_RE.finditer(raw):
+        total = float(match.group(1)) * 60.0 + float(match.group(3))
+        best = total if best is None else min(best, total)
+    if best is not None:
+        return _clamp_delay(best)
+
+    # 2. Single anchored unit ("retry after 4 seconds", "resets in 2 min").
+    best = None
+    for match in _DURATION_ANCHOR_RE.finditer(raw):
+        seconds = _unit_to_seconds(match.group(2))
+        if seconds is None:
+            continue
+        total = float(match.group(1)) * seconds
+        best = total if best is None else min(best, total)
+    if best is not None:
+        return _clamp_delay(best)
+
+    # 3. Absolute ISO-8601 reset timestamp ("resets_at 2026-09-15T23:10:00Z").
+    for match in _ISO_TIMESTAMP_RE.finditer(raw):
+        stamp = match.group(1).replace(" ", "T")
+        try:
+            parsed = datetime.fromisoformat(stamp.replace("Z", "+00:00"))
+        except ValueError:
+            continue
+        if parsed.tzinfo is not None:
+            delta = parsed.timestamp() - now_ts
+        else:
+            delta = (
+                parsed - datetime.fromtimestamp(now_ts)
+            ).total_seconds()
+        if delta > 0:
+            return _clamp_delay(delta)
+
+    # 4. Bare wall-clock time ("resets at 23:10"). Weakest signal, last resort.
+    if "reset" in lowered or "available" in lowered or "try again" in lowered:
+        for match in _CLOCK_TIME_RE.finditer(raw):
+            offset = _clock_offset_seconds(match, now=now_ts)
+            if offset:
+                return offset
+
+    return None
+
