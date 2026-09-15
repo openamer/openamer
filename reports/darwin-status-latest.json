@@ -1,6 +1,6 @@
 {
-  "updated": "2026-09-14T03:00:30+00:00",
-  "population": 737,
+  "updated": "2026-09-15T03:00:47+00:00",
+  "population": 741,
   "avg_score": 39.4,
   "fittest": [
     {
@@ -45,21 +45,19 @@
     }
   ],
   "autopatch": {
-    "timestamp": "2026-09-14T04:00:47",
+    "timestamp": "2026-09-15T04:00:29",
     "kept": [
       {
         "skill": "auto-structural-connection-between-tool",
         "before": 21,
         "after": 31,
         "delta": 10,
-        "fixes": [
-          "\u2705 metadata.openamer Block hinzugef\u00fcgt"
-        ]
+        "fixes": []
       },
       {
-        "skill": "auto-structural-connection-between-system",
-        "before": 21,
-        "after": 25,
+        "skill": "doca-bare-metal-deployment",
+        "before": 24,
+        "after": 28,
         "delta": 4,
         "fixes": [
           "\u2705 metadata.openamer Block hinzugef\u00fcgt",
@@ -68,9 +66,9 @@
         ]
       },
       {
-        "skill": "auto-what-did-you-learn",
-        "before": 21,
-        "after": 25,
+        "skill": "doca-bf3-deployment",
+        "before": 24,
+        "after": 28,
         "delta": 4,
         "fixes": [
           "\u2705 metadata.openamer Block hinzugef\u00fcgt",
@@ -79,9 +77,9 @@
         ]
       },
       {
-        "skill": "auto-what-is-the-difference",
-        "before": 21,
-        "after": 25,
+        "skill": "doca-bf4-deployment",
+        "before": 24,
+        "after": 28,
         "delta": 4,
         "fixes": [
           "\u2705 metadata.openamer Block hinzugef\u00fcgt",
@@ -90,9 +88,9 @@
         ]
       },
       {
-        "skill": "auto-what-new-agent-architectures",
-        "before": 21,
-        "after": 25,
+        "skill": "doca-caps",
+        "before": 24,
+        "after": 28,
         "delta": 4,
         "fixes": [
           "\u2705 metadata.openamer Block hinzugef\u00fcgt",
@@ -101,9 +99,9 @@
         ]
       },
       {
-        "skill": "mcore-split-pr",
-        "before": 21,
-        "after": 25,
+        "skill": "doca-collectx-deployment",
+        "before": 24,
+        "after": 28,
         "delta": 4,
         "fixes": [
           "\u2705 metadata.openamer Block hinzugef\u00fcgt",
@@ -112,9 +110,9 @@
         ]
       },
       {
-        "skill": "nemo-rl-docs",
-        "before": 21,
-        "after": 25,
+        "skill": "doca-comm-channel-admin",
+        "before": 24,
+        "after": 28,
         "delta": 4,
         "fixes": [
           "\u2705 metadata.openamer Block hinzugef\u00fcgt",
@@ -123,9 +121,9 @@
         ]
       },
       {
-        "skill": "tilegym-monkey-patch-kernels-to-transformers",
-        "before": 21,
-        "after": 25,
+        "skill": "doca-container-deployment",
+        "before": 24,
+        "after": 28,
         "delta": 4,
         "fixes": [
           "\u2705 metadata.openamer Block hinzugef\u00fcgt",
@@ -134,9 +132,9 @@
         ]
       },
       {
-        "skill": "jetson-video-setup",
-        "before": 23,
-        "after": 27,
+        "skill": "doca-debug",
+        "before": 24,
+        "after": 28,
         "delta": 4,
         "fixes": [
           "\u2705 metadata.openamer Block hinzugef\u00fcgt",
@@ -145,7 +143,7 @@
         ]
       },
       {
-        "skill": "doca-argus",
+        "skill": "doca-dms",
         "before": 24,
         "after": 28,
         "delta": 4,
