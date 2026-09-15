@@ -127,8 +127,7 @@ def test_clean_insight_decodes_percent_escapes_before_judging():
     assert IL._clean_insight("LoRA%20adapters%20cut%20VRAM%20by%2040%25%20at%20int4.") \
         == "LoRA adapters cut VRAM by 40% at int4."
 
-
-
+
 
 class _Resp:
     """urlopen() stand-in: .read() hands back the JSON we seeded."""
