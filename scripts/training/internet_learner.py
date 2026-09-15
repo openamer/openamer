@@ -99,33 +99,79 @@ def _fresh_headline(domain_kw, avoid):
     rejected EVERY later cycle forever ("rejected, not trained (shallow + deep
     read both gated)" on all 5 sources for hours, buffer stuck at its 300 cap).
     A live headline is novel by construction, so the learner keeps learning.
+    Widened 2026-09-15: only the top 12 points>10 hits were ever read, so once
+    every one of them sat in the novelty ledger this path returned "" and the
+    learner fell back to the (then-degenerate) LLM query -> saturated seeds ->
+    4 consecutive live rejects. Now 4 pages x 2 thresholds = top ~96 hits.
     """
     q = urllib.parse.quote(domain_kw)
-    url = (f"https://hn.algolia.com/api/v1/search?query={q}&tags=story"
-           f"&numericFilters=points%3E10&hitsPerPage=12")
-    raw = urllib.request.urlopen(url, timeout=15).read()
     avoidset = {a.lower() for a in avoid}
-    hits = json.loads(raw).get("hits", [])
-    # Prefer real articles/repos over Show/Launch/Ask HN posts: those usually
-    # point at a product landing page whose copy is marketing chrome, not
-    # knowledge (live 14.09.26: the security cycle pulled a "Show HN: Pingu
-    # Unchained" product page and learned nothing but ad copy — correctly
-    # junk-gated, but a wasted cycle).
     _SELF = ("show hn:", "launch hn:", "ask hn:", "tell hn:")
-    for h in hits:
-        t = (h.get("title") or "").strip()
-        if len(t) < 20 or t.lower() in avoidset or _is_junk(t):
-            continue
-        if t.lower().startswith(_SELF):
-            continue
-        return t
-    # No article-grade headline (only Show/Ask HN product pages, which carry
-    # marketing chrome instead of knowledge - live 15.09.26: cycle_c_github
-    # pulled "Show HN: A murder mystery game built on an open-source gen-AI
-    # agent framework" and deep-read ad copy, so the cycle was gated and
-    # wasted). Return "" so _novel_query falls through to the LLM-synthesised
-    # query, which yields a narrow technical term instead.
+    start = random.randint(0, 3)
+    pages = (start, (start + 1) % 4, (start + 2) % 4, (start + 3) % 4)
+    for filt in ("points%3E10", "points%3E3"):
+        for page in pages:
+            url = (f"https://hn.algolia.com/api/v1/search?query={q}&tags=story"
+                   f"&numericFilters={filt}&hitsPerPage=12&page={page}")
+            try:
+                raw = urllib.request.urlopen(url, timeout=15).read()
+            except Exception:
+                continue
+            # Prefer real articles/repos over Show/Launch/Ask HN posts: those
+            # usually point at a product landing page whose copy is marketing
+            # chrome, not knowledge (live 14.09.26: the security cycle pulled a
+            # "Show HN: Pingu Unchained" product page and learned nothing but
+            # ad copy - correctly junk-gated, but a wasted cycle).
+            for h in json.loads(raw).get("hits", []):
+                t = (h.get("title") or "").strip()
+                if len(t) < 20 or t.lower() in avoidset or _is_junk(t):
+                    continue
+                if t.lower().startswith(_SELF):
+                    continue
+                return t
+    # No article-grade headline on any page (only Show/Ask HN product pages,
+    # which carry marketing chrome instead of knowledge - live 15.09.26: the
+    # github cycle pulled "Show HN: A murder mystery game built on an
+    # open-source gen-AI agent framework" and deep-read ad copy, so the cycle
+    # was gated and wasted). Return "" so _novel_query falls through to the
+    # LLM-synthesised query, which yields a narrow technical term instead.
     return ""
+
+
+def _collapse_repeats(t):
+    """Cut a degenerate phrase loop emitted by the local 2B model.
+
+    Live 15.09.26: `mini-openamer` answered the synth prompt with
+    "vLLM v2.12.0 kv_cache_prefill_prefetch" repeated ~20x -> 300+ chars, so
+    the `8 <= len(q) <= 120` guard rejected it and _llm_novel_query returned ""
+    on EVERY call -> the learner always fell back to saturated static seeds
+    (4 consecutive "rejected, not trained" cycles). It also emits one glued
+    token ("python:openai:chat-history-search-history-search-...", 79 chars) -
+    short enough to pass the guard, and it lands on a stdlib-docs TOC.
+    Only a phrase repeated >=3 times counts, so normal prose is never touched.
+    """
+    w = t.split()
+    cut = len(w)
+    for size in range(1, min(6, len(w) // 2) + 1):
+        for i in range(len(w) - 2 * size + 1):
+            if w[i:i + size] == w[i + size:i + 2 * size]:
+                cut = min(cut, i + size)
+    t = " ".join(w[:cut])
+    if len(t.split()) <= 3:
+        # Glued shape: look for a >=6-char period repeated 3 times at any
+        # offset, and require 3 repetitions so "vLLM"/"arxiv" double letters
+        # are never collapsed.
+        done = False
+        for size in range(6, len(t) // 3 + 1):
+            if done:
+                break
+            for i in range(0, len(t) - 3 * size + 1):
+                p1 = t[i:i + size]
+                if p1 == t[i + size:i + 2 * size] == t[i + 2 * size:i + 3 * size]:
+                    t = t[:i + size]
+                    done = True
+                    break
+    return t.rstrip(" -_.,:")
 
 
 def _llm_novel_query(domain_kw, avoid):
@@ -144,6 +190,12 @@ def _llm_novel_query(domain_kw, avoid):
         r = json.load(urllib.request.urlopen(req, timeout=120))
         q = r["choices"][0]["message"]["content"].strip().split("\n")[0]
         q = re.sub(r"^[\-\*\d\.\)\s\"'`]+", "", q).strip().strip("\"'`")
+        q = _collapse_repeats(q)
+        # Root cause F: a `module:attr` / `pkg:func` shape lands on a stdlib
+        # docs table of contents where every candidate sentence is nav junk,
+        # so the cycle is wasted. Return "" and let the widened HN pass win.
+        if q.count(":") >= 2 or re.search(r"[\w.]+:[\w.]+:", q):
+            return ""
         if 8 <= len(q) <= 120 and q.lower() not in {a.lower() for a in avoid}:
             return q
     except Exception:
