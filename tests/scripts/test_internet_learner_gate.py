@@ -58,6 +58,12 @@ CHROME = [
     # stored this exact SSL-compliance chrome — the bare digit 256 satisfied the
     # technical-signal gate, so the junk gate keys on the vendor voice instead.
     "Bit-TLS-Verschlüsselung Für die sichere Datenübertragung nutzen wir 256-Bit-TLS-",
+    # blog pagination + newsletter footer (live 15.09.26): the papers cycle
+    # stored this exact text — the pagination digits ("1 2 3 … 11") satisfied
+    # the technical-signal gate and the footer CTA cleared the >=90 length trust.
+    "Onboarding Code Comprehension AI Coding Jishu Labs August 6, 2026 1 2 3 4 5 "
+    "6 7 8 9 10 11 Next Stay Updated Get the latest insights on software "
+    "development delivered to your inbox.",
 ]
 
 # Link-shrapnel with no junk keyword and no sentence shape: caught by the
@@ -79,6 +85,10 @@ REAL = [
     # topic — a genuine TLS/encryption insight still has to survive
     "TLS 1.3 removes a round trip from the handshake; session resumption cuts "
     "per-connection CPU cost.",
+    # the pagination signature needs 6+ run-together short numbers + "Next"; a
+    # genuine metrics sentence with scattered numbers must still pass
+    "GPT-4 scores 89.1 on MMLU, 92.0 on HumanEval, and 3 of 4 agents pass the "
+    "tool-call eval.",
 ]
 
 
@@ -117,7 +127,8 @@ def test_clean_insight_decodes_percent_escapes_before_judging():
     assert IL._clean_insight("LoRA%20adapters%20cut%20VRAM%20by%2040%25%20at%20int4.") \
         == "LoRA adapters cut VRAM by 40% at int4."
 
-
+
+
 
 class _Resp:
     """urlopen() stand-in: .read() hands back the JSON we seeded."""
