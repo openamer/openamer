@@ -218,6 +218,11 @@ _NAV_CHROME = (
     # `" exactly). - Must be a single technical insight extracted from the
     # given text. - **Text Source:** ...` as a doc learning)
     "must be a single technical insight", "**text source:",
+    # GitHub repo-page header (live 15.09.26: rows "Updated Jul 12, 2025
+    # Jupyter Notebook owner/repo Star 1 Code Issues Pull requests ..." and
+    # "Updated Sep 14, 2026 Python owner/repo Sponsor Star 294 ..." — 3
+    # such rows measured, 0 real-prose rows carry this phrase)
+    "code issues pull requests",
 )
 
 

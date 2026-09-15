@@ -399,6 +399,8 @@ _JUNK_RE = re.compile(
     # "Updated Dec 19, 2013 People This organization has no public
     # members." as a research insight)
     r"has no public members|"
+    # GitHub repo-page header (title-cased in the page itself)
+    r"Code Issues Pull requests|"
     # Corporate first-person boilerplate (live 14.09.26: the efficiency cycle
     # stored "Bit-TLS-Verschlüsselung Für die sichere Datenübertragung nutzen
     # wir 256-Bit-TLS-…" — site chrome, but the bare digit 256 satisfied the
