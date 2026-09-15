@@ -159,6 +159,10 @@ _NAV_CHROME = (
     "waiting for model response", "documentation index",
     # doc-site chrome the learner's page fetch leaks
     "check this document", "fetch the complete",
+    # github repo-page chrome the learner's page fetch leaks (live 15.09.26:
+    # cycle_c_github stored "... Public Notifications You must be signed in to
+    # change notification settings Fork 925 Star 6." as a learning)
+    "signed in to change notification",
 )
 
 
