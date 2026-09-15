@@ -38,6 +38,8 @@ shows the human pointer moved <b>0 px</b>.
 
   <a href="https://github.com/openamer/openamer/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-Apache%202.0-blue?style=for-the-badge" alt="License: Apache 2.0"></a>
 
+  <a href="#"><img src="https://img.shields.io/badge/ASI-15%2F16%20PROVEN-00D4AA?style=for-the-badge" alt="ASI Capabilities: 15/16 PROVEN"></a>
+
   <a href="https://www.paypal.com/ncp/payment/3HMBFYC9CQTMS"><img src="https://img.shields.io/badge/Sponsor-OpenAmer-00457C?style=for-the-badge&logo=paypal" alt="Sponsor OpenAmer via PayPal"></a>
 
 
