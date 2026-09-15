@@ -190,3 +190,8 @@ native/fts5_cjk/*.so
 
 # Task-queue runtime state (daemon log + queue db), regenerated at runtime.
 /.task-queue/
+
+# Scratch Python that an agent job drops into scripts/ mid-run (one-off API
+# helpers, e.g. listing GitHub issue comments). Disposable by construction;
+# ignored so `git status` keeps meaning "something real changed".
+scripts/_tmp_*.py
