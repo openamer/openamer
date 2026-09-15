@@ -1,3 +1,4 @@
+import sys
 from pathlib import Path
 from subprocess import CalledProcessError
 from types import SimpleNamespace
@@ -7,6 +8,21 @@ import pytest
 
 from openamer_cli import config as openamer_config
 from openamer_cli import main as openamer_main
+
+
+@pytest.fixture(autouse=True)
+def _posix_git_argv(monkeypatch):
+    """Pin the POSIX git argv for every test in this file.
+
+    ``cmd_update`` prefixes git with ``-c windows.appendAtomically=false`` on
+    win32 only, and these tests match subprocess calls against the exact argv
+    (``["git", "fetch", "origin", "main"]`` …). On a Windows dev machine no
+    branch matched, the catch-all reported a no-op, and the update flow skipped
+    the dependency install entirely — four tests, one cause. Pinning the
+    platform keeps the file's intent (and matches Linux CI) instead of teaching
+    every call site about the prefix; the win32 form has its own test at the end.
+    """
+    monkeypatch.setattr(sys, "platform", "linux")
 
 
 # ---------------------------------------------------------------------------
@@ -1162,3 +1178,32 @@ def test_update_autostash_survives_undeletable_untracked_dir(tmp_path):
         assert (pkg / "openamer-agent.rb").read_text() == "formula\n"
     finally:
         os.chmod(pkg, 0o755)
+
+
+def test_git_calls_prefix_the_windows_atomic_append_workaround(
+    monkeypatch, tmp_path
+):
+    """win32 gets ``-c windows.appendAtomically=false`` on every git call.
+
+    The rest of this file pins the platform to POSIX, so this is the one place
+    the Windows git hardening stays covered — on Linux CI it pins win32 too.
+    """
+    monkeypatch.setattr(sys, "platform", "win32")
+    _setup_update_mocks(monkeypatch, tmp_path)
+    monkeypatch.setattr(
+        "shutil.which", lambda name: "/usr/bin/uv" if name == "uv" else None
+    )
+
+    side_effect, recorded = _make_update_side_effect()
+    monkeypatch.setattr(openamer_main.subprocess, "run", side_effect)
+
+    openamer_main.cmd_update(SimpleNamespace())
+
+    git_calls = [c for c in recorded if list(c)[:1] == ["git"]]
+    assert git_calls, "expected the updater to shell out to git"
+    for call in git_calls:
+        assert list(call)[:3] == [
+            "git",
+            "-c",
+            "windows.appendAtomically=false",
+        ], call

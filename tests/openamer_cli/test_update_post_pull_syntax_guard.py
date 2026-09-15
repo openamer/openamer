@@ -20,6 +20,20 @@ from types import SimpleNamespace
 from openamer_cli import main as openamer_main
 
 
+def _assert_flags(failing_path, relpath):
+    """Assert the guard flagged *relpath*, comparing path parts.
+
+    The guard returns the native path form, so a ``str.endswith`` check against
+    a forward-slash literal is POSIX-only: on Windows ``str(Path)`` uses
+    backslashes and never matches.
+    """
+    assert failing_path is not None, "guard did not report a failing path"
+    expected = Path(relpath).parts
+    assert Path(failing_path).parts[-len(expected) :] == expected, (
+        f"expected the guard to flag {relpath}, got {failing_path}"
+    )
+
+
 # ---------------------------------------------------------------------------
 # _capture_head_sha
 # ---------------------------------------------------------------------------
@@ -100,7 +114,7 @@ def test_validate_critical_files_syntax_detects_conflict_markers(tmp_path):
     ok, failing_path, error = openamer_main._validate_critical_files_syntax(tmp_path)
 
     assert ok is False
-    assert failing_path is not None and failing_path.endswith("openamer_cli/config.py")
+    _assert_flags(failing_path, "openamer_cli/config.py")
     assert error is not None
     # The error mentions either the syntax error itself or the file path —
     # either is enough proof we caught the bad commit.
@@ -113,7 +127,7 @@ def test_validate_critical_files_syntax_detects_break_in_main_py(tmp_path):
     ok, failing_path, _ = openamer_main._validate_critical_files_syntax(tmp_path)
 
     assert ok is False
-    assert failing_path is not None and failing_path.endswith("openamer_cli/main.py")
+    _assert_flags(failing_path, "openamer_cli/main.py")
 
 
 def test_validate_critical_files_syntax_detects_break_in_web_server(tmp_path):
@@ -122,7 +136,7 @@ def test_validate_critical_files_syntax_detects_break_in_web_server(tmp_path):
     ok, failing_path, _ = openamer_main._validate_critical_files_syntax(tmp_path)
 
     assert ok is False
-    assert failing_path is not None and failing_path.endswith("openamer_cli/web_server.py")
+    _assert_flags(failing_path, "openamer_cli/web_server.py")
 
 
 def test_validate_critical_files_syntax_tolerates_missing_files(tmp_path):

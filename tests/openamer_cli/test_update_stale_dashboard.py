@@ -86,6 +86,20 @@ def _ps_runner(stdout: str):
 class TestFindStaleDashboardPids:
     """Unit tests for the ps/wmic-based detection step."""
 
+    @pytest.fixture(autouse=True)
+    def _force_posix_scan_branch(self, monkeypatch):
+        """Force the ``ps`` scan branch on every platform.
+
+        ``_find_stale_dashboard_pids`` branches on ``sys.platform`` and on
+        Windows shells out to wmic instead, so the ps-format fixtures below
+        yielded an empty scan: eight tests failed on a Windows dev machine, and
+        the ones expecting an empty result passed *by accident*. Skipping the
+        class (as the POSIX kill tests do) would drop coverage of a parser that
+        is platform-independent, so pin the branch instead. The wmic branch has
+        its own class further down.
+        """
+        monkeypatch.setattr(sys, "platform", "linux")
+
     def test_no_matches_returns_empty(self):
         with patch("subprocess.run") as mock_run:
             mock_run.return_value = MagicMock(

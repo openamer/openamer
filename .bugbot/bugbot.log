@@ -668,3 +668,10 @@ subprocess.TimeoutExpired: Command '['gh', 'issue', 'list', '--label', 'bug', '-
 2026-09-15 14:24:57,708 [INFO] API: Found 0 open bug issue(s)
 2026-09-15 14:24:57,709 [INFO] No open bug issues found
 2026-09-15 14:24:57,709 [INFO] Bugbot run complete: 0 processed, 0 fixed, 0 failed
+2026-09-15 18:25:12,333 [INFO] ============================================================
+2026-09-15 18:25:12,334 [INFO] Bugbot run starting
+2026-09-15 18:25:12,335 [INFO] Scanning for open bug issues on openamer/openamer...
+2026-09-15 18:25:12,481 [WARNING] No GITHUB_TOKEN set — using unauthenticated API (rate-limited)
+2026-09-15 18:25:12,882 [INFO] API: Found 0 open bug issue(s)
+2026-09-15 18:25:12,882 [INFO] No open bug issues found
+2026-09-15 18:25:12,882 [INFO] Bugbot run complete: 0 processed, 0 fixed, 0 failed

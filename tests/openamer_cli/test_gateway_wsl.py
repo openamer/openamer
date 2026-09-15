@@ -122,6 +122,18 @@ class TestWslSystemdOperational:
 class TestSupportsSystemdServicesWSL:
     """Test that supports_systemd_services() handles WSL correctly."""
 
+    @pytest.fixture(autouse=True)
+    def _systemctl_present(self, monkeypatch):
+        """Pretend systemctl exists so the predicates under test are reached.
+
+        ``supports_systemd_services`` bails out at
+        ``shutil.which("systemctl") is None`` *before* consulting
+        is_linux/is_wsl/is_termux. A Windows dev machine has no systemctl, so
+        the WSL-with-systemd and native-Linux expectations returned False here
+        while passing on any Linux CI box that ships systemctl.
+        """
+        monkeypatch.setattr(gateway.shutil, "which", lambda name: f"/usr/bin/{name}")
+
     def test_wsl_with_systemd(self, monkeypatch):
         """WSL + working systemd → True."""
         monkeypatch.setattr(gateway, "is_linux", lambda: True)

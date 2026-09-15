@@ -1,5 +1,7 @@
 """Tests for gateway linger auto-enable behavior on headless Linux installs."""
 
+import pytest
+import sys
 from types import SimpleNamespace
 
 import openamer_cli.gateway as gateway
@@ -98,6 +100,10 @@ class TestEnsureLingerEnabled:
         assert "Permission denied" in out
 
 
+@pytest.mark.skipif(
+    sys.platform == "win32",
+    reason="linger/loginctl is Linux-only; os.getuid() does not exist on Windows",
+)
 def test_systemd_install_calls_linger_helper(monkeypatch, tmp_path, capsys):
     unit_path = tmp_path / "systemd" / "user" / "openamer-gateway.service"
 
