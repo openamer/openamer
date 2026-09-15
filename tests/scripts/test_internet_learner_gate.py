@@ -79,6 +79,10 @@ CHROME = [
     # blob satisfied the technical-signal gate, so length + signal both
     # passed a byte dump into the training buffer.
     _PDF_NOISE,
+    # GitHub releases-page chrome (live 15.09.26): the multi-domain cycle
+    # stored this exact page meta — "released this <date>" satisfied the
+    # technical-signal gate and it cleared the >=25 length floor.
+    "No results found View all tags openai-sdks released this 14 Sep 23:28 v3.",
 ]
 
 # Link-shrapnel with no junk keyword and no sentence shape: caught by the
@@ -118,6 +122,30 @@ def test_binary_blobs_are_rejected_and_prose_is_not():
     assert IL._is_junk(_PDF_NOISE)
     for text in REAL:
         assert not IL._looks_binary(text), text
+
+
+def test_writer_gate_agrees_on_the_new_chrome_and_binary_shapes():
+    """buffer_store.is_junk is the WRITER gate (the one every writer hits).
+
+    A shape the extraction gate drops but the writer accepts still lands in
+    the buffer through any other writer path, so both must reject it.
+    Measured live 15.09.26: the binary row scored 0.576 non-printable
+    ratio, the highest-scoring real row 0.000.
+    """
+    sys.path.insert(0, str(TRAINING))
+    import buffer_store
+    new_shapes = [
+        "No results found View all tags openai-sdks released this 14 Sep 23:28 v3.",
+        _PDF_NOISE,
+    ]
+    for text in new_shapes:
+        assert buffer_store.is_junk(text), text
+        assert IL._is_junk(text), text
+    for text in REAL:
+        assert not buffer_store.is_junk(text), text
+    assert not buffer_store.is_junk(
+        "Continuous Learning Loop: Fehler-Capture + Kategorisierung + Memory."
+    )
 
 
 def test_real_insights_survive_the_junk_gate():

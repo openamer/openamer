@@ -359,6 +359,10 @@ _JUNK_RE = re.compile(
     r"enable javascript|skip to content|manage your preferences|"
     # login walls / anti-bot / error pages (serve no learning signal)
     r"switched accounts on another tab|another tab or window|view all docs|"
+    # GitHub releases-page chrome (live 15.09.26: cycle_f_multi_domain
+    # stored "No results found View all tags openai-sdks released this"
+    # — reject at extraction so the cycle retries instead of wasting it)
+    r"view all tags|released this \d|"
     r"sign in to continue|log in to continue|you need to log in|"
     r"are you a robot|verify you are human|prove you'?re human|"
     r"captcha|access denied|403 forbidden|404 not found|page not found|"

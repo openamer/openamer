@@ -192,6 +192,16 @@ def is_glued_motif(text):
 # The learner's page fetch leaks raw HTML entities and marketing chrome into
 # the completion. A LoRA trained on '&#39;' learns broken tokenization.
 _ENTITY = _re.compile(r"&(?:#\d{1,5}|[a-z]{2,8});")
+# --- binary noise: raw bytes mis-decoded as text (live 15.09.26) ---
+# The deep read fetched a binary blob and the writer stored the mojibake
+# ("T\ufffdp\ufffd%\ufffd\ufffd;...") as a learning. The extraction-side
+# gate (internet_learner._looks_binary) only covers the cycle path; every
+# other writer reached the buffer unguarded. Measured over the live
+# 300-row buffer: worst row scores 0.576 non-printable ratio, the next
+# highest real row scores 0.000 -> the thresholds sit in a clean gap.
+_CTRL_NOISE = _re.compile(r"[\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\x9f\ufffd]")
+_BINARY_MIN_CHARS = 20
+_BINARY_RATIO = 0.08
 _NAV_CHROME = (
     "no thanks", "testimonial", "subscribe", "newsletter", "sign up",
     "all rights reserved", "read more", "click here", "follow us",
@@ -223,12 +233,29 @@ _NAV_CHROME = (
     # "Updated Sep 14, 2026 Python owner/repo Sponsor Star 294 ..." — 3
     # such rows measured, 0 real-prose rows carry this phrase)
     "code issues pull requests",
+    # GitHub releases-page chrome (live 15.09.26: cycle_f_multi_domain
+    # stored "No results found View all tags openai-sdks released this
+    # 14 Sep 23:28 v3." — pure page meta, zero prose. Measured over the
+    # live 300-row buffer: 1 hit, 0 real-prose rows carry the phrase.)
+    "view all tags",
     # blog-post header chrome (live 15.09.26: cycle_c_github stored
     # "August 5, 2026 · 15 min Read article Guides What is MCP (Model
     # Context Protocol)?" — pure meta header, no prose. Measured over the
     # live 300-row buffer: 1 hit, 0 real-prose rows carry this phrase)
     "min read article",
 )
+
+
+def _is_binary_noise(text):
+    """True when text is raw bytes mis-decoded as text (PDF/zip blob).
+
+    Counts C0/C1 control chars and U+FFFD REPLACEMENT CHARACTER. The
+    live mojibake row measured 0.576; the highest-scoring real row of
+    the 300-row buffer measured 0.000, so 0.08 is a wide margin.
+    """
+    if len(text) < _BINARY_MIN_CHARS:
+        return False
+    return len(_CTRL_NOISE.findall(text)) / len(text) > _BINARY_RATIO
 
 
 def _is_nav_chrome(text):
@@ -278,6 +305,8 @@ def is_junk(text):
     if _is_periodic_repeat(s):
         return True
     if is_glued_motif(s):
+        return True
+    if _is_binary_noise(s):
         return True
     if _is_nav_chrome(s):
         return True
