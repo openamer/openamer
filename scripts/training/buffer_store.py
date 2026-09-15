@@ -99,6 +99,14 @@ _SERP_DATE = _re.compile(
     r"—\s*\d{1,2}\.\s*(?:Jan|Feb|Mär|Mrz|Apr|Mai|Jun|Jul|Aug|Sept?|Okt|Nov|Dez)\.?\s*\d{4}\s*·"
 )
 _SERP_TAIL = _re.compile(r"—\s*(?:…|\.\.\.)\s*$")
+# Added 15.09.26: two more SERP shapes slipped past the checks above. (1) a
+# truncated result title followed by the next result's title
+# ("Jailbreaking ... Techniques, … — This article explores ...");
+# (2) a GitHub result-list title ("GitHub - owner/repo: description").
+# Measured on the live 300-row buffer: 14 rows matched, every one was
+# search-result chrome and no real prose row matched.
+_SERP_ELL_DASH = _re.compile(r"…\s*[—–]\s")
+_SERP_REPO_TITLE = _re.compile(r"GitHub\s*-\s*[\w.\-]+/[\w.\-]+\s*:")
 
 
 def _is_serp_snippet(text):
@@ -108,7 +116,11 @@ def _is_serp_snippet(text):
     # several ' — ' title separators + a middle dot = a results list
     if text.count(" — ") >= 2 and "·" in text:
         return True
-    return bool(_SERP_TAIL.search(text))
+    if _SERP_TAIL.search(text):
+        return True
+    if _SERP_ELL_DASH.search(text):
+        return True
+    return bool(_SERP_REPO_TITLE.search(text))
 
 
 # --- periodic repetition: a short unit repeated until it fills the text ---
