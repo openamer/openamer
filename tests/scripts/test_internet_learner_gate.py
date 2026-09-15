@@ -198,3 +198,31 @@ def test_serp_pipe_dash_shape_is_gated():
         "Chunked prefill allows vLLM to process large prefills in smaller chunks and "
         "batch them together with decode requests, which improves throughput."
     )
+
+
+def test_glued_motif_degeneration_is_gated():
+    """A single 4-char motif glued into most tokens must be junk.
+
+    Observed live 15.09.26: cycle_h_efficiency stored the 2B extractor's word
+    salad ('ells' inside 14 of ~43 tokens). The periodic-repeat and token-ratio
+    gates both missed it because the motif sits INSIDE otherwise-distinct
+    words. Measured over the live 300-row buffer: that row scored 14 hits at a
+    0.056 char-rate, the highest-scoring real row 8 hits at 0.027, so the
+    detector must fire here and stay silent on real prose."""
+    import buffer_store
+
+    assert buffer_store.is_junk(
+        "Here's a ali with aminoellsかけて subject et recessellsells deep this "
+        "urbanellscriptsells around anoells kill fromolt heatells rama fromellsells— "
+        "in el ls youngells counts mill cities overtellsells filtersuti rigor-ells "
+        "championship bits janitation etce"
+    )
+    assert not buffer_store.is_junk(
+        "Results on quantizing Llama 1 and 2 models, achieving near fp16 "
+        "quantization performance at 2 bits with most layers kept at higher precision."
+    )
+    assert not buffer_store.is_junk(
+        "The shared underlying pattern is a dynamic feedback loop where errors "
+        "observed in one situation are captured, categorized, and turned into "
+        "reusable procedures for the next one."
+    )

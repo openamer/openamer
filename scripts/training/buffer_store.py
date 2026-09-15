@@ -28,6 +28,7 @@ garbage:
 unchanged count. Callers that need to report honestly check `is_junk()` (or
 the count delta) rather than assuming their write landed.
 """
+from collections import Counter
 import json
 import os
 from pathlib import Path
@@ -160,6 +161,33 @@ def _is_periodic_repeat(text):
     return False
 
 
+# --- glued-motif degeneration (live 15.09.2026) ---
+# The 2B extractor degenerated into a word salad that the periodic-repeat and
+# token-ratio gates both miss because the motif sits INSIDE otherwise-distinct
+# words: 'Here's a ali with aminoellsかけて subject et recessellsells deep this
+# urbanellscriptsells ...' ('ells' inside 14 of ~43 tokens). Measured over the
+# live 300-row buffer: that row scores 14 hits at a 0.056 char-rate; the
+# highest-scoring REAL row scores 8 hits at 0.027, so both thresholds sit in a
+# clean gap and no legitimate row is affected.
+_GLUED_MOTIF_MIN_COUNT = 12
+_GLUED_MOTIF_MIN_RATE = 0.045
+
+
+def _is_glued_motif(text):
+    """True when ONE 4-char motif is glued into most tokens of the text.
+
+    A distinct 4-char window repeated >=12 times AND covering >=4.5% of the
+    characters is degeneration, not prose: real technical sentences never
+    reuse a single 4-gram that densely (see the measurement above).
+    """
+    if len(text) < 60:
+        return False
+    n = len(text)
+    _, count = Counter(text[i:i + 4] for i in range(n - 3)).most_common(1)[0]
+    return (count >= _GLUED_MOTIF_MIN_COUNT
+            and count * 4 / n >= _GLUED_MOTIF_MIN_RATE)
+
+
 # --- HTML entity noise + course-landing-page chrome (11.09.26 wave 4) ---
 # The learner's page fetch leaks raw HTML entities and marketing chrome into
 # the completion. A LoRA trained on '&#39;' learns broken tokenization.
@@ -238,6 +266,8 @@ def is_junk(text):
     if _is_serp_snippet(s):
         return True
     if _is_periodic_repeat(s):
+        return True
+    if _is_glued_motif(s):
         return True
     if _is_nav_chrome(s):
         return True
