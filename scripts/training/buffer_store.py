@@ -223,6 +223,11 @@ _NAV_CHROME = (
     # "Updated Sep 14, 2026 Python owner/repo Sponsor Star 294 ..." — 3
     # such rows measured, 0 real-prose rows carry this phrase)
     "code issues pull requests",
+    # blog-post header chrome (live 15.09.26: cycle_c_github stored
+    # "August 5, 2026 · 15 min Read article Guides What is MCP (Model
+    # Context Protocol)?" — pure meta header, no prose. Measured over the
+    # live 300-row buffer: 1 hit, 0 real-prose rows carry this phrase)
+    "min read article",
 )
 
 
