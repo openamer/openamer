@@ -18,7 +18,28 @@ import os
 import json, os, sys, time, random, datetime, urllib.request, urllib.parse, re
 from pathlib import Path
 
-T = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "scripts", "training")
+def _training_dir():
+    """Resolve the live training dir, tolerating a wrong/stale OPENAMER_HOME.
+
+    The desktop/cron env can point OPENAMER_HOME at a throwaway test dir
+    (e.g. %TEMP%/repo-ac-test2/home), which made every cycle crash with
+    FileNotFoundError on .il_rotation. Prefer a *valid* env override, then
+    the real install dir, then this file's own directory.
+    """
+    cands = []
+    _env = os.environ.get("OPENAMER_HOME")
+    if _env:
+        cands.append(os.path.join(_env, "scripts", "training"))
+    _home = Path.home()
+    cands.append(str(_home / "AppData" / "Local" / "openamer-laptop" / "scripts" / "training"))
+    cands.append(str(Path(__file__).resolve().parent))
+    for _c in cands:
+        if os.path.isdir(_c):
+            return _c
+    return os.path.join(str(_home), "AppData", "Local", "openamer", "scripts", "training")
+
+
+T = _training_dir()
 BUFFER = os.path.join(T, "online_buffer.jsonl")
 LOG = os.path.join(T, "internet_learn_log.jsonl")
 ROT = os.path.join(T, ".il_rotation")

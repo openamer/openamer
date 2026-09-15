@@ -181,3 +181,20 @@ def test_every_learning_cycle_gates_its_write_and_reports_honestly():
         "every cycle must route its write through the gate helper"
     assert src.count('return "rejected, not trained') == cycles, \
         "every cycle must report a rejection honestly when both reads are gated"
+def test_serp_pipe_dash_shape_is_gated():
+    """SERP shape "<title> | <site> — <snippet>" (no ellipsis) must be junk.
+
+    Observed live 15.09.26: cycle_c_github stored exactly this shape. The
+    existing _SERP_ELL_DASH marker never fires without the ellipsis, so this
+    needed a marker of its own. The gate lives in buffer_store (the writer's
+    gate), not IL._is_junk (the search-result filter). Asserts behaviour, not
+    the regex literal."""
+    import buffer_store  # the module the learner's store() routes through
+
+    assert buffer_store.is_junk(
+        'Fable Studio Review | TheAISelect — Fable Studio\'s "The Simulation" is a groundbreaking platform'
+    )
+    assert not buffer_store.is_junk(
+        "Chunked prefill allows vLLM to process large prefills in smaller chunks and "
+        "batch them together with decode requests, which improves throughput."
+    )

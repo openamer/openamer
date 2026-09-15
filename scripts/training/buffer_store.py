@@ -107,6 +107,11 @@ _SERP_TAIL = _re.compile(r"—\s*(?:…|\.\.\.)\s*$")
 # search-result chrome and no real prose row matched.
 _SERP_ELL_DASH = _re.compile(r"…\s*[—–]\s")
 _SERP_REPO_TITLE = _re.compile(r"GitHub\s*-\s*[\w.\-]+/[\w.\-]+\s*:")
+# Added 15.09.26: a fourth SERP shape, "<title> | <site> — <snippet>", which
+# carries no ellipsis and therefore slipped past _SERP_ELL_DASH (found live in
+# cycle_c_github). Measured on the live 300-row buffer: 13 hits, all
+# search-result chrome, 0 real-prose rows affected — a tightening only.
+_SERP_PIPE_DASH = _re.compile(r"\|[^|]{1,40}\s—\s")
 
 
 def _is_serp_snippet(text):
@@ -119,6 +124,8 @@ def _is_serp_snippet(text):
     if _SERP_TAIL.search(text):
         return True
     if _SERP_ELL_DASH.search(text):
+        return True
+    if _SERP_PIPE_DASH.search(text):
         return True
     return bool(_SERP_REPO_TITLE.search(text))
 
