@@ -242,6 +242,29 @@ _NAV_CHROME = (
     # "August 5, 2026 · 15 min Read article Guides What is MCP (Model
     # Context Protocol)?" — pure meta header, no prose. Measured over the
     # live 300-row buffer: 1 hit, 0 real-prose rows carry this phrase)
+    # MediaWiki wikitext leak (live 16.09.26: cycle_d_docs stored
+    # `Sum|143|150|154|165|149|114|127|}} minutes (7 films)"},
+    # "distributor":{"wt":"{{Plainlist|* [[Paramount Pictures]] ...` -- raw
+    # wikipedia film-box markup, zero prose, and BOTH gates passed it).
+    # Measured over the live 300-row buffer: 1 hit, 0 real-prose rows carry it.
+    '"wt":"',
+    # GitHub pricing/plan chrome (live 16.09.26: cycle_c_github stored
+    # "BILLED ANNUALLY $119 /yr Select First 7 days FREE then $119 billed
+    # annually, cancel anytime Gaia+ $24 ." -- pure price-table copy, zero
+    # prose, and no sentence shape. Measured over the live 300-row buffer:
+    # 1 hit, 0 real-prose rows carry the phrase.)
+    "billed annually",
+    # AI-chat UI + review-site chrome (live 16.09.26: cycle_g_security
+    # stored the chat feature list "Agent mode Let Chat calculate, ...
+    # AI Chat can make mistakes." and cycle_f_multi_domain stored "
+    # Home Product categories ... Based on 4,014 reviews Products
+    # considered 726 ...". Measured over the live 300-row buffer: 1 hit
+    # each, and that hit IS the leaking row -> 0 real-prose rows carry
+    # any of these phrases.)
+    "let chat calculate",
+    "hand off real-world tasks",
+    "ai chat can make mistakes",
+    "products considered",
     "min read article",
 )
 

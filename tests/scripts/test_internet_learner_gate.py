@@ -39,6 +39,35 @@ _PDF_NOISE = "".join(chr(c) for c in (
     0x94, 0x94, 0x53, 0x35, 0x94, 0x5b, 0x94, 0x41, 0x94, 0x12,
 ))
 
+# Writer-gate leaks found live 16.09.26 (both had passed BOTH gates and
+# were sitting in the 300-row buffer):
+#   cycle_d_docs   -> MediaWiki wikitext from a film infobox, no prose at all
+#   cycle_c_github -> GitHub pricing-table copy, no sentence shape
+# Writer-gate leaks found live 16.09.26 (both had passed BOTH gates and
+# were sitting in the 300-row buffer):
+#   cycle_g_security    -> AI-chat feature list, no prose
+#   cycle_f_multi_domain -> review-site header + nav, no prose
+_CHATUI_LEAK = (
+    "Agent mode Let Chat calculate, work with files, and create downloads "
+    "Create Image Concierge Let Chat hand off real-world tasks until you "
+    "turn it off Memory Memory settings Voice Chat Standard AI Chat can "
+    "make mistakes."
+)
+_REVIEWSITE_LEAK = (
+    "Home Product categories AI Agents The best AI agents in 2026 Last "
+    "updated Sep 15, 2026 Based on 4,014 reviews Products considered 726 "
+    "AI Agents are software systems that act as digital teammates."
+)
+
+_WIKITEXT_LEAK = (
+    'Sum|143|150|154|165|149|114|127|}} minutes (7 films)"},'
+    '"distributor":{"wt":"{{Plainlist|* [[Paramount Pictures]] (2007-present)}}'
+)
+_PRICING_LEAK = (
+    "BILLED ANNUALLY $119 /yr Select First 7 days FREE then $119 billed "
+    "annually, cancel anytime Gaia+ $24 ."
+)
+
 CHROME = [
     "Jetzt spenden Benutzerkonto erstellen Anmelden Meine Werkzeuge",
     "Unsere Werbepartner Einkaufen Ferienwohnungen Freizeit und Reise",
@@ -137,6 +166,10 @@ def test_writer_gate_agrees_on_the_new_chrome_and_binary_shapes():
     new_shapes = [
         "No results found View all tags openai-sdks released this 14 Sep 23:28 v3.",
         _PDF_NOISE,
+        _WIKITEXT_LEAK,
+        _PRICING_LEAK,
+        _CHATUI_LEAK,
+        _REVIEWSITE_LEAK,
     ]
     for text in new_shapes:
         assert buffer_store.is_junk(text), text

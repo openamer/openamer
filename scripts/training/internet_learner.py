@@ -445,7 +445,23 @@ _JUNK_RE = re.compile(
     r"delivered to your inbox|stay updated|get the latest insights|"
     r"subscribe to our newsletter|"
     r"jetzt angebot sichern|jetzt kaufen|jetzt bestellen|"
-    r"(?:\b\d{1,3} ){6,}\s*next\b)",
+    r"(?:\b\d{1,3} ){6,}\s*next\b)|"
+    # GitHub pricing/plan chrome (live 16.09.26: cycle_c_github stored
+    # "BILLED ANNUALLY $119 /yr Select First 7 days FREE then $119 billed
+    # annually, cancel anytime Gaia+ $24 ." -- pure price-table copy, zero
+    # prose. Measured over the live 300-row buffer: 1 hit, 0 real-prose rows).
+    r"billed annually|min read article|"
+    # AI-chat UI chrome (live 16.09.26: cycle_g_security stored the chat
+    # feature list "Agent mode Let Chat calculate, ... Voice Chat
+    # Standard AI Chat can make mistakes.").
+    r"let chat calculate|hand off real-world tasks|"
+    r"ai chat can make mistakes|products considered|"
+    # review-site header (live 16.09.26: cycle_f_multi_domain stored
+    # "Home Product categories AI Agents ... Last updated Sep 15, 2026
+    # Based on 4,014 reviews". A run-together review count is page meta.)
+    r"based on [\d,]{4,} reviews|"
+    # MediaWiki wikitext markup (same live row as the writer-gate entry).
+    r'"wt":"',
     re.IGNORECASE)
 
 # Percent-escapes mean the "insight" is a URL fragment, not prose. Their digits
