@@ -1,41 +1,41 @@
 {
-  "updated": "2026-09-15T17:15:27.506558+00:00",
+  "updated": "2026-09-15T22:15:46.964879+00:00",
   "skills": {
     "asi-capability-summary": {
-      "fitness": 19.0,
-      "usage": 9,
+      "fitness": 39.0,
+      "usage": 29,
       "health": 1,
       "age_days": 0,
       "mutations_won": 0,
       "mutations_lost": 0
     },
     "asi-identity": {
-      "fitness": 32.0,
-      "usage": 22,
+      "fitness": 52.0,
+      "usage": 42,
       "health": 1,
       "age_days": 0,
       "mutations_won": 0,
       "mutations_lost": 0
     },
     "auto-env-checker": {
-      "fitness": 1916.7,
-      "usage": 1917,
+      "fitness": 1926.7,
+      "usage": 1927,
       "health": 1,
       "age_days": 9,
       "mutations_won": 2,
       "mutations_lost": 14
     },
     "autonomous-learning-architecture": {
-      "fitness": 1705.0,
-      "usage": 1692,
+      "fitness": 1715.0,
+      "usage": 1702,
       "health": 1,
       "age_days": 0,
       "mutations_won": 0,
       "mutations_lost": 0
     },
     "cdp-social-posting": {
-      "fitness": 726.0,
-      "usage": 715,
+      "fitness": 736.0,
+      "usage": 725,
       "health": 1,
       "age_days": 0,
       "mutations_won": 0,
@@ -74,19 +74,19 @@
       "mutations_lost": 7
     },
     "darwin-harvested-a2a-brainlog-disabled-no-such-file-o": {
-      "fitness": 12.97,
-      "usage": 5,
-      "health": 1,
-      "age_days": 1,
-      "mutations_won": 0,
-      "mutations_lost": 2
-    },
-    "darwin-harvested-agent-update-incomplete": {
-      "fitness": 13.97,
+      "fitness": 15.97,
       "usage": 6,
       "health": 1,
       "age_days": 1,
-      "mutations_won": 0,
+      "mutations_won": 1,
+      "mutations_lost": 2
+    },
+    "darwin-harvested-agent-update-incomplete": {
+      "fitness": 16.97,
+      "usage": 7,
+      "health": 1,
+      "age_days": 1,
+      "mutations_won": 1,
       "mutations_lost": 2
     },
     "darwin-harvested-bin-uv-exe-ven": {
@@ -98,11 +98,11 @@
       "mutations_lost": 3
     },
     "darwin-harvested-browser-sessions-json": {
-      "fitness": 13.97,
-      "usage": 6,
+      "fitness": 16.97,
+      "usage": 7,
       "health": 1,
       "age_days": 1,
-      "mutations_won": 0,
+      "mutations_won": 1,
       "mutations_lost": 2
     },
     "darwin-harvested-c-users-damir-openamer-repo-openamer-cli": {
@@ -115,11 +115,11 @@
     },
     "darwin-harvested-cli-auto-tester-py": {
       "fitness": 16.97,
-      "usage": 3,
+      "usage": 4,
       "health": 1,
       "age_days": 1,
       "mutations_won": 2,
-      "mutations_lost": 0
+      "mutations_lost": 1
     },
     "darwin-harvested-cron-jobs-json": {
       "fitness": 81.47,
@@ -139,26 +139,26 @@
     },
     "darwin-harvested-darwin-autonomous-loop-json": {
       "fitness": 15.97,
-      "usage": 2,
+      "usage": 3,
       "health": 1,
       "age_days": 1,
       "mutations_won": 2,
-      "mutations_lost": 0
+      "mutations_lost": 1
     },
     "darwin-harvested-darwin-populatio": {
-      "fitness": 27.9,
-      "usage": 21,
+      "fitness": 28.9,
+      "usage": 22,
       "health": 1,
       "age_days": 3,
       "mutations_won": 0,
       "mutations_lost": 3
     },
     "darwin-harvested-darwin-population-json": {
-      "fitness": 13.97,
-      "usage": 6,
+      "fitness": 16.97,
+      "usage": 7,
       "health": 1,
       "age_days": 1,
-      "mutations_won": 0,
+      "mutations_won": 1,
       "mutations_lost": 2
     },
     "darwin-harvested-darwin-rollback": {
@@ -170,19 +170,19 @@
       "mutations_lost": 3
     },
     "darwin-harvested-darwin-rollback-log-json": {
-      "fitness": 15.97,
+      "fitness": 14.97,
       "usage": 2,
       "health": 1,
       "age_days": 1,
       "mutations_won": 2,
-      "mutations_lost": 0
+      "mutations_lost": 1
     },
     "darwin-harvested-default-cron": {
-      "fitness": 13.97,
+      "fitness": 15.97,
       "usage": 6,
       "health": 1,
       "age_days": 1,
-      "mutations_won": 0,
+      "mutations_won": 1,
       "mutations_lost": 2
     },
     "darwin-harvested-go-zip": {
@@ -210,20 +210,20 @@
       "mutations_lost": 7
     },
     "darwin-harvested-laptop-docs": {
-      "fitness": 26.73,
+      "fitness": 26.7,
       "usage": 18,
       "health": 1,
-      "age_days": 8,
+      "age_days": 9,
       "mutations_won": 1,
       "mutations_lost": 3
     },
     "darwin-harvested-laptop-predictive-health": {
       "fitness": 16.97,
-      "usage": 3,
+      "usage": 4,
       "health": 1,
       "age_days": 1,
       "mutations_won": 2,
-      "mutations_lost": 0
+      "mutations_lost": 1
     },
     "darwin-harvested-laptop-update-in-progress": {
       "fitness": 16.97,
@@ -354,10 +354,10 @@
       "mutations_lost": 1
     },
     "darwin-harvested-scripts-cron-mes": {
-      "fitness": 28.57,
+      "fitness": 28.53,
       "usage": 22,
       "health": 1,
-      "age_days": 13,
+      "age_days": 14,
       "mutations_won": 0,
       "mutations_lost": 3
     },
@@ -474,10 +474,10 @@
       "mutations_lost": 2
     },
     "darwin-harvested-tmp-deepseek-harness-agents-skills": {
-      "fitness": 82.5,
+      "fitness": 82.47,
       "usage": 37,
       "health": 1,
-      "age_days": 15,
+      "age_days": 16,
       "mutations_won": 25,
       "mutations_lost": 14
     },
@@ -498,10 +498,10 @@
       "mutations_lost": 3
     },
     "darwin-harvested-training-auto-skills-json": {
-      "fitness": 32.9,
+      "fitness": 32.87,
       "usage": 13,
       "health": 1,
-      "age_days": 3,
+      "age_days": 4,
       "mutations_won": 6,
       "mutations_lost": 2
     },
@@ -522,10 +522,10 @@
       "mutations_lost": 1
     },
     "darwin-harvested-training-model-config-py": {
-      "fitness": 27.9,
+      "fitness": 27.87,
       "usage": 11,
       "health": 1,
-      "age_days": 3,
+      "age_days": 4,
       "mutations_won": 5,
       "mutations_lost": 3
     },
@@ -610,10 +610,10 @@
       "mutations_lost": 0
     },
     "github-readme-summary": {
-      "fitness": 28.2,
+      "fitness": 28.17,
       "usage": 18,
       "health": 1,
-      "age_days": 24,
+      "age_days": 25,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -642,10 +642,10 @@
       "mutations_lost": 0
     },
     "mini-openamer": {
-      "fitness": 93.6,
-      "usage": 84,
+      "fitness": 97.57,
+      "usage": 88,
       "health": 1,
-      "age_days": 12,
+      "age_days": 13,
       "mutations_won": 0,
       "mutations_lost": 0
     },
@@ -658,8 +658,8 @@
       "mutations_lost": 0
     },
     "plugin-api": {
-      "fitness": 511.2,
-      "usage": 502,
+      "fitness": 521.2,
+      "usage": 512,
       "health": 1,
       "age_days": 24,
       "mutations_won": 0,
@@ -674,34 +674,50 @@
       "mutations_lost": 70
     },
     "train-from-usage": {
-      "fitness": 518.6,
-      "usage": 512,
+      "fitness": 528.57,
+      "usage": 522,
       "health": 1,
-      "age_days": 12,
+      "age_days": 13,
       "mutations_won": 0,
       "mutations_lost": 4
     },
-    "undetectable-browsing": {
-      "fitness": 30.27,
-      "usage": 18,
+    "training-pipeline": {
+      "fitness": 11.0,
+      "usage": 0,
       "health": 1,
-      "age_days": 22,
+      "age_days": 0,
       "mutations_won": 0,
       "mutations_lost": 0
     },
+    "undetectable-browsing": {
+      "fitness": 30.23,
+      "usage": 18,
+      "health": 1,
+      "age_days": 23,
+      "mutations_won": 0,
+      "mutations_lost": 0
+    },
+    "upstream-porting-workflow": {
+      "fitness": 14.0,
+      "usage": 1,
+      "health": 1,
+      "age_days": 0,
+      "mutations_won": 1,
+      "mutations_lost": 0
+    },
     "vscode-extension-scaffold": {
-      "fitness": 31.2,
+      "fitness": 31.17,
       "usage": 21,
       "health": 1,
-      "age_days": 24,
+      "age_days": 25,
       "mutations_won": 0,
       "mutations_lost": 0
     },
     "windows-python-service-ops": {
-      "fitness": 37.0,
+      "fitness": 36.97,
       "usage": 24,
       "health": 1,
-      "age_days": 0,
+      "age_days": 1,
       "mutations_won": 0,
       "mutations_lost": 0
     }
