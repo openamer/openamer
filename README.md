@@ -57,8 +57,8 @@ shows the human pointer moved <b>0 px</b>.
 
 > **OpenAmer** is a self-improving, self-learning personal AI agent — a
 > hardened, independently-developed fork of the
-> [Agent architecture](https://github.com/NousResearch/hermes-agent), MIT by Nous Research
-> (MIT, by Nous Research). We say so openly: OpenAmer does not hide its
+> [agent architecture](https://github.com/NousResearch/hermes-agent) by Nous Research (MIT).
+> We say so openly: OpenAmer does not hide its
 > lineage. What we build on top of it — robustness, verifiability, and a real
 > learning loop — is our own. Read the [Vision](VISION.md).
 
