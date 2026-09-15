@@ -11066,14 +11066,29 @@ def _update_install_roots() -> tuple[str, ...]:
     return tuple(dict.fromkeys(_norm_install_path(str(r)) for r in roots))
 
 
-def _paths_belong_to_other_install(paths: list[str], roots: tuple[str, ...]) -> bool:
-    """True only when a path *proves* the process lives in another install.
+def _belongs_to_other_install(
+    paths: list[str],
+    roots: tuple[str, ...],
+    home: str | None = None,
+    our_home: str | None = None,
+) -> bool:
+    """True only when evidence *proves* the process serves another install.
 
-    Unprovable is not foreign. A bare ``pythonw.exe -m openamer_cli.main
-    gateway run`` argv names no location at all — and the Windows scheduled-task
-    gateways look exactly like that, so they must keep being paused for the
-    update to proceed (that is the #50090 fix). They answer False here.
+    Two independent signals, because path evidence alone is demonstrably not
+    enough: a gateway started from the shared uv base interpreter
+    (``AppData/Roaming/uv/python/.../python.exe -m openamer_cli.main gateway
+    run``) carries no install path at all — and that is the process the primary
+    install actually runs. Its own ``OPENAMER_HOME`` is the fact that names it.
+
+    Unprovable is still not foreign: a bare scheduled-task argv with an
+    unreadable environment must stay pausable, or the #50090 fix regresses.
     """
+    if home and our_home:
+        h, ours = _norm_install_path(home), _norm_install_path(our_home)
+        # A *profile* of this install lives under our home — not a foreign one.
+        if h != ours and not h.startswith(ours + os.sep):
+            return True
+
     candidates = [
         _norm_install_path(p)
         for p in paths
@@ -11150,25 +11165,39 @@ def _pause_windows_gateways_for_update() -> dict | None:
     # A foreign gateway also cannot be holding THIS checkout's files open, so
     # leaving it alone costs the update nothing.
     roots = _update_install_roots()
+    our_home = os.environ.get("OPENAMER_HOME")
     ours: list[int] = []
     foreign: list[int] = []
     for pid in running_pids:
         paths: list[str] = []
+        home = None
         try:
             paths.extend(_capture_gateway_argv(int(pid)) or [])
         except Exception:
             pass
+        proc = None
         try:
             import psutil  # type: ignore
 
-            exe = psutil.Process(int(pid)).exe()
-            if exe:
-                paths.append(exe)
+            proc = psutil.Process(int(pid))
         except Exception:
             pass
-        (foreign if _paths_belong_to_other_install(paths, roots) else ours).append(
-            int(pid)
-        )
+        if proc is not None:
+            # Read the two signals independently: a denied exe() must not cost us
+            # the environment, which is the only thing that identifies a gateway
+            # started from the shared base interpreter.
+            try:
+                exe = proc.exe()
+                if exe:
+                    paths.append(exe)
+            except Exception:
+                pass
+            try:
+                home = (proc.environ() or {}).get("OPENAMER_HOME")
+            except Exception:
+                pass
+        is_foreign = _belongs_to_other_install(paths, roots, home, our_home)
+        (foreign if is_foreign else ours).append(int(pid))
 
     if foreign:
         print(

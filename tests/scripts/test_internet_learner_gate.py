@@ -28,6 +28,17 @@ _spec = importlib.util.spec_from_file_location(
 IL = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(IL)
 
+# The exact bytes the papers cycle logged as "paper-learn: ..." (15.09.26):
+# deep_learn() fetched an arxiv PDF and decoded it as text.
+_PDF_NOISE = "".join(chr(c) for c in (
+    0x54, 0xef, 0x70, 0xef, 0x25, 0x92, 0x92, 0x3b, 0x94, 0x22, 0x94, 0x94, 0x13,
+    0x4a, 0x94, 0x38, 0x00, 0x94, 0x94, 0x6a, 0x9d, 0x73, 0x9d, 0x59, 0x9d, 0x6b,
+    0x94, 0x94, 0x94, 0x94, 0x40, 0x72, 0x5c, 0x94, 0x94, 0x11, 0xd7, 0x34, 0x37,
+    0x9d, 0x04, 0x60, 0x20, 0x94, 0x3a, 0x94, 0x47, 0x94, 0x74, 0x31, 0x94, 0x38,
+    0x37, 0x35, 0x94, 0x20, 0x94, 0x54, 0x07, 0x94, 0x65, 0x94, 0x94, 0x13, 0x31,
+    0x94, 0x94, 0x53, 0x35, 0x94, 0x5b, 0x94, 0x41, 0x94, 0x12,
+))
+
 CHROME = [
     "Jetzt spenden Benutzerkonto erstellen Anmelden Meine Werkzeuge",
     "Unsere Werbepartner Einkaufen Ferienwohnungen Freizeit und Reise",
@@ -64,6 +75,10 @@ CHROME = [
     "Onboarding Code Comprehension AI Coding Jishu Labs August 6, 2026 1 2 3 4 5 "
     "6 7 8 9 10 11 Next Stay Updated Get the latest insights on software "
     "development delivered to your inbox.",
+    # raw PDF bytes as an "insight" (live 15.09.26): the digits in the
+    # blob satisfied the technical-signal gate, so length + signal both
+    # passed a byte dump into the training buffer.
+    _PDF_NOISE,
 ]
 
 # Link-shrapnel with no junk keyword and no sentence shape: caught by the
@@ -97,6 +112,13 @@ def test_chrome_is_rejected_as_junk():
         assert IL._is_junk(text), text
 
 
+def test_binary_blobs_are_rejected_and_prose_is_not():
+    """A mis-decoded PDF must not reach the training buffer."""
+    assert IL._looks_binary(_PDF_NOISE)
+    assert IL._is_junk(_PDF_NOISE)
+    for text in REAL:
+        assert not IL._looks_binary(text), text
+
 def test_real_insights_survive_the_junk_gate():
     for text in REAL:
         assert not IL._is_junk(text), text
@@ -127,7 +149,8 @@ def test_clean_insight_decodes_percent_escapes_before_judging():
     assert IL._clean_insight("LoRA%20adapters%20cut%20VRAM%20by%2040%25%20at%20int4.") \
         == "LoRA adapters cut VRAM by 40% at int4."
 
-
+
+
 
 class _Resp:
     """urlopen() stand-in: .read() hands back the JSON we seeded."""
