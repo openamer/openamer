@@ -186,6 +186,10 @@ _NAV_CHROME = (
     # 15.09.26: cycle_b_papers stored "Updated Dec 19, 2013 People This
     # organization has no public members." as a research insight)
     "has no public members",
+    # prompt-template leak, second shape (live 15.09.26: cycle_d_docs stored
+    # `" exactly). - Must be a single technical insight extracted from the
+    # given text. - **Text Source:** ...` as a doc learning)
+    "must be a single technical insight", "**text source:",
 )
 
 

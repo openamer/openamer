@@ -390,6 +390,11 @@ _JUNK_RE = re.compile(
     r"identify the core task|extract one technical insight|"
     r"no preamble before|target audience: autonomous|"
     r"format it as a single sentence|self-critique: reply with|"
+    # Second prompt-echo shape (live 15.09.26: cycle_d_docs distilled
+    # `" exactly). - Must be a single technical insight extracted from the
+    # given text. - **Text Source:** The provided text is a lengthy table of
+    # con…` from a docs page — the model echoed its own template.)
+    r"must be a single technical insight|\*\*text source|"
     # Corporate first-person boilerplate (live 14.09.26: the efficiency cycle
     # stored "Bit-TLS-Verschlüsselung Für die sichere Datenübertragung nutzen
     # wir 256-Bit-TLS-…" — site chrome, but the bare digit 256 satisfied the
