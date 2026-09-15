@@ -1,0 +1,4595 @@
+{
+  "updated": "2026-09-15T01:50:29.534019+00:00",
+  "skills_dir": "C:\\Users\\damir\\AppData\\Local\\openamer-laptop\\skills",
+  "total": 729,
+  "skills": {
+    "auto-best-practice-from-official": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-competitor-intelligence-autogpt-improvem": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-competitor-intelligence-devin-ai": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-competitor-intelligence-openhands-agent": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-internet-learning-llm-agents": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-latest-research-insight-arxiv": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-multidomain-learning-climate-science": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-multidomain-learning-medical-diagnosis": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-multidomain-learning-philosophy-of": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-structural-connection-between-learning": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-structural-connection-between-tool": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-what-are-the-most": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-what-makes-a-selfimproving": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-agent-a": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-agent-o": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-agent-v": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-because-openamer-bootstrap-is-a-n51-": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-darwin": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-im-subprocess-der-cron-wrapper-test-": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-laptop-ope": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-mcp-bridge-ini": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-n-double-script-path-8-doppelter-script": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-n-permission-8-permission-denied-n-f": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-openamer-laptop": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-repo-3": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-script-feld-enth-lt-den-nackten-date": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-scripts-p": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-scripts-tr": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-training-f": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-14-verify-the-deps-import-under-the-": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-fix-install-the-missing-pytest-deps-": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-laptop-agen": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-n3-pid-restart-pr-ft-ob-ein-prozess-": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-openamer-agen": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-users-damir-appdata-local-openamer-lapto": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "apple-notes": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "apple-reminders": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "findmy": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "imessage": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-env-checker": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-efficiency-learning-edge-ai": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-efficiency-learning-quantization-techniq": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-efficiency-learning-small-language": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-explain-how-sleep-consolidation": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-how-does-energy-efficiency": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-internet-learning-ai-agent": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-internet-learning-autonomous-ai": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-multidomain-learning-business-automation": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-multidomain-learning-education-ai": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-multidomain-learning-financial-markets": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-multidomain-learning-legal-ai": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-multidomain-learning-physics-simulation": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-security-learning-ai-agent": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-security-learning-jailbreak-prevention": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-security-learning-llm-prompt": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-share-a-lesson-you": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-structural-connection-between-energy": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-structural-connection-between-system": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-what-did-you-learn": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-what-is-the-difference": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-what-new-agent-architectures": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "a2a-swarm": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "agent-mesh": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "agent-self-improvement": {
+      "refs": 4,
+      "ok": 4,
+      "score": 1.0,
+      "missing": []
+    },
+    "agent-self-setup": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-import-deepseek-harness": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "autonomous-bootstrapping": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "autonomous-completion": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "autonomous-execution-discipline": {
+      "refs": 2,
+      "ok": 2,
+      "score": 1.0,
+      "missing": []
+    },
+    "bug-bounty": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "claude-code": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "codex": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "computer-use": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "crew-manager": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "generalize-external-skills": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "github-automation-agents": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "goal-engine": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "multi-agent-orchestration": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "openamer-agent": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "openamer-brain-train": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "openamer-finetune-plan": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "openamer-update-recovery": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "openamer-vision": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "opencode": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "plugin-system": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "plugin_system.py"
+      ]
+    },
+    "remote-agent-worker": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "security-agent": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "self-improvement-tooling": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "self-reflection-loop": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "skill-discovery": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "skills-hub-cache": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "super-intelligence-roadmap": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "windows-computer-use": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "autonomous-learning-architecture": {
+      "refs": 6,
+      "ok": 6,
+      "score": 1.0,
+      "missing": []
+    },
+    "cdp-social-posting": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "architecture-diagram": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "ascii-art": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "ascii-video": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "baoyu-infographic": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "claude-design": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "comfyui": {
+      "refs": 9,
+      "ok": 8,
+      "score": 0.889,
+      "missing": [
+        "main.py"
+      ]
+    },
+    "design-md": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "excalidraw": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "humanizer": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "manim-video": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "p5js": {
+      "refs": 2,
+      "ok": 2,
+      "score": 1.0,
+      "missing": []
+    },
+    "popular-web-designs": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "pretext": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "python-audio-synthesis": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "sketch": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "songwriting-and-ai-music": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "touchdesigner-mcp": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "agentic-commerce-payments": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "enterprise-agent-deployment": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-cron-guard": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-engine": {
+      "refs": 10,
+      "ok": 9,
+      "score": 0.9,
+      "missing": [
+        "a.py"
+      ]
+    },
+    "darwin-evidence-hygiene": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-gap-weak-population": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-a2a-brainlog-disabled-no-such-file-o": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-agent-update-incomplete": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-bin-uv-exe-ven": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-browser-sessions-json": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-c-users-damir-openamer-repo-openamer-cli": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-cli-auto-tester-py": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-cron-jobs-json": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-damir-bounds-x-no-such-fil": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-darwin-autonomous-loop-json": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-darwin-populatio": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-darwin-population-json": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-darwin-rollback": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-darwin-rollback-log-json": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-default-cron": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-go-zip": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-laptop-browser": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-laptop-docs": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-laptop-predictive-health": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-laptop-update-in-progress": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-mcp-bridge-init-py": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-n-usr-bin-bash-line-3-c-users-damir-boun": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-nposting-to-openamer-18": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-numpy-in-tests-test-vector-memory-py": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-openamer-browser": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-openamer-cli-main-py": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-openamer-repo-cron-autotest-wrapper-": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-package-lock-json": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-permissionerror-before-bash-starts": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-predictive-heal": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-profiles-default": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-python-exe-no-such-file-or-directory": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-r-n1-failed": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-scripts-cron-mes": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-scripts-cron-tokenharbor-watchdog-py": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-scripts-discord": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-scripts-github-engage-py": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-scripts-security": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-scripts-security-cve-scan-py": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-scripts-self-reflection-py": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-scripts-session-manager-py": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-scripts-thinking-rules-py": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-scripts-training": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-skills-autonomou": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-temp-kfvpj1fw-0-cs-23-der-typ-oder-n": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-tmp-body18-md": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-tmp-check-online-l": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-tmp-deepseek-harness-agents-skills": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-tmp-run-autotester-py": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-tmp-sinfonia-live-mid": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-training-auto-skills-json": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-training-internet-learn-log-jsonl": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-training-model-config-py": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-training-self-improve-py": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-valueerror-for-run-lint": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-venv2-seed": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-werfen-f-r-win32security-pywin32-typ": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-work-config-yaml": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-z-b-torch-import-optional-machen-try": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-session-recall": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "desktop-evidence-ledger": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "multi-monitor-control": {
+      "refs": 2,
+      "ok": 2,
+      "score": 1.0,
+      "missing": []
+    },
+    "windows-compatibility": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "windows-desktop-self-healing": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-backup": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "browser-console-transport": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "cron-autotest-run-cron-entry": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "cron-fleet-health": {
+      "refs": 2,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "x.py",
+        "online_buffer.js"
+      ]
+    },
+    "cron-inference-drift-repair": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "cron-model-pinning": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "external-link-audit": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "full-system-verification": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "funding-setup": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "github-automation-push": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "github-issue-poster": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "internet-learner-stall-fix": {
+      "refs": 2,
+      "ok": 2,
+      "score": 1.0,
+      "missing": []
+    },
+    "predictive-health": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "remote-gpu-worker": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "ssh-manager": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "system-performance-monitoring": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "terminal-outage-workaround": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "token-harbor-free-route": {
+      "refs": 6,
+      "ok": 6,
+      "score": 1.0,
+      "missing": []
+    },
+    "traffic-cop": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "discord-server-management": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "dream-cycle": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "payment-embedding": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "himalaya": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "codebase-inspection": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "github-api-automation": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "github-auth": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "github-code-review": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "github-feature-update-post": {
+      "refs": 5,
+      "ok": 5,
+      "score": 1.0,
+      "missing": []
+    },
+    "github-issue-updater": {
+      "refs": 3,
+      "ok": 3,
+      "score": 1.0,
+      "missing": []
+    },
+    "github-issues": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "github-pr-workflow": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "github-repo-management": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "github-readme-summary": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "accelerated-computing-cudf": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "aiq-deploy": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "aiq-research": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "amc-run-rtsp-calibration": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "amc-run-sample-calibration": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "amc-run-video-calibration": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "amc-setup-calibration-stack": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "cudaq-guide": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "cudaq-importing": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "cuopt-developer": {
+      "refs": 2,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "./build.sh",
+        "./ci/check_style.sh"
+      ]
+    },
+    "cuopt-install": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "cuopt-multi-objective-exploration": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "cuopt-numerical-optimization-api": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "cuopt-numerical-optimization-formulation": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "cuopt-routing-api-python": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "cuopt-server-api-python": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "cupynumeric-hdf5": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "cupynumeric-install": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "cupynumeric-migration-readiness": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "scripts/fetch_api_support.py"
+      ]
+    },
+    "cupynumeric-parallel-data-load": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "dali-dynamic-mode": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "data-designer": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "deepstream-dev": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "deepstream-generate-pipeline": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "/tmp/pipeline.sh"
+      ]
+    },
+    "deepstream-import-vision-model": {
+      "refs": 2,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        ".claude/skills/deepstream-import-vision-model/scripts/dsrun.sh",
+        ".claude/skills/deepstream-import-vision-model/scripts/model/safetensors-to-onnx.sh"
+      ]
+    },
+    "deepstream-profile-pipeline": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "deepstream-run-mv3dt": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "deepstream-sop": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "dicom-metadata-extract": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "scripts/extract_metadata.py"
+      ]
+    },
+    "dicom-series-preflight": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "scripts/preflight_series.py"
+      ]
+    },
+    "dicom-series-to-volume": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "scripts/series_to_volume.py"
+      ]
+    },
+    "digital-health-clinical-asr-build": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "digital-health-clinical-asr-eval": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "digital-health-clinical-asr-finetune": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "/opt/NeMo/examples/asr/speech_to_text_finetune.py"
+      ]
+    },
+    "digital-health-clinical-asr-setup": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-aes-gcm": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-argp": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-argus": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-bare-metal-deployment": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-bench": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-bench-extension": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-bf3-deployment": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-bf4-deployment": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-caps": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-collectx-deployment": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-comch": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-comm-channel-admin": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-common": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-compress": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-container-deployment": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-debug": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-devemu": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-dma": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-dms": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-dpa": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-dpa-hl-tracer": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-dpdk-bridge": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-erasure-coding": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-eth": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-firefly": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-flow": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-flow-dpa-perf": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-flow-dpa-provider": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-flow-grpc-server": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-flow-perf": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-flow-tune": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-gpi": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-gpunetio": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-gpunetio-ib-write-bw": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-gpunetio-ib-write-lat": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-hardware-safety": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-mgmt": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-pcc": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-pcc-counters": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-pcc-ztr-rttcc-algo": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-programming-guide": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-public-knowledge-map": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-rdma": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-rdmi": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-rmax": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-setup": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-sha": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-sha-offload-engine": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-socket-relay": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-spcx-cc": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-sta": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-structured-tools-contract": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-telemetry": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-telemetry-exporter": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-telemetry-utils": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-upgrade": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-urom": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-urom-svc": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-verbs": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "doca-version": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "dynamo-interconnect-check": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "scripts/check_interconnect.py"
+      ]
+    },
+    "dynamo-recipe-runner": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "scripts/recipe_tool.py"
+      ]
+    },
+    "dynamo-router-starter": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "scripts/check_router_health.py"
+      ]
+    },
+    "dynamo-troubleshoot": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "scripts/collect_dynamo_debug_bundle.py"
+      ]
+    },
+    "earth2studio-create-datasource": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "earth2studio-create-diagnostic": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "earth2studio-create-prognostic": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "earth2studio-data-fetch": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "earth2studio-deterministic-forecast": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "earth2studio-discover": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "earth2studio-install": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "holohub-app-lifecycle": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "holohub-debug-build-run": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "holohub-module-lifecycle": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "holoscan-install-conda": {
+      "refs": 3,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "/tmp/Miniforge3.sh",
+        "/tmp/hs_hello_world.py",
+        "/tmp/hs_video_replayer.py"
+      ]
+    },
+    "holoscan-install-container": {
+      "refs": 3,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "/opt/nvidia/holoscan/examples/hello_world/python/hello_world.py",
+        "tensor_interop.py",
+        "video_replayer.py"
+      ]
+    },
+    "holoscan-install-debian": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "holoscan-install-source": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "holoscan-install-wheel": {
+      "refs": 2,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "/tmp/hs_hello_world.py",
+        "/tmp/hs_video_replayer.py"
+      ]
+    },
+    "holoscan-setup": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "hsb-app": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "hsb-flash": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "hsb-ip-create-top": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "hsb-ip-def": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "hsb-ip-packetizer": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "hsb-setup": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "docker/build.sh"
+      ]
+    },
+    "hsb-test": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "i4h-lerobot-viz": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "i4h-workflow": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "./run.sh"
+      ]
+    },
+    "i4h-workflow-create": {
+      "refs": 2,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "./scripts/create_blank_environment.py",
+        "./setup.sh"
+      ]
+    },
+    "i4h-workflow-dataset-annotate": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "tools/annotator/scripts/vllm.sh"
+      ]
+    },
+    "i4h-workflow-dataset-convert": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "i4h-workflow-dataset-mimic": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "i4h-workflow-dataset-replay": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "./run.sh"
+      ]
+    },
+    "i4h-workflow-dataset-teleop": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "./run.sh"
+      ]
+    },
+    "i4h-workflow-e2e": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "./scripts/e2e/run.sh"
+      ]
+    },
+    "i4h-workflow-finetune": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "i4h-workflow-scene-edit": {
+      "refs": 3,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "scripts/live_scene_edit.py",
+        "scripts/authoring_info.py",
+        "./run.sh"
+      ]
+    },
+    "i4h-workflow-setup": {
+      "refs": 2,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "./setup.sh",
+        "./run.sh"
+      ]
+    },
+    "i4h-workflow-train-rl": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "./train.sh"
+      ]
+    },
+    "i4h-workflow-validate": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "./run.sh"
+      ]
+    },
+    "jetson-build-source": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "jetson-customize-camera": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "../../scripts/pin_verifier.py"
+      ]
+    },
+    "jetson-customize-clocks": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "jetson-customize-fan": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "jetson-customize-mgbe": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "../../scripts/pin_verifier.py"
+      ]
+    },
+    "jetson-customize-nvpmodel": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "jetson-customize-pcie": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "../../scripts/pin_verifier.py"
+      ]
+    },
+    "jetson-customize-pinmux": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "jetson-customize-uphy": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "jetson-customize-usb": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "../../scripts/pin_verifier.py"
+      ]
+    },
+    "jetson-derive-carrier": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "jetson-diagnostic": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "jetson-download-bsp": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "jetson-flash-image": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "jetson-generate-kb": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "jetson-headless-mode": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "jetson-inference-mem-tune": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "jetson-init-image": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "jetson-init-source": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "jetson-init-target": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "jetson-link-docs": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "jetson-llm-benchmark": {
+      "refs": 3,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "scripts/bench_vllm.sh",
+        "scripts/bench_ollama.sh",
+        "scripts/bench_llama_cpp.sh"
+      ]
+    },
+    "jetson-llm-serve": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "skills/jetson-diagnostic/scripts/detect_jetson.sh"
+      ]
+    },
+    "jetson-memory-audit": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "jetson-optimize-memory": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "jetson-package": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "jetson-print-bsp-info": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "jetson-print-device-info": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "jetson-promote-image": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "jetson-quick-start": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "jetson-set-target": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "jetson-speculative-decoding": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "jetson-validate-image": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "jetson-video-benchmark": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "jetson-video-capability": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "jetson-video-pipeline": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "jetson-video-recipe": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "jetson-video-setup": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "launch-nemo-rl": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "mcore-create-issue": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "mcore-linting-and-formatting": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "tools/autoformat.sh"
+      ]
+    },
+    "mcore-run-on-slurm": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "mcore-split-pr": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "mcore-testing": {
+      "refs": 2,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "tests/functional_tests/shell_test_utils/run_ci_test.sh",
+        "tests/test_utils/python_scripts/download_golden_values.py"
+      ]
+    },
+    "medtech-model-evidence-export": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "skills/medtech-model-evidence-export/scripts/export_evidence_pack.py"
+      ]
+    },
+    "nemo-automodel-distributed-training": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nemo-automodel-launcher-config": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nemo-automodel-model-onboarding": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nemo-automodel-recipe-development": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nemo-fabric-build-adapter": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nemo-fabric-integrate": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nemo-mbridge-mlm-bridge-training": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "./scripts/switch_mcore.sh"
+      ]
+    },
+    "nemo-mbridge-multi-node-slurm": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nemo-mbridge-perf-activation-recompute": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nemo-mbridge-perf-cpu-offloading": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "scripts/training/run_recipe.py"
+      ]
+    },
+    "nemo-mbridge-perf-cuda-graphs": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "scripts/performance/run_script.py"
+      ]
+    },
+    "nemo-mbridge-perf-expert-parallel-overlap": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "scripts/performance/run_script.py"
+      ]
+    },
+    "nemo-mbridge-perf-hierarchical-context-parallel": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nemo-mbridge-perf-megatron-fsdp": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "scripts/performance/launch.py"
+      ]
+    },
+    "nemo-mbridge-perf-memory-tuning": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nemo-mbridge-perf-moe-comm-overlap": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "scripts/performance/run_script.py"
+      ]
+    },
+    "nemo-mbridge-perf-moe-dispatcher-selection": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nemo-mbridge-perf-moe-hardware-configs": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nemo-mbridge-perf-moe-long-context": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nemo-mbridge-perf-moe-optimization-workflow": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nemo-mbridge-perf-moe-vlm-training": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nemo-mbridge-perf-parallelism-strategies": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nemo-mbridge-perf-sequence-packing": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nemo-mbridge-perf-tp-dp-comm-overlap": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nemo-mbridge-recipe-recommender": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "./scripts/training/train.sh"
+      ]
+    },
+    "nemo-mbridge-resiliency": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "./examples/training_features/nemo-mbridge-resiliency/fault_tolerance/run_fault_tolerance.sh"
+      ]
+    },
+    "nemo-relay-debug-runtime-integration": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nemo-relay-get-started": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nemo-relay-install": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nemo-relay-instrument-calls": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nemo-relay-instrument-context-isolation": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nemo-relay-instrument-typed-wrappers": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nemo-relay-migrate-from-flow": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nemo-relay-plugin-adaptive-tuning": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nemo-relay-plugin-build": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nemo-relay-plugin-observability": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nemo-retriever": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nemo-retriever-mcp": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nemo-rl-auto-research": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nemo-rl-brev-etiquette": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nemo-rl-docs": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nemo-rl-session-memory": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nemoclaw-user-guide": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nemotron-asr-finetune": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nemotron-customize": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nemotron-policy-generator": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nemotron-retrieval-recipes": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nemotron-speech": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nv-generate-ct-rflow": {
+      "refs": 5,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "skills/nv-generate-ct-rflow/scripts/run_rflow_ct.py",
+        "skills/nv-generate-ct-rflow/scripts/list_anatomies.py",
+        "skills/nv-generate-ct-rflow/scripts/run_ct_mask.py",
+        "skills/nv-generate-ct-rflow/scripts/run_ct_from_mask.py",
+        "skills/nv-generate-ct-rflow/scripts/run_ct_image.py"
+      ]
+    },
+    "nv-generate-mr": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "skills/nv-generate-mr/scripts/run_mr.py"
+      ]
+    },
+    "nv-generate-mr-brain": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "skills/nv-generate-mr-brain/scripts/run_mr_brain.py"
+      ]
+    },
+    "nv-generate-mr-brain-finetune": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "skills/nv-generate-mr-brain-finetune/scripts/run_mr_brain_finetune.py"
+      ]
+    },
+    "nv-generate-vae-finetune": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "skills/nv-generate-vae-finetune/scripts/run_vae_finetune.py"
+      ]
+    },
+    "nv-reason-cxr": {
+      "refs": 2,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "skills/nv-reason-cxr/scripts/run_nv_reason_cxr.py",
+        "eval_engine/run.py"
+      ]
+    },
+    "nv-segment-ct": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "skills/nv-segment-ct/fixtures/fetch_spleen_fixture.py"
+      ]
+    },
+    "nv-segment-ct-finetune": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "skills/nv-segment-ct-finetune/scripts/run_finetune.py"
+      ]
+    },
+    "nv-segment-ctmr": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "skills/nv-segment-ctmr/scripts/run_ctmr.py"
+      ]
+    },
+    "nvidia-skill-finder": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "omniverse-cad-to-simready": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "omniverse-realtime-viewer": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "omniverse-usd-performance-tuning": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "paidf-anomalygen": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "paidf-augmentation": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "paidf-auto-labeling": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "paidf-curation-and-retrieval": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "paidf-orchestration-setup": {
+      "refs": 2,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "scripts/remote_k8s.py",
+        "skills/paidf-orchestration-setup/scripts/remote_k8s.py"
+      ]
+    },
+    "paidf-orchestration-write-dag": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "physical-ai-defect-image-generation": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "physical-ai-event-video-generation": {
+      "refs": 3,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "scripts/upload_images.py",
+        "scripts/payload.py",
+        "scripts/summarize_results.py"
+      ]
+    },
+    "physical-ai-image-attribute-augmentation": {
+      "refs": 3,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "scripts/upload_images.py",
+        "scripts/payload.py",
+        "scripts/summarize_results.py"
+      ]
+    },
+    "physical-ai-infrastructure-setup-and-resilient-scaling": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "physical-ai-neural-reconstruction": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "physical-ai-video-data-augmentation": {
+      "refs": 5,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "scripts/preflight_credentials.sh",
+        "scripts/pre_submit_guard.py",
+        "scripts/prepare_demo_assets.sh",
+        "scripts/stage_run_artifacts.sh",
+        "scripts/render_side_by_side.sh"
+      ]
+    },
+    "physicsnemo-discover": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "physicsnemo-shard-tensor": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "portfolio-optimization": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "rag-blueprint": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "rag-eval": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "scripts/eval/evaluate_rag.py"
+      ]
+    },
+    "rag-perf": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "rtvi-cv-customize-model": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "rtvi-cv-scaffold-vss-service": {
+      "refs": 2,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "scripts/scaffold_rtvi_vss_service.py",
+        "tools/kafka_smoketest.py"
+      ]
+    },
+    "rtvi-vlm-customize-model": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "skill-card-generator": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-analyze-changenet-rca": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-analyze-gaps-visual-changenet": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-analyze-gaps-vlm-bcq": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-convert-dataset-format": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-finetune-clip": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-finetune-cosmos-embed": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-finetune-cosmos-reason": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "skills/models/tao-finetune-cosmos-reason/scripts/prepare_cosmos3_vlm_checkpoint.py"
+      ]
+    },
+    "tao-finetune-huggingface-model": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "train.py"
+      ]
+    },
+    "tao-generate-image-grounding": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-generate-referring-expressions": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-generate-video-reasoning-annotations": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-launch-workflow": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-list-capabilities": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-mine-aoi-images": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-port-huggingface-model": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-route-visual-changenet-samples": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-run-automl": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-run-automl-deft-pipeline": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-run-deft-aoi": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-run-inference-service": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-run-on-brev": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-run-on-docker": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-run-on-kubernetes": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "skills/platform/tao-setup-nvidia-gpu-host/scripts/setup-nvidia-gpu-host.sh"
+      ]
+    },
+    "tao-run-on-local-docker": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-run-on-slurm": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-run-platform": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-setup-nvidia-gpu-host": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "skills/platform/tao-setup-nvidia-gpu-host/scripts/setup-nvidia-gpu-host.sh"
+      ]
+    },
+    "tao-train-action-recognition": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-train-bevfusion": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-train-centerpose": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-train-deformable-detr": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-train-depth-anything-v2": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-train-dino": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-train-fast-foundation-stereo": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-train-foundation-stereo": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-train-grounding-dino": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-train-image-classification": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-train-mask-auto-encoder": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-train-mask-auto-label": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-train-mask-grounding-dino": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-train-mask2former": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-train-metric-learning-recognition": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-train-nvdinov2": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-train-nvpanoptix3d": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-train-ocdnet": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-train-ocrnet": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-train-oneformer": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-train-optical-inspection": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-train-pointpillars": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-train-pose-classification": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-train-reid": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-train-rtdetr": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-train-segformer": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-train-single-step": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-train-sparse4d": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tao-train-visual-changenet": {
+      "refs": 2,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "skills/models/tao-train-visual-changenet/scripts/stage_backbone.py",
+        "skills/models/tao-train-visual-changenet/scripts/validate_vcn_dataset.py"
+      ]
+    },
+    "tao-validate-dataset-format": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tilegym-adding-cutile-kernel": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "tests/benchmark/bench_my_op.py"
+      ]
+    },
+    "tilegym-converting-cutile-to-julia": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tilegym-converting-cutile-to-triton": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tilegym-cutile-autotuning": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tilegym-cutile-python": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "./composed_foo.py"
+      ]
+    },
+    "tilegym-improve-cutile-kernel-perf": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tilegym-monkey-patch-kernels-to-transformers": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "vss-ask-video": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "vss-deploy-dense-captioning": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "vss-deploy-detection-tracking-2d": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "vss-deploy-detection-tracking-3d": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "vss-deploy-profile": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "vss-deploy-video-embedding": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "vss-generate-video-calibration": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "vss-generate-video-report": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "vss-manage-alerts": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "vss-manage-video-io-storage": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "vss-query-analytics": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "vss-search-archive": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "vss-setup-behavior-analytics": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "vss-setup-video-analytics-api": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "vss-summarize-video": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "warp-compile-time-optimizer": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "scripts/warp_compile_probe.py"
+      ]
+    },
+    "warp-debug-gradients": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "warp-eval": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "scripts/validate_report_schema.py"
+      ]
+    },
+    "dsh-archive-agent-notes": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "dsh-ci-test-reliability": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "dsh-code-review": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "dsh-doc": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "dsh-doc-site-sync": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "dsh-doc-standards": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "dsh-find-simplifications": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "dsh-merging-stacked-prs": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "dsh-pre-push-checks": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "dsh-prose-standard": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "dsh-speed-up-perf": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "dsh-translate-docs": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "dsh-trim-cot-leakage": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "record-browser-gif": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "internet-learning-cycle": {
+      "refs": 2,
+      "ok": 2,
+      "score": 1.0,
+      "missing": []
+    },
+    "local-cpu-finetune": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "longterm-memory": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "open-source-project-launch": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "payment-integration": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "product-hunt-launch": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "gif-search": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "songsee": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "youtube-content": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "SKILL_DIR/scripts/fetch_transcript.py"
+      ]
+    },
+    "mini-openamer": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "evaluating-llms-harness": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "weights-and-biases": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "huggingface-hub": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "llama-cpp": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "serving-llms-vllm": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "openrouter-model-pricing": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "training-data-collection": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "obsidian": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "openamer-plugin-development": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "plugin-api": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "airtable": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "docx": {
+      "refs": 5,
+      "ok": 5,
+      "score": 1.0,
+      "missing": []
+    },
+    "donation-buttons": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "google-workspace": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "maps": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nano-pdf": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "notion": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "ocr-and-documents": {
+      "refs": 2,
+      "ok": 2,
+      "score": 1.0,
+      "missing": []
+    },
+    "open-source-project-visibility": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "pdf": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "powerpoint": {
+      "refs": 5,
+      "ok": 5,
+      "score": 1.0,
+      "missing": []
+    },
+    "teams-meeting-pipeline": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "xlsx": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "arxiv": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "blogwatcher": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "competitive-analysis": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "llm-wiki": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "polymarket": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "research-paper-writing": {
+      "refs": 4,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "run_experiment.py",
+        "scripts/reproduce_table1.sh",
+        "scripts/make_figure2.py",
+        "run.py"
+      ]
+    },
+    "web-research": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "workflow-immune-system": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "agent-sandboxing": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "pen-tester": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "vulnerability-scanning": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-growth": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "introspection": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "self-rewriter": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "openhue": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "xurl": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "adapting-external-skills": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "api-drift-recovery": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-code-review": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-docs": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "autonomous-learning-loops": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "best-in-world-workflow": {
+      "refs": 2,
+      "ok": 2,
+      "score": 1.0,
+      "missing": []
+    },
+    "browser-brick-recovery": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "capture-thinking": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "clean-code-edits": {
+      "refs": 2,
+      "ok": 2,
+      "score": 1.0,
+      "missing": []
+    },
+    "cli-command-extension": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "code-generator": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "code-intelligence": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "commander": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "competitive-overtake": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-skill-evolution": {
+      "refs": 12,
+      "ok": 10,
+      "score": 0.833,
+      "missing": [
+        "x.py",
+        "./build.sh"
+      ]
+    },
+    "desktop-copy-deploy": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "desktop-i18n-locale": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "desktop-i18n-locale-add": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "desktop-i18n-locale-addition": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "dogfood": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "electron-windows-build": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "_upload_release.py"
+      ]
+    },
+    "eol-safe-editing": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "event-kernel-agent-runtime": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "evolutionary-skill-engineering": {
+      "refs": 2,
+      "ok": 1,
+      "score": 0.5,
+      "missing": [
+        "a.py"
+      ]
+    },
+    "failure-attribution": {
+      "refs": 3,
+      "ok": 1,
+      "score": 0.333,
+      "missing": [
+        "wrapper.py",
+        "scripts/add_provider.py"
+      ]
+    },
+    "fork-differentiation": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "git-clean-verification": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "github-ci-debugging": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "go-mesh-daemon": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "greenfield-agent-architecture": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "greenfield-agent-project": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "hello-plugin": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "hosted-payments": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "intellij-plugin-build": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "massive-upgrade-deployment": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "node-inspect-debugger": {
+      "refs": 2,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "/tmp/cdp-debug.js",
+        "parent.js"
+      ]
+    },
+    "openamer-agent-skill-authoring": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "openamer-browser-use": {
+      "refs": 3,
+      "ok": 3,
+      "score": 1.0,
+      "missing": []
+    },
+    "openamer-desktop-build": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "openamer-desktop-dev": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "openamer-docs-site": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "website/scripts/check_sidebar_ids.py"
+      ]
+    },
+    "openamer-feature-engineering": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "file.py"
+      ]
+    },
+    "openamer-ide-extensions": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "parallel-feature-development": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "plan": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "plugin-advanced-patterns": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "plugin-dashboard-reporting": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "plugin-external-integration": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "echo_server.py"
+      ]
+    },
+    "python-debugpy": {
+      "refs": 2,
+      "ok": 2,
+      "score": 1.0,
+      "missing": []
+    },
+    "requesting-code-review": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "safe-self-modification": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "security-scanner-authoring": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "scan.py"
+      ]
+    },
+    "self-introspection": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "self-modify": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "simplify-code": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "skill-knowledge-graph": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "skill-md-frontmatter-analysis": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "skill-population-evolution": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "skill-validator": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "smart-test-runner": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "spike": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "main.py"
+      ]
+    },
+    "systematic-debugging": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "scripts/repro_bug.py"
+      ]
+    },
+    "test-driven-development": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "tool-repair-workflow": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "training-scripts-hygiene": {
+      "refs": 2,
+      "ok": 2,
+      "score": 1.0,
+      "missing": []
+    },
+    "vision-audio": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "voice-assistant": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "voice-audio-integration": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "windows-aware-file-edits": {
+      "refs": 2,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "_apply_fix.py",
+        "_fix.py"
+      ]
+    },
+    "windows-installer-release": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "windows-subprocess-robustness": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "ab-test-engine": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-updater": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "calibration-abduction": {
+      "refs": 4,
+      "ok": 4,
+      "score": 1.0,
+      "missing": []
+    },
+    "context-compressor": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "cron-job-management": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "cron-job-repair": {
+      "refs": 8,
+      "ok": 3,
+      "score": 0.375,
+      "missing": [
+        "scripts/training/x.py",
+        "x.py",
+        "wrapper.py",
+        "temp.py",
+        "repo/_suicide.py"
+      ]
+    },
+    "cross-profile-sync": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "dashboard": {
+      "refs": 3,
+      "ok": 3,
+      "score": 1.0,
+      "missing": []
+    },
+    "file-organizer": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "global-sync": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "growth-tracking": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "homeostasis": {
+      "refs": 2,
+      "ok": 2,
+      "score": 1.0,
+      "missing": []
+    },
+    "learning-loop": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "local-llm-fallback-benchmarking": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "log-analyzer": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "memory-store-upkeep": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "model-benchmarker": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "notification-engine": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "perf-optimizer": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "remote-web": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "resource-monitor": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "self-healer": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "self-hosted": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "smart-cache": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "smart-cron-scheduler": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "smart-session-saver": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "system-snapshot": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "task-queue": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "web-platform-servers": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "webhook-engine": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "windows-path-resolution": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "train-from-usage": {
+      "refs": 2,
+      "ok": 2,
+      "score": 1.0,
+      "missing": []
+    },
+    "undetectable-browsing": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "vscode-extension-scaffold": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "windows-python-service-ops": {
+      "refs": 3,
+      "ok": 3,
+      "score": 1.0,
+      "missing": []
+    }
+  }
+}

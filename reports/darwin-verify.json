@@ -1,0 +1,7027 @@
+{
+  "updated": "2026-09-13T16:02:43.486157+00:00",
+  "skills_dir": "C:\\Users\\damir\\AppData\\Local\\openamer-laptop\\skills",
+  "total": 702,
+  "skills": {
+    "auto-best-practice-from-official": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "auto-competitor-intelligence-autogpt-improvem": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "auto-competitor-intelligence-devin-ai": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "auto-competitor-intelligence-openhands-agent": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "auto-internet-learning-llm-agents": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "auto-latest-research-insight-arxiv": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "auto-multidomain-learning-climate-science": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "auto-multidomain-learning-medical-diagnosis": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "auto-multidomain-learning-philosophy-of": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "auto-structural-connection-between-learning": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "auto-structural-connection-between-tool": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "auto-what-are-the-most": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "auto-what-makes-a-selfimproving": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "apple-notes": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "apple-reminders": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "findmy": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "imessage": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "auto-env-checker": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "auto-efficiency-learning-edge-ai": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "auto-efficiency-learning-quantization-techniq": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "auto-efficiency-learning-small-language": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "auto-explain-how-sleep-consolidation": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "auto-how-does-energy-efficiency": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "auto-internet-learning-ai-agent": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "auto-internet-learning-autonomous-ai": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "auto-multidomain-learning-business-automation": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "auto-multidomain-learning-education-ai": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "auto-multidomain-learning-financial-markets": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "auto-multidomain-learning-legal-ai": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "auto-security-learning-ai-agent": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "auto-security-learning-jailbreak-prevention": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "auto-security-learning-llm-prompt": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "auto-share-a-lesson-you": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "auto-structural-connection-between-energy": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "auto-structural-connection-between-system": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "auto-what-did-you-learn": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "auto-what-is-the-difference": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "auto-what-new-agent-architectures": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "a2a-swarm": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "openamer a2a status                 # identity up",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "agent-mesh": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "agent-self-improvement": {
+      "declared": true,
+      "executed": true,
+      "allowed": true,
+      "command": "python scripts/thinking_rules.py consolidate",
+      "returncode": 0,
+      "passed": true,
+      "score": 1.0,
+      "reason": "ran"
+    },
+    "agent-self-setup": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "auto-import-deepseek-harness": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "autonomous-bootstrapping": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "autonomous-completion": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "autonomous-execution-discipline": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "bug-bounty": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "claude-code": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "codex": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "computer-use": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "crew-manager": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "generalize-external-skills": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "github-automation-agents": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "goal-engine": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "multi-agent-orchestration": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "openamer-agent": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "openamer-brain-train": {
+      "declared": true,
+      "executed": true,
+      "allowed": true,
+      "command": "python scripts/brain_train.py --smoke",
+      "returncode": 2,
+      "passed": false,
+      "score": 0.0,
+      "reason": "ran"
+    },
+    "openamer-finetune-plan": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "openamer a2a brain collect --out brain.jsonl    # dataset exists, JSONL valid",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "openamer-update-recovery": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "openamer-vision": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "opencode": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "terminal(command=\"opencode run 'Respond with exactly: OPENCODE_SMOKE_OK'\")",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "plugin-system": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "remote-agent-worker": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python scripts/run_tests.sh",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "security-agent": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "self-improvement-tooling": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -m py_compile scripts/<x>.py",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "self-reflection-loop": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "skill-discovery": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "skills-hub-cache": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "super-intelligence-roadmap": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "windows-computer-use": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "autonomous-learning-architecture": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "verification_evidence",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "cdp-social-posting": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "architecture-diagram": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "ascii-art": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "ascii-video": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "baoyu-infographic": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "claude-design": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "comfyui": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python3 scripts/health_check.py",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "design-md": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "excalidraw": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "humanizer": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "manim-video": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "p5js": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "popular-web-designs": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "pretext": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": ".html",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "python-audio-synthesis": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "ffmpeg -i out.wav -af astats=metadata=1 -f null -",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "sketch": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "songwriting-and-ai-music": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "touchdesigner-mcp": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "agentic-commerce-payments": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "darwin_engine --head-to-head",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "enterprise-agent-deployment": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "darwin_engine --head-to-head",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-cron-guard": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-engine": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "darwin-evidence-hygiene": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-gap-weak-population": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"print('gap-closure-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-agent-a": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-agent-o": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-agent-v": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-because-openamer-bootstrap-is-a-n51-": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-bin-uv-exe-ven": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-c-users-damir-openamer-repo-openamer-cli": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-cron-jobs-json": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-damir-bounds-x-no-such-fil": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-darwin": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-darwin-populatio": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-darwin-rollback": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-fix-install-the-missing-pytest-deps-": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "cd /c/Users/damir/openamer-repo && python -c \"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-go-zip": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-im-subprocess-der-cron-wrapper-test-": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-laptop-agen": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-laptop-browser": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-laptop-docs": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-laptop-ope": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-mcp-bridge-ini": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-n-double-script-path-8-doppelter-script": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-n-permission-8-permission-denied-n-f": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-n-usr-bin-bash-line-3-c-users-damir-boun": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-numpy-in-tests-test-vector-memory-py": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-openamer-agen": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-openamer-browser": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-openamer-cli-main-py": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-openamer-laptop": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-openamer-repo-cron-autotest-wrapper-": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-package-lock-json": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-permissionerror-before-bash-starts": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-predictive-heal": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-profiles-default": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-repo-3": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-script-feld-enth-lt-den-nackten-date": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-scripts-cron-mes": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-scripts-cron-tokenharbor-watchdog-py": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-scripts-discord": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-scripts-github-engage-py": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-scripts-p": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-scripts-security": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-scripts-session-manager-py": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-scripts-thinking-rules-py": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-scripts-tr": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-scripts-training": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-skills-autonomou": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-tmp-body18-md": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-tmp-check-online-l": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-tmp-deepseek-harness-agents-skills": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-tmp-run-autotester-py": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-tmp-sinfonia-live-mid": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-training-auto-skills-json": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-training-f": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-training-internet-learn-log-jsonl": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-training-model-config-py": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-users-damir-appdata-local-openamer-lapto": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-valueerror-for-run-lint": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-werfen-f-r-win32security-pywin32-typ": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-work-config-yaml": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-harvested-z-b-torch-import-optional-machen-try": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "darwin-session-recall": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -c \"import sys; print('darwin-species-ok')\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "multi-monitor-control": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "windows-compatibility": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "windows-desktop-self-healing": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "auto-backup": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "browser-console-transport": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "cron-autotest-run-cron-entry": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "cron-fleet-health": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "cron-inference-drift-repair": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "cron-model-pinning": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "full-system-verification": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "funding-setup": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "https://www.paypal.com/ncp/payment/BUTTON_ID",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "github-automation-push": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "TOK=$(python3 -c \"l=open('C:/Users/<user>/.git-credentials').read().strip();print(l.rsplit(':',1)[1].rsplit('@',1)[0])\")",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "github-issue-poster": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "predictive-health": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "remote-gpu-worker": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "Missing deps (`peft`, `accelerate`) install the same way with",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "ssh-manager": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "system-performance-monitoring": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "terminal-outage-workaround": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "token-harbor-free-route": {
+      "declared": true,
+      "executed": true,
+      "allowed": true,
+      "command": "python scripts/cron-tokenharbor-watchdog.py  # silent when healthy, exit 1 when down",
+      "returncode": 0,
+      "passed": true,
+      "score": 1.0,
+      "reason": "ran"
+    },
+    "traffic-cop": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "discord-server-management": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "dream-cycle": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "payment-embedding": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "himalaya": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "codebase-inspection": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "github-api-automation": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "GET",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "github-auth": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "Good for users who prefer SSH or already have keys set up.",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "github-code-review": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "github-feature-update-post": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": ".bak-<YYYYmmdd-HHMMSS>",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "github-issue-updater": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "git log -5",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "github-issues": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "github-pr-workflow": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "github-repo-management": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "github-readme-summary": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "accelerated-computing-cudf": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "aiq-deploy": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "aiq-research": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "amc-run-rtsp-calibration": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "amc-run-sample-calibration": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "amc-run-video-calibration": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "amc-setup-calibration-stack": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "cudaq-guide": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "cudaq-importing": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "cuopt-developer": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "cuopt-install": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "import cuopt",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "cuopt-multi-objective-exploration": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "cuopt-numerical-optimization-api": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "cuopt-numerical-optimization-formulation": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "cuopt-routing-api-python": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "cuopt-server-api-python": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "curl http://localhost:8000/cuopt/health",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "cupynumeric-hdf5": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "cd /tmp                                  # outside the cupynumeric source tree",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "cupynumeric-install": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "legate",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "cupynumeric-migration-readiness": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "cupynumeric-parallel-data-load": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "dali-dynamic-mode": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "data-designer": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "deepstream-dev": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "deepstream-generate-pipeline": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python3 -m unittest discover -s <skill-path>/tests -v",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "deepstream-import-vision-model": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "deepstream-profile-pipeline": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "deepstream-run-mv3dt": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "deepstream-sop": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "dicom-metadata-extract": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "dicom-series-preflight": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "dicom-series-to-volume": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "digital-health-clinical-asr-build": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "digital-health-clinical-asr-eval": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "digital-health-clinical-asr-finetune": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "digital-health-clinical-asr-setup": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-aes-gcm": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-argp": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-argus": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-bare-metal-deployment": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-bench": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-bench-extension": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-bf3-deployment": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-bf4-deployment": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-caps": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-collectx-deployment": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-comch": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-comm-channel-admin": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-common": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-compress": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-container-deployment": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-debug": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-devemu": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-dma": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-dms": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-dpa": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-dpa-hl-tracer": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-dpdk-bridge": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-erasure-coding": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-eth": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-firefly": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-flow": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-flow-dpa-perf": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-flow-dpa-provider": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-flow-grpc-server": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-flow-perf": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-flow-tune": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-gpi": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-gpunetio": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-gpunetio-ib-write-bw": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-gpunetio-ib-write-lat": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-hardware-safety": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-mgmt": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-pcc": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-pcc-counters": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-pcc-ztr-rttcc-algo": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-programming-guide": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-public-knowledge-map": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-rdma": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-rdmi": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-rmax": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-setup": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-sha": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-sha-offload-engine": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-socket-relay": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-spcx-cc": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-sta": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-structured-tools-contract": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-telemetry": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-telemetry-exporter": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-telemetry-utils": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-upgrade": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-urom": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-urom-svc": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-verbs": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "doca-version": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "dynamo-interconnect-check": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "dynamo-recipe-runner": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "dynamo-router-starter": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "dynamo-troubleshoot": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "earth2studio-create-datasource": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "earth2studio-create-diagnostic": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "earth2studio-create-prognostic": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "earth2studio-data-fetch": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "earth2studio-deterministic-forecast": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "earth2studio-discover": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "earth2studio-install": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "holohub-app-lifecycle": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "holohub-debug-build-run": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "holohub-module-lifecycle": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "holoscan-install-conda": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "holoscan-install-container": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "holoscan-install-debian": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "holoscan-install-source": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "holoscan-install-wheel": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "holoscan-setup": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "hsb-app": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "hsb-flash": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "hsb-ip-create-top": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "hsb-ip-def": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "hsb-ip-packetizer": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "hsb-setup": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "hsb-test": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "i4h-lerobot-viz": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "meta/info.json",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "i4h-workflow": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "i4h-workflow-create": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "i4h-workflow-dataset-annotate": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "uv run --project tools/dataset i4h-dataset inspect \"$RUN_DIR/filtered.hdf5\" --segments",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "i4h-workflow-dataset-convert": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "meta/info.json",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "i4h-workflow-dataset-mimic": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "uv run --project tools/dataset i4h-dataset inspect \"$RUN_DIR/expanded.hdf5\" --segments",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "i4h-workflow-dataset-replay": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "i4h-workflow-dataset-teleop": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "N/N episodes succeeded",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "i4h-workflow-e2e": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "./stop.sh all",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "i4h-workflow-finetune": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "uv run --project \"tasks/<project>\" python -m \"<project>.server\" \\",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "i4h-workflow-scene-edit": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "i4h-workflow-setup": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "./run.sh list",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "i4h-workflow-train-rl": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "i4h-workflow-validate": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "N/N episodes succeeded",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "jetson-build-source": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "jetson-customize-camera": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "jetson-customize-clocks": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "jetson-customize-fan": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "jetson-customize-mgbe": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "jetson-customize-nvpmodel": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "jetson-customize-pcie": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "jetson-customize-pinmux": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "jetson-customize-uphy": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "jetson-customize-usb": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "jetson-derive-carrier": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "jetson-diagnostic": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "jetson-download-bsp": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "Content-Length",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "jetson-flash-image": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "jetson-generate-kb": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "jetson-headless-mode": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "jetson-inference-mem-tune": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "jetson-init-image": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "jetson-init-source": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "jetson-init-target": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "jetson-link-docs": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "jetson-llm-benchmark": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "jetson-llm-serve": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "jetson-memory-audit": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "jetson-optimize-memory": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "sudo cat /proc/iomem | grep -iE 'nv-reserved|cma|fb|carveout'",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "jetson-package": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "jetson-print-bsp-info": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "jetson-print-device-info": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "jetson-promote-image": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": ".build-state.yaml",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "jetson-quick-start": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "jetson-set-target": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "jetson-speculative-decoding": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "jetson-validate-image": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "jetson-video-benchmark": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "jetson-video-capability": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "jetson-video-pipeline": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "jetson-video-recipe": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "jetson-video-setup": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "launch-nemo-rl": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "mcore-create-issue": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "mcore-linting-and-formatting": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "mcore-run-on-slurm": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "mcore-split-pr": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "mcore-testing": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "-broken",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "medtech-model-evidence-export": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nemo-automodel-distributed-training": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "nemo-automodel-launcher-config": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nemo-automodel-model-onboarding": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nemo-automodel-recipe-development": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "step_scheduler.val_check_interval",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "nemo-fabric-build-adapter": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nemo-fabric-integrate": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nemo-mbridge-mlm-bridge-training": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "lm loss",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "nemo-mbridge-multi-node-slurm": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nemo-mbridge-perf-activation-recompute": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nemo-mbridge-perf-cpu-offloading": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "uv run python -m pytest \\",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "nemo-mbridge-perf-cuda-graphs": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "uv run python -m pytest \\",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "nemo-mbridge-perf-expert-parallel-overlap": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "uv run python -m pytest \\",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "nemo-mbridge-perf-hierarchical-context-parallel": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "TransformerConfig.__post_init__",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "nemo-mbridge-perf-megatron-fsdp": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "CUDA_VISIBLE_DEVICES=0,1 uv run python -m torch.distributed.run --nproc_per_node=2 \\",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "nemo-mbridge-perf-memory-tuning": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "expandable_segments:True",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "nemo-mbridge-perf-moe-comm-overlap": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "comm_overlap.py",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "nemo-mbridge-perf-moe-dispatcher-selection": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nemo-mbridge-perf-moe-hardware-configs": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nemo-mbridge-perf-moe-long-context": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nemo-mbridge-perf-moe-optimization-workflow": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nemo-mbridge-perf-moe-vlm-training": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nemo-mbridge-perf-parallelism-strategies": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "CUDA_VISIBLE_DEVICES=0,1,2,3 uv run python -m torch.distributed.run --nproc_per_node=4 \\",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "nemo-mbridge-perf-sequence-packing": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "uv run python -m pytest tests/unit_tests/training/utils/test_packed_seq_utils.py -v && \\",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "nemo-mbridge-perf-tp-dp-comm-overlap": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "uv run python -m pytest tests/unit_tests/training/test_comm_overlap.py -q",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "nemo-mbridge-recipe-recommender": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nemo-mbridge-resiliency": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "./examples/training_features/nemo-mbridge-resiliency/fault_tolerance/run_fault_tolerance.sh",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "nemo-relay-debug-runtime-integration": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nemo-relay-get-started": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nemo-relay-install": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nemo-relay-instrument-calls": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nemo-relay-instrument-context-isolation": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nemo-relay-instrument-typed-wrappers": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "toJson",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "nemo-relay-migrate-from-flow": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "rg -n \"NeMo Flow|NeMo-Flow|nemo_flow|nemo-flow|NEMO_FLOW|NemoFlow|nemo_flow\\\\.h|nemo_flow_\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "nemo-relay-plugin-adaptive-tuning": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nemo-relay-plugin-build": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "kind",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "nemo-relay-plugin-observability": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nemo-retriever": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nemo-retriever-mcp": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nemo-rl-auto-research": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nemo-rl-brev-etiquette": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nemo-rl-docs": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nemo-rl-session-memory": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nemoclaw-user-guide": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nemotron-asr-finetune": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nemotron-customize": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nemotron-policy-generator": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nemotron-retrieval-recipes": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nemotron-speech": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nv-generate-ct-rflow": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nv-generate-mr": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nv-generate-mr-brain": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nv-generate-mr-brain-finetune": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nv-generate-vae-finetune": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nv-reason-cxr": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nv-segment-ct": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nv-segment-ct-finetune": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -m eval_engine.run_trusted skills/nv-segment-ct-finetune \\",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "nv-segment-ctmr": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "nvidia-skill-finder": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "omniverse-cad-to-simready": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "omniverse-realtime-viewer": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "omniverse-usd-performance-tuning": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "paidf-anomalygen": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "paidf-augmentation": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "paidf-auto-labeling": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "paidf-curation-and-retrieval": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "make format                    # ruff format (repo root)",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "paidf-orchestration-setup": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "paidf-orchestration-write-dag": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "physical-ai-defect-image-generation": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "physical-ai-event-video-generation": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "physical-ai-image-attribute-augmentation": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "physical-ai-infrastructure-setup-and-resilient-scaling": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "runtimeclass/nvidia",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "physical-ai-neural-reconstruction": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "physical-ai-video-data-augmentation": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "physicsnemo-discover": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "physicsnemo-shard-tensor": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "references/testing.md",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "portfolio-optimization": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "rag-blueprint": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "rag-eval": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "rag-perf": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "rtvi-cv-customize-model": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "rtvi-cv-scaffold-vss-service": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "cd <target-dir>",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "rtvi-vlm-customize-model": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "skill-card-generator": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-analyze-changenet-rca": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-analyze-gaps-visual-changenet": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-analyze-gaps-vlm-bcq": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-convert-dataset-format": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-finetune-clip": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-finetune-cosmos-embed": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-finetune-cosmos-reason": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-finetune-huggingface-model": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-generate-image-grounding": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-generate-referring-expressions": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-generate-video-reasoning-annotations": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-launch-workflow": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-list-capabilities": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-mine-aoi-images": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-port-huggingface-model": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-route-visual-changenet-samples": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-run-automl": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-run-automl-deft-pipeline": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-run-deft-aoi": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-run-inference-service": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-run-on-brev": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "tao-run-on-docker": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-run-on-kubernetes": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "**Pod stays `Pending` forever** — `get_job_replicas(job_id)` will show the readiness_issue. Common causes: insufficient GPU capacity (`Insufficient nvidia.com/gpu`), no node matches `node_selector`, missing image-pull secret, or PVC mount failure.",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "tao-run-on-local-docker": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-run-on-slurm": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-run-platform": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-setup-nvidia-gpu-host": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "nvidia-smi",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "tao-train-action-recognition": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-train-bevfusion": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-train-centerpose": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-train-deformable-detr": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-train-depth-anything-v2": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-train-dino": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-train-fast-foundation-stereo": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-train-foundation-stereo": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-train-grounding-dino": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-train-image-classification": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-train-mask-auto-encoder": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-train-mask-auto-label": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-train-mask-grounding-dino": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-train-mask2former": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-train-metric-learning-recognition": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-train-nvdinov2": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-train-nvpanoptix3d": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-train-ocdnet": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-train-ocrnet": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-train-oneformer": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-train-optical-inspection": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-train-pointpillars": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-train-pose-classification": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-train-reid": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-train-rtdetr": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-train-segformer": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-train-single-step": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-train-sparse4d": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-train-visual-changenet": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tao-validate-dataset-format": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tilegym-adding-cutile-kernel": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tilegym-converting-cutile-to-julia": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tilegym-converting-cutile-to-triton": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tilegym-cutile-autotuning": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tilegym-cutile-python": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "┌─────────────────────────────────────────────────────────────┐",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "tilegym-improve-cutile-kernel-perf": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "tilegym-monkey-patch-kernels-to-transformers": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "vss-ask-video": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "vss-deploy-dense-captioning": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "vss-deploy-detection-tracking-2d": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "vss-deploy-detection-tracking-3d": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "vss-deploy-profile": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "vss-deploy-video-embedding": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "BASE_URL=\"http://localhost:${RTVI_EMBED_PORT}\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "vss-generate-video-calibration": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "vss-generate-video-report": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "vss-manage-alerts": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "vss-manage-video-io-storage": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "vss-query-analytics": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "vss-search-archive": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "vss-setup-behavior-analytics": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "vss-setup-video-analytics-api": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "vss-summarize-video": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "warp-compile-time-optimizer": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "warp-debug-gradients": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "warp-eval": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "dsh-archive-agent-notes": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "dsh-ci-test-reliability": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "dsh-code-review": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "dsh-doc": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "kind",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "dsh-doc-site-sync": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "dsh-doc-standards": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "pnpm run doc-sync",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "dsh-find-simplifications": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "pnpm run doc-sync",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "dsh-merging-stacked-prs": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "MERGED",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "dsh-pre-push-checks": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "dsh-prose-standard": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "dsh-speed-up-perf": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "dsh-translate-docs": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "dsh-trim-cot-leakage": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "record-browser-gif": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "ffmpeg",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "internet-learning-cycle": {
+      "declared": true,
+      "executed": true,
+      "allowed": true,
+      "command": "python -m pytest tests/scripts/test_internet_learner_gate.py -q   # 6 hermetic tests",
+      "returncode": 0,
+      "passed": true,
+      "score": 1.0,
+      "reason": "ran"
+    },
+    "local-cpu-finetune": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "longterm-memory": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "open-source-project-launch": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "references/paypal-button-workflow.md",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "payment-integration": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "paypal.com/ncp/payment/<ID>",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "product-hunt-launch": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "gif-search": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "songsee": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "youtube-content": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "mini-openamer": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "evaluating-llms-harness": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "weights-and-biases": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "huggingface-hub": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "llama-cpp": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "serving-llms-vllm": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "**Use vLLM when:**",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "openrouter-model-pricing": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "training-data-collection": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "If the daemon is not available (e.g. headless server), a Cron job can",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "obsidian": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "openamer-plugin-development": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "plugin-api": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "airtable": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "docx": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": ".docx",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "donation-buttons": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "google-workspace": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "maps": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python3 ~/.openamer/skills/maps/scripts/maps_client.py search \"Statue of Liberty\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "nano-pdf": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "notion": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "ocr-and-documents": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "open-source-project-visibility": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "pdf": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "PdfReader",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "powerpoint": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "teams-meeting-pipeline": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "xlsx": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python scripts/recalc.py output.xlsx",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "arxiv": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "blogwatcher": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "competitive-analysis": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "llm-wiki": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "polymarket": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "research-paper-writing": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "**If compilation fails**: Parse the `.log` file for the first error. Common fixes:",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "web-research": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "workflow-immune-system": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "agent-sandboxing": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": ".git/config",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "pen-tester": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "vulnerability-scanning": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "auto-growth": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "introspection": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "0",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "self-rewriter": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "openhue": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "xurl": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "adapting-external-skills": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "author",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "api-drift-recovery": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "pytest tests/test_*.py -v",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "auto-code-review": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "auto-docs": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "ls -la docs/generated/",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "autonomous-learning-loops": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "best-in-world-workflow": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "browser-brick-recovery": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "capture-thinking": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "sig: True",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "clean-code-edits": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "git diff --stat",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "cli-command-extension": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "**Prevention (CRITICAL — skip the discard cycle entirely):**",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "code-generator": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "code-intelligence": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "commander": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "competitive-overtake": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "darwin-skill-evolution": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "tests/test_darwin_*.py",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "desktop-copy-deploy": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "tsc -b tsconfig.json",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "desktop-i18n-locale": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "cd apps/desktop",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "desktop-i18n-locale-add": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "desktop-i18n-locale-addition": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "cd apps/desktop && npx tsc --noEmit && echo TSC_OK \\",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "dogfood": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "electron-windows-build": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "eol-safe-editing": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "py_compile",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "event-kernel-agent-runtime": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "%TEMP%\\openamer-verify-<topic>.py",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "evolutionary-skill-engineering": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "failure-attribution": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "fork-differentiation": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "git diff --stat",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "git-clean-verification": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "github-ci-debugging": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "go-mesh-daemon": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "greenfield-agent-architecture": {
+      "declared": true,
+      "executed": true,
+      "allowed": true,
+      "command": "python -m pytest tests/ -q",
+      "returncode": null,
+      "passed": false,
+      "score": 0.0,
+      "reason": "timeout"
+    },
+    "greenfield-agent-project": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "hello-plugin": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "hosted-payments": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "typeof paypal !== 'undefined'                          // → true",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "intellij-plugin-build": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "massive-upgrade-deployment": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "py_compile",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "node-inspect-debugger": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "curl -s http://127.0.0.1:9229/json/list",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "openamer-agent-skill-authoring": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "skills/<category>/<name>/SKILL.md",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "openamer-browser-use": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "openamer-desktop-build": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "✓ assert-dist-built: dist/index.html + assets present",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "openamer-desktop-dev": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "openamer-docs-site": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "node_modules",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "openamer-feature-engineering": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "port=0",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "openamer-ide-extensions": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "parallel-feature-development": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "plan": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "plugin-advanced-patterns": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "plugin-dashboard-reporting": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "plugin-external-integration": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "python-debugpy": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "pip install debugpy",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "requesting-code-review": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "safe-self-modification": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": ".bak",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "security-scanner-authoring": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "self-introspection": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "self-modify": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "scripts/self_modify.py",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "simplify-code": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "skill-knowledge-graph": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "skill-md-frontmatter-analysis": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "skill-population-evolution": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "--autopilot",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "skill-validator": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "smart-test-runner": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "spike": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "systematic-debugging": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "test-driven-development": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "tool-repair-workflow": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "compile()",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "training-scripts-hygiene": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "gave a **false negative**: in the agent shell",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "vision-audio": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "voice-assistant": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "voice-audio-integration": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "autouse",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "windows-aware-file-edits": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "py_compile",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "windows-installer-release": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "windows-subprocess-robustness": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "ab-test-engine": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "auto-updater": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "context-compressor": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "cron-job-management": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "cron-job-repair": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python -m py_compile",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "cross-profile-sync": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "dashboard": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "file-organizer": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "global-sync": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "growth-tracking": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "learning-loop": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "local-llm-fallback-benchmarking": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "log-analyzer": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "memory-store-upkeep": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "model-benchmarker": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "notification-engine": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "perf-optimizer": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "remote-web": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "resource-monitor": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "self-healer": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "self-hosted": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "smart-cache": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "smart-cron-scheduler": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "smart-session-saver": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "system-snapshot": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python scripts/system-snapshot.py --now && echo \"Snapshot OK\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "task-queue": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "python scripts/task-queue.py --add '{\"type\":\"test\",\"payload\":{\"cmd\":\"echo ok\"},\"priority\":3}' && python scripts/task-queue.py --process && python scripts/task-queue.py --stats",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "web-platform-servers": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "webhook-engine": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "windows-path-resolution": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    },
+    "train-from-usage": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "verification section declares no command"
+    },
+    "undetectable-browsing": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "agent-browser open \"https://bot.sannysoft.com/\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "vscode-extension-scaffold": {
+      "declared": true,
+      "executed": false,
+      "allowed": false,
+      "command": "node -e \"JSON.parse(...)\"",
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "not-allowlisted"
+    },
+    "windows-python-service-ops": {
+      "declared": false,
+      "executed": false,
+      "allowed": false,
+      "command": null,
+      "returncode": null,
+      "passed": null,
+      "score": 1.0,
+      "reason": "no verification section"
+    }
+  }
+}

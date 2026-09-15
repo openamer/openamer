@@ -1,24 +1,20 @@
 {
-  "timestamp": "2026-09-11T10:34:03",
+  "timestamp": "2026-09-15T04:00:29",
   "mode": "apply",
-  "population": 347,
-  "avg_score": 44.3,
+  "population": 729,
+  "avg_score": 39.6,
   "kept": [
-    {
-      "skill": "auto-structural-connection-between-learning",
-      "before": 21,
-      "after": 25,
-      "delta": 4,
-      "fixes": [
-        "✅ metadata.openamer Block hinzugefügt",
-        "✅ platforms Feld hinzugefügt",
-        "✅ version Feld hinzugefügt"
-      ]
-    },
     {
       "skill": "auto-structural-connection-between-tool",
       "before": 21,
-      "after": 25,
+      "after": 31,
+      "delta": 10,
+      "fixes": []
+    },
+    {
+      "skill": "doca-bare-metal-deployment",
+      "before": 24,
+      "after": 28,
       "delta": 4,
       "fixes": [
         "✅ metadata.openamer Block hinzugefügt",
@@ -27,9 +23,9 @@
       ]
     },
     {
-      "skill": "auto-what-makes-a-selfimproving",
-      "before": 21,
-      "after": 25,
+      "skill": "doca-bf3-deployment",
+      "before": 24,
+      "after": 28,
       "delta": 4,
       "fixes": [
         "✅ metadata.openamer Block hinzugefügt",
@@ -38,9 +34,9 @@
       ]
     },
     {
-      "skill": "auto-efficiency-learning-edge-ai",
-      "before": 21,
-      "after": 25,
+      "skill": "doca-bf4-deployment",
+      "before": 24,
+      "after": 28,
       "delta": 4,
       "fixes": [
         "✅ metadata.openamer Block hinzugefügt",
@@ -49,9 +45,9 @@
       ]
     },
     {
-      "skill": "auto-efficiency-learning-quantization-techniq",
-      "before": 21,
-      "after": 25,
+      "skill": "doca-caps",
+      "before": 24,
+      "after": 28,
       "delta": 4,
       "fixes": [
         "✅ metadata.openamer Block hinzugefügt",
@@ -60,9 +56,9 @@
       ]
     },
     {
-      "skill": "auto-efficiency-learning-small-language",
-      "before": 21,
-      "after": 25,
+      "skill": "doca-collectx-deployment",
+      "before": 24,
+      "after": 28,
       "delta": 4,
       "fixes": [
         "✅ metadata.openamer Block hinzugefügt",
@@ -71,9 +67,9 @@
       ]
     },
     {
-      "skill": "auto-explain-how-sleep-consolidation",
-      "before": 21,
-      "after": 25,
+      "skill": "doca-comm-channel-admin",
+      "before": 24,
+      "after": 28,
       "delta": 4,
       "fixes": [
         "✅ metadata.openamer Block hinzugefügt",
@@ -82,9 +78,9 @@
       ]
     },
     {
-      "skill": "auto-how-does-energy-efficiency",
-      "before": 21,
-      "after": 25,
+      "skill": "doca-container-deployment",
+      "before": 24,
+      "after": 28,
       "delta": 4,
       "fixes": [
         "✅ metadata.openamer Block hinzugefügt",
@@ -93,9 +89,9 @@
       ]
     },
     {
-      "skill": "auto-internet-learning-ai-agent",
-      "before": 21,
-      "after": 25,
+      "skill": "doca-debug",
+      "before": 24,
+      "after": 28,
       "delta": 4,
       "fixes": [
         "✅ metadata.openamer Block hinzugefügt",
@@ -104,9 +100,9 @@
       ]
     },
     {
-      "skill": "auto-internet-learning-autonomous-ai",
-      "before": 21,
-      "after": 25,
+      "skill": "doca-dms",
+      "before": 24,
+      "after": 28,
       "delta": 4,
       "fixes": [
         "✅ metadata.openamer Block hinzugefügt",

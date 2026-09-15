@@ -1,17 +1,17 @@
-# 🧬 Darwin Auto-Patch Report — 2026-09-11T10:34:03
+# 🧬 Darwin Auto-Patch Report — 2026-09-15T04:00:29
 
-- Population: 347 skills, avg 44.3
+- Population: 729 skills, avg 39.6
 - Mode: **apply**
 
 ## Improved (kept)
 
-- ✅ `auto-structural-connection-between-learning`: 21 → 25 (+4)
-- ✅ `auto-structural-connection-between-tool`: 21 → 25 (+4)
-- ✅ `auto-what-makes-a-selfimproving`: 21 → 25 (+4)
-- ✅ `auto-efficiency-learning-edge-ai`: 21 → 25 (+4)
-- ✅ `auto-efficiency-learning-quantization-techniq`: 21 → 25 (+4)
-- ✅ `auto-efficiency-learning-small-language`: 21 → 25 (+4)
-- ✅ `auto-explain-how-sleep-consolidation`: 21 → 25 (+4)
-- ✅ `auto-how-does-energy-efficiency`: 21 → 25 (+4)
-- ✅ `auto-internet-learning-ai-agent`: 21 → 25 (+4)
-- ✅ `auto-internet-learning-autonomous-ai`: 21 → 25 (+4)
+- ✅ `auto-structural-connection-between-tool`: 21 → 31 (+10)
+- ✅ `doca-bare-metal-deployment`: 24 → 28 (+4)
+- ✅ `doca-bf3-deployment`: 24 → 28 (+4)
+- ✅ `doca-bf4-deployment`: 24 → 28 (+4)
+- ✅ `doca-caps`: 24 → 28 (+4)
+- ✅ `doca-collectx-deployment`: 24 → 28 (+4)
+- ✅ `doca-comm-channel-admin`: 24 → 28 (+4)
+- ✅ `doca-container-deployment`: 24 → 28 (+4)
+- ✅ `doca-debug`: 24 → 28 (+4)
+- ✅ `doca-dms`: 24 → 28 (+4)

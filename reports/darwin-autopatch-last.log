@@ -1,12 +1,14 @@
-[autopatch] validating population (2026-09-11T04:00:08) ...
-Traceback (most recent call last):
-  File "C:\Users\damir\openamer-repo\scripts\darwin_skill_autopatch.py", line 161, in <module>
-    sys.exit(main())
-             ^^^^^^
-  File "C:\Users\damir\openamer-repo\scripts\darwin_skill_autopatch.py", line 82, in main
-    before_report = run_validator_json()
-                    ^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\damir\openamer-repo\scripts\darwin_skill_autopatch.py", line 43, in run_validator_json
-    raise RuntimeError(f"validator produced no JSON (exit {r.return_code}): {out[:300]}")
-                                                           ^^^^^^^^^^^^^
-AttributeError: 'CompletedProcess' object has no attribute 'return_code'. Did you mean: 'returncode'?
+[autopatch] validating population (2026-09-15T04:00:29) ...
+[autopatch] population: 729 skills, avg 39.6
+[autopatch] 10 weak skills: auto-structural-connection-between-tool(21), doca-bare-metal-deployment(24), doca-bf3-deployment(24), doca-bf4-deployment(24), doca-caps(24), doca-collectx-deployment(24), doca-comm-channel-admin(24), doca-container-deployment(24), doca-debug(24), doca-dms(24)
+[autopatch] ✅ auto-structural-connection-between-tool: 21 → 31
+[autopatch] ✅ doca-bare-metal-deployment: 24 → 28
+[autopatch] ✅ doca-bf3-deployment: 24 → 28
+[autopatch] ✅ doca-bf4-deployment: 24 → 28
+[autopatch] ✅ doca-caps: 24 → 28
+[autopatch] ✅ doca-collectx-deployment: 24 → 28
+[autopatch] ✅ doca-comm-channel-admin: 24 → 28
+[autopatch] ✅ doca-container-deployment: 24 → 28
+[autopatch] ✅ doca-debug: 24 → 28
+[autopatch] ✅ doca-dms: 24 → 28
+[autopatch] report → C:\Users\damir\openamer-repo\reports\darwin-autopatch.md

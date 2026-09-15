@@ -182,3 +182,11 @@ apps/desktop/demo/
 infographic/
 native/fts5_cjk/*.so
 .pr-agent/
+
+# Local scratch: an embedded Python install (pythoncore-*) plus its cache that a
+# Windows tool dropped into the repo root. Never part of the project.
+/Python/
+/python_install_*.log
+
+# Task-queue runtime state (daemon log + queue db), regenerated at runtime.
+/.task-queue/

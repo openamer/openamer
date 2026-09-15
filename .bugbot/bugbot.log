@@ -598,3 +598,59 @@ subprocess.TimeoutExpired: Command '['gh', 'issue', 'list', '--label', 'bug', '-
 2026-09-11 10:18:08,762 [INFO] API: Found 0 open bug issue(s)
 2026-09-11 10:18:08,762 [INFO] No open bug issues found
 2026-09-11 10:18:08,762 [INFO] Bugbot run complete: 0 processed, 0 fixed, 0 failed
+2026-09-11 22:19:52,186 [INFO] ============================================================
+2026-09-11 22:19:52,186 [INFO] Bugbot run starting
+2026-09-11 22:19:52,186 [INFO] Scanning for open bug issues on openamer/openamer...
+2026-09-11 22:19:52,278 [WARNING] No GITHUB_TOKEN set — using unauthenticated API (rate-limited)
+2026-09-11 22:19:52,593 [INFO] API: Found 0 open bug issue(s)
+2026-09-11 22:19:52,594 [INFO] No open bug issues found
+2026-09-11 22:19:52,594 [INFO] Bugbot run complete: 0 processed, 0 fixed, 0 failed
+2026-09-12 02:20:06,339 [INFO] ============================================================
+2026-09-12 02:20:06,339 [INFO] Bugbot run starting
+2026-09-12 02:20:06,339 [INFO] Scanning for open bug issues on openamer/openamer...
+2026-09-12 02:20:06,433 [WARNING] No GITHUB_TOKEN set — using unauthenticated API (rate-limited)
+2026-09-12 02:20:06,751 [INFO] API: Found 0 open bug issue(s)
+2026-09-12 02:20:06,751 [INFO] No open bug issues found
+2026-09-12 02:20:06,751 [INFO] Bugbot run complete: 0 processed, 0 fixed, 0 failed
+2026-09-12 06:20:15,285 [INFO] ============================================================
+2026-09-12 06:20:15,285 [INFO] Bugbot run starting
+2026-09-12 06:20:15,285 [INFO] Scanning for open bug issues on openamer/openamer...
+2026-09-12 06:20:15,370 [WARNING] No GITHUB_TOKEN set — using unauthenticated API (rate-limited)
+2026-09-12 06:20:15,665 [INFO] API: Found 0 open bug issue(s)
+2026-09-12 06:20:15,665 [INFO] No open bug issues found
+2026-09-12 06:20:15,665 [INFO] Bugbot run complete: 0 processed, 0 fixed, 0 failed
+2026-09-12 10:20:39,728 [INFO] ============================================================
+2026-09-12 10:20:39,729 [INFO] Bugbot run starting
+2026-09-12 10:20:39,729 [INFO] Scanning for open bug issues on openamer/openamer...
+2026-09-12 10:20:39,814 [WARNING] No GITHUB_TOKEN set — using unauthenticated API (rate-limited)
+2026-09-12 10:20:40,116 [INFO] API: Found 0 open bug issue(s)
+2026-09-12 10:20:40,117 [INFO] No open bug issues found
+2026-09-12 10:20:40,117 [INFO] Bugbot run complete: 0 processed, 0 fixed, 0 failed
+2026-09-12 14:21:04,897 [INFO] ============================================================
+2026-09-12 14:21:04,898 [INFO] Bugbot run starting
+2026-09-12 14:21:04,898 [INFO] Scanning for open bug issues on openamer/openamer...
+2026-09-12 14:21:04,973 [WARNING] No GITHUB_TOKEN set — using unauthenticated API (rate-limited)
+2026-09-12 14:21:05,391 [INFO] API: Found 0 open bug issue(s)
+2026-09-12 14:21:05,391 [INFO] No open bug issues found
+2026-09-12 14:21:05,391 [INFO] Bugbot run complete: 0 processed, 0 fixed, 0 failed
+2026-09-12 19:11:31,082 [INFO] ============================================================
+2026-09-12 19:11:31,082 [INFO] Bugbot run starting
+2026-09-12 19:11:31,082 [INFO] Scanning for open bug issues on openamer/openamer...
+2026-09-12 19:11:31,193 [WARNING] No GITHUB_TOKEN set — using unauthenticated API (rate-limited)
+2026-09-12 19:11:31,526 [INFO] API: Found 0 open bug issue(s)
+2026-09-12 19:11:31,526 [INFO] No open bug issues found
+2026-09-12 19:11:31,526 [INFO] Bugbot run complete: 0 processed, 0 fixed, 0 failed
+2026-09-12 23:12:01,474 [INFO] ============================================================
+2026-09-12 23:12:01,475 [INFO] Bugbot run starting
+2026-09-12 23:12:01,475 [INFO] Scanning for open bug issues on openamer/openamer...
+2026-09-12 23:12:01,753 [WARNING] No GITHUB_TOKEN set — using unauthenticated API (rate-limited)
+2026-09-12 23:12:02,152 [INFO] API: Found 0 open bug issue(s)
+2026-09-12 23:12:02,152 [INFO] No open bug issues found
+2026-09-12 23:12:02,152 [INFO] Bugbot run complete: 0 processed, 0 fixed, 0 failed
+2026-09-13 03:12:18,936 [INFO] ============================================================
+2026-09-13 03:12:18,937 [INFO] Bugbot run starting
+2026-09-13 03:12:18,937 [INFO] Scanning for open bug issues on openamer/openamer...
+2026-09-13 03:12:19,119 [WARNING] No GITHUB_TOKEN set — using unauthenticated API (rate-limited)
+2026-09-13 03:12:19,676 [INFO] API: Found 0 open bug issue(s)
+2026-09-13 03:12:19,676 [INFO] No open bug issues found
+2026-09-13 03:12:19,676 [INFO] Bugbot run complete: 0 processed, 0 fixed, 0 failed
