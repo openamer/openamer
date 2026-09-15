@@ -449,10 +449,34 @@ _JUNK_RE = re.compile(
 _URL_ESC_RE = re.compile(r"%(?:[0-9A-Fa-f]{2})")
 
 
+_PRINTABLE_WS = " \t\n" + chr(13)  # whitespace allowed in prose (not binary noise)
+
+
+def _looks_binary(text):
+    """True if `text` is raw bytes mis-decoded as text (PDF/compressed blob).
+
+    Live 15.09.26: deep_learn() fetched an arxiv PDF and the cycle logged ~80
+    chars of binary noise ("T\xefp\xef%...") as a trained insight — length and
+    technical-signal gates both passed it because the noise happens to contain
+    digits. Count non-printable / replacement characters and reject.
+    """
+    t = text or ""
+    if len(t) < 20:
+        return False
+    bad = 0
+    for c in t:
+        o = ord(c)
+        if o == 0xFFFD or (o < 32 and c not in _PRINTABLE_WS) or 0x7F <= o <= 0x9F:
+            bad += 1
+    return bad / len(t) > 0.08
+
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
     if len(t) < 25:
+        return True
+    if _looks_binary(t):
         return True
     if _JUNK_RE.search(t):
         return True
