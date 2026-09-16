@@ -529,6 +529,50 @@ _INSTRUCTION_OPENER_RE = re.compile(
     re.IGNORECASE)
 
 
+# A MID-SENTENCE search-snippet echo welded to the front of a real sentence
+# (live 16.09.26, class 14). cycle_f_multi_domain stored, verbatim from the
+# buffer row:
+#   "at 11:44 am we asked four ai coding agents to In a recent experiment, four
+#    AI coding agents were tasked with recreating the classic game Minesweeper,
+#    revealing both the potential and limitations of ..."
+# The extractor received Bing's snippet opening MID-SENTENCE ("... at 11:44 am
+# we asked four AI coding agents to ...") and prepended it to the article's real
+# first sentence. Both gates passed it: the clock digits fed the
+# technical-signal gate (the alternation starts with \d+) and the length
+# cleared the >=90 "long prose" trust.
+#
+# STRIP, not reject — the sentence BEHIND the fragment is the knowledge. The
+# rule is structural and deliberately narrow: the text must START lowercase
+# (a sentence starts with a capital, so ordinary prose is excluded by
+# construction), carry a "<clock> am/pm" marker, then >=2 lowercase words,
+# and the REAL sentence must follow with a capital. A genuine insight that
+# merely mentions a time of day is untouched — measured over the live 4870-row
+# corpus: 1 row touched (the leaking one), body a clean suffix, 4/4
+# counter-cases unmodified.
+_CLOCK_FRAGMENT_RE = re.compile(
+    r"^(?:(?:at\s+)?\d{1,2}:\d{2}\s*(?:am|pm)\.?\s+)"
+    r"(?:[a-z][\w'\u2019,\-]*\s+){2,}"
+)
+
+
+def _strip_clock_fragment(text):
+    """Remove a leading mid-sentence snippet echo ("at 11:44 am we asked ... ").
+
+    Returns `text` unchanged unless all three structural conditions hold:
+    lowercase start, a clock-with-meridiem marker, and a capitalised real
+    sentence after the fragment.
+    """
+    t = (text or "").lstrip()
+    if not t or not t[0].islower():
+        return text
+    m = _CLOCK_FRAGMENT_RE.match(t)
+    if not m:
+        return text
+    rest = t[m.end():]
+    if not rest or not rest[0].isupper():
+        return text
+    return rest
+
 _PRINTABLE_WS = " \t\n" + chr(13)  # whitespace allowed in prose (not binary noise)
 
 
@@ -1362,6 +1406,67 @@ def _strip_dateline_fragment(text):
     out = rest[boundary:].strip()
     return out if len(out.split()) >= 5 else t
 
+# Leading NAV-LABEL STACK terminated by a publisher dateline (live 16.09.26,
+# class 14 of the leading-chrome family): cycle_g_security stored
+#
+#   "SECURITY resources Whitepapers/Guides OWASP GenAI LLM Top 10 2026
+#    August 3, 2026 About OWASP Top 10 for LLM Applications 2026 is the latest
+#    community-driven guide to the most critical security risks facing
+#    applications powered by large language models."
+#
+# The section nav (with its slash-joined menu pair) plus the dateline are page
+# furniture; the sentence behind them is the knowledge -> STRIP.
+#
+# A GENERIC "<nav-run> <date> <body>" rule was MEASURED and REJECTED:
+# it matched FOUR GitHub-advisory rows (real prose: "Critical Authenticated
+# Arbitrary Data Export Theft via Mass Assignment in sendFileMessage
+# GHSA-fhc2-x8cp-c5ch ...") as well as two counter-cases
+# ("The paper compares German/English tokenizers on a March 3, 2026
+# benchmark", "Whitepapers/Guides are listed on the site; the August 3,
+# 2026 revision adds three sections.").
+#
+# The surviving rule adds the structural fact that separates a MENU from a
+# sentence: the head before the date must be LABEL-LIKE -- a slash-joined
+# Capitalized pair must be present AND the head may carry no function word
+# (the/of/and/is/...) and at most one lowercase word. Measured over the live
+# 5057-row corpus: 1 hit (the leaking row), 0 prose-like heads, 0 real-prose
+# counter-cases.
+_NAV_LABEL_DATE_ALT = (
+    r"(?:January|February|March|April|May|June|July|August|September|"
+    r"October|November|December)\s+\d{1,2},\s*\d{4}"
+)
+_NAV_LABEL_STACK_RE = re.compile(
+    r"^(?P<head>\S.{0,119}?[A-Z]\w{2,}/[A-Z]\w{2,}.{0,80}?)"
+    r"(?P<date>" + _NAV_LABEL_DATE_ALT + r")\s+"
+    r"(?P<body>[A-Z\x22\x27].{20,})$",
+    re.S)
+_NAV_LABEL_FUNC_WORDS = frozenset((
+    "the", "of", "is", "are", "and", "on", "in", "to", "a", "an", "for",
+    "with", "was", "were", "that", "this", "at", "by", "as", "it",
+))
+
+
+def _strip_nav_label_stack(text):
+    """Drop a leading label-only nav stack that ends at a publisher dateline.
+
+    Live 16.09.26: cycle_g_security learned "SECURITY resources
+    Whitepapers/Guides OWASP GenAI LLM Top 10 2026 August 3, 2026 About OWASP
+    Top 10 ..." — a section menu welded to a real sentence. Strip, never
+    reject: the sentence is the knowledge. The head must be LABEL-LIKE (a
+    slash-joined Capitalized pair, no function words, <= 1 lowercase word),
+    which is what separates a menu from a sentence beginning with prose.
+    """
+    t = (text or "").strip()
+    m = _NAV_LABEL_STACK_RE.match(t)
+    if not m:
+        return t
+    words = _WORD_RE.findall(m.group("head"))
+    low = [w for w in words if w[:1].islower()]
+    if len(low) > 1 or any(w.lower() in _NAV_LABEL_FUNC_WORDS for w in low):
+        return t                      # prose head -> untouched
+    out = m.group("body").strip()
+    return out if len(out.split()) >= 5 else t
+
 def _strip_blog_header_stack(text):
     """Drop a leading "<author> / <DATE> / <N> comments" header stack and any
     header-adjacent share widget.
@@ -1520,7 +1625,9 @@ def _clean_insight(text, max_len=250):
         t = urllib.parse.unquote(t).strip()  # judge the decoded words, not %20
     t = _strip_wiki_section_prefix(t)
     t = _strip_dateline_fragment(t)
+    t = _strip_nav_label_stack(t)
     t = _strip_byline_prefix(t)
+    t = _strip_clock_fragment(t)
     t = _strip_read_time_header(t)
     t = _strip_arrow_nav_prefix(t)
     t = _strip_blog_header_stack(t)

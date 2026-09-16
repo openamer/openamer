@@ -149,6 +149,22 @@ _check_fn_cache: Dict[Callable, tuple[float, bool]] = {}
 # Monotonic timestamp of the most recent True result per check_fn.
 _check_fn_last_good: Dict[Callable, float] = {}
 _check_fn_cache_lock = threading.Lock()
+# Availability checks that must never be cached. Local, config-backed probes
+# (e.g. the kanban toolset gate) change the instant the user flips a setting,
+# so serving a TTL-cached verdict would keep a tool hidden for up to
+# _CHECK_FN_TTL_SECONDS after it was enabled.
+_NO_CACHE_CHECK_FNS: Set[Callable] = set()
+
+
+def no_cache_check_fn(fn: Callable) -> Callable:
+    """Mark a local, config-backed availability check as uncached.
+
+    Imported from upstream's ``tools.registry``; ``tools/kanban_tools.py``
+    decorates its toolset gate with this so enabling the kanban toolset takes
+    effect on the next turn instead of after the check_fn TTL.
+    """
+    _NO_CACHE_CHECK_FNS.add(fn)
+    return fn
 
 
 def _check_fn_cached(fn: Callable) -> bool:
@@ -159,7 +175,18 @@ def _check_fn_cached(fn: Callable) -> bool:
     last-good True is returned and the failure is NOT cached, so the next call
     re-probes) to keep flaky external checks (Docker daemon busy, socket
     contention, probe timeout) from silently stripping tools mid-session.
+
+    Checks registered via :func:`no_cache_check_fn` bypass the cache entirely.
     """
+    if fn in _NO_CACHE_CHECK_FNS:
+        try:
+            return bool(fn())
+        except Exception:
+            logger.warning(
+                "check_fn %s raised; dependent tools will be unavailable this turn",
+                getattr(fn, "__qualname__", fn), exc_info=True)
+            return False
+
     now = time.monotonic()
     with _check_fn_cache_lock:
         cached = _check_fn_cache.get(fn)

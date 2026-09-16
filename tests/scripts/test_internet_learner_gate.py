@@ -144,6 +144,44 @@ _DE_PRICING_ONE_MARKER = (
     "ierung senkt den Speicherbedarf des 7B-Modells auf etwa vier Gig"
     "abyte bei INT4, was die Inferenzlatenz deutlich reduziert."
 )
+# A mid-sentence snippet echo welded to the front of a real sentence
+# (live 16.09.26, class 14): the multi-domain cycle stored this exact row.
+# Verbatim from the buffer; the extractor got Bing's mid-sentence snippet
+# opening and prepended it to the article's real first sentence. STRIP, not
+# reject - the sentence behind the fragment is the knowledge.
+# A mid-sentence snippet echo welded to the front of a real sentence
+# (live 16.09.26, class 14): the multi-domain cycle stored this exact row.
+# Verbatim from the buffer; the extractor got Bing's mid-sentence snippet
+# opening and prepended it to the article's real first sentence. STRIP, not
+# reject - the sentence behind the fragment is the knowledge.
+_CLOCK_ECHO = (
+        "at 11:44 am we asked four ai coding agents to In a recent experi"
+        "ment, four AI coding agents were tasked with recreating the clas"
+        "sic game Minesweeper, revealing both the potential and limitatio"
+        "ns of modern AI in programming."
+)
+_CLOCK_ECHO_BODY = (
+        "In a recent experiment, four AI coding agents were tasked with r"
+        "ecreating the classic game Minesweeper, revealing both the poten"
+        "tial and limitations of modern AI in programming."
+)
+# Counter-cases: prose that merely mentions a time of day must be untouched
+# (the rule needs a LOWERCASE start plus a clock with am/pm). Both are >=90
+# chars on purpose: below that the PRE-EXISTING short-candidate rule (which
+# wants an ENGLISH technical keyword) fires first and would look like this
+# gate misfiring.
+_CLOCK_PROSE = [
+    (
+        "At 11:44 am the retriever returned a stale embedding, and the qu"
+        "antization step then masked the drift for three consecutive batc"
+        "hes."
+    ),
+    (
+        "The job starts at 11:44 and finishes before the peak; the quanti"
+        "zed model keeps peak VRAM under 6 GB while continuous batching h"
+        "olds throughput steady."
+    ),
+]
 CHROME = [
     "Jetzt spenden Benutzerkonto erstellen Anmelden Meine Werkzeuge",
     "Unsere Werbepartner Einkaufen Ferienwohnungen Freizeit und Reise",
@@ -1032,3 +1070,82 @@ def test_leading_clock_dateline_fragment_is_stripped_not_stored():
     ):
         assert IL._strip_dateline_fragment(text) == text, text   # untouched
         assert IL._clean_insight(text), text                     # learnable
+
+
+def test_clock_snippet_echo_is_stripped_not_stored():
+    """A leading mid-sentence snippet echo is stripped; the body survives
+    (live 16.09.26, class 14).
+
+    cycle_f_multi_domain learned, verbatim from the stored buffer row:
+      "at 11:44 am we asked four ai coding agents to In a recent experiment,"
+       four AI coding agents were tasked with recreating the classic game
+       Minesweeper, ..."
+    The extractor received Bing's snippet opening MID-SENTENCE and prepended
+    it to the article's real first sentence. Both gates passed it: the clock
+    digits fed the technical-signal gate and the length cleared the >=90
+    long-prose trust.
+
+    The rule is structural: lowercase start, a clock-with-meridiem marker,
+    and a capitalised real sentence after the fragment. Measured over the
+    live 4870-row corpus: exactly 1 row touched, the body a clean suffix,
+    and 4/4 counter-cases unmodified.
+    """
+    stripped = IL._strip_clock_fragment(_CLOCK_ECHO)
+    assert stripped == _CLOCK_ECHO_BODY
+    assert _CLOCK_ECHO.endswith(stripped)   # a clean suffix, not a truncation
+    assert IL._clean_insight(_CLOCK_ECHO) == _CLOCK_ECHO_BODY[:250]
+
+    # counter-cases: prose that merely mentions a time of day survives
+    for text in _CLOCK_PROSE:
+        assert IL._strip_clock_fragment(text) == text, text
+        assert not IL._is_junk(text), text
+        assert IL._clean_insight(text), text
+
+
+def test_leading_nav_label_stack_is_stripped_not_stored():
+    """A leading LABEL-ONLY nav stack ending at a dateline must not ride in,
+    but the sentence behind it must survive (live 16.09.26, class 14).
+
+    Learned, verbatim:
+      "SECURITY resources Whitepapers/Guides OWASP GenAI LLM Top 10 2026
+       August 3, 2026 About OWASP Top 10 for LLM Applications 2026 is the latest
+       community-driven guide to the most critical security risks facing
+       applications powered by large language models."
+
+    A GENERIC `<nav-run> <date> <body>` rule was MEASURED and REJECTED: it ate
+    four GitHub-advisory rows (the GHSA case below) plus two counter-cases.
+    The surviving rule adds the structural fact that separates a MENU from a
+    sentence: a slash-joined Capitalized pair must be present AND the head may
+    carry no function word and at most one lowercase word.
+    """
+    body = (
+        "About OWASP Top 10 for LLM Applications 2026 is the latest "
+        "community-driven guide to the most critical security risks facing "
+        "applications powered by large language models."
+    )
+    leak = ("SECURITY resources Whitepapers/Guides OWASP GenAI LLM Top 10 "
+            "2026 August 3, 2026 " + body)
+    assert IL._strip_nav_label_stack(leak) == body        # body pristine
+    assert IL._clean_insight(leak) == body
+
+    # --- counter-cases: prose heads, which is exactly what the function-word
+    # guard protects. Each must come back byte-identical AND stay learnable.
+    for text in (
+        "The paper compares German/English tokenizers on a March 3, 2026 "
+        "benchmark of 12 models.",
+        "Whitepapers/Guides are listed on the site; the August 3, 2026 "
+        "revision adds three sections.",
+    ):
+        assert IL._strip_nav_label_stack(text) == text, text   # untouched
+        assert IL._clean_insight(text), text                   # learnable
+
+    # the GitHub-advisory shape the generic candidate rule WRONGLY ate: the
+    # strip must leave it byte-identical. Not asserted learnable — the
+    # PRE-EXISTING _is_nav_list rule rejects it (a different gate).
+    GHSA = (
+        "Critical Authenticated Arbitrary Data Export Theft via Mass "
+        "Assignment in sendFileMessage GHSA-fhc2-x8cp-c5ch by julio-rocketchat "
+        "High Previous 1 2 3 Next Learn more about advisories."
+    )
+    assert IL._strip_nav_label_stack(GHSA) == GHSA
+    assert IL._is_nav_list(GHSA)
