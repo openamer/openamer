@@ -122,6 +122,28 @@ _CJK_ONE_MARKER = (
     "\u8bba\u6587\u4f5c\u8005\u58f0\u660e\u8be5\u6a21\u578b\u6743\u91cd\u7684\u8bad\u7ec3\u6570\u636e\u672a\u516c\u5f00\uff0c\u56e0\u6b64 INT4 \u91cf\u5316\u540e\u7684\u7cbe\u5ea6\u590d\u73b0\u6027\u65e0\u6cd5\u7531\u7b2c\u4e09\u65b9\u72ec\u7acb\u9a8c\u8bc1\uff0c\u800c fp16 \u57fa\u51c6\u5728\u516c\u5f00\u6570\u636e\u96c6\u4e0a"
     "\u53ef\u4ee5\u590d\u73b0\u3002\u6a21\u578b\u5728 2 \u4f4d\u91cf\u5316\u4e0b\u53c2\u6570\u5360\u7528\u7ea6\u51cf\u5c11\u5230\u56db\u5206\u4e4b\u4e00\uff0c\u63a8\u7406\u5ef6\u8fdf\u4e5f\u968f\u4e4b\u4e0b\u964d\u3002"
 )
+# German SaaS pricing/checkout chrome (live 16.09.26, class 13): the github
+# cycle stored this exact plan-table copy as a learning. Verbatim from the
+# stored buffer row. Both gates passed it: the prices fed the
+# technical-signal gate and the 133 chars cleared the >=90 long-prose trust.
+_DE_PRICING_LEAK = (
+    "Bleib flexibel: Monatlich k\u00fcndbar Lastschrift Kreditkarte Auf Re"
+    "chnung Jahrespaket 49,50 \u20ac / Jahr ~ 4,12 \u20ac pro Nutzer und Monat "
+    "inkl."
+)
+# Counter-cases: real prose that merely cites a price, and prose carrying
+# exactly ONE billing marker. The English twin of this class ('billed
+# annually') already lives in buffer_store._NAV_CHROME.
+_DE_PRICING_REAL = (
+    "Serving that model costs about 0,002 \u20ac per 1k tokens; annualised"
+    " that is roughly 12 \u20ac per agent per month including the vector s"
+    "tore overhead."
+)
+_DE_PRICING_ONE_MARKER = (
+    "Die Rechnung wird monatlich k\u00fcndbar abgerechnet, und die Quantis"
+    "ierung senkt den Speicherbedarf des 7B-Modells auf etwa vier Gig"
+    "abyte bei INT4, was die Inferenzlatenz deutlich reduziert."
+)
 CHROME = [
     "Jetzt spenden Benutzerkonto erstellen Anmelden Meine Werkzeuge",
     "Unsere Werbepartner Einkaufen Ferienwohnungen Freizeit und Reise",
@@ -176,6 +198,9 @@ CHROME = [
     # Chinese Q&A/answer-portal label chain (live 16.09.26) - see
     # _QA_PORTAL_LEAK and its dedicated test below.
     _QA_PORTAL_LEAK,
+    # German pricing/checkout label chain (live 16.09.26) - see
+    # _DE_PRICING_LEAK and its dedicated test below.
+    _DE_PRICING_LEAK,
 ]
 
 # Link-shrapnel with no junk keyword and no sentence shape: caught by the
@@ -937,3 +962,37 @@ def test_wikipedia_section_edit_prefix_is_stripped_not_stored():
         "Wikipedia's [ edit ] button is a MediaWiki control, not content; the "
         "RAG pipeline should strip it before chunking documents for retrieval."
     ) is False
+
+
+def test_de_pricing_chrome_is_rejected_but_priced_prose_survives():
+    """A German pricing/checkout table is chrome, priced prose is knowledge
+    (live 16.09.26, class 13).
+
+    cycle_c_github learned, verbatim from the stored buffer row, a plan
+    comparison/checkout table (monthly-cancel wording, direct-debit and
+    invoice payment options, annual package, per-seat per-month price) with
+    zero technical prose. The rule is
+    structural (TWO independent billing markers), never topical, so a
+    genuine insight that merely cites a price still passes. Measured over
+    the live 4855-row corpus (buffer + junk log): 6 marker hits, all in
+    ONE row (the leaking row), 0 real-prose rows.
+    """
+    sys.path.insert(0, str(TRAINING))
+    import buffer_store
+
+    assert IL._is_de_pricing_chrome(_DE_PRICING_LEAK)
+    assert IL._is_junk(_DE_PRICING_LEAK)
+    assert IL._clean_insight(_DE_PRICING_LEAK) == ""
+    assert buffer_store.is_junk(_DE_PRICING_LEAK)
+    assert buffer_store._is_nav_chrome(_DE_PRICING_LEAK)
+
+    # counter-case 1: real prose citing a price, zero billing markers
+    assert not IL._is_de_pricing_chrome(_DE_PRICING_REAL)
+    assert not IL._is_junk(_DE_PRICING_REAL)
+    assert buffer_store.is_junk(_DE_PRICING_REAL) is False
+    assert IL._clean_insight(_DE_PRICING_REAL)
+
+    # counter-case 2: exactly ONE billing marker inside real prose
+    assert not IL._is_de_pricing_chrome(_DE_PRICING_ONE_MARKER)
+    assert not buffer_store.is_junk(_DE_PRICING_ONE_MARKER)
+    assert IL._clean_insight(_DE_PRICING_ONE_MARKER)
