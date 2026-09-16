@@ -971,6 +971,8 @@ _BYLINE_SEP_RE = re.compile(r"\s*[\u00b7|\u2022]\s*")
 _DATE_ALT = (
     r"(?:(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?\s+"
     r"\d{1,2},?\s+\d{2,4}"                       # "June 11, 2026"
+    r"|(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?\s+"
+    r"\d{4}"                                      # "August 2026"
     r"|\d{1,2}\s+(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?,?\s+\d{2,4}"  # "14 September 26"
     r"|\d{1,2}[./-]\d{1,2}[./-]\d{2,4}"          # "11.06.2026"
     r")")
@@ -996,7 +998,14 @@ _ATTRIB_SEG_RE = re.compile(
 # transformers scale ..." has neither, so it is left untouched.
 _BARE_ATTRIB_RE = re.compile(
     r"^\s*(?:"
-    r"(?:written|reviewed|published|posted|updated|authored|edited)\s+by\s+"
+# Live 16.09.26 (2nd shape): a publisher dateline with the article title
+# welded straight on -- "This article was published on August 6, 2026
+# Artificial Intelligence OpenAI and four rivals just agreed ..." -- where
+# the body sentence carries no byline verb of its own, so the segment/date
+# rules never match it. Strip the leading "This article was <verb> [on] <date>".
+    r"this\s+article\s+was\s+(?:published|posted|updated|reviewed)\s+"
+    r"(?:on\s+)?(?:" + _DATE_ALT + r"|\d{4})\s*"
+    r"|(?:written|reviewed|published|posted|updated|authored|edited)\s+by\s+"
     r"[A-Z][\w.'-]*(?:\s+[A-Z][\w.'-]*){0,3}(?:,\s*[^\u00b7|\u2022.]{0,40})?\s*"
     r"|by\s+[A-Z][\w.'-]*(?:\s+[A-Z][\w.'-]*){0,3}\s+"
     r"(?:published|posted|updated|reviewed|last\s+reviewed)\s+(?:on\s+)?"

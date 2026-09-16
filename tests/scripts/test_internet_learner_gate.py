@@ -283,6 +283,34 @@ def test_byline_prefix_is_stripped_not_stored():
         "\u00b7 Last reviewed July 23, 2026") == ""
     assert IL._strip_byline_prefix("By Mark Coates Published 14 September 26") == ""
 
+    # --- 2nd shape, same run (live 16.09.26): publisher dateline welded to the
+    # article title. cycle_a_technews stored this verbatim, cleared both gates
+    # because "August 6, 2026" supplied the digits and the body had no byline
+    # verb of its own, so the segment rule never matched the leading date.
+    datelined = (
+        "This article was published on August 6, 2026 Artificial Intelligence "
+        "OpenAI and four rivals just agreed on one standard for AI agents "
+        "OpenAI, Amazon, Microsoft, Cursor, and Vercel have agreed on a shared "
+        "format for agent add-ons."
+    )
+    assert IL._strip_byline_prefix(datelined).startswith("Artificial Intelligence")
+    assert IL._clean_insight(datelined).startswith("Artificial Intelligence")
+    assert "This article was published" not in IL._clean_insight(datelined)
+    # dateline with no body behind it is still chrome
+    assert IL._clean_insight("This article was published on August 6, 2026") == ""
+    assert IL._strip_byline_prefix("This article was published on August 6, 2026") == ""
+
+    # --- the bare 4-digit year must stay CONFINED to the dateline voice:
+    # "Published 2026 benchmarks show ..." is real prose, not a dateline, so
+    # widening _DATE_ALT with a free-standing \d{4} would have eaten it.
+    for text in (
+        "Published 2026 benchmarks show vLLM serves twice the throughput of the "
+        "naive pipeline at equal accuracy on a single A100.",
+        "Updated 2026 results confirm quantization recovers 97% of fp16 accuracy.",
+        "The 2026 study found Mamba-3 decodes faster than a transformer.",
+    ):
+        assert IL._strip_byline_prefix(text) == text, text
+
     # --- counter-cases: real prose that merely LOOKS like attribution ---
     for text in (
         "Published research from Stanford in 2024 shows transformers scale "
