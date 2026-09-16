@@ -336,6 +336,22 @@ _NAV_CHROME = (
     # 1 hit and that hit IS the leaking row -> 0 real-prose false positives
     # on the 280-row non-junk corpus.
     "the user pasted",
+    # A 2B PLAN-scaffold echo (live 16.09.26, cycle_h_efficiency): the row
+    # '"\n   - **Content:** I need to browse the provided list of papers,
+    # identify the most relevant/valuable technical insight for an autonomous
+    # AI agent, and output it in the exact format.\n\n2.  **Survey the Papers:**
+    # ...' cleared BOTH gates: ~300 chars fed the >=90 length trust and the
+    # digits ("2.") fed the technical-signal gate. No existing marker matched --
+    # the echo opens on the model's OWN numbered plan, not on the documented
+    # scaffold phrases. Markers are the task-voice tail and the plan heading.
+    # Measured: 1 buffer hit and that hit IS the leaking row -> 0 real-prose
+    # FPs on a 10-sentence set, 0 hits over the 433-row world_model corpus.
+    # NOTE: `provided list of papers` alone was REJECTED (flags the prose
+    # sentence "The agent should browse a provided list of papers only
+    # when ..."), as was `identify the most relevant`; the /-joined adjective
+    # pair is the tight discriminator (0 hits in the prose set).
+    "most relevant/valuable technical insight",
+    "**survey the papers:**",
 )
 
 

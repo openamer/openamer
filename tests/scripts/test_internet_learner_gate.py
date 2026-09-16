@@ -1434,3 +1434,34 @@ def test_extractor_template_echo_fifth_shape_is_gated_on_both_paths():
         assert not buffer_store.is_junk(prose), prose
         assert not buffer_store.is_prompt_echo(prose), prose
 
+def test_2b_plan_scaffold_echo_is_gated_on_both_paths():
+    """The 2B extractor echoed its own numbered PLAN back at itself (live
+    16.09.26, cycle_h_efficiency): the row cleared the >=90 length trust and
+    its digits fed the technical-signal gate, and no existing marker matched
+    because the echo opens on the model's own plan, not on the documented
+    scaffold phrases. BOTH gates must agree, and real prose that merely USES
+    the same topic words must stay learnable."""
+    leak = (
+        '"\n   - **Content:** I need to browse the provided list of papers, '
+        "identify the most relevant/valuable technical insight for an "
+        "autonomous AI agent, and output it in the exact format."
+    )
+    import buffer_store  # the module the learner's store() routes through
+
+    assert buffer_store.is_junk(leak)
+    assert IL._is_junk(leak)
+
+    # Counter-cases: the loose alternatives that were measured and REJECTED as
+    # markers, plus real prose that uses the same words in a declarative voice.
+    for prose in (
+        "The agent should browse a provided list of papers only when the "
+        "query is genuinely open-ended, otherwise it wastes a full read cycle.",
+        "We need to identify the most relevant failure mode when a cron job "
+        "dies mid-run, because silent failures accumulate without alerting.",
+        "The most valuable technical insight from this paper is that linearity "
+        "holds for the quantized weights.",
+        "The vLLM scheduler batches prefill requests to keep the GPU "
+        "saturated, which raises throughput at the cost of added latency.",
+    ):
+        assert not IL._is_junk(prose), prose
+
