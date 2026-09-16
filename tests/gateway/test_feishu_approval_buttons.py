@@ -420,7 +420,7 @@ class TestNonApprovalCardAction:
 
         data = _make_card_action_data(
             action_value={"custom_action": "something_else"},
-            token="tok_normal",
+            token="tok_normal",  # noqa:SEC test fixture value, not a credential
         )
 
         with (
