@@ -149,11 +149,6 @@ _DE_PRICING_ONE_MARKER = (
 # Verbatim from the buffer; the extractor got Bing's mid-sentence snippet
 # opening and prepended it to the article's real first sentence. STRIP, not
 # reject - the sentence behind the fragment is the knowledge.
-# A mid-sentence snippet echo welded to the front of a real sentence
-# (live 16.09.26, class 14): the multi-domain cycle stored this exact row.
-# Verbatim from the buffer; the extractor got Bing's mid-sentence snippet
-# opening and prepended it to the article's real first sentence. STRIP, not
-# reject - the sentence behind the fragment is the knowledge.
 _CLOCK_ECHO = (
         "at 11:44 am we asked four ai coding agents to In a recent experi"
         "ment, four AI coding agents were tasked with recreating the clas"
