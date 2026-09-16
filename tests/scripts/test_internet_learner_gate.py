@@ -1327,3 +1327,63 @@ def test_contact_block_chrome_is_gated_on_both_paths():
         assert not buffer_store.is_junk(prose), prose
         assert not IL._is_junk(prose), prose
 
+def test_cross_connect_prompt_echo_fourth_shape_is_gated_on_both_paths():
+    """cross_connect buffering its OWN prompt fragments is not an insight.
+
+    Live 16.09.26: active_learn.cross_connect wrote three of its own prompt
+    fragments into online_buffer.jsonl as "structural connection" answers:
+
+      A) `User asks: "Find the structural connection between these two
+         situations:  1.`
+      B) `Shared underlying pattern?`  (26 chars -- just clears the producer's
+         25-char floor)
+      C) `Continuous Learning Loop: Fehler-Capture + Kategorisierung + Memory +
+         Auto-Skill-Generierung + Trend\n\nWhat is the shared underlying
+         pattern?`
+
+    `_ECHO_SITUATION_RE` is anchored on the numbered `situation N` marker and
+    cannot see any of them, and `_ECHO_OPENER_RE` only anchors at the START --
+    which is exactly why (B) and (C), whose marker sits at the END, escaped.
+
+    The rule is a TAIL anchor plus a colon-terminated FRAGMENT, never a topic
+    phrase: the genuine declarative answer on the same topic and an ordinary
+    sentence that merely uses the words must both survive. Measured over the
+    live 300-row buffer: 3 hits and all 3 ARE the leaking rows -> 0 real-prose
+    false positives on a 12-sentence set; 0 hits over 3,169 longterm_episodes
+    rows.
+    """
+    sys.path.insert(0, str(TRAINING))
+    import buffer_store
+
+    leaks = (
+        'User asks: "Find the structural connection between these two '
+        "situations:  1.",
+        "Shared underlying pattern?",
+        "Continuous Learning Loop: Fehler-Capture + Kategorisierung + "
+        "Memory + Auto-Skill-Generierung + Trend\n\n"
+        "What is the shared underlying pattern?",
+    )
+    for leak in leaks:
+        assert buffer_store.is_junk(leak), leak
+        assert buffer_store.is_prompt_echo(leak), leak
+        assert IL._is_junk(leak), leak
+
+    # counter-cases: the SAME words inside a genuine answer or an ordinary
+    # sentence. A topic-phrase marker would kill every one of these.
+    for prose in (
+        "The shared underlying pattern is a closed-loop feedback system "
+        "that monitors and self-optimizes based on captured error data.",
+        "Situation 1 and situation 2 share a common failure mode: unbounded "
+        "retries without backoff.",
+        "A user asks the agent to summarize a document, and the agent must "
+        "decide whether to call a tool first.",
+        "The structural connection between energy efficiency and learning "
+        "rate is a trade-off curve.",
+        "Both systems use a feedback loop: the error signal drives the next "
+        "action selection.",
+        "Continuous learning loops capture errors, categorize them, and "
+        "generate skills over time.",
+    ):
+        assert not buffer_store.is_junk(prose), prose
+        assert not buffer_store.is_prompt_echo(prose), prose
+

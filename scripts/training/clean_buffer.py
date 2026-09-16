@@ -25,11 +25,18 @@ BUF = T / "online_buffer.jsonl"
 # producer-side guard in active_learn.cross_connect). Anchored + imperative
 # on purpose: genuine declarative answers on the same topic must survive.
 _ECHO_OPENER_RE = re.compile(
-    r"^\s*\**\s*(?:need\b|task\s*:|goal\s*:|ask\s*:|"
+    r"^\s*\**\s*(?:need\b|task\s*:|goal\s*:|ask\s*:|user\s+asks\s*:|"
     r"find\s+(?:the\s+)?(?:structural\s+)?connection|"
     r"identify\s+(?:the\s+)?(?:shared\s+)?(?:underlying\s+)?pattern|"
     r"they\s+want\s+me\s+to|"
     r"what\s+(?:is\s+)?(?:the\s+)?(?:shared|structural))",
+    re.IGNORECASE)
+# Prompt-echo, FOURTH shape (live 16.09.26): the TAIL form of the same leak --
+# `... + Trend\n\nWhat is the shared underlying pattern?` and the bare 26-char
+# `Shared underlying pattern?`. Mirrors active_learn._ECHO_TAIL_RE and
+# buffer_store._ECHO_TAIL_RE; keep all three in sync.
+_ECHO_TAIL_RE = re.compile(
+    r"(?:what\s+is\s+the\s+)?shared\s+underlying\s+pattern\s*\??\s*$",
     re.IGNORECASE)
 ARCHIVE = T / "buffer_junk_archive.jsonl"
 
@@ -57,7 +64,8 @@ def main():
         # live 16.09.26: active_learn.cross_connect buffered "" x5, "S",
         # "What is the shared underlying pattern" and
         # "Need shared underlying pattern. One".
-        if (_ECHO_OPENER_RE.match(_sa)
+        if (_ECHO_TAIL_RE.search(_sa)
+                or _ECHO_OPENER_RE.match(_sa)
                 or (len(_sa) < 25 and not _sa.endswith((".", "!", "?", "\u2026", ":")))):
             drop.append((r, "stub"))
             continue

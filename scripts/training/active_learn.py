@@ -191,7 +191,7 @@ def skill_challenge():
 # gated because the genuine declarative answers ("The shared underlying
 # pattern is a closed-loop feedback system ...") must stay learnable.
 _ECHO_OPENER_RE = re.compile(
-    r"^\s*\**\s*(?:need\b|task\s*:|goal\s*:|ask\s*:|"
+    r"^\s*\**\s*(?:need\b|task\s*:|goal\s*:|ask\s*:|user\s+asks\s*:|"
     r"find\s+(?:the\s+)?(?:structural\s+)?connection|"
     r"identify\s+(?:the\s+)?(?:shared\s+)?(?:underlying\s+)?pattern|"
     r"they\s+want\s+me\s+to|"
@@ -206,6 +206,18 @@ _ECHO_OPENER_RE = re.compile(
     # failure mode ...` and `The shared underlying pattern is ...` both pass.
     r"situation\s*\d\s*(?::|\b(?:learning|system|energy|tool)\b)|"
     r"what\s+(?:is\s+)?(?:the\s+)?(?:shared|structural))",
+    re.IGNORECASE)
+
+# Prompt-echo, FOURTH shape (live 16.09.26): cross_connect buffered its own
+# `... + Trend\n\nWhat is the shared underlying pattern?` tail and the bare
+# 26-char `Shared underlying pattern?` -- both just clear the 25-char floor and
+# neither starts with a prompt opener, so the anchored rule above misses them.
+# A TAIL rule (the question at the END of the text) catches both while leaving
+# the genuine declarative ("The shared underlying pattern is a closed-loop
+# feedback system ...") and rhetorical uses ("... pattern behind vLLM's chunked
+# prefill?") untouched.
+_ECHO_TAIL_RE = re.compile(
+    r"(?:what\s+is\s+the\s+)?shared\s+underlying\s+pattern\s*\??\s*$",
     re.IGNORECASE)
 
 
@@ -230,7 +242,8 @@ def cross_connect():
             # fragments reached online_buffer.jsonl here, because chat()
             # returns "" on failure and its value was buffered unvalidated).
             _ins = (insight or "").strip()
-            if len(_ins) < 25 or _ECHO_OPENER_RE.match(_ins):
+            if (len(_ins) < 25 or _ECHO_OPENER_RE.match(_ins)
+                    or _ECHO_TAIL_RE.search(_ins)):
                 return f"cross-connect: discarded stub/echo ({len(_ins)} chars)"
             add_to_buffer(f"Structural connection between {t1} and {t2}?", insight)
             return f"cross-connect: {insight[:80]}"

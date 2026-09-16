@@ -482,9 +482,38 @@ _ECHO_SITUATION_RE = _re.compile(
     _re.IGNORECASE)
 
 
+# Prompt-echo, FOURTH shape (live 16.09.26): active_learn.cross_connect
+# buffered TWO more of its own prompt fragments back at itself --
+# `User asks: "Find the structural connection between these two situations:  1.`
+# and the bare `Shared underlying pattern?` (26 chars, just clearing the
+# producer's 25-char floor), plus the `... + Trend\n\nWhat is the shared
+# underlying pattern?` variant. _ECHO_SITUATION_RE is anchored on the numbered
+# `situation N` marker and cannot see any of them. So: a FRAGMENT rule (a
+# colon-terminated prompt artefact anywhere in the text) and a TAIL rule (the
+# question sitting at the END of a stub). Measured over the live 300-row
+# buffer: 3 hits and all 3 ARE the leaking rows -> 0 real-prose false positives
+# on a 12-sentence hand-written set, 0 hits over 3,169 longterm_episodes rows.
+# A genuine declarative answer on the same topic ("The shared underlying
+# pattern is a closed-loop feedback system ...") and an ordinary sentence that
+# merely uses the words ("A user asks the agent to summarize a document") both
+# survive -- the colon and the end-anchor are the discriminators.
+_ECHO_FRAGMENT_RE = _re.compile(
+    r"user\s+asks\s*:|"
+    r"find\s+the\s+structural\s+connection\s+between\s+these\s+two\s+situations\s*:",
+    _re.IGNORECASE)
+_ECHO_TAIL_RE = _re.compile(
+    r"(?:what\s+is\s+the\s+)?shared\s+underlying\s+pattern\s*\??\s*$",
+    _re.IGNORECASE)
+
+
 def is_prompt_echo(text):
-    """True when `text` is the loop's own numbered prompt, not an answer."""
-    return bool(text and _ECHO_SITUATION_RE.match(text))
+    """True when `text` is the loop's own prompt, or a bare fragment of it."""
+    if not text:
+        return False
+    s = text.strip()
+    return bool(_ECHO_SITUATION_RE.match(s)
+                or _ECHO_FRAGMENT_RE.search(s)
+                or _ECHO_TAIL_RE.search(s))
 
 
 # A legal-imprint / "Transparenzliste" contact block carries no learning
