@@ -484,7 +484,20 @@ _JUNK_RE = re.compile(
     # whole junk gate into "reject everything" (16.09.26, caught by il_delta
     # showing 300/300 rejected).
     r"reach us at|contact us at|call us at|"
-    r"watch live key points",
+    # Social-share widget chrome (live 16.09.26: cycle_a_technews learned the
+    # row "March 17, 2026 (UPDATED Sep 8, 2026) ... Reddit Post Share Threads
+    # Support my work." — pure share/subscribe widget, zero prose; the digits
+    # of the timestamps satisfied the technical-signal gate and the row cleared
+    # the >=90 "long prose" trust). Reject at extraction so the cycle retries
+    # with the wider k instead of spending itself on a write the writer drops.
+    # Keyed on the widget VOICE, never on a topic or a clock: "support my work"
+    # is a donation CTA, and the detached counter requires the number itself to
+    # be missing ("K followers"), so prose that merely mentions a follower
+    # count ("Mistral has 30k followers on GitHub") is untouched.
+    # NOTE: the LAST fragment must NOT end with `|` (an empty alternative would
+    # match every string and turn the gate into "reject everything").
+    r"watch live key points|support my work|share threads support|"
+    r"^\W*[kKmM]\s+followers\b",
     re.IGNORECASE)
 
 # Percent-escapes mean the "insight" is a URL fragment, not prose. Their digits
@@ -537,6 +550,41 @@ def _looks_binary(text):
     return bad / len(t) > 0.08
 
 
+# A clock time from a live ticker ("03:15", "1:12 PM"). Used only TOGETHER with
+# a self-repeated phrase (see _is_ticker_loop) — a time code alone is normal
+# prose and must never gate a row.
+_TIME_CODE_RE = re.compile(r"\b\d{1,2}:\d{2}\b")
+
+
+def _is_ticker_loop(text):
+    """True when the text is a news-TICKER loop: a time code plus a phrase the
+    text itself repeats.
+
+    Live 16.09.26: cycle_a_technews learned the row
+      "Trump praised Bezos for reversal 03:15 White House blasted Amazon for
+       tariffs explainer, Trump praised Bezos for reversal (03:15) OpenAI backs
+       measure that would require independent audits of AI models The AI bubble
+       is leaking air, some economists say."
+    A live news ticker re-renders the SAME headline with a fresh clock, so the
+    extractor gets several unrelated headlines glued together and one phrase is
+    present twice. Structure, not topic: a real technical insight does not
+    repeat a >=15-char phrase of itself, and a bare "two clock times" rule was
+    rejected as too broad (prose may legitimately mention two times). Measured
+    over the live 270-row buffer: catches the leaking row, 0 real-prose rows.
+    """
+    t = text or ""
+    if not _TIME_CODE_RE.search(t):
+        return False
+    words = t.split()
+    n = len(words)
+    for i in range(n):
+        for j in range(i + 1, n):
+            ph = " ".join(words[i:j])
+            if len(ph) >= 15 and t.count(ph) >= 2:
+                return True
+    return False
+
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
@@ -547,6 +595,8 @@ def _is_junk(text):
     if _JUNK_RE.search(t):
         return True
     if _INSTRUCTION_OPENER_RE.match(t):
+        return True
+    if _is_ticker_loop(t):
         return True
     # Ask the writer gate too: a 2B word salad scores a HIGH unique-token
     # ratio (the motif sits inside otherwise-distinct words), so only

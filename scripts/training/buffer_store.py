@@ -267,7 +267,23 @@ _NAV_CHROME = (
     "products considered",
     "min read article",
     "watch live key points",
+    # Social-share widget chrome (live 16.09.26: cycle_a_technews stored the
+    # row "March 17, 2026 (UPDATED Sep 8, 2026) ... Reddit Post Share Threads
+    # Support my work." — a share/subscribe widget, zero prose). Concrete
+    # phrase only: "support my work" is a donation/podcast CTA, never a
+    # technical statement.)
+    "support my work",
 )
+
+# A social counter truncated at its own digit ("K followers") means the text
+# starts mid-widget: the count's number was cut off. Anchored at the START and
+# requiring NO leading digits, so real prose that merely reports a follower
+# count ("Mistral has 30k followers on GitHub") is untouched — measured over
+# the live 282-row buffer: 1 hit (the leaking row), 0 real-prose rows.
+_DETACHED_COUNT_RE = _re.compile(r"^\W*[kKmM]\s+followers\b")
+
+# A clock time, used ONLY together with a self-repeated phrase (ticker loop).
+_TIME_CODE_RE = _re.compile(r"\b\d{1,2}:\d{2}\b")
 
 
 def _is_binary_noise(text):
@@ -282,6 +298,31 @@ def _is_binary_noise(text):
     return len(_CTRL_NOISE.findall(text)) / len(text) > _BINARY_RATIO
 
 
+def _is_ticker_loop(text):
+    """True when text is a news-ticker loop: a time code + a self-repeated phrase.
+
+    Live 16.09.26: cycle_a_technews learned
+      "Trump praised Bezos for reversal 03:15 White House blasted Amazon for
+       tariffs explainer, Trump praised Bezos for reversal (03:15) OpenAI backs
+       measure ... The AI bubble is leaking air, some economists say."
+    A live ticker re-renders the same headline with a fresh clock, so the
+    extractor receives several unrelated headlines glued together with one
+    phrase present twice. Structure, not topic: a real insight does not repeat
+    a >=15-char phrase of itself. Measured over the live 270-row buffer:
+    catches the leaking row, 0 real-prose rows.
+    """
+    t = text or ""
+    if not _TIME_CODE_RE.search(t):
+        return False
+    words = t.split()
+    for i in range(len(words)):          # O(n^2) but n is one sentence
+        for j in range(i + 1, len(words)):
+            ph = " ".join(words[i:j])
+            if len(ph) >= 15 and t.count(ph) >= 2:
+                return True
+    return False
+
+
 def _is_nav_chrome(text):
     """True when text is page chrome (entities, marketing, UI, template leaks)."""
     if _ENTITY.search(text):
@@ -289,6 +330,20 @@ def _is_nav_chrome(text):
     low = text.lower()
     if any(c in low for c in _NAV_CHROME):
         return True
+    # a counter truncated at its own digits ("K followers ...") = mid-widget
+    if _DETACHED_COUNT_RE.match(text):
+        return True
+    # a news-ticker loop (same rule as internet_learner._is_ticker_loop): the
+    # writer gate must refuse it too, or any other writer path lands it in the
+    # buffer. Kept here as a mirror because buffer_store must not import the
+    # learner (circular).
+    if _TIME_CODE_RE.search(text):
+        words = text.split()
+        for i in range(len(words)):
+            for j in range(i + 1, len(words)):
+                ph = " ".join(words[i:j])
+                if len(ph) >= 15 and text.count(ph) >= 2:
+                    return True
     # a header repeated back-to-back ("Welcome to the X Welcome to the X")
     first = text[:40].strip()
     if len(first) > 12 and text.count(first) >= 2:

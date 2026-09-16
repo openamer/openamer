@@ -128,6 +128,11 @@ CHROME = [
     # stored this exact page meta — "released this <date>" satisfied the
     # technical-signal gate and it cleared the >=25 length floor.
     "No results found View all tags openai-sdks released this 14 Sep 23:28 v3.",
+    # Social share/follow widget (live 16.09.26): the technews cycle learned
+    # this exact string; the timestamps' digits satisfied the technical-signal
+    # gate. See test_social_share_widget_chrome_is_rejected for the counter-cases.
+    "March 17, 2026 (UPDATED Sep 8, 2026) 2026-09-08T13:12:23-04:00 "
+    "Reddit Post Share Threads Support my work.",
 ]
 
 # Link-shrapnel with no junk keyword and no sentence shape: caught by the
@@ -191,6 +196,12 @@ def test_writer_gate_agrees_on_the_new_chrome_and_binary_shapes():
     import buffer_store
     new_shapes = [
         "No results found View all tags openai-sdks released this 14 Sep 23:28 v3.",
+        # social share/follow widget (live 16.09.26) — the writer gate must
+        # refuse it too, or any other writer path lands it in the buffer
+        "March 17, 2026 (UPDATED Sep 8, 2026) 2026-09-08T13:12:23-04:00 "
+        "Reddit Post Share Threads Support my work.",
+        "K followers 59-year-old woman found dead in Bay Ridge apartment; "
+        "death deemed suspicious Authorities say a 59-year-old woman was found",
         _PDF_NOISE,
         _WIKITEXT_LEAK,
         _PRICING_LEAK,
@@ -338,6 +349,91 @@ def test_consumer_app_blurb_is_rejected():
             "token, which makes long refactors costlier than a batch CLI run.")
     assert not IL._is_junk(real)
     assert IL._clean_insight(real)
+
+
+def test_social_share_widget_chrome_is_rejected():
+    """A share/follow widget is not knowledge (live 16.09.26).
+
+    cycle_a_technews learned, verbatim:
+      "March 17, 2026 (UPDATED Sep 8, 2026) 2026-09-08T13:12:23-04:00 Reddit
+       Post Share Threads Support my work."
+    and (a second, already-writer-gated row) a truncated counter
+      "K followers 59-year-old woman found dead in Bay Ridge apartment; ..."
+    Both cleared BOTH gates: the timestamps supplied the digits for the
+    technical-signal gate and the rows exceeded the >=90 "long prose" trust.
+    The rules key on the widget VOICE and on a counter whose own number is
+    MISSING — never on a clock time or a topic word, so real numeric/temporal
+    prose must survive (counter-cases below are the point of this test).
+    """
+    share_widget = (
+        "March 17, 2026 (UPDATED Sep 8, 2026) 2026-09-08T13:12:23-04:00 "
+        "Reddit Post Share Threads Support my work."
+    )
+    truncated_counter = (
+        "K followers 59-year-old woman found dead in Bay Ridge apartment; "
+        "death deemed suspicious Authorities say a 59-year-old woman was found"
+    )
+    assert IL._is_junk(share_widget)
+    assert IL._is_junk(truncated_counter)
+    assert IL._clean_insight(share_widget) == ""
+    assert IL._clean_insight(truncated_counter) == ""
+
+    # counter-cases: a real sentence that reports a follower count, and real
+    # prose carrying a clock time or a batch duration, must all stay learnable.
+    # (The clock-time counter-case carries a technical keyword because a SHORT
+    # candidate already has to — that is the pre-existing length rule, not this
+    # one; what this test pins is that the ticker rule does not add to it.)
+    for text in (
+        "Mistral has 30k followers on GitHub and ships its weights under Apache 2.0.",
+        "The batch job starts at 03:15 CET and the inference latency peaks before "
+        "the morning traffic.",
+        "Training the 7B adapter took 2:40 on 4 A100s at an effective batch of 16.",
+        "A 12K-follower account posted the benchmark; quantization recovered 97% of fp16.",
+    ):
+        assert not IL._is_junk(text), text
+        assert IL._clean_insight(text), text
+
+
+def test_news_ticker_loop_is_rejected():
+    """A re-rendered ticker headline is not knowledge (live 16.09.26).
+
+    cycle_a_technews learned, verbatim:
+      "Trump praised Bezos for reversal 03:15 White House blasted Amazon for
+       tariffs explainer, Trump praised Bezos for reversal (03:15) OpenAI backs
+       measure that would require independent audits of AI models The AI bubble
+       is leaking air, some economists say."
+    A ticker re-renders the same headline with a fresh clock, so several
+    unrelated headlines arrive glued together with one phrase twice. The rule
+    keys on that STRUCTURE (time code + self-repeated >=15-char phrase), never
+    on a topic or on a bare clock time — prose that legitimately mentions one
+    or two times, or repeats a short word, must survive (counter-cases below).
+    """
+    ticker = (
+        "Trump praised Bezos for reversal 03:15 White House blasted Amazon for "
+        "tariffs explainer, Trump praised Bezos for reversal (03:15) OpenAI backs "
+        "measure that would require independent audits of AI models The AI bubble "
+        "is leaking air, some economists say."
+    )
+    assert IL._is_ticker_loop(ticker)
+    assert IL._is_junk(ticker)
+    assert IL._clean_insight(ticker) == ""
+
+    import buffer_store
+    assert buffer_store.is_junk(ticker)
+
+    # counter-cases: real prose with one or two clock times, and a sentence
+    # that repeats a SHORT word — none may be gated.
+    for text in (
+        "The batch job starts at 03:15 CET and the inference latency peaks before "
+        "the morning traffic.",
+        "Two runs measure 03:15 and 04:20 wall clock; the quantized model has "
+        "lower inference latency in both.",
+        "Training the 7B adapter took 2:40 on 4 A100s at an effective batch of 16.",
+        "Retrieval beats fine-tuning for facts; retrieval also costs less per query.",
+    ):
+        assert not IL._is_ticker_loop(text), text
+        assert IL._clean_insight(text), text
+        assert not buffer_store.is_junk(text), text
 
 
 def test_store_refuses_chrome_and_writes_real_insights(tmp_path):
