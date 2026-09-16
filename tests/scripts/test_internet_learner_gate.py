@@ -1465,3 +1465,46 @@ def test_2b_plan_scaffold_echo_is_gated_on_both_paths():
     ):
         assert not IL._is_junk(prose), prose
 
+def test_question_echo_and_ordinal_stub_are_gated_on_both_paths():
+    """Sixth prompt-echo shape + chopped-TOC stub must die on BOTH gates.
+
+    Live 16.09.26: active_learn.cross_connect buffered
+    `Question: Find structural connection between these two situations. What`
+    (the article is dropped and the prompt ends on a period, so the existing
+    fragment rule -- which needs "find the structural connection" plus a colon --
+    never fired), and cycle_f_multi_domain stored the chopped TOC item
+    `Probabilistic methods for uncertain reasoning 2.` because its technical
+    keyword ("reasoning") satisfied the alphabetic-signal check.
+
+    One-directional tests pass a broken marker, so both directions are asserted:
+    the two leaks must be rejected by the writer gate AND the extraction gate,
+    and genuine prose -- including a declarative answer on the very same
+    "structural connection" topic -- must stay clean.
+    """
+    import buffer_store
+
+    leaks = (
+        "Question: Find structural connection between these two situations. What",
+        "Probabilistic methods for uncertain reasoning 2.",
+    )
+    for leak in leaks:
+        assert buffer_store.is_junk(leak), leak
+        assert IL._is_junk(leak), leak
+
+    prose = (
+        # a declarative ANSWER on the same topic must survive the echo rule
+        "The structural connection between these two situations is a shared "
+        "resource bottleneck.",
+        "To find the structural connection between these two situations you "
+        "have to model both as queues.",
+        # real sentences that merely END on a number (the false positives that
+        # killed the first version of the ordinal rule)
+        "Training the 7B adapter took 2:40 on 4 A100s at an effective batch of 16.",
+        "Kontakt: Universitaet Hamburg, Mittelweg 177, 20148 Hamburg, "
+        "Tel. +49 40 42838-0.",
+        "The 10115 Berlin pilot deployed 40 GPUs and cut inference latency "
+        "from 900 ms to 120 ms per request.",
+        "LoRA reduces VRAM usage at inference time.",
+    )
+    for p in prose:
+        assert not buffer_store.is_junk(p), p

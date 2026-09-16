@@ -525,6 +525,76 @@ _ECHO_TEMPLATE_RE = _re.compile(
     _re.IGNORECASE)
 
 
+# Prompt-echo, SIXTH shape (live 16.09.26): active_learn.cross_connect buffered
+# its own prompt opener back at itself as
+#   `Question: Find structural connection between these two situations. What`
+# The earlier fragment rule needs `find the structural connection` WITH the
+# article and a trailing colon, while this parroting drops the article and ends
+# on a period -- and every opener rule is anchored on OTHER words, so `Question:`
+# was never a candidate. Measured over the live 300-row buffer: 1 hit and that
+# hit IS the leaking row -> 0 real-prose false positives; 0 hits across 11,342
+# longterm_episodes/world_model values. The `^` anchor plus the
+# find/identify/what|how|why shape is what keeps genuine prose clean --
+# "Structural connection between these two situations is a shared bottleneck."
+# and "The shared underlying pattern is a closed-loop feedback system ..." both
+# survive. This is a *question the agent is ASKING*, never an answer.
+_ECHO_QUESTION_RE = _re.compile(
+    r"^\s*\**\s*question\s*:\s*(?:find|identify|what|how|why)\b",
+    _re.IGNORECASE)
+
+
+# A bare section-ordinal tail: a SHORT extract ending on a numbered heading with
+# no verb is a chopped table-of-contents item, not an insight. Live 16.09.26:
+# cycle_f_multi_domain stored "Probabilistic methods for uncertain reasoning 2."
+# (48 chars) as multi-domain knowledge. The earlier _has_alpha_signal fix was
+# added for the same class ("Distinction between classical and modern physics
+# 2.") but cannot see it, because "reasoning" IS an alphabetic technical keyword.
+# Structural instead: <=120 chars + ends on a bare `N.` + NO verb anywhere.
+# Measured over the live buffer: 2 hits, both junk (this row and the
+# cross-connect plan stub); 0 hits across 11,342 longterm_episodes/world_model
+# values. The verb guard is the discriminator that keeps short real answers
+# ("LoRA reduces VRAM usage at inference time.") untouched.
+# A genuine section heading carries NO other digits -- "Probabilistic methods
+# for uncertain reasoning 2." has none, while "…at an effective batch of 16."
+# and "…Tel. +49 40 42838-0." are sentences that merely END on a number. The
+# no-other-digits test plus the <=120 cap is what separates a chopped TOC item
+# from real prose; measured: 2/2 leaks caught, 0 FPs over 73 test-asserted-clean
+# strings + 285 buffer prose rows + 11,342 corpus values.
+_ORDINAL_TAIL_RE = _re.compile(r"^(.*)\s(\d{1,2})\.\s*$", _re.S)
+_ORDINAL_MAX_CHARS = 120
+_ORDINAL_VERB_RE = _re.compile(
+    r"\b(?:is|are|was|were|be|been|has|have|had|do|does|did|can|could|will|"
+    r"would|should|may|might|must|use[sd]?|using|show[s]?|provide[sd]?|"
+    r"require[sd]?|enable[sd]?|reduce[sd]?|improve[sd]?|allow[sd]?|makes?|"
+    r"gives?|give|offers?|supports?|increases?|decreases?|runs?|run|works?|"
+    r"work|means?|helps?|needs?|lets?|let|takes?|finds?|found|adds?|added|"
+    r"removes?|introduces?|keeps?|gets|become[s]?|remains?|appears?|seems?|"
+    r"contains?|includes?|verwendet|bietet|reduziert|verbessert|nutzt|ist|"
+    r"sind|wird|werden)\b",
+    _re.IGNORECASE)
+
+
+def is_ordinal_stub(text):
+    """True when `text` is a short extract ending on a bare numbered heading.
+
+    Consumed by internet_learner._is_junk and clean_buffer via this module, so
+    there is exactly one implementation. The three conditions are all load-
+    bearing: a whitespace-plus-"N." tail, NO digits before the ordinal,
+    and no verb.
+    """
+    if not text:
+        return False
+    s = text.strip()
+    if len(s) > _ORDINAL_MAX_CHARS:
+        return False
+    m = _ORDINAL_TAIL_RE.match(s)
+    if not m:
+        return False
+    if _re.search(r"\d", m.group(1)):
+        return False
+    return not _ORDINAL_VERB_RE.search(s)
+
+
 def is_prompt_echo(text):
     """True when `text` is the loop's own prompt, or a bare fragment of it."""
     if not text:
@@ -542,7 +612,8 @@ def is_prompt_echo(text):
     return bool(_ECHO_SITUATION_RE.match(s)
                 or _ECHO_FRAGMENT_RE.search(s)
                 or _ECHO_TAIL_RE.search(s)
-                or _ECHO_TEMPLATE_RE.search(s))
+                or _ECHO_TEMPLATE_RE.search(s)
+                or _ECHO_QUESTION_RE.search(s))
 
 
 # A legal-imprint / "Transparenzliste" contact block carries no learning
@@ -688,6 +759,8 @@ def is_junk(text):
         return False
     low = s.lower()
     if is_prompt_echo(s):
+        return True
+    if is_ordinal_stub(s):
         return True
     if any(m in low for m in _JUNK_MARKERS):
         return True

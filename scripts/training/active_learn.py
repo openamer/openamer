@@ -192,6 +192,10 @@ def skill_challenge():
 # pattern is a closed-loop feedback system ...") must stay learnable.
 _ECHO_OPENER_RE = re.compile(
     r"^\s*\**\s*(?:need\b|task\s*:|goal\s*:|ask\s*:|user\s+asks\s*:|"
+    # SIXTH echo shape (live 16.09.26): the model returned the prompt as
+    # `Question: Find structural connection between these two situations.`
+    # Mirrors buffer_store._ECHO_QUESTION_RE; genuine declaratives survive.
+    r"question\s*:\s*(?:find|identify|what|how|why)\b|"
     r"find\s+(?:the\s+)?(?:structural\s+)?connection|"
     r"identify\s+(?:the\s+)?(?:shared\s+)?(?:underlying\s+)?pattern|"
     r"they\s+want\s+me\s+to|"

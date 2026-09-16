@@ -26,6 +26,7 @@ BUF = T / "online_buffer.jsonl"
 # on purpose: genuine declarative answers on the same topic must survive.
 _ECHO_OPENER_RE = re.compile(
     r"^\s*\**\s*(?:need\b|task\s*:|goal\s*:|ask\s*:|user\s+asks\s*:|"
+    r"question\s*:\s*(?:find|identify|what|how|why)\b|"
     r"find\s+(?:the\s+)?(?:structural\s+)?connection|"
     r"identify\s+(?:the\s+)?(?:shared\s+)?(?:underlying\s+)?pattern|"
     r"they\s+want\s+me\s+to|"
@@ -72,6 +73,7 @@ def main():
         if (_ECHO_TEMPLATE_RE.search(_sa)
                 or _ECHO_TAIL_RE.search(_sa)
                 or _ECHO_OPENER_RE.match(_sa)
+                or bs.is_ordinal_stub(_sa)
                 or (len(_sa) < 25 and not _sa.endswith((".", "!", "?", "\u2026", ":")))):
             drop.append((r, "stub"))
             continue

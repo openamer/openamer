@@ -560,6 +560,13 @@ _URL_ESC_RE = re.compile(r"%(?:[0-9A-Fa-f]{2})")
 _INSTRUCTION_OPENER_RE = re.compile(
     r"^\s*\**\s*(?:"
     r"need\b|task\s*:|goal\s*:|ask\s*:|interpret\b|"
+    # SIXTH echo shape (live 16.09.26): the model parroted the cross_connect
+    # prompt as `Question: Find structural connection between these two
+    # situations. What` -- article dropped, period instead of colon, so the
+    # fragment/opener rules all missed it. Same anchored-question shape as
+    # buffer_store._ECHO_QUESTION_RE (measured: 1 buffer hit = the leak,
+    # 0 prose FPs, 0/11,342 corpus hits).
+    r"question\s*:\s*(?:find|identify|what|how|why)\b|"
     r"find\s+(?:the\s+)?(?:structural\s+)?connection|"
     r"identify\s+(?:the\s+)?(?:shared\s+)?(?:underlying\s+)?pattern|"
     r"they\s+want\s+me\s+to|i\s+(?:need|should|will|must)\s+(?:to\s+)?(?:find|identify)|"
@@ -818,6 +825,18 @@ def _is_junk(text):
     if _is_de_pricing_chrome(t):
         return True
     if _is_ticker_loop(t):
+        return True
+    # A short extract ending on a bare section ordinal with no verb is a
+    # chopped TOC item, not an insight (live 16.09.26:
+    # `Probabilistic methods for uncertain reasoning 2.`). Same structural
+    # rule as buffer_store.is_ordinal_stub -- reject at EXTRACTION time so
+    # the cycle retries instead of burning a write the writer would drop.
+    try:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        from buffer_store import is_ordinal_stub
+    except Exception:
+        is_ordinal_stub = None
+    if is_ordinal_stub is not None and is_ordinal_stub(t):
         return True
     # A legal-imprint / contact block must be refused at EXTRACTION time too
     # (live 16.09.26: cycle_c_github burned its deep read on a Transparenzliste
