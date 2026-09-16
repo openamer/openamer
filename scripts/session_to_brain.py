@@ -154,26 +154,111 @@ def _run_brain_collect() -> None:
     The brain-collect process reads ALL trajectory files (including the
     daemon's staging file) plus mesh memory and writes the canonical
     ``~/.openamer/a2a/openamer-brain.jsonl`` in minimal ChatML format.
+
+    IMPORTANT: on timeout we must kill the whole process TREE, not just the
+    launcher.  ``openamer`` is a console-script shim that re-execs the real
+    interpreter as a CHILD, so ``subprocess.run(timeout=...)`` reaps only the
+    shim and leaves the worker running as an orphan.  Orphans then pile up
+    across watch cycles until the machine hits thousands of python.exe
+    processes (measured: 3293, 14.7 GB, RAM at 96%) and every unrelated cron
+    job starts timing out.  Kill the tree explicitly and reap it.
     """
+    proc = None
     try:
-        result = subprocess.run(
+        proc = subprocess.Popen(
             ["openamer", "a2a", "brain", "collect"],
-            capture_output=True, text=True, timeout=30,
+            stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True,
         )
-        if result.returncode == 0:
-            out = result.stdout.strip()
+        try:
+            out, _ = proc.communicate(timeout=30)
+        except subprocess.TimeoutExpired:
+            _kill_process_tree(proc)
+            print("  [brain-collect] timed out (30s) — killed tree, retry next cycle")
+            return
+        if proc.returncode == 0:
+            out = (out or "").strip()
             if out:
                 print(f"  [brain-collect] {out}")
         else:
-            print(f"  [brain-collect] exit {result.returncode}: {result.stderr[:200]}")
-    except subprocess.TimeoutExpired:
-        print("  [brain-collect] timed out (30s) — will retry next cycle")
+            print(f"  [brain-collect] exit {proc.returncode}: {(out or '')[:200]}")
     except Exception as exc:
         print(f"  [brain-collect] error: {exc}")
+        if proc is not None:
+            _kill_process_tree(proc)
+
+
+def _kill_process_tree(proc) -> None:
+    """Terminate *proc* and every descendant, then reap it.
+
+    Windows has no process groups for this purpose, so use taskkill /T /F to
+    take down the tree; elsewhere a plain kill of the group is enough.
+    """
+    import os as _os
+    try:
+        if _os.name == "nt":
+            subprocess.run(
+                ["taskkill", "/F", "/T", "/PID", str(proc.pid)],
+                capture_output=True, timeout=15,
+            )
+        else:
+            proc.kill()
+    except Exception:
+        pass
+    try:
+        proc.wait(timeout=10)
+    except Exception:
+        pass
+    # Final safety net: close the pipes so no handle keeps the child alive.
+    for stream in (proc.stdout, proc.stderr):
+        try:
+            if stream:
+                stream.close()
+        except Exception:
+            pass
 
 
 _COLLECT_INTERVAL = 5  # run brain collect every N export cycles
 _cycle_count = 0
+
+
+def _watch_singleton_lock():
+    """Return an open exclusive lock file, or None if another watch loop runs.
+
+    Without this, every ``spawn()`` that mis-reads a stale pid file starts
+    ANOTHER ``--watch`` loop; each loop then fires ``brain collect`` every 5
+    cycles forever, so the orphans multiply (super-linearly).
+    Held for the lifetime of the process via an OS-level lock that is
+    released automatically when the process dies — no stale-pid guessing.
+    """
+    import os as _os
+    from pathlib import Path as _Path
+
+    home = _Path(_os.environ.get("OPENAMER_HOME", _Path.home() / ".openamer"))
+    try:
+        home.mkdir(parents=True, exist_ok=True)
+    except Exception:
+        return None
+    lock_path = home / "session_to_brain.watch.lock"
+    try:
+        fh = open(lock_path, "a+")
+        if _os.name == "nt":
+            import msvcrt
+            fh.seek(0)
+            msvcrt.locking(fh.fileno(), msvcrt.LK_NBLCK, 1)
+        else:
+            import fcntl
+            fcntl.flock(fh.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+        fh.seek(0)
+        fh.truncate()
+        fh.write(str(_os.getpid()))
+        fh.flush()
+        return fh
+    except Exception:
+        try:
+            fh.close()
+        except Exception:
+            pass
+        return None
 
 
 def _watch_loop() -> int:
@@ -185,6 +270,13 @@ def _watch_loop() -> int:
     import time
 
     global _cycle_count
+
+    # Bail out if another watch loop already owns the lock — a second loop
+    # would double the brain-collect rate and accumulate orphans.
+    _lock = _watch_singleton_lock()
+    if _lock is None:
+        print("  [watch] another session-to-brain watcher is already running — exiting")
+        return 0
 
     print("▶ session-to-brain watch mode: polling DB every 60s")
     print("  ├─ writes rich-format trajectories to ~/.openamer/trajectories/")
