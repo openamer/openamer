@@ -1508,3 +1508,146 @@ def test_question_echo_and_ordinal_stub_are_gated_on_both_paths():
     )
     for p in prose:
         assert not buffer_store.is_junk(p), p
+
+
+def test_diagram_markup_source_is_gated_on_both_paths():
+    """Diagram DSL source must die on BOTH gates; prose ABOUT it survives.
+
+    Live 16.09.26: cycle_e_competitors stored
+    `OKF Agent Memory resolves this dilemma with the Dual-Memory Agent
+     Architecture (DMAA) : flowchart TD subgraph PUSH["1.`
+    -- an extractor lead-in sentence welded onto Mermaid diagram body. At
+    118 chars it cleared the >=90 long-prose trust, so nothing looked
+    closer at what the text actually was.
+
+    The rule needs TWO independent markers (a DSL keyword AND diagram
+    markup punctuation), so every counter-case below -- a real sentence
+    naming a diagram type -- stays learnable.
+    """
+    import buffer_store
+
+    leak = (
+        "OKF Agent Memory resolves this dilemma with the Dual-Memory Agent "
+        "Architecture (DMAA) : flowchart TD subgraph PUSH[\"1."
+    )
+    assert buffer_store.is_junk(leak), leak
+    assert buffer_store._is_nav_chrome(leak), leak
+    assert IL._is_junk(leak), leak
+    assert IL._is_diagram_markup(leak), leak
+
+    prose = [
+        # names the DSL keyword but carries no node label / arrow syntax
+        "A flowchart TD block in the docs renders top-down, so the RAG "
+        "chunker must split on the subgraph boundary before embedding the "
+        "diagram labels.",
+        "Mermaid sequenceDiagram syntax is parsed by the CLI and rendered "
+        "as SVG in the browser, which adds about 40 ms per diagram.",
+        "Graphviz digraph declarations describe a scheduler dependency "
+        "graph, and the renderer lays it out with the dot engine in under "
+        "200 ms.",
+        "A stateDiagram of the retry policy helps reviewers understand the "
+        "backoff, but the shipped code implements jittered exponential "
+        "retry in 18 lines.",
+        # a single ASCII arrow is ordinary prose and is NOT diagram markup
+        "The pipeline writes to a temp file and then renames it, so the "
+        "consumer never sees a partial write.",
+    ]
+    for p in prose:
+        assert not IL._is_diagram_markup(p), p
+        assert not IL._is_junk(p), p
+        assert not buffer_store.is_junk(p), p
+
+
+
+def test_package_index_file_listing_is_gated_on_both_paths():
+    """PyPI files-page label chain must die on BOTH gates; prose survives.
+
+    Live 16.09.26 (found while verifying the diagram gate):
+    cycle_f_multi_domain stored
+    `B view details ) Uploaded Jun 28, 2024 Python 2 Python 3 File details
+     Details for the file openpyxl-3.`
+    -- a package files-page label chain with zero prose, accepted because
+    the version digits fed the technical-signal gate.
+
+    The guard needs TWO INDEPENDENT label markers, so a real sentence that
+    merely cites a release and a date stays learnable.
+    """
+    import buffer_store
+
+    leak = (
+        "B view details ) Uploaded Jun 28, 2024 Python 2 Python 3 "
+        "File details Details for the file openpyxl-3."
+    )
+    assert IL._is_package_index_chrome(leak), leak
+    assert IL._is_junk(leak), leak
+    assert buffer_store.is_junk(leak), leak
+    assert buffer_store._is_nav_chrome(leak), leak
+
+    prose = [
+        # one marker only: a release + a date, in a real sentence
+        "openpyxl 3.1 was uploaded in June 2024 and writes roughly 400k "
+        "cells per second, which is 3x faster than the pure-python writer.",
+        "The PyPI files page exposes each wheel as a download link with "
+        "its upload date, and a scraper should read the JSON API instead "
+        "of parsing HTML.",
+        "The library still ships a Python 2 compatible shim, but Python 3 "
+        "is the supported target and the shim is removed in the 4.0 "
+        "release.",
+        "Upgrading to openpyxl 3.1.2 fixed the memory blowup on large "
+        "sheets, cutting peak RSS from 1.8 GB to 240 MB in our benchmark.",
+    ]
+    for p in prose:
+        assert not IL._is_package_index_chrome(p), p
+        assert not IL._is_junk(p), p
+        assert not buffer_store.is_junk(p), p
+
+
+
+def test_course_landing_cta_is_gated_on_both_paths():
+    """Course/certification landing-page CTA must die on BOTH gates.
+
+    Live 16.09.26 (third leak found in one verification run):
+    cycle_g_security stored
+    `Certified Agentic AI Security Expert (CAASE) Coming Soon Attack,
+     poison, & harden AI agents: reasoning loops, memory stores,
+     tool-calling, & multi-agent identity.`
+    A sales headline plus a feature bundle, zero prose -- and it is
+    ON-TOPIC for the security cycle, so relevance cannot be the
+    discriminator. The page VOICE is.
+
+    The guard needs a promo CTA AND a course-bundle phrase, so a real
+    sentence that mentions a course, a certification, or the words
+    attack/poison in their technical sense stays learnable.
+    """
+    import buffer_store
+
+    leak = (
+        "Certified Agentic AI Security Expert (CAASE) Coming Soon "
+        "Attack, poison, & harden AI agents: reasoning loops, memory "
+        "stores, tool-calling, & multi-agent identity."
+    )
+    assert IL._is_course_cta_chrome(leak), leak
+    assert IL._is_junk(leak), leak
+    assert buffer_store.is_junk(leak), leak
+    assert buffer_store._is_nav_chrome(leak), leak
+
+    prose = [
+        # CTA phrase but no course bundle -> one marker only
+        "The course on agent security is coming soon, but the threat "
+        "model it covers is already documented in the OWASP agentic "
+        "top-10 list for 2026.",
+        "A certified Kubernetes administrator is expected to understand "
+        "admission controllers, and the exam tests etcd backup and "
+        "restore under 30 min.",
+        "An attacker can poison the retrieval index during ingestion, "
+        "so the pipeline must hash documents before indexing and "
+        "re-verify the corpus.",
+        "The curriculum for the security module covers prompt injection, "
+        "tool poisoning and sandbox escapes, which matches the OWASP "
+        "agentic top-10.",
+    ]
+    for p in prose:
+        assert not IL._is_course_cta_chrome(p), p
+        assert not IL._is_junk(p), p
+        assert not buffer_store.is_junk(p), p
+

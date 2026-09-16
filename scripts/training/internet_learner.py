@@ -807,6 +807,119 @@ def _is_ticker_loop(text):
     return False
 
 
+# Diagram SOURCE (Mermaid / graphviz-DOT markup) is the rendering
+# instruction for a picture, not prose. Live 16.09.26: cycle_e_competitors
+# stored
+#   'OKF Agent Memory resolves this dilemma with the Dual-Memory Agent
+#    Architecture (DMAA) : flowchart TD subgraph PUSH["1.'
+# -- an extractor lead-in sentence welded to the diagram body; 118 chars
+# cleared the >=90 'long prose' trust, so neither length nor the
+# technical-signal gate looked closer.
+#
+# Deliberately its OWN compiled pattern rather than another fragment of
+# _JUNK_RE: that alternation is ONE implicitly-joined literal, and a
+# missing/extra pipe welds two rules together or creates an empty branch
+# that matches everything (both hit on 16.09.26). An insert here cannot
+# break an existing rule by construction.
+#
+# Safe because BOTH a DSL keyword AND real markup punctuation (a labelled
+# node or an edge arrow) must appear: prose that merely discusses a diagram
+# carries the keyword but no node/arrow syntax. Measured over the live
+# 297-row buffer + 1672 cycle results + 536 kta rows: 1 hit, and that hit
+# IS the leaking row -> 0 prose false positives.
+_DIAGRAM_DSL_RE = re.compile(
+    r"\b(?:flowchart\s+(?:TD|TB|BT|RL|LR)|sequenceDiagram|classDiagram|"
+    r"stateDiagram|erDiagram|subgraph\s+[A-Za-z_]\w*|"
+    r"digraph\s+[A-Za-z_]\w*|graph\s+(?:TD|TB|BT|RL|LR)|"
+    r"styling\s+node)\b",
+    re.IGNORECASE)
+# Markup PUNCTUATION: a labelled node (`ID["..."]`) or an edge arrow. A
+# single `->` is ordinary ASCII prose and is deliberately NOT listed -- only
+# the doubled/quadrupled diagram forms are.
+_DIAGRAM_MARKUP_RE = re.compile(
+    r"[A-Za-z_]\w*\s*\[\s*\x22|-->|---|==>|--x|--o|-.->")
+
+
+def _is_diagram_markup(text):
+    """True when `text` is diagram DSL source (Mermaid/graphviz), not prose.
+
+    Requires a DSL keyword FOLLOWED WITHIN 400 CHARS by markup
+    punctuation, so a sentence that merely names a diagram type stays
+    learnable ("A flowchart TD block in the docs renders top-down, so the
+    RAG chunker must split on the subgraph boundary …" -> untouched).
+    """
+    t = text or ""
+    for m in _DIAGRAM_DSL_RE.finditer(t):
+        if _DIAGRAM_MARKUP_RE.search(t[m.end():m.end() + 400]):
+            return True
+    return False
+
+
+# Package-INDEX / file-listing chrome (live 16.09.26: cycle_f_multi_domain
+# stored 'B view details ) Uploaded Jun 28, 2024 Python 2 Python 3 File
+# details Details for the file openpyxl-3.' -- a PyPI files-page label
+# chain with zero prose. 105 chars cleared the >=25 floor and the version
+# digits fed the technical-signal gate.)
+#
+# TWO INDEPENDENT label markers required, keyed on the page's OWN label
+# chain -- never a topic word or a bare version number, so prose that
+# merely mentions a release ("openpyxl 3.1 was uploaded in June 2024 and
+# …") carries at most one marker and stays learnable. Measured over the
+# live 295-row buffer + 1673 cycle results + 759 kta rows: 2 hits, both the
+# SAME leaking row -> 0 prose false positives.
+_PKG_INDEX_MARKER_RES = (
+    re.compile(r"view details", re.IGNORECASE),
+    re.compile(r"file details", re.IGNORECASE),
+    re.compile(r"details for the file", re.IGNORECASE),
+    re.compile(
+        r"uploaded\s+(?:[A-Z][a-z]{2,8}\s+\d{1,2},?\s+\d{4}|"
+        r"\d{4}-\d{2}-\d{2})", re.IGNORECASE),
+    re.compile(r"python\s+2\s+python\s+3", re.IGNORECASE),
+)
+_PKG_INDEX_MIN_MARKERS = 2
+
+
+def _is_package_index_chrome(text):
+    """True when `text` is a package-index / file-listing label chain."""
+    t = text or ""
+    if len(t) > 600:
+        return False
+    return (sum(1 for r in _PKG_INDEX_MARKER_RES if r.search(t))
+            >= _PKG_INDEX_MIN_MARKERS)
+
+
+# Course / certification LANDING-PAGE CTA chrome (live 16.09.26:
+# cycle_g_security stored 'Certified Agentic AI Security Expert (CAASE)
+# Coming Soon Attack, poison, & harden AI agents: reasoning loops, memory
+# stores, tool-calling, & multi-agent identity.' -- a sales headline plus
+# a feature bundle with zero prose. It is ON-TOPIC for the security cycle,
+# which is what makes it sneaky: relevance is not the discriminator, page
+# VOICE is.)
+#
+# Requires the promo voice (an enrollment/launch CTA) AND a course-bundle
+# phrase, both keyed on the page's own wording. An insight that merely
+# mentions a course, a certification or the words attack/poison in their
+# technical sense stays learnable (measured as counter-cases).
+_COURSE_CTA_RE = re.compile(
+    r"\b(?:coming soon|enroll now|enrol now|register now|sign up today|"
+    r"limited (?:seats|spots)|early bird|waitlist)\b",
+    re.IGNORECASE)
+_COURSE_BUNDLE_RE = re.compile(
+    r"\b(?:certified|accredited)\b[^.]{0,60}" r"\b(?:expert|professional|"
+    r"specialist|practitioner)\b|"
+    r"\b(?:attack,\s*poison|poison\s*&\s*harden|curriculum\b|"
+    r"what you'?ll learn)",
+    re.IGNORECASE)
+
+
+def _is_course_cta_chrome(text):
+    """True when `text` is a course/certification landing-page CTA."""
+    t = text or ""
+    if len(t) > 500:
+        return False
+    return bool(_COURSE_CTA_RE.search(t) and _COURSE_BUNDLE_RE.search(t))
+
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
@@ -823,6 +936,12 @@ def _is_junk(text):
     if _is_qa_portal_chrome(t):
         return True
     if _is_de_pricing_chrome(t):
+        return True
+    if _is_course_cta_chrome(t):
+        return True
+    if _is_package_index_chrome(t):
+        return True
+    if _is_diagram_markup(t):
         return True
     if _is_ticker_loop(t):
         return True

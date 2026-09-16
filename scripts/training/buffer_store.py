@@ -700,6 +700,94 @@ def _is_ticker_loop(text):
     return False
 
 
+# Diagram SOURCE (Mermaid / graphviz-DOT markup), same rule as
+# internet_learner._is_diagram_markup. Mirrored here because buffer_store
+# must not import the learner (circular) -- the writer gate has to refuse
+# the row too, or any other writer path still lands it in the buffer.
+_DIAGRAM_DSL_RE = _re.compile(
+    r"\b(?:flowchart\s+(?:TD|TB|BT|RL|LR)|sequenceDiagram|classDiagram|"
+    r"stateDiagram|erDiagram|subgraph\s+[A-Za-z_]\w*|"
+    r"digraph\s+[A-Za-z_]\w*|graph\s+(?:TD|TB|BT|RL|LR)|"
+    r"styling\s+node)\b",
+    _re.IGNORECASE)
+_DIAGRAM_MARKUP_RE = _re.compile(
+    r"[A-Za-z_]\w*\s*\[\s*\x22|-->|---|==>|--x|--o|-.->")
+
+
+def _is_diagram_markup(text):
+    """True when `text` is diagram DSL source, not prose (see learner)."""
+    t = text or ""
+    for m in _DIAGRAM_DSL_RE.finditer(t):
+        if _DIAGRAM_MARKUP_RE.search(t[m.end():m.end() + 400]):
+            return True
+    return False
+
+
+# Package-INDEX / file-listing chrome (live 16.09.26: cycle_f_multi_domain
+# stored 'B view details ) Uploaded Jun 28, 2024 Python 2 Python 3 File
+# details Details for the file openpyxl-3.' -- a PyPI files-page label
+# chain with zero prose. 105 chars cleared the >=25 floor and the version
+# digits fed the technical-signal gate.)
+#
+# TWO INDEPENDENT label markers required, keyed on the page's OWN label
+# chain -- never a topic word or a bare version number, so prose that
+# merely mentions a release ("openpyxl 3.1 was uploaded in June 2024 and
+# …") carries at most one marker and stays learnable. Measured over the
+# live 295-row buffer + 1673 cycle results + 759 kta rows: 2 hits, both the
+# SAME leaking row -> 0 prose false positives.
+_PKG_INDEX_MARKER_RES = (
+    _re.compile(r"view details", _re.IGNORECASE),
+    _re.compile(r"file details", _re.IGNORECASE),
+    _re.compile(r"details for the file", _re.IGNORECASE),
+    _re.compile(
+        r"uploaded\s+(?:[A-Z][a-z]{2,8}\s+\d{1,2},?\s+\d{4}|"
+        r"\d{4}-\d{2}-\d{2})", _re.IGNORECASE),
+    _re.compile(r"python\s+2\s+python\s+3", _re.IGNORECASE),
+)
+_PKG_INDEX_MIN_MARKERS = 2
+
+
+def _is_package_index_chrome(text):
+    """True when `text` is a package-index / file-listing label chain."""
+    t = text or ""
+    if len(t) > 600:
+        return False
+    return (sum(1 for r in _PKG_INDEX_MARKER_RES if r.search(t))
+            >= _PKG_INDEX_MIN_MARKERS)
+
+
+# Course / certification LANDING-PAGE CTA chrome (live 16.09.26:
+# cycle_g_security stored 'Certified Agentic AI Security Expert (CAASE)
+# Coming Soon Attack, poison, & harden AI agents: reasoning loops, memory
+# stores, tool-calling, & multi-agent identity.' -- a sales headline plus
+# a feature bundle with zero prose. It is ON-TOPIC for the security cycle,
+# which is what makes it sneaky: relevance is not the discriminator, page
+# VOICE is.)
+#
+# Requires the promo voice (an enrollment/launch CTA) AND a course-bundle
+# phrase, both keyed on the page's own wording. An insight that merely
+# mentions a course, a certification or the words attack/poison in their
+# technical sense stays learnable (measured as counter-cases).
+_COURSE_CTA_RE = _re.compile(
+    r"\b(?:coming soon|enroll now|enrol now|register now|sign up today|"
+    r"limited (?:seats|spots)|early bird|waitlist)\b",
+    _re.IGNORECASE)
+_COURSE_BUNDLE_RE = _re.compile(
+    r"\b(?:certified|accredited)\b[^.]{0,60}" r"\b(?:expert|professional|"
+    r"specialist|practitioner)\b|"
+    r"\b(?:attack,\s*poison|poison\s*&\s*harden|curriculum\b|"
+    r"what you'?ll learn)",
+    _re.IGNORECASE)
+
+
+def _is_course_cta_chrome(text):
+    """True when `text` is a course/certification landing-page CTA."""
+    t = text or ""
+    if len(t) > 500:
+        return False
+    return bool(_COURSE_CTA_RE.search(t) and _COURSE_BUNDLE_RE.search(t))
+
+
 def _is_nav_chrome(text):
     """True when text is page chrome (entities, marketing, UI, template leaks)."""
     if _ENTITY.search(text):
@@ -732,6 +820,18 @@ def _is_nav_chrome(text):
     # a LEADING MediaWiki section-edit control (same narrow rule as
     # internet_learner._strip_wiki_section_prefix)
     if _WIKI_EDIT_WORD_RE.match(text.strip()):
+        return True
+    # diagram DSL source, not prose (same rule as
+    # internet_learner._is_diagram_markup)
+    # a package-index / file-listing label chain (same rule as
+    # internet_learner._is_package_index_chrome)
+    # a course/certification landing-page CTA (same rule as
+    # internet_learner._is_course_cta_chrome)
+    if _is_course_cta_chrome(text):
+        return True
+    if _is_package_index_chrome(text):
+        return True
+    if _is_diagram_markup(text):
         return True
     # a news-ticker loop (same rule as internet_learner._is_ticker_loop): the
     # writer gate must refuse it too, or any other writer path lands it in the
