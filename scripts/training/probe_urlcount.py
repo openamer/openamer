@@ -3,10 +3,14 @@
 Hypothesis: the CDP (PRIMARY) path loses most result URLs to Bing's display
 truncation ('…' paths are skipped), so deep_learn's k=6 retry cannot help.
 """
-import importlib.util, sys, re, urllib.request, urllib.parse
+import importlib.util, sys, re, urllib.request, urllib.parse, os
 import html as _html
+from pathlib import Path
 
-T = "C:/Users/damir/AppData/Local/openamer-laptop/scripts/training"
+# Portable: OPENAMER_HOME (desktop/cron env), else the standard install dir.
+T = os.path.join(
+    os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")),
+    "scripts", "training")
 spec = importlib.util.spec_from_file_location("il", T + "/internet_learner.py")
 m = importlib.util.module_from_spec(spec)
 sys.path.insert(0, T)

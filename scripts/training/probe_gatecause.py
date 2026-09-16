@@ -1,9 +1,16 @@
 """Which gate fires on the current junk rejections? Confirm they are the known
 SERP/chrome shapes (normal rotation noise), not a NEW chrome leak.
 """
-import importlib.util, sys, json
+import importlib.util, sys, json, os
+from pathlib import Path
 
-T = "C:/Users/damir/AppData/Local/openamer-laptop/scripts/training"
+# Portable: OPENAMER_HOME (set by the desktop/cron env), else the standard
+# per-user install dir. Never a hardcoded machine path — see
+# test_no_hardcoded_paths.py, which guards exactly this.
+T = os.path.join(
+    os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")),
+    "scripts", "training")
+
 spec = importlib.util.spec_from_file_location("il", T + "/internet_learner.py")
 m = importlib.util.module_from_spec(spec)
 sys.path.insert(0, T)

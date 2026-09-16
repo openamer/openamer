@@ -1,10 +1,15 @@
 """Rate analysis: per-source and per-hour learned/rejected from internet_learn_log.jsonl."""
-import json, collections
+import json, collections, os
 from datetime import datetime
+from pathlib import Path
+
+# Portable: OPENAMER_HOME (desktop/cron env), else the standard install dir.
+T = os.path.join(
+    os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")),
+    "scripts", "training")
 
 rows = [json.loads(l) for l in open(
-    "C:/Users/damir/AppData/Local/openamer-laptop/scripts/training/internet_learn_log.jsonl",
-    encoding="utf-8") if l.strip()]
+    os.path.join(T, "internet_learn_log.jsonl"), encoding="utf-8") if l.strip()]
 
 print("total logged cycles:", len(rows))
 
