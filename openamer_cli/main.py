@@ -11447,7 +11447,12 @@ def _wait_for_windows_gateway_respawn(
         except Exception as exc:  # pragma: no cover - defensive
             logger.debug("Gateway liveness probe failed during update resume: %s", exc)
             pids = []
-        live = [pid for pid in pids if pid not in dying]
+        # ``all_profiles=True`` is the *machine-wide* scope, so a gateway owned
+        # by another install (issue #28's two-tree setup) shows up here too and
+        # would be mistaken for our respawn. Reuse the evidence classifier the
+        # pause path already trusts to drop the foreign ones.
+        ours, _foreign = _split_gateways_by_install(pids)
+        live = [pid for pid in ours if pid not in dying]
         if live:
             return live
         if _time.monotonic() >= deadline:
