@@ -12,7 +12,7 @@ Each action feeds results into: brain buffer + world model + structures.
 The agent GROWS actively instead of waiting passively.
 """
 import os
-import json, os, sys, time, random, datetime, urllib.request, subprocess
+import json, os, re, sys, time, random, datetime, urllib.request, subprocess
 from pathlib import Path
 sys.path.insert(0, os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "scripts"))
 sys.path.insert(0, os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "scripts", "training"))
@@ -23,16 +23,13 @@ LIVE = "http://localhost:8081"
 ROTATION_FILE = os.path.join(T, ".learn_rotation")
 
 def chat(messages, max_tokens=200):
-    req = urllib.request.Request(LIVE + "/v1/chat/completions",
-        data=json.dumps({"model": "mini-openamer", "messages": messages,
-                         "max_tokens": max_tokens}).encode(),
-        headers={"Content-Type": "application/json"})
-    r = json.load(urllib.request.urlopen(req, timeout=300))
-    return r["choices"][0]["message"]["content"].strip()
+    # Follows the configured default model (config.yaml model.default).
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from model_config import chat_default
+    return chat_default(messages, max_tokens=max_tokens)
 
 def add_to_buffer(user_text, assistant_text):
     # Single source of truth: append + enforce cap on EVERY write.
-    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     import buffer_store
     return buffer_store.append(user_text, assistant_text, buffer=BUFFER)
 
@@ -188,6 +185,20 @@ def skill_challenge():
     except Exception as e:
         return f"error: {str(e)[:100]}"
 
+# An instruction ECHO is this loop buffering its own prompt back at itself
+# instead of an answer. Anchored + imperative, mirroring the rule already in
+# internet_learner._INSTRUCTION_OPENER_RE: the bare topic phrase cannot be
+# gated because the genuine declarative answers ("The shared underlying
+# pattern is a closed-loop feedback system ...") must stay learnable.
+_ECHO_OPENER_RE = re.compile(
+    r"^\s*\**\s*(?:need\b|task\s*:|goal\s*:|ask\s*:|"
+    r"find\s+(?:the\s+)?(?:structural\s+)?connection|"
+    r"identify\s+(?:the\s+)?(?:shared\s+)?(?:underlying\s+)?pattern|"
+    r"they\s+want\s+me\s+to|"
+    r"what\s+(?:is\s+)?(?:the\s+)?(?:shared|structural))",
+    re.IGNORECASE)
+
+
 def cross_connect():
     """Find analogies between unrelated memories."""
     try:
@@ -204,6 +215,13 @@ def cross_connect():
                  f"2. {t2}: {r2[0][1]['text'][:200]}\n\n"
                  f"What is the shared underlying pattern? One sentence."}],
                 max_tokens=80)
+            # A failed or truncated generation must NOT enter the training
+            # buffer (live 16.09.26: 5 empty rows, a 1-char "S" and two stub
+            # fragments reached online_buffer.jsonl here, because chat()
+            # returns "" on failure and its value was buffered unvalidated).
+            _ins = (insight or "").strip()
+            if len(_ins) < 25 or _ECHO_OPENER_RE.match(_ins):
+                return f"cross-connect: discarded stub/echo ({len(_ins)} chars)"
             add_to_buffer(f"Structural connection between {t1} and {t2}?", insight)
             return f"cross-connect: {insight[:80]}"
         return "cross-connect: not enough memories"

@@ -266,6 +266,7 @@ _NAV_CHROME = (
     "ai chat can make mistakes",
     "products considered",
     "min read article",
+    "watch live key points",
 )
 
 

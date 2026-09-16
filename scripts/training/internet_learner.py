@@ -483,7 +483,8 @@ _JUNK_RE = re.compile(
     # alternation with an empty branch, which matches every string and turns the
     # whole junk gate into "reject everything" (16.09.26, caught by il_delta
     # showing 300/300 rejected).
-    r"reach us at|contact us at|call us at",
+    r"reach us at|contact us at|call us at|"
+    r"watch live key points",
     re.IGNORECASE)
 
 # Percent-escapes mean the "insight" is a URL fragment, not prose. Their digits

@@ -11,6 +11,7 @@ empty result (an empty read is a bug, not an intent).
 """
 import json
 import sys
+import re
 from pathlib import Path
 
 T = Path(__file__).parent
@@ -18,6 +19,18 @@ sys.path.insert(0, str(T))
 import buffer_store as bs
 
 BUF = T / "online_buffer.jsonl"
+
+# Instruction ECHO: the loop buffering its own prompt back at itself rather
+# than an answer (mirrors internet_learner._INSTRUCTION_OPENER_RE and the
+# producer-side guard in active_learn.cross_connect). Anchored + imperative
+# on purpose: genuine declarative answers on the same topic must survive.
+_ECHO_OPENER_RE = re.compile(
+    r"^\s*\**\s*(?:need\b|task\s*:|goal\s*:|ask\s*:|"
+    r"find\s+(?:the\s+)?(?:structural\s+)?connection|"
+    r"identify\s+(?:the\s+)?(?:shared\s+)?(?:underlying\s+)?pattern|"
+    r"they\s+want\s+me\s+to|"
+    r"what\s+(?:is\s+)?(?:the\s+)?(?:shared|structural))",
+    re.IGNORECASE)
 ARCHIVE = T / "buffer_junk_archive.jsonl"
 
 
@@ -35,6 +48,18 @@ def main():
         # the STORE cleanup drops it. is_junk stays unchanged to honour that.
         if not (a or "").strip():
             drop.append((r, "empty"))
+            continue
+        _sa = (a or "").strip()
+        # A truncation/degenerate stub teaches a LoRA nothing and is NOT a
+        # legitimate SHORT answer. 25 chars is the same floor the extraction
+        # gate uses (internet_learner._is_junk), and a real short answer
+        # ("Ja.", "Nein!") is spared by the sentence-punctuation pass.
+        # live 16.09.26: active_learn.cross_connect buffered "" x5, "S",
+        # "What is the shared underlying pattern" and
+        # "Need shared underlying pattern. One".
+        if (_ECHO_OPENER_RE.match(_sa)
+                or (len(_sa) < 25 and not _sa.endswith((".", "!", "?", "\u2026", ":")))):
+            drop.append((r, "stub"))
             continue
         key = json.dumps(r, ensure_ascii=False, sort_keys=True)
         if key in seen:
