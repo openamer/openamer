@@ -706,6 +706,35 @@ def _is_nav_list(text):
 _URL_STUB_PATHS = frozenset({"abs", "html", "index.html"})
 
 
+
+def _fair_share_window(texts, budget=4000, floor=700):
+    """Give EVERY fetched page a slice of the distillation window.
+
+    Root cause V (live 16.09.26): deep_learn used `" ".join(texts)[:4000]`.
+    A single page is truncated to 6000 chars, so the FIRST page always ate
+    the whole 4000-char window and pages 1..k-1 contributed 0 characters
+    (measured: page[0]=4000/6000, pages[1..4]=0/5426,0/6000,0/6000,0/6000).
+    deep_learn(k=2) and deep_learn(k=6) therefore returned the SAME string,
+    and store_or_deep's guard `deep2 not in (insight, deep)` skipped the
+    k=6 second chance entirely - the documented rescue path was a no-op on
+    every cycle whose top page was weak (live: 2 of 4 rejects were this).
+    """
+    texts = [t for t in texts if t]
+    if not texts:
+        return []
+    per = max(floor, budget // len(texts))
+    out, used = [], 0
+    for t in texts:
+        take = t[:per]
+        if used + len(take) > budget:
+            take = take[:max(0, budget - used)]
+        if take:
+            out.append(take)
+            used += len(take)
+        if used >= budget:
+            break
+    return out
+
 def _usable_urls(urls, k):
     """Keep only fetchable result URLs (drop bare domains and known stubs)."""
     good = []
@@ -813,11 +842,14 @@ def deep_learn(query, k=2):
     texts = []
     for u in urls:
         t = _fetch_page(u)
-        if len(t) > 200:
+        # Raw PDF byte streams are not prose: they carry no extractable sentence
+        # and their mis-decoded mojibake has reached the buffer before (root
+        # cause P). Skip them so they cannot occupy a fair-share slot.
+        if len(t) > 200 and not t.lstrip().startswith("%PDF"):
             texts.append(t)
     if not texts:
         return ""
-    combined = " ".join(texts)[:4000]
+    combined = " ".join(_fair_share_window(texts, 4000))[:4000]
     # PRIMARY: deterministic extraction — first meaningful sentence of the page.
     # Reliable, no model dependency. The 2B model (Qwen3.5 thinking family)
     # emits reasoning traces that are not reliably parseable, so we don't
