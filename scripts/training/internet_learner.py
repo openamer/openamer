@@ -1314,6 +1314,54 @@ _BLOG_HEADER_STACK_RE = re.compile(
     re.IGNORECASE)
 
 
+# Leading CLOCK-DATELINE fragment welded to the article body (live 16.09.26,
+# class 13 of the leading-chrome family): cycle_e_competitors stored
+#
+#   "at 11:44 am we asked four ai coding agents to In a recent experiment,
+#    four AI coding agents were tasked with recreating the classic game
+#    Minesweeper, revealing both the potential and limitations of modern AI in
+#    programming."
+#
+# The extractor cut the byline mid-sentence, so a LOWERCASE fragment rides in
+# front of a genuine paragraph. STRIP -- the body behind it is the knowledge.
+#
+# Two guards keep real prose safe (measured over the live 5046-row corpus:
+# exactly 1 hit, the leaking row; 0 real-prose rows):
+#   1. the row must OPEN with literal lowercase "at" + a clock time.
+#      A sentence never starts "at 11:44 am ..." -- that is a byline cut
+#      -- so the capitalized form "At 12:30 pm the batch job starts ..."
+#      cannot match (the pattern is deliberately NOT case-insensitive).
+#   2. the boundary is the first Capitalized token AFTER the dateline: the
+#      fragment is lowercase by construction, so the article's opening word
+#      is where it ends. A >= 5-word body must remain, else the text is
+#      returned byte-identical.
+_DATELINE_FRAGMENT_RE = re.compile(r"^at\s+\d{1,2}:\d{2}\s*(?:am|pm)\b\s*")
+
+
+def _strip_dateline_fragment(text):
+    """Drop a leading lowercase "at <time> am|pm" byline fragment.
+
+    Live 16.09.26: cycle_e_competitors learned "at 11:44 am we asked four ai
+    coding agents to In a recent experiment, four AI coding agents were tasked
+    with recreating the classic game Minesweeper ..." — a mid-sentence byline
+    cut prefixed a real paragraph. Strip, never reject: the paragraph is the
+    knowledge. See the module comment above for the two guards.
+    """
+    t = (text or "").strip()
+    m = _DATELINE_FRAGMENT_RE.match(t)
+    if not m:
+        return t
+    rest = t[m.end():]
+    boundary = None
+    for tok in _WORD_RE.finditer(rest):
+        if tok.group(0)[:1].isupper():
+            boundary = tok.start()
+            break
+    if boundary is None:
+        return t
+    out = rest[boundary:].strip()
+    return out if len(out.split()) >= 5 else t
+
 def _strip_blog_header_stack(text):
     """Drop a leading "<author> / <DATE> / <N> comments" header stack and any
     header-adjacent share widget.
@@ -1471,6 +1519,7 @@ def _clean_insight(text, max_len=250):
     if _URL_ESC_RE.search(t):
         t = urllib.parse.unquote(t).strip()  # judge the decoded words, not %20
     t = _strip_wiki_section_prefix(t)
+    t = _strip_dateline_fragment(t)
     t = _strip_byline_prefix(t)
     t = _strip_read_time_header(t)
     t = _strip_arrow_nav_prefix(t)

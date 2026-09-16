@@ -996,3 +996,39 @@ def test_de_pricing_chrome_is_rejected_but_priced_prose_survives():
     assert not IL._is_de_pricing_chrome(_DE_PRICING_ONE_MARKER)
     assert not buffer_store.is_junk(_DE_PRICING_ONE_MARKER)
     assert IL._clean_insight(_DE_PRICING_ONE_MARKER)
+
+
+def test_leading_clock_dateline_fragment_is_stripped_not_stored():
+    """A leading lowercase clock-dateline fragment must not ride into the
+    buffer, but the article body behind it must survive (live 16.09.26, class 13).
+
+    Learned, verbatim:
+      "at 11:44 am we asked four ai coding agents to In a recent experiment, four
+       AI coding agents were tasked with recreating the classic game Minesweeper,"
+    The extractor cut the byline mid-sentence, so a LOWERCASE fragment prefixed a
+    real paragraph -> STRIP. Assert the surviving body is the ORIGINAL MINUS the
+    fragment, and keep the counter-cases below alive: a capitalized clock time at
+    the start of a real sentence must stay learnable.
+    """
+    body = (
+        "In a recent experiment, four AI coding agents were tasked with "
+        "recreating the classic game Minesweeper, revealing both the potential "
+        "and limitations of modern AI in programming."
+    )
+    leak = "at 11:44 am we asked four ai coding agents to " + body
+    assert IL._strip_dateline_fragment(leak) == body          # body pristine
+    assert IL._clean_insight(leak) == body
+    assert not IL._clean_insight(leak).startswith("at ")
+
+    # --- counter-cases: real prose that merely MENTIONS a clock time, or opens
+    # with the CAPITALIZED form, must be returned byte-identical. Guard 1 is the
+    # lowercase requirement -- a sentence never starts 'at 11:44 am ...'.
+    for text in (
+        "At 12:30 pm the batch job starts, so schedule the quantization sweep "
+        "before noon.",
+        "The run finished at 11:44 am and the quantized model had lower latency.",
+        "at 11:44 we measured 40% lower decode latency, but the sentence has no "
+        "am/pm marker.",
+    ):
+        assert IL._strip_dateline_fragment(text) == text, text   # untouched
+        assert IL._clean_insight(text), text                     # learnable
