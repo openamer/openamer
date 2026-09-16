@@ -530,7 +530,13 @@ _JUNK_RE = re.compile(
     # trust and its digits fed the technical-signal gate. Same markers as
     # buffer_store._NAV_CHROME; keep both files in sync. Measured over the
     # live buffer: 1 hit and that hit IS the leaking row -> 0 prose FPs.)
-    r"liste aller wikipedia-artikel|deren titel|wiktionary\s*:|"
+    r"liste aller wikipedia-artikel|deren titel|wiktionary\s*:|the user pasted|"
+    # A sports-fixture list (live 16.09.26, cycle_c_github): a scoreline
+    # followed by a pipe and a fixture date. Same rule as
+    # buffer_store._FIXTURE_LIST_RE; keep both files in sync. Measured over
+    # the live buffer: 1 hit and that hit IS the leaking row -> 0 prose FPs.
+    r"\b\w+\s+vs\.?\s+\w+[^|]{0,25}\d{1,2}\s*[-\u2013]\s*\d{1,2}\s*\|\s*"
+    r"\d{1,2}[/.]\d{1,2}[/.]\d{2,4}|"
     # NOTE: the fragment below is the LAST one -- it keeps the closing comma
     # that the following re.IGNORECASE) closes.
     r"^\W*[kKmM]\s+followers\b",

@@ -328,6 +328,14 @@ _NAV_CHROME = (
     "liste aller wikipedia-artikel",
     "deren titel",
     "wiktionary:",
+    # A 2B self-critique echo (live 16.09.26: cycle_d_docs stored
+    # '"\n   - **Context:** The user pasted a long documentation page from vLLM,
+    # but the actual content is just the table of contents ...') -- the
+    # extractor echoed its own review scaffold and cleared the >=90 length
+    # trust. Concrete scaffold phrases only; measured over the live buffer:
+    # 1 hit and that hit IS the leaking row -> 0 real-prose false positives
+    # on the 280-row non-junk corpus.
+    "the user pasted",
 )
 
 
@@ -336,6 +344,19 @@ _NAV_CHROME = (
 # requiring NO leading digits, so real prose that merely reports a follower
 # count ("Mistral has 30k followers on GitHub") is untouched — measured over
 # the live 282-row buffer: 1 hit (the leaking row), 0 real-prose rows.
+# A sports-fixture list from a results page (live 16.09.26: cycle_c_github
+# stored "Napoli vs Lazio 0-2 | 12/04/2026 Parma vs Napoli 1-1 | ... SSC
+# NAPOLI OFFICIAL APP" as a GitHub learning -- 246 chars cleared the length
+# trust and the scoreline digits fed the technical-signal gate). Structural:
+# a scoreline immediately followed by a pipe and a fixture date, i.e. a
+# results-table row, never prose. Measured over the live buffer: 1 hit and
+# that hit IS the leaking row -> 0 real-prose false positives on the
+# 280-row non-junk corpus. A bare 'A vs B' is deliberately NOT gated --
+# measured 6 hits, all real prose ('CUDA vs ROCm vs Vulkan vs Metal').
+_FIXTURE_LIST_RE = _re.compile(
+    r"\b\w+\s+vs\.?\s+\w+[^|]{0,25}\d{1,2}\s*[-\u2013]\s*\d{1,2}\s*\|\s*"
+    r"\d{1,2}[/.]\d{1,2}[/.]\d{2,4}",
+    _re.IGNORECASE)
 _DETACHED_COUNT_RE = _re.compile(r"^\W*[kKmM]\s+followers\b")
 
 # A clock time, used ONLY together with a self-repeated phrase (ticker loop).
@@ -542,6 +563,10 @@ def _is_nav_chrome(text):
         return True
     # a counter truncated at its own digits ("K followers ...") = mid-widget
     if _DETACHED_COUNT_RE.match(text):
+        return True
+    # a sports-fixture list from a results page (same narrow rule as
+    # internet_learner._is_fixture_list)
+    if _FIXTURE_LIST_RE.search(text):
         return True
     # an arXiv abstract-page label chain (same rule as
     # internet_learner._is_arxiv_abstract_chrome)
