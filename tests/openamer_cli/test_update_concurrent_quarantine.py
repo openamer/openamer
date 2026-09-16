@@ -738,6 +738,12 @@ def test_resume_windows_gateways_after_update_relaunches_paused_profiles(
         "launch_detached_profile_gateway_restart",
         lambda profile, old_pid: relaunched.append((profile, old_pid)) or True,
     )
+    # The restart helper only spawns a watcher; the resume path must confirm a
+    # live gateway before it prints its checkmark. Stub the liveness wait so the
+    # test exercises the reporting branch, not the 15s poll.
+    monkeypatch.setattr(
+        cli_main, "_wait_for_windows_gateway_respawn", lambda old_pids: [303]
+    )
 
     token = {
         "resume_needed": True,
@@ -753,6 +759,82 @@ def test_resume_windows_gateways_after_update_relaunches_paused_profiles(
         "Restarting Windows gateway profile(s): default, work"
         in capsys.readouterr().out
     )
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_resume_does_not_print_checkmark_when_no_gateway_respawns(
+    _winp,
+    monkeypatch,
+    capsys,
+):
+    """A spawned restart watcher is not a running gateway — say so honestly.
+
+    ``launch_detached_*_gateway_restart*`` returns ``True`` once the detached
+    watcher process exists. If that watcher never produces a gateway, the old
+    code still printed ``✓ Restarting …``; the resume path must instead report
+    that no process was detected.
+    """
+    import openamer_cli.gateway as gateway_mod
+
+    monkeypatch.setattr(
+        gateway_mod,
+        "launch_detached_profile_gateway_restart",
+        lambda profile, old_pid: True,
+    )
+    monkeypatch.setattr(
+        cli_main, "_wait_for_windows_gateway_respawn", lambda pids: []
+    )
+
+    token = {"resume_needed": True, "profiles": {"default": 101}}
+    cli_main._resume_windows_gateways_after_update(token)
+
+    out = capsys.readouterr().out
+    assert "✓ Restarting Windows gateway profile(s)" not in out
+    assert "no gateway process was detected" in out
+    assert "openamer gateway status" in out
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_wait_for_windows_gateway_respawn_ignores_force_killed_pids(
+    _winp,
+    monkeypatch,
+):
+    """The probe must not count the dying old PID as a successful respawn.
+
+    Right after the restart helper returns, the force-killed gateway is often
+    still present in the process table. Counting it would re-introduce the
+    false-green this fix removes.
+    """
+    import openamer_cli.gateway as gateway_mod
+
+    seen = []
+    monkeypatch.setattr(
+        gateway_mod,
+        "find_gateway_pids",
+        lambda **kwargs: seen.append(kwargs.get("all_profiles")) or [101],
+    )
+
+    # Old PID 101 still alive, no replacement → must time out empty, not report
+    # 101 as the respawn.
+    assert cli_main._wait_for_windows_gateway_respawn([101], timeout_s=0.05) == []
+    assert seen and all(flag is True for flag in seen)
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_wait_for_windows_gateway_respawn_returns_new_pid(
+    _winp,
+    monkeypatch,
+):
+    """A live gateway that is not an old PID is the respawn we were waiting for."""
+    import openamer_cli.gateway as gateway_mod
+    from openamer_cli import gateway_windows
+
+    monkeypatch.setattr(
+        gateway_mod, "find_gateway_pids", lambda **kwargs: [101, 4242]
+    )
+    monkeypatch.setattr(gateway_windows, "is_installed", lambda: True)
+
+    assert cli_main._wait_for_windows_gateway_respawn([101], timeout_s=0.5) == [4242]
 
 
 @patch.object(cli_main, "_is_windows", return_value=True)
@@ -775,6 +857,9 @@ def test_resume_windows_gateways_after_update_respawns_unmapped_by_cmdline(
         gateway_mod,
         "launch_detached_profile_gateway_restart",
         lambda profile, old_pid: True,
+    )
+    monkeypatch.setattr(
+        cli_main, "_wait_for_windows_gateway_respawn", lambda old_pids: [8080]
     )
 
     scheduled_argv = ["pythonw.exe", "-m", "openamer_cli.main", "gateway", "run"]

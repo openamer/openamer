@@ -11403,6 +11403,78 @@ def _warn_incomplete_gateway_fleet_restart(failed_units: list) -> None:
     print("    sudo systemctl restart <unit>     # system-scope")
 
 
+# How long the update resume path waits for a respawned Windows gateway to
+# actually appear before it stops claiming success.  The restart helpers only
+# spawn a *watcher*; measured end-to-end the watcher respawns ~7.8s after it is
+# launched (and only after the force-killed old PID has exited), so a shorter
+# window would report a spurious failure for a restart that is merely slow.
+_WINDOWS_GATEWAY_RESPAWN_TIMEOUT_S = 15.0
+_WINDOWS_GATEWAY_RESPAWN_INTERVAL_S = 0.4
+
+
+def _wait_for_windows_gateway_respawn(
+    old_pids,
+    timeout_s: float | None = None,
+    interval_s: float | None = None,
+) -> list[int]:
+    """Wait for a *live* gateway replacing the force-killed ``old_pids``.
+
+    The ``launch_detached_*_gateway_restart*`` helpers return ``True`` as soon
+    as the detached restart **watcher** was spawned — a fact about process
+    creation, not about a running gateway.  Right after that call the old
+    gateway is typically still alive, so a plain "is there any gateway PID?"
+    probe green-lights a gateway that is about to disappear.
+
+    This probe polls until a gateway PID exists that is **not** one of the
+    PIDs we just force-killed, and returns those PIDs.  An empty list means no
+    respawn showed up in time and the caller must report that honestly.
+    """
+    from openamer_cli.gateway import find_gateway_pids
+
+    if timeout_s is None:
+        timeout_s = _WINDOWS_GATEWAY_RESPAWN_TIMEOUT_S
+    if interval_s is None:
+        interval_s = _WINDOWS_GATEWAY_RESPAWN_INTERVAL_S
+
+    dying = {int(pid) for pid in old_pids if pid}
+    deadline = _time.monotonic() + max(0.0, timeout_s)
+    while True:
+        try:
+            # ``all_profiles=True`` because ``openamer update`` touches every
+            # profile's gateway, so the respawn may land outside the current
+            # profile's PID file.
+            pids = [int(pid) for pid in find_gateway_pids(all_profiles=True)]
+        except Exception as exc:  # pragma: no cover - defensive
+            logger.debug("Gateway liveness probe failed during update resume: %s", exc)
+            pids = []
+        live = [pid for pid in pids if pid not in dying]
+        if live:
+            return live
+        if _time.monotonic() >= deadline:
+            return []
+        _time.sleep(interval_s)
+
+
+def _print_windows_gateway_respawn_warning(label: str) -> None:
+    """Report a gateway restart that spawned its watcher but produced no process.
+
+    Mirrors ``gateway_windows._report_gateway_start``'s honesty: the detached
+    restart helper returning ``True`` only means a watcher was spawned, so say
+    what was actually observed instead of printing a success checkmark.
+    """
+    from openamer_cli.config import get_openamer_home
+
+    print(
+        f"  ⚠ Asked to restart {label}, but no gateway process was "
+        f"detected after {_WINDOWS_GATEWAY_RESPAWN_TIMEOUT_S:.0f}s."
+    )
+    print("    Check the log for startup errors:")
+    openamer_home = Path(get_openamer_home())
+    print(f"      type {openamer_home / 'logs' / 'gateway.log'}")
+    print(f"      type {openamer_home / 'logs' / 'gateway-stdio.log'}")
+    print("    Then verify with: openamer gateway status")
+
+
 def _resume_windows_gateways_after_update(token: dict | None) -> None:
     """Restart Windows profile gateways previously paused for update."""
     if not token or not token.get("resume_needed"):
@@ -11443,6 +11515,7 @@ def _resume_windows_gateways_after_update(token: dict | None) -> None:
     # Respawn unmapped gateways (no profile→PID-file mapping, e.g. a Scheduled
     # Task) by replaying the argv we snapshotted before force-killing them.
     unmapped_relaunched = 0
+    unmapped_old_pids = []
     for entry in unmapped:
         argv = entry.get("argv")
         old_pid = entry.get("pid")
@@ -11451,6 +11524,7 @@ def _resume_windows_gateways_after_update(token: dict | None) -> None:
         try:
             if launch_detached_gateway_restart_by_cmdline(int(old_pid), list(argv)):
                 unmapped_relaunched += 1
+                unmapped_old_pids.append(int(old_pid))
         except Exception as exc:
             logger.debug(
                 "Could not restart unmapped Windows gateway (pid %s) after update: %s",
@@ -11458,15 +11532,32 @@ def _resume_windows_gateways_after_update(token: dict | None) -> None:
                 exc,
             )
 
+    # The helpers above report "a restart watcher was spawned", not "a gateway
+    # is running" — so do not print a success checkmark off those booleans.
+    # Wait for a live gateway that is not one of the PIDs we just force-killed,
+    # and only then claim success.  (The watcher needs the old PID to exit
+    # first; measured ~7.8s on Windows, hence the multi-second window.)
+    old_pids = [int(pid) for pid in profiles.values() if pid] + unmapped_old_pids
+    any_relaunch = bool(relaunched) or unmapped_relaunched > 0
+    if any_relaunch:
+        live_pids = _wait_for_windows_gateway_respawn(old_pids)
+
     if relaunched:
         print()
-        print(f"  ✓ Restarting Windows gateway profile(s): {', '.join(relaunched)}")
+        if live_pids:
+            print(f"  ✓ Restarting Windows gateway profile(s): {', '.join(relaunched)}")
+        else:
+            _print_windows_gateway_respawn_warning(
+                f"gateway profile(s): {', '.join(relaunched)}"
+            )
     if unmapped_relaunched:
         if not relaunched:
             print()
-        print(
-            f"  ✓ Restarting {unmapped_relaunched} unmapped Windows gateway process(es)"
-        )
+        label = f"{unmapped_relaunched} unmapped Windows gateway process(es)"
+        if live_pids:
+            print(f"  ✓ Restarting {label}")
+        else:
+            _print_windows_gateway_respawn_warning(label)
 
 
 def _discard_lockfile_churn(git_cmd, repo_root):
