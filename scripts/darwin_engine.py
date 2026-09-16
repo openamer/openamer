@@ -42,7 +42,61 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-HOME = Path(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")))
+def _resolve_home() -> Path:
+    """Resolve OPENAMER_HOME robustly across shells.
+
+    The cron ticker runs this script through git-bash, which exports
+    OPENAMER_HOME in MSYS form, e.g. /c/Users/<user>/AppData/Local/openamer-laptop.
+    Native Windows Python treats that as a RELATIVE path and expands it to a
+    phantom C:/c/Users/... tree, so fitness is computed over ZERO skills and an
+    empty history snapshot is recorded -- evolution looks like it ran but did
+    nothing. Normalise MSYS drive forms to native paths and only accept a
+    candidate that actually exists.
+    """
+    local = Path.home() / "AppData" / "Local"
+    # Prefer an install that actually carries a skills dir: "openamer-laptop"
+    # is the real install on this host, plain "openamer" the upstream default.
+    candidates = [local / "openamer-laptop", local / "openamer"]
+    default = next((c for c in candidates if (c / "skills").is_dir()),
+                   candidates[-1])
+
+    raw = os.environ.get("OPENAMER_HOME")
+    if not raw:
+        return default
+
+    cand = None
+    norm = raw.replace(os.sep, "/") if os.sep != "/" else raw
+    # MSYS / Git-bash drive form: /c/Users/... -> C:/Users/...
+    if len(norm) >= 3 and norm[0] == "/" and norm[1].isalpha() and norm[2] == "/":
+        cand = Path(norm[1].upper() + ":/" + norm[3:])
+    else:
+        p = Path(raw)
+        if p.is_absolute():
+            cand = p
+
+    # Also reject the doubled-drive artefact (C:/c/Users/...): native Python
+    # reading an MSYS path relative to the current drive created such trees,
+    # and they exist on disk, so exists() alone would accept them.
+    def _is_phantom(pth):
+        try:
+            parts = pth.parts
+        except Exception:
+            return True
+        drive = parts[0].rstrip("/").rstrip(os.sep)
+        if len(drive) == 2 and drive[1] == ":" and len(parts) >= 2:
+            head = parts[1].strip("/").strip(os.sep).lower()
+            if head and head == drive[0].lower():
+                return True
+        return False
+
+    if cand is not None and cand.exists() and not _is_phantom(cand):
+        return cand
+    # Phantom tree (path resolves nowhere) -> fall back to the real default
+    # instead of silently evolving a directory that does not exist.
+    return default
+
+
+HOME = _resolve_home()
 SKILLS_DIR = HOME / "skills"
 REPORTS_DIR = Path("reports")
 DARWIN_DIR = HOME / "darwin"
@@ -394,6 +448,15 @@ def rollback(count: int = 1) -> list[str]:
 def autopilot(min_executions: int = 2) -> int:
     """Full unattended evolution cycle. Returns exit code (2 = changes made)."""
     fitness = compute_fitness()
+    # Homeostasis: an empty population while SKILLS_DIR holds skills means the
+    # environment resolved wrong (phantom OPENAMER_HOME) -- refuse to record a
+    # bogus snapshot instead of silently reporting a healthy-looking cycle.
+    if not fitness:
+        n_on_disk = sum(1 for d in SKILLS_DIR.iterdir() if d.is_dir()) if SKILLS_DIR.exists() else 0
+        if n_on_disk:
+            print(f"[autopilot] REFUSING empty population: {n_on_disk} skills on disk "
+                  f"under {SKILLS_DIR} but 0 scored -- check OPENAMER_HOME.")
+            return 1
     _save_json(FITNESS_FILE, {"updated": _now(), "skills": fitness})
     n_snaps = record_history(fitness)
     print(f"[autopilot] fitness computed for {len(fitness)} skills "
