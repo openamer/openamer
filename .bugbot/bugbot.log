@@ -689,3 +689,68 @@ subprocess.TimeoutExpired: Command '['gh', 'issue', 'list', '--label', 'bug', '-
 2026-09-16 14:36:07,708 [INFO] API: Found 0 open bug issue(s)
 2026-09-16 14:36:07,708 [INFO] No open bug issues found
 2026-09-16 14:36:07,708 [INFO] Bugbot run complete: 0 processed, 0 fixed, 0 failed
+2026-09-16 18:37:04,132 [INFO] ============================================================
+2026-09-16 18:37:04,132 [INFO] Bugbot run starting
+2026-09-16 18:37:04,133 [INFO] Scanning for open bug issues on openamer/openamer...
+2026-09-16 18:37:19,359 [ERROR] Traceback (most recent call last):
+  File "C:\Users\damir\AppData\Local\openamer-laptop\scripts\bugbot.py", line 413, in <module>
+    main()
+  File "C:\Users\damir\AppData\Local\openamer-laptop\scripts\bugbot.py", line 366, in main
+    issues = fetch_open_bug_issues()
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\damir\AppData\Local\openamer-laptop\scripts\bugbot.py", line 113, in fetch_open_bug_issues
+    r = subprocess.run(
+        ^^^^^^^^^^^^^^^
+  File "C:\Users\damir\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\subprocess.py", line 550, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\damir\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\subprocess.py", line 1209, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\damir\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\subprocess.py", line 1630, in _communicate
+    raise TimeoutExpired(self.args, orig_timeout)
+subprocess.TimeoutExpired: Command '['gh', 'issue', 'list', '--label', 'bug', '--state', 'open', '--json', 'number,title,body,labels,createdAt,url', '-L', '10']' timed out after 15 seconds
+
+2026-09-16 18:51:32,087 [INFO] ============================================================
+2026-09-16 18:51:32,088 [INFO] Bugbot run starting
+2026-09-16 18:51:32,088 [INFO] Scanning for open bug issues on openamer/openamer...
+2026-09-16 18:51:52,384 [WARNING] gh CLI timed out — falling back to REST API
+2026-09-16 18:51:53,023 [INFO] API: Found 0 open bug issue(s)
+2026-09-16 18:51:53,023 [INFO] No open bug issues found
+2026-09-16 18:51:53,023 [INFO] Bugbot run complete: 0 processed, 0 fixed, 0 failed
+2026-09-16 18:57:52,860 [INFO] ============================================================
+2026-09-16 18:57:52,861 [INFO] Bugbot run starting
+2026-09-16 18:57:52,861 [INFO] Scanning for open bug issues on openamer/openamer...
+2026-09-16 18:57:54,012 [INFO] API: Found 0 open bug issue(s)
+2026-09-16 18:57:54,012 [INFO] No open bug issues found
+2026-09-16 18:57:54,012 [INFO] Bugbot run complete: 0 processed, 0 fixed, 0 failed
+2026-09-16 19:01:24,029 [INFO] ============================================================
+2026-09-16 19:01:24,029 [INFO] Bugbot run starting
+2026-09-16 19:01:24,029 [INFO] Scanning for open bug issues on openamer/openamer...
+2026-09-16 19:01:26,026 [INFO] API: Found 0 open bug issue(s)
+2026-09-16 19:01:26,026 [INFO] No open bug issues found
+2026-09-16 19:01:26,026 [INFO] Bugbot run complete: 0 processed, 0 fixed, 0 failed
+2026-09-16 19:02:38,170 [INFO] gh CLI unusable on this host — using REST API only
+2026-09-16 19:03:55,904 [INFO] Creating PR for #999999 from branch bot/definitely-does-not-exist-xyz
+2026-09-16 19:03:57,127 [WARNING] GitHub API: Validation Failed
+2026-09-16 19:03:57,127 [WARNING] PR API failed: {'message': 'Validation Failed', 'errors': [{'resource': 'PullRequest', 'field': 'head', 'code': 'invalid'}], 'documentation_url': 'https://docs.github.com/rest/pulls/pulls#create-a-pull-request', 'st
+2026-09-16 19:04:02,436 [INFO] gh CLI unusable on this host — using REST API only
+2026-09-16 19:04:03,495 [WARNING] GitHub API: Validation Failed
+2026-09-16 19:04:03,496 [ERROR] PR API failed: {'message': 'Validation Failed', 'errors': [{'resource': 'PullRequest', 'field': 'head', 'code': 'invalid'}], 'documentation_url': 'https://docs.github.com/rest/pulls/pulls#create-a-pull-request', 'status': '422'}
+2026-09-16 19:07:56,210 [INFO] Generating fix for #28: fix(update): --force stops a gateway belonging to a differen
+2026-09-16 19:26:02,769 [INFO] Generating fix for #28: fix(update): --force stops a gateway belonging to a differen
+2026-09-16 19:26:08,331 [INFO] Committed on bot/autofix-28-20260916192602
+2026-09-16 19:26:14,549 [INFO] Pushed branch origin/bot/autofix-28-20260916192602
+2026-09-16 19:26:17,091 [INFO] Returned to main
+2026-09-16 19:27:51,327 [INFO] ============================================================
+2026-09-16 19:27:51,327 [INFO] Bugbot run starting
+2026-09-16 19:27:51,328 [INFO] Scanning for open bug issues on openamer/openamer...
+2026-09-16 19:27:52,203 [INFO] API: Found 0 open bug issue(s)
+2026-09-16 19:27:52,203 [INFO] No open bug issues found
+2026-09-16 19:27:52,203 [INFO] Bugbot run complete: 0 processed, 0 fixed, 0 failed
+2026-09-16 19:30:03,385 [INFO] ============================================================
+2026-09-16 19:30:03,386 [INFO] Bugbot run starting
+2026-09-16 19:30:03,387 [INFO] Scanning for open bug issues on openamer/openamer...
+2026-09-16 19:30:04,025 [INFO] API: Found 0 open bug issue(s)
+2026-09-16 19:30:04,046 [INFO] No open bug issues found
+2026-09-16 19:30:04,046 [INFO] Bugbot run complete: 0 processed, 0 fixed, 0 failed
