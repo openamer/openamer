@@ -599,6 +599,53 @@ def _is_arxiv_abstract_chrome(text):
     return hits >= _ARXIV_CHROME_MIN_MARKERS
 
 
+# Chinese Q&A / answer-portal chrome (live 16.09.26, class 12):
+# cycle_h_efficiency stored, verbatim from the buffer row,
+#   "CAD看图王 提供 嗨格式 2019-02-19 · 百度认证:苏州舜心科技有限公司 嗨格式 嗨格式是
+#    苏州开心盒子软件有限公司旗下的独立品牌。 ... 已赞过 已踩过 你对这个回答的评价
+#    是？ 评论 收起 读书小明白 高粉答主 2020-02-14 · 醉心答题，欢迎关注 知道答主
+#    回答量： 12."
+# — a Baidu-Zhidao answer-portal scrape with zero technical prose. Both gates
+# passed it: the badge dates fed the technical-signal gate and the length cleared
+# the >=90 "long prose" trust.
+#
+# Keyed on the portal's own LABEL CHAIN, never on the language: a row must carry
+# TWO independent portal markers. Measured over the live 5013-row corpus (buffer
+# + junk log, 16.09.26): 5 hits, every one of them chrome, 0 real-prose rows.
+# The two genuine Chinese technical rows in the corpus (an LLM-agent survey
+# summary and a quantization note) carry NO marker and stay learnable, and no
+# row carries exactly one marker — so a language-agnostic "is CJK" rule, which
+# would have eaten that real knowledge, is deliberately NOT used.
+_QA_PORTAL_CHROME_MARKERS = (
+    "百度认证",
+    "高粉答主",
+    "已赞过",
+    "已踩过",
+    "向ta提问",
+    "回答量",
+    "你对这个回答的评价是",
+    "展开全部",
+    "经验内容仅供参考",
+    "本篇经验系本人",
+    "展开阅读全部",
+    "作者声明",
+)
+_QA_PORTAL_CHROME_MIN_MARKERS = 2
+
+
+def _is_qa_portal_chrome(text):
+    """True when `text` is a Chinese Q&A/answer-portal label chain.
+
+    Structural, not topical: TWO independent portal markers must be present,
+    so a genuine insight written in Chinese still reaches the buffer.
+    """
+    low = (text or "").lower()
+    if not low:
+        return False
+    hits = sum(1 for m in _QA_PORTAL_CHROME_MARKERS if m in low)
+    return hits >= _QA_PORTAL_CHROME_MIN_MARKERS
+
+
 def _is_ticker_loop(text):
     """True when the text is a news-TICKER loop: a time code plus a phrase the
     text itself repeats.
@@ -640,6 +687,8 @@ def _is_junk(text):
     if _INSTRUCTION_OPENER_RE.match(t):
         return True
     if _is_arxiv_abstract_chrome(t):
+        return True
+    if _is_qa_portal_chrome(t):
         return True
     if _is_ticker_loop(t):
         return True
@@ -1278,6 +1327,61 @@ def _strip_arrow_nav_prefix(text):
     return rest if len(rest.split()) >= 5 else t
 
 
+# Wikipedia/MediaWiki section-edit markup welded to a real paragraph (live
+# 16.09.26, leading-chrome family): cycle_g_security stored
+#
+#   "Publications [ edit ] OWASP Top Ten The \"Top Ten\", first published in
+#    2003 and updated periodically (subsequent editions appeared in 2004, 2007,
+#    2010, 2013, 2017, 2021 and 2025), is a listing of the most critical
+#    application security risks."
+#
+# The bracket control is page furniture; the sentence behind it IS the
+# knowledge, so STRIP rather than reject. NARROW BY CONSTRUCTION -- the
+# guards below were each measured against the live 5021-row corpus (buffer
+# + junk log), where the bracket marker occurs exactly once, in that row:
+#
+#   1. the leading section name must be SENTENCE CASE and apostrophe-free
+#      (`Publications`, never `Wikipedia's`). A possessive therefore cannot
+#      match at all -- which keeps the counter-case
+#        "Wikipedia's [ edit ] button is a MediaWiki control, not content;"
+#      untouched. A looser first version DID gut it to "button is a
+#      MediaWiki control...", which is why this guard exists.
+#   2. the body after the marker must OPEN a sentence (uppercase, digit or
+#      quote). An edit control is always followed by the article's first
+#      sentence, so a lowercase continuation means the text merely MENTIONS
+#      an edit button.
+#   3. leading position only (re.match) and a >= 5-word body must remain.
+#
+# The edit word is localized and case-tolerant; guard 1 rests on the name
+# rule NOT being case-insensitive.
+_WIKI_EDIT_WORD = (
+    r"(?:[Ee]dit|[Bb]earbeiten|[Ee]ditieren|[Ss]ource\s+[Ee]dit|[Mm]odifier|"
+    r"[Mm]odifica|[Bb]ewerken|[Rr]ediger|[Rr]edigera|[Mm]uokkaa|[Ee]dytuj|"
+    r"[Ss]zerkeszt[e\u00e9]s)"
+)
+_WIKI_SECTION_PREFIX_RE = re.compile(
+    r"^\s*(?:[A-Z\d]\w*(?:\s+[a-z]\w*){0,5}\s*)?"
+    r"\[+\s*" + _WIKI_EDIT_WORD + r"\s*\]+"
+    r"(?=\s*[A-Z\x22\x27\u201c\u2018\d])")
+
+
+def _strip_wiki_section_prefix(text):
+    """Drop a LEADING "<Section> [ edit ]" encyclopedia marker.
+
+    Live 16.09.26: cycle_g_security learned "Publications [ edit ] OWASP
+    Top Ten ..." -- the MediaWiki section-edit control prefixed a genuine
+    paragraph. Strip, never reject: the paragraph is the knowledge. Leading
+    only, and only when a real sentence body (>= 5 words) remains; every
+    other shape is returned byte-identical (see the module comment above).
+    """
+    t = (text or "").strip()
+    m = _WIKI_SECTION_PREFIX_RE.match(t)
+    if not m:
+        return t
+    rest = t[m.end():].strip()
+    return rest if len(rest.split()) >= 5 else t
+
+
 def _strip_byline_prefix(text):
     """Remove a leading author/date byline so the body prose is judged alone.
 
@@ -1324,6 +1428,7 @@ def _clean_insight(text, max_len=250):
     t = (text or "").strip()
     if _URL_ESC_RE.search(t):
         t = urllib.parse.unquote(t).strip()  # judge the decoded words, not %20
+    t = _strip_wiki_section_prefix(t)
     t = _strip_byline_prefix(t)
     t = _strip_read_time_header(t)
     t = _strip_arrow_nav_prefix(t)

@@ -95,6 +95,33 @@ _ARXIV_CHROME_LEAK = (
     "All Large Language Models are in 1."
 )
 
+
+# Chinese Q&A / answer-portal chrome (live 16.09.26, class 12): the efficacy
+# cycle stored a Baidu-Zhidao answer-portal scrape as a learning. Verbatim
+# from the stored buffer row; CJK kept as ASCII escapes so the file stays
+# diff-stable. Both gates passed it: the badge dates fed the
+# technical-signal gate and the length cleared the >=90 long-prose trust.
+_QA_PORTAL_LEAK = (
+    "CAD\u770b\u56fe\u738b \u63d0\u4f9b \u55e8\u683c\u5f0f 2019-02-19 \u00b7 \u767e\u5ea6\u8ba4\u8bc1:\u82cf\u5dde\u821c\u5fc3\u79d1\u6280\u6709\u9650\u516c\u53f8 \u55e8\u683c\u5f0f \u55e8\u683c\u5f0f\u662f\u82cf\u5dde\u5f00\u5fc3\u76d2\u5b50\u8f6f\u4ef6\u6709\u9650\u516c\u53f8\u65d7"
+    "\u4e0b\u7684\u72ec\u7acb\u54c1\u724c\u3002\u82cf\u5dde\u5f00\u5fc3\u76d2\u5b50\u8f6f\u4ef6\u6709\u9650\u516c\u53f8\u662f\u4e00\u5bb6\u4e13\u6ce8\u8f6f\u4ef6\u7814\u53d1\u7684\u4e92\u8054\u7f51\u79d1\u6280\u516c\u53f8\u3002 \u5411TA\u63d0\u95ee \u5173\u6ce8 \u5c55\u5f00\u5168\u90e8 \u5728Word\u6587\u6863\u4e2d\uff0c\u5982\u4f55\u8f93"
+    "\u5165\u50cf\u8fd9\u6837\u53ef\u4ee5\u6253\u52fe\u6253\u53c9\u7684\u65b9\u6846\u5462\uff1f\u6709\u4e0d\u6b62\u4e00\u79cd\u65b9\u6cd5\u80fd\u591f\u8f93\u5165\u8fd9\u6837\u7684\u65b9\u6846\uff0c\u4e00\u8d77\u6765\u5b66\u4e60\u4e00\u4e0b\u3002 \u5df2\u8d5e\u8fc7 \u5df2\u8e29\u8fc7 \u4f60\u5bf9\u8fd9\u4e2a\u56de\u7b54\u7684\u8bc4\u4ef7\u662f\uff1f \u8bc4\u8bba "
+    "\u6536\u8d77 \u8bfb\u4e66\u5c0f\u660e\u767d \u9ad8\u7c89\u7b54\u4e3b 2020-02-14 \u00b7 \u9189\u5fc3\u7b54\u9898\uff0c\u6b22\u8fce\u5173\u6ce8 \u77e5\u9053\u7b54\u4e3b \u56de\u7b54\u91cf\uff1a 12."
+)
+# Counter-cases. A LANGUAGE-based rule ("reject CJK") would have eaten the
+# first one, which is real knowledge; the gate therefore keys on the portal's
+# label CHAIN and needs TWO independent markers. The second case carries
+# exactly ONE marker inside genuine prose, and is kept at >=90 chars on
+# purpose: below that the PRE-EXISTING short-candidate rule (which wants an
+# ENGLISH technical keyword) fires first and would look like this gate
+# misfiring. Measured: 69 chars -> gated by the short rule; 102 -> survives.
+_CJK_REAL = (
+    "LLM Agent \u7684\u8bb0\u5fc6\u7cfb\u7edf\u901a\u5e38\u5206\u4e3a\u77ed\u671f\u4e0a\u4e0b\u6587\u548c\u957f\u671f\u5411\u91cf\u5b58\u50a8\u4e24\u5c42\uff0c\u5411\u91cf\u68c0\u7d22\u7684\u53ec\u56de\u7387\u76f4\u63a5\u51b3\u5b9a\u4e86\u957f\u671f\u8bb0\u5fc6\u5728\u5b9e\u9645\u4efb\u52a1\u4e2d\u7684\u53ef\u7528\u6027\uff0c\u800c\u77ed"
+    "\u671f\u4e0a\u4e0b\u6587\u5219\u53d7\u5230\u7a97\u53e3\u957f\u5ea6\u7684\u786c\u6027\u9650\u5236\u3002"
+)
+_CJK_ONE_MARKER = (
+    "\u8bba\u6587\u4f5c\u8005\u58f0\u660e\u8be5\u6a21\u578b\u6743\u91cd\u7684\u8bad\u7ec3\u6570\u636e\u672a\u516c\u5f00\uff0c\u56e0\u6b64 INT4 \u91cf\u5316\u540e\u7684\u7cbe\u5ea6\u590d\u73b0\u6027\u65e0\u6cd5\u7531\u7b2c\u4e09\u65b9\u72ec\u7acb\u9a8c\u8bc1\uff0c\u800c fp16 \u57fa\u51c6\u5728\u516c\u5f00\u6570\u636e\u96c6\u4e0a"
+    "\u53ef\u4ee5\u590d\u73b0\u3002\u6a21\u578b\u5728 2 \u4f4d\u91cf\u5316\u4e0b\u53c2\u6570\u5360\u7528\u7ea6\u51cf\u5c11\u5230\u56db\u5206\u4e4b\u4e00\uff0c\u63a8\u7406\u5ef6\u8fdf\u4e5f\u968f\u4e4b\u4e0b\u964d\u3002"
+)
 CHROME = [
     "Jetzt spenden Benutzerkonto erstellen Anmelden Meine Werkzeuge",
     "Unsere Werbepartner Einkaufen Ferienwohnungen Freizeit und Reise",
@@ -146,6 +173,9 @@ CHROME = [
     "Reddit Post Share Threads Support my work.",
     # arXiv abstract-page label chain (live 16.09.26) — see _ARXIV_CHROME_LEAK.
     _ARXIV_CHROME_LEAK,
+    # Chinese Q&A/answer-portal label chain (live 16.09.26) - see
+    # _QA_PORTAL_LEAK and its dedicated test below.
+    _QA_PORTAL_LEAK,
 ]
 
 # Link-shrapnel with no junk keyword and no sentence shape: caught by the
@@ -813,3 +843,41 @@ def test_glued_motif_degeneration_is_gated():
         "observed in one situation are captured, categorized, and turned into "
         "reusable procedures for the next one."
     )
+
+
+def test_qa_portal_chrome_is_rejected_but_chinese_prose_survives():
+    """A Chinese Q&A-portal scrape is chrome; real Chinese prose is knowledge
+    (live 16.09.26, class 12).
+
+    cycle_h_efficiency learned, verbatim from the stored buffer row, a
+    Baidu-Zhidao answer-portal scrape (verified badge, vote widget, fan
+    badge, ask-me button, answer counter) with zero technical prose. Both
+    gates passed it: the badge dates fed the technical-signal gate and the
+    length cleared the >=90 long-prose trust.
+
+    The rule is structural (TWO independent portal markers), never topical
+    or language-based, so a genuine insight written in Chinese still
+    passes. Measured over the live 5013-row corpus (buffer + junk log):
+    5 hits, every one chrome, 0 real-prose rows, and no row carrying
+    exactly one marker.
+    """
+    sys.path.insert(0, str(TRAINING))
+    import buffer_store
+
+    assert IL._is_qa_portal_chrome(_QA_PORTAL_LEAK)
+    assert IL._is_junk(_QA_PORTAL_LEAK)
+    assert IL._clean_insight(_QA_PORTAL_LEAK) == ""
+    assert buffer_store.is_junk(_QA_PORTAL_LEAK)
+    assert buffer_store._is_nav_chrome(_QA_PORTAL_LEAK)
+
+    # counter-case 1: genuine Chinese technical prose, zero portal markers
+    assert not IL._is_qa_portal_chrome(_CJK_REAL)
+    assert not IL._is_junk(_CJK_REAL)
+    assert buffer_store.is_junk(_CJK_REAL) is False
+    assert IL._clean_insight(_CJK_REAL)
+
+    # counter-case 2: exactly ONE marker inside real prose is NOT chrome
+    assert not IL._is_qa_portal_chrome(_CJK_ONE_MARKER)
+    assert not IL._is_junk(_CJK_ONE_MARKER)
+    assert buffer_store.is_junk(_CJK_ONE_MARKER) is False
+    assert IL._clean_insight(_CJK_ONE_MARKER)

@@ -321,6 +321,56 @@ def _is_arxiv_abstract_chrome(text):
     return sum(1 for m in _ARXIV_CHROME_MARKERS if m in low) >= _ARXIV_CHROME_MIN_MARKERS
 
 
+# Chinese Q&A / answer-portal chrome (live 16.09.26, class 12) — mirror of
+# internet_learner._is_qa_portal_chrome. The extraction gate drops the label
+# chain, but every other writer path reaches this gate, so the rule is kept
+# here too (`buffer_store` must not import the learner — circular). Measured
+# over the live 5013-row corpus: 5 hits, all chrome, 0 real-prose rows.
+_QA_PORTAL_CHROME_MARKERS = (
+    "百度认证",
+    "高粉答主",
+    "已赞过",
+    "已踩过",
+    "向ta提问",
+    "回答量",
+    "你对这个回答的评价是",
+    "展开全部",
+    "经验内容仅供参考",
+    "本篇经验系本人",
+    "展开阅读全部",
+    "作者声明",
+)
+_QA_PORTAL_CHROME_MIN_MARKERS = 2
+
+
+# MediaWiki section-edit control (live 16.09.26, class 12) -- mirror of
+# internet_learner._strip_wiki_section_prefix. The learner STRIPS a LEADING
+# marker, but every other writer path reaches this gate, so the same narrow
+# rule is enforced here. Deliberately NOT a blanket "[ edit ]" marker:
+# that would reject a real sentence ABOUT an edit button
+#   ("Wikipedia's [ edit ] button is a MediaWiki control, not content ..."),
+# which the strip rule keeps learnable. Anchored + sentence-case name +
+# sentence-opening body -- the same guards, so the two agree by construction.
+_WIKI_EDIT_WORD_RE = _re.compile(
+    r"^(?:[A-Z\d]\w*(?:\s+[a-z]\w*){0,5}\s*)?"
+    r"\[+\s*(?:[Ee]dit|[Bb]earbeiten|[Ee]ditieren|[Ss]ource\s+[Ee]dit|"
+    r"[Mm]odifier|[Mm]odifica|[Bb]ewerken|[Rr]ediger|[Rr]edigera|[Mm]uokkaa|"
+    r"[Ee]dytuj|[Ss]zerkeszt[e\u00e9]s)\s*\]+"
+    r"(?=\s*[A-Z\x22\x27\u201c\u2018\d])")
+
+
+def _is_qa_portal_chrome(text):
+    """True when `text` is a Chinese Q&A/answer-portal label chain.
+
+    Structural, not topical: TWO independent portal markers, so a genuine
+    insight written in Chinese still passes.
+    """
+    low = (text or "").lower()
+    if not low:
+        return False
+    return sum(1 for m in _QA_PORTAL_CHROME_MARKERS if m in low) >= _QA_PORTAL_CHROME_MIN_MARKERS
+
+
 def _is_binary_noise(text):
     """True when text is raw bytes mis-decoded as text (PDF/zip blob).
 
@@ -371,6 +421,14 @@ def _is_nav_chrome(text):
     # an arXiv abstract-page label chain (same rule as
     # internet_learner._is_arxiv_abstract_chrome)
     if _is_arxiv_abstract_chrome(text):
+        return True
+    # a Chinese Q&A/answer-portal label chain (same rule as
+    # internet_learner._is_qa_portal_chrome)
+    if _is_qa_portal_chrome(text):
+        return True
+    # a LEADING MediaWiki section-edit control (same narrow rule as
+    # internet_learner._strip_wiki_section_prefix)
+    if _WIKI_EDIT_WORD_RE.match(text.strip()):
         return True
     # a news-ticker loop (same rule as internet_learner._is_ticker_loop): the
     # writer gate must refuse it too, or any other writer path lands it in the
