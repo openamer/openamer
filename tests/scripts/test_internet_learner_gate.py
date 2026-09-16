@@ -236,6 +236,39 @@ def test_writer_gate_agrees_on_the_new_chrome_and_binary_shapes():
     )
 
 
+def test_german_dictionary_serp_chrome_is_gated_on_both_paths():
+    """cycle_c_github stored two dictionary SERP snippets joined by ";".
+
+    Live 16.09.26: the row was German dictionary chrome (Duden + Wikipedia)
+    with zero technical prose, and it cleared BOTH gates. A structural
+    "\u2026;" gate was REJECTED because 7 of the 16 such buffer rows (vLLM,
+    quantization) carry genuine technical prose; the marker is the
+    dictionary's own call to action instead.
+    """
+    sys.path.insert(0, str(TRAINING))
+    import buffer_store
+    leak = (
+        "Agent Rechtschreibung, Bedeutung, Definition, Herkunft Duden \u2014 "
+        "Definition, Rechtschreibung, Synonyme und Grammatik von 'Agent' "
+        "Auf Duden online nachschlagen W\u00f6rterbuch der deutschen \u2026; "
+        "Agent (Nachrichtendienst) \u2013 Wikipedia \u2014 Agent ist im "
+        "deutschen Sprachraum ein allgemeinsprachlich uneinheitlich"
+    )
+    assert buffer_store.is_junk(leak), leak
+    assert IL._is_junk(leak), leak
+    # the \u2265\u2026\u003b shape alone must stay clean (real prose uses it too)
+    for prose in (
+        "Parallelism and Scaling - vLLM \u2014 It's often advantageous to "
+        "exploit the inherent parallelism of experts \u2026; Optimization and "
+        "Tuning - vLLM \u2014 Data parallelism can be combined with the other "
+        "parallelism strategies.",
+        "Quantization Format Comparison 2026 \u2014 GGUF, AWQ, GPTQ, EXL2, "
+        "MLX, FP8, NF4, INT4, INT8. Quality degradation, throughput \u2026; 4.8",
+    ):
+        assert not buffer_store.is_junk(prose), prose
+        assert not IL._is_junk(prose), prose
+
+
 def test_real_insights_survive_the_junk_gate():
     for text in REAL:
         assert not IL._is_junk(text), text

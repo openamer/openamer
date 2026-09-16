@@ -497,6 +497,7 @@ _JUNK_RE = re.compile(
     # NOTE: the LAST fragment must NOT end with `|` (an empty alternative would
     # match every string and turn the gate into "reject everything").
     r"watch live key points|support my work|share threads support|"
+    r"auf duden online|"
     r"^\W*[kKmM]\s+followers\b",
     re.IGNORECASE)
 

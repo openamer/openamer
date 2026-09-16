@@ -273,7 +273,17 @@ _NAV_CHROME = (
     # phrase only: "support my work" is a donation/podcast CTA, never a
     # technical statement.)
     "support my work",
+# German-dictionary chrome (live 16.09.26: cycle_c_github stored "... Duden
+# — Definition, Rechtschreibung, Synonyme und Grammatik von 'Agent' ... Auf
+# Duden online nachschlagen ... Wörterbuch der deutschen ...; Agent
+# (Nachrichtendienst) – Wikipedia ..." — two dictionary SERP snippets
+# joined by ";", zero technical prose). Marker is the dictionary's own call to
+# action; measured over the live buffer: 1 hit and that hit IS the leaking row
+# -> 0 real-prose rows carry it. A structural "…;" gate was REJECTED: 7 of
+# the 16 such rows (vLLM, quantization) carry genuine technical prose.)
+    "auf duden online",
 )
+
 
 # A social counter truncated at its own digit ("K followers") means the text
 # starts mid-widget: the count's number was cut off. Anchored at the START and
