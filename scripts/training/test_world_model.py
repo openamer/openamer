@@ -164,8 +164,19 @@ def test_atomic_write_never_exposes_partial_file():
     (threading._lock is process-local) could then parse 0..N partial
     lines, and knowledge_to_action reported the phantom
     'not enough observed facts to predict from' against a 425-edge store.
-    Live probe before the fix: observed lengths 43..425 while a writer
-    ran. After the fix: only the full length.
+
+    First fix attempt (temp file + os.replace) was NOT enough: os.replace is
+    atomic, but a reader that opens the file between the writer's
+    open(tmp,"w") and the swap still sees a truncated store, and when the
+    swap hit PermissionError the writer fell back to the very in-place
+    truncate being removed. Live probe against that version, 120-edge store,
+    1.5s of traffic:
+
+        reader saw lengths {0: 5, 120: 104}   <- 5 partial reads
+        writer passes 44, os.replace ok 44, fallback 1
+
+    So the contract this test pins is *writer and reader both take the
+    store lock*. Same probe after the lock: {120: N} with zero partials.
     """
     import threading
     tmp = tempfile.mkdtemp()
@@ -176,7 +187,8 @@ def test_atomic_write_never_exposes_partial_file():
                             'kind': 'fact', 'cause': f'c{i}', 'effect': f'e{i}',
                             'embedding': [0.0] * wm.DIM, 'embed_ok': True})
                 for i in range(120)]
-        wm._atomic_write(seed)
+        with wm._store_lock():
+            wm._atomic_write(seed)
         assert len(wm._load()) == 120
 
         stop = {'v': False}
@@ -184,10 +196,16 @@ def test_atomic_write_never_exposes_partial_file():
         def writer():
             n = 0
             while not stop['v']:
-                with open(wm.WM, encoding="utf-8") as f:
-                    lines = f.readlines()
-                wm._atomic_write(lines)      # the new atomic path
-                n += 1
+                # The writer side of the contract: hold the lock for the whole
+                # read-modify-write, exactly as observe()/prune()/migrate() do.
+                try:
+                    with wm._store_lock():
+                        with open(wm.WM, encoding="utf-8") as f:
+                            lines = f.readlines()
+                        wm._atomic_write(lines)
+                    n += 1
+                except wm._StoreBusy:
+                    continue
             writer.passes = n
 
         t = threading.Thread(target=writer, daemon=True)
@@ -209,6 +227,75 @@ def test_atomic_write_never_exposes_partial_file():
         wm.WM = old_wm
         import shutil as _sh
         _sh.rmtree(tmp, ignore_errors=True)
+
+
+def test_atomic_write_never_truncates_on_swap_failure():
+    """A failed swap must leave the old store intact, never a truncated file.
+
+    The pre-lock version fell back to `open(WM, "w")` when os.replace raised
+    PermissionError — the exact truncate-first write the function exists to
+    remove. Forcing every replace to fail must now leave the old bytes whole
+    and report False.
+    """
+    tmp = tempfile.mkdtemp()
+    old_wm = wm.WM
+    old_replace = os.replace
+    try:
+        wm.WM = os.path.join(tmp, "wm.jsonl")
+        good = [json.dumps({'ts': 'x', 'schema_version': wm.SCHEMA_VERSION,
+                            'kind': 'fact', 'cause': 'kept', 'effect': 'e',
+                            'embedding': [0.0] * wm.DIM, 'embed_ok': True})]
+        with wm._store_lock():
+            assert wm._atomic_write(good) is True
+        before = open(wm.WM, "rb").read()
+        assert before, 'seed store must not be empty'
+
+        def always_denied(src, dst):
+            raise PermissionError("simulated: destination held open")
+
+        os.replace = always_denied
+        with wm._store_lock():
+            ok = wm._atomic_write(['{"ts":"y","cause":"new","effect":"e"}'])
+        os.replace = old_replace
+
+        assert ok is False, 'a failed swap must report failure, not pretend success'
+        assert open(wm.WM, "rb").read() == before, (
+            'failed swap TRUNCATED the store — the removed fallback is back'
+        )
+        assert len(wm._load()) == 1
+    finally:
+        os.replace = old_replace
+        wm.WM = old_wm
+        import shutil as _sh
+        _sh.rmtree(tmp, ignore_errors=True)
+
+
+def test_store_lock_reclaims_a_dead_holder():
+    """A killed process must not wedge the store forever.
+
+    Lock files are reclaimed when the owning PID is gone (or the lock is
+    older than the stale budget), so one crashed cron cannot block every
+    later writer.
+    """
+    tmp = tempfile.mkdtemp()
+    old_wm = wm.WM
+    try:
+        wm.WM = os.path.join(tmp, "wm.jsonl")
+        lock = f"{wm.WM}.lock"
+        # A PID that certainly is not alive: 0 is never a real holder.
+        with open(lock, "w", encoding="utf-8") as f:
+            f.write("0 0.0\n")
+        assert os.path.exists(lock)
+        t0 = time.time()
+        with wm._store_lock(timeout=5):
+            pass
+        assert time.time() - t0 < 3, 'dead-holder lock was not reclaimed promptly'
+        assert not os.path.exists(lock), 'lock must be released on exit'
+    finally:
+        wm.WM = old_wm
+        import shutil as _sh
+        _sh.rmtree(tmp, ignore_errors=True)
+
 
 
 def test_load_retries_when_file_reads_empty():

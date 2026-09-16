@@ -19,7 +19,18 @@ Design principles:
   - Append-only JSONL for durability + an in-memory index for fast recall.
 """
 
-import json, os, math, time, datetime, urllib.request, threading, pathlib
+import json, os, math, sys, time, datetime, urllib.request, threading, pathlib, uuid
+
+# Interpreter identity for the store lock (see _store_lock / _atomic_write):
+# PID alone is not enough — a PID can be recycled. Kept filesystem-safe
+# (no ':'): the nonce is embedded in temp file NAMES, and Windows rejects
+# a colon in a filename with a bare WinError 87.
+_NODE = f"{os.getpid()}_{uuid.uuid4().hex[:8]}"
+_LOCK_PID = os.getpid()
+
+# A lock file older than this whose owner PID is gone is reclaimed. Generous:
+# the longest critical section is a full-store rewrite, seconds at worst.
+_LOCK_STALE = 120.0
 
 _HOME = pathlib.Path(os.environ.get(
     "OPENAMER_HOME", str(pathlib.Path.home() / "AppData" / "Local" / "openamer-laptop")))
@@ -35,9 +46,186 @@ DIM = 768
 # find 0 predictions after the kind/type rename).
 SCHEMA_VERSION = 2
 
-_lock = threading.Lock()
+_lock = threading.RLock()
+
+
+class _StoreBusy(RuntimeError):
+    """Could not take the cross-process store lock inside the time budget."""
+
+
+def _node_alive(pid):
+    """True if a lock holder with this PID is still running (Windows + POSIX)."""
+    if pid <= 0:
+        return False
+    if os.name == "nt":
+        import ctypes
+        from ctypes import wintypes
+        k32 = ctypes.windll.kernel32
+        # 0x1000 = PROCESS_QUERY_LIMITED_INFORMATION (works across sessions)
+        h = k32.OpenProcess(0x1000, False, pid)
+        if not h:
+            return False
+        try:
+            code = wintypes.DWORD()
+            if k32.GetExitCodeProcess(h, ctypes.byref(code)):
+                return code.value == 259      # STILL_ACTIVE
+            return True
+        finally:
+            k32.CloseHandle(h)
+    try:
+        os.kill(pid, 0)
+        return True
+    except ProcessLookupError:
+        return False
+    except PermissionError:
+        return True
+    except OSError:
+        return False
+
+
+class _store_lock:
+    """Cross-process advisory lock guarding every read AND write of the store.
+
+    Why not just os.replace: on Windows the atomic swap is only half the
+    story. A reader that opens the file between the writer's
+    `open(tmp,"w")` and its `os.replace` still observes a truncated (0-byte)
+    store, because the swap only becomes visible with the replace. And when
+    the swap cannot be made (PermissionError: destination held open), the
+    writer falls back to an in-place truncate — which is exactly the partial
+    read this module exists to prevent.
+
+    Live probe (16.09.26, 120-edge store, 1.5s of concurrent traffic):
+    reader saw lengths {0: 5, 120: 104} — 5 partial reads, i.e. os.replace
+    alone did NOT close the window. With this lock the same probe sees
+    {120: N} only.
+
+    Stale-holder recovery: each holder writes "<pid>:<nonce>" and refreshes
+    it; a lock whose PID is gone (or whose mtime is older than _LOCK_STALE)
+    is reclaimed, so a killed process cannot wedge every future writer.
+    """
+
+    def __init__(self, timeout=8.0):
+        self.timeout = timeout
+        self.path = f"{WM}.lock"
+        self.tmp = f"{self.path}.{_NODE}.tmp"
+        self.held = False
+        self._inproc = False
+
+    def _write_owner(self, fh):
+        fh.seek(0)
+        fh.write(f"{_LOCK_PID} {time.time():.6f}\n")
+        fh.flush()
+        try:
+            os.fsync(fh.fileno())
+        except OSError:
+            pass
+
+    def _stale(self):
+        pid = None
+        age = None
+        try:
+            with open(self.path, "r", encoding="utf-8") as f:
+                head = f.read().split()
+            pid = int(head[0])
+            age = time.time() - os.path.getmtime(self.path)
+        except (OSError, ValueError, IndexError):
+            # Unreadable/absent/garbled lock -> safest is to let the caller in;
+            # a garbled lock is never a live holder.
+            return True
+        if pid == _LOCK_PID:
+            # Our own PID: either this very interpreter's lock (re-entrancy is
+            # impossible — _store_lock is not recursive) or a recycled PID.
+            # Reclaiming is the only option that cannot deadlock us.
+            return True
+        return age > _LOCK_STALE or not _node_alive(pid)
+
+    def __enter__(self):
+        # Two layers, because the lock file alone cannot serialise two
+        # THREADS of the same interpreter: a thread-local stale check would
+        # see its own PID and reclaim the sibling thread's lock (which is
+        # exactly how the probe still saw a 0-length read). The in-process
+        # RLock is taken first and is what actually serialises same-process
+        # workers; the file lock then covers other processes. Order matters —
+        # taking the file lock first risks holding it while blocked on the
+        # RLock, i.e. a same-process deadlock.
+        _lock.acquire()
+        self._inproc = True
+        try:
+            return self._enter_file_lock()
+        except BaseException:
+            self._release_inproc()
+            raise
+
+    def _release_inproc(self):
+        if self._inproc:
+            self._inproc = False
+            _lock.release()
+
+    def _enter_file_lock(self):
+        deadline = time.time() + self.timeout
+        delay = 0.004
+        while True:
+            try:
+                fd = os.open(self.path, os.O_CREAT | os.O_EXCL | os.O_RDWR)
+            except FileExistsError:
+                if self._stale():
+                    try:
+                        os.remove(self.path)
+                    except OSError:
+                        pass
+                    continue
+                if time.time() >= deadline:
+                    raise _StoreBusy(
+                        f"world-model lock held > {self.timeout}s ({self.path})")
+                time.sleep(delay)
+                delay = min(delay * 2, 0.25)
+                continue
+            except OSError as e:
+                # Windows can report PermissionError/AccessDenied from
+                # O_CREAT|O_EXCL while another process is concurrently
+                # creating or removing the same lock file — the path is in a
+                # transient state, not permanently unusable. Caught live: an
+                # unhandled Errno 13 escaped a worker and killed it mid-run.
+                # Treat it exactly like "someone else holds it" and retry.
+                if time.time() >= deadline:
+                    raise _StoreBusy(
+                        f"world-model lock unobtainable after {self.timeout}s "
+                        f"({e})") from e
+                time.sleep(delay)
+                delay = min(delay * 2, 0.25)
+                continue
+
+            # Got it. Publish ownership (the O_EXCL existence is what
+            # serialises; the payload is only for stale recovery).
+            try:
+                with os.fdopen(fd, "r+", encoding="utf-8") as fh:
+                    try:
+                        self._write_owner(fh)
+                    except OSError:
+                        pass
+                self.held = True
+                return self
+            except BaseException:
+                try:
+                    os.remove(self.path)
+                except OSError:
+                    pass
+                raise
+
+    def __exit__(self, *exc):
+        if self.held:
+            try:
+                os.remove(self.path)
+            except FileNotFoundError:
+                pass
+            except OSError:
+                pass            # a stale reclaim already took it; harmless
+        self._release_inproc()
+        return False
+
+
 def _atomic_write(lines):
-    """Write the whole store atomically (temp file + os.replace).
+    """Write the whole store atomically, under the cross-process store lock.
 
     Plain `open(WM, "w")` truncates the file FIRST, so a concurrent reader
     in another PROCESS (threading._lock is process-local only) can observe a
@@ -51,38 +239,50 @@ def _atomic_write(lines):
     Windows caveat (caught by a live probe, not by theory): os.replace()
     raises PermissionError if ANY process currently holds the destination
     open for reading — and world_model readers (_load) do exactly that from
-    other processes. So retry a few times before giving up, and if the swap
-    still will not go through, fall back to an in-place rewrite rather than
-    dropping the write on the floor (losing an observation is worse than a
-    brief non-atomic moment).
+    other processes. So retry a few times before giving up.
+
+    The last-resort path used to be an in-place `open(WM,"w")` rewrite. That
+    is precisely the truncate-first write this function exists to eliminate,
+    and the probe showed it was still reached (1 of 44 writes) and still
+    produced a 0-length read. It is gone: if the swap cannot be made we
+    report failure (False) instead of silently corrupting a reader's view.
+    Callers hold the store lock across write, so a busy store is a signal,
+    not something to paper over.
+
+    Returns True when the swap landed, False when it did not.
     """
-    tmp = f"{WM}.tmp-{os.getpid()}"
-    with open(tmp, "w", encoding="utf-8") as f:
-        for ln in lines:
-            f.write(ln if ln.endswith("\n") else ln + "\n")
-        f.flush()
-        os.fsync(f.fileno())
-    last = None
-    for attempt in range(6):
-        try:
-            os.replace(tmp, WM)
-            return
-        except PermissionError as e:      # dest held open by another process
-            last = e
-            time.sleep(0.05 * (attempt + 1))
+    tmp = f"{WM}.tmp-{_NODE}"
     try:
-        with open(WM, "w", encoding="utf-8") as f:
+        with open(tmp, "w", encoding="utf-8") as f:
             for ln in lines:
                 f.write(ln if ln.endswith("\n") else ln + "\n")
-    except Exception:
-        raise last
-    finally:
+            f.flush()
+            os.fsync(f.fileno())
+    except OSError:
         try:
             os.remove(tmp)
         except OSError:
             pass
-
-
+        return False
+    last = None
+    for attempt in range(10):
+        try:
+            os.replace(tmp, WM)
+            return True
+        except PermissionError as e:      # dest held open by another process
+            last = e
+            time.sleep(0.05 * (attempt + 1))
+        except OSError as e:
+            last = e
+            break
+    # Swap failed: drop the temp file and report honestly. NEVER truncate WM.
+    try:
+        os.remove(tmp)
+    except OSError:
+        pass
+    if last is not None:
+        sys.stderr.write(f"[world_model] atomic swap failed: {last}\n")
+    return False
 
 
 def _migrate_edge(d):
@@ -127,21 +327,21 @@ def embed(text, retries=2):
 
 def repair_store():
     """Re-embed edges whose embedding failed transiently (embed_ok=False)."""
-    edges = _load()
-    bad = [e for e in edges if not e.get("embed_ok")]
-    if not bad:
-        return {"repaired": 0}
-    fixed = 0
-    for e in bad:
-        emb = embed(f"{e.get('cause', '')} -> {e.get('effect', '')}", retries=3)
-        if emb is not None:
-            e["embedding"] = emb
-            e["embed_ok"] = True
-            fixed += 1
-    if fixed:
-        with _lock:
+    with _store_lock():
+        edges = _load_unlocked()
+        bad = [e for e in edges if not e.get("embed_ok")]
+        if not bad:
+            return {"repaired": 0}
+        fixed = 0
+        for e in bad:
+            emb = embed(f"{e.get('cause', '')} -> {e.get('effect', '')}", retries=3)
+            if emb is not None:
+                e["embedding"] = emb
+                e["embed_ok"] = True
+                fixed += 1
+        if fixed:
             _atomic_write([json.dumps(e, ensure_ascii=False) for e in edges])
-    return {"repaired": fixed, "remaining": len(bad) - fixed}
+        return {"repaired": fixed, "remaining": len(bad) - fixed}
 
 
 def _cosine(a, b):
@@ -164,13 +364,24 @@ def _load():
     """
     if not os.path.exists(WM):
         return []
+    try:
+        with _store_lock():
+            return _load_unlocked()
+    except _StoreBusy:
+        # A writer has been inside its critical section for longer than the
+        # budget. Reading unlocked is strictly better than returning []: the
+        # swap is still atomic, so the worst case is the previous complete
+        # store, never a truncated one.
+        return _load_unlocked()
+
+
+def _load_unlocked():
+    """Parse the store. Caller owns the store lock (or has accepted the risk)."""
     for attempt in (0, 1):
         out = []
         # Snapshot the bytes in ONE read, then parse from memory. Holding the
         # handle open for the whole parse (as `for line in open(WM)`) also
-        # blocks the writers' os.replace on Windows -> PermissionError ->
-        # they fall back to a non-atomic in-place rewrite. A short hold keeps
-        # the writer's atomic swap working.
+        # blocks the writers' os.replace on Windows -> PermissionError.
         try:
             with open(WM, "rb") as f:
                 raw = f.read()
@@ -230,7 +441,7 @@ def prune(max_dupes=2):
         return {"error": f"refusing to prune {removed}/{len(edges)} (>30%) — "
                          "possible embedding collapse", "removed": 0, "kept": len(edges)}
     if removed and len(kept) > 0:
-        with _lock:
+        with _store_lock():
             _atomic_write([json.dumps(e, ensure_ascii=False) for e in kept])
     return {"removed": removed, "kept": len(kept)}
 
@@ -253,7 +464,7 @@ def observe(cause, effect, kind="fact", confidence=None):
     """
     os.makedirs(os.path.dirname(WM), exist_ok=True)
     key = (str(cause)[:500], str(effect)[:500])
-    with _lock:
+    with _store_lock():
         # cheap exact-dup check on the raw file tail (last 400 lines)
         try:
             if os.path.exists(WM):
@@ -290,7 +501,7 @@ def observe(cause, effect, kind="fact", confidence=None):
     }
     if confidence is not None:
         edge["confidence"] = confidence
-    with _lock:
+    with _store_lock():
         with open(WM, "a", encoding="utf-8") as f:
             f.write(json.dumps(edge, ensure_ascii=False) + "\n")
     return edge
@@ -366,19 +577,26 @@ def migrate():
     """
     if not os.path.exists(WM):
         return {"migrated": 0, "schema_version": SCHEMA_VERSION}
-    edges = _load()  # _load already migrates in-memory
-    existing = sum(1 for _ in open(WM, encoding="utf-8"))
-    if edges and existing > 0 and len(edges) < existing // 2:
-        return {"error": f"refusing to shrink {existing} -> {len(edges)} edges "
-                         f"(would lose {existing - len(edges)} memories)",
-                "schema_version": SCHEMA_VERSION}
-    if not edges and existing > 0:
-        return {"error": f"refusing to truncate {existing} edges to 0 "
-                         f"(empty read = bug, not intent)",
-                "schema_version": SCHEMA_VERSION}
-    with _lock:
+    with _store_lock():
+        # Read + size-check + write under ONE lock. Doing them separately let
+        # a concurrent writer land between the count and the rewrite, which
+        # is how a "safe" migration could still clobber fresh edges.
+        edges = _load_unlocked()  # _load_unlocked already migrates in-memory
+        try:
+            with open(WM, encoding="utf-8") as f:
+                existing = sum(1 for _ in f)
+        except OSError:
+            existing = 0
+        if edges and existing > 0 and len(edges) < existing // 2:
+            return {"error": f"refusing to shrink {existing} -> {len(edges)} edges "
+                             f"(would lose {existing - len(edges)} memories)",
+                    "schema_version": SCHEMA_VERSION}
+        if not edges and existing > 0:
+            return {"error": f"refusing to truncate {existing} edges to 0 "
+                             f"(empty read = bug, not intent)",
+                    "schema_version": SCHEMA_VERSION}
         _atomic_write([json.dumps(e, ensure_ascii=False) for e in edges])
-    return {"migrated": len(edges), "schema_version": SCHEMA_VERSION}
+        return {"migrated": len(edges), "schema_version": SCHEMA_VERSION}
 
 
 if __name__ == "__main__":
