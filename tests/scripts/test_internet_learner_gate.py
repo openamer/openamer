@@ -83,6 +83,17 @@ _APPMARKETING_LEAK = (
 _HEADING_NUMERAL_LEAK = "Distinction between classical and modern physics 2."
 _PROMPT_ECHO_LEAK = "Need find shared underlying pattern."
 _CONTACT_LEAK = "You can also reach us at +1 (123) 456-7890."
+# arXiv abstract-page label chain (live 16.09.26, class 10): the papers cycle
+# logged `paper-learn: Xiv-issued DOI via DataCite Submission history ...` —
+# 243 chars of pure page labels, zero prose, accepted because the submission
+# timestamp fed the technical-signal gate and the length cleared the >=90
+# "long prose" trust. Verbatim from the stored buffer row.
+_ARXIV_CHROME_LEAK = (
+    "Xiv-issued DOI via DataCite Submission history From: Shuming Ma "
+    "[ view email ] [v1] Tue, 27 Feb 2024 18:56:19 UTC (201 KB) Full-text "
+    "links: Access Paper: View a PDF of the paper titled The Era of 1-bit LLMs: "
+    "All Large Language Models are in 1."
+)
 
 CHROME = [
     "Jetzt spenden Benutzerkonto erstellen Anmelden Meine Werkzeuge",
@@ -133,6 +144,8 @@ CHROME = [
     # gate. See test_social_share_widget_chrome_is_rejected for the counter-cases.
     "March 17, 2026 (UPDATED Sep 8, 2026) 2026-09-08T13:12:23-04:00 "
     "Reddit Post Share Threads Support my work.",
+    # arXiv abstract-page label chain (live 16.09.26) — see _ARXIV_CHROME_LEAK.
+    _ARXIV_CHROME_LEAK,
 ]
 
 # Link-shrapnel with no junk keyword and no sentence shape: caught by the
@@ -168,6 +181,11 @@ REAL = [
     # technical keyword below 90 chars, so none of these may be lost.
     "Speculative decoding cuts decode latency by 40% with a draft model.",
     "GGUF Q4_K_M quantization shrinks a 7B model to about 4 GB.",
+    # Counter-case for the arXiv-chrome rule: real prose may legitimately
+    # mention a submission history or a revision, and one page label alone is
+    # NOT chrome — the rule needs TWO independent label fragments.
+    "The paper's submission history shows v1 to v3 in four months; INT4 "
+    "quantization recovers 97% of fp16 accuracy on the reasoning benchmark.",
 ]
 
 
@@ -434,6 +452,46 @@ def test_news_ticker_loop_is_rejected():
         assert not IL._is_ticker_loop(text), text
         assert IL._clean_insight(text), text
         assert not buffer_store.is_junk(text), text
+
+
+def test_arxiv_abstract_chrome_is_rejected():
+    """An arXiv abstract page's LABEL CHAIN is not knowledge (live 16.09.26).
+
+    cycle_b_papers logged, verbatim from the stored buffer row:
+      "Xiv-issued DOI via DataCite Submission history From: Shuming Ma
+       [ view email ] [v1] Tue, 27 Feb 2024 18:56:19 UTC (201 KB) Full-text
+       links: Access Paper: View a PDF of the paper titled The Era of 1-bit
+       LLMs: All Large Language Models are in 1."
+    243 chars of page labels welded together, zero prose: the submission
+    timestamp satisfied the technical-signal gate and the length cleared the
+    >=90 "long prose" trust.
+
+    The rule is structural (TWO independent page labels), never topical — a
+    genuine insight ABOUT an arXiv paper must stay learnable, and one label
+    alone (real prose can mention a submission history) is left alone.
+    """
+    assert IL._is_arxiv_abstract_chrome(_ARXIV_CHROME_LEAK)
+    assert IL._is_junk(_ARXIV_CHROME_LEAK)
+    assert IL._clean_insight(_ARXIV_CHROME_LEAK) == ""
+
+    import buffer_store
+    assert buffer_store.is_junk(_ARXIV_CHROME_LEAK)
+
+    # counter-cases: a REAL paper insight, and prose carrying exactly ONE
+    # page label, must both survive
+    for text in (
+        "BitNet stores its weights in ternary form, so a 7B model fits in "
+        "about 2 GB at int4 with no measurable accuracy loss.",
+        "The submission history shows v1 to v3 landed within four months; "
+        "INT4 quantization recovers 97% of fp16 accuracy on all three "
+        "reasoning benchmarks.",
+        "Full-text links aside, the paper's key result is that 1.58-bit "
+        "weights match fp16 on most downstream tasks.",
+    ):
+        assert not IL._is_arxiv_abstract_chrome(text), text
+        assert not IL._is_junk(text), text
+        assert buffer_store.is_junk(text) is False, text
+        assert IL._clean_insight(text), text
 
 
 def test_read_time_header_is_stripped_not_stored():

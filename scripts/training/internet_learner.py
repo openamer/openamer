@@ -555,6 +555,48 @@ def _looks_binary(text):
 # prose and must never gate a row.
 _TIME_CODE_RE = re.compile(r"\b\d{1,2}:\d{2}\b")
 
+# arXiv ABSTRACT-PAGE chrome (live 16.09.26, class 10): cycle_b_papers stored
+#   "Xiv-issued DOI via DataCite Submission history From: Shuming Ma
+#    [ view email ] [v1] Tue, 27 Feb 2024 18:56:19 UTC (201 KB) Full-text
+#    links: Access Paper: View a PDF of the paper titled The Era of 1-bit LLMs:
+#    All Large Language Models are in 1."
+# — 243 chars of pure page labels welded together, zero prose. Both gates
+# passed it: the submission timestamp satisfied the technical-signal gate and
+# the length cleared the >=90 "long prose" trust.
+#
+# Keyed on the LABEL CHAIN, never on the topic or a token such as "arXiv":
+# a genuine insight about an arXiv paper ("BitNet stores weights in ternary
+# form, so a 7B model fits in about 2 GB at int4.") must stay learnable.
+# A single marker is NOT enough — real prose can legitimately mention a
+# submission history or a preprint revision — so a row must carry TWO
+# distinct label fragments to be judged chrome. Measured over the live
+# 275-row buffer: catches the leaking row, 0 real-prose rows.
+_ARXIV_CHROME_MARKERS = (
+    "view email",
+    "submission history",
+    "full-text links",
+    "view a pdf of the paper titled",
+    "cite as arxiv",
+    "xiv-issued doi",
+    "bibliographic explorer",
+)
+_ARXIV_CHROME_MIN_MARKERS = 2
+
+
+def _is_arxiv_abstract_chrome(text):
+    """True when `text` is an arXiv-style abstract page's label chain.
+
+    Structural, not topical: two independent page labels from
+    `_ARXIV_CHROME_MARKERS` must be present. One marker alone is left alone,
+    so a real sentence that happens to mention a submission history or a
+    preprint revision still reaches the buffer.
+    """
+    low = (text or "").lower()
+    if not low:
+        return False
+    hits = sum(1 for m in _ARXIV_CHROME_MARKERS if m in low)
+    return hits >= _ARXIV_CHROME_MIN_MARKERS
+
 
 def _is_ticker_loop(text):
     """True when the text is a news-TICKER loop: a time code plus a phrase the
@@ -595,6 +637,8 @@ def _is_junk(text):
     if _JUNK_RE.search(t):
         return True
     if _INSTRUCTION_OPENER_RE.match(t):
+        return True
+    if _is_arxiv_abstract_chrome(t):
         return True
     if _is_ticker_loop(t):
         return True

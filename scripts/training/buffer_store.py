@@ -285,6 +285,31 @@ _DETACHED_COUNT_RE = _re.compile(r"^\W*[kKmM]\s+followers\b")
 # A clock time, used ONLY together with a self-repeated phrase (ticker loop).
 _TIME_CODE_RE = _re.compile(r"\b\d{1,2}:\d{2}\b")
 
+# arXiv abstract-page chrome (live 16.09.26, class 10) — mirror of
+# internet_learner._is_arxiv_abstract_chrome. The extraction gate drops the
+# label chain, but every other writer path reaches this gate, so the rule is
+# kept here too. `buffer_store` must not import the learner (circular), hence
+# the duplication. Measured over the live 275-row buffer: 1 hit (the leaking
+# row), 0 real-prose rows.
+_ARXIV_CHROME_MARKERS = (
+    "view email",
+    "submission history",
+    "full-text links",
+    "view a pdf of the paper titled",
+    "cite as arxiv",
+    "xiv-issued doi",
+    "bibliographic explorer",
+)
+_ARXIV_CHROME_MIN_MARKERS = 2
+
+
+def _is_arxiv_abstract_chrome(text):
+    """True when `text` is an arXiv-style abstract page's label chain."""
+    low = (text or "").lower()
+    if not low:
+        return False
+    return sum(1 for m in _ARXIV_CHROME_MARKERS if m in low) >= _ARXIV_CHROME_MIN_MARKERS
+
 
 def _is_binary_noise(text):
     """True when text is raw bytes mis-decoded as text (PDF/zip blob).
@@ -332,6 +357,10 @@ def _is_nav_chrome(text):
         return True
     # a counter truncated at its own digits ("K followers ...") = mid-widget
     if _DETACHED_COUNT_RE.match(text):
+        return True
+    # an arXiv abstract-page label chain (same rule as
+    # internet_learner._is_arxiv_abstract_chrome)
+    if _is_arxiv_abstract_chrome(text):
         return True
     # a news-ticker loop (same rule as internet_learner._is_ticker_loop): the
     # writer gate must refuse it too, or any other writer path lands it in the
