@@ -69,7 +69,7 @@ def ask_openrouter(prompt: str, system: str = "") -> tuple[bool, str]:
     body = json.dumps({
         "model": GATE_MODEL,
         "messages": messages,
-        "max_tokens": 500,
+        "max_tokens": 2000,  # reasoning model: deliberation + verdict must fit
         "temperature": 0.3,  # low temperature for careful decisions
     }).encode("utf-8")
     req = urllib.request.Request(
@@ -89,20 +89,79 @@ def ask_openrouter(prompt: str, system: str = "") -> tuple[bool, str]:
         content = msg.get("content")
         if content and content.strip():
             return True, content.strip()
-        # GLM-5.3-Flash reasoning model: answer may be at end of reasoning
+        # Reasoning model (GLM): `content` may be empty and the verdict lives
+        # in the reasoning trace. Hand the FULL tail to the parser -- picking a
+        # single "matching" line here is what made every proposal stall: the
+        # criteria text itself contains the words APPROVE/REJECT/NEEDS_MORE_INFO,
+        # so a first-match scan returns a quote of the rubric, not a decision.
         reasoning = msg.get("reasoning", "")
         if reasoning:
-            for line in reversed(reasoning.splitlines()):
-                line_s = line.strip()
-                upper = line_s.upper()
-                if any(kw in upper for kw in ("APPROVE", "REJECT", "NEEDS_MORE_INFO")):
-                    return True, line_s[:300]
-            lines = [l.strip() for l in reasoning.splitlines() if l.strip()]
-            if lines:
-                return True, lines[-1][:300]
+            return True, reasoning[-2000:]
         return False, "empty response from model"
     except Exception as e:
         return False, str(e)[:300]
+
+
+VERDICTS = ("APPROVE", "REJECT", "NEEDS_MORE_INFO")
+
+
+def _parse_verdict(text: str) -> tuple[str, str]:
+    """Extract the gate's verdict from a model reply.
+
+    Reasoning models narrate their way to an answer, and the system prompt
+    itself spells out the words APPROVE / REJECT / NEEDS_MORE_INFO as rubric
+    labels. So we cannot take the first keyword we see -- that is almost
+    always the model quoting the rubric back at us.
+
+    Order of preference:
+      1. an explicit `DECISION: X` anchor line (the strongest signal)
+      2. a verdict line *starting* with the keyword, scanning from the END
+         (the model's final answer is at the bottom, not the top)
+      3. conservative fallback: NEEDS_MORE_INFO
+    """
+    if not text:
+        return "NEEDS_MORE_INFO", "empty model response"
+
+    lines = text.splitlines()
+
+    # 1) explicit anchor, last one wins
+    for line in reversed(lines):
+        stripped = line.strip().lstrip("*-• ").strip()
+        upper = stripped.upper()
+        if upper.startswith("DECISION:"):
+            rest = stripped.split(":", 1)[1].strip().strip("*` ")
+            for v in VERDICTS:
+                if rest.upper().startswith(v):
+                    return v, _reason_from(rest, v) or "explicit decision anchor"
+    # anchor may also appear inline in a wall of reasoning text
+    lower_text = text.upper()
+    if "DECISION:" in lower_text:
+        tail = text[lower_text.rindex("DECISION:") + len("DECISION:"):]
+        tail = tail.strip().strip("*` ")
+        for v in VERDICTS:
+            if tail.upper().startswith(v):
+                return v, _reason_from(tail, v) or "explicit decision anchor"
+
+    # 2) a line that *starts* with a verdict word, scanning from the end
+    for line in reversed(lines):
+        stripped = line.strip().lstrip("*-•> ").strip()
+        upper = stripped.upper()
+        for v in VERDICTS:
+            if upper.startswith(v + ":") or upper.startswith(v + " ")                     or upper == v:
+                return v, _reason_from(stripped, v) or f"verdict line: {v}"
+
+    # 3) conservative fallback -- unchanged safety posture
+    return "NEEDS_MORE_INFO", (text.strip()[:300] or "no parseable verdict")
+
+
+def _reason_from(text: str, verdict: str) -> str:
+    """Pull the human-readable reason that follows a verdict word."""
+    rest = text.strip()
+    upper = rest.upper()
+    if upper.startswith(verdict):
+        rest = rest[len(verdict):].lstrip(" :*-`").strip()
+    rest = rest.strip("*` ").strip()
+    return rest[:300]
 
 
 def evaluate_proposal(worker: str, action: str, description: str,
@@ -134,6 +193,10 @@ Respond with EXACTLY one of:
 - REJECT: <one-sentence reason>
 - NEEDS_MORE_INFO: <what additional info is needed>
 
+Do not quote these option names while deliberating -- just decide. End your
+response with a final line in exactly this form:
+DECISION: APPROVE|REJECT|NEEDS_MORE_INFO
+
 Your response:"""
 
     system = """You are the OpenAmer Gatekeeper - the central intelligence that
@@ -154,15 +217,7 @@ Decision criteria:
         }
 
     # parse the decision
-    decision = "NEEDS_MORE_INFO"
-    reason = response[:300]
-    if response.strip().startswith("APPROVE"):
-        decision = "APPROVE"
-    elif response.strip().startswith("REJECT"):
-        decision = "REJECT"
-    # extract reason after the colon
-    if ":" in response:
-        reason = response.split(":", 1)[1].strip()[:300]
+    decision, reason = _parse_verdict(response)
 
     return {
         "status": decision, "reason": reason,

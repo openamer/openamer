@@ -170,6 +170,24 @@ def auction(task_id: str) -> dict | None:
     return {"task": task_id, "winner": best, "score": round(best_score, 2)}
 
 
+def set_task_status(task_id: str, status: str, **fields) -> dict | None:
+    """Re-read, mutate, persist a single task field.
+
+    Callers that keep a swarm snapshot alive across an operation must NOT use
+    save_swarm() on it afterwards -- that writes the stale snapshot back and
+    silently reverts whatever another helper just persisted. Use this instead:
+    it always loads fresh.
+    """
+    swarm = load_swarm()
+    task = swarm["tasks"].get(task_id)
+    if not task:
+        return None
+    task["status"] = status
+    task.update(fields)
+    save_swarm(swarm)
+    return task
+
+
 def complete_task(task_id: str, result: str, success: bool) -> dict | None:
     """Report task outcome: winner's genome is updated (W/L) and energy
     is exchanged - success pays, failure costs."""

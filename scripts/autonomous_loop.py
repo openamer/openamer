@@ -92,6 +92,52 @@ def _run(cmd: list[str], timeout: int = 110) -> tuple[bool, str]:
         return False, str(e)[:200]
 
 
+GAP_TASK_SPECS = {
+    "weak-population": (
+        "Run the existing documented scripts/darwin_engine.py --autopilot cycle "
+        "to mutate or predate the skills currently below the fitness threshold. "
+        "This is the routine evolution entrypoint: fitness scan, mutations from "
+        "top parents, trial evaluation, predation check. No new code, no core "
+        "changes; writes stay inside OPENAMER_HOME/darwin/."
+    ),
+    "stagnation": (
+        "Raise exploration on the stagnant slice of the skill population by "
+        "running the existing documented scripts/darwin_engine.py --autopilot "
+        "with a higher mutation rate. Routine evolution entrypoint, no new code, "
+        "no core changes; writes stay inside OPENAMER_HOME/darwin/."
+    ),
+    "losing-record": (
+        "Prioritize verification-step mutations for the skills with a losing "
+        "battle record by running the existing documented "
+        "scripts/darwin_engine.py --autopilot cycle. Routine evolution "
+        "entrypoint, no new code, no core changes; writes stay inside "
+        "OPENAMER_HOME/darwin/."
+    ),
+    "market-backlog": (
+        "Publish the settled grid result and sync the swarm market by running "
+        "the existing documented scripts/darwin_grid_github.py --publish "
+        "damir-desktop. Routine grid entrypoint, no new code, no core changes; "
+        "network egress limited to the configured grid remote."
+    ),
+}
+
+
+def _task_text_for_gap(gtype: str, gap: dict, cap: str) -> str:
+    """Build a gate-judgeable task text for a metacognition gap.
+
+    Falls back to naming the real entrypoint for that capability, so the
+    proposal is never a bare imperative with no scope.
+    """
+    detail = str(gap.get("detail", "")).strip()
+    body = GAP_TASK_SPECS.get(gtype)
+    if not body:
+        body = (f"Investigate and resolve the detected '{gtype}' gap via the "
+                f"existing documented entrypoint for capability '{cap}'. "
+                f"Read-only analysis first; no new code, no core changes.")
+    suffix = f" Detected condition: {detail}." if detail else ""
+    return f"AUTO[{gtype}]: {body}{suffix}"
+
+
 def generate_tasks_from_gaps() -> list[str]:
     """Metacognition gaps become REAL swarm tasks (deduplicated by gap type
     against tasks already pending/assigned in the last 24h)."""
@@ -116,12 +162,20 @@ def generate_tasks_from_gaps() -> list[str]:
             "market-backlog": "network",
         }
         cap = cap_map.get(gtype, "introspection")
-        task_text = f"AUTO[{gtype}]: {gap['directive']}"
-        # dedup: skip if an open task with the same gap type exists
+        # The task text is handed to the gate as the proposal. A bare directive
+        # ("mutate or predate these skills") is unjudgeable -- the gate correctly
+        # answers NEEDS_MORE_INFO forever. Name the concrete entrypoint, the
+        # scope and the safety boundary so the gate can actually rule on it.
+        task_text = _task_text_for_gap(gtype, gap, cap)
+        # dedup: skip if a task with the same gap type is genuinely still in
+        # flight. gate-hold / gate-rejected do NOT count as "in flight" --
+        # treating them as open is what let 825 dead tasks block every future
+        # task generation while the loop reported "0 tasks needed".
         sw = swarm.load_swarm()
+        tag = task_text.split("]:")[0] + "]"
         already = any(
             t["status"] in ("pending", "assigned")
-            and task_text.split("]:")[0] + "]" in t["task"]
+            and tag in t["task"]
             for t in sw["tasks"].values())
         if already:
             continue
@@ -140,9 +194,12 @@ def execute_assigned_tasks() -> list[dict]:
     sys.modules["darwin_gate"] = gate
     gate_spec.loader.exec_module(gate)
 
-    sw = swarm.load_swarm()
     executed = []
-    for tid, task in sw["tasks"].items():
+    # NOTE: we must re-read the swarm file after every mutation. Holding a
+    # single snapshot and saving it at the end of the loop clobbers whatever
+    # swarm.complete_task() wrote (status/wins/energy), so executions silently
+    # reverted and the worker never got credit.
+    for tid, task in list(swarm.load_swarm()["tasks"].items()):
         if task["status"] != "assigned":
             continue
         caps = task.get("capabilities") or []
@@ -169,23 +226,21 @@ def execute_assigned_tasks() -> list[dict]:
             if runner is None:
                 runner = next(iter(TASK_RUNNERS.values()))
             ok, output = _run(runner["cmd"])
-            swarm.complete_task(tid, output, success=ok)
+            swarm.complete_task(tid, output, success=ok)  # re-loads + persists
+            task = swarm.load_swarm()["tasks"].get(tid, task)
             executed.append({"task": tid, "capabilities": caps,
                              "success": ok, "gate": "APPROVED",
                              "output_tail": output[-120:]})
         elif gate_status == "REJECT":
             # rejected -> mark task as gate-rejected, don't execute
-            task["status"] = "gate-rejected"
-            task["gate_reason"] = gate_reason
+            swarm.set_task_status(tid, "gate-rejected", gate_reason=gate_reason)
             executed.append({"task": tid, "gate": "REJECTED",
                              "reason": gate_reason[:150]})
         else:
             # needs more info or error -> hold
-            task["status"] = "gate-hold"
-            task["gate_reason"] = gate_reason
+            swarm.set_task_status(tid, "gate-hold", gate_reason=gate_reason)
             executed.append({"task": tid, "gate": gate_status,
                              "reason": gate_reason[:150]})
-        swarm.save_swarm(sw)
     return executed
 
 
