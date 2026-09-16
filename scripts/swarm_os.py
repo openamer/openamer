@@ -39,7 +39,37 @@ darwin = importlib.util.module_from_spec(_spec)
 sys.modules["darwin_engine"] = darwin
 _spec.loader.exec_module(darwin)
 
-HOME = Path(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")))
+def _resolve_openamer_home(default: Path) -> Path:
+    """Resolve OPENAMER_HOME robustly across shells (see darwin_engine.py).
+
+    git-bash exports OPENAMER_HOME as an MSYS path ("/c/Users/..."). Native
+    Windows Python treats that as relative and lands in a phantom "C:/c/..."
+    tree. Normalise MSYS drive forms and reject doubled-drive artefacts so the
+    script never silently operates on a directory that isn't the real install.
+    """
+    raw = os.environ.get("OPENAMER_HOME")
+    if not raw:
+        return default
+    norm = raw.replace(os.sep, "/") if os.sep != "/" else raw
+    cand = None
+    if len(norm) >= 3 and norm[0] == "/" and norm[1].isalpha() and norm[2] == "/":
+        cand = Path(norm[1].upper() + ":/" + norm[3:])
+    else:
+        p = Path(raw)
+        if p.is_absolute():
+            cand = p
+    if cand is None:
+        return default
+    parts = cand.parts
+    drive = parts[0].rstrip("/").rstrip(os.sep)
+    if len(drive) == 2 and drive[1] == ":" and len(parts) >= 2:
+        head = parts[1].strip("/").strip(os.sep).lower()
+        if head and head == drive[0].lower():
+            return default
+    return cand if cand.exists() else default
+
+
+HOME = _resolve_openamer_home(Path.home() / "AppData" / "Local" / "openamer")
 SWARM_FILE = HOME / "darwin" / "swarm.json"
 TASKS_FILE = HOME / "darwin" / "swarm-tasks.json"
 
@@ -95,7 +125,8 @@ ENERGY_TASK_FAILURE = -5.0   # failed tasks cost energy
 ENERGY_AUCTION_BID = 1.0     # participating in an auction costs energy
 ENERGY_REPRODUCE_COST = 20.0  # children are an investment
 ENERGY_IDLE_DRAIN = 0.5      # per tick, just for existing
-ENERGY_STARVATION = 0.0      # below this -> worker dies
+ENERGY_STARVATION = 0.0      # at/below this AND flat broke -> worker dies
+ENERGY_MIN_START = 5.0       # floor a starved lone survivor is revived to
 
 
 def _pay_energy(swarm: dict, name: str, amount: float) -> None:
@@ -347,15 +378,27 @@ def tick() -> dict:
     # idle drain: existing costs energy for every worker
     for name, w in swarm["workers"].items():
         _pay_energy(swarm, name, -ENERGY_IDLE_DRAIN)
-    # starvation: workers with no energy die - but they TEACH first
+    # starvation: workers with no energy die - but they TEACH first.
+    # A worker dies only when it is at/below the starvation line AND has
+    # nothing left to bid with. Deep negative energy used to be treated
+    # as "immortal": the worker could never pay the reproduction cost,
+    # yet it also never starved, so it sat in the roster forever draining
+    # idle energy. Debt is the *strongest* starvation signal, not an
+    # exemption from it.
     starved = []
     for name in list(swarm["workers"].keys()):
         w = swarm["workers"].get(name)
-        if w and w.get("energy", 0) < ENERGY_STARVATION \
-                and len(swarm["workers"]) > 1:
-            teachings = teach_before_death(swarm, name)
-            del swarm["workers"][name]
-            starved.append({"worker": name, "taught": teachings})
+        if w is None or w.get("energy", 0) > ENERGY_STARVATION:
+            continue
+        if w.get("energy", 0) >= ENERGY_REPRODUCE_COST:
+            continue  # at the line but still solvent enough to work
+        if len(swarm["workers"]) <= 1:
+            # last worker standing: never leave the swarm empty
+            w["energy"] = ENERGY_MIN_START
+            continue
+        teachings = teach_before_death(swarm, name)
+        del swarm["workers"][name]
+        starved.append({"worker": name, "taught": teachings})
     save_swarm(swarm)
 
     pending = [tid for tid, t in swarm["tasks"].items()
