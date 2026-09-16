@@ -716,6 +716,28 @@ def _usable_urls(urls, k):
     return good[:k]
 
 
+def _http_search_urls(q, k=3):
+    """Direct-HTTP Bing search with ck/a redirect decode (the FALLBACK path).
+
+    Also used to TOP UP the CDP path: Bing's rendered DOM truncates result
+    paths, so the browser path alone yields fewer than k fetchable URLs.
+    q must already be URL-quoted.
+    """
+    import html as _html
+    raw = urllib.request.urlopen(urllib.request.Request(
+        f"https://www.bing.com/search?q={q}",
+        headers={"User-Agent": "Mozilla/5.0"}), timeout=15).read().decode("utf-8", "replace")
+    raw = _html.unescape(raw)
+    out = []
+    seen = set()
+    for m in re.finditer(r"href=\"(https://www\.bing\.com/ck/a\?[^\"]+)\"", raw):
+        dec = _decode_bing_url(m.group(1))
+        if dec.startswith("http") and "microsoft" not in dec and dec not in seen:
+            seen.add(dec)
+            out.append(dec)
+    return out[:k]
+
+
 def _search_urls(query, k=3):
     """Return real result URLs for a query.
 
@@ -757,23 +779,24 @@ def _search_urls(query, k=3):
                     seen.add(u)
                     urls.append(u)
             good = _usable_urls(urls, k)
-            if good:
+            if len(good) >= k:
                 return good
+            # The rendered DOM only shows TRUNCATED result paths ("..."),
+            # which _usable_urls must skip, so this path alone returns far
+            # fewer than k fetchable URLs (measured 11/36 vs 36/36 over 6
+            # queries, live 16.09.26). Top up from the HTTP path instead of
+            # returning early - deep_learn's k=6 retry could not compensate
+            # because _search_urls(k=6) still returned only 2 URLs.
+            merged = list(good)
+            for u in _http_search_urls(q, k):
+                if u not in merged:
+                    merged.append(u)
+            if merged:
+                return merged[:k]
         except Exception:
             pass
         # FALLBACK: direct HTTP with ck/a redirect decode
-        req = urllib.request.Request(f"https://www.bing.com/search?q={q}",
-                                     headers={"User-Agent": "Mozilla/5.0"})
-        raw = urllib.request.urlopen(req, timeout=15).read().decode("utf-8", "replace")
-        raw = _html.unescape(raw)
-        urls = []
-        seen = set()
-        for m in re.finditer(r"href=\"(https://www\.bing\.com/ck/a\?[^\"]+)\"", raw):
-            dec = _decode_bing_url(m.group(1))
-            if dec.startswith("http") and "microsoft" not in dec and dec not in seen:
-                seen.add(dec)
-                urls.append(dec)
-        return urls[:k]
+        return _http_search_urls(q, k)
     except Exception:
         return []
 
