@@ -66,14 +66,98 @@ def test_enforce_cap_missing_file_is_safe():
     assert bs.enforce_cap(_tmp_buf()) == 0
 
 
+# A truncation test needs text that SURVIVES the junk gate first: `append`
+# refuses degenerate text, never writes, and the truncation branch becomes
+# unreachable. A repeated TEMPLATE fails by construction -- it trips
+# is_glued_motif, the header-repeat rule AND the unique-token ratio. This
+# fixture is therefore 74 distinct technical sentences (measured: len 5258,
+# top-4-gram rate 0.0221 < 0.045 threshold, unique-token ratio 0.686,
+# header-repeat False) and reaches the 4000-char branch via append().
+_TRUNC_PROSE = (
+    'Chunked prefill lets vLLM batch prompt tokens so peak KV-cache memory falls. '
+    'LoRA freezes base weights and trains two low-rank matrices in each layer. '
+    'Quantizing decoder weights to int4 recovers most of the fp16 accuracy. '
+    'Paged attention keeps key-value blocks in non-contiguous device pages. '
+    'Speculative decoding drafts a handful of tokens, then verifies them once. '
+    'Retrieval augmentation grounds an answer in a vector index of passages. '
+    'Gradient checkpointing recomputes activations instead of storing them. '
+    'Expert routing sends each token to a sparse subset of feed-forward blocks. '
+    'Flash attention tiles the softmax so scores never leave on-chip SRAM. '
+    'Distillation moves a teacher distribution into a compact student net. '
+    'Tensor parallelism shards a weight matrix across several accelerators. '
+    'Continuous batching admits arrivals without draining the active queue. '
+    'Rotary position embeddings rotate query and key vectors before scoring. '
+    'Grouped-query attention shares key heads to shrink the cache footprint. '
+    'A reranker scores passages with a cross encoder before generation starts. '
+    'Tokenizers split rare identifiers into byte-level fallback sequences. '
+    'Mixed precision keeps a master copy in fp32 beside a bf16 compute copy. '
+    'ZeRO shards optimizer state, gradients and parameters across ranks. '
+    'Pipeline parallelism splits layers into stages on separate devices. '
+    'An adapter merges into the base by adding the scaled low-rank product. '
+    'Beam search keeps several prefixes alive and prunes the weakest later. '
+    'Top-p sampling truncates the tail of the distribution before drawing. '
+    'A vector database returns nearest neighbours under a distance metric. '
+    'Embedding models map text into a space where cosine similarity is useful. '
+    'Chunking decides what a retriever can ever find, so boundaries matter. '
+    'A guardrail classifier scores prompts before the model processes them. '
+    'Tool schemas are serialized into the prompt on every single API call. '
+    'Prompt caching reuses a stable prefix and cuts the billed input tokens. '
+    'Sandboxing confines generated code to a disposable container image. '
+    'An eval harness pins a dataset so regressions become measurable. '
+    'Latency budgets split cleanly into prefill, decode and network delay. '
+    'Throughput rises when a batch keeps every accelerator busy at once. '
+    'Memory bandwidth limits decode far more than raw arithmetic does. '
+    'A scheduler balances prefill and decode traffic on one shared device. '
+    'Weight-only quantization leaves activations in their original precision. '
+    'Activation quantization needs calibration data to choose clipping ranges. '
+    'A cache eviction policy trades context length against resident memory. '
+    'Prefix sharing lets many requests reuse one common system prompt. '
+    'Speculative verification accepts a draft token only when it matches. '
+    'An expert imbalance drops tokens, so a router needs an auxiliary loss. '
+    'A quantized kernel must fuse dequantization into the matrix multiply. '
+    'Sequence packing removes padding waste across short training examples. '
+    'A draft model must be cheap enough to repay its own extra forward passes. '
+    'Long context costs scale quadratically unless attention is approximated. '
+    'Sparse retrieval beats dense search on rare entity names in practice. '
+    'A tokenizer vocabulary trade-off decides how many merges stay useful. '
+    'Logit processors mask forbidden tokens before the sampler sees a row. '
+    'Positional interpolation stretches a window without retraining a model. '
+    'Attention sinks keep early tokens addressable inside a streaming cache. '
+    'A router temperature controls how sharply experts get selected per token. '
+    'On-policy distillation samples from the student, then corrects the gap. '
+    'Weight averaging across checkpoints often beats a single best epoch. '
+    'A learning-rate warmup prevents an early divergence on large batches. '
+    'Gradient clipping bounds the update norm when a batch holds an outlier. '
+    'Data deduplication lowers memorization and improves held-out accuracy. '
+    'Curriculum ordering feeds easy examples before the harder mixtures. '
+    'A reward model scores completions and feeds a preference optimizer. '
+    'Constitutional critique rewrites a draft answer against a written rule. '
+    'Retrieval reordering lifts precision when the first stage over-recalls. '
+    'An index refresh lag makes freshly written documents temporarily invisible. '
+    'Hybrid search blends a keyword score with a dense similarity score. '
+    'Chunk overlap preserves a sentence split across two adjacent windows. '
+    'A metadata filter prunes candidates before the vector comparison runs. '
+    'Query rewriting expands an ambiguous ask into several clearer variants. '
+    "A context window budget must reserve room for the model's own output. "
+    'Streaming decode hides first-token latency behind an incremental render. '
+    'Batching across users raises throughput but adds a queueing delay. '
+    'A prefill-decode split server keeps both phases on separate pools. '
+    'Kernel fusion removes a memory round trip between two adjacent operations. '
+    'An occupancy limit caps concurrent sequences when the cache is exhausted. '
+    'A graceful degradation path serves shorter contexts under heavy load. '
+    'Observability traces every request so a latency spike becomes attributable. '
+    'A canary rollout limits blast radius when a new weights revision regresses. '
+    'Rollback needs a pinned artifact, not a retrained model from scratch. '
+)
+_TRUNC_U = " ".join(f"Frage{i}" for i in range(900))[:5000]
+
+
 def test_truncation_limits():
     buf = _tmp_buf()
-    # Use genuinely varied text, not a repeated unit: a repeated phrase IS
-    # degenerate repetition and is (correctly) refused by the junk gate, so it
-    # would never reach the truncation branch.
-    long_u = " ".join(f"Frage{i}" for i in range(900))[:5000]
-    long_a = " ".join(f"Antwort{i} mit echtem Inhalt" for i in range(250))[:5000]
-    bs.append(long_u, long_a, buffer=buf)
+    # Fixture must SURVIVE the junk gate: append() refuses degenerate text
+    # (repeated template -> glued motif / header-repeat / low unique-ratio)
+    # and the truncation branch would then be unreachable.
+    bs.append(_TRUNC_U, _TRUNC_PROSE, buffer=buf)
     rec = json.loads(open(buf, encoding="utf-8").readline())
     assert len(rec["u"]) == 3000
     assert len(rec["a"]) == 4000
