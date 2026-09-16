@@ -62,7 +62,14 @@ def test_write_file_rejection_does_not_mutate_existing_file(tmp_path):
 
 def test_write_file_approval_mutates_and_request_includes_diff(tmp_path):
     target = tmp_path / "sample.txt"
-    target.write_text("before\n", encoding="utf-8")
+    # write_bytes, not write_text: on Windows text mode translates "\n" to
+    # write_bytes, not write_text: on Windows text mode translates LF to CRLF,
+    # so write_text("before\n") creates a CRLF file. write_file then correctly
+    # preserves that CRLF (Roo Code pattern, see _normalize_line_endings) and
+    # reports 7 bytes — making len("after\n") == 6 an assertion about the host
+    # platform rather than about approval wiring. A byte-exact fixture keeps
+    # this test about what it claims to test.
+    target.write_bytes(b"before\n")
     proposals = []
 
     def approve(proposal):
