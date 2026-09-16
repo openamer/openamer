@@ -156,6 +156,85 @@ def _remove_edge(cause):
         pass
 
 
+def test_atomic_write_never_exposes_partial_file():
+    """A concurrent reader must never parse a half-written store.
+
+    Regression (16.09.26): every writer rewrote the store with
+    open(WM, "w"), which truncates FIRST. A reader in another process
+    (threading._lock is process-local) could then parse 0..N partial
+    lines, and knowledge_to_action reported the phantom
+    'not enough observed facts to predict from' against a 425-edge store.
+    Live probe before the fix: observed lengths 43..425 while a writer
+    ran. After the fix: only the full length.
+    """
+    import threading
+    tmp = tempfile.mkdtemp()
+    old_wm = wm.WM
+    try:
+        wm.WM = os.path.join(tmp, "wm.jsonl")
+        seed = [json.dumps({'ts': str(i), 'schema_version': wm.SCHEMA_VERSION,
+                            'kind': 'fact', 'cause': f'c{i}', 'effect': f'e{i}',
+                            'embedding': [0.0] * wm.DIM, 'embed_ok': True})
+                for i in range(120)]
+        wm._atomic_write(seed)
+        assert len(wm._load()) == 120
+
+        stop = {'v': False}
+
+        def writer():
+            n = 0
+            while not stop['v']:
+                with open(wm.WM, encoding="utf-8") as f:
+                    lines = f.readlines()
+                wm._atomic_write(lines)      # the new atomic path
+                n += 1
+            writer.passes = n
+
+        t = threading.Thread(target=writer, daemon=True)
+        t.start()
+        try:
+            seen = set()
+            t0 = time.time()
+            while time.time() - t0 < 1.5:
+                seen.add(len(wm._load()))
+                time.sleep(0.002)
+        finally:
+            stop['v'] = True
+            t.join(timeout=5)
+        assert writer.passes > 0, 'writer never ran — test proved nothing'
+        assert seen == {120}, (
+            f'atomic write leaked a partial read: saw lengths {sorted(seen)}'
+        )
+    finally:
+        wm.WM = old_wm
+        import shutil as _sh
+        _sh.rmtree(tmp, ignore_errors=True)
+
+
+def test_load_retries_when_file_reads_empty():
+    """A non-empty file that parses to 0 edges must trigger one retry.
+
+    That combination is always a torn read, never a real empty store, and
+    reporting it upstream as 'no facts' is what made the failure silent.
+    """
+    tmp = tempfile.mkdtemp()
+    old_wm = wm.WM
+    try:
+        p = os.path.join(tmp, "wm.jsonl")
+        wm.WM = p
+        wm._atomic_write([json.dumps({'ts': '1', 'schema_version': wm.SCHEMA_VERSION,
+                                     'kind': 'fact', 'cause': 'c', 'effect': 'e',
+                                     'embedding': [0.0] * wm.DIM, 'embed_ok': True})])
+        assert len(wm._load()) == 1
+        # an absent store is legitimately empty (no retry loop / no hang)
+        wm.WM = os.path.join(tmp, 'missing.jsonl')
+        assert wm._load() == []
+    finally:
+        wm.WM = old_wm
+        import shutil as _sh
+        _sh.rmtree(tmp, ignore_errors=True)
+
+
 def _cleanup_test_edges():
     """Remove edges added by these tests so the model isn't polluted."""
     test_causes = {
