@@ -319,39 +319,57 @@ class TestSetupFeishuAdapterIntegration:
         )
         return env
 
-    @patch.dict(os.environ, {}, clear=True)
+    # `clear=True` wipes the WHOLE environment, not just the Feishu vars the
+    # test means to isolate. On Windows that breaks imports that legitimately
+    # read the OS environment while initialising:
+    #   - SystemRoot is required by the `ssl` module (aiohttp builds a default
+    #     context at import time -> SSLError (_ssl.c:3108) without it)
+    #   - LOCALAPPDATA / USERPROFILE are needed by Path.home(), which
+    #     openamer_constants._get_platform_default_openamer_home() falls back to
+    # Carve out the OS-provided path vars so the test isolates Feishu config
+    # without pretending the process has no OS.
+    _OS_PATH_VARS = ("SystemRoot", "windir", "SystemDrive",
+                     "LOCALAPPDATA", "APPDATA", "USERPROFILE",
+                     "HOMEDRIVE", "HOMEPATH", "TEMP", "TMP")
+
+    def _clear_except_os_paths(self):
+        keep = {k: os.environ[k] for k in self._OS_PATH_VARS if k in os.environ}
+        return patch.dict(os.environ, keep, clear=True)
+
     def test_qr_env_produces_valid_adapter_settings(self):
         """QR setup → adapter initializes with websocket mode."""
         env = self._make_env_from_setup()
 
-        with patch.dict(os.environ, env, clear=True):
-            from gateway.config import PlatformConfig
-            from plugins.platforms.feishu.adapter import FeishuAdapter
-            adapter = FeishuAdapter(PlatformConfig())
-            assert adapter._app_id == "cli_test_app"
-            assert adapter._app_secret == "test_secret_value"
-            assert adapter._domain_name == "feishu"
-            assert adapter._connection_mode == "websocket"
+        with self._clear_except_os_paths():
+            with patch.dict(os.environ, env):
+                from gateway.config import PlatformConfig
+                from plugins.platforms.feishu.adapter import FeishuAdapter
+                adapter = FeishuAdapter(PlatformConfig())
+                assert adapter._app_id == "cli_test_app"
+                assert adapter._app_secret == "test_secret_value"
+                assert adapter._domain_name == "feishu"
+                assert adapter._connection_mode == "websocket"
 
-    @patch.dict(os.environ, {}, clear=True)
     def test_open_dm_env_sets_correct_adapter_state(self):
         """Setup with 'allow all DMs' → adapter sees allow-all flag."""
         env = self._make_env_from_setup(dm_idx=1)
 
-        with patch.dict(os.environ, env, clear=True):
-            from plugins.platforms.feishu.adapter import FeishuAdapter
-            from gateway.config import PlatformConfig
-            # Verify adapter initializes without error and env var is correct.
-            FeishuAdapter(PlatformConfig())
-            assert os.getenv("FEISHU_ALLOW_ALL_USERS") == "true"
+        with self._clear_except_os_paths():
+            with patch.dict(os.environ, env):
+                from plugins.platforms.feishu.adapter import FeishuAdapter
+                from gateway.config import PlatformConfig
 
-    @patch.dict(os.environ, {}, clear=True)
+                # Verify adapter initializes without error and env var is correct.
+                FeishuAdapter(PlatformConfig())
+                assert os.getenv("FEISHU_ALLOW_ALL_USERS") == "true"
+
     def test_group_open_env_sets_adapter_group_policy(self):
         """Setup with 'open groups' → adapter group_policy is 'open'."""
         env = self._make_env_from_setup(group_idx=0)
 
-        with patch.dict(os.environ, env, clear=True):
-            from gateway.config import PlatformConfig
-            from plugins.platforms.feishu.adapter import FeishuAdapter
-            adapter = FeishuAdapter(PlatformConfig())
-            assert adapter._group_policy == "open"
+        with self._clear_except_os_paths():
+            with patch.dict(os.environ, env):
+                from gateway.config import PlatformConfig
+                from plugins.platforms.feishu.adapter import FeishuAdapter
+                adapter = FeishuAdapter(PlatformConfig())
+                assert adapter._group_policy == "open"

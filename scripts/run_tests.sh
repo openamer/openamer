@@ -102,6 +102,20 @@ if [ -f "$HOME/.openamer/pytest_live_guard.py" ]; then
 fi
 
 
+# ── SystemRoot for the hermetic env (captured BEFORE env -i) ────────────────
+# env -i drops SystemRoot. On Windows the SSL module cannot build a default
+# context without it: `ssl.SSLError: [SSL] unknown error (_ssl.c:3108)`. That
+# surfaces as aiohttp failing to import, which breaks any test that empties
+# os.environ itself (e.g. test_setup_feishu's @patch.dict(clear=True)) —
+# 3 failures attributed to the wrong cause.
+# MSYS bash does NOT expose SystemRoot as a shell variable (verified: empty in
+# bash, "C:\\WINDOWS" via Python), so ask the OS through the interpreter.
+NATIVE_SYSROOT="$("$PYTHON" -c 'import os;print(os.environ.get("SystemRoot") or r"C:\Windows")' 2>/dev/null)"
+if [ -z "$NATIVE_SYSROOT" ]; then
+  NATIVE_SYSROOT='C:\Windows'
+fi
+
+
 # ── Run in hermetic env ──────────────────────────────────────────────────────
 # env -i: start with empty environment, opt-in only what we need.
 # No credential var can leak — you'd have to explicitly add it here.
@@ -124,6 +138,7 @@ exec env -i \
   HOME="$HOME" \
   ${USERPROFILE:+USERPROFILE="$USERPROFILE"} \
   ${HOMEDRIVE:+HOMEDRIVE="$HOMEDRIVE"} ${HOMEPATH:+HOMEPATH="$HOMEPATH"} \
+  SystemRoot="$NATIVE_SYSROOT" \
   TZ=UTC \
   LANG=C.UTF-8 \
   LC_ALL=C.UTF-8 \
