@@ -536,7 +536,7 @@ _JUNK_RE = re.compile(
     # buffer_store._FIXTURE_LIST_RE; keep both files in sync. Measured over
     # the live buffer: 1 hit and that hit IS the leaking row -> 0 prose FPs.
     r"\b\w+\s+vs\.?\s+\w+[^|]{0,25}\d{1,2}\s*[-\u2013]\s*\d{1,2}\s*\|\s*"
-    r"\d{1,2}[/.]\d{1,2}[/.]\d{2,4}|closed nifty|the economic times benchmarks|"
+    r"\d{1,2}[/.]\d{1,2}[/.]\d{2,4}|closed nifty|the economic times benchmarks|add free huggingface demo|"
     # NOTE: the fragment below is the LAST one -- it keeps the closing comma
     # that the following re.IGNORECASE) closes.
     r"^\W*[kKmM]\s+followers\b",

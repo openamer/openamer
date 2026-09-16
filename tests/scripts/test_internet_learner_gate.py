@@ -1682,4 +1682,33 @@ def test_market_ticker_chrome_is_gated_on_both_paths():
     for s in prose:
         assert not buffer_store.is_junk(s), s
         assert not IL._is_junk(s), s
+def test_readme_changelog_bullet_list_is_gated_on_both_paths():
+    """GitHub README changelog/news bullet list (live 17.09.26).
+
+    cycle_h_efficiency stored "Inference: low decode overhead, best
+    throughput, and TTFT News [2024-10-14] Add Rocm support [2024-10-6]
+    Try it on Google Colab [2024-10-5] Add free Huggingface Demo ..." --
+    251 chars with digits, so the length trust and the technical-signal gate
+    both fired.
+    """
+    import buffer_store
+
+    leak = ("Inference: low decode overhead, best throughput, and TTFT News "
+            "[2024-10-14] \U0001f680 Add Rocm support [2024-10-6] "
+            "\U0001f680 Try it on Google Colab [2024-10-5] "
+            "\U0001f680 Add free Huggingface Demo : Huggingface Demo "
+            "[2024-10-4] \u270f\ufe0f Updated the VPTQ tech report.")
+    assert buffer_store.is_junk(leak), leak
+    assert IL._is_junk(leak), leak
+
+    prose = [
+        "Add ROCm support for AMD GPUs to the inference backend.",
+        "You can try it on Google Colab without installing anything locally.",
+        "The benchmark tracks decode overhead, throughput, and TTFT across backends.",
+        "Inference: low decode overhead, best throughput, and TTFT across all backends.",
+        "Add free Hugging Face demo notebooks to the docs for quick evaluation.",
+    ]
+    for s in prose:
+        assert not buffer_store.is_junk(s), s
+        assert not IL._is_junk(s), s
 

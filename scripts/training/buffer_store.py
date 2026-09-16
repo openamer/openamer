@@ -380,7 +380,22 @@ _NAV_CHROME = (
     # A bare "nifty" was measured and REJECTED (1 hand-written + 1 live
     # prose FP: "Benchmarks from the Nifty index showed a 2% gain ...").
     "closed nifty",
+    # GitHub README changelog/news bullet list the deep read leaks (live
+    # 17.09.26: cycle_h_efficiency stored "Inference: low decode overhead,
+    # best throughput, and TTFT News [2024-10-14] Add Rocm support
+    # [2024-10-6] Try it on Google Colab [2024-10-5] Add free Huggingface
+    # Demo : Huggingface Demo [2024-10-4] Updated the VPTQ tech report" --
+    # 251 chars with digits, so the length trust AND the technical-signal
+    # gate both fired). Same marker as internet_learner._JUNK_RE; keep both
+    # files in sync. Measured over the live buffer: 2 hits (the same row
+    # duplicated) and BOTH are the leak -> 0 prose FPs (283-row corpus),
+    # 0/8 hand-written counter-case FPs. Rejected candidates, each hitting
+    # real prose: "add rocm support", "try it on google colab",
+    # "low decode overhead" (1 hand FP each). A structural >=3-bracketed-date
+    # count also measured 0 FP both corpora -- candidate for a class-wide
+    # detector later; not needed for this single leak.
     "the economic times benchmarks",
+    "add free huggingface demo",
 )
 
 
