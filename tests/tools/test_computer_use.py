@@ -1910,6 +1910,9 @@ class TestCaptureAppFilterNoMatch:
         assert backend._last_app == "Chrome"
 
     def test_linux_default_capture_skips_gnome_shell_helper(self):
+        # The X11/GNOME helper filtering under test is gated on
+        # sys.platform == "linux"; patch it explicitly (the convention used
+        # elsewhere in this file) instead of relying on the host being Linux.
         windows = [
             {"app_name": "", "pid": 100, "window_id": 1,
              "is_on_screen": None, "title": "@!1921,0;BDHF", "z_index": 0},
@@ -1925,7 +1928,10 @@ class TestCaptureAppFilterNoMatch:
              "structuredContent": None},
         ]
 
-        backend.capture(mode="ax")
+        with patch("tools.computer_use.cua_backend.sys.platform", "linux"), \
+             patch("tools.computer_use.cua_backend._linux_x11_active_window_id",
+                   return_value=None):
+            backend.capture(mode="ax")
 
         assert backend._active_pid == 200
         assert backend._active_window_id == 2

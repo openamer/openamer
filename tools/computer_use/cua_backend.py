@@ -1198,6 +1198,10 @@ class _CuaDriverSession:
             "Resource temporarily unavailable" in msg
             or "os error 35" in msg
             or "daemon transport error" in msg
+            # The daemon's unix socket may not be accepting yet on a cold
+            # start (bridge up, daemon still binding). Same remedy applies:
+            # retry with backoff instead of surfacing an empty capture.
+            or ("daemon proxy" in msg and "not ready" in msg)
         )
 
     @staticmethod
