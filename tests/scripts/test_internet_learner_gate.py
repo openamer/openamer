@@ -881,3 +881,59 @@ def test_qa_portal_chrome_is_rejected_but_chinese_prose_survives():
     assert not IL._is_junk(_CJK_ONE_MARKER)
     assert buffer_store.is_junk(_CJK_ONE_MARKER) is False
     assert IL._clean_insight(_CJK_ONE_MARKER)
+
+
+def test_wikipedia_section_edit_prefix_is_stripped_not_stored():
+    """A LEADING MediaWiki "<Section> [ edit ]" control must not ride into the
+    buffer, but the paragraph BEHIND it must survive (live 16.09.26, class 12).
+
+    Learned, verbatim:
+      "Publications [ edit ] OWASP Top Ten The \"Top Ten\", first published in
+       2003 and updated periodically (subsequent editions appeared in 2004, 2007,
+       2010, 2013, 2017, 2021 and 2025), is a listing of the most critical
+       application security risks."
+    The bracket control is page furniture the extractor welded to a genuine
+    paragraph, so this is a STRIP (a third verdict beside accept/reject) — the
+    plain old-vs-new delta cannot prove it. Assert the surviving body is the
+    ORIGINAL MINUS THE PREFIX, and keep the counter-cases below alive: a strip
+    rule that eats a real sentence about an edit button is worse than the leak.
+    """
+    body = (
+        'OWASP Top Ten The "Top Ten", first published in 2003 and updated '
+        "periodically (subsequent editions appeared in 2004, 2007, 2010, 2013, "
+        "2017, 2021 and 2025), is a listing of the most critical application "
+        "security risks."
+    )
+    leak = "Publications [ edit ] " + body
+    assert IL._strip_wiki_section_prefix(leak) == body       # body pristine
+    assert IL._clean_insight(leak) == body
+    assert "[ edit ]" not in IL._clean_insight(leak)
+
+    # --- counter-cases: real prose that MENTIONS an edit control must be
+    # returned byte-identical. The possessive in case 1 is the load-bearing
+    # one: the leading-name guard is sentence-case, so `Wikipedia's` cannot
+    # match — a looser first version gutted this sentence to `button is a
+    # MediaWiki control ...`, which is exactly what this case exists to catch.
+    for text in (
+        "Wikipedia's [ edit ] button is a MediaWiki control, not content; the "
+        "RAG pipeline should strip it before chunking documents for retrieval.",
+        "The paper's edit history shows v1 to v3 in four months; INT4 "
+        "quantization recovers 97% of fp16 accuracy on the reasoning benchmark.",
+        "You can edit the config.yaml to pin a model, but cron job pins always "
+        "win over the global default in OpenAmer.",
+    ):
+        assert IL._strip_wiki_section_prefix(text) == text, text   # untouched
+        assert IL._clean_insight(text), text                       # learnable
+
+    # --- the writer gate must agree with the reader gate -------------------
+    import sys
+    sys.path.insert(0, str(TRAINING))
+    import buffer_store
+    assert buffer_store._WIKI_EDIT_WORD_RE.match('Publications [ edit ] OWASP')
+    assert not buffer_store._WIKI_EDIT_WORD_RE.match(
+        "Wikipedia's [ edit ] button is a MediaWiki control")
+    assert buffer_store.is_junk("Publications [ edit ] " + body)
+    assert buffer_store.is_junk(
+        "Wikipedia's [ edit ] button is a MediaWiki control, not content; the "
+        "RAG pipeline should strip it before chunking documents for retrieval."
+    ) is False

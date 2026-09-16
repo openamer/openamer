@@ -28,6 +28,38 @@ REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "scripts"))
 
 import importlib.util
+
+def _resolve_openamer_home(default: Path) -> Path:
+    """Resolve OPENAMER_HOME robustly across shells (see darwin_engine.py).
+
+    git-bash exports OPENAMER_HOME as an MSYS path ("/c/Users/..."). Native
+    Windows Python treats that as relative and lands in a phantom "C:/c/..."
+    tree. Normalise MSYS drive forms and reject doubled-drive artefacts so the
+    script never silently operates on a directory that isn't the real install.
+    """
+    raw = os.environ.get("OPENAMER_HOME")
+    if not raw:
+        return default
+    norm = raw.replace(os.sep, "/") if os.sep != "/" else raw
+    cand = None
+    if len(norm) >= 3 and norm[0] == "/" and norm[1].isalpha() and norm[2] == "/":
+        cand = Path(norm[1].upper() + ":/" + norm[3:])
+    else:
+        p = Path(raw)
+        if p.is_absolute():
+            cand = p
+    if cand is None:
+        return default
+    parts = cand.parts
+    drive = parts[0].rstrip("/").rstrip(os.sep)
+    if len(drive) == 2 and drive[1] == ":" and len(parts) >= 2:
+        head = parts[1].strip("/").strip(os.sep).lower()
+        if head and head == drive[0].lower():
+            return default
+    return cand if cand.exists() else default
+
+
+
 _spec = importlib.util.spec_from_file_location(
     "darwin_engine", REPO / "scripts" / "darwin_engine.py")
 darwin = importlib.util.module_from_spec(_spec)
@@ -46,7 +78,7 @@ mem = importlib.util.module_from_spec(_spec3)
 sys.modules["memory_darwinism"] = mem
 _spec3.loader.exec_module(mem)
 
-HOME = Path(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")))
+HOME = _resolve_openamer_home(Path.home() / "AppData" / "Local" / "openamer")
 LOOP_LOG = HOME / "darwin" / "autonomous-loop.json"
 
 # real operations mapped by capability

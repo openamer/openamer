@@ -646,6 +646,46 @@ def _is_qa_portal_chrome(text):
     return hits >= _QA_PORTAL_CHROME_MIN_MARKERS
 
 
+# German SaaS pricing/checkout chrome (live 16.09.26, class 13):
+# cycle_c_github stored, verbatim from the buffer row,
+#   "Bleib flexibel: Monatlich kündbar Lastschrift Kreditkarte Auf Rechnung
+#    Jahrespaket 49,50 € / Jahr ~ 4,12 € pro Nutzer und Monat inkl."
+# — a plan-comparison/checkout table with zero technical prose. Both gates
+# passed it: the prices fed the technical-signal gate (the alternation starts
+# with \d+, so "49" and "4" count) and the 133 chars cleared the >=90 "long
+# prose" trust.
+#
+# Keyed on the checkout's own LABEL CHAIN, never on the topic or a bare price:
+# TWO independent billing markers are required, so a genuine insight that
+# merely mentions a price ("serving that model costs about 0,002 € per 1k
+# tokens, annualised 12 € per agent") stays learnable. Measured over the live
+# 4855-row corpus (buffer + junk log, 16.09.26): 6 marker hits, all in ONE row
+# (the leaking row), 0 real-prose rows. The English twin of this class,
+# "billed annually", already lives in buffer_store._NAV_CHROME.
+_DE_PRICING_CHROME_MARKERS = (
+    "monatlich kündbar",
+    "jahrespaket",
+    "lastschrift",
+    "auf rechnung",
+    "pro nutzer und monat",
+    "€ / jahr",
+)
+_DE_PRICING_CHROME_MIN_MARKERS = 2
+
+
+def _is_de_pricing_chrome(text):
+    """True when `text` is a German pricing/checkout label chain.
+
+    Structural, not topical: TWO independent billing markers must be present,
+    so real prose that happens to cite a price still reaches the buffer.
+    """
+    low = (text or "").lower()
+    if not low:
+        return False
+    hits = sum(1 for m in _DE_PRICING_CHROME_MARKERS if m in low)
+    return hits >= _DE_PRICING_CHROME_MIN_MARKERS
+
+
 def _is_ticker_loop(text):
     """True when the text is a news-TICKER loop: a time code plus a phrase the
     text itself repeats.
@@ -689,6 +729,8 @@ def _is_junk(text):
     if _is_arxiv_abstract_chrome(t):
         return True
     if _is_qa_portal_chrome(t):
+        return True
+    if _is_de_pricing_chrome(t):
         return True
     if _is_ticker_loop(t):
         return True

@@ -371,6 +371,36 @@ def _is_qa_portal_chrome(text):
     return sum(1 for m in _QA_PORTAL_CHROME_MARKERS if m in low) >= _QA_PORTAL_CHROME_MIN_MARKERS
 
 
+# German SaaS pricing/checkout chrome (live 16.09.26, class 13) — mirror of
+# internet_learner._is_de_pricing_chrome. The extraction gate drops the label
+# chain, but every other writer path reaches this gate, so the rule is kept
+# here too (`buffer_store` must not import the learner — circular). Measured
+# over the live 4855-row corpus: 6 marker hits, all in ONE row (the leaking
+# row), 0 real-prose rows. The English twin, "billed annually", already lives
+# in _NAV_CHROME above.
+_DE_PRICING_CHROME_MARKERS = (
+    "monatlich kündbar",
+    "jahrespaket",
+    "lastschrift",
+    "auf rechnung",
+    "pro nutzer und monat",
+    "€ / jahr",
+)
+_DE_PRICING_CHROME_MIN_MARKERS = 2
+
+
+def _is_de_pricing_chrome(text):
+    """True when `text` is a German pricing/checkout label chain.
+
+    Structural, not topical: TWO independent billing markers, so real prose
+    that happens to cite a price still passes.
+    """
+    low = (text or "").lower()
+    if not low:
+        return False
+    return sum(1 for m in _DE_PRICING_CHROME_MARKERS if m in low) >= _DE_PRICING_CHROME_MIN_MARKERS
+
+
 def _is_binary_noise(text):
     """True when text is raw bytes mis-decoded as text (PDF/zip blob).
 
@@ -425,6 +455,10 @@ def _is_nav_chrome(text):
     # a Chinese Q&A/answer-portal label chain (same rule as
     # internet_learner._is_qa_portal_chrome)
     if _is_qa_portal_chrome(text):
+        return True
+    # a German pricing/checkout label chain (same rule as
+    # internet_learner._is_de_pricing_chrome)
+    if _is_de_pricing_chrome(text):
         return True
     # a LEADING MediaWiki section-edit control (same narrow rule as
     # internet_learner._strip_wiki_section_prefix)
