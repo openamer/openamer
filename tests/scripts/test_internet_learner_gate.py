@@ -494,6 +494,83 @@ def test_arxiv_abstract_chrome_is_rejected():
         assert IL._clean_insight(text), text
 
 
+def test_blog_header_stack_is_stripped_not_stored():
+    """Header stacks + share widgets must not ride along, but the article text
+    must survive (live 16.09.26 — three verbatim rows of one family).
+
+    Learned, verbatim from the buffer:
+      1. "Team / JUN 1, 2026 / 0 comments AI Coding Agents: The Complete Guide
+          to Autonomous Software Development (2026) 32 min read Share on
+          Twitter , LinkedIn Software development is undergoing ..."
+      2. "3 min read Illustration The Agent Times // Share X LinkedIn HN Copy
+          link The specific article at the center of the storm remains ..."
+      3. "AI agents Home News MIT News Published On: Nov 22 2024 Published on:
+          May 21, 2026 Share Facebook Twitter Bluesky Fields ranging from
+          robotics to medicine ..."
+    Three structural rules: a `<name> / <DATE> / <N> comments` dateline, a share
+    widget ANCHORED to a date/read-time/`//` header marker, and the `copy link`
+    button label. Each measured over the live 277-row buffer: 3 hits total (the
+    leaking rows), 0 real-prose rows.
+
+    The voice-only variant ("share on <platform>" anywhere) was measured and
+    REJECTED — it ate a real sentence, so that counter-case is pinned below.
+    """
+    cases = [
+        # (verbatim leak, chrome that must be gone)
+        (
+            "Team / JUN 1, 2026 / 0 comments AI Coding Agents: The Complete "
+            "Guide to Autonomous Software Development (2026) 32 min read Share "
+            "on Twitter , LinkedIn Software development is undergoing its "
+            "biggest transformation since the invention of version control.",
+            ("/ JUN 1, 2026 /", "0 comments", "Share on Twitter"),
+        ),
+        (
+            "3 min read Illustration The Agent Times // Share X LinkedIn HN "
+            "Copy link The specific article at the center of the storm remains "
+            "somewhat obscured in human terms.",
+            ("Share X LinkedIn", "Copy link", "The Agent Times //"),
+        ),
+        (
+            "AI agents Home News MIT News Published On: Nov 22 2024 Published "
+            "on: May 21, 2026 Share Facebook Twitter Bluesky Fields ranging "
+            "from robotics to medicine to political science are attempting to "
+            "train AI systems.",
+            ("Share Facebook Twitter",),
+        ),
+    ]
+    for leak, gone in cases:
+        out = IL._strip_blog_header_stack(leak)
+        assert len(out.split()) >= 5, leak
+        for chrome in gone:
+            assert chrome not in out, (chrome, out)
+        # the surviving text is a trimmed SLICE of the original, never invented
+        for word in out.split():
+            assert word in leak, (word, out)
+
+    # the full chain must leave NO residue of the header (read-time rule also
+    # terminates on a `//` separator, so row 2's "3 min read … //" is consumed)
+    for leak, _ in cases:
+        for helper in (IL._strip_read_time_header, lambda t: IL._clean_insight(t, 300)):
+            cleaned = helper(leak)
+            assert "min read" not in cleaned or "Illustration" not in cleaned
+
+    # counter-cases: prose that merely MENTIONS a share, a read time, or uses
+    # slashes must survive byte-identical. The first needs a real technical
+    # keyword because a <90-char candidate must carry one — that is the
+    # pre-existing length rule, not this one.
+    for text in (
+        "The write-up is a 6 min read; we share on Twitter the INT4 quantization table.",
+        "We share on Twitter the benchmark results for the quantized 7B model today.",
+        "We share X posts about quantization every week on our internal channel.",
+        "Share on Twitter is not a strategy; accuracy comes from quantization at int4.",
+        "Training took 3 days / 2 GPUs / 400 GB of tokens per epoch overall.",
+        "A 32 min read of the vLLM docs shows the attention backend is auto-selected.",
+        "The team copied the link between latency and batch size in the report.",
+    ):
+        assert IL._strip_blog_header_stack(text) == text, text
+        assert IL._clean_insight(text), text
+
+
 def test_read_time_header_is_stripped_not_stored():
     """A leading "<N> min read <category nav>" header must not ride into the
     buffer, but the article BEHIND it must survive (live 16.09.26, two cycles).

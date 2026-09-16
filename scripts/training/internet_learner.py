@@ -1113,6 +1113,43 @@ _BARE_ATTRIB_RE = re.compile(
 _READ_TIME_RE = re.compile(r"^\s*\d{1,3}\s*min\s*read\b[\s:\u00b7|\u2013-]*")
 _WORD_RE = re.compile(r"[A-Za-z][A-Za-z0-9&+.'-]*")
 
+# Platform names a share widget lists. Kept as a plain alternation so the rules
+# below stay readable.
+_PLATFORM_ALT = (r"(?:x|twitter|facebook|linkedin|reddit|whatsapp|hn|"
+                 r"hacker\s*news|bluesky|pinterest|email)")
+
+# A social share widget is page furniture only when it sits in the PAGE HEADER,
+# i.e. directly after a date literal, a read time, or a `//` nav separator —
+# prose never has that adjacency (live 16.09.26, three rows of the same class):
+#   "… / JUN 1, 2026 / 0 comments … 32 min read Share on Twitter , LinkedIn …"
+#   "3 min read Illustration The Agent Times // Share X LinkedIn HN Copy link …"
+#   "… Published on: May 21, 2026 Share Facebook Twitter Bluesky Fields ranging …"
+#
+# A voice-only rule ("share on <platform>" anywhere) was measured and REJECTED:
+# it ate a real sentence ("We share on Twitter the benchmark results …") and
+# truncated a second row. Only the ANCHORED form is safe — that is why this
+# needs the header anchor and no general fallback.
+_SHARE_WIDGET_RE = re.compile(
+    r"(?:" + _DATE_ALT + r"|\b\d{1,3}\s*min\s*read\b|//)[\s:\u00b7|\u2013-]*"
+    r"share\s+(?:on\s+)?" + _PLATFORM_ALT + r"\b(?:\s*,?\s*" + _PLATFORM_ALT + r"\b)*[\s,]*",
+    re.IGNORECASE)
+
+# A share widget at the very START of the text that lists SEVERAL platforms
+# ("Share X LinkedIn HN") is header furniture. The >=2-platform requirement is
+# what keeps a sentence that merely opens with a share verb safe:
+# "Share on Twitter is not a strategy; accuracy comes from quantization at int4."
+# is untouched (single platform + prose follows). Measured live 16.09.26: 1 hit
+# (the leaking row), 0 real-prose rows.
+_LEADING_SHARE_WIDGET_RE = re.compile(
+    r"^\s*share\s+(?:on\s+)?" + _PLATFORM_ALT +
+    r"\b(?:\s*,?\s*" + _PLATFORM_ALT + r"\b)+[\s,]*",
+    re.IGNORECASE)
+
+# "Copy link" is a share-widget ACTION button; real prose says "the link
+# between latency and batch size", never "Copy link". Measured over the live
+# 277-row buffer: 1 hit (the leaking row), 0 real-prose rows.
+_COPY_LINK_RE = re.compile(r"\bcopy\s+link\b", re.IGNORECASE)
+
 
 def _strip_read_time_header(text):
     """Drop a leading "<N> min read <category nav>" blog header.
@@ -1138,6 +1175,21 @@ def _strip_read_time_header(text):
     if not m:
         return t
     rest = t[m.end():].lstrip()
+    # A `//` nav separator terminates the header just like a repeated nav word
+    # does (live 16.09.26: "3 min read Illustration The Agent Times // Share X
+    # LinkedIn HN Copy link The specific article …").
+    slash = rest.find("//")
+    if 0 <= slash <= 60:
+        out = rest[slash + 2:].strip()
+        # the // nav separator is followed by the share widget on this shape,
+        # so consume it here (the anchor is gone by the time the blog-stack
+        # stripper runs) — live 16.09.26 row "… The Agent Times // Share X
+        # LinkedIn HN Copy link The specific article …"
+        out = _SHARE_WIDGET_RE.sub(" ", out)
+        out = _LEADING_SHARE_WIDGET_RE.sub(" ", out)
+        out = _COPY_LINK_RE.sub(" ", out)
+        out = re.sub(r"\s+", " ", out).strip()
+        return out if len(out.split()) >= 5 else t
     seen, boundary = set(), None
     for tok in _WORD_RE.finditer(rest):
         w = tok.group(0)
@@ -1159,6 +1211,47 @@ _ARROW_NAV_RE = re.compile(r"\s*-{1,2}>\s*")
 _POSTED_BY_RE = re.compile(
     r"^\s*(?:posted|published|updated)\s+on\s+[^,]{3,40}\s+by\s+[A-Za-z][\w.'-]*\s*",
     re.IGNORECASE)
+
+# Leading blog header stack: "<author> / <DATE> / <N> comments" (live 16.09.26,
+# fourth shape of the byline family). Slash-separated page furniture welded to
+# the headline. STRIP, like the other byline shapes — the headline behind it is
+# the knowledge. Measured over the live 277-row buffer: 1 hit (the leaking row),
+# 0 real-prose rows.
+_BLOG_HEADER_STACK_RE = re.compile(
+    r"^\s*[A-Za-z][\w .'\-]{0,40}\s*/\s*" + _DATE_ALT + r"\s*/\s*\d+\s*comments?\b\s*",
+    re.IGNORECASE)
+
+
+def _strip_blog_header_stack(text):
+    """Drop a leading "<author> / <DATE> / <N> comments" header stack and any
+    header-adjacent share widget.
+
+    Live 16.09.26 (cycle_e_competitors): the competitor cycle learned
+      "Team / JUN 1, 2026 / 0 comments AI Coding Agents: The Complete Guide to
+       Autonomous Software Development (2026) 32 min read Share on Twitter ,
+       LinkedIn Software development is undergoing its biggest transformation
+       since the invention of version control."
+    All three runs are page furniture; the headline between them is what the
+    page is about, so STRIP rather than reject (same call as the byline prefix).
+
+    Every rule is structural — a slash-delimited dateline, a share CTA anchored
+    to a header marker, a widget-only button label — never a bare voice match,
+    so ordinary prose that merely mentions a share or a read time is untouched.
+    """
+    t = (text or "").strip()
+    t = _BLOG_HEADER_STACK_RE.sub("", t).strip()
+    t = _SHARE_WIDGET_RE.sub(" ", t)
+    t = _LEADING_SHARE_WIDGET_RE.sub(" ", t)
+    t = _COPY_LINK_RE.sub(" ", t)
+    # Only collapse whitespace when something was actually removed — otherwise
+    # an untouched row must come back byte-identical (a blanket re.sub would
+    # silently rewrite 6 innocent rows on the live buffer, 16.09.26).
+    if t != (text or "").strip():
+        t = re.sub(r"\s+", " ", t).strip()
+    else:
+        t = (text or "").strip()
+    # only keep the strip when a real sentence body remains; else leave it alone
+    return t if len(t.split()) >= 5 else (text or "").strip()
 
 
 def _strip_arrow_nav_prefix(text):
@@ -1233,6 +1326,7 @@ def _clean_insight(text, max_len=250):
     t = _strip_byline_prefix(t)
     t = _strip_read_time_header(t)
     t = _strip_arrow_nav_prefix(t)
+    t = _strip_blog_header_stack(t)
     if len(t) < 20 or _is_junk(t):
         return ""
     if _is_nav_list(t):
