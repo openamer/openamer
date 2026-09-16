@@ -1234,3 +1234,53 @@ def test_hn_listing_and_wikipedia_infobox_chrome_is_gated_on_both_paths():
     ):
         assert not buffer_store.is_junk(prose), prose
         assert not IL._is_junk(prose), prose
+
+
+def test_contact_block_chrome_is_gated_on_both_paths():
+    """A legal-imprint / "Transparenzliste" contact block is not an insight.
+
+    Live 16.09.26: cycle_c_github stored the 106-char row
+    `Transparenzliste GAIA AG Hans-Henny-Jahnn-Weg 53 22085 Hamburg
+    Deutschland +49 40 3510520 info@gaia-group.` -- pure company-address
+    chrome. It cleared BOTH gates because the length trust (>=90 chars)
+    waved it through and its house number / postcode satisfied the
+    technical-signal gate. `_is_nav_list` wants >=6 TitleCase tokens AND no
+    comma, so the mixed-case address chain never matched it.
+
+    The rule is STRUCTURAL (postcode AND international phone AND e-mail),
+    never topical: `Transparenzliste` alone is a topic word -- it appears in
+    a genuine sentence about media-regulation disclosure duties, so a
+    marker on it would drop real prose. Measured over the live 300-row
+    buffer: exactly 1 hit and that hit IS the leaking row.
+    """
+    sys.path.insert(0, str(TRAINING))
+    import buffer_store
+
+    leaks = (
+        "Transparenzliste GAIA AG Hans-Henny-Jahnn-Weg 53 22085 Hamburg "
+        "Deutschland +49 40 3510520 info@gaia-group.",
+        "Impressum: Muster GmbH, Beispielweg 12, 10115 Berlin, "
+        "Tel. +49 30 1234567, kontakt@muster-gmbh.de",
+    )
+    for leak in leaks:
+        assert buffer_store.is_junk(leak), leak
+        assert IL._is_junk(leak), leak
+
+    # counter-cases: a technical insight routinely cites numbers, a phone
+    # number, a postcode or an e-mail. Each below has AT MOST two of the
+    # three signals, so every one must survive BOTH gates.
+    for prose in (
+        "Deutschland 2026: the BSI reported 412 new CVEs affecting German "
+        "public-sector systems, up 18 percent year over year.",
+        "The Transparenzliste of the state media authority lists providers "
+        "that must disclose their algorithmic recommendation systems.",
+        "Kontakt: Universitaet Hamburg, Mittelweg 177, 20148 Hamburg, "
+        "Tel. +49 40 42838-0.",
+        "Reach the team at info@example.org for a security disclosure and "
+        "include a proof of concept with the affected version.",
+        "The 10115 Berlin pilot deployed 40 GPUs and cut inference latency "
+        "from 900 ms to 120 ms per request.",
+    ):
+        assert not buffer_store.is_junk(prose), prose
+        assert not IL._is_junk(prose), prose
+

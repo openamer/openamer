@@ -436,6 +436,36 @@ def _is_de_pricing_chrome(text):
     return sum(1 for m in _DE_PRICING_CHROME_MARKERS if m in low) >= _DE_PRICING_CHROME_MIN_MARKERS
 
 
+# A legal-imprint / "Transparenzliste" contact block carries no learning
+# signal (live 16.09.26: cycle_c_github stored "Transparenzliste GAIA AG
+# Hans-Henny-Jahnn-Weg 53 22085 Hamburg Deutschland +49 40 3510520
+# info@gaia-group." as a github learning -- 106 chars cleared the length
+# trust and its house number / postcode satisfied the technical-signal gate).
+# Structural, not topical: requires a 5-digit postcode AND an international
+# phone number AND an e-mail address, so an insight that merely cites a
+# count, a port or a version number is untouched. Measured over the live
+# 300-row buffer: exactly 1 hit and that hit IS the leaking row -> 0
+# real-prose false positives on a 22-sentence hand-written set; 0 hits over
+# 3,834 rows of longterm_episodes/train/world_model corpora.
+_CONTACT_ZIP_RE = _re.compile(r"\b\d{5}\b")
+_CONTACT_PHONE_RE = _re.compile(r"\+\d{1,3}[\s-]?\d")
+_CONTACT_EMAIL_RE = _re.compile(r"[\w.+-]+@[\w-]+")
+_CONTACT_MAX_CHARS = 600
+
+
+def is_contact_block(text):
+    """True when `text` is a legal-imprint / contact block, not prose.
+
+    All THREE signals must be present, so genuine technical prose that
+    happens to mention a number survives.
+    """
+    if not text or len(text) > _CONTACT_MAX_CHARS:
+        return False
+    return bool(_CONTACT_ZIP_RE.search(text)
+                and _CONTACT_PHONE_RE.search(text)
+                and _CONTACT_EMAIL_RE.search(text))
+
+
 def _is_binary_noise(text):
     """True when text is raw bytes mis-decoded as text (PDF/zip blob).
 
@@ -494,6 +524,9 @@ def _is_nav_chrome(text):
     # a German pricing/checkout label chain (same rule as
     # internet_learner._is_de_pricing_chrome)
     if _is_de_pricing_chrome(text):
+        return True
+    # a legal-imprint / contact block (same rule as is_contact_block)
+    if is_contact_block(text):
         return True
     # a LEADING MediaWiki section-edit control (same narrow rule as
     # internet_learner._strip_wiki_section_prefix)

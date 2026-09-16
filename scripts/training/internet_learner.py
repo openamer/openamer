@@ -803,6 +803,17 @@ def _is_junk(text):
         return True
     if _is_ticker_loop(t):
         return True
+    # A legal-imprint / contact block must be refused at EXTRACTION time too
+    # (live 16.09.26: cycle_c_github burned its deep read on a Transparenzliste
+    # page whose 106-char address block cleared both gates). Same structural
+    # rule as the writer gate -- postcode + international phone + e-mail.
+    try:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        from buffer_store import is_contact_block
+    except Exception:
+        is_contact_block = None
+    if is_contact_block is not None and is_contact_block(t):
+        return True
     # Ask the writer gate too: a 2B word salad scores a HIGH unique-token
     # ratio (the motif sits inside otherwise-distinct words), so only
     # buffer_store.is_glued_motif sees it. Rejecting it HERE lets the cycle
