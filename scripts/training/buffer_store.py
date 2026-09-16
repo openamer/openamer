@@ -369,6 +369,18 @@ _NAV_CHROME = (
     # internet_learner._JUNK_RE; keep both files in sync. Measured over
     # the live buffer: 1 hit and that hit IS the leaking row -> 0 prose FPs.
     "explore microsoft products and services and support for your home or business",
+    # news-site market-ticker chrome the deep read leaks (live 17.09.26:
+    # cycle_f_multi_domain stored "Walmart investors reject AI workplace
+    # report as automation expands in the US - The Economic Times Benchmarks
+    # CLOSED Nifty 23,118." as a domain learning; 129 chars with digits, so
+    # the length trust and the technical-signal gate both fired).
+    # Same markers as internet_learner._JUNK_RE; keep both files in sync.
+    # Measured over the live buffer: 1 hit and that hit IS the leaking row
+    # -> 0 prose FPs (284-row corpus), 0 hand-written counter-case FPs.
+    # A bare "nifty" was measured and REJECTED (1 hand-written + 1 live
+    # prose FP: "Benchmarks from the Nifty index showed a 2% gain ...").
+    "closed nifty",
+    "the economic times benchmarks",
 )
 
 

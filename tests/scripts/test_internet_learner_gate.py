@@ -1650,4 +1650,36 @@ def test_course_landing_cta_is_gated_on_both_paths():
         assert not IL._is_course_cta_chrome(p), p
         assert not IL._is_junk(p), p
         assert not buffer_store.is_junk(p), p
+def test_market_ticker_chrome_is_gated_on_both_paths():
+    """News-site market-ticker widget chrome (live 17.09.26).
+
+    cycle_f_multi_domain stored
+    "Walmart investors reject AI workplace report as automation expands in the
+    US - The Economic Times Benchmarks CLOSED Nifty 23,118." - a real lede
+    plus the ticker widget tail. 129 chars with digits, so the length trust
+    and the technical-signal gate both fired.
+    """
+    import buffer_store
+
+    leak = ("Walmart investors reject AI workplace report as automation expands"
+            " in the US - The Economic Times Benchmarks CLOSED Nifty 23,118.")
+    assert buffer_store.is_junk(leak), leak
+    assert IL._is_junk(leak), leak
+
+    # Second shape: the bare ticker widget with the site label.
+    leak2 = "The Economic Times Benchmarks CLOSED Nifty 23,118."
+    assert buffer_store.is_junk(leak2), leak2
+    assert IL._is_junk(leak2), leak2
+
+    prose = [
+        "Benchmarks from the Nifty index showed a 2% gain while the rupee weakened against the dollar.",
+        "We utilize a comprehensive dataset encompassing Nifty 100 intraday and daily price data from 2015 to 2024.",
+        "Walmart investors reject AI workplace report as automation expands in the US.",
+        "Chunked prefill enables dynamic, parallel processing of request prefixes, dramatically improving GPU utilization.",
+        "The Economic Times reported that Indian IT firms are adopting AI agents for code review at scale.",
+        "The agent benchmarks closed-source and open-weight models on the same harness.",
+    ]
+    for s in prose:
+        assert not buffer_store.is_junk(s), s
+        assert not IL._is_junk(s), s
 
