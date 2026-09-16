@@ -36,6 +36,53 @@ DIM = 768
 SCHEMA_VERSION = 2
 
 _lock = threading.Lock()
+def _atomic_write(lines):
+    """Write the whole store atomically (temp file + os.replace).
+
+    Plain `open(WM, "w")` truncates the file FIRST, so a concurrent reader
+    in another PROCESS (threading._lock is process-local only) can observe a
+    half-written store and parse 0..N partial lines. Live evidence:
+    knowledge_to_action's world-model experiment reported 'not enough
+    observed facts to predict from' against a 425-edge store, and a size
+    probe caught the file shrinking 6_896_295 -> 5_525_181 bytes mid-write.
+    os.replace is atomic on Windows and POSIX, so readers only ever see a
+    complete old or complete new store.
+
+    Windows caveat (caught by a live probe, not by theory): os.replace()
+    raises PermissionError if ANY process currently holds the destination
+    open for reading — and world_model readers (_load) do exactly that from
+    other processes. So retry a few times before giving up, and if the swap
+    still will not go through, fall back to an in-place rewrite rather than
+    dropping the write on the floor (losing an observation is worse than a
+    brief non-atomic moment).
+    """
+    tmp = f"{WM}.tmp-{os.getpid()}"
+    with open(tmp, "w", encoding="utf-8") as f:
+        for ln in lines:
+            f.write(ln if ln.endswith("\n") else ln + "\n")
+        f.flush()
+        os.fsync(f.fileno())
+    last = None
+    for attempt in range(6):
+        try:
+            os.replace(tmp, WM)
+            return
+        except PermissionError as e:      # dest held open by another process
+            last = e
+            time.sleep(0.05 * (attempt + 1))
+    try:
+        with open(WM, "w", encoding="utf-8") as f:
+            for ln in lines:
+                f.write(ln if ln.endswith("\n") else ln + "\n")
+    except Exception:
+        raise last
+    finally:
+        try:
+            os.remove(tmp)
+        except OSError:
+            pass
+
+
 
 
 def _migrate_edge(d):
@@ -92,9 +139,8 @@ def repair_store():
             e["embed_ok"] = True
             fixed += 1
     if fixed:
-        with _lock, open(WM, "w", encoding="utf-8") as f:
-            for e in edges:
-                f.write(json.dumps(e, ensure_ascii=False) + "\n")
+        with _lock:
+            _atomic_write([json.dumps(e, ensure_ascii=False) for e in edges])
     return {"repaired": fixed, "remaining": len(bad) - fixed}
 
 
@@ -110,15 +156,43 @@ def _cosine(a, b):
 
 
 def _load():
+    """Read all edges. Retries once if a non-empty file parses to 0 edges.
+
+    That combination is always a symptom of a concurrent write (partial
+    read), never a real empty store, and it used to be reported upstream as
+    'not enough observed facts to predict from'.
+    """
     if not os.path.exists(WM):
         return []
-    out = []
-    for line in open(WM, encoding="utf-8"):
+    for attempt in (0, 1):
+        out = []
+        # Snapshot the bytes in ONE read, then parse from memory. Holding the
+        # handle open for the whole parse (as `for line in open(WM)`) also
+        # blocks the writers' os.replace on Windows -> PermissionError ->
+        # they fall back to a non-atomic in-place rewrite. A short hold keeps
+        # the writer's atomic swap working.
         try:
-            out.append(_migrate_edge(json.loads(line)))
-        except Exception:
-            continue
-    return out
+            with open(WM, "rb") as f:
+                raw = f.read()
+        except OSError:
+            return out
+        for line in raw.decode("utf-8", "replace").splitlines():
+            if not line.strip():
+                continue
+            try:
+                out.append(_migrate_edge(json.loads(line)))
+            except Exception:
+                continue
+        if out or attempt:
+            return out
+        # non-empty on disk but parsed empty -> likely mid-write; let it settle
+        time.sleep(0.05)
+        try:
+            if os.path.getsize(WM) == 0:
+                return []
+        except OSError:
+            return []
+    return []
 
 
 def prune(max_dupes=2):
@@ -157,9 +231,7 @@ def prune(max_dupes=2):
                          "possible embedding collapse", "removed": 0, "kept": len(edges)}
     if removed and len(kept) > 0:
         with _lock:
-            with open(WM, "w", encoding="utf-8") as f:
-                for e in kept:
-                    f.write(json.dumps(e, ensure_ascii=False) + "\n")
+            _atomic_write([json.dumps(e, ensure_ascii=False) for e in kept])
     return {"removed": removed, "kept": len(kept)}
 
 
@@ -202,8 +274,7 @@ def observe(cause, effect, kind="fact", confidence=None):
                                     json.loads(ln).get("effect") == key[1]:
                                 lines[i] = json.dumps(d, ensure_ascii=False) + "\n"
                                 break
-                        with open(WM, "w", encoding="utf-8") as fw:
-                            fw.writelines(lines)
+                        _atomic_write(lines)
                         return d
         except Exception:
             pass  # dup check failed -> fall through to append (never lose data)
@@ -306,9 +377,7 @@ def migrate():
                          f"(empty read = bug, not intent)",
                 "schema_version": SCHEMA_VERSION}
     with _lock:
-        with open(WM, "w", encoding="utf-8") as f:
-            for e in edges:
-                f.write(json.dumps(e, ensure_ascii=False) + "\n")
+        _atomic_write([json.dumps(e, ensure_ascii=False) for e in edges])
     return {"migrated": len(edges), "schema_version": SCHEMA_VERSION}
 
 
