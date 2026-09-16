@@ -95,6 +95,24 @@ from toolsets import get_toolset_names
 _log = logging.getLogger(__name__)
 
 
+def _env_int(name: str, default: int, *, minimum: int = 0) -> int:
+    """Integer env override: absent/empty/non-integer/below ``minimum`` falls back to ``default``.
+
+    Ported from upstream ``hermes_cli/kanban_db.py``; ``kanban_db_connect`` reaches it via
+    the late-bound ``_kb`` handle, and its absence made every Kanban tool call return
+    "module 'openamer_cli.kanban_db' has no attribute '_env_int'" (77 failures).
+    """
+    raw = os.environ.get(name, "").strip()
+    if raw:
+        try:
+            parsed = int(raw)
+        except ValueError:
+            return default
+        if parsed >= minimum:
+            return parsed
+    return default
+
+
 # ---------------------------------------------------------------------------
 # Constants
 # ---------------------------------------------------------------------------
@@ -138,7 +156,7 @@ _IS_WINDOWS = sys.platform == "win32"
 KANBAN_ATTACHMENT_MAX_BYTES = 25 * 1024 * 1024
 
 
-def _assert_not_delegated_child_mutation() -> None:
+def _assert_not_delegated_child_mutation(path: "str | Path | None" = None) -> None:
     """Reject Kanban state mutations from ``delegate_task`` child contexts.
 
     The structured kanban tools and CLI dispatch layer both have fast-fail
@@ -148,7 +166,26 @@ def _assert_not_delegated_child_mutation() -> None:
     mutator that uses ``write_txn`` (tasks, runs, comments, attachments,
     dispatcher claims, repair events, subscriptions, GC, etc.) and every board
     metadata mutator fails closed before touching durable state.
+
+    *path* is the board DB / metadata root being mutated; ``None`` keeps the
+    original lineage-wide behaviour. When given, the finer-grained
+    ``kanban_path_is_fenced`` check applies (a spawned descendant may mutate a
+    board outside the fenced root), matching upstream's newer signature —
+    ``kanban_db_connect`` calls it with an argument.
     """
+    if path is not None:
+        try:
+            from agent.delegation_context import kanban_path_is_fenced
+
+            if kanban_path_is_fenced(path):
+                raise PermissionError(
+                    "delegate_task child contexts cannot mutate Kanban tasks or boards"
+                )
+            return
+        except PermissionError:
+            raise
+        except Exception:
+            pass  # fall through to the lineage-wide check
     try:
         from agent.delegation_context import is_delegated_child_process_context
 

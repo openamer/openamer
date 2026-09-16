@@ -54,6 +54,36 @@ def is_delegated_child_process_context() -> bool:
     )
 
 
+def kanban_path_is_fenced(path: "os.PathLike[str] | str") -> bool:
+    """Whether Kanban mutations at *path* (a board DB or board-metadata root) are denied for this
+    process: always for an in-process delegate child (the parent's own board); for a spawned
+    descendant only when *path* is the dispatcher-pinned ``OPENAMER_KANBAN_DB`` or lies under the
+    fenced root the marker carries. A legacy ``"1"`` marker fences everything.
+
+    Ported from upstream (agent/delegation_context.py) — openamer_cli/kanban_db_connect.py
+    imports this name, and its absence broke every Kanban-touching test (87 failures).
+    """
+    if _DELEGATED_CHILD_CONTEXT.get():
+        return True
+    import os
+
+    marker = os.environ.get(DELEGATED_CHILD_ENV_MARKER, "")
+    if not marker:
+        return False
+    if marker == "1":
+        return True
+    from pathlib import Path
+    target = Path(path).expanduser().resolve()
+    pinned = os.environ.get("OPENAMER_KANBAN_DB", "").strip()
+    if pinned and target == Path(pinned).expanduser().resolve():
+        return True
+    try:
+        target.relative_to(Path(marker).expanduser().resolve())
+    except ValueError:
+        return False
+    return True
+
+
 def scrub_kanban_env(env: Mapping[str, str] | MutableMapping[str, str]) -> dict[str, str]:
     """Return *env* with dispatcher-only Kanban variables removed."""
     cleaned = dict(env)

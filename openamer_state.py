@@ -22,6 +22,7 @@ import os
 import random
 import re
 import sqlite3
+import stat
 import sys
 import threading
 import time
@@ -102,6 +103,49 @@ def _scrub_surrogates(value: Any) -> Any:
     well-formed text.
     """
     return _sanitize_surrogates(value) if isinstance(value, str) else value
+
+
+def preflight_db_writability(db_path: Path, *, db_label: str = "state.db") -> None:
+    """Refuse-or-repair read-only DB files BEFORE the first connection opens.
+
+    A stray read-only ``state.db`` / ``-wal`` / ``-shm`` (sudo run, restored backup, copied dotfiles)
+    otherwise surfaces as an opaque "attempt to write a readonly database" inside ``_init_schema``,
+    and the obvious wrong "fix" (deleting the ``-wal``) loses committed transactions. ``chmod u+rw``
+    repair only inside the OpenAmer home tree (OpenAmer owns those files; ``chmod`` fails on files
+    the user doesn't own, bounding the repair exactly); otherwise fail fast naming the file and
+    command. Never deletes/truncates a WAL sidecar — once writable, the normal open checkpoints it.
+    ``:memory:``/``file:`` skipped. Shared with ``kanban_db``.
+
+    Ported from upstream ``hermes_state_repair.py`` (which ``hermes_state`` re-exports).
+    ``openamer_cli/kanban_db_connect.py`` imports it from here; its absence broke every
+    Kanban-touching test. Kept as a single function rather than porting the whole repair
+    module, which would pull in four more upstream-only modules.
+    """
+    if str(db_path) == ":memory:" or str(db_path).startswith("file:"):
+        return
+    home: Optional[Path] = None
+    with contextlib.suppress(Exception):  # pragma: no cover - defensive
+        home = Path(get_openamer_home()).resolve()
+    # SQLite needs a writable directory in every journal mode (WAL/SHM sidecars, or the DELETE-mode journal).
+    sidecars = (db_path.with_name(db_path.name + "-wal"), db_path.with_name(db_path.name + "-shm"))
+    for p, is_dir in [(db_path.parent, True), *((p, False) for p in (db_path, *sidecars) if p.is_file())]:
+        if (is_dir and not p.is_dir()) or os.access(p, os.R_OK | os.W_OK):
+            continue
+        x = "x" if is_dir else ""
+        in_scope = False
+        with contextlib.suppress(OSError, ValueError):
+            in_scope = home is not None and p.resolve().is_relative_to(home)
+            if in_scope:
+                os.chmod(p, p.stat().st_mode | stat.S_IRUSR | stat.S_IWUSR | (stat.S_IXUSR if is_dir else 0))
+        if in_scope and os.access(p, os.R_OK | os.W_OK):
+            logger.info("%s preflight: repaired read-only %s (chmod u+rw%s)", db_label, p, x)
+            continue
+        wal_note = (" Do NOT delete the -wal file — it contains committed data that "
+                    "will be merged into the database once it is writable." if p.name.endswith("-wal") else "")
+        raise sqlite3.OperationalError(
+            f"{db_label} is not writable: {'directory' if is_dir else 'file'} {p} is read-only for this user. "
+            f"OpenAmer needs read-write access to open the database. Fix with: chmod u+rw{x} '{p}' (files owned by "
+            f"another user may need sudo/chown).{wal_note}")
 
 
 def workspace_key(row: Dict[str, Any]) -> Optional[str]:
