@@ -1,14 +1,14 @@
-[autopatch] validating population (2026-09-15T04:00:29) ...
-[autopatch] population: 729 skills, avg 39.6
-[autopatch] 10 weak skills: auto-structural-connection-between-tool(21), doca-bare-metal-deployment(24), doca-bf3-deployment(24), doca-bf4-deployment(24), doca-caps(24), doca-collectx-deployment(24), doca-comm-channel-admin(24), doca-container-deployment(24), doca-debug(24), doca-dms(24)
+[autopatch] validating population (2026-09-16T04:00:57) ...
+[autopatch] population: 860 skills, avg 38.5
+[autopatch] 10 weak skills: auto-structural-connection-between-tool(21), auto-competitor-intelligence-ai-coding(21), auto-competitor-intelligence-an-ai(21), auto-competitor-intelligence-claudepowered-ai(21), auto-competitor-intelligence-crush-glamourous(21), auto-competitor-intelligence-electricity-use(21), auto-competitor-intelligence-jetbrains-ides(21), auto-competitor-intelligence-opencode-ai(21), auto-competitor-intelligence-opencode-open(21), auto-competitor-intelligence-pythonopenaichat(21)
 [autopatch] ✅ auto-structural-connection-between-tool: 21 → 31
-[autopatch] ✅ doca-bare-metal-deployment: 24 → 28
-[autopatch] ✅ doca-bf3-deployment: 24 → 28
-[autopatch] ✅ doca-bf4-deployment: 24 → 28
-[autopatch] ✅ doca-caps: 24 → 28
-[autopatch] ✅ doca-collectx-deployment: 24 → 28
-[autopatch] ✅ doca-comm-channel-admin: 24 → 28
-[autopatch] ✅ doca-container-deployment: 24 → 28
-[autopatch] ✅ doca-debug: 24 → 28
-[autopatch] ✅ doca-dms: 24 → 28
+[autopatch] ✅ auto-competitor-intelligence-ai-coding: 21 → 25
+[autopatch] ✅ auto-competitor-intelligence-an-ai: 21 → 25
+[autopatch] ✅ auto-competitor-intelligence-claudepowered-ai: 21 → 25
+[autopatch] ✅ auto-competitor-intelligence-crush-glamourous: 21 → 25
+[autopatch] ✅ auto-competitor-intelligence-electricity-use: 21 → 25
+[autopatch] ✅ auto-competitor-intelligence-jetbrains-ides: 21 → 25
+[autopatch] ✅ auto-competitor-intelligence-opencode-ai: 21 → 25
+[autopatch] ✅ auto-competitor-intelligence-opencode-open: 21 → 25
+[autopatch] ✅ auto-competitor-intelligence-pythonopenaichat: 21 → 25
 [autopatch] report → C:\Users\damir\openamer-repo\reports\darwin-autopatch.md

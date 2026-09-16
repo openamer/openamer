@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-09-15T04:00:29",
+  "timestamp": "2026-09-16T04:00:57",
   "mode": "apply",
-  "population": 729,
-  "avg_score": 39.6,
+  "population": 860,
+  "avg_score": 38.5,
   "kept": [
     {
       "skill": "auto-structural-connection-between-tool",
@@ -12,9 +12,9 @@
       "fixes": []
     },
     {
-      "skill": "doca-bare-metal-deployment",
-      "before": 24,
-      "after": 28,
+      "skill": "auto-competitor-intelligence-ai-coding",
+      "before": 21,
+      "after": 25,
       "delta": 4,
       "fixes": [
         "✅ metadata.openamer Block hinzugefügt",
@@ -23,9 +23,9 @@
       ]
     },
     {
-      "skill": "doca-bf3-deployment",
-      "before": 24,
-      "after": 28,
+      "skill": "auto-competitor-intelligence-an-ai",
+      "before": 21,
+      "after": 25,
       "delta": 4,
       "fixes": [
         "✅ metadata.openamer Block hinzugefügt",
@@ -34,9 +34,9 @@
       ]
     },
     {
-      "skill": "doca-bf4-deployment",
-      "before": 24,
-      "after": 28,
+      "skill": "auto-competitor-intelligence-claudepowered-ai",
+      "before": 21,
+      "after": 25,
       "delta": 4,
       "fixes": [
         "✅ metadata.openamer Block hinzugefügt",
@@ -45,9 +45,9 @@
       ]
     },
     {
-      "skill": "doca-caps",
-      "before": 24,
-      "after": 28,
+      "skill": "auto-competitor-intelligence-crush-glamourous",
+      "before": 21,
+      "after": 25,
       "delta": 4,
       "fixes": [
         "✅ metadata.openamer Block hinzugefügt",
@@ -56,9 +56,9 @@
       ]
     },
     {
-      "skill": "doca-collectx-deployment",
-      "before": 24,
-      "after": 28,
+      "skill": "auto-competitor-intelligence-electricity-use",
+      "before": 21,
+      "after": 25,
       "delta": 4,
       "fixes": [
         "✅ metadata.openamer Block hinzugefügt",
@@ -67,9 +67,9 @@
       ]
     },
     {
-      "skill": "doca-comm-channel-admin",
-      "before": 24,
-      "after": 28,
+      "skill": "auto-competitor-intelligence-jetbrains-ides",
+      "before": 21,
+      "after": 25,
       "delta": 4,
       "fixes": [
         "✅ metadata.openamer Block hinzugefügt",
@@ -78,9 +78,9 @@
       ]
     },
     {
-      "skill": "doca-container-deployment",
-      "before": 24,
-      "after": 28,
+      "skill": "auto-competitor-intelligence-opencode-ai",
+      "before": 21,
+      "after": 25,
       "delta": 4,
       "fixes": [
         "✅ metadata.openamer Block hinzugefügt",
@@ -89,9 +89,9 @@
       ]
     },
     {
-      "skill": "doca-debug",
-      "before": 24,
-      "after": 28,
+      "skill": "auto-competitor-intelligence-opencode-open",
+      "before": 21,
+      "after": 25,
       "delta": 4,
       "fixes": [
         "✅ metadata.openamer Block hinzugefügt",
@@ -100,9 +100,9 @@
       ]
     },
     {
-      "skill": "doca-dms",
-      "before": 24,
-      "after": 28,
+      "skill": "auto-competitor-intelligence-pythonopenaichat",
+      "before": 21,
+      "after": 25,
       "delta": 4,
       "fixes": [
         "✅ metadata.openamer Block hinzugefügt",

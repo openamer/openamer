@@ -1,17 +1,17 @@
-# 🧬 Darwin Auto-Patch Report — 2026-09-15T04:00:29
+# 🧬 Darwin Auto-Patch Report — 2026-09-16T04:00:57
 
-- Population: 729 skills, avg 39.6
+- Population: 860 skills, avg 38.5
 - Mode: **apply**
 
 ## Improved (kept)
 
 - ✅ `auto-structural-connection-between-tool`: 21 → 31 (+10)
-- ✅ `doca-bare-metal-deployment`: 24 → 28 (+4)
-- ✅ `doca-bf3-deployment`: 24 → 28 (+4)
-- ✅ `doca-bf4-deployment`: 24 → 28 (+4)
-- ✅ `doca-caps`: 24 → 28 (+4)
-- ✅ `doca-collectx-deployment`: 24 → 28 (+4)
-- ✅ `doca-comm-channel-admin`: 24 → 28 (+4)
-- ✅ `doca-container-deployment`: 24 → 28 (+4)
-- ✅ `doca-debug`: 24 → 28 (+4)
-- ✅ `doca-dms`: 24 → 28 (+4)
+- ✅ `auto-competitor-intelligence-ai-coding`: 21 → 25 (+4)
+- ✅ `auto-competitor-intelligence-an-ai`: 21 → 25 (+4)
+- ✅ `auto-competitor-intelligence-claudepowered-ai`: 21 → 25 (+4)
+- ✅ `auto-competitor-intelligence-crush-glamourous`: 21 → 25 (+4)
+- ✅ `auto-competitor-intelligence-electricity-use`: 21 → 25 (+4)
+- ✅ `auto-competitor-intelligence-jetbrains-ides`: 21 → 25 (+4)
+- ✅ `auto-competitor-intelligence-opencode-ai`: 21 → 25 (+4)
+- ✅ `auto-competitor-intelligence-opencode-open`: 21 → 25 (+4)
+- ✅ `auto-competitor-intelligence-pythonopenaichat`: 21 → 25 (+4)

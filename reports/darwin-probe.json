@@ -1,7 +1,7 @@
 {
-  "updated": "2026-09-15T01:50:29.534019+00:00",
+  "updated": "2026-09-16T01:50:58.193827+00:00",
   "skills_dir": "C:\\Users\\damir\\AppData\\Local\\openamer-laptop\\skills",
-  "total": 729,
+  "total": 860,
   "skills": {
     "auto-best-practice-from-official": {
       "refs": 0,
@@ -237,9 +237,117 @@
       "score": 1.0,
       "missing": []
     },
+    "asi-capability-summary": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "asi-identity": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "auto-env-checker": {
       "refs": 1,
       "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-competitor-intelligence-ai-coding": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-competitor-intelligence-an-ai": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-competitor-intelligence-claudepowered-ai": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-competitor-intelligence-crush-glamourous": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-competitor-intelligence-electricity-use": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-competitor-intelligence-jetbrains-ides": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-competitor-intelligence-opencode-ai": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-competitor-intelligence-opencode-open": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-competitor-intelligence-pythonopenaichat": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-competitor-intelligence-some-uncomfortab": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-competitor-intelligence-the-secret": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-competitor-intelligence-things-i": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-competitor-intelligence-undisclosed-addi": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-competitor-intelligence-we-asked": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-efficiency-learning-a-visual": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-efficiency-learning-advanced-quantizatio": {
+      "refs": 0,
+      "ok": 0,
       "score": 1.0,
       "missing": []
     },
@@ -255,7 +363,25 @@
       "score": 1.0,
       "missing": []
     },
+    "auto-efficiency-learning-show-hn": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "auto-efficiency-learning-small-language": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-efficiency-learning-splitquantv2-enhanci": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-efficiency-learning-vptq-extreme": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -279,7 +405,79 @@
       "score": 1.0,
       "missing": []
     },
+    "auto-internet-learning-an-ai": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "auto-internet-learning-autonomous-ai": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-internet-learning-mit-researchers": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-internet-learning-openai-and": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-internet-learning-the-ai": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-latest-research-insight-adaptive": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-latest-research-insight-an": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-latest-research-insight-deepseekr1": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-latest-research-insight-ladder": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-latest-research-insight-largescale": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-latest-research-insight-llms": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-latest-research-insight-selfretrieval": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-latest-research-insight-the": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -303,13 +501,49 @@
       "score": 1.0,
       "missing": []
     },
+    "auto-multidomain-learning-if-ai": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "auto-multidomain-learning-legal-ai": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
       "missing": []
     },
+    "auto-multidomain-learning-nasa-ibm": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-multidomain-learning-opensource-medical": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "auto-multidomain-learning-physics-simulation": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-multidomain-learning-python-climate": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-multidomain-learning-show-hn": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-security-learning-agent-sandboxing": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -570,8 +804,8 @@
       "missing": []
     },
     "cdp-social-posting": {
-      "refs": 0,
-      "ok": 0,
+      "refs": 1,
+      "ok": 1,
       "score": 1.0,
       "missing": []
     },
@@ -783,6 +1017,12 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-darwin-quarantine": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-darwin-rollback": {
       "refs": 0,
       "ok": 0,
@@ -802,6 +1042,12 @@
       "missing": []
     },
     "darwin-harvested-go-zip": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-home-where-scripts-training-does-not": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -837,7 +1083,19 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-memory-darwin-status-latest-json": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-n-usr-bin-bash-line-3-c-users-damir-boun": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-nall-done-nbinary-file-standard-inpu": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -909,6 +1167,12 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-scripts-autonomous-loop-py": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-scripts-cron-mes": {
       "refs": 0,
       "ok": 0,
@@ -975,6 +1239,12 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-temp-fl-probe": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-temp-kfvpj1fw-0-cs-23-der-typ-oder-n": {
       "refs": 0,
       "ok": 0,
@@ -1011,6 +1281,12 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-tmp-skillsafety-json": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-training-auto-skills-json": {
       "refs": 0,
       "ok": 0,
@@ -1023,6 +1299,12 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-training-internet-learner-py": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-training-model-config-py": {
       "refs": 0,
       "ok": 0,
@@ -1030,6 +1312,12 @@
       "missing": []
     },
     "darwin-harvested-training-self-improve-py": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-usersdamiropenamer-reposcriptsgithub": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -1114,9 +1402,9 @@
       "missing": []
     },
     "cron-fleet-health": {
-      "refs": 2,
-      "ok": 0,
-      "score": 0.0,
+      "refs": 3,
+      "ok": 1,
+      "score": 0.333,
       "missing": [
         "x.py",
         "online_buffer.js"
@@ -1165,10 +1453,12 @@
       "missing": []
     },
     "internet-learner-stall-fix": {
-      "refs": 2,
+      "refs": 3,
       "ok": 2,
-      "score": 1.0,
-      "missing": []
+      "score": 0.667,
+      "missing": [
+        "_probe_rates.py"
+      ]
     },
     "predictive-health": {
       "refs": 1,
@@ -1213,8 +1503,8 @@
       "missing": []
     },
     "discord-server-management": {
-      "refs": 1,
-      "ok": 1,
+      "refs": 2,
+      "ok": 2,
       "score": 1.0,
       "missing": []
     },
@@ -1261,10 +1551,12 @@
       "missing": []
     },
     "github-feature-update-post": {
-      "refs": 5,
+      "refs": 6,
       "ok": 5,
-      "score": 1.0,
-      "missing": []
+      "score": 0.833,
+      "missing": [
+        "/c/Users/damir/AppData/Local/Temp/x.py"
+      ]
     },
     "github-issue-updater": {
       "refs": 3,
@@ -1314,6 +1606,12 @@
       "score": 1.0,
       "missing": []
     },
+    "alpha": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "amc-run-rtsp-calibration": {
       "refs": 0,
       "ok": 0,
@@ -1333,6 +1631,66 @@
       "missing": []
     },
     "amc-setup-calibration-stack": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "autoplan": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "benchmark": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "benchmark-models": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "beta": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "browse": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "canary": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "careful": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "context-restore": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "context-save": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "cso": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -1469,6 +1827,44 @@
       "missing": []
     },
     "deepstream-sop": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "design-consultation": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "design-html": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "design-review": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "manage.py"
+      ]
+    },
+    "design-shotgun": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "devex-review": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "diagram": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -1884,6 +2280,18 @@
       "score": 1.0,
       "missing": []
     },
+    "document-generate": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "document-release": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "dynamo-interconnect-check": {
       "refs": 1,
       "ok": 0,
@@ -1953,6 +2361,89 @@
       "missing": []
     },
     "earth2studio-install": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "foundationpose-pipeline": {
+      "refs": 7,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "tools/bop_adapt/adapt.py",
+        "test/check_engine_depth_smoke.py",
+        "script/build_gt_cache.py",
+        "script/run_pipeline.py",
+        "script/infer.py"
+      ]
+    },
+    "foundationpose-setup": {
+      "refs": 4,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "tools/verify_sam3.py",
+        "tools/verify_foundationpose.py",
+        "tools/verify_foundationstereo.py",
+        "test/check_engine_depth_smoke.py"
+      ]
+    },
+    "freeze": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "gstack": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "gstack-openclaw-ceo-review": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "gstack-openclaw-investigate": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "gstack-openclaw-office-hours": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "gstack-openclaw-retro": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "gstack-upgrade": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "guard": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "hackernews-frontpage": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "health": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -2174,6 +2665,42 @@
       "missing": [
         "./run.sh"
       ]
+    },
+    "investigate": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "ios-clean": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "ios-design-review": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "ios-fix": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "ios-qa": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "ios-sync": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
     },
     "jetson-build-source": {
       "refs": 0,
@@ -2417,7 +2944,110 @@
       "score": 1.0,
       "missing": []
     },
+    "kermt-add-cmim-pretrain": {
+      "refs": 3,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "/skill/scripts/prepare_data.py",
+        "/skill/scripts/upgrade_to_hybrid.py",
+        "/skill/scripts/run_pretrain_local.py"
+      ]
+    },
+    "kermt-continue-pretrain": {
+      "refs": 5,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "/skill/scripts/fetch_released_model.py",
+        "/skill/scripts/check_checkpoint.py",
+        "/skill/scripts/check_data.py",
+        "/skill/scripts/prepare_data.py",
+        "/skill/scripts/run_pretrain_local.py"
+      ]
+    },
+    "kermt-embed": {
+      "refs": 5,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "/skill/scripts/fetch_released_model.py",
+        "/skill/scripts/check_checkpoint.py",
+        "/skill/scripts/check_data.py",
+        "/skill/scripts/prepare_data.py",
+        "/skill/scripts/run_extract_embeddings.py"
+      ]
+    },
+    "kermt-finetune": {
+      "refs": 6,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "/skill/scripts/fetch_released_model.py",
+        "/skill/scripts/check_checkpoint.py",
+        "/skill/scripts/check_data.py",
+        "/skill/scripts/prepare_data.py",
+        "/skill/scripts/run_finetune_local.py"
+      ]
+    },
+    "kermt-infer": {
+      "refs": 4,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "/skill/scripts/check_checkpoint.py",
+        "/skill/scripts/check_data.py",
+        "/skill/scripts/prepare_data.py",
+        "/skill/scripts/run_inference.py"
+      ]
+    },
+    "kermt-monitor": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "kermt-pretrain-scratch": {
+      "refs": 3,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "/skill/scripts/check_data.py",
+        "/skill/scripts/prepare_data.py",
+        "/skill/scripts/run_pretrain_local.py"
+      ]
+    },
+    "kermt-setup": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "land-and-deploy": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "landing-report": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "launch-nemo-rl": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "learn": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "make-pdf": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -2847,7 +3477,77 @@
         "skills/nv-segment-ctmr/scripts/run_ctmr.py"
       ]
     },
+    "nvflare-autofl": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        ".nvflare/autofl/campaign_state.js"
+      ]
+    },
+    "nvflare-autofl-report": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "scripts/generate_report.py"
+      ]
+    },
+    "nvflare-convert-huggingface": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nvflare-convert-lightning": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "job.py"
+      ]
+    },
+    "nvflare-convert-pytorch": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nvflare-diagnose-job": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "job.py"
+      ]
+    },
+    "nvflare-fed-stats": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nvflare-orient": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "nvflare-shared": {
+      "refs": 1,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "../nvflare-shared/assets/aggregator.py"
+      ]
+    },
     "nvidia-skill-finder": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "office-hours": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -2866,6 +3566,12 @@
       "missing": []
     },
     "omniverse-usd-performance-tuning": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "open-gstack-browser": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -2905,6 +3611,12 @@
       ]
     },
     "paidf-orchestration-write-dag": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "pair-agent": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -2972,7 +3684,49 @@
       "score": 1.0,
       "missing": []
     },
+    "plan-ceo-review": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "plan-design-review": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "plan-devex-review": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "plan-eng-review": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "plan-tune": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "portfolio-optimization": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "qa": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "qa-only": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -2993,6 +3747,18 @@
       ]
     },
     "rag-perf": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "retro": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "review": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -3019,7 +3785,55 @@
       "score": 1.0,
       "missing": []
     },
+    "scrape": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "setup-browser-cookies": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "setup-deploy": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "setup-gbrain": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "ship": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "skill-card-generator": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "skillify": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "spec": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "sync-gbrain": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -3424,6 +4238,12 @@
       "score": 1.0,
       "missing": []
     },
+    "unfreeze": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "vss-ask-video": {
       "refs": 0,
       "ok": 0,
@@ -3627,8 +4447,8 @@
       "missing": []
     },
     "local-cpu-finetune": {
-      "refs": 0,
-      "ok": 0,
+      "refs": 1,
+      "ok": 1,
       "score": 1.0,
       "missing": []
     },
@@ -3719,6 +4539,12 @@
       "missing": []
     },
     "training-data-collection": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "mcp-sse-bridge": {
       "refs": 1,
       "ok": 1,
       "score": 1.0,
@@ -3882,6 +4708,12 @@
     "pen-tester": {
       "refs": 1,
       "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "skill-poisoning-defense": {
+      "refs": 2,
+      "ok": 2,
       "score": 1.0,
       "missing": []
     },
@@ -4331,8 +5163,8 @@
       "missing": []
     },
     "training-scripts-hygiene": {
-      "refs": 2,
-      "ok": 2,
+      "refs": 3,
+      "ok": 3,
       "score": 1.0,
       "missing": []
     },
@@ -4355,12 +5187,13 @@
       "missing": []
     },
     "windows-aware-file-edits": {
-      "refs": 2,
+      "refs": 3,
       "ok": 0,
       "score": 0.0,
       "missing": [
         "_apply_fix.py",
-        "_fix.py"
+        "_fix.py",
+        "x.py"
       ]
     },
     "windows-installer-release": {
@@ -4370,8 +5203,8 @@
       "missing": []
     },
     "windows-subprocess-robustness": {
-      "refs": 0,
-      "ok": 0,
+      "refs": 1,
+      "ok": 1,
       "score": 1.0,
       "missing": []
     },
@@ -4400,8 +5233,8 @@
       "missing": []
     },
     "cron-job-management": {
-      "refs": 0,
-      "ok": 0,
+      "refs": 1,
+      "ok": 1,
       "score": 1.0,
       "missing": []
     },
@@ -4573,9 +5406,21 @@
       "score": 1.0,
       "missing": []
     },
+    "training-pipeline": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
     "undetectable-browsing": {
       "refs": 1,
       "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "upstream-porting-workflow": {
+      "refs": 0,
+      "ok": 0,
       "score": 1.0,
       "missing": []
     },
