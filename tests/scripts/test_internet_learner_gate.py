@@ -1236,6 +1236,49 @@ def test_hn_listing_and_wikipedia_infobox_chrome_is_gated_on_both_paths():
         assert not IL._is_junk(prose), prose
 
 
+def test_selfcritique_echo_and_fixture_list_chrome_is_gated_on_both_paths():
+    """cycle_d_docs stored a 2B self-critique echo and cycle_c_github stored a
+    sports results-page fixture list (live 16.09.26). Both cleared the writer
+    AND the extraction gate: each is >90 chars with digits, so the long-prose
+    length trust and the technical-signal gate both fired, and no existing
+    marker matched.
+
+    Measured on the live buffer's 280-row NON-JUNK corpus (the leaking rows
+    excluded -- they pass `is_junk`, so counting them as "real" contaminates
+    the FP corpus): 1 hit each, 0 real-prose false positives. A bare "A vs B"
+    is deliberately NOT gated -- measured 6 hits, all real prose
+    ("CUDA vs ROCm vs Vulkan vs Metal").
+    """
+    sys.path.insert(0, str(TRAINING))
+    import buffer_store
+    leaks = (
+        # 2B self-critique echo: the extractor reviews its own scaffold
+        '"\n   - **Context:** The user pasted a long documentation page from '
+        'vLLM, but the actual content is just the table of contents and '
+        'section headings.',
+        # sports results-page fixture list: scoreline ++ pipe ++ fixture date
+        "Napoli vs Lazio 0-2 | 12/04/2026 Parma vs Napoli 1-1 | 12/04/2026 "
+        "Parma vs Napoli 1-1 SSC NAPOLI OFFICIAL APP Disponibile ora",
+    )
+    for leak in leaks:
+        assert buffer_store.is_junk(leak), leak
+        assert IL._is_junk(leak), leak
+
+    # counter-cases: the same shapes as they appear in genuine prose.
+    for prose in (
+        "CUDA vs ROCm vs Vulkan vs Metal: GPU Compute in 2026 A deep "
+        "technical comparison of the three compute stacks.",
+        "vLLM's PagedAttention treats KV cache as paged memory, enabling "
+        "chunked prefill and dynamic batching.",
+        "Prompt injection defenses include input sanitization, instruction "
+        "hierarchy, and output validation layers.",
+        "The paper compares Qwen3-4B vs Llama-3.1-8B on 12.04.2026 released "
+        "benchmarks and reports a 3.1 point gap after quantization.",
+    ):
+        assert not buffer_store.is_junk(prose), prose
+        assert not IL._is_junk(prose), prose
+
+
 def test_contact_block_chrome_is_gated_on_both_paths():
     """A legal-imprint / "Transparenzliste" contact block is not an insight.
 
