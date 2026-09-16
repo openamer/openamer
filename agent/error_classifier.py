@@ -403,7 +403,7 @@ _V_MODEL_NOT_FOUND = _v(_R.model_not_found, **_ABORT_FALLBACK)
 _V_CONTENT_BLOCKED = _v(_R.content_policy_blocked, **_ABORT_FALLBACK)
 _V_FORMAT_ERROR = _v(_R.format_error, **_ABORT_FALLBACK)
 # A different provider (direct instead of the aggregator; another host's TLS chain) can fix these.
-_V_POLICY_BLOCKED = _v(_R.provider_policy_blocked, **_ABORT_FALLBACK)
+_V_POLICY_BLOCKED = _v(_R.provider_policy_blocked, retryable=False, should_fallback=False)
 _V_SSL_CERT = _v(_R.ssl_cert_verification, **_ABORT_FALLBACK)
 _V_CONTEXT_OVERFLOW = _v(_R.context_overflow, should_compress=True)
 _V_PAYLOAD_TOO_LARGE = _v(_R.payload_too_large, should_compress=True)
@@ -471,6 +471,11 @@ _MESSAGE_HEAD_RULES = ((_MEMORY_CEILING_PATTERNS, _V_OVERLOADED),
 # instead of rotating; policy block before model_not_found; timeout/connection
 # wording last, classified as transport (never compression).
 _MESSAGE_TAIL_RULES = (
+    # Cert failures outrank the connection patterns below: Node/undici prepends a bare
+    # "fetch failed" to its TLS errors ("fetch failed: unable to verify the first
+    # certificate"), so the connection list would otherwise swallow them as a
+    # retryable timeout. Order is load-bearing (see TestSSLCertVerificationFailFast).
+    (_SSL_CERT_VERIFY_PATTERNS, _V_SSL_CERT),
     (_OVERLOADED_PATTERNS, _V_OVERLOADED), (_BILLING_PATTERNS, _billing_hints),
     (_RATE_LIMIT_PATTERNS, _V_RATE_LIMIT), (_EMPTY_PROVIDER_RESPONSE_PATTERNS, _V_SERVER_ERROR),
     (_CONTEXT_OVERFLOW_PATTERNS, _V_CONTEXT_OVERFLOW), (_AUTH_PATTERNS, _V_AUTH_ROTATE),
@@ -815,17 +820,16 @@ def _classify_402(error_msg: str, result_fn: Callable[..., Any]) -> Any:
 def _classify_400(c: _Ctx) -> Verdict:
     """400 Bad Request — image/tool shapes, request-shape rejections, overflow, or generic."""
     msg, code = c.msg, c.code
+    if code == "invalid_encrypted_content":
+        return _V_INVALID_ENCRYPTED
     verdict = _first_match(msg, _IMAGE_TOOL_RULES)
     if verdict is not None:
         return verdict
     # Invalid encrypted reasoning replay blob (OpenAI Responses); before
     # overflow because "encrypted content … could not be verified" trips it.
-    if code == "invalid_encrypted_content" or "invalid_encrypted_content" in msg or (
+    if "invalid_encrypted_content" in msg or (
         "encrypted content for item" in msg and "could not be verified" in msg
     ) or "could not decrypt the provided encrypted_content" in msg or (
-        # Custom Responses endpoints wrap a replay rejection in a generic bad_request (#95834).
-        "encrypted content could not be decrypted or parsed" in msg
-    ) or (
         # OpenCode Zen wraps this OpenAI replay rejection in ``invalid_request_error`` (#111309).
         "encrypted_content" in msg and "was not issued to this caller" in msg
     ) or (
