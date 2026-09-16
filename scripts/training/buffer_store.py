@@ -362,6 +362,13 @@ _NAV_CHROME = (
     # pair is the tight discriminator (0 hits in the prose set).
     "most relevant/valuable technical insight",
     "**survey the papers:**",
+    # Microsoft SERP/landing-page copy reached the buffer via
+    # cycle_h_efficiency (live 16.09.26): "Microsoft - AI, Cloud,
+    # Productivity, Computing, Gaming & Apps - Explore Microsoft products
+    # and services ... Shop Microsoft 365, Copilot ...". Same marker as
+    # internet_learner._JUNK_RE; keep both files in sync. Measured over
+    # the live buffer: 1 hit and that hit IS the leaking row -> 0 prose FPs.
+    "explore microsoft products and services and support for your home or business",
 )
 
 
