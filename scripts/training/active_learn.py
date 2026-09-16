@@ -195,6 +195,16 @@ _ECHO_OPENER_RE = re.compile(
     r"find\s+(?:the\s+)?(?:structural\s+)?connection|"
     r"identify\s+(?:the\s+)?(?:shared\s+)?(?:underlying\s+)?pattern|"
     r"they\s+want\s+me\s+to|"
+    # Prompt-echo, third shape (live 16.09.26): the cross_connect loop
+    # buffered its OWN numbered prompt back at itself --
+    # `Situation 2 learning process: Continuous Learning Loop: error capture
+    # + categorization + memory + auto-skill generation + trend.` and the
+    # quoted variant `Situation 1: "learning process: ..." German: ...`.
+    # Anchored on the NUMBERED PROMPT MARKER + a topic word or colon, so the
+    # genuine declarative answers survive: measured 2/2 leaks caught and 0/5
+    # real answers killed -- `Situation 1 and situation 2 share a common
+    # failure mode ...` and `The shared underlying pattern is ...` both pass.
+    r"situation\s*\d\s*(?::|\b(?:learning|system|energy|tool)\b)|"
     r"what\s+(?:is\s+)?(?:the\s+)?(?:shared|structural))",
     re.IGNORECASE)
 

@@ -317,6 +317,17 @@ _NAV_CHROME = (
     # tight `min read explore` tail fires only on this header shape.
     "every frontierbeat desk",
     "min read explore",
+    # German Wikipedia list/glossary page chrome (live 16.09.26:
+    # cycle_g_security stored "Liste aller Wikipedia-Artikel, deren Titel
+    # Agent enthaelt Wiktionary: Agent - Bedeutungserklaerungen,
+    # Wortherkunft, Synonyme, Uebersetzungen Dies ist eine
+    # Begriffsklaerungsseite ..." -- 210 chars cleared the >=90 length trust
+    # and its digits satisfied the technical-signal gate). Concrete page
+    # phrases only, never the bare topic words: measured over the live buffer
+    # 1 hit and that hit IS the leaking row -> 0 real-prose false positives.
+    "liste aller wikipedia-artikel",
+    "deren titel",
+    "wiktionary:",
 )
 
 
@@ -434,6 +445,25 @@ def _is_de_pricing_chrome(text):
     if not low:
         return False
     return sum(1 for m in _DE_PRICING_CHROME_MARKERS if m in low) >= _DE_PRICING_CHROME_MIN_MARKERS
+
+
+# A numbered-prompt ECHO is a loop buffering its own task text back at
+# itself (live 16.09.26: active_learn.cross_connect stored
+# `Situation 2 learning process: Continuous Learning Loop: error capture +
+# categorization + memory + auto-skill generation + trend.` and the quoted
+# variant `Situation 1: "learning process: ..." German: ...`). Anchored on
+# the numbered PROMPT MARKER plus a topic word or colon, so genuine
+# declarative answers survive -- `Situation 1 and situation 2 share a common
+# failure mode ...` and `The shared underlying pattern is ...` both pass.
+# Measured: 2/2 leaks caught, 0/5 real answers killed.
+_ECHO_SITUATION_RE = _re.compile(
+    r"^\s*\**\s*situation\s*\d\s*(?::|\b(?:learning|system|energy|tool)\b)",
+    _re.IGNORECASE)
+
+
+def is_prompt_echo(text):
+    """True when `text` is the loop's own numbered prompt, not an answer."""
+    return bool(text and _ECHO_SITUATION_RE.match(text))
 
 
 # A legal-imprint / "Transparenzliste" contact block carries no learning
@@ -574,6 +604,8 @@ def is_junk(text):
     if not s:
         return False
     low = s.lower()
+    if is_prompt_echo(s):
+        return True
     if any(m in low for m in _JUNK_MARKERS):
         return True
     if _TRACE_OPENER.match(s):

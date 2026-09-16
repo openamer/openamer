@@ -523,6 +523,16 @@ _JUNK_RE = re.compile(
     # already ends with `|`, and `||` is an EMPTY alternative that matches
     # every string (gate becomes reject-everything).
     r"\|\s*prev\s*\|\s*next\b|\|\s*next\s*\|\s*prev\b|\|\s*prev\s*\[\u2013\]|\|\s*next\s*\[\u2013\]|"
+    # German Wikipedia list/glossary page chrome (live 16.09.26:
+    # cycle_g_security stored "Liste aller Wikipedia-Artikel, deren Titel
+    # Agent enthaelt Wiktionary: Agent - Bedeutungserklaerungen ... Dies ist
+    # eine Begriffsklaerungsseite ..." -- 210 chars cleared the >=90 length
+    # trust and its digits fed the technical-signal gate. Same markers as
+    # buffer_store._NAV_CHROME; keep both files in sync. Measured over the
+    # live buffer: 1 hit and that hit IS the leaking row -> 0 prose FPs.)
+    r"liste aller wikipedia-artikel|deren titel|wiktionary\s*:|"
+    # NOTE: the fragment below is the LAST one -- it keeps the closing comma
+    # that the following re.IGNORECASE) closes.
     r"^\W*[kKmM]\s+followers\b",
     re.IGNORECASE)
 
