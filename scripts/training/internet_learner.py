@@ -508,7 +508,21 @@ _JUNK_RE = re.compile(
     # 16.09.26 measured leaks: HN listing chrome (cycle_f), Wikipedia
     # infobox label chain (cycle_g) — same measured markers as
     # buffer_store._NAV_CHROME (keep both files in sync).
-    r"auf duden online|visit\ website|points\ by\ |points\ ·|comments\ ·|connector\ type|\ months\ ago\ \(|"
+    r"auf duden online|visit\ website|points\ by\ |points\ ·|comments\ ·|connector\ type|\ months\ ago\ \(|every\ frontierbeat\ desk|min\ read\ explore|"
+    # HN/Metafilter comment-listing pagination chain (live 16.09.26:
+    # cycle_c_github stored "LegionWithin on March 10, 2025 | prev | next
+    # [–] best acronym of 2025 (so far) emiliog07 on March 9, 2025 |
+    # prev [–] What a name." — a listing LABEL CHAIN, zero prose;
+    # the dates fed the technical-signal gate and the length cleared the
+    # >=90 long-prose trust).
+    # Keyed on PIPE+NAV ADJACENCY, never on the words alone: prose writes
+    # "the prev and next control"/"the previous checkpoint" (no pipe), and
+    # a markdown row `| key | value |` carries no nav token — both
+    # measured as counter-cases over the live buffer (0 hits, 0 regressions).
+    # PITFALL: must NOT start the regex with `|` — the preceding fragment
+    # already ends with `|`, and `||` is an EMPTY alternative that matches
+    # every string (gate becomes reject-everything).
+    r"\|\s*prev\s*\|\s*next\b|\|\s*next\s*\|\s*prev\b|\|\s*prev\s*\[\u2013\]|\|\s*next\s*\[\u2013\]|"
     r"^\W*[kKmM]\s+followers\b",
     re.IGNORECASE)
 

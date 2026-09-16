@@ -232,6 +232,10 @@ _NAV_CHROME = (
     # Jupyter Notebook owner/repo Star 1 Code Issues Pull requests ..." and
     # "Updated Sep 14, 2026 Python owner/repo Sponsor Star 294 ..." — 3
     # such rows measured, 0 real-prose rows carry this phrase)
+    # HN comment-listing pagination chain (live 16.09.26: cycle_c_github
+    # stored "... | prev | next [–] ... | prev [–] ..."). Pipe+nav
+    # adjacency is page markup; a markdown table row carries no nav token.
+    "| prev | next", "| next | prev", "| prev [–]",
     "code issues pull requests",
     # GitHub releases-page chrome (live 15.09.26: cycle_f_multi_domain
     # stored "No results found View all tags openai-sdks released this
@@ -306,6 +310,13 @@ _NAV_CHROME = (
     "comments ·",
     "connector type",
     " months ago (",
+    # 16.09.26 product-page header (cycle_e_competitors): date + read time
+    # + section label ("July 30, 2026 2 min read Explore the desk Every
+    # Frontierbeat desk, organized Artificial Intelligence"). 1 hit, 0
+    # real-prose FPs. NOTE: bare `min read` is deliberately NOT used; the
+    # tight `min read explore` tail fires only on this header shape.
+    "every frontierbeat desk",
+    "min read explore",
 )
 
 
