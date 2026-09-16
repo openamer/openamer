@@ -504,6 +504,9 @@ _ECHO_FRAGMENT_RE = _re.compile(
 _ECHO_TAIL_RE = _re.compile(
     r"(?:what\s+is\s+the\s+)?shared\s+underlying\s+pattern\s*\??\s*$",
     _re.IGNORECASE)
+_ECHO_TEMPLATE_RE = _re.compile(
+    r"identify\s+the\s+goal\s*:|the\s+insight\s+should\s+be",
+    _re.IGNORECASE)
 
 
 def is_prompt_echo(text):
@@ -511,9 +514,19 @@ def is_prompt_echo(text):
     if not text:
         return False
     s = text.strip()
+    # Fifth shape (live 16.09.26, cycle_h_efficiency): the 2B extractor
+    # echoed its own numbered template -- `2.  **Identify the Goal:** -
+    # I need to look at the provided list of papers, ... and extract a
+    # single, high-value technical insight ...`. The earlier template
+    # markers key on other phrasings ("identify the core task", "extract
+    # one technical insight"), so this variant cleared both gates.
+    # Colon-terminated, never the bare words: measured 1 buffer hit and
+    # that hit IS the leak -> 0 real-prose FPs; a genuine sentence like
+    # "The first step is to identify the goal function" stays clean.
     return bool(_ECHO_SITUATION_RE.match(s)
                 or _ECHO_FRAGMENT_RE.search(s)
-                or _ECHO_TAIL_RE.search(s))
+                or _ECHO_TAIL_RE.search(s)
+                or _ECHO_TEMPLATE_RE.search(s))
 
 
 # A legal-imprint / "Transparenzliste" contact block carries no learning

@@ -38,6 +38,11 @@ _ECHO_OPENER_RE = re.compile(
 _ECHO_TAIL_RE = re.compile(
     r"(?:what\s+is\s+the\s+)?shared\s+underlying\s+pattern\s*\??\s*$",
     re.IGNORECASE)
+# Fifth shape (16.09.26): the 2B extractor's numbered `**Identify the Goal:**`
+# template. Mirrors buffer_store._ECHO_TEMPLATE_RE; keep both in sync.
+_ECHO_TEMPLATE_RE = re.compile(
+    r"identify\s+the\s+goal\s*:|the\s+insight\s+should\s+be",
+    re.IGNORECASE)
 ARCHIVE = T / "buffer_junk_archive.jsonl"
 
 
@@ -64,7 +69,8 @@ def main():
         # live 16.09.26: active_learn.cross_connect buffered "" x5, "S",
         # "What is the shared underlying pattern" and
         # "Need shared underlying pattern. One".
-        if (_ECHO_TAIL_RE.search(_sa)
+        if (_ECHO_TEMPLATE_RE.search(_sa)
+                or _ECHO_TAIL_RE.search(_sa)
                 or _ECHO_OPENER_RE.match(_sa)
                 or (len(_sa) < 25 and not _sa.endswith((".", "!", "?", "\u2026", ":")))):
             drop.append((r, "stub"))

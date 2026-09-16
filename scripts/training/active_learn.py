@@ -219,6 +219,11 @@ _ECHO_OPENER_RE = re.compile(
 _ECHO_TAIL_RE = re.compile(
     r"(?:what\s+is\s+the\s+)?shared\s+underlying\s+pattern\s*\??\s*$",
     re.IGNORECASE)
+# Fifth shape (16.09.26): the numberered `**Identify the Goal:**` extraction
+# template of the 2B model. Mirrors buffer_store._ECHO_TEMPLATE_RE.
+_ECHO_TEMPLATE_RE = re.compile(
+    r"identify\s+the\s+goal\s*:|the\s+insight\s+should\s+be",
+    re.IGNORECASE)
 
 
 def cross_connect():
@@ -243,7 +248,8 @@ def cross_connect():
             # returns "" on failure and its value was buffered unvalidated).
             _ins = (insight or "").strip()
             if (len(_ins) < 25 or _ECHO_OPENER_RE.match(_ins)
-                    or _ECHO_TAIL_RE.search(_ins)):
+                    or _ECHO_TAIL_RE.search(_ins)
+                    or _ECHO_TEMPLATE_RE.search(_ins)):
                 return f"cross-connect: discarded stub/echo ({len(_ins)} chars)"
             add_to_buffer(f"Structural connection between {t1} and {t2}?", insight)
             return f"cross-connect: {insight[:80]}"

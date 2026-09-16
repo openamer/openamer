@@ -1387,3 +1387,50 @@ def test_cross_connect_prompt_echo_fourth_shape_is_gated_on_both_paths():
         assert not buffer_store.is_junk(prose), prose
         assert not buffer_store.is_prompt_echo(prose), prose
 
+def test_extractor_template_echo_fifth_shape_is_gated_on_both_paths():
+    """The 2B extractor echoing its OWN numbered template is not an insight.
+
+    Live 16.09.26: cycle_h_efficiency buffered
+
+        '"\n\n2.  **Identify the Goal:**\n   - I need to look at the provided
+        list of papers, understand the themes, and extract a single, high-value
+        technical insight that would be most relevant/valuable for an autonomous
+        AI agent.\n   - The insight should be ge...'
+
+    The pre-existing template markers ("identify the core task", "extract one
+    technical insight", "no preamble before", "format it as a single sentence")
+    all key on OTHER phrasings of the same prompt, so this numbered
+    "the goal" / "high-value" variant cleared both gates.
+
+    Markers are colon-terminated ("identify the goal:") or phrase-complete
+    ("the insight should be"), never bare keywords: measured 1 buffer hit and
+    that hit IS the leaking row -> 0 real-prose FPs on an 8-sentence set;
+    0 hits over 3,169 longterm_episodes + 9,906 buffer_junk rows.
+    """
+    sys.path.insert(0, str(TRAINING))
+    import buffer_store
+
+    leaks = (
+        '"\n\n2.  **Identify the Goal:**\n   - I need to look at the '
+        "provided list of papers, understand the themes, and extract a single, "
+        "high-value technical insight that would be most relevant/valuable for "
+        "an autonomous AI agent.",
+        "Identify the Goal: pull one high-value technical insight out of the "
+        "supplied document and state it in a single sentence.",
+    )
+    for leak in leaks:
+        assert buffer_store.is_junk(leak), leak
+        assert buffer_store.is_prompt_echo(leak), leak
+
+    # counter-cases: the bare words in genuine technical prose must survive.
+    for prose in (
+        "The first step of the pipeline is to identify the goal function and "
+        "its gradient before backpropagation.",
+        "To improve a benchmark you must identify the goal metric before "
+        "optimizing throughput.",
+        "Retrieval systems should extract a single high-value technical "
+        "insight per document and cite it.",
+    ):
+        assert not buffer_store.is_junk(prose), prose
+        assert not buffer_store.is_prompt_echo(prose), prose
+
