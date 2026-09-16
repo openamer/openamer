@@ -6,6 +6,7 @@ and implement the required methods.
 """
 
 import asyncio
+import contextlib
 import inspect
 import ipaddress
 import logging
@@ -15,6 +16,7 @@ import re
 import socket as _socket
 import subprocess
 import sys
+import tempfile
 import time
 import uuid
 import weakref
@@ -430,6 +432,63 @@ def proxy_kwargs_for_bot(proxy_url: str | None) -> dict:
     return {"proxy": proxy_url}
 
 
+def transcode_to_ogg_opus(path: str, *, bitrate: str = "32k", timeout: int = 60,
+                          output_path: "str | None" = None) -> "str | None":
+    """Best-effort ffmpeg transcode to Ogg/Opus (voip-tuned) for native voice bubbles: the written
+    ``.ogg`` path (a NEW temp file unless ``output_path`` is given; caller cleans up), or None when
+    ffmpeg is missing/fails. ``output_path`` may equal ``path`` (in-place container repair) — the
+    encode goes through a sidecar so a failed run never truncates the source. Blocking (to_thread)."""
+    import shutil as _shutil
+    ffmpeg = _shutil.which("ffmpeg")
+    if not ffmpeg:
+        return None
+    if output_path is None:
+        fd, ogg_path = tempfile.mkstemp(prefix="voice_transcode_", suffix=".ogg")
+        os.close(fd)
+    else:
+        ogg_path = output_path
+    in_place = os.path.abspath(str(path)) == os.path.abspath(ogg_path)
+    work_path = ogg_path + ".tmp.ogg" if in_place else ogg_path
+    try:
+        result = subprocess.run(
+            [ffmpeg, "-v", "error", "-y", "-i", str(path),
+             "-acodec", "libopus", "-ac", "1", "-b:a", bitrate, "-vbr", "on",
+             "-application", "voip", "-compression_level", "10", "-f", "ogg", work_path],
+            capture_output=True, timeout=timeout, stdin=subprocess.DEVNULL)
+        if result.returncode == 0 and os.path.getsize(work_path) > 0:
+            if in_place:
+                os.replace(work_path, ogg_path)
+            return ogg_path
+        logger.warning("ffmpeg Ogg/Opus transcode of %s failed (returncode=%s): %s", path, result.returncode,
+                       (result.stderr or b"").decode("utf-8", errors="replace")[:500])
+    except Exception:
+        logger.warning("voice transcode to Ogg/Opus failed for %s", path, exc_info=True)
+    with contextlib.suppress(OSError):
+        os.unlink(work_path)
+    return None
+
+
+def _config_section(name: str) -> dict:
+    """Read-only ``config.yaml`` section ``name``; ``{}`` when unreadable/missing/not a dict."""
+    try:
+        from openamer_cli.config import load_config_readonly as _load_config
+        cfg = _load_config()  # read-only: .get() only, never mutated
+    except Exception:
+        return {}
+    section = cfg.get(name) if isinstance(cfg, dict) else None
+    return section if isinstance(section, dict) else {}
+
+
+def gateway_trust_env() -> bool:
+    """``gateway.trust_env`` from config.yaml (default True): whether gateway
+    ``aiohttp.ClientSession``s honor HTTP(S)_PROXY / NO_PROXY / SSL_CERT_FILE. Set false
+    when the gateway inherits a proxy env it must not use. Fail-open to default."""
+    value = _config_section("gateway").get("trust_env", True)
+    if isinstance(value, str):
+        return value.strip().lower() not in {"0", "false", "no", "off"}
+    return bool(value) if value is not None else True
+
+
 def proxy_kwargs_for_aiohttp(proxy_url: str | None) -> tuple[dict, dict]:
     """Build kwargs for standalone ``aiohttp.ClientSession`` with proxy.
 
@@ -512,6 +571,8 @@ from pathlib import Path as _Path
 sys.path.insert(0, str(_Path(__file__).resolve().parents[2]))
 
 from gateway.config import Platform, PlatformConfig
+from gateway.platforms.base_exec_approval import (
+    EA_HEADER_TEXT, EA_REASON_LABEL_TEXT, approval_timeout_seconds, format_approval_deadline_line)
 from gateway.session import SessionSource, build_session_key
 from openamer_constants import get_default_openamer_root, get_openamer_dir, get_openamer_home
 
@@ -743,6 +804,11 @@ def cache_image_from_bytes(data: bytes, ext: str = ".jpg") -> str:
     return str(filepath)
 
 
+async def cache_image_from_bytes_async(data: bytes, ext: str = ".jpg") -> str:
+    """Cache image bytes without blocking the caller's event loop."""
+    return await asyncio.to_thread(cache_image_from_bytes, data, ext)
+
+
 async def cache_image_from_url(url: str, ext: str = ".jpg", retries: int = 2) -> str:
     """
     Download an image from a URL and save it to the local cache.
@@ -861,6 +927,11 @@ def cache_audio_from_bytes(data: bytes, ext: str = ".ogg") -> str:
     filepath = cache_dir / filename
     filepath.write_bytes(data)
     return str(filepath)
+
+
+async def cache_audio_from_bytes_async(data: bytes, ext: str = ".ogg") -> str:
+    """Cache audio bytes without blocking the caller's event loop."""
+    return await asyncio.to_thread(cache_audio_from_bytes, data, ext)
 
 
 async def cache_audio_from_url(url: str, ext: str = ".ogg", retries: int = 2) -> str:
@@ -1616,6 +1687,11 @@ def cache_document_from_bytes(data: bytes, filename: str) -> str:
     return str(filepath)
 
 
+async def cache_document_from_bytes_async(data: bytes, filename: str) -> str:
+    """Cache document bytes without blocking the caller's event loop."""
+    return await asyncio.to_thread(cache_document_from_bytes, data, filename)
+
+
 def cleanup_document_cache(max_age_hours: int = 24) -> int:
     """
     Delete cached documents older than *max_age_hours*.
@@ -2338,6 +2414,28 @@ def _strip_media_directives(text: str) -> str:
     if not text:
         return text
     return _strip_media_tag_directives(text)
+
+
+@dataclass
+class ExecApprovalPrompt:
+    """One exec-approval prompt, ready for a platform to render natively (see
+    ``BasePlatformAdapter.send_exec_approval``). ``actions`` rows are ``(label, choice, style)``
+    with ``choice`` in ``once`` / ``session`` / ``always`` / ``deny`` — the vocabulary
+    ``tools.approval.resolve_gateway_approval`` accepts — and ``style`` in ``primary`` /
+    ``danger`` / ``""``.
+    """
+    chat_id: str
+    session_key: str
+    text: str
+    actions: List[Tuple[str, str, str]]
+    command: str
+    description: str
+    smart_denied: bool
+    metadata: Optional[Dict[str, Any]] = None
+
+    @property
+    def choices(self) -> List[str]:
+        return [choice for _, choice, _ in self.actions]
 
 
 class BasePlatformAdapter(ABC):
@@ -3271,6 +3369,97 @@ class BasePlatformAdapter(ABC):
             # path).  Close the coroutine cleanly so Python doesn't warn
             # about it never being awaited, then drop silently.
             coro.close()
+
+    # ── ``_format_exec_approval`` templates; adapters override only the MARKUP (bold, HTML,
+    # fences) — the words come from ``gateway.platforms.base_exec_approval`` so every surface
+    # says the same thing.
+    _EA_HEADER: str = f"⚠️ {EA_HEADER_TEXT}\n\n"
+    _EA_CODE_OPEN: str = "```\n"
+    _EA_CODE_CLOSE: str = "\n```\n"
+    _EA_REASON_LABEL: str = f"{EA_REASON_LABEL_TEXT}: "
+    _EA_DEADLINE_PREFIX: str = "\n\n"  # separates the deadline line from the reason line
+    _EA_SMART_DENY_LINE: str = "\n\nSmart DENY: owner override applies to this one operation only."
+    _EA_CMD_BUDGET: int = 3000
+    _EA_REASON_BUDGET: int = 0  # 0 = the reason is never truncated
+
+    @staticmethod
+    def _truncate_preview(text: str, budget: int, suffix: str = "...") -> str:
+        """Truncate ``text`` to ``budget`` chars, appending ``suffix`` when cut."""
+        text = str(text or "")
+        return text[:budget] + suffix if len(text) > budget else text
+
+    def _ea_escape(self, text: str) -> str:
+        """Escape hook for command preview/reason; HTML-mode platforms (Telegram) override."""
+        return text
+
+    def _exec_approval_cmd_budget(self, description: str, smart_denied: bool) -> int:
+        """Chars of command preview that fit; platforms with a hard message cap compute it."""
+        return self._EA_CMD_BUDGET
+
+    def _ea_deadline_line(self) -> str:
+        """The "doing nothing means it will NOT run" line, with the configured approvals.timeout."""
+        return self._EA_DEADLINE_PREFIX + self._ea_escape(
+            format_approval_deadline_line(approval_timeout_seconds()))
+
+    def _format_exec_approval(
+        self, command: str, description: str = "dangerous command", smart_denied: bool = False) -> str:
+        """Shared exec-approval prompt text: header + fenced (truncated) command + why it was
+        flagged + the deadline line, plus the smart-deny line. Buttons/trailing instructions stay
+        platform-local."""
+        if self._EA_REASON_BUDGET:
+            description = self._truncate_preview(str(description or ""), self._EA_REASON_BUDGET)
+        cmd_preview = self._truncate_preview(
+            str(command or ""), self._exec_approval_cmd_budget(description, smart_denied))
+        text = (f"{self._EA_HEADER}"
+                f"{self._EA_CODE_OPEN}{self._ea_escape(cmd_preview)}{self._EA_CODE_CLOSE}"
+                f"{self._EA_REASON_LABEL}{self._ea_escape(description)}"
+                f"{self._ea_deadline_line()}")
+        return text + self._EA_SMART_DENY_LINE if smart_denied else text
+
+    # ── Exec-approval prompt (template method). The choice set is one rule for every button
+    # surface — three separate "same fix × N adapters" commits motivated lifting it here.
+    _EA_ACTION_LABELS: Dict[str, str] = {
+        "once": "Allow Once", "session": "Allow Session", "always": "Always Allow", "deny": "Deny"}
+    _EA_ACTION_STYLES: Dict[str, str] = {"once": "primary", "deny": "danger"}
+
+    def _exec_approval_actions(
+            self, *, allow_permanent: bool, allow_session: bool, smart_denied: bool) -> List[Tuple[str, str, str]]:
+        """``(label, choice, style)`` rows for the approval buttons. A smart deny is an owner
+        override for one operation only, so it offers neither the session nor the permanent tier;
+        the permanent tier is never offered without the session tier."""
+        choices = ["once"]
+        if not smart_denied and allow_session:
+            choices.append("session")
+            if allow_permanent:
+                choices.append("always")
+        choices.append("deny")
+        return [(self._EA_ACTION_LABELS[c], c, self._EA_ACTION_STYLES.get(c, "")) for c in choices]
+
+    @classmethod
+    def supports_exec_approval_buttons(cls) -> bool:
+        """True when the adapter renders native approval buttons (overrides the prompt hook);
+        the runner otherwise sends the plain-text ``/approve`` prompt."""
+        return cls._send_exec_approval_prompt is not BasePlatformAdapter._send_exec_approval_prompt
+
+    async def send_exec_approval(
+        self, chat_id: str, command: str, session_key: str, description: str = "dangerous command",
+        metadata: Optional[Dict[str, Any]] = None, allow_permanent: bool = True, allow_session: bool = True,
+        smart_denied: bool = False,
+    ) -> SendResult:
+        """Interactive exec-approval prompt; a press resolves via
+        ``tools.approval.resolve_gateway_approval``. Text and choice set are shared; adapters
+        render them natively in ``_send_exec_approval_prompt``."""
+        prompt = ExecApprovalPrompt(
+            chat_id=chat_id, session_key=session_key, metadata=metadata, command=str(command or ""),
+            description=description, smart_denied=smart_denied,
+            text=self._format_exec_approval(command, description, smart_denied),
+            actions=self._exec_approval_actions(
+                allow_permanent=allow_permanent, allow_session=allow_session, smart_denied=smart_denied))
+        return await self._send_exec_approval_prompt(prompt)
+
+    async def _send_exec_approval_prompt(self, prompt: "ExecApprovalPrompt") -> SendResult:
+        """Render ``prompt`` with the platform's native buttons; the default has none."""
+        return SendResult(success=False, error="Not supported")
 
     async def send_slash_confirm(
         self,

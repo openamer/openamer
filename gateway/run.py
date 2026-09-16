@@ -1673,6 +1673,7 @@ def _current_max_iterations() -> int:
 
 
 from contextlib import contextmanager as _contextmanager
+from contextlib import asynccontextmanager as _async_contextmanager
 
 
 # Platforms that bind a host TCP port (HTTP/webhook listeners). In a profile
@@ -1734,6 +1735,37 @@ def _profile_runtime_scope(profile_home: "Path"):
     finally:
         reset_secret_scope(secret_token)
         reset_openamer_home_override(home_token)
+
+
+def _multiplex_profile_homes(config: object) -> list[tuple[str, "Path"]]:
+    """Return the authoritative profile set for one multiplex gateway config."""
+    from openamer_cli.profiles import profiles_to_serve
+    return list(profiles_to_serve(multiplex=True))
+
+
+def _load_profile_secret_scope(profile_home: "Path") -> dict:
+    """Load one profile's secrets under its home override.
+
+    Upstream also calls ``hydrate_profile_secret_sources`` here; this tree has no
+    such module, so the scope is built directly from the profile home — the same
+    thing ``_profile_runtime_scope`` does on the synchronous path.
+    """
+    from openamer_constants import set_openamer_home_override, reset_openamer_home_override
+    from agent.secret_scope import build_profile_secret_scope
+
+    home_token = set_openamer_home_override(str(profile_home))
+    try:
+        return build_profile_secret_scope(Path(profile_home))
+    finally:
+        reset_openamer_home_override(home_token)
+
+
+@_async_contextmanager
+async def _async_profile_runtime_scope(profile_home: "Path"):
+    """Enter a profile scope without loading secret files on the event loop."""
+    await asyncio.to_thread(_load_profile_secret_scope, Path(profile_home))
+    with _profile_runtime_scope(Path(profile_home)):
+        yield
 
 
 def load_gateway_config_for_runner() -> "GatewayConfig":

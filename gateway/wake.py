@@ -53,6 +53,10 @@ def adapter_supports_push(adapter: Any) -> bool:
     return bool(getattr(adapter, "supports_async_delivery", True))
 
 
+class WakeNotAccepted(RuntimeError):
+    """No adapter admission: retry without treating a healthy chat as dead."""
+
+
 async def deliver_wake(
     adapter: Any,
     *,
