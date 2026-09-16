@@ -18,6 +18,11 @@ SKILLS_DIR = os.path.join(str(Path.home()), "openamer-repo", "skills")
 AUTO_SKILLS = os.path.join(SKILLS_DIR, "auto-generated")
 REGISTRY = os.path.join(T, "auto_skills.json")
 
+if not os.path.isdir(T):
+    print(f"[auto-skill] ABORT: training dir not found: {T} "
+          f"(OPENAMER_HOME misconfigured - refusing to write into a throwaway env)")
+    raise SystemExit(2)
+
 SKILL_TEMPLATE = """---
 name: {name}
 description: {description}
@@ -59,6 +64,70 @@ def slugify(text):
     text = re.sub(r"[^a-zA-Z0-9\s]", "", text.lower())
     return "-".join(text.split()[:4])[:40]
 
+PRINTABLE_OK = set("abcdefghijklmnopqrstuvwxyz"
+                   "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                   "0123456789 \t\n.,;:!?()[]{}'\"-_/%+=*&<>@#$|\\~`^")
+
+def printable_ratio(text):
+    """Fraction of characters that are human-readable (ASCII printable / latin letters).
+
+    Some buffer insights carry binary blobs (compressed/encrypted payloads) that
+    .get("a") returns as mojibake. Writing those into a SKILL.md produces an
+    unreadable garbage description (live 15.09: auto-latest-research-insight-adaptive).
+    """
+    if not text:
+        return 0.0
+    good = sum(1 for c in text if c in PRINTABLE_OK or ord(c) > 160 and c.isalpha())
+    return good / len(text)
+
+def clean_text(text):
+    """Drop control bytes and keep only readable characters."""
+    out = []
+    for c in text:
+        if c in PRINTABLE_OK or (c.isalpha() and ord(c) > 160) or c in "äöüÄÖÜß€§":
+            out.append(c)
+        elif ord(c) == 13:
+            continue
+        else:
+            out.append(" ")
+    return re.sub(r"\s+", " ", "".join(out)).strip()
+
+def is_usable_text(text, min_len=40, min_ratio=0.9):
+    return bool(text) and len(text.strip()) >= min_len and printable_ratio(text) >= min_ratio
+
+def is_domain_relevant(text):
+    """Reject insights that are scraped portal/ad chrome rather than knowledge.
+
+    Live 16.09: the internet learner scraped a Chinese software-download SEO
+    page ("CAD看图王 提供 嗨格式 ... 百度认证:苏州舜心科技有限公司 ...") for an
+    EfficiencyQAT question and this script turned the ad copy into the repo
+    skill auto-efficiency-learning-efficientqat-llm.
+
+    Structural, not topical: a row must carry TWO independent portal/ad
+    markers. Absence of AI vocabulary is deliberately NOT a reject reason —
+    a short but genuine answer would be dropped by such a rule, and the
+    learner's own junk gate already handles off-topic English rows. Nor is a
+    blanket "is CJK" rule used: real Chinese LLM/quantization notes exist in
+    the corpus and must stay learnable (same rationale as the learner's
+    class-12 gate).
+    """
+    if not text:
+        return False
+    return not _is_portal_ad_chrome(text)
+
+def _is_portal_ad_chrome(text):
+    """True when `text` is a scraped Q&A/answer-portal or ad label chain."""
+    return sum(1 for m in _PORTAL_AD_MARKERS if m in text) >= _PORTAL_AD_MIN_MARKERS
+
+_PORTAL_AD_MARKERS = (
+    # Chinese Q&A / answer-portal label chain
+    "百度认证", "高粉答主", "已赞过", "已踩过", "向ta提问", "回答量",
+    "你对这个回答的评价是", "展开全部", "经验内容仅供参考", "本篇经验系本人",
+    # software-download ad boilerplate
+    "嗨格式", "看图王", "旗下品牌", "有限公司是一家", "专注软件研发",
+)
+_PORTAL_AD_MIN_MARKERS = 2
+
 def dedupe_check(name, description, registry):
     """Skip if we already created this skill (same slug) or a near-identical insight.
 
@@ -79,8 +148,21 @@ def dedupe_check(name, description, registry):
 def create_skill_from_insight(insight_question, insight_answer, source_tag):
     """Create a draft skill from one internet insight."""
     # derive skill name and description from the insight
-    desc = insight_answer[:150].strip()
+    clean_answer = clean_text(insight_answer)
+    if not is_usable_text(clean_answer):
+        # binary/garbled insight (e.g. compressed blob in the buffer) - never write it
+        print(f"[auto-skill] skipped unreadable insight: {insight_question[:60]}",
+              flush=True)
+        return None
+    if not is_domain_relevant(clean_answer):
+        # readable but off-domain (scraped SEO spam / unrelated page text)
+        print(f"[auto-skill] skipped off-domain insight: {insight_question[:60]}",
+              flush=True)
+        return None
+    desc = clean_answer[:150].strip()
     name = "auto-" + slugify(insight_question)
+    if name == "auto-":
+        return None
 
     registry = load_registry()
 
@@ -93,9 +175,9 @@ def create_skill_from_insight(insight_question, insight_answer, source_tag):
 
     skill_content = SKILL_TEMPLATE.format(
         name=name,
-        description=desc,
+        description=desc.replace('"', "'"),
         date=datetime.date.today().isoformat(),
-        source=insight_question[:100],
+        source=str(insight_question)[:100].replace('"', "'"),
         name_title=name.replace("-", " ").title(),
         trigger_context=desc[:100],
     )
@@ -126,13 +208,16 @@ def auto_create_from_buffer():
     if os.path.exists(kta_path):
         lines = open(kta_log, encoding="utf-8").readlines()[-10:]
         for line in lines:
-            d = json.loads(line)
+            try:
+                d = json.loads(line)
+            except Exception:
+                continue
             iq = d.get("insight_question", "")
             ia = d.get("insight_answer", "")
             gap = d.get("identified_gap", "")
             if gap:
                 ia = f"{ia} GAP: {gap}"
-            if iq and len(ia) > 40:
+            if iq and len(ia) > 40 and is_usable_text(clean_text(ia)):
                 result = create_skill_from_insight(iq, ia, "kta-pipeline")
                 if result:
                     created.append(result)
@@ -144,10 +229,14 @@ def auto_create_from_buffer():
     if os.path.exists(buf_path):
         lines = open(buf_path, encoding="utf-8").readlines()[-30:]
         for line in lines:
-            d = json.loads(line)
+            try:
+                d = json.loads(line)
+            except Exception:
+                continue
             u, a = d.get("u", ""), d.get("a", "")
             if any(k in u.lower() for k in ["trending", "best practice", "research",
-                                             "competitor", "breakthrough"]) and len(a) > 80:
+                                             "competitor", "breakthrough"]) \
+                    and len(a) > 80 and is_usable_text(clean_text(a)):
                 result = create_skill_from_insight(u, a, "internet-learner")
                 if result:
                     created.append(result)

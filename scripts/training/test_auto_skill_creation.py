@@ -89,6 +89,49 @@ def test_registry_records_each_created_skill_once():
     assert reg["count"] == 1
 
 
+# --- portal/ad-chrome gate (bug live 16.09.26) ------------------------------
+# The learner scraped a Chinese software-download SEO page for an EfficiencyQAT
+# question and the writer turned the ad copy into the repo skill
+# auto-efficiency-learning-efficientqat-llm. Readable != relevant.
+
+SPAM_HI = ("CAD看图王 提供 嗨格式 2019-02-19 · 百度认证:苏州舜心科技有限公司 "
+           "嗨格式 嗨格式是苏州开心盒子软件有限公司旗下的独立品牌。")
+SPAM_QA = ("已赞过 已踩过 你对这个回答的评价是？ 评论 收起 读书小明白 "
+           "高粉答主 2020-02-14 · 醉心答题，欢迎关注 知道答主 回答量： 12")
+
+
+def test_portal_ad_chrome_is_rejected():
+    """Two independent portal/ad markers → never write a SKILL.md."""
+    skills, _ = _sandbox()
+    assert asc.create_skill_from_insight("efficiency question", SPAM_HI, "t") is None
+    assert asc.create_skill_from_insight("another question", SPAM_QA, "t") is None
+    assert os.listdir(skills) == [], os.listdir(skills)
+
+
+def test_real_chinese_technical_note_is_not_rejected():
+    """A genuine Chinese LLM/quantization note must stay learnable.
+
+    Guards against the tempting-but-wrong "reject anything CJK" rule: the
+    corpus holds real Chinese technical rows with no portal markers.
+    """
+    zh_ok = ("量化技术将 LLM 的权重压缩到 2 位，使 llama2-70B 在推理时"
+             "显存占用大幅下降，同时保持模型精度。")
+    assert asc.is_domain_relevant(zh_ok) is True
+
+
+def test_plain_answers_are_not_rejected_by_gate():
+    """The gate is structural, not topical — no AI keywords required."""
+    for text in ("A short genuine answer about cache warming strategies here",
+                 "Die Quantisierung reduziert den Speicherbedarf deutlich.",
+                 "Answer " * 10):
+        assert asc.is_domain_relevant(text) is True, text
+
+
+def test_empty_or_none_text_is_rejected():
+    assert asc.is_domain_relevant("") is False
+    assert asc.is_domain_relevant(None) is False
+
+
 if __name__ == "__main__":
     fns = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
     failed = 0
