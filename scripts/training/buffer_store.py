@@ -220,6 +220,16 @@ _NAV_CHROME = (
     # cycle_c_github stored "... Public Notifications You must be signed in to
     # change notification settings Fork 925 Star 6." as a learning)
     "signed in to change notification",
+    # GitHub repo-page toolbar chrome (live 16.09.26, second sighting): four
+    # rows reached the buffer through BOTH gates as
+    # `Code Pull requests Actions Projects Security and quality Insights
+    #  main Branches Tags Go to file Code Open more actions menu Latest
+    #  commit History 4,190 Commits ...`. >230 chars with digits, so the
+    # length trust and the technical-signal gate both fired. Measured: 4
+    # buffer hits, all chrome -> 0 real-prose FPs (284-row corpus) and 0
+    # test-asserted-clean FPs (77 strings); a bare "go to file" would also
+    # hit 1 longterm_episodes row.
+    "open more actions menu",
     # GitHub org/user-page chrome the learner's deep read leaks (live
     # 15.09.26: cycle_b_papers stored "Updated Dec 19, 2013 People This
     # organization has no public members." as a research insight)
