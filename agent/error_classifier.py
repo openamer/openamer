@@ -566,8 +566,18 @@ def _nous_welcome_tier(c: _Ctx) -> Optional[Verdict]:
     400/403 whose message names the wrong host or a dark tier is deterministic for the request.
     The parsed refusal rides ``error_context`` so the terminal copy can say what happened.
     """
-    from openamer_cli.anon_auth import (
-        WELCOME_TIER_GATE_REASONS, parse_welcome_refusal, welcome_route_refusal)
+    try:
+        from openamer_cli.anon_auth import (
+            WELCOME_TIER_GATE_REASONS, parse_welcome_refusal, welcome_route_refusal)
+    except ImportError:
+        # This installation has no anon_auth module (it was never ported from
+        # upstream's hermes_cli.anon_auth). A missing *optional* classification
+        # helper must never break error classification itself — an uncaught
+        # ModuleNotFoundError here replaced the real API error with a bogus
+        # "No module named 'openamer_cli.anon_auth'" for every failed call
+        # (observed 2026-09-16, killed the outreach/skill cron jobs).
+        # No welcome-tier logic available -> this stage abstains.
+        return None
     status = c.status_code
     if status == 429:
         refusal = parse_welcome_refusal(c.body)

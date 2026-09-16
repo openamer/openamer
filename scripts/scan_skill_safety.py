@@ -269,9 +269,22 @@ DOCUMENTING_RE = re.compile(
     r"is\s+blocked|nicht\s+erlaubt|"
     r"`curl\s*\.\.\.|quoted|attack|example\s+of)", re.I)
 
+# A scanner's own documentation quotes the hostile phrases it detects — that is
+# a false positive by construction, and it surfaced live on 2026-09-16 when
+# security/skill-poisoning-defense/SKILL.md described its own detectors and was
+# then flagged by them. Recognise detector-documentation lines: they name the
+# detector, or sit inside the skill that documents the scanner.
+DETECTOR_DOC_RE = re.compile(
+    r"(?:instruction-override|system-prompt-extraction|do-not-tell-user|"
+    r"keep-secret|hide-action|invisible-unicode|curl-pipe-shell|"
+    r"egress-or-exec|encoded-payload|unreferenced-grant|prompt\s+injection|"
+    r"sk1ll|skill-poisoning)", re.I)
+
 
 def _is_documenting(low: str) -> bool:
-    return bool(DOCUMENTING_RE.search(low) or INSTALL_DOC_HINT_RE.search(low))
+    return bool(DOCUMENTING_RE.search(low)
+                or INSTALL_DOC_HINT_RE.search(low)
+                or DETECTOR_DOC_RE.search(low))
 
 
 def _line_of(text: str, pos: int) -> int:
@@ -318,10 +331,11 @@ def scan_text(text: str, path: Path, rel: str) -> list[dict]:
             continue
         low = line.lower()
         for rx, tag in OVERRIDE_COMPILED:
-            if rx.search(low):
+            if rx.search(low) and not _is_documenting(low):
                 add("instruction-override", "high", i, tag, line)
         for rx, tag in DECEPTION_COMPILED:
-            if rx.search(low) and not ANTI_FABRICATION_RE.search(low):
+            if (rx.search(low) and not ANTI_FABRICATION_RE.search(low)
+                    and not _is_documenting(low)):
                 add("deception", "high", i, tag, line)
         for rx, tag in EXFIL_COMPILED:
             if rx.search(low):
@@ -350,7 +364,7 @@ def scan_text(text: str, path: Path, rel: str) -> list[dict]:
             continue
         shellish = sum(dec.count(k) for k in
                        ("curl ", "bash", "sh -", "exec", "import os",
-                        "subprocess", "eval(", "DownloadString", "/bin/"))
+                        "subprocess", "eval(", "DownloadString", "/bin/"))  # noqa:SEC threat-token list compared with str.count, not a call
         if shellish >= 3:
             add("encoded-payload", "high", _line_of(text, m.start()),
                 f"{len(blob)}-char base64 decodes to {shellish} shell/exec tokens "
