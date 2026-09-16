@@ -76,7 +76,7 @@ class _Adapter:
         self.dedup_keys = []
         self.profile_requests = []
 
-    def _is_duplicate(self, key):
+    async def _is_duplicate(self, key):
         self.dedup_keys.append(key)
         return self.duplicate
 

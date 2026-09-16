@@ -757,18 +757,32 @@ class TestCardActionCallbackResponse:
         assert response.card is None
         mock_submit.assert_not_called()
 
-    def test_update_prompt_empty_allowlists_fail_closed(self, _patch_callback_card_types):
+    def test_empty_open_id_rejected_on_update_prompt(self, _patch_callback_card_types):
+        """Update prompt click without an operator identity is rejected (fail-closed).
+
+        Replaces the earlier ``test_update_prompt_empty_allowlists_fail_closed``,
+        which asserted that an EMPTY allowlist rejects a named operator. Upstream
+        deliberately moved off that rule: ``_is_interactive_operator_authorized``
+        returns True for an empty allowlist ("no allowlist configured" = everyone,
+        mirrored by DingTalk's test_empty_allowlist_allows_everyone), and the
+        handler now routes through ``_validate_card_action``. The security
+        property that DOES still hold — and that this test guards — is that a
+        click carrying no operator identity is refused outright.
+        """
         adapter = _make_adapter()
         adapter._loop = MagicMock()
         adapter._loop.is_closed = MagicMock(return_value=False)
-        adapter._update_prompt_state[7] = {
-            "session_key": "sess-up-7",
-            "message_id": "msg_up_007",
-            "chat_id": "oc_12345",
+        adapter._admins = set()
+        adapter._allowed_group_users = set()
+        adapter._update_prompt_state[25] = {
+            "session_key": "sess-up-25",
+            "message_id": "msg_up_025",
+            "chat_id": "oc_dm_chat",
         }
         data = _make_card_action_data(
-            {"openamer_update_prompt_action": "y", "update_prompt_id": 7},
-            open_id="ou_intruder",
+            {"openamer_update_prompt_action": "y", "update_prompt_id": 25},
+            chat_id="oc_dm_chat",
+            open_id="",
         )
 
         with patch("asyncio.run_coroutine_threadsafe") as mock_submit:
@@ -776,7 +790,6 @@ class TestCardActionCallbackResponse:
 
         assert response is not None
         assert response.card is None
-        assert 7 in adapter._update_prompt_state
         mock_submit.assert_not_called()
 
     def test_update_prompt_chat_mismatch_returns_no_card(self, _patch_callback_card_types):
@@ -818,7 +831,12 @@ class TestResolveUpdatePrompt:
             "chat_id": "oc_12345",
         }
 
-        await adapter._resolve_update_prompt(1, "y", "Alice")
+        # open_id/chat_id are required: _pop_validated_prompt_state calls
+        # _is_interactive_operator_authorized(open_id), which rejects an empty
+        # open_id outright. Without them the state is dropped and nothing is
+        # written, so the assertion would test the empty-id guard, not the
+        # response-file write.
+        await adapter._resolve_update_prompt(1, "y", "Alice", open_id="ou_user1", chat_id="oc_12345")
 
         assert (tmp_path / ".openamer" / ".update_response").read_text() == "y"
         assert 1 not in adapter._update_prompt_state
@@ -836,7 +854,7 @@ class TestResolveUpdatePrompt:
             "chat_id": "oc_12345",
         }
 
-        await adapter._resolve_update_prompt(2, "y", "Alice")
+        await adapter._resolve_update_prompt(2, "y", "Alice", open_id="ou_user1", chat_id="oc_12345")
 
         assert (home / ".update_response").read_text() == "y"
 
