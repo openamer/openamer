@@ -1,21 +1,22 @@
 ---
 title: web-research
-description: Captcha-blocked web research. Multi-source fallback method.
+description: Use to research web topics: find current info and blogs.
 ---
 
 # web-research
 
-**Description:** Captcha-blocked web research. Multi-source fallback method.
-**Lines:** 201 | **Code:** 70 | **Dir:** `web-research`
+**Description:** Use to research web topics: find current info and blogs.
+**Lines:** 117 | **Code:** 14 | **Dir:** `web-research`
 
 ---
 
 ---
 name: web-research
-description: "Captcha-blocked web research. Multi-source fallback method."
+description: "Use to research web topics: find current info and blogs."
 version: 1.0.0
-author: OpenAmer Agent
+author: openamer
 license: MIT
 platforms: [linux, macos, windows]
 metadata:
-  open...
+  openamer:
+   ...

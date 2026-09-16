@@ -1,8 +1,12 @@
 {
-  "updated": "2026-09-15T03:00:47+00:00",
-  "population": 741,
-  "avg_score": 39.4,
+  "updated": "2026-09-16T03:00:25+00:00",
+  "population": 873,
+  "avg_score": 38.4,
   "fittest": [
+    {
+      "name": "cdp-social-posting",
+      "score": 77
+    },
     {
       "name": "openamer-desktop-dev",
       "score": 76
@@ -38,14 +42,10 @@
     {
       "name": "openamer-docs-site",
       "score": 71
-    },
-    {
-      "name": "parallel-feature-development",
-      "score": 71
     }
   ],
   "autopatch": {
-    "timestamp": "2026-09-15T04:00:29",
+    "timestamp": "2026-09-16T04:00:57",
     "kept": [
       {
         "skill": "auto-structural-connection-between-tool",
@@ -55,9 +55,9 @@
         "fixes": []
       },
       {
-        "skill": "doca-bare-metal-deployment",
-        "before": 24,
-        "after": 28,
+        "skill": "auto-competitor-intelligence-ai-coding",
+        "before": 21,
+        "after": 25,
         "delta": 4,
         "fixes": [
           "\u2705 metadata.openamer Block hinzugef\u00fcgt",
@@ -66,9 +66,9 @@
         ]
       },
       {
-        "skill": "doca-bf3-deployment",
-        "before": 24,
-        "after": 28,
+        "skill": "auto-competitor-intelligence-an-ai",
+        "before": 21,
+        "after": 25,
         "delta": 4,
         "fixes": [
           "\u2705 metadata.openamer Block hinzugef\u00fcgt",
@@ -77,9 +77,9 @@
         ]
       },
       {
-        "skill": "doca-bf4-deployment",
-        "before": 24,
-        "after": 28,
+        "skill": "auto-competitor-intelligence-claudepowered-ai",
+        "before": 21,
+        "after": 25,
         "delta": 4,
         "fixes": [
           "\u2705 metadata.openamer Block hinzugef\u00fcgt",
@@ -88,9 +88,9 @@
         ]
       },
       {
-        "skill": "doca-caps",
-        "before": 24,
-        "after": 28,
+        "skill": "auto-competitor-intelligence-crush-glamourous",
+        "before": 21,
+        "after": 25,
         "delta": 4,
         "fixes": [
           "\u2705 metadata.openamer Block hinzugef\u00fcgt",
@@ -99,9 +99,9 @@
         ]
       },
       {
-        "skill": "doca-collectx-deployment",
-        "before": 24,
-        "after": 28,
+        "skill": "auto-competitor-intelligence-electricity-use",
+        "before": 21,
+        "after": 25,
         "delta": 4,
         "fixes": [
           "\u2705 metadata.openamer Block hinzugef\u00fcgt",
@@ -110,9 +110,9 @@
         ]
       },
       {
-        "skill": "doca-comm-channel-admin",
-        "before": 24,
-        "after": 28,
+        "skill": "auto-competitor-intelligence-jetbrains-ides",
+        "before": 21,
+        "after": 25,
         "delta": 4,
         "fixes": [
           "\u2705 metadata.openamer Block hinzugef\u00fcgt",
@@ -121,9 +121,9 @@
         ]
       },
       {
-        "skill": "doca-container-deployment",
-        "before": 24,
-        "after": 28,
+        "skill": "auto-competitor-intelligence-opencode-ai",
+        "before": 21,
+        "after": 25,
         "delta": 4,
         "fixes": [
           "\u2705 metadata.openamer Block hinzugef\u00fcgt",
@@ -132,9 +132,9 @@
         ]
       },
       {
-        "skill": "doca-debug",
-        "before": 24,
-        "after": 28,
+        "skill": "auto-competitor-intelligence-opencode-open",
+        "before": 21,
+        "after": 25,
         "delta": 4,
         "fixes": [
           "\u2705 metadata.openamer Block hinzugef\u00fcgt",
@@ -143,9 +143,9 @@
         ]
       },
       {
-        "skill": "doca-dms",
-        "before": 24,
-        "after": 28,
+        "skill": "auto-competitor-intelligence-pythonopenaichat",
+        "before": 21,
+        "after": 25,
         "delta": 4,
         "fixes": [
           "\u2705 metadata.openamer Block hinzugef\u00fcgt",
@@ -157,48 +157,48 @@
   },
   "trends": [
     {
-      "source": "News",
-      "title": "3 Agentic AI Stocks to Own Before AI Changes the World as We Know It - Currently.com",
-      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE4wY0dMeFQwUVNGVXFjM3FlVUNBc252MENobWk4LU9oUV80UHppRjZBUzhJanRDUk1QQlFDa2g1NS0zSk1iWHRMRzVpMzVMY3Q2a0gxd2dQektLUXZCcmhKUDZKWTJ5a3R4SDFzZkNObnYtSk9OUlNrTE9POENUcE0?oc=5"
+      "source": "arXiv",
+      "title": "AI Agents: Evolution, Architecture, and Real-World Applications",
+      "url": "http://arxiv.org/abs/2510.27051v1"
+    },
+    {
+      "source": "arXiv",
+      "title": "ASTELD: A Six-Axis Classification Framework for Autonomous AI Agents - Design, Evaluation, and an OpenClaw Case Study",
+      "url": "http://arxiv.org/abs/2603.05031v1"
+    },
+    {
+      "source": "arXiv",
+      "title": "Hardware Keystores for AI Agent Signing Workflows: A Zero-Trust MCP Enforcement Architecture",
+      "url": "http://arxiv.org/abs/2508.02866v3"
+    },
+    {
+      "source": "arXiv",
+      "title": "ANX: Protocol-First Design for AI Agent Interaction with a Supporting 3EX Decoupled Architecture",
+      "url": "http://arxiv.org/abs/2502.18359v1"
     },
     {
       "source": "News",
-      "title": "ARPA-H to invest $62M to build agentic AI agent for heart care - Healthcare Dive",
-      "url": "https://news.google.com/rss/articles/CBMiqAFBVV95cUxPUGp2SHBZU1BCZk9GWVdFX1lSY190alJLOVBCWWNMalM0aVdOcDR6dVNWTU9kaWExWDltZElhc2VLakZGdHFyRDRJUTRrNFhwdS1uQ1k1ZnZ0d2NmRGFZdUN3TVNWMTVxcDlTWlNUNHdLTFlxSTRUQ0tXS3Z6UWl2VGtvMlY0bFhlQnZiMjR6RFdDc2tmN3dSVkdsNkdUcGtfTFNhVHlNcEQ?oc=5"
+      "title": "AI Agents Run Real Shops to Expose Their Hidden Failure Modes - spectrum.ieee.org",
+      "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1KcE84eGsxblZ4dmk1d01BNmVfcnRiMndIaFZIRVJXZ0owWGo2bDB3dUR1eHB5VmpaMXB1eDNrejktUGpWYXlHS0Nsd0UtUEl5b1pGcnhwUmtEZnZCZHBWRzNOTjMyeURWX1E?oc=5"
     },
     {
       "source": "News",
-      "title": "India plans AI registry as it looks to roll out agentic payments, sources say - Reuters",
-      "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxNVVNCTTRPWDZrd1cwM2NQVG84dHJQSHVmMnNJRU5TdGZMc3l2LUFLRlJoNDZQemUtdGF4T3BhdFhtUFhZSXZwQV9PZGxpTW9fMWFJMU4wZENTaTl3Q2tmUGVEVFpIelZFWjJ5R1J5c3dvYk5xUDNmX2Fha0daQUV5eS1RNU1zZXBhQ1Z5VW1JNF9UdzRvdDlzb2U1NW5UUm9vYWM0VGxLcUxzbkttR2cxYU5JWnp6NkJ6Y1E?oc=5"
+      "title": "Rethinking and realigning IT for the agentic AI era - cio.com",
+      "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOaHlvY28wVk1ESEU5dHVEYnJiVGhKQ1AwLWc1ZzE2OEI1UUhmajFzZEQ4bWJNbkVqMTR2cjI4QkJ6c0w2cktDOTJkb05JOUdzdzhlMVI4UVJPT0ZsWm14RGFzS052OHd1YkZZY01tSThxYTBfODlqbDgydmRHZE91M3Y0Znh0cVFSRTNMSXhYX29aQjV4UEpj?oc=5"
     },
     {
       "source": "News",
-      "title": "The Agentic AI Revolution in Biopharma - Pharmaceutical Executive",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE10eFF1eHBTYmdxbXVPQWR6TEJqeXN0NHlYdm5GS1F4V3dwN3RsdFdySldqNzBsYm9JcE5ld2tZNGI4S0NDV3hrczRZVkJkeUZGdzhpeFRrUjEtNHVpYTN3SFJORmlWUm9GX1FUUlVlaw?oc=5"
+      "title": "Agentic AI access a pressing governance challenge for providers - Healthcare IT News",
+      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNOFNrTlZMRlpJejBmNmtYYlE3WGZVekhvSEZKWkYta0FtOWx0blk2Q0ZtM0hkNE9WX0NSVnNZN0phTzFydHh3RXdLejQ5RXdjcWRTWF9WLVgzdzAtc1IzMUxENm4wSmszY2l4WnBFMUJBOXJULUd0T1VmcVJGVWl4dFQ2UFV0MUctTkkzY2poNFV2dmI0MXNrdWJIWQ?oc=5"
     },
     {
       "source": "News",
-      "title": "Agentic AI Went From Prediction to Prediction Fulfilled - Techaeris",
-      "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE1mcGlVWkx2cEFTdDh2MHgtZEFITXJqY01WeExTaXNhVlpfbkRidm9JQUtIUWJuNmpYRkFlU1ZjVm9QNUw3bTZKOHBrTXBqazM5bjFCakt5VlFhM2xvMlJkMFYwTGpjWXUxRmY5SkFFQTV4dUxmTVJON0x6NHVoSUU?oc=5"
-    },
-    {
-      "source": "News",
-      "title": "Why AI agents cannot be trusted to secure agentic AI yet - Computer Weekly",
-      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxPckwxcTFpaXIxbFU2RnMzNGFyd3o4U0ZYZFBRTXNkVGpTZzVSNlVvX1ZVaVduUGxsaEI5N0hIVjFiYXRpZkVvRlZCeTcyZzBBSS1vZzJHaXhaRkhoV3NCQ1V4VDRKY1VzNlMta3JYNy1YNks1YTA0Q1ptcVk3Mm9qOXpNdjdPeGotZEpGSV8tXzlFeG1hckpTaC1mcw?oc=5"
-    },
-    {
-      "source": "News",
-      "title": "Salesforce\u2019s Job-Ready Agents Target Enterprise AI\u2019s Biggest Gap - The Futurum Group",
-      "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPV3JKWEhrNHlBdno1b215Y28wdG05RzBYVTJ3aXNwUUJzUG9yczB6OEJpTzFNTnN2anJiMUdoenY3a1g2MWhBN0F2V0JIbkxpN2ZSc0xVOFdHX25ST09wSWItbkpTWU9MNm8wNkxIMTNreDd3OEtNUF82YU55YjNFdVpfN3ZMZ1RkLTQwTXRxQlFaSUpuZGtJVFFzODRqUQ?oc=5"
-    },
-    {
-      "source": "News",
-      "title": "Abacus.AI\u2019s Smaug Models Cut Agent Costs 15-20% [2026] - tech-insider.org",
-      "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFA4bktEWHdnakxEc1BraDJvQkhtbXZwSXc3eUI5SW1VeVZrZ0FWQjAwUmpGN0VERDZPb1d1R013XzZ6aEwyS2RaTmlfV09NVl9QNGtlc1ZGOFUxVG12TnFEUF9UTHJqOEpuYTlUSlFFeW13Mmc?oc=5"
+      "title": "Airrived Expands Agentic OS with End-to-End AI Agent Observability - HPCwire",
+      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPSkxqNWNIZWxSQjY1YTkwdmx6VTVKQlo0dU9hOFhxUDNpSlV2V2JianhXMDJRV013dk4yQjZuWFJBcGF5YkdPdEctNmpJbXAzaGc3d0ZoNHpCem9WdndBVjU5bVBYLVVsMHBhSDBuVHdkRFZKSjR4YUpxUFYzaGNaQ0s5VkdkNWRJbVBZb1FFWkl5VVVuckpPZTR1andsMVpSWDdLczBqOWtMRk5RYUVwT3ZKbWw5NVU?oc=5"
     }
   ],
-  "population_engine": 80,
-  "species": 48,
+  "population_engine": 93,
+  "species": 56,
   "trials": 2,
-  "harvested": 79
+  "harvested": 89
 }

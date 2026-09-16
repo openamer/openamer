@@ -4,7 +4,7 @@ title: auto-generated
 
 # 📦 auto-generated
 
-33 skills
+34 skills
 
 - [auto-best-practice-from-official](auto-best-practice-from-official/) — LoRA · Hugging Face — We propose Low-Rank Adaptation, or LoRA, which freezes the
 - [auto-competitor-intelligence-autogpt-improvem](auto-competitor-intelligence-autogpt-improvem/) — Ctrl k GitBook Assistant Ask License GitHub More Home AutoGPT Platform Integrati
@@ -26,6 +26,7 @@ title: auto-generated
 - [auto-multidomain-learning-legal-ai](auto-multidomain-learning-legal-ai/) — 
 - [auto-multidomain-learning-medical-diagnosis](auto-multidomain-learning-medical-diagnosis/) — Artificial intelligence-driven transformative applications in disease ... — In c
 - [auto-multidomain-learning-philosophy-of](auto-multidomain-learning-philosophy-of/) — 
+- [auto-multidomain-learning-physics-simulation](auto-multidomain-learning-physics-simulation/) — Distinction between classical and modern physics 2.
 - [auto-security-learning-ai-agent](auto-security-learning-ai-agent/) — 
 - [auto-security-learning-jailbreak-prevention](auto-security-learning-jailbreak-prevention/) — 
 - [auto-security-learning-llm-prompt](auto-security-learning-llm-prompt/) — 
