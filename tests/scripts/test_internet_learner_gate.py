@@ -478,6 +478,57 @@ def test_read_time_header_is_stripped_not_stored():
         assert IL._clean_insight(text), text
 
 
+def test_arrow_nav_prefix_is_stripped_not_stored():
+    """Leading nav terminated by an HTML-comment arrow must not ride in
+    (live 16.09.26, third shape of the byline/header-strip family).
+
+    Learned, verbatim:
+      "Studies Blogs Contact Arsha --> Posted on May 2, 2025 by admin --> Prompt
+       Engineering Is Dead in 2025 Introduction Prompt engineering, once hailed
+       as the essential skill for interacting with large language models (LLMs),
+       has become obsolete by 2025."
+    `-->` is leaked HTML comment markup -- real prose never contains it, which
+    is exactly what makes it a safe boundary. The body must survive BYTE-INTACT.
+    """
+    leak = (
+        "Studies Blogs Contact Arsha --> Posted on May 2, 2025 by admin --> "
+        "Prompt Engineering Is Dead in 2025 Introduction Prompt engineering, once "
+        "hailed as the essential skill for interacting with large language models "
+        "(LLMs), has become obsolete by 2025."
+    )
+    body = (
+        "Prompt Engineering Is Dead in 2025 Introduction Prompt engineering, once "
+        "hailed as the essential skill for interacting with large language models "
+        "(LLMs), has become obsolete by 2025."
+    )
+    assert IL._strip_arrow_nav_prefix(leak) == body
+    assert IL._clean_insight(leak) == body
+    assert "-->" not in IL._clean_insight(leak)
+
+    # a run of empty arrows from a stripped template must also be consumed.
+    # (Verbatim live row 154 — the closing clause carries the comma that keeps
+    # it out of the nav-list rule; a shortened fixture would trip THAT gate,
+    # which is a different rule and not what this test is about.)
+    multi = (
+        "March 27, 2026 2 min read --> --> --> --> --> Uncomfortable Truths "
+        "About AI Coding Agents: What the Industry Needs to Know Artificial "
+        "intelligence is reshaping software development, but the rise of AI "
+        "coding agents brings both promise and pitfalls."
+    )
+    assert IL._clean_insight(multi).startswith("Uncomfortable Truths About AI Coding Agents")
+    assert "-->" not in IL._clean_insight(multi)
+
+    # counter-cases: real prose with no arrow, and an arrow deep inside a text
+    for text in (
+        "OpenCode | The open source AI coding agent — What is OpenCode? OpenCode is "
+        "an open source agent that runs in the terminal and bills per token.",
+        "Retrieval beats fine-tuning for facts; retrieval also costs less per query.",
+        "vLLM PagedAttention raises serving throughput about 24x over naive HF generation.",
+    ):
+        assert IL._strip_arrow_nav_prefix(text) == text, text
+        assert IL._clean_insight(text), text
+
+
 def test_store_refuses_chrome_and_writes_real_insights(tmp_path):
     buf = tmp_path / "buf.jsonl"
     import buffer_store  # imported lazily by store()

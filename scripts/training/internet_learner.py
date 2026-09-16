@@ -1111,6 +1111,35 @@ def _strip_read_time_header(text):
     return out if len(out.split()) >= 5 else t
 
 
+_ARROW_NAV_RE = re.compile(r"\s*-{1,2}>\s*")
+_POSTED_BY_RE = re.compile(
+    r"^\s*(?:posted|published|updated)\s+on\s+[^,]{3,40}\s+by\s+[A-Za-z][\w.'-]*\s*",
+    re.IGNORECASE)
+
+
+def _strip_arrow_nav_prefix(text):
+    """Drop a leading nav/breadcrumb run terminated by an HTML-comment arrow.
+
+    Live 16.09.26 (third shape of the same family): the security cycle learned
+      "Studies Blogs Contact Arsha --> Posted on May 2, 2025 by admin --> Prompt
+       Engineering Is Dead in 2025 Introduction Prompt engineering, once hailed
+       as the essential skill ... has become obsolete by 2025."
+    `-->` is an HTML comment terminator leaked from the page markup -- real
+    prose never contains it, which makes it a precise boundary marker. The
+    headline behind the nav is the knowledge, so STRIP rather than reject.
+
+    The arrow must sit in the LEADING chrome region (< 120 chars): an arrow
+    deep inside a text is content, not a breadcrumb.
+    """
+    t = (text or "").strip()
+    arrows = [m for m in _ARROW_NAV_RE.finditer(t) if m.start() < 120]
+    if not arrows:
+        return t
+    rest = t[arrows[-1].end():].lstrip()
+    rest = _POSTED_BY_RE.sub("", rest).strip()
+    return rest if len(rest.split()) >= 5 else t
+
+
 def _strip_byline_prefix(text):
     """Remove a leading author/date byline so the body prose is judged alone.
 
@@ -1159,6 +1188,7 @@ def _clean_insight(text, max_len=250):
         t = urllib.parse.unquote(t).strip()  # judge the decoded words, not %20
     t = _strip_byline_prefix(t)
     t = _strip_read_time_header(t)
+    t = _strip_arrow_nav_prefix(t)
     if len(t) < 20 or _is_junk(t):
         return ""
     if _is_nav_list(t):
