@@ -11,7 +11,29 @@ import os
 import json, os, sys, datetime, re
 from pathlib import Path
 
-T = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "scripts", "training")
+def _training_dir():
+    """Resolve the live training dir, tolerating a wrong/stale OPENAMER_HOME.
+
+    Same canonical resolver as internet_learner / knowledge_to_action /
+    self_improve. An MSYS-style OPENAMER_HOME (/c/Users/...) does not crash
+    string-building, it just fails the isdir() probe and falls through to the
+    real install dir -- so a differently-spelled correct home is tolerated and
+    the ABORT guard below stays reserved for a home that truly isn't this install.
+    """
+    cands = []
+    _env = os.environ.get("OPENAMER_HOME")
+    if _env:
+        cands.append(os.path.join(_env, "scripts", "training"))
+    _home = Path.home()
+    cands.append(str(_home / "AppData" / "Local" / "openamer-laptop" / "scripts" / "training"))
+    cands.append(str(Path(__file__).resolve().parent))
+    for _c in cands:
+        if os.path.isdir(_c):
+            return _c
+    return os.path.join(str(_home), "AppData", "Local", "openamer", "scripts", "training")
+
+
+T = _training_dir()
 BUFFER = os.path.join(T, "online_buffer.jsonl")
 KTA_LOG = os.path.join(T, "kta_log.jsonl")
 SKILLS_DIR = os.path.join(str(Path.home()), "openamer-repo", "skills")
@@ -128,6 +150,46 @@ _PORTAL_AD_MARKERS = (
 )
 _PORTAL_AD_MIN_MARKERS = 2
 
+# Scraped site-navigation / vote-chrome prefixes. Live 16.09: an HN item was
+# captured as "Remix new past ask show jobs submit login AI Regex Scientist: A
+# self-improving regex solver 9 points by PranoyP 7 months ago | 2 comments I
+# built a system where two LLM agents co-evolve...". The trailing knowledge is
+# genuine, but the leading menu chain and score line became the skill's
+# description and Trigger. Unlike portal ad chrome this content is NOT junk, so
+# it is stripped rather than rejected -- rejecting would lose a real insight.
+_NAV_CHROME_PREFIXES = (
+    "remix new past ask show jobs submit login ",
+    "new past ask show jobs submit login ",
+    "past ask show jobs submit login ",
+    "ask show jobs submit login ",
+)
+_NAV_CHROME_SCORE = re.compile(
+    r"\b\d+\s+points?\s+by\s+\S+(?:\s+\d+\s+\w+\s+ago)?(?:\s*\|\s*\d+\s+comments?)?\s*"
+)
+
+def strip_nav_chrome(text):
+    """Remove leading scraped site-navigation and score chrome from an insight.
+
+    Returns the text with the menu prefix and the "N points by X N months ago |
+    M comments" run removed. The score line is only stripped when the menu prefix
+    was present, so genuine prose that merely mentions "points by" (e.g. "awards
+    5 points by default") is never touched. A score line with no menu chain is
+    left in place -- verbose but intact beats silently eaten knowledge.
+    """
+    if not text:
+        return text
+    out = text.lstrip()
+    lowered = out.lower()
+    had_prefix = False
+    for prefix in _NAV_CHROME_PREFIXES:
+        if lowered.startswith(prefix):
+            out = out[len(prefix):]
+            had_prefix = True
+            break
+    if had_prefix:
+        out = _NAV_CHROME_SCORE.sub("", out, count=1)
+    return out.strip()
+
 def dedupe_check(name, description, registry):
     """Skip if we already created this skill (same slug) or a near-identical insight.
 
@@ -148,7 +210,7 @@ def dedupe_check(name, description, registry):
 def create_skill_from_insight(insight_question, insight_answer, source_tag):
     """Create a draft skill from one internet insight."""
     # derive skill name and description from the insight
-    clean_answer = clean_text(insight_answer)
+    clean_answer = strip_nav_chrome(clean_text(insight_answer))
     if not is_usable_text(clean_answer):
         # binary/garbled insight (e.g. compressed blob in the buffer) - never write it
         print(f"[auto-skill] skipped unreadable insight: {insight_question[:60]}",

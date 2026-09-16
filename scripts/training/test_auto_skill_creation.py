@@ -132,6 +132,54 @@ def test_empty_or_none_text_is_rejected():
     assert asc.is_domain_relevant(None) is False
 
 
+# --- scraped nav/vote chrome on an otherwise-good insight (bug live 16.09.26) --
+# The learner captured an HN item as "Remix new past ask show jobs submit login
+# AI Regex Scientist: A self-improving regex solver 9 points by PranoyP 7 months
+# ago | 2 comments I built a system where two LLM agents co-evolve...". The menu
+# chain and score line became the skill's description + Trigger. This content is
+# strippable, not rejectable -- the trailing knowledge is real.
+
+HN_CHROME = ("Remix new past ask show jobs submit login AI Regex Scientist: "
+             "A self-improving regex solver 9 points by PranoyP 7 months ago | "
+             "2 comments I built a system where two LLM agents co-evolve: one "
+             "invents regex problems, the other learns to solve them.")
+
+
+def test_nav_chrome_prefix_and_score_are_stripped():
+    """Menu chain + vote line are removed; the real insight survives."""
+    out = asc.strip_nav_chrome(HN_CHROME)
+    assert out.startswith("AI Regex Scientist:"), out
+    assert "login" not in out.lower().split("solver")[0], out
+    assert "points by" not in out, out
+    assert out.endswith("the other learns to solve them."), out
+
+
+def test_nav_strip_keeps_genuine_text_mentioning_points():
+    """A mid-sentence 'points' must not be eaten — only the leading chrome run."""
+    prose = ("The benchmark awards 5 points by default to any model that "
+             "finishes within the time budget.")
+    assert asc.strip_nav_chrome(prose) == prose
+
+
+def test_nav_strip_is_noop_on_clean_text():
+    clean = "Mamba-3 decodes faster than a Transformer and is stable."
+    assert asc.strip_nav_chrome(clean) == clean
+    assert asc.strip_nav_chrome("") == ""
+    assert asc.strip_nav_chrome(None) is None
+
+
+def test_chrome_does_not_reach_the_written_skill():
+    """End-to-end: the chrome-stripped insight is what lands in SKILL.md."""
+    skills, _ = _sandbox()
+    entry = asc.create_skill_from_insight("Latest research insight: HN item",
+                                         HN_CHROME, "internet-learner")
+    assert entry is not None, "genuine insight must still produce a skill"
+    md = open(os.path.join(skills, entry["name"], "SKILL.md"), encoding="utf-8").read()
+    assert "submit login" not in md, md
+    assert "points by" not in md, md
+    assert "co-evolve" in md, md
+
+
 if __name__ == "__main__":
     fns = [v for k, v in sorted(globals().items()) if k.startswith("test_")]
     failed = 0
