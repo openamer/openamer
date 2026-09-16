@@ -838,6 +838,69 @@ def test_wait_for_windows_gateway_respawn_returns_new_pid(
 
 
 @patch.object(cli_main, "_is_windows", return_value=True)
+def test_wait_for_windows_gateway_respawn_ignores_foreign_install_gateway(
+    _winp,
+    monkeypatch,
+):
+    """A gateway owned by ANOTHER install is not proof that ours came back.
+
+    ``find_gateway_pids(all_profiles=True)`` is machine-wide, so on a
+    two-install box (the setup in issue #28) the *other* install's healthy
+    gateway is always in that list. Counting it made the resume path print
+    ``✓ Restarting …`` while our own gateway was still down.
+    """
+    import openamer_cli.gateway as gateway_mod
+
+    foreign_argv = [
+        "C:/OtherTree/openamer-laptop/venv/Scripts/python.exe",
+        "-m",
+        "openamer_cli.main",
+        "gateway",
+        "run",
+    ]
+    monkeypatch.setattr(
+        gateway_mod, "find_gateway_pids", lambda **_k: [9999]
+    )
+    monkeypatch.setattr(
+        gateway_mod,
+        "_capture_gateway_argv",
+        lambda pid: list(foreign_argv) if int(pid) == 9999 else [],
+    )
+
+    # Only the foreign gateway is alive → must time out empty, not report 9999.
+    assert (
+        cli_main._wait_for_windows_gateway_respawn([101], timeout_s=0.05) == []
+    )
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
+def test_wait_for_windows_gateway_respawn_keeps_unevidenced_pid(
+    _winp,
+    monkeypatch,
+):
+    """No readable evidence is still "ours" — the #50090 pause must not regress.
+
+    ``_belongs_to_other_install`` only calls a process foreign on *proof*; a
+    scheduled-task gateway whose argv/env cannot be read must keep counting as a
+    live gateway, exactly as the pause path assumes.
+    """
+    import openamer_cli.gateway as gateway_mod
+
+    monkeypatch.setattr(
+        gateway_mod, "find_gateway_pids", lambda **_k: [7777]
+    )
+    monkeypatch.setattr(
+        gateway_mod,
+        "_capture_gateway_argv",
+        lambda pid: (_ for _ in ()).throw(PermissionError("access denied")),
+    )
+
+    assert cli_main._wait_for_windows_gateway_respawn(
+        [101], timeout_s=0.5
+    ) == [7777]
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
 def test_resume_windows_gateways_after_update_respawns_unmapped_by_cmdline(
     _winp,
     monkeypatch,
