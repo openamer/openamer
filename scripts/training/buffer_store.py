@@ -282,6 +282,30 @@ _NAV_CHROME = (
 # -> 0 real-prose rows carry it. A structural "…;" gate was REJECTED: 7 of
 # the 16 such rows (vLLM, quantization) carry genuine technical prose.)
     "auf duden online",
+    # German bank referral/promo chrome (live 16.09.26: cycle_c_github
+    # stored "Auch die neue Kundin oder der neue Kunde erhält eine Prämie
+    # von 300 €, was eine Gesamtprämie von 600 € ergibt!"). Mirror of
+    # internet_learner._JUNK_RE — every writer path must agree. Measured
+    # over the live 5080-row corpus: 1 hit (the leaking row), 0 real-prose
+    # rows carry these phrases.)
+    "prämie von",
+    "gesamtprämie",
+    "erhält eine prämie",
+    "neukundenprämie",
+    "empfehlungsprämie",
+    # 16.09.26 measured leaks: HN listing chrome (cycle_f) and the Wikipedia
+    # infobox label chain (cycle_g). Measured on the live buffer: 1-2 hits
+    # each, 0 real-prose FPs on a 12-sentence hand-written prose set.
+    # NOTE: bank T&C balance figures were left UNGATED on purpose — the
+    # candidate markers `consumer account` / `checking account` /
+    # `savings account` each hit 1-3 hand-written real-prose sentences, i.e.
+    # they are topic words, not chrome. Only that one row is affected.
+    "visit website",
+    "points by ",
+    "points ·",
+    "comments ·",
+    "connector type",
+    " months ago (",
 )
 
 

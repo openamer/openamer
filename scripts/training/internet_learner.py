@@ -378,7 +378,15 @@ _JUNK_RE = re.compile(
     # German ad/classified chrome (live 13.09.26: a competitor cycle "learned"
     # "Unsere Werbepartner Einkaufen Ferienwohnungen Freizeit und Reise …")
     r"werbepartner|ferienwohnungen|kleinanzeigen|anzeigenmarkt|"
-    r"przepisy|kuchnia|inspiracje|porady|dania na grilla|"
+    # German bank referral/promo chrome (live 16.09.26: cycle_c_github
+    # stored "Auch die neue Kundin oder der neue Kunde erhält eine Prämie
+    # von 300 €, was eine Gesamtprämie von 600 € ergibt!" — a referral BONUS
+    # offer, zero technical prose; the euro amounts fed the technical-signal
+    # gate and the 100 chars cleared the >=25 floor. Concrete promo phrases
+    # only: measured over the live 5080-row corpus, 1 hit (the leaking row),
+    # 0 real-prose rows.)
+    r"pr\u00e4mie von|gesamtpr\u00e4mie|erh\u00e4lt eine pr\u00e4mie|"
+    r"neukundenpr\u00e4mie|kunden-werben|empfehlungspr\u00e4mie|"    r"przepisy|kuchnia|inspiracje|porady|dania na grilla|"
     # HuggingFace docs sidebar nav (live 14.09.26: the docs cycle stored the
     # verbatim product-label list "Inference Providers Kernels LeRobot
     # Leaderboards … Tokenizers Trackio Transformers". At 200 chars it cleared
@@ -497,7 +505,10 @@ _JUNK_RE = re.compile(
     # NOTE: the LAST fragment must NOT end with `|` (an empty alternative would
     # match every string and turn the gate into "reject everything").
     r"watch live key points|support my work|share threads support|"
-    r"auf duden online|"
+    # 16.09.26 measured leaks: HN listing chrome (cycle_f), Wikipedia
+    # infobox label chain (cycle_g) — same measured markers as
+    # buffer_store._NAV_CHROME (keep both files in sync).
+    r"auf duden online|visit\ website|points\ by\ |points\ ·|comments\ ·|connector\ type|\ months\ ago\ \(|"
     r"^\W*[kKmM]\s+followers\b",
     re.IGNORECASE)
 

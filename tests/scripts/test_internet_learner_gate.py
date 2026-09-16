@@ -1190,3 +1190,47 @@ def test_leading_byline_stack_is_stripped_not_stored():
         "anonymous online posts.",
     ):
         assert IL._clean_insight(text), text
+def test_hn_listing_and_wikipedia_infobox_chrome_is_gated_on_both_paths():
+    """cycle_f/cycle_g stored HN front-page listing chrome and a Wikipedia
+    infobox label chain (live 16.09.26). Both cleared the writer AND the
+    extraction gate: the HN row is >90 chars with digits (so the length trust
+    and the technical-signal gate both fired) and the infobox row is a bare
+    label chain with no comma, so `_is_nav_list` never matched.
+
+    Measured on the live buffer: 1-2 hits each, 0 real-prose false positives
+    on a 12-sentence hand-written prose set. Bank T&C rows were deliberately
+    left UNGATED: `consumer account` / `checking account` / `savings account`
+    each hit real hand-written prose, i.e. they are topic words, not chrome.
+    """
+    sys.path.insert(0, str(TRAINING))
+    import buffer_store
+    leaks = (
+        # HN front-page listing chrome: "by <user> visit website #N Launch HN..."
+        "by alepeak visit website #14 Launch HN: April (YC S25) - Voice AI to "
+        "manage your email and calendar 98 points \u00b7 95 comments \u00b7 "
+        "Aug 25, 2025 \u00b7 by nehasuresh1904 visit website #15 Launch HN: Twill.",
+        # Wikipedia infobox label chain (" ; 21 months ago ( ... ) Industry ... ")
+        "Model Context Protocol Developed by Anthropic Introduced November 25, "
+        "2024 ; 21 months ago ( 2024-11-25 ) Industry Artificial intelligence "
+        "Connector type TypeScript Python Java Kotlin C# Go PHP Perl Ruby Rust Swift",
+        # HN story listing counters mid-row
+        "Remix new past ask show jobs submit login AI Regex Scientist: A "
+        "self-improving regex solver 9 points by PranoyP 7 months ago | 2 " "comments",
+    )
+    for leak in leaks:
+        assert buffer_store.is_junk(leak), leak
+        assert IL._is_junk(leak), leak
+
+    # counter-cases: every marker is also a shape real prose can contain.
+    for prose in (
+        "Model Context Protocol was introduced by Anthropic in November 2024 "
+        "to standardize tool access for LLM applications across vendors.",
+        "You can visit our website to read the full benchmark methodology and "
+        "the raw latency numbers behind the comparison.",
+        "A consumer account typically earns interest while a checking account "
+        "does not, which is why fintechs push both products together.",
+        "The paper reports 98 points on MMLU after 21 months of iterative "
+        "pretraining and reinforcement learning on synthetic data.",
+    ):
+        assert not buffer_store.is_junk(prose), prose
+        assert not IL._is_junk(prose), prose
