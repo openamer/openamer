@@ -1066,6 +1066,51 @@ _BARE_ATTRIB_RE = re.compile(
     re.IGNORECASE)
 
 
+_READ_TIME_RE = re.compile(r"^\s*\d{1,3}\s*min\s*read\b[\s:\u00b7|\u2013-]*")
+_WORD_RE = re.compile(r"[A-Za-z][A-Za-z0-9&+.'-]*")
+
+
+def _strip_read_time_header(text):
+    """Drop a leading "<N> min read <category nav>" blog header.
+
+    Live 16.09.26 (two separate cycles): the multi-domain cycle learned rows
+    that are page furniture welded to a real headline --
+      "11 min read China Semiconductors AI Infrastructure Geopolitics China AI
+       Chip Boom: CAICT 417% Demand vs 128% Supply 2026 Caixin Sept 15, 2026:
+       CAICT says China AI compute demand jumped 417% YoY in Q1 ..."
+      "12 min read Nvidia AI Infrastructure GPUs FinOps Wall Street Nvidia
+       $500B AI Compute Fund: What Developers Need to Know ..."
+    The knowledge is the headline BEHIND the read-time and its category nav, so
+    STRIP rather than reject (same call as the byline prefix).
+
+    The boundary is found structurally, not by guessing a word count: the
+    category nav repeats a word the headline then re-uses ("China ... China AI
+    Chip Boom"), so the SECOND occurrence is where the article starts. No
+    duplicate -> the text is left untouched, which is what keeps a real
+    sentence that merely mentions a read time safe.
+    """
+    t = (text or "").strip()
+    m = _READ_TIME_RE.match(t)
+    if not m:
+        return t
+    rest = t[m.end():].lstrip()
+    seen, boundary = set(), None
+    for tok in _WORD_RE.finditer(rest):
+        w = tok.group(0)
+        if not w[:1].isupper():
+            break                       # nav run ended, no repeat -> not a header
+        key = w.lower()
+        if key in seen:
+            boundary = tok.start()      # the headline repeats a nav word
+            break
+        seen.add(key)
+    if boundary is None:
+        return t
+    out = rest[boundary:].strip()
+    # only strip when a real sentence body remains; else leave the chrome alone
+    return out if len(out.split()) >= 5 else t
+
+
 def _strip_byline_prefix(text):
     """Remove a leading author/date byline so the body prose is judged alone.
 
@@ -1113,6 +1158,7 @@ def _clean_insight(text, max_len=250):
     if _URL_ESC_RE.search(t):
         t = urllib.parse.unquote(t).strip()  # judge the decoded words, not %20
     t = _strip_byline_prefix(t)
+    t = _strip_read_time_header(t)
     if len(t) < 20 or _is_junk(t):
         return ""
     if _is_nav_list(t):

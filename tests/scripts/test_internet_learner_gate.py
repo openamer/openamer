@@ -436,6 +436,48 @@ def test_news_ticker_loop_is_rejected():
         assert not buffer_store.is_junk(text), text
 
 
+def test_read_time_header_is_stripped_not_stored():
+    """A leading "<N> min read <category nav>" header must not ride into the
+    buffer, but the article BEHIND it must survive (live 16.09.26, two cycles).
+
+    Learned, verbatim:
+      "11 min read China Semiconductors AI Infrastructure Geopolitics China AI
+       Chip Boom: CAICT 417% Demand vs 128% Supply 2026 Caixin Sept 15, 2026:
+       CAICT says China AI compute demand jumped 417% YoY in Q1 vs 128% supply."
+    The category nav repeats a word the headline re-uses ("China ... China"),
+    so the second occurrence is where the article starts. The body must come
+    out BYTE-IDENTICAL to the original minus the prefix — a strip-gate is a
+    third verdict beside accept/reject, so a plain delta cannot prove it.
+    """
+    body = (
+        "China AI Chip Boom: CAICT 417% Demand vs 128% Supply 2026 Caixin "
+        "Sept 15, 2026: CAICT says China AI compute demand jumped 417% YoY in Q1."
+    )
+    header = ("11 min read China Semiconductors AI Infrastructure Geopolitics " + body)
+    assert IL._strip_read_time_header(header) == body          # body byte-identical
+    assert IL._clean_insight(header) == body
+    assert "min read" not in IL._clean_insight(header)
+
+    nvidia = (
+        "12 min read Nvidia AI Infrastructure GPUs FinOps Wall Street Nvidia "
+        "$500B AI Compute Fund: What Developers Need to Know Nvidia and six "
+        "Wall Street firms unveiled $500B in AI compute financing on August 10, 2026."
+    )
+    assert IL._clean_insight(nvidia).startswith("Nvidia $500B AI Compute Fund")
+
+    # No repeated nav word -> no structural marker -> UNTOUCHED. This is what
+    # keeps real prose that merely mentions a read time safe, and it is why the
+    # rule does not need a "strip N words" guess.
+    for text in (
+        "The 11 min read time on that post is misleading; the quantization "
+        "section is only 200 words.",
+        "Benchmarks show 40% latency reduction at int4; the write-up is a 6 min read.",
+        "vLLM PagedAttention raises serving throughput about 24x over naive HF generation.",
+    ):
+        assert IL._strip_read_time_header(text) == text, text
+        assert IL._clean_insight(text), text
+
+
 def test_store_refuses_chrome_and_writes_real_insights(tmp_path):
     buf = tmp_path / "buf.jsonl"
     import buffer_store  # imported lazily by store()
