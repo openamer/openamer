@@ -1446,6 +1446,51 @@ _NAV_LABEL_FUNC_WORDS = frozenset((
 ))
 
 
+# Leading BYLINE STACK: author + date + engagement counters + a Share button
+# (live 16.09.26, class 15 of the leading-chrome family): cycle_b_papers
+# stored, verbatim,
+#
+#   "Simon Lermen Feb 24, 2026 54 5 8 Share TL;DR: We show that LLM agents
+#    can figure out who you are from your anonymous online posts."
+#
+# The paper's byline row rides in front of its own TL;DR, which IS the
+# knowledge -> STRIP. The structural signature is the ORDER: a Name, a date
+# literal, then engagement counters, then the widget's "Share" control.
+# Each element alone is prose-safe; only the welded RUN is page furniture.
+#
+# Two guards, each measured over the live 5068-row corpus (1 hit = the leaking
+# row; 0 real-prose rows):
+#   1. the counters must be BARE numbers (no nouns after them) AND be followed
+#      directly by "Share", so a real sentence citing the date and its
+#      metrics ("Alice Smith Jan 5, 2026 reported 40% lower decode
+#      latency ...") cannot match.
+#   2. the Name+date must sit at the START (re.match), so a date mid-sentence
+#      ("The Feb 24, 2026 release of vLLM adds 3 new kernels") is untouched.
+# A bare "N words then Share" rule was measured and rejected: it also ate
+# prose that merely mentions sharing.
+_BYLINE_STACK_RE = re.compile(
+    r"^[A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,2}\s+"
+    r"(?:" + _DATE_ALT + r")\s+"
+    r"(?:\d{1,3}\s+){1,4}"
+    r"[Ss]hare\s+(?=[A-Z\x22\x27\W])",
+    re.IGNORECASE)
+
+
+def _strip_byline_stack(text):
+    """Drop a leading "<Name> <date> <counters> Share" byline row.
+
+    Live 16.09.26: cycle_b_papers learned "Simon Lermen Feb 24, 2026 54 5 8
+    Share TL;DR: We show that LLM agents can figure out who you are ..." — the
+    byline row prefixed the paper's own TL;DR. Strip, never reject: the TL;DR
+    is the knowledge. See the module comment for the two measured guards.
+    """
+    t = (text or "").strip()
+    m = _BYLINE_STACK_RE.match(t)
+    if not m:
+        return t
+    rest = t[m.end():].strip()
+    return rest if len(rest.split()) >= 5 else t
+
 def _strip_nav_label_stack(text):
     """Drop a leading label-only nav stack that ends at a publisher dateline.
 
@@ -1626,6 +1671,7 @@ def _clean_insight(text, max_len=250):
     t = _strip_wiki_section_prefix(t)
     t = _strip_dateline_fragment(t)
     t = _strip_nav_label_stack(t)
+    t = _strip_byline_stack(t)
     t = _strip_byline_prefix(t)
     t = _strip_clock_fragment(t)
     t = _strip_read_time_header(t)

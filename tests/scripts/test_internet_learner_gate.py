@@ -1144,3 +1144,49 @@ def test_leading_nav_label_stack_is_stripped_not_stored():
     )
     assert IL._strip_nav_label_stack(GHSA) == GHSA
     assert IL._is_nav_list(GHSA)
+
+
+def test_leading_byline_stack_is_stripped_not_stored():
+    """A leading author/date/counters/Share byline row must not ride in, but
+    the article body behind it must survive (live 16.09.26, class 15).
+
+    Learned, verbatim:
+      "Simon Lermen Feb 24, 2026 54 5 8 Share TL;DR: We show that LLM agents
+       can figure out who you are from your anonymous online posts."
+    The byline row prefixed the paper's own TL;DR -> STRIP. The signature is the
+    welded ORDER (Name, date, bare counters, "Share"); each element alone is
+    prose-safe. Both guards below are measured over the live 5074-row corpus.
+    """
+    body = (
+        "TL;DR: We show that LLM agents can figure out who you are from your "
+        "anonymous online posts."
+    )
+    leak = "Simon Lermen Feb 24, 2026 54 5 8 Share " + body
+    assert IL._strip_byline_stack(leak) == body          # body pristine
+    assert IL._clean_insight(leak) == body
+
+    # --- counter-cases. The counters must be BARE numbers AND directly followed
+    # by "Share": a real sentence that reports its date and metrics cannot match.
+    for text in (
+        "Alice Smith Jan 5, 2026 reported 40% lower decode latency in the "
+        "quantized model.",
+        "The Feb 24, 2026 release of vLLM adds 3 new quantized kernels and 2 "
+        "fixes.",
+        "We show that LLM agents can figure out who you are from your "
+        "anonymous online posts.",
+        "Simon Lermen Feb 24, 2026 54 5 8 TL;DR: We show that LLM agents can "
+        "figure out who you are.",       # no Share control -> untouched
+    ):
+        assert IL._strip_byline_stack(text) == text, text   # untouched
+
+    # the three prose cases must still be learnable (the fourth is a fragment
+    # shape, asserted only for the strip)
+    for text in (
+        "Alice Smith Jan 5, 2026 reported 40% lower decode latency in the "
+        "quantized model.",
+        "The Feb 24, 2026 release of vLLM adds 3 new quantized kernels and 2 "
+        "fixes.",
+        "We show that LLM agents can figure out who you are from your "
+        "anonymous online posts.",
+    ):
+        assert IL._clean_insight(text), text
