@@ -658,9 +658,17 @@ def _has_alpha_signal(text):
     rejects 42 verbless fragments (leaked extraction scaffolding, "Situation
     2:" stubs, phone/contact chrome) and keeps all 13 rows that carry a real
     technical keyword — no insight lost.
+    Live 16.09.26 (second pass): scanning only the FIRST match rejected real
+    prose whose opening technical-ish token is a bare number —
+    "By contrast, the 2024 study found quantization recovers 97% of fp16
+    accuracy at INT4." matched "2024" first and never saw "quantization". Scan
+    every match; accept when ANY is alphabetic. Strictly widens acceptance to
+    text that carries a genuine keyword, so no junk class can slip in.
     """
-    m = _TECH_HINT_RE.search(text or "")
-    return bool(m) and any(c.isalpha() for c in m.group(0))
+    for m in _TECH_HINT_RE.finditer(text or ""):
+        if any(c.isalpha() for c in m.group(0)):
+            return True
+    return False
 
 
 # A real sentence has a verb; a nav/menu fragment ("Blog - Neutree Projects ▾
@@ -954,6 +962,82 @@ def deep_learn(query, k=2):
             return ""
 
 
+_BYLINE_SEP = " \u00b7 "
+_BYLINE_SEP_RE = re.compile(r"\s*[\u00b7|\u2022]\s*")
+
+# A date literal, in the three shapes pages actually emit. Reused by both
+# byline regexes so the two can never drift apart.
+_DATE_ALT = (
+    r"(?:(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?\s+"
+    r"\d{1,2},?\s+\d{2,4}"                       # "June 11, 2026"
+    r"|\d{1,2}\s+(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\.?,?\s+\d{2,4}"  # "14 September 26"
+    r"|\d{1,2}[./-]\d{1,2}[./-]\d{2,4}"          # "11.06.2026"
+    r")")
+
+# One byline/dateline SEGMENT (between separators). Deliberately narrow: it is
+# only consulted for the leading segments of a text, and only to be *removed*
+# so the prose behind it survives.
+_ATTRIB_SEG_RE = re.compile(
+    r"^(?:"
+    r"(?:written|reviewed|published|posted|updated|authored|edited|"
+    r"last\s+(?:updated|reviewed|modified))\s+by\b.*"
+    r"|(?:published|posted|updated|reviewed|modified|"
+    r"last\s+(?:updated|reviewed|modified))\b.*\d{4}\s*$"
+    r"|by\s+[A-Z][\w.'-]*(?:\s+[A-Z][\w.'-]*){0,3}\s*$"
+    r"|" + _DATE_ALT + r"\s*$"
+    r")",
+    re.IGNORECASE)
+
+# Attribution that LEADS the text with no separator before it, e.g. the live
+# 16.09.26 shape "... · Last reviewed July 23, 2026 AI Consciousness asks ...".
+# A real date literal (or "<verb> by <Name>") is REQUIRED. That is what keeps
+# genuine prose safe: "Published research from Stanford in 2024 shows
+# transformers scale ..." has neither, so it is left untouched.
+_BARE_ATTRIB_RE = re.compile(
+    r"^\s*(?:"
+    r"(?:written|reviewed|published|posted|updated|authored|edited)\s+by\s+"
+    r"[A-Z][\w.'-]*(?:\s+[A-Z][\w.'-]*){0,3}(?:,\s*[^\u00b7|\u2022.]{0,40})?\s*"
+    r"|by\s+[A-Z][\w.'-]*(?:\s+[A-Z][\w.'-]*){0,3}\s+"
+    r"(?:published|posted|updated|reviewed|last\s+reviewed)\s+(?:on\s+)?"
+    + _DATE_ALT + r"\s*"
+    r"|(?:last\s+)?(?:reviewed|updated|published|posted|modified)\s+(?:on\s+)?"
+    + _DATE_ALT + r"\s*"
+    r")",
+    re.IGNORECASE)
+
+
+def _strip_byline_prefix(text):
+    """Remove a leading author/date byline so the body prose is judged alone.
+
+    Live 16.09.26: cycle_f_multi_domain stored the row "Written by Christian
+    Gleitze · Published June 11, 2026 · Last reviewed July 23, 2026 AI
+    Consciousness asks whether an Artificial Intelligence system could have
+    subjective experience, ...". The extractor had legitimately pulled the
+    article's opening sentence, but the page's byline prefixed it; at >90 chars
+    the "long prose is trusted" rule in _clean_insight never looked closer, so
+    page furniture entered the LoRA buffer. Strip rather than reject: the
+    knowledge is the sentence AFTER the byline. Only LEADING, byline-shaped
+    segments are removed; prose that merely mentions a byline mid-sentence is
+    untouched.
+    """
+    t = (text or "").strip()
+    for _ in range(6):
+        before = t
+        t = _BARE_ATTRIB_RE.sub("", t).strip()
+        segs = _BYLINE_SEP_RE.split(t)
+        if len(segs) > 1:
+            i = 0
+            # skip empty segments too: stripping the name above leaves a
+            # dangling leading "· " ("· Published June 11, 2026 · ...").
+            while i < len(segs) - 1 and (not segs[i].strip() or _ATTRIB_SEG_RE.match(segs[i].strip())):
+                i += 1
+            if i:
+                t = _BYLINE_SEP.join(segs[i:]).strip()
+        if t == before:
+            break
+    return t
+
+
 def _clean_insight(text, max_len=250):
     """Final gate on a distilled insight. Returns "" for page furniture.
 
@@ -962,10 +1046,13 @@ def _clean_insight(text, max_len=250):
     the literal "Download PDF Download PDF Review Article Open access Publish".
     Short candidates must therefore carry a technical signal; longer prose
     (>= 90 chars) is trusted on its own merit so non-tech domains survive.
+    Live 16.09.26: that length trust let a >90-char byline-PREFIXED row through,
+    so the byline is stripped before the text is judged.
     """
     t = (text or "").strip()
     if _URL_ESC_RE.search(t):
         t = urllib.parse.unquote(t).strip()  # judge the decoded words, not %20
+    t = _strip_byline_prefix(t)
     if len(t) < 20 or _is_junk(t):
         return ""
     if _is_nav_list(t):

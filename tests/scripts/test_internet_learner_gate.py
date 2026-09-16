@@ -239,6 +239,64 @@ def test_bare_digit_is_not_technical_signal():
     assert IL._clean_insight("Mamba-3 decodes faster than a transformer.")
 
 
+def test_alpha_signal_scans_past_a_leading_digit():
+    """The keyword scan must not stop at the first match (live 16.09.26).
+
+    `_has_alpha_signal` inspected only `_TECH_HINT_RE.search(...)` — the FIRST
+    match. Real prose whose opening technical-ish token is a bare number was
+    therefore rejected even though it carries a genuine keyword:
+    "By contrast, the 2024 study found quantization recovers 97% of fp16
+    accuracy at INT4." matched "2024", never saw "quantization", and scored as
+    signal-less. Scanning every match keeps that insight while still rejecting
+    a fragment whose ONLY signal is a numeral.
+    """
+    real = ("By contrast, the 2024 study found quantization recovers 97% of "
+            "fp16 accuracy at INT4.")
+    assert IL._TECH_HINT_RE.search(real).group(0) == "2024"  # the trap
+    assert IL._has_alpha_signal(real)
+    assert not IL._has_alpha_signal(_HEADING_NUMERAL_LEAK)   # numeral only -> still out
+
+
+def test_byline_prefix_is_stripped_not_stored():
+    """Page bylines must not ride into the buffer on the length trust (live 16.09.26).
+
+    cycle_f_multi_domain stored, verbatim:
+      "Written by Christian Gleitze \u00b7 Published June 11, 2026 \u00b7 Last
+       reviewed July 23, 2026 AI Consciousness asks whether an Artificial
+       Intelligence system could have subjective experience, ..."
+    The extractor had legitimately pulled the article's opening sentence; the
+    page's byline merely prefixed it. At >90 chars the "long prose is trusted"
+    rule in `_clean_insight` never looked closer. The fix STRIPS the leading
+    byline so the knowledge behind it survives — rejecting instead would throw
+    away a real insight, so the counter-cases below are the point of this test.
+    """
+    body = ("AI Consciousness asks whether an Artificial Intelligence system "
+            "could have subjective experience, whether there could be "
+            "something it is like to be that system.")
+    bylined = ("Written by Christian Gleitze \u00b7 Published June 11, 2026 "
+               "\u00b7 Last reviewed July 23, 2026 " + body)
+    assert IL._strip_byline_prefix(bylined) == body
+    assert IL._clean_insight(bylined) == body          # body kept, byline gone
+    # a bare byline with no body left is still chrome, not knowledge
+    assert IL._clean_insight(
+        "Written by Christian Gleitze \u00b7 Published June 11, 2026 "
+        "\u00b7 Last reviewed July 23, 2026") == ""
+    assert IL._strip_byline_prefix("By Mark Coates Published 14 September 26") == ""
+
+    # --- counter-cases: real prose that merely LOOKS like attribution ---
+    for text in (
+        "Published research from Stanford in 2024 shows transformers scale "
+        "predictably with compute.",
+        "By contrast, the 2024 study found quantization recovers 97% of fp16 "
+        "accuracy at INT4.",
+        "Updated benchmarks show vLLM serves 2x the throughput of the naive "
+        "pipeline at equal accuracy.",
+    ):
+        assert IL._strip_byline_prefix(text) == text, text   # untouched
+        assert IL._clean_insight(text), text                 # still learnable
+
+
+
 def test_consumer_app_blurb_is_rejected():
     """An App-Store product blurb is not competitor intelligence (live 16.09.26).
 
