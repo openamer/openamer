@@ -287,8 +287,18 @@ def _execution_count(job_id: str | None) -> int:
         return 0
 
 
-def _execution_outcomes(job_id: str, since_count: int) -> dict:
-    """Post-trial execution outcomes: completed vs error counts."""
+def _execution_outcomes(job_id: str, since_count: int,
+                        since_ts: str | None = None) -> dict:
+    """Post-trial execution outcomes: completed vs error counts.
+
+    Preferred window is the trial's start timestamp (`since_ts`). The legacy
+    positional baseline (`since_count`) assumed the executions table only
+    ever grows: it sliced `rows[since_count:]`, so as soon as the table was
+    reset or pruned to <= that count the slice was permanently empty and the
+    trial never gathered evidence. It then sat "waiting" forever, holding one
+    of the scarce trial slots (max_trials=2) and blocking every other
+    candidate. A timestamp window cannot go stale that way.
+    """
     db = HOME / "cron" / "executions.db"
     result = {"completed": 0, "error": 0}
     if not db.exists() or not job_id:
@@ -296,12 +306,44 @@ def _execution_outcomes(job_id: str, since_count: int) -> dict:
     try:
         import sqlite3
         conn = sqlite3.connect(str(db))
-        rows = conn.execute(
-            "SELECT status FROM executions WHERE job_id=?", (job_id,)
-        ).fetchall()
+        cols = {r[1] for r in conn.execute(
+            "PRAGMA table_info(executions)").fetchall()}
+        has_ts = "claimed_at" in cols
+        if has_ts:
+            rows = conn.execute(
+                "SELECT status, claimed_at FROM executions WHERE job_id=?",
+                (job_id,),
+            ).fetchall()
+        else:
+            # older/minimal schema without timestamps -> positional only
+            rows = [(st, None) for (st,) in conn.execute(
+                "SELECT status FROM executions WHERE job_id=?", (job_id,),
+            ).fetchall()]
         conn.close()
-        # newest executions are at the end of the table
-        new_rows = rows[since_count:]
+        cutoff = None
+        if since_ts and has_ts:
+            try:
+                cutoff = datetime.fromisoformat(since_ts)
+            except Exception:
+                cutoff = None
+        if cutoff is not None:
+            if cutoff.tzinfo is None:
+                cutoff = cutoff.replace(tzinfo=timezone.utc)
+            new_rows = []
+            for st, claimed in rows:
+                if not claimed:
+                    continue
+                try:
+                    ts = datetime.fromisoformat(claimed)
+                except Exception:
+                    continue
+                if ts.tzinfo is None:
+                    ts = ts.replace(tzinfo=timezone.utc)
+                if ts >= cutoff:
+                    new_rows.append((st,))
+        else:
+            # legacy positional baseline: newest executions at the end
+            new_rows = [(r[0],) for r in rows[since_count:]]
         for (st,) in new_rows:
             if st == "completed":
                 result["completed"] += 1
@@ -327,7 +369,8 @@ def evaluate_trials(min_executions: int = 2) -> list[dict]:
         if trial.get("ended"):
             continue
         job_id = trial.get("job_id", "")
-        outcomes = _execution_outcomes(job_id, trial.get("executions_before", 0))
+        outcomes = _execution_outcomes(job_id, trial.get("executions_before", 0),
+                                       trial.get("started"))
         total = outcomes["completed"] + outcomes["error"]
         if total < min_executions:
             results.append({"job_id": job_id, "child": trial.get("child"),
@@ -485,6 +528,16 @@ def autopilot(min_executions: int = 2) -> int:
     for t in trials:
         print(f"[autopilot] trial {t['job_id']}: {t['status']} {t['outcomes']}")
 
+    # Homeostasis: a trial whose job produced no cron evidence can never be
+    # judged by evaluate_trials and would occupy a scarce trial slot forever
+    # (max_trials=2), starving every later candidate of a chance to prove
+    # itself. Settle overdue silent trials with a REAL head-to-head duel.
+    # Without this the remedy existed but no cron job ever called it.
+    stuck = resolve_stuck_trials(timeout_hours=24.0, do_run=True)
+    for s_ in stuck:
+        print(f"[autopilot] stuck trial {s_.get('child')}: {s_.get('status')}"
+              + (f" (winner={s_['winner']})" if "winner" in s_ else ""))
+
     comps = compete()
     if any(c["won"] for c in comps):
         print(f"[autopilot] {sum(1 for c in comps if c['won'])} candidate(s) promoted")
@@ -566,6 +619,7 @@ def autopilot(min_executions: int = 2) -> int:
     print(f"[autopilot] report -> {REPORT_FILE}")
 
     changed = bool(offspring or trials or comps or quarantined or started
+                   or stuck
                    or harvested or new_species or fights or retired
                    or any(r.get("status") == "absorbed"
                           for r in pred_results))
@@ -834,7 +888,8 @@ def resolve_stuck_trials(timeout_hours: float = 24.0, do_run: bool = False) -> l
         if trial.get("ended"):
             continue
         outcomes = _execution_outcomes(trial.get("job_id", ""),
-                                       trial.get("executions_before", 0))
+                                       trial.get("executions_before", 0),
+                                       trial.get("started"))
         if outcomes["completed"] + outcomes["error"] > 0:
             continue  # cron gave evidence - normal path handles it
         started = datetime.fromisoformat(trial["started"])

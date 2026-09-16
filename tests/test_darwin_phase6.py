@@ -127,3 +127,102 @@ def test_resolve_stuck_runs_duel_and_settles(fake_world, monkeypatch):
     # trial closed
     t = json.loads((trials_dir / "jobX.json").read_text(encoding="utf-8"))
     assert t["ended"] is not None
+
+
+def test_stale_positional_baseline_does_not_freeze_trial(fake_world):
+    """Regression: a trial whose executions table was reset/pruned used to sit
+    "waiting" forever.
+
+    The legacy baseline sliced `rows[executions_before:]`, so once the table
+    held <= that many rows the slice was permanently empty and the trial never
+    gathered evidence -- occupying one of only two trial slots (max_trials=2)
+    and blocking every later candidate forever. Evidence must be counted by
+    the trial's START TIME, not by a row offset that can go stale.
+    """
+    monkeypatch = pytest.MonkeyPatch()
+    try:
+        db = fake_world["cron"] / "executions.db"
+        conn = sqlite3.connect(str(db))
+        conn.execute("DROP TABLE IF EXISTS executions")
+        conn.execute("CREATE TABLE executions (id TEXT, job_id TEXT, "
+                     "status TEXT, claimed_at TEXT)")
+        # trial started AFTER the existing rows -> 2 fresh completions
+        conn.execute("INSERT INTO executions VALUES "
+                     "('1','jobX','completed','2026-01-01T00:00:00+00:00')")
+        conn.execute("INSERT INTO executions VALUES "
+                     "('2','jobX','completed','2026-06-01T10:00:00+00:00')")
+        conn.execute("INSERT INTO executions VALUES "
+                     "('3','jobX','completed','2026-06-01T11:00:00+00:00')")
+        conn.commit()
+        conn.close()
+
+        outcomes = darwin._execution_outcomes(
+            "jobX", since_count=3, since_ts="2026-03-01T00:00:00+00:00")
+        # the stale positional baseline (3 rows, offset 3) would give 0/0
+        assert outcomes["completed"] == 2, outcomes
+        assert outcomes["error"] == 0
+
+        # and the pure positional path still works when no timestamp given
+        legacy = darwin._execution_outcomes("jobX", since_count=3)
+        assert legacy == {"completed": 0, "error": 0}
+    finally:
+        monkeypatch.undo()
+
+
+def test_evaluate_trials_settles_with_timestamp_evidence(fake_world, monkeypatch):
+    """End-to-end reproduction of the real freeze.
+
+    The trial was started when the job had 6 completed runs, so
+    `executions_before` was recorded as 6. The executions table was then
+    reset/pruned, so it now holds exactly 6 rows again -- but three of those
+    rows are runs that happened AFTER the trial started.
+
+    Positional baseline `rows[6:]` is therefore empty -> "waiting" forever,
+    holding one of only two trial slots. The timestamp window must see the
+    three post-trial completions and settle the trial.
+    """
+    monkeypatch.setattr(darwin, "ROLLBACK_LOG", darwin.DARWIN_DIR / "rb.json")
+    monkeypatch.setattr(darwin, "POPULATION_FILE",
+                        darwin.DARWIN_DIR / "population.json")
+    db = fake_world["cron"] / "executions.db"
+    conn = sqlite3.connect(str(db))
+    conn.execute("DROP TABLE IF EXISTS executions")
+    conn.execute("CREATE TABLE executions (id TEXT, job_id TEXT, "
+                 "status TEXT, claimed_at TEXT)")
+    rows = [
+        ("1", "2026-01-01T00:00:00+00:00"),  # pre-trial
+        ("2", "2026-01-02T00:00:00+00:00"),  # pre-trial
+        ("3", "2026-01-03T00:00:00+00:00"),  # pre-trial
+        ("4", "2026-07-01T10:00:00+00:00"),  # AFTER trial start
+        ("5", "2026-07-01T11:00:00+00:00"),  # AFTER trial start
+        ("6", "2026-07-01T12:00:00+00:00"),  # AFTER trial start
+    ]
+    for rid, ts in rows:
+        conn.execute("INSERT INTO executions VALUES (?,?,?,?)",
+                     (rid, "jobX", "completed", ts))
+    conn.commit()
+    conn.close()
+
+    trials_dir = darwin.DARWIN_DIR / "trials"
+    trials_dir.mkdir(parents=True, exist_ok=True)
+    (trials_dir / "jobX.json").write_text(json.dumps({
+        "child": "good-skill__mutfix", "parent": "good-skill",
+        "job_id": "jobX", "job_name": "x",
+        "original_skills": ["good-skill"],
+        "started": "2026-06-01T00:00:00+00:00",
+        "executions_before": 6,   # stale baseline == current row count
+    }), encoding="utf-8")
+    # job must exist so end_trial can restore the parent skill
+    (fake_world["cron"] / "jobs.json").write_text(json.dumps(
+        {"jobs": [{"id": "jobX", "name": "x", "enabled": True,
+                   "skills": ["good-skill__mutfix"]}]}), encoding="utf-8")
+
+    # the stale positional baseline sees nothing (this is the bug)
+    stale = darwin._execution_outcomes("jobX", since_count=6)
+    assert stale == {"completed": 0, "error": 0}, stale
+
+    # evaluate_trials must nevertheless settle it from the time window
+    results = darwin.evaluate_trials(min_executions=2)
+    assert len(results) == 1
+    assert results[0]["status"] != "waiting", results
+    assert results[0]["outcomes"]["completed"] == 3, results
