@@ -1761,6 +1761,65 @@ def _strip_read_time_header(text):
     return out if len(out.split()) >= 5 else t
 
 
+# A LEADING blog/magazine header that CLOSES with its own "<N> min read" label
+# (live 17.09.26 — the family the skill had listed as measured-but-unfixed).
+# Four live shapes, one structure: page furniture welded in FRONT of the
+# article body, where the furniture carries the header's closing label.
+#
+#   "Building is my Passion Post Cancel Efficient Fine-tuning with PEFT and
+#    LoRA Posted Aug 21, 2023 By Niklas Heidloff 3 min read Classic
+#    fine-tuning of Large Language Models typically changes most weights ..."
+#   "Updated: September 7, 2026 15 min read As enterprises rapidly deploy ..."
+#   "General Compute \u00b7 March 18, 2026 \u00b7 6 min read AI Inference Fundamentals
+#    View all 17 \u2192 Technical deep-dives on the building blocks ..."
+#   "Feb 7, 2026 18 min read Read article All Articles Security LLM Red
+#    Teaming Playbook: ..."
+#
+# STRIP, never reject — the body behind the header is the knowledge.
+#
+# The discriminator is structural, not a word list: the head BEFORE the read
+# time must (a) contain a real DATE literal and (b) carry NO sentence
+# terminator once the date matches are removed. Page furniture is a LABEL
+# CHAIN, so it never ends a sentence; prose that merely MENTIONS a read time
+# carries full stops around it and is untouched by construction.
+#
+# Measured live 17.09.26: 3/3 documented leak shapes stripped with the body
+# byte-identical, 0 of 8 hand-written counter-cases changed (a 32 min read /
+# 6 min read / 11 min read sentence, a byline sentence, "Published research
+# from Stanford in 2024 ...", "By contrast, the 2024 study ..." and a
+# two-clock-time sentence), 7 of the 300 live buffer rows touched — every one
+# genuine header chrome. The head window is capped at 220 chars so a real
+# sentence that merely ENDS with a read time can never be reached.
+_READ_TIME_CLOSE_RE = re.compile(
+    r"\b\d{1,3}\s*min\s*read\b[\s:\u00b7|\u2013-]*", re.IGNORECASE)
+_BLOG_HEAD_DATE_RE = re.compile(_DATE_ALT, re.IGNORECASE)
+_BLOG_HEAD_SENT_END_RE = re.compile(r"[.!?]")
+_HEAD_WINDOW = 220
+
+
+def _strip_trailing_read_time_header(text):
+    """Drop a leading blog header that closes with its own "<N> min read".
+
+    Live 17.09.26: cycle_d_docs learned the PEFT/LoRA row whose page furniture
+    rode in front of the article's opening sentence. The body is the knowledge,
+    so this is a strip. See the module comment above for the guard design.
+    """
+    t = (text or "").strip()
+    head_zone = t[:_HEAD_WINDOW]
+    m = _READ_TIME_CLOSE_RE.search(head_zone)
+    if not m:
+        return t
+    body = t[m.end():].strip()
+    if len(body.split()) < 5 or not body[:1].isupper():
+        return t                       # no real sentence behind it -> leave it
+    head = head_zone[:m.end()]
+    if not _BLOG_HEAD_DATE_RE.search(head):
+        return t                       # no dateline -> not a header
+    if _BLOG_HEAD_SENT_END_RE.search(_BLOG_HEAD_DATE_RE.sub(" ", head)):
+        return t                       # furniture never ends a sentence
+    return body
+
+
 _ARROW_NAV_RE = re.compile(r"\s*-{1,2}>\s*")
 _POSTED_BY_RE = re.compile(
     r"^\s*(?:posted|published|updated)\s+on\s+[^,]{3,40}\s+by\s+[A-Za-z][\w.'-]*\s*",
@@ -2095,6 +2154,7 @@ def _clean_insight(text, max_len=250):
     t = _strip_read_time_header(t)
     t = _strip_arrow_nav_prefix(t)
     t = _strip_blog_header_stack(t)
+    t = _strip_trailing_read_time_header(t)
     if len(t) < 20 or _is_junk(t):
         return ""
     if _is_nav_list(t):

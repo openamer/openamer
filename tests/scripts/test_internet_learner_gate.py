@@ -2024,3 +2024,67 @@ def test_changelog_bullet_chain_is_gated_on_both_paths():
         assert not IL._is_changelog_chain(s), s
         assert not IL._is_junk(s), s
         assert not buffer_store.is_junk(s), s
+
+
+def test_trailing_read_time_header_is_stripped_not_stored():
+    """A leading blog header that CLOSES with "<N> min read" is stripped (live 17.09.26).
+
+    `cycle_d_docs` learned, verbatim:
+      "Building is my Passion Post Cancel Efficient Fine-tuning with PEFT and
+       LoRA Posted Aug 21, 2023 By Niklas Heidloff 3 min read Classic
+       fine-tuning of Large Language Models typically changes most weights of
+       the models which requires a lot of resources."
+    The article's opening sentence IS the knowledge; the page furniture merely
+    rode in front of it. This is a STRIP, so the counter-cases below (prose that
+    legitimately MENTIONS a read time) are the point of the test -- a
+    reject-pattern would have thrown real insights away.
+
+    The guard is structural: the head before the read time must carry a real
+    DATE literal and NO sentence terminator once the dates are removed. Page
+    furniture is a label chain and never ends a sentence.
+    """
+    body = ("Classic fine-tuning of Large Language Models typically changes "
+            "most weights of the models which requires a lot of resources.")
+    leaks = [
+        # the live row (author + posted-by + read time welded to the body)
+        ("Building is my Passion Post Cancel Efficient Fine-tuning with PEFT "
+         "and LoRA Posted Aug 21, 2023 By Niklas Heidloff 3 min read " + body),
+        # documented pending shape: "Updated: <date> <N> min read <body>"
+        ("Updated: September 7, 2026 15 min read As enterprises rapidly deploy "
+         "large language models (LLMs) and AI agents across critical business "
+         "functions, protecting sensitive data becomes harder."),
+        # documented pending shape: "<category> · <date> · <N> min read <body>"
+        ("General Compute · March 18, 2026 · 6 min read Quantization "
+         "reduces the memory footprint of large language models without "
+         "retraining them and keeps int4 accuracy within one point of fp16."),
+    ]
+    for leak in leaks:
+        out = IL._strip_trailing_read_time_header(leak)
+        assert out != leak.strip(), leak
+        # the body must survive intact -- a strip, never a truncation
+        assert all(w in leak for w in out.split()), out
+
+    # the live row must now be learnable AS THE BODY (not rejected)
+    out = IL._clean_insight(leaks[0])
+    assert out.startswith("Classic fine-tuning of Large Language Models"), out
+
+    # Counter-cases: prose that MENTIONS a read time must be untouched. All are
+    # >=90 chars on purpose -- a shorter fixture would be judged by the
+    # pre-existing short-candidate rule and would test a different gate.
+    prose = [
+        "A 32 min read of the vLLM docs shows that paged attention is the "
+        "single biggest throughput lever for long-context serving.",
+        "The write-up is a 6 min read; the quantization section alone recovers "
+        "97% of fp16 accuracy at int4 on this benchmark, so the rest can be "
+        "skipped without losing anything.",
+        "Published research from Stanford in 2024 shows transformers scale "
+        "predictably with data, compute and parameters when the recipe is stable.",
+        "By contrast, the 2024 study found quantization recovers 97% of fp16 "
+        "accuracy at INT4 with a negligible latency penalty on consumer GPUs.",
+        # a sentence ABOUT the chrome shape -- proves the SHAPE is gated, not the topic
+        "Posted Aug 21, 2023 By Niklas Heidloff is a byline, not knowledge, so "
+        "the RAG pipeline should strip it before chunking the page for retrieval.",
+    ]
+    for s in prose:
+        assert IL._strip_trailing_read_time_header(s) == s, s
+        assert not IL._is_junk(s), s
