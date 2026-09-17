@@ -108,6 +108,34 @@ venv (see the mark-down of `.venv/Scripts/python.exe` → `*.exe.old.*`). When a
 test exercises such a path, isolate the target to a tmp dir first, or neutralize
 the mutation (autouse fixtures in `tests/openamer_cli/conftest.py`).
 
+## Scope is part of the query; unscoped liveness is a false-green machine
+
+A liveness probe that asks "is *any* instance of X alive?" when the only useful
+question is "is **my** X alive?" will report success at exactly the worst
+moment. Machine-wide discovery (`all_profiles=True`, a global process scan, a
+shared PID file) is the usual source: on a two-install or multi-tenant box, the
+*other* owner's healthy process is always in the list, so a boolean built from
+it is green while our own resource is still down. Attribute every candidate to
+an owner with explicit evidence before it counts, and treat "no readable
+evidence" as *ours* (unprovable is not foreign) so a legitimate probe on a
+locked-down box does not regress.
+
+The second half is the one that is easy to get wrong: scoping the *result* is
+not enough — the probe must keep polling **through** a window where only
+foreign candidates are alive, and return the first candidate that is actually
+ours. A scoped filter applied to a single sample turns "wait for my resource"
+into "fail the moment someone else's is up".
+
+OpenAmer precedent: `openamer update --force` on a two-install machine. The
+Windows gateway respawn probe read `find_gateway_pids(all_profiles=True)` and
+counted any non-dying PID as proof our gateway came back, so it printed
+`✓ Restarting …` while our own gateway was still down (issue #28). The fix
+scopes the wait through `_split_gateways_by_install` (`openamer_cli/main.py`),
+and the regression that pins it
+(`test_wait_for_windows_gateway_respawn_waits_out_a_foreign_only_window`)
+asserts the *poll count* as well as the returned PID, so it fails on the
+pre-fix expression instead of passing on both.
+
 ## References / provenance
 
 - DeepSeek Harness `docs/defensive-patterns.md` (MIT) — the bug-class catalog
