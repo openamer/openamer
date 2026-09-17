@@ -115,7 +115,7 @@ def test_noqa_on_the_following_statement_does_not_suppress(tmp_path):
     """
     source = (
         "def f(conn, t):\n"
-        '    conn.execute(f"DROP TABLE {t}")\n'
+        '    conn.execute(f"DROP TABLE {t}")\n'  # noqa:SEC test fixture string, not live SQL
         "    other = compute()  # noqa:SEC unrelated, documents something else\n"
     )
 
@@ -129,7 +129,7 @@ def test_dedented_statement_ends_the_span(tmp_path):
     """A comment after the function body is not part of the call."""
     source = (
         "def f(conn, t):\n"
-        '    conn.execute(f"DROP TABLE {t}")\n'
+        '    conn.execute(f"DROP TABLE {t}")\n'  # noqa:SEC test fixture string, not live SQL
         "\n"
         "\n"
         "def g():  # noqa:SEC documents g\n"
