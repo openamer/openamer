@@ -970,8 +970,8 @@ def _is_junk(text):
         return True
     if _is_course_cta_chrome(t):
         return True
-    if _is_archive_listing(t):
-        return True
+    if _is_archive_listing(t):
+        return True
     if _is_package_index_chrome(t):
         return True
     if _is_diagram_markup(t):

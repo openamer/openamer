@@ -887,10 +887,10 @@ def _is_nav_chrome(text):
     # internet_learner._is_course_cta_chrome)
     if _is_course_cta_chrome(text):
         return True
-    # a blog archive listing, not an article (same rule as
-    # internet_learner._is_archive_listing)
-    if _is_archive_listing(text):
-        return True
+    # a blog archive listing, not an article (same rule as
+    # internet_learner._is_archive_listing)
+    if _is_archive_listing(text):
+        return True
     if _is_package_index_chrome(text):
         return True
     if _is_diagram_markup(text):
