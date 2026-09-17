@@ -975,6 +975,30 @@ def _is_maintenance_banner(text, head_max=40, tail_max=40):
     tail = t[end:].strip(_MAINT_EDGE)
     return len(head) <= head_max and len(tail) <= tail_max
 
+# Release-note CHANGELOG bullet chain (live 17.09.26, class 27): mirror of
+# internet_learner._is_changelog_chain. The writer gate must refuse it too,
+# or any other writer path lands a rendered release listing in the buffer.
+_CV_VERB = (r"(?:added|enabled|released|improved|fixed|introduced|updated|"
+            r"removed|deprecated|supported|launched|migrated|bumped)\b")
+_CV_VERTOK = (r"(?:\[\s*\d{1,2}/\d{4}\s*\]|\[\s*v?\d+(?:\.\d+){1,3}\s*\]|"
+              r"\bv?\d+\.\d+(?:\.\d+){1,2}\b|\[\s*[a-z-]+\s+\d{4}\s*\])")
+_CHANGELOG_CHAIN_RE = _re.compile(
+    r"(?:%s\s{0,3}(?:%s)[^,;.!?\n]{0,150}(?:\s|$)){3,}"
+    % (_CV_VERTOK, _CV_VERB),
+    _re.IGNORECASE)
+_CHANGELOG_CONN_RE = _re.compile(
+    r"\b(?:which|so|because|therefore|thus|hence|although|whereas|while)\b"
+    r"|\bis exactly\b|\bmaking\b|\ballowing\b|\bgiving\b",
+    _re.IGNORECASE)
+
+
+def _is_changelog_chain(text):
+    """True when `text` is a rendered release-note / changelog bullet chain."""
+    t = text or ""
+    if not t or not _CHANGELOG_CHAIN_RE.search(t):
+        return False
+    return not _CHANGELOG_CONN_RE.search(t)
+
 def _is_nav_chrome(text):
     """True when text is page chrome (entities, marketing, UI, template leaks)."""
     if _ENTITY.search(text):
@@ -1035,6 +1059,9 @@ def _is_nav_chrome(text):
     # a service-status / maintenance banner (same predicate as
     # internet_learner._is_maintenance_banner)
     if _is_maintenance_banner(text):
+        return True
+    # a rendered release-note / changelog bullet chain
+    if _is_changelog_chain(text):
         return True
     if _is_package_index_chrome(text):
         return True

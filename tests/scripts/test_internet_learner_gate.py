@@ -1950,3 +1950,77 @@ def test_maintenance_banner_is_gated_on_both_paths():
         assert not IL._is_maintenance_banner(s), s
         assert not IL._is_junk(s), s
         assert not buffer_store.is_junk(s), s
+
+def test_changelog_bullet_chain_is_gated_on_both_paths():
+    """A rendered release-note CHANGELOG chain must die on BOTH gates.
+
+    Live 17.09.26 (junk class 27): cycle_d_docs stored
+
+    `FLUX ( QEffWanPipeline , QEffFluxPipeline ) More [12/2025] Enabled
+     disaggregated serving for GPT-OSS model [12/2025] Added support for
+     wav2vec2 Audio Model facebook/wav2vec2-base-960h [12/2025] Added
+     support for diffuser video generation model WAN 2.`
+
+    -- a release-notes listing, zero prose.  Both gates passed it: the
+    version stamps fed the technical-signal gate and the length cleared the
+    >=90 "long prose" trust.
+
+    Structural discriminator: three or more (version token, release verb)
+    pairs AND no prose connector.  A listing is a CHAIN concatenated with
+    spaces only; prose that cites several versions always LINKS them with
+    grammar ("... , so ...", "... which together ...").  Same "a menu is a
+    LABEL CHAIN, a sentence has grammar" rule as the nav-strip family.
+
+    Measured over the live corpora (buffer + kta/log/world): 0 genuine-prose
+    false positives, 0 regressions; 6 realistic listing shapes caught and
+    0/16 hand-written counter-cases hit.  A two-entry listing is
+    deliberately NOT caught -- two version+verb pairs are ambiguous against
+    prose, so the rule stops at three.
+    """
+    import buffer_store
+
+    leak = ("FLUX ( QEffWanPipeline , QEffFluxPipeline ) More [12/2025] Enabled "
+            "disaggregated serving for GPT-OSS model [12/2025] Added support for "
+            "wav2vec2 Audio Model facebook/wav2vec2-base-960h [12/2025] Added "
+            "support for diffuser video generation model WAN 2.")
+    assert IL._is_changelog_chain(leak), leak
+    assert IL._is_junk(leak), leak
+    assert buffer_store.is_junk(leak), leak
+    assert buffer_store._is_nav_chrome(leak), leak
+
+    listing = ("Version History [08/2026] Added FP8 quantization for MoE layers "
+               "[09/2026] Fixed a race in the tokenizer server [10/2026] Enabled "
+               "chunked prefill by default")
+    assert IL._is_changelog_chain(listing), listing
+    assert buffer_store.is_junk(listing), listing
+
+    # Counter-cases: real prose that cites the same versions/verbs must stay
+    # learnable on BOTH gates -- a one-directional test would pass a broken rule.
+    prose = [
+        # two releases linked by prose
+        "The v0.9.1 release added streaming output and v0.9.3 improved KV-cache "
+        "reuse, so the serving stack now sustains a 30% higher throughput on the "
+        "same hardware.",
+        # library versions, linked by grammar
+        "PyTorch 2.4.0 added support for the new attention kernel while CUDA 12.4 "
+        "improved the memory allocator, which together cut peak VRAM by 15% on "
+        "the 70B benchmark.",
+        # two bracketed versions with a prose tail
+        "[1.2.1] improved KV-cache reuse and [1.2.2] added a scheduler tweak, so "
+        "the agent must diff the two tags rather than trust the changelog headline.",
+        # run-together pairs, but a prose connector follows
+        "v1.0.0 added the loader v1.1.0 fixed the tokenizer crash so the upgrade "
+        "path is safe for existing deployments and no migration script is needed.",
+        # run-together triples that the row itself discusses as chrome
+        "The tag sequence v0.9.1 added streaming v0.9.2 fixed the crash v0.9.3 "
+        "improved reuse is exactly what the changelog page renders, so the agent "
+        "should read the release notes instead.",
+        # a meta sentence about the listing shape
+        "A changelog row like [1.2.0] Added support for chunked prefill is a "
+        "release bullet, not an insight, so the extractor must skip the version "
+        "list entirely.",
+    ]
+    for s in prose:
+        assert not IL._is_changelog_chain(s), s
+        assert not IL._is_junk(s), s
+        assert not buffer_store.is_junk(s), s

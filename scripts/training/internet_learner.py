@@ -1071,6 +1071,56 @@ def _is_maintenance_banner(text, head_max=40, tail_max=40):
     tail = t[end:].strip(_MAINT_EDGE)
     return len(head) <= head_max and len(tail) <= tail_max
 
+# Release-note CHANGELOG bullet chain (live 17.09.26, class 27): cycle_d_docs
+# stored
+#   "FLUX ( QEffWanPipeline , QEffFluxPipeline ) More [12/2025] Enabled
+#    disaggregated serving for GPT-OSS model [12/2025] Added support for
+#    wav2vec2 Audio Model facebook/wav2vec2-base-960h [12/2025] Added
+#    support for diffuser video generation model WAN 2."
+# -- a rendered release-notes listing, zero prose. Both gates passed it: the
+# version stamps fed the technical-signal gate and the length cleared the
+# >=90 "long prose" trust.
+#
+# A listing is a CHAIN: three or more (version token, release verb) pairs,
+# concatenated with spaces only. Prose that cites several versions always
+# LINKS them with grammar, so the predicate additionally requires the row to
+# carry NO prose connector (which/so/because/therefore/while/... or a
+# participial linker). That is the same "a menu is a LABEL CHAIN, a sentence
+# has grammar" discriminator used for the nav-strip family.
+#
+# Measured over the live corpora (300-row buffer + 1,719 kta/log/world rows)
+# with 16 hand-written counter-cases:
+#   * 6 of 7 realistic changelog shapes caught (the live leak among them);
+#   * 0 genuine-buffer-prose false positives;
+#   * 0/16 counter-cases hit -- incl. "The v0.9.1 release added streaming
+#     output and v0.9.3 improved KV-cache reuse, so ..." and "PyTorch 2.4.0
+#     added support ... while CUDA 12.4 improved ...";
+#   * 0 hits across kta_log / internet_learn_log / world_model.
+# A measured-and-accepted trade-off: a TWO-entry listing is NOT caught --
+# two version+verb pairs are genuinely ambiguous against prose, so the rule
+# stops at three. Documented, not accidental.
+_CV_VERB = (r"(?:added|enabled|released|improved|fixed|introduced|updated|"
+            r"removed|deprecated|supported|launched|migrated|bumped)\b")
+_CV_VERTOK = (r"(?:\[\s*\d{1,2}/\d{4}\s*\]|\[\s*v?\d+(?:\.\d+){1,3}\s*\]|"
+              r"\bv?\d+\.\d+(?:\.\d+){1,2}\b|\[\s*[a-z-]+\s+\d{4}\s*\])")
+_CHANGELOG_CHAIN_RE = re.compile(
+    r"(?:%s\s{0,3}(?:%s)[^,;.!?\n]{0,150}(?:\s|$)){3,}"
+    % (_CV_VERTOK, _CV_VERB),
+    re.IGNORECASE)
+# prose links versions with grammar; a rendered listing never does
+_CHANGELOG_CONN_RE = re.compile(
+    r"\b(?:which|so|because|therefore|thus|hence|although|whereas|while)\b"
+    r"|\bis exactly\b|\bmaking\b|\ballowing\b|\bgiving\b",
+    re.IGNORECASE)
+
+
+def _is_changelog_chain(text):
+    """True when `text` is a rendered release-note / changelog bullet chain."""
+    t = text or ""
+    if not t or not _CHANGELOG_CHAIN_RE.search(t):
+        return False
+    return not _CHANGELOG_CONN_RE.search(t)
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
@@ -1083,6 +1133,9 @@ def _is_junk(text):
     # retries with the wider k instead of spending itself on a write the
     # writer gate drops. Same predicate as buffer_store._is_maintenance_banner.
     if _is_maintenance_banner(t):
+        return True
+    # a rendered release-note / changelog bullet chain
+    if _is_changelog_chain(t):
         return True
     if _JUNK_RE.search(t):
         return True
