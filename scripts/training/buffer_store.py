@@ -1361,12 +1361,40 @@ def _is_platform_selector_listing_chrome(text):
     return bool(_PLATFORM_SEL_SUBREDDIT_RE.search(text or ""))
 
 
+# A deep-read PROMPT echoed back as the answer (live 17.09.26): the model
+# parroted the learner's own task template as a bullet chain --
+#   - Input is a list of daily paper submissions with titles, authors, ...
+#   - I need to identify the single most valuable technical insight ...
+#   - Output must be a sin
+# It cleared the >=90 length trust and the technical-signal gate, and no
+# marker matched: _INSTRUCTION_OPENER_RE is START-anchored (this text opens
+# with a quote + newline) and _is_nav_list wants TitleCase tokens.
+# The discriminator is the BULLET-CHAIN form of an instruction voice: a real
+# fact never arrives as >=2 bullets each opening with a task-frame word.
+_PROMPT_ECHO_BULLET_RE = _re.compile(
+    r"(?:^|[\r\n])\s*[-*\u2022]\s+(?:Input\b|Output\b|I need to\b|"
+    r"I must\b|I should\b|The task\b|Identify the\b|Steps?\b|"
+    r"Constraints?\b|Format\b)",
+    _re.IGNORECASE)
+
+
+def _is_prompt_echo_bullet_chain(text):
+    """True when the text is the learner's own prompt echoed as bullets."""
+    try:
+        return len(_PROMPT_ECHO_BULLET_RE.findall(text)) >= 2
+    except TypeError:
+        return False
+
+
 def _is_nav_chrome(text):
     """True when text is page chrome (entities, marketing, UI, template leaks)."""
     if _ENTITY.search(text):
         return True
     low = text.lower()
     if any(c in low for c in _NAV_CHROME):
+        return True
+    # a deep-read prompt echoed back as a bullet chain (17.09.26)
+    if _is_prompt_echo_bullet_chain(text):
         return True
     if _is_sidebar_listing_chrome(text):
         return True
