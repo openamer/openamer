@@ -1154,10 +1154,20 @@ def _is_changelog_chain(text):
 def _is_sidebar_listing_chrome(text):
     """True when `text` is a blog-sidebar post-listing widget, not prose.
 
-    Same narrow rule as `buffer_store._is_sidebar_listing_chrome`
-    (root cause AH pitfall: a marker must live in BOTH files).
-    Live 17.09.26 (class 29): a two-entry "recent posts" sidebar was stored by
-    `cycle_a_technews`. Measured: 1 hit, IS the leak, 0 real-prose FPs.
+    Live 17.09.26 (class 29): `cycle_a_technews` stored
+    `September 2, 2026 5 Views How to Spot AI Generated Images in 2026 (The Old
+    Tricks Stopped Working) September 3, 2026 3 Views Our Picks Apple Added TV
+    and 200 Games to Its Cheapest iCloud Plan.` -- a two-entry "recent posts"
+    sidebar: date + view-counter + headline, twice. 189 chars and it carries
+    digits, so both the `>=90` length trust and the technical-signal gate
+    fired; no existing marker matched.
+
+    Tight literal (the AH precedent: prefer the literal while only one row
+    shape is live). Measured on the live 300-row buffer: 1 hit, and it IS the
+    leak -> 0 real-prose FPs on an 8-sentence control corpus. Counter-only
+    candidates were rejected: a bare `\\d+ views` matches real prose
+    ("The survey gathered 500 views...", "In my view..."). Do NOT widen to
+    `>=2 'N Views'` -- the literal is sufficient while this is the only shape.
     """
     return "views our picks" in (text or "").lower()
 
@@ -1180,6 +1190,53 @@ def _is_byline_counter_chrome(text):
                           text or "", re.IGNORECASE))
 
 
+# A page's own META blurb: `About <Title> ... is the latest <description>`
+# (live 17.09.26, class 31). `cycle_g_security` stored the OWASP landing
+# page's self-description as if it were a fact about the world -- the
+# instance is ON-TOPIC, so relevance cannot be the discriminator (the
+# class-22 lesson): the page's own promotional VOICE is.
+#
+# Two markers ANDed, both anchored: the leading `About` nav label AND the
+# self-descriptive `is the latest` predicate. Measured over 8,078 live rows
+# (buffer + junk + kta_log + learn log + world_model): 1 unique hit --
+# exactly the leaking row -- and 0 FPs on a 10-sentence control corpus.
+# Each marker ALONE was measured and REJECTED: `^About +token` matches 5
+# real prose sentences (`About half of the quantized models ...`, `About
+# GDPR compliance, ...`) and a bare `is the latest` matches 2 (`This paper
+# is the latest work on post-training quantization ...`).
+_PAGE_META_BLURB_RE = re.compile(
+    r"^About\s+\S[\s\S]{0,200}?\bis the latest\b")
+
+
+def _is_page_meta_blurb(text):
+    """True when `text` is the page's own `About <Title> ... is the latest` blurb."""
+    return bool(_PAGE_META_BLURB_RE.search(text or ""))
+
+
+# A GitHub repo-LISTING row (live 17.09.26, class 32). `cycle_c_github` stored
+# `Python 0 MIT 3,612 0 0 Updated Jun 13, 2025 ComfyUI Public Forked from
+# Comfy-Org/ComfyUI The most powerful and modular stable diffusion GUI ...`
+# -- a search-result listing row: language + counters + license + relative
+# updated date + the repo's one-line description. 186 chars cleared the >=90
+# "long prose" trust and the counters/license digits fed the technical-signal
+# gate, so BOTH gates passed it.
+#
+# Keyed on the LISTING LABEL PAIR, not on the date or the counters alone:
+# `Updated <Mon DD, YYYY>` is ordinary dates and `Public` is ordinary English
+# ("Public health agencies ..."). Measured on the live corpora: 2 buffer hits
+# (both ARE the leak), 0 of 3,056 longterm episodes, 0 of 323 test-asserted
+# clean control literals. A bare `Forked from` was REJECTED -- it hits a real
+# episode ("openclaw (386k GitHub stars) - what makes ... forked from ...").
+_GH_LISTING_ROW_RE = re.compile(
+    r"\bUpdated\s+[A-Z][a-z]{2}\s+\d{1,2},\s+\d{4}\b[\s\S]{0,40}?"
+    r"\bPublic\s+(?:Forked|Code|Archive|Mirror)\b")
+
+
+def _is_gh_listing_row(text):
+    """True when `text` is a GitHub repo-listing row (counters + Updated + label)."""
+    return bool(_GH_LISTING_ROW_RE.search(text or ""))
+
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
@@ -1190,6 +1247,12 @@ def _is_junk(text):
     # a page-meta listing widget (same narrow rule as
     # buffer_store._is_sidebar_listing_chrome)
     if _is_sidebar_listing_chrome(t):
+        return True
+    # the page's own META blurb (same rule as buffer_store._is_page_meta_blurb)
+    if _is_page_meta_blurb(t):
+        return True
+    # a GitHub repo-listing row (same rule as buffer_store._is_gh_listing_row)
+    if _is_gh_listing_row(t):
         return True
     if _is_byline_counter_chrome(t):
         return True

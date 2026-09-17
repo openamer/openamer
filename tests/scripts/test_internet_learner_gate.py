@@ -1121,7 +1121,18 @@ def test_leading_nav_label_stack_is_stripped_not_stored():
     leak = ("SECURITY resources Whitepapers/Guides OWASP GenAI LLM Top 10 "
             "2026 August 3, 2026 " + body)
     assert IL._strip_nav_label_stack(leak) == body        # body pristine
-    assert IL._clean_insight(leak) == body
+    # The STRIP contract -- "the sentence behind the nav survives" -- is
+    # asserted with a GENUINE insight. The verbatim logged body above is
+    # this page's own META blurb, which class 31 (_is_page_meta_blurb,
+    # 17.09.26) correctly refuses; asserting IT learnable would test the
+    # wrong contract. See test_page_meta_blurb_is_rejected.
+    genuine = (
+        "Prompt injection is the first of ten categories in the 2026 "
+        "guide, and the new agent-tooling class covers tool-call abuse "
+        "directly."
+    )
+    assert IL._strip_nav_label_stack(leak.replace(body, genuine)) == genuine
+    assert IL._clean_insight(leak.replace(body, genuine)) == genuine
 
     # --- counter-cases: prose heads, which is exactly what the function-word
     # guard protects. Each must come back byte-identical AND stay learnable.
@@ -2189,3 +2200,111 @@ def test_dated_header_slash_stack_is_stripped_not_stored():
     assert len(prose) == 4 and prose[0] != prose[1]
     for s in prose:
         assert IL._strip_dated_header_slash_stack(s) == s, s
+
+
+def test_page_meta_blurb_is_rejected():
+    """A page's own `About <Title> ... is the latest ...` blurb is not a fact.
+
+    Live 17.09.26 (class 31): `cycle_g_security` stored the OWASP landing
+    page's self-description. The row is ON-TOPIC, so relevance cannot be the
+    discriminator (the class-22 lesson) -- the page's own promotional voice is.
+    Two markers ANDed, both anchored; each marker ALONE was measured over 8,078
+    live rows and REJECTED (5 real prose sentences start `About <word>`, and a
+    bare `is the latest` matches 2)."""
+    import internet_learner as IL
+    import buffer_store
+
+    leak = ("About OWASP Top 10 for LLM Applications 2026 is the latest "
+            "community-driven guide to the most critical security risks facing "
+            "applications powered by large language models.")
+
+    # the leak is refused on BOTH paths -- extraction gate retries, writer drops
+    assert IL._is_junk(leak), leak
+    assert buffer_store._is_nav_chrome(leak), leak
+
+    # Counter-cases: real prose that talks the same way must stay learnable.
+    # `About <word>` alone and `is the latest` alone are ordinary English; only
+    # the anchored pair is the page's meta voice. Kept >=90 chars so each one
+    # clears the pre-existing short-candidate rule and actually reaches THIS one.
+    prose = [
+        "About half of the quantized models we benchmarked lose under 1 point "
+        "of accuracy, so INT4 stays usable for retrieval in production.",
+        "About GDPR compliance, the 2026 rules require a documented data-flow "
+        "map for every retrieval index that stores user prompts.",
+        "About OpenAI's safety framework, the interesting part is the tool-call "
+        "allowlist rather than the wording of the model card itself.",
+        "This paper is the latest work on post-training quantization, and it "
+        "recovers 97% of fp16 accuracy at INT4 on the same benchmark.",
+        "Home page rendering is the latest bottleneck our profiler found, so we "
+        "moved the template compile out of the request path entirely.",
+        "A leading nav label such as About welded to a meta description is page "
+        "furniture, not an insight, so the extractor should strip it first.",
+    ]
+    assert len(prose) == 6 and prose[0] != prose[1]
+    for s in prose:
+        assert not IL._is_junk(s), s
+        assert not buffer_store._is_nav_chrome(s), s
+
+    # the rule is anchored at the START: a mid-sentence use is prose
+    mid = ("The docs page opens with About OWASP Top 10 for LLM Applications "
+           "2026 is the latest guide, and the index below lists all ten risks.")
+    assert not IL._is_page_meta_blurb(mid), mid
+
+
+
+def test_github_listing_row_is_rejected():
+    """A GitHub repo-LISTING row is not an insight (live 17.09.26, class 32).
+
+    `cycle_c_github` stored, verbatim:
+
+      "Python 0 MIT 3,612 0 0 Updated Jun 13, 2025 ComfyUI Public Forked from
+       Comfy-Org/ComfyUI The most powerful and modular stable diffusion GUI,
+       api and backend with a graph/nodes interface."
+
+    Language + counters + license + relative `Updated <date>` + the repo's own
+    one-line description: a search-result listing row, zero insight. 186 chars
+    cleared the >=90 "long prose" trust and the counters/license fed the
+    technical-signal gate, so BOTH gates passed it and it trained.
+
+    Keyed on the anchored LABEL PAIR, never on its parts: `Updated <Mon DD,
+    YYYY>` alone is ordinary dates and `Public` alone is ordinary English
+    ("Public health agencies ..."). Measured on the live corpora: 2 buffer hits
+    (both ARE the leak), 0 of 3,056 longterm episodes, 0 of 323 test-asserted
+    clean control literals. A bare `Forked from` was measured and REJECTED --
+    it matches a real episode about openclaw being forked from a project.
+    """
+    import internet_learner as IL
+    import buffer_store
+
+    leaks = [
+        # the verbatim logged row (counters + license + Updated + Public Forked)
+        "Python 0 MIT 3,612 0 0 Updated Jun 13, 2025 ComfyUI Public Forked from "
+        "Comfy-Org/ComfyUI The most powerful and modular stable diffusion GUI, "
+        "api and backend with a graph/nodes interface.",
+        # the sibling shape: a plain repo row (no fork), same listing band
+        'Updated Oct 29, 2024 QuIP Public Code for paper: "QuIP: 2-Bit '
+        'Quantization of Large Language Models With Guarantees" Uh oh!',
+    ]
+    for leak in leaks:
+        assert IL._is_junk(leak), leak            # extraction gate retries
+        assert buffer_store._is_nav_chrome(leak), leak   # writer gate drops
+        assert IL._clean_insight(leak) == "", leak
+
+    # Counter-cases: ordinary prose that mentions the same parts must survive.
+    prose = [
+        "Public health agencies published a joint report on March 3, 2026 about "
+        "monitoring LLM outputs in clinical settings, and the guidance is final.",
+        "The repository was updated on June 13, 2025 and the maintainers say the "
+        "next release will move the renderer to a separate package entirely.",
+        "The team open-sourced a new agent framework and the public code for the "
+        "scheduler lives in a separate repository with its own benchmark suite.",
+    ]
+    assert len(prose) == 3 and prose[0] != prose[1]
+    for s in prose:
+        assert not IL._is_junk(s), s
+        assert not buffer_store._is_nav_chrome(s), s
+
+    # the rule needs the ANCHORED pair: a date far from the label is prose
+    far = ("The dataset was Updated March 3, 2026 and the licence is MIT, but "
+           "the Public sector team maintains a separate mirror for archives.")
+    assert not IL._is_gh_listing_row(far), far
