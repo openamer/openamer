@@ -1758,3 +1758,48 @@ def test_blog_archive_listing_is_gated_on_both_paths():
         assert not buffer_store.is_junk(s), s
         assert not IL._is_junk(s), s
 
+def test_github_issue_page_chrome_is_gated_on_both_paths():
+    """GitHub ISSUE page label chain (live 17.09.26).
+
+    cycle_f_multi_domain stored "Description AnasBenAmor10 opened on Jul 23,
+    2024 Issue body actions Confirm this is an issue with the Python library
+    and not an underlying OpenAI API This is an issue with the Python library
+    Describe the bug Error: You tried to access openai.embeddings ..." -- page
+    furniture with zero insight.  The date satisfied the technical-signal gate
+    and the length cleared the >=90 trust.
+
+    The guard ANDs TWO independent template markers.  Every marker ALONE hits a
+    real-prose counter-case (asserted below), so a single phrase would be a
+    topic word rather than chrome.
+    """
+    import buffer_store
+
+    leak = ("Description AnasBenAmor10 opened on Jul 23, 2024 Issue body actions "
+            "Confirm this is an issue with the Python library and not an "
+            "underlying OpenAI API This is an issue with the Python library "
+            "Describe the bug Error: You tried to access openai.embeddings")
+    assert buffer_store.is_junk(leak), leak
+    assert IL._is_junk(leak), leak
+
+    # Counter-cases: real prose that NAMES the same template markers.  Each of
+    # these hits ONE marker only -- which is exactly why two are required.
+    prose = [
+        "A maintainer opened on Jul 23, 2024 an issue about the embedding "
+        "client, and the agent should triage it automatically.",
+        "The issue body actions menu on GitHub renders a confirm-this-is-an-"
+        "issue checkbox that the crawler should skip.",
+        "Confirm this is an issue with the Python library and not an unrelated "
+        "bug in the downstream service.",
+        "An issue was opened on the tracker, and the triage agent routed it to "
+        "the retrieval component.",
+        "The agent should read a GitHub issue body and summarize the "
+        "reproduction steps for the maintainer.",
+        "Describe the bug in two sentences, then list the exact reproduction "
+        "command and the observed error output.",
+        "Error: You tried to access openai.embeddings, but the installed "
+        "version of the SDK does not expose it.",
+    ]
+    for s in prose:
+        assert not buffer_store.is_junk(s), s
+        assert not IL._is_junk(s), s
+

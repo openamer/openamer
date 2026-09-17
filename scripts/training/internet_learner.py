@@ -951,6 +951,38 @@ def _is_archive_listing(text):
     return "." not in text
 
 
+_ISSUE_ACTION_RE = re.compile(r"issue body actions", re.IGNORECASE)
+_ISSUE_TEMPLATE_RE = re.compile(
+    r"confirm this is an issue with|describe the bug|underlying openai api|"
+    r"this is an issue with the \w+ library",
+    re.IGNORECASE)
+
+
+def _is_github_issue_chrome(text):
+    """True when `text` is a GitHub ISSUE page (template label chain).
+
+    Live 17.09.26: `Description AnasBenAmor10 opened on Jul 23, 2024 Issue body
+    actions Confirm this is an issue with the Python library and not an
+    underlying OpenAI API This is an issue with the Python library Describe the
+    bug Error: You tried to access openai.embeddings ...` -- page furniture,
+    zero insight; the date satisfied the technical-signal gate and the length
+    cleared the >=90 trust.
+
+    Keyed on TWO independent template markers, ANDed -- never one.  Measured:
+    each marker ALONE hits a real-prose counter-case (`The issue body actions
+    menu on GitHub ... should skip`, `A maintainer opened on Jul 23, 2024 an
+    issue about the embedding client`, `Confirm this is an issue with the Python
+    library and not an unrelated bug`, `Describe the bug in two sentences ...`),
+    so a single phrase is a topic word, not chrome.  Requiring two keeps prose
+    ABOUT issues learnable: measured 1 hit over the live buffer (the leaking
+    row), 0 real-prose FPs, 0 hits over world_model/kta_log/internet_learn_log.
+    """
+    t = text or ""
+    if len(t) > 900:
+        return False
+    return bool(_ISSUE_ACTION_RE.search(t) and _ISSUE_TEMPLATE_RE.search(t))
+
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
@@ -969,6 +1001,8 @@ def _is_junk(text):
     if _is_de_pricing_chrome(t):
         return True
     if _is_course_cta_chrome(t):
+        return True
+    if _is_github_issue_chrome(t):
         return True
     if _is_archive_listing(t):
         return True
