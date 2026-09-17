@@ -50,6 +50,7 @@ You need at least one way to connect to an LLM. Use `openamer model` to switch p
 | **Qwen OAuth** | `openamer model` → "Qwen OAuth" (provider: `qwen-oauth`; browser PKCE login) |
 | **MiniMax OAuth** | `openamer model` → "MiniMax (OAuth)" (provider: `minimax-oauth`; browser PKCE login) |
 | **StepFun** | `STEPFUN_API_KEY` in `~/.openamer/.env` (provider: `stepfun`) |
+| **IO Intelligence (io.net)** | `IONET_API_KEY` in `~/.openamer/.env` (provider: `ionet`, aliases: `io-net`, `io-intelligence`; open-weight models via Chat Completions) |
 | **LM Studio** | `openamer model` → "LM Studio" (provider: `lmstudio`, optional `LM_API_KEY`) |
 | **Custom Endpoint** | `openamer model` → choose "Custom endpoint" (saved in `config.yaml`) |
 
@@ -564,6 +565,33 @@ Get your token at [huggingface.co/settings/tokens](https://huggingface.co/settin
 You can append routing suffixes to model names: `:fastest` (default), `:cheapest`, or `:provider_name` to force a specific backend.
 
 The base URL can be overridden with `HF_BASE_URL`.
+
+### IO Intelligence (io.net)
+
+[IO Intelligence](https://io.net) by io.net serves 30+ open-weight models (DeepSeek, Kimi, GLM, Qwen, Llama, gpt-oss, …) through an OpenAI-compatible Chat Completions API. Model ids are `org/name` pairs discovered live from the endpoint's `/models` route.
+
+```bash
+# Use any available model
+openamer chat --provider ionet --model meta-llama/Llama-3.3-70B-Instruct
+# Requires: IONET_API_KEY in ~/.openamer/.env
+
+# Short alias
+openamer chat --provider io-intelligence --model deepseek-ai/DeepSeek-V4.1-Flash
+```
+
+Or set it permanently in `config.yaml`:
+```yaml
+model:
+  provider: "ionet"
+  default: "meta-llama/Llama-3.3-70B-Instruct"
+  base_url: "https://api.intelligence.io.solutions/api/v1"
+```
+
+Get your API key at [io.net — API Keys and Secrets](https://io.net/docs/guides/intelligence/api-keys-and-secrets). The base URL can be overridden with `IONET_BASE_URL`.
+
+:::note tool_choice
+The endpoint's documented `tool_choice` default is `none`, so the profile pins `tool_choice: "auto"` on every request to keep agent tool calls firing.
+:::
 
 ## Custom & Self-Hosted LLM Providers
 
