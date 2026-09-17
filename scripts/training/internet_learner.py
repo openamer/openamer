@@ -1590,6 +1590,109 @@ def _is_platform_selector_listing_chrome(text):
     return bool(_PLATFORM_SEL_SUBREDDIT_RE.search(text or ""))
 
 
+
+# class 45 markers (live 17.09.26) -- see _is_operator_spotlight_chain.
+_OPERATOR_SPOTLIGHT_RE = re.compile(r"Operator\s+Spotlight", re.IGNORECASE)
+
+
+def _is_operator_spotlight_chain(text):
+    """True when an "Operator Spotlight" widget row was stored TWICE in one record.
+
+    Live 17.09.26 (cycle_a_technews): `July 24, 2026 cahaseler 016 Operator
+    Spotlight: Scripts Are Cheaper Than Tokens Operator Spotlight: Brocktree
+    runs ~200 AI agents in SpaceMolt through one stationary hub bot, and trusts
+    none of them to plan.` -- a slug + issue number + the widget's headline
+    repeated as its own card title.  207 chars WITH digits, so the >=90
+    long-prose trust and the technical-signal gate both fired and no existing
+    marker matched.
+
+    Discriminator is the REPETITION of the widget's own label (>= 2 hits), not
+    the phrase: bare `Operator Spotlight` alone and the pair `Operator Spotlight
+    ... hub bot` both hit real prose ("Our operator spotlight feature rotates
+    weekly ...").  Measured: 1 buffer hit and it IS the leak; 0 of 3,058
+    longterm_episodes; 0 of 816 literal controls.
+    """
+    t = text or ""
+    return len(t) <= 400 and len(_OPERATOR_SPOTLIGHT_RE.findall(t)) >= 2
+
+
+# class 46 markers (live 17.09.26) -- see _is_preprint_header_chain.
+_PREPRINT_CHAIN_RE = re.compile(
+    r"([A-Z][A-Za-z0-9][\w\- ]{6,60}?)\s+(\d{1,2}/\d{1,2}/\d{4})\s+"
+    r"([A-Z0-9][\w\-: ]{5,60})[.\s]*$")
+_PREPRINT_TITLEWORD_RE = re.compile(r"\b[A-Z][a-zA-Z0-9]{2,}\b")
+_PREPRINT_LOWERWORD_RE = re.compile(r"\b[a-z]{4,}\b")
+
+
+def _is_preprint_header_chain(text):
+    """True when a paper title + slash-date + project-title header chain landed.
+
+    Live 17.09.26 (cycle_b_papers): `Activations for 1-bit LLMs 10/21/2024
+    1-bit AI Infra: Part 1.` -- a GitHub README banner (paper title, date,
+    project title), not knowledge.  Only 61 chars, so the length trust never
+    applied; the date fed the technical-signal gate.
+
+    The discriminator is the SHAPE: a TitleCase head of >= 2 words, a
+    slash-date, a project title, and -- crucially -- NO lowercase word of 4+
+    letters anywhere.  Prose about a date always carries one ("The paper was
+    published on 10/21/2024 ..."), and `Attention Is All You Need 6/12/2017
+    Attention Is All You Need` IS listing chrome, so flagging it is correct.
+    Measured: 1 buffer hit and it IS the leak; 0 of 3,058 longterm_episodes;
+    0 of 816 literal controls; 0 of 8 prose counter-cases.
+    """
+    t = text or ""
+    if len(t) > 300:
+        return False
+    g = _PREPRINT_CHAIN_RE.search(t)
+    if not g:
+        return False
+    if len(_PREPRINT_TITLEWORD_RE.findall(g.group(1))) < 2:
+        return False
+    return len(_PREPRINT_LOWERWORD_RE.findall(t)) == 0
+
+
+# class 47 markers (live 17.09.26) -- see _is_personal_blog_nav_chain.
+_BLOG_ABOUT_RE = re.compile(r"\bAbout\b")
+
+
+def _is_personal_blog_nav_chain(text):
+    """True when a personal blog's header nav run landed ("About x Work Writing About").
+
+    Live 17.09.26: `About \u2715 AAKASH SETHI Work Writing About June 26, 2026
+    \u00b7 AI Engineering Haystack: ...` -- a Wordpress/Ghost header nav chain
+    glued to the post headline and lede.  252 chars WITH digits.
+
+    The dismiss glyph co-occurring with `About` twice is the tell: ordinary
+    prose says "About" once.  Measured: 1 buffer hit and it IS the leak; 0 of
+    3,058 longterm_episodes; 0 of 816 literal controls; 0 of 12 hostile controls
+    (incl. `About 200 agents run in the simulation ...` and `About the operator
+    spotlight: ...`).
+    """
+    t = text or ""
+    return (len(t) <= 400 and "\u2715" in t
+            and len(_BLOG_ABOUT_RE.findall(t)) >= 2)
+
+
+# class 48 markers (live 17.09.26) -- see _is_pricing_hero_chrome.
+_PRICING_HERO_RE = re.compile(r"%\s*OFF\s+base pricing", re.IGNORECASE)
+
+
+def _is_pricing_hero_chrome(text):
+    """True when a competitor landing-page pricing HERO was stored as insight.
+
+    Live 17.09.26 (cycle_e_competitors): `Flash 75% OFF base pricing for a
+    limited time Powered by IDEs Proven in Benchmarks IntelliJ IDEA Engine Top
+    performer on SWE-Rebench 10+ models supported via BYOK Plan on a powerful
+    model, implement on a fast one.` -- a promo banner, not intelligence.
+
+    Discriminator is the whole promo phrase, not the parts: bare `% OFF`, `base
+    pricing`, `for a limited time` and `Powered by` all appear in real prose and
+    real docs.  Measured: 1 buffer hit and it IS the leak; 0 of 3,058
+    longterm_episodes; 0 of 816 literal controls.
+    """
+    t = text or ""
+    return len(t) <= 400 and bool(_PRICING_HERO_RE.search(t))
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
@@ -1622,6 +1725,18 @@ def _is_junk(text):
         return True
     # a platform selector glued to a subreddit feed row (class 39, 17.09.26)
     if _is_platform_selector_listing_chrome(t):
+        return True
+    # an "Operator Spotlight" widget row stored twice (class 45, 17.09.26)
+    if _is_operator_spotlight_chain(t):
+        return True
+    # a paper-title + slash-date + project-title header chain (class 46, 17.09.26)
+    if _is_preprint_header_chain(t):
+        return True
+    # a personal-blog header nav run (class 47, 17.09.26)
+    if _is_personal_blog_nav_chain(t):
+        return True
+    # a competitor pricing hero (class 48, 17.09.26)
+    if _is_pricing_hero_chrome(t):
         return True
     # an article-header byline + `Published <dd Mon yy>` (class 40, 17.09.26)
     if _is_byline_published_article_header(t):

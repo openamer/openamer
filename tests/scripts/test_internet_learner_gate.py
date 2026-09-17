@@ -2844,3 +2844,107 @@ def test_source_verdict_about_the_page_is_gated_on_both_paths():
         assert not IL._is_source_verdict_chrome(text), text
         assert not IL._is_junk(text), text
         assert not buffer_store._is_nav_chrome(text), text
+
+
+def test_operator_spotlight_widget_row_is_gated_on_both_paths():
+    """Class 45 (live 17.09.26): a widget row whose own label repeats."""
+    import buffer_store
+    import internet_learner as IL
+
+    leak = (
+        "July 24, 2026 cahaseler 016 Operator Spotlight: Scripts Are Cheaper "
+        "Than Tokens Operator Spotlight: Brocktree runs ~200 AI agents in "
+        "SpaceMolt through one stationary hub bot, and trusts none of them to "
+        "plan."
+    )
+    assert IL._is_operator_spotlight_chain(leak)
+    assert IL._is_junk(leak)
+    assert buffer_store._is_nav_chrome(leak)
+
+    clean = (
+        "Our operator spotlight feature rotates weekly across the hub bots and their scripts.",
+        "About the operator spotlight: two scripts cut token cost by 40% in the agent pipeline.",
+        "The operator spotlighted three scripts that cut token cost by 40% in the pipeline.",
+        "Brocktree runs ~200 AI agents in SpaceMolt through one stationary hub bot.",
+    )
+    for text in clean:
+        assert not IL._is_junk(text), text
+        assert not buffer_store._is_nav_chrome(text), text
+
+
+def test_preprint_header_chain_is_gated_on_both_paths():
+    """Class 46 (live 17.09.26): paper title + slash-date + project title."""
+    import buffer_store
+    import internet_learner as IL
+
+    leak = "Activations for 1-bit LLMs 10/21/2024 1-bit AI Infra: Part 1."
+    assert IL._is_preprint_header_chain(leak)
+    assert IL._is_junk(leak)
+    assert buffer_store._is_nav_chrome(leak)
+
+    clean = (
+        "The paper was published on 10/21/2024 and the results show a 3x speedup in inference throughput.",
+        "We benchmarked 4-bit vs 8-bit weights on 10/21/2024 Results were 2x faster, but accuracy dropped.",
+        "Results from GPT-5 on 10/21/2024 showed gains.",
+        "The 10/21/2024 release of the framework added native quantization support.",
+        "Native 4-bit Activations with Hadamard Transformation for 1-bit LLMs Published in arXiv , 2025 Abstract : Efficient deployment",
+        "The benchmark on 10/21/2024 GPT-4 model showed a 3x throughput gain over the baseline.",
+    )
+    for text in clean:
+        assert not IL._is_preprint_header_chain(text), text
+        assert not IL._is_junk(text), text
+        assert not buffer_store._is_nav_chrome(text), text
+
+
+def test_personal_blog_nav_chain_is_gated_on_both_paths():
+    """Class 47 (live 17.09.26): `About \u2715 ... Work Writing About ...` header run."""
+    import buffer_store
+    import internet_learner as IL
+
+    leak = (
+        "About \u2715 AAKASH SETHI Work Writing About June 26, 2026 \u00b7 AI "
+        "Engineering Haystack: Open-Source AI Framework for Production Ready "
+        "Agents, RAG \u25b6 Listen Haystack just hit the front page of HN, and "
+        "most engineers building \u201cRAG\u201d still don\u2019t know what it does."
+    )
+    assert IL._is_personal_blog_nav_chain(leak)
+    assert IL._is_junk(leak)
+    assert buffer_store._is_nav_chrome(leak)
+
+    clean = (
+        "About 200 agents run in the simulation, and none of them plan explicitly.",
+        "Work writing about AI frameworks is common, and About pages rarely help the agent.",
+        "June 26, 2026 was the release date of the AI engineering blog post about Haystack.",
+        "Haystack is an open-source AI framework for production-ready agents with RAG support.",
+    )
+    for text in clean:
+        assert not IL._is_personal_blog_nav_chain(text), text
+        assert not IL._is_junk(text), text
+        assert not buffer_store._is_nav_chrome(text), text
+
+
+def test_pricing_hero_chrome_is_gated_on_both_paths():
+    """Class 48 (live 17.09.26): a competitor landing-page promo banner."""
+    import buffer_store
+    import internet_learner as IL
+
+    leak = (
+        "Flash 75% OFF base pricing for a limited time Powered by IDEs Proven "
+        "in Benchmarks IntelliJ IDEA Engine Top performer on SWE-Rebench 10+ "
+        "models supported via BYOK Plan on a powerful model, implement on a "
+        "fast one."
+    )
+    assert IL._is_pricing_hero_chrome(leak)
+    assert IL._is_junk(leak)
+    assert buffer_store._is_nav_chrome(leak)
+
+    clean = (
+        "The discount was 30% off list pricing for a limited time, the vendor said.",
+        "Flash pricing dropped 75% off the base rate for a limited time last quarter.",
+        "Powered by IDEs, the plugin benchmarks every supported model on SWE-bench.",
+        "Plan on a powerful model and implement on a fast one to save cost, the docs say.",
+    )
+    for text in clean:
+        assert not IL._is_pricing_hero_chrome(text), text
+        assert not IL._is_junk(text), text
+        assert not buffer_store._is_nav_chrome(text), text
