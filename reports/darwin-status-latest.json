@@ -1,6 +1,6 @@
 {
-  "updated": "2026-09-16T03:00:25+00:00",
-  "population": 873,
+  "updated": "2026-09-17T03:01:12+00:00",
+  "population": 827,
   "avg_score": 38.4,
   "fittest": [
     {
@@ -8,8 +8,16 @@
       "score": 77
     },
     {
+      "name": "discord-server-management",
+      "score": 77
+    },
+    {
       "name": "openamer-desktop-dev",
       "score": 76
+    },
+    {
+      "name": "windows-compatibility",
+      "score": 73
     },
     {
       "name": "python-debugpy",
@@ -34,18 +42,10 @@
     {
       "name": "xlsx",
       "score": 71
-    },
-    {
-      "name": "failure-attribution",
-      "score": 71
-    },
-    {
-      "name": "openamer-docs-site",
-      "score": 71
     }
   ],
   "autopatch": {
-    "timestamp": "2026-09-16T04:00:57",
+    "timestamp": "2026-09-17T04:00:05",
     "kept": [
       {
         "skill": "auto-structural-connection-between-tool",
@@ -55,7 +55,7 @@
         "fixes": []
       },
       {
-        "skill": "auto-competitor-intelligence-ai-coding",
+        "skill": "auto-competitor-intelligence-jetbrains-zed",
         "before": 21,
         "after": 25,
         "delta": 4,
@@ -66,7 +66,7 @@
         ]
       },
       {
-        "skill": "auto-competitor-intelligence-an-ai",
+        "skill": "auto-competitor-intelligence-okf-agent",
         "before": 21,
         "after": 25,
         "delta": 4,
@@ -77,7 +77,7 @@
         ]
       },
       {
-        "skill": "auto-competitor-intelligence-claudepowered-ai",
+        "skill": "auto-competitor-intelligence-some-uncomfortab",
         "before": 21,
         "after": 25,
         "delta": 4,
@@ -88,7 +88,7 @@
         ]
       },
       {
-        "skill": "auto-competitor-intelligence-crush-glamourous",
+        "skill": "auto-competitor-intelligence-the-secret",
         "before": 21,
         "after": 25,
         "delta": 4,
@@ -99,7 +99,7 @@
         ]
       },
       {
-        "skill": "auto-competitor-intelligence-electricity-use",
+        "skill": "auto-competitor-intelligence-things-i",
         "before": 21,
         "after": 25,
         "delta": 4,
@@ -110,7 +110,7 @@
         ]
       },
       {
-        "skill": "auto-competitor-intelligence-jetbrains-ides",
+        "skill": "auto-competitor-intelligence-undisclosed-addi",
         "before": 21,
         "after": 25,
         "delta": 4,
@@ -121,7 +121,7 @@
         ]
       },
       {
-        "skill": "auto-competitor-intelligence-opencode-ai",
+        "skill": "auto-competitor-intelligence-we-asked",
         "before": 21,
         "after": 25,
         "delta": 4,
@@ -132,7 +132,7 @@
         ]
       },
       {
-        "skill": "auto-competitor-intelligence-opencode-open",
+        "skill": "auto-efficiency-learning-a-visual",
         "before": 21,
         "after": 25,
         "delta": 4,
@@ -143,7 +143,7 @@
         ]
       },
       {
-        "skill": "auto-competitor-intelligence-pythonopenaichat",
+        "skill": "auto-efficiency-learning-advanced-quantizatio",
         "before": 21,
         "after": 25,
         "delta": 4,
@@ -178,6 +178,16 @@
     },
     {
       "source": "News",
+      "title": "First Agentic AI Data Breach Reported to Spanish Regulator - SecurityWeek",
+      "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPQnRMcE9RVmlmM2oxbjNzeEd5TG5qN3FkeVB4RGRFbGxmdmZvSUJXc2hnaDNvSjZYSHN2X2lrQlRKVmNYNl9uRFBTWnZsQ2J0eEtJQ09paXdxVmlNelZEeVhKNzBqYW9uYW42MlhaQjlQTXA2M0hFX2Zjdlh3dnVmOXFNQzFoREVSQ2wzMUlFblJSUdIBlwFBVV95cUxPcFlwdVlKWWJ5UmZqd1RhZmxVTm5waDFjVExGTWNaWFQ2ZGthaEJCYUFtYWVhOGNYODlJMXRIT0pCTWFlWmw5cXNsMTVNUWEyNUZLWGFhbDhUdEwzMzhJemNNdnQzTGdyZHQzRHVfbGxYNks1dnZaeHZQWUQwNmZtMzdnQ3lNMjMxYmMzaXJrS2Z1S29KVHJn?oc=5"
+    },
+    {
+      "source": "News",
+      "title": "Stacking the odds: A blueprint for successfully scaling agentic AI - McKinsey & Company",
+      "url": "https://news.google.com/rss/articles/CBMixgFBVV95cUxQNUUwdVVXbjA0OUV5T0huNm4yX29ZZG1wZF9VR19YR19HMmZCU0trUWRURmU2YXVPazVFTnNydWo0T2FVLVB3VFpPMk45V0hGSEhJS1hXa1BzOHR0dmFGdlJCcDJ0T0ctdUpxdnFMOS04ZU90d1NQaDZiSkJZNFVaN01qQUtXUEdtUHpRWE9uSThsYmx2R1hnMm1qakZyMV9xeUNHUWQzYW4xRVFHbk9sOFR0Wl9iTXBMSDN0bkEwczAycDltNlE?oc=5"
+    },
+    {
+      "source": "News",
       "title": "AI Agents Run Real Shops to Expose Their Hidden Failure Modes - spectrum.ieee.org",
       "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1KcE84eGsxblZ4dmk1d01BNmVfcnRiMndIaFZIRVJXZ0owWGo2bDB3dUR1eHB5VmpaMXB1eDNrejktUGpWYXlHS0Nsd0UtUEl5b1pGcnhwUmtEZnZCZHBWRzNOTjMyeURWX1E?oc=5"
     },
@@ -185,20 +195,10 @@
       "source": "News",
       "title": "Rethinking and realigning IT for the agentic AI era - cio.com",
       "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOaHlvY28wVk1ESEU5dHVEYnJiVGhKQ1AwLWc1ZzE2OEI1UUhmajFzZEQ4bWJNbkVqMTR2cjI4QkJ6c0w2cktDOTJkb05JOUdzdzhlMVI4UVJPT0ZsWm14RGFzS052OHd1YkZZY01tSThxYTBfODlqbDgydmRHZE91M3Y0Znh0cVFSRTNMSXhYX29aQjV4UEpj?oc=5"
-    },
-    {
-      "source": "News",
-      "title": "Agentic AI access a pressing governance challenge for providers - Healthcare IT News",
-      "url": "https://news.google.com/rss/articles/CBMimwFBVV95cUxNOFNrTlZMRlpJejBmNmtYYlE3WGZVekhvSEZKWkYta0FtOWx0blk2Q0ZtM0hkNE9WX0NSVnNZN0phTzFydHh3RXdLejQ5RXdjcWRTWF9WLVgzdzAtc1IzMUxENm4wSmszY2l4WnBFMUJBOXJULUd0T1VmcVJGVWl4dFQ2UFV0MUctTkkzY2poNFV2dmI0MXNrdWJIWQ?oc=5"
-    },
-    {
-      "source": "News",
-      "title": "Airrived Expands Agentic OS with End-to-End AI Agent Observability - HPCwire",
-      "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPSkxqNWNIZWxSQjY1YTkwdmx6VTVKQlo0dU9hOFhxUDNpSlV2V2JianhXMDJRV013dk4yQjZuWFJBcGF5YkdPdEctNmpJbXAzaGc3d0ZoNHpCem9WdndBVjU5bVBYLVVsMHBhSDBuVHdkRFZKSjR4YUpxUFYzaGNaQ0s5VkdkNWRJbVBZb1FFWkl5VVVuckpPZTR1andsMVpSWDdLczBqOWtMRk5RYUVwT3ZKbWw5NVU?oc=5"
     }
   ],
-  "population_engine": 93,
-  "species": 56,
+  "population_engine": 100,
+  "species": 69,
   "trials": 2,
-  "harvested": 89
+  "harvested": 105
 }
