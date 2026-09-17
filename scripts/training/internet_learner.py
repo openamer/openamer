@@ -1151,12 +1151,27 @@ def _is_changelog_chain(text):
         return False
     return not _CHANGELOG_CONN_RE.search(t)
 
+def _is_sidebar_listing_chrome(text):
+    """True when `text` is a blog-sidebar post-listing widget, not prose.
+
+    Same narrow rule as `buffer_store._is_sidebar_listing_chrome`
+    (root cause AH pitfall: a marker must live in BOTH files).
+    Live 17.09.26 (class 29): a two-entry "recent posts" sidebar was stored by
+    `cycle_a_technews`. Measured: 1 hit, IS the leak, 0 real-prose FPs.
+    """
+    return "views our picks" in (text or "").lower()
+
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
     if len(t) < 25:
         return True
     if _looks_binary(t):
+        return True
+    # a page-meta listing widget (same narrow rule as
+    # buffer_store._is_sidebar_listing_chrome)
+    if _is_sidebar_listing_chrome(t):
         return True
     # a service-status / maintenance BANNER is page chrome, not knowledge
     # (live 17.09.26, class 26). Refuse at EXTRACTION time so the cycle
