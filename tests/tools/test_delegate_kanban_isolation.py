@@ -16,6 +16,14 @@ import pytest
 # test). Pin the repo root so the child always imports the tree being tested.
 _REPO_ROOT = Path(__file__).resolve().parents[2]
 
+# Each subprocess-boundary test below is a cold ``python -c`` that must import
+# the whole kanban CLI stack before the child-context guard can answer at all:
+# ~7 s of imports on an idle box, ~26-30 s measured (3/3) on a loaded one. A
+# 15 s cap turned that into ``rc=124`` (timeout) instead of the guard's own
+# ``rc=1``, so the budget is deliberately generous — the assertions stay about
+# behavior (refused + message), never about how fast the refusal arrives.
+_CHILD_TIMEOUT = 120
+
 
 def _python_with_repo_path(code: str) -> str:
     """Build a shell command running *code* with the repo under test on PYTHONPATH."""
@@ -377,12 +385,12 @@ def test_delegate_child_local_execute_cannot_complete_parent_via_kanban_cli(
         f"args=p.parse_args(['kanban','complete',{tid!r},'--summary','child cli bypass']); "
         "raise SystemExit(kanban.kanban_command(args))"
     )
-    env = LocalEnvironment(cwd=str(tmp_path), timeout=15)
+    env = LocalEnvironment(cwd=str(tmp_path), timeout=_CHILD_TIMEOUT)
     try:
         with delegated_child_context():
             result = env.execute(
                 _python_with_repo_path(code),
-                timeout=15,
+                timeout=_CHILD_TIMEOUT,
             )
     finally:
         env.cleanup()
@@ -428,12 +436,12 @@ def test_delegate_child_subprocess_cannot_complete_parent_by_importing_kanban_db
         "else:\n"
         "    raise SystemExit(0)\n"
     )
-    env = LocalEnvironment(cwd=str(tmp_path), timeout=15)
+    env = LocalEnvironment(cwd=str(tmp_path), timeout=_CHILD_TIMEOUT)
     try:
         with delegated_child_context():
             result = env.execute(
                 _python_with_repo_path(code),
-                timeout=15,
+                timeout=_CHILD_TIMEOUT,
             )
     finally:
         env.cleanup()
@@ -475,12 +483,12 @@ def test_delegate_child_kanban_cli_cannot_delete_parent_board(
         "args=p.parse_args(['kanban','boards','rm','victim','--delete']); "
         "raise SystemExit(kanban.kanban_command(args))"
     )
-    env = LocalEnvironment(cwd=str(tmp_path), timeout=15)
+    env = LocalEnvironment(cwd=str(tmp_path), timeout=_CHILD_TIMEOUT)
     try:
         with delegated_child_context():
             result = env.execute(
                 _python_with_repo_path(code),
-                timeout=15,
+                timeout=_CHILD_TIMEOUT,
             )
     finally:
         env.cleanup()
