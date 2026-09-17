@@ -1,7 +1,7 @@
 {
-  "updated": "2026-09-16T01:50:58.193827+00:00",
+  "updated": "2026-09-17T01:51:05.637526+00:00",
   "skills_dir": "C:\\Users\\damir\\AppData\\Local\\openamer-laptop\\skills",
-  "total": 860,
+  "total": 815,
   "skills": {
     "auto-best-practice-from-official": {
       "refs": 0,
@@ -291,6 +291,18 @@
       "score": 1.0,
       "missing": []
     },
+    "auto-competitor-intelligence-jetbrains-zed": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-competitor-intelligence-okf-agent": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "auto-competitor-intelligence-opencode-ai": {
       "refs": 0,
       "ok": 0,
@@ -376,6 +388,12 @@
       "missing": []
     },
     "auto-efficiency-learning-splitquantv2-enhanci": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-efficiency-learning-towards-optimal": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -471,6 +489,12 @@
       "score": 1.0,
       "missing": []
     },
+    "auto-latest-research-insight-recursively": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "auto-latest-research-insight-selfretrieval": {
       "refs": 0,
       "ok": 0,
@@ -519,6 +543,12 @@
       "score": 1.0,
       "missing": []
     },
+    "auto-multidomain-learning-neural-architecture": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "auto-multidomain-learning-opensource-medical": {
       "refs": 0,
       "ok": 0,
@@ -550,6 +580,12 @@
       "missing": []
     },
     "auto-security-learning-ai-agent": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-security-learning-how-are": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -999,12 +1035,6 @@
       "score": 1.0,
       "missing": []
     },
-    "darwin-harvested-darwin-autonomous-loop-json": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
     "darwin-harvested-darwin-populatio": {
       "refs": 0,
       "ok": 0,
@@ -1035,7 +1065,25 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-darwin-swarm-tasks-json": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-darwin-trials": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-default-cron": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-git-index-lock": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -1131,6 +1179,12 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-openamer-repo-no-such-file-or-direct": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-package-lock-json": {
       "refs": 0,
       "ok": 0,
@@ -1161,7 +1215,19 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-r-n-10x-pass-fds": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-r-n1-failed": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-repo-nworked-fine-an-msys-path-quirk": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -1317,6 +1383,18 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-training-si-rotation": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-trials-self-rewriter-6h-json": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-usersdamiropenamer-reposcriptsgithub": {
       "refs": 0,
       "ok": 0,
@@ -1402,9 +1480,9 @@
       "missing": []
     },
     "cron-fleet-health": {
-      "refs": 3,
-      "ok": 1,
-      "score": 0.333,
+      "refs": 4,
+      "ok": 2,
+      "score": 0.5,
       "missing": [
         "x.py",
         "online_buffer.js"
@@ -1419,6 +1497,12 @@
     "cron-model-pinning": {
       "refs": 1,
       "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "cron-timeout-and-git-safety": {
+      "refs": 0,
+      "ok": 0,
       "score": 1.0,
       "missing": []
     },
@@ -1503,8 +1587,8 @@
       "missing": []
     },
     "discord-server-management": {
-      "refs": 2,
-      "ok": 2,
+      "refs": 3,
+      "ok": 3,
       "score": 1.0,
       "missing": []
     },
@@ -1606,12 +1690,6 @@
       "score": 1.0,
       "missing": []
     },
-    "alpha": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
     "amc-run-rtsp-calibration": {
       "refs": 0,
       "ok": 0,
@@ -1631,66 +1709,6 @@
       "missing": []
     },
     "amc-setup-calibration-stack": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "autoplan": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "benchmark": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "benchmark-models": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "beta": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "browse": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "canary": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "careful": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "context-restore": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "context-save": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "cso": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -1827,44 +1845,6 @@
       "missing": []
     },
     "deepstream-sop": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "design-consultation": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "design-html": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "design-review": {
-      "refs": 1,
-      "ok": 0,
-      "score": 0.0,
-      "missing": [
-        "manage.py"
-      ]
-    },
-    "design-shotgun": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "devex-review": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "diagram": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -2280,18 +2260,6 @@
       "score": 1.0,
       "missing": []
     },
-    "document-generate": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "document-release": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
     "dynamo-interconnect-check": {
       "refs": 1,
       "ok": 0,
@@ -2388,66 +2356,6 @@
         "tools/verify_foundationstereo.py",
         "test/check_engine_depth_smoke.py"
       ]
-    },
-    "freeze": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "gstack": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "gstack-openclaw-ceo-review": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "gstack-openclaw-investigate": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "gstack-openclaw-office-hours": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "gstack-openclaw-retro": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "gstack-upgrade": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "guard": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "hackernews-frontpage": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "health": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
     },
     "holohub-app-lifecycle": {
       "refs": 0,
@@ -2665,42 +2573,6 @@
       "missing": [
         "./run.sh"
       ]
-    },
-    "investigate": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "ios-clean": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "ios-design-review": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "ios-fix": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "ios-qa": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "ios-sync": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
     },
     "jetson-build-source": {
       "refs": 0,
@@ -3023,31 +2895,7 @@
       "score": 1.0,
       "missing": []
     },
-    "land-and-deploy": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "landing-report": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
     "launch-nemo-rl": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "learn": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "make-pdf": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -3547,12 +3395,6 @@
       "score": 1.0,
       "missing": []
     },
-    "office-hours": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
     "omniverse-cad-to-simready": {
       "refs": 0,
       "ok": 0,
@@ -3566,12 +3408,6 @@
       "missing": []
     },
     "omniverse-usd-performance-tuning": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "open-gstack-browser": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -3611,12 +3447,6 @@
       ]
     },
     "paidf-orchestration-write-dag": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "pair-agent": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -3684,49 +3514,7 @@
       "score": 1.0,
       "missing": []
     },
-    "plan-ceo-review": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "plan-design-review": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "plan-devex-review": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "plan-eng-review": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "plan-tune": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
     "portfolio-optimization": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "qa": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "qa-only": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -3747,18 +3535,6 @@
       ]
     },
     "rag-perf": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "retro": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "review": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -3785,55 +3561,7 @@
       "score": 1.0,
       "missing": []
     },
-    "scrape": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "setup-browser-cookies": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "setup-deploy": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "setup-gbrain": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "ship": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
     "skill-card-generator": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "skillify": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "spec": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
-    "sync-gbrain": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -4238,12 +3966,6 @@
       "score": 1.0,
       "missing": []
     },
-    "unfreeze": {
-      "refs": 0,
-      "ok": 0,
-      "score": 1.0,
-      "missing": []
-    },
     "vss-ask-video": {
       "refs": 0,
       "ok": 0,
@@ -4441,8 +4163,8 @@
       "missing": []
     },
     "internet-learning-cycle": {
-      "refs": 2,
-      "ok": 2,
+      "refs": 3,
+      "ok": 3,
       "score": 1.0,
       "missing": []
     },
@@ -4837,6 +4559,12 @@
       "score": 1.0,
       "missing": []
     },
+    "cross-process-jsonl-store": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-skill-evolution": {
       "refs": 12,
       "ok": 10,
@@ -5079,9 +4807,9 @@
       "missing": []
     },
     "security-scanner-authoring": {
-      "refs": 1,
-      "ok": 0,
-      "score": 0.0,
+      "refs": 2,
+      "ok": 1,
+      "score": 0.5,
       "missing": [
         "scan.py"
       ]

@@ -1,14 +1,14 @@
-[autopatch] validating population (2026-09-16T04:00:57) ...
-[autopatch] population: 860 skills, avg 38.5
-[autopatch] 10 weak skills: auto-structural-connection-between-tool(21), auto-competitor-intelligence-ai-coding(21), auto-competitor-intelligence-an-ai(21), auto-competitor-intelligence-claudepowered-ai(21), auto-competitor-intelligence-crush-glamourous(21), auto-competitor-intelligence-electricity-use(21), auto-competitor-intelligence-jetbrains-ides(21), auto-competitor-intelligence-opencode-ai(21), auto-competitor-intelligence-opencode-open(21), auto-competitor-intelligence-pythonopenaichat(21)
+[autopatch] validating population (2026-09-17T04:00:05) ...
+[autopatch] population: 815 skills, avg 38.5
+[autopatch] 10 weak skills: auto-structural-connection-between-tool(21), auto-competitor-intelligence-jetbrains-zed(21), auto-competitor-intelligence-okf-agent(21), auto-competitor-intelligence-some-uncomfortab(21), auto-competitor-intelligence-the-secret(21), auto-competitor-intelligence-things-i(21), auto-competitor-intelligence-undisclosed-addi(21), auto-competitor-intelligence-we-asked(21), auto-efficiency-learning-a-visual(21), auto-efficiency-learning-advanced-quantizatio(21)
 [autopatch] ✅ auto-structural-connection-between-tool: 21 → 31
-[autopatch] ✅ auto-competitor-intelligence-ai-coding: 21 → 25
-[autopatch] ✅ auto-competitor-intelligence-an-ai: 21 → 25
-[autopatch] ✅ auto-competitor-intelligence-claudepowered-ai: 21 → 25
-[autopatch] ✅ auto-competitor-intelligence-crush-glamourous: 21 → 25
-[autopatch] ✅ auto-competitor-intelligence-electricity-use: 21 → 25
-[autopatch] ✅ auto-competitor-intelligence-jetbrains-ides: 21 → 25
-[autopatch] ✅ auto-competitor-intelligence-opencode-ai: 21 → 25
-[autopatch] ✅ auto-competitor-intelligence-opencode-open: 21 → 25
-[autopatch] ✅ auto-competitor-intelligence-pythonopenaichat: 21 → 25
+[autopatch] ✅ auto-competitor-intelligence-jetbrains-zed: 21 → 25
+[autopatch] ✅ auto-competitor-intelligence-okf-agent: 21 → 25
+[autopatch] ✅ auto-competitor-intelligence-some-uncomfortab: 21 → 25
+[autopatch] ✅ auto-competitor-intelligence-the-secret: 21 → 25
+[autopatch] ✅ auto-competitor-intelligence-things-i: 21 → 25
+[autopatch] ✅ auto-competitor-intelligence-undisclosed-addi: 21 → 25
+[autopatch] ✅ auto-competitor-intelligence-we-asked: 21 → 25
+[autopatch] ✅ auto-efficiency-learning-a-visual: 21 → 25
+[autopatch] ✅ auto-efficiency-learning-advanced-quantizatio: 21 → 25
 [autopatch] report → C:\Users\damir\openamer-repo\reports\darwin-autopatch.md

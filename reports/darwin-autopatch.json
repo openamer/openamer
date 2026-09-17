@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-09-16T04:00:57",
+  "timestamp": "2026-09-17T04:00:05",
   "mode": "apply",
-  "population": 860,
+  "population": 815,
   "avg_score": 38.5,
   "kept": [
     {
@@ -12,7 +12,7 @@
       "fixes": []
     },
     {
-      "skill": "auto-competitor-intelligence-ai-coding",
+      "skill": "auto-competitor-intelligence-jetbrains-zed",
       "before": 21,
       "after": 25,
       "delta": 4,
@@ -23,7 +23,7 @@
       ]
     },
     {
-      "skill": "auto-competitor-intelligence-an-ai",
+      "skill": "auto-competitor-intelligence-okf-agent",
       "before": 21,
       "after": 25,
       "delta": 4,
@@ -34,7 +34,7 @@
       ]
     },
     {
-      "skill": "auto-competitor-intelligence-claudepowered-ai",
+      "skill": "auto-competitor-intelligence-some-uncomfortab",
       "before": 21,
       "after": 25,
       "delta": 4,
@@ -45,7 +45,7 @@
       ]
     },
     {
-      "skill": "auto-competitor-intelligence-crush-glamourous",
+      "skill": "auto-competitor-intelligence-the-secret",
       "before": 21,
       "after": 25,
       "delta": 4,
@@ -56,7 +56,7 @@
       ]
     },
     {
-      "skill": "auto-competitor-intelligence-electricity-use",
+      "skill": "auto-competitor-intelligence-things-i",
       "before": 21,
       "after": 25,
       "delta": 4,
@@ -67,7 +67,7 @@
       ]
     },
     {
-      "skill": "auto-competitor-intelligence-jetbrains-ides",
+      "skill": "auto-competitor-intelligence-undisclosed-addi",
       "before": 21,
       "after": 25,
       "delta": 4,
@@ -78,7 +78,7 @@
       ]
     },
     {
-      "skill": "auto-competitor-intelligence-opencode-ai",
+      "skill": "auto-competitor-intelligence-we-asked",
       "before": 21,
       "after": 25,
       "delta": 4,
@@ -89,7 +89,7 @@
       ]
     },
     {
-      "skill": "auto-competitor-intelligence-opencode-open",
+      "skill": "auto-efficiency-learning-a-visual",
       "before": 21,
       "after": 25,
       "delta": 4,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "skill": "auto-competitor-intelligence-pythonopenaichat",
+      "skill": "auto-efficiency-learning-advanced-quantizatio",
       "before": 21,
       "after": 25,
       "delta": 4,
