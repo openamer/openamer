@@ -1632,6 +1632,9 @@ def _is_junk(text):
     # a repo-page tab bar + language/size stat bar (class 36, 17.09.26)
     if _is_repo_tab_statbar_chrome(t):
         return True
+    # the LLM's verdict ABOUT the page returned as an insight (class 44, 17.09.26)
+    if _is_source_verdict_chrome(t):
+        return True
     # a service-status / maintenance BANNER is page chrome, not knowledge
     # (live 17.09.26, class 26). Refuse at EXTRACTION time so the cycle
     # retries with the wider k instead of spending itself on a write the
@@ -2632,6 +2635,63 @@ def _strip_blog_header_stack(text):
 _MASTHEAD_NAV_RE = re.compile(
     r"\bBlog\s+Guides\s+Insights\b|\bBreaking\s+AI\s+News\b|\bBreaking\s+story\b")
 
+
+# The distillation LLM's own VERDICT ABOUT THE PAGE returned as an "insight"
+# (live 17.09.26, class 44). cycle_h_efficiency learned
+#
+#   "The provided text is a boilerplate webpage footer containing no technical
+#    information, only navigation links and legal notices."
+#
+# This is not page chrome and not a prompt echo -- it is the 2B model's SOURCE
+# ASSESSMENT ("the input has no technical signal") being stored as knowledge.
+# 127 chars, and the word "technical" fed the technical-signal gate, so nothing
+# matched. A verdict about the input can never be a learning: REJECT.
+#
+# The discriminator is the FURNITURE VOCABULARY welded to the source noun --
+# `_SRC` ("provided/given/supplied/extracted text|document|page|content|
+# snippet|input") within 100 chars of a copula/contain verb, within a further
+# 60 chars of a page-furniture noun (boilerplate / webpage footer / navigation
+# links / nav menu / legal notices / cookie banner / site furniture / page
+# chrome). No single part is enough: "The provided text is a transcript ...",
+# "Boilerplate license headers should be stripped ..." and even an agent's own
+# "The agent's provided input had no technical signal ..." all stay learnable.
+# Measured: 1 hit over the live buffer (= this leak), 0 over 5,582 junk-log
+# rows, 3,056 longterm_episodes, 787 string literals extracted from the gate
+# test file, and 15 of 16 hand-written hostile counter-cases (the one hit is a
+# meta-sentence ABOUT this gate, i.e. correct behaviour).
+_VERDICT_SRC_RE = re.compile(
+    r"\b(?:provided|given|supplied|extracted)\s+"
+    r"(?:text|document|page|content|snippet|input)\b",
+    re.IGNORECASE)
+_VERDICT_FURNITURE_RE = re.compile(
+    r"\b(?:boilerplate|webpage\s+(?:footer|header)|navigation\s+links?|"
+    r"nav(?:igation)?\s+menus?|legal\s+notices?|cookie\s+(?:banner|notice)|"
+    r"site\s+furniture|page\s+chrome)\b",
+    re.IGNORECASE)
+_VERDICT_VERB_RE = re.compile(
+    r"\b(?:is|are|appears?\s+to\s+be|consists?\s+of|contains?\s+only|"
+    r"contains?\s+no)\b",
+    re.IGNORECASE)
+
+
+def _is_source_verdict_chrome(text):
+    """True when the text is the LLM's verdict ABOUT the page, not knowledge.
+
+    Live 17.09.26 (class 44): see the module comment above. The three parts
+    must co-occur in order and close together -- a source noun, a copula/
+    contain verb, then page-furniture vocabulary.
+    """
+    t = text or ""
+    src = _VERDICT_SRC_RE.search(t)
+    if not src:
+        return False
+    verb = _VERDICT_VERB_RE.search(t, src.end())
+    if not verb or verb.start() - src.end() > 100:
+        return False
+    furn = _VERDICT_FURNITURE_RE.search(t, verb.end())
+    if not furn or furn.start() - verb.end() > 60:
+        return False
+    return True
 
 def _strip_masthead_nav_chain(text):
     """Drop a leading "Blog Guides Insights ... Breaking AI News <lede>" menu run.

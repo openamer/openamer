@@ -2804,3 +2804,43 @@ def test_masthead_nav_chain_is_stripped_from_the_insight():
     for text in clean:
         assert IL._strip_masthead_nav_chain(text) == text.strip(), text
 
+
+
+def test_source_verdict_about_the_page_is_gated_on_both_paths():
+    """class 44 (17.09.26): the distillation LLM's verdict ABOUT the input.
+
+    Live: cycle_h_efficiency learned
+      "The provided text is a boilerplate webpage footer containing no
+       technical information, only navigation links and legal notices."
+    That is a SOURCE ASSESSMENT, not knowledge -- but the word "technical" fed
+    the technical-signal gate and 127 chars cleared the short-text check.
+    The discriminator is the page-furniture vocabulary welded to the source
+    noun, NOT any single word.
+    """
+    import buffer_store
+    leak = ("The provided text is a boilerplate webpage footer containing no "
+            "technical information, only navigation links and legal notices.")
+    assert IL._is_junk(leak), "learner gate must reject a verdict about the page"
+    assert buffer_store._is_nav_chrome(leak), "writer gate must reject it too"
+    assert IL._is_source_verdict_chrome(leak)
+    # a second live variant of the same verdict family
+    assert IL._is_source_verdict_chrome(
+        "The given page consists of a cookie banner and legal notices.")
+    assert IL._is_source_verdict_chrome(
+        "Extracted content contains only navigation links and site furniture.")
+
+    # real prose that merely NAMES the source must stay learnable
+    clean = (
+        "The provided text is a transcript of the talk and includes the full "
+        "speaker notes.",
+        "The paper's provided text covers three quantization schemes for LLMs.",
+        "Boilerplate license headers should be stripped before parsing the repository.",
+        "The provided text is a code snippet implementing flash attention.",
+        "Their documentation provides a technical overview of the serving stack.",
+        "The agent's provided input had no technical signal, so the cycle rejected it.",
+        "The extracted content covers a technical comparison of GPU compute platforms.",
+    )
+    for text in clean:
+        assert not IL._is_source_verdict_chrome(text), text
+        assert not IL._is_junk(text), text
+        assert not buffer_store._is_nav_chrome(text), text
