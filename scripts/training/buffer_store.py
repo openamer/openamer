@@ -1026,6 +1026,24 @@ def _is_sidebar_listing_chrome(text):
     return "views our picks" in (text or "").lower()
 
 
+def _is_byline_counter_chrome(text):
+    """True when `text` starts with a byline + timestamp + a `| N` counter.
+
+    Live 17.09.26 (class 30): `cycle_e_competitors` stored
+    `Kyle Orland and Benj Edwards - Dec 19, 2025 12:29 pm | 192 Which mines are
+    mine, and which are AI?` -- an Ars Technica article-header chrome run
+    (two-author byline, dateline, comment-counter) whose prose tail is a
+    headline. Carries digits and a `?`, so every existing gate passed it.
+
+    Measured on the live 300-row buffer: 1 hit and it IS the leak -> 0
+    real-prose FPs on an 8-sentence control corpus. The broad `\|\s*\d{1,4}`
+    was REJECTED: 1 hand FP (`We compared | 192 | and | 256 | batch sizes`)
+    plus 3 live buffer hits. The time-anchored form is the one that is safe.
+    """
+    return bool(_re.search(r"\d{1,2}:\d{2}\s*(?:am|pm)\s*\|\s*\d{1,4}\b",
+                          text or "", _re.IGNORECASE))
+
+
 def _is_nav_chrome(text):
     """True when text is page chrome (entities, marketing, UI, template leaks)."""
     if _ENTITY.search(text):
@@ -1034,6 +1052,8 @@ def _is_nav_chrome(text):
     if any(c in low for c in _NAV_CHROME):
         return True
     if _is_sidebar_listing_chrome(text):
+        return True
+    if _is_byline_counter_chrome(text):
         return True
     # a counter truncated at its own digits ("K followers ...") = mid-widget
     if _DETACHED_COUNT_RE.match(text):

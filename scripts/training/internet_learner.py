@@ -1162,6 +1162,24 @@ def _is_sidebar_listing_chrome(text):
     return "views our picks" in (text or "").lower()
 
 
+def _is_byline_counter_chrome(text):
+    """True when `text` starts with a byline + timestamp + a `| N` counter.
+
+    Live 17.09.26 (class 30): `cycle_e_competitors` stored
+    `Kyle Orland and Benj Edwards - Dec 19, 2025 12:29 pm | 192 Which mines are
+    mine, and which are AI?` -- an Ars Technica article-header chrome run
+    (two-author byline, dateline, comment-counter) whose prose tail is a
+    headline. Carries digits and a `?`, so every existing gate passed it.
+
+    Measured on the live 300-row buffer: 1 hit and it IS the leak -> 0
+    real-prose FPs on an 8-sentence control corpus. The broad `\|\s*\d{1,4}`
+    was REJECTED: 1 hand FP (`We compared | 192 | and | 256 | batch sizes`)
+    plus 3 live buffer hits. The time-anchored form is the one that is safe.
+    """
+    return bool(re.search(r"\d{1,2}:\d{2}\s*(?:am|pm)\s*\|\s*\d{1,4}\b",
+                          text or "", re.IGNORECASE))
+
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
@@ -1172,6 +1190,8 @@ def _is_junk(text):
     # a page-meta listing widget (same narrow rule as
     # buffer_store._is_sidebar_listing_chrome)
     if _is_sidebar_listing_chrome(t):
+        return True
+    if _is_byline_counter_chrome(t):
         return True
     # a service-status / maintenance BANNER is page chrome, not knowledge
     # (live 17.09.26, class 26). Refuse at EXTRACTION time so the cycle
