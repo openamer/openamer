@@ -874,6 +874,64 @@ def test_wait_for_windows_gateway_respawn_ignores_foreign_install_gateway(
 
 
 @patch.object(cli_main, "_is_windows", return_value=True)
+def test_wait_for_windows_gateway_respawn_waits_out_a_foreign_only_window(
+    _winp,
+    monkeypatch,
+):
+    """The probe must POLL THROUGH a foreign-only window, not short-circuit on it.
+
+    The sibling test above puts *only* the foreign PID in its stub table and
+    asserts a timeout — that proves "a foreign-only table times out honestly".
+    It does not prove the production shape: another install's gateway is
+    healthy from the *first* poll while ours comes back a few polls later. The
+    probe has to keep polling and return the first gateway that is actually
+    ours.
+
+    This is the load-bearing assertion for issue #28's fix: the pre-fix
+    expression took any machine-wide PID and returned the foreign one on poll 1.
+    """
+    import openamer_cli.gateway as gateway_mod
+
+    foreign_argv = [
+        "C:/OtherTree/openamer-laptop/venv/Scripts/python.exe",
+        "-m",
+        "openamer_cli.main",
+        "gateway",
+        "run",
+    ]
+    our_argv = [
+        str(Path(cli_main.__file__).resolve().parents[1] / "venv" / "Scripts" / "python.exe"),
+        "-m",
+        "openamer_cli.main",
+        "gateway",
+        "run",
+    ]
+
+    polls = {"n": 0}
+
+    def _find_gateway_pids(**_k):
+        polls["n"] += 1
+        # Foreign gateway alive from poll 1; ours only shows up on poll 4.
+        return [9999] if polls["n"] < 4 else [9999, 4200]
+
+    monkeypatch.setattr(gateway_mod, "find_gateway_pids", _find_gateway_pids)
+    monkeypatch.setattr(
+        gateway_mod,
+        "_capture_gateway_argv",
+        lambda pid: list(foreign_argv) if int(pid) == 9999 else list(our_argv),
+    )
+
+    result = cli_main._wait_for_windows_gateway_respawn(
+        [101], timeout_s=2.0, interval_s=0.05
+    )
+
+    # Ours, not the foreign PID that was there the whole time.
+    assert result == [4200]
+    # ...and it got there by waiting, not by short-circuiting on poll 1.
+    assert polls["n"] >= 4
+
+
+@patch.object(cli_main, "_is_windows", return_value=True)
 def test_wait_for_windows_gateway_respawn_keeps_unevidenced_pid(
     _winp,
     monkeypatch,
