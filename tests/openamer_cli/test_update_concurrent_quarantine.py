@@ -899,8 +899,10 @@ def test_wait_for_windows_gateway_respawn_waits_out_a_foreign_only_window(
         "gateway",
         "run",
     ]
+    # Derived from the classifier's own install root, so this is *ours* by
+    # exactly the evidence production uses — not a layout guess.
     our_argv = [
-        str(Path(cli_main.__file__).resolve().parents[1] / "venv" / "Scripts" / "python.exe"),
+        str(Path(cli_main._update_install_roots()[0], "venv/Scripts/python.exe")),
         "-m",
         "openamer_cli.main",
         "gateway",
