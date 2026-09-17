@@ -1292,6 +1292,44 @@ def _is_marketing_hero_cta_chrome(text):
     return bool(_HERO_CTA_STAR_RE.search(text or ""))
 
 
+# class 40 markers (live 17.09.26) -- see _is_byline_published_article_header.
+_BYLINE_PUBLISHED_RE = _re.compile(
+    r"\bBy\s+[A-Z][a-z]+\s+[A-Z][a-z]+\s+Published\s+\d{1,2}\s+"
+    r"[A-Z][a-z]{2,9}\s+\d{2}\b")
+
+
+def _is_byline_published_article_header(text):
+    """True when `text` carries an article-header byline + `Published <dd Mon yy>`.
+
+    Live 17.09.26 (class 40): two rows in the 300-row buffer had passed BOTH
+    gates --
+      `Pro Why CIOs are paying closer attention to physical security By Mark
+       Coates Published 14 September 26 Connected physical security is
+       reshaping how CIOs approach risk, data and resilience.`  (188 chars)
+      `Pro Why every enterprise needs an AI model exit strategy By Ganesh
+       Padmanabhan Published 15 September 26 Model flexibility helps
+       enterprises protect workflows, ...`  (210 chars)
+    -- an editorial chip + headline + two-word byline + abbreviated dateline,
+    glued to the article's own lede. The `>=90` long-prose trust accepted them
+    and the `14 September 26` / `15 September 26` digits fed the
+    technical-signal gate, so no existing marker matched.
+
+    NOT the same shape as `_strip_byline_prefix`, which only removes a LEADING
+    byline; here the byline sits AFTER the headline, mid-text. Discriminator =
+    the page's own furniture pair `By <First> <Last> Published <dd> <Mon> <yy>`
+    (the byline is not separated from `Published`, unlike the
+    `Written by ... \u00b7 Published ...` form of class 29).
+
+    Measured: 2 live buffer hits and BOTH are the leak -> 0 real-prose FPs on a
+    10-sentence hostile control corpus (incl. `By Mark Coates Published research
+    shows that connected physical security is reshaping how CIOs approach
+    risk.`, `The paper was published in September 2026 by the ACM ...`,
+    `Ganesh Padmanabhan wrote about AI model exit strategies in a 2024
+    enterprise report.`); 0/3,056 `longterm_episodes`.
+    """
+    return bool(_BYLINE_PUBLISHED_RE.search(text or ""))
+
+
 # class 39 markers (live 17.09.26) -- see _is_platform_selector_listing_chrome.
 _PLATFORM_SEL_SUBREDDIT_RE = _re.compile(
     r"(?:macOS|Windows|Linux)\s+(?:Apple\s+Silicon|Intel)\s*\([^)]*\)"
@@ -1353,6 +1391,9 @@ def _is_nav_chrome(text):
         return True
     # a platform selector glued to a subreddit feed row (class 39, 17.09.26)
     if _is_platform_selector_listing_chrome(text):
+        return True
+    # an article-header byline + `Published <dd Mon yy>` (class 40, 17.09.26)
+    if _is_byline_published_article_header(text):
         return True
     # a date-stamped headline listing (class 35, 17.09.26)
     if _is_date_heading_listing(text):

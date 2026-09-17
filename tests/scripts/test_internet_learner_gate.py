@@ -2607,3 +2607,61 @@ def test_platform_selector_listing_is_gated_on_both_paths():
         assert not buffer_store.is_junk(s), s
         assert not IL._is_junk(s), s
         assert not buffer_store._is_platform_selector_listing_chrome(s), s
+
+
+def test_byline_published_article_header_is_gated_on_both_paths():
+    """Editorial chip + headline + mid-text byline + `Published` dateline (class 40).
+
+    Live 17.09.26: two rows in the 300-row `online_buffer.jsonl` had passed BOTH
+    gates and were never in `buffer_junk.jsonl` --
+
+      "Pro Why CIOs are paying closer attention to physical security By Mark
+       Coates Published 14 September 26 Connected physical security is
+       reshaping how CIOs approach risk, data and resilience."
+      "Pro Why every enterprise needs an AI model exit strategy By Ganesh
+       Padmanabhan Published 15 September 26 Model flexibility helps
+       enterprises protect workflows, institutional knowledge and control as
+       AI evolves."
+
+    An article-header byline run glued to the article's own lede. Both are
+    >90 chars, so the length trust accepted them, and `14 September 26` /
+    `15 September 26` fed the technical-signal gate. `_strip_byline_prefix`
+    only removes a LEADING byline, so a byline sitting AFTER the headline
+    (mid-text) survived every existing rule.
+    """
+    import buffer_store
+
+    leaks = (
+        "Pro Why CIOs are paying closer attention to physical security By Mark "
+        "Coates Published 14 September 26 Connected physical security is "
+        "reshaping how CIOs approach risk, data and resilience.",
+        "Pro Why every enterprise needs an AI model exit strategy By Ganesh "
+        "Padmanabhan Published 15 September 26 Model flexibility helps "
+        "enterprises protect workflows, institutional knowledge and control "
+        "as AI evolves.",
+    )
+    for text in leaks:
+        assert IL._is_junk(text), text
+        assert buffer_store._is_nav_chrome(text), text
+        assert buffer_store._is_byline_published_article_header(text), text
+
+    # counter-cases: real prose that merely LOOKS like byline + dateline
+    clean = (
+        "By Mark Coates Published research shows that connected physical "
+        "security is reshaping how CIOs approach risk.",
+        "The paper was published in September 2026 by the ACM and describes a "
+        "new quantization method.",
+        "Ganesh Padmanabhan wrote about AI model exit strategies in a 2024 "
+        "enterprise report.",
+        "By contrast, the 2024 study found quantization recovers 97% of fp16 "
+        "accuracy at INT4.",
+        "Published research from Stanford in 2024 shows transformers scale "
+        "predictably with compute.",
+        "Published 2026 benchmarks show vLLM serves twice the throughput of "
+        "the naive pipeline at equal accuracy on a single A100.",
+        "vLLM's PagedAttention reduces memory fragmentation by 60% while "
+        "serving 2x the requests.",
+    )
+    for text in clean:
+        assert not IL._is_junk(text), text
+        assert not buffer_store._is_byline_published_article_header(text), text
