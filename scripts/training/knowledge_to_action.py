@@ -202,9 +202,20 @@ def experiment_competitor_gap():
         ("unit test", "automated verification gate"),
         ("validate code", "automated code-conformance check"),
         ("code correctness", "automated code-conformance check"),
+        # Grown from REAL signals (17.09.26): the JetBrains free-tier signal
+        # ("unlimited code completion and access to local AI models") was a
+        # genuine capability description the lexicon had no token for.
+        ("completion", "inline code completion / autocomplete surface"),
+        ("local ai model", "local model integration in the editor"),
+        ("free tier", "free-tier positioning / zero-cost entry"),
+        ("coding agent", "agentic coding workflow in the IDE"),
     )
     low_signal = signal.lower()
-    hint = next((label for tok, label in hints if tok in low_signal), None)
+    # Longest (most specific) matching token wins: a generic token declared
+    # earlier must never shadow a precise one (declaration order was the
+    # selection rule before, which is not a specificity rule).
+    matches = [(tok, label) for tok, label in hints if tok in low_signal]
+    hint = max(matches, key=lambda p: len(p[0]))[1] if matches else None
 
     # --- a REAL measurement of the thing the gap is about: our tool surface ---
     stats = {"lines": 0, "tool_funcs": 0, "has_tools_pkg": False}
