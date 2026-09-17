@@ -1,6 +1,6 @@
 {
   "organism": "OpenAmer",
-  "written_at": "2026-09-17T00:36:32.286699+00:00",
+  "written_at": "2026-09-17T12:36:49.445624+00:00",
   "identity": {
     "name": "openamer_agent",
     "voice": "https://x.com/openamer_agent",
@@ -15,7 +15,7 @@
   "organs": {
     "heartbeat": {
       "kind": "cron-fleet",
-      "count": 98
+      "count": 99
     },
     "memory": {
       "kind": "memory+skills",
@@ -332,7 +332,7 @@
       "name": "OpenAmer Discord Community Manager",
       "schedule": "every 240m",
       "script": null,
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "Workflow-Immunsystem Nachtwache",
@@ -645,6 +645,12 @@
       "schedule": "17 4 * * *",
       "script": "cron-skill-safety-scan.py",
       "last_status": "ok"
+    },
+    {
+      "name": "Nightly Test-Suite Watchdog",
+      "schedule": "0 4 * * *",
+      "script": "test-suite-watchdog.py",
+      "last_status": null
     }
   ]
 }
