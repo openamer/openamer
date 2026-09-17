@@ -815,6 +815,37 @@ def _is_course_cta_chrome(text):
     return bool(_COURSE_CTA_RE.search(t) and _COURSE_BUNDLE_RE.search(t))
 
 
+_ARCHIVE_LABEL_DATE_RE = _re.compile(
+    r"\b(?:insights|white-?paper|news|blog|articles?|posts?|press)\s+"
+    r"(?:january|february|march|april|may|june|july|august|september|october|"
+    r"november|december)\s+\d{1,2},?\s+\d{4}",
+    _re.IGNORECASE)
+
+
+def _is_archive_listing(text):
+    """True when `text` is a blog ARCHIVE listing (date-stamped post titles).
+
+    Live 17.09.26: `LM Serving white-paper July 24, 2026 Thinking Machines Lab
+    Inkling, Explained: ... insights July 17, 2026 Top 7 ... insights July 6,
+    2026 What Is a Good AI Harness?` -- pure listing chrome, zero prose, and the
+    dates satisfied the technical-signal gate while the length cleared the
+    >=90 "long prose" trust.
+
+    Structural signature (measured, not topic-keyed): TWO OR MORE
+    `<label> <Month D, YYYY>` occurrences AND no period anywhere.  A listing
+    concatenates entry titles and never ends a sentence; prose that merely
+    *names* two labels always carries a full stop.  Measured over the live
+    buffer + world_model (435) + kta_log (764) + internet_learn_log (1695):
+    1 hit, and that hit IS the leaking row -> 0 real-prose FPs; 10/10
+    hand-written counter-cases survive.
+    """
+    if not text:
+        return False
+    if len(_ARCHIVE_LABEL_DATE_RE.findall(text)) < 2:
+        return False
+    return "." not in text
+
+
 def _is_nav_chrome(text):
     """True when text is page chrome (entities, marketing, UI, template leaks)."""
     if _ENTITY.search(text):
@@ -856,6 +887,10 @@ def _is_nav_chrome(text):
     # internet_learner._is_course_cta_chrome)
     if _is_course_cta_chrome(text):
         return True
+    # a blog archive listing, not an article (same rule as
+    # internet_learner._is_archive_listing)
+    if _is_archive_listing(text):
+        return True
     if _is_package_index_chrome(text):
         return True
     if _is_diagram_markup(text):

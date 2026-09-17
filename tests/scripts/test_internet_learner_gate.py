@@ -1712,3 +1712,49 @@ def test_readme_changelog_bullet_list_is_gated_on_both_paths():
         assert not buffer_store.is_junk(s), s
         assert not IL._is_junk(s), s
 
+def test_blog_archive_listing_is_gated_on_both_paths():
+    """Blog ARCHIVE listing: date-stamped post titles, zero prose (live 17.09.26).
+
+    cycle_c_github stored "LM Serving white-paper July 24, 2026 Thinking
+    Machines Lab Inkling, Explained: Why Open Weights Change the Enterprise AI
+    Math insights July 17, 2026 Top 7 AI Agent Platforms for Citizen
+    Developers (2026) insights July 6, 2026 What Is a Good AI Harness?" --
+    252 chars, so the >=90 length trust waved it through, and the dates
+    satisfied the technical-signal gate.  No existing marker matched.
+
+    The discriminator is STRUCTURAL, not topic-keyed: two or more
+    "<label> <Month D, YYYY>" occurrences AND no period anywhere.  A listing
+    concatenates entry titles and never ends a sentence; prose that merely
+    NAMES two labels always carries a full stop, so it survives by
+    construction (asserted below).
+    """
+    import buffer_store
+
+    leak = ("LM Serving white-paper July 24, 2026 Thinking Machines Lab Inkling, "
+            "Explained: Why Open Weights Change the Enterprise AI Math insights "
+            "July 17, 2026 Top 7 AI Agent Platforms for Citizen Developers "
+            "(2026) insights July 6, 2026 What Is a Good AI Harness?")
+    assert buffer_store.is_junk(leak), leak
+    assert IL._is_junk(leak), leak
+
+    # Counter-cases: real prose that NAMES the same labels.  All must survive
+    # BOTH gates -- a one-directional test would pass a broken marker.
+    prose = [
+        "The archive page lists posts under headings like Insights July 17, 2026 "
+        "and News May 29, 2026, but the agent should parse the article body.",
+        "A blog index that renders Insights July 17, 2026 News May 29, 2026 and "
+        "Blog July 6, 2026 as separate anchors confuses the crawler, so the "
+        "retriever must strip those labels before chunking the page.",
+        "The release notes for vLLM 1.2 landed on Insights July 17, 2026, which "
+        "the agent should diff against the previous tag.",
+        "News May 29, 2026 reported governance failures across autonomous agent "
+        "deployments",
+        "White-paper July 24, 2026 Thinking Machines Lab published its findings "
+        "on open weights",
+        "Gartner predicts that by 2027 governance issues will trigger 40% of "
+        "enterprises to demote or decommission autonomous AI agents.",
+    ]
+    for s in prose:
+        assert not buffer_store.is_junk(s), s
+        assert not IL._is_junk(s), s
+
