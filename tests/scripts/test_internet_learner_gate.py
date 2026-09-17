@@ -2708,39 +2708,55 @@ def test_midtext_read_time_header_without_dateline_is_stripped():
     for text in clean:
         assert IL._strip_trailing_read_time_header(text) == text, text
 
+def test_metric_row_fragment_is_gated_on_both_paths():
+    """A benchmark TABLE row: column labels + counts, no sentence (class 43).
 
-def test_prompt_echo_bullet_chain_is_gated_on_both_paths():
-    """The learner's own deep-read prompt echoed back as a bullet chain (17.09.26)."""
+    Live 17.09.26: `cycle_g_security` stored
+
+      "Attack Success Rate (360 runs — 60 payloads × 2 models × ~3 reps)
+       Paradigm gemma4-e2b (local, Ollama) claude-haiku-4-5 ETP 73."
+
+    A benchmark table row welded together -- no verb anywhere. It cleared both
+    gates through the number-fed hole (`_TECH_HINT_RE` starts with `\d+`, so the
+    counts count as technical signal) plus the >=90 length trust.
+
+    The discriminator is the same "a menu is a LABEL CHAIN, a sentence has
+    grammar" rule as the nav-strip family: a parenthesised ratio of counts or a
+    tilde-approximated product AND no finite verb. Measured 1 hit over the live
+    300-row buffer, 0 real-prose FPs across the counter-cases below (several of
+    which reuse the LEAK'S OWN words inside a sentence).
+    """
     import buffer_store
-    import importlib.util
-    import sys as _sys
 
-    T = "C:/Users/damir/AppData/Local/openamer-laptop/scripts/training"
-    _sys.path.insert(0, T)
-    spec = importlib.util.spec_from_file_location(
-        "il_gate_probe", T + "/internet_learner.py")
-    il = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(il)
+    leak = ("Attack Success Rate (360 runs \u2014 60 payloads \u00d7 2 models "
+            "\u00d7 ~3 reps) Paradigm gemma4-e2b (local, Ollama) "
+            "claude-haiku-4-5 ETP 73.")
+    assert IL._is_junk(leak), leak
+    assert buffer_store._is_nav_chrome(leak), leak
+    assert IL._is_metric_row_fragment(leak), leak
+    assert buffer_store._is_metric_row_fragment(leak), leak
 
-    leak = ('"\n   - Input is a list of daily paper submissions with titles, '
-            'authors, and brief tags/counts\n   - I need to identify the single '
-            'most valuable technical insight for an autonomous AI agent from these '
-            'paper titles/descriptions\n   - Output must be a sin')
-    assert buffer_store._is_nav_chrome(leak) is True
-    assert il._is_junk(leak) is True
-
-    # a real declarative answer that merely USES the same vocabulary stays learnable
-    for prose in [
-        "Input is a list of tokens processed by the encoder before the decoder attends to it.",
-        "The input is a list of papers, and the model must select the most valuable one.",
-        "Output must be a single sentence summarising the finding for the agent.",
-        "- Input: raw text. - Output: a JSON object with the label and confidence.",
-        "The dataset consists of daily paper submissions with titles, authors and abstracts.",
-        "We asked the model to identify the most valuable technical insight for an autonomous AI agent.",
-        "LoRA adapters reduce trainable parameters by 99% while retaining most task accuracy.",
-        "In the benchmark, input is a list of 512 sequences and output is a probability distribution.",
-        "The model has three steps: tokenize, encode, and decode.",
-        "- The study found a 20% accuracy gain. - It used LoRA at rank 8.",
-    ]:
-        assert buffer_store._is_prompt_echo_bullet_chain(prose) is False, prose
+    # Counter-cases: real prose that carries the SAME counts / the same ratio /
+    # the same multiplication sign and must stay learnable. Every one has a verb.
+    clean = (
+        "The benchmark suite (12 models \u00d7 4 seeds) reports a median attack "
+        "success rate of 41% at int4, which is 8 points above the fp16 baseline.",
+        "Attack success rate (360 runs \u2014 60 payloads \u00d7 2 models) was "
+        "measured on the local Ollama build and landed at 73% for the hosted model.",
+        "An attack success rate of 73% (360 runs \u2014 60 payloads \u00d7 2 models "
+        "\u00d7 ~3 reps) is alarmingly high for a production agent, so the registry "
+        "now validates manifests.",
+        "A sweep over 12 seeds \u00d7 4 learning rates took 3 hours on one A100, "
+        "and the best run reached 71.2% exact match.",
+        "The harness reports 360 runs, 60 payloads and 2 models, yet the aggregate "
+        "success rate was never published by the vendor.",
+        "Group relative policy optimization assigns credit per turn (3 turns "
+        "\u00d7 2 agents) which is what makes a multi-agent rollout trainable.",
+        "Quantization stores 32-bit floats as 8-bit integers (4 bytes \u2192 1 byte), "
+        "so a 7B model needs about 3.5 GB instead of 28 GB at inference time.",
+    )
+    for text in clean:
+        assert not IL._is_metric_row_fragment(text), text
+        assert not IL._is_junk(text), text
+        assert not buffer_store._is_metric_row_fragment(text), text
 

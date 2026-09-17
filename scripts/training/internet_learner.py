@@ -1176,6 +1176,63 @@ def _is_changelog_chain(text):
         return False
     return not _CHANGELOG_CONN_RE.search(t)
 
+
+def _is_metric_row_fragment(text):
+    r"""True when `text` is a METRIC-LABEL block with no sentence in it.
+
+    Live 17.09.26 (class 43, `cycle_g_security`): the row
+    `Attack Success Rate (360 runs — 60 payloads × 2 models × ~3 reps)
+    Paradigm gemma4-e2b (local, Ollama) claude-haiku-4-5 ETP 73.` is a
+    benchmark TABLE row -- column labels and counts welded together, zero
+    prose. It cleared both gates through the familiar number-fed hole:
+    `_TECH_HINT_RE`'s alternation starts with `\d+`, so the counts count as
+    "technical signal", and the 126-char row cleared the >=90 trust.
+
+    The discriminator is the same "a menu is a LABEL CHAIN, a sentence has
+    grammar" rule used for the nav-strip family: a metric block carries a
+    parenthesised ratio of counts (`(360 runs — 60 payloads`) or a
+    tilde-approximated product (`× ~3 reps`) AND no finite verb anywhere.
+    Both halves are required -- either half alone is ordinary English.
+
+    Measured over the live 300-row buffer + 5,580 junk rows (5,880 total)
+    with 11 hand-written counter-cases: 1 hit and it IS the leak -> 0
+    real-prose FPs. The counter-cases that must stay learnable include the
+    leak's OWN words inside a sentence:
+      * "Attack success rate (360 runs — 60 payloads × 2 models) was
+        measured on the local Ollama build and landed at 73% ..."  (has a verb)
+      * "An attack success rate of 73% (360 runs — 60 payloads × 2 models
+        × ~3 reps) is alarmingly high ..."                       (has a verb)
+      * "A sweep over 12 seeds × 4 learning rates took 3 hours on one A100,
+        and the best run reached 71.2% exact match."            (has a verb)
+    The verb probe is deliberately WITHOUT `run`/`runs`: in the leak `runs` is
+    a NOUN, and listing it would make the rule blind to its own target.
+
+    Do NOT widen the ratio literal to a bare `×`: measured at 32 corpus hits
+    including math derivations ("W_quantized × scale Where W is ...") and
+    "3.6× faster", and a bare `\d+ \w+` pair matches ordinary prose.
+    """
+    t = text or ""
+    if not (_METRIC_RATIO_RE.search(t) or _METRIC_XTILDE_RE.search(t)):
+        return False
+    return not _FINITE_VERB_RE.search(t)
+
+# a parenthesised ratio of counts: "(360 runs — 60 payloads"
+_METRIC_RATIO_RE = re.compile(
+    "\\([^)]{0,90}?\\d+\\s+\\w+\\s*[\u2014\u2013-]\\s*\\d+\\s+\\w+")
+# an approximated product of counts: "× ~3 reps"
+_METRIC_XTILDE_RE = re.compile("\u00d7\\s*~\\s*\\d")
+# any finite verb -> the row is a sentence, hence knowledge, not a label block
+_FINITE_VERB_RE = re.compile(
+    r"\b(?:is|are|was|were|be|been|has|have|had|can|could|will|would|should|must|"
+    r"shows?|showed|uses?|used|adds?|added|improves?|improved|reduces?|reduced|"
+    r"requires?|required|means|meant|allows?|allowed|gives?|gave|makes?|made|"
+    r"takes?|took|found|finds?|reports?|reported|achieves?|achieved|provides?|provided|"
+    r"measures?|measured|compares?|compared|covers?|covered|enables?|enabled|"
+    r"offers?|delivers?|drops?|raises?|falls?|grows?|stays?|keeps?|holds?|writes?|reads?|"
+    r"landed|remains?|differs?|validates|prefers|matters|assigns|sits?|came|comes?|"
+    r"stores?|needs?|reached|published|conspired|trust)\b",
+    re.IGNORECASE)
+
 def _is_sidebar_listing_chrome(text):
     """True when `text` is a blog-sidebar post-listing widget, not prose.
 
@@ -1583,6 +1640,11 @@ def _is_junk(text):
         return True
     # a rendered release-note / changelog bullet chain
     if _is_changelog_chain(t):
+        return True
+    # a benchmark/metric TABLE row: column labels + counts, no sentence
+    # (live 17.09.26, class 43). Same rule as
+    # buffer_store._is_metric_row_fragment.
+    if _is_metric_row_fragment(t):
         return True
     if _JUNK_RE.search(t):
         return True
