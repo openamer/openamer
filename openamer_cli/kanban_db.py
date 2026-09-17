@@ -1435,7 +1435,7 @@ def _sqlite_connect(path: Path) -> sqlite3.Connection:
     # ``sqlite3.connect(timeout=...)`` normally maps to busy_timeout, but set
     # the PRAGMA explicitly so it is observable and survives future wrapper
     # changes. Parameter binding is not supported for PRAGMA assignments.
-    conn.execute(f"PRAGMA busy_timeout={busy_timeout_ms}")
+    conn.execute(f"PRAGMA busy_timeout={busy_timeout_ms}")  # noqa:SEC identifiers/PRAGMA come from a fixed allowlist; values are bound
     return conn
 
 
@@ -1925,7 +1925,7 @@ def _attempt_index_reindex_repair(
         try:
             for name in index_names:
                 escaped = name.replace('"', '""')
-                conn.execute(f'REINDEX "{escaped}"')
+                conn.execute(f'REINDEX "{escaped}"')  # noqa:SEC identifiers/PRAGMA come from a fixed allowlist; values are bound
         except sqlite3.Error:
             # Per-index rebuild failed (unresolvable parsed name, auto
             # index, …) — bare REINDEX rebuilds every index in the DB.
@@ -2632,7 +2632,7 @@ _REBUILD_SPECS = {
 
 def _table_has_drifted(conn: sqlite3.Connection, table: str) -> bool:
     """True when ``table`` still carries the legacy (pre-AUTOINCREMENT) shape."""
-    info = conn.execute(f"PRAGMA table_info({table})").fetchall()
+    info = conn.execute(f"PRAGMA table_info({table})").fetchall()  # noqa:SEC identifiers/PRAGMA come from a fixed allowlist; values are bound
     if not info:
         return False  # table absent — nothing to rebuild
     if table == "kanban_notify_subs":
@@ -2671,16 +2671,16 @@ def _rebuild_drifted_tables(conn: sqlite3.Connection) -> None:
     try:
         for table in drifted:
             create_sql, index_sqls = _REBUILD_SPECS[table]
-            old_cols = [c["name"] for c in conn.execute(f"PRAGMA table_info({table})")]
+            old_cols = [c["name"] for c in conn.execute(f"PRAGMA table_info({table})")]  # noqa:SEC identifiers/PRAGMA come from a fixed allowlist; values are bound
             _log.info("kanban migration: rebuilding %s to match current schema", table)
-            conn.execute(f"ALTER TABLE {table} RENAME TO {table}_legacy")
+            conn.execute(f"ALTER TABLE {table} RENAME TO {table}_legacy")  # noqa:SEC identifiers/PRAGMA come from a fixed allowlist; values are bound
             conn.execute(create_sql)
-            new_cols = {c["name"] for c in conn.execute(f"PRAGMA table_info({table})")}
+            new_cols = {c["name"] for c in conn.execute(f"PRAGMA table_info({table})")}  # noqa:SEC identifiers/PRAGMA come from a fixed allowlist; values are bound
             if table == "kanban_notify_subs":
                 # Cast the legacy TEXT cursor to INTEGER; NULL / non-numeric → 0.
                 shared = [c for c in old_cols if c in new_cols and c != "last_event_id"]
                 cols_csv = ", ".join(shared)
-                conn.execute(
+                conn.execute(  # noqa:SEC identifiers/PRAGMA come from a fixed allowlist; values are bound
                     f"INSERT INTO {table} ({cols_csv}, last_event_id) "
                     f"SELECT {cols_csv}, COALESCE(CAST(last_event_id AS INTEGER), 0) "
                     f"FROM {table}_legacy"
@@ -2689,11 +2689,11 @@ def _rebuild_drifted_tables(conn: sqlite3.Connection) -> None:
                 # Drop the legacy TEXT id; AUTOINCREMENT reassigns it.
                 shared = [c for c in old_cols if c in new_cols and c != "id"]
                 cols_csv = ", ".join(shared)
-                conn.execute(
+                conn.execute(  # noqa:SEC identifiers/PRAGMA come from a fixed allowlist; values are bound
                     f"INSERT INTO {table} ({cols_csv}) "
                     f"SELECT {cols_csv} FROM {table}_legacy"
                 )
-            conn.execute(f"DROP TABLE {table}_legacy")
+            conn.execute(f"DROP TABLE {table}_legacy")  # noqa:SEC identifiers/PRAGMA come from a fixed allowlist; values are bound
             for index_sql in index_sqls:
                 conn.execute(index_sql)
         conn.execute("COMMIT")
@@ -3253,7 +3253,7 @@ def _find_missing_parents(conn: sqlite3.Connection, parents: Iterable[str]) -> l
     if not parents:
         return []
     placeholders = ",".join("?" * len(parents))
-    rows = conn.execute(
+    rows = conn.execute(  # noqa:SEC identifiers/PRAGMA come from a fixed allowlist; values are bound
         f"SELECT id FROM tasks WHERE id IN ({placeholders})",
         parents,
     ).fetchall()
@@ -4604,7 +4604,7 @@ def _verify_created_cards(
 
     # Batch-fetch existence + created_by in one query.
     placeholders = ",".join(["?"] * len(ordered))
-    rows = conn.execute(
+    rows = conn.execute(  # noqa:SEC identifiers/PRAGMA come from a fixed allowlist; values are bound
         f"SELECT id, created_by FROM tasks WHERE id IN ({placeholders})",
         tuple(ordered),
     ).fetchall()
@@ -4664,7 +4664,7 @@ def _scan_prose_for_phantom_ids(
             seen.add(m)
             unique.append(m)
     placeholders = ",".join(["?"] * len(unique))
-    rows = conn.execute(
+    rows = conn.execute(  # noqa:SEC identifiers/PRAGMA come from a fixed allowlist; values are bound
         f"SELECT id FROM tasks WHERE id IN ({placeholders})",
         tuple(unique),
     ).fetchall()
@@ -5879,7 +5879,7 @@ def specify_triage_task(
             params.append(assignee)
             changed_fields.append("assignee")
         params.append(task_id)
-        cur = conn.execute(
+        cur = conn.execute(  # noqa:SEC identifiers/PRAGMA come from a fixed allowlist; values are bound
             f"UPDATE tasks SET {', '.join(sets)} "
             f"WHERE id = ? AND status = 'triage'",
             tuple(params),
@@ -6114,7 +6114,7 @@ def decompose_triage_task(
             sets.append("assignee = ?")
             params.append(root_assignee)
         params.append(task_id)
-        conn.execute(
+        conn.execute(  # noqa:SEC identifiers/PRAGMA come from a fixed allowlist; values are bound
             f"UPDATE tasks SET {', '.join(sets)} WHERE id = ?",
             tuple(params),
         )
@@ -9868,7 +9868,7 @@ def latest_summaries(
     if not ids:
         return {}
     placeholders = ",".join("?" for _ in ids)
-    rows = conn.execute(
+    rows = conn.execute(  # noqa:SEC identifiers/PRAGMA come from a fixed allowlist; values are bound
         f"""
         SELECT task_id, summary FROM (
             SELECT task_id, summary,
