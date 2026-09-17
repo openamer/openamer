@@ -2088,3 +2088,104 @@ def test_trailing_read_time_header_is_stripped_not_stored():
     for s in prose:
         assert IL._strip_trailing_read_time_header(s) == s, s
         assert not IL._is_junk(s), s
+def test_adwall_notice_is_rejected_and_prose_about_it_is_not():
+    """Class 28 (live 17.09.26): an ad-blocker-off / subscribe notice is page
+    furniture. `cycle_f_multi_domain` stored, verbatim:
+
+      "Adblocker ausschalten Duden im Abo Nutzen Sie Duden online ohne Werbung
+       und Tracking auf allen Endgeräten für nur 2,99 EUR/Monat."
+
+    Both gates passed it: the "2,99" fed the technical-signal gate (whose
+    alternation starts with \\d+) and the 104 chars cleared the >=90 "long
+    prose" trust. The guard keys on the NOTICE's own CTA shape -- a blocker verb
+    followed by an offer signal inside one span -- never on the topic, so prose
+    ABOUT ad blockers or paywalls stays learnable.
+
+    The measured verdicts (7177-row sweep over buffer + junk + learn log):
+    2 hits, both the same leaking row, 0 real-prose rows.
+    """
+    leak = ("Adblocker ausschalten Duden im Abo Nutzen Sie Duden online ohne "
+            "Werbung und Tracking auf allen Endgeräten für nur 2,99 €/Monat.")
+    assert IL._is_adwall_notice(leak)
+    assert IL._is_junk(leak)
+    assert IL._clean_insight(leak) == ""
+
+    # the writer gate must agree -- a second sink, not a second chance
+    import buffer_store
+    assert buffer_store._is_nav_chrome(leak)
+
+    # Counter-cases: every one is >=90 chars (a shorter fixture would be judged
+    # by the pre-existing short-candidate rule and test a different gate) and
+    # every one names the topic while carrying no offer span.
+    prose = [
+        "The RAG crawler should detect an ad blocker interstitial and treat it "
+        "as a paywall, then fall back to the cached copy instead of storing the "
+        "notice text as knowledge.",
+        "Detecting the ad-blocker-detection script of a news site is a "
+        "fingerprinting problem: the page probes a bait element and reads its "
+        "computed height before deciding to hide the article body.",
+        "A paywall that hides an article behind a subscription costing 4,99 € "
+        "per month must be skipped by the learner, since the call to action "
+        "carries no technical fact at all.",
+        # a meta sentence that discusses the chrome shape -- proves the SHAPE is
+        # gated here, never the topic
+        "The extractor must never store an ad-wall notice; a row telling the "
+        "reader to switch off the ad blocker and subscribe is page furniture, "
+        "not an insight.",
+    ]
+    for s in prose:
+        assert not IL._is_adwall_notice(s), s
+        assert not IL._is_junk(s), s
+        assert IL._clean_insight(s) != "", s
+def test_dated_header_slash_stack_is_stripped_not_stored():
+    """Class 29 (live 17.09.26): a DATED HEADER STACK closed by a short label,
+    welded to the article body. `cycle_g_security` learned, verbatim:
+
+      "OWASP GenAI LLM Top 10 2026 OWASPGenAIProject Editor / August 3, 2026 /
+       Resources OWASP Top 10 for LLM Applications 2026 is the latest
+       community-driven guide to the most critical security risks facing
+       applications powered by large language models."
+
+    Both gates passed it: the date fed the technical-signal gate (whose
+    alternation starts with \\d+) and the 247 chars cleared the >=90 "long
+    prose" trust. This is the SECOND variant of the same page's header -- the
+    class-14 rule already strips its "SECURITY resources Whitepapers/Guides ..."
+    form -- so it is the same family, keyed on the same discriminator: a menu is
+    a LABEL CHAIN, a sentence has grammar.
+
+    A generic "<nav-run> <date> <body>" rule was measured and REJECTED on
+    16.09.26 (it ate GitHub advisories and two prose counter-cases), so the
+    counter-cases below are the point of this test: they must stay untouched.
+    """
+    body = ("OWASP Top 10 for LLM Applications 2026 is the latest "
+            "community-driven guide to the most critical security risks facing "
+            "applications powered by large language models.")
+    leak = ("OWASP GenAI LLM Top 10 2026 OWASPGenAIProject Editor / August 3, "
+            "2026 / Resources " + body)
+
+    out = IL._strip_dated_header_slash_stack(leak)
+    # a STRIP, never a rejection: the body survives byte-identical
+    assert out == body, out
+    assert all(w in leak for w in out.split()), out
+    assert IL._clean_insight(leak) == body, IL._clean_insight(leak)
+    # the WRITER gate must not refuse the cleaned row either
+    import buffer_store
+    assert not buffer_store._is_nav_chrome(body)
+
+    # Counter-cases. The first two are the exact strings that killed the generic
+    # rule on 16.09.26; the third carries the same slash shape in prose; the
+    # fourth is the leak's own BODY (must never be re-stripped).
+    prose = [
+        "The paper compares German/English tokenizers on a March 3, 2026 "
+        "benchmark and finds the multilingual vocabulary saves 12% of the "
+        "token budget.",
+        "Whitepapers/Guides are listed on the site; the August 3, 2026 revision "
+        "adds three sections about retrieval evaluation and prompt injection.",
+        "The team shipped the fix on March 3, 2026 / Users report the "
+        "regression is gone from version 4.2 onwards, so the upgrade path is "
+        "safe now.",
+        body,
+    ]
+    assert len(prose) == 4 and prose[0] != prose[1]
+    for s in prose:
+        assert IL._strip_dated_header_slash_stack(s) == s, s

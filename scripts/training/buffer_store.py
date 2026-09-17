@@ -528,6 +528,22 @@ def _is_de_pricing_chrome(text):
     return sum(1 for m in _DE_PRICING_CHROME_MARKERS if m in low) >= _DE_PRICING_CHROME_MIN_MARKERS
 
 
+# An ad-blocker-off / subscribe notice is a CTA chain, not knowledge (live
+# 17.09.26, class 28; same rule as internet_learner._is_adwall_notice, mirrored
+# here because the writer gate must agree with the extraction gate by
+# construction -- and buffer_store must not import the learner, circular).
+_ADWALL_NOTICE_RE = _re.compile(
+    r"(?:adblocker|werbeblocker)\s*(?:bitte\s*)?(?:ausschalten|deaktivieren|entfernen)"
+    r"[\s\S]{0,240}?"
+    r"(?:ohne\s+werbung|werbefrei|im\s+abo|f[üu]r\s+nur\s+\d|\d+[,.]\d{2}\s*€)",
+    _re.IGNORECASE)
+
+
+def _is_adwall_notice(text):
+    """True when `text` is an ad-blocker-off / subscribe notice (page chrome)."""
+    return bool(_ADWALL_NOTICE_RE.search(text or ""))
+
+
 # A numbered-prompt ECHO is a loop buffering its own task text back at
 # itself (live 16.09.26: active_learn.cross_connect stored
 # `Situation 2 learning process: Continuous Learning Loop: error capture +
@@ -1024,6 +1040,10 @@ def _is_nav_chrome(text):
     # a German pricing/checkout label chain (same rule as
     # internet_learner._is_de_pricing_chrome)
     if _is_de_pricing_chrome(text):
+        return True
+    # an ad-blocker-off / subscribe notice (same rule as
+    # internet_learner._is_adwall_notice)
+    if _is_adwall_notice(text):
         return True
     # a legal-imprint / contact block (same rule as is_contact_block)
     if is_contact_block(text):

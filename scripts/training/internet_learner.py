@@ -778,6 +778,36 @@ def _is_de_pricing_chrome(text):
     return hits >= _DE_PRICING_CHROME_MIN_MARKERS
 
 
+# An AD-WALL / ad-blocker notice is page furniture, not knowledge (live
+# 17.09.26, class 28). cycle_f_multi_domain stored
+#   "Adblocker ausschalten Duden im Abo Nutzen Sie Duden online ohne Werbung
+#    und Tracking auf allen Endgeräten für nur 2,99 €/Monat."
+# Both gates passed it: the "2,99" fed the technical-signal gate (whose
+# alternation starts with \d+) and the 104 chars cleared the >=90 "long prose"
+# trust.
+#
+# Keyed on the NOTICE's own voice PLUS an offer signal inside one span, never
+# on the topic: a notice is a CTA chain ("<blocker> ausschalten" -> "ohne
+# Werbung" / "im Abo" / "für nur <n> €"). Prose ABOUT ad blockers or paywalls
+# carries a technical verb and no offer span, so it stays learnable -- four
+# counter-cases are asserted in the gate test.
+_ADWALL_NOTICE_RE = re.compile(
+    r"(?:adblocker|werbeblocker)\s*(?:bitte\s*)?(?:ausschalten|deaktivieren|entfernen)"
+    r"[\s\S]{0,240}?"
+    r"(?:ohne\s+werbung|werbefrei|im\s+abo|f[üu]r\s+nur\s+\d|\d+[,.]\d{2}\s*€)",
+    re.IGNORECASE)
+
+
+def _is_adwall_notice(text):
+    """True when `text` is an ad-blocker-off / subscribe notice (page chrome).
+
+    Structural, not topical: the notice VOICE must be followed by an offer
+    signal inside the same 240-char span -- exactly the shape of a CTA chain
+    and not of a sentence that reports a technical fact.
+    """
+    return bool(_ADWALL_NOTICE_RE.search(text or ""))
+
+
 def _is_ticker_loop(text):
     """True when the text is a news-TICKER loop: a time code plus a phrase the
     text itself repeats.
@@ -1146,6 +1176,10 @@ def _is_junk(text):
     if _is_qa_portal_chrome(t):
         return True
     if _is_de_pricing_chrome(t):
+        return True
+    # an ad-blocker-off / subscribe notice is a CTA chain, not a fact
+    # (live 17.09.26, class 28 -- see _ADWALL_NOTICE_RE above)
+    if _is_adwall_notice(t):
         return True
     if _is_course_cta_chrome(t):
         return True
@@ -1923,6 +1957,54 @@ _NAV_LABEL_FUNC_WORDS = frozenset((
 ))
 
 
+# A DATED HEADER STACK closed by a short LABEL, welded to the article body
+# (live 17.09.26, class 29). cycle_g_security stored
+#   "OWASP GenAI LLM Top 10 2026 OWASPGenAIProject Editor / August 3, 2026 /
+#    Resources OWASP Top 10 for LLM Applications 2026 is the latest
+#    community-driven guide to the most critical security risks facing
+#    applications powered by large language models."
+# The date fed the technical-signal gate and the 247 chars cleared the >=90
+# trust; _NAV_LABEL_STACK_RE needs a slash-joined Capitalized PAIR (the head
+# here is "OWASPGenAIProject", one glued token) and _BLOG_HEADER_STACK_RE needs
+# "<N> comments", so nothing caught it. STRIP, not reject: the article's own
+# sentence is the knowledge, and the earlier cycle had already stripped exactly
+# this page's "SECURITY resources Whitepapers/Guides ..." head (class 14) --
+# this is the SECOND variant of the same header, so it is the same family.
+#
+# The generic "<nav-run> <date> <body>" rule was MEASURED and REJECTED on
+# 16.09.26 (see the _NAV_LABEL_STACK_RE note): it ate GitHub advisories and two
+# prose counter-cases. This is the narrower surviving form, reusing the SAME
+# proven discriminator -- the head must be LABEL-LIKE (no sentence terminator,
+# <= 1 lowercase word, no function word), the closing label must be a SINGLE
+# Capitalized token, and the body must open a sentence. Measured over 7,185
+# live rows (buffer + junk log + learn log + world_model): 1 hit (the leaking
+# row), 0 counter-case hits, 0 junk-log/learn-log hits.
+_DATED_HEADER_SLASH_RE = re.compile(
+    r"^(?P<head>\S[^.!?\n]{3,120}?)\s+/\s*" + _NAV_LABEL_DATE_ALT + r"\s*/\s*"
+    r"(?P<label>[A-Z][\w'\-]{1,20})\s+"
+    r"(?P<body>[A-Z\x22\x27].{25,})$",
+    re.S)
+
+
+def _strip_dated_header_slash_stack(text):
+    """Drop a leading "<label stack> / <Month D, YYYY> / <Label> <body>".
+
+    Structural, never topical: a menu is a LABEL CHAIN, a sentence has grammar.
+    Real prose that merely cites a date between slashes carries a full stop (or
+    a function word) in its head and is therefore untouched.
+    """
+    t = (text or "").strip()
+    m = _DATED_HEADER_SLASH_RE.match(t)
+    if not m:
+        return t
+    words = _WORD_RE.findall(m.group("head"))
+    low = [w for w in words if w[:1].islower()]
+    if len(low) > 1 or any(w.lower() in _NAV_LABEL_FUNC_WORDS for w in low):
+        return t                      # prose head -> untouched
+    out = m.group("body").strip()
+    return out if len(out.split()) >= 5 else t
+
+
 # Leading BYLINE STACK: author + date + engagement counters + a Share button
 # (live 16.09.26, class 15 of the leading-chrome family): cycle_b_papers
 # stored, verbatim,
@@ -2148,6 +2230,7 @@ def _clean_insight(text, max_len=250):
     t = _strip_wiki_section_prefix(t)
     t = _strip_dateline_fragment(t)
     t = _strip_nav_label_stack(t)
+    t = _strip_dated_header_slash_stack(t)
     t = _strip_byline_stack(t)
     t = _strip_byline_prefix(t)
     t = _strip_clock_fragment(t)
