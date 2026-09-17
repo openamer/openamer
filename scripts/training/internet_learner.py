@@ -1437,6 +1437,39 @@ def _is_marketing_hero_cta_chrome(text):
     return bool(_HERO_CTA_STAR_RE.search(text or ""))
 
 
+# class 39 markers (live 17.09.26) -- see _is_platform_selector_listing_chrome.
+_PLATFORM_SELECTOR_RE = re.compile(
+    r"(?:macOS|Windows|Linux)\s+(?:Apple\s+Silicon|Intel)\s*\([^)]*\)")
+_PLATFORM_SEL_SUBREDDIT_RE = re.compile(
+    r"(?:macOS|Windows|Linux)\s+(?:Apple\s+Silicon|Intel)\s*\([^)]*\)"
+    r"[\s\S]{0,200}?\br/\w+\s+community\b")
+
+
+def _is_platform_selector_listing_chrome(text):
+    """True when `text` glues a platform selector to a subreddit feed row.
+
+    Live 17.09.26 (class 39): `cycle_b_papers` stored
+    `OS/iOS: macOS Apple Silicon (arm64) macOS Apple Silicon (arm64, KleidiAI
+    enabled) DISABLED macOS Intel (x64)… 25 r/MachineLearning community 3h ago
+    ICLR 2027 table font sizes [D] I am preparing an ICLR 2027 submission using
+    the official LaTeX style.` -- a release page's OS/architecture selector
+    (with a DISABLED entry, truncated at `…`) followed by a subreddit feed row
+    (upvote count + `r/... community` + relative time) and a forum post title.
+
+    The selector's counters and the `ICLR 2027` digits fed the technical-signal
+    gate; the shape carries real-looking prose, so the length trust passed it.
+
+    Marker = a `macOS Apple Silicon (arm64)`-style selector within 200 chars of
+    `r/<name> community` -- the feed widget's own label. Measured: 1 live buffer
+    hit and it IS the leak -> 0 real-prose FPs on a 21-sentence hostile control
+    corpus (incl. `Supported targets: macOS Apple Silicon (arm64) and macOS Apple
+    Silicon (arm64, KleidiAI enabled).`, `The r/MachineLearning community 3h ago
+    posted macOS Intel (x64) benchmarks.`); 0/3,056 `longterm_episodes`.
+    The arm64-paren+relative-time form was REJECTED: 3 control FPs.
+    """
+    return bool(_PLATFORM_SEL_SUBREDDIT_RE.search(text or ""))
+
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
@@ -1466,6 +1499,9 @@ def _is_junk(text):
         return True
     # a landing-page hero CTA chain (class 38, 17.09.26)
     if _is_marketing_hero_cta_chrome(t):
+        return True
+    # a platform selector glued to a subreddit feed row (class 39, 17.09.26)
+    if _is_platform_selector_listing_chrome(t):
         return True
     # a date-stamped headline listing (class 35, 17.09.26)
     if _is_date_heading_listing(t):

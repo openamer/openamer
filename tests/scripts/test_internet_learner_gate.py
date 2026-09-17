@@ -2555,3 +2555,55 @@ def test_marketing_hero_cta_chain_is_gated_on_both_paths():
         assert not buffer_store.is_junk(s), s
         assert not IL._is_junk(s), s
         assert not buffer_store._is_marketing_hero_cta_chrome(s), s
+
+
+def test_platform_selector_listing_is_gated_on_both_paths():
+    """An OS/arch selector glued to a subreddit feed row is chrome, not prose.
+
+    Live 17.09.26 (class 39): `cycle_b_papers` stored
+
+        OS/iOS: macOS Apple Silicon (arm64) macOS Apple Silicon (arm64,
+        KleidiAI enabled) DISABLED macOS Intel (x64)\u2026 25 r/MachineLearning
+        community 3h ago ICLR 2027 table font sizes [D] I am preparing an
+        ICLR 2027 submission using the official LaTeX style.
+
+    -- a release page's OS/architecture selector (with a DISABLED entry,
+    truncated at `\u2026`) followed by a subreddit feed row (upvote count +
+    `r/... community` + relative time) and a forum post title. The selector's
+    counters and the `ICLR 2027` digits fed the technical-signal gate.
+
+    Marker = a `macOS Apple Silicon (arm64)`-style selector within 200 chars of
+    `r/<name> community`. Measured: 1 live buffer hit and it IS the leak -> 0
+    real-prose FPs; 0/3,056 `longterm_episodes`. The arm64-paren+relative-time
+    form was REJECTED on measurement (3 control FPs).
+    """
+    import buffer_store
+    leak = ("OS/iOS: macOS Apple Silicon (arm64) macOS Apple Silicon (arm64, KleidiAI "
+            "enabled) DISABLED macOS Intel (x64)\u2026 25 r/MachineLearning community "
+            "3h ago ICLR 2027 table font sizes [D] I am preparing an ICLR 2027 "
+            "submission using the official LaTeX style.")
+    assert buffer_store.is_junk(leak), leak
+    assert IL._is_junk(leak), leak
+    assert buffer_store._is_nav_chrome(leak), leak
+    assert buffer_store._is_platform_selector_listing_chrome(leak), leak
+
+    # Hostile counter-cases: platform selectors, subreddit mentions and the
+    # relative-time feed tail in real prose must ALL stay learnable.
+    prose = [
+        "macOS Apple Silicon (arm64) builds are released for every version.",
+        "macOS Apple Silicon (arm64, KleidiAI enabled) gave the best throughput.",
+        "The installer supports macOS Intel (x64) and Linux x64 targets.",
+        "Supported targets: macOS Apple Silicon (arm64) and macOS Apple Silicon (arm64, KleidiAI enabled).",
+        "Build matrix covers macOS Apple Silicon (arm64) and macOS Intel (x64).",
+        "Install options are macOS Apple Silicon (arm64), Linux x64 and Windows x64.",
+        "macOS Apple Silicon (arm64) support landed 2h ago in the nightly release.",
+        "Community members on r/LocalLLaMA compared macOS Apple Silicon (arm64) throughput.",
+        "The r/MachineLearning community 3h ago posted macOS Intel (x64) benchmarks.",
+        "The Reddit thread had 25 comments and 3h ago it was still active.",
+        "KleidiAI enabled the arm64 path and the r/MLOps community wrote about it.",
+        "The paper was discussed on r/MachineLearning and got 25 comments.",
+    ]
+    for s in prose:
+        assert not buffer_store.is_junk(s), s
+        assert not IL._is_junk(s), s
+        assert not buffer_store._is_platform_selector_listing_chrome(s), s
