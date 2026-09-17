@@ -1226,6 +1226,36 @@ def _is_gh_listing_row(text):
     return bool(_GH_LISTING_ROW_RE.search(text or ""))
 
 
+# class 37 markers (live 17.09.26) -- see _is_hn_feed_listing_chrome.
+_AGO_PIPE_COMMENTS_RE = _re.compile(
+    r"\b(?:minutes?|hours?|days?|weeks?|months?)\s+ago\s*\|\s*\d{1,5}\s*comments\b",
+    _re.IGNORECASE)
+
+
+def _is_hn_feed_listing_chrome(text):
+    """True when `text` is a repeated aggregator feed listing (>=2 items).
+
+    Live 17.09.26 (class 37): `cycle_b_papers` stored
+    `AshleysBrain 3 hours ago | 9 comments 77 Neovim have a ~$800k Bitcoin
+    donation sitting untouched since 2023 by jakemanger 1 hour ago | 6 comments
+    741 Nvidia announces native GPU programming in Rust (developer.` -- a
+    Hacker-News-style front-page listing: submitter handle + relative time +
+    `| N comments` + points + headline, repeated for a second item and cut off
+    mid-word. It carries digits and real headline prose, so the `>=90` length
+    trust and the technical-signal gate both fired and no existing marker
+    matched; the class-34 rule needs the `For You / Latest / Trending` labels.
+
+    The discriminator is REPETITION: a feed row repeats the
+    `<relative-time> | N comments` unit; real prose uses it at most once.
+    Measured on the live 300-row buffer: 1 hit and it IS the leak -> 0
+    real-prose FPs on a 12-sentence control corpus (incl. `The review took
+    2 days ago | 4 comments per reviewer were recorded.` which the
+    single-occurrence form would wrongly flag); 0/3,056 `longterm_episodes`.
+    """
+    t = text or ""
+    return len(_AGO_PIPE_COMMENTS_RE.findall(t)) >= 2
+
+
 def _is_nav_chrome(text):
     """True when text is page chrome (entities, marketing, UI, template leaks)."""
     if _ENTITY.search(text):
@@ -1247,6 +1277,9 @@ def _is_nav_chrome(text):
     if _is_news_card_stub(text):
         return True
     if _is_relative_time_nav_chain(text):
+        return True
+    # a repeated aggregator feed listing (class 37, 17.09.26)
+    if _is_hn_feed_listing_chrome(text):
         return True
     # a date-stamped headline listing (class 35, 17.09.26)
     if _is_date_heading_listing(text):

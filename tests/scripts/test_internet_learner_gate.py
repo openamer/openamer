@@ -2442,3 +2442,55 @@ def test_repo_page_tab_and_statbar_chrome_is_gated_on_both_paths():
     for s in prose:
         assert not buffer_store.is_junk(s), s
         assert not IL._is_junk(s), s
+
+
+def test_repeated_aggregator_feed_listing_is_gated_on_both_paths():
+    """A Hacker-News-style feed row (>=2 items) must not be stored as prose.
+
+    Live 17.09.26 (class 37): `cycle_b_papers` stored
+
+        AshleysBrain 3 hours ago | 9 comments 77 Neovim have a ~$800k Bitcoin
+        donation sitting untouched since 2023 by jakemanger 1 hour ago |
+        6 comments 741 Nvidia announces native GPU programming in Rust
+        (developer.
+
+    -- submitter handle + relative time + `| N comments` + points + headline,
+    repeated for a second item and cut off mid-word. 209 chars carrying digits
+    and real headline prose, so the `>=90` length trust AND the technical-signal
+    gate both fired; the class-34 rule needs the `For You / Latest / Trending`
+    labels, which this shape does not have.
+
+    The discriminator is REPETITION: a feed row repeats the
+    `<relative-time> | N comments` unit, real prose uses it at most once.
+    Measured: 1 buffer hit and it IS the leak -> 0 real-prose FPs; 0/3,056
+    `longterm_episodes`.
+    """
+    import buffer_store
+    leak = ("AshleysBrain 3 hours ago | 9 comments 77 Neovim have a ~$800k Bitcoin "
+            "donation sitting untouched since 2023 by jakemanger 1 hour ago | "
+            "6 comments 741 Nvidia announces native GPU programming in Rust (developer.")
+    assert buffer_store.is_junk(leak), leak
+    assert IL._is_junk(leak), leak
+    assert buffer_store._is_nav_chrome(leak), leak
+    assert buffer_store._is_hn_feed_listing_chrome(leak), leak
+    assert IL._is_hn_feed_listing_chrome(leak), leak
+
+    # Hostile counter-cases: the same handles, relative times, points and
+    # comment counts in real prose must ALL stay learnable. The first one is the
+    # single-occurrence form the rule must NOT flag.
+    prose = [
+        "The review took 2 days ago | 4 comments per reviewer were recorded.",
+        "The model was benchmarked 3 hours ago and took 9 comments to converge.",
+        "Neovim received a large Bitcoin donation the maintainers left untouched since 2023.",
+        "Nvidia announced native GPU programming in Rust for its developer toolchain.",
+        "The agent parsed 741 comments and counted 77 unique titles.",
+        "A user donated 800k USD worth of Bitcoin to the project in 2023.",
+        "Comments are ranked by score; the top item had 741 points and 6 comments.",
+        "The pipeline finished 3 hours ago with 9 comments in the changelog.",
+        "GPU programming in Rust was announced with 6 example kernels.",
+        "Training ran for 3 hours | the loss dropped to 0.77 over 9 epochs.",
+    ]
+    for s in prose:
+        assert not buffer_store.is_junk(s), s
+        assert not IL._is_junk(s), s
+        assert not buffer_store._is_hn_feed_listing_chrome(s), s
