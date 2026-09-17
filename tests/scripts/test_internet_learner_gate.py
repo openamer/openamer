@@ -2760,3 +2760,47 @@ def test_metric_row_fragment_is_gated_on_both_paths():
         assert not IL._is_junk(text), text
         assert not buffer_store._is_metric_row_fragment(text), text
 
+
+
+def test_masthead_nav_chain_is_stripped_from_the_insight():
+    """class 43 (17.09.26): a site's section menu welded to its own lede.
+
+    Live: cycle_a_technews stored
+      "Blog Guides Insights Breaking story Breaking AI News Salesforce Launches
+       Koa: CRM Reasoning Model for Agentforce Salesforce unveils Koa at
+       Dreamforce 2026, a reasoning model trained on 27 years of CRM data ..."
+    The lede behind the menu IS the knowledge, so this is a STRIP, not a
+    reject. The discriminator is a CHAIN of masthead labels (>= 2 in the first
+    80 chars with no sentence terminator in front of the last one) -- each
+    label alone is ordinary English, which is why every single-phrase marker
+    was measured and rejected.
+    """
+    leak = ("Blog Guides Insights Breaking story Breaking AI News Salesforce "
+            "Launches Koa: CRM Reasoning Model for Agentforce Salesforce unveils "
+            "Koa at Dreamforce 2026, a reasoning model trained on 27 years of CRM "
+            "data that delivers 3x fewer errors on sales tasks.")
+    stripped = IL._strip_masthead_nav_chain(leak)
+    assert "Blog Guides Insights" not in stripped
+    assert "Breaking AI News" not in stripped
+    assert stripped.startswith("Salesforce Launches Koa:")
+    assert IL._strip_masthead_nav_chain(stripped) == stripped      # idempotent
+    # the whole pipeline must land on the lede, free of the menu
+    cleaned = IL._clean_insight(leak, 300)
+    assert cleaned, "the lede is real prose and must survive"
+    assert not IL._MASTHEAD_NAV_RE.search(cleaned), cleaned
+
+    # a bare label is a legit headline / sentence -- must stay BYTE-IDENTICAL
+    clean = (
+        "Blog Guides Insights are three content formats we publish for developers.",
+        "The blog post explains how guides and insights differ from tutorials.",
+        "Breaking story coverage of model releases dominated the tech news cycle.",
+        "Breaking AI news dominated the cycle this week in the agent space.",
+        "Breaking AI News: Anthropic ships a new tool-use API for agents.",
+        "Our Breaking AI News desk covers model launches every week.",
+        "Blog posts, guides, and insights about LLMs are published weekly.",
+        "We publish a Blog, Guides and Insights sections. Breaking AI News is our "
+        "flagship desk.",
+    )
+    for text in clean:
+        assert IL._strip_masthead_nav_chain(text) == text.strip(), text
+

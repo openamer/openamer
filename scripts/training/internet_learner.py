@@ -2602,6 +2602,55 @@ def _strip_blog_header_stack(text):
     return t if len(t.split()) >= 5 else (text or "").strip()
 
 
+# Leading MASTHEAD NAV CHAIN welded to the site's own headline (live 17.09.26,
+# sixth shape of the leading-chrome family, class 43). cycle_a_technews stored
+#
+#   "Blog Guides Insights Breaking story Breaking AI News Salesforce Launches
+#    Koa: CRM Reasoning Model for Agentforce Salesforce unveils Koa at
+#    Dreamforce 2026, a reasoning model trained on 27 years of CRM data that
+#    delivers 3x fewer errors on sales tasks."
+#
+# The site's section menu (Blog / Guides / Insights / Breaking story /
+# Breaking AI News) rides in front of the real lede. 251 chars WITH digits ->
+# the >=90 length trust AND the technical-signal gate both fired, and every
+# existing leading-chrome helper needs a HARD anchor that this row lacks:
+#   - _strip_nav_label_stack / _strip_dated_header_slash_stack need a slash,
+#   - _strip_blog_header_stack needs a "/ <date> / N comments" stack,
+#   - _strip_arrow_nav_prefix needs an HTML-comment arrow,
+#   - _is_nav_list wants >= 6 TitleCase tokens with no comma.
+# STRIP, never reject: the lede behind the menu IS the knowledge.
+#
+# The discriminator is a CHAIN of this family's masthead labels, not any single
+# one -- each label alone is ordinary English ("Breaking AI News: Anthropic
+# ships ...", "Our Breaking AI News desk covers ...", "Blog Guides Insights are
+# three content formats ..."). Two-or-more such labels inside the first 80
+# chars, with no sentence terminator in front of the last one, is a menu run.
+# Measured: 1 hit over the live buffer (= this leak), 0 over 5,582 junk-log
+# rows, 3,056 longterm_episodes and the learn/world logs; 0 false positives on
+# a 15-sentence hostile control corpus (each bare label, plus comma'd and
+# sentence-embedded forms) -- only deliberately chain-shaped controls strip.
+_MASTHEAD_NAV_RE = re.compile(
+    r"\bBlog\s+Guides\s+Insights\b|\bBreaking\s+AI\s+News\b|\bBreaking\s+story\b")
+
+
+def _strip_masthead_nav_chain(text):
+    """Drop a leading "Blog Guides Insights ... Breaking AI News <lede>" menu run.
+
+    Live 17.09.26 (cycle_a_technews): see the module comment above. Requires
+    >= 2 masthead labels inside the first 80 chars and no sentence terminator
+    before the LAST one, so real prose that merely names a section is
+    untouched. Returns the text byte-identical unless a >= 5-word body remains.
+    """
+    t = (text or "").strip()
+    head = t[:80]
+    ms = list(_MASTHEAD_NAV_RE.finditer(head))
+    if len(ms) < 2:
+        return t
+    if re.search(r"[.!?]", head[:ms[-1].start()]):
+        return t                      # prose before the labels -> untouched
+    rest = t[ms[-1].end():].strip()
+    return rest if len(rest.split()) >= 5 else t
+
 def _strip_arrow_nav_prefix(text):
     """Drop a leading nav/breadcrumb run terminated by an HTML-comment arrow.
 
@@ -2736,6 +2785,7 @@ def _clean_insight(text, max_len=250):
     t = _strip_read_time_header(t)
     t = _strip_arrow_nav_prefix(t)
     t = _strip_blog_header_stack(t)
+    t = _strip_masthead_nav_chain(t)
     t = _strip_trailing_read_time_header(t)
     if len(t) < 20 or _is_junk(t):
         return ""
