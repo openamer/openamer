@@ -27,6 +27,34 @@ from openamer_cli import main as cli_main
 pytestmark = pytest.mark.real_concurrent_gate
 
 
+@pytest.fixture(autouse=True)
+def _no_host_psutil_for_respawn_probe(request):
+    """Keep the respawn-probe tests hermetic with respect to the host process table.
+
+    ``_wait_for_windows_gateway_respawn`` reaches ``_split_gateways_by_install``,
+    which reads the *real* process table through ``psutil`` for every PID the
+    test's stubbed ``find_gateway_pids`` reports. These tests deliberately use
+    small fixed PIDs (101, 4242, 4200, 7777, 9999). If the machine running the
+    suite happens to have a live process at one of them, psutil hands back real
+    ``exe()``/``environ()`` values, the process is classified as *another*
+    install's gateway (``_belongs_to_other_install``) and the probe times out —
+    so the assertion fails for a reason that has nothing to do with the code
+    under test. The suite is green on an idle host and red on a busy one, on the
+    same commit.
+
+    Blocking ``psutil`` for only the respawn tests makes argv, exe and env all
+    unreadable, i.e. exactly the "no evidence -> ours" state the probe is
+    specified to handle (the #50090 pause contract). Tests that pin a specific
+    classification still decide it through their explicit
+    ``_capture_gateway_argv`` stub, so the assertions stay discriminating.
+    """
+    if "respawn" not in request.node.name:
+        yield
+        return
+    with patch.dict(sys.modules, {"psutil": None}):
+        yield
+
+
 # ---------------------------------------------------------------------------
 # _detect_concurrent_openamer_instances
 # ---------------------------------------------------------------------------
