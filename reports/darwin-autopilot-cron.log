@@ -1,10 +1,11 @@
-[autopilot] fitness computed for 104 skills (history snapshot #1564)
+[autopilot] fitness computed for 104 skills (history snapshot #1565)
 [autopilot] tuning: healthy (rising) -> defaults (epsilon=0.3, max_trials=2, max_losses=3)
 [autopilot] 5 mutations generated
 [autopilot] crossover: asi-capability-summary x asi-identity -> child
 [autopilot] trial fb6973a70e35: waiting {'completed': 1, 'error': 0}
 [autopilot] trial self_rewriter_6h: waiting {'completed': 1, 'error': 0}
 [autopilot] best operator: fix (43/44 wins)
-[autopilot] arena: cooldown
+[autopilot] arena: darwin-harvested-memory-darwin-status-latest-json vs darwin-harvested-python-exe-no-such-file-or-directory -> child
 [autopilot] predation: no redundant skills found
 [autopilot] report -> reports\darwin-report.md
+EXIT_CODE=2 DURATION_SEC=563
