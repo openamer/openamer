@@ -1852,3 +1852,40 @@ def test_plan_scaffold_bullet_echo_is_gated_on_both_paths():
     assert not buffer_store.is_junk(meta), meta
     assert not IL._is_junk(meta), meta
 
+
+def test_financial_infobox_label_chain_is_gated_on_both_paths():
+    """A company/Wikipedia infobox financial label chain must not train.
+
+    Live 17.09.26 (cycle_e_competitors): the JetBrains infobox was buffered as
+    "competitor intelligence" - 248 chars WITH digits, so the >=90 long-prose
+    trust and the technical-signal gate both fired. Every naive literal was
+    measured and REJECTED as a topic-word trap; the discriminator is the
+    repeated (financial-label, year-in-parens) co-occurrence.
+    """
+    import buffer_store
+    leak = ("CEO [ 1 ] Revenue 15,065,029,000 Czech koruna (2024) Operating income "
+            "2,041,654,000 Czech koruna (2024) Net income 2,479,110,000 Czech koruna "
+            "(2024) Total assets 17,426,568,000 Czech koruna (2024) Number of "
+            "employees 2,800 [ 2 ] Website jetbrains .")
+    assert buffer_store.is_junk(leak), leak
+    assert IL._is_junk(leak), leak
+    assert buffer_store.is_financial_infobox(leak)
+
+    # Hostile counter-cases: real prose on the SAME topic/numbers must survive.
+    prose = [
+        "Llama 2 (2023) and Llama 3 (2024) improved long-context reasoning at lower cost.",
+        "GPT-4 (2023) scored 91.2% while GPT-5 (2024) reached 95.1% on the same benchmark.",
+        "The release (2024) followed the beta (2023) and the first preview (2022).",
+        "Revenue 2024 was 15,065,029,000 and operating income 2,041,654 according to the filing.",
+        "Operating income rose to 2,041,654 koruna while net profit stayed flat.",
+        "The CEO reported revenue of 15 million Czech koruna for the 2024 fiscal year.",
+        "The website lists revenue, operating income and net income ( 2024 ) in one table.",
+        "Total assets ( 2023 ) were 17,426,568,000 koruna at the end of the year.",
+        "Number of employees grew to 2,800 ( 2024 ) across the Czech and German offices.",
+        "The agent benchmarked 15,065,029,000 tokens across 4 A100s in 2024.",
+        "vLLM (2024) and SGLang (2024) both support chunked prefill for long context.",
+    ]
+    for s in prose:
+        assert not buffer_store.is_junk(s), s
+        assert not IL._is_junk(s), s
+

@@ -1065,6 +1065,18 @@ def _is_junk(text):
         is_contact_block = None
     if is_contact_block is not None and is_contact_block(t):
         return True
+    # A company/Wikipedia infobox financial label chain must be refused at
+    # EXTRACTION time too (live 17.09.26: cycle_e_competitors buffered the
+    # JetBrains revenue/operating-income infobox). Same structural rule as the
+    # writer gate -- >=2 (financial label, year in parens). No regex mirror:
+    # the rule is logic, not a page phrase, exactly like is_contact_block.
+    try:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        from buffer_store import is_financial_infobox
+    except Exception:
+        is_financial_infobox = None
+    if is_financial_infobox is not None and is_financial_infobox(t):
+        return True
     # Ask the writer gate too: a 2B word salad scores a HIGH unique-token
     # ratio (the motif sits inside otherwise-distinct words), so only
     # buffer_store.is_glued_motif sees it. Rejecting it HERE lets the cycle

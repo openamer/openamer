@@ -906,6 +906,36 @@ def _is_plan_scaffold_echo(text):
     return bool(_PLAN_BULLET_RE.search(text))
 
 
+# Wikipedia/company infobox FINANCIAL label chain (live 17.09.26: cycle_e_competitors
+# stored the JetBrains infobox -- "CEO [ 1 ] Revenue 15,065,029,000 Czech koruna
+# (2024) Operating income 2,041,654,000 Czech koruna (2024) Net income
+# 2,479,110,000 Czech koruna (2024) Total assets 17,426,568,000 Czech koruna
+# (2024) Number of employees 2,800 [ 2 ] Website jetbrains ." -- 248 chars WITH
+# digits, so the >=90 long-prose trust and the technical-signal gate both fired).
+#
+# STRICTLY structural: >=2 occurrences of (financial-label, then a year in
+# parens). Every naive literal was measured and REJECTED as a topic-word trap --
+# `operating income` hit 3 hand-written real-prose counter-cases, `czech koruna`
+# hit 3, `revenue [\d,]{6,}` hit 1. The label+year-paren co-occurrence is the
+# discriminator: an infobox row repeats "Label <huge grouped number> ... (yyyy)",
+# real prose does not. Measured: leak=True; 0 FP on 13 hostile counter-cases
+# (incl. "Llama 2 (2023) and Llama 3 (2024) ...", "GPT-4 (2023) scored 91.2%
+# while GPT-5 (2024) reached 95.1%", "Total assets ( 2023 ) were
+# 17,426,568,000 koruna ..."); 0 hits over 3,056 longterm_episodes texts.
+_FINANCIAL_LABEL_RE = _re.compile(
+    r"(?:revenue|operating income|net income|total assets|number of employees)"
+    r"[^()\n]{0,30}\(\s*(?:19|20)\d\d\s*\)", _re.IGNORECASE)
+
+
+def is_financial_infobox(text):
+    """True when text is a company/Wikipedia infobox financial label chain."""
+    if not text:
+        return False
+    if len(text) > 1200:
+        return False
+    return len(_FINANCIAL_LABEL_RE.findall(text)) >= 2
+
+
 def _is_nav_chrome(text):
     """True when text is page chrome (entities, marketing, UI, template leaks)."""
     if _ENTITY.search(text):
@@ -958,6 +988,10 @@ def _is_nav_chrome(text):
     # a blog archive listing, not an article (same rule as
     # internet_learner._is_archive_listing)
     if _is_archive_listing(text):
+        return True
+    # a company/Wikipedia infobox financial label chain (same rule as
+    # internet_learner._is_junk)
+    if is_financial_infobox(text):
         return True
     if _is_package_index_chrome(text):
         return True
