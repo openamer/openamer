@@ -2715,10 +2715,15 @@ def test_prompt_echo_bullet_chain_is_gated_on_both_paths():
     import importlib.util
     import sys as _sys
 
-    T = "C:/Users/damir/AppData/Local/openamer-laptop/scripts/training"
-    _sys.path.insert(0, T)
+    # Load the checkout under test, not a host install. TRAINING (line 22) is
+    # this repo's scripts/training, which is what every other test in this
+    # file uses. A host-absolute path is doubly wrong: on the laptop it
+    # silently loads the *installed* learner (so the assertions never touch
+    # the commit under test), and on CI it resolves to "<cwd>/C:/Users/..."
+    # and raises FileNotFoundError.
+    _sys.path.insert(0, str(TRAINING))
     spec = importlib.util.spec_from_file_location(
-        "il_gate_probe", T + "/internet_learner.py")
+        "il_gate_probe", str(TRAINING / "internet_learner.py"))
     il = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(il)
 
