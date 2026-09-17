@@ -2552,12 +2552,15 @@ def test_maybe_auto_subscribe_swallows_add_notify_sub_failure(monkeypatch, worke
     monkeypatch.setenv("OPENAMER_SESSION_PLATFORM", "telegram")
     monkeypatch.setenv("OPENAMER_SESSION_CHAT_ID", "chat-42")
 
-    from openamer_cli import kanban_db as kb
+    from openamer_cli import kanban_db_notify as kbn
 
     def _boom(*a, **kw):
         raise RuntimeError("simulated DB failure")
 
-    monkeypatch.setattr(kb, "add_notify_sub", _boom)
+    # Patch the function the handler actually calls: kanban_tools imports
+    # kanban_db_notify as _kbn. kanban_db also carries an older, narrower
+    # add_notify_sub that nothing calls, so patching that one is a no-op.
+    monkeypatch.setattr(kbn, "add_notify_sub", _boom)
 
     out = kt._handle_create({
         "title": "auto-sub tolerates add_notify_sub failure",
