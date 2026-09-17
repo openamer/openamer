@@ -2665,3 +2665,45 @@ def test_byline_published_article_header_is_gated_on_both_paths():
     for text in clean:
         assert not IL._is_junk(text), text
         assert not buffer_store._is_byline_published_article_header(text), text
+
+
+def test_midtext_read_time_header_without_dateline_is_stripped():
+    """Class 41 (live 17.09.26): the shipped read-time strip required a DATELINE
+    in the head and a CAPITALISED body, so two live rows rode into the buffer:
+
+      "AI Agents 11 min read AI Agent Cost Benchmarks: Tokens, Latency, and
+       Dollars per Task Original 2026 benchmark: tokens, P95 latency, ..."
+      "Start the challenge Blog 18 April 2026 / 24 min read 8 best open-source
+       AI agent frameworks on GitHub in 2026 The best open-source AI agent ..."
+
+    Row 1 has no date literal at all (category label only), row 2's body starts
+    with a DIGIT ("8 best ..."). Both bodies are the knowledge, so this is a
+    STRIP — and real prose that merely mentions a read time must stay intact.
+    """
+    leak_a = ("AI Agents 11 min read AI Agent Cost Benchmarks: Tokens, Latency, "
+              "and Dollars per Task Original 2026 benchmark: tokens, P95 latency.")
+    body_a = ("AI Agent Cost Benchmarks: Tokens, Latency, and Dollars per Task "
+              "Original 2026 benchmark: tokens, P95 latency.")
+    assert IL._strip_trailing_read_time_header(leak_a) == body_a
+    assert IL._clean_insight(leak_a, 300) == body_a
+    assert "min read" not in IL._clean_insight(leak_a, 300)
+
+    leak_b = ("Start the challenge Blog 18 April 2026 / 24 min read 8 best "
+              "open-source AI agent frameworks on GitHub in 2026 The best "
+              "open-source AI agent frameworks in 2026: LangGraph, AutoGen.")
+    body_b = ("8 best open-source AI agent frameworks on GitHub in 2026 The best "
+              "open-source AI agent frameworks in 2026: LangGraph, AutoGen.")
+    assert IL._strip_trailing_read_time_header(leak_b) == body_b
+    assert IL._clean_insight(leak_b, 300) == body_b
+
+    # Real prose that merely MENTIONS a read time carries lowercase words in the
+    # head, so the label-chain guard must leave every one of these alone.
+    clean = [
+        "The blog post takes 5 min to read and explains ternary quantization at 1.58 bits.",
+        "The 24 min read limit was generous for a 6-page report of the survey.",
+        "The 11 min read time on that post is misleading; the quantization numbers matter.",
+        "Reading time was about 8 min for the 12-page survey, so the model processed it in one pass.",
+        "The dataset contains 12 min read windows of EEG signal per subject.",
+    ]
+    for text in clean:
+        assert IL._strip_trailing_read_time_header(text) == text, text

@@ -2221,6 +2221,7 @@ _READ_TIME_CLOSE_RE = re.compile(
 _BLOG_HEAD_DATE_RE = re.compile(_DATE_ALT, re.IGNORECASE)
 _BLOG_HEAD_SENT_END_RE = re.compile(r"[.!?]")
 _HEAD_WINDOW = 220
+_BLOG_HEAD_LOWER_RE = re.compile(r"\b[a-z]{2,}\b")
 
 
 def _strip_trailing_read_time_header(text):
@@ -2236,14 +2237,30 @@ def _strip_trailing_read_time_header(text):
     if not m:
         return t
     body = t[m.end():].strip()
-    if len(body.split()) < 5 or not body[:1].isupper():
+    if len(body.split()) < 5:
         return t                       # no real sentence behind it -> leave it
+    # live 17.09.26 (class 41): a DIGIT-LED headline ("8 best open-source AI
+    # agent frameworks ...") is a real sentence body too, so allow it here.
+    if not (body[:1].isupper() or body[:1].isdigit()):
+        return t
     head = head_zone[:m.end()]
-    if not _BLOG_HEAD_DATE_RE.search(head):
-        return t                       # no dateline -> not a header
     if _BLOG_HEAD_SENT_END_RE.search(_BLOG_HEAD_DATE_RE.sub(" ", head)):
         return t                       # furniture never ends a sentence
-    return body
+    if _BLOG_HEAD_DATE_RE.search(head):
+        return body                    # a dateline makes it a header
+    # No dateline: a short PURE-TitleCase label chain ("AI Agents", "Machine
+    # Learning") is page furniture as well. Real prose that merely MENTIONS a
+    # read time sits inside a sentence and carries lowercase words ("... the
+    # reading time was about 8 min read ..."), so it stays untouched.
+    # Measured live 17.09.26: 2/2 leaked rows stripped with a byte-identical
+    # body, 0 of 3,056 longterm episodes, 0 hand-written prose controls.
+    core = _READ_TIME_CLOSE_RE.sub(" ", head)
+    core = _BLOG_HEAD_DATE_RE.sub(" ", core)
+    core = re.sub(r"[^A-Za-z0-9&+.'\- ]", " ", core).strip()
+    words = core.split()
+    if 1 <= len(words) <= 4 and not _BLOG_HEAD_LOWER_RE.search(core):
+        return body
+    return t
 
 
 _ARROW_NAV_RE = re.compile(r"\s*-{1,2}>\s*")
