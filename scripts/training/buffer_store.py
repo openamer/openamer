@@ -1256,6 +1256,42 @@ def _is_hn_feed_listing_chrome(text):
     return len(_AGO_PIPE_COMMENTS_RE.findall(t)) >= 2
 
 
+# class 38 markers (live 17.09.26) -- see _is_marketing_hero_cta_chrome.
+_HERO_CTA_STAR_RE = _re.compile(
+    r"\[\*\]\s+(?:With|Mit)\s+(?:over|\u00fcber)\s+[\d.,]+",
+    _re.IGNORECASE)
+
+
+def _is_marketing_hero_cta_chrome(text):
+    """True when `text` is a landing-page hero CTA chain with a [*] marker.
+
+    Live 17.09.26 (class 38): `cycle_e_competitors` stored the German form
+    `Terminal-Interface, Desktop-App und IDE-Extension Doku lesen Der
+    Open-Source AI-Coding-Agent [*] Mit ueber 195,000 GitHub-Stars, 950
+    Contributors und ueber 13,000 Commits wird OpenCode von ueber 16M
+    Entwickler:innen jeden Monat genut` -- 247 chars. Rows 17 and 87 in the
+    same buffer hold the SAME page hero in English (`Available as a terminal
+    interface, desktop app, and IDE extension Read docs The open source AI
+    coding agent [*] With over 195,000 GitHub stars, ...`), so this is ONE
+    leak shape stored three times, not a one-off.
+
+    An availability line + a nav CTA (`Read docs` / `Doku lesen`) + the
+    product tagline + a `[*]` footnote marker + the adoption-brag counter
+    sentence. The counters and the CTA verb made every existing gate pass;
+    `_is_nav_list` wants >=6 TitleCase tokens with no comma.
+
+    Marker = the `[*]` marker immediately followed by the brag opener
+    `With over` / `Mit ueber`. Measured: 3 live buffer hits, ALL THREE are
+    this leak -> 0 real-prose FPs on a 26-sentence hostile control corpus
+    (incl. footnote-style `Required fields are marked with [*] in the form`,
+    `Read docs to learn how the [*] wildcard expands`, and bare `With over
+    5,000 examples the dataset is large enough`); 0/3,056 `longterm_episodes`.
+    The looser `(?:Read docs|Doku lesen) ... [*]` form was REJECTED on
+    measurement (3 control FPs).
+    """
+    return bool(_HERO_CTA_STAR_RE.search(text or ""))
+
+
 def _is_nav_chrome(text):
     """True when text is page chrome (entities, marketing, UI, template leaks)."""
     if _ENTITY.search(text):
@@ -1280,6 +1316,9 @@ def _is_nav_chrome(text):
         return True
     # a repeated aggregator feed listing (class 37, 17.09.26)
     if _is_hn_feed_listing_chrome(text):
+        return True
+    # a landing-page hero CTA chain (class 38, 17.09.26)
+    if _is_marketing_hero_cta_chrome(text):
         return True
     # a date-stamped headline listing (class 35, 17.09.26)
     if _is_date_heading_listing(text):

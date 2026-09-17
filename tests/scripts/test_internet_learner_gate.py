@@ -2494,3 +2494,64 @@ def test_repeated_aggregator_feed_listing_is_gated_on_both_paths():
         assert not buffer_store.is_junk(s), s
         assert not IL._is_junk(s), s
         assert not buffer_store._is_hn_feed_listing_chrome(s), s
+
+
+def test_marketing_hero_cta_chain_is_gated_on_both_paths():
+    """A landing-page hero CTA chain (availability + CTA + [*] + brag) is chrome.
+
+    Live 17.09.26 (class 38): stored three times in one buffer, once in German
+    (`cycle_e_competitors`) and twice in English (rows 17 and 87):
+
+        Available as a terminal interface, desktop app, and IDE extension Read
+        docs The open source AI coding agent [*] With over 195,000 GitHub
+        stars, 950 contributors, and over 13,000 commits, OpenCode is used and
+        trusted by over 16M de
+
+    -- availability line + nav CTA + product tagline + `[*]` footnote marker +
+    the adoption-brag counter sentence. The counters and the CTA verb made every
+    existing gate pass; `_is_nav_list` wants >=6 TitleCase tokens with no comma.
+
+    Marker = `[*]` immediately followed by the brag opener `With over` / `Mit
+    ueber`. Measured: 3 live buffer hits, ALL THREE are this leak -> 0 real-prose
+    FPs; 0/3,056 `longterm_episodes`. The looser `(Read docs|Doku lesen) ...
+    [*]` form was REJECTED on measurement (3 control FPs).
+    """
+    import buffer_store
+    leaks = [
+        ("Terminal-Interface, Desktop-App und IDE-Extension Doku lesen Der Open-Source "
+         "AI-Coding-Agent [*] Mit \u00fcber 195,000 GitHub-Stars, 950 Contributors und "
+         "\u00fcber 13,000 Commits wird OpenCode von \u00fcber 16M Entwickler:innen jeden Monat genut"),
+        ("Available as a terminal interface, desktop app, and IDE extension Read docs The open "
+         "source AI coding agent [*] With over 195,000 GitHub stars, 950 contributors, and over "
+         "13,000 commits, OpenCode is used and trusted by over 16M de"),
+    ]
+    for leak in leaks:
+        assert buffer_store.is_junk(leak), leak
+        assert IL._is_junk(leak), leak
+        assert buffer_store._is_nav_chrome(leak), leak
+        assert buffer_store._is_marketing_hero_cta_chrome(leak), leak
+
+    # Hostile counter-cases: footnote-style `[*]` markers, the CTA verb, the
+    # "with over N" brag opener and German nav words in real prose must ALL stay
+    # learnable.
+    prose = [
+        "The terminal interface, desktop app and IDE extension share one config file.",
+        "Read docs before installing the open-source AI coding agent.",
+        "OpenCode has over 195,000 GitHub stars, 950 contributors and 13,000 commits.",
+        "Die Doku lesen ist wichtig, bevor man das Plugin installiert.",
+        "We read the doku and installed the extension in the IDE.",
+        "Terminal-Interface, Desktop-App und IDE-Extension nutzen dieselbe Config.",
+        "Required fields are marked with [*] in the form below.",
+        "Read docs to learn how the [*] wildcard expands in glob patterns.",
+        "Doku lesen hilft, weil [*] die Pflichtfelder kennzeichnet.",
+        "Read docs and [*] will be replaced by the matched text.",
+        "With over 5,000 examples the dataset is large enough to train on.",
+        "Mit \u00fcber 16M Entwicklern ist das Projekt gewachsen.",
+        "The README has a [*] symbol; with over 3,000 forks the project is popular.",
+        "Ein Stern [*] markiert Pflichtfelder im Formular.",
+        "Use [*] to flag required fields in the config.",
+    ]
+    for s in prose:
+        assert not buffer_store.is_junk(s), s
+        assert not IL._is_junk(s), s
+        assert not buffer_store._is_marketing_hero_cta_chrome(s), s
