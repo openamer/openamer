@@ -1190,6 +1190,140 @@ def _is_byline_counter_chrome(text):
                           text or "", re.IGNORECASE))
 
 
+# class 33/34 markers (live 17.09.26) -- see the two helpers below.
+_REL_TIME_AGO_RE = re.compile(
+    r"\d{1,3}\s+(?:minutes?|hours?|days?)\s+ago", re.IGNORECASE)
+_NAV_WIDGET_LABEL_RE = re.compile(
+    r"\bfor\s+you\b[\s\S]{0,40}\blatest\b[\s\S]{0,40}\btrending\b",
+    re.IGNORECASE)
+
+
+def _is_news_card_stub(text):
+    """True when `text` is a news-card stub: dangling relative date + counter.
+
+    Live 17.09.26 (class 33): `cycle_e_competitors` stored
+    `OpenAI introduces framework for reporting model misalignment Sep 17 7.`
+    -- a card headline whose relative-date label and its truncated counter
+    tail were glued on. Only 70 chars, so the long-prose trust never applied
+    and the trailing `7.` read as a digit-bearing sentence.
+
+    Measured on the live 300-row buffer: 1 hit and it IS the leak -> 0
+    real-prose FPs on a control corpus; 0/3,056 `longterm_episodes` texts.
+    The counter must stay anchored at the very END: a bare `<Mon> <day>` is
+    an ordinary date and matches real prose.
+    """
+    return bool(re.search(
+        r"\b[A-Z][a-z]{2}\s+(?:[1-9]|[12]\d|3[01])\s+\d{1,4}\.\s*$",
+        text or ""))
+
+
+def _is_relative_time_nav_chain(text):
+    """True when `text` glues a relative-time bullet to a nav label chain.
+
+    Live 17.09.26 (class 34): `cycle_e_competitors` stored
+    `Game Developer * 4 hours, 34 minutes ago For You Latest Trending Tech
+    Updates: Week of Sep 14 4 updates Babylon.` -- a site widget whose
+    relative-time bullet, its `For You / Latest / Trending` nav labels and a
+    `Tech Updates: Week of` roundup header ran together, with the counters
+    reading as technical signal.
+
+    Measured: 1 buffer hit and it IS the leak -> 0 real-prose FPs; 0/3,056
+    `longterm_episodes`. Each part alone was REJECTED on measurement: the bare
+    relative time matches `The job finished 4 hours, 34 minutes ago` and the
+    `Tech Updates: Week of` header matches declarative prose -- only the
+    ANDed pair is safe.
+    """
+    t = text or ""
+    if not _REL_TIME_AGO_RE.search(t):
+        return False
+    return bool(_NAV_WIDGET_LABEL_RE.search(t))
+
+
+# class 35 markers (live 17.09.26) -- see _is_date_heading_listing.
+_FULL_DATE_RE = re.compile(
+    r"\b(?:January|February|March|April|May|June|July|August|September|"
+    r"October|November|December)\s+\d{1,2},\s+\d{4}\b")
+_TITLE_WORD_RE = re.compile(r"[A-Za-z][A-Za-z'./-]*")
+
+
+# class 36 markers (live 17.09.26) -- see _is_repo_tab_statbar_chrome.
+_REPO_TAB_CHAIN_RE = re.compile(
+    r"\bCode\s+Issues\s+Releases\b", re.IGNORECASE)
+_REPO_STATBAR_RE = re.compile(
+    r"\d+(?:\.\d+)?\s+MiB\s+[A-Za-z+#.]+\s+\d")
+
+
+def _is_repo_tab_statbar_chrome(text):
+    """True when `text` is a GitHub repo-page tab bar + language/size stat bar.
+
+    Live 17.09.26 (class 36): `cycle_e_competitors` stored
+
+      `Code Issues Releases 91 Packages Activity The glamourous AI coding agent
+       for your favourite terminal <emoji> agentic-ai ai llms ravishing 4,181
+       commits 161 branches 203 tags 972 MiB Go 98.`
+
+    -- the repo page's tab chain, its one-line description, its topic tags and
+    the stat bar, all in one run. Carries counters, so the technical-signal
+    gate fired and no existing marker matched (`_is_gh_listing_row` keys on
+    `Updated <date>` + `Public ...`, which this row has neither of).
+
+    Measured on the live buffer: 1 hit and it IS the leak -> 0 real-prose FPs
+    on 8 hostile counter-cases; 0/3,056 `longterm_episodes` texts. Each part
+    alone was REJECTED on measurement: the bare tab words match
+    `We filed code issues releases were delayed`, the counts match
+    `The project has 4,181 commits, 161 branches and 203 tags`, and the bare
+    language bar matches `The binary is 972 MiB and written in Go with 98%
+    coverage`. Only the ANDed pair is page-specific.
+    """
+    t = text or ""
+    if not _REPO_TAB_CHAIN_RE.search(t):
+        return False
+    return bool(_REPO_STATBAR_RE.search(t))
+
+
+def _is_date_heading_listing(text):
+    """True when `text` is a date-stamped headline listing (blog archive).
+
+    Live 17.09.26 (class 35): two rows were buffered as insights --
+
+      `June 27, 2025 Lessons Learned from Major Incident Response Cases June 8,
+       2025 Top Cybersecurity Business Solutions You Need To Know February 1,
+       2025 Hotel Hackers Using Fake Booking.`
+      `July 2023 September 16, 2026 Building Materials/Construction ECMD Expands
+       Southeast Presence with New DC in Ocala, FL September 16, 2026 AI
+       Fastenal Quietly Acquired an ...`
+
+    A date label glued to a headline, repeated across entries -- the archive
+    listing shape. Carries dates, so the technical-signal gate fires.
+
+    Measured on the live buffer: 2 hits and BOTH are the leak -> 0 real-prose
+    FPs on 15 hostile counter-cases; 0/3,056 `longterm_episodes` texts. A bare
+    `>=2 full dates` was REJECTED (15 buffer hits + 2 hand FPs -- real
+    article/prose rows also carry a published AND an updated date), and BOTH
+    `>=3 dates` and `>=2 dates plus a slash-breadcrumb` were rejected too: each
+    re-flagged the class-24 archive-listing counter-case prose. The safe
+    discriminator is the Title-Case density of a title listing.
+    """
+    t = text or ""
+    if len(t) > 1200:
+        return False
+    if len(_FULL_DATE_RE.findall(t)) < 2:
+        return False
+    # A title listing is Title-Case throughout; prose about the same dates is
+    # not. (The `>=3 dates` and `>=2 dates AND slash-breadcrumb` forms were both
+    # measured and REJECTED: they also flag the class-24 counter-case prose
+    # `...posts under headings like Insights July 17, 2026 and News May 29, 2026,
+    # but the agent should parse the article body.` -- see
+    # test_blog_archive_listing_is_gated_on_both_paths, which caught it.)
+    words = _TITLE_WORD_RE.findall(t)
+    if not words:
+        return False
+    upper = sum(1 for w in words if w[:1].isupper())
+    return upper >= 8 and upper / len(words) >= 0.5
+
+
+
+
 # A page's own META blurb: `About <Title> ... is the latest <description>`
 # (live 17.09.26, class 31). `cycle_g_security` stored the OWASP landing
 # page's self-description as if it were a fact about the world -- the
@@ -1255,6 +1389,17 @@ def _is_junk(text):
     if _is_gh_listing_row(t):
         return True
     if _is_byline_counter_chrome(t):
+        return True
+    # a news-card stub / relative-time nav chain (class 33/34, 17.09.26)
+    if _is_news_card_stub(t):
+        return True
+    if _is_relative_time_nav_chain(t):
+        return True
+    # a date-stamped headline listing (class 35, 17.09.26)
+    if _is_date_heading_listing(t):
+        return True
+    # a repo-page tab bar + language/size stat bar (class 36, 17.09.26)
+    if _is_repo_tab_statbar_chrome(t):
         return True
     # a service-status / maintenance BANNER is page chrome, not knowledge
     # (live 17.09.26, class 26). Refuse at EXTRACTION time so the cycle

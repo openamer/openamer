@@ -2308,3 +2308,137 @@ def test_github_listing_row_is_rejected():
     far = ("The dataset was Updated March 3, 2026 and the licence is MIT, but "
            "the Public sector team maintains a separate mirror for archives.")
     assert not IL._is_gh_listing_row(far), far
+
+def test_news_card_stub_and_relative_time_nav_chain_are_gated_on_both_paths():
+    """A news-card stub and a relative-time nav chain must not train.
+
+    Live 17.09.26 (classes 33/34, cycle_e_competitors, found by reading the
+    buffer tail -- neither ever appeared in buffer_junk.jsonl):
+
+      `OpenAI introduces framework for reporting model misalignment Sep 17 7.`
+      `Game Developer * 4 hours, 34 minutes ago For You Latest Trending Tech
+       Updates: Week of Sep 14 4 updates Babylon.`
+
+    The first is a card headline with its relative-date label and truncated
+    counter glued on (70 chars, so the >=90 long-prose trust never applied);
+    the second is a site widget whose counters read as technical signal.
+    Both rules are ANDed with a TAIL/relative anchor because each part alone
+    matches real prose (see the counter-cases below).
+    """
+    import buffer_store
+    leaks = [
+        "OpenAI introduces framework for reporting model misalignment Sep 17 7.",
+        ("Game Developer \u2022 4 hours, 34 minutes ago For You Latest Trending "
+         "Tech Updates: Week of Sep 14 4 updates Babylon."),
+    ]
+    for leak in leaks:
+        assert buffer_store.is_junk(leak), leak
+        assert IL._is_junk(leak), leak
+        assert buffer_store._is_nav_chrome(leak), leak
+
+    # Hostile counter-cases: ordinary dates, relative times, nav words and
+    # roundup headers in real prose must ALL stay learnable.
+    prose = [
+        "The benchmark ran on Sep 17 2026 and produced 7 tokens per second.",
+        "Model misalignment was reported in September 2026 by three labs.",
+        "The job finished 4 hours, 34 minutes ago and the log is ready.",
+        "It was posted 2 days ago. For the latest trending models, see Section 3.",
+        "For you, the latest results and the trending models are in Table 2.",
+        "Tech Updates: Week of Sep 14 shipped 4 new updates to the Babylon renderer.",
+        "GPT-4 (2023) scored 91.2% while GPT-5 (2024) reached 95.1%.",
+        "We trained for 7 epochs starting Sep 17 and saw a 12% gain.",
+        "The release shipped on Aug 3 7 days after the freeze.",
+        "vLLM ships 4 optimization levels (-O0, -O1, -O2, -O3) that trade startup "
+        "time for performance.",
+    ]
+    for s in prose:
+        assert not buffer_store.is_junk(s), s
+        assert not IL._is_junk(s), s
+
+def test_date_stamped_headline_listing_is_gated_on_both_paths():
+    """A date-stamped headline listing (blog archive) must not train.
+
+    Live 17.09.26 (class 35, found by reading the buffer tail after the
+    class 33/34 fix -- again never in buffer_junk.jsonl):
+
+      `June 27, 2025 Lessons Learned from Major Incident Response Cases June 8,
+       2025 Top Cybersecurity Business Solutions You Need To Know February 1,
+       2025 Hotel Hackers Using Fake Booking.`
+      `July 2023 September 16, 2026 Building Materials/Construction ECMD Expands
+       Southeast Presence with New DC in Ocala, FL September 16, 2026 AI
+       Fastenal Quietly Acquired an ...`
+
+    A date label glued to a headline, repeated. Measured: 2 buffer hits, both
+    ARE the leak -> 0 real-prose FPs; 0/3,056 longterm_episodes. A bare
+    `>=2 full dates` was REJECTED (15 live buffer hits + 2 hand FPs -- real
+    rows carry a published AND an updated date).
+    """
+    import buffer_store
+    leaks = [
+        ("June 27, 2025 Lessons Learned from Major Incident Response Cases June 8, "
+         "2025 Top Cybersecurity Business Solutions You Need To Know February 1, "
+         "2025 Hotel Hackers Using Fake Booking."),
+        ("July 2023 September 16, 2026 Building Materials/Construction ECMD Expands "
+         "Southeast Presence with New DC in Ocala, FL September 16, 2026 AI Fastenal "
+         "Quietly Acquired an Asset."),
+    ]
+    for leak in leaks:
+        assert buffer_store.is_junk(leak), leak
+        assert IL._is_junk(leak), leak
+        assert buffer_store._is_nav_chrome(leak), leak
+        assert buffer_store._is_date_heading_listing(leak), leak
+
+    # Hostile counter-cases: dates, a slash category and roundup headers in real
+    # prose must ALL stay learnable.
+    prose = [
+        "September 16, 2026 was the release date for the Ocala data center expansion.",
+        "The report was published September 16, 2026 and updated September 17, 2026.",
+        "Building Materials/Construction was the strongest sector in the 2026 survey.",
+        "ECMD expanded its Southeast presence with a new distribution center in Ocala, FL.",
+        "On July 2023 the team shipped the first prototype; in September 2026 they shipped v2.",
+        "The paper (September 14, 2026) and its rebuttal (September 16, 2026) agree on the claim.",
+        "Building Materials/Construction grew 12% between September 2025 and September 2026.",
+        "The benchmark ran on Sep 17 2026 and produced 7 tokens per second.",
+    ]
+    for s in prose:
+        assert not buffer_store.is_junk(s), s
+        assert not IL._is_junk(s), s
+
+def test_repo_page_tab_and_statbar_chrome_is_gated_on_both_paths():
+    """A GitHub repo-page tab bar + language/size stat bar must not train.
+
+    Live 17.09.26 (class 36, cycle_e_competitors):
+
+      `Code Issues Releases 91 Packages Activity The glamourous AI coding agent
+       for your favourite terminal <emoji> agentic-ai ai llms ravishing 4,181
+       commits 161 branches 203 tags 972 MiB Go 98.`
+
+    182 chars carrying counters, so the technical-signal gate fired; the class-AK
+    rule keys on `Updated <date>` + `Public ...`, which this row has neither of.
+    Measured: 1 buffer hit, IS the leak -> 0 real-prose FPs; 0/3,056
+    longterm_episodes. Every part alone was REJECTED (see the counter-cases).
+    """
+    import buffer_store
+    leak = ("Code Issues Releases 91 Packages Activity The glamourous AI coding agent "
+            "for your favourite terminal agentic-ai ai llms ravishing 4,181 commits "
+            "161 branches 203 tags 972 MiB Go 98.")
+    assert buffer_store.is_junk(leak), leak
+    assert IL._is_junk(leak), leak
+    assert buffer_store._is_nav_chrome(leak), leak
+    assert buffer_store._is_repo_tab_statbar_chrome(leak), leak
+
+    # Hostile counter-cases: the same tab words, counts and language/size bar in
+    # real prose must ALL stay learnable.
+    prose = [
+        "The repo's Code, Issues and Releases tabs all render server-side.",
+        "We filed code issues releases were delayed by a week due to the freeze.",
+        "GitHub shows commits, branches and tags for every repository.",
+        "The project has 4,181 commits, 161 branches and 203 tags in total.",
+        "The binary is 972 MiB and written in Go with 98% test coverage.",
+        "Go 98% of the repository is written in Go according to GitHub.",
+        "The packages tab lists 91 packages and 97 tags in the registry.",
+        "We measured 972 MiB of RSS while the Go service handled 98 requests.",
+    ]
+    for s in prose:
+        assert not buffer_store.is_junk(s), s
+        assert not IL._is_junk(s), s
