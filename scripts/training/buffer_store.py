@@ -878,6 +878,34 @@ def _is_github_issue_chrome(text):
     return bool(_ISSUE_ACTION_RE.search(t) and _ISSUE_TEMPLATE_RE.search(t))
 
 
+_PLAN_BULLET_RE = _re.compile(
+    r"^[\s\"'\u201c\u201d]*[-*\u2022]\s*(?:input text|goal|content|task|"
+    r"text source|output format)\s*:",
+    _re.IGNORECASE | _re.MULTILINE)
+
+
+def _is_plan_scaffold_echo(text):
+    """True when `text` is the extractor's OWN plan echoed back as an insight.
+
+    Live 17.09.26: `"\n   - Input text: A very long, fragmented, and repetitive
+    list of vLLM documentation topics/headings. It's essentially a dump of
+    section titles ...\n   - Goal: Extract the "ONE most valuable technical
+    insight" from this` -- the 2B model returned its task plan instead of an
+    insight. Same family as root cause AE (the plan voice), new paraphrase.
+
+    Keyed on the plan's BULLET+LABEL form (a bullet whose field name is one of
+    the extractor's own labels).  Measured: the bare phrases are topic words --
+    `input text:` and `one most valuable technical insight` each hit a
+    hand-written real-prose counter-case; the leading bullet-dash separates a
+    plan line from a sentence and both FP counts drop to 0.
+    """
+    if not text:
+        return False
+    if len(text) > 1200:
+        return False
+    return bool(_PLAN_BULLET_RE.search(text))
+
+
 def _is_nav_chrome(text):
     """True when text is page chrome (entities, marketing, UI, template leaks)."""
     if _ENTITY.search(text):
@@ -918,6 +946,10 @@ def _is_nav_chrome(text):
     # a course/certification landing-page CTA (same rule as
     # internet_learner._is_course_cta_chrome)
     if _is_course_cta_chrome(text):
+        return True
+    # the extractor's own plan echoed back (same rule as
+    # internet_learner._is_plan_scaffold_echo)
+    if _is_plan_scaffold_echo(text):
         return True
     # a GitHub issue page, not an insight (same rule as
     # internet_learner._is_github_issue_chrome)

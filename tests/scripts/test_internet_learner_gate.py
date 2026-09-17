@@ -1803,3 +1803,52 @@ def test_github_issue_page_chrome_is_gated_on_both_paths():
         assert not buffer_store.is_junk(s), s
         assert not IL._is_junk(s), s
 
+def test_plan_scaffold_bullet_echo_is_gated_on_both_paths():
+    """The extractor's OWN plan echoed back as an insight (live 17.09.26).
+
+    cycle_d_docs logged `doc-learn: "\n   - Input text: A very long, fragmented,
+    and repetitive list of vLLM documentation topics/headings. It's essentially
+    a dump of section titles from a vLLM documentation website.\n   - Goal:
+    Extract the "ONE most valuable technical insight" from this` -- the 2B model
+    returned its task plan instead of an insight. Same family as the documented
+    plan-scaffold class, new paraphrase ("most valuable" where the older note
+    recorded "most relevant/valuable").
+
+    Keyed on the plan's BULLET+LABEL form.  The bare phrases are topic words:
+    `input text:` and `one most valuable technical insight` each hit a real-prose
+    counter-case below; the leading bullet-dash is what separates a plan line
+    from a sentence.
+    """
+    import buffer_store
+
+    leak = ('"\n   - Input text: A very long, fragmented, and repetitive list of '
+            "vLLM documentation topics/headings. It's essentially a dump of "
+            'section titles from a vLLM documentation website.\n   - Goal: '
+            'Extract the "ONE most valuable technical insight" from this')
+    assert buffer_store.is_junk(leak), leak
+    assert IL._is_junk(leak), leak
+
+    # Counter-cases: the same words inside real sentences (no bullet form).
+    prose = [
+        "The input text: field of a dataset card points at the original corpus, "
+        "so the retriever can trace provenance.",
+        "Extract the one most valuable technical insight from each retrieved "
+        "document before writing the summary.",
+        "The goal: reduce peak KV-cache memory while keeping decode throughput "
+        "stable.",
+        "Chunked prefill lets vLLM batch prompt tokens, cutting peak KV-cache "
+        "memory during long-context inference.",
+        "The agent should identify the goal of the task before choosing a tool.",
+        "Documentation topics and headings are useful for navigation but carry "
+        "no technical insight on their own.",
+    ]
+    for s in prose:
+        assert not buffer_store.is_junk(s), s
+        assert not IL._is_junk(s), s
+
+    # A task description that legitimately discusses the plan format must live.
+    meta = ("The extractor should emit one technical insight and never its own "
+            "plan; a bullet like - Goal: extract the insight is a leak.")
+    assert not buffer_store.is_junk(meta), meta
+    assert not IL._is_junk(meta), meta
+
