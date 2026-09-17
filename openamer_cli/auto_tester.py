@@ -43,12 +43,36 @@ def _logs_dir() -> Path:
 # ----- Test Runner -----
 
 
+def _pytest_capable(py: str) -> bool:
+    """True, wenn der Interpreter pytest importieren kann."""
+    try:
+        probe = subprocess.run(
+            [py, "-c", "import pytest"], capture_output=True, text=True, timeout=60
+        )
+        return probe.returncode == 0
+    except Exception:
+        return False
+
+
 def _python_exe() -> str:
-    """Wähle den venv-Interpreter, falls vorhanden, sonst sys.executable."""
+    """Wähle einen Interpreter, der pytest auch wirklich ausführen kann.
+
+    Kandidaten: ``venv/`` (Install-Venv) und ``.venv/`` (Dev-Venv). Ein
+    vorhandenes, aber leeres uv-Seed-Venv ohne pytest würde den Lauf sofort
+    mit "No module named pytest" abbrechen — deshalb wird die Importierbarkeit
+    geprüft, statt nur die Existenz der Datei.
+    """
     repo = _repo_dir()
-    venv_py = repo / "venv" / "Scripts" / "python.exe"
-    if venv_py.exists():
-        return str(venv_py)
+    candidates = [
+        repo / "venv" / "Scripts" / "python.exe",
+        repo / ".venv" / "Scripts" / "python.exe",
+    ]
+    for cand in candidates:
+        if cand.exists() and _pytest_capable(str(cand)):
+            return str(cand)
+    for cand in candidates:
+        if cand.exists():
+            return str(cand)
     return sys.executable
 
 
