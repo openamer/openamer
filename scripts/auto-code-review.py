@@ -365,6 +365,50 @@ def line_suppressed(line_text: str) -> bool:
     return NOQA_SEC_MARKER in line_text
 
 
+def statement_suppressed(
+    file_lines: list[str], start_line: int, max_span: int = 60
+) -> bool:
+    """True wenn die ANWEISUNG ab ``start_line`` irgendwo ein noqa:SEC traegt.
+
+    A suppress comment documents the statement it closes, and a statement often
+    spans many lines: ``conn.execute(`` on line N, the ``f\"\"\"...\"\"\"`` payload
+    on N+1..M, and the ``# noqa:SEC`` comment on M. Checking only the match's
+    first line produced false positives on every multi-line call
+    (kanban_db.py:3295, observed 2026-09-17: a correctly-annotated
+    INSERT ... SELECT was reported as a HIGH SQL-injection finding and kept the
+    Auto Code Review cron red for hours).
+
+    The statement ends at the next non-blank line whose indentation is <= the
+    opening line's — anything a real continuation would be indented deeper than.
+    That bound is what keeps this from over-suppressing: a genuinely
+    un-annotated statement followed by an unrelated commented one stops here.
+    """
+    if start_line < 1 or start_line > len(file_lines):
+        return False
+    opening = file_lines[start_line - 1]
+    if line_suppressed(opening):
+        return True
+    base_indent = len(opening) - len(opening.lstrip())
+    limit = min(start_line + max_span, len(file_lines))
+    # A continuation line is either indented deeper than the opening line, or it
+    # starts with a closing delimiter / continuation punctuation at any depth
+    # (the ``)`` or ``\"\"\"`` that ends a multi-line call, where the noqa comment
+    # conventionally lives).
+    closers = (")", "]", "}", '"""', "'''", ",")
+    for ln in range(start_line + 1, limit + 1):
+        line = file_lines[ln - 1]
+        stripped = line.strip()
+        indent = len(line) - len(line.lstrip())
+        if stripped and indent <= base_indent and not stripped.startswith(closers):
+            # Next statement at the same level -> this one ended. Checked BEFORE
+            # the noqa test so an unrelated commented statement below cannot
+            # silence this finding.
+            return False
+        if line_suppressed(line):
+            return True
+    return False
+
+
 def scan_added_lines(diff_text: str, patterns: list[dict]) -> list[dict]:
     """Scan only added lines in a diff for patterns."""
     findings = []
@@ -413,7 +457,16 @@ def scan_whole_file(filepath: str, repo: Path, patterns: list[dict]) -> list[dic
 
 
 def check_long_functions(filepath: str, repo: Path) -> list[dict]:
-    """Check for functions > 50 lines."""
+    """Check for functions > 50 lines.
+
+    ``[ \\t]*`` and not ``\\s*`` for the indent: ``\\s`` also matches the
+    newlines before ``def``, so on a blank-line-separated file the match starts
+    on the *empty* line above the definition. The indent is then read from that
+    blank line as 0, every following line looks "less indented", and the
+    end-of-function walk only stops at the next real col-0 line — reporting a
+    multi-hundred-line length for a 5-line method (see
+    tests/test_auto_code_review_long_functions.py).
+    """
     findings = []
     content = get_file_content(filepath, repo)
     if content is None:
@@ -421,7 +474,7 @@ def check_long_functions(filepath: str, repo: Path) -> list[dict]:
 
     # Python function detection
     func_pattern = re.compile(
-        r'^\s*(?:async\s+)?def\s+\w+\s*\(', re.MULTILINE
+        r'^[ \t]*(?:async\s+)?def\s+\w+\s*\(', re.MULTILINE
     )
     lines = content.split("\n")
 
@@ -467,7 +520,7 @@ def check_missing_type_hints(filepath: str, repo: Path) -> list[dict]:
         return findings
 
     func_pattern = re.compile(
-        r'^\s*(?:async\s+)?def\s+\w+\s*\([^)]*\)\s*:', re.MULTILINE
+        r'^[ \t]*(?:async\s+)?def\s+\w+\s*\([^)]*\)\s*:', re.MULTILINE
     )
     for match in func_pattern.finditer(content):
         # Check if there's a return type hint
@@ -531,8 +584,12 @@ def scan_file_for_security(filepath: str, repo: Path) -> list[dict]:
         for pat in patterns:
             for match in pat["pattern"].finditer(content):
                 line_num = content[: match.start()].count("\n") + 1
+                end_num = content[: match.end()].count("\n") + 1
                 line_text = file_lines[line_num - 1] if line_num <= len(file_lines) else ""
-                if line_suppressed(line_text):
+                # The suppress comment closes the multi-line statement, so it
+                # may sit anywhere between the opening line and the statement's
+                # end. Suppress on that whole span.
+                if statement_suppressed(file_lines, line_num):
                     continue
                 if "re.compile(" in line_text or "re.match(" in line_text:
                     continue  # regex-definition line: scanner config, not runtime code
