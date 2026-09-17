@@ -1,6 +1,6 @@
 {
   "organism": "OpenAmer",
-  "written_at": "2026-09-16T12:36:07.964294+00:00",
+  "written_at": "2026-09-17T00:36:32.286699+00:00",
   "identity": {
     "name": "openamer_agent",
     "voice": "https://x.com/openamer_agent",
@@ -140,7 +140,7 @@
       "name": "Auto Code Review (60m)",
       "schedule": "every 60m",
       "script": "cron-auto-code-review.py",
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "Resource Monitor Alert",
@@ -326,7 +326,7 @@
       "name": "OpenAmer GitHub Outreach - Issues + Discussions",
       "schedule": "every 120m",
       "script": null,
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "OpenAmer Discord Community Manager",
@@ -613,13 +613,13 @@
     {
       "name": "domain-mastery-cycle",
       "schedule": null,
-      "script": "domain_mastery.py --cycle",
-      "last_status": "error"
+      "script": "domain_mastery.py",
+      "last_status": "ok"
     },
     {
       "name": "goal-engine-daily",
       "schedule": null,
-      "script": "goal_engine.py --tick",
+      "script": "goal_engine.py",
       "last_status": "ok"
     },
     {
