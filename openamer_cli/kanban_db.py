@@ -986,6 +986,10 @@ class Task:
     # Unblock-loop counter. See the column comment in SCHEMA_SQL and
     # ``BLOCK_RECURRENCE_LIMIT``. Reset only on successful completion.
     block_recurrences: int = 0
+    # Completion contract for PR-acceptance tasks (local-only, OWNER/REPO, or an
+    # exact GitHub PR URL); validated by kanban_pr_acceptance.validate_contract.
+    # Appended AFTER the existing fields so positional construction stays valid.
+    completion_contract: Optional[str] = None
 
     @classmethod
     def from_row(cls, row: sqlite3.Row) -> "Task":
@@ -1074,6 +1078,11 @@ class Task:
                 int(row["block_recurrences"])
                 if "block_recurrences" in keys and row["block_recurrences"] is not None
                 else 0
+            ),
+            completion_contract=(
+                row["completion_contract"]
+                if "completion_contract" in keys and row["completion_contract"]
+                else None
             ),
         )
 
@@ -1257,7 +1266,10 @@ CREATE TABLE IF NOT EXISTS tasks (
     -- ``blocked`` so a cron can't spin it forever. Reset to 0 only on a
     -- successful completion — NOT on unblock (resetting on unblock is exactly
     -- the amnesia that let the loop run unbounded).
-    block_recurrences    INTEGER NOT NULL DEFAULT 0
+    block_recurrences    INTEGER NOT NULL DEFAULT 0,
+    -- Completion contract for PR-acceptance tasks (local-only, OWNER/REPO, or
+    -- an exact GitHub PR URL). Validated on write; NULL for ordinary tasks.
+    completion_contract  TEXT
 );
 
 CREATE TABLE IF NOT EXISTS task_links (
@@ -2442,6 +2454,11 @@ def _migrate_add_optional_columns(conn: sqlite3.Connection) -> None:
             "block_recurrences INTEGER NOT NULL DEFAULT 0",
         )
 
+    if "completion_contract" not in cols:
+        # PR-acceptance contract. Existing rows get NULL (no contract), which is
+        # exactly the pre-migration behaviour.
+        _add_column_if_missing(conn, "tasks", "completion_contract", "completion_contract TEXT")
+
     # Indexes over additive ``tasks`` columns must be created after the
     # columns exist. Keeping them in SCHEMA_SQL breaks legacy boards: SQLite
     # parses each statement in ``executescript`` against the live schema, so a
@@ -2865,6 +2882,8 @@ def create_task(
     board: Optional[str] = None,
     project_id: Optional[str] = None,
     project_source_task_id: Optional[str] = None,
+    creator_task_id: Optional[str] = None,
+    completion_contract: Optional[str] = None,
 ) -> str:
     """Create a new task and optionally link it under parent tasks.
 
@@ -2904,6 +2923,9 @@ def create_task(
     provider_override = (provider_override or "").strip() or None
     if provider_override and not model_override:
         raise ValueError("provider_override requires a model_override")
+    from openamer_cli.kanban_pr_acceptance import validate_contract
+
+    completion_contract = validate_contract(completion_contract)
     assignee = _canonical_assignee(assignee)
     if not title or not title.strip():
         raise ValueError("title is required")
@@ -2911,6 +2933,8 @@ def create_task(
         raise ValueError(
             f"initial_status must be one of {sorted(VALID_INITIAL_STATUSES)}"
         )
+    if workspace_kind is None:
+        workspace_kind = "scratch"
     if workspace_kind not in VALID_WORKSPACE_KINDS:
         raise ValueError(
             f"workspace_kind must be one of {sorted(VALID_WORKSPACE_KINDS)}, "
@@ -3157,8 +3181,8 @@ def create_task(
                         branch_name, project_id, tenant, idempotency_key,
                         max_runtime_seconds,
                         skills, max_retries, model_override, provider_override,
-                        goal_mode, goal_max_turns, session_id
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                        goal_mode, goal_max_turns, session_id, completion_contract
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                     """,
                     (
                         task_id,
@@ -3183,6 +3207,7 @@ def create_task(
                         1 if goal_mode else 0,
                         int(goal_max_turns) if goal_max_turns is not None else None,
                         session_id,
+                        completion_contract,
                     ),
                 )
                 for pid in parents:
@@ -3209,6 +3234,11 @@ def create_task(
                         "provider_override": provider_override,
                     },
                 )
+                # ACK-edge: inherit durable session/subscriptions from the creating task
+                # independently of dependency edges (an explicit session_id still wins).
+                from openamer_cli.kanban_db_graph import inherit_creator_origin
+
+                inherit_creator_origin(conn, task_id, creator_task_id, created_at=now)
             return task_id
         except sqlite3.IntegrityError:
             if attempt == 1:
