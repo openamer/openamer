@@ -290,10 +290,23 @@ def challenge_grid_daily() -> dict:
                 return {"status": "cooldown"}
         except Exception:
             pass
-    r = subprocess.run(
-        [sys.executable, str(REPO / "scripts" / "darwin_grid_github.py"),
-         "--duel", "damir-desktop"],
-        capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=110, cwd=str(REPO))
+    try:
+        r = subprocess.run(
+            [sys.executable, str(REPO / "scripts" / "darwin_grid_github.py"),
+             "--duel", "damir-desktop"],
+            capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=110, cwd=str(REPO))
+    except subprocess.TimeoutExpired:
+        # Do NOT stamp last_duel: a timeout means the duel never happened, and
+        # stamping would push the next attempt out by a full day.
+        return {"status": "timeout", "output": "duel exceeded 110s"}
+    # A crash prints a traceback to stderr and nothing to stdout. Reporting
+    # "duelled" regardless (the old behaviour) is what let a broken fetch path
+    # go unnoticed here for a whole day: the loop claimed success while the
+    # child died before the first match, and the 24h stamp suppressed retries.
+    if r.returncode != 0:
+        err = (r.stderr or r.stdout or "").strip()
+        return {"status": "failed", "returncode": r.returncode,
+                "output": err[-300:]}
     state["last_duel"] = _now_iso()
     _save_file(state_file, state)
     return {"status": "duelled", "output": (r.stdout or r.stderr)[-200:]}

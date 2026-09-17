@@ -105,12 +105,42 @@ def _push_genome(machine_id: str) -> tuple[bool, str]:
     return True, "pushed"
 
 
+def _decode_contents(resp: dict) -> dict | None:
+    """Decode a GitHub Contents API response into its JSON payload.
+
+    The API inlines `content` only for blobs under ~1 MB. Above that it
+    returns `"encoding": "none"` with an empty/missing `content` field and
+    expects the caller to use `download_url`. Genome files cross that line in
+    normal operation (~3 MB once the skill population is real), and the naive
+    `base64.b64decode(resp["content"])` then yields b"" so `json.loads` raises
+    JSONDecodeError -- the daily duel died before it could start. Fall back to
+    the raw URL whenever the inline payload is absent.
+    """
+    raw_b64 = resp.get("content") or ""
+    if resp.get("encoding") == "none" or not raw_b64.strip():
+        url = resp.get("download_url")
+        if not url:
+            return None
+        import urllib.request
+        try:
+            with urllib.request.urlopen(url, timeout=60) as r:
+                return json.loads(r.read())
+        except Exception:
+            return None
+    import base64
+    try:
+        return json.loads(base64.b64decode(raw_b64))
+    except Exception:
+        return None
+
+
 def _fetch_genome(machine_id: str) -> dict | None:
     code, resp = _api("GET", f"contents/{machine_id}.json")
     if code != 200:
         return None
-    import base64
-    data = json.loads(base64.b64decode(resp["content"]))
+    data = _decode_contents(resp)
+    if data is None:
+        return None
     out = REPO / "reports" / f"darwin-genome-{machine_id}.json"
     out.write_text(json.dumps(data, indent=1, ensure_ascii=False), "utf-8")
     return data
