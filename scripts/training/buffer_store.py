@@ -936,6 +936,45 @@ def is_financial_infobox(text):
     return len(_FINANCIAL_LABEL_RE.findall(text)) >= 2
 
 
+# Service-status / maintenance BANNER chrome (live 17.09.26, class 26):
+# mirror of internet_learner._is_maintenance_banner. The writer gate must
+# refuse it too, or any other writer path lands a status-page announcement
+# in the buffer. TWO structural markers ANDed (a dated window + the
+# announcement voice) plus the head/tail condition that keeps prose ABOUT
+# a downtime window learnable. Measured over 7,070 live corpus rows:
+# 1 hit (the leaking row), 0 real-prose false positives.
+_MAINT_STAMP = (r"[A-Z][a-z]{2}\s+\d{1,2},\s+\d{4}[ ,]+\d{1,2}:\d{2}\s*"
+                r"(?:[APap][Mm]\s*)?[A-Z]{2,4}\b")
+_MAINT_WINDOW_RE = _re.compile(
+    r"%s\s*(?:to|\u2013|\u2014|-)\s*%s" % (_MAINT_STAMP, _MAINT_STAMP),
+    _re.IGNORECASE)
+_MAINT_VOICE_RE = _re.compile(
+    r"\bthis service\b|\bdue to maintenance\b|\bfor maintenance\b"
+    r"|^\s*login\b",
+    _re.IGNORECASE)
+_MAINT_EDGE = " \t\r\n.,;:!?-\u2013\u2014|/()[]\"'"
+
+
+def _is_maintenance_banner(text, head_max=40, tail_max=40):
+    """True when `text` is a service-status / maintenance BANNER.
+
+    Same predicate as internet_learner._is_maintenance_banner: a dated
+    downtime window announced in banner voice, with at most 40 chars of
+    context before and after the announcement span.
+    """
+    t = text or ""
+    w = _MAINT_WINDOW_RE.search(t)
+    if not w:
+        return False
+    v = _MAINT_VOICE_RE.search(t)
+    if not v:
+        return False
+    start = min(w.start(), v.start())
+    end = max(w.end(), v.end())
+    head = t[:start].strip(_MAINT_EDGE)
+    tail = t[end:].strip(_MAINT_EDGE)
+    return len(head) <= head_max and len(tail) <= tail_max
+
 def _is_nav_chrome(text):
     """True when text is page chrome (entities, marketing, UI, template leaks)."""
     if _ENTITY.search(text):
@@ -992,6 +1031,10 @@ def _is_nav_chrome(text):
     # a company/Wikipedia infobox financial label chain (same rule as
     # internet_learner._is_junk)
     if is_financial_infobox(text):
+        return True
+    # a service-status / maintenance banner (same predicate as
+    # internet_learner._is_maintenance_banner)
+    if _is_maintenance_banner(text):
         return True
     if _is_package_index_chrome(text):
         return True

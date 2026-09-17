@@ -1011,12 +1011,78 @@ def _is_plan_scaffold_echo(text):
     return bool(_PLAN_BULLET_RE.search(text))
 
 
+# Service-status / maintenance BANNER chrome (live 17.09.26, class 26):
+# cycle_b_papers stored
+#   "Login This service will be unavailable from Sep 18, 2026 19:00 PDT to
+#    Sep 19, 2026 2:00 PDT due to maintenance."
+# -- an arXiv status page announcement, zero insight. Both gates passed it:
+# the timestamps fed the technical-signal gate (`_TECH_HINT_RE`'s alternation
+# STARTS with \d+, so a date counts) and the length cleared the >=90
+# "long prose" trust.
+#
+# TWO STRUCTURAL MARKERS, ANDed -- each alone is ordinary prose:
+#   M1 a SCHEDULE: two absolute datetime stamps, each with a timezone,
+#      joined by to / dash  -> a window was ANNOUNCED;
+#   M2 the announcement VOICE (`this service`, `due to maintenance`,
+#      `for maintenance`, or a leading standalone `Login` nav label).
+#
+# AND additionally the banner must be (almost) the WHOLE message:
+# head <= 40 chars before, tail <= 40 chars after the announcement span.
+# That last condition is what keeps prose ABOUT a downtime window alive --
+# measured over 7,070 live corpus rows:
+#   * the leak: caught (head=0, tail=18)
+#   * 13 hand-written counter-cases: 0 false positives, incl.
+#     "The vLLM maintenance window is Nov 3, 2026 22:00 UTC to Nov 4, 2026
+#      02:00 UTC; requests are queued ..." (tail=68) and
+#     "A row like service unavailable from Sep 18, 2026 19:00 PDT to
+#      Sep 19, 2026 2:00 PDT due to maintenance is a banner, not an
+#      insight ..." (head=35, tail=52).
+# A measured-and-REJECTED candidate: M1 alone (`unavailable` + one dated
+# timezone stamp) hit H1/H2/H4/H5 -- real prose about a downtime window.
+_MAINT_STAMP = (r"[A-Z][a-z]{2}\s+\d{1,2},\s+\d{4}[ ,]+\d{1,2}:\d{2}\s*"
+                r"(?:[APap][Mm]\s*)?[A-Z]{2,4}\b")
+_MAINT_WINDOW_RE = re.compile(
+    r"%s\s*(?:to|\u2013|\u2014|-)\s*%s" % (_MAINT_STAMP, _MAINT_STAMP),
+    re.IGNORECASE)
+_MAINT_VOICE_RE = re.compile(
+    r"\bthis service\b|\bdue to maintenance\b|\bfor maintenance\b"
+    r"|^\s*login\b",
+    re.IGNORECASE)
+_MAINT_EDGE = " \t\r\n.,;:!?-\u2013\u2014|/()[]\"'"
+
+
+def _is_maintenance_banner(text, head_max=40, tail_max=40):
+    """True when `text` is a service-status / maintenance BANNER.
+
+    A banner ANNOUNCES a downtime window and is essentially the whole
+    message. Prose that merely DESCRIBES such a window carries context
+    before or after it, so the head/tail length is the discriminator.
+    """
+    t = text or ""
+    w = _MAINT_WINDOW_RE.search(t)
+    if not w:
+        return False
+    v = _MAINT_VOICE_RE.search(t)
+    if not v:
+        return False
+    start = min(w.start(), v.start())
+    end = max(w.end(), v.end())
+    head = t[:start].strip(_MAINT_EDGE)
+    tail = t[end:].strip(_MAINT_EDGE)
+    return len(head) <= head_max and len(tail) <= tail_max
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
     if len(t) < 25:
         return True
     if _looks_binary(t):
+        return True
+    # a service-status / maintenance BANNER is page chrome, not knowledge
+    # (live 17.09.26, class 26). Refuse at EXTRACTION time so the cycle
+    # retries with the wider k instead of spending itself on a write the
+    # writer gate drops. Same predicate as buffer_store._is_maintenance_banner.
+    if _is_maintenance_banner(t):
         return True
     if _JUNK_RE.search(t):
         return True

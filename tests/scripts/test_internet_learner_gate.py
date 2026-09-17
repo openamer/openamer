@@ -1889,3 +1889,64 @@ def test_financial_infobox_label_chain_is_gated_on_both_paths():
         assert not buffer_store.is_junk(s), s
         assert not IL._is_junk(s), s
 
+def test_maintenance_banner_is_gated_on_both_paths():
+    """A service-status / maintenance BANNER must die on BOTH gates.
+
+    Live 17.09.26 (junk class 26): cycle_b_papers stored
+
+    `Login This service will be unavailable from Sep 18, 2026 19:00 PDT to
+     Sep 19, 2026 2:00 PDT due to maintenance.`
+
+    -- an arXiv status-page announcement, zero insight.  Both gates passed
+    it: the timestamps fed the technical-signal gate (`_TECH_HINT_RE`'s
+    alternation STARTS with a digit, so a date counts) and the length
+    cleared the >=90 "long prose" trust.
+
+    The guard needs TWO structural markers ANDed -- a dated timezone window
+    (M1) and the announcement voice (M2) -- plus head<=40/tail<=40 around
+    the announcement span.  A measured-and-REJECTED candidate was M1 alone
+    (`unavailable` + one dated timezone stamp): it hit real prose about a
+    downtime window.  Measured over 7,070 live corpus rows: 1 hit (the
+    leaking row), 0 real-prose false positives, 0 regressions.
+    """
+    import buffer_store
+
+    leak = ("Login This service will be unavailable from Sep 18, 2026 19:00 PDT "
+            "to Sep 19, 2026 2:00 PDT due to maintenance.")
+    assert IL._is_maintenance_banner(leak), leak
+    assert IL._is_junk(leak), leak
+    assert buffer_store.is_junk(leak), leak
+    assert buffer_store._is_nav_chrome(leak), leak
+
+    # Counter-cases: real prose that DESCRIBES a downtime window (same
+    # markers) must stay learnable on BOTH gates -- a one-directional test
+    # would pass a broken marker.
+    prose = [
+        # M1 present, but a remedy clause follows -> real context after the span
+        "The vLLM maintenance window is Nov 3, 2026 22:00 UTC to Nov 4, 2026 "
+        "02:00 UTC; requests are queued and replayed after the restart, which "
+        "keeps throughput stable.",
+        # prose that QUOTES the banner form -> head/tail carry real context
+        "A row like service unavailable from Sep 18, 2026 19:00 PDT to Sep 19, "
+        "2026 2:00 PDT due to maintenance is a banner, not an insight; the gate "
+        "must reject it.",
+        # a duration, not a from/to window
+        "The service will be unavailable from Nov 3, 2026 22:00 UTC for four "
+        "hours, so the retriever queues requests and replays them after the "
+        "restart.",
+        # M2 present ("due to maintenance"), no window
+        "Nightly indexing was skipped due to maintenance of the storage backend, "
+        "which delayed the embedding refresh by roughly two hours and shifted "
+        "the eval run.",
+        # a single stamp is not a window
+        "Planned downtime on Oct 12, 2026 06:00 CET lasts two hours; the batcher "
+        "pre-fills the KV cache to absorb the gap and keeps throughput stable.",
+        # a clock-only window (no timezone) is ordinary prose
+        "The vLLM service will be unavailable from 02:00 to 04:00 during the "
+        "cluster upgrade, so the retriever queues requests and retries with "
+        "exponential backoff.",
+    ]
+    for s in prose:
+        assert not IL._is_maintenance_banner(s), s
+        assert not IL._is_junk(s), s
+        assert not buffer_store.is_junk(s), s
