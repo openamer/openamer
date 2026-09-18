@@ -2235,6 +2235,42 @@ def _is_tag_counter_run_chrome(text):
     return len(_TAG_COUNTER_PAIR_RE.findall(t)) >= 8
 
 
+# class 77 markers (live 19.09.26) -- see _is_institution_abstract_tail_chrome.
+# An affiliation line welded to a TRUNCATED abstract number at the very end of
+# a record: `... on a reasoning task Waseda University Abstract 9.`
+_INSTITUTION_ABSTRACT_TAIL_RE = _re.compile(
+    r"\b(?:University|Universit\u00e4t|Institute|Institut|College|Laboratory|Lab|School)"
+    r"\s+Abstract\s+\d{1,3}\s*\.\s*$")
+
+
+def _is_institution_abstract_tail_chrome(text):
+    """True when `text` ends in an affiliation + truncated `Abstract <n>.` tail.
+
+    Live 19.09.26: `cycle_h_efficiency` stored
+      "Language-model groups overstate consensus when replaying human
+       deliberation on a reasoning task Waseda University Abstract 9."
+    -- a paper-listing card whose text was cut off mid-tail: affiliation, then
+    the abstract's ORDINAL (`Abstract 9.`), nothing after it. 125 chars WITH
+    digits, so the >=90 length trust AND the technical-signal gate both fired
+    and no existing marker matched (`_is_arxiv_abstract_chrome` needs the
+    viewer labels `View PDF` / `HTML (experimental)`; `_is_nav_list` needs >=6
+    TitleCase tokens with no comma; the byline helpers are English-keyed on
+    `By <Name>` / `Published` / `Share`).
+
+    The discriminator is the PAIR: an institution label AND a bare abstract
+    ordinal glued at the TAIL. `Read Abstract 9 for the training details.` and
+    `The Laboratory Abstract 5 was rejected by the reviewers.` are ordinary
+    prose and carry no institution-label + tail weld. Measured: 1 buffer hit
+    and it IS the leak; 0/6,302 buffer_junk rows; 0/3,059 longterm_episodes;
+    0/824 gate-test literals; 0/29 hostile prose controls.
+    """
+    t = text or ""
+    if len(t) > 1200:
+        return False
+    return bool(_INSTITUTION_ABSTRACT_TAIL_RE.search(t))
+
+
+
 # class 75 markers (live 19.09.26) -- see _is_bio_page_furniture_pair.
 # A publisher's byline-card furniture welded together: `Read Full Bio <Name>
 # Updated on: June 17, 2025 / 5:28 PM EDT / CBS News Add CBS News on Google`.
@@ -2577,6 +2613,9 @@ def _is_nav_chrome(text):
         return True
     # a result page's tag-counter run (class 76, 19.09.26)
     if _is_tag_counter_run_chrome(text):
+        return True
+    # an affiliation welded to a truncated abstract ordinal (class 77, 19.09.26)
+    if _is_institution_abstract_tail_chrome(text):
         return True
     low = text.lower()
     if any(c in low for c in _NAV_CHROME):

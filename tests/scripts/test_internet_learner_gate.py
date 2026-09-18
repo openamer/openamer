@@ -3988,3 +3988,69 @@ def test_own_plan_plus_run_without_dangling_marker_is_gated_on_both_paths():
         assert not buffer_store.is_junk(prose), prose
 
         assert not buffer_store.is_junk(prose), prose
+def test_institution_abstract_tail_chrome_is_gated_on_both_paths():
+    """An affiliation welded to a truncated abstract ORDINAL is not knowledge.
+
+    Live 19.09.26 (class 77), verbatim from the buffer row (cycle_h_efficiency):
+      "Language-model groups overstate consensus when replaying human
+       deliberation on a reasoning task Waseda University Abstract 9."
+    125 chars WITH digits: a paper-listing card cut off mid-tail -- the
+    affiliation, then the abstract's ordinal, nothing after it. The >=90
+    length trust AND the technical-signal gate both fired and no existing
+    marker matched:
+      * `_is_arxiv_abstract_chrome` needs the viewer labels (`View PDF` /
+        `HTML (experimental)`), which a truncated card does not carry;
+      * `_is_nav_list` wants >=6 TitleCase tokens with no comma;
+      * the byline helpers are English-keyed on `By <Name>` /
+        `Published` / `Share`.
+    The discriminator is the PAIR: an institution label AND a bare abstract
+    ordinal welded at the TAIL. Prose that merely mentions an institution or
+    an `Abstract <n>` reference carries no such tail weld.
+    """
+    import buffer_store
+    leaks = (
+        "Language-model groups overstate consensus when replaying human "
+        "deliberation on a reasoning task Waseda University Abstract 9.",
+        "Quantization of large language models for edge deployment: a survey "
+        "of 4-bit methods and their accuracy trade-offs, Kyoto University "
+        "Abstract 12.",
+    )
+    for text in leaks:
+        assert IL._is_institution_abstract_tail_chrome(text), text
+        assert IL._is_junk(text), text
+        assert buffer_store._is_institution_abstract_tail_chrome(text), text
+        assert buffer_store._is_nav_chrome(text), text
+        assert IL._clean_insight(text) == "", text
+
+    # counter-cases: real prose about institutions, abstracts and ordinals must
+    # survive -- the helper ALONE must stay False on every one of them
+    clean = (
+        "The paper was published by Waseda University. Abstract 9 covers the "
+        "method.",
+        "Read Abstract 9 for the training details.",
+        "In Abstract 9 the authors describe the dataset.",
+        "Researchers at the University of Tokyo compared three quantization "
+        "schemes.",
+        "The abstract states that 9 of the 12 agents improved after the change.",
+        "The agent summarized the paper from Tsinghua University in three "
+        "sentences.",
+        "A survey was presented at Waseda University in 2026.",
+        "He earned a degree from Stanford University and then joined the lab.",
+        "The conference paper lists affiliation Waseda University and 9 "
+        "co-authors.",
+        "Waseda University researchers released the model weights under "
+        "Apache 2.0.",
+        "The team at the Max Planck Institute published Abstract 3 last year.",
+        "See the Stanford University page; abstract 4 lists the metrics.",
+        "The Laboratory Abstract 5 was rejected by the reviewers.",
+        "The university's abstract, 9 pages, covers the protocol.",
+        "The paper is summarized in Abstract 9.",
+        "Abstract 9 of the supplementary material lists the training "
+        "hyperparameters.",
+        "Our school abstract 3 is due next week.",
+        "The study came out of Waseda University and covered deliberation "
+        "replay.",
+    )
+    for text in clean:
+        assert not IL._is_institution_abstract_tail_chrome(text), text
+        assert not buffer_store._is_institution_abstract_tail_chrome(text), text
