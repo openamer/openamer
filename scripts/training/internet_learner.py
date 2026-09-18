@@ -2424,6 +2424,46 @@ def _is_institution_abstract_tail_chrome(text):
     return bool(_INSTITUTION_ABSTRACT_TAIL_RE.search(t))
 
 
+# class 78 markers (live 19.09.26) -- see _is_trending_card_header_pair.
+# A GitHub trending card whose two header labels were welded into the text:
+# `This Week Last Update: 2 days ago See Project 2 OpenManus Open-source AI ...`
+_TRENDING_CARD_HEADER_RE = re.compile(
+    r"this\s+week\s+last\s+update\s*:\s*\d{1,3}\s+days?\s+ago\s+see\s+project\s+\d{1,3}",
+    re.IGNORECASE)
+
+
+def _is_trending_card_header_pair(text):
+    """True when `text` carries a trending card's welded header PAIR (class 78).
+
+    Live 19.09.26: a post-fix `cycle_c_github` stored
+      "This Week Last Update: 2 days ago See Project 2 OpenManus Open-source
+       AI agent framework OpenManus is an open-source AI agent framework
+       designed to autonomously execute complex, multi-step tasks by
+       combining reasoning, planning, and tool use."
+    -- the trending page's two card labels (`This Week Last Update: ...` and
+    `See Project N`) welded onto the repo description. 242 chars WITH digits,
+    so the >=90 length trust AND the technical-signal gate both fired; the
+    existing repo-listing helpers (`_is_trending_repo_row_chrome` wants the
+    star counter `\u2605 <N>k +<M>` plus a language stat,
+    `_is_repo_stat_footer_run` wants a commits/branches/tags footer,
+    `_is_gh_listing_row` wants `Updated <Mon DD, YYYY>` + `Public Forked`)
+    all returned False.
+
+    The discriminator is the PAIR in its exact welded form: the `This Week
+    Last Update: <n> days ago` label immediately followed by `See Project
+    <n>` with a single space between them. Natural prose that talks about a
+    weekly update or a project number carries punctuation between the halves.
+    Measured: 1 buffer hit and it IS the leak; 0/6,313 buffer_junk rows;
+    0/3,059 longterm_episodes; 0/845 gate-test literals; 0/20 natural prose
+    controls.
+    """
+    t = text or ""
+    if len(t) > 1200:
+        return False
+    return bool(_TRENDING_CARD_HEADER_RE.search(t))
+
+
+
 
 # class 75 markers (live 19.09.26) -- see _is_bio_page_furniture_pair.
 # A publisher's byline-card furniture welded together: `Read Full Bio <Name>
@@ -2773,6 +2813,9 @@ def _is_junk(text):
         return True
     # an affiliation welded to a truncated abstract ordinal (class 77, 19.09.26)
     if _is_institution_abstract_tail_chrome(t):
+        return True
+    # a trending card's welded header pair (class 78, 19.09.26)
+    if _is_trending_card_header_pair(t):
         return True
     # a page-meta listing widget (same narrow rule as
     # buffer_store._is_sidebar_listing_chrome)

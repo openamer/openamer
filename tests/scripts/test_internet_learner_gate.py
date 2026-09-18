@@ -4054,3 +4054,64 @@ def test_institution_abstract_tail_chrome_is_gated_on_both_paths():
     for text in clean:
         assert not IL._is_institution_abstract_tail_chrome(text), text
         assert not buffer_store._is_institution_abstract_tail_chrome(text), text
+def test_trending_card_header_pair_is_gated_on_both_paths():
+    """A trending card's welded header PAIR is not knowledge (class 78).
+
+    Live 19.09.26, verbatim from the buffer row (cycle_c_github, post-fix):
+      "This Week Last Update: 2 days ago See Project 2 OpenManus Open-source
+       AI agent framework OpenManus is an open-source AI agent framework
+       designed to autonomously execute complex, multi-step tasks by
+       combining reasoning, planning, and tool use."
+    242 chars WITH digits, so the >=90 length trust AND the technical-signal
+    gate both fired. Every repo-listing helper returned False: the star
+    counter rule wants `\u2605 <N>k +<M>` plus a language stat, the stat-footer
+    rule wants a commits/branches/tags footer, and the listing-row rule wants
+    `Updated <Mon DD, YYYY>` + `Public Forked`. Here the page's two card labels
+    were simply welded onto the description.
+
+    The discriminator is the PAIR in its exact welded form: `This Week Last
+    Update: <n> days ago` immediately followed by `See Project <n>` with a
+    single space between them. Natural prose about a weekly update or a
+    project number carries punctuation between the halves.
+    """
+    import buffer_store
+    leaks = (
+        "This Week Last Update: 2 days ago See Project 2 OpenManus Open-source "
+        "AI agent framework OpenManus is an open-source AI agent framework "
+        "designed to autonomously execute complex, multi-step tasks by "
+        "combining reasoning, planning, and tool use.",
+        "This Week Last Update: 5 days ago See Project 9 SomeRepo An "
+        "open-source tool for reproducible builds across Linux distributions.",
+    )
+    for text in leaks:
+        assert IL._is_trending_card_header_pair(text), text
+        assert IL._is_junk(text), text
+        assert buffer_store._is_trending_card_header_pair(text), text
+        assert buffer_store._is_nav_chrome(text), text
+        assert IL._clean_insight(text) == "", text
+
+    # counter-cases: natural prose about updates, projects and trending repos
+    clean = (
+        "This week's last update to the repo was 2 days ago, so the fix is "
+        "fresh.",
+        "The dashboard shows the last update per project; see project 2 for "
+        "details.",
+        "Our team reviewed the last update of each project this week and "
+        "shipped 2 patches.",
+        "The last update landed 2 days ago, so the API is stable this week.",
+        "See the project page for the benchmark numbers and the update history.",
+        "Last update: 2 days ago. See the project's changelog for the "
+        "migration notes.",
+        "Trending repos on GitHub this week include OpenManus and OpenHands.",
+        "OpenManus is an open-source AI agent framework for multi-step tasks.",
+        "The vendor's site prints a 'this week last update' badge next to each "
+        "repo.",
+        "The scraped page contains a 'This Week Last Update' label and a See "
+        "Project link.",
+        "Repos are ranked by stars; the last update was 2 days ago for the top "
+        "one.",
+        "Each row lists stars, forks, and the last update timestamp.",
+    )
+    for text in clean:
+        assert not IL._is_trending_card_header_pair(text), text
+        assert not buffer_store._is_trending_card_header_pair(text), text
