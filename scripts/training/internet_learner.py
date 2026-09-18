@@ -1519,6 +1519,43 @@ def _is_hn_item_chrome(text):
     return bool(_HN_ITEM_CHROME_RE.search(text or ""))
 
 
+# class 50 markers (live 18.09.26) -- see _is_nav_widget_run_chrome.
+_NAV_WIDGET_RE = re.compile(
+    r"skip carousel|go to (?:previous|next) items|footer menu|back to top"
+    r"|about scribd",
+    re.IGNORECASE)
+
+
+def _is_nav_widget_run_chrome(text):
+    """True when `text` is a run of a document-hosting page's nav widgets.
+
+    Live 18.09.26 (class 50): `cycle_f_multi_domain` stored
+
+        Language , English Upload Sign in Sign in Download free for 30 days
+        Documents Get started with the community's uploads Skip carousel Go to
+        previous items Overview (selected) Categories Go to next items Footer
+        menu Back to top About About Scribd, Inc.
+
+    A Scribd document page's own furniture chain: a language selector, two
+    `Sign in` links, an upload CTA, the reader's widget labels and the footer
+    menu labels. It carries digits (`30 days`), so the `>=90` length trust and
+    the technical-signal gate both fired and no existing marker matched -- it
+    is a label chain, not a `_is_nav_list` (that wants >=6 TitleCase tokens
+    with no comma).
+
+    The discriminator is REPETITION of the reader's/site's own furniture
+    labels: one such label is ordinary prose (`Skip the carousel and go to
+    the previous items`), a run of >=4 is a widget strip. Measured: 1 buffer
+    hit and it IS the leak -> 0 real-prose FPs on an 18-sentence control
+    corpus, 0 of the gate test file's 511 asserted literals; 0/3,058
+    `longterm_episodes`. The lower thresholds were REJECTED: >=2 gave 4
+    control FPs (`Back to top of the article, the footer menu lists the
+    licence.`), >=3 still gave 2.
+    """
+    t = text or ""
+    return len(_NAV_WIDGET_RE.findall(t)) >= 4
+
+
 # class 38 markers (live 17.09.26) -- see _is_marketing_hero_cta_chrome.
 _HERO_CTA_STAR_RE = re.compile(
     r"\[\*\]\s+(?:With|Mit)\s+(?:over|\u00fcber)\s+[\d.,]+",
@@ -1758,6 +1795,9 @@ def _is_junk(text):
         return True
     # a single aggregator item row with its feed tail (class 49, 18.09.26)
     if _is_hn_item_chrome(t):
+        return True
+    # a run of a document-hosting page's nav widgets (class 50, 18.09.26)
+    if _is_nav_widget_run_chrome(t):
         return True
     # a landing-page hero CTA chain (class 38, 17.09.26)
     if _is_marketing_hero_cta_chrome(t):

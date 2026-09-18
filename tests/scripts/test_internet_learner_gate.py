@@ -2948,3 +2948,35 @@ def test_pricing_hero_chrome_is_gated_on_both_paths():
         assert not IL._is_pricing_hero_chrome(text), text
         assert not IL._is_junk(text), text
         assert not buffer_store._is_nav_chrome(text), text
+
+def test_nav_widget_run_chrome_is_gated_on_both_paths():
+    """Class 50 (live 18.09.26): a document-hosting page's nav-widget run."""
+    import buffer_store
+    import internet_learner as IL
+
+    leak = (
+        "Language , English Upload Sign in Sign in Download free for 30 days "
+        "Documents Get started with the community\u2019s uploads Skip carousel Go "
+        "to previous items Overview (selected) Categories Go to next items Footer "
+        "menu Back to top About About Scribd, Inc."
+    )
+    assert IL._is_nav_widget_run_chrome(leak)
+    assert IL._is_junk(leak)
+    assert buffer_store._is_nav_widget_run_chrome(leak)
+    assert buffer_store._is_nav_chrome(leak)
+
+    clean = (
+        "Skip the carousel and go to the previous items to review the earlier benchmarks.",
+        "The footer menu links to the About page and back to the top of the document.",
+        "Back to top of the article, the footer menu lists the licence.",
+        "The UI has a skip carousel button, a go to next items control, and a footer menu component.",
+        "We documented back to top, footer menu, and about scribd as the three nav affordances.",
+        "Scribd, Inc. publishes documents uploaded by its community of readers and authors.",
+        "Sign in with your account to download the free whitepaper about LLM serving on local GPUs.",
+        "Upload the dataset to the repository before signing in to the document store.",
+    )
+    for text in clean:
+        assert not IL._is_nav_widget_run_chrome(text), text
+        assert not IL._is_junk(text), text
+        assert not buffer_store._is_nav_widget_run_chrome(text), text
+        assert not buffer_store._is_nav_chrome(text), text
