@@ -3991,7 +3991,7 @@ def test_own_plan_plus_run_without_dangling_marker_is_gated_on_both_paths():
 def test_institution_abstract_tail_chrome_is_gated_on_both_paths():
     """An affiliation welded to a truncated abstract ORDINAL is not knowledge.
 
-    Live 19.09.26 (class 77), verbatim from the buffer row (cycle_h_efficiency):
+    Live 19.09.26 (class 81), verbatim from the buffer row (cycle_h_efficiency):
       "Language-model groups overstate consensus when replaying human
        deliberation on a reasoning task Waseda University Abstract 9."
     125 chars WITH digits: a paper-listing card cut off mid-tail -- the
@@ -4055,7 +4055,7 @@ def test_institution_abstract_tail_chrome_is_gated_on_both_paths():
         assert not IL._is_institution_abstract_tail_chrome(text), text
         assert not buffer_store._is_institution_abstract_tail_chrome(text), text
 def test_trending_card_header_pair_is_gated_on_both_paths():
-    """A trending card's welded header PAIR is not knowledge (class 78).
+    """A trending card's welded header PAIR is not knowledge (class 82).
 
     Live 19.09.26, verbatim from the buffer row (cycle_c_github, post-fix):
       "This Week Last Update: 2 days ago See Project 2 OpenManus Open-source

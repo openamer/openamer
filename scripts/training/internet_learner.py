@@ -2389,7 +2389,7 @@ def _is_tag_counter_run_chrome(text):
     return len(_TAG_COUNTER_PAIR_RE.findall(t)) >= 8
 
 
-# class 77 markers (live 19.09.26) -- see _is_institution_abstract_tail_chrome.
+# class 81 markers (live 19.09.26) -- see _is_institution_abstract_tail_chrome.
 # An affiliation line welded to a TRUNCATED abstract number at the very end of
 # a record: `... on a reasoning task Waseda University Abstract 9.`
 _INSTITUTION_ABSTRACT_TAIL_RE = re.compile(
@@ -2424,7 +2424,7 @@ def _is_institution_abstract_tail_chrome(text):
     return bool(_INSTITUTION_ABSTRACT_TAIL_RE.search(t))
 
 
-# class 78 markers (live 19.09.26) -- see _is_trending_card_header_pair.
+# class 82 markers (live 19.09.26) -- see _is_trending_card_header_pair.
 # A GitHub trending card whose two header labels were welded into the text:
 # `This Week Last Update: 2 days ago See Project 2 OpenManus Open-source AI ...`
 _TRENDING_CARD_HEADER_RE = re.compile(
@@ -2433,7 +2433,7 @@ _TRENDING_CARD_HEADER_RE = re.compile(
 
 
 def _is_trending_card_header_pair(text):
-    """True when `text` carries a trending card's welded header PAIR (class 78).
+    """True when `text` carries a trending card's welded header PAIR (class 82).
 
     Live 19.09.26: a post-fix `cycle_c_github` stored
       "This Week Last Update: 2 days ago See Project 2 OpenManus Open-source
@@ -2811,10 +2811,10 @@ def _is_junk(text):
     # a result page's tag-counter run (class 76, 19.09.26)
     if _is_tag_counter_run_chrome(t):
         return True
-    # an affiliation welded to a truncated abstract ordinal (class 77, 19.09.26)
+    # an affiliation welded to a truncated abstract ordinal (class 81, 19.09.26)
     if _is_institution_abstract_tail_chrome(t):
         return True
-    # a trending card's welded header pair (class 78, 19.09.26)
+    # a trending card's welded header pair (class 82, 19.09.26)
     if _is_trending_card_header_pair(t):
         return True
     # a page-meta listing widget (same narrow rule as
