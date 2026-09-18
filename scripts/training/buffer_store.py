@@ -2209,6 +2209,41 @@ def _is_label_bullet_chain(text):
     return len(_LABEL_BULLET_RE.findall(text or "")) >= 2
 
 
+# class 75 markers (live 19.09.26) -- see _is_bio_page_furniture_pair.
+# A publisher's byline-card furniture welded together: `Read Full Bio <Name>
+# Updated on: June 17, 2025 / 5:28 PM EDT / CBS News Add CBS News on Google`.
+_BIO_CARD_DATELINE_RE = _re.compile(
+    r"\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+\d{1,2},\s+\d{4}\s*/\s*"
+    r"\d{1,2}:\d{2}\s*(?:AM|PM)\b", _re.IGNORECASE)
+_BIO_CARD_LABEL_RE = _re.compile(r"read\s+full\s+bio", _re.IGNORECASE)
+
+
+def _is_bio_page_furniture_pair(text):
+    """True when `text` carries a byline card's furniture PAIR (class 75).
+
+    Live 19.09.26: `cycle_a_technews` stored
+
+        Read Full Bio Mary Cunningham Updated on: June 17, 2025 / 5:28 PM EDT /
+        CBS News Add CBS News on Google Amazon's CEO envisions an "agentic
+        future" in which AI robots, or agents, replace humans working in the
+        company's offices.
+
+    A CBS-style byline card: the author bio link, the `Updated on:` stamp with a
+    full date-TIME dateline, the publisher label and an add-on-Google link --
+    all welded to the article's lede. 226 chars with digits, so the >=90 length
+    trust and the technical-signal gate fired.
+
+    Neither half is a marker on its own: `Read Full Bio` alone flagged 2 hostile
+    controls and a bare dateline flagged 3. The discriminator is the PAIR of the
+    page's OWN furniture (bio label + date-time dateline), which no prose
+    carries. Measured: 1 buffer hit and it IS the leak; 0/11 hostile prose
+    controls; 0/6,265 buffer_junk rows; 0/3,059 longterm_episodes; 0/1,175
+    gate-test literals.
+    """
+    t = text or ""
+    return bool(_BIO_CARD_LABEL_RE.search(t) and _BIO_CARD_DATELINE_RE.search(t))
+
+
 # class 74 markers (live 19.09.26) -- see _is_decorative_alt_text_chrome.
 # A landing page's logo alt-text welded to the next decoration's alt-text:
 # `GitHub Logo <sparkles> Decorative dot pattern background` -- markup
@@ -2417,6 +2452,9 @@ def _is_nav_chrome(text):
         return True
     # a page's welded decorative alt-text run (class 74, 19.09.26)
     if _is_decorative_alt_text_chrome(text):
+        return True
+    # a page's welded decorative alt-text run (class 75, 19.09.26)
+    if _is_bio_page_furniture_pair(text):
         return True
     low = text.lower()
     if any(c in low for c in _NAV_CHROME):

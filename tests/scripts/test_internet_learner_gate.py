@@ -3753,3 +3753,42 @@ def test_decorative_alt_text_chrome_is_gated_on_both_paths():
         assert not buffer_store._is_decorative_alt_text_chrome(prose), prose
         assert not IL._is_junk(prose), prose
         assert not buffer_store.is_junk(prose), prose
+
+
+def test_bio_page_furniture_pair_is_gated_on_both_paths():
+    """A byline card's furniture pair welded to the lede is not knowledge (class 75).
+
+    Live 19.09.26: cycle_a_technews stored a CBS-style byline card -- Read Full
+    Bio + an `Updated on: <date> / <time>` dateline + the publisher label +
+    add-on-Google link -- glued to the article's first sentence. Neither half is
+    a marker alone; the PAIR is.
+    """
+    import buffer_store
+    leaks = (
+        "Read Full Bio Mary Cunningham Updated on: June 17, 2025 / 5:28 PM EDT / "
+        "CBS News Add CBS News on Google Amazon's CEO envisions an \"agentic future\" "
+        "in which AI robots, or agents, replace humans working in the company's offices.",
+        "Read Full Bio Jane Doe Updated on: March 3, 2026 / 9:10 AM PST / The Verge "
+        "Add The Verge on Google",
+    )
+    for leak in leaks:
+        assert IL._is_bio_page_furniture_pair(leak), leak
+        assert buffer_store._is_bio_page_furniture_pair(leak), leak
+        assert IL._is_junk(leak), leak
+        assert buffer_store._is_nav_chrome(leak), leak
+        assert buffer_store.is_junk(leak), leak
+    for prose in (
+        "Read Full Bio about the author to learn more about her reporting career.",
+        "We read the full bio and the updated on date before citing the article.",
+        "Add CBS News on Google to see the publisher's latest coverage.",
+        "Read Full Bio of our editors, add us on Google, and follow the blog for updates.",
+        "The article was updated on June 17, 2025 / 5:28 PM EDT according to the publisher's changelog.",
+        "Published on June 17, 2025 / 5:28 PM EDT and later revised, the piece covers agentic AI.",
+        "Our datelines look like June 17, 2025 / 5:28 PM EDT, and each story carries a bio link.",
+        "The byline card offers Read Full Bio, Updated on: June 17, 2025 and Add CBS News on Google.",
+        "Read the full bio of the author and add the newsroom on Google News from the header.",
+    ):
+        assert not IL._is_bio_page_furniture_pair(prose), prose
+        assert not buffer_store._is_bio_page_furniture_pair(prose), prose
+        assert not IL._is_junk(prose), prose
+        assert not buffer_store.is_junk(prose), prose
