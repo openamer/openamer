@@ -1204,3 +1204,98 @@ change was correct. Reusable order of operations:
    (4–6 hand-written real sentences). Reject any marker with a live-prose FP; a
    bare marker with 0 FPs but only chrome hits is still only worth adding if the
    row it targets is chrome-only.
+## Root cause AW (live 19.09.26) — classes 77-80: advisory row, site headline stub, fact box, own plan WITHOUT dangling marker
+
+Cron run began on the documented `cycle_b_papers: rejected` line. Per-day rate
+**47 % (15 ok / 17 rej)** vs the documented 50-80 % band -> **no gate change was
+warranted for the rejection itself**; `buffer_junk` last 8 = `duplicate` at the
+287/300 cap + documented junk shapes = rotation noise. U/V verified BEFORE
+inventing anything: `_search_urls(q, k=6)` -> 6 on all five diverse queries;
+`_fair_share_window` -> 4000 chars; buffer size byte-stable over 2 s. Working
+tree clean (no uncommitted predecessor work). All four finds came from the
+prescribed cheapest method: run `--once`, read the BUFFER TAIL `u`/`a`, repeat.
+All four passed BOTH gates and NONE was ever in `buffer_junk.jsonl`.
+
+| class | helper | measured |
+|---|---|---|
+| 77 | `_is_advisory_row` -- vendor/product run welded to `-- <Mon DD, YYYY> CVE-<id>`, OR a CVE id with a trailing `<SEVERITY> <score>.` | 1 hit, IS the leak / 0 FP on 9 hostile security-prose controls / 0 le / 0 lit |
+| 78 | `_is_site_headline_stub` -- brand run + colon + `<year> Comparison of ...`, nothing else | 1 hit, IS the leak / 0 FP on 6 controls / 0 le / 0 lit |
+| 79 | `_is_fact_box_label_chain` -- `Key Points` welded within 200 chars of `Affected objects:` | 1 hit, IS the leak / 0 FP on 6 controls / 0 le / 0 lit |
+| 80 | `_is_own_plan_plus_run` -- own-artifact title AND a 3-way `+`-joined deliverable run | 1 hit, IS the leak / 0 FP on 6 controls / 0 lit |
+
+**Class 77 -- the advisory FURNITURE pair, not the CVE.** A bare CVE id is
+ordinary security prose and `-- <date>` alone is an ordinary dateline. Four
+candidate forms each measured 1 buffer hit / 0 FP / 0 le / 0 lit and are
+equivalent on this corpus; the shipped alternation covers both live facets.
+Hostile controls that must stay clean: `The Cisco IOS XE firmware update fixes
+CVE-2025-20337, a critical RCE flaw rated 10.0 by NVD.`, `CVE-2024-12345 was
+rated CRITICAL 9.8 and patched in the October 16, 2023 firmware release.`,
+`The report lists five CVEs: CVE-2026-5430 CRITICAL 9.8, CVE-2026-5431 HIGH 8.1
+in the appendix table.`
+
+**Class 78 -- a bare `20xx Comparison of` measured 3 control FPs** (`A 2026
+Comparison of quantization methods shows 4-bit wins on memory.`), so the brand
+run BEFORE the colon is the marker. The sibling "brand run + colon + `<year>`"
+form (no `Comparison of`) measured **2 buffer hits** -- it also eats row 195,
+which class 79 legitimately owns; keep the `Comparison of` anchor.
+
+**Class 79 -- `Affected objects` alone and `Key Points` alone are BOTH ordinary
+prose.** The 200-char weld of the page's own two labels is the whole
+discriminator. Do not gate the bare labels.
+
+**Class 80 -- the AP/AO "check the EXISTING helper" rule applied to an own
+artifact.** Class 66's `_PROMPT_PLAN_ECHO_RE` already covers this family and
+still missed the live row, because it requires a **DANGLING list marker**
+(`[
+]+\s*\d{1,2}\.\s*$`): the live row ends in prose (`... + cron job every
+12h.`). Same vocabulary, new SHAPE -- a new class, not a duplicate. Sweep that
+mattered: bare `RAM/Disk/Cron` hits **5 episodes**, bare `skill + cron` hits
+**3 episodes + 1 control FP**; only the own-artifact title AND a **3-way** `+`
+run reached 0. The 2-way form measured 1 control FP (`The pipeline: data
+ingestion: raw logs + normalization + dedup + feature extraction runs hourly.`)
+plus 1 test literal. **A `longterm_episodes` hit is not automatically world
+knowledge -- here the single hit was the SAME own-artifact string in German.**
+
+### THE DELIBERATE NON-FIX -- the 9-row em-dash + semicolon + ellipsis SERP run
+Rows 19/87/146/181/197/210/218/231/272 are two search-result blocks welded with
+`; `. Every conjunction form measured **16-18 buffer hits** but flagged real
+prose: emdash+semi+ell -> **33 episode hits** (incl. an interrupted-run system
+note and a German technical answer) + 2 test literals; the len<=900 helper ->
+9 buffer hits but **1 real episode**. This is the root-cause AU shape -- those
+SERP rows are exactly what a previously REJECTED rule eats -- so they stay
+**un-gated by design**. A high buffer hit-count with 0 FPs on hand controls is
+not proof; grep the gate test file for the shape first. Row 195 sits in the same
+family and IS gated, because it carries the page's own label pair.
+
+### Pitfall -- `crlf()` on an ALREADY-CRLF anchor matches 0 times
+Passing the two-line CRLF gate anchor through the same `crlf()` helper used for
+the LF-only insertion BLOCK turns `
+` into `
+` and `count()` returns
+**0** -> the apply script aborted with `gate anchor count 0`. Keep ONE helper
+(`.replace("
+", "
+")`) for LF-only text and pass anchors to
+`count()`/`replace()` as raw `bytes`. Assert the anchor `count() == 1` before
+replacing (root cause AI/AM/AR trap, fourth occurrence).
+
+Cleanup + verify (standard shape, all met): 4 rows removed by signature
+**291 -> 287**, 0 unparsable, CRLF intact (lone LF 0), structural-connection
+rows **49 -> 48** -- the dropped row 235 was ITSELF a structural-connection
+cycle, so re-count and explain the delta instead of asserting an old number.
+Writer-gate census **4 -> 0**, learner-gate census **0**. 3-copy `md5sum`
+identical for BOTH modules after the apply (`eb977536...` learner,
+`14fa6d94...` store), every copy `exec_module`-verified (`ast.parse` is not
+enough). `pytest tests/scripts/test_internet_learner_gate.py -q` -> **95 -> 99
+passed** (4 new tests, each asserting the helper on BOTH gates on the leak plus
+6-8 prose counter-cases); `pytest tests/scripts -q` -> **255 passed**. Tests
+appended as **pure bytes** (155 added / **0 removed**, lone-LF census 58 -> 58),
+mirrored to both other test copies. Commit `5cda85ea0` on the foreign branch
+`fix/28-respawn-test-psutil-hermetic` (FF_SAFE) ->
+`git -c credential.helper= -c credential.helper=store push origin HEAD:main`
+(`d50ec4231..5cda85ea0`). **The `-c` options must precede the SUBCOMMAND.**
+Verified: `git branch -r --contains 5cda85ea0` -> origin/main, remote blobs grep
+8/8 learner + 8/8 store + 4/4 test, LF-normalized md5 remote == local.
+Post-fix live: 3 x `--once` -> 1 learned / 2 rejected; the learned row is real
+prose (`$1,600, $2,500, even $5,000+ ...`) with `writer=False extract=False`, the
+rejections are honest and both censuses read **0 of 288**.
