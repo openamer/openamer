@@ -1421,6 +1421,28 @@ _HERO_CTA_STAR_RE = _re.compile(
     r"\[\*\]\s+(?:With|Mit)\s+(?:over|\u00fcber)\s+[\d.,]+",
     _re.IGNORECASE)
 
+# The SAME hero WITHOUT the `[*]` marker (live 18.09.26, class 54): the
+# competitor page renders the adoption-brag bullet with a `->` instead, so the
+# class-38 marker never fired:
+#   "Any Editor Terminal interface, desktop app, and IDE extensions Read the
+#    docs -> Open Source AI Coding Agent With over 160,000 GitHub Stars, 900
+#    contributors, and over 13,000 commits, OpenCode is used and trusted by
+#    over 7."
+# Stored TWICE in one buffer (rows 14 and 297, byte-identical). The existing
+# helper's guard was one variant too narrow -- the same pattern as root cause
+# AO -- so the guard is relaxed rather than a fourth class added.
+#
+# The discriminator is the FULL brag triple in one sentence (stars AND
+# contributors AND commits), which a landing-page hero writes as a list and
+# real prose never does. Measured (18.09.26): 2 live buffer hits, BOTH are the
+# leak; 0 of 3,058 longterm_episodes; 0 of 1,003 asserted gate-test literals;
+# 0 prose controls (incl. "With over 195,000 GitHub stars and 950
+# contributors, the project ships a desktop app.").
+_HERO_ADOPTION_BRAG_RE = _re.compile(
+    r"With\s+over\s+[\d.,]+[kKmM]?\s+GitHub\s+[Ss]tars,\s*"
+    r"[\d.,]+[kKmM]?\s+contributors,\s*and\s+over\s+[\d.,]+[kKmM]?\s+commits",
+    _re.IGNORECASE)
+
 
 def _is_marketing_hero_cta_chrome(text):
     """True when `text` is a landing-page hero CTA chain with a [*] marker.
@@ -1449,7 +1471,11 @@ def _is_marketing_hero_cta_chrome(text):
     The looser `(?:Read docs|Doku lesen) ... [*]` form was REJECTED on
     measurement (3 control FPs).
     """
-    return bool(_HERO_CTA_STAR_RE.search(text or ""))
+    if _HERO_CTA_STAR_RE.search(text or ""):
+        return True
+    # the same hero rendered with a `->` bullet instead of the `[*]` marker
+    # (class 54, 18.09.26)
+    return bool(_HERO_ADOPTION_BRAG_RE.search(text or ""))
 
 
 # class 40 markers (live 17.09.26) -- see _is_byline_published_article_header.

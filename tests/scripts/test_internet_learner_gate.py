@@ -3144,3 +3144,53 @@ def test_docs_cta_serp_run_is_gated_on_both_paths():
     )
     assert not IL._is_docs_cta_serp_run(intro), intro
     assert not buffer_store._is_docs_cta_serp_run(intro), intro
+
+def test_marketing_hero_without_star_marker_is_gated_on_both_paths():
+    """The SAME landing-page hero WITHOUT the `[*]` marker is not knowledge.
+
+    Live 18.09.26 (class 54), verbatim from the buffer row -- stored TWICE,
+    byte-identical (rows 14 and 297):
+      "Any Editor Terminal interface, desktop app, and IDE extensions Read the
+       docs \u2192 Open Source AI Coding Agent With over 160,000 GitHub Stars,
+       900 contributors, and over 13,000 commits, OpenCode is used and trusted
+       by over 7."
+    The class-38 marker (`[*]` immediately followed by the brag opener) never
+    fired because this render uses a `\u2192` bullet instead of the footnote
+    marker -- the existing helper's guard was one variant too narrow (the same
+    pattern as root cause AO), so the guard was relaxed rather than a fourth
+    class added.
+
+    The discriminator is the FULL adoption-brag triple in one sentence (stars
+    AND contributors AND commits), which a landing-page hero writes as a list
+    and real prose does not.
+    """
+    leak = (
+        "Any Editor Terminal interface, desktop app, and IDE extensions Read "
+        "the docs \u2192 Open Source AI Coding Agent With over 160,000 GitHub "
+        "Stars, 900 contributors, and over 13,000 commits, OpenCode is used "
+        "and trusted by over 7."
+    )
+    import buffer_store
+    assert buffer_store._is_marketing_hero_cta_chrome(leak), leak
+    assert IL._is_junk(leak), leak
+    assert buffer_store._is_nav_chrome(leak), leak
+    assert IL._clean_insight(leak) == "", leak
+
+    # counter-cases: real prose about the same project's adoption metrics, and
+    # the class-38 `[*]` form's own prose controls, must all survive
+    for text in (
+        "With over 195,000 GitHub stars and 950 contributors, the project "
+        "ships a desktop app and an IDE extension.",
+        "OpenCode has over 195,000 GitHub stars, 950 contributors and 13,000 "
+        "commits.",
+        "The repo reports 160,000 GitHub stars, 900 contributors and 13,000 "
+        "commits in total.",
+        "Read the docs to learn how the quantized model fits on a single A100.",
+        "Required fields are marked with [*] in the form below.",
+        "Over 13,000 commits landed across the nine contributors this year.",
+        "Terminal-Interface, Desktop-App und IDE-Extension nutzen dieselbe "
+        "Config.",
+    ):
+        assert not buffer_store._is_marketing_hero_cta_chrome(text), text
+        assert not IL._is_junk(text), text
+        assert buffer_store.is_junk(text) is False, text
