@@ -3386,3 +3386,32 @@ def test_dated_tag_strip_chrome_is_gated_on_both_paths():
     ):
         assert not IL._is_dated_tag_strip_chrome(text), text
         assert not buffer_store._is_dated_tag_strip_chrome(text), text
+
+
+def test_model_listing_run_chrome_is_gated_on_both_paths():
+    """A model-hub listing row run (class 62) must be gated on BOTH paths."""
+    import buffer_store
+    import internet_learner as IL
+    leak = (
+        "13 ChenMnZ/Llama-3-8b-instruct-BlockAP-w2g64 Text Generation \u00b7 2B "
+        "\u00b7 Updated Jul 21, 2024 \u00b7 12 ChenMnZ/Llama-3-8b-instruct-BlockAP-w2g128 "
+        "Text Generation \u00b7 2B \u00b7 Updated Jul 21, 2024 \u00b7 15 View 4 "
+        "collections Papers 8 arxiv: 2505."
+    )
+    assert IL._is_model_listing_run_chrome(leak) is True
+    assert IL._is_junk(leak) is True
+    assert buffer_store._is_model_listing_run_chrome(leak) is True
+    assert buffer_store._is_nav_chrome(leak) is True
+    assert buffer_store.is_junk(leak) is True
+    for text in (
+        "Two releases: Updated Jul 21, 2024 and Updated Aug 2, 2024 are listed in the notes.",
+        "The table lists Updated Jul 21, 2024 \u00b7 13 rows and Updated Mar 3, 2025 \u00b7 7 rows.",
+        "Updated Jul 21, 2024 \u00b7 13 model variants are compared in the benchmark table.",
+        "The repo was updated Jul 21, 2024 and the paper cites 13 baselines.",
+        "ChenMnZ released Llama-3-8b-instruct-BlockAP-w2g64 for text generation.",
+        "Text Generation is a common task label on model hubs.",
+        "The changelog says Updated Jul 21, 2024, and the docs were updated Mar 3, 2025.",
+        "We compare repos updated Jul 21, 2024 and Mar 3, 2025 in the appendix.",
+    ):
+        assert not IL._is_model_listing_run_chrome(text), text
+        assert not buffer_store._is_model_listing_run_chrome(text), text

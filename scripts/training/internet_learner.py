@@ -2101,6 +2101,39 @@ def _is_dated_tag_strip_chrome(text):
 
 
 
+# class 62 markers (live 18.09.26) -- see _is_model_listing_run_chrome.
+_UPDATED_DATE_RE = re.compile(r"\bUpdated\s+[A-Z][a-z]{2}\s+\d{1,2},\s+\d{4}\b")
+_SIZE_DOT_UPDATED_RE = re.compile(
+    r"\u00b7\s*\d+(?:\.\d+)?[BM]\s*\u00b7\s*Updated")
+
+
+def _is_model_listing_run_chrome(text):
+    """True when `text` is a HuggingFace model-listing row run (class 62).
+
+    Live 18.09.26: `cycle_h_efficiency` stored
+
+        13 ChenMnZ/Llama-3-8b-instruct-BlockAP-w2g64 Text Generation \u00b7 2B \u00b7
+        Updated Jul 21, 2024 \u00b7 12 ChenMnZ/Llama-3-8b-instruct-BlockAP-w2g128
+        Text Generation \u00b7 2B \u00b7 Updated Jul 21, 2024 \u00b7 15 View 4
+        collections Papers 8 arxiv: 2505.
+
+    A model hub's search-result rows: download count + `owner/model` + task
+    label + size + `Updated <Mon DD, YYYY>`. 228 chars with a date, so the
+    >=90 length trust and the technical-signal gate both fired. The repeated
+    `Updated <date>` alone is ordinary prose (`Two releases: Updated Jul 21,
+    2024 and Updated Aug 2, 2024 are listed in the notes.` is a control FP), so
+    the discriminator is the PAIR: >=2 `Updated <Mon DD, YYYY>` AND a
+    `size \u00b7 Updated` stat separator, which a prose sentence never carries.
+    Measured: 1 buffer hit and it IS the leak; 0/8 control FPs; 0/707 test
+    literals; 0/3,058 episodes.
+    """
+    t = text or ""
+    if len(_UPDATED_DATE_RE.findall(t)) < 2:
+        return False
+    return bool(_SIZE_DOT_UPDATED_RE.search(t))
+
+
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
@@ -2131,6 +2164,9 @@ def _is_junk(text):
         return True
     # a dated card headline + tag strip (class 61, 18.09.26)
     if _is_dated_tag_strip_chrome(t):
+        return True
+    # a model-hub listing row run (class 62, 18.09.26)
+    if _is_model_listing_run_chrome(t):
         return True
     # a page-meta listing widget (same narrow rule as
     # buffer_store._is_sidebar_listing_chrome)
