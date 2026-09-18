@@ -3832,4 +3832,159 @@ def test_tag_counter_run_chrome_is_gated_on_both_paths():
         assert not IL._is_tag_counter_run_chrome(prose), prose
         assert not buffer_store._is_tag_counter_run_chrome(prose), prose
         assert not IL._is_junk(prose), prose
+
+
+def test_advisory_listing_row_is_gated_on_both_paths():
+    """Class 77 (live 19.09.26): a security-advisory LISTING row trained as an answer.
+
+    Vendor/product run welded to an advisory dateline + bare CVE id, and the
+    severity badge welded to the tail. 115 chars WITH digits, so the `>=90`
+    length trust AND the technical-signal gate both fired.
+    """
+    import buffer_store
+
+    leak = (
+        "Cisco Ios Xe Rockwellautomation Allen Bradley Stratix 5200 Firmware + 5 "
+        "-- Oct 16, 2023 CVE-2025-20337 CRITICAL 10."
+    )
+    assert IL._is_advisory_row(leak)
+    assert buffer_store._is_advisory_row(leak)
+    assert IL._is_junk(leak)
+    assert buffer_store.is_junk(leak)
+    assert buffer_store._is_nav_chrome(leak)
+    for prose in (
+        "The Cisco IOS XE firmware update fixes CVE-2025-20337, a critical "
+        "remote-code-execution flaw rated 10.0 by NVD.",
+        "Rockwell Automation released a Stratix 5200 firmware patch addressing a "
+        "critical vulnerability (CVE-2025-20337).",
+        "Researchers disclosed 5 CVEs rated CRITICAL in industrial switch "
+        "firmware, including Allen-Bradley Stratix 5200.",
+        "CVE-2024-12345 was rated CRITICAL 9.8 and patched in the October 16, 2023 "
+        "firmware release.",
+        "The page lists Cisco IOS XE, Rockwell Automation Allen-Bradley Stratix "
+        "5200 firmware and 5 other advisories.",
+        "A critical CVE-2025-20337 (CVSS 10.0) affects Stratix 5200 switches "
+        "running IOS XE.",
+        "CVE-2026-5430 is a critical (CVSS 9.8) auth bypass. Patch now -- Oct 16, "
+        "2023 was the disclosure date.",
+        "The report lists five CVEs: CVE-2026-5430 CRITICAL 9.8, CVE-2026-5431 "
+        "HIGH 8.1 in the appendix table.",
+    ):
+        assert not IL._is_advisory_row(prose), prose
+        assert not buffer_store._is_advisory_row(prose), prose
+        assert not IL._is_junk(prose), prose
+        assert not buffer_store.is_junk(prose), prose
+
+
+def test_site_branded_headline_stub_is_gated_on_both_paths():
+    """Class 78 (live 19.09.26): a site-branded headline STUB stored as knowledge.
+
+    A brand run, a colon, then `<year> Comparison of ...` and nothing else -- the
+    SERP card's title line, never a sentence. A bare `20xx Comparison of` is
+    ordinary prose (3 control FPs); the brand run before the colon is the
+    discriminator.
+    """
+    import buffer_store
+
+    leak = ("Tech Frontline Low-Code AI Workflow Automation: 2026 Comparison of "
+            "Zapier, Make, and Tray.")
+    assert IL._is_site_headline_stub(leak)
+    assert buffer_store._is_site_headline_stub(leak)
+    assert IL._is_junk(leak)
+    assert buffer_store.is_junk(leak)
+    assert buffer_store._is_nav_chrome(leak)
+    for prose in (
+        "A 2026 Comparison of quantization methods shows 4-bit wins on memory.",
+        "The team published a 2026 Comparison of agent frameworks in the appendix.",
+        "Our benchmark: 2026 Comparison of vLLM, TensorRT, and llama.cpp throughput.",
+        "Tech Frontline published a low-code AI workflow automation guide comparing "
+        "Zapier, Make, and Tray in 2026.",
+        "NVIDIA Research Blog: 2026 advances in agent architectures and tool use.",
+        "The ACM Digital Library: 2025 survey of prompt-injection defenses in "
+        "production.",
+    ):
+        assert not IL._is_site_headline_stub(prose), prose
+        assert not buffer_store._is_site_headline_stub(prose), prose
+        assert not IL._is_junk(prose), prose
+        assert not buffer_store.is_junk(prose), prose
+
+
+def test_fact_box_label_chain_is_gated_on_both_paths():
+    """Class 79 (live 19.09.26): an incident/vendor FACT BOX stored as an answer.
+
+    The page's own label pair `Key Points` ... `Affected objects:` welded in one
+    run. 191 chars with digits, so both gates fired. `Affected objects` alone is
+    ordinary prose, and so is `Key Points` alone -- the WELDED pair is the marker.
+    """
+    import buffer_store
+
+    leak = (
+        "Key Points Event time: 2026-05-10, James Shore published an analysis "
+        "article -Affected objects: All developers and technical teams who use "
+        "AI coding agents"
+    )
+    assert IL._is_fact_box_label_chain(leak)
+    assert buffer_store._is_fact_box_label_chain(leak)
+    assert IL._is_junk(leak)
+    assert buffer_store.is_junk(leak)
+    assert buffer_store._is_nav_chrome(leak)
+    for prose in (
+        "Key Points from the paper: quantization cuts memory, and pruning cuts "
+        "latency.",
+        "The affected objects are developers and technical teams who use AI coding "
+        "agents.",
+        "Event time: 2026-05-10; the analysis article by James Shore discusses AI "
+        "coding agents.",
+        "Our summary: the report covers Affected objects: developers using coding "
+        "agents.",
+        "The paper's key points were extracted by the agent and stored as insights.",
+        "Affected objects include all developers and technical teams who use AI "
+        "coding agents.",
+    ):
+        assert not IL._is_fact_box_label_chain(prose), prose
+        assert not buffer_store._is_fact_box_label_chain(prose), prose
+        assert not IL._is_junk(prose), prose
+        assert not buffer_store.is_junk(prose), prose
+
+
+def test_own_plan_plus_run_without_dangling_marker_is_gated_on_both_paths():
+    """Class 80 (live 19.09.26): the agent's OWN deliverable plan, minus the `2.`.
+
+    Same own-artifact family as class 66, but it ends in prose instead of a
+    dangling list marker, so `_PROMPT_PLAN_ECHO_RE` never fired. The
+    discriminator is the own-artifact title AND a 3-way `+`-joined deliverable
+    run: `RAM/Disk/Cron` alone hits 5 episodes and `skill + cron` alone hits 3
+    episodes plus 1 control FP.
+    """
+    import buffer_store
+
+    leak = (
+        "Energy efficiency: AI performance optimization: Python script for "
+        "RAM/Disk/Cron monitoring + optimization suggestions + skill + cron job "
+        "every 12h."
+    )
+    assert IL._is_own_plan_plus_run(leak)
+    assert buffer_store._is_own_plan_plus_run(leak)
+    assert IL._is_junk(leak)
+    assert buffer_store.is_junk(leak)
+    assert buffer_store._is_nav_chrome(leak)
+    for prose in (
+        "Energy efficiency: AI performance optimization reduces FLOPs + memory + "
+        "latency in inference.",
+        "The agent's own artifacts: RAM/Disk monitoring + optimization suggestions "
+        "+ skill.",
+        "We wrote a Python script for RAM/Disk monitoring, added a skill and a "
+        "cron job every 12h.",
+        "Energy efficiency: AI performance optimization: the study combines "
+        "pruning + distillation to cut cost.",
+        "Energy efficiency: the report covers quantization + pruning + "
+        "distillation for inference cost.",
+        "Efficiency: the pipeline combines caching + batching + sharding across "
+        "three services.",
+    ):
+        assert not IL._is_own_plan_plus_run(prose), prose
+        assert not buffer_store._is_own_plan_plus_run(prose), prose
+        assert not IL._is_junk(prose), prose
+        assert not buffer_store.is_junk(prose), prose
+
         assert not buffer_store.is_junk(prose), prose

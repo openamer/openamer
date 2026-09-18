@@ -2418,6 +2418,99 @@ def _is_repeat_badge_glyph_run(text):
     return len(_REPEAT_BADGE_GLYPH_RE.findall(text or "")) >= 2
 
 
+
+# class 77/78/79/80 markers (live 19.09.26) -- see the helpers below.
+# A security-advisory LISTING row: vendor/product run glued to a `-- <Mon DD, YYYY>`
+# dateline and a bare CVE id, or a severity badge welded to the end of the text.
+#   "Cisco Ios Xe Rockwellautomation Allen Bradley Stratix 5200 Firmware + 5 --
+#    Oct 16, 2023 CVE-2025-20337 CRITICAL 10."
+# 115 chars WITH digits -> the `>=90` length trust AND the technical-signal gate
+# both fired. `CVE-<id>` alone is ordinary security prose; the discriminator is
+# the advisory furniture (dateline->CVE weld, or a trailing `<SEVERITY> <score>.`).
+_ADVISORY_ROW_RE = _re.compile(
+    r"(?:\s--\s+[A-Z][a-z]{2}\s+\d{1,2},\s+\d{4}\s+CVE-\d{4}-\d{4,}\b"
+    r"|CVE-\d{4}-\d{4,}\s+(?:CRITICAL|HIGH|MEDIUM|LOW)\s+\d{1,2}(?:\.\d)?\.?\s*$)",
+    _re.IGNORECASE)
+
+# A site-branded HEADLINE STUB stored as the answer: a short multi-TitleCase run,
+# a colon, then `<year> Comparison of ...` and nothing else -- the SERP card's
+# title line, never a sentence.
+#   "Tech Frontline Low-Code AI Workflow Automation: 2026 Comparison of Zapier,
+#    Make, and Tray."
+# A bare `20xx Comparison of` is ordinary prose (3 control FPs); the brand run
+# BEFORE the colon is the discriminator (0 FPs at 2-4 TitleCase tokens).
+_SITE_HEADLINE_STUB_RE = _re.compile(
+    r"^\s*(?:[A-Z][\w&.\-]*\s+){2,4}[^:\r\n]{0,50}:\s*20\d\d\s+Comparison of\b",
+    _re.MULTILINE)
+
+# An incident/vendor FACT BOX: the page's own label pair `Key Points` ...
+# `Affected objects:` welded in one run.
+#   "Key Points Event time: 2026-05-10, James Shore published an analysis article
+#    -Affected objects: All developers and technical teams who use AI coding agents"
+# 191 chars with digits -> both gates fired. `Affected objects` alone is ordinary
+# prose (the vendor's own label is the anchor); the WELDED pair is the marker.
+_FACT_BOX_LABEL_CHAIN_RE = _re.compile(
+    r"\bKey Points\b[\s\S]{0,200}\bAffected objects\s*:",
+    _re.IGNORECASE)
+
+
+def _is_advisory_row(text):
+    """True for a security-advisory LISTING row (class 77, live 19.09.26).
+
+    A vendor/product run welded to an advisory dateline + CVE id, or a CVE id
+    with a trailing severity badge and score. Measured: 1 buffer hit and it IS
+    the leak -> 0 real-prose FPs on 9 hostile security-prose controls, 0 of
+    1,408 asserted gate-test literals, 0/3,059 `longterm_episodes`.
+    """
+    return bool(_ADVISORY_ROW_RE.search(text or ""))
+
+
+def _is_site_headline_stub(text):
+    """True for a site-branded headline stub (class 78, live 19.09.26).
+
+    A brand run, a colon, then `<year> Comparison of ...` and nothing further.
+    Measured: 1 buffer hit (the leak) -> 0 FPs on 6 prose controls, 0 test
+    literals, 0/3,059 episodes.
+    """
+    return bool(_SITE_HEADLINE_STUB_RE.search(text or ""))
+
+
+def _is_fact_box_label_chain(text):
+    """True for an incident/vendor FACT BOX label chain (class 79, live 19.09.26).
+
+    `Key Points` welded within 200 chars of the vendor's own `Affected objects:`
+    label. Measured: 1 buffer hit (the leak) -> 0 FPs on 6 prose controls, 0
+    test literals, 0/3,059 episodes.
+    """
+    return bool(_FACT_BOX_LABEL_CHAIN_RE.search(text or ""))
+
+
+# class 80 marker: the agent's OWN deliverable plan WITHOUT the dangling list
+# marker that class 66 required. Live 19.09.26:
+#   "Energy efficiency: AI performance optimization: Python script for RAM/Disk/
+#    Cron monitoring + optimization suggestions + skill + cron job every 12h."
+# Same own-artifact family as class 66 (the German form is `KI-Performance-
+# Optimierung: ...`), but it ends in prose instead of a dangling `2.`, so
+# `_PROMPT_PLAN_ECHO_RE` never fired. The discriminator is the own-artifact
+# title AND a 3-way `+`-joined deliverable run (bare `RAM/Disk/Cron` alone hits
+# 5 episodes; bare `skill + cron` hits 3 episodes + 1 control FP).
+_OWN_PLAN_PLUS_RUN_RE = _re.compile(
+    r"^\s*(?:Energy efficiency|KI-Performance-Optimierung|AI performance optimization"
+    r"|Performance optimization|Efficiency)[^:\r\n]{0,40}:"
+    r"[^\r\n]{0,200}\+[^\r\n]{0,120}\+[^\r\n]{0,120}\+",
+    _re.IGNORECASE | _re.MULTILINE)
+
+
+def _is_own_plan_plus_run(text):
+    """True for the agent's own deliverable plan stored as knowledge (class 80).
+
+    Measured: 1 buffer hit (the leak) -> 0 FPs on 6 prose controls, 0 test
+    literals; the single `longterm_episodes` hit is the SAME own-artifact string
+    in German, i.e. the same leak, not world knowledge.
+    """
+    return bool(_OWN_PLAN_PLUS_RUN_RE.search(text or ""))
+
+
 def _is_nav_chrome(text):
     """True when text is page chrome (entities, marketing, UI, template leaks)."""
     if _ENTITY.search(text):
@@ -2497,6 +2590,18 @@ def _is_nav_chrome(text):
         return True
     if _is_generated_plan_echo_fragment(text):
         return True
+    if _is_generated_plan_echo_fragment(text):
+        return True
+    # a security-advisory listing row / headline stub / fact box / own plan
+    # (classes 77-80, 19.09.26)
+    if _is_advisory_row(text):
+        return True
+    if _is_site_headline_stub(text):
+        return True
+    if _is_fact_box_label_chain(text):
+        return True
+    if _is_own_plan_plus_run(text):
+        return True
     if _is_sidebar_listing_chrome(text):
         return True
     # the page's own META blurb (same rule as internet_learner._is_page_meta_blurb)
