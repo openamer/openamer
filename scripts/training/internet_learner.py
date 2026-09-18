@@ -2363,6 +2363,45 @@ def _is_label_bullet_chain(text):
     return len(_LABEL_BULLET_RE.findall(text or "")) >= 2
 
 
+# class 72 markers (live 19.09.26) -- see _is_repo_stat_footer_run.
+# A repo page's stat FOOTER welded onto the end of its description:
+# `<N> stars <M> forks <Lang> <Licence>.` -- chrome, not an insight.
+_REPO_STAT_FOOTER_RE = re.compile(
+    r"\b\d[\d,]*\s+stars?\s+\d[\d,]*\s+forks?\b\s+"
+    r"(?:Python|Go|TypeScript|JavaScript|Rust|C\+\+|Java|Jupyter(?:\s+Notebook)?|Shell|C)\s+"
+    r"(?:Apache|MIT|GPL|BSD|MPL|LGPL)[\w.\-]*\s*\.\s*$")
+_EXAMPLE_CUE_RE = re.compile(
+    r"(?:e\.g\.|for example|such as|\blike\b|example:)\s*(?:[A-Za-z<>/|,.\-]+\s+){0,4}$",
+    re.IGNORECASE)
+
+
+def _is_repo_stat_footer_run(text):
+    """True when `text` ends in a repo page's stat footer (class 72).
+
+    Live 19.09.26: `cycle_f_multi_domain` stored
+
+        NeMo: a PyTorch framework for physics ML, from install to first
+        surrogate Open-source deep-learning framework for building, training,
+        and fine-tuning deep learning models using state-of-the-art Physics-ML
+        methods 3,262 stars 784 forks Python Apache-2.
+
+    251 chars with digits, so the >=90 length trust and the technical-signal
+    gate both fired. The `stars`/`forks` counters alone are ordinary prose
+    (`The repository now has 3,262 stars and 784 forks, making it popular.`),
+    so the discriminator is the WELDED FOOTER: counter pair + language +
+    licence, ending the record. Real prose that only QUOTES such a footer
+    (e.g. `..., e.g. repo 12 stars 34 forks Python MIT.`) is exempted by the
+    small example-cue lookbehind. Measured: 1 buffer hit and it IS the leak;
+    0/23 hostile prose controls; 0/3,059 longterm_episodes; 0/1,159 test
+    literals.
+    """
+    t = text or ""
+    m = _REPO_STAT_FOOTER_RE.search(t)
+    if not m:
+        return False
+    return not _EXAMPLE_CUE_RE.search(t[:m.start()])
+
+
 # class 71 markers (live 18.09.26) -- see _is_repeat_badge_glyph_run.
 # A changelog-style list where the page's own "new" badge glyph (U+1F195)
 # annotates >= 2 entries in one record.
@@ -2437,6 +2476,9 @@ def _is_junk(text):
         return True
     # a repeated page badge glyph on list entries (class 71, 18.09.26)
     if _is_repeat_badge_glyph_run(t):
+        return True
+    # a repo page's stat footer welded onto its description (class 72, 19.09.26)
+    if _is_repo_stat_footer_run(t):
         return True
     # a page-meta listing widget (same narrow rule as
     # buffer_store._is_sidebar_listing_chrome)

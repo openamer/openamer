@@ -3634,3 +3634,45 @@ def test_repeat_badge_glyph_run_is_gated_on_both_paths():
         assert not IL._is_repeat_badge_glyph_run(prose), prose
         assert not IL._is_junk(prose), prose
         assert not buffer_store.is_junk(prose), prose
+
+
+def test_repo_stat_footer_run_is_gated_on_both_paths():
+    """A repo page's stat footer welded onto its description is not knowledge (class 72).
+
+    Live 19.09.26: cycle_f_multi_domain stored `NeMo: a PyTorch framework for
+    physics ML ... methods 3,262 stars 784 forks Python Apache-2.` -- counters
+    plus language plus licence at the END of the record. The counters alone are
+    ordinary prose, so the discriminator is the welded footer; a record that
+    merely QUOTES such a footer (example cue in front) stays learnable.
+    """
+    import buffer_store
+    leaks = (
+        "NeMo: a PyTorch framework for physics ML, from install to first surrogate "
+        "Open-source deep-learning framework for building, training, and fine-tuning "
+        "deep learning models using state-of-the-art Physics-ML methods 3,262 stars "
+        "784 forks Python Apache-2.",
+        "RAGFlow 91,000 stars 9,400 forks TypeScript MIT.",
+        "The repo row reads: an engine for RAG 12 stars 34 forks Go BSD-3.",
+    )
+    for leak in leaks:
+        assert IL._is_repo_stat_footer_run(leak), leak
+        assert buffer_store._is_repo_stat_footer_run(leak), leak
+        assert IL._is_junk(leak), leak
+        assert buffer_store._is_nav_chrome(leak), leak
+        assert buffer_store.is_junk(leak), leak
+    for prose in (
+        "The repository now has 3,262 stars and 784 forks, making it the most popular option for Python users.",
+        "The model card reports 12,000 stars, 900 forks and an Apache-2 license issued by the vendor.",
+        "We measured 3,262 stars 784 forks in the dataset statistics table for the Python cohort.",
+        "Stars and forks grew quickly; the 784 forks came mostly from Python users of the library.",
+        "Our crawler stores stars, forks and licence (Apache-2) for each repository row it sees.",
+        "The ranking output prints <name> <stars> <forks> <language> <licence>, e.g. repo 12 stars 34 forks Python MIT.",
+        "Rows look like this, for example: 12 stars 34 forks Python MIT.",
+        "Die Bibliothek hat 3,262 stars 784 forks Python mit Apache-2 Lizenz am Ende.",
+        "A typical fixture such as 8,100 stars 620 forks Python Apache-2 appears in the docs.",
+        "The dataset has 12 stars, 34 forks, and a BSD licence column per repo.",
+    ):
+        assert not IL._is_repo_stat_footer_run(prose), prose
+        assert not buffer_store._is_repo_stat_footer_run(prose), prose
+        assert not IL._is_junk(prose), prose
+        assert not buffer_store.is_junk(prose), prose
