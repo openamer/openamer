@@ -438,6 +438,28 @@ _ARXIV_CHROME_MARKERS = (
     "bibliographic explorer",
 )
 _ARXIV_CHROME_MIN_MARKERS = 2
+# The "View PDF / HTML (experimental)" LISTING header (live 18.09.26, class 52):
+# cycle_h_efficiency stored
+#   "PDF of the paper titled QuIP: 2-Bit Quantization of Large Language Models
+#    With Guarantees, by Jerry Chee and 3 other authors View PDF HTML
+#    (experimental) Abstract: This work studies post-training parameter
+#    quantization in large language models (LLMs)."
+# - a 251-char arXiv listing/abstract-modal header: the title (often truncated,
+# with no leading "PDF of the paper titled") welded to a byline count and the
+# page's own "View PDF HTML (experimental)" controls. Both gates passed it: the
+# digits fed the technical-signal gate and the length cleared the >=90 "long
+# prose" trust.
+#
+# Sibling shape of the marker tuple above, NOT the same row: class-10 rows carry
+# the ABSTRACT PAGE label chain, these carry the listing controls with one or
+# zero class-10 labels, so `view a pdf of the paper titled` never fired. The
+# control pair is unique to the document viewer: a real sentence that merely
+# mentions viewing a PDF or an experimental HTML build carries neither half.
+# Measured (18.09.26): 3/3 live buffer hits are the leak; 0 of 1,003 asserted
+# gate-test literals; 0 of 3,058 longterm_episodes; 0 hand-prose controls.
+_ARXIV_PDF_LABEL_RE = _re.compile(
+    r"view\s+pdf\s+html\s*\(\s*experimental\s*\)",
+    _re.IGNORECASE)
 
 
 def _is_arxiv_abstract_chrome(text):
@@ -445,6 +467,8 @@ def _is_arxiv_abstract_chrome(text):
     low = (text or "").lower()
     if not low:
         return False
+    if _ARXIV_PDF_LABEL_RE.search(low):
+        return True
     return sum(1 for m in _ARXIV_CHROME_MARKERS if m in low) >= _ARXIV_CHROME_MIN_MARKERS
 
 

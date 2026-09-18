@@ -3011,3 +3011,69 @@ def test_news_byline_share_header_is_gated_on_both_paths():
     for text in clean:
         assert not IL._is_news_byline_share_header(text), text
         assert not buffer_store._is_news_byline_share_header(text), text
+
+def test_arxiv_pdf_listing_header_is_gated_on_both_paths():
+    """An arXiv LISTING/abstract-modal header is not knowledge (live 18.09.26).
+
+    cycle_h_efficiency stored, verbatim from the buffer row:
+      "PDF of the paper titled QuIP: 2-Bit Quantization of Large Language
+       Models With Guarantees, by Jerry Chee and 3 other authors View PDF
+       HTML (experimental) Abstract: This work studies post-training
+       parameter quantization in large language models (LLMs)."
+    251 chars: a title (often truncated, with no leading "PDF of the paper
+    titled") welded to a byline count and the page's own "View PDF HTML
+    (experimental)" controls. The digits fed the technical-signal gate and
+    the length cleared the >=90 "long prose" trust, so BOTH gates passed it.
+
+    Sibling of the class-10 ABSTRACT-PAGE chain, not the same row: these
+    carry the listing controls with one or zero of the class-10 labels, so
+    the old `view a pdf of the paper titled` marker never fired. The control
+    pair is unique to the document viewer — real prose that merely mentions
+    viewing a PDF or an experimental HTML build carries neither half.
+    """
+    leaks = (
+        "PDF of the paper titled QuIP: 2-Bit Quantization of Large Language "
+        "Models With Guarantees, by Jerry Chee and 3 other authors View PDF "
+        "HTML (experimental) Abstract: This work studies post-training "
+        "parameter quantization in large language models (LLMs).",
+        "Enhancing Low-Bit Quantization of LLMs Without GPUs, by Jaewoo Song "
+        "and Fangzhen Lin View PDF HTML (experimental) Abstract: The "
+        "quantization of large language models (LLMs) is crucial for "
+        "deploying them on devices with limited computational resources.",
+        "Techniques for Large Language Models, by Yutong Liu and 2 other "
+        "authors View PDF HTML (experimental) Abstract: For large language "
+        "models (LLMs), post-training quantization (PTQ) can significantly "
+        "reduce memory footprint and computational overhead.",
+    )
+    import buffer_store
+    for text in leaks:
+        assert IL._is_arxiv_abstract_chrome(text), text
+        assert IL._is_junk(text), text
+        assert buffer_store._is_arxiv_abstract_chrome(text), text
+        assert buffer_store._is_nav_chrome(text), text
+        assert IL._clean_insight(text) == "", text
+
+    # counter-cases: real prose about papers, PDFs and bylines must survive
+    for text in (
+        "The PDF of the paper titled Attention Is All You Need was cited "
+        "more than 100,000 times and reframed sequence modelling.",
+        "You can view the PDF or the HTML version of the paper on arXiv; "
+        "both links ship the same 2-bit quantization tables.",
+        "The paper, by Jerry Chee and three other authors, shows that 2-bit "
+        "quantization preserves 96% of fp16 accuracy on Qwen3.",
+        "The study by Jaewoo Song and Fangzhen Lin reports that low-bit "
+        "quantization lets a 7B model run on a CPU-only laptop.",
+        "Viewing a PDF is faster than rendering the HTML page when the "
+        "document is longer than about fifty pages.",
+        "The abstract: This work studies post-training parameter "
+        "quantization in large language models and reports a 4x memory cut.",
+        "Access Paper: view the full text on the publisher site once the "
+        "embargo lifts next quarter.",
+        "BitNet stores weights in ternary form, so a 7B model fits in about "
+        "2 GB at int4 with no measurable accuracy loss.",
+    ):
+        assert not IL._is_arxiv_abstract_chrome(text), text
+        assert not buffer_store._is_arxiv_abstract_chrome(text), text
+        assert not IL._is_junk(text), text
+        assert buffer_store.is_junk(text) is False, text
+        assert IL._clean_insight(text), text
