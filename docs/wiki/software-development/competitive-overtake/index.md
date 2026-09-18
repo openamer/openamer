@@ -6,7 +6,7 @@ description: Research competitors and overtake them feature-by-feature.
 # competitive-overtake
 
 **Description:** Research competitors and overtake them feature-by-feature.
-**Lines:** 335 | **Code:** 25 | **Dir:** `competitive-overtake`
+**Lines:** 435 | **Code:** 25 | **Dir:** `competitive-overtake`
 
 ---
 

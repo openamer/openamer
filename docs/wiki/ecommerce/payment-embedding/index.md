@@ -6,7 +6,7 @@ description: Embed PayPal buttons on pages and list on marketplaces.
 # payment-embedding
 
 **Description:** Embed PayPal buttons on pages and list on marketplaces.
-**Lines:** 67 | **Code:** 17 | **Dir:** `payment-embedding`
+**Lines:** 122 | **Code:** 19 | **Dir:** `payment-embedding`
 
 ---
 

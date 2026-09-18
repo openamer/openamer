@@ -6,7 +6,7 @@ description: Use when `openamer update` fails or leaves a broken install.
 # openamer-update-recovery
 
 **Description:** Use when `openamer update` fails or leaves a broken install.
-**Lines:** 497 | **Code:** 52 | **Dir:** `openamer-update-recovery`
+**Lines:** 583 | **Code:** 71 | **Dir:** `openamer-update-recovery`
 
 ---
 

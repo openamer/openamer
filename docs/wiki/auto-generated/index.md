@@ -4,32 +4,90 @@ title: auto-generated
 
 # 📦 auto-generated
 
-34 skills
+92 skills
 
 - [auto-best-practice-from-official](auto-best-practice-from-official/) — LoRA · Hugging Face — We propose Low-Rank Adaptation, or LoRA, which freezes the
+- [auto-competitor-intelligence-ai-coding](auto-competitor-intelligence-ai-coding/) — PowerContext, Context for work that humans and agents hand off and continue 1 pr
+- [auto-competitor-intelligence-an-ai](auto-competitor-intelligence-an-ai/) — About 5-9 years in, they d notice their teams were no longer getting shit done, 
 - [auto-competitor-intelligence-autogpt-improvem](auto-competitor-intelligence-autogpt-improvem/) — Ctrl k GitBook Assistant Ask License GitHub More Home AutoGPT Platform Integrati
+- [auto-competitor-intelligence-claudepowered-ai](auto-competitor-intelligence-claudepowered-ai/) — AI agent system prompts cannot serve as the sole enforcement layer — guardrails 
+- [auto-competitor-intelligence-crush-glamourous](auto-competitor-intelligence-crush-glamourous/) — 
 - [auto-competitor-intelligence-devin-ai](auto-competitor-intelligence-devin-ai/) — 
+- [auto-competitor-intelligence-electricity-use](auto-competitor-intelligence-electricity-use/) — As a heavy Claude Code user, Simon estimates his own usage at the equivalent of 
+- [auto-competitor-intelligence-jetbrains-ides](auto-competitor-intelligence-jetbrains-ides/) — The AI Free tier gives you unlimited code completion and access to local AI mode
+- [auto-competitor-intelligence-jetbrains-zed](auto-competitor-intelligence-jetbrains-zed/) — Protocol ACP | Techzine Oct 08, 2025 Zed Code Editor Adds Agent Protocol for Fle
+- [auto-competitor-intelligence-mouse-precision](auto-competitor-intelligence-mouse-precision/) — Mouse Precision Editing Tools for AI Coding Agents HIC Mouse gives AI coding age
+- [auto-competitor-intelligence-okf-agent](auto-competitor-intelligence-okf-agent/) — 
+- [auto-competitor-intelligence-opencode-ai](auto-competitor-intelligence-opencode-ai/) — Terminal-Interface, Desktop-App und IDE-Extension Doku lesen Der Open-Source AI-
+- [auto-competitor-intelligence-opencode-open](auto-competitor-intelligence-opencode-open/) — OpenCode | The open source AI coding agent — What is OpenCode? OpenCode is an op
 - [auto-competitor-intelligence-openhands-agent](auto-competitor-intelligence-openhands-agent/) — 
+- [auto-competitor-intelligence-pythonopenaichat](auto-competitor-intelligence-pythonopenaichat/) — Session stores conversation history for a specific session, allowing agents to m
+- [auto-competitor-intelligence-some-uncomfortab](auto-competitor-intelligence-some-uncomfortab/) — 
+- [auto-competitor-intelligence-the-secret](auto-competitor-intelligence-the-secret/) — 
+- [auto-competitor-intelligence-things-i](auto-competitor-intelligence-things-i/) — Dan Goodin – 8/27/2026 | 157 How OpenAI let a mob of LLM agents game a test and 
+- [auto-competitor-intelligence-undisclosed-addi](auto-competitor-intelligence-undisclosed-addi/) — The addition was a prompt injection, a form of AI attack that exploits an LLM s 
+- [auto-competitor-intelligence-we-asked](auto-competitor-intelligence-we-asked/) — 
+- [auto-efficiency-learning-a-visual](auto-efficiency-learning-a-visual/) — 
+- [auto-efficiency-learning-advanced-quantizatio](auto-efficiency-learning-advanced-quantizatio/) — Sekunden Advanced IP Scanner genießt das Vertrauen von mehr als 70 Millionen Nut
 - [auto-efficiency-learning-edge-ai](auto-efficiency-learning-edge-ai/) — 
+- [auto-efficiency-learning-efficientqat-llm](auto-efficiency-learning-efficientqat-llm/) — Microsoft AI, Cloud, Productivity, Computing, Gaming & Apps Explore Microsoft pr
 - [auto-efficiency-learning-quantization-techniq](auto-efficiency-learning-quantization-techniq/) — 
+- [auto-efficiency-learning-quip-2bit](auto-efficiency-learning-quip-2bit/) — 
+- [auto-efficiency-learning-show-hn](auto-efficiency-learning-show-hn/) — Cold start — every GPU, every model size GPU Model ZSE vLLM Speedup NVIDIA T4 (1
 - [auto-efficiency-learning-small-language](auto-efficiency-learning-small-language/) — 
+- [auto-efficiency-learning-splitquantv2-enhanci](auto-efficiency-learning-splitquantv2-enhanci/) — Subquadratic Attention Harvard NVIDIA Arya Tschand Yaosheng Fu Vijay Janapa Redd
+- [auto-efficiency-learning-towards-optimal](auto-efficiency-learning-towards-optimal/) — GB RTX 3060 12GB (Q4) / RTX 3070 8GB (Q4_K_S) 13B (Llama 2 13B) 26 GB 14 GB 8 GB
+- [auto-efficiency-learning-vptq-extreme](auto-efficiency-learning-vptq-extreme/) — B @ 3/4 bits models [2024-10-18] Open source community contributes Mistral Large
 - [auto-explain-how-sleep-consolidation](auto-explain-how-sleep-consolidation/) — 
 - [auto-how-does-energy-efficiency](auto-how-does-energy-efficiency/) — 
+- [auto-internet-learning-40-of](auto-internet-learning-40-of/) — Home Artificial Intelligence by Lynn Greiner Many autonomous agents doomed by go
 - [auto-internet-learning-ai-agent](auto-internet-learning-ai-agent/) — 
+- [auto-internet-learning-ai-agents](auto-internet-learning-ai-agents/) — Conclusion Key takeaways Agent reflection is a feedback loop where AI agents cri
+- [auto-internet-learning-amazon-demands](auto-internet-learning-amazon-demands/) — Amazon demands Perplexity stop using AI agent to make purchases Amazon has sent 
+- [auto-internet-learning-an-ai](auto-internet-learning-an-ai/) — ChatGPT Work - 12th September 2026 OpenAI agents attacked RubyGems back in May -
 - [auto-internet-learning-autonomous-ai](auto-internet-learning-autonomous-ai/) — AUTONOMOUS - the world's largest summit for AI innovators — Sept 9-10 | World's 
 - [auto-internet-learning-llm-agents](auto-internet-learning-llm-agents/) — Neuromorphic Computing - Fraunhofer Institute for … — Neuromorphic computing is 
+- [auto-internet-learning-mit-researchers](auto-internet-learning-mit-researchers/) — 
+- [auto-internet-learning-openai-and](auto-internet-learning-openai-and/) — Southbound 4 Train at Manhattan’s Spring Street Station A 24-year-old woman and 
+- [auto-internet-learning-the-ai](auto-internet-learning-the-ai/) — 
+- [auto-latest-research-insight-adaptive](auto-latest-research-insight-adaptive/) — 
+- [auto-latest-research-insight-ai](auto-latest-research-insight-ai/) — AshleysBrain 3 hours ago | 9 comments 77 Neovim have a ~$800k Bitcoin donation s
+- [auto-latest-research-insight-an](auto-latest-research-insight-an/) — 
 - [auto-latest-research-insight-arxiv](auto-latest-research-insight-arxiv/) — No thanks “Sebastian is an incredible educator and always has invaluable insight
+- [auto-latest-research-insight-bitnet](auto-latest-research-insight-bitnet/) — F16 on BitNet-embedding-270M prefill (8 threads) Supports I2_S conversion with o
+- [auto-latest-research-insight-deepseekr1](auto-latest-research-insight-deepseekr1/) — Training Details of the Second RL Stage 4 Experiment 5 Ethics and Safety Stateme
+- [auto-latest-research-insight-ladder](auto-latest-research-insight-ladder/) — August 24, 2026 1 Introduction Reinforcement Learning (RL) has emerged as a high
+- [auto-latest-research-insight-largescale](auto-latest-research-insight-largescale/) — In each setting, LLM-based methods substantially outperform classical baselines,
+- [auto-latest-research-insight-llms](auto-latest-research-insight-llms/) — 
+- [auto-latest-research-insight-megatrain](auto-latest-research-insight-megatrain/) — MegaTrain Full Precision Training of 100B+ Parameter LLMs on a Single GPU A RAM-
+- [auto-latest-research-insight-proofofthought](auto-latest-research-insight-proofofthought/) — 
+- [auto-latest-research-insight-recursively](auto-latest-research-insight-recursively/) — To address this, we propose to recursively generate summaries/ memory using larg
+- [auto-latest-research-insight-selfretrieval](auto-latest-research-insight-selfretrieval/) — Self-Retrieval generates relevant passage $p$ using the knowledge embedded withi
+- [auto-latest-research-insight-the](auto-latest-research-insight-the/) — 
+- [auto-latest-research-insight-wikidata](auto-latest-research-insight-wikidata/) — 
 - [auto-multidomain-learning-business-automation](auto-multidomain-learning-business-automation/) — 10 Beste KI-Agenten für die Automatisierung von ... - Unite.AI — 17. Juli 2026 ·
 - [auto-multidomain-learning-climate-science](auto-multidomain-learning-climate-science/) — Artificial intelligence for modeling and understanding extreme weather ... — 24.
 - [auto-multidomain-learning-education-ai](auto-multidomain-learning-education-ai/) — 
 - [auto-multidomain-learning-financial-markets](auto-multidomain-learning-financial-markets/) — Esperanto Español Eesti Euskara فارسی Suomi Na Vosa Vakaviti Français Nordfriisk
+- [auto-multidomain-learning-if-ai](auto-multidomain-learning-if-ai/) — August 16, 2026 12 min read Nvidia AI Infrastructure GPUs FinOps Wall Street Nvi
 - [auto-multidomain-learning-legal-ai](auto-multidomain-learning-legal-ai/) — 
+- [auto-multidomain-learning-llms-are](auto-multidomain-learning-llms-are/) — 
 - [auto-multidomain-learning-medical-diagnosis](auto-multidomain-learning-medical-diagnosis/) — Artificial intelligence-driven transformative applications in disease ... — In c
+- [auto-multidomain-learning-nasa-ibm](auto-multidomain-learning-nasa-ibm/) — It took several weeks and dozens of GPUs to train the model on 40 years of histo
+- [auto-multidomain-learning-neural-architecture](auto-multidomain-learning-neural-architecture/) — 
+- [auto-multidomain-learning-opensource-medical](auto-multidomain-learning-opensource-medical/) — Updated Sep 14, 2026 Python ProjectNeura / MIPCandy Sponsor Star 294 Code Issues
 - [auto-multidomain-learning-philosophy-of](auto-multidomain-learning-philosophy-of/) — 
 - [auto-multidomain-learning-physics-simulation](auto-multidomain-learning-physics-simulation/) — Distinction between classical and modern physics 2.
+- [auto-multidomain-learning-python-climate](auto-multidomain-learning-python-climate/) — This article presents a comprehensive, open-source Python framework that democra
+- [auto-multidomain-learning-pytorch-physics](auto-multidomain-learning-pytorch-physics/) — A collection of methods in an intelligent software structure allows the user to 
+- [auto-multidomain-learning-show-hn](auto-multidomain-learning-show-hn/) — 
+- [auto-security-learning-agent-sandboxing](auto-security-learning-agent-sandboxing/) — 
 - [auto-security-learning-ai-agent](auto-security-learning-ai-agent/) — 
+- [auto-security-learning-how-are](auto-security-learning-how-are/) — 
 - [auto-security-learning-jailbreak-prevention](auto-security-learning-jailbreak-prevention/) — 
 - [auto-security-learning-llm-prompt](auto-security-learning-llm-prompt/) — 
+- [auto-security-learning-mcp-server](auto-security-learning-mcp-server/) — Attack Success Rate (360 runs 60 payloads 2 models ~3 reps) Paradigm gemma4-e2b 
+- [auto-security-learning-owasp-llm](auto-security-learning-owasp-llm/) — Autonomous by Design, Uncontrolled in Practice 2026-09-08 Executive Summary Betw
 - [auto-share-a-lesson-you](auto-share-a-lesson-you/) — Fertig, Damir! ✅ Das 3-Tier-Routing ist eingerichtet und **live verifiziert**.
 - [auto-structural-connection-between-energy](auto-structural-connection-between-energy/) — 
 - [auto-structural-connection-between-learning](auto-structural-connection-between-learning/) — 

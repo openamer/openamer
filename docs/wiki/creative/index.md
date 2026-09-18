@@ -4,7 +4,7 @@ title: creative
 
 # 📦 creative
 
-16 skills
+17 skills
 
 - [architecture-diagram](architecture-diagram/) — Dark-themed SVG architecture/cloud/infra diagrams as HTML.
 - [ascii-art](ascii-art/) — ASCII art: pyfiglet, cowsay, boxes, image-to-ascii.
@@ -19,6 +19,7 @@ title: creative
 - [p5js](p5js/) — p5.js sketches: gen art, shaders, interactive, 3D.
 - [popular-web-designs](popular-web-designs/) — 54 real design systems (Stripe, Linear, Vercel) as HTML/CSS.
 - [pretext](pretext/) — Build creative browser demos with DOM-free text layout.
+- [python-audio-synthesis](python-audio-synthesis/) — Use when generating WAV audio from data in pure Python.
 - [sketch](sketch/) — Throwaway HTML mockups: 2-3 design variants to compare.
 - [songwriting-and-ai-music](songwriting-and-ai-music/) — Songwriting craft and Suno AI music prompts.
 - [touchdesigner-mcp](touchdesigner-mcp/) — Control TouchDesigner via twozero MCP.

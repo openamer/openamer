@@ -6,7 +6,7 @@ description: Use when verifying a clean git state on autocrlf repos.
 # git-clean-verification
 
 **Description:** Use when verifying a clean git state on autocrlf repos.
-**Lines:** 101 | **Code:** 13 | **Dir:** `git-clean-verification`
+**Lines:** 255 | **Code:** 39 | **Dir:** `git-clean-verification`
 
 ---
 

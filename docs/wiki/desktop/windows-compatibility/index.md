@@ -6,7 +6,7 @@ description: Use on Windows for computer-use: app-launch, UWP, popup.
 # windows-compatibility
 
 **Description:** Use on Windows for computer-use: app-launch, UWP, popup.
-**Lines:** 578 | **Code:** 98 | **Dir:** `windows-compatibility`
+**Lines:** 626 | **Code:** 103 | **Dir:** `windows-compatibility`
 
 ---
 

@@ -6,7 +6,7 @@ description: Use for competitor research: find gaps and plan overtake.
 # competitive-analysis
 
 **Description:** Use for competitor research: find gaps and plan overtake.
-**Lines:** 300 | **Code:** 32 | **Dir:** `competitive-analysis`
+**Lines:** 353 | **Code:** 32 | **Dir:** `competitive-analysis`
 
 ---
 

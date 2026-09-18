@@ -4,66 +4,30 @@ title: imported
 
 # 📦 imported
 
-61 skills
+25 skills
 
-- [alpha](alpha/) — Fixture dispatcher with a mode table and forced-read references.
-- [autoplan](autoplan/) — Auto-review pipeline — reads the full CEO, design, eng, and DX review skills fro
-- [benchmark](benchmark/) — Performance regression detection using the browse daemon. (gstack)
-- [benchmark-models](benchmark-models/) — Cross-model benchmark for gstack skills. (gstack)
-- [beta](beta/) — Clean fixture tool skill with no forced reads and no mode table.
-- [browse](browse/) — Fast headless browser for QA testing and site dogfooding. (gstack)
-- [canary](canary/) — Post-deploy canary monitoring. (gstack)
-- [careful](careful/) — Safety guardrails for destructive commands. (gstack)
-- [codex](codex/) — OpenAI Codex CLI wrapper — three modes. (gstack)
-- [context-restore](context-restore/) — Restore working context saved earlier by /context-save. (gstack)
-- [context-save](context-save/) — Save working context. (gstack)
-- [cso](cso/) — Chief Security Officer mode. (gstack)
-- [design-consultation](design-consultation/) — Design consultation: understands your product, researches the landscape, propose
-- [design-html](design-html/) — Design finalization: generates production-quality Pretext-native HTML/CSS. (gsta
-- [design-review](design-review/) — Designer's eye QA: finds visual inconsistency, spacing issues, hierarchy problem
-- [design-shotgun](design-shotgun/) — Design shotgun: generate multiple AI design variants, open a comparison board, c
-- [devex-review](devex-review/) — Live developer experience audit. (gstack)
-- [diagram](diagram/) — Turn an English description (or mermaid source) into a diagram triplet: the sour
-- [document-generate](document-generate/) — Generate missing documentation from scratch for a feature, module, or entire pro
-- [document-release](document-release/) — Post-ship documentation update. (gstack)
-- [freeze](freeze/) — Restrict file edits to a specific directory for the session. (gstack)
-- [gstack](gstack/) — Router for the gstack skill suite. (gstack)
-- [gstack-openclaw-ceo-review](gstack-openclaw-ceo-review/) — Use when asked to review a plan, challenge a proposal, run a CEO review, poke ho
-- [gstack-openclaw-investigate](gstack-openclaw-investigate/) — Use when asked to debug, fix a bug, investigate an error, or do root cause analy
-- [gstack-openclaw-office-hours](gstack-openclaw-office-hours/) — Use when asked to brainstorm, evaluate whether an idea is worth building, run of
-- [gstack-openclaw-retro](gstack-openclaw-retro/) — Weekly engineering retrospective. Analyzes commit history, work patterns, and co
-- [gstack-upgrade](gstack-upgrade/) — Upgrade gstack to the latest version.
-- [guard](guard/) — Full safety mode: destructive command warnings + directory-scoped edits. (gstack
-- [hackernews-frontpage](hackernews-frontpage/) — Scrape the Hacker News front page (titles, points, comment counts).
-- [health](health/) — Code quality dashboard. (gstack)
-- [investigate](investigate/) — Systematic debugging with root cause investigation. (gstack)
-- [ios-clean](ios-clean/) — Remove the DebugBridge SPM package and all #if DEBUG wiring from an iOS app. (gs
-- [ios-design-review](ios-design-review/) — Visual design audit for iOS apps on real hardware. (gstack)
-- [ios-fix](ios-fix/) — Autonomous iOS bug fixer. (gstack)
-- [ios-qa](ios-qa/) — Live-device iOS QA for SwiftUI apps. (gstack)
-- [ios-sync](ios-sync/) — Regenerate the iOS debug bridge against the latest upstream gstack templates. (g
-- [land-and-deploy](land-and-deploy/) — Land and deploy workflow. (gstack)
-- [landing-report](landing-report/) — Read-only queue dashboard for workspace-aware ship. (gstack)
-- [learn](learn/) — Manage project learnings.
-- [make-pdf](make-pdf/) — Turn any markdown file into a publication-quality PDF. (gstack)
-- [office-hours](office-hours/) — YC Office Hours — two modes. (gstack)
-- [open-gstack-browser](open-gstack-browser/) — Launch GStack Browser — AI-controlled Chromium with the sidebar extension baked 
-- [pair-agent](pair-agent/) — Pair a remote AI agent with your browser. (gstack)
-- [plan-ceo-review](plan-ceo-review/) — CEO/founder-mode plan review. (gstack)
-- [plan-design-review](plan-design-review/) — Designer's eye plan review — interactive, like CEO and Eng review. (gstack)
-- [plan-devex-review](plan-devex-review/) — Interactive developer experience plan review. (gstack)
-- [plan-eng-review](plan-eng-review/) — Eng manager-mode plan review. (gstack)
-- [plan-tune](plan-tune/) — Self-tuning question sensitivity + developer psychographic for gstack (v1: obser
-- [qa](qa/) — Systematically QA test a web application and fix bugs found. (gstack)
-- [qa-only](qa-only/) — Report-only QA testing. (gstack)
-- [retro](retro/) — Weekly engineering retrospective. (gstack)
-- [review](review/) — Pre-landing PR review. (gstack)
-- [scrape](scrape/) — Pull data from a web page. (gstack)
-- [setup-browser-cookies](setup-browser-cookies/) — Import cookies from your real Chromium browser into the headless browse session.
-- [setup-deploy](setup-deploy/) — Configure deployment settings for /land-and-deploy.
-- [setup-gbrain](setup-gbrain/) — Set up gbrain for this coding agent: install the CLI, initialize a local PGLite 
-- [ship](ship/) — Ship workflow: detect + merge base branch, run tests, review diff, bump VERSION,
-- [skillify](skillify/) — Codify the most recent successful /scrape flow into a permanent browser-skill on
-- [spec](spec/) — Turn vague intent into a precise, executable spec in five phases. (gstack)
-- [sync-gbrain](sync-gbrain/) — Keep gbrain current with this repo's code and refresh agent search guidance in C
-- [unfreeze](unfreeze/) — Clear the freeze boundary set by /freeze, allowing edits to all directories agai
+- [hf-cli](hf-cli/) — Hugging Face Hub CLI (`hf`) for downloading, uploading, and managing models, dat
+- [hf-cloud-aws-context-discovery](hf-cloud-aws-context-discovery/) — Discover the user's local AWS context (active profile, region, account ID, calle
+- [hf-cloud-python-env-setup](hf-cloud-python-env-setup/) — Set up an isolated Python environment for SageMaker / AWS work, with the right P
+- [hf-cloud-sagemaker-deployment-planner](hf-cloud-sagemaker-deployment-planner/) — Plan and coordinate the deployment of a model to Amazon SageMaker AI. Use this s
+- [hf-cloud-sagemaker-iam-preflight](hf-cloud-sagemaker-iam-preflight/) — Ensure a usable SageMaker execution role exists before deploying or training. Us
+- [hf-cloud-sagemaker-production-defaults](hf-cloud-sagemaker-production-defaults/) — Create a SageMaker endpoint (real-time, real-time scale-to-zero, or async) with 
+- [hf-cloud-serving-image-selection](hf-cloud-serving-image-selection/) — Pick the right serving container for a SageMaker model deployment and find its c
+- [hf-mem](hf-mem/) — Hugging Face CLI to estimate the required memory to load Safetensors or GGUF mod
+- [huggingface-best](huggingface-best/) — Use when the user asks about finding the best, top, or recommended model for a t
+- [huggingface-community-evals](huggingface-community-evals/) — Run evaluations for Hugging Face Hub models using inspect-ai and lighteval on lo
+- [huggingface-datasets](huggingface-datasets/) — Use this skill for Hugging Face Dataset Viewer API workflows that fetch subset/s
+- [huggingface-gradio](huggingface-gradio/) — Build Gradio web UIs and demos in Python. Use when creating or editing Gradio ap
+- [huggingface-llm-trainer](huggingface-llm-trainer/) — Train or fine-tune language and vision models using TRL (Transformer Reinforceme
+- [huggingface-local-models](huggingface-local-models/) — Use to select models to run locally with llama.cpp and GGUF on CPU, Mac Metal, C
+- [huggingface-lora-space-builder](huggingface-lora-space-builder/) — Build and publish a Gradio demo on Hugging Face Spaces for a user-provided LoRA.
+- [huggingface-paper-publisher](huggingface-paper-publisher/) — Publish and manage research papers on Hugging Face Hub. Supports creating paper 
+- [huggingface-papers](huggingface-papers/) — Look up and read Hugging Face paper pages in markdown, and use the papers API fo
+- [huggingface-spaces](huggingface-spaces/) — Build, deploy, and maintain applications on Hugging Face Spaces — Gradio / Docke
+- [huggingface-tool-builder](huggingface-tool-builder/) — Use this skill when the user wants to build tool/scripts or achieve a task where
+- [huggingface-trackio](huggingface-trackio/) — Track and visualize ML training experiments with Trackio. Use when logging metri
+- [huggingface-vision-trainer](huggingface-vision-trainer/) — Trains and fine-tunes vision models for object detection (D-FINE, RT-DETR v2, DE
+- [huggingface-zerogpu](huggingface-zerogpu/) — AI demos and GPU compute with Gradio Spaces and Hugging Face Spaces ZeroGPU. Use
+- [train-sentence-transformers](train-sentence-transformers/) — Train or fine-tune sentence-transformers models across `SentenceTransformer` (bi
+- [transformers-js](transformers-js/) — Use Transformers.js to run state-of-the-art machine learning models directly in 
+- [trl-training](trl-training/) — Train and fine-tune transformer language models using TRL (Transformers Reinforc

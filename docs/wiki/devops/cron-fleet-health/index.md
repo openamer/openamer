@@ -6,7 +6,7 @@ description: Use when cron jobs fail; diagnose, fix, verify fleet.
 # cron-fleet-health
 
 **Description:** Use when cron jobs fail; diagnose, fix, verify fleet.
-**Lines:** 113 | **Code:** 0 | **Dir:** `cron-fleet-health`
+**Lines:** 340 | **Code:** 26 | **Dir:** `cron-fleet-health`
 
 ---
 

@@ -6,7 +6,7 @@ description: MSYS→Win path: convert + HOME resolve for git-bash Python.
 # windows-path-resolution
 
 **Description:** MSYS→Win path: convert + HOME resolve for git-bash Python.
-**Lines:** 132 | **Code:** 56 | **Dir:** `windows-path-resolution`
+**Lines:** 481 | **Code:** 260 | **Dir:** `windows-path-resolution`
 
 ---
 

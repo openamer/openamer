@@ -6,7 +6,7 @@ description: Use for the full OpenAmer system health sweep ("Punkt").
 # full-system-verification
 
 **Description:** Use for the full OpenAmer system health sweep ("Punkt").
-**Lines:** 52 | **Code:** 0 | **Dir:** `full-system-verification`
+**Lines:** 61 | **Code:** 3 | **Dir:** `full-system-verification`
 
 ---
 

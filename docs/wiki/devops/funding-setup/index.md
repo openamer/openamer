@@ -1,20 +1,16 @@
 ---
 title: funding-setup
-description: Use when setting up OSS PayPal buttons and sponsors.
+description: Use when setting up or auditing OSS funding routes (PayPal buttons, GitHub Sponsors, donations). Verify every link by RE
 ---
 
 # funding-setup
 
-**Description:** Use when setting up OSS PayPal buttons and sponsors.
-**Lines:** 168 | **Code:** 29 | **Dir:** `funding-setup`
+**Description:** Use when setting up or auditing OSS funding routes (PayPal buttons, GitHub Sponsors, donations). Verify every link by RENDERED PAGE, never by HTTP status.
+**Lines:** 224 | **Code:** 29 | **Dir:** `funding-setup`
 
 ---
 
 ---
 name: funding-setup
-description: "Use when setting up OSS PayPal buttons and sponsors."
-version: 1.0.0
-platforms: [any]
-metadata:
-  openamer:
-    tags: [funding, paypal, sponsors, oss, donations, ...
+description: "Use when setting up or auditing OSS funding routes (PayPal buttons, GitHub Sponsors, donations). Verify every link by RENDERED PAGE, never by HTTP status."
+versio...

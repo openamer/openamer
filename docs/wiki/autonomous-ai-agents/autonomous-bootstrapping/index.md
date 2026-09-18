@@ -6,7 +6,7 @@ description: When tools are blocked, find free workarounds autonomously.
 # autonomous-bootstrapping
 
 **Description:** When tools are blocked, find free workarounds autonomously.
-**Lines:** 84 | **Code:** 16 | **Dir:** `autonomous-bootstrapping`
+**Lines:** 101 | **Code:** 16 | **Dir:** `autonomous-bootstrapping`
 
 ---
 

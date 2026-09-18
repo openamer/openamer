@@ -6,7 +6,7 @@ description: Differentiate a fork from its upstream honestly.
 # fork-differentiation
 
 **Description:** Differentiate a fork from its upstream honestly.
-**Lines:** 184 | **Code:** 13 | **Dir:** `fork-differentiation`
+**Lines:** 198 | **Code:** 13 | **Dir:** `fork-differentiation`
 
 ---
 

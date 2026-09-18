@@ -6,7 +6,7 @@ description: Cron job last_status=error: model pin issues (HTTP 400 reasoning.ef
 # cron-model-pinning
 
 **Description:** Cron job last_status=error: model pin issues (HTTP 400 reasoning.effort, unpinned config drift) - diagnose and fix.
-**Lines:** 38 | **Code:** 0 | **Dir:** `cron-model-pinning`
+**Lines:** 191 | **Code:** 5 | **Dir:** `cron-model-pinning`
 
 ---
 

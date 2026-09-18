@@ -6,7 +6,7 @@ description: Use when building self-improving agents with learning loops.
 # autonomous-learning-loops
 
 **Description:** Use when building self-improving agents with learning loops.
-**Lines:** 110 | **Code:** 0 | **Dir:** `autonomous-learning-loops`
+**Lines:** 289 | **Code:** 7 | **Dir:** `autonomous-learning-loops`
 
 ---
 

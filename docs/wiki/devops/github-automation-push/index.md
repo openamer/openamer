@@ -6,7 +6,7 @@ description: Push to GitHub and drive Actions from scripts or cron.
 # github-automation-push
 
 **Description:** Push to GitHub and drive Actions from scripts or cron.
-**Lines:** 134 | **Code:** 21 | **Dir:** `github-automation-push`
+**Lines:** 150 | **Code:** 21 | **Dir:** `github-automation-push`
 
 ---
 

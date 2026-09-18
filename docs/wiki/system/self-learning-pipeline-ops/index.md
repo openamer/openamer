@@ -6,7 +6,7 @@ description: Use for the autonomous self-learning stack and reporting.
 # self-learning-pipeline-ops
 
 **Description:** Use for the autonomous self-learning stack and reporting.
-**Lines:** 84 | **Code:** 0 | **Dir:** `self-learning-pipeline-ops`
+**Lines:** 163 | **Code:** 3 | **Dir:** `self-learning-pipeline-ops`
 
 ---
 

@@ -6,7 +6,7 @@ description: Use when editing CRLF files — patch bytes, avoid CRLF flips.
 # eol-safe-editing
 
 **Description:** Use when editing CRLF files — patch bytes, avoid CRLF flips.
-**Lines:** 76 | **Code:** 11 | **Dir:** `eol-safe-editing`
+**Lines:** 89 | **Code:** 13 | **Dir:** `eol-safe-editing`
 
 ---
 

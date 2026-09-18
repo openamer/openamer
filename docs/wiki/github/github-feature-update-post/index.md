@@ -6,7 +6,7 @@ description: Use when posting a growth-cron update to our GitHub issue.
 # github-feature-update-post
 
 **Description:** Use when posting a growth-cron update to our GitHub issue.
-**Lines:** 23 | **Code:** 0 | **Dir:** `github-feature-update-post`
+**Lines:** 478 | **Code:** 80 | **Dir:** `github-feature-update-post`
 
 ---
 

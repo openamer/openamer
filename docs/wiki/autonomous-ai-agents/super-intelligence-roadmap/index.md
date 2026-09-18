@@ -6,7 +6,7 @@ description: Roadmap for developing super‑intelligence in OpenAmer Agent.
 # super-intelligence-roadmap
 
 **Description:** Roadmap for developing super‑intelligence in OpenAmer Agent.
-**Lines:** 70 | **Code:** 0 | **Dir:** `super-intelligence-roadmap`
+**Lines:** 85 | **Code:** 1 | **Dir:** `super-intelligence-roadmap`
 
 ---
 
