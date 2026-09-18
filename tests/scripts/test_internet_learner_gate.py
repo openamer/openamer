@@ -3447,3 +3447,78 @@ def test_trending_repo_row_chrome_is_gated_on_both_paths():
     ):
         assert not IL._is_trending_repo_row_chrome(text), text
         assert not buffer_store._is_trending_repo_row_chrome(text), text
+
+def test_de_portal_fact_box_is_gated_on_both_paths():
+    """Class 64 (18.09.26): a German portal's own byline + summary label pair."""
+    import buffer_store
+
+    leak = ("Autor: Patrick Banff Nationalpark in K\u00fcrze: Banff ist Kanadas "
+            "\u00e4ltester Nationalpark (gegr\u00fcndet 1885), liegt in Alberta auf 1.")
+    assert IL._is_de_portal_fact_box_chrome(leak), leak
+    assert buffer_store._is_de_portal_fact_box_chrome(leak), leak
+    assert IL._is_junk(leak), leak
+    assert buffer_store.is_junk(leak), leak
+
+    for text in (
+        "In Kurze, das Modell skaliert mit der Datenmenge.",
+        "Autor: Jane Doe published the benchmark in 2024.",
+        "Autorin: Maria Schmidt analysierte in Kurze den Datensatz.",
+        "Der Autor beschreibt in Kurze, wie Quantisierung wirkt.",
+        "Die Autoren nennen in Kurze die Ergebnisse des Tests.",
+        "Auteurs: the paper lists many contributors and the Kuerze note follows.",
+        "Der Artikel wurde von einem Autor verfasst und in Kurze zusammengefasst.",
+    ):
+        assert not IL._is_de_portal_fact_box_chrome(text), text
+        assert not buffer_store._is_de_portal_fact_box_chrome(text), text
+
+
+def test_prompt_echo_fragment_is_gated_on_both_paths():
+    """Class 65 (18.09.26): the learner's own task template echoed back."""
+    import buffer_store
+
+    leak = "Shared underlying pattern one sentence."
+    assert IL._is_prompt_echo_fragment(leak), leak
+    assert buffer_store._is_prompt_echo_fragment(leak), leak
+    assert IL._is_junk(leak), leak
+    assert buffer_store.is_junk(leak), leak
+
+    for text in (
+        "The shared underlying pattern is a closed-loop feedback system that couples sensing and actuation.",
+        "Both systems share an underlying pattern: a feedback loop.",
+        "We asked for one sentence and got a shared underlying pattern description.",
+        "The shared underlying pattern, described in one sentence, is a control loop.",
+        "The report gives the shared underlying pattern of both systems in one sentence and then explains it.",
+    ):
+        assert not IL._is_prompt_echo_fragment(text), text
+        assert not buffer_store._is_prompt_echo_fragment(text), text
+
+
+def test_generated_plan_echo_fragment_is_gated_on_both_paths():
+    """Class 66 (18.09.26): a generated deliverable plan echoed back, truncated."""
+    import buffer_store
+
+    leaks = (
+        "KI-Performance-Optimierung: Python-Skript f\u00fcr RAM/Disk/Cron-Monitoring "
+        "+ Optimierungsvorschl\u00e4ge + Skill + Cron-Job alle 12h\n2.",
+        "KI-Performance-Optimierung: Python-Skript f\u00fcr RAM/Disk/Cron-Monitoring "
+        "+ Optimierungsvorschl\u00e4ge + Skill + Cron-Job alle 12h\n\n2.",
+        "KI-Performance-Optimierung: Python script for RAM/Disk/Cron-Monitoring "
+        "+ optimization suggestions + Skill + Cron job every 12h\n2.",
+    )
+    for leak in leaks:
+        assert IL._is_generated_plan_echo_fragment(leak), leak
+        assert buffer_store._is_generated_plan_echo_fragment(leak), leak
+        assert IL._is_junk(leak), leak
+        assert buffer_store.is_junk(leak), leak
+
+    for text in (
+        "The plan is: 1. collect metrics 2. aggregate 3. report.\n2.",
+        "Step 1. gather the data\n2. compute the mean",
+        "KI-Performance-Optimierung ist ein Praxisbeispiel.",
+        "Our toolchain: script + docs + tests + CI.\n2.",
+        "The pipeline is: ingest + transform + load + serve.",
+        "Deliverables: script + skill + cron job. 3.",
+        "The structural connection between the two systems is a feedback loop.",
+    ):
+        assert not IL._is_generated_plan_echo_fragment(text), text
+        assert not buffer_store._is_generated_plan_echo_fragment(text), text

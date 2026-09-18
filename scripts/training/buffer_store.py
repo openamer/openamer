@@ -1383,6 +1383,100 @@ def _is_nav_widget_run_chrome(text):
     return len(_NAV_WIDGET_RE.findall(t)) >= 4
 
 
+# class 64 markers (live 18.09.26) -- see _is_de_portal_fact_box_chrome.
+_DE_PORTAL_FACTBOX_RE = _re.compile(
+    r"\bAutor(?:in)?\s*:\s*[A-Z][A-Za-z]+\b[\s\S]{0,140}?K[\u00fc]rze\s*:")
+
+
+def _is_de_portal_fact_box_chrome(text):
+    """True when `text` is a German news portal's own fact-box label chain.
+
+    Live 18.09.26 (class 64): `cycle_f_multi_domain` / root-cause-AG rotation
+    stored a Banff travel article whose page furniture is
+
+        Autor: Patrick Banff Nationalpark in Kuerze: Banff ist Kanadas
+        aeltester Nationalpark (gegruendet 1885), liegt in Alberta auf 1.
+
+    The portal's byline label (`Autor:`) welded to its summary label
+    (`In Kuerze:`) plus body text. It carries digits (`1885`), so the `>=90`
+    length trust and the technical-signal gate both fired; class 29/40/51
+    byline helpers key on an English `By ...` / `Published` / `Share` shape,
+    so a German pair never matched.
+
+    The discriminator is the welded PAIR of the portal's OWN labels, not the
+    words: `In Kuerze:` alone and `Autor: <Name>` alone are ordinary German
+    prose and both flag real prose. Measured: 1 buffer hit and it IS the leak
+    -> 0 real-prose FPs on a 11-sentence German/English control corpus
+    (incl. `Autor: Jane Doe published the benchmark in 2024.`,
+    `Autorin: Maria Schmidt analysierte in Kurze den Datensatz.`),
+    0 of the gate test file's asserted literals, 0/3,058
+    `longterm_episodes`.
+    """
+    return bool(_DE_PORTAL_FACTBOX_RE.search(text or ""))
+
+# class 65 markers (live 18.09.26) -- see _is_prompt_echo_fragment.
+_PROMPT_ECHO_FRAGMENT_RE = _re.compile(
+    r"^\s*(?:The\s+)?shared underlying pattern[^\n]{0,30}?\bone sentence\s*\.?\s*$",
+    _re.IGNORECASE | _re.MULTILINE)
+
+
+def _is_prompt_echo_fragment(text):
+    """True when `text` is the learner's OWN task template echoed back.
+
+    Live 18.09.26 (class 65): a `Structural connection between ...` cycle
+    stored the whole answer as
+
+        Shared underlying pattern one sentence.
+
+    the instruction it had been given, not an answer. Only 41 chars, so the
+    `>=90` length trust never applied -- and `_INSTRUCTION_OPENER_RE` is
+    START-anchored on imperative verbs, while this is a bare noun-phrase
+    fragment; `_is_prompt_echo_bullet_chain` (class 42) needs >=2 bullets.
+
+    The discriminator is the ANCHORED, whole-segment fragment: real answers
+    embed the phrase in a sentence (`The shared underlying pattern is a
+    closed-loop feedback system ...`, `Both systems share an underlying
+    pattern: a feedback loop.`) and stay learnable. Measured: 1 buffer hit
+    and it IS the leak -> 0 FPs on 5 clean prose counter-cases, the gate
+    test file's asserted literals, and 0/3,058 `longterm_episodes`.
+    """
+    return bool(_PROMPT_ECHO_FRAGMENT_RE.search(text or ""))
+
+# class 66 markers (live 18.09.26) -- see _is_generated_plan_echo_fragment.
+_PROMPT_PLAN_ECHO_RE = _re.compile(
+    r"^\s*(?:KI-Performance-Optimierung|AI Performance Optimization"
+    r"|Performance Optimization)\s*:[\s\S]{0,200}?\+[\s\S]{0,120}?[\r\n]+\s*\d{1,2}\.\s*$",
+    _re.IGNORECASE | _re.MULTILINE)
+
+
+def _is_generated_plan_echo_fragment(text):
+    """True when `text` is a generated PLAN the learner fed back as an answer.
+
+    Live 18.09.26 (class 66): the `Structural connection between energy
+    efficiency and ...` cycles stored their own deliverable list FIVE times,
+    as a single truncated fragment
+
+        KI-Performance-Optimierung: Python-Skript fuer RAM/Disk/Cron-Monitoring
+        + Optimierungsvorschlaege + Skill + Cron-Job alle 12h
+        2.
+
+    Title-with-colon + a `+`-joined feature list + a DANGLING list marker and
+    an abrupt stop -- the model enumerated a plan and the extractor kept only
+    the first item plus the marker. It is the agent's own prior output, not
+    world knowledge: all five copies came from its own `Structural connection`
+    questions. The dangling `2.` is what marks it as a truncated list; a
+    complete plan (`The plan is: 1. collect metrics 2. aggregate 3. report.`)
+    ends in prose and stays learnable.
+
+    The discriminator is the PAIR (own-artifact title + `+`-list + dangling
+    marker): the bare title alone hits 1 real `longterm_episodes` row and the
+    bare dangling marker alone flags ordinary numbered prose (`Our toolchain:
+    script + docs + tests + CI.\n2.`). Measured: 5 buffer hits, ALL the same
+    leak family -> 0 real-prose FPs on a 7-sentence control corpus, 0 of the
+    gate test file's asserted literals, 0/3,058 `longterm_episodes`.
+    """
+    return bool(_PROMPT_PLAN_ECHO_RE.search(text or ""))
+
 # class 51 markers (live 18.09.26) -- see _is_news_byline_share_header.
 _BYLINE_WEEKDAY_SHARE_RE = _re.compile(
     r"\bBy\s+[A-Z][a-z]+\s+[A-Z][a-z]+\s+\w+day,[\s\S]{0,40}?\bShare\b")
@@ -2053,6 +2147,12 @@ def _is_nav_chrome(text):
         return True
     # a deep-read prompt echoed back as a bullet chain (17.09.26)
     if _is_prompt_echo_bullet_chain(text):
+        return True
+    if _is_de_portal_fact_box_chrome(text):
+        return True
+    if _is_prompt_echo_fragment(text):
+        return True
+    if _is_generated_plan_echo_fragment(text):
         return True
     if _is_sidebar_listing_chrome(text):
         return True
