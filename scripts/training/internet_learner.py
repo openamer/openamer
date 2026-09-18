@@ -1879,6 +1879,98 @@ def _is_docs_cta_serp_run(text):
     return bool(_DOCS_CTA_AFTER_SERP_RE.search(text or ""))
 
 
+# class 55 markers (live 18.09.26) -- see _is_news_aggregator_listing_run.
+# A press round-up: `| <Site> <Mon DD, YYYY> <Headline>` repeated (the site
+# name is capitalised but not ALL-CAPS, the date is a full `Mon DD, YYYY`).
+_PIPE_SITE_DATE_HEAD_RE = re.compile(
+    r"\|\s*[A-Z][A-Za-z0-9]*\s+"
+    r"(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+"
+    r"\d{1,2},\s+\d{4}\s+[A-Z]")
+
+
+def _is_news_aggregator_listing_run(text):
+    """True when `text` is a run of press-roundup rows.
+
+    Live 18.09.26 (class 55): `cycle_e_competitors` stored
+
+        Protocol ACP | Techzine Oct 08, 2025 Zed Code Editor Adds Agent Protocol
+        for Flexible AI Integration | WebProNews Aug 28, 2025 Google Integrates
+        Gemini CLI into Zed Code Editor | SD Times Aug 28, 2025 Daily drive with
+        Zed Code at the speed of thought.
+
+    Each pipe segment is one syndication row: `| <Site> <Mon DD, YYYY>` followed
+    by a Capitalised headline. It carries dates, so the `>=90` length trust and
+    the technical-signal gate both fired and no existing marker matched -- it is
+    not a `_is_serp_snippet` (no em-dash tail) and not a `_is_nav_list` (it has
+    commas). The discriminator is REPETITION: one such segment is ordinary prose
+    (`Coverage appeared | Techzine Oct 08, 2025 and again in the roundup.`), a
+    run of >=2 is a listing. Measured: 1 buffer hit and it IS the leak -> 0
+    real-prose FPs on a 14-sentence control corpus, 0 of the gate test file's
+    literals, 0/3,058 `longterm_episodes`.
+    """
+    return len(_PIPE_SITE_DATE_HEAD_RE.findall(text or "")) >= 2
+
+
+# class 56 markers (live 18.09.26) -- see _is_devto_card_tail.
+# A syndicated dev.to card tail: the read-counter bar `N projects | dev.to`.
+_DEVTO_CARD_TAIL_RE = re.compile(r"\b\d{1,4}\s+projects?\s*\|\s*dev\.?\s*$")
+
+
+def _is_devto_card_tail(text):
+    """True when `text` ends on a dev.to cross-post card counter bar.
+
+    Live 18.09.26 (class 56): `cycle_e_competitors` stored
+
+        Use `model: inherit` to Keep APC Agents Portable 2 projects | dev.
+
+    A dev.to article card: the headline, then the site's own engagement bar
+    `<N> projects | dev.` truncated at the site name. Only 66 chars, so the
+    `>=90` length trust never applied -- a reminder the trust is not the only
+    way chrome gets in. The anchor is the TAIL (`$`), because `2 projects |
+    dev.to` mid-sentence is ordinary prose (`We shipped 2 projects | dev.to
+    published the writeups afterwards.`). Measured: 1 buffer hit and it IS the
+    leak -> 0 FPs on the control corpus, 0 test literals, 0/3,058 episodes.
+    """
+    return bool(_DEVTO_CARD_TAIL_RE.search(text or ""))
+
+
+# class 57 markers (live 18.09.26) -- see _is_services_menu_chain.
+# A studio menu strip: an ALL-CAPS `A & B` nav label ANDED with >=2
+# TitleCase service labels.
+_SERVICE_MENU_AND_RE = re.compile(r"\b[A-Z]{2,}\s*&\s*[A-Z]{2,}\b")
+_SERVICE_LABEL_RE = re.compile(
+    r"\b(?:RPA\s+Development|Computer\s+Vision|AI\s+Integration"
+    r"|AI\s+Product\s+Engineering)\b")
+
+
+def _is_services_menu_chain(text):
+    """True when `text` is an agency/services page's menu strip.
+
+    Live 18.09.26 (class 57): `cycle_a_technews` stored
+
+        L Development RPA Development Computer Vision INTEGRATION & ENGINEERING
+        AI Integration AI Product Engineering Youtube 9 Sep, 2026 The Rise of
+        Enterprise Vertical AI Agents in 2026 The businesses that move now will
+        be impossible to catch by end of 2026.
+
+    A services site's own nav labels (an ALL-CAPS `INTEGRATION & ENGINEERING`
+    separator plus the four service titles) welded to a blog card. 252 chars
+    with a date, so the length trust and the technical-signal gate both fired.
+    The discriminator is the nav bar itself: an ALL-CAPS `X & Y` label ANDED
+    with >=2 service titles. Measured: 1 buffer hit and it IS the leak; 0 FPs
+    on the control corpus (incl. `We combine AI & ML research with DevOps
+    Engineering and Data Engineering practice.`), 0 test literals, 0 episodes.
+    The bare ALL-CAPS-token count was REJECTED (>=4 gave 36 buffer hits, 384
+    episodes and a control FP), and adding `Data Engineering`/`DevOps
+    Engineering` to the label set re-introduced that FP -- keep the set to the
+    four service titles the live page actually ships.
+    """
+    t = text or ""
+    if not _SERVICE_MENU_AND_RE.search(t):
+        return False
+    return len(_SERVICE_LABEL_RE.findall(t)) >= 2
+
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
@@ -1888,6 +1980,15 @@ def _is_junk(text):
         return True
     # a SERP run welded to a docs site's CTA (class 53, 18.09.26)
     if _is_docs_cta_serp_run(t):
+        return True
+    # a press-roundup listing run (class 55, 18.09.26)
+    if _is_news_aggregator_listing_run(t):
+        return True
+    # a syndicated dev.to card tail (class 56, 18.09.26)
+    if _is_devto_card_tail(t):
+        return True
+    # an agency services menu strip (class 57, 18.09.26)
+    if _is_services_menu_chain(t):
         return True
     # a page-meta listing widget (same narrow rule as
     # buffer_store._is_sidebar_listing_chrome)

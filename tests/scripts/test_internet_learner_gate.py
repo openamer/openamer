@@ -3194,3 +3194,75 @@ def test_marketing_hero_without_star_marker_is_gated_on_both_paths():
         assert not buffer_store._is_marketing_hero_cta_chrome(text), text
         assert not IL._is_junk(text), text
         assert buffer_store.is_junk(text) is False, text
+
+
+def test_news_aggregator_listing_run_is_gated_on_both_paths():
+    """A press-roundup pipe run (class 55) must be gated on BOTH paths."""
+    import buffer_store
+    import internet_learner as IL
+    leak = (
+        "Protocol ACP | Techzine Oct 08, 2025 Zed Code Editor Adds Agent Protocol "
+        "for Flexible AI Integration | WebProNews Aug 28, 2025 Google Integrates "
+        "Gemini CLI into Zed Code Editor | SD Times Aug 28, 2025 Daily drive with "
+        "Zed Code at the speed of thought."
+    )
+    assert IL._is_news_aggregator_listing_run(leak) is True
+    assert IL._is_junk(leak) is True
+    assert buffer_store._is_news_aggregator_listing_run(leak) is True
+    assert buffer_store._is_nav_chrome(leak) is True
+    assert buffer_store.is_junk(leak) is True
+    for text in (
+        "Coverage appeared | Techzine Oct 08, 2025 and again in the roundup.",
+        "The news was covered | WebProNews Aug 28, 2025 and others followed.",
+        "We compare | Vercel Feb 3, 2026 and | Linear Mar 4, 2026 in the study.",
+        "The shared underlying pattern is a closed-loop feedback system with a sensor, controller and actuator.",
+        "vLLM uses paged attention; the benchmark ran on a RTX 4090 with 24 GB VRAM (USA).",
+    ):
+        assert not IL._is_news_aggregator_listing_run(text), text
+        assert not buffer_store._is_news_aggregator_listing_run(text), text
+
+
+def test_devto_card_tail_is_gated_on_both_paths():
+    """A dev.to cross-post card counter bar (class 56) must be gated."""
+    import buffer_store
+    import internet_learner as IL
+    leak = "Use `model: inherit` to Keep APC Agents Portable 2 projects | dev."
+    assert IL._is_devto_card_tail(leak) is True
+    assert IL._is_junk(leak) is True
+    assert buffer_store._is_devto_card_tail(leak) is True
+    assert buffer_store._is_nav_chrome(leak) is True
+    for text in (
+        "Use model: inherit to keep agents portable across 3 projects for the team.",
+        "We shipped 2 projects | dev.to published the writeups afterwards.",
+        "The team closed 5 projects | dev. then moved on.",
+        "Our team runs 12 projects | dev.to covers them in detail.",
+    ):
+        assert not IL._is_devto_card_tail(text), text
+        assert not buffer_store._is_devto_card_tail(text), text
+
+
+def test_services_menu_chain_is_gated_on_both_paths():
+    """An agency services menu strip (class 57) must be gated on BOTH paths."""
+    import buffer_store
+    import internet_learner as IL
+    leak = (
+        "L Development RPA Development Computer Vision INTEGRATION & ENGINEERING "
+        "AI Integration AI Product Engineering Youtube 9 Sep, 2026 The Rise of "
+        "Enterprise Vertical AI Agents in 2026 The businesses that move now will "
+        "be impossible to catch by end of 2026."
+    )
+    assert IL._is_services_menu_chain(leak) is True
+    assert IL._is_junk(leak) is True
+    assert buffer_store._is_services_menu_chain(leak) is True
+    assert buffer_store._is_nav_chrome(leak) is True
+    assert buffer_store.is_junk(leak) is True
+    for text in (
+        "We combine AI & ML research with DevOps Engineering and Data Engineering practice.",
+        "Integration & Engineering teams should agree on the interface before the sprint starts.",
+        "The RPA Development and Computer Vision teams shipped in 2026.",
+        "In 2026, AI Integration and AI Product Engineering grew fast.",
+        "Our pipeline blends Data Engineering, DevOps Engineering and Integration Engineering into one stack.",
+        "CI & CD pipelines and the SEC & FTC filings are unrelated topics.",
+    ):
+        assert not IL._is_services_menu_chain(text), text
+        assert not buffer_store._is_services_menu_chain(text), text

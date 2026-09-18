@@ -1762,12 +1762,76 @@ def _is_docs_cta_serp_run(text):
     return bool(_DOCS_CTA_AFTER_SERP_RE.search(text or ""))
 
 
+# class 55 markers (live 18.09.26) -- see _is_news_aggregator_listing_run.
+# A press round-up: `| <Site> <Mon DD, YYYY> <Headline>` repeated.
+_PIPE_SITE_DATE_HEAD_RE = _re.compile(
+    r"\|\s*[A-Z][A-Za-z0-9]*\s+"
+    r"(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+"
+    r"\d{1,2},\s+\d{4}\s+[A-Z]")
+
+
+def _is_news_aggregator_listing_run(text):
+    """True when `text` is a run of press-roundup rows (class 55, 18.09.26).
+
+    Each pipe segment is one syndication row: `| <Site> <Mon DD, YYYY>` followed
+    by a Capitalised headline. The discriminator is REPETITION: one such segment
+    is ordinary prose, a run of >=2 is a listing. Measured: 1 buffer hit and it
+    IS the leak -> 0 real-prose FPs on a 14-sentence control corpus, 0 test
+    literals, 0/3,058 `longterm_episodes`.
+    """
+    return len(_PIPE_SITE_DATE_HEAD_RE.findall(text or "")) >= 2
+
+
+# class 56 markers (live 18.09.26) -- see _is_devto_card_tail.
+_DEVTO_CARD_TAIL_RE = _re.compile(r"\b\d{1,4}\s+projects?\s*\|\s*dev\.?\s*$")
+
+
+def _is_devto_card_tail(text):
+    """True when `text` ends on a dev.to cross-post card counter bar (class 56).
+
+    The anchor is the TAIL (`$`), because `2 projects | dev.to` mid-sentence is
+    ordinary prose. Measured: 1 buffer hit and it IS the leak -> 0 FPs, 0 test
+    literals, 0/3,058 episodes.
+    """
+    return bool(_DEVTO_CARD_TAIL_RE.search(text or ""))
+
+
+# class 57 markers (live 18.09.26) -- see _is_services_menu_chain.
+_SERVICE_MENU_AND_RE = _re.compile(r"\b[A-Z]{2,}\s*&\s*[A-Z]{2,}\b")
+_SERVICE_LABEL_RE = _re.compile(
+    r"\b(?:RPA\s+Development|Computer\s+Vision|AI\s+Integration"
+    r"|AI\s+Product\s+Engineering)\b")
+
+
+def _is_services_menu_chain(text):
+    """True when `text` is an agency/services page's menu strip (class 57).
+
+    An ALL-CAPS `X & Y` nav label ANDED with >=2 service titles. Measured: 1
+    buffer hit and it IS the leak; 0 FPs on the control corpus, 0 test
+    literals, 0/3,058 episodes. The bare ALL-CAPS-token count was REJECTED
+    (>=4 gave 36 buffer hits, 384 episodes and a control FP).
+    """
+    t = text or ""
+    if not _SERVICE_MENU_AND_RE.search(t):
+        return False
+    return len(_SERVICE_LABEL_RE.findall(t)) >= 2
+
+
 def _is_nav_chrome(text):
     """True when text is page chrome (entities, marketing, UI, template leaks)."""
     if _ENTITY.search(text):
         return True
     # a SERP run welded to a docs site's CTA (class 53, 18.09.26)
     if _is_docs_cta_serp_run(text):
+        return True
+    # a press-roundup listing run (class 55, 18.09.26)
+    if _is_news_aggregator_listing_run(text):
+        return True
+    # a syndicated dev.to card tail (class 56, 18.09.26)
+    if _is_devto_card_tail(text):
+        return True
+    # an agency services menu strip (class 57, 18.09.26)
+    if _is_services_menu_chain(text):
         return True
     low = text.lower()
     if any(c in low for c in _NAV_CHROME):
