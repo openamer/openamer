@@ -3522,3 +3522,91 @@ def test_generated_plan_echo_fragment_is_gated_on_both_paths():
     ):
         assert not IL._is_generated_plan_echo_fragment(text), text
         assert not buffer_store._is_generated_plan_echo_fragment(text), text
+
+
+def test_journal_issue_index_chrome_is_gated_on_both_paths():
+    """A journal volume/issue index run is not knowledge (class 67, 18.09.26)."""
+    import buffer_store
+    leak = ("Volume 15 (2025) WRN 15(12) \u2013 December 2025 : Art museums on "
+            "Wikidata; comparing three comparisons of Grokipedia and Wikipedia "
+            "WRN 15(11) \u2013 November 2025 : At least 80 million inconsistent "
+            "facts on Wikipedia \u2013 can AI help find them?")
+    assert IL._is_journal_issue_index_chrome(leak), leak
+    assert buffer_store._is_journal_issue_index_chrome(leak), leak
+    assert IL._is_junk(leak), leak
+    assert buffer_store.is_junk(leak), leak
+    for prose in (
+        "WRN 15(12) means the twelfth issue of the fifteenth volume; compare that with the tenth.",
+        "The journal published WRN 15(12) in December 2025 and WRN 15(11) in November 2025.",
+        "Volume 15 (2025) covers art museums on Wikidata and Wikipedia comparisons.",
+        "Issue 15(12) - December 2025 was the last of the year.",
+    ):
+        assert not IL._is_journal_issue_index_chrome(prose), prose
+        assert not IL._is_junk(prose), prose
+        assert not buffer_store.is_junk(prose), prose
+
+
+def test_truncated_serp_tail_is_gated_on_both_paths():
+    """A site-suffixed SERP snippet cut mid-sentence is not knowledge (class 68)."""
+    import buffer_store
+    leak = ("Introduction to Haystack - Haystack Documentation \u2014 Haystack is "
+            "an open-source AI framework for building production-ready AI Agents, "
+            "powerful RAG applications and scalable \u2026")
+    assert IL._is_truncated_serp_tail(leak), leak
+    assert buffer_store._is_truncated_serp_tail(leak), leak
+    assert IL._is_junk(leak), leak
+    assert buffer_store.is_junk(leak), leak
+    for prose in (
+        "The model paused\u2026 then continued with the answer.",
+        "The article \u2014 a long read \u2014 ended with a trailing ellipsis\u2026",
+        "Optimization and Tuning - vLLM explains how to select an attention backend.",
+        "The report \u2014 titled Optimization \u2014 covers tuning \u2026",
+    ):
+        assert not IL._is_truncated_serp_tail(prose), prose
+        assert not IL._is_junk(prose), prose
+        assert not buffer_store.is_junk(prose), prose
+
+
+def test_docs_feature_label_weld_is_gated_on_both_paths():
+    """A docs feature list whose labels were welded together (class 69)."""
+    import buffer_store
+    leak = ("Tool calling and reasoning parsers OpenAI-compatible API server, plus "
+            "Anthropic Messages API and gRPC support Efficient multi-LoRA support "
+            "for dense and MoE layers Support for NVIDIA GPUs, AMD GPUs, Intel "
+            "GPUs, and x86/ARM/PowerPC CPUs.")
+    assert IL._is_docs_feature_label_weld(leak), leak
+    assert buffer_store._is_docs_feature_label_weld(leak), leak
+    assert IL._is_junk(leak), leak
+    assert buffer_store.is_junk(leak), leak
+    for prose in (
+        "Tool calling and reasoning parsers are supported by the server.",
+        "The release notes mention reasoning parsers and tool calling support in the API.",
+        "Streaming outputs are produced by the model during decoding.",
+        "An OpenAI-compatible API server makes integration easier for users.",
+        "Efficient multi-LoRA support for dense and MoE layers was added in this release.",
+    ):
+        assert not IL._is_docs_feature_label_weld(prose), prose
+        assert not IL._is_junk(prose), prose
+        assert not buffer_store.is_junk(prose), prose
+
+
+def test_label_bullet_chain_is_gated_on_both_paths():
+    """A colon-label bullet chain whose newlines were lost (class 70)."""
+    import buffer_store
+    leak = ("Datasets : ProntoQA, FOLIO, ProofWriter, ConditionalQA, StrategyQA "
+            "Model : GPT-5 (Azure deployment) Config : max_attempts=3 , "
+            "verify_timeout=10000ms Backend Avg Accuracy Success Rate SMT2 86.")
+    assert IL._is_label_bullet_chain(leak), leak
+    assert buffer_store._is_label_bullet_chain(leak), leak
+    assert IL._is_junk(leak), leak
+    assert buffer_store.is_junk(leak), leak
+    for prose in (
+        "Metrics : precision, recall and F1 were reported.",
+        "The two categories : classification and regression were compared.",
+        "Benchmarks : latency and throughput were measured across models.",
+        "Results : the agent improved by 12 percent.",
+        "The sources are README and the documentation site.",
+    ):
+        assert not IL._is_label_bullet_chain(prose), prose
+        assert not IL._is_junk(prose), prose
+        assert not buffer_store.is_junk(prose), prose

@@ -2262,6 +2262,107 @@ def _is_trending_repo_row_chrome(text):
 
 
 
+# class 67 markers (live 18.09.26) -- see _is_journal_issue_index_chrome.
+# A journal volume/issue index row: `Volume 15 (2025) WRN 15(12) - December
+# 2025 : Art museums on Wikidata; ...` -- the issue tokens repeat.
+_JOURNAL_ISSUE_INDEX_RE = re.compile(
+    r"[A-Za-z]{2,6}\s+\d+\(\d+\)\s*[-\u2013]\s*[A-Z][a-z]+\s+\d{4}\s*:")
+
+
+def _is_journal_issue_index_chrome(text):
+    """True when `text` is a journal volume/issue index run (class 67).
+
+    Live 18.09.26: `cycle_b_papers` stored `Volume 15 (2025) WRN 15(12) -
+    December 2025 : Art museums on Wikidata; comparing three comparisons of
+    Grokipedia and Wikipedia WRN 15(11) - November 2025 : At least 80 million
+    inconsistent facts on Wikipedia ...`. The discriminator is the ISSUE TOKEN
+    shape `NAME NN(NN) - Month YYYY :` -- one issue label is an ordinary
+    citation (`WRN 15(12) means the twelfth issue of the fifteenth volume`),
+    the trailing colon welds it to a listing entry. Measured: 1 buffer hit and
+    it IS the leak -> 0 real-prose FPs on 4 hostile controls, 0/3,058
+    `longterm_episodes`, 0/686 test literals.
+    """
+    return bool(_JOURNAL_ISSUE_INDEX_RE.search(text or ""))
+
+
+# class 68 markers (live 18.09.26) -- see _is_truncated_serp_tail.
+# A SERP result title with a site suffix, an em-dash snippet and a SPACE-glued
+# truncation ellipsis at the very end: `Introduction to Haystack - Haystack
+# Documentation \u2014 Haystack is an open-source ... scalable \u2026`.
+_TRUNCATED_SERP_TAIL_RE = re.compile(
+    r"[\w\)]\s-\s[A-Z][\w.&/]*(?:\s[A-Z][\w.&/]*)*\s\u2014[^\u2014\n]*"
+    r"\s(?:\u2026|\.\.\.)\s*$")
+
+
+def _is_truncated_serp_tail(text):
+    """True when `text` is a site-suffixed SERP snippet cut mid-sentence (68).
+
+    Live 18.09.26: `cycle_c_github` stored `Introduction to Haystack - Haystack
+    Documentation \u2014 Haystack is an open-source AI framework ... scalable
+    \u2026`. The existing `_SERP_TAIL` only fires when the ellipsis sits
+    DIRECTLY after the em-dash; here a whole snippet body sits between them and
+    the ellipsis is SPACE-glued (`scalable \u2026`), so the truncated body
+    passed both gates. The anchor is the TAIL plus the site-suffix title shape
+    (`<Title> - <Site> \u2014 <body>`): a sentence merely ending in an ellipsis
+    (`The model paused\u2026`) has no site-suffix title. Measured: 1 buffer hit
+    and it IS the leak -> 0 real-prose FPs on 12 hostile controls, 0/3,058
+    episodes, 0/686 test literals.
+    """
+    return bool(_TRUNCATED_SERP_TAIL_RE.search(text or ""))
+
+
+# class 69 markers (live 18.09.26) -- see _is_docs_feature_label_weld.
+_DOCS_FEATURE_LABELS = (
+    r"OpenAI-compatible\s+API\s+server|Anthropic\s+Messages\s+API"
+    r"|multi-LoRA|reasoning\s+parsers|Streaming\s+outputs|tool\s+calling"
+    r"|gRPC\s+support|TPU"
+)
+_DOCS_FEATURE_LABEL_WELD_RE = re.compile(
+    r"(?:" + _DOCS_FEATURE_LABELS + r")"
+    r"[\s:]{1,4}"
+    r"(?:" + _DOCS_FEATURE_LABELS + r")",
+    re.IGNORECASE)
+
+
+def _is_docs_feature_label_weld(text):
+    """True when `text` is a docs feature-list whose labels are welded (69).
+
+    Live 18.09.26: `cycle_d_docs` stored `Tool calling and reasoning parsers
+    OpenAI-compatible API server, plus Anthropic Messages API and gRPC support
+    Efficient multi-LoRA support for dense and MoE layers Support for NVIDIA
+    GPUs, ...` -- a feature-list with every line separator lost, so the next
+    label is glued straight onto the previous one. A SINGLE label is ordinary
+    prose (`Streaming outputs are produced by the model during decoding.`), so
+    the discriminator is the WELD: two labels separated by whitespace/colon
+    only, no punctuation and no verb between them. Measured: 5 buffer hits,
+    ALL the same docs-listing family; 0/14 hostile prose controls; 0/3,058
+    episodes; 0/686 test literals.
+    """
+    return bool(_DOCS_FEATURE_LABEL_WELD_RE.search(text or ""))
+
+
+# class 70 markers (live 18.09.26) -- see _is_label_bullet_chain.
+# A run of `<TitleCase Label> : <value>` bullets whose newlines were lost:
+# `Datasets : ProntoQA, FOLIO ... Model : GPT-5 ... Config : max_attempts=3`.
+_LABEL_BULLET_RE = re.compile(r"[A-Z][A-Za-z]+(?: [A-Za-z]+){0,3} : ")
+
+
+def _is_label_bullet_chain(text):
+    """True when `text` is a run of colon-label bullets with lost newlines (70).
+
+    Live 18.09.26: `cycle_b_papers` stored `Datasets : ProntoQA, FOLIO,
+    ProofWriter, ConditionalQA, StrategyQA Model : GPT-5 (Azure deployment)
+    Config : max_attempts=3 , verify_timeout=10000ms Backend Avg Accuracy
+    Success Rate SMT2 86.` -- and `cycle_c_github` stored `API compatibility :
+    ... Model diversity : Support for text generation, ... Sources: README.`
+    One label bullet (`Metrics : precision, recall and F1 were reported.`) is
+    ordinary prose, so the discriminator is REPETITION: >=2 such bullets in one
+    record. Measured: 2 buffer hits, BOTH the leak family; 0/26 hostile prose
+    controls; 0/3,058 episodes; 0/686 test literals.
+    """
+    return len(_LABEL_BULLET_RE.findall(text or "")) >= 2
+
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
@@ -2298,6 +2399,18 @@ def _is_junk(text):
         return True
     # a GitHub trending row (class 63, 18.09.26)
     if _is_trending_repo_row_chrome(t):
+        return True
+    # a journal volume/issue index run (class 67, 18.09.26)
+    if _is_journal_issue_index_chrome(t):
+        return True
+    # a truncated site-suffixed SERP snippet (class 68, 18.09.26)
+    if _is_truncated_serp_tail(t):
+        return True
+    # a docs feature-list with welded labels (class 69, 18.09.26)
+    if _is_docs_feature_label_weld(t):
+        return True
+    # a colon-label bullet chain with lost newlines (class 70, 18.09.26)
+    if _is_label_bullet_chain(t):
         return True
     # a page-meta listing widget (same narrow rule as
     # buffer_store._is_sidebar_listing_chrome)
