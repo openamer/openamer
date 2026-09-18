@@ -4115,3 +4115,56 @@ def test_trending_card_header_pair_is_gated_on_both_paths():
     for text in clean:
         assert not IL._is_trending_card_header_pair(text), text
         assert not buffer_store._is_trending_card_header_pair(text), text
+def test_aggregator_row_with_year_tail_is_gated_on_both_paths():
+    """An aggregator feed row welded to an arXiv `(yyyy)` tail is not knowledge.
+
+    Live 19.09.26 (class 83), verbatim from the buffer row (cycle_b_papers):
+      "CameronBanga 5 hours ago | 10 comments 58 Cache-to-Cache: Direct
+       Semantic Communication Between LLMs (2025) (arxiv."
+    A feed row (`<user> <relative-time> | <n> comments <points> <headline>`)
+    welded onto the paper's `(2025) (arxiv` tail. 115 chars WITH digits, so the
+    technical-signal gate fired; `_is_hn_item_chrome` and
+    `_is_hn_feed_listing_chrome` (classes 37/49) both returned False because
+    they require the `<relative-time> | N comments` unit to REPEAT (>=2).
+
+    A single occurrence is deliberately NOT gated: class 37's own test asserts
+    the single-unit control `The review took 2 days ago | 4 comments per
+    reviewer were recorded.` must stay learnable, and a bare single-unit
+    marker measured 4-9 control FPs here. The co-occurrence that works is the
+    page's own arXiv `(yyyy)` tail within 80 chars of the feed unit.
+    """
+    import buffer_store
+    leaks = (
+        "CameronBanga 5 hours ago | 10 comments 58 Cache-to-Cache: Direct "
+        "Semantic Communication Between LLMs (2025) (arxiv.",
+        "someuser 3 hours ago | 7 comments 42 Efficient Transformers: A Survey "
+        "(2023) (arxiv.",
+    )
+    for text in leaks:
+        assert IL._is_aggregator_row_year_tail(text), text
+        assert IL._is_junk(text), text
+        assert buffer_store._is_aggregator_row_year_tail(text), text
+        assert buffer_store._is_nav_chrome(text), text
+        assert IL._clean_insight(text) == "", text
+
+    # counter-cases: a SINGLE `<relative-time> | N comments` unit is ordinary
+    # prose (class 37's own clean control) and must stay learnable
+    clean = (
+        "The review took 2 days ago | 4 comments per reviewer were recorded.",
+        "The ticket was closed 3 days ago | 12 comments in the audit log.",
+        "Version 2.1 shipped 4 days ago | 6 comments in the changelog.",
+        "The PR merged 2 days ago | 8 comments on the review thread.",
+        "A post from 3 days ago | 5 comments about quantization was stored.",
+        "The commit landed 6 hours ago | 2 comments from the maintainer.",
+        "The forum shows 5 hours ago | 10 comments for this paper.",
+        "Cameron wrote 5 hours ago that the cache-to-cache paper changed his "
+        "view.",
+        "The paper (2025) is on arXiv and gathered 58 citations since.",
+        "Cache-to-Cache enables direct semantic communication between LLMs.",
+        "The arxiv abstract was posted a few hours ago by the authors.",
+        "The aggregator row reads: username, relative time, comment count, "
+        "points.",
+    )
+    for text in clean:
+        assert not IL._is_aggregator_row_year_tail(text), text
+        assert not buffer_store._is_aggregator_row_year_tail(text), text

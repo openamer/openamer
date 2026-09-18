@@ -2309,6 +2309,48 @@ def _is_trending_card_header_pair(text):
     return bool(_TRENDING_CARD_HEADER_RE.search(t))
 
 
+# class 83 markers (live 19.09.26) -- see _is_aggregator_row_year_tail.
+# A Hacker-News-style feed row that ends in an arXiv parenthesis-year tail:
+# `CameronBanga 5 hours ago | 10 comments 58 Cache-to-Cache: Direct Semantic
+#  Communication Between LLMs (2025) (arxiv.`
+_AGGREGATOR_ROW_RE = _re.compile(
+    r"\b\d{1,2}\s+(?:minutes?|hours?|days?)\s+ago\s*\|\s*\d{1,5}\s*comments?\b"
+    r"[\s\S]{0,80}?\(\s*(?:19|20)\d\d\s*\)", _re.IGNORECASE)
+
+
+def _is_aggregator_row_year_tail(text):
+    """True for an aggregator feed row welded to an arXiv-year tail (class 83).
+
+    Live 19.09.26: `cycle_b_papers` stored
+      "CameronBanga 5 hours ago | 10 comments 58 Cache-to-Cache: Direct
+       Semantic Communication Between LLMs (2025) (arxiv."
+    -- a feed row (`<user> <relative-time> | <n> comments <points> <headline>`)
+    welded onto the paper's `(2025) (arxiv` tail. 115 chars WITH digits, so
+    the technical-signal gate fired; `_is_hn_item_chrome` and
+    `_is_hn_feed_listing_chrome` (class 37/49) both returned False, because
+    they require the `<relative-time> | N comments` unit to REPEAT (>=2).
+
+    A single occurrence is deliberately NOT gated: class 37's own test asserts
+    the single-unit control `The review took 2 days ago | 4 comments per
+    reviewer were recorded.` must stay learnable, and a bare single-unit
+    marker measured 4-9 control FPs here. The AU rule applies -- sweep the
+    threshold, and when it cannot be lowered without FPs, the PATTERN is
+    wrong: add a second structural co-occurrence. The co-occurrence that
+    works is the page's own arXiv `(yyyy)` tail within 80 chars of the feed
+    unit, which real prose about a relative time and a comment count does not
+    carry.
+
+    Measured: 1 buffer hit and it IS the leak; 0/6,313 buffer_junk rows;
+    0/3,059 longterm_episodes; 0/845 gate-test literals (incl. the class-37
+    leak and its clean single-unit control); 0/20 natural prose controls.
+    """
+    t = text or ""
+    if len(t) > 1200:
+        return False
+    return bool(_AGGREGATOR_ROW_RE.search(t))
+
+
+
 
 
 # class 75 markers (live 19.09.26) -- see _is_bio_page_furniture_pair.
@@ -2659,6 +2701,9 @@ def _is_nav_chrome(text):
         return True
     # a trending card's welded header pair (class 82, 19.09.26)
     if _is_trending_card_header_pair(text):
+        return True
+    # an aggregator row welded to an arXiv year tail (class 83, 19.09.26)
+    if _is_aggregator_row_year_tail(text):
         return True
     low = text.lower()
     if any(c in low for c in _NAV_CHROME):
