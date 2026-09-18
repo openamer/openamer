@@ -2390,6 +2390,46 @@ def _is_pipe_byline_shares_header(text):
     return bool(_PIPE_BYLINE_SHARES_RE.search(t))
 
 
+# class 85 markers (live 19.09.26) -- see _is_portal_counter_bar_comparison.
+# A news portal's counter bar welded to a comparison headline:
+# `Instant 23-Aug-2026 0 207 Technology OpenAI Workspace Agents vs Google
+#  Gemini Enterprise: Complete Comparison 2026 OpenAI Workspace Agents vs ...`
+_PORTAL_COUNTER_BAR_RE = _re.compile(
+    r"\b\d{1,2}-[A-Z][a-z]{2}-\d{4}\s+\d{1,4}\s+\d{1,4}\s+[A-Z][a-z]+\b"
+    r"[\s\S]{0,120}?Complete\s+Comparison")
+
+
+def _is_portal_counter_bar_comparison(text):
+    """True for a portal counter bar welded to a comparison headline (class 85).
+
+    Live 19.09.26: `cycle_g_security` stored
+      "Instant 23-Aug-2026 0 207 Technology OpenAI Workspace Agents vs Google
+       Gemini Enterprise: Complete Comparison 2026 OpenAI Workspace Agents vs
+       Google Gemini Enterprise is a comparison of two enterprise agent
+       platforms introduced on April 22, 2026."
+    -- the listing page's own counter bar (`Instant <dd-Mon-yyyy> <n> <n>
+    <Category>`) welded onto the headline and its lede. 246 chars WITH digits,
+    so both the >=90 length trust and the technical-signal gate fired.
+
+    The discriminator is a CONJUNCTION, not a phrase (the AU rule). Two
+    narrower forms were measured and REJECTED: the bare date + two counters +
+    category label scored 4 hostile recombinants (`The log line 23-Aug-2026 0
+    207 Technology was parsed by the tool.`), and adding the leading `Instant`
+    token still left 2 (`Instant 23-Aug-2026 0 207 Technology is the scraped
+    badge text.`). Adding the site's own headline label `Complete Comparison`
+    within 120 chars of the counter bar reached 0 on every corpus.
+
+    Measured: 1 buffer hit and it IS the leak; 0/6,313 buffer_junk rows;
+    0/3,059 longterm_episodes; 0/845 gate-test literals; 0/24 natural prose
+    controls.
+    """
+    t = text or ""
+    if len(t) > 1200:
+        return False
+    return bool(_PORTAL_COUNTER_BAR_RE.search(t))
+
+
+
 
 
 
@@ -2748,6 +2788,9 @@ def _is_nav_chrome(text):
         return True
     # a pipe-dateline byline welded to the site's Shares (class 84, 19.09.26)
     if _is_pipe_byline_shares_header(text):
+        return True
+    # a portal counter bar welded to a comparison headline (class 85, 19.09.26)
+    if _is_portal_counter_bar_comparison(text):
         return True
     low = text.lower()
     if any(c in low for c in _NAV_CHROME):

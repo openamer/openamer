@@ -4226,3 +4226,67 @@ def test_pipe_byline_shares_header_is_gated_on_both_paths():
     for text in clean:
         assert not IL._is_pipe_byline_shares_header(text), text
         assert not buffer_store._is_pipe_byline_shares_header(text), text
+def test_portal_counter_bar_comparison_is_gated_on_both_paths():
+    """A portal counter bar welded to a comparison headline is not knowledge.
+
+    Live 19.09.26 (class 85), verbatim from the buffer row (cycle_g_security):
+      "Instant 23-Aug-2026 0 207 Technology OpenAI Workspace Agents vs Google
+       Gemini Enterprise: Complete Comparison 2026 OpenAI Workspace Agents vs
+       Google Gemini Enterprise is a comparison of two enterprise agent
+       platforms introduced on April 22, 2026."
+    The listing page's own counter bar (`Instant <dd-Mon-yyyy> <n> <n>
+    <Category>`) welded onto the headline and its lede. 246 chars WITH digits,
+    so both the >=90 length trust and the technical-signal gate fired.
+
+    The discriminator is a CONJUNCTION, not a phrase (the AU rule). Two
+    narrower forms were measured and REJECTED: the bare date + two counters +
+    category label scored 4 hostile recombinants (`The log line 23-Aug-2026 0
+    207 Technology was parsed by the tool.`), and adding the leading `Instant`
+    token still left 2 (`Instant 23-Aug-2026 0 207 Technology is the scraped
+    badge text.`). Adding the site's own headline label `Complete Comparison`
+    within 120 chars reached 0 on every corpus.
+    """
+    import buffer_store
+    leaks = (
+        "Instant 23-Aug-2026 0 207 Technology OpenAI Workspace Agents vs Google "
+        "Gemini Enterprise: Complete Comparison 2026 OpenAI Workspace Agents "
+        "vs Google Gemini Enterprise is a comparison of two enterprise agent "
+        "platforms introduced on April 22, 2026.",
+        "Instant 3-Mar-2026 0 88 Business Vector Databases vs Graph Databases: "
+        "Complete Comparison 2026 Both approaches index embeddings but differ "
+        "in traversal cost.",
+    )
+    for text in leaks:
+        assert IL._is_portal_counter_bar_comparison(text), text
+        assert IL._is_junk(text), text
+        assert buffer_store._is_portal_counter_bar_comparison(text), text
+        assert buffer_store._is_nav_chrome(text), text
+        assert IL._clean_insight(text) == "", text
+
+    # counter-cases: prose that merely carries a date, counters and a category,
+    # or that names a comparison, must stay learnable
+    clean = (
+        "OpenAI Workspace Agents vs Google Gemini Enterprise: Complete "
+        "Comparison 2026",
+        "The article compares OpenAI Workspace Agents and Google Gemini "
+        "Enterprise.",
+        "The log line 23-Aug-2026 0 207 Technology was parsed by the tool.",
+        "Instant 23-Aug-2026 0 207 Technology is the scraped badge text.",
+        "On 23-Aug-2026 we recorded 0 failures and 207 requests in the "
+        "Technology category.",
+        "Metrics for 23-Aug-2026: 0 errors, 207 requests, category Technology.",
+        "The dashboard row reads 23-Aug-2026, 0, 207, Technology in the CSV "
+        "export.",
+        "A complete comparison of 0 downtime deployments and 207 benchmarks in "
+        "Technology.",
+        "Two enterprise agent platforms introduced on April 22, 2026 diverge "
+        "in pricing.",
+        "The survey dated 22-Apr-2026 shows 207 responses and 0 skips in "
+        "Politics.",
+        "The review compares two platforms; a complete comparison is in "
+        "appendix B.",
+        "Complete Comparison covers 207 vendors and 0 exclusions in Business.",
+    )
+    for text in clean:
+        assert not IL._is_portal_counter_bar_comparison(text), text
+        assert not buffer_store._is_portal_counter_bar_comparison(text), text
