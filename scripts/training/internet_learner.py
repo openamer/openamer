@@ -2134,6 +2134,40 @@ def _is_model_listing_run_chrome(text):
 
 
 
+# class 63 markers (live 18.09.26) -- see _is_trending_repo_row_chrome.
+_STAR_COUNTER_RE = re.compile(r"\u2605\s*\d+(?:\.\d+)?k\s*\+\d+")
+_LANG_STAT_RE = re.compile(
+    r"\b\d{1,3}\s+(?:Python|Go|TypeScript|JavaScript|Rust|C\+\+|Java|Jupyter|Shell)\b")
+_REPO_SLUG_RE = re.compile(r"\b[A-Za-z0-9][\w.-]*/\s*[A-Za-z0-9][\w.-]*")
+
+
+def _is_trending_repo_row_chrome(text):
+    """True when `text` is a GitHub trending row (class 63).
+
+    Live 18.09.26: `cycle_c_github` stored
+
+        AI agents and apps\U0001f44d \U0001f44e \u2605 66k +481 100 Python 28 infiniflow/
+        ragflow RAGFlow is a leading open-source Retrieval-Augmented Generation
+        (RAG) engine that fuses\u2026 \U0001f44d \U0001f44e \u2605 91k +439 100 Go 29
+        langchain-ai/ langgraph Build resilient agents.
+
+    (and an older row 9 of the same family). A trending page's row run: vote
+    emojis + star counter `\u2605 <N>k +<M>` + language percentage + owner/slug.
+    The star counter ALONE is ordinary prose (`We compare \u2605 66k +481 and
+    \u2605 91k +439 in the table.` is a control FP), so the discriminator is the
+    THREE-WAY PAIR: star counter AND an owner/slug AND a language-percentage
+    stat. Measured: 2 buffer hits, BOTH are the leak family; 0/10 control FPs;
+    0/717 test literals; 0/3,058 episodes.
+    """
+    t = text or ""
+    if not _STAR_COUNTER_RE.search(t):
+        return False
+    if not _LANG_STAT_RE.search(t):
+        return False
+    return bool(_REPO_SLUG_RE.search(t))
+
+
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
@@ -2167,6 +2201,9 @@ def _is_junk(text):
         return True
     # a model-hub listing row run (class 62, 18.09.26)
     if _is_model_listing_run_chrome(t):
+        return True
+    # a GitHub trending row (class 63, 18.09.26)
+    if _is_trending_repo_row_chrome(t):
         return True
     # a page-meta listing widget (same narrow rule as
     # buffer_store._is_sidebar_listing_chrome)

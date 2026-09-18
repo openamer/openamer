@@ -3415,3 +3415,35 @@ def test_model_listing_run_chrome_is_gated_on_both_paths():
     ):
         assert not IL._is_model_listing_run_chrome(text), text
         assert not buffer_store._is_model_listing_run_chrome(text), text
+
+
+def test_trending_repo_row_chrome_is_gated_on_both_paths():
+    """A GitHub trending row (class 63) must be gated on BOTH paths."""
+    import buffer_store
+    import internet_learner as IL
+    leaks = (
+        "AI agents and apps\U0001f44d \U0001f44e \u2605 66k +481 100 Python 28 infiniflow/ "
+        "ragflow RAGFlow is a leading open-source Retrieval-Augmented Generation "
+        "(RAG) engine that fuses\u2026 \U0001f44d \U0001f44e \u2605 91k +439 100 Go 29 "
+        "langchain-ai/ langgraph Build resilient agents.",
+        "With\u2026 \U0001f44d \U0001f44e \u2605 82k +739 100 Python 21 chaitanyagiri/ "
+        "munder-difflin A local multi-agent harness that works with Claude Code.",
+    )
+    for leak in leaks:
+        assert IL._is_trending_repo_row_chrome(leak) is True, leak
+        assert IL._is_junk(leak) is True, leak
+        assert buffer_store._is_trending_repo_row_chrome(leak) is True, leak
+        assert buffer_store._is_nav_chrome(leak) is True, leak
+        assert buffer_store.is_junk(leak) is True, leak
+    for text in (
+        "We compare \u2605 66k +481 and \u2605 91k +439 in the table.",
+        "The dashboard shows \u2605 66k stars and +481 weekly in plain prose.",
+        "Python 21 is the percentage shown for the repo in the language bar of the report.",
+        "The repo gained +481 stars this week and now shows 66k total.",
+        "AI agents and apps are trending on GitHub, with Python and Go well represented.",
+        "infiniflow/ragflow is a leading open-source RAG engine.",
+        "langchain-ai/langgraph lets you build resilient agents.",
+        "munder-difflin is a local multi-agent harness that works with Claude Code.",
+    ):
+        assert not IL._is_trending_repo_row_chrome(text), text
+        assert not buffer_store._is_trending_repo_row_chrome(text), text
