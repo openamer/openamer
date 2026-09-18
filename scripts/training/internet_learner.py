@@ -1971,6 +1971,36 @@ def _is_services_menu_chain(text):
     return len(_SERVICE_LABEL_RE.findall(t)) >= 2
 
 
+# class 58 markers (live 18.09.26) -- see _is_pagination_newsletter_widget.
+_PAGINATION_NEWSLETTER_RE = re.compile(
+    r"\bPrevious\s+Page\s+\d+\s+of\s+\d+\s+Next[\s\S]{0,200}?"
+    r"\bNew articles by email\b", re.IGNORECASE)
+
+
+def _is_pagination_newsletter_widget(text):
+    """True when `text` is a blog archive widget run (class 58, 18.09.26).
+
+    Live 18.09.26: `cycle_h_efficiency` stored
+
+        Herv\u00e9 Zwirn Sep 14, 2026 Afshin Khadangi Causal Liability Theory
+        and the AI Consciousness Fallacy Afshin Khadangi Sep 14, 2026 Previous
+        Page 1 of 63 Next The Consciousness AI New articles by email One a
+        week, when there is something worth sending.
+
+    The page's own pagination widget (`Previous Page N of M Next`) welded to
+    its newsletter promo (`New articles by email`). 247 chars with dates, so
+    the >=90 length trust and the technical-signal gate both fired. The
+    discriminator is the WINDOW: the two widget labels sit within 200 chars of
+    each other on one archive page. Measured: 1 buffer hit and it IS the leak;
+    0 FPs on 12 control sentences (`New articles by email are sent weekly, and
+    the archive lists Previous Page 4 of 9 Next in the footer.` is a whole-text
+    FP for the unbounded AND, hence the window); 0/666 test literals;
+    0/3,058 episodes.
+    """
+    return bool(_PAGINATION_NEWSLETTER_RE.search(text or ""))
+
+
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
@@ -1989,6 +2019,9 @@ def _is_junk(text):
         return True
     # an agency services menu strip (class 57, 18.09.26)
     if _is_services_menu_chain(t):
+        return True
+    # a blog archive pagination widget + newsletter promo (class 58, 18.09.26)
+    if _is_pagination_newsletter_widget(t):
         return True
     # a page-meta listing widget (same narrow rule as
     # buffer_store._is_sidebar_listing_chrome)

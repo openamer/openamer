@@ -3266,3 +3266,36 @@ def test_services_menu_chain_is_gated_on_both_paths():
     ):
         assert not IL._is_services_menu_chain(text), text
         assert not buffer_store._is_services_menu_chain(text), text
+
+
+def test_pagination_newsletter_widget_is_gated_on_both_paths():
+    """A blog archive pagination widget + newsletter promo (class 58) must be
+    gated on BOTH paths."""
+    import buffer_store
+    import internet_learner as IL
+    leak = (
+        "Herv\u00e9 Zwirn Sep 14, 2026 Afshin Khadangi Causal Liability Theory "
+        "and the AI Consciousness Fallacy Afshin Khadangi Sep 14, 2026 Previous "
+        "Page 1 of 63 Next The Consciousness AI New articles by email One a "
+        "week, when there is something worth sending."
+    )
+    assert IL._is_pagination_newsletter_widget(leak) is True
+    assert IL._is_junk(leak) is True
+    assert buffer_store._is_pagination_newsletter_widget(leak) is True
+    assert buffer_store._is_nav_chrome(leak) is True
+    assert buffer_store.is_junk(leak) is True
+    for text in (
+        "The report covers launches from 2022 and 2023 and explains why they aged well.",
+        "Previous page 1 of 63 next are ordinary pagination words in a UI description.",
+        "The newsletter sends new articles by email once a week when there is something worth sending.",
+        "Researchers publish new articles by email every Friday, according to the journal policy.",
+        "We compared 1 of 63 configurations and moved to the next page of the manual.",
+        "Herv\u00e9 Zwirn and Afshin Khadangi wrote a paper about causal liability theory in September 2026.",
+        "The agent parses bylines such as Jane Doe Sep 14, 2026 and stores the dateline with the headline.",
+        "Previous Page 2 of 5 Next appears in the docs describing how readers navigate the archive.",
+        "The docs show the widget labelled Previous Page 3 of 8 Next on the archive listing.",
+        "Sign up to get new articles by email, the blog footer said, and previous page numbers are listed there.",
+        "New articles by email are sent weekly, and the archive lists Previous Page 4 of 9 Next in the footer.",
+    ):
+        assert not IL._is_pagination_newsletter_widget(text), text
+        assert not buffer_store._is_pagination_newsletter_widget(text), text
