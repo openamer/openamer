@@ -2030,6 +2030,77 @@ def _is_fullscreen_toggle_chrome(text):
 
 
 
+# class 60 markers (live 18.09.26) -- see _is_hashtag_run_after_headline.
+_TAG_RUN_RE = re.compile(
+    r"(?:#\s*[A-Za-z][A-Za-z0-9_-]{1,}\s+){2,}#\s*[A-Za-z][A-Za-z0-9_-]{1,}")
+_TITLE_HEADLINE_RE = re.compile(r"(?:[A-Z][A-Za-z0-9'-]*\s+){4,}$")
+
+
+def _is_hashtag_run_after_headline(text):
+    """True when `text` is a post headline welded to its tag run (class 60).
+
+    Live 18.09.26: `cycle_e_competitors` stored
+
+        AI Coding Agents Must Reduce Maintenance Costs, Not Just Write Code
+        # ai # webdev # tutorial # productivity A coding agent that drops 800
+        lines into your repo in 90 seconds feels productive.
+
+    A publishing platform's title + its tag strip, glued to the article lede.
+    The discriminator is STRUCTURAL: >=3 whitespace-adjacent hashtags AND a
+    TitleCase headline (>=4 capitalized words) immediately before them. The
+    bare hashtag COUNT was REJECTED -- `>=3` gave 71 episodes and 2 control FPs,
+    `>=4` still 42 episodes and 1 control FP; adjacency alone still flagged
+    3 by-construction controls. Only count + headline measured 0 FPs on
+    9 controls, 0/689 test literals, 0/3,058 episodes.
+    """
+    t = text or ""
+    for m in _TAG_RUN_RE.finditer(t):
+        if _TITLE_HEADLINE_RE.search(t[:m.start()]):
+            return True
+    return False
+
+
+
+# class 61 markers (live 18.09.26) -- see _is_dated_tag_strip_chrome.
+_DATED_TAG_STRIP_RE = re.compile(r"\u00b7\s*#\s*")
+_TAG_STRIP_TOKEN_RE = re.compile(
+    r"[A-Za-z0-9\u00c0-\u024f\u4e00-\u9fff][\w'\u00c0-\u024f\u4e00-\u9fff-]*")
+
+
+def _is_dated_tag_strip_chrome(text):
+    """True when `text` is a dated card headline + tag strip (class 61).
+
+    Live 18.09.26: `cycle_d_docs` stored (twice, byte-identical rows)
+
+        LLM Complete Guide -- From Parameters to Optimization, Everything About
+        Local LLM Serving 2026-02-26 \u00b7 # AI \ud65c\uc6a9 vLLM LLM serving GPU optimization
+        PagedAttention Qwen3 The first tool engineers encounter when trying to
+        serve LLMs on local GPUs is vLLM.
+
+    A blogging platform's card header: `<headline> <date> \u00b7 # <tag strip>` glued
+    to the article lede. 248 chars with a date, so the >=90 length trust and
+    the technical-signal gate both fired. The `\u00b7 #` separator alone is ordinary
+    prose (`Published 2026-02-26 \u00b7 # ai is a tag used on the blog.`), so the
+    discriminator is DENSITY: the tag strip itself is a run of >=5 tokens with
+    >=3 mixed-case or digit-bearing tokens, which real prose after `\u00b7 #` never
+    is. Measured: 2 buffer hits, BOTH are the leak; 0 control FPs; 0/689 test
+    literals; 0/3,058 episodes. A pure token-count threshold was REJECTED (2
+    control FPs at every threshold 5..7).
+    """
+    t = text or ""
+    for m in _DATED_TAG_STRIP_RE.finditer(t):
+        seg = t[m.end():m.end() + 120]
+        toks = _TAG_STRIP_TOKEN_RE.findall(seg)
+        if len(toks) < 5:
+            continue
+        dense = sum(1 for x in toks[:10]
+                    if any(c.isupper() for c in x) or any(c.isdigit() for c in x))
+        if dense >= 3:
+            return True
+    return False
+
+
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
@@ -2054,6 +2125,12 @@ def _is_junk(text):
         return True
     # a code-block FULLSCREEN toggle widget pair (class 59, 18.09.26)
     if _is_fullscreen_toggle_chrome(t):
+        return True
+    # a post headline welded to its hashtag run (class 60, 18.09.26)
+    if _is_hashtag_run_after_headline(t):
+        return True
+    # a dated card headline + tag strip (class 61, 18.09.26)
+    if _is_dated_tag_strip_chrome(t):
         return True
     # a page-meta listing widget (same narrow rule as
     # buffer_store._is_sidebar_listing_chrome)

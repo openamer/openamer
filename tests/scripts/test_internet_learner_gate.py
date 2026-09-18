@@ -3329,3 +3329,60 @@ def test_fullscreen_toggle_chrome_is_gated_on_both_paths():
     ):
         assert not IL._is_fullscreen_toggle_chrome(text), text
         assert not buffer_store._is_fullscreen_toggle_chrome(text), text
+
+
+def test_hashtag_run_after_headline_is_gated_on_both_paths():
+    """A post headline welded to its hashtag run (class 60) must be gated on
+    BOTH paths."""
+    import buffer_store
+    import internet_learner as IL
+    leak = (
+        "AI Coding Agents Must Reduce Maintenance Costs, Not Just Write Code "
+        "# ai # webdev # tutorial # productivity A coding agent that drops 800 "
+        "lines into your repo in 90 seconds feels productive."
+    )
+    assert IL._is_hashtag_run_after_headline(leak) is True
+    assert IL._is_junk(leak) is True
+    assert buffer_store._is_hashtag_run_after_headline(leak) is True
+    assert buffer_store._is_nav_chrome(leak) is True
+    assert buffer_store.is_junk(leak) is True
+    for text in (
+        "The prompt asked for # ai # ml # data tags, and the agent added them to the post.",
+        "The post used the tag run # ai # webdev # tutorial # productivity for reach.",
+        "Tags like # ai # ml # data # nlp # llm are common on the platform.",
+        "Filter by # ai # ml and exclude # nlp in the query builder.",
+        "AI Coding Agents Must Reduce Maintenance Costs, Not Just Write Code for teams that ship weekly.",
+        "A coding agent that drops 800 lines into your repo in 90 seconds feels productive.",
+    ):
+        assert not IL._is_hashtag_run_after_headline(text), text
+        assert not buffer_store._is_hashtag_run_after_headline(text), text
+
+
+def test_dated_tag_strip_chrome_is_gated_on_both_paths():
+    """A dated card headline + tag strip (class 61) must be gated on BOTH
+    paths."""
+    import buffer_store
+    import internet_learner as IL
+    leak = (
+        "LLM Complete Guide \u2014 From Parameters to Optimization, Everything "
+        "About Local LLM Serving 2026-02-26 \u00b7 # AI \ud65c\uc6a9 vLLM LLM serving GPU "
+        "optimization PagedAttention Qwen3 The first tool engineers encounter "
+        "when trying to serve LLMs on local GPUs is vLLM."
+    )
+    assert IL._is_dated_tag_strip_chrome(leak) is True
+    assert IL._is_junk(leak) is True
+    assert buffer_store._is_dated_tag_strip_chrome(leak) is True
+    assert buffer_store._is_nav_chrome(leak) is True
+    assert buffer_store.is_junk(leak) is True
+    for text in (
+        "The guide was updated 2026-02-26 \u00b7 # serving and covers PagedAttention.",
+        "Published 2026-02-26 \u00b7 # ai is a tag used on the blog.",
+        "The paper (2026-02-26) \u00b7 # quantization explains the method.",
+        "See the note 2026-02-26 \u00b7 # notes and the appendix for the derivation.",
+        "The report lists 2026-02-26 \u00b7 # ai \u00b7 # ml \u00b7 # data as separate rows.",
+        "An update on 2026-02-26 \u00b7 # vLLM and GPU serving were both discussed in the guide.",
+        "vLLM uses PagedAttention for KV cache management in serving.",
+        "Local LLM Serving: From Parameters to Optimization covers PagedAttention and Qwen3.",
+    ):
+        assert not IL._is_dated_tag_strip_chrome(text), text
+        assert not buffer_store._is_dated_tag_strip_chrome(text), text
