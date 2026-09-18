@@ -4168,3 +4168,61 @@ def test_aggregator_row_with_year_tail_is_gated_on_both_paths():
     for text in clean:
         assert not IL._is_aggregator_row_year_tail(text), text
         assert not buffer_store._is_aggregator_row_year_tail(text), text
+def test_pipe_byline_shares_header_is_gated_on_both_paths():
+    """A pipe-dateline byline welded to the site's `Shares` is not knowledge.
+
+    Live 19.09.26 (class 84), verbatim from the buffer row (cycle_f_multi_domain):
+      "Wire How HPC and Simulation Are Powering the Next Wave of Physical AI
+       HPC Cluster by Ali Azhar | July 15, 2026 Shares As investment in
+       Physical AI accelerates, simulation is taking on a much larger role
+       than simply generating synthetic training data."
+    A portal article header: section chip, headline, byline, PIPED dateline,
+    then the site's own `Shares` affordance glued to the lede. 157 chars WITH
+    digits, so both the >=90 length trust and the technical-signal gate fired.
+
+    **The existing helper covers the vocabulary but not the SHAPE** (the
+    class-40/51 rule, third occurrence). `_is_news_byline_share_header`
+    (class 51) already keys on `By <First> <Last>` + a dateline + `Share` and
+    still returned False: it requires a full WEEKDAY dateline, while this page
+    ships a PIPE dateline with no weekday. `_strip_byline_prefix` only strips
+    a LEADING byline and here the byline sits after a brand chip.
+
+    The discriminator is the three-part weld: byline AND pipe dateline AND the
+    bare `Shares` token immediately after the date.
+    """
+    import buffer_store
+    leaks = (
+        "Wire How HPC and Simulation Are Powering the Next Wave of Physical "
+        "AI HPC Cluster by Ali Azhar | July 15, 2026 Shares As investment in "
+        "Physical AI accelerates, simulation is taking on a much larger role "
+        "than simply generating synthetic training data.",
+        "Quantum computing for logistics: a survey by Jane Doe | March 3, "
+        "2026 Shares Enterprises are evaluating annealing hardware for "
+        "routing problems at scale.",
+    )
+    for text in leaks:
+        assert IL._is_pipe_byline_shares_header(text), text
+        assert IL._is_junk(text), text
+        assert buffer_store._is_pipe_byline_shares_header(text), text
+        assert buffer_store._is_nav_chrome(text), text
+        assert IL._clean_insight(text) == "", text
+
+    # counter-cases: prose that credits an author or reports share counts
+    clean = (
+        "The article by Ali Azhar was published on July 15, 2026.",
+        "Shares of the company rose after the report by the analyst.",
+        "Written by Ali Azhar | July 15, 2026 | 5 min read.",
+        "The post was shared 12 times on social media.",
+        "HPC and simulation are powering the next wave of physical AI.",
+        "Simulation is taking a larger role than generating synthetic data.",
+        "Shares outstanding grew after the July 15, 2026 announcement.",
+        "Ali Azhar wrote the post | July 15, 2026 and it got 5 shares.",
+        "Shares in the AI sector rose; the article was by Ali Azhar.",
+        "A byline reading 'by Ali Azhar | July 15, 2026' precedes the Shares "
+        "button.",
+        "The wire story was filed by Ali Azhar on July 15, 2026.",
+        "The page header shows the section, headline, byline and dateline.",
+    )
+    for text in clean:
+        assert not IL._is_pipe_byline_shares_header(text), text
+        assert not buffer_store._is_pipe_byline_shares_header(text), text

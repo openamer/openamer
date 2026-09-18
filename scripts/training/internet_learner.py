@@ -2504,6 +2504,47 @@ def _is_aggregator_row_year_tail(text):
     return bool(_AGGREGATOR_ROW_RE.search(t))
 
 
+# class 84 markers (live 19.09.26) -- see _is_pipe_byline_shares_header.
+# A portal article header whose byline was welded to a pipe dateline and the
+# site's own `Shares` affordance:
+# `... HPC Cluster by Ali Azhar | July 15, 2026 Shares As investment in ...`
+_PIPE_BYLINE_SHARES_RE = re.compile(
+    r"\bby\s+[A-Z][a-z]+\s+[A-Z][a-z]+\s*\|\s*"
+    r"(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+\d{1,2},\s+\d{4}\s+Shares\b")
+
+
+def _is_pipe_byline_shares_header(text):
+    """True for a pipe-dateline byline welded to the site's `Shares` (class 84).
+
+    Live 19.09.26: `cycle_f_multi_domain` stored
+      "Wire How HPC and Simulation Are Powering the Next Wave of Physical AI
+       HPC Cluster by Ali Azhar | July 15, 2026 Shares As investment in
+       Physical AI accelerates, simulation is taking on a much larger role
+       than simply generating synthetic training data."
+    -- a portal article header: section chip, headline, byline, PIPED dateline,
+    then the site's own `Shares` affordance glued to the lede. 157 chars WITH
+    digits, so both the >=90 length trust and the technical-signal gate fired.
+
+    **The existing helper covers the vocabulary but not the SHAPE** (the
+    class-40/51 rule, third occurrence). `_is_news_byline_share_header`
+    (class 51) already keys on `By <First> <Last>` + a dateline + `Share`, and
+    still returned False: it requires a full WEEKDAY dateline, while this page
+    ships a PIPE dateline with no weekday. `_strip_byline_prefix` (class 29)
+    only strips a LEADING byline, and here the byline sits after a brand chip.
+
+    The discriminator is the three-part weld: byline AND pipe dateline AND the
+    bare `Shares` token immediately after the date. Prose that merely credits
+    an author or reports share counts carries no such weld. Measured: 1 buffer
+    hit and it IS the leak; 0/6,313 buffer_junk rows; 0/3,059
+    longterm_episodes; 0/845 gate-test literals; 0/20 natural prose controls.
+    """
+    t = text or ""
+    if len(t) > 1200:
+        return False
+    return bool(_PIPE_BYLINE_SHARES_RE.search(t))
+
+
+
 
 
 
@@ -2861,6 +2902,9 @@ def _is_junk(text):
         return True
     # an aggregator row welded to an arXiv year tail (class 83, 19.09.26)
     if _is_aggregator_row_year_tail(t):
+        return True
+    # a pipe-dateline byline welded to the site's Shares (class 84, 19.09.26)
+    if _is_pipe_byline_shares_header(t):
         return True
     # a page-meta listing widget (same narrow rule as
     # buffer_store._is_sidebar_listing_chrome)
