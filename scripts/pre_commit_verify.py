@@ -28,14 +28,14 @@ assert cnt == 1
 print("  ✅ Code line counting")
 
 # 4. HTML structure
-with open(os.path.join(REPO, "docs/academy.html")) as f:
+with open(os.path.join(REPO, "docs/academy.html"), encoding="utf-8") as f:
     html = f.read()
 assert "<html" in html and "</html>" in html
 assert "OpenAmer" in html and "Academy" in html and "YouTube" in html
 print("  ✅ academy.html structure OK")
 
 # 5. CI YAML
-with open(os.path.join(REPO, ".github/workflows/openamer-ci.yml")) as f:
+with open(os.path.join(REPO, ".github/workflows/openamer-ci.yml"), encoding="utf-8") as f:
     yaml_data = yaml.safe_load(f)
 assert yaml_data is not None
 assert "jobs" in yaml_data
@@ -44,7 +44,7 @@ print("  ✅ openamer-ci.yml valid YAML + job structure")
 
 # 6. Wiki was already generated and verified earlier
 wiki_path = os.path.join(REPO, "docs/wiki/stats.json")
-with open(wiki_path) as f:
+with open(wiki_path, encoding="utf-8") as f:
     stats = json.load(f)
 assert stats["total_skills"] > 200
 assert stats["categories"] > 15

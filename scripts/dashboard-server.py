@@ -50,7 +50,7 @@ def collect_cron():
     jobs = []
     if JOBS_JSON.exists():
         try:
-            with open(JOBS_JSON) as f:
+            with open(JOBS_JSON, encoding="utf-8") as f:
                 data = json.load(f)
             for j in data.get("jobs", []):
                 jobs.append({
@@ -181,13 +181,13 @@ def collect_security():
     report_file = SECURITY_DIR / "last-report.json"
     if state_file.exists():
         try:
-            with open(state_file) as f:
+            with open(state_file, encoding="utf-8") as f:
                 result["state"] = json.load(f)
         except Exception:
             pass
     if report_file.exists():
         try:
-            with open(report_file) as f:
+            with open(report_file, encoding="utf-8") as f:
                 report = json.load(f)
             result["report"] = {
                 "timestamp": report.get("timestamp", "—"),
@@ -237,7 +237,7 @@ def collect_graph():
         return {"nodes": [], "edges": [], "error": "No graph data"}
 
     try:
-        with open(GRAPH_JSON) as f:
+        with open(GRAPH_JSON, encoding="utf-8") as f:
             graph = json.load(f)
         nodes = graph.get("nodes", [])
         edges = graph.get("edges", [])
