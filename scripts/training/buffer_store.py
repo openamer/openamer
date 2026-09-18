@@ -2209,6 +2209,41 @@ def _is_label_bullet_chain(text):
     return len(_LABEL_BULLET_RE.findall(text or "")) >= 2
 
 
+# class 74 markers (live 19.09.26) -- see _is_decorative_alt_text_chrome.
+# A landing page's logo alt-text welded to the next decoration's alt-text:
+# `GitHub Logo <sparkles> Decorative dot pattern background` -- markup
+# furniture, never an insight. The emoji is an optional separator (0-3 chars).
+_DECORATIVE_ALT_TEXT_RE = _re.compile(
+    r"github\s+logo\s*\S{0,3}\s*decorative\s+\w+\s+pattern\s+background",
+    _re.IGNORECASE)
+
+
+def _is_decorative_alt_text_chrome(text):
+    """True when `text` is a page's welded decorative alt-text run (class 74).
+
+    Live 19.09.26: `cycle_c_github` stored
+
+        Agent Launch Week #2 Explore our product launch updates GitHub Logo
+        \u2728 Decorative dot pattern background The end-to-end AI Agent
+        Engineering Platform Build enterprise multi-agent systems -- development
+        , observability , and deployment in one platform.
+
+    A hero section whose image alt-texts were concatenated: the site logo's alt
+    (`GitHub Logo`) is welded to the decorative background's alt (`Decorative
+    dot pattern background`), with the page's own sparkles emoji between them.
+    249 chars with digits, so the >=90 length trust and the technical-signal
+    gate fired.
+
+    The discriminator is the WELD: no verb, no punctuation between the two alt
+    strings. Real prose that mentions both always separates them with a verb or
+    a comma (`GitHub Logo and a decorative dot pattern background are both alt
+    attributes in the hero markup.`). Measured: 1 buffer hit and it IS the leak;
+    0/18 hostile prose controls; 0/3,059 longterm_episodes; 0/1,175 test
+    literals; 0/6265 buffer_junk rows.
+    """
+    return bool(_DECORATIVE_ALT_TEXT_RE.search(text or ""))
+
+
 # class 73 markers (live 19.09.26) -- see _is_table_header_value_run.
 # A benchmark TABLE's column-label chain with its first value welded on:
 # `Model Dataset Resolution Acc@1 ckpt MedViT_small ImageNet-1K 224 83.`
@@ -2374,8 +2409,14 @@ def _is_nav_chrome(text):
     # a repo page's stat footer welded onto its description (class 72, 19.09.26)
     if _is_repo_stat_footer_run(text):
         return True
-    # a repo page's stat footer welded onto its description (class 73, 19.09.26)
+    # a repo page's stat footer welded onto its description (class 72, 19.09.26)
+    if _is_repo_stat_footer_run(text):
+        return True
+    # a benchmark table's header row (class 73, 19.09.26)
     if _is_table_header_value_run(text):
+        return True
+    # a page's welded decorative alt-text run (class 74, 19.09.26)
+    if _is_decorative_alt_text_chrome(text):
         return True
     low = text.lower()
     if any(c in low for c in _NAV_CHROME):

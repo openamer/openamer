@@ -3713,3 +3713,43 @@ def test_table_header_value_run_is_gated_on_both_paths():
         assert not buffer_store._is_table_header_value_run(prose), prose
         assert not IL._is_junk(prose), prose
         assert not buffer_store.is_junk(prose), prose
+
+
+def test_decorative_alt_text_chrome_is_gated_on_both_paths():
+    """A landing page's welded image alt-text run is not knowledge (class 74).
+
+    Live 19.09.26: cycle_c_github stored a hero section whose alt-texts were
+    concatenated -- `GitHub Logo \u2728 Decorative dot pattern background` --
+    glued to the marketing slogan. Prose that mentions both always separates
+    them with a verb or comma.
+    """
+    import buffer_store
+    leaks = (
+        "Agent Launch Week #2 Explore our product launch updates GitHub Logo "
+        "\u2728 Decorative dot pattern background The end-to-end AI Agent "
+        "Engineering Platform Build enterprise multi-agent systems \u2014 "
+        "development , observability , and deployment in one platform.",
+        "GitHub Logo \u2728 Decorative dot pattern background",
+        "Home GitHub Logo \u2728 Decorative dot pattern background Learn more",
+    )
+    for leak in leaks:
+        assert IL._is_decorative_alt_text_chrome(leak), leak
+        assert buffer_store._is_decorative_alt_text_chrome(leak), leak
+        assert IL._is_junk(leak), leak
+        assert buffer_store._is_nav_chrome(leak), leak
+        assert buffer_store.is_junk(leak), leak
+    for prose in (
+        "GitHub Logo and a decorative dot pattern background are both alt attributes in the hero markup.",
+        "The GitHub logo is used under the brand guidelines, and the decorative dot pattern background comes from the theme.",
+        "The GitHub logo and the decorative dot pattern background are rendered as separate SVG layers.",
+        "Our page uses the GitHub logo plus a decorative dot pattern background for the hero section.",
+        "Alt text: GitHub Logo. Decorative pattern background for the hero section of the page.",
+        "The header ships the GitHub logo and a decorative pattern background image with empty alt text.",
+        "Our design system stores the logo, the decorative pattern, and the background colour tokens.",
+        "Agent Launch Week #2 brought product launch updates to the platform according to the blog.",
+        "The end-to-end AI Agent Engineering Platform builds enterprise multi-agent systems with observability.",
+    ):
+        assert not IL._is_decorative_alt_text_chrome(prose), prose
+        assert not buffer_store._is_decorative_alt_text_chrome(prose), prose
+        assert not IL._is_junk(prose), prose
+        assert not buffer_store.is_junk(prose), prose
