@@ -1483,6 +1483,42 @@ def _is_hn_feed_listing_chrome(text):
     return len(_AGO_PIPE_COMMENTS_RE.findall(t)) >= 2
 
 
+# class 49 markers (live 18.09.26) -- see _is_hn_item_chrome.
+_HN_ITEM_CHROME_RE = re.compile(
+    r"\bby\s+[\w.\-]+\s*\|\s*\d{1,5}\s+comments?\b[\s\S]{0,40}?\bon\s+Hacker\s+News\b"
+    r"|\bNew ask Hacker News story\b",
+    re.IGNORECASE)
+
+
+def _is_hn_item_chrome(text):
+    """True when `text` is a single Hacker-News item row with its feed tail.
+
+    Live 18.09.26 (class 49): `cycle_b_papers` stored
+
+        September 16, 2026 New ask Hacker News story: Open-sourced jev
+        architecture last year with model,paper and dataset Open-sourced jev
+        architecture last year with model,paper and dataset 4 by
+        nandakishor_ml | 2 comments on Hacker News.
+
+    A single aggregator item: dateline + `New ask Hacker News story:` label +
+    the headline twice + points + submitter handle + `| N comments` + the
+    feed's own trailing `on Hacker News`. It carries digits, so the `>=90`
+    length trust and the technical-signal gate both fired and no existing
+    marker matched -- class 37 keys on REPETITION (`>=2` of the
+    `<relative-time> | N comments` unit), and this row holds the unit once.
+
+    The discriminator is the welded PAIR (submitter + `| N comments` + the
+    aggregator's own name) or the feed's own item label -- never the bare
+    words `Hacker News`, which are ordinary English topic words.
+    Measured: 1 buffer hit and it IS the leak -> 0 real-prose FPs on a
+    10-sentence control corpus and 0 of 518 test-asserted literals; 0/3,058
+    `longterm_episodes`. The bare `by <handle> | N comments` form was
+    REJECTED (2 control FPs: `A handle by someuser | 5 comments appeared ...`,
+    `The model was reviewed by 3 authors | 2 comments each.`).
+    """
+    return bool(_HN_ITEM_CHROME_RE.search(text or ""))
+
+
 # class 38 markers (live 17.09.26) -- see _is_marketing_hero_cta_chrome.
 _HERO_CTA_STAR_RE = re.compile(
     r"\[\*\]\s+(?:With|Mit)\s+(?:over|\u00fcber)\s+[\d.,]+",
@@ -1719,6 +1755,9 @@ def _is_junk(text):
         return True
     # a repeated aggregator feed listing (class 37, 17.09.26)
     if _is_hn_feed_listing_chrome(t):
+        return True
+    # a single aggregator item row with its feed tail (class 49, 18.09.26)
+    if _is_hn_item_chrome(t):
         return True
     # a landing-page hero CTA chain (class 38, 17.09.26)
     if _is_marketing_hero_cta_chrome(t):
