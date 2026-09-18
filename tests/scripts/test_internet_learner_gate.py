@@ -3610,3 +3610,27 @@ def test_label_bullet_chain_is_gated_on_both_paths():
         assert not IL._is_label_bullet_chain(prose), prose
         assert not IL._is_junk(prose), prose
         assert not buffer_store.is_junk(prose), prose
+
+
+def test_repeat_badge_glyph_run_is_gated_on_both_paths():
+    """A repeated page badge glyph on list entries is not knowledge (class 71)."""
+    import buffer_store
+    leak = ("ARTKIT, Meta LlamaFirewall/Llama Guard 4 \U0001f195 New Case Studies "
+            "EchoLeak (CVE-2025-32711), DeepSeek R1 vulnerabilities, first "
+            "malicious MCP server \U0001f195 AI Regulations EU AI Act 2026 "
+            "milestones, NIST AI RMF, ISO/IEC 42001 \U0001f504 Updated LLM Ec")
+    assert IL._is_repeat_badge_glyph_run(leak), leak
+    assert buffer_store._is_repeat_badge_glyph_run(leak), leak
+    assert IL._is_junk(leak), leak
+    assert buffer_store.is_junk(leak), leak
+    for prose in (
+        "The agent was updated \U0001f195 to support the new API.",
+        "New Case Studies \U0001f195 were added to the docs.",
+        "The changelog lists a new feature \U0001f195 and an update \U0001f504 to the parser.",
+        "Case studies include EchoLeak (CVE-2025-32711) and the first malicious MCP server.",
+        "AI Regulations cover EU AI Act 2026 milestones, NIST AI RMF and ISO/IEC 42001.",
+        "The team marked the release \U0001f195 and then documented the fix.",
+    ):
+        assert not IL._is_repeat_badge_glyph_run(prose), prose
+        assert not IL._is_junk(prose), prose
+        assert not buffer_store.is_junk(prose), prose

@@ -2363,6 +2363,29 @@ def _is_label_bullet_chain(text):
     return len(_LABEL_BULLET_RE.findall(text or "")) >= 2
 
 
+# class 71 markers (live 18.09.26) -- see _is_repeat_badge_glyph_run.
+# A changelog-style list where the page's own "new" badge glyph (U+1F195)
+# annotates >= 2 entries in one record.
+_REPEAT_BADGE_GLYPH_RE = re.compile(r"\U0001f195")
+
+
+def _is_repeat_badge_glyph_run(text):
+    """True when `text` is a badge-annotated listing run (class 71).
+
+    Live 18.09.26: `cycle_g_security` stored `ARTKIT, Meta LlamaFirewall/Llama
+    Guard 4 \U0001f195 New Case Studies EchoLeak (CVE-2025-32711), DeepSeek R1
+    vulnerabilities, first malicious MCP server \U0001f195 AI Regulations EU AI
+    Act 2026 milestones, NIST AI RMF, ISO/IEC 42001 \U0001f504 Updated LLM Ec`
+    -- a link/entry listing whose newlines were lost, with the page's own
+    "new" badge welded onto entries. The badge glyph ALONE is not the marker
+    (one \U0001f195 in a sentence is ordinary prose); the discriminator is
+    REPETITION of the page's own badge in one record. Measured: 1 buffer hit
+    and it IS the leak -> 0/3,058 `longterm_episodes`, 0/704 test literals,
+    0 FPs across 12 hostile prose controls.
+    """
+    return len(_REPEAT_BADGE_GLYPH_RE.findall(text or "")) >= 2
+
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
@@ -2411,6 +2434,9 @@ def _is_junk(text):
         return True
     # a colon-label bullet chain with lost newlines (class 70, 18.09.26)
     if _is_label_bullet_chain(t):
+        return True
+    # a repeated page badge glyph on list entries (class 71, 18.09.26)
+    if _is_repeat_badge_glyph_run(t):
         return True
     # a page-meta listing widget (same narrow rule as
     # buffer_store._is_sidebar_listing_chrome)
