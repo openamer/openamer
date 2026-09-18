@@ -136,9 +136,9 @@ def improve_once():
     rot_file = os.path.join(T, ".si_rotation")
     n = 0
     if os.path.exists(rot_file):
-        n = int(open(rot_file).read().strip() or 0)
+        n = int(open(rot_file, encoding="utf-8").read().strip() or 0)
     target = targets[n % len(targets)]
-    with open(rot_file, "w") as f:
+    with open(rot_file, "w", encoding="utf-8") as f:
         f.write(str(n + 1))
     live_path = os.path.join(T, target)
     if not os.path.exists(live_path):
