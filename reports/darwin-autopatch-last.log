@@ -1,0 +1,20 @@
+[autopatch] validating population (2026-09-18T19:42:40) ...
+Traceback (most recent call last):
+  File "C:\Users\damir\openamer-repo\scripts\darwin_skill_autopatch.py", line 176, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "C:\Users\damir\openamer-repo\scripts\darwin_skill_autopatch.py", line 97, in main
+    before_report = run_validator_json()
+                    ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\damir\openamer-repo\scripts\darwin_skill_autopatch.py", line 49, in run_validator_json
+    r = subprocess.run(
+        ^^^^^^^^^^^^^^^
+  File "C:\Users\damir\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\subprocess.py", line 550, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\damir\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\subprocess.py", line 1209, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\damir\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\subprocess.py", line 1630, in _communicate
+    raise TimeoutExpired(self.args, orig_timeout)
+subprocess.TimeoutExpired: Command '['C:\\Users\\damir\\AppData\\Roaming\\uv\\python\\cpython-3.11-windows-x86_64-none\\python.exe', 'C:\\Users\\damir\\openamer-repo\\scripts\\skill-validator.py', '--all', '--json']' timed out after 1800 seconds
