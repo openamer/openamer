@@ -4358,6 +4358,7 @@ def release_stale_claims(
     conn: sqlite3.Connection,
     *,
     signal_fn=None,
+    failure_limit: Optional[int] = None,
 ) -> int:
     """Reset any ``running`` task whose claim has expired.
 
@@ -4497,6 +4498,16 @@ def release_stale_claims(
                 run_id=run_id,
             )
             reclaimed += 1
+        # A reclaim is a non-success attempt: book it against the breaker in
+        # its OWN transaction. ``write_txn`` is not reentrant (it issues
+        # ``BEGIN IMMEDIATE`` unconditionally), so nesting the call inside the
+        # block above raises "cannot start a transaction within a transaction"
+        # and the reclaim stops working entirely.
+        _record_task_failure(
+            conn, row["id"], f"stale_lock={row['claim_lock']}",
+            outcome="reclaimed", failure_limit=failure_limit,
+            release_claim=False, end_run=False,
+        )
     return reclaimed
 
 
