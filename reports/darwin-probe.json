@@ -1,7 +1,7 @@
 {
-  "updated": "2026-09-17T01:51:05.637526+00:00",
+  "updated": "2026-09-18T17:43:50.710865+00:00",
   "skills_dir": "C:\\Users\\damir\\AppData\\Local\\openamer-laptop\\skills",
-  "total": 815,
+  "total": 838,
   "skills": {
     "auto-best-practice-from-official": {
       "refs": 0,
@@ -297,6 +297,12 @@
       "score": 1.0,
       "missing": []
     },
+    "auto-competitor-intelligence-mouse-precision": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "auto-competitor-intelligence-okf-agent": {
       "refs": 0,
       "ok": 0,
@@ -369,7 +375,19 @@
       "score": 1.0,
       "missing": []
     },
+    "auto-efficiency-learning-efficientqat-llm": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "auto-efficiency-learning-quantization-techniq": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-efficiency-learning-quip-2bit": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -417,7 +435,25 @@
       "score": 1.0,
       "missing": []
     },
+    "auto-internet-learning-40-of": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "auto-internet-learning-ai-agent": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-internet-learning-ai-agents": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-internet-learning-amazon-demands": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -459,7 +495,19 @@
       "score": 1.0,
       "missing": []
     },
+    "auto-latest-research-insight-ai": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "auto-latest-research-insight-an": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-latest-research-insight-bitnet": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -489,6 +537,18 @@
       "score": 1.0,
       "missing": []
     },
+    "auto-latest-research-insight-megatrain": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-latest-research-insight-proofofthought": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "auto-latest-research-insight-recursively": {
       "refs": 0,
       "ok": 0,
@@ -502,6 +562,12 @@
       "missing": []
     },
     "auto-latest-research-insight-the": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-latest-research-insight-wikidata": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -537,6 +603,12 @@
       "score": 1.0,
       "missing": []
     },
+    "auto-multidomain-learning-llms-are": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "auto-multidomain-learning-nasa-ibm": {
       "refs": 0,
       "ok": 0,
@@ -562,6 +634,12 @@
       "missing": []
     },
     "auto-multidomain-learning-python-climate": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-multidomain-learning-pytorch-physics": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -598,6 +676,18 @@
       "missing": []
     },
     "auto-security-learning-llm-prompt": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-security-learning-mcp-server": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-security-learning-owasp-llm": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -999,6 +1089,12 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-bin-bash-line-3-command-not-found": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-bin-uv-exe-ven": {
       "refs": 0,
       "ok": 0,
@@ -1030,6 +1126,12 @@
       "missing": []
     },
     "darwin-harvested-damir-bounds-x-no-such-fil": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-darwin-lineage-json": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -1071,7 +1173,7 @@
       "score": 1.0,
       "missing": []
     },
-    "darwin-harvested-darwin-trials": {
+    "darwin-harvested-darwin-trial-state-json": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -1197,6 +1299,12 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-pfade": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-predictive-heal": {
       "refs": 0,
       "ok": 0,
@@ -1258,6 +1366,12 @@
       "missing": []
     },
     "darwin-harvested-scripts-github-engage-py": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-scripts-python": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -1335,6 +1449,18 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-tmp-om-base-no-such-file-or-director": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-tmp-regex-probe-py": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-tmp-run-autotester-py": {
       "refs": 0,
       "ok": 0,
@@ -1372,6 +1498,12 @@
       "missing": []
     },
     "darwin-harvested-training-model-config-py": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-training-online-buffer-jsonl": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -1513,14 +1645,14 @@
       "missing": []
     },
     "full-system-verification": {
-      "refs": 1,
-      "ok": 1,
+      "refs": 2,
+      "ok": 2,
       "score": 1.0,
       "missing": []
     },
     "funding-setup": {
-      "refs": 0,
-      "ok": 0,
+      "refs": 1,
+      "ok": 1,
       "score": 1.0,
       "missing": []
     },
@@ -1538,11 +1670,9 @@
     },
     "internet-learner-stall-fix": {
       "refs": 3,
-      "ok": 2,
-      "score": 0.667,
-      "missing": [
-        "_probe_rates.py"
-      ]
+      "ok": 3,
+      "score": 1.0,
+      "missing": []
     },
     "predictive-health": {
       "refs": 1,
@@ -1643,8 +1773,8 @@
       ]
     },
     "github-issue-updater": {
-      "refs": 3,
-      "ok": 3,
+      "refs": 4,
+      "ok": 4,
       "score": 1.0,
       "missing": []
     },
@@ -2572,6 +2702,15 @@
       "score": 0.0,
       "missing": [
         "./run.sh"
+      ]
+    },
+    "isaac-mission-control-showcase": {
+      "refs": 3,
+      "ok": 1,
+      "score": 0.333,
+      "missing": [
+        "skills/isaac-mission-control-showcase/scripts/run.sh",
+        "skills/isaac-mission-control-showcase/scripts/showcase.py"
       ]
     },
     "jetson-build-source": {
@@ -4648,8 +4787,8 @@
       "missing": []
     },
     "git-clean-verification": {
-      "refs": 0,
-      "ok": 0,
+      "refs": 1,
+      "ok": 1,
       "score": 1.0,
       "missing": []
     },
@@ -5123,8 +5262,8 @@
       "missing": []
     },
     "windows-path-resolution": {
-      "refs": 0,
-      "ok": 0,
+      "refs": 1,
+      "ok": 1,
       "score": 1.0,
       "missing": []
     },
