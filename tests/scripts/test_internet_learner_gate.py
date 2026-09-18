@@ -3077,3 +3077,70 @@ def test_arxiv_pdf_listing_header_is_gated_on_both_paths():
         assert not IL._is_junk(text), text
         assert buffer_store.is_junk(text) is False, text
         assert IL._clean_insight(text), text
+
+def test_docs_cta_serp_run_is_gated_on_both_paths():
+    """A SERP run welded to a docs site's `Welcome to ...` CTA is not knowledge.
+
+    Live 18.09.26 (class 53), verbatim from the buffer row:
+      "Efficient Transformers Library - GitHub — This library provides
+       reimplemented blocks of LLMs which are used to make the models
+       functional and highly performant on …; Welcome to
+       Efficient-Transformers Documentation! — Install
+       Efficient-Transformers. 1. Model download and Optimize ..."
+    Two search-result titles each with its `Title — snippet` body, welded by
+    `…;`, the second carrying the docs site's own page intro.
+
+    A GENERIC `…;` / multi-snippet rule was TRIED and REJECTED — see
+    test_german_dictionary_serp_chrome_is_gated_on_both_paths below, which
+    records that it was already rejected because real rows (vLLM parallelism
+    and quantization) carry genuine technical prose across the same separator.
+    The discriminator is therefore the docs site's OWN navigation label
+    sitting directly on the welded boundary, not the separator itself.
+    """
+    leak = (
+        "Efficient Transformers Library - GitHub — This library provides "
+        "reimplemented blocks of LLMs which are used to make the models "
+        "functional and highly performant on …; Welcome to "
+        "Efficient-Transformers Documentation! — Install "
+        "Efficient-Transformers. 1. Model download and Optimize for Cloud "
+        "AIxxx (AI1"
+    )
+    import buffer_store
+    assert IL._is_docs_cta_serp_run(leak), leak
+    assert IL._is_junk(leak), leak
+    assert buffer_store._is_docs_cta_serp_run(leak), leak
+    assert buffer_store._is_nav_chrome(leak), leak
+    assert IL._clean_insight(leak) == "", leak
+
+    # counter-cases: real vLLM rows across the SAME `…;` separator must
+    # survive — they are exactly the prose the rejected generic rule ate, and
+    # a real sentence that mentions a welcome or a documentation install step
+    for text in (
+        "Parallelism and Scaling - vLLM — It's often advantageous to "
+        "exploit the inherent parallelism of experts …; Optimization and "
+        "Tuning - vLLM — Data parallelism can be combined with the other "
+        "parallelism strategies.",
+        "Quantization Format Comparison 2026 — GGUF, AWQ, GPTQ, EXL2, "
+        "MLX, FP8, NF4, INT4, INT8. Quality degradation, throughput …; 4.8",
+        "The docs welcome new users to the quantization guide and explain "
+        "the install steps for GGUF and AWQ checkpoints.",
+        "The docs say: welcome to efficient transformers documentation, then "
+        "install it and download a model.",
+        "The model runs on …; then it stopped and reported a 3x speedup.",
+    ):
+        assert not IL._is_docs_cta_serp_run(text), text
+        assert not buffer_store._is_docs_cta_serp_run(text), text
+        assert not IL._is_junk(text), text
+        assert buffer_store.is_junk(text) is False, text
+
+    # Helper-level check only: `_NAV_CHROME` already carries the 
+    # PRE-EXISTING marker "welcome to the", so a page-intro sentence is 
+    # gated by that older rule and not by this one. Isolate the new helper 
+    # here so the test can never report a pre-existing rule as a class-53 
+    # regression.
+    intro = (
+        "Welcome to the quantization documentation — it explains the "
+        "install steps for GGUF and AWQ checkpoints."
+    )
+    assert not IL._is_docs_cta_serp_run(intro), intro
+    assert not buffer_store._is_docs_cta_serp_run(intro), intro

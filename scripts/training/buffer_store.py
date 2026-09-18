@@ -1706,9 +1706,42 @@ def _is_pricing_hero_chrome(text):
     t = text or ""
     return len(t) <= 400 and bool(_PRICING_HERO_RE.search(t))
 
+# A docs-site CTA welded onto a SERP run by `…;` (live 18.09.26, class 53): the
+# learner stored
+#   "Efficient Transformers Library - GitHub — This library provides ...
+#    performant on …; Welcome to Efficient-Transformers Documentation! —
+#    Install Efficient-Transformers. 1. Model download and Optimize ..."
+# - two search-result titles each with its `Title — snippet` body, welded by
+# `…;`, the second one carrying the docs site's own CTA.
+#
+# A generic `…;` / multi-snippet rule was TRIED and is WRONG: the class-24 test
+# (`test_german_dictionary_serp_chrome_is_gated_on_both_paths`) records that it
+# was rejected because real rows carry genuine technical prose
+# ("Parallelism and Scaling - vLLM — ... experts …; Optimization and Tuning -
+# vLLM — ..."). The discriminator is therefore the docs site's OWN navigation
+# label, not the separator: a run of `…;` immediately followed by the
+# documentation landing page intro `Welcome to <Product> Documentation`.
+# Real prose mentions a welcome or a documentation install step inside a
+# sentence, which never sits directly on the welded title boundary.
+# Measured (18.09.26): 1 live buffer hit and it IS the leak; 2 buffer_junk
+# rows of the same family; 0 of 3,058 longterm_episodes; 0 of 1,003 asserted
+# gate-test literals; 0 prose controls.
+_DOCS_CTA_AFTER_SERP_RE = _re.compile(
+    r"\u2026\s*;\s*Welcome to\s",
+    _re.IGNORECASE)
+
+
+def _is_docs_cta_serp_run(text):
+    """True when a SERP run ends on a docs site's `Welcome to …` page intro."""
+    return bool(_DOCS_CTA_AFTER_SERP_RE.search(text or ""))
+
+
 def _is_nav_chrome(text):
     """True when text is page chrome (entities, marketing, UI, template leaks)."""
     if _ENTITY.search(text):
+        return True
+    # a SERP run welded to a docs site's CTA (class 53, 18.09.26)
+    if _is_docs_cta_serp_run(text):
         return True
     low = text.lower()
     if any(c in low for c in _NAV_CHROME):
