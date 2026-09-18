@@ -2209,6 +2209,32 @@ def _is_label_bullet_chain(text):
     return len(_LABEL_BULLET_RE.findall(text or "")) >= 2
 
 
+# class 76 markers (live 19.09.26) -- see _is_tag_counter_run_chrome.
+# A result page's tag-cloud / category counter strip whose separators were lost:
+# `AI (2) jackson (2) LangGraph (2) learning (2) mcp (2) NeoCode (2)`.
+_TAG_COUNTER_PAIR_RE = _re.compile(r"\b[\w.\-]{2,}\s*\(\s*[1-9]\s*\)")
+
+
+def _is_tag_counter_run_chrome(text):
+    """True when `text` is a run of `tag (n)` counter pairs (class 76).
+
+    Live 19.09.26: `cycle_b_papers` stored a tag-cloud strip -- 15 `word (n)`
+    pairs and nothing else -- as the answer for a BitNet query. 221 chars WITH
+    digits, so the >=90 length trust AND the technical-signal gate both fired
+    and no existing marker matched. Single-digit counts are the discriminator
+    against real prose (a date or a score carries 4 digits, not 1).
+
+    One or two such pairs are ordinary prose (`vLLM (2) and TensorRT-LLM (3)`),
+    so the discriminator is DENSITY: >=8 single-digit pairs in one record.
+    Measured: 1 buffer hit and it IS the leak; 0/6,312 buffer_junk rows;
+    0/3,059 longterm_episodes; 0/764 gate-test literals; 0/7 prose controls.
+    """
+    t = text or ""
+    if len(t) > 400:
+        return False
+    return len(_TAG_COUNTER_PAIR_RE.findall(t)) >= 8
+
+
 # class 75 markers (live 19.09.26) -- see _is_bio_page_furniture_pair.
 # A publisher's byline-card furniture welded together: `Read Full Bio <Name>
 # Updated on: June 17, 2025 / 5:28 PM EDT / CBS News Add CBS News on Google`.
@@ -2455,6 +2481,9 @@ def _is_nav_chrome(text):
         return True
     # a page's welded decorative alt-text run (class 75, 19.09.26)
     if _is_bio_page_furniture_pair(text):
+        return True
+    # a result page's tag-counter run (class 76, 19.09.26)
+    if _is_tag_counter_run_chrome(text):
         return True
     low = text.lower()
     if any(c in low for c in _NAV_CHROME):

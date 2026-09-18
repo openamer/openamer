@@ -3792,3 +3792,44 @@ def test_bio_page_furniture_pair_is_gated_on_both_paths():
         assert not buffer_store._is_bio_page_furniture_pair(prose), prose
         assert not IL._is_junk(prose), prose
         assert not buffer_store.is_junk(prose), prose
+
+
+def test_tag_counter_run_chrome_is_gated_on_both_paths():
+    """A tag-cloud counter run is not knowledge (class 76).
+
+    Live 19.09.26: cycle_b_papers stored a tag strip -- 15 `word (n)` pairs and
+    nothing else -- as the answer for a BitNet query. Single-digit counts are the
+    discriminator against real prose; one or two pairs are ordinary prose, so the
+    discriminator is >=8 pairs in one record.
+    """
+    import buffer_store
+    leak = (
+        "AI (2) jackson (2) LangGraph (2) learning (2) mcp (2) NeoCode (2) "
+        "production (2) workflow (2) agent-frameworks (1) agents (1) AI framework (1) "
+        "angular (1) Anthropic (1) API Comparison (1) architecture patterns (1) CLAUDE."
+    )
+    assert IL._is_tag_counter_run_chrome(leak)
+    assert buffer_store._is_tag_counter_run_chrome(leak)
+    assert IL._is_junk(leak)
+    assert buffer_store._is_nav_chrome(leak)
+    assert buffer_store.is_junk(leak)
+    # A sidebar widget that prints the same tag counters is chrome by
+    # construction -- asserting it as a leak, NOT as clean prose.
+    widget = (
+        "Tag counts were AI (2), mcp (2), agents (1), workflow (2), LangGraph (2), "
+        "NeoCode (2), production (2), learning (2), routing (1), caching (1) across the sidebar."
+    )
+    assert IL._is_tag_counter_run_chrome(widget)
+    assert IL._is_junk(widget)
+    for prose in (
+        "We compare LoRA (2), QLoRA (3), PEFT (4), SFT (5) and DPO (6) in the benchmark table.",
+        "The evaluation covered agents (12), tools (8), memory (6), routing (5), caching (4), and safety (3).",
+        "AI (2) and mcp (2) were the two tags used for the study.",
+        "Scores improved: 91.2 (2024), 93.0 (2025), 95.1 (2026), 96.0 (2027), 97.0 (2028).",
+        "James Jul 05, 2025 was the day the team shipped the first release.",
+        "Share the report with 14 reviewers and 1 manager before Friday.",
+    ):
+        assert not IL._is_tag_counter_run_chrome(prose), prose
+        assert not buffer_store._is_tag_counter_run_chrome(prose), prose
+        assert not IL._is_junk(prose), prose
+        assert not buffer_store.is_junk(prose), prose
