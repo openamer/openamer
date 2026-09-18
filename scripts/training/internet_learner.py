@@ -1556,6 +1556,39 @@ def _is_nav_widget_run_chrome(text):
     return len(_NAV_WIDGET_RE.findall(t)) >= 4
 
 
+# class 51 markers (live 18.09.26) -- see _is_news_byline_share_header.
+_BYLINE_WEEKDAY_SHARE_RE = re.compile(
+    r"\bBy\s+[A-Z][a-z]+\s+[A-Z][a-z]+\s+\w+day,[\s\S]{0,40}?\bShare\b")
+
+
+def _is_news_byline_share_header(text):
+    """True when `text` is a broadcast-news article header run.
+
+    Live 18.09.26 (class 51): `cycle_a_technews` stored
+
+        ABCNews By Mason Leib Thursday, April 30, 2026 Share A software
+        company founder went viral this week after sharing a post on social
+        media describing how an AI agent threw his business into chaos for
+        30 hours.
+
+    A news site's own furniture: brand chip + TWO-word byline + full weekday
+    dateline + the reader's `Share` control, glued to the article lede. It
+    carries digits (`30`), so the `>=90` length trust and the
+    technical-signal gate both fired and no existing marker matched --
+    class 29 strips a LEADING byline and class 40 keys on `Published`, not
+    on the weekday dateline + `Share` pair.
+
+    The discriminator is the welded PAIR (byline + full weekday dateline
+    within 40 chars of the reader's own `Share` control), never the bare
+    words -- `By <First> <Last>` alone is ordinary prose and a weekday date
+    alone is an ordinary date. Measured: 1 buffer hit and it IS the leak ->
+    0 real-prose FPs on a 14-sentence control corpus, 0 of the gate test
+    file's 511 asserted literals; 0/3,058 `longterm_episodes`. The
+    `date + Share` pair alone was REJECTED (2 test-literal FPs).
+    """
+    return bool(_BYLINE_WEEKDAY_SHARE_RE.search(text or ""))
+
+
 # class 38 markers (live 17.09.26) -- see _is_marketing_hero_cta_chrome.
 _HERO_CTA_STAR_RE = re.compile(
     r"\[\*\]\s+(?:With|Mit)\s+(?:over|\u00fcber)\s+[\d.,]+",
@@ -1798,6 +1831,9 @@ def _is_junk(text):
         return True
     # a run of a document-hosting page's nav widgets (class 50, 18.09.26)
     if _is_nav_widget_run_chrome(t):
+        return True
+    # a broadcast-news byline + weekday dateline + Share header (class 51, 18.09.26)
+    if _is_news_byline_share_header(t):
         return True
     # a landing-page hero CTA chain (class 38, 17.09.26)
     if _is_marketing_hero_cta_chrome(t):

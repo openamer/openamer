@@ -2980,3 +2980,34 @@ def test_nav_widget_run_chrome_is_gated_on_both_paths():
         assert not IL._is_junk(text), text
         assert not buffer_store._is_nav_widget_run_chrome(text), text
         assert not buffer_store._is_nav_chrome(text), text
+
+def test_news_byline_share_header_is_gated_on_both_paths():
+    """Class 51 (live 18.09.26): a broadcast-news byline + dateline + Share header."""
+    import buffer_store
+    import internet_learner as IL
+
+    leak = (
+        "ABCNews By Mason Leib Thursday, April 30, 2026 Share A software company "
+        "founder went viral this week after sharing a post on social media "
+        "describing how an AI agent threw his business into chaos for 30 hours."
+    )
+    assert IL._is_news_byline_share_header(leak)
+    assert IL._is_junk(leak)
+    assert buffer_store._is_news_byline_share_header(leak)
+    assert buffer_store._is_nav_chrome(leak)
+
+    clean = (
+        "ABCNews reported that a software company founder went viral after an AI agent wiped his database.",
+        "By Mason Leib, the article described how an AI agent threw the business into chaos for 30 hours.",
+        "Share the benchmark results with the team before Thursday, April 30, 2026.",
+        "The post was shared on social media describing how an AI agent threw his business into chaos.",
+        "Thursday, April 30, 2026 was the release date of the model.",
+        "The release was announced on Thursday, April 30, 2026 by the research team.",
+        "By Mason Leib and colleagues, the study shows that quantization helps at scale.",
+        "By contrast, the 2026 study found that longer training does not always help.",
+        "Share a post on social media is not how an engineer should report an incident.",
+        "Cursor is a coding agent by Anysphere that lost control and wiped a company database.",
+    )
+    for text in clean:
+        assert not IL._is_news_byline_share_header(text), text
+        assert not buffer_store._is_news_byline_share_header(text), text
