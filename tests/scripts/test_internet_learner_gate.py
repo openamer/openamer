@@ -3676,3 +3676,40 @@ def test_repo_stat_footer_run_is_gated_on_both_paths():
         assert not buffer_store._is_repo_stat_footer_run(prose), prose
         assert not IL._is_junk(prose), prose
         assert not buffer_store.is_junk(prose), prose
+
+
+def test_table_header_value_run_is_gated_on_both_paths():
+    """A benchmark table's header row with the first value welded on (class 73).
+
+    Live 19.09.26: cycle_f_multi_domain stored `Model Dataset Resolution Acc@1
+    ckpt MedViT_small ImageNet-1K 224 83.` -- only 68 chars, so the >=90 length
+    trust never applied. The discriminator is >=3 metric column labels AND no
+    finite verb AND almost no lowercase words; prose that names the same
+    columns always has a verb.
+    """
+    import buffer_store
+    leaks = (
+        "Model Dataset Resolution Acc@1 ckpt MedViT_small ImageNet-1K 224 83.",
+        "Model Dataset Resolution Acc@1 MedViT ImageNet-1K 224 83.1",
+        "Model Params FLOPs Latency Throughput ResNet50 25.6 4.1 3.2 1200",
+    )
+    for leak in leaks:
+        assert IL._is_table_header_value_run(leak), leak
+        assert buffer_store._is_table_header_value_run(leak), leak
+        assert IL._is_junk(leak), leak
+        assert buffer_store._is_nav_chrome(leak), leak
+        assert buffer_store.is_junk(leak), leak
+    for prose in (
+        "Top-1 accuracy and F1 score were reported for each model, dataset and resolution setting.",
+        "Backend, avg accuracy and success rate were logged for each of the three runs by the harness.",
+        "Precision, recall and F1 were computed per class and then averaged over the dataset splits.",
+        "Model A was evaluated on the ImageNet-1K dataset at 224 resolution and reached 83.1% accuracy.",
+        "Tokens per second and latency were measured on the same backend for a fair comparison.",
+        "We compared model accuracy, dataset size and resolution across the three checkpoints.",
+        "A checkpoint trained on ImageNet-1K reached 83% accuracy with 224 input resolution in our test.",
+        "The report covers epochs, steps and tokens for each training configuration in the study.",
+    ):
+        assert not IL._is_table_header_value_run(prose), prose
+        assert not buffer_store._is_table_header_value_run(prose), prose
+        assert not IL._is_junk(prose), prose
+        assert not buffer_store.is_junk(prose), prose

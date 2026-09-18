@@ -2363,6 +2363,57 @@ def _is_label_bullet_chain(text):
     return len(_LABEL_BULLET_RE.findall(text or "")) >= 2
 
 
+# class 73 markers (live 19.09.26) -- see _is_table_header_value_run.
+# A benchmark TABLE's column-label chain with its first value welded on:
+# `Model Dataset Resolution Acc@1 ckpt MedViT_small ImageNet-1K 224 83.`
+# A menu is a LABEL CHAIN; a sentence has grammar. No verb + almost no
+# lowercase words = the page's table header row, not an insight.
+_TABLE_COL_LABELS = (
+    "Model", "Models", "Dataset", "Datasets", "Resolution", "Acc@1", "Acc@5", "Acc",
+    "Accuracy", "ckpt", "F1", "Top-1", "Top-5", "mAP", "Params", "FLOPs", "Latency",
+    "Throughput", "Precision", "Recall", "Tokens", "Steps", "Epochs", "Backend",
+    "Avg", "Success Rate", "BLEU", "ROUGE", "Perplexity", "Speedup", "Runtime",
+)
+_TABLE_VERB_RE = re.compile(
+    r"\b(?:is|are|was|were|has|have|had|shows?|reached|measured|achieved|improves?|"
+    r"gives?|uses?|makes?|allows?|enables?|trains?|runs?|keeps|compares?|lists?|"
+    r"contains?|reports?|supports?|works?|means?|indicates?|found|became|remained|"
+    r"needs?|does|do|did)\b", re.IGNORECASE)
+_TABLE_WORD_RE = re.compile(r"[A-Za-z][A-Za-z'./@+-]*")
+
+
+def _is_table_header_value_run(text):
+    """True when `text` is a benchmark table's header row (class 73).
+
+    Live 19.09.26: `cycle_f_multi_domain` stored
+
+        Model Dataset Resolution Acc@1 ckpt MedViT_small ImageNet-1K 224 83.
+
+    A paper's benchmark table header with the first result cell welded on. Only
+    68 chars, so the >=90 length trust never applied (class-33 precedent) and
+    no existing marker matched; `_is_metric_row_fragment` (class 43) needs a
+    parenthesised ratio of counts, which this row has not.
+
+    The discriminator is the class-43 rule generalised: >=3 metric column
+    labels AND no finite verb AND almost no lowercase words (<=0.25). Real
+    prose that names the same columns -- `Top-1 accuracy and F1 score were
+    reported for each model, dataset and resolution setting.` -- always has a
+    verb. Measured: 1 buffer hit and it IS the leak; 0/15 hostile prose
+    controls; 0/3,059 longterm_episodes; 0/1,175 gate-test literals.
+    """
+    t = text or ""
+    labels = sum(1 for c in _TABLE_COL_LABELS
+                 if re.search(r"(?<![A-Za-z0-9])" + re.escape(c) + r"(?![A-Za-z0-9])", t))
+    if labels < 3:
+        return False
+    if _TABLE_VERB_RE.search(t):
+        return False
+    words = _TABLE_WORD_RE.findall(t)
+    if not words:
+        return False
+    return (sum(1 for w in words if w.islower()) / len(words)) <= 0.25
+
+
 # class 72 markers (live 19.09.26) -- see _is_repo_stat_footer_run.
 # A repo page's stat FOOTER welded onto the end of its description:
 # `<N> stars <M> forks <Lang> <Licence>.` -- chrome, not an insight.
@@ -2479,6 +2530,9 @@ def _is_junk(text):
         return True
     # a repo page's stat footer welded onto its description (class 72, 19.09.26)
     if _is_repo_stat_footer_run(t):
+        return True
+    # a repo page's stat footer welded onto its description (class 73, 19.09.26)
+    if _is_table_header_value_run(t):
         return True
     # a page-meta listing widget (same narrow rule as
     # buffer_store._is_sidebar_listing_chrome)
