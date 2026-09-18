@@ -1847,6 +1847,35 @@ def _is_pagination_newsletter_widget(text):
 
 
 
+# class 59 markers (live 18.09.26) -- see _is_fullscreen_toggle_chrome.
+_FULLSCREEN_TOGGLE_RE = _re.compile(
+    r"\bEnter fullscreen mode\s+Exit fullscreen mode\b", _re.IGNORECASE)
+
+
+def _is_fullscreen_toggle_chrome(text):
+    """True when `text` is a code-block FULLSCREEN toggle widget (class 59).
+
+    Live 18.09.26: `cycle_b_papers` stored
+
+        Hugging Face's Transformers: from transformers import pipeline llm =
+        pipeline ( ' text-generation ' , model = ' gpt-3 ' ) Enter fullscreen
+        mode Exit fullscreen mode Integrate Z3 : Initialize Z3 and define your
+        logical constraints.
+
+    A publishing platform's own code-block control pair (`Enter fullscreen
+    mode` + `Exit fullscreen mode`, glued with a single space) embedded between
+    a code excerpt and the article prose. 230 chars with an `import`, so the
+    >=90 length trust and the technical-signal gate both fired. The
+    discriminator is the WIDGET PAIR, not either label: a single `Enter
+    fullscreen mode` is ordinary UI prose. Measured: 1 buffer hit and it IS the
+    leak; 0 FPs on prose controls (`The editor lets you enter fullscreen mode
+    and exit fullscreen mode with the same button.` stays learnable because the
+    labels are not space-glued); 0/679 test literals; 0/3,058 episodes.
+    """
+    return bool(_FULLSCREEN_TOGGLE_RE.search(text or ""))
+
+
+
 def _is_nav_chrome(text):
     """True when text is page chrome (entities, marketing, UI, template leaks)."""
     if _ENTITY.search(text):
@@ -1865,6 +1894,9 @@ def _is_nav_chrome(text):
         return True
     # a blog archive pagination widget + newsletter promo (class 58, 18.09.26)
     if _is_pagination_newsletter_widget(text):
+        return True
+    # a code-block FULLSCREEN toggle widget pair (class 59, 18.09.26)
+    if _is_fullscreen_toggle_chrome(text):
         return True
     low = text.lower()
     if any(c in low for c in _NAV_CHROME):

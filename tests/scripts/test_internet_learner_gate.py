@@ -3299,3 +3299,33 @@ def test_pagination_newsletter_widget_is_gated_on_both_paths():
     ):
         assert not IL._is_pagination_newsletter_widget(text), text
         assert not buffer_store._is_pagination_newsletter_widget(text), text
+
+
+def test_fullscreen_toggle_chrome_is_gated_on_both_paths():
+    """A code-block FULLSCREEN toggle widget pair (class 59) must be gated on
+    BOTH paths."""
+    import buffer_store
+    import internet_learner as IL
+    leak = (
+        "Hugging Face's Transformers: from transformers import pipeline llm = "
+        "pipeline ( ' text-generation ' , model = ' gpt-3 ' ) Enter fullscreen "
+        "mode Exit fullscreen mode Integrate Z3 : Initialize Z3 and define your "
+        "logical constraints."
+    )
+    assert IL._is_fullscreen_toggle_chrome(leak) is True
+    assert IL._is_junk(leak) is True
+    assert buffer_store._is_fullscreen_toggle_chrome(leak) is True
+    assert buffer_store._is_nav_chrome(leak) is True
+    assert buffer_store.is_junk(leak) is True
+    for text in (
+        "The editor lets you enter fullscreen mode and exit fullscreen mode with the same button.",
+        "The agent enters fullscreen mode when the display is small and exits it when the user resizes.",
+        "Press enter to toggle fullscreen and exit the mode with Escape.",
+        "The editor has an enter fullscreen control and a separate exit fullscreen control.",
+        "Fullscreen mode hides the toolbar, and exiting fullscreen restores it.",
+        "Integrate Z3 : Initialize Z3 and define your logical constraints.",
+        "from transformers import pipeline llm = pipeline('text-generation', model='gpt-3')",
+        "ProofOfThought translates a question into Z3 constraints and solves them.",
+    ):
+        assert not IL._is_fullscreen_toggle_chrome(text), text
+        assert not buffer_store._is_fullscreen_toggle_chrome(text), text
