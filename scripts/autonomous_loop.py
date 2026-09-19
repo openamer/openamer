@@ -29,6 +29,21 @@ sys.path.insert(0, str(REPO / "scripts"))
 
 import importlib.util
 
+# Markers only a real OpenAmer home carries. Darwin never creates these, so they
+# separate a genuine install from a scratch directory that merely exists -- e.g.
+# a stray ``OPENAMER_HOME=/c/tmp/oa-home``, which made the swarm loop resolve an
+# empty population and report "0 tasks, everything clean" (observed 2026-09-19).
+_HOME_MARKERS = ("config.yaml", ".env", "cron", "memories", "openamer-agent")
+
+
+def _is_install_root(pth: Path) -> bool:
+    """True when *pth* looks like a real OpenAmer home, not a scratch dir."""
+    try:
+        return any((pth / m).exists() for m in _HOME_MARKERS)
+    except OSError:
+        return False
+
+
 def _resolve_openamer_home(default: Path) -> Path:
     """Resolve OPENAMER_HOME robustly across shells (see darwin_engine.py).
 
@@ -56,7 +71,15 @@ def _resolve_openamer_home(default: Path) -> Path:
         head = parts[1].strip("/").strip(os.sep).lower()
         if head and head == drive[0].lower():
             return default
-    return cand if cand.exists() else default
+    if cand is None or not cand.exists():
+        return default
+    # An existing directory is not enough: a scratch dir adopted as the install
+    # silently evolves an empty population while the real home is untouched.
+    if _is_install_root(cand):
+        return cand
+    print(f"[home] WARNING: OPENAMER_HOME={cand} exists but is not an OpenAmer "
+          f"install root; falling back to {default}.", file=sys.stderr)
+    return default
 
 
 
