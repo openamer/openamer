@@ -1,5 +1,17 @@
-# OpenAmer CI/CD Assistant — GitHub Action
-# Runs in ANY pipeline: check code, generate reports, auto-fix issues
+# OpenAmer CI Assistant
+#
+# This job used to call `uses: openamer/openamer@v1` three times. That action
+# cannot resolve: there is no `action.yml` at the repo root, and the tag `v1`
+# does not exist (the repo tags releases as vYYMMDD). Every run therefore failed
+# with `Unable to resolve action`, before any step logic executed — the job had
+# never actually run.
+#
+# Rather than invent an `action.yml`, the assistant does the work locally. The
+# checks this job claims to perform (syntax, security, complexity, report) are
+# covered by jobs that already exist and pass: `lint.yml`, `tests.yml`,
+# `osv-scanner.yml`, `supply-chain-audit.yml`. This job keeps its name and its
+# triggers and now runs the same commands against the checked-out tree, so a red
+# result means a real finding instead of an unresolvable ref.
 
 name: OpenAmer CI Assistant
 
@@ -15,29 +27,48 @@ jobs:
   openamer-assist:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
+      # Pinned to the same commit the rest of the repo uses. The previous
+      # floating `actions/checkout@v7` is the same unresolvable-ref class of bug.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
 
-      - name: OpenAmer Code Review
-        uses: openamer/openamer@v1
+      - name: Set up Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7.0.0
         with:
-          mode: review
-          token: ${{ secrets.GITHUB_TOKEN }}
-          check: syntax,security,complexity
+          python-version: "3.11"
 
-      - name: OpenAmer Auto-Fix
-        if: failure()
-        uses: openamer/openamer@v1
-        with:
-          mode: fix
-          auto-commit: true
-          commit-message: "auto-fix: OpenAmer CI Assistant"
+      - name: Syntax check
+        run: |
+          set -euo pipefail
+          python3 -m compileall -q -x '(^|/)(\.venv|node_modules|website|\.git)/' .             && echo "syntax: OK"
 
-      - name: OpenAmer Report
-        uses: openamer/openamer@v1
-        with:
-          mode: report
-          format: markdown
-          output: .openamer/report.md
+      - name: Security scan (dependency CVEs)
+        # Advisory: the authoritative gate is `osv-scanner.yml`.
+        continue-on-error: true
+        run: |
+          set -euo pipefail
+          python3 -m pip install --quiet pip-audit
+          pip-audit --progress-spinner off || true
+
+      - name: Complexity report
+        continue-on-error: true
+        run: |
+          set -euo pipefail
+          python3 -m pip install --quiet radon
+          radon cc -s -a --total-average scripts openamer_cli agent acp_adapter || true
+
+      - name: Write report
+        run: |
+          set -euo pipefail
+          mkdir -p .openamer
+          {
+            echo "# OpenAmer CI Assistant report"
+            echo
+            echo "- commit: \`$GITHUB_SHA\`"
+            echo "- ref: \`$GITHUB_REF\`"
+            echo "- runner: \`$RUNNER_OS\`"
+            echo "- python: \`$(python3 --version)\`"
+          } > .openamer/report.md
+          cat .openamer/report.md
 
       - name: Upload Report
         uses: actions/upload-artifact@v4
@@ -48,5 +79,3 @@ jobs:
       - name: OpenAmer Health Check
         run: |
           echo "✅ OpenAmer CI Assistant active"
-          echo "📊 Coverage: python3 -m pytest --cov" || true
-          echo "🔍 Linting: pylint --score=y" || true
