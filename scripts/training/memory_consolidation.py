@@ -27,8 +27,53 @@ Usage:
 """
 import json, os, sys, datetime, hashlib, re, pathlib
 
-_HOME = pathlib.Path(os.environ.get(
-    "OPENAMER_HOME", str(pathlib.Path.home() / "AppData" / "Local" / "openamer-laptop")))
+# Markers only a real OpenAmer home carries (see dream_cycle._resolve_home).
+_HOME_MARKERS = ("config.yaml", ".env", "cron", "memories", "openamer-agent")
+
+
+def _is_install_root(pth):
+    try:
+        return any((pth / m).exists() for m in _HOME_MARKERS)
+    except OSError:
+        return False
+
+
+def _resolve_home():
+    """Resolve OPENAMER_HOME across shells; never adopt a scratch dir.
+
+    git-bash exports OPENAMER_HOME in MSYS form (/c/tmp/oa-home), which native
+    Windows Python reads as a RELATIVE path -> phantom C:\\c\\tmp\\oa-home.
+    Consolidation would then run against an empty episode store and report a
+    healthy "0 compressed" night while the real 50 MB store was never opened.
+    """
+    local = pathlib.Path.home() / "AppData" / "Local"
+    candidates = [local / "openamer-laptop", local / "openamer"]
+    default = next((c for c in candidates if (c / "skills").is_dir()),
+                   candidates[0])
+
+    raw = os.environ.get("OPENAMER_HOME")
+    if not raw:
+        return default
+
+    cand = None
+    norm = raw.replace(os.sep, "/") if os.sep != "/" else raw
+    if len(norm) >= 3 and norm[0] == "/" and norm[1].isalpha() and norm[2] == "/":
+        cand = pathlib.Path(norm[1].upper() + ":/" + norm[3:])
+    else:
+        p = pathlib.Path(raw)
+        if p.is_absolute():
+            cand = p
+
+    if cand is not None and cand.exists() and _is_install_root(cand):
+        return cand
+    if cand is not None and cand.exists():
+        print(f"[memory] WARNING: OPENAMER_HOME={cand} exists but is not an "
+              f"OpenAmer install root; falling back to {default}.",
+              file=sys.stderr)
+    return default
+
+
+_HOME = _resolve_home()
 
 EPISODES = os.path.join(_HOME, "memory", "longterm_episodes.jsonl")
 ARCHIVE = os.path.join(_HOME, "memory", "compressed_episodes.jsonl")

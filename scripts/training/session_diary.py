@@ -20,8 +20,52 @@ import sqlite3
 import sys
 import urllib.request
 
-_HOME = os.environ.get("OPENAMER_HOME",
-                       os.path.join(os.path.expanduser("~"), "AppData", "Local", "openamer-laptop"))
+_HOME_MARKERS = ("config.yaml", ".env", "cron", "memories", "openamer-agent")
+
+
+def _is_install_root(pth):
+    try:
+        return any(os.path.exists(os.path.join(pth, m)) for m in _HOME_MARKERS)
+    except OSError:
+        return False
+
+
+def _resolve_home():
+    """Resolve OPENAMER_HOME across shells; never adopt a scratch dir.
+
+    git-bash exports OPENAMER_HOME in MSYS form (/c/tmp/oa-home), which native
+    Windows Python reads as a RELATIVE path -> phantom C:\\c\\tmp\\oa-home. The
+    diary then read an empty state.db and wrote "no messages" for a day that
+    actually held hundreds.
+    """
+    local = os.path.join(os.path.expanduser("~"), "AppData", "Local")
+    candidates = [os.path.join(local, "openamer-laptop"), os.path.join(local, "openamer")]
+    default = candidates[0]
+    for c in candidates:
+        if os.path.isdir(os.path.join(c, "skills")):
+            default = c
+            break
+
+    raw = os.environ.get("OPENAMER_HOME")
+    if not raw:
+        return default
+
+    cand = None
+    norm = raw.replace(os.sep, "/") if os.sep != "/" else raw
+    if len(norm) >= 3 and norm[0] == "/" and norm[1].isalpha() and norm[2] == "/":
+        cand = norm[1].upper() + ":/" + norm[3:]
+    else:
+        cand = raw if os.path.isabs(raw) else None
+
+    if cand and os.path.isdir(cand) and _is_install_root(cand):
+        return cand
+    if cand and os.path.isdir(cand):
+        print(f"[diary] WARNING: OPENAMER_HOME={cand} exists but is not an "
+              f"OpenAmer install root; falling back to {default}.", file=sys.stderr)
+    return default
+
+
+_HOME = _resolve_home()
 DB = os.path.join(_HOME, "state.db")
 DIARY_DIR = os.path.join(_HOME, "memory", "diary")
 INDEX = os.path.join(DIARY_DIR, "diary_index.json")
