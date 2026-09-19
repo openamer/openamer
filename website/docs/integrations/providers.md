@@ -590,7 +590,7 @@ model:
 Get your API key at [io.net — API Keys and Secrets](https://io.net/docs/guides/intelligence/api-keys-and-secrets). The base URL can be overridden with `IONET_BASE_URL`.
 
 :::note tool_choice
-The endpoint's documented `tool_choice` default is `none`, so the profile pins `tool_choice: "auto"` on every request to keep agent tool calls firing.
+The endpoint's documented `tool_choice` default is `none`, so the profile sends `tool_choice: "auto"` on requests that offer tools to keep agent tool calls firing (requests without tools stay clean — strict backends reject `tool_choice` without a `tools` list).
 :::
 
 ## Custom & Self-Hosted LLM Providers

@@ -51,21 +51,108 @@ class TestIonetProfile:
         assert providers.get_provider_profile("io-net") is ionet_profile
         assert providers.get_provider_profile("io-intelligence") is ionet_profile
 
-    def test_fetch_models_passthrough(self, ionet_profile):
-        """Live discovery returns the endpoint's org/name ids unchanged."""
-        from providers.base import ProviderProfile
+    def test_fetch_models_composes_endpoint_auth_and_parse(self, ionet_profile):
+        """Live discovery: {base_url}/models with Bearer auth, OpenAI response shape.
 
-        with patch.object(
-            ProviderProfile,
-            "fetch_models",
-            return_value=["meta-llama/Llama-3.3-70B-Instruct", "deepseek-ai/DeepSeek-V4.1-Flash"],
+        The profile inherits the base implementation, so this pins the contract
+        the io.net endpoint relies on: URL composition (no double path join),
+        the Authorization header, and org/name id passthrough.
+        """
+        import io
+        import json as _json
+        from unittest.mock import patch
+
+        captured = {}
+
+        class _FakeResponse:
+            def __init__(self, payload: str):
+                self._buf = io.BytesIO(payload.encode())
+
+            def read(self):
+                return self._buf.read()
+
+        class _FakeCtx:
+            def __init__(self, resp):
+                self._resp = resp
+
+            def __enter__(self):
+                return self._resp
+
+            def __exit__(self, *exc):
+                return False
+
+        def _fake_open(req, timeout=None):
+            captured["url"] = req.get_full_url()
+            captured["auth"] = req.get_header("Authorization")
+            captured["ua"] = req.get_header("User-agent")
+            payload = _json.dumps(
+                {
+                    "data": [
+                        {"id": "meta-llama/Llama-3.3-70B-Instruct"},
+                        {"id": "deepseek-ai/DeepSeek-V4.1-Flash"},
+                        {"object": "model"},  # entries without id are skipped
+                    ]
+                }
+            )
+            return _FakeCtx(_FakeResponse(payload))
+
+        with patch(
+            "openamer_cli.urllib_security.open_credentialed_url", side_effect=_fake_open
         ):
             models = ionet_profile.fetch_models(
                 api_key="test-key",
-                base_url="https://api.intelligence.io.solutions/api/v1",
+                base_url="https://example.test/api/v1",
             )
 
-        assert models == ["meta-llama/Llama-3.3-70B-Instruct", "deepseek-ai/DeepSeek-V4.1-Flash"]
+        assert captured["url"] == "https://example.test/api/v1/models"
+        assert captured["auth"] == "Bearer test-key"
+        assert models == [
+            "meta-llama/Llama-3.3-70B-Instruct",
+            "deepseek-ai/DeepSeek-V4.1-Flash",
+        ]
+
+    def test_fetch_models_trailing_slash_and_failure(self, ionet_profile):
+        """A trailing-slash base URL still composes one /models, and fetch
+        failures return None so callers fall back to the static list."""
+        import json as _json
+        from unittest.mock import patch
+
+        class _FakeResponse:
+            def __init__(self, payload: str):
+                import io
+
+                self._buf = io.BytesIO(payload.encode())
+
+            def read(self):
+                return self._buf.read()
+
+        class _FakeCtx:
+            def __init__(self, resp):
+                self._resp = resp
+
+            def __enter__(self):
+                return self._resp
+
+            def __exit__(self, *exc):
+                return False
+
+        with patch(
+            "openamer_cli.urllib_security.open_credentialed_url",
+            side_effect=lambda req, timeout=None: _FakeCtx(
+                _FakeResponse(_json.dumps({"data": [{"id": "zai-org/GLM-5.3"}]}))
+            ),
+        ):
+            models = ionet_profile.fetch_models(
+                api_key="test-key",
+                base_url="https://example.test/api/v1/",
+            )
+        assert models == ["zai-org/GLM-5.3"]
+
+        with patch(
+            "openamer_cli.urllib_security.open_credentialed_url",
+            side_effect=RuntimeError("network down"),
+        ):
+            assert ionet_profile.fetch_models(api_key="k", base_url="https://x.test") is None
 
 
 class TestIonetTransportIntegration:
