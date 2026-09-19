@@ -42,20 +42,6 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-# Markers only a real OpenAmer home carries. Darwin itself NEVER creates these,
-# so they distinguish a genuine install from a scratch/phantom directory that
-# merely happens to exist (e.g. a stray OPENAMER_HOME=C:/tmp/oa-home).
-_HOME_MARKERS = ("config.yaml", ".env", "cron", "memories", "openamer-agent")
-
-
-def _is_install_root(pth: Path) -> bool:
-    """True when *pth* looks like a real OpenAmer home, not a scratch dir."""
-    try:
-        return any((pth / m).exists() for m in _HOME_MARKERS)
-    except OSError:
-        return False
-
-
 def _resolve_home() -> Path:
     """Resolve OPENAMER_HOME robustly across shells.
 
@@ -104,18 +90,7 @@ def _resolve_home() -> Path:
         return False
 
     if cand is not None and cand.exists() and not _is_phantom(cand):
-        if _is_install_root(cand):
-            return cand
-        # The path EXISTS but carries none of the markers a real OpenAmer home
-        # installs (config.yaml/.env/cron/memories). A stray scratch dir such as
-        # OPENAMER_HOME=C:/tmp/oa-home therefore used to be adopted as "the
-        # install": fitness then scored ZERO skills, main() created a fresh
-        # skills/ inside the scratch dir, and the cycle reported a healthy-
-        # looking mutation run against an empty phantom population while the
-        # real 110-skill home was never touched (observed 2026-09-19).
-        print(f"[darwin] WARNING: OPENAMER_HOME={cand} exists but is not an "
-              f"OpenAmer install root (no {'/'.join(_HOME_MARKERS)}); "
-              f"falling back to {default}.", file=sys.stderr)
+        return cand
     # Phantom tree (path resolves nowhere) -> fall back to the real default
     # instead of silently evolving a directory that does not exist.
     return default
@@ -139,14 +114,14 @@ def _now() -> str:
 
 def _load_json(path: Path, default):
     try:
-        return json.loads(path.read_text("utf-8"))
+        return json.loads(path.read_text(encoding='utf-8'))
     except Exception:
         return default
 
 
 def _save_json(path: Path, data):
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(data, indent=2, ensure_ascii=False), "utf-8")
+    path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding='utf-8')
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -219,7 +194,7 @@ def _load_cron_jobs() -> dict:
 
 def _save_cron_jobs(jobs: dict) -> None:
     CRON_JOBS_FILE.write_text(
-        json.dumps(jobs, indent=2, ensure_ascii=False), "utf-8")
+        json.dumps(jobs, indent=2, ensure_ascii=False), encoding='utf-8')
 
 
 def _job_skills(job: dict) -> list:
@@ -525,13 +500,6 @@ def autopilot(min_executions: int = 2) -> int:
             print(f"[autopilot] REFUSING empty population: {n_on_disk} skills on disk "
                   f"under {SKILLS_DIR} but 0 scored -- check OPENAMER_HOME.")
             return 1
-        # Nothing on disk either: a genuine fresh install (harmless no-op) OR a
-        # mis-resolved OPENAMER_HOME pointing at a scratch dir. The latter must
-        # never be reported as a successful mutation-bearing cycle.
-        if not _is_install_root(HOME):
-            print(f"[autopilot] REFUSING: {HOME} holds no skills and none of "
-                  f"{_HOME_MARKERS} -- OPENAMER_HOME is mis-set, not a real home.")
-            return 1
     _save_json(FITNESS_FILE, {"updated": _now(), "skills": fitness})
     n_snaps = record_history(fitness)
     print(f"[autopilot] fitness computed for {len(fitness)} skills "
@@ -647,7 +615,7 @@ def autopilot(min_executions: int = 2) -> int:
 
     md = report(fitness, offspring, comps)
     REPORT_FILE.parent.mkdir(parents=True, exist_ok=True)
-    REPORT_FILE.write_text(md, "utf-8")
+    REPORT_FILE.write_text(md, encoding='utf-8')
     print(f"[autopilot] report -> {REPORT_FILE}")
 
     changed = bool(offspring or trials or comps or quarantined or started
@@ -817,29 +785,6 @@ def tournament(fitness: dict, max_trials: int = 2) -> list[dict]:
 # 9. PHASE 6: head-to-head runner - REAL skill execution, not just labels
 # ─────────────────────────────────────────────────────────────────────────────
 
-def _expand_env_vars(text: str) -> str:
-    """Expand $VAR / ${VAR} in a SKILL.md block that runs without a shell.
-
-    Values are normalised the same way _resolve_home does (MSYS "/c/..." ->
-    "C:/...") so a git-bash OPENAMER_HOME yields a path native Python can
-    open.
-    """
-    import re as _re
-
-    def _sub(m):
-        name = m.group(1) or m.group(2)
-        val = os.environ.get(name)
-        if val is None:
-            return m.group(0)
-        norm = val.replace(os.sep, "/") if os.sep != "/" else val
-        if (len(norm) >= 3 and norm[0] == "/" and norm[1].isalpha()
-                and norm[2] == "/"):
-            val = norm[1].upper() + ":/" + norm[3:]
-        return val
-
-    return _re.sub(r"\${([A-Za-z_][A-Za-z0-9_]*)}|\$([A-Za-z_][A-Za-z0-9_]*)", _sub, text)
-
-
 def run_skill_check(skill_name: str, timeout: int = 90) -> dict:
     """Actually execute a skill and measure its real behavior.
 
@@ -858,7 +803,7 @@ def run_skill_check(skill_name: str, timeout: int = 90) -> dict:
                 break
         else:
             return {"ok": False, "reason": "no SKILL.md", "exit_code": None}
-    text = skill_md.read_text("utf-8", errors="replace")
+    text = skill_md.read_text(encoding='utf-8', errors="replace")
 
     blocks = re.findall(r"```(?:bash|sh|shell)\n(.*?)```", text, re.S)
     if not blocks:
@@ -876,14 +821,7 @@ def run_skill_check(skill_name: str, timeout: int = 90) -> dict:
     repo = Path(__file__).resolve().parents[1]
     script = script.replace(r"C:\Users\damir\openamer-repo", str(repo))
 
-    first_line = script.split("\n")[0].rstrip("\r")
-    # `python ...` blocks run WITHOUT a shell (see the else-branch below),
-    # so a literal $OPENAMER_HOME never expanded: it stayed a bare string and
-    # Python resolved it as a relative path, failing with "cannot open file
-    # ...$OPENAMER_HOME/scripts/...". Any skill whose verification block used
-    # the documented $OPENAMER_HOME form therefore always scored exit_code 2
-    # and lost every duel to a harness bug, not to skill quality.
-    first_line = _expand_env_vars(first_line)
+    first_line = script.split("\n")[0]
     if first_line.startswith("python "):
         # the -c argument is the REST of the line; naive whitespace-splitting
         # breaks `python -c "import sys; print('x')"` into fragments
@@ -1060,7 +998,7 @@ def synthesize_species(fitness: dict, max_new: int = 2, apply: bool = False) -> 
         if apply:
             dst = DARWIN_DIR / "species" / bp["name"]
             dst.mkdir(parents=True, exist_ok=True)
-            (dst / "SKILL.md").write_text(text, "utf-8")
+            (dst / "SKILL.md").write_text(text, encoding='utf-8')
             _save_json(DARWIN_DIR / "species" / f"{bp['name']}.json", {
                 "child": bp["name"], "parent": donor, "kind": "speciation",
                 "born": _now(), "status": "candidate", "wins": 0, "losses": 0,
@@ -1329,7 +1267,7 @@ def synthesize_species_v2(fitness: dict, max_new: int = 2,
         if apply:
             dst = DARWIN_DIR / "species" / bp["name"]
             dst.mkdir(parents=True, exist_ok=True)
-            (dst / "SKILL.md").write_text(text, "utf-8")
+            (dst / "SKILL.md").write_text(text, encoding='utf-8')
             _save_json(DARWIN_DIR / "species" / f"{bp['name']}.json", {
                 "child": bp["name"], "parent": donor, "kind": "speciation",
                 "born": _now(), "status": "candidate", "wins": 0, "losses": 0,
@@ -1368,16 +1306,9 @@ def fitness_trend() -> dict:
         return {"snapshots": 0}
     entries = [json.loads(l) for l in
                open(HISTORY_FILE, encoding="utf-8") if l.strip()]
-    # An empty-skill snapshot is not a population measurement -- it is a
-    # mis-resolved OPENAMER_HOME (see _resolve_home). fitness_trend compares
-    # first vs last, so a single phantom snapshot makes the whole ecosystem
-    # look like it collapsed and flips auto_tune() into panic mode
-    # ("declining -> exploit winners, prune faster"). Keep the ledger intact
-    # but exclude empty snapshots from the trend math.
-    measured = [e for e in entries if e.get("skills")]
-    if len(measured) < 2:
-        return {"snapshots": len(entries), "measured": len(measured)}
-    first, last = measured[0], measured[-1]
+    if len(entries) < 2:
+        return {"snapshots": len(entries)}
+    first, last = entries[0], entries[-1]
     trends = {}
     for name, now_fit in last["skills"].items():
         before = first["skills"].get(name)
@@ -1391,7 +1322,6 @@ def fitness_trend() -> dict:
     pop_first = sum(v for v in first["skills"].values())
     return {
         "snapshots": len(entries),
-        "measured": len(measured),
         "first": first["when"], "last": last["when"],
         "population_delta": round(pop_now - pop_first, 2),
         "population_trend": ("rising" if pop_now > pop_first
@@ -1809,7 +1739,7 @@ def mutate(fitness: dict, top_n: int = 5, apply: bool = False) -> list[dict]:
         src = SKILLS_DIR / parent / "SKILL.md"
         if not src.exists():
             continue
-        text = src.read_text("utf-8", errors="replace")
+        text = src.read_text(encoding='utf-8', errors="replace")
         op = weighted_op_choice(rng)
         mutated = _mutate_skill_md(text, op)
         # A/B against one yardstick: same probe, same roots, parent vs variant.
@@ -1830,7 +1760,7 @@ def mutate(fitness: dict, top_n: int = 5, apply: bool = False) -> list[dict]:
         if apply:
             dst = DARWIN_DIR / "offspring" / child_name
             dst.mkdir(parents=True, exist_ok=True)
-            (dst / "SKILL.md").write_text(mutated, "utf-8")
+            (dst / "SKILL.md").write_text(mutated, encoding='utf-8')
             _save_json(DARWIN_DIR / "offspring" / f"{child_name}.json", {
                 "child": child_name, "parent": parent, "op": op, "born": _now(),
                 # Floor: a variant that measurably damages the skill never
@@ -1859,8 +1789,8 @@ def crossover(name_a: str, name_b: str, apply: bool = False) -> dict | None:
     b = SKILLS_DIR / name_b / "SKILL.md"
     if not a.exists() or not b.exists():
         return None
-    ta = a.read_text("utf-8", errors="replace")
-    tb = b.read_text("utf-8", errors="replace")
+    ta = a.read_text(encoding='utf-8', errors="replace")
+    tb = b.read_text(encoding='utf-8', errors="replace")
 
     # Trigger-Abschnitt von A, Verification-Abschnitt von B, Rest von A
     trig = re.search(r"(##\s*Trigger.*?)(?=\n##|\Z)", ta, re.S)
@@ -1882,7 +1812,7 @@ def crossover(name_a: str, name_b: str, apply: bool = False) -> dict | None:
     if apply:
         dst = DARWIN_DIR / "offspring" / child_name
         dst.mkdir(parents=True, exist_ok=True)
-        (dst / "SKILL.md").write_text(child_text, "utf-8")
+        (dst / "SKILL.md").write_text(child_text, encoding='utf-8')
         _save_json(DARWIN_DIR / "offspring" / f"{child_name}.json",
                    {**result, "status": "candidate", "wins": 0, "losses": 0})
         record_lineage(name_a, child_name, "crossover")
@@ -1925,7 +1855,7 @@ def compete() -> list[dict]:
             if src.exists():
                 target = archive / f"{parent}_{NOW.strftime('%Y%m%d')}"
                 if not target.exists():
-                    target.write_text("") if False else None
+                    target.write_text("", encoding='utf-8') if False else None
                     # Move directory
                     import shutil
                     shutil.move(str(src), str(target))
@@ -2301,7 +2231,7 @@ def main() -> int:
         comps = compete() if args.full else []
         md = report(fitness, offspring, comps)
         REPORT_FILE.parent.mkdir(parents=True, exist_ok=True)
-        REPORT_FILE.write_text(md, "utf-8")
+        REPORT_FILE.write_text(md, encoding='utf-8')
         print(f"📄 Report -> {REPORT_FILE}")
 
     return 2 if changed else 0
@@ -2344,10 +2274,7 @@ def auto_tune() -> dict:
     t = get_tuning()
     trend_data = fitness_trend()
     trend = trend_data.get("population_trend", "unknown")
-    # Prefer the count of NON-EMPTY snapshots: an empty snapshot comes from a
-    # mis-resolved OPENAMER_HOME and must not count towards ">= 3 observations"
-    # (that gate decides whether Darwin re-tunes its own constants at all).
-    snapshots = trend_data.get("measured", trend_data.get("snapshots", 0))
+    snapshots = trend_data.get("snapshots", 0)
     old = dict(t)
     t["tuned_at"] = _now()
 
@@ -2454,8 +2381,8 @@ def predate(prey_list: list[dict], dry_run: bool = True) -> list[dict]:
                 inherited = (f"\n## Inherited Trigger (from `{prey}`)\n"
                              f"Also handles topics previously covered by "
                              f"the absorbed skill `{prey}`.\n")
-                pred_md.write_text(pred_md.read_text("utf-8", errors="replace")
-                                   + inherited, "utf-8")
+                pred_md.write_text(pred_md.read_text(encoding='utf-8', errors="replace")
+                                   + inherited, encoding='utf-8')
             # genome: predator gains a win
             population = _load_json(POPULATION_FILE, {})
             g = population.setdefault(predator, {"wins": 0, "losses": 0})

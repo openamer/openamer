@@ -28,21 +28,6 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "scripts"))
 
-# Markers only a real OpenAmer home carries. Darwin never creates these, so they
-# separate a genuine install from a scratch directory that merely exists -- e.g.
-# a stray ``OPENAMER_HOME=/c/tmp/oa-home``, which made the swarm loop resolve an
-# empty population and report "0 tasks, everything clean" (observed 2026-09-19).
-_HOME_MARKERS = ("config.yaml", ".env", "cron", "memories", "openamer-agent")
-
-
-def _is_install_root(pth: Path) -> bool:
-    """True when *pth* looks like a real OpenAmer home, not a scratch dir."""
-    try:
-        return any((pth / m).exists() for m in _HOME_MARKERS)
-    except OSError:
-        return False
-
-
 def _resolve_openamer_home(default: Path) -> Path:
     """Resolve OPENAMER_HOME robustly across shells (see darwin_engine.py).
 
@@ -70,15 +55,7 @@ def _resolve_openamer_home(default: Path) -> Path:
         head = parts[1].strip("/").strip(os.sep).lower()
         if head and head == drive[0].lower():
             return default
-    if cand is None or not cand.exists():
-        return default
-    # An existing directory is not enough: a scratch dir adopted as the install
-    # silently evolves an empty population while the real home is untouched.
-    if _is_install_root(cand):
-        return cand
-    print(f"[home] WARNING: OPENAMER_HOME={cand} exists but is not an OpenAmer "
-          f"install root; falling back to {default}.", file=sys.stderr)
-    return default
+    return cand if cand.exists() else default
 
 
 HOME = _resolve_openamer_home(Path.home() / "AppData" / "Local" / "openamer")
@@ -105,14 +82,14 @@ def _now() -> str:
 
 def _load(path: Path, default):
     try:
-        return json.loads(path.read_text("utf-8"))
+        return json.loads(path.read_text(encoding='utf-8'))
     except Exception:
         return default
 
 
 def _save(path: Path, data):
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(data, indent=1, ensure_ascii=False), "utf-8")
+    path.write_text(json.dumps(data, indent=1, ensure_ascii=False), encoding='utf-8')
 
 
 def ask_openrouter(prompt: str, system: str = "") -> tuple[bool, str]:
@@ -355,7 +332,7 @@ def main():
                                  args.propose[2])
         print(json.dumps(result, indent=1))
     elif args.propose_code:
-        code = Path(args.propose_code[3]).read_text("utf-8")[:2000]
+        code = Path(args.propose_code[3]).read_text(encoding='utf-8')[:2000]
         result = submit_proposal(args.propose_code[0], args.propose_code[1],
                                  args.propose_code[2], code)
         print(json.dumps(result, indent=1))

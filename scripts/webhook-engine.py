@@ -13,6 +13,7 @@ Usage:
   python webhook-engine.py --health         Check if server is running
 """
 
+import psutil
 import argparse
 import json
 import os
@@ -362,7 +363,7 @@ def start_server():
     # Check lock
     if LOCK_FILE.exists():
         try:
-            pid = int(LOCK_FILE.read_text().strip())
+            pid = int(LOCK_FILE.read_text(encoding='utf-8').strip())
             # Check if process is still alive (Windows-friendly)
             if sys.platform == "win32":
                 check = subprocess.run(["tasklist", "/FI", f"PID eq {pid}"],
@@ -372,12 +373,13 @@ def start_server():
                     print(f"Server already running (PID {pid}) on port {PORT}")
                     return
             else:
-                try:
-                    os.kill(pid, 0)  # signal 0 = existence check
+                # psutil.pid_exists returns a bool — it does NOT raise for a
+                # missing pid the way os.kill(pid, 0) did. Keeping the bare call
+                # and the try/except made a DEAD server look alive, because the
+                # print/return below ran unconditionally. The value is the answer.
+                if psutil.pid_exists(pid):
                     print(f"Server already running (PID {pid}) on port {PORT}")
                     return
-                except OSError:
-                    pass
         except (ValueError, OSError, subprocess.TimeoutExpired):
             pass
         # Stale lock — remove
@@ -389,7 +391,7 @@ def start_server():
     server_thread.start()
 
     # Write PID lock
-    LOCK_FILE.write_text(str(os.getpid()))
+    LOCK_FILE.write_text(str(os.getpid()), encoding='utf-8')
 
     print(f"✓ Webhook Engine started on http://{HOST}:{PORT}")
     print(f"  Rules: {RULES_FILE}")

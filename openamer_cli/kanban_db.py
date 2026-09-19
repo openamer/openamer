@@ -2885,6 +2885,70 @@ def create_task(
     creator_task_id: Optional[str] = None,
     completion_contract: Optional[str] = None,
 ) -> str:
+    """Create a task, opening its own write transaction.
+
+    Delegates to :func:`_create_task_uncommitted` so callers that ALREADY hold a
+    transaction (``kanban_swarm.create_swarm``) can create tasks atomically
+    without nesting.
+
+    Why the split exists: ``write_txn`` issues an unconditional
+    ``BEGIN IMMEDIATE`` and is therefore NOT reentrant. ``create_swarm`` opened a
+    transaction and then called ``create_task``, which opened a SECOND one, so
+    every swarm test failed with::
+
+        sqlite3.OperationalError: cannot start a transaction within a transaction
+
+    Making the outer transaction optional removes the nesting instead of
+    disabling the atomicity ``create_swarm`` actually wants.
+    """
+    with write_txn(conn):
+        return _create_task_uncommitted(
+            conn,
+            title=title, body=body, assignee=assignee, created_by=created_by,
+            workspace_kind=workspace_kind, workspace_path=workspace_path,
+            branch_name=branch_name, tenant=tenant, priority=priority,
+            parents=parents, triage=triage, idempotency_key=idempotency_key,
+            max_runtime_seconds=max_runtime_seconds, skills=skills,
+            max_retries=max_retries, model_override=model_override,
+            provider_override=provider_override, goal_mode=goal_mode,
+            goal_max_turns=goal_max_turns, initial_status=initial_status,
+            session_id=session_id, board=board, project_id=project_id,
+            project_source_task_id=project_source_task_id,
+            creator_task_id=creator_task_id,
+            completion_contract=completion_contract,
+        )
+
+
+def _create_task_uncommitted(
+    conn: sqlite3.Connection,
+    *,
+    title: str,
+    body: Optional[str] = None,
+    assignee: Optional[str] = None,
+    created_by: Optional[str] = None,
+    workspace_kind: str = "scratch",
+    workspace_path: Optional[str] = None,
+    branch_name: Optional[str] = None,
+    tenant: Optional[str] = None,
+    priority: int = 0,
+    parents: Iterable[str] = (),
+    triage: bool = False,
+    idempotency_key: Optional[str] = None,
+    max_runtime_seconds: Optional[int] = None,
+    skills: Optional[Iterable[str]] = None,
+    max_retries: Optional[int] = None,
+    model_override: Optional[str] = None,
+    provider_override: Optional[str] = None,
+    goal_mode: bool = False,
+    goal_max_turns: Optional[int] = None,
+    initial_status: str = "running",
+    session_id: Optional[str] = None,
+    board: Optional[str] = None,
+    project_id: Optional[str] = None,
+    project_source_task_id: Optional[str] = None,
+    creator_task_id: Optional[str] = None,
+    completion_contract: Optional[str] = None,
+) -> str:
     """Create a new task and optionally link it under parent tasks.
 
     Returns the new task id.  Status is ``ready`` when there are no
@@ -3122,123 +3186,122 @@ def create_task(
     for attempt in range(2):
         task_id = _new_task_id()
         try:
-            with write_txn(conn):
-                # Determine task status from parent status, unless the caller
-                # parks it directly in blocked for human-ops review or in
-                # triage for a specifier.
-                if initial_status == "blocked":
-                    task_status = "blocked"
-                    if parents:
-                        missing = _find_missing_parents(conn, parents)
-                        if missing:
-                            raise ValueError(f"unknown parent task(s): {', '.join(missing)}")
-                elif triage:
-                    task_status = "triage"
-                else:
-                    task_status = "ready"
-                    if parents:
-                        missing = _find_missing_parents(conn, parents)
-                        if missing:
-                            raise ValueError(f"unknown parent task(s): {', '.join(missing)}")
-                        # If any parent is not yet done, we're todo.
-                        rows = conn.execute(
-                            "SELECT status FROM tasks WHERE id IN "
-                            "(" + ",".join("?" * len(parents)) + ")",
-                            parents,
-                        ).fetchall()
-                        if any(r["status"] != "done" for r in rows):
-                            task_status = "todo"
-                # Even in triage mode we still need to validate parent ids
-                # so the eventual link rows don't dangle.
-                if triage and parents:
+            # Determine task status from parent status, unless the caller
+            # parks it directly in blocked for human-ops review or in
+            # triage for a specifier.
+            if initial_status == "blocked":
+                task_status = "blocked"
+                if parents:
                     missing = _find_missing_parents(conn, parents)
                     if missing:
                         raise ValueError(f"unknown parent task(s): {', '.join(missing)}")
+            elif triage:
+                task_status = "triage"
+            else:
+                task_status = "ready"
+                if parents:
+                    missing = _find_missing_parents(conn, parents)
+                    if missing:
+                        raise ValueError(f"unknown parent task(s): {', '.join(missing)}")
+                    # If any parent is not yet done, we're todo.
+                    rows = conn.execute(
+                        "SELECT status FROM tasks WHERE id IN "
+                        "(" + ",".join("?" * len(parents)) + ")",
+                        parents,
+                    ).fetchall()
+                    if any(r["status"] != "done" for r in rows):
+                        task_status = "todo"
+            # Even in triage mode we still need to validate parent ids
+            # so the eventual link rows don't dangle.
+            if triage and parents:
+                missing = _find_missing_parents(conn, parents)
+                if missing:
+                    raise ValueError(f"unknown parent task(s): {', '.join(missing)}")
 
-                # Project-linked worktree: a fresh worktree dir under the repo
-                # plus a deterministic branch (project slug + task id). Together
-                # these kill the random ``wt/<task-id>`` worker fallback and the
-                # unanchored ``.worktrees/<id>`` under the dispatcher's cwd.
-                if project_obj is not None and workspace_kind == "worktree":
-                    if project_repo and not workspace_path:
-                        workspace_path = os.path.join(
-                            project_repo, ".worktrees", task_id
-                        )
-                    if not branch_name:
-                        # _pdb was imported above when project_obj was resolved.
-                        try:
-                            branch_name = _pdb.branch_name_for(
-                                project_obj, task_id, title=title or ""
-                            )
-                        except Exception:
-                            branch_name = None
-
-                conn.execute(
-                    """
-                    INSERT INTO tasks (
-                        id, title, body, assignee, status, priority,
-                        created_by, created_at, workspace_kind, workspace_path,
-                        branch_name, project_id, tenant, idempotency_key,
-                        max_runtime_seconds,
-                        skills, max_retries, model_override, provider_override,
-                        goal_mode, goal_max_turns, session_id, completion_contract
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-                    """,
-                    (
-                        task_id,
-                        title.strip(),
-                        body,
-                        assignee,
-                        task_status,
-                        priority,
-                        created_by,
-                        now,
-                        workspace_kind,
-                        workspace_path,
-                        branch_name,
-                        project_id,
-                        tenant,
-                        idempotency_key,
-                        int(max_runtime_seconds) if max_runtime_seconds is not None else None,
-                        json.dumps(skills_list) if skills_list is not None else None,
-                        int(max_retries) if max_retries is not None else None,
-                        model_override,
-                        provider_override,
-                        1 if goal_mode else 0,
-                        int(goal_max_turns) if goal_max_turns is not None else None,
-                        session_id,
-                        completion_contract,
-                    ),
-                )
-                for pid in parents:
-                    conn.execute(
-                        "INSERT OR IGNORE INTO task_links (parent_id, child_id) VALUES (?, ?)",
-                        (pid, task_id),
+            # Project-linked worktree: a fresh worktree dir under the repo
+            # plus a deterministic branch (project slug + task id). Together
+            # these kill the random ``wt/<task-id>`` worker fallback and the
+            # unanchored ``.worktrees/<id>`` under the dispatcher's cwd.
+            if project_obj is not None and workspace_kind == "worktree":
+                if project_repo and not workspace_path:
+                    workspace_path = os.path.join(
+                        project_repo, ".worktrees", task_id
                     )
-                _append_event(
-                    conn,
-                    task_id,
-                    "created",
-                    {
-                        "assignee": assignee,
-                        "status": task_status,
-                        "parents": list(parents),
-                        "tenant": tenant,
-                        "workspace_kind": workspace_kind,
-                        "workspace_path": workspace_path,
-                        "branch_name": branch_name,
-                        "project_id": project_id,
-                        "skills": list(skills_list) if skills_list else None,
-                        "goal_mode": bool(goal_mode) or None,
-                        "model_override": model_override,
-                        "provider_override": provider_override,
-                    },
-                )
-                # ACK-edge: inherit durable session/subscriptions from the creating task
-                # independently of dependency edges (an explicit session_id still wins).
-                from openamer_cli.kanban_db_graph import inherit_creator_origin
+                if not branch_name:
+                    # _pdb was imported above when project_obj was resolved.
+                    try:
+                        branch_name = _pdb.branch_name_for(
+                            project_obj, task_id, title=title or ""
+                        )
+                    except Exception:
+                        branch_name = None
 
-                inherit_creator_origin(conn, task_id, creator_task_id, created_at=now)
+            conn.execute(
+                """
+                INSERT INTO tasks (
+                    id, title, body, assignee, status, priority,
+                    created_by, created_at, workspace_kind, workspace_path,
+                    branch_name, project_id, tenant, idempotency_key,
+                    max_runtime_seconds,
+                    skills, max_retries, model_override, provider_override,
+                    goal_mode, goal_max_turns, session_id, completion_contract
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """,
+                (
+                    task_id,
+                    title.strip(),
+                    body,
+                    assignee,
+                    task_status,
+                    priority,
+                    created_by,
+                    now,
+                    workspace_kind,
+                    workspace_path,
+                    branch_name,
+                    project_id,
+                    tenant,
+                    idempotency_key,
+                    int(max_runtime_seconds) if max_runtime_seconds is not None else None,
+                    json.dumps(skills_list) if skills_list is not None else None,
+                    int(max_retries) if max_retries is not None else None,
+                    model_override,
+                    provider_override,
+                    1 if goal_mode else 0,
+                    int(goal_max_turns) if goal_max_turns is not None else None,
+                    session_id,
+                    completion_contract,
+                ),
+            )
+            for pid in parents:
+                conn.execute(
+                    "INSERT OR IGNORE INTO task_links (parent_id, child_id) VALUES (?, ?)",
+                    (pid, task_id),
+                )
+            _append_event(
+                conn,
+                task_id,
+                "created",
+                {
+                    "assignee": assignee,
+                    "status": task_status,
+                    "parents": list(parents),
+                    "tenant": tenant,
+                    "workspace_kind": workspace_kind,
+                    "workspace_path": workspace_path,
+                    "branch_name": branch_name,
+                    "project_id": project_id,
+                    "skills": list(skills_list) if skills_list else None,
+                    "goal_mode": bool(goal_mode) or None,
+                    "model_override": model_override,
+                    "provider_override": provider_override,
+                },
+            )
+            # ACK-edge: inherit durable session/subscriptions from the creating task
+            # independently of dependency edges (an explicit session_id still wins).
+            from openamer_cli.kanban_db_graph import inherit_creator_origin
+
+            inherit_creator_origin(conn, task_id, creator_task_id, created_at=now)
             return task_id
         except sqlite3.IntegrityError:
             if attempt == 1:
@@ -3246,6 +3309,8 @@ def create_task(
             # Retry with a fresh id.
             continue
     raise RuntimeError("unreachable")
+
+
 
 
 def _find_missing_parents(conn: sqlite3.Connection, parents: Iterable[str]) -> list[str]:
@@ -3568,23 +3633,38 @@ def parent_results(conn: sqlite3.Connection, task_id: str) -> list[tuple[str, Op
 def add_comment(
     conn: sqlite3.Connection, task_id: str, author: str, body: str
 ) -> int:
+    """Add a comment, opening its own write transaction.
+
+    Delegates to :func:`_add_comment_uncommitted` for callers that already hold a
+    transaction. ``write_txn`` is not reentrant, so `kanban_swarm.create_swarm`
+    (which posts the blackboard topology inside its own transaction) must use the
+    uncommitted entry point — otherwise it dies with
+    ``cannot start a transaction within a transaction``.
+    """
+    with write_txn(conn):
+        return _add_comment_uncommitted(conn, task_id, author=author, body=body)
+
+
+def _add_comment_uncommitted(
+    conn: sqlite3.Connection, task_id: str, author: str, body: str
+) -> int:
+    """Add a comment INSIDE the caller\'s transaction. Never opens one itself."""
     if not body or not body.strip():
         raise ValueError("comment body is required")
     if not author or not author.strip():
         raise ValueError("comment author is required")
     now = int(time.time())
-    with write_txn(conn):
-        if not conn.execute(
-            "SELECT 1 FROM tasks WHERE id = ?", (task_id,)
-        ).fetchone():
-            raise ValueError(f"unknown task {task_id}")
-        cur = conn.execute(
-            "INSERT INTO task_comments (task_id, author, body, created_at) "
-            "VALUES (?, ?, ?, ?)",
-            (task_id, author.strip(), body.strip(), now),
-        )
-        _append_event(conn, task_id, "commented", {"author": author, "len": len(body)})
-        return int(cur.lastrowid or 0)
+    if not conn.execute(
+        "SELECT 1 FROM tasks WHERE id = ?", (task_id,)
+    ).fetchone():
+        raise ValueError(f"unknown task {task_id}")
+    cur = conn.execute(
+        "INSERT INTO task_comments (task_id, author, body, created_at) "
+        "VALUES (?, ?, ?, ?)",
+        (task_id, author.strip(), body.strip(), now),
+    )
+    _append_event(conn, task_id, "commented", {"author": author, "len": len(body)})
+    return int(cur.lastrowid or 0)
 
 
 def list_comments(conn: sqlite3.Connection, task_id: str) -> list[Comment]:

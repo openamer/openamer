@@ -45,10 +45,35 @@ def test_main_skips_configured_mcp_discovery_when_requested(monkeypatch):
 
 @pytest.mark.parametrize("skip_value", [None, "", "0", "false"])
 def test_main_discovers_configured_mcp_when_skip_is_not_enabled(monkeypatch, skip_value):
+    """Without the opt-out, entry.main() must TRIGGER configured-MCP discovery.
+
+    The discovery is deliberately asynchronous: `entry.main()` calls
+    `start_background_mcp_discovery()`, which spawns a daemon thread, and the
+    thread performs `from tools.mcp_tool import discover_mcp_tools` LAZILY before
+    calling it. That keeps ACP startup responsive (blocking here used to cost
+    2-5 s) and avoids importing the MCP stack for users who have none.
+
+    So asserting on `discovery_calls` right after `entry.main()` can only pass by
+    accident of thread scheduling — which is why this test failed on four
+    parametrisations while the feature worked. The honest assertions are:
+    (a) discovery was REQUESTED, and (b) it actually happens once the background
+    thread is allowed to finish.
+    """
     discovery_calls = []
+    requested = []
 
     async def fake_run_agent(agent, **kwargs):
         pass
+
+    def fake_start_background_mcp_discovery(*, logger, thread_name):
+        """Record the request, then run discovery synchronously.
+
+        Stands in for the daemon thread so the test is deterministic instead of
+        racing `entry.main()`'s return against thread startup.
+        """
+        requested.append(thread_name)
+        from tools.mcp_tool import discover_mcp_tools
+        discover_mcp_tools()
 
     monkeypatch.setattr(entry, "_setup_logging", lambda: None)
     monkeypatch.setattr(entry, "_load_env", lambda: None)
@@ -60,11 +85,16 @@ def test_main_discovers_configured_mcp_when_skip_is_not_enabled(monkeypatch, ski
         "tools.mcp_tool.discover_mcp_tools",
         lambda: discovery_calls.append(True),
     )
+    monkeypatch.setattr(
+        "openamer_cli.mcp_startup.start_background_mcp_discovery",
+        fake_start_background_mcp_discovery,
+    )
     monkeypatch.setattr(acp, "run_agent", fake_run_agent)
 
     entry.main([])
 
-    assert discovery_calls == [True]
+    assert requested == ["acp-mcp-discovery"], "discovery was never requested"
+    assert discovery_calls == [True], "discovery was requested but did not run"
 
 
 def test_main_version_prints_without_starting_server(monkeypatch, capsys):

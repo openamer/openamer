@@ -7,6 +7,8 @@ implementation in this same file once that phase ships.
 """
 from __future__ import annotations
 
+import os
+
 import pytest
 
 from openamer_cli.service_manager import (
@@ -21,6 +23,16 @@ from openamer_cli.service_manager import (
     validate_profile_name,
 )
 
+
+# s6 is a POSIX process supervisor: `_seed_supervise_skeleton` creates FIFOs with
+# `os.mkfifo` and sets ownership with `os.chown`, neither of which EXISTS on
+# Windows (plain AttributeError, not PermissionError). These tests exercise that
+# code path directly, so they cannot run here. On Linux — where CI runs — they
+# execute normally. Windows/Systemd/Launchd coverage in this file is unaffected.
+requires_posix = pytest.mark.skipif(
+    os.name == "nt",
+    reason="s6 supervise skeleton needs os.mkfifo / os.chown (POSIX-only)",
+)
 
 # ---------------------------------------------------------------------------
 # validate_profile_name
@@ -118,6 +130,7 @@ def _patch_s6_paths(
     monkeypatch.setattr(_Path, "is_dir", fake_is_dir)
 
 
+@requires_posix
 def test_s6_running_true_when_comm_and_basedir_match(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
@@ -436,6 +449,7 @@ def test_s6_manager_kind_and_supports_registration() -> None:
 # tests/docker/test_s6_profile_gateway_integration.py.
 
 
+@requires_posix
 def test_seed_supervise_skeleton_creates_expected_layout(tmp_path) -> None:
     """Verifies the dirs + FIFO + modes the helper lays down."""
     import stat
@@ -473,6 +487,7 @@ def test_seed_supervise_skeleton_creates_expected_layout(tmp_path) -> None:
     assert stat.S_IMODE(control.stat().st_mode) == 0o660
 
 
+@requires_posix
 def test_seed_supervise_skeleton_handles_log_subservice(tmp_path) -> None:
     """When a log/ subdir exists, its supervise tree also gets seeded.
 
@@ -503,6 +518,7 @@ def test_seed_supervise_skeleton_handles_log_subservice(tmp_path) -> None:
     assert log_control.exists() and stat.S_ISFIFO(log_control.stat().st_mode)
 
 
+@requires_posix
 def test_seed_supervise_skeleton_skips_when_no_log_subservice(tmp_path) -> None:
     """If log/ isn't present, no logger skeleton is created."""
     from openamer_cli.service_manager import _seed_supervise_skeleton
@@ -517,6 +533,7 @@ def test_seed_supervise_skeleton_skips_when_no_log_subservice(tmp_path) -> None:
     )
 
 
+@requires_posix
 def test_seed_supervise_skeleton_is_idempotent(tmp_path) -> None:
     """Calling the helper twice on the same dir is a no-op the second time.
 
@@ -533,6 +550,7 @@ def test_seed_supervise_skeleton_is_idempotent(tmp_path) -> None:
     _seed_supervise_skeleton(svc_dir)  # must not raise
 
 
+@requires_posix
 def test_s6_register_creates_service_dir_and_triggers_scan(
     s6_scandir, fake_subprocess_run,
 ) -> None:
@@ -586,6 +604,7 @@ def test_s6_register_creates_service_dir_and_triggers_scan(
     ), f"s6-svscanctl -a not invoked; saw: {fake_subprocess_run}"
 
 
+@requires_posix
 def test_s6_register_staging_dir_is_dotfile_hidden_from_svscan(
     s6_scandir, fake_subprocess_run, monkeypatch: pytest.MonkeyPatch,
 ) -> None:
@@ -632,6 +651,7 @@ def test_s6_register_staging_dir_is_dotfile_hidden_from_svscan(
     assert (s6_scandir / "gateway-coder").is_dir()
 
 
+@requires_posix
 def test_s6_register_start_now_false_writes_down_marker(
     s6_scandir, fake_subprocess_run,
 ) -> None:
@@ -647,6 +667,7 @@ def test_s6_register_start_now_false_writes_down_marker(
     )
 
 
+@requires_posix
 def test_s6_register_start_now_true_no_down_marker(
     s6_scandir, fake_subprocess_run,
 ) -> None:
@@ -661,6 +682,7 @@ def test_s6_register_start_now_true_no_down_marker(
     )
 
 
+@requires_posix
 def test_s6_register_extra_env_is_quoted(s6_scandir, fake_subprocess_run) -> None:
     mgr = S6ServiceManager(scandir=s6_scandir)
     mgr.register_profile_gateway(
@@ -729,6 +751,7 @@ def test_render_finish_script_exits_125_on_ex_config() -> None:
     assert "exit 0" in text
 
 
+@requires_posix
 def test_s6_register_writes_finish_script(
     s6_scandir, fake_subprocess_run,
 ) -> None:
@@ -756,6 +779,7 @@ def test_s6_register_rejects_duplicate(s6_scandir, fake_subprocess_run) -> None:
         mgr.register_profile_gateway("coder")
 
 
+@requires_posix
 def test_s6_register_rolls_back_on_svscanctl_failure(
     s6_scandir, monkeypatch: pytest.MonkeyPatch,
 ) -> None:
@@ -1103,6 +1127,7 @@ def test_s6_stop_tolerates_marker_write_failure(monkeypatch, s6_scandir):
     assert any(cmd[0] == "s6-svc" and "-d" in cmd for cmd in svc_calls)
 
 
+@requires_posix
 def test_s6_log_run_chowns_gateways_parent(s6_scandir, fake_subprocess_run) -> None:
     """The log/run script must chown the logs/gateways/ parent, not just the leaf.
 

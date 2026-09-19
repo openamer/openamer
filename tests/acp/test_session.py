@@ -394,6 +394,20 @@ class TestListAndCleanup:
         # Removing again returns False
         assert manager.remove_session(state.session_id) is False
 
+    def test_remove_session_reports_memory_only_removal(self, manager, monkeypatch):
+        """A session with NO DB row must still report removal.
+
+        `remove_session` returns True if the id was found in MEMORY or in the DB.
+        The DB branch sets the flag again when a persisted row is deleted, which
+        masks the memory branch whenever persistence is available — so a bug that
+        dropped the in-memory result would go unnoticed. Disabling the DB makes
+        the memory branch the only source of the answer.
+        """
+        monkeypatch.setattr(manager, "_get_db", lambda: None)
+        state = manager.create_session()
+        assert manager.remove_session(state.session_id) is True
+        assert manager.remove_session(state.session_id) is False
+
 
 # ---------------------------------------------------------------------------
 # persistence — sessions survive process restarts (via SessionDB)

@@ -19,6 +19,7 @@ Design principles:
   - Append-only JSONL for durability + an in-memory index for fast recall.
 """
 
+import psutil
 import json, os, math, sys, time, datetime, urllib.request, threading, pathlib, uuid
 
 # Interpreter identity for the store lock (see _store_lock / _atomic_write):
@@ -73,8 +74,7 @@ def _node_alive(pid):
         finally:
             k32.CloseHandle(h)
     try:
-        os.kill(pid, 0)
-        return True
+        return psutil.pid_exists(pid)
     except ProcessLookupError:
         return False
     except PermissionError:

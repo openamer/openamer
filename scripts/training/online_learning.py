@@ -48,7 +48,7 @@ def _brain_count():
 
 def _marker():
     try:
-        return int(MARKER.read_text().strip())
+        return int(MARKER.read_text(encoding='utf-8').strip())
     except Exception:
         return 0
 
@@ -85,7 +85,7 @@ def collect_new(max_new=50):
                     new += 1
                 lu = None
                 break
-    MARKER.write_text(str(min(total, last + max_new)))
+    MARKER.write_text(str(min(total, last + max_new)), encoding='utf-8')
     return new
 
 

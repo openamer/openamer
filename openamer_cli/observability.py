@@ -195,7 +195,7 @@ def get_trace_stats() -> Dict[str, Any]:
     brain_file = _BRAINLOG_DIR / "openamer-brain.jsonl"
     if brain_file.exists():
         try:
-            with open(brain_file, "r") as f:
+            with open(brain_file, "r", encoding='utf-8') as f:
                 brain_records = sum(1 for _ in f)
         except Exception:
             pass

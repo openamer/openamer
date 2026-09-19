@@ -42,7 +42,7 @@ def _world_model():
 
 def _night_insights(n=3):
     try:
-        lines = open(os.path.join(_HOME, "scripts", "training", "internet_learn_log.jsonl"),
+        lines = open(os.path.join(_HOME, "scripts", "training", "internet_learn_log.jsonl"),  # windows-footgun: ok — encoding="utf-8" is passed on the continuation line; the checker reads one line
                      encoding="utf-8").readlines()[-n:]
         out = []
         for l in reversed(lines):  # newest first

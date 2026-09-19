@@ -1275,12 +1275,21 @@ def _resolve_anthropic_pool_token() -> Optional[str]:
         # to auth.json or trigger a network refresh from a bare resolve. select()
         # is deliberately NOT used — it runs clear_expired=True, refresh=True,
         # which would violate this read-only contract.
-        entries = pool._available_entries(clear_expired=False, refresh=False)
+        # `_available_entries` returns a TUPLE `(available, pending_refresh)`.
+        # Iterating it directly yields the two lists, not the entries — so
+        # `getattr(e, "auth_type", None)` was always None and this resolver
+        # returned None even with a healthy OAuth row in the pool. That is why
+        # test_credential_pool_oat_authtype saw the heal succeed (load_pool)
+        # while resolve_anthropic_token() still came back empty, silently
+        # dropping the ANTHROPIC_TOKEN fallback for every pool-backed setup.
+        available, _pending_refresh = pool._available_entries(
+            clear_expired=False, refresh=False
+        )
     except Exception:
         logger.debug("Failed to read Anthropic credential_pool", exc_info=True)
         return None
 
-    for entry in entries:
+    for entry in available:
         if getattr(entry, "auth_type", None) != AUTH_TYPE_OAUTH:
             continue
         # access_token is a declared field but a persisted entry can carry an

@@ -48,13 +48,13 @@ class FundingEngine:
     
     def _ensure(self, path, default):
         if not path.exists():
-            path.write_text(json.dumps(default, indent=2))
+            path.write_text(json.dumps(default, indent=2), encoding='utf-8')
     
     def _load(self, path):
-        return json.loads(path.read_text())
+        return json.loads(path.read_text(encoding='utf-8'))
     
     def _save(self, path, data):
-        path.write_text(json.dumps(data, indent=2, ensure_ascii=False))
+        path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding='utf-8')
     
     def record_payment(self, source: str, amount: float, name: str = "", message: str = ""):
         """Record a payment/donation."""
