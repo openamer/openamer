@@ -195,3 +195,8 @@ native/fts5_cjk/*.so
 # helpers, e.g. listing GitHub issue comments). Disposable by construction;
 # ignored so `git status` keeps meaning "something real changed".
 scripts/_tmp_*.py
+
+# Rollback snapshots written by scripts/openamer_local_patches.py next to every
+# file it patches. Derived state, regenerated on demand, and only meaningful to
+# the keeper — untracked noise otherwise.
+*.pre-localpatch
