@@ -4694,4 +4694,78 @@ def test_startup_portal_nav_run_is_gated_on_both_paths():
         assert not IL._is_startup_portal_nav_run(prose), prose
         assert not buffer_store._is_nav_chrome(prose), prose
 
+def test_leading_clock_artifact_is_stripped_not_rejected():
+    """A leading ", HH:MM AM/PM" truncation artifact is STRIPPED, not rejected.
+
+    Live 19.09.26 (class 104): `cycle_c_github` stored
+      ", 03:34 PM Anthropic, the AI company behind the Claude models, announced
+       it will begin using user data, ..."
+    -- an article header cut so only the dateline tail survived. The paragraph
+    after it is real knowledge, so the contract is strip-and-keep (like
+    `_strip_dateline_fragment`), never reject.
+    """
+    import internet_learner as IL
+    import buffer_store
+
+    leak = (", 03:34 PM Anthropic, the AI company behind the Claude models, "
+            "announced it will begin using user data, including new chat "
+            "transcripts and coding sessions, to train its AI models.")
+    stripped = IL._strip_leading_clock_fragment(leak)
+    assert stripped.startswith("Anthropic"), stripped
+    assert not stripped.startswith(","), stripped
+    assert IL._clean_insight(leak).startswith("Anthropic"), IL._clean_insight(leak)
+
+    # prose that merely MENTIONS a time must be untouched.
+    clean = (
+        "Anthropic announced at 03:34 PM that it will train on user data by default.",
+        "At 03:34 PM the company published its updated training-data policy.",
+        "The meeting at 03:34 PM covered the new retention rules for transcripts.",
+        "Anthropic's change takes effect September 28, 2025, at 03:34 PM.",
+        "The log shows 03:34 PM as the moment the policy was posted by the vendor.",
+    )
+    for text in clean:
+        assert IL._strip_leading_clock_fragment(text) == text, text
+        assert not buffer_store.is_junk(text), text
+
+
+def test_hn_show_run_row_is_gated_on_both_paths():
+    """An HN item row with the site's own `Show HN:` tag is chrome (class 105).
+
+    Live 19.09.26 (class 105), verbatim from the buffer row (cycle_b_papers):
+      "CameronBanga 9 hours ago | 10 comments 175 Show HN: Cactus Needle 3:
+       8-29MB automation models can match DeepSeek V4 Flash (cactuscompute."
+    Class 37 needs the feed unit REPEATED and class 49 needs the feed's own
+    `by <handle>`/`on Hacker News` / `New ask Hacker News story` label; this
+    page ships the HN-native `Show HN:` tag instead.
+    """
+    import internet_learner as IL
+    import buffer_store
+
+    leak = ("CameronBanga 9 hours ago | 10 comments 175 Show HN: Cactus Needle 3: "
+            "8-29MB automation models can match DeepSeek V4 Flash (cactuscompute.")
+    assert IL._is_hn_show_run_chrome(leak), leak
+    assert buffer_store._is_hn_show_run_chrome(leak), leak
+    assert IL._is_junk(leak), leak
+    assert buffer_store.is_junk(leak), leak
+
+    # class 37's own clean single-occurrence control must STAY learnable: it
+    # carries the feed unit but no `Show HN:` tag.
+    assert not IL._is_hn_show_run_chrome(
+        "CameronBanga 5 hours ago | 10 comments 58 points Some headline about models.")
+    assert not IL._is_junk(
+        "CameronBanga 5 hours ago | 10 comments 58 points Some headline about models.")
+
+    clean = (
+        "The review took 2 days ago | 4 comments per reviewer were recorded.",
+        "The ticket was closed 3 days ago | 12 comments in the audit log.",
+        "A Show HN post about Cactus Needle gathered 10 comments 9 hours ago.",
+        "The Show HN thread had 175 points and 10 comments within 9 hours.",
+        "Show HN submissions rarely reach 175 points before the first 9 hours.",
+        "Our scraper captured a Show HN item; it showed 9 hours ago and 10 comments.",
+    )
+    for text in clean:
+        assert not IL._is_hn_show_run_chrome(text), text
+        assert not buffer_store._is_hn_show_run_chrome(text), text
+        assert not IL._is_junk(text), text
+        assert not buffer_store.is_junk(text), text
 

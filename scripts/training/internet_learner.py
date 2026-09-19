@@ -646,6 +646,36 @@ def _strip_clock_fragment(text):
         return text
     return rest
 
+
+def _strip_leading_clock_fragment(text):
+    """Drop a leading ", <HH:MM AM/PM>" truncation artifact from a page excerpt.
+
+    Live 19.09.26 (class 104): `cycle_c_github` stored
+    `, 03:34 PM Anthropic, the AI company behind the Claude models, announced
+    it will begin using user data, ...` -- an article header cut so that only
+    the tail of the dateline survived (the comma is the remnant of
+    `<Month> <day>, <year>, <HH:MM AM/PM>`). The prose after it is REAL
+    knowledge, so STRIP the fragment and keep the paragraph -- never reject
+    (same contract as `_strip_dateline_fragment` / `_strip_clock_fragment`,
+    and the row-188 precedent).
+
+    The leading comma + clock is the discriminator: a paragraph does not
+    begin with `, 03:34 PM`. Measured on the live buffer: exactly 1 row
+    changes (the leak), 0 of 3,059 `longterm_episodes`, 0 of 1,499 gate-test
+    literals.
+    """
+    t = text or ""
+    m = _LEADING_CLOCK_ARTIFACT_RE.match(t)
+    if not m:
+        return t
+    rest = t[m.end():].strip()
+    return rest if len(rest.split()) >= 5 else t
+
+
+# a leading ", <HH:MM AM/PM>" truncation artifact (class 104, 19.09.26).
+_LEADING_CLOCK_ARTIFACT_RE = re.compile(
+    r"^\s*,\s*\d{1,2}:\d{2}\s*(?:AM|PM)\s+")
+
 _PRINTABLE_WS = " \t\n" + chr(13)  # whitespace allowed in prose (not binary noise)
 
 
@@ -1541,6 +1571,39 @@ def _is_hn_item_chrome(text):
     `The model was reviewed by 3 authors | 2 comments each.`).
     """
     return bool(_HN_ITEM_CHROME_RE.search(text or ""))
+
+
+def _is_hn_show_run_chrome(text):
+    """True for an Hacker-News item row whose headline carries a `Show HN:` tag.
+
+    Live 19.09.26 (class 105): `cycle_b_papers` stored
+
+        CameronBanga 9 hours ago | 10 comments 175 Show HN: Cactus Needle 3:
+        8-29MB automation models can match DeepSeek V4 Flash (cactuscompute.
+
+    A single aggregator row (submitter handle + relative time + `| N comments`
+    + points + `Show HN:` headline, cut off mid-hostname). It carries digits
+    and real headline prose, so the `>=90` length trust and the
+    technical-signal gate both fired. The existing HN gates miss it:
+    `_is_hn_feed_listing_chrome` needs the unit REPEATED (>=2) and
+    `_is_hn_item_chrome` needs the feed's own `by <handle>`/`on Hacker News`
+    label or `New ask Hacker News story` -- this page ships the HN-native
+    `Show HN:` tag instead.
+
+    The discriminator is the CONJUNCTION of the feed unit and the site's own
+    `Show HN:` label, with the points counter between them. Measured on the
+    live buffer: 1 hit and it IS the leak -> 0 real-prose FPs (incl. the
+    class-37 clean control `... | N comments 58 points Some headline about
+    models.`, which has no `Show HN:`); 0/3,059 `longterm_episodes`.
+    """
+    return bool(_HN_SHOW_RUN_RE.search(text or ""))
+
+
+# a HN item row: feed unit + points + the site's own `Show HN:` tag
+# (class 105, 19.09.26).
+_HN_SHOW_RUN_RE = re.compile(
+    r"\b\w+\s+\d{1,2}\s+(?:minutes?|hours?|days?)\s+ago\s*\|\s*"
+    r"\d{1,5}\s*comments?\b\s+\d{1,4}\s+\bShow\s+HN\s*:", re.IGNORECASE)
 
 
 # class 50 markers (live 18.09.26) -- see _is_nav_widget_run_chrome.
@@ -3385,6 +3448,9 @@ def _is_junk(text):
     # a single aggregator item row with its feed tail (class 49, 18.09.26)
     if _is_hn_item_chrome(t):
         return True
+    # a HN item row with the site's own `Show HN:` tag (class 105, 19.09.26)
+    if _is_hn_show_run_chrome(t):
+        return True
     # a run of a document-hosting page's nav widgets (class 50, 18.09.26)
     if _is_nav_widget_run_chrome(t):
         return True
@@ -4649,6 +4715,7 @@ def _clean_insight(text, max_len=250):
     t = _strip_byline_stack(t)
     t = _strip_byline_prefix(t)
     t = _strip_clock_fragment(t)
+    t = _strip_leading_clock_fragment(t)
     t = _strip_read_time_header(t)
     t = _strip_arrow_nav_prefix(t)
     t = _strip_blog_header_stack(t)

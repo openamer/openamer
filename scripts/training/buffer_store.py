@@ -1346,6 +1346,18 @@ def _is_hn_item_chrome(text):
     return bool(_HN_ITEM_CHROME_RE.search(text or ""))
 
 
+def _is_hn_show_run_chrome(text):
+    """True for an HN item row whose headline carries a `Show HN:` tag (105)."""
+    return bool(_HN_SHOW_RUN_RE.search(text or ""))
+
+
+# a HN item row: feed unit + points + the site's own `Show HN:` tag
+# (class 105, 19.09.26).
+_HN_SHOW_RUN_RE = _re.compile(
+    r"\b\w+\s+\d{1,2}\s+(?:minutes?|hours?|days?)\s+ago\s*\|\s*"
+    r"\d{1,5}\s*comments?\b\s+\d{1,4}\s+\bShow\s+HN\s*:", _re.IGNORECASE)
+
+
 # class 50 markers (live 18.09.26) -- see _is_nav_widget_run_chrome.
 _NAV_WIDGET_RE = _re.compile(
     r"skip carousel|go to (?:previous|next) items|footer menu|back to top"
@@ -3231,6 +3243,9 @@ def _is_nav_chrome(text):
         return True
     # a single aggregator item row with its feed tail (class 49, 18.09.26)
     if _is_hn_item_chrome(text):
+        return True
+    # a HN item row with the site's own `Show HN:` tag (class 105, 19.09.26)
+    if _is_hn_show_run_chrome(text):
         return True
     # a run of a document-hosting page's nav widgets (class 50, 18.09.26)
     if _is_nav_widget_run_chrome(text):
