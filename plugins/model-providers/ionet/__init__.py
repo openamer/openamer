@@ -35,8 +35,10 @@ ionet = _IonetProfile(
     auth_type="api_key",
     default_aux_model="openai/gpt-oss-20b",
     # The catalog is discovered live from GET {base_url}/models. The list
-    # below only feeds the /model picker when the live fetch fails, so it is
-    # a snapshot of agentic, tool-calling models — not a contract.
+    # below is the curated-first picker seed for plugin providers (it leads
+    # the /model picker, live-discovered ids merge in after it, and it is
+    # the whole list when the live fetch fails) — a snapshot of agentic,
+    # tool-calling models, not a contract.
     fallback_models=(
         "deepseek-ai/DeepSeek-V4.1-Flash",
         "moonshotai/Kimi-K3",
