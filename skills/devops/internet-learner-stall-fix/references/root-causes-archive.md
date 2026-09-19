@@ -1931,3 +1931,117 @@ family is documented as deliberately un-gated, do **not** invent a partial marke
 for the newest member of it. Removed by signature
 (`AI agent hacks gym to get its owner spot in pilates class - BBC`) — 281 -> 280,
 `0 unparsable`, loneLF 0, 44 structural rows, census 0/0. No code change, no test.
+
+## Root cause BA — class 101: the MSYS phantom home, third appearance — nightly scripts had NO install guard (live 19.09.26)
+
+**Symptom as delivered:** the `dream-cycle` cron (id `9abf330dd545`, `30 3 * * *`)
+printed
+
+```
+ERROR: no dream report
+REPORT:\c	mp\oa-homeeports\dream-2026-09-19.md
+[diary] 2026-09-19: no messages (0 msgs, -)
+```
+
+A *green* nightly delivery that replayed **0 messages** while the real
+`state.db` held **866** for the same day. The report it printed was:
+`- Replayed 0 messages, 0 error fragments` / `- Clear night, no error motifs.`
+
+### The mechanism (same class as darwin, W/X/Y — third appearance)
+
+The cron shell exports `OPENAMER_HOME` in MSYS form:
+
+```bash
+$ env | grep OPENAMER_HOME
+OPENAMER_HOME=/c/tmp/oa-home
+```
+
+Native Windows Python reads `/c/tmp/oa-home` as a **RELATIVE** path
+(`Path('/c/tmp/oa-home').is_absolute()` -> `False`) and resolves it against the
+current drive to `C:\c	mp\oa-home`. That phantom tree **exists on disk** (an
+earlier run of the same bug created it), so `exists()` accepts it and every
+resolution "succeeds" — into an empty directory.
+
+Measured, same export, one interpreter:
+
+```
+raw env   = '/c/tmp/oa-home'
+as Path   = \c	mp\oa-home | is_absolute = False
+resolved  = C:\c	mp\oa-home
+reports exists = True
+```
+
+| Store | Path | Size |
+|---|---|---|
+| real | `%LOCALAPPDATA%\openamer-laptop\state.db` | **1,910,956,032 B** |
+| phantom | `C:\c	mp\oa-home\state.db` | 180,224 B, **0 messages** |
+
+### Why it was invisible — the report LIES in the plausible direction
+
+Every failing script printed a *healthy* result: "clear night", "0 compressed",
+"no messages". A quiet night and a never-read night are byte-identical in the
+report. Three scripts, three different reassuring phrasings:
+
+| Script | What it said while reading the phantom |
+|---|---|
+| `dream_cycle.py` | `Replayed 0 messages` -> "Clear night, no error motifs" |
+| `memory_consolidation.py` | `3059 -> 3059 kept (0 permanent, 0 compressed)` never touching the real 50 MB store |
+| `session_diary.py` | `no messages (0 msgs, -)` for a day holding 400+ |
+
+### The fix — adopt the existing canonical guard, do not invent a second one
+
+`scripts/darwin_engine.py` had ALREADY solved this class (commit `5cc722004`,
+hardened `cfabc413c`, test `tests/test_darwin_phantom_home.py`): normalise the
+MSYS drive form, then accept a candidate **only if it is a real install root**
+(`config.yaml`/`.env`/`cron`/`memories`/`openamer-agent`), else fall back to the
+install that actually carries `skills/`. The nightly scripts simply never got
+the guard. Ported verbatim to `dream_cycle.py`, `memory_consolidation.py`,
+`session_diary.py`, `dream_cron.py`.
+
+**Verified before/after, same command:**
+`python C:/Users/damir/AppData/Local/openamer-laptop/scripts/dream_cron.py`
+-> `Replayed 0 messages` **becomes** `Replayed 927 messages`; consolidation
+runs against the real store (`3059 -> 3059 kept`); diary `written (400 msgs, llm)`.
+Both phantom forms (`/c/tmp/oa-home` MSYS and `C:	mp\oa-home` native) now
+resolve to the real install.
+
+### Two lessons worth more than the fix
+
+**1. The cron wrapper must gate its own report, not trust the child.** A wrapper
+that prints whatever the child produced cannot distinguish "quiet night" from
+"wrong home", because the wrong-home run is *green and empty*, not red. Added
+an explicit sanity gate in `dream_cron.py`: if the report says 0 replayed while
+`state.db` holds messages for that day, print `ERROR:` instead of the quiet
+night. Negative-control verified — with a deliberately faked 0-replay report and
+904 real messages, the guard fires.
+
+**2. A bug documented for ONE subsystem is a bug class, not a fix.** Darwin was
+"fixed" twice (W/X, then the `cfabc413c` hardening) and the same host still ran
+three *other* scripts with no guard for weeks. After any home-resolution fix,
+grep for the RAW pattern repo-wide — the census here was
+**92 scripts/  `os.environ.get("OPENAMER_HOME")` with no `_resolve_home`/
+`_training_dir` guard**. Do NOT blind-patch 92 files (the archive's own
+"47 identically-shaped candidates" rule): fix the ones on a live cron path, and
+let the count stand as the standing risk.
+
+### Live-tree gap found while fixing (worth its own note)
+
+`scripts/dream_cron.py` is TRACKED in the repo and shells out to
+`scripts/dream_cycle.py` — which was **never in the repo at all**
+(`git log --all -- scripts/dream_cycle.py` -> empty; only in
+`%OPENAMER_HOME%\scripts\`). A fresh checkout had a cron entry pointing at a
+missing dependency, so the dream could only ever run on this laptop. Added to
+the SoT. **Rule: when a cron wrapper is tracked, verify its invoked scripts are
+tracked too** — `git grep` for the child name, not just the wrapper.
+
+### Evidence
+
+- 3 commits on `fix/28-respawn-test-psutil-hermetic`: `083e06bf2` (guards in the
+  3 nightly scripts + test), `f13405581` (`dream_cycle.py` added to SoT),
+  `797563a94` (report gate + utf-8 decoding + no hardcoded BASE).
+- Test `scripts/tests/test_nightly_phantom_home.py`: **7 passed** with the fix;
+  **5 of them FAIL** against the pre-fix code (`git show HEAD:<file>` swap =
+  negative control). Includes a positive case asserting the MSYS form of a REAL
+  home still resolves, so the guard is a narrowing, not a blanket reject.
+- All three trees synced byte-identical (`md5sum` `9eace9488932` for
+  `dream_cron.py`).
