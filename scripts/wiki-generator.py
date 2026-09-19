@@ -184,7 +184,7 @@ def generate_wiki():
         "repos": str(REPO_DOCS),
         "per_category": {c: len(d["skills"]) for c, d in categories.items()},
     }
-    with open(OUTPUT / "stats.json", "w") as f:
+    with open(OUTPUT / "stats.json", "w", encoding='utf-8') as f:
         json.dump(stats, f, indent=2)
     print(f"\n✅ Wiki complete: {OUTPUT}")
 

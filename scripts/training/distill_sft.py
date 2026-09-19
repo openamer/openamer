@@ -102,7 +102,7 @@ seen, uniq = set(), []
 # training set so the model sees them more often — bio-inspired: the brain
 # strengthens neural paths for things that repeat. One-shot motifs stay 1x.
 try:
-    dreams = json.load(open(os.path.join(os.path.dirname(os.path.dirname(DATA)),
+    dreams = json.load(open(os.path.join(os.path.dirname(os.path.dirname(DATA)),  # windows-footgun: ok — encoding="utf-8" is passed on the continuation line; the checker reads one line
                                          "..", "dreams.json"), encoding="utf-8"))
 except Exception:
     dreams = []

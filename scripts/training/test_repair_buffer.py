@@ -49,7 +49,7 @@ def test_glued_records_lose_both_before_repair():
 
 
 def test_scan_flags_the_glued_line():
-    raw = open(_glued_buf(), "rb").read().decode("utf-8")
+    raw = open(_glued_buf(), "rb").read().decode("utf-8")  # windows-footgun: ok — binary mode on purpose — the bytes are decoded explicitly on the same line
     assert rb.scan(raw) == [0]
 
 

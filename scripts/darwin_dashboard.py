@@ -88,7 +88,7 @@ def _load_thoughts():
     """Read recent agent decisions from the agent log."""
     try:
         log = json.loads((Path(HOME / "darwin" / "agent-log.json"))
-                         .read_text("utf-8"))
+                         .read_text(encoding='utf-8'))
         return log[-10:]  # last 10 thoughts
     except Exception:
         return []
@@ -197,7 +197,7 @@ class Handler(BaseHTTPRequestHandler):
         try:
             if self.path == "/":
                 world_html = (Path(REPO / "scripts" / "darwin_world.html")
-                              .read_text("utf-8"))
+                              .read_text(encoding='utf-8'))
                 self._send(200, world_html, "text/html; charset=utf-8")
             elif self.path == "/api/status":
                 s = darwin.status_overview()
@@ -226,7 +226,7 @@ class Handler(BaseHTTPRequestHandler):
                 self._send(200, json.dumps(build_world(), indent=1),
                            "application/json")
             elif self.path == "/api/report":
-                md = darwin.REPORT_FILE.read_text("utf-8") \
+                md = darwin.REPORT_FILE.read_text(encoding='utf-8') \
                     if darwin.REPORT_FILE.exists() else "# no report yet"
                 self._send(200, md, "text/plain; charset=utf-8")
             else:

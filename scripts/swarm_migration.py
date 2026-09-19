@@ -46,14 +46,14 @@ def _now() -> str:
 
 def _load(path: Path, default):
     try:
-        return json.loads(path.read_text("utf-8"))
+        return json.loads(path.read_text(encoding='utf-8'))
     except Exception:
         return default
 
 
 def _save(path: Path, data):
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(data, indent=1, ensure_ascii=False), "utf-8")
+    path.write_text(json.dumps(data, indent=1, ensure_ascii=False), encoding='utf-8')
 
 
 def emigrate(worker_name: str, target_machine: str) -> dict | None:

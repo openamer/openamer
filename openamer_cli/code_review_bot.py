@@ -278,7 +278,7 @@ def _github_api_get(url: str, token: str) -> Any:
 
 def _github_api_post(url: str, token: str, data: dict) -> Any:
     """Perform a POST request to the GitHub API using curl."""
-    tmp = tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False)
+    tmp = tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False, encoding='utf-8')
     try:
         json.dump(data, tmp)
         tmp.close()
@@ -575,7 +575,7 @@ class CodeReviewBot:
 
         if event_path and Path(event_path).exists():
             try:
-                with open(event_path, "r") as fh:
+                with open(event_path, "r", encoding='utf-8') as fh:
                     event = json.load(fh)
             except (json.JSONDecodeError, OSError):
                 event = {}

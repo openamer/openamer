@@ -16,6 +16,129 @@ logger = logging.getLogger("acp_adapter.server")
 ACP_MAX_MODELS_PER_PROVIDER = 200
 
 
+# ---------------------------------------------------------------------------
+# Named-endpoint helpers
+#
+# `_named_custom_provider_catalogs` below used to import these six names from
+# `openamer_cli.model_switch_providers` and `openamer_cli.models_local`. NEITHER
+# MODULE EXISTS in this tree, so the import always raised ImportError, the bare
+# `except ImportError: return []` swallowed it, and the function returned an
+# empty catalog for every configuration. Consequence: named `providers:`
+# endpoints never appeared in the ACP model selector, and
+# tests/acp/test_named_provider_catalogs.py failed with `[] == [(...)]`.
+#
+# The discovery primitives they need do exist — `openamer_cli.models.fetch_api_models`
+# (the `/models` probe) and `openamer_cli.model_switch._declared_model_ids`. They
+# are defined here against the behaviour the tests specify.
+# ---------------------------------------------------------------------------
+
+
+def _entry_models_discovered(entry: dict) -> bool:
+    """True when this entry has already had its models discovered live.
+
+    `model_switch` records a successful `/models` probe on the entry so the next
+    read can skip the network round-trip. Absent/unknown means "not discovered".
+    """
+    for key in ("models_discovered", "models_discovered_at", "discovered"):
+        value = entry.get(key)
+        if value is None:
+            continue
+        if isinstance(value, str):
+            return bool(value.strip())
+        return bool(value)
+    return False
+
+
+def _models_config_is_allowlist(models_cfg: Any, discovered: bool = False) -> bool:
+    """True when `models:` is a curated allowlist rather than a discovery cache.
+
+    A dict (`{"model-id": {...}}`) is the declared allowlist shape. A list is
+    ambiguous: the picker writes discovered ids back as a list, so treat a list
+    as an allowlist only when it was NOT produced by discovery.
+    """
+    if isinstance(models_cfg, dict):
+        return True
+    if isinstance(models_cfg, (list, tuple)):
+        return not discovered
+    return False
+
+
+class _NativePickerModelList(list):
+    """A model-id list that is authoritative — it REPLACES the declared models.
+
+    Used when discovery returns a native provider catalog (Ollama) whose content
+    is complete, so merging declared ids back in would resurrect models the
+    endpoint no longer serves. `_entry_catalog` keys off this type.
+    """
+
+
+def _discover_flag(entry: dict) -> bool:
+    """True unless this entry opted out of live model discovery.
+
+    Default is ON: a configured endpoint with a credential should show its real
+    catalog. `discover_models: false` (or legacy `discover: false`) opts out.
+    """
+    for key in ("discover_models", "discover"):
+        if key in entry:
+            value = entry.get(key)
+            if isinstance(value, str):
+                return value.strip().lower() not in {"0", "false", "no", "off", ""}
+            return bool(value)
+    return True
+
+
+def _fetch_picker_live_models(
+    api_key: str,
+    base_url: str,
+    provider_key: str,
+    allowlist: bool,
+    *,
+    headers: Optional[dict[str, str]] = None,
+    timeout: float = 1.5,
+    api_mode: Optional[str] = None,
+) -> Optional[list[str]]:
+    """Probe the endpoint's `/models` route and return its model ids.
+
+    Returns None when the endpoint could not be reached, which is the normal case
+    for endpoints without a `/models` route — the caller then keeps the declared
+    models (test_declared_default_model_survives_failed_discovery).
+    """
+    from openamer_cli.models import fetch_api_models
+
+    models = fetch_api_models(
+        api_key or None,
+        base_url or None,
+        timeout=timeout,
+        api_mode=api_mode,
+        headers=headers,
+    )
+    if not models:
+        return None
+    return [str(m).strip() for m in models if str(m).strip()]
+
+
+def should_use_ollama_native_catalog(
+    provider_key: str, base_url: str, headers: Optional[dict[str, str]] = None
+) -> bool:
+    """True when this endpoint is an Ollama server whose native catalog applies.
+
+    Ollama serves `/api/tags` with its own pagination rules and ignores
+    `max_models`, so its listing must not be merged with declared ids.
+    """
+    if str(provider_key or "").strip().lower() not in {"ollama", "custom:ollama", "custom"}:
+        return False
+    url = str(base_url or "").strip().lower()
+    if not url:
+        return False
+    host = url.split("//", 1)[-1].split("/", 1)[0]
+    port = host.rsplit(":", 1)[-1] if ":" in host else ""
+    return (
+        "ollama" in host
+        or port == "11434"
+        or "11434" in url
+    )
+
+
 def _named_custom_provider_catalogs() -> list[tuple[str, str, list[tuple[str, str]]]]:
     """``(slug, label, [(model_id, description), ...])`` for named endpoints (v12 ``providers:``
     and legacy ``custom_providers:``), which canonical provider enumeration never lists.
@@ -26,12 +149,15 @@ def _named_custom_provider_catalogs() -> list[tuple[str, str, list[tuple[str, st
     ``parse_model_input``/``resolve_runtime_provider`` resolve, so choice ids round-trip."""
     try:
         from openamer_cli.config import (get_compatible_custom_providers, is_provider_enabled, load_config)
-        from openamer_cli.model_switch import _declared_model_ids, _entry_models_discovered, _models_config_is_allowlist
-        from openamer_cli.model_switch_providers import _NativePickerModelList, _fetch_picker_live_models
-        from openamer_cli.model_switch_providers import _discover_flag
-        from openamer_cli.models_local import should_use_ollama_native_catalog
+        from openamer_cli.model_switch import _declared_model_ids
         from openamer_cli.providers import custom_provider_slug
     except ImportError:
+        # Logged, not silent. A bare `return []` here hid an ImportError naming
+        # two modules that do not exist in this tree
+        # (`openamer_cli.model_switch_providers`, `openamer_cli.models_local`),
+        # which made every named endpoint invisible in the ACP selector while the
+        # function looked healthy. Fail loud enough to be seen in a debug log.
+        logger.debug("Named custom-provider catalog imports failed", exc_info=True)
         return []
 
     try:
@@ -54,7 +180,13 @@ def _named_custom_provider_catalogs() -> list[tuple[str, str, list[tuple[str, st
         provider_key, name, base_url = field("provider_key"), field("name"), field("base_url")
         if provider_key.lower() in disabled_keys or not name or not base_url:
             return None
-        slug = custom_provider_slug(name, provider_key)
+        # `custom_provider_slug` takes ONE argument (the display name). The
+        # expected slugs are derived from the provider KEY when the entry has
+        # one (`providers:` mapping entries do): the fixture declares
+        # key `bedrock-mantle` with display name "AWS Bedrock Mantle" and the
+        # test expects `custom:bedrock-mantle`, not `custom:aws-bedrock-mantle`.
+        # Legacy `custom_providers:` entries carry no key, so the name is used.
+        slug = custom_provider_slug(provider_key or name)
 
         api_key = field("api_key")
         if not api_key:
@@ -235,11 +367,29 @@ class _ModelCatalog:
                 self.add(named_slug, named_model, named_model, " • ".join(part for part in parts if part))
 
 
-def build_model_state(model: str, provider: str, base_url: str) -> SessionModelState | None:
+def build_model_state(
+    model: str,
+    provider: str,
+    base_url: str,
+    *,
+    named_catalog_fn: "Callable[[], list[tuple[str, str, list[tuple[str, str]]]]] | None" = None,
+) -> SessionModelState | None:
     """Picker state from the shared inventory + named endpoints; ``None`` when nothing is listable
-    (caller falls back to a single current-model row). Raises on inventory failure."""
+    (caller falls back to a single current-model row). Raises on inventory failure.
+
+    *named_catalog_fn* overrides the named-endpoint source. `acp_adapter.server`
+    re-exports `_named_custom_provider_catalogs` and injects its own module-level
+    binding here, so patching the SERVER attribute
+    (`acp_adapter.server._named_custom_provider_catalogs`) actually reaches this
+    function. Calling the local name directly made the named-endpoint path
+    unpatchable from the server module — the selector then built its state
+    without any named endpoint and the test saw only the current provider's row.
+    """
     from openamer_cli.inventory import build_models_payload, load_picker_context
     from openamer_cli.models import normalize_provider, provider_label
+
+    if named_catalog_fn is None:
+        named_catalog_fn = _named_custom_provider_catalogs
 
     normalized_provider = normalize_provider(provider)
     context = load_picker_context().with_overrides(
@@ -251,7 +401,7 @@ def build_model_state(model: str, provider: str, base_url: str) -> SessionModelS
         probe_custom_providers=False, probe_current_custom_provider=False, max_models=ACP_MAX_MODELS_PER_PROVIDER,
     )
 
-    named_catalogs = _named_custom_provider_catalogs()
+    named_catalogs = named_catalog_fn()
     named_slugs = {str(slug).strip().lower() for slug, _label, _models in named_catalogs}
     current_choice_provider = str(provider or "").strip().lower()
     current_base = base_url.strip().rstrip("/").lower()
