@@ -2614,6 +2614,56 @@ def _is_share_exec_summary_header(text):
     return bool(_SHARE_EXEC_SUMMARY_RE.search(text or ""))
 
 
+# class 95 markers (live 19.09.26) -- see _is_relative_stamp_news_run.
+# A dated newsroom feed run: the composite relative stamp `N days, N hours ago`
+# repeated, each stamp followed by a capitalised headline word:
+# `OpenAI is buying failed biotech trade secrets to train medical models
+#  3 days, 11 hours ago Salesforce built Koa to stop paying Anthropic and
+#  OpenAI millions 3 days, 12 hours ago Anthropic and OpenAI want an AI freeze.`
+_RELATIVE_STAMP_NEWS_RUN_RE = _re.compile(
+    r"(?:\d{1,2}\s+days?,\s*\d{1,2}\s+hours?\s+ago\s+[A-Z][a-z])"
+    r"[\s\S]{0,80}?"
+    r"(?:\d{1,2}\s+days?,\s*\d{1,2}\s+hours?\s+ago\s+[A-Z][a-z])")
+
+
+def _is_relative_stamp_news_run(text):
+    """True for a newsroom feed run: repeated relative stamps + headlines (95).
+
+    Live 19.09.26: `cycle_f_multi_domain` stored
+      "OpenAI is buying failed biotech trade secrets to train medical models
+       3 days, 11 hours ago Salesforce built Koa to stop paying Anthropic and
+       OpenAI millions 3 days, 12 hours ago Anthropic and OpenAI want an AI
+       freeze."
+    -- a dated news-card feed: three headlines, each welded to the site's own
+    composite relative stamp (`<n> days, <n> hours ago`). 217 chars WITH
+    digits, so the >=90 length trust and the technical-signal gate both fired.
+    `_is_relative_time_nav_chain` (class 34) needs the `For You/Latest/
+    Trending` labels this page does not ship; `_is_hn_feed_listing_chrome`
+    (37) / `_is_hn_item_chrome` (49) / `_is_aggregator_row_year_tail` (83)
+    all key on a `| N comments` unit; `_is_relative_time_counter_row` (88)
+    on TWO bare counters; the class-94 archive entry measured the bare
+    relative stamp (`\d+ (min|hour)s? ago`) and REJECTED it as ordinary
+    prose (`It ran 3 hours ago with 12 4 retries recorded in the log.`) --
+    which is why the COMPOSITE `days, hours` form plus REPETITION is the
+    discriminator here.
+
+    Measured (case-sensitive, so `[A-Z][a-z]` is a real anchor):
+    buffer 1 hit and it IS the leak; 0/6,242 `buffer_junk` rows; 0/3,059
+    `longterm_episodes`; 0/947 gate-test string literals; 0/14 hostile
+    controls (incl. the class-83 `CameronBanga 5 hours ago | ...` and the
+    class-37 single-unit control, which carry no composite stamp, and the
+    declarative `We compared 3 days, 11 hours ago against 2 weeks, 5 hours
+    ago in the benchmark.`, which carries no capitalised word after the
+    stamp). The bare composite stamp WITHOUT the capitalised word was
+    REJECTED: it matches all four declarative prose controls, and the
+    `>=2` count form additionally matched one real `buffer_junk` row.
+    """
+    t = text or ""
+    if len(t) > 1200:
+        return False
+    return bool(_RELATIVE_STAMP_NEWS_RUN_RE.search(t))
+
+
 # class 94 markers (live 19.09.26) -- see _is_citation_counter_run.
 _CITATION_COUNTER_RUN_RE = _re.compile(
     r"\b\d{1,3}\s+\d{1,3}\s+\d{1,3}\s+\d{1,3}\s+[A-Z][a-z]")
@@ -3030,6 +3080,9 @@ def _is_nav_chrome(text):
         return True
     # a reference-counter run repeated inside prose (class 94, 19.09.26)
     if _is_citation_counter_run(text):
+        return True
+    # a dated newsroom feed run: repeated relative stamps (class 95, 19.09.26)
+    if _is_relative_stamp_news_run(text):
         return True
     low = text.lower()
     if any(c in low for c in _NAV_CHROME):

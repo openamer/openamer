@@ -4501,3 +4501,41 @@ def test_citation_counter_run_is_gated_on_both_paths():
         "Authorities may use real-time biometric surveillance for national security.",
     ):
         assert not IL._is_citation_counter_run(text), text
+
+
+def test_relative_stamp_news_run_is_gated_on_both_paths():
+    """A newsroom feed run welded to its own composite relative stamps (class 95).
+
+    Live 19.09.26: `cycle_f_multi_domain` stored the `OpenAI is buying failed
+    biotech trade secrets to train medical models 3 days, 11 hours ago
+    Salesforce built Koa ... 3 days, 12 hours ago Anthropic and OpenAI want an
+    AI freeze.` row -- three news headlines, each welded to a composite
+    `<n> days, <n> hours ago` stamp. The COMPOSITE stamp plus REPETITION plus a
+    capitalised headline word is the discriminator: the bare composite stamp
+    matches declarative prose, and the plain relative stamp is deliberately
+    ungated (class 94's archive entry). Do NOT apply `re.IGNORECASE` here --
+    `[A-Z][a-z]` must stay case-sensitive or the rule becomes a topic word.
+    """
+    import buffer_store
+    leak = ("OpenAI is buying failed biotech trade secrets to train medical models "
+            "3 days, 11 hours ago Salesforce built Koa to stop paying Anthropic "
+            "and OpenAI millions 3 days, 12 hours ago Anthropic and OpenAI want "
+            "an AI freeze.")
+    assert IL._is_relative_stamp_news_run(leak)
+    assert IL._is_junk(leak)
+    assert buffer_store.is_junk(leak)
+
+    for text in (
+        "The migration finished 3 days, 11 hours ago and the report captured it.",
+        "We compared 3 days, 11 hours ago against 2 weeks, 5 hours ago in the benchmark.",
+        "It was posted 2 days ago. For the latest trending models, see Section 3.",
+        "Posts appeared 3 days, 2 hours ago and 4 days, 1 hour ago on the site.",
+        "The review took 2 days ago | 4 comments per reviewer were recorded.",
+        "CameronBanga 5 hours ago | 10 comments 58 points Some headline about models.",
+        "The paper was published 12 days, 3 hours ago in the journal.",
+        "A fix landed 5 hours ago in the parser and another 2 hours ago in the router.",
+        "Last Update: 2 days ago See Project 9 SomeRepo An agent framework.",
+        "The incident started 3 days, 11 hours ago and the postmortem followed, but the timeline is clear.",
+        "AshleysBrain 3 hours ago | 9 comments 77 Neovim have a ~$800k Bitcoin donation.",
+    ):
+        assert not IL._is_relative_stamp_news_run(text), text
