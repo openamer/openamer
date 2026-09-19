@@ -4290,3 +4290,214 @@ def test_portal_counter_bar_comparison_is_gated_on_both_paths():
     for text in clean:
         assert not IL._is_portal_counter_bar_comparison(text), text
         assert not buffer_store._is_portal_counter_bar_comparison(text), text
+
+
+def test_release_notes_pr_bullet_is_gated_on_both_paths():
+    """A release-notes changelog bullet welded to its PR number (class 86).
+
+    Live 19.09.26: `cycle_b_papers` stored
+      "HMX flash-attention head_dim padding (support DK=DV=72) ( #26539 )
+       Allow HMX flash-attention to run with head_dim not a multiple of 64 (e."
+    The discriminator is the WELD (parenthesised PR number immediately followed
+    by a changelog imperative), never the bare `( #N )` form, which is ordinary
+    prose about a patch.
+    """
+    import buffer_store
+    leak = ("HMX flash-attention head_dim padding (support DK=DV=72) ( #26539 ) "
+            "Allow HMX flash-attention to run with head_dim not a multiple of 64 (e.")
+    assert IL._is_release_notes_pr_bullet(leak)
+    assert IL._is_junk(leak)
+    assert buffer_store.is_junk(leak)
+    assert IL._clean_insight(leak, 300) == ""
+
+    for text in (
+        "The changelog says Add HMX flash-attention support with head_dim not a multiple of 64.",
+        "We fixed the padding bug (issue #26539) reported by the community.",
+        "The patch ( #1234 ) allows the kernel to run on older GPUs.",
+        "The patch ( #1234 ) was reverted after the regression report.",
+        "The PR ( #26539 ) was merged after the reviewers approved it.",
+    ):
+        assert not IL._is_release_notes_pr_bullet(text), text
+
+
+def test_midtext_byline_counter_run_is_gated_on_both_paths():
+    """A headline run welded to a mid-text byline counter bar (class 87).
+
+    Live 19.09.26: `cycle_d_docs` stored the `Demystifying the Compression ...`
+    header row. `_strip_byline_stack` (class 15) covers the same vocabulary but
+    uses `.match()`, so it only fires when the byline LEADS the text -- here a
+    TitleCase headline run precedes it, which is the discriminator.
+    """
+    import buffer_store
+    leak = ("Demystifying the Compression of Large Language Models Maarten "
+            "Grootendorst Jul 22, 2024 544 26 47 Share Translations - Korean - "
+            "Chinese - French As their name suggests, Large Language Models "
+            "(LLMs) are often too large to run on consumer hardware.")
+    assert IL._is_midtext_byline_counter_run(leak)
+    assert IL._is_junk(leak)
+    assert buffer_store.is_junk(leak)
+
+    for text in (
+        "Authors: Smith Feb 3, 2026 12 4 9 Share the findings in the appendix.",
+        "Smith Feb 3, 2026 12 4 9 Share the findings in the appendix.",
+        "Maarten Grootendorst wrote a good overview of quantization for LLMs.",
+        "Alice Smith Jan 5, 2026 reported 40% lower decode latency in the quantized model.",
+        "The table reported 544 26 47 Share values across the ablation study.",
+        "Translations - Korean - Chinese - French were added to the documentation.",
+    ):
+        assert not IL._is_midtext_byline_counter_run(text), text
+
+
+def test_relative_time_counter_row_is_gated_on_both_paths():
+    """A feed row: section label + relative time + bare counters + headline (88).
+
+    Live 19.09.26: `cycle_f_multi_domain` / `cycle_a_technews` stored two physics
+    feed rows. The conjunction (relative time AND two bare counters AND a
+    Capitalized headline word) is the discriminator; the bare relative time is
+    ordinary prose.
+    """
+    import buffer_store
+    leak_a = ("General Physics 52 minutes ago 0 0 Circular Rydberg atoms set three "
+              "records, staying stable for 11 milliseconds Rydberg atoms are "
+              "considered promising building blocks for quantum computers.")
+    leak_b = ("Physics 6 hours ago 0 6 Mobile trap transports 92 antiprotons by road "
+              "and stores them for over a month in world first In March 2026, "
+              "scientists succeeded in transporting antiprotons by road.")
+    for leak in (leak_a, leak_b):
+        assert IL._is_relative_time_counter_row(leak)
+        assert IL._is_junk(leak)
+        assert buffer_store.is_junk(leak)
+
+    for text in (
+        "The job finished 52 minutes ago and 0 0 errors were logged by the runner.",
+        "It ran 3 hours ago with 12 4 retries recorded in the log.",
+        "Physics 6 hours ago reported 0 errors in the log file.",
+        "Circular Rydberg atoms stayed stable for 11 milliseconds in the experiment.",
+        "The feed listed 0 0 failures 6 hours ago in the summary.",
+    ):
+        assert not IL._is_relative_time_counter_row(text), text
+
+
+def test_project_count_news_tail_is_gated_on_both_paths():
+    """A newsroom cross-post counter bar anchored at the TAIL (class 89).
+
+    Live 19.09.26: `cycle_e_competitors` stored
+      "PowerContext, Context for work that humans and agents hand off and
+       continue 1 project | news."
+    Only 93 chars, so the >=90 length trust never applied. The `$` anchor is the
+    discriminator -- `2 projects | news.` mid-sentence is ordinary prose.
+    """
+    import buffer_store
+    leak = ("PowerContext, Context for work that humans and agents hand off and "
+            "continue 1 project | news.")
+    assert IL._is_project_count_news_tail(leak)
+    assert IL._is_junk(leak)
+    assert buffer_store.is_junk(leak)
+
+    for text in (
+        "We reviewed 3 projects | news. and wrote summaries afterwards.",
+        "PowerContext is a context layer for work that humans and agents hand off.",
+        "The newsroom covered 5 projects in its weekly roundup.",
+    ):
+        assert not IL._is_project_count_news_tail(text), text
+
+
+def test_course_cta_opener_is_gated_on_both_paths():
+    """A course landing-page arrow CTA welded to its bundle headline (class 90).
+
+    Live 19.09.26: `cycle_g_security` stored the `Start this course -> Building
+    AI Agents ...` row. `_is_course_cta_chrome` keys on a promo voice AND a
+    bundle phrase and does not match this shape; the START-anchored arrow CTA is
+    the discriminator (the bare phrase is ordinary prose).
+    """
+    import buffer_store
+    leak = ("Start this course \u2192 Building AI Agents How agents work, how they "
+            "fail, and how to design ones worth deploying.")
+    assert IL._is_course_cta_opener(leak)
+    assert IL._is_junk(leak)
+    assert buffer_store.is_junk(leak)
+
+    for text in (
+        "Start this course to learn how agents work and how they fail in production.",
+        "The course starts with an overview of agent architectures and evaluation.",
+        "Building AI Agents How agents work, how they fail, and how to design ones worth deploying.",
+    ):
+        assert not IL._is_course_cta_opener(text), text
+
+
+def test_code_linenum_run_is_gated_on_both_paths():
+    """A code block whose line-number gutter was welded in (class 92).
+
+    Live 19.09.26: `cycle_d_docs` stored the `The Challenge: Full Fine-Tuning
+    Limitations ...` row twice. The discriminator is the digit RUN welded
+    directly to a code comment (`# <Cap>`); a bare `1 2 3 4 5 6` run is
+    pagination chrome / ordinary prose.
+    """
+    import buffer_store
+    leak = ("The Challenge: Full Fine-Tuning Limitations Resource Requirements Full "
+            "fine-tuning requires updating all model parameters, leading to "
+            "substantial computational overhead: 1 2 3 4 5 6 # Full fine-tuning a "
+            "7B parameter model model = AutoModelForCausalLM .")
+    assert IL._is_code_linenum_run(leak)
+    assert IL._is_junk(leak)
+    assert buffer_store.is_junk(leak)
+
+    for text in (
+        "Line 1 2 3 4 5 6 of the config shows the setup steps.",
+        "The code `1 2 3 4 5 6 # setup` appears in the notebook listing.",
+        "The notebook shows model = AutoModelForCausalLM with a 7B parameter model.",
+        "Full fine-tuning requires updating all model parameters, leading to overhead.",
+    ):
+        assert not IL._is_code_linenum_run(text), text
+
+
+def test_share_exec_summary_header_is_gated_on_both_paths():
+    """An article header's `Share Executive Summary` affordance pair (class 93).
+
+    Live 19.09.26: `cycle_g_security` stored the `LLM Prompt injection Share
+    Executive Summary Palo Alto Networks ...` row. The space-glued PAIR of the
+    page's OWN two affordances is the discriminator; each word alone is ordinary
+    English.
+    """
+    import buffer_store
+    leak = ("LLM Prompt injection Share Executive Summary Palo Alto Networks has "
+            "released \u201c Securing GenAI: A Comprehensive Report on Prompt "
+            "Attacks: Taxonomy, Risks, and Solutions ,\u201d which surveys "
+            "emerging prompt-based attacks on AI applications and AI agents.")
+    assert IL._is_share_exec_summary_header(leak)
+    assert IL._is_junk(leak)
+    assert buffer_store.is_junk(leak)
+
+    for text in (
+        "Readers can Share an Executive Summary with their team.",
+        "The Share button and the Executive Summary tab were both added.",
+        "The Executive Summary is at the top of the report.",
+        "Palo Alto Networks released a report on prompt-based attacks on AI apps.",
+    ):
+        assert not IL._is_share_exec_summary_header(text), text
+
+
+def test_citation_counter_run_is_gated_on_both_paths():
+    """A reference-counter run welded into prose (class 94).
+
+    Live 19.09.26: `cycle_f_multi_domain` stored the `AI systems without human
+    supervision ... 4 4 5 5 However ... 1 1 2 2 .` row -- an academic page whose
+    citation-marker runs were welded into the prose. The four-number run welded
+    to a Capitalized word is the discriminator.
+    """
+    import buffer_store
+    leak = ("AI systems without human supervision for worker surveillance and "
+            "quality inspection in industrial sectors 4 4 5 5 However, the bill "
+            "does allow authorities to use real-time biometric surveillance in "
+            "public spaces for national security reasons 1 1 2 2 .")
+    assert IL._is_citation_counter_run(leak)
+    assert IL._is_junk(leak)
+    assert buffer_store.is_junk(leak)
+
+    for text in (
+        "The report counted 248 and 191 and 28 events across the window.",
+        "The ablation used 544 26 47 combinations in the study.",
+        "AI systems without human supervision are a regulatory concern.",
+        "Authorities may use real-time biometric surveillance for national security.",
+    ):
+        assert not IL._is_citation_counter_run(text), text

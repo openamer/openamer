@@ -2582,6 +2582,221 @@ def _is_portal_counter_bar_comparison(text):
         return False
     return bool(_PORTAL_COUNTER_BAR_RE.search(t))
 
+# class 86 markers (live 19.09.26) -- see _is_release_notes_pr_bullet.
+_CHANGELOG_PR_RE = re.compile(
+    r"\(\s*#\d{3,}\s*\)\s*(?:Allow|Add|Fix|Support|Enable|Improve|Update|Remove|Bump|Refactor)\b")
+
+
+def _is_release_notes_pr_bullet(text):
+    """True for a release-notes changelog bullet welded to its PR number (86).
+
+    Live 19.09.26: `cycle_b_papers` stored
+      "HMX flash-attention head_dim padding (support DK=DV=72) ( #26539 )
+       Allow HMX flash-attention to run with head_dim not a multiple of 64 (e."
+    -- a GitHub release-notes line: the change title, its parenthesised PR
+    number and the `Allow <X> to ...` bullet body. 138 chars WITH digits, so
+    the >=90 length trust and the technical-signal gate both fired.
+
+    The discriminator is the WELD: a parenthesised PR number whose parenthesis
+    is immediately followed by a changelog imperative verb. The bare
+    `( #N )` form was measured and REJECTED (1 control FP `The patch ( #1234 )
+    was reverted after the regression report.` + 3 episodes); the verb-anchored
+    form measured 0 on every corpus.
+    """
+    t = text or ""
+    if len(t) > 1200:
+        return False
+    return bool(_CHANGELOG_PR_RE.search(t))
+
+
+# class 87 markers (live 19.09.26) -- see _is_midtext_byline_counter_run.
+_MIDTEXT_BYLINE_RE = re.compile(
+    r"[A-Z][a-z]+(?:\s+[A-Z][a-z]+){2,}\s+[A-Z][a-z]+\s+(?:[A-Z][a-z]+\s+)?"
+    r"(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\s+\d{1,2},\s+\d{4}"
+    r"\s+\d{1,4}\s+\d{1,4}\s+\d{1,4}\s+Share\b")
+
+
+def _is_midtext_byline_counter_run(text):
+    """True for a headline run welded to a mid-text byline counter bar (87).
+
+    Live 19.09.26: `cycle_d_docs` stored
+      "Demystifying the Compression of Large Language Models Maarten
+       Grootendorst Jul 22, 2024 544 26 47 Share Translations - Korean -
+       Chinese - French As their name suggests, Large Language Models (LLMs)
+       are often too large to run on consumer hardware."
+    -- a blog article header: the TitleCase headline run, the author byline,
+    the dateline, the bare counter bar and the site's own `Share` affordance.
+
+    **The existing helper covers the vocabulary but not the POSITION** (the
+    class-29/40/51/84 rule): `_strip_byline_stack` (class 15) keys on exactly
+    this `<Name> <date> <counters> Share` order but uses `.match()`, i.e. it
+    only fires when the byline LEADS the text. Here a headline run precedes it.
+    The discriminator is the headline RUN + the byline counter bar. Without the
+    headline run the loose form measured 2 control FPs
+    (`Authors: Smith Feb 3, 2026 12 4 9 Share the findings in the appendix.`);
+    with it, 0 on every corpus.
+    """
+    t = text or ""
+    if len(t) > 1200:
+        return False
+    return bool(_MIDTEXT_BYLINE_RE.search(t))
+
+
+# class 88 markers (live 19.09.26) -- see _is_relative_time_counter_row.
+_RELTIME_COUNTER_ROW_RE = re.compile(
+    r"\b\d{1,4}\s+(?:minutes?|hours?|days?)\s+ago\s+\d{1,4}\s+\d{1,4}\s+[A-Z][a-z]")
+
+
+def _is_relative_time_counter_row(text):
+    """True for a feed row: relative time + bare counters + a headline (88).
+
+    Live 19.09.26: `cycle_f_multi_domain` / `cycle_a_technews` stored
+      "General Physics 52 minutes ago 0 0 Circular Rydberg atoms set three
+       records, staying stable for 11 milliseconds Rydberg atoms are ..."
+    -- a physics-feed listing row: the section label, the relative time, two
+    bare counters and the headline. Passed both gates on its digits.
+
+    The discriminator is the CONJUNCTION (the AU rule): the relative time must
+    be followed by TWO bare counters AND a Capitalized headline word. The bare
+    relative time alone matches ordinary prose (`It ran 3 hours ago with 12 4
+    retries recorded in the log.`) and was REJECTED. Measured: 2 buffer hits,
+    both the leak family; 0/24 hostile controls; 0/3,059 longterm_episodes;
+    0/857 gate-test literals.
+    """
+    t = text or ""
+    if len(t) > 1200:
+        return False
+    return bool(_RELTIME_COUNTER_ROW_RE.search(t))
+
+
+# class 89 markers (live 19.09.26) -- see _is_project_count_news_tail.
+_PROJECT_COUNT_NEWS_TAIL_RE = re.compile(
+    r"\d+\s+projects?\s*\|\s*news\.\s*$")
+
+
+def _is_project_count_news_tail(text):
+    """True when `text` ends on a newsroom cross-post counter bar (89).
+
+    Live 19.09.26: `cycle_e_competitors` stored
+      "PowerContext, Context for work that humans and agents hand off and
+       continue 1 project | news."
+    -- a newsroom card tail (`<n> project | news.`). Only 93 chars, so the
+    >=90 length trust never applied.
+
+    The anchor is the TAIL (`$`), exactly like class 56's `dev.` sibling:
+    `2 projects | news.` mid-sentence is ordinary prose. Measured: 1 buffer
+    hit and it IS the leak; 0/24 hostile controls; 0/3,059
+    longterm_episodes; 0/857 gate-test literals.
+    """
+    return bool(_PROJECT_COUNT_NEWS_TAIL_RE.search(text or ""))
+
+
+# class 90 markers (live 19.09.26) -- see _is_course_cta_opener.
+_COURSE_CTA_OPENER_RE = re.compile(
+    r"^Start this course\s*(?:\u2192|->)", re.MULTILINE)
+
+
+def _is_course_cta_opener(text):
+    """True for a course landing-page CTA opener (90).
+
+    Live 19.09.26: `cycle_g_security` stored
+      "Start this course \u2192 Building AI Agents How agents work, how they
+       fail, and how to design ones worth deploying."
+    -- the landing page's own arrow CTA welded to the course-bundle headline.
+
+    `_is_course_cta_chrome` (class 10 era) keys on a promo voice AND a bundle
+    phrase and does NOT match this shape. The discriminator is the
+    START-anchored arrow CTA: the bare `Start this course` measured 1 control
+    FP (`Start this course to learn how agents work and how they fail in
+    production.`), the arrow-anchored form 0. Measured: 1 buffer hit and it IS
+    the leak; 0/24 hostile controls; 0/3,059 longterm_episodes; 0/857
+    gate-test literals.
+    """
+    return bool(_COURSE_CTA_OPENER_RE.search(text or ""))
+
+
+# class 92 markers (live 19.09.26) -- see _is_code_linenum_run.
+_CODE_LINENUM_RE = re.compile(r"\b\d(?:\s+\d){5,}\s+#\s+[A-Z][a-z]")
+
+
+def _is_code_linenum_run(text):
+    """True for a code block whose line-number gutter was welded in (92).
+
+    Live 19.09.26: `cycle_d_docs` stored (twice, two near-identical rows)
+      "The Challenge: Full Fine-Tuning Limitations Resource Requirements Full
+       fine-tuning requires updating all model parameters, leading to
+       substantial computational overhead: 1 2 3 4 5 6 # Full fine-tuning a 7B
+       parameter model model = AutoModelForCausalLM ."
+    -- a docs section whose code block lost its newlines, so the line-number
+    gutter (`1 2 3 4 5 6`) runs into the `#` comment and the code.
+
+    The discriminator is the digit RUN welded directly to a code comment. The
+    bare `1 2 3 4 5 6` form matches the docs' pagination chrome (a known leak)
+    and ordinary prose (`The code \`1 2 3 4 5 6 # setup\` appears in the
+    notebook listing.`) and was REJECTED; requiring the `#` + a Capitalized
+    comment word measured 0 on every corpus. Measured: 2 buffer hits, BOTH the
+    leak family; 0 hostile-control FPs; 0/3,059 longterm_episodes; 0/857
+    gate-test literals.
+    """
+    t = text or ""
+    if len(t) > 1200:
+        return False
+    return bool(_CODE_LINENUM_RE.search(t))
+
+
+# class 93 markers (live 19.09.26) -- see _is_share_exec_summary_header.
+_SHARE_EXEC_SUMMARY_RE = re.compile(r"\bShare\s+Executive\s+Summary\b")
+
+
+def _is_share_exec_summary_header(text):
+    """True for an article header's `Share Executive Summary` affordance (93).
+
+    Live 19.09.26: `cycle_g_security` stored
+      "LLM Prompt injection Share Executive Summary Palo Alto Networks has
+       released \u201c Securing GenAI: A Comprehensive Report on Prompt
+       Attacks: Taxonomy, Risks, and Solutions ,\u201d which surveys emerging
+       prompt-based attacks on AI applications and AI agents."
+    -- a report page's tag chip, its `Share` control and its `Executive
+    Summary` tab, welded to the report's own abstract.
+
+    The discriminator is the space-glued PAIR of the page's OWN two affordances.
+    `Share` alone and `Executive Summary` alone are both ordinary English
+    (`Readers can Share an Executive Summary with their team.`), so only the
+    welded pair is safe. Measured: 1 buffer hit and it IS the leak; 0/24
+    hostile controls; 0/3,059 longterm_episodes; 0/857 gate-test literals.
+    """
+    return bool(_SHARE_EXEC_SUMMARY_RE.search(text or ""))
+
+
+# class 94 markers (live 19.09.26) -- see _is_citation_counter_run.
+_CITATION_COUNTER_RUN_RE = re.compile(
+    r"\b\d{1,3}\s+\d{1,3}\s+\d{1,3}\s+\d{1,3}\s+[A-Z][a-z]")
+
+
+def _is_citation_counter_run(text):
+    """True for a reference-counter run repeated inside prose (94).
+
+    Live 19.09.26: `cycle_f_multi_domain` stored
+      "AI systems without human supervision for worker surveillance and
+       quality inspection in industrial sectors 4 4 5 5 However, the bill does
+       allow authorities to use real-time biometric surveillance in public
+       spaces for national security reasons 1 1 2 2 ."
+    -- an academic-paper page whose citation-marker runs (`4 4 5 5`) were
+    welded into the prose.
+
+    The discriminator is the four-number run welded to a Capitalized word; a
+    bare digit run matches ordinary tabular prose and was measured as a topic
+    trap. Measured: 1 buffer hit and it IS the leak; 0/24 hostile controls;
+    0/3,059 longterm_episodes; and the one gate-test literal it matches
+    (`Onboarding Code Comprehension ... 1 2 3 4 5 6 7 8 9 10 11 Next ...`) is
+    a KNOWN leak already asserted as junk, i.e. a true positive.
+    """
+    t = text or ""
+    if len(t) > 1200:
+        return False
+    return bool(_CITATION_COUNTER_RUN_RE.search(t))
+
+
 
 
 
@@ -2948,6 +3163,30 @@ def _is_junk(text):
         return True
     # a portal counter bar welded to a comparison headline (class 85, 19.09.26)
     if _is_portal_counter_bar_comparison(t):
+        return True
+    # a release-notes changelog bullet welded to its PR number (class 86, 19.09.26)
+    if _is_release_notes_pr_bullet(t):
+        return True
+    # a headline run welded to a mid-text byline counter bar (class 87, 19.09.26)
+    if _is_midtext_byline_counter_run(t):
+        return True
+    # a feed row: relative time + bare counters + headline (class 88, 19.09.26)
+    if _is_relative_time_counter_row(t):
+        return True
+    # a newsroom cross-post counter bar at the tail (class 89, 19.09.26)
+    if _is_project_count_news_tail(t):
+        return True
+    # a course landing-page arrow CTA opener (class 90, 19.09.26)
+    if _is_course_cta_opener(t):
+        return True
+    # a code block whose line-number gutter was welded in (class 92, 19.09.26)
+    if _is_code_linenum_run(t):
+        return True
+    # an article header's Share Executive Summary affordance (class 93, 19.09.26)
+    if _is_share_exec_summary_header(t):
+        return True
+    # a reference-counter run repeated inside prose (class 94, 19.09.26)
+    if _is_citation_counter_run(t):
         return True
     # a page-meta listing widget (same narrow rule as
     # buffer_store._is_sidebar_listing_chrome)
