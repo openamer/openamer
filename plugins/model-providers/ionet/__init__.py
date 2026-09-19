@@ -10,12 +10,18 @@ class _IonetProfile(ProviderProfile):
     IO Intelligence's documented ``tool_choice`` default is ``none``, while
     the chat-completions transport sends ``tools`` without an explicit
     ``tool_choice`` on normal agent turns. Without an override, tool calls
-    never fire on this provider. The profile pins ``tool_choice: "auto"``
-    through ``build_extra_body`` so every request opts in.
+    never fire on this provider. The profile emits ``tool_choice: "auto"``
+    through ``build_extra_body`` — but only when the request actually
+    carries tools. Strict OpenAI-compatible backends (vLLM-derived ones
+    included) reject ``tool_choice`` alongside an empty or missing
+    ``tools`` list, and the auxiliary no-tools call sites (title
+    generation, compression, summaries) send no tools at all.
     """
 
-    def build_extra_body(self, *, session_id=None, **context):
-        return {"tool_choice": "auto"}
+    def build_extra_body(self, *, session_id=None, tools=None, **context):
+        if tools:
+            return {"tool_choice": "auto"}
+        return {}
 
 
 ionet = _IonetProfile(
@@ -27,6 +33,7 @@ ionet = _IonetProfile(
     env_vars=("IONET_API_KEY", "IONET_BASE_URL"),
     base_url="https://api.intelligence.io.solutions/api/v1",
     auth_type="api_key",
+    default_aux_model="openai/gpt-oss-20b",
     # The catalog is discovered live from GET {base_url}/models. The list
     # below only feeds the /model picker when the live fetch fails, so it is
     # a snapshot of agentic, tool-calling models — not a contract.
