@@ -1677,3 +1677,81 @@ Post-fix live: 3 x `--once` -> 1 rejected / 2 learned (real LLaMA fine-tuning
 prose + a Space Colony agent-sim description); both new rows
 `writer=False extract=False`, census **0 / 0** at 284 records.
 **Read `buffer_junk` before calling a rejection a regression** -- again.
+
+
+
+## Root cause AX — rate depression WITHOUT a gate regression: the gate was right, the deep-read URL selection was wrong (live 19.09.26)
+
+Cron run began on the documented `cycle_g_security: rejected` line. Per-hour rate
+was clearly down: `2026-09-19T02 ok=5 rej=14 rate=26.3%`, last-20 **25.0%**,
+last-80 37.5% vs **all-time 76.6% (n=2017)** — the U/V signature — so U/V were
+verified BEFORE inventing anything: `_search_urls(q, k=6)` → **6,6,6,6,6** on five
+diverse queries and `_fair_share_window(5×4000, 4000)` → **5 slices / 800 chars
+each**. Both intact → **no U/V regression**. `buffer_junk` last 160 =
+`89 junk / 67 duplicate / 4 no-tech-signal`; of the 89 junk rows **40 were
+SERP-shaped** (`… — <date>`, `… ; <next title>`) and 49 were the documented
+`Self-critique:` echo / class-66 plan echo / model-degradation family.
+**Rotation noise + an honest gate = no gate change warranted.** Same verdict as
+root cause AI: rate analysis and leak-hunting are different jobs.
+
+### THE NEW LESSON — do not read a depressed rate as a broken gate
+The two live rejection drives are (a) the deep-read page being off-topic SERP
+chrome and (b) `duplicate` at a buffer near its cap. Neither is fixable by a gate
+edit (a gate change would either be a loosening — forbidden — or would eat real
+prose). The actionable diagnosis order is:
+1. per-hour table (a step change vs the 50–80% band, not the 7d aggregate);
+2. `buffer_junk` reason MIX — a rising `junk` share with SERP-shaped `a` fields
+   means the deep read is ranking search-result pages, not that the gate broke;
+3. census BOTH gates over the whole buffer — if it reads **0 / 0**, the gates are
+   NOT the problem and no class work is due.
+If all three point that way, the correct output of the run is **a clean census +
+a signature cleanup + the honest one-line report**, not a new marker.
+
+### What the run DID fix — 4 stale model-degradation rows, gated-by-nobody ON PURPOSE
+Buffer scan (short-`a` sweep) found four pre-existing fragments of the documented
+un-gateable family (root cause AS: "no clean discriminator exists for the model
+breaking down mid-generation — do not gate it"):
+
+| idx | `a` | `u` |
+|---|---|---|
+| 280 | `These are older good launches.` | Structural connection between energy efficiency and system failure? |
+| 32 | `This sounds agent reasoning?` | Structural connection between energy efficiency and system failure? |
+| 214 | `Both are self-monitoring/optimization loops?` | Structural connection between energy efficiency and learning process? |
+| 223 | `Sounds maybe quote from debugging?` | Structural connection between system failure and energy efficiency? |
+
+All four measured `learner_junk=False writer=False store_is_junk=False` and are
+**28–44 chars** — the `>=90` length trust never applied (class-33/65 precedent,
+fourth occurrence: the trust is not the only way chrome gets in). Every candidate
+discriminator is a topic-word or a normal interrogative (`Both are … loops?` is
+ordinary English), so a marker here would be a false-positive factory.
+**Removed by signature only, no code change** — same call as root cause AG and
+the AS repetition row.
+
+### Cleanup + verify (standard shape, all met)
+Signature cleanup with the CRLF-split reader (`split("\r\n")`, never
+`readlines()`), `assert len(drop) == 4` deliberately (it fired correctly), write
+with `newline=""`/one record + CRLF: **285 → 281** records, `0 unparsable`,
+**loneLF 0**, structural-connection rows **49 → 45**, writer census **0** and
+learner census **0** after. Backup kept at
+`online_buffer.jsonl.bak_cron20260919-030241`. (The historical "7 is the
+baseline" and "53 structural rows" numbers have both decayed again — re-count
+every time, never quote an old number.)
+
+### Also re-confirmed
+- The class-66 German plan echo (`KI-Performance-Optimierung: Python-Skript für
+  RAM/Disk/Cron-Monitoring + Optimierungsvorschläge + Skill + Cron-Job alle 12h  2.`)
+  is STILL alive in the junk stream and STILL correctly gated on both paths —
+  no new work.
+- The ticker row (`… The Economic Times Benchmarks CLOSED Nifty 23,346.`) is the
+  class-AH leak reappearing in `buffer_junk` as `junk` — i.e. the marker added
+  then is doing its job; it is NOT a new class.
+- `git status --porcelain scripts/training tests/scripts` showed 6 modified files
+  (`active_learn`, `knowledge_to_action`, `self_improve`, `smart_router`,
+  `test_memory_consolidation`, `tool_server`) — inspected: all FOREIGN-cron edits
+  (a `_training_dir()` fallback, `encoding="utf-8"` on opens), NOT unfinished gate
+  work. The AV trap step still earns its place, but do not confuse foreign dirt
+  with a previous run's gate fix: `git diff` for marker helpers
+  (`_is_*_chrome`) before treating a dirty tree as incomplete work.
+- `cycle_h_efficiency` took **355.9 s** (vs the usual 40–60 s) and still rejected.
+  A single slow cycle is the deep-read falling through several fetch candidates,
+  not a hang — the `--once` loop needs a >=400 s budget per cycle in this state.
