@@ -1270,7 +1270,7 @@ family and IS gated, because it carries the page's own label pair.
 ### Pitfall -- `crlf()` on an ALREADY-CRLF anchor matches 0 times
 Passing the two-line CRLF gate anchor through the same `crlf()` helper used for
 the LF-only insertion BLOCK turns `
-` into `
+` into `
 ` and `count()` returns
 **0** -> the apply script aborted with `gate anchor count 0`. Keep ONE helper
 (`.replace("
@@ -1299,3 +1299,381 @@ Verified: `git branch -r --contains 5cda85ea0` -> origin/main, remote blobs grep
 Post-fix live: 3 x `--once` -> 1 learned / 2 rejected; the learned row is real
 prose (`$1,600, $2,500, even $5,000+ ...`) with `writer=False extract=False`, the
 rejections are honest and both censuses read **0 of 288**.
+
+
+## Root cause AY (live 19.09.26) — FIVE chrome classes in ONE cron run (81-85), the "post-fix cycle makes the next leak" loop, and the CLASS-NUMBER collision trap
+
+Cron run began with the documented `cycle_g_security: rejected` line. Rate check:
+per-day **39.5 % (15 ok / 23 rej)** vs the documented 50-80 % band -> **no gate
+change was warranted for the rejection itself**; `buffer_junk` last 8 =
+`duplicate` at the 288/300 cap + documented junk shapes (`Self-critique:` echo,
+SERP `... - <date> · ...`) = rotation noise. U/V verified BEFORE inventing
+anything: `_search_urls(q, k=6)` -> 6,6,6,6,6 on five diverse queries;
+`_fair_share_window` -> 4000 chars / 5 slices; buffer size byte-stable.
+Working tree `scripts/training` + `tests/scripts`: the only dirty files were
+FOREIGN (`active_learn.py`, `tool_server.py`, ...), NOT the two gate modules ->
+no uncommitted predecessor work in my lanes (the AV trap, checked first).
+
+All five finds came from the prescribed cheapest method: run `--once`, read the
+BUFFER TAIL `u`/`a`, repeat after each fix. **Every single leak was created by a
+POST-FIX live cycle** (the AP/AS/AU lesson, now certain): the buffer was clean at
+entry, and each fix was followed by 3-4 more `--once` runs that produced the
+NEXT class. Five classes needed ~15 `--once` runs in one session.
+
+| class | helper | measured |
+|---|---|---|
+| 81 | `_is_institution_abstract_tail_chrome` -- institution label AND a bare abstract ORDINAL welded at the TAIL | 1 hit, IS the leak / 0 FP / 0 le / 0 lit |
+| 82 | `_is_trending_card_header_pair` -- `This Week Last Update: <n> days ago` + `See Project <n>`, single space between | 1 hit, IS the leak / 0 FP / 0 le / 0 lit |
+| 83 | `_is_aggregator_row_year_tail` -- a feed row's `<rel-time> | N comments` AND the arXiv `(yyyy)` tail within 80 chars | 1 hit, IS the leak / 0 FP / 0 le / 0 lit |
+| 84 | `_is_pipe_byline_shares_header` -- byline AND a PIPE dateline AND the bare `Shares` token | 1 hit, IS the leak / 0 FP / 0 le / 0 lit |
+| 85 | `_is_portal_counter_bar_comparison` -- `Instant <dd-Mon-yyyy> <n> <n> <Category>` AND `Complete Comparison` within 120 chars | 1 hit, IS the leak / 0 FP / 0 le / 0 lit |
+
+### THE TRAP THAT COST THE MOST: class NUMBERS are not reserved across sessions
+My first two helpers were labelled **class 77** and **class 78** -- and the
+SAME-DAY predecessor run (commit `5cda85ea0`) had already shipped classes 77-80
+(`_is_advisory_row`, `_is_site_headline_stub`, `_is_fact_box_label_chain`,
+`_is_own_plan_plus_run`). The collision only surfaced when grepping the module:
+
+    grep -n "^# class 7[0-9] markers" scripts/training/internet_learner.py
+
+Fix was a comment/docstring-only renumber commit (77->81, 78->82) across all
+three code copies AND all three test copies. **Before numbering a new class,
+grep the module for `# class NN markers`** -- a parallel or predecessor session
+can have taken the number, and a silent collision sends the next session hunting
+a duplicate that does not exist. (The archive has the SAME shape: root cause AW
+claims 77-80; the numbers are a naming convention only, not a registry.)
+
+### Class 81 -- the PAIR at the TAIL, and "check the existing helper's SHAPE"
+`cycle_h_efficiency` stored
+`Language-model groups overstate consensus when replaying human deliberation on a
+reasoning task Waseda University Abstract 9.` -- 125 chars WITH digits, so the
+length trust AND the technical-signal gate both fired. Existing helpers all
+False: `_is_arxiv_abstract_chrome` needs the viewer labels (`View PDF` /
+`HTML (experimental)`), `_is_nav_list` wants >=6 TitleCase tokens with no comma,
+the byline family is English-keyed on `By <Name>` / `Published` / `Share`.
+Sweep: the bare `Abstract <n>.` TAIL alone measured 1-2 control FPs
+(`The paper is summarized in Abstract 9.`), the institution label without the
+TAIL period measured 1 (`The Laboratory Abstract 5 was rejected by the
+reviewers.`). Only the anchored PAIR (`(?:University|...|School)\s+Abstract\s+\d{1,3}\s*\.\s*$`) reached 0/29 hostile controls. A 6-caps-word prefix
+variant measured **0 buffer hits** (too narrow) -- do not over-specify.
+Pre/post `_clean_insight` diff on 29 controls: **0 diffs**.
+
+### Class 82 -- the WELD, not the labels
+Post-fix `cycle_c_github` stored a trending card header welded onto the repo
+description: `This Week Last Update: 2 days ago See Project 2 OpenManus ...`.
+Every repo-listing helper was False by design: `_is_trending_repo_row_chrome`
+wants the star counter + a language stat, `_is_repo_stat_footer_run` wants a
+commits/branches/tags footer, `_is_gh_listing_row` wants `Updated <Mon DD, YYYY>`
++ `Public Forked`.
+**My hand-written hostile controls were themselves widget-shaped** and produced
+5-6 "FPs" (`This week last update was 2 days ago. See project 2 for the
+benchmark.`) -- i.e. the harness was reporting the INTENDED behaviour. Rewriting
+them as NATURAL prose (`This week's last update to the repo was 2 days ago, so
+the fix is fresh.`) took every variant to 0. The AJ/AN/AQ/AU/AV control-corpus
+rule again: a control that IS the chrome shape is asserted as a leak, never
+listed in the false-positive set.
+Shipped form is the exact WELD with a single space between the halves
+(`...days?\s+ago\s+see\s+project\s+\d{1,3}`); punctuation between the halves
+means prose.
+
+### Class 83 -- a SINGLE occurrence is deliberately NOT gated (class 37 boundary)
+Post-fix `cycle_b_papers` stored `CameronBanga 5 hours ago | 10 comments 58
+Cache-to-Cache: Direct Semantic Communication Between LLMs (2025) (arxiv.` --
+only 115 chars. `_is_hn_item_chrome` / `_is_hn_feed_listing_chrome` (classes
+37/49) both returned False because they require the unit to REPEAT (>=2).
+**The single-unit marker measured 4-9 control FPs** at every unit spelling --
+including class 37's OWN clean control `The review took 2 days ago | 4 comments
+per reviewer were recorded.`, which the existing test asserts must stay
+learnable. So the AU rule applied: the threshold could not be lowered without
+FPs, therefore the PATTERN was wrong -> add a second structural co-occurrence.
+The arXiv `(yyyy)` tail within 80 chars of the feed unit reached 0 on all
+corpora. **Verify explicitly that the old class's clean control stays
+`is_junk == False`** after shipping -- the boundary is part of the contract.
+
+### Class 84 -- third occurrence of "same vocabulary, different SHAPE"
+Post-fix `cycle_f_multi_domain` stored a portal article header: brand chip +
+headline + byline + **PIPE** dateline + the site's bare `Shares` glued to the
+lede. `_is_news_byline_share_header` (class 51) already keys on `By <First>
+<Last>` + a dateline + `Share` and STILL returned False -- it requires a full
+WEEKDAY dateline; this page ships a pipe dateline. `_strip_byline_prefix`
+(class 29) only strips a LEADING byline, and here the byline follows a brand
+chip. Proven mechanically: the class-51 helper returns False on the leak AND the
+pre-edit module's `_is_junk` returns False on it (the AQ/AR "attribute through
+the PRE-EDIT module" step).
+
+### Class 85 -- the CONJUNCTION again (AU rule, fourth occurrence)
+Post-fix `cycle_g_security` stored `Instant 23-Aug-2026 0 207 Technology OpenAI
+Workspace Agents vs Google Gemini Enterprise: Complete Comparison 2026 ...`.
+Sweep that mattered, on a deliberately HOSTILE control set of recombinants:
+| candidate | buffer | hostile FPs |
+|---|---|---|
+| `date + 2 counters + Category` | 1 | **4** (`The log line 23-Aug-2026 0 207 Technology was parsed by the tool.`) |
+| `Instant + date + 2 counters + Category` | 1 | **2** (`Instant 23-Aug-2026 0 207 Technology is the scraped badge text.`) |
+| `Instant + date` only | 1 | 2 |
+| **`...Category` AND `Complete Comparison` within 120** | **1** | **0** |
+| `...Category` AND `vs` within 120 | 1 | 0 (equivalent; the headline label shipped) |
+| three-way (`+ '(yyyy)' + 'vs'`) | **0** | 0 (over-specified) |
+Note the last row: adding a THIRD condition can make the rule MISS the leak
+entirely -- sweep conjuncts in both directions, not only for FP reduction.
+
+### THE DELIBERATE NON-FIX -- a truncated model output has no discriminator
+Row 288 (`IFM Uno: Lossless LLM Speedup via Diffusion Adapter (2026) IFM
+released Uno on Sep 17, 2026 - a diffusion adapter for autoregressive LLMs
+delivering up to 2.`) is a generation truncated mid-number. A "text ends in a
+digit + period" detector was considered and NOT shipped: the buffer holds
+**20+** rows ending that way and they are legitimate (`--gpu-memory-utilization
+0.`, `92.`, `Gemini 3.`). Same call as root cause AG and the model-hallucination
+repetition row: **remove by signature only**. Do not gate "the output looks cut
+off".
+
+### Cleanup + verify (standard shape, all met, five passes)
+Signature cleanups: 289 -> 288 (cls 81), 289 -> 288 (cls 82, after a post-fix
+cycle had refilled to 289), 291 -> 290 (cls 83), 291 -> 289 (cls 84 + the
+truncation row), 291 -> 290 (cls 85). Every step: `0 unparsable`, lone LF 0, CRLF
+intact, **48** structural-connection rows preserved (the historical 53 -> 55 -> 48
+drift continues; re-count, NEVER quote an old number), writer-gate and
+learner-gate censuses **0**. 3-copy `md5sum` identical after EVERY apply
+(`51666bdf/2390c8bc`, `3539bdb6/53e126f0`, `1b8c7f53/66d7fcc5`, `b0d110b8/d8ae047b`),
+every copy `exec_module`-verified -- `ast.parse` is not enough (the `re` vs `_re`
+alias and glued-paren traps).
+`pytest tests/scripts/test_internet_learner_gate.py -q` -> **99 -> 100 -> 101 ->
+102 -> 103 -> 104 passed** (5 new tests, each asserting the helper AND
+`_is_junk` AND `_is_nav_chrome` AND `is_junk` AND `_clean_insight == ""` on the
+leak(s) plus 12-18 prose counter-cases); `pytest tests/scripts -q` ->
+**256 -> 257 -> 258 -> 259 -> 260 passed**. Every test appended as **pure bytes**
+(`numstat` 0 removed each time, repo lone-LF census **58 -> 58**), mirrored to
+both other test copies.
+Commits `82e41ec62`, `244ed508b`, `d3e3ef5b6` (the renumber), `9981e58ae`,
+`964dc639b`, `1e7c0843b` -- all on the foreign branch
+`fix/28-respawn-test-psutil-hermetic`, `merge-base --is-ancestor origin/main
+HEAD` -> **FF_SAFE** each round, `git push origin HEAD:main` with the `-c`
+options BEFORE the subcommand. Verified each time with `git branch -r --contains
+<sha>` -> `origin/main`, `git cat-file blob origin/main:<file> | grep -c <marker>`
+-> 3/3, and the LF-normalized md5 (remote blob == local after `tr -d '\r'`).
+**The push exit code alone is not proof.**
+Post-fix live: 3 x `--once` -> 1 learned / 2 honest rejections; the last 3-row
+census reads **0 of 290** on both gates.
+
+### Session shape that worked (five classes, ~15 cycles, one session)
+Per class, one pass: measure (buffer tail + hostile + NATURAL controls + junk +
+episodes + test literals + pre-edit module diff) -> apply to BOTH gates in all
+3 copies -> `exec_module` -> re-scan buffer -> DELETE the matching rows in the
+same step -> pytest -> append test (pure bytes) + mirror -> commit -> push ->
+verify -> 3 x `--once` -> read the buffer tail AGAIN (the next class is usually
+already there).
+
+## Root cause AW/AY follow-on — EIGHT chrome classes in ONE cron run (86-94, live 19.09.26)
+
+Cron run began on the documented `cycle_e_competitors: rejected` line. The rate
+check said **43.1 % for the partial day (25 ok / 33 rej) vs the documented
+50-80 % band**, and per-hour was 40-52 % across the previous six hours -- a
+regime-shaped band, not a step change -- so **no gate change was warranted for
+the rejection itself**; `buffer_junk` last rows were `duplicate` + the
+documented `Self-critique:` / plan-echo junk shapes = rotation noise. The entry
+census read **0 / 0 (learner / writer)**: every one of the eight leaks was
+created by a post-fix live cycle (the AP/AS/AU lesson, third+ occurrence).
+
+All eight finds came from the prescribed cheapest method: read the BUFFER TAIL
+`u`/`a` pairs, then scan the WHOLE buffer with a few broad heuristics
+(`rel_time`, `share_word`, `views_word`, `min_read`, `updated`, a bare
+`\d+\s+\d+\s+\d+` counter run, `( #N )`) and inspect every hit by hand.
+
+| class | helper | measured |
+|---|---|---|
+| 86 | `_is_release_notes_pr_bullet` | 1 hit, IS the leak / 0 FP / 0 le / 0 lit |
+| 87 | `_is_midtext_byline_counter_run` | 1 hit, IS the leak / 0 FP / 0 le / 0 lit |
+| 88 | `_is_relative_time_counter_row` | 2 hits, BOTH the leak family / 0 FP / 0 le / 0 lit |
+| 89 | `_is_project_count_news_tail` | 1 hit, IS the leak / 0 FP / 0 le / 0 lit |
+| 90 | `_is_course_cta_opener` | 1 hit, IS the leak / 0 FP / 0 le / 0 lit |
+| 92 | `_is_code_linenum_run` | 2 hits, BOTH the leak family / 0 FP / 0 le / 0 lit |
+| 93 | `_is_share_exec_summary_header` | 1 hit, IS the leak / 0 FP / 0 le / 0 lit |
+| 94 | `_is_citation_counter_run` | 1 hit, IS the leak / 0 FP / 0 le / 0 lit |
+
+(`le` = `longterm_episodes`, `lit` = string literals extracted from the gate test
+file. Class 91 was probed and NOT needed -- see below.)
+
+### THE POSITION TRAP, fourth occurrence (class 87) — check for a STRIP helper, not just a `_is_` helper
+`_strip_byline_stack` (class 15, 16.09.26) exists for EXACTLY the class-87
+vocabulary: `<Name> <date> <bare counters> Share`. It still returned the live row
+unchanged, because it uses **`_BYLINE_STACK_RE.match()`** — it only fires when
+the byline LEADS the text. Class 87 has a TitleCase **headline run** in front of
+it, so `.match()` never lands. This is the same shape of gap as the class
+29/40/51/84 byline family, but the tell is different: those were `_is_` helpers
+keyed on a *different position token*; this one is a *strip* helper keyed on the
+wrong ANCHOR (`match` vs `search`). **Grep for both `_strip_*` and `_is_*`
+helpers covering the vocabulary before declaring a class new** — the module has
+17 `_strip_*` helpers and they are easy to miss.
+
+Corollary: class 15's own test literal
+(`Simon Lermen Feb 24, 2026 54 5 8 Share TL;DR: ...`) still matches the
+*loose* form of the class-87 regex. That is a FALSE positive on the test corpus,
+not a bug: the loose form (without the headline run) was measured at **2 control
+FPs** and REJECTED. Only the headline-run-prefixed form shipped, and it scores
+**0 lit / 0 ctrlFP**. A test-corpus hit on a REJECTED variant is not a reason to
+widen the shipped rule.
+
+### THE SINGLE-PART TRAP, fourth occurrence: every bare candidate was measured and rejected
+| class | rejected candidate | why |
+|---|---|---|
+| 86 | bare `\(\s*#\d{3,}\s*\)` | 1 control FP (`The patch ( #1234 ) was reverted after the regression report.`) + 3 episodes |
+| 87 | loose byline form (no headline run) | 2 control FPs (`Authors: Smith Feb 3, 2026 12 4 9 Share the findings in the appendix.`) |
+| 88 | bare relative time `\d+ (min|hour)s? ago` | ordinary prose (`It ran 3 hours ago with 12 4 retries recorded in the log.`) |
+| 89 | `N projects \| news.` WITHOUT the `$` anchor | mid-sentence prose (`We reviewed 3 projects \| news. and wrote summaries afterwards.`) |
+| 90 | bare `Start this course` | 1 control FP (`Start this course to learn how agents work and how they fail in production.`) |
+| 92 | bare digit run `1 2 3 4 5 6` | matches the docs PAGINATION chrome (a known leak) + prose (`` `1 2 3 4 5 6 # setup` ``) |
+| 93 | `Share` alone / `Executive Summary` alone | ordinary English (`Readers can Share an Executive Summary with their team.`) |
+| 94 | bare four-number run | matches a KNOWN leak literal and ordinary tabular prose |
+
+**Rule restated: the discriminator is the CONJUNCTION / the WELD, never the
+phrase.** Same as classes 58-63 (AS), 69/84/85.
+
+### Class 91 — probed, measured, deliberately NOT shipped
+`GHSA-... + Previous 1 2 3 Next` measured **1 buffer hit BUT `lit=1`** — the
+literal is a gate-test counter-case that is **already asserted as junk** via the
+pre-existing `_is_nav_list` rule (the test's own docstring says so: *"PRE-EXISTING
+`_is_nav_list` rule rejects it (a different gate)"*). A candidate that hits a
+test literal already pinned as a LEAK is a true positive, but shipping a marker
+for a shape the repo already gates is redundant. Removed by signature only; no
+code change. **Read the test literal's CONTEXT (assert-junk vs assert-clean)
+before counting it as an FP.**
+
+### Class 94's literal is a leak, verified the same way
+The one literal class 94 matches
+(`Onboarding Code Comprehension ... 1 2 3 4 5 6 7 8 9 10 11 Next ...`) sits in
+the module-level `CHROME` list, which is iterated with
+`assert IL._is_junk(text)` — i.e. a known LEAK, so the hit is a true positive.
+
+### ALSO: a stale strip-helper leftover, not a new class
+Row 188 (`Simon Lermen Feb 24, 2026 54 5 8 Share TL;DR: ...`) is present in the
+buffer AND passes both gates — but `_strip_byline_stack`/`_clean_insight` handle
+it (they strip the byline and keep the TL;DR). The stored `a` is the RAW form
+because the row PREDATES the strip helper (class 15, 16.09.26). Exactly the AS
+"stale buffer row is not a new class" precedent: **remove by signature, no code
+change.** Before designing a helper for a gated-looking row, run
+`_clean_insight(row)` and check whether it returns a CLEANED version — if it
+does, the row is a pre-rule leftover.
+
+### Cleanup + verify (the standard shape, all met)
+Signature cleanups dropped all 10 rows in one pass: `291 -> 281` records, every
+step `0 unparsable`, lone LF `0`, CRLF intact, **49** structural-connection rows
+preserved (re-counted, not quoted -- this number has drifted 53 -> 55 -> 49
+across sessions), writer-gate census **10 -> 0** and learner-gate census
+**10 -> 0**. 3-copy `md5sum` identical for BOTH modules
+(`e490fcffb040145915219484f11462eb` learner, `4dbf459fab4db7086ed94a5f03e8ce17`
+store) and every module `exec_module`-verified (the `re` vs `_re` alias trap --
+`ast.parse` was green the whole time).
+
+Tests appended as **pure bytes** to all THREE test copies
+(`230602 -> 240...` bytes, `10442` added, lone-LF census **58 -> 58** both, i.e.
+no EOL churn). `pytest tests/scripts/test_internet_learner_gate.py -q` ->
+**104 -> 112 passed**; `pytest tests/scripts -q` -> **268 passed**.
+Commit `071ff9b3a`, `numstat` **239 / 0** and **239 / 0** and **211 / 0** (no
+EOL churn anywhere). Branch was again `fix/28-respawn-test-psutil-hermetic`;
+`git merge-base --is-ancestor origin/main HEAD` -> **FF_SAFE**, pushed
+`HEAD:main` (`1e7c0843b..071ff9b3a`) with the `-c` options BEFORE the
+subcommand. Verified `git branch -r --contains 071ff9b3a` -> `origin/main` AND
+`git cat-file blob origin/main:<file> | grep -c <marker>` -> **3/3 for all eight
+helpers** in both modules. **The push exit code alone is not proof.**
+
+Post-fix live: 7 x `--once` -> 1 learned / 6 rejected; every rejection reason was
+`duplicate` at the 281-282 cap or a documented `Self-critique:` / plan-echo
+shape, the learned row is clean prose (LLaMA-2 benchmark dimensions), and the
+census stays **0 / 0** at 282 records. **Read `buffer_junk` before calling a
+rejection a regression** -- again.
+
+### Mechanical trap that cost one round: normalizing anchors but not the file
+The apply script compared LF-normalized anchors (`norm(anchor)`) against the RAW
+CRLF file with `raw.count(...)` -> `helper anchor count 0` abort. The file is
+pure CRLF (`internet_learner.py` 4502 lines, `buffer_store.py` 3108 lines, both
+lone-LF 0). **Work entirely in LF space**: decode, assert
+`raw.count("\n") == raw.count("\r\n")`, convert the WHOLE text once
+(`text = raw.replace("\r\n","\n")`), do every count/replace there, and convert
+back with `out.replace("\n","\r\n")` at the single write. Do not mix normalized
+anchors with un-normalized text.
+
+## Root cause AW (cont.) — class 95: a dated newsroom feed run welded to its own composite relative stamps (live 19.09.26)
+
+Cron run began on the documented `cycle_e_competitors: rejected` line. Per-day
+rate **39.4 % (26 ok / 40 rej)** for the partial day vs the documented 50–80 %
+band -> no gate change was warranted for the rejection itself; `buffer_junk` tail
+= `duplicate` at the 282 cap + documented `junk` shapes (`Self-critique:` echo,
+plan-echo, `Need likely discuss ...`) = rotation noise. Writer-gate census at
+entry **0 of 282**, learner-gate census **0 of 282**.
+
+**The leak was created by a POST-FIX cycle** (the AP/AS/AU lesson again):
+the 3rd `--once` after the previous commit stored
+
+    "OpenAI is buying failed biotech trade secrets to train medical models
+     3 days, 11 hours ago Salesforce built Koa to stop paying Anthropic and
+     OpenAI millions 3 days, 12 hours ago Anthropic and OpenAI want an AI freeze."
+
+217 chars WITH digits -> the `>=90` length trust AND the technical-signal gate
+both fired; no existing marker matched. New helper
+`_is_relative_stamp_news_run` (class 95), wired into BOTH gates in all 3 copies.
+
+### Why every existing relative-time helper missed it
+| helper | why it returned False |
+|---|---|
+| `_is_relative_time_nav_chain` (34) | needs the `For You / Latest / Trending` labels -- this page ships none |
+| `_is_hn_feed_listing_chrome` (37) / `_is_hn_item_chrome` (49) / `_is_aggregator_row_year_tail` (83) | all key on a `\| N comments` unit -- this row has no comment counter |
+| `_is_relative_time_counter_row` (88) | needs TWO bare counters after the stamp |
+| `_REL_TIME_AGO_RE` (33/34) | `\d{1,3}\s+(minutes?\|hours?\|days?)\s+ago` -- **this is the POSITION/vocabulary gap, fifth occurrence**: it matches the *plain* stamp, not the *composite* `<n> days, <n> hours ago` |
+| class-94 archive entry | the bare relative stamp was ALREADY probed and REJECTED: `\d+ (min\|hour)s? ago` is ordinary prose (`It ran 3 hours ago with 12 4 retries recorded in the log.`) |
+
+### THE HARNESS TRAP that nearly shipped a topic word: `re.IGNORECASE` destroys a `[A-Z][a-z]` anchor
+The rule's discriminator is the capitalised headline word after the stamp. My
+first measurement pass evaluated every candidate with `re.findall(pat, t, re.I)`
+-- which makes `[A-Z][a-z]` match **any** lowercase word, so all 13 control
+strings scored `1`–`2` hits and the rule looked like a 100 %-FP topic word.
+Re-measuring **case-sensitively** (no `re.I`) gave the correct picture:
+
+| candidate (case-sensitive) | buffer | junk | le | lit | ctrl FP |
+|---|---|---|---|---|---|
+| bare relative stamp `\d+ (min\|hour)s? ago` | many | - | - | - | already REJECTED (class 94) |
+| composite stamp, no capitalised word | 1 (=leak) | 0 | 0 | 0 | **4** declarative prose controls -> REJECTED |
+| composite stamp `>=2` (count form) | 1 (=leak) | **1** | 0 | 0 | 2 -> REJECTED |
+| `N days, N hours ago` + `[A-Z][a-z]`, `>=1` | 1 (=leak) | 0 | 0 | 0 | **1** (`Row A appeared 3 days, 11 hours ago Salesforce followed; ...`) |
+| **same, `>=1`, REPEATED (the shipped form)** | **1 (=leak)** | **0** | **0** | **0** | **0 / 13** |
+
+**So: if a candidate scores FPs on controls that are obviously NOT the shape
+(`The migration finished 3 days, 11 hours ago and the report captured it.`), check
+your `re` FLAGS before you check your pattern.** An `IGNORECASE` on a
+case-anchored rule is a silent no-op discriminator -- same class of mistake as the
+`re` vs `_re` alias trap and the `.match()` vs `.search()` trap, but it hides in
+the PROBE, not in the module.
+
+### The shipped rule (the AU conjunction rule, fifth confirmation)
+`_RELATIVE_STAMP_NEWS_RUN_RE = re.compile(r"(?:\d{1,2}\s+days?,\s*\d{1,2}\s+hours?\s+ago\s+[A-Z][a-z])[\s\S]{0,80}?(?:\d{1,2}\s+days?,\s*\d{1,2}\s+hours?\s+ago\s+[A-Z][a-z])")`
+-- the COMPOSITE stamp, the REPETITION (bounded 80-char window) and the
+capitalised headline word must all hold. `len(t) > 1200` guard, no `re.I`.
+Both copies use `re.compile` (learner) / `_re.compile` (store) -- build ONE block
+per file, never one shared string.
+The test deliberately documents the flag trap so the next session does not
+re-introduce `re.IGNORECASE` (`assert not IL._is_relative_stamp_news_run(...)` on
+11 prose controls incl. the class-83 `CameronBanga` row and the class-37
+single-unit control).
+
+### Cleanup + verify (the standard shape, all met)
+Leak removed by signature -> **283 -> 282** records, `0 unparsable`, CRLF intact,
+**49** structural-connection rows preserved, learner-gate census **1 -> 0** and
+writer-gate census **1 -> 0**. 3-copy `md5sum` identical for BOTH modules
+(`bded9e4a8a56aeedc66da17a8a9537f7` learner, `3808cc5fc2a3a58a8ed72f53bbf5f414`
+store, then `576700b5...`/`9aada385...` after the LF-normalized remote verify) and
+every one of the six files `exec_module`-verified (the `re` vs `_re` alias trap --
+`ast.parse` was green the whole time).
+Test appended as **pure bytes** to all THREE test copies (243,372 bytes each,
+lone-LF census **58 -> 58** = no EOL churn; `numstat` 53/0, 53/0, 38/0).
+`pytest tests/scripts/test_internet_learner_gate.py -q` -> **112 -> 113 passed**;
+`pytest tests/scripts -q` -> **268 -> 269 passed**.
+Commit `215386e1a` on the foreign branch `fix/28-respawn-test-psutil-hermetic`
+(`merge-base --is-ancestor origin/main HEAD` -> FF_SAFE), pushed `HEAD:main`
+(`071ff9b3a..215386e1a`, `-c` options BEFORE the subcommand). Verified:
+`git branch -r --contains 215386e1a` -> `origin/main`,
+`git cat-file blob origin/main:<file> | grep -c _is_relative_stamp_news_run`
+-> **3 / 3**, test -> **1**, and the LF-normalized md5 (remote blob == local after
+`tr -d '\r'`) MATCH for both modules. **The push exit code alone is not proof.**
+
+Post-fix live: 3 x `--once` -> 1 rejected / 2 learned (real LLaMA fine-tuning
+prose + a Space Colony agent-sim description); both new rows
+`writer=False extract=False`, census **0 / 0** at 284 records.
+**Read `buffer_junk` before calling a rejection a regression** -- again.
