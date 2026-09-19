@@ -4539,3 +4539,58 @@ def test_relative_stamp_news_run_is_gated_on_both_paths():
         "AshleysBrain 3 hours ago | 9 comments 77 Neovim have a ~$800k Bitcoin donation.",
     ):
         assert not IL._is_relative_stamp_news_run(text), text
+
+
+def test_bare_markdown_heading_fragment_is_gated_on_both_paths():
+    """A stored answer that is ONE markdown heading line (class 96, 19.09.26).
+
+    Live leak: `## Ollama Model Analysis for Your Hardware` (42 chars, so the
+    >=90 length trust never applied). Both gates missed it because no marker
+    matched a bare heading. A real heading WITH a body, a hashtag run and
+    ordinary one-line prose must all stay learnable.
+    """
+    import buffer_store
+    leak = "## Ollama Model Analysis for Your Hardware"
+    assert IL._is_bare_markdown_heading_fragment(leak) is True
+    assert IL._is_junk(leak) is True
+    assert buffer_store._is_nav_chrome(leak) is True
+    assert buffer_store.is_junk(leak) is True
+    assert IL._is_bare_markdown_heading_fragment("## LoRA Fine-Tuning Best Practices") is True
+
+    for prose in (
+        "## Optimization\n\nPagedAttention reduces memory fragmentation by up to 60% in practice.",
+        "The docs use a ## heading level for the feature name.\nInstall with pip.",
+        "## Ollama Model Analysis for Your Hardware is the section we read.",
+        "Markdown headings like ## Usage appear throughout the guide.",
+        "# Title\nSome body text follows the heading here.",
+        "## Usage\npip install vllm",
+        "# ai # webdev # tutorial # productivity A coding agent that writes code",
+        "vLLM reduces memory fragmentation and improves throughput on 7B to 70B models.",
+    ):
+        assert not IL._is_bare_markdown_heading_fragment(prose), prose
+        assert not buffer_store._is_nav_chrome(prose), prose
+
+
+def test_german_glossary_echo_is_gated_on_both_paths():
+    """The agent's own two-pair German glossary line (class 97, 19.09.26).
+
+    Live leak: `German: Fehler-Capture = error capture, Kategorisierung =
+    categorization, Memory` (80 chars). Two `=` pairs AND no closing punctuation
+    is the discriminator; real glossary prose carries a period, or one pair.
+    """
+    import buffer_store
+    leak = "German: Fehler-Capture = error capture, Kategorisierung = categorization, Memory"
+    assert IL._is_german_glossary_echo(leak) is True
+    assert IL._is_junk(leak) is True
+    assert buffer_store._is_nav_chrome(leak) is True
+    assert buffer_store.is_junk(leak) is True
+
+    for prose in (
+        "German: Wort = word, Satz = sentence.",
+        "German: this sentence explains the German word for error handling.",
+        "We translated the German: Wort = word list into the glossary.",
+        "The German: prefix marks the glossary entries in the file.",
+        "Fehler-Capture = error capture, Kategorisierung = categorization in the log.",
+    ):
+        assert not IL._is_german_glossary_echo(prose), prose
+        assert not buffer_store._is_nav_chrome(prose), prose

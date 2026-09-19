@@ -2975,6 +2975,44 @@ def _is_own_plan_plus_run(text):
     return bool(_OWN_PLAN_PLUS_RUN_RE.search(text or ""))
 
 
+
+# class 96 markers (live 19.09.26) -- see _is_bare_markdown_heading_fragment.
+# A stored "answer" that is nothing but ONE markdown heading line: the extractor
+# kept the section title and dropped the body. Live leak (42 chars, so the >=90
+# length trust never applied):
+#   "## Ollama Model Analysis for Your Hardware"
+# Measured: 1 buffer hit (the leak) -> 0 FPs on 10 prose controls (incl. a real
+# heading WITH a body, and a hashtag run), 0 of 3,059 longterm_episodes, 0 test
+# literals. The word cap and the "no terminal punctuation" guard are what keep
+# ordinary one-line prose sentences out.
+_BARE_HEADING_FRAGMENT_RE = _re.compile(
+    r"^#{1,4}[ \t]+(?![^\r\n]*[#])(?![^\r\n]*[.!?:;])[^\r\n]*(?:[ \t]+[^\r\n]*){0,8}$")
+
+
+def _is_bare_markdown_heading_fragment(text):
+    """True when the whole stored text is a single markdown heading line."""
+    return bool(_BARE_HEADING_FRAGMENT_RE.match((text or "").strip()))
+
+
+# class 97 markers (live 19.09.26) -- see _is_german_glossary_echo.
+# The agent's OWN German glossary line stored as knowledge (80 chars; the
+# documented short-fragment family that passes both gates because no marker
+# matched). Live leak:
+#   "German: Fehler-Capture = error capture, Kategorisierung = categorization, Memory"
+# Two `=` pairs AND no terminal punctuation is the discriminator: real glossary
+# prose carries a closing period (or is a single pair). Measured: 1 buffer hit
+# (the leak) -> 0 FPs on 6 prose controls, 0 episodes, 0 test literals.
+_GERMAN_GLOSSARY_ECHO_RE = _re.compile(
+    r"^German:[^\r\n]*=[^\r\n]*=[^\r\n]*[^.!?\r\n]$")
+
+
+def _is_german_glossary_echo(text):
+    """True for the agent's own two-pair German glossary line echoed back."""
+    return bool(_GERMAN_GLOSSARY_ECHO_RE.match((text or "").strip()))
+
+
+
+
 def _is_nav_chrome(text):
     """True when text is page chrome (entities, marketing, UI, template leaks)."""
     if _ENTITY.search(text):
@@ -3083,6 +3121,12 @@ def _is_nav_chrome(text):
         return True
     # a dated newsroom feed run: repeated relative stamps (class 95, 19.09.26)
     if _is_relative_stamp_news_run(text):
+        return True
+    # a bare markdown heading stored as the whole answer (class 96, 19.09.26)
+    if _is_bare_markdown_heading_fragment(text):
+        return True
+    # the agent's own German glossary line (class 97, 19.09.26)
+    if _is_german_glossary_echo(text):
         return True
     low = text.lower()
     if any(c in low for c in _NAV_CHROME):
