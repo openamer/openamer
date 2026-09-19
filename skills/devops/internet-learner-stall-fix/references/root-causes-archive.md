@@ -1755,3 +1755,111 @@ every time, never quote an old number.)
 - `cycle_h_efficiency` took **355.9 s** (vs the usual 40–60 s) and still rejected.
   A single slow cycle is the deep-read falling through several fetch candidates,
   not a hang — the `--once` loop needs a >=400 s budget per cycle in this state.
+
+## Root cause AZ — TWO classes (96, 97) + one MEASURED-AND-REJECTED third (98), and "the whole-text-vs-line anchor trap in reverse" (live 19.09.26)
+
+Cron run began on the documented `cycle_d_docs: rejected` line. Per-hour rate was
+clearly down (`2026-09-19T03 ok=0 rej=3 0%`, `02h 25%`, `01h 41%`) vs the
+documented 50-80% band — the U/V signature — so U/V were verified BEFORE
+inventing anything: `_search_urls(q, k=6)` -> **6,6,6,6,6** on five diverse
+queries and `_fair_share_window(5 pages, 4000)` -> **5 slices**. Both intact ->
+**no U/V regression**. `buffer_junk` last 160 = `86 junk / 70 duplicate /
+4 no-tech-signal`; the junk breakdown (`33 SERP-shaped / 26 Self-critique echo /
+4 short fragment / 23 other`) is exactly the AX signature ->
+**no gate change was warranted for the rejection itself**. Writer-gate census at
+entry: **0 / 0** (and it stayed 0 after every fix), i.e. the gates were NOT the
+problem and the run's real output is a cleanup + whatever the buffer tail shows.
+Same verdict as root cause AI / AX: rate analysis and leak-hunting are different
+jobs.
+
+The finds came from the prescribed cheapest method — a **short-`a` sweep over the
+whole buffer** (`len(a) < 90`), not the log line. Three rows, all passing BOTH
+gates, none ever in `buffer_junk.jsonl`:
+
+| class | helper | measured |
+|---|---|---|
+| 96 | `_is_bare_markdown_heading_fragment` | 1 hit, IS the leak / 0 FP / 0 le / 0 lit |
+| 97 | `_is_german_glossary_echo` | 1 hit, IS the leak / 0 FP / 0 le / 0 lit |
+| 98 | `_is_dated_headline_glued_slug` | **REJECTED** — no clean discriminator (see below) |
+
+**Class 96 — the extractor kept a section heading and dropped the body.** Live
+row `## Ollama Model Analysis for Your Hardware` (**42 chars**, so the `>=90`
+length trust never applied — class 33/65 precedent, fifth occurrence). The
+discriminator is the WHOLE-TEXT shape: one heading line, no inner `#`, no
+terminal punctuation, <=8 words. A real heading WITH a body, a markdown-hashtag
+run (`# ai # webdev # tutorial ...`) and ordinary one-line prose all stay clean.
+
+**Class 97 — the agent's OWN German glossary line echoed back** (80 chars):
+`German: Fehler-Capture = error capture, Kategorisierung = categorization, Memory`.
+The discriminator is `^German:` + **TWO** `=` pairs + no terminal punctuation;
+real glossary prose carries a closing period (or is a single pair).
+
+### THE NEW PITFALL — `search()` + `re.M` is a LINE anchor, so the composite gate LIES about your rule
+
+The first class-96 candidate was a bare `search()` on
+`^#{1,4}\s+[^#\r\n]*$` with **`re.M`**. It reported the leak as `True` — and also
+flagged my own control `## Optimization\n\nPagedAttention reduces ...` and the
+test literal `# ai # webdev # tutorial ...`, because `re.M` lets `^...$` match the
+FIRST LINE of a multi-line text. **When the class is "the whole text is X", anchor
+with `match()` on `text.strip()` and NO `re.M`** — and always re-measure with the
+corpus, never trust the leak's `True`. (This is the class-87 POSITION trap in
+reverse: there the anchor was too loose across `.match()`-vs-`search()`; here
+`re.M` silently turned a whole-text rule into a first-line rule.)
+
+### Class 98 — every tightening ate an ordinary control of the SAME shape => NO DISCRIMINATOR, do not gate
+Leak: `Feb 2026 An AI agent coding skeptic tries AI agent coding, in excessive
+detail minimaxir.` (89 chars, space-glued lowercase site slug at the tail). A
+candidate that looked clean on my first 13 controls (0 FP) was shipped, and
+**pytest went red on my OWN new test** with
+`Jan 2025 was when the first agent framework shipped.` — the control is
+form-identical (`<Mon> <YYYY> ... <lowercase-word>.`). Sweeps that also failed:
+month-year + `>=3` TitleCase words (leak missed), + `>=2`/`>=3` comma segments
+(leak missed), + "not a common verb" guard (`shipped`/`covered` variants still a
+FP). The tell is: **the leak's own trailing slug IS a common English word** when
+the site name is generic (`minimaxir` is a name, but `shipped.`/`covered.` in my
+controls are verbs of the same shape). Per the root-cause-AG / AS-repetition /
+class-65 precedent: **remove by signature only, no code change.** Both the helper
+block and its wiring and its test were reverted from all copies
+(`md5sum` re-checked identical) so class numbering stays honest.
+
+### Also — the class-98 misstep cost one apply+revert cycle; keep the "measure the CONJUNCTION" rule
+Same lesson as root cause AS: when a count threshold is 0-FP on the buffer but
+you cannot lower it without eating a control, **the PATTERN is wrong, not the
+number**. Here no conjunction existed at all, which is the signal to stop and
+delete the row instead of shipping a loose marker.
+
+Cleanup + verify (standard shape, all met): signature cleanup with the CRLF-split
+reader, `assert len(drop) == 3` deliberately (it fired correctly): **282 -> 279**
+records, `0 unparsable`, **loneLF 0**, structural-connection rows **45 -> 44**;
+writer census **0** and learner census **0** after. Backup at
+`online_buffer.jsonl.bak_cron<stamp>`. (Both the historical "53 structural rows"
+and the "7 baseline writer-flagged" numbers have decayed again — **re-count every
+time**.)
+
+Tests appended as **pure bytes** (lone-LF census 58 -> 58, `git diff --cached
+--numstat` = **44/44/55 added, 0 removed** — no EOL churn): gate file
+**113 -> 115 passed**, `tests/scripts` **271 passed**. Each new test asserts the
+helper AND `_is_junk` AND `_is_nav_chrome` AND `is_junk` on the leak plus 5-8
+prose counter-cases, and the appended test imports `buffer_store` itself
+(root-cause-AN pitfall).
+
+Commit `e300f2074`; branch was again `fix/28-respawn-test-psutil-hermetic`
+(`merge-base --is-ancestor origin/main HEAD` -> FF_SAFE), pushed
+`HEAD:main` (`9fb042f77..e300f2074`). Verified with `git branch -r --contains
+e300f2074` -> `origin/main`, `git cat-file blob origin/main:<file> | grep -c
+<marker>` -> **6/6** per module and **2** test functions, plus the LF-normalized
+md5 (remote blob == local after `tr -d '\r'`: `0270fba175`, `aa3b39e825`) — the
+push exit code alone is not proof.
+
+Post-fix live: 3 `--once` cycles -> all rejected, and `buffer_junk` shows the
+rejections are honest (`junk` on already-gated shapes + `duplicate` at the cap),
+census **0 of 279**. **Read `buffer_junk` before calling a rejection a
+regression** — again.
+
+### Also re-confirmed — only TWO training copies remain
+`C:/Users/damir/AppData/Local/openamer-agent/scripts/training/` **no longer
+exists** (the older third copy is gone). Sync/`md5sum` discipline is now **repo
+(SoT) <-> laptop (LÄUFT)** only; do not chase a third path. Also: the modules use
+`import re` in `internet_learner.py` and `import re as _re` in `buffer_store.py`
+— the AM/AQ/AR alias trap; emit ONE block per file and `exec_module` all copies
+before pytest (`ast.parse` passes on the alias bug).

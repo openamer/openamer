@@ -25,12 +25,12 @@ one-line pointer is added here. Root causes AW and AY (classes 77–80 and 81–
 already live there — it also carries the **deliberate non-fix** for the 9-row
 em-dash + semicolon + ellipsis SERP family (do not gate it) and the `crlf()`
 double-conversion pitfall (`gate anchor count 0`). The next entries are
-**classes 86–95 (19.09.26)**: eight post-fix chrome families in one run, the
-`.match()`-vs-`search()` **strip-helper POSITION trap** (class 87: right
-vocabulary, wrong ANCHOR — grep `_strip_*` too), the leak-literal-is-a-true-
-positive rule (91/94), the LF-space apply rule, and **class 95**: check your
-`re` FLAGS before your pattern — a stray `re.IGNORECASE` silently kills a
-`[A-Z][a-z]` anchor.
+**classes 86–95 (19.09.26)**: eight post-fix chrome families, the
+`.match()`-vs-`search()` POSITION trap (87), leak-literal-is-a-true-positive
+(91/94), the LF-space apply rule, and **95**: check your `re` FLAGS first.
+**96/97 (AZ)**: whole-text markdown-heading fragment + own German glossary echo,
+the `re.M`-makes-`^...$`-a-LINE-anchor trap, and 98 MEASURED-AND-REJECTED (no
+discriminator → signature-delete). Only **TWO** training copies remain.
 
 ## Trigger
 `python internet_learner.py --once` (or the cron) reports
