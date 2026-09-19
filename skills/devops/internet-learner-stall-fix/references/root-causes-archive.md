@@ -1905,3 +1905,29 @@ Commit `cb7d3b735`, pushed `HEAD:main` (`034fc4f0d..cb7d3b735`); verified with
 `git branch -r --contains` -> `origin/main` and
 `git cat-file blob origin/main:<file> | grep -c _is_related_subjects_sidebar`
 -> **3/3** per module.
+
+### AZ addendum 2 — class 100 (SERP run with em-dash + semicolon) — MEASURED AND REJECTED, signature-delete only
+
+The NEXT post-fix `--once` batch learned once more and stored:
+`AI agent hacks gym to get its owner spot in pilates class - BBC — The AI
+technologist then wondered if the agent could move him up the waiting list for an
+upcoming class. The agent replied saying it had succeeded by ; AI agent hacks gym
+to get its user a spot ` — the documented em-dash + semicolon + ellipsis SERP-run
+family (two search-result blocks welded with `; `).
+
+This is the **class AU trap caught in time**: my first candidate
+`[^\r\n]{10,60}\s-\s[A-Z][A-Za-z0-9]{2,}\s—\s[^\r\n]{20,}?\s;\s` measured **1
+buffer hit / 0 FPs / 0 episodes / 0 literals** and looked shippable — but it
+matched row 280 only because the site token is capitalized (`- BBC`), and row 16
+(`Optimization and Tuning - vLLM — … ; …`) is the SAME shape that the archive
+documents as **deliberately un-gated**. Shipping it would have split the family.
+Sweeps that also failed: any 20–40-char repeated-prefix rule (**6 real
+`longterm_episodes` hits** at every threshold), and the prefix+em-dash conjunction
+(**4 buffer hits**, i.e. it eats the deliberately-un-gated rows 16/19/141).
+
+**Rule re-confirmed (AU):** a high buffer hit-count with 0 FPs on YOUR hand
+controls is not proof — grep the archive/test suite for the shape first. When the
+family is documented as deliberately un-gated, do **not** invent a partial marker
+for the newest member of it. Removed by signature
+(`AI agent hacks gym to get its owner spot in pilates class - BBC`) — 281 -> 280,
+`0 unparsable`, loneLF 0, 44 structural rows, census 0/0. No code change, no test.
