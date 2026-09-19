@@ -96,7 +96,7 @@ def _load_history() -> dict[str, Any]:
     """Lade .auto-test-runner/history.json oder gib Default-Struktur."""
     if HISTORY_FILE.exists():
         try:
-            data = json.loads(HISTORY_FILE.read_text("utf-8"))
+            data = json.loads(HISTORY_FILE.read_text(encoding='utf-8'))
             if isinstance(data, dict) and "failures" in data:
                 return data
         except (json.JSONDecodeError, OSError):
@@ -113,7 +113,7 @@ def _save_history(history: dict[str, Any]) -> None:
     tmp = HISTORY_FILE.with_suffix(".tmp")
     tmp.write_text(
         json.dumps(history, indent=2, default=str, ensure_ascii=False),
-        "utf-8",
+        encoding='utf-8',
     )
     tmp.replace(HISTORY_FILE)
 
@@ -468,7 +468,7 @@ def main() -> None:
     global SOURCE_TO_TEST_MAP
     if custom_map_file.exists():
         try:
-            custom = json.loads(custom_map_file.read_text("utf-8"))
+            custom = json.loads(custom_map_file.read_text(encoding='utf-8'))
             if isinstance(custom, dict):
                 SOURCE_TO_TEST_MAP = {**SOURCE_TO_TEST_MAP, **custom}
                 print(f"\n📦 Custom module mapping geladen: {len(custom)} Einträge", file=sys.stderr)

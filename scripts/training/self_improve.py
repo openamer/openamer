@@ -121,7 +121,8 @@ def apply_and_test(target, proposal, live_path, sandbox_path):
         return False, f"compile failed: {err[:100]}"
 
     # TEST 2: import check (module loads without executing main)
-    r = run([sys.executable, "-c", f"import ast; ast.parse(open(r'{sandbox_path}').read())"])
+    r = run([sys.executable, "-c",
+             f"import ast; ast.parse(open(r'{sandbox_path}', encoding='utf-8').read())"])
     if r.returncode != 0:
         return False, "AST parse failed"
 
@@ -136,9 +137,9 @@ def improve_once():
     rot_file = os.path.join(T, ".si_rotation")
     n = 0
     if os.path.exists(rot_file):
-        n = int(open(rot_file).read().strip() or 0)
+        n = int(open(rot_file, encoding='utf-8').read().strip() or 0)
     target = targets[n % len(targets)]
-    with open(rot_file, "w") as f:
+    with open(rot_file, "w", encoding='utf-8') as f:
         f.write(str(n + 1))
     live_path = os.path.join(T, target)
     if not os.path.exists(live_path):

@@ -148,18 +148,43 @@ class SubdirectoryHintTracker:
             pass
 
     def _extract_paths_from_command(self, cmd: str, candidates: Set[Path]):
-        """Extract path-like tokens from a shell command string."""
+        """Extract path-like tokens from a shell command string.
+
+        Windows paths are NOT POSIX shell words. `shlex.split` treats the
+        backslash as an escape character, so in POSIX mode
+
+            cat C:\\Users\\me\\proj\\frontend\\index.ts
+
+        comes apart into `C:UsersmeAppData...frontendindex.ts` — the separators
+        are eaten (\\U, \\f, \\t, \\A are consumed as escapes or become control
+        characters) and the token no longer resolves. Subdirectory hints were
+        therefore never discovered for any `terminal` command that referenced a
+        Windows path, which is the common case for this tool on this platform.
+
+        `posix=False` keeps the backslashes intact; quoting still works, which is
+        what the tokenizer is actually needed for here.
+        """
         try:
-            tokens = shlex.split(cmd)
+            tokens = shlex.split(cmd, posix=False)
         except ValueError:
             tokens = cmd.split()
 
         for token in tokens:
+            # posix=False leaves surrounding quotes on the token; strip them so
+            # `"C:\\path with space"` yields a usable path.
+            token = token.strip().strip("'\"")
             # Skip flags
             if token.startswith("-"):
                 continue
-            # Must look like a path (contains / or .)
-            if "/" not in token and "." not in token:
+            # Must look like a path. Accepts the platform separators plus "."
+            # for extensionless relative names.
+            #
+            # The `\\` case matters: a Windows DIRECTORY path such as
+            # `C:\\Users\\me\\proj\\backend` has no extension and no forward
+            # slash, so requiring "/" or "." rejected it and `cd <winpath>`
+            # never produced a hint. Forward slashes stay in the set because
+            # a POSIX-style path can be typed on Windows too.
+            if "/" not in token and "." not in token and "\\" not in token:
                 continue
             # Skip URLs
             if token.startswith(("http://", "https://", "git@")):

@@ -58,24 +58,24 @@ def _load_exp(name: str) -> dict:
     if not path.exists():
         print(f"❌ Experiment '{name}' nicht gefunden.")
         sys.exit(1)
-    return json.loads(path.read_text("utf-8"))
+    return json.loads(path.read_text(encoding='utf-8'))
 
 
 def _save_exp(name: str, data: dict):
     path = EXPERIMENTS_DIR / f"{name}.json"
-    path.write_text(json.dumps(data, indent=2, ensure_ascii=False), "utf-8")
+    path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding='utf-8')
 
 
 def _load_results(name: str) -> dict:
     path = RESULTS_DIR / f"{name}.json"
     if not path.exists():
         return {}
-    return json.loads(path.read_text("utf-8"))
+    return json.loads(path.read_text(encoding='utf-8'))
 
 
 def _save_results(name: str, data: dict):
     path = RESULTS_DIR / f"{name}.json"
-    path.write_text(json.dumps(data, indent=2, ensure_ascii=False), "utf-8")
+    path.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding='utf-8')
 
 
 def _read_cron_log() -> list[dict]:
@@ -84,7 +84,7 @@ def _read_cron_log() -> list[dict]:
     entries = []
     if not cron_log.exists():
         return entries
-    text = cron_log.read_text("utf-8", errors="replace")
+    text = cron_log.read_text(encoding='utf-8', errors="replace")
     for line in text.strip().split("\n")[-200:]:
         # Format: 2026-08-21 22:00:00 | skill-collect | exit=0 | duration=12.3s | mem_before=2048 | mem_after=2056
         parts = line.split("|")
@@ -135,9 +135,9 @@ def _detect_config():
     if config_path.exists():
         try:
             import yaml
-            config = yaml.safe_load(config_path.read_text("utf-8")) or {}
+            config = yaml.safe_load(config_path.read_text(encoding='utf-8')) or {}
         except ImportError:
-            lines = config_path.read_text("utf-8").splitlines()
+            lines = config_path.read_text(encoding='utf-8').splitlines()
             for line in lines:
                 if ":" in line:
                     k, v = line.split(":", 1)
@@ -149,19 +149,19 @@ def _apply_config(overrides: dict):
     """Wendet Config-Overrides an und speichert sie."""
     config_path = OPENAMER_HOME / "config.yaml"
     if not config_path.exists():
-        config_path.write_text("", "utf-8")
+        config_path.write_text("", encoding='utf-8')
     try:
         import yaml
-        config = yaml.safe_load(config_path.read_text("utf-8")) or {}
+        config = yaml.safe_load(config_path.read_text(encoding='utf-8')) or {}
     except ImportError:
         config = {}
     config.update(overrides)
     try:
         import yaml
-        config_path.write_text(yaml.dump(config, default_flow_style=False), "utf-8")
+        config_path.write_text(yaml.dump(config, default_flow_style=False), encoding='utf-8')
     except ImportError:
         lines = [f"{k}: {v}" for k, v in config.items()]
-        config_path.write_text("\n".join(lines) + "\n", "utf-8")
+        config_path.write_text("\n".join(lines) + "\n", encoding='utf-8')
 
 
 def _restore_config(original: dict):
@@ -169,13 +169,13 @@ def _restore_config(original: dict):
     config_path = OPENAMER_HOME / "config.yaml"
     try:
         import yaml
-        current = yaml.safe_load(config_path.read_text("utf-8")) or {}
+        current = yaml.safe_load(config_path.read_text(encoding='utf-8')) or {}
     except ImportError:
         current = {}
     current.update(original)
     try:
         import yaml
-        config_path.write_text(yaml.dump(current, default_flow_style=False), "utf-8")
+        config_path.write_text(yaml.dump(current, default_flow_style=False), encoding='utf-8')
     except ImportError:
         pass
 
@@ -402,7 +402,7 @@ def cmd_list(args):
     print(f"{'Name':30s} {'Status':12s} {'Metric':12s} {'Erstellt':25s} {'N (Ctrl/Var)':15s}")
     print("-" * 94)
     for exp_path in experiments:
-        exp = json.loads(exp_path.read_text("utf-8"))
+        exp = json.loads(exp_path.read_text(encoding='utf-8'))
         name = exp["name"][:28]
         status = exp.get("status", "?")
         metric = exp.get("metric", "?")
@@ -560,7 +560,7 @@ def cmd_collect(args):
     Liest Cron-Exit-Codes, misst RAM, duration.
     """
     experiments = sorted(EXPERIMENTS_DIR.glob("*.json"))
-    running = [p for p in experiments if json.loads(p.read_text("utf-8")).get("status") == "running"]
+    running = [p for p in experiments if json.loads(p.read_text(encoding='utf-8')).get("status") == "running"]
 
     if not running:
         print("📭 Keine laufenden Experimente.")
@@ -572,7 +572,7 @@ def cmd_collect(args):
 
     collected = 0
     for exp_path in running:
-        exp = json.loads(exp_path.read_text("utf-8"))
+        exp = json.loads(exp_path.read_text(encoding='utf-8'))
         name = exp["name"]
         results = _load_results(name)
 
@@ -652,7 +652,7 @@ def cmd_collect(args):
         "experiments_collected": collected,
     }
     snapshot_path = METRICS_DIR / f"snapshot_{now[:19].replace(':','-')}.json"
-    snapshot_path.write_text(json.dumps(snapshot, indent=2), "utf-8")
+    snapshot_path.write_text(json.dumps(snapshot, indent=2), encoding='utf-8')
 
     print(f"\n✅ Metrik-Sammlung abgeschlossen: {collected} Samples erfasst.")
     print(f"   Snapshot: {snapshot_path}")
@@ -664,7 +664,7 @@ def cmd_analyze(args):
     Prüft Laufzeit und führt --conclude durch wenn abgelaufen.
     """
     experiments = sorted(EXPERIMENTS_DIR.glob("*.json"))
-    running = [p for p in experiments if json.loads(p.read_text("utf-8")).get("status") == "running"]
+    running = [p for p in experiments if json.loads(p.read_text(encoding='utf-8')).get("status") == "running"]
 
     if not running:
         print("📭 Keine laufenden Experimente zu analysieren.")
@@ -674,7 +674,7 @@ def cmd_analyze(args):
     concluded_count = 0
 
     for exp_path in running:
-        exp = json.loads(exp_path.read_text("utf-8"))
+        exp = json.loads(exp_path.read_text(encoding='utf-8'))
         name = exp["name"]
 
         # Prüfe Laufzeit

@@ -362,7 +362,7 @@ class H(BaseHTTPRequestHandler):
         # lazy adapter swap: check for pending swap request
         flag = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".swap_request")
         if os.path.exists(flag):
-            new_adapter = open(flag).read().strip()
+            new_adapter = open(flag, encoding='utf-8').read().strip()
             os.remove(flag)
             try:
                 with lock:
@@ -379,7 +379,7 @@ class H(BaseHTTPRequestHandler):
             # and reloads the adapter lazily (avoids in-memory PEFT issues on CPU)
             new_adapter = req.get("adapter", ADAPTER)
             flag = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".swap_request")
-            with open(flag, "w") as f:
+            with open(flag, "w", encoding='utf-8') as f:
                 f.write(new_adapter)
             swap_count["n"] += 1
             self._json({"result": f"OK: swap queued (#{swap_count['n']}) — applied on next request"})

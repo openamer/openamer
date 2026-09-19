@@ -490,11 +490,18 @@ def _seed_supervise_skeleton(svc_dir: Path) -> None:
         path.chmod(mode)
         try:
             os.chown(path, _OPENAMER_UID, _OPENAMER_GID)
-        except PermissionError:
+        except (OSError, AttributeError, NotImplementedError):
             # Running as the openamer user already — directory is openamer-
             # owned by default. The chown is a no-op in that case, so
             # swallowing this keeps both root and unprivileged callers
             # on one code path.
+            #
+            # OSError covers EPERM/ENOENT. AttributeError covers WINDOWS, where
+            # `os.chown` does not exist at all (and `os.mkfifo` below does not
+            # either) — catching only PermissionError let the AttributeError
+            # escape and the whole s6-layout setup died on Windows. This mirrors
+            # the guard in `openamer_cli/config.py::_chown_if_configured`, which
+            # already catches all three.
             pass
 
     # Top-level event/ dir (this is the s6-svlisten1 event-subscription
@@ -520,7 +527,8 @@ def _seed_supervise_skeleton(svc_dir: Path) -> None:
         control.chmod(0o660)
         try:
             os.chown(control, _OPENAMER_UID, _OPENAMER_GID)
-        except PermissionError:
+        except (OSError, AttributeError, NotImplementedError):
+            # AttributeError: no os.chown on Windows. See _mkdir_owned.
             pass
 
     # If a log/ subdir is present (the canonical s6 logger pattern —
@@ -540,7 +548,8 @@ def _seed_supervise_skeleton(svc_dir: Path) -> None:
             log_control.chmod(0o660)
             try:
                 os.chown(log_control, _OPENAMER_UID, _OPENAMER_GID)
-            except PermissionError:
+            except (OSError, AttributeError, NotImplementedError):
+                # AttributeError: no os.chown on Windows. See _mkdir_owned.
                 pass
 
 

@@ -185,7 +185,7 @@ def _create_swarm_uncommitted(
         created_by=created_by, tenant=tenant,
         workspace_kind=workspace_kind, workspace_path=workspace_path,
     )
-    root = kb.create_task(
+    root = kb._create_task_uncommitted(
         conn,
         title=root_title or f"Swarm: {goal.splitlines()[0][:80]}",
         body="Kanban Swarm v1 planning/root card. This card is completed "
@@ -210,7 +210,7 @@ def _create_swarm_uncommitted(
 
     context_suffix = _swarm_context(root, goal)
     worker_ids = [
-        kb.create_task(
+        kb._create_task_uncommitted(
             conn,
             title=spec.title,
             body=(spec.body or "") + context_suffix,
@@ -223,7 +223,7 @@ def _create_swarm_uncommitted(
         )
         for spec in worker_specs
     ]
-    verifier = kb.create_task(
+    verifier = kb._create_task_uncommitted(
         conn,
         title=verifier_title,
         body=(
@@ -238,7 +238,7 @@ def _create_swarm_uncommitted(
         skills=["requesting-code-review"],
         **common,
     )
-    synthesizer = kb.create_task(
+    synthesizer = kb._create_task_uncommitted(
         conn,
         title=synthesizer_title,
         body=(
@@ -264,7 +264,7 @@ def post_blackboard_update(conn: sqlite3.Connection, root_id: str, *, author: st
     author = _require_text(author, "author")
     key = _require_text(key, "key")
     payload = json.dumps({"key": key, "value": value}, ensure_ascii=False, sort_keys=True)
-    return kb.add_comment(conn, root_id, author=author, body=BLACKBOARD_PREFIX + payload)
+    return kb._add_comment_uncommitted(conn, root_id, author=author, body=BLACKBOARD_PREFIX + payload)
 
 
 def latest_blackboard(conn: sqlite3.Connection, root_id: str) -> dict[str, Any]:

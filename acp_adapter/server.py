@@ -32,6 +32,14 @@ from acp_adapter.events import (
     make_thinking_cb, make_tool_progress_cb,
 )
 from acp_adapter.model_catalog import build_model_state, encode_model_choice
+# Re-exported for callers and tests that import this name FROM the server module
+# (`from acp_adapter.server import _named_custom_provider_catalogs`). The
+# implementation lives in model_catalog; without this import the ACP model
+# selector's named-endpoint path is untestable and
+# tests/acp/test_named_provider_catalogs.py dies during COLLECTION with
+# `ImportError: cannot import name '_named_custom_provider_catalogs'` — a
+# collection error aborts the whole file, so its 12 tests never run at all.
+from acp_adapter.model_catalog import _named_custom_provider_catalogs  # noqa: F401
 from acp_adapter.permissions import make_approval_callback
 from acp_adapter.provenance import session_provenance_meta
 from acp_adapter.session import SessionManager, SessionState, _expand_acp_enabled_toolsets
@@ -295,7 +303,16 @@ class OpenAmerACPAgent(SlashCommandsMixin, acp.Agent):
         model = str(state.model or getattr(state.agent, "model", "") or "").strip()
         provider = getattr(state.agent, "provider", None) or detect_provider() or "openrouter"
         try:
-            picker = build_model_state(model, provider, str(getattr(state.agent, "base_url", "") or ""))
+            # Pass the SERVER module's binding explicitly so that patching
+            # `acp_adapter.server._named_custom_provider_catalogs` (which is what
+            # callers and tests do) reaches the catalog builder. Resolving the
+            # name inside model_catalog would bypass the patch.
+            picker = build_model_state(
+                model,
+                provider,
+                str(getattr(state.agent, "base_url", "") or ""),
+                named_catalog_fn=_named_custom_provider_catalogs,
+            )
             if picker is not None:
                 return picker
         except Exception:

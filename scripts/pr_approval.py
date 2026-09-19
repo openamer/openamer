@@ -49,11 +49,11 @@ def run(cmd, **kwargs):
 
 def load_state() -> dict:
     if STATE_FILE.exists():
-        return json.loads(STATE_FILE.read_text())
+        return json.loads(STATE_FILE.read_text(encoding='utf-8'))
     return {"reviewed_prs": {}, "stats": {"approved": 0, "changes_requested": 0, "skipped": 0}}
 
 def save_state(state: dict):
-    STATE_FILE.write_text(json.dumps(state, indent=2))
+    STATE_FILE.write_text(json.dumps(state, indent=2), encoding='utf-8')
 
 # ─── PR Operations ────────────────────────────────────────────────────────────
 
