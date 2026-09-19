@@ -1863,3 +1863,45 @@ exists** (the older third copy is gone). Sync/`md5sum` discipline is now **repo
 `import re` in `internet_learner.py` and `import re as _re` in `buffer_store.py`
 — the AM/AQ/AR alias trap; emit ONE block per file and `exec_module` all copies
 before pytest (`ast.parse` passes on the alias bug).
+
+### AZ addendum — class 99 (publisher related-content sidebar), CREATED by a post-fix cycle of the same run
+
+The first three post-fix `--once` runs were all rejected (honest: already-gated
+junk shapes + `duplicate`), then the FOURTH learned — and stored a Springer
+article card welded to the site's related-content sidebar (240 chars, so the
+`>=90` length trust applied and the digit-bearing `© 2024` fed the
+technical-signal gate):
+
+    Techno-Critics’ Article 30 June 2025 Considerations About the Regulatory
+    Framework of Cryptocurrency Chapter © 2024 Explore related subjects Discover
+    the latest articles, books and news in related subjects, suggested using
+    machine learning.
+
+**This is the AP/AS loop again**: the buffer census read 0/0 at entry and after
+every cleanup, and the next live cycle produced the next class. Budget one
+cleanup + one class per `--once` batch; never conclude the run is done from an
+entry-time census.
+
+**Marker — the WELD, not the label.** The first candidate was the bare literal
+`discover the latest articles, books` (1 buffer hit). It was MEASURED and
+REJECTED because my own counter-case `Discover the latest articles, books and
+news in the field.` IS that shape — shipping it would eat real prose. The
+survivor is the weld of the page's OWN two sidebar labels:
+
+    _RELATED_SUBJECTS_SIDEBAR_RE = re.compile(
+        r"explore related subjects[\s\S]{0,40}discover the latest", re.IGNORECASE)
+
+Measured: 1 buffer hit (the leak), 0 FPs on 6 prose controls, 0 of 3,059
+`longterm_episodes`, 0 test literals; `_is_junk` / `_is_nav_chrome` / `is_junk`
+all True on the leak.
+
+**Verify (standard shape):** cleanup by signature (`discover the latest articles,
+books`) **280 -> 279**, `0 unparsable`, loneLF 0, **44** structural rows, census
+**0/0**. 3-copy `md5sum` identical (repo <-> laptop only now —
+`5bcd271991…` learner, `7592952115…` store); modules `exec_module`-verified.
+Test appended as **pure bytes** (lone-LF 58 -> 58, numstat **25/25/33 added,
+0 removed**): gate file **115 -> 116 passed**, `tests/scripts` **272 passed**.
+Commit `cb7d3b735`, pushed `HEAD:main` (`034fc4f0d..cb7d3b735`); verified with
+`git branch -r --contains` -> `origin/main` and
+`git cat-file blob origin/main:<file> | grep -c _is_related_subjects_sidebar`
+-> **3/3** per module.
