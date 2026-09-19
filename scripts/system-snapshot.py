@@ -262,7 +262,7 @@ def collect_cron_info():
         return {"count": 0, "jobs": [], "error": "cron jobs.json not found"}
 
     try:
-        with open(jobs_file) as f:
+        with open(jobs_file, encoding='utf-8') as f:
             cron_data = json.load(f)
     except (json.JSONDecodeError, OSError):
         return {"count": 0, "jobs": [], "error": "invalid jobs.json"}
@@ -305,7 +305,7 @@ def collect_health_info():
     except ImportError:
         # Fallback: read /proc/meminfo (WSL/MSYS2)
         try:
-            with open("/proc/meminfo") as f:
+            with open("/proc/meminfo", encoding='utf-8') as f:
                 for line in f:
                     if line.startswith("MemTotal:"):
                         total_kb = int(line.split()[1])
@@ -322,7 +322,7 @@ def collect_health_info():
     # Alternative /proc/meminfo
     if "ram_total_mb" not in info:
         try:
-            with open("/proc/meminfo") as f:
+            with open("/proc/meminfo", encoding='utf-8') as f:
                 for line in f:
                     if line.startswith("MemTotal:"):
                         info["ram_total_kb"] = int(line.split()[1])
@@ -356,7 +356,7 @@ def collect_health_info():
 
     if "cpu_pct" not in info:
         try:
-            with open("/proc/loadavg") as f:
+            with open("/proc/loadavg", encoding='utf-8') as f:
                 parts = f.read().strip().split()
                 if len(parts) >= 3:
                     info["cpu_load_1min"] = float(parts[0])
@@ -384,7 +384,7 @@ def collect_security_info():
         return {"last_scan": None, "cves_found": 0, "scan_exists": False, "error": "no scan data"}
 
     try:
-        with open(report_file) as f:
+        with open(report_file, encoding='utf-8') as f:
             report = json.load(f)
     except (json.JSONDecodeError, OSError):
         return {"last_scan": None, "cves_found": 0, "scan_exists": True, "error": "invalid report"}
@@ -491,7 +491,7 @@ def load_snapshot(name_or_path):
     # If full path
     p = Path(name_or_path)
     if p.exists() and p.suffix == ".json":
-        with open(p) as f:
+        with open(p, encoding='utf-8') as f:
             return json.load(f), p
 
     ensure_snapshot_dir()
@@ -499,19 +499,19 @@ def load_snapshot(name_or_path):
     # Try as datetime prefix
     candidates = sorted(SNAPSHOT_DIR.glob(f"{name_or_path}*.json"))
     if candidates:
-        with open(candidates[-1]) as f:
+        with open(candidates[-1], encoding='utf-8') as f:
             return json.load(f), candidates[-1]
 
     # Try exact filename
     candidates = list(SNAPSHOT_DIR.glob(f"*{name_or_path}*.json"))
     if candidates:
-        with open(candidates[0]) as f:
+        with open(candidates[0], encoding='utf-8') as f:
             return json.load(f), candidates[0]
 
     # "latest" → most recent
     all_snaps = sorted(SNAPSHOT_DIR.glob("*.json"), reverse=True)
     if name_or_path == "latest" and all_snaps:
-        with open(all_snaps[0]) as f:
+        with open(all_snaps[0], encoding='utf-8') as f:
             return json.load(f), all_snaps[0]
 
     raise FileNotFoundError(f"Snapshot '{name_or_path}' not found in {SNAPSHOT_DIR}")
@@ -668,8 +668,8 @@ Beispiele:
             print("Wenigstens 2 Snapshots nötig für --diff. Erstelle zuerst mehrere mit --now.")
             return
         print(f"[system-snapshot] Vergleiche {snaps[0].stem} ↔ {snaps[1].stem}")
-        data_a = json.load(open(snaps[1]))
-        data_b = json.load(open(snaps[0]))
+        data_a = json.load(open(snaps[1], encoding='utf-8'))
+        data_b = json.load(open(snaps[0], encoding='utf-8'))
         diff = compute_diff(data_a, data_b)
         print(f"\nGeänderte Sektionen ({len(diff['changed_sections'])}): {', '.join(diff['changed_sections'])}")
         print(f"Total Einzeländerungen: {diff['total_changes']}")

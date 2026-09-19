@@ -193,6 +193,44 @@ class SessionManager:
         logger.info("Forked ACP session %s -> %s", session_id, new_id)
         return state
 
+    def remove_session(self, session_id: str) -> bool:
+        """Drop one session from memory AND from the DB.
+
+        Returns True when a session was actually removed, False when the id was
+        unknown — callers rely on the distinction (`test_remove_session` asserts
+        the second call returns False).
+
+        Both stores must be cleared: dropping only the in-memory entry leaves the
+        persisted row behind, so `get_session()` would transparently restore it
+        from the DB via `_restore()` and the session would reappear.
+        """
+        with self._lock:
+            removed = self._sessions.pop(session_id, None) is not None
+        db = self._get_db()
+        if db is not None:
+            try:
+                row = db.get_session(session_id)
+                if row is not None:
+                    db.delete_session(session_id)
+                    removed = True
+            except Exception:
+                logger.debug("Failed to delete ACP session %s from DB", session_id, exc_info=True)
+        return removed
+
+    def cleanup(self) -> None:
+        """Drop every session this manager knows about, in memory and in the DB."""
+        db = self._get_db()
+        with self._lock:
+            ids = list(self._sessions)
+            self._sessions.clear()
+        if db is not None:
+            for session_id in ids:
+                try:
+                    if db.get_session(session_id) is not None:
+                        db.delete_session(session_id)
+                except Exception:
+                    logger.debug("Failed to delete ACP session %s from DB", session_id, exc_info=True)
+
     def list_sessions(self, cwd: str | None = None) -> List[Dict[str, Any]]:
         """Return lightweight info dicts for all sessions (memory + database)."""
         normalized_cwd = _normalize_cwd_for_compare(cwd) if cwd else None
@@ -298,9 +336,18 @@ class SessionManager:
 
         try:
             if db.get_session(state.session_id) is None:
-                if not state.history:
-                    # Empty editor probes stay ephemeral; copied fork history persists.
-                    return
+                # Persist the session RECORD even with an empty history.
+                #
+                # Skipping empty sessions made `_persist` a no-op for every
+                # `create_session()` / `save_session()` that had not yet received
+                # a message, so `db.get_session(id)` stayed None and the
+                # `update_session_meta` branch below was unreachable — the cwd and
+                # model of a freshly created ACP session were never stored, and a
+                # restart could not restore it. The emptiness of the TRANSCRIPT is
+                # a separate concern and is handled further down: the
+                # `replace_messages` fallback is still skipped when there is
+                # nothing to write, so an empty editor probe writes one metadata
+                # row and no message rows.
                 db.create_session(session_id=state.session_id, source="acp", model=model_str,
                                   model_config=session_meta)
             else:

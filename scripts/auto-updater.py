@@ -259,7 +259,7 @@ def check_skills_hub() -> Dict:
         return result
 
     local_skills: Dict[str, str] = {}
-    for line in BUNDLED_MANIFEST.read_text().strip().split("\n"):
+    for line in BUNDLED_MANIFEST.read_text(encoding='utf-8').strip().split("\n"):
         line = line.strip()
         if ":" in line:
             name, h = line.split(":", 1)
@@ -274,7 +274,7 @@ def check_skills_hub() -> Dict:
     if HUB_INDEX_DIR.exists():
         for cache_file in HUB_INDEX_DIR.glob("*.json"):
             try:
-                data = json.loads(cache_file.read_text())
+                data = json.loads(cache_file.read_text(encoding='utf-8'))
                 if isinstance(data, list):
                     for entry in data:
                         if isinstance(entry, dict) and "name" in entry:
@@ -412,7 +412,7 @@ def save_report(changelog: str, pip_result: Dict, skills_result: Dict) -> Path:
     else:
         sections.append("Keine Skill-Hub-Updates.\n")
 
-    report_path.write_text("\n".join(sections))
+    report_path.write_text("\n".join(sections), encoding='utf-8')
     return report_path
 
 
@@ -421,7 +421,7 @@ def save_history(entry: Dict) -> None:
     history: List[Dict] = []
     if HISTORY_FILE.exists():
         try:
-            history = json.loads(HISTORY_FILE.read_text())
+            history = json.loads(HISTORY_FILE.read_text(encoding='utf-8'))
         except (json.JSONDecodeError, OSError):
             history = []
 
@@ -430,7 +430,7 @@ def save_history(entry: Dict) -> None:
     if len(history) > 50:
         history = history[:50]
 
-    HISTORY_FILE.write_text(json.dumps(history, indent=2, ensure_ascii=False))
+    HISTORY_FILE.write_text(json.dumps(history, indent=2, ensure_ascii=False), encoding='utf-8')
 
 
 def show_history() -> None:
@@ -440,7 +440,7 @@ def show_history() -> None:
         return
 
     try:
-        history = json.loads(HISTORY_FILE.read_text())
+        history = json.loads(HISTORY_FILE.read_text(encoding='utf-8'))
     except (json.JSONDecodeError, OSError):
         info("Historie konnte nicht gelesen werden.")
         return
@@ -666,7 +666,7 @@ def cmd_status() -> int:
         info("Keine vorherigen Checks gefunden.")
         return 0
 
-    history = json.loads(HISTORY_FILE.read_text())
+    history = json.loads(HISTORY_FILE.read_text(encoding='utf-8'))
     if not history:
         info("Keine vorherigen Checks gefunden.")
         return 0

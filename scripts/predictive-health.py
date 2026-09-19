@@ -51,7 +51,7 @@ MAX_ROWS = 10000
 def get_ram_usage() -> float:
     """Gibt RAM-Nutzung in Prozent zurück (0.0 – 100.0)."""
     try:
-        with open("/proc/meminfo") as f:
+        with open("/proc/meminfo", encoding='utf-8') as f:
             lines = f.readlines()
         total = 0
         available = 0
@@ -183,7 +183,7 @@ def get_cpu_usage() -> float:
     import os
     # Linux: /proc/stat
     try:
-        with open("/proc/stat") as f:
+        with open("/proc/stat", encoding='utf-8') as f:
             line = f.readline()
         parts = line.split()
         if len(parts) >= 5:
@@ -191,7 +191,7 @@ def get_cpu_usage() -> float:
             idle = int(parts[4])
             # Kurze Messung über 1s
             time.sleep(0.5)
-            with open("/proc/stat") as f:
+            with open("/proc/stat", encoding='utf-8') as f:
                 line = f.readline()
             parts2 = line.split()
             total2 = sum(int(p) for p in parts2[1:])
@@ -653,7 +653,7 @@ def daemon_loop(interval_minutes: int = 5) -> None:
     DATA_DIR.mkdir(parents=True, exist_ok=True)
 
     # PID speichern für sauberes Beenden
-    pid_file.write_text(str(os.getpid()))
+    pid_file.write_text(str(os.getpid()), encoding='utf-8')
     print(f"[PredictiveHealth] Daemon gestartet (PID={os.getpid()}), "
           f"Intervall={interval_minutes}min, Daten={DATA_DIR}")
 
@@ -704,7 +704,7 @@ def daemon_loop(interval_minutes: int = 5) -> None:
 
                 # Report als JSON speichern
                 report_file = DATA_DIR / "latest_report.json"
-                report_file.write_text(json.dumps(report, indent=2, ensure_ascii=False))
+                report_file.write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding='utf-8')
             except Exception as e:
                 print(f"[PredictiveHealth] Fehler im Sammelzyklus: {e}")
 

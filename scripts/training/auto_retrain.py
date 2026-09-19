@@ -55,7 +55,7 @@ def main():
     last_ct = 0
     state = T / ".brain_count"
     if state.exists():
-        last_ct = int(state.read_text().strip() or 0)
+        last_ct = int(state.read_text(encoding='utf-8').strip() or 0)
     new = brain_ct - last_ct
     if new < MIN_NEW_PAIRS:
         return  # silent: not enough new data
@@ -94,8 +94,8 @@ def main():
         shutil.rmtree(backup)
     if adapter.exists():
         shutil.copytree(adapter, backup)
-    state.write_text(str(brain_ct))
-    MARKER.write_text(datetime.datetime.now().isoformat())
+    state.write_text(str(brain_ct), encoding='utf-8')
+    MARKER.write_text(datetime.datetime.now().isoformat(), encoding='utf-8')
 
     # signal the LIVE server to hot-swap (best-effort: if it's down, the next
     # manual/cron start of serve_live.py picks up the new adapter anyway)
