@@ -4594,3 +4594,36 @@ def test_german_glossary_echo_is_gated_on_both_paths():
     ):
         assert not IL._is_german_glossary_echo(prose), prose
         assert not buffer_store._is_nav_chrome(prose), prose
+
+
+def test_related_subjects_sidebar_is_gated_on_both_paths():
+    """A publisher's welded related-content sidebar label run (class 99, 19.09.26).
+
+    Live leak (240 chars, so the >=90 length trust applied and the digit-bearing
+    `(c) 2024` fed the technical-signal gate): the whole answer was the article
+    card PLUS the site's "Explore related subjects Discover the latest articles,
+    books and news ... suggested using machine learning" sidebar. The
+    discriminator is the sidebar's own welded label run, not the topic:
+    `Discover the latest articles in our library and read them.` is ordinary
+    prose and must stay learnable.
+    """
+    import buffer_store
+    leak = ("Techno-Critics\u2019 Article 30 June 2025 Considerations About the Regulatory "
+            "Framework of Cryptocurrency Chapter \u00a9 2024 Explore related subjects Discover "
+            "the latest articles, books and news in related subjects, suggested using machine learning.")
+    assert IL._is_related_subjects_sidebar(leak) is True
+    assert IL._is_junk(leak) is True
+    assert buffer_store._is_nav_chrome(leak) is True
+    assert buffer_store.is_junk(leak) is True
+
+    for prose in (
+        "Discover the latest articles in our library and read them.",
+        "Explore related subjects in the paper before you start the experiment.",
+        "The agent recommends related subjects, books and news every morning.",
+        "We suggest using machine learning for the routing decision.",
+        "Machine learning suggests related subjects for the reader.",
+        "Chapter 3 covers the regulatory framework of cryptocurrency.",
+        "Discover the latest articles, books and news in the field.",
+    ):
+        assert not IL._is_related_subjects_sidebar(prose), prose
+        assert not buffer_store._is_nav_chrome(prose), prose

@@ -3013,6 +3013,28 @@ def _is_german_glossary_echo(text):
 
 
 
+
+# class 99 markers (live 19.09.26) -- see _is_related_subjects_sidebar.
+# A publisher's "related content" sidebar stored as the answer (240 chars, so the
+# >=90 length trust applied; the digit-bearing `© 2024` fed the technical
+# signal). Live leak:
+#   "Techno-Critics’ Article 30 June 2025 Considerations About the Regulatory
+#    Framework of Cryptocurrency Chapter © 2024 Explore related subjects Discover
+#    the latest articles, books and news in related subjects, suggested using
+#    machine learning."
+# The discriminator is the sidebar's OWN welded label run, not the topic:
+# `discover the latest articles, books` alone is ordinary prose
+# ("Discover the latest articles in our library and read them." is fine).
+_RELATED_SUBJECTS_SIDEBAR_RE = _re.compile(
+    r"explore related subjects[\s\S]{0,40}discover the latest",
+    _re.IGNORECASE)
+
+
+def _is_related_subjects_sidebar(text):
+    """True for a publisher's welded 'related content' sidebar label run."""
+    return bool(_RELATED_SUBJECTS_SIDEBAR_RE.search(text or ""))
+
+
 def _is_nav_chrome(text):
     """True when text is page chrome (entities, marketing, UI, template leaks)."""
     if _ENTITY.search(text):
@@ -3121,6 +3143,9 @@ def _is_nav_chrome(text):
         return True
     # a dated newsroom feed run: repeated relative stamps (class 95, 19.09.26)
     if _is_relative_stamp_news_run(text):
+        return True
+    # a publisher's welded related-content sidebar label run (class 99, 19.09.26)
+    if _is_related_subjects_sidebar(text):
         return True
     # a bare markdown heading stored as the whole answer (class 96, 19.09.26)
     if _is_bare_markdown_heading_fragment(text):
