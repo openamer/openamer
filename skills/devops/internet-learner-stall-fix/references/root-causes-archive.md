@@ -2045,3 +2045,113 @@ tracked too** — `git grep` for the child name, not just the wrapper.
   home still resolves, so the guard is a narrowing, not a blanket reject.
 - All three trees synced byte-identical (`md5sum` `9eace9488932` for
   `dream_cron.py`).
+
+
+## Root cause BB — TWO classes (102/103) in ONE cron run, and the "your control trips a PRE-EXISTING marker" trap a FOURTH time (live 19.09.26)
+
+Cron run began with the documented `cycle_g_security: rejected` line. The packaged
+rates table said per-day **36.4 %** (36 ok / 63 rej) on a PARTIAL day (cut at
+04:19) with the 7d row at 45–68 % since the 13.09 regime change → **no gate
+change was warranted for the rejection itself**; `buffer_junk` last 12 =
+`duplicate` at the 280/300 cap + documented `junk` shapes (`Self-critique:`
+echo, `Need explain mechanisms` opener, the German `Continuous Learning Loop`
+echo) = rotation noise. Working tree check first (the AV rule):
+`git status --porcelain scripts/training tests/scripts` showed only unrelated
+modified modules (`self_improve.py`, `world_model.py`, …) and NO in-flight
+gate work — the previous run had committed (head `711feb164`).
+
+Both leaks below were found the cheapest documented way: run `--once`, then read
+the tail of `online_buffer.jsonl` and eyeball the `u`/`a` pairs. Neither was ever
+in `buffer_junk.jsonl` and both passed BOTH gates.
+
+| cycle | u | a |
+|---|---|---|
+| `cycle_f_multi_domain` | Multi-domain learning (financial markets AI prediction best practices 2026): What should an intelligent agent know? | `Pricing GPT-5 Claude Gemini Vincony Read full article → Try on Vincony Ranking Jul 15, 2026 · 9 min Best AI Model Aggregators in 2026 (Ranked) AI aggregators let you access GPT-5, Claude, Gemini and more from one account.` |
+| `cycle_e_competitors` | Competitor intelligence: Claude-powered AI coding agent deletes company database in 9 seconds | `Home » Artificial Intelligence Data Featured Startup Spotlight Startups Tech Startup News Tech Startups Technology News Claude-powered AI coding agent deletes production database and backups in 9 seconds Daniel Levi Posted On April 28, 2026 0 3.` |
+
+221 and 254 chars **with digits** → the `>=90` length trust AND the
+technical-signal gate both fired; no existing marker matched.
+
+**Class 102 — the WELD, not the read-time label.** The first candidate I wanted
+was the read-time label `\d{1,2},\s+\d{4}\s*·\s*\d{1,3}\s*min` — it measured
+**1 gate-test literal FP** (`General Compute · March 18, 2026 · 6 min read
+Quantization reduces the memory footprint …`), which is exactly the class-35
+lesson (the gate-test file is the strongest FP corpus). The topic phrase
+`AI aggregators let you access … from one account` measured clean against
+`longterm_episodes` and the test literals but **flagged my own topic-matched
+control** the moment I added it. The discriminator is the page's OWN affordance
+label (`Read full article` / `Try on <Brand>`) welded to its read-time label.
+
+    r"(?:read\s+full\s+article|try\s+on\s+[A-Z][A-Za-z0-9]{2,})[\s\S]{0,60}?\u00b7\s*\d{1,3}\s*min"
+
+**Class 103 — the portal's OWN three-label nav run.** Bare `Featured Startup
+Spotlight`, bare `Posted On <Mon DD, YYYY>`, bare `Home »` and the full byline
+credit `… Daniel Levi Posted On April 28, 2026 0 3.` are ALL ordinary prose
+(two of the four were my own controls). Only the run of three of the portal's
+nav labels reached 0:
+
+    r"featured\s+startup\s+spotlight[\s\S]{0,40}?tech\s+startup\s+news[\s\S]{0,20}?tech\s+startups"
+
+Candidates measured and REJECTED (topic-word trap): the bare `\d{1,2}:\d{2}\s*\|`
+variant, `posted\s+on\s+<Mon DD, YYYY>` with and without the trailing counter
+(the counter-less form is just a date AND still hit a byline test literal),
+`home\s*»[\s\S]{0,40}?featured\s+startup\s+spotlight`, and
+`tech\s+startup\s+news[\s\S]{0,20}?tech\s+startups[\s\S]{0,40}?technology\s+news`.
+The 200-char-window `try on … and more from one account` form measured
+**0 buffer hits** while the leak holds them ~120 chars apart — always sweep the
+window width, and prefer the tight literal while only one row shape is live.
+
+**THE TRAP, FOURTH APPEARANCE (AJ/AQ/AR/AU then this run).** My first version of
+the class-103 control was
+
+    "Tech startup news and funding rounds arrive in the newsletter every Tuesday."
+
+and it FAILED the new test — but `which_rule_matches.py` attributed it to the
+**PRE-EXISTING** `_NAV_CHROME -> ['newsletter']` marker, not to
+`_is_startup_portal_nav_run` (which returns False for it). The fix belonged in
+the TEST (control swapped to "…fresh funding rounds reach our desk every
+Tuesday."), never in the code. **Run `which_rule_matches.py` on ANY failing
+control before touching a rule** — the composite gate tells you nothing about
+which rule fired, and a pre-existing marker is the usual culprit.
+
+**Why the topic-matched controls matter.** The probe's built-in PROSE corpus is
+12 sentences about vLLM/learning/agents — none of them near an aggregator or a
+startup portal, so every candidate in this class would have measured "0 prose
+FP" on it. I added 12 new controls to
+`training-scripts-hygiene/scripts/probe_marker_candidates.py`'s `PROSE` list,
+one per candidate shape (topic sentences, the `try on` imperative, the bare
+date, the byline name, the headline) — and two of them immediately flagged
+candidates I had otherwise considered clean. Add the hostile control BEFORE
+believing a 0-FP reading.
+
+**Cleanup + verify (the standard shape):** both leaks removed **by signature**
+(280 → 280? no — 282 → 280 records), 0 unparsable, lone LF 0, 44
+structural-connection rows preserved (the count keeps drifting — re-count,
+never quote an old number), writer/learner census **0/0**.
+`pytest tests/scripts/test_internet_learner_gate.py -q` → **116 → 118 passed**;
+`pytest tests/scripts -q` → **272 → 274 passed**. Test file appended as **pure
+bytes** (**68 added / 0 removed**, repo lone-LF census **58 → 58**), and the repo
+test file + both modules mirrored to the laptop and openamer-agent copies
+(3-copy md5 identical: `0ed30e851485…` learner, `676858c376ab…` store).
+
+**NEGATIVE CONTROL (do this, it is cheap):** swap the two pre-fix modules in
+(`git show HEAD:scripts/training/<file>`) and run the two new tests →
+**2 failed**; restore → **118 passed**. Without it, "the tests pass" proves only
+that they are not vacuous-by-syntax.
+
+Commit `ae05fb53d` on the foreign branch `fix/28-respawn-test-psutil-hermetic`
+(`merge-base --is-ancestor origin/main HEAD` → FF_SAFE), pushed `HEAD:main`
+(`711feb164..ae05fb53d`); verified with `git branch -r --contains ae05fb53d`
+→ `origin/main` **and** `git cat-file blob origin/main:<file> | grep -c <marker>`
+→ 2/3/3, plus the LF-normalized md5 (remote blob == local for both modules).
+Post-fix live: 1 × `--once` → rejected (honest, documented shape), census
+**0 of 280**, no new row leaked.
+
+### Pitfall — the block must NOT re-include the anchor line
+The first apply script embedded the anchor (`def _is_junk(text):`) at the END of
+the inserted block AND then re-inserted it → the file got
+`def _is_junk(text):def _is_junk(text):` and died at `exec_module`
+(`SyntaxError: invalid syntax`). `ast.parse` never ran because the script wrote
+first. **Restore from a `.bak` taken IMMEDIATELY before the write, and always
+`exec_module` both modules after an apply** — this is the second time a
+duplicated-anchor write reached the tree.

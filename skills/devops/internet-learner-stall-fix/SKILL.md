@@ -31,6 +31,11 @@ double-conversion pitfall (`gate anchor count 0`). The next entries are
 **96/97 (AZ)**: whole-text markdown-heading fragment + own German glossary echo,
 the `re.M`-makes-`^...$`-a-LINE-anchor trap, and 98 MEASURED-AND-REJECTED (no
 discriminator → signature-delete). Only **TWO** training copies remain.
+**102/103 (BB, live 19.09.26)**: aggregator affordance–read-time WELD +
+startup-portal nav-label run — and the AJ/AQ/AR trap a FOURTH time (your own
+control trips a PRE-EXISTING `_NAV_CHROME` marker; run `which_rule_matches.py`
+before touching the rule). Add the topic-matched hostile control BEFORE
+believing a 0-FP reading.
 
 ## Trigger
 `python internet_learner.py --once` (or the cron) reports
