@@ -3189,6 +3189,52 @@ def _is_related_subjects_sidebar(text):
     return bool(_RELATED_SUBJECTS_SIDEBAR_RE.search(text or ""))
 
 
+# class 102/103 markers (live 19.09.26) -- see the two helpers below.
+# (a) class 102: a model-aggregator landing page stored as the answer. The
+# affordance label `Read full article` / `Try on <Brand>` is welded to the
+# site's own read-time label `\u00b7 N min`:
+#   "Pricing GPT-5 Claude Gemini Vincony Read full article -> Try on Vincony
+#    Ranking Jul 15, 2026 . 9 min Best AI Model Aggregators in 2026 (Ranked)
+#    AI aggregators let you access GPT-5, Claude, Gemini and more from one
+#    account."
+# The read-time label ALONE was MEASURED AND REJECTED (1 gate-test literal:
+# "General Compute . March 18, 2026 . 6 min read Quantization reduces ..."),
+# and the topic phrase `AI aggregators let you access ... from one account`
+# alone flagged my own topic-matched control. The welded affordance +
+# read-time pair is the discriminator.
+_AGGREGATOR_AFFORDANCE_MIN_RE = re.compile(
+    r"(?:read\s+full\s+article|try\s+on\s+[A-Z][A-Za-z0-9]{2,})"
+    r"[\s\S]{0,60}?\u00b7\s*\d{1,3}\s*min",
+    re.IGNORECASE)
+
+
+def _is_aggregator_affordance_min_run(text):
+    """True for an aggregator's affordance label welded to its read time."""
+    return bool(_AGGREGATOR_AFFORDANCE_MIN_RE.search(text or ""))
+
+
+# (b) class 103: a tech-startup portal's OWN welded nav label run, stored with
+# a headline and a byline credit:
+#   "Home >> Artificial Intelligence Data Featured Startup Spotlight Startups
+#    Tech Startup News Tech Startups Technology News Claude-powered AI coding
+#    agent deletes production database and backups in 9 seconds Daniel Levi
+#    Posted On April 28, 2026 0 3."
+# The discriminator is the portal's own three-label nav run, not the topic:
+# "Featured startup spotlight: our editors pick one young company every week.",
+# "Tech startup news and funding rounds arrive in the newsletter every Tuesday."
+# and "Home >> Artificial Intelligence is the breadcrumb the crawler stored as
+# nav." are ordinary prose and stay learnable.
+_STARTUP_PORTAL_NAV_RE = re.compile(
+    r"featured\s+startup\s+spotlight[\s\S]{0,40}?tech\s+startup\s+news"
+    r"[\s\S]{0,20}?tech\s+startups",
+    re.IGNORECASE)
+
+
+def _is_startup_portal_nav_run(text):
+    """True for a startup portal's welded nav label run."""
+    return bool(_STARTUP_PORTAL_NAV_RE.search(text or ""))
+
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
@@ -3303,6 +3349,12 @@ def _is_junk(text):
         return True
     # a publisher's welded related-content sidebar label run (class 99, 19.09.26)
     if _is_related_subjects_sidebar(t):
+        return True
+    # an aggregator's affordance label welded to its read time (class 102, 19.09.26)
+    if _is_aggregator_affordance_min_run(t):
+        return True
+    # a startup portal's welded nav label run (class 103, 19.09.26)
+    if _is_startup_portal_nav_run(t):
         return True
     # a bare markdown heading stored as the whole answer (class 96, 19.09.26)
     if _is_bare_markdown_heading_fragment(t):

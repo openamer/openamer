@@ -3035,6 +3035,34 @@ def _is_related_subjects_sidebar(text):
     return bool(_RELATED_SUBJECTS_SIDEBAR_RE.search(text or ""))
 
 
+# class 102/103 markers (live 19.09.26) -- see the two helpers below. Mirrors
+# internet_learner._is_aggregator_affordance_min_run / _is_startup_portal_nav_run
+# (the AH both-files rule).
+# (a) class 102: a model-aggregator landing page (affordance label welded to the
+# site's own read-time label `\u00b7 N min`).
+_AGGREGATOR_AFFORDANCE_MIN_RE = _re.compile(
+    r"(?:read\s+full\s+article|try\s+on\s+[A-Z][A-Za-z0-9]{2,})"
+    r"[\s\S]{0,60}?\u00b7\s*\d{1,3}\s*min",
+    _re.IGNORECASE)
+
+
+def _is_aggregator_affordance_min_run(text):
+    """True for an aggregator's affordance label welded to its read time."""
+    return bool(_AGGREGATOR_AFFORDANCE_MIN_RE.search(text or ""))
+
+
+# (b) class 103: a startup portal's welded nav label run.
+_STARTUP_PORTAL_NAV_RE = _re.compile(
+    r"featured\s+startup\s+spotlight[\s\S]{0,40}?tech\s+startup\s+news"
+    r"[\s\S]{0,20}?tech\s+startups",
+    _re.IGNORECASE)
+
+
+def _is_startup_portal_nav_run(text):
+    """True for a startup portal's welded nav label run."""
+    return bool(_STARTUP_PORTAL_NAV_RE.search(text or ""))
+
+
 def _is_nav_chrome(text):
     """True when text is page chrome (entities, marketing, UI, template leaks)."""
     if _ENTITY.search(text):
@@ -3146,6 +3174,12 @@ def _is_nav_chrome(text):
         return True
     # a publisher's welded related-content sidebar label run (class 99, 19.09.26)
     if _is_related_subjects_sidebar(text):
+        return True
+    # an aggregator's affordance label welded to its read time (class 102, 19.09.26)
+    if _is_aggregator_affordance_min_run(text):
+        return True
+    # a startup portal's welded nav label run (class 103, 19.09.26)
+    if _is_startup_portal_nav_run(text):
         return True
     # a bare markdown heading stored as the whole answer (class 96, 19.09.26)
     if _is_bare_markdown_heading_fragment(text):

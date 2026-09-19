@@ -4627,3 +4627,71 @@ def test_related_subjects_sidebar_is_gated_on_both_paths():
     ):
         assert not IL._is_related_subjects_sidebar(prose), prose
         assert not buffer_store._is_nav_chrome(prose), prose
+def test_aggregator_affordance_min_run_is_gated_on_both_paths():
+    """A model-aggregator landing page stored as the answer (class 102, 19.09.26).
+
+    Live leak (221 chars, so the >=90 length trust applied and the digits fed the
+    technical-signal gate): a pricing/ranking page whose affordance labels
+    (`Read full article`, `Try on Vincony`) are welded to the site's own read-time
+    label `· 9 min`. The discriminator is that WELD, not the topic: the read-time
+    label alone matches a legitimate article header
+    (`General Compute · March 18, 2026 · 6 min read Quantization reduces ...`),
+    and the topic sentence alone (`AI aggregators let you access GPT-5, Claude and
+    Gemini from one account without switching tabs.`) is ordinary prose.
+    """
+    import buffer_store
+    leak = ("Pricing GPT-5 Claude Gemini Vincony Read full article \u2192 Try on Vincony "
+            "Ranking Jul 15, 2026 \u00b7 9 min Best AI Model Aggregators in 2026 (Ranked) "
+            "AI aggregators let you access GPT-5, Claude, Gemini and more from one account.")
+    assert IL._is_aggregator_affordance_min_run(leak) is True
+    assert IL._is_junk(leak) is True
+    assert buffer_store._is_aggregator_affordance_min_run(leak) is True
+    assert buffer_store._is_nav_chrome(leak) is True
+    assert buffer_store.is_junk(leak) is True
+
+    for prose in (
+        "AI aggregators let you access GPT-5, Claude and Gemini from one account without switching tabs.",
+        "You can try the aggregator before paying: the free tier covers 200 requests per day.",
+        "Read the full article before you cite the benchmark numbers in your own report.",
+        "Try on a smaller model first and compare the latency yourself.",
+        "Our ranking puts the fastest model first and the cheapest one second.",
+        "The pricing page lists GPT-5, Claude and Gemini side by side for comparison.",
+        "General Compute \u00b7 March 18, 2026 \u00b7 6 min read Quantization reduces the memory footprint of large language models.",
+    ):
+        assert not IL._is_aggregator_affordance_min_run(prose), prose
+        assert not buffer_store._is_nav_chrome(prose), prose
+
+
+def test_startup_portal_nav_run_is_gated_on_both_paths():
+    """A tech-startup portal's welded nav label run (class 103, 19.09.26).
+
+    Live leak: the portal's own nav labels (`Featured Startup Spotlight Startups
+    Tech Startup News Tech Startups Technology News`) plus a headline and a
+    `Posted On <date> <n> <n>.` byline credit, stored as the answer. Each part
+    alone is ordinary prose and must stay learnable - the discriminator is the
+    portal's OWN three-label nav run.
+    """
+    import buffer_store
+    leak = ("Home \u00bb Artificial Intelligence Data Featured Startup Spotlight Startups "
+            "Tech Startup News Tech Startups Technology News Claude-powered AI coding agent "
+            "deletes production database and backups in 9 seconds Daniel Levi Posted On "
+            "April 28, 2026 0 3.")
+    assert IL._is_startup_portal_nav_run(leak) is True
+    assert IL._is_junk(leak) is True
+    assert buffer_store._is_startup_portal_nav_run(leak) is True
+    assert buffer_store._is_nav_chrome(leak) is True
+    assert buffer_store.is_junk(leak) is True
+
+    for prose in (
+        "Featured startup spotlight: our editors pick one young company every week.",
+        "Tech startup news and fresh funding rounds reach our desk every Tuesday.",
+        "Startups in the data and AI space raised 12 million euros in the second quarter.",
+        "Home \u00bb Artificial Intelligence is the breadcrumb the crawler stored as nav.",
+        "The article was posted on April 28, 2026 and corrected two days later.",
+        "Daniel Levi reported on the outage and the team published a postmortem.",
+        "The AI coding agent deleted the production database in nine seconds after a mis-scoped token.",
+    ):
+        assert not IL._is_startup_portal_nav_run(prose), prose
+        assert not buffer_store._is_nav_chrome(prose), prose
+
+
