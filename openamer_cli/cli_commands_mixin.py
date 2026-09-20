@@ -1749,11 +1749,11 @@ class CLICommandsMixin:
                     try:
                         from openamer_cli.skin_engine import get_active_skin
                         _skin = get_active_skin()
-                        label = _skin.get_branding("response_label", "⚕ OpenAmer")
+                        label = _skin.get_branding("response_label", "🧬 OpenAmer")
                         _resp_color = _maybe_remap_for_light_mode(_skin.get_color("response_border", "#CD7F32"))
                         _resp_text = _maybe_remap_for_light_mode(_skin.get_color("banner_text", "#FFF8DC"))
                     except Exception:
-                        label = "⚕ OpenAmer"
+                        label = "🧬 OpenAmer"
                         _resp_color = "#CD7F32"
                         _resp_text = "#FFF8DC"
 
@@ -2790,7 +2790,7 @@ class CLICommandsMixin:
             ("cancel", "Cancel", "keep the current session"),
         ]
         raw = self._prompt_text_input_modal(
-            title="⚕  Update OpenAmer Agent",
+            title="🧬  Update OpenAmer Agent",
             detail="This will exit the current session and run `openamer update`.",
             choices=choices,
         )
@@ -2803,7 +2803,7 @@ class CLICommandsMixin:
             return False
 
         print()
-        print("  ⚕ Launching update...")
+        print("  🧬 Launching update...")
         print()
 
         # Store the relaunch args so run() can exec them from the main thread

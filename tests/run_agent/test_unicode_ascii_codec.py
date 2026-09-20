@@ -22,7 +22,7 @@ class TestStripNonAscii:
         assert _strip_non_ascii("hello world") == "hello world"
 
     def test_removes_non_ascii(self):
-        assert _strip_non_ascii("hello ⚕ world") == "hello  world"
+        assert _strip_non_ascii("hello 🧬 world") == "hello  world"
 
     def test_removes_emoji(self):
         assert _strip_non_ascii("test 🤖 done") == "test  done"
@@ -34,7 +34,7 @@ class TestStripNonAscii:
         assert _strip_non_ascii("") == ""
 
     def test_only_non_ascii(self):
-        assert _strip_non_ascii("⚕🤖") == ""
+        assert _strip_non_ascii("🧬🤖") == ""
 
 
 class TestSanitizeMessagesNonAscii:
@@ -46,7 +46,7 @@ class TestSanitizeMessagesNonAscii:
         assert messages[0]["content"] == "hello"
 
     def test_sanitizes_content_string(self):
-        messages = [{"role": "user", "content": "hello ⚕ world"}]
+        messages = [{"role": "user", "content": "hello 🧬 world"}]
         assert _sanitize_messages_non_ascii(messages) is True
         assert messages[0]["content"] == "hello  world"
 
@@ -59,7 +59,7 @@ class TestSanitizeMessagesNonAscii:
         assert messages[0]["content"][0]["text"] == "hello "
 
     def test_sanitizes_name_field(self):
-        messages = [{"role": "tool", "name": "⚕tool", "content": "ok"}]
+        messages = [{"role": "tool", "name": "🧬tool", "content": "ok"}]
         assert _sanitize_messages_non_ascii(messages) is True
         assert messages[0]["name"] == "tool"
 
@@ -72,7 +72,7 @@ class TestSanitizeMessagesNonAscii:
                 "type": "function",
                 "function": {
                     "name": "read_file",
-                    "arguments": '{"path": "⚕test.txt"}'
+                    "arguments": '{"path": "🧬test.txt"}'
                 }
             }]
         }]
@@ -88,7 +88,7 @@ class TestSanitizeMessagesNonAscii:
 
     def test_multiple_messages(self):
         messages = [
-            {"role": "system", "content": "⚕ System prompt"},
+            {"role": "system", "content": "🧬 System prompt"},
             {"role": "user", "content": "Hello 你好"},
             {"role": "assistant", "content": "Hi there!"},
         ]
@@ -131,14 +131,14 @@ class TestSurrogateVsAsciiSanitization:
 
     def test_ascii_codec_strips_all_non_ascii(self):
         """ASCII codec case: all non-ASCII is stripped, not replaced."""
-        messages = [{"role": "user", "content": "test ⚕🤖你好 end"}]
+        messages = [{"role": "user", "content": "test 🧬🤖你好 end"}]
         assert _sanitize_messages_non_ascii(messages) is True
         # All non-ASCII chars removed; spaces around them collapse
         assert messages[0]["content"] == "test  end"
 
     def test_no_surrogates_returns_false(self):
         """When no surrogates present, _sanitize_messages_surrogates returns False."""
-        messages = [{"role": "user", "content": "hello ⚕ world"}]
+        messages = [{"role": "user", "content": "hello 🧬 world"}]
         assert _sanitize_messages_surrogates(messages) is False
 
 

@@ -17118,7 +17118,7 @@ class GatewayRunner(GatewayAuthorizationMixin, GatewayKanbanWatchersMixin, Gatew
                             _p = getattr(adapter, "typed_command_prefix", "/")
                             await adapter.send(
                                 chat_id,
-                                f"⚕ **Update needs your input:**\n\n"
+                                f"🧬 **Update needs your input:**\n\n"
                                 f"{prompt_text}{default_hint}\n\n"
                                 f"Reply `{_p}approve` (yes) or `{_p}deny` (no), "
                                 f"or type your answer directly.",

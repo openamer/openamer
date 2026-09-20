@@ -596,7 +596,7 @@ export const zhHant: Translations = {
         "「在 X 上分享」會在新分頁中開啟預先填寫的貼文。若想附上 1200×630 的徽章，請先點擊「複製圖片」—— X 允許你直接貼到推文編輯器中。「下載 PNG」會將檔案儲存下來，可在任何地方使用。",
       clipboard_unsupported:
         "此瀏覽器不支援剪貼簿圖片複製 —— 請改用「下載」。",
-      tweet_text: "Just unlocked {tier_part}\"{name}\" in OpenAmer Agent ☤",
+      tweet_text: "Just unlocked {tier_part}\"{name}\" in OpenAmer Agent 🧬",
     },
   },
   kanban: {

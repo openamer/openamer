@@ -3818,30 +3818,26 @@ class ChatConsole:
         """
         yield self
 
-# ASCII Art - OPENAMER-AGENT logo (full width, single line - requires ~95 char terminal)
-OPENAMER_AGENT_LOGO = """[bold #FFD700]██╗  ██╗███████╗██████╗ ███╗   ███╗███████╗███████╗       █████╗  ██████╗ ███████╗███╗   ██╗████████╗[/]
-[bold #FFD700]██║  ██║██╔════╝██╔══██╗████╗ ████║██╔════╝██╔════╝      ██╔══██╗██╔════╝ ██╔════╝████╗  ██║╚══██╔══╝[/]
-[#FFBF00]███████║█████╗  ██████╔╝██╔████╔██║█████╗  ███████╗█████╗███████║██║  ███╗█████╗  ██╔██╗ ██║   ██║[/]
-[#FFBF00]██╔══██║██╔══╝  ██╔══██╗██║╚██╔╝██║██╔══╝  ╚════██║╚════╝██╔══██║██║   ██║██╔══╝  ██║╚██╗██║   ██║[/]
-[#CD7F32]██║  ██║███████╗██║  ██║██║ ╚═╝ ██║███████╗███████║      ██║  ██║╚██████╔╝███████╗██║ ╚████║   ██║[/]
-[#CD7F32]╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝╚══════╝      ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═══╝   ╚═╝[/]"""
+# ASCII Art - OpenAmer Agent wordmark (full width, single line - needs ~95 cols)
+OPENAMER_AGENT_LOGO = """[bold #38BDF8] █████╗  ██████╗  ███████╗ ██╗   ██╗  █████╗  ██╗    ██╗ ███████╗ ██████╗[/]
+[bold #38BDF8]██╔═══██╗ ██╔═══██╗ ██╔════╝  ██║   ██║ ██╔══██╗ ██║    ██║ ██╔════╝  ██╔══██╗[/]
+[#22D3EE]██║   ██║ ██████╔╝  ███████╗  ██║   ██║ ███████║ ██║ █╗ ██║ ███████╗  ██████╔╝[/]
+[#22D3EE]██║   ██║ ██╔═══╝   ╚════██╗  ██║   ██║ ██╔══██║ ██║███╗██║ ╚════██╗  ██╔══██╗[/]
+[#0EA5E9]╚██████╔╝ ██║       ███████║  ╚██████╔╝ ██║  ██║ ╚███╔███╔╝ ███████║  ██║  ██║[/]
+[#0EA5E9] ╚═════╝  ╚═╝       ╚══════╝   ╚═════╝  ╚═╝  ╚═╝  ╚══╝╚══╝ ╚══════╝  ╚═╝  ╚═╝[/]"""
 
-# ASCII Art - OpenAmer Caduceus (compact, fits in left panel)
-OPENAMER_CADUCEUS = """[#CD7F32]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⡀⠀⣀⣀⠀⢀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
-[#CD7F32]⠀⠀⠀⠀⠀⠀⢀⣠⣴⣾⣿⣿⣇⠸⣿⣿⠇⣸⣿⣿⣷⣦⣄⡀⠀⠀⠀⠀⠀⠀[/]
-[#FFBF00]⠀⢀⣠⣴⣶⠿⠋⣩⡿⣿⡿⠻⣿⡇⢠⡄⢸⣿⠟⢿⣿⢿⣍⠙⠿⣶⣦⣄⡀⠀[/]
-[#FFBF00]⠀⠀⠉⠉⠁⠶⠟⠋⠀⠉⠀⢀⣈⣁⡈⢁⣈⣁⡀⠀⠉⠀⠙⠻⠶⠈⠉⠉⠀⠀[/]
-[#FFD700]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣿⡿⠛⢁⡈⠛⢿⣿⣦⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
-[#FFD700]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠿⣿⣦⣤⣈⠁⢠⣴⣿⠿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
-[#FFBF00]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠻⢿⣿⣦⡉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
-[#FFBF00]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⢷⣦⣈⠛⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
-[#CD7F32]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣴⠦⠈⠙⠿⣦⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
-[#CD7F32]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣤⡈⠁⢤⣿⠇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
-[#B8860B]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠷⠄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
-[#B8860B]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⠑⢶⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
-[#B8860B]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⠁⢰⡆⠈⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
-[#B8860B]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠳⠈⣡⠞⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]
-[#B8860B]⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀[/]"""
+OPENAMER_CADUCEUS = """[#22D3EE]       ╭───────────╮    [/]
+[#22D3EE]      ╱             ╲   [/]
+[#38BDF8]     ◯               ◯  [/]
+[#7DD3FC]    ╱     ●     ●     ╲ [/]
+[#22D3EE]   ◯   ╱  ███████  ╲   ◯[/]
+[#0EA5E9]   │  │           │  │  [/]
+[#0EA5E9]   │  ╲  ███████  ╱  │  [/]
+[#22D3EE]   ◯     ●     ●     ◯  [/]
+[#7DD3FC]    ╲               ╱   [/]
+[#38BDF8]     ◯             ◯    [/]
+[#22D3EE]      ╲           ╱     [/]
+[#22D3EE]       ╰───────────╯    [/]"""
 
 
 
@@ -3859,8 +3855,8 @@ def _build_compact_banner() -> str:
     dim_color = _skin.get_color("banner_dim", "#B8860B") if _skin else "#B8860B"
 
     if skin_name == "default":
-        line1 = "⚕ OPENAMER OPENAMER - AI Agent Framework"
-        tiny_line = "⚕ OPENAMER OPENAMER"
+        line1 = "🧬 OPENAMER - AI Agent Framework"
+        tiny_line = "🧬 OPENAMER"
     else:
         agent_name = _skin.get_branding("agent_name", "OpenAmer Agent") if _skin else "OpenAmer Agent"
         line1 = f"{agent_name} - AI Agent Framework"
@@ -5581,12 +5577,12 @@ class OpenAmerCLI(CLIAgentSetupMixin, CLICommandsMixin, CLIBillingMixin):
 
             yolo_active = self._is_session_yolo_active()
             if width < 52:
-                text = f"{battery_prefix}⚕ {snapshot['model_short']} · {duration_label}"
+                text = f"{battery_prefix}🧬 {snapshot['model_short']} · {duration_label}"
                 if yolo_active:
                     text += " · ⚠ YOLO"
                 return self._trim_status_bar_text(text, width)
             if width < 76:
-                parts = [f"⚕ {snapshot['model_short']}", percent_label]
+                parts = [f"🧬 {snapshot['model_short']}", percent_label]
                 if battery_label:
                     parts.insert(0, battery_label)
                 compressions = snapshot.get("compressions", 0)
@@ -5614,7 +5610,7 @@ class OpenAmerCLI(CLIAgentSetupMixin, CLICommandsMixin, CLIBillingMixin):
                 context_label = "ctx --"
 
             compressions = snapshot.get("compressions", 0)
-            parts = [f"⚕ {snapshot['model_short']}", context_label, percent_label]
+            parts = [f"🧬 {snapshot['model_short']}", context_label, percent_label]
             if battery_label:
                 parts.insert(0, battery_label)
             if compressions:
@@ -5639,7 +5635,7 @@ class OpenAmerCLI(CLIAgentSetupMixin, CLICommandsMixin, CLIBillingMixin):
                 parts.append("⚠ YOLO")
             return self._trim_status_bar_text(" │ ".join(parts), width)
         except Exception:
-            return f"⚕ {self.model if getattr(self, 'model', None) else 'OpenAmer'}"
+            return f"🧬 {self.model if getattr(self, 'model', None) else 'OpenAmer'}"
 
     def _get_status_bar_fragments(self):
         if not self._status_bar_visible or getattr(self, '_model_picker_state', None):
@@ -5659,7 +5655,7 @@ class OpenAmerCLI(CLIAgentSetupMixin, CLICommandsMixin, CLIBillingMixin):
 
             if width < 52:
                 frags = [
-                    ("class:status-bar", " ⚕ "),
+                    ("class:status-bar", " 🧬 "),
                     ("class:status-bar-strong", snapshot["model_short"]),
                     ("class:status-bar-dim", " · "),
                     ("class:status-bar-dim", duration_label),
@@ -5677,7 +5673,7 @@ class OpenAmerCLI(CLIAgentSetupMixin, CLICommandsMixin, CLIBillingMixin):
                     bg_proc_count = snapshot.get("active_background_processes", 0)
                     bg_subagent_count = snapshot.get("active_background_subagents", 0)
                     frags = [
-                        ("class:status-bar", " ⚕ "),
+                        ("class:status-bar", " 🧬 "),
                         ("class:status-bar-strong", snapshot["model_short"]),
                         ("class:status-bar-dim", " · "),
                         (self._status_bar_context_style(percent), percent_label),
@@ -5716,7 +5712,7 @@ class OpenAmerCLI(CLIAgentSetupMixin, CLICommandsMixin, CLIBillingMixin):
                     bg_proc_count = snapshot.get("active_background_processes", 0)
                     bg_subagent_count = snapshot.get("active_background_subagents", 0)
                     frags = [
-                        ("class:status-bar", " ⚕ "),
+                        ("class:status-bar", " 🧬 "),
                         ("class:status-bar-strong", snapshot["model_short"]),
                         ("class:status-bar-dim", " │ "),
                         ("class:status-bar-dim", context_label),
@@ -5757,7 +5753,7 @@ class OpenAmerCLI(CLIAgentSetupMixin, CLICommandsMixin, CLIBillingMixin):
                     frags.append(("class:status-bar", " "))
 
             # Battery is the first status-bar element when enabled: prepend it
-            # ahead of the leading ⚕ marker in whichever width tier ran above.
+            # ahead of the leading 🧬 marker in whichever width tier ran above.
             if battery_label:
                 frags[0:0] = [
                     ("class:status-bar", " "),
@@ -6314,10 +6310,10 @@ class OpenAmerCLI(CLIAgentSetupMixin, CLICommandsMixin, CLIBillingMixin):
             try:
                 from openamer_cli.skin_engine import get_active_skin
                 _skin = get_active_skin()
-                label = _skin.get_branding("response_label", "⚕ OpenAmer")
+                label = _skin.get_branding("response_label", "🧬 OpenAmer")
                 _text_hex = _skin.get_color("banner_text", "#FFF8DC")
             except Exception:
-                label = "⚕ OpenAmer"
+                label = "🧬 OpenAmer"
                 _text_hex = "#FFF8DC"
             # Build a true-color ANSI escape for the response text color
             # so streamed content matches the Rich Panel appearance.
@@ -12621,7 +12617,7 @@ class OpenAmerCLI(CLIAgentSetupMixin, CLICommandsMixin, CLIBillingMixin):
                     if not _streaming_box_opened:
                         _streaming_box_opened = True
                         w = self._scrollback_box_width(getattr(self.console, "width", 80))
-                        label = " ⚕ OpenAmer "
+                        label = " 🧬 OpenAmer "
                         if self.show_timestamps:
                             label = f"{label}{datetime.now().strftime(getattr(self, 'timestamp_format', '%H:%M'))} "
                         fill = w - 2 - OpenAmerCLI._status_bar_display_width(label)
@@ -13052,11 +13048,11 @@ class OpenAmerCLI(CLIAgentSetupMixin, CLICommandsMixin, CLIBillingMixin):
                 try:
                     from openamer_cli.skin_engine import get_active_skin
                     _skin = get_active_skin()
-                    label = _skin.get_branding("response_label", "⚕ OpenAmer")
+                    label = _skin.get_branding("response_label", "🧬 OpenAmer")
                     _resp_color = _maybe_remap_for_light_mode(_skin.get_color("response_border", "#CD7F32"))
                     _resp_text = _maybe_remap_for_light_mode(_skin.get_color("banner_text", "#FFF8DC"))
                 except Exception:
-                    label = "⚕ OpenAmer"
+                    label = "🧬 OpenAmer"
                     _resp_color = _maybe_remap_for_light_mode("#CD7F32")
                     _resp_text = _maybe_remap_for_light_mode("#FFF8DC")
 
@@ -13382,9 +13378,9 @@ class OpenAmerCLI(CLIAgentSetupMixin, CLICommandsMixin, CLIBillingMixin):
         else:
             try:
                 from openamer_cli.skin_engine import get_active_goodbye
-                goodbye = get_active_goodbye("Goodbye! ⚕")
+                goodbye = get_active_goodbye("Goodbye! 🧬")
             except Exception:
-                goodbye = "Goodbye! ⚕"
+                goodbye = "Goodbye! 🧬"
             print(goodbye)
 
     def _get_tui_prompt_symbols(self) -> tuple[str, str]:
@@ -13473,7 +13469,7 @@ class OpenAmerCLI(CLIAgentSetupMixin, CLICommandsMixin, CLIBillingMixin):
         if self._command_running:
             return _state_fragment("class:prompt-working", self._command_spinner_frame())
         if self._agent_running:
-            return _state_fragment("class:prompt-working", "⚕")
+            return _state_fragment("class:prompt-working", "🧬")
         if self._voice_mode:
             return _state_fragment("class:voice-prompt", "🎤")
         return [("class:prompt", symbol)]
