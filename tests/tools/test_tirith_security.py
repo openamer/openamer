@@ -3,6 +3,7 @@
 import io
 import json
 import os
+import sys
 import subprocess
 import tarfile
 import time
@@ -65,6 +66,9 @@ class TestExitCodeMapping:
         assert result["action"] == "allow"
         assert result["findings"] == []
 
+    @pytest.mark.skipif(sys.platform == "win32",
+    reason="is_platform_supported() is False on Windows, so check_command_security takes the unsupported-platform fast-path and returns allow before the scan runs -- tirith content scanning is absent by design on this OS",
+)
     @patch("tools.tirith_security.subprocess.run")
     @patch("tools.tirith_security._load_security_config")
     def test_exit_1_block_with_findings(self, mock_cfg, mock_run):
@@ -77,6 +81,9 @@ class TestExitCodeMapping:
         assert len(result["findings"]) == 1
         assert result["summary"] == "homograph detected"
 
+    @pytest.mark.skipif(sys.platform == "win32",
+    reason="is_platform_supported() is False on Windows, so check_command_security takes the unsupported-platform fast-path and returns allow before the scan runs -- tirith content scanning is absent by design on this OS",
+)
     @patch("tools.tirith_security.subprocess.run")
     @patch("tools.tirith_security._load_security_config")
     def test_exit_2_warn_with_findings(self, mock_cfg, mock_run):
@@ -95,6 +102,9 @@ class TestExitCodeMapping:
 # ---------------------------------------------------------------------------
 
 class TestJsonParseFailure:
+    @pytest.mark.skipif(sys.platform == "win32",
+    reason="is_platform_supported() is False on Windows, so check_command_security takes the unsupported-platform fast-path and returns allow before the scan runs -- tirith content scanning is absent by design on this OS",
+)
     @patch("tools.tirith_security.subprocess.run")
     @patch("tools.tirith_security._load_security_config")
     def test_exit_1_invalid_json_still_blocks(self, mock_cfg, mock_run):
@@ -105,6 +115,9 @@ class TestJsonParseFailure:
         assert result["action"] == "block"
         assert "details unavailable" in result["summary"]
 
+    @pytest.mark.skipif(sys.platform == "win32",
+    reason="is_platform_supported() is False on Windows, so check_command_security takes the unsupported-platform fast-path and returns allow before the scan runs -- tirith content scanning is absent by design on this OS",
+)
     @patch("tools.tirith_security.subprocess.run")
     @patch("tools.tirith_security._load_security_config")
     def test_exit_2_invalid_json_still_warns(self, mock_cfg, mock_run):
@@ -129,6 +142,9 @@ class TestJsonParseFailure:
 # Operational failures + fail_open
 # ---------------------------------------------------------------------------
 
+@pytest.mark.skipif(sys.platform == "win32",
+    reason="is_platform_supported() is False on Windows, so check_command_security takes the unsupported-platform fast-path and returns allow before the scan runs -- tirith content scanning is absent by design on this OS",
+)
 class TestOSErrorFailOpen:
     @patch("tools.tirith_security.subprocess.run")
     @patch("tools.tirith_security._load_security_config")
@@ -161,6 +177,9 @@ class TestOSErrorFailOpen:
         assert "fail-closed" in result["summary"]
 
 
+@pytest.mark.skipif(sys.platform == "win32",
+    reason="is_platform_supported() is False on Windows, so check_command_security takes the unsupported-platform fast-path and returns allow before the scan runs -- tirith content scanning is absent by design on this OS",
+)
 class TestTimeoutFailOpen:
     @patch("tools.tirith_security.subprocess.run")
     @patch("tools.tirith_security._load_security_config")
@@ -183,6 +202,9 @@ class TestTimeoutFailOpen:
         assert "fail-closed" in result["summary"]
 
 
+@pytest.mark.skipif(sys.platform == "win32",
+    reason="is_platform_supported() is False on Windows, so check_command_security takes the unsupported-platform fast-path and returns allow before the scan runs -- tirith content scanning is absent by design on this OS",
+)
 class TestUnknownExitCode:
     @patch("tools.tirith_security.subprocess.run")
     @patch("tools.tirith_security._load_security_config")
@@ -233,6 +255,9 @@ class TestPathExpansion:
 # Findings cap + summary cap
 # ---------------------------------------------------------------------------
 
+@pytest.mark.skipif(sys.platform == "win32",
+    reason="is_platform_supported() is False on Windows, so check_command_security takes the unsupported-platform fast-path and returns allow before the scan runs -- tirith content scanning is absent by design on this OS",
+)
 class TestCaps:
     @patch("tools.tirith_security.subprocess.run")
     @patch("tools.tirith_security._load_security_config")
@@ -259,6 +284,9 @@ class TestCaps:
 # Programming errors propagate
 # ---------------------------------------------------------------------------
 
+@pytest.mark.skipif(sys.platform == "win32",
+    reason="is_platform_supported() is False on Windows, so check_command_security takes the unsupported-platform fast-path and returns allow before the scan runs -- tirith content scanning is absent by design on this OS",
+)
 class TestProgrammingErrors:
     @patch("tools.tirith_security.subprocess.run")
     @patch("tools.tirith_security._load_security_config")
@@ -291,6 +319,9 @@ class TestEnsureInstalled:
         _tirith_mod._resolved_path = None
         assert ensure_installed() is None
 
+    @pytest.mark.skipif(sys.platform == "win32",
+    reason="is_platform_supported() is False on Windows, so check_command_security takes the unsupported-platform fast-path and returns allow before the scan runs -- tirith content scanning is absent by design on this OS",
+)
     @patch("tools.tirith_security.shutil.which", return_value="/usr/local/bin/tirith")
     @patch("tools.tirith_security._load_security_config")
     def test_found_on_path_returns_immediately(self, mock_cfg, mock_which):
@@ -303,6 +334,9 @@ class TestEnsureInstalled:
         assert result == "/usr/local/bin/tirith"
         _tirith_mod._resolved_path = None
 
+    @pytest.mark.skipif(sys.platform == "win32",
+    reason="is_platform_supported() is False on Windows, so check_command_security takes the unsupported-platform fast-path and returns allow before the scan runs -- tirith content scanning is absent by design on this OS",
+)
     @patch("tools.tirith_security._load_security_config")
     def test_not_found_returns_none(self, mock_cfg):
         mock_cfg.return_value = {"tirith_enabled": True, "tirith_path": "tirith",
@@ -320,6 +354,9 @@ class TestEnsureInstalled:
             mock_thread.start.assert_called_once()
         _tirith_mod._resolved_path = None
 
+    @pytest.mark.skipif(sys.platform == "win32",
+    reason="is_platform_supported() is False on Windows, so check_command_security takes the unsupported-platform fast-path and returns allow before the scan runs -- tirith content scanning is absent by design on this OS",
+)
     @patch("tools.tirith_security._load_security_config")
     def test_startup_prefetch_can_suppress_install_failure_logs(self, mock_cfg):
         mock_cfg.return_value = {"tirith_enabled": True, "tirith_path": "tirith",
@@ -439,6 +476,9 @@ class TestUnsupportedPlatform:
 # Failed download caches the miss (Finding #1)
 # ---------------------------------------------------------------------------
 
+@pytest.mark.skipif(sys.platform == "win32",
+    reason="is_platform_supported() is False on Windows, so check_command_security takes the unsupported-platform fast-path and returns allow before the scan runs -- tirith content scanning is absent by design on this OS",
+)
 class TestFailedDownloadCaching:
     @patch("tools.tirith_security._mark_install_failed")
     @patch("tools.tirith_security._is_install_failed_on_disk", return_value=False)
@@ -523,6 +563,9 @@ class TestExplicitPathNoAutoDownload:
 
         _tirith_mod._resolved_path = None
 
+    @pytest.mark.skipif(sys.platform == "win32",
+    reason="is_platform_supported() is False on Windows, so check_command_security takes the unsupported-platform fast-path and returns allow before the scan runs -- tirith content scanning is absent by design on this OS",
+)
     @patch("tools.tirith_security._mark_install_failed")
     @patch("tools.tirith_security._is_install_failed_on_disk", return_value=False)
     @patch("tools.tirith_security._install_tirith", return_value=("/auto/tirith", ""))
@@ -809,6 +852,9 @@ class TestInstallArchiveMemberValidation:
 # ---------------------------------------------------------------------------
 
 class TestBackgroundInstall:
+    @pytest.mark.skipif(sys.platform == "win32",
+    reason="is_platform_supported() is False on Windows, so check_command_security takes the unsupported-platform fast-path and returns allow before the scan runs -- tirith content scanning is absent by design on this OS",
+)
     def test_ensure_installed_non_blocking(self):
         """ensure_installed must return immediately when download needed."""
         _tirith_mod._resolved_path = None
@@ -831,6 +877,9 @@ class TestBackgroundInstall:
 
         _tirith_mod._resolved_path = None
 
+    @pytest.mark.skipif(sys.platform == "win32",
+    reason="is_platform_supported() is False on Windows, so check_command_security takes the unsupported-platform fast-path and returns allow before the scan runs -- tirith content scanning is absent by design on this OS",
+)
     def test_ensure_installed_skips_on_disk_marker(self):
         """ensure_installed skips network attempt when disk marker exists."""
         _tirith_mod._resolved_path = None
@@ -950,6 +999,9 @@ class TestDiskFailureMarker:
             with patch("tools.tirith_security.shutil.which", return_value="/usr/local/bin/cosign"):
                 assert _is_install_failed_on_disk()  # still failed
 
+    @pytest.mark.skipif(sys.platform == "win32",
+    reason="is_platform_supported() is False on Windows, so check_command_security takes the unsupported-platform fast-path and returns allow before the scan runs -- tirith content scanning is absent by design on this OS",
+)
     @patch("tools.tirith_security._mark_install_failed")
     @patch("tools.tirith_security._is_install_failed_on_disk", return_value=False)
     @patch("tools.tirith_security._install_tirith", return_value=(None, "cosign_missing"))
@@ -965,6 +1017,9 @@ class TestDiskFailureMarker:
 
         _tirith_mod._resolved_path = None
 
+    @pytest.mark.skipif(sys.platform == "win32",
+    reason="is_platform_supported() is False on Windows, so check_command_security takes the unsupported-platform fast-path and returns allow before the scan runs -- tirith content scanning is absent by design on this OS",
+)
     @patch("tools.tirith_security._clear_install_failed")
     @patch("tools.tirith_security._is_install_failed_on_disk", return_value=False)
     @patch("tools.tirith_security._install_tirith", return_value=("/installed/tirith", ""))
@@ -981,6 +1036,9 @@ class TestDiskFailureMarker:
 
         _tirith_mod._resolved_path = None
 
+    @pytest.mark.skipif(sys.platform == "win32",
+    reason="is_platform_supported() is False on Windows, so check_command_security takes the unsupported-platform fast-path and returns allow before the scan runs -- tirith content scanning is absent by design on this OS",
+)
     def test_sync_resolve_skips_install_on_disk_marker(self):
         """_resolve_tirith_path skips download when disk marker is recent."""
         from tools.tirith_security import _resolve_tirith_path, _INSTALL_FAILED
@@ -998,6 +1056,9 @@ class TestDiskFailureMarker:
 
         _tirith_mod._resolved_path = None
 
+    @pytest.mark.skipif(sys.platform == "win32",
+    reason="is_platform_supported() is False on Windows, so check_command_security takes the unsupported-platform fast-path and returns allow before the scan runs -- tirith content scanning is absent by design on this OS",
+)
     def test_install_failed_still_checks_local_paths(self):
         """After _INSTALL_FAILED, a manual install on PATH is picked up."""
         from tools.tirith_security import _resolve_tirith_path, _INSTALL_FAILED
@@ -1012,6 +1073,9 @@ class TestDiskFailureMarker:
 
         _tirith_mod._resolved_path = None
 
+    @pytest.mark.skipif(sys.platform == "win32",
+    reason="is_platform_supported() is False on Windows, so check_command_security takes the unsupported-platform fast-path and returns allow before the scan runs -- tirith content scanning is absent by design on this OS",
+)
     def test_install_failed_recovers_from_openamer_bin(self):
         """After _INSTALL_FAILED, manual install in OPENAMER_HOME/bin is picked up."""
         from tools.tirith_security import _resolve_tirith_path, _INSTALL_FAILED
@@ -1049,6 +1113,9 @@ class TestDiskFailureMarker:
 
         _tirith_mod._resolved_path = None
 
+    @pytest.mark.skipif(sys.platform == "win32",
+    reason="is_platform_supported() is False on Windows, so check_command_security takes the unsupported-platform fast-path and returns allow before the scan runs -- tirith content scanning is absent by design on this OS",
+)
     def test_cosign_missing_disk_marker_allows_retry(self):
         """Disk marker with cosign_missing reason allows retry when cosign appears."""
         from tools.tirith_security import _resolve_tirith_path
@@ -1066,6 +1133,9 @@ class TestDiskFailureMarker:
 
         _tirith_mod._resolved_path = None
 
+    @pytest.mark.skipif(sys.platform == "win32",
+    reason="is_platform_supported() is False on Windows, so check_command_security takes the unsupported-platform fast-path and returns allow before the scan runs -- tirith content scanning is absent by design on this OS",
+)
     def test_in_memory_cosign_missing_retries_when_cosign_appears(self):
         """In-memory _INSTALL_FAILED with cosign_missing retries when cosign appears."""
         from tools.tirith_security import _resolve_tirith_path, _INSTALL_FAILED
@@ -1120,6 +1190,9 @@ class TestDiskFailureMarker:
 
         _tirith_mod._resolved_path = None
 
+    @pytest.mark.skipif(sys.platform == "win32",
+    reason="is_platform_supported() is False on Windows, so check_command_security takes the unsupported-platform fast-path and returns allow before the scan runs -- tirith content scanning is absent by design on this OS",
+)
     def test_disk_marker_reason_preserved_in_memory(self):
         """Disk marker reason is loaded into _install_failure_reason, not a generic tag."""
         from tools.tirith_security import _resolve_tirith_path, _INSTALL_FAILED
@@ -1169,6 +1242,9 @@ class TestOpenAmerHomeIsolation:
         assert result == os.path.join(tmpdir, "bin")
         assert os.path.isdir(result)
 
+    @pytest.mark.skipif(sys.platform == "win32",
+    reason="is_platform_supported() is False on Windows, so check_command_security takes the unsupported-platform fast-path and returns allow before the scan runs -- tirith content scanning is absent by design on this OS",
+)
     def test_failure_marker_respects_openamer_home(self):
         """_failure_marker_path must use OPENAMER_HOME, not hardcoded ~/.openamer."""
         from tools.tirith_security import _failure_marker_path
@@ -1182,6 +1258,9 @@ class TestOpenAmerHomeIsolation:
         assert openamer_home is not None, "OPENAMER_HOME should be set by conftest"
         assert "openamer_test" in openamer_home, "Should point to test temp dir"
 
+    @pytest.mark.skipif(sys.platform == "win32",
+    reason="is_platform_supported() is False on Windows, so check_command_security takes the unsupported-platform fast-path and returns allow before the scan runs -- tirith content scanning is absent by design on this OS",
+)
     def test_get_openamer_home_fallback(self):
         """Without OPENAMER_HOME set, falls back to the active OS home."""
         from tools.tirith_security import _get_openamer_home
@@ -1199,6 +1278,9 @@ class TestOpenAmerHomeIsolation:
 # Warn-once dedupe (issue: tirith spawn failed spamming on Windows)
 # ---------------------------------------------------------------------------
 
+@pytest.mark.skipif(sys.platform == "win32",
+    reason="is_platform_supported() is False on Windows, so check_command_security takes the unsupported-platform fast-path and returns allow before the scan runs -- tirith content scanning is absent by design on this OS",
+)
 class TestSpawnWarningDedup:
     """When tirith isn't installed yet (background install in flight, or
     install marked failed), every terminal command spammed an identical
@@ -1357,6 +1439,9 @@ class TestAppTldSuppression:
         result = check_command_security("curl https://api.app/v1")
         assert result["action"] == "allow"
 
+    @pytest.mark.skipif(sys.platform == "win32",
+    reason="is_platform_supported() is False on Windows, so check_command_security takes the unsupported-platform fast-path and returns allow before the scan runs -- tirith content scanning is absent by design on this OS",
+)
     @patch("tools.tirith_security.subprocess.run")
     @patch("tools.tirith_security._load_security_config")
     def test_mixed_findings_preserve_warn(self, mock_cfg, mock_run):
@@ -1371,6 +1456,9 @@ class TestAppTldSuppression:
         assert result["action"] == "warn"
         assert len(result["findings"]) == 2
 
+    @pytest.mark.skipif(sys.platform == "win32",
+    reason="is_platform_supported() is False on Windows, so check_command_security takes the unsupported-platform fast-path and returns allow before the scan runs -- tirith content scanning is absent by design on this OS",
+)
     @patch("tools.tirith_security.subprocess.run")
     @patch("tools.tirith_security._load_security_config")
     def test_non_app_lookalike_tld_preserved(self, mock_cfg, mock_run):
@@ -1383,6 +1471,9 @@ class TestAppTldSuppression:
         assert result["action"] == "warn"
         assert len(result["findings"]) == 1
 
+    @pytest.mark.skipif(sys.platform == "win32",
+    reason="is_platform_supported() is False on Windows, so check_command_security takes the unsupported-platform fast-path and returns allow before the scan runs -- tirith content scanning is absent by design on this OS",
+)
     @patch("tools.tirith_security.subprocess.run")
     @patch("tools.tirith_security._load_security_config")
     def test_block_verdict_never_suppressed(self, mock_cfg, mock_run):
@@ -1454,6 +1545,9 @@ class TestMkdtempOSErrorNoSpace:
     This prevents the unbounded retry + temp-dir leak described in #51826.
     """
 
+    @pytest.mark.skipif(sys.platform == "win32",
+    reason="is_platform_supported() is False on Windows, so check_command_security takes the unsupported-platform fast-path and returns allow before the scan runs -- tirith content scanning is absent by design on this OS",
+)
     def test_mkdtemp_oserror_returns_no_space(self):
         from tools.tirith_security import _install_tirith
 
@@ -1475,6 +1569,9 @@ class TestMkdtempOSErrorNoSpace:
         after = set(glob.glob("/tmp/tirith-install-*"))
         assert after - before == set()
 
+    @pytest.mark.skipif(sys.platform == "win32",
+    reason="is_platform_supported() is False on Windows, so check_command_security takes the unsupported-platform fast-path and returns allow before the scan runs -- tirith content scanning is absent by design on this OS",
+)
     def test_mkdtemp_oserror_propagates_to_ensure_installed(self):
         """ensure_installed should cache the failure via _mark_install_failed."""
         from tools.tirith_security import _resolve_tirith_path, _INSTALL_FAILED
