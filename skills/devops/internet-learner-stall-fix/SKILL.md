@@ -27,7 +27,11 @@ TWO warnings stay live because they are behavioural, not history:
 
 - run `which_rule_matches.py` BEFORE touching a rule -- the AJ/AQ/AR trap has
   fired FOUR times: your own control trips a PRE-EXISTING `_NAV_CHROME`
-  marker, so add the topic-matched hostile control first.
+  marker, so add the topic-matched hostile control first. Probe the FULL stored
+  string (300 chars) -- a truncated copy prints a false `INDIVIDUAL MATCHED: none`.
+- never sync this LF-native archive with a text-patch tool: `patch` expanded a
+  literal `\r` and corrupted the file at an UNCHANGED byte count. Append pure
+  bytes, then assert byte-exact equality with the install copy.
 - never wire a gate on a rejection alone (measured-and-rejected = delete the
   signature, keep the rows).
 
