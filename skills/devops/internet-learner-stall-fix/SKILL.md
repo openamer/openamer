@@ -21,13 +21,18 @@ Per-class narratives for J–Z, AA–AG (15./16.09.26) live in
 a CRLF append flips ~60 lines) -- and only a ONE-LINE pointer is added here.
 AW/AY (77-85), 96/97 (AZ), 98 (MEASURED-AND-REJECTED -> signature-delete),
 102/103 (BB), BE (deliberate non-fix) and 109/110 all live there, as do
-113/114/115 and 118 (20.09.26), and BF (raised rate WITHOUT a gate regression:
-deterministic `deep_learn` + a 291/300 buffer; deliberate NON-FIX).
+113/114/115 and 118 (20.09.26), BF (raised rate WITHOUT a gate regression:
+deterministic `deep_learn` + a 291/300 buffer) and BC (71 % of junk rejects are
+WRITER-only -- the extractor gate deliberately lacks `_is_serp_snippet`; NON-FIX).
 TWO warnings stay live because they are behavioural, not history:
 
 - run `which_rule_matches.py` BEFORE touching a rule -- the AJ/AQ/AR trap has
   fired FOUR times: your own control trips a PRE-EXISTING `_NAV_CHROME`
-  marker, so add the topic-matched hostile control first.
+  marker, so add the topic-matched hostile control first. Probe the FULL stored
+  string (300 chars) -- a truncated copy prints a false `INDIVIDUAL MATCHED: none`.
+- never sync this LF-native archive with a text-patch tool: `patch` expanded a
+  literal `\r` and corrupted the file at an UNCHANGED byte count. Append pure
+  bytes, then assert byte-exact equality with the install copy.
 - never wire a gate on a rejection alone (measured-and-rejected = delete the
   signature, keep the rows).
 
@@ -52,6 +57,18 @@ regex, not a new helper; 82 = German nav WELD + colon headline; the news ticker
 has NO clean discriminator → signature delete. The 109/110 rows were still in
 the buffer: a written verdict is not a cleanup. Also: `skill_manage(write_file)`
 REPLACES a reference file — restore from the repo copy. See archive.
+
+**119 (20.09.26)**: no learner gate at all — `self_improve.py`'s P2 rule tested
+P1's `m` while replacing `m.group(0)`, so it DELETED the `CYCLE_SECONDS`
+assignment it guards (proven by exec; `apply_and_test`'s 3 checks all pass on the
+corruption). Fixed at source `920131e54` + `tests/scripts/test_self_improve_rules.py`
+(RED 3/3 → GREEN 3/3). TWO new traps: (1) `-c core.autocrlf=false add` in a
+`git worktree` still commits **CRLF over an LF blob** (16-line change read as
+294+/200-; compare the BLOB's CR count, not the worktree file's); (2) the mirror
+is two-way and the TREE can be the regressed side — a partial "merge the install
+back" commit kept a broken hunk. And the honest stopping state: 32.2% per-day was
+**not** a regression (56/60 duplicate rejects provably already stored, 19/40 junk
+are own-artifact echoes, buffer 293/300). See archive.
 
 ## Trigger
 `python internet_learner.py --once` (or the cron) reports

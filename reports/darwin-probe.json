@@ -1,7 +1,7 @@
 {
-  "updated": "2026-09-19T01:50:27.809797+00:00",
+  "updated": "2026-09-20T05:46:37.021268+00:00",
   "skills_dir": "C:\\Users\\damir\\AppData\\Local\\openamer-laptop\\skills",
-  "total": 843,
+  "total": 844,
   "skills": {
     "auto-best-practice-from-official": {
       "refs": 0,
@@ -1210,6 +1210,12 @@
       "missing": []
     },
     "darwin-harvested-go-zip": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-gridverify-desktop-json": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -2735,13 +2741,10 @@
       ]
     },
     "isaac-mission-control-showcase": {
-      "refs": 3,
-      "ok": 1,
-      "score": 0.333,
-      "missing": [
-        "skills/isaac-mission-control-showcase/scripts/run.sh",
-        "skills/isaac-mission-control-showcase/scripts/showcase.py"
-      ]
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
     },
     "jetson-build-source": {
       "refs": 0,
@@ -5330,8 +5333,8 @@
       "missing": []
     },
     "windows-python-service-ops": {
-      "refs": 3,
-      "ok": 3,
+      "refs": 4,
+      "ok": 4,
       "score": 1.0,
       "missing": []
     }
