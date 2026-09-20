@@ -3191,3 +3191,66 @@ table, `tool_server.py` `/health` -> `{"status":"alive","tools":9}`, and a real
 `/v1/chat/completions` probe answers `PROBE_OK`. A second post-fix `--once`
 cycle still rejected -- that is rotation noise and is reported as such, NOT as a
 post-fix regression.
+
+
+## Root cause 121 -- rotation exhaustion RE-CONFIRMED, and a NEW trap in the drift
+## family: an install checkout that lags main silently lacks upstream TESTS (live 20.09.26)
+
+Cron ran its one scheduled `internet_learner --once` cycle: `cycle_c_github:
+rejected, not trained (shallow + deep read both gated)` (51.1 s). The rates table
+said **rotation noise, not a gate regression** -- per-day 20.09. 29.0 % (20/69)
+against the documented 45-58 % 7d band since the 13.09 tightening, last-24h
+per-hour 0-33 % with NO step change. **No gate change was warranted** (step 0
+existed for exactly this read). This is the third consecutive round to land on
+the BF/BC stopping state, so the numbers below are the honest re-confirmation:
+
+- `online_buffer.jsonl` = **292** rows of `MAX_BUF = 300` (not the cap artifact).
+- Last 60 learner-owned `duplicate` rejects: **60/60 are the identical `(u, a)`
+  tuple already stored**, 0 near-duplicates, **0 novel `u`**. `_is_duplicate`
+  compares the exact tuple, and `deep_learn` is deterministic (root cause BF),
+  so a stable extractor can only re-propose known rows.
+- Last 90 learner-owned rows: `junk 42 / duplicate 45 / no-tech-signal 3`, and
+  `which_rule_matches.py` over the 57 most recent `junk` candidates attributes
+  them to **pre-existing** helpers only -- `_is_serp_snippet` (13),
+  `_is_nav_chrome` (15), `_is_own_plan_plus_run` (6),
+  `_is_docs_feature_label_weld` (4), `_is_date_heading_listing` (2),
+  `_is_nav_list` (1), plus the `_JUNK_MARKERS` tuple `self-critique`
+  (the learner's own self-critique scaffold). **Zero novel shapes.**
+- The 27 probe blocks reporting no individual rule matched are honest: those
+  candidates were NOT gated (`_is_junk` False) -- a `junk`-labelled row whose
+  composite gate no longer fires is a stale classification, not a leak.
+
+### The NEW trap: a lagging install checkout is not a drift, but it HIDES tests
+
+Step -1 (`git status --porcelain scripts/training tests/scripts`) surfaced a
+whole-tree probe result that LOOKS like the root cause 120 two-way drift but is
+not: the `openamer-agent/` install checkout sits on `main` **14 commits behind
+origin/main**, and the repo WORKTREE sits on `fix/28-respawn-test-psutil-hermetic`
+**38 commits behind**. Both therefore reported "drift" on 6 and 10 files
+respectively. Resolved by comparing each file against
+`git cat-file blob origin/main:<f>` on LF-normalised sha1:
+
+- `scripts/training/*.py`: **0 real drift** -- live == install ==
+  `origin/main` for all 84 tracked files. The 6 "worktree drifts"
+  (`analogy_engine.py`, `deep_task.py`, `reasoning_loop.py`, `self_improve.py`,
+  `tool_math.py`, `tool_server.py`) are the foreign `fix/28-*` branch's older
+  blobs, i.e. branch noise, exactly as class 120 warned.
+- `skills/devops/internet-learner-stall-fix/{SKILL.md, references/...}`: live ==
+  install == `origin/main`; only the stale repo worktree differs.
+
+The genuine finding is the CONSEQUENCE of that lag, and it is a trap because the
+obvious repair is wrong:
+
+`tests/scripts/test_self_improve_rules.py` -- the regression test pinned in
+`920131e54` for root cause 119's P2 rule -- exists on `origin/main` (3,261 B) and
+in the live install, but the `openamer-agent/` checkout (14 commits behind) had
+no such file, so the install tree could not run the regression that guards
+`self_improve.py`. Copying the blob in by hand **creates an untracked file in a
+checkout that is behind**, which makes the next `git pull` there refuse or
+conflict -- so the hand-copy was **reverted**, and the correct repair is the
+pull, not the copy. Measured: 23 *.py test files in the repo vs 24 in the live
+install root vs 23 in `openamer-agent/`.
+
+**Rule**: resolve any apparent three-tree drift against
+`git cat-file blob origin/main:<f>` FIRST, and read a *lagging checkout's missing
+file* as "behind", never as "lost". Do not restore it by file copy; pull it.

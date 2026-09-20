@@ -76,6 +76,19 @@ branch noise; `git cat-file blob origin/main:<f>` is the only truth. Also: a
 learned`-family echo rows were finally removed by signature (294→292, the 16
 genuine answers asserted intact). See archive.
 
+**121 (20.09.26)**: rotation exhaustion RE-CONFIRMED for the third round --
+`online_buffer` 292/300, the last 60 learner-owned `duplicate` rejects are
+**60/60 the identical `(u, a)` already stored** and 0 carry a novel `u`; 57
+recent `junk` candidates attribute ONLY to pre-existing helpers (serp / nav /
+own-plan / docs-label / date-heading + the `self-critique` marker tuple), zero
+novel shapes -> no gate change. The NEW trap: the `openamer-agent/` checkout
+lags main by 14 commits, so it APPEARS to have lost
+`tests/scripts/test_self_improve_rules.py` (the 119 regression test). It has not
+lost it -- a lagging checkout's missing file means BEHIND, never LOST, and
+hand-copying the blob in creates an untracked file that blocks the next pull.
+Resolve every apparent drift against `git cat-file blob origin/main:<f>` first.
+See archive.
+
 ## Trigger
 `python internet_learner.py --once` (or the cron) reports
 `cycle_x: rejected, not trained (shallow + deep read both gated)` on EVERY cycle,
