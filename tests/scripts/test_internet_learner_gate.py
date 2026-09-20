@@ -4992,3 +4992,50 @@ def test_readtime_card_widget_is_gated_on_both_paths():
     ):
         assert not IL._is_readtime_card_widget(prose), prose
         assert not buffer_store._is_readtime_card_widget(prose), prose
+
+
+def test_infobox_factrow_tail_is_gated_on_both_paths():
+    """A wiki infobox fact-row tail (class 118, 20.09.26).
+
+    Live leak: `cycle_h_efficiency` stored two infobox fields with the rendered
+    relative-age template between them:
+
+        September 2026) Launched 15 January 2001 ; 25 years ago ( 2001-01-15 )
+        Content license Creative Commons Attribution/ Share-Alike 4.
+
+    The text OPENS mid-parenthesis -- the extractor cut a field row out of the
+    page's infobox, not an article.
+
+    Either half ALONE is a false positive, and measurement proved it before the
+    gate was wired: the relative-age template by itself hit 13 hostile prose
+    controls (a real sentence may say "PyTorch 1.0 shipped 7 December 2018;
+    7 years ago (2018-12-07) the ecosystem was much smaller"), and the license
+    label by itself hit 6. The JUXTAPOSITION is the discriminator, so every
+    control below must stay learnable.
+    """
+    import buffer_store
+
+    leak = ("September 2026) Launched 15 January 2001 ; 25 years ago ( 2001-01-15 ) "
+            "Content license Creative Commons Attribution/ Share-Alike 4.")
+    assert IL._is_infobox_factrow_tail(leak) is True
+    assert IL._is_junk(leak) is True
+    assert buffer_store._is_infobox_factrow_tail(leak) is True
+    assert buffer_store.is_junk(leak) is True
+
+    # Each half on its own, in real sentences -- must stay learnable.
+    for prose in (
+        "PyTorch 1.0 was released 7 December 2018; 7 years ago (2018-12-07) the ecosystem looked very different.",
+        "Launched 15 January 2001; 25 years ago (2001-01-15) the site ran on a single server.",
+        "The API went live 3 March 2019 ; 7 years ago ( 2019-03-03 ) and is still on v1.",
+        "The transformer paper appeared 12 June 2017; 9 years ago (2017-06-12) attention was a niche idea.",
+        "Docker 1.0 landed 9 June 2014; 12 years ago (2014-06-09) containers were already old news.",
+        "Python 3.11 shipped 24 October 2022; 3 years ago (2022-10-24) type hints were still optional.",
+        "Content license terms: you may share and adapt, provided you attribute the source.",
+        "The license header says Content license: Apache-2.0 (see NOTICE for attribution).",
+        "The paper's content license is Creative Commons Attribution 4.0, so commercial reuse is allowed.",
+        "The model card lists: Created by Meta, Content license CC BY-NC 4.0, and Type of site research.",
+        "Wikipedia launched on 15 January 2001 and is licensed under Creative Commons Attribution-ShareAlike 4.0.",
+        "The dataset is released under a content license; Creative Commons Attribution 4.0 applies.",
+    ):
+        assert not IL._is_infobox_factrow_tail(prose), prose
+        assert not buffer_store._is_infobox_factrow_tail(prose), prose

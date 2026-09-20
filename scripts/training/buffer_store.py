@@ -1505,6 +1505,51 @@ def _is_readtime_card_widget(text):
     return bool(_READTIME_CARD_RE.search(text or ""))
 
 
+# class 118 marker (live 20.09.26) -- see _is_infobox_factrow_tail.
+# MediaWiki relative-age template followed by the infobox's license field. The
+# template renders as a date, a `;`, the relative age and the ISO date in
+# parentheses; the extractor then welded the NEXT infobox field onto it.
+_RELAGO_TEMPLATE = r"\b\d+\s+years?\s+ago\s*\([\s\S]{0,40}?\)"
+_INFOBOX_LICENSE_LABEL = r"\bContent license\b"
+_INFOBOX_FACTROW_TAIL_RE = _re.compile(
+    _RELAGO_TEMPLATE + r"[\s\S]{0,60}?" + _INFOBOX_LICENSE_LABEL, _re.I)
+
+
+def _is_infobox_factrow_tail(text):
+    """True when `text` is a wiki infobox fact-row tail (class 118).
+
+    Live 20.09.26: `cycle_h_efficiency` stored
+
+        September 2026) Launched 15 January 2001 ; 25 years ago ( 2001-01-15 )
+        Content license Creative Commons Attribution/ Share-Alike 4.
+
+    Two infobox fields ("Launched", "Content license") with the rendered
+    relative-age template between them -- a page's field table, not an article.
+    The text OPENS mid-parenthesis, so the extractor cut a field row out of the
+    box. 131 chars carrying digits, so the >=90 length trust and the
+    technical-signal gate both fired, and no existing detector matched
+    (`which_rule_matches.py` -> INDIVIDUAL RULES MATCHED: none).
+
+    The discriminator is the JUXTAPOSITION, not either half. The relative-age
+    template alone (5 candidate forms measured) hits 13 of 12-25 hand-written
+    hostile prose controls -- a real sentence may legitimately say "PyTorch 1.0
+    shipped 7 December 2018; 7 years ago (2018-12-07) the ecosystem was much
+    smaller". The license label alone hits 6 controls ("the paper's content
+    license is Creative Commons Attribution 4.0"). "Content license" + a CC
+    name within 60 chars still hits "The model card lists: Created by Meta,
+    Content license CC BY-NC 4.0, and Type of site research" -- real knowledge.
+    Requiring the template THEN the label inside 60 chars removes every one of
+    them: prose that names both puts a sentence boundary between them, and the
+    template only ever precedes the field table.
+
+    Measured: 1 buffer hit and it IS the leak (the writer gate accepted it,
+    `_is_junk` False) -> 0 of 3,059 `longterm_episodes`, 0 of 642 gate-test
+    literals, 0 FPs on 25 prose controls, 0 on a 12-strong hostile set that
+    quotes the template and the license label separately.
+    """
+    return bool(_INFOBOX_FACTROW_TAIL_RE.search(text or ""))
+
+
 def _is_jobboard_ad_run_chrome(text):
     """True when `text` is a job-board's repeated ad/slogan run.
 
@@ -3480,6 +3525,9 @@ def _is_nav_chrome(text):
         return True
     # a review card's date + glued read-time badge (class 114, 20.09.26)
     if _is_readtime_card_widget(text):
+        return True
+    # a wiki infobox fact-row tail: relative-age template + license field (class 118, 20.09.26)
+    if _is_infobox_factrow_tail(text):
         return True
     # a run of a document-hosting page's nav widgets (class 50, 18.09.26)
     if _is_nav_widget_run_chrome(text):
