@@ -2591,3 +2591,302 @@ message): `git branch -r --contains <sha>` -> origin/main, and
 `git cat-file blob origin/main:<file> | grep -c <marker>` -> **6 / 6 / 2**.
 `git diff origin/main --stat` for the 3 files then returns **empty** and the
 worktree md5 matches the origin/main blob md5 exactly.
+
+
+## Root cause 116/117 -- TESTED-BUT-UNCOMMITTED work (root cause AV again), and a TWO-WAY mirror drift (live 20.09.26)
+
+Cron run began on the documented `cycle_a_technews: rejected ... (shallow + deep
+read both gated)` line. Rate check said the rejection was rotation noise:
+`--days 7` per-source 45.3-58.5 % (efficiency lowest), per-day 35.4 % (19.09) /
+37.2 % (20.09, PARTIAL day cut at 10:51) vs 81 % all-time -- inside the
+documented depressed band, and `buffer_junk` last 100 = 58 `junk` (SERP-shaped
+deep-read fallback) / 41 `duplicate` / 1 `no-tech-signal`. **No gate change was
+warranted for the rejection itself.** Step -1 (git status) then did the work.
+
+### The find: a whole fix batch sitting tested-but-uncommitted in the working tree -- again
+
+`git status --porcelain scripts/training` showed 10 modified + 1 new test, and
+`git diff origin/main` proved **origin/main did NOT have any of it**. Not a gate
+class this time -- four independent live defects:
+
+1. **`consolidate(dry_run=True)` still pruned the live store.** The tests
+   isolate the EPISODE side by redirecting `mc.EPISODES`/`mc.META_STATE`, but
+   the tail of `consolidate()` calls `wm.prune()`, which resolves its OWN path
+   from the module constant and had **no `dry_run` parameter at all**. Measured
+   on a controlled fixture: 10 edges in, 9 out, sha changed. Every test run of
+   `test_memory_consolidation.py` was touching production data. Fix: `dry_run`
+   on `prune()` (skips the WRITE, keeps the identical decision) +
+   `wm.prune(max_dupes=2, dry_run=dry_run)` + a new
+   `scripts/training/test_world_model_dry_run.py` pinning BOTH halves (dry run
+   must not write AND must still report what it would prune; a real run must
+   still prune).
+2. **`world_model._HOME` trusted `OPENAMER_HOME` blindly.** The MSYS spelling is
+   a RELATIVE path to native Windows Python -> phantom tree under the drive
+   root -> WM pointed at a dir with no `world_model.jsonl` and every locked
+   write spun its full 8 s lock timeout. `_resolve_home()` translates the MSYS
+   form and accepts an env override only when it carries real install markers.
+3. **`prune()` re-normalised BOTH vectors inside every pairwise comparison** --
+   a 466-edge store cost ~250M function calls / ~43 s per nightly run.
+   Pre-normalising once keeps the identical >0.97 decision as a single dot;
+   the test re-derives the decision with the original per-pair algorithm.
+4. **`knowledge_to_action` burned a rotation slot on a retry miss.** One 5 s
+   `/health` attempt reported "server down" whenever the tool server was
+   mid-rebind (live 07:46:21 vs the 07:39:50 desktop relaunch; a curl seconds
+   later answered 9 tools). Now 3 attempts with backoff.
+
+Plus explicit `encoding="utf-8"` on the rotation/cache/flag I/O in active_learn,
+self_improve, smart_router, tool_server and the memory-consolidation test.
+
+### THE NEW MECHANICAL TRAP -- the repo's own portability guard rejects a path LITERAL in a docstring
+
+Describing the MSYS bug in a docstring, the first draft wrote the literal
+`as /c/Users/...` (to name the offending form). `scripts/training/test_no_hardcoded_paths.py`
+went RED:
+
+    hardcoded user paths leaked into repo training scripts:
+      self_improve.py:24: as /c/Users/... ; os.path.join then yields the phantom C:\\c\\Users\\... and
+
+Its allow-list is only `OPENAMER_HOME` / `pathlib.Path.home()` on the SAME line --
+there is no docstring exemption. **Describe a non-native path form in PROSE,
+never as a literal.** This is a fast, deterministic failure and it fired on the
+FIRST draft: run `pytest scripts/training/test_no_hardcoded_paths.py` right
+after any wording change in these modules.
+
+### The mirror is TWO-WAY -- diff before you overwrite
+
+The standing rule is "sync repo -> all three copies". Here the LIVE copy was
+**AHEAD**, not behind: it carried (a) explicit utf-8 on tool_server's two
+PowerShell subprocess captures and (b) `self_improve` logging a `no-proposal`
+outcome instead of returning it silently (so "the loop produced nothing" was
+indistinguishable from "the loop never ran"). Copying repo->live would have
+DELETED both. Correct move: union them into the committed version, then sync
+outward. `git diff` empty in the worktree is the proof the union is complete.
+
+### Pre-existing red baseline -- do NOT chase it
+
+`pytest scripts/training -q` -> **156 passed, 2 failed**. Both failures are
+`test_competitor_gap.py` (`test_gap_is_derived_not_hardcoded`,
+`test_real_capability_snippet_maps_instead_of_being_called_junk`) and were
+proved pre-existing the right way: `git stash` on a **pristine origin/main
+worktree** -> same 2 failed. Say "pre-existing, verified on a pristine
+checkout", never "my change is unrelated" without that proof.
+
+### Push + verify (standard shape)
+
+Worktree `C:/Users/damir/il116wt` from origin/main (the stray branch was 9
+commits ahead -- too many for `push origin HEAD:main`). Two commits:
+`b9e146e61` (the 9-file batch, 274+/29-), `88a30626d` (the union of the live
+copy's two fixes, after the docstring rewrite). Both pushed with
+`-c credential.helper= -c credential.helper=store push origin HEAD:main`,
+`merge-base --is-ancestor` -> FF_SAFE each time. Verified against the REMOTE:
+`git rev-parse origin/main` == `88a30626d`, `git branch -r --contains`,
+`git cat-file blob origin/main:<f> | grep -c <marker>` -> 3 / 6 / 5 / 3 / 12,
+and `git diff origin/main --stat` -> **empty**. Then the union was written onto
+BOTH install copies (laptop + openamer-agent; the latter had drifted on 8 of
+10 files) and all three verified md5-identical, EOL-normalised. Live proof of
+the fix: `prune(dry_run=True)` -> `{'removed': 1, 'kept': 9}`, store untouched
+True; `prune(dry_run=False)` -> store changed True; decisions agree True;
+`wm._cosine == wm._dot(normalise, normalise)` True.
+
+
+## Root cause 118 -- a wiki INFOBOX FACT-ROW TAIL (live 20.09.26)
+
+Cron run began on `cycle_h_efficiency`'s own stored answer, which IS the leak:
+
+    September 2026) Launched 15 January 2001 ; 25 years ago ( 2001-01-15 )
+    Content license Creative Commons Attribution/ Share-Alike 4.
+
+Two infobox fields welded by the rendered MediaWiki relative-age template. The
+text OPENS mid-parenthesis -- the extractor cut a field row out of the page's
+infobox, not an article. 131 chars carrying digits, so the >=90 length trust AND
+the technical-signal gate both fired. `which_rule_matches.py` on it:
+`INDIVIDUAL RULES MATCHED: none` -- a new class, not a pre-existing marker.
+
+### FIVE candidate forms measured before one was wirable -- the FIRST FOUR all failed
+
+This is the expensive part and it is the reason the gate is narrow. Every
+relative-age-template-only form died on hostile prose controls:
+
+| candidate | form | result |
+| --- | --- | --- |
+| A | date `;` N years ago `(`ISO`)` | 2 core FPs + 7 hostile |
+| D | N years ago `(`ISO`)` | 2 core FPs + 11 hostile |
+| B | `Content license` ... CC name | 2 core FPs |
+| F/G | relago AND license (either order) | 1 core FP |
+| H | `;` N years ago `(`ISO`)` | 2 core FPs + 7 hostile |
+| **O** | **relago `(`ISO`)` ... `Content license` within 60 chars** | **clean** |
+
+A real sentence may legitimately say *"PyTorch 1.0 shipped 7 December 2018;
+7 years ago (2018-12-07) the ecosystem was much smaller"* -- that is knowledge,
+not chrome, and five of six candidates refused it. The license label alone hits
+*"the paper's content license is Creative Commons Attribution 4.0"*. Even
+label + CC name within 60 chars hits *"The model card lists: Created by Meta,
+Content license CC BY-NC 4.0, and Type of site research"*.
+
+**The discriminator is the JUXTAPOSITION.** Requiring the template THEN the
+label inside 60 chars removes all of them: prose that names both puts a sentence
+boundary between them, and the template only ever precedes the field table.
+Final: 1 buffer hit and it IS the leak (writer gate `_is_junk` False) -> 0 of
+3,059 `longterm_episodes`, 0 of 642 gate-test literals, 0 FPs on 25 prose
+controls, 0 on a 12-strong hostile set quoting each half separately.
+
+### The `re` vs `_re` alias trap fired AGAIN (documented, still live)
+
+The helper was drafted with `_re.compile(...)`/`_re.I` for BOTH modules. But
+`internet_learner.py` imports plain `re` (it has ~145 `re.` call sites) while
+`buffer_store.py` imports `re as _re`. Result: `NameError: name '_re' is not
+defined` at `exec_module` -- and **`ast.parse` does NOT catch it**, only
+`exec_module` does. Generate the helper text PER MODULE. This is the second
+recorded instance; it is cheap to avoid and expensive to debug.
+
+### The episode corpus key is `text`, not `a`/`u`
+
+A first measurement pass read `longterm_episodes.jsonl` with the buffer's
+`a`/`u` keys and silently found **0 episodes** -- i.e. it validated a gate
+against an EMPTY corpus and printed a clean row. The episode store's keys are
+`ts`, `kind`, `text`, `meta`, `embedding`. **Always print the corpus row count
+next to the FP counts**; a harness that cannot say "3,059" is not measuring.
+
+### `find` over the whole install tree times out (>120 s)
+
+`find . -path "*internet-learner-stall-fix*" -name root-causes-archive.md` hung
+the terminal twice. Address the three known paths directly (laptop skills,
+`openamer-agent` skills, repo skills) -- all three were byte-identical here.
+
+### Sync + verify (all met)
+
+- leak row removed by SIGNATURE (buffer 292 -> 291, backup `.bak118`);
+  **46 structural-connection rows preserved** (before == after, asserted).
+- EOL: both modules stayed pure CRLF (5,266 / 3,800, loneLF 0); the test file
+  was appended as PURE BYTES and its **lone-LF census held at 120 -> 120**.
+- three copies: modules md5-identical (514cb8b8 learner / a3151c64 store);
+  the test file is identical AFTER LF-normalisation (repo keeps its 120
+  pre-existing lone-LF lines, the install copies stay normalised) --
+  `b949c878` on all three. The two-way mirror check (`tmp_mirror_check.py`)
+  proved the install copy was a strict SUBSET (pure additions only), so no
+  union was needed this time.
+- `tests/scripts/test_internet_learner_gate.py` **126 -> 127 passed**;
+  `tests/scripts` **282 -> 283 passed**; `test_no_hardcoded_paths` green.
+- pushed via a fresh worktree (`C:/Users/damir/il118wt`, the stray branch was
+  9 commits ahead); `merge-base --is-ancestor` -> FF_SAFE; verified against the
+  REMOTE: `origin/main` == `9c1d4c343`, markers 3/3/4 via `git cat-file blob
+  origin/main:<f> | grep -c`, and `git diff origin/main --stat` for the three
+  files **empty**.
+- live proof after: `IL._is_junk(leak)` True with `_is_infobox_factrow_tail` as
+  the ONLY leaf hit; a fresh `--once` cycle ran to completion.
+
+## Observation BF — the reject rate is up but NO gate regressed: a DETERMINISTIC
+## deep_learn + a 291/300 buffer (measured 20.09.26, DELIBERATE NON-FIX)
+
+Cron run began on `cycle_c_github: rejected, not trained (shallow + deep read both
+gated)` (54.8 s). Everything below was MEASURED; **no code was changed**, because
+no measurement pointed at a gate.
+
+### 1. Rate first — and it IS elevated, unlike root cause AI
+
+Per-day reject rate over `internet_learn_log.jsonl` (2,107 cycles, 534 rejects,
+all-time 25.3 %):
+
+| day | cycles | rejected | rate |
+| --- | --- | --- | --- |
+| 13.09 | 176 | 57 | 32.4 % |
+| 14.09 | 124 | 64 | 51.6 % |
+| 15.09 | 260 | 97 | 37.3 % |
+| 16.09 | 179 | 65 | 36.3 % |
+| 17.09 | 208 | 113 | 54.3 % |
+| 18.09 | 67 | 30 | 44.8 % |
+| 19.09 | 113 | 73 | **64.6 %** |
+| 20.09 | 53 | 35 | **66.0 %** |
+
+Two consecutive days near 65 % — NOT the flat, rotating 30 % of root cause AI.
+Per source since 18.09: every source is 45-69 % (worst `cycle_a_technews` 69 %,
+best `cycle_f_multi_domain` 44.8 %) — flat across sources, so this is not one
+cycle's bug.
+
+### 2. `buffer_junk.jsonl` is SHARED — attribute before you count
+
+6,813 rows, but only ~310 of the last 400 are internet-learner-owned (the rest
+belong to other writers; `OTHER junk 85`). Among the owned rows, reasons are
+`duplicate 162 / junk 139 / no-tech-signal 9`. **Split the file by the `u`
+prefix before computing any rate** — a naive "reject reason histogram" over the
+whole file mixes in another writer's rows.
+
+### 3. Every `junk` hit maps onto an ALREADY-DOCUMENTED helper — no new class
+
+`which_rule_matches.py --file` over the 232 distinct FULL candidates (the 300-char
+capped form, not a truncated copy — a truncated probe prints false `none`):
+32 candidate rows return `_is_junk: True`. Attribution of those 32: all leaf hits
+are known helpers — `_is_serp_snippet` (68), `_is_nav_chrome` (55),
+`_is_own_plan_plus_run` (6), `_is_arxiv_abstract_chrome` (6),
+`_is_marketing_hero_cta_chrome` (4), `_is_date_heading_listing` (4),
+`_is_ticker_loop`, `_is_tag_counter_run_chrome`, `_is_table_header_value_run`,
+`_is_repo_tab_statbar_chrome`, `_is_institution_abstract_tail_chrome`,
+`_is_docs_feature_label_weld`, `_is_dated_tag_strip_chrome`,
+`_is_dated_listing_run`, `_is_course_cta_chrome`, `_is_citation_counter_run`,
+`_is_changelog_chain`, `_is_bio_page_furniture_pair`, `_is_advisory_row`.
+**Zero novel shapes.** This is the class-109 family (own-artifact echo, SERP
+`snippet` shape, arXiv viewer labels) doing its job, not a leak.
+
+The 200 non-gating rows carry a leaf hit that does NOT arm `_is_junk` (e.g.
+`_is_nav_list` on a legitimate `arxiv … — <German date> · …` line) — expected:
+the leaf is one component, the composite gate is the verdict.
+
+### 4. The real mechanism: `deep_learn` is DETERMINISTIC, and the buffer is 291/300
+
+`deep_learn(q, k=2)` vs `deep_learn(q, k=6)` on four live queries:
+
+| query | k=2 len | k=6 len | k2 == k6 |
+| --- | --- | --- | --- |
+| `github trending AI agent framework 2026` | 251 | 251 | **True** |
+| `vLLM optimization best practices` | 177 | 177 | **True** |
+| `LLM prompt injection defense techniques 2026` | 144 | 144 | **True** |
+| `arxiv new papers meta-learning LLM agents 2026` | 0 | 252 | False |
+
+So `store_or_deep`'s "second chance, wider net" (`k=6`) is **byte-identical** to
+the k=2 pass for most queries: the retry re-stores the SAME string and the
+duplicate gate refuses it again. This is root cause V's dead-code shape, still
+live, and it is what turns one honest refusal into a logged "both gated".
+
+And the refusal IS honest: across the last 400 rejects, of 163 owned `duplicate`
+rows, **162 have the identical answer already in `online_buffer.jsonl` under the
+identical `u`**, 0 are near-duplicates, 1 is novel. The buffer holds 291 of
+`MAX_BUF = 300` rows — so this is genuine rotation exhaustion, NOT the 300/300
+cap artifact of root cause AI. `_is_duplicate` compares the exact `(u, a)` tuple,
+so a deterministic extractor at a stable 291 rows can only re-propose known rows.
+
+### Why NO fix (the two tempting patches are both wrong)
+
+- Widening `_JUNK_RE` for the SERP/German-date shape would swallow real paper
+  titles — the same shape carries legitimate `arxiv …` knowledge, and the
+  class-109/113/118 entries already measured this family.
+- "Fix" the k=6 retry to re-rank a DIFFERENT page is root cause AG, deliberately
+  unpatched; the skill's standing instruction is do NOT fix it on a rejection
+  alone. Here the k=6 result is not merely mis-ranked, it is identical — a
+  distinct, measurable symptom, but the cure (new URL selection) is an
+  architecture change, not a gate fix, and one rejection does not license it.
+
+**Correct stopping state**: a raised rate with (a) all junk leaf hits pre-existing,
+(b) 162/163 duplicate rejects provably already stored, (c) buffer below cap.
+The learner is idle because its seed space is exhausted, not because a gate is
+miscalibrated. Gate work stops here.
+
+### Harness limits hit (both already documented, both cost time again)
+
+- A truncated candidate (I first probed 120-char cuts) prints
+  `INDIVIDUAL RULES MATCHED: none` and looks like a new class. Probe the FULL
+  300-char stored string.
+- `search_files` cannot read `AppData/Local` — use `grep`. Third occurrence.
+
+### PITFALL — the `patch` tool EXPANDED a literal `\r` and corrupted the file
+
+Syncing the entry into the repo copy, `patch` was handed an anchor in an OLDER
+section as its context hint and rewrote
+`REPORT:\\c\tmp\oa-home\reports\dream-2026-09-19.md` -- the literal
+backslash-r in `\reports` became a REAL carriage return, splitting the line and
+shifting the lone-LF census 2,776 -> 2,779. Byte count stayed 177,730, so a
+size check alone would have passed it.
+
+**Never sync a large LF-native markdown file with a text-patch tool.** Append
+PURE BYTES (`open(p,'ab').write(entry.encode())`) and then assert
+`install == repo` byte-exact plus the lone-LF census. Recovery: the install copy
+was the correct merged form (a measured pure superset), so a byte copy fixed it.

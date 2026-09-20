@@ -21,7 +21,8 @@ Per-class narratives for J–Z, AA–AG (15./16.09.26) live in
 a CRLF append flips ~60 lines) -- and only a ONE-LINE pointer is added here.
 AW/AY (77-85), 96/97 (AZ), 98 (MEASURED-AND-REJECTED -> signature-delete),
 102/103 (BB), BE (deliberate non-fix) and 109/110 all live there, as do
-113/114/115 (20.09.26).
+113/114/115 and 118 (20.09.26), and BF (raised rate WITHOUT a gate regression:
+deterministic `deep_learn` + a 291/300 buffer; deliberate NON-FIX).
 TWO warnings stay live because they are behavioural, not history:
 
 - run `which_rule_matches.py` BEFORE touching a rule -- the AJ/AQ/AR trap has
@@ -35,6 +36,16 @@ false-`SKIP`s mixed-case candidates; scores `a` ONLY, so no pair-rule is
 measurable; `search_files` can NOT read `AppData/Local` → use `grep`).
 Pair-rule MEASURED-AND-REJECTED (2 real vLLM rows + 62/3,059 episodes). In
 `references/root-causes-archive.md`.
+
+**116/117 (20.09.26)**: no gate class at all -- step -1 found a whole
+TESTED-BUT-UNCOMMITTED batch (root cause AV again): `dry_run` never reached
+`world_model.prune` (a DRY RUN pruned the live store), the MSYS `OPENAMER_HOME`
+made a phantom tree, `prune()` re-normalised 250M times, and a single 5 s health
+probe burned a rotation slot. NEW TRAP: the repo's `test_no_hardcoded_paths`
+rejects a path LITERAL in a DOCSTRING -- describe the MSYS form in prose. And the
+mirror is TWO-WAY: the LIVE copy was AHEAD (utf-8 on tool_server's PowerShell
+captures, self_improve's `no-proposal` log), so a repo->live copy would have
+DELETED fixes -- union first. See archive.
 
 **111/112 (20.09.26)**: 81 = own-artifact plan THIRD title → WIDEN the class-80
 regex, not a new helper; 82 = German nav WELD + colon headline; the news ticker
