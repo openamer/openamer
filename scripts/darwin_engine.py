@@ -130,6 +130,50 @@ FITNESS_FILE = REPORTS_DIR / "darwin-fitness.json"
 PROBE_FILE = REPORTS_DIR / "darwin-probe.json"
 REPORT_FILE = REPORTS_DIR / "darwin-report.md"
 
+# ─────────────────────────────────────────────────────────────────────────────
+# Live-artifact guard
+#
+# Test fixtures redirect SKILLS_DIR/HOME to a per-test tmp tree so the engine
+# evolves a FAKE population. A fixture that forgets one of the derived report
+# paths left it pointing at the repo's real ``reports/`` dir, so a sandboxed
+# run overwrote the production fitness score, appended a bogus blob to the
+# append-only history ledger and self-tuned the live constants (observed
+# 2026-09-17: sandbox snapshots carrying only alpha/dead-skill/lonely-skill).
+# ``fitness_trend()`` compares first vs last snapshot, so a single leaked
+# snapshot poisons every later trend and tuning decision.
+#
+# The recorded roots below are captured at import time, before any fixture can
+# patch them. "Am I a sandbox?" is decided by comparing SKILLS_DIR against its
+# own import-time value -- the same signal ``conftest.py`` and the regression
+# test use. A real run is never blocked; a redirected one cannot write live.
+# ─────────────────────────────────────────────────────────────────────────────
+_IMPORT_SKILLS_DIR = SKILLS_DIR
+_LIVE_HOME = HOME
+_LIVE_REPORTS_DIR = REPORTS_DIR.resolve()
+_LIVE_DARWIN_DIR = DARWIN_DIR.resolve()
+
+
+def _guard_live_artifact(path: Path) -> None:
+    """Refuse to write *path* when it resolves into live evolution state.
+
+    Called by every writer. Raises ``RuntimeError`` rather than silently
+    skipping: a sandboxed run reaching a live artifact is a bug that must
+    surface, not a write to quietly drop.
+    """
+    if SKILLS_DIR == _IMPORT_SKILLS_DIR:
+        return  # real population -- the live tree is exactly where we belong
+    try:
+        resolved = Path(path).resolve()
+    except (OSError, TypeError):
+        return
+    for live in (_LIVE_REPORTS_DIR, _LIVE_DARWIN_DIR):
+        if resolved == live or live in resolved.parents:
+            raise RuntimeError(
+                f"refusing to write live artifact {resolved} from a sandboxed "
+                f"darwin run (live root: {live})"
+            )
+
+
 NOW = datetime.now(timezone.utc)
 
 
@@ -145,6 +189,7 @@ def _load_json(path: Path, default):
 
 
 def _save_json(path: Path, data):
+    _guard_live_artifact(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(data, indent=2, ensure_ascii=False), "utf-8")
 
