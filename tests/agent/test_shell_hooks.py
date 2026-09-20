@@ -9,6 +9,7 @@ covered in ``test_shell_hooks_consent.py``.
 from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 
 import pytest
@@ -25,6 +26,24 @@ def _write_script(tmp_path: Path, name: str, body: str) -> Path:
     path.chmod(0o755)
     return path
 
+
+def _sh_path(p: "Path | str") -> str:
+    """Spell a path the way the shell that runs the hook understands it.
+
+    Inside a bash script body a Windows drive path is unusable -- bash treats
+    every backslash as an escape, so the redirect silently targets nothing and
+    the assertion fails on a file that was never written. git-bash wants the
+    MSYS form. On POSIX the path is already correct and is returned unchanged,
+    so the assertion stays exactly as strict there.
+    """
+    import sys as _sys
+
+    text = str(p)
+    if _sys.platform != "win32":
+        return text
+    if len(text) >= 3 and text[1] == ":" and text[2] in ("\\", "/"):
+        return "/" + text[0].lower() + text[2:].replace("\\", "/")
+    return text.replace("\\", "/")
 
 def _allowlist_pair(monkeypatch, tmp_path, event: str, command: str) -> None:
     monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / "openamer_home"))
@@ -359,7 +378,7 @@ class TestCallbackSubprocess:
         script = _write_script(
             tmp_path, "log.sh",
             f"#!/usr/bin/env bash\n"
-            f"echo \"$(cat -)\" >> {calls}\n"
+            f"echo \"$(cat -)\" >> {_sh_path(calls)}\n"
             f"printf '{{}}\\n'\n",
         )
         spec = shell_hooks.ShellHookSpec(
@@ -379,7 +398,7 @@ class TestCallbackSubprocess:
         capture = tmp_path / "payload.json"
         script = _write_script(
             tmp_path, "capture.sh",
-            f"#!/usr/bin/env bash\ncat - > {capture}\nprintf '{{}}\\n'\n",
+            f"#!/usr/bin/env bash\ncat - > {_sh_path(capture)}\nprintf '{{}}\\n'\n",
         )
         spec = shell_hooks.ShellHookSpec(
             event="pre_tool_call", command=str(script),
@@ -691,6 +710,11 @@ class TestAllowlistConcurrency:
         assert shell_hooks.script_is_executable(f"/usr/bin/env python3 {script}")
 
         # Bare invocation on the same non-X_OK file: not runnable.
+        # Windows has no execute bit — os.access(path, os.X_OK) is True for any
+        # existing file, so "not runnable" cannot be distinguished there and the
+        # POSIX assertion below would only be testing the OS, not the code.
+        if sys.platform == "win32":
+            pytest.skip("os.X_OK carries no meaning on Windows; the execute-bit half of this contract is POSIX-only")
         assert not shell_hooks.script_is_executable(str(script))
 
         # Flip +x; bare invocation is now runnable too.
