@@ -2980,3 +2980,36 @@ census 1 in both, backup `.bak_20260920_125429` kept.
 **Correct stopping state re-confirmed:** (a) all junk leaf hits pre-existing, (b)
 159/161 duplicate rejects provably already stored, (c) buffer 291 < cap. Seed
 space exhausted, gates calibrated. Gate work stops here.
+
+### Rebuild-on-stale-base -- when your local commit sits on an OLD `origin/main` (cost one push, 20.09.26)
+
+`git push origin HEAD:main` was rejected `non-fast-forward`: origin/main had gained
+32 foreign commits, and two of MY files overlapped. `git diff --name-only
+HEAD...origin/main` showed the overlap was in SKILL.md itself -- the remote
+already carried the two standing-warning bullets my local base predated, so a
+naive `git merge` would have fought over content the remote had ALREADY accepted.
+
+The recovery that worked, WITHOUT touching the dirty foreign tree (32 of the 138
+dirty paths were exactly the incoming files, so a plain merge aborts):
+
+```
+git fetch origin main
+git worktree add --detach <WT> origin/main          # clean tree, no stashing
+# copy the INSTALL copies (the known-correct content) over the worktree's files
+git -C <WT> -c core.autocrlf=false add   <paths>
+git -C <WT> -c core.autocrlf=false commit -F <win-path-msg>
+git -C <WT> -c credential.helper= -c credential.helper=store push origin HEAD:main
+git worktree remove --force <WT>
+```
+
+Key point: the commit is built ON TOP of the current `origin/main` (parent ==
+origin/main), and its blobs were asserted byte-equal to the install copies -- so
+the delta reaching the remote is ONLY this finding + the pointer line, not a
+re-introduction of the work the remote already had. Verify after the push with
+`git show origin/main:<path>` compared byte-for-byte against the install copy
+(`cr` count included), never with the push exit code alone.
+
+Trap: a `git worktree add` of a CRLF repo writes SKILL.md back with 1,548 CRs
+while the blob is LF -- `worktree file == blob` is therefore FALSE even though
+the repo's own `core.autocrlf=false add` produces the correct LF blob. Compare
+BLOB to INSTALL, never worktree-file to blob.
