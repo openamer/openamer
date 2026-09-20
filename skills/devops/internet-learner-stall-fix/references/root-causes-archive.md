@@ -2774,3 +2774,119 @@ the terminal twice. Address the three known paths directly (laptop skills,
   files **empty**.
 - live proof after: `IL._is_junk(leak)` True with `_is_infobox_factrow_tail` as
   the ONLY leaf hit; a fresh `--once` cycle ran to completion.
+
+## Observation BF — the reject rate is up but NO gate regressed: a DETERMINISTIC
+## deep_learn + a 291/300 buffer (measured 20.09.26, DELIBERATE NON-FIX)
+
+Cron run began on `cycle_c_github: rejected, not trained (shallow + deep read both
+gated)` (54.8 s). Everything below was MEASURED; **no code was changed**, because
+no measurement pointed at a gate.
+
+### 1. Rate first — and it IS elevated, unlike root cause AI
+
+Per-day reject rate over `internet_learn_log.jsonl` (2,107 cycles, 534 rejects,
+all-time 25.3 %):
+
+| day | cycles | rejected | rate |
+| --- | --- | --- | --- |
+| 13.09 | 176 | 57 | 32.4 % |
+| 14.09 | 124 | 64 | 51.6 % |
+| 15.09 | 260 | 97 | 37.3 % |
+| 16.09 | 179 | 65 | 36.3 % |
+| 17.09 | 208 | 113 | 54.3 % |
+| 18.09 | 67 | 30 | 44.8 % |
+| 19.09 | 113 | 73 | **64.6 %** |
+| 20.09 | 53 | 35 | **66.0 %** |
+
+Two consecutive days near 65 % — NOT the flat, rotating 30 % of root cause AI.
+Per source since 18.09: every source is 45-69 % (worst `cycle_a_technews` 69 %,
+best `cycle_f_multi_domain` 44.8 %) — flat across sources, so this is not one
+cycle's bug.
+
+### 2. `buffer_junk.jsonl` is SHARED — attribute before you count
+
+6,813 rows, but only ~310 of the last 400 are internet-learner-owned (the rest
+belong to other writers; `OTHER junk 85`). Among the owned rows, reasons are
+`duplicate 162 / junk 139 / no-tech-signal 9`. **Split the file by the `u`
+prefix before computing any rate** — a naive "reject reason histogram" over the
+whole file mixes in another writer's rows.
+
+### 3. Every `junk` hit maps onto an ALREADY-DOCUMENTED helper — no new class
+
+`which_rule_matches.py --file` over the 232 distinct FULL candidates (the 300-char
+capped form, not a truncated copy — a truncated probe prints false `none`):
+32 candidate rows return `_is_junk: True`. Attribution of those 32: all leaf hits
+are known helpers — `_is_serp_snippet` (68), `_is_nav_chrome` (55),
+`_is_own_plan_plus_run` (6), `_is_arxiv_abstract_chrome` (6),
+`_is_marketing_hero_cta_chrome` (4), `_is_date_heading_listing` (4),
+`_is_ticker_loop`, `_is_tag_counter_run_chrome`, `_is_table_header_value_run`,
+`_is_repo_tab_statbar_chrome`, `_is_institution_abstract_tail_chrome`,
+`_is_docs_feature_label_weld`, `_is_dated_tag_strip_chrome`,
+`_is_dated_listing_run`, `_is_course_cta_chrome`, `_is_citation_counter_run`,
+`_is_changelog_chain`, `_is_bio_page_furniture_pair`, `_is_advisory_row`.
+**Zero novel shapes.** This is the class-109 family (own-artifact echo, SERP
+`snippet` shape, arXiv viewer labels) doing its job, not a leak.
+
+The 200 non-gating rows carry a leaf hit that does NOT arm `_is_junk` (e.g.
+`_is_nav_list` on a legitimate `arxiv … — <German date> · …` line) — expected:
+the leaf is one component, the composite gate is the verdict.
+
+### 4. The real mechanism: `deep_learn` is DETERMINISTIC, and the buffer is 291/300
+
+`deep_learn(q, k=2)` vs `deep_learn(q, k=6)` on four live queries:
+
+| query | k=2 len | k=6 len | k2 == k6 |
+| --- | --- | --- | --- |
+| `github trending AI agent framework 2026` | 251 | 251 | **True** |
+| `vLLM optimization best practices` | 177 | 177 | **True** |
+| `LLM prompt injection defense techniques 2026` | 144 | 144 | **True** |
+| `arxiv new papers meta-learning LLM agents 2026` | 0 | 252 | False |
+
+So `store_or_deep`'s "second chance, wider net" (`k=6`) is **byte-identical** to
+the k=2 pass for most queries: the retry re-stores the SAME string and the
+duplicate gate refuses it again. This is root cause V's dead-code shape, still
+live, and it is what turns one honest refusal into a logged "both gated".
+
+And the refusal IS honest: across the last 400 rejects, of 163 owned `duplicate`
+rows, **162 have the identical answer already in `online_buffer.jsonl` under the
+identical `u`**, 0 are near-duplicates, 1 is novel. The buffer holds 291 of
+`MAX_BUF = 300` rows — so this is genuine rotation exhaustion, NOT the 300/300
+cap artifact of root cause AI. `_is_duplicate` compares the exact `(u, a)` tuple,
+so a deterministic extractor at a stable 291 rows can only re-propose known rows.
+
+### Why NO fix (the two tempting patches are both wrong)
+
+- Widening `_JUNK_RE` for the SERP/German-date shape would swallow real paper
+  titles — the same shape carries legitimate `arxiv …` knowledge, and the
+  class-109/113/118 entries already measured this family.
+- "Fix" the k=6 retry to re-rank a DIFFERENT page is root cause AG, deliberately
+  unpatched; the skill's standing instruction is do NOT fix it on a rejection
+  alone. Here the k=6 result is not merely mis-ranked, it is identical — a
+  distinct, measurable symptom, but the cure (new URL selection) is an
+  architecture change, not a gate fix, and one rejection does not license it.
+
+**Correct stopping state**: a raised rate with (a) all junk leaf hits pre-existing,
+(b) 162/163 duplicate rejects provably already stored, (c) buffer below cap.
+The learner is idle because its seed space is exhausted, not because a gate is
+miscalibrated. Gate work stops here.
+
+### Harness limits hit (both already documented, both cost time again)
+
+- A truncated candidate (I first probed 120-char cuts) prints
+  `INDIVIDUAL RULES MATCHED: none` and looks like a new class. Probe the FULL
+  300-char stored string.
+- `search_files` cannot read `AppData/Local` — use `grep`. Third occurrence.
+
+### PITFALL — the `patch` tool EXPANDED a literal `\r` and corrupted the file
+
+Syncing the entry into the repo copy, `patch` was handed an anchor in an OLDER
+section as its context hint and rewrote
+`REPORT:\\c\tmp\oa-home\reports\dream-2026-09-19.md` -- the literal
+backslash-r in `\reports` became a REAL carriage return, splitting the line and
+shifting the lone-LF census 2,776 -> 2,779. Byte count stayed 177,730, so a
+size check alone would have passed it.
+
+**Never sync a large LF-native markdown file with a text-patch tool.** Append
+PURE BYTES (`open(p,'ab').write(entry.encode())`) and then assert
+`install == repo` byte-exact plus the lone-LF census. Recovery: the install copy
+was the correct merged form (a measured pure superset), so a byte copy fixed it.
