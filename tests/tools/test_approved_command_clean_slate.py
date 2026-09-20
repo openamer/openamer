@@ -18,6 +18,7 @@ during a retry backoff) must still SIGINT the command (exit 130); non-approved
 commands keep current interrupt behavior.
 """
 import json
+import shlex
 import threading
 import time
 
@@ -57,6 +58,21 @@ def _wait_for_sentinel(sentinel, timeout=10.0):
     return sentinel.exists()
 
 
+def _sh_path(path) -> str:
+    """Return *path* as a POSIX-safe literal for the shell command string.
+
+    The command below is handed to the terminal tool, which runs it through a
+    POSIX shell. A bare ``WindowsPath`` stringifies to ``C:\\Users\\...``, and
+    the shell eats the backslashes: the sentinel argument that reaches ``touch``
+    becomes ``C:Usersdamir...`` -- a *relative* name, created in the process
+    CWD instead of the intended ``tmp_path``. The sentinel then never appears
+    where the test waits for it, so the test fails while a zero-byte junk file
+    lands in the repo root. Quoting fixes the interpretation; converting the
+    separators to forward slashes is belt-and-braces for a Windows path.
+    """
+    return shlex.quote(str(path).replace("\\", "/"))
+
+
 # ---------------------------------------------------------------------------
 # terminal_tool
 # ---------------------------------------------------------------------------
@@ -94,7 +110,7 @@ def test_approved_command_genuine_interrupt_after_start_still_kills(tmp_path):
 
     def worker():
         holder["result"] = tt.terminal_tool(
-            command=f"touch {sentinel}; sleep 5; echo DONE", force=True
+            command=f"touch {_sh_path(sentinel)}; sleep 5; echo DONE", force=True
         )
 
     t = threading.Thread(target=worker, daemon=True)
@@ -125,7 +141,7 @@ def test_approved_note_enriched_not_misleading_on_interrupt(monkeypatch, tmp_pat
     holder = {}
 
     def worker():
-        holder["result"] = tt.terminal_tool(command=f"touch {sentinel}; sleep 5; echo DONE")
+        holder["result"] = tt.terminal_tool(command=f"touch {_sh_path(sentinel)}; sleep 5; echo DONE")
 
     t = threading.Thread(target=worker, daemon=True)
     t.start()
