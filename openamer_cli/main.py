@@ -15080,6 +15080,13 @@ _BUILTIN_SUBCOMMANDS = frozenset(
         "skin", "skills", "slack", "status", "tools", "uninstall", "update",
         "version", "webhook", "whatsapp", "whatsapp-cloud", "chat", "secrets", "security",
         "a2a", "system", "identity",
+        # Registered subparsers that were never declared here. The gating test
+        # (tests/openamer_cli/test_startup_plugin_gating.py) derives the live
+        # set from the real parser and fails when one is missing, because an
+        # undeclared subcommand forces a needless plugin-discovery pass.
+        "agent", "cost", "crew", "cross-session", "initiative", "lint-fix",
+        "marketplace", "observe", "plugin", "repomap", "review-pr", "sandbox",
+        "super", "swarm", "tracing", "tree", "voice", "web-agent", "workflow",
         # Help-ish invocations — plugin commands not being listed in
         # top-level --help is an acceptable trade-off for skipping an
         # expensive eager import of every bundled plugin module.
