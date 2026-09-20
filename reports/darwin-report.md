@@ -1,30 +1,30 @@
 # Darwin Engine Report
-_2026-09-18T23:30:40.967529+00:00 — evolutionary skill ecosystem_
+_2026-09-20T05:45:08.461225+00:00 — evolutionary skill ecosystem_
 
-**Population:** 110 Skills | **Offspring:** 5 | **Competitions:** 24
+**Population:** 113 Skills | **Offspring:** 5 | **Competitions:** 24
 
 ## Top 10 (fittest skills)
 
 | Skill | Fitness | Usage | Age (days) | Mutationen W/L |
 |---|---|---|---|---|
-| auto-env-checker | 2081.0 | 2080 | 0 | 7/23 |
-| autonomous-learning-architecture | 1847.97 | 1835 | 1 | 0/0 |
-| cdp-social-posting | 889.97 | 877 | 1 | 0/0 |
-| train-from-usage | 662.47 | 656 | 16 | 0/4 |
-| plugin-api | 653.07 | 644 | 28 | 0/0 |
-| asi-capability-summary | 310.9 | 301 | 3 | 0/0 |
-| asi-identity | 310.9 | 301 | 3 | 0/0 |
-| self-rewriter | 133.37 | 187 | 19 | 4/71 |
-| darwin-harvested-package-lock-json | 103.9 | 55 | 3 | 27/15 |
-| darwin-harvested-openamer-cli-main-py | 98.6 | 47 | 12 | 28/14 |
+| auto-env-checker | 2087.97 | 2096 | 1 | 7/32 |
+| autonomous-learning-architecture | 1863.93 | 1851 | 2 | 0/0 |
+| cdp-social-posting | 906.93 | 894 | 2 | 0/0 |
+| train-from-usage | 678.43 | 672 | 17 | 0/4 |
+| plugin-api | 669.03 | 660 | 29 | 0/0 |
+| asi-capability-summary | 342.87 | 333 | 4 | 0/0 |
+| asi-identity | 311.87 | 302 | 4 | 0/0 |
+| self-rewriter | 144.33 | 198 | 20 | 4/71 |
+| darwin-harvested-package-lock-json | 105.87 | 57 | 4 | 27/15 |
+| darwin-harvested-openamer-cli-main-py | 99.57 | 48 | 13 | 28/14 |
 
 ## Bottom 5 (selection candidates)
 
-- **darwin-harvested-memory-darwin-status-latest-json** (Fitness 16.97, 1 days old)
-- **darwin-harvested-tmp-om-base-no-such-file-or-director** (Fitness 16.97, 1 days old)
-- **darwin-harvested-darwin-trial-state-json** (Fitness 16.0, 0 days old)
-- **darwin-harvested-darwin-gate-queue-json** (Fitness 15.0, 0 days old)
-- **darwin-harvested-darwin-promoted** (Fitness 11.0, 0 days old)
+- **darwin-harvested-darwin-gate-queue-json** (Fitness 16.97, 1 days old)
+- **darwin-harvested-darwin-promoted** (Fitness 15.97, 1 days old)
+- **darwin-harvested-tmp-oa-home** (Fitness 15.97, 1 days old)
+- **darwin-harvested-gridverify-desktop-json** (Fitness 11.97, 1 days old)
+- **darwin-harvested-was-created-by-the-uv-installer-seed** (Fitness 11.97, 1 days old)
 
 ## New mutations
 
@@ -41,33 +41,46 @@ _2026-09-18T23:30:40.967529+00:00 — evolutionary skill ecosystem_
 - ⏳ `asi-identity+auto-env-checker` (0) vs `None` (0)
 - ⏳ `auto-env-checker+autonomous-learning-architecture` (0) vs `None` (0)
 - ⏳ `auto-env-checker+cdp-social-posting` (0) vs `None` (0)
-- ⏳ `auto-env-checker__mutbroaden_trigger` (2081.0) vs `auto-env-checker` (2081.0)
-- ⏳ `autonomous-learning-architecture__mutbroaden_trigger` (1847.97) vs `autonomous-learning-architecture` (1847.97)
-- ⏳ `autonomous-learning-architecture__muttighten_trigger` (1847.97) vs `autonomous-learning-architecture` (1847.97)
-- ⏳ `cdp-social-posting__muttighten_trigger` (889.97) vs `cdp-social-posting` (889.97)
-- ⏳ `discord-server-management__mutadd_verification_step` (33.97) vs `discord-server-management` (33.97)
-- ⏳ `discord-server-management__mutbroaden_trigger` (33.97) vs `discord-server-management` (33.97)
-- ⏳ `discord-server-management__muttighten_trigger` (33.97) vs `discord-server-management` (33.97)
-- ⏳ `github-readme-summary__mutbroaden_trigger` (28.07) vs `github-readme-summary` (28.07)
-- ⏳ `github-readme-summary__muttighten_trigger` (28.07) vs `github-readme-summary` (28.07)
-- ⏳ `openamer-plugin-development__muttighten_trigger` (27.37) vs `openamer-plugin-development` (27.37)
-- ⏳ `plugin-api__mutbroaden_trigger` (653.07) vs `plugin-api` (653.07)
-- ⏳ `plugin-api__muttighten_trigger` (653.07) vs `plugin-api` (653.07)
-- ⏳ `self-rewriter__muttighten_trigger` (133.37) vs `self-rewriter` (133.37)
-- ⏳ `train-from-usage__mutadd_pitfall` (662.47) vs `train-from-usage` (662.47)
-- ⏳ `train-from-usage__mutadd_verification_step` (662.47) vs `train-from-usage` (662.47)
-- ⏳ `train-from-usage__mutbroaden_trigger` (662.47) vs `train-from-usage` (662.47)
-- ⏳ `train-from-usage__muttighten_trigger` (662.47) vs `train-from-usage` (662.47)
-- ⏳ `undetectable-browsing__muttighten_trigger` (30.13) vs `undetectable-browsing` (30.13)
-- ⏳ `vscode-extension-scaffold__mutbroaden_trigger` (31.07) vs `vscode-extension-scaffold` (31.07)
+- ⏳ `auto-env-checker__mutbroaden_trigger` (2087.97) vs `auto-env-checker` (2087.97)
+- ⏳ `autonomous-learning-architecture__mutbroaden_trigger` (1863.93) vs `autonomous-learning-architecture` (1863.93)
+- ⏳ `autonomous-learning-architecture__muttighten_trigger` (1863.93) vs `autonomous-learning-architecture` (1863.93)
+- ⏳ `cdp-social-posting__muttighten_trigger` (906.93) vs `cdp-social-posting` (906.93)
+- ⏳ `discord-server-management__mutadd_verification_step` (34.9) vs `discord-server-management` (34.9)
+- ⏳ `discord-server-management__mutbroaden_trigger` (34.9) vs `discord-server-management` (34.9)
+- ⏳ `discord-server-management__muttighten_trigger` (34.9) vs `discord-server-management` (34.9)
+- ⏳ `github-readme-summary__mutbroaden_trigger` (28.03) vs `github-readme-summary` (28.03)
+- ⏳ `github-readme-summary__muttighten_trigger` (28.03) vs `github-readme-summary` (28.03)
+- ⏳ `openamer-plugin-development__muttighten_trigger` (27.3) vs `openamer-plugin-development` (27.3)
+- ⏳ `plugin-api__mutbroaden_trigger` (669.03) vs `plugin-api` (669.03)
+- ⏳ `plugin-api__muttighten_trigger` (669.03) vs `plugin-api` (669.03)
+- ⏳ `self-rewriter__muttighten_trigger` (146.33) vs `self-rewriter` (146.33)
+- ⏳ `train-from-usage__mutadd_pitfall` (678.43) vs `train-from-usage` (678.43)
+- ⏳ `train-from-usage__mutadd_verification_step` (678.43) vs `train-from-usage` (678.43)
+- ⏳ `train-from-usage__mutbroaden_trigger` (678.43) vs `train-from-usage` (678.43)
+- ⏳ `train-from-usage__muttighten_trigger` (678.43) vs `train-from-usage` (678.43)
+- ⏳ `undetectable-browsing__muttighten_trigger` (30.1) vs `undetectable-browsing` (30.1)
+- ⏳ `vscode-extension-scaffold__mutbroaden_trigger` (31.03) vs `vscode-extension-scaffold` (31.03)
 
 ## Evolution Tree
 
 ```mermaid
 graph TD
+    alpha["alpha"] ==> alpha+dead-skill["alpha+dead-skill"]
+    alpha["alpha"] --> darwin-evidence-hygiene["darwin-evidence-hygiene"]
+    alpha["alpha"] --> darwin-session-recall["darwin-session-recall"]
+    auto-env-checker["auto-env-checker"] --> auto-env-checker__mutbroaden_trigger["auto-env-checker__mutbroaden_trigger"]
+    autonomous-learning-architecture["autonomous-learning-architecture"] --> autonomous-learning-architecture__mutbroaden_trigger["autonomous-learning-architecture__mutbroaden_trigger"]
+    cdp-social-posting["cdp-social-posting"] --> cdp-social-posting__muttighten_trigger["cdp-social-posting__muttighten_trigger"]
     train-from-usage["train-from-usage"] --> train-from-usage__mutbroaden_trigger["train-from-usage__mutbroaden_trigger"]
     plugin-api["plugin-api"] --> plugin-api__muttighten_trigger["plugin-api__muttighten_trigger"]
     a2a-brain-meshlearn-verify["a2a-brain-meshlearn-verify"] ==> a2a-brain-meshlearn-verify+asi-capability-summary["a2a-brain-meshlearn-verify+asi-capability-summary"]
+    auto-env-checker["auto-env-checker"] --> auto-env-checker__mutbroaden_trigger["auto-env-checker__mutbroaden_trigger"]
+    autonomous-learning-architecture["autonomous-learning-architecture"] --> autonomous-learning-architecture__mutbroaden_trigger["autonomous-learning-architecture__mutbroaden_trigger"]
+    cdp-social-posting["cdp-social-posting"] --> cdp-social-posting__muttighten_trigger["cdp-social-posting__muttighten_trigger"]
+    train-from-usage["train-from-usage"] --> train-from-usage__mutbroaden_trigger["train-from-usage__mutbroaden_trigger"]
+    plugin-api["plugin-api"] --> plugin-api__muttighten_trigger["plugin-api__muttighten_trigger"]
+    a2a-brain-meshlearn-verify["a2a-brain-meshlearn-verify"] ==> a2a-brain-meshlearn-verify+asi-capability-summary["a2a-brain-meshlearn-verify+asi-capability-summary"]
+    auto-env-checker["auto-env-checker"] -.-> auto-env-checker__mutbroaden_trigger["auto-env-checker__mutbroaden_trigger"]
     auto-env-checker["auto-env-checker"] --> auto-env-checker__mutbroaden_trigger["auto-env-checker__mutbroaden_trigger"]
     autonomous-learning-architecture["autonomous-learning-architecture"] --> autonomous-learning-architecture__mutbroaden_trigger["autonomous-learning-architecture__mutbroaden_trigger"]
     cdp-social-posting["cdp-social-posting"] --> cdp-social-posting__muttighten_trigger["cdp-social-posting__muttighten_trigger"]
@@ -86,19 +99,6 @@ graph TD
     train-from-usage["train-from-usage"] --> train-from-usage__mutbroaden_trigger["train-from-usage__mutbroaden_trigger"]
     plugin-api["plugin-api"] --> plugin-api__muttighten_trigger["plugin-api__muttighten_trigger"]
     a2a-brain-meshlearn-verify["a2a-brain-meshlearn-verify"] ==> a2a-brain-meshlearn-verify+asi-capability-summary["a2a-brain-meshlearn-verify+asi-capability-summary"]
-    auto-env-checker["auto-env-checker"] --> auto-env-checker__mutbroaden_trigger["auto-env-checker__mutbroaden_trigger"]
-    autonomous-learning-architecture["autonomous-learning-architecture"] --> autonomous-learning-architecture__mutbroaden_trigger["autonomous-learning-architecture__mutbroaden_trigger"]
-    cdp-social-posting["cdp-social-posting"] --> cdp-social-posting__muttighten_trigger["cdp-social-posting__muttighten_trigger"]
-    train-from-usage["train-from-usage"] --> train-from-usage__mutbroaden_trigger["train-from-usage__mutbroaden_trigger"]
-    plugin-api["plugin-api"] --> plugin-api__muttighten_trigger["plugin-api__muttighten_trigger"]
-    a2a-brain-meshlearn-verify["a2a-brain-meshlearn-verify"] ==> a2a-brain-meshlearn-verify+asi-capability-summary["a2a-brain-meshlearn-verify+asi-capability-summary"]
-    auto-env-checker["auto-env-checker"] --> auto-env-checker__mutbroaden_trigger["auto-env-checker__mutbroaden_trigger"]
-    autonomous-learning-architecture["autonomous-learning-architecture"] --> autonomous-learning-architecture__mutbroaden_trigger["autonomous-learning-architecture__mutbroaden_trigger"]
-    cdp-social-posting["cdp-social-posting"] --> cdp-social-posting__muttighten_trigger["cdp-social-posting__muttighten_trigger"]
-    train-from-usage["train-from-usage"] --> train-from-usage__mutbroaden_trigger["train-from-usage__mutbroaden_trigger"]
-    plugin-api["plugin-api"] --> plugin-api__muttighten_trigger["plugin-api__muttighten_trigger"]
-    a2a-brain-meshlearn-verify["a2a-brain-meshlearn-verify"] ==> a2a-brain-meshlearn-verify+asi-capability-summary["a2a-brain-meshlearn-verify+asi-capability-summary"]
-    auto-env-checker["auto-env-checker"] --> darwin-harvested-darwin-promoted["darwin-harvested-darwin-promoted"]
     auto-env-checker["auto-env-checker"] --> auto-env-checker__mutbroaden_trigger["auto-env-checker__mutbroaden_trigger"]
     autonomous-learning-architecture["autonomous-learning-architecture"] --> autonomous-learning-architecture__mutbroaden_trigger["autonomous-learning-architecture__mutbroaden_trigger"]
     cdp-social-posting["cdp-social-posting"] --> cdp-social-posting__muttighten_trigger["cdp-social-posting__muttighten_trigger"]

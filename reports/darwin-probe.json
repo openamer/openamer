@@ -1,7 +1,7 @@
 {
-  "updated": "2026-09-18T17:43:50.710865+00:00",
+  "updated": "2026-09-19T01:50:27.809797+00:00",
   "skills_dir": "C:\\Users\\damir\\AppData\\Local\\openamer-laptop\\skills",
-  "total": 838,
+  "total": 843,
   "skills": {
     "auto-best-practice-from-official": {
       "refs": 0,
@@ -208,6 +208,12 @@
       "missing": []
     },
     "darwin-harvested-users-damir-appdata-local-openamer-lapto": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "a2a-brain-meshlearn-verify": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -1131,6 +1137,12 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-darwin-gate-queue-json": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-darwin-lineage-json": {
       "refs": 0,
       "ok": 0,
@@ -1144,6 +1156,12 @@
       "missing": []
     },
     "darwin-harvested-darwin-population-json": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-darwin-promoted": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -1449,6 +1467,12 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-tmp-oa-home": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-tmp-om-base-no-such-file-or-director": {
       "refs": 0,
       "ok": 0,
@@ -1540,6 +1564,12 @@
       "missing": []
     },
     "darwin-harvested-venv2-seed": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-was-created-by-the-uv-installer-seed": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -5262,10 +5292,12 @@
       "missing": []
     },
     "windows-path-resolution": {
-      "refs": 1,
+      "refs": 2,
       "ok": 1,
-      "score": 1.0,
-      "missing": []
+      "score": 0.5,
+      "missing": [
+        "/c/Users/.../fixed.py"
+      ]
     },
     "train-from-usage": {
       "refs": 2,
