@@ -82,9 +82,21 @@ def propose_improvement(target, content):
                           "cycle interval > 300s slows learning"))
 
     # P2: max_tokens too small for richer answers
+    #
+    # The guard MUST test `m2` (the max_tokens match), never `m` (the
+    # CYCLE_SECONDS match from P1). Testing `m` here fired whenever P1 found a
+    # cycle interval under 100s, and the proposal then carried `m.group(0)` --
+    # the CYCLE_SECONDS text -- as the pattern to replace. apply_and_test()
+    # rewrites the live file with src.replace(old, new, 1), so the rule deleted
+    # the assignment it was named after. Measured on this form: for the input
+    # `CYCLE_SECONDS = 60\nmax_tokens = 400\n` it proposed
+    # ('capacity', 'CYCLE_SECONDS = 60', 'max_tokens=200') and the patched file
+    # became `max_tokens=200\nmax_tokens = 400\n` -- the cycle interval gone.
+    # None of the three checks in apply_and_test() catches that: the result still
+    # compiles, still AST-parses, and still defines loop().
     m2 = re.search(r"max_tokens\s*=\s*(\d+)", content)
-    if m and int(m.group(1)) < 100:
-        proposals.append(("capacity", m.group(0), "max_tokens=200",
+    if m2 and int(m2.group(1)) < 100:
+        proposals.append(("capacity", m2.group(0), "max_tokens=200",
                           "small max_tokens limits answer quality"))
 
     # P3: missing error context in exception handlers
