@@ -58,6 +58,18 @@ has NO clean discriminator → signature delete. The 109/110 rows were still in
 the buffer: a written verdict is not a cleanup. Also: `skill_manage(write_file)`
 REPLACES a reference file — restore from the repo copy. See archive.
 
+**119 (20.09.26)**: no learner gate at all — `self_improve.py`'s P2 rule tested
+P1's `m` while replacing `m.group(0)`, so it DELETED the `CYCLE_SECONDS`
+assignment it guards (proven by exec; `apply_and_test`'s 3 checks all pass on the
+corruption). Fixed at source `920131e54` + `tests/scripts/test_self_improve_rules.py`
+(RED 3/3 → GREEN 3/3). TWO new traps: (1) `-c core.autocrlf=false add` in a
+`git worktree` still commits **CRLF over an LF blob** (16-line change read as
+294+/200-; compare the BLOB's CR count, not the worktree file's); (2) the mirror
+is two-way and the TREE can be the regressed side — a partial "merge the install
+back" commit kept a broken hunk. And the honest stopping state: 32.2% per-day was
+**not** a regression (56/60 duplicate rejects provably already stored, 19/40 junk
+are own-artifact echoes, buffer 293/300). See archive.
+
 ## Trigger
 `python internet_learner.py --once` (or the cron) reports
 `cycle_x: rejected, not trained (shallow + deep read both gated)` on EVERY cycle,

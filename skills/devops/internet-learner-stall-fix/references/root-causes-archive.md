@@ -3013,3 +3013,78 @@ Trap: a `git worktree add` of a CRLF repo writes SKILL.md back with 1,548 CRs
 while the blob is LF -- `worktree file == blob` is therefore FALSE even though
 the repo's own `core.autocrlf=false add` produces the correct LF blob. Compare
 BLOB to INSTALL, never worktree-file to blob.
+
+### Class 119 -- `self_improve.py` P2 rewrote the constant it guards (20.09.26)
+
+Not a learner gate. The self-improvement RULE ENGINE deleted the value the rule
+is named after, and the tree had it while the LIVE install did not.
+
+```python
+m2 = re.search(r"max_tokens\s*=\s*(\d+)", content)
+if m and int(m.group(1)) < 100:                 # <- P1's match, not m2
+    proposals.append(("capacity", m.group(0), "max_tokens=200", ...))
+```
+
+P1 searches `CYCLE_SECONDS\s*=\s*(\d+)` into `m`; P2 searched `max_tokens`
+into `m2` and then guarded on `m` and proposed `m.group(0)` -- the
+CYCLE_SECONDS TEXT -- as the pattern `apply_and_test()` replaces with
+`src.replace(old, new, 1)`. So on any target whose cycle interval was a number
+under 100, P2 deleted the interval assignment.
+
+Measured (module exec'd, no re-implementation) on the broken form, input
+`CYCLE_SECONDS = 60\nmax_tokens = 400\n`:
+
+    proposals: [('capacity', 'CYCLE_SECONDS = 60', 'max_tokens=200', ...)]
+    applied  : 'max_tokens=200\nmax_tokens = 400\n'      <- interval GONE
+
+`apply_and_test()`'s three checks all PASS on that result -- py_compile ok, AST
+parse ok, `def loop` still present -- so this would have been committed as a
+green self-improvement. A rule that rewrites its own input needs a check that
+the guarded symbol SURVIVES, not just that the file still parses.
+
+Fixed at source with a clean worktree on origin/main (commit `920131e54`,
+pushed, remote blob re-read): guard on `m2`, propose `m2.group(0)`. Regression
+test `tests/scripts/test_self_improve_rules.py` (hermetic, module exec'd) --
+verified RED on the old form (3/3 fail) and GREEN on the new (3/3 pass); the
+third case asserts the invariant over 5 contents: P2's `old` is never a
+CYCLE_SECONDS / non-max_tokens line. `pytest tests/scripts` -> 286 passed.
+
+### Trap 1 -- `-c core.autocrlf=false add` in a CRLF-repo WORKTREE still commits CRLF
+
+The standing note above ("the repo's own `core.autocrlf=false add` produces the
+correct LF blob") does NOT hold for a worktree. `git worktree add` of this repo
+materialises the files with CRLF; with autocrlf=false git performs NO
+conversion on add, so it commits exactly what is on disk -- a CRLF blob over an
+LF blob. Symptom: a 16-line change reported as **294 insertions / 200
+deletions**, and `git show HEAD:<f> | tr -cd '\r' | wc -c` -> 212 while
+origin/main's blob -> 0. Recovery: rewrite the file with pure bytes
+(`read_bytes().replace(b"\r\n", b"\n")`), assert the fix is still present,
+then `--amend`. Always compare the committed BLOB's CR count, not the worktree
+file's.
+
+### Trap 2 -- the mirror is two-way, and the tree can be the REGRESSED side
+
+Root cause 116/117 taught "the LIVE copy was AHEAD -- union, do not overwrite".
+Here the same check flipped the other way: the live install carried the CORRECT
+`m2` and the repo tree carried the regression, so a mechanical
+repo->live sync would have propagated the bug. A one-directional sync rule is
+what makes this dangerous. Diff BOTH directions, every file, every time:
+
+    diff <(tr -d '\r' < <live>) <(git show origin/main:<path> | tr -d '\r')
+
+Also: a "merge the live install's improvements back into the tree" commit
+(`88a30626d`) took the install's docstring and no-proposal log but kept the
+tree's broken P2 guard -- a partial merge. When restoring from the live copy,
+restore the whole hunk, not the parts that look interesting.
+
+### What was NOT wrong (20.09.26, the honest stopping state)
+
+The cron's `rejected` line was NOT a gate regression. Per-day rate 32.2% vs
+82.6% all-time, but the reject census is entirely the documented families:
+of the last 60 `duplicate` rejects **56 are provably already a buffer row**, and
+the last 40 `junk` rejects are 19 own-artifact echoes + 8 SERP snippets. Buffer
+at 293/300 (saturated), seed space exhausted. Root cause AG's deterministic
+`deep_learn` (BF) still explains a "both gated" line per weak source. No new
+marker was wired -- per the standing rule, never on a rejection alone. The only
+4 unproven `duplicate` rejects were `q` / `Eine Woche hat sieben Tage.`, a
+test-fixture string from `test_buffer_store.py`, not a leak.
