@@ -182,7 +182,7 @@ def t_speak(params):
             f"Add-Type -AssemblyName System.Speech; "
             f"$s = New-Object System.Speech.Synthesis.SpeechSynthesizer; "
             f"$s.Speak('{text.replace(chr(39), chr(39)*2)}')"],
-            capture_output=True, text=True, timeout=30)
+            capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=30)
         return {"spoken": text[:100], "rc": r.returncode}
     except Exception as e:
         return {"error": str(e)[:200]}
@@ -208,7 +208,7 @@ def t_see(params):
             "$g=[System.Drawing.Graphics]::FromImage($bmp); "
             "$g.CopyFromScreen(0,0,0,0,$b.Size); "
             f"$bmp.Save('{img_path}')"],
-            capture_output=True, text=True, timeout=20)
+            capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=20)
         # local vision via moondream (Ollama)
         import base64
         with open(img_path, "rb") as f:

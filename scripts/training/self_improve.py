@@ -20,10 +20,12 @@ from pathlib import Path
 def _training_dir():
     """Resolve the live training dir, tolerating a wrong/stale OPENAMER_HOME.
 
-    The desktop/cron env can point OPENAMER_HOME at a throwaway test dir
-    (e.g. %TEMP%/repo-ac-test2/home), which made every cycle crash with
-    FileNotFoundError on .si_rotation. Prefer a *valid* env override, then
-    the real install dir, then this file's own directory.
+    A cron/desktop env can hand over OPENAMER_HOME in the MSYS spelling (a
+    forward-slash drive path). Native Python treats that as RELATIVE, so
+    os.path.join builds a phantom tree under the drive root and every run
+    crashed with FileNotFoundError on .si_rotation. Prefer a *valid* env
+    override, then the real install dir, then this file's own directory.
+    Same pattern as internet_learner._training_dir (single convention).
     """
     cands = []
     _env = os.environ.get("OPENAMER_HOME")
@@ -147,8 +149,15 @@ def improve_once():
     content = open(live_path, encoding="utf-8").read()
     proposals = propose_improvement(target, content)
     if not proposals:
-        return {"target": target, "status": "no-proposal",
-                "reason": "already optimal or no safe pattern"}
+        # Log it. Returning silently made a rotation that produced nothing
+        # indistinguishable from a loop that never ran (improvements.jsonl
+        # stopped growing with no trace of why).
+        entry = {"target": target, "status": "no-proposal",
+                 "reason": "already optimal or no safe pattern"}
+        log(entry)
+        print(f"[self-improve] no-proposal: {target} — already optimal or "
+              f"no safe pattern", flush=True)
+        return entry
 
     os.makedirs(SANDBOX, exist_ok=True)
     sandbox_path = os.path.join(SANDBOX, target)
