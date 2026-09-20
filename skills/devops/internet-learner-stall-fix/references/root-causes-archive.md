@@ -2155,3 +2155,439 @@ the inserted block AND then re-inserted it → the file got
 first. **Restore from a `.bak` taken IMMEDIATELY before the write, and always
 `exec_module` both modules after an apply** — this is the second time a
 duplicated-anchor write reached the tree.
+
+## Observation BE — the `_ENTITY` rule lives ONLY in the writer gate (measured 19.09.26, DELIBERATE NON-FIX)
+
+Cron run began on the documented `cycle_a_technews: rejected` line. Per-day rate
+**35.6 % (36 ok / 65 rej)** on a **PARTIAL day cut at 05:18** (the skill says the
+final per-day row is never comparable) vs the documented 50–80 % band →
+**no gate change was warranted for the rejection itself.** `buffer_junk` last 70 =
+`junk 40 / duplicate 29 / no-tech-signal 1`, and every sampled shape is already
+documented: `Self-critique:` meta rows (other loop), class-66 own-plan echo
+(`KI-Performance-Optimierung … + 2.`), SERP `… — <date>` pairs, nav runs. Writer-gate
+census over the buffer: **0 of 281**, learner-gate census **0 of 281**, unparsable
+**0**, so the buffer was clean at entry AND after the extra cycles.
+
+**The finding — an asymmetry, NOT a leak.** `_ENTITY = &(?:#\d{1,5}|[a-z]{2,8});`
+(commit `4f9179025`, 11.09.26, "a LoRA trained on '&#39;' learns broken
+tokenization") is referenced from **`buffer_store._is_nav_chrome` only**. The
+learner's own `_is_junk` has **no** entity check — verified by source inspection:
+`"_ENTITY" in getsource(IL._is_junk)` → **False**, `"_ENTITY.search" in
+getsource(bs._is_nav_chrome)` → **True**. So an entity-mangled page is accepted by
+the extraction gate, spends a cycle, and is killed by the *writer* gate — which
+produces exactly the reported `rejected, not trained (shallow + deep read both
+gated)`. **Measured: 12 entity rows in the last 400 junk rows, and 0 of them can
+reach the buffer** (`store()` → `append` → `is_junk` refuses). The writer gate
+holds; this is defence-in-depth, not a hole.
+
+**Why it is NOT worth gating from the learner side, measured:** an entity check
+in the learner gate would be a tightening, but the entity rows are *true* chrome —
+`M: Optimization Strategies Comparison 21 January 2026 &middot; 19 mins …` (card
+header), `Nuxt HN | News … &lt; prev 1 / 10 more &gt;` (nav run), `Plugins / About
+ESC April 16, 2026 &middot; … 11 min read &middot; mcp …` (blog header). Rejecting
+them earlier only moves the rejection one step upstream; it saves no cycle, because
+`store_or_deep` would re-read the same page. **Prefer the writer gate as-is.**
+
+**The trap that killed the tempting "just unescape" fix — do NOT normalise
+entities without a new chrome helper.** Unescaping + collapsing NBSP/space and
+re-running the chain freed **4 of 12** entity rows, and the freed set was NOT
+clean:
+
+| freed row (after unescape) | verdict |
+|---|---|
+| `Vector Post-Training Quantization for LLMs (2024) Summary The paper derives the Linearity Theorem …` | GOOD prose |
+| `LLM llm = LLM ( model = "adept/fuyu-8b" , max_model_len = 2048 , … ) Reduce CUDA Graphs ¶ By default, we optimize …` | GOOD docs prose |
+| `UPDATE: Two Dead, 22 Admitted After Eldoret-Turbo Road Tanker Explosion 17 hours ago Two people killed … 11 hours ago "It's inappropriate!` | **CHROME** — a relative-time news listing; all gates read False |
+| `Acting Dumb" By The Wire | autonomy, regulation | February 14, 2026 A single agent-generated article has sent …` | **CHROME** — byline+tag+date lede |
+
+Normalisation alone would therefore **leak 2 chrome rows**, one of them a
+relative-time news listing that `_is_relative_time_nav_chain` (class 34) does not
+catch (it requires the `For You / Latest / Trending` nav labels). A correct fix is
+a **new structural class** (unescape as a *pre-step* in `_clean_insight` PLUS a
+helper for the relative-time listing / byline-tag-date lede, with hostile controls,
+the gate suite, 3 copies, commit, push) — a full session, never a quick edit.
+**Same call as root cause AG and the model-hallucination row: remove by signature,
+do not invent a gate on a rejection alone.**
+
+**Re-derive the anchors cheaply if you revisit this:** the useful probes are
+(1) `inspect.getsource(IL._is_junk)` / `(bs._is_nav_chrome)` string-contains tests,
+(2) a loop over the last N `buffer_junk` rows counting `bs._ENTITY.search(a)`, and
+(3) the unescape→`_clean_insight`→`bs.is_junk` triage table above. `buffer_junk`
+rows carry `reason`/`u`/`a` only — **no `ts`** — so a per-day reason breakdown is
+not possible from it; use `internet_learn_log.jsonl` for the rate and
+`buffer_junk` for the shape census.
+
+## Root cause BA - German newsletter double-opt-in page + job-board ad run (classes 107/108, live 20.09.26)
+
+Cron run began on the documented `cycle_g_security: rejected` line. Rate check
+said **66.7% for 20.09.26 (partial day) after 35.4% on 19.09.26** vs the
+post-13.09 regime of ~48-68% - a real step DOWN worth one look, but the rejects
+in the same window were honest (`junk` / `duplicate` at the 287/300 cap), so no
+gate was loosened. Step -1 (`git status --porcelain scripts/training tests/scripts`)
+found the real job: **the 19.09.26 session had applied + tested class 106
+(`_is_blog_nav_feature_run_chrome` - a site nav-label run welded to `Featured #`)
+in THREE trees but NEVER committed it** (root cause AV again), and its 2 test-file
+edits were lost with the scratch `_cron_*.py` cleanup. Finished that first.
+
+Then `tail -8` of `online_buffer.jsonl` (the cheapest leak read - neither row was
+ever rejected, so `buffer_junk.jsonl` never mentions them) showed TWO new leaks:
+
+| cycle | u | a |
+|---|---|---|
+| `cycle_e_competitors` | Competitor intelligence: The secret recipe of powerful AI coding Agents | `Fast geschafft - mehr als 3000 Urlaubstraeume warten auf Sie Bitte bestaetigen Sie Ihre Anmeldung durch einen Klick auf den Link in der E-Mail, die wir Ihnen soeben geschickt haben.` |
+| `cycle_c_github` | What new agent architectures are trending on GitHub? | `Haystack - Tech hiring without the hassle - Explore the tech scene on your terms. Haystack connects world-class tech talent...; Haystack - Get hired without the hassle - ...` |
+
+**Both are BUFFER leaks, not rate problems.** Rate analysis and leak-hunting are
+different jobs.
+
+### Class 107 - `_is_de_double_optin_newsletter_chrome`
+
+160 chars, so the `>=90` length trust fired; digits in `3000` fed the
+technical-signal gate. Structural, not topical: **>=2 independent markers** out of
+(`fast geschafft`, `urlaubstr`, `bestätigen sie ihre anmeldung`,
+`klick auf den link in der`, `soeben geschickt haben`).
+
+Candidates measured and REJECTED per-marker (single marker = hand FP):
+`fast geschafft` (FP: `Fast geschafft: der Benchmark lief in 42 Sekunden durch`),
+`bestätigen sie ihre anmeldung` (FP: `Bitte bestätigen Sie Ihre Anmeldung, sobald
+Sie das Formular ... ausgefüllt haben`), `mehr als 3000` (FP: `Mehr als 3000
+Modelle wurden für die Studie evaluiert`). The `>=2` conjunction is what makes it
+safe - same shape as `_is_de_pricing_chrome` (class 13).
+
+### Class 108 - `_is_jobboard_ad_run_chrome`
+
+`"without the hassle"` AND `haystack` counted `>=2` in the text. The
+discriminator is the CONJUNCTION: the slogan alone is one marketing phrase away
+from real prose (`The recruiter said the role was tech hiring without the
+hassle`), so the repeated brand is required. **The other buffer row carrying
+`haystack` twice (`pip install haystack-ai Get Started with Haystack`) does NOT
+carry the slogan and must stay learnable** - assert that in the test.
+
+Measured for both: 1 buffer hit and it IS the leak; 0 FPs on real-prose controls
+(EN + DE); 0 of 3,059 `longterm_episodes`; 0 gate-test literals.
+
+Wired in BOTH gates (AH both-files rule) + 2 new tests in
+`tests/scripts/test_internet_learner_gate.py` -> **122 passed**. Buffer cleaned
+290 -> 287 via `clean_buffer.py` (archived `junk`, 0 unparsable, CRLF intact).
+
+### PITFALL that cost the most time - `git add` on this repo rewrites EOL
+
+`core.autocrlf=true` with a `.gitattributes` that does NOT cover `*.py`. In this
+repo the **committed blobs are CRLF** (HEAD blob's first line ends `3 \r \n`),
+but `autocrlf=true` normalises to LF on `add` -> staging ANY edit rewrote the
+whole file (buffer_store.py 3641/3518 lines "changed" for a ~150-line edit).
+
+Diagnose in one shot: `git diff --ignore-cr-at-eol --stat -- <paths>` shows the
+REAL change (137/14 + 141/16), while plain `--numstat` shows thousands.
+
+Fix: stage and commit with **`git -c core.autocrlf=false add/commit -F ...`** -
+then `git diff --cached` is clean and readable, and
+`git diff --cached --numstat` matches the ignore-cr figure. Do NOT "normalise"
+the worktree with a script instead: with `autocrlf=true` git converts CRLF->LF on
+add, so a converted worktree silently changes every line. Verify with
+`git ls-files --eol -- <path>` (`i/lf w/crlf` is the expected steady state).
+
+Also: `git worktree remove --force` needs a **Windows-style path**
+(`C:/Users/...`); the MSYS form `/c/Users/...` fails with "is not a working tree".
+
+
+## 109/110 (live 20.09.26) -- MEASURED-AND-REJECTED: 'Share a lesson you learned' echo family
+
+Cron `internet_learner --once`. Rates table said rotation noise, not a regression:
+per-source 7d 47.5-59.6% (all eight cycles in a band), per-day 45.7 / 55.2 / 35.4 /
+45.5% since the 13.09 gate tightening -- no step change on 20.09. Two `--once` runs
+during the session produced one `security-learn` accept and two `rejected`, i.e.
+the documented healthy rotation.
+
+**The real finding was in the ACCEPTED rows, not in the rejections.** Four rows in
+`online_buffer.jsonl` are the learner's OWN artifact echoed back as a completion,
+truncated mid-sentence:
+
+| u | a |
+|---|---|
+| `Share a lesson you learned: Produce a merge` | `ready submission package (app.yaml + logo +  \u2014 Fresh passing evidence, tied to the exact committed blob \u2014 nothing to repair.` |
+| `Share a lesson you learned: Rewrite every outward` | `facing launch post (Show HN, Reddit, P \u2014 Done. All four launch posts rewritten around the one wedge, committed and pushed...` |
+| `Share a lesson you learned: Eliminate FALSE` | `POSITIVE security findings in C:\\Users\\damir \u2014 ## Summary` |
+| `Share a lesson you learned: was hast du a\u00f6\u00f6es gemacht` | `Hier der ehrliche, faktenbasierte Stand \u2014 gezogen aus git log und der echten Cron-Liste...` |
+
+The first three are the SAME row as a split sentence: the 60-char prompt truncation
+cut the source query (`Eliminate FALSE POSITIVE security findings in ...`) and the
+extractor's answer CONTINUES it. `buffer_junk.jsonl` carries this query 325x, most
+already killed as `duplicate` -- so the family is largely self-limiting.
+
+**Every candidate was measured and REJECTED -- do NOT wire a gate on a rejection
+alone (root cause AG).** Probe: `probe_marker_candidates.py --candidates <file>
+--test-file openamer-repo/tests/scripts/test_internet_learner_gate.py`.
+
+| candidate | hits | not-yj | bufFP | epFP | litFP | verdict |
+|---|---|---|---|---|---|---|
+| `(?i)positive security findings in` | 1 | 1 | 1 (=the leak) | 0 | 0 | REVIEW -> leak, not a marker |
+| `(?i)ready submission package` | 1 | 1 | 1 (=the leak) | 0 | 0 | REVIEW -> leak |
+| `(?i)facing launch post` | 1 | 1 | 1 (=the leak) | 0 | 0 | REVIEW -> leak |
+| `(?i)share a lesson you learned:` | 0 | 0 | 0 | **1** | 0 | SKIP (query-side, harness reads `a` only) |
+| `\u2014\s*#{1,6}\s` | 1 | 1 | 1 | 0 | 0 | REVIEW (leak only) |
+| `\(\s*[A-Z][^)]{0,60}\u2014` | 4 | 4 | 4 | **44** | **1** | REJECT |
+| `\(\s*[\w. ]{4,40}\+\s` | 1 | 1 | 1 | **101** | **9** | REJECT |
+
+**The pair-aware candidate -- the one that actually looks correct -- was measured and
+also REJECTED.** `_probe_pair_20260920.py` (answer continues a prompt that ends in a
+non-terminal char AND the answer opens LOWERCASE) hits 4 buffer rows: the 3 real leaks
+**plus 2 legitimate `Best practice from official docs: vLLM ...` rows** whose answers
+open `vLLM's ...`. On the 3,059 real `longterm_episodes` it fires **62x** (German chat
+pairs: `du hast skills und tools ...`). Discriminator missing -> no gate, delete the
+signature. Note the truncation itself is what creates these rows: they exist ONLY
+because the prompt is cut at ~60 chars without a terminal character.
+
+**Harness limitations found (fix these first next time):**
+1. `probe_marker_candidates.py` compiles every candidate with `re.IGNORECASE`
+   regardless of the `(?i)` prefix, but its SKIP/REVIEW **verdict** still reads
+   `hits`/`not-yj` -- a mixed-case candidate such as `Share a lesson you learned:`
+   scores 0 and prints `SKIP` while the buffer demonstrably contains the string.
+   Never read a bare `SKIP` as 'already gated'; confirm with `grep -i` on the buffer.
+2. It searches **`a` only** -- it cannot measure any rule whose signal lives in the
+   `(u, a)` PAIR. `buffer_store.append(u, a)` DOES receive `user_text`, so a pair rule
+   is wireable in principle; this harness just cannot score it. Use a purpose-written
+   probe (as above) and count episodes FPs yourself.
+3. `search_files` (ripgrep) on this host CANNOT read under `AppData/Local`
+   (`os error 3`, path not found) -- use `grep` in `terminal` for every probe/file
+   under the install root. Cost several failed calls this session.
+
+
+## 111/112 (live 20.09.26) -- own-artifact plan THIRD title (class 81) + German nav WELD (class 82), and a ticker with NO clean discriminator
+
+Cron began on the documented `cycle_h_efficiency: rejected` line. Per-day rate
+**37.9 %** (11/29) and per-hour 22-31 % vs **73.9 % all-time (n=2083)** -- BELOW
+the documented 50-80 % band, so the rate check alone was ambiguous; the rejects
+turned out to be honest (`duplicate` at the cap + documented shapes). `buffer_junk`
+last 40 = 28 `junk` / 12 `duplicate`. Writer- and learner-gate censuses at entry:
+**0 of 293** -- and the buffer was still not clean, because four rows of the
+109/110 echo family were sitting in it (see below).
+
+### The 109/110 cleanup was DOCUMENTED BUT NEVER EXECUTED
+The previous session measured the 'Share a lesson you learned' family and wrote
+the verdict into the archive -- but the four rows were still in
+`online_buffer.jsonl` (idx 11/12/13/291). **A written verdict is not a cleanup.**
+The 109/110 entry says delete-by-signature, so that is what happened:
+`294 -> 289 -> 288`, all four removed plus a sixth one found in the same pass:
+`Share a lesson you learned: Make these five Windows` ->
+`failing test files pass on Windows W - ## Status: investigation COMPLETE, implementation NOT done`.
+That sixth row has the `- ##<heading>` shape the 109/110 probe had already
+listed as REVIEW-only (`-\s*#{1,6}\s` = 1 buffer hit, 0 ep, 0 lit) -- and the
+tightened forms confirm why no gate was shipped: `-\s*#{1,6}\s*[A-Z]` still
+measured **1 hard-control FP** (`Two sections - ## Methods and ## Results - were merged.`)
+and the clean variants (`-\s*#{1,6}\s*(?:Status|Summary|...)`) were clean but
+only because they were narrow enough to be pointless. Signature delete, no code.
+
+### Class 81 -- the own-artifact plan's THIRD title (minimal WIDENING, not a new helper)
+Row 282: `Continuous Learning Loop: Error-Capture + Categorization + Memory + Auto-Skill-Generation + Trend.`
+Same family as classes 66 `_PROMPT_PLAN_ECHO_RE` (needs a DANGLING `2.`) and 80
+`_OWN_PLAN_PLUS_RUN_RE` (alternation listed only the energy/efficiency titles).
+Two alternates added to the EXISTING class-80 regex --
+`Continuous Learning Loop` and the German twin `Kontinuierliche Lernschleife` --
+nothing else changed, so the previously-rejected bare-title and bare-`+`-run
+forms stay rejected. Measured: 1 buffer hit (the leak), 0 FPs on 11 prose
+controls (incl. `Continuous Learning Loop: the team monitors drift weekly and
+retrains quarterly.`), 0 test literals; the **4** `longterm_episodes` hits are
+the SAME own-artifact strings in English + German, i.e. the leak, not world
+knowledge (the same argument class 80 used for its single episode hit).
+
+### Class 82 -- German nav-label WELD into the article headline
+A POST-FIX live cycle stored the German source page's menu chrome:
+
+    Blogs Karriere Ueber uns U Vertrieb kontaktieren LLM Agent Sandboxing:
+    Wie MCP, Tool Permissions und DSGVO zusammenpassen
+
+**The WELD is the discriminator, not the vocabulary** (the AU rule again): the
+labels are joined by whitespace ONLY. Sweep that mattered:
+
+| candidate | buf | hard-control FP | verdict |
+|---|---|---|---|
+| `>=2` labels welded, bare | 1 | 1 (`Impressum Datenschutz AGB sind rechtliche Pflichtangaben.`) | REJECT |
+| `>=3` labels welded, bare | 1 | 1 (same) | REJECT |
+| `karriere` + `ueber uns` within 40 chars | 1 | 1 | REJECT |
+| weld + TitleCase colon headline | **1 (the leak)** | **0 / 17** | **SHIPPED** |
+| weld + a tech word within 60 chars | 1 | 0 | equivalent on this corpus |
+
+The label set must stay small and site-shaped (`Blogs?|Karriere|Ueber uns|Impressum|
+Datenschutz|AGB|...`); 0 of the 6,118 `longterm_episodes` and 0 test literals.
+
+### TWO mechanical traps cost rounds here
+1. **The dispatch anchor is the BLANK-LINE-separated three-line form.** In this
+   file the chain is
+   `"    if _is_own_plan_plus_run(t):\r\n\r\n        return True\r\n"`.
+   The one-line form (`...):\r\n        return True\r\n`) matched **0 times** and
+   the apply script's assert aborted -- the same shape as the class-AI `_is_nav_chrome`
+   anchor trap. Build it from `repr()` output, never from a `grep -A2` rendering.
+2. **The learner and store dispatch use different parameter names** (`t` vs
+   `text`), so the wire block must be emitted per file -- the AQ lesson, recurred.
+   The 3-copy `md5sum` is what proves both got patched.
+
+### A `learned` log line can name chrome the buffer never stored
+`cycle_c_github: github-learn: Projects Services Repos Notes About Contact Work With Me
+` back-arrow `Back to Notes AI Agen` looked exactly like a nav leak. The buffer tail
+proved otherwise: **no such row exists** -- the stored rows were
+`Agent memory -- not the model -- is the 2026 bottleneck.` (clean prose) and the
+news-ticker row. Read the BUFFER, not the log line (AO lesson, recurred).
+
+### The news ticker has NO clean discriminator -- signature delete only
+Row 288 (221 chars, ends in `?`, carries grouped numbers):
+`Poll finds Americans want to slow development but not stop 195,000 heated
+blankets recalled after dozens of burn injuries 3 savings moves to make post-Fed
+rate hike How much will a $750,000 annuity pay each month in 2026?`
+A "telegraphic run" detector (>=90 chars, no internal sentence-ender, >=2 grouped
+numbers, ends in `?`/`.`) measured **11 buffer hits, 316 episodes, 3 test
+literals** and did NOT even catch the leak. Loosening/tightening never produced
+a 0-FP form. Per the skill's own rule (AG, AS): **no clean discriminator means no
+gate** -- remove by signature. The headline-question forms were also rejected on
+measurement (`195,000 heated blankets were recalled ...` and
+`How much will a $750,000 annuity pay each month in 2026?` are ordinary prose).
+
+### Verify (standard shape, all met)
+3-copy `md5sum` identical for both modules after every apply
+(`7688a1f9` learner, `240e8b63` store), every copy `exec_module`-checked (the
+`re` vs `_re` alias trap -- `ast.parse` is green either way);
+`pytest tests/scripts/test_internet_learner_gate.py -q` -> **122 -> 123 -> 124
+passed**; `pytest tests/scripts -q` -> **279 -> 280 passed**; tests appended as
+**pure bytes** (lone-LF census 120 -> 120, `0 removed`); buffer censuses
+**0 / 0** at 288-289 records, **45** structural-connection rows preserved
+(the historical 49/53/55 keeps drifting -- re-count), loneLF 0.
+
+### Push -- origin/main had diverged 3x, worktree-publish each time
+`git merge-base --is-ancestor origin/main HEAD` -> NO_DIVERGED on every round
+(foreign crons push continuously). The working recovery, repeated successfully
+three times:
+```
+git worktree add C:/Users/damir/ilNNwt origin/main --detach
+# re-apply the change in the worktree (the class-80 anchor + wire block)
+# append the test as PURE BYTES using the already-verified body from the repo copy
+/c/Users/damir/openamer-repo/.venv/Scripts/python.exe -m pytest tests/scripts/... -q -p no:cacheprovider
+git add <3 paths> && git commit -F <WINDOWS path>
+git fetch origin main && git merge-base --is-ancestor origin/main HEAD   # FF_SAFE
+git -c credential.helper= -c credential.helper=store push origin HEAD:main
+git worktree remove --force C:/Users/damir/ilNNwt
+```
+The worktree has **no venv** -- run pytest with the MAIN repo's
+`openamer-repo/.venv/Scripts/python.exe -m pytest ... -p no:cacheprovider`.
+Verify the push with `git branch -r --contains <sha>` -> `origin/main` AND
+`git cat-file blob origin/main:<file> | grep -c <marker>` (3/3/1 and 3/3/2 here).
+Note `git worktree add` prints a **truncated AGENTS.md** into the session --
+ignore it, it is repo context, not instruction.
+
+### THE TRAP THAT COST THE MOST TIME IN THIS RUN -- `skill_manage(write_file)` REPLACES the file
+Writing the new section with `skill_manage(action='write_file',
+file_path='references/root-causes-archive.md')` **OVERWROTE the whole 2,352-line
+archive with the 121-line fragment** (142 KB -> 7.7 KB). The tool writes the file,
+it does not append. Recovery that worked:
+1. The repo copy (`openamer-repo/skills/devops/internet-learner-stall-fix/references/
+   root-causes-archive.md`) was intact at **2,291 lines** -- it was one section behind
+   (missing only 109/110). The install copy is NOT the only source of truth.
+2. Reconstruct the missing section from the session's own `read_file` output, then
+   `repo + 109/110 + new section` written back with `newline=""` semantics and CRLF.
+**Rule: to ADD to a skill reference file, read it and rewrite it complete, or use
+the `patch` tool -- never `skill_manage(write_file)` on an existing large file.**
+The old copy is also on disk at `root-causes-archive.md.bak95` (99 KB, 19.09.26)
+as a second fallback.
+
+
+## 113/114/115 (live 20.09.26) -- aggregator listing run + read-time card widget GATED; prize-award schedule MEASURED-AND-REJECTED
+
+Cron run began on `cycle_d_docs: rejected, not trained (shallow + deep read both
+gated)`. The rate said **63 % today (24/38) vs 25 % all-time (n=2,092)** -- and
+per day 11.09: 0 %, 13.09: 32 %, 14.09: 52 %, 15.09: 37 %, 16.09: 36 %,
+17.09: 54 %, 18.09: 45 %, 19.09: 65 %, 20.09: 63 % -- a clear upward drift, so
+the gates were inspected rather than assumed healthy.
+
+### The rejection reason was NOT one class (do not force a single narrative)
+Instrumenting `buffer_store._audit` for four targeted cycles showed the live
+rejects split across:
+- **honest** `bs:_is_serp_snippet` (the shallow path builds SERP-shaped text --
+  40 % of junk audits in the newest quartile vs 6 % in the oldest, i.e. the
+  search backend is returning more snippet-shaped text over time),
+- honest `duplicate` at the ~290/300 cap,
+- and **two genuine leaks that passed EVERY detector**.
+
+`which_rule_matches.py` on both leaks: `INDIVIDUAL RULES MATCHED: none` -- so
+neither was a pre-existing marker, both were new classes.
+
+### class 113 -- a dated aggregator LISTING run (GATED)
+`cycle_e_competitors` (and an earlier `cycle_a_technews`) stored a blog INDEX
+feed, 2 byte-identical buffer rows:
+
+    ChatGPT Work - 12th September 2026 OpenAI agents attacked RubyGems back in
+    May - 12th September 2026 Some thoughts on the Navier-Stokes Millennium
+    Prize Problem - 8th September 2026 This is a link post by Simon Willison,
+    posted on 27th February 2026 .
+
+Several unrelated headlines welded by their own `- <date>` tails. 251 chars with
+digits -> both the >=90 length trust AND the technical-signal gate fired.
+
+**The first discriminator was WRONG and measurement caught it.** Two date stamps
+within 120 chars (no dash required) measured **1 `longterm_episodes` hit**:
+
+    | Erstellt | 16. August 2026 (vor 12 Tagen) | | Letzter Push | 28. August 2026 |
+
+-- a Markdown metrics TABLE, i.e. real knowledge that must stay learnable.
+Requiring the row DASH (`\s[-\u2013\u2014]\s`) in BOTH slots removes it: prose
+that merely mentions two dates (`released on 12 September 2026 and benchmarked
+on 8 September 2026`) has no such dash. Also rejected a prose control that
+carries dashes but is not a row: `Released 12. September 2026 - improved
+throughput by 30% - measured against the 8. September 2026 baseline.`
+Final: 2 buffer hits, BOTH the leak -> 0 FPs on 10 prose controls, 0 of 3,059
+episodes, 0 of 1,597 gate-test literals.
+
+### class 114 -- a CMS review card's read-time badge (GATED)
+`cycle_f_multi_domain` stored:
+
+    Claw Mar 23, 2026 Comparison 15 min min read OpenClaw vs Other AI Agent
+    Frameworks - Comprehensive Comparison 2026 In-depth comparison of OpenClaw
+    with LangChain, AutoGPT, CrewAI, and other popular AI agent frameworks.
+
+The discriminator is the DOUBLED unit `min min read` (a renderer artifact),
+which prose never emits -- so `a 15 min read` / `the 15-minute read` stay
+learnable. Requiring the date + badge TOGETHER keeps a bare badge and a bare
+date out of scope. 1 buffer hit, IS the leak; 0 FPs on 10 controls (two of which
+mention `min read`); 0 of 3,059 episodes; 0 literals.
+
+### class 115 -- a prize-award schedule (MEASURED AND REJECTED -> signature-delete)
+Created DURING this run's live verification (`cycle_g_security` stored
+`Awards are distributed as $4,000 for the first-place team, $3,000 for the
+second, $2,000 for the third, and $1,000 for the fourth.`). A `$N ... $N`
+detector measured **2/3 control FPs** (`The API costs $4,000 per month ... and
+the GPU cluster adds $3,000 more.`), **4/5 buffer FPs** (only the leak was a
+leak -- the other four are real pricing/benchmark prose), and **13 episode
+hits**. No clean discriminator means NO GATE (rule AG/AS) -> removed by
+signature. This is a reminder that "buffer was clean at entry" does not survive
+a run: a leak can be created by the very cycles you are verifying.
+
+### Cleanup + verify (all met)
+- leak rows removed by signature: 3 rows (113 x2, 114) then 1 row (115);
+  buffer 293 -> 290 -> ... -> 292; **45 structural-connection rows preserved**
+  (historical 49/53/55/45 keeps drifting -- re-count).
+- 3-copy `md5sum` identical within each module: **5ce5eb18** learner,
+  **463f1a84** store, test **0492499d**; every copy `exec_module`-checked.
+- **The `re` vs `_re` ALIAS TRAP, live:** `internet_learner.py` imports plain
+  `re` (145 `re.` call sites) while `buffer_store.py` imports `re as _re`.
+  The helper text is generated PER MODULE for that reason; a single shared
+  template raises NameError at import that `ast.parse` does NOT catch.
+- **CRLF trap:** the helper template carries bare `\n`; inserting it raw flipped
+  **67 lines to lone-LF** on the first pass. Fix = CRLF-normalise every inserted
+  line (`s.replace("\r\n","\n").replace("\n", NL)`), then assert loneLF ==
+  0 before running pytest. Files are pure-CRLF (5145/3679 CRLF, 0 lone-LF).
+- Tests appended as **PURE BYTES** (`ab`), lone-LF census **120 -> 120, 0 removed**.
+- `pytest tests/scripts/test_internet_learner_gate.py -q` -> **124 -> 126 passed**;
+  `pytest tests/scripts -q` -> **280 -> 282 passed**.
+- 5 live `--once` cycles post-fix: **4 learned**, and every reject attributed to
+  a pre-existing detector (`bs:_is_serp_snippet`) or honest `duplicate`.
+
+### Push
+Stray branch `fix/28-...` was **8 commits ahead** of origin/main (too many for
+`push origin HEAD:main`), so the worktree path was used:
+`git worktree add C:/Users/damir/il113wt origin/main --detach`, copy the 3
+verified files, `git add` with `-c core.autocrlf=false`, `git commit -F
+<WINDOWS path>`, `git fetch`, `merge-base --is-ancestor` -> **FF_SAFE**,
+`git -c credential.helper= -c credential.helper=store push origin HEAD:main`,
+then `git worktree remove --force`. Verified against the REMOTE (not the push
+message): `git branch -r --contains <sha>` -> origin/main, and
+`git cat-file blob origin/main:<file> | grep -c <marker>` -> **6 / 6 / 2**.
+`git diff origin/main --stat` for the 3 files then returns **empty** and the
+worktree md5 matches the origin/main blob md5 exactly.
