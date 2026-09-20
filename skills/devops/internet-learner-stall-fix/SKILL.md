@@ -21,7 +21,7 @@ Per-class narratives for J–Z, AA–AG (15./16.09.26) live in
 a CRLF append flips ~60 lines) -- and only a ONE-LINE pointer is added here.
 AW/AY (77-85), 96/97 (AZ), 98 (MEASURED-AND-REJECTED -> signature-delete),
 102/103 (BB), BE (deliberate non-fix) and 109/110 all live there, as do
-113/114/115 (20.09.26).
+113/114/115 and 118 (20.09.26).
 TWO warnings stay live because they are behavioural, not history:
 
 - run `which_rule_matches.py` BEFORE touching a rule -- the AJ/AQ/AR trap has

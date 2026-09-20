@@ -2687,3 +2687,90 @@ BOTH install copies (laptop + openamer-agent; the latter had drifted on 8 of
 the fix: `prune(dry_run=True)` -> `{'removed': 1, 'kept': 9}`, store untouched
 True; `prune(dry_run=False)` -> store changed True; decisions agree True;
 `wm._cosine == wm._dot(normalise, normalise)` True.
+
+
+## Root cause 118 -- a wiki INFOBOX FACT-ROW TAIL (live 20.09.26)
+
+Cron run began on `cycle_h_efficiency`'s own stored answer, which IS the leak:
+
+    September 2026) Launched 15 January 2001 ; 25 years ago ( 2001-01-15 )
+    Content license Creative Commons Attribution/ Share-Alike 4.
+
+Two infobox fields welded by the rendered MediaWiki relative-age template. The
+text OPENS mid-parenthesis -- the extractor cut a field row out of the page's
+infobox, not an article. 131 chars carrying digits, so the >=90 length trust AND
+the technical-signal gate both fired. `which_rule_matches.py` on it:
+`INDIVIDUAL RULES MATCHED: none` -- a new class, not a pre-existing marker.
+
+### FIVE candidate forms measured before one was wirable -- the FIRST FOUR all failed
+
+This is the expensive part and it is the reason the gate is narrow. Every
+relative-age-template-only form died on hostile prose controls:
+
+| candidate | form | result |
+| --- | --- | --- |
+| A | date `;` N years ago `(`ISO`)` | 2 core FPs + 7 hostile |
+| D | N years ago `(`ISO`)` | 2 core FPs + 11 hostile |
+| B | `Content license` ... CC name | 2 core FPs |
+| F/G | relago AND license (either order) | 1 core FP |
+| H | `;` N years ago `(`ISO`)` | 2 core FPs + 7 hostile |
+| **O** | **relago `(`ISO`)` ... `Content license` within 60 chars** | **clean** |
+
+A real sentence may legitimately say *"PyTorch 1.0 shipped 7 December 2018;
+7 years ago (2018-12-07) the ecosystem was much smaller"* -- that is knowledge,
+not chrome, and five of six candidates refused it. The license label alone hits
+*"the paper's content license is Creative Commons Attribution 4.0"*. Even
+label + CC name within 60 chars hits *"The model card lists: Created by Meta,
+Content license CC BY-NC 4.0, and Type of site research"*.
+
+**The discriminator is the JUXTAPOSITION.** Requiring the template THEN the
+label inside 60 chars removes all of them: prose that names both puts a sentence
+boundary between them, and the template only ever precedes the field table.
+Final: 1 buffer hit and it IS the leak (writer gate `_is_junk` False) -> 0 of
+3,059 `longterm_episodes`, 0 of 642 gate-test literals, 0 FPs on 25 prose
+controls, 0 on a 12-strong hostile set quoting each half separately.
+
+### The `re` vs `_re` alias trap fired AGAIN (documented, still live)
+
+The helper was drafted with `_re.compile(...)`/`_re.I` for BOTH modules. But
+`internet_learner.py` imports plain `re` (it has ~145 `re.` call sites) while
+`buffer_store.py` imports `re as _re`. Result: `NameError: name '_re' is not
+defined` at `exec_module` -- and **`ast.parse` does NOT catch it**, only
+`exec_module` does. Generate the helper text PER MODULE. This is the second
+recorded instance; it is cheap to avoid and expensive to debug.
+
+### The episode corpus key is `text`, not `a`/`u`
+
+A first measurement pass read `longterm_episodes.jsonl` with the buffer's
+`a`/`u` keys and silently found **0 episodes** -- i.e. it validated a gate
+against an EMPTY corpus and printed a clean row. The episode store's keys are
+`ts`, `kind`, `text`, `meta`, `embedding`. **Always print the corpus row count
+next to the FP counts**; a harness that cannot say "3,059" is not measuring.
+
+### `find` over the whole install tree times out (>120 s)
+
+`find . -path "*internet-learner-stall-fix*" -name root-causes-archive.md` hung
+the terminal twice. Address the three known paths directly (laptop skills,
+`openamer-agent` skills, repo skills) -- all three were byte-identical here.
+
+### Sync + verify (all met)
+
+- leak row removed by SIGNATURE (buffer 292 -> 291, backup `.bak118`);
+  **46 structural-connection rows preserved** (before == after, asserted).
+- EOL: both modules stayed pure CRLF (5,266 / 3,800, loneLF 0); the test file
+  was appended as PURE BYTES and its **lone-LF census held at 120 -> 120**.
+- three copies: modules md5-identical (514cb8b8 learner / a3151c64 store);
+  the test file is identical AFTER LF-normalisation (repo keeps its 120
+  pre-existing lone-LF lines, the install copies stay normalised) --
+  `b949c878` on all three. The two-way mirror check (`tmp_mirror_check.py`)
+  proved the install copy was a strict SUBSET (pure additions only), so no
+  union was needed this time.
+- `tests/scripts/test_internet_learner_gate.py` **126 -> 127 passed**;
+  `tests/scripts` **282 -> 283 passed**; `test_no_hardcoded_paths` green.
+- pushed via a fresh worktree (`C:/Users/damir/il118wt`, the stray branch was
+  9 commits ahead); `merge-base --is-ancestor` -> FF_SAFE; verified against the
+  REMOTE: `origin/main` == `9c1d4c343`, markers 3/3/4 via `git cat-file blob
+  origin/main:<f> | grep -c`, and `git diff origin/main --stat` for the three
+  files **empty**.
+- live proof after: `IL._is_junk(leak)` True with `_is_infobox_factrow_tail` as
+  the ONLY leaf hit; a fresh `--once` cycle ran to completion.
