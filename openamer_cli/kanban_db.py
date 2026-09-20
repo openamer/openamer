@@ -87,7 +87,7 @@ import time
 from contextvars import ContextVar, Token
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any, Iterable, Optional
+from typing import Any, Iterable, Mapping, Optional
 
 from openamer_cli.sqlite_util import add_column_if_missing as _add_column_if_missing
 from toolsets import get_toolset_names
@@ -1351,9 +1351,14 @@ CREATE TABLE IF NOT EXISTS kanban_notify_subs (
     chat_id       TEXT NOT NULL,
     thread_id     TEXT NOT NULL DEFAULT '',
     user_id       TEXT,
+    user_id_alt   TEXT,
+    chat_type     TEXT,
     notifier_profile TEXT,
+    delivery_mode TEXT NOT NULL DEFAULT 'notify',
+    delivery_metadata TEXT,
     created_at    INTEGER NOT NULL,
     last_event_id INTEGER NOT NULL DEFAULT 0,
+    last_ping_event_id INTEGER NOT NULL DEFAULT 0,
     PRIMARY KEY (task_id, platform, chat_id, thread_id)
 );
 
@@ -2619,11 +2624,24 @@ _REBUILD_SPECS = {
         ),
     ),
     "kanban_notify_subs": (
+        # Must stay column-for-column identical to SCHEMA_SQL's
+        # ``CREATE TABLE IF NOT EXISTS kanban_notify_subs`` above. A rebuild
+        # that declares fewer columns silently drops whatever the fresh schema
+        # gained -- the routing/delivery columns (user_id_alt, chat_type,
+        # delivery_mode, delivery_metadata, last_ping_event_id) are exactly what
+        # decides which session a completion wakes. Omitting them here made a
+        # rebuilt board lose its delivery routing while a fresh one kept it,
+        # which is what test_rebuilt_schema_matches_fresh_db pins down.
         "CREATE TABLE kanban_notify_subs ("
         " task_id TEXT NOT NULL, platform TEXT NOT NULL, chat_id TEXT NOT NULL,"
         " thread_id TEXT NOT NULL DEFAULT '', user_id TEXT,"
-        " notifier_profile TEXT, created_at INTEGER NOT NULL,"
+        " user_id_alt TEXT, chat_type TEXT,"
+        " notifier_profile TEXT,"
+        " delivery_mode TEXT NOT NULL DEFAULT 'notify',"
+        " delivery_metadata TEXT,"
+        " created_at INTEGER NOT NULL,"
         " last_event_id INTEGER NOT NULL DEFAULT 0,"
+        " last_ping_event_id INTEGER NOT NULL DEFAULT 0,"
         " PRIMARY KEY (task_id, platform, chat_id, thread_id))",
         ("CREATE INDEX idx_notify_task ON kanban_notify_subs(task_id)",),
     ),
@@ -2840,6 +2858,15 @@ def _claimer_id() -> str:
     except Exception:
         host = "unknown"
     return f"{host}:{os.getpid()}"
+
+
+def _host_prefix() -> str:
+    """Return the ``<host>:`` prefix shared by every claimer on this machine.
+
+    Claim locks are ``host:pid`` strings (see :func:`_claimer_id`); the prefix
+    lets a sweep decide whether a lock belongs to a process on this host.
+    """
+    return _claimer_id().split(":", 1)[0] + ":"
 
 
 # ---------------------------------------------------------------------------
@@ -4387,7 +4414,7 @@ def release_stale_claims(
     """
     now = int(time.time())
     reclaimed = 0
-    host_prefix = f"{_claimer_id().split(':', 1)[0]}:"
+    host_prefix = _host_prefix()
     stale = conn.execute(
         "SELECT id, claim_lock, worker_pid, claim_expires, last_heartbeat_at "
         "FROM tasks "
@@ -4498,12 +4525,10 @@ def release_stale_claims(
                 run_id=run_id,
             )
             reclaimed += 1
-        # A reclaim is a non-success attempt: book it against the breaker.
-        # The call must sit OUTSIDE the write_txn block above -- write_txn is
-        # not reentrant, so nesting it raises "cannot start a transaction
-        # within a transaction" and the reclaim silently never counts. Without
-        # this, a task stuck in a reclaim loop never trips the breaker and is
-        # re-spawned forever.
+        # A reclaim is a non-success attempt: book it against the breaker in
+        # its OWN transaction. The write_txn block above held one and write_txn
+        # is not reentrant, so nesting the call there raises "cannot start a
+        # transaction within a transaction" and the reclaim never counts.
         _record_task_failure(
             conn, row["id"], f"stale_lock={row['claim_lock']}",
             outcome="reclaimed", failure_limit=failure_limit,
@@ -6950,7 +6975,7 @@ def _terminate_reclaimed_worker(
     if not pid or pid <= 0 or not claim_lock:
         return info
 
-    host_prefix = f"{_claimer_id().split(':', 1)[0]}:"
+    host_prefix = _host_prefix()
     if not str(claim_lock).startswith(host_prefix):
         return info
     info["host_local"] = True
@@ -7121,7 +7146,7 @@ def enforce_max_runtime(
     import signal
     timed_out: list[str] = []
     now = int(time.time())
-    host_prefix = f"{_claimer_id().split(':', 1)[0]}:"
+    host_prefix = _host_prefix()
 
     rows = conn.execute(
         "SELECT t.id, t.worker_pid, "
@@ -7255,7 +7280,7 @@ def detect_stale_running(
 
 
     now = int(time.time())
-    host_prefix = f"{_claimer_id().split(':', 1)[0]}:"
+    host_prefix = _host_prefix()
     reclaimed: list[str] = []
 
     rows = conn.execute(
@@ -7476,7 +7501,7 @@ def detect_crashed_workers(conn: sqlite3.Connection) -> list[str]:
             "SELECT id, worker_pid, claim_lock, started_at FROM tasks "
             "WHERE status = 'running' AND worker_pid IS NOT NULL"
         ).fetchall()
-        host_prefix = f"{_claimer_id().split(':', 1)[0]}:"
+        host_prefix = _host_prefix()
         for row in rows:
             # Only check liveness for claims owned by this host.
             lock = row["claim_lock"] or ""
@@ -9458,44 +9483,62 @@ def add_notify_sub(
     chat_id: str,
     thread_id: Optional[str] = None,
     user_id: Optional[str] = None,
+    user_id_alt: Optional[str] = None,
+    chat_type: Optional[str] = None,
     notifier_profile: Optional[str] = None,
+    delivery_mode: Optional[str] = None,
+    delivery_metadata: Optional[Mapping[str, Any]] = None,
 ) -> None:
-    """Register a gateway source that wants terminal-state notifications
-    for ``task_id``. Idempotent on (task, platform, chat, thread)."""
-    now = int(time.time())
-    with write_txn(conn):
-        conn.execute(
-            """
-            INSERT OR IGNORE INTO kanban_notify_subs
-                (task_id, platform, chat_id, thread_id, user_id, notifier_profile, created_at)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
-            """,
-            (task_id, platform, chat_id, thread_id or "", user_id, notifier_profile, now),
-        )
-        if notifier_profile:
-            # Self-heal legacy rows that predate notifier ownership by
-            # backfilling only when the existing value is unset.
-            conn.execute(
-                """
-                UPDATE kanban_notify_subs
-                   SET notifier_profile = ?
-                 WHERE task_id = ? AND platform = ? AND chat_id = ? AND thread_id = ?
-                   AND (notifier_profile IS NULL OR notifier_profile = '')
-                """,
-                (notifier_profile, task_id, platform, chat_id, thread_id or ""),
-            )
+    """Register a gateway source that wants terminal-state notifications.
+
+    Delegates to ``kanban_db_notify.add_notify_sub``, the single owner of this
+    write. This module used to carry its own copy, which inserted only 7 of the
+    12 routing columns — silently dropping ``chat_type``, ``delivery_mode``,
+    ``delivery_metadata`` and, critically, ``last_event_id`` (so a
+    DM-originated completion woke a fresh group session and the notifier
+    replayed history at boot). Upstream keeps exactly one implementation and
+    callers reach it through ``kanban_db_notify``; the lazy import here keeps
+    that single-owner property without an import cycle (``kanban_db_notify``
+    imports this module at its end).
+    """
+    from openamer_cli import kanban_db_notify as _kbn
+
+    _kbn.add_notify_sub(
+        conn,
+        task_id=task_id,
+        platform=platform,
+        chat_id=chat_id,
+        thread_id=thread_id,
+        user_id=user_id,
+        user_id_alt=user_id_alt,
+        chat_type=chat_type,
+        notifier_profile=notifier_profile,
+        delivery_mode=delivery_mode,
+        delivery_metadata=delivery_metadata,
+    )
 
 
 def list_notify_subs(
-    conn: sqlite3.Connection, task_id: Optional[str] = None,
+    conn: sqlite3.Connection,
+    task_id: Optional[str] = None,
+    *,
+    notifier_profiles: Optional[Iterable[str]] = None,
+    include_unowned: bool = False,
 ) -> list[dict]:
-    if task_id is not None:
-        rows = conn.execute(
-            "SELECT * FROM kanban_notify_subs WHERE task_id = ?", (task_id,),
-        ).fetchall()
-    else:
-        rows = conn.execute("SELECT * FROM kanban_notify_subs").fetchall()
-    return [dict(r) for r in rows]
+    """List subscriptions; delegates to ``kanban_db_notify`` (single owner).
+
+    This module's copy ignored ``notifier_profiles`` (so a gateway could claim
+    another gateway's events) and returned ``delivery_metadata`` as a raw JSON
+    string instead of the decoded mapping.
+    """
+    from openamer_cli import kanban_db_notify as _kbn
+
+    return _kbn.list_notify_subs(
+        conn,
+        task_id,
+        notifier_profiles=notifier_profiles,
+        include_unowned=include_unowned,
+    )
 
 
 def remove_notify_sub(
@@ -9506,13 +9549,16 @@ def remove_notify_sub(
     chat_id: str,
     thread_id: Optional[str] = None,
 ) -> bool:
-    with write_txn(conn):
-        cur = conn.execute(
-            "DELETE FROM kanban_notify_subs WHERE task_id = ? "
-            "AND platform = ? AND chat_id = ? AND thread_id = ?",
-            (task_id, platform, chat_id, thread_id or ""),
-        )
-    return cur.rowcount > 0
+    """Delete a subscription; delegates to ``kanban_db_notify``.
+
+    The local copy open-coded its own WHERE clause; the canonical one uses the
+    shared ``_SUB_KEY_WHERE`` so the key columns cannot drift apart.
+    """
+    from openamer_cli import kanban_db_notify as _kbn
+
+    return _kbn.remove_notify_sub(
+        conn, task_id=task_id, platform=platform, chat_id=chat_id, thread_id=thread_id,
+    )
 
 
 def unseen_events_for_sub(
