@@ -152,7 +152,7 @@ class TestProviderEnvBlocklist:
         OpenAmer-managed; the rest belongs to the user.
         """
         general_chain = {
-            "AWS_ACCESS_KEY_ID": "AKIAIOSFODNN7EXAMPLE",
+            "AWS_ACCESS_KEY_ID": "AKIAIOSFODNN7EXAMPLE",  # noqa:SEC AWS documented example key (AKIAIOSFODNN7EXAMPLE), not a credential
             "AWS_SECRET_ACCESS_KEY": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
             "AWS_SESSION_TOKEN": "session-token",
             "AWS_PROFILE": "production",
