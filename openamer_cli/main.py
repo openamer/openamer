@@ -446,6 +446,7 @@ from openamer_cli.subcommands.hooks import build_hooks_parser
 from openamer_cli.subcommands.doctor import build_doctor_parser
 from openamer_cli.subcommands.security import build_security_parser
 from openamer_cli.subcommands.dump import build_dump_parser
+from openamer_cli.subcommands.identity import build_identity_parser
 from openamer_cli.subcommands.debug import build_debug_parser
 from openamer_cli.subcommands.backup import build_backup_parser
 from openamer_cli.subcommands.import_cmd import build_import_cmd_parser
@@ -13664,6 +13665,7 @@ def _coalesce_session_name_args(argv: list) -> list:
         "completion",
         "logs",
         "tracing",
+        "identity",
     }
     _SESSION_FLAGS = {"-c", "--continue", "-r", "--resume"}
 
@@ -15077,7 +15079,7 @@ _BUILTIN_SUBCOMMANDS = frozenset(
         "send", "sessions", "setup",
         "skin", "skills", "slack", "status", "tools", "uninstall", "update",
         "version", "webhook", "whatsapp", "whatsapp-cloud", "chat", "secrets", "security",
-        "a2a", "system",
+        "a2a", "system", "identity",
         # Help-ish invocations — plugin commands not being listed in
         # top-level --help is an acceptable trade-off for skipping an
         # expensive eager import of every bundled plugin module.
@@ -16133,6 +16135,13 @@ def main():
     # dump command  (parser built in openamer_cli/subcommands/dump.py)
     # =========================================================================
     build_dump_parser(subparsers, cmd_dump=cmd_dump)
+
+    # =========================================================================
+    # identity command -- OpenAmer's own identity (genesis + measured self-model)
+    # =========================================================================
+    from openamer_cli.identity import cmd_identity
+
+    build_identity_parser(subparsers, cmd_identity=cmd_identity)
 
     # =========================================================================
     # debug command  (parser built in openamer_cli/subcommands/debug.py)
