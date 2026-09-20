@@ -2890,3 +2890,12 @@ size check alone would have passed it.
 PURE BYTES (`open(p,'ab').write(entry.encode())`) and then assert
 `install == repo` byte-exact plus the lone-LF census. Recovery: the install copy
 was the correct merged form (a measured pure superset), so a byte copy fixed it.
+
+### Also — this archive carries a PRE-EXISTING lone CR (do not read it as drift)
+
+`references/root-causes-archive.md` contains exactly ONE bare CR, at byte 121,633
+(line ~1942, inside the `REPORT:\c\tmp\oa-home...` dream-report block). It is
+present in `origin/main` BEFORE any 20.09.26 edit, in the install copy, and in
+the pushed blob -- all three at the same offset. So `CR count == 0` is the WRONG
+assertion for this file; assert `CR count == 1` and compare the count against the
+PRE-PUSH blob (`git cat-file blob <rev>:<path>`) rather than against zero.
