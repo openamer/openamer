@@ -4769,3 +4769,65 @@ def test_hn_show_run_row_is_gated_on_both_paths():
         assert not IL._is_junk(text), text
         assert not buffer_store.is_junk(text), text
 
+
+
+def test_de_double_optin_newsletter_is_gated_on_both_paths():
+    """A German newsletter double-opt-in confirmation page (class 107, 20.09.26).
+
+    Live leak: `cycle_e_competitors` stored the whole-page consent chain
+    (promo hook + signup confirmation) as the answer. Each part alone is
+    ordinary German prose and must stay learnable - the discriminator is the
+    CONJUNCTION of >=2 independent confirmation markers.
+    """
+    import buffer_store
+    leak = ("Fast geschafft – mehr als 3000 Urlaubsträume warten auf Sie Bitte bestätigen "
+            "Sie Ihre Anmeldung durch einen Klick auf den Link in der E-Mail, die wir Ihnen soeben "
+            "geschickt haben.")
+    assert IL._is_de_double_optin_newsletter_chrome(leak) is True
+    assert IL._is_junk(leak) is True
+    assert buffer_store._is_de_double_optin_newsletter_chrome(leak) is True
+    assert buffer_store._is_nav_chrome(leak) is True
+    assert buffer_store.is_junk(leak) is True
+
+    for prose in (
+        "Fast geschafft: der Benchmark lief in 42 Sekunden durch, nachdem wir den Tokenizer gecacht haben.",
+        "Bitte bestätigen Sie Ihre Anmeldung, sobald Sie das Formular für den Workshop ausgefüllt haben.",
+        "Urlaubsträume sind ein häufiges Thema in Reiseprospekten und Werbetexten.",
+        "Ein Klick auf den Link in der Fußzeile öffnet die vollständige Dokumentation des Projekts.",
+        "Mehr als 3000 Modelle wurden für die Studie evaluiert und die Ergebnisse sind öffentlich.",
+        "Die Bestätigungsmail wird soeben geschickt haben, sobald der Server die Queue abarbeitet.",
+    ):
+        assert not IL._is_de_double_optin_newsletter_chrome(prose), prose
+        assert not IL._is_junk(prose), prose
+        assert not buffer_store._is_nav_chrome(prose), prose
+
+
+def test_jobboard_ad_run_is_gated_on_both_paths():
+    """A job-board ad/slogan run (class 108, 20.09.26).
+
+    Live leak: `cycle_c_github` stored the recruiter brand repeated >=2x welded
+    to its own slogan, a SERP ad run rather than knowledge. The slogan alone is
+    ordinary prose, so the repeated brand is required - and the framework row
+    that carries the brand twice WITHOUT the slogan must stay learnable.
+    """
+    import buffer_store
+    leak = ("Haystack - Tech hiring without the hassle — Explore the tech scene on your terms. "
+            "Haystack connects world-class tech talent with employers that match their interests "
+            "and values.; Haystack – Get hired without the hassle — Haystack is where the best "
+            "in tech go to stay ahead")
+    assert IL._is_jobboard_ad_run_chrome(leak) is True
+    assert IL._is_junk(leak) is True
+    assert buffer_store._is_jobboard_ad_run_chrome(leak) is True
+    assert buffer_store._is_nav_chrome(leak) is True
+    assert buffer_store.is_junk(leak) is True
+
+    for prose in (
+        "The recruiter said the role was tech hiring without the hassle, which is just their slogan.",
+        "Haystack is an open-source NLP framework for building search pipelines in production.",
+        "pip install haystack-ai Get Started with Haystack builds an orchestration pipeline.",
+        "Without the hassle of a manual migration, the team moved the index in one afternoon.",
+        "The job board matches candidates with employers whose interests and values align.",
+    ):
+        assert not IL._is_jobboard_ad_run_chrome(prose), prose
+        assert not IL._is_junk(prose), prose
+        assert not buffer_store._is_nav_chrome(prose), prose
