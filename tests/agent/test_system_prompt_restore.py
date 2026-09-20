@@ -64,7 +64,7 @@ class TestStoredPromptReuse:
 
     def test_present_row_with_unicode_preserved(self):
         """Non-ASCII bytes in the stored prompt are not mangled."""
-        stored = "Stored prompt with unicode: ☤ ⚗ ◆ — and emoji 🦊"
+        stored = "Stored prompt with unicode: 🧬 ⚗ ◆ — and emoji 🦊"
         db = MagicMock()
         db.get_session.return_value = {"system_prompt": stored}
         agent = _make_agent(session_db=db)

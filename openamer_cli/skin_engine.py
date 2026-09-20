@@ -96,8 +96,8 @@ All fields are optional. Missing values inherit from the ``default`` skin.
     branding:
       agent_name: "OpenAmer Agent"          # Banner title, status display
       welcome: "Welcome message"          # Shown at CLI startup
-      goodbye: "Goodbye! ⚕"              # Shown on exit
-      response_label: " ⚕ OpenAmer "       # Response box header label
+      goodbye: "Goodbye! 🧬"              # Shown on exit
+      response_label: " 🧬 OpenAmer "       # Response box header label
       prompt_symbol: "❯"                 # Input prompt symbol (bare token; renderers add trailing space)
       help_header: "(^_^)? Commands"      # /help header text
 
@@ -271,8 +271,8 @@ _BUILTIN_SKINS: Dict[str, Dict[str, Any]] = {
         "branding": {
             "agent_name": "OpenAmer Agent",
             "welcome": "Welcome to OpenAmer Agent! Type your message or /help for commands.",
-            "goodbye": "Goodbye! ⚕",
-            "response_label": " ⚕ OpenAmer ",
+            "goodbye": "Goodbye! 🧬",
+            "response_label": " 🧬 OpenAmer ",
             "prompt_symbol": "❯",
             "help_header": "(^_^)? Available Commands",
         },
@@ -392,8 +392,8 @@ _BUILTIN_SKINS: Dict[str, Dict[str, Any]] = {
         "branding": {
             "agent_name": "OpenAmer Agent",
             "welcome": "Welcome to OpenAmer Agent! Type your message or /help for commands.",
-            "goodbye": "Goodbye! ⚕",
-            "response_label": " ⚕ OpenAmer ",
+            "goodbye": "Goodbye! 🧬",
+            "response_label": " 🧬 OpenAmer ",
             "prompt_symbol": "❯",
             "help_header": "[?] Available Commands",
         },
@@ -436,8 +436,8 @@ _BUILTIN_SKINS: Dict[str, Dict[str, Any]] = {
         "branding": {
             "agent_name": "OpenAmer Agent",
             "welcome": "Welcome to OpenAmer Agent! Type your message or /help for commands.",
-            "goodbye": "Goodbye! ⚕",
-            "response_label": " ⚕ OpenAmer ",
+            "goodbye": "Goodbye! 🧬",
+            "response_label": " 🧬 OpenAmer ",
             "prompt_symbol": "❯",
             "help_header": "(^_^)? Available Commands",
         },
@@ -482,8 +482,8 @@ _BUILTIN_SKINS: Dict[str, Dict[str, Any]] = {
         "branding": {
             "agent_name": "OpenAmer Agent",
             "welcome": "Welcome to OpenAmer Agent! Type your message or /help for commands.",
-            "goodbye": "Goodbye! ⚕",
-            "response_label": " ⚕ OpenAmer ",
+            "goodbye": "Goodbye! 🧬",
+            "response_label": " 🧬 OpenAmer ",
             "prompt_symbol": "❯",
             "help_header": "[?] Available Commands",
         },
@@ -971,7 +971,7 @@ def get_active_help_header(fallback: str = "(^_^)? Available Commands") -> str:
 
 
 
-def get_active_goodbye(fallback: str = "Goodbye! ⚕") -> str:
+def get_active_goodbye(fallback: str = "Goodbye! 🧬") -> str:
     """Get the goodbye line from the active skin."""
     try:
         return get_active_skin().get_branding("goodbye", fallback)

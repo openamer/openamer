@@ -597,7 +597,7 @@ export const fr: Translations = {
         "Partager sur X ouvre une publication préremplie dans un nouvel onglet. Cliquez d'abord sur Copier l'image si vous voulez joindre le badge 1200×630 — X vous laisse le coller directement dans l'éditeur de tweet. Télécharger le PNG enregistre le fichier pour l'utiliser n'importe où.",
       clipboard_unsupported:
         "La copie d'image dans le presse-papiers n'est pas prise en charge par ce navigateur — utilisez Télécharger à la place.",
-      tweet_text: "Just unlocked {tier_part}\"{name}\" in OpenAmer Agent ☤",
+      tweet_text: "Just unlocked {tier_part}\"{name}\" in OpenAmer Agent 🧬",
     },
   },
   kanban: {

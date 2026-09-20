@@ -1,4 +1,4 @@
-# OpenAmer Desktop ☤
+# OpenAmer Desktop 🧬
 
 <p align="center">
   <a href="https://github.com/openamer/openamer/releases"><img src="https://img.shields.io/badge/Download-macOS%20%C2%B7%20Windows%20%C2%B7%20Linux-FFD700?style=for-the-badge" alt="Download"></a>

@@ -3436,7 +3436,7 @@
 - **gateway:** /model shows active fallback model instead of config default (#1615) (dca08dbe)
 - recognize Claude Code OAuth credentials in startup gate (#1455) (310696f1)
 - **docker:** add explicit env allowlist for container credentials (#1436) (1a01ec14)
-- email send_typing metadata + ☤ OpenAmer staff symbol (#1431, #1420) (53fa0e5b)
+- email send_typing metadata + 🧬 OpenAmer staff symbol (#1431, #1420) (53fa0e5b)
 - **whatsapp:** support LID format in self-chat mode (#1556) (2015da00)
 - **core:** guard print() calls in run_conversation() against OSError (95b7d555)
 - detect Claude Code version dynamically for OAuth user-agent (cd051bf6)

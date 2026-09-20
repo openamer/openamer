@@ -56,7 +56,7 @@ get_command_link_display_dir() {
 }
 
 echo ""
-echo -e "${CYAN}⚕ OpenAmer Agent Setup${NC}"
+echo -e "${CYAN}🧬 OpenAmer Agent Setup${NC}"
 echo ""
 
 # ============================================================================

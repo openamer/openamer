@@ -13,12 +13,12 @@ from agent.tool_guardrails import (
 
 def test_tool_call_signature_hashes_canonical_nested_unicode_args_without_exposing_raw_args():
     args_a = {
-        "z": [{"β": "☤", "a": 1}],
+        "z": [{"β": "🧬", "a": 1}],
         "a": {"y": 2, "x": "secret-token-value"},
     }
     args_b = {
         "a": {"x": "secret-token-value", "y": 2},
-        "z": [{"a": 1, "β": "☤"}],
+        "z": [{"a": 1, "β": "🧬"}],
     }
 
     assert canonical_tool_args(args_a) == canonical_tool_args(args_b)
@@ -30,7 +30,7 @@ def test_tool_call_signature_hashes_canonical_nested_unicode_args_without_exposi
     metadata = sig_a.to_metadata()
     assert metadata == {"tool_name": "web_search", "args_hash": sig_a.args_hash}
     assert "secret-token-value" not in json.dumps(metadata)
-    assert "☤" not in json.dumps(metadata)
+    assert "🧬" not in json.dumps(metadata)
 
 
 def test_default_config_is_soft_warning_only_with_hard_stop_disabled():

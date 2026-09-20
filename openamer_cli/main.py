@@ -2396,7 +2396,7 @@ def _launch_tui(
         from openamer_cli.relaunch import relaunch
 
         print()
-        print("⚕ Launching update...")
+        print("🧬 Launching update...")
         print()
         relaunch(["update"], preserve_inherited=False)
 
@@ -2728,7 +2728,7 @@ def cmd_whatsapp(args):
     from openamer_constants import find_node_executable, with_openamer_node_path
 
     print()
-    print("⚕ WhatsApp Setup")
+    print("🧬 WhatsApp Setup")
     print("=" * 50)
 
     # ── Step 1: Choose mode ──────────────────────────────────────────────
@@ -2939,14 +2939,14 @@ def cmd_whatsapp(args):
             print("    2. Send a message to the bot's WhatsApp number")
             print("    3. The agent will reply automatically")
             print()
-            print("  Tip: Agent responses are prefixed with '⚕ OpenAmer Agent'")
+            print("  Tip: Agent responses are prefixed with '🧬 OpenAmer Agent'")
         else:
             print("  Next steps:")
             print("    1. Start the gateway:  openamer gateway")
             print("    2. Open WhatsApp → Message Yourself")
             print("    3. Type a message — the agent will reply")
             print()
-            print("  Tip: Agent responses are prefixed with '⚕ OpenAmer Agent'")
+            print("  Tip: Agent responses are prefixed with '🧬 OpenAmer Agent'")
             print("  so you can tell them apart from your own messages.")
         print()
         print("  Or install as a service: openamer gateway install")
@@ -10434,7 +10434,7 @@ def _cmd_update_check(branch: str = "main", *, branch_explicit: bool = False):
         if head_sha and target_sha and head_sha == target_sha:
             print("✓ Already up to date.")
         else:
-            print(f"⚕ Update available (behind {compare_branch}).")
+            print(f"🧬 Update available (behind {compare_branch}).")
             from openamer_cli.config import recommended_update_command
 
             print(f"  Run '{recommended_update_command()}' to install.")
@@ -10453,7 +10453,7 @@ def _cmd_update_check(branch: str = "main", *, branch_explicit: bool = False):
         print("✓ Already up to date.")
     else:
         commits_word = "commit" if behind == 1 else "commits"
-        print(f"⚕ Update available: {behind} {commits_word} behind {compare_branch}.")
+        print(f"🧬 Update available: {behind} {commits_word} behind {compare_branch}.")
         from openamer_cli.config import recommended_update_command
 
         print(f"  Run '{recommended_update_command()}' to install.")
@@ -11784,7 +11784,7 @@ def _cmd_update_impl(args, gateway_mode: bool):
             logger.debug("Could not read updates.non_interactive_local_changes: %s", exc)
             discard_local_changes = False
 
-    print("⚕ Updating OpenAmer Agent...")
+    print("🧬 Updating OpenAmer Agent...")
     print()
 
     # On Windows, abort early if another openamer.exe is holding the venv shim

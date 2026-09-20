@@ -1,4 +1,4 @@
-# ☤ ASCII Video
+# 🧬 ASCII Video
 
 Renders any content as colored ASCII character video. Audio, video, images, text, or pure math in, MP4/GIF/PNG sequence out. Full RGB color per character cell, 1080p 24fps default. No GPU.
 

@@ -224,7 +224,7 @@ print_banner() {
     echo ""
     echo -e "${MAGENTA}${BOLD}"
     echo "┌─────────────────────────────────────────────────────────┐"
-    echo "│             ⚕ OpenAmer Agent Installer                    │"
+    echo "│             🧬 OpenAmer Agent Installer                    │"
     echo "├─────────────────────────────────────────────────────────┤"
     echo "│  An open source AI agent by OpenAmer.              │"
     echo "└─────────────────────────────────────────────────────────┘"
