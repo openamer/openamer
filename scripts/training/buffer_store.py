@@ -3078,6 +3078,33 @@ def _is_fact_box_label_chain(text):
 # Measured: 1 buffer hit (the leak) / 0 control FPs on 11 prose
 # controls / 0 test literals; the 4 episode hits are the SAME
 # own-artifact strings (English + German), not world knowledge.
+
+# class 82 markers (live 20.09.26) -- see _is_de_nav_weld_headline_chrome.
+# A German site's nav-label WELD stored as the answer: >=2 nav labels joined
+# by whitespace ONLY, followed by a TitleCase colon headline. Live leak:
+#   "Blogs Karriere Über uns U Vertrieb kontaktieren LLM Agent Sandboxing:
+#    Wie MCP, Tool Permissions und DSGVO zusammenpassen"
+# The weld is the discriminator: every comma/conjunction-joined control stays
+# clean (`Impressum Datenschutz AGB sind rechtliche Pflichtangaben.` is ordinary
+# German prose naming the same labels), and so does `Impressum Datenschutz AGB:
+# rechtliche Pflichtangaben.` Measured: 1 buffer hit (the leak) -> 0 FPs on 17
+# hostile controls, 0 of 6,118 longterm_episodes, 0 test literals.
+_DE_NAV_WELD_LABELS = (r"(?:Blogs?|Karriere|Über uns|Ueber uns|Vertrieb kontaktieren"
+                       r"|Impressum|Datenschutz|AGB|Kontakt|Unternehmen|Leistungen"
+                       r"|Referenzen|Team|Standort|News|Presse|Preise|Produkte)")
+_DE_NAV_WELD_HEADLINE_RE = _re.compile(
+    r"(?i)\b" + _DE_NAV_WELD_LABELS + r"(?:\s+" + _DE_NAV_WELD_LABELS + r"){1,}"
+    r"[\s\S]{0,80}?[A-ZÄÖÜ][^:\r\n]{8,80}:\s*\S")
+
+
+def _is_de_nav_weld_headline_chrome(text):
+    """True for a German nav-label weld stored as the answer (class 82).
+
+    The page's menu lost its separators, so its own labels are welded together
+    and run into the article headline. A `,`/`und`-joined list of the SAME
+    labels is ordinary German prose and stays learnable.
+    """
+    return bool(_DE_NAV_WELD_HEADLINE_RE.search(text or ""))
 _OWN_PLAN_PLUS_RUN_RE = _re.compile(
     r"^\s*(?:Energy efficiency|KI-Performance-Optimierung|AI performance optimization"
     r"|Performance optimization|Efficiency|Continuous Learning Loop"
@@ -3341,6 +3368,10 @@ def _is_nav_chrome(text):
         return True
 
     if _is_own_plan_plus_run(text):
+
+        return True
+    # a German nav-label weld run into the article headline (class 82, 20.09.26)
+    if _is_de_nav_weld_headline_chrome(text):
 
         return True
 
