@@ -18,17 +18,12 @@ CLI:
 """
 import json, sys, os, urllib.request, datetime, time
 
-LIVE = "http://localhost:8081"
-WORLD = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                     "..", "..", "memory", "world_model.jsonl")
-
 def chat(messages, max_tokens=250):
-    req = urllib.request.Request("http://localhost:8081/v1/chat/completions",
-        data=json.dumps({"model": "mini-openamer", "messages": messages,
-                         "max_tokens": max_tokens}).encode(),
-        headers={"Content-Type": "application/json"})
-    r = json.load(urllib.request.urlopen(req, timeout=300))
-    return r["choices"][0]["message"]["content"].strip()
+    # Follows the configured default model (config.yaml model.default) so a
+    # provider/model switch flows through to all reasoning automatically.
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from model_config import chat_default
+    return chat_default(messages, max_tokens=max_tokens)
 
 def plan(task):
     """Break task into ordered subtasks."""

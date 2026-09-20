@@ -33,7 +33,7 @@ def extract_code(text):
 def run_code(code, timeout=15):
     try:
         r = subprocess.run([sys.executable, "-c", code],
-                           capture_output=True, text=True, timeout=timeout)
+                           capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=timeout)
         return r.returncode == 0, r.stdout.strip(), r.stderr.strip()[:200]
     except subprocess.TimeoutExpired:
         return False, "", "timeout"
