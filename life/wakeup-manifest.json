@@ -1,6 +1,6 @@
 {
   "organism": "OpenAmer",
-  "written_at": "2026-09-20T05:45:04.815713+00:00",
+  "written_at": "2026-09-20T22:05:01.102343+00:00",
   "identity": {
     "name": "openamer_agent",
     "voice": "https://x.com/openamer_agent",
@@ -15,7 +15,7 @@
   "organs": {
     "heartbeat": {
       "kind": "cron-fleet",
-      "count": 100
+      "count": 101
     },
     "memory": {
       "kind": "memory+skills",
@@ -278,7 +278,7 @@
       "name": "Social-Outreach-Mega",
       "schedule": "every 180m",
       "script": null,
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "Browser-Health-Watchdog",
@@ -302,7 +302,7 @@
       "name": "Plugin-Auto-Loader",
       "schedule": "every 30m",
       "script": "plugin-loader-cron.py",
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "Wiki-Generator-Daily",
@@ -326,7 +326,7 @@
       "name": "OpenAmer GitHub Outreach - Issues + Discussions",
       "schedule": "every 120m",
       "script": null,
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "OpenAmer Discord Community Manager",
@@ -374,7 +374,7 @@
       "name": "OpenAmer-Autonom-Growth",
       "schedule": "every 60m",
       "script": null,
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "Autonom-Watchtower 24/7",
@@ -398,7 +398,7 @@
       "name": "Darwin Engine - hourly skill evolution",
       "schedule": "*/15 * * * *",
       "script": "darwin-cron.py",
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "Darwin Weekly GitHub Report",
@@ -416,7 +416,7 @@
       "name": "Swarm OS - Autonomous Loop (30m)",
       "schedule": "every 30m",
       "script": null,
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "Darwin Skill AutoPatch (daily)",
@@ -488,25 +488,25 @@
       "name": "self-improvement-loop",
       "schedule": "*/30 * * * *",
       "script": null,
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "internet-learner-247",
       "schedule": "every 5m",
       "script": null,
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "knowledge-to-action",
       "schedule": "*/30 * * * *",
       "script": null,
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "auto-skill-creation",
       "schedule": "*/30 * * * *",
       "script": null,
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "self-model-evolution",
@@ -657,6 +657,12 @@
       "schedule": "0 3 * * *",
       "script": "cron-tool-invention.py",
       "last_status": "ok"
+    },
+    {
+      "name": "identity-refresh-watchdog",
+      "schedule": "40 4 * * *",
+      "script": "identity-watchdog.py",
+      "last_status": null
     }
   ]
 }
