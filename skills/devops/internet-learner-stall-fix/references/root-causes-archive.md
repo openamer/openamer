@@ -2899,3 +2899,84 @@ present in `origin/main` BEFORE any 20.09.26 edit, in the install copy, and in
 the pushed blob -- all three at the same offset. So `CR count == 0` is the WRONG
 assertion for this file; assert `CR count == 1` and compare the count against the
 PRE-PUSH blob (`git cat-file blob <rev>:<path>`) rather than against zero.
+
+## Observation BC — 71 % of today's `junk` rejects are WRITER-only and the extractor gate has a deliberate parity gap (measured 20.09.26, NON-FIX)
+
+Cron run began on `cycle_e_competitors: rejected, not trained (shallow + deep read
+both gated)` (57.6 s). Everything below is MEASURED; **no code changed** — the
+BF stopping state was re-confirmed on fresh numbers.
+
+### 1. Rate — still elevated, still flat across sources
+
+2,109 cycles / 536 rejects, all-time 25.4 %. Today 55 cycles / 37 rejects =
+**67.3 %** (vs 64.6 % on 19.09). Per source over the last 300 cycles: 50.0 %
+(`cycle_f_multi_domain`) … 66.7 % (`cycle_e_competitors`) — every source in the
+50-67 % band, i.e. not one cycle's bug (the BF/AI distinction).
+
+### 2. Owned rows and reasons (denominator split first)
+
+`buffer_junk.jsonl` = 6,831 rows; the last-400 slice contains **311
+learner-owned** rows (89 foreign). Owned reasons: `duplicate 161 / junk 141 /
+no-tech-signal 9`.
+
+### 3. NEW measurement — which gate actually fires on a `junk` row
+
+115 distinct FULL (300-char) junk candidates, judged by BOTH gates:
+
+| verdict | count |
+| --- | --- |
+| both gates `True` | 33 |
+| **writer `is_junk` only** | **82 (71 %)** |
+| extractor `il._is_junk` only | **0** |
+
+Leaf hits over the same set: `_is_serp_snippet` 73, `_is_nav_chrome` 54,
+`is_glued_motif` 3, `is_ordinal_stub` 1 — all pre-existing helpers, **zero novel
+shapes** (the BF criterion holds).
+
+Of the 115, **59 are gated by `_is_serp_snippet` ALONE** and **57 of those pass
+`_looks_like_content`** — i.e. a tech-signal-carrying SERP row costs a full
+`store` -> `deep_learn(k=2)` -> `deep_learn(k=6)` excursion (~55 s) before the
+writer refuses it. The mechanism is a **deliberate parity gap**: `buffer_store.is_junk`
+calls 8 helpers, `internet_learner._is_junk` calls 95, and exactly 6 writer helpers
+are absent from the extractor gate — `_is_serp_snippet`, `_is_nav_chrome`,
+`_is_periodic_repeat`, `_is_binary_noise`, `is_prompt_echo`, `is_junk`.
+
+**Why no fix.** Mirroring `_is_serp_snippet` into the extractor would be a
+behaviour change at extraction (the extractor filters *search results*, where a
+SERP shape is the normal input, not the verdict) and the measured cost is only
+time, never a wrongly-stored row. This is the class-109/113/118 family again; the
+standing instruction is: do not edit a gate on a rejection alone. Recorded, code
+untouched.
+
+### 4. Duplicate rejects are honest; buffer below cap
+
+`online_buffer.jsonl` holds 291 of `MAX_BUF = 300` rows. Of the 161 owned
+`duplicate` rows, **159 match an existing row's exact `(u, a)`**, 2 share the `u`
+with a different `a`, **0 are unattributable**. Rotation exhaustion, not the
+300/300 cap artifact of root cause AI.
+
+### 5. `deep_learn` still deterministic (BF unchanged)
+
+| query | k2 | k6 | identical |
+| --- | --- | --- | --- |
+| `github trending AI agent framework 2026` | 251 | 251 | **True** |
+| `vLLM optimization best practices` | 177 | 177 | **True** (already in buffer) |
+| `LLM prompt injection defense techniques 2026` | 144 | 144 | **True** (already in buffer) |
+| `competitor AI coding agent features 2026` | 195 | 195 | **True** |
+| `arxiv new papers meta-learning LLM agents 2026` | 0 | 252 | False |
+
+The `k=6` "wider net" is byte-identical to `k=2` for 4 of 5 seeds, so one honest
+refusal is logged as "both gated". Root cause AG — deliberately unpatched.
+
+### 6. Install -> repo sync was pending (done, byte-exact)
+
+The install copy of this archive carried a 562-byte trailing section
+("**Also — this archive carries a PRE-EXISTING lone CR**") that the repo copy
+lacked; `git status` showed the path dirty in the working tree. Synced with a
+**pure byte append** (`open(p,'ab').write(extra)`, never a text-patch tool, per
+the BF pitfall): `repo == install` byte-exact, sha256 `835a65c6992bcc3d`, CR
+census 1 in both, backup `.bak_20260920_125429` kept.
+
+**Correct stopping state re-confirmed:** (a) all junk leaf hits pre-existing, (b)
+159/161 duplicate rejects provably already stored, (c) buffer 291 < cap. Seed
+space exhausted, gates calibrated. Gate work stops here.
