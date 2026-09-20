@@ -4831,3 +4831,56 @@ def test_jobboard_ad_run_is_gated_on_both_paths():
         assert not IL._is_jobboard_ad_run_chrome(prose), prose
         assert not IL._is_junk(prose), prose
         assert not buffer_store._is_nav_chrome(prose), prose
+
+def test_own_plan_plus_run_covers_continuous_learning_loop_title():
+    """Class 81 (live 20.09.26): the own-artifact deliverable plan with a THIRD
+    title -- `Continuous Learning Loop: ...` -- which class 66's dangling-marker
+    form and class 80's alternation both missed. Live leak (98 chars, so the
+    >=90 length trust never applied):
+
+        Continuous Learning Loop: Error-Capture + Categorization + Memory
+        + Auto-Skill-Generation + Trend.
+
+    Measured: 1 buffer hit and it IS the leak -> 0 FPs on 11 prose controls, 0
+    test literals; the 4 `longterm_episodes` hits are the SAME own-artifact
+    strings (English + German), not world knowledge.
+    """
+    import buffer_store
+
+    leak = ("Continuous Learning Loop: Error-Capture + Categorization + Memory "
+            "+ Auto-Skill-Generation + Trend.")
+    assert IL._is_own_plan_plus_run(leak) is True
+    assert IL._is_junk(leak) is True
+    assert buffer_store._is_own_plan_plus_run(leak) is True
+    assert buffer_store.is_junk(leak) is True
+
+    # the German twin of the same own artifact must be gated too
+    leak_de = ("Kontinuierliche Lernschleife: Fehler-Capture + Kategorisierung "
+               "+ Memory + Auto-Skill-Generierung + Trend")
+    assert IL._is_own_plan_plus_run(leak_de) is True
+    assert IL._is_junk(leak_de) is True
+
+    # the class-66/80 originals must keep firing (no regression)
+    assert IL._is_own_plan_plus_run(
+        "Energy efficiency: AI performance optimization: Python script for RAM/Disk/"
+        "Cron monitoring + optimization suggestions + skill + cron job every 12h.") is True
+
+    # ordinary prose that merely mentions the loop, a `+`-run, or a title must stay learnable
+    counter_cases = [
+        "The pipeline: data ingestion: raw logs + normalization + dedup + feature extraction runs hourly.",
+        "Continuous learning matters because models degrade as the world changes.",
+        "Continuous Learning Loop: the team monitors drift weekly and retrains quarterly.",
+        "The loop is: collect metrics + aggregate + report, and it runs every night.",
+        "A reinforcement learning loop uses reward + policy + value estimation.",
+        "Error capture + categorization + memory consolidation improved retention.",
+        "Agent design: memory + tools + planning + reflection are the four pillars.",
+        "The study reports gains from experience replay + target networks + reward shaping.",
+        "Auto-skill generation, memory updates and trend tracking form the learning loop.",
+        "Vendor: Acme + Globex + Initech were compared in the benchmark.",
+        "Continuous Learning Loop: Fehler-Capture + Kategorisierung + Memory.",
+    ]
+    for c in counter_cases:
+        assert IL._is_own_plan_plus_run(c) is False, c
+        assert IL._is_junk(c) is False, c
+        assert buffer_store._is_own_plan_plus_run(c) is False, c
+

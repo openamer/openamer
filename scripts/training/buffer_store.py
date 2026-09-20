@@ -3072,9 +3072,16 @@ def _is_fact_box_label_chain(text):
 # `_PROMPT_PLAN_ECHO_RE` never fired. The discriminator is the own-artifact
 # title AND a 3-way `+`-joined deliverable run (bare `RAM/Disk/Cron` alone hits
 # 5 episodes; bare `skill + cron` hits 3 episodes + 1 control FP).
+# class 81 (live 20.09.26): same own-artifact family, third TITLE --
+#   "Continuous Learning Loop: Error-Capture + Categorization + Memory
+#    + Auto-Skill-Generation + Trend."
+# Measured: 1 buffer hit (the leak) / 0 control FPs on 11 prose
+# controls / 0 test literals; the 4 episode hits are the SAME
+# own-artifact strings (English + German), not world knowledge.
 _OWN_PLAN_PLUS_RUN_RE = _re.compile(
     r"^\s*(?:Energy efficiency|KI-Performance-Optimierung|AI performance optimization"
-    r"|Performance optimization|Efficiency)[^:\r\n]{0,40}:"
+    r"|Performance optimization|Efficiency|Continuous Learning Loop"
+    r"|Kontinuierliche Lernschleife)[^:\r\n]{0,40}:"
     r"[^\r\n]{0,200}\+[^\r\n]{0,120}\+[^\r\n]{0,120}\+",
     _re.IGNORECASE | _re.MULTILINE)
 
