@@ -113,7 +113,7 @@ def refresh_free_models():
         new_chain = (priority + other)[:10]
         state = {"free_chain": new_chain,
                  "last_refresh": datetime.datetime.now().isoformat()}
-        with open(CACHE, "w") as f:
+        with open(CACHE, "w", encoding="utf-8") as f:
             json.dump(state, f)
         return new_chain
     except Exception:
