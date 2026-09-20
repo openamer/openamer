@@ -3088,3 +3088,106 @@ at 293/300 (saturated), seed space exhausted. Root cause AG's deterministic
 marker was wired -- per the standing rule, never on a rejection alone. The only
 4 unproven `duplicate` rejects were `q` / `Eine Woche hat sieben Tage.`, a
 test-fixture string from `test_buffer_store.py`, not a leak.
+
+## Root cause 120 -- a 3-TREE DRIFT round: the install trees had gone BOTH ways (live 20.09.26)
+
+Cron ran one `internet_learner --once` cycle, as scheduled. It reported the
+documented `cycle_h_efficiency: rejected, not trained (shallow + deep read both
+gated)`. The rates table said **rotation noise**, not a regression -- per-day
+20.09. 30.3 % (12/40) but the 7d band is the same depressed 45-58 % documented
+since the 13.09 gate tightening, the last-24h per-hour row 0-33 % with NO step
+change, and `buffer_junk`'s last 80 = 40 `duplicate` / 38 `junk` / 2
+`no-tech-signal` -- the honest shapes. **No gate change was warranted for the
+rejection itself** (step 0 was run for exactly this reason).
+
+Step -1 in this skill -- `git status --porcelain scripts/training tests/scripts`
+-- then did the work, for the THIRD time in this family (AV, 116/117, now 120).
+Only 8 `M` on the six modules; the trap was not the working tree, it was the
+**INSTALL copies**. A whole-tree probe over `scripts/training/*.py` (77 files)
+comparing each LIVE file against its `git cat-file blob origin/main:<f>`, on
+LF-normalised md5, found **9 real drifts and they pointed BOTH directions**:
+
+| file | live vs origin/main | what it actually held |
+|---|---|---|
+| `analogy_engine.py` | live AHEAD | `model_config.chat_default()` instead of a hardcoded `mini-openamer` on :8081 |
+| `deep_task.py` | live AHEAD | same |
+| `reasoning_loop.py` | live AHEAD | same |
+| `tool_math.py` | live AHEAD | explicit `encoding="utf-8"` on its subprocess capture |
+| `tool_server.py` | live BEHIND | had LOST the two `encoding="utf-8", errors="replace"` captures that `88a30626d` merged back from live into the tree |
+| `probe_gatecause.py` | live BEHIND | still carried a hardcoded machine path |
+| `probe_rates.py` | live BEHIND | same |
+| `probe_urlcount.py` | live BEHIND | same |
+| `test_world_model.py` | live BEHIND | predated the store-lock contract commit |
+
+**The rule this proves: "sync repo -> install" is only half a rule.** The mirror
+is two-way and the SAME tree can be ahead on one file and behind on another in
+one run. Diff EVERY file against the remote blob in both directions before
+writing, and never overwrite a copy that carries something the remote lacks --
+the earlier loss of two utf-8 captures is exactly what a blind repo->live copy
+does.
+
+### The live-ahead four were a HALF-APPLIED migration, provable from the repo itself
+
+Not a judgement call -- the evidence was on main already: `model_config.chat_default`'s
+own docstring names `deep_task, reasoning_loop, analog` as the scripts it was
+written for, `active_learn` already calls it on main, and
+`scripts/training/test_model_config.py` already lists `reasoning_loop`,
+`deep_task`, `analogy_engine` as the intended callers. So main had the helper
+and three straggler call sites. Ported UP in a worktree of `origin/main`
+(`C:/Users/damir/il120wt`, not the live worktree -- it sits on a foreign branch,
+2 weeks behind), commit `3a0ca2912`, pushed `HEAD:main` FF_SAFE and verified
+against the remote (`git rev-parse origin/main` == the new sha, blob grep
+2/2/2/1). Tests: `pytest scripts/training/test_no_hardcoded_paths.py
+tests/scripts/test_footgun_subprocess_encoding.py scripts/training/test_model_config.py`
+-> **32 passed**; `pytest scripts/training -q` -> 156 passed / 2 failed, and
+BOTH failures are the KNOWN `test_competitor_gap.py` pair, verified pre-existing
+by running the same suite in the pristine worktree.
+
+### TRAP RE-CONFIRMED: `-c core.autocrlf=false commit` still reported a whole-file rewrite
+
+`git diff --stat` said **14 insertions / 23 deletions**, but the COMMIT summarised
+**423 insertions / 432 deletions** in the same four files. Cause is the documented
+worktree-CRLF trap in its other direction: the worktree files are CRLF, the blobs
+are LF, and the worktree here carries `core.autocrlf` from its own `config.worktree`.
+Proof that the blobs are clean -- `git cat-file blob HEAD:<f> | tr -cd '\r' | wc -c`
+-> **0** for all four, same as the parent; and `git diff --stat HEAD~1 HEAD` ==
+`git diff --stat --ignore-cr-at-eol HEAD~1 HEAD` -> 14/23. **Always census the CR
+bytes in the BLOB, never trust the commit summary line.**
+
+### A cleanup flipped the buffer's EOL -- and the fix is a proof, not a guess
+
+`online_buffer.jsonl` had **two more own-artifact ECHO rows** (idx 290/291): the
+stored `a` is the learner's own prompt echoed back, truncated, no terminal
+punctuation -- the 109/110 family, whose verdict is delete-by-signature (and
+whose 111/112 entry says "a written verdict is not a cleanup"; it still was not
+done a third time). Removed 2 rows, 294 -> 292, using the archive's own rule:
+filter on the SIGNATURE only (`a` starts with `Question:` / `Asked:` / `Find the
+structural connection` AND len <= 140 AND no terminal punctuation), **never on
+`is_junk`** -- that would have dropped the **16 genuine** structural-connection
+answers, which were asserted still present after the write.
+
+The cleanup wrote with `newline="\n"` and silently flipped a **CRLF** file to
+**LF** (294 CR -> 0 CR). Re-measured: `buffer_store.append` opens with
+`open(buf, "a", encoding="utf-8")` in text mode, i.e. Windows translates the
+written `"\n"` to CRLF, so CRLF is the store's own convention. Repaired, and the
+repair was PROVEN rather than asserted: backup 294 rows minus exactly the 2 echo
+rows, compared **in order**, equals the current 292; every line ends CRLF
+(`count(b"\r\n") == len(rows)`); and the two dropped rows printed by name. The
+archive's own trap again -- a row-store writer's EOL is a contract, so census
+`raw.count(b"\r")` BEFORE and AFTER any rewrite of a `.jsonl` store.
+
+### Verify (standard shape, all met)
+
+Final three-copy + remote table, LF-normalised md5, **9/9 agree, 0 mismatches**:
+`analogy_engine`, `deep_task`, `reasoning_loop`, `tool_math`, `tool_server`,
+`probe_gatecause`, `probe_rates`, `probe_urlcount`, `test_world_model` -- LIVE ==
+INSTALL == `git cat-file blob origin/main`, with each copy keeping its tree's
+EOL (only `tool_math` is CRLF in LIVE and LF in INSTALL, both matching their own
+tree's neighbours). The drift probe re-run at the end reports **0 DRIFT** across
+all 77 `scripts/training/*.py`; the 20 remaining "not-in-origin/main" entries are
+host-only helper scripts that have never been in the repo. Functionally verified
+after the sync, not just hashed: `probe_rates.py` runs and prints the per-source
+table, `tool_server.py` `/health` -> `{"status":"alive","tools":9}`, and a real
+`/v1/chat/completions` probe answers `PROBE_OK`. A second post-fix `--once`
+cycle still rejected -- that is rotation noise and is reported as such, NOT as a
+post-fix regression.
