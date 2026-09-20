@@ -4884,3 +4884,45 @@ def test_own_plan_plus_run_covers_continuous_learning_loop_title():
         assert IL._is_junk(c) is False, c
         assert buffer_store._is_own_plan_plus_run(c) is False, c
 
+
+def test_de_nav_weld_headline_chrome_is_gated_on_both_paths():
+    """Class 82 (live 20.09.26): a German site's nav-label WELD stored as the
+    answer -- the page's menu lost its separators, so its own labels run into
+    the article headline:
+
+        Blogs Karriere Ueber uns U Vertrieb kontaktieren LLM Agent Sandboxing:
+        Wie MCP, Tool Permissions und DSGVO zusammenpassen
+
+    The WELD is the discriminator: a `,`/`und`-joined list of the SAME labels
+    is ordinary German prose and stays learnable. Measured: 1 buffer hit and it
+    IS the leak -> 0 FPs on 14 hostile controls, 0 of 6,118 longterm_episodes,
+    0 test literals.
+    """
+    import buffer_store
+
+    leak = ("Blogs Karriere \u00dcber uns U Vertrieb kontaktieren LLM Agent Sandboxing: "
+            "Wie MCP, Tool Permissions und DSGVO zusammenpassen")
+    assert IL._is_de_nav_weld_headline_chrome(leak) is True
+    assert IL._is_junk(leak) is True
+    assert buffer_store._is_de_nav_weld_headline_chrome(leak) is True
+    assert buffer_store.is_junk(leak) is True
+
+    counter_cases = [
+        "Unser Blog erklaert, wie Kunden den Vertrieb kontaktieren: Ein Leitfaden fuer Anfaenger.",
+        "Die Blogs zeigen, wie man den Vertrieb kontaktieren kann. Praxisbeispiel: Ein Kunde aus Berlin.",
+        "Blogs, Karriere, \u00dcber uns \u2014 so sieht eine typische Navigation aus.",
+        "Ein Artikel beschreibt: Blogs helfen dem Vertrieb. Kontaktieren Sie uns fuer Details.",
+        "Der Blogbeitrag traegt den Titel Vertrieb kontaktieren: Strategien fuer 2026.",
+        "Blogs und Karriere sind Menuepunkte, \u00dcber uns folgt danach.",
+        "Titel: Blogs im Vertrieb. Kontaktieren Sie uns, um mehr zu erfahren.",
+        "Karriere und Blogs sowie Vertrieb kontaktieren sind drei Navigationslinks.",
+        "Impressum Datenschutz AGB: rechtliche Pflichtangaben.",
+        "News Presse Team: die Abteilungen der Firma.",
+        "Kontakt Impressum Datenschutz \u2014 diese Links stehen im Footer der Seite.",
+        "Blogs Karriere \u00dcber uns sind drei Menuepunkte nebeneinander.",
+        "Blogs Karriere ist eine verkuerzte Navigation mit zwei Punkten.",
+    ]
+    for c in counter_cases:
+        assert IL._is_de_nav_weld_headline_chrome(c) is False, c
+        assert buffer_store._is_de_nav_weld_headline_chrome(c) is False, c
+
