@@ -1688,6 +1688,118 @@ _JOBBOARD_BRAND = "haystack"
 _JOBBOARD_MIN_BRAND = 2
 
 
+# class 113/114 markers (live 20.09.26) -- see _is_dated_listing_run and
+# _is_readtime_card_widget.
+_MONTH_NAME = (r"(?:Jan|Feb|M(?:ar|\u00e4r|rz)|Apr|May|Jun|Jul|Aug|Sep|Sept|"
+               r"Oct|Okt|Nov|Dec|Dez)")
+# an aggregator row's own date: "12th September 2026" / "12. September 2026"
+_LISTING_DATE = (r"\d{1,2}\.?(?:st|nd|rd|th)?\s+" + _MONTH_NAME + r"[a-z]*\.?\s+\d{4}")
+# the row's OWN dash separator, not a hyphen inside a word
+_ROW_DASH = r"\s[-\u2013\u2014]\s"
+_DATED_LISTING_RE = re.compile(
+    _ROW_DASH + r"\b" + _LISTING_DATE + r"\b.{0,140}?" + _ROW_DASH
+    + r"\b" + _LISTING_DATE + r"\b", re.I | re.S)
+_READTIME_CARD_RE = re.compile(
+    r"\b" + _MONTH_NAME + r"\b\s*\d{1,2},\s*\d{4}.{0,60}?"
+    r"\b\d+\s+min\s+min\s+read\b", re.I | re.S)
+
+
+def _is_dated_listing_run(text):
+    """True when `text` is an aggregator LISTING run of dated headlines (class 113).
+
+    Live 20.09.26: `cycle_e_competitors` (and an earlier `cycle_a_technews`)
+    stored the same blog index feed:
+
+        ChatGPT Work - 12th September 2026 OpenAI agents attacked RubyGems
+        back in May - 12th September 2026 Some thoughts on the Navier-Stokes
+        Millennium Prize Problem - 8th September 2026 This is a link post by
+        Simon Willison, posted on 27th February 2026 .
+
+    Several unrelated headlines welded together by their own `- <date>` tails:
+    a blog INDEX page, not an article. 251 chars carrying digits, so both the
+    >=90 length trust and the technical-signal gate fired, and no existing
+    detector matched.
+
+    The discriminator had to be TIGHTENED during measurement: a first form
+    requiring only two date stamps within 120 chars measured 1
+    `longterm_episodes` hit -- a Markdown metrics TABLE (`| Erstellt | 16.
+    August 2026 | ... | Letzter Push | 28. August 2026 |`), which is real
+    knowledge and must stay learnable. Requiring the row DASH (` - `) to weld
+    each date to a headline removes it: prose that merely mentions two dates
+    (`released on 12 September 2026 and benchmarked on 8 September 2026`) has
+    no such dash in BOTH slots. Measured: 2 buffer hits and BOTH are the leak
+    -> 0 FPs on 10 prose controls, 0 of 3,059 `longterm_episodes`, 0 gate-test
+    literals.
+    """
+    return bool(_DATED_LISTING_RE.search(text or ""))
+
+
+def _is_readtime_card_widget(text):
+    """True when `text` is a review card's date + glued read-time badge (class 114).
+
+    Live 20.09.26: `cycle_f_multi_domain` stored
+
+        Claw Mar 23, 2026 Comparison 15 min min read OpenClaw vs Other AI
+        Agent Frameworks - Comprehensive Comparison 2026 In-depth comparison
+        of OpenClaw with LangChain, AutoGPT, CrewAI, and other popular AI
+        agent frameworks.
+
+    A CMS review card: date, category, and a read-time badge. The badge is the
+    discriminator -- the renderer emits the doubled unit `min min read`, which
+    ordinary prose never does (`a 15 min read`, `the 15-minute read` stay
+    learnable). Requiring the date + badge TOGETHER keeps a bare badge and a
+    bare date out of scope. Measured: 1 buffer hit and it IS the leak -> 0 FPs
+    on 10 prose controls (including two that mention `min read`), 0 of 3,059
+    `longterm_episodes`, 0 gate-test literals.
+    """
+    return bool(_READTIME_CARD_RE.search(text or ""))
+
+
+# class 118 marker (live 20.09.26) -- see _is_infobox_factrow_tail.
+# MediaWiki relative-age template followed by the infobox's license field. The
+# template renders as a date, a `;`, the relative age and the ISO date in
+# parentheses; the extractor then welded the NEXT infobox field onto it.
+_RELAGO_TEMPLATE = r"\b\d+\s+years?\s+ago\s*\([\s\S]{0,40}?\)"
+_INFOBOX_LICENSE_LABEL = r"\bContent license\b"
+_INFOBOX_FACTROW_TAIL_RE = re.compile(
+    _RELAGO_TEMPLATE + r"[\s\S]{0,60}?" + _INFOBOX_LICENSE_LABEL, re.I)
+
+
+def _is_infobox_factrow_tail(text):
+    """True when `text` is a wiki infobox fact-row tail (class 118).
+
+    Live 20.09.26: `cycle_h_efficiency` stored
+
+        September 2026) Launched 15 January 2001 ; 25 years ago ( 2001-01-15 )
+        Content license Creative Commons Attribution/ Share-Alike 4.
+
+    Two infobox fields ("Launched", "Content license") with the rendered
+    relative-age template between them -- a page's field table, not an article.
+    The text OPENS mid-parenthesis, so the extractor cut a field row out of the
+    box. 131 chars carrying digits, so the >=90 length trust and the
+    technical-signal gate both fired, and no existing detector matched
+    (`which_rule_matches.py` -> INDIVIDUAL RULES MATCHED: none).
+
+    The discriminator is the JUXTAPOSITION, not either half. The relative-age
+    template alone (5 candidate forms measured) hits 13 of 12-25 hand-written
+    hostile prose controls -- a real sentence may legitimately say "PyTorch 1.0
+    shipped 7 December 2018; 7 years ago (2018-12-07) the ecosystem was much
+    smaller". The license label alone hits 6 controls ("the paper's content
+    license is Creative Commons Attribution 4.0"). "Content license" + a CC
+    name within 60 chars still hits "The model card lists: Created by Meta,
+    Content license CC BY-NC 4.0, and Type of site research" -- real knowledge.
+    Requiring the template THEN the label inside 60 chars removes every one of
+    them: prose that names both puts a sentence boundary between them, and the
+    template only ever precedes the field table.
+
+    Measured: 1 buffer hit and it IS the leak (the writer gate accepted it,
+    `_is_junk` False) -> 0 of 3,059 `longterm_episodes`, 0 of 642 gate-test
+    literals, 0 FPs on 25 prose controls, 0 on a 12-strong hostile set that
+    quotes the template and the license label separately.
+    """
+    return bool(_INFOBOX_FACTROW_TAIL_RE.search(text or ""))
+
+
 def _is_jobboard_ad_run_chrome(text):
     """True when `text` is a job-board's repeated ad/slogan run.
 
@@ -3597,6 +3709,15 @@ def _is_junk(text):
         return True
     # a job-board's repeated brand + slogan ad run (class 108, 20.09.26)
     if _is_jobboard_ad_run_chrome(t):
+        return True
+    # a dated aggregator listing run: headline welded to its date, twice (class 113, 20.09.26)
+    if _is_dated_listing_run(t):
+        return True
+    # a review card's date + glued read-time badge (class 114, 20.09.26)
+    if _is_readtime_card_widget(t):
+        return True
+    # a wiki infobox fact-row tail: relative-age template + license field (class 118, 20.09.26)
+    if _is_infobox_factrow_tail(t):
         return True
     # a run of a document-hosting page's nav widgets (class 50, 18.09.26)
     if _is_nav_widget_run_chrome(t):

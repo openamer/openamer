@@ -25,6 +25,12 @@ def fake_skills(tmp_path, monkeypatch):
     monkeypatch.setattr(darwin, "SKILLS_DIR", skills)
     monkeypatch.setattr(darwin, "DARWIN_DIR", tmp_path / "darwin")
     monkeypatch.setattr(darwin, "POPULATION_FILE", tmp_path / "darwin" / "population.json")
+    monkeypatch.setattr(darwin, "HISTORY_FILE", tmp_path / "reports" / "darwin-history.jsonl")
+    monkeypatch.setattr(darwin, "REPORTS_DIR", tmp_path / "reports")
+    monkeypatch.setattr(darwin, "FITNESS_FILE", tmp_path / "reports" / "darwin-fitness.json")
+    monkeypatch.setattr(darwin, "REPORT_FILE", tmp_path / "reports" / "darwin-report.md")
+    monkeypatch.setattr(darwin, "PROBE_FILE", tmp_path / "reports" / "darwin-probe.json")
+    monkeypatch.setattr(darwin, "TUNING_FILE", tmp_path / "darwin" / "tuning.json")
     return skills
 
 
@@ -81,3 +87,63 @@ def test_report_renders_markdown(fake_skills):
     md = darwin.report(fitness, [], [])
     assert "# Darwin Engine Report" in md
     assert "alpha" in md
+
+BS = chr(92)   # backslash, built at runtime so this file needs no literal escapes
+NL = chr(10)   # newline
+DQ = chr(34)   # double quote
+
+
+def test_expand_env_vars_substitutes_paths_without_a_shell(monkeypatch):
+    """The documented $OPENAMER_HOME form must reach Python as a real path.
+
+    `python ...` verification blocks run without a shell, so an unexpanded
+    $OPENAMER_HOME stayed a literal and Python resolved it as a relative
+    path -- any skill written in the documented form failed its verification
+    block and lost every duel on that alone, regardless of quality.
+    """
+    win_home = "C:" + BS + "Users" + BS + "x" + BS + "openamer"
+    monkeypatch.setenv("OPENAMER_HOME", win_home)
+    out = darwin._expand_env_vars(
+        "python " + DQ + "$OPENAMER_HOME" + BS + "scripts" + BS + "s.py" + DQ)
+    assert "$OPENAMER_HOME" not in out
+    assert win_home in out
+
+    # git-bash exports the MSYS form; it must become a native drive path
+    monkeypatch.setenv("OPENAMER_HOME", "/c/Users/x/openamer")
+    assert darwin._expand_env_vars(
+        "python $OPENAMER_HOME/scripts/s.py") == "python C:/Users/x/openamer/scripts/s.py"
+
+    # ${VAR} braces form
+    assert darwin._expand_env_vars(
+        "${OPENAMER_HOME}/s.py") == "C:/Users/x/openamer/s.py"
+
+
+def test_expand_env_vars_leaves_plain_text_alone(monkeypatch):
+    monkeypatch.delenv("NOT_SET_ANYWHERE", raising=False)
+    plain = "python scripts/foo.py --json"
+    assert darwin._expand_env_vars(plain) == plain
+    assert darwin._expand_env_vars("$NOT_SET_ANYWHERE/x") == "$NOT_SET_ANYWHERE/x"
+
+
+def test_run_skill_check_expands_env_var_block(tmp_path, monkeypatch):
+    """End-to-end: a block whose script path comes from $OPENAMER_HOME runs."""
+    home = tmp_path / "home"
+    (home / "scripts").mkdir(parents=True)
+    (home / "scripts" / "probe.py").write_text("print('probe-ok')", encoding="utf-8")
+
+    skills = tmp_path / "skills"
+    d = skills / "envvar-skill"
+    d.mkdir(parents=True)
+    body = "# envvar-skill" + NL + NL + "## Verification" + NL + NL + "```bash" + NL
+    body += ("python " + DQ + "$OPENAMER_HOME" + BS + "scripts" + BS
+             + "probe.py" + DQ + NL + "```" + NL)
+    (d / "SKILL.md").write_text(body, encoding="utf-8")
+
+    monkeypatch.setattr(darwin, "SKILLS_DIR", skills)
+    monkeypatch.setenv("OPENAMER_HOME", str(home))
+
+    res = darwin.run_skill_check("envvar-skill")
+    assert res["ok"] is True, res
+    assert res["exit_code"] == 0, res
+    assert "No such file" not in (res.get("stderr_tail") or "")
+

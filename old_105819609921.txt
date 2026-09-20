@@ -1,0 +1,1931 @@
+﻿2026-09-19T01:57:46.4101507Z Current runner version: '2.337.0'
+2026-09-19T01:57:46.4120440Z ##[group]Runner Image Provisioner
+2026-09-19T01:57:46.4121033Z Hosted Compute Agent
+2026-09-19T01:57:46.4121418Z Version: 20260828.587
+2026-09-19T01:57:46.4121840Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+2026-09-19T01:57:46.4122343Z Build Date: 2026-08-28T16:44:25Z
+2026-09-19T01:57:46.4122814Z Worker ID: {cb6eae2e-10bd-4d01-9805-0d0cb0303365}
+2026-09-19T01:57:46.4123301Z Azure Region: westus3
+2026-09-19T01:57:46.4123678Z ##[endgroup]
+2026-09-19T01:57:46.4124582Z ##[group]Operating System
+2026-09-19T01:57:46.4124990Z Ubuntu
+2026-09-19T01:57:46.4125322Z 24.04.5
+2026-09-19T01:57:46.4125653Z LTS
+2026-09-19T01:57:46.4125998Z ##[endgroup]
+2026-09-19T01:57:46.4126382Z ##[group]Runner Image
+2026-09-19T01:57:46.4126921Z Image: ubuntu-24.04
+2026-09-19T01:57:46.4127302Z Version: 20260907.300.1
+2026-09-19T01:57:46.4128162Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260907.300/images/ubuntu/Ubuntu2404-Readme.md
+2026-09-19T01:57:46.4129238Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260907.300
+2026-09-19T01:57:46.4129911Z ##[endgroup]
+2026-09-19T01:57:46.4130641Z ##[group]GITHUB_TOKEN Permissions
+2026-09-19T01:57:46.4132238Z Contents: read
+2026-09-19T01:57:46.4132634Z Metadata: read
+2026-09-19T01:57:46.4132998Z ##[endgroup]
+2026-09-19T01:57:46.4134502Z Secret source: Actions
+2026-09-19T01:57:46.4135103Z Cache mode: write
+2026-09-19T01:57:46.4135858Z Prepare workflow directory
+2026-09-19T01:57:46.4391158Z Prepare all required actions
+2026-09-19T01:57:46.4443793Z Getting action download info
+2026-09-19T01:57:46.7351408Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+2026-09-19T01:57:46.9049236Z Download action repository 'astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d' (SHA:20cfd1bf945f4377ade1205e4dbc17946fc9a30d)
+2026-09-19T01:57:47.7753707Z Download action repository 'actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a' (SHA:043fb46d1a93c77aae656e7c1c64a875d1fc6a0a)
+2026-09-19T01:57:47.9731759Z Uses: openamer/openamer/.github/workflows/tests.yml@refs/heads/main (711feb164973c21ff875d6c23d7d22162f5b54f2)
+2026-09-19T01:57:47.9735562Z ##[group] Inputs
+2026-09-19T01:57:47.9736578Z   slice_count: 8
+2026-09-19T01:57:47.9737418Z ##[endgroup]
+2026-09-19T01:57:47.9737957Z Complete job name: Python tests / Run tests slice 8/8
+2026-09-19T01:57:48.0378709Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+2026-09-19T01:57:48.0379570Z with:
+2026-09-19T01:57:48.0379954Z   repository: openamer/openamer
+2026-09-19T01:57:48.0383512Z   token: ***
+2026-09-19T01:57:48.0383891Z   ssh-strict: true
+2026-09-19T01:57:48.0384269Z   ssh-user: git
+2026-09-19T01:57:48.0384652Z   persist-credentials: true
+2026-09-19T01:57:48.0385076Z   clean: true
+2026-09-19T01:57:48.0385464Z   sparse-checkout-cone-mode: true
+2026-09-19T01:57:48.0385917Z   fetch-depth: 1
+2026-09-19T01:57:48.0386284Z   fetch-tags: false
+2026-09-19T01:57:48.0386689Z   show-progress: true
+2026-09-19T01:57:48.0387208Z   lfs: false
+2026-09-19T01:57:48.0387567Z   submodules: false
+2026-09-19T01:57:48.0387952Z   set-safe-directory: true
+2026-09-19T01:57:48.0388375Z   allow-unsafe-pr-checkout: false
+2026-09-19T01:57:48.0388980Z ##[endgroup]
+2026-09-19T01:57:48.1223440Z Syncing repository: openamer/openamer
+2026-09-19T01:57:48.1225461Z ##[group]Getting Git version info
+2026-09-19T01:57:48.1226223Z Working directory is '/home/runner/work/openamer/openamer'
+2026-09-19T01:57:48.1227381Z [command]/usr/bin/git version
+2026-09-19T01:57:48.1256522Z git version 2.55.0
+2026-09-19T01:57:48.1272967Z ##[endgroup]
+2026-09-19T01:57:48.1301498Z Temporarily overriding HOME='/home/runner/work/_temp/4cec3bd6-feb0-4963-9335-34b8c94dd776' before making global git config changes
+2026-09-19T01:57:48.1303924Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-19T01:57:48.1306290Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/openamer/openamer
+2026-09-19T01:57:48.1346980Z Deleting the contents of '/home/runner/work/openamer/openamer'
+2026-09-19T01:57:48.1349858Z ##[group]Determining repository object format
+2026-09-19T01:57:48.1351529Z ##[endgroup]
+2026-09-19T01:57:48.1352691Z ##[group]Initializing the repository
+2026-09-19T01:57:48.1354658Z [command]/usr/bin/git init /home/runner/work/openamer/openamer
+2026-09-19T01:57:48.1426026Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-09-19T01:57:48.1427878Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-09-19T01:57:48.1429206Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-09-19T01:57:48.1430237Z hint: call:
+2026-09-19T01:57:48.1430785Z hint:
+2026-09-19T01:57:48.1431488Z hint: 	git config --global init.defaultBranch <name>
+2026-09-19T01:57:48.1432354Z hint:
+2026-09-19T01:57:48.1433200Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-09-19T01:57:48.1434501Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-09-19T01:57:48.1435528Z hint:
+2026-09-19T01:57:48.1436122Z hint: 	git branch -m <name>
+2026-09-19T01:57:48.1436586Z hint:
+2026-09-19T01:57:48.1437362Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-09-19T01:57:48.1438390Z Initialized empty Git repository in /home/runner/work/openamer/openamer/.git/
+2026-09-19T01:57:48.1441144Z [command]/usr/bin/git remote add origin https://github.com/openamer/openamer
+2026-09-19T01:57:48.1472150Z ##[endgroup]
+2026-09-19T01:57:48.1473324Z ##[group]Disabling automatic garbage collection
+2026-09-19T01:57:48.1475143Z [command]/usr/bin/git config --local gc.auto 0
+2026-09-19T01:57:48.1501745Z ##[endgroup]
+2026-09-19T01:57:48.1502816Z ##[group]Setting up auth
+2026-09-19T01:57:48.1503649Z Removing SSH command configuration
+2026-09-19T01:57:48.1506483Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-19T01:57:48.1536142Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-19T01:57:48.2315088Z Removing HTTP extra header
+2026-09-19T01:57:48.2319864Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-19T01:57:48.2355013Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-19T01:57:48.2545946Z Removing includeIf entries pointing to credentials config files
+2026-09-19T01:57:48.2547537Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-19T01:57:48.2583165Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-19T01:57:48.2771255Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-2848979e-541f-4c4f-b079-e856401ace12.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-09-19T01:57:48.2804835Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/openamer/openamer/.git.path /home/runner/work/_temp/git-credentials-2848979e-541f-4c4f-b079-e856401ace12.config
+2026-09-19T01:57:48.2833419Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/openamer/openamer/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-2848979e-541f-4c4f-b079-e856401ace12.config
+2026-09-19T01:57:48.2884414Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-2848979e-541f-4c4f-b079-e856401ace12.config
+2026-09-19T01:57:48.2907073Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-2848979e-541f-4c4f-b079-e856401ace12.config
+2026-09-19T01:57:48.2932983Z ##[endgroup]
+2026-09-19T01:57:48.2933875Z ##[group]Fetching the repository
+2026-09-19T01:57:48.2939305Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +711feb164973c21ff875d6c23d7d22162f5b54f2:refs/remotes/origin/main
+2026-09-19T01:57:53.1815457Z From https://github.com/openamer/openamer
+2026-09-19T01:57:53.1816988Z  * [new ref]         711feb164973c21ff875d6c23d7d22162f5b54f2 -> origin/main
+2026-09-19T01:57:53.1822830Z [command]/usr/bin/git branch --list --remote origin/main
+2026-09-19T01:57:53.1847582Z   origin/main
+2026-09-19T01:57:53.1854230Z [command]/usr/bin/git rev-parse refs/remotes/origin/main
+2026-09-19T01:57:53.1877005Z 711feb164973c21ff875d6c23d7d22162f5b54f2
+2026-09-19T01:57:53.1880353Z ##[endgroup]
+2026-09-19T01:57:53.1880920Z ##[group]Determining the checkout info
+2026-09-19T01:57:53.1881518Z ##[endgroup]
+2026-09-19T01:57:53.1883952Z [command]/usr/bin/git sparse-checkout disable
+2026-09-19T01:57:53.1926145Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-09-19T01:57:53.1952975Z ##[group]Checking out the ref
+2026-09-19T01:57:53.1956144Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-09-19T01:57:54.2080380Z Updating files:  91% (9229/10080)
+2026-09-19T01:57:54.2137321Z Updating files:  92% (9274/10080)
+2026-09-19T01:57:54.2236953Z Updating files:  93% (9375/10080)
+2026-09-19T01:57:54.2321703Z Updating files:  94% (9476/10080)
+2026-09-19T01:57:54.2406700Z Updating files:  95% (9576/10080)
+2026-09-19T01:57:54.2491430Z Updating files:  96% (9677/10080)
+2026-09-19T01:57:54.2581340Z Updating files:  97% (9778/10080)
+2026-09-19T01:57:54.2657314Z Updating files:  98% (9879/10080)
+2026-09-19T01:57:54.2932149Z Updating files:  99% (9980/10080)
+2026-09-19T01:57:54.2932592Z Updating files: 100% (10080/10080)
+2026-09-19T01:57:54.2932941Z Updating files: 100% (10080/10080), done.
+2026-09-19T01:57:54.3024593Z Switched to a new branch 'main'
+2026-09-19T01:57:54.3028880Z branch 'main' set up to track 'origin/main'.
+2026-09-19T01:57:54.3097130Z ##[endgroup]
+2026-09-19T01:57:54.3099399Z [command]/usr/bin/git log -1 --format=%H
+2026-09-19T01:57:54.3124002Z 711feb164973c21ff875d6c23d7d22162f5b54f2
+2026-09-19T01:57:54.3312575Z ##[group]Run set -euo pipefail
+2026-09-19T01:57:54.3312917Z [36;1mset -euo pipefail[0m
+2026-09-19T01:57:54.3313140Z [36;1mRG_VERSION=15.1.0[0m
+2026-09-19T01:57:54.3313478Z [36;1mRG_SHA256=1c9297be4a084eea7ecaedf93eb03d058d6faae29bbc57ecdaf5063921491599[0m
+2026-09-19T01:57:54.3313930Z [36;1mRG_TARBALL=ripgrep-${RG_VERSION}-x86_64-unknown-linux-musl.tar.gz[0m
+2026-09-19T01:57:54.3314300Z [36;1mcurl -sSfL --retry 3 --retry-delay 5 -o "$RG_TARBALL" \[0m
+2026-09-19T01:57:54.3314734Z [36;1m  "https://github.com/BurntSushi/ripgrep/releases/download/${RG_VERSION}/${RG_TARBALL}"[0m
+2026-09-19T01:57:54.3315151Z [36;1mecho "${RG_SHA256}  ${RG_TARBALL}" | sha256sum -c -[0m
+2026-09-19T01:57:54.3315414Z [36;1mtar -xzf "$RG_TARBALL"[0m
+2026-09-19T01:57:54.3315751Z [36;1msudo mv "ripgrep-${RG_VERSION}-x86_64-unknown-linux-musl/rg" /usr/local/bin/rg[0m
+2026-09-19T01:57:54.3316154Z [36;1mrm -rf "$RG_TARBALL" "ripgrep-${RG_VERSION}-x86_64-unknown-linux-musl"[0m
+2026-09-19T01:57:54.3316489Z [36;1mrg --version[0m
+2026-09-19T01:57:54.3353089Z shell: /usr/bin/bash -e {0}
+2026-09-19T01:57:54.3353321Z ##[endgroup]
+2026-09-19T01:57:54.6191154Z ripgrep-15.1.0-x86_64-unknown-linux-musl.tar.gz: OK
+2026-09-19T01:57:54.6646096Z ripgrep 15.1.0 (rev af60c2de9d)
+2026-09-19T01:57:54.6646368Z 
+2026-09-19T01:57:54.6646505Z features:+pcre2
+2026-09-19T01:57:54.6646987Z simd(compile):+SSE2,-SSSE3,-AVX2
+2026-09-19T01:57:54.6647255Z simd(runtime):+SSE2,+SSSE3,+AVX2
+2026-09-19T01:57:54.6647410Z 
+2026-09-19T01:57:54.6647534Z PCRE2 10.45 is available (JIT is available)
+2026-09-19T01:57:54.6738855Z ##[group]Run astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d
+2026-09-19T01:57:54.6739181Z with:
+2026-09-19T01:57:54.6739352Z   enable-cache: true
+2026-09-19T01:57:54.6739724Z   cache-dependency-glob: pyproject.toml
+uv.lock
+
+2026-09-19T01:57:54.6739987Z   activate-environment: false
+2026-09-19T01:57:54.6740195Z   no-project: false
+2026-09-19T01:57:54.6740430Z   working-directory: /home/runner/work/openamer/openamer
+2026-09-19T01:57:54.6742691Z   github-token: ***
+2026-09-19T01:57:54.6742881Z   restore-cache: true
+2026-09-19T01:57:54.6743062Z   save-cache: true
+2026-09-19T01:57:54.6743238Z   prune-cache: false
+2026-09-19T01:57:54.6743425Z   cache-python: false
+2026-09-19T01:57:54.6743627Z   ignore-nothing-to-cache: false
+2026-09-19T01:57:54.6743864Z   ignore-empty-workdir: false
+2026-09-19T01:57:54.6744095Z   download-from-astral-mirror: true
+2026-09-19T01:57:54.6744323Z   add-problem-matchers: true
+2026-09-19T01:57:54.6744523Z   quiet: false
+2026-09-19T01:57:54.6744739Z   resolution-strategy: highest
+2026-09-19T01:57:54.6744948Z ##[endgroup]
+2026-09-19T01:57:54.8160975Z Trying to find version for uv in: /home/runner/work/openamer/openamer/uv.toml
+2026-09-19T01:57:54.8161712Z Could not find file: /home/runner/work/openamer/openamer/uv.toml
+2026-09-19T01:57:54.8162372Z Trying to find version for uv in: /home/runner/work/openamer/openamer/pyproject.toml
+2026-09-19T01:57:54.8174599Z Could not determine uv version from uv.toml or pyproject.toml. Falling back to latest.
+2026-09-19T01:57:54.8178988Z Fetching manifest data from https://raw.githubusercontent.com/astral-sh/versions/main/v1/uv.ndjson ...
+2026-09-19T01:57:54.8798103Z Downloading uv from "https://releases.astral.sh/github/uv/releases/download/0.12.17/uv-x86_64-unknown-linux-gnu.tar.gz" ...
+2026-09-19T01:57:55.1887930Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/1a9c8998-39f3-4c46-b1b1-b7579eba4ba9 -f /home/runner/work/_temp/983d67ee-6b0b-489d-841a-b7f88315d17c
+2026-09-19T01:57:55.6878409Z Added /home/runner/.local/bin to the path
+2026-09-19T01:57:55.6881257Z Added /opt/hostedtoolcache/uv/0.12.17/x86_64 to the path
+2026-09-19T01:57:55.6883291Z Set UV_PYTHON_INSTALL_DIR to /home/runner/work/_temp/uv-python-dir
+2026-09-19T01:57:55.6883854Z Added /home/runner/work/_temp/uv-python-dir to the path
+2026-09-19T01:57:55.6905226Z Set UV_CACHE_DIR to /home/runner/work/_temp/setup-uv-cache
+2026-09-19T01:57:55.6905647Z Successfully installed uv version 0.12.17
+2026-09-19T01:57:55.7371746Z Searching files using cache dependency glob: /home/runner/work/openamer/openamer/pyproject.toml,/home/runner/work/openamer/openamer/uv.lock
+2026-09-19T01:57:55.7414404Z /home/runner/work/openamer/openamer/pyproject.toml
+2026-09-19T01:57:55.7428163Z /home/runner/work/openamer/openamer/uv.lock
+2026-09-19T01:57:55.7444244Z Found 2 files to hash.
+2026-09-19T01:57:55.7491744Z Trying to restore cache from GitHub Actions cache with key: setup-uv-2-x86_64-unknown-linux-gnu-ubuntu-24.04-3.12.3-037fb1b04eeae41563a55b9b56d9fe73293f919acf7e1cab0ca9cc7226c87a48
+2026-09-19T01:57:55.9363066Z Cache hit for: setup-uv-2-x86_64-unknown-linux-gnu-ubuntu-24.04-3.12.3-037fb1b04eeae41563a55b9b56d9fe73293f919acf7e1cab0ca9cc7226c87a48
+2026-09-19T01:57:56.4697102Z Received 197011 of 197011 (100.0%), 0.6 MBs/sec
+2026-09-19T01:57:56.4697426Z Cache Size: ~0 MB (197011 B)
+2026-09-19T01:57:56.4717413Z [command]/usr/bin/tar -xf /home/runner/work/_temp/f0370686-d6af-4b83-be0d-61297760c513/cache.tzst -P -C /home/runner/work/openamer/openamer --use-compress-program unzstd
+2026-09-19T01:57:56.4789913Z Cache restored successfully
+2026-09-19T01:57:56.4793590Z cache restored from GitHub Actions cache with key: setup-uv-2-x86_64-unknown-linux-gnu-ubuntu-24.04-3.12.3-037fb1b04eeae41563a55b9b56d9fe73293f919acf7e1cab0ca9cc7226c87a48
+2026-09-19T01:57:56.5900183Z ##[group]Run uv python install 3.11
+2026-09-19T01:57:56.5900452Z [36;1muv python install 3.11[0m
+2026-09-19T01:57:56.5934746Z shell: /usr/bin/bash -e {0}
+2026-09-19T01:57:56.5934963Z env:
+2026-09-19T01:57:56.5935209Z   UV_PYTHON_INSTALL_DIR: /home/runner/work/_temp/uv-python-dir
+2026-09-19T01:57:56.5935536Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-09-19T01:57:56.5935943Z ##[endgroup]
+2026-09-19T01:57:56.7252934Z Downloading cpython-3.11.16-linux-x86_64-gnu (download) (29.4MiB)
+2026-09-19T01:57:57.5227474Z  Downloaded cpython-3.11.16-linux-x86_64-gnu (download)
+2026-09-19T01:57:57.5967211Z Installed Python 3.11.16 in 993ms
+2026-09-19T01:57:57.5967776Z  + cpython-3.11.16-linux-x86_64-gnu (python3.11)
+2026-09-19T01:57:57.6101524Z Prepare all required actions
+2026-09-19T01:57:57.6149238Z ##[group]Run ./.github/actions/retry
+2026-09-19T01:57:57.6149471Z with:
+2026-09-19T01:57:57.6149702Z   command: uv sync --locked --python 3.11 --extra all --extra dev
+2026-09-19T01:57:57.6149981Z   attempts: 3
+2026-09-19T01:57:57.6150144Z   delay: 10
+2026-09-19T01:57:57.6150306Z   working-directory: .
+2026-09-19T01:57:57.6150493Z env:
+2026-09-19T01:57:57.6150718Z   UV_PYTHON_INSTALL_DIR: /home/runner/work/_temp/uv-python-dir
+2026-09-19T01:57:57.6151023Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-09-19T01:57:57.6151265Z ##[endgroup]
+2026-09-19T01:57:57.6195892Z ##[start-action display=Run set -uo pipefail;id=__self.retry]
+2026-09-19T01:57:57.6214362Z ##[group]Run set -uo pipefail
+2026-09-19T01:57:57.6214626Z [36;1mset -uo pipefail[0m
+2026-09-19T01:57:57.6214827Z [36;1m_OUTFILE="$(mktemp)"[0m
+2026-09-19T01:57:57.6215038Z [36;1mtrap 'rm -f "$_OUTFILE"' EXIT[0m
+2026-09-19T01:57:57.6215262Z [36;1mn=0[0m
+2026-09-19T01:57:57.6215454Z [36;1mwhile :; do[0m
+2026-09-19T01:57:57.6215635Z [36;1m  n=$((n + 1))[0m
+2026-09-19T01:57:57.6215866Z [36;1m  echo "::group::attempt $n/$_ATTEMPTS: $_CMD"[0m
+2026-09-19T01:57:57.6216213Z [36;1m  # Run the command, capturing stdout to a temp file while still[0m
+2026-09-19T01:57:57.6216595Z [36;1m  # streaming to the log. We redirect first, then tee the file to[0m
+2026-09-19T01:57:57.6217195Z [36;1m  # stdout — this avoids pipefail + tee exit-code interactions that[0m
+2026-09-19T01:57:57.6217570Z [36;1m  # can cause the if-branch to be skipped under set -e.[0m
+2026-09-19T01:57:57.6217865Z [36;1m  if bash -c "$_CMD" > "$_OUTFILE"; then[0m
+2026-09-19T01:57:57.6218118Z [36;1m    cat "$_OUTFILE"[0m
+2026-09-19T01:57:57.6218321Z [36;1m    echo "::endgroup::"[0m
+2026-09-19T01:57:57.6218589Z [36;1m    # Preserve newlines in the output via heredoc delimiter.[0m
+2026-09-19T01:57:57.6218868Z [36;1m    {[0m
+2026-09-19T01:57:57.6219067Z [36;1m      echo 'stdout<<__RETRY_STDOUT_EOF__'[0m
+2026-09-19T01:57:57.6219304Z [36;1m      cat "$_OUTFILE"[0m
+2026-09-19T01:57:57.6219514Z [36;1m      echo '__RETRY_STDOUT_EOF__'[0m
+2026-09-19T01:57:57.6219743Z [36;1m    } >> "$GITHUB_OUTPUT"[0m
+2026-09-19T01:57:57.6219941Z [36;1m    exit 0[0m
+2026-09-19T01:57:57.6220109Z [36;1m  fi[0m
+2026-09-19T01:57:57.6220279Z [36;1m  echo "::endgroup::"[0m
+2026-09-19T01:57:57.6220493Z [36;1m  if [ "$n" -ge "$_ATTEMPTS" ]; then[0m
+2026-09-19T01:57:57.6220757Z [36;1m    echo "::error::failed after $n attempts: $_CMD"[0m
+2026-09-19T01:57:57.6221000Z [36;1m    exit 1[0m
+2026-09-19T01:57:57.6221164Z [36;1m  fi[0m
+2026-09-19T01:57:57.6221418Z [36;1m  echo "::warning::attempt $n failed; retrying in ${_DELAY}s: $_CMD"[0m
+2026-09-19T01:57:57.6221726Z [36;1m  sleep "$_DELAY"[0m
+2026-09-19T01:57:57.6221918Z [36;1mdone[0m
+2026-09-19T01:57:57.6255387Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-09-19T01:57:57.6255667Z env:
+2026-09-19T01:57:57.6255902Z   UV_PYTHON_INSTALL_DIR: /home/runner/work/_temp/uv-python-dir
+2026-09-19T01:57:57.6256216Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-09-19T01:57:57.6256522Z   _CMD: uv sync --locked --python 3.11 --extra all --extra dev
+2026-09-19T01:57:57.6256913Z   _ATTEMPTS: 3
+2026-09-19T01:57:57.6257103Z   _DELAY: 10
+2026-09-19T01:57:57.6257263Z ##[endgroup]
+2026-09-19T01:57:57.6317098Z ##[group]attempt 1/3: uv sync --locked --python 3.11 --extra all --extra dev
+2026-09-19T01:57:57.7363273Z Using CPython 3.11.16
+2026-09-19T01:57:57.7363664Z Creating virtual environment at: .venv
+2026-09-19T01:57:57.7421866Z Resolved 289 packages in 1ms
+2026-09-19T01:57:57.7579976Z    Building openamer-agent @ file:///home/runner/work/openamer/openamer
+2026-09-19T01:57:57.8073327Z Downloading setuptools (1.0MiB)
+2026-09-19T01:57:57.8222319Z Downloading debugpy (3.0MiB)
+2026-09-19T01:57:57.8248128Z Downloading aiohttp (1.7MiB)
+2026-09-19T01:57:57.8260445Z Downloading ty (10.2MiB)
+2026-09-19T01:57:57.8275476Z Downloading uvloop (3.6MiB)
+2026-09-19T01:57:57.8276191Z Downloading pydantic-core (2.0MiB)
+2026-09-19T01:57:57.8280957Z Downloading openai (1.1MiB)
+2026-09-19T01:57:57.8281325Z Downloading pygments (1.2MiB)
+2026-09-19T01:57:57.8281563Z Downloading ruff (10.7MiB)
+2026-09-19T01:57:57.8281778Z Downloading pillow (6.6MiB)
+2026-09-19T01:57:57.8282004Z Downloading cryptography (4.5MiB)
+2026-09-19T01:57:57.8282259Z Downloading google-api-python-client (14.3MiB)
+2026-09-19T01:57:57.8282516Z Downloading numpy (16.1MiB)
+2026-09-19T01:57:58.0542030Z  Downloaded setuptools
+2026-09-19T01:57:58.0558509Z  Downloaded pygments
+2026-09-19T01:57:58.0670560Z  Downloaded aiohttp
+2026-09-19T01:57:58.0741778Z  Downloaded openai
+2026-09-19T01:57:58.0747881Z  Downloaded pydantic-core
+2026-09-19T01:57:58.1187714Z  Downloaded debugpy
+2026-09-19T01:57:58.1253517Z  Downloaded uvloop
+2026-09-19T01:57:58.1368843Z  Downloaded cryptography
+2026-09-19T01:57:58.1731519Z  Downloaded pillow
+2026-09-19T01:57:58.2147688Z  Downloaded ty
+2026-09-19T01:57:58.2189613Z  Downloaded ruff
+2026-09-19T01:57:58.2713547Z  Downloaded google-api-python-client
+2026-09-19T01:57:58.2717218Z  Downloaded numpy
+2026-09-19T01:57:59.2597019Z       Built openamer-agent @ file:///home/runner/work/openamer/openamer
+2026-09-19T01:57:59.2607323Z Prepared 104 packages in 1.51s
+2026-09-19T01:57:59.3246706Z Installed 104 packages in 63ms
+2026-09-19T01:57:59.3247255Z  + agent-client-protocol==0.9.0
+2026-09-19T01:57:59.3247624Z  + aiohappyeyeballs==2.6.1
+2026-09-19T01:57:59.3247952Z  + aiohttp==3.14.1
+2026-09-19T01:57:59.3248221Z  + aiosignal==1.4.0
+2026-09-19T01:57:59.3248497Z  + annotated-doc==0.0.4
+2026-09-19T01:57:59.3248798Z  + annotated-types==0.7.0
+2026-09-19T01:57:59.3249144Z  + anyio==4.12.1
+2026-09-19T01:57:59.3249402Z  + attrs==25.4.0
+2026-09-19T01:57:59.3249659Z  + certifi==2026.5.20
+2026-09-19T01:57:59.3249937Z  + cffi==2.0.0
+2026-09-19T01:57:59.3250219Z  + charset-normalizer==3.4.4
+2026-09-19T01:57:59.3250523Z  + click==8.3.1
+2026-09-19T01:57:59.3250818Z  + croniter==6.0.0
+2026-09-19T01:57:59.3251158Z  + cryptography==50.0.0
+2026-09-19T01:57:59.3251588Z  + debugpy==1.8.20
+2026-09-19T01:57:59.3251855Z  + defusedxml==0.7.1
+2026-09-19T01:57:59.3252137Z  + distro==1.9.0
+2026-09-19T01:57:59.3252622Z  + fastapi==0.133.1
+2026-09-19T01:57:59.3252921Z  + fire==0.7.1
+2026-09-19T01:57:59.3253203Z  + frozenlist==1.8.0
+2026-09-19T01:57:59.3253572Z  + google-api-core==2.30.3
+2026-09-19T01:57:59.3253974Z  + google-api-python-client==2.194.0
+2026-09-19T01:57:59.3254333Z  + google-auth==2.55.1
+2026-09-19T01:57:59.3254629Z  + google-auth-httplib2==0.3.1
+2026-09-19T01:57:59.3254988Z  + google-auth-oauthlib==1.3.1
+2026-09-19T01:57:59.3255366Z  + googleapis-common-protos==1.73.0
+2026-09-19T01:57:59.3255710Z  + h11==0.16.0
+2026-09-19T01:57:59.3255976Z  + httpcore==1.0.9
+2026-09-19T01:57:59.3256318Z  + httplib2==0.31.2
+2026-09-19T01:57:59.3256743Z  + httptools==0.7.1
+2026-09-19T01:57:59.3257180Z  + httpx==0.28.1
+2026-09-19T01:57:59.3257511Z  + httpx-sse==0.4.3
+2026-09-19T01:57:59.3257832Z  + idna==3.15
+2026-09-19T01:57:59.3258185Z  + iniconfig==2.3.0
+2026-09-19T01:57:59.3258517Z  + jinja2==3.1.6
+2026-09-19T01:57:59.3258879Z  + jiter==0.13.0
+2026-09-19T01:57:59.3259227Z  + jsonschema==4.26.0
+2026-09-19T01:57:59.3259621Z  + jsonschema-specifications==2025.9.1
+2026-09-19T01:57:59.3259999Z  + markdown==3.10.2
+2026-09-19T01:57:59.3260301Z  + markdown-it-py==4.0.0
+2026-09-19T01:57:59.3260632Z  + markupsafe==3.0.3
+2026-09-19T01:57:59.3260989Z  + mcp==1.26.0
+2026-09-19T01:57:59.3261332Z  + mdurl==0.1.2
+2026-09-19T01:57:59.3261656Z  + multidict==6.7.1
+2026-09-19T01:57:59.3262073Z  + numpy==2.4.3
+2026-09-19T01:57:59.3262441Z  + oauthlib==3.3.1
+2026-09-19T01:57:59.3262778Z  + openai==2.24.0
+2026-09-19T01:57:59.3263498Z  + openamer-agent==2026.9.18 (from file:///home/runner/work/openamer/openamer)
+2026-09-19T01:57:59.3264031Z  + packaging==26.0
+2026-09-19T01:57:59.3264302Z  + pathspec==1.1.1
+2026-09-19T01:57:59.3264559Z  + pillow==12.3.0
+2026-09-19T01:57:59.3264827Z  + pluggy==1.6.0
+2026-09-19T01:57:59.3265125Z  + prompt-toolkit==3.0.52
+2026-09-19T01:57:59.3265628Z  + propcache==0.4.1
+2026-09-19T01:57:59.3265922Z  + proto-plus==1.27.2
+2026-09-19T01:57:59.3266202Z  + protobuf==6.33.5
+2026-09-19T01:57:59.3266480Z  + psutil==7.2.2
+2026-09-19T01:57:59.3266866Z  + ptyprocess==0.7.0
+2026-09-19T01:57:59.3267309Z  + pyasn1==0.6.3
+2026-09-19T01:57:59.3267692Z  + pyasn1-modules==0.4.2
+2026-09-19T01:57:59.3267986Z  + pycparser==3.0
+2026-09-19T01:57:59.3268356Z  + pydantic==2.13.4
+2026-09-19T01:57:59.3268833Z  + pydantic-core==2.46.4
+2026-09-19T01:57:59.3269199Z  + pydantic-settings==2.13.1
+2026-09-19T01:57:59.3269512Z  + pygments==2.19.2
+2026-09-19T01:57:59.3269774Z  + pyjwt==2.13.0
+2026-09-19T01:57:59.3270038Z  + pyparsing==3.3.2
+2026-09-19T01:57:59.3270370Z  + pytest==9.0.2
+2026-09-19T01:57:59.3270789Z  + pytest-asyncio==1.3.0
+2026-09-19T01:57:59.3271178Z  + python-dateutil==2.9.0.post0
+2026-09-19T01:57:59.3271509Z  + python-dotenv==1.2.2
+2026-09-19T01:57:59.3271822Z  + python-multipart==0.0.27
+2026-09-19T01:57:59.3272132Z  + pytz==2025.2
+2026-09-19T01:57:59.3272489Z  + pyyaml==6.0.3
+2026-09-19T01:57:59.3272837Z  + referencing==0.37.0
+2026-09-19T01:57:59.3273143Z  + requests==2.33.0
+2026-09-19T01:57:59.3273522Z  + requests-oauthlib==2.0.0
+2026-09-19T01:57:59.3273848Z  + rich==14.3.3
+2026-09-19T01:57:59.3274187Z  + rpds-py==0.30.0
+2026-09-19T01:57:59.3274478Z  + ruamel-yaml==0.18.17
+2026-09-19T01:57:59.3274919Z  + ruamel-yaml-clib==0.2.15
+2026-09-19T01:57:59.3275244Z  + ruff==0.15.10
+2026-09-19T01:57:59.3275593Z  + setuptools==81.0.0
+2026-09-19T01:57:59.3275980Z  + simple-term-menu==1.6.6
+2026-09-19T01:57:59.3276304Z  + six==1.17.0
+2026-09-19T01:57:59.3276665Z  + sniffio==1.3.1
+2026-09-19T01:57:59.3277110Z  + socksio==1.0.0
+2026-09-19T01:57:59.3277389Z  + sse-starlette==3.3.2
+2026-09-19T01:57:59.3277823Z  + starlette==1.0.1
+2026-09-19T01:57:59.3278172Z  + tenacity==9.1.4
+2026-09-19T01:57:59.3278478Z  + termcolor==3.3.0
+2026-09-19T01:57:59.3278898Z  + tqdm==4.67.3
+2026-09-19T01:57:59.3279257Z  + ty==0.0.21
+2026-09-19T01:57:59.3279569Z  + typing-extensions==4.15.0
+2026-09-19T01:57:59.3279920Z  + typing-inspection==0.4.2
+2026-09-19T01:57:59.3280309Z  + uritemplate==4.2.0
+2026-09-19T01:57:59.3280664Z  + urllib3==2.7.0
+2026-09-19T01:57:59.3280951Z  + uvicorn==0.41.0
+2026-09-19T01:57:59.3281305Z  + uvloop==0.22.1
+2026-09-19T01:57:59.3281715Z  + watchfiles==1.1.1
+2026-09-19T01:57:59.3282062Z  + wcwidth==0.6.0
+2026-09-19T01:57:59.3282406Z  + websockets==15.0.1
+2026-09-19T01:57:59.3282718Z  + yarl==1.22.0
+2026-09-19T01:57:59.3283136Z  + youtube-transcript-api==1.2.4
+2026-09-19T01:57:59.3424575Z ##[endgroup]
+2026-09-19T01:57:59.3468270Z ##[end-action id=__self.retry;outcome=success;conclusion=success;duration_ms=1727]
+2026-09-19T01:57:59.3511743Z ##[group]Run uv cache prune --ci
+2026-09-19T01:57:59.3511999Z [36;1muv cache prune --ci[0m
+2026-09-19T01:57:59.3544428Z shell: /usr/bin/bash -e {0}
+2026-09-19T01:57:59.3544637Z env:
+2026-09-19T01:57:59.3544864Z   UV_PYTHON_INSTALL_DIR: /home/runner/work/_temp/uv-python-dir
+2026-09-19T01:57:59.3545180Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-09-19T01:57:59.3545439Z ##[endgroup]
+2026-09-19T01:57:59.3637616Z Pruning cache at: /home/runner/work/_temp/setup-uv-cache
+2026-09-19T01:57:59.4887168Z Removed 8480 files (5.7MiB)
+2026-09-19T01:57:59.4940674Z ##[group]Run source .venv/bin/activate
+2026-09-19T01:57:59.4941008Z [36;1msource .venv/bin/activate[0m
+2026-09-19T01:57:59.4974809Z [36;1mscripts/run_tests.sh --files 'tests/gateway/test_voice_command.py:tests/openamer_cli/test_gemini_provider.py:tests/run_agent/test_provider_attribution_headers.py:tests/agent/test_non_stream_stale_timeout.py:tests/tools/test_mcp_tool_session_expired.py:tests/gateway/test_platform_registry.py:tests/agent/test_minimax_provider.py:tests/cron/test_blueprint_catalog.py:tests/tools/test_browser_lightpanda.py:tests/run_agent/test_image_rejection_fallback.py:tests/tools/test_mcp_failure_classification.py:tests/run_agent/test_jsondecodeerror_retryable.py:tests/gateway/test_runtime_env_reload_config_authority.py:tests/tools/test_terminal_requirements.py:tests/plugins/model_providers/test_ollama_cloud_profile.py:tests/tools/test_terminal_tool_requirements.py:tests/agent/test_compressor_tail_cut_tool_pair_floor.py:tests/gateway/test_kanban_watchers_mixin.py:tests/agent/test_compressed_summary_metadata.py:tests/gateway/test_config_cwd_bridge.py:tests/gateway/test_native_image_buffer_isolation.py:tests/gateway/test_webhook_signature_rate_limit.py:tests/cli/test_cli_async_delegation_delivery.py:tests/gateway/test_bounded_adapter_teardown.py:tests/openamer_cli/test_pet_toggle.py:tests/agent/test_subscription_view.py:tests/openamer_cli/test_openamer_openamer_non_agentic.py:tests/acp/test_auth.py:tests/acp/test_events.py:tests/acp/test_tools.py:tests/agent/lsp/test_eventlog.py:tests/agent/lsp/test_workspace.py:tests/agent/test_anthropic_oauth_ua_prefix.py:tests/agent/test_auxiliary_client.py:tests/agent/test_auxiliary_config_bridge.py:tests/agent/test_bedrock_1m_context.py:tests/agent/test_cascading_interrupt_6600.py:tests/agent/test_codex_runtime_live_events.py:tests/agent/test_compression_anti_thrash_recovery.py:tests/agent/test_compression_rotation_state.py:tests/agent/test_context_breakdown.py:tests/agent/test_context_engine_on_turn_complete_usage.py:tests/agent/test_credential_pool_oauth_writethrough.py:tests/agent/test_credits_view.py:tests/agent/test_custom_provider_extra_body.py:tests/agent/test_empty_tool_name_loop_dampening.py:tests/agent/test_file_safety_cross_profile.py:tests/agent/test_i18n.py:tests/agent/test_kimi_coding_anthropic_thinking.py:tests/agent/test_markdown_tables.py:tests/agent/test_minimax_auxiliary_url.py:tests/agent/test_moa_slot_api_mode.py:tests/agent/test_moonshot_schema.py:tests/agent/test_openrouter_response_cache.py:tests/agent/test_preflight_lock_defer.py:tests/agent/test_reactions.py:tests/agent/test_secret_scope.py:tests/agent/test_skill_utils.py:tests/agent/test_subdirectory_hints.py:tests/agent/test_thinking_timeout_guidance.py:tests/agent/test_transcription_registry.py:tests/agent/test_turn_retry_state.py:tests/agent/test_vertex_adapter.py:tests/agent/transports/test_codex_transport.py:tests/ci/test_lockfile_diff.py:tests/cli/test_cli_background_status_indicator.py:tests/cli/test_cli_external_editor.py:tests/cli/test_cli_loading_indicator.py:tests/cli/test_cli_resume_command.py:tests/cli/test_cli_steer_busy_path.py:tests/cli/test_compress_type_ahead.py:tests/cli/test_exit_watchdog_signal_arm.py:tests/cli/test_quick_commands.py:tests/cli/test_steer_inline_repaint_34569.py:tests/cli/test_worktree.py:tests/computer_use/test_permissions_resolution.py:tests/cron/test_cron_no_agent.py:tests/cron/test_jobs.py:tests/cron/test_scheduler_mcp_init.py:tests/gateway/platforms/test_yuanbao_recall_db_only.py:tests/gateway/relay/test_relay_adapter.py:tests/gateway/relay/test_relay_registration.py:tests/gateway/test_13121_shutdown_inflight_transcript_flush.py:tests/gateway/test_active_session_text_merge.py:tests/gateway/test_api_server_jobs.py:tests/gateway/test_async_delegation_session_binding.py:tests/gateway/test_base_topic_sessions.py:tests/gateway/test_channel_directory.py:tests/gateway/test_clean_shutdown_marker.py:tests/gateway/test_compression_concurrent_sessions.py:tests/gateway/test_context_ref_expansion_runtime.py:tests/gateway/test_delivery.py:tests/gateway/test_discord_approval_mentions.py:tests/gateway/test_discord_connect.py:tests/gateway/test_discord_lazy_install_views.py:tests/gateway/test_discord_prompt_timeout_config.py:tests/gateway/test_discord_system_messages.py:tests/gateway/test_email.py:tests/gateway/test_fallback_eviction.py:tests/gateway/test_feishu_meeting_invite.py:tests/gateway/test_gateway_command_line_matcher.py:tests/gateway/test_goal_verdict_send.py:tests/gateway/test_internal_event_bypass_pairing.py:tests/gateway/test_keep_typing_timeout.py:tests/gateway/test_matrix_mention.py:tests/gateway/test_mcp_reload_refreshes_cached_agents.py:tests/gateway/test_moa_one_shot_restore.py:tests/gateway/test_multiplex_api_server_routing.py:tests/gateway/test_new_clears_last_resolved_model.py:tests/gateway/test_pending_drain_race.py:tests/gateway/test_platform_reconnect.py:tests/gateway/test_profile_routing.py:tests/gateway/test_reasoning_command.py:tests/gateway/test_response_filters.py:tests/gateway/test_run_cleanup_progress.py:tests/gateway/test_safe_adapter_disconnect.py:tests/gateway/test_session_api.py:tests/gateway/test_session_list_allowed_sources.py:tests/gateway/test_session_split_brain_11016.py:tests/gateway/test_shutdown_cache_cleanup.py:tests/gateway/test_slack_approval_buttons.py:tests/gateway/test_slack_download_ssrf.py:tests/gateway/test_slack_require_mention_channels.py:tests/gateway/test_sms.py:tests/gateway/test_startup_restart_race.py:tests/gateway/test_stream_consumer_draft.py:tests/gateway/test_systemd_notify.py:tests/gateway/test_telegram_caption_merge.py:tests/gateway/test_telegram_forum_commands.py:tests/gateway/test_telegram_overflow_partial.py:tests/gateway/test_telegram_rich_messages.py:tests/gateway/test_telegram_text_batching.py:tests/gateway/test_title_command.py:tests/gateway/test_unavailable_skill_hint.py:tests/gateway/test_video_context_note.py:tests/gateway/test_webhook_integration.py:tests/gateway/test_whatsapp_bridge_dir_resolution.py:tests/gateway/test_whatsapp_native_delivery.py:tests/honcho_plugin/test_async_memory.py:tests/openamer_cli/test_25106_global_switch_persists_base_url_api_mode.py:tests/openamer_cli/test_a2a_worker.py:tests/openamer_cli/test_apply_profile_override.py:tests/openamer_cli/test_auth_codex_quota_probe.py:tests/openamer_cli/test_auth_toctou_file_modes.py:tests/openamer_cli/test_backup.py:tests/openamer_cli/test_billing_scope_stepup.py:tests/openamer_cli/test_checkpoints_prune.py:tests/openamer_cli/test_codex_cli_model_picker.py:tests/openamer_cli/test_config_env_ref_parity.py:tests/openamer_cli/test_copilot_auth.py:tests/openamer_cli/test_cron_dashboard_off_loop.py:tests/openamer_cli/test_curator_run.py:tests/openamer_cli/test_custom_provider_identity.py:tests/openamer_cli/test_dashboard_auth_native_flow.py:tests/openamer_cli/test_dashboard_basic_auth_plugin_enable.py:tests/openamer_cli/test_dashboard_web_dist_validation.py:tests/openamer_cli/test_determine_api_mode_hostname.py:tests/openamer_cli/test_dump_terminal_backend.py:tests/openamer_cli/test_env_loader.py:tests/openamer_cli/test_gateway_proc_fallback.py:tests/openamer_cli/test_github_engage.py:tests/openamer_cli/test_ignore_user_config_flags.py:tests/openamer_cli/test_kanban_blocked_sticky.py:tests/openamer_cli/test_kanban_decompose_db.py:tests/openamer_cli/test_kanban_promote.py:tests/openamer_cli/test_kanban_write_txn_busy_retry.py:tests/openamer_cli/test_managed_scope.py:tests/openamer_cli/test_managed_uv.py:tests/openamer_cli/test_mcp_startup.py:tests/openamer_cli/test_moa_set_models_preserves_extra_keys.py:tests/openamer_cli/test_model_switch_context_display.py:tests/openamer_cli/test_model_validation.py:tests/openamer_cli/test_openai_picker_curated.py:tests/openamer_cli/test_opencode_go_flat_namespace.py:tests/openamer_cli/test_pip_install_detection.py:tests/openamer_cli/test_plugins_cmd_enable_disable_nested.py:tests/openamer_cli/test_profiles.py:tests/openamer_cli/test_provider_catalog.py:tests/openamer_cli/test_pty_bridge.py:tests/openamer_cli/test_resolve_provider_openrouter_pool.py:tests/openamer_cli/test_security_advisories.py:tests/openamer_cli/test_session_export.py:tests/openamer_cli/test_session_to_brain_daemon.py:tests/openamer_cli/test_setup_matrix_e2ee.py:tests/openamer_cli/test_signal_handler_kanban_worker.py:tests/openamer_cli/test_skin_palettes.py:tests/openamer_cli/test_state_db_guard.py:tests/openamer_cli/test_subscription_cli.py:tests/openamer_cli/test_telegram_managed_bot.py:tests/openamer_cli/test_tools_disable_enable.py:tests/openamer_cli/test_update_autostash.py:tests/openamer_cli/test_update_post_pull_syntax_guard.py:tests/openamer_cli/test_user_providers_model_switch.py:tests/openamer_cli/test_web_server.py:tests/openamer_cli/test_web_server_oauth_write.py:tests/openamer_cli/test_webhook_cli.py:tests/openamer_cli/test_xai_oauth_refresh.py:tests/openamer_state/test_get_messages_around.py:tests/plugins/dashboard_auth/test_openamer_provider.py:tests/plugins/memory/test_byterover_provider.py:tests/plugins/memory/test_mem0_backend.py:tests/plugins/model_providers/test_copilot_profile.py:tests/plugins/model_providers/test_zai_profile.py:tests/plugins/platforms/photon/test_sidecar_deps_stale.py:tests/plugins/test_google_meet_node.py:tests/plugins/test_langfuse_plugin.py:tests/plugins/video_gen/test_xai_plugin.py:tests/run_agent/test_1630_context_overflow_loop.py:tests/run_agent/test_70773_shared_client_fd_corruption.py:tests/run_agent/test_background_review.py:tests/run_agent/test_codex_silent_hang_hint.py:tests/run_agent/test_compression_persistence.py:tests/run_agent/test_create_openai_client_reuse.py:tests/run_agent/test_empty_response_recovery_persistence.py:tests/run_agent/test_in_place_compaction.py:tests/run_agent/test_long_context_tier_429.py:tests/run_agent/test_moa_privacy_filter.py:tests/run_agent/test_partial_stream_finish_reason.py:tests/run_agent/test_provider_fallback.py:tests/run_agent/test_run_agent_codex_responses.py:tests/run_agent/test_stream_interrupt_retry.py:tests/run_agent/test_switch_model_context.py:tests/run_agent/test_tls_fd_recycle_corruption.py:tests/run_agent/test_turn_completion_explainer.py:tests/scripts/test_autopatch_punkt_pack.py:tests/scripts/test_footgun_subprocess_encoding.py:tests/scripts/test_swarm_intelligence.py:tests/skills/test_google_workspace_api.py:tests/skills/test_telephony_skill.py:tests/stress/test_concurrency.py:tests/test_agent_ui.py:tests/test_bitwarden_secrets.py:tests/test_copilot_initiator.py:tests/test_darwin_phase10.py:tests/test_darwin_phase20.py:tests/test_darwin_phase30.py:tests/test_darwin_skill_probe.py:tests/test_env_loader_applied_homes.py:tests/test_get_tool_definitions_cache_isolation.py:tests/test_install_diverged_update.py:tests/test_install_sh_browser_install.py:tests/test_integrations/test_calendar.py:tests/test_lazy_session_regressions.py:tests/test_minimax_oauth.py:tests/test_ollama_num_ctx.py:tests/test_output_cap_parsing.py:tests/test_plugin_system.py:tests/test_retry_utils.py:tests/test_slack_thread_require_mention.py:tests/test_termux_all_extra_compat.py:tests/test_transform_tool_result_hook.py:tests/test_web_server.py:tests/test_yuanbao_reconnect_set_active.py:tests/tools/test_approval_plugin_hooks.py:tests/tools/test_browser_camofox_persistence.py:tests/tools/test_browser_cloud_fallback.py:tests/tools/test_browser_headed_mode.py:tests/tools/test_browser_ssrf_local.py:tests/tools/test_code_execution.py:tests/tools/test_computer_use_vision_routing.py:tests/tools/test_cross_profile_guard.py:tests/tools/test_delegate_summary_budget.py:tests/tools/test_docker_find.py:tests/tools/test_execute_code_approval_cluster.py:tests/tools/test_file_sync.py:tests/tools/test_file_write_safety.py:tests/tools/test_homeassistant_tool.py:tests/tools/test_interrupt.py:tests/tools/test_local_env_blocklist.py:tests/tools/test_managed_media_gateways.py:tests/tools/test_mcp_dynamic_discovery.py:tests/tools/test_mcp_oauth_bidirectional.py:tests/tools/test_mcp_reconnect_log_hygiene.py:tests/tools/test_mcp_stdio_init_timeout.py:tests/tools/test_memory_tool.py:tests/tools/test_open_preview_tool.py:tests/tools/test_read_loop_detection.py:tests/tools/test_search_hidden_dirs.py:tests/tools/test_shared_container_task_id.py:tests/tools/test_skill_size_limits.py:tests/tools/test_skills_list_modified_diff.py:tests/tools/test_spotify_client.py:tests/tools/test_telegram_send_message_caption.py:tests/tools/test_terminal_timeout_output.py:tests/tools/test_tool_backend_helpers.py:tests/tools/test_transcription_plugin_dispatch.py:tests/tools/test_tts_opus_routing.py:tests/tools/test_video_generation_dispatch.py:tests/tools/test_web_providers.py:tests/tools/test_website_policy.py:tests/tools/test_yolo_mode.py:tests/tui_gateway/test_custom_provider_session_persistence.py:tests/tui_gateway/test_inline_rpc_gil_starvation.py:tests/tui_gateway/test_project_tree.py:tests/tui_gateway/test_slash_worker_ansi.py:tests/openamer_cli/test_auth_profile_fallback.py:tests/openamer_cli/test_cli_output.py:tests/agent/test_file_safety_sandbox_mirror.py:tests/gateway/test_discord_sync_limit.py:tests/cli/test_cli_bracketed_paste_sanitizer.py:tests/openamer_cli/test_xai_curated_models.py:tests/gateway/test_whatsapp_identity.py:tests/gateway/test_ssl_cert_detection.py:tests/cron/test_scheduler_shutdown_guard.py:tests/test_install_sh_setup_wizard_tty_probe.py'[0m
+2026-09-19T01:57:59.5041596Z shell: /usr/bin/bash -e {0}
+2026-09-19T01:57:59.5041807Z env:
+2026-09-19T01:57:59.5042046Z   UV_PYTHON_INSTALL_DIR: /home/runner/work/_temp/uv-python-dir
+2026-09-19T01:57:59.5042370Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-09-19T01:57:59.5042622Z   OPENROUTER_API_KEY: 
+2026-09-19T01:57:59.5042798Z   OPENAI_API_KEY: 
+2026-09-19T01:57:59.5042963Z   OPENAMER_API_KEY: 
+2026-09-19T01:57:59.5043142Z ##[endgroup]
+2026-09-19T01:57:59.8099829Z ▶ running per-file parallel test suite via run_tests_parallel.py
+2026-09-19T01:57:59.8100429Z   (TZ=UTC LANG=C.UTF-8 PYTHONHASHSEED=0; clean env)
+2026-09-19T01:57:59.8100850Z ▶ pre-compiling bytecode cache
+2026-09-19T01:58:06.1303192Z ▶ launching test runner
+2026-09-19T01:58:06.1837817Z Running 305 test files (~6169 tests) with -j 8
+2026-09-19T01:58:12.3539542Z [  0.4% |    27/~6169 | ✓27 | ✗ 0] ✓ tests/cron/test_blueprint_catalog.py (27✓, 6.2s)
+2026-09-19T01:58:13.2748378Z [  1.2% |    74/~6169 | ✓74 | ✗ 0] ✓ tests/agent/test_minimax_provider.py (47✓, 7.1s)
+2026-09-19T01:58:13.7308877Z [  1.7% |   102/~6169 | ✓106 | ✗  0] ✓ tests/tools/test_mcp_tool_session_expired.py (32✓, 7.5s)
+2026-09-19T01:58:14.1766621Z [  2.5% |   152/~6169 | ✓156 | ✗  0] ✓ tests/gateway/test_platform_registry.py (50✓, 8.0s)
+2026-09-19T01:58:14.8328612Z [  3.1% |   194/~6169 | ✓198 | ✗  0] ✓ tests/tools/test_browser_lightpanda.py (42✓, 2.5s)
+2026-09-19T01:58:15.4668585Z [  3.4% |   208/~6169 | ✓212 | ✗  0] ✓ tests/agent/test_non_stream_stale_timeout.py (14✓, 9.3s)
+2026-09-19T01:58:15.6338269Z [  4.1% |   254/~6169 | ✓258 | ✗  0] ✓ tests/openamer_cli/test_gemini_provider.py (46✓, 9.4s)
+2026-09-19T01:58:17.0638506Z [  4.4% |   273/~6169 | ✓287 | ✗  0] ✓ tests/tools/test_mcp_failure_classification.py (29✓, 3.3s)
+2026-09-19T01:58:17.3748497Z [  4.7% |   289/~6169 | ✓303 | ✗  0] ✓ tests/run_agent/test_image_rejection_fallback.py (16✓, 4.1s)
+2026-09-19T01:58:17.4110651Z [  4.8% |   298/~6169 | ✓312 | ✗  0] ✓ tests/tools/test_terminal_requirements.py (9✓, 1.9s)
+2026-09-19T01:58:17.4908928Z [  4.9% |   301/~6169 | ✓315 | ✗  0] ✓ tests/gateway/test_runtime_env_reload_config_authority.py (3✓, 2.7s)
+2026-09-19T01:58:18.0407838Z [  5.0% |   310/~6169 | ✓324 | ✗  0] ✓ tests/run_agent/test_jsondecodeerror_retryable.py (9✓, 3.9s)
+2026-09-19T01:58:18.9730183Z [  5.1% |   314/~6169 | ✓328 | ✗  0] ✓ tests/gateway/test_kanban_watchers_mixin.py (4✓, 1.6s)
+2026-09-19T01:58:19.1668524Z [  5.4% |   333/~6169 | ✓352 | ✗  0] ✓ tests/plugins/model_providers/test_ollama_cloud_profile.py (24✓, 3.5s)
+2026-09-19T01:58:20.1978249Z [  5.9% |   364/~6169 | ✓383 | ✗  0] ✓ tests/gateway/test_config_cwd_bridge.py (31✓, 2.2s)
+2026-09-19T01:58:20.5928494Z [  6.0% |   372/~6169 | ✓391 | ✗  0] ✓ tests/tools/test_terminal_tool_requirements.py (8✓, 3.5s)
+2026-09-19T01:58:20.9388627Z [  6.1% |   377/~6169 | ✓396 | ✗  0] ✓ tests/agent/test_compressor_tail_cut_tool_pair_floor.py (5✓, 3.6s)
+2026-09-19T01:58:21.0478349Z [  6.3% |   389/~6169 | ✓408 | ✗  0] ✓ tests/agent/test_compressed_summary_metadata.py (12✓, 3.6s)
+2026-09-19T01:58:21.2844115Z [  9.3% |   576/~6169 | ✓574 | ✗  0] ✓ tests/gateway/test_voice_command.py (166✓ 21s, 15.1s)
+2026-09-19T01:58:21.5548585Z [  9.4% |   579/~6169 | ✓577 | ✗  0] ✓ tests/gateway/test_native_image_buffer_isolation.py (3✓, 2.6s)
+2026-09-19T01:58:21.6338507Z [  9.4% |   582/~6169 | ✓580 | ✗  0] ✓ tests/gateway/test_webhook_signature_rate_limit.py (3✓, 2.5s)
+2026-09-19T01:58:23.4800534Z [  9.6% |   592/~6169 | ✓590 | ✗  0] ✓ tests/acp/test_auth.py (10✓, 1.9s)
+2026-09-19T01:58:23.7286049Z [  9.6% |   595/~6169 | ✓593 | ✗  0] ✓ tests/cli/test_cli_async_delegation_delivery.py (3✓, 3.5s)
+2026-09-19T01:58:24.0595518Z [  9.7% |   598/~6169 | ✓624 | ✗  0] ✓ tests/openamer_cli/test_openamer_openamer_non_agentic.py (31✓, 2.8s)
+2026-09-19T01:58:24.1164165Z [  9.8% |   605/~6169 | ✓631 | ✗  0] ✓ tests/gateway/test_bounded_adapter_teardown.py (7✓, 3.5s)
+2026-09-19T01:58:24.1339515Z [ 10.3% |   638/~6169 | ✓676 | ✗  0] ✓ tests/agent/test_subscription_view.py (45✓, 3.1s)
+2026-09-19T01:58:24.3458416Z [ 10.4% |   643/~6169 | ✓681 | ✗  0] ✓ tests/openamer_cli/test_pet_toggle.py (5✓, 3.4s)
+2026-09-19T01:58:24.3990025Z [ 10.7% |   662/~6169 | ✓700 | ✗  0] ✓ tests/acp/test_events.py (19✓, 2.8s)
+2026-09-19T01:58:26.2508479Z [ 10.8% |   666/~6169 | ✓704 | ✗  0] ✓ tests/agent/test_anthropic_oauth_ua_prefix.py (4✓, 2.1s)
+2026-09-19T01:58:26.2608142Z [ 11.1% |   684/~6169 | ✓722 | ✗  0] ✓ tests/agent/lsp/test_eventlog.py (18✓, 2.5s)
+2026-09-19T01:58:26.7668327Z [ 11.1% |   686/~6169 | ✓724 | ✗  0] ✓ tests/agent/test_bedrock_1m_context.py (2✓, 2.4s)
+2026-09-19T01:58:26.8018566Z [ 11.4% |   705/~6169 | ✓743 | ✗  0] ✓ tests/agent/test_auxiliary_config_bridge.py (19✓, 2.5s)
+2026-09-19T01:58:26.9448310Z [ 11.6% |   717/~6169 | ✓755 | ✗  0] ✓ tests/agent/lsp/test_workspace.py (12✓, 2.9s)
+2026-09-19T01:58:28.6718207Z [ 11.7% |   719/~6169 | ✓757 | ✗  0] ✓ tests/agent/test_context_breakdown.py (2✓, 1.7s)
+2026-09-19T01:58:28.8838324Z [ 11.8% |   725/~6169 | ✓763 | ✗  0] ✓ tests/agent/test_codex_runtime_live_events.py (6✓, 2.6s)
+2026-09-19T01:58:29.1448322Z [ 11.9% |   733/~6169 | ✓771 | ✗  0] ✓ tests/agent/test_compression_anti_thrash_recovery.py (8✓, 2.4s)
+2026-09-19T01:58:30.1949281Z [ 11.9% |   736/~6169 | ✓774 | ✗  0] ✓ tests/agent/test_context_engine_on_turn_complete_usage.py (3✓, 1.5s)
+2026-09-19T01:58:30.9828308Z [ 13.2% |   812/~6169 | ✓837 | ✗ 13] ✗ tests/acp/test_tools.py (63✓ 13✗, 7.5s)
+2026-09-19T01:58:30.9857064Z 
+2026-09-19T01:58:30.9887818Z   ╔╍ Failed: tests/acp/test_tools.py ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T01:58:30.9917519Z   ║                 "action": "patch",
+2026-09-19T01:58:30.9948630Z   ║                 "name": "openamer-agent-operations",
+2026-09-19T01:58:30.9977467Z   ║                 "file_path": "references/acp.md",
+2026-09-19T01:58:30.9977935Z   ║                 "old_string": "old advice",
+2026-09-19T01:58:31.0007417Z   ║                 "new_string": "new advice",
+2026-09-19T01:58:31.0031308Z   ║             },
+2026-09-19T01:58:31.0037234Z   ║         )
+2026-09-19T01:58:31.0097431Z   ║         assert result.kind == "edit"
+2026-09-19T01:58:31.0127981Z   ║ >       assert result.title == "skill patch: openamer-agent-operations/references/acp.md"
+2026-09-19T01:58:31.0157596Z   ║ E       AssertionError: assert 'skill_manage...nt-operations' == 'skill patch:...rences/acp.md'
+2026-09-19T01:58:31.0183313Z   ║ E         
+2026-09-19T01:58:31.0183968Z   ║ E         - skill patch: openamer-agent-operations/references/acp.md
+2026-09-19T01:58:31.0207495Z   ║ E         + skill_manage: openamer-agent-operations
+2026-09-19T01:58:31.0234111Z   ║ 
+2026-09-19T01:58:31.0247534Z   ║ tests/acp/test_tools.py:313: AssertionError
+2026-09-19T01:58:31.0277433Z   ║ =========================== short test summary info ============================
+2026-09-19T01:58:31.0308725Z   ║ FAILED tests/acp/test_tools.py::TestBuildToolTitle::test_read_file_title - As...
+2026-09-19T01:58:31.0309688Z   ║ FAILED tests/acp/test_tools.py::TestBuildToolTitle::test_web_extract_title_unwraps_search_result_object
+2026-09-19T01:58:31.0336085Z   ║ FAILED tests/acp/test_tools.py::TestBuildToolTitle::test_web_extract_title_handles_malformed_object
+2026-09-19T01:58:31.0367883Z   ║ FAILED tests/acp/test_tools.py::TestBuildToolTitle::test_skill_view_title_includes_skill_name
+2026-09-19T01:58:31.0386483Z   ║ FAILED tests/acp/test_tools.py::TestBuildToolTitle::test_skill_view_title_includes_linked_file
+2026-09-19T01:58:31.0397607Z   ║ FAILED tests/acp/test_tools.py::TestBuildToolTitle::test_execute_code_title_includes_first_code_line
+2026-09-19T01:58:31.0427807Z   ║ FAILED tests/acp/test_tools.py::TestBuildToolTitle::test_skill_manage_title_includes_action_and_target
+2026-09-19T01:58:31.0457694Z   ║ FAILED tests/acp/test_tools.py::TestBuildToolStart::test_build_tool_start_for_web_extract_is_compact
+2026-09-19T01:58:31.0458679Z   ║ FAILED tests/acp/test_tools.py::TestBuildToolStart::test_build_tool_start_for_browser_navigate
+2026-09-19T01:58:31.0459599Z   ║ FAILED tests/acp/test_tools.py::TestBuildToolStart::test_build_tool_start_for_todo_is_human_readable
+2026-09-19T01:58:31.0460559Z   ║ FAILED tests/acp/test_tools.py::TestBuildToolStart::test_build_tool_start_for_skill_view_is_human_readable
+2026-09-19T01:58:31.0461544Z   ║ FAILED tests/acp/test_tools.py::TestBuildToolStart::test_build_tool_start_for_execute_code_shows_code_preview
+2026-09-19T01:58:31.0462563Z   ║ FAILED tests/acp/test_tools.py::TestBuildToolStart::test_build_tool_start_for_skill_manage_patch_shows_diff
+2026-09-19T01:58:31.0463339Z   ║ ======================== 13 failed, 63 passed in 2.37s =========================
+2026-09-19T01:58:31.0463738Z   ║
+2026-09-19T01:58:31.0464082Z   ║  Repro: python -m pytest tests/acp/test_tools.py
+2026-09-19T01:58:31.0464616Z   ╚╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T01:58:31.0464904Z 
+2026-09-19T01:58:31.0871234Z [ 13.3% |   821/~6169 | ✓846 | ✗ 13] ✓ tests/agent/test_credits_view.py (9✓, 1.9s)
+2026-09-19T01:58:31.6208540Z [ 13.4% |   825/~6169 | ✓850 | ✗ 13] ✓ tests/agent/test_custom_provider_extra_body.py (4✓, 1.4s)
+2026-09-19T01:58:32.2298729Z [ 13.5% |   830/~6169 | ✓855 | ✗ 13] ✓ tests/agent/test_cascading_interrupt_6600.py (5✓, 6.0s)
+2026-09-19T01:58:33.2848451Z [ 13.7% |   843/~6169 | ✓871 | ✗ 13] ✓ tests/agent/test_file_safety_cross_profile.py (16✓, 2.2s)
+2026-09-19T01:58:33.8288997Z [ 13.8% |   851/~6169 | ✓893 | ✗ 13] ✓ tests/agent/test_kimi_coding_anthropic_thinking.py (22✓, 1.6s)
+2026-09-19T01:58:34.5298893Z [ 13.9% |   856/~6169 | ✓898 | ✗ 15] ✗ tests/agent/test_credential_pool_oauth_writethrough.py (5✓ 2✗, 5.6s)
+2026-09-19T01:58:34.5337109Z 
+2026-09-19T01:58:34.5368115Z   ╔╍ Failed: tests/agent/test_credential_pool_oauth_writethrough.py ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T01:58:34.5368874Z   ║                         }
+2026-09-19T01:58:34.5369236Z   ║                     }
+2026-09-19T01:58:34.5369602Z   ║                 },
+2026-09-19T01:58:34.5369903Z   ║             },
+2026-09-19T01:58:34.5370180Z   ║         )
+2026-09-19T01:58:34.5370441Z   ║     
+2026-09-19T01:58:34.5370793Z   ║         pool = CredentialPool(provider, [])
+2026-09-19T01:58:34.5371296Z   ║         pool._sync_device_code_entry_to_auth_store(
+2026-09-19T01:58:34.5371980Z   ║             _entry(provider, id="e1", access_token="new-access", refresh_token="new-refresh")
+2026-09-19T01:58:34.5372601Z   ║         )
+2026-09-19T01:58:34.5397545Z   ║     
+2026-09-19T01:58:34.5427727Z   ║         # Profile got the rotated chain (existing behavior).
+2026-09-19T01:58:34.5457507Z   ║         profile = _read_store(profile_path)
+2026-09-19T01:58:34.5467395Z   ║         assert (
+2026-09-19T01:58:34.5497610Z   ║             profile["providers"][provider]["tokens"]["refresh_token"] == "new-refresh"
+2026-09-19T01:58:34.5498197Z   ║         )
+2026-09-19T01:58:34.5498474Z   ║     
+2026-09-19T01:58:34.5499407Z   ║         # AND the global root no longer holds the revoked refresh token (#48415).
+2026-09-19T01:58:34.5500052Z   ║         root = _read_store(root_path)
+2026-09-19T01:58:34.5500690Z   ║ >       assert root["providers"][provider]["tokens"]["access_token"] == "new-access"
+2026-09-19T01:58:34.5501414Z   ║ E       AssertionError: assert 'old-access' == 'new-access'
+2026-09-19T01:58:34.5501873Z   ║ E         
+2026-09-19T01:58:34.5502205Z   ║ E         - new-access
+2026-09-19T01:58:34.5502553Z   ║ E         + old-access
+2026-09-19T01:58:34.5503115Z   ║ 
+2026-09-19T01:58:34.5503629Z   ║ tests/agent/test_credential_pool_oauth_writethrough.py:112: AssertionError
+2026-09-19T01:58:34.5504365Z   ║ =========================== short test summary info ============================
+2026-09-19T01:58:34.5505638Z   ║ FAILED tests/agent/test_credential_pool_oauth_writethrough.py::test_pool_refresh_writes_through_to_root_when_profile_reads_root[openai-codex]
+2026-09-19T01:58:34.5507312Z   ║ FAILED tests/agent/test_credential_pool_oauth_writethrough.py::test_pool_refresh_writes_through_to_root_when_profile_reads_root[xai-oauth]
+2026-09-19T01:58:34.5508341Z   ║ ========================= 2 failed, 5 passed in 1.24s ==========================
+2026-09-19T01:58:34.5508798Z   ║
+2026-09-19T01:58:34.5509317Z   ║  Repro: python -m pytest tests/agent/test_credential_pool_oauth_writethrough.py
+2026-09-19T01:58:34.5510077Z   ╚╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T01:58:34.5510406Z 
+2026-09-19T01:58:35.7523795Z [ 14.0% |   865/~6169 | ✓907 | ✗ 15] ✓ tests/agent/test_minimax_auxiliary_url.py (9✓, 1.9s)
+2026-09-19T01:58:35.7625053Z [ 14.3% |   880/~6169 | ✓922 | ✗ 15] ✓ tests/agent/test_markdown_tables.py (15✓, 2.5s)
+2026-09-19T01:58:37.2168387Z [ 14.4% |   888/~6169 | ✓930 | ✗ 15] ✓ tests/agent/test_moa_slot_api_mode.py (8✓, 2.7s)
+2026-09-19T01:58:37.6278284Z [ 14.9% |   921/~6169 | ✓978 | ✗ 15] ✓ tests/agent/test_moonshot_schema.py (48✓, 1.9s)
+2026-09-19T01:58:37.7856362Z [ 15.2% |   938/~6169 | ✓1026 | ✗  15] ✓ tests/agent/test_i18n.py (48✓, 6.2s)
+2026-09-19T01:58:39.3080268Z [ 15.3% |   941/~6169 | ✓1054 | ✗  15] ✓ tests/agent/test_reactions.py (28✓, 1.7s)
+2026-09-19T01:58:39.4049327Z [ 15.3% |   945/~6169 | ✓1058 | ✗  15] ✓ tests/agent/test_preflight_lock_defer.py (4✓, 2.2s)
+2026-09-19T01:58:39.8978291Z [ 15.6% |   964/~6169 | ✓1077 | ✗  15] ✓ tests/agent/test_secret_scope.py (19✓, 2.1s)
+2026-09-19T01:58:42.5408335Z [ 16.0% |   989/~6169 | ✓1102 | ✗  15] ✓ tests/agent/test_subdirectory_hints.py (25✓, 3.1s)
+2026-09-19T01:58:42.8828492Z [ 16.6% |  1024/~6169 | ✓1137 | ✗  15] ✓ tests/agent/test_skill_utils.py (35✓, 3.6s)
+2026-09-19T01:58:43.2427284Z [ 16.9% |  1044/~6169 | ✓1186 | ✗  15] ✓ tests/agent/test_thinking_timeout_guidance.py (49✓, 3.3s)
+2026-09-19T01:58:43.3898488Z [ 17.2% |  1059/~6169 | ✓1201 | ✗  15] ✓ tests/run_agent/test_provider_attribution_headers.py (15✓, 37.2s)
+2026-09-19T01:58:43.7838408Z [ 17.7% |  1089/~6169 | ✓1246 | ✗  16] ✗ tests/agent/test_openrouter_response_cache.py (45✓ 1✗, 8.0s)
+2026-09-19T01:58:43.7861377Z 
+2026-09-19T01:58:43.7898474Z   ╔╍ Failed: tests/agent/test_openrouter_response_cache.py ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T01:58:43.7937571Z   ║ configfile: pyproject.toml
+2026-09-19T01:58:43.7997487Z   ║ plugins: anyio-4.12.1, asyncio-1.3.0
+2026-09-19T01:58:43.8027857Z   ║ asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+2026-09-19T01:58:43.8047732Z   ║ collected 46 items
+2026-09-19T01:58:43.8107417Z   ║ 
+2026-09-19T01:58:43.8108022Z   ║ tests/agent/test_openrouter_response_cache.py F......................... [ 56%]
+2026-09-19T01:58:43.8108998Z   ║ ....................                                                     [100%]
+2026-09-19T01:58:43.8109471Z   ║ 
+2026-09-19T01:58:43.8109883Z   ║ =================================== FAILURES ===================================
+2026-09-19T01:58:43.8110605Z   ║ ___________ TestBuildOrHeaders.test_base_attribution_always_present ____________
+2026-09-19T01:58:43.8111173Z   ║ 
+2026-09-19T01:58:43.8111849Z   ║ self = <tests.agent.test_openrouter_response_cache.TestBuildOrHeaders object at 0x7f9c11713990>
+2026-09-19T01:58:43.8112497Z   ║ 
+2026-09-19T01:58:43.8112872Z   ║     def test_base_attribution_always_present(self):
+2026-09-19T01:58:43.8113562Z   ║         """Attribution headers must always be included regardless of cache setting."""
+2026-09-19T01:58:43.8114286Z   ║         from agent.auxiliary_client import build_or_headers
+2026-09-19T01:58:43.8114753Z   ║     
+2026-09-19T01:58:43.8115215Z   ║         headers = build_or_headers(or_config={"response_cache": False})
+2026-09-19T01:58:43.8115974Z   ║         assert headers["HTTP-Referer"] == "https://github.com/openamer/openamer"
+2026-09-19T01:58:43.8116652Z   ║         assert headers["X-Title"] == "OpenAmer Agent"
+2026-09-19T01:58:43.8118017Z   ║ >       assert headers["X-OpenRouter-Categories"] == "productivity,cli-agent"
+2026-09-19T01:58:43.8118897Z   ║ E       AssertionError: assert 'cli-agent,id...t,cloud-agent' == 'productivity,cli-agent'
+2026-09-19T01:58:43.8119514Z   ║ E         
+2026-09-19T01:58:43.8119896Z   ║ E         - productivity,cli-agent
+2026-09-19T01:58:43.8120395Z   ║ E         + cli-agent,ide-extension,personal-agent,cloud-agent
+2026-09-19T01:58:43.8120864Z   ║ 
+2026-09-19T01:58:43.8121315Z   ║ tests/agent/test_openrouter_response_cache.py:23: AssertionError
+2026-09-19T01:58:43.8121987Z   ║ =========================== short test summary info ============================
+2026-09-19T01:58:43.8123111Z   ║ FAILED tests/agent/test_openrouter_response_cache.py::TestBuildOrHeaders::test_base_attribution_always_present
+2026-09-19T01:58:43.8123989Z   ║ ========================= 1 failed, 45 passed in 3.51s =========================
+2026-09-19T01:58:43.8124441Z   ║
+2026-09-19T01:58:43.8124919Z   ║  Repro: python -m pytest tests/agent/test_openrouter_response_cache.py
+2026-09-19T01:58:43.8125634Z   ╚╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T01:58:43.8125961Z 
+2026-09-19T01:58:44.1648341Z [ 18.0% |  1111/~6169 | ✓1275 | ✗  16] ✓ tests/agent/test_transcription_registry.py (29✓, 1.6s)
+2026-09-19T01:58:44.8803518Z [ 18.1% |  1115/~6169 | ✓1279 | ✗  16] ✓ tests/agent/test_turn_retry_state.py (4✓, 2.0s)
+2026-09-19T01:58:45.7448851Z [ 18.2% |  1121/~6169 | ✓1285 | ✗  16] ✓ tests/ci/test_lockfile_diff.py (6✓, 2.0s)
+2026-09-19T01:58:46.8228315Z [ 18.5% |  1144/~6169 | ✓1308 | ✗  16] ✓ tests/cli/test_cli_background_status_indicator.py (23✓, 2.7s)
+2026-09-19T01:58:46.9608497Z [ 18.8% |  1157/~6169 | ✓1321 | ✗  16] ✓ tests/agent/test_vertex_adapter.py (13✓, 3.7s)
+2026-09-19T01:58:47.5078716Z [ 18.9% |  1167/~6169 | ✓1331 | ✗  16] ✓ tests/cli/test_cli_external_editor.py (10✓, 2.6s)
+2026-09-19T01:58:48.4043707Z [ 18.9% |  1169/~6169 | ✓1333 | ✗  16] ✓ tests/cli/test_cli_loading_indicator.py (2✓, 2.7s)
+2026-09-19T01:58:48.6038424Z [ 20.2% |  1246/~6169 | ✓1440 | ✗  16] ✓ tests/agent/transports/test_codex_transport.py (107✓, 5.2s)
+2026-09-19T01:58:49.6398965Z [ 20.5% |  1267/~6169 | ✓1461 | ✗  16] ✓ tests/cli/test_cli_resume_command.py (21✓, 2.8s)
+2026-09-19T01:58:50.7898354Z [ 20.6% |  1269/~6169 | ✓1463 | ✗  16] ✓ tests/cli/test_compress_type_ahead.py (2✓, 3.3s)
+2026-09-19T01:58:51.7408599Z [ 20.6% |  1270/~6169 | ✓1464 | ✗  16] ✓ tests/cli/test_steer_inline_repaint_34569.py (1✓, 2.1s)
+2026-09-19T01:58:53.0788764Z [ 20.7% |  1277/~6169 | ✓1471 | ✗  16] ✓ tests/cli/test_cli_steer_busy_path.py (7✓, 6.1s)
+2026-09-19T01:58:53.4938632Z [ 20.7% |  1278/~6169 | ✓1472 | ✗  16] ✓ tests/computer_use/test_permissions_resolution.py (1✓, 1.8s)
+2026-09-19T01:58:53.5768377Z [ 21.0% |  1296/~6169 | ✓1490 | ✗  16] ✓ tests/cli/test_quick_commands.py (18✓, 5.0s)
+2026-09-19T01:58:55.7499032Z [ 21.0% |  1297/~6169 | ✓1491 | ✗  16] ✓ tests/cron/test_scheduler_mcp_init.py (1✓, 2.2s)
+2026-09-19T01:58:57.0541409Z [ 21.4% |  1322/~6169 | ✓1516 | ✗  16] ✓ tests/agent/test_compression_rotation_state.py (25✓, 30.3s)
+2026-09-19T01:58:57.1390455Z [ 21.5% |  1328/~6169 | ✓1522 | ✗  16] ✓ tests/cli/test_exit_watchdog_signal_arm.py (6✓, 8.7s)
+2026-09-19T01:58:57.2578333Z [ 21.8% |  1346/~6169 | ✓1540 | ✗  16] ✓ tests/cron/test_cron_no_agent.py (18✓, 4.2s)
+2026-09-19T01:58:57.9907850Z [ 21.9% |  1354/~6169 | ✓1551 | ✗  16] ✓ tests/agent/test_empty_tool_name_loop_dampening.py (11✓, 27.0s)
+2026-09-19T01:58:58.3311980Z [ 22.0% |  1356/~6169 | ✓1553 | ✗  16] ✓ tests/gateway/platforms/test_yuanbao_recall_db_only.py (2✓, 2.6s)
+2026-09-19T01:58:59.2299476Z [ 22.1% |  1362/~6169 | ✓1559 | ✗  16] ✓ tests/gateway/relay/test_relay_registration.py (6✓, 2.1s)
+2026-09-19T01:58:59.7101318Z [ 22.6% |  1394/~6169 | ✓1591 | ✗  16] ✓ tests/gateway/relay/test_relay_adapter.py (32✓, 2.7s)
+2026-09-19T01:59:00.5678271Z [ 27.8% |  1716/~6169 | ✓1953 | ✗  16] ✓ tests/agent/test_auxiliary_client.py (362✓, 36.4s)
+2026-09-19T01:59:01.1862399Z [ 28.1% |  1731/~6169 | ✓1968 | ✗  16] ✓ tests/gateway/test_async_delegation_session_binding.py (15✓, 2.0s)
+2026-09-19T01:59:01.3618491Z [ 28.3% |  1746/~6169 | ✓1983 | ✗  16] ✓ tests/gateway/test_active_session_text_merge.py (15✓, 3.4s)
+2026-09-19T01:59:01.8778763Z [ 28.4% |  1752/~6169 | ✓1989 | ✗  16] ✓ tests/gateway/test_13121_shutdown_inflight_transcript_flush.py (6✓, 4.6s)
+2026-09-19T01:59:02.4513817Z [ 28.6% |  1762/~6169 | ✓1999 | ✗  16] ✓ tests/gateway/test_base_topic_sessions.py (10✓, 2.7s)
+2026-09-19T01:59:04.1118549Z [ 29.2% |  1803/~6169 | ✓2040 | ✗  16] ✓ tests/gateway/test_api_server_jobs.py (41✓, 5.8s)
+2026-09-19T01:59:04.2326112Z [ 29.3% |  1810/~6169 | ✓2047 | ✗  16] ✓ tests/gateway/test_context_ref_expansion_runtime.py (7✓, 2.4s)
+2026-09-19T01:59:04.2367206Z [ 30.1% |  1855/~6169 | ✓2092 | ✗  16] ✓ tests/gateway/test_channel_directory.py (45✓, 3.7s)
+2026-09-19T01:59:04.6788373Z [ 30.3% |  1868/~6169 | ✓2105 | ✗  16] ✓ tests/gateway/test_clean_shutdown_marker.py (13✓, 3.5s)
+2026-09-19T01:59:05.4208542Z [ 30.8% |  1901/~6169 | ✓2138 | ✗  16] ✓ tests/gateway/test_delivery.py (33✓, 3.0s)
+2026-09-19T01:59:06.0571424Z [ 32.0% |  1976/~6169 | ✓2213 | ✗  16] ✓ tests/cli/test_worktree.py (75✓, 15.3s)
+2026-09-19T01:59:07.6888784Z [ 32.1% |  1981/~6169 | ✓2218 | ✗  16] ✓ tests/gateway/test_discord_approval_mentions.py (5✓, 3.6s)
+2026-09-19T01:59:07.8088974Z [ 32.1% |  1983/~6169 | ✓2220 | ✗  16] ✓ tests/gateway/test_discord_lazy_install_views.py (2✓, 3.6s)
+2026-09-19T01:59:08.1911036Z [ 32.4% |  1997/~6169 | ✓2234 | ✗  16] ✓ tests/gateway/test_discord_prompt_timeout_config.py (14✓, 3.5s)
+2026-09-19T01:59:08.2037624Z [ 32.5% |  2005/~6169 | ✓2242 | ✗  16] ✓ tests/gateway/test_discord_system_messages.py (8✓, 2.8s)
+2026-09-19T01:59:09.2268589Z [ 34.7% |  2142/~6169 | ✓2383 | ✗  16] ✓ tests/cron/test_jobs.py (141✓, 15.7s)
+2026-09-19T01:59:10.9888495Z [ 35.0% |  2162/~6169 | ✓2408 | ✗  16] ✓ tests/gateway/test_discord_connect.py (25✓, 6.8s)
+2026-09-19T01:59:11.0008147Z [ 35.1% |  2166/~6169 | ✓2412 | ✗  16] ✓ tests/gateway/test_fallback_eviction.py (4✓, 3.3s)
+2026-09-19T01:59:11.1358291Z [ 35.3% |  2175/~6169 | ✓2421 | ✗  16] ✓ tests/gateway/test_feishu_meeting_invite.py (9✓, 3.3s)
+2026-09-19T01:59:11.1828792Z [ 35.3% |  2178/~6169 | ✓2447 | ✗  16] ✓ tests/gateway/test_gateway_command_line_matcher.py (26✓, 3.0s)
+2026-09-19T01:59:11.4194592Z [ 36.7% |  2266/~6169 | ✓2535 | ✗  16] ✓ tests/gateway/test_email.py (88✓, 5.4s)
+2026-09-19T01:59:12.7418554Z [ 36.8% |  2271/~6169 | ✓2540 | ✗  16] ✓ tests/gateway/test_goal_verdict_send.py (5✓, 4.5s)
+2026-09-19T01:59:13.2359571Z [ 36.8% |  2273/~6169 | ✓2542 | ✗  16] ✓ tests/gateway/test_compression_concurrent_sessions.py (2✓, 11.9s)
+2026-09-19T01:59:13.4518348Z [ 37.0% |  2282/~6169 | ✓2551 | ✗  16] ✓ tests/gateway/test_internal_event_bypass_pairing.py (9✓, 4.2s)
+2026-09-19T01:59:13.6928379Z [ 37.1% |  2286/~6169 | ✓2555 | ✗  16] ✓ tests/gateway/test_moa_one_shot_restore.py (4✓, 2.5s)
+2026-09-19T01:59:14.3808516Z [ 37.2% |  2292/~6169 | ✓2561 | ✗  16] ✓ tests/gateway/test_multiplex_api_server_routing.py (6✓, 3.0s)
+2026-09-19T01:59:14.6509631Z [ 37.2% |  2295/~6169 | ✓2564 | ✗  16] ✓ tests/gateway/test_new_clears_last_resolved_model.py (3✓, 1.9s)
+2026-09-19T01:59:15.8278421Z [ 38.0% |  2347/~6169 | ✓2616 | ✗  16] ✓ tests/gateway/test_matrix_mention.py (52✓, 4.8s)
+2026-09-19T01:59:15.9768496Z [ 38.1% |  2350/~6169 | ✓2619 | ✗  16] ✓ tests/gateway/test_mcp_reload_refreshes_cached_agents.py (3✓, 4.8s)
+2026-09-19T01:59:16.0328439Z [ 38.6% |  2382/~6169 | ✓2651 | ✗  16] ✓ tests/gateway/test_profile_routing.py (32✓, 2.3s)
+2026-09-19T01:59:16.2998217Z [ 38.7% |  2385/~6169 | ✓2654 | ✗  16] ✓ tests/gateway/test_pending_drain_race.py (3✓, 3.1s)
+2026-09-19T01:59:16.3178143Z [ 38.7% |  2389/~6169 | ✓2658 | ✗  16] ✓ tests/gateway/test_response_filters.py (4✓, 1.7s)
+2026-09-19T01:59:18.2044135Z [ 38.8% |  2394/~6169 | ✓2663 | ✗  16] ✓ tests/gateway/test_safe_adapter_disconnect.py (5✓, 2.2s)
+2026-09-19T01:59:18.2108594Z [ 38.9% |  2398/~6169 | ✓2667 | ✗  16] ✓ tests/gateway/test_session_list_allowed_sources.py (4✓, 1.9s)
+2026-09-19T01:59:18.3005769Z [ 39.2% |  2417/~6169 | ✓2687 | ✗  16] ✓ tests/gateway/test_reasoning_command.py (20✓, 3.9s)
+2026-09-19T01:59:18.8208421Z [ 40.0% |  2465/~6169 | ✓2735 | ✗  16] ✓ tests/gateway/test_platform_reconnect.py (48✓, 5.4s)
+2026-09-19T01:59:19.4978416Z [ 40.2% |  2478/~6169 | ✓2750 | ✗  16] ✓ tests/gateway/test_session_split_brain_11016.py (15✓, 3.2s)
+2026-09-19T01:59:20.1158676Z [ 40.2% |  2483/~6169 | ✓2755 | ✗  16] ✓ tests/gateway/test_keep_typing_timeout.py (5✓, 9.1s)
+2026-09-19T01:59:20.7935281Z [ 40.3% |  2488/~6169 | ✓2777 | ✗  16] ✓ tests/gateway/test_slack_download_ssrf.py (22✓, 2.5s)
+2026-09-19T01:59:20.9198571Z [ 41.2% |  2544/~6169 | ✓2833 | ✗  16] ✓ tests/gateway/test_slack_approval_buttons.py (56✓, 2.7s)
+2026-09-19T01:59:20.9348542Z [ 41.4% |  2553/~6169 | ✓2842 | ✗  16] ✓ tests/gateway/test_slack_require_mention_channels.py (9✓, 2.1s)
+2026-09-19T01:59:21.0128752Z [ 41.5% |  2561/~6169 | ✓2850 | ✗  16] ✓ tests/gateway/test_shutdown_cache_cleanup.py (8✓, 2.8s)
+2026-09-19T01:59:23.5874428Z [ 42.2% |  2602/~6169 | ✓2891 | ✗  16] ✓ tests/gateway/test_sms.py (41✓, 4.1s)
+2026-09-19T01:59:23.6248408Z [ 42.3% |  2609/~6169 | ✓2898 | ✗  16] ✓ tests/gateway/test_run_cleanup_progress.py (7✓, 7.8s)
+2026-09-19T01:59:23.7087273Z [ 42.4% |  2614/~6169 | ✓2903 | ✗  16] ✓ tests/gateway/test_telegram_forum_commands.py (5✓, 2.7s)
+2026-09-19T01:59:23.7278254Z [ 42.6% |  2627/~6169 | ✓2916 | ✗  16] ✓ tests/gateway/test_telegram_caption_merge.py (13✓, 2.8s)
+2026-09-19T01:59:24.1238336Z [ 42.9% |  2645/~6169 | ✓2934 | ✗  16] ✓ tests/gateway/test_stream_consumer_draft.py (18✓, 3.3s)
+2026-09-19T01:59:24.1279949Z [ 43.0% |  2650/~6169 | ✓2939 | ✗  16] ✓ tests/gateway/test_startup_restart_race.py (5✓, 4.0s)
+2026-09-19T01:59:24.2638356Z [ 43.1% |  2658/~6169 | ✓2951 | ✗  16] ✓ tests/gateway/test_systemd_notify.py (12✓, 3.3s)
+2026-09-19T01:59:26.5068952Z [ 43.2% |  2662/~6169 | ✓2955 | ✗  16] ✓ tests/gateway/test_telegram_overflow_partial.py (4✓, 2.9s)
+2026-09-19T01:59:26.5810722Z [ 43.7% |  2695/~6169 | ✓2988 | ✗  16] ✓ tests/gateway/test_session_api.py (33✓, 10.5s)
+2026-09-19T01:59:26.8678536Z [ 43.8% |  2700/~6169 | ✓2993 | ✗  16] ✓ tests/gateway/test_unavailable_skill_hint.py (5✓, 2.7s)
+2026-09-19T01:59:26.9649583Z [ 43.8% |  2701/~6169 | ✓2994 | ✗  16] ✓ tests/gateway/test_video_context_note.py (1✓, 2.8s)
+2026-09-19T01:59:27.0988530Z [ 44.9% |  2767/~6169 | ✓3066 | ✗  16] ✓ tests/gateway/test_telegram_rich_messages.py (72✓, 3.5s)
+2026-09-19T01:59:27.4771898Z [ 44.9% |  2771/~6169 | ✓3070 | ✗  16] ✓ tests/gateway/test_webhook_integration.py (4✓, 3.2s)
+2026-09-19T01:59:28.6672335Z [ 45.0% |  2774/~6169 | ✓3073 | ✗  16] ✓ tests/gateway/test_whatsapp_bridge_dir_resolution.py (3✓, 2.2s)
+2026-09-19T01:59:28.8718525Z [ 45.2% |  2790/~6169 | ✓3089 | ✗  16] ✓ tests/gateway/test_title_command.py (16✓, 5.1s)
+2026-09-19T01:59:29.3314369Z [ 45.9% |  2832/~6169 | ✓3131 | ✗  16] ✓ tests/honcho_plugin/test_async_memory.py (42✓, 2.5s)
+2026-09-19T01:59:29.6858526Z [ 46.1% |  2846/~6169 | ✓3145 | ✗  16] ✓ tests/gateway/test_telegram_text_batching.py (14✓, 6.0s)
+2026-09-19T01:59:29.8637409Z [ 46.3% |  2858/~6169 | ✓3157 | ✗  16] ✓ tests/openamer_cli/test_apply_profile_override.py (12✓, 2.4s)
+2026-09-19T01:59:29.9768350Z [ 46.5% |  2866/~6169 | ✓3165 | ✗  16] ✓ tests/openamer_cli/test_a2a_worker.py (8✓, 2.9s)
+2026-09-19T01:59:30.1218494Z [ 46.6% |  2872/~6169 | ✓3171 | ✗  16] ✓ tests/gateway/test_whatsapp_native_delivery.py (6✓, 3.5s)
+2026-09-19T01:59:30.2918578Z [ 46.7% |  2879/~6169 | ✓3178 | ✗  16] ✓ tests/openamer_cli/test_25106_global_switch_persists_base_url_api_mode.py (7✓, 3.3s)
+2026-09-19T01:59:32.4158568Z [ 46.7% |  2883/~6169 | ✓3182 | ✗  16] ✓ tests/openamer_cli/test_auth_toctou_file_modes.py (4✓, 3.5s)
+2026-09-19T01:59:32.8587113Z [ 46.9% |  2892/~6169 | ✓3191 | ✗  16] ✓ tests/openamer_cli/test_billing_scope_stepup.py (9✓, 3.2s)
+2026-09-19T01:59:33.0258646Z [ 47.1% |  2903/~6169 | ✓3203 | ✗  16] ✓ tests/openamer_cli/test_checkpoints_prune.py (12✓, 3.2s)
+2026-09-19T01:59:33.1138495Z [ 47.2% |  2914/~6169 | ✓3219 | ✗  16] ✓ tests/openamer_cli/test_config_env_ref_parity.py (16✓, 3.0s)
+2026-09-19T01:59:33.6677660Z [ 47.7% |  2943/~6169 | ✓3248 | ✗  16] ✓ tests/openamer_cli/test_copilot_auth.py (29✓, 3.4s)
+2026-09-19T01:59:34.6905394Z [ 47.8% |  2947/~6169 | ✓3252 | ✗  16] ✓ tests/openamer_cli/test_curator_run.py (4✓, 1.8s)
+2026-09-19T01:59:35.2788928Z [ 47.9% |  2953/~6169 | ✓3258 | ✗  16] ✓ tests/openamer_cli/test_custom_provider_identity.py (6✓, 2.3s)
+2026-09-19T01:59:35.3898330Z [ 48.2% |  2974/~6169 | ✓3276 | ✗  19] ✗ tests/openamer_cli/test_auth_codex_quota_probe.py (18✓ 3✗, 6.7s)
+2026-09-19T01:59:35.3927519Z 
+2026-09-19T01:59:35.3957955Z   ╔╍ Failed: tests/openamer_cli/test_auth_codex_quota_probe.py ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T01:59:35.3987590Z   ║ monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fbb9f0b3b10>
+2026-09-19T01:59:35.3988147Z   ║ 
+2026-09-19T01:59:35.3988653Z   ║     def test_pool_readonly_enumeration_does_not_probe(tmp_path, monkeypatch):
+2026-09-19T01:59:35.3989427Z   ║         """clear_expired=False callers (read-only listing) must not fire probes
+2026-09-19T01:59:35.3990002Z   ║         or mutate persisted state."""
+2026-09-19T01:59:35.3990921Z   ║         monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / "openamer"))
+2026-09-19T01:59:35.3991671Z   ║         _write_auth_store(tmp_path / "openamer", _pool_only_rate_limited_store())
+2026-09-19T01:59:35.3992204Z   ║     
+2026-09-19T01:59:35.3992580Z   ║         from agent.credential_pool import load_pool
+2026-09-19T01:59:35.3992994Z   ║     
+2026-09-19T01:59:35.3993322Z   ║         pool = load_pool("openai-codex")
+2026-09-19T01:59:35.3993714Z   ║         probes = []
+2026-09-19T01:59:35.3994220Z   ║     
+2026-09-19T01:59:35.3994529Z   ║         def _spy(token, **kw):
+2026-09-19T01:59:35.3994921Z   ║             probes.append(token)
+2026-09-19T01:59:35.3995290Z   ║             return True
+2026-09-19T01:59:35.3995600Z   ║     
+2026-09-19T01:59:35.3996071Z   ║         monkeypatch.setattr(auth_mod, "_probe_codex_quota_restored", _spy)
+2026-09-19T01:59:35.3997004Z   ║ >       assert pool._available_entries(clear_expired=False, refresh=False) == []
+2026-09-19T01:59:35.3997598Z   ║ E       assert ([], []) == []
+2026-09-19T01:59:35.3997961Z   ║ E         
+2026-09-19T01:59:35.3998376Z   ║ E         Left contains 2 more items, first extra item: []
+2026-09-19T01:59:35.3998857Z   ║ E         Use -v to get more diff
+2026-09-19T01:59:35.3999208Z   ║ 
+2026-09-19T01:59:35.3999755Z   ║ tests/openamer_cli/test_auth_codex_quota_probe.py:454: AssertionError
+2026-09-19T01:59:35.4027542Z   ║ =========================== short test summary info ============================
+2026-09-19T01:59:35.4058007Z   ║ FAILED tests/openamer_cli/test_auth_codex_quota_probe.py::test_pool_entry_recovers_when_probe_confirms_reset
+2026-09-19T01:59:35.4148124Z   ║ FAILED tests/openamer_cli/test_auth_codex_quota_probe.py::test_pool_entry_stays_frozen_when_probe_negative
+2026-09-19T01:59:35.4158022Z   ║ FAILED tests/openamer_cli/test_auth_codex_quota_probe.py::test_pool_readonly_enumeration_does_not_probe
+2026-09-19T01:59:35.4187454Z   ║ ========================= 3 failed, 18 passed in 1.66s =========================
+2026-09-19T01:59:35.4217291Z   ║
+2026-09-19T01:59:35.4237534Z   ║  Repro: python -m pytest tests/openamer_cli/test_auth_codex_quota_probe.py
+2026-09-19T01:59:35.4247602Z   ╚╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T01:59:35.4278035Z 
+2026-09-19T01:59:36.7628531Z [ 48.3% |  2979/~6169 | ✓3281 | ✗  19] ✓ tests/openamer_cli/test_dashboard_basic_auth_plugin_enable.py (5✓, 3.1s)
+2026-09-19T01:59:37.1518607Z [ 48.3% |  2981/~6169 | ✓3283 | ✗  19] ✓ tests/openamer_cli/test_cron_dashboard_off_loop.py (2✓, 4.7s)
+2026-09-19T01:59:37.3108434Z [ 48.5% |  2993/~6169 | ✓3299 | ✗  19] ✓ tests/openamer_cli/test_dashboard_web_dist_validation.py (16✓, 2.6s)
+2026-09-19T01:59:37.4863188Z [ 48.6% |  2996/~6169 | ✓3302 | ✗  19] ✓ tests/openamer_cli/test_dump_terminal_backend.py (3✓, 2.1s)
+2026-09-19T01:59:39.1448535Z [ 48.6% |  3000/~6169 | ✓3306 | ✗  19] ✓ tests/openamer_cli/test_codex_cli_model_picker.py (4✓, 9.2s)
+2026-09-19T01:59:39.3628376Z [ 48.7% |  3005/~6169 | ✓3311 | ✗  19] ✓ tests/openamer_cli/test_gateway_proc_fallback.py (5✓, 2.2s)
+2026-09-19T01:59:39.4739022Z [ 49.1% |  3026/~6169 | ✓3332 | ✗  19] ✓ tests/openamer_cli/test_dashboard_auth_native_flow.py (21✓, 6.4s)
+2026-09-19T01:59:39.7178281Z [ 49.3% |  3043/~6169 | ✓3349 | ✗  19] ✓ tests/openamer_cli/test_env_loader.py (17✓, 3.0s)
+2026-09-19T01:59:39.7278137Z [ 49.4% |  3050/~6169 | ✓3356 | ✗  19] ✓ tests/openamer_cli/test_determine_api_mode_hostname.py (7✓, 4.4s)
+2026-09-19T01:59:40.1818548Z [ 49.6% |  3061/~6169 | ✓3367 | ✗  19] ✓ tests/openamer_cli/test_ignore_user_config_flags.py (11✓, 2.7s)
+2026-09-19T01:59:40.2718503Z [ 49.8% |  3072/~6169 | ✓3378 | ✗  19] ✓ tests/openamer_cli/test_github_engage.py (11✓, 3.0s)
+2026-09-19T01:59:41.5341794Z [ 49.9% |  3078/~6169 | ✓3384 | ✗  19] ✓ tests/openamer_cli/test_kanban_blocked_sticky.py (6✓, 2.4s)
+2026-09-19T01:59:42.0787881Z [ 50.1% |  3090/~6169 | ✓3396 | ✗  19] ✓ tests/openamer_cli/test_managed_scope.py (12✓, 2.4s)
+2026-09-19T01:59:42.3272448Z [ 50.3% |  3101/~6169 | ✓3407 | ✗  19] ✓ tests/openamer_cli/test_kanban_decompose_db.py (11✓, 3.0s)
+2026-09-19T01:59:42.5809031Z [ 50.4% |  3108/~6169 | ✓3414 | ✗  19] ✓ tests/openamer_cli/test_mcp_startup.py (7✓, 2.3s)
+2026-09-19T01:59:43.1818314Z [ 50.5% |  3116/~6169 | ✓3422 | ✗  19] ✓ tests/openamer_cli/test_kanban_write_txn_busy_retry.py (8✓, 3.5s)
+2026-09-19T01:59:43.6588355Z [ 51.3% |  3165/~6169 | ✓3471 | ✗  19] ✓ tests/openamer_cli/test_managed_uv.py (49✓, 3.5s)
+2026-09-19T01:59:43.8248536Z [ 51.6% |  3181/~6169 | ✓3487 | ✗  19] ✓ tests/openamer_cli/test_kanban_promote.py (16✓, 4.4s)
+2026-09-19T01:59:44.2878560Z [ 51.7% |  3190/~6169 | ✓3496 | ✗  19] ✓ tests/openamer_cli/test_model_switch_context_display.py (9✓, 2.2s)
+2026-09-19T01:59:44.7968331Z [ 51.8% |  3193/~6169 | ✓3499 | ✗  19] ✓ tests/openamer_cli/test_moa_set_models_preserves_extra_keys.py (3✓, 3.3s)
+2026-09-19T01:59:45.3523457Z [ 51.8% |  3198/~6169 | ✓3504 | ✗  19] ✓ tests/openamer_cli/test_openai_picker_curated.py (5✓, 2.8s)
+2026-09-19T01:59:45.8565824Z [ 53.3% |  3287/~6169 | ✓3593 | ✗  19] ✓ tests/openamer_cli/test_model_validation.py (89✓, 3.5s)
+2026-09-19T01:59:46.1158442Z [ 53.5% |  3303/~6169 | ✓3611 | ✗  19] ✓ tests/openamer_cli/test_pip_install_detection.py (18✓, 2.5s)
+2026-09-19T01:59:46.9828490Z [ 53.7% |  3315/~6169 | ✓3623 | ✗  19] ✓ tests/openamer_cli/test_provider_catalog.py (12✓, 2.2s)
+2026-09-19T01:59:47.2768455Z [ 54.0% |  3334/~6169 | ✓3642 | ✗  19] ✓ tests/openamer_cli/test_plugins_cmd_enable_disable_nested.py (19✓, 3.4s)
+2026-09-19T01:59:47.9618375Z [ 54.2% |  3346/~6169 | ✓3654 | ✗  19] ✓ tests/openamer_cli/test_opencode_go_flat_namespace.py (12✓, 4.8s)
+2026-09-19T01:59:48.1268382Z [ 54.3% |  3348/~6169 | ✓3656 | ✗  19] ✓ tests/openamer_cli/test_resolve_provider_openrouter_pool.py (2✓, 2.3s)
+2026-09-19T01:59:48.7445317Z [ 56.6% |  3493/~6169 | ✓3811 | ✗  19] ✓ tests/openamer_cli/test_profiles.py (155✓, 4.5s)
+2026-09-19T01:59:49.3508308Z [ 56.9% |  3513/~6169 | ✓3831 | ✗  19] ✓ tests/openamer_cli/test_security_advisories.py (20✓, 3.2s)
+2026-09-19T01:59:49.3968599Z [ 57.0% |  3516/~6169 | ✓3834 | ✗  19] ✓ tests/openamer_cli/test_session_to_brain_daemon.py (3✓, 2.1s)
+2026-09-19T01:59:49.8150536Z [ 57.2% |  3526/~6169 | ✓3844 | ✗  19] ✓ tests/openamer_cli/test_session_export.py (10✓, 2.8s)
+2026-09-19T01:59:50.3979646Z [ 57.5% |  3546/~6169 | ✓3864 | ✗  19] ✓ tests/openamer_cli/test_pty_bridge.py (20✓, 5.0s)
+2026-09-19T01:59:50.4543919Z [ 57.5% |  3547/~6169 | ✓3865 | ✗  19] ✓ tests/openamer_cli/test_setup_matrix_e2ee.py (1✓, 2.5s)
+2026-09-19T01:59:51.3722433Z [ 57.5% |  3550/~6169 | ✓3884 | ✗  19] ✓ tests/openamer_cli/test_skin_palettes.py (19✓, 2.6s)
+2026-09-19T01:59:51.8638407Z [ 57.6% |  3553/~6169 | ✓3887 | ✗  19] ✓ tests/openamer_cli/test_signal_handler_kanban_worker.py (3✓, 3.7s)
+2026-09-19T01:59:52.0779320Z [ 58.0% |  3576/~6169 | ✓3910 | ✗  19] ✓ tests/openamer_cli/test_subscription_cli.py (23✓, 2.7s)
+2026-09-19T01:59:52.4819933Z [ 58.4% |  3603/~6169 | ✓3937 | ✗  19] ✓ tests/openamer_cli/test_telegram_managed_bot.py (27✓, 2.7s)
+2026-09-19T01:59:52.6538497Z [ 58.6% |  3617/~6169 | ✓3951 | ✗  19] ✓ tests/openamer_cli/test_state_db_guard.py (14✓, 3.3s)
+2026-09-19T01:59:54.3793083Z [ 58.8% |  3626/~6169 | ✓3960 | ✗  19] ✓ tests/openamer_cli/test_update_post_pull_syntax_guard.py (9✓, 3.0s)
+2026-09-19T01:59:55.6478535Z [ 59.1% |  3645/~6169 | ✓3979 | ✗  19] ✓ tests/openamer_cli/test_tools_disable_enable.py (19✓, 5.2s)
+2026-09-19T01:59:56.1328329Z [ 59.1% |  3648/~6169 | ✓3982 | ✗  19] ✓ tests/openamer_cli/test_web_server_oauth_write.py (3✓, 3.7s)
+2026-09-19T01:59:56.1515698Z [ 59.5% |  3671/~6169 | ✓4008 | ✗  19] ✓ tests/openamer_cli/test_webhook_cli.py (26✓, 3.5s)
+2026-09-19T01:59:56.4138498Z [ 59.6% |  3676/~6169 | ✓4013 | ✗  19] ✓ tests/openamer_cli/test_xai_oauth_refresh.py (5✓, 2.0s)
+2026-09-19T01:59:57.7219221Z [ 59.7% |  3680/~6169 | ✓4017 | ✗  19] ✓ tests/plugins/memory/test_byterover_provider.py (4✓, 1.6s)
+2026-09-19T01:59:58.2478403Z [ 60.1% |  3707/~6169 | ✓4044 | ✗  19] ✓ tests/plugins/memory/test_mem0_backend.py (27✓, 1.8s)
+2026-09-19T01:59:59.1158817Z [ 60.3% |  3719/~6169 | ✓4056 | ✗  19] ✓ tests/openamer_state/test_get_messages_around.py (12✓, 3.5s)
+2026-09-19T02:00:00.6148270Z [ 60.4% |  3725/~6169 | ✓4062 | ✗  19] ✓ tests/plugins/model_providers/test_copilot_profile.py (6✓, 2.9s)
+2026-09-19T02:00:01.0708691Z [ 60.4% |  3728/~6169 | ✓4065 | ✗  19] ✓ tests/plugins/platforms/photon/test_sidecar_deps_stale.py (3✓, 2.0s)
+2026-09-19T02:00:01.4846622Z [ 61.3% |  3783/~6169 | ✓4120 | ✗  19] ✓ tests/plugins/dashboard_auth/test_openamer_provider.py (55✓, 5.4s)
+2026-09-19T02:00:01.5518607Z [ 61.6% |  3800/~6169 | ✓4160 | ✗  19] ✓ tests/plugins/model_providers/test_zai_profile.py (40✓, 3.3s)
+2026-09-19T02:00:02.4498542Z [ 62.3% |  3842/~6169 | ✓4202 | ✗  19] ✓ tests/plugins/test_google_meet_node.py (42✓, 1.8s)
+2026-09-19T02:00:03.0537490Z [ 62.5% |  3856/~6169 | ✓4216 | ✗  19] ✓ tests/plugins/video_gen/test_xai_plugin.py (14✓, 1.6s)
+2026-09-19T02:00:03.3209254Z [ 63.2% |  3897/~6169 | ✓4264 | ✗  19] ✓ tests/plugins/test_langfuse_plugin.py (48✓, 2.3s)
+2026-09-19T02:00:04.3178659Z [ 65.7% |  4050/~6169 | ✓4426 | ✗  19] ✓ tests/openamer_cli/test_backup.py (162✓, 35.0s)
+2026-09-19T02:00:05.4071442Z [ 65.9% |  4066/~6169 | ✓4442 | ✗  19] ✓ tests/run_agent/test_1630_context_overflow_loop.py (16✓, 3.9s)
+2026-09-19T02:00:07.0298598Z [ 66.1% |  4077/~6169 | ✓4453 | ✗  19] ✓ tests/run_agent/test_background_review.py (11✓, 4.0s)
+2026-09-19T02:00:07.6043309Z [ 66.2% |  4083/~6169 | ✓4459 | ✗  19] ✓ tests/run_agent/test_70773_shared_client_fd_corruption.py (6✓, 5.2s)
+2026-09-19T02:00:09.2007519Z [ 66.3% |  4088/~6169 | ✓4464 | ✗  19] ✓ tests/run_agent/test_empty_response_recovery_persistence.py (5✓, 2.2s)
+2026-09-19T02:00:11.0213285Z [ 66.3% |  4091/~6169 | ✓4467 | ✗  19] ✓ tests/run_agent/test_create_openai_client_reuse.py (3✓, 5.6s)
+2026-09-19T02:00:11.5324063Z [ 66.5% |  4101/~6169 | ✓4477 | ✗  19] ✓ tests/run_agent/test_codex_silent_hang_hint.py (10✓, 8.2s)
+2026-09-19T02:00:11.9988374Z [ 66.7% |  4116/~6169 | ✓4492 | ✗  19] ✓ tests/run_agent/test_long_context_tier_429.py (15✓, 2.8s)
+2026-09-19T02:00:13.1727310Z [ 67.3% |  4151/~6169 | ✓4529 | ✗  19] ✓ tests/openamer_cli/test_user_providers_model_switch.py (37✓, 21.3s)
+2026-09-19T02:00:14.8878813Z [ 67.5% |  4163/~6169 | ✓4541 | ✗  19] ✓ tests/run_agent/test_moa_privacy_filter.py (12✓, 3.9s)
+2026-09-19T02:00:18.2758513Z [ 67.8% |  4182/~6169 | ✓4560 | ✗  19] ✓ tests/run_agent/test_compression_persistence.py (19✓, 14.0s)
+2026-09-19T02:00:20.9368726Z [ 67.9% |  4186/~6169 | ✓4564 | ✗  19] ✓ tests/run_agent/test_stream_interrupt_retry.py (4✓, 6.0s)
+2026-09-19T02:00:21.3728385Z [ 68.1% |  4200/~6169 | ✓4578 | ✗  19] ✓ tests/run_agent/test_partial_stream_finish_reason.py (14✓, 9.8s)
+2026-09-19T02:00:21.4149944Z [ 68.5% |  4224/~6169 | ✓4602 | ✗  19] ✓ tests/run_agent/test_provider_fallback.py (24✓, 9.4s)
+2026-09-19T02:00:23.3569772Z [ 68.6% |  4233/~6169 | ✓4611 | ✗  19] ✓ tests/run_agent/test_in_place_compaction.py (9✓, 15.7s)
+2026-09-19T02:00:23.6982297Z [ 68.8% |  4242/~6169 | ✓4620 | ✗  19] ✓ tests/scripts/test_autopatch_punkt_pack.py (9✓, 2.3s)
+2026-09-19T02:00:25.4168542Z [ 68.9% |  4252/~6169 | ✓4630 | ✗  19] ✓ tests/run_agent/test_tls_fd_recycle_corruption.py (10✓, 4.5s)
+2026-09-19T02:00:25.6288284Z [ 69.0% |  4255/~6169 | ✓4633 | ✗  19] ✓ tests/scripts/test_swarm_intelligence.py (3✓, 1.9s)
+2026-09-19T02:00:26.9272126Z [ 69.1% |  4262/~6169 | ✓4640 | ✗  19] ✓ tests/skills/test_telephony_skill.py (7✓, 1.3s)
+2026-09-19T02:00:27.4759081Z [ 69.1% |  4262/~6169 | ✓4640 | ✗  19] ✓ tests/stress/test_concurrency.py (0.5s)
+2026-09-19T02:00:27.6738325Z [ 69.3% |  4275/~6169 | ✓4656 | ✗  19] ✓ tests/skills/test_google_workspace_api.py (16✓, 2.3s)
+2026-09-19T02:00:27.7058478Z [ 69.5% |  4287/~6169 | ✓4668 | ✗  19] ✓ tests/run_agent/test_turn_completion_explainer.py (12✓, 6.3s)
+2026-09-19T02:00:28.5322033Z [ 70.2% |  4329/~6169 | ✓4722 | ✗  19] ✓ tests/run_agent/test_switch_model_context.py (54✓, 10.3s)
+2026-09-19T02:00:29.6328362Z [ 70.2% |  4332/~6169 | ✓4725 | ✗  19] ✓ tests/test_agent_ui.py (3✓, 2.2s)
+2026-09-19T02:00:30.9543065Z [ 71.0% |  4379/~6169 | ✓4780 | ✗  19] ✓ tests/test_bitwarden_secrets.py (55✓, 3.3s)
+2026-09-19T02:00:31.1448400Z [ 71.1% |  4385/~6169 | ✓4786 | ✗  19] ✓ tests/test_darwin_phase10.py (6✓, 2.6s)
+2026-09-19T02:00:32.0769045Z [ 71.4% |  4406/~6169 | ✓4807 | ✗  19] ✓ tests/scripts/test_footgun_subprocess_encoding.py (21✓, 8.7s)
+2026-09-19T02:00:32.2647019Z [ 71.6% |  4415/~6169 | ✓4816 | ✗  19] ✓ tests/test_darwin_phase20.py (9✓, 2.6s)
+2026-09-19T02:00:32.6708486Z [ 71.7% |  4423/~6169 | ✓4824 | ✗  19] ✓ tests/test_darwin_skill_probe.py (8✓, 1.5s)
+2026-09-19T02:00:33.1636205Z [ 71.8% |  4431/~6169 | ✓4831 | ✗  19] ✓ tests/test_darwin_phase30.py (7✓ 1s, 2.2s)
+2026-09-19T02:00:33.5993667Z [ 71.9% |  4436/~6169 | ✓4836 | ✗  19] ✓ tests/test_env_loader_applied_homes.py (5✓, 1.5s)
+2026-09-19T02:00:34.6458452Z [ 71.9% |  4438/~6169 | ✓4838 | ✗  19] ✓ tests/test_install_diverged_update.py (2✓, 2.0s)
+2026-09-19T02:00:35.5078195Z [ 72.0% |  4444/~6169 | ✓4844 | ✗  19] ✓ tests/test_get_tool_definitions_cache_isolation.py (6✓, 3.2s)
+2026-09-19T02:00:35.5808536Z [ 72.1% |  4449/~6169 | ✓4849 | ✗  19] ✓ tests/test_integrations/test_calendar.py (5✓, 2.0s)
+2026-09-19T02:00:36.6278288Z [ 72.3% |  4463/~6169 | ✓4863 | ✗  19] ✓ tests/test_copilot_initiator.py (14✓, 8.9s)
+2026-09-19T02:00:37.4356744Z [ 72.8% |  4491/~6169 | ✓4891 | ✗  19] ✓ tests/test_minimax_oauth.py (28✓, 1.9s)
+2026-09-19T02:00:37.7468339Z [ 73.0% |  4503/~6169 | ✓4903 | ✗  19] ✓ tests/test_ollama_num_ctx.py (12✓, 2.2s)
+2026-09-19T02:00:38.2808444Z [ 73.3% |  4523/~6169 | ✓4923 | ✗  19] ✓ tests/test_output_cap_parsing.py (20✓, 1.7s)
+2026-09-19T02:00:39.4249590Z [ 73.6% |  4538/~6169 | ✓4938 | ✗  19] ✓ tests/test_retry_utils.py (15✓, 1.7s)
+2026-09-19T02:00:39.4583764Z [ 74.0% |  4564/~6169 | ✓4964 | ✗  19] ✓ tests/test_plugin_system.py (26✓, 2.0s)
+2026-09-19T02:00:40.3971748Z [ 74.1% |  4569/~6169 | ✓4969 | ✗  19] ✓ tests/test_slack_thread_require_mention.py (5✓, 2.1s)
+2026-09-19T02:00:40.7679731Z [ 74.1% |  4571/~6169 | ✓4971 | ✗  19] ✓ tests/test_termux_all_extra_compat.py (2✓, 1.3s)
+2026-09-19T02:00:41.0208406Z [ 74.4% |  4589/~6169 | ✓4989 | ✗  19] ✓ tests/test_lazy_session_regressions.py (18✓, 6.4s)
+2026-09-19T02:00:42.7078291Z [ 74.5% |  4594/~6169 | ✓4994 | ✗  19] ✓ tests/test_web_server.py (5✓, 2.3s)
+2026-09-19T02:00:42.8358388Z [ 74.6% |  4603/~6169 | ✓5003 | ✗  19] ✓ tests/test_transform_tool_result_hook.py (9✓, 3.4s)
+2026-09-19T02:00:42.8898456Z [ 74.8% |  4612/~6169 | ✓5024 | ✗  19] ✓ tests/tools/test_approval_plugin_hooks.py (21✓, 1.9s)
+2026-09-19T02:00:44.4383171Z [ 75.2% |  4639/~6169 | ✓5051 | ✗  19] ✓ tests/tools/test_browser_camofox_persistence.py (27✓, 1.7s)
+2026-09-19T02:00:44.5918294Z [ 75.4% |  4654/~6169 | ✓5066 | ✗  19] ✓ tests/test_install_sh_browser_install.py (15✓, 11.4s)
+2026-09-19T02:00:45.0818790Z [ 75.6% |  4662/~6169 | ✓5074 | ✗  19] ✓ tests/tools/test_browser_cloud_fallback.py (8✓, 2.2s)
+2026-09-19T02:00:45.3818299Z [ 75.6% |  4664/~6169 | ✓5076 | ✗  19] ✓ tests/test_yuanbao_reconnect_set_active.py (2✓, 4.6s)
+2026-09-19T02:00:46.7644152Z [ 75.8% |  4678/~6169 | ✓5090 | ✗  19] ✓ tests/tools/test_browser_headed_mode.py (14✓, 3.9s)
+2026-09-19T02:00:47.3058609Z [ 76.3% |  4706/~6169 | ✓5120 | ✗  19] ✓ tests/tools/test_computer_use_vision_routing.py (30✓, 2.2s)
+2026-09-19T02:00:47.4628445Z [ 76.6% |  4726/~6169 | ✓5148 | ✗  19] ✓ tests/tools/test_browser_ssrf_local.py (28✓, 3.0s)
+2026-09-19T02:00:48.7889498Z [ 76.7% |  4733/~6169 | ✓5155 | ✗  19] ✓ tests/tools/test_delegate_summary_budget.py (7✓, 2.0s)
+2026-09-19T02:00:49.2138328Z [ 76.9% |  4742/~6169 | ✓5164 | ✗  19] ✓ tests/tools/test_docker_find.py (9✓, 1.9s)
+2026-09-19T02:00:49.3448339Z [ 77.1% |  4754/~6169 | ✓5176 | ✗  19] ✓ tests/tools/test_cross_profile_guard.py (12✓, 4.0s)
+2026-09-19T02:00:50.7368302Z [ 77.5% |  4780/~6169 | ✓5203 | ✗  19] ✓ tests/tools/test_execute_code_approval_cluster.py (27✓, 3.3s)
+2026-09-19T02:00:50.9209541Z [ 77.8% |  4797/~6169 | ✓5220 | ✗  19] ✓ tests/tools/test_file_sync.py (17✓, 2.1s)
+2026-09-19T02:00:54.0472635Z [ 78.8% |  4860/~6169 | ✓5287 | ✗  20] ✗ tests/tools/test_homeassistant_tool.py (67✓ 1✗, 4.7s)
+2026-09-19T02:00:54.0481270Z 
+2026-09-19T02:00:54.0482288Z   ╔╍ Failed: tests/tools/test_homeassistant_tool.py ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T02:00:54.0483124Z   ║ tests/tools/test_homeassistant_tool.py:475: 
+2026-09-19T02:00:54.0483730Z   ║ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:00:54.0484478Z   ║ .venv/lib/python3.11/site-packages/_pytest/monkeypatch.py:106: in derive_importpath
+2026-09-19T02:00:54.0485200Z   ║     annotated_getattr(target, attr, ann=module)
+2026-09-19T02:00:54.0485793Z   ║ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:00:54.0486282Z   ║ 
+2026-09-19T02:00:54.0487364Z   ║ obj = <module 'tools.homeassistant_tool' from '/home/runner/work/openamer/openamer/tools/homeassistant_tool.py'>
+2026-09-19T02:00:54.0567914Z   ║ name = '_HASS_TOKEN', ann = 'tools.homeassistant_tool'
+2026-09-19T02:00:54.0597743Z   ║ 
+2026-09-19T02:00:54.0647888Z   ║     def annotated_getattr(obj: object, name: str, ann: str) -> object:
+2026-09-19T02:00:54.0677548Z   ║         try:
+2026-09-19T02:00:54.0678245Z   ║             obj = getattr(obj, name)
+2026-09-19T02:00:54.0707487Z   ║         except AttributeError as e:
+2026-09-19T02:00:54.0737455Z   ║ >           raise AttributeError(
+2026-09-19T02:00:54.0738405Z   ║                 f"{type(obj).__name__!r} object at {ann} has no attribute {name!r}"
+2026-09-19T02:00:54.0767937Z   ║             ) from e
+2026-09-19T02:00:54.0797830Z   ║ E           AttributeError: 'module' object at tools.homeassistant_tool has no attribute '_HASS_TOKEN'
+2026-09-19T02:00:54.0827289Z   ║ 
+2026-09-19T02:00:54.0828069Z   ║ .venv/lib/python3.11/site-packages/_pytest/monkeypatch.py:94: AttributeError
+2026-09-19T02:00:54.0857472Z   ║ =============================== warnings summary ===============================
+2026-09-19T02:00:54.0916594Z   ║ tests/tools/test_homeassistant_tool.py::TestServiceNameValidation::test_valid_service_names
+2026-09-19T02:00:54.0977862Z   ║   /home/runner/work/openamer/openamer/tests/conftest.py:915: RuntimeWarning: coroutine '_async_call_service' was never awaited
+2026-09-19T02:00:54.0997445Z   ║     _wrap_subprocess("check_output", real_check_output),
+2026-09-19T02:00:54.1037459Z   ║   Enable tracemalloc to get traceback where the object was allocated.
+2026-09-19T02:00:54.1087862Z   ║   See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+2026-09-19T02:00:54.1116902Z   ║ 
+2026-09-19T02:00:54.1157970Z   ║ -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+2026-09-19T02:00:54.1158947Z   ║ =========================== short test summary info ============================
+2026-09-19T02:00:54.1160645Z   ║ FAILED tests/tools/test_homeassistant_tool.py::TestGetHeaders::test_bearer_token_format
+2026-09-19T02:00:54.1187520Z   ║ =================== 1 failed, 67 passed, 1 warning in 1.45s ====================
+2026-09-19T02:00:54.1217340Z   ║
+2026-09-19T02:00:54.1247904Z   ║  Repro: python -m pytest tests/tools/test_homeassistant_tool.py
+2026-09-19T02:00:54.1268729Z   ╚╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T02:00:54.1277100Z 
+2026-09-19T02:00:54.1311541Z [ 79.6% |  4911/~6169 | ✓5338 | ✗  20] ✓ tests/tools/test_local_env_blocklist.py (51✓, 3.2s)
+2026-09-19T02:00:54.4108440Z [ 80.4% |  4957/~6169 | ✓5384 | ✗  20] ✓ tests/tools/test_file_write_safety.py (46✓, 5.2s)
+2026-09-19T02:00:54.5280369Z [ 82.1% |  5063/~6169 | ✓5491 | ✗  20] ✓ tests/run_agent/test_run_agent_codex_responses.py (107✓, 41.4s)
+2026-09-19T02:00:56.2279814Z [ 82.2% |  5072/~6169 | ✓5500 | ✗  20] ✓ tests/tools/test_interrupt.py (9✓, 5.5s)
+2026-09-19T02:00:57.1218698Z [ 82.4% |  5082/~6169 | ✓5510 | ✗  20] ✓ tests/tools/test_mcp_dynamic_discovery.py (10✓, 3.0s)
+2026-09-19T02:00:57.7398152Z [ 83.6% |  5158/~6169 | ✓5586 | ✗  20] ✓ tests/tools/test_code_execution.py (76✓, 13.1s)
+2026-09-19T02:00:57.8038544Z [ 83.7% |  5166/~6169 | ✓5594 | ✗  20] ✓ tests/tools/test_mcp_reconnect_log_hygiene.py (8✓, 3.3s)
+2026-09-19T02:00:57.9098394Z [ 83.8% |  5168/~6169 | ✓5596 | ✗  20] ✓ tests/tools/test_mcp_oauth_bidirectional.py (2✓, 3.5s)
+2026-09-19T02:00:58.8463234Z [ 83.8% |  5169/~6169 | ✓5597 | ✗  20] ✓ tests/tools/test_mcp_stdio_init_timeout.py (1✓, 2.6s)
+2026-09-19T02:01:00.4368465Z [ 83.9% |  5178/~6169 | ✓5606 | ✗  20] ✓ tests/tools/test_search_hidden_dirs.py (9✓, 2.5s)
+2026-09-19T02:01:00.4679282Z [ 84.0% |  5184/~6169 | ✓5619 | ✗  20] ✓ tests/tools/test_open_preview_tool.py (13✓, 2.7s)
+2026-09-19T02:01:00.4858142Z [ 84.3% |  5198/~6169 | ✓5631 | ✗  22] ✗ tests/tools/test_managed_media_gateways.py (12✓ 2✗, 6.4s)
+2026-09-19T02:01:00.4887131Z 
+2026-09-19T02:01:00.4918102Z   ╔╍ Failed: tests/tools/test_managed_media_gateways.py ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T02:01:00.4977793Z   ║         monkeypatch.setenv("TOOL_GATEWAY_USER_TOKEN", "openamer-token")
+2026-09-19T02:01:00.5037558Z   ║     
+2026-09-19T02:01:00.5097642Z   ║         image_generation_tool = _load_tool_module(
+2026-09-19T02:01:00.5147625Z   ║             "tools.image_generation_tool",
+2026-09-19T02:01:00.5207866Z   ║             "image_generation_tool.py",
+2026-09-19T02:01:00.5267646Z   ║         )
+2026-09-19T02:01:00.5289423Z   ║     
+2026-09-19T02:01:00.5317822Z   ║ >       image_generation_tool._submit_fal_request("fal-ai/flux-2-pro", {"prompt": "first"})
+2026-09-19T02:01:00.5407450Z   ║ 
+2026-09-19T02:01:00.5437653Z   ║ tests/tools/test_managed_media_gateways.py:217: 
+2026-09-19T02:01:00.5517690Z   ║ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:01:00.5557574Z   ║ tools/image_generation_tool.py:130: in _submit_fal_request
+2026-09-19T02:01:00.5558141Z   ║     return _get_managed_fal_client(managed_gateway).submit(
+2026-09-19T02:01:00.5558601Z   ║            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:01:00.5559040Z   ║ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:01:00.5559412Z   ║ 
+2026-09-19T02:01:00.5560308Z   ║ managed_gateway = ManagedToolGatewayConfig(vendor='fal-queue', gateway_origin='http://127.0.0.1:3009', openamer_user_token='openamer-token', managed_mode=True)
+2026-09-19T02:01:00.5561075Z   ║ 
+2026-09-19T02:01:00.5561364Z   ║     def _get_managed_fal_client(managed_gateway):
+2026-09-19T02:01:00.5561960Z   ║         """Reuse the managed FAL client so its internal httpx.Client is not leaked per call."""
+2026-09-19T02:01:00.5562583Z   ║         global _managed_fal_client, _managed_fal_client_config
+2026-09-19T02:01:00.5563283Z   ║ >       client_config = (managed_gateway.gateway_origin.rstrip("/"), managed_gateway.nous_user_token)
+2026-09-19T02:01:00.5563959Z   ║                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:01:00.5564687Z   ║ E       AttributeError: 'ManagedToolGatewayConfig' object has no attribute 'nous_user_token'
+2026-09-19T02:01:00.5617331Z   ║ 
+2026-09-19T02:01:00.5667467Z   ║ tools/image_generation_tool.py:81: AttributeError
+2026-09-19T02:01:00.5668341Z   ║ =========================== short test summary info ============================
+2026-09-19T02:01:00.5669329Z   ║ FAILED tests/tools/test_managed_media_gateways.py::test_managed_fal_submit_uses_gateway_origin_and_openamer_token
+2026-09-19T02:01:00.5670287Z   ║ FAILED tests/tools/test_managed_media_gateways.py::test_managed_fal_submit_reuses_cached_sync_client
+2026-09-19T02:01:00.5670980Z   ║ ========================= 2 failed, 12 passed in 1.58s =========================
+2026-09-19T02:01:00.5671577Z   ║
+2026-09-19T02:01:00.5671964Z   ║  Repro: python -m pytest tests/tools/test_managed_media_gateways.py
+2026-09-19T02:01:00.5672544Z   ╚╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T02:01:00.5672804Z 
+2026-09-19T02:01:01.2116597Z [ 84.7% |  5223/~6169 | ✓5656 | ✗  22] ✓ tests/tools/test_read_loop_detection.py (25✓, 3.4s)
+2026-09-19T02:01:01.3918362Z [ 85.3% |  5264/~6169 | ✓5697 | ✗  22] ✓ tests/openamer_cli/test_update_autostash.py (41✓, 70.9s)
+2026-09-19T02:01:01.4688651Z [ 85.5% |  5276/~6169 | ✓5709 | ✗  22] ✓ tests/tools/test_shared_container_task_id.py (12✓, 2.6s)
+2026-09-19T02:01:03.0350237Z [ 85.6% |  5282/~6169 | ✓5715 | ✗  22] ✓ tests/tools/test_skills_list_modified_diff.py (6✓, 2.6s)
+2026-09-19T02:01:03.6650894Z [ 85.8% |  5296/~6169 | ✓5729 | ✗  22] ✓ tests/tools/test_skill_size_limits.py (14✓, 3.2s)
+2026-09-19T02:01:03.9318311Z [ 85.9% |  5300/~6169 | ✓5733 | ✗  22] ✓ tests/tools/test_telegram_send_message_caption.py (4✓, 2.7s)
+2026-09-19T02:01:04.2096548Z [ 86.7% |  5349/~6169 | ✓5784 | ✗  22] ✓ tests/tools/test_tool_backend_helpers.py (51✓, 2.7s)
+2026-09-19T02:01:04.3588293Z [ 88.2% |  5443/~6169 | ✓5878 | ✗  22] ✓ tests/tools/test_memory_tool.py (94✓, 7.2s)
+2026-09-19T02:01:06.2198462Z [ 88.4% |  5451/~6169 | ✓5886 | ✗  22] ✓ tests/tools/test_video_generation_dispatch.py (8✓, 2.3s)
+2026-09-19T02:01:06.3907433Z [ 88.6% |  5463/~6169 | ✓5893 | ✗  30] ✗ tests/tools/test_spotify_client.py (7✓ 8✗, 5.9s)
+2026-09-19T02:01:06.3907888Z 
+2026-09-19T02:01:06.3908707Z   ╔╍ Failed: tests/tools/test_spotify_client.py ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T02:01:06.3910122Z   ║ E       AttributeError: <module 'plugins.spotify.tools' from '/home/runner/work/openamer/openamer/plugins/spotify/tools.py'> has no attribute '_spotify_client'
+2026-09-19T02:01:06.3911233Z   ║ 
+2026-09-19T02:01:06.3911691Z   ║ tests/tools/test_spotify_client.py:278: AttributeError
+2026-09-19T02:01:06.3912480Z   ║ _________________ test_spotify_playback_recently_played_action _________________
+2026-09-19T02:01:06.3913202Z   ║ 
+2026-09-19T02:01:06.3913759Z   ║ monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fc6f797de10>
+2026-09-19T02:01:06.3914406Z   ║ 
+2026-09-19T02:01:06.3915146Z   ║     def test_spotify_playback_recently_played_action(monkeypatch: pytest.MonkeyPatch) -> None:
+2026-09-19T02:01:06.3916127Z   ║         """recently_played is now an action on spotify_playback (folded from spotify_activity)."""
+2026-09-19T02:01:06.3917029Z   ║         seen: list[dict] = []
+2026-09-19T02:01:06.3917789Z   ║     
+2026-09-19T02:01:06.3918392Z   ║         class _RecentStub:
+2026-09-19T02:01:06.3918879Z   ║             def get_recently_played(self, **kw):
+2026-09-19T02:01:06.3919425Z   ║                 seen.append(kw)
+2026-09-19T02:01:06.3920027Z   ║                 return {"items": [{"track": {"name": "x"}}]}
+2026-09-19T02:01:06.3920512Z   ║     
+2026-09-19T02:01:06.3921134Z   ║ >       monkeypatch.setattr(spotify_tool, "_spotify_client", lambda: _RecentStub())
+2026-09-19T02:01:06.3922637Z   ║ E       AttributeError: <module 'plugins.spotify.tools' from '/home/runner/work/openamer/openamer/plugins/spotify/tools.py'> has no attribute '_spotify_client'
+2026-09-19T02:01:06.3923732Z   ║ 
+2026-09-19T02:01:06.3924186Z   ║ tests/tools/test_spotify_client.py:297: AttributeError
+2026-09-19T02:01:06.3924883Z   ║ =========================== short test summary info ============================
+2026-09-19T02:01:06.3925927Z   ║ FAILED tests/tools/test_spotify_client.py::test_spotify_client_retries_once_after_401
+2026-09-19T02:01:06.3927174Z   ║ FAILED tests/tools/test_spotify_client.py::test_spotify_playback_get_currently_playing_returns_explanatory_empty_result
+2026-09-19T02:01:06.3928404Z   ║ FAILED tests/tools/test_spotify_client.py::test_library_contains_uses_generic_library_endpoint
+2026-09-19T02:01:06.3929720Z   ║ FAILED tests/tools/test_spotify_client.py::test_library_remove_uses_generic_library_endpoint[remove_saved_tracks-track_ids-item_value0-expected_uris0]
+2026-09-19T02:01:06.3931337Z   ║ FAILED tests/tools/test_spotify_client.py::test_library_remove_uses_generic_library_endpoint[remove_saved_albums-album_ids-item_value1-expected_uris1]
+2026-09-19T02:01:06.3932724Z   ║ FAILED tests/tools/test_spotify_client.py::test_spotify_library_tracks_list_routes_to_saved_tracks
+2026-09-19T02:01:06.3936498Z   ║ FAILED tests/tools/test_spotify_client.py::test_spotify_library_albums_list_routes_to_saved_albums
+2026-09-19T02:01:06.3937635Z   ║ FAILED tests/tools/test_spotify_client.py::test_spotify_playback_recently_played_action
+2026-09-19T02:01:06.3938285Z   ║ ========================= 8 failed, 7 passed in 1.47s ==========================
+2026-09-19T02:01:06.3938664Z   ║
+2026-09-19T02:01:06.3939008Z   ║  Repro: python -m pytest tests/tools/test_spotify_client.py
+2026-09-19T02:01:06.3939563Z   ╚╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T02:01:06.3939840Z 
+2026-09-19T02:01:06.4488480Z [ 88.6% |  5465/~6169 | ✓5895 | ✗  30] ✓ tests/tools/test_tts_opus_routing.py (2✓, 2.8s)
+2026-09-19T02:01:07.9299903Z [ 88.6% |  5467/~6169 | ✓5897 | ✗  30] ✓ tests/tools/test_terminal_timeout_output.py (2✓, 6.5s)
+2026-09-19T02:01:07.9558113Z [ 89.0% |  5488/~6169 | ✓5918 | ✗  30] ✓ tests/tools/test_website_policy.py (21✓, 3.6s)
+2026-09-19T02:01:08.3680139Z [ 89.3% |  5511/~6169 | ✓5946 | ✗  30] ✓ tests/tools/test_transcription_plugin_dispatch.py (28✓, 5.3s)
+2026-09-19T02:01:08.5317049Z [ 89.7% |  5531/~6169 | ✓5966 | ✗  30] ✓ tests/tools/test_web_providers.py (20✓, 4.3s)
+2026-09-19T02:01:10.2338609Z [ 90.0% |  5553/~6169 | ✓5988 | ✗  30] ✓ tests/tui_gateway/test_custom_provider_session_persistence.py (22✓, 3.8s)
+2026-09-19T02:01:10.2628262Z [ 90.0% |  5554/~6169 | ✓5989 | ✗  30] ✓ tests/tui_gateway/test_slash_worker_ansi.py (1✓, 2.3s)
+2026-09-19T02:01:10.6528588Z [ 90.6% |  5587/~6169 | ✓6022 | ✗  30] ✓ tests/tui_gateway/test_project_tree.py (33✓, 2.7s)
+2026-09-19T02:01:10.9309031Z [ 90.6% |  5589/~6169 | ✓6024 | ✗  30] ✓ tests/openamer_cli/test_cli_output.py (2✓, 2.4s)
+2026-09-19T02:01:11.1980281Z [ 90.7% |  5593/~6169 | ✓6033 | ✗  30] ✓ tests/tui_gateway/test_inline_rpc_gil_starvation.py (9✓, 4.7s)
+2026-09-19T02:01:11.2518578Z [ 91.0% |  5614/~6169 | ✓6055 | ✗  30] ✓ tests/openamer_cli/test_auth_profile_fallback.py (22✓, 2.9s)
+2026-09-19T02:01:12.8503749Z [ 91.2% |  5625/~6169 | ✓6068 | ✗  30] ✓ tests/agent/test_file_safety_sandbox_mirror.py (13✓, 2.6s)
+2026-09-19T02:01:13.2168256Z [ 91.2% |  5627/~6169 | ✓6070 | ✗  30] ✓ tests/openamer_cli/test_xai_curated_models.py (2✓, 2.3s)
+2026-09-19T02:01:13.7357264Z [ 91.2% |  5628/~6169 | ✓6071 | ✗  30] ✓ tests/gateway/test_discord_sync_limit.py (1✓, 3.5s)
+2026-09-19T02:01:13.9258498Z [ 91.3% |  5630/~6169 | ✓6073 | ✗  30] ✓ tests/gateway/test_ssl_cert_detection.py (2✓, 2.7s)
+2026-09-19T02:01:13.9851817Z [ 91.4% |  5641/~6169 | ✓6084 | ✗  30] ✓ tests/cli/test_cli_bracketed_paste_sanitizer.py (11✓, 3.3s)
+2026-09-19T02:01:13.9855265Z [ 91.5% |  5643/~6169 | ✓6086 | ✗  30] ✓ tests/gateway/test_whatsapp_identity.py (2✓, 2.8s)
+2026-09-19T02:01:14.3723134Z [ 91.5% |  5645/~6169 | ✓6092 | ✗  30] ✓ tests/test_install_sh_setup_wizard_tty_probe.py (6✓, 1.2s)
+2026-09-19T02:01:14.4969712Z [ 91.7% |  5654/~6169 | ✓6101 | ✗  30] ✓ tests/cron/test_scheduler_shutdown_guard.py (9✓, 1.6s)
+2026-09-19T02:01:15.9331871Z [ 91.8% |  5665/~6169 | ✓6120 | ✗  30] ✓ tests/tools/test_yolo_mode.py (19✓, 9.7s)
+2026-09-19T02:01:18.3172760Z [100.0% |  6169/~6169 | ✓6636 | ✗  30] ✓ tests/openamer_cli/test_web_server.py (516✓, 86.2s)
+2026-09-19T02:01:18.3348444Z 
+2026-09-19T02:01:18.3349014Z === Summary: 305 files, 6636 tests passed, 30 failed (100% complete) in 192.1s (8 workers) ===
+2026-09-19T02:01:18.3349640Z   Durations cached to test_durations.json (305 files)
+2026-09-19T02:01:18.3349935Z 
+2026-09-19T02:01:18.3350039Z === Per-file subprocess time distribution ===
+2026-09-19T02:01:18.3350336Z   Files:   305
+2026-09-19T02:01:18.3350761Z   Total subprocess CPU-wall: 1509.2s  (runner wall: 192.1s, parallelism: 8x)
+2026-09-19T02:01:18.3351327Z   P50: 3.04s  P90: 8.02s  P95: 11.87s  P99: 37.20s  Max: 86.24s
+2026-09-19T02:01:18.3351735Z   <1s: 1 files (0%)  <2s: 41 files (13%)
+2026-09-19T02:01:18.3352060Z   Top 10 slowest:
+2026-09-19T02:01:18.3352350Z      86.24s  tests/openamer_cli/test_web_server.py
+2026-09-19T02:01:18.3352786Z      70.93s  tests/openamer_cli/test_update_autostash.py
+2026-09-19T02:01:18.3353236Z      41.36s  tests/run_agent/test_run_agent_codex_responses.py
+2026-09-19T02:01:18.3353721Z      37.20s  tests/run_agent/test_provider_attribution_headers.py
+2026-09-19T02:01:18.3354013Z      36.43s  tests/agent/test_auxiliary_client.py
+2026-09-19T02:01:18.3354260Z      34.99s  tests/openamer_cli/test_backup.py
+2026-09-19T02:01:18.3354524Z      30.26s  tests/agent/test_compression_rotation_state.py
+2026-09-19T02:01:18.3354833Z      27.01s  tests/agent/test_empty_tool_name_loop_dampening.py
+2026-09-19T02:01:18.3355170Z      21.30s  tests/openamer_cli/test_user_providers_model_switch.py
+2026-09-19T02:01:18.3355479Z      15.75s  tests/run_agent/test_in_place_compaction.py
+2026-09-19T02:01:18.3355660Z 
+2026-09-19T02:01:18.3355733Z === Failure output ===
+2026-09-19T02:01:18.3355931Z 
+2026-09-19T02:01:18.3356026Z --- tests/acp/test_tools.py ---
+2026-09-19T02:01:18.3356278Z ============================= test session starts ==============================
+2026-09-19T02:01:18.3356606Z platform linux -- Python 3.11.16, pytest-9.0.2, pluggy-1.6.0
+2026-09-19T02:01:18.3357018Z rootdir: /home/runner/work/openamer/openamer
+2026-09-19T02:01:18.3357258Z configfile: pyproject.toml
+2026-09-19T02:01:18.3357472Z plugins: anyio-4.12.1, asyncio-1.3.0
+2026-09-19T02:01:18.3357890Z asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+2026-09-19T02:01:18.3358304Z collected 76 items
+2026-09-19T02:01:18.3358405Z 
+2026-09-19T02:01:18.3358571Z tests/acp/test_tools.py ................F...FFFFFF.........FF.FFFF...... [ 63%]
+2026-09-19T02:01:18.3358901Z ............................                                             [100%]
+2026-09-19T02:01:18.3359085Z 
+2026-09-19T02:01:18.3359191Z =================================== FAILURES ===================================
+2026-09-19T02:01:18.3359524Z ___________________ TestBuildToolTitle.test_read_file_title ____________________
+2026-09-19T02:01:18.3359741Z 
+2026-09-19T02:01:18.3359902Z self = <tests.acp.test_tools.TestBuildToolTitle object at 0x7fc6fe5b75d0>
+2026-09-19T02:01:18.3360127Z 
+2026-09-19T02:01:18.3360206Z     def test_read_file_title(self):
+2026-09-19T02:01:18.3360721Z         title = build_tool_title("read_file", {"path": "/etc/hosts"})
+2026-09-19T02:01:18.3360996Z >       assert "/etc/hosts" in title
+2026-09-19T02:01:18.3361256Z E       AssertionError: assert '/etc/hosts' in 'read_file: hosts'
+2026-09-19T02:01:18.3361451Z 
+2026-09-19T02:01:18.3361542Z tests/acp/test_tools.py:105: AssertionError
+2026-09-19T02:01:18.3361871Z ____ TestBuildToolTitle.test_web_extract_title_unwraps_search_result_object ____
+2026-09-19T02:01:18.3362235Z 
+2026-09-19T02:01:18.3362389Z self = <tests.acp.test_tools.TestBuildToolTitle object at 0x7fc6fe5c0f50>
+2026-09-19T02:01:18.3362769Z 
+2026-09-19T02:01:18.3362975Z     def test_web_extract_title_unwraps_search_result_object(self):
+2026-09-19T02:01:18.3363440Z         title = build_tool_title("web_extract", {
+2026-09-19T02:01:18.3363696Z             "urls": [
+2026-09-19T02:01:18.3363921Z                 {"url": "https://example.com/a", "title": "A"},
+2026-09-19T02:01:18.3364186Z                 {"href": "https://example.org/b"},
+2026-09-19T02:01:18.3364410Z             ]
+2026-09-19T02:01:18.3364579Z         })
+2026-09-19T02:01:18.3364791Z >       assert title == "extract: https://example.com/a (+1)"
+2026-09-19T02:01:18.3365131Z E       assert "web_extract:...'title': 'A'}" == 'extract: htt...le.com/a (+1)'
+2026-09-19T02:01:18.3365413Z E         
+2026-09-19T02:01:18.3365602Z E         - extract: https://example.com/a (+1)
+2026-09-19T02:01:18.3365889Z E         + web_extract: {'url': 'https://example.com/a', 'title': 'A'}
+2026-09-19T02:01:18.3366094Z 
+2026-09-19T02:01:18.3366187Z tests/acp/test_tools.py:126: AssertionError
+2026-09-19T02:01:18.3366520Z ______ TestBuildToolTitle.test_web_extract_title_handles_malformed_object ______
+2026-09-19T02:01:18.3366858Z 
+2026-09-19T02:01:18.3367026Z self = <tests.acp.test_tools.TestBuildToolTitle object at 0x7fc6fe5c1590>
+2026-09-19T02:01:18.3367252Z 
+2026-09-19T02:01:18.3367379Z     def test_web_extract_title_handles_malformed_object(self):
+2026-09-19T02:01:18.3367759Z >       assert build_tool_title("web_extract", {"urls": [{"title": "missing"}]}) == "extract: ?"
+2026-09-19T02:01:18.3368133Z E       assert "web_extract:...': 'missing'}" == 'extract: ?'
+2026-09-19T02:01:18.3368374Z E         
+2026-09-19T02:01:18.3368533Z E         - extract: ?
+2026-09-19T02:01:18.3368729Z E         + web_extract: {'title': 'missing'}
+2026-09-19T02:01:18.3368885Z 
+2026-09-19T02:01:18.3368994Z tests/acp/test_tools.py:129: AssertionError
+2026-09-19T02:01:18.3369323Z _________ TestBuildToolTitle.test_skill_view_title_includes_skill_name _________
+2026-09-19T02:01:18.3369569Z 
+2026-09-19T02:01:18.3369723Z self = <tests.acp.test_tools.TestBuildToolTitle object at 0x7fc6fe5c1bd0>
+2026-09-19T02:01:18.3369944Z 
+2026-09-19T02:01:18.3370058Z     def test_skill_view_title_includes_skill_name(self):
+2026-09-19T02:01:18.3370370Z         title = build_tool_title("skill_view", {"name": "github-pitfalls"})
+2026-09-19T02:01:18.3370685Z >       assert title == "skill view (github-pitfalls)"
+2026-09-19T02:01:18.3371052Z E       AssertionError: assert 'skill_view: github-pitfalls' == 'skill view (github-pitfalls)'
+2026-09-19T02:01:18.3371384Z E         
+2026-09-19T02:01:18.3371553Z E         - skill view (github-pitfalls)
+2026-09-19T02:01:18.3371777Z E         ?      ^    ^^               -
+2026-09-19T02:01:18.3371995Z E         + skill_view: github-pitfalls
+2026-09-19T02:01:18.3372207Z E         ?      ^    ^^
+2026-09-19T02:01:18.3372323Z 
+2026-09-19T02:01:18.3372414Z tests/acp/test_tools.py:133: AssertionError
+2026-09-19T02:01:18.3372754Z ________ TestBuildToolTitle.test_skill_view_title_includes_linked_file _________
+2026-09-19T02:01:18.3372995Z 
+2026-09-19T02:01:18.3373155Z self = <tests.acp.test_tools.TestBuildToolTitle object at 0x7fc6fe5c21d0>
+2026-09-19T02:01:18.3373381Z 
+2026-09-19T02:01:18.3373493Z     def test_skill_view_title_includes_linked_file(self):
+2026-09-19T02:01:18.3373889Z         title = build_tool_title("skill_view", {"name": "github-pitfalls", "file_path": "references/api.md"})
+2026-09-19T02:01:18.3374425Z >       assert title == "skill view (github-pitfalls/references/api.md)"
+2026-09-19T02:01:18.3374836Z E       AssertionError: assert 'skill_view: ...rences/api.md' == 'skill view (...ences/api.md)'
+2026-09-19T02:01:18.3375166Z E         
+2026-09-19T02:01:18.3375368Z E         - skill view (github-pitfalls/references/api.md)
+2026-09-19T02:01:18.3375625Z E         ?      ^    ^^               ^                 -
+2026-09-19T02:01:18.3376031Z E         + skill_view: github-pitfalls → references/api.md
+2026-09-19T02:01:18.3376442Z E         ?      ^    ^^               ^^^
+2026-09-19T02:01:18.3376582Z 
+2026-09-19T02:01:18.3376678Z tests/acp/test_tools.py:137: AssertionError
+2026-09-19T02:01:18.3377188Z _____ TestBuildToolTitle.test_execute_code_title_includes_first_code_line ______
+2026-09-19T02:01:18.3377438Z 
+2026-09-19T02:01:18.3377591Z self = <tests.acp.test_tools.TestBuildToolTitle object at 0x7fc6fe5c2810>
+2026-09-19T02:01:18.3377813Z 
+2026-09-19T02:01:18.3377939Z     def test_execute_code_title_includes_first_code_line(self):
+2026-09-19T02:01:18.3378363Z         title = build_tool_title("execute_code", {"code": "\nfrom openamer_tools import terminal\nprint('done')"})
+2026-09-19T02:01:18.3378793Z >       assert title == "python: from openamer_tools import terminal"
+2026-09-19T02:01:18.3379150Z E       assert "execute_code...print('done')" == 'python: from...port terminal'
+2026-09-19T02:01:18.3379438Z E         
+2026-09-19T02:01:18.3379628Z E         - python: from openamer_tools import terminal
+2026-09-19T02:01:18.3379957Z E         + execute_code: from openamer_tools import terminal print('done')
+2026-09-19T02:01:18.3380180Z 
+2026-09-19T02:01:18.3380276Z tests/acp/test_tools.py:141: AssertionError
+2026-09-19T02:01:18.3380618Z ____ TestBuildToolTitle.test_skill_manage_title_includes_action_and_target _____
+2026-09-19T02:01:18.3380862Z 
+2026-09-19T02:01:18.3381027Z self = <tests.acp.test_tools.TestBuildToolTitle object at 0x7fc6fe5b6290>
+2026-09-19T02:01:18.3381252Z 
+2026-09-19T02:01:18.3381410Z     def test_skill_manage_title_includes_action_and_target(self):
+2026-09-19T02:01:18.3381697Z         title = build_tool_title(
+2026-09-19T02:01:18.3381899Z             "skill_manage",
+2026-09-19T02:01:18.3382230Z             {"action": "patch", "name": "openamer-agent-operations", "file_path": "references/acp.md"},
+2026-09-19T02:01:18.3382561Z         )
+2026-09-19T02:01:18.3382813Z >       assert title == "skill patch: openamer-agent-operations/references/acp.md"
+2026-09-19T02:01:18.3383252Z E       AssertionError: assert 'skill_manage...nt-operations' == 'skill patch:...rences/acp.md'
+2026-09-19T02:01:18.3383592Z E         
+2026-09-19T02:01:18.3383812Z E         - skill patch: openamer-agent-operations/references/acp.md
+2026-09-19T02:01:18.3384114Z E         + skill_manage: openamer-agent-operations
+2026-09-19T02:01:18.3384282Z 
+2026-09-19T02:01:18.3384376Z tests/acp/test_tools.py:148: AssertionError
+2026-09-19T02:01:18.3384697Z _____ TestBuildToolStart.test_build_tool_start_for_web_extract_is_compact ______
+2026-09-19T02:01:18.3384937Z 
+2026-09-19T02:01:18.3385098Z self = <tests.acp.test_tools.TestBuildToolStart object at 0x7fc6fe5cd390>
+2026-09-19T02:01:18.3385315Z 
+2026-09-19T02:01:18.3385442Z     def test_build_tool_start_for_web_extract_is_compact(self):
+2026-09-19T02:01:18.3385774Z         """web_extract start should stay compact; title identifies URLs."""
+2026-09-19T02:01:18.3386089Z         args = {"urls": ["https://example.com/docs"]}
+2026-09-19T02:01:18.3386390Z         result = build_tool_start("tc-web-start", "web_extract", args)
+2026-09-19T02:01:18.3386683Z         assert isinstance(result, ToolCallStart)
+2026-09-19T02:01:18.3387061Z >       assert result.title == "extract: https://example.com/docs"
+2026-09-19T02:01:18.3387446Z E       AssertionError: assert 'web_extract:...mple.com/docs' == 'extract: htt...mple.com/docs'
+2026-09-19T02:01:18.3387775Z E         
+2026-09-19T02:01:18.3387952Z E         - extract: https://example.com/docs
+2026-09-19T02:01:18.3388198Z E         + web_extract: https://example.com/docs
+2026-09-19T02:01:18.3388420Z E         ? ++++
+2026-09-19T02:01:18.3388648Z 
+2026-09-19T02:01:18.3388742Z tests/acp/test_tools.py:255: AssertionError
+2026-09-19T02:01:18.3389054Z ________ TestBuildToolStart.test_build_tool_start_for_browser_navigate _________
+2026-09-19T02:01:18.3389297Z 
+2026-09-19T02:01:18.3389445Z self = <tests.acp.test_tools.TestBuildToolStart object at 0x7fc6fe5cd990>
+2026-09-19T02:01:18.3389663Z 
+2026-09-19T02:01:18.3389779Z     def test_build_tool_start_for_browser_navigate(self):
+2026-09-19T02:01:18.3390184Z         """browser_navigate should emit a polished start event."""
+2026-09-19T02:01:18.3390454Z         args = {"url": "https://x.com"}
+2026-09-19T02:01:18.3390745Z         result = build_tool_start("tc-browser-start", "browser_navigate", args)
+2026-09-19T02:01:18.3391088Z         assert isinstance(result, ToolCallStart)
+2026-09-19T02:01:18.3391350Z >       assert result.title == "navigate: https://x.com"
+2026-09-19T02:01:18.3393412Z E       AssertionError: assert 'browser_navi...https://x.com' == 'navigate: https://x.com'
+2026-09-19T02:01:18.3393926Z E         
+2026-09-19T02:01:18.3394162Z E         - navigate: https://x.com
+2026-09-19T02:01:18.3394479Z E         + browser_navigate: https://x.com
+2026-09-19T02:01:18.3394795Z E         ? ++++++++
+2026-09-19T02:01:18.3394939Z 
+2026-09-19T02:01:18.3395074Z tests/acp/test_tools.py:265: AssertionError
+2026-09-19T02:01:18.3395568Z _____ TestBuildToolStart.test_build_tool_start_for_todo_is_human_readable ______
+2026-09-19T02:01:18.3395962Z 
+2026-09-19T02:01:18.3396218Z self = <tests.acp.test_tools.TestBuildToolStart object at 0x7fc6fe5ce610>
+2026-09-19T02:01:18.3396606Z 
+2026-09-19T02:01:18.3396981Z     def test_build_tool_start_for_todo_is_human_readable(self):
+2026-09-19T02:01:18.3397605Z         args = {"todos": [{"id": "one", "content": "Fix ACP rendering", "status": "in_progress"}]}
+2026-09-19T02:01:18.3398165Z         result = build_tool_start("tc-todo", "todo", args)
+2026-09-19T02:01:18.3398550Z >       assert result.title == "todo (1 item)"
+2026-09-19T02:01:18.3399048Z E       AssertionError: assert 'todo: planning 1 task(s)' == 'todo (1 item)'
+2026-09-19T02:01:18.3399502Z E         
+2026-09-19T02:01:18.3399739Z E         - todo (1 item)
+2026-09-19T02:01:18.3400013Z E         + todo: planning 1 task(s)
+2026-09-19T02:01:18.3400236Z 
+2026-09-19T02:01:18.3400390Z tests/acp/test_tools.py:282: AssertionError
+2026-09-19T02:01:18.3400942Z __ TestBuildToolStart.test_build_tool_start_for_skill_view_is_human_readable ___
+2026-09-19T02:01:18.3401366Z 
+2026-09-19T02:01:18.3401607Z self = <tests.acp.test_tools.TestBuildToolStart object at 0x7fc6fe5cec50>
+2026-09-19T02:01:18.3402000Z 
+2026-09-19T02:01:18.3402224Z     def test_build_tool_start_for_skill_view_is_human_readable(self):
+2026-09-19T02:01:18.3402820Z         result = build_tool_start("tc-skill", "skill_view", {"name": "github-pitfalls"})
+2026-09-19T02:01:18.3403384Z >       assert result.title == "skill view (github-pitfalls)"
+2026-09-19T02:01:18.3403999Z E       AssertionError: assert 'skill_view: github-pitfalls' == 'skill view (github-pitfalls)'
+2026-09-19T02:01:18.3404522Z E         
+2026-09-19T02:01:18.3404768Z E         - skill view (github-pitfalls)
+2026-09-19T02:01:18.3405133Z E         ?      ^    ^^               -
+2026-09-19T02:01:18.3405465Z E         + skill_view: github-pitfalls
+2026-09-19T02:01:18.3405813Z E         ?      ^    ^^
+2026-09-19T02:01:18.3405994Z 
+2026-09-19T02:01:18.3406147Z tests/acp/test_tools.py:288: AssertionError
+2026-09-19T02:01:18.3406713Z _ TestBuildToolStart.test_build_tool_start_for_execute_code_shows_code_preview _
+2026-09-19T02:01:18.3407326Z 
+2026-09-19T02:01:18.3407586Z self = <tests.acp.test_tools.TestBuildToolStart object at 0x7fc6fe5c2e10>
+2026-09-19T02:01:18.3407908Z 
+2026-09-19T02:01:18.3408058Z     def test_build_tool_start_for_execute_code_shows_code_preview(self):
+2026-09-19T02:01:18.3408442Z         result = build_tool_start("tc-code", "execute_code", {"code": "print('hello')"})
+2026-09-19T02:01:18.3408762Z         assert result.kind == "execute"
+2026-09-19T02:01:18.3409200Z >       assert result.title == "python: print('hello')"
+2026-09-19T02:01:18.3409519Z E       assert "execute_code: print('hello')" == "python: print('hello')"
+2026-09-19T02:01:18.3409799Z E         
+2026-09-19T02:01:18.3409974Z E         - python: print('hello')
+2026-09-19T02:01:18.3410199Z E         + execute_code: print('hello')
+2026-09-19T02:01:18.3410340Z 
+2026-09-19T02:01:18.3410437Z tests/acp/test_tools.py:295: AssertionError
+2026-09-19T02:01:18.3410784Z __ TestBuildToolStart.test_build_tool_start_for_skill_manage_patch_shows_diff __
+2026-09-19T02:01:18.3411144Z 
+2026-09-19T02:01:18.3411323Z self = <tests.acp.test_tools.TestBuildToolStart object at 0x7fc6fe5ce890>
+2026-09-19T02:01:18.3411550Z 
+2026-09-19T02:01:18.3411696Z     def test_build_tool_start_for_skill_manage_patch_shows_diff(self):
+2026-09-19T02:01:18.3411981Z         result = build_tool_start(
+2026-09-19T02:01:18.3412196Z             "tc-skill-manage",
+2026-09-19T02:01:18.3412399Z             "skill_manage",
+2026-09-19T02:01:18.3412580Z             {
+2026-09-19T02:01:18.3412749Z                 "action": "patch",
+2026-09-19T02:01:18.3412979Z                 "name": "openamer-agent-operations",
+2026-09-19T02:01:18.3413231Z                 "file_path": "references/acp.md",
+2026-09-19T02:01:18.3413469Z                 "old_string": "old advice",
+2026-09-19T02:01:18.3413685Z                 "new_string": "new advice",
+2026-09-19T02:01:18.3413884Z             },
+2026-09-19T02:01:18.3414035Z         )
+2026-09-19T02:01:18.3414209Z         assert result.kind == "edit"
+2026-09-19T02:01:18.3414536Z >       assert result.title == "skill patch: openamer-agent-operations/references/acp.md"
+2026-09-19T02:01:18.3414996Z E       AssertionError: assert 'skill_manage...nt-operations' == 'skill patch:...rences/acp.md'
+2026-09-19T02:01:18.3415345Z E         
+2026-09-19T02:01:18.3415570Z E         - skill patch: openamer-agent-operations/references/acp.md
+2026-09-19T02:01:18.3415869Z E         + skill_manage: openamer-agent-operations
+2026-09-19T02:01:18.3416038Z 
+2026-09-19T02:01:18.3416130Z tests/acp/test_tools.py:313: AssertionError
+2026-09-19T02:01:18.3416401Z =========================== short test summary info ============================
+2026-09-19T02:01:18.3417027Z FAILED tests/acp/test_tools.py::TestBuildToolTitle::test_read_file_title - As...
+2026-09-19T02:01:18.3417518Z FAILED tests/acp/test_tools.py::TestBuildToolTitle::test_web_extract_title_unwraps_search_result_object
+2026-09-19T02:01:18.3418030Z FAILED tests/acp/test_tools.py::TestBuildToolTitle::test_web_extract_title_handles_malformed_object
+2026-09-19T02:01:18.3418537Z FAILED tests/acp/test_tools.py::TestBuildToolTitle::test_skill_view_title_includes_skill_name
+2026-09-19T02:01:18.3419011Z FAILED tests/acp/test_tools.py::TestBuildToolTitle::test_skill_view_title_includes_linked_file
+2026-09-19T02:01:18.3419494Z FAILED tests/acp/test_tools.py::TestBuildToolTitle::test_execute_code_title_includes_first_code_line
+2026-09-19T02:01:18.3420005Z FAILED tests/acp/test_tools.py::TestBuildToolTitle::test_skill_manage_title_includes_action_and_target
+2026-09-19T02:01:18.3420514Z FAILED tests/acp/test_tools.py::TestBuildToolStart::test_build_tool_start_for_web_extract_is_compact
+2026-09-19T02:01:18.3420992Z FAILED tests/acp/test_tools.py::TestBuildToolStart::test_build_tool_start_for_browser_navigate
+2026-09-19T02:01:18.3421465Z FAILED tests/acp/test_tools.py::TestBuildToolStart::test_build_tool_start_for_todo_is_human_readable
+2026-09-19T02:01:18.3421978Z FAILED tests/acp/test_tools.py::TestBuildToolStart::test_build_tool_start_for_skill_view_is_human_readable
+2026-09-19T02:01:18.3422522Z FAILED tests/acp/test_tools.py::TestBuildToolStart::test_build_tool_start_for_execute_code_shows_code_preview
+2026-09-19T02:01:18.3423063Z FAILED tests/acp/test_tools.py::TestBuildToolStart::test_build_tool_start_for_skill_manage_patch_shows_diff
+2026-09-19T02:01:18.3423484Z ======================== 13 failed, 63 passed in 2.37s =========================
+2026-09-19T02:01:18.3423677Z 
+2026-09-19T02:01:18.3423944Z --- tests/agent/test_credential_pool_oauth_writethrough.py ---
+2026-09-19T02:01:18.3424261Z ============================= test session starts ==============================
+2026-09-19T02:01:18.3424578Z platform linux -- Python 3.11.16, pytest-9.0.2, pluggy-1.6.0
+2026-09-19T02:01:18.3424871Z rootdir: /home/runner/work/openamer/openamer
+2026-09-19T02:01:18.3425110Z configfile: pyproject.toml
+2026-09-19T02:01:18.3425315Z plugins: anyio-4.12.1, asyncio-1.3.0
+2026-09-19T02:01:18.3425727Z asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+2026-09-19T02:01:18.3426254Z collected 7 items
+2026-09-19T02:01:18.3426354Z 
+2026-09-19T02:01:18.3426532Z tests/agent/test_credential_pool_oauth_writethrough.py FF.....           [100%]
+2026-09-19T02:01:18.3426908Z 
+2026-09-19T02:01:18.3427020Z =================================== FAILURES ===================================
+2026-09-19T02:01:18.3427386Z _ test_pool_refresh_writes_through_to_root_when_profile_reads_root[openai-codex] _
+2026-09-19T02:01:18.3427640Z 
+2026-09-19T02:01:18.3428165Z profile_and_root = (PosixPath('/tmp/pytest-of-runner/pytest-50/test_pool_refresh_writes_throu0/profiles/work/auth.json'), PosixPath('/tmp/pytest-of-runner/pytest-50/test_pool_refresh_writes_throu0/root/auth.json'))
+2026-09-19T02:01:18.3428811Z provider = 'openai-codex'
+2026-09-19T02:01:18.3428936Z 
+2026-09-19T02:01:18.3429019Z     @pytest.mark.parametrize(
+2026-09-19T02:01:18.3429219Z         "provider",
+2026-09-19T02:01:18.3429449Z         ["openai-codex", "xai-oauth"],
+2026-09-19T02:01:18.3429673Z     )
+2026-09-19T02:01:18.3429909Z     def test_pool_refresh_writes_through_to_root_when_profile_reads_root(
+2026-09-19T02:01:18.3430214Z         profile_and_root, provider
+2026-09-19T02:01:18.3430429Z     ):
+2026-09-19T02:01:18.3430729Z         """A profile reading root's grant must push rotated tokens back to root."""
+2026-09-19T02:01:18.3431060Z         profile_path, root_path = profile_and_root
+2026-09-19T02:01:18.3431365Z         # Profile has NO own provider block (reads root via fallback).
+2026-09-19T02:01:18.3431693Z         _write_store(profile_path, {"version": 1, "providers": {}})
+2026-09-19T02:01:18.3431954Z         _write_store(
+2026-09-19T02:01:18.3432128Z             root_path,
+2026-09-19T02:01:18.3432299Z             {
+2026-09-19T02:01:18.3432461Z                 "version": 1,
+2026-09-19T02:01:18.3432653Z                 "providers": {
+2026-09-19T02:01:18.3432842Z                     provider: {
+2026-09-19T02:01:18.3433038Z                         "tokens": {
+2026-09-19T02:01:18.3433265Z                             "access_token": "old-access",
+2026-09-19T02:01:18.3433517Z                             "refresh_token": "old-refresh",
+2026-09-19T02:01:18.3433745Z                         }
+2026-09-19T02:01:18.3433913Z                     }
+2026-09-19T02:01:18.3434079Z                 },
+2026-09-19T02:01:18.3434232Z             },
+2026-09-19T02:01:18.3434381Z         )
+2026-09-19T02:01:18.3434524Z     
+2026-09-19T02:01:18.3434699Z         pool = CredentialPool(provider, [])
+2026-09-19T02:01:18.3434944Z         pool._sync_device_code_entry_to_auth_store(
+2026-09-19T02:01:18.3435301Z             _entry(provider, id="e1", access_token="new-access", refresh_token="new-refresh")
+2026-09-19T02:01:18.3435609Z         )
+2026-09-19T02:01:18.3435759Z     
+2026-09-19T02:01:18.3435953Z         # Profile got the rotated chain (existing behavior).
+2026-09-19T02:01:18.3436210Z         profile = _read_store(profile_path)
+2026-09-19T02:01:18.3436427Z         assert (
+2026-09-19T02:01:18.3436693Z             profile["providers"][provider]["tokens"]["refresh_token"] == "new-refresh"
+2026-09-19T02:01:18.3437138Z         )
+2026-09-19T02:01:18.3437285Z     
+2026-09-19T02:01:18.3437520Z         # AND the global root no longer holds the revoked refresh token (#48415).
+2026-09-19T02:01:18.3437829Z         root = _read_store(root_path)
+2026-09-19T02:01:18.3438132Z >       assert root["providers"][provider]["tokens"]["access_token"] == "new-access"
+2026-09-19T02:01:18.3438605Z E       AssertionError: assert 'old-access' == 'new-access'
+2026-09-19T02:01:18.3438854Z E         
+2026-09-19T02:01:18.3439020Z E         - new-access
+2026-09-19T02:01:18.3439196Z E         + old-access
+2026-09-19T02:01:18.3439295Z 
+2026-09-19T02:01:18.3439468Z tests/agent/test_credential_pool_oauth_writethrough.py:112: AssertionError
+2026-09-19T02:01:18.3439870Z _ test_pool_refresh_writes_through_to_root_when_profile_reads_root[xai-oauth] __
+2026-09-19T02:01:18.3440213Z 
+2026-09-19T02:01:18.3440732Z profile_and_root = (PosixPath('/tmp/pytest-of-runner/pytest-50/test_pool_refresh_writes_throu1/profiles/work/auth.json'), PosixPath('/tmp/pytest-of-runner/pytest-50/test_pool_refresh_writes_throu1/root/auth.json'))
+2026-09-19T02:01:18.3441365Z provider = 'xai-oauth'
+2026-09-19T02:01:18.3441474Z 
+2026-09-19T02:01:18.3441557Z     @pytest.mark.parametrize(
+2026-09-19T02:01:18.3441755Z         "provider",
+2026-09-19T02:01:18.3441940Z         ["openai-codex", "xai-oauth"],
+2026-09-19T02:01:18.3442141Z     )
+2026-09-19T02:01:18.3442376Z     def test_pool_refresh_writes_through_to_root_when_profile_reads_root(
+2026-09-19T02:01:18.3442670Z         profile_and_root, provider
+2026-09-19T02:01:18.3442869Z     ):
+2026-09-19T02:01:18.3443111Z         """A profile reading root's grant must push rotated tokens back to root."""
+2026-09-19T02:01:18.3443520Z         profile_path, root_path = profile_and_root
+2026-09-19T02:01:18.3444030Z         # Profile has NO own provider block (reads root via fallback).
+2026-09-19T02:01:18.3444566Z         _write_store(profile_path, {"version": 1, "providers": {}})
+2026-09-19T02:01:18.3444953Z         _write_store(
+2026-09-19T02:01:18.3445195Z             root_path,
+2026-09-19T02:01:18.3445451Z             {
+2026-09-19T02:01:18.3445688Z                 "version": 1,
+2026-09-19T02:01:18.3445985Z                 "providers": {
+2026-09-19T02:01:18.3446194Z                     provider: {
+2026-09-19T02:01:18.3446386Z                         "tokens": {
+2026-09-19T02:01:18.3446627Z                             "access_token": "old-access",
+2026-09-19T02:01:18.3447048Z                             "refresh_token": "old-refresh",
+2026-09-19T02:01:18.3447276Z                         }
+2026-09-19T02:01:18.3447447Z                     }
+2026-09-19T02:01:18.3447611Z                 },
+2026-09-19T02:01:18.3447766Z             },
+2026-09-19T02:01:18.3447916Z         )
+2026-09-19T02:01:18.3448061Z     
+2026-09-19T02:01:18.3448233Z         pool = CredentialPool(provider, [])
+2026-09-19T02:01:18.3448487Z         pool._sync_device_code_entry_to_auth_store(
+2026-09-19T02:01:18.3448825Z             _entry(provider, id="e1", access_token="new-access", refresh_token="new-refresh")
+2026-09-19T02:01:18.3449129Z         )
+2026-09-19T02:01:18.3449273Z     
+2026-09-19T02:01:18.3449460Z         # Profile got the rotated chain (existing behavior).
+2026-09-19T02:01:18.3449716Z         profile = _read_store(profile_path)
+2026-09-19T02:01:18.3449921Z         assert (
+2026-09-19T02:01:18.3450191Z             profile["providers"][provider]["tokens"]["refresh_token"] == "new-refresh"
+2026-09-19T02:01:18.3450488Z         )
+2026-09-19T02:01:18.3450631Z     
+2026-09-19T02:01:18.3450866Z         # AND the global root no longer holds the revoked refresh token (#48415).
+2026-09-19T02:01:18.3451185Z         root = _read_store(root_path)
+2026-09-19T02:01:18.3451494Z >       assert root["providers"][provider]["tokens"]["access_token"] == "new-access"
+2026-09-19T02:01:18.3451852Z E       AssertionError: assert 'old-access' == 'new-access'
+2026-09-19T02:01:18.3452102Z E         
+2026-09-19T02:01:18.3452262Z E         - new-access
+2026-09-19T02:01:18.3452451Z E         + old-access
+2026-09-19T02:01:18.3452552Z 
+2026-09-19T02:01:18.3452724Z tests/agent/test_credential_pool_oauth_writethrough.py:112: AssertionError
+2026-09-19T02:01:18.3453076Z =========================== short test summary info ============================
+2026-09-19T02:01:18.3453772Z FAILED tests/agent/test_credential_pool_oauth_writethrough.py::test_pool_refresh_writes_through_to_root_when_profile_reads_root[openai-codex]
+2026-09-19T02:01:18.3454515Z FAILED tests/agent/test_credential_pool_oauth_writethrough.py::test_pool_refresh_writes_through_to_root_when_profile_reads_root[xai-oauth]
+2026-09-19T02:01:18.3455024Z ========================= 2 failed, 5 passed in 1.24s ==========================
+2026-09-19T02:01:18.3455219Z 
+2026-09-19T02:01:18.3455333Z --- tests/agent/test_openrouter_response_cache.py ---
+2026-09-19T02:01:18.3455628Z ============================= test session starts ==============================
+2026-09-19T02:01:18.3456042Z platform linux -- Python 3.11.16, pytest-9.0.2, pluggy-1.6.0
+2026-09-19T02:01:18.3456349Z rootdir: /home/runner/work/openamer/openamer
+2026-09-19T02:01:18.3456596Z configfile: pyproject.toml
+2026-09-19T02:01:18.3456937Z plugins: anyio-4.12.1, asyncio-1.3.0
+2026-09-19T02:01:18.3457394Z asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+2026-09-19T02:01:18.3457800Z collected 46 items
+2026-09-19T02:01:18.3457911Z 
+2026-09-19T02:01:18.3458086Z tests/agent/test_openrouter_response_cache.py F......................... [ 56%]
+2026-09-19T02:01:18.3458422Z ....................                                                     [100%]
+2026-09-19T02:01:18.3458601Z 
+2026-09-19T02:01:18.3458705Z =================================== FAILURES ===================================
+2026-09-19T02:01:18.3459048Z ___________ TestBuildOrHeaders.test_base_attribution_always_present ____________
+2026-09-19T02:01:18.3459291Z 
+2026-09-19T02:01:18.3459512Z self = <tests.agent.test_openrouter_response_cache.TestBuildOrHeaders object at 0x7f9c11713990>
+2026-09-19T02:01:18.3459791Z 
+2026-09-19T02:01:18.3459896Z     def test_base_attribution_always_present(self):
+2026-09-19T02:01:18.3460236Z         """Attribution headers must always be included regardless of cache setting."""
+2026-09-19T02:01:18.3460593Z         from agent.auxiliary_client import build_or_headers
+2026-09-19T02:01:18.3460832Z     
+2026-09-19T02:01:18.3461054Z         headers = build_or_headers(or_config={"response_cache": False})
+2026-09-19T02:01:18.3461418Z         assert headers["HTTP-Referer"] == "https://github.com/openamer/openamer"
+2026-09-19T02:01:18.3461744Z         assert headers["X-Title"] == "OpenAmer Agent"
+2026-09-19T02:01:18.3462065Z >       assert headers["X-OpenRouter-Categories"] == "productivity,cli-agent"
+2026-09-19T02:01:18.3462477Z E       AssertionError: assert 'cli-agent,id...t,cloud-agent' == 'productivity,cli-agent'
+2026-09-19T02:01:18.3462801Z E         
+2026-09-19T02:01:18.3462982Z E         - productivity,cli-agent
+2026-09-19T02:01:18.3463251Z E         + cli-agent,ide-extension,personal-agent,cloud-agent
+2026-09-19T02:01:18.3463451Z 
+2026-09-19T02:01:18.3463590Z tests/agent/test_openrouter_response_cache.py:23: AssertionError
+2026-09-19T02:01:18.3463910Z =========================== short test summary info ============================
+2026-09-19T02:01:18.3464362Z FAILED tests/agent/test_openrouter_response_cache.py::TestBuildOrHeaders::test_base_attribution_always_present
+2026-09-19T02:01:18.3464801Z ========================= 1 failed, 45 passed in 3.51s =========================
+2026-09-19T02:01:18.3464985Z 
+2026-09-19T02:01:18.3465106Z --- tests/openamer_cli/test_auth_codex_quota_probe.py ---
+2026-09-19T02:01:18.3465402Z ============================= test session starts ==============================
+2026-09-19T02:01:18.3465704Z platform linux -- Python 3.11.16, pytest-9.0.2, pluggy-1.6.0
+2026-09-19T02:01:18.3465988Z rootdir: /home/runner/work/openamer/openamer
+2026-09-19T02:01:18.3466218Z configfile: pyproject.toml
+2026-09-19T02:01:18.3466423Z plugins: anyio-4.12.1, asyncio-1.3.0
+2026-09-19T02:01:18.3466942Z asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+2026-09-19T02:01:18.3467350Z collected 21 items
+2026-09-19T02:01:18.3467455Z 
+2026-09-19T02:01:18.3467621Z tests/openamer_cli/test_auth_codex_quota_probe.py ................FF.F.  [100%]
+2026-09-19T02:01:18.3467858Z 
+2026-09-19T02:01:18.3468099Z =================================== FAILURES ===================================
+2026-09-19T02:01:18.3468433Z ______________ test_pool_entry_recovers_when_probe_confirms_reset ______________
+2026-09-19T02:01:18.3468656Z 
+2026-09-19T02:01:18.3468852Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-153/test_pool_entry_recovers_when_0')
+2026-09-19T02:01:18.3469278Z monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fbb9f38d290>
+2026-09-19T02:01:18.3469604Z 
+2026-09-19T02:01:18.3469782Z     def test_pool_entry_recovers_when_probe_confirms_reset(tmp_path, monkeypatch):
+2026-09-19T02:01:18.3470160Z         monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / "openamer"))
+2026-09-19T02:01:18.3470527Z         _write_auth_store(tmp_path / "openamer", _pool_only_rate_limited_store())
+2026-09-19T02:01:18.3470826Z     
+2026-09-19T02:01:18.3471010Z         from agent.credential_pool import load_pool
+2026-09-19T02:01:18.3471239Z     
+2026-09-19T02:01:18.3471406Z         pool = load_pool("openai-codex")
+2026-09-19T02:01:18.3471635Z         monkeypatch.setattr(
+2026-09-19T02:01:18.3471904Z             auth_mod, "_probe_codex_quota_restored", lambda token, **kw: True
+2026-09-19T02:01:18.3472174Z         )
+2026-09-19T02:01:18.3472319Z     
+2026-09-19T02:01:18.3472555Z         available = pool._available_entries(clear_expired=True, refresh=False)
+2026-09-19T02:01:18.3472854Z >       assert len(available) == 1
+2026-09-19T02:01:18.3473089Z E       AssertionError: assert 2 == 1
+2026-09-19T02:01:18.3473843Z E        +  where 2 = len(([PooledCredential(provider='openai-codex', id='cred-quota', label='quota-frozen', auth_type='oauth', priority=0, sour...last_refresh=None, inference_base_url=None, agent_key=None, agent_key_expires_at=None, request_count=0, extra={})], []))
+2026-09-19T02:01:18.3474527Z 
+2026-09-19T02:01:18.3474684Z tests/openamer_cli/test_auth_codex_quota_probe.py:394: AssertionError
+2026-09-19T02:01:18.3475062Z _______________ test_pool_entry_stays_frozen_when_probe_negative _______________
+2026-09-19T02:01:18.3475293Z 
+2026-09-19T02:01:18.3475487Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-153/test_pool_entry_stays_frozen_w0')
+2026-09-19T02:01:18.3475912Z monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fbb9f38e750>
+2026-09-19T02:01:18.3476135Z 
+2026-09-19T02:01:18.3476306Z     def test_pool_entry_stays_frozen_when_probe_negative(tmp_path, monkeypatch):
+2026-09-19T02:01:18.3476686Z         monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / "openamer"))
+2026-09-19T02:01:18.3477152Z         _write_auth_store(tmp_path / "openamer", _pool_only_rate_limited_store())
+2026-09-19T02:01:18.3477442Z     
+2026-09-19T02:01:18.3477629Z         from agent.credential_pool import load_pool
+2026-09-19T02:01:18.3477857Z     
+2026-09-19T02:01:18.3478030Z         pool = load_pool("openai-codex")
+2026-09-19T02:01:18.3478294Z         monkeypatch.setattr(
+2026-09-19T02:01:18.3478564Z             auth_mod, "_probe_codex_quota_restored", lambda token, **kw: False
+2026-09-19T02:01:18.3478838Z         )
+2026-09-19T02:01:18.3478999Z     
+2026-09-19T02:01:18.3479240Z >       assert pool._available_entries(clear_expired=True, refresh=False) == []
+2026-09-19T02:01:18.3479541Z E       assert ([], []) == []
+2026-09-19T02:01:18.3479728Z E         
+2026-09-19T02:01:18.3479934Z E         Left contains 2 more items, first extra item: []
+2026-09-19T02:01:18.3480192Z E         Use -v to get more diff
+2026-09-19T02:01:18.3480324Z 
+2026-09-19T02:01:18.3480488Z tests/openamer_cli/test_auth_codex_quota_probe.py:410: AssertionError
+2026-09-19T02:01:18.3480860Z ________________ test_pool_readonly_enumeration_does_not_probe _________________
+2026-09-19T02:01:18.3481086Z 
+2026-09-19T02:01:18.3518566Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-153/test_pool_readonly_enumeration0')
+2026-09-19T02:01:18.3519388Z monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fbb9f0b3b10>
+2026-09-19T02:01:18.3519743Z 
+2026-09-19T02:01:18.3520004Z     def test_pool_readonly_enumeration_does_not_probe(tmp_path, monkeypatch):
+2026-09-19T02:01:18.3520772Z         """clear_expired=False callers (read-only listing) must not fire probes
+2026-09-19T02:01:18.3521214Z         or mutate persisted state."""
+2026-09-19T02:01:18.3521670Z         monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / "openamer"))
+2026-09-19T02:01:18.3522289Z         _write_auth_store(tmp_path / "openamer", _pool_only_rate_limited_store())
+2026-09-19T02:01:18.3522762Z     
+2026-09-19T02:01:18.3523204Z         from agent.credential_pool import load_pool
+2026-09-19T02:01:18.3523567Z     
+2026-09-19T02:01:18.3523819Z         pool = load_pool("openai-codex")
+2026-09-19T02:01:18.3524159Z         probes = []
+2026-09-19T02:01:18.3524396Z     
+2026-09-19T02:01:18.3524651Z         def _spy(token, **kw):
+2026-09-19T02:01:18.3524972Z             probes.append(token)
+2026-09-19T02:01:18.3525275Z             return True
+2026-09-19T02:01:18.3525526Z     
+2026-09-19T02:01:18.3525887Z         monkeypatch.setattr(auth_mod, "_probe_codex_quota_restored", _spy)
+2026-09-19T02:01:18.3526348Z >       assert pool._available_entries(clear_expired=False, refresh=False) == []
+2026-09-19T02:01:18.3526655Z E       assert ([], []) == []
+2026-09-19T02:01:18.3526964Z E         
+2026-09-19T02:01:18.3527167Z E         Left contains 2 more items, first extra item: []
+2026-09-19T02:01:18.3527424Z E         Use -v to get more diff
+2026-09-19T02:01:18.3527561Z 
+2026-09-19T02:01:18.3527721Z tests/openamer_cli/test_auth_codex_quota_probe.py:454: AssertionError
+2026-09-19T02:01:18.3528070Z =========================== short test summary info ============================
+2026-09-19T02:01:18.3528526Z FAILED tests/openamer_cli/test_auth_codex_quota_probe.py::test_pool_entry_recovers_when_probe_confirms_reset
+2026-09-19T02:01:18.3529080Z FAILED tests/openamer_cli/test_auth_codex_quota_probe.py::test_pool_entry_stays_frozen_when_probe_negative
+2026-09-19T02:01:18.3529606Z FAILED tests/openamer_cli/test_auth_codex_quota_probe.py::test_pool_readonly_enumeration_does_not_probe
+2026-09-19T02:01:18.3530032Z ========================= 3 failed, 18 passed in 1.66s =========================
+2026-09-19T02:01:18.3530242Z 
+2026-09-19T02:01:18.3530355Z --- tests/tools/test_homeassistant_tool.py ---
+2026-09-19T02:01:18.3530635Z ============================= test session starts ==============================
+2026-09-19T02:01:18.3530953Z platform linux -- Python 3.11.16, pytest-9.0.2, pluggy-1.6.0
+2026-09-19T02:01:18.3531251Z rootdir: /home/runner/work/openamer/openamer
+2026-09-19T02:01:18.3531495Z configfile: pyproject.toml
+2026-09-19T02:01:18.3531699Z plugins: anyio-4.12.1, asyncio-1.3.0
+2026-09-19T02:01:18.3532116Z asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+2026-09-19T02:01:18.3532524Z collected 68 items
+2026-09-19T02:01:18.3532624Z 
+2026-09-19T02:01:18.3532794Z tests/tools/test_homeassistant_tool.py ................................. [ 48%]
+2026-09-19T02:01:18.3533143Z ..............................F....                                      [100%]
+2026-09-19T02:01:18.3533333Z 
+2026-09-19T02:01:18.3533440Z =================================== FAILURES ===================================
+2026-09-19T02:01:18.3533772Z ___________________ TestGetHeaders.test_bearer_token_format ____________________
+2026-09-19T02:01:18.3533986Z 
+2026-09-19T02:01:18.3534246Z obj = <module 'tools.homeassistant_tool' from '/home/runner/work/openamer/openamer/tools/homeassistant_tool.py'>
+2026-09-19T02:01:18.3534672Z name = '_HASS_TOKEN', ann = 'tools.homeassistant_tool'
+2026-09-19T02:01:18.3534856Z 
+2026-09-19T02:01:18.3535003Z     def annotated_getattr(obj: object, name: str, ann: str) -> object:
+2026-09-19T02:01:18.3535278Z         try:
+2026-09-19T02:01:18.3535445Z >           obj = getattr(obj, name)
+2026-09-19T02:01:18.3535645Z                   ^^^^^^^^^^^^^^^^^^
+2026-09-19T02:01:18.3535961Z E           AttributeError: module 'tools.homeassistant_tool' has no attribute '_HASS_TOKEN'
+2026-09-19T02:01:18.3536216Z 
+2026-09-19T02:01:18.3536519Z .venv/lib/python3.11/site-packages/_pytest/monkeypatch.py:92: AttributeError
+2026-09-19T02:01:18.3536854Z 
+2026-09-19T02:01:18.3537005Z The above exception was the direct cause of the following exception:
+2026-09-19T02:01:18.3537223Z 
+2026-09-19T02:01:18.3537415Z self = <tests.tools.test_homeassistant_tool.TestGetHeaders object at 0x7f8eacd385d0>
+2026-09-19T02:01:18.3537826Z monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f8eab0949d0>
+2026-09-19T02:01:18.3538051Z 
+2026-09-19T02:01:18.3538264Z     def test_bearer_token_format(self, monkeypatch):
+2026-09-19T02:01:18.3538611Z >       monkeypatch.setattr("tools.homeassistant_tool._HASS_TOKEN", "my-secret-token")
+2026-09-19T02:01:18.3538867Z 
+2026-09-19T02:01:18.3538967Z tests/tools/test_homeassistant_tool.py:475: 
+2026-09-19T02:01:18.3539241Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:01:18.3539606Z .venv/lib/python3.11/site-packages/_pytest/monkeypatch.py:106: in derive_importpath
+2026-09-19T02:01:18.3539952Z     annotated_getattr(target, attr, ann=module)
+2026-09-19T02:01:18.3540221Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:01:18.3540393Z 
+2026-09-19T02:01:18.3540647Z obj = <module 'tools.homeassistant_tool' from '/home/runner/work/openamer/openamer/tools/homeassistant_tool.py'>
+2026-09-19T02:01:18.3541066Z name = '_HASS_TOKEN', ann = 'tools.homeassistant_tool'
+2026-09-19T02:01:18.3541238Z 
+2026-09-19T02:01:18.3541382Z     def annotated_getattr(obj: object, name: str, ann: str) -> object:
+2026-09-19T02:01:18.3541657Z         try:
+2026-09-19T02:01:18.3541825Z             obj = getattr(obj, name)
+2026-09-19T02:01:18.3542037Z         except AttributeError as e:
+2026-09-19T02:01:18.3542252Z >           raise AttributeError(
+2026-09-19T02:01:18.3542521Z                 f"{type(obj).__name__!r} object at {ann} has no attribute {name!r}"
+2026-09-19T02:01:18.3542790Z             ) from e
+2026-09-19T02:01:18.3543104Z E           AttributeError: 'module' object at tools.homeassistant_tool has no attribute '_HASS_TOKEN'
+2026-09-19T02:01:18.3543382Z 
+2026-09-19T02:01:18.3543548Z .venv/lib/python3.11/site-packages/_pytest/monkeypatch.py:94: AttributeError
+2026-09-19T02:01:18.3543886Z =============================== warnings summary ===============================
+2026-09-19T02:01:18.3544281Z tests/tools/test_homeassistant_tool.py::TestServiceNameValidation::test_valid_service_names
+2026-09-19T02:01:18.3544852Z   /home/runner/work/openamer/openamer/tests/conftest.py:915: RuntimeWarning: coroutine '_async_call_service' was never awaited
+2026-09-19T02:01:18.3545330Z     _wrap_subprocess("check_output", real_check_output),
+2026-09-19T02:01:18.3545648Z   Enable tracemalloc to get traceback where the object was allocated.
+2026-09-19T02:01:18.3546098Z   See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+2026-09-19T02:01:18.3546392Z 
+2026-09-19T02:01:18.3546549Z -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+2026-09-19T02:01:18.3546993Z =========================== short test summary info ============================
+2026-09-19T02:01:18.3547378Z FAILED tests/tools/test_homeassistant_tool.py::TestGetHeaders::test_bearer_token_format
+2026-09-19T02:01:18.3547763Z =================== 1 failed, 67 passed, 1 warning in 1.45s ====================
+2026-09-19T02:01:18.3547958Z 
+2026-09-19T02:01:18.3548068Z --- tests/tools/test_managed_media_gateways.py ---
+2026-09-19T02:01:18.3548348Z ============================= test session starts ==============================
+2026-09-19T02:01:18.3548660Z platform linux -- Python 3.11.16, pytest-9.0.2, pluggy-1.6.0
+2026-09-19T02:01:18.3548950Z rootdir: /home/runner/work/openamer/openamer
+2026-09-19T02:01:18.3549182Z configfile: pyproject.toml
+2026-09-19T02:01:18.3549382Z plugins: anyio-4.12.1, asyncio-1.3.0
+2026-09-19T02:01:18.3549790Z asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+2026-09-19T02:01:18.3550196Z collected 14 items
+2026-09-19T02:01:18.3550407Z 
+2026-09-19T02:01:18.3550583Z tests/tools/test_managed_media_gateways.py FF............                [100%]
+2026-09-19T02:01:18.3550825Z 
+2026-09-19T02:01:18.3550938Z =================================== FAILURES ===================================
+2026-09-19T02:01:18.3551267Z ________ test_managed_fal_submit_uses_gateway_origin_and_openamer_token ________
+2026-09-19T02:01:18.3551492Z 
+2026-09-19T02:01:18.3551656Z monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f09e10e7f50>
+2026-09-19T02:01:18.3551986Z 
+2026-09-19T02:01:18.3552168Z     def test_managed_fal_submit_uses_gateway_origin_and_openamer_token(monkeypatch):
+2026-09-19T02:01:18.3552479Z         captured = {}
+2026-09-19T02:01:18.3552670Z         _install_fake_tools_package()
+2026-09-19T02:01:18.3552893Z         _install_fake_fal_client(captured)
+2026-09-19T02:01:18.3553138Z         monkeypatch.delenv("FAL_KEY", raising=False)
+2026-09-19T02:01:18.3553468Z         monkeypatch.setenv("FAL_QUEUE_GATEWAY_URL", "http://127.0.0.1:3009")
+2026-09-19T02:01:18.3553833Z         monkeypatch.setenv("TOOL_GATEWAY_USER_TOKEN", "openamer-token")
+2026-09-19T02:01:18.3554102Z     
+2026-09-19T02:01:18.3554276Z         image_generation_tool = _load_tool_module(
+2026-09-19T02:01:18.3554513Z             "tools.image_generation_tool",
+2026-09-19T02:01:18.3554735Z             "image_generation_tool.py",
+2026-09-19T02:01:18.3554932Z         )
+2026-09-19T02:01:18.3555204Z         monkeypatch.setattr(image_generation_tool.uuid, "uuid4", lambda: "fal-submit-123")
+2026-09-19T02:01:18.3555529Z     
+2026-09-19T02:01:18.3555695Z >       image_generation_tool._submit_fal_request(
+2026-09-19T02:01:18.3555931Z             "fal-ai/flux-2-pro",
+2026-09-19T02:01:18.3556158Z             {"prompt": "test prompt", "num_images": 1},
+2026-09-19T02:01:18.3556378Z         )
+2026-09-19T02:01:18.3556461Z 
+2026-09-19T02:01:18.3556562Z tests/tools/test_managed_media_gateways.py:190: 
+2026-09-19T02:01:18.3556933Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:01:18.3557239Z tools/image_generation_tool.py:130: in _submit_fal_request
+2026-09-19T02:01:18.3557537Z     return _get_managed_fal_client(managed_gateway).submit(
+2026-09-19T02:01:18.3557800Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:01:18.3558046Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:01:18.3558222Z 
+2026-09-19T02:01:18.3558619Z managed_gateway = ManagedToolGatewayConfig(vendor='fal-queue', gateway_origin='http://127.0.0.1:3009', openamer_user_token='openamer-token', managed_mode=True)
+2026-09-19T02:01:18.3559056Z 
+2026-09-19T02:01:18.3559152Z     def _get_managed_fal_client(managed_gateway):
+2026-09-19T02:01:18.3559503Z         """Reuse the managed FAL client so its internal httpx.Client is not leaked per call."""
+2026-09-19T02:01:18.3559876Z         global _managed_fal_client, _managed_fal_client_config
+2026-09-19T02:01:18.3560277Z >       client_config = (managed_gateway.gateway_origin.rstrip("/"), managed_gateway.nous_user_token)
+2026-09-19T02:01:18.3560677Z                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:01:18.3561070Z E       AttributeError: 'ManagedToolGatewayConfig' object has no attribute 'nous_user_token'
+2026-09-19T02:01:18.3561347Z 
+2026-09-19T02:01:18.3561451Z tools/image_generation_tool.py:81: AttributeError
+2026-09-19T02:01:18.3561776Z ______________ test_managed_fal_submit_reuses_cached_sync_client _______________
+2026-09-19T02:01:18.3562008Z 
+2026-09-19T02:01:18.3562172Z monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f09e10e4290>
+2026-09-19T02:01:18.3562396Z 
+2026-09-19T02:01:18.3562545Z     def test_managed_fal_submit_reuses_cached_sync_client(monkeypatch):
+2026-09-19T02:01:18.3562824Z         captured = {}
+2026-09-19T02:01:18.3563016Z         _install_fake_tools_package()
+2026-09-19T02:01:18.3563238Z         _install_fake_fal_client(captured)
+2026-09-19T02:01:18.3563613Z         monkeypatch.delenv("FAL_KEY", raising=False)
+2026-09-19T02:01:18.3563933Z         monkeypatch.setenv("FAL_QUEUE_GATEWAY_URL", "http://127.0.0.1:3009")
+2026-09-19T02:01:18.3564296Z         monkeypatch.setenv("TOOL_GATEWAY_USER_TOKEN", "openamer-token")
+2026-09-19T02:01:18.3564563Z     
+2026-09-19T02:01:18.3564741Z         image_generation_tool = _load_tool_module(
+2026-09-19T02:01:18.3564979Z             "tools.image_generation_tool",
+2026-09-19T02:01:18.3565203Z             "image_generation_tool.py",
+2026-09-19T02:01:18.3565511Z         )
+2026-09-19T02:01:18.3565657Z     
+2026-09-19T02:01:18.3565929Z >       image_generation_tool._submit_fal_request("fal-ai/flux-2-pro", {"prompt": "first"})
+2026-09-19T02:01:18.3566192Z 
+2026-09-19T02:01:18.3566300Z tests/tools/test_managed_media_gateways.py:217: 
+2026-09-19T02:01:18.3566575Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:01:18.3566967Z tools/image_generation_tool.py:130: in _submit_fal_request
+2026-09-19T02:01:18.3567277Z     return _get_managed_fal_client(managed_gateway).submit(
+2026-09-19T02:01:18.3567539Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:01:18.3567789Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:01:18.3567965Z 
+2026-09-19T02:01:18.3568352Z managed_gateway = ManagedToolGatewayConfig(vendor='fal-queue', gateway_origin='http://127.0.0.1:3009', openamer_user_token='openamer-token', managed_mode=True)
+2026-09-19T02:01:18.3568785Z 
+2026-09-19T02:01:18.3568886Z     def _get_managed_fal_client(managed_gateway):
+2026-09-19T02:01:18.3569227Z         """Reuse the managed FAL client so its internal httpx.Client is not leaked per call."""
+2026-09-19T02:01:18.3569598Z         global _managed_fal_client, _managed_fal_client_config
+2026-09-19T02:01:18.3569990Z >       client_config = (managed_gateway.gateway_origin.rstrip("/"), managed_gateway.nous_user_token)
+2026-09-19T02:01:18.3570384Z                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:01:18.3570766Z E       AttributeError: 'ManagedToolGatewayConfig' object has no attribute 'nous_user_token'
+2026-09-19T02:01:18.3571056Z 
+2026-09-19T02:01:18.3571160Z tools/image_generation_tool.py:81: AttributeError
+2026-09-19T02:01:18.3571438Z =========================== short test summary info ============================
+2026-09-19T02:01:18.3571885Z FAILED tests/tools/test_managed_media_gateways.py::test_managed_fal_submit_uses_gateway_origin_and_openamer_token
+2026-09-19T02:01:18.3572431Z FAILED tests/tools/test_managed_media_gateways.py::test_managed_fal_submit_reuses_cached_sync_client
+2026-09-19T02:01:18.3572825Z ========================= 2 failed, 12 passed in 1.58s =========================
+2026-09-19T02:01:18.3573008Z 
+2026-09-19T02:01:18.3573099Z --- tests/tools/test_spotify_client.py ---
+2026-09-19T02:01:18.3573361Z ============================= test session starts ==============================
+2026-09-19T02:01:18.3573673Z platform linux -- Python 3.11.16, pytest-9.0.2, pluggy-1.6.0
+2026-09-19T02:01:18.3573953Z rootdir: /home/runner/work/openamer/openamer
+2026-09-19T02:01:18.3574185Z configfile: pyproject.toml
+2026-09-19T02:01:18.3574384Z plugins: anyio-4.12.1, asyncio-1.3.0
+2026-09-19T02:01:18.3574804Z asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+2026-09-19T02:01:18.3575202Z collected 15 items
+2026-09-19T02:01:18.3575306Z 
+2026-09-19T02:01:18.3575473Z tests/tools/test_spotify_client.py F.....FFFFFF.F.                       [100%]
+2026-09-19T02:01:18.3575703Z 
+2026-09-19T02:01:18.3575808Z =================================== FAILURES ===================================
+2026-09-19T02:01:18.3576119Z __________________ test_spotify_client_retries_once_after_401 __________________
+2026-09-19T02:01:18.3576325Z 
+2026-09-19T02:01:18.3576492Z monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fc6f7ab8a10>
+2026-09-19T02:01:18.3576720Z 
+2026-09-19T02:01:18.3577112Z     def test_spotify_client_retries_once_after_401(monkeypatch: pytest.MonkeyPatch) -> None:
+2026-09-19T02:01:18.3577459Z         calls: list[str] = []
+2026-09-19T02:01:18.3577651Z         tokens = iter([
+2026-09-19T02:01:18.3577819Z             {
+2026-09-19T02:01:18.3577988Z                 "access_token": "token-1",
+2026-09-19T02:01:18.3578239Z                 "base_url": "https://api.spotify.com/v1",
+2026-09-19T02:01:18.3578463Z             },
+2026-09-19T02:01:18.3578713Z             {
+2026-09-19T02:01:18.3578875Z                 "access_token": "token-2",
+2026-09-19T02:01:18.3579106Z                 "base_url": "https://api.spotify.com/v1",
+2026-09-19T02:01:18.3579321Z             },
+2026-09-19T02:01:18.3579464Z         ])
+2026-09-19T02:01:18.3579603Z     
+2026-09-19T02:01:18.3579761Z         monkeypatch.setattr(
+2026-09-19T02:01:18.3579956Z             spotify_mod,
+2026-09-19T02:01:18.3580153Z             "resolve_spotify_runtime_credentials",
+2026-09-19T02:01:18.3580385Z             lambda **kwargs: next(tokens),
+2026-09-19T02:01:18.3580586Z         )
+2026-09-19T02:01:18.3580729Z     
+2026-09-19T02:01:18.3580983Z         def fake_request(method, url, headers=None, params=None, json=None, timeout=None):
+2026-09-19T02:01:18.3581322Z             calls.append(headers["Authorization"])
+2026-09-19T02:01:18.3581586Z             if len(calls) == 1:
+2026-09-19T02:01:18.3581859Z                 return _FakeResponse(401, {"error": {"message": "expired token"}})
+2026-09-19T02:01:18.3582198Z             return _FakeResponse(200, {"devices": [{"id": "dev-1"}]})
+2026-09-19T02:01:18.3582442Z     
+2026-09-19T02:01:18.3582663Z         monkeypatch.setattr(spotify_mod.httpx, "request", fake_request)
+2026-09-19T02:01:18.3582931Z     
+2026-09-19T02:01:18.3583094Z         client = spotify_mod.SpotifyClient()
+2026-09-19T02:01:18.3583322Z >       payload = client.get_devices()
+2026-09-19T02:01:18.3583528Z                   ^^^^^^^^^^^^^^^^^^
+2026-09-19T02:01:18.3583815Z E       AttributeError: 'SpotifyClient' object has no attribute 'get_devices'
+2026-09-19T02:01:18.3584044Z 
+2026-09-19T02:01:18.3584160Z tests/tools/test_spotify_client.py:62: AttributeError
+2026-09-19T02:01:18.3584504Z _ test_spotify_playback_get_currently_playing_returns_explanatory_empty_result _
+2026-09-19T02:01:18.3584744Z 
+2026-09-19T02:01:18.3584907Z monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fc6f7a3cbd0>
+2026-09-19T02:01:18.3585127Z 
+2026-09-19T02:01:18.3585421Z     def test_spotify_playback_get_currently_playing_returns_explanatory_empty_result(monkeypatch: pytest.MonkeyPatch) -> None:
+2026-09-19T02:01:18.3585857Z >       monkeypatch.setattr(
+2026-09-19T02:01:18.3586045Z             spotify_tool,
+2026-09-19T02:01:18.3586231Z             "_spotify_client",
+2026-09-19T02:01:18.3586428Z             lambda: _StubSpotifyClient({
+2026-09-19T02:01:18.3586641Z                 "status_code": 204,
+2026-09-19T02:01:18.3587010Z                 "empty": True,
+2026-09-19T02:01:18.3587361Z                 "message": "Spotify is not currently playing anything. Start playback in Spotify and try again.",
+2026-09-19T02:01:18.3587715Z             }),
+2026-09-19T02:01:18.3587869Z         )
+2026-09-19T02:01:18.3588328Z E       AttributeError: <module 'plugins.spotify.tools' from '/home/runner/work/openamer/openamer/plugins/spotify/tools.py'> has no attribute '_spotify_client'
+2026-09-19T02:01:18.3588758Z 
+2026-09-19T02:01:18.3588873Z tests/tools/test_spotify_client.py:153: AttributeError
+2026-09-19T02:01:18.3589206Z _____________ test_library_contains_uses_generic_library_endpoint ______________
+2026-09-19T02:01:18.3589431Z 
+2026-09-19T02:01:18.3589586Z monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fc6f7b3c8d0>
+2026-09-19T02:01:18.3589808Z 
+2026-09-19T02:01:18.3590033Z     def test_library_contains_uses_generic_library_endpoint(monkeypatch: pytest.MonkeyPatch) -> None:
+2026-09-19T02:01:18.3590420Z         seen: list[tuple[str, str, dict | None]] = []
+2026-09-19T02:01:18.3590635Z     
+2026-09-19T02:01:18.3590787Z         monkeypatch.setattr(
+2026-09-19T02:01:18.3591125Z             spotify_mod,
+2026-09-19T02:01:18.3591331Z             "resolve_spotify_runtime_credentials",
+2026-09-19T02:01:18.3591556Z             lambda **kwargs: {
+2026-09-19T02:01:18.3591751Z                 "access_token": "token-1",
+2026-09-19T02:01:18.3591996Z                 "base_url": "https://api.spotify.com/v1",
+2026-09-19T02:01:18.3592219Z             },
+2026-09-19T02:01:18.3592365Z         )
+2026-09-19T02:01:18.3592501Z     
+2026-09-19T02:01:18.3592858Z         def fake_request(method, url, headers=None, params=None, json=None, timeout=None):
+2026-09-19T02:01:18.3593192Z             seen.append((method, url, params))
+2026-09-19T02:01:18.3593422Z             return _FakeResponse(200, [True])
+2026-09-19T02:01:18.3593625Z     
+2026-09-19T02:01:18.3593840Z         monkeypatch.setattr(spotify_mod.httpx, "request", fake_request)
+2026-09-19T02:01:18.3594106Z     
+2026-09-19T02:01:18.3594265Z         client = spotify_mod.SpotifyClient()
+2026-09-19T02:01:18.3594593Z >       payload = client.library_contains(uris=["spotify:album:abc", "spotify:track:def"])
+2026-09-19T02:01:18.3594907Z                   ^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:01:18.3595210Z E       AttributeError: 'SpotifyClient' object has no attribute 'library_contains'
+2026-09-19T02:01:18.3595441Z 
+2026-09-19T02:01:18.3595556Z tests/tools/test_spotify_client.py:193: AttributeError
+2026-09-19T02:01:18.3595981Z _ test_library_remove_uses_generic_library_endpoint[remove_saved_tracks-track_ids-item_value0-expected_uris0] _
+2026-09-19T02:01:18.3596306Z 
+2026-09-19T02:01:18.3596465Z monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fc6f79f3b90>
+2026-09-19T02:01:18.3596897Z method_name = 'remove_saved_tracks', item_key = 'track_ids'
+2026-09-19T02:01:18.3597168Z item_value = ['track-a', 'track-b']
+2026-09-19T02:01:18.3597440Z expected_uris = ['spotify:track:track-a', 'spotify:track:track-b']
+2026-09-19T02:01:18.3597640Z 
+2026-09-19T02:01:18.3597724Z     @pytest.mark.parametrize(
+2026-09-19T02:01:18.3597977Z         ("method_name", "item_key", "item_value", "expected_uris"),
+2026-09-19T02:01:18.3598223Z         [
+2026-09-19T02:01:18.3598548Z             ("remove_saved_tracks", "track_ids", ["track-a", "track-b"], ["spotify:track:track-a", "spotify:track:track-b"]),
+2026-09-19T02:01:18.3599003Z             ("remove_saved_albums", "album_ids", ["album-a"], ["spotify:album:album-a"]),
+2026-09-19T02:01:18.3599292Z         ],
+2026-09-19T02:01:18.3599434Z     )
+2026-09-19T02:01:18.3599625Z     def test_library_remove_uses_generic_library_endpoint(
+2026-09-19T02:01:18.3599895Z         monkeypatch: pytest.MonkeyPatch,
+2026-09-19T02:01:18.3600105Z         method_name: str,
+2026-09-19T02:01:18.3600280Z         item_key: str,
+2026-09-19T02:01:18.3600452Z         item_value: list[str],
+2026-09-19T02:01:18.3600648Z         expected_uris: list[str],
+2026-09-19T02:01:18.3600837Z     ) -> None:
+2026-09-19T02:01:18.3601021Z         seen: list[tuple[str, str, dict | None]] = []
+2026-09-19T02:01:18.3601237Z     
+2026-09-19T02:01:18.3601397Z         monkeypatch.setattr(
+2026-09-19T02:01:18.3601586Z             spotify_mod,
+2026-09-19T02:01:18.3601785Z             "resolve_spotify_runtime_credentials",
+2026-09-19T02:01:18.3602006Z             lambda **kwargs: {
+2026-09-19T02:01:18.3602196Z                 "access_token": "token-1",
+2026-09-19T02:01:18.3602439Z                 "base_url": "https://api.spotify.com/v1",
+2026-09-19T02:01:18.3602659Z             },
+2026-09-19T02:01:18.3602806Z         )
+2026-09-19T02:01:18.3602948Z     
+2026-09-19T02:01:18.3603200Z         def fake_request(method, url, headers=None, params=None, json=None, timeout=None):
+2026-09-19T02:01:18.3603524Z             seen.append((method, url, params))
+2026-09-19T02:01:18.3603750Z             return _FakeResponse(200, {})
+2026-09-19T02:01:18.3603944Z     
+2026-09-19T02:01:18.3604163Z         monkeypatch.setattr(spotify_mod.httpx, "request", fake_request)
+2026-09-19T02:01:18.3604436Z     
+2026-09-19T02:01:18.3604597Z         client = spotify_mod.SpotifyClient()
+2026-09-19T02:01:18.3605010Z >       getattr(client, method_name)(**{item_key: item_value})
+2026-09-19T02:01:18.3605264Z         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:01:18.3605566Z E       AttributeError: 'SpotifyClient' object has no attribute 'remove_saved_tracks'
+2026-09-19T02:01:18.3605815Z 
+2026-09-19T02:01:18.3605928Z tests/tools/test_spotify_client.py:237: AttributeError
+2026-09-19T02:01:18.3606354Z _ test_library_remove_uses_generic_library_endpoint[remove_saved_albums-album_ids-item_value1-expected_uris1] _
+2026-09-19T02:01:18.3606905Z 
+2026-09-19T02:01:18.3607070Z monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fc6f7a349d0>
+2026-09-19T02:01:18.3607414Z method_name = 'remove_saved_albums', item_key = 'album_ids'
+2026-09-19T02:01:18.3607731Z item_value = ['album-a'], expected_uris = ['spotify:album:album-a']
+2026-09-19T02:01:18.3607933Z 
+2026-09-19T02:01:18.3608017Z     @pytest.mark.parametrize(
+2026-09-19T02:01:18.3608256Z         ("method_name", "item_key", "item_value", "expected_uris"),
+2026-09-19T02:01:18.3608493Z         [
+2026-09-19T02:01:18.3608817Z             ("remove_saved_tracks", "track_ids", ["track-a", "track-b"], ["spotify:track:track-a", "spotify:track:track-b"]),
+2026-09-19T02:01:18.3609278Z             ("remove_saved_albums", "album_ids", ["album-a"], ["spotify:album:album-a"]),
+2026-09-19T02:01:18.3609560Z         ],
+2026-09-19T02:01:18.3609701Z     )
+2026-09-19T02:01:18.3609891Z     def test_library_remove_uses_generic_library_endpoint(
+2026-09-19T02:01:18.3610154Z         monkeypatch: pytest.MonkeyPatch,
+2026-09-19T02:01:18.3610364Z         method_name: str,
+2026-09-19T02:01:18.3610537Z         item_key: str,
+2026-09-19T02:01:18.3610706Z         item_value: list[str],
+2026-09-19T02:01:18.3610902Z         expected_uris: list[str],
+2026-09-19T02:01:18.3611091Z     ) -> None:
+2026-09-19T02:01:18.3611275Z         seen: list[tuple[str, str, dict | None]] = []
+2026-09-19T02:01:18.3611492Z     
+2026-09-19T02:01:18.3611640Z         monkeypatch.setattr(
+2026-09-19T02:01:18.3611837Z             spotify_mod,
+2026-09-19T02:01:18.3612041Z             "resolve_spotify_runtime_credentials",
+2026-09-19T02:01:18.3612266Z             lambda **kwargs: {
+2026-09-19T02:01:18.3612460Z                 "access_token": "token-1",
+2026-09-19T02:01:18.3612704Z                 "base_url": "https://api.spotify.com/v1",
+2026-09-19T02:01:18.3612926Z             },
+2026-09-19T02:01:18.3613073Z         )
+2026-09-19T02:01:18.3613212Z     
+2026-09-19T02:01:18.3613471Z         def fake_request(method, url, headers=None, params=None, json=None, timeout=None):
+2026-09-19T02:01:18.3613802Z             seen.append((method, url, params))
+2026-09-19T02:01:18.3614031Z             return _FakeResponse(200, {})
+2026-09-19T02:01:18.3614228Z     
+2026-09-19T02:01:18.3614451Z         monkeypatch.setattr(spotify_mod.httpx, "request", fake_request)
+2026-09-19T02:01:18.3614716Z     
+2026-09-19T02:01:18.3614880Z         client = spotify_mod.SpotifyClient()
+2026-09-19T02:01:18.3615140Z >       getattr(client, method_name)(**{item_key: item_value})
+2026-09-19T02:01:18.3615391Z         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:01:18.3615693Z E       AttributeError: 'SpotifyClient' object has no attribute 'remove_saved_albums'
+2026-09-19T02:01:18.3615936Z 
+2026-09-19T02:01:18.3616052Z tests/tools/test_spotify_client.py:237: AttributeError
+2026-09-19T02:01:18.3616382Z ___________ test_spotify_library_tracks_list_routes_to_saved_tracks ____________
+2026-09-19T02:01:18.3616609Z 
+2026-09-19T02:01:18.3616865Z monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fc6f7a3df10>
+2026-09-19T02:01:18.3617096Z 
+2026-09-19T02:01:18.3617335Z     def test_spotify_library_tracks_list_routes_to_saved_tracks(monkeypatch: pytest.MonkeyPatch) -> None:
+2026-09-19T02:01:18.3617702Z         seen: list[str] = []
+2026-09-19T02:01:18.3617878Z     
+2026-09-19T02:01:18.3618025Z         class _LibStub:
+2026-09-19T02:01:18.3618215Z             def get_saved_tracks(self, **kw):
+2026-09-19T02:01:18.3618440Z                 seen.append("tracks")
+2026-09-19T02:01:18.3618772Z                 return {"items": [], "total": 0}
+2026-09-19T02:01:18.3618988Z     
+2026-09-19T02:01:18.3619146Z             def get_saved_albums(self, **kw):
+2026-09-19T02:01:18.3619361Z                 seen.append("albums")
+2026-09-19T02:01:18.3619565Z                 return {"items": [], "total": 0}
+2026-09-19T02:01:18.3619766Z     
+2026-09-19T02:01:18.3619998Z >       monkeypatch.setattr(spotify_tool, "_spotify_client", lambda: _LibStub())
+2026-09-19T02:01:18.3620602Z E       AttributeError: <module 'plugins.spotify.tools' from '/home/runner/work/openamer/openamer/plugins/spotify/tools.py'> has no attribute '_spotify_client'
+2026-09-19T02:01:18.3621141Z 
+2026-09-19T02:01:18.3621257Z tests/tools/test_spotify_client.py:261: AttributeError
+2026-09-19T02:01:18.3621587Z ___________ test_spotify_library_albums_list_routes_to_saved_albums ____________
+2026-09-19T02:01:18.3621810Z 
+2026-09-19T02:01:18.3621969Z monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fc6f7a48790>
+2026-09-19T02:01:18.3622193Z 
+2026-09-19T02:01:18.3622428Z     def test_spotify_library_albums_list_routes_to_saved_albums(monkeypatch: pytest.MonkeyPatch) -> None:
+2026-09-19T02:01:18.3622803Z         seen: list[str] = []
+2026-09-19T02:01:18.3622977Z     
+2026-09-19T02:01:18.3623121Z         class _LibStub:
+2026-09-19T02:01:18.3623307Z             def get_saved_tracks(self, **kw):
+2026-09-19T02:01:18.3623531Z                 seen.append("tracks")
+2026-09-19T02:01:18.3623740Z                 return {"items": [], "total": 0}
+2026-09-19T02:01:18.3623949Z     
+2026-09-19T02:01:18.3624103Z             def get_saved_albums(self, **kw):
+2026-09-19T02:01:18.3624318Z                 seen.append("albums")
+2026-09-19T02:01:18.3624522Z                 return {"items": [], "total": 0}
+2026-09-19T02:01:18.3624725Z     
+2026-09-19T02:01:18.3624958Z >       monkeypatch.setattr(spotify_tool, "_spotify_client", lambda: _LibStub())
+2026-09-19T02:01:18.3625566Z E       AttributeError: <module 'plugins.spotify.tools' from '/home/runner/work/openamer/openamer/plugins/spotify/tools.py'> has no attribute '_spotify_client'
+2026-09-19T02:01:18.3625995Z 
+2026-09-19T02:01:18.3626110Z tests/tools/test_spotify_client.py:278: AttributeError
+2026-09-19T02:01:18.3626432Z _________________ test_spotify_playback_recently_played_action _________________
+2026-09-19T02:01:18.3626654Z 
+2026-09-19T02:01:18.3626904Z monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fc6f797de10>
+2026-09-19T02:01:18.3627132Z 
+2026-09-19T02:01:18.3627344Z     def test_spotify_playback_recently_played_action(monkeypatch: pytest.MonkeyPatch) -> None:
+2026-09-19T02:01:18.3627819Z         """recently_played is now an action on spotify_playback (folded from spotify_activity)."""
+2026-09-19T02:01:18.3628148Z         seen: list[dict] = []
+2026-09-19T02:01:18.3628332Z     
+2026-09-19T02:01:18.3628481Z         class _RecentStub:
+2026-09-19T02:01:18.3628682Z             def get_recently_played(self, **kw):
+2026-09-19T02:01:18.3628903Z                 seen.append(kw)
+2026-09-19T02:01:18.3629134Z                 return {"items": [{"track": {"name": "x"}}]}
+2026-09-19T02:01:18.3629359Z     
+2026-09-19T02:01:18.3629610Z >       monkeypatch.setattr(spotify_tool, "_spotify_client", lambda: _RecentStub())
+2026-09-19T02:01:18.3630214Z E       AttributeError: <module 'plugins.spotify.tools' from '/home/runner/work/openamer/openamer/plugins/spotify/tools.py'> has no attribute '_spotify_client'
+2026-09-19T02:01:18.3630648Z 
+2026-09-19T02:01:18.3630765Z tests/tools/test_spotify_client.py:297: AttributeError
+2026-09-19T02:01:18.3631052Z =========================== short test summary info ============================
+2026-09-19T02:01:18.3631428Z FAILED tests/tools/test_spotify_client.py::test_spotify_client_retries_once_after_401
+2026-09-19T02:01:18.3631951Z FAILED tests/tools/test_spotify_client.py::test_spotify_playback_get_currently_playing_returns_explanatory_empty_result
+2026-09-19T02:01:18.3632491Z FAILED tests/tools/test_spotify_client.py::test_library_contains_uses_generic_library_endpoint
+2026-09-19T02:01:18.3633218Z FAILED tests/tools/test_spotify_client.py::test_library_remove_uses_generic_library_endpoint[remove_saved_tracks-track_ids-item_value0-expected_uris0]
+2026-09-19T02:01:18.3633978Z FAILED tests/tools/test_spotify_client.py::test_library_remove_uses_generic_library_endpoint[remove_saved_albums-album_ids-item_value1-expected_uris1]
+2026-09-19T02:01:18.3634598Z FAILED tests/tools/test_spotify_client.py::test_spotify_library_tracks_list_routes_to_saved_tracks
+2026-09-19T02:01:18.3635439Z FAILED tests/tools/test_spotify_client.py::test_spotify_library_albums_list_routes_to_saved_albums
+2026-09-19T02:01:18.3636129Z FAILED tests/tools/test_spotify_client.py::test_spotify_playback_recently_played_action
+2026-09-19T02:01:18.3636729Z ========================= 8 failed, 7 passed in 1.47s ==========================
+2026-09-19T02:01:18.3637151Z 
+2026-09-19T02:01:18.3637312Z === 7 files with test failures (30 tests failed) ===
+2026-09-19T02:01:18.3637696Z   tests/acp/test_tools.py  (13 tests failed)
+2026-09-19T02:01:18.3638193Z   tests/agent/test_credential_pool_oauth_writethrough.py  (2 tests failed)
+2026-09-19T02:01:18.3638761Z   tests/agent/test_openrouter_response_cache.py  (1 test failed)
+2026-09-19T02:01:18.3639309Z   tests/openamer_cli/test_auth_codex_quota_probe.py  (3 tests failed)
+2026-09-19T02:01:18.3639820Z   tests/tools/test_homeassistant_tool.py  (1 test failed)
+2026-09-19T02:01:18.3640303Z   tests/tools/test_managed_media_gateways.py  (2 tests failed)
+2026-09-19T02:01:18.3640773Z   tests/tools/test_spotify_client.py  (8 tests failed)
+2026-09-19T02:01:18.3650351Z ##[error]Process completed with exit code 1.
+2026-09-19T02:01:18.3742384Z Post job cleanup.
+2026-09-19T02:01:18.4414194Z [command]/usr/bin/git version
+2026-09-19T02:01:18.4450359Z git version 2.55.0
+2026-09-19T02:01:18.4485484Z Temporarily overriding HOME='/home/runner/work/_temp/85e9c415-791c-4822-be7b-02a5ac55ed61' before making global git config changes
+2026-09-19T02:01:18.4486479Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-19T02:01:18.4489127Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/openamer/openamer
+2026-09-19T02:01:18.4517982Z Removing SSH command configuration
+2026-09-19T02:01:18.4523084Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-19T02:01:18.4552022Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-19T02:01:18.4766006Z Removing HTTP extra header
+2026-09-19T02:01:18.4770912Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-19T02:01:18.4804466Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-19T02:01:18.5042878Z Removing includeIf entries pointing to credentials config files
+2026-09-19T02:01:18.5049304Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-19T02:01:18.5088093Z includeif.gitdir:/home/runner/work/openamer/openamer/.git.path
+2026-09-19T02:01:18.5088756Z includeif.gitdir:/home/runner/work/openamer/openamer/.git/worktrees/*.path
+2026-09-19T02:01:18.5089325Z includeif.gitdir:/github/workspace/.git.path
+2026-09-19T02:01:18.5089781Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-09-19T02:01:18.5095633Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/openamer/openamer/.git.path
+2026-09-19T02:01:18.5119830Z /home/runner/work/_temp/git-credentials-2848979e-541f-4c4f-b079-e856401ace12.config
+2026-09-19T02:01:18.5128881Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/openamer/openamer/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-2848979e\-541f\-4c4f\-b079\-e856401ace12\.config
+2026-09-19T02:01:18.5162461Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/openamer/openamer/.git/worktrees/*.path
+2026-09-19T02:01:18.5185844Z /home/runner/work/_temp/git-credentials-2848979e-541f-4c4f-b079-e856401ace12.config
+2026-09-19T02:01:18.5199395Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/openamer/openamer/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-2848979e\-541f\-4c4f\-b079\-e856401ace12\.config
+2026-09-19T02:01:18.5230454Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-09-19T02:01:18.5252601Z /github/runner_temp/git-credentials-2848979e-541f-4c4f-b079-e856401ace12.config
+2026-09-19T02:01:18.5258033Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-2848979e\-541f\-4c4f\-b079\-e856401ace12\.config
+2026-09-19T02:01:18.5287445Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-09-19T02:01:18.5308973Z /github/runner_temp/git-credentials-2848979e-541f-4c4f-b079-e856401ace12.config
+2026-09-19T02:01:18.5315418Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-2848979e\-541f\-4c4f\-b079\-e856401ace12\.config
+2026-09-19T02:01:18.5347037Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-19T02:01:18.5546906Z Removing credentials config '/home/runner/work/_temp/git-credentials-2848979e-541f-4c4f-b079-e856401ace12.config'
+2026-09-19T02:01:18.5685228Z Cleaning up orphan processes

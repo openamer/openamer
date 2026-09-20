@@ -110,6 +110,8 @@ from datetime import datetime
 from typing import Any, Coroutine, Dict, List, Optional
 from urllib.parse import urlparse
 
+from tools.ansi_strip import strip_unicode_tags
+
 logger = logging.getLogger(__name__)
 
 # Upper bound for the OSV malware preflight during stdio MCP startup. The
@@ -4661,7 +4663,11 @@ def _make_tool_handler(server_name: str, tool_name: str, tool_timeout: float):
             parts: List[str] = []
             for block in (result.content or []):
                 if hasattr(block, "text") and block.text:
-                    parts.append(block.text)
+                    # An MCP server is untrusted input. Plane-14 TAG chars are
+                    # invisible in every terminal but a tokenizer reads them, so a
+                    # server (or anything echoing user text back) can smuggle
+                    # instructions the model obeys and the human never sees.
+                    parts.append(strip_unicode_tags(block.text))
                     continue
                 image_tag = _cache_mcp_image_block(block)
                 if image_tag:

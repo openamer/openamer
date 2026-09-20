@@ -1,0 +1,1039 @@
+﻿2026-09-19T01:57:30.1140678Z Current runner version: '2.337.0'
+2026-09-19T01:57:30.1166920Z ##[group]Runner Image Provisioner
+2026-09-19T01:57:30.1167933Z Hosted Compute Agent
+2026-09-19T01:57:30.1168627Z Version: 20260828.587
+2026-09-19T01:57:30.1169456Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+2026-09-19T01:57:30.1170368Z Build Date: 2026-08-28T16:44:25Z
+2026-09-19T01:57:30.1171152Z Worker ID: {28e30239-84ed-4fd8-8581-69c1ec95d5a0}
+2026-09-19T01:57:30.1172080Z Azure Region: eastus
+2026-09-19T01:57:30.1172802Z ##[endgroup]
+2026-09-19T01:57:30.1174613Z ##[group]Operating System
+2026-09-19T01:57:30.1175420Z Ubuntu
+2026-09-19T01:57:30.1176006Z 24.04.5
+2026-09-19T01:57:30.1176687Z LTS
+2026-09-19T01:57:30.1177293Z ##[endgroup]
+2026-09-19T01:57:30.1178040Z ##[group]Runner Image
+2026-09-19T01:57:30.1178787Z Image: ubuntu-24.04
+2026-09-19T01:57:30.1179590Z Version: 20260907.300.1
+2026-09-19T01:57:30.1181304Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260907.300/images/ubuntu/Ubuntu2404-Readme.md
+2026-09-19T01:57:30.1183318Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260907.300
+2026-09-19T01:57:30.1184652Z ##[endgroup]
+2026-09-19T01:57:30.1186039Z ##[group]GITHUB_TOKEN Permissions
+2026-09-19T01:57:30.1188003Z Contents: read
+2026-09-19T01:57:30.1188797Z Metadata: read
+2026-09-19T01:57:30.1189459Z ##[endgroup]
+2026-09-19T01:57:30.1192203Z Secret source: Actions
+2026-09-19T01:57:30.1193330Z Cache mode: write
+2026-09-19T01:57:30.1194374Z Prepare workflow directory
+2026-09-19T01:57:30.1549343Z Prepare all required actions
+2026-09-19T01:57:30.1604126Z Getting action download info
+2026-09-19T01:57:30.3480115Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+2026-09-19T01:57:30.4547256Z Download action repository 'actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+2026-09-19T01:57:30.6231966Z Download action repository 'astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d' (SHA:20cfd1bf945f4377ade1205e4dbc17946fc9a30d)
+2026-09-19T01:57:30.8417375Z Download action repository 'actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809' (SHA:0400d5f644dc74513175e3cd8d07132dd4860809)
+2026-09-19T01:57:31.1053803Z Download action repository 'actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9' (SHA:55cc8345863c7cc4c66a329aec7e433d2d1c52a9)
+2026-09-19T01:57:31.3054848Z Download action repository 'actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a' (SHA:043fb46d1a93c77aae656e7c1c64a875d1fc6a0a)
+2026-09-19T01:57:31.5497074Z Uses: openamer/openamer/.github/workflows/e2e-desktop.yml@refs/heads/main (711feb164973c21ff875d6c23d7d22162f5b54f2)
+2026-09-19T01:57:31.5500637Z Complete job name: Desktop E2E / Playwright E2E (Linux)
+2026-09-19T01:57:31.6152066Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+2026-09-19T01:57:31.6152639Z with:
+2026-09-19T01:57:31.6152875Z   repository: openamer/openamer
+2026-09-19T01:57:31.6155163Z   token: ***
+2026-09-19T01:57:31.6155406Z   ssh-strict: true
+2026-09-19T01:57:31.6155638Z   ssh-user: git
+2026-09-19T01:57:31.6155866Z   persist-credentials: true
+2026-09-19T01:57:31.6156116Z   clean: true
+2026-09-19T01:57:31.6156345Z   sparse-checkout-cone-mode: true
+2026-09-19T01:57:31.6156610Z   fetch-depth: 1
+2026-09-19T01:57:31.6156827Z   fetch-tags: false
+2026-09-19T01:57:31.6157051Z   show-progress: true
+2026-09-19T01:57:31.6157270Z   lfs: false
+2026-09-19T01:57:31.6157473Z   submodules: false
+2026-09-19T01:57:31.6157693Z   set-safe-directory: true
+2026-09-19T01:57:31.6157943Z   allow-unsafe-pr-checkout: false
+2026-09-19T01:57:31.6158346Z ##[endgroup]
+2026-09-19T01:57:31.6975618Z Syncing repository: openamer/openamer
+2026-09-19T01:57:31.6976846Z ##[group]Getting Git version info
+2026-09-19T01:57:31.6977295Z Working directory is '/home/runner/work/openamer/openamer'
+2026-09-19T01:57:31.6977967Z [command]/usr/bin/git version
+2026-09-19T01:57:31.7057549Z git version 2.55.0
+2026-09-19T01:57:31.7076399Z ##[endgroup]
+2026-09-19T01:57:31.7085323Z Temporarily overriding HOME='/home/runner/work/_temp/cf49e303-c74d-40e8-8143-26ac4c73988e' before making global git config changes
+2026-09-19T01:57:31.7086499Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-19T01:57:31.7091201Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/openamer/openamer
+2026-09-19T01:57:31.7133258Z Deleting the contents of '/home/runner/work/openamer/openamer'
+2026-09-19T01:57:31.7136261Z ##[group]Determining repository object format
+2026-09-19T01:57:31.7137548Z ##[endgroup]
+2026-09-19T01:57:31.7137922Z ##[group]Initializing the repository
+2026-09-19T01:57:31.7142325Z [command]/usr/bin/git init /home/runner/work/openamer/openamer
+2026-09-19T01:57:31.7244578Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-09-19T01:57:31.7245522Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-09-19T01:57:31.7246492Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-09-19T01:57:31.7247069Z hint: call:
+2026-09-19T01:57:31.7247371Z hint:
+2026-09-19T01:57:31.7247802Z hint: 	git config --global init.defaultBranch <name>
+2026-09-19T01:57:31.7248275Z hint:
+2026-09-19T01:57:31.7248715Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-09-19T01:57:31.7249437Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-09-19T01:57:31.7249973Z hint:
+2026-09-19T01:57:31.7250287Z hint: 	git branch -m <name>
+2026-09-19T01:57:31.7250655Z hint:
+2026-09-19T01:57:31.7251142Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-09-19T01:57:31.7256115Z Initialized empty Git repository in /home/runner/work/openamer/openamer/.git/
+2026-09-19T01:57:31.7264193Z [command]/usr/bin/git remote add origin https://github.com/openamer/openamer
+2026-09-19T01:57:31.7307702Z ##[endgroup]
+2026-09-19T01:57:31.7308315Z ##[group]Disabling automatic garbage collection
+2026-09-19T01:57:31.7311958Z [command]/usr/bin/git config --local gc.auto 0
+2026-09-19T01:57:31.7676528Z ##[endgroup]
+2026-09-19T01:57:31.7677181Z ##[group]Setting up auth
+2026-09-19T01:57:31.7677855Z Removing SSH command configuration
+2026-09-19T01:57:31.7682889Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-19T01:57:31.7715928Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-19T01:57:31.8017026Z Removing HTTP extra header
+2026-09-19T01:57:31.8021717Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-19T01:57:31.8051215Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-19T01:57:31.8232305Z Removing includeIf entries pointing to credentials config files
+2026-09-19T01:57:31.8236142Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-19T01:57:31.8265266Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-19T01:57:31.8455750Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-04d0024b-cd41-4201-ad2e-36fa52489962.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-09-19T01:57:31.8488488Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/openamer/openamer/.git.path /home/runner/work/_temp/git-credentials-04d0024b-cd41-4201-ad2e-36fa52489962.config
+2026-09-19T01:57:31.8515880Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/openamer/openamer/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-04d0024b-cd41-4201-ad2e-36fa52489962.config
+2026-09-19T01:57:31.8563209Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-04d0024b-cd41-4201-ad2e-36fa52489962.config
+2026-09-19T01:57:31.9770732Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-04d0024b-cd41-4201-ad2e-36fa52489962.config
+2026-09-19T01:57:31.9803094Z ##[endgroup]
+2026-09-19T01:57:31.9803667Z ##[group]Fetching the repository
+2026-09-19T01:57:31.9809311Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +711feb164973c21ff875d6c23d7d22162f5b54f2:refs/remotes/origin/main
+2026-09-19T01:57:39.0249651Z From https://github.com/openamer/openamer
+2026-09-19T01:57:39.0250461Z  * [new ref]         711feb164973c21ff875d6c23d7d22162f5b54f2 -> origin/main
+2026-09-19T01:57:39.0257957Z [command]/usr/bin/git branch --list --remote origin/main
+2026-09-19T01:57:39.0285479Z   origin/main
+2026-09-19T01:57:39.0291817Z [command]/usr/bin/git rev-parse refs/remotes/origin/main
+2026-09-19T01:57:39.0314253Z 711feb164973c21ff875d6c23d7d22162f5b54f2
+2026-09-19T01:57:39.0317588Z ##[endgroup]
+2026-09-19T01:57:39.0318130Z ##[group]Determining the checkout info
+2026-09-19T01:57:39.0318744Z ##[endgroup]
+2026-09-19T01:57:39.0321819Z [command]/usr/bin/git sparse-checkout disable
+2026-09-19T01:57:39.0371039Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-09-19T01:57:39.0398547Z ##[group]Checking out the ref
+2026-09-19T01:57:39.0401834Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-09-19T01:57:40.0558797Z Updating files:  95% (9627/10080)
+2026-09-19T01:57:40.0646555Z Updating files:  96% (9677/10080)
+2026-09-19T01:57:40.0747412Z Updating files:  97% (9778/10080)
+2026-09-19T01:57:40.0824818Z Updating files:  98% (9879/10080)
+2026-09-19T01:57:40.1100436Z Updating files:  99% (9980/10080)
+2026-09-19T01:57:40.1100903Z Updating files: 100% (10080/10080)
+2026-09-19T01:57:40.1102198Z Updating files: 100% (10080/10080), done.
+2026-09-19T01:57:40.1193945Z Switched to a new branch 'main'
+2026-09-19T01:57:40.4783901Z branch 'main' set up to track 'origin/main'.
+2026-09-19T01:57:40.4811615Z ##[endgroup]
+2026-09-19T01:57:40.4860035Z [command]/usr/bin/git log -1 --format=%H
+2026-09-19T01:57:40.4884886Z 711feb164973c21ff875d6c23d7d22162f5b54f2
+2026-09-19T01:57:40.5065608Z ##[group]Run sudo apt-get update -qq
+2026-09-19T01:57:40.5065930Z [36;1msudo apt-get update -qq[0m
+2026-09-19T01:57:40.5066181Z [36;1msudo apt-get install -y -qq \[0m
+2026-09-19T01:57:40.5066412Z [36;1m  xvfb \[0m
+2026-09-19T01:57:40.5066684Z [36;1m  libgtk-3-0 libnotify4 libnss3 libxss1 libxtst6 \[0m
+2026-09-19T01:57:40.5067054Z [36;1m  xdg-utils libatspi2.0-0 libdrm2 libgbm1 libasound2t64[0m
+2026-09-19T01:57:40.5100416Z shell: /usr/bin/bash -e {0}
+2026-09-19T01:57:40.5100652Z ##[endgroup]
+2026-09-19T01:57:46.9398161Z Selecting previously unselected package libnotify4:amd64.
+2026-09-19T01:57:46.9645445Z (Reading database ... 
+2026-09-19T01:57:46.9645694Z (Reading database ... 5%
+2026-09-19T01:57:46.9645898Z (Reading database ... 10%
+2026-09-19T01:57:46.9646090Z (Reading database ... 15%
+2026-09-19T01:57:46.9646297Z (Reading database ... 20%
+2026-09-19T01:57:46.9646489Z (Reading database ... 25%
+2026-09-19T01:57:46.9646675Z (Reading database ... 30%
+2026-09-19T01:57:46.9646916Z (Reading database ... 35%
+2026-09-19T01:57:46.9647126Z (Reading database ... 40%
+2026-09-19T01:57:46.9647304Z (Reading database ... 45%
+2026-09-19T01:57:46.9647482Z (Reading database ... 50%
+2026-09-19T01:57:46.9693771Z (Reading database ... 55%
+2026-09-19T01:57:47.1163633Z (Reading database ... 60%
+2026-09-19T01:57:47.3106589Z (Reading database ... 65%
+2026-09-19T01:57:47.4605085Z (Reading database ... 70%
+2026-09-19T01:57:47.6513136Z (Reading database ... 75%
+2026-09-19T01:57:47.8336510Z (Reading database ... 80%
+2026-09-19T01:57:48.0167186Z (Reading database ... 85%
+2026-09-19T01:57:48.2066392Z (Reading database ... 90%
+2026-09-19T01:57:48.4059299Z (Reading database ... 95%
+2026-09-19T01:57:48.4059665Z (Reading database ... 100%
+2026-09-19T01:57:48.4060104Z (Reading database ... 201818 files and directories currently installed.)
+2026-09-19T01:57:48.4099754Z Preparing to unpack .../libnotify4_0.8.3-1build2_amd64.deb ...
+2026-09-19T01:57:48.4221020Z Unpacking libnotify4:amd64 (0.8.3-1build2) ...
+2026-09-19T01:57:48.4549080Z Setting up libnotify4:amd64 (0.8.3-1build2) ...
+2026-09-19T01:57:48.4582422Z Processing triggers for libc-bin (2.39-0ubuntu8.8) ...
+2026-09-19T01:57:49.1758076Z 
+2026-09-19T01:57:49.1758807Z Running kernel seems to be up-to-date.
+2026-09-19T01:57:49.1761450Z 
+2026-09-19T01:57:49.1761602Z No services need to be restarted.
+2026-09-19T01:57:49.1761837Z 
+2026-09-19T01:57:49.1761968Z No containers need to be restarted.
+2026-09-19T01:57:49.1762185Z 
+2026-09-19T01:57:49.1762337Z No user sessions are running outdated binaries.
+2026-09-19T01:57:49.1762591Z 
+2026-09-19T01:57:49.1762832Z No VM guests are running outdated hypervisor (qemu) binaries on this host.
+2026-09-19T01:57:49.9637726Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-09-19T01:57:49.9639061Z ##[group]Run actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+2026-09-19T01:57:49.9639363Z with:
+2026-09-19T01:57:49.9639530Z   node-version: 22
+2026-09-19T01:57:49.9639695Z   cache: npm
+2026-09-19T01:57:49.9639853Z   always-auth: false
+2026-09-19T01:57:49.9640023Z   check-latest: false
+2026-09-19T01:57:49.9642006Z   token: ***
+2026-09-19T01:57:49.9642177Z ##[endgroup]
+2026-09-19T01:57:50.0763039Z Found in cache @ /opt/hostedtoolcache/node/22.23.2/x64
+2026-09-19T01:57:50.0765866Z (node:2535) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-09-19T01:57:50.0766491Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-09-19T01:57:50.0768062Z ##[group]Environment details
+2026-09-19T01:57:53.4467189Z node: v22.23.2
+2026-09-19T01:57:53.4467663Z npm: 10.9.8
+2026-09-19T01:57:53.4467910Z yarn: 1.22.22
+2026-09-19T01:57:53.4468800Z ##[endgroup]
+2026-09-19T01:57:53.4508361Z [command]/opt/hostedtoolcache/node/22.23.2/x64/bin/npm config get cache
+2026-09-19T01:57:53.7302614Z /home/runner/.npm
+2026-09-19T01:57:53.7925392Z Cache hit for: node-cache-Linux-x64-npm-2d543da0332871d27bcb0a9befddc3901c7484939984690abc7717542fc3ec14
+2026-09-19T01:57:53.8004597Z (node:2535) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-09-19T01:57:54.8573414Z Received 268435456 of 271786486 (98.8%), 252.2 MBs/sec
+2026-09-19T01:57:54.9281252Z Received 271786486 of 271786486 (100.0%), 238.9 MBs/sec
+2026-09-19T01:57:54.9282007Z Cache Size: ~259 MB (271786486 B)
+2026-09-19T01:57:54.9307874Z [command]/usr/bin/tar -xf /home/runner/work/_temp/5bccf6d4-b4d2-436d-9c99-4dfea1f97217/cache.tzst -P -C /home/runner/work/openamer/openamer --use-compress-program unzstd
+2026-09-19T01:57:55.3802845Z Cache restored successfully
+2026-09-19T01:57:55.3911622Z Cache restored from key: node-cache-Linux-x64-npm-2d543da0332871d27bcb0a9befddc3901c7484939984690abc7717542fc3ec14
+2026-09-19T01:57:55.4155910Z Prepare all required actions
+2026-09-19T01:57:55.4204174Z ##[group]Run ./.github/actions/retry
+2026-09-19T01:57:55.4204573Z with:
+2026-09-19T01:57:55.4204762Z   command: npm ci
+2026-09-19T01:57:55.4204935Z   attempts: 3
+2026-09-19T01:57:55.4205101Z   delay: 10
+2026-09-19T01:57:55.4205276Z   working-directory: .
+2026-09-19T01:57:55.4205462Z ##[endgroup]
+2026-09-19T01:57:55.4253090Z ##[start-action display=Run set -uo pipefail;id=__self.retry]
+2026-09-19T01:57:55.4273040Z ##[group]Run set -uo pipefail
+2026-09-19T01:57:55.4273457Z [36;1mset -uo pipefail[0m
+2026-09-19T01:57:55.4273664Z [36;1m_OUTFILE="$(mktemp)"[0m
+2026-09-19T01:57:55.4273893Z [36;1mtrap 'rm -f "$_OUTFILE"' EXIT[0m
+2026-09-19T01:57:55.4274115Z [36;1mn=0[0m
+2026-09-19T01:57:55.4274283Z [36;1mwhile :; do[0m
+2026-09-19T01:57:55.4274650Z [36;1m  n=$((n + 1))[0m
+2026-09-19T01:57:55.4274893Z [36;1m  echo "::group::attempt $n/$_ATTEMPTS: $_CMD"[0m
+2026-09-19T01:57:55.4275261Z [36;1m  # Run the command, capturing stdout to a temp file while still[0m
+2026-09-19T01:57:55.4275636Z [36;1m  # streaming to the log. We redirect first, then tee the file to[0m
+2026-09-19T01:57:55.4276021Z [36;1m  # stdout — this avoids pipefail + tee exit-code interactions that[0m
+2026-09-19T01:57:55.4276408Z [36;1m  # can cause the if-branch to be skipped under set -e.[0m
+2026-09-19T01:57:55.4276719Z [36;1m  if bash -c "$_CMD" > "$_OUTFILE"; then[0m
+2026-09-19T01:57:55.4276961Z [36;1m    cat "$_OUTFILE"[0m
+2026-09-19T01:57:55.4277168Z [36;1m    echo "::endgroup::"[0m
+2026-09-19T01:57:55.4277464Z [36;1m    # Preserve newlines in the output via heredoc delimiter.[0m
+2026-09-19T01:57:55.4277749Z [36;1m    {[0m
+2026-09-19T01:57:55.4277947Z [36;1m      echo 'stdout<<__RETRY_STDOUT_EOF__'[0m
+2026-09-19T01:57:55.4278188Z [36;1m      cat "$_OUTFILE"[0m
+2026-09-19T01:57:55.4278412Z [36;1m      echo '__RETRY_STDOUT_EOF__'[0m
+2026-09-19T01:57:55.4278641Z [36;1m    } >> "$GITHUB_OUTPUT"[0m
+2026-09-19T01:57:55.4278849Z [36;1m    exit 0[0m
+2026-09-19T01:57:55.4279024Z [36;1m  fi[0m
+2026-09-19T01:57:55.4279196Z [36;1m  echo "::endgroup::"[0m
+2026-09-19T01:57:55.4279414Z [36;1m  if [ "$n" -ge "$_ATTEMPTS" ]; then[0m
+2026-09-19T01:57:55.4279682Z [36;1m    echo "::error::failed after $n attempts: $_CMD"[0m
+2026-09-19T01:57:55.4279929Z [36;1m    exit 1[0m
+2026-09-19T01:57:55.4280098Z [36;1m  fi[0m
+2026-09-19T01:57:55.4280346Z [36;1m  echo "::warning::attempt $n failed; retrying in ${_DELAY}s: $_CMD"[0m
+2026-09-19T01:57:55.4280640Z [36;1m  sleep "$_DELAY"[0m
+2026-09-19T01:57:55.4280832Z [36;1mdone[0m
+2026-09-19T01:57:55.4321078Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-09-19T01:57:55.4321363Z env:
+2026-09-19T01:57:55.4321524Z   _CMD: npm ci
+2026-09-19T01:57:55.4321699Z   _ATTEMPTS: 3
+2026-09-19T01:57:55.4321857Z   _DELAY: 10
+2026-09-19T01:57:55.4322028Z ##[endgroup]
+2026-09-19T01:57:55.4383999Z ##[group]attempt 1/3: npm ci
+2026-09-19T01:58:02.9243702Z npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+2026-09-19T01:58:03.0045518Z npm warn deprecated rimraf@2.6.3: Rimraf versions prior to v4 are no longer supported
+2026-09-19T01:58:03.1818077Z npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+2026-09-19T01:58:04.2517064Z npm warn deprecated boolean@3.2.0: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+2026-09-19T01:58:05.1009685Z npm warn deprecated rcedit@5.0.2: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+2026-09-19T01:58:28.7452733Z 
+2026-09-19T01:58:28.7453821Z > openamer-agent@1.0.0 postinstall
+2026-09-19T01:58:28.7454920Z > echo '✅ Browser tools ready. Run: python run_agent.py --help'
+2026-09-19T01:58:28.7455225Z 
+2026-09-19T01:58:28.7455552Z ✅ Browser tools ready. Run: python run_agent.py --help
+2026-09-19T01:58:28.7455833Z 
+2026-09-19T01:58:28.7456094Z added 1581 packages, and audited 1594 packages in 33s
+2026-09-19T01:58:28.7456365Z 
+2026-09-19T01:58:28.7456534Z 412 packages are looking for funding
+2026-09-19T01:58:28.7456850Z   run `npm fund` for details
+2026-09-19T01:58:28.7457034Z 
+2026-09-19T01:58:28.7457234Z 12 vulnerabilities (1 low, 6 moderate, 5 high)
+2026-09-19T01:58:28.7458342Z 
+2026-09-19T01:58:28.7458593Z To address issues that do not require attention, run:
+2026-09-19T01:58:28.7458973Z   npm audit fix
+2026-09-19T01:58:28.7459131Z 
+2026-09-19T01:58:28.7459271Z To address all issues, run:
+2026-09-19T01:58:28.7459575Z   npm audit fix --force
+2026-09-19T01:58:28.7459761Z 
+2026-09-19T01:58:28.7459911Z Run `npm audit` for details.
+2026-09-19T01:58:28.7464017Z ##[endgroup]
+2026-09-19T01:58:28.7507118Z ##[end-action id=__self.retry;outcome=success;conclusion=success;duration_ms=33325]
+2026-09-19T01:58:28.7591520Z ##[group]Run astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d
+2026-09-19T01:58:28.7591834Z with:
+2026-09-19T01:58:28.7592007Z   enable-cache: true
+2026-09-19T01:58:28.7592233Z   cache-dependency-glob: pyproject.toml
+uv.lock
+
+2026-09-19T01:58:28.7592510Z   activate-environment: false
+2026-09-19T01:58:28.7592722Z   no-project: false
+2026-09-19T01:58:28.7592956Z   working-directory: /home/runner/work/openamer/openamer
+2026-09-19T01:58:28.7595300Z   github-token: ***
+2026-09-19T01:58:28.7595493Z   restore-cache: true
+2026-09-19T01:58:28.7595675Z   save-cache: true
+2026-09-19T01:58:28.7595860Z   prune-cache: false
+2026-09-19T01:58:28.7596040Z   cache-python: false
+2026-09-19T01:58:28.7596233Z   ignore-nothing-to-cache: false
+2026-09-19T01:58:28.7596455Z   ignore-empty-workdir: false
+2026-09-19T01:58:28.7596685Z   download-from-astral-mirror: true
+2026-09-19T01:58:28.7596915Z   add-problem-matchers: true
+2026-09-19T01:58:28.7597113Z   quiet: false
+2026-09-19T01:58:28.7597323Z   resolution-strategy: highest
+2026-09-19T01:58:28.7597531Z ##[endgroup]
+2026-09-19T01:58:28.8990931Z Trying to find version for uv in: /home/runner/work/openamer/openamer/uv.toml
+2026-09-19T01:58:28.8991799Z Could not find file: /home/runner/work/openamer/openamer/uv.toml
+2026-09-19T01:58:28.8992598Z Trying to find version for uv in: /home/runner/work/openamer/openamer/pyproject.toml
+2026-09-19T01:58:28.9017248Z Could not determine uv version from uv.toml or pyproject.toml. Falling back to latest.
+2026-09-19T01:58:28.9020695Z Fetching manifest data from https://raw.githubusercontent.com/astral-sh/versions/main/v1/uv.ndjson ...
+2026-09-19T01:58:28.9436616Z Downloading uv from "https://releases.astral.sh/github/uv/releases/download/0.12.17/uv-x86_64-unknown-linux-gnu.tar.gz" ...
+2026-09-19T01:58:29.0762625Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/4ca16402-41c5-4300-9747-60b04fb668ce -f /home/runner/work/_temp/8f54ce73-aba8-4075-a679-4b74848c614a
+2026-09-19T01:58:29.6091490Z Added /home/runner/.local/bin to the path
+2026-09-19T01:58:29.6093758Z Added /opt/hostedtoolcache/uv/0.12.17/x86_64 to the path
+2026-09-19T01:58:29.6095173Z Set UV_PYTHON_INSTALL_DIR to /home/runner/work/_temp/uv-python-dir
+2026-09-19T01:58:29.6112211Z Added /home/runner/work/_temp/uv-python-dir to the path
+2026-09-19T01:58:29.6116154Z Set UV_CACHE_DIR to /home/runner/work/_temp/setup-uv-cache
+2026-09-19T01:58:29.6116674Z Successfully installed uv version 0.12.17
+2026-09-19T01:58:29.6592261Z Searching files using cache dependency glob: /home/runner/work/openamer/openamer/pyproject.toml,/home/runner/work/openamer/openamer/uv.lock
+2026-09-19T01:58:29.6635805Z /home/runner/work/openamer/openamer/pyproject.toml
+2026-09-19T01:58:29.6652274Z /home/runner/work/openamer/openamer/uv.lock
+2026-09-19T01:58:29.6668273Z Found 2 files to hash.
+2026-09-19T01:58:29.6718873Z Trying to restore cache from GitHub Actions cache with key: setup-uv-2-x86_64-unknown-linux-gnu-ubuntu-24.04-3.12.3-037fb1b04eeae41563a55b9b56d9fe73293f919acf7e1cab0ca9cc7226c87a48
+2026-09-19T01:58:29.7127613Z Cache hit for: setup-uv-2-x86_64-unknown-linux-gnu-ubuntu-24.04-3.12.3-037fb1b04eeae41563a55b9b56d9fe73293f919acf7e1cab0ca9cc7226c87a48
+2026-09-19T01:58:29.8306213Z Received 197011 of 197011 (100.0%), 3.3 MBs/sec
+2026-09-19T01:58:29.8306688Z Cache Size: ~0 MB (197011 B)
+2026-09-19T01:58:29.8327187Z [command]/usr/bin/tar -xf /home/runner/work/_temp/5d9f153e-0780-4878-8827-a929a9f360d2/cache.tzst -P -C /home/runner/work/openamer/openamer --use-compress-program unzstd
+2026-09-19T01:58:29.8389044Z Cache restored successfully
+2026-09-19T01:58:29.8393425Z cache restored from GitHub Actions cache with key: setup-uv-2-x86_64-unknown-linux-gnu-ubuntu-24.04-3.12.3-037fb1b04eeae41563a55b9b56d9fe73293f919acf7e1cab0ca9cc7226c87a48
+2026-09-19T01:58:29.9504852Z ##[group]Run uv python install 3.11
+2026-09-19T01:58:29.9505144Z [36;1muv python install 3.11[0m
+2026-09-19T01:58:29.9537031Z shell: /usr/bin/bash -e {0}
+2026-09-19T01:58:29.9537256Z env:
+2026-09-19T01:58:29.9537503Z   UV_PYTHON_INSTALL_DIR: /home/runner/work/_temp/uv-python-dir
+2026-09-19T01:58:29.9537836Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-09-19T01:58:29.9538111Z ##[endgroup]
+2026-09-19T01:58:30.0382638Z Downloading cpython-3.11.16-linux-x86_64-gnu (download) (29.4MiB)
+2026-09-19T01:58:30.6825884Z  Downloaded cpython-3.11.16-linux-x86_64-gnu (download)
+2026-09-19T01:58:30.7047026Z Installed Python 3.11.16 in 741ms
+2026-09-19T01:58:30.7047503Z  + cpython-3.11.16-linux-x86_64-gnu (python3.11)
+2026-09-19T01:58:30.7110031Z Prepare all required actions
+2026-09-19T01:58:30.7150597Z ##[group]Run ./.github/actions/retry
+2026-09-19T01:58:30.7150838Z with:
+2026-09-19T01:58:30.7151081Z   command: uv sync --locked --python 3.11 --extra all --extra dev
+2026-09-19T01:58:30.7151374Z   attempts: 3
+2026-09-19T01:58:30.7151550Z   delay: 10
+2026-09-19T01:58:30.7151723Z   working-directory: .
+2026-09-19T01:58:30.7151910Z env:
+2026-09-19T01:58:30.7152247Z   UV_PYTHON_INSTALL_DIR: /home/runner/work/_temp/uv-python-dir
+2026-09-19T01:58:30.7152565Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-09-19T01:58:30.7152823Z ##[endgroup]
+2026-09-19T01:58:30.7157786Z ##[start-action display=Run set -uo pipefail;id=__self_2.retry]
+2026-09-19T01:58:30.7170489Z ##[group]Run set -uo pipefail
+2026-09-19T01:58:30.7170764Z [36;1mset -uo pipefail[0m
+2026-09-19T01:58:30.7170974Z [36;1m_OUTFILE="$(mktemp)"[0m
+2026-09-19T01:58:30.7171213Z [36;1mtrap 'rm -f "$_OUTFILE"' EXIT[0m
+2026-09-19T01:58:30.7171460Z [36;1mn=0[0m
+2026-09-19T01:58:30.7171632Z [36;1mwhile :; do[0m
+2026-09-19T01:58:30.7171820Z [36;1m  n=$((n + 1))[0m
+2026-09-19T01:58:30.7172144Z [36;1m  echo "::group::attempt $n/$_ATTEMPTS: $_CMD"[0m
+2026-09-19T01:58:30.7172484Z [36;1m  # Run the command, capturing stdout to a temp file while still[0m
+2026-09-19T01:58:30.7172867Z [36;1m  # streaming to the log. We redirect first, then tee the file to[0m
+2026-09-19T01:58:30.7173355Z [36;1m  # stdout — this avoids pipefail + tee exit-code interactions that[0m
+2026-09-19T01:58:30.7173752Z [36;1m  # can cause the if-branch to be skipped under set -e.[0m
+2026-09-19T01:58:30.7174093Z [36;1m  if bash -c "$_CMD" > "$_OUTFILE"; then[0m
+2026-09-19T01:58:30.7174385Z [36;1m    cat "$_OUTFILE"[0m
+2026-09-19T01:58:30.7174753Z [36;1m    echo "::endgroup::"[0m
+2026-09-19T01:58:30.7175067Z [36;1m    # Preserve newlines in the output via heredoc delimiter.[0m
+2026-09-19T01:58:30.7175432Z [36;1m    {[0m
+2026-09-19T01:58:30.7175642Z [36;1m      echo 'stdout<<__RETRY_STDOUT_EOF__'[0m
+2026-09-19T01:58:30.7175884Z [36;1m      cat "$_OUTFILE"[0m
+2026-09-19T01:58:30.7176137Z [36;1m      echo '__RETRY_STDOUT_EOF__'[0m
+2026-09-19T01:58:30.7176440Z [36;1m    } >> "$GITHUB_OUTPUT"[0m
+2026-09-19T01:58:30.7176651Z [36;1m    exit 0[0m
+2026-09-19T01:58:30.7176840Z [36;1m  fi[0m
+2026-09-19T01:58:30.7177018Z [36;1m  echo "::endgroup::"[0m
+2026-09-19T01:58:30.7177318Z [36;1m  if [ "$n" -ge "$_ATTEMPTS" ]; then[0m
+2026-09-19T01:58:30.7177608Z [36;1m    echo "::error::failed after $n attempts: $_CMD"[0m
+2026-09-19T01:58:30.7177867Z [36;1m    exit 1[0m
+2026-09-19T01:58:30.7178046Z [36;1m  fi[0m
+2026-09-19T01:58:30.7178365Z [36;1m  echo "::warning::attempt $n failed; retrying in ${_DELAY}s: $_CMD"[0m
+2026-09-19T01:58:30.7178688Z [36;1m  sleep "$_DELAY"[0m
+2026-09-19T01:58:30.7178887Z [36;1mdone[0m
+2026-09-19T01:58:30.7213606Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-09-19T01:58:30.7214115Z env:
+2026-09-19T01:58:30.7214362Z   UV_PYTHON_INSTALL_DIR: /home/runner/work/_temp/uv-python-dir
+2026-09-19T01:58:30.7214833Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-09-19T01:58:30.7215233Z   _CMD: uv sync --locked --python 3.11 --extra all --extra dev
+2026-09-19T01:58:30.7215497Z   _ATTEMPTS: 3
+2026-09-19T01:58:30.7215675Z   _DELAY: 10
+2026-09-19T01:58:30.7215838Z ##[endgroup]
+2026-09-19T01:58:30.7280543Z ##[group]attempt 1/3: uv sync --locked --python 3.11 --extra all --extra dev
+2026-09-19T01:58:30.8324274Z Using CPython 3.11.16
+2026-09-19T01:58:30.8324842Z Creating virtual environment at: .venv
+2026-09-19T01:58:30.8383551Z Resolved 289 packages in 1ms
+2026-09-19T01:58:30.8555750Z    Building openamer-agent @ file:///home/runner/work/openamer/openamer
+2026-09-19T01:58:30.9178471Z Downloading pillow (6.6MiB)
+2026-09-19T01:58:30.9179108Z Downloading cryptography (4.5MiB)
+2026-09-19T01:58:30.9181416Z Downloading uvloop (3.6MiB)
+2026-09-19T01:58:30.9186868Z Downloading pygments (1.2MiB)
+2026-09-19T01:58:30.9194575Z Downloading ruff (10.7MiB)
+2026-09-19T01:58:30.9195512Z Downloading setuptools (1.0MiB)
+2026-09-19T01:58:30.9203000Z Downloading debugpy (3.0MiB)
+2026-09-19T01:58:30.9211831Z Downloading openai (1.1MiB)
+2026-09-19T01:58:30.9212452Z Downloading pydantic-core (2.0MiB)
+2026-09-19T01:58:30.9214097Z Downloading numpy (16.1MiB)
+2026-09-19T01:58:30.9215883Z Downloading aiohttp (1.7MiB)
+2026-09-19T01:58:30.9256675Z Downloading google-api-python-client (14.3MiB)
+2026-09-19T01:58:30.9257140Z Downloading ty (10.2MiB)
+2026-09-19T01:58:31.1907795Z  Downloaded setuptools
+2026-09-19T01:58:31.1908394Z  Downloaded aiohttp
+2026-09-19T01:58:31.2044234Z  Downloaded pygments
+2026-09-19T01:58:31.2067512Z  Downloaded pydantic-core
+2026-09-19T01:58:31.2077976Z  Downloaded openai
+2026-09-19T01:58:31.2579961Z  Downloaded uvloop
+2026-09-19T01:58:31.2697204Z  Downloaded debugpy
+2026-09-19T01:58:31.2697869Z  Downloaded cryptography
+2026-09-19T01:58:31.2748069Z  Downloaded pillow
+2026-09-19T01:58:31.3601771Z  Downloaded ruff
+2026-09-19T01:58:31.3860625Z  Downloaded ty
+2026-09-19T01:58:31.4501994Z  Downloaded google-api-python-client
+2026-09-19T01:58:31.4759144Z  Downloaded numpy
+2026-09-19T01:58:32.7753990Z       Built openamer-agent @ file:///home/runner/work/openamer/openamer
+2026-09-19T01:58:32.7776170Z Prepared 104 packages in 1.93s
+2026-09-19T01:58:32.9315610Z Installed 104 packages in 152ms
+2026-09-19T01:58:32.9354958Z  + agent-client-protocol==0.9.0
+2026-09-19T01:58:32.9384932Z  + aiohappyeyeballs==2.6.1
+2026-09-19T01:58:32.9394990Z  + aiohttp==3.14.1
+2026-09-19T01:58:32.9395253Z  + aiosignal==1.4.0
+2026-09-19T01:58:32.9395455Z  + annotated-doc==0.0.4
+2026-09-19T01:58:32.9395675Z  + annotated-types==0.7.0
+2026-09-19T01:58:32.9395878Z  + anyio==4.12.1
+2026-09-19T01:58:32.9396059Z  + attrs==25.4.0
+2026-09-19T01:58:32.9396238Z  + certifi==2026.5.20
+2026-09-19T01:58:32.9396420Z  + cffi==2.0.0
+2026-09-19T01:58:32.9396617Z  + charset-normalizer==3.4.4
+2026-09-19T01:58:32.9396851Z  + click==8.3.1
+2026-09-19T01:58:32.9397031Z  + croniter==6.0.0
+2026-09-19T01:58:32.9397227Z  + cryptography==50.0.0
+2026-09-19T01:58:32.9397423Z  + debugpy==1.8.20
+2026-09-19T01:58:32.9397604Z  + defusedxml==0.7.1
+2026-09-19T01:58:32.9397788Z  + distro==1.9.0
+2026-09-19T01:58:32.9397989Z  + fastapi==0.133.1
+2026-09-19T01:58:32.9398160Z  + fire==0.7.1
+2026-09-19T01:58:32.9398340Z  + frozenlist==1.8.0
+2026-09-19T01:58:32.9398694Z  + google-api-core==2.30.3
+2026-09-19T01:58:32.9399042Z  + google-api-python-client==2.194.0
+2026-09-19T01:58:32.9399407Z  + google-auth==2.55.1
+2026-09-19T01:58:32.9399834Z  + google-auth-httplib2==0.3.1
+2026-09-19T01:58:32.9400870Z  + google-auth-oauthlib==1.3.1
+2026-09-19T01:58:32.9401764Z  + googleapis-common-protos==1.73.0
+2026-09-19T01:58:32.9402158Z  + h11==0.16.0
+2026-09-19T01:58:32.9402462Z  + httpcore==1.0.9
+2026-09-19T01:58:32.9402800Z  + httplib2==0.31.2
+2026-09-19T01:58:32.9403099Z  + httptools==0.7.1
+2026-09-19T01:58:32.9403402Z  + httpx==0.28.1
+2026-09-19T01:58:32.9403957Z  + httpx-sse==0.4.3
+2026-09-19T01:58:32.9404260Z  + idna==3.15
+2026-09-19T01:58:32.9404715Z  + iniconfig==2.3.0
+2026-09-19T01:58:32.9405061Z  + jinja2==3.1.6
+2026-09-19T01:58:32.9405383Z  + jiter==0.13.0
+2026-09-19T01:58:32.9405674Z  + jsonschema==4.26.0
+2026-09-19T01:58:32.9406095Z  + jsonschema-specifications==2025.9.1
+2026-09-19T01:58:32.9406489Z  + markdown==3.10.2
+2026-09-19T01:58:32.9406876Z  + markdown-it-py==4.0.0
+2026-09-19T01:58:32.9407276Z  + markupsafe==3.0.3
+2026-09-19T01:58:32.9407631Z  + mcp==1.26.0
+2026-09-19T01:58:32.9407917Z  + mdurl==0.1.2
+2026-09-19T01:58:32.9408305Z  + multidict==6.7.1
+2026-09-19T01:58:32.9408640Z  + numpy==2.4.3
+2026-09-19T01:58:32.9408954Z  + oauthlib==3.3.1
+2026-09-19T01:58:32.9409258Z  + openai==2.24.0
+2026-09-19T01:58:32.9409910Z  + openamer-agent==2026.9.18 (from file:///home/runner/work/openamer/openamer)
+2026-09-19T01:58:32.9410599Z  + packaging==26.0
+2026-09-19T01:58:32.9410909Z  + pathspec==1.1.1
+2026-09-19T01:58:32.9411207Z  + pillow==12.3.0
+2026-09-19T01:58:32.9411521Z  + pluggy==1.6.0
+2026-09-19T01:58:32.9412019Z  + prompt-toolkit==3.0.52
+2026-09-19T01:58:32.9412350Z  + propcache==0.4.1
+2026-09-19T01:58:32.9412654Z  + proto-plus==1.27.2
+2026-09-19T01:58:32.9412975Z  + protobuf==6.33.5
+2026-09-19T01:58:32.9413271Z  + psutil==7.2.2
+2026-09-19T01:58:32.9413577Z  + ptyprocess==0.7.0
+2026-09-19T01:58:32.9413930Z  + pyasn1==0.6.3
+2026-09-19T01:58:32.9414254Z  + pyasn1-modules==0.4.2
+2026-09-19T01:58:32.9414964Z  + pycparser==3.0
+2026-09-19T01:58:32.9415247Z  + pydantic==2.13.4
+2026-09-19T01:58:32.9415523Z  + pydantic-core==2.46.4
+2026-09-19T01:58:32.9415809Z  + pydantic-settings==2.13.1
+2026-09-19T01:58:32.9416107Z  + pygments==2.19.2
+2026-09-19T01:58:32.9416359Z  + pyjwt==2.13.0
+2026-09-19T01:58:32.9416625Z  + pyparsing==3.3.2
+2026-09-19T01:58:32.9416892Z  + pytest==9.0.2
+2026-09-19T01:58:32.9417181Z  + pytest-asyncio==1.3.0
+2026-09-19T01:58:32.9417514Z  + python-dateutil==2.9.0.post0
+2026-09-19T01:58:32.9417862Z  + python-dotenv==1.2.2
+2026-09-19T01:58:32.9418155Z  + python-multipart==0.0.27
+2026-09-19T01:58:32.9418468Z  + pytz==2025.2
+2026-09-19T01:58:32.9418734Z  + pyyaml==6.0.3
+2026-09-19T01:58:32.9419011Z  + referencing==0.37.0
+2026-09-19T01:58:32.9419305Z  + requests==2.33.0
+2026-09-19T01:58:32.9419597Z  + requests-oauthlib==2.0.0
+2026-09-19T01:58:32.9419899Z  + rich==14.3.3
+2026-09-19T01:58:32.9420152Z  + rpds-py==0.30.0
+2026-09-19T01:58:32.9420431Z  + ruamel-yaml==0.18.17
+2026-09-19T01:58:32.9420724Z  + ruamel-yaml-clib==0.2.15
+2026-09-19T01:58:32.9421027Z  + ruff==0.15.10
+2026-09-19T01:58:32.9421284Z  + setuptools==81.0.0
+2026-09-19T01:58:32.9421584Z  + simple-term-menu==1.6.6
+2026-09-19T01:58:32.9421882Z  + six==1.17.0
+2026-09-19T01:58:32.9422145Z  + sniffio==1.3.1
+2026-09-19T01:58:32.9422404Z  + socksio==1.0.0
+2026-09-19T01:58:32.9422669Z  + sse-starlette==3.3.2
+2026-09-19T01:58:32.9422957Z  + starlette==1.0.1
+2026-09-19T01:58:32.9423138Z  + tenacity==9.1.4
+2026-09-19T01:58:32.9423320Z  + termcolor==3.3.0
+2026-09-19T01:58:32.9423497Z  + tqdm==4.67.3
+2026-09-19T01:58:32.9423683Z  + ty==0.0.21
+2026-09-19T01:58:32.9423871Z  + typing-extensions==4.15.0
+2026-09-19T01:58:32.9424092Z  + typing-inspection==0.4.2
+2026-09-19T01:58:32.9424299Z  + uritemplate==4.2.0
+2026-09-19T01:58:32.9424761Z  + urllib3==2.7.0
+2026-09-19T01:58:32.9424946Z  + uvicorn==0.41.0
+2026-09-19T01:58:32.9425122Z  + uvloop==0.22.1
+2026-09-19T01:58:32.9425303Z  + watchfiles==1.1.1
+2026-09-19T01:58:32.9425487Z  + wcwidth==0.6.0
+2026-09-19T01:58:32.9425671Z  + websockets==15.0.1
+2026-09-19T01:58:32.9425851Z  + yarl==1.22.0
+2026-09-19T01:58:32.9426058Z  + youtube-transcript-api==1.2.4
+2026-09-19T01:58:32.9511720Z ##[endgroup]
+2026-09-19T01:58:32.9538123Z ##[end-action id=__self_2.retry;outcome=success;conclusion=success;duration_ms=2237]
+2026-09-19T01:58:32.9610796Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-09-19T01:58:32.9611988Z ##[group]Run actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809
+2026-09-19T01:58:32.9612276Z with:
+2026-09-19T01:58:32.9612469Z   path: apps/desktop/e2e/*-snapshots
+2026-09-19T01:58:32.9612716Z   key: visual-baselines-main
+2026-09-19T01:58:32.9612958Z   restore-keys: visual-baselines-main
+
+2026-09-19T01:58:32.9613196Z   enableCrossOsArchive: false
+2026-09-19T01:58:32.9613408Z   fail-on-cache-miss: false
+2026-09-19T01:58:32.9613615Z   lookup-only: false
+2026-09-19T01:58:32.9613795Z   save-always: false
+2026-09-19T01:58:32.9613966Z env:
+2026-09-19T01:58:32.9614196Z   UV_PYTHON_INSTALL_DIR: /home/runner/work/_temp/uv-python-dir
+2026-09-19T01:58:32.9614699Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-09-19T01:58:32.9614949Z ##[endgroup]
+2026-09-19T01:58:33.0477217Z (node:2910) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-09-19T01:58:33.0478305Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-09-19T01:58:33.1067480Z Cache hit for: visual-baselines-main
+2026-09-19T01:58:33.1153019Z (node:2910) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-09-19T01:58:33.1731829Z Received 336291 of 336291 (100.0%), 8.9 MBs/sec
+2026-09-19T01:58:33.1732409Z Cache Size: ~0 MB (336291 B)
+2026-09-19T01:58:33.1755864Z [command]/usr/bin/tar -xf /home/runner/work/_temp/1d2b25f4-fc82-477e-adbf-ad4373fcbe5f/cache.tzst -P -C /home/runner/work/openamer/openamer --use-compress-program unzstd
+2026-09-19T01:58:33.1806360Z Cache restored successfully
+2026-09-19T01:58:33.1865625Z Cache restored from key: visual-baselines-main
+2026-09-19T01:58:33.1947747Z ##[group]Run if [ "main" = "main" ]; then
+2026-09-19T01:58:33.1948040Z [36;1mif [ "main" = "main" ]; then[0m
+2026-09-19T01:58:33.1948364Z [36;1m  echo "On main — generating/updating baseline screenshots"[0m
+2026-09-19T01:58:33.1948796Z [36;1m  npm run build && xvfb-run -a --server-args="-screen 0 1280x1024x24" \[0m
+2026-09-19T01:58:33.1949207Z [36;1m    npx playwright test --reporter=list --update-snapshots[0m
+2026-09-19T01:58:33.1949496Z [36;1melse[0m
+2026-09-19T01:58:33.1949744Z [36;1m  echo "On PR — comparing against cached baselines"[0m
+2026-09-19T01:58:33.1950262Z [36;1m  npm run build && xvfb-run -a --server-args="-screen 0 1280x1024x24" \[0m
+2026-09-19T01:58:33.1950798Z [36;1m    npx playwright test --reporter=list[0m
+2026-09-19T01:58:33.1951168Z [36;1mfi[0m
+2026-09-19T01:58:33.1983162Z shell: /usr/bin/bash -e {0}
+2026-09-19T01:58:33.1983382Z env:
+2026-09-19T01:58:33.1983637Z   UV_PYTHON_INSTALL_DIR: /home/runner/work/_temp/uv-python-dir
+2026-09-19T01:58:33.1984008Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-09-19T01:58:33.1984265Z   CI: true
+2026-09-19T01:58:33.1984595Z   OPENROUTER_API_KEY: 
+2026-09-19T01:58:33.1984789Z   OPENAI_API_KEY: 
+2026-09-19T01:58:33.1984974Z   OPENAMER_API_KEY: 
+2026-09-19T01:58:33.1985162Z ##[endgroup]
+2026-09-19T01:58:33.2034116Z On main — generating/updating baseline screenshots
+2026-09-19T01:58:33.3055708Z 
+2026-09-19T01:58:33.3071409Z > openamer@2026.09.18 prebuild
+2026-09-19T01:58:33.3073088Z > npm run clean
+2026-09-19T01:58:33.3073429Z 
+2026-09-19T01:58:33.4089680Z 
+2026-09-19T01:58:33.4090037Z > openamer@2026.09.18 clean
+2026-09-19T01:58:33.4090708Z > npm run clean:e2e && npm run clean:renderer && npm run clean:electron
+2026-09-19T01:58:33.4091107Z 
+2026-09-19T01:58:33.5125179Z 
+2026-09-19T01:58:33.5125853Z > openamer@2026.09.18 clean:e2e
+2026-09-19T01:58:33.5126494Z > tsc --build tsconfig.e2e.json --clean
+2026-09-19T01:58:33.5126866Z 
+2026-09-19T01:58:33.7389388Z 
+2026-09-19T01:58:33.7389948Z > openamer@2026.09.18 clean:renderer
+2026-09-19T01:58:33.7390836Z > tsc --build tsconfig.json --clean
+2026-09-19T01:58:33.7391313Z 
+2026-09-19T01:58:33.9249240Z 
+2026-09-19T01:58:33.9249747Z > openamer@2026.09.18 clean:electron
+2026-09-19T01:58:33.9250166Z > tsc --build tsconfig.electron.json --clean
+2026-09-19T01:58:33.9250358Z 
+2026-09-19T01:58:34.0030753Z 
+2026-09-19T01:58:34.0031335Z > openamer@2026.09.18 build
+2026-09-19T01:58:34.0032600Z > node scripts/assert-root-install.mjs && node scripts/write-build-stamp.mjs && vite build && node scripts/bundle-electron-main.mjs && node scripts/stage-native-deps.mjs
+2026-09-19T01:58:34.0033436Z 
+2026-09-19T01:58:34.0520488Z [write-build-stamp] wrote apps/desktop/build/install-stamp.json -> 711feb164973 (main)
+2026-09-19T01:58:34.2977653Z [36mvite v8.1.0 [32mbuilding client environment for production...[36m[39m
+2026-09-19T01:58:34.3050369Z [2K
+2026-09-19T01:58:35.1805510Z Found 1 warning while optimizing generated CSS:
+2026-09-19T01:58:35.1824845Z 
+2026-09-19T01:58:35.1826088Z [2m│   -moz-tab-size: 2;[22m
+2026-09-19T01:58:35.1854980Z [2m│ }[22m
+2026-09-19T01:58:35.1885248Z [2m│[22m text-* variant utilities. */ .btn-arc {
+2026-09-19T01:58:35.1915273Z [2m┆[22m      [33m[2m^--[22m Unexpected token Delim('*')[39m
+2026-09-19T01:58:35.1915968Z [2m┆[22m
+2026-09-19T01:58:35.1945678Z [2m│   background-image: linear-gradient(110deg, #5b6cff 0%, #8b5cf6 28%, #d946ef 58%, #fb7185 82%, #fb923c 100%);[22m
+2026-09-19T01:58:35.1975062Z [2m│   color: #fff;[22m
+2026-09-19T01:58:35.1976238Z 
+2026-09-19T01:58:35.4499492Z transforming...✓ 4440 modules transformed.
+2026-09-19T01:58:36.0832676Z rendering chunks...
+2026-09-19T01:58:37.9306100Z computing gzip size...
+2026-09-19T01:58:38.2231456Z dist/index.html                                            1.82 kB │ gzip:     0.83 kB
+2026-09-19T01:58:38.2232225Z dist/assets/KaTeX_Size3-Regular-CTq5MqoE.woff              4.42 kB
+2026-09-19T01:58:38.2232952Z dist/assets/KaTeX_Size4-Regular-Dl5lxZxV.woff2             4.92 kB
+2026-09-19T01:58:38.2234223Z dist/assets/KaTeX_Size2-Regular-Dy4dx90m.woff2             5.20 kB
+2026-09-19T01:58:38.2235240Z dist/assets/feature-memory-CmUcl3ix.webp                   5.21 kB
+2026-09-19T01:58:38.2236001Z dist/assets/feature-automation-Cfh3yZ0u.webp               5.41 kB
+2026-09-19T01:58:38.2236721Z dist/assets/KaTeX_Size1-Regular-mCD8mA8B.woff2             5.46 kB
+2026-09-19T01:58:38.2237413Z dist/assets/KaTeX_Size4-Regular-BF-4gkZK.woff              5.98 kB
+2026-09-19T01:58:38.2238071Z dist/assets/KaTeX_Size2-Regular-oD1tc_U0.woff              6.18 kB
+2026-09-19T01:58:38.2238716Z dist/assets/KaTeX_Size1-Regular-C195tn64.woff              6.49 kB
+2026-09-19T01:58:38.2239390Z dist/assets/KaTeX_Caligraphic-Regular-Di6jR-x-.woff2       6.90 kB
+2026-09-19T01:58:38.2240111Z dist/assets/KaTeX_Caligraphic-Bold-Dq_IR9rO.woff2          6.91 kB
+2026-09-19T01:58:38.2240833Z dist/assets/KaTeX_Size3-Regular-DgpXs0kz.ttf               7.58 kB
+2026-09-19T01:58:38.2241558Z dist/assets/KaTeX_Caligraphic-Regular-CTRA-rTL.woff        7.65 kB
+2026-09-19T01:58:38.2242296Z dist/assets/feature-connect-CJaRKk-v.webp                  7.67 kB
+2026-09-19T01:58:38.2243030Z dist/assets/KaTeX_Caligraphic-Bold-BEiXGLvX.woff           7.71 kB
+2026-09-19T01:58:38.2243718Z dist/assets/feature-sandbox-DvwEVQkh.webp                  7.85 kB
+2026-09-19T01:58:38.2244578Z dist/assets/KaTeX_Script-Regular-D3wIWfF6.woff2            9.64 kB
+2026-09-19T01:58:38.2245293Z dist/assets/KaTeX_SansSerif-Regular-DDBCnlJ7.woff2        10.34 kB
+2026-09-19T01:58:38.2245985Z dist/assets/KaTeX_Size4-Regular-DWFBv043.ttf              10.36 kB
+2026-09-19T01:58:38.2246644Z dist/assets/KaTeX_Script-Regular-D5yQViql.woff            10.58 kB
+2026-09-19T01:58:38.2247343Z dist/assets/KaTeX_Fraktur-Regular-CTYiF6lA.woff2          11.31 kB
+2026-09-19T01:58:38.2248015Z dist/assets/KaTeX_Fraktur-Bold-CL6g_b3V.woff2             11.34 kB
+2026-09-19T01:58:38.2248660Z dist/assets/KaTeX_Size2-Regular-B7gKUWhC.ttf              11.50 kB
+2026-09-19T01:58:38.2249363Z dist/assets/KaTeX_SansSerif-Italic-C3H0VqGB.woff2         12.02 kB
+2026-09-19T01:58:38.2250064Z dist/assets/KaTeX_SansSerif-Bold-D1sUS0GD.woff2           12.21 kB
+2026-09-19T01:58:38.2251189Z dist/assets/KaTeX_Size1-Regular-Dbsnue_I.ttf              12.22 kB
+2026-09-19T01:58:38.2251870Z dist/assets/KaTeX_SansSerif-Regular-CS6fqUqJ.woff         12.31 kB
+2026-09-19T01:58:38.2252503Z dist/assets/KaTeX_Caligraphic-Regular-wX97UBjC.ttf        12.34 kB
+2026-09-19T01:58:38.2253103Z dist/assets/KaTeX_Caligraphic-Bold-ATXxdsX0.ttf           12.36 kB
+2026-09-19T01:58:38.2253811Z dist/assets/KaTeX_Fraktur-Regular-Dxdc4cR9.woff           13.20 kB
+2026-09-19T01:58:38.2254586Z dist/assets/KaTeX_Fraktur-Bold-BsDP51OF.woff              13.29 kB
+2026-09-19T01:58:38.2255208Z dist/assets/KaTeX_Typewriter-Regular-CO6r4hn1.woff2       13.56 kB
+2026-09-19T01:58:38.2255823Z dist/assets/KaTeX_SansSerif-Italic-DN2j7dab.woff          14.11 kB
+2026-09-19T01:58:38.2256450Z dist/assets/KaTeX_SansSerif-Bold-DbIhKOiC.woff            14.40 kB
+2026-09-19T01:58:38.2257169Z dist/assets/KaTeX_Typewriter-Regular-C0xS9mPB.woff        16.02 kB
+2026-09-19T01:58:38.2257887Z dist/assets/KaTeX_Math-BoldItalic-CZnvNsCZ.woff2          16.40 kB
+2026-09-19T01:58:38.2258607Z dist/assets/KaTeX_Math-Italic-t53AETM-.woff2              16.44 kB
+2026-09-19T01:58:38.2259318Z dist/assets/KaTeX_Script-Regular-C5JkGWo-.ttf             16.64 kB
+2026-09-19T01:58:38.2260032Z dist/assets/KaTeX_Main-BoldItalic-DxDJ3AOS.woff2          16.78 kB
+2026-09-19T01:58:38.2260742Z dist/assets/KaTeX_Main-Italic-NWA7e6Wa.woff2              16.98 kB
+2026-09-19T01:58:38.2261445Z dist/assets/KaTeX_Math-BoldItalic-iY-2wyZ7.woff           18.66 kB
+2026-09-19T01:58:38.2262149Z dist/assets/KaTeX_Math-Italic-DA0__PXp.woff               18.74 kB
+2026-09-19T01:58:38.2262858Z dist/assets/KaTeX_Main-BoldItalic-SpSLRI95.woff           19.41 kB
+2026-09-19T01:58:38.2263578Z dist/assets/KaTeX_SansSerif-Regular-BNo7hRIc.ttf          19.43 kB
+2026-09-19T01:58:38.2264809Z dist/assets/KaTeX_Fraktur-Regular-CB_wures.ttf            19.57 kB
+2026-09-19T01:58:38.2265446Z dist/assets/KaTeX_Fraktur-Bold-BdnERNNW.ttf               19.58 kB
+2026-09-19T01:58:38.2266103Z dist/assets/KaTeX_Main-Italic-BMLOBm91.woff               19.67 kB
+2026-09-19T01:58:38.2266732Z dist/assets/KaTeX_SansSerif-Italic-YYjJ1zSn.ttf           22.36 kB
+2026-09-19T01:58:38.2267387Z dist/assets/KaTeX_SansSerif-Bold-CFMepnvq.ttf             24.50 kB
+2026-09-19T01:58:38.2268112Z dist/assets/KaTeX_Main-Bold-Cx986IdX.woff2                25.32 kB
+2026-09-19T01:58:38.2268764Z dist/assets/KaTeX_Main-Regular-B22Nviop.woff2             26.27 kB
+2026-09-19T01:58:38.2269420Z dist/assets/KaTeX_Typewriter-Regular-D3Ib7_Hf.ttf         27.55 kB
+2026-09-19T01:58:38.2270115Z dist/assets/KaTeX_AMS-Regular-BQhdFMY1.woff2              28.07 kB
+2026-09-19T01:58:38.2270775Z dist/assets/KaTeX_Main-Bold-Jm3AIy58.woff                 29.91 kB
+2026-09-19T01:58:38.2271441Z dist/assets/KaTeX_Main-Regular-Dr94JaBh.woff              30.77 kB
+2026-09-19T01:58:38.2272134Z dist/assets/KaTeX_Math-BoldItalic-B3XSjfu4.ttf            31.19 kB
+2026-09-19T01:58:38.2272800Z dist/assets/KaTeX_Math-Italic-flOr_0UB.ttf                31.30 kB
+2026-09-19T01:58:38.2273532Z dist/assets/KaTeX_Main-BoldItalic-DzxPMmG6.ttf            32.96 kB
+2026-09-19T01:58:38.2274150Z dist/assets/KaTeX_AMS-Regular-DMm9YOAa.woff               33.51 kB
+2026-09-19T01:58:38.2274886Z dist/assets/KaTeX_Main-Italic-3WenGoN9.ttf                33.58 kB
+2026-09-19T01:58:38.2275502Z dist/assets/KaTeX_Main-Bold-waoOVXN0.ttf                  51.33 kB
+2026-09-19T01:58:38.2276105Z dist/assets/KaTeX_Main-Regular-ypZvNtVU.ttf               53.58 kB
+2026-09-19T01:58:38.2276711Z dist/assets/Collapse-Bold-mgICk9-_.woff2                  59.14 kB
+2026-09-19T01:58:38.2277312Z dist/assets/KaTeX_AMS-Regular-DRggAlZN.ttf                63.63 kB
+2026-09-19T01:58:38.2277937Z dist/assets/JetBrainsMono-Regular-CA-Os4ii.woff2          92.38 kB
+2026-09-19T01:58:38.2278588Z dist/assets/JetBrainsMono-Bold-CUogYd9I.woff2             94.62 kB
+2026-09-19T01:58:38.2279223Z dist/assets/JetBrainsMono-Italic-LIR7wr3B.woff2           96.42 kB
+2026-09-19T01:58:38.2279844Z dist/assets/codicon-DjkITdqj.ttf                         125.82 kB
+2026-09-19T01:58:38.2280834Z dist/assets/index-CFtpsvOP.css                           321.61 kB │ gzip:    54.29 kB
+2026-09-19T01:58:38.2281672Z dist/assets/index-CgcFfKIL.js                         29,056.04 kB │ gzip: 6,343.54 kB
+2026-09-19T01:58:38.2282057Z 
+2026-09-19T01:58:38.2282341Z [33m[plugin builtin:vite-reporter] 
+2026-09-19T01:58:38.2282892Z (!) Some chunks are larger than 25000 kB after minification. Consider:
+2026-09-19T01:58:38.2283478Z - Using dynamic import() to code-split the application
+2026-09-19T01:58:38.2284574Z - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+2026-09-19T01:58:38.2285676Z - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.[39m
+2026-09-19T01:58:38.2286245Z [32m✓ built in 3.93s[39m
+2026-09-19T01:58:38.3564247Z 
+2026-09-19T01:58:38.3564986Z   dist/electron-main.mjs  634.3kb
+2026-09-19T01:58:38.3565277Z 
+2026-09-19T01:58:38.3565693Z ⚡ Done in 38ms
+2026-09-19T01:58:38.3573716Z bundled /home/runner/work/openamer/openamer/apps/desktop/dist/electron-main.mjs
+2026-09-19T01:58:38.3598439Z 
+2026-09-19T01:58:38.3598706Z   dist/electron-preload.js  17.4kb
+2026-09-19T01:58:38.3598912Z 
+2026-09-19T01:58:38.3599106Z ⚡ Done in 2ms
+2026-09-19T01:58:38.3601592Z bundled /home/runner/work/openamer/openamer/apps/desktop/dist/electron-preload.js
+2026-09-19T01:58:38.3943365Z [stage-native-deps] staged node-pty (linux-x64) -> /home/runner/work/openamer/openamer/apps/desktop/dist/node_modules/node-pty
+2026-09-19T01:58:38.3978038Z 
+2026-09-19T01:58:38.3978326Z > openamer@2026.09.18 postbuild
+2026-09-19T01:58:38.3978784Z > node scripts/assert-dist-built.mjs
+2026-09-19T01:58:38.3979043Z 
+2026-09-19T01:58:38.4215532Z ✓ assert-dist-built: dist/index.html + assets present
+2026-09-19T01:58:40.2890383Z 
+2026-09-19T01:58:40.2892040Z Running 44 tests using 2 workers
+2026-09-19T01:58:40.2892276Z 
+2026-09-19T01:58:45.3886235Z   ✓   1 e2e/boot-failure.spec.ts:35:3 › boot failure with dead backend › app shows error state (4.2s)
+2026-09-19T01:58:45.6077468Z   ✓   2 e2e/boot.spec.ts:35:3 › dev-mode boot with mock backend › window opens with OpenAmer title (223ms)
+2026-09-19T01:58:46.0423112Z   ✓   4 e2e/boot.spec.ts:40:3 › dev-mode boot with mock backend › renderer mounts and shows DOM content (277ms)
+2026-09-19T01:58:46.1116279Z [visual-baseline] updated /home/runner/work/openamer/openamer/apps/desktop/e2e/boot-failure.spec.ts-snapshots/boot-failure-error-state-linux.png
+2026-09-19T01:58:46.6504808Z   ✓   3 e2e/boot-failure.spec.ts:44:3 › boot failure with dead backend › screenshot of error state (847ms)
+2026-09-19T01:58:52.5916992Z   ✓   5 e2e/boot.spec.ts:53:3 › dev-mode boot with mock backend › backend boots and app becomes ready (6.2s)
+2026-09-19T01:58:53.3168820Z [visual-baseline] updated /home/runner/work/openamer/openamer/apps/desktop/e2e/boot.spec.ts-snapshots/boot-ready-linux.png
+2026-09-19T01:58:53.9700909Z   ✓   7 e2e/boot.spec.ts:60:3 › dev-mode boot with mock backend › screenshot after boot (891ms)
+2026-09-19T01:59:01.2839221Z   ✓   6 e2e/chat.spec.ts:30:3 › chat interaction with mock backend › send a message and receive a response (7.7s)
+2026-09-19T01:59:02.2482305Z [visual-baseline] updated /home/runner/work/openamer/openamer/apps/desktop/e2e/chat.spec.ts-snapshots/chat-with-messages-linux.png
+2026-09-19T01:59:02.4772819Z   ✓   9 e2e/chat.spec.ts:85:3 › chat interaction with mock backend › screenshot of chat with messages (1.1s)
+2026-09-19T01:59:10.0317155Z   ✘  10 e2e/chat.spec.ts:89:3 › chat interaction with mock backend › offers stop, steer, and queue actions while busy (6.8s)
+2026-09-19T01:59:12.5299701Z   ✓   8 e2e/correction-session-switch.spec.ts:147:3 › correction session switch › keeps a live correction in place and does not duplicate its original prompt after switching sessions (18.5s)
+2026-09-19T01:59:25.6518712Z   ✓  12 e2e/correction-session-switch.spec.ts:186:3 › correction session switch › keeps an inference-time correction visible through a warm session switch (13.1s)
+2026-09-19T01:59:26.2916556Z   ✘  11 e2e/chat.spec.ts:89:3 › chat interaction with mock backend › offers stop, steer, and queue actions while busy (retry #1) (9.5s)
+2026-09-19T01:59:34.9708521Z   ✓  13 e2e/hidden-history-messages.spec.ts:75:1 › resume hides real context-compaction handoffs (9.3s)
+2026-09-19T01:59:42.7477002Z   ✓  14 e2e/image-attachment-resume.spec.ts:142:3 › attached image resume › renders a persisted attachment as a thumbnail on first open and after a cold reload (15.5s)
+2026-09-19T01:59:46.5290137Z   ✓  15 e2e/hidden-history-messages.spec.ts:99:1 › live verify-on-stop continuations stay out of the transcript (11.5s)
+2026-09-19T01:59:53.3246757Z   ✓  16 e2e/interim-messages.spec.ts:145:3 › interim assistant messages — flag ON (default) › all interim texts survive alongside the final response (5.4s)
+2026-09-19T02:00:03.5115959Z   ✓  18 e2e/interim-messages.spec.ts:190:3 › interim assistant messages — flag OFF › only the final response is visible; all interim texts are wiped (6.1s)
+2026-09-19T02:00:03.5375659Z   -  19 e2e/launch-packaged-app.spec.ts:37:1 › window opens with the OpenAmer title
+2026-09-19T02:00:03.5376917Z   -  20 e2e/launch-packaged-app.spec.ts:42:1 › renderer loads and shows DOM content
+2026-09-19T02:00:03.5379510Z   -  21 e2e/launch-packaged-app.spec.ts:49:1 › boot progress overlay fades out or shows error state
+2026-09-19T02:00:03.5552619Z   -  22 e2e/launch-packaged-app.spec.ts:79:1 › can capture a screenshot for the CI artifact
+2026-09-19T02:00:04.8754282Z   ✓  17 e2e/large-session-resume.spec.ts:184:3 › large session resume › cold resume of an unchanged session has one user row and bounded transcript paints (18.3s)
+2026-09-19T02:00:04.8868940Z   -  24 e2e/large-session-resume.spec.ts:192:3 › large session resume › fast resume of an unchanged session has one user row and bounded transcript paints
+2026-09-19T02:00:07.9603458Z   ✓  23 e2e/mock-backend-setup.spec.ts:40:3 › mock backend gets past setup screen › onboarding overlay is not shown (18ms)
+2026-09-19T02:00:08.1585025Z   ✓  26 e2e/mock-backend-setup.spec.ts:58:3 › mock backend gets past setup screen › chat composer is visible (127ms)
+2026-09-19T02:00:08.8501374Z   ✓  27 e2e/mock-backend-setup.spec.ts:68:3 › mock backend gets past setup screen › can type into the composer (582ms)
+2026-09-19T02:00:09.4870107Z [visual-baseline] updated /home/runner/work/openamer/openamer/apps/desktop/e2e/mock-backend-setup.spec.ts-snapshots/mock-backend-chat-ready-linux.png
+2026-09-19T02:00:09.8395124Z   ✓  28 e2e/mock-backend-setup.spec.ts:84:3 › mock backend gets past setup screen › screenshot shows chat UI without setup screen (717ms)
+2026-09-19T02:00:11.9410727Z   ✓  29 e2e/onboarding.spec.ts:29:3 › onboarding with no provider configured › onboarding overlay appears on first boot (2.1s)
+2026-09-19T02:00:12.1859063Z   ✓  30 e2e/onboarding.spec.ts:38:3 › onboarding with no provider configured › onboarding shows provider options or API key form (170ms)
+2026-09-19T02:00:12.8732124Z [visual-baseline] updated /home/runner/work/openamer/openamer/apps/desktop/e2e/onboarding.spec.ts-snapshots/onboarding-overlay-linux.png
+2026-09-19T02:00:13.5216035Z   ✓  31 e2e/onboarding.spec.ts:67:3 › onboarding with no provider configured › screenshot of onboarding overlay (972ms)
+2026-09-19T02:00:24.1034308Z   ✓  32 e2e/queue-turn-boundary.spec.ts:79:3 › queued prompt turn boundary › submits a queued prompt only after the active turn completes (10.6s)
+2026-09-19T02:00:26.9885556Z   ✓  25 e2e/large-session-resume.spec.ts:208:5 › large session resume › fast resume keeps background inference attached without duplicate messages (22.1s)
+2026-09-19T02:00:32.3300540Z   ✓  33 e2e/queue-turn-boundary.spec.ts:103:3 › queued prompt turn boundary › places a steer prompt before the reply it redirects (8.2s)
+2026-09-19T02:00:45.0476706Z   ✓  35 e2e/session-compression-and-queue-stop.spec.ts:52:3 › session compression › compresses an existing session and accepts a follow-up turn on its continuation (7.8s)
+2026-09-19T02:00:53.8410888Z   ✓  34 e2e/large-session-resume.spec.ts:208:5 › large session resume › cold resume keeps background inference attached without duplicate messages (26.8s)
+2026-09-19T02:00:58.6709232Z   ✓  36 e2e/session-compression-and-queue-stop.spec.ts:118:3 › session compression in progress › queues an Enter-submitted draft instead of steering while compaction is active (7.3s)
+2026-09-19T02:01:08.6960689Z   ✓  38 e2e/submit-drift.spec.ts:28:1 › submits while same-chat search tokens churn during new-session creation (4.3s)
+2026-09-19T02:01:23.1924596Z   ✓  39 e2e/tile-unread-bug.spec.ts:109:3 › sidebar states — tab (hidden) unread is correct › session opened as a tab (not visible) correctly gets unread dot (10.3s)
+2026-09-19T02:01:23.1934297Z   -  40 e2e/tile-unread-bug.spec.ts:156:3 › sidebar states — split (visible) unread bug (RED) › session visible in a split tile does NOT get unread dot when it finishes
+2026-09-19T02:01:29.4889229Z   ✓  37 e2e/sidebar-states.spec.ts:71:3 › sidebar states — background process and subagent › background process dot appears and disappears, subagent runs, final answer visible (30.2s)
+2026-09-19T02:01:42.1201072Z   ✓  41 e2e/warm-resume-jitter.spec.ts:264:1 › warm-route resume paints transcript exactly once (no jitter) (6.6s)
+2026-09-19T02:01:42.5998902Z   -  43 e2e/warm-resume-jitter.spec.ts:339:1 › warm-route resume after background inference completes (no jitter)
+2026-09-19T02:01:48.7374213Z 
+2026-09-19T02:01:48.7375597Z   ✓  44 e2e/worktree-branch-status.spec.ts:71:1 › creating a branch with ctrl-shift-b updates the composer git-status branch (1.8s)
+2026-09-19T02:01:49.6712291Z   ✓  42 e2e/sidebar-states.spec.ts:127:3 › sidebar states — subagent and background dot coexist › background dot visible while subagent runs (14.3s)
+2026-09-19T02:02:03.6079492Z   ✓  45 e2e/sidebar-states.spec.ts:190:3 › sidebar states — cross-session dot transition › background dot transitions to finished when viewing another session (9.7s)
+2026-09-19T02:02:03.6279273Z 
+2026-09-19T02:02:03.6282917Z 
+2026-09-19T02:02:03.6291894Z   1) e2e/chat.spec.ts:89:3 › chat interaction with mock backend › offers stop, steer, and queue actions while busy 
+2026-09-19T02:02:03.6292408Z 
+2026-09-19T02:02:03.6292827Z     Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+2026-09-19T02:02:03.6293268Z 
+2026-09-19T02:02:03.6293996Z     Locator: locator('[data-slot="composer-root"] button[aria-label="Queue message"]').locator('svg.tabler-icon-layers-intersect-2')
+2026-09-19T02:02:03.6295016Z     Expected: visible
+2026-09-19T02:02:03.6295507Z     Timeout: 5000ms
+2026-09-19T02:02:03.6297594Z     Error: element(s) not found
+2026-09-19T02:02:03.6297842Z 
+2026-09-19T02:02:03.6297991Z     Call log:
+2026-09-19T02:02:03.6298476Z     [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+2026-09-19T02:02:03.6299580Z     [2m  - waiting for locator('[data-slot="composer-root"] button[aria-label="Queue message"]').locator('svg.tabler-icon-layers-intersect-2')[22m
+2026-09-19T02:02:03.6300269Z 
+2026-09-19T02:02:03.6300276Z 
+2026-09-19T02:02:03.6300515Z       111 |     await expect(speakReplies).toBeVisible()
+2026-09-19T02:02:03.6300994Z       112 |     await expect(queue).toBeVisible()
+2026-09-19T02:02:03.6301656Z     > 113 |     await expect(queue.locator('svg.tabler-icon-layers-intersect-2')).toBeVisible()
+2026-09-19T02:02:03.6302107Z           |                                                                       ^
+2026-09-19T02:02:03.6302442Z       114 |     const controlLabels = await page
+2026-09-19T02:02:03.6302776Z       115 |       .locator('[data-slot="composer-root"] button')
+2026-09-19T02:02:03.6303236Z       116 |       .evaluateAll(buttons => buttons.map(button => button.getAttribute('aria-label')))
+2026-09-19T02:02:03.6303754Z         at /home/runner/work/openamer/openamer/apps/desktop/e2e/chat.spec.ts:113:71
+2026-09-19T02:02:03.6304014Z 
+2026-09-19T02:02:03.6304371Z     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+2026-09-19T02:02:03.6305200Z     test-results/chat-chat-interaction-with-0ea89-nd-queue-actions-while-busy/test-failed-1.png
+2026-09-19T02:02:03.6306557Z     ────────────────────────────────────────────────────────────────────────────────────────────────
+2026-09-19T02:02:03.6306846Z 
+2026-09-19T02:02:03.6307197Z     Error Context: test-results/chat-chat-interaction-with-0ea89-nd-queue-actions-while-busy/error-context.md
+2026-09-19T02:02:03.6307577Z 
+2026-09-19T02:02:03.6307908Z     attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+2026-09-19T02:02:03.6308487Z     test-results/chat-chat-interaction-with-0ea89-nd-queue-actions-while-busy/trace.zip
+2026-09-19T02:02:03.6308965Z     Usage:
+2026-09-19T02:02:03.6309065Z 
+2026-09-19T02:02:03.6309605Z         npx playwright show-trace test-results/chat-chat-interaction-with-0ea89-nd-queue-actions-while-busy/trace.zip
+2026-09-19T02:02:03.6310110Z 
+2026-09-19T02:02:03.6310427Z     ────────────────────────────────────────────────────────────────────────────────────────────────
+2026-09-19T02:02:03.6310681Z 
+2026-09-19T02:02:03.6310978Z     Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+2026-09-19T02:02:03.6311216Z 
+2026-09-19T02:02:03.6311511Z     Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+2026-09-19T02:02:03.6311771Z 
+2026-09-19T02:02:03.6312151Z     Locator: locator('[data-slot="composer-root"] button[aria-label="Queue message"]').locator('svg.tabler-icon-layers-intersect-2')
+2026-09-19T02:02:03.6312620Z     Expected: visible
+2026-09-19T02:02:03.6312815Z     Timeout: 5000ms
+2026-09-19T02:02:03.6313027Z     Error: element(s) not found
+2026-09-19T02:02:03.6313247Z 
+2026-09-19T02:02:03.6313348Z     Call log:
+2026-09-19T02:02:03.6313757Z     [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+2026-09-19T02:02:03.6315076Z     [2m  - waiting for locator('[data-slot="composer-root"] button[aria-label="Queue message"]').locator('svg.tabler-icon-layers-intersect-2')[22m
+2026-09-19T02:02:03.6315745Z 
+2026-09-19T02:02:03.6315751Z 
+2026-09-19T02:02:03.6315957Z       111 |     await expect(speakReplies).toBeVisible()
+2026-09-19T02:02:03.6316381Z       112 |     await expect(queue).toBeVisible()
+2026-09-19T02:02:03.6316991Z     > 113 |     await expect(queue.locator('svg.tabler-icon-layers-intersect-2')).toBeVisible()
+2026-09-19T02:02:03.6317662Z           |                                                                       ^
+2026-09-19T02:02:03.6318172Z       114 |     const controlLabels = await page
+2026-09-19T02:02:03.6318716Z       115 |       .locator('[data-slot="composer-root"] button')
+2026-09-19T02:02:03.6319475Z       116 |       .evaluateAll(buttons => buttons.map(button => button.getAttribute('aria-label')))
+2026-09-19T02:02:03.6320349Z         at /home/runner/work/openamer/openamer/apps/desktop/e2e/chat.spec.ts:113:71
+2026-09-19T02:02:03.6320789Z 
+2026-09-19T02:02:03.6321381Z     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+2026-09-19T02:02:03.6322614Z     test-results/chat-chat-interaction-with-0ea89-nd-queue-actions-while-busy-retry1/test-finished-1.png
+2026-09-19T02:02:03.6323764Z     ────────────────────────────────────────────────────────────────────────────────────────────────
+2026-09-19T02:02:03.6324156Z 
+2026-09-19T02:02:03.6325047Z     Error Context: test-results/chat-chat-interaction-with-0ea89-nd-queue-actions-while-busy-retry1/error-context.md
+2026-09-19T02:02:03.6325745Z 
+2026-09-19T02:02:03.6326313Z     attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+2026-09-19T02:02:03.6327309Z     test-results/chat-chat-interaction-with-0ea89-nd-queue-actions-while-busy-retry1/trace.zip
+2026-09-19T02:02:03.6328005Z     Usage:
+2026-09-19T02:02:03.6328135Z 
+2026-09-19T02:02:03.6328836Z         npx playwright show-trace test-results/chat-chat-interaction-with-0ea89-nd-queue-actions-while-busy-retry1/trace.zip
+2026-09-19T02:02:03.6329563Z 
+2026-09-19T02:02:03.6330066Z     ────────────────────────────────────────────────────────────────────────────────────────────────
+2026-09-19T02:02:03.6330486Z 
+2026-09-19T02:02:03.6330630Z   1 failed
+2026-09-19T02:02:03.6331381Z     e2e/chat.spec.ts:89:3 › chat interaction with mock backend › offers stop, steer, and queue actions while busy 
+2026-09-19T02:02:03.6332060Z   7 skipped
+2026-09-19T02:02:03.6332341Z   36 passed (3.4m)
+2026-09-19T02:02:03.6580191Z ##[error]Process completed with exit code 1.
+2026-09-19T02:02:03.6633335Z ##[group]Run actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
+2026-09-19T02:02:03.6633649Z with:
+2026-09-19T02:02:03.6633836Z   path: apps/desktop/e2e/*-snapshots
+2026-09-19T02:02:03.6634070Z   key: visual-baselines-main
+2026-09-19T02:02:03.6634296Z   enableCrossOsArchive: false
+2026-09-19T02:02:03.6634758Z env:
+2026-09-19T02:02:03.6635100Z   UV_PYTHON_INSTALL_DIR: /home/runner/work/_temp/uv-python-dir
+2026-09-19T02:02:03.6635429Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-09-19T02:02:03.6635688Z ##[endgroup]
+2026-09-19T02:02:03.7711095Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/openamer/openamer --files-from manifest.txt --use-compress-program zstdmt
+2026-09-19T02:02:03.8249552Z Failed to save: Unable to reserve cache with key visual-baselines-main, another job may be creating this cache.
+2026-09-19T02:02:03.8370965Z ##[group]Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+2026-09-19T02:02:03.8371304Z with:
+2026-09-19T02:02:03.8371587Z   name: playwright-report-711feb164973c21ff875d6c23d7d22162f5b54f2
+2026-09-19T02:02:03.8371910Z   path: apps/desktop/playwright-report
+2026-09-19T02:02:03.8372142Z   retention-days: 14
+2026-09-19T02:02:03.8372326Z   overwrite: true
+2026-09-19T02:02:03.8372512Z   if-no-files-found: warn
+2026-09-19T02:02:03.8372713Z   compression-level: 6
+2026-09-19T02:02:03.8372913Z   include-hidden-files: false
+2026-09-19T02:02:03.8373117Z   archive: true
+2026-09-19T02:02:03.8373293Z env:
+2026-09-19T02:02:03.8373519Z   UV_PYTHON_INSTALL_DIR: /home/runner/work/_temp/uv-python-dir
+2026-09-19T02:02:03.8373845Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-09-19T02:02:03.8374096Z ##[endgroup]
+2026-09-19T02:02:03.9560163Z ##[warning]No files were found with the provided path: apps/desktop/playwright-report. No artifacts will be uploaded.
+2026-09-19T02:02:03.9705118Z ##[group]Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a
+2026-09-19T02:02:03.9705659Z with:
+2026-09-19T02:02:03.9706104Z   name: playwright-test-results-711feb164973c21ff875d6c23d7d22162f5b54f2
+2026-09-19T02:02:03.9706663Z   path: apps/desktop/test-results
+2026-09-19T02:02:03.9707011Z   retention-days: 14
+2026-09-19T02:02:03.9707299Z   overwrite: true
+2026-09-19T02:02:03.9707585Z   if-no-files-found: warn
+2026-09-19T02:02:03.9707900Z   compression-level: 6
+2026-09-19T02:02:03.9708215Z   include-hidden-files: false
+2026-09-19T02:02:03.9708536Z   archive: true
+2026-09-19T02:02:03.9708801Z env:
+2026-09-19T02:02:03.9709147Z   UV_PYTHON_INSTALL_DIR: /home/runner/work/_temp/uv-python-dir
+2026-09-19T02:02:03.9709877Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-09-19T02:02:03.9710286Z ##[endgroup]
+2026-09-19T02:02:04.1319757Z With the provided path, there will be 111 files uploaded
+2026-09-19T02:02:04.2097772Z Artifact name is valid!
+2026-09-19T02:02:04.2098354Z Root directory input is valid!
+2026-09-19T02:02:04.4015094Z Uploading artifact: playwright-test-results-711feb164973c21ff875d6c23d7d22162f5b54f2.zip
+2026-09-19T02:02:04.4059925Z Beginning upload of artifact content to blob storage
+2026-09-19T02:02:04.9002224Z Uploaded bytes 8388608
+2026-09-19T02:02:05.0717721Z Uploaded bytes 16777216
+2026-09-19T02:02:05.3534947Z Uploaded bytes 25165824
+2026-09-19T02:02:05.5089406Z Uploaded bytes 33554432
+2026-09-19T02:02:05.7275169Z Uploaded bytes 41943040
+2026-09-19T02:02:05.9751375Z Uploaded bytes 50331648
+2026-09-19T02:02:06.2423183Z Uploaded bytes 57946994
+2026-09-19T02:02:06.2541213Z Finished uploading artifact content to blob storage!
+2026-09-19T02:02:06.2544098Z SHA256 digest of uploaded artifact is 1a94ccd5162c167a2decb5f9d7556a675fb8f3c62af74e95b9342a414252fa47
+2026-09-19T02:02:06.2546234Z Finalizing artifact upload
+2026-09-19T02:02:06.4429321Z Artifact playwright-test-results-711feb164973c21ff875d6c23d7d22162f5b54f2 successfully finalized. Artifact ID 10575347670
+2026-09-19T02:02:06.4433596Z Artifact playwright-test-results-711feb164973c21ff875d6c23d7d22162f5b54f2 has been successfully uploaded! Final size is 57946994 bytes. Artifact ID is 10575347670
+2026-09-19T02:02:06.4434611Z Artifact download URL: https://github.com/openamer/openamer/actions/runs/35413669798/artifacts/10575347670
+2026-09-19T02:02:06.4565656Z ##[group]Run python3 ../../scripts/ci/e2e_screenshot_status.py \
+2026-09-19T02:02:06.4566230Z [36;1mpython3 ../../scripts/ci/e2e_screenshot_status.py \[0m
+2026-09-19T02:02:06.4566664Z [36;1m  --results-dir test-results \[0m
+2026-09-19T02:02:06.4567141Z [36;1m  --manifest-output /tmp/e2e-screenshot-manifest.json \[0m
+2026-09-19T02:02:06.4567645Z [36;1m  --evidence-dir /tmp/e2e-evidence \[0m
+2026-09-19T02:02:06.4568096Z [36;1m  --artifact-url "$RESULTS_URL" \[0m
+2026-09-19T02:02:06.4568454Z [36;1m  --output /tmp/e2e-review-status.json[0m
+2026-09-19T02:02:06.4568895Z [36;1m{[0m
+2026-09-19T02:02:06.4569228Z [36;1m  echo 'review_status<<__E2E_REVIEW_STATUS__'[0m
+2026-09-19T02:02:06.4569686Z [36;1m  cat /tmp/e2e-review-status.json[0m
+2026-09-19T02:02:06.4570067Z [36;1m  echo '__E2E_REVIEW_STATUS__'[0m
+2026-09-19T02:02:06.4570481Z [36;1m} >> "$GITHUB_OUTPUT"[0m
+2026-09-19T02:02:06.4603147Z shell: /usr/bin/bash -e {0}
+2026-09-19T02:02:06.4603474Z env:
+2026-09-19T02:02:06.4604054Z   UV_PYTHON_INSTALL_DIR: /home/runner/work/_temp/uv-python-dir
+2026-09-19T02:02:06.4604772Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-09-19T02:02:06.4605363Z   RESULTS_URL: https://github.com/openamer/openamer/actions/runs/35413669798/artifacts/10575347670
+2026-09-19T02:02:06.4605858Z ##[endgroup]
+2026-09-19T02:02:06.5026108Z ##[group]Run {
+2026-09-19T02:02:06.5026343Z [36;1m{[0m
+2026-09-19T02:02:06.5026561Z [36;1mecho "## Desktop E2E — Visual Diff Report"[0m
+2026-09-19T02:02:06.5026829Z [36;1mecho ""[0m
+2026-09-19T02:02:06.5027004Z [36;1m[0m
+2026-09-19T02:02:06.5027273Z [36;1m# Count diff images (playwright writes *-diff.png on mismatch)[0m
+2026-09-19T02:02:06.5027696Z [36;1mDIFF_COUNT=$(find test-results -name '*-diff.png' 2>/dev/null | wc -l)[0m
+2026-09-19T02:02:06.5028134Z [36;1mACTUAL_COUNT=$(find test-results -name '*-actual.png' 2>/dev/null | wc -l)[0m
+2026-09-19T02:02:06.5028456Z [36;1m[0m
+2026-09-19T02:02:06.5028637Z [36;1mif [ "$DIFF_COUNT" -eq 0 ]; then[0m
+2026-09-19T02:02:06.5029049Z [36;1m  echo "✅ All $ACTUAL_COUNT screenshot(s) matched their baselines (or no baselines existed yet)."[0m
+2026-09-19T02:02:06.5029445Z [36;1melse[0m
+2026-09-19T02:02:06.5029749Z [36;1m  echo "📸 **$DIFF_COUNT of $ACTUAL_COUNT screenshot(s) differ from baseline:**"[0m
+2026-09-19T02:02:06.5030121Z [36;1m  echo ""[0m
+2026-09-19T02:02:06.5030528Z [36;1m  echo "| Test | Diff | Actual | Expected |"[0m
+2026-09-19T02:02:06.5030809Z [36;1m  echo "|------|------|--------|----------|"[0m
+2026-09-19T02:02:06.5031052Z [36;1m[0m
+2026-09-19T02:02:06.5031275Z [36;1m  # List each diff image with a link to the artifact[0m
+2026-09-19T02:02:06.5031644Z [36;1m  for diff in $(find test-results -name '*-diff.png' 2>/dev/null | sort); do[0m
+2026-09-19T02:02:06.5031985Z [36;1m    base=${diff%-diff.png}[0m
+2026-09-19T02:02:06.5032230Z [36;1m    test_name=$(basename "$base")[0m
+2026-09-19T02:02:06.5032626Z [36;1m    echo "| $test_name | [diff]($diff) | [actual](${base}-actual.png) | [expected](${base}-expected.png) |"[0m
+2026-09-19T02:02:06.5033007Z [36;1m  done[0m
+2026-09-19T02:02:06.5033190Z [36;1mfi[0m
+2026-09-19T02:02:06.5033357Z [36;1m[0m
+2026-09-19T02:02:06.5033525Z [36;1mecho ""[0m
+2026-09-19T02:02:06.5033720Z [36;1mecho "📥 **Artifacts:**"[0m
+2026-09-19T02:02:06.5033945Z [36;1mecho ""[0m
+2026-09-19T02:02:06.5034147Z [36;1mif [ -n "$RESULTS_URL" ]; then[0m
+2026-09-19T02:02:06.5034757Z [36;1m  echo "- [playwright-test-results]($RESULTS_URL) — all screenshots (actual + expected + diff) + traces"[0m
+2026-09-19T02:02:06.5035156Z [36;1mfi[0m
+2026-09-19T02:02:06.5035343Z [36;1mif [ -n "$REPORT_URL" ]; then[0m
+2026-09-19T02:02:06.5035668Z [36;1m  echo "- [playwright-report]($REPORT_URL) — interactive HTML report"[0m
+2026-09-19T02:02:06.5035977Z [36;1mfi[0m
+2026-09-19T02:02:06.5036159Z [36;1mif [ -n "$DIFFS_URL" ]; then[0m
+2026-09-19T02:02:06.5036524Z [36;1m  echo "- [visual-diffs]($DIFFS_URL) — just the diffed screenshots (small, fast to review)"[0m
+2026-09-19T02:02:06.5036876Z [36;1mfi[0m
+2026-09-19T02:02:06.5037051Z [36;1mecho ""[0m
+2026-09-19T02:02:06.5037506Z [36;1mecho "**To update baselines:** merge to main (baselines auto-update on main runs) or run \`npx playwright test --update-snapshots\` locally."[0m
+2026-09-19T02:02:06.5037979Z [36;1m[0m
+2026-09-19T02:02:06.5038218Z [36;1m# Also parse the JSON report for pass/fail counts[0m
+2026-09-19T02:02:06.5038550Z [36;1mif [ -f playwright-report/results.json ]; then[0m
+2026-09-19T02:02:06.5038820Z [36;1m  echo ""[0m
+2026-09-19T02:02:06.5039016Z [36;1m  echo "### Test Results"[0m
+2026-09-19T02:02:06.5039234Z [36;1m  echo ""[0m
+2026-09-19T02:02:06.5039414Z [36;1m  node -e "[0m
+2026-09-19T02:02:06.5039675Z [36;1m    const r = require('./playwright-report/results.json');[0m
+2026-09-19T02:02:06.5039978Z [36;1m    const stats = r.stats || {};[0m
+2026-09-19T02:02:06.5040235Z [36;1m    console.log('| Status | Count |');[0m
+2026-09-19T02:02:06.5040492Z [36;1m    console.log('|--------|-------|');[0m
+2026-09-19T02:02:06.5040793Z [36;1m    console.log('| ✅ Passed | ' + (stats.expected || 0) + ' |');[0m
+2026-09-19T02:02:06.5041160Z [36;1m    console.log('| ❌ Failed | ' + (stats.unexpected || 0) + ' |');[0m
+2026-09-19T02:02:06.5041662Z [36;1m    console.log('| ⏭️ Skipped | ' + (stats.skipped || 0) + ' |');[0m
+2026-09-19T02:02:06.5042026Z [36;1m    console.log('| 🔄 Flaky | ' + (stats.flaky || 0) + ' |');[0m
+2026-09-19T02:02:06.5042318Z [36;1m  " 2>/dev/null || true[0m
+2026-09-19T02:02:06.5042530Z [36;1mfi[0m
+2026-09-19T02:02:06.5042715Z [36;1m} >> "$GITHUB_STEP_SUMMARY"[0m
+2026-09-19T02:02:06.5072355Z shell: /usr/bin/bash -e {0}
+2026-09-19T02:02:06.5072572Z env:
+2026-09-19T02:02:06.5072818Z   UV_PYTHON_INSTALL_DIR: /home/runner/work/_temp/uv-python-dir
+2026-09-19T02:02:06.5073157Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-09-19T02:02:06.5073423Z   REPORT_URL: 
+2026-09-19T02:02:06.5073780Z   RESULTS_URL: https://github.com/openamer/openamer/actions/runs/35413669798/artifacts/10575347670
+2026-09-19T02:02:06.5074200Z   DIFFS_URL: 
+2026-09-19T02:02:06.5074378Z ##[endgroup]
+2026-09-19T02:02:06.5265862Z Post job cleanup.
+2026-09-19T02:02:06.5942870Z [command]/usr/bin/git version
+2026-09-19T02:02:06.5983045Z git version 2.55.0
+2026-09-19T02:02:06.6008957Z Temporarily overriding HOME='/home/runner/work/_temp/8dfcd3d6-2c50-4162-88ba-d21c4eb0accb' before making global git config changes
+2026-09-19T02:02:06.6010521Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-19T02:02:06.6012760Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/openamer/openamer
+2026-09-19T02:02:06.6041188Z Removing SSH command configuration
+2026-09-19T02:02:06.6046669Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-19T02:02:06.6075781Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-19T02:02:06.6297419Z Removing HTTP extra header
+2026-09-19T02:02:06.6302915Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-19T02:02:06.6333762Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-19T02:02:06.6566912Z Removing includeIf entries pointing to credentials config files
+2026-09-19T02:02:06.6567844Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-19T02:02:06.6591103Z includeif.gitdir:/home/runner/work/openamer/openamer/.git.path
+2026-09-19T02:02:06.6591948Z includeif.gitdir:/home/runner/work/openamer/openamer/.git/worktrees/*.path
+2026-09-19T02:02:06.6602862Z includeif.gitdir:/github/workspace/.git.path
+2026-09-19T02:02:06.6603755Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-09-19T02:02:06.6605896Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/openamer/openamer/.git.path
+2026-09-19T02:02:06.6620092Z /home/runner/work/_temp/git-credentials-04d0024b-cd41-4201-ad2e-36fa52489962.config
+2026-09-19T02:02:06.6629289Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/openamer/openamer/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-04d0024b\-cd41\-4201\-ad2e\-36fa52489962\.config
+2026-09-19T02:02:06.6668581Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/openamer/openamer/.git/worktrees/*.path
+2026-09-19T02:02:06.6691336Z /home/runner/work/_temp/git-credentials-04d0024b-cd41-4201-ad2e-36fa52489962.config
+2026-09-19T02:02:06.6708938Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/openamer/openamer/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-04d0024b\-cd41\-4201\-ad2e\-36fa52489962\.config
+2026-09-19T02:02:06.6752068Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-09-19T02:02:06.6768977Z /github/runner_temp/git-credentials-04d0024b-cd41-4201-ad2e-36fa52489962.config
+2026-09-19T02:02:06.6783232Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-04d0024b\-cd41\-4201\-ad2e\-36fa52489962\.config
+2026-09-19T02:02:06.6807204Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-09-19T02:02:06.6828713Z /github/runner_temp/git-credentials-04d0024b-cd41-4201-ad2e-36fa52489962.config
+2026-09-19T02:02:06.6838152Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-04d0024b\-cd41\-4201\-ad2e\-36fa52489962\.config
+2026-09-19T02:02:06.6869989Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-19T02:02:06.7108929Z Removing credentials config '/home/runner/work/_temp/git-credentials-04d0024b-cd41-4201-ad2e-36fa52489962.config'
+2026-09-19T02:02:06.7228300Z Evaluate and set job outputs
+2026-09-19T02:02:06.7232488Z Set output 'review_status'
+2026-09-19T02:02:06.7234271Z Cleaning up orphan processes
+2026-09-19T02:02:06.7527599Z Terminate orphan process: pid (3316) (python)
+2026-09-19T02:02:06.7556833Z Terminate orphan process: pid (3489) (python)
+2026-09-19T02:02:06.7596349Z Terminate orphan process: pid (3769) (python)
+2026-09-19T02:02:06.7622761Z Terminate orphan process: pid (4385) (python)
+2026-09-19T02:02:06.7647191Z Terminate orphan process: pid (4515) (python)
+2026-09-19T02:02:06.7672349Z Terminate orphan process: pid (5075) (python)
+2026-09-19T02:02:06.7697652Z Terminate orphan process: pid (5206) (python)
+2026-09-19T02:02:06.7722569Z Terminate orphan process: pid (5482) (python)
+2026-09-19T02:02:06.7747514Z Terminate orphan process: pid (6106) (python)
+2026-09-19T02:02:06.7780549Z Terminate orphan process: pid (6701) (python)
+2026-09-19T02:02:06.7805873Z Terminate orphan process: pid (6963) (python)
+2026-09-19T02:02:06.7830872Z Terminate orphan process: pid (7267) (python)
+2026-09-19T02:02:06.7855918Z Terminate orphan process: pid (7575) (python)
+2026-09-19T02:02:06.7883032Z Terminate orphan process: pid (7814) (python)
+2026-09-19T02:02:06.7911134Z Terminate orphan process: pid (8004) (python)
+2026-09-19T02:02:06.7945215Z Terminate orphan process: pid (8401) (python)
+2026-09-19T02:02:06.7970151Z Terminate orphan process: pid (8825) (python)
+2026-09-19T02:02:06.7995815Z Terminate orphan process: pid (9131) (python)
+2026-09-19T02:02:06.8019661Z Terminate orphan process: pid (9438) (python)
+2026-09-19T02:02:06.8044631Z Terminate orphan process: pid (9925) (python)
+2026-09-19T02:02:06.8069792Z Terminate orphan process: pid (10154) (python)
+2026-09-19T02:02:06.8097706Z Terminate orphan process: pid (10812) (python)
+2026-09-19T02:02:06.8132828Z Terminate orphan process: pid (11689) (python)
+2026-09-19T02:02:06.8159499Z Terminate orphan process: pid (11694) (python)
+2026-09-19T02:02:06.8184104Z Terminate orphan process: pid (12533) (python)
+2026-09-19T02:02:06.8208474Z Terminate orphan process: pid (12795) (python)
+2026-09-19T02:02:06.8217266Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@0400d5f644dc74513175e3cd8d07132dd4860809, actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

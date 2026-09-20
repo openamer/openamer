@@ -21,12 +21,25 @@ from unittest.mock import patch
 import pytest
 
 
+# The uid/gid path only exists for Docker on POSIX: _resolve_openamer_uid_gid()
+# returns (None, None) on Windows, and os.chown does not exist there at all.
+# Both behaviours are pinned by the Windows-specific tests below.
+_SKIP_NOT_POSIX = pytest.mark.skipif(
+    sys.platform == "win32",
+    reason=(
+        "os.chown does not exist on Windows and _resolve_openamer_uid_gid() "
+        "returns (None, None) there; this Docker UID/GID mapping is POSIX-only."
+    ),
+)
+
+
 # ---------------------------------------------------------------------------
 # _resolve_openamer_uid_gid
 # ---------------------------------------------------------------------------
 
 
 class TestResolveOpenAmerUidGid:
+    @_SKIP_NOT_POSIX
     def test_returns_parsed_values_when_both_set(self, monkeypatch):
         monkeypatch.setenv("OPENAMER_UID", "1000")
         monkeypatch.setenv("OPENAMER_GID", "911")
@@ -43,6 +56,7 @@ class TestResolveOpenAmerUidGid:
         assert uid is None
         assert gid is None
 
+    @_SKIP_NOT_POSIX
     def test_uid_only_returns_gid_none(self, monkeypatch):
         monkeypatch.setenv("OPENAMER_UID", "1000")
         monkeypatch.delenv("OPENAMER_GID", raising=False)
@@ -51,6 +65,7 @@ class TestResolveOpenAmerUidGid:
         assert uid == 1000
         assert gid is None
 
+    @_SKIP_NOT_POSIX
     def test_invalid_uid_returns_none_for_that_field(self, monkeypatch):
         monkeypatch.setenv("OPENAMER_UID", "not-a-number")
         monkeypatch.setenv("OPENAMER_GID", "911")
@@ -67,6 +82,7 @@ class TestResolveOpenAmerUidGid:
         assert uid is None
         assert gid is None
 
+    @_SKIP_NOT_POSIX
     def test_whitespace_padded_values(self, monkeypatch):
         monkeypatch.setenv("OPENAMER_UID", " 1000 ")
         monkeypatch.setenv("OPENAMER_GID", "  911")
@@ -91,6 +107,7 @@ class TestResolveOpenAmerUidGid:
 
 
 class TestChownToOpenAmerUid:
+    @_SKIP_NOT_POSIX
     def test_calls_os_chown_when_both_set(self, tmp_path, monkeypatch):
         monkeypatch.setenv("OPENAMER_UID", "1000")
         monkeypatch.setenv("OPENAMER_GID", "911")
@@ -103,6 +120,7 @@ class TestChownToOpenAmerUid:
             cfg._chown_to_openamer_uid(d)
         mock_chown.assert_called_once_with(d, 1000, 911)
 
+    @_SKIP_NOT_POSIX
     def test_uses_minus_one_for_missing_field(self, tmp_path, monkeypatch):
         """When only one env var is set, the other field passes -1 to
         os.chown which means 'do not change' on POSIX."""
@@ -117,6 +135,7 @@ class TestChownToOpenAmerUid:
             cfg._chown_to_openamer_uid(d)
         mock_chown.assert_called_once_with(d, 1000, -1)
 
+    @_SKIP_NOT_POSIX
     def test_no_op_when_neither_set(self, tmp_path, monkeypatch):
         monkeypatch.delenv("OPENAMER_UID", raising=False)
         monkeypatch.delenv("OPENAMER_GID", raising=False)
@@ -129,6 +148,7 @@ class TestChownToOpenAmerUid:
             cfg._chown_to_openamer_uid(d)
         mock_chown.assert_not_called()
 
+    @_SKIP_NOT_POSIX
     def test_eperm_is_silently_swallowed(self, tmp_path, monkeypatch):
         """When running as non-root, os.chown raises EPERM. That's fine —
         the entrypoint's startup chown -R will pick it up on restart, and
@@ -148,6 +168,7 @@ class TestChownToOpenAmerUid:
             # Must not raise — the catch is non-fatal.
             cfg._chown_to_openamer_uid(d)
 
+    @_SKIP_NOT_POSIX
     def test_attributeerror_swallowed_for_windows_compat(self, tmp_path, monkeypatch):
         """os.chown doesn't exist on Windows. Catching AttributeError keeps
         the helper portable."""

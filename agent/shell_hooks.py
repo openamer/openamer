@@ -111,6 +111,7 @@ import logging
 import os
 import re
 import shlex
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -429,6 +430,81 @@ def _parse_single_entry(
 _TOP_LEVEL_PAYLOAD_KEYS = {"tool_name", "args", "session_id", "parent_session_id"}
 
 
+# Shell-script extensions whose interpreter has to be supplied explicitly on
+# Windows: the OS cannot honour a "#!/usr/bin/env bash" shebang.
+_SHELL_SCRIPT_EXTENSIONS: Tuple[str, ...] = (".sh", ".bash", ".zsh", ".fish")
+
+
+def _windows_shell_for(argv: List[str]) -> Optional[List[str]]:
+    """Return ``argv`` rewritten to run via a shell, or None to leave it alone.
+
+    Thin argv-shaped wrapper over :func:`_windows_shell_argv`; the real work
+    lives there because it needs the raw command string to recover a path whose
+    backslashes are already gone by the time it is split.
+    """
+    if not argv:
+        return None
+    return _windows_shell_argv(argv[0])
+
+
+def _windows_shell_argv(command: str) -> Optional[List[str]]:
+    """Return the argv that runs a bare shell-script hook via bash, or None.
+
+    Two different path dialects meet here and each side needs its own:
+
+      * the INTERPRETER is launched by Windows Python, so it must stay a native
+        path (``C:\\...\\bash.EXE``) -- an MSYS ``/c/...`` path is not resolvable
+        by CreateProcess and raises WinError 2;
+      * the SCRIPT is resolved by bash (git-bash/MSYS), so it must be the MSYS
+        form -- a native ``C:\\...`` path has its backslashes eaten as escapes
+        and bash reports "No such file or directory".
+
+    Building the argv directly avoids ``shlex`` in between, which is what
+    mangled both paths in the first place (``\\`` is an escape in POSIX mode).
+
+    Windows cannot exec a ``.sh`` file at all (WinError 193) -- the shebang is
+    a POSIX convention the OS does not implement. A hook that names its own
+    interpreter (``bash hook.sh``, ``python3 hook.py``) is already spawnable and
+    is left alone; only a BARE script invocation needs the shim, and that is
+    precisely the case that used to fail silently -- a ``pre_tool_call`` hook
+    meant to BLOCK a call returned None instead, and the call went through.
+
+    Returns None when no rewrite applies (or no bash is available), leaving the
+    POSIX path and every non-script command untouched.
+    """
+    try:
+        parts = _split_command(command)
+    except ValueError:
+        return None
+    if not parts:
+        return None
+    head = os.path.expanduser(parts[0])
+    if not head.lower().endswith(_SHELL_SCRIPT_EXTENSIONS):
+        return None
+    import shutil
+
+    bash = shutil.which("bash")
+    if not bash:
+        return None
+    # Recover the un-mangled head from the raw string (parts[0] already lost its
+    # backslashes) so the script path is converted from its true spelling.
+    raw_head = command.split(maxsplit=1)[0].strip("\"'")
+    rest = _split_command(command)[1:]
+    return [bash, _msys_path(os.path.expanduser(raw_head)), *rest]
+
+
+def _msys_path(path: str) -> str:
+    """Convert a Windows drive path to the MSYS form bash understands.
+
+    ``C:\\Users\\x\\h.sh`` -> ``/c/Users/x/h.sh``. Paths that are not
+    drive-qualified (already POSIX, UNC, or relative) are returned unchanged so
+    this is safe to call unconditionally.
+    """
+    if len(path) >= 3 and path[1] == ":" and path[2] in ("\\", "/"):
+        drive = path[0].lower()
+        return "/" + drive + path[2:].replace("\\", "/")
+    return path
+
 def _spawn(spec: ShellHookSpec, stdin_json: str) -> Dict[str, Any]:
     """Run ``spec.command`` as a subprocess with ``stdin_json`` on stdin.
 
@@ -447,14 +523,23 @@ def _spawn(spec: ShellHookSpec, stdin_json: str) -> Dict[str, Any]:
         "elapsed_seconds": 0.0,
         "error": None,
     }
+    command = spec.command
     try:
-        argv = shlex.split(os.path.expanduser(spec.command))
+        argv = _split_command(os.path.expanduser(command))
     except ValueError as exc:
         result["error"] = f"command {spec.command!r} cannot be parsed: {exc}"
         return result
     if not argv:
         result["error"] = "empty command"
         return result
+
+    # Windows cannot exec a shell script directly; run it through bash. The argv
+    # is built here rather than via shlex because the two paths need different
+    # dialects (native for the interpreter, MSYS for the script).
+    if IS_WINDOWS:
+        shimmed = _windows_shell_argv(command)
+        if shimmed is not None:
+            argv = shimmed
 
     t0 = time.monotonic()
     _popen_kwargs = {"creationflags": windows_hide_flags()} if IS_WINDOWS else {}
@@ -804,6 +889,47 @@ _SCRIPT_EXTENSIONS: Tuple[str, ...] = (
 )
 
 
+def _split_command(command: str) -> List[str]:
+    """Split a hook command into argv, keeping Windows paths intact.
+
+    ``shlex.split`` is POSIX: it treats ``\\`` as an escape, so
+    ``python3 C:\\hooks\\x.py`` splits to ``C:hooksx.py`` and every later
+    ``os.path.isfile`` check fails on a path that was never real. On Windows a
+    backslash is a path separator, not an escape, so quoting-and-whitespace
+    splitting is the correct model there.
+
+    Raises ValueError on an unterminated quote, exactly as ``shlex.split`` does:
+    callers rely on that to report a malformed command instead of silently
+    running a truncated one.
+    """
+    if not IS_WINDOWS:
+        return shlex.split(command)
+    parts: List[str] = []
+    buf: List[str] = []
+    quote: Optional[str] = None
+    for ch in command:
+        if quote:
+            if ch == quote:
+                quote = None
+            else:
+                buf.append(ch)
+            continue
+        if ch in ("'", '"'):
+            quote = ch
+            continue
+        if ch.isspace():
+            if buf:
+                parts.append("".join(buf))
+                buf = []
+            continue
+        buf.append(ch)
+    if quote is not None:
+        raise ValueError(f"No closing quotation mark in {command!r}")
+    if buf:
+        parts.append("".join(buf))
+    return parts
+
+
 def _command_script_path(command: str) -> str:
     """Return the script path from ``command`` for doctor / drift checks.
 
@@ -813,7 +939,7 @@ def _command_script_path(command: str) -> str:
     common bare-path form.
     """
     try:
-        parts = shlex.split(command)
+        parts = _split_command(command)
     except ValueError:
         return command
     if not parts:
@@ -892,7 +1018,14 @@ def script_is_executable(command: str) -> bool:
     executable.  For interpreter-prefixed commands (``python3
     /path/hook.py``, ``/usr/bin/env bash hook.sh``) the script just has
     to be readable — the interpreter doesn't care about the ``X_OK``
-    bit.  Mirrors what ``_spawn`` would actually do at runtime."""
+    bit.  Mirrors what ``_spawn`` would actually do at runtime.
+
+    The X_OK half is POSIX-only: on Windows ``os.access(path, os.X_OK)`` is
+    True for ANY existing file (verified — there is no execute bit to test), so
+    requiring it would bless a script that cannot run. A bare shell script there
+    is only runnable because ``_spawn`` routes it through bash, so the honest
+    check is "does bash exist", not a permission bit the OS does not have.
+    """
     path = _command_script_path(command)
     if not path:
         return False
@@ -900,10 +1033,14 @@ def script_is_executable(command: str) -> bool:
     if not os.path.isfile(expanded):
         return False
     try:
-        argv = shlex.split(command)
+        argv = _split_command(command)
     except ValueError:
         return False
     is_bare_invocation = bool(argv) and argv[0] == path
+    if is_bare_invocation and IS_WINDOWS and expanded.lower().endswith(_SHELL_SCRIPT_EXTENSIONS):
+        import shutil
+
+        return shutil.which("bash") is not None
     required = os.X_OK if is_bare_invocation else os.R_OK
     return os.access(expanded, required)
 

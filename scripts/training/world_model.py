@@ -32,8 +32,51 @@ _LOCK_PID = os.getpid()
 # the longest critical section is a full-store rewrite, seconds at worst.
 _LOCK_STALE = 120.0
 
-_HOME = pathlib.Path(os.environ.get(
-    "OPENAMER_HOME", str(pathlib.Path.home() / "AppData" / "Local" / "openamer-laptop")))
+# Install-root guard: the MSYS form of OPENAMER_HOME (/c/tmp/oa-home) is a
+# RELATIVE path to native Windows Python, so it expanded to a phantom
+# C:\c\tmp\... tree that merely exists. WM then pointed at a directory with no
+# world_model.jsonl, and every locked write spun its full 8 s lock timeout
+# against a lock path whose parent does not exist. Same class as
+# scripts/darwin_engine.py; the markers only a real install carries.
+_HOME_MARKERS = ("config.yaml", ".env", "cron", "memories", "openamer-agent")
+
+
+def _is_install_root(pth):
+    try:
+        return any((pth / m).exists() for m in _HOME_MARKERS)
+    except OSError:
+        return False
+
+
+def _resolve_home():
+    """Resolve OPENAMER_HOME across shells; never adopt a scratch dir."""
+    local = pathlib.Path.home() / "AppData" / "Local"
+    candidates = [local / "openamer-laptop", local / "openamer"]
+    default = next((c for c in candidates if (c / "skills").is_dir()),
+                   candidates[0])
+
+    raw = os.environ.get("OPENAMER_HOME")
+    if not raw:
+        return default
+
+    cand = None
+    norm = raw.replace(os.sep, "/") if os.sep != "/" else raw
+    if len(norm) >= 3 and norm[0] == "/" and norm[1].isalpha() and norm[2] == "/":
+        cand = pathlib.Path(norm[1].upper() + ":/" + norm[3:])
+    else:
+        p = pathlib.Path(raw)
+        if p.is_absolute():
+            cand = p
+
+    if cand is not None and cand.exists() and _is_install_root(cand):
+        return cand
+    if cand is not None and cand.exists():
+        print(f"[world-model] WARNING: OPENAMER_HOME={cand} exists but is not an "
+              f"OpenAmer install root; falling back to {default}.", file=sys.stderr)
+    return default
+
+
+_HOME = _resolve_home()
 
 WM = os.path.join(_HOME, "memory", "world_model.jsonl")
 EMBED_URL = "http://localhost:11434/api/embeddings"
@@ -355,6 +398,25 @@ def _cosine(a, b):
     return dot / (na * nb)
 
 
+def _normalise(v):
+    """Unit vector, or None for a zero/degenerate vector.
+
+    Split out of _cosine so a batch comparison can normalise each vector ONCE
+    instead of on every pair: cos(a,b) == dot(normalise(a), normalise(b)).
+    """
+    if not v:
+        return None
+    na = math.sqrt(sum(x * x for x in v))
+    if na == 0:
+        return None
+    return [x / na for x in v]
+
+
+def _dot(a, b):
+    """Dot product of two equal-length vectors (a fast path for unit vectors)."""
+    return sum(x * y for x, y in zip(a, b))
+
+
 def _load():
     """Read all edges. Retries once if a non-empty file parses to 0 edges.
 
@@ -406,7 +468,7 @@ def _load_unlocked():
     return []
 
 
-def prune(max_dupes=2):
+def prune(max_dupes=2, dry_run=False):
     """Remove near-duplicate edges (cosine > 0.97 on same kind).
 
     Forgetting is part of learning: the internet-learner observes similar
@@ -414,45 +476,49 @@ def prune(max_dupes=2):
     not signal. Keeps the FIRST occurrence of each duplicate cluster
     (oldest = the one that has been validated longest).
     Guarded like migrate(): refuses to shrink the store drastically.
+
+    dry_run=True computes the identical decision but skips the write, so a
+    caller that promised not to mutate (memory_consolidation --dry-run) does
+    not rewrite the live store. Without it, a DRY RUN still pruned: measured
+    10 edges -> 9 on a controlled fixture.
     """
     edges = _load()
     if not edges:
         return {"removed": 0, "kept": 0}
     kept, removed = [], 0
-    seen_buckets = []  # list of (embedding, [indices of cluster])
+    # Pre-normalise once. The naive form re-normalised BOTH vectors inside every
+    # pairwise comparison (3 sums over 768 dims per call), so a 466-edge store
+    # cost 250M function calls / 43 s per nightly run. Normalising up front keeps
+    # the identical >0.97 decision while making each comparison a single dot.
+    seen_norm = []  # normalised embeddings of kept clusters
     for e in edges:
         emb = e.get("embedding") or []
         if not emb or not e.get("embed_ok"):
             kept.append(e)  # never drop un-embedded edges — they carry info
             continue
+        n = _normalise(emb)
+        if n is None:
+            kept.append(e)
+            continue
         dup_found = False
-        for cluster in seen_buckets:
-            if _cosine(emb, cluster[0]) > 0.97:
+        for prev in seen_norm:
+            if _dot(n, prev) > 0.97:
                 dup_found = True
                 break
         if dup_found:
             removed += 1
         else:
-            seen_buckets.append((emb, [e]))
+            seen_norm.append(n)
             kept.append(e)
     # SAFETY: if pruning would remove >30% something is wrong (embeddings
     # collapsed?) — abort instead of destroying the store
     if removed > len(edges) * 0.3:
         return {"error": f"refusing to prune {removed}/{len(edges)} (>30%) — "
                          "possible embedding collapse", "removed": 0, "kept": len(edges)}
-    if removed and len(kept) > 0:
+    if removed and len(kept) > 0 and not dry_run:
         with _store_lock():
             _atomic_write([json.dumps(e, ensure_ascii=False) for e in kept])
     return {"removed": removed, "kept": len(kept)}
-
-
-def _cosine(a, b):
-    """Cosine similarity for two equal-length vectors."""
-    import math
-    num = sum(x * y for x, y in zip(a, b))
-    da = math.sqrt(sum(x * x for x in a)) or 1.0
-    db = math.sqrt(sum(y * y for y in b)) or 1.0
-    return num / (da * db)
 
 
 def observe(cause, effect, kind="fact", confidence=None):

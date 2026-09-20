@@ -890,7 +890,22 @@ class TestInlineShellExpansion:
             msg = build_skill_invocation_message("/dyn-cwd")
 
         assert msg is not None
-        assert f"Here: {skill_dir}" in msg
+        # The contract is "the snippet ran with the skill dir as CWD". On POSIX
+        # that is literally `pwd == skill_dir`. On Windows the snippet runs under
+        # git-bash, which keeps its OWN mount table: a Windows temp path is
+        # reported as /tmp/<name> (verified -- `bash -c pwd` in
+        # C:\Users\...\Temp\dyn-cwd-x answers /tmp/dyn-cwd-x). So the directory
+        # identity can only be checked by its final component there. Comparing
+        # whole paths would pin git-bash's mount layout, which is not the thing
+        # under test.
+        expanded = msg.split("Here: ", 1)[1].splitlines()[0].strip()
+        if os.name == "nt":
+            assert Path(expanded).name == skill_dir.name, (
+                f"inline snippet did not run in the skill dir: {expanded!r} "
+                f"(expected a path ending in {skill_dir.name!r})"
+            )
+        else:
+            assert expanded == str(skill_dir)
 
     def test_inline_shell_timeout_does_not_break_message(self, tmp_path):
         with (

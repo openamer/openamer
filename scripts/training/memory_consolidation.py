@@ -228,7 +228,7 @@ def consolidate(dry_run=False):
     # on a schedule — the store grows with signal, not repetition.
     try:
         import world_model as wm
-        pruned = wm.prune(max_dupes=2)
+        pruned = wm.prune(max_dupes=2, dry_run=dry_run)
         if pruned.get("removed"):
             print(f"[world-model-prune] {pruned['removed']} near-dupes removed, "
                   f"{pruned['kept']} edges kept", flush=True)

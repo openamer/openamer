@@ -58,7 +58,7 @@ class GuardrailEngine:
         """Load custom rules from a JSON config file."""
         try:
             import json
-            with open(path) as f:
+            with open(path, encoding="utf-8") as f:
                 data = json.load(f)
             for rule_data in data.get("rules", []):
                 self._rules.append(GuardrailRule(**rule_data))

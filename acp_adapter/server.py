@@ -32,6 +32,11 @@ from acp_adapter.events import (
     make_thinking_cb, make_tool_progress_cb,
 )
 from acp_adapter.model_catalog import build_model_state, encode_model_choice
+# Re-exported: tests and callers patch/import this name from the server module
+# (`from acp_adapter.server import _named_custom_provider_catalogs`). The
+# implementation lives in model_catalog; without this import the ACP model
+# selector's named-endpoint path is untestable and collection dies.
+from acp_adapter.model_catalog import _named_custom_provider_catalogs  # noqa: F401
 from acp_adapter.permissions import make_approval_callback
 from acp_adapter.provenance import session_provenance_meta
 from acp_adapter.session import SessionManager, SessionState, _expand_acp_enabled_toolsets
@@ -414,7 +419,12 @@ class OpenAmerACPAgent(SlashCommandsMixin, acp.Agent):
         if not mcp_servers:
             return
         try:
-            from tools.mcp_tool_discovery import register_mcp_servers
+            # This tree's MCP client is the monolith in tools/mcp_tool.py — the same
+            # module cli.py, gateway/run.py and the test-suite patch. Importing
+            # tools.mcp_tool_discovery here (the post-decomposition split) resolved
+            # to nothing, so every ACP MCP registration silently logged a warning
+            # and returned: "failed to register ACP MCP servers".
+            from tools.mcp_tool import register_mcp_servers
 
             await asyncio.to_thread(register_mcp_servers, {s.name: _mcp_server_config(s) for s in mcp_servers})
         except Exception:
@@ -484,7 +494,8 @@ class OpenAmerACPAgent(SlashCommandsMixin, acp.Agent):
                     if any(int(getattr(agent, k, 0) or 0) > 0 for k in ("_user_turn_count", "_api_call_count")):
                         return
 
-                    from tools.mcp_tool_agent import refresh_agent_mcp_tools
+                    # Monolith path — see the note in _register_session_mcp_servers.
+                    from tools.mcp_tool import refresh_agent_mcp_tools
 
                     added = refresh_agent_mcp_tools(agent, quiet_mode=True)
                 if added:

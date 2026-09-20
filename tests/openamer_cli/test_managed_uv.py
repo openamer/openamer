@@ -12,6 +12,20 @@ from unittest.mock import MagicMock, patch
 import pytest
 
 
+# managed_uv resolves a POSIX install layout: <openamer_home>/bin/uv with the
+# POSIX exec bit (_make_executable() sets stat.S_IEXEC). On Windows the module
+# looks for <openamer_home>/bin/uv.exe instead, so a fake POSIX "uv" binary is
+# never found by resolve_uv().
+_SKIP_POSIX_BIN_UV = pytest.mark.skipif(
+    sys.platform == "win32",
+    reason=(
+        "POSIX bin/uv layout: plants a fake executable at <home>/bin/uv and "
+        "relies on the POSIX exec bit (stat.S_IEXEC); on Windows resolve_uv() "
+        "looks for <home>/bin/uv.exe and never finds it."
+    ),
+)
+
+
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
@@ -85,6 +99,7 @@ class TestResolveUv:
             from openamer_cli.managed_uv import resolve_uv
             assert resolve_uv() is None
 
+    @_SKIP_POSIX_BIN_UV
     def test_existing_executable(self, tmp_path):
         _make_executable(tmp_path / "bin" / "uv")
         with patch("openamer_cli.managed_uv.get_openamer_home", return_value=tmp_path):
@@ -108,6 +123,7 @@ class TestResolveUv:
 # ---------------------------------------------------------------------------
 
 class TestEnsureUv:
+    @_SKIP_POSIX_BIN_UV
     def test_already_installed_no_bootstrap(self, tmp_path):
         _make_executable(tmp_path / "bin" / "uv")
         with patch("openamer_cli.managed_uv.get_openamer_home", return_value=tmp_path):
@@ -115,6 +131,7 @@ class TestEnsureUv:
             path = ensure_uv()
             assert path == str(tmp_path / "bin" / "uv")
 
+    @_SKIP_POSIX_BIN_UV
     def test_installs_if_missing(self, tmp_path):
         with patch("openamer_cli.managed_uv.get_openamer_home", return_value=tmp_path), \
              patch("openamer_cli.managed_uv._install_uv") as mock_install:
@@ -128,6 +145,7 @@ class TestEnsureUv:
             assert path == str(tmp_path / "bin" / "uv")
             mock_install.assert_called_once()
 
+    @_SKIP_POSIX_BIN_UV
     def test_install_reports_runtime_repair_to_observer(self, tmp_path):
         from openamer_cli.managed_uv import (
             RuntimeRepairResult,
@@ -273,6 +291,7 @@ class TestUpdateManagedUv:
             from openamer_cli.managed_uv import update_managed_uv
             assert update_managed_uv() is None
 
+    @_SKIP_POSIX_BIN_UV
     def test_self_update_success(self, tmp_path):
         _make_executable(tmp_path / "bin" / "uv")
         with patch("openamer_cli.managed_uv.get_openamer_home", return_value=tmp_path), \
@@ -286,6 +305,7 @@ class TestUpdateManagedUv:
             assert mock_run.call_count == 2
             assert mock_run.call_args_list[0][0][0] == [str(tmp_path / "bin" / "uv"), "self", "update"]
 
+    @_SKIP_POSIX_BIN_UV
     def test_self_update_failure_non_fatal(self, tmp_path):
         _make_executable(tmp_path / "bin" / "uv")
         with patch("openamer_cli.managed_uv.get_openamer_home", return_value=tmp_path), \
@@ -323,6 +343,7 @@ class TestUpdateManagedUv:
         assert result == str(uv)
         mock_repair.assert_called_once_with(str(uv))
 
+    @_SKIP_POSIX_BIN_UV
     def test_update_reports_runtime_repair_to_observer(self, tmp_path):
         from openamer_cli.managed_uv import RuntimeRepairResult, update_managed_uv
 
@@ -679,6 +700,14 @@ class TestRuntimeCutover:
 # ---------------------------------------------------------------------------
 
 class TestInstallUvInternals:
+    @pytest.mark.skipif(
+        sys.platform == "win32",
+        reason=(
+            "POSIX install branch: _install_uv() dispatches on the real "
+            "platform (platform.system() == 'Windows' -> _install_uv_windows), "
+            "so the POSIX UV_UNMANAGED_INSTALL path is unreachable here."
+        ),
+    )
     def test_posix_sets_uv_unmanaged_install(self, tmp_path):
         target = tmp_path / "bin" / "uv"
         with patch("openamer_cli.managed_uv._install_uv_posix") as mock_posix:

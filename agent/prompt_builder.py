@@ -1892,6 +1892,44 @@ def _truncate_content(
     return head + marker + tail
 
 
+def load_identity_md(context_length: Optional[int] = None) -> Optional[str]:
+    """Load the measured identity from OPENAMER_HOME and return it, or None.
+
+    SOUL.md is prose the operator writes once; this file is different in kind --
+    it is RENDERED from measurements (``openamer identity refresh``) and carries
+    the source file behind each figure. The agent should be able to state its own
+    numbers without the operator pasting them in, and a remembered number is
+    probably a wrong one, so the block travels with its provenance and is meant
+    to be refreshed rather than trusted indefinitely.
+
+    Kept separate from SOUL.md on purpose: SOUL.md is the cache-stable identity
+    slot, while this block changes whenever the system does. Injection is
+    best-effort -- a missing or unreadable file must never break agent init.
+    """
+    try:
+        from openamer_cli.config import ensure_openamer_home
+        ensure_openamer_home()
+    except Exception as e:
+        logger.debug("Could not ensure OPENAMER_HOME before loading identity: %s", e)
+
+    identity_path = get_openamer_home() / "memory" / "identity" / "identity.md"
+    if not identity_path.exists():
+        return None
+    try:
+        content = identity_path.read_text(encoding="utf-8").strip()
+        if not content:
+            return None
+        content = _scan_context_content(content, "identity.md")
+        content = _truncate_content(
+            content, "identity.md", context_length=context_length,
+            read_path=str(identity_path),
+        )
+        return content
+    except Exception as e:
+        logger.debug("Could not read the measured identity from %s: %s", identity_path, e)
+        return None
+
+
 def load_soul_md(context_length: Optional[int] = None) -> Optional[str]:
     """Load SOUL.md from OPENAMER_HOME and return its content, or None.
 
@@ -2091,6 +2129,14 @@ def build_context_files_prompt(
         soul_content = load_soul_md(context_length)
         if soul_content:
             sections.append(soul_content)
+
+    # The measured identity rides with the identity slot rather than being
+    # folded into SOUL.md: SOUL.md is the operator's prose and must stay
+    # byte-stable for prefix caching, while this block is re-rendered from
+    # measurement and changes whenever the system does.
+    identity_content = load_identity_md(context_length)
+    if identity_content:
+        sections.append(identity_content)
 
     if not sections:
         return ""

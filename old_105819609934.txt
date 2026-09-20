@@ -1,0 +1,1717 @@
+﻿2026-09-19T01:57:46.3390047Z Current runner version: '2.337.0'
+2026-09-19T01:57:46.3422043Z ##[group]Runner Image Provisioner
+2026-09-19T01:57:46.3423186Z Hosted Compute Agent
+2026-09-19T01:57:46.3424271Z Version: 20260828.587
+2026-09-19T01:57:46.3425167Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+2026-09-19T01:57:46.3426269Z Build Date: 2026-08-28T16:44:25Z
+2026-09-19T01:57:46.3427245Z Worker ID: {1410b885-696b-4ff1-9b0b-df36d7d23937}
+2026-09-19T01:57:46.3428261Z Azure Region: eastus
+2026-09-19T01:57:46.3429062Z ##[endgroup]
+2026-09-19T01:57:46.3431022Z ##[group]Operating System
+2026-09-19T01:57:46.3431906Z Ubuntu
+2026-09-19T01:57:46.3432612Z 24.04.5
+2026-09-19T01:57:46.3433293Z LTS
+2026-09-19T01:57:46.3434212Z ##[endgroup]
+2026-09-19T01:57:46.3434957Z ##[group]Runner Image
+2026-09-19T01:57:46.3435801Z Image: ubuntu-24.04
+2026-09-19T01:57:46.3436586Z Version: 20260907.300.1
+2026-09-19T01:57:46.3438373Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260907.300/images/ubuntu/Ubuntu2404-Readme.md
+2026-09-19T01:57:46.3440865Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260907.300
+2026-09-19T01:57:46.3442365Z ##[endgroup]
+2026-09-19T01:57:46.3444140Z ##[group]GITHUB_TOKEN Permissions
+2026-09-19T01:57:46.3446528Z Contents: read
+2026-09-19T01:57:46.3447310Z Metadata: read
+2026-09-19T01:57:46.3448051Z ##[endgroup]
+2026-09-19T01:57:46.3450783Z Secret source: Actions
+2026-09-19T01:57:46.3452071Z Cache mode: write
+2026-09-19T01:57:46.3453038Z Prepare workflow directory
+2026-09-19T01:57:46.3906279Z Prepare all required actions
+2026-09-19T01:57:46.3976065Z Getting action download info
+2026-09-19T01:57:46.6153300Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+2026-09-19T01:57:46.7233669Z Download action repository 'astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d' (SHA:20cfd1bf945f4377ade1205e4dbc17946fc9a30d)
+2026-09-19T01:57:46.9205163Z Download action repository 'actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a' (SHA:043fb46d1a93c77aae656e7c1c64a875d1fc6a0a)
+2026-09-19T01:57:47.1131617Z Uses: openamer/openamer/.github/workflows/tests.yml@refs/heads/main (711feb164973c21ff875d6c23d7d22162f5b54f2)
+2026-09-19T01:57:47.1137145Z ##[group] Inputs
+2026-09-19T01:57:47.1138277Z   slice_count: 8
+2026-09-19T01:57:47.1138957Z ##[endgroup]
+2026-09-19T01:57:47.1139651Z Complete job name: Python tests / Run tests slice 1/8
+2026-09-19T01:57:47.1915749Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+2026-09-19T01:57:47.1917349Z with:
+2026-09-19T01:57:47.1918094Z   repository: openamer/openamer
+2026-09-19T01:57:47.1922060Z   token: ***
+2026-09-19T01:57:47.1922489Z   ssh-strict: true
+2026-09-19T01:57:47.1922935Z   ssh-user: git
+2026-09-19T01:57:47.1923376Z   persist-credentials: true
+2026-09-19T01:57:47.1924025Z   clean: true
+2026-09-19T01:57:47.1924468Z   sparse-checkout-cone-mode: true
+2026-09-19T01:57:47.1924987Z   fetch-depth: 1
+2026-09-19T01:57:47.1925406Z   fetch-tags: false
+2026-09-19T01:57:47.1925859Z   show-progress: true
+2026-09-19T01:57:47.1926309Z   lfs: false
+2026-09-19T01:57:47.1926716Z   submodules: false
+2026-09-19T01:57:47.1927179Z   set-safe-directory: true
+2026-09-19T01:57:47.1927683Z   allow-unsafe-pr-checkout: false
+2026-09-19T01:57:47.1928585Z ##[endgroup]
+2026-09-19T01:57:47.2952952Z Syncing repository: openamer/openamer
+2026-09-19T01:57:47.2955639Z ##[group]Getting Git version info
+2026-09-19T01:57:47.2956494Z Working directory is '/home/runner/work/openamer/openamer'
+2026-09-19T01:57:47.2957645Z [command]/usr/bin/git version
+2026-09-19T01:57:47.3045293Z git version 2.55.0
+2026-09-19T01:57:47.3071085Z ##[endgroup]
+2026-09-19T01:57:47.3083221Z Temporarily overriding HOME='/home/runner/work/_temp/d3f1d406-f164-4236-bdb2-44b541e37270' before making global git config changes
+2026-09-19T01:57:47.3086603Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-19T01:57:47.3092102Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/openamer/openamer
+2026-09-19T01:57:47.3148851Z Deleting the contents of '/home/runner/work/openamer/openamer'
+2026-09-19T01:57:47.3153988Z ##[group]Determining repository object format
+2026-09-19T01:57:47.3155733Z ##[endgroup]
+2026-09-19T01:57:47.3156937Z ##[group]Initializing the repository
+2026-09-19T01:57:47.3160674Z [command]/usr/bin/git init /home/runner/work/openamer/openamer
+2026-09-19T01:57:47.3296779Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-09-19T01:57:47.3298174Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-09-19T01:57:47.3299716Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-09-19T01:57:47.3301274Z hint: call:
+2026-09-19T01:57:47.3302076Z hint:
+2026-09-19T01:57:47.3303147Z hint: 	git config --global init.defaultBranch <name>
+2026-09-19T01:57:47.3304751Z hint:
+2026-09-19T01:57:47.3307187Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-09-19T01:57:47.3310682Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-09-19T01:57:47.3312249Z hint:
+2026-09-19T01:57:47.3313140Z hint: 	git branch -m <name>
+2026-09-19T01:57:47.3314441Z hint:
+2026-09-19T01:57:47.3315855Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-09-19T01:57:47.3318071Z Initialized empty Git repository in /home/runner/work/openamer/openamer/.git/
+2026-09-19T01:57:47.3321361Z [command]/usr/bin/git remote add origin https://github.com/openamer/openamer
+2026-09-19T01:57:47.3382046Z ##[endgroup]
+2026-09-19T01:57:47.3383616Z ##[group]Disabling automatic garbage collection
+2026-09-19T01:57:47.3386257Z [command]/usr/bin/git config --local gc.auto 0
+2026-09-19T01:57:47.3433953Z ##[endgroup]
+2026-09-19T01:57:47.3435315Z ##[group]Setting up auth
+2026-09-19T01:57:47.3436405Z Removing SSH command configuration
+2026-09-19T01:57:47.3445212Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-19T01:57:47.3516381Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-19T01:57:47.3999494Z Removing HTTP extra header
+2026-09-19T01:57:47.4006633Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-19T01:57:47.4055331Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-19T01:57:47.4293271Z Removing includeIf entries pointing to credentials config files
+2026-09-19T01:57:47.4295351Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-19T01:57:47.4339821Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-19T01:57:47.4586278Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-8832affa-a7c4-4bb2-988c-2c00b07f54d5.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-09-19T01:57:47.4627235Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/openamer/openamer/.git.path /home/runner/work/_temp/git-credentials-8832affa-a7c4-4bb2-988c-2c00b07f54d5.config
+2026-09-19T01:57:47.4662994Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/openamer/openamer/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-8832affa-a7c4-4bb2-988c-2c00b07f54d5.config
+2026-09-19T01:57:47.4701127Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-8832affa-a7c4-4bb2-988c-2c00b07f54d5.config
+2026-09-19T01:57:47.4736195Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-8832affa-a7c4-4bb2-988c-2c00b07f54d5.config
+2026-09-19T01:57:47.4767329Z ##[endgroup]
+2026-09-19T01:57:47.4768109Z ##[group]Fetching the repository
+2026-09-19T01:57:47.4774449Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +711feb164973c21ff875d6c23d7d22162f5b54f2:refs/remotes/origin/main
+2026-09-19T01:57:50.9349916Z From https://github.com/openamer/openamer
+2026-09-19T01:57:50.9351883Z  * [new ref]         711feb164973c21ff875d6c23d7d22162f5b54f2 -> origin/main
+2026-09-19T01:57:50.9359215Z [command]/usr/bin/git branch --list --remote origin/main
+2026-09-19T01:57:50.9387872Z   origin/main
+2026-09-19T01:57:50.9396107Z [command]/usr/bin/git rev-parse refs/remotes/origin/main
+2026-09-19T01:57:50.9421704Z 711feb164973c21ff875d6c23d7d22162f5b54f2
+2026-09-19T01:57:50.9426345Z ##[endgroup]
+2026-09-19T01:57:50.9427370Z ##[group]Determining the checkout info
+2026-09-19T01:57:50.9428278Z ##[endgroup]
+2026-09-19T01:57:50.9430717Z [command]/usr/bin/git sparse-checkout disable
+2026-09-19T01:57:50.9486441Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-09-19T01:57:50.9518706Z ##[group]Checking out the ref
+2026-09-19T01:57:50.9522500Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-09-19T01:57:51.9727356Z Updating files:  68% (6860/10080)
+2026-09-19T01:57:51.9813564Z Updating files:  69% (6956/10080)
+2026-09-19T01:57:51.9890101Z Updating files:  70% (7056/10080)
+2026-09-19T01:57:51.9964430Z Updating files:  71% (7157/10080)
+2026-09-19T01:57:52.0057351Z Updating files:  72% (7258/10080)
+2026-09-19T01:57:52.0132286Z Updating files:  73% (7359/10080)
+2026-09-19T01:57:52.0218435Z Updating files:  74% (7460/10080)
+2026-09-19T01:57:52.0294230Z Updating files:  75% (7560/10080)
+2026-09-19T01:57:52.0373426Z Updating files:  76% (7661/10080)
+2026-09-19T01:57:52.0460717Z Updating files:  77% (7762/10080)
+2026-09-19T01:57:52.0553692Z Updating files:  78% (7863/10080)
+2026-09-19T01:57:52.0643143Z Updating files:  79% (7964/10080)
+2026-09-19T01:57:52.0730978Z Updating files:  80% (8064/10080)
+2026-09-19T01:57:52.0844052Z Updating files:  81% (8165/10080)
+2026-09-19T01:57:52.1020950Z Updating files:  82% (8266/10080)
+2026-09-19T01:57:52.1118502Z Updating files:  83% (8367/10080)
+2026-09-19T01:57:52.1186211Z Updating files:  84% (8468/10080)
+2026-09-19T01:57:52.1246297Z Updating files:  85% (8568/10080)
+2026-09-19T01:57:52.1314878Z Updating files:  86% (8669/10080)
+2026-09-19T01:57:52.1409133Z Updating files:  87% (8770/10080)
+2026-09-19T01:57:52.1502680Z Updating files:  88% (8871/10080)
+2026-09-19T01:57:52.1572546Z Updating files:  89% (8972/10080)
+2026-09-19T01:57:52.1628270Z Updating files:  90% (9072/10080)
+2026-09-19T01:57:52.1687422Z Updating files:  91% (9173/10080)
+2026-09-19T01:57:52.1760528Z Updating files:  92% (9274/10080)
+2026-09-19T01:57:52.1882652Z Updating files:  93% (9375/10080)
+2026-09-19T01:57:52.1988329Z Updating files:  94% (9476/10080)
+2026-09-19T01:57:52.2108333Z Updating files:  95% (9576/10080)
+2026-09-19T01:57:52.2214788Z Updating files:  96% (9677/10080)
+2026-09-19T01:57:52.3667579Z Updating files:  97% (9778/10080)
+2026-09-19T01:57:52.3761279Z Updating files:  98% (9879/10080)
+2026-09-19T01:57:52.4145145Z Updating files:  99% (9980/10080)
+2026-09-19T01:57:52.4172793Z Updating files: 100% (10080/10080)
+2026-09-19T01:57:52.4174234Z Updating files: 100% (10080/10080), done.
+2026-09-19T01:57:52.5096588Z Switched to a new branch 'main'
+2026-09-19T01:57:52.5711474Z branch 'main' set up to track 'origin/main'.
+2026-09-19T01:57:52.5751200Z ##[endgroup]
+2026-09-19T01:57:52.6644622Z [command]/usr/bin/git log -1 --format=%H
+2026-09-19T01:57:52.6681765Z 711feb164973c21ff875d6c23d7d22162f5b54f2
+2026-09-19T01:57:52.6936321Z ##[group]Run set -euo pipefail
+2026-09-19T01:57:52.6936743Z [36;1mset -euo pipefail[0m
+2026-09-19T01:57:52.6937009Z [36;1mRG_VERSION=15.1.0[0m
+2026-09-19T01:57:52.6937433Z [36;1mRG_SHA256=1c9297be4a084eea7ecaedf93eb03d058d6faae29bbc57ecdaf5063921491599[0m
+2026-09-19T01:57:52.6938018Z [36;1mRG_TARBALL=ripgrep-${RG_VERSION}-x86_64-unknown-linux-musl.tar.gz[0m
+2026-09-19T01:57:52.6938737Z [36;1mcurl -sSfL --retry 3 --retry-delay 5 -o "$RG_TARBALL" \[0m
+2026-09-19T01:57:52.6939397Z [36;1m  "https://github.com/BurntSushi/ripgrep/releases/download/${RG_VERSION}/${RG_TARBALL}"[0m
+2026-09-19T01:57:52.6939983Z [36;1mecho "${RG_SHA256}  ${RG_TARBALL}" | sha256sum -c -[0m
+2026-09-19T01:57:52.6940328Z [36;1mtar -xzf "$RG_TARBALL"[0m
+2026-09-19T01:57:52.6940734Z [36;1msudo mv "ripgrep-${RG_VERSION}-x86_64-unknown-linux-musl/rg" /usr/local/bin/rg[0m
+2026-09-19T01:57:52.6941276Z [36;1mrm -rf "$RG_TARBALL" "ripgrep-${RG_VERSION}-x86_64-unknown-linux-musl"[0m
+2026-09-19T01:57:52.6941719Z [36;1mrg --version[0m
+2026-09-19T01:57:52.7003876Z shell: /usr/bin/bash -e {0}
+2026-09-19T01:57:52.7004188Z ##[endgroup]
+2026-09-19T01:57:53.0271312Z ripgrep-15.1.0-x86_64-unknown-linux-musl.tar.gz: OK
+2026-09-19T01:57:53.0881862Z ripgrep 15.1.0 (rev af60c2de9d)
+2026-09-19T01:57:53.0882307Z 
+2026-09-19T01:57:53.0882523Z features:+pcre2
+2026-09-19T01:57:53.0882817Z simd(compile):+SSE2,-SSSE3,-AVX2
+2026-09-19T01:57:53.0883127Z simd(runtime):+SSE2,+SSSE3,+AVX2
+2026-09-19T01:57:53.0883292Z 
+2026-09-19T01:57:53.0883430Z PCRE2 10.45 is available (JIT is available)
+2026-09-19T01:57:53.1008231Z ##[group]Run astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d
+2026-09-19T01:57:53.1008651Z with:
+2026-09-19T01:57:53.1008848Z   enable-cache: true
+2026-09-19T01:57:53.1009107Z   cache-dependency-glob: pyproject.toml
+uv.lock
+
+2026-09-19T01:57:53.1009417Z   activate-environment: false
+2026-09-19T01:57:53.1009660Z   no-project: false
+2026-09-19T01:57:53.1009928Z   working-directory: /home/runner/work/openamer/openamer
+2026-09-19T01:57:53.1012574Z   github-token: ***
+2026-09-19T01:57:53.1012794Z   restore-cache: true
+2026-09-19T01:57:53.1013001Z   save-cache: true
+2026-09-19T01:57:53.1013197Z   prune-cache: false
+2026-09-19T01:57:53.1013408Z   cache-python: false
+2026-09-19T01:57:53.1013629Z   ignore-nothing-to-cache: false
+2026-09-19T01:57:53.1014217Z   ignore-empty-workdir: false
+2026-09-19T01:57:53.1014573Z   download-from-astral-mirror: true
+2026-09-19T01:57:53.1014844Z   add-problem-matchers: true
+2026-09-19T01:57:53.1015070Z   quiet: false
+2026-09-19T01:57:53.1015318Z   resolution-strategy: highest
+2026-09-19T01:57:53.1015561Z ##[endgroup]
+2026-09-19T01:57:53.2895574Z Trying to find version for uv in: /home/runner/work/openamer/openamer/uv.toml
+2026-09-19T01:57:53.2913539Z Could not find file: /home/runner/work/openamer/openamer/uv.toml
+2026-09-19T01:57:53.2914910Z Trying to find version for uv in: /home/runner/work/openamer/openamer/pyproject.toml
+2026-09-19T01:57:53.2916157Z Could not determine uv version from uv.toml or pyproject.toml. Falling back to latest.
+2026-09-19T01:57:53.2918154Z Fetching manifest data from https://raw.githubusercontent.com/astral-sh/versions/main/v1/uv.ndjson ...
+2026-09-19T01:57:53.3407241Z Downloading uv from "https://releases.astral.sh/github/uv/releases/download/0.12.17/uv-x86_64-unknown-linux-gnu.tar.gz" ...
+2026-09-19T01:57:53.5365883Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/0637e1a8-f6d4-40dd-92f8-9770243408b1 -f /home/runner/work/_temp/da5ccc6b-9b93-4f71-ad1b-0b3038d7a1fe
+2026-09-19T01:57:53.9152583Z Added /home/runner/.local/bin to the path
+2026-09-19T01:57:53.9163352Z Added /opt/hostedtoolcache/uv/0.12.17/x86_64 to the path
+2026-09-19T01:57:53.9165740Z Set UV_PYTHON_INSTALL_DIR to /home/runner/work/_temp/uv-python-dir
+2026-09-19T01:57:53.9166851Z Added /home/runner/work/_temp/uv-python-dir to the path
+2026-09-19T01:57:53.9186026Z Set UV_CACHE_DIR to /home/runner/work/_temp/setup-uv-cache
+2026-09-19T01:57:53.9186429Z Successfully installed uv version 0.12.17
+2026-09-19T01:57:53.9760470Z Searching files using cache dependency glob: /home/runner/work/openamer/openamer/pyproject.toml,/home/runner/work/openamer/openamer/uv.lock
+2026-09-19T01:57:53.9820878Z /home/runner/work/openamer/openamer/pyproject.toml
+2026-09-19T01:57:53.9840872Z /home/runner/work/openamer/openamer/uv.lock
+2026-09-19T01:57:53.9863003Z Found 2 files to hash.
+2026-09-19T01:57:53.9924236Z Trying to restore cache from GitHub Actions cache with key: setup-uv-2-x86_64-unknown-linux-gnu-ubuntu-24.04-3.12.3-037fb1b04eeae41563a55b9b56d9fe73293f919acf7e1cab0ca9cc7226c87a48
+2026-09-19T01:57:54.0366108Z Cache hit for: setup-uv-2-x86_64-unknown-linux-gnu-ubuntu-24.04-3.12.3-037fb1b04eeae41563a55b9b56d9fe73293f919acf7e1cab0ca9cc7226c87a48
+2026-09-19T01:57:54.1509756Z Received 197011 of 197011 (100.0%), 3.2 MBs/sec
+2026-09-19T01:57:54.1510358Z Cache Size: ~0 MB (197011 B)
+2026-09-19T01:57:54.1544917Z [command]/usr/bin/tar -xf /home/runner/work/_temp/6a790f23-0e9f-4b77-b029-7f9f65429cf0/cache.tzst -P -C /home/runner/work/openamer/openamer --use-compress-program unzstd
+2026-09-19T01:57:54.1657195Z Cache restored successfully
+2026-09-19T01:57:54.1671797Z cache restored from GitHub Actions cache with key: setup-uv-2-x86_64-unknown-linux-gnu-ubuntu-24.04-3.12.3-037fb1b04eeae41563a55b9b56d9fe73293f919acf7e1cab0ca9cc7226c87a48
+2026-09-19T01:57:54.2796886Z ##[group]Run uv python install 3.11
+2026-09-19T01:57:54.2797222Z [36;1muv python install 3.11[0m
+2026-09-19T01:57:54.2836465Z shell: /usr/bin/bash -e {0}
+2026-09-19T01:57:54.2836717Z env:
+2026-09-19T01:57:54.2837021Z   UV_PYTHON_INSTALL_DIR: /home/runner/work/_temp/uv-python-dir
+2026-09-19T01:57:54.2837433Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-09-19T01:57:54.2837751Z ##[endgroup]
+2026-09-19T01:57:54.3941512Z Downloading cpython-3.11.16-linux-x86_64-gnu (download) (29.4MiB)
+2026-09-19T01:57:55.2271684Z  Downloaded cpython-3.11.16-linux-x86_64-gnu (download)
+2026-09-19T01:57:55.2331900Z Installed Python 3.11.16 in 937ms
+2026-09-19T01:57:55.2332557Z  + cpython-3.11.16-linux-x86_64-gnu (python3.11)
+2026-09-19T01:57:55.2489756Z Prepare all required actions
+2026-09-19T01:57:55.2554637Z ##[group]Run ./.github/actions/retry
+2026-09-19T01:57:55.2554917Z with:
+2026-09-19T01:57:55.2555210Z   command: uv sync --locked --python 3.11 --extra all --extra dev
+2026-09-19T01:57:55.2555583Z   attempts: 3
+2026-09-19T01:57:55.2555776Z   delay: 10
+2026-09-19T01:57:55.2555966Z   working-directory: .
+2026-09-19T01:57:55.2556186Z env:
+2026-09-19T01:57:55.2556452Z   UV_PYTHON_INSTALL_DIR: /home/runner/work/_temp/uv-python-dir
+2026-09-19T01:57:55.2556843Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-09-19T01:57:55.2557138Z ##[endgroup]
+2026-09-19T01:57:55.2615770Z ##[start-action display=Run set -uo pipefail;id=__self.retry]
+2026-09-19T01:57:55.2638795Z ##[group]Run set -uo pipefail
+2026-09-19T01:57:55.2639094Z [36;1mset -uo pipefail[0m
+2026-09-19T01:57:55.2639332Z [36;1m_OUTFILE="$(mktemp)"[0m
+2026-09-19T01:57:55.2639598Z [36;1mtrap 'rm -f "$_OUTFILE"' EXIT[0m
+2026-09-19T01:57:55.2639866Z [36;1mn=0[0m
+2026-09-19T01:57:55.2640098Z [36;1mwhile :; do[0m
+2026-09-19T01:57:55.2640310Z [36;1m  n=$((n + 1))[0m
+2026-09-19T01:57:55.2640583Z [36;1m  echo "::group::attempt $n/$_ATTEMPTS: $_CMD"[0m
+2026-09-19T01:57:55.2640999Z [36;1m  # Run the command, capturing stdout to a temp file while still[0m
+2026-09-19T01:57:55.2641491Z [36;1m  # streaming to the log. We redirect first, then tee the file to[0m
+2026-09-19T01:57:55.2641979Z [36;1m  # stdout — this avoids pipefail + tee exit-code interactions that[0m
+2026-09-19T01:57:55.2642445Z [36;1m  # can cause the if-branch to be skipped under set -e.[0m
+2026-09-19T01:57:55.2642816Z [36;1m  if bash -c "$_CMD" > "$_OUTFILE"; then[0m
+2026-09-19T01:57:55.2643109Z [36;1m    cat "$_OUTFILE"[0m
+2026-09-19T01:57:55.2643351Z [36;1m    echo "::endgroup::"[0m
+2026-09-19T01:57:55.2643688Z [36;1m    # Preserve newlines in the output via heredoc delimiter.[0m
+2026-09-19T01:57:55.2644258Z [36;1m    {[0m
+2026-09-19T01:57:55.2644497Z [36;1m      echo 'stdout<<__RETRY_STDOUT_EOF__'[0m
+2026-09-19T01:57:55.2644789Z [36;1m      cat "$_OUTFILE"[0m
+2026-09-19T01:57:55.2645050Z [36;1m      echo '__RETRY_STDOUT_EOF__'[0m
+2026-09-19T01:57:55.2645330Z [36;1m    } >> "$GITHUB_OUTPUT"[0m
+2026-09-19T01:57:55.2645750Z [36;1m    exit 0[0m
+2026-09-19T01:57:55.2645952Z [36;1m  fi[0m
+2026-09-19T01:57:55.2646154Z [36;1m  echo "::endgroup::"[0m
+2026-09-19T01:57:55.2646424Z [36;1m  if [ "$n" -ge "$_ATTEMPTS" ]; then[0m
+2026-09-19T01:57:55.2646755Z [36;1m    echo "::error::failed after $n attempts: $_CMD"[0m
+2026-09-19T01:57:55.2647065Z [36;1m    exit 1[0m
+2026-09-19T01:57:55.2647267Z [36;1m  fi[0m
+2026-09-19T01:57:55.2647573Z [36;1m  echo "::warning::attempt $n failed; retrying in ${_DELAY}s: $_CMD"[0m
+2026-09-19T01:57:55.2647959Z [36;1m  sleep "$_DELAY"[0m
+2026-09-19T01:57:55.2648181Z [36;1mdone[0m
+2026-09-19T01:57:55.2686060Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-09-19T01:57:55.2686407Z env:
+2026-09-19T01:57:55.2686685Z   UV_PYTHON_INSTALL_DIR: /home/runner/work/_temp/uv-python-dir
+2026-09-19T01:57:55.2687078Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-09-19T01:57:55.2687473Z   _CMD: uv sync --locked --python 3.11 --extra all --extra dev
+2026-09-19T01:57:55.2687799Z   _ATTEMPTS: 3
+2026-09-19T01:57:55.2687988Z   _DELAY: 10
+2026-09-19T01:57:55.2688173Z ##[endgroup]
+2026-09-19T01:57:55.2760246Z ##[group]attempt 1/3: uv sync --locked --python 3.11 --extra all --extra dev
+2026-09-19T01:57:55.4054184Z Using CPython 3.11.16
+2026-09-19T01:57:55.4054714Z Creating virtual environment at: .venv
+2026-09-19T01:57:55.4126110Z Resolved 289 packages in 1ms
+2026-09-19T01:57:55.4331544Z    Building openamer-agent @ file:///home/runner/work/openamer/openamer
+2026-09-19T01:57:55.5180504Z Downloading pygments (1.2MiB)
+2026-09-19T01:57:55.5435544Z Downloading pydantic-core (2.0MiB)
+2026-09-19T01:57:55.5442208Z Downloading numpy (16.1MiB)
+2026-09-19T01:57:55.5442718Z Downloading cryptography (4.5MiB)
+2026-09-19T01:57:55.5443664Z Downloading google-api-python-client (14.3MiB)
+2026-09-19T01:57:55.5444832Z Downloading pillow (6.6MiB)
+2026-09-19T01:57:55.5449756Z Downloading ruff (10.7MiB)
+2026-09-19T01:57:55.5454277Z Downloading openai (1.1MiB)
+2026-09-19T01:57:55.5456789Z Downloading uvloop (3.6MiB)
+2026-09-19T01:57:55.5458392Z Downloading setuptools (1.0MiB)
+2026-09-19T01:57:55.5461535Z Downloading debugpy (3.0MiB)
+2026-09-19T01:57:55.5463204Z Downloading ty (10.2MiB)
+2026-09-19T01:57:55.5525898Z Downloading aiohttp (1.7MiB)
+2026-09-19T01:57:55.8494922Z  Downloaded setuptools
+2026-09-19T01:57:55.8535116Z  Downloaded pygments
+2026-09-19T01:57:55.8669969Z  Downloaded aiohttp
+2026-09-19T01:57:55.8788813Z  Downloaded pydantic-core
+2026-09-19T01:57:55.9010817Z  Downloaded openai
+2026-09-19T01:57:55.9273466Z  Downloaded debugpy
+2026-09-19T01:57:55.9394783Z  Downloaded uvloop
+2026-09-19T01:57:55.9697603Z  Downloaded cryptography
+2026-09-19T01:57:56.0115332Z  Downloaded pillow
+2026-09-19T01:57:56.0780631Z  Downloaded ruff
+2026-09-19T01:57:56.0859510Z  Downloaded ty
+2026-09-19T01:57:56.1708259Z  Downloaded google-api-python-client
+2026-09-19T01:57:56.2103095Z  Downloaded numpy
+2026-09-19T01:57:57.4646781Z       Built openamer-agent @ file:///home/runner/work/openamer/openamer
+2026-09-19T01:57:57.4659985Z Prepared 104 packages in 2.05s
+2026-09-19T01:57:57.5462823Z Installed 104 packages in 80ms
+2026-09-19T01:57:57.5463413Z  + agent-client-protocol==0.9.0
+2026-09-19T01:57:57.5464107Z  + aiohappyeyeballs==2.6.1
+2026-09-19T01:57:57.5464581Z  + aiohttp==3.14.1
+2026-09-19T01:57:57.5464956Z  + aiosignal==1.4.0
+2026-09-19T01:57:57.5465353Z  + annotated-doc==0.0.4
+2026-09-19T01:57:57.5465781Z  + annotated-types==0.7.0
+2026-09-19T01:57:57.5466197Z  + anyio==4.12.1
+2026-09-19T01:57:57.5466550Z  + attrs==25.4.0
+2026-09-19T01:57:57.5466908Z  + certifi==2026.5.20
+2026-09-19T01:57:57.5467300Z  + cffi==2.0.0
+2026-09-19T01:57:57.5467700Z  + charset-normalizer==3.4.4
+2026-09-19T01:57:57.5468155Z  + click==8.3.1
+2026-09-19T01:57:57.5468522Z  + croniter==6.0.0
+2026-09-19T01:57:57.5468956Z  + cryptography==50.0.0
+2026-09-19T01:57:57.5469382Z  + debugpy==1.8.20
+2026-09-19T01:57:57.5469776Z  + defusedxml==0.7.1
+2026-09-19T01:57:57.5470157Z  + distro==1.9.0
+2026-09-19T01:57:57.5470532Z  + fastapi==0.133.1
+2026-09-19T01:57:57.5471217Z  + fire==0.7.1
+2026-09-19T01:57:57.5471596Z  + frozenlist==1.8.0
+2026-09-19T01:57:57.5472026Z  + google-api-core==2.30.3
+2026-09-19T01:57:57.5472535Z  + google-api-python-client==2.194.0
+2026-09-19T01:57:57.5473048Z  + google-auth==2.55.1
+2026-09-19T01:57:57.5473897Z  + google-auth-httplib2==0.3.1
+2026-09-19T01:57:57.5474485Z  + google-auth-oauthlib==1.3.1
+2026-09-19T01:57:57.5474974Z  + googleapis-common-protos==1.73.0
+2026-09-19T01:57:57.5475468Z  + h11==0.16.0
+2026-09-19T01:57:57.5475832Z  + httpcore==1.0.9
+2026-09-19T01:57:57.5476210Z  + httplib2==0.31.2
+2026-09-19T01:57:57.5476594Z  + httptools==0.7.1
+2026-09-19T01:57:57.5476975Z  + httpx==0.28.1
+2026-09-19T01:57:57.5477365Z  + httpx-sse==0.4.3
+2026-09-19T01:57:57.5477723Z  + idna==3.15
+2026-09-19T01:57:57.5478076Z  + iniconfig==2.3.0
+2026-09-19T01:57:57.5478434Z  + jinja2==3.1.6
+2026-09-19T01:57:57.5478792Z  + jiter==0.13.0
+2026-09-19T01:57:57.5479159Z  + jsonschema==4.26.0
+2026-09-19T01:57:57.5479583Z  + jsonschema-specifications==2025.9.1
+2026-09-19T01:57:57.5480075Z  + markdown==3.10.2
+2026-09-19T01:57:57.5480446Z  + markdown-it-py==4.0.0
+2026-09-19T01:57:57.5480873Z  + markupsafe==3.0.3
+2026-09-19T01:57:57.5481244Z  + mcp==1.26.0
+2026-09-19T01:57:57.5481587Z  + mdurl==0.1.2
+2026-09-19T01:57:57.5481940Z  + multidict==6.7.1
+2026-09-19T01:57:57.5482315Z  + numpy==2.4.3
+2026-09-19T01:57:57.5482740Z  + oauthlib==3.3.1
+2026-09-19T01:57:57.5483111Z  + openai==2.24.0
+2026-09-19T01:57:57.5483959Z  + openamer-agent==2026.9.18 (from file:///home/runner/work/openamer/openamer)
+2026-09-19T01:57:57.5484705Z  + packaging==26.0
+2026-09-19T01:57:57.5485078Z  + pathspec==1.1.1
+2026-09-19T01:57:57.5485442Z  + pillow==12.3.0
+2026-09-19T01:57:57.5485799Z  + pluggy==1.6.0
+2026-09-19T01:57:57.5486176Z  + prompt-toolkit==3.0.52
+2026-09-19T01:57:57.5486840Z  + propcache==0.4.1
+2026-09-19T01:57:57.5487247Z  + proto-plus==1.27.2
+2026-09-19T01:57:57.5487633Z  + protobuf==6.33.5
+2026-09-19T01:57:57.5488013Z  + psutil==7.2.2
+2026-09-19T01:57:57.5488401Z  + ptyprocess==0.7.0
+2026-09-19T01:57:57.5488799Z  + pyasn1==0.6.3
+2026-09-19T01:57:57.5489185Z  + pyasn1-modules==0.4.2
+2026-09-19T01:57:57.5489606Z  + pycparser==3.0
+2026-09-19T01:57:57.5489984Z  + pydantic==2.13.4
+2026-09-19T01:57:57.5490420Z  + pydantic-core==2.46.4
+2026-09-19T01:57:57.5490979Z  + pydantic-settings==2.13.1
+2026-09-19T01:57:57.5491414Z  + pygments==2.19.2
+2026-09-19T01:57:57.5491782Z  + pyjwt==2.13.0
+2026-09-19T01:57:57.5492146Z  + pyparsing==3.3.2
+2026-09-19T01:57:57.5492505Z  + pytest==9.0.2
+2026-09-19T01:57:57.5492881Z  + pytest-asyncio==1.3.0
+2026-09-19T01:57:57.5493311Z  + python-dateutil==2.9.0.post0
+2026-09-19T01:57:57.5493926Z  + python-dotenv==1.2.2
+2026-09-19T01:57:57.5494356Z  + python-multipart==0.0.27
+2026-09-19T01:57:57.5494778Z  + pytz==2025.2
+2026-09-19T01:57:57.5495140Z  + pyyaml==6.0.3
+2026-09-19T01:57:57.5495506Z  + referencing==0.37.0
+2026-09-19T01:57:57.5495892Z  + requests==2.33.0
+2026-09-19T01:57:57.5496272Z  + requests-oauthlib==2.0.0
+2026-09-19T01:57:57.5496720Z  + rich==14.3.3
+2026-09-19T01:57:57.5497080Z  + rpds-py==0.30.0
+2026-09-19T01:57:57.5497453Z  + ruamel-yaml==0.18.17
+2026-09-19T01:57:57.5497860Z  + ruamel-yaml-clib==0.2.15
+2026-09-19T01:57:57.5498273Z  + ruff==0.15.10
+2026-09-19T01:57:57.5498627Z  + setuptools==81.0.0
+2026-09-19T01:57:57.5498852Z  + simple-term-menu==1.6.6
+2026-09-19T01:57:57.5499087Z  + six==1.17.0
+2026-09-19T01:57:57.5499283Z  + sniffio==1.3.1
+2026-09-19T01:57:57.5499483Z  + socksio==1.0.0
+2026-09-19T01:57:57.5499710Z  + sse-starlette==3.3.2
+2026-09-19T01:57:57.5500045Z  + starlette==1.0.1
+2026-09-19T01:57:57.5500349Z  + tenacity==9.1.4
+2026-09-19T01:57:57.5500652Z  + termcolor==3.3.0
+2026-09-19T01:57:57.5500845Z  + tqdm==4.67.3
+2026-09-19T01:57:57.5501043Z  + ty==0.0.21
+2026-09-19T01:57:57.5501279Z  + typing-extensions==4.15.0
+2026-09-19T01:57:57.5501561Z  + typing-inspection==0.4.2
+2026-09-19T01:57:57.5502010Z  + uritemplate==4.2.0
+2026-09-19T01:57:57.5502327Z  + urllib3==2.7.0
+2026-09-19T01:57:57.5502520Z  + uvicorn==0.41.0
+2026-09-19T01:57:57.5502879Z  + uvloop==0.22.1
+2026-09-19T01:57:57.5503080Z  + watchfiles==1.1.1
+2026-09-19T01:57:57.5503281Z  + wcwidth==0.6.0
+2026-09-19T01:57:57.5503477Z  + websockets==15.0.1
+2026-09-19T01:57:57.5503682Z  + yarl==1.22.0
+2026-09-19T01:57:57.5504209Z  + youtube-transcript-api==1.2.4
+2026-09-19T01:57:57.5672286Z ##[endgroup]
+2026-09-19T01:57:57.5721654Z ##[end-action id=__self.retry;outcome=success;conclusion=success;duration_ms=2310]
+2026-09-19T01:57:57.5774595Z ##[group]Run uv cache prune --ci
+2026-09-19T01:57:57.5774941Z [36;1muv cache prune --ci[0m
+2026-09-19T01:57:57.5812102Z shell: /usr/bin/bash -e {0}
+2026-09-19T01:57:57.5812352Z env:
+2026-09-19T01:57:57.5812626Z   UV_PYTHON_INSTALL_DIR: /home/runner/work/_temp/uv-python-dir
+2026-09-19T01:57:57.5813018Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-09-19T01:57:57.5813319Z ##[endgroup]
+2026-09-19T01:57:57.5924707Z Pruning cache at: /home/runner/work/_temp/setup-uv-cache
+2026-09-19T01:57:57.7409314Z Removed 8480 files (5.7MiB)
+2026-09-19T01:57:57.7471131Z ##[group]Run source .venv/bin/activate
+2026-09-19T01:57:57.7471538Z [36;1msource .venv/bin/activate[0m
+2026-09-19T01:57:57.7518430Z [36;1mscripts/run_tests.sh --files 'tests/run_agent/test_run_agent.py:tests/openamer_cli/test_setup_blank_slate.py:tests/gateway/test_async_delivery_capability.py:tests/run_agent/test_thinking_sig_recovery_persistence.py:tests/openamer_cli/test_custom_provider_model_switch.py:tests/tools/test_tool_search.py:tests/tui_gateway/test_mcp_reload_rev.py:tests/openamer_cli/test_kanban_goal_mode.py:tests/agent/lsp/test_shell_linter_lsp_skip.py:tests/run_agent/test_66267_multimodal_interim.py:tests/cli/test_cli_save_config_value.py:tests/openamer_cli/test_skin_engine.py:tests/gateway/test_restart_redelivery_dedup.py:tests/tools/test_mcp_structured_content.py:tests/openamer_cli/test_regression_16767.py:tests/gateway/test_goal_status_notice.py:tests/gateway/test_max_tokens_propagation.py:tests/openamer_cli/test_projects_db.py:tests/agent/test_credential_pool_oat_authtype.py:tests/gateway/test_feishu_comment_rules.py:tests/cli/test_stream_partial_line_flush.py:tests/cron/test_jobs_crossprocess_lock.py:tests/a2a/test_brain_share.py:tests/acp/test_permissions.py:tests/acp_adapter/test_detect_provider_entra.py:tests/agent/lsp/test_powershell_server.py:tests/agent/test_anthropic_billing_guidance.py:tests/agent/test_anthropic_whitespace_text_blocks.py:tests/agent/test_auxiliary_client_base_url_host_validation_52608.py:tests/agent/test_auxiliary_runtime_cache_key.py:tests/agent/test_bedrock_integration.py:tests/agent/test_close_interrupted_tool_sequence.py:tests/agent/test_compaction_anti_thrash.py:tests/agent/test_compression_count_warning_36908.py:tests/agent/test_compressor_assistant_tail_anchor.py:tests/agent/test_context_compressor_session_end_clears_state.py:tests/agent/test_context_refs_concurrent.py:tests/agent/test_credential_pool_unmatched_rotation_bound.py:tests/agent/test_curator_activity.py:tests/agent/test_direct_provider_url_detection.py:tests/agent/test_external_skills_dirs_cache.py:tests/agent/test_gemini_fast_fallback.py:tests/agent/test_image_routing.py:tests/agent/test_learning_graph_render.py:tests/agent/test_memory_session_switch.py:tests/agent/test_moa_context_max_tokens.py:tests/agent/test_model_extra_type_guard.py:tests/agent/test_oneshot.py:tests/agent/test_platform_hint_overrides.py:tests/agent/test_prompt_builder.py:tests/agent/test_restore_primary_pool_reselect.py:tests/agent/test_shell_hooks_consent.py:tests/agent/test_stream_read_timeout_floor.py:tests/agent/test_summary_prefix_semantics.py:tests/agent/test_tool_dispatch_helpers.py:tests/agent/test_turn_finalizer_cleanup_guard.py:tests/agent/test_verification_evidence.py:tests/agent/transports/test_bedrock_transport.py:tests/ci/test_assemble_review_comment.py:tests/cli/test_branch_command.py:tests/cli/test_cli_codex_context_reference.py:tests/cli/test_cli_image_command.py:tests/cli/test_cli_pet_pane.py:tests/cli/test_cli_shift_enter_newline.py:tests/cli/test_cli_user_message_preview.py:tests/cli/test_cwd_env_respect.py:tests/cli/test_partial_compress.py:tests/cli/test_save_conversation_location.py:tests/cli/test_terminal_interrupt_recovery.py:tests/computer_use/test_cua_no_overlay.py:tests/cron/test_codex_execution_paths.py:tests/cron/test_cron_script.py:tests/cron/test_parallel_pool.py:tests/cron/test_sessiondb_init_hang.py:tests/gateway/relay/test_descriptor.py:tests/gateway/relay/test_relay_interrupt.py:tests/gateway/relay/test_relay_threads.py:tests/gateway/test_42039_duplicate_user_message.py:tests/gateway/test_allowed_channels_widening.py:tests/gateway/test_api_server_normalize.py:tests/gateway/test_auth_fallback.py:tests/gateway/test_busy_session_ack.py:tests/gateway/test_choice_picker.py:tests/gateway/test_completion_delivery.py:tests/gateway/test_compression_interrupt_demotion_56391.py:tests/gateway/test_cron_fire_webhook.py:tests/gateway/test_delivery_ledger_producer.py:tests/gateway/test_discord_bot_filter.py:tests/gateway/test_discord_edit_message_overflow.py:tests/gateway/test_discord_missed_message_backfill.py:tests/gateway/test_discord_reply_mode.py:tests/gateway/test_discord_voice_mixer.py:tests/gateway/test_env_flag_truthy.py:tests/gateway/test_feishu_approval_buttons.py:tests/gateway/test_feishu_table_markdown.py:tests/gateway/test_gateway_shutdown.py:tests/gateway/test_home_target_env_var.py:tests/gateway/test_irc_adapter.py:tests/gateway/test_loop_exception_handler.py:tests/gateway/test_matrix_project_context_isolation.py:tests/gateway/test_media_metadata_contract.py:tests/gateway/test_model_command_expensive_confirm.py:tests/gateway/test_multiplex_http_routing.py:tests/gateway/test_ntfy_plugin.py:tests/gateway/test_plaintext_approval_routing.py:tests/gateway/test_post_delivery_callback_chaining.py:tests/gateway/test_queue_command.py:tests/gateway/test_reload_skills_command.py:tests/gateway/test_restart_resume_pending.py:tests/gateway/test_runner_fatal_adapter.py:tests/gateway/test_send_image_file.py:tests/gateway/test_session_dm_thread_seeding.py:tests/gateway/test_session_model_override_routing.py:tests/gateway/test_session_store_prune.py:tests/gateway/test_signal.py:tests/gateway/test_slack_channel_session_scope.py:tests/gateway/test_slack_mention.py:tests/gateway/test_slack_status_update.py:tests/gateway/test_stacked_skill_platform_disabled.py:tests/gateway/test_steer_command.py:tests/gateway/test_stream_events.py:tests/gateway/test_teams_pipeline_runtime_wiring.py:tests/gateway/test_telegram_conflict.py:tests/gateway/test_telegram_mention_boundaries.py:tests/gateway/test_telegram_progress_edit_transient.py:tests/gateway/test_telegram_slash_confirm.py:tests/gateway/test_telegram_username_chat_id.py:tests/gateway/test_tts_media_routing.py:tests/gateway/test_update_cron_drain.py:tests/gateway/test_wake_delivery.py:tests/gateway/test_wecom_callback.py:tests/gateway/test_whatsapp_connect.py:tests/gateway/test_whatsapp_text_batching.py:tests/honcho_plugin/test_oauth.py:tests/openamer_cli/test_a2a_delegate_cli.py:tests/openamer_cli/test_anthropic_oauth_routes_to_messages_api.py:tests/openamer_cli/test_ard_client.py:tests/openamer_cli/test_auth_loopback_ssh_hint.py:tests/openamer_cli/test_authenticated_providers_exhausted_pool.py:tests/openamer_cli/test_banner_skills.py:tests/openamer_cli/test_browser_connect_dual_stack.py:tests/openamer_cli/test_cli_active_session_limit.py:tests/openamer_cli/test_codex_runtime_switch.py:tests/openamer_cli/test_configured_builtin_models.py:tests/openamer_cli/test_copilot_in_model_list.py:tests/openamer_cli/test_cross_session_learning.py:tests/openamer_cli/test_curses_color_compat.py:tests/openamer_cli/test_dashboard_auth_401_reauth.py:tests/openamer_cli/test_dashboard_auth_provider_base.py:tests/openamer_cli/test_dashboard_profiles_nav_label.py:tests/openamer_cli/test_deprecated_cwd_warning.py:tests/openamer_cli/test_doctor.py:tests/openamer_cli/test_ensure_utf8_locale.py:tests/openamer_cli/test_fireworks_provider.py:tests/openamer_cli/test_gateway_service.py:tests/openamer_cli/test_graphical_browser_detection.py:tests/openamer_cli/test_install_cua_driver.py:tests/openamer_cli/test_kanban_cli_dispatch_passthrough.py:tests/openamer_cli/test_kanban_init_lock_bounded.py:tests/openamer_cli/test_kanban_swarm.py:tests/openamer_cli/test_launcher.py:tests/openamer_cli/test_managed_scope_env.py:tests/openamer_cli/test_mcp_catalog.py:tests/openamer_cli/test_memory_setup.py:tests/openamer_cli/test_model_normalize.py:tests/openamer_cli/test_model_switch_filter_unresolved.py:tests/openamer_cli/test_non_ascii_credential.py:tests/openamer_cli/test_openamer_auth_status_cache.py:tests/openamer_cli/test_opencode_zen_model_limit.py:tests/openamer_cli/test_plugin_cli_registration.py:tests/openamer_cli/test_plugins_transcription_registration.py:tests/openamer_cli/test_project_venv_dir.py:tests/openamer_cli/test_provider_live_curated_merge.py:tests/openamer_cli/test_reasoning_full_command.py:tests/openamer_cli/test_safe_mode.py:tests/openamer_cli/test_security_parser_contract.py:tests/openamer_cli/test_session_export_md.py:tests/openamer_cli/test_sessions_size_delta_label.py:tests/openamer_cli/test_setup_noninteractive.py:tests/openamer_cli/test_skills_install_flags.py:tests/openamer_cli/test_spotify_auth.py:tests/openamer_cli/test_subcommands_batch.py:tests/openamer_cli/test_system_info.py:tests/openamer_cli/test_thinking_rules.py:tests/openamer_cli/test_tui_mouse_residue_suppression.py:tests/openamer_cli/test_update_fleet_restart_timeout.py:tests/openamer_cli/test_update_yes_flag.py:tests/openamer_cli/test_vertex_model_picker.py:tests/openamer_cli/test_web_server_cron_profiles.py:tests/openamer_cli/test_web_server_pty_reconnect.py:tests/openamer_cli/test_whatsapp_setup_ordering.py:tests/openamer_cli/test_xai_retirement.py:tests/openamer_state/test_session_archiving.py:tests/plugins/image_gen/test_fal_provider.py:tests/plugins/memory/test_hindsight_provider.py:tests/plugins/memory/test_mem0_v3.py:tests/plugins/model_providers/test_fireworks_profile.py:tests/plugins/platforms/photon/test_markdown.py:tests/plugins/test_achievements_plugin.py:tests/plugins/test_hindsight_health_grace_timeout.py:tests/plugins/test_raft_check_fn_silent.py:tests/providers/test_e2e_wiring.py:tests/run_agent/test_28161_anthropic_stream_pool_cleanup.py:tests/run_agent/test_anthropic_prompt_cache_policy.py:tests/run_agent/test_background_review_toolset_restriction.py:tests/run_agent/test_compress_focus_plugin_fallback.py:tests/run_agent/test_concurrent_interrupt.py:tests/run_agent/test_credential_rotation_route_settings.py:tests/run_agent/test_fallback_reasoning_override.py:tests/run_agent/test_interactive_interrupt.py:tests/run_agent/test_memory_nudge_counter_hydration.py:tests/run_agent/test_nonretryable_error_html_summary.py:tests/run_agent/test_plugin_context_engine_init.py:tests/run_agent/test_redirect_stdout_issue.py:tests/run_agent/test_session_id_env.py:tests/run_agent/test_stream_stale_circuit_breaker.py:tests/run_agent/test_switch_model_reapplies_headers.py:tests/run_agent/test_tool_batch_segmentation.py:tests/run_agent/test_vision_aware_preprocessing.py:tests/scripts/test_cron_openrouter_rank.py:tests/scripts/test_internet_learner_gate.py:tests/secret_sources/test_error_remediation.py:tests/skills/test_mcp_oauth_remote_gateway_skill.py:tests/skills/test_xurl_article_ingestion_docs.py:tests/stress/test_concurrency_reclaim_race.py:tests/test_auto_code_review_noqa_suppression.py:tests/test_cli_skin_integration.py:tests/test_crew_orchestrator.py:tests/test_darwin_phase14.py:tests/test_darwin_phase23.py:tests/test_darwin_phase6.py:tests/test_delegate_cascade_49148.py:tests/test_evidence_store.py:tests/test_hitl.py:tests/test_install_ps1_ascii_only.py:tests/test_install_sh_pythonpath_sanitization.py:tests/test_integrations/test_linear.py:tests/test_marketplace.py:tests/test_model_picker_scroll.py:tests/test_openamer_constants.py:tests/test_phases_14_20.py:tests/test_profile_isolation_runtime.py:tests/test_sanitize_tool_error.py:tests/test_sqlite_wal_reset_gate.py:tests/test_toolsets.py:tests/test_tui_gateway_server.py:tests/test_windows_subprocess_no_window_flags.py:tests/tools/test_accretion_caps.py:tests/tools/test_async_delegation_fd_leak.py:tests/tools/test_browser_camofox_timeout.py:tests/tools/test_browser_console.py:tests/tools/test_browser_open_timeout.py:tests/tools/test_budget_config.py:tests/tools/test_computer_use.py:tests/tools/test_credential_pool_env_fallback.py:tests/tools/test_delegate.py:tests/tools/test_discord_send_message_caption.py:tests/tools/test_dockerfile_immutable_install.py:tests/tools/test_file_operations_edge_cases.py:tests/tools/test_file_tools.py:tests/tools/test_fuzzy_match.py:tests/tools/test_image_generation_artifacts.py:tests/tools/test_lazy_deps_durable_target.py:tests/tools/test_local_env_windows_msys.py:tests/tools/test_mcp_cancelled_error_propagation.py:tests/tools/test_mcp_image_content.py:tests/tools/test_mcp_oauth_metadata.py:tests/tools/test_mcp_resource_content.py:tests/tools/test_mcp_tool_401_handling.py:tests/tools/test_microsoft_graph_client.py:tests/tools/test_patch_failure_tracking.py:tests/tools/test_resolve_path.py:tests/tools/test_send_message_target_parse.py:tests/tools/test_skill_bundle_provenance.py:tests/tools/test_skills_ast_audit.py:tests/tools/test_skills_tool_profile_scope.py:tests/tools/test_stage2_hook_symlink_chown.py:tests/tools/test_terminal_exit_semantics.py:tests/tools/test_threaded_process_handle.py:tests/tools/test_tool_search_context_provider.py:tests/tools/test_tts_dotenv_fallback.py:tests/tools/test_tts_plugin_dispatch.py:tests/tools/test_vision_native_fast_path.py:tests/tools/test_web_providers_searxng.py:tests/tools/test_windows_native_support.py:tests/tui_gateway/test_billing_rpc.py:tests/tui_gateway/test_failed_turn_retention.py:tests/tui_gateway/test_make_agent_provider.py:tests/tui_gateway/test_reasoning_config_per_model.py:tests/tui_gateway/test_subagent_child_mirror.py:tests/test_wal_checkpoint_strategy.py:tests/tui_gateway/test_render.py:tests/gateway/relay/test_relay_follow_up.py:tests/agent/test_engine_preflight_wire.py:tests/openamer_cli/test_dashboard_browser_safe_imports.py:tests/test_project_metadata.py:tests/agent/test_billing_usage.py:tests/openamer_cli/test_ensure_openamer_home_memo.py:tests/openamer_cli/test_context_ops.py:tests/skills/test_pinecone_research_skill.py:tests/tools/test_init_session_cwd_respect.py'[0m
+2026-09-19T01:57:57.7602117Z shell: /usr/bin/bash -e {0}
+2026-09-19T01:57:57.7602373Z env:
+2026-09-19T01:57:57.7602660Z   UV_PYTHON_INSTALL_DIR: /home/runner/work/_temp/uv-python-dir
+2026-09-19T01:57:57.7603086Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-09-19T01:57:57.7603398Z   OPENROUTER_API_KEY: 
+2026-09-19T01:57:57.7603613Z   OPENAI_API_KEY: 
+2026-09-19T01:57:57.7604031Z   OPENAMER_API_KEY: 
+2026-09-19T01:57:57.7604256Z ##[endgroup]
+2026-09-19T01:57:58.1437506Z ▶ running per-file parallel test suite via run_tests_parallel.py
+2026-09-19T01:57:58.1438305Z   (TZ=UTC LANG=C.UTF-8 PYTHONHASHSEED=0; clean env)
+2026-09-19T01:57:58.1438939Z ▶ pre-compiling bytecode cache
+2026-09-19T01:58:06.1654412Z ▶ launching test runner
+2026-09-19T01:58:06.2304655Z Running 301 test files (~5799 tests) with -j 8
+2026-09-19T01:58:12.0785891Z [  0.3% |    16/~5799 | ✓16 | ✗ 0] ✓ tests/openamer_cli/test_kanban_goal_mode.py (16✓, 5.8s)
+2026-09-19T01:58:12.4535390Z [  0.4% |    23/~5799 | ✓23 | ✗ 0] ✓ tests/tui_gateway/test_mcp_reload_rev.py (7✓, 6.2s)
+2026-09-19T01:58:12.7954486Z [  0.5% |    27/~5799 | ✓27 | ✗ 0] ✓ tests/run_agent/test_thinking_sig_recovery_persistence.py (4✓, 6.6s)
+2026-09-19T01:58:14.0255563Z [  0.8% |    46/~5799 | ✓46 | ✗ 0] ✓ tests/openamer_cli/test_custom_provider_model_switch.py (19✓, 7.8s)
+2026-09-19T01:58:14.6965446Z [  1.1% |    62/~5799 | ✓62 | ✗ 0] ✓ tests/gateway/test_async_delivery_capability.py (16✓, 8.5s)
+2026-09-19T01:58:15.3475638Z [  1.7% |   101/~5799 | ✓101 | ✗  0] ✓ tests/tools/test_tool_search.py (39✓, 9.1s)
+2026-09-19T01:58:15.5501860Z [  1.9% |   112/~5799 | ✓112 | ✗  0] ✓ tests/openamer_cli/test_setup_blank_slate.py (11✓, 9.3s)
+2026-09-19T01:58:16.6835478Z [  2.1% |   120/~5799 | ✓125 | ✗  0] ✓ tests/agent/lsp/test_shell_linter_lsp_skip.py (13✓, 4.6s)
+2026-09-19T01:58:17.5355551Z [  2.2% |   128/~5799 | ✓133 | ✗  0] ✓ tests/cli/test_cli_save_config_value.py (8✓, 4.7s)
+2026-09-19T01:58:18.5654125Z [  2.3% |   136/~5799 | ✓141 | ✗  0] ✓ tests/run_agent/test_66267_multimodal_interim.py (8✓, 6.1s)
+2026-09-19T01:58:18.8596149Z [  2.6% |   149/~5799 | ✓154 | ✗  0] ✓ tests/gateway/test_restart_redelivery_dedup.py (13✓, 4.2s)
+2026-09-19T01:58:19.4045347Z [  3.1% |   182/~5799 | ✓187 | ✗  0] ✓ tests/openamer_cli/test_skin_engine.py (33✓, 5.4s)
+2026-09-19T01:58:20.3995332Z [  3.2% |   187/~5799 | ✓192 | ✗  0] ✓ tests/tools/test_mcp_structured_content.py (5✓, 5.0s)
+2026-09-19T01:58:20.4015531Z [  3.3% |   190/~5799 | ✓195 | ✗  0] ✓ tests/openamer_cli/test_regression_16767.py (3✓, 4.9s)
+2026-09-19T01:58:21.4115328Z [  3.3% |   193/~5799 | ✓198 | ✗  0] ✓ tests/gateway/test_goal_status_notice.py (3✓, 4.7s)
+2026-09-19T01:58:22.1996542Z [  3.4% |   199/~5799 | ✓204 | ✗  0] ✓ tests/gateway/test_max_tokens_propagation.py (6✓, 4.7s)
+2026-09-19T01:58:23.6946042Z [  3.7% |   217/~5799 | ✓222 | ✗  0] ✓ tests/openamer_cli/test_projects_db.py (18✓, 5.1s)
+2026-09-19T01:58:23.7624684Z [  3.8% |   223/~5799 | ✓228 | ✗  0] ✓ tests/cli/test_stream_partial_line_flush.py (6✓, 3.4s)
+2026-09-19T01:58:24.8305677Z [  4.4% |   253/~5799 | ✓258 | ✗  0] ✓ tests/gateway/test_feishu_comment_rules.py (30✓, 5.4s)
+2026-09-19T01:58:24.9105885Z [  4.6% |   265/~5799 | ✓270 | ✗  0] ✓ tests/a2a/test_brain_share.py (12✓, 3.5s)
+2026-09-19T01:58:26.0565385Z [  4.6% |   266/~5799 | ✓271 | ✗  0] ✓ tests/cron/test_jobs_crossprocess_lock.py (1✓, 5.7s)
+2026-09-19T01:58:26.6545429Z [  4.7% |   274/~5799 | ✓279 | ✗  0] ✓ tests/agent/lsp/test_powershell_server.py (8✓, 2.9s)
+2026-09-19T01:58:27.3075597Z [  4.8% |   279/~5799 | ✓284 | ✗  0] ✓ tests/acp_adapter/test_detect_provider_entra.py (5✓, 3.6s)
+2026-09-19T01:58:27.6496883Z [  5.1% |   293/~5799 | ✓301 | ✗  0] ✓ tests/agent/test_anthropic_whitespace_text_blocks.py (17✓, 2.7s)
+2026-09-19T01:58:28.2815590Z [  5.2% |   300/~5799 | ✓307 | ✗  1] ✗ tests/agent/test_credential_pool_oat_authtype.py (6✓ 1✗, 9.4s)
+2026-09-19T01:58:28.2844156Z 
+2026-09-19T01:58:28.2905449Z   ╔╍ Failed: tests/agent/test_credential_pool_oat_authtype.py ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T01:58:28.2964630Z   ║         auth_file = openamer_home / "auth.json"
+2026-09-19T01:58:28.3024617Z   ║         auth_file.write_text(json.dumps({
+2026-09-19T01:58:28.3084515Z   ║             "version": 1,
+2026-09-19T01:58:28.3114427Z   ║             "credential_pool": {
+2026-09-19T01:58:28.3144469Z   ║                 "anthropic": [{
+2026-09-19T01:58:28.3204519Z   ║                     "id": "legacy-oat",
+2026-09-19T01:58:28.3234660Z   ║                     "label": "Legacy setup token",
+2026-09-19T01:58:28.3264596Z   ║                     "auth_type": AUTH_TYPE_API_KEY,
+2026-09-19T01:58:28.3316391Z   ║                     "priority": 0,
+2026-09-19T01:58:28.3364631Z   ║                     "source": "manual",
+2026-09-19T01:58:28.3404471Z   ║                     "access_token": token,
+2026-09-19T01:58:28.3424589Z   ║                 }],
+2026-09-19T01:58:28.3484491Z   ║             },
+2026-09-19T01:58:28.3484962Z   ║         }))
+2026-09-19T01:58:28.3485358Z   ║     
+2026-09-19T01:58:28.3486015Z   ║         from agent.anthropic_adapter import resolve_anthropic_token
+2026-09-19T01:58:28.3486890Z   ║         from agent.credential_pool import load_pool
+2026-09-19T01:58:28.3487475Z   ║     
+2026-09-19T01:58:28.3487994Z   ║         entry = load_pool("anthropic").entries()[0]
+2026-09-19T01:58:28.3488751Z   ║         persisted = json.loads(auth_file.read_text())
+2026-09-19T01:58:28.3489480Z   ║         assert entry.auth_type == AUTH_TYPE_OAUTH
+2026-09-19T01:58:28.3490435Z   ║         assert persisted["credential_pool"]["anthropic"][0]["auth_type"] == AUTH_TYPE_OAUTH
+2026-09-19T01:58:28.3491408Z   ║ >       assert resolve_anthropic_token() == token
+2026-09-19T01:58:28.3492274Z   ║ E       AssertionError: assert None == 'sk-ant-oat-legacy-manual'
+2026-09-19T01:58:28.3493315Z   ║ E        +  where None = <function resolve_anthropic_token at 0x7f37e83b14e0>()
+2026-09-19T01:58:28.3495080Z   ║ 
+2026-09-19T01:58:28.3495772Z   ║ tests/agent/test_credential_pool_oat_authtype.py:106: AssertionError
+2026-09-19T01:58:28.3496776Z   ║ =========================== short test summary info ============================
+2026-09-19T01:58:28.3498696Z   ║ FAILED tests/agent/test_credential_pool_oat_authtype.py::test_load_heals_legacy_row_and_exposes_it_to_resolver
+2026-09-19T01:58:28.3499914Z   ║ ========================= 1 failed, 6 passed in 2.44s ==========================
+2026-09-19T01:58:28.3500581Z   ║
+2026-09-19T01:58:28.3501273Z   ║  Repro: python -m pytest tests/agent/test_credential_pool_oat_authtype.py
+2026-09-19T01:58:28.3502301Z   ╚╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T01:58:28.3502761Z 
+2026-09-19T01:58:28.4385555Z [  5.2% |   302/~5799 | ✓309 | ✗  1] ✓ tests/agent/test_anthropic_billing_guidance.py (2✓, 3.6s)
+2026-09-19T01:58:28.8807449Z [  5.3% |   307/~5799 | ✓314 | ✗  1] ✓ tests/agent/test_auxiliary_client_base_url_host_validation_52608.py (5✓, 2.8s)
+2026-09-19T01:58:29.8375401Z [  5.4% |   314/~5799 | ✓321 | ✗  1] ✓ tests/agent/test_close_interrupted_tool_sequence.py (7✓, 2.2s)
+2026-09-19T01:58:29.9144912Z [  5.6% |   325/~5799 | ✓331 | ✗  2] ✗ tests/acp/test_permissions.py (10✓ 1✗, 7.7s)
+2026-09-19T01:58:29.9164509Z 
+2026-09-19T01:58:29.9195191Z   ╔╍ Failed: tests/acp/test_permissions.py ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T01:58:29.9196701Z   ║         loop = MagicMock(spec=asyncio.AbstractEventLoop)
+2026-09-19T01:58:29.9224846Z   ║         request_permission = AsyncMock(name="request_permission")
+2026-09-19T01:58:29.9254588Z   ║         future = MagicMock(spec=Future)
+2026-09-19T01:58:29.9284749Z   ║         future.result.side_effect = TimeoutError("timed out")
+2026-09-19T01:58:29.9285676Z   ║     
+2026-09-19T01:58:29.9314596Z   ║         scheduled = {}
+2026-09-19T01:58:29.9344511Z   ║     
+2026-09-19T01:58:29.9377061Z   ║         def _schedule(coro, passed_loop):
+2026-09-19T01:58:29.9404631Z   ║             scheduled["coro"] = coro
+2026-09-19T01:58:29.9434638Z   ║             scheduled["loop"] = passed_loop
+2026-09-19T01:58:29.9464509Z   ║             return future
+2026-09-19T01:58:29.9465023Z   ║     
+2026-09-19T01:58:29.9495011Z   ║         with patch("agent.async_utils.asyncio.run_coroutine_threadsafe", side_effect=_schedule):
+2026-09-19T01:58:29.9525053Z   ║             cb = make_approval_callback(request_permission, loop, session_id="s1", timeout=0.01)
+2026-09-19T01:58:29.9554608Z   ║             result = cb("rm -rf /", "dangerous command")
+2026-09-19T01:58:29.9555412Z   ║     
+2026-09-19T01:58:29.9584546Z   ║         scheduled["coro"].close()
+2026-09-19T01:58:29.9624530Z   ║     
+2026-09-19T01:58:29.9644503Z   ║ >       assert result == "deny"
+2026-09-19T01:58:29.9658461Z   ║ E       AssertionError: assert 'timeout' == 'deny'
+2026-09-19T01:58:29.9714547Z   ║ E         
+2026-09-19T01:58:29.9754540Z   ║ E         - deny
+2026-09-19T01:58:29.9794426Z   ║ E         + timeout
+2026-09-19T01:58:29.9817621Z   ║ 
+2026-09-19T01:58:29.9844745Z   ║ tests/acp/test_permissions.py:193: AssertionError
+2026-09-19T01:58:29.9874997Z   ║ ------------------------------ Captured log call -------------------------------
+2026-09-19T01:58:29.9905006Z   ║ WARNING  acp_adapter.permissions:permissions.py:93 Permission request timed out after 0.01s
+2026-09-19T01:58:29.9934645Z   ║ =========================== short test summary info ============================
+2026-09-19T01:58:29.9936387Z   ║ FAILED tests/acp/test_permissions.py::TestApprovalBridge::test_timeout_returns_deny_and_cancels_future
+2026-09-19T01:58:29.9964675Z   ║ ========================= 1 failed, 10 passed in 2.46s =========================
+2026-09-19T01:58:29.9994430Z   ║
+2026-09-19T01:58:30.0004638Z   ║  Repro: python -m pytest tests/acp/test_permissions.py
+2026-09-19T01:58:30.0024870Z   ╚╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T01:58:30.0054201Z 
+2026-09-19T01:58:31.5355591Z [  6.1% |   351/~5799 | ✓357 | ✗  2] ✓ tests/agent/test_compressor_assistant_tail_anchor.py (26✓, 2.7s)
+2026-09-19T01:58:33.2705748Z [  6.3% |   367/~5799 | ✓373 | ✗  2] ✓ tests/agent/test_auxiliary_runtime_cache_key.py (16✓, 6.6s)
+2026-09-19T01:58:33.5545835Z [  6.4% |   373/~5799 | ✓379 | ✗  2] ✓ tests/agent/test_context_compressor_session_end_clears_state.py (6✓, 3.7s)
+2026-09-19T01:58:33.7525370Z [  6.5% |   375/~5799 | ✓381 | ✗  2] ✓ tests/agent/test_context_refs_concurrent.py (2✓, 3.8s)
+2026-09-19T01:58:33.9148566Z [  6.7% |   390/~5799 | ✓396 | ✗  2] ✓ tests/agent/test_compaction_anti_thrash.py (15✓, 5.6s)
+2026-09-19T01:58:35.3961098Z [  6.8% |   395/~5799 | ✓401 | ✗  2] ✓ tests/agent/test_credential_pool_unmatched_rotation_bound.py (5✓, 3.9s)
+2026-09-19T01:58:36.2605319Z [  6.8% |   396/~5799 | ✓402 | ✗  2] ✓ tests/agent/test_curator_activity.py (1✓, 3.0s)
+2026-09-19T01:58:36.4392340Z [  6.9% |   402/~5799 | ✓408 | ✗  2] ✓ tests/agent/test_external_skills_dirs_cache.py (6✓, 2.7s)
+2026-09-19T01:58:37.6825729Z [  8.0% |   462/~5799 | ✓468 | ✗  2] ✓ tests/agent/test_bedrock_integration.py (60✓, 10.4s)
+2026-09-19T01:58:38.7775562Z [  8.0% |   465/~5799 | ✓471 | ✗  2] ✓ tests/agent/test_direct_provider_url_detection.py (3✓, 5.2s)
+2026-09-19T01:58:39.4255838Z [  8.3% |   481/~5799 | ✓487 | ✗  2] ✓ tests/agent/test_learning_graph_render.py (16✓, 3.2s)
+2026-09-19T01:58:40.0635472Z [  8.5% |   493/~5799 | ✓499 | ✗  2] ✓ tests/agent/test_memory_session_switch.py (12✓, 3.6s)
+2026-09-19T01:58:40.0919407Z [  8.6% |   498/~5799 | ✓504 | ✗  2] ✓ tests/agent/test_gemini_fast_fallback.py (5✓, 6.2s)
+2026-09-19T01:58:40.9697269Z [  8.6% |   500/~5799 | ✓506 | ✗  2] ✓ tests/agent/test_moa_context_max_tokens.py (2✓, 3.3s)
+2026-09-19T01:58:41.5795580Z [ 10.5% |   606/~5799 | ✓612 | ✗  2] ✓ tests/agent/test_image_routing.py (106✓, 6.2s)
+2026-09-19T01:58:42.5435485Z [ 10.5% |   611/~5799 | ✓617 | ✗  2] ✓ tests/agent/test_model_extra_type_guard.py (5✓, 3.8s)
+2026-09-19T01:58:42.6325661Z [ 10.8% |   627/~5799 | ✓633 | ✗  2] ✓ tests/agent/test_platform_hint_overrides.py (16✓, 2.6s)
+2026-09-19T01:58:43.2275881Z [ 10.8% |   629/~5799 | ✓635 | ✗  2] ✓ tests/agent/test_compression_count_warning_36908.py (2✓, 14.8s)
+2026-09-19T01:58:43.8555475Z [ 11.1% |   642/~5799 | ✓648 | ✗  2] ✓ tests/agent/test_oneshot.py (13✓, 4.4s)
+2026-09-19T01:58:44.6316292Z [ 11.5% |   665/~5799 | ✓671 | ✗  2] ✓ tests/agent/test_shell_hooks_consent.py (23✓, 3.1s)
+2026-09-19T01:58:45.8305440Z [ 11.6% |   671/~5799 | ✓698 | ✗  2] ✓ tests/agent/test_stream_read_timeout_floor.py (27✓, 3.3s)
+2026-09-19T01:58:46.6181422Z [ 12.1% |   699/~5799 | ✓737 | ✗  2] ✓ tests/agent/test_tool_dispatch_helpers.py (39✓, 3.4s)
+2026-09-19T01:58:46.7608449Z [ 12.2% |   709/~5799 | ✓747 | ✗  2] ✓ tests/agent/test_summary_prefix_semantics.py (10✓, 4.1s)
+2026-09-19T01:58:47.4755419Z [ 12.3% |   713/~5799 | ✓753 | ✗  2] ✓ tests/agent/test_turn_finalizer_cleanup_guard.py (6✓, 3.6s)
+2026-09-19T01:58:47.5325559Z [ 12.4% |   720/~5799 | ✓760 | ✗  2] ✓ tests/agent/test_restore_primary_pool_reselect.py (7✓, 6.6s)
+2026-09-19T01:58:48.3668904Z [ 15.3% |   887/~5799 | ✓927 | ✗  2] ✓ tests/agent/test_prompt_builder.py (167✓, 8.3s)
+2026-09-19T01:58:49.7275644Z [ 15.6% |   906/~5799 | ✓946 | ✗  2] ✓ tests/agent/transports/test_bedrock_transport.py (19✓, 3.9s)
+2026-09-19T01:58:50.6385364Z [ 15.6% |   907/~5799 | ✓947 | ✗  2] ✓ tests/cli/test_cli_codex_context_reference.py (1✓, 3.2s)
+2026-09-19T01:58:50.8715414Z [ 16.6% |   961/~5799 | ✓1001 | ✗   2] ✓ tests/ci/test_assemble_review_comment.py (54✓, 4.3s)
+2026-09-19T01:58:50.9830696Z [ 16.7% |   970/~5799 | ✓1010 | ✗   2] ✓ tests/cli/test_cli_image_command.py (9✓, 3.5s)
+2026-09-19T01:58:52.5705514Z [ 16.8% |   976/~5799 | ✓1016 | ✗   2] ✓ tests/cli/test_cli_shift_enter_newline.py (6✓, 2.8s)
+2026-09-19T01:58:52.7640515Z [ 17.1% |   993/~5799 | ✓1033 | ✗   2] ✓ tests/cli/test_branch_command.py (17✓, 6.0s)
+2026-09-19T01:58:53.1607013Z [ 17.2% |   998/~5799 | ✓1038 | ✗   2] ✓ tests/cli/test_cli_pet_pane.py (5✓, 4.8s)
+2026-09-19T01:58:54.3415810Z [ 17.4% |  1007/~5799 | ✓1047 | ✗   2] ✓ tests/cli/test_cwd_env_respect.py (9✓, 3.5s)
+2026-09-19T01:58:54.3805609Z [ 17.7% |  1026/~5799 | ✓1066 | ✗   2] ✓ tests/cli/test_partial_compress.py (19✓, 3.4s)
+2026-09-19T01:58:55.1175562Z [ 17.7% |  1029/~5799 | ✓1069 | ✗   2] ✓ tests/cli/test_cli_user_message_preview.py (3✓, 4.5s)
+2026-09-19T01:58:56.1305523Z [ 17.8% |  1031/~5799 | ✓1071 | ✗   2] ✓ tests/cli/test_save_conversation_location.py (2✓, 3.6s)
+2026-09-19T01:58:56.1965511Z [ 17.9% |  1037/~5799 | ✓1077 | ✗   2] ✓ tests/cli/test_terminal_interrupt_recovery.py (6✓, 3.4s)
+2026-09-19T01:58:57.0885713Z [ 18.2% |  1058/~5799 | ✓1098 | ✗   2] ✓ tests/computer_use/test_cua_no_overlay.py (21✓, 3.9s)
+2026-09-19T01:58:59.0975350Z [ 18.4% |  1067/~5799 | ✓1107 | ✗   2] ✓ tests/cron/test_parallel_pool.py (9✓, 4.0s)
+2026-09-19T01:59:00.1665917Z [ 18.7% |  1085/~5799 | ✓1125 | ✗   2] ✓ tests/agent/test_verification_evidence.py (18✓, 15.5s)
+2026-09-19T01:59:00.4475262Z [ 18.9% |  1097/~5799 | ✓1137 | ✗   2] ✓ tests/gateway/relay/test_descriptor.py (12✓, 4.3s)
+2026-09-19T01:59:01.0014263Z [ 19.0% |  1101/~5799 | ✓1141 | ✗   2] ✓ tests/gateway/relay/test_relay_interrupt.py (4✓, 3.9s)
+2026-09-19T01:59:01.7795573Z [ 19.2% |  1113/~5799 | ✓1153 | ✗   2] ✓ tests/gateway/relay/test_relay_threads.py (12✓, 2.7s)
+2026-09-19T01:59:04.4875503Z [ 19.5% |  1131/~5799 | ✓1171 | ✗   2] ✓ tests/gateway/test_api_server_normalize.py (18✓, 3.5s)
+2026-09-19T01:59:04.5435448Z [ 19.6% |  1135/~5799 | ✓1175 | ✗   2] ✓ tests/cron/test_sessiondb_init_hang.py (4✓, 8.4s)
+2026-09-19T01:59:04.6244793Z [ 19.6% |  1139/~5799 | ✓1179 | ✗   2] ✓ tests/gateway/test_42039_duplicate_user_message.py (4✓, 4.5s)
+2026-09-19T01:59:04.6505415Z [ 19.7% |  1141/~5799 | ✓1181 | ✗   2] ✓ tests/cron/test_codex_execution_paths.py (2✓, 10.3s)
+2026-09-19T01:59:05.6835307Z [ 20.4% |  1182/~5799 | ✓1222 | ✗   2] ✓ tests/cron/test_cron_script.py (41✓, 11.3s)
+2026-09-19T01:59:06.1915374Z [ 20.4% |  1185/~5799 | ✓1225 | ✗   2] ✓ tests/gateway/test_auth_fallback.py (3✓, 4.4s)
+2026-09-19T01:59:06.3685826Z [ 20.9% |  1212/~5799 | ✓1252 | ✗   2] ✓ tests/gateway/test_allowed_channels_widening.py (27✓, 5.9s)
+2026-09-19T01:59:08.6401882Z [ 21.1% |  1225/~5799 | ✓1265 | ✗   2] ✓ tests/gateway/test_discord_bot_filter.py (13✓, 2.3s)
+2026-09-19T01:59:09.1716234Z [ 21.3% |  1233/~5799 | ✓1273 | ✗   2] ✓ tests/gateway/test_compression_interrupt_demotion_56391.py (8✓, 4.5s)
+2026-09-19T01:59:09.6065292Z [ 21.6% |  1252/~5799 | ✓1292 | ✗   2] ✓ tests/gateway/test_completion_delivery.py (19✓, 5.0s)
+2026-09-19T01:59:10.1837581Z [ 21.8% |  1264/~5799 | ✓1304 | ✗   2] ✓ tests/gateway/test_choice_picker.py (12✓, 5.6s)
+2026-09-19T01:59:10.1875256Z [ 22.3% |  1292/~5799 | ✓1332 | ✗   2] ✓ tests/gateway/test_busy_session_ack.py (28✓, 5.7s)
+2026-09-19T01:59:10.7895592Z [ 22.4% |  1299/~5799 | ✓1339 | ✗   2] ✓ tests/gateway/test_cron_fire_webhook.py (7✓, 5.1s)
+2026-09-19T01:59:11.3345645Z [ 22.5% |  1307/~5799 | ✓1347 | ✗   2] ✓ tests/gateway/test_delivery_ledger_producer.py (8✓, 5.1s)
+2026-09-19T01:59:13.7216946Z [ 22.8% |  1322/~5799 | ✓1362 | ✗   2] ✓ tests/gateway/test_discord_edit_message_overflow.py (15✓, 5.1s)
+2026-09-19T01:59:14.5205367Z [ 22.9% |  1327/~5799 | ✓1367 | ✗   2] ✓ tests/gateway/test_env_flag_truthy.py (5✓, 4.3s)
+2026-09-19T01:59:14.6780398Z [ 23.2% |  1346/~5799 | ✓1386 | ✗   2] ✓ tests/gateway/test_discord_voice_mixer.py (19✓, 4.5s)
+2026-09-19T01:59:15.2115775Z [ 23.9% |  1384/~5799 | ✓1424 | ✗   2] ✓ tests/gateway/test_feishu_approval_buttons.py (38✓, 4.4s)
+2026-09-19T01:59:16.0352206Z [ 23.9% |  1388/~5799 | ✓1428 | ✗   2] ✓ tests/gateway/test_feishu_table_markdown.py (4✓, 4.7s)
+2026-09-19T01:59:16.1211848Z [ 24.7% |  1432/~5799 | ✓1472 | ✗   2] ✓ tests/gateway/test_discord_missed_message_backfill.py (44✓, 6.9s)
+2026-09-19T01:59:16.2065399Z [ 25.3% |  1465/~5799 | ✓1505 | ✗   2] ✓ tests/gateway/test_discord_reply_mode.py (33✓, 6.6s)
+2026-09-19T01:59:18.7151960Z [ 25.4% |  1472/~5799 | ✓1512 | ✗   2] ✓ tests/gateway/test_home_target_env_var.py (7✓, 4.2s)
+2026-09-19T01:59:18.8908774Z [ 25.5% |  1481/~5799 | ✓1526 | ✗   2] ✓ tests/gateway/test_loop_exception_handler.py (14✓, 3.7s)
+2026-09-19T01:59:18.8961605Z [ 25.9% |  1500/~5799 | ✓1545 | ✗   2] ✓ tests/gateway/test_matrix_project_context_isolation.py (19✓, 2.9s)
+2026-09-19T01:59:19.3175724Z [ 25.9% |  1502/~5799 | ✓1559 | ✗   2] ✓ tests/gateway/test_media_metadata_contract.py (14✓ 2s, 3.2s)
+2026-09-19T01:59:19.4125793Z [ 26.0% |  1507/~5799 | ✓1564 | ✗   2] ✓ tests/gateway/test_model_command_expensive_confirm.py (5✓, 3.2s)
+2026-09-19T01:59:20.2195797Z [ 26.7% |  1551/~5799 | ✓1608 | ✗   2] ✓ tests/gateway/test_irc_adapter.py (44✓, 5.5s)
+2026-09-19T01:59:21.1984142Z [ 26.9% |  1558/~5799 | ✓1615 | ✗   2] ✓ tests/gateway/test_multiplex_http_routing.py (7✓, 2.5s)
+2026-09-19T01:59:22.3465643Z [ 27.0% |  1564/~5799 | ✓1629 | ✗   2] ✓ tests/gateway/test_plaintext_approval_routing.py (14✓, 3.4s)
+2026-09-19T01:59:23.1095728Z [ 27.2% |  1575/~5799 | ✓1640 | ✗   2] ✓ tests/gateway/test_post_delivery_callback_chaining.py (11✓, 3.8s)
+2026-09-19T01:59:23.5645860Z [ 27.3% |  1581/~5799 | ✓1646 | ✗   2] ✓ tests/gateway/test_queue_command.py (6✓, 4.2s)
+2026-09-19T01:59:24.1039779Z [ 28.7% |  1663/~5799 | ✓1728 | ✗   2] ✓ tests/gateway/test_ntfy_plugin.py (82✓, 5.2s)
+2026-09-19T01:59:24.3655476Z [ 28.7% |  1667/~5799 | ✓1732 | ✗   2] ✓ tests/gateway/test_reload_skills_command.py (4✓, 4.1s)
+2026-09-19T01:59:26.5725423Z [ 29.1% |  1690/~5799 | ✓1755 | ✗   2] ✓ tests/gateway/test_send_image_file.py (23✓, 3.5s)
+2026-09-19T01:59:26.5815324Z [ 29.2% |  1696/~5799 | ✓1762 | ✗   2] ✓ tests/gateway/test_runner_fatal_adapter.py (7✓, 4.2s)
+2026-09-19T01:59:27.2085682Z [ 29.4% |  1704/~5799 | ✓1772 | ✗   2] ✓ tests/gateway/test_session_dm_thread_seeding.py (10✓, 3.6s)
+2026-09-19T01:59:27.7395681Z [ 29.5% |  1708/~5799 | ✓1776 | ✗   2] ✓ tests/gateway/test_session_model_override_routing.py (4✓, 3.6s)
+2026-09-19T01:59:28.2225457Z [ 29.8% |  1730/~5799 | ✓1798 | ✗   2] ✓ tests/gateway/test_session_store_prune.py (22✓, 3.9s)
+2026-09-19T01:59:30.0955707Z [ 29.9% |  1736/~5799 | ✓1805 | ✗   2] ✓ tests/gateway/test_slack_channel_session_scope.py (7✓, 3.5s)
+2026-09-19T01:59:30.9523004Z [ 30.0% |  1741/~5799 | ✓1810 | ✗   2] ✓ tests/gateway/test_slack_status_update.py (5✓, 3.2s)
+2026-09-19T01:59:32.2332592Z [ 31.4% |  1819/~5799 | ✓1888 | ✗   2] ✓ tests/gateway/test_slack_mention.py (78✓, 5.0s)
+2026-09-19T01:59:33.1297922Z [ 31.6% |  1832/~5799 | ✓1901 | ✗   2] ✓ tests/gateway/test_stream_events.py (13✓, 2.2s)
+2026-09-19T01:59:33.3025301Z [ 31.7% |  1837/~5799 | ✓1906 | ✗   2] ✓ tests/gateway/test_steer_command.py (5✓, 3.2s)
+2026-09-19T01:59:33.7205189Z [ 34.1% |  1975/~5799 | ✓2043 | ✗   2] ✓ tests/gateway/test_signal.py (137✓ 1s, 7.2s)
+2026-09-19T01:59:34.0395508Z [ 34.4% |  1996/~5799 | ✓2064 | ✗   2] ✓ tests/gateway/test_gateway_shutdown.py (21✓, 20.3s)
+2026-09-19T01:59:34.5045585Z [ 34.5% |  2003/~5799 | ✓2071 | ✗   2] ✓ tests/gateway/test_teams_pipeline_runtime_wiring.py (7✓, 2.3s)
+2026-09-19T01:59:34.7135434Z [ 34.6% |  2005/~5799 | ✓2073 | ✗   2] ✓ tests/gateway/test_stacked_skill_platform_disabled.py (2✓, 6.5s)
+2026-09-19T01:59:36.7935678Z [ 34.9% |  2024/~5799 | ✓2092 | ✗   2] ✓ tests/gateway/test_telegram_mention_boundaries.py (19✓, 3.5s)
+2026-09-19T01:59:37.0225557Z [ 35.1% |  2033/~5799 | ✓2114 | ✗   2] ✓ tests/gateway/test_telegram_progress_edit_transient.py (22✓, 3.3s)
+2026-09-19T01:59:37.2083590Z [ 35.1% |  2036/~5799 | ✓2117 | ✗   2] ✓ tests/gateway/test_telegram_slash_confirm.py (3✓, 3.2s)
+2026-09-19T01:59:37.7795442Z [ 35.3% |  2045/~5799 | ✓2139 | ✗   2] ✓ tests/gateway/test_telegram_username_chat_id.py (22✓, 3.3s)
+2026-09-19T01:59:38.0285390Z [ 35.4% |  2052/~5799 | ✓2146 | ✗   2] ✓ tests/gateway/test_tts_media_routing.py (7✓, 3.3s)
+2026-09-19T01:59:38.4705448Z [ 35.6% |  2067/~5799 | ✓2161 | ✗   2] ✓ tests/gateway/test_telegram_conflict.py (15✓, 5.3s)
+2026-09-19T01:59:40.7825574Z [ 35.9% |  2081/~5799 | ✓2175 | ✗   2] ✓ tests/gateway/test_wecom_callback.py (14✓, 3.6s)
+2026-09-19T01:59:41.1287156Z [ 36.2% |  2097/~5799 | ✓2191 | ✗   2] ✓ tests/honcho_plugin/test_oauth.py (16✓, 2.7s)
+2026-09-19T01:59:41.1365759Z [ 36.3% |  2106/~5799 | ✓2200 | ✗   2] ✓ tests/gateway/test_wake_delivery.py (9✓, 4.1s)
+2026-09-19T01:59:41.7515787Z [ 36.4% |  2109/~5799 | ✓2203 | ✗   2] ✓ tests/gateway/test_update_cron_drain.py (3✓, 5.0s)
+2026-09-19T01:59:41.9235359Z [ 36.5% |  2115/~5799 | ✓2209 | ✗   2] ✓ tests/gateway/test_whatsapp_text_batching.py (6✓, 3.9s)
+2026-09-19T01:59:42.7325465Z [ 36.9% |  2142/~5799 | ✓2238 | ✗   2] ✓ tests/gateway/test_whatsapp_connect.py (29✓, 5.0s)
+2026-09-19T01:59:43.5216510Z [ 37.0% |  2147/~5799 | ✓2243 | ✗   2] ✓ tests/openamer_cli/test_ard_client.py (5✓, 2.4s)
+2026-09-19T01:59:43.6175568Z [ 37.1% |  2150/~5799 | ✓2246 | ✗   2] ✓ tests/openamer_cli/test_a2a_delegate_cli.py (3✓, 2.8s)
+2026-09-19T01:59:43.9355547Z [ 38.5% |  2234/~5799 | ✓2330 | ✗   2] ✓ tests/gateway/test_restart_resume_pending.py (84✓, 22.7s)
+2026-09-19T01:59:44.9601546Z [ 38.8% |  2248/~5799 | ✓2344 | ✗   2] ✓ tests/openamer_cli/test_auth_loopback_ssh_hint.py (14✓, 3.2s)
+2026-09-19T01:59:44.9685244Z [ 38.9% |  2255/~5799 | ✓2351 | ✗   2] ✓ tests/openamer_cli/test_anthropic_oauth_routes_to_messages_api.py (7✓, 3.8s)
+2026-09-19T01:59:46.7165616Z [ 39.0% |  2260/~5799 | ✓2356 | ✗   2] ✓ tests/openamer_cli/test_banner_skills.py (5✓, 4.0s)
+2026-09-19T01:59:46.8084972Z [ 39.3% |  2281/~5799 | ✓2387 | ✗   2] ✓ tests/openamer_cli/test_codex_runtime_switch.py (31✓, 2.9s)
+2026-09-19T01:59:47.9602913Z [ 39.4% |  2282/~5799 | ✓2388 | ✗   2] ✓ tests/openamer_cli/test_cli_active_session_limit.py (1✓, 4.3s)
+2026-09-19T01:59:48.3267203Z [ 39.5% |  2290/~5799 | ✓2396 | ✗   2] ✓ tests/openamer_cli/test_browser_connect_dual_stack.py (8✓, 4.8s)
+2026-09-19T01:59:48.6595481Z [ 47.1% |  2733/~5799 | ✓2841 | ✗   2] ✓ tests/run_agent/test_run_agent.py (445✓, 102.4s)
+2026-09-19T01:59:49.2755734Z [ 47.2% |  2739/~5799 | ✓2847 | ✗   2] ✓ tests/openamer_cli/test_curses_color_compat.py (6✓, 2.5s)
+2026-09-19T01:59:50.1540877Z [ 47.5% |  2754/~5799 | ✓2862 | ✗   2] ✓ tests/openamer_cli/test_cross_session_learning.py (15✓, 3.4s)
+2026-09-19T01:59:51.1845739Z [ 47.5% |  2755/~5799 | ✓2863 | ✗   2] ✓ tests/openamer_cli/test_copilot_in_model_list.py (1✓, 6.2s)
+2026-09-19T01:59:51.3855557Z [ 47.7% |  2768/~5799 | ✓2876 | ✗   2] ✓ tests/openamer_cli/test_dashboard_auth_provider_base.py (13✓, 3.1s)
+2026-09-19T01:59:51.6830837Z [ 47.8% |  2770/~5799 | ✓2878 | ✗   2] ✓ tests/openamer_cli/test_configured_builtin_models.py (2✓, 6.7s)
+2026-09-19T01:59:51.7003385Z [ 47.8% |  2771/~5799 | ✓2879 | ✗   2] ✓ tests/openamer_cli/test_dashboard_profiles_nav_label.py (1✓, 3.0s)
+2026-09-19T01:59:53.7535462Z [ 47.9% |  2776/~5799 | ✓2884 | ✗   2] ✓ tests/openamer_cli/test_deprecated_cwd_warning.py (5✓, 4.5s)
+2026-09-19T01:59:55.1355722Z [ 48.0% |  2784/~5799 | ✓2892 | ✗   2] ✓ tests/openamer_cli/test_ensure_utf8_locale.py (8✓, 3.9s)
+2026-09-19T01:59:55.2974018Z [ 51.3% |  2973/~5799 | ✓2892 | ✗   2] ✓ tests/openamer_cli/test_gateway_service.py (189 tests, 3.6s)
+2026-09-19T01:59:55.6845973Z [ 52.1% |  3022/~5799 | ✓2942 | ✗   2] ✓ tests/openamer_cli/test_dashboard_auth_401_reauth.py (50✓, 7.7s)
+2026-09-19T01:59:55.9315732Z [ 52.2% |  3028/~5799 | ✓2952 | ✗   2] ✓ tests/openamer_cli/test_graphical_browser_detection.py (10✓, 4.2s)
+2026-09-19T01:59:57.2795959Z [ 52.3% |  3034/~5799 | ✓2958 | ✗   2] ✓ tests/openamer_cli/test_authenticated_providers_exhausted_pool.py (6✓, 15.4s)
+2026-09-19T01:59:58.6017125Z [ 52.7% |  3056/~5799 | ✓2980 | ✗   2] ✓ tests/openamer_cli/test_install_cua_driver.py (22✓, 4.9s)
+2026-09-19T01:59:58.7185525Z [ 52.8% |  3060/~5799 | ✓2984 | ✗   2] ✓ tests/openamer_cli/test_kanban_cli_dispatch_passthrough.py (4✓, 3.6s)
+2026-09-19T02:00:00.0196068Z [ 53.0% |  3073/~5799 | ✓3003 | ✗   2] ✓ tests/openamer_cli/test_fireworks_provider.py (19✓, 8.6s)
+2026-09-19T02:00:00.3115499Z [ 53.0% |  3074/~5799 | ✓3004 | ✗   2] ✓ tests/openamer_cli/test_launcher.py (1✓, 4.4s)
+2026-09-19T02:00:00.4955505Z [ 53.0% |  3076/~5799 | ✓3006 | ✗   2] ✓ tests/openamer_cli/test_kanban_init_lock_bounded.py (2✓, 5.2s)
+2026-09-19T02:00:00.6366166Z [ 53.1% |  3080/~5799 | ✓3010 | ✗   2] ✓ tests/openamer_cli/test_managed_scope_env.py (4✓, 3.4s)
+2026-09-19T02:00:02.3082422Z [ 53.3% |  3090/~5799 | ✓3020 | ✗   2] ✓ tests/openamer_cli/test_mcp_catalog.py (10✓, 3.7s)
+2026-09-19T02:00:02.3795380Z [ 53.5% |  3102/~5799 | ✓3032 | ✗   2] ✓ tests/openamer_cli/test_memory_setup.py (12✓, 3.7s)
+2026-09-19T02:00:04.4623220Z [ 53.7% |  3114/~5799 | ✓3044 | ✗   2] ✓ tests/openamer_cli/test_non_ascii_credential.py (12✓, 4.0s)
+2026-09-19T02:00:04.5205378Z [ 53.8% |  3119/~5799 | ✓3049 | ✗   2] ✓ tests/openamer_cli/test_openamer_auth_status_cache.py (5✓, 3.9s)
+2026-09-19T02:00:04.9537438Z [ 54.2% |  3141/~5799 | ✓3129 | ✗   2] ✓ tests/openamer_cli/test_model_normalize.py (80✓, 4.9s)
+2026-09-19T02:00:05.3605637Z [ 54.2% |  3144/~5799 | ✓3132 | ✗   2] ✓ tests/openamer_cli/test_model_switch_filter_unresolved.py (3✓, 5.0s)
+2026-09-19T02:00:07.2295776Z [ 54.4% |  3152/~5799 | ✓3140 | ✗   2] ✓ tests/openamer_cli/test_plugin_cli_registration.py (8✓, 4.8s)
+2026-09-19T02:00:07.6585315Z [ 54.4% |  3153/~5799 | ✓3141 | ✗   2] ✓ tests/openamer_cli/test_opencode_zen_model_limit.py (1✓, 5.3s)
+2026-09-19T02:00:08.3225558Z [ 54.4% |  3157/~5799 | ✓3145 | ✗   2] ✓ tests/openamer_cli/test_provider_live_curated_merge.py (4✓, 3.4s)
+2026-09-19T02:00:08.5966026Z [ 54.5% |  3160/~5799 | ✓3148 | ✗   2] ✓ tests/openamer_cli/test_plugins_transcription_registration.py (3✓, 4.1s)
+2026-09-19T02:00:09.0215630Z [ 54.6% |  3164/~5799 | ✓3152 | ✗   2] ✓ tests/openamer_cli/test_project_venv_dir.py (4✓, 4.5s)
+2026-09-19T02:00:09.3215595Z [ 54.6% |  3167/~5799 | ✓3152 | ✗   5] ✗ tests/openamer_cli/test_kanban_swarm.py (3✗, 13.6s)
+2026-09-19T02:00:09.3274272Z 
+2026-09-19T02:00:09.3305465Z   ╔╍ Failed: tests/openamer_cli/test_kanban_swarm.py ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T02:00:09.3331141Z   ║ tests/openamer_cli/test_kanban_swarm.py:82: 
+2026-09-19T02:00:09.3385243Z   ║ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:00:09.3445165Z   ║ openamer_cli/kanban_swarm.py:127: in create_swarm
+2026-09-19T02:00:09.3511727Z   ║     created = _create_swarm_uncommitted(
+2026-09-19T02:00:09.3565430Z   ║ openamer_cli/kanban_swarm.py:188: in _create_swarm_uncommitted
+2026-09-19T02:00:09.3594969Z   ║     root = kb.create_task(
+2026-09-19T02:00:09.3625275Z   ║ openamer_cli/kanban_db.py:3125: in create_task
+2026-09-19T02:00:09.3685105Z   ║     with write_txn(conn):
+2026-09-19T02:00:09.3745551Z   ║ ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/contextlib.py:137: in __enter__
+2026-09-19T02:00:09.3754652Z   ║     return next(self.gen)
+2026-09-19T02:00:09.3805110Z   ║            ^^^^^^^^^^^^^^
+2026-09-19T02:00:09.3865298Z   ║ openamer_cli/kanban_db.py:2790: in write_txn
+2026-09-19T02:00:09.3895140Z   ║     _execute_boundary_with_retry(conn, "BEGIN IMMEDIATE")
+2026-09-19T02:00:09.3935435Z   ║ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:00:09.3984986Z   ║ 
+2026-09-19T02:00:09.4075933Z   ║ conn = <openamer_cli.sqlite_safe_read.TrackedConnection object at 0x7fda4a883e50>
+2026-09-19T02:00:09.4104855Z   ║ sql = 'BEGIN IMMEDIATE'
+2026-09-19T02:00:09.4164999Z   ║ 
+2026-09-19T02:00:09.4205252Z   ║     def _execute_boundary_with_retry(conn: sqlite3.Connection, sql: str) -> None:
+2026-09-19T02:00:09.4254924Z   ║         for attempt in range(_BUSY_MAX_RETRIES + 1):
+2026-09-19T02:00:09.4284783Z   ║             try:
+2026-09-19T02:00:09.4345137Z   ║ >               conn.execute(sql)
+2026-09-19T02:00:09.4375091Z   ║ E               sqlite3.OperationalError: cannot start a transaction within a transaction
+2026-09-19T02:00:09.4404769Z   ║ 
+2026-09-19T02:00:09.4465004Z   ║ openamer_cli/kanban_db.py:2769: OperationalError
+2026-09-19T02:00:09.4505008Z   ║ =========================== short test summary info ============================
+2026-09-19T02:00:09.4555774Z   ║ FAILED tests/openamer_cli/test_kanban_swarm.py::test_create_swarm_builds_parallel_workers_verifier_and_synthesizer
+2026-09-19T02:00:09.4585341Z   ║ FAILED tests/openamer_cli/test_kanban_swarm.py::test_swarm_blackboard_merges_structured_updates
+2026-09-19T02:00:09.4645636Z   ║ FAILED tests/openamer_cli/test_kanban_swarm.py::test_swarm_verifier_and_synthesis_are_dependency_gated
+2026-09-19T02:00:09.4674895Z   ║ ============================== 3 failed in 4.80s ===============================
+2026-09-19T02:00:09.4744863Z   ║
+2026-09-19T02:00:09.4774796Z   ║  Repro: python -m pytest tests/openamer_cli/test_kanban_swarm.py
+2026-09-19T02:00:09.4824898Z   ╚╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T02:00:09.4856055Z 
+2026-09-19T02:00:10.3365476Z [ 54.7% |  3172/~5799 | ✓3157 | ✗   5] ✓ tests/openamer_cli/test_reasoning_full_command.py (5✓, 5.0s)
+2026-09-19T02:00:11.0706888Z [ 54.8% |  3176/~5799 | ✓3161 | ✗   5] ✓ tests/openamer_cli/test_security_parser_contract.py (4✓, 3.4s)
+2026-09-19T02:00:12.1407777Z [ 54.9% |  3185/~5799 | ✓3170 | ✗   5] ✓ tests/openamer_cli/test_safe_mode.py (9✓, 4.9s)
+2026-09-19T02:00:12.8047431Z [ 55.0% |  3189/~5799 | ✓3174 | ✗   5] ✓ tests/openamer_cli/test_sessions_size_delta_label.py (4✓, 4.2s)
+2026-09-19T02:00:13.6240102Z [ 55.1% |  3196/~5799 | ✓3181 | ✗   5] ✓ tests/openamer_cli/test_session_export_md.py (7✓, 5.3s)
+2026-09-19T02:00:13.7765601Z [ 55.2% |  3203/~5799 | ✓3188 | ✗   5] ✓ tests/openamer_cli/test_setup_noninteractive.py (7✓, 4.8s)
+2026-09-19T02:00:15.1855421Z [ 55.4% |  3211/~5799 | ✓3196 | ✗   5] ✓ tests/openamer_cli/test_spotify_auth.py (8✓, 4.8s)
+2026-09-19T02:00:15.3295587Z [ 55.5% |  3216/~5799 | ✓3226 | ✗   5] ✓ tests/openamer_cli/test_subcommands_batch.py (30✓, 4.3s)
+2026-09-19T02:00:16.5585527Z [ 55.5% |  3221/~5799 | ✓3231 | ✗   5] ✓ tests/openamer_cli/test_skills_install_flags.py (5✓, 7.2s)
+2026-09-19T02:00:16.7255501Z [ 55.6% |  3223/~5799 | ✓3233 | ✗   5] ✓ tests/openamer_cli/test_system_info.py (2✓, 4.6s)
+2026-09-19T02:00:17.6935586Z [ 55.7% |  3229/~5799 | ✓3239 | ✗   5] ✓ tests/openamer_cli/test_tui_mouse_residue_suppression.py (6✓, 4.1s)
+2026-09-19T02:00:17.7162600Z [ 55.9% |  3243/~5799 | ✓3253 | ✗   5] ✓ tests/openamer_cli/test_thinking_rules.py (14✓, 4.9s)
+2026-09-19T02:00:17.7565574Z [ 56.0% |  3248/~5799 | ✓3258 | ✗   5] ✓ tests/openamer_cli/test_update_fleet_restart_timeout.py (5✓, 4.0s)
+2026-09-19T02:00:21.5635533Z [ 56.0% |  3250/~5799 | ✓3260 | ✗   5] ✓ tests/openamer_state/test_session_archiving.py (2✓, 3.8s)
+2026-09-19T02:00:22.3895808Z [ 56.6% |  3283/~5799 | ✓3293 | ✗   5] ✓ tests/openamer_cli/test_xai_retirement.py (33✓, 4.7s)
+2026-09-19T02:00:22.5039577Z [ 56.6% |  3285/~5799 | ✓3295 | ✗   5] ✓ tests/openamer_cli/test_whatsapp_setup_ordering.py (2✓, 4.8s)
+2026-09-19T02:00:23.6975918Z [ 56.7% |  3289/~5799 | ✓3299 | ✗   5] ✓ tests/openamer_cli/test_web_server_pty_reconnect.py (4✓, 7.0s)
+2026-09-19T02:00:24.2911798Z [ 57.0% |  3303/~5799 | ✓3313 | ✗   5] ✓ tests/plugins/image_gen/test_fal_provider.py (14✓, 2.7s)
+2026-09-19T02:00:24.7539044Z [ 57.0% |  3306/~5799 | ✓3316 | ✗   5] ✓ tests/openamer_cli/test_vertex_model_picker.py (3✓, 9.4s)
+2026-09-19T02:00:26.4155883Z [ 57.4% |  3329/~5799 | ✓3339 | ✗   5] ✓ tests/openamer_cli/test_web_server_cron_profiles.py (23✓, 9.9s)
+2026-09-19T02:00:26.7875422Z [ 57.5% |  3335/~5799 | ✓3345 | ✗   5] ✓ tests/plugins/platforms/photon/test_markdown.py (6✓, 2.5s)
+2026-09-19T02:00:27.4611714Z [ 58.7% |  3405/~5799 | ✓3421 | ✗   5] ✓ tests/openamer_cli/test_doctor.py (76✓, 37.3s)
+2026-09-19T02:00:29.6155748Z [ 58.8% |  3412/~5799 | ✓3429 | ✗   5] ✓ tests/plugins/model_providers/test_fireworks_profile.py (8✓, 5.9s)
+2026-09-19T02:00:30.0445453Z [ 58.9% |  3417/~5799 | ✓3434 | ✗   5] ✓ tests/plugins/test_hindsight_health_grace_timeout.py (5✓, 3.6s)
+2026-09-19T02:00:30.5335451Z [ 61.0% |  3537/~5799 | ✓3554 | ✗   5] ✓ tests/plugins/memory/test_hindsight_provider.py (120✓, 8.1s)
+2026-09-19T02:00:30.6534134Z [ 61.1% |  3543/~5799 | ✓3560 | ✗   5] ✓ tests/providers/test_e2e_wiring.py (6✓, 3.2s)
+2026-09-19T02:00:31.1972849Z [ 61.2% |  3548/~5799 | ✓3565 | ✗   5] ✓ tests/plugins/test_raft_check_fn_silent.py (5✓, 4.4s)
+2026-09-19T02:00:32.6741933Z [ 61.3% |  3557/~5799 | ✓3574 | ✗   5] ✓ tests/plugins/test_achievements_plugin.py (9✓, 7.9s)
+2026-09-19T02:00:33.2575429Z [ 62.3% |  3612/~5799 | ✓3629 | ✗   5] ✓ tests/plugins/memory/test_mem0_v3.py (55✓, 10.8s)
+2026-09-19T02:00:36.3275382Z [ 62.3% |  3613/~5799 | ✓3630 | ✗   5] ✓ tests/run_agent/test_compress_focus_plugin_fallback.py (1✓, 5.7s)
+2026-09-19T02:00:36.4895583Z [ 62.4% |  3618/~5799 | ✓3635 | ✗   5] ✓ tests/run_agent/test_background_review_toolset_restriction.py (5✓, 6.0s)
+2026-09-19T02:00:36.6455425Z [ 62.9% |  3647/~5799 | ✓3664 | ✗   5] ✓ tests/run_agent/test_anthropic_prompt_cache_policy.py (29✓, 6.6s)
+2026-09-19T02:00:36.8445361Z [ 62.9% |  3649/~5799 | ✓3666 | ✗   5] ✓ tests/run_agent/test_concurrent_interrupt.py (2✓, 5.6s)
+2026-09-19T02:00:37.0353619Z [ 63.0% |  3651/~5799 | ✓3668 | ✗   5] ✓ tests/openamer_cli/test_update_yes_flag.py (2✓, 21.9s)
+2026-09-19T02:00:37.2595629Z [ 63.0% |  3654/~5799 | ✓3671 | ✗   5] ✓ tests/run_agent/test_credential_rotation_route_settings.py (3✓, 4.6s)
+2026-09-19T02:00:38.3635975Z [ 63.0% |  3656/~5799 | ✓3673 | ✗   5] ✓ tests/run_agent/test_28161_anthropic_stream_pool_cleanup.py (2✓, 8.7s)
+2026-09-19T02:00:39.2625612Z [ 63.1% |  3661/~5799 | ✓3678 | ✗   5] ✓ tests/run_agent/test_fallback_reasoning_override.py (5✓, 6.0s)
+2026-09-19T02:00:42.4636161Z [ 63.3% |  3668/~5799 | ✓3685 | ✗   5] ✓ tests/run_agent/test_memory_nudge_counter_hydration.py (7✓, 6.0s)
+2026-09-19T02:00:42.6945813Z [ 63.3% |  3668/~5799 | ✓3685 | ✗   5] ✓ tests/run_agent/test_interactive_interrupt.py (6.4s)
+2026-09-19T02:00:44.4885471Z [ 63.3% |  3669/~5799 | ✓3686 | ✗   5] ✓ tests/run_agent/test_redirect_stdout_issue.py (1✓, 7.5s)
+2026-09-19T02:00:44.5275808Z [ 63.4% |  3675/~5799 | ✓3692 | ✗   5] ✓ tests/run_agent/test_plugin_context_engine_init.py (6✓, 7.7s)
+2026-09-19T02:00:46.5535466Z [ 63.4% |  3678/~5799 | ✓3695 | ✗   5] ✓ tests/run_agent/test_stream_stale_circuit_breaker.py (3✓, 8.2s)
+2026-09-19T02:00:47.7343446Z [ 63.5% |  3681/~5799 | ✓3698 | ✗   5] ✓ tests/run_agent/test_switch_model_reapplies_headers.py (3✓, 8.5s)
+2026-09-19T02:00:47.8592712Z [ 63.5% |  3684/~5799 | ✓3701 | ✗   5] ✓ tests/run_agent/test_session_id_env.py (3✓, 10.6s)
+2026-09-19T02:00:48.1304772Z [ 63.5% |  3685/~5799 | ✓3702 | ✗   5] ✓ tests/scripts/test_cron_openrouter_rank.py (1✓, 3.6s)
+2026-09-19T02:00:49.2279411Z [ 63.8% |  3700/~5799 | ✓3717 | ✗   5] ✓ tests/run_agent/test_vision_aware_preprocessing.py (15✓, 6.5s)
+2026-09-19T02:00:49.3485488Z [ 63.8% |  3700/~5799 | ✓3717 | ✗   5] ✓ tests/stress/test_concurrency_reclaim_race.py (1.2s)
+2026-09-19T02:00:49.8533375Z [ 64.0% |  3713/~5799 | ✓3732 | ✗   5] ✓ tests/secret_sources/test_error_remediation.py (15✓, 3.3s)
+2026-09-19T02:00:51.3525852Z [ 64.2% |  3722/~5799 | ✓3741 | ✗   5] ✓ tests/skills/test_mcp_oauth_remote_gateway_skill.py (9✓, 3.6s)
+2026-09-19T02:00:51.4925554Z [ 64.2% |  3723/~5799 | ✓3742 | ✗   5] ✓ tests/skills/test_xurl_article_ingestion_docs.py (1✓, 3.6s)
+2026-09-19T02:00:52.5907770Z [ 64.4% |  3732/~5799 | ✓3755 | ✗   5] ✓ tests/test_auto_code_review_noqa_suppression.py (13✓, 3.4s)
+2026-09-19T02:00:53.2285894Z [ 66.4% |  3848/~5799 | ✓3871 | ✗   5] ✓ tests/scripts/test_internet_learner_gate.py (116✓, 8.7s)
+2026-09-19T02:00:54.1155894Z [ 66.5% |  3856/~5799 | ✓3879 | ✗   5] ✓ tests/test_crew_orchestrator.py (8✓, 4.3s)
+2026-09-19T02:00:54.2825387Z [ 67.0% |  3883/~5799 | ✓3905 | ✗   5] ✓ tests/run_agent/test_tool_batch_segmentation.py (26✓ 1s, 11.8s)
+2026-09-19T02:00:54.4045253Z [ 67.1% |  3889/~5799 | ✓3911 | ✗   5] ✓ tests/test_darwin_phase23.py (6✓, 2.9s)
+2026-09-19T02:00:54.8621645Z [ 67.3% |  3902/~5799 | ✓3924 | ✗   5] ✓ tests/test_cli_skin_integration.py (13✓, 5.5s)
+2026-09-19T02:00:55.3628520Z [ 67.4% |  3911/~5799 | ✓3933 | ✗   5] ✓ tests/test_darwin_phase6.py (9✓, 2.8s)
+2026-09-19T02:00:55.4855419Z [ 67.5% |  3917/~5799 | ✓3939 | ✗   5] ✓ tests/test_darwin_phase14.py (6✓, 4.1s)
+2026-09-19T02:00:56.6655588Z [ 67.6% |  3919/~5799 | ✓3941 | ✗   5] ✓ tests/run_agent/test_nonretryable_error_html_summary.py (2✓, 20.0s)
+2026-09-19T02:00:56.9385498Z [ 67.7% |  3925/~5799 | ✓3947 | ✗   5] ✓ tests/test_delegate_cascade_49148.py (6✓, 3.7s)
+2026-09-19T02:00:57.6145575Z [ 67.7% |  3926/~5799 | ✓3948 | ✗   5] ✓ tests/test_install_ps1_ascii_only.py (1✓, 3.2s)
+2026-09-19T02:00:57.8427483Z [ 67.9% |  3938/~5799 | ✓3960 | ✗   5] ✓ tests/test_evidence_store.py (12✓, 3.7s)
+2026-09-19T02:00:58.1325846Z [ 67.9% |  3940/~5799 | ✓3962 | ✗   5] ✓ tests/test_install_sh_pythonpath_sanitization.py (2✓, 3.3s)
+2026-09-19T02:00:59.8702065Z [ 68.0% |  3945/~5799 | ✓3967 | ✗   5] ✓ tests/test_integrations/test_linear.py (5✓, 4.5s)
+2026-09-19T02:00:59.9645370Z [ 68.5% |  3974/~5799 | ✓3996 | ✗   5] ✓ tests/test_marketplace.py (29✓, 4.5s)
+2026-09-19T02:01:00.1938129Z [ 68.7% |  3985/~5799 | ✓4007 | ✗   5] ✓ tests/test_model_picker_scroll.py (11✓, 3.5s)
+2026-09-19T02:01:01.5335372Z [ 69.0% |  4004/~5799 | ✓4026 | ✗   5] ✓ tests/test_phases_14_20.py (19✓, 3.9s)
+2026-09-19T02:01:02.6975207Z [ 70.8% |  4107/~5799 | ✓4152 | ✗   5] ✓ tests/test_openamer_constants.py (126✓, 5.8s)
+2026-09-19T02:01:03.7585906Z [ 71.0% |  4117/~5799 | ✓4162 | ✗   5] ✓ tests/test_profile_isolation_runtime.py (10✓, 5.9s)
+2026-09-19T02:01:04.5215486Z [ 71.3% |  4133/~5799 | ✓4178 | ✗   5] ✓ tests/test_sanitize_tool_error.py (16✓, 6.4s)
+2026-09-19T02:01:06.1775247Z [ 71.8% |  4166/~5799 | ✓4211 | ✗   5] ✓ tests/test_toolsets.py (33✓, 6.2s)
+2026-09-19T02:01:06.6329331Z [ 72.5% |  4207/~5799 | ✓4241 | ✗  16] ✗ tests/test_hitl.py (30✓ 11✗, 12.4s)
+2026-09-19T02:01:06.6345911Z 
+2026-09-19T02:01:06.6354987Z   ╔╍ Failed: tests/test_hitl.py ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T02:01:06.6393495Z   ║     mod = importlib.import_module(modname)
+2026-09-19T02:01:06.6395738Z   ║           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:01:06.6415377Z   ║ ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/importlib/__init__.py:126: in import_module
+2026-09-19T02:01:06.6444651Z   ║     return _bootstrap._gcd_import(name[level:], package, level)
+2026-09-19T02:01:06.6475019Z   ║            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:01:06.6484938Z   ║ <frozen importlib._bootstrap>:1204: in _gcd_import
+2026-09-19T02:01:06.6486184Z   ║     ???
+2026-09-19T02:01:06.6514745Z   ║ <frozen importlib._bootstrap>:1176: in _find_and_load
+2026-09-19T02:01:06.6534408Z   ║     ???
+2026-09-19T02:01:06.6576223Z   ║ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:01:06.6584690Z   ║ 
+2026-09-19T02:01:06.6615219Z   ║ name = 'msvcrt', import_ = <function _gcd_import at 0x7ff74074fd80>
+2026-09-19T02:01:06.6634659Z   ║ 
+2026-09-19T02:01:06.6654412Z   ║ >   ???
+2026-09-19T02:01:06.6715004Z   ║ E   ModuleNotFoundError: No module named 'msvcrt'
+2026-09-19T02:01:06.6744580Z   ║ 
+2026-09-19T02:01:06.6845151Z   ║ <frozen importlib._bootstrap>:1140: ModuleNotFoundError
+2026-09-19T02:01:06.6896652Z   ║ =========================== short test summary info ============================
+2026-09-19T02:01:06.6957129Z   ║ FAILED tests/test_hitl.py::TestAwaitApproval::test_interactive_approve - Modu...
+2026-09-19T02:01:06.6971899Z   ║ FAILED tests/test_hitl.py::TestAwaitApproval::test_interactive_deny - ModuleN...
+2026-09-19T02:01:06.7005381Z   ║ FAILED tests/test_hitl.py::TestAwaitApproval::test_interactive_timeout - Modu...
+2026-09-19T02:01:06.7035115Z   ║ FAILED tests/test_hitl.py::TestAwaitApproval::test_timeout_from_config - Modu...
+2026-09-19T02:01:06.7036243Z   ║ FAILED tests/test_hitl.py::TestAwaitApproval::test_non_windows_fallback_no_sigalrm
+2026-09-19T02:01:06.7065379Z   ║ FAILED tests/test_hitl.py::TestHitlCheck::test_hitl_enabled_and_approved - Mo...
+2026-09-19T02:01:06.7081661Z   ║ FAILED tests/test_hitl.py::TestHitlCheck::test_hitl_enabled_and_denied - Modu...
+2026-09-19T02:01:06.7135279Z   ║ FAILED tests/test_hitl.py::TestHitlCheck::test_hitl_blocks_terminal_command
+2026-09-19T02:01:06.7145398Z   ║ FAILED tests/test_hitl.py::TestHitlCheck::test_hitl_blocks_network_request - ...
+2026-09-19T02:01:06.7194897Z   ║ FAILED tests/test_hitl.py::TestHitlCheck::test_hitl_blocks_code_execution - M...
+2026-09-19T02:01:06.7195983Z   ║ FAILED tests/test_hitl.py::TestHitlCheck::test_hitl_blocks_plugin_install - M...
+2026-09-19T02:01:06.7196884Z   ║ ======================== 11 failed, 30 passed in 3.94s =========================
+2026-09-19T02:01:06.7197401Z   ║
+2026-09-19T02:01:06.7197867Z   ║  Repro: python -m pytest tests/test_hitl.py
+2026-09-19T02:01:06.7198609Z   ╚╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T02:01:06.7198975Z 
+2026-09-19T02:01:07.0157863Z [ 73.2% |  4247/~5799 | ✓4281 | ✗  16] ✓ tests/test_windows_subprocess_no_window_flags.py (40✓, 5.5s)
+2026-09-19T02:01:07.5885457Z [ 73.4% |  4256/~5799 | ✓4304 | ✗  16] ✓ tests/test_sqlite_wal_reset_gate.py (23✓, 7.7s)
+2026-09-19T02:01:07.7365802Z [ 73.5% |  4261/~5799 | ✓4309 | ✗  16] ✓ tests/tools/test_browser_camofox_timeout.py (5✓, 3.2s)
+2026-09-19T02:01:08.0935509Z [ 73.5% |  4265/~5799 | ✓4313 | ✗  16] ✓ tests/tools/test_async_delegation_fd_leak.py (4✓, 4.3s)
+2026-09-19T02:01:08.5866163Z [ 73.7% |  4274/~5799 | ✓4322 | ✗  16] ✓ tests/tools/test_accretion_caps.py (9✓, 5.9s)
+2026-09-19T02:01:11.1245517Z [ 74.2% |  4304/~5799 | ✓4352 | ✗  16] ✓ tests/tools/test_budget_config.py (30✓, 4.1s)
+2026-09-19T02:01:11.2955734Z [ 74.5% |  4318/~5799 | ✓4366 | ✗  16] ✓ tests/tools/test_credential_pool_env_fallback.py (14✓, 3.6s)
+2026-09-19T02:01:11.4945327Z [ 74.6% |  4327/~5799 | ✓4375 | ✗  16] ✓ tests/tools/test_browser_open_timeout.py (9✓, 4.9s)
+2026-09-19T02:01:12.8412668Z [ 74.7% |  4329/~5799 | ✓4377 | ✗  16] ✓ tests/tools/test_discord_send_message_caption.py (2✓, 4.2s)
+2026-09-19T02:01:13.4386973Z [ 75.4% |  4370/~5799 | ✓4418 | ✗  16] ✓ tests/tools/test_browser_console.py (41✓, 7.3s)
+2026-09-19T02:01:13.9375534Z [ 75.5% |  4376/~5799 | ✓4424 | ✗  16] ✓ tests/tools/test_dockerfile_immutable_install.py (6✓, 2.8s)
+2026-09-19T02:01:15.4182577Z [ 76.1% |  4411/~5799 | ✓4459 | ✗  16] ✓ tests/tools/test_file_operations_edge_cases.py (35✓, 4.1s)
+2026-09-19T02:01:16.9739976Z [ 77.0% |  4467/~5799 | ✓4515 | ✗  16] ✓ tests/tools/test_fuzzy_match.py (56✓, 4.1s)
+2026-09-19T02:01:17.0450832Z [ 77.1% |  4472/~5799 | ✓4520 | ✗  16] ✓ tests/tools/test_image_generation_artifacts.py (5✓, 3.6s)
+2026-09-19T02:01:17.7169258Z [ 77.4% |  4489/~5799 | ✓4536 | ✗  16] ✓ tests/tools/test_lazy_deps_durable_target.py (16✓ 1s, 3.8s)
+2026-09-19T02:01:18.2525572Z [ 78.3% |  4540/~5799 | ✓4587 | ✗  16] ✓ tests/tools/test_file_tools.py (51✓, 6.8s)
+2026-09-19T02:01:20.2975660Z [ 79.0% |  4580/~5799 | ✓4627 | ✗  16] ✓ tests/tools/test_local_env_windows_msys.py (40✓, 4.9s)
+2026-09-19T02:01:20.5866134Z [ 79.0% |  4582/~5799 | ✓4629 | ✗  16] ✓ tests/tools/test_mcp_cancelled_error_propagation.py (2✓, 3.6s)
+2026-09-19T02:01:21.4911350Z [ 79.2% |  4591/~5799 | ✓4638 | ✗  16] ✓ tests/tools/test_mcp_image_content.py (9✓, 4.4s)
+2026-09-19T02:01:22.1345515Z [ 79.3% |  4600/~5799 | ✓4647 | ✗  16] ✓ tests/tools/test_mcp_oauth_metadata.py (9✓, 4.4s)
+2026-09-19T02:01:23.3905403Z [ 79.7% |  4620/~5799 | ✓4667 | ✗  16] ✓ tests/tools/test_mcp_resource_content.py (20✓, 5.1s)
+2026-09-19T02:01:23.5578967Z [ 79.8% |  4629/~5799 | ✓4676 | ✗  16] ✓ tests/tools/test_microsoft_graph_client.py (9✓, 3.0s)
+2026-09-19T02:01:23.6241330Z [ 79.9% |  4636/~5799 | ✓4683 | ✗  16] ✓ tests/tools/test_mcp_tool_401_handling.py (7✓, 3.3s)
+2026-09-19T02:01:25.2497558Z [ 80.0% |  4642/~5799 | ✓4689 | ✗  16] ✓ tests/tools/test_resolve_path.py (6✓, 3.1s)
+2026-09-19T02:01:25.6891617Z [ 82.8% |  4801/~5799 | ✓4848 | ✗  16] ✓ tests/tools/test_delegate.py (159✓, 17.6s)
+2026-09-19T02:01:26.4865660Z [ 82.9% |  4806/~5799 | ✓4853 | ✗  16] ✓ tests/tools/test_patch_failure_tracking.py (5✓, 5.0s)
+2026-09-19T02:01:26.6545822Z [ 83.1% |  4817/~5799 | ✓4864 | ✗  16] ✓ tests/tools/test_skills_ast_audit.py (11✓, 3.0s)
+2026-09-19T02:01:28.0119899Z [ 83.2% |  4824/~5799 | ✓4871 | ✗  16] ✓ tests/tools/test_send_message_target_parse.py (7✓, 4.6s)
+2026-09-19T02:01:28.3883328Z [ 83.2% |  4827/~5799 | ✓4874 | ✗  16] ✓ tests/tools/test_skills_tool_profile_scope.py (3✓, 3.1s)
+2026-09-19T02:01:28.8025409Z [ 83.3% |  4833/~5799 | ✓4880 | ✗  16] ✓ tests/tools/test_stage2_hook_symlink_chown.py (6✓, 3.1s)
+2026-09-19T02:01:28.8550068Z [ 91.1% |  5284/~5799 | ✓5343 | ✗  16] ✓ tests/test_tui_gateway_server.py (463✓, 28.7s)
+2026-09-19T02:01:29.1865390Z [ 91.3% |  5293/~5799 | ✓5352 | ✗  16] ✓ tests/tools/test_skill_bundle_provenance.py (9✓, 5.6s)
+2026-09-19T02:01:29.2295545Z [ 91.7% |  5315/~5799 | ✓5383 | ✗  16] ✓ tests/tools/test_terminal_exit_semantics.py (31✓, 2.7s)
+2026-09-19T02:01:29.4585665Z [ 91.9% |  5327/~5799 | ✓5395 | ✗  16] ✓ tests/tools/test_threaded_process_handle.py (12✓, 2.8s)
+2026-09-19T02:01:32.2441363Z [ 92.3% |  5353/~5799 | ✓5421 | ✗  16] ✓ tests/tools/test_web_providers_searxng.py (26✓, 3.1s)
+2026-09-19T02:01:32.3072300Z [ 92.4% |  5361/~5799 | ✓5429 | ✗  16] ✓ tests/tools/test_tts_dotenv_fallback.py (8✓, 3.9s)
+2026-09-19T02:01:33.1985469Z [ 92.5% |  5365/~5799 | ✓5433 | ✗  16] ✓ tests/tools/test_tool_search_context_provider.py (4✓, 5.2s)
+2026-09-19T02:01:33.4005501Z [ 92.8% |  5379/~5799 | ✓5449 | ✗  16] ✓ tests/tui_gateway/test_billing_rpc.py (16✓, 3.9s)
+2026-09-19T02:01:33.8515457Z [ 93.1% |  5396/~5799 | ✓5484 | ✗  16] ✓ tests/tools/test_tts_plugin_dispatch.py (35✓, 5.1s)
+2026-09-19T02:01:35.2405333Z [ 94.1% |  5459/~5799 | ✓5555 | ✗  16] ✓ tests/tools/test_windows_native_support.py (71✓, 6.0s)
+2026-09-19T02:01:36.5505596Z [ 94.2% |  5464/~5799 | ✓5560 | ✗  16] ✓ tests/tui_gateway/test_reasoning_config_per_model.py (5✓, 3.4s)
+2026-09-19T02:01:37.2256323Z [ 94.3% |  5470/~5799 | ✓5566 | ✗  16] ✓ tests/test_wal_checkpoint_strategy.py (6✓, 3.4s)
+2026-09-19T02:01:37.8622714Z [ 94.4% |  5477/~5799 | ✓5573 | ✗  16] ✓ tests/tui_gateway/test_render.py (7✓, 2.6s)
+2026-09-19T02:01:37.8632535Z [ 94.6% |  5487/~5799 | ✓5583 | ✗  16] ✓ tests/tui_gateway/test_subagent_child_mirror.py (10✓, 4.5s)
+2026-09-19T02:01:38.6865379Z [ 94.8% |  5498/~5799 | ✓5594 | ✗  16] ✓ tests/tui_gateway/test_make_agent_provider.py (11✓, 6.4s)
+2026-09-19T02:01:38.7196134Z [ 94.9% |  5506/~5799 | ✓5602 | ✗  16] ✓ tests/tui_gateway/test_failed_turn_retention.py (8✓, 6.5s)
+2026-09-19T02:01:39.6486072Z [ 95.1% |  5515/~5799 | ✓5611 | ✗  16] ✓ tests/agent/test_engine_preflight_wire.py (9✓, 2.4s)
+2026-09-19T02:01:39.9294704Z [ 95.2% |  5519/~5799 | ✓5615 | ✗  16] ✓ tests/gateway/relay/test_relay_follow_up.py (4✓, 3.4s)
+2026-09-19T02:01:40.4695782Z [ 95.3% |  5528/~5799 | ✓5624 | ✗  16] ✓ tests/test_project_metadata.py (9✓, 2.6s)
+2026-09-19T02:01:40.7680912Z [ 95.5% |  5538/~5799 | ✓5641 | ✗  16] ✓ tests/agent/test_billing_usage.py (17✓, 2.1s)
+2026-09-19T02:01:40.9565524Z [ 95.5% |  5539/~5799 | ✓5642 | ✗  16] ✓ tests/openamer_cli/test_dashboard_browser_safe_imports.py (1✓, 3.1s)
+2026-09-19T02:01:41.8866584Z [ 95.6% |  5541/~5799 | ✓5644 | ✗  16] ✓ tests/openamer_cli/test_ensure_openamer_home_memo.py (2✓, 3.2s)
+2026-09-19T02:01:42.1235594Z [ 95.7% |  5550/~5799 | ✓5654 | ✗  16] ✓ tests/skills/test_pinecone_research_skill.py (10✓, 2.2s)
+2026-09-19T02:01:42.1592336Z [ 95.8% |  5554/~5799 | ✓5658 | ✗  16] ✓ tests/tools/test_init_session_cwd_respect.py (4✓, 1.7s)
+2026-09-19T02:01:42.2085115Z [ 96.0% |  5568/~5799 | ✓5672 | ✗  16] ✓ tests/openamer_cli/test_context_ops.py (14✓, 2.6s)
+2026-09-19T02:01:43.6310274Z [ 96.4% |  5589/~5799 | ✓5693 | ✗  16] ✓ tests/tools/test_vision_native_fast_path.py (21✓, 14.8s)
+2026-09-19T02:02:20.2842406Z [100.0% |  5799/~5799 | ✓5916 | ✗  16] ✓ tests/tools/test_computer_use.py (223✓, 72.7s)
+2026-09-19T02:02:20.3067411Z 
+2026-09-19T02:02:20.3068177Z === Summary: 301 files, 5916 tests passed, 16 failed (100% complete) in 254.1s (8 workers) ===
+2026-09-19T02:02:20.3069152Z   Durations cached to test_durations.json (301 files)
+2026-09-19T02:02:20.3069697Z 
+2026-09-19T02:02:20.3069981Z === Per-file subprocess time distribution ===
+2026-09-19T02:02:20.3070612Z   Files:   301
+2026-09-19T02:02:20.3071323Z   Total subprocess CPU-wall: 1764.1s  (runner wall: 254.1s, parallelism: 8x)
+2026-09-19T02:02:20.3072319Z   P50: 4.33s  P90: 8.46s  P95: 11.82s  P99: 28.66s  Max: 102.43s
+2026-09-19T02:02:20.3073119Z   <1s: 0 files (0%)  <2s: 2 files (1%)
+2026-09-19T02:02:20.3074085Z   Top 10 slowest:
+2026-09-19T02:02:20.3074602Z     102.43s  tests/run_agent/test_run_agent.py
+2026-09-19T02:02:20.3075258Z      72.70s  tests/tools/test_computer_use.py
+2026-09-19T02:02:20.3075727Z      37.31s  tests/openamer_cli/test_doctor.py
+2026-09-19T02:02:20.3076149Z      28.66s  tests/test_tui_gateway_server.py
+2026-09-19T02:02:20.3076583Z      22.74s  tests/gateway/test_restart_resume_pending.py
+2026-09-19T02:02:20.3077052Z      21.85s  tests/openamer_cli/test_update_yes_flag.py
+2026-09-19T02:02:20.3077496Z      20.32s  tests/gateway/test_gateway_shutdown.py
+2026-09-19T02:02:20.3077986Z      20.01s  tests/run_agent/test_nonretryable_error_html_summary.py
+2026-09-19T02:02:20.3078495Z      17.60s  tests/tools/test_delegate.py
+2026-09-19T02:02:20.3078871Z      15.54s  tests/agent/test_verification_evidence.py
+2026-09-19T02:02:20.3079120Z 
+2026-09-19T02:02:20.3079222Z === Failure output ===
+2026-09-19T02:02:20.3079370Z 
+2026-09-19T02:02:20.3079541Z --- tests/agent/test_credential_pool_oat_authtype.py ---
+2026-09-19T02:02:20.3080039Z ============================= test session starts ==============================
+2026-09-19T02:02:20.3081117Z platform linux -- Python 3.11.16, pytest-9.0.2, pluggy-1.6.0
+2026-09-19T02:02:20.3081769Z rootdir: /home/runner/work/openamer/openamer
+2026-09-19T02:02:20.3082287Z configfile: pyproject.toml
+2026-09-19T02:02:20.3082718Z plugins: anyio-4.12.1, asyncio-1.3.0
+2026-09-19T02:02:20.3083654Z asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+2026-09-19T02:02:20.3084871Z collected 7 items
+2026-09-19T02:02:20.3085081Z 
+2026-09-19T02:02:20.3085626Z tests/agent/test_credential_pool_oat_authtype.py .....F.                 [100%]
+2026-09-19T02:02:20.3086177Z 
+2026-09-19T02:02:20.3086411Z =================================== FAILURES ===================================
+2026-09-19T02:02:20.3086950Z ____________ test_load_heals_legacy_row_and_exposes_it_to_resolver _____________
+2026-09-19T02:02:20.3087298Z 
+2026-09-19T02:02:20.3087766Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-27/test_load_heals_legacy_row_and0')
+2026-09-19T02:02:20.3088351Z monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f37e8362d50>
+2026-09-19T02:02:20.3088661Z 
+2026-09-19T02:02:20.3088898Z     def test_load_heals_legacy_row_and_exposes_it_to_resolver(tmp_path, monkeypatch):
+2026-09-19T02:02:20.3089346Z         openamer_home = tmp_path / "openamer"
+2026-09-19T02:02:20.3089639Z         openamer_home.mkdir()
+2026-09-19T02:02:20.3089958Z         monkeypatch.setenv("OPENAMER_HOME", str(openamer_home))
+2026-09-19T02:02:20.3090422Z         for key in ("ANTHROPIC_API_KEY", "ANTHROPIC_TOKEN", "CLAUDE_CODE_OAUTH_TOKEN"):
+2026-09-19T02:02:20.3090846Z             monkeypatch.delenv(key, raising=False)
+2026-09-19T02:02:20.3091145Z         monkeypatch.setattr(
+2026-09-19T02:02:20.3091456Z             "agent.anthropic_adapter.read_claude_code_credentials",
+2026-09-19T02:02:20.3091799Z             lambda: None,
+2026-09-19T02:02:20.3092013Z         )
+2026-09-19T02:02:20.3092224Z         token = "sk-ant-oat-legacy-manual"
+2026-09-19T02:02:20.3092528Z         auth_file = openamer_home / "auth.json"
+2026-09-19T02:02:20.3092832Z         auth_file.write_text(json.dumps({
+2026-09-19T02:02:20.3093099Z             "version": 1,
+2026-09-19T02:02:20.3093326Z             "credential_pool": {
+2026-09-19T02:02:20.3093570Z                 "anthropic": [{
+2026-09-19T02:02:20.3094091Z                     "id": "legacy-oat",
+2026-09-19T02:02:20.3094593Z                     "label": "Legacy setup token",
+2026-09-19T02:02:20.3095101Z                     "auth_type": AUTH_TYPE_API_KEY,
+2026-09-19T02:02:20.3095487Z                     "priority": 0,
+2026-09-19T02:02:20.3095741Z                     "source": "manual",
+2026-09-19T02:02:20.3096006Z                     "access_token": token,
+2026-09-19T02:02:20.3096256Z                 }],
+2026-09-19T02:02:20.3096445Z             },
+2026-09-19T02:02:20.3096624Z         }))
+2026-09-19T02:02:20.3096799Z     
+2026-09-19T02:02:20.3097074Z         from agent.anthropic_adapter import resolve_anthropic_token
+2026-09-19T02:02:20.3097481Z         from agent.credential_pool import load_pool
+2026-09-19T02:02:20.3097761Z     
+2026-09-19T02:02:20.3097974Z         entry = load_pool("anthropic").entries()[0]
+2026-09-19T02:02:20.3098305Z         persisted = json.loads(auth_file.read_text())
+2026-09-19T02:02:20.3098631Z         assert entry.auth_type == AUTH_TYPE_OAUTH
+2026-09-19T02:02:20.3099078Z         assert persisted["credential_pool"]["anthropic"][0]["auth_type"] == AUTH_TYPE_OAUTH
+2026-09-19T02:02:20.3099542Z >       assert resolve_anthropic_token() == token
+2026-09-19T02:02:20.3099915Z E       AssertionError: assert None == 'sk-ant-oat-legacy-manual'
+2026-09-19T02:02:20.3100364Z E        +  where None = <function resolve_anthropic_token at 0x7f37e83b14e0>()
+2026-09-19T02:02:20.3100660Z 
+2026-09-19T02:02:20.3100849Z tests/agent/test_credential_pool_oat_authtype.py:106: AssertionError
+2026-09-19T02:02:20.3101289Z =========================== short test summary info ============================
+2026-09-19T02:02:20.3102073Z FAILED tests/agent/test_credential_pool_oat_authtype.py::test_load_heals_legacy_row_and_exposes_it_to_resolver
+2026-09-19T02:02:20.3102650Z ========================= 1 failed, 6 passed in 2.44s ==========================
+2026-09-19T02:02:20.3102909Z 
+2026-09-19T02:02:20.3103023Z --- tests/acp/test_permissions.py ---
+2026-09-19T02:02:20.3103347Z ============================= test session starts ==============================
+2026-09-19T02:02:20.3104075Z platform linux -- Python 3.11.16, pytest-9.0.2, pluggy-1.6.0
+2026-09-19T02:02:20.3104468Z rootdir: /home/runner/work/openamer/openamer
+2026-09-19T02:02:20.3104769Z configfile: pyproject.toml
+2026-09-19T02:02:20.3105019Z plugins: anyio-4.12.1, asyncio-1.3.0
+2026-09-19T02:02:20.3105557Z asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+2026-09-19T02:02:20.3106096Z collected 11 items
+2026-09-19T02:02:20.3106222Z 
+2026-09-19T02:02:20.3106577Z tests/acp/test_permissions.py ........F..                                [100%]
+2026-09-19T02:02:20.3106893Z 
+2026-09-19T02:02:20.3107038Z =================================== FAILURES ===================================
+2026-09-19T02:02:20.3107488Z _______ TestApprovalBridge.test_timeout_returns_deny_and_cancels_future ________
+2026-09-19T02:02:20.3107804Z 
+2026-09-19T02:02:20.3108028Z self = <tests.acp.test_permissions.TestApprovalBridge object at 0x7fe4073847d0>
+2026-09-19T02:02:20.3108346Z 
+2026-09-19T02:02:20.3108499Z     def test_timeout_returns_deny_and_cancels_future(self):
+2026-09-19T02:02:20.3108876Z         loop = MagicMock(spec=asyncio.AbstractEventLoop)
+2026-09-19T02:02:20.3109266Z         request_permission = AsyncMock(name="request_permission")
+2026-09-19T02:02:20.3109619Z         future = MagicMock(spec=Future)
+2026-09-19T02:02:20.3109947Z         future.result.side_effect = TimeoutError("timed out")
+2026-09-19T02:02:20.3110262Z     
+2026-09-19T02:02:20.3110443Z         scheduled = {}
+2026-09-19T02:02:20.3110652Z     
+2026-09-19T02:02:20.3110846Z         def _schedule(coro, passed_loop):
+2026-09-19T02:02:20.3111122Z             scheduled["coro"] = coro
+2026-09-19T02:02:20.3111394Z             scheduled["loop"] = passed_loop
+2026-09-19T02:02:20.3111665Z             return future
+2026-09-19T02:02:20.3111879Z     
+2026-09-19T02:02:20.3112233Z         with patch("agent.async_utils.asyncio.run_coroutine_threadsafe", side_effect=_schedule):
+2026-09-19T02:02:20.3112841Z             cb = make_approval_callback(request_permission, loop, session_id="s1", timeout=0.01)
+2026-09-19T02:02:20.3113312Z             result = cb("rm -rf /", "dangerous command")
+2026-09-19T02:02:20.3113598Z     
+2026-09-19T02:02:20.3114025Z         scheduled["coro"].close()
+2026-09-19T02:02:20.3114265Z     
+2026-09-19T02:02:20.3114448Z >       assert result == "deny"
+2026-09-19T02:02:20.3114724Z E       AssertionError: assert 'timeout' == 'deny'
+2026-09-19T02:02:20.3115010Z E         
+2026-09-19T02:02:20.3115197Z E         - deny
+2026-09-19T02:02:20.3115400Z E         + timeout
+2026-09-19T02:02:20.3115522Z 
+2026-09-19T02:02:20.3115653Z tests/acp/test_permissions.py:193: AssertionError
+2026-09-19T02:02:20.3116048Z ------------------------------ Captured log call -------------------------------
+2026-09-19T02:02:20.3116597Z WARNING  acp_adapter.permissions:permissions.py:93 Permission request timed out after 0.01s
+2026-09-19T02:02:20.3117115Z =========================== short test summary info ============================
+2026-09-19T02:02:20.3117702Z FAILED tests/acp/test_permissions.py::TestApprovalBridge::test_timeout_returns_deny_and_cancels_future
+2026-09-19T02:02:20.3118266Z ========================= 1 failed, 10 passed in 2.46s =========================
+2026-09-19T02:02:20.3118526Z 
+2026-09-19T02:02:20.3118653Z --- tests/openamer_cli/test_kanban_swarm.py ---
+2026-09-19T02:02:20.3119011Z ============================= test session starts ==============================
+2026-09-19T02:02:20.3119420Z platform linux -- Python 3.11.16, pytest-9.0.2, pluggy-1.6.0
+2026-09-19T02:02:20.3119925Z rootdir: /home/runner/work/openamer/openamer
+2026-09-19T02:02:20.3120222Z configfile: pyproject.toml
+2026-09-19T02:02:20.3120477Z plugins: anyio-4.12.1, asyncio-1.3.0
+2026-09-19T02:02:20.3121030Z asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+2026-09-19T02:02:20.3121574Z collected 3 items
+2026-09-19T02:02:20.3121709Z 
+2026-09-19T02:02:20.3121919Z tests/openamer_cli/test_kanban_swarm.py FFF                              [100%]
+2026-09-19T02:02:20.3122230Z 
+2026-09-19T02:02:20.3122369Z =================================== FAILURES ===================================
+2026-09-19T02:02:20.3122807Z ______ test_create_swarm_builds_parallel_workers_verifier_and_synthesizer ______
+2026-09-19T02:02:20.3123116Z 
+2026-09-19T02:02:20.3123368Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-173/test_create_swarm_builds_paral0')
+2026-09-19T02:02:20.3124010Z 
+2026-09-19T02:02:20.3124405Z     def test_create_swarm_builds_parallel_workers_verifier_and_synthesizer(tmp_path):
+2026-09-19T02:02:20.3124874Z         conn = kb.connect(tmp_path / "kanban.db")
+2026-09-19T02:02:20.3125180Z         try:
+2026-09-19T02:02:20.3125379Z >           created = create_swarm(
+2026-09-19T02:02:20.3125626Z                 conn,
+2026-09-19T02:02:20.3125917Z                 goal="Map the target market and produce a decision memo.",
+2026-09-19T02:02:20.3126269Z                 workers=[
+2026-09-19T02:02:20.3126683Z                     SwarmWorkerSpec(profile="researcher-a", title="Market scan", body="Find competitors"),
+2026-09-19T02:02:20.3127356Z                     SwarmWorkerSpec(profile="researcher-b", title="Customer scan", body="Find customer pains"),
+2026-09-19T02:02:20.3127824Z                 ],
+2026-09-19T02:02:20.3128046Z                 verifier_assignee="reviewer",
+2026-09-19T02:02:20.3128340Z                 synthesizer_assignee="writer",
+2026-09-19T02:02:20.3128616Z                 tenant="intel",
+2026-09-19T02:02:20.3128876Z                 created_by="orchestrator",
+2026-09-19T02:02:20.3129136Z             )
+2026-09-19T02:02:20.3129241Z 
+2026-09-19T02:02:20.3129358Z tests/openamer_cli/test_kanban_swarm.py:14: 
+2026-09-19T02:02:20.3129695Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:02:20.3130058Z openamer_cli/kanban_swarm.py:127: in create_swarm
+2026-09-19T02:02:20.3130374Z     created = _create_swarm_uncommitted(
+2026-09-19T02:02:20.3130722Z openamer_cli/kanban_swarm.py:188: in _create_swarm_uncommitted
+2026-09-19T02:02:20.3131069Z     root = kb.create_task(
+2026-09-19T02:02:20.3131324Z openamer_cli/kanban_db.py:3125: in create_task
+2026-09-19T02:02:20.3131615Z     with write_txn(conn):
+2026-09-19T02:02:20.3132063Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/contextlib.py:137: in __enter__
+2026-09-19T02:02:20.3132554Z     return next(self.gen)
+2026-09-19T02:02:20.3132770Z            ^^^^^^^^^^^^^^
+2026-09-19T02:02:20.3133014Z openamer_cli/kanban_db.py:2790: in write_txn
+2026-09-19T02:02:20.3133345Z     _execute_boundary_with_retry(conn, "BEGIN IMMEDIATE")
+2026-09-19T02:02:20.3133962Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:02:20.3134228Z 
+2026-09-19T02:02:20.3134454Z conn = <openamer_cli.sqlite_safe_read.TrackedConnection object at 0x7fda4938ad50>
+2026-09-19T02:02:20.3134866Z sql = 'BEGIN IMMEDIATE'
+2026-09-19T02:02:20.3135005Z 
+2026-09-19T02:02:20.3135225Z     def _execute_boundary_with_retry(conn: sqlite3.Connection, sql: str) -> None:
+2026-09-19T02:02:20.3135655Z         for attempt in range(_BUSY_MAX_RETRIES + 1):
+2026-09-19T02:02:20.3135949Z             try:
+2026-09-19T02:02:20.3136151Z >               conn.execute(sql)
+2026-09-19T02:02:20.3136539Z E               sqlite3.OperationalError: cannot start a transaction within a transaction
+2026-09-19T02:02:20.3136878Z 
+2026-09-19T02:02:20.3136998Z openamer_cli/kanban_db.py:2769: OperationalError
+2026-09-19T02:02:20.3137407Z _______________ test_swarm_blackboard_merges_structured_updates ________________
+2026-09-19T02:02:20.3137853Z 
+2026-09-19T02:02:20.3138104Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-173/test_swarm_blackboard_merges_s0')
+2026-09-19T02:02:20.3138460Z 
+2026-09-19T02:02:20.3138629Z     def test_swarm_blackboard_merges_structured_updates(tmp_path):
+2026-09-19T02:02:20.3139007Z         conn = kb.connect(tmp_path / "kanban.db")
+2026-09-19T02:02:20.3139283Z         try:
+2026-09-19T02:02:20.3139479Z >           created = create_swarm(
+2026-09-19T02:02:20.3139723Z                 conn,
+2026-09-19T02:02:20.3139942Z                 goal="Collect evidence.",
+2026-09-19T02:02:20.3140401Z                 workers=[SwarmWorkerSpec(profile="researcher", title="Evidence", body="Find proof")],
+2026-09-19T02:02:20.3140873Z                 verifier_assignee="reviewer",
+2026-09-19T02:02:20.3141165Z                 synthesizer_assignee="writer",
+2026-09-19T02:02:20.3141428Z             )
+2026-09-19T02:02:20.3141553Z 
+2026-09-19T02:02:20.3141815Z tests/openamer_cli/test_kanban_swarm.py:48: 
+2026-09-19T02:02:20.3142157Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:02:20.3142516Z openamer_cli/kanban_swarm.py:127: in create_swarm
+2026-09-19T02:02:20.3142823Z     created = _create_swarm_uncommitted(
+2026-09-19T02:02:20.3143171Z openamer_cli/kanban_swarm.py:188: in _create_swarm_uncommitted
+2026-09-19T02:02:20.3143518Z     root = kb.create_task(
+2026-09-19T02:02:20.3143984Z openamer_cli/kanban_db.py:3125: in create_task
+2026-09-19T02:02:20.3144280Z     with write_txn(conn):
+2026-09-19T02:02:20.3144728Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/contextlib.py:137: in __enter__
+2026-09-19T02:02:20.3145213Z     return next(self.gen)
+2026-09-19T02:02:20.3145430Z            ^^^^^^^^^^^^^^
+2026-09-19T02:02:20.3145663Z openamer_cli/kanban_db.py:2790: in write_txn
+2026-09-19T02:02:20.3145996Z     _execute_boundary_with_retry(conn, "BEGIN IMMEDIATE")
+2026-09-19T02:02:20.3146364Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:02:20.3146613Z 
+2026-09-19T02:02:20.3146829Z conn = <openamer_cli.sqlite_safe_read.TrackedConnection object at 0x7fda46d69350>
+2026-09-19T02:02:20.3147240Z sql = 'BEGIN IMMEDIATE'
+2026-09-19T02:02:20.3147372Z 
+2026-09-19T02:02:20.3147585Z     def _execute_boundary_with_retry(conn: sqlite3.Connection, sql: str) -> None:
+2026-09-19T02:02:20.3148059Z         for attempt in range(_BUSY_MAX_RETRIES + 1):
+2026-09-19T02:02:20.3148348Z             try:
+2026-09-19T02:02:20.3148555Z >               conn.execute(sql)
+2026-09-19T02:02:20.3148969Z E               sqlite3.OperationalError: cannot start a transaction within a transaction
+2026-09-19T02:02:20.3149361Z 
+2026-09-19T02:02:20.3149482Z openamer_cli/kanban_db.py:2769: OperationalError
+2026-09-19T02:02:20.3149884Z ____________ test_swarm_verifier_and_synthesis_are_dependency_gated ____________
+2026-09-19T02:02:20.3150188Z 
+2026-09-19T02:02:20.3150442Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-173/test_swarm_verifier_and_synthe0')
+2026-09-19T02:02:20.3150794Z 
+2026-09-19T02:02:20.3150992Z     def test_swarm_verifier_and_synthesis_are_dependency_gated(tmp_path):
+2026-09-19T02:02:20.3151390Z         conn = kb.connect(tmp_path / "kanban.db")
+2026-09-19T02:02:20.3151667Z         try:
+2026-09-19T02:02:20.3151861Z >           created = create_swarm(
+2026-09-19T02:02:20.3152106Z                 conn,
+2026-09-19T02:02:20.3152389Z                 goal="Research two branches then verify and synthesize.",
+2026-09-19T02:02:20.3152729Z                 workers=[
+2026-09-19T02:02:20.3153036Z                     SwarmWorkerSpec(profile="a", title="Branch A", body="A"),
+2026-09-19T02:02:20.3153469Z                     SwarmWorkerSpec(profile="b", title="Branch B", body="B"),
+2026-09-19T02:02:20.3154017Z                 ],
+2026-09-19T02:02:20.3154252Z                 verifier_assignee="reviewer",
+2026-09-19T02:02:20.3154552Z                 synthesizer_assignee="writer",
+2026-09-19T02:02:20.3154957Z             )
+2026-09-19T02:02:20.3155101Z 
+2026-09-19T02:02:20.3155217Z tests/openamer_cli/test_kanban_swarm.py:82: 
+2026-09-19T02:02:20.3155597Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:02:20.3155960Z openamer_cli/kanban_swarm.py:127: in create_swarm
+2026-09-19T02:02:20.3156277Z     created = _create_swarm_uncommitted(
+2026-09-19T02:02:20.3156625Z openamer_cli/kanban_swarm.py:188: in _create_swarm_uncommitted
+2026-09-19T02:02:20.3156974Z     root = kb.create_task(
+2026-09-19T02:02:20.3157230Z openamer_cli/kanban_db.py:3125: in create_task
+2026-09-19T02:02:20.3157517Z     with write_txn(conn):
+2026-09-19T02:02:20.3157970Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/contextlib.py:137: in __enter__
+2026-09-19T02:02:20.3158462Z     return next(self.gen)
+2026-09-19T02:02:20.3158676Z            ^^^^^^^^^^^^^^
+2026-09-19T02:02:20.3158912Z openamer_cli/kanban_db.py:2790: in write_txn
+2026-09-19T02:02:20.3159363Z     _execute_boundary_with_retry(conn, "BEGIN IMMEDIATE")
+2026-09-19T02:02:20.3159751Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:02:20.3159996Z 
+2026-09-19T02:02:20.3160224Z conn = <openamer_cli.sqlite_safe_read.TrackedConnection object at 0x7fda4a883e50>
+2026-09-19T02:02:20.3160637Z sql = 'BEGIN IMMEDIATE'
+2026-09-19T02:02:20.3160778Z 
+2026-09-19T02:02:20.3160991Z     def _execute_boundary_with_retry(conn: sqlite3.Connection, sql: str) -> None:
+2026-09-19T02:02:20.3161430Z         for attempt in range(_BUSY_MAX_RETRIES + 1):
+2026-09-19T02:02:20.3161720Z             try:
+2026-09-19T02:02:20.3161925Z >               conn.execute(sql)
+2026-09-19T02:02:20.3162315Z E               sqlite3.OperationalError: cannot start a transaction within a transaction
+2026-09-19T02:02:20.3162653Z 
+2026-09-19T02:02:20.3162777Z openamer_cli/kanban_db.py:2769: OperationalError
+2026-09-19T02:02:20.3163138Z =========================== short test summary info ============================
+2026-09-19T02:02:20.3164016Z FAILED tests/openamer_cli/test_kanban_swarm.py::test_create_swarm_builds_parallel_workers_verifier_and_synthesizer
+2026-09-19T02:02:20.3165243Z FAILED tests/openamer_cli/test_kanban_swarm.py::test_swarm_blackboard_merges_structured_updates
+2026-09-19T02:02:20.3166378Z FAILED tests/openamer_cli/test_kanban_swarm.py::test_swarm_verifier_and_synthesis_are_dependency_gated
+2026-09-19T02:02:20.3167300Z ============================== 3 failed in 4.80s ===============================
+2026-09-19T02:02:20.3167713Z 
+2026-09-19T02:02:20.3167883Z --- tests/test_hitl.py ---
+2026-09-19T02:02:20.3168365Z ============================= test session starts ==============================
+2026-09-19T02:02:20.3169044Z platform linux -- Python 3.11.16, pytest-9.0.2, pluggy-1.6.0
+2026-09-19T02:02:20.3169428Z rootdir: /home/runner/work/openamer/openamer
+2026-09-19T02:02:20.3169733Z configfile: pyproject.toml
+2026-09-19T02:02:20.3170002Z plugins: anyio-4.12.1, asyncio-1.3.0
+2026-09-19T02:02:20.3170551Z asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+2026-09-19T02:02:20.3171100Z collected 41 items
+2026-09-19T02:02:20.3171225Z 
+2026-09-19T02:02:20.3171418Z tests/test_hitl.py ................FFFFF.FF...FFFF..........             [100%]
+2026-09-19T02:02:20.3171716Z 
+2026-09-19T02:02:20.3171856Z =================================== FAILURES ===================================
+2026-09-19T02:02:20.3172296Z __________________ TestAwaitApproval.test_interactive_approve __________________
+2026-09-19T02:02:20.3172600Z 
+2026-09-19T02:02:20.3172779Z self = <tests.test_hitl.TestAwaitApproval object at 0x7ff73e112190>
+2026-09-19T02:02:20.3173060Z 
+2026-09-19T02:02:20.3173165Z     def test_interactive_approve(self):
+2026-09-19T02:02:20.3173482Z         """Interactive context with 'y' input approves."""
+2026-09-19T02:02:20.3174054Z >       with (
+2026-09-19T02:02:20.3174363Z             patch("openamer_cli.hitl._is_interactive", return_value=True),
+2026-09-19T02:02:20.3174959Z             patch("msvcrt.kbhit", return_value=True),
+2026-09-19T02:02:20.3175302Z             patch("msvcrt.getwch", return_value="y"),
+2026-09-19T02:02:20.3175580Z         ):
+2026-09-19T02:02:20.3175687Z 
+2026-09-19T02:02:20.3175777Z tests/test_hitl.py:198: 
+2026-09-19T02:02:20.3176072Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:02:20.3176645Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/unittest/mock.py:1430: in __enter__
+2026-09-19T02:02:20.3177152Z     self.target = self.getter()
+2026-09-19T02:02:20.3177396Z                   ^^^^^^^^^^^^^
+2026-09-19T02:02:20.3177849Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/pkgutil.py:700: in resolve_name
+2026-09-19T02:02:20.3178347Z     mod = importlib.import_module(modname)
+2026-09-19T02:02:20.3178646Z           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:02:20.3179299Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/importlib/__init__.py:126: in import_module
+2026-09-19T02:02:20.3179939Z     return _bootstrap._gcd_import(name[level:], package, level)
+2026-09-19T02:02:20.3180303Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:02:20.3180633Z <frozen importlib._bootstrap>:1204: in _gcd_import
+2026-09-19T02:02:20.3180924Z     ???
+2026-09-19T02:02:20.3181153Z <frozen importlib._bootstrap>:1176: in _find_and_load
+2026-09-19T02:02:20.3181447Z     ???
+2026-09-19T02:02:20.3181685Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:02:20.3181933Z 
+2026-09-19T02:02:20.3182105Z name = 'msvcrt', import_ = <function _gcd_import at 0x7ff74074fd80>
+2026-09-19T02:02:20.3182365Z 
+2026-09-19T02:02:20.3182442Z >   ???
+2026-09-19T02:02:20.3182673Z E   ModuleNotFoundError: No module named 'msvcrt'
+2026-09-19T02:02:20.3182900Z 
+2026-09-19T02:02:20.3183040Z <frozen importlib._bootstrap>:1140: ModuleNotFoundError
+2026-09-19T02:02:20.3183480Z ___________________ TestAwaitApproval.test_interactive_deny ____________________
+2026-09-19T02:02:20.3184018Z 
+2026-09-19T02:02:20.3184223Z self = <tests.test_hitl.TestAwaitApproval object at 0x7ff73e1127d0>
+2026-09-19T02:02:20.3184508Z 
+2026-09-19T02:02:20.3184607Z     def test_interactive_deny(self):
+2026-09-19T02:02:20.3184918Z         """Interactive context with 'n' input denies."""
+2026-09-19T02:02:20.3185220Z >       with (
+2026-09-19T02:02:20.3185517Z             patch("openamer_cli.hitl._is_interactive", return_value=True),
+2026-09-19T02:02:20.3185912Z             patch("msvcrt.kbhit", return_value=True),
+2026-09-19T02:02:20.3186236Z             patch("msvcrt.getwch", return_value="n"),
+2026-09-19T02:02:20.3186521Z         ):
+2026-09-19T02:02:20.3186623Z 
+2026-09-19T02:02:20.3186722Z tests/test_hitl.py:208: 
+2026-09-19T02:02:20.3187021Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:02:20.3187596Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/unittest/mock.py:1430: in __enter__
+2026-09-19T02:02:20.3188112Z     self.target = self.getter()
+2026-09-19T02:02:20.3188351Z                   ^^^^^^^^^^^^^
+2026-09-19T02:02:20.3188808Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/pkgutil.py:700: in resolve_name
+2026-09-19T02:02:20.3189313Z     mod = importlib.import_module(modname)
+2026-09-19T02:02:20.3189588Z           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:02:20.3190097Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/importlib/__init__.py:126: in import_module
+2026-09-19T02:02:20.3190692Z     return _bootstrap._gcd_import(name[level:], package, level)
+2026-09-19T02:02:20.3191060Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:02:20.3191388Z <frozen importlib._bootstrap>:1204: in _gcd_import
+2026-09-19T02:02:20.3191678Z     ???
+2026-09-19T02:02:20.3191907Z <frozen importlib._bootstrap>:1176: in _find_and_load
+2026-09-19T02:02:20.3192209Z     ???
+2026-09-19T02:02:20.3192582Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:02:20.3192832Z 
+2026-09-19T02:02:20.3192999Z name = 'msvcrt', import_ = <function _gcd_import at 0x7ff74074fd80>
+2026-09-19T02:02:20.3193266Z 
+2026-09-19T02:02:20.3193342Z >   ???
+2026-09-19T02:02:20.3193573Z E   ModuleNotFoundError: No module named 'msvcrt'
+2026-09-19T02:02:20.3194037Z 
+2026-09-19T02:02:20.3194205Z <frozen importlib._bootstrap>:1140: ModuleNotFoundError
+2026-09-19T02:02:20.3194645Z __________________ TestAwaitApproval.test_interactive_timeout __________________
+2026-09-19T02:02:20.3194949Z 
+2026-09-19T02:02:20.3195130Z self = <tests.test_hitl.TestAwaitApproval object at 0x7ff73e112e50>
+2026-09-19T02:02:20.3195405Z 
+2026-09-19T02:02:20.3195511Z     def test_interactive_timeout(self):
+2026-09-19T02:02:20.3195842Z         """Interactive context that times out auto-denies."""
+2026-09-19T02:02:20.3196151Z >       with (
+2026-09-19T02:02:20.3196576Z             patch("openamer_cli.hitl._is_interactive", return_value=True),
+2026-09-19T02:02:20.3196989Z             patch("msvcrt.kbhit", return_value=False),
+2026-09-19T02:02:20.3197407Z             patch("msvcrt.getwch", side_effect=StopIteration("should not be called")),
+2026-09-19T02:02:20.3197806Z         ):
+2026-09-19T02:02:20.3197913Z 
+2026-09-19T02:02:20.3198008Z tests/test_hitl.py:218: 
+2026-09-19T02:02:20.3198294Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:02:20.3198852Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/unittest/mock.py:1430: in __enter__
+2026-09-19T02:02:20.3199364Z     self.target = self.getter()
+2026-09-19T02:02:20.3199608Z                   ^^^^^^^^^^^^^
+2026-09-19T02:02:20.3200049Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/pkgutil.py:700: in resolve_name
+2026-09-19T02:02:20.3200555Z     mod = importlib.import_module(modname)
+2026-09-19T02:02:20.3200836Z           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:02:20.3201353Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/importlib/__init__.py:126: in import_module
+2026-09-19T02:02:20.3201950Z     return _bootstrap._gcd_import(name[level:], package, level)
+2026-09-19T02:02:20.3202307Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:02:20.3202634Z <frozen importlib._bootstrap>:1204: in _gcd_import
+2026-09-19T02:02:20.3202926Z     ???
+2026-09-19T02:02:20.3203153Z <frozen importlib._bootstrap>:1176: in _find_and_load
+2026-09-19T02:02:20.3203444Z     ???
+2026-09-19T02:02:20.3203683Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:02:20.3204150Z 
+2026-09-19T02:02:20.3204326Z name = 'msvcrt', import_ = <function _gcd_import at 0x7ff74074fd80>
+2026-09-19T02:02:20.3204588Z 
+2026-09-19T02:02:20.3204678Z >   ???
+2026-09-19T02:02:20.3204901Z E   ModuleNotFoundError: No module named 'msvcrt'
+2026-09-19T02:02:20.3205121Z 
+2026-09-19T02:02:20.3205272Z <frozen importlib._bootstrap>:1140: ModuleNotFoundError
+2026-09-19T02:02:20.3205705Z __________________ TestAwaitApproval.test_timeout_from_config __________________
+2026-09-19T02:02:20.3206004Z 
+2026-09-19T02:02:20.3206180Z self = <tests.test_hitl.TestAwaitApproval object at 0x7ff73e113490>
+2026-09-19T02:02:20.3206457Z 
+2026-09-19T02:02:20.3206555Z     def test_timeout_from_config(self):
+2026-09-19T02:02:20.3206919Z         """When config.timeout > 0, await_approval uses it over the arg."""
+2026-09-19T02:02:20.3207311Z         cfg = HITLConfig(enabled=True, timeout=5)
+2026-09-19T02:02:20.3207589Z >       with (
+2026-09-19T02:02:20.3207876Z             patch("openamer_cli.hitl._get_hitl_config", return_value=cfg),
+2026-09-19T02:02:20.3208341Z             patch("openamer_cli.hitl._is_interactive", return_value=True),
+2026-09-19T02:02:20.3208732Z             patch("msvcrt.kbhit", return_value=False),
+2026-09-19T02:02:20.3209017Z         ):
+2026-09-19T02:02:20.3209122Z 
+2026-09-19T02:02:20.3209217Z tests/test_hitl.py:230: 
+2026-09-19T02:02:20.3209641Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:02:20.3210192Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/unittest/mock.py:1430: in __enter__
+2026-09-19T02:02:20.3210699Z     self.target = self.getter()
+2026-09-19T02:02:20.3210943Z                   ^^^^^^^^^^^^^
+2026-09-19T02:02:20.3211386Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/pkgutil.py:700: in resolve_name
+2026-09-19T02:02:20.3211884Z     mod = importlib.import_module(modname)
+2026-09-19T02:02:20.3212158Z           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:02:20.3212670Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/importlib/__init__.py:126: in import_module
+2026-09-19T02:02:20.3213264Z     return _bootstrap._gcd_import(name[level:], package, level)
+2026-09-19T02:02:20.3213623Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:02:20.3214359Z <frozen importlib._bootstrap>:1204: in _gcd_import
+2026-09-19T02:02:20.3214680Z     ???
+2026-09-19T02:02:20.3214913Z <frozen importlib._bootstrap>:1176: in _find_and_load
+2026-09-19T02:02:20.3215206Z     ???
+2026-09-19T02:02:20.3215448Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:02:20.3215699Z 
+2026-09-19T02:02:20.3215874Z name = 'msvcrt', import_ = <function _gcd_import at 0x7ff74074fd80>
+2026-09-19T02:02:20.3216139Z 
+2026-09-19T02:02:20.3216221Z >   ???
+2026-09-19T02:02:20.3216446Z E   ModuleNotFoundError: No module named 'msvcrt'
+2026-09-19T02:02:20.3216666Z 
+2026-09-19T02:02:20.3216810Z <frozen importlib._bootstrap>:1140: ModuleNotFoundError
+2026-09-19T02:02:20.3217258Z ____________ TestAwaitApproval.test_non_windows_fallback_no_sigalrm ____________
+2026-09-19T02:02:20.3217568Z 
+2026-09-19T02:02:20.3217671Z prompt = 'Test', timeout = 0
+2026-09-19T02:02:20.3217830Z 
+2026-09-19T02:02:20.3217986Z     def await_approval(prompt: str, timeout: int = 30) -> bool:
+2026-09-19T02:02:20.3218387Z         """Ask the user to approve or deny an agent action.
+2026-09-19T02:02:20.3218685Z     
+2026-09-19T02:02:20.3218989Z         In interactive (CLI/TUI) mode, prints the prompt and waits for keypress.
+2026-09-19T02:02:20.3219498Z         In non-interactive mode (gateway/background/cron), auto-denies with a log
+2026-09-19T02:02:20.3219904Z         warning after the timeout.
+2026-09-19T02:02:20.3220143Z     
+2026-09-19T02:02:20.3220313Z         Args:
+2026-09-19T02:02:20.3220614Z             prompt: Human-readable description of what the agent wants to do.
+2026-09-19T02:02:20.3221036Z             timeout: Seconds to wait before auto-denying.
+2026-09-19T02:02:20.3221335Z     
+2026-09-19T02:02:20.3221504Z         Returns:
+2026-09-19T02:02:20.3221789Z             True if the user approved, False if they denied or timed out.
+2026-09-19T02:02:20.3222130Z         """
+2026-09-19T02:02:20.3222327Z         cfg = _get_hitl_config()
+2026-09-19T02:02:20.3222559Z     
+2026-09-19T02:02:20.3222845Z         # If we have an explicit timeout override from config, use it
+2026-09-19T02:02:20.3223198Z         effective_timeout = timeout
+2026-09-19T02:02:20.3223463Z         if cfg.timeout > 0:
+2026-09-19T02:02:20.3223938Z             effective_timeout = cfg.timeout
+2026-09-19T02:02:20.3224227Z     
+2026-09-19T02:02:20.3224416Z         if not _is_interactive():
+2026-09-19T02:02:20.3224678Z             logger.warning(
+2026-09-19T02:02:20.3225190Z                 "HITL: auto-deny (non-interactive context) — %s",
+2026-09-19T02:02:20.3225535Z                 prompt,
+2026-09-19T02:02:20.3225746Z             )
+2026-09-19T02:02:20.3225942Z             return False
+2026-09-19T02:02:20.3226161Z     
+2026-09-19T02:02:20.3226351Z         # Interactive prompt
+2026-09-19T02:02:20.3226578Z         print(
+2026-09-19T02:02:20.3226936Z             f"\n❓ OpenAmer needs your approval: {prompt}. "
+2026-09-19T02:02:20.3227333Z             f"Approve? [y/N] (auto-denies in {effective_timeout}s)"
+2026-09-19T02:02:20.3227655Z         )
+2026-09-19T02:02:20.3227999Z     
+2026-09-19T02:02:20.3228269Z         # Fast-path: zero timeout → immediate deny
+2026-09-19T02:02:20.3228581Z         if effective_timeout <= 0:
+2026-09-19T02:02:20.3228904Z             print("  ⏱️  Auto-denied (timeout)")
+2026-09-19T02:02:20.3229186Z             return False
+2026-09-19T02:02:20.3229390Z     
+2026-09-19T02:02:20.3229581Z         start = time.monotonic()
+2026-09-19T02:02:20.3229838Z         remaining = effective_timeout
+2026-09-19T02:02:20.3230087Z     
+2026-09-19T02:02:20.3230257Z         try:
+2026-09-19T02:02:20.3230569Z >           import msvcrt  # Windows-specific — fast key polling
+2026-09-19T02:02:20.3230899Z             ^^^^^^^^^^^^^
+2026-09-19T02:02:20.3231174Z E           ModuleNotFoundError: No module named 'msvcrt'
+2026-09-19T02:02:20.3231410Z 
+2026-09-19T02:02:20.3231533Z openamer_cli/hitl.py:230: ModuleNotFoundError
+2026-09-19T02:02:20.3231746Z 
+2026-09-19T02:02:20.3231933Z During handling of the above exception, another exception occurred:
+2026-09-19T02:02:20.3232348Z 
+2026-09-19T02:02:20.3232536Z self = <tests.test_hitl.TestAwaitApproval object at 0x7ff73e113ad0>
+2026-09-19T02:02:20.3232819Z 
+2026-09-19T02:02:20.3232946Z     def test_non_windows_fallback_no_sigalrm(self):
+2026-09-19T02:02:20.3233337Z         """On non-Windows without msvcrt, graceful fallback still works.
+2026-09-19T02:02:20.3233684Z     
+2026-09-19T02:02:20.3234181Z         We simulate a non-Windows environment by monkeypatching msvcrt
+2026-09-19T02:02:20.3234627Z         away, then testing that the polling-based fallback still times
+2026-09-19T02:02:20.3234977Z         out correctly.
+2026-09-19T02:02:20.3235188Z         """
+2026-09-19T02:02:20.3235378Z         with (
+2026-09-19T02:02:20.3235668Z             patch("openamer_cli.hitl._is_interactive", return_value=True),
+2026-09-19T02:02:20.3236022Z         ):
+2026-09-19T02:02:20.3236370Z             # timeout=0 is the fast path — it short-circuits before even
+2026-09-19T02:02:20.3236861Z             # trying msvcrt. The msvcrt → select fallback is structurally
+2026-09-19T02:02:20.3237322Z             # identical to the msvcrt loop (same remaining/time.sleep pattern)
+2026-09-19T02:02:20.3237773Z             # and is tested implicitly by the timeout=0 path which returns
+2026-09-19T02:02:20.3238136Z             # False immediately.
+2026-09-19T02:02:20.3238414Z >           result = await_approval("Test", timeout=0)
+2026-09-19T02:02:20.3238731Z                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:02:20.3239108Z 
+2026-09-19T02:02:20.3239215Z tests/test_hitl.py:254: 
+2026-09-19T02:02:20.3239509Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:02:20.3239871Z openamer_cli/hitl.py:252: in await_approval
+2026-09-19T02:02:20.3240192Z     if select.select([sys.stdin], [], [], 0.1)[0]:
+2026-09-19T02:02:20.3240502Z        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:02:20.3240826Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:02:20.3241077Z 
+2026-09-19T02:02:20.3241279Z self = <_pytest.capture.DontReadFromInput object at 0x7ff73fb01210>
+2026-09-19T02:02:20.3241567Z 
+2026-09-19T02:02:20.3241663Z     def fileno(self) -> int:
+2026-09-19T02:02:20.3242060Z >       raise UnsupportedOperation("redirected stdin is pseudofile, has no fileno()")
+2026-09-19T02:02:20.3242612Z E       io.UnsupportedOperation: redirected stdin is pseudofile, has no fileno()
+2026-09-19T02:02:20.3242936Z 
+2026-09-19T02:02:20.3243165Z .venv/lib/python3.11/site-packages/_pytest/capture.py:247: UnsupportedOperation
+2026-09-19T02:02:20.3243673Z ----------------------------- Captured stdout call -----------------------------
+2026-09-19T02:02:20.3244222Z 
+2026-09-19T02:02:20.3244516Z ❓ OpenAmer needs your approval: Test. Approve? [y/N] (auto-denies in 30s)
+2026-09-19T02:02:20.3245018Z _________________ TestHitlCheck.test_hitl_enabled_and_approved _________________
+2026-09-19T02:02:20.3245322Z 
+2026-09-19T02:02:20.3245494Z self = <tests.test_hitl.TestHitlCheck object at 0x7ff73e120950>
+2026-09-19T02:02:20.3245921Z 
+2026-09-19T02:02:20.3246041Z     def test_hitl_enabled_and_approved(self):
+2026-09-19T02:02:20.3246424Z         """When HITL is enabled and user approves, handler runs normally."""
+2026-09-19T02:02:20.3246886Z         cfg = HITLConfig(enabled=True, timeout=30, actions=["file_write"])
+2026-09-19T02:02:20.3247239Z     
+2026-09-19T02:02:20.3247435Z         def handler(args, **kwargs):
+2026-09-19T02:02:20.3247715Z             return "approved handler result"
+2026-09-19T02:02:20.3247977Z     
+2026-09-19T02:02:20.3248230Z         wrapper = hitl_check("file_write", "Write a file")(handler)
+2026-09-19T02:02:20.3248568Z >       with (
+2026-09-19T02:02:20.3248995Z             patch("openamer_cli.hitl._get_hitl_config", return_value=cfg),
+2026-09-19T02:02:20.3249541Z             patch("openamer_cli.hitl._is_interactive", return_value=True),
+2026-09-19T02:02:20.3294688Z             patch("msvcrt.kbhit", return_value=True),
+2026-09-19T02:02:20.3295255Z             patch("msvcrt.getwch", return_value="y"),
+2026-09-19T02:02:20.3295567Z         ):
+2026-09-19T02:02:20.3295680Z 
+2026-09-19T02:02:20.3295776Z tests/test_hitl.py:286: 
+2026-09-19T02:02:20.3296068Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:02:20.3296640Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/unittest/mock.py:1430: in __enter__
+2026-09-19T02:02:20.3297155Z     self.target = self.getter()
+2026-09-19T02:02:20.3297390Z                   ^^^^^^^^^^^^^
+2026-09-19T02:02:20.3297829Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/pkgutil.py:700: in resolve_name
+2026-09-19T02:02:20.3298327Z     mod = importlib.import_module(modname)
+2026-09-19T02:02:20.3298603Z           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:02:20.3299112Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/importlib/__init__.py:126: in import_module
+2026-09-19T02:02:20.3299727Z     return _bootstrap._gcd_import(name[level:], package, level)
+2026-09-19T02:02:20.3300100Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:02:20.3300427Z <frozen importlib._bootstrap>:1204: in _gcd_import
+2026-09-19T02:02:20.3300709Z     ???
+2026-09-19T02:02:20.3300931Z <frozen importlib._bootstrap>:1176: in _find_and_load
+2026-09-19T02:02:20.3301229Z     ???
+2026-09-19T02:02:20.3301469Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:02:20.3301720Z 
+2026-09-19T02:02:20.3301889Z name = 'msvcrt', import_ = <function _gcd_import at 0x7ff74074fd80>
+2026-09-19T02:02:20.3302154Z 
+2026-09-19T02:02:20.3302230Z >   ???
+2026-09-19T02:02:20.3302449Z E   ModuleNotFoundError: No module named 'msvcrt'
+2026-09-19T02:02:20.3302662Z 
+2026-09-19T02:02:20.3302808Z <frozen importlib._bootstrap>:1140: ModuleNotFoundError
+2026-09-19T02:02:20.3303244Z __________________ TestHitlCheck.test_hitl_enabled_and_denied __________________
+2026-09-19T02:02:20.3303541Z 
+2026-09-19T02:02:20.3303978Z self = <tests.test_hitl.TestHitlCheck object at 0x7ff73e120f90>
+2026-09-19T02:02:20.3304267Z 
+2026-09-19T02:02:20.3304376Z     def test_hitl_enabled_and_denied(self):
+2026-09-19T02:02:20.3304748Z         """When HITL is enabled and user denies, handler is NOT called."""
+2026-09-19T02:02:20.3305196Z         cfg = HITLConfig(enabled=True, timeout=30, actions=["file_write"])
+2026-09-19T02:02:20.3305550Z     
+2026-09-19T02:02:20.3305810Z         handler = MagicMock(return_value="should not be reached")
+2026-09-19T02:02:20.3306136Z     
+2026-09-19T02:02:20.3306386Z         wrapper = hitl_check("file_write", "Write a file")(handler)
+2026-09-19T02:02:20.3306718Z >       with (
+2026-09-19T02:02:20.3307015Z             patch("openamer_cli.hitl._get_hitl_config", return_value=cfg),
+2026-09-19T02:02:20.3307464Z             patch("openamer_cli.hitl._is_interactive", return_value=True),
+2026-09-19T02:02:20.3307857Z             patch("msvcrt.kbhit", return_value=True),
+2026-09-19T02:02:20.3308190Z             patch("msvcrt.getwch", return_value="n"),
+2026-09-19T02:02:20.3308611Z         ):
+2026-09-19T02:02:20.3308717Z 
+2026-09-19T02:02:20.3308810Z tests/test_hitl.py:302: 
+2026-09-19T02:02:20.3309096Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:02:20.3309680Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/unittest/mock.py:1430: in __enter__
+2026-09-19T02:02:20.3310199Z     self.target = self.getter()
+2026-09-19T02:02:20.3310442Z                   ^^^^^^^^^^^^^
+2026-09-19T02:02:20.3310889Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/pkgutil.py:700: in resolve_name
+2026-09-19T02:02:20.3311393Z     mod = importlib.import_module(modname)
+2026-09-19T02:02:20.3311668Z           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:02:20.3312176Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/importlib/__init__.py:126: in import_module
+2026-09-19T02:02:20.3312886Z     return _bootstrap._gcd_import(name[level:], package, level)
+2026-09-19T02:02:20.3313255Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:02:20.3313585Z <frozen importlib._bootstrap>:1204: in _gcd_import
+2026-09-19T02:02:20.3314088Z     ???
+2026-09-19T02:02:20.3314322Z <frozen importlib._bootstrap>:1176: in _find_and_load
+2026-09-19T02:02:20.3314615Z     ???
+2026-09-19T02:02:20.3314853Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:02:20.3315106Z 
+2026-09-19T02:02:20.3315274Z name = 'msvcrt', import_ = <function _gcd_import at 0x7ff74074fd80>
+2026-09-19T02:02:20.3315544Z 
+2026-09-19T02:02:20.3315619Z >   ???
+2026-09-19T02:02:20.3315838Z E   ModuleNotFoundError: No module named 'msvcrt'
+2026-09-19T02:02:20.3316059Z 
+2026-09-19T02:02:20.3316206Z <frozen importlib._bootstrap>:1140: ModuleNotFoundError
+2026-09-19T02:02:20.3316645Z _______________ TestHitlCheck.test_hitl_blocks_terminal_command ________________
+2026-09-19T02:02:20.3316953Z 
+2026-09-19T02:02:20.3317125Z self = <tests.test_hitl.TestHitlCheck object at 0x7ff73e121f50>
+2026-09-19T02:02:20.3317386Z 
+2026-09-19T02:02:20.3317509Z     def test_hitl_blocks_terminal_command(self):
+2026-09-19T02:02:20.3317863Z         """hitl_check works for terminal_command action type."""
+2026-09-19T02:02:20.3318301Z         cfg = HITLConfig(enabled=True, timeout=30, actions=["terminal_command"])
+2026-09-19T02:02:20.3318667Z     
+2026-09-19T02:02:20.3318895Z         handler = MagicMock(return_value="should not run")
+2026-09-19T02:02:20.3319198Z     
+2026-09-19T02:02:20.3319490Z         wrapper = hitl_check("terminal_command", "Run shell command")(handler)
+2026-09-19T02:02:20.3319857Z >       with (
+2026-09-19T02:02:20.3320145Z             patch("openamer_cli.hitl._get_hitl_config", return_value=cfg),
+2026-09-19T02:02:20.3320591Z             patch("openamer_cli.hitl._is_interactive", return_value=True),
+2026-09-19T02:02:20.3320982Z             patch("msvcrt.kbhit", return_value=True),
+2026-09-19T02:02:20.3321307Z             patch("msvcrt.getwch", return_value="n"),
+2026-09-19T02:02:20.3321587Z         ):
+2026-09-19T02:02:20.3321692Z 
+2026-09-19T02:02:20.3321782Z tests/test_hitl.py:357: 
+2026-09-19T02:02:20.3322068Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:02:20.3322628Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/unittest/mock.py:1430: in __enter__
+2026-09-19T02:02:20.3323150Z     self.target = self.getter()
+2026-09-19T02:02:20.3323388Z                   ^^^^^^^^^^^^^
+2026-09-19T02:02:20.3324051Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/pkgutil.py:700: in resolve_name
+2026-09-19T02:02:20.3324561Z     mod = importlib.import_module(modname)
+2026-09-19T02:02:20.3324835Z           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:02:20.3325346Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/importlib/__init__.py:126: in import_module
+2026-09-19T02:02:20.3325950Z     return _bootstrap._gcd_import(name[level:], package, level)
+2026-09-19T02:02:20.3326448Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:02:20.3326779Z <frozen importlib._bootstrap>:1204: in _gcd_import
+2026-09-19T02:02:20.3327064Z     ???
+2026-09-19T02:02:20.3327293Z <frozen importlib._bootstrap>:1176: in _find_and_load
+2026-09-19T02:02:20.3327583Z     ???
+2026-09-19T02:02:20.3327818Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:02:20.3328067Z 
+2026-09-19T02:02:20.3328232Z name = 'msvcrt', import_ = <function _gcd_import at 0x7ff74074fd80>
+2026-09-19T02:02:20.3328496Z 
+2026-09-19T02:02:20.3328574Z >   ???
+2026-09-19T02:02:20.3328795Z E   ModuleNotFoundError: No module named 'msvcrt'
+2026-09-19T02:02:20.3329012Z 
+2026-09-19T02:02:20.3329155Z <frozen importlib._bootstrap>:1140: ModuleNotFoundError
+2026-09-19T02:02:20.3329587Z ________________ TestHitlCheck.test_hitl_blocks_network_request ________________
+2026-09-19T02:02:20.3329884Z 
+2026-09-19T02:02:20.3330155Z self = <tests.test_hitl.TestHitlCheck object at 0x7ff73e120ad0>
+2026-09-19T02:02:20.3330423Z 
+2026-09-19T02:02:20.3330535Z     def test_hitl_blocks_network_request(self):
+2026-09-19T02:02:20.3330875Z         """hitl_check works for network_request action type."""
+2026-09-19T02:02:20.3331304Z         cfg = HITLConfig(enabled=True, timeout=30, actions=["network_request"])
+2026-09-19T02:02:20.3331670Z     
+2026-09-19T02:02:20.3331896Z         handler = MagicMock(return_value="should not run")
+2026-09-19T02:02:20.3332191Z     
+2026-09-19T02:02:20.3332477Z         wrapper = hitl_check("network_request", "Make HTTP request")(handler)
+2026-09-19T02:02:20.3332841Z >       with (
+2026-09-19T02:02:20.3333121Z             patch("openamer_cli.hitl._get_hitl_config", return_value=cfg),
+2026-09-19T02:02:20.3333561Z             patch("openamer_cli.hitl._is_interactive", return_value=True),
+2026-09-19T02:02:20.3334202Z             patch("msvcrt.kbhit", return_value=True),
+2026-09-19T02:02:20.3334533Z             patch("msvcrt.getwch", return_value="n"),
+2026-09-19T02:02:20.3334815Z         ):
+2026-09-19T02:02:20.3334919Z 
+2026-09-19T02:02:20.3335009Z tests/test_hitl.py:375: 
+2026-09-19T02:02:20.3335295Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:02:20.3335844Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/unittest/mock.py:1430: in __enter__
+2026-09-19T02:02:20.3336347Z     self.target = self.getter()
+2026-09-19T02:02:20.3336580Z                   ^^^^^^^^^^^^^
+2026-09-19T02:02:20.3337021Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/pkgutil.py:700: in resolve_name
+2026-09-19T02:02:20.3337533Z     mod = importlib.import_module(modname)
+2026-09-19T02:02:20.3337813Z           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:02:20.3338328Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/importlib/__init__.py:126: in import_module
+2026-09-19T02:02:20.3338930Z     return _bootstrap._gcd_import(name[level:], package, level)
+2026-09-19T02:02:20.3339294Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:02:20.3339622Z <frozen importlib._bootstrap>:1204: in _gcd_import
+2026-09-19T02:02:20.3339912Z     ???
+2026-09-19T02:02:20.3340136Z <frozen importlib._bootstrap>:1176: in _find_and_load
+2026-09-19T02:02:20.3340423Z     ???
+2026-09-19T02:02:20.3340655Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:02:20.3340901Z 
+2026-09-19T02:02:20.3341072Z name = 'msvcrt', import_ = <function _gcd_import at 0x7ff74074fd80>
+2026-09-19T02:02:20.3341335Z 
+2026-09-19T02:02:20.3341414Z >   ???
+2026-09-19T02:02:20.3341635Z E   ModuleNotFoundError: No module named 'msvcrt'
+2026-09-19T02:02:20.3341854Z 
+2026-09-19T02:02:20.3341996Z <frozen importlib._bootstrap>:1140: ModuleNotFoundError
+2026-09-19T02:02:20.3342428Z ________________ TestHitlCheck.test_hitl_blocks_code_execution _________________
+2026-09-19T02:02:20.3342725Z 
+2026-09-19T02:02:20.3342892Z self = <tests.test_hitl.TestHitlCheck object at 0x7ff73e1221d0>
+2026-09-19T02:02:20.3343287Z 
+2026-09-19T02:02:20.3343399Z     def test_hitl_blocks_code_execution(self):
+2026-09-19T02:02:20.3343973Z         """hitl_check works for code_execution action type."""
+2026-09-19T02:02:20.3344424Z         cfg = HITLConfig(enabled=True, timeout=30, actions=["code_execution"])
+2026-09-19T02:02:20.3344794Z     
+2026-09-19T02:02:20.3345023Z         handler = MagicMock(return_value="should not run")
+2026-09-19T02:02:20.3345322Z     
+2026-09-19T02:02:20.3345611Z         wrapper = hitl_check("code_execution", "Execute Python code")(handler)
+2026-09-19T02:02:20.3345977Z >       with (
+2026-09-19T02:02:20.3346266Z             patch("openamer_cli.hitl._get_hitl_config", return_value=cfg),
+2026-09-19T02:02:20.3346710Z             patch("openamer_cli.hitl._is_interactive", return_value=True),
+2026-09-19T02:02:20.3347104Z             patch("msvcrt.kbhit", return_value=True),
+2026-09-19T02:02:20.3347427Z             patch("msvcrt.getwch", return_value="n"),
+2026-09-19T02:02:20.3347834Z         ):
+2026-09-19T02:02:20.3347949Z 
+2026-09-19T02:02:20.3348038Z tests/test_hitl.py:393: 
+2026-09-19T02:02:20.3348329Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:02:20.3348886Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/unittest/mock.py:1430: in __enter__
+2026-09-19T02:02:20.3349398Z     self.target = self.getter()
+2026-09-19T02:02:20.3349650Z                   ^^^^^^^^^^^^^
+2026-09-19T02:02:20.3350094Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/pkgutil.py:700: in resolve_name
+2026-09-19T02:02:20.3350593Z     mod = importlib.import_module(modname)
+2026-09-19T02:02:20.3350865Z           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:02:20.3351380Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/importlib/__init__.py:126: in import_module
+2026-09-19T02:02:20.3351977Z     return _bootstrap._gcd_import(name[level:], package, level)
+2026-09-19T02:02:20.3352343Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:02:20.3352678Z <frozen importlib._bootstrap>:1204: in _gcd_import
+2026-09-19T02:02:20.3352973Z     ???
+2026-09-19T02:02:20.3353206Z <frozen importlib._bootstrap>:1176: in _find_and_load
+2026-09-19T02:02:20.3353502Z     ???
+2026-09-19T02:02:20.3353979Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:02:20.3354244Z 
+2026-09-19T02:02:20.3354419Z name = 'msvcrt', import_ = <function _gcd_import at 0x7ff74074fd80>
+2026-09-19T02:02:20.3354681Z 
+2026-09-19T02:02:20.3354756Z >   ???
+2026-09-19T02:02:20.3354976Z E   ModuleNotFoundError: No module named 'msvcrt'
+2026-09-19T02:02:20.3355193Z 
+2026-09-19T02:02:20.3355370Z <frozen importlib._bootstrap>:1140: ModuleNotFoundError
+2026-09-19T02:02:20.3355806Z ________________ TestHitlCheck.test_hitl_blocks_plugin_install _________________
+2026-09-19T02:02:20.3356105Z 
+2026-09-19T02:02:20.3356276Z self = <tests.test_hitl.TestHitlCheck object at 0x7ff73e1224d0>
+2026-09-19T02:02:20.3356541Z 
+2026-09-19T02:02:20.3356654Z     def test_hitl_blocks_plugin_install(self):
+2026-09-19T02:02:20.3357005Z         """hitl_check works for plugin_install action type."""
+2026-09-19T02:02:20.3357432Z         cfg = HITLConfig(enabled=True, timeout=30, actions=["plugin_install"])
+2026-09-19T02:02:20.3357801Z     
+2026-09-19T02:02:20.3358026Z         handler = MagicMock(return_value="should not run")
+2026-09-19T02:02:20.3358324Z     
+2026-09-19T02:02:20.3358599Z         wrapper = hitl_check("plugin_install", "Install a plugin")(handler)
+2026-09-19T02:02:20.3358957Z >       with (
+2026-09-19T02:02:20.3359241Z             patch("openamer_cli.hitl._get_hitl_config", return_value=cfg),
+2026-09-19T02:02:20.3359696Z             patch("openamer_cli.hitl._is_interactive", return_value=True),
+2026-09-19T02:02:20.3360087Z             patch("msvcrt.kbhit", return_value=True),
+2026-09-19T02:02:20.3360407Z             patch("msvcrt.getwch", return_value="n"),
+2026-09-19T02:02:20.3360688Z         ):
+2026-09-19T02:02:20.3360930Z 
+2026-09-19T02:02:20.3361028Z tests/test_hitl.py:411: 
+2026-09-19T02:02:20.3361316Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:02:20.3361881Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/unittest/mock.py:1430: in __enter__
+2026-09-19T02:02:20.3362389Z     self.target = self.getter()
+2026-09-19T02:02:20.3362631Z                   ^^^^^^^^^^^^^
+2026-09-19T02:02:20.3363067Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/pkgutil.py:700: in resolve_name
+2026-09-19T02:02:20.3363574Z     mod = importlib.import_module(modname)
+2026-09-19T02:02:20.3364066Z           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:02:20.3364581Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/importlib/__init__.py:126: in import_module
+2026-09-19T02:02:20.3365177Z     return _bootstrap._gcd_import(name[level:], package, level)
+2026-09-19T02:02:20.3365666Z            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:02:20.3366009Z <frozen importlib._bootstrap>:1204: in _gcd_import
+2026-09-19T02:02:20.3366297Z     ???
+2026-09-19T02:02:20.3366523Z <frozen importlib._bootstrap>:1176: in _find_and_load
+2026-09-19T02:02:20.3366810Z     ???
+2026-09-19T02:02:20.3367043Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:02:20.3367290Z 
+2026-09-19T02:02:20.3367459Z name = 'msvcrt', import_ = <function _gcd_import at 0x7ff74074fd80>
+2026-09-19T02:02:20.3367720Z 
+2026-09-19T02:02:20.3367796Z >   ???
+2026-09-19T02:02:20.3368016Z E   ModuleNotFoundError: No module named 'msvcrt'
+2026-09-19T02:02:20.3368237Z 
+2026-09-19T02:02:20.3368381Z <frozen importlib._bootstrap>:1140: ModuleNotFoundError
+2026-09-19T02:02:20.3368756Z =========================== short test summary info ============================
+2026-09-19T02:02:20.3369257Z FAILED tests/test_hitl.py::TestAwaitApproval::test_interactive_approve - Modu...
+2026-09-19T02:02:20.3369804Z FAILED tests/test_hitl.py::TestAwaitApproval::test_interactive_deny - ModuleN...
+2026-09-19T02:02:20.3370332Z FAILED tests/test_hitl.py::TestAwaitApproval::test_interactive_timeout - Modu...
+2026-09-19T02:02:20.3370851Z FAILED tests/test_hitl.py::TestAwaitApproval::test_timeout_from_config - Modu...
+2026-09-19T02:02:20.3371383Z FAILED tests/test_hitl.py::TestAwaitApproval::test_non_windows_fallback_no_sigalrm
+2026-09-19T02:02:20.3371922Z FAILED tests/test_hitl.py::TestHitlCheck::test_hitl_enabled_and_approved - Mo...
+2026-09-19T02:02:20.3372439Z FAILED tests/test_hitl.py::TestHitlCheck::test_hitl_enabled_and_denied - Modu...
+2026-09-19T02:02:20.3372952Z FAILED tests/test_hitl.py::TestHitlCheck::test_hitl_blocks_terminal_command
+2026-09-19T02:02:20.3373493Z FAILED tests/test_hitl.py::TestHitlCheck::test_hitl_blocks_network_request - ...
+2026-09-19T02:02:20.3374276Z FAILED tests/test_hitl.py::TestHitlCheck::test_hitl_blocks_code_execution - M...
+2026-09-19T02:02:20.3374805Z FAILED tests/test_hitl.py::TestHitlCheck::test_hitl_blocks_plugin_install - M...
+2026-09-19T02:02:20.3375264Z ======================== 11 failed, 30 passed in 3.94s =========================
+2026-09-19T02:02:20.3375515Z 
+2026-09-19T02:02:20.3375640Z === 4 files with test failures (16 tests failed) ===
+2026-09-19T02:02:20.3376038Z   tests/agent/test_credential_pool_oat_authtype.py  (1 test failed)
+2026-09-19T02:02:20.3376432Z   tests/acp/test_permissions.py  (1 test failed)
+2026-09-19T02:02:20.3376790Z   tests/openamer_cli/test_kanban_swarm.py  (3 tests failed)
+2026-09-19T02:02:20.3377129Z   tests/test_hitl.py  (11 tests failed)
+2026-09-19T02:02:20.3388188Z ##[error]Process completed with exit code 1.
+2026-09-19T02:02:20.3508245Z Post job cleanup.
+2026-09-19T02:02:20.4423107Z [command]/usr/bin/git version
+2026-09-19T02:02:20.4472239Z git version 2.55.0
+2026-09-19T02:02:20.4522654Z Temporarily overriding HOME='/home/runner/work/_temp/ba57cd6d-f286-4c94-a12a-9ec6cdd2b9a6' before making global git config changes
+2026-09-19T02:02:20.4524555Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-19T02:02:20.4528930Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/openamer/openamer
+2026-09-19T02:02:20.4564224Z Removing SSH command configuration
+2026-09-19T02:02:20.4570414Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-19T02:02:20.4612620Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-19T02:02:20.4880439Z Removing HTTP extra header
+2026-09-19T02:02:20.4888460Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-19T02:02:20.4941160Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-19T02:02:20.5219192Z Removing includeIf entries pointing to credentials config files
+2026-09-19T02:02:20.5227439Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-19T02:02:20.5264295Z includeif.gitdir:/home/runner/work/openamer/openamer/.git.path
+2026-09-19T02:02:20.5266555Z includeif.gitdir:/home/runner/work/openamer/openamer/.git/worktrees/*.path
+2026-09-19T02:02:20.5267601Z includeif.gitdir:/github/workspace/.git.path
+2026-09-19T02:02:20.5268475Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-09-19T02:02:20.5277888Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/openamer/openamer/.git.path
+2026-09-19T02:02:20.5308343Z /home/runner/work/_temp/git-credentials-8832affa-a7c4-4bb2-988c-2c00b07f54d5.config
+2026-09-19T02:02:20.5323614Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/openamer/openamer/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-8832affa\-a7c4\-4bb2\-988c\-2c00b07f54d5\.config
+2026-09-19T02:02:20.5373192Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/openamer/openamer/.git/worktrees/*.path
+2026-09-19T02:02:20.5405333Z /home/runner/work/_temp/git-credentials-8832affa-a7c4-4bb2-988c-2c00b07f54d5.config
+2026-09-19T02:02:20.5419618Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/openamer/openamer/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-8832affa\-a7c4\-4bb2\-988c\-2c00b07f54d5\.config
+2026-09-19T02:02:20.5474899Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-09-19T02:02:20.5511920Z /github/runner_temp/git-credentials-8832affa-a7c4-4bb2-988c-2c00b07f54d5.config
+2026-09-19T02:02:20.5520920Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-8832affa\-a7c4\-4bb2\-988c\-2c00b07f54d5\.config
+2026-09-19T02:02:20.5575393Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-09-19T02:02:20.5599618Z /github/runner_temp/git-credentials-8832affa-a7c4-4bb2-988c-2c00b07f54d5.config
+2026-09-19T02:02:20.5610267Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-8832affa\-a7c4\-4bb2\-988c\-2c00b07f54d5\.config
+2026-09-19T02:02:20.5652405Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-19T02:02:20.5900316Z Removing credentials config '/home/runner/work/_temp/git-credentials-8832affa-a7c4-4bb2-988c-2c00b07f54d5.config'
+2026-09-19T02:02:20.6065471Z Cleaning up orphan processes

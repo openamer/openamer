@@ -1,0 +1,213 @@
+﻿2026-09-19T01:57:30.6704661Z Current runner version: '2.337.0'
+2026-09-19T01:57:30.6730552Z ##[group]Runner Image Provisioner
+2026-09-19T01:57:30.6731518Z Hosted Compute Agent
+2026-09-19T01:57:30.6732130Z Version: 20260828.587
+2026-09-19T01:57:30.6732840Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+2026-09-19T01:57:30.6733636Z Build Date: 2026-08-28T16:44:25Z
+2026-09-19T01:57:30.6734344Z Worker ID: {21a58968-5c2c-4ca0-8938-d1da639dab74}
+2026-09-19T01:57:30.6735120Z Azure Region: northcentralus
+2026-09-19T01:57:30.6735747Z ##[endgroup]
+2026-09-19T01:57:30.6737164Z ##[group]Operating System
+2026-09-19T01:57:30.6737989Z Ubuntu
+2026-09-19T01:57:30.6738528Z 24.04.5
+2026-09-19T01:57:30.6739092Z LTS
+2026-09-19T01:57:30.6739974Z ##[endgroup]
+2026-09-19T01:57:30.6740544Z ##[group]Runner Image
+2026-09-19T01:57:30.6741313Z Image: ubuntu-24.04
+2026-09-19T01:57:30.6741898Z Version: 20260907.300.1
+2026-09-19T01:57:30.6743633Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260907.300/images/ubuntu/Ubuntu2404-Readme.md
+2026-09-19T01:57:30.6745222Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260907.300
+2026-09-19T01:57:30.6746323Z ##[endgroup]
+2026-09-19T01:57:30.6747415Z ##[group]GITHUB_TOKEN Permissions
+2026-09-19T01:57:30.6749769Z Contents: read
+2026-09-19T01:57:30.6750471Z Metadata: read
+2026-09-19T01:57:30.6751172Z ##[endgroup]
+2026-09-19T01:57:30.6753942Z Secret source: Actions
+2026-09-19T01:57:30.6754968Z Cache mode: write
+2026-09-19T01:57:30.6755884Z Prepare workflow directory
+2026-09-19T01:57:30.7241856Z Prepare all required actions
+2026-09-19T01:57:30.7316504Z Getting action download info
+2026-09-19T01:57:30.9294560Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+2026-09-19T01:57:31.0423394Z Download action repository 'actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9' (SHA:55cc8345863c7cc4c66a329aec7e433d2d1c52a9)
+2026-09-19T01:57:31.2614520Z Uses: openamer/openamer/.github/workflows/tests.yml@refs/heads/main (711feb164973c21ff875d6c23d7d22162f5b54f2)
+2026-09-19T01:57:31.2619557Z ##[group] Inputs
+2026-09-19T01:57:31.2620824Z   slice_count: 8
+2026-09-19T01:57:31.2621316Z ##[endgroup]
+2026-09-19T01:57:31.2621850Z Complete job name: Python tests / Generate slices
+2026-09-19T01:57:31.3388783Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+2026-09-19T01:57:31.3390129Z with:
+2026-09-19T01:57:31.3390602Z   repository: openamer/openamer
+2026-09-19T01:57:31.3394285Z   token: ***
+2026-09-19T01:57:31.3394726Z   ssh-strict: true
+2026-09-19T01:57:31.3395177Z   ssh-user: git
+2026-09-19T01:57:31.3395699Z   persist-credentials: true
+2026-09-19T01:57:31.3396244Z   clean: true
+2026-09-19T01:57:31.3396699Z   sparse-checkout-cone-mode: true
+2026-09-19T01:57:31.3397236Z   fetch-depth: 1
+2026-09-19T01:57:31.3397682Z   fetch-tags: false
+2026-09-19T01:57:31.3398146Z   show-progress: true
+2026-09-19T01:57:31.3398603Z   lfs: false
+2026-09-19T01:57:31.3399030Z   submodules: false
+2026-09-19T01:57:31.3399723Z   set-safe-directory: true
+2026-09-19T01:57:31.3400280Z   allow-unsafe-pr-checkout: false
+2026-09-19T01:57:31.3401067Z ##[endgroup]
+2026-09-19T01:57:31.4458060Z Syncing repository: openamer/openamer
+2026-09-19T01:57:31.4460650Z ##[group]Getting Git version info
+2026-09-19T01:57:31.4461566Z Working directory is '/home/runner/work/openamer/openamer'
+2026-09-19T01:57:31.4462742Z [command]/usr/bin/git version
+2026-09-19T01:57:31.4532548Z git version 2.55.0
+2026-09-19T01:57:31.4568053Z ##[endgroup]
+2026-09-19T01:57:31.4575632Z Temporarily overriding HOME='/home/runner/work/_temp/0ad96a6a-2874-42c3-891c-322e7dbcccfb' before making global git config changes
+2026-09-19T01:57:31.4577172Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-19T01:57:31.4581621Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/openamer/openamer
+2026-09-19T01:57:31.4645291Z Deleting the contents of '/home/runner/work/openamer/openamer'
+2026-09-19T01:57:31.4649088Z ##[group]Determining repository object format
+2026-09-19T01:57:31.4651268Z ##[endgroup]
+2026-09-19T01:57:31.4652054Z ##[group]Initializing the repository
+2026-09-19T01:57:31.4657195Z [command]/usr/bin/git init /home/runner/work/openamer/openamer
+2026-09-19T01:57:31.4796905Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-09-19T01:57:31.4798675Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-09-19T01:57:31.4800576Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-09-19T01:57:31.4801816Z hint: call:
+2026-09-19T01:57:31.4802463Z hint:
+2026-09-19T01:57:31.4803340Z hint: 	git config --global init.defaultBranch <name>
+2026-09-19T01:57:31.4804485Z hint:
+2026-09-19T01:57:31.4805550Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-09-19T01:57:31.4807284Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-09-19T01:57:31.4808619Z hint:
+2026-09-19T01:57:31.4809741Z hint: 	git branch -m <name>
+2026-09-19T01:57:31.4810601Z hint:
+2026-09-19T01:57:31.4811675Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-09-19T01:57:31.4813395Z Initialized empty Git repository in /home/runner/work/openamer/openamer/.git/
+2026-09-19T01:57:31.4832099Z [command]/usr/bin/git remote add origin https://github.com/openamer/openamer
+2026-09-19T01:57:31.4880235Z ##[endgroup]
+2026-09-19T01:57:31.4881481Z ##[group]Disabling automatic garbage collection
+2026-09-19T01:57:31.4884109Z [command]/usr/bin/git config --local gc.auto 0
+2026-09-19T01:57:31.4917538Z ##[endgroup]
+2026-09-19T01:57:31.4918951Z ##[group]Setting up auth
+2026-09-19T01:57:31.4919971Z Removing SSH command configuration
+2026-09-19T01:57:31.4924034Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-19T01:57:31.4960106Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-19T01:57:31.5352391Z Removing HTTP extra header
+2026-09-19T01:57:31.5366767Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-19T01:57:31.5403081Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-19T01:57:31.5614274Z Removing includeIf entries pointing to credentials config files
+2026-09-19T01:57:31.5618445Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-19T01:57:31.5652976Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-19T01:57:31.5888875Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-8a3a7913-7a52-4105-b886-bbdaf43552ce.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-09-19T01:57:31.5930489Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/openamer/openamer/.git.path /home/runner/work/_temp/git-credentials-8a3a7913-7a52-4105-b886-bbdaf43552ce.config
+2026-09-19T01:57:31.5963952Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/openamer/openamer/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-8a3a7913-7a52-4105-b886-bbdaf43552ce.config
+2026-09-19T01:57:31.6001110Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-8a3a7913-7a52-4105-b886-bbdaf43552ce.config
+2026-09-19T01:57:31.6036449Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-8a3a7913-7a52-4105-b886-bbdaf43552ce.config
+2026-09-19T01:57:31.6067105Z ##[endgroup]
+2026-09-19T01:57:31.6067866Z ##[group]Fetching the repository
+2026-09-19T01:57:31.6073860Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +711feb164973c21ff875d6c23d7d22162f5b54f2:refs/remotes/origin/main
+2026-09-19T01:57:37.9353357Z From https://github.com/openamer/openamer
+2026-09-19T01:57:37.9356088Z  * [new ref]         711feb164973c21ff875d6c23d7d22162f5b54f2 -> origin/main
+2026-09-19T01:57:37.9367340Z [command]/usr/bin/git branch --list --remote origin/main
+2026-09-19T01:57:37.9394907Z   origin/main
+2026-09-19T01:57:37.9403069Z [command]/usr/bin/git rev-parse refs/remotes/origin/main
+2026-09-19T01:57:37.9428767Z 711feb164973c21ff875d6c23d7d22162f5b54f2
+2026-09-19T01:57:37.9434405Z ##[endgroup]
+2026-09-19T01:57:37.9435957Z ##[group]Determining the checkout info
+2026-09-19T01:57:37.9437352Z ##[endgroup]
+2026-09-19T01:57:37.9438772Z [command]/usr/bin/git sparse-checkout disable
+2026-09-19T01:57:37.9491394Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-09-19T01:57:37.9524333Z ##[group]Checking out the ref
+2026-09-19T01:57:37.9528028Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-09-19T01:57:38.9665769Z Updating files:  67% (6849/10080)
+2026-09-19T01:57:38.9743946Z Updating files:  68% (6855/10080)
+2026-09-19T01:57:38.9832833Z Updating files:  69% (6956/10080)
+2026-09-19T01:57:38.9908342Z Updating files:  70% (7056/10080)
+2026-09-19T01:57:38.9983446Z Updating files:  71% (7157/10080)
+2026-09-19T01:57:39.0075634Z Updating files:  72% (7258/10080)
+2026-09-19T01:57:39.0152853Z Updating files:  73% (7359/10080)
+2026-09-19T01:57:39.0237479Z Updating files:  74% (7460/10080)
+2026-09-19T01:57:39.0312791Z Updating files:  75% (7560/10080)
+2026-09-19T01:57:39.0391890Z Updating files:  76% (7661/10080)
+2026-09-19T01:57:39.0479007Z Updating files:  77% (7762/10080)
+2026-09-19T01:57:39.0572303Z Updating files:  78% (7863/10080)
+2026-09-19T01:57:39.0661347Z Updating files:  79% (7964/10080)
+2026-09-19T01:57:39.0749302Z Updating files:  80% (8064/10080)
+2026-09-19T01:57:39.0861526Z Updating files:  81% (8165/10080)
+2026-09-19T01:57:39.1039279Z Updating files:  82% (8266/10080)
+2026-09-19T01:57:39.1137854Z Updating files:  83% (8367/10080)
+2026-09-19T01:57:39.1205445Z Updating files:  84% (8468/10080)
+2026-09-19T01:57:39.1265418Z Updating files:  85% (8568/10080)
+2026-09-19T01:57:39.1334895Z Updating files:  86% (8669/10080)
+2026-09-19T01:57:39.1427947Z Updating files:  87% (8770/10080)
+2026-09-19T01:57:39.1521192Z Updating files:  88% (8871/10080)
+2026-09-19T01:57:39.1589529Z Updating files:  89% (8972/10080)
+2026-09-19T01:57:39.1646155Z Updating files:  90% (9072/10080)
+2026-09-19T01:57:39.1705752Z Updating files:  91% (9173/10080)
+2026-09-19T01:57:39.1778634Z Updating files:  92% (9274/10080)
+2026-09-19T01:57:39.1901214Z Updating files:  93% (9375/10080)
+2026-09-19T01:57:39.2007174Z Updating files:  94% (9476/10080)
+2026-09-19T01:57:39.2113600Z Updating files:  95% (9576/10080)
+2026-09-19T01:57:39.2219407Z Updating files:  96% (9677/10080)
+2026-09-19T01:57:39.2331816Z Updating files:  97% (9778/10080)
+2026-09-19T01:57:39.2427397Z Updating files:  98% (9879/10080)
+2026-09-19T01:57:39.2758538Z Updating files:  99% (9980/10080)
+2026-09-19T01:57:39.2759803Z Updating files: 100% (10080/10080)
+2026-09-19T01:57:39.2760539Z Updating files: 100% (10080/10080), done.
+2026-09-19T01:57:39.2916607Z Switched to a new branch 'main'
+2026-09-19T01:57:39.2932719Z branch 'main' set up to track 'origin/main'.
+2026-09-19T01:57:39.2975508Z ##[endgroup]
+2026-09-19T01:57:39.3027292Z [command]/usr/bin/git log -1 --format=%H
+2026-09-19T01:57:39.3057380Z 711feb164973c21ff875d6c23d7d22162f5b54f2
+2026-09-19T01:57:39.3284128Z ##[group]Run actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
+2026-09-19T01:57:39.3284571Z with:
+2026-09-19T01:57:39.3284790Z   path: test_durations.json
+2026-09-19T01:57:39.3285044Z   key: test-durations
+2026-09-19T01:57:39.3285278Z   restore-keys: test-durations-
+
+2026-09-19T01:57:39.3285549Z   enableCrossOsArchive: false
+2026-09-19T01:57:39.3285807Z   fail-on-cache-miss: false
+2026-09-19T01:57:39.3286223Z   lookup-only: false
+2026-09-19T01:57:39.3286439Z ##[endgroup]
+2026-09-19T01:57:39.5649182Z Cache hit for restore-key: test-durations-32214694942
+2026-09-19T01:57:39.7822257Z Received 4931 of 4931 (100.0%), 0.0 MBs/sec
+2026-09-19T01:57:39.7823268Z Cache Size: ~0 MB (4931 B)
+2026-09-19T01:57:39.7855599Z [command]/usr/bin/tar -xf /home/runner/work/_temp/e5bfc5a9-2df8-4bb9-ad9f-5b0ada68f304/cache.tzst -P -C /home/runner/work/openamer/openamer --use-compress-program unzstd
+2026-09-19T01:57:39.7932043Z Cache restored successfully
+2026-09-19T01:57:39.8012910Z Cache restored from key: test-durations-32214694942
+2026-09-19T01:57:39.8205861Z ##[group]Run MATRIX=$(python3 scripts/run_tests_parallel.py --generate-slices 8)
+2026-09-19T01:57:39.8206644Z [36;1mMATRIX=$(python3 scripts/run_tests_parallel.py --generate-slices 8)[0m
+2026-09-19T01:57:39.8207127Z [36;1mecho "matrix=$MATRIX" >> "$GITHUB_OUTPUT"[0m
+2026-09-19T01:57:39.8247939Z shell: /usr/bin/bash -e {0}
+2026-09-19T01:57:39.8248273Z ##[endgroup]
+2026-09-19T01:57:40.6337852Z Post job cleanup.
+2026-09-19T01:57:40.7160101Z [command]/usr/bin/git version
+2026-09-19T01:57:40.7205246Z git version 2.55.0
+2026-09-19T01:57:40.7270528Z Temporarily overriding HOME='/home/runner/work/_temp/eecd3252-e0ee-458a-a067-a7c032bda7a7' before making global git config changes
+2026-09-19T01:57:40.7272157Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-19T01:57:40.7273408Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/openamer/openamer
+2026-09-19T01:57:40.7294749Z Removing SSH command configuration
+2026-09-19T01:57:40.7301752Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-19T01:57:40.7339046Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-19T01:57:40.7619078Z Removing HTTP extra header
+2026-09-19T01:57:40.7620218Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-19T01:57:40.7652565Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-19T01:57:40.7928745Z Removing includeIf entries pointing to credentials config files
+2026-09-19T01:57:40.7936804Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-19T01:57:40.8001439Z includeif.gitdir:/home/runner/work/openamer/openamer/.git.path
+2026-09-19T01:57:40.8020343Z includeif.gitdir:/home/runner/work/openamer/openamer/.git/worktrees/*.path
+2026-09-19T01:57:40.8021198Z includeif.gitdir:/github/workspace/.git.path
+2026-09-19T01:57:40.8021832Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-09-19T01:57:40.8022967Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/openamer/openamer/.git.path
+2026-09-19T01:57:40.8040581Z /home/runner/work/_temp/git-credentials-8a3a7913-7a52-4105-b886-bbdaf43552ce.config
+2026-09-19T01:57:40.8052723Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/openamer/openamer/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-8a3a7913\-7a52\-4105\-b886\-bbdaf43552ce\.config
+2026-09-19T01:57:40.8098877Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/openamer/openamer/.git/worktrees/*.path
+2026-09-19T01:57:40.8126552Z /home/runner/work/_temp/git-credentials-8a3a7913-7a52-4105-b886-bbdaf43552ce.config
+2026-09-19T01:57:40.8135699Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/openamer/openamer/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-8a3a7913\-7a52\-4105\-b886\-bbdaf43552ce\.config
+2026-09-19T01:57:40.8182079Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-09-19T01:57:40.8214165Z /github/runner_temp/git-credentials-8a3a7913-7a52-4105-b886-bbdaf43552ce.config
+2026-09-19T01:57:40.8222366Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-8a3a7913\-7a52\-4105\-b886\-bbdaf43552ce\.config
+2026-09-19T01:57:40.8262770Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-09-19T01:57:40.8297111Z /github/runner_temp/git-credentials-8a3a7913-7a52-4105-b886-bbdaf43552ce.config
+2026-09-19T01:57:40.8306969Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-8a3a7913\-7a52\-4105\-b886\-bbdaf43552ce\.config
+2026-09-19T01:57:40.8348671Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-19T01:57:40.8586301Z Removing credentials config '/home/runner/work/_temp/git-credentials-8a3a7913-7a52-4105-b886-bbdaf43552ce.config'
+2026-09-19T01:57:40.8722532Z Evaluate and set job outputs
+2026-09-19T01:57:40.9136943Z Set output 'matrix'
+2026-09-19T01:57:40.9139094Z Cleaning up orphan processes

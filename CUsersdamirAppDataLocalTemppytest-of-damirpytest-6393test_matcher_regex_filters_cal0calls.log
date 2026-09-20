@@ -1,0 +1,1 @@
+{"hook_event_name": "pre_tool_call", "tool_name": "terminal", "tool_input": {"command": "ls"}, "session_id": "", "cwd": "C:\\Users\\damir\\openamer-repo", "extra": {}}

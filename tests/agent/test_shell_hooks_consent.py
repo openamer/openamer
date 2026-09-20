@@ -199,8 +199,15 @@ class TestAllowlistOps:
         assert shell_hooks.revoke(str(tmp_path / "never-approved.sh")) == 0
 
     def test_tilde_path_approval_records_resolvable_mtime(self, tmp_path, monkeypatch):
-        """If the command uses ~ the approval must still find the file."""
+        """If the command uses ~ the approval must still find the file.
+
+        Which env var ``~`` reads is platform-specific: POSIX honours ``HOME``,
+        Windows reads ``USERPROFILE`` (verified -- expanduser ignores HOME
+        there). Setting only HOME made this pass on Linux and fail on Windows
+        for a reason that has nothing to do with the code under test.
+        """
         monkeypatch.setenv("HOME", str(tmp_path))
+        monkeypatch.setenv("USERPROFILE", str(tmp_path))
         target = tmp_path / "hook.sh"
         target.write_text("#!/usr/bin/env bash\n")
         target.chmod(0o755)

@@ -20,8 +20,10 @@ Exit-Codes:
 """
 
 import argparse
+import io
 import json
 import os
+import tokenize
 import re
 import subprocess
 import sys
@@ -409,6 +411,236 @@ def statement_suppressed(
     return False
 
 
+# ──────────────────────────────────────────────────────────────────────
+# False-Positive-Filter (Doku-Pfade + Platzhalter-Secrets)
+# ──────────────────────────────────────────────────────────────────────
+
+# Documentation and plain-text trees are prose, not runnable code. Their text
+# *describes* dangerous calls ("use subprocess.run() instead of shell=True"),
+# which is exactly what the whole-file regex scan searches for — so scanning
+# them is false positives by construction. Excluded the same way the scanner
+# already excludes its own rule definitions (SELF_SCAN_EXEMPT) and the way
+# semgrep excludes its own rules.
+DOCUMENTATION_EXTENSIONS = (
+    ".md", ".markdown", ".rst", ".adoc", ".txt", ".text",
+)
+
+# Trees that are documentation by name. A file here is skipped only when it is
+# not a code extension, so docs/snippets/*.py stays scanned.
+DOCUMENTATION_DIR_MARKERS = (
+    "docs/", "documentation/", "website/", "infograficos/", "infographic/",
+)
+
+CODE_EXTENSIONS = (
+    ".py", ".pyi", ".js", ".jsx", ".ts", ".tsx", ".mjs", ".cjs", ".go",
+    ".rb", ".java", ".c", ".h", ".cpp", ".hpp", ".rs", ".sh", ".bash",
+    ".ps1", ".psm1", ".bat", ".cmd", ".sql", ".yaml", ".yml", ".json",
+    ".toml", ".ini", ".cfg", ".html", ".css", ".php", ".pl", ".lua",
+)
+
+
+def is_documentation_path(filepath: str) -> bool:
+    """True fuer Doku-/Prosa-Dateien, die kein ausfuehrbarer Code sind."""
+    norm = filepath.replace("\\", "/").lower()
+    if norm.endswith(DOCUMENTATION_EXTENSIONS):
+        return True
+    if any(marker in norm for marker in DOCUMENTATION_DIR_MARKERS):
+        return not norm.endswith(CODE_EXTENSIONS)
+    return False
+
+
+# A credential *shipped as a documented example* is not a leak. The secret
+# patterns above match any quoted run of characters after a key-like word, so a
+# config template ("your-secret", "your-...key"), the repo's own internal
+# sentinels ("moa-virtual-provider") and English prose inside a string literal
+# were all reported as CRITICAL hardcoded secrets — which held the Auto Code
+# Review cron red for hours (observed 2026-09-20: 21 findings, max critical, of
+# which only 2 were real code).
+#
+# The predicate is deliberately narrow: it excuses a value only when the value
+# itself *says* it is a placeholder, and it never excuses anything that is
+# credential-shaped. A miss here would hide a real leak, so every ambiguous
+# case falls through to "report".
+PLACEHOLDER_PATTERNS = re.compile(
+    r"^(?:"
+    r"<[^>]*>"                       # <your-key>, <token>
+    r"|\{\{?[^}]*\}\}?"              # {{token}}, {apiKey}
+    r"|\$\{[^}]*\}"                  # ${API_KEY}
+    r"|your[-_ .]?\w*"                # your-secret, your-...key, your_api_key
+    r"|(?:change|replace)[-_ ]?me(?:[-_ ].*)?"   # changeme, replace-me-now
+    r"|x{3,}"                        # xxx, XXX
+    r"|(?:placeholder|example|sample|dummy|fake|mock|redacted"
+    r"|todo|fixme|unset|notset|none|null|empty)"
+    r")$",
+    re.IGNORECASE,
+)
+
+# A value of >= 2 letters-only words, all lowercase, that mentions one of these
+# words is naming a non-credential concept rather than carrying a secret:
+# "moa-virtual-provider" (internal sentinel), "my-api-key-value",
+# "sample-token-here", "test-token". A single-word value ("password",
+# "hunter2") is NOT excused — it reads as an actual credential.
+PLACEHOLDER_WORDS = frozenset({
+    "your", "you", "my", "our", "example", "sample", "demo", "dummy", "fake",
+    "mock", "test", "changeme", "placeholder", "insert", "todo", "fixme",
+    "redacted", "sentinel", "virtual", "local", "internal", "abc", "foo",
+    "bar", "baz",
+})
+
+# A mixed-case-and-digit string this long is credential-shaped. Never excuse
+# one, even when it happens to contain a word from PLACEHOLDER_WORDS.
+HIGH_ENTROPY_SECRET = re.compile(r"^(?=.*[A-Z])(?=.*[0-9]).{16,}$")
+
+def is_placeholder_secret(value: str) -> bool:
+    """True wenn ``value`` offensichtlich ein Platzhalter ist, kein Secret."""
+    v = (value or "").strip().strip("\"'`").strip()
+    if not v:
+        return True
+    if HIGH_ENTROPY_SECRET.match(v):
+        return False  # credential-shaped -> never a placeholder
+    if PLACEHOLDER_PATTERNS.match(v):
+        return True
+    words = [w for w in re.split(r"[^A-Za-z0-9]+", v.lower()) if w]
+    if (
+        len(words) >= 2
+        and all(w.isalpha() for w in words)
+        and v == v.lower()
+        and not any(c.isdigit() for c in v)
+        and any(w in PLACEHOLDER_WORDS for w in words)
+    ):
+        return True
+    return False
+
+
+def secret_match_is_placeholder(line_text: str, column: int) -> bool:
+    """True wenn ein Secret-Treffer ein Doku-Platzhalter oder Code-Fragment ist.
+
+    ``column`` is the match's 0-based column inside ``line_text``.
+
+    Two non-credential shapes produced most of the false positives:
+
+    * **Code fragment** — the regex keyword sits *inside* a larger string, e.g.
+      ``line.startswith("OPENROUTER_API_KEY=")`` (the pattern matched
+      ``API_KEY=") and len(line.split("``) or ``getpass.getpass("  Password: ")``
+      (prose in a prompt). The match does not begin at the literal's opening
+      quote, so it is never the value of an assignment.
+    * **Placeholder value** — a real assignment whose value is a documented
+      example (see :func:`is_placeholder_secret`).
+
+    Returns False on every ambiguous case (unlexable line, no literal) so that
+    uncertainty keeps the finding rather than hiding a real credential.
+    """
+    try:
+        toks = list(tokenize.generate_tokens(io.StringIO(line_text).readline))
+    except (tokenize.TokenError, IndentationError, SyntaxError):
+        return False  # cannot tokenize -> keep reporting
+    literal = None
+    for tok in toks:
+        if tok.type == tokenize.STRING and tok.end[1] > column:
+            literal = tok
+            break
+    if literal is None:
+        return False  # key with no quoted value -> keep reporting
+    value = line_text[literal.start[1] : literal.end[1]].strip("\"'`")
+    if literal.start[1] <= column:
+        # The match begins inside the literal's own content: the keyword is part
+        # of a longer string, never an assigned credential value.
+        return not HIGH_ENTROPY_SECRET.match(value)
+    return is_placeholder_secret(value)
+
+
+# Comment prefixes per language, for the non-Python prose check below.
+_COMMENT_PREFIXES: dict[str, tuple[str, ...]] = {
+    ".js": ("//", "/*", "*"), ".jsx": ("//", "/*", "*"),
+    ".ts": ("//", "/*", "*"), ".tsx": ("//", "/*", "*"),
+    ".mjs": ("//",), ".cjs": ("//",),
+    ".go": ("//",), ".java": ("//",), ".c": ("//",), ".h": ("//",),
+    ".cpp": ("//",), ".hpp": ("//",), ".rs": ("//",),
+    ".css": ("/*", "*"), ".sql": ("--",),
+    ".html": ("<!--",),
+    ".ps1": ("#",), ".psm1": ("#",),
+}
+_PYTHON_SUFFIXES = (".py", ".pyi")
+
+
+def comment_prefixes_for(filepath: str) -> tuple[str, ...]:
+    """Comment markers for ``filepath``'s language (default: ``#``)."""
+    norm = filepath.replace("\\", "/").lower()
+    for suffix, prefixes in _COMMENT_PREFIXES.items():
+        if norm.endswith(suffix):
+            return prefixes
+    return ("#",)
+
+
+def _python_prose_lines(content: str) -> set[int]:
+    """1-based lines of a Python file that hold prose, not executable code.
+
+    Two shapes a regex scanner must not read as code:
+
+    * a **comment-only** line — ``# ... shell=True ...`` is a sentence about a
+      pitfall, the single most common way this scanner cried wolf;
+    * a **statement-level string** (a docstring, or a bare string literal) — the
+      prose in a module/function docstring, e.g. ``exec()`` in
+      ``openamer_cli/main.py``'s update docstring.
+
+    A trailing comment does NOT make its line prose: the code to its left is
+    real, so only comments with nothing before them count. Only a whole-file
+    tokenize pass can tell a comment from a ``#`` inside a URL/string, which is
+    why this is not a line-prefix test.
+    """
+    prose: set[int] = set()
+    try:
+        toks = list(tokenize.generate_tokens(io.StringIO(content).readline))
+    except (tokenize.TokenError, IndentationError, SyntaxError):
+        return prose  # unlexable -> call nothing prose (keep reporting)
+    lines = content.split("\n")
+    last_significant = None
+    for tok in toks:
+        if tok.type == tokenize.COMMENT:
+            line_text = lines[tok.start[0] - 1] if tok.start[0] <= len(lines) else ""
+            if not line_text[: tok.start[1]].strip():
+                prose.add(tok.start[0])
+        elif tok.type == tokenize.STRING:
+            if last_significant in (
+                None, tokenize.NEWLINE, tokenize.INDENT, tokenize.DEDENT,
+            ):
+                prose.update(range(tok.start[0], tok.end[0] + 1))
+        if tok.type not in (tokenize.NL, tokenize.COMMENT, tokenize.ENCODING):
+            last_significant = tok.type
+    return prose
+
+
+def prose_line_numbers(content: str, filepath: str) -> set[int]:
+    """1-based lines of ``content`` that are prose for security purposes."""
+    norm = filepath.replace("\\", "/").lower()
+    if norm.endswith(_PYTHON_SUFFIXES):
+        return _python_prose_lines(content)
+    prefixes = comment_prefixes_for(norm)
+    prose = set()
+    for num, line in enumerate(content.split("\n"), 1):
+        if line.lstrip().startswith(prefixes):
+            prose.add(num)
+    return prose
+
+
+def match_looks_like_real_secret(match_text: str) -> bool:
+    """True wenn der Treffer ein echtes Secret enthaelt (nicht nur das Wort).
+
+    The escape hatch for the prose rules: a live credential pasted into a
+    comment or a docstring is still a leak, so a prose line is skipped only when
+    the matched text carries a non-placeholder literal. A match with no quoted
+    value at all (``shell=True``, ``exec(``) merely *mentions* the call.
+    """
+    values = [
+        quoted.group(1)
+        for quoted in re.finditer(r"""["'`]([^"'`]*)["'`]""", match_text)
+    ]
+    values = [v for v in values if v.strip()]
+    if not values:
+        return False  # no quoted value -> the match only names the concept
+    return any(not is_placeholder_secret(v) for v in values)
+
+
 def scan_added_lines(diff_text: str, patterns: list[dict]) -> list[dict]:
     """Scan only added lines in a diff for patterns."""
     findings = []
@@ -418,8 +650,14 @@ def scan_added_lines(diff_text: str, patterns: list[dict]) -> list[dict]:
             if "re.compile(" in added_line or "re.match(" in added_line:
                 continue  # regex-definition line: scanner config, not runtime code
             for pat in patterns:
-                if pat["pattern"].search(added_line):
-                    findings.append({
+                m = pat["pattern"].search(added_line)
+                if m is None:
+                    continue
+                if patterns is SECRETS_PATTERNS and secret_match_is_placeholder(
+                    added_line, m.start()
+                ):
+                    continue
+                findings.append({
                         "line_content": added_line.strip()[:120],
                         "pattern_id": pat["id"],
                         "severity": pat["severity"],
@@ -570,12 +808,19 @@ def scan_file_for_security(filepath: str, repo: Path) -> list[dict]:
         # here is all false positives by construction. (Standard practice,
         # cf. semgrep excluding its own rules.)
         return []
+    if is_documentation_path(filepath):
+        # Documentation is prose that *describes* dangerous calls; regex-scanning
+        # it reports the documentation itself. Skip the whole security scan.
+        return []
     findings = []
     content = get_file_content(filepath, repo)
     if content is None:
         return findings
     # Security patterns scan whole file
     file_lines = content.split("\n")
+    # Lines that are prose (comments / docstrings) are not executable code, so
+    # no security pattern may fire on them. See _python_prose_lines().
+    prose_lines = prose_line_numbers(content, filepath)
     norm_path = filepath.replace("\\", "/")
     is_i18n = any(m in norm_path for m in I18N_DIR_MARKERS)
     for patterns in [SECRETS_PATTERNS, SQL_INJECTION_PATTERNS, DANGEROUS_PATTERNS]:
@@ -584,6 +829,19 @@ def scan_file_for_security(filepath: str, repo: Path) -> list[dict]:
         for pat in patterns:
             for match in pat["pattern"].finditer(content):
                 line_num = content[: match.start()].count("\n") + 1
+                if line_num in prose_lines and not match_looks_like_real_secret(
+                    match.group()
+                ):
+                    continue
+                if patterns is SECRETS_PATTERNS:
+                    # Only the secret patterns need the value check: the SQL and
+                    # "dangerous call" patterns match real code, not literals.
+                    line_start = content.rfind("\n", 0, match.start()) + 1
+                    if secret_match_is_placeholder(
+                        file_lines[line_num - 1] if line_num <= len(file_lines) else "",
+                        match.start() - line_start,
+                    ):
+                        continue
                 end_num = content[: match.end()].count("\n") + 1
                 line_text = file_lines[line_num - 1] if line_num <= len(file_lines) else ""
                 # The suppress comment closes the multi-line statement, so it

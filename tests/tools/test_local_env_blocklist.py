@@ -9,6 +9,7 @@ See: https://github.com/openamer/openamer/issues/1264
 """
 
 import os
+import sys
 import threading
 from unittest.mock import MagicMock, patch
 
@@ -151,7 +152,7 @@ class TestProviderEnvBlocklist:
         OpenAmer-managed; the rest belongs to the user.
         """
         general_chain = {
-            "AWS_ACCESS_KEY_ID": "AKIAIOSFODNN7EXAMPLE",
+            "AWS_ACCESS_KEY_ID": "AKIAIOSFODNN7EXAMPLE",  # noqa:SEC AWS documented example key (AKIAIOSFODNN7EXAMPLE), not a credential
             "AWS_SECRET_ACCESS_KEY": "wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY",
             "AWS_SESSION_TOKEN": "session-token",
             "AWS_PROFILE": "production",
@@ -463,6 +464,22 @@ class TestBlocklistCoverage:
         assert extras.issubset(_OPENAMER_PROVIDER_ENV_BLOCKLIST)
 
 
+# Windows takes a different PATH path in _make_run_env(): the native
+# ';'-separated PATH is left untouched, _append_missing_sane_path_entries()
+# is a no-op passthrough, and _prepend_git_bash_dirs() injects the Git Bash
+# coreutils dirs instead. The POSIX PATH layout asserted by these tests
+# therefore cannot hold on Windows.
+_SKIP_POSIX_PATH_LAYOUT = pytest.mark.skipif(
+    sys.platform == "win32",
+    reason=(
+        "POSIX PATH layout: asserts ':'-separated PATH entries and the "
+        "/opt/homebrew/* _SANE_PATH merge. On Windows the separator is ';' and "
+        "the sane-path merge is a no-op passthrough (native PATH must not be "
+        "rewritten), so this layout cannot hold."
+    ),
+)
+
+
 class TestSanePathIncludesHomebrew:
     """Verify _SANE_PATH includes macOS Homebrew directories."""
 
@@ -486,6 +503,7 @@ class TestSanePathIncludesHomebrew:
         from tools.environments.local import _SANE_PATH
         assert "/opt/homebrew/sbin" in _SANE_PATH
 
+    @_SKIP_POSIX_PATH_LAYOUT
     def test_make_run_env_appends_homebrew_on_minimal_path(self):
         """When PATH is minimal, _make_run_env appends missing sane entries."""
         from tools.environments.local import _SANE_PATH, _make_run_env
@@ -497,6 +515,7 @@ class TestSanePathIncludesHomebrew:
         for entry in _SANE_PATH.split(":"):
             assert entry in path_entries
 
+    @_SKIP_POSIX_PATH_LAYOUT
     def test_make_run_env_fills_missing_homebrew_when_usr_bin_present(self):
         """macOS launchd PATH can include /usr/bin while missing Homebrew."""
         from tools.environments.local import _make_run_env
@@ -507,6 +526,7 @@ class TestSanePathIncludesHomebrew:
         assert "/opt/homebrew/bin" in path_entries
         assert "/opt/homebrew/sbin" in path_entries
 
+    @_SKIP_POSIX_PATH_LAYOUT
     def test_make_run_env_does_not_duplicate_existing_sane_entries(self):
         from tools.environments.local import _make_run_env
         existing_env = {"PATH": "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin"}
@@ -517,6 +537,7 @@ class TestSanePathIncludesHomebrew:
         assert path_entries.count("/usr/local/bin") == 1
         assert path_entries.count("/usr/bin") == 1
 
+    @_SKIP_POSIX_PATH_LAYOUT
     def test_make_run_env_real_launchd_path_gains_homebrew(self):
         """The literal macOS launchd PATH is the production trigger for #35613."""
         from tools.environments.local import _make_run_env
@@ -529,6 +550,7 @@ class TestSanePathIncludesHomebrew:
         # Original entries keep their leading precedence.
         assert path_entries[:4] == ["/usr/bin", "/bin", "/usr/sbin", "/sbin"]
 
+    @_SKIP_POSIX_PATH_LAYOUT
     def test_make_run_env_collapses_duplicate_caller_entries(self):
         """Duplicates already present in the caller PATH are de-duplicated."""
         from tools.environments.local import _make_run_env
@@ -541,6 +563,7 @@ class TestSanePathIncludesHomebrew:
         # First-occurrence order is preserved for the caller entries.
         assert path_entries[:3] == ["/usr/bin", "/custom/bin", "/bin"]
 
+    @_SKIP_POSIX_PATH_LAYOUT
     def test_make_run_env_strips_empty_path_entries(self):
         """Leading/trailing/double colons (== CWD on POSIX) are dropped."""
         from tools.environments.local import _make_run_env
@@ -552,6 +575,7 @@ class TestSanePathIncludesHomebrew:
         assert "/usr/bin" in path_entries
         assert "/opt/homebrew/bin" in path_entries
 
+    @_SKIP_POSIX_PATH_LAYOUT
     def test_make_run_env_leaves_windows_path_unchanged(self, monkeypatch):
         from tools.environments import local as local_mod
         from tools.environments.local import _make_run_env
@@ -561,6 +585,7 @@ class TestSanePathIncludesHomebrew:
             result = _make_run_env({})
         assert result["PATH"] == windows_env["PATH"]
 
+    @_SKIP_POSIX_PATH_LAYOUT
     def test_make_run_env_preserves_windows_mixed_case_path_key(self, monkeypatch):
         from tools.environments import local as local_mod
         from tools.environments.local import _make_run_env
@@ -613,6 +638,14 @@ class TestOpenAmerBinDirOnPath:
         monkeypatch.setattr(local_mod.sys, "executable", "/nonexistent/python")
         assert local_mod._resolve_openamer_bin_dir() is None
 
+    @pytest.mark.skipif(
+        sys.platform == "win32",
+        reason=(
+            "Asserts POSIX PATH splitting: PATH entries are ':'-separated string "
+            "literals like '/usr/bin', but on Windows os.pathsep is ';', so "
+            "'/usr/bin:/bin' is one entry and the split never yields '/usr/bin'."
+        ),
+    )
     def test_prepend_adds_missing_dir_at_front(self, monkeypatch):
         from tools.environments import local as local_mod
         self._reset_cache()
@@ -636,6 +669,14 @@ class TestOpenAmerBinDirOnPath:
         local_mod._OPENAMER_BIN_DIR = None
         assert local_mod._prepend_openamer_bin_dir("/usr/bin:/bin") == "/usr/bin:/bin"
 
+    @pytest.mark.skipif(
+        sys.platform == "win32",
+        reason=(
+            "POSIX PATH splitting: seeds a ':'-separated PATH of '/usr/bin:/bin' "
+            "and splits on os.pathsep (';' on Windows), so '/usr/bin' is never a "
+            "separate entry."
+        ),
+    )
     def test_make_run_env_injects_openamer_bin_dir(self, monkeypatch):
         """A gateway env missing the openamer dir gets it back in the subshell PATH."""
         from tools.environments import local as local_mod

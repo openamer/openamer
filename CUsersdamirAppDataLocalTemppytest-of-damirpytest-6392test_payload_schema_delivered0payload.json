@@ -1,0 +1,1 @@
+{"hook_event_name": "pre_tool_call", "tool_name": "terminal", "tool_input": {"command": "echo hi"}, "session_id": "sess-77", "cwd": "C:\\Users\\damir\\openamer-repo", "extra": {"task_id": "task-77"}}

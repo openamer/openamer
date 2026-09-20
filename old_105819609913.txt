@@ -1,0 +1,1916 @@
+﻿2026-09-19T01:57:46.0664796Z Current runner version: '2.337.0'
+2026-09-19T01:57:46.0697402Z ##[group]Runner Image Provisioner
+2026-09-19T01:57:46.0698815Z Hosted Compute Agent
+2026-09-19T01:57:46.0699610Z Version: 20260828.587
+2026-09-19T01:57:46.0700480Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+2026-09-19T01:57:46.0701521Z Build Date: 2026-08-28T16:44:25Z
+2026-09-19T01:57:46.0702435Z Worker ID: {6a8e97e4-e957-44e3-863c-8473690750e4}
+2026-09-19T01:57:46.0703505Z Azure Region: eastus
+2026-09-19T01:57:46.0704358Z ##[endgroup]
+2026-09-19T01:57:46.0707739Z ##[group]Operating System
+2026-09-19T01:57:46.0709055Z Ubuntu
+2026-09-19T01:57:46.0709806Z 24.04.5
+2026-09-19T01:57:46.0710586Z LTS
+2026-09-19T01:57:46.0711304Z ##[endgroup]
+2026-09-19T01:57:46.0712042Z ##[group]Runner Image
+2026-09-19T01:57:46.0712860Z Image: ubuntu-24.04
+2026-09-19T01:57:46.0713605Z Version: 20260907.300.1
+2026-09-19T01:57:46.0715434Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20260907.300/images/ubuntu/Ubuntu2404-Readme.md
+2026-09-19T01:57:46.0717975Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20260907.300
+2026-09-19T01:57:46.0719808Z ##[endgroup]
+2026-09-19T01:57:46.0721396Z ##[group]GITHUB_TOKEN Permissions
+2026-09-19T01:57:46.0724131Z Contents: read
+2026-09-19T01:57:46.0724969Z Metadata: read
+2026-09-19T01:57:46.0725776Z ##[endgroup]
+2026-09-19T01:57:46.0728883Z Secret source: Actions
+2026-09-19T01:57:46.0730190Z Cache mode: write
+2026-09-19T01:57:46.0731589Z Prepare workflow directory
+2026-09-19T01:57:46.1081971Z Prepare all required actions
+2026-09-19T01:57:46.1129379Z Getting action download info
+2026-09-19T01:57:46.3808604Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+2026-09-19T01:57:46.4850164Z Download action repository 'astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d' (SHA:20cfd1bf945f4377ade1205e4dbc17946fc9a30d)
+2026-09-19T01:57:46.6687099Z Download action repository 'actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a' (SHA:043fb46d1a93c77aae656e7c1c64a875d1fc6a0a)
+2026-09-19T01:57:46.8577162Z Uses: openamer/openamer/.github/workflows/tests.yml@refs/heads/main (711feb164973c21ff875d6c23d7d22162f5b54f2)
+2026-09-19T01:57:46.8582163Z ##[group] Inputs
+2026-09-19T01:57:46.8583373Z   slice_count: 8
+2026-09-19T01:57:46.8583975Z ##[endgroup]
+2026-09-19T01:57:46.8584636Z Complete job name: Python tests / Run tests slice 4/8
+2026-09-19T01:57:46.9440310Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+2026-09-19T01:57:46.9441493Z with:
+2026-09-19T01:57:46.9441938Z   repository: openamer/openamer
+2026-09-19T01:57:46.9446025Z   token: ***
+2026-09-19T01:57:46.9446464Z   ssh-strict: true
+2026-09-19T01:57:46.9446892Z   ssh-user: git
+2026-09-19T01:57:46.9447335Z   persist-credentials: true
+2026-09-19T01:57:46.9448046Z   clean: true
+2026-09-19T01:57:46.9448807Z   sparse-checkout-cone-mode: true
+2026-09-19T01:57:46.9449332Z   fetch-depth: 1
+2026-09-19T01:57:46.9449757Z   fetch-tags: false
+2026-09-19T01:57:46.9450210Z   show-progress: true
+2026-09-19T01:57:46.9450656Z   lfs: false
+2026-09-19T01:57:46.9451069Z   submodules: false
+2026-09-19T01:57:46.9451511Z   set-safe-directory: true
+2026-09-19T01:57:46.9452009Z   allow-unsafe-pr-checkout: false
+2026-09-19T01:57:46.9452862Z ##[endgroup]
+2026-09-19T01:57:47.0491337Z Syncing repository: openamer/openamer
+2026-09-19T01:57:47.0494142Z ##[group]Getting Git version info
+2026-09-19T01:57:47.0495433Z Working directory is '/home/runner/work/openamer/openamer'
+2026-09-19T01:57:47.0497100Z [command]/usr/bin/git version
+2026-09-19T01:57:47.0581441Z git version 2.55.0
+2026-09-19T01:57:47.0603891Z ##[endgroup]
+2026-09-19T01:57:47.0616462Z Temporarily overriding HOME='/home/runner/work/_temp/09fc58ab-74bc-4ee1-9b00-54f91c8283a9' before making global git config changes
+2026-09-19T01:57:47.0619569Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-19T01:57:47.0641202Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/openamer/openamer
+2026-09-19T01:57:47.0722973Z Deleting the contents of '/home/runner/work/openamer/openamer'
+2026-09-19T01:57:47.0727443Z ##[group]Determining repository object format
+2026-09-19T01:57:47.0729730Z ##[endgroup]
+2026-09-19T01:57:47.0731254Z ##[group]Initializing the repository
+2026-09-19T01:57:47.0735272Z [command]/usr/bin/git init /home/runner/work/openamer/openamer
+2026-09-19T01:57:47.0875086Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-09-19T01:57:47.0881608Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-09-19T01:57:47.0892072Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-09-19T01:57:47.0900061Z hint: call:
+2026-09-19T01:57:47.0900908Z hint:
+2026-09-19T01:57:47.0914392Z hint: 	git config --global init.defaultBranch <name>
+2026-09-19T01:57:47.0929202Z hint:
+2026-09-19T01:57:47.0957862Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-09-19T01:57:47.0961251Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-09-19T01:57:47.0962586Z hint:
+2026-09-19T01:57:47.0963306Z hint: 	git branch -m <name>
+2026-09-19T01:57:47.0964443Z hint:
+2026-09-19T01:57:47.0965563Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-09-19T01:57:47.0967271Z Initialized empty Git repository in /home/runner/work/openamer/openamer/.git/
+2026-09-19T01:57:47.0970555Z [command]/usr/bin/git remote add origin https://github.com/openamer/openamer
+2026-09-19T01:57:47.0973248Z ##[endgroup]
+2026-09-19T01:57:47.0974623Z ##[group]Disabling automatic garbage collection
+2026-09-19T01:57:47.0975845Z [command]/usr/bin/git config --local gc.auto 0
+2026-09-19T01:57:47.1011431Z ##[endgroup]
+2026-09-19T01:57:47.1013100Z ##[group]Setting up auth
+2026-09-19T01:57:47.1014140Z Removing SSH command configuration
+2026-09-19T01:57:47.1015719Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-19T01:57:47.1039967Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-19T01:57:47.1490768Z Removing HTTP extra header
+2026-09-19T01:57:47.1496204Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-19T01:57:47.1539385Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-19T01:57:47.1807535Z Removing includeIf entries pointing to credentials config files
+2026-09-19T01:57:47.1813946Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-19T01:57:47.1851091Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-19T01:57:47.2090258Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-b5bfcdc8-cb32-4e23-9983-d339a4d8dbe0.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-09-19T01:57:47.2130078Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/openamer/openamer/.git.path /home/runner/work/_temp/git-credentials-b5bfcdc8-cb32-4e23-9983-d339a4d8dbe0.config
+2026-09-19T01:57:47.2166340Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/openamer/openamer/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-b5bfcdc8-cb32-4e23-9983-d339a4d8dbe0.config
+2026-09-19T01:57:47.2205594Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-b5bfcdc8-cb32-4e23-9983-d339a4d8dbe0.config
+2026-09-19T01:57:47.2239540Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-b5bfcdc8-cb32-4e23-9983-d339a4d8dbe0.config
+2026-09-19T01:57:47.2270630Z ##[endgroup]
+2026-09-19T01:57:47.2271400Z ##[group]Fetching the repository
+2026-09-19T01:57:47.2277100Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +711feb164973c21ff875d6c23d7d22162f5b54f2:refs/remotes/origin/main
+2026-09-19T01:57:50.6634446Z From https://github.com/openamer/openamer
+2026-09-19T01:57:50.6636419Z  * [new ref]         711feb164973c21ff875d6c23d7d22162f5b54f2 -> origin/main
+2026-09-19T01:57:50.6646404Z [command]/usr/bin/git branch --list --remote origin/main
+2026-09-19T01:57:50.6676474Z   origin/main
+2026-09-19T01:57:50.6686487Z [command]/usr/bin/git rev-parse refs/remotes/origin/main
+2026-09-19T01:57:50.6713900Z 711feb164973c21ff875d6c23d7d22162f5b54f2
+2026-09-19T01:57:50.6721196Z ##[endgroup]
+2026-09-19T01:57:50.6722853Z ##[group]Determining the checkout info
+2026-09-19T01:57:50.6724561Z ##[endgroup]
+2026-09-19T01:57:50.6725772Z [command]/usr/bin/git sparse-checkout disable
+2026-09-19T01:57:50.6799208Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-09-19T01:57:50.6834964Z ##[group]Checking out the ref
+2026-09-19T01:57:50.6840167Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+2026-09-19T01:57:51.7055419Z Updating files:  69% (6966/10080)
+2026-09-19T01:57:51.7129639Z Updating files:  70% (7056/10080)
+2026-09-19T01:57:51.7205287Z Updating files:  71% (7157/10080)
+2026-09-19T01:57:51.7297473Z Updating files:  72% (7258/10080)
+2026-09-19T01:57:51.7372930Z Updating files:  73% (7359/10080)
+2026-09-19T01:57:51.7457979Z Updating files:  74% (7460/10080)
+2026-09-19T01:57:51.7533562Z Updating files:  75% (7560/10080)
+2026-09-19T01:57:51.7612555Z Updating files:  76% (7661/10080)
+2026-09-19T01:57:51.7699350Z Updating files:  77% (7762/10080)
+2026-09-19T01:57:51.7792515Z Updating files:  78% (7863/10080)
+2026-09-19T01:57:51.7881217Z Updating files:  79% (7964/10080)
+2026-09-19T01:57:51.7971234Z Updating files:  80% (8064/10080)
+2026-09-19T01:57:51.8083412Z Updating files:  81% (8165/10080)
+2026-09-19T01:57:51.8259696Z Updating files:  82% (8266/10080)
+2026-09-19T01:57:51.8357707Z Updating files:  83% (8367/10080)
+2026-09-19T01:57:51.8425223Z Updating files:  84% (8468/10080)
+2026-09-19T01:57:51.8484812Z Updating files:  85% (8568/10080)
+2026-09-19T01:57:51.8554361Z Updating files:  86% (8669/10080)
+2026-09-19T01:57:51.8648161Z Updating files:  87% (8770/10080)
+2026-09-19T01:57:51.8741640Z Updating files:  88% (8871/10080)
+2026-09-19T01:57:51.8810132Z Updating files:  89% (8972/10080)
+2026-09-19T01:57:51.8865518Z Updating files:  90% (9072/10080)
+2026-09-19T01:57:51.8925029Z Updating files:  91% (9173/10080)
+2026-09-19T01:57:51.8997315Z Updating files:  92% (9274/10080)
+2026-09-19T01:57:51.9120868Z Updating files:  93% (9375/10080)
+2026-09-19T01:57:51.9227310Z Updating files:  94% (9476/10080)
+2026-09-19T01:57:51.9332965Z Updating files:  95% (9576/10080)
+2026-09-19T01:57:51.9437361Z Updating files:  96% (9677/10080)
+2026-09-19T01:57:51.9548061Z Updating files:  97% (9778/10080)
+2026-09-19T01:57:51.9643699Z Updating files:  98% (9879/10080)
+2026-09-19T01:57:51.9974770Z Updating files:  99% (9980/10080)
+2026-09-19T01:57:51.9975887Z Updating files: 100% (10080/10080)
+2026-09-19T01:57:51.9976605Z Updating files: 100% (10080/10080), done.
+2026-09-19T01:57:52.0093355Z Switched to a new branch 'main'
+2026-09-19T01:57:52.0101045Z branch 'main' set up to track 'origin/main'.
+2026-09-19T01:57:52.0142323Z ##[endgroup]
+2026-09-19T01:57:52.0211440Z [command]/usr/bin/git log -1 --format=%H
+2026-09-19T01:57:52.0245221Z 711feb164973c21ff875d6c23d7d22162f5b54f2
+2026-09-19T01:57:52.0470016Z ##[group]Run set -euo pipefail
+2026-09-19T01:57:52.0470467Z [36;1mset -euo pipefail[0m
+2026-09-19T01:57:52.0470768Z [36;1mRG_VERSION=15.1.0[0m
+2026-09-19T01:57:52.0471233Z [36;1mRG_SHA256=1c9297be4a084eea7ecaedf93eb03d058d6faae29bbc57ecdaf5063921491599[0m
+2026-09-19T01:57:52.0471851Z [36;1mRG_TARBALL=ripgrep-${RG_VERSION}-x86_64-unknown-linux-musl.tar.gz[0m
+2026-09-19T01:57:52.0472606Z [36;1mcurl -sSfL --retry 3 --retry-delay 5 -o "$RG_TARBALL" \[0m
+2026-09-19T01:57:52.0473320Z [36;1m  "https://github.com/BurntSushi/ripgrep/releases/download/${RG_VERSION}/${RG_TARBALL}"[0m
+2026-09-19T01:57:52.0473924Z [36;1mecho "${RG_SHA256}  ${RG_TARBALL}" | sha256sum -c -[0m
+2026-09-19T01:57:52.0474313Z [36;1mtar -xzf "$RG_TARBALL"[0m
+2026-09-19T01:57:52.0474760Z [36;1msudo mv "ripgrep-${RG_VERSION}-x86_64-unknown-linux-musl/rg" /usr/local/bin/rg[0m
+2026-09-19T01:57:52.0475361Z [36;1mrm -rf "$RG_TARBALL" "ripgrep-${RG_VERSION}-x86_64-unknown-linux-musl"[0m
+2026-09-19T01:57:52.0475827Z [36;1mrg --version[0m
+2026-09-19T01:57:52.0516054Z shell: /usr/bin/bash -e {0}
+2026-09-19T01:57:52.0516400Z ##[endgroup]
+2026-09-19T01:57:52.1650866Z ripgrep-15.1.0-x86_64-unknown-linux-musl.tar.gz: OK
+2026-09-19T01:57:52.2183247Z ripgrep 15.1.0 (rev af60c2de9d)
+2026-09-19T01:57:52.2184089Z 
+2026-09-19T01:57:52.2184606Z features:+pcre2
+2026-09-19T01:57:52.2185371Z simd(compile):+SSE2,-SSSE3,-AVX2
+2026-09-19T01:57:52.2186166Z simd(runtime):+SSE2,+SSSE3,+AVX2
+2026-09-19T01:57:52.2186676Z 
+2026-09-19T01:57:52.2187108Z PCRE2 10.45 is available (JIT is available)
+2026-09-19T01:57:52.2322697Z ##[group]Run astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d
+2026-09-19T01:57:52.2323179Z with:
+2026-09-19T01:57:52.2323437Z   enable-cache: true
+2026-09-19T01:57:52.2323762Z   cache-dependency-glob: pyproject.toml
+uv.lock
+
+2026-09-19T01:57:52.2324134Z   activate-environment: false
+2026-09-19T01:57:52.2324430Z   no-project: false
+2026-09-19T01:57:52.2324759Z   working-directory: /home/runner/work/openamer/openamer
+2026-09-19T01:57:52.2327543Z   github-token: ***
+2026-09-19T01:57:52.2327814Z   restore-cache: true
+2026-09-19T01:57:52.2328082Z   save-cache: true
+2026-09-19T01:57:52.2328581Z   prune-cache: false
+2026-09-19T01:57:52.2328855Z   cache-python: false
+2026-09-19T01:57:52.2329141Z   ignore-nothing-to-cache: false
+2026-09-19T01:57:52.2329450Z   ignore-empty-workdir: false
+2026-09-19T01:57:52.2329791Z   download-from-astral-mirror: true
+2026-09-19T01:57:52.2330111Z   add-problem-matchers: true
+2026-09-19T01:57:52.2330393Z   quiet: false
+2026-09-19T01:57:52.2330691Z   resolution-strategy: highest
+2026-09-19T01:57:52.2330973Z ##[endgroup]
+2026-09-19T01:57:52.4173059Z Trying to find version for uv in: /home/runner/work/openamer/openamer/uv.toml
+2026-09-19T01:57:52.4174253Z Could not find file: /home/runner/work/openamer/openamer/uv.toml
+2026-09-19T01:57:52.4175233Z Trying to find version for uv in: /home/runner/work/openamer/openamer/pyproject.toml
+2026-09-19T01:57:52.4194969Z Could not determine uv version from uv.toml or pyproject.toml. Falling back to latest.
+2026-09-19T01:57:52.4201517Z Fetching manifest data from https://raw.githubusercontent.com/astral-sh/versions/main/v1/uv.ndjson ...
+2026-09-19T01:57:52.5042246Z Downloading uv from "https://releases.astral.sh/github/uv/releases/download/0.12.17/uv-x86_64-unknown-linux-gnu.tar.gz" ...
+2026-09-19T01:57:52.6893592Z [command]/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/383ed9eb-d810-476c-afc9-a456c8d3780b -f /home/runner/work/_temp/2bbbcd8d-c415-4fda-a5c3-351cd4143e4d
+2026-09-19T01:57:53.0791150Z Added /home/runner/.local/bin to the path
+2026-09-19T01:57:53.0795077Z Added /opt/hostedtoolcache/uv/0.12.17/x86_64 to the path
+2026-09-19T01:57:53.0797783Z Set UV_PYTHON_INSTALL_DIR to /home/runner/work/_temp/uv-python-dir
+2026-09-19T01:57:53.0799511Z Added /home/runner/work/_temp/uv-python-dir to the path
+2026-09-19T01:57:53.0826386Z Set UV_CACHE_DIR to /home/runner/work/_temp/setup-uv-cache
+2026-09-19T01:57:53.0827058Z Successfully installed uv version 0.12.17
+2026-09-19T01:57:53.1397974Z Searching files using cache dependency glob: /home/runner/work/openamer/openamer/pyproject.toml,/home/runner/work/openamer/openamer/uv.lock
+2026-09-19T01:57:53.1457502Z /home/runner/work/openamer/openamer/pyproject.toml
+2026-09-19T01:57:53.1477334Z /home/runner/work/openamer/openamer/uv.lock
+2026-09-19T01:57:53.1500361Z Found 2 files to hash.
+2026-09-19T01:57:53.1560377Z Trying to restore cache from GitHub Actions cache with key: setup-uv-2-x86_64-unknown-linux-gnu-ubuntu-24.04-3.12.3-037fb1b04eeae41563a55b9b56d9fe73293f919acf7e1cab0ca9cc7226c87a48
+2026-09-19T01:57:53.2069534Z Cache hit for: setup-uv-2-x86_64-unknown-linux-gnu-ubuntu-24.04-3.12.3-037fb1b04eeae41563a55b9b56d9fe73293f919acf7e1cab0ca9cc7226c87a48
+2026-09-19T01:57:53.3248110Z Received 197011 of 197011 (100.0%), 3.5 MBs/sec
+2026-09-19T01:57:53.3248965Z Cache Size: ~0 MB (197011 B)
+2026-09-19T01:57:53.3277275Z [command]/usr/bin/tar -xf /home/runner/work/_temp/514beba7-b138-4d05-b067-99e0f77001e1/cache.tzst -P -C /home/runner/work/openamer/openamer --use-compress-program unzstd
+2026-09-19T01:57:53.3363794Z Cache restored successfully
+2026-09-19T01:57:53.3368596Z cache restored from GitHub Actions cache with key: setup-uv-2-x86_64-unknown-linux-gnu-ubuntu-24.04-3.12.3-037fb1b04eeae41563a55b9b56d9fe73293f919acf7e1cab0ca9cc7226c87a48
+2026-09-19T01:57:53.4510571Z ##[group]Run uv python install 3.11
+2026-09-19T01:57:53.4511174Z [36;1muv python install 3.11[0m
+2026-09-19T01:57:53.4551137Z shell: /usr/bin/bash -e {0}
+2026-09-19T01:57:53.4551436Z env:
+2026-09-19T01:57:53.4551752Z   UV_PYTHON_INSTALL_DIR: /home/runner/work/_temp/uv-python-dir
+2026-09-19T01:57:53.4552175Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-09-19T01:57:53.4552515Z ##[endgroup]
+2026-09-19T01:57:53.5590673Z Downloading cpython-3.11.16-linux-x86_64-gnu (download) (29.4MiB)
+2026-09-19T01:57:54.6566251Z  Downloaded cpython-3.11.16-linux-x86_64-gnu (download)
+2026-09-19T01:57:54.6674794Z Installed Python 3.11.16 in 1.20s
+2026-09-19T01:57:54.6675392Z  + cpython-3.11.16-linux-x86_64-gnu (python3.11)
+2026-09-19T01:57:54.6833033Z Prepare all required actions
+2026-09-19T01:57:54.6899100Z ##[group]Run ./.github/actions/retry
+2026-09-19T01:57:54.6899420Z with:
+2026-09-19T01:57:54.6899734Z   command: uv sync --locked --python 3.11 --extra all --extra dev
+2026-09-19T01:57:54.6900122Z   attempts: 3
+2026-09-19T01:57:54.6900362Z   delay: 10
+2026-09-19T01:57:54.6900582Z   working-directory: .
+2026-09-19T01:57:54.6900824Z env:
+2026-09-19T01:57:54.6901116Z   UV_PYTHON_INSTALL_DIR: /home/runner/work/_temp/uv-python-dir
+2026-09-19T01:57:54.6901523Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-09-19T01:57:54.6901851Z ##[endgroup]
+2026-09-19T01:57:54.6960064Z ##[start-action display=Run set -uo pipefail;id=__self.retry]
+2026-09-19T01:57:54.6985244Z ##[group]Run set -uo pipefail
+2026-09-19T01:57:54.6985592Z [36;1mset -uo pipefail[0m
+2026-09-19T01:57:54.6985862Z [36;1m_OUTFILE="$(mktemp)"[0m
+2026-09-19T01:57:54.6986152Z [36;1mtrap 'rm -f "$_OUTFILE"' EXIT[0m
+2026-09-19T01:57:54.6986442Z [36;1mn=0[0m
+2026-09-19T01:57:54.6986702Z [36;1mwhile :; do[0m
+2026-09-19T01:57:54.6986941Z [36;1m  n=$((n + 1))[0m
+2026-09-19T01:57:54.6987244Z [36;1m  echo "::group::attempt $n/$_ATTEMPTS: $_CMD"[0m
+2026-09-19T01:57:54.6987685Z [36;1m  # Run the command, capturing stdout to a temp file while still[0m
+2026-09-19T01:57:54.6988181Z [36;1m  # streaming to the log. We redirect first, then tee the file to[0m
+2026-09-19T01:57:54.6989053Z [36;1m  # stdout — this avoids pipefail + tee exit-code interactions that[0m
+2026-09-19T01:57:54.6989554Z [36;1m  # can cause the if-branch to be skipped under set -e.[0m
+2026-09-19T01:57:54.6989955Z [36;1m  if bash -c "$_CMD" > "$_OUTFILE"; then[0m
+2026-09-19T01:57:54.6990272Z [36;1m    cat "$_OUTFILE"[0m
+2026-09-19T01:57:54.6990543Z [36;1m    echo "::endgroup::"[0m
+2026-09-19T01:57:54.6990904Z [36;1m    # Preserve newlines in the output via heredoc delimiter.[0m
+2026-09-19T01:57:54.6991285Z [36;1m    {[0m
+2026-09-19T01:57:54.6991571Z [36;1m      echo 'stdout<<__RETRY_STDOUT_EOF__'[0m
+2026-09-19T01:57:54.6991898Z [36;1m      cat "$_OUTFILE"[0m
+2026-09-19T01:57:54.6992183Z [36;1m      echo '__RETRY_STDOUT_EOF__'[0m
+2026-09-19T01:57:54.6992494Z [36;1m    } >> "$GITHUB_OUTPUT"[0m
+2026-09-19T01:57:54.6992767Z [36;1m    exit 0[0m
+2026-09-19T01:57:54.6993169Z [36;1m  fi[0m
+2026-09-19T01:57:54.6993400Z [36;1m  echo "::endgroup::"[0m
+2026-09-19T01:57:54.6993699Z [36;1m  if [ "$n" -ge "$_ATTEMPTS" ]; then[0m
+2026-09-19T01:57:54.6994063Z [36;1m    echo "::error::failed after $n attempts: $_CMD"[0m
+2026-09-19T01:57:54.6994402Z [36;1m    exit 1[0m
+2026-09-19T01:57:54.6994627Z [36;1m  fi[0m
+2026-09-19T01:57:54.6994962Z [36;1m  echo "::warning::attempt $n failed; retrying in ${_DELAY}s: $_CMD"[0m
+2026-09-19T01:57:54.6995363Z [36;1m  sleep "$_DELAY"[0m
+2026-09-19T01:57:54.6995609Z [36;1mdone[0m
+2026-09-19T01:57:54.7033498Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-09-19T01:57:54.7033884Z env:
+2026-09-19T01:57:54.7034195Z   UV_PYTHON_INSTALL_DIR: /home/runner/work/_temp/uv-python-dir
+2026-09-19T01:57:54.7034635Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-09-19T01:57:54.7035046Z   _CMD: uv sync --locked --python 3.11 --extra all --extra dev
+2026-09-19T01:57:54.7035390Z   _ATTEMPTS: 3
+2026-09-19T01:57:54.7035606Z   _DELAY: 10
+2026-09-19T01:57:54.7035822Z ##[endgroup]
+2026-09-19T01:57:54.7107596Z ##[group]attempt 1/3: uv sync --locked --python 3.11 --extra all --extra dev
+2026-09-19T01:57:54.8397864Z Using CPython 3.11.16
+2026-09-19T01:57:54.8398548Z Creating virtual environment at: .venv
+2026-09-19T01:57:54.8468608Z Resolved 289 packages in 1ms
+2026-09-19T01:57:54.8701644Z    Building openamer-agent @ file:///home/runner/work/openamer/openamer
+2026-09-19T01:57:54.9529255Z Downloading aiohttp (1.7MiB)
+2026-09-19T01:57:54.9530319Z Downloading debugpy (3.0MiB)
+2026-09-19T01:57:54.9540515Z Downloading setuptools (1.0MiB)
+2026-09-19T01:57:54.9541843Z Downloading pydantic-core (2.0MiB)
+2026-09-19T01:57:54.9554589Z Downloading cryptography (4.5MiB)
+2026-09-19T01:57:54.9555370Z Downloading pygments (1.2MiB)
+2026-09-19T01:57:54.9560224Z Downloading uvloop (3.6MiB)
+2026-09-19T01:57:54.9561997Z Downloading pillow (6.6MiB)
+2026-09-19T01:57:54.9563878Z Downloading google-api-python-client (14.3MiB)
+2026-09-19T01:57:54.9638878Z Downloading openai (1.1MiB)
+2026-09-19T01:57:54.9639566Z Downloading numpy (16.1MiB)
+2026-09-19T01:57:54.9644992Z Downloading ruff (10.7MiB)
+2026-09-19T01:57:54.9645599Z Downloading ty (10.2MiB)
+2026-09-19T01:57:55.1980094Z  Downloaded setuptools
+2026-09-19T01:57:55.2048852Z  Downloaded openai
+2026-09-19T01:57:55.2179927Z  Downloaded pygments
+2026-09-19T01:57:55.2279600Z  Downloaded aiohttp
+2026-09-19T01:57:55.2312814Z  Downloaded pydantic-core
+2026-09-19T01:57:55.2970665Z  Downloaded debugpy
+2026-09-19T01:57:55.3089419Z  Downloaded uvloop
+2026-09-19T01:57:55.3442008Z  Downloaded cryptography
+2026-09-19T01:57:55.3909655Z  Downloaded pillow
+2026-09-19T01:57:55.4279289Z  Downloaded ruff
+2026-09-19T01:57:55.4305609Z  Downloaded ty
+2026-09-19T01:57:55.5024003Z  Downloaded google-api-python-client
+2026-09-19T01:57:55.5199785Z  Downloaded numpy
+2026-09-19T01:57:56.7790921Z       Built openamer-agent @ file:///home/runner/work/openamer/openamer
+2026-09-19T01:57:56.7803783Z Prepared 104 packages in 1.93s
+2026-09-19T01:57:56.8524255Z Installed 104 packages in 71ms
+2026-09-19T01:57:56.8525342Z  + agent-client-protocol==0.9.0
+2026-09-19T01:57:56.8525843Z  + aiohappyeyeballs==2.6.1
+2026-09-19T01:57:56.8526430Z  + aiohttp==3.14.1
+2026-09-19T01:57:56.8526941Z  + aiosignal==1.4.0
+2026-09-19T01:57:56.8527451Z  + annotated-doc==0.0.4
+2026-09-19T01:57:56.8527991Z  + annotated-types==0.7.0
+2026-09-19T01:57:56.8528851Z  + anyio==4.12.1
+2026-09-19T01:57:56.8529312Z  + attrs==25.4.0
+2026-09-19T01:57:56.8529781Z  + certifi==2026.5.20
+2026-09-19T01:57:56.8530262Z  + cffi==2.0.0
+2026-09-19T01:57:56.8532375Z  + charset-normalizer==3.4.4
+2026-09-19T01:57:56.8532871Z  + click==8.3.1
+2026-09-19T01:57:56.8533224Z  + croniter==6.0.0
+2026-09-19T01:57:56.8533624Z  + cryptography==50.0.0
+2026-09-19T01:57:56.8534005Z  + debugpy==1.8.20
+2026-09-19T01:57:56.8534360Z  + defusedxml==0.7.1
+2026-09-19T01:57:56.8534716Z  + distro==1.9.0
+2026-09-19T01:57:56.8535062Z  + fastapi==0.133.1
+2026-09-19T01:57:56.8535407Z  + fire==0.7.1
+2026-09-19T01:57:56.8535744Z  + frozenlist==1.8.0
+2026-09-19T01:57:56.8536366Z  + google-api-core==2.30.3
+2026-09-19T01:57:56.8536800Z  + google-api-python-client==2.194.0
+2026-09-19T01:57:56.8537265Z  + google-auth==2.55.1
+2026-09-19T01:57:56.8537667Z  + google-auth-httplib2==0.3.1
+2026-09-19T01:57:56.8538101Z  + google-auth-oauthlib==1.3.1
+2026-09-19T01:57:56.8538803Z  + googleapis-common-protos==1.73.0
+2026-09-19T01:57:56.8539248Z  + h11==0.16.0
+2026-09-19T01:57:56.8539602Z  + httpcore==1.0.9
+2026-09-19T01:57:56.8539949Z  + httplib2==0.31.2
+2026-09-19T01:57:56.8540298Z  + httptools==0.7.1
+2026-09-19T01:57:56.8540645Z  + httpx==0.28.1
+2026-09-19T01:57:56.8540983Z  + httpx-sse==0.4.3
+2026-09-19T01:57:56.8541325Z  + idna==3.15
+2026-09-19T01:57:56.8541658Z  + iniconfig==2.3.0
+2026-09-19T01:57:56.8542014Z  + jinja2==3.1.6
+2026-09-19T01:57:56.8542354Z  + jiter==0.13.0
+2026-09-19T01:57:56.8542692Z  + jsonschema==4.26.0
+2026-09-19T01:57:56.8543097Z  + jsonschema-specifications==2025.9.1
+2026-09-19T01:57:56.8543554Z  + markdown==3.10.2
+2026-09-19T01:57:56.8543926Z  + markdown-it-py==4.0.0
+2026-09-19T01:57:56.8544313Z  + markupsafe==3.0.3
+2026-09-19T01:57:56.8544663Z  + mcp==1.26.0
+2026-09-19T01:57:56.8544990Z  + mdurl==0.1.2
+2026-09-19T01:57:56.8545330Z  + multidict==6.7.1
+2026-09-19T01:57:56.8545678Z  + numpy==2.4.3
+2026-09-19T01:57:56.8546010Z  + oauthlib==3.3.1
+2026-09-19T01:57:56.8546347Z  + openai==2.24.0
+2026-09-19T01:57:56.8546912Z  + openamer-agent==2026.9.18 (from file:///home/runner/work/openamer/openamer)
+2026-09-19T01:57:56.8547570Z  + packaging==26.0
+2026-09-19T01:57:56.8547919Z  + pathspec==1.1.1
+2026-09-19T01:57:56.8549136Z  + pillow==12.3.0
+2026-09-19T01:57:56.8549519Z  + pluggy==1.6.0
+2026-09-19T01:57:56.8549885Z  + prompt-toolkit==3.0.52
+2026-09-19T01:57:56.8550510Z  + propcache==0.4.1
+2026-09-19T01:57:56.8550887Z  + proto-plus==1.27.2
+2026-09-19T01:57:56.8551254Z  + protobuf==6.33.5
+2026-09-19T01:57:56.8551613Z  + psutil==7.2.2
+2026-09-19T01:57:56.8551974Z  + ptyprocess==0.7.0
+2026-09-19T01:57:56.8552332Z  + pyasn1==0.6.3
+2026-09-19T01:57:56.8552693Z  + pyasn1-modules==0.4.2
+2026-09-19T01:57:56.8553080Z  + pycparser==3.0
+2026-09-19T01:57:56.8553427Z  + pydantic==2.13.4
+2026-09-19T01:57:56.8553783Z  + pydantic-core==2.46.4
+2026-09-19T01:57:56.8554181Z  + pydantic-settings==2.13.1
+2026-09-19T01:57:56.8554630Z  + pygments==2.19.2
+2026-09-19T01:57:56.8555039Z  + pyjwt==2.13.0
+2026-09-19T01:57:56.8555380Z  + pyparsing==3.3.2
+2026-09-19T01:57:56.8555743Z  + pytest==9.0.2
+2026-09-19T01:57:56.8556095Z  + pytest-asyncio==1.3.0
+2026-09-19T01:57:56.8556501Z  + python-dateutil==2.9.0.post0
+2026-09-19T01:57:56.8556929Z  + python-dotenv==1.2.2
+2026-09-19T01:57:56.8557327Z  + python-multipart==0.0.27
+2026-09-19T01:57:56.8557728Z  + pytz==2025.2
+2026-09-19T01:57:56.8558071Z  + pyyaml==6.0.3
+2026-09-19T01:57:56.8558656Z  + referencing==0.37.0
+2026-09-19T01:57:56.8559030Z  + requests==2.33.0
+2026-09-19T01:57:56.8559396Z  + requests-oauthlib==2.0.0
+2026-09-19T01:57:56.8559785Z  + rich==14.3.3
+2026-09-19T01:57:56.8560116Z  + rpds-py==0.30.0
+2026-09-19T01:57:56.8560491Z  + ruamel-yaml==0.18.17
+2026-09-19T01:57:56.8560880Z  + ruamel-yaml-clib==0.2.15
+2026-09-19T01:57:56.8561262Z  + ruff==0.15.10
+2026-09-19T01:57:56.8561599Z  + setuptools==81.0.0
+2026-09-19T01:57:56.8561980Z  + simple-term-menu==1.6.6
+2026-09-19T01:57:56.8562377Z  + six==1.17.0
+2026-09-19T01:57:56.8562718Z  + sniffio==1.3.1
+2026-09-19T01:57:56.8563060Z  + socksio==1.0.0
+2026-09-19T01:57:56.8563408Z  + sse-starlette==3.3.2
+2026-09-19T01:57:56.8563775Z  + starlette==1.0.1
+2026-09-19T01:57:56.8564138Z  + tenacity==9.1.4
+2026-09-19T01:57:56.8564482Z  + termcolor==3.3.0
+2026-09-19T01:57:56.8564818Z  + tqdm==4.67.3
+2026-09-19T01:57:56.8565139Z  + ty==0.0.21
+2026-09-19T01:57:56.8565501Z  + typing-extensions==4.15.0
+2026-09-19T01:57:56.8565930Z  + typing-inspection==0.4.2
+2026-09-19T01:57:56.8566328Z  + uritemplate==4.2.0
+2026-09-19T01:57:56.8566687Z  + urllib3==2.7.0
+2026-09-19T01:57:56.8567032Z  + uvicorn==0.41.0
+2026-09-19T01:57:56.8567370Z  + uvloop==0.22.1
+2026-09-19T01:57:56.8567715Z  + watchfiles==1.1.1
+2026-09-19T01:57:56.8568412Z  + wcwidth==0.6.0
+2026-09-19T01:57:56.8568773Z  + websockets==15.0.1
+2026-09-19T01:57:56.8569126Z  + yarl==1.22.0
+2026-09-19T01:57:56.8569377Z  + youtube-transcript-api==1.2.4
+2026-09-19T01:57:56.8729287Z ##[endgroup]
+2026-09-19T01:57:56.8778996Z ##[end-action id=__self.retry;outcome=success;conclusion=success;duration_ms=2181]
+2026-09-19T01:57:56.8831587Z ##[group]Run uv cache prune --ci
+2026-09-19T01:57:56.8831925Z [36;1muv cache prune --ci[0m
+2026-09-19T01:57:56.8868480Z shell: /usr/bin/bash -e {0}
+2026-09-19T01:57:56.8868766Z env:
+2026-09-19T01:57:56.8869067Z   UV_PYTHON_INSTALL_DIR: /home/runner/work/_temp/uv-python-dir
+2026-09-19T01:57:56.8869491Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-09-19T01:57:56.8869820Z ##[endgroup]
+2026-09-19T01:57:56.8980113Z Pruning cache at: /home/runner/work/_temp/setup-uv-cache
+2026-09-19T01:57:57.0455312Z Removed 8480 files (5.7MiB)
+2026-09-19T01:57:57.0521575Z ##[group]Run source .venv/bin/activate
+2026-09-19T01:57:57.0522051Z [36;1msource .venv/bin/activate[0m
+2026-09-19T01:57:57.0567692Z [36;1mscripts/run_tests.sh --files 'tests/openamer_cli/test_kanban_core_functionality.py:tests/openamer_cli/test_timeouts.py:tests/gateway/test_telegram_topic_mode.py:tests/run_agent/test_create_openai_client_proxy_env.py:tests/run_agent/test_compression_lock_defer.py:tests/openamer_cli/test_model_switch_opencode_anthropic.py:tests/openamer_cli/test_web_server_git.py:tests/gateway/test_whatsapp_cloud.py:tests/run_agent/test_background_review_cost_controls.py:tests/openamer_cli/test_debug.py:tests/tools/test_credential_files.py:tests/gateway/test_adapter_connect_is_reconnect_contract.py:tests/run_agent/test_iteration_budget_race.py:tests/tools/test_send_message_react.py:tests/tools/test_mcp_oauth_manager.py:tests/tools/test_browser_cdp_override.py:tests/tools/test_docker_rebootstrap_nous_session.py:tests/gateway/test_compression_deferred_soft_result.py:tests/agent/test_vision_resolved_args.py:tests/gateway/test_discord_component_auth.py:tests/gateway/test_telegram_send_draft_format.py:tests/gateway/test_run_tool_media_re.py:tests/gateway/test_telegram_pending_update_probe.py:tests/gateway/test_mixed_attachment_routing.py:tests/tools/test_write_deny.py:tests/openamer_cli/test_profile_describer.py:tests/test_env_loader_op_bootstrap.py:tests/acp/test_entry.py:tests/acp/test_session_provenance.py:tests/agent/lsp/test_diagnostics_field.py:tests/agent/lsp/test_stale_diagnostics.py:tests/agent/test_anthropic_oauth_pkce.py:tests/agent/test_auxiliary_anthropic_pool_fallback_regression.py:tests/agent/test_auxiliary_compression_timeout_floor.py:tests/agent/test_battery.py:tests/agent/test_bounded_response.py:tests/agent/test_codex_responses_adapter.py:tests/agent/test_compression_anti_thrash_persistence.py:tests/agent/test_compression_progress.py:tests/agent/test_compressor_zero_user_guard.py:tests/agent/test_context_engine_host_contract.py:tests/agent/test_credential_pool_no_entries_log_throttle.py:tests/agent/test_credits_tracker.py:tests/agent/test_custom_pool_mismatch_guard.py:tests/agent/test_display_tool_failure.py:tests/agent/test_file_safety_credentials.py:tests/agent/test_ghost_skill_pruning.py:tests/agent/test_kanban_stop.py:tests/agent/test_manual_compression_feedback.py:tests/agent/test_message_content.py:tests/agent/test_moa_reference_system_prompt.py:tests/agent/test_models_dev.py:tests/agent/test_openamer_rate_guard.py:tests/agent/test_preflight_compression_gate.py:tests/agent/test_rate_limit_tracker.py:tests/agent/test_save_url_image.py:tests/agent/test_skill_commands_reload.py:tests/agent/test_subagent_stop_hook.py:tests/agent/test_think_scrubber.py:tests/agent/test_trace_upload.py:tests/agent/test_turn_overlap_tripwire.py:tests/agent/test_verify_hooks.py:tests/agent/transports/test_codex_event_projector.py:tests/ci/test_live_comment.py:tests/cli/test_cli_approval_ui.py:tests/cli/test_cli_extension_hooks.py:tests/cli/test_cli_interrupt_subagent.py:tests/cli/test_cli_reload_skills.py:tests/cli/test_cli_status_command.py:tests/cli/test_compress_here.py:tests/cli/test_exit_summary_resume_hint.py:tests/cli/test_prompt_text_input_thread_safety.py:tests/cli/test_slash_confirm_windows.py:tests/cli/test_version_command.py:tests/computer_use/test_doctor.py:tests/cron/test_cron_inactivity_timeout.py:tests/cron/test_file_permissions.py:tests/cron/test_scheduler.py:tests/dashboard/test_ws_client_host.py:tests/gateway/relay/test_no_stub_leak.py:tests/gateway/relay/test_relay_policy_send.py:tests/gateway/test_10710_auto_reset_evicts_cached_agent.py:tests/gateway/test_7100_transient_failure_transcript.py:tests/gateway/test_api_server_bind_guard.py:tests/gateway/test_approve_deny_commands.py:tests/gateway/test_background_process_notifications.py:tests/gateway/test_channel_continuity_hint.py:tests/gateway/test_clarify_thread_followup_not_swallowed.py:tests/gateway/test_compress_preview.py:tests/gateway/test_config_driven_access_policy.py:tests/gateway/test_debug_command.py:tests/gateway/test_discord_allowed_channels.py:tests/gateway/test_discord_clarify_buttons.py:tests/gateway/test_discord_free_response.py:tests/gateway/test_discord_plugin_setup.py:tests/gateway/test_discord_slash_commands.py:tests/gateway/test_document_context_note.py:tests/gateway/test_extract_local_files.py:tests/gateway/test_feishu_comment.py:tests/gateway/test_gateway_command_dispatch_minimal.py:tests/gateway/test_goal_max_turns_config.py:tests/gateway/test_incomplete_gateway_turns.py:tests/gateway/test_kanban_notifier_watcher_dispatch_gate.py:tests/gateway/test_matrix_dm_invite_recording.py:tests/gateway/test_max_concurrent_sessions.py:tests/gateway/test_mirror.py:tests/gateway/test_msgraph_webhook.py:tests/gateway/test_multiplex_profile_authz.py:tests/gateway/test_pending_drain_no_recursion.py:tests/gateway/test_platform_http_client_limits.py:tests/gateway/test_profile_resolution.py:tests/gateway/test_readiness.py:tests/gateway/test_reply_to_injection.py:tests/gateway/test_retry_response.py:tests/gateway/test_runtime_footer.py:tests/gateway/test_session.py:tests/gateway/test_session_info.py:tests/gateway/test_session_reset_notify.py:tests/gateway/test_shared_group_sender_prefix.py:tests/gateway/test_slack.py:tests/gateway/test_slack_dedup_ttl.py:tests/gateway/test_slack_relay_parent_command.py:tests/gateway/test_slash_access_dispatch.py:tests/gateway/test_startup_no_eager_platform_install.py:tests/gateway/test_stream_consumer.py:tests/gateway/test_subagent_protection_30170.py:tests/gateway/test_telegram_callback_auth_fail_closed.py:tests/gateway/test_telegram_final_delivery.py:tests/gateway/test_telegram_noise_filter.py:tests/gateway/test_telegram_reply_quote.py:tests/gateway/test_telegram_text_batch_perf.py:tests/gateway/test_text_batching.py:tests/gateway/test_unauthorized_dm_behavior.py:tests/gateway/test_version_command.py:tests/gateway/test_webhook_dynamic_routes.py:tests/gateway/test_whatsapp_allowlist_lid_resolution.py:tests/gateway/test_whatsapp_media_path_profile.py:tests/gateway/test_yuanbao_media_ssrf.py:tests/honcho_plugin/test_session.py:tests/openamer_cli/test_a2a_relay_ack.py:tests/openamer_cli/test_apply_model_switch_result_context.py:tests/openamer_cli/test_auth_codex_provider.py:tests/openamer_cli/test_auth_ssl_macos.py:tests/openamer_cli/test_azure_foundry_entra.py:tests/openamer_cli/test_billing_portal_url.py:tests/openamer_cli/test_certifi_repair.py:tests/openamer_cli/test_coalesce_session_args.py:tests/openamer_cli/test_config_env_expansion.py:tests/openamer_cli/test_context_switch_guard.py:tests/openamer_cli/test_cron.py:tests/openamer_cli/test_curator_recent_run_notice.py:tests/openamer_cli/test_custom_provider_extra_headers.py:tests/openamer_cli/test_dashboard_auth_middleware.py:tests/openamer_cli/test_dashboard_auth_ws_tickets.py:tests/openamer_cli/test_dashboard_unified_launch.py:tests/openamer_cli/test_detect_api_mode_for_url.py:tests/openamer_cli/test_dump_git_commit.py:tests/openamer_cli/test_env_load_cache.py:tests/openamer_cli/test_gateway_platform_gating.py:tests/openamer_cli/test_gemini_free_tier_setup_block.py:tests/openamer_cli/test_hub_portal.py:tests/openamer_cli/test_kanban_block_kinds.py:tests/openamer_cli/test_kanban_decompose.py:tests/openamer_cli/test_kanban_project_link.py:tests/openamer_cli/test_kanban_worktree_isolation.py:tests/openamer_cli/test_managed_installs.py:tests/openamer_cli/test_managed_scope_writeguard.py:tests/openamer_cli/test_mcp_security.py:tests/openamer_cli/test_moa_config.py:tests/openamer_cli/test_model_switch_configured_provider_routing.py:tests/openamer_cli/test_model_switch_variant_tags.py:tests/openamer_cli/test_openai_codex_model_validation_fallback.py:tests/openamer_cli/test_openamer_subscription.py:tests/openamer_cli/test_pin_kanban_board_env.py:tests/openamer_cli/test_plugins_cmd_category_discovery.py:tests/openamer_cli/test_profile_install_env_encoding.py:tests/openamer_cli/test_prompt_size.py:tests/openamer_cli/test_psutil_android_extract.py:tests/openamer_cli/test_resolve_last_session.py:tests/openamer_cli/test_security.py:tests/openamer_cli/test_session_browse.py:tests/openamer_cli/test_session_recovery.py:tests/openamer_cli/test_setup_irc.py:tests/openamer_cli/test_setup_reconfigure.py:tests/openamer_cli/test_skin_cmd.py:tests/openamer_cli/test_startup_plugin_gating.py:tests/openamer_cli/test_subprocess_timeouts.py:tests/openamer_cli/test_teams_pipeline_plugin_cli.py:tests/openamer_cli/test_tools_config.py:tests/openamer_cli/test_uninstall_node_symlinks.py:tests/openamer_cli/test_update_modified_notice.py:tests/openamer_cli/test_urllib_security.py:tests/openamer_cli/test_web_oauth_dispatch.py:tests/openamer_cli/test_web_server_messaging_profiles.py:tests/openamer_cli/test_web_ui_build.py:tests/openamer_cli/test_xai_oauth_profile_auth.py:tests/openamer_state/test_get_anchored_view.py:tests/plugins/dashboard_auth/test_drain_provider.py:tests/plugins/image_gen/test_xai_provider.py:tests/plugins/memory/test_honcho_config_schema.py:tests/plugins/memory/test_supermemory_provider.py:tests/plugins/model_providers/test_upstage_profile.py:tests/plugins/platforms/photon/test_setup_access.py:tests/plugins/test_google_meet_audio.py:tests/plugins/test_kanban_worker_runs.py:tests/plugins/video_gen/test_deepinfra_provider.py:tests/providers/test_provider_profiles.py:tests/run_agent/test_63425_credential_pool_auto_detect.py:tests/run_agent/test_async_httpx_del_neuter.py:tests/run_agent/test_codex_multimodal_tool_result.py:tests/run_agent/test_compression_feasibility.py:tests/run_agent/test_create_openai_client_disables_sdk_retries.py:tests/run_agent/test_dropped_tool_call_recovery.py:tests/run_agent/test_image_shrink_recovery.py:tests/run_agent/test_lmstudio_load_mode.py:tests/run_agent/test_moa_fanout_cadence.py:tests/run_agent/test_openamer_fallback_unavailable.py:tests/run_agent/test_proactive_prune_loop_wiring.py:tests/run_agent/test_review_prompt_class_first.py:tests/run_agent/test_steer.py:tests/run_agent/test_strip_reasoning_tags_cli.py:tests/run_agent/test_thinking_only_sanitizer.py:tests/run_agent/test_tool_executor_contextvar_propagation.py:tests/scripts/test_autonom_watchtower.py:tests/scripts/test_desktop_ledger.py:tests/scripts/test_session_to_brain.py:tests/skills/test_darwinian_evolver_skill.py:tests/skills/test_openclaw_migration_hardening.py:tests/stress/test_atypical_scenarios.py:tests/test_agent_builder.py:tests/test_batch_runner_checkpoint.py:tests/test_computer_use_record.py:tests/test_darwin_phantom_home.py:tests/test_darwin_phase19.py:tests/test_darwin_phase3.py:tests/test_darwin_probe_cron.py:tests/test_empty_session_hygiene.py:tests/test_gateway_streaming_nested_config.py:tests/test_install_autostash_conflict_recovery.py:tests/test_install_ps1_web_server_syntax_probe.py:tests/test_install_unmerged_index.py:tests/test_iron_proxy_e2e.py:tests/test_minimax_model_validation.py:tests/test_observability_ui.py:tests/test_openamer_state_wal_fallback.py:tests/test_plugin_skills.py:tests/test_repomap.py:tests/test_skills_pipeline.py:tests/test_telegram_polling_progress_ptb.py:tests/test_transform_llm_output_hook.py:tests/test_vector_memory.py:tests/test_yuanbao_proto.py:tests/tools/test_approval_interrupt.py:tests/tools/test_browser_camofox_ensure_tab.py:tests/tools/test_browser_cleanup.py:tests/tools/test_browser_get_images_ssrf.py:tests/tools/test_browser_snapshot_ssrf.py:tests/tools/test_clipboard.py:tests/tools/test_computer_use_null_pid_windows.py:tests/tools/test_cronjob_tools.py:tests/tools/test_delegate_subagent_timeout_diagnostic.py:tests/tools/test_docker_environment.py:tests/tools/test_env_probe.py:tests/tools/test_file_state_registry.py:tests/tools/test_file_tools_tilde_profile.py:tests/tools/test_hidden_dir_filter.py:tests/tools/test_image_source.py:tests/tools/test_local_cwd_permission_fallback.py:tests/tools/test_managed_browserbase_and_modal.py:tests/tools/test_mcp_dashboard_oauth.py:tests/tools/test_mcp_oauth.py:tests/tools/test_mcp_rapid_drop_budget.py:tests/tools/test_mcp_stdio_encoding_handler.py:tests/tools/test_media_caption_split.py:tests/tools/test_notify_on_complete.py:tests/tools/test_read_extract.py:tests/tools/test_search_error_guard.py:tests/tools/test_session_search.py:tests/tools/test_skill_provenance.py:tests/tools/test_skills_hub_clawhub.py:tests/tools/test_snapshot_session_id_leak.py:tests/tools/test_sync_back_backends.py:tests/tools/test_terminal_task_cwd.py:tests/tools/test_todo_tool_type_coercion.py:tests/tools/test_transcription_dotenv_fallback.py:tests/tools/test_tts_mistral.py:tests/tools/test_video_analyze.py:tests/tools/test_web_extract_robustness.py:tests/tools/test_web_tools_truncate.py:tests/tools/test_xai_http_storage.py:tests/tui_gateway/test_compute_host_phase1.py:tests/tui_gateway/test_image_routing_stale_model.py:tests/tui_gateway/test_pet_generate_rpc.py:tests/tui_gateway/test_session_platform_resolution.py:tests/website/test_generate_skill_docs.py:tests/gateway/test_discord_prompt_content_siblings.py:tests/tools/test_ssh_environment.py:tests/test_slash_worker_watchdog.py:tests/openamer_cli/test_provider_precedence.py:tests/openamer_cli/test_update_config_clears_custom_fields.py:tests/agent/test_ssl_ca_guard.py:tests/skills/test_fetch_transcript.py:tests/agent/transports/test_transport.py:tests/stress/test_benchmarks.py'[0m
+2026-09-19T01:57:57.0650327Z shell: /usr/bin/bash -e {0}
+2026-09-19T01:57:57.0650603Z env:
+2026-09-19T01:57:57.0650904Z   UV_PYTHON_INSTALL_DIR: /home/runner/work/_temp/uv-python-dir
+2026-09-19T01:57:57.0651347Z   UV_CACHE_DIR: /home/runner/work/_temp/setup-uv-cache
+2026-09-19T01:57:57.0651684Z   OPENROUTER_API_KEY: 
+2026-09-19T01:57:57.0651922Z   OPENAI_API_KEY: 
+2026-09-19T01:57:57.0652148Z   OPENAMER_API_KEY: 
+2026-09-19T01:57:57.0652484Z ##[endgroup]
+2026-09-19T01:57:57.4372219Z ▶ running per-file parallel test suite via run_tests_parallel.py
+2026-09-19T01:57:57.4373083Z   (TZ=UTC LANG=C.UTF-8 PYTHONHASHSEED=0; clean env)
+2026-09-19T01:57:57.4373525Z ▶ pre-compiling bytecode cache
+2026-09-19T01:58:05.3479450Z ▶ launching test runner
+2026-09-19T01:58:05.4130832Z Running 304 test files (~5684 tests) with -j 8
+2026-09-19T01:58:14.2866920Z [  1.9% |   107/~5684 | ✓113 | ✗  0] ✓ tests/gateway/test_whatsapp_cloud.py (113✓, 8.9s)
+2026-09-19T01:58:14.3437915Z [  2.1% |   118/~5684 | ✓124 | ✗  0] ✓ tests/openamer_cli/test_web_server_git.py (11✓, 8.9s)
+2026-09-19T01:58:14.7119903Z [  2.3% |   130/~5684 | ✓136 | ✗  0] ✓ tests/openamer_cli/test_model_switch_opencode_anthropic.py (12✓, 9.3s)
+2026-09-19T01:58:14.9345249Z [  2.5% |   140/~5684 | ✓146 | ✗  0] ✓ tests/run_agent/test_create_openai_client_proxy_env.py (10✓, 9.5s)
+2026-09-19T01:58:15.4201058Z [  2.6% |   150/~5684 | ✓156 | ✗  0] ✓ tests/run_agent/test_compression_lock_defer.py (10✓, 10.0s)
+2026-09-19T01:58:17.0917725Z [  2.9% |   162/~5684 | ✓167 | ✗  0] ✓ tests/openamer_cli/test_timeouts.py (11✓ 1s, 11.7s)
+2026-09-19T01:58:18.1103199Z [  3.6% |   207/~5684 | ✓212 | ✗  0] ✓ tests/gateway/test_telegram_topic_mode.py (45✓, 12.7s)
+2026-09-19T01:58:18.3195358Z [  4.3% |   246/~5684 | ✓256 | ✗  0] ✓ tests/tools/test_credential_files.py (44✓, 3.6s)
+2026-09-19T01:58:18.5757747Z [  4.5% |   255/~5684 | ✓265 | ✗  0] ✓ tests/run_agent/test_background_review_cost_controls.py (9✓, 4.3s)
+2026-09-19T01:58:19.4725318Z [  4.5% |   257/~5684 | ✓288 | ✗  0] ✓ tests/gateway/test_adapter_connect_is_reconnect_contract.py (23✓, 4.5s)
+2026-09-19T01:58:21.1150085Z [  4.6% |   262/~5684 | ✓293 | ✗  0] ✓ tests/run_agent/test_iteration_budget_race.py (5✓, 5.7s)
+2026-09-19T01:58:21.2240163Z [  4.9% |   281/~5684 | ✓312 | ✗  0] ✓ tests/tools/test_docker_rebootstrap_nous_session.py (19✓, 2.6s)
+2026-09-19T01:58:21.7543944Z [  6.7% |   379/~5684 | ✓410 | ✗  0] ✓ tests/openamer_cli/test_debug.py (98✓, 7.4s)
+2026-09-19T01:58:22.2339912Z [  7.0% |   397/~5684 | ✓428 | ✗  0] ✓ tests/tools/test_browser_cdp_override.py (18✓, 3.9s)
+2026-09-19T01:58:24.3498013Z [  7.1% |   403/~5684 | ✓434 | ✗  0] ✓ tests/tools/test_send_message_react.py (6✓, 7.3s)
+2026-09-19T01:58:25.0218063Z [  7.1% |   406/~5684 | ✓437 | ✗  0] ✓ tests/gateway/test_telegram_send_draft_format.py (3✓, 3.3s)
+2026-09-19T01:58:25.1164674Z [  7.2% |   408/~5684 | ✓439 | ✗  0] ✓ tests/gateway/test_compression_deferred_soft_result.py (2✓, 5.6s)
+2026-09-19T01:58:25.1880170Z [  7.5% |   428/~5684 | ✓459 | ✗  0] ✓ tests/tools/test_mcp_oauth_manager.py (20✓, 7.1s)
+2026-09-19T01:58:25.5879940Z [  8.2% |   464/~5684 | ✓500 | ✗  0] ✓ tests/gateway/test_discord_component_auth.py (41✓, 4.4s)
+2026-09-19T01:58:26.4180676Z [  8.3% |   471/~5684 | ✓531 | ✗  0] ✓ tests/gateway/test_run_tool_media_re.py (31✓, 4.2s)
+2026-09-19T01:58:26.4343238Z [  8.3% |   473/~5684 | ✓533 | ✗  0] ✓ tests/agent/test_vision_resolved_args.py (2✓, 5.3s)
+2026-09-19T01:58:28.4729765Z [  8.7% |   493/~5684 | ✓553 | ✗  0] ✓ tests/tools/test_write_deny.py (20✓, 3.4s)
+2026-09-19T01:58:28.6570170Z [  8.8% |   503/~5684 | ✓563 | ✗  0] ✓ tests/openamer_cli/test_profile_describer.py (10✓, 3.5s)
+2026-09-19T01:58:29.4696503Z [  9.0% |   512/~5684 | ✓572 | ✗  0] ✓ tests/gateway/test_telegram_pending_update_probe.py (9✓, 5.1s)
+2026-09-19T01:58:29.5107993Z [  9.1% |   518/~5684 | ✓578 | ✗  0] ✓ tests/gateway/test_mixed_attachment_routing.py (6✓, 4.5s)
+2026-09-19T01:58:29.5910068Z [  9.2% |   524/~5684 | ✓584 | ✗  0] ✓ tests/test_env_loader_op_bootstrap.py (6✓, 4.0s)
+2026-09-19T01:58:31.0970056Z [  9.3% |   531/~5684 | ✓591 | ✗  0] ✓ tests/acp/test_session_provenance.py (7✓, 4.7s)
+2026-09-19T01:58:32.3110004Z [  9.4% |   534/~5684 | ✓594 | ✗  0] ✓ tests/agent/test_auxiliary_anthropic_pool_fallback_regression.py (3✓, 2.8s)
+2026-09-19T01:58:32.9189965Z [  9.6% |   545/~5684 | ✓605 | ✗  0] ✓ tests/agent/lsp/test_diagnostics_field.py (11✓, 4.4s)
+2026-09-19T01:58:33.0369950Z [  9.7% |   549/~5684 | ✓609 | ✗  0] ✓ tests/agent/test_anthropic_oauth_pkce.py (4✓, 3.6s)
+2026-09-19T01:58:33.2410513Z [  9.8% |   556/~5684 | ✓616 | ✗  0] ✓ tests/agent/test_auxiliary_compression_timeout_floor.py (7✓, 3.7s)
+2026-09-19T01:58:34.1470063Z [  9.9% |   564/~5684 | ✓632 | ✗  0] ✓ tests/agent/test_battery.py (16✓, 3.0s)
+2026-09-19T01:58:36.0179923Z [ 10.0% |   570/~5684 | ✓638 | ✗  0] ✓ tests/agent/lsp/test_stale_diagnostics.py (6✓, 7.4s)
+2026-09-19T01:58:36.1399006Z [ 10.2% |   582/~5684 | ✓650 | ✗  0] ✓ tests/agent/test_compression_progress.py (12✓, 2.9s)
+2026-09-19T01:58:36.4690281Z [ 10.7% |   609/~5684 | ✓677 | ✗  0] ✓ tests/agent/test_codex_responses_adapter.py (27✓, 3.6s)
+2026-09-19T01:58:36.7350457Z [ 10.9% |   621/~5684 | ✓688 | ✗  4] ✗ tests/acp/test_entry.py (11✓ 4✗, 10.3s)
+2026-09-19T01:58:36.7378842Z 
+2026-09-19T01:58:36.7419818Z   ╔╍ Failed: tests/acp/test_entry.py ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T01:58:36.7469237Z   ║     
+2026-09-19T01:58:36.7499421Z   ║         monkeypatch.setattr(entry, "_setup_logging", lambda: None)
+2026-09-19T01:58:36.7559378Z   ║         monkeypatch.setattr(entry, "_load_env", lambda: None)
+2026-09-19T01:58:36.7589161Z   ║         if skip_value is None:
+2026-09-19T01:58:36.7649560Z   ║             monkeypatch.delenv("OPENAMER_ACP_SKIP_CONFIGURED_MCP", raising=False)
+2026-09-19T01:58:36.7679078Z   ║         else:
+2026-09-19T01:58:36.7719429Z   ║             monkeypatch.setenv("OPENAMER_ACP_SKIP_CONFIGURED_MCP", skip_value)
+2026-09-19T01:58:36.7769204Z   ║         monkeypatch.setattr(
+2026-09-19T01:58:36.7799170Z   ║             "tools.mcp_tool.discover_mcp_tools",
+2026-09-19T01:58:36.7859284Z   ║             lambda: discovery_calls.append(True),
+2026-09-19T01:58:36.7889025Z   ║         )
+2026-09-19T01:58:36.7949471Z   ║         monkeypatch.setattr(acp, "run_agent", fake_run_agent)
+2026-09-19T01:58:36.7979058Z   ║     
+2026-09-19T01:58:36.8039203Z   ║         entry.main([])
+2026-09-19T01:58:36.8069042Z   ║     
+2026-09-19T01:58:36.8119081Z   ║ >       assert discovery_calls == [True]
+2026-09-19T01:58:36.8159111Z   ║ E       assert [] == [True]
+2026-09-19T01:58:36.8189052Z   ║ E         
+2026-09-19T01:58:36.8249510Z   ║ E         Right contains one more item: True
+2026-09-19T01:58:36.8279103Z   ║ E         Use -v to get more diff
+2026-09-19T01:58:36.8309035Z   ║ 
+2026-09-19T01:58:36.8309901Z   ║ tests/acp/test_entry.py:67: AssertionError
+2026-09-19T01:58:36.8339681Z   ║ ------------------------------ Captured log call -------------------------------
+2026-09-19T01:58:36.8370420Z   ║ WARNING  acp_adapter.entry:mcp_startup.py:50 Background MCP discovery previously exited with no connected servers; retrying discovery thread
+2026-09-19T01:58:36.8399248Z   ║ =========================== short test summary info ============================
+2026-09-19T01:58:36.8401162Z   ║ FAILED tests/acp/test_entry.py::test_main_discovers_configured_mcp_when_skip_is_not_enabled[None]
+2026-09-19T01:58:36.8429641Z   ║ FAILED tests/acp/test_entry.py::test_main_discovers_configured_mcp_when_skip_is_not_enabled[]
+2026-09-19T01:58:36.8459478Z   ║ FAILED tests/acp/test_entry.py::test_main_discovers_configured_mcp_when_skip_is_not_enabled[0]
+2026-09-19T01:58:36.8489570Z   ║ FAILED tests/acp/test_entry.py::test_main_discovers_configured_mcp_when_skip_is_not_enabled[false]
+2026-09-19T01:58:36.8490983Z   ║ ========================= 4 failed, 11 passed in 3.15s =========================
+2026-09-19T01:58:36.8518889Z   ║
+2026-09-19T01:58:36.8549241Z   ║  Repro: python -m pytest tests/acp/test_entry.py
+2026-09-19T01:58:36.8579164Z   ╚╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T01:58:36.8579819Z 
+2026-09-19T01:58:36.8810229Z [ 11.0% |   625/~5684 | ✓692 | ✗  4] ✓ tests/agent/test_compressor_zero_user_guard.py (4✓, 2.7s)
+2026-09-19T01:58:37.9855658Z [ 11.2% |   635/~5684 | ✓702 | ✗  4] ✓ tests/agent/test_compression_anti_thrash_persistence.py (10✓, 4.9s)
+2026-09-19T01:58:39.0330157Z [ 11.6% |   659/~5684 | ✓726 | ✗  4] ✓ tests/agent/test_display_tool_failure.py (24✓, 2.2s)
+2026-09-19T01:58:39.6370183Z [ 11.6% |   662/~5684 | ✓729 | ✗  4] ✓ tests/agent/test_credential_pool_no_entries_log_throttle.py (3✓, 3.5s)
+2026-09-19T01:58:40.1089864Z [ 11.8% |   668/~5684 | ✓735 | ✗  4] ✓ tests/agent/test_bounded_response.py (6✓, 7.8s)
+2026-09-19T01:58:40.5778752Z [ 13.5% |   766/~5684 | ✓833 | ✗  4] ✓ tests/agent/test_credits_tracker.py (98✓, 4.1s)
+2026-09-19T01:58:41.2678721Z [ 13.7% |   777/~5684 | ✓844 | ✗  4] ✓ tests/agent/test_context_engine_host_contract.py (11✓, 5.3s)
+2026-09-19T01:58:41.8969852Z [ 14.1% |   799/~5684 | ✓866 | ✗  4] ✓ tests/agent/test_file_safety_credentials.py (22✓, 3.9s)
+2026-09-19T01:58:42.4960294Z [ 14.1% |   804/~5684 | ✓871 | ✗  4] ✓ tests/agent/test_manual_compression_feedback.py (5✓, 2.4s)
+2026-09-19T01:58:42.6440933Z [ 14.3% |   813/~5684 | ✓880 | ✗  4] ✓ tests/agent/test_kanban_stop.py (9✓, 3.0s)
+2026-09-19T01:58:42.7889783Z [ 14.4% |   817/~5684 | ✓884 | ✗  4] ✓ tests/agent/test_custom_pool_mismatch_guard.py (4✓, 6.1s)
+2026-09-19T01:58:43.3510013Z [ 14.4% |   819/~5684 | ✓886 | ✗  4] ✓ tests/agent/test_moa_reference_system_prompt.py (2✓, 2.1s)
+2026-09-19T01:58:44.2580634Z [ 14.4% |   821/~5684 | ✓888 | ✗  4] ✓ tests/agent/test_message_content.py (2✓, 3.7s)
+2026-09-19T01:58:44.9474798Z [ 14.6% |   829/~5684 | ✓896 | ✗  4] ✓ tests/agent/test_preflight_compression_gate.py (8✓, 2.3s)
+2026-09-19T01:58:45.3633734Z [ 15.0% |   853/~5684 | ✓920 | ✗  4] ✓ tests/agent/test_rate_limit_tracker.py (24✓, 2.6s)
+2026-09-19T01:58:45.4160126Z [ 15.4% |   875/~5684 | ✓942 | ✗  4] ✓ tests/agent/test_ghost_skill_pruning.py (22✓, 6.4s)
+2026-09-19T01:58:46.1109895Z [ 16.0% |   908/~5684 | ✓975 | ✗  4] ✓ tests/agent/test_openamer_rate_guard.py (33✓, 3.6s)
+2026-09-19T01:58:46.7920091Z [ 16.5% |   938/~5684 | ✓1005 | ✗   4] ✓ tests/agent/test_models_dev.py (30✓, 4.9s)
+2026-09-19T01:58:48.1039839Z [ 16.9% |   958/~5684 | ✓1022 | ✗   4] ✓ tests/agent/test_trace_upload.py (17✓ 3s, 2.7s)
+2026-09-19T01:58:48.4099909Z [ 17.1% |   970/~5684 | ✓1034 | ✗   4] ✓ tests/agent/test_turn_overlap_tripwire.py (12✓, 2.3s)
+2026-09-19T01:58:48.7810006Z [ 17.2% |   976/~5684 | ✓1040 | ✗   4] ✓ tests/agent/test_skill_commands_reload.py (6✓, 4.5s)
+2026-09-19T01:58:48.7959756Z [ 17.7% |  1005/~5684 | ✓1073 | ✗   4] ✓ tests/agent/test_think_scrubber.py (33✓, 3.4s)
+2026-09-19T01:58:50.3122141Z [ 17.8% |  1011/~5684 | ✓1079 | ✗   4] ✓ tests/agent/test_verify_hooks.py (6✓, 3.5s)
+2026-09-19T01:58:50.9700107Z [ 17.9% |  1018/~5684 | ✓1086 | ✗   4] ✓ tests/agent/test_subagent_stop_hook.py (7✓, 6.0s)
+2026-09-19T01:58:50.9850011Z [ 18.2% |  1036/~5684 | ✓1104 | ✗   4] ✓ tests/ci/test_live_comment.py (18✓, 2.6s)
+2026-09-19T01:58:51.0960177Z [ 18.6% |  1056/~5684 | ✓1127 | ✗   4] ✓ tests/agent/transports/test_codex_event_projector.py (23✓, 3.0s)
+2026-09-19T01:58:53.7948707Z [ 19.1% |  1084/~5684 | ✓1155 | ✗   4] ✓ tests/cli/test_cli_approval_ui.py (28✓, 5.0s)
+2026-09-19T01:58:53.9337876Z [ 19.2% |  1089/~5684 | ✓1160 | ✗   4] ✓ tests/cli/test_cli_extension_hooks.py (5✓, 5.1s)
+2026-09-19T01:58:54.5619842Z [ 19.2% |  1092/~5684 | ✓1163 | ✗   4] ✓ tests/cli/test_cli_reload_skills.py (3✓, 3.6s)
+2026-09-19T01:58:55.0600156Z [ 19.4% |  1100/~5684 | ✓1171 | ✗   4] ✓ tests/cli/test_cli_status_command.py (8✓, 4.1s)
+2026-09-19T01:58:55.2880307Z [ 19.4% |  1101/~5684 | ✓1172 | ✗   4] ✓ tests/cli/test_cli_interrupt_subagent.py (1✓, 5.0s)
+2026-09-19T01:58:55.8929827Z [ 19.5% |  1106/~5684 | ✓1177 | ✗   4] ✓ tests/cli/test_compress_here.py (5✓, 4.8s)
+2026-09-19T01:58:56.4280036Z [ 19.5% |  1111/~5684 | ✓1182 | ✗   4] ✓ tests/cli/test_exit_summary_resume_hint.py (5✓, 2.6s)
+2026-09-19T01:58:57.6746073Z [ 19.6% |  1116/~5684 | ✓1187 | ✗   4] ✓ tests/cli/test_prompt_text_input_thread_safety.py (5✓, 3.7s)
+2026-09-19T01:58:58.3479928Z [ 19.7% |  1119/~5684 | ✓1190 | ✗   4] ✓ tests/cli/test_version_command.py (3✓, 3.3s)
+2026-09-19T01:58:58.3629674Z [ 19.9% |  1129/~5684 | ✓1203 | ✗   4] ✓ tests/cli/test_slash_confirm_windows.py (13✓, 3.8s)
+2026-09-19T01:58:58.6669893Z [ 20.1% |  1144/~5684 | ✓1218 | ✗   4] ✓ tests/computer_use/test_doctor.py (15✓, 3.4s)
+2026-09-19T01:58:58.6979803Z [ 20.3% |  1152/~5684 | ✓1226 | ✗   4] ✓ tests/cron/test_file_permissions.py (8✓, 2.3s)
+2026-09-19T01:58:59.3338059Z [ 20.4% |  1160/~5684 | ✓1233 | ✗   5] ✗ tests/agent/test_save_url_image.py (7✓ 1✗, 16.0s)
+2026-09-19T01:58:59.3378721Z 
+2026-09-19T01:58:59.3389677Z   ╔╍ Failed: tests/agent/test_save_url_image.py ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T01:58:59.3449386Z   ║ ============================= test session starts ==============================
+2026-09-19T01:58:59.3509279Z   ║ platform linux -- Python 3.11.16, pytest-9.0.2, pluggy-1.6.0
+2026-09-19T01:58:59.3539105Z   ║ rootdir: /home/runner/work/openamer/openamer
+2026-09-19T01:58:59.3539830Z   ║ configfile: pyproject.toml
+2026-09-19T01:58:59.3540449Z   ║ plugins: anyio-4.12.1, asyncio-1.3.0
+2026-09-19T01:58:59.3541685Z   ║ asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+2026-09-19T01:58:59.3542812Z   ║ collected 8 items
+2026-09-19T01:58:59.3543266Z   ║ 
+2026-09-19T01:58:59.3543999Z   ║ tests/agent/test_save_url_image.py ......F.                              [100%]
+2026-09-19T01:58:59.3544790Z   ║ 
+2026-09-19T01:58:59.3545461Z   ║ =================================== FAILURES ===================================
+2026-09-19T01:58:59.3569458Z   ║ _____________ TestSaveUrlImage.test_oversize_raises_and_cleans_up ______________
+2026-09-19T01:58:59.3570299Z   ║ 
+2026-09-19T01:58:59.3571423Z   ║ self = <tests.agent.test_save_url_image.TestSaveUrlImage object at 0x7f7d83b86510>
+2026-09-19T01:58:59.3572817Z   ║ http_server = ('http://127.0.0.1:59573', <socketserver.TCPServer object at 0x7f7d826fd850>)
+2026-09-19T01:58:59.3574117Z   ║ tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-70/test_oversize_raises_and_clean0')
+2026-09-19T01:58:59.3575009Z   ║ 
+2026-09-19T01:58:59.3575812Z   ║     def test_oversize_raises_and_cleans_up(self, http_server, tmp_path):
+2026-09-19T01:58:59.3576883Z   ║         """Oversize downloads must NOT leak a partial file into the cache."""
+2026-09-19T01:58:59.3577699Z   ║         base, _ = http_server
+2026-09-19T01:58:59.3578838Z   ║ >       from agent.image_gen_provider import save_url_image, _images_cache_dir
+2026-09-19T01:58:59.3580614Z   ║ E       ImportError: cannot import name '_images_cache_dir' from 'agent.image_gen_provider' (/home/runner/work/openamer/openamer/agent/image_gen_provider.py)
+2026-09-19T01:58:59.3581909Z   ║ 
+2026-09-19T01:58:59.3582500Z   ║ tests/agent/test_save_url_image.py:152: ImportError
+2026-09-19T01:58:59.3583387Z   ║ =========================== short test summary info ============================
+2026-09-19T01:58:59.3584777Z   ║ FAILED tests/agent/test_save_url_image.py::TestSaveUrlImage::test_oversize_raises_and_cleans_up
+2026-09-19T01:58:59.3585943Z   ║ ========================= 1 failed, 7 passed in 6.22s ==========================
+2026-09-19T01:58:59.3586620Z   ║
+2026-09-19T01:58:59.3587240Z   ║  Repro: python -m pytest tests/agent/test_save_url_image.py
+2026-09-19T01:58:59.3588571Z   ╚╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T01:58:59.3589095Z 
+2026-09-19T01:59:02.0029873Z [ 20.4% |  1161/~5684 | ✓1234 | ✗   5] ✓ tests/gateway/relay/test_no_stub_leak.py (1✓, 3.6s)
+2026-09-19T01:59:02.2579995Z [ 20.5% |  1164/~5684 | ✓1237 | ✗   5] ✓ tests/gateway/test_10710_auto_reset_evicts_cached_agent.py (3✓, 3.6s)
+2026-09-19T01:59:02.3040200Z [ 20.6% |  1173/~5684 | ✓1246 | ✗   5] ✓ tests/gateway/test_7100_transient_failure_transcript.py (9✓, 3.0s)
+2026-09-19T01:59:02.9322245Z [ 20.9% |  1187/~5684 | ✓1260 | ✗   5] ✓ tests/gateway/relay/test_relay_policy_send.py (14✓, 4.3s)
+2026-09-19T01:59:03.3457229Z [ 21.1% |  1198/~5684 | ✓1271 | ✗   5] ✓ tests/cron/test_cron_inactivity_timeout.py (11✓, 7.5s)
+2026-09-19T01:59:03.4980018Z [ 21.6% |  1225/~5684 | ✓1298 | ✗   5] ✓ tests/dashboard/test_ws_client_host.py (27✓, 5.1s)
+2026-09-19T01:59:07.0215574Z [ 22.1% |  1254/~5684 | ✓1333 | ✗   5] ✓ tests/gateway/test_background_process_notifications.py (35✓, 4.7s)
+2026-09-19T01:59:07.1550048Z [ 22.4% |  1276/~5684 | ✓1355 | ✗   5] ✓ tests/gateway/test_api_server_bind_guard.py (22✓, 5.2s)
+2026-09-19T01:59:07.2390127Z [ 22.5% |  1281/~5684 | ✓1360 | ✗   5] ✓ tests/gateway/test_clarify_thread_followup_not_swallowed.py (5✓, 3.9s)
+2026-09-19T01:59:07.4475787Z [ 22.6% |  1287/~5684 | ✓1366 | ✗   5] ✓ tests/gateway/test_compress_preview.py (6✓, 4.0s)
+2026-09-19T01:59:07.5031235Z [ 22.8% |  1295/~5684 | ✓1374 | ✗   5] ✓ tests/gateway/test_channel_continuity_hint.py (8✓, 4.6s)
+2026-09-19T01:59:07.7550028Z [ 23.3% |  1323/~5684 | ✓1403 | ✗   5] ✓ tests/gateway/test_approve_deny_commands.py (29✓, 5.5s)
+2026-09-19T01:59:10.5130009Z [ 23.5% |  1338/~5684 | ✓1418 | ✗   5] ✓ tests/gateway/test_discord_allowed_channels.py (15✓, 3.3s)
+2026-09-19T01:59:11.3210158Z [ 23.6% |  1340/~5684 | ✓1420 | ✗   5] ✓ tests/gateway/test_debug_command.py (2✓, 4.2s)
+2026-09-19T01:59:11.4776795Z [ 23.9% |  1361/~5684 | ✓1441 | ✗   5] ✓ tests/gateway/test_discord_clarify_buttons.py (21✓, 4.0s)
+2026-09-19T01:59:11.6600170Z [ 24.0% |  1365/~5684 | ✓1445 | ✗   5] ✓ tests/gateway/test_discord_plugin_setup.py (4✓, 3.9s)
+2026-09-19T01:59:12.0943092Z [ 24.4% |  1388/~5684 | ✓1516 | ✗   5] ✓ tests/gateway/test_config_driven_access_policy.py (71✓, 5.1s)
+2026-09-19T01:59:13.5539996Z [ 25.5% |  1447/~5684 | ✓1575 | ✗   5] ✓ tests/gateway/test_discord_free_response.py (59✓, 6.0s)
+2026-09-19T01:59:15.3094706Z [ 25.8% |  1467/~5684 | ✓1595 | ✗   5] ✓ tests/gateway/test_feishu_comment.py (20✓, 3.7s)
+2026-09-19T01:59:15.5910730Z [ 25.9% |  1470/~5684 | ✓1603 | ✗   5] ✓ tests/gateway/test_document_context_note.py (8✓, 4.3s)
+2026-09-19T01:59:16.2641590Z [ 26.7% |  1515/~5684 | ✓1651 | ✗   5] ✓ tests/gateway/test_extract_local_files.py (48✓, 4.8s)
+2026-09-19T01:59:17.0360070Z [ 26.7% |  1517/~5684 | ✓1654 | ✗   5] ✓ tests/gateway/test_gateway_command_dispatch_minimal.py (3✓, 4.9s)
+2026-09-19T01:59:18.0249898Z [ 26.7% |  1518/~5684 | ✓1655 | ✗   5] ✓ tests/gateway/test_goal_max_turns_config.py (1✓, 4.5s)
+2026-09-19T01:59:18.7826542Z [ 26.9% |  1530/~5684 | ✓1667 | ✗   5] ✓ tests/gateway/test_matrix_dm_invite_recording.py (12✓, 2.5s)
+2026-09-19T01:59:19.9140396Z [ 27.6% |  1568/~5684 | ✓1705 | ✗   5] ✓ tests/gateway/test_discord_slash_commands.py (38✓, 9.4s)
+2026-09-19T01:59:19.9169638Z [ 27.7% |  1572/~5684 | ✓1709 | ✗   5] ✓ tests/gateway/test_incomplete_gateway_turns.py (4✓, 4.6s)
+2026-09-19T01:59:21.3272116Z [ 27.7% |  1577/~5684 | ✓1714 | ✗   5] ✓ tests/gateway/test_max_concurrent_sessions.py (5✓, 4.3s)
+2026-09-19T01:59:21.3577540Z [ 28.0% |  1592/~5684 | ✓1729 | ✗   5] ✓ tests/gateway/test_mirror.py (15✓, 3.3s)
+2026-09-19T01:59:23.4005682Z [ 28.2% |  1603/~5684 | ✓1740 | ✗   5] ✓ tests/gateway/test_multiplex_profile_authz.py (11✓, 3.5s)
+2026-09-19T01:59:24.6469817Z [ 28.7% |  1634/~5684 | ✓1771 | ✗   5] ✓ tests/gateway/test_msgraph_webhook.py (31✓, 5.9s)
+2026-09-19T01:59:25.3741178Z [ 29.2% |  1657/~5684 | ✓1794 | ✗   5] ✓ tests/gateway/test_profile_resolution.py (23✓, 4.0s)
+2026-09-19T01:59:25.8729840Z [ 33.0% |  1876/~5684 | ✓2033 | ✗   5] ✓ tests/cron/test_scheduler.py (239✓, 28.2s)
+2026-09-19T01:59:26.0700361Z [ 33.1% |  1883/~5684 | ✓2040 | ✗   5] ✓ tests/gateway/test_platform_http_client_limits.py (7✓, 4.7s)
+2026-09-19T01:59:26.3260397Z [ 33.2% |  1888/~5684 | ✓2045 | ✗   5] ✓ tests/gateway/test_readiness.py (5✓, 2.9s)
+2026-09-19T01:59:27.5559913Z [ 33.3% |  1894/~5684 | ✓2051 | ✗   5] ✓ tests/gateway/test_reply_to_injection.py (6✓, 2.9s)
+2026-09-19T01:59:28.3233041Z [ 33.4% |  1896/~5684 | ✓2053 | ✗   5] ✓ tests/gateway/test_retry_response.py (2✓, 3.0s)
+2026-09-19T01:59:29.2935526Z [ 33.7% |  1917/~5684 | ✓2078 | ✗   5] ✓ tests/gateway/test_runtime_footer.py (25✓, 3.4s)
+2026-09-19T01:59:31.7390382Z [ 34.0% |  1930/~5684 | ✓2091 | ✗   5] ✓ tests/gateway/test_session_info.py (13✓, 5.4s)
+2026-09-19T01:59:32.1100138Z [ 34.4% |  1953/~5684 | ✓2114 | ✗   5] ✓ tests/gateway/test_session_reset_notify.py (23✓, 4.6s)
+2026-09-19T01:59:32.5690169Z [ 34.4% |  1958/~5684 | ✓2119 | ✗   5] ✓ tests/gateway/test_pending_drain_no_recursion.py (5✓, 12.7s)
+2026-09-19T01:59:32.9281926Z [ 34.5% |  1962/~5684 | ✓2123 | ✗   5] ✓ tests/gateway/test_shared_group_sender_prefix.py (4✓, 4.6s)
+2026-09-19T01:59:35.4142668Z [ 34.6% |  1967/~5684 | ✓2128 | ✗   5] ✓ tests/gateway/test_slack_dedup_ttl.py (5✓, 3.7s)
+2026-09-19T01:59:35.4819989Z [ 34.7% |  1970/~5684 | ✓2131 | ✗   5] ✓ tests/gateway/test_startup_no_eager_platform_install.py (3✓, 2.6s)
+2026-09-19T01:59:35.8360046Z [ 37.2% |  2115/~5684 | ✓2276 | ✗   5] ✓ tests/gateway/test_session.py (145✓, 9.8s)
+2026-09-19T01:59:37.2481251Z [ 37.3% |  2118/~5684 | ✓2282 | ✗   5] ✓ tests/gateway/test_slack_relay_parent_command.py (6✓, 5.1s)
+2026-09-19T01:59:38.0232327Z [ 37.6% |  2139/~5684 | ✓2303 | ✗   5] ✓ tests/gateway/test_slash_access_dispatch.py (21✓, 5.5s)
+2026-09-19T01:59:38.6055546Z [ 37.7% |  2144/~5684 | ✓2308 | ✗   5] ✓ tests/gateway/test_telegram_callback_auth_fail_closed.py (5✓, 2.8s)
+2026-09-19T01:59:39.0029947Z [ 38.0% |  2159/~5684 | ✓2325 | ✗   5] ✓ tests/gateway/test_subagent_protection_30170.py (17✓, 3.5s)
+2026-09-19T01:59:41.1620265Z [ 38.2% |  2169/~5684 | ✓2335 | ✗   5] ✓ tests/gateway/test_telegram_final_delivery.py (10✓, 3.9s)
+2026-09-19T01:59:41.5060243Z [ 38.4% |  2181/~5684 | ✓2347 | ✗   5] ✓ tests/gateway/test_telegram_text_batch_perf.py (12✓, 2.5s)
+2026-09-19T01:59:41.5399875Z [ 38.4% |  2185/~5684 | ✓2351 | ✗   5] ✓ tests/gateway/test_telegram_reply_quote.py (4✓, 2.9s)
+2026-09-19T01:59:44.5000349Z [ 38.5% |  2186/~5684 | ✓2352 | ✗   5] ✓ tests/gateway/test_version_command.py (1✓, 3.0s)
+2026-09-19T01:59:44.8230049Z [ 39.1% |  2223/~5684 | ✓2389 | ✗   5] ✓ tests/gateway/test_unauthorized_dm_behavior.py (37✓, 3.3s)
+2026-09-19T01:59:46.6953665Z [ 39.4% |  2239/~5684 | ✓3006 | ✗   5] ✓ tests/gateway/test_telegram_noise_filter.py (617✓, 8.7s)
+2026-09-19T01:59:47.2430176Z [ 39.6% |  2252/~5684 | ✓3019 | ✗   5] ✓ tests/gateway/test_webhook_dynamic_routes.py (13✓, 2.7s)
+2026-09-19T01:59:47.4108027Z [ 39.8% |  2265/~5684 | ✓3032 | ✗   5] ✓ tests/gateway/test_whatsapp_allowlist_lid_resolution.py (13✓, 2.6s)
+2026-09-19T01:59:48.0839939Z [ 41.9% |  2382/~5684 | ✓3166 | ✗   5] ✓ tests/gateway/test_stream_consumer.py (134✓, 12.7s)
+2026-09-19T01:59:49.6500079Z [ 42.0% |  2387/~5684 | ✓3171 | ✗   5] ✓ tests/gateway/test_yuanbao_media_ssrf.py (5✓, 2.4s)
+2026-09-19T01:59:49.7795797Z [ 49.4% |  2807/~5684 | ✓3598 | ✗   5] ✓ tests/gateway/test_slack.py (427✓, 20.5s)
+2026-09-19T01:59:49.8766083Z [ 49.4% |  2810/~5684 | ✓3601 | ✗   5] ✓ tests/gateway/test_whatsapp_media_path_profile.py (3✓, 3.2s)
+2026-09-19T01:59:51.1572006Z [ 49.6% |  2819/~5684 | ✓3610 | ✗   5] ✓ tests/openamer_cli/test_a2a_relay_ack.py (9✓, 3.1s)
+2026-09-19T01:59:51.9439834Z [ 49.8% |  2828/~5684 | ✓3619 | ✗   5] ✓ tests/openamer_cli/test_auth_ssl_macos.py (9✓, 2.1s)
+2026-09-19T01:59:52.5499947Z [ 49.8% |  2832/~5684 | ✓3623 | ✗   5] ✓ tests/openamer_cli/test_apply_model_switch_result_context.py (4✓, 2.9s)
+2026-09-19T01:59:53.0740061Z [ 50.4% |  2864/~5684 | ✓3655 | ✗   5] ✓ tests/openamer_cli/test_auth_codex_provider.py (32✓, 3.3s)
+2026-09-19T01:59:53.8899976Z [ 50.7% |  2880/~5684 | ✓3671 | ✗   5] ✓ tests/openamer_cli/test_azure_foundry_entra.py (16✓, 2.7s)
+2026-09-19T01:59:54.3230159Z [ 53.1% |  3021/~5684 | ✓3812 | ✗   5] ✓ tests/honcho_plugin/test_session.py (141✓, 6.9s)
+2026-09-19T01:59:55.2499883Z [ 53.2% |  3025/~5684 | ✓3816 | ✗   5] ✓ tests/openamer_cli/test_billing_portal_url.py (4✓, 3.3s)
+2026-09-19T01:59:55.4036198Z [ 53.4% |  3036/~5684 | ✓3827 | ✗   5] ✓ tests/openamer_cli/test_certifi_repair.py (11✓, 2.9s)
+2026-09-19T01:59:56.0930047Z [ 53.7% |  3053/~5684 | ✓3844 | ✗   5] ✓ tests/openamer_cli/test_coalesce_session_args.py (17✓, 3.0s)
+2026-09-19T01:59:56.4609590Z [ 53.8% |  3058/~5684 | ✓3849 | ✗   5] ✓ tests/openamer_cli/test_context_switch_guard.py (5✓, 2.1s)
+2026-09-19T01:59:57.3556782Z [ 54.1% |  3075/~5684 | ✓3866 | ✗   5] ✓ tests/openamer_cli/test_config_env_expansion.py (17✓, 3.5s)
+2026-09-19T01:59:58.1420126Z [ 54.2% |  3081/~5684 | ✓3872 | ✗   5] ✓ tests/openamer_cli/test_curator_recent_run_notice.py (6✓, 2.7s)
+2026-09-19T01:59:59.2979978Z [ 54.4% |  3092/~5684 | ✓3883 | ✗   5] ✓ tests/openamer_cli/test_custom_provider_extra_headers.py (11✓, 3.2s)
+2026-09-19T02:00:00.6690102Z [ 54.7% |  3111/~5684 | ✓3902 | ✗   5] ✓ tests/openamer_cli/test_dashboard_auth_ws_tickets.py (19✓, 3.3s)
+2026-09-19T02:00:00.7469943Z [ 54.9% |  3120/~5684 | ✓3911 | ✗   5] ✓ tests/openamer_cli/test_dashboard_unified_launch.py (9✓, 2.6s)
+2026-09-19T02:00:01.2820103Z [ 55.3% |  3143/~5684 | ✓3931 | ✗   8] ✗ tests/gateway/test_text_batching.py (20✓ 3✗, 20.1s)
+2026-09-19T02:00:01.2878657Z 
+2026-09-19T02:00:01.2879717Z   ╔╍ Failed: tests/gateway/test_text_batching.py ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T02:00:01.2909086Z   ║ 
+2026-09-19T02:00:01.2999381Z   ║ plugins/platforms/feishu/adapter.py:2820: AttributeError
+2026-09-19T02:00:01.3000687Z   ║ ____________ TestFeishuAdaptiveDelay.test_split_continuation_merged ____________
+2026-09-19T02:00:01.3028893Z   ║ 
+2026-09-19T02:00:01.3029787Z   ║ self = <tests.gateway.test_text_batching.TestFeishuAdaptiveDelay object at 0x7f853945aa10>
+2026-09-19T02:00:01.3030713Z   ║ 
+2026-09-19T02:00:01.3031170Z   ║     @pytest.mark.asyncio
+2026-09-19T02:00:01.3031849Z   ║     async def test_split_continuation_merged(self):
+2026-09-19T02:00:01.3032579Z   ║         adapter = _make_feishu_adapter()
+2026-09-19T02:00:01.3033157Z   ║     
+2026-09-19T02:00:01.3033922Z   ║ >       await adapter._enqueue_text_event(_make_event("x" * 4050, Platform.FEISHU))
+2026-09-19T02:00:01.3034708Z   ║ 
+2026-09-19T02:00:01.3035537Z   ║ tests/gateway/test_text_batching.py:504: 
+2026-09-19T02:00:01.3036394Z   ║ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:00:01.3037078Z   ║ 
+2026-09-19T02:00:01.3037871Z   ║ self = <plugins.platforms.feishu.adapter.FeishuAdapter object at 0x7f8538dec450>
+2026-09-19T02:00:01.3041035Z   ║ event = MessageEvent(text='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx...mpt=None, channel_context=None, internal=False, metadata={}, timestamp=datetime.datetime(2026, 9, 19, 2, 0, 0, 217799))
+2026-09-19T02:00:01.3043224Z   ║ 
+2026-09-19T02:00:01.3043922Z   ║     async def _enqueue_text_event(self, event: MessageEvent) -> None:
+2026-09-19T02:00:01.3044967Z   ║         """Debounce rapid Feishu text bursts into a single MessageEvent."""
+2026-09-19T02:00:01.3045821Z   ║ >       key = self._text_batch_key(event)
+2026-09-19T02:00:01.3046446Z   ║               ^^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:00:01.3047338Z   ║ E       AttributeError: 'FeishuAdapter' object has no attribute '_text_batch_key'
+2026-09-19T02:00:01.3048161Z   ║ 
+2026-09-19T02:00:01.3049075Z   ║ plugins/platforms/feishu/adapter.py:2820: AttributeError
+2026-09-19T02:00:01.3050002Z   ║ =========================== short test summary info ============================
+2026-09-19T02:00:01.3051503Z   ║ FAILED tests/gateway/test_text_batching.py::TestFeishuAdaptiveDelay::test_short_chunk_uses_normal_delay
+2026-09-19T02:00:01.3059890Z   ║ FAILED tests/gateway/test_text_batching.py::TestFeishuAdaptiveDelay::test_near_limit_chunk_uses_split_delay
+2026-09-19T02:00:01.3079563Z   ║ FAILED tests/gateway/test_text_batching.py::TestFeishuAdaptiveDelay::test_split_continuation_merged
+2026-09-19T02:00:01.3089349Z   ║ ========================= 3 failed, 20 passed in 9.38s =========================
+2026-09-19T02:00:01.3116085Z   ║
+2026-09-19T02:00:01.3149229Z   ║  Repro: python -m pytest tests/gateway/test_text_batching.py
+2026-09-19T02:00:01.3179297Z   ╚╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T02:00:01.3180021Z 
+2026-09-19T02:00:02.5359882Z [ 55.6% |  3159/~5684 | ✓3947 | ✗   8] ✓ tests/openamer_cli/test_cron.py (16✓, 7.3s)
+2026-09-19T02:00:03.0734586Z [ 56.0% |  3182/~5684 | ✓3970 | ✗   8] ✓ tests/openamer_cli/test_detect_api_mode_for_url.py (23✓, 3.8s)
+2026-09-19T02:00:03.7953706Z [ 56.1% |  3191/~5684 | ✓3979 | ✗   8] ✓ tests/openamer_cli/test_dump_git_commit.py (9✓, 3.1s)
+2026-09-19T02:00:03.9380151Z [ 56.2% |  3197/~5684 | ✓3985 | ✗   8] ✓ tests/openamer_cli/test_env_load_cache.py (6✓, 3.2s)
+2026-09-19T02:00:05.6689934Z [ 56.3% |  3201/~5684 | ✓3989 | ✗   8] ✓ tests/openamer_cli/test_gateway_platform_gating.py (4✓, 4.4s)
+2026-09-19T02:00:05.8844344Z [ 56.8% |  3226/~5684 | ✓4023 | ✗   8] ✓ tests/openamer_cli/test_dashboard_auth_middleware.py (34✓, 9.4s)
+2026-09-19T02:00:07.1250030Z [ 56.9% |  3237/~5684 | ✓4034 | ✗   8] ✓ tests/openamer_cli/test_kanban_block_kinds.py (11✓, 3.3s)
+2026-09-19T02:00:07.5363538Z [ 57.0% |  3241/~5684 | ✓4038 | ✗   8] ✓ tests/openamer_cli/test_gemini_free_tier_setup_block.py (4✓, 5.0s)
+2026-09-19T02:00:08.3734313Z [ 57.1% |  3245/~5684 | ✓4042 | ✗   8] ✓ tests/openamer_cli/test_kanban_project_link.py (4✓, 2.7s)
+2026-09-19T02:00:08.9400084Z [ 57.2% |  3250/~5684 | ✓4047 | ✗   8] ✓ tests/openamer_cli/test_kanban_worktree_isolation.py (5✓, 3.1s)
+2026-09-19T02:00:09.5927592Z [ 57.2% |  3252/~5684 | ✓4049 | ✗   8] ✓ tests/openamer_cli/test_managed_installs.py (2✓, 2.5s)
+2026-09-19T02:00:10.3160187Z [ 57.3% |  3259/~5684 | ✓4056 | ✗   8] ✓ tests/openamer_cli/test_managed_scope_writeguard.py (7✓, 2.8s)
+2026-09-19T02:00:12.1160043Z [ 58.4% |  3317/~5684 | ✓4118 | ✗   8] ✓ tests/openamer_cli/test_moa_config.py (62✓, 3.2s)
+2026-09-19T02:00:12.9264547Z [ 58.5% |  3326/~5684 | ✓4121 | ✗  14] ✗ tests/openamer_cli/test_kanban_decompose.py (3✓ 6✗, 9.0s)
+2026-09-19T02:00:12.9308671Z 
+2026-09-19T02:00:12.9339669Z   ╔╍ Failed: tests/openamer_cli/test_kanban_decompose.py ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T02:00:12.9359112Z   ║         name = self.attribute
+2026-09-19T02:00:12.9408909Z   ║     
+2026-09-19T02:00:12.9419086Z   ║         original = DEFAULT
+2026-09-19T02:00:12.9438954Z   ║         local = False
+2026-09-19T02:00:12.9468873Z   ║     
+2026-09-19T02:00:12.9469574Z   ║         try:
+2026-09-19T02:00:12.9529081Z   ║             original = target.__dict__[name]
+2026-09-19T02:00:12.9559049Z   ║         except (AttributeError, KeyError):
+2026-09-19T02:00:12.9559790Z   ║             original = getattr(target, name, DEFAULT)
+2026-09-19T02:00:12.9560405Z   ║         else:
+2026-09-19T02:00:12.9589062Z   ║             local = True
+2026-09-19T02:00:12.9618908Z   ║     
+2026-09-19T02:00:12.9649149Z   ║         if name in _builtins and isinstance(target, ModuleType):
+2026-09-19T02:00:12.9678967Z   ║             self.create = True
+2026-09-19T02:00:12.9709026Z   ║     
+2026-09-19T02:00:12.9739063Z   ║         if not self.create and original is DEFAULT:
+2026-09-19T02:00:12.9769028Z   ║ >           raise AttributeError(
+2026-09-19T02:00:12.9799085Z   ║                 "%s does not have the attribute %r" % (target, name)
+2026-09-19T02:00:12.9818910Z   ║             )
+2026-09-19T02:00:12.9850080Z   ║ E           AttributeError: <module 'openamer_cli.kanban_decompose' from '/home/runner/work/openamer/openamer/openamer_cli/kanban_decompose.py'> does not have the attribute '_load_config'
+2026-09-19T02:00:12.9888860Z   ║ 
+2026-09-19T02:00:12.9909542Z   ║ ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/unittest/mock.py:1419: AttributeError
+2026-09-19T02:00:12.9939173Z   ║ =========================== short test summary info ============================
+2026-09-19T02:00:12.9979544Z   ║ FAILED tests/openamer_cli/test_kanban_decompose.py::test_decompose_with_fanout_creates_children
+2026-09-19T02:00:12.9999740Z   ║ FAILED tests/openamer_cli/test_kanban_decompose.py::test_decompose_fanout_false_assigns_default_when_unassigned
+2026-09-19T02:00:13.0029676Z   ║ FAILED tests/openamer_cli/test_kanban_decompose.py::test_decompose_fanout_false_preserves_existing_assignee
+2026-09-19T02:00:13.0069470Z   ║ FAILED tests/openamer_cli/test_kanban_decompose.py::test_decompose_fanout_false_uses_valid_llm_assignee
+2026-09-19T02:00:13.0089658Z   ║ FAILED tests/openamer_cli/test_kanban_decompose.py::test_decompose_fanout_false_invalid_llm_assignee_uses_default
+2026-09-19T02:00:13.0109742Z   ║ FAILED tests/openamer_cli/test_kanban_decompose.py::test_decompose_unknown_assignee_falls_back_to_default
+2026-09-19T02:00:13.0139296Z   ║ ========================= 6 failed, 3 passed in 2.94s ==========================
+2026-09-19T02:00:13.0208877Z   ║
+2026-09-19T02:00:13.0239456Z   ║  Repro: python -m pytest tests/openamer_cli/test_kanban_decompose.py
+2026-09-19T02:00:13.0269179Z   ╚╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T02:00:13.0328617Z 
+2026-09-19T02:00:14.3369924Z [ 58.8% |  3341/~5684 | ✓4141 | ✗  14] ✓ tests/openamer_cli/test_mcp_security.py (20✓, 6.0s)
+2026-09-19T02:00:14.5169151Z [ 58.9% |  3346/~5684 | ✓4148 | ✗  14] ✓ tests/openamer_cli/test_model_switch_variant_tags.py (7✓, 4.2s)
+2026-09-19T02:00:14.5820283Z [ 59.0% |  3356/~5684 | ✓4158 | ✗  14] ✓ tests/openamer_cli/test_model_switch_configured_provider_routing.py (10✓, 5.0s)
+2026-09-19T02:00:16.2660194Z [ 59.1% |  3358/~5684 | ✓4160 | ✗  14] ✓ tests/openamer_cli/test_openai_codex_model_validation_fallback.py (2✓, 4.2s)
+2026-09-19T02:00:16.5471869Z [ 59.4% |  3379/~5684 | ✓4181 | ✗  14] ✓ tests/openamer_cli/test_plugins_cmd_category_discovery.py (21✓, 2.0s)
+2026-09-19T02:00:17.1624326Z [ 59.5% |  3381/~5684 | ✓4183 | ✗  14] ✓ tests/openamer_cli/test_profile_install_env_encoding.py (2✓, 2.6s)
+2026-09-19T02:00:17.6510201Z [ 60.1% |  3416/~5684 | ✓4218 | ✗  14] ✓ tests/openamer_cli/test_openamer_subscription.py (35✓, 4.7s)
+2026-09-19T02:00:17.9020211Z [ 60.2% |  3419/~5684 | ✓4221 | ✗  14] ✓ tests/openamer_cli/test_pin_kanban_board_env.py (3✓, 3.6s)
+2026-09-19T02:00:18.3466624Z [ 60.7% |  3449/~5684 | ✓4251 | ✗  14] ✓ tests/openamer_cli/test_hub_portal.py (30✓, 15.3s)
+2026-09-19T02:00:20.2116364Z [ 60.7% |  3452/~5684 | ✓4254 | ✗  14] ✓ tests/openamer_cli/test_psutil_android_extract.py (3✓, 3.7s)
+2026-09-19T02:00:20.4135865Z [ 60.8% |  3454/~5684 | ✓4256 | ✗  14] ✓ tests/openamer_cli/test_security.py (2✓, 2.8s)
+2026-09-19T02:00:20.5549937Z [ 60.9% |  3460/~5684 | ✓4262 | ✗  14] ✓ tests/openamer_cli/test_resolve_last_session.py (6✓, 3.4s)
+2026-09-19T02:00:21.4590406Z [ 61.5% |  3493/~5684 | ✓4295 | ✗  14] ✓ tests/openamer_cli/test_session_browse.py (33✓, 3.6s)
+2026-09-19T02:00:24.0479879Z [ 61.5% |  3496/~5684 | ✓4298 | ✗  14] ✓ tests/openamer_cli/test_skin_cmd.py (3✓, 3.5s)
+2026-09-19T02:00:24.6907364Z [ 61.7% |  3505/~5684 | ✓4307 | ✗  14] ✓ tests/openamer_cli/test_setup_reconfigure.py (9✓, 4.3s)
+2026-09-19T02:00:25.1436594Z [ 61.8% |  3513/~5684 | ✓4315 | ✗  14] ✓ tests/openamer_cli/test_setup_irc.py (8✓, 4.9s)
+2026-09-19T02:00:27.7649774Z [ 61.8% |  3514/~5684 | ✓4319 | ✗  14] ✓ tests/openamer_cli/test_subprocess_timeouts.py (4✓, 3.7s)
+2026-09-19T02:00:28.5851919Z [ 62.0% |  3522/~5684 | ✓4327 | ✗  14] ✓ tests/openamer_cli/test_teams_pipeline_plugin_cli.py (8✓, 3.9s)
+2026-09-19T02:00:29.1712683Z [ 62.1% |  3531/~5684 | ✓4336 | ✗  14] ✓ tests/openamer_cli/test_prompt_size.py (9✓, 12.9s)
+2026-09-19T02:00:31.4960065Z [ 62.2% |  3538/~5684 | ✓4343 | ✗  14] ✓ tests/openamer_cli/test_uninstall_node_symlinks.py (7✓, 3.7s)
+2026-09-19T02:00:31.6810148Z [ 62.3% |  3543/~5684 | ✓4379 | ✗  15] ✗ tests/openamer_cli/test_startup_plugin_gating.py (36✓ 1✗, 10.2s)
+2026-09-19T02:00:31.6839259Z 
+2026-09-19T02:00:31.6879747Z   ╔╍ Failed: tests/openamer_cli/test_startup_plugin_gating.py ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T02:00:31.6900514Z   ║ ............F.                                                           [100%]
+2026-09-19T02:00:31.6968973Z   ║ 
+2026-09-19T02:00:31.6999183Z   ║ =================================== FAILURES ===================================
+2026-09-19T02:00:31.7000349Z   ║ _____________ test_builtin_set_covers_every_registered_subcommand ______________
+2026-09-19T02:00:31.7029006Z   ║ 
+2026-09-19T02:00:31.7059157Z   ║     def test_builtin_set_covers_every_registered_subcommand():
+2026-09-19T02:00:31.7089304Z   ║         """Every subcommand registered in main() must appear in the set.
+2026-09-19T02:00:31.7148904Z   ║     
+2026-09-19T02:00:31.7179252Z   ║         Missing entries cause a slow-path regression (correctness stays
+2026-09-19T02:00:31.7209175Z   ║         fine — discovery just runs unnecessarily).
+2026-09-19T02:00:31.7268933Z   ║         """
+2026-09-19T02:00:31.7299025Z   ║         live = _live_subcommand_names()
+2026-09-19T02:00:31.7319263Z   ║         # "help" is synthetic — an argparse-implicit convenience we include
+2026-09-19T02:00:31.7349355Z   ║         # in the set so ``openamer help <cmd>`` skips discovery; it won't show
+2026-09-19T02:00:31.7379096Z   ║         # up as a subparser in the --help output.
+2026-09-19T02:00:31.7379979Z   ║         declared = _BUILTIN_SUBCOMMANDS - {"help"}
+2026-09-19T02:00:31.7409653Z   ║         missing_from_declaration = live - declared
+2026-09-19T02:00:31.7439072Z   ║ >       assert not missing_from_declaration, (
+2026-09-19T02:00:31.7469258Z   ║             f"_BUILTIN_SUBCOMMANDS is missing these live subcommands: "
+2026-09-19T02:00:31.7470481Z   ║             f"{sorted(missing_from_declaration)}. Add them to "
+2026-09-19T02:00:31.7499427Z   ║             f"openamer_cli/main.py::_BUILTIN_SUBCOMMANDS so plugin discovery "
+2026-09-19T02:00:31.7529191Z   ║             f"can be skipped when the user targets them."
+2026-09-19T02:00:31.7558973Z   ║         )
+2026-09-19T02:00:31.7562052Z   ║ E       AssertionError: _BUILTIN_SUBCOMMANDS is missing these live subcommands: ['agent', 'cost', 'crew', 'cross-session', 'initiative', 'lint-fix', 'marketplace', 'observe', 'plugin', 'repomap', 'review-pr', 'sandbox', 'super', 'swarm', 'tracing', 'tree', 'voice', 'web-agent', 'workflow']. Add them to openamer_cli/main.py::_BUILTIN_SUBCOMMANDS so plugin discovery can be skipped when the user targets them.
+2026-09-19T02:00:31.7589355Z   ║ E       assert not {'agent', 'cost', 'crew', 'cross-session', 'initiative', 'lint-fix', ...}
+2026-09-19T02:00:31.7618967Z   ║ 
+2026-09-19T02:00:31.7649245Z   ║ tests/openamer_cli/test_startup_plugin_gating.py:159: AssertionError
+2026-09-19T02:00:31.7709150Z   ║ =========================== short test summary info ============================
+2026-09-19T02:00:31.7749818Z   ║ FAILED tests/openamer_cli/test_startup_plugin_gating.py::test_builtin_set_covers_every_registered_subcommand
+2026-09-19T02:00:31.7799283Z   ║ ========================= 1 failed, 36 passed in 3.69s =========================
+2026-09-19T02:00:31.7829838Z   ║
+2026-09-19T02:00:31.7844118Z   ║  Repro: python -m pytest tests/openamer_cli/test_startup_plugin_gating.py
+2026-09-19T02:00:31.7919245Z   ╚╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T02:00:31.7948697Z 
+2026-09-19T02:00:32.0829861Z [ 62.4% |  3544/~5684 | ✓4380 | ✗  15] ✓ tests/openamer_cli/test_update_modified_notice.py (1✓, 3.5s)
+2026-09-19T02:00:33.4965418Z [ 62.6% |  3559/~5684 | ✓4395 | ✗  15] ✓ tests/openamer_cli/test_session_recovery.py (15✓, 15.1s)
+2026-09-19T02:00:35.7310020Z [ 63.1% |  3589/~5684 | ✓4425 | ✗  15] ✓ tests/openamer_cli/test_web_ui_build.py (30✓, 3.6s)
+2026-09-19T02:00:36.0566829Z [ 63.2% |  3592/~5684 | ✓4428 | ✗  15] ✓ tests/openamer_cli/test_xai_oauth_profile_auth.py (3✓, 2.6s)
+2026-09-19T02:00:38.2066190Z [ 63.6% |  3615/~5684 | ✓4451 | ✗  15] ✓ tests/openamer_cli/test_web_oauth_dispatch.py (23✓, 6.7s)
+2026-09-19T02:00:38.5850067Z [ 63.9% |  3632/~5684 | ✓4468 | ✗  15] ✓ tests/openamer_cli/test_urllib_security.py (17✓, 9.4s)
+2026-09-19T02:00:39.0583330Z [ 64.3% |  3653/~5684 | ✓4489 | ✗  15] ✓ tests/plugins/dashboard_auth/test_drain_provider.py (21✓, 3.0s)
+2026-09-19T02:00:39.3730076Z [ 64.5% |  3664/~5684 | ✓4500 | ✗  15] ✓ tests/openamer_state/test_get_anchored_view.py (11✓, 3.6s)
+2026-09-19T02:00:41.5726241Z [ 65.2% |  3708/~5684 | ✓4545 | ✗  15] ✓ tests/plugins/memory/test_supermemory_provider.py (45✓, 2.5s)
+2026-09-19T02:00:41.7670005Z [ 65.3% |  3714/~5684 | ✓4551 | ✗  15] ✓ tests/plugins/memory/test_honcho_config_schema.py (6✓, 3.2s)
+2026-09-19T02:00:42.4690350Z [ 65.6% |  3729/~5684 | ✓4566 | ✗  15] ✓ tests/openamer_cli/test_web_server_messaging_profiles.py (15✓, 10.8s)
+2026-09-19T02:00:43.1530058Z [ 66.2% |  3761/~5684 | ✓4598 | ✗  15] ✓ tests/plugins/image_gen/test_xai_provider.py (32✓, 4.9s)
+2026-09-19T02:00:43.5250136Z [ 66.3% |  3766/~5684 | ✓4603 | ✗  15] ✓ tests/plugins/platforms/photon/test_setup_access.py (5✓, 2.0s)
+2026-09-19T02:00:44.7389946Z [ 66.4% |  3777/~5684 | ✓4614 | ✗  15] ✓ tests/plugins/test_google_meet_audio.py (11✓, 3.0s)
+2026-09-19T02:00:44.7509672Z [ 66.8% |  3795/~5684 | ✓4647 | ✗  15] ✓ tests/plugins/model_providers/test_upstage_profile.py (33✓, 5.4s)
+2026-09-19T02:00:45.9310140Z [ 66.9% |  3803/~5684 | ✓4655 | ✗  15] ✓ tests/plugins/video_gen/test_deepinfra_provider.py (8✓, 2.8s)
+2026-09-19T02:00:46.9600483Z [ 68.0% |  3865/~5684 | ✓4717 | ✗  15] ✓ tests/providers/test_provider_profiles.py (62✓, 3.4s)
+2026-09-19T02:00:47.1419956Z [ 70.2% |  3992/~5684 | ✓4848 | ✗  15] ✓ tests/openamer_cli/test_tools_config.py (131✓, 22.0s)
+2026-09-19T02:00:49.6050931Z [ 70.4% |  4001/~5684 | ✓4857 | ✗  15] ✓ tests/run_agent/test_async_httpx_del_neuter.py (9✓, 4.9s)
+2026-09-19T02:00:49.6700611Z [ 70.7% |  4017/~5684 | ✓4873 | ✗  15] ✓ tests/plugins/test_kanban_worker_runs.py (16✓, 7.2s)
+2026-09-19T02:00:51.5484984Z [ 70.7% |  4020/~5684 | ✓4876 | ✗  15] ✓ tests/run_agent/test_63425_credential_pool_auto_detect.py (3✓, 6.8s)
+2026-09-19T02:00:51.5779992Z [ 70.8% |  4027/~5684 | ✓4883 | ✗  15] ✓ tests/run_agent/test_codex_multimodal_tool_result.py (7✓, 5.6s)
+2026-09-19T02:00:54.6010018Z [ 71.2% |  4049/~5684 | ✓4905 | ✗  15] ✓ tests/run_agent/test_image_shrink_recovery.py (22✓, 4.9s)
+2026-09-19T02:00:55.2370058Z [ 71.6% |  4070/~5684 | ✓4926 | ✗  15] ✓ tests/run_agent/test_compression_feasibility.py (21✓, 8.3s)
+2026-09-19T02:00:55.5940178Z [ 71.6% |  4072/~5684 | ✓4928 | ✗  15] ✓ tests/run_agent/test_create_openai_client_disables_sdk_retries.py (2✓, 8.5s)
+2026-09-19T02:00:56.2770102Z [ 71.7% |  4075/~5684 | ✓4931 | ✗  15] ✓ tests/run_agent/test_lmstudio_load_mode.py (3✓, 4.7s)
+2026-09-19T02:00:57.5300147Z [ 71.8% |  4081/~5684 | ✓4937 | ✗  15] ✓ tests/run_agent/test_moa_fanout_cadence.py (6✓, 6.0s)
+2026-09-19T02:00:59.5710140Z [ 71.9% |  4087/~5684 | ✓4943 | ✗  15] ✓ tests/run_agent/test_dropped_tool_call_recovery.py (6✓, 10.0s)
+2026-09-19T02:00:59.9788118Z [ 72.2% |  4106/~5684 | ✓4962 | ✗  15] ✓ tests/run_agent/test_review_prompt_class_first.py (19✓, 4.4s)
+2026-09-19T02:01:02.0690083Z [ 72.4% |  4115/~5684 | ✓4971 | ✗  15] ✓ tests/run_agent/test_strip_reasoning_tags_cli.py (9✓, 4.5s)
+2026-09-19T02:01:02.3329936Z [ 72.4% |  4118/~5684 | ✓4974 | ✗  15] ✓ tests/run_agent/test_openamer_fallback_unavailable.py (3✓, 7.7s)
+2026-09-19T02:01:03.2536987Z [ 73.0% |  4152/~5684 | ✓5008 | ✗  15] ✓ tests/run_agent/test_steer.py (34✓, 7.0s)
+2026-09-19T02:01:04.2330225Z [ 73.1% |  4157/~5684 | ✓5013 | ✗  15] ✓ tests/run_agent/test_proactive_prune_loop_wiring.py (5✓, 9.0s)
+2026-09-19T02:01:04.2889892Z [ 73.6% |  4186/~5684 | ✓5042 | ✗  15] ✓ tests/run_agent/test_thinking_only_sanitizer.py (29✓, 4.7s)
+2026-09-19T02:01:05.4720513Z [ 73.7% |  4191/~5684 | ✓5047 | ✗  15] ✓ tests/run_agent/test_tool_executor_contextvar_propagation.py (5✓, 5.5s)
+2026-09-19T02:01:05.6999921Z [ 73.8% |  4196/~5684 | ✓5052 | ✗  15] ✓ tests/scripts/test_session_to_brain.py (5✓, 2.4s)
+2026-09-19T02:01:05.8909981Z [ 74.1% |  4210/~5684 | ✓5066 | ✗  15] ✓ tests/scripts/test_desktop_ledger.py (14✓, 3.6s)
+2026-09-19T02:01:06.3559907Z [ 74.1% |  4210/~5684 | ✓5066 | ✗  15] ✓ tests/stress/test_atypical_scenarios.py (0.9s)
+2026-09-19T02:01:06.4079957Z [ 74.3% |  4222/~5684 | ✓5080 | ✗  15] ✓ tests/skills/test_darwinian_evolver_skill.py (14✓, 2.2s)
+2026-09-19T02:01:07.7830179Z [ 74.7% |  4248/~5684 | ✓5106 | ✗  15] ✓ tests/skills/test_openclaw_migration_hardening.py (26✓, 3.5s)
+2026-09-19T02:01:08.5410544Z [ 74.9% |  4260/~5684 | ✓5118 | ✗  15] ✓ tests/test_computer_use_record.py (12✓, 2.2s)
+2026-09-19T02:01:08.7619948Z [ 75.3% |  4280/~5684 | ✓5138 | ✗  15] ✓ tests/test_agent_builder.py (20✓, 3.1s)
+2026-09-19T02:01:09.2380840Z [ 75.4% |  4287/~5684 | ✓5144 | ✗  16] ✗ tests/scripts/test_autonom_watchtower.py (6✓ 1✗, 7.2s)
+2026-09-19T02:01:09.2469011Z 
+2026-09-19T02:01:09.2490091Z   ╔╍ Failed: tests/scripts/test_autonom_watchtower.py ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T02:01:09.2549463Z   ║ 
+2026-09-19T02:01:09.2550329Z   ║ tests/scripts/test_autonom_watchtower.py .....F.                         [100%]
+2026-09-19T02:01:09.2579136Z   ║ 
+2026-09-19T02:01:09.2599301Z   ║ =================================== FAILURES ===================================
+2026-09-19T02:01:09.2659481Z   ║ ______________________ test_main_stays_quiet_when_healthy ______________________
+2026-09-19T02:01:09.2669164Z   ║ 
+2026-09-19T02:01:09.2689422Z   ║ monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f80c41c9fd0>
+2026-09-19T02:01:09.2719661Z   ║ tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-233/test_main_stays_quiet_when_hea0')
+2026-09-19T02:01:09.2729486Z   ║ capsys = <_pytest.capture.CaptureFixture object at 0x7f80c41cba90>
+2026-09-19T02:01:09.2768903Z   ║ 
+2026-09-19T02:01:09.2779617Z   ║     def test_main_stays_quiet_when_healthy(monkeypatch, tmp_path, capsys):
+2026-09-19T02:01:09.2809203Z   ║         _healthy_main_fixture(monkeypatch, tmp_path)
+2026-09-19T02:01:09.2869613Z   ║         rc = W.main()
+2026-09-19T02:01:09.2870781Z   ║ >       assert rc == 0
+2026-09-19T02:01:09.2899079Z   ║ E       assert 1 == 0
+2026-09-19T02:01:09.2918924Z   ║ 
+2026-09-19T02:01:09.2949231Z   ║ tests/scripts/test_autonom_watchtower.py:74: AssertionError
+2026-09-19T02:01:09.2959656Z   ║ ----------------------------- Captured stdout call -----------------------------
+2026-09-19T02:01:09.2989129Z   ║ {
+2026-09-19T02:01:09.3009039Z   ║   "ts": 1789783267.4731717,
+2026-09-19T02:01:09.3019185Z   ║   "healthy": false,
+2026-09-19T02:01:09.3049361Z   ║   "problems": [
+2026-09-19T02:01:09.3069021Z   ║     "Dashboard serve :9119 down"
+2026-09-19T02:01:09.3098946Z   ║   ],
+2026-09-19T02:01:09.3109171Z   ║   "actions": []
+2026-09-19T02:01:09.3139004Z   ║ }
+2026-09-19T02:01:09.3159035Z   ║ [watchtower] took actions: none
+2026-09-19T02:01:09.3199299Z   ║ =========================== short test summary info ============================
+2026-09-19T02:01:09.3200721Z   ║ FAILED tests/scripts/test_autonom_watchtower.py::test_main_stays_quiet_when_healthy
+2026-09-19T02:01:09.3229436Z   ║ ========================= 1 failed, 6 passed in 2.20s ==========================
+2026-09-19T02:01:09.3248842Z   ║
+2026-09-19T02:01:09.3279216Z   ║  Repro: python -m pytest tests/scripts/test_autonom_watchtower.py
+2026-09-19T02:01:09.3289297Z   ╚╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T02:01:09.3308827Z 
+2026-09-19T02:01:09.7822222Z [ 75.5% |  4290/~5684 | ✓5144 | ✗  16] ✓ tests/test_darwin_probe_cron.py (3s, 1.0s)
+2026-09-19T02:01:10.3639478Z [ 75.8% |  4306/~5684 | ✓5160 | ✗  16] ✓ tests/test_batch_runner_checkpoint.py (16✓, 4.5s)
+2026-09-19T02:01:10.9709827Z [ 75.9% |  4312/~5684 | ✓5166 | ✗  16] ✓ tests/test_darwin_phase19.py (6✓, 3.2s)
+2026-09-19T02:01:12.0622622Z [ 76.0% |  4319/~5684 | ✓5173 | ✗  16] ✓ tests/test_darwin_phase3.py (7✓, 3.5s)
+2026-09-19T02:01:13.0489844Z [ 76.2% |  4333/~5684 | ✓5187 | ✗  16] ✓ tests/test_empty_session_hygiene.py (14✓, 3.8s)
+2026-09-19T02:01:13.1369985Z [ 76.3% |  4339/~5684 | ✓5195 | ✗  18] ✗ tests/test_darwin_phantom_home.py (8✓ 2✗, 6.7s)
+2026-09-19T02:01:13.1414409Z 
+2026-09-19T02:01:13.1464566Z   ╔╍ Failed: tests/test_darwin_phantom_home.py ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T02:01:13.1489145Z   ║ 
+2026-09-19T02:01:13.1562512Z   ║ tests/test_darwin_phantom_home.py:54: AssertionError
+2026-09-19T02:01:13.1589947Z   ║ __________________ test_cron_wrapper_reaches_real_population ___________________
+2026-09-19T02:01:13.1636198Z   ║ 
+2026-09-19T02:01:13.1739613Z   ║     def test_cron_wrapper_reaches_real_population():
+2026-09-19T02:01:13.1789256Z   ║         """End-to-end: the poisoned env still yields a 110-skill population."""
+2026-09-19T02:01:13.1820354Z   ║         proc = subprocess.run(
+2026-09-19T02:01:13.1849137Z   ║             [sys.executable, str(ENGINE), "--autopilot"],
+2026-09-19T02:01:13.1909197Z   ║             cwd=str(REPO), capture_output=True, text=True, encoding="utf-8",
+2026-09-19T02:01:13.1959114Z   ║             errors="replace", timeout=420,
+2026-09-19T02:01:13.1990320Z   ║             env={"OPENAMER_HOME": "C:/tmp/oa-home",
+2026-09-19T02:01:13.2029124Z   ║                  "PATH": __import__("os").environ.get("PATH", ""),
+2026-09-19T02:01:13.2077492Z   ║                  "SYSTEMROOT": __import__("os").environ.get("SYSTEMROOT", "")},
+2026-09-19T02:01:13.2106348Z   ║         )
+2026-09-19T02:01:13.2169049Z   ║         out = proc.stdout + proc.stderr
+2026-09-19T02:01:13.2195617Z   ║         assert "fitness computed for 0 skills" not in out, out
+2026-09-19T02:01:13.2221075Z   ║ >       assert "REFUSING" not in out, out
+2026-09-19T02:01:13.2293670Z   ║ E       AssertionError: [autopilot] REFUSING: /home/runner/AppData/Local/openamer holds no skills and none of ('config.yaml', '.env', 'cron', 'memories', 'openamer-agent') -- OPENAMER_HOME is mis-set, not a real home.
+2026-09-19T02:01:13.2322948Z   ║ E         
+2026-09-19T02:01:13.2363158Z   ║ E       assert 'REFUSING' not in '[autopilot]...real home.\n'
+2026-09-19T02:01:13.2410978Z   ║ E         
+2026-09-19T02:01:13.2449053Z   ║ E         'REFUSING' is contained here:
+2026-09-19T02:01:13.2472272Z   ║ E           [autopilot] REFUSING: /home/runner/AppData/Local/openamer holds no skills and none of ('config.yaml', '.env', 'cron', 'memories', 'openamer-agent') -- OPENAMER_HOME is mis-set, not a real home.
+2026-09-19T02:01:13.2509164Z   ║ E         ?             ++++++++
+2026-09-19T02:01:13.2528918Z   ║ 
+2026-09-19T02:01:13.2559137Z   ║ tests/test_darwin_phantom_home.py:143: AssertionError
+2026-09-19T02:01:13.2560182Z   ║ =========================== short test summary info ============================
+2026-09-19T02:01:13.2579890Z   ║ FAILED tests/test_darwin_phantom_home.py::test_scratch_home_is_not_adopted - ...
+2026-09-19T02:01:13.2619532Z   ║ FAILED tests/test_darwin_phantom_home.py::test_cron_wrapper_reaches_real_population
+2026-09-19T02:01:13.2629343Z   ║ ========================= 2 failed, 8 passed in 2.23s ==========================
+2026-09-19T02:01:13.2642141Z   ║
+2026-09-19T02:01:13.2689177Z   ║  Repro: python -m pytest tests/test_darwin_phantom_home.py
+2026-09-19T02:01:13.2690184Z   ╚╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T02:01:13.2723414Z 
+2026-09-19T02:01:13.2729673Z [ 76.6% |  4355/~5684 | ✓5211 | ✗  18] ✓ tests/test_gateway_streaming_nested_config.py (16✓, 3.5s)
+2026-09-19T02:01:13.2760361Z [ 76.7% |  4357/~5684 | ✓5213 | ✗  18] ✓ tests/test_install_ps1_web_server_syntax_probe.py (2✓, 2.3s)
+2026-09-19T02:01:13.6979860Z [ 76.7% |  4360/~5684 | ✓5213 | ✗  18] ✓ tests/test_iron_proxy_e2e.py (3s, 0.7s)
+2026-09-19T02:01:14.9150392Z [ 76.8% |  4364/~5684 | ✓5217 | ✗  18] ✓ tests/test_install_unmerged_index.py (4✓, 2.9s)
+2026-09-19T02:01:16.0991224Z [ 77.0% |  4375/~5684 | ✓5228 | ✗  18] ✓ tests/test_observability_ui.py (11✓, 2.9s)
+2026-09-19T02:01:16.2139824Z [ 77.1% |  4382/~5684 | ✓5235 | ✗  18] ✓ tests/test_minimax_model_validation.py (7✓, 3.1s)
+2026-09-19T02:01:16.3569839Z [ 77.4% |  4398/~5684 | ✓5251 | ✗  18] ✓ tests/test_openamer_state_wal_fallback.py (16✓, 3.1s)
+2026-09-19T02:01:18.4090085Z [ 77.5% |  4403/~5684 | ✓5256 | ✗  18] ✓ tests/test_skills_pipeline.py (5✓, 2.3s)
+2026-09-19T02:01:18.8129973Z [ 78.0% |  4431/~5684 | ✓5284 | ✗  18] ✓ tests/test_plugin_skills.py (28✓, 5.1s)
+2026-09-19T02:01:19.9410069Z [ 78.1% |  4437/~5684 | ✓5290 | ✗  18] ✓ tests/test_transform_llm_output_hook.py (6✓, 3.6s)
+2026-09-19T02:01:20.5088019Z [ 78.1% |  4440/~5684 | ✓5293 | ✗  18] ✓ tests/test_install_autostash_conflict_recovery.py (3✓, 10.1s)
+2026-09-19T02:01:21.3700394Z [ 78.2% |  4447/~5684 | ✓5301 | ✗  18] ✓ tests/test_telegram_polling_progress_ptb.py (8✓, 5.2s)
+2026-09-19T02:01:21.7039198Z [ 78.6% |  4470/~5684 | ✓5324 | ✗  18] ✓ tests/test_vector_memory.py (23✓, 3.3s)
+2026-09-19T02:01:21.8609905Z [ 79.3% |  4510/~5684 | ✓5364 | ✗  18] ✓ tests/test_yuanbao_proto.py (40✓, 3.0s)
+2026-09-19T02:01:23.5280065Z [ 79.4% |  4512/~5684 | ✓5366 | ✗  18] ✓ tests/tools/test_browser_camofox_ensure_tab.py (2✓, 3.0s)
+2026-09-19T02:01:23.8338489Z [ 79.4% |  4514/~5684 | ✓5368 | ✗  18] ✓ tests/tools/test_approval_interrupt.py (2✓, 3.9s)
+2026-09-19T02:01:24.1830310Z [ 79.5% |  4520/~5684 | ✓5374 | ✗  18] ✓ tests/tools/test_browser_cleanup.py (6✓, 2.8s)
+2026-09-19T02:01:24.3169995Z [ 79.6% |  4525/~5684 | ✓5379 | ✗  18] ✓ tests/tools/test_browser_get_images_ssrf.py (5✓, 2.6s)
+2026-09-19T02:01:24.7407206Z [ 79.9% |  4542/~5684 | ✓5396 | ✗  18] ✓ tests/tools/test_browser_snapshot_ssrf.py (17✓, 2.9s)
+2026-09-19T02:01:26.9150012Z [ 80.0% |  4547/~5684 | ✓5401 | ✗  18] ✓ tests/tools/test_computer_use_null_pid_windows.py (5✓, 3.1s)
+2026-09-19T02:01:29.0646747Z [ 81.9% |  4654/~5684 | ✓5508 | ✗  18] ✓ tests/tools/test_clipboard.py (107✓, 5.5s)
+2026-09-19T02:01:30.0830042Z [ 82.0% |  4661/~5684 | ✓5515 | ✗  18] ✓ tests/tools/test_delegate_subagent_timeout_diagnostic.py (7✓, 5.8s)
+2026-09-19T02:01:31.1253221Z [ 83.1% |  4724/~5684 | ✓5592 | ✗  18] ✓ tests/tools/test_cronjob_tools.py (77✓, 6.9s)
+2026-09-19T02:01:31.7795470Z [ 83.4% |  4739/~5684 | ✓5607 | ✗  18] ✓ tests/tools/test_env_probe.py (15✓, 4.9s)
+2026-09-19T02:01:33.0490070Z [ 83.5% |  4747/~5684 | ✓5615 | ✗  18] ✓ tests/tools/test_file_tools_tilde_profile.py (8✓, 3.0s)
+2026-09-19T02:01:33.9910074Z [ 83.7% |  4758/~5684 | ✓5626 | ✗  18] ✓ tests/tools/test_hidden_dir_filter.py (11✓, 2.9s)
+2026-09-19T02:01:34.3221143Z [ 85.0% |  4834/~5684 | ✓5702 | ✗  18] ✓ tests/tools/test_docker_environment.py (76✓, 9.6s)
+2026-09-19T02:01:34.7300089Z [ 85.3% |  4850/~5684 | ✓5718 | ✗  18] ✓ tests/tools/test_file_state_registry.py (16✓, 5.7s)
+2026-09-19T02:01:35.5539256Z [ 85.5% |  4857/~5684 | ✓5725 | ✗  18] ✓ tests/tools/test_local_cwd_permission_fallback.py (7✓, 2.5s)
+2026-09-19T02:01:35.7659887Z [ 85.7% |  4873/~5684 | ✓5741 | ✗  18] ✓ tests/tools/test_image_source.py (16✓, 4.0s)
+2026-09-19T02:01:38.1690408Z [ 86.0% |  4888/~5684 | ✓5756 | ✗  18] ✓ tests/tools/test_managed_browserbase_and_modal.py (15✓, 4.2s)
+2026-09-19T02:01:38.6039933Z [ 86.2% |  4900/~5684 | ✓5768 | ✗  18] ✓ tests/tools/test_mcp_dashboard_oauth.py (12✓, 4.3s)
+2026-09-19T02:01:39.4319962Z [ 86.2% |  4902/~5684 | ✓5770 | ✗  18] ✓ tests/tools/test_mcp_stdio_encoding_handler.py (2✓, 3.7s)
+2026-09-19T02:01:39.8389995Z [ 86.4% |  4910/~5684 | ✓5778 | ✗  18] ✓ tests/tools/test_mcp_rapid_drop_budget.py (8✓, 4.3s)
+2026-09-19T02:01:40.9529935Z [ 86.6% |  4921/~5684 | ✓5789 | ✗  18] ✓ tests/tools/test_media_caption_split.py (11✓, 2.8s)
+2026-09-19T02:01:41.6340009Z [ 88.3% |  5018/~5684 | ✓5894 | ✗  18] ✓ tests/tools/test_mcp_oauth.py (105✓, 6.9s)
+2026-09-19T02:01:43.3040241Z [ 88.9% |  5053/~5684 | ✓5929 | ✗  18] ✓ tests/tools/test_notify_on_complete.py (35✓, 4.7s)
+2026-09-19T02:01:44.1060837Z [ 89.2% |  5071/~5684 | ✓5947 | ✗  18] ✓ tests/tools/test_read_extract.py (18✓, 4.7s)
+2026-09-19T02:01:44.1839955Z [ 89.3% |  5076/~5684 | ✓5952 | ✗  18] ✓ tests/tools/test_skill_provenance.py (5✓, 2.5s)
+2026-09-19T02:01:44.8130072Z [ 89.6% |  5094/~5684 | ✓5977 | ✗  18] ✓ tests/tools/test_search_error_guard.py (25✓, 5.0s)
+2026-09-19T02:01:46.7772399Z [ 89.9% |  5110/~5684 | ✓5993 | ✗  18] ✓ tests/tools/test_skills_hub_clawhub.py (16✓, 3.5s)
+2026-09-19T02:01:47.0460006Z [ 90.0% |  5114/~5684 | ✓5997 | ✗  18] ✓ tests/tools/test_snapshot_session_id_leak.py (4✓, 2.9s)
+2026-09-19T02:01:48.3746962Z [ 90.3% |  5132/~5684 | ✓6015 | ✗  18] ✓ tests/tools/test_sync_back_backends.py (18✓, 4.2s)
+2026-09-19T02:01:48.7480024Z [ 90.5% |  5145/~5684 | ✓6028 | ✗  18] ✓ tests/tools/test_todo_tool_type_coercion.py (13✓, 2.0s)
+2026-09-19T02:01:49.1562748Z [ 90.7% |  5157/~5684 | ✓6040 | ✗  18] ✓ tests/tools/test_terminal_task_cwd.py (12✓, 4.3s)
+2026-09-19T02:01:50.5110015Z [ 90.9% |  5169/~5684 | ✓6052 | ✗  18] ✓ tests/tools/test_transcription_dotenv_fallback.py (12✓, 3.5s)
+2026-09-19T02:01:51.0990590Z [ 91.0% |  5172/~5684 | ✓6055 | ✗  18] ✓ tests/tools/test_web_extract_robustness.py (3✓, 1.9s)
+2026-09-19T02:01:51.4554274Z [ 92.6% |  5264/~5684 | ✓6147 | ✗  18] ✓ tests/tools/test_session_search.py (92✓, 10.5s)
+2026-09-19T02:01:52.3254489Z [ 93.1% |  5294/~5684 | ✓6177 | ✗  18] ✓ tests/tools/test_video_analyze.py (30✓, 3.6s)
+2026-09-19T02:01:52.5989989Z [ 93.4% |  5307/~5684 | ✓6193 | ✗  18] ✓ tests/tools/test_tts_mistral.py (16✓, 4.2s)
+2026-09-19T02:01:52.7380068Z [ 93.6% |  5319/~5684 | ✓6205 | ✗  18] ✓ tests/tools/test_web_tools_truncate.py (12✓, 2.2s)
+2026-09-19T02:01:53.8809902Z [ 93.7% |  5324/~5684 | ✓6210 | ✗  18] ✓ tests/tools/test_xai_http_storage.py (5✓, 2.8s)
+2026-09-19T02:01:55.1659927Z [ 93.7% |  5326/~5684 | ✓6212 | ✗  18] ✓ tests/tui_gateway/test_image_routing_stale_model.py (2✓, 2.8s)
+2026-09-19T02:01:56.4720816Z [ 94.0% |  5345/~5684 | ✓6242 | ✗  18] ✓ tests/tui_gateway/test_session_platform_resolution.py (30✓, 3.7s)
+2026-09-19T02:01:56.5108632Z [ 94.3% |  5359/~5684 | ✓6256 | ✗  18] ✓ tests/tui_gateway/test_compute_host_phase1.py (14✓, 5.1s)
+2026-09-19T02:01:57.0009894Z [ 94.4% |  5366/~5684 | ✓6263 | ✗  18] ✓ tests/website/test_generate_skill_docs.py (7✓, 3.1s)
+2026-09-19T02:01:59.0769914Z [ 94.5% |  5371/~5684 | ✓6268 | ✗  18] ✓ tests/gateway/test_discord_prompt_content_siblings.py (5✓, 3.9s)
+2026-09-19T02:01:59.3289741Z [ 94.5% |  5374/~5684 | ✓6271 | ✗  18] ✓ tests/test_slash_worker_watchdog.py (3✓, 2.8s)
+2026-09-19T02:01:59.9807224Z [ 94.7% |  5382/~5684 | ✓6279 | ✗  18] ✓ tests/openamer_cli/test_provider_precedence.py (8✓, 3.0s)
+2026-09-19T02:02:00.0970016Z [ 95.1% |  5407/~5684 | ✓6293 | ✗  18] ✓ tests/tools/test_ssh_environment.py (14✓ 11s, 3.6s)
+2026-09-19T02:02:01.9749861Z [ 95.3% |  5419/~5684 | ✓6305 | ✗  18] ✓ tests/tui_gateway/test_pet_generate_rpc.py (12✓, 9.4s)
+2026-09-19T02:02:01.9909960Z [ 95.5% |  5426/~5684 | ✓6319 | ✗  18] ✓ tests/agent/test_ssl_ca_guard.py (14✓, 2.7s)
+2026-09-19T02:02:02.2230238Z [ 95.5% |  5430/~5684 | ✓6323 | ✗  18] ✓ tests/openamer_cli/test_update_config_clears_custom_fields.py (4✓, 3.1s)
+2026-09-19T02:02:02.5134142Z [ 96.0% |  5454/~5684 | ✓6347 | ✗  18] ✓ tests/agent/transports/test_transport.py (24✓, 2.4s)
+2026-09-19T02:02:02.6111721Z [ 96.0% |  5454/~5684 | ✓6347 | ✗  18] ✓ tests/stress/test_benchmarks.py (0.6s)
+2026-09-19T02:02:02.7111992Z [ 96.2% |  5467/~5684 | ✓6360 | ✗  18] ✓ tests/skills/test_fetch_transcript.py (13✓, 2.7s)
+2026-09-19T02:02:04.5174001Z [ 96.9% |  5509/~5684 | ✓6402 | ✗  18] ✓ tests/test_repomap.py (42✓, 49.6s)
+2026-09-19T02:08:05.6246910Z [ 99.9% |  5681/~5684 | ✓6402 | ✗  18] ✗ tests/openamer_cli/test_kanban_core_functionality.py (172 tests, 600.2s)
+2026-09-19T02:08:05.6247426Z 
+2026-09-19T02:08:05.6247904Z   ╔╍ Failed: tests/openamer_cli/test_kanban_core_functionality.py ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T02:08:05.6249283Z   ║ (300s exceeded; process tree SIGKILL'd)
+2026-09-19T02:08:05.6249800Z   ║ ============================= test session starts ==============================
+2026-09-19T02:08:05.6250331Z   ║ platform linux -- Python 3.11.16, pytest-9.0.2, pluggy-1.6.0
+2026-09-19T02:08:05.6250783Z   ║ rootdir: /home/runner/work/openamer/openamer
+2026-09-19T02:08:05.6251152Z   ║ configfile: pyproject.toml
+2026-09-19T02:08:05.6251474Z   ║ plugins: anyio-4.12.1, asyncio-1.3.0
+2026-09-19T02:08:05.6252123Z   ║ asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+2026-09-19T02:08:05.6252721Z   ║ collected 173 items
+2026-09-19T02:08:05.6252978Z   ║ 
+2026-09-19T02:08:05.6253378Z   ║ tests/openamer_cli/test_kanban_core_functionality.py ................... [ 10%]
+2026-09-19T02:08:05.6253923Z   ║ ........................................................................ [ 52%]
+2026-09-19T02:08:05.6254355Z   ║ ........................................................FF
+2026-09-19T02:08:05.6254673Z   ║
+2026-09-19T02:08:05.6255087Z   ║  Repro: python -m pytest tests/openamer_cli/test_kanban_core_functionality.py
+2026-09-19T02:08:05.6255668Z   ╚╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T02:08:05.6255918Z 
+2026-09-19T02:09:15.7955204Z [100.0% |  5684/~5684 | ✓6402 | ✗  18] ✗ tests/gateway/test_kanban_notifier_watcher_dispatch_gate.py (3 tests, 600.2s)
+2026-09-19T02:09:15.7958422Z 
+2026-09-19T02:09:15.7959486Z   ╔╍ Failed: tests/gateway/test_kanban_notifier_watcher_dispatch_gate.py ╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T02:09:15.7960261Z   ║ (300s exceeded; process tree SIGKILL'd)
+2026-09-19T02:09:15.7960725Z   ║ ============================= test session starts ==============================
+2026-09-19T02:09:15.7961240Z   ║ platform linux -- Python 3.11.16, pytest-9.0.2, pluggy-1.6.0
+2026-09-19T02:09:15.7961699Z   ║ rootdir: /home/runner/work/openamer/openamer
+2026-09-19T02:09:15.7962064Z   ║ configfile: pyproject.toml
+2026-09-19T02:09:15.7962430Z   ║ plugins: anyio-4.12.1, asyncio-1.3.0
+2026-09-19T02:09:15.7963084Z   ║ asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+2026-09-19T02:09:15.7963697Z   ║ collected 3 items
+2026-09-19T02:09:15.7963943Z   ║ 
+2026-09-19T02:09:15.7964283Z   ║ tests/gateway/test_kanban_notifier_watcher_dispatch_gate.py
+2026-09-19T02:09:15.7964649Z   ║
+2026-09-19T02:09:15.7965076Z   ║  Repro: python -m pytest tests/gateway/test_kanban_notifier_watcher_dispatch_gate.py
+2026-09-19T02:09:15.7965672Z   ╚╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍╍
+2026-09-19T02:09:15.7965928Z 
+2026-09-19T02:09:15.8179579Z 
+2026-09-19T02:09:15.8180182Z === Summary: 304 files, 6402 tests passed, 18 failed (100% complete) in 670.4s (8 workers) ===
+2026-09-19T02:09:15.8181040Z   Durations cached to test_durations.json (304 files)
+2026-09-19T02:09:15.8181422Z 
+2026-09-19T02:09:15.8181627Z === Per-file subprocess time distribution ===
+2026-09-19T02:09:15.8182450Z   Files:   304
+2026-09-19T02:09:15.8183040Z   Total subprocess CPU-wall: 2694.6s  (runner wall: 670.4s, parallelism: 8x)
+2026-09-19T02:09:15.8184131Z   P50: 3.80s  P90: 9.00s  P95: 10.79s  P99: 28.19s  Max: 600.21s
+2026-09-19T02:09:15.8184795Z   <1s: 3 files (1%)  <2s: 7 files (2%)
+2026-09-19T02:09:15.8185305Z   Top 10 slowest:
+2026-09-19T02:09:15.8185804Z     600.21s  tests/openamer_cli/test_kanban_core_functionality.py
+2026-09-19T02:09:15.8186447Z     600.21s  tests/gateway/test_kanban_notifier_watcher_dispatch_gate.py
+2026-09-19T02:09:15.8186956Z      49.60s  tests/test_repomap.py
+2026-09-19T02:09:15.8187254Z      28.19s  tests/cron/test_scheduler.py
+2026-09-19T02:09:15.8187596Z      22.00s  tests/openamer_cli/test_tools_config.py
+2026-09-19T02:09:15.8187936Z      20.49s  tests/gateway/test_slack.py
+2026-09-19T02:09:15.8188555Z      20.11s  tests/gateway/test_text_batching.py
+2026-09-19T02:09:15.8189181Z      15.98s  tests/agent/test_save_url_image.py
+2026-09-19T02:09:15.8189790Z      15.27s  tests/openamer_cli/test_hub_portal.py
+2026-09-19T02:09:15.8190368Z      15.15s  tests/openamer_cli/test_session_recovery.py
+2026-09-19T02:09:15.8190629Z 
+2026-09-19T02:09:15.8190735Z === Failure output ===
+2026-09-19T02:09:15.8190884Z 
+2026-09-19T02:09:15.8191003Z --- tests/acp/test_entry.py ---
+2026-09-19T02:09:15.8191352Z ============================= test session starts ==============================
+2026-09-19T02:09:15.8191800Z platform linux -- Python 3.11.16, pytest-9.0.2, pluggy-1.6.0
+2026-09-19T02:09:15.8192209Z rootdir: /home/runner/work/openamer/openamer
+2026-09-19T02:09:15.8192540Z configfile: pyproject.toml
+2026-09-19T02:09:15.8192817Z plugins: anyio-4.12.1, asyncio-1.3.0
+2026-09-19T02:09:15.8193397Z asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+2026-09-19T02:09:15.8193985Z collected 15 items
+2026-09-19T02:09:15.8194134Z 
+2026-09-19T02:09:15.8194353Z tests/acp/test_entry.py ..FFFF.........                                  [100%]
+2026-09-19T02:09:15.8194678Z 
+2026-09-19T02:09:15.8194826Z =================================== FAILURES ===================================
+2026-09-19T02:09:15.8195313Z ______ test_main_discovers_configured_mcp_when_skip_is_not_enabled[None] _______
+2026-09-19T02:09:15.8195645Z 
+2026-09-19T02:09:15.8195870Z monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f3751bed810>
+2026-09-19T02:09:15.8196293Z skip_value = None
+2026-09-19T02:09:15.8196434Z 
+2026-09-19T02:09:15.8196624Z     @pytest.mark.parametrize("skip_value", [None, "", "0", "false"])
+2026-09-19T02:09:15.8197181Z     def test_main_discovers_configured_mcp_when_skip_is_not_enabled(monkeypatch, skip_value):
+2026-09-19T02:09:15.8197646Z         discovery_calls = []
+2026-09-19T02:09:15.8197890Z     
+2026-09-19T02:09:15.8198128Z         async def fake_run_agent(agent, **kwargs):
+2026-09-19T02:09:15.8198787Z             pass
+2026-09-19T02:09:15.8199009Z     
+2026-09-19T02:09:15.8199295Z         monkeypatch.setattr(entry, "_setup_logging", lambda: None)
+2026-09-19T02:09:15.8199778Z         monkeypatch.setattr(entry, "_load_env", lambda: None)
+2026-09-19T02:09:15.8200493Z         if skip_value is None:
+2026-09-19T02:09:15.8200898Z             monkeypatch.delenv("OPENAMER_ACP_SKIP_CONFIGURED_MCP", raising=False)
+2026-09-19T02:09:15.8201310Z         else:
+2026-09-19T02:09:15.8201645Z             monkeypatch.setenv("OPENAMER_ACP_SKIP_CONFIGURED_MCP", skip_value)
+2026-09-19T02:09:15.8202056Z         monkeypatch.setattr(
+2026-09-19T02:09:15.8202341Z             "tools.mcp_tool.discover_mcp_tools",
+2026-09-19T02:09:15.8202671Z             lambda: discovery_calls.append(True),
+2026-09-19T02:09:15.8202964Z         )
+2026-09-19T02:09:15.8203237Z         monkeypatch.setattr(acp, "run_agent", fake_run_agent)
+2026-09-19T02:09:15.8203567Z     
+2026-09-19T02:09:15.8203767Z         entry.main([])
+2026-09-19T02:09:15.8203986Z     
+2026-09-19T02:09:15.8204203Z >       assert discovery_calls == [True]
+2026-09-19T02:09:15.8204487Z E       assert [] == [True]
+2026-09-19T02:09:15.8204850Z E         
+2026-09-19T02:09:15.8205086Z E         Right contains one more item: True
+2026-09-19T02:09:15.8205408Z E         Use -v to get more diff
+2026-09-19T02:09:15.8205582Z 
+2026-09-19T02:09:15.8205709Z tests/acp/test_entry.py:67: AssertionError
+2026-09-19T02:09:15.8206102Z ------------------------------ Captured log call -------------------------------
+2026-09-19T02:09:15.8206839Z WARNING  acp_adapter.entry:mcp_startup.py:50 Background MCP discovery previously exited with no connected servers; retrying discovery thread
+2026-09-19T02:09:15.8207588Z ________ test_main_discovers_configured_mcp_when_skip_is_not_enabled[] _________
+2026-09-19T02:09:15.8207898Z 
+2026-09-19T02:09:15.8208115Z monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f3751601990>
+2026-09-19T02:09:15.8208717Z skip_value = ''
+2026-09-19T02:09:15.8208851Z 
+2026-09-19T02:09:15.8209035Z     @pytest.mark.parametrize("skip_value", [None, "", "0", "false"])
+2026-09-19T02:09:15.8209575Z     def test_main_discovers_configured_mcp_when_skip_is_not_enabled(monkeypatch, skip_value):
+2026-09-19T02:09:15.8210038Z         discovery_calls = []
+2026-09-19T02:09:15.8210283Z     
+2026-09-19T02:09:15.8210520Z         async def fake_run_agent(agent, **kwargs):
+2026-09-19T02:09:15.8210819Z             pass
+2026-09-19T02:09:15.8211023Z     
+2026-09-19T02:09:15.8211301Z         monkeypatch.setattr(entry, "_setup_logging", lambda: None)
+2026-09-19T02:09:15.8211724Z         monkeypatch.setattr(entry, "_load_env", lambda: None)
+2026-09-19T02:09:15.8212066Z         if skip_value is None:
+2026-09-19T02:09:15.8212447Z             monkeypatch.delenv("OPENAMER_ACP_SKIP_CONFIGURED_MCP", raising=False)
+2026-09-19T02:09:15.8212842Z         else:
+2026-09-19T02:09:15.8213168Z             monkeypatch.setenv("OPENAMER_ACP_SKIP_CONFIGURED_MCP", skip_value)
+2026-09-19T02:09:15.8213571Z         monkeypatch.setattr(
+2026-09-19T02:09:15.8213851Z             "tools.mcp_tool.discover_mcp_tools",
+2026-09-19T02:09:15.8214175Z             lambda: discovery_calls.append(True),
+2026-09-19T02:09:15.8214468Z         )
+2026-09-19T02:09:15.8214739Z         monkeypatch.setattr(acp, "run_agent", fake_run_agent)
+2026-09-19T02:09:15.8215067Z     
+2026-09-19T02:09:15.8215265Z         entry.main([])
+2026-09-19T02:09:15.8215486Z     
+2026-09-19T02:09:15.8215705Z >       assert discovery_calls == [True]
+2026-09-19T02:09:15.8215986Z E       assert [] == [True]
+2026-09-19T02:09:15.8216221Z E         
+2026-09-19T02:09:15.8216446Z E         Right contains one more item: True
+2026-09-19T02:09:15.8216750Z E         Use -v to get more diff
+2026-09-19T02:09:15.8216919Z 
+2026-09-19T02:09:15.8217039Z tests/acp/test_entry.py:67: AssertionError
+2026-09-19T02:09:15.8217421Z ------------------------------ Captured log call -------------------------------
+2026-09-19T02:09:15.8218131Z WARNING  acp_adapter.entry:mcp_startup.py:50 Background MCP discovery previously exited with no connected servers; retrying discovery thread
+2026-09-19T02:09:15.8219009Z ________ test_main_discovers_configured_mcp_when_skip_is_not_enabled[0] ________
+2026-09-19T02:09:15.8219317Z 
+2026-09-19T02:09:15.8219526Z monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f3751608310>
+2026-09-19T02:09:15.8220047Z skip_value = '0'
+2026-09-19T02:09:15.8220179Z 
+2026-09-19T02:09:15.8220362Z     @pytest.mark.parametrize("skip_value", [None, "", "0", "false"])
+2026-09-19T02:09:15.8220889Z     def test_main_discovers_configured_mcp_when_skip_is_not_enabled(monkeypatch, skip_value):
+2026-09-19T02:09:15.8221353Z         discovery_calls = []
+2026-09-19T02:09:15.8221591Z     
+2026-09-19T02:09:15.8221827Z         async def fake_run_agent(agent, **kwargs):
+2026-09-19T02:09:15.8222124Z             pass
+2026-09-19T02:09:15.8222330Z     
+2026-09-19T02:09:15.8222606Z         monkeypatch.setattr(entry, "_setup_logging", lambda: None)
+2026-09-19T02:09:15.8223020Z         monkeypatch.setattr(entry, "_load_env", lambda: None)
+2026-09-19T02:09:15.8223364Z         if skip_value is None:
+2026-09-19T02:09:15.8223851Z             monkeypatch.delenv("OPENAMER_ACP_SKIP_CONFIGURED_MCP", raising=False)
+2026-09-19T02:09:15.8224250Z         else:
+2026-09-19T02:09:15.8224575Z             monkeypatch.setenv("OPENAMER_ACP_SKIP_CONFIGURED_MCP", skip_value)
+2026-09-19T02:09:15.8224978Z         monkeypatch.setattr(
+2026-09-19T02:09:15.8225256Z             "tools.mcp_tool.discover_mcp_tools",
+2026-09-19T02:09:15.8225578Z             lambda: discovery_calls.append(True),
+2026-09-19T02:09:15.8225866Z         )
+2026-09-19T02:09:15.8226138Z         monkeypatch.setattr(acp, "run_agent", fake_run_agent)
+2026-09-19T02:09:15.8226547Z     
+2026-09-19T02:09:15.8226758Z         entry.main([])
+2026-09-19T02:09:15.8226982Z     
+2026-09-19T02:09:15.8227198Z >       assert discovery_calls == [True]
+2026-09-19T02:09:15.8227482Z E       assert [] == [True]
+2026-09-19T02:09:15.8227727Z E         
+2026-09-19T02:09:15.8227951Z E         Right contains one more item: True
+2026-09-19T02:09:15.8228524Z E         Use -v to get more diff
+2026-09-19T02:09:15.8228735Z 
+2026-09-19T02:09:15.8228864Z tests/acp/test_entry.py:67: AssertionError
+2026-09-19T02:09:15.8229264Z ------------------------------ Captured log call -------------------------------
+2026-09-19T02:09:15.8230031Z WARNING  acp_adapter.entry:mcp_startup.py:50 Background MCP discovery previously exited with no connected servers; retrying discovery thread
+2026-09-19T02:09:15.8230781Z ______ test_main_discovers_configured_mcp_when_skip_is_not_enabled[false] ______
+2026-09-19T02:09:15.8231110Z 
+2026-09-19T02:09:15.8231326Z monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f3751609b10>
+2026-09-19T02:09:15.8231728Z skip_value = 'false'
+2026-09-19T02:09:15.8231866Z 
+2026-09-19T02:09:15.8232053Z     @pytest.mark.parametrize("skip_value", [None, "", "0", "false"])
+2026-09-19T02:09:15.8232589Z     def test_main_discovers_configured_mcp_when_skip_is_not_enabled(monkeypatch, skip_value):
+2026-09-19T02:09:15.8233057Z         discovery_calls = []
+2026-09-19T02:09:15.8233298Z     
+2026-09-19T02:09:15.8233531Z         async def fake_run_agent(agent, **kwargs):
+2026-09-19T02:09:15.8233832Z             pass
+2026-09-19T02:09:15.8234052Z     
+2026-09-19T02:09:15.8234338Z         monkeypatch.setattr(entry, "_setup_logging", lambda: None)
+2026-09-19T02:09:15.8234757Z         monkeypatch.setattr(entry, "_load_env", lambda: None)
+2026-09-19T02:09:15.8235100Z         if skip_value is None:
+2026-09-19T02:09:15.8235482Z             monkeypatch.delenv("OPENAMER_ACP_SKIP_CONFIGURED_MCP", raising=False)
+2026-09-19T02:09:15.8235877Z         else:
+2026-09-19T02:09:15.8236199Z             monkeypatch.setenv("OPENAMER_ACP_SKIP_CONFIGURED_MCP", skip_value)
+2026-09-19T02:09:15.8236600Z         monkeypatch.setattr(
+2026-09-19T02:09:15.8236895Z             "tools.mcp_tool.discover_mcp_tools",
+2026-09-19T02:09:15.8237226Z             lambda: discovery_calls.append(True),
+2026-09-19T02:09:15.8237524Z         )
+2026-09-19T02:09:15.8237793Z         monkeypatch.setattr(acp, "run_agent", fake_run_agent)
+2026-09-19T02:09:15.8238119Z     
+2026-09-19T02:09:15.8238622Z         entry.main([])
+2026-09-19T02:09:15.8238881Z     
+2026-09-19T02:09:15.8239097Z >       assert discovery_calls == [True]
+2026-09-19T02:09:15.8239546Z E       assert [] == [True]
+2026-09-19T02:09:15.8239787Z E         
+2026-09-19T02:09:15.8240011Z E         Right contains one more item: True
+2026-09-19T02:09:15.8240316Z E         Use -v to get more diff
+2026-09-19T02:09:15.8240491Z 
+2026-09-19T02:09:15.8240608Z tests/acp/test_entry.py:67: AssertionError
+2026-09-19T02:09:15.8241000Z ------------------------------ Captured log call -------------------------------
+2026-09-19T02:09:15.8241717Z WARNING  acp_adapter.entry:mcp_startup.py:50 Background MCP discovery previously exited with no connected servers; retrying discovery thread
+2026-09-19T02:09:15.8242399Z =========================== short test summary info ============================
+2026-09-19T02:09:15.8242958Z FAILED tests/acp/test_entry.py::test_main_discovers_configured_mcp_when_skip_is_not_enabled[None]
+2026-09-19T02:09:15.8243734Z FAILED tests/acp/test_entry.py::test_main_discovers_configured_mcp_when_skip_is_not_enabled[]
+2026-09-19T02:09:15.8244363Z FAILED tests/acp/test_entry.py::test_main_discovers_configured_mcp_when_skip_is_not_enabled[0]
+2026-09-19T02:09:15.8245006Z FAILED tests/acp/test_entry.py::test_main_discovers_configured_mcp_when_skip_is_not_enabled[false]
+2026-09-19T02:09:15.8245542Z ========================= 4 failed, 11 passed in 3.15s =========================
+2026-09-19T02:09:15.8245792Z 
+2026-09-19T02:09:15.8245915Z --- tests/agent/test_save_url_image.py ---
+2026-09-19T02:09:15.8246266Z ============================= test session starts ==============================
+2026-09-19T02:09:15.8246687Z platform linux -- Python 3.11.16, pytest-9.0.2, pluggy-1.6.0
+2026-09-19T02:09:15.8247070Z rootdir: /home/runner/work/openamer/openamer
+2026-09-19T02:09:15.8247385Z configfile: pyproject.toml
+2026-09-19T02:09:15.8247649Z plugins: anyio-4.12.1, asyncio-1.3.0
+2026-09-19T02:09:15.8248347Z asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+2026-09-19T02:09:15.8248909Z collected 8 items
+2026-09-19T02:09:15.8249046Z 
+2026-09-19T02:09:15.8249260Z tests/agent/test_save_url_image.py ......F.                              [100%]
+2026-09-19T02:09:15.8249568Z 
+2026-09-19T02:09:15.8249705Z =================================== FAILURES ===================================
+2026-09-19T02:09:15.8250155Z _____________ TestSaveUrlImage.test_oversize_raises_and_cleans_up ______________
+2026-09-19T02:09:15.8250456Z 
+2026-09-19T02:09:15.8250691Z self = <tests.agent.test_save_url_image.TestSaveUrlImage object at 0x7f7d83b86510>
+2026-09-19T02:09:15.8251270Z http_server = ('http://127.0.0.1:59573', <socketserver.TCPServer object at 0x7f7d826fd850>)
+2026-09-19T02:09:15.8251887Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-70/test_oversize_raises_and_clean0')
+2026-09-19T02:09:15.8252240Z 
+2026-09-19T02:09:15.8252440Z     def test_oversize_raises_and_cleans_up(self, http_server, tmp_path):
+2026-09-19T02:09:15.8252935Z         """Oversize downloads must NOT leak a partial file into the cache."""
+2026-09-19T02:09:15.8253334Z         base, _ = http_server
+2026-09-19T02:09:15.8253704Z >       from agent.image_gen_provider import save_url_image, _images_cache_dir
+2026-09-19T02:09:15.8254484Z E       ImportError: cannot import name '_images_cache_dir' from 'agent.image_gen_provider' (/home/runner/work/openamer/openamer/agent/image_gen_provider.py)
+2026-09-19T02:09:15.8255064Z 
+2026-09-19T02:09:15.8255202Z tests/agent/test_save_url_image.py:152: ImportError
+2026-09-19T02:09:15.8255594Z =========================== short test summary info ============================
+2026-09-19T02:09:15.8256142Z FAILED tests/agent/test_save_url_image.py::TestSaveUrlImage::test_oversize_raises_and_cleans_up
+2026-09-19T02:09:15.8256678Z ========================= 1 failed, 7 passed in 6.22s ==========================
+2026-09-19T02:09:15.8256931Z 
+2026-09-19T02:09:15.8257055Z --- tests/gateway/test_text_batching.py ---
+2026-09-19T02:09:15.8257421Z ============================= test session starts ==============================
+2026-09-19T02:09:15.8257964Z platform linux -- Python 3.11.16, pytest-9.0.2, pluggy-1.6.0
+2026-09-19T02:09:15.8258480Z rootdir: /home/runner/work/openamer/openamer
+2026-09-19T02:09:15.8258804Z configfile: pyproject.toml
+2026-09-19T02:09:15.8259080Z plugins: anyio-4.12.1, asyncio-1.3.0
+2026-09-19T02:09:15.8259628Z asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+2026-09-19T02:09:15.8260181Z collected 23 items
+2026-09-19T02:09:15.8260319Z 
+2026-09-19T02:09:15.8260530Z tests/gateway/test_text_batching.py ....................FFF              [100%]
+2026-09-19T02:09:15.8260840Z 
+2026-09-19T02:09:15.8260985Z =================================== FAILURES ===================================
+2026-09-19T02:09:15.8261441Z __________ TestFeishuAdaptiveDelay.test_short_chunk_uses_normal_delay __________
+2026-09-19T02:09:15.8261759Z 
+2026-09-19T02:09:15.8262145Z self = <tests.gateway.test_text_batching.TestFeishuAdaptiveDelay object at 0x7f8539459a10>
+2026-09-19T02:09:15.8262529Z 
+2026-09-19T02:09:15.8262634Z     @pytest.mark.asyncio
+2026-09-19T02:09:15.8262955Z     async def test_short_chunk_uses_normal_delay(self):
+2026-09-19T02:09:15.8263354Z         adapter = _make_feishu_adapter()
+2026-09-19T02:09:15.8263708Z         event = _make_event("short msg", Platform.FEISHU)
+2026-09-19T02:09:15.8264061Z >       await adapter._enqueue_text_event(event)
+2026-09-19T02:09:15.8264263Z 
+2026-09-19T02:09:15.8264387Z tests/gateway/test_text_batching.py:481: 
+2026-09-19T02:09:15.8264731Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:09:15.8265032Z 
+2026-09-19T02:09:15.8265404Z self = <plugins.platforms.feishu.adapter.FeishuAdapter object at 0x7f8538c0fbd0>
+2026-09-19T02:09:15.8266734Z event = MessageEvent(text='short msg', message_type=<MessageType.TEXT: 'text'>, source=SessionSource(platform=<Platform.FEISHU...t=None, channel_context=None, internal=False, metadata={}, timestamp=datetime.datetime(2026, 9, 19, 1, 59, 59, 156464))
+2026-09-19T02:09:15.8267658Z 
+2026-09-19T02:09:15.8267899Z     async def _enqueue_text_event(self, event: MessageEvent) -> None:
+2026-09-19T02:09:15.8312712Z         """Debounce rapid Feishu text bursts into a single MessageEvent."""
+2026-09-19T02:09:15.8314871Z >       key = self._text_batch_key(event)
+2026-09-19T02:09:15.8315186Z               ^^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:09:15.8315594Z E       AttributeError: 'FeishuAdapter' object has no attribute '_text_batch_key'
+2026-09-19T02:09:15.8315933Z 
+2026-09-19T02:09:15.8316250Z plugins/platforms/feishu/adapter.py:2820: AttributeError
+2026-09-19T02:09:15.8316941Z ________ TestFeishuAdaptiveDelay.test_near_limit_chunk_uses_split_delay ________
+2026-09-19T02:09:15.8317266Z 
+2026-09-19T02:09:15.8317533Z self = <tests.gateway.test_text_batching.TestFeishuAdaptiveDelay object at 0x7f853945a210>
+2026-09-19T02:09:15.8317902Z 
+2026-09-19T02:09:15.8318004Z     @pytest.mark.asyncio
+2026-09-19T02:09:15.8318560Z     async def test_near_limit_chunk_uses_split_delay(self):
+2026-09-19T02:09:15.8319018Z         """A chunk near the 4096-char limit should trigger longer delay."""
+2026-09-19T02:09:15.8319413Z         adapter = _make_feishu_adapter()
+2026-09-19T02:09:15.8319705Z         long_text = "x" * 4050
+2026-09-19T02:09:15.8319994Z         event = _make_event(long_text, Platform.FEISHU)
+2026-09-19T02:09:15.8320332Z >       await adapter._enqueue_text_event(event)
+2026-09-19T02:09:15.8320534Z 
+2026-09-19T02:09:15.8320653Z tests/gateway/test_text_batching.py:492: 
+2026-09-19T02:09:15.8320993Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:09:15.8321240Z 
+2026-09-19T02:09:15.8321481Z self = <plugins.platforms.feishu.adapter.FeishuAdapter object at 0x7f85390b7550>
+2026-09-19T02:09:15.8322729Z event = MessageEvent(text='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx...t=None, channel_context=None, internal=False, metadata={}, timestamp=datetime.datetime(2026, 9, 19, 1, 59, 59, 924177))
+2026-09-19T02:09:15.8323945Z 
+2026-09-19T02:09:15.8324138Z     async def _enqueue_text_event(self, event: MessageEvent) -> None:
+2026-09-19T02:09:15.8324611Z         """Debounce rapid Feishu text bursts into a single MessageEvent."""
+2026-09-19T02:09:15.8325006Z >       key = self._text_batch_key(event)
+2026-09-19T02:09:15.8325287Z               ^^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:09:15.8325672Z E       AttributeError: 'FeishuAdapter' object has no attribute '_text_batch_key'
+2026-09-19T02:09:15.8325985Z 
+2026-09-19T02:09:15.8326156Z plugins/platforms/feishu/adapter.py:2820: AttributeError
+2026-09-19T02:09:15.8326634Z ____________ TestFeishuAdaptiveDelay.test_split_continuation_merged ____________
+2026-09-19T02:09:15.8326957Z 
+2026-09-19T02:09:15.8327230Z self = <tests.gateway.test_text_batching.TestFeishuAdaptiveDelay object at 0x7f853945aa10>
+2026-09-19T02:09:15.8327595Z 
+2026-09-19T02:09:15.8327852Z     @pytest.mark.asyncio
+2026-09-19T02:09:15.8328143Z     async def test_split_continuation_merged(self):
+2026-09-19T02:09:15.8329175Z         adapter = _make_feishu_adapter()
+2026-09-19T02:09:15.8329692Z     
+2026-09-19T02:09:15.8330102Z >       await adapter._enqueue_text_event(_make_event("x" * 4050, Platform.FEISHU))
+2026-09-19T02:09:15.8330424Z 
+2026-09-19T02:09:15.8330548Z tests/gateway/test_text_batching.py:504: 
+2026-09-19T02:09:15.8330898Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:09:15.8331148Z 
+2026-09-19T02:09:15.8331394Z self = <plugins.platforms.feishu.adapter.FeishuAdapter object at 0x7f8538dec450>
+2026-09-19T02:09:15.8332646Z event = MessageEvent(text='xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx...mpt=None, channel_context=None, internal=False, metadata={}, timestamp=datetime.datetime(2026, 9, 19, 2, 0, 0, 217799))
+2026-09-19T02:09:15.8333658Z 
+2026-09-19T02:09:15.8333847Z     async def _enqueue_text_event(self, event: MessageEvent) -> None:
+2026-09-19T02:09:15.8334321Z         """Debounce rapid Feishu text bursts into a single MessageEvent."""
+2026-09-19T02:09:15.8334721Z >       key = self._text_batch_key(event)
+2026-09-19T02:09:15.8334999Z               ^^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:09:15.8335383Z E       AttributeError: 'FeishuAdapter' object has no attribute '_text_batch_key'
+2026-09-19T02:09:15.8335703Z 
+2026-09-19T02:09:15.8335867Z plugins/platforms/feishu/adapter.py:2820: AttributeError
+2026-09-19T02:09:15.8336263Z =========================== short test summary info ============================
+2026-09-19T02:09:15.8336846Z FAILED tests/gateway/test_text_batching.py::TestFeishuAdaptiveDelay::test_short_chunk_uses_normal_delay
+2026-09-19T02:09:15.8337586Z FAILED tests/gateway/test_text_batching.py::TestFeishuAdaptiveDelay::test_near_limit_chunk_uses_split_delay
+2026-09-19T02:09:15.8338604Z FAILED tests/gateway/test_text_batching.py::TestFeishuAdaptiveDelay::test_split_continuation_merged
+2026-09-19T02:09:15.8339284Z ========================= 3 failed, 20 passed in 9.38s =========================
+2026-09-19T02:09:15.8339555Z 
+2026-09-19T02:09:15.8339701Z --- tests/openamer_cli/test_kanban_decompose.py ---
+2026-09-19T02:09:15.8340086Z ============================= test session starts ==============================
+2026-09-19T02:09:15.8340503Z platform linux -- Python 3.11.16, pytest-9.0.2, pluggy-1.6.0
+2026-09-19T02:09:15.8340889Z rootdir: /home/runner/work/openamer/openamer
+2026-09-19T02:09:15.8341205Z configfile: pyproject.toml
+2026-09-19T02:09:15.8341478Z plugins: anyio-4.12.1, asyncio-1.3.0
+2026-09-19T02:09:15.8342024Z asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+2026-09-19T02:09:15.8342575Z collected 9 items
+2026-09-19T02:09:15.8342709Z 
+2026-09-19T02:09:15.8342932Z tests/openamer_cli/test_kanban_decompose.py FFFFFF...                    [100%]
+2026-09-19T02:09:15.8343263Z 
+2026-09-19T02:09:15.8343411Z =================================== FAILURES ===================================
+2026-09-19T02:09:15.8344005Z _________________ test_decompose_with_fanout_creates_children __________________
+2026-09-19T02:09:15.8344298Z 
+2026-09-19T02:09:15.8344614Z kanban_home = PosixPath('/tmp/pytest-of-runner/pytest-171/test_decompose_with_fanout_cre0/.openamer')
+2026-09-19T02:09:15.8345022Z 
+2026-09-19T02:09:15.8345198Z     def test_decompose_with_fanout_creates_children(kanban_home):
+2026-09-19T02:09:15.8345568Z         with kb.connect() as conn:
+2026-09-19T02:09:15.8345919Z             tid = kb.create_task(conn, title="ship a feature", triage=True)
+2026-09-19T02:09:15.8346270Z     
+2026-09-19T02:09:15.8346490Z         llm_payload = jsonlib.dumps({
+2026-09-19T02:09:15.8346770Z             "fanout": True,
+2026-09-19T02:09:15.8347025Z             "rationale": "test split",
+2026-09-19T02:09:15.8347295Z             "tasks": [
+2026-09-19T02:09:15.8347793Z                 {"title": "research", "body": "look it up", "assignee": "researcher", "parents": []},
+2026-09-19T02:09:15.8348588Z                 {"title": "build", "body": "code it", "assignee": "engineer", "parents": [0]},
+2026-09-19T02:09:15.8348998Z             ],
+2026-09-19T02:09:15.8349205Z         })
+2026-09-19T02:09:15.8349406Z     
+2026-09-19T02:09:15.8349732Z         patches = _patch_list_profiles(["orchestrator", "researcher", "engineer"])
+2026-09-19T02:09:15.8350138Z         for p in patches:
+2026-09-19T02:09:15.8350378Z             p.start()
+2026-09-19T02:09:15.8350605Z         try:
+2026-09-19T02:09:15.8350885Z             with _patch_aux_client(llm_payload), _patch_extra_body():
+2026-09-19T02:09:15.8351294Z                 outcome = decomp.decompose_task(tid, author="me")
+2026-09-19T02:09:15.8351616Z         finally:
+2026-09-19T02:09:15.8351846Z             for p in patches:
+2026-09-19T02:09:15.8352097Z                 p.stop()
+2026-09-19T02:09:15.8352324Z     
+2026-09-19T02:09:15.8352538Z >       assert outcome.ok, outcome.reason
+2026-09-19T02:09:15.8352861Z E       AssertionError: DB error: ImportError
+2026-09-19T02:09:15.8353161Z E       assert False
+2026-09-19T02:09:15.8353746Z E        +  where False = DecomposeOutcome(task_id='t_94564889', ok=False, reason='DB error: ImportError', fanout=False, child_ids=None, new_title=None).ok
+2026-09-19T02:09:15.8354278Z 
+2026-09-19T02:09:15.8354461Z tests/openamer_cli/test_kanban_decompose.py:101: AssertionError
+2026-09-19T02:09:15.8354922Z ------------------------------ Captured log call -------------------------------
+2026-09-19T02:09:15.8355500Z ERROR    openamer_cli.kanban_decompose:kanban_decompose.py:286 decompose: DB error on task t_94564889
+2026-09-19T02:09:15.8355998Z Traceback (most recent call last):
+2026-09-19T02:09:15.8361497Z   File "/home/runner/work/openamer/openamer/openamer_cli/kanban_decompose.py", line 275, in _apply_fanout
+2026-09-19T02:09:15.8362101Z     child_ids = decompose_triage_task(
+2026-09-19T02:09:15.8362399Z                 ^^^^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:09:15.8363002Z   File "/home/runner/work/openamer/openamer/openamer_cli/kanban_db_graph.py", line 102, in decompose_triage_task
+2026-09-19T02:09:15.8363571Z     from openamer_cli.kanban_db import (
+2026-09-19T02:09:15.8364176Z ImportError: cannot import name '_link' from 'openamer_cli.kanban_db' (/home/runner/work/openamer/openamer/openamer_cli/kanban_db.py)
+2026-09-19T02:09:15.8364894Z _________ test_decompose_fanout_false_assigns_default_when_unassigned __________
+2026-09-19T02:09:15.8365214Z 
+2026-09-19T02:09:15.8365531Z kanban_home = PosixPath('/tmp/pytest-of-runner/pytest-171/test_decompose_fanout_false_as0/.openamer')
+2026-09-19T02:09:15.8365931Z 
+2026-09-19T02:09:15.8366158Z     def test_decompose_fanout_false_assigns_default_when_unassigned(kanban_home):
+2026-09-19T02:09:15.8366593Z         with kb.connect() as conn:
+2026-09-19T02:09:15.8366961Z             tid = kb.create_task(conn, title="just one thing", triage=True)
+2026-09-19T02:09:15.8367314Z     
+2026-09-19T02:09:15.8367534Z         llm_payload = jsonlib.dumps({
+2026-09-19T02:09:15.8367823Z             "fanout": False,
+2026-09-19T02:09:15.8368085Z             "rationale": "single unit",
+2026-09-19T02:09:15.8368944Z             "title": "Tightened title",
+2026-09-19T02:09:15.8369256Z             "body": "**Goal**\nDo the thing.",
+2026-09-19T02:09:15.8369553Z         })
+2026-09-19T02:09:15.8369748Z     
+2026-09-19T02:09:15.8370037Z         patches = _patch_list_profiles(["orchestrator", "fallback"])
+2026-09-19T02:09:15.8370416Z         for p in patches:
+2026-09-19T02:09:15.8370667Z             p.start()
+2026-09-19T02:09:15.8370890Z         try:
+2026-09-19T02:09:15.8371203Z >           with _patch_aux_client(llm_payload), _patch_extra_body(), patch(
+2026-09-19T02:09:15.8371642Z                 "openamer_cli.kanban_decompose._load_config",
+2026-09-19T02:09:15.8372051Z                 return_value={"kanban": {"default_assignee": "fallback"}},
+2026-09-19T02:09:15.8372401Z             ):
+2026-09-19T02:09:15.8372528Z 
+2026-09-19T02:09:15.8372665Z tests/openamer_cli/test_kanban_decompose.py:131: 
+2026-09-19T02:09:15.8373160Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:09:15.8373747Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/unittest/mock.py:1446: in __enter__
+2026-09-19T02:09:15.8374282Z     original, local = self.get_original()
+2026-09-19T02:09:15.8374569Z                       ^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:09:15.8374887Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:09:15.8375146Z 
+2026-09-19T02:09:15.8375303Z self = <unittest.mock._patch object at 0x7fc36d22c9d0>
+2026-09-19T02:09:15.8375540Z 
+2026-09-19T02:09:15.8375646Z     def get_original(self):
+2026-09-19T02:09:15.8375907Z         target = self.getter()
+2026-09-19T02:09:15.8376172Z         name = self.attribute
+2026-09-19T02:09:15.8376413Z     
+2026-09-19T02:09:15.8376615Z         original = DEFAULT
+2026-09-19T02:09:15.8376861Z         local = False
+2026-09-19T02:09:15.8377079Z     
+2026-09-19T02:09:15.8377273Z         try:
+2026-09-19T02:09:15.8377503Z             original = target.__dict__[name]
+2026-09-19T02:09:15.8377817Z         except (AttributeError, KeyError):
+2026-09-19T02:09:15.8378136Z             original = getattr(target, name, DEFAULT)
+2026-09-19T02:09:15.8378836Z         else:
+2026-09-19T02:09:15.8379054Z             local = True
+2026-09-19T02:09:15.8379280Z     
+2026-09-19T02:09:15.8379546Z         if name in _builtins and isinstance(target, ModuleType):
+2026-09-19T02:09:15.8379899Z             self.create = True
+2026-09-19T02:09:15.8380138Z     
+2026-09-19T02:09:15.8380365Z         if not self.create and original is DEFAULT:
+2026-09-19T02:09:15.8380677Z >           raise AttributeError(
+2026-09-19T02:09:15.8380999Z                 "%s does not have the attribute %r" % (target, name)
+2026-09-19T02:09:15.8381322Z             )
+2026-09-19T02:09:15.8382038Z E           AttributeError: <module 'openamer_cli.kanban_decompose' from '/home/runner/work/openamer/openamer/openamer_cli/kanban_decompose.py'> does not have the attribute '_load_config'
+2026-09-19T02:09:15.8382719Z 
+2026-09-19T02:09:15.8383051Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/unittest/mock.py:1419: AttributeError
+2026-09-19T02:09:15.8383689Z ___________ test_decompose_fanout_false_preserves_existing_assignee ____________
+2026-09-19T02:09:15.8383999Z 
+2026-09-19T02:09:15.8384307Z kanban_home = PosixPath('/tmp/pytest-of-runner/pytest-171/test_decompose_fanout_false_pr0/.openamer')
+2026-09-19T02:09:15.8384712Z 
+2026-09-19T02:09:15.8384923Z     def test_decompose_fanout_false_preserves_existing_assignee(kanban_home):
+2026-09-19T02:09:15.8385336Z         with kb.connect() as conn:
+2026-09-19T02:09:15.8385606Z             tid = kb.create_task(
+2026-09-19T02:09:15.8385860Z                 conn,
+2026-09-19T02:09:15.8386094Z                 title="already routed",
+2026-09-19T02:09:15.8386381Z                 assignee="engineer",
+2026-09-19T02:09:15.8386654Z                 triage=True,
+2026-09-19T02:09:15.8386891Z             )
+2026-09-19T02:09:15.8387096Z     
+2026-09-19T02:09:15.8387305Z         llm_payload = jsonlib.dumps({
+2026-09-19T02:09:15.8387723Z             "fanout": False,
+2026-09-19T02:09:15.8387976Z             "rationale": "single unit",
+2026-09-19T02:09:15.8388514Z             "title": "Tightened title",
+2026-09-19T02:09:15.8388825Z             "body": "Keep existing lane.",
+2026-09-19T02:09:15.8389150Z             "assignee": "fallback",
+2026-09-19T02:09:15.8389404Z         })
+2026-09-19T02:09:15.8389592Z     
+2026-09-19T02:09:15.8389906Z         patches = _patch_list_profiles(["orchestrator", "engineer", "fallback"])
+2026-09-19T02:09:15.8390308Z         for p in patches:
+2026-09-19T02:09:15.8390542Z             p.start()
+2026-09-19T02:09:15.8390764Z         try:
+2026-09-19T02:09:15.8391064Z >           with _patch_aux_client(llm_payload), _patch_extra_body(), patch(
+2026-09-19T02:09:15.8391484Z                 "openamer_cli.kanban_decompose._load_config",
+2026-09-19T02:09:15.8392012Z                 return_value={"kanban": {"default_assignee": "fallback"}},
+2026-09-19T02:09:15.8392365Z             ):
+2026-09-19T02:09:15.8392496Z 
+2026-09-19T02:09:15.8392636Z tests/openamer_cli/test_kanban_decompose.py:173: 
+2026-09-19T02:09:15.8393002Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:09:15.8393561Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/unittest/mock.py:1446: in __enter__
+2026-09-19T02:09:15.8394083Z     original, local = self.get_original()
+2026-09-19T02:09:15.8394363Z                       ^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:09:15.8394677Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:09:15.8394920Z 
+2026-09-19T02:09:15.8395064Z self = <unittest.mock._patch object at 0x7fc36d3cb290>
+2026-09-19T02:09:15.8395297Z 
+2026-09-19T02:09:15.8395398Z     def get_original(self):
+2026-09-19T02:09:15.8395652Z         target = self.getter()
+2026-09-19T02:09:15.8395908Z         name = self.attribute
+2026-09-19T02:09:15.8396155Z     
+2026-09-19T02:09:15.8396354Z         original = DEFAULT
+2026-09-19T02:09:15.8396594Z         local = False
+2026-09-19T02:09:15.8396806Z     
+2026-09-19T02:09:15.8396990Z         try:
+2026-09-19T02:09:15.8397208Z             original = target.__dict__[name]
+2026-09-19T02:09:15.8397509Z         except (AttributeError, KeyError):
+2026-09-19T02:09:15.8397815Z             original = getattr(target, name, DEFAULT)
+2026-09-19T02:09:15.8398104Z         else:
+2026-09-19T02:09:15.8398563Z             local = True
+2026-09-19T02:09:15.8398797Z     
+2026-09-19T02:09:15.8399061Z         if name in _builtins and isinstance(target, ModuleType):
+2026-09-19T02:09:15.8399413Z             self.create = True
+2026-09-19T02:09:15.8399652Z     
+2026-09-19T02:09:15.8399880Z         if not self.create and original is DEFAULT:
+2026-09-19T02:09:15.8400194Z >           raise AttributeError(
+2026-09-19T02:09:15.8400512Z                 "%s does not have the attribute %r" % (target, name)
+2026-09-19T02:09:15.8400847Z             )
+2026-09-19T02:09:15.8401566Z E           AttributeError: <module 'openamer_cli.kanban_decompose' from '/home/runner/work/openamer/openamer/openamer_cli/kanban_decompose.py'> does not have the attribute '_load_config'
+2026-09-19T02:09:15.8402260Z 
+2026-09-19T02:09:15.8402601Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/unittest/mock.py:1419: AttributeError
+2026-09-19T02:09:15.8403230Z _____________ test_decompose_fanout_false_uses_valid_llm_assignee ______________
+2026-09-19T02:09:15.8403535Z 
+2026-09-19T02:09:15.8403846Z kanban_home = PosixPath('/tmp/pytest-of-runner/pytest-171/test_decompose_fanout_false_us0/.openamer')
+2026-09-19T02:09:15.8404247Z 
+2026-09-19T02:09:15.8404446Z     def test_decompose_fanout_false_uses_valid_llm_assignee(kanban_home):
+2026-09-19T02:09:15.8404834Z         with kb.connect() as conn:
+2026-09-19T02:09:15.8405177Z             tid = kb.create_task(conn, title="route me", triage=True)
+2026-09-19T02:09:15.8405511Z     
+2026-09-19T02:09:15.8405723Z         llm_payload = jsonlib.dumps({
+2026-09-19T02:09:15.8405997Z             "fanout": False,
+2026-09-19T02:09:15.8406389Z             "rationale": "single unit",
+2026-09-19T02:09:15.8406670Z             "title": "Tightened title",
+2026-09-19T02:09:15.8406953Z             "body": "Route to specialist.",
+2026-09-19T02:09:15.8407248Z             "assignee": "engineer",
+2026-09-19T02:09:15.8407503Z         })
+2026-09-19T02:09:15.8407694Z     
+2026-09-19T02:09:15.8407999Z         patches = _patch_list_profiles(["orchestrator", "engineer", "fallback"])
+2026-09-19T02:09:15.8408645Z         for p in patches:
+2026-09-19T02:09:15.8408887Z             p.start()
+2026-09-19T02:09:15.8409105Z         try:
+2026-09-19T02:09:15.8409406Z >           with _patch_aux_client(llm_payload), _patch_extra_body(), patch(
+2026-09-19T02:09:15.8409825Z                 "openamer_cli.kanban_decompose._load_config",
+2026-09-19T02:09:15.8410222Z                 return_value={"kanban": {"default_assignee": "fallback"}},
+2026-09-19T02:09:15.8410731Z             ):
+2026-09-19T02:09:15.8410860Z 
+2026-09-19T02:09:15.8411002Z tests/openamer_cli/test_kanban_decompose.py:206: 
+2026-09-19T02:09:15.8411366Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:09:15.8411924Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/unittest/mock.py:1446: in __enter__
+2026-09-19T02:09:15.8412449Z     original, local = self.get_original()
+2026-09-19T02:09:15.8412733Z                       ^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:09:15.8413053Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:09:15.8413304Z 
+2026-09-19T02:09:15.8413451Z self = <unittest.mock._patch object at 0x7fc36d3b67d0>
+2026-09-19T02:09:15.8413687Z 
+2026-09-19T02:09:15.8413791Z     def get_original(self):
+2026-09-19T02:09:15.8414043Z         target = self.getter()
+2026-09-19T02:09:15.8414297Z         name = self.attribute
+2026-09-19T02:09:15.8414534Z     
+2026-09-19T02:09:15.8414743Z         original = DEFAULT
+2026-09-19T02:09:15.8414982Z         local = False
+2026-09-19T02:09:15.8415198Z     
+2026-09-19T02:09:15.8415381Z         try:
+2026-09-19T02:09:15.8415601Z             original = target.__dict__[name]
+2026-09-19T02:09:15.8415906Z         except (AttributeError, KeyError):
+2026-09-19T02:09:15.8416214Z             original = getattr(target, name, DEFAULT)
+2026-09-19T02:09:15.8416503Z         else:
+2026-09-19T02:09:15.8416708Z             local = True
+2026-09-19T02:09:15.8416935Z     
+2026-09-19T02:09:15.8417193Z         if name in _builtins and isinstance(target, ModuleType):
+2026-09-19T02:09:15.8417537Z             self.create = True
+2026-09-19T02:09:15.8417772Z     
+2026-09-19T02:09:15.8418000Z         if not self.create and original is DEFAULT:
+2026-09-19T02:09:15.8418597Z >           raise AttributeError(
+2026-09-19T02:09:15.8418927Z                 "%s does not have the attribute %r" % (target, name)
+2026-09-19T02:09:15.8419248Z             )
+2026-09-19T02:09:15.8419961Z E           AttributeError: <module 'openamer_cli.kanban_decompose' from '/home/runner/work/openamer/openamer/openamer_cli/kanban_decompose.py'> does not have the attribute '_load_config'
+2026-09-19T02:09:15.8420638Z 
+2026-09-19T02:09:15.8420971Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/unittest/mock.py:1419: AttributeError
+2026-09-19T02:09:15.8421602Z ________ test_decompose_fanout_false_invalid_llm_assignee_uses_default _________
+2026-09-19T02:09:15.8421913Z 
+2026-09-19T02:09:15.8422223Z kanban_home = PosixPath('/tmp/pytest-of-runner/pytest-171/test_decompose_fanout_false_in0/.openamer')
+2026-09-19T02:09:15.8422618Z 
+2026-09-19T02:09:15.8422846Z     def test_decompose_fanout_false_invalid_llm_assignee_uses_default(kanban_home):
+2026-09-19T02:09:15.8423268Z         with kb.connect() as conn:
+2026-09-19T02:09:15.8423614Z             tid = kb.create_task(conn, title="route me safely", triage=True)
+2026-09-19T02:09:15.8423966Z     
+2026-09-19T02:09:15.8424184Z         llm_payload = jsonlib.dumps({
+2026-09-19T02:09:15.8424461Z             "fanout": False,
+2026-09-19T02:09:15.8424856Z             "rationale": "single unit",
+2026-09-19T02:09:15.8425141Z             "title": "Tightened title",
+2026-09-19T02:09:15.8425417Z             "body": "Route to fallback.",
+2026-09-19T02:09:15.8425698Z             "assignee": "made_up",
+2026-09-19T02:09:15.8425946Z         })
+2026-09-19T02:09:15.8426136Z     
+2026-09-19T02:09:15.8426406Z         patches = _patch_list_profiles(["orchestrator", "fallback"])
+2026-09-19T02:09:15.8426761Z         for p in patches:
+2026-09-19T02:09:15.8426995Z             p.start()
+2026-09-19T02:09:15.8427211Z         try:
+2026-09-19T02:09:15.8427504Z >           with _patch_aux_client(llm_payload), _patch_extra_body(), patch(
+2026-09-19T02:09:15.8427915Z                 "openamer_cli.kanban_decompose._load_config",
+2026-09-19T02:09:15.8428533Z                 return_value={"kanban": {"default_assignee": "fallback"}},
+2026-09-19T02:09:15.8428892Z             ):
+2026-09-19T02:09:15.8429137Z 
+2026-09-19T02:09:15.8429280Z tests/openamer_cli/test_kanban_decompose.py:238: 
+2026-09-19T02:09:15.8429686Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:09:15.8430241Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/unittest/mock.py:1446: in __enter__
+2026-09-19T02:09:15.8430761Z     original, local = self.get_original()
+2026-09-19T02:09:15.8431045Z                       ^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:09:15.8431358Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:09:15.8431602Z 
+2026-09-19T02:09:15.8431746Z self = <unittest.mock._patch object at 0x7fc36d238f10>
+2026-09-19T02:09:15.8431983Z 
+2026-09-19T02:09:15.8432085Z     def get_original(self):
+2026-09-19T02:09:15.8432336Z         target = self.getter()
+2026-09-19T02:09:15.8432595Z         name = self.attribute
+2026-09-19T02:09:15.8432828Z     
+2026-09-19T02:09:15.8433023Z         original = DEFAULT
+2026-09-19T02:09:15.8433261Z         local = False
+2026-09-19T02:09:15.8433469Z     
+2026-09-19T02:09:15.8433658Z         try:
+2026-09-19T02:09:15.8433880Z             original = target.__dict__[name]
+2026-09-19T02:09:15.8434180Z         except (AttributeError, KeyError):
+2026-09-19T02:09:15.8434488Z             original = getattr(target, name, DEFAULT)
+2026-09-19T02:09:15.8434780Z         else:
+2026-09-19T02:09:15.8434989Z             local = True
+2026-09-19T02:09:15.8435208Z     
+2026-09-19T02:09:15.8435466Z         if name in _builtins and isinstance(target, ModuleType):
+2026-09-19T02:09:15.8435803Z             self.create = True
+2026-09-19T02:09:15.8436038Z     
+2026-09-19T02:09:15.8436263Z         if not self.create and original is DEFAULT:
+2026-09-19T02:09:15.8436573Z >           raise AttributeError(
+2026-09-19T02:09:15.8436884Z                 "%s does not have the attribute %r" % (target, name)
+2026-09-19T02:09:15.8437203Z             )
+2026-09-19T02:09:15.8437911Z E           AttributeError: <module 'openamer_cli.kanban_decompose' from '/home/runner/work/openamer/openamer/openamer_cli/kanban_decompose.py'> does not have the attribute '_load_config'
+2026-09-19T02:09:15.8438856Z 
+2026-09-19T02:09:15.8439205Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/unittest/mock.py:1419: AttributeError
+2026-09-19T02:09:15.8439840Z ____________ test_decompose_unknown_assignee_falls_back_to_default _____________
+2026-09-19T02:09:15.8440146Z 
+2026-09-19T02:09:15.8440456Z kanban_home = PosixPath('/tmp/pytest-of-runner/pytest-171/test_decompose_unknown_assigne0/.openamer')
+2026-09-19T02:09:15.8440858Z 
+2026-09-19T02:09:15.8441063Z     def test_decompose_unknown_assignee_falls_back_to_default(kanban_home):
+2026-09-19T02:09:15.8441459Z         with kb.connect() as conn:
+2026-09-19T02:09:15.8441783Z             tid = kb.create_task(conn, title="x", triage=True)
+2026-09-19T02:09:15.8442092Z     
+2026-09-19T02:09:15.8442389Z         # Roster only has 'orchestrator' and 'fallback'; LLM picks 'made_up'.
+2026-09-19T02:09:15.8442787Z         llm_payload = jsonlib.dumps({
+2026-09-19T02:09:15.8443065Z             "fanout": True,
+2026-09-19T02:09:15.8443460Z             "rationale": "test",
+2026-09-19T02:09:15.8443711Z             "tasks": [
+2026-09-19T02:09:15.8444024Z                 {"title": "do X", "body": "", "assignee": "made_up", "parents": []},
+2026-09-19T02:09:15.8444382Z             ],
+2026-09-19T02:09:15.8444587Z         })
+2026-09-19T02:09:15.8444775Z     
+2026-09-19T02:09:15.8445049Z         patches = _patch_list_profiles(["orchestrator", "fallback"])
+2026-09-19T02:09:15.8445405Z         for p in patches:
+2026-09-19T02:09:15.8445646Z             p.start()
+2026-09-19T02:09:15.8445860Z         try:
+2026-09-19T02:09:15.8446069Z >           with patch.dict(
+2026-09-19T02:09:15.8446333Z                 "os.environ", {}, clear=False,
+2026-09-19T02:09:15.8446693Z             ), _patch_aux_client(llm_payload), _patch_extra_body(), \
+2026-09-19T02:09:15.8447027Z                 patch(
+2026-09-19T02:09:15.8447413Z                     "openamer_cli.kanban_decompose._load_config",
+2026-09-19T02:09:15.8447754Z                     return_value={
+2026-09-19T02:09:15.8448019Z                         "kanban": {
+2026-09-19T02:09:15.8448599Z                             "orchestrator_profile": "orchestrator",
+2026-09-19T02:09:15.8448971Z                             "default_assignee": "fallback",
+2026-09-19T02:09:15.8449274Z                         }
+2026-09-19T02:09:15.8449505Z                     },
+2026-09-19T02:09:15.8449717Z                 ):
+2026-09-19T02:09:15.8449841Z 
+2026-09-19T02:09:15.8449981Z tests/openamer_cli/test_kanban_decompose.py:271: 
+2026-09-19T02:09:15.8450345Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:09:15.8450903Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/unittest/mock.py:1446: in __enter__
+2026-09-19T02:09:15.8451422Z     original, local = self.get_original()
+2026-09-19T02:09:15.8451717Z                       ^^^^^^^^^^^^^^^^^^^
+2026-09-19T02:09:15.8452034Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-09-19T02:09:15.8452284Z 
+2026-09-19T02:09:15.8452431Z self = <unittest.mock._patch object at 0x7fc36d3d5b90>
+2026-09-19T02:09:15.8452660Z 
+2026-09-19T02:09:15.8452763Z     def get_original(self):
+2026-09-19T02:09:15.8453013Z         target = self.getter()
+2026-09-19T02:09:15.8453265Z         name = self.attribute
+2026-09-19T02:09:15.8453507Z     
+2026-09-19T02:09:15.8453704Z         original = DEFAULT
+2026-09-19T02:09:15.8453940Z         local = False
+2026-09-19T02:09:15.8454150Z     
+2026-09-19T02:09:15.8454338Z         try:
+2026-09-19T02:09:15.8454557Z             original = target.__dict__[name]
+2026-09-19T02:09:15.8454860Z         except (AttributeError, KeyError):
+2026-09-19T02:09:15.8455172Z             original = getattr(target, name, DEFAULT)
+2026-09-19T02:09:15.8455468Z         else:
+2026-09-19T02:09:15.8455675Z             local = True
+2026-09-19T02:09:15.8455896Z     
+2026-09-19T02:09:15.8456161Z         if name in _builtins and isinstance(target, ModuleType):
+2026-09-19T02:09:15.8456509Z             self.create = True
+2026-09-19T02:09:15.8456747Z     
+2026-09-19T02:09:15.8456972Z         if not self.create and original is DEFAULT:
+2026-09-19T02:09:15.8457284Z >           raise AttributeError(
+2026-09-19T02:09:15.8457599Z                 "%s does not have the attribute %r" % (target, name)
+2026-09-19T02:09:15.8457924Z             )
+2026-09-19T02:09:15.8458885Z E           AttributeError: <module 'openamer_cli.kanban_decompose' from '/home/runner/work/openamer/openamer/openamer_cli/kanban_decompose.py'> does not have the attribute '_load_config'
+2026-09-19T02:09:15.8459577Z 
+2026-09-19T02:09:15.8459910Z ../../_temp/uv-python-dir/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/unittest/mock.py:1419: AttributeError
+2026-09-19T02:09:15.8460489Z =========================== short test summary info ============================
+2026-09-19T02:09:15.8461033Z FAILED tests/openamer_cli/test_kanban_decompose.py::test_decompose_with_fanout_creates_children
+2026-09-19T02:09:15.8461909Z FAILED tests/openamer_cli/test_kanban_decompose.py::test_decompose_fanout_false_assigns_default_when_unassigned
+2026-09-19T02:09:15.8462648Z FAILED tests/openamer_cli/test_kanban_decompose.py::test_decompose_fanout_false_preserves_existing_assignee
+2026-09-19T02:09:15.8463357Z FAILED tests/openamer_cli/test_kanban_decompose.py::test_decompose_fanout_false_uses_valid_llm_assignee
+2026-09-19T02:09:15.8464083Z FAILED tests/openamer_cli/test_kanban_decompose.py::test_decompose_fanout_false_invalid_llm_assignee_uses_default
+2026-09-19T02:09:15.8464818Z FAILED tests/openamer_cli/test_kanban_decompose.py::test_decompose_unknown_assignee_falls_back_to_default
+2026-09-19T02:09:15.8465430Z ========================= 6 failed, 3 passed in 2.94s ==========================
+2026-09-19T02:09:15.8465690Z 
+2026-09-19T02:09:15.8465851Z --- tests/openamer_cli/test_startup_plugin_gating.py ---
+2026-09-19T02:09:15.8466356Z ============================= test session starts ==============================
+2026-09-19T02:09:15.8466779Z platform linux -- Python 3.11.16, pytest-9.0.2, pluggy-1.6.0
+2026-09-19T02:09:15.8467157Z rootdir: /home/runner/work/openamer/openamer
+2026-09-19T02:09:15.8467464Z configfile: pyproject.toml
+2026-09-19T02:09:15.8467729Z plugins: anyio-4.12.1, asyncio-1.3.0
+2026-09-19T02:09:15.8468502Z asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+2026-09-19T02:09:15.8469073Z collected 37 items
+2026-09-19T02:09:15.8469208Z 
+2026-09-19T02:09:15.8469429Z tests/openamer_cli/test_startup_plugin_gating.py ....................... [ 62%]
+2026-09-19T02:09:15.8469880Z ............F.                                                           [100%]
+2026-09-19T02:09:15.8470118Z 
+2026-09-19T02:09:15.8470260Z =================================== FAILURES ===================================
+2026-09-19T02:09:15.8470699Z _____________ test_builtin_set_covers_every_registered_subcommand ______________
+2026-09-19T02:09:15.8470999Z 
+2026-09-19T02:09:15.8471165Z     def test_builtin_set_covers_every_registered_subcommand():
+2026-09-19T02:09:15.8471603Z         """Every subcommand registered in main() must appear in the set.
+2026-09-19T02:09:15.8471962Z     
+2026-09-19T02:09:15.8472256Z         Missing entries cause a slow-path regression (correctness stays
+2026-09-19T02:09:15.8472831Z         fine — discovery just runs unnecessarily).
+2026-09-19T02:09:15.8473131Z         """
+2026-09-19T02:09:15.8473349Z         live = _live_subcommand_names()
+2026-09-19T02:09:15.8473785Z         # "help" is synthetic — an argparse-implicit convenience we include
+2026-09-19T02:09:15.8474275Z         # in the set so ``openamer help <cmd>`` skips discovery; it won't show
+2026-09-19T02:09:15.8474678Z         # up as a subparser in the --help output.
+2026-09-19T02:09:15.8475009Z         declared = _BUILTIN_SUBCOMMANDS - {"help"}
+2026-09-19T02:09:15.8475336Z         missing_from_declaration = live - declared
+2026-09-19T02:09:15.8475669Z >       assert not missing_from_declaration, (
+2026-09-19T02:09:15.8476049Z             f"_BUILTIN_SUBCOMMANDS is missing these live subcommands: "
+2026-09-19T02:09:15.8476460Z             f"{sorted(missing_from_declaration)}. Add them to "
+2026-09-19T02:09:15.8476900Z             f"openamer_cli/main.py::_BUILTIN_SUBCOMMANDS so plugin discovery "
+2026-09-19T02:09:15.8477325Z             f"can be skipped when the user targets them."
+2026-09-19T02:09:15.8477630Z         )
+2026-09-19T02:09:15.8479241Z E       AssertionError: _BUILTIN_SUBCOMMANDS is missing these live subcommands: ['agent', 'cost', 'crew', 'cross-session', 'initiative', 'lint-fix', 'marketplace', 'observe', 'plugin', 'repomap', 'review-pr', 'sandbox', 'super', 'swarm', 'tracing', 'tree', 'voice', 'web-agent', 'workflow']. Add them to openamer_cli/main.py::_BUILTIN_SUBCOMMANDS so plugin discovery can be skipped when the user targets them.
+2026-09-19T02:09:15.8480820Z E       assert not {'agent', 'cost', 'crew', 'cross-session', 'initiative', 'lint-fix', ...}
+2026-09-19T02:09:15.8481148Z 
+2026-09-19T02:09:15.8481539Z tests/openamer_cli/test_startup_plugin_gating.py:159: AssertionError
+2026-09-19T02:09:15.8481996Z =========================== short test summary info ============================
+2026-09-19T02:09:15.8482590Z FAILED tests/openamer_cli/test_startup_plugin_gating.py::test_builtin_set_covers_every_registered_subcommand
+2026-09-19T02:09:15.8483169Z ========================= 1 failed, 36 passed in 3.69s =========================
+2026-09-19T02:09:15.8483426Z 
+2026-09-19T02:09:15.8483563Z --- tests/scripts/test_autonom_watchtower.py ---
+2026-09-19T02:09:15.8483924Z ============================= test session starts ==============================
+2026-09-19T02:09:15.8484339Z platform linux -- Python 3.11.16, pytest-9.0.2, pluggy-1.6.0
+2026-09-19T02:09:15.8484718Z rootdir: /home/runner/work/openamer/openamer
+2026-09-19T02:09:15.8485030Z configfile: pyproject.toml
+2026-09-19T02:09:15.8485293Z plugins: anyio-4.12.1, asyncio-1.3.0
+2026-09-19T02:09:15.8485951Z asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+2026-09-19T02:09:15.8486508Z collected 7 items
+2026-09-19T02:09:15.8486642Z 
+2026-09-19T02:09:15.8486861Z tests/scripts/test_autonom_watchtower.py .....F.                         [100%]
+2026-09-19T02:09:15.8487175Z 
+2026-09-19T02:09:15.8487315Z =================================== FAILURES ===================================
+2026-09-19T02:09:15.8487729Z ______________________ test_main_stays_quiet_when_healthy ______________________
+2026-09-19T02:09:15.8488009Z 
+2026-09-19T02:09:15.8488405Z monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7f80c41c9fd0>
+2026-09-19T02:09:15.8489061Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-233/test_main_stays_quiet_when_hea0')
+2026-09-19T02:09:15.8489600Z capsys = <_pytest.capture.CaptureFixture object at 0x7f80c41cba90>
+2026-09-19T02:09:15.8489875Z 
+2026-09-19T02:09:15.8490082Z     def test_main_stays_quiet_when_healthy(monkeypatch, tmp_path, capsys):
+2026-09-19T02:09:15.8490503Z         _healthy_main_fixture(monkeypatch, tmp_path)
+2026-09-19T02:09:15.8490817Z         rc = W.main()
+2026-09-19T02:09:15.8491038Z >       assert rc == 0
+2026-09-19T02:09:15.8491266Z E       assert 1 == 0
+2026-09-19T02:09:15.8491401Z 
+2026-09-19T02:09:15.8491564Z tests/scripts/test_autonom_watchtower.py:74: AssertionError
+2026-09-19T02:09:15.8492006Z ----------------------------- Captured stdout call -----------------------------
+2026-09-19T02:09:15.8492365Z {
+2026-09-19T02:09:15.8492559Z   "ts": 1789783267.4731717,
+2026-09-19T02:09:15.8492790Z   "healthy": false,
+2026-09-19T02:09:15.8493011Z   "problems": [
+2026-09-19T02:09:15.8493235Z     "Dashboard serve :9119 down"
+2026-09-19T02:09:15.8493484Z   ],
+2026-09-19T02:09:15.8493677Z   "actions": []
+2026-09-19T02:09:15.8493874Z }
+2026-09-19T02:09:15.8494076Z [watchtower] took actions: none
+2026-09-19T02:09:15.8494397Z =========================== short test summary info ============================
+2026-09-19T02:09:15.8494882Z FAILED tests/scripts/test_autonom_watchtower.py::test_main_stays_quiet_when_healthy
+2026-09-19T02:09:15.8495370Z ========================= 1 failed, 6 passed in 2.20s ==========================
+2026-09-19T02:09:15.8495619Z 
+2026-09-19T02:09:15.8495736Z --- tests/test_darwin_phantom_home.py ---
+2026-09-19T02:09:15.8496078Z ============================= test session starts ==============================
+2026-09-19T02:09:15.8496481Z platform linux -- Python 3.11.16, pytest-9.0.2, pluggy-1.6.0
+2026-09-19T02:09:15.8496854Z rootdir: /home/runner/work/openamer/openamer
+2026-09-19T02:09:15.8497165Z configfile: pyproject.toml
+2026-09-19T02:09:15.8497426Z plugins: anyio-4.12.1, asyncio-1.3.0
+2026-09-19T02:09:15.8497968Z asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+2026-09-19T02:09:15.8498809Z collected 10 items
+2026-09-19T02:09:15.8498944Z 
+2026-09-19T02:09:15.8499161Z tests/test_darwin_phantom_home.py F........F                             [100%]
+2026-09-19T02:09:15.8499465Z 
+2026-09-19T02:09:15.8499753Z =================================== FAILURES ===================================
+2026-09-19T02:09:15.8500167Z _______________________ test_scratch_home_is_not_adopted _______________________
+2026-09-19T02:09:15.8500443Z 
+2026-09-19T02:09:15.8500697Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-240/test_scratch_home_is_not_adopt0')
+2026-09-19T02:09:15.8501255Z monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x7fd9560ab750>
+2026-09-19T02:09:15.8501559Z 
+2026-09-19T02:09:15.8501728Z     def test_scratch_home_is_not_adopted(tmp_path, monkeypatch):
+2026-09-19T02:09:15.8502190Z         """A dir that exists but carries no install markers falls back to default."""
+2026-09-19T02:09:15.8502600Z         scratch = tmp_path / "oa-home"
+2026-09-19T02:09:15.8502986Z         (scratch / "skills").mkdir(parents=True)  # exists, but is not an install
+2026-09-19T02:09:15.8503358Z     
+2026-09-19T02:09:15.8503801Z         mod = _load_fresh(monkeypatch, "/c" + str(scratch).replace("\\", "/").lstrip("C:"))
+2026-09-19T02:09:15.8504214Z     
+2026-09-19T02:09:15.8504501Z         assert mod.HOME != scratch, "scratch dir adopted as OPENAMER_HOME"
+2026-09-19T02:09:15.8504990Z >       assert mod._is_install_root(mod.HOME), "fallback home is not a real install"
+2026-09-19T02:09:15.8505459Z E       AssertionError: fallback home is not a real install
+2026-09-19T02:09:15.8505784Z E       assert False
+2026-09-19T02:09:15.8506262Z E        +  where False = <function _is_install_root at 0x7fd9548db060>(PosixPath('/home/runner/AppData/Local/openamer'))
+2026-09-19T02:09:15.8507266Z E        +    where <function _is_install_root at 0x7fd9548db060> = <module 'darwin_engine_phantom_probe' from '/home/runner/work/openamer/openamer/scripts/darwin_engine.py'>._is_install_root
+2026-09-19T02:09:15.8508645Z E        +    and   PosixPath('/home/runner/AppData/Local/openamer') = <module 'darwin_engine_phantom_probe' from '/home/runner/work/openamer/openamer/scripts/darwin_engine.py'>.HOME
+2026-09-19T02:09:15.8509283Z 
+2026-09-19T02:09:15.8509435Z tests/test_darwin_phantom_home.py:54: AssertionError
+2026-09-19T02:09:15.8509861Z __________________ test_cron_wrapper_reaches_real_population ___________________
+2026-09-19T02:09:15.8510158Z 
+2026-09-19T02:09:15.8510295Z     def test_cron_wrapper_reaches_real_population():
+2026-09-19T02:09:15.8510717Z         """End-to-end: the poisoned env still yields a 110-skill population."""
+2026-09-19T02:09:15.8511115Z         proc = subprocess.run(
+2026-09-19T02:09:15.8511420Z             [sys.executable, str(ENGINE), "--autopilot"],
+2026-09-19T02:09:15.8511830Z             cwd=str(REPO), capture_output=True, text=True, encoding="utf-8",
+2026-09-19T02:09:15.8512215Z             errors="replace", timeout=420,
+2026-09-19T02:09:15.8512526Z             env={"OPENAMER_HOME": "C:/tmp/oa-home",
+2026-09-19T02:09:15.8512884Z                  "PATH": __import__("os").environ.get("PATH", ""),
+2026-09-19T02:09:15.8513311Z                  "SYSTEMROOT": __import__("os").environ.get("SYSTEMROOT", "")},
+2026-09-19T02:09:15.8513676Z         )
+2026-09-19T02:09:15.8513896Z         out = proc.stdout + proc.stderr
+2026-09-19T02:09:15.8514238Z         assert "fitness computed for 0 skills" not in out, out
+2026-09-19T02:09:15.8514589Z >       assert "REFUSING" not in out, out
+2026-09-19T02:09:15.8515435Z E       AssertionError: [autopilot] REFUSING: /home/runner/AppData/Local/openamer holds no skills and none of ('config.yaml', '.env', 'cron', 'memories', 'openamer-agent') -- OPENAMER_HOME is mis-set, not a real home.
+2026-09-19T02:09:15.8516265Z E         
+2026-09-19T02:09:15.8516532Z E       assert 'REFUSING' not in '[autopilot]...real home.\n'
+2026-09-19T02:09:15.8516855Z E         
+2026-09-19T02:09:15.8517069Z E         'REFUSING' is contained here:
+2026-09-19T02:09:15.8517850Z E           [autopilot] REFUSING: /home/runner/AppData/Local/openamer holds no skills and none of ('config.yaml', '.env', 'cron', 'memories', 'openamer-agent') -- OPENAMER_HOME is mis-set, not a real home.
+2026-09-19T02:09:15.8518755Z E         ?             ++++++++
+2026-09-19T02:09:15.8519045Z 
+2026-09-19T02:09:15.8519195Z tests/test_darwin_phantom_home.py:143: AssertionError
+2026-09-19T02:09:15.8519592Z =========================== short test summary info ============================
+2026-09-19T02:09:15.8520078Z FAILED tests/test_darwin_phantom_home.py::test_scratch_home_is_not_adopted - ...
+2026-09-19T02:09:15.8520641Z FAILED tests/test_darwin_phantom_home.py::test_cron_wrapper_reaches_real_population
+2026-09-19T02:09:15.8521123Z ========================= 2 failed, 8 passed in 2.23s ==========================
+2026-09-19T02:09:15.8521374Z 
+2026-09-19T02:09:15.8521542Z --- tests/openamer_cli/test_kanban_core_functionality.py ---
+2026-09-19T02:09:15.8521913Z (300s exceeded; process tree SIGKILL'd)
+2026-09-19T02:09:15.8522244Z ============================= test session starts ==============================
+2026-09-19T02:09:15.8522760Z platform linux -- Python 3.11.16, pytest-9.0.2, pluggy-1.6.0
+2026-09-19T02:09:15.8523140Z rootdir: /home/runner/work/openamer/openamer
+2026-09-19T02:09:15.8523467Z configfile: pyproject.toml
+2026-09-19T02:09:15.8523727Z plugins: anyio-4.12.1, asyncio-1.3.0
+2026-09-19T02:09:15.8524269Z asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+2026-09-19T02:09:15.8524823Z collected 173 items
+2026-09-19T02:09:15.8524958Z 
+2026-09-19T02:09:15.8525179Z tests/openamer_cli/test_kanban_core_functionality.py ................... [ 10%]
+2026-09-19T02:09:15.8525648Z ........................................................................ [ 52%]
+2026-09-19T02:09:15.8526021Z ........................................................FF
+2026-09-19T02:09:15.8526239Z 
+2026-09-19T02:09:15.8526425Z --- tests/gateway/test_kanban_notifier_watcher_dispatch_gate.py ---
+2026-09-19T02:09:15.8526817Z (300s exceeded; process tree SIGKILL'd)
+2026-09-19T02:09:15.8527163Z ============================= test session starts ==============================
+2026-09-19T02:09:15.8527575Z platform linux -- Python 3.11.16, pytest-9.0.2, pluggy-1.6.0
+2026-09-19T02:09:15.8527958Z rootdir: /home/runner/work/openamer/openamer
+2026-09-19T02:09:15.8528514Z configfile: pyproject.toml
+2026-09-19T02:09:15.8528869Z plugins: anyio-4.12.1, asyncio-1.3.0
+2026-09-19T02:09:15.8529434Z asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+2026-09-19T02:09:15.8530019Z collected 3 items
+2026-09-19T02:09:15.8530151Z 
+2026-09-19T02:09:15.8530322Z tests/gateway/test_kanban_notifier_watcher_dispatch_gate.py
+2026-09-19T02:09:15.8530579Z 
+2026-09-19T02:09:15.8530716Z === 7 files with test failures (18 tests failed) ===
+2026-09-19T02:09:15.8531054Z   tests/acp/test_entry.py  (4 tests failed)
+2026-09-19T02:09:15.8531392Z   tests/agent/test_save_url_image.py  (1 test failed)
+2026-09-19T02:09:15.8531756Z   tests/gateway/test_text_batching.py  (3 tests failed)
+2026-09-19T02:09:15.8532157Z   tests/openamer_cli/test_kanban_decompose.py  (6 tests failed)
+2026-09-19T02:09:15.8532601Z   tests/openamer_cli/test_startup_plugin_gating.py  (1 test failed)
+2026-09-19T02:09:15.8533037Z   tests/scripts/test_autonom_watchtower.py  (1 test failed)
+2026-09-19T02:09:15.8533413Z   tests/test_darwin_phantom_home.py  (2 tests failed)
+2026-09-19T02:09:15.8533887Z === 2 files where no tests ran (collection/import error, timeout before collection, etc.) ===
+2026-09-19T02:09:15.8534380Z   tests/openamer_cli/test_kanban_core_functionality.py
+2026-09-19T02:09:15.8534783Z   tests/gateway/test_kanban_notifier_watcher_dispatch_gate.py
+2026-09-19T02:09:15.8544426Z ##[error]Process completed with exit code 1.
+2026-09-19T02:09:15.8673699Z Post job cleanup.
+2026-09-19T02:09:15.9535328Z [command]/usr/bin/git version
+2026-09-19T02:09:15.9588999Z git version 2.55.0
+2026-09-19T02:09:15.9629107Z Temporarily overriding HOME='/home/runner/work/_temp/40223eb0-1b22-4534-aa85-76b166d5448b' before making global git config changes
+2026-09-19T02:09:15.9630659Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-19T02:09:15.9635565Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/openamer/openamer
+2026-09-19T02:09:15.9670190Z Removing SSH command configuration
+2026-09-19T02:09:15.9676729Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-09-19T02:09:15.9712941Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-09-19T02:09:15.9989367Z Removing HTTP extra header
+2026-09-19T02:09:15.9994897Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-19T02:09:16.0037027Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-09-19T02:09:16.0346028Z Removing includeIf entries pointing to credentials config files
+2026-09-19T02:09:16.0352790Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-19T02:09:16.0387427Z includeif.gitdir:/home/runner/work/openamer/openamer/.git.path
+2026-09-19T02:09:16.0390487Z includeif.gitdir:/home/runner/work/openamer/openamer/.git/worktrees/*.path
+2026-09-19T02:09:16.0391515Z includeif.gitdir:/github/workspace/.git.path
+2026-09-19T02:09:16.0392383Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-09-19T02:09:16.0399266Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/openamer/openamer/.git.path
+2026-09-19T02:09:16.0426295Z /home/runner/work/_temp/git-credentials-b5bfcdc8-cb32-4e23-9983-d339a4d8dbe0.config
+2026-09-19T02:09:16.0436021Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/openamer/openamer/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-b5bfcdc8\-cb32\-4e23\-9983\-d339a4d8dbe0\.config
+2026-09-19T02:09:16.0482422Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/openamer/openamer/.git/worktrees/*.path
+2026-09-19T02:09:16.0513769Z /home/runner/work/_temp/git-credentials-b5bfcdc8-cb32-4e23-9983-d339a4d8dbe0.config
+2026-09-19T02:09:16.0531837Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/openamer/openamer/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-b5bfcdc8\-cb32\-4e23\-9983\-d339a4d8dbe0\.config
+2026-09-19T02:09:16.0568693Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-09-19T02:09:16.0597053Z /github/runner_temp/git-credentials-b5bfcdc8-cb32-4e23-9983-d339a4d8dbe0.config
+2026-09-19T02:09:16.0604843Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-b5bfcdc8\-cb32\-4e23\-9983\-d339a4d8dbe0\.config
+2026-09-19T02:09:16.0672659Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-09-19T02:09:16.0706514Z /github/runner_temp/git-credentials-b5bfcdc8-cb32-4e23-9983-d339a4d8dbe0.config
+2026-09-19T02:09:16.0716768Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-b5bfcdc8\-cb32\-4e23\-9983\-d339a4d8dbe0\.config
+2026-09-19T02:09:16.0760012Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-09-19T02:09:16.1037470Z Removing credentials config '/home/runner/work/_temp/git-credentials-b5bfcdc8-cb32-4e23-9983-d339a4d8dbe0.config'
+2026-09-19T02:09:16.1202438Z Cleaning up orphan processes

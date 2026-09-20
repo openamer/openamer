@@ -9,6 +9,9 @@ covered in ``test_shell_hooks_consent.py``.
 from __future__ import annotations
 
 import json
+import subprocess
+import os
+import sys
 from pathlib import Path
 
 import pytest
@@ -25,6 +28,24 @@ def _write_script(tmp_path: Path, name: str, body: str) -> Path:
     path.chmod(0o755)
     return path
 
+
+def _sh_path(p: "Path | str") -> str:
+    """Spell a path the way the shell that runs the hook understands it.
+
+    Inside a bash script body a Windows drive path is unusable -- bash treats
+    every backslash as an escape, so the redirect silently targets nothing and
+    the assertion fails on a file that was never written. git-bash wants the
+    MSYS form. On POSIX the path is already correct and is returned unchanged,
+    so the assertion stays exactly as strict there.
+    """
+    import sys as _sys
+
+    text = str(p)
+    if _sys.platform != "win32":
+        return text
+    if len(text) >= 3 and text[1] == ":" and text[2] in ("\\", "/"):
+        return "/" + text[0].lower() + text[2:].replace("\\", "/")
+    return text.replace("\\", "/")
 
 def _allowlist_pair(monkeypatch, tmp_path, event: str, command: str) -> None:
     monkeypatch.setenv("OPENAMER_HOME", str(tmp_path / "openamer_home"))
@@ -359,7 +380,7 @@ class TestCallbackSubprocess:
         script = _write_script(
             tmp_path, "log.sh",
             f"#!/usr/bin/env bash\n"
-            f"echo \"$(cat -)\" >> {calls}\n"
+            f"echo \"$(cat -)\" >> {_sh_path(calls)}\n"
             f"printf '{{}}\\n'\n",
         )
         spec = shell_hooks.ShellHookSpec(
@@ -379,7 +400,7 @@ class TestCallbackSubprocess:
         capture = tmp_path / "payload.json"
         script = _write_script(
             tmp_path, "capture.sh",
-            f"#!/usr/bin/env bash\ncat - > {capture}\nprintf '{{}}\\n'\n",
+            f"#!/usr/bin/env bash\ncat - > {_sh_path(capture)}\nprintf '{{}}\\n'\n",
         )
         spec = shell_hooks.ShellHookSpec(
             event="pre_tool_call", command=str(script),
@@ -691,6 +712,11 @@ class TestAllowlistConcurrency:
         assert shell_hooks.script_is_executable(f"/usr/bin/env python3 {script}")
 
         # Bare invocation on the same non-X_OK file: not runnable.
+        # Windows has no execute bit — os.access(path, os.X_OK) is True for any
+        # existing file, so "not runnable" cannot be distinguished there and the
+        # POSIX assertion below would only be testing the OS, not the code.
+        if sys.platform == "win32":
+            pytest.skip("os.X_OK carries no meaning on Windows; the execute-bit half of this contract is POSIX-only")
         assert not shell_hooks.script_is_executable(str(script))
 
         # Flip +x; bare invocation is now runnable too.
@@ -753,3 +779,110 @@ class TestAllowlistConcurrency:
 
         assert len(tmp_paths_seen) == 2
         assert tmp_paths_seen[0] != tmp_paths_seen[1]
+class TestWindowsShellShim:
+    r"""A blocking pre_tool_call hook must actually run -- and block -- on Windows.
+
+    Windows cannot exec a script whose shebang names its own interpreter
+    (WinError 193), so before this shim every ``.sh`` hook failed to spawn:
+    ``_spawn`` reported "command not found", ``_make_callback`` returned None,
+    and the tool call the hook existed to BLOCK went through. A security control
+    that silently no-ops is worse than none -- the operator still believes they
+    are protected.
+
+    Two path dialects must be satisfied at once, and getting only one right is
+    the bug this class pins:
+
+      * the interpreter is launched by Windows Python, so it must stay NATIVE
+        (``C:\...\bash.EXE``) -- CreateProcess cannot resolve ``/c/...``;
+      * the script is resolved by bash, so it must be the MSYS form
+        (``/c/...``) -- a native path has its backslashes eaten as escapes;
+      * and shlex must not sit in between, because in POSIX mode it treats a
+        backslash as an escape and mangles both paths.
+    """
+
+    def _script(self, tmp_path: Path, body: str) -> Path:
+        return _write_script(tmp_path, "hook.sh", "#!/usr/bin/env bash\n" + body)
+
+    def test_shim_builds_spawnable_argv(self, tmp_path):
+        script = self._script(tmp_path, "echo hi\n")
+        argv = shell_hooks._windows_shell_argv(str(script))
+        if argv is None:
+            pytest.skip("no bash on this host")
+        interpreter, resolved = argv[0], argv[1]
+        # Native interpreter: Windows can exec it.
+        assert os.path.isfile(interpreter), interpreter
+        # MSYS script: bash can resolve it.
+        assert resolved.startswith("/") and "\\" not in resolved
+        assert resolved.endswith("hook.sh")
+
+    def test_shim_argv_actually_executes(self, tmp_path):
+        script = self._script(tmp_path, "echo ran\n")
+        argv = shell_hooks._windows_shell_argv(str(script))
+        if argv is None:
+            pytest.skip("no bash on this host")
+        proc = subprocess.run(argv, capture_output=True, text=True, timeout=60, input="{}")
+        assert proc.returncode == 0, proc.stderr
+        assert "ran" in proc.stdout
+
+    def test_blocking_hook_blocks(self, tmp_path):
+        """The whole point: a hook that says block must produce a block."""
+        script = self._script(
+            tmp_path, 'printf \'{"decision": "block", "reason": "denied"}\'\n',
+        )
+        spec = shell_hooks.ShellHookSpec(
+            event="pre_tool_call", command=str(script), matcher="terminal",
+        )
+        result = shell_hooks._make_callback(spec)(
+            tool_name="terminal", args={"command": "rm -rf /"},
+        )
+        assert result == {"action": "block", "message": "denied"}
+
+    def test_non_blocking_hook_stays_out_of_the_way(self, tmp_path):
+        """A hook with no opinion must not manufacture one."""
+        script = self._script(tmp_path, "printf '{}\\n'\n")
+        spec = shell_hooks.ShellHookSpec(
+            event="pre_tool_call", command=str(script), matcher="terminal",
+        )
+        assert shell_hooks._make_callback(spec)(tool_name="terminal", args={}) is None
+
+    def test_plain_commands_are_not_shimmed(self):
+        """Only bare shell scripts are rewritten; everything else is untouched."""
+        assert shell_hooks._windows_shell_argv("python.exe run.py") is None
+        assert shell_hooks._windows_shell_argv("") is None
+
+    def test_interpreter_prefixed_script_is_not_shimmed(self, tmp_path):
+        """An explicit interpreter is already spawnable; double-wrapping breaks it."""
+        script = self._script(tmp_path, "echo hi\n")
+        assert shell_hooks._windows_shell_argv("bash " + str(script)) is None
+
+    def test_msys_path_converts_drive_paths(self):
+        assert shell_hooks._msys_path("C:\\Users\\x\\h.sh") == "/c/Users/x/h.sh"
+        assert shell_hooks._msys_path("/usr/local/h.sh") == "/usr/local/h.sh"
+
+
+class TestCommandSplitting:
+    r"""shlex.split is POSIX and destroys Windows paths.
+
+    ``python3 C:\hooks\x.py`` splits to ``C:hooksx.py``, so every isfile check
+    downstream failed on a path that was never real.
+    """
+
+    def test_backslash_path_survives(self):
+        assert shell_hooks._split_command("python3 C:\\hooks\\x.py --flag") == [
+            "python3", "C:\\hooks\\x.py", "--flag",
+        ]
+
+    def test_quoted_argument_with_space_survives(self):
+        got = shell_hooks._split_command('python3 "C:\\a b\\x.py"')
+        assert got[-1] == "C:\\a b\\x.py"
+
+    def test_unterminated_quote_still_raises(self):
+        """Callers rely on ValueError to report a malformed command rather than
+        silently running a truncated one."""
+        with pytest.raises(ValueError):
+            shell_hooks._split_command("python3 'unterminated")
+
+    def test_posix_path_unaffected(self):
+        assert shell_hooks._split_command("/usr/bin/env bash /x/h.sh") == [
+            "/usr/bin/env", "bash", "/x/h.sh",
+        ]

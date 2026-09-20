@@ -149,22 +149,62 @@ class SubdirectoryHintTracker:
 
     def _extract_paths_from_command(self, cmd: str, candidates: Set[Path]):
         """Extract path-like tokens from a shell command string."""
-        try:
-            tokens = shlex.split(cmd)
-        except ValueError:
-            tokens = cmd.split()
+        # shlex is POSIX: it treats a backslash as an escape, so a Windows path
+        # in the command (`cat C:\proj\frontend\index.ts`) splits to
+        # `C:projfrontendindex.ts` -- no separator left, the token is discarded,
+        # and the subdirectory hints for that call are silently never loaded.
+        from openamer_cli._subprocess_compat import IS_WINDOWS
+
+        if IS_WINDOWS:
+            tokens = self._split_windows_command(cmd)
+        else:
+            try:
+                tokens = shlex.split(cmd)
+            except ValueError:
+                tokens = cmd.split()
 
         for token in tokens:
             # Skip flags
             if token.startswith("-"):
                 continue
-            # Must look like a path (contains / or .)
-            if "/" not in token and "." not in token:
+            # Must look like a path (contains a separator or an extension)
+            if "/" not in token and "\\" not in token and "." not in token:
                 continue
             # Skip URLs
             if token.startswith(("http://", "https://", "git@")):
                 continue
             self._add_path_candidate(token, candidates)
+
+    @staticmethod
+    def _split_windows_command(cmd: str) -> list:
+        """Split a Windows command line, preserving backslash path separators.
+
+        Quotes group, whitespace separates, and a backslash is an ordinary path
+        character -- which is exactly how the OS treats it, and the opposite of
+        what shlex assumes.
+        """
+        tokens: list = []
+        buf: list = []
+        quote: Optional[str] = None
+        for ch in cmd:
+            if quote:
+                if ch == quote:
+                    quote = None
+                else:
+                    buf.append(ch)
+                continue
+            if ch in ("'", '"'):
+                quote = ch
+                continue
+            if ch.isspace():
+                if buf:
+                    tokens.append("".join(buf))
+                    buf = []
+                continue
+            buf.append(ch)
+        if buf:
+            tokens.append("".join(buf))
+        return tokens
 
     def _is_valid_subdir(self, path: Path) -> bool:
         """Check if path is a valid directory to scan for hints.

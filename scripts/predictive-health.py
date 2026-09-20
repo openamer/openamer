@@ -51,7 +51,7 @@ MAX_ROWS = 10000
 def get_ram_usage() -> float:
     """Gibt RAM-Nutzung in Prozent zurück (0.0 – 100.0)."""
     try:
-        with open("/proc/meminfo") as f:
+        with open("/proc/meminfo", encoding="utf-8") as f:
             lines = f.readlines()
         total = 0
         available = 0
@@ -183,7 +183,7 @@ def get_cpu_usage() -> float:
     import os
     # Linux: /proc/stat
     try:
-        with open("/proc/stat") as f:
+        with open("/proc/stat", encoding="utf-8") as f:
             line = f.readline()
         parts = line.split()
         if len(parts) >= 5:
@@ -191,7 +191,7 @@ def get_cpu_usage() -> float:
             idle = int(parts[4])
             # Kurze Messung über 1s
             time.sleep(0.5)
-            with open("/proc/stat") as f:
+            with open("/proc/stat", encoding="utf-8") as f:
                 line = f.readline()
             parts2 = line.split()
             total2 = sum(int(p) for p in parts2[1:])

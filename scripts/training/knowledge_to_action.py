@@ -17,7 +17,29 @@ import os
 import json, os, sys, time, datetime, subprocess, re
 from pathlib import Path
 
-T = os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "scripts", "training")
+def _training_dir():
+    """Resolve the live training dir, tolerating a wrong/stale OPENAMER_HOME.
+
+    Live bug (16.09.26): the cron env can point OPENAMER_HOME at a
+    non-existent / throwaway dir, which made every KTA cycle crash with
+    FileNotFoundError on online_buffer.jsonl. Unlike internet_learner this
+    module used to trust the env blindly. Prefer a *valid* env override, then
+    the real install dir, then this file's own directory.
+    """
+    cands = []
+    _env = os.environ.get("OPENAMER_HOME")
+    if _env:
+        cands.append(os.path.join(_env, "scripts", "training"))
+    _home = Path.home()
+    cands.append(str(_home / "AppData" / "Local" / "openamer-laptop" / "scripts" / "training"))
+    cands.append(str(Path(__file__).resolve().parent))
+    for _c in cands:
+        if os.path.isdir(_c):
+            return _c
+    return os.path.join(str(_home), "AppData", "Local", "openamer", "scripts", "training")
+
+
+T = _training_dir()
 BUFFER = os.path.join(T, "online_buffer.jsonl")
 KTA_LOG = os.path.join(T, "kta_log.jsonl")
 LIVE = "http://localhost:8081"
@@ -39,9 +61,26 @@ def experiment_lora_rank():
     losses = {}
     # We can't easily change LoRA rank at runtime (needs rebuild).
     # Instead: measure the CURRENT r=16 performance as baseline, log for later A/B.
+    #
+    # Retry contract (fixed 20.09.2026): a single 5s attempt reported
+    # "server down" whenever the tool server was mid-restart (live evidence:
+    # 2026-09-20T07:46:21, right after the desktop relaunch at 07:39:50 —
+    # a curl seconds later answered {"status":"alive","tools":9}). One refused
+    # connection during a rebind is not "server down"; it is a retry miss, and
+    # it burned a whole rotation slot. Probe a few times with backoff.
+    h = None
+    last_err = None
+    for _attempt in range(3):
+        try:
+            req = urllib.request.Request(LIVE + "/health")
+            h = json.load(urllib.request.urlopen(req, timeout=5))
+            break
+        except Exception as e:
+            last_err = e
+            time.sleep(2 * (_attempt + 1))
     try:
-        req = urllib.request.Request(LIVE + "/health")
-        h = json.load(urllib.request.urlopen(req, timeout=5))
+        if h is None:
+            raise last_err
         return {
             "action": "LoRA rank experiment: baseline recorded (r=16 live)",
             "result": f"current server: {h.get('tools')} tools, loss history in meta_state",
@@ -209,6 +248,12 @@ def experiment_competitor_gap():
         ("local ai model", "local model integration in the editor"),
         ("free tier", "free-tier positioning / zero-cost entry"),
         ("coding agent", "agentic coding workflow in the IDE"),
+        # Grown from REAL signals (18.09.26): the Microsoft MAF/Foundry signal
+        # ("Microsoft Agent Framework (MAF) Microsoft Foundry") names concrete
+        # capability classes (agent framework + hosted model platform) the
+        # lexicon had no token for.
+        ("agent framework", "agent framework / orchestrator SDK"),
+        ("foundry", "hosted model platform / managed agent runtime"),
     )
     low_signal = signal.lower()
     # Longest (most specific) matching token wins: a generic token declared

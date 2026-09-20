@@ -55,7 +55,7 @@ def test_high_usefulness_promoted_to_permanent():
     h = mc._hash("This memory led to a fix and is very useful.")
     meta = {"memory_usefulness": {h: {"retrievals": 5, "led_to_fix": 2}}}
     mc.META_STATE = os.path.join(tmp, "meta_state.json")
-    json.dump(meta, open(mc.META_STATE, "w"))
+    json.dump(meta, open(mc.META_STATE, "w", encoding="utf-8"))
     r = mc.consolidate(dry_run=True)
     assert r["permanent"] == 1, "useful memory must be promoted to permanent"
     assert r["compressed"] == 0, "permanent memory must never be compressed"

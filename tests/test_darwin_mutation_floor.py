@@ -41,6 +41,12 @@ def engine(monkeypatch, tmp_path):
     monkeypatch.setattr(mod, "SKILLS_DIR", skills)
     monkeypatch.setattr(mod, "DARWIN_DIR", tmp_path / "darwin")
     monkeypatch.setattr(mod, "record_lineage", lambda *a, **k: None)
+    monkeypatch.setattr(mod, "REPORTS_DIR", tmp_path / "reports")
+    monkeypatch.setattr(mod, "FITNESS_FILE", tmp_path / "reports" / "darwin-fitness.json")
+    monkeypatch.setattr(mod, "HISTORY_FILE", tmp_path / "reports" / "darwin-history.jsonl")
+    monkeypatch.setattr(mod, "REPORT_FILE", tmp_path / "reports" / "darwin-report.md")
+    monkeypatch.setattr(mod, "PROBE_FILE", tmp_path / "reports" / "darwin-probe.json")
+    monkeypatch.setattr(mod, "TUNING_FILE", tmp_path / "darwin" / "tuning.json")
     # The probe resolves references against the real roots; point them at tmp so
     # the fixture decides what exists.
     monkeypatch.setattr(mod, "_probe_text", _probe_with_roots(tmp_path))

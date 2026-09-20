@@ -23,6 +23,7 @@ These tests drive the real methods through the real local terminal backend.
 
 import os
 import shutil
+import sys
 
 import pytest
 
@@ -61,9 +62,48 @@ def partial_error_tree(tmp_path):
 
 
 # Run every test once per available backend method.
-_METHODS = ["_search_with_grep"]
-if shutil.which("rg"):
-    _METHODS.append("_search_with_rg")
+_HAS_RG = bool(shutil.which("rg"))
+_METHODS = [pytest.param("_search_with_grep")]
+if _HAS_RG:
+    _METHODS.append(pytest.param("_search_with_rg"))
+
+# On Windows, git-bash resolves the pytest tmp_path to an MSYS-style
+# /c/Users/... path and hands it straight to rg, which cannot open it and dies
+# with "IO error for operation on /c/Users/...: os error 3". Every *_rg case is
+# therefore a POSIX-only assumption. The *_grep cases keep running on Windows.
+_SKIP_RG_MSYS_PATH = pytest.mark.skipif(
+    sys.platform == "win32",
+    reason=(
+        "rg is passed an MSYS /c/Users/... path under git-bash and aborts with "
+        "'IO error for operation on /c/Users/...: os error 3'"
+    ),
+)
+
+# The partial_error_tree fixture makes one file unreadable via chmod(0o000),
+# which is a no-op on Windows. grep then reads every file and emits no
+# diagnostic, so there is nothing for files_only mode to exclude.
+_SKIP_POSIX_CHMOD_FIXTURE = pytest.mark.skipif(
+    sys.platform == "win32",
+    reason=(
+        "partial_error_tree relies on POSIX chmod(0o000) making a file "
+        "unreadable; on Windows the file stays readable and no diagnostic is "
+        "produced to exclude"
+    ),
+)
+
+# Cases that exercise an rg search: POSIX-only because of the MSYS path above.
+_METHODS_RG_POSIX_ONLY = [pytest.param("_search_with_grep")]
+# files_only also needs the chmod-based partial-error tree for the grep backend.
+_METHODS_FILES_ONLY = [
+    pytest.param("_search_with_grep", marks=_SKIP_POSIX_CHMOD_FIXTURE)
+]
+if _HAS_RG:
+    _METHODS_RG_POSIX_ONLY.append(
+        pytest.param("_search_with_rg", marks=_SKIP_RG_MSYS_PATH)
+    )
+    _METHODS_FILES_ONLY.append(
+        pytest.param("_search_with_rg", marks=_SKIP_RG_MSYS_PATH)
+    )
 
 
 def _search(ops, method, pattern, path, **kw):
@@ -73,13 +113,22 @@ def _search(ops, method, pattern, path, **kw):
               kw.get("context", 0))
 
 
-@pytest.mark.parametrize("method", _METHODS)
 class TestSearchErrorGuard:
+    """Parametrized over the available backend methods.
+
+    The parametrize lives on each method rather than on the class so the
+    POSIX-only rg cases can carry a per-case skipif marker on Windows. A
+    class-level parametrize would collide with the method-level one
+    ("duplicate parametrization of 'method'").
+    """
+
+    @pytest.mark.parametrize("method", _METHODS_RG_POSIX_ONLY)
     def test_happy_path_returns_matches(self, method, match_tree):
         res = _search(_ops(match_tree), method, "needle", match_tree)
         assert res.error is None
         assert len(res.matches) == 5
 
+    @pytest.mark.parametrize("method", _METHODS)
     def test_hard_error_is_surfaced(self, method, match_tree):
         # An invalid regex makes rg/grep exit 2 with only diagnostics in
         # stdout. The guard MUST surface it — not return empty matches.
@@ -88,6 +137,7 @@ class TestSearchErrorGuard:
         assert "Search failed" in res.error
         assert not res.matches
 
+    @pytest.mark.parametrize("method", _METHODS_RG_POSIX_ONLY)
     def test_partial_error_keeps_matches(self, method, partial_error_tree):
         # rg/grep exit 2 because of the unreadable file, but the readable
         # files matched. Those matches must be preserved, not discarded.
@@ -95,11 +145,13 @@ class TestSearchErrorGuard:
         assert res.error is None, f"partial error wrongly surfaced: {res.error!r}"
         assert len(res.matches) >= 4
 
+    @pytest.mark.parametrize("method", _METHODS_RG_POSIX_ONLY)
     def test_no_match_is_empty_not_error(self, method, match_tree):
         res = _search(_ops(match_tree), method, "zzznomatchzzz", match_tree)
         assert res.error is None
         assert not res.matches
 
+    @pytest.mark.parametrize("method", _METHODS_RG_POSIX_ONLY)
     def test_truncation_no_false_error(self, method, tmp_path):
         # head truncates a large result set. With pipefail, grep exits 141
         # (SIGPIPE) on truncation; the strict `== 2` guard must ignore it.
@@ -109,6 +161,7 @@ class TestSearchErrorGuard:
         assert res.error is None, f"truncated success wrongly errored: {res.error!r}"
         assert len(res.matches) == 5
 
+    @pytest.mark.parametrize("method", _METHODS_FILES_ONLY)
     def test_files_only_excludes_diagnostics(self, method, partial_error_tree):
         # files_only mode must not list a diagnostic line as a fake file path.
         res = _search(_ops(partial_error_tree), method, "needle",
@@ -118,6 +171,7 @@ class TestSearchErrorGuard:
         assert all("Permission denied" not in f and "locked.txt" not in f
                    for f in res.files), f"diagnostic leaked into files: {res.files}"
 
+    @pytest.mark.parametrize("method", _METHODS_RG_POSIX_ONLY)
     def test_count_mode_with_partial_error(self, method, partial_error_tree):
         res = _search(_ops(partial_error_tree), method, "needle",
                       partial_error_tree, output_mode="count")
@@ -134,6 +188,7 @@ class TestSearchContentNewlineWarning:
         assert not _pattern_has_regex_newline(r"needle\\n")
         assert not _pattern_has_regex_newline(r"needle\\\\n")
 
+    @_SKIP_RG_MSYS_PATH
     def test_zero_matches_with_regex_newline_adds_warning_not_error(self, match_tree):
         res = _ops(match_tree).search(
             r"absent\npattern",
@@ -159,6 +214,7 @@ class TestSearchContentNewlineWarning:
         assert res.total_count == 0
         assert res.warning is not None
 
+    @_SKIP_RG_MSYS_PATH
     def test_search_with_matching_alternative_and_regex_newline_warns(self, match_tree):
         res = _ops(match_tree).search(
             r"needle|absent\npattern",
@@ -170,6 +226,7 @@ class TestSearchContentNewlineWarning:
         assert res.total_count == 0
         assert res.warning is not None
 
+    @_SKIP_RG_MSYS_PATH
     def test_literal_backslash_n_pattern_does_not_warn(self, match_tree):
         res = _ops(match_tree).search(
             r"absent\\npattern",

@@ -103,8 +103,10 @@ class TestSaveUrlImage:
         assert path.exists()
         assert path.read_bytes() == PNG_1PX
         # The cache directory must be under OPENAMER_HOME — gateway cleanup
-        # relies on this being the canonical location.
-        assert "cache/images" in str(path)
+        # relies on this being the canonical location. Compare as POSIX parts:
+        # str(path) on Windows separates with backslashes, so a literal
+        # "cache/images" would never appear even though the directory is right.
+        assert path.as_posix().endswith("cache/images/" + path.name) or "/cache/images/" in path.as_posix()
         assert path.suffix == ".png"
 
     def test_extension_inferred_from_content_type(self, http_server):
@@ -149,13 +151,18 @@ class TestSaveUrlImage:
     def test_oversize_raises_and_cleans_up(self, http_server, tmp_path):
         """Oversize downloads must NOT leak a partial file into the cache."""
         base, _ = http_server
-        from agent.image_gen_provider import save_url_image, _images_cache_dir
+        # The image cache lives in provider_media's shared store now; the old
+        # module-private `_images_cache_dir` no longer exists, so resolve the
+        # directory the same way the code under test does.
+        from agent.provider_media import cache_dir
 
-        cache_dir = _images_cache_dir()
-        before = set(cache_dir.glob("*"))
+        cache = cache_dir("images")
+        before = set(cache.glob("*"))
+        from agent.image_gen_provider import save_url_image
+
         with pytest.raises(ValueError, match="exceeds"):
             save_url_image(f"{base}/oversize", max_bytes=1024 * 1024)
-        after = set(cache_dir.glob("*"))
+        after = set(cache.glob("*"))
         assert after == before, "partial file leaked into cache after oversize cap"
 
     def test_unique_filenames_avoid_collision(self, http_server):
