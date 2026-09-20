@@ -6,12 +6,9 @@ description: Use when internet_learner cycles all report rejected.
 # Internet Learner stall fix
 ## Older root causes (15./16.09.26) — moved to references/
 
-The per-class narratives for causes J–Z and AA–AG (15.–16.09.26) live in
-`references/root-causes-archive.md` — they are historical, the rules are
-already in the code and covered by `tests/scripts/test_internet_learner_gate.py`.
-Read that file when you must understand WHY an old marker has its exact
-shape; the operational sections below are what you need on a live stall.
-Two entries there are still operative and are NOT merely history:
+Per-class narratives for J–Z, AA–AG (15./16.09.26) live in
+`references/root-causes-archive.md`; the rules are in the code, covered by
+`tests/scripts/test_internet_learner_gate.py`. Two entries are NOT mere history:
 
 - **Root cause T** — the Darwin autopilot rewrites `internet_learner.py`
   WHILE you edit it. Re-read the file before every patch, and verify your
@@ -20,22 +17,40 @@ Two entries there are still operative and are NOT merely history:
   unpatched. Do not 'fix' it on a rejection alone.
 
 **This SKILL.md is at its 100 KB cap.** New root causes go into
-`references/root-causes-archive.md` (append at the end, CRLF), and only a
-one-line pointer is added here. Root causes AW and AY (classes 77–80 and 81–85, live 19.09.26)
-already live there — it also carries the **deliberate non-fix** for the 9-row
-em-dash + semicolon + ellipsis SERP family (do not gate it) and the `crlf()`
-double-conversion pitfall (`gate anchor count 0`). The next entries are
-**classes 86–95 (19.09.26)**: eight post-fix chrome families, the
-`.match()`-vs-`search()` POSITION trap (87), leak-literal-is-a-true-positive
-(91/94), the LF-space apply rule, and **95**: check your `re` FLAGS first.
-**96/97 (AZ)**: whole-text markdown-heading fragment + own German glossary echo,
-the `re.M`-makes-`^...$`-a-LINE-anchor trap, and 98 MEASURED-AND-REJECTED (no
-discriminator → signature-delete). Only **TWO** training copies remain.
-**102/103 (BB, live 19.09.26)**: aggregator affordance–read-time WELD +
-startup-portal nav-label run — and the AJ/AQ/AR trap a FOURTH time (your own
-control trips a PRE-EXISTING `_NAV_CHROME` marker; run `which_rule_matches.py`
-before touching the rule). Add the topic-matched hostile control BEFORE
-believing a 0-FP reading.
+`references/root-causes-archive.md` -- append **LF** (that file is LF-native;
+a CRLF append flips ~60 lines) -- and only a ONE-LINE pointer is added here.
+AW/AY (77-85), 96/97 (AZ), 98 (MEASURED-AND-REJECTED -> signature-delete),
+102/103 (BB), BE (deliberate non-fix) and 109/110 all live there, as do
+113/114/115 (20.09.26).
+TWO warnings stay live because they are behavioural, not history:
+
+- run `which_rule_matches.py` BEFORE touching a rule -- the AJ/AQ/AR trap has
+  fired FOUR times: your own control trips a PRE-EXISTING `_NAV_CHROME`
+  marker, so add the topic-matched hostile control first.
+- never wire a gate on a rejection alone (measured-and-rejected = delete the
+  signature, keep the rows).
+
+**109/110 (20.09.26)**: own-artifact echo family + 3 harness limits (probe
+false-`SKIP`s mixed-case candidates; scores `a` ONLY, so no pair-rule is
+measurable; `search_files` can NOT read `AppData/Local` → use `grep`).
+Pair-rule MEASURED-AND-REJECTED (2 real vLLM rows + 62/3,059 episodes). In
+`references/root-causes-archive.md`.
+
+**116/117 (20.09.26)**: no gate class at all -- step -1 found a whole
+TESTED-BUT-UNCOMMITTED batch (root cause AV again): `dry_run` never reached
+`world_model.prune` (a DRY RUN pruned the live store), the MSYS `OPENAMER_HOME`
+made a phantom tree, `prune()` re-normalised 250M times, and a single 5 s health
+probe burned a rotation slot. NEW TRAP: the repo's `test_no_hardcoded_paths`
+rejects a path LITERAL in a DOCSTRING -- describe the MSYS form in prose. And the
+mirror is TWO-WAY: the LIVE copy was AHEAD (utf-8 on tool_server's PowerShell
+captures, self_improve's `no-proposal` log), so a repo->live copy would have
+DELETED fixes -- union first. See archive.
+
+**111/112 (20.09.26)**: 81 = own-artifact plan THIRD title → WIDEN the class-80
+regex, not a new helper; 82 = German nav WELD + colon headline; the news ticker
+has NO clean discriminator → signature delete. The 109/110 rows were still in
+the buffer: a written verdict is not a cleanup. Also: `skill_manage(write_file)`
+REPLACES a reference file — restore from the repo copy. See archive.
 
 ## Trigger
 `python internet_learner.py --once` (or the cron) reports
