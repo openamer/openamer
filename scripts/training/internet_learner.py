@@ -670,8 +670,10 @@ def _strip_leading_clock_fragment(text):
         return t
     rest = t[m.end():].strip()
     return rest if len(rest.split()) >= 5 else t
-
-
+
+
+
+
 # a leading ", <HH:MM AM/PM>" truncation artifact (class 104, 19.09.26).
 _LEADING_CLOCK_ARTIFACT_RE = re.compile(
     r"^\s*,\s*\d{1,2}:\d{2}\s*(?:AM|PM)\s+")
@@ -1597,14 +1599,116 @@ def _is_hn_show_run_chrome(text):
     models.`, which has no `Show HN:`); 0/3,059 `longterm_episodes`.
     """
     return bool(_HN_SHOW_RUN_RE.search(text or ""))
-
-
+
+
+
+
 # a HN item row: feed unit + points + the site's own `Show HN:` tag
 # (class 105, 19.09.26).
 _HN_SHOW_RUN_RE = re.compile(
     r"\b\w+\s+\d{1,2}\s+(?:minutes?|hours?|days?)\s+ago\s*\|\s*"
     r"\d{1,5}\s*comments?\b\s+\d{1,4}\s+\bShow\s+HN\s*:", re.IGNORECASE)
 
+
+def _is_blog_nav_feature_run_chrome(text):
+    """True for a personal/blog nav-label chain carrying the `Featured #` marker.
+
+    Live 19.09.26 (class 106): `cycle_f_multi_domain` stored
+
+        Software People Events Resources Cheatsheets Videos Blog About About
+        Posit Our AI Work Our Python Work Our R Work Community Support Blog
+        Featured # Sep 9, 2026 Positron September Release Highlights Highlights
+        from the 2026.
+
+    A whole-site nav bar (>=8 consecutive label tokens, welded) run straight
+    into the page's own markdown heading marker `Featured #`. 223 chars WITH
+    digits, so the >=90 length trust and the technical-signal gate both fired;
+    `_is_nav_list` wants >=6 TitleCase tokens with no comma and this run has
+    ordinary TitleCase labels welded to lowercase prose.
+
+    The discriminator is the CONJUNCTION: >=8 nav-vocabulary label tokens AND
+    the page's own `Featured #` heading marker. The nav count alone measured
+    clean on the buffer but is one threshold away from ordinary prose that
+    LISTS those sections; the `Featured #` weld is what no human sentence has.
+    Measured: 1 buffer hit and it IS the leak -> 0 FPs on 10 hostile controls
+    that list nav vocabulary freely, 0 of 3,059 `longterm_episodes`, 0 gate-test
+    literals. (The duplicate-TitleCase-word form was REJECTED: 4 real
+    `longterm_episodes` hits.)
+    """
+    return bool(_BLOG_NAV_FEATURE_RE.search(text or ""))
+
+
+
+
+# a site nav-label run welded to the page's own `Featured #` heading marker
+# (class 106, 19.09.26).
+_BLOG_NAV_FEATURE_RE = re.compile(
+    r"(?:(?:Software|People|Events|Resources|Cheatsheets|Videos|Blog|About|"
+    r"Community|Support|Docs|Pricing|Careers|Contact|Login|Home)\b[\s,]*){8,}"
+    r"[\s\S]{0,160}?\bFeatured\s+#", re.IGNORECASE)
+
+# class 107 markers (live 20.09.26) -- see _is_de_double_optin_newsletter_chrome.
+_DE_DOUBLE_OPTIN_MARKERS = (
+    "fast geschafft",
+    "urlaubstr",
+    "bestätigen sie ihre anmeldung",
+    "klick auf den link in der",
+    "soeben geschickt haben",
+)
+_DE_DOUBLE_OPTIN_MIN_MARKERS = 2
+
+
+def _is_de_double_optin_newsletter_chrome(text):
+    """True when `text` is a German newsletter double-opt-in confirmation page.
+
+    Live 20.09.26 (class 107): `cycle_e_competitors` stored
+
+        Fast geschafft - mehr als 3000 Urlaubsträume warten auf Sie Bitte
+        bestätigen Sie Ihre Anmeldung durch einen Klick auf den Link in der
+        E-Mail, die wir Ihnen soeben geschickt haben.
+
+    A whole-page consent chain: promo hook plus signup confirmation. 160 chars,
+    so the >=90 length trust fired; the digits in `3000` fed the
+    technical-signal gate. Structural, not topical: TWO independent markers, so
+    German prose that merely mentions a confirmation still passes. Measured: 1
+    buffer hit and it IS the leak -> 0 FPs on real-prose controls (`Fast
+    geschafft: der Benchmark lief in 42 Sekunden durch`, `Bitte bestätigen Sie
+    Ihre Anmeldung, sobald Sie das Formular ... ausgefüllt haben`), 0 of 3,059
+    `longterm_episodes`, 0 gate-test literals.
+    """
+    low = (text or "").lower()
+    if not low:
+        return False
+    return sum(1 for m in _DE_DOUBLE_OPTIN_MARKERS if m in low) >= _DE_DOUBLE_OPTIN_MIN_MARKERS
+
+
+# class 108 markers (live 20.09.26) -- see _is_jobboard_ad_run_chrome.
+_JOBBOARD_SLOGAN = "without the hassle"
+_JOBBOARD_BRAND = "haystack"
+_JOBBOARD_MIN_BRAND = 2
+
+
+def _is_jobboard_ad_run_chrome(text):
+    """True when `text` is a job-board's repeated ad/slogan run.
+
+    Live 20.09.26 (class 108): `cycle_c_github` stored
+
+        Haystack - Tech hiring without the hassle - Explore the tech scene on
+        your terms. Haystack connects world-class tech talent with employers
+        that match their interests and values.; Haystack - Get hired without
+        the hassle - Haystack is where the best in tech go to stay ahead ...
+
+    The recruiter brand repeated >=2x welded to its own slogan is a SERP ad run,
+    not knowledge. The discriminator is the CONJUNCTION: the slogan alone is one
+    marketing phrase away from real prose (`The recruiter said the role was tech
+    hiring without the hassle`), so the repeated brand is required. Measured: 1
+    buffer hit and it IS the leak; the other buffer row carrying the brand twice
+    (`pip install haystack-ai Get Started with Haystack`) does NOT carry the
+    slogan and is left alone; 0 of 3,059 `longterm_episodes`, 0 gate-test
+    literals.
+    """
+    low = (text or "").lower()
+    return _JOBBOARD_SLOGAN in low and low.count(_JOBBOARD_BRAND) >= _JOBBOARD_MIN_BRAND
 
 # class 50 markers (live 18.09.26) -- see _is_nav_widget_run_chrome.
 _NAV_WIDGET_RE = re.compile(
@@ -3451,6 +3555,15 @@ def _is_junk(text):
     # a HN item row with the site's own `Show HN:` tag (class 105, 19.09.26)
     if _is_hn_show_run_chrome(t):
         return True
+    # a site nav-label run welded to `Featured #` (class 106, 19.09.26)
+    if _is_blog_nav_feature_run_chrome(t):
+        return True
+    # a German newsletter double-opt-in confirmation page (class 107, 20.09.26)
+    if _is_de_double_optin_newsletter_chrome(t):
+        return True
+    # a job-board's repeated brand + slogan ad run (class 108, 20.09.26)
+    if _is_jobboard_ad_run_chrome(t):
+        return True
     # a run of a document-hosting page's nav widgets (class 50, 18.09.26)
     if _is_nav_widget_run_chrome(t):
         return True
@@ -3515,18 +3628,30 @@ def _is_junk(text):
     # a generated plan echoed back as a truncated fragment (18.09.26)
     if _is_generated_plan_echo_fragment(t):
         return True
-    if _is_generated_plan_echo_fragment(t):
-        return True
-    # a security-advisory listing row / headline stub / fact box / own plan
-    # (classes 77-80, 19.09.26)
-    if _is_advisory_row(t):
-        return True
-    if _is_site_headline_stub(t):
-        return True
-    if _is_fact_box_label_chain(t):
-        return True
-    if _is_own_plan_plus_run(t):
-        return True
+    if _is_generated_plan_echo_fragment(t):
+
+        return True
+
+    # a security-advisory listing row / headline stub / fact box / own plan
+
+    # (classes 77-80, 19.09.26)
+
+    if _is_advisory_row(t):
+
+        return True
+
+    if _is_site_headline_stub(t):
+
+        return True
+
+    if _is_fact_box_label_chain(t):
+
+        return True
+
+    if _is_own_plan_plus_run(t):
+
+        return True
+
     if _INSTRUCTION_OPENER_RE.match(t):
         return True
     if _is_arxiv_abstract_chrome(t):
