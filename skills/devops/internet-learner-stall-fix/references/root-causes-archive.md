@@ -2155,3 +2155,137 @@ the inserted block AND then re-inserted it → the file got
 first. **Restore from a `.bak` taken IMMEDIATELY before the write, and always
 `exec_module` both modules after an apply** — this is the second time a
 duplicated-anchor write reached the tree.
+
+## Observation BE — the `_ENTITY` rule lives ONLY in the writer gate (measured 19.09.26, DELIBERATE NON-FIX)
+
+Cron run began on the documented `cycle_a_technews: rejected` line. Per-day rate
+**35.6 % (36 ok / 65 rej)** on a **PARTIAL day cut at 05:18** (the skill says the
+final per-day row is never comparable) vs the documented 50–80 % band →
+**no gate change was warranted for the rejection itself.** `buffer_junk` last 70 =
+`junk 40 / duplicate 29 / no-tech-signal 1`, and every sampled shape is already
+documented: `Self-critique:` meta rows (other loop), class-66 own-plan echo
+(`KI-Performance-Optimierung … + 2.`), SERP `… — <date>` pairs, nav runs. Writer-gate
+census over the buffer: **0 of 281**, learner-gate census **0 of 281**, unparsable
+**0**, so the buffer was clean at entry AND after the extra cycles.
+
+**The finding — an asymmetry, NOT a leak.** `_ENTITY = &(?:#\d{1,5}|[a-z]{2,8});`
+(commit `4f9179025`, 11.09.26, "a LoRA trained on '&#39;' learns broken
+tokenization") is referenced from **`buffer_store._is_nav_chrome` only**. The
+learner's own `_is_junk` has **no** entity check — verified by source inspection:
+`"_ENTITY" in getsource(IL._is_junk)` → **False**, `"_ENTITY.search" in
+getsource(bs._is_nav_chrome)` → **True**. So an entity-mangled page is accepted by
+the extraction gate, spends a cycle, and is killed by the *writer* gate — which
+produces exactly the reported `rejected, not trained (shallow + deep read both
+gated)`. **Measured: 12 entity rows in the last 400 junk rows, and 0 of them can
+reach the buffer** (`store()` → `append` → `is_junk` refuses). The writer gate
+holds; this is defence-in-depth, not a hole.
+
+**Why it is NOT worth gating from the learner side, measured:** an entity check
+in the learner gate would be a tightening, but the entity rows are *true* chrome —
+`M: Optimization Strategies Comparison 21 January 2026 &middot; 19 mins …` (card
+header), `Nuxt HN | News … &lt; prev 1 / 10 more &gt;` (nav run), `Plugins / About
+ESC April 16, 2026 &middot; … 11 min read &middot; mcp …` (blog header). Rejecting
+them earlier only moves the rejection one step upstream; it saves no cycle, because
+`store_or_deep` would re-read the same page. **Prefer the writer gate as-is.**
+
+**The trap that killed the tempting "just unescape" fix — do NOT normalise
+entities without a new chrome helper.** Unescaping + collapsing NBSP/space and
+re-running the chain freed **4 of 12** entity rows, and the freed set was NOT
+clean:
+
+| freed row (after unescape) | verdict |
+|---|---|
+| `Vector Post-Training Quantization for LLMs (2024) Summary The paper derives the Linearity Theorem …` | GOOD prose |
+| `LLM llm = LLM ( model = "adept/fuyu-8b" , max_model_len = 2048 , … ) Reduce CUDA Graphs ¶ By default, we optimize …` | GOOD docs prose |
+| `UPDATE: Two Dead, 22 Admitted After Eldoret-Turbo Road Tanker Explosion 17 hours ago Two people killed … 11 hours ago "It's inappropriate!` | **CHROME** — a relative-time news listing; all gates read False |
+| `Acting Dumb" By The Wire | autonomy, regulation | February 14, 2026 A single agent-generated article has sent …` | **CHROME** — byline+tag+date lede |
+
+Normalisation alone would therefore **leak 2 chrome rows**, one of them a
+relative-time news listing that `_is_relative_time_nav_chain` (class 34) does not
+catch (it requires the `For You / Latest / Trending` nav labels). A correct fix is
+a **new structural class** (unescape as a *pre-step* in `_clean_insight` PLUS a
+helper for the relative-time listing / byline-tag-date lede, with hostile controls,
+the gate suite, 3 copies, commit, push) — a full session, never a quick edit.
+**Same call as root cause AG and the model-hallucination row: remove by signature,
+do not invent a gate on a rejection alone.**
+
+**Re-derive the anchors cheaply if you revisit this:** the useful probes are
+(1) `inspect.getsource(IL._is_junk)` / `(bs._is_nav_chrome)` string-contains tests,
+(2) a loop over the last N `buffer_junk` rows counting `bs._ENTITY.search(a)`, and
+(3) the unescape→`_clean_insight`→`bs.is_junk` triage table above. `buffer_junk`
+rows carry `reason`/`u`/`a` only — **no `ts`** — so a per-day reason breakdown is
+not possible from it; use `internet_learn_log.jsonl` for the rate and
+`buffer_junk` for the shape census.
+
+## Root cause BA - German newsletter double-opt-in page + job-board ad run (classes 107/108, live 20.09.26)
+
+Cron run began on the documented `cycle_g_security: rejected` line. Rate check
+said **66.7% for 20.09.26 (partial day) after 35.4% on 19.09.26** vs the
+post-13.09 regime of ~48-68% - a real step DOWN worth one look, but the rejects
+in the same window were honest (`junk` / `duplicate` at the 287/300 cap), so no
+gate was loosened. Step -1 (`git status --porcelain scripts/training tests/scripts`)
+found the real job: **the 19.09.26 session had applied + tested class 106
+(`_is_blog_nav_feature_run_chrome` - a site nav-label run welded to `Featured #`)
+in THREE trees but NEVER committed it** (root cause AV again), and its 2 test-file
+edits were lost with the scratch `_cron_*.py` cleanup. Finished that first.
+
+Then `tail -8` of `online_buffer.jsonl` (the cheapest leak read - neither row was
+ever rejected, so `buffer_junk.jsonl` never mentions them) showed TWO new leaks:
+
+| cycle | u | a |
+|---|---|---|
+| `cycle_e_competitors` | Competitor intelligence: The secret recipe of powerful AI coding Agents | `Fast geschafft - mehr als 3000 Urlaubstraeume warten auf Sie Bitte bestaetigen Sie Ihre Anmeldung durch einen Klick auf den Link in der E-Mail, die wir Ihnen soeben geschickt haben.` |
+| `cycle_c_github` | What new agent architectures are trending on GitHub? | `Haystack - Tech hiring without the hassle - Explore the tech scene on your terms. Haystack connects world-class tech talent...; Haystack - Get hired without the hassle - ...` |
+
+**Both are BUFFER leaks, not rate problems.** Rate analysis and leak-hunting are
+different jobs.
+
+### Class 107 - `_is_de_double_optin_newsletter_chrome`
+
+160 chars, so the `>=90` length trust fired; digits in `3000` fed the
+technical-signal gate. Structural, not topical: **>=2 independent markers** out of
+(`fast geschafft`, `urlaubstr`, `bestätigen sie ihre anmeldung`,
+`klick auf den link in der`, `soeben geschickt haben`).
+
+Candidates measured and REJECTED per-marker (single marker = hand FP):
+`fast geschafft` (FP: `Fast geschafft: der Benchmark lief in 42 Sekunden durch`),
+`bestätigen sie ihre anmeldung` (FP: `Bitte bestätigen Sie Ihre Anmeldung, sobald
+Sie das Formular ... ausgefüllt haben`), `mehr als 3000` (FP: `Mehr als 3000
+Modelle wurden für die Studie evaluiert`). The `>=2` conjunction is what makes it
+safe - same shape as `_is_de_pricing_chrome` (class 13).
+
+### Class 108 - `_is_jobboard_ad_run_chrome`
+
+`"without the hassle"` AND `haystack` counted `>=2` in the text. The
+discriminator is the CONJUNCTION: the slogan alone is one marketing phrase away
+from real prose (`The recruiter said the role was tech hiring without the
+hassle`), so the repeated brand is required. **The other buffer row carrying
+`haystack` twice (`pip install haystack-ai Get Started with Haystack`) does NOT
+carry the slogan and must stay learnable** - assert that in the test.
+
+Measured for both: 1 buffer hit and it IS the leak; 0 FPs on real-prose controls
+(EN + DE); 0 of 3,059 `longterm_episodes`; 0 gate-test literals.
+
+Wired in BOTH gates (AH both-files rule) + 2 new tests in
+`tests/scripts/test_internet_learner_gate.py` -> **122 passed**. Buffer cleaned
+290 -> 287 via `clean_buffer.py` (archived `junk`, 0 unparsable, CRLF intact).
+
+### PITFALL that cost the most time - `git add` on this repo rewrites EOL
+
+`core.autocrlf=true` with a `.gitattributes` that does NOT cover `*.py`. In this
+repo the **committed blobs are CRLF** (HEAD blob's first line ends `3 \r \n`),
+but `autocrlf=true` normalises to LF on `add` -> staging ANY edit rewrote the
+whole file (buffer_store.py 3641/3518 lines "changed" for a ~150-line edit).
+
+Diagnose in one shot: `git diff --ignore-cr-at-eol --stat -- <paths>` shows the
+REAL change (137/14 + 141/16), while plain `--numstat` shows thousands.
+
+Fix: stage and commit with **`git -c core.autocrlf=false add/commit -F ...`** -
+then `git diff --cached` is clean and readable, and
+`git diff --cached --numstat` matches the ignore-cr figure. Do NOT "normalise"
+the worktree with a script instead: with `autocrlf=true` git converts CRLF->LF on
+add, so a converted worktree silently changes every line. Verify with
+`git ls-files --eol -- <path>` (`i/lf w/crlf` is the expected steady state).
+
+Also: `git worktree remove --force` needs a **Windows-style path**
+(`C:/Users/...`); the MSYS form `/c/Users/...` fails with "is not a working tree".
