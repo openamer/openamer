@@ -4831,6 +4831,7 @@ def test_jobboard_ad_run_is_gated_on_both_paths():
         assert not IL._is_jobboard_ad_run_chrome(prose), prose
         assert not IL._is_junk(prose), prose
         assert not buffer_store._is_nav_chrome(prose), prose
+
 def test_own_plan_plus_run_covers_continuous_learning_loop_title():
     """Class 81 (live 20.09.26): the own-artifact deliverable plan with a THIRD
     title -- `Continuous Learning Loop: ...` -- which class 66's dangling-marker
@@ -4883,6 +4884,7 @@ def test_own_plan_plus_run_covers_continuous_learning_loop_title():
         assert IL._is_junk(c) is False, c
         assert buffer_store._is_own_plan_plus_run(c) is False, c
 
+
 def test_de_nav_weld_headline_chrome_is_gated_on_both_paths():
     """Class 82 (live 20.09.26): a German site's nav-label WELD stored as the
     answer -- the page's menu lost its separators, so its own labels run into
@@ -4924,3 +4926,69 @@ def test_de_nav_weld_headline_chrome_is_gated_on_both_paths():
         assert IL._is_de_nav_weld_headline_chrome(c) is False, c
         assert buffer_store._is_de_nav_weld_headline_chrome(c) is False, c
 
+
+
+def test_dated_listing_run_is_gated_on_both_paths():
+    """An aggregator LISTING run of dated headlines (class 113, 20.09.26).
+
+    Live leak: `cycle_e_competitors` (and an earlier `cycle_a_technews`) stored a
+    blog INDEX feed -- several unrelated headlines welded together by their own
+    `- <date>` tails -- rather than an article. Both gates must refuse it.
+
+    The discriminator had to be tightened during measurement: a form requiring
+    only two date stamps 120 chars apart also matched a Markdown metrics TABLE
+    (`| Erstellt | 16. August 2026 | ... | Letzter Push | 28. August 2026 |`) in
+    `longterm_episodes`, which is real knowledge. Requiring the row DASH in BOTH
+    slots removes it, so both prose controls below must stay learnable.
+    """
+    import buffer_store
+    leak = ("ChatGPT Work - 12th September 2026 OpenAI agents attacked RubyGems back in May - "
+            "12th September 2026 Some thoughts on the Navier\u2013Stokes Millennium Prize Problem - "
+            "8th September 2026 This is a link post by Simon Willison, posted on 27th February 2026 .")
+    assert IL._is_dated_listing_run(leak) is True
+    assert IL._is_junk(leak) is True
+    assert buffer_store._is_dated_listing_run(leak) is True
+    assert buffer_store.is_junk(leak) is True
+
+    for prose in (
+        "The model was released on 12 September 2026 and the benchmark ran on 8 September 2026 without errors.",
+        "On 3rd September 2026 we shipped v2 and on 12th September 2026 we rolled it back after a regression.",
+        "Between 12 September 2026 and 8 September 2026 the eval suite grew from 279 to 280 passing tests.",
+        "Released 12. September 2026 - improved throughput by 30% - measured against the 8. September 2026 baseline.",
+        "The 2026-09-12 run and the 2026-09-08 run differ by 4% median latency.",
+        "March 23, 2026 was a Monday; the release shipped the following Friday.",
+    ):
+        assert not IL._is_dated_listing_run(prose), prose
+        assert not buffer_store._is_dated_listing_run(prose), prose
+
+    table = ("| Erstellt | 16. August 2026 (vor 12 Tagen) | | Letzter Push | 28. August 2026 |")
+    assert not IL._is_dated_listing_run(table), table
+    assert not buffer_store._is_dated_listing_run(table), table
+
+
+def test_readtime_card_widget_is_gated_on_both_paths():
+    """A CMS review card's date + glued read-time badge (class 114, 20.09.26).
+
+    Live leak: `cycle_f_multi_domain` stored the card header and its read-time
+    badge. The badge is the discriminator -- the renderer emits the doubled unit
+    `min min read`, which ordinary prose never does.
+    """
+    import buffer_store
+    leak = ("Claw Mar 23, 2026 Comparison 15 min min read OpenClaw vs Other AI Agent Frameworks - "
+            "Comprehensive Comparison 2026 In-depth comparison of OpenClaw with LangChain, AutoGPT, "
+            "CrewAI, and other popular AI agent frameworks.")
+    assert IL._is_readtime_card_widget(leak) is True
+    assert IL._is_junk(leak) is True
+    assert buffer_store._is_readtime_card_widget(leak) is True
+    assert buffer_store.is_junk(leak) is True
+
+    for prose in (
+        "A 15 min read is long for a blog post but short for a technical whitepaper.",
+        "min min read appears twice because the badge text was duplicated by the renderer.",
+        "The article is a 12 min read and covers PagedAttention and continuous batching.",
+        "PagedAttention reduces memory fragmentation; vLLM reports 2-4x throughput on a 12 GB GPU.",
+        "LoRA fine-tuning cut trainable parameters to 0.1% while keeping 96% full fine-tune quality.",
+        "The aggregator lists 14 articles; each row is a headline followed by a publication date.",
+    ):
+        assert not IL._is_readtime_card_widget(prose), prose
+        assert not buffer_store._is_readtime_card_widget(prose), prose

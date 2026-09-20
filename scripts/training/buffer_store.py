@@ -1438,6 +1438,73 @@ _JOBBOARD_BRAND = "haystack"
 _JOBBOARD_MIN_BRAND = 2
 
 
+# class 113/114 markers (live 20.09.26) -- see _is_dated_listing_run and
+# _is_readtime_card_widget.
+_MONTH_NAME = (r"(?:Jan|Feb|M(?:ar|\u00e4r|rz)|Apr|May|Jun|Jul|Aug|Sep|Sept|"
+               r"Oct|Okt|Nov|Dec|Dez)")
+# an aggregator row's own date: "12th September 2026" / "12. September 2026"
+_LISTING_DATE = (r"\d{1,2}\.?(?:st|nd|rd|th)?\s+" + _MONTH_NAME + r"[a-z]*\.?\s+\d{4}")
+# the row's OWN dash separator, not a hyphen inside a word
+_ROW_DASH = r"\s[-\u2013\u2014]\s"
+_DATED_LISTING_RE = _re.compile(
+    _ROW_DASH + r"\b" + _LISTING_DATE + r"\b.{0,140}?" + _ROW_DASH
+    + r"\b" + _LISTING_DATE + r"\b", _re.I | _re.S)
+_READTIME_CARD_RE = _re.compile(
+    r"\b" + _MONTH_NAME + r"\b\s*\d{1,2},\s*\d{4}.{0,60}?"
+    r"\b\d+\s+min\s+min\s+read\b", _re.I | _re.S)
+
+
+def _is_dated_listing_run(text):
+    """True when `text` is an aggregator LISTING run of dated headlines (class 113).
+
+    Live 20.09.26: `cycle_e_competitors` (and an earlier `cycle_a_technews`)
+    stored the same blog index feed:
+
+        ChatGPT Work - 12th September 2026 OpenAI agents attacked RubyGems
+        back in May - 12th September 2026 Some thoughts on the Navier-Stokes
+        Millennium Prize Problem - 8th September 2026 This is a link post by
+        Simon Willison, posted on 27th February 2026 .
+
+    Several unrelated headlines welded together by their own `- <date>` tails:
+    a blog INDEX page, not an article. 251 chars carrying digits, so both the
+    >=90 length trust and the technical-signal gate fired, and no existing
+    detector matched.
+
+    The discriminator had to be TIGHTENED during measurement: a first form
+    requiring only two date stamps within 120 chars measured 1
+    `longterm_episodes` hit -- a Markdown metrics TABLE (`| Erstellt | 16.
+    August 2026 | ... | Letzter Push | 28. August 2026 |`), which is real
+    knowledge and must stay learnable. Requiring the row DASH (` - `) to weld
+    each date to a headline removes it: prose that merely mentions two dates
+    (`released on 12 September 2026 and benchmarked on 8 September 2026`) has
+    no such dash in BOTH slots. Measured: 2 buffer hits and BOTH are the leak
+    -> 0 FPs on 10 prose controls, 0 of 3,059 `longterm_episodes`, 0 gate-test
+    literals.
+    """
+    return bool(_DATED_LISTING_RE.search(text or ""))
+
+
+def _is_readtime_card_widget(text):
+    """True when `text` is a review card's date + glued read-time badge (class 114).
+
+    Live 20.09.26: `cycle_f_multi_domain` stored
+
+        Claw Mar 23, 2026 Comparison 15 min min read OpenClaw vs Other AI
+        Agent Frameworks - Comprehensive Comparison 2026 In-depth comparison
+        of OpenClaw with LangChain, AutoGPT, CrewAI, and other popular AI
+        agent frameworks.
+
+    A CMS review card: date, category, and a read-time badge. The badge is the
+    discriminator -- the renderer emits the doubled unit `min min read`, which
+    ordinary prose never does (`a 15 min read`, `the 15-minute read` stay
+    learnable). Requiring the date + badge TOGETHER keeps a bare badge and a
+    bare date out of scope. Measured: 1 buffer hit and it IS the leak -> 0 FPs
+    on 10 prose controls (including two that mention `min read`), 0 of 3,059
+    `longterm_episodes`, 0 gate-test literals.
+    """
+    return bool(_READTIME_CARD_RE.search(text or ""))
+
+
 def _is_jobboard_ad_run_chrome(text):
     """True when `text` is a job-board's repeated ad/slogan run.
 
@@ -3407,6 +3474,12 @@ def _is_nav_chrome(text):
         return True
     # a job-board's repeated brand + slogan ad run (class 108, 20.09.26)
     if _is_jobboard_ad_run_chrome(text):
+        return True
+    # a dated aggregator listing run: headline welded to its date, twice (class 113, 20.09.26)
+    if _is_dated_listing_run(text):
+        return True
+    # a review card's date + glued read-time badge (class 114, 20.09.26)
+    if _is_readtime_card_widget(text):
         return True
     # a run of a document-hosting page's nav widgets (class 50, 18.09.26)
     if _is_nav_widget_run_chrome(text):
