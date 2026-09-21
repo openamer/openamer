@@ -2714,6 +2714,41 @@ _CHANGELOG_PR_RE = _re.compile(
     r"\(\s*#\d{3,}\s*\)\s*(?:Allow|Add|Fix|Support|Enable|Improve|Update|Remove|Bump|Refactor)\b")
 
 
+_RELEASE_NOTE_EMOJI_RE = _re.compile(
+    r"(?:\d{1,2}[./-]\d{1,2}[./-]\d{2,4}|\bv?\d+\.\d+(?:\.\d+){1,2}\b"
+    r"|\[\s*\d{1,2}/\d{4}\s*\])"
+    r"[^\n]{0,40}?"
+    r"[\U0001F300-\U0001FAFF\u2600-\u27BF]{1,3}\s*"
+    r"(?:Released|Add(?:ed)?|Update[ds]?|Fixed|Removed|Improved|Launched"
+    r"|Introduced|Deprecated|Enabled)\b",
+    _re.I,
+)
+
+def _is_release_note_emoji_bullet(text):
+    """True for a release-notes changelog bullet anchored by a date + emoji (125).
+
+    Live 21.09.26: `cycle_b_papers` stored a model card's changelog tail
+      "F16 on BitNet-embedding-270M prefill (8 threads) Supports I2_S conversion
+       with optimized kernels on x86 CPUs Lossless inference with 2 bits per
+       weight 07/16/2026: <megaphone> Released BitNet Embeddings 0."
+    -- a version stamp, then an emoji-led changelog bullet, welded to the card's
+    feature list. 185 chars WITH digits, so the >=90 length trust AND the
+    technical-signal gate both fired. The existing changelog helpers all miss it:
+    `_is_release_notes_pr_bullet` needs a `( #N )` PR number and
+    `_is_changelog_chain` needs >=3 bracketed links.
+
+    The discriminator is the CONJUNCTION: a date/version STAMP within 40 chars
+    of an emoji-led changelog VERB. The emoji+verb alone was measured and
+    REJECTED -- 4 real `longterm_episodes` rows and 1 hostile control
+    ("openamer auf ... update" + a warning sign) matched; the stamp anchor
+    takes both corpora to 0.
+    """
+    t = text or ""
+    if len(t) > 1200:
+        return False
+    return bool(_RELEASE_NOTE_EMOJI_RE.search(t))
+
+
 def _is_release_notes_pr_bullet(text):
     """True for a release-notes changelog bullet welded to its PR number (86).
 
@@ -3462,6 +3497,8 @@ def _is_nav_chrome(text):
         return True
     # a release-notes changelog bullet welded to its PR number (class 86, 19.09.26)
     if _is_release_notes_pr_bullet(text):
+        return True
+    if _is_release_note_emoji_bullet(text):
         return True
     # a headline run welded to a mid-text byline counter bar (class 87, 19.09.26)
     if _is_midtext_byline_counter_run(text):

@@ -5091,3 +5091,58 @@ def test_gh_releases_row_and_slide_nav_chrome_are_gated_on_both_paths():
     ):
         assert not buffer_store.is_junk(prose), prose
         assert not IL._is_junk(prose), prose
+
+
+
+def test_release_note_emoji_bullet_is_gated_on_both_paths():
+    """Class 125 (live 21.09.26): a model card's emoji-led changelog tail.
+
+    `cycle_b_papers` stored
+      "F16 on BitNet-embedding-270M prefill (8 threads) Supports I2_S conversion
+       with optimized kernels on x86 CPUs Lossless inference with 2 bits per
+       weight 07/16/2026: <megaphone> Released BitNet Embeddings 0."
+    -- a date stamp, then an emoji-led changelog bullet, welded onto the card's
+    feature list. 185 chars WITH digits, so the >=90 length trust and the
+    technical-signal gate both fired. `_is_release_notes_pr_bullet` needs a
+    `( #N )` PR number and `_is_changelog_chain` needs >=3 bracketed links, so
+    both missed it.
+
+    The discriminator is the CONJUNCTION (date/version stamp within 40 chars of
+    an emoji-led changelog verb). The emoji+verb alone was measured and
+    REJECTED: 4 real longterm_episodes rows plus the hostile control
+    "openamer ... update" + warning sign matched it. 0 FP on both corpora now.
+    """
+    import buffer_store
+    leak = ("F16 on BitNet-embedding-270M prefill (8 threads) Supports I2_S "
+            "conversion with optimized kernels on x86 CPUs Lossless inference "
+            "with 2 bits per weight 07/16/2026: \U0001F4E3 Released BitNet "
+            "Embeddings 0.")
+    assert IL._is_release_note_emoji_bullet(leak) is True
+    assert buffer_store._is_release_note_emoji_bullet(leak) is True
+    # both public gates must agree, not just the helper
+    assert IL._is_junk(leak) is True
+    assert buffer_store.is_junk(leak) is True
+
+    # a second shape: bracketed version stamp + rocket bullet
+    leak2 = ("B @ 3/4 bits models [2024-10-18] \U0001F310 Open source community "
+             "contributes Mistral Large Instruct 2407 (123B) models "
+             "[2024-10-14] \U0001F680 Add early ROCm support.")
+    assert buffer_store._is_release_note_emoji_bullet(leak2) is True
+
+    # real prose / real knowledge must stay learnable
+    clean = [
+        "Released the 4-bit quantized weights at a 1.2% accuracy cost.",
+        "Added prefix caching so repeated system prompts are served from cache.",
+        "\U0001F680 The model hit 92% on the eval, up from 88% last quarter.",
+        "Update the config to raise the context window, then re-run the benchmark.",
+        "Improved recall by 7 points after switching to the smaller model.",
+        "v0.4.1 cut memory 60% and added prefix caching to the agent loop.",
+        "Fixed a race in the writer that dropped two records per thousand.",
+        "Guten Tag! \U0001F44B Schoener Banner-Start, die Instanz v2026.08.24 laeuft.",
+        "Version 2.1 reduced latency by 30% on the same hardware.",
+        "The paper reports 07/16/2026 as the submission date and 92% accuracy.",
+        "Let me load the key references on delegation and background systems.",
+    ]
+    for c in clean:
+        assert buffer_store._is_release_note_emoji_bullet(c) is False, c
+        assert IL._is_release_note_emoji_bullet(c) is False, c
