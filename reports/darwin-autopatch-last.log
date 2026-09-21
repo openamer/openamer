@@ -1,13 +1,14 @@
-[autopatch] validating population (2026-09-20T07:45:18) ...
-[autopatch] population: 844 skills, avg 38.3
-[autopatch] 10 weak skills: auto-structural-connection-between-tool(21), auto-internet-learning-amazon-demands(21), auto-internet-learning-an-ai(21), auto-internet-learning-mit-researchers(21), auto-internet-learning-openai-and(21), auto-internet-learning-the-ai(21), auto-latest-research-insight-adaptive(21), auto-latest-research-insight-ai(21), auto-latest-research-insight-an(21), auto-latest-research-insight-bitnet(21)
-Traceback (most recent call last):
-  File "C:\Users\damir\openamer-repo\scripts\darwin_skill_autopatch.py", line 176, in <module>
-    sys.exit(main())
-             ^^^^^^
-  File "C:\Users\damir\openamer-repo\scripts\darwin_skill_autopatch.py", line 128, in main
-    after = run_validator_json()
-            ^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\damir\openamer-repo\scripts\darwin_skill_autopatch.py", line 58, in run_validator_json
-    raise RuntimeError(f"validator produced no JSON (exit {r.returncode}): {out[:300]}")
-RuntimeError: validator produced no JSON (exit 3221225786): 
+[autopatch] validating population (2026-09-21T04:00:09) ...
+[autopatch] population: 866 skills, avg 38.2
+[autopatch] 10 weak skills: auto-structural-connection-between-tool(21), auto-efficiency-learning-pushing-the(21), auto-internet-learning-amazon-demands(21), auto-internet-learning-an-ai(21), auto-internet-learning-mit-researchers(21), auto-internet-learning-openai-and(21), auto-internet-learning-the-ai(21), auto-latest-research-insight-adaptive(21), auto-latest-research-insight-ai(21), auto-latest-research-insight-an(21)
+[autopatch] ✅ auto-structural-connection-between-tool: 21 → 31
+[autopatch] ✅ auto-efficiency-learning-pushing-the: 21 → 25
+[autopatch] ✅ auto-internet-learning-amazon-demands: 21 → 25
+[autopatch] ✅ auto-internet-learning-an-ai: 21 → 25
+[autopatch] ✅ auto-internet-learning-mit-researchers: 21 → 25
+[autopatch] ✅ auto-internet-learning-openai-and: 21 → 25
+[autopatch] ✅ auto-internet-learning-the-ai: 21 → 25
+[autopatch] ✅ auto-latest-research-insight-adaptive: 21 → 25
+[autopatch] ✅ auto-latest-research-insight-ai: 21 → 25
+[autopatch] ✅ auto-latest-research-insight-an: 21 → 25
+[autopatch] report → C:\Users\damir\openamer-repo\reports\darwin-autopatch.md
