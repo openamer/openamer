@@ -3732,3 +3732,98 @@ grep -c <marker>` -> 2/2/5. The push exit code alone is not proof.
 
 Pointers: `git log --oneline origin/main..HEAD` is **25 commits of accumulated
 unpushed work** -- reconciling that fork is a user decision, not a cron action.
+## Root cause BG + class 126 (live 21.09.26) -- a platform's own client-SDK family
+
+### The symptom looked like a stall; it was a REPEAT
+Cron opened on `cycle_h_efficiency: efficiency-learn: YouTube's open-source SDKs
+(e.g., \`youtubei1\`, \`youtubei2\`, \`youtubei3\`) are the ...` -- a truncated
+result. Checking the log rather than trusting the line showed the SAME page had
+been stored **three times**: `19.09 00:24`, `21.09 10:14`, `21.09 16:04`. The
+third row was a duplicate of the first and `_is_duplicate` could not see it,
+because the sentence DRIFTS between deep reads:
+
+    read 1: "... (e.g., \`youtubei-python\`, \`youtubei-webapp\`) are the only
+             reliable way to programmatically interact with the platform ..."
+    read 2: "... (e.g., \`youtubei1\`, \`youtubei2\`, \`youtubei3\`) are the only
+             reliable way to programmatically control the API, bypass rate
+             limits, and access private endpoints ..."
+
+So this is not a rejection-rate problem (the documented 50-80 % norm held); it is
+a chrome class that slipped BOTH gates for three days. **Read the BUFFER TAIL and
+the learn LOG, not just the last printed line** -- the printed line hid that the
+"new" learning was the third copy of an old one.
+
+### First candidate, MEASURED AND REJECTED: a generic same-`u` similarity gate
+The obvious fix is "refuse a near-duplicate answer for the same question". It was
+built and measured before touching a gate -- token-set Jaccard over the answers
+of every row sharing one `u` in the 170-row live buffer:
+
+| pair | jaccard |
+|---|---|
+| leak rows 9/137 | 0.241 |
+| leak rows 9/169 | 0.308 |
+| leak rows 137/169 | 0.327 |
+| **highest legitimate distinct pair** | **0.400** |
+
+The leak sits BELOW the real distinct rows. There is no separating threshold --
+any cutoff that catches 0.327 also deletes the genuine 0.400 learning. This is
+the AJ/AQ/AR lesson again in a new costume: **when the bare form does not
+separate, the pattern is wrong, not the threshold.** Signature deleted, no
+threshold shipped.
+
+### Shipped: a narrow co-occurrence rule (class 126)
+Discriminator = the backticked SDK package FAMILY welded to the
+`open-source SDKs (e.g.` opener. The opener ALONE is deliberately not the rule --
+ordinary prose ABOUT open-source SDKs is learnable; the package family is the
+anchor.
+
+    open[- ]source\s+SDKs?\s*\(?\s*e\.g\.?[\s\S]{0,80}?youtubei
+
+FP measurement (with the MODULES' own predicate at the end, not a copy of the
+regex): **10 hits, all 10 are this leak, 0 false positives** across
+`online_buffer` (170 rows), `buffer_junk` (7,560), both junk archives (314 +
+300), `kta_log` (926), `internet_learn_log` (2,292), `world_model` (7.9 MB) and
+`longterm_episodes` (50 MB / 3,059 rows). Wired into BOTH gates (`__AH__`
+both-files rule: learner `_is_junk` + writer `buffer_store.is_junk`). Controls:
+three generic-SDK prose sentences must survive BOTH gates -- asserted, and they
+do.
+
+E2E on the live write path: `store()` returns **False**, buffer unchanged
+(172 -> 172), and the row is audited to `buffer_junk.jsonl` with reason `junk`.
+
+### Mechanical traps that fired AGAIN (all already documented)
+- **`ast.parse` is NOT enough.** The first apply attempt did a global
+  `.replace(b"_SDK_FAMILY_WELD_RE = re.compile(", b"_re.compile(")` -- which
+  rewrote the assignment TARGET, leaving `_re.compile(...)` unassigned.
+  `ast.parse` stayed GREEN; `exec_module` raised `NameError:
+  _SDK_FAMILY_WELD_RE is not defined`. When a module aliases its imports
+  (`buffer_store` does `import re as _re`), rewrite ONLY the module reference,
+  never the assignment. Always run BOTH checks, and restore byte-exact from the
+  backup when one fails (md5 `10b185fd46` confirmed the restore).
+- **`patch` churns CRLF->LF across a whole file.** Modules here are pure CRLF
+  (`internet_learner` 5,313 CRLF / 0 lone LF; `buffer_store` 3,894 / 0). Test
+  file is `5,028 CRLF + 120 lone LF` -- an unusual signature that must be
+  preserved exactly. Everything was inserted as PURE BYTES; staged
+  `--cached --numstat` == `-w --numstat` (33/33/64, 130 insertions, **0
+  deletions**) proves no EOL churn. Lone-LF census 120 -> 120.
+- **Scratch helpers with hardcoded paths trip the repo's own guard.**
+  `_il126_*.py` / `_il_*_probe.py` in `scripts/training` contain
+  `C:/Users/damir` and would fail `test_no_hardcoded_paths.py`. They were
+  deleted after use; the guard was re-run and PASSes. Backup files
+  (`.bak_il126_*`) were moved OUT of the repo tree so `git status` stays clean.
+- **`search_files` cannot read `AppData/Local`** (documented in 109/110) -- use
+  `grep` in the shell.
+
+### Verify (standard shape, all met)
+3-copy `md5sum` identical per module across all three trees (`652c0053b9`
+learner, `9b940ff7c7` store -- both unchanged by the test append); every module
+`exec_module`-verified; `pytest tests/scripts/test_internet_learner_gate.py`
+**129 -> 133 passed** (4 new cases); full `tests/scripts` suite green;
+`test_no_hardcoded_paths` PASS. Committed `f141f8f4a` on
+`fix/28-respawn-test-psutil-hermetic` (the tracked branch, 1 ahead / 0 behind ->
+FF), pushed with `GIT_TERMINAL_PROMPT=0 git -c credential.helper=store push
+origin HEAD`, and verified by REMOTE blob, not the exit code:
+`git ls-remote` tip == local HEAD (`f141f8f4a6...`), and
+`git cat-file blob origin/<branch>:<file> | grep -c <marker>` -> 2/2/8.
+Post-fix live: 3 x `--once` -> 1 learned (real Haystack context-engineering
+prose) / 2 rejected; **no recurrence of the SDK-family row**.

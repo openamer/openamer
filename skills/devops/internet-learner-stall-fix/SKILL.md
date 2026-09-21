@@ -19,11 +19,13 @@ Per-class narratives for J–Z, AA–AG (15./16.09.26) live in
 **This SKILL.md is at its 100 KB cap.** New root causes go into
 `references/root-causes-archive.md` -- append **LF** (that file is LF-native;
 a CRLF append flips ~60 lines) -- and only a ONE-LINE pointer is added here.
-AW/AY (77-85), 96/97 (AZ), 98 (MEASURED-AND-REJECTED -> signature-delete),
-102/103 (BB), BE (deliberate non-fix) and 109/110 all live there, as do
-113/114/115 and 118 (20.09.26), BF (raised rate WITHOUT a gate regression:
-deterministic `deep_learn` + a 291/300 buffer) and BC (71 % of junk rejects are
-WRITER-only -- the extractor gate deliberately lacks `_is_serp_snippet`; NON-FIX).
+AW/AY (77-85), 96/97 (AZ), 98, 122 -> MEASURED-AND-REJECTED,
+102/103, 109/110, 113-115, 118, 123/124 (GitHub releases-row + slide-nav
+chrome; leaked into KTA competitor_gap), BF (deterministic `deep_learn`,
+291/300), BC (NON-FIX) and BG/126 (a platform's own client-SDK family: stored
+3x -- the sentence DRIFTS, so exact `_is_duplicate` missed it; same-`u` Jaccard
+MEASURED-AND-REJECTED, 0.24-0.33 vs a legitimate 0.40) in
+`references/root-causes-archive.md`. BE/BC/BF NAMED only, never written.
 TWO warnings stay live because they are behavioural, not history:
 
 - run `which_rule_matches.py` BEFORE touching a rule -- the AJ/AQ/AR trap has
@@ -58,17 +60,36 @@ has NO clean discriminator → signature delete. The 109/110 rows were still in
 the buffer: a written verdict is not a cleanup. Also: `skill_manage(write_file)`
 REPLACES a reference file — restore from the repo copy. See archive.
 
-**119 (20.09.26)**: no learner gate at all — `self_improve.py`'s P2 rule tested
-P1's `m` while replacing `m.group(0)`, so it DELETED the `CYCLE_SECONDS`
-assignment it guards (proven by exec; `apply_and_test`'s 3 checks all pass on the
-corruption). Fixed at source `920131e54` + `tests/scripts/test_self_improve_rules.py`
-(RED 3/3 → GREEN 3/3). TWO new traps: (1) `-c core.autocrlf=false add` in a
-`git worktree` still commits **CRLF over an LF blob** (16-line change read as
-294+/200-; compare the BLOB's CR count, not the worktree file's); (2) the mirror
-is two-way and the TREE can be the regressed side — a partial "merge the install
-back" commit kept a broken hunk. And the honest stopping state: 32.2% per-day was
-**not** a regression (56/60 duplicate rejects provably already stored, 19/40 junk
-are own-artifact echoes, buffer 293/300). See archive.
+**119/120 (20.09.26)**: no learner gate in either — 119 was `self_improve.py`'s P2
+rule deleting the `CYCLE_SECONDS` assignment it guards (`920131e54`, RED→GREEN
+3/3); 120 was a 3-tree drift round with **9 drifts pointing BOTH ways** (4 files
+live-AHEAD with a half-applied `chat_default` migration, 5 live-BEHIND incl.
+`tool_server.py` which had LOST two utf-8 captures — ported up as `3a0ca2912`).
+TWO live traps, both re-confirmed: (1) an autocrlf-off commit in a `git worktree`
+still summarises a whole-file rewrite (423+/432- for 14+/23-) because the blobs
+are LF and the worktree CRLF — **census the CR bytes in the BLOB**, and
+`git diff --stat HEAD~1 HEAD` vs `--ignore-cr-at-eol` is the clean read; (2) the
+mirror is two-way and the same tree can be ahead on one file and behind on
+another in one run — `verify_three_copies.py` compares against the repo WORKTREE,
+which sits on a foreign branch 36 commits behind, so its MISMATCH lines are
+branch noise; `git cat-file blob origin/main:<f>` is the only truth. Also: a
+`newline="\n"` cleanup silently flipped `online_buffer.jsonl` CRLF→LF (text-mode
+`append` means CRLF is the store's contract) and 2 more `Share a lesson you
+learned`-family echo rows were finally removed by signature (294→292, the 16
+genuine answers asserted intact). See archive.
+
+**121 (20.09.26)**: rotation exhaustion RE-CONFIRMED for the third round --
+`online_buffer` 292/300, the last 60 learner-owned `duplicate` rejects are
+**60/60 the identical `(u, a)` already stored** and 0 carry a novel `u`; 57
+recent `junk` candidates attribute ONLY to pre-existing helpers (serp / nav /
+own-plan / docs-label / date-heading + the `self-critique` marker tuple), zero
+novel shapes -> no gate change. The NEW trap: the `openamer-agent/` checkout
+lags main by 14 commits, so it APPEARS to have lost
+`tests/scripts/test_self_improve_rules.py` (the 119 regression test). It has not
+lost it -- a lagging checkout's missing file means BEHIND, never LOST, and
+hand-copying the blob in creates an untracked file that blocks the next pull.
+Resolve every apparent drift against `git cat-file blob origin/main:<f>` first.
+See archive.
 
 ## Trigger
 `python internet_learner.py --once` (or the cron) reports
