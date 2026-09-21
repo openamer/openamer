@@ -3679,6 +3679,28 @@ def _is_badge_ribbon_chrome(text):
     return bool(_BADGE_RIBBON_RE.search(text or ""))
 
 
+# class 130 (live 22.09.26) -- a "source tally" CTA stored as knowledge.
+# Exact leaked bytes (cycle_b_papers -> online_buffer.jsonl):
+#     Curated from 71 sources: Anthropic, OpenAI, HN, arXiv, GitHub and more.
+# It is the search widget's own footer, not a finding: the digit `71` fed
+# `_TECH_HINT_RE` and `OpenAI` satisfied `_has_alpha_signal`, so the
+# technical-signal gate and the 20-char floor both passed. Same family as the
+# earlier marketing-slogan rules, but ANCHORED and requiring the trailing
+# `and more`, which keeps real prose that happens to mention a count
+# ("The survey was curated from 71 sources across three labs.") learnable.
+# Measured FP replay: 1 hit over the live buffer and that hit IS the leak
+# -> 0/8,064 buffer_junk rows, 0/3,058 longterm_episodes, 0 cross_domain rows.
+_SOURCE_TALLY_CTA_RE = re.compile(
+    r"^\W*(?:curated|compiled|aggregated|sourced|collected|gathered)\s+"
+    r"from\s+\d{1,4}\+?\s+sources?\b[^.]{0,160}?\band\s+more\.?\s*$",
+    re.IGNORECASE)
+
+
+def _is_source_tally_cta(text):
+    """True when `text` is a widget's "Curated from N sources ... and more" CTA."""
+    return bool(_SOURCE_TALLY_CTA_RE.search(text or ""))
+
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
@@ -3816,6 +3838,9 @@ def _is_junk(text):
         return True
     # the agent's own German glossary line (class 97, 19.09.26)
     if _is_german_glossary_echo(t):
+        return True
+    # a widget's "Curated from N sources ... and more" CTA (class 130, 22.09.26)
+    if _is_source_tally_cta(t):
         return True
     # a page-meta listing widget (same narrow rule as
     # buffer_store._is_sidebar_listing_chrome)

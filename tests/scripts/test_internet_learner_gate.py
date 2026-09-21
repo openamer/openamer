@@ -5372,3 +5372,42 @@ def test_badge_ribbon_controls_survive_both_gates():
         assert not IL._is_junk(ctl), ctl
         assert not BS._is_badge_ribbon_chrome(ctl), ctl
         assert not BS.is_junk(ctl), ctl
+
+
+
+# class 130 (live 22.09.26): the papers cycle stored a search widget's own
+# source tally as a finding. Verbatim from online_buffer.jsonl:
+#   Curated from 71 sources: Anthropic, OpenAI, HN, arXiv, GitHub and more.
+# Both gates passed it, so both must refuse it; the anchored rule keeps real
+# prose that merely mentions a source count.
+_IL130_SOURCE_TALLY_LEAK = "Curated from 71 sources: Anthropic, OpenAI, HN, arXiv, GitHub and more."
+
+_IL130_CONTROLS = [
+    "The survey was curated from 71 sources across three labs.",
+    "Compiled from 12 sources, the report concludes that quantization "
+    "recovers 97% of fp16 accuracy.",
+    "Data aggregated from 240 sources and more than 30 benchmarks was used "
+    "to train the model.",
+    "The paper draws on a dataset collected from 8 sources and more, with "
+    "96% inter-annotator agreement.",
+]
+
+
+def test_source_tally_cta_is_rejected_on_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    assert IL._is_source_tally_cta(_IL130_SOURCE_TALLY_LEAK)
+    assert IL._is_junk(_IL130_SOURCE_TALLY_LEAK)
+    assert BS._is_source_tally_cta(_IL130_SOURCE_TALLY_LEAK)
+    assert BS.is_junk(_IL130_SOURCE_TALLY_LEAK)
+    assert IL._clean_insight(_IL130_SOURCE_TALLY_LEAK) == ""
+
+
+def test_source_tally_prose_controls_survive_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL130_CONTROLS:
+        assert not IL._is_source_tally_cta(ctl), ctl
+        assert not IL._is_junk(ctl), ctl
+        assert not BS._is_source_tally_cta(ctl), ctl
+        assert not BS.is_junk(ctl), ctl

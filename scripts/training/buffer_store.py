@@ -3492,6 +3492,28 @@ def _is_badge_ribbon_chrome(text):
     return bool(_BADGE_RIBBON_RE.search(text or ""))
 
 
+# class 130 (live 22.09.26) -- a "source tally" CTA stored as knowledge.
+# Exact leaked bytes (cycle_b_papers -> online_buffer.jsonl):
+#     Curated from 71 sources: Anthropic, OpenAI, HN, arXiv, GitHub and more.
+# It is the search widget's own footer, not a finding: the digit `71` fed
+# `_TECH_HINT_RE` and `OpenAI` satisfied `_has_alpha_signal`, so the
+# technical-signal gate and the 20-char floor both passed. Same family as the
+# earlier marketing-slogan rules, but ANCHORED and requiring the trailing
+# `and more`, which keeps real prose that happens to mention a count
+# ("The survey was curated from 71 sources across three labs.") learnable.
+# Measured FP replay: 1 hit over the live buffer and that hit IS the leak
+# -> 0/8,064 buffer_junk rows, 0/3,058 longterm_episodes, 0 cross_domain rows.
+_SOURCE_TALLY_CTA_RE = _re.compile(
+    r"^\W*(?:curated|compiled|aggregated|sourced|collected|gathered)\s+"
+    r"from\s+\d{1,4}\+?\s+sources?\b[^.]{0,160}?\band\s+more\.?\s*$",
+    _re.IGNORECASE)
+
+
+def _is_source_tally_cta(text):
+    """True when `text` is a widget's "Curated from N sources ... and more" CTA."""
+    return bool(_SOURCE_TALLY_CTA_RE.search(text or ""))
+
+
 def _is_nav_chrome(text):
     """True when text is page chrome (entities, marketing, UI, template leaks)."""
     if _ENTITY.search(text):
@@ -3617,6 +3639,9 @@ def _is_nav_chrome(text):
         return True
     # a blog badge ribbon welded to a headline stack (class 129, 21.09.26)
     if _is_badge_ribbon_chrome(text):
+        return True
+    # a widget's "Curated from N sources ... and more" CTA (class 130, 22.09.26)
+    if _is_source_tally_cta(text):
         return True
     # a platform's own client-SDK family named as the subject (class 126, 21.09.26)
     if _is_platform_sdk_family_weld(text):
