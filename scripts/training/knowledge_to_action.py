@@ -333,12 +333,80 @@ def experiment_meta_insight():
 
 # ---- Action selector: match insight keywords to experiments ----
 
+def experiment_group_state():
+    """REAL architecture experiment: generalize a group-state model to unseen lengths.
+
+    Added 21.09.26. The rotation used to hold five experiments of which four were
+    log-only (LoRA rank records a baseline and defers to the next GPU run;
+    meta-RL re-reads a stale meta_state; buffer/competitor mostly describe the
+    surface). The standing mandate is "new NN architecture > infrastructure", so
+    the rotation now contains one experiment that trains/evaluates a model and
+    writes numbers that can be wrong.
+
+    Method: load the SAVED Z_10 rotor-snap model (2 params, tau=0.1, trained on
+    lengths 1-7), evaluate at unseen lengths up to 2048 across 5 seeds, and
+    report mean/min/max. No retraining — the saved artifact is the subject.
+    """
+    import importlib
+    import random as _random
+
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    parent = os.path.dirname(script_dir)
+    for p in (parent, script_dir):
+        if p not in sys.path:
+            sys.path.insert(0, p)
+    try:
+        engine = importlib.import_module("group_state_engine")
+        lab = importlib.import_module("group_scaling_lab")
+    except Exception as e:  # noqa: BLE001
+        return {"action": "group-state generalization",
+                "result": f"import failed: {type(e).__name__}: {e}",
+                "measurable": False}
+
+    mpath = engine.model_path("Z10")
+    if not os.path.exists(mpath):
+        return {"action": "group-state generalization",
+                "result": f"no saved model at {mpath}", "measurable": False}
+    try:
+        model, group, payload = engine.load(mpath)
+    except Exception as e:  # noqa: BLE001
+        return {"action": "group-state generalization",
+                "result": f"load failed: {type(e).__name__}: {e}",
+                "measurable": False}
+
+    lengths = [8, 64, 512, 2048]
+    seeds = [0, 1, 2, 3, 4]
+    measured = {}
+    for L in lengths:
+        accs = [round(lab.accuracy(model, group, L, n=200, seed=s), 4) for s in seeds]
+        measured[L] = {"mean": round(sum(accs) / len(accs), 4),
+                       "min": min(accs), "max": max(accs)}
+    worst = min(v["min"] for v in measured.values())
+    out = os.path.join(engine.DEFAULT_DIR, "group_state_z10_kta.json")
+    with open(out, "w", encoding="utf-8") as f:
+        json.dump({"ts": datetime.datetime.now().isoformat(),
+                   "group": group.order, "params": payload["stats"]["params"],
+                   "tau": payload["tau"], "trained_on": payload["stats"].get("trained_on"),
+                   "lengths": {str(k): v for k, v in measured.items()},
+                   "seeds": seeds, "n_per_seed": 200}, f, indent=1)
+    curve = " ".join(f"L{L}:{measured[L]['mean']:.3f}" for L in lengths)
+    return {"action": f"group-state generalization ({group.order}, "
+                      f"{payload['stats']['params']} params, tau={payload['tau']})",
+            "result": f"accuracy on unseen lengths {curve}; worst min over 5 seeds = {worst:.4f}",
+            "exact_lengths": [L for L in lengths if measured[L]["min"] >= 1.0],
+            "artifact": out,
+            "measurable": True}
+
+
 EXPERIMENTS = [
     (["lora", "rank", "peft", "fine-tun"], experiment_lora_rank),
     (["predict", "future", "state-space", "projection"], experiment_predict_world),
     (["buffer", "cap", "memory"], experiment_tune_buffer),
     (["openhands", "devin", "autogpt", "competitor", "sdk"], experiment_competitor_gap),
     (["meta-rl", "lamer", "exploration", "meta-learn"], experiment_meta_insight),
+    # architecture slot (appended 21.09.26): rotation index 5, so it is reached
+    # once per 6 cycles without disturbing the existing round-robin schedule.
+    (["group", "group-state", "symmetry", "rotor", "lattice"], experiment_group_state),
 ]
 
 def find_latest_insight():
