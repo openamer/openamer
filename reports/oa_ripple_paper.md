@@ -34,12 +34,27 @@ wobei `sigmoid(x) = 1/(1 + e^(-x))`.
 | **tanh** | **4.0/4** | Immer perfekt |
 | **oa_ripple** | **4.0/4** | Immer perfekt |
 
-### CIRCLE (nicht-linear trennbar, 400 Samples)
+### CIRCLE (non-linearly separable, 10 seeds, 100 epochs, lr=0.3, 2→4→1)
 
-| Aktivierung | Accuracy |
-|---|---|
-| relu | 0.644 |
-| oa_ripple | **0.892** |
+A single-seed run is NOT a measurement here: `relu` shows huge initialization
+variance on this task (min 0.694 .. max 1.000 at n=121). Averaged over 10 seeds:
+
+| Grid | Aktivierung | mean | min | max |
+|---|---|---|---|---|
+| 121 samples | relu | 0.907 | 0.694 | 1.000 |
+| 121 samples | gelu | 0.920 | 0.752 | 1.000 |
+| 121 samples | **oa_ripple** | **0.948** | 0.926 | 0.975 |
+| 441 samples | relu | 0.706 | 0.644 | 0.850 |
+| 441 samples | gelu | 0.705 | 0.537 | 0.873 |
+| 441 samples | **oa_ripple** | **0.873** | 0.721 | 0.909 |
+
+Honest reading: `oa_ripple` leads on both densities, but the effect is
+**variance reduction** — its worst case (0.926) beats relu's worst case (0.694)
+by a wide margin — rather than a mean jump. An earlier revision of this file
+claimed relu 0.644 vs oa_ripple 0.892; that compared one lucky relu seed against
+the ripple mean and is superseded by the table above. Denser sampling makes the
+task harder for every activation (relu 0.907 → 0.706), so figures from different
+grids are not comparable.
 
 ### Evolutionäre Suche
 
