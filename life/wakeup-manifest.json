@@ -1,6 +1,6 @@
 {
   "organism": "OpenAmer",
-  "written_at": "2026-09-20T22:05:01.102343+00:00",
+  "written_at": "2026-09-21T10:04:55.893077+00:00",
   "identity": {
     "name": "openamer_agent",
     "voice": "https://x.com/openamer_agent",
@@ -15,7 +15,7 @@
   "organs": {
     "heartbeat": {
       "kind": "cron-fleet",
-      "count": 101
+      "count": 104
     },
     "memory": {
       "kind": "memory+skills",
@@ -66,7 +66,7 @@
     },
     {
       "name": "self-reflection",
-      "schedule": "every 240m",
+      "schedule": "every 120m",
       "script": null,
       "last_status": "ok"
     },
@@ -140,7 +140,7 @@
       "name": "Auto Code Review (60m)",
       "schedule": "every 60m",
       "script": "cron-auto-code-review.py",
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "Resource Monitor Alert",
@@ -224,7 +224,7 @@
       "name": "Skill Validator - 24h Quality Check",
       "schedule": "every 1440m",
       "script": "cron-skill-validator.py",
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "SSH Health-Check",
@@ -278,7 +278,7 @@
       "name": "Social-Outreach-Mega",
       "schedule": "every 180m",
       "script": null,
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "Browser-Health-Watchdog",
@@ -302,7 +302,7 @@
       "name": "Plugin-Auto-Loader",
       "schedule": "every 30m",
       "script": "plugin-loader-cron.py",
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "Wiki-Generator-Daily",
@@ -326,7 +326,7 @@
       "name": "OpenAmer GitHub Outreach - Issues + Discussions",
       "schedule": "every 120m",
       "script": null,
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "OpenAmer Discord Community Manager",
@@ -374,7 +374,7 @@
       "name": "OpenAmer-Autonom-Growth",
       "schedule": "every 60m",
       "script": null,
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "Autonom-Watchtower 24/7",
@@ -398,7 +398,7 @@
       "name": "Darwin Engine - hourly skill evolution",
       "schedule": "*/15 * * * *",
       "script": "darwin-cron.py",
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "Darwin Weekly GitHub Report",
@@ -416,7 +416,7 @@
       "name": "Swarm OS - Autonomous Loop (30m)",
       "schedule": "every 30m",
       "script": null,
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "Darwin Skill AutoPatch (daily)",
@@ -488,25 +488,25 @@
       "name": "self-improvement-loop",
       "schedule": "*/30 * * * *",
       "script": null,
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "internet-learner-247",
       "schedule": "every 5m",
       "script": null,
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "knowledge-to-action",
       "schedule": "*/30 * * * *",
       "script": null,
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "auto-skill-creation",
       "schedule": "*/30 * * * *",
       "script": null,
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "self-model-evolution",
@@ -596,7 +596,7 @@
       "name": "Repo-Auto-Commit (Reports, 6h)",
       "schedule": "every 360m",
       "script": "cron-repo-autocommit.py",
-      "last_status": "error"
+      "last_status": "ok"
     },
     {
       "name": "Runtime-Tree-Sync (2h, no restart)",
@@ -662,7 +662,25 @@
       "name": "identity-refresh-watchdog",
       "schedule": "40 4 * * *",
       "script": "identity-watchdog.py",
-      "last_status": null
+      "last_status": "ok"
+    },
+    {
+      "name": "metacognition-loop",
+      "schedule": "every 360m",
+      "script": "_cron_metacognition_wrapper.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "oa-ripple-research",
+      "schedule": "0 5 * * *",
+      "script": "_cron_metacognition_wrapper.py",
+      "last_status": "ok"
+    },
+    {
+      "name": "self-learning-loop",
+      "schedule": "0 */6 * * *",
+      "script": "_cron_metacognition_wrapper.py",
+      "last_status": "ok"
     }
   ]
 }
