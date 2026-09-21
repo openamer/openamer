@@ -5039,3 +5039,62 @@ def test_infobox_factrow_tail_is_gated_on_both_paths():
     ):
         assert not IL._is_infobox_factrow_tail(prose), prose
         assert not buffer_store._is_infobox_factrow_tail(prose), prose
+
+# ---------------------------------------------------------------------------
+# class 129 (live 21.09.26) -- blog badge ribbon welded to a headline stack
+# (REJECT, not strip)
+#
+# `cycle_d_docs` stored:
+#   "Arab World #3 Featured Blog 85% 3 Machine Learning RAG Systems in
+#    Production: Architecture, Tradeoffs, and Failure Modes
+#    Retrieval-augmented generation (RAG) is the dominant application"
+# The site's own card ribbon (rank badge + `Featured Blog` label + percent
+# counter + bare index) is welded to the headline stack and its lede. 239
+# chars WITH digits, so the >=90 length trust AND the technical-signal gate
+# both fired; class 106's rule needs a >=8-token nav vocabulary run and this
+# ribbon has none.
+#
+# REJECT, not strip: the prose behind the ribbon is a generic RAG lede with no
+# capability token. Measured: 1 buffer hit (= this leak), 0/7,984
+# buffer_junk rows, 0/3,059 longterm_episodes, 0/3 controls.
+# ---------------------------------------------------------------------------
+
+_IL129_BADGE_RIBBON_LEAK = (
+    "Arab World #3 Featured Blog 85% 3 Machine Learning RAG Systems in "
+    "Production: Architecture, Tradeoffs, and Failure Modes "
+    "Retrieval-augmented generation (RAG) is the dominant application pattern "
+    "for large language models in 2026."
+)
+
+# Topic-matched controls: the label ALONE is ordinary English. A bare
+# `Featured Blog` marker was measured and rejected as too broad -- it fired
+# on every one of these.
+_IL129_BADGE_RIBBON_CONTROLS = [
+    "The site's Featured Blog section covers RAG in production systems, and "
+    "the 2026 article explains chunking and reranking tradeoffs.",
+    "Our Featured Blog post on quantization recovers 97% of fp16 accuracy at INT4.",
+    "The Featured Blog archive lists 3 posts about agent evaluation harnesses.",
+    "RAG is the dominant application pattern for large language models in 2026, "
+    "and chunking decides most of the retrieval quality.",
+]
+
+
+def test_badge_ribbon_chrome_is_rejected_on_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    assert IL._is_badge_ribbon_chrome(_IL129_BADGE_RIBBON_LEAK)
+    assert IL._is_junk(_IL129_BADGE_RIBBON_LEAK)
+    assert BS._is_badge_ribbon_chrome(_IL129_BADGE_RIBBON_LEAK)
+    assert BS.is_junk(_IL129_BADGE_RIBBON_LEAK)
+    # a badge ribbon must never become a learned insight
+    assert IL._clean_insight(_IL129_BADGE_RIBBON_LEAK, 300) == ""
+
+
+def test_badge_ribbon_controls_survive_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL129_BADGE_RIBBON_CONTROLS:
+        assert not IL._is_badge_ribbon_chrome(ctl), ctl
+        assert not IL._is_junk(ctl), ctl
+        assert not BS._is_badge_ribbon_chrome(ctl), ctl
+        assert not BS.is_junk(ctl), ctl

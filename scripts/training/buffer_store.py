@@ -3323,6 +3323,33 @@ def _is_startup_portal_nav_run(text):
     return bool(_STARTUP_PORTAL_NAV_RE.search(text or ""))
 
 
+# class 129 (live 21.09.26): a blog badge ribbon stored as the answer --
+#   "Arab World #3 Featured Blog 85% 3 Machine Learning RAG Systems in
+#    Production: Architecture, Tradeoffs, and Failure Modes
+#    Retrieval-augmented generation (RAG) is the dominant application"
+# The site's own card ribbon (rank badge + `Featured Blog` label + a percent
+# counter + a bare index) is welded to the headline stack and its lede.
+# 239 chars WITH digits, so the >=90 length trust AND the technical-signal
+# gate both fired; class 106's rule needs a >=8-token nav vocabulary run and
+# this ribbon has none.
+#
+# REJECT, not strip: the prose behind the ribbon is a generic RAG lede with
+# no capability token (same call as class 128 on the stray branch). THREE
+# conjuncts in order -- numbered badge, the site's own `Featured Blog`
+# label, a percent ribbon -- so no single ordinary-English token can fire it.
+# A BARE `Featured Blog` marker was measured and REJECTED as too broad (it
+# fired on all 3 natural prose counter-cases).
+# Measured: 1 buffer hit and it IS the leak -> 0/7,984 buffer_junk rows,
+# 0/3,059 longterm_episodes, 0/3 prose counter-cases.
+_BADGE_RIBBON_RE = _re.compile(
+    r"^[\s\S]{0,40}?#\s*\d{1,3}\b[\s\S]{0,60}?\bFeatured\s+Blog\b"
+    r"[\s\S]{0,60}?\d{1,3}\s*%", _re.IGNORECASE)
+
+
+def _is_badge_ribbon_chrome(text):
+    """True for a blog card ribbon (rank badge + Featured Blog + percent)."""
+    return bool(_BADGE_RIBBON_RE.search(text or ""))
+
 def _is_nav_chrome(text):
     """True when text is page chrome (entities, marketing, UI, template leaks)."""
     if _ENTITY.search(text):
@@ -3510,6 +3537,9 @@ def _is_nav_chrome(text):
         return True
     # a HN item row with the site's own `Show HN:` tag (class 105, 19.09.26)
     if _is_hn_show_run_chrome(text):
+        return True
+    # a blog badge ribbon welded to a headline stack (class 129, 21.09.26)
+    if _is_badge_ribbon_chrome(text):
         return True
     # a site nav-label run welded to `Featured #` (class 106, 19.09.26)
     if _is_blog_nav_feature_run_chrome(text):
