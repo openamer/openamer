@@ -224,11 +224,16 @@ def create_skill_from_insight(insight_question, insight_answer, source_tag):
     desc = clean_answer[:150].strip()
     name = "auto-" + slugify(insight_question)
     if name == "auto-":
+        print(f"[auto-skill] skipped empty slug: {insight_question[:60]!r}", flush=True)
         return None
 
     registry = load_registry()
 
     if dedupe_check(name, desc, registry):
+        # Report WHY a run produced nothing. Without this the caller sees a bare
+        # "Total: 0 new skills created" and cannot tell saturation (every insight
+        # already has a skill) apart from a broken pipeline.
+        print(f"[auto-skill] skipped duplicate: {name[:60]}", flush=True)
         return None  # duplicate (same slug or same insight text)
 
     os.makedirs(AUTO_SKILLS, exist_ok=True)
@@ -317,3 +322,6 @@ if __name__ == "__main__":
     else:
         created = auto_create_from_buffer()
         print(f"\nTotal: {len(created)} new skills created")
+        if not created:
+            print("[auto-skill] no new skills this cycle — every recent insight was "
+                  "already covered (duplicate slug) or unreadable (see lines above)")

@@ -329,14 +329,33 @@ EXPERIMENTS = [
 ]
 
 def find_latest_insight():
-    """Find the most recent useful insight from the buffer."""
+    """Find the most recent useful insight from the buffer.
+
+    Robustness (live 21.09.26): the store can carry blank separator lines and
+    the occasional truncated row. The old loop called json.loads() on EVERY
+    physical line, so a single empty line aborted the whole cycle with
+    "Expecting value: line 2 column 1" and no experiment ever ran. Blank lines
+    and unparsable rows are now skipped — a separator is not an insight, and
+    one damaged row must not stop the loop.
+    """
     latest = None
-    for line in open(os.path.join(T, "online_buffer.jsonl"), encoding="utf-8"):
-        d = json.loads(line)
-        u, a = d.get("u", ""), d.get("a", "")
-        # skip template junk and short answers
-        if len(a) > 50 and "sentence" not in a and "thinking process" not in a:
-            latest = {"question": u, "answer": a}
+    skipped = 0
+    path = os.path.join(T, "online_buffer.jsonl")
+    with open(path, encoding="utf-8") as fh:
+        for line in fh:
+            if not line.strip():
+                continue
+            try:
+                d = json.loads(line)
+            except (json.JSONDecodeError, ValueError):
+                skipped += 1
+                continue
+            u, a = d.get("u", ""), d.get("a", "")
+            # skip template junk and short answers
+            if len(a) > 50 and "sentence" not in a and "thinking process" not in a:
+                latest = {"question": u, "answer": a}
+    if skipped:
+        print(f"[kta] skipped {skipped} unparsable buffer rows", flush=True)
     return latest
 
 def kta_cycle():
