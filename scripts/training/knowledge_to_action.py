@@ -254,6 +254,19 @@ def experiment_competitor_gap():
         # lexicon had no token for.
         ("agent framework", "agent framework / orchestrator SDK"),
         ("foundry", "hosted model platform / managed agent runtime"),
+        # Grown from a REAL signal (21.09.26): the benchmark-site row, once the
+        # class-127 nav leak was stripped off it, reads
+        #   "We benchmarked 4 popular open-source agentic frameworks across 2,000
+        #    runs (5 tasks, 100 runs each per framework), measuring end-to-end
+        #    latency, token consumption, and architectural differences."
+        # That IS a capability description (comparative evaluation harness), not
+        # chrome -- so this is the honest lexicon gap the class-127 fix exposed,
+        # not something to patch on the extraction side. Measured precision over
+        # the corpus the consumer actually reads (33 competitor rows): `benchmark`
+        # matches 1 row and that row IS this signal -> 0 mis-maps. Deliberately
+        # matched by its MEASUREMENT noun, never a generic word like `framework`
+        # (3/33 rows = real mis-maps onto unrelated framework prose).
+        ("benchmark", "comparative evaluation harness / multi-framework benchmark"),
     )
     low_signal = signal.lower()
     # Longest (most specific) matching token wins: a generic token declared

@@ -3443,6 +3443,27 @@ def _is_startup_portal_nav_run(text):
     return bool(_STARTUP_PORTAL_NAV_RE.search(text or ""))
 
 
+# class 128 (live 21.09.26): an AI-agent INDEX landing page stored as the
+# answer -- same shape as internet_learner._is_agent_index_nav_run; keep both
+# files in sync. This is one of the TWO rows that made the KTA competitor-gap
+# experiment report `signal NOT mappable`: the consumer reads the LAST
+# lexicon-matching buffer row, so a nav row appended late poisons every
+# subsequent run.
+#
+# REJECT, not strip: the prose behind the run is a generic lede with no
+# capability token. TWO independent conjuncts in order (a single token like
+# `compare alternatives` is ordinary English). Measured: 1 buffer hit
+# (= this leak), 0 prose FPs, 0 longterm_episodes FPs, 0 test-literal FPs.
+_AGENT_INDEX_NAV_RE = _re.compile(
+    r"compare\s+alternatives[\s\S]{0,80}?advertise\s+api",
+    _re.IGNORECASE)
+
+
+def _is_agent_index_nav_run(text):
+    """True for an AI-agent index landing page's welded affordance nav run."""
+    return bool(_AGENT_INDEX_NAV_RE.search(text or ""))
+
+
 def _is_nav_chrome(text):
     """True when text is page chrome (entities, marketing, UI, template leaks)."""
     if _ENTITY.search(text):
@@ -3562,6 +3583,9 @@ def _is_nav_chrome(text):
         return True
     # a startup portal's welded nav label run (class 103, 19.09.26)
     if _is_startup_portal_nav_run(text):
+        return True
+    # an AI-agent index landing page's affordance nav run (class 128, 21.09.26)
+    if _is_agent_index_nav_run(text):
         return True
     # a platform's own client-SDK family named as the subject (class 126, 21.09.26)
     if _is_platform_sdk_family_weld(text):

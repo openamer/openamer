@@ -5210,3 +5210,106 @@ def test_generic_open_source_sdk_prose_survives_both_gates():
         assert not IL._is_junk(ctl), ctl
         assert not BS._is_platform_sdk_family_weld(ctl), ctl
         assert not BS.is_junk(ctl), ctl
+
+# ---------------------------------------------------------------------------
+# class 127 (live 21.09.26) -- benchmark-site masthead nav pair (STRIP, not reject)
+#
+# `cycle_c_github` stored
+#   "Aug 10, 2026 See our ethical norms Cite This Benchmark We benchmarked 4
+#    popular open-source agentic frameworks across 2,000 runs (5 tasks, 100
+#    runs each per framework), measuring end-to-end latency, token
+#    consumption, and architectural differences."
+# The nav pair carries no capability token, so the KTA competitor-gap
+# experiment read the LAST matching buffer row and reported `signal NOT
+# mappable` for 46 of its 158 runs -- a CONSUMER defect report that was really
+# an UPSTREAM chrome leak. The lede behind the menu is a real multi-framework
+# benchmark, so it is a STRIP in the same >= 2-labels-in-the-first-80-chars
+# chain form as class 43. Measured: 1 buffer hit (= this leak), 0 prose FPs,
+# 0 longterm_episodes FPs, 0 gate-test-literal FPs.
+# ---------------------------------------------------------------------------
+
+_IL127_BENCH_MASTHEAD_LEAK = (
+    "Aug 10, 2026 See our ethical norms Cite This Benchmark We benchmarked 4 "
+    "popular open-source agentic frameworks across 2,000 runs (5 tasks, 100 "
+    "runs each per framework), measuring end-to-end latency, token "
+    "consumption, and architectural differences."
+)
+
+# Topic-matched controls: a sentence a human would write ABOUT the same
+# feature. A bare label is ordinary English and must stay byte-identical --
+# that is exactly the trap every single-phrase marker died on in class 43.
+_IL127_BENCH_MASTHEAD_CONTROLS = [
+    "The paper cites this benchmark as the strongest evidence for grouped state tracking.",
+    "See our ethical norms page for how we handle user data.",
+    "We benchmark our own agent against four open-source frameworks every quarter.",
+    "Cite This Benchmark in your paper and the leaderboard updates automatically.",
+    "The benchmark measured end-to-end latency and token consumption across runs.",
+]
+
+
+def test_benchmark_masthead_nav_pair_is_stripped_from_the_insight():
+    import internet_learner as IL
+    stripped = IL._strip_masthead_nav_chain(_IL127_BENCH_MASTHEAD_LEAK)
+    assert "See our ethical norms" not in stripped
+    assert "Cite This Benchmark" not in stripped
+    assert stripped.startswith("We benchmarked 4 popular"), stripped
+    # idempotent
+    assert IL._strip_masthead_nav_chain(stripped) == stripped
+    # the whole pipeline must land on the lede, free of the menu
+    cleaned = IL._clean_insight(_IL127_BENCH_MASTHEAD_LEAK, 300)
+    assert cleaned, "the benchmark lede is real prose and must survive"
+    assert not IL._MASTHEAD_NAV_RE.search(cleaned), cleaned
+
+
+def test_benchmark_masthead_controls_stay_byte_identical():
+    import internet_learner as IL
+    for text in _IL127_BENCH_MASTHEAD_CONTROLS:
+        assert IL._strip_masthead_nav_chain(text) == text.strip(), text
+
+# ---------------------------------------------------------------------------
+# class 128 (live 21.09.26) -- AI-agent INDEX landing page nav run (REJECT)
+#
+# The second of the TWO rows that made the KTA competitor-gap experiment report
+# `signal NOT mappable` / map a false capability. The consumer reads the LAST
+# lexicon-matching buffer row, so a nav row appended late poisons every
+# subsequent run. Measured: 1 buffer hit (= this leak), 0 prose FPs,
+# 0 longterm_episodes FPs, 0 gate-test-literal FPs.
+# ---------------------------------------------------------------------------
+
+_IL128_AGENT_INDEX_LEAK = (
+    "AI Agent Index Categories Find Agent + Submit Compare Alternatives Stacks "
+    "Advertise API Home / AI Coding Agents Best AI Coding Agents (2026): IDEs, "
+    "Terminals, Autonomous Updated September 2026 AI coding agents have moved "
+    "well beyond autocomplete."
+)
+
+# Topic-matched controls: each conjunct ALONE is ordinary English and must stay
+# learnable. This is the trap the single-token marker died on.
+_IL128_AGENT_INDEX_CONTROLS = [
+    "When you compare alternatives, look at latency before price.",
+    "The Advertise API lets partners buy placements programmatically.",
+    "Sites often put a Find Agent and a Submit button side by side.",
+    "Compare alternatives across frameworks is what the benchmark does.",
+    "We advertise an API for partners and compare alternatives in our review.",
+]
+
+
+def test_agent_index_nav_run_is_rejected_on_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    assert IL._is_agent_index_nav_run(_IL128_AGENT_INDEX_LEAK)
+    assert IL._is_junk(_IL128_AGENT_INDEX_LEAK)
+    assert BS._is_agent_index_nav_run(_IL128_AGENT_INDEX_LEAK)
+    assert BS.is_junk(_IL128_AGENT_INDEX_LEAK)
+    # a landing page must never become a learned insight
+    assert IL._clean_insight(_IL128_AGENT_INDEX_LEAK, 300) == ""
+
+
+def test_agent_index_single_conjunct_prose_survives_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL128_AGENT_INDEX_CONTROLS:
+        assert not IL._is_agent_index_nav_run(ctl), ctl
+        assert not IL._is_junk(ctl), ctl
+        assert not BS._is_agent_index_nav_run(ctl), ctl
+        assert not BS.is_junk(ctl), ctl

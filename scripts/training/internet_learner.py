@@ -3623,6 +3623,34 @@ def _is_startup_portal_nav_run(text):
     return bool(_STARTUP_PORTAL_NAV_RE.search(text or ""))
 
 
+# class 128 (live 21.09.26): an AI-agent INDEX landing page stored as the
+# answer -- its affordance nav run welded to the site's own category labels:
+#   "AI Agent Index Categories Find Agent + Submit Compare Alternatives Stacks
+#    Advertise API Home / AI Coding Agents Best AI Coding Agents (2026): IDEs,
+#    Terminals, Autonomous Updated September 2026 AI coding agents have moved
+#    well beyond autocomplete."
+# This is one of the TWO rows that made the KTA competitor-gap experiment
+# report `signal NOT mappable` / map a false capability: the consumer reads the
+# LAST lexicon-matching buffer row, so a nav row appended late poisons every
+# subsequent run.
+#
+# REJECT, not strip: the only prose behind the run is a generic lede ("AI
+# coding agents have moved well beyond autocomplete") with no capability token,
+# so stripping would leave a contentless stub -- and the pair itself is the
+# discriminator. TWO independent conjuncts in order, per the lazy-bridge trap:
+# a single token like `compare alternatives` is ordinary English. Measured with
+# probe_marker_candidates.py: 1 buffer hit (= this leak), 0 prose FPs,
+# 0 longterm_episodes FPs, 0 gate-test-literal FPs.
+_AGENT_INDEX_NAV_RE = re.compile(
+    r"compare\s+alternatives[\s\S]{0,80}?advertise\s+api",
+    re.IGNORECASE)
+
+
+def _is_agent_index_nav_run(text):
+    """True for an AI-agent index landing page's welded affordance nav run."""
+    return bool(_AGENT_INDEX_NAV_RE.search(text or ""))
+
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
@@ -3745,6 +3773,9 @@ def _is_junk(text):
         return True
     # a startup portal's welded nav label run (class 103, 19.09.26)
     if _is_startup_portal_nav_run(t):
+        return True
+    # an AI-agent index landing page's affordance nav run (class 128, 21.09.26)
+    if _is_agent_index_nav_run(t):
         return True
     # a platform's own client-SDK family named as the subject (class 126, 21.09.26)
     if _is_platform_sdk_family_weld(t):
@@ -4870,7 +4901,25 @@ def _strip_blog_header_stack(text):
 # a 15-sentence hostile control corpus (each bare label, plus comma'd and
 # sentence-embedded forms) -- only deliberately chain-shaped controls strip.
 _MASTHEAD_NAV_RE = re.compile(
-    r"\bBlog\s+Guides\s+Insights\b|\bBreaking\s+AI\s+News\b|\bBreaking\s+story\b")
+    r"\bBlog\s+Guides\s+Insights\b|\bBreaking\s+AI\s+News\b|\bBreaking\s+story\b|"
+    # class 127 (live 21.09.26): a benchmark site's masthead nav pair welded to
+    # its own lede. `cycle_c_github` stored
+    #   "Aug 10, 2026 See our ethical norms Cite This Benchmark We benchmarked
+    #    4 popular open-source agentic frameworks across 2,000 runs ..."
+    # -- the KTA cycle then reported `signal NOT mappable` for 46 of 158
+    # competitor runs, because the consumer reads the LAST matching row and a
+    # nav pair carries no capability token. The lede behind the menu IS the
+    # knowledge (a real multi-framework benchmark), so this is a STRIP in the
+    # SAME >= 2-labels-in-the-first-80-chars chain form as class 43 -- a bare
+    # label alone is ordinary English and must stay learnable.
+    #
+    # Measured with probe_marker_candidates.py over all 4 corpora: 1 buffer hit
+    # and that hit IS the leaking row -> 0 prose FPs, 0 episode FPs, 0 test-
+    # literal FPs. Hostile controls that stay byte-identical:
+    #   "The paper cites this benchmark as the strongest evidence for ..."
+    #   "See our ethical norms page for how we handle user data."
+    #   "Cite This Benchmark in your paper and the leaderboard updates ..."
+    r"\bSee\s+our\s+ethical\s+norms\b|\bCite\s+This\s+Benchmark\b")
 
 
 # The distillation LLM's own VERDICT ABOUT THE PAGE returned as an "insight"
