@@ -22,7 +22,7 @@ def log(msg):
     l = f"[{t}] {msg}"
     print(l)
     os.makedirs(os.path.dirname(LOG_FILE), exist_ok=True)
-    with open(LOG_FILE, 'a') as f:
+    with open(LOG_FILE, 'a', encoding="utf-8") as f:
         f.write(l + "\n")
 
 def is_vendored(root):

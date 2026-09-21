@@ -240,7 +240,7 @@ def _watch_singleton_lock():
         return None
     lock_path = home / "session_to_brain.watch.lock"
     try:
-        fh = open(lock_path, "a+")
+        fh = open(lock_path, "a+", encoding="utf-8")
         if _os.name == "nt":
             import msvcrt
             fh.seek(0)
@@ -397,7 +397,8 @@ def main() -> int:
     print(f"Added {new_records} new trajectory/trajectories, skipped {skipped} existing.")
     if new_records:
         ds = Path(dataset_path)
-        print(f"Staging file now: {ds.stat().st_size} bytes, {sum(1 for _ in ds.open())} records")
+        print(f"Staging file now: {ds.stat().st_size} bytes, "
+              f"{sum(1 for _ in ds.open(encoding='utf-8'))} records")
 
     # After a manual run, also consolidate into the brain dataset.
     if new_records and not args.dry_run:

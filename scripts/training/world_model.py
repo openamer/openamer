@@ -116,7 +116,7 @@ def _node_alive(pid):
         finally:
             k32.CloseHandle(h)
     try:
-        os.kill(pid, 0)
+        os.kill(pid, 0)  # windows-footgun: ok
         return True
     except ProcessLookupError:
         return False

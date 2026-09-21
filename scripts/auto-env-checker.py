@@ -185,7 +185,7 @@ def check_env(fix=False):
         r.add("env", "critical", ".env existiert nicht", f"Pfad: {ENV_FILE}")
         if fix:
             try:
-                ENV_FILE.write_text("# Auto-Env-Checker: initial .env\n")
+                ENV_FILE.write_text("# Auto-Env-Checker: initial .env\n", encoding="utf-8")
                 r.add_fix("env", ".env erstellt", f"{ENV_FILE} wurde angelegt")
             except Exception as e:
                 r.add_fix("env", ".env erstellen", f"Fehler: {e}", success=False)
@@ -415,7 +415,7 @@ def check_paths(fix=False):
             if path.is_dir():
                 test_file = path / f"._env_check_{os.getpid()}.tmp"
                 try:
-                    test_file.write_text("test")
+                    test_file.write_text("test", encoding="utf-8")
                     test_file.unlink()
                     r.add("paths", "ok", f"{name}: schreibbar")
                 except (OSError, PermissionError) as e:

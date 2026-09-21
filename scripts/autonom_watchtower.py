@@ -50,7 +50,7 @@ def _pid_alive(pidfile: Path) -> bool:
     if not pidfile.exists():
         return False
     try:
-        pid = int(pidfile.read_text().strip())
+        pid = int(pidfile.read_text(encoding="utf-8").strip())
     except ValueError:
         return False
     r = subprocess.run(["tasklist", "/FI", f"PID eq {pid}", "/NH"],

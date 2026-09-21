@@ -29,7 +29,7 @@ if not os.environ.get("GH_TOKEN") and not os.environ.get("GITHUB_TOKEN"):
     git_creds = Path.home() / ".git-credentials"
     if git_creds.exists():
         import re as _re
-        match = _re.search(r"https://[^:]+:([^@]+)@github\.com", git_creds.read_text())
+        match = _re.search(r"https://[^:]+:([^@]+)@github\.com", git_creds.read_text(encoding="utf-8"))
         if match:
             os.environ["GH_TOKEN"] = match.group(1)
             os.environ["GITHUB_TOKEN"] = match.group(1)
@@ -55,11 +55,11 @@ def run(cmd, **kwargs):
 
 def load_state() -> dict:
     if STATE_FILE.exists():
-        return json.loads(STATE_FILE.read_text())
+        return json.loads(STATE_FILE.read_text(encoding="utf-8"))
     return {"seen_issues": [], "stats": {"total_fixed": 0, "total_failed": 0}}
 
 def save_state(state: dict):
-    STATE_FILE.write_text(json.dumps(state, indent=2))
+    STATE_FILE.write_text(json.dumps(state, indent=2), encoding="utf-8")
 
 # ─── Main Logic ───────────────────────────────────────────────────────────────
 
@@ -150,7 +150,7 @@ def analyze_and_fix(issue: dict) -> tuple[bool, str]:
             for test_path in failing_tests:
                 test_file = REPO_DIR / test_path.split("::")[0]
                 if test_file.exists():
-                    content = test_file.read_text()
+                    content = test_file.read_text(encoding="utf-8")
                     # Look for obvious issues - outdated assertions, etc.
                     # This is a simplified auto-fix that just marks the test as expected failure
                     # In production, the agent would actually analyze and fix the root cause

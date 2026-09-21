@@ -162,10 +162,10 @@ FOOTGUNS: list[Footgun] = [
         ),
         # Filter: only flag if mode is missing-or-text AND the line doesn't
         # already pass encoding=. Skip binary mode (contains "b").
-        post_filter=lambda m, line: (
+        post_filter=lambda m, line, ahead="": (
             "b" not in (m.group("mode") or "")
-            and "encoding=" not in line
-            and "encoding =" not in line
+            and "encoding=" not in (line + ahead)
+            and "encoding =" not in (line + ahead)
             # Skip `def open(` and `async def open(` (method definitions)
             and not line.lstrip().startswith("def ")
             and not line.lstrip().startswith("async def ")
@@ -391,9 +391,20 @@ FOOTGUNS: list[Footgun] = [
             "See issue #37423 and the #71014 / read_text campaign."
         ),
         fix='path.read_text(encoding="utf-8") / path.write_text(data, encoding="utf-8")',
-        post_filter=lambda m, line: (
-            "encoding=" not in line
-            and "encoding =" not in line
+        post_filter=lambda m, line, ahead="": (
+            "encoding=" not in (line + ahead)
+            and "encoding =" not in (line + ahead)
+            # ``Path.read_text("utf-8")`` / ``write_text(data, "utf-8")`` pass the
+            # encoding POSITIONALLY -- which is valid for these two methods (they
+            # take ``encoding`` as the first/only parameter, unlike ``open()``).
+            # Without this the rule flags every such call: 54 false positives
+            # repo-wide, all correct code.
+            #
+            # A character-class pattern like ``\([^()]*["']utf-?8`` is NOT enough:
+            # the common form ``write_text(json.dumps(d, indent=2), "utf-8")`` has
+            # an INNER paren group, so ``[^()]*`` stops early and still reports it.
+            # Scan to the matching close paren instead, then look for the literal.
+            and not _positional_encoding(m, line)
             and not _looks_like_string_literal(line, m)
             # Skip calls that continue onto the next line — the closing
             # paren isn't on this line, so encoding= may follow. AST-level
@@ -521,6 +532,48 @@ def _is_likely_subprocess_call(line: str) -> bool:
     return any(token in line for token in _SUBPROCESS_METHODS)
 
 
+def _positional_encoding(match: "re.Match", line: str) -> bool:
+    """True if ANY ``.read_text(...)``/``.write_text(...)`` call on the line
+    passes an encoding literal positionally.
+
+    ``Path.read_text`` takes ``encoding`` as its FIRST parameter and
+    ``write_text`` as its second, so ``read_text("utf-8")`` and
+    ``write_text(data, "utf-8")`` are both correct -- yet the rule's
+    ``encoding=`` test misses them and flags correct code.
+
+    Two traps this guards against, both of which produced live false positives:
+
+    1. A ``[^()]*`` character class stops at an INNER paren, so
+       ``write_text(json.dumps(d, indent=2), "utf-8")`` still matched. Scan to
+       the matching close paren instead.
+
+    2. Checking only the FIRST call on the line. In
+       ``write_text(read_text("utf-8") + x, "utf-8")`` the outer ``write_text``
+       is unbalanced on that line (the scan never closes), so a first-call-only
+       check returns False and the correct code is still reported. Iterate over
+       EVERY call on the line.
+    """
+    found = False
+    for cm in re.finditer(r"\.(?:read_text|write_text)\s*\(", line):
+        depth = 0
+        for i in range(cm.end() - 1, len(line)):
+            if line[i] == "(":
+                depth += 1
+            elif line[i] == ")":
+                depth -= 1
+                if depth == 0:
+                    if re.search(r"""["']utf-?8["']""", line[cm.end():i]):
+                        return True
+                    break
+        if depth != 0:
+            # unbalanced on this line: the encoding may sit after the wrap.
+            # Treat as "not proven positionally" only if the tail shows nothing.
+            tail = line[cm.end():]
+            if re.search(r"""["']utf-?8["']""", tail):
+                return True
+    return found
+
+
 def _looks_like_string_literal(line: str, match: "re.Match") -> bool:
     """Heuristic: is the ``text=True`` match inside a string literal?
 
@@ -558,7 +611,18 @@ def scan_file(path: Path, footguns: list[Footgun]) -> list[tuple[int, str, Footg
     # triple-quote we see; we don't try to handle nested or f-string cases.
     in_triple: str | None = None  # None, "'''", or '"""'
 
-    for i, line in enumerate(text.splitlines(), start=1):
+    all_lines = text.splitlines()
+
+    for i, line in enumerate(all_lines, start=1):
+        # A call whose arguments wrap onto the next line(s) carries its
+        # encoding= there. This scanner is line-based, so without a small
+        # lookahead window every wrapped call reports a FALSE POSITIVE.
+        # A call whose arguments wrap onto the next line carries its encoding=
+        # there. ONE line of lookahead is the right window: enough to see the
+        # wrapped continuation, narrow enough that an encoding= belonging to a
+        # DIFFERENT statement three lines down cannot excuse a real finding.
+        # (A 3-line window silently suppressed genuine violations -- measured.)
+        ahead = all_lines[i] if i < len(all_lines) else ""
         # Update triple-quote state based on this line's occurrences.
         code_for_scan = line
         if in_triple:
@@ -613,7 +677,11 @@ def scan_file(path: Path, footguns: list[Footgun]) -> list[tuple[int, str, Footg
                 continue
             if fg.post_filter is not None:
                 try:
-                    if not fg.post_filter(match, line):
+                    try:
+                        keep = fg.post_filter(match, line, ahead)
+                    except TypeError:
+                        keep = fg.post_filter(match, line)   # 2-arg filters
+                    if not keep:
                         continue
                 except (IndexError, AttributeError):
                     # Post-filter assumed a named group that isn't there — skip.

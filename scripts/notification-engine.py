@@ -406,7 +406,7 @@ def run_daemon(interval: int = 30):
     # PID schreiben
     PID_FILE.parent.mkdir(parents=True, exist_ok=True)
     try:
-        with open(PID_FILE, "w") as f:
+        with open(PID_FILE, "w", encoding="utf-8") as f:
             f.write(str(os.getpid()))
     except OSError:
         pass
@@ -438,7 +438,7 @@ def show_status():
     daemon_pid = None
     if PID_FILE.exists():
         try:
-            daemon_pid = int(PID_FILE.read_text().strip())
+            daemon_pid = int(PID_FILE.read_text(encoding="utf-8").strip())
         except (ValueError, OSError):
             pass
 

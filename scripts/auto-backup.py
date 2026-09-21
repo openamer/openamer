@@ -183,11 +183,11 @@ def _decrypt_file(src: Path, key: bytes) -> bytes:
 def _get_or_create_key() -> bytes:
     """Lese oder erstelle den Fernet-Schlüssel."""
     if KEY_FILE.exists():
-        raw = KEY_FILE.read_text().strip()
+        raw = KEY_FILE.read_text(encoding="utf-8").strip()
         return raw.encode() if isinstance(raw, str) else raw
     from cryptography.fernet import Fernet
     fkey = Fernet.generate_key()
-    KEY_FILE.write_text(fkey.decode())
+    KEY_FILE.write_text(fkey.decode(), encoding="utf-8")
     KEY_FILE.chmod(0o600)
     print(f"[INFO] Neuer Backup-Key erstellt: {KEY_FILE}")
     return fkey
@@ -197,7 +197,7 @@ def _load_key() -> bytes | None:
     """Lade den Fernet-Schlüssel, falls vorhanden."""
     if not KEY_FILE.exists():
         return None
-    raw = KEY_FILE.read_text().strip()
+    raw = KEY_FILE.read_text(encoding="utf-8").strip()
     return raw.encode()
 
 
@@ -299,7 +299,7 @@ def cmd_now(encrypt: bool, external: str | None, dry_run: bool = False) -> int:
         "checksums": checksums,
         "total_size_bytes": sum(e.get("size", 0) for e in manifest_entries),
     }
-    (bdir / MANIFEST).write_text(json.dumps(manifest, indent=2, ensure_ascii=False))
+    (bdir / MANIFEST).write_text(json.dumps(manifest, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"\n[OK] Manifest: {bdir / MANIFEST}")
 
     _rotate(target)
@@ -326,7 +326,7 @@ def cmd_list(external: str | None) -> int:
         manifest = bdir / MANIFEST
         if manifest.exists():
             try:
-                m = json.loads(manifest.read_text())
+                m = json.loads(manifest.read_text(encoding="utf-8"))
                 size_mb = m.get("total_size_bytes", 0) / (1024 * 1024)
                 count = len(m.get("entries", []))
                 encrypted = "ja" if m.get("encrypted") else "nein"
@@ -356,7 +356,7 @@ def cmd_restore(tag: str, external: str | None, key: bytes | None = None, dry_ru
 
     manifest_file = bdir / MANIFEST
     if manifest_file.exists():
-        manifest = json.loads(manifest_file.read_text())
+        manifest = json.loads(manifest_file.read_text(encoding="utf-8"))
         encrypted = manifest.get("encrypted", False)
     else:
         encrypted = any(f.suffix == ".enc" for f in bdir.iterdir())
