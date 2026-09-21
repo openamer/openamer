@@ -537,6 +537,16 @@ _JUNK_RE = re.compile(
     # the live buffer: 1 hit and that hit IS the leaking row -> 0 prose FPs.
     r"\b\w+\s+vs\.?\s+\w+[^|]{0,25}\d{1,2}\s*[-\u2013]\s*\d{1,2}\s*\|\s*"
     r"\d{1,2}[/.]\d{1,2}[/.]\d{2,4}|closed nifty|the economic times benchmarks|add free huggingface demo|"
+    # GitHub releases-page ROW + slide-deck nav trio (classes 123/124,
+    # live 21.09.26) -- same markers as buffer_store._NAV_CHROME; keep both
+    # files in sync. Measured: 1 buffer hit each and that hit IS the leaking
+    # row -> 0 prose FPs over 3,059 longterm_episodes + 7,442 buffer_junk
+    # rows. Prose that merely discusses releases or slides stays learnable
+    # (counter-cases measured).
+    r"released\s+[^\n]{0,60}?\(github releases\)|show original\s+previous slide|"
+    # NOTE: every fragment above ends with `|` -- the whole alternation is ONE
+    # implicitly-joined literal, so a missing pipe welds two rules together and
+    # an EMPTY branch matches every string (both hit on 16.09.26).
     # NOTE: the fragment below is the LAST one -- it keeps the closing comma
     # that the following re.IGNORECASE) closes.
     r"^\W*[kKmM]\s+followers\b",

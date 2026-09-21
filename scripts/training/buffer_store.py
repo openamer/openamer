@@ -395,8 +395,63 @@ _NAV_CHROME = (
     # count also measured 0 FP both corpora -- candidate for a class-wide
     # detector later; not needed for this single leak.
     "the economic times benchmarks",
+    # A GitHub releases-page ROW: "Released <name> (GitHub Releases) *
+    # <relative time>" -- page meta welded to the release title, then a
+    # hashtag tail. Live 21.09.26: the knowledge-to-action competitor cycle
+    # analysed
+    #   "Released Stride (GitHub Releases) * 1 day, 18 hours ago How to get
+    #    sound effects for your game #gamedev #sounddesign #elevenlabs #ad"
+    # The relative-time digits fed the technical-signal gate and the length
+    # cleared the >=25 floor, so BOTH gates passed it and it trained.
+    # Keyed on the pair (a release label followed by the literal site label
+    # "(GitHub Releases)"), never on the bare words: prose that merely DISCUSSES
+    # releases ("GitHub Releases are built automatically from tags ...") is
+    # untouched -- measured as a counter-case.
+    # A slide-deck NAVIGATION trio welded to a widget date: "Show original
+    # Previous slide Next slide <relative date>". Live 21.09.26: the same kta
+    # cycle analysed
+    #   "ES Show original Previous slide Next slide 1 year ago in Stocks, AI
+    #    Modeling, Business, AI GOOGL Alphabet Shares ..."
+    # A search widget / slideshow strip, zero prose. Keyed on the ADJACENCY of
+    # the controls, never on a single control: ordinary prose that merely says
+    # "the previous slide showed the latency curve" carries the words but never
+    # the welded trio -- measured as a counter-case. Measured: 1 buffer hit and
+    # that hit IS the leaking row -> 0 prose FPs over 3,059 longterm_episodes +
+    # 7,442 buffer_junk rows + 4 hand-written counter-cases.
+    "show original previous slide",
+    "previous slide next slide",
     "add free huggingface demo",
 )
+
+# A GitHub releases-page ROW shape: a release LABEL followed by the literal
+# site label, then a relative-time stamp -- e.g. "Released Stride (GitHub
+# Releases) • 1 day, 18 hours ago How to get sound effects ..." (live
+# 21.09.26, knowledge-to-action competitor cycle). The relative-time digits
+# satisfied the technical-signal gate. DELIBERATELY a welded regex pair, not
+# a bare "(github releases)" substring: the bare form was measured and
+# REJECTED because it also flags genuine prose that mentions the feature
+# ("The pipeline pushes (GitHub Releases) metadata into our registry so
+# downstream consumers can pin versions."). Requiring the release label
+# BEFORE it and a relative stamp AFTER it keeps that sentence learnable.
+# Measured: 1 buffer hit and that hit IS the leaking row -> 0 prose FPs.
+_GH_RELEASES_ROW_RES = (
+    _re.compile(r"\(github releases\)", _re.IGNORECASE),
+    _re.compile(r"\b\d+\s+day[s]?,\s*\d+\s+hour[s]?\s+ago\b",
+                _re.IGNORECASE),
+)
+# BOTH parts must be present. A bare "(GitHub Releases)" alone was measured
+# and REJECTED: genuine prose mentions the feature ("The release pipeline
+# pushes (GitHub Releases) metadata into our registry ..."). The releases-
+# page ROW always welds the label to a relative-time stamp, and real prose
+# never carries both.
+_GH_RELEASES_ROW_MIN_MARKERS = 2
+
+
+def _is_gh_releases_row(text):
+    """True when `text` is a GitHub releases-page listing row."""
+    t = text or ""
+    return (sum(1 for r in _GH_RELEASES_ROW_RES if r.search(t))
+            >= _GH_RELEASES_ROW_MIN_MARKERS)
 
 
 # A social counter truncated at its own digit ("K followers") means the text
@@ -3693,6 +3748,8 @@ def is_junk(text):
     if _is_binary_noise(s):
         return True
     if _is_nav_chrome(s):
+        return True
+    if _is_gh_releases_row(s):
         return True
     tokens = s.split()
     # A short single-word fragment with a LOWERCASE run and no punctuation is a

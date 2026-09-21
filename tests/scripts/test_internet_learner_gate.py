@@ -5039,3 +5039,55 @@ def test_infobox_factrow_tail_is_gated_on_both_paths():
     ):
         assert not IL._is_infobox_factrow_tail(prose), prose
         assert not buffer_store._is_infobox_factrow_tail(prose), prose
+
+
+def test_gh_releases_row_and_slide_nav_chrome_are_gated_on_both_paths():
+    """A GitHub releases-page row and a slide-deck nav trio (classes 123/124,
+    live 21.09.26).
+
+    The knowledge-to-action competitor cycle kept landing on "signal NOT
+    mappable" because the competitor row it analysed was page chrome, not
+    competitor intelligence:
+
+      "Released Stride (GitHub Releases) \u2022 1 day, 18 hours ago How to get
+       sound effects for your game #gamedev #sounddesign #elevenlabs #ad"
+      "ES Show original Previous slide Next slide 1 year ago in Stocks, AI
+       Modeling, Business, AI GOOGL Alphabet Shares ..."
+
+    Both cleared BOTH gates: the relative-time digits satisfied the
+    technical-signal gate and the length cleared the floor.
+
+    The GitHub marker requires BOTH the literal site label and a
+    relative-time stamp -- a bare "(GitHub Releases)" substring was measured
+    and REJECTED because it flags genuine prose that mentions the feature
+    (see the counter-cases). The slide marker keys on control ADJACENCY,
+    never a single control.
+
+    Measured: 1 buffer hit each, and that hit IS the leaking row -> 0 prose
+    FPs over 3,059 longterm_episodes + 7,442 buffer_junk rows.
+    """
+    sys.path.insert(0, str(TRAINING))
+    import buffer_store
+
+    leaks = (
+        "Released Stride (GitHub Releases) \u2022 1 day, 18 hours ago How to "
+        "get sound effects for your game #gamedev #sounddesign #elevenlabs #ad",
+        "ES Show original Previous slide Next slide 1 year ago in Stocks, AI "
+        "Modeling, Business, AI GOOGL Alphabet Shares",
+    )
+    for leak in leaks:
+        assert buffer_store.is_junk(leak), leak
+        assert IL._is_junk(leak), leak
+
+    # counter-cases: every marker is also a shape real prose can contain.
+    for prose in (
+        "GitHub Releases are built automatically from tags; the workflow "
+        "publishes artifacts and the changelog is generated from commits.",
+        "The release pipeline pushes (GitHub Releases) metadata into our "
+        "registry so downstream consumers can pin exact versions.",
+        "In the previous slide we showed the latency curve; the next slide "
+        "covers throughput scaling on the same hardware.",
+        "Click Show original to read the untranslated post and its replies.",
+    ):
+        assert not buffer_store.is_junk(prose), prose
+        assert not IL._is_junk(prose), prose
