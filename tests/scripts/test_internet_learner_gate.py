@@ -5146,3 +5146,67 @@ def test_release_note_emoji_bullet_is_gated_on_both_paths():
     for c in clean:
         assert buffer_store._is_release_note_emoji_bullet(c) is False, c
         assert IL._is_release_note_emoji_bullet(c) is False, c
+# class 126 (live 21.09.26): a platform's OWN client-SDK package family named as
+# the SUBJECT, welded to an "open-source SDKs (e.g. `...`)" opener. Live leak
+# (rows 9/137/169 of online_buffer, plus buffer_junk + kta_log +
+# internet_learn_log -- 3x on 19.09/21.09):
+#   "YouTube's open-source SDKs (e.g., `youtubei1`, `youtubei2`, `youtubei3`) are
+#    the only reliable way to programmatically control the API, bypass rate
+#    limits, and access private endpoints"
+# The sentence DRIFTS between reads (`youtubei-python`/`youtubei-webapp` ->
+# `youtubei1`..`youtubei3`), so the exact-match `_is_duplicate` gate let the same
+# page into the training buffer twice. This is platform plumbing for that site's
+# own API, not agent-actionable knowledge.
+#
+# A generic same-`u` near-duplicate gate was MEASURED AND REJECTED first: the
+# three leak rows score token-set Jaccard 0.241/0.308/0.327 while legitimate
+# DISTINCT rows for one `u` reach 0.400 -- no separation, so any threshold would
+# delete real learnings. Hence a narrow chrome rule, FP-measured, not a
+# similarity threshold.
+_IL126_SDK_FAMILY_LEAK = (
+    "YouTube's open-source SDKs (e.g., `youtubei1`, `youtubei2`, `youtubei3`) are "
+    "the only reliable way to programmatically control the API, bypass rate limits, "
+    "and access private endpoints"
+)
+_IL126_SDK_FAMILY_LEAK_OLD = (
+    "YouTube's open-source SDKs (e.g., `youtubei-python`, `youtubei-webapp`) are the "
+    "only reliable way to programmatically interact with the platform, bypassing the "
+    "restrictive browser-based API"
+)
+# Generic prose ABOUT open-source SDKs must stay learnable: the package FAMILY is
+# the anchor, not the opener.
+_IL126_SDK_CONTROLS = [
+    "Open-source SDKs for the vector database expose a stable Python API, so an agent "
+    "can index documents and query them without re-reading the corpus.",
+    "The open-source SDKs (e.g. the Go client) ship weekly releases.",
+    "Open-source SDKs are the fastest way to add a provider to an agent, because the "
+    "wire format is already documented.",
+]
+
+
+def test_platform_sdk_family_weld_is_rejected():
+    import internet_learner as IL
+    assert IL._is_platform_sdk_family_weld(_IL126_SDK_FAMILY_LEAK)
+    assert IL._is_platform_sdk_family_weld(_IL126_SDK_FAMILY_LEAK_OLD)
+
+
+def test_platform_sdk_family_weld_reaches_the_learner_gate():
+    import internet_learner as IL
+    assert IL._is_junk(_IL126_SDK_FAMILY_LEAK)
+    assert IL._is_junk(_IL126_SDK_FAMILY_LEAK_OLD)
+
+
+def test_platform_sdk_family_weld_reaches_the_writer_gate():
+    import buffer_store as BS
+    assert BS._is_platform_sdk_family_weld(_IL126_SDK_FAMILY_LEAK)
+    assert BS.is_junk(_IL126_SDK_FAMILY_LEAK)
+
+
+def test_generic_open_source_sdk_prose_survives_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL126_SDK_CONTROLS:
+        assert not IL._is_platform_sdk_family_weld(ctl), ctl
+        assert not IL._is_junk(ctl), ctl
+        assert not BS._is_platform_sdk_family_weld(ctl), ctl
+        assert not BS.is_junk(ctl), ctl

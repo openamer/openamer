@@ -3408,6 +3408,36 @@ _STARTUP_PORTAL_NAV_RE = _re.compile(
     _re.IGNORECASE)
 
 
+# class 126 (live 21.09.26): a video/news platform's OWN client-SDK package
+# family named as the SUBJECT, welded to an "open-source SDKs (e.g. `...`)"
+# opener -- "YouTube's open-source SDKs (e.g., `youtubei1`, `youtubei2`,
+# `youtubei3`) are the only reliable way to programmatically control the API,
+# bypass rate limits, and access private endpoints". It reached the training
+# buffer 3x (19.09 00:24, 21.09 10:14, 21.09 16:04) -- the third time as a
+# duplicate of the first, i.e. the SAME page was deep-read twice and the
+# exact-`_is_duplicate` gate could not see it because the sentence drifted
+# (`youtubei-python`/`youtubei-webapp` -> `youtubei1`/`youtubei2`/
+# `youtubei3`). It is platform plumbing for that site's own API, not knowledge
+# an agent can act on, so it is chrome. Discriminator: the backticked SDK
+# family welded to the "open-source SDKs (e.g." opener. The opener ALONE is not
+# enough (generic prose about open-source SDKs is learnable); the package
+# family is the anchor. Measured: 10 hits over online_buffer + buffer_junk +
+# both junk archives + kta_log + internet_learn_log + world_model (7.9 MB) +
+# longterm_episodes (50 MB) -- ALL 10 are this leak, 0 false positives.
+# A generic same-`u` similarity gate (token-set Jaccard) was MEASURED AND
+# REJECTED: the three leak rows score 0.241/0.308/0.327 while legitimate
+# distinct rows for one `u` score up to 0.400 -- no separation, so a threshold
+# would only delete real learnings.
+_SDK_FAMILY_WELD_RE = _re.compile(
+    r"open[- ]source\s+SDKs?\s*\(?\s*e\.g\.?[\s\S]{0,80}?youtubei",
+    _re.IGNORECASE)
+
+
+def _is_platform_sdk_family_weld(text):
+    """True for a platform's own client-SDK family welded to an SDKs opener."""
+    return bool(_SDK_FAMILY_WELD_RE.search(text or ""))
+
+
 def _is_startup_portal_nav_run(text):
     """True for a startup portal's welded nav label run."""
     return bool(_STARTUP_PORTAL_NAV_RE.search(text or ""))
@@ -3532,6 +3562,9 @@ def _is_nav_chrome(text):
         return True
     # a startup portal's welded nav label run (class 103, 19.09.26)
     if _is_startup_portal_nav_run(text):
+        return True
+    # a platform's own client-SDK family named as the subject (class 126, 21.09.26)
+    if _is_platform_sdk_family_weld(text):
         return True
     # a bare markdown heading stored as the whole answer (class 96, 19.09.26)
     if _is_bare_markdown_heading_fragment(text):
