@@ -56,8 +56,37 @@ def _is_install_root(pth: Path) -> bool:
         return False
 
 
+def _install_candidates() -> list[Path]:
+    """The places an OpenAmer home can live, most-likely first.
+
+    A user install lives under the platform's local app dir (``~/AppData/Local``
+    on Windows). A git checkout is *also* a valid home: the repository tracks
+    ``skills/`` (698 files) plus ``cron/`` and ``.env``, and main() documents
+    that "every GitHub install must work out of the box (portability rule)".
+    The checkout root must therefore be considered too, or every CI run on
+    Linux resolves HOME to a path under ``$HOME/AppData/Local`` that does not
+    exist, fails ``_is_install_root()``, and reports the phantom-home condition
+    as a false alarm (observed on ubuntu-latest, 2026-09-19).
+    """
+    candidates: list[Path] = []
+    local = Path.home() / "AppData" / "Local"
+    # Deliberately NOT seeding this list with $OPENAMER_HOME: that value may be
+    # an unchecked/relative path, and it is validated separately below. Only
+    # auto-discovered homes belong here.
+    candidates += [local / "openamer-laptop", local / "openamer"]
+    # Repo root == parent of scripts/. Only trusted when it really looks like a
+    # checkout with a skills population, never a bare directory.
+    try:
+        repo_root = Path(__file__).resolve().parents[1]
+        if (repo_root / "skills").is_dir() and (repo_root / "pyproject.toml").is_file():
+            candidates.append(repo_root)
+    except (OSError, IndexError):
+        pass
+    return candidates
+
+
 def _resolve_home() -> Path:
-    """Resolve OPENAMER_HOME robustly across shells.
+    """Resolve OPENAMER_HOME robustly across shells and platforms.
 
     The cron ticker runs this script through git-bash, which exports
     OPENAMER_HOME in MSYS form, e.g. /c/Users/<user>/AppData/Local/openamer-laptop.
@@ -66,13 +95,24 @@ def _resolve_home() -> Path:
     empty history snapshot is recorded -- evolution looks like it ran but did
     nothing. Normalise MSYS drive forms to native paths and only accept a
     candidate that actually exists.
+
+    Selection order:
+
+    1. a valid ``OPENAMER_HOME`` (a real install root, not a phantom tree),
+    2. the user install under the platform local app dir,
+    3. the git checkout itself (portable GitHub install),
+    4. the ``openamer`` app-dir path as the last-resort default, even when it
+       does not exist yet -- main() creates a fresh ``skills/`` there.
     """
-    local = Path.home() / "AppData" / "Local"
-    # Prefer an install that actually carries a skills dir: "openamer-laptop"
-    # is the real install on this host, plain "openamer" the upstream default.
-    candidates = [local / "openamer-laptop", local / "openamer"]
-    default = next((c for c in candidates if (c / "skills").is_dir()),
-                   candidates[-1])
+    candidates = _install_candidates()
+    app_dir = [c for c in candidates if "AppData" in c.parts]
+    # A real install carries the markers AND a skills population. Preferring the
+    # marker-bearing candidate in list order keeps the Windows behaviour (the
+    # app dir wins) while making a Linux checkout resolve to the checkout root
+    # instead of a non-existent ~/AppData/Local path.
+    default = next((c for c in candidates
+                    if _is_install_root(c) and (c / "skills").is_dir()),
+                   app_dir[-1] if app_dir else candidates[-1])
 
     raw = os.environ.get("OPENAMER_HOME")
     if not raw:

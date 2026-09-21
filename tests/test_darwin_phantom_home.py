@@ -18,10 +18,21 @@ cycle resolved its whole world into that scratch dir:
 
 The same scratch dir was reached by ``scripts/autonomous_loop.py``, which
 reported "0 tasks, everything clean" while running against an empty population.
+
+Second, independent half of the same bug class (Linux CI, 2026-09-19): with no
+``OPENAMER_HOME`` set and a home that has no ``~/AppData/Local``, the *fallback*
+was ``$HOME/AppData/Local/openamer`` -- a Windows-only path that does not exist
+on the runner. ``_is_install_root()`` then returned False for the fallback, so
+the module reported the phantom-home condition against a correctly-configured
+checkout, and ``main()`` created ``skills/`` inside a bogus ``AppData`` tree
+under the runner home. The checkout is a valid home (it ships ``skills/``,
+``cron/`` and ``.env``), so the fallback must resolve to it.
 """
 import importlib.util
+import shutil
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 import pytest
@@ -52,6 +63,34 @@ def test_scratch_home_is_not_adopted(tmp_path, monkeypatch):
 
     assert mod.HOME != scratch, "scratch dir adopted as OPENAMER_HOME"
     assert mod._is_install_root(mod.HOME), "fallback home is not a real install"
+    assert (mod.HOME / "skills").is_dir()
+
+
+def test_fallback_home_resolves_without_a_windows_appdir(tmp_path, monkeypatch):
+    """The default must not be a path under ~/AppData/Local on a non-Windows host.
+
+    On a Linux CI runner ``~`` has no ``AppData/Local`` at all, so the old
+    ``local / "openamer"`` default resolved to ``$HOME/AppData/Local/openamer``
+    -- a path that does not exist. ``_is_install_root()`` then returned False for
+    the fallback, which is precisely the phantom-home signal this module exists
+    to reject: the module accused a correctly-configured checkout of being a
+    scratch dir. The checkout itself is a valid home (it ships skills/, cron/
+    and .env), so it must be the fallback.
+    """
+    fake_home = tmp_path / "runner"
+    fake_home.mkdir()
+    monkeypatch.setenv("HOME", str(fake_home))
+    monkeypatch.setenv("USERPROFILE", str(fake_home))
+    monkeypatch.delenv("OPENAMER_HOME", raising=False)
+
+    mod = _load_fresh(monkeypatch, None)
+
+    assert "AppData" not in mod.HOME.parts, (
+        f"fallback home {mod.HOME} is a Windows-only path on a host without "
+        f"~/AppData/Local")
+    assert mod.HOME.exists(), f"fallback home {mod.HOME} does not exist"
+    assert mod._is_install_root(mod.HOME), (
+        f"fallback home {mod.HOME} is not a real install root")
     assert (mod.HOME / "skills").is_dir()
 
 
@@ -129,15 +168,29 @@ def test_empty_snapshots_excluded_from_trend(tmp_path, monkeypatch):
 
 
 def test_cron_wrapper_reaches_real_population():
-    """End-to-end: the poisoned env still yields a 110-skill population."""
+    """End-to-end: the poisoned env still yields a real (non-phantom) population."""
+    # The scratch dir must be *real* for this test to mean anything: the whole
+    # point is that it EXISTS yet must not be adopted. Hardcoding C:/tmp/oa-home
+    # made the assertion vacuous on Linux, where it never exists.
+    scratch = Path(tempfile.mkdtemp(prefix="oa-home-"))
+    (scratch / "skills").mkdir(exist_ok=True)
+    env = {"OPENAMER_HOME": str(scratch).replace("\\", "/"),
+           "PATH": __import__("os").environ.get("PATH", ""),
+           "SYSTEMROOT": __import__("os").environ.get("SYSTEMROOT", "")}
+    for keep in ("HOME", "USERPROFILE", "HOMEDRIVE", "HOMEPATH", "TMPDIR", "LANG"):
+        if keep in __import__("os").environ:
+            env[keep] = __import__("os").environ[keep]
     proc = subprocess.run(
         [sys.executable, str(ENGINE), "--autopilot"],
         cwd=str(REPO), capture_output=True, text=True, encoding="utf-8",
-        errors="replace", timeout=420,
-        env={"OPENAMER_HOME": "C:/tmp/oa-home",
-             "PATH": __import__("os").environ.get("PATH", ""),
-             "SYSTEMROOT": __import__("os").environ.get("SYSTEMROOT", "")},
+        errors="replace", timeout=420, env=env,
     )
     out = proc.stdout + proc.stderr
+    # The scratch dir existed, so the poison was live: reaching the real
+    # population means it was rejected without crashing the cycle.
     assert "fitness computed for 0 skills" not in out, out
     assert "REFUSING" not in out, out
+    # Never evolve the scratch dir -- no darwin state may be written there.
+    assert not (scratch / "darwin").exists(), (
+        f"darwin state was written into the scratch home {scratch}")
+    shutil.rmtree(scratch, ignore_errors=True)
