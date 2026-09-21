@@ -1,5 +1,5 @@
 # Darwin Engine Report
-_2026-09-20T23:55:06.468607+00:00 — evolutionary skill ecosystem_
+_2026-09-21T00:16:17.582864+00:00 — evolutionary skill ecosystem_
 
 **Population:** 122 Skills | **Offspring:** 5 | **Competitions:** 24
 
@@ -7,15 +7,15 @@ _2026-09-20T23:55:06.468607+00:00 — evolutionary skill ecosystem_
 
 | Skill | Fitness | Usage | Age (days) | Mutationen W/L |
 |---|---|---|---|---|
-| auto-env-checker | 2130.0 | 2145 | 0 | 8/41 |
-| autonomous-learning-architecture | 1908.9 | 1896 | 3 | 0/0 |
-| cdp-social-posting | 952.9 | 940 | 3 | 0/0 |
-| train-from-usage | 720.0 | 713 | 0 | 0/4 |
-| plugin-api | 710.0 | 701 | 30 | 0/0 |
-| asi-capability-summary | 429.0 | 419 | 0 | 0/0 |
+| auto-env-checker | 2131.0 | 2146 | 0 | 8/41 |
+| autonomous-learning-architecture | 1909.9 | 1897 | 3 | 0/0 |
+| cdp-social-posting | 953.9 | 941 | 3 | 0/0 |
+| train-from-usage | 721.0 | 714 | 0 | 0/4 |
+| plugin-api | 711.0 | 702 | 30 | 0/0 |
+| asi-capability-summary | 432.0 | 422 | 0 | 0/0 |
 | asi-identity | 316.0 | 306 | 0 | 0/0 |
 | self-rewriter | 171.3 | 221 | 21 | 6/71 |
-| a2a-brain-meshlearn-verify | 135.93 | 126 | 2 | 0/0 |
+| a2a-brain-meshlearn-verify | 138.93 | 129 | 2 | 0/0 |
 | darwin-harvested-package-lock-json | 106.83 | 58 | 5 | 27/15 |
 
 ## Bottom 5 (selection candidates)
@@ -41,23 +41,23 @@ _2026-09-20T23:55:06.468607+00:00 — evolutionary skill ecosystem_
 - ⏳ `asi-identity+auto-env-checker` (0) vs `None` (0)
 - ⏳ `auto-env-checker+autonomous-learning-architecture` (0) vs `None` (0)
 - ⏳ `auto-env-checker+cdp-social-posting` (0) vs `None` (0)
-- ⏳ `auto-env-checker__mutbroaden_trigger` (2130.0) vs `auto-env-checker` (2130.0)
-- ⏳ `autonomous-learning-architecture__mutbroaden_trigger` (1908.9) vs `autonomous-learning-architecture` (1908.9)
-- ⏳ `autonomous-learning-architecture__muttighten_trigger` (1908.9) vs `autonomous-learning-architecture` (1908.9)
-- ⏳ `cdp-social-posting__muttighten_trigger` (952.9) vs `cdp-social-posting` (952.9)
+- ⏳ `auto-env-checker__mutbroaden_trigger` (2131.0) vs `auto-env-checker` (2131.0)
+- ⏳ `autonomous-learning-architecture__mutbroaden_trigger` (1909.9) vs `autonomous-learning-architecture` (1909.9)
+- ⏳ `autonomous-learning-architecture__muttighten_trigger` (1909.9) vs `autonomous-learning-architecture` (1909.9)
+- ⏳ `cdp-social-posting__muttighten_trigger` (953.9) vs `cdp-social-posting` (953.9)
 - ⏳ `discord-server-management__mutadd_verification_step` (36.9) vs `discord-server-management` (36.9)
 - ⏳ `discord-server-management__mutbroaden_trigger` (36.9) vs `discord-server-management` (36.9)
 - ⏳ `discord-server-management__muttighten_trigger` (36.9) vs `discord-server-management` (36.9)
 - ⏳ `github-readme-summary__mutbroaden_trigger` (28.0) vs `github-readme-summary` (28.0)
 - ⏳ `github-readme-summary__muttighten_trigger` (28.0) vs `github-readme-summary` (28.0)
-- ⏳ `openamer-plugin-development__muttighten_trigger` (27.3) vs `openamer-plugin-development` (27.3)
-- ⏳ `plugin-api__mutbroaden_trigger` (710.0) vs `plugin-api` (710.0)
-- ⏳ `plugin-api__muttighten_trigger` (710.0) vs `plugin-api` (710.0)
+- ⏳ `openamer-plugin-development__muttighten_trigger` (27.27) vs `openamer-plugin-development` (27.27)
+- ⏳ `plugin-api__mutbroaden_trigger` (711.0) vs `plugin-api` (711.0)
+- ⏳ `plugin-api__muttighten_trigger` (711.0) vs `plugin-api` (711.0)
 - ⏳ `self-rewriter__muttighten_trigger` (171.3) vs `self-rewriter` (171.3)
-- ⏳ `train-from-usage__mutadd_pitfall` (720.0) vs `train-from-usage` (720.0)
-- ⏳ `train-from-usage__mutadd_verification_step` (720.0) vs `train-from-usage` (720.0)
-- ⏳ `train-from-usage__mutbroaden_trigger` (720.0) vs `train-from-usage` (720.0)
-- ⏳ `train-from-usage__muttighten_trigger` (720.0) vs `train-from-usage` (720.0)
+- ⏳ `train-from-usage__mutadd_pitfall` (721.0) vs `train-from-usage` (721.0)
+- ⏳ `train-from-usage__mutadd_verification_step` (721.0) vs `train-from-usage` (721.0)
+- ⏳ `train-from-usage__mutbroaden_trigger` (721.0) vs `train-from-usage` (721.0)
+- ⏳ `train-from-usage__muttighten_trigger` (721.0) vs `train-from-usage` (721.0)
 - ⏳ `undetectable-browsing__muttighten_trigger` (30.07) vs `undetectable-browsing` (30.07)
 - ⏳ `vscode-extension-scaffold__mutbroaden_trigger` (31.0) vs `vscode-extension-scaffold` (31.0)
 
