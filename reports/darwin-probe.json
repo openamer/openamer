@@ -1,7 +1,7 @@
 {
-  "updated": "2026-09-20T05:46:37.021268+00:00",
+  "updated": "2026-09-21T01:50:17.172672+00:00",
   "skills_dir": "C:\\Users\\damir\\AppData\\Local\\openamer-laptop\\skills",
-  "total": 844,
+  "total": 866,
   "skills": {
     "auto-best-practice-from-official": {
       "refs": 0,
@@ -243,6 +243,18 @@
       "score": 1.0,
       "missing": []
     },
+    "asi-narrative": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "asi-research-lab": {
+      "refs": 2,
+      "ok": 2,
+      "score": 1.0,
+      "missing": []
+    },
     "asi-capability-summary": {
       "refs": 1,
       "ok": 1,
@@ -382,6 +394,12 @@
       "missing": []
     },
     "auto-efficiency-learning-efficientqat-llm": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-efficiency-learning-pushing-the": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -549,6 +567,12 @@
       "score": 1.0,
       "missing": []
     },
+    "auto-latest-research-insight-opensourced": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "auto-latest-research-insight-proofofthought": {
       "refs": 0,
       "ok": 0,
@@ -669,6 +693,18 @@
       "score": 1.0,
       "missing": []
     },
+    "auto-security-learning-ai-supply": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-security-learning-detecting-prompt": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "auto-security-learning-how-are": {
       "refs": 0,
       "ok": 0,
@@ -688,6 +724,12 @@
       "missing": []
     },
     "auto-security-learning-mcp-server": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "auto-security-learning-microsoft-bets": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -1064,9 +1106,9 @@
       "missing": []
     },
     "darwin-engine": {
-      "refs": 10,
-      "ok": 9,
-      "score": 0.9,
+      "refs": 11,
+      "ok": 10,
+      "score": 0.909,
       "missing": [
         "a.py"
       ]
@@ -1221,7 +1263,19 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-guardrails-py-l31-n-function": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-home-where-scripts-training-does-not": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-kanban-db-py-l725-n-except-block-wit": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -1365,6 +1419,12 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-reports-darwin-promoted": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-scripts-autonomous-loop-py": {
       "refs": 0,
       "ok": 0,
@@ -1455,6 +1515,12 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-temp-oa-wt-main": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-tmp-body18-md": {
       "refs": 0,
       "ok": 0,
@@ -1467,7 +1533,19 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-tmp-cleanup-now-py": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-tmp-deepseek-harness-agents-skills": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-tmp-mtime-audit-py": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -1509,6 +1587,18 @@
       "score": 1.0,
       "missing": []
     },
+    "darwin-harvested-tmp-verify-comment-5749873455-py": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-tmp-vtmp-txt-ok": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
     "darwin-harvested-training-auto-skills-json": {
       "refs": 0,
       "ok": 0,
@@ -1522,6 +1612,12 @@
       "missing": []
     },
     "darwin-harvested-training-internet-learner-py": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "darwin-harvested-training-knowledge-to-action-py": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -1642,10 +1738,13 @@
       "missing": []
     },
     "cron-autotest-run-cron-entry": {
-      "refs": 0,
+      "refs": 2,
       "ok": 0,
-      "score": 1.0,
-      "missing": []
+      "score": 0.0,
+      "missing": [
+        "launcher.py",
+        "autotest_cron_run.py"
+      ]
     },
     "cron-fleet-health": {
       "refs": 4,
@@ -1663,6 +1762,12 @@
       "missing": []
     },
     "cron-model-pinning": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "cron-patterns": {
       "refs": 1,
       "ok": 1,
       "score": 1.0,
@@ -1809,10 +1914,13 @@
       ]
     },
     "github-issue-updater": {
-      "refs": 4,
+      "refs": 6,
       "ok": 4,
-      "score": 1.0,
-      "missing": []
+      "score": 0.667,
+      "missing": [
+        "tmp_probe.py",
+        "file.py"
+      ]
     },
     "github-issues": {
       "refs": 0,
@@ -4438,6 +4546,16 @@
       "score": 1.0,
       "missing": []
     },
+    "training-strategy": {
+      "refs": 3,
+      "ok": 0,
+      "score": 0.0,
+      "missing": [
+        "scripts/training/collect_training_data.py",
+        "scripts/training/lora_train.py",
+        "scripts/training/lora_infer.py"
+      ]
+    },
     "mcp-sse-bridge": {
       "refs": 1,
       "ok": 1,
@@ -4559,6 +4677,12 @@
       "missing": []
     },
     "llm-wiki": {
+      "refs": 0,
+      "ok": 0,
+      "score": 1.0,
+      "missing": []
+    },
+    "oa-ripple": {
       "refs": 0,
       "ok": 0,
       "score": 1.0,
@@ -4702,8 +4826,8 @@
       "missing": []
     },
     "cli-command-extension": {
-      "refs": 0,
-      "ok": 0,
+      "refs": 1,
+      "ok": 1,
       "score": 1.0,
       "missing": []
     },
@@ -4720,6 +4844,12 @@
       "missing": []
     },
     "commander": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
+    "common-fixes": {
       "refs": 1,
       "ok": 1,
       "score": 1.0,
@@ -4979,11 +5109,12 @@
       "missing": []
     },
     "security-scanner-authoring": {
-      "refs": 2,
+      "refs": 3,
       "ok": 1,
-      "score": 0.5,
+      "score": 0.333,
       "missing": [
-        "scan.py"
+        "scan.py",
+        "/tmp/old_scanner.py"
       ]
     },
     "self-introspection": {
@@ -5056,6 +5187,12 @@
       "score": 1.0,
       "missing": []
     },
+    "testing-strategy": {
+      "refs": 1,
+      "ok": 1,
+      "score": 1.0,
+      "missing": []
+    },
     "tool-repair-workflow": {
       "refs": 1,
       "ok": 1,
@@ -5063,8 +5200,14 @@
       "missing": []
     },
     "training-scripts-hygiene": {
-      "refs": 3,
-      "ok": 3,
+      "refs": 4,
+      "ok": 4,
+      "score": 1.0,
+      "missing": []
+    },
+    "unquoted-path-in-shell-command": {
+      "refs": 0,
+      "ok": 0,
       "score": 1.0,
       "missing": []
     },
@@ -5087,13 +5230,14 @@
       "missing": []
     },
     "windows-aware-file-edits": {
-      "refs": 3,
+      "refs": 4,
       "ok": 0,
       "score": 0.0,
       "missing": [
         "_apply_fix.py",
         "_fix.py",
-        "x.py"
+        "x.py",
+        "f.py"
       ]
     },
     "windows-installer-release": {
