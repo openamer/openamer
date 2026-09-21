@@ -219,7 +219,7 @@ def main():
     report("mod7 (Z_7)", tr7, te7, res)
     summary["mod7"] = res
 
-    with open("reports/cyclic_state_results.json", "w") as f:
+    with open("reports/cyclic_state_results.json", "w", encoding="utf-8") as f:
         json.dump(summary, f, indent=2)
     print("wrote reports/cyclic_state_results.json")
 

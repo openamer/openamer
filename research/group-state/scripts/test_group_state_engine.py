@@ -101,7 +101,7 @@ def main():
     check("saved artifact carries the format tag",
           json.load(open(tmp, encoding="utf-8"))["format"] == FORMAT, FORMAT)
     bad_fmt = os.path.join(tempfile.gettempdir(), "_gs_bad_format.json")
-    json.dump({"format": "not-this-format"}, open(bad_fmt, "w"))
+    json.dump({"format": "not-this-format"}, open(bad_fmt, "w", encoding="utf-8"))
     try:
         load(bad_fmt)
         check("load rejects an unknown format", False)

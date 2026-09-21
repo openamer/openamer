@@ -171,7 +171,7 @@ def main():
         print("  " + f"{c:<12s}" +
               "".join(f"{r['exact'][L]:9.3f}" for L in TEST_L))
 
-    with open("reports/s5_init_results.json", "w") as f:
+    with open("reports/s5_init_results.json", "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2)
     print("\nwrote reports/s5_init_results.json")
 

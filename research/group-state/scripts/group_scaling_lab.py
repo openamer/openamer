@@ -536,7 +536,7 @@ def main():
               f"{r['coverage_12']:9.3f}{r['acc']['4']:9.3f}"
               f"{r['acc']['48']:10.3f}{r['acc']['96']:10.3f}")
 
-    with open("reports/group_scaling_results.json", "w") as f:
+    with open("reports/group_scaling_results.json", "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2)
     print("\nwrote reports/group_scaling_results.json")
 

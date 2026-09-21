@@ -662,7 +662,7 @@ def main():
     report("mod7", train_m, test_m, res)
     summary["mod7"] = res
 
-    with open("reports/state_tracking_results.json", "w") as f:
+    with open("reports/state_tracking_results.json", "w", encoding="utf-8") as f:
         json.dump(summary, f, indent=2)
     print("wrote reports/state_tracking_results.json")
 

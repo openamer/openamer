@@ -729,7 +729,7 @@ def main():
               "".join(f"{res[mode]['mean'][L]:9.3f}" for L in test_l))
     print()
 
-    with open("reports/perm_state_results.json", "w") as f:
+    with open("reports/perm_state_results.json", "w", encoding="utf-8") as f:
         json.dump(res, f, indent=2)
     print("wrote reports/perm_state_results.json")
 

@@ -235,7 +235,7 @@ def main():
     print("saw -> coverage is the limit and a longer curriculum is the fix.")
     print("If acc(seen) ~ acc(UNSEEN), coverage is NOT the cause.")
 
-    with open("reports/s5_curriculum_results.json", "w") as f:
+    with open("reports/s5_curriculum_results.json", "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2)
     print("\nwrote reports/s5_curriculum_results.json")
 

@@ -131,7 +131,7 @@ def main():
         print("VERDICT: annealing lifts the choice accuracy above chance ->")
         print("the bottleneck was optimisation, and the schedule is the fix.")
 
-    with open("reports/s5_anneal_results.json", "w") as f:
+    with open("reports/s5_anneal_results.json", "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2)
     print("wrote reports/s5_anneal_results.json")
 

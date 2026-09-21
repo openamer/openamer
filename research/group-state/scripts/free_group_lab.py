@@ -288,7 +288,7 @@ def main():
     print("group being finite -- which is the step from S_6 (720 elements)")
     print("towards the unbounded structure under nested brackets.")
 
-    with open("reports/free_group_results.json", "w") as f:
+    with open("reports/free_group_results.json", "w", encoding="utf-8") as f:
         json.dump({str(k): v for k, v in out.items()}, f, indent=2)
     print("\nwrote reports/free_group_results.json")
 

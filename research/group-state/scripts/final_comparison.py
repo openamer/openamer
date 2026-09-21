@@ -143,7 +143,7 @@ def main():
                   "".join(f"{r['mean'][L]:10.3f}" for L in te))
         print()
 
-    with open("reports/final_comparison_results.json", "w") as f:
+    with open("reports/final_comparison_results.json", "w", encoding="utf-8") as f:
         json.dump(summary, f, indent=2)
     print("wrote reports/final_comparison_results.json")
 

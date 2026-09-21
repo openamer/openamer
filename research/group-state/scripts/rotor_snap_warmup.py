@@ -121,7 +121,7 @@ def main():
         print("  " + " " * 8 + " ".join(f"{r['mean'][L]:9.3f}" for L in te))
         print(f"  ({r['secs']}s)")
 
-    with open("reports/rotor_snap_warmup_results.json", "w") as f:
+    with open("reports/rotor_snap_warmup_results.json", "w", encoding="utf-8") as f:
         json.dump(summary, f, indent=2)
     print("\nwrote reports/rotor_snap_warmup_results.json")
 
