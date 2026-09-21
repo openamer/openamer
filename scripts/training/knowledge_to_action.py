@@ -254,6 +254,19 @@ def experiment_competitor_gap():
         # lexicon had no token for.
         ("agent framework", "agent framework / orchestrator SDK"),
         ("foundry", "hosted model platform / managed agent runtime"),
+        # Grown from a REAL signal (21.09.26): the benchmark-site row, once the
+        # class-127 nav leak was stripped off it, reads
+        #   "We benchmarked 4 popular open-source agentic frameworks across 2,000
+        #    runs (5 tasks, 100 runs each per framework), measuring end-to-end
+        #    latency, token consumption, and architectural differences."
+        # That IS a capability description (comparative evaluation harness), not
+        # chrome -- so this is the honest lexicon gap the class-127 fix exposed,
+        # not something to patch on the extraction side. Measured precision over
+        # the corpus the consumer actually reads (33 competitor rows): `benchmark`
+        # matches 1 row and that row IS this signal -> 0 mis-maps. Deliberately
+        # matched by its MEASUREMENT noun, never a generic word like `framework`
+        # (3/33 rows = real mis-maps onto unrelated framework prose).
+        ("benchmark", "comparative evaluation harness / multi-framework benchmark"),
     )
     low_signal = signal.lower()
     # Longest (most specific) matching token wins: a generic token declared
@@ -320,23 +333,110 @@ def experiment_meta_insight():
 
 # ---- Action selector: match insight keywords to experiments ----
 
+def experiment_group_state():
+    """REAL architecture experiment: generalize a group-state model to unseen lengths.
+
+    Added 21.09.26. The rotation used to hold five experiments of which four were
+    log-only (LoRA rank records a baseline and defers to the next GPU run;
+    meta-RL re-reads a stale meta_state; buffer/competitor mostly describe the
+    surface). The standing mandate is "new NN architecture > infrastructure", so
+    the rotation now contains one experiment that trains/evaluates a model and
+    writes numbers that can be wrong.
+
+    Method: load the SAVED Z_10 rotor-snap model (2 params, tau=0.1, trained on
+    lengths 1-7), evaluate at unseen lengths up to 2048 across 5 seeds, and
+    report mean/min/max. No retraining — the saved artifact is the subject.
+    """
+    import importlib
+    import random as _random
+
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    parent = os.path.dirname(script_dir)
+    for p in (parent, script_dir):
+        if p not in sys.path:
+            sys.path.insert(0, p)
+    try:
+        engine = importlib.import_module("group_state_engine")
+        lab = importlib.import_module("group_scaling_lab")
+    except Exception as e:  # noqa: BLE001
+        return {"action": "group-state generalization",
+                "result": f"import failed: {type(e).__name__}: {e}",
+                "measurable": False}
+
+    mpath = engine.model_path("Z10")
+    if not os.path.exists(mpath):
+        return {"action": "group-state generalization",
+                "result": f"no saved model at {mpath}", "measurable": False}
+    try:
+        model, group, payload = engine.load(mpath)
+    except Exception as e:  # noqa: BLE001
+        return {"action": "group-state generalization",
+                "result": f"load failed: {type(e).__name__}: {e}",
+                "measurable": False}
+
+    lengths = [8, 64, 512, 2048]
+    seeds = [0, 1, 2, 3, 4]
+    measured = {}
+    for L in lengths:
+        accs = [round(lab.accuracy(model, group, L, n=200, seed=s), 4) for s in seeds]
+        measured[L] = {"mean": round(sum(accs) / len(accs), 4),
+                       "min": min(accs), "max": max(accs)}
+    worst = min(v["min"] for v in measured.values())
+    out = os.path.join(engine.DEFAULT_DIR, "group_state_z10_kta.json")
+    with open(out, "w", encoding="utf-8") as f:
+        json.dump({"ts": datetime.datetime.now().isoformat(),
+                   "group": group.order, "params": payload["stats"]["params"],
+                   "tau": payload["tau"], "trained_on": payload["stats"].get("trained_on"),
+                   "lengths": {str(k): v for k, v in measured.items()},
+                   "seeds": seeds, "n_per_seed": 200}, f, indent=1)
+    curve = " ".join(f"L{L}:{measured[L]['mean']:.3f}" for L in lengths)
+    return {"action": f"group-state generalization ({group.order}, "
+                      f"{payload['stats']['params']} params, tau={payload['tau']})",
+            "result": f"accuracy on unseen lengths {curve}; worst min over 5 seeds = {worst:.4f}",
+            "exact_lengths": [L for L in lengths if measured[L]["min"] >= 1.0],
+            "artifact": out,
+            "measurable": True}
+
+
 EXPERIMENTS = [
     (["lora", "rank", "peft", "fine-tun"], experiment_lora_rank),
     (["predict", "future", "state-space", "projection"], experiment_predict_world),
     (["buffer", "cap", "memory"], experiment_tune_buffer),
     (["openhands", "devin", "autogpt", "competitor", "sdk"], experiment_competitor_gap),
     (["meta-rl", "lamer", "exploration", "meta-learn"], experiment_meta_insight),
+    # architecture slot (appended 21.09.26): rotation index 5, so it is reached
+    # once per 6 cycles without disturbing the existing round-robin schedule.
+    (["group", "group-state", "symmetry", "rotor", "lattice"], experiment_group_state),
 ]
 
 def find_latest_insight():
-    """Find the most recent useful insight from the buffer."""
+    """Find the most recent useful insight from the buffer.
+
+    Robustness (live 21.09.26): the store can carry blank separator lines and
+    the occasional truncated row. The old loop called json.loads() on EVERY
+    physical line, so a single empty line aborted the whole cycle with
+    "Expecting value: line 2 column 1" and no experiment ever ran. Blank lines
+    and unparsable rows are now skipped — a separator is not an insight, and
+    one damaged row must not stop the loop.
+    """
     latest = None
-    for line in open(os.path.join(T, "online_buffer.jsonl"), encoding="utf-8"):
-        d = json.loads(line)
-        u, a = d.get("u", ""), d.get("a", "")
-        # skip template junk and short answers
-        if len(a) > 50 and "sentence" not in a and "thinking process" not in a:
-            latest = {"question": u, "answer": a}
+    skipped = 0
+    path = os.path.join(T, "online_buffer.jsonl")
+    with open(path, encoding="utf-8") as fh:
+        for line in fh:
+            if not line.strip():
+                continue
+            try:
+                d = json.loads(line)
+            except (json.JSONDecodeError, ValueError):
+                skipped += 1
+                continue
+            u, a = d.get("u", ""), d.get("a", "")
+            # skip template junk and short answers
+            if len(a) > 50 and "sentence" not in a and "thinking process" not in a:
+                latest = {"question": u, "answer": a}
+    if skipped:
+        print(f"[kta] skipped {skipped} unparsable buffer rows", flush=True)
     return latest
 
 def kta_cycle():
