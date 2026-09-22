@@ -124,3 +124,27 @@ def test_json_mode_is_serialisable(tmp_path):
     _fixture(tmp_path)
     d = SB.build()
     assert json.loads(json.dumps(d, ensure_ascii=False)) == d
+
+
+def test_stale_openamer_home_does_not_yield_a_fake_zero(tmp_path, monkeypatch):
+    """A wrong OPENAMER_HOME must not render a measured-looking 0/None.
+
+    This is the bug the first version shipped: `REPO` is derived from
+    `OPENAMER_HOME`, so a machine whose env points at a tree without `tools/`
+    silently got `(None, None)` and 0 skills - printed under a header that
+    claims "grep-verified". The contract tests above missed it because the test
+    computes `REPO` from `__file__` (always the real repo), never from the env.
+    """
+    _fixture(tmp_path)
+    stale = tmp_path / "stale-home" / "openamer-agent"
+    stale.mkdir(parents=True)
+    monkeypatch.setattr(SB, "REPO", stale)      # no tools/ here
+    monkeypatch.setattr(SB, "HOME", tmp_path / "stale-home")
+
+    names, files = SB.registry_tool_count()
+    md = SB.render(SB.build())
+    if names is None:
+        assert "| registered_tool_names | UNMEASURED |" in md, md
+        assert "| registered_tool_names | None |" not in md, md
+    else:
+        assert names > 0, names

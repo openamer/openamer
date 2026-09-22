@@ -76,20 +76,34 @@ def count_files(root, pattern):
     return len(list(root.rglob(pattern)))
 
 
+def _tool_roots():
+    """Candidate trees holding the core tool modules, most specific first.
+
+    REPO is derived from OPENAMER_HOME, which on this machine has been observed
+    pointing at a stale tree that carries no `tools/` directory. Grepping only
+    REPO then returned (None, None), which the report rendered as a bare `None`
+    under a header that claims "grep-verified" - a fabricated-looking row. Fall
+    back to the machine's git working copy so the figure is real or absent.
+    """
+    return [REPO, Path.home() / "openamer-repo"]
+
+
 def registry_tool_count():
     """Registered tool NAMES in the core tool modules (grep-verified)."""
-    tools = REPO / "tools"
-    if not tools.is_dir():
-        return None, None
-    files = len(list(tools.glob("*.py")))
-    names = 0
-    for p in list(tools.glob("*.py")) + [REPO / "toolset_distributions.py", REPO / "toolsets.py"]:
-        try:
-            src = p.read_text(encoding="utf-8", errors="replace")
-        except Exception:
+    for root in _tool_roots():
+        tools = root / "tools"
+        if not tools.is_dir():
             continue
-        names += src.count('"name": "')
-    return names, files
+        files = len(list(tools.glob("*.py")))
+        names = 0
+        for p in list(tools.glob("*.py")) + [root / "toolset_distributions.py", root / "toolsets.py"]:
+            try:
+                src = p.read_text(encoding="utf-8", errors="replace")
+            except Exception:
+                continue
+            names += src.count('"name": "')
+        return names, files
+    return None, None
 
 
 def learner_rate(days=1):
@@ -141,20 +155,44 @@ def self_benchmark():
             "last_questions": qs, "last_errors": errs}
 
 
+def _home_roots():
+    """Candidate OPENAMER_HOME trees, most specific first.
+
+    Same failure class as _tool_roots(): a stale OPENAMER_HOME silently yields
+    0 skills / {} cron, rendered as if it had been measured. Try the configured
+    home, then this machine's real install before giving up.
+    """
+    roots = [HOME]
+    fallback = Path.home() / "AppData/Local/openamer-laptop"
+    if fallback not in roots:
+        roots.append(fallback)
+    return roots
+
+
+def _pick(rel):
+    """First existing file/dir for a home-relative path across candidate homes."""
+    for root in _home_roots():
+        p = root / rel
+        if p.exists():
+            return p
+    return None
+
+
 def cron_and_episodes():
     """Two counts we already hold locally - measured from their real files."""
     out = {}
-    jobs = HOME / "cron/jobs.json"
-    if jobs.exists():
+    jobs = _pick("cron/jobs.json")
+    if jobs is not None:
         try:
             d = json.loads(jobs.read_text(encoding="utf-8", errors="replace"))
             j = d if isinstance(d, list) else d.get("jobs", [])
             out["cron_jobs"] = {"value": f"{sum(1 for x in j if x.get('enabled', True))}/{len(j)} active",
-                                "source": "cron/jobs.json", "limit": "enabled flag, not last-run health"}
+                                "source": f"cron/jobs.json ({jobs.parent.parent.name})",
+                                "limit": "enabled flag, not last-run health"}
         except Exception:
             pass
-    ep = HOME / "memory/longterm_episodes.jsonl"
-    if ep.exists():
+    ep = _pick("memory/longterm_episodes.jsonl")
+    if ep is not None:
         n = sum(1 for l in ep.read_text(encoding="utf-8", errors="replace").splitlines() if l.strip())
         out["episodes"] = {"value": n, "source": "memory/longterm_episodes.jsonl",
                            "limit": "line count, not unique facts"}
@@ -179,7 +217,8 @@ def build():
                      "error": d.get("__error")})
 
     names, files = registry_tool_count()
-    skills = count_files(HOME / "skills", "SKILL.md")
+    skills_dir = _pick("skills")
+    skills = count_files(skills_dir, "SKILL.md") if skills_dir is not None else None
     cap = {
         "registered_tool_names": {"value": names, "source": "grep '\"name\": \"' in tools/*.py + toolsets.py", "limit": "grep count, not a runtime registry dump"},
         "tool_modules": {"value": files, "source": "ls tools/*.py"},
@@ -223,8 +262,12 @@ def render(data):
     L.append("| Metric | Value | Source | Limit |")
     L.append("|---|---:|---|---|")
     for k, v in data["capability"].items():
-        if isinstance(v, dict):
+        if isinstance(v, dict) and v.get("value") is not None:
             L.append(f"| {k} | {v.get('value')} | {v.get('source', '-')} | {v.get('limit', '-')} |")
+        elif isinstance(v, dict):
+            # A value we could not measure must SAY so. Printing a bare `None`
+            # under a "grep-verified" header reads as a measured zero.
+            L.append(f"| {k} | UNMEASURED | {v.get('source', '-')} | {v.get('limit', '-')} |")
         else:
             L.append(f"| {k} | UNMEASURED | - | - |")
     L.append("")
