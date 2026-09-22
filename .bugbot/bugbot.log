@@ -862,3 +862,9 @@ subprocess.TimeoutExpired: Command '['gh', 'issue', 'list', '--label', 'bug', '-
 2026-09-21 20:06:37,200 [INFO] API: Found 0 open bug issue(s)
 2026-09-21 20:06:37,200 [INFO] No open bug issues found
 2026-09-21 20:06:37,200 [INFO] Bugbot run complete: 0 processed, 0 fixed, 0 failed
+2026-09-22 00:06:57,534 [INFO] ============================================================
+2026-09-22 00:06:57,535 [INFO] Bugbot run starting
+2026-09-22 00:06:57,535 [INFO] Scanning for open bug issues on openamer/openamer...
+2026-09-22 00:06:58,554 [INFO] API: Found 0 open bug issue(s)
+2026-09-22 00:06:58,555 [INFO] No open bug issues found
+2026-09-22 00:06:58,556 [INFO] Bugbot run complete: 0 processed, 0 fixed, 0 failed
