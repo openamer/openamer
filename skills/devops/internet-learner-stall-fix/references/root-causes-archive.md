@@ -4599,3 +4599,223 @@ divergence is in the INDEX, so the worktree-vs-blob comparison alone misses it.
 == `rev-parse HEAD` (`a6080bc80...`), `branch -r --contains` lists the branch,
 and the REMOTE blob marker census -> learner cls138=2/cls139=2, store 2/1, test
 3/2.
+
+## 141 -- a year-welded SERP title restated by its own snippet (live 22.09.26)
+
+**FIXED.** The cron opened on the documented `cycle_b_papers: rejected, not
+trained (shallow + deep read both gated)` line. Step -1 (repo worktree
+`git status --porcelain scripts/training tests/scripts` + `git diff --stat`) was
+CLEAN. Step 0 (the packaged rates table) said the last-20 rate is mid-band with
+per-day rows 16-67 % and the documented `duplicate`-at-cap + junk shapes -- the
+U/V signature, so **no gate change was warranted FOR THE REJECTION**. The find
+came from the prescribed cheapest method: read the **buffer tail `a` strings**,
+not the printed line.
+
+### The leak -- FOUR rows of one family, all in the 260-row buffer
+
+`online_buffer.jsonl` carried four rows that are a search-result title, a
+year-colon WELD (the extractor's lost-newline SERP boundary), then the snippet
+restating the title:
+
+    Grok Pricing 2026: $10 Lite, $30 SuperGrok, $300 Heavy Grok now spans free
+    access, $10 Lite, $30 SuperGrok, $300 Heavy, and $30/user Business plans.
+
+    Claude Opus 5 Review 2026: $5/$25, 61 Score, Real API Catch Claude Opus 5
+    launched at $5/$25 per million tokens with 1M context and 128K output.
+
+    AI-Agent Tokens Surge 5% as Market Interest Returns May 3, 2026: Virtuals
+    Protocol surged 5% as AI-agent tokens roared back, fueled by rising volume,
+    stronger market momentum, and renewed demand for AI-powered crypto projects.
+
+    Retrieval and Language Systems NER Guide 2026: GLiNER, spaCy, Transformers,
+    and LLMs NER in 2026 means choosing between GLiNER, spaCy, Transformers, and
+    LLM extraction for latency, accuracy, and schema control.
+
+148-226 chars, all with digits (prices / counts / a year) -> the `>=90` long
+prose trust AND the technical-signal gate BOTH fired. `which_rule_matches.py` on
+the FULL stored strings printed `INDIVIDUAL RULES MATCHED: none` for all four: a
+novel shape with no pre-existing rule to widen. The `AI Agent News Today —
+September 11, 2026 — ...` / `AutoGPT Review 2026: ...` rows in `buffer_junk`
+are the SAME restatement family, already gated by other classes.
+
+The recurrence is real, not a one-off: `internet_learn_log.jsonl` shows the
+Claude row on 16.09 (security) and again 22.09 09:21, the Grok row 22.09 08:16,
+the AI-Agent-tokens row 22.09 10:19 -- and `buffer_junk` holds 5 `duplicate`
+audit rows for the Claude string plus 1 for the AI-Agent one, i.e. they were
+refused in between and still got back in (the class-139 lesson: exact
+`_is_duplicate` is a same-window guard, not a permanent one).
+
+### Neither conjunct separates -- the AJ/AQ/AR law, measured
+
+| variant | buffer hits | epFP | gate-litFP | proseFP | controlFP | verdict |
+|---|---|---|---|---|---|---|
+| year-colon weld alone | 5 (4 leaks) | 0 | **3** | 0 | **6** | REJECTED |
+| bare repeat: price token | 3 | **4** | **2** | 0 | **1** | REJECTED |
+| bare repeat: verb+percent pair | 1 | 0 | 0 | 0 | 0 | KEPT but partial |
+| bare repeat: 4-token window | 20 | **201** | **35** | 0 | 0 | REJECTED |
+| **weld + (price \| pct-pair \| 4-token window)** | **4 (all 4 leaks)** | **0** | **0** | **0** | **0** | **KEPT** |
+
+The weld alone trips real prose (`In 2026: the API price is $5 per million
+tokens…`, `vLLM 0.9 shipped in 2026: PagedAttention cut peak KV-cache memory…`);
+the bare repeats trip 201 real `longterm_episodes` and 35 asserted gate-test
+literals. Only the pair is clean.
+
+**The China-chip row is the control that decides the rule.** A real article body
+the existing `_strip_read_time_header` test asserts must survive byte-identical
+(`China AI Chip Boom: CAICT 417% Demand vs 128% Supply 2026 Caixin Sept 15,
+2026: CAICT says China AI compute demand jumped 417% YoY in Q1 vs 128%
+supply.`) repeats a bare `417%` across **different verbs**, so it is not a
+pct-pair, and its repeated runs are 2-3 tokens, so no 4-token window repeats. It
+survives BY CONSTRUCTION, not by a word list -- the same shape as the class-140
+struct guard.
+
+### Rule
+
+`_is_serp_title_snippet_repeat` in BOTH `internet_learner.py` (`import re`) and
+`buffer_store.py` (`import re as _re`) -- the Q/R/S both-paths rule. Requires
+BOTH: a year-colon inside the first 80 chars (`_SERP_YEAR_WELD_RE`) AND a
+restatement, where the restatement is ANY of
+
+- an identical price token (`$10` twice, `$5/$25` twice),
+- an identical `<verb> <n> %` pair (the `surge`/`surged` stem is folded),
+- an identical run of 4 NORMALISED tokens -- lowercased, punctuation-stripped,
+  naive plural-stemmed, because the NER row drifts `LLMs` -> `LLM` and no
+  backreference can see that (`_serp_repeated_run`, not a regex).
+
+Length cap 500 chars; the window scan is O(tokens) with a dict.
+
+### Measured + verify
+
+4 buffer hits and **all 4 ARE the leak**; 0 of 3,063 `longterm_episodes`; 0 of
+1,274 gate-test string literals; 0 of 24 packaged prose controls; 0 of 12
+topic-matched hostile controls. `pytest tests/scripts/test_internet_learner_gate.py
+-q` -> **160 → 170 passed**; `pytest tests/scripts` -> **327 → 337 passed**. The
+test file was appended to all FOUR copies as PURE BYTES (77 added / 0 removed;
+the live-copy lone-LF census stayed at 120, the three others at 0; double-CR
+0 -> 0 asserted) -- the two trees' baselines differ and must NOT be unified.
+
+Writer-gate census BEFORE 0 flagged / 261 rows, AFTER **4 flagged / 257
+untouched** -- exactly the leaks, zero collateral. The four stale rows were then
+purged by signature (`purge_buffer_rows.py --sig ... --apply`, DRY-RUN first) to
+a timestamped `.bak.purge*`, 261 -> 257, and the census re-run **0 flagged / 257
+untouched**. Post-fix live: `--once` -> 1 learned (a real PEFT/LoRA doc body) and
+2 rejected (both honest); the buffer tail shows no family rows.
+
+### Traps hit this run
+
+- **The `_re`/`re` alias fired AGAIN (third time)** -- but on a NEW face: this
+  rule has an `re.IGNORECASE` flag as well as `re.compile`, and the first apply
+  only aliased `re.compile`, so the store module died on
+  `NameError: name 're' is not defined` AT IMPORT (`exec_module` caught it in one
+  call -- `ast.parse` stayed green). Rule: alias EVERY `re.`-prefixed face
+  (`compile` AND the flag constants), never do a blind `re.` -> `_re.`
+  substitution (that is what once produced `_recompile`).
+- **`open(path, "wb", newline="")` is a TypeError** (`binary mode doesn't take a
+  newline argument`) -- the apply script crashed AFTER writing the first file but
+  BEFORE the byte-census assert, i.e. it left a HALF-APPLIED tree. The
+  temp-dir backup taken at the start of the apply step is what made the restore
+  one `cp`; take it every time.
+- **The packaged probe's `bufFP` column is blind to this family**: its FP corpus
+  EXCLUDES only the leaks listed in its own `KNOWN_LEAKS`, so a not-yet-listed
+  leak scores `REVIEW (bufFP IS the leak -> add to KNOWN_LEAKS)` on every
+  candidate. Four candidates were abandoned on that column before the ladder was
+  re-measured with an explicit leak-prefix filter -- **read WHICH string the FP
+  is before rejecting your own rule.**
+- **A candidate ladder must include the component variants, not just better
+  regexes.** Five progressively cleverer regexes were all rejected; the two
+  components measured SEPARATELY showed instantly which half was load-bearing.
+  Do the 2x2 (A alone / B alone / A+B) FIRST.
+- `scripts/training/` in the repo and the AppData live copy are the SAME tree
+  here (md5-identical before the change) AND `openamer-agent/scripts/training/`
+  is a third copy: after the fix all three had to be synced (`copy2` + md5
+  equality), while the four TEST files carry their own baselines (5379 vs 6025
+  lines, lone-LF 120 vs 0).
+- The apply script's `assert after.count(b"\r\r\n") == 0` and
+  `assert alone == lone` (lone-LF census unchanged) is the cheap guard that makes
+  a CRLF-native insert safe; both stayed green, so the 93-line insert landed with
+  0/0 EOL drift.
+
+### Push
+
+Branch `fix/28-respawn-test-psutil-hermetic`; `origin/main` == `e15fc61c1` and
+`git merge-base --is-ancestor e15fc61c1 HEAD` -> FF_SAFE. `git add` under the
+global `core.autocrlf=true` happened to stage cleanly this time (`--numstat`
+== `-w`: 93/0, 93/0, 77/0), then
+`git -c credential.helper=store -c credential.interactive=false push origin
+HEAD:refs/heads/fix/28-respawn-test-psutil-hermetic` -> `5e4fada8e..f0f3ef42a`.
+(`fatal: Cannot prompt because user interactivity has been disabled.` is EXPECTED
+noise from that flag pair.) Verified: `git ls-remote` == `git rev-parse HEAD`
+(`f0f3ef42a...`), `git branch -r --contains` lists the branch, and the REMOTE
+blob marker census -> 2 / 2 / 2 for learner / store / test.
+
+## Root cause 142 (22.09.26) -- the silent-drop family: extractor gate vs writer gate
+
+**Symptom.** `internet_learner` logged 57% `rejected, not trained (shallow + deep
+read both gated)` for days (15.-18.09.: only 37-45%). No crash, no traceback --
+the cycles simply produced nothing.
+
+**Measurement.** `buffer_junk.jsonl` audits every REFUSED write. Re-running
+`buffer_store.is_junk()` against 600 audited `reason="junk"` rows gave:
+**227 the extractor also refused, 368 the extractor had ACCEPTED** (5 neither).
+Those 368 are SILENT DROPS: `internet_learner._is_junk()` said "learnable",
+`store()` then called `buffer_store.is_junk()` and the write vanished -- the
+cycle could only report the generic "rejected" line.
+
+Missing detectors behind those 368 (a row may hit several):
+
+| writer predicate | rows |
+|---|---|
+| `_is_serp_snippet` (dated SERP title: `Title ... - 13. Jan. 2026 . snippet`) | 222 |
+| `_JUNK_MARKERS` hit `self-critique` | 109 |
+| `_is_nav_chrome` | 88 |
+| `_TRACE_OPENER` | 2 |
+
+**The real root.** Two gates with different rules, and the one that DECIDES is
+the one the learner never asks. `internet_learner` keeps 40+ hand-written
+single-class chrome detectors; `buffer_store` has its own set plus the marker
+list. They drift, and nothing audits the disagreement -- it stayed invisible for
+8 days.
+
+**Fix (three sites, all audited):**
+
+1. `internet_learner._writer_gate_refuses(text)` + a consult at the WRITE
+   DECISION inside `store()` (after `_clean_insight`), auditing refusals under
+   the new reason **`writer-gate`** instead of letting them happen silently.
+   A `writer-gate` row in `buffer_junk.jsonl` is now the signal "gates disagree".
+2. `active_learn.store_if_trainable()` -- write only what the writer accepts,
+   and report a refusal honestly. `self_test()` had buffered
+   `<answer>
+
+Self-critique: ...`; `self-critique` is a junk marker, so 167
+   writes were refused while the action still reported `self-test: good`.
+3. `active_learn._strip_reasoning_trace()` -- cut the answer's own
+   `Self-critique:` / `[GOOD]` / `[NEEDS_IMPROVEMENT]` tail so the substance is
+   buffered instead of the scaffolding.
+
+**PITFALL -- do NOT fold the writer into `_is_junk`.** The obvious fix (call
+`buffer_store.is_junk()` from `internet_learner._is_junk`) regresses 4 gate
+tests: `_clean_insight()` calls `_is_junk()`, so the extractor becomes as eager
+as the writer and eats prose that merely *mentions* a plan or an ad-wall
+(`"...never store an ad-wall notice..."`, `"We need to identify..."`). Measured:
+4 `FAILED` vs a 141-passed baseline. The two gates have intentionally different
+strictness -- keep them separate and reconcile at the write decision.
+
+**Another trap.** `_is_junk()` returning False does NOT mean the writer accepts
+the text, and `_clean_insight()` returning `""` does not mean the writer agrees
+either. Judge with the writer, at the writer's moment.
+
+**Verification recipe.**
+- Baseline first: the gate test file lives ONLY in the LIVE tree
+  (`scripts/training/test_internet_learner_gate.py`); the repo copy does NOT
+  have it and the repo's `internet_learner.py` IS the pre-patch state. Copy the
+  live `*.py` into a scratch tree with `scripts/training/` depth, overwrite
+  `internet_learner.py` with the repo version, and run pytest there for the true
+  baseline. (Measured 22.09.: 141 passed before, 141 + new after.)
+- Post-fix live: `internet_learner.py --once` -> the refusal that used to be
+  silent now lands in `buffer_junk.jsonl` with `reason=writer-gate`.
+- Post-fix live: two `active_learn.self_test()` calls -> buffer grew
+  262 -> 264 (before: 0 growth, 167 silent refusals).
+
+**Environment.** Cron has no `OPENAMER_HOME` here, so the scripts fall back to
+`~/AppData/Local/openamer/...`; set `OPENAMER_HOME=.../openamer-laptop` when
+running them by hand, or you silently test the wrong copy.
