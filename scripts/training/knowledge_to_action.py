@@ -294,6 +294,38 @@ def experiment_competitor_gap():
         # them). Chosen token states the capability, not a generic verb.
         ("edit across files", "multi-file agentic execution + test loop"),
     )
+    # --- the latest row may be an ARTICLE TITLE, not a capability description ---
+    # Grown from a REAL signal (23.09.26): the consumer kept reporting
+    #   "Feb 2026 An AI agent coding skeptic tries AI agent coding, in
+    #    excessive detail minimaxir."
+    # as an unmappable signal. Unlike the earlier gaps this is NOT a lexicon
+    # gap: the row is a headline (date + title + author handle), and the
+    # lexicon having no token for a headline is CORRECT. Measured over the 45
+    # competitor rows this function reads, scoring `a` only (which is all that
+    # `signal` ever is): `ai agent coding` 2/45, and `coding skeptic` /
+    # `skeptic` / `excessive detail` / `minimaxir` each 1/45 -- every hit is
+    # this headline or its sibling. Adding any of them would map a title onto
+    # a capability, i.e. a mis-map, so the honest move is to recognise the row
+    # CLASS rather than grow the lexicon for it.
+    # Discriminator (longest-wins selection cannot help here): a headline is a
+    # near-echo of its own source question -- significant words of `u`
+    # reappearing in `a`. Measured over all 45 rows: exactly 1 row trips
+    # (echo >= 0.6 AND len(a) < 160) and it is this headline; 0 mis-fires on
+    # the rows that DO carry a capability, notably the sibling row for the same
+    # question ("AI agent coding/ vibecoding where the author talks about ...
+    # the atrophy of programming skills ...", echo 0.20, 249 chars) and the
+    # 22.09.26 signal `edit across files` (echo 0.00, 198 chars).
+    # The signal is still REPORTED VERBATIM -- never silently dropped -- only
+    # its class changes, so the entry names the real cause instead of a lexicon
+    # gap that does not exist.
+    _STOP = {"competitor", "intelligence", "the", "a", "an", "and", "of", "for",
+             "to", "in", "on", "with", "is", "are", "we", "our", "how", "what",
+             "new", "ai"}
+    _sig_low = signal.lower()
+    _sig_words = set(re.findall(r"[a-z0-9]+", _sig_low))
+    _q_words = set(re.findall(r"[a-z0-9]+", signal_q.lower())) - _STOP
+    _echo = (len(_q_words & _sig_words) / len(_q_words)) if _q_words else 0.0
+    is_headline = _echo >= 0.6 and len(signal) < 160
     low_signal = signal.lower()
     # Longest (most specific) matching token wins: a generic token declared
     # earlier must never shadow a precise one (declaration order was the
@@ -318,6 +350,17 @@ def experiment_competitor_gap():
                f"no per-tool module boundary")
         fix = f"extract {hint} behind its own module with a test gate"
         result = f"signal '{signal[:50]}' -> gap: {hint} | {measured}"
+    elif is_headline:
+        gap = (f"no mappable capability in latest signal ({measured}) — "
+               f"signal is an article headline (echoes {_echo:.0%} of its own "
+               f"source question), not a product capability description")
+        fix = ("carry a capability sentence alongside the headline in the "
+               "competitor pipeline; no lexicon token should be invented for a "
+               "title, and the extraction side is where this belongs")
+        result = (f"signal NOT mappable: '{signal[:60]}' | {measured} — "
+                  f"headline signal (echo {_echo:.0%} of its own question), no "
+                  f"capability sentence to map; extraction-side gap, not a "
+                  f"lexicon gap")
     else:
         gap = (f"no mappable capability in latest signal ({measured}) — "
                f"signal contains no token our lexicon knows")

@@ -205,6 +205,65 @@ def test_latest_signal_wins_and_junk_lines_tolerated():
         kta.T = old
 
 
+def test_headline_signal_is_named_as_headline_not_a_lexicon_gap():
+    """Live 23.09.26: the latest competitor row was an article HEADLINE
+    ("Feb 2026 An AI agent coding skeptic tries AI agent coding, in excessive
+    detail minimaxir.").
+
+    A headline is not a capability description, so the lexicon having no token
+    for it is CORRECT -- inventing one (e.g. `minimaxir`) would map a title onto
+    a capability. But the report must name the real cause (the extraction side
+    shipped a headline with no capability sentence) instead of claiming a
+    lexicon gap that does not exist.
+    """
+    old = kta.T
+    try:
+        kta.T = _tmp_env([
+            ("Competitor intelligence: An AI agent coding skeptic tries AI agent "
+             "coding, in excessive detail",
+             "Feb 2026 An AI agent coding skeptic tries AI agent coding, in "
+             "excessive detail minimaxir."),
+        ], tool_server_src=FAKE_TOOL_SERVER)
+        r = kta.experiment_competitor_gap()
+        assert r["measurable"] is True, r
+        assert "article headline" in r["identified_gap"], r["identified_gap"]
+        assert "headline signal" in r["result"], r["result"]
+        # the fix points at the EXTRACTION side, and is not a lexicon gap
+        assert "extraction" in r["proposed_fix"], r["proposed_fix"]
+        # the report must DENY the lexicon-gap reading, not assert it
+        assert "not a lexicon gap" in r["result"], r["result"]
+        # the signal is still quoted verbatim, never silently dropped
+        assert "minimaxir" in r["insight_analyzed"], r["insight_analyzed"]
+    finally:
+        kta.T = old
+
+
+def test_content_row_sharing_a_headline_question_is_not_flagged():
+    """Guard the sibling row: same source question, but REAL prose content.
+
+    Measured 23.09.26 over the 45 competitor rows: exactly ONE row trips the
+    headline discriminator (echo>=0.6 AND len(a)<160) and it is the headline.
+    This sibling row (echo 0.20, 249 chars) must stay on the normal path --
+    that is what proves the discriminator does not swallow content rows.
+    """
+    old = kta.T
+    try:
+        kta.T = _tmp_env([
+            ("Competitor intelligence: An AI agent coding skeptic tries AI agent "
+             "coding, in excessive detail",
+             "AI agent coding/ vibecoding where the author talks about all the "
+             "wonderful things agents can now do supported by vague anecdata, how "
+             "agents will lead to the atrophy of programming skills, how agents "
+             "impugn the sovereignty of the human soul, etc etc."),
+        ], tool_server_src=FAKE_TOOL_SERVER)
+        r = kta.experiment_competitor_gap()
+        assert r["measurable"] is True, r
+        assert "article headline" not in r["identified_gap"], r["identified_gap"]
+        assert "headline signal" not in r["result"], r["result"]
+    finally:
+        kta.T = old
+
+
 if __name__ == "__main__":
     fails = 0
     for name, fn in sorted(globals().items()):
