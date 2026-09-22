@@ -4281,3 +4281,134 @@ siblings, not the same rule.
 was re-run in the repo tree at the published SHA (`git rev-parse HEAD` == the
 remote SHA), not only inside the throwaway `oa-pub-*` worktree -- so the "154
 passed" claim names a tree that still exists on disk.
+
+
+## class 137 -- a docs-site breadcrumb welded to a REPEATED title prefix, PLUS a class-35 blind spot (live 22.09.26)
+
+Cron run began on the documented `cycle_b_papers: rejected` line. Per-day rate
+**40.4 %** vs the documented 50-80 % band; the tree was CLEAN at entry (step -1
+`git status` + `git diff --stat` empty -- no unfinished previous run), and
+`buffer_junk` last 8 = `duplicate` at the cap + documented shapes = rotation
+noise. No gate change was warranted FOR THE REJECTION. Both finds came from the
+prescribed cheapest method: run `--once`, read the BUFFER TAIL `u`/`a` pairs.
+
+| class | helper | measured |
+|---|---|---|
+| 137 | `_is_breadcrumb_title_repeat` -- crumb run + the SAME title prefix twice | 1 hit, IS the leak / 0 FP / 0 ep / 0 junk |
+| 35-widen | `_FULL_DATE_RE` now accepts ABBREVIATED months | 1 hit, IS the leak / 0 FP / 0/3,059 ep |
+
+**137 (the leak).** A docs site's breadcrumb run welded to its own card title,
+restated:
+    "Home / AI Guides / 12 Best Open-Source AI Agent Frameworks (2026) Guide
+     12 Best Open-Source AI Agent Frameworks (2026) Compare 12 open-source AI
+     agent frameworks for production workflows, multi-agent systems, ..."
+252 chars WITH digits -> the `>=90` long-prose trust AND the technical-signal
+gate both fired; no existing helper matched.
+
+The discriminator is that a real sentence NEVER restates its own opening four
+words. Sweep that mattered:
+* breadcrumb ALONE -> **4 hostile-control FPs** ("Home / Docs / Getting started
+  with the agent runtime ..." is ordinary prose). REJECTED.
+* bare repeated-prefix test, no crumb anchor -> REJECTED.
+* only crumb-anchored **AND** repeated prefix -> 0 FP.
+Note the orientation trap: `re.match` on a `^`-anchored pattern is the cheap
+guard -- `search` would let a crumb run buried mid-text fire.
+
+**35-widen (the blind spot, not a new class).** `_is_date_heading_listing`
+(class 35, 17.09.26) was ALREADY wired into both gates, but its
+`_FULL_DATE_RE` accepted only FULL month names, so
+    "Sep 24, 2025 Deep Dive into Context Engineering for Agents Sep 18, 2025
+     Architectures for Multi-Agent Systems Sep 8, 2025 Bringing AI Observability
+     Behind the Firewall: Deploying On-Premise AI Sep 8, 2025 Understanding Why
+     Language Models Hallucinate?"
+read **0 hits** and passed BOTH gates. Adding `Jan|Feb|...|Dec` (with an
+optional dot for `Sept.`/`Jan.`) fixes it. The Title-Case density test is
+UNCHANGED -- that is what keeps ordinary prose which merely CITES two dates
+learnable, and it is why the naive `>=3 dates` / `>=2 dates + slash-breadcrumb`
+forms had been rejected back on 17.09.26.
+`_FULL_DATE_RE` has exactly ONE call site per module, so the change is surgical.
+Measured against 12 hostile prose counter-cases (including the class-24
+counter-case that killed the naive forms): **0 FP**, 0/3,059 `longterm_episodes`.
+
+**Cleanup -- 8 rows, and most were STALE.** The census after the wire read 8
+flagged in BOTH gates: my 2 new classes + 6 rows that were ALREADY gated by
+rules added earlier (class-126 SDK weld x3, class-132 photo-credit, and an
+undated table row). Those are the AS/AU precedent -- "a stale buffer row is not
+a new class: grep for a rule added that day; if it exists, delete by signature,
+no code change". Removed all 8 with the buffer's OWN helper
+(`python clean_buffer.py`, which archives to `buffer_junk_archive.jsonl` and
+refuses to write an empty result) rather than hand-editing: 244 -> 236 records,
+`0 unparsable`, lone LF 0, **70** structural-connection rows preserved (the
+historical count keeps drifting -- re-count, never quote an old number).
+
+**DANGER -- `clean_buffer.py` has NO `--help`.** `python clean_buffer.py --help`
+EXECUTES the cleanup and writes the buffer; `--help` is just ignored. Never
+"check the flags" on that script.
+
+**Tests.** 4 appended as pure bytes (88 added / **0 removed**, lone-LF census
+0 -> 0 in all 3 copies), each asserting the helper AND both gates on the leak
+plus prose counter-cases. `tests/scripts/test_internet_learner_gate.py`
+**154 -> 158 passed**.
+A control-corpus lesson paid for here: I first wrote a SECOND "known leak"
+string for 137 by inventing a deeper breadcrumb ("Home / Models / Flow / ...")
+and asserting it flags. It does NOT -- the fabricated row is not the shape. The
+test failed, correctly. **Never assert a leak you did not measure**; the
+AJ/AN/AQ/AU rule says put MEASURED leaks in their own assertion and keep
+fabrications out of both sets. The block was deleted, not weakened.
+
+**MERGE / PUSH (the expensive part).** origin/main had advanced (daily release
++ `d4306cacf` darwin refresh + `8be2835b6` label-leak + `e3ec1a7ea` classes
+131/132), so the branch was NO_DIVERGED. Two mechanical blockers first:
+* the merge refused to start because of **foreign cron edits** to
+  `docs/darwin-live/index.html` + `website/static/darwin/darwin-status.json`.
+  `git stash push -m ... -- <those two paths>` unblocks it and touches nothing
+  of mine. The stash stays on the list (harmless) but the merge already carries
+  main's newer version of both.
+* `git diff --name-only --diff-filter=U` is the reliable "what is unresolved"
+  read (`git status` output was truncated/misleading here). And a `grep -c` on
+  conflict markers inside a quoted shell string hit the agent's command
+  blocklist -- use Python for that census.
+
+**Resolve per file by MEASURING which side is newer -- not by branch loyalty.**
+The two sides were not uniform:
+* MY 3 files -> HEAD (mine). Proven two ways. AST: `origin/main` has **ZERO**
+  functions absent from HEAD, HEAD has 7 more. BEHAVIORAL (the decisive one):
+  exec both revisions of both gate modules in temp dirs and compare verdicts
+  over **11,892** corpus texts -> **0** texts where main flags chrome and HEAD
+  does not; 69/64 texts where HEAD flags more. HEAD is a strict behavioral
+  superset, so `git checkout --ours` loses nothing.
+* THREE foreign files -> **origin/main**, and here main was NEWER despite the
+  branch having more recent-looking commits in other places:
+  `self_learning.py` (the label-leak verdict now keys on `findings`, the direct
+  evidence, instead of `acc` -- the branch version could print "hat gelernt"
+  while warning about a leak), `self_improve.py` (the P2 rule's **`m2`** guard;
+  testing `m` deleted the CYCLE_SECONDS assignment it was named after),
+  `knowledge_to_action.py` (4 lengths x 5 seeds).
+  `git log -1 --format=%ci <side> -- <file>` per FILE is the cheap first read,
+  but read the diff too -- recency alone is not the argument.
+* the stall-fix skill + archive -> HEAD (22.09.26 vs 20.09.26, and it carries
+  classes 135/136 written by an earlier cron run).
+
+Then: `git checkout --ours/--theirs -- <f>` for all 10, `git add -A`,
+`pytest` in the MERGED tree (**158 passed**), and assert both sides' markers are
+present (label-leak verdict, P2 `m2` guard, 5-seed experiment, classes
+135/136/137) -- taking one whole side blindly would silently drop the other's
+fix. Merge commit, FF_SAFE, `git push origin HEAD:main`;
+`fbc0867d1..50065cd67`.
+
+**Push verification (exit code is not proof).** `git ls-remote origin main`
+== `git rev-parse HEAD`, `git branch -r --contains <sha>` lists `origin/main`,
+AND `git cat-file blob origin/main:<f> | grep -c <marker>` -> 2/2/2 in the
+learner+store and 6 in the test file.
+
+**Two EOL traps hit while writing the apply script (both self-caught).**
+1. The `NEW_DATES` replacement block was built with LITERAL Python `\n` in some
+   lines and `\r\n` in others -> 5 lone LFs. The script's own
+   `assert after_lone_lf == before_lone_lf` guard caught it BEFORE the file was
+   trusted. Rule: build the whole block with ONE explicit EOL helper
+   (`crlf(...)`) and let the guard assert the census.
+2. An `assert not re.findall("Jan 5 and Feb 9, 2026")` was itself WRONG -- the
+   widened regex correctly DOES match `Feb 9, 2026`. A bad assertion looks
+   exactly like a code bug; re-read the regex against the literal before
+   "fixing" code. The write had already landed, so the file was restored from
+   the byte backup taken at the START of the apply step. Take that backup.

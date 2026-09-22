@@ -1583,3 +1583,9 @@ HEAD` → FF_SAFE), pushed `HEAD:main`; verified with `git branch -r --contains`
 Post-fix live: 3 × `--once` → 1 learned (real paper prose) / 2 rejected, both
 rejections honest (`duplicate` at the cap + a documented SERP shape), new row
 `writer=False extract=False`.
+
+137 (22.09.26): a docs-site breadcrumb welded to a REPEATED title prefix, AND
+`_FULL_DATE_RE` (class 35) accepting ABBREVIATED months -- it was wired but had
+a blind spot for `Sep 24, 2025`. Also: the per-FILE merge resolution (HEAD vs
+origin/main measured, not assumed), and `clean_buffer.py` has NO `--help`
+(it just runs). refs/.
