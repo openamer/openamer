@@ -1,6 +1,12 @@
 import { describe, expect, it } from 'vitest'
 
-import { NEW_CHAT_ROUTE, primaryRouteSelectedSessionId, sessionRoute, SETTINGS_ROUTE } from './routes'
+import {
+  NEW_CHAT_ROUTE,
+  primaryRouteSelectedSessionId,
+  routeTargetsSession,
+  sessionRoute,
+  SETTINGS_ROUTE
+} from './routes'
 
 const SESS_A = 'sess-a'
 const SESS_B = 'sess-b'
@@ -26,5 +32,29 @@ describe('primaryRouteSelectedSessionId', () => {
 
   it('returns null on a non-chat route with no store selection', () => {
     expect(primaryRouteSelectedSessionId(SETTINGS_ROUTE, null)).toBeNull()
+  })
+})
+
+
+describe('routeTargetsSession', () => {
+  it('matches a session route to its own id — the stale-route signal', () => {
+    expect(routeTargetsSession(sessionRoute(SESS_A), SESS_A)).toBe(true)
+  })
+
+  it('does not match a route pointing at a different session', () => {
+    expect(routeTargetsSession(sessionRoute(SESS_B), SESS_A)).toBe(false)
+  })
+
+  it('does not match a non-session route (new chat / pages) or a missing side', () => {
+    expect(routeTargetsSession(NEW_CHAT_ROUTE, SESS_A)).toBe(false)
+    expect(routeTargetsSession(SETTINGS_ROUTE, SESS_A)).toBe(false)
+    expect(routeTargetsSession(null, SESS_A)).toBe(false)
+    expect(routeTargetsSession(sessionRoute(SESS_A), null)).toBe(false)
+  })
+
+  it('decodes an encoded session id the same way the route reader does', () => {
+    const id = 'a/b c'
+
+    expect(routeTargetsSession(sessionRoute(id), id)).toBe(true)
   })
 })

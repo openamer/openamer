@@ -9,6 +9,7 @@ import {
   getRememberedRoute,
   getRememberedSessionId,
   rememberedSessionProfile,
+  sessionMatchesStoredId,
   setRememberedRoute,
   setRememberedSessionId
 } from '@/store/session'
@@ -17,7 +18,7 @@ import { openUpdatesWindow, startUpdatePoller, stopUpdatePoller } from '@/store/
 import { isSecondaryWindow } from '@/store/windows'
 
 import { requestComposerFocus, requestComposerInsert } from '../../chat/composer/focus'
-import { appViewForPath, isOverlayView, NEW_CHAT_ROUTE, sessionRoute } from '../../routes'
+import { appViewForPath, isOverlayView, NEW_CHAT_ROUTE, routeTargetsSession, sessionRoute } from '../../routes'
 
 interface DesktopIntegrationsParams {
   chatOpen: boolean
@@ -120,6 +121,20 @@ export function useDesktopIntegrations({
 
     if (getRememberedSessionId(owner) === resumeExhaustedSessionId) {
       setRememberedSessionId(null, owner)
+    }
+
+    // The remembered route is the other half of the same cold-start restore, and
+    // it is replayed verbatim — so a route whose session no longer exists bounces
+    // every relaunch straight back into it (repeated "Session not found" 404s,
+    // stranded loader on a transcript that will never load). Retire it, but only
+    // once the loaded session list confirms the session is really gone: on a
+    // transient backend failure the session still exists and its route is still
+    // exactly where the user wants to land next boot.
+    if (
+      routeTargetsSession(getRememberedRoute(), resumeExhaustedSessionId) &&
+      !$sessions.get().some(session => sessionMatchesStoredId(session, resumeExhaustedSessionId))
+    ) {
+      setRememberedRoute(null)
     }
   }, [resumeExhaustedSessionId])
 
