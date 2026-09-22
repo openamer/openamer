@@ -662,14 +662,18 @@ def resolve_user_provider(name: str, user_config: Dict[str, Any]) -> Optional[Pr
     )
 
 
-def custom_provider_slug(display_name: str) -> str:
-    """Build a canonical slug for a custom_providers entry.
+def custom_provider_slug(display_name: str, provider_key: str = "") -> str:
+    """Stable ``custom:`` identity for a configured provider: keyed ``providers:`` entries use their
+    config key (survives display-name changes); legacy ``custom_providers:`` entries have no key,
+    so their normalized display name is the identity.
 
-    Matches the convention used by runtime_provider and credential_pool
-    (``custom:<normalized-name>``).  Centralised here so all call-sites
-    produce identical slugs.
+    Ported verbatim from upstream. ``provider_key`` defaults to ``""`` so the existing
+    single-argument call sites keep their previous behaviour; the ACP model catalog
+    passes both arguments and needs the keyed form.
     """
-    return "custom:" + display_name.strip().lower().replace(" ", "-")
+    identity = str(provider_key or "").strip() or str(display_name or "").strip()
+    normalized = identity.lower().replace(" ", "-")
+    return normalized if normalized.startswith("custom:") else f"custom:{normalized}"
 
 
 def resolve_custom_provider(

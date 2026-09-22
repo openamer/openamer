@@ -45,7 +45,7 @@ class TestNamedCustomProviderCatalogs:
             }
         )
         with patch("openamer_cli.config.load_config", return_value=cfg), patch(
-            "openamer_cli.models.fetch_api_models", return_value=None
+            "openamer_cli.model_switch_providers._fetch_picker_live_models", return_value=None
         ):
             catalogs = _named_custom_provider_catalogs()
 
@@ -70,7 +70,7 @@ class TestNamedCustomProviderCatalogs:
             }
         )
         with patch("openamer_cli.config.load_config", return_value=cfg), patch(
-            "openamer_cli.models.fetch_api_models",
+            "openamer_cli.model_switch_providers._fetch_picker_live_models",
             return_value=["model-a", "model-b"],
         ):
             catalogs = _named_custom_provider_catalogs()
@@ -94,7 +94,7 @@ class TestNamedCustomProviderCatalogs:
             }
         )
         with patch("openamer_cli.config.load_config", return_value=cfg), patch(
-            "openamer_cli.models.fetch_api_models", return_value=None
+            "openamer_cli.model_switch_providers._fetch_picker_live_models", return_value=None
         ):
             catalogs = _named_custom_provider_catalogs()
 
@@ -114,7 +114,7 @@ class TestNamedCustomProviderCatalogs:
             }
         )
         with patch("openamer_cli.config.load_config", return_value=cfg), patch(
-            "openamer_cli.models.fetch_api_models", return_value=None
+            "openamer_cli.model_switch_providers._fetch_picker_live_models", return_value=None
         ):
             assert _named_custom_provider_catalogs() == []
 
@@ -130,7 +130,7 @@ class TestNamedCustomProviderCatalogs:
             }
         )
         with patch("openamer_cli.config.load_config", return_value=cfg), patch(
-            "openamer_cli.models.fetch_api_models", return_value=None
+            "openamer_cli.model_switch_providers._fetch_picker_live_models", return_value=None
         ):
             assert _named_custom_provider_catalogs() == []
 
@@ -147,7 +147,7 @@ class TestNamedCustomProviderCatalogs:
             ]
         )
         with patch("openamer_cli.config.load_config", return_value=cfg), patch(
-            "openamer_cli.models.fetch_api_models", return_value=None
+            "openamer_cli.model_switch_providers._fetch_picker_live_models", return_value=None
         ):
             catalogs = _named_custom_provider_catalogs()
 
@@ -170,7 +170,11 @@ class TestModelStateIncludesNamedProviders:
             "openamer_cli.models.curated_models_for_provider",
             return_value=[("gpt-5.4", "recommended")],
         ), patch(
-            "acp_adapter.server._named_custom_provider_catalogs",
+            # Patch where the implementation LIVES, not where it is re-exported:
+            # `_named_custom_provider_catalogs` runs inside acp_adapter.model_catalog,
+            # so patching the acp_adapter.server re-export would not take effect.
+            # Upstream patches this same target.
+            "acp_adapter.model_catalog._named_custom_provider_catalogs",
             return_value=[
                 (
                     "custom:bedrock-mantle",

@@ -9565,6 +9565,46 @@ def read_raw_config_readonly() -> Dict[str, Any]:
     per-turn policy checks that were paying a full config deepcopy 2-3x per agent turn."""
     return _read_raw_config_impl(want_deepcopy=False)
 
+# Sentinel for an unlimited turn budget. ``sys.maxsize`` survives every
+# ``<``/``>=``/``max - used`` comparison in the iteration budget without an
+# "unlimited" special case, and is unreachable in practice.
+TURN_LIMIT_UNLIMITED = sys.maxsize
+
+# Spellings that mean "no limit" (compared lowercased, whitespace-stripped).
+_UNLIMITED_SPELLINGS = frozenset({
+    "none", "null", "unlimited", "infinite", "infinity", "inf", "∞", "-1", "0"})
+
+
+def _read_raw_config_impl(*, want_deepcopy: bool) -> Dict[str, Any]:
+    with _CONFIG_LOCK:
+        try:
+            config_path = get_config_path()
+            st = config_path.stat()
+            cache_key = file_signature(st)
+        except (FileNotFoundError, OSError):
+            return {}
+
+        path_key = str(config_path)
+        cached = _RAW_CONFIG_CACHE.get(path_key)
+        if cached is not None and cached[:len(cache_key)] == cache_key:
+            return copy.deepcopy(cached[len(cache_key)]) if want_deepcopy else cached[len(cache_key)]
+
+        try:
+            with open(config_path, encoding="utf-8") as f:
+                data = fast_safe_load(f) or {}
+        except Exception as e:
+            _warn_config_parse_failure(config_path, e)
+            return {}
+
+        if not isinstance(data, dict):
+            data = {}
+        # The cache stores its own deepcopy. The readonly path returns THAT object (identity
+        # invariant: later cache hits return the same dict); the mutable path returns the parse.
+        cached_copy = copy.deepcopy(data)
+        _RAW_CONFIG_CACHE[path_key] = (*cache_key, cached_copy)
+        return data if want_deepcopy else cached_copy
+
+
 def resolve_turn_limit(raw: Any, default: int = TURN_LIMIT_UNLIMITED) -> int:
     """Normalize a raw ``agent.max_turns`` value into an int iteration cap (always >= 1)."""
     # bool is a subclass of int; reject explicitly so True/False don't become 1/0.
