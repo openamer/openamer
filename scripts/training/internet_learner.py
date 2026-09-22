@@ -378,6 +378,14 @@ _JUNK_RE = re.compile(
     # German ad/classified chrome (live 13.09.26: a competitor cycle "learned"
     # "Unsere Werbepartner Einkaufen Ferienwohnungen Freizeit und Reise …")
     r"werbepartner|ferienwohnungen|kleinanzeigen|anzeigenmarkt|"
+    # a landing-page marketing-slogan clause (class 139, 22.09.26: the
+    # multi-domain cycle stored "Operator prepping for month-end Pull 50+
+    # invoices from 15+ portals in under 5 minutes \u2014 no mental load." --
+    # the digits fed the technical-signal gate and the row is a product
+    # CLAIM, not knowledge. Measured over the live corpora + 30 hostile
+    # controls, incl. "Reconciliation happens in under 5 minutes -- no
+    # mental gymnastics required.": 0 real-prose rows carry it.)
+    r"no mental load|"
     # German bank referral/promo chrome (live 16.09.26: cycle_c_github
     # stored "Auch die neue Kundin oder der neue Kunde erhält eine Prämie
     # von 300 €, was eine Gesamtprämie von 600 € ergibt!" — a referral BONUS
@@ -393,6 +401,21 @@ _JUNK_RE = re.compile(
     # the >=90 length trust, so it needs its own narrow signature.)
     r"inference providers kernels|lerobot leaderboards|reachy mini|"
     r"openenv optimum|tokenizers trackio|"
+    # Doc-site product nav welded to a vendor SDK label (live 22.09.26:
+    # cycle_d_docs stored "API, Infinite Possibilities Reference Qualcomm
+    # Cloud AI home Qualcomm Cloud AI SDK download Qualcomm Cloud AI API
+    # reference User Guide OCP Microscaling Formats (MX) Specification
+    # efficient-transformers Welcome to Efficient-Transformers
+    # Documentation!" — 250 chars of pure sidebar/product nav, zero prose,
+    # and BOTH gates passed it. Two WELDED markers, measured over the live
+    # 245-row buffer: 1 hit each and that hit IS the leaking row -> 0
+    # real-prose rows carry them. Both bare forms were MEASURED-AND-REJECTED:
+    # "api reference" and "infinite possibilities" each hit 1 hostile control
+    # ("The API reference for the agent runtime lists every tool and its
+    # parameters.", "Infinite possibilities in agent design come from
+    # composing narrow tools.") -- hence the two-token weld.)
+    r"cloud ai api reference|infinite possibilities reference|"
+    r"efficient-transformers welcome to efficient-transformers"
     # Leaked LLM meta/instruction text (live 14.09.26: the multi-domain cycle
     # stored the model's OWN extraction template verbatim — "Identify the Core
     # Task: Extract ONE technical insight ... No preamble before the insight.
@@ -537,6 +560,16 @@ _JUNK_RE = re.compile(
     # the live buffer: 1 hit and that hit IS the leaking row -> 0 prose FPs.
     r"\b\w+\s+vs\.?\s+\w+[^|]{0,25}\d{1,2}\s*[-\u2013]\s*\d{1,2}\s*\|\s*"
     r"\d{1,2}[/.]\d{1,2}[/.]\d{2,4}|closed nifty|the economic times benchmarks|add free huggingface demo|"
+    # GitHub releases-page ROW + slide-deck nav trio (classes 123/124,
+    # live 21.09.26) -- same markers as buffer_store._NAV_CHROME; keep both
+    # files in sync. Measured: 1 buffer hit each and that hit IS the leaking
+    # row -> 0 prose FPs over 3,059 longterm_episodes + 7,442 buffer_junk
+    # rows. Prose that merely discusses releases or slides stays learnable
+    # (counter-cases measured).
+    r"released\s+[^\n]{0,60}?\(github releases\)|show original\s+previous slide|"
+    # NOTE: every fragment above ends with `|` -- the whole alternation is ONE
+    # implicitly-joined literal, so a missing pipe welds two rules together and
+    # an EMPTY branch matches every string (both hit on 16.09.26).
     # NOTE: the fragment below is the LAST one -- it keeps the closing comma
     # that the following re.IGNORECASE) closes.
     r"^\W*[kKmM]\s+followers\b",
@@ -1378,9 +1411,15 @@ def _is_relative_time_nav_chain(text):
 
 
 # class 35 markers (live 17.09.26) -- see _is_date_heading_listing.
+# class 137 (22.09.26) widened this from FULL month names to the
+# abbreviated form too: the live leak `Sep 24, 2025 ... Sep 18, 2025 ...`
+# was invisible to class 35, which then read 0 hits on it. Measured: the
+# widened form fires on that row and stays 0/3,059 longterm_episodes and
+# 0/12 hostile prose counter-cases. Single call site, 2 dates minimum.
 _FULL_DATE_RE = re.compile(
     r"\b(?:January|February|March|April|May|June|July|August|September|"
-    r"October|November|December)\s+\d{1,2},\s+\d{4}\b")
+    r"October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Sept|Oct|"
+    r"Nov|Dec)\.?\s+\d{1,2},\s+\d{4}\b")
 _TITLE_WORD_RE = re.compile(r"[A-Za-z][A-Za-z'./-]*")
 
 
@@ -1892,7 +1931,8 @@ def _is_de_portal_fact_box_chrome(text):
 
 # class 65 markers (live 18.09.26) -- see _is_prompt_echo_fragment.
 _PROMPT_ECHO_FRAGMENT_RE = re.compile(
-    r"^\s*(?:The\s+)?shared underlying pattern[^\n]{0,30}?\bone sentence\s*\.?\s*$",
+    r"^\s*(?:The\s+)?shared underlying pattern"
+    r"(?:[^\n]{0,30}?\bone sentence)?\s*\.?\s*$",
     re.IGNORECASE | re.MULTILINE)
 
 
@@ -2866,6 +2906,41 @@ _CHANGELOG_PR_RE = re.compile(
     r"\(\s*#\d{3,}\s*\)\s*(?:Allow|Add|Fix|Support|Enable|Improve|Update|Remove|Bump|Refactor)\b")
 
 
+_RELEASE_NOTE_EMOJI_RE = re.compile(
+    r"(?:\d{1,2}[./-]\d{1,2}[./-]\d{2,4}|\bv?\d+\.\d+(?:\.\d+){1,2}\b"
+    r"|\[\s*\d{1,2}/\d{4}\s*\])"
+    r"[^\n]{0,40}?"
+    r"[\U0001F300-\U0001FAFF\u2600-\u27BF]{1,3}\s*"
+    r"(?:Released|Add(?:ed)?|Update[ds]?|Fixed|Removed|Improved|Launched"
+    r"|Introduced|Deprecated|Enabled)\b",
+    re.I,
+)
+
+def _is_release_note_emoji_bullet(text):
+    """True for a release-notes changelog bullet anchored by a date + emoji (125).
+
+    Live 21.09.26: `cycle_b_papers` stored a model card's changelog tail
+      "F16 on BitNet-embedding-270M prefill (8 threads) Supports I2_S conversion
+       with optimized kernels on x86 CPUs Lossless inference with 2 bits per
+       weight 07/16/2026: <megaphone> Released BitNet Embeddings 0."
+    -- a version stamp, then an emoji-led changelog bullet, welded to the card's
+    feature list. 185 chars WITH digits, so the >=90 length trust AND the
+    technical-signal gate both fired. The existing changelog helpers all miss it:
+    `_is_release_notes_pr_bullet` needs a `( #N )` PR number and
+    `_is_changelog_chain` needs >=3 bracketed links.
+
+    The discriminator is the CONJUNCTION: a date/version STAMP within 40 chars
+    of an emoji-led changelog VERB. The emoji+verb alone was measured and
+    REJECTED -- 4 real `longterm_episodes` rows and 1 hostile control
+    ("openamer auf ... update" + a warning sign) matched; the stamp anchor
+    takes both corpora to 0.
+    """
+    t = text or ""
+    if len(t) > 1200:
+        return False
+    return bool(_RELEASE_NOTE_EMOJI_RE.search(t))
+
+
 def _is_release_notes_pr_bullet(text):
     """True for a release-notes changelog bullet welded to its PR number (86).
 
@@ -3543,9 +3618,67 @@ _STARTUP_PORTAL_NAV_RE = re.compile(
     re.IGNORECASE)
 
 
+# class 126 (live 21.09.26): a video/news platform's OWN client-SDK package
+# family named as the SUBJECT, welded to an "open-source SDKs (e.g. `...`)"
+# opener -- "YouTube's open-source SDKs (e.g., `youtubei1`, `youtubei2`,
+# `youtubei3`) are the only reliable way to programmatically control the API,
+# bypass rate limits, and access private endpoints". It reached the training
+# buffer 3x (19.09 00:24, 21.09 10:14, 21.09 16:04) -- the third time as a
+# duplicate of the first, i.e. the SAME page was deep-read twice and the
+# exact-`_is_duplicate` gate could not see it because the sentence drifted
+# (`youtubei-python`/`youtubei-webapp` -> `youtubei1`/`youtubei2`/
+# `youtubei3`). It is platform plumbing for that site's own API, not knowledge
+# an agent can act on, so it is chrome. Discriminator: the backticked SDK
+# family welded to the "open-source SDKs (e.g." opener. The opener ALONE is not
+# enough (generic prose about open-source SDKs is learnable); the package
+# family is the anchor. Measured: 10 hits over online_buffer + buffer_junk +
+# both junk archives + kta_log + internet_learn_log + world_model (7.9 MB) +
+# longterm_episodes (50 MB) -- ALL 10 are this leak, 0 false positives.
+# A generic same-`u` similarity gate (token-set Jaccard) was MEASURED AND
+# REJECTED: the three leak rows score 0.241/0.308/0.327 while legitimate
+# distinct rows for one `u` score up to 0.400 -- no separation, so a threshold
+# would only delete real learnings.
+_SDK_FAMILY_WELD_RE = re.compile(
+    r"open[- ]source\s+SDKs?\s*\(?\s*e\.g\.?[\s\S]{0,80}?youtubei",
+    re.IGNORECASE)
+
+
+def _is_platform_sdk_family_weld(text):
+    """True for a platform's own client-SDK family welded to an SDKs opener."""
+    return bool(_SDK_FAMILY_WELD_RE.search(text or ""))
+
+
 def _is_startup_portal_nav_run(text):
     """True for a startup portal's welded nav label run."""
     return bool(_STARTUP_PORTAL_NAV_RE.search(text or ""))
+
+
+# class 128 (live 21.09.26): an AI-agent INDEX landing page stored as the
+# answer -- its affordance nav run welded to the site's own category labels:
+#   "AI Agent Index Categories Find Agent + Submit Compare Alternatives Stacks
+#    Advertise API Home / AI Coding Agents Best AI Coding Agents (2026): IDEs,
+#    Terminals, Autonomous Updated September 2026 AI coding agents have moved
+#    well beyond autocomplete."
+# This is one of the TWO rows that made the KTA competitor-gap experiment
+# report `signal NOT mappable` / map a false capability: the consumer reads the
+# LAST lexicon-matching buffer row, so a nav row appended late poisons every
+# subsequent run.
+#
+# REJECT, not strip: the only prose behind the run is a generic lede ("AI
+# coding agents have moved well beyond autocomplete") with no capability token,
+# so stripping would leave a contentless stub -- and the pair itself is the
+# discriminator. TWO independent conjuncts in order, per the lazy-bridge trap:
+# a single token like `compare alternatives` is ordinary English. Measured with
+# probe_marker_candidates.py: 1 buffer hit (= this leak), 0 prose FPs,
+# 0 longterm_episodes FPs, 0 gate-test-literal FPs.
+_AGENT_INDEX_NAV_RE = re.compile(
+    r"compare\s+alternatives[\s\S]{0,80}?advertise\s+api",
+    re.IGNORECASE)
+
+
+def _is_agent_index_nav_run(text):
+    """True for an AI-agent index landing page's welded affordance nav run."""
+    return bool(_AGENT_INDEX_NAV_RE.search(text or ""))
 
 
 # class 129 (live 21.09.26): a blog badge ribbon stored as the answer --
@@ -3555,15 +3688,15 @@ def _is_startup_portal_nav_run(text):
 # The site's own card ribbon (rank badge + `Featured Blog` label + a percent
 # counter + a bare index) is welded to the headline stack and its lede.
 # 239 chars WITH digits, so the >=90 length trust AND the technical-signal
-# gate both fired; class 106's rule needs a >=8-token nav vocabulary run and
-# this ribbon has none.
+# gate both fired; `_is_blog_nav_feature_run_chrome` (class 106) needs a
+# >=8-token nav vocabulary run and this ribbon has none.
 #
 # REJECT, not strip: the prose behind the ribbon is a generic RAG lede with
-# no capability token (same call as class 128 on the stray branch). THREE
-# conjuncts in order -- numbered badge, the site's own `Featured Blog`
-# label, a percent ribbon -- so no single ordinary-English token can fire it.
-# A BARE `Featured Blog` marker was measured and REJECTED as too broad (it
-# fired on all 3 natural prose counter-cases).
+# no capability token (same call as class 128). THREE conjuncts in order --
+# numbered badge, the site's own `Featured Blog` label, a percent ribbon --
+# so no single ordinary-English token can fire it. A BARE `Featured Blog`
+# marker was measured and REJECTED as too broad (it fired on all 3 natural
+# prose counter-cases).
 # Measured: 1 buffer hit and it IS the leak -> 0/7,984 buffer_junk rows,
 # 0/3,059 longterm_episodes, 0/3 prose counter-cases.
 _BADGE_RIBBON_RE = re.compile(
@@ -3574,6 +3707,7 @@ _BADGE_RIBBON_RE = re.compile(
 def _is_badge_ribbon_chrome(text):
     """True for a blog card ribbon (rank badge + Featured Blog + percent)."""
     return bool(_BADGE_RIBBON_RE.search(text or ""))
+
 
 # class 130 (live 22.09.26) -- a "source tally" CTA stored as knowledge.
 # Exact leaked bytes (cycle_b_papers -> online_buffer.jsonl):
@@ -3691,6 +3825,235 @@ def _is_credit_byline_run(text):
                 and _CREDIT_CLOCK_RE.search(t))
 
 
+# A paper/arXiv LISTING submitter run (class 135, 22.09.26). Live: the security
+# cycle STORED, verbatim from online_buffer.jsonl,
+#   "VLMs to Robotic Control . 9 authors 1 Submitted by Williams07 9 One to
+#    More, More to One: Category-Aware Iterative Expert Training for Software
+#    Engineering Agents Logics-MLLM 2 Submitted by paulsmith0217 4 Why Do Video
+#    Diffusion Models Violate Physics?"
+# - an arXiv new-listing page: each row is a title, an author count, a submitter
+# ordinal and a submitter HANDLE. Not knowledge, and the page itself is an index.
+#
+# The discriminator is the WELD `<N> authors <N> Submitted by`, which is what the
+# extractor produces when the listing's row separators are lost. Prose never
+# emits it: a real sentence says "9 authors and was submitted by ..." (the word
+# `authors` is NOT immediately followed by a bare digit) or "Authors 9 submitted
+# by reviewers ..." (no `authors <N>` weld). Measured 22.09.26 over 14,515
+# pair-rows (online_buffer, buffer_junk, kta_log, longterm_episodes, world_model,
+# improvements, sft_openamer, archives): 2 hits and BOTH are the leaking row
+# -> 0 FPs on a 5-case hostile battery, 0 gate-test literals.
+_ARXIV_SUBMITTER_WELD_RE = re.compile(
+    r"\b\d+\s+authors?\s+\d+\s*submitted\s+by\b", re.I)
+
+
+def _is_arxiv_submitter_run(text):
+    """True when `text` is an arXiv listing row's submitter weld (class 135)."""
+    return bool(_ARXIV_SUBMITTER_WELD_RE.search(text or ""))
+
+
+# An aggregator card's date + read-time badge welded to the article TITLE
+# (class 136, 22.09.26). Live: the technews cycle STORED
+#   "Sep 13, 2026 Read AI Agents 9 min OpenAI Agents API: Managed Infrastructure
+#    for AI Agents OpenAI launched the Agents API in public beta, ..."
+# - a blog aggregator's card header (date stamp, category label, read-time badge)
+# welded onto the article's own title and lede. 184 chars, so the >=90 "long
+# prose" trust applied; the digits fed the technical-signal gate and no existing
+# helper matched (`_is_readtime_card_widget` keys on the DOUBLED unit
+# `min min read`, which this renderer does not emit).
+#
+# Two independent parts are required: a `<Month D, YYYY> Read <TitleCase label>
+# <N> min` badge run AND a TitleCase word immediately after it (the article
+# title). The continuation test is the discriminator -- it is the same
+# structural idea class 52 uses, and it is what keeps a sentence that merely
+# QUOTES such a badge learnable ("... Read AI Agents 9 min is the card badge").
+# Measured 22.09.26 over 14,515 pair-rows: 16 hits, ALL the leaking row (2 in
+# the buffer, 13 audit echoes, 1 kta echo) -> 0 FPs on a 4-case hostile battery,
+# 0 gate-test literals.
+_AGG_MONTH_RE = r"(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)"
+_AGG_LABEL_RE = r"[A-Z][A-Za-z&/]*(?:\s+[A-Z][A-Za-z&/]*){0,3}"
+_AGGREGATOR_CARD_HEADER_RE = re.compile(
+    r"\b" + _AGG_MONTH_RE + r"\s+\d{1,2},\s*\d{4}\s+Read\s+"
+    + _AGG_LABEL_RE + r"\s+\d{1,3}\s*min\s+(?=[A-Z])")
+
+
+def _is_aggregator_card_header_weld(text):
+    """True when an aggregator card header is welded onto the article (136)."""
+    return bool(_AGGREGATOR_CARD_HEADER_RE.search(text or ""))
+
+# class 141 (live 22.09.26): an aggregator CARD AFFORDANCE RAIL welded to the
+# card's own title and lede:
+#   "GAIA - Open-source framework ... Apr 13, 2026 - galaxyLogic - View Original
+#    [star] Save TL;DR Highlight AMD has released GAIA, ..."
+# The rail is the source's own UI furniture (open-original link, bookmark
+# toggle, TL;DR/Highlight affordances), not knowledge. 246 chars WITH digits ->
+# the >=90 "long prose" trust AND the technical-signal gate both fired, and no
+# existing marker matched: `_AGGREGATOR_AFFORDANCE_MIN_RE` keys on
+# "read full article" / "try on X" + a "[dot] N min" read-time, which this
+# renderer does not emit; `_AGGREGATOR_CARD_HEADER_RE` (136) needs a
+# "Read <label> N min" badge.
+#
+# Discriminator: the affordance rail itself -- "View Original" ... a bookmark
+# star ... "Save" ... "TL;DR" in ONE run. "View Original" ALONE and the star
+# ALONE are ordinary UI words, so the CONJUNCTION is required (the AS rule:
+# when a single part cannot be made unique, add the second structural
+# co-occurrence). Measured 22.09.26 over online_buffer + buffer_junk + both junk
+# archives + longterm_episodes + world_model + kta_log + internet_learn_log
+# (22,073 texts): 1 hit and it IS the leak -> 0 FPs on a 9-case hostile battery.
+_AGG_CARD_AFFORDANCE_RE = re.compile(
+    r"View\s+Original[\s\S]{0,40}?(?:\u2606|\u2b50|\u2605|\u22c6)\s*Save"
+    r"[\s\S]{0,60}?TL;DR",
+    re.IGNORECASE)
+
+
+def _is_aggregator_card_affordance_rail(text):
+    """True for an aggregator card's affordance rail welded to the card (141)."""
+    return bool(_AGG_CARD_AFFORDANCE_RE.search(text or ""))
+
+
+# class 137 (live 22.09.26): a docs site's breadcrumb run welded to a
+# REPEATED category+title prefix, stored as the answer:
+#   "Home / AI Guides / 12 Best Open-Source AI Agent Frameworks (2026) 📖 Guide
+#    12 Best Open-Source AI Agent Frameworks (2026) Compare 12 open-source AI
+#    agent frameworks for production workflows, multi-agent systems, ..."
+# The crumb run `Home / <section> / ` is followed by the card's own title
+# prefix TWICE (once bare, once again after the card's label badge) -- a real
+# sentence never restates its own opening four words. 252 chars WITH digits,
+# so the >=90 "long prose" trust AND the technical-signal gate both fired and
+# no existing helper matched.
+# The breadcrumb ALONE was measured and REJECTED (4 hostile-control FPs: prose
+# can legitimately start "Home / Docs / Getting started ..."), and a bare
+# repeated-prefix test was rejected too. Only the weld of crumb run + repeated
+# prefix is clean.
+# Measured 22.09.26: 1 buffer hit and it IS the leak -> 0/8,275 buffer_junk,
+# 0/3,059 longterm_episodes, 0/10 hostile prose counter-cases.
+_BREADCRUMB_RE = re.compile(
+    r"^\s*Home\s*(?:/|\u203a|\u00bb|>)\s*[^\n]{1,80}?(?:/|\u203a|\u00bb|>)\s*([^\n]+)$")
+
+
+# class 138 (live 22.09.26): an ALL-CAPS nav lockup welded to a Title-Case word.
+# The lookahead requires the weld (`SOLACE AGENT MESH Take ...`); the rule body
+# then requires the SAME name in Title Case elsewhere in the string.
+_CAPS_LOCKUP_ANCHOR_RE = re.compile(
+    r"\b[A-Z][A-Z0-9]{2,}(?:\s+[A-Z][A-Z0-9]{2,})+(?=\s+[A-Z][a-z])")
+
+
+def _is_breadcrumb_title_repeat(text):
+    """True for a breadcrumb run welded to a repeated title prefix (137)."""
+    t = text or ""
+    if len(t) > 500:
+        return False
+    m = _BREADCRUMB_RE.match(t)
+    if not m:
+        return False
+    seg = m.group(1).strip()
+    words = seg.split()
+    if len(words) < 6:
+        return False
+    prefix = " ".join(words[:4])
+    return len(prefix) >= 15 and seg.count(prefix) >= 2
+
+
+def _is_caps_nav_lockup_weld(text):
+    """True for an ALL-CAPS nav lockup welded to prose AND repeated in Title Case (class 138).
+
+    Live 22.09.26 (competitor + github cycles): a vendor's "Platform Demo"
+    banner was stored twice in `online_buffer.jsonl` as
+        "Platform Demo SOLACE AGENT MESH Take AI agents from idea to
+         production, and keep making them better Solace Agent Mesh is an
+         agent development and runtime platform that lets you build, test,
+         deploy, observe and improve every agent through one lifecycle."
+    252 chars with no digits and a heavy technical-noun load, so BOTH the
+    >=90 "long prose" trust and the technical-signal gate passed it.
+
+    Discriminator = a CASE SHIFT inside one extracted string: the nav lockup
+    is ALL CAPS ("SOLACE AGENT MESH") while the sentence repeats the same
+    product name in Title Case ("Solace Agent Mesh"). A real sentence picks
+    one casing. Requires the lockup to be WELDED (followed by a Title-Case
+    word = the lost-newline nav shape).
+
+    Measured over 239 buffer prose rows, 3,059 `longterm_episodes`, 8,541
+    `buffer_junk` answers, 1,813 gate-test string literals, 502 world_model
+    effects and 18 hostile controls: **0 FPs**, and the leaking row is caught.
+    Each conjunct ALONE was measured and REJECTED: the bare weld fires 26x on
+    ordinary prose ("Alles erledigt. Hier die Zusammenfassung:"), the bare
+    case-shift 2x (one real prose row). Both bare forms of the vendor name
+    ("solace agent mesh", "platform demo") were likewise REJECTED on control
+    FPs -- so this rule carries NO vendor literal and generalises.
+    """
+    t = text or ""
+    if len(t) > 600:
+        return False
+    for m in _CAPS_LOCKUP_ANCHOR_RE.finditer(t):
+        run = m.group(0)
+        title = run.title()
+        if title == run:
+            continue
+        if title in t:
+            return True
+    return False
+
+
+
+# --- a paper/arXiv AUTHOR LIST with affiliation superscripts (class 140, 22.09.26) ---
+# Live: `cycle_g_security` STORED
+#   "Sahar Abdelnabi* 1 , Benjamin Pannell* 1 , ..., and Javier Rando 3
+#    (*: Core contributors)."
+# twice in `online_buffer.jsonl`, and `buffer_junk` carries a second paper of the
+# same shape ("Bochao Wu 1 , Bei Feng 1 , ..."). It is the author block of a paper
+# landing page: pure page furniture, zero knowledge. It passed BOTH gates -- 251
+# chars cleared the "long prose" trust and the affiliation digits fed the
+# technical-signal gate. The existing arXiv helpers key on DIFFERENT halves:
+# `_is_arxiv_abstract_chrome` needs page labels from `_ARXIV_CHROME_MARKERS`, and
+# class 135 `_is_arxiv_submitter_run` needs the `<N> authors <N> Submitted by`
+# submitter WELD -- a clean author block emits neither.
+#
+# Discriminator = the affiliation-superscript SEGMENT repeated. A comma-separated
+# segment that is a person name (1-3 capitalised words, optional `*`, optional
+# `and`) followed by an affiliation digit, repeated >= 5 times. A real sentence
+# about papers does not list five such entries in a row (measured, see below),
+# and the leading-word STRUCT guard keeps a run of structural units learnable:
+# "Section 3, Figure 2, Table 1, Appendix 4, Note 5" must SURVIVE.
+# Measured 22.09.26 over online_buffer + longterm_episodes + world_model + kta_log
+# + outcome_analyses + structures + buffer_junk (11,738 rows): 2 distinct hit
+# strings, BOTH the leak; 0 FPs on 15 human/structural controls; 0 gate-test
+# literals.
+_AUTHOR_AFFIL_SEG_RE = re.compile(
+    r"^\s*(?:and\s+)?(?:[A-Z][A-Za-z'\-]+\s+){0,3}[A-Z][A-Za-z'\-]+\*?\s+\d{1,2}\s*$"
+)
+_AUTHOR_AFFIL_STRUCT_WORDS = frozenset({
+    "section", "figure", "fig", "table", "appendix", "reference", "ref", "note",
+    "step", "part", "chapter", "listing", "rule", "line", "page", "item", "version",
+    "phase", "class", "type", "model", "stage", "level", "task", "epoch", "layer",
+    "block", "unit", "test", "example", "case", "option", "method", "mode", "group",
+    "batch", "fold", "seed", "run", "index", "row", "column", "file", "path", "port",
+    "host", "node", "core", "thread", "process", "point", "topic", "question",
+    "article", "paper", "authors", "variant", "day", "week", "month", "quarter",
+    "goal", "objective", "claim", "assumption", "risk", "finding", "conclusion",
+    "requirement", "feature", "metric", "result", "experiment", "dataset", "benchmark",
+})
+_AUTHOR_AFFIL_MIN_SEGMENTS = 5
+
+
+def _is_affiliation_author_list(text):
+    """True when `text` is a paper AUTHOR LIST with affiliation superscripts (class 140).
+
+    Requires BOTH: >= `_AUTHOR_AFFIL_MIN_SEGMENTS` name+digit segments AND no
+    segment whose leading word is a structural label (`Section`, `Figure`,
+    `Version`, ...). The struct guard is what keeps a run of structural units --
+    real content -- learnable.
+    """
+    t = (text or "").strip()
+    if not t or len(t) > 2000:
+        return False
+    hit = 0
+    for seg in t.split(","):
+        words = [w.strip("*").lower() for w in seg.strip().split()]
+        if len(words) <= 2 and words and words[0] in _AUTHOR_AFFIL_STRUCT_WORDS:
+            return False
+        if _AUTHOR_AFFIL_SEG_RE.match(seg):
+            hit += 1
+    return hit >= _AUTHOR_AFFIL_MIN_SEGMENTS
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
@@ -3779,6 +4142,8 @@ def _is_junk(text):
     # a release-notes changelog bullet welded to its PR number (class 86, 19.09.26)
     if _is_release_notes_pr_bullet(t):
         return True
+    if _is_release_note_emoji_bullet(t):
+        return True
     # a headline run welded to a mid-text byline counter bar (class 87, 19.09.26)
     if _is_midtext_byline_counter_run(t):
         return True
@@ -3812,20 +4177,48 @@ def _is_junk(text):
     # a startup portal's welded nav label run (class 103, 19.09.26)
     if _is_startup_portal_nav_run(t):
         return True
+    # an AI-agent index landing page's affordance nav run (class 128, 21.09.26)
+    if _is_agent_index_nav_run(t):
+        return True
+    # a blog badge ribbon welded to a headline stack (class 129, 21.09.26)
+    if _is_badge_ribbon_chrome(t):
+        return True
+    # a platform's own client-SDK family named as the subject (class 126, 21.09.26)
+    if _is_platform_sdk_family_weld(t):
+        return True
     # a bare markdown heading stored as the whole answer (class 96, 19.09.26)
     if _is_bare_markdown_heading_fragment(t):
+        return True
+    # the agent's own German glossary line (class 97, 19.09.26)
+    if _is_german_glossary_echo(t):
         return True
     # a widget's "Curated from N sources ... and more" CTA (class 130, 22.09.26)
     if _is_source_tally_cta(t):
         return True
-    # a news photo-credit strip + byline + dateline (class 132, 22.09.26)
-    if _is_credit_byline_run(t):
-        return True
     # a bare date-stamped listing strip (class 131, 22.09.26)
     if _is_date_stamp_listing_strip(t):
         return True
-    # the agent's own German glossary line (class 97, 19.09.26)
-    if _is_german_glossary_echo(t):
+    # a news photo-credit strip + byline + dateline (class 132, 22.09.26)
+    if _is_credit_byline_run(t):
+        return True
+# a paper/arXiv listing row's submitter weld (class 135, 22.09.26)
+    if _is_arxiv_submitter_run(t):
+        return True
+# an aggregator card header welded to the article title (class 136, 22.09.26)
+    if _is_aggregator_card_header_weld(t):
+        return True
+# an aggregator card's affordance rail welded to the card (class 141, 22.09.26)
+    if _is_aggregator_card_affordance_rail(t):
+        return True
+    # a breadcrumb run welded to a repeated title prefix (class 137, 22.09.26)
+    if _is_breadcrumb_title_repeat(t):
+        return True
+    # an ALL-CAPS nav lockup welded to prose + repeated in Title Case
+    # (class 138, 22.09.26)
+    # a paper/arXiv author list with affiliation superscripts (class 140, 22.09.26)
+    if _is_affiliation_author_list(t):
+        return True
+    if _is_caps_nav_lockup_weld(t):
         return True
     # a page-meta listing widget (same narrow rule as
     # buffer_store._is_sidebar_listing_chrome)
@@ -3852,9 +4245,6 @@ def _is_junk(text):
         return True
     # a HN item row with the site's own `Show HN:` tag (class 105, 19.09.26)
     if _is_hn_show_run_chrome(t):
-        return True
-    # a blog badge ribbon welded to a headline stack (class 129, 21.09.26)
-    if _is_badge_ribbon_chrome(t):
         return True
     # a site nav-label run welded to `Featured #` (class 106, 19.09.26)
     if _is_blog_nav_feature_run_chrome(t):
@@ -4193,6 +4583,60 @@ def _is_nav_list(text):
 # ever fetched. Rejecting them lets the HTTP ck/a fallback below run.
 _URL_STUB_PATHS = frozenset({"abs", "html", "index.html"})
 
+# class 134 (22.09.26): a NEWSROOM INDEX page is not an article.
+#
+# Live: cycle_a_technews "learned", verbatim from online_buffer.jsonl,
+#   "UK My dream to serve in the UK army was ended by childhood eye surgery
+#    Some 114,000 Army application were rejected on medical grounds in the past
+#    five years, Freedom of Information figures show."
+#
+# That is a BBC index strip: the query's top result was the truncated URL
+# `https://www.bbc.com/news/articles` (an index, not an article), and
+# deep_learn scored an extracted "sentence" that is really CARD[i]'s country
+# tag (`UK`) welded to CARD[i+1]'s headline. The strip's own relative stamps
+# (`6 hrs ago`, `8 hrs ago`, `5 hrs ago`) sit BETWEEN the cards, so the
+# sentence regex `[A-Z][^.!?]{40,250}[.!?]` spans the boundary; the tag and the
+# headline then read as one grammatical sentence, the stamps are stripped by
+# `_clean_insight`'s clock/byline helpers, and the digits (`114,000`) satisfy
+# the technical-signal gate. Nothing text-level catches this: the stored string
+# carries no `ago` at all, and the tag shape is NOT a discriminator —
+# `^[A-Z]{2,3}\s+[A-Z][a-z]` matched 190 rows across the corpora, almost all
+# genuine prose ("AI Coding Agents Are Reshaping...", "CEO Andy Jassy told...",
+# "AI Consciousness asks whether...").
+#
+# So the discriminator is PAGE-LEVEL, not text-level: a newsroom index/feed
+# repeats the site's own relative-stamp UNIT across its card stream, while an
+# article page carries at most one. Measured 22.09.26 (fetch + the exact
+# 4000-char window deep_learn scores):
+#   index pages   bbc.com/news/articles 19/10 · bbc.co.uk/news 36/24 ·
+#                 techcrunch.com 23/17 · news.ycombinator.com 30/30 ·
+#                 huggingface.co/models 27/21   (>=10 stamps in-window)
+#   prose pages   bbc.com article 0 · arxiv.org/abs 0 · HF PEFT docs 0 ·
+#                 github.com/<repo> 0 · github.com/trending 0 ·
+#                 HN item 0 · reddit.com/r/... 0 · openai.com/index/... 0 ·
+#                 blog.langchain.dev 0                 (all exactly 0)
+# A `>= 3` threshold sits far inside that gap: every real page measured 0, the
+# lowest flagged page measured 10. `hrs?`/`mins?` are included because the
+# BBC strip writes `5 hrs ago` and `_REL_TIME_AGO_RE` (used by the class-34
+# nav-chain helper) does not cover those spellings — this is a separate regex
+# on purpose, so that helper's measured semantics stay untouched.
+_PAGE_REL_STAMP_RE = re.compile(
+    r"\b\d{1,3}\s+(?:minutes?|mins?|hours?|hrs?|days?)\s+ago\b", re.IGNORECASE)
+
+
+def _is_news_index_page(text):
+    """True when a fetched PAGE is a newsroom/feed index, not an article (134).
+
+    Counts the site's own repeated relative-stamp unit over the page text.
+    Only consulted on the fetched page, never on a candidate insight: a single
+    `<n> hours ago` inside real prose is ordinary (`It ran 3 hours ago with 12
+    4 retries recorded in the log.`) and must stay learnable.
+    """
+    t = text or ""
+    if len(t) < 500:
+        return False  # too short to be an index; a snippet keeps prose trust
+    return len(_PAGE_REL_STAMP_RE.findall(t)) >= 3
+
 
 
 def _fair_share_window(texts, budget=4000, floor=700):
@@ -4334,6 +4778,13 @@ def deep_learn(query, k=2):
         # and their mis-decoded mojibake has reached the buffer before (root
         # cause P). Skip them so they cannot occupy a fair-share slot.
         if len(t) > 200 and not t.lstrip().startswith("%PDF"):
+            # class 134: a newsroom INDEX page is a card stream, not an article.
+            # Its relative stamps sit between the cards, so the sentence regex
+            # spans card boundaries and welds one card's country tag onto the
+            # next card's headline. Skipping the page lets a later URL (an
+            # actual article) hold the slot instead.
+            if _is_news_index_page(t):
+                continue
             texts.append(t)
     if not texts:
         return ""
@@ -4945,7 +5396,25 @@ def _strip_blog_header_stack(text):
 # a 15-sentence hostile control corpus (each bare label, plus comma'd and
 # sentence-embedded forms) -- only deliberately chain-shaped controls strip.
 _MASTHEAD_NAV_RE = re.compile(
-    r"\bBlog\s+Guides\s+Insights\b|\bBreaking\s+AI\s+News\b|\bBreaking\s+story\b")
+    r"\bBlog\s+Guides\s+Insights\b|\bBreaking\s+AI\s+News\b|\bBreaking\s+story\b|"
+    # class 127 (live 21.09.26): a benchmark site's masthead nav pair welded to
+    # its own lede. `cycle_c_github` stored
+    #   "Aug 10, 2026 See our ethical norms Cite This Benchmark We benchmarked
+    #    4 popular open-source agentic frameworks across 2,000 runs ..."
+    # -- the KTA cycle then reported `signal NOT mappable` for 46 of 158
+    # competitor runs, because the consumer reads the LAST matching row and a
+    # nav pair carries no capability token. The lede behind the menu IS the
+    # knowledge (a real multi-framework benchmark), so this is a STRIP in the
+    # SAME >= 2-labels-in-the-first-80-chars chain form as class 43 -- a bare
+    # label alone is ordinary English and must stay learnable.
+    #
+    # Measured with probe_marker_candidates.py over all 4 corpora: 1 buffer hit
+    # and that hit IS the leaking row -> 0 prose FPs, 0 episode FPs, 0 test-
+    # literal FPs. Hostile controls that stay byte-identical:
+    #   "The paper cites this benchmark as the strongest evidence for ..."
+    #   "See our ethical norms page for how we handle user data."
+    #   "Cite This Benchmark in your paper and the leaderboard updates ..."
+    r"\bSee\s+our\s+ethical\s+norms\b|\bCite\s+This\s+Benchmark\b")
 
 
 # The distillation LLM's own VERDICT ABOUT THE PAGE returned as an "insight"

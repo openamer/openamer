@@ -3792,8 +3792,8 @@ def test_bio_page_furniture_pair_is_gated_on_both_paths():
         assert not buffer_store._is_bio_page_furniture_pair(prose), prose
         assert not IL._is_junk(prose), prose
         assert not buffer_store.is_junk(prose), prose
-
-
+
+
 def test_tag_counter_run_chrome_is_gated_on_both_paths():
     """A tag-cloud counter run is not knowledge (class 76).
 
@@ -5040,6 +5040,280 @@ def test_infobox_factrow_tail_is_gated_on_both_paths():
         assert not IL._is_infobox_factrow_tail(prose), prose
         assert not buffer_store._is_infobox_factrow_tail(prose), prose
 
+
+def test_gh_releases_row_and_slide_nav_chrome_are_gated_on_both_paths():
+    """A GitHub releases-page row and a slide-deck nav trio (classes 123/124,
+    live 21.09.26).
+
+    The knowledge-to-action competitor cycle kept landing on "signal NOT
+    mappable" because the competitor row it analysed was page chrome, not
+    competitor intelligence:
+
+      "Released Stride (GitHub Releases) \u2022 1 day, 18 hours ago How to get
+       sound effects for your game #gamedev #sounddesign #elevenlabs #ad"
+      "ES Show original Previous slide Next slide 1 year ago in Stocks, AI
+       Modeling, Business, AI GOOGL Alphabet Shares ..."
+
+    Both cleared BOTH gates: the relative-time digits satisfied the
+    technical-signal gate and the length cleared the floor.
+
+    The GitHub marker requires BOTH the literal site label and a
+    relative-time stamp -- a bare "(GitHub Releases)" substring was measured
+    and REJECTED because it flags genuine prose that mentions the feature
+    (see the counter-cases). The slide marker keys on control ADJACENCY,
+    never a single control.
+
+    Measured: 1 buffer hit each, and that hit IS the leaking row -> 0 prose
+    FPs over 3,059 longterm_episodes + 7,442 buffer_junk rows.
+    """
+    sys.path.insert(0, str(TRAINING))
+    import buffer_store
+
+    leaks = (
+        "Released Stride (GitHub Releases) \u2022 1 day, 18 hours ago How to "
+        "get sound effects for your game #gamedev #sounddesign #elevenlabs #ad",
+        "ES Show original Previous slide Next slide 1 year ago in Stocks, AI "
+        "Modeling, Business, AI GOOGL Alphabet Shares",
+    )
+    for leak in leaks:
+        assert buffer_store.is_junk(leak), leak
+        assert IL._is_junk(leak), leak
+
+    # counter-cases: every marker is also a shape real prose can contain.
+    for prose in (
+        "GitHub Releases are built automatically from tags; the workflow "
+        "publishes artifacts and the changelog is generated from commits.",
+        "The release pipeline pushes (GitHub Releases) metadata into our "
+        "registry so downstream consumers can pin exact versions.",
+        "In the previous slide we showed the latency curve; the next slide "
+        "covers throughput scaling on the same hardware.",
+        "Click Show original to read the untranslated post and its replies.",
+    ):
+        assert not buffer_store.is_junk(prose), prose
+        assert not IL._is_junk(prose), prose
+
+
+
+def test_release_note_emoji_bullet_is_gated_on_both_paths():
+    """Class 125 (live 21.09.26): a model card's emoji-led changelog tail.
+
+    `cycle_b_papers` stored
+      "F16 on BitNet-embedding-270M prefill (8 threads) Supports I2_S conversion
+       with optimized kernels on x86 CPUs Lossless inference with 2 bits per
+       weight 07/16/2026: <megaphone> Released BitNet Embeddings 0."
+    -- a date stamp, then an emoji-led changelog bullet, welded onto the card's
+    feature list. 185 chars WITH digits, so the >=90 length trust and the
+    technical-signal gate both fired. `_is_release_notes_pr_bullet` needs a
+    `( #N )` PR number and `_is_changelog_chain` needs >=3 bracketed links, so
+    both missed it.
+
+    The discriminator is the CONJUNCTION (date/version stamp within 40 chars of
+    an emoji-led changelog verb). The emoji+verb alone was measured and
+    REJECTED: 4 real longterm_episodes rows plus the hostile control
+    "openamer ... update" + warning sign matched it. 0 FP on both corpora now.
+    """
+    import buffer_store
+    leak = ("F16 on BitNet-embedding-270M prefill (8 threads) Supports I2_S "
+            "conversion with optimized kernels on x86 CPUs Lossless inference "
+            "with 2 bits per weight 07/16/2026: \U0001F4E3 Released BitNet "
+            "Embeddings 0.")
+    assert IL._is_release_note_emoji_bullet(leak) is True
+    assert buffer_store._is_release_note_emoji_bullet(leak) is True
+    # both public gates must agree, not just the helper
+    assert IL._is_junk(leak) is True
+    assert buffer_store.is_junk(leak) is True
+
+    # a second shape: bracketed version stamp + rocket bullet
+    leak2 = ("B @ 3/4 bits models [2024-10-18] \U0001F310 Open source community "
+             "contributes Mistral Large Instruct 2407 (123B) models "
+             "[2024-10-14] \U0001F680 Add early ROCm support.")
+    assert buffer_store._is_release_note_emoji_bullet(leak2) is True
+
+    # real prose / real knowledge must stay learnable
+    clean = [
+        "Released the 4-bit quantized weights at a 1.2% accuracy cost.",
+        "Added prefix caching so repeated system prompts are served from cache.",
+        "\U0001F680 The model hit 92% on the eval, up from 88% last quarter.",
+        "Update the config to raise the context window, then re-run the benchmark.",
+        "Improved recall by 7 points after switching to the smaller model.",
+        "v0.4.1 cut memory 60% and added prefix caching to the agent loop.",
+        "Fixed a race in the writer that dropped two records per thousand.",
+        "Guten Tag! \U0001F44B Schoener Banner-Start, die Instanz v2026.08.24 laeuft.",
+        "Version 2.1 reduced latency by 30% on the same hardware.",
+        "The paper reports 07/16/2026 as the submission date and 92% accuracy.",
+        "Let me load the key references on delegation and background systems.",
+    ]
+    for c in clean:
+        assert buffer_store._is_release_note_emoji_bullet(c) is False, c
+        assert IL._is_release_note_emoji_bullet(c) is False, c
+# class 126 (live 21.09.26): a platform's OWN client-SDK package family named as
+# the SUBJECT, welded to an "open-source SDKs (e.g. `...`)" opener. Live leak
+# (rows 9/137/169 of online_buffer, plus buffer_junk + kta_log +
+# internet_learn_log -- 3x on 19.09/21.09):
+#   "YouTube's open-source SDKs (e.g., `youtubei1`, `youtubei2`, `youtubei3`) are
+#    the only reliable way to programmatically control the API, bypass rate
+#    limits, and access private endpoints"
+# The sentence DRIFTS between reads (`youtubei-python`/`youtubei-webapp` ->
+# `youtubei1`..`youtubei3`), so the exact-match `_is_duplicate` gate let the same
+# page into the training buffer twice. This is platform plumbing for that site's
+# own API, not agent-actionable knowledge.
+#
+# A generic same-`u` near-duplicate gate was MEASURED AND REJECTED first: the
+# three leak rows score token-set Jaccard 0.241/0.308/0.327 while legitimate
+# DISTINCT rows for one `u` reach 0.400 -- no separation, so any threshold would
+# delete real learnings. Hence a narrow chrome rule, FP-measured, not a
+# similarity threshold.
+_IL126_SDK_FAMILY_LEAK = (
+    "YouTube's open-source SDKs (e.g., `youtubei1`, `youtubei2`, `youtubei3`) are "
+    "the only reliable way to programmatically control the API, bypass rate limits, "
+    "and access private endpoints"
+)
+_IL126_SDK_FAMILY_LEAK_OLD = (
+    "YouTube's open-source SDKs (e.g., `youtubei-python`, `youtubei-webapp`) are the "
+    "only reliable way to programmatically interact with the platform, bypassing the "
+    "restrictive browser-based API"
+)
+# Generic prose ABOUT open-source SDKs must stay learnable: the package FAMILY is
+# the anchor, not the opener.
+_IL126_SDK_CONTROLS = [
+    "Open-source SDKs for the vector database expose a stable Python API, so an agent "
+    "can index documents and query them without re-reading the corpus.",
+    "The open-source SDKs (e.g. the Go client) ship weekly releases.",
+    "Open-source SDKs are the fastest way to add a provider to an agent, because the "
+    "wire format is already documented.",
+]
+
+
+def test_platform_sdk_family_weld_is_rejected():
+    import internet_learner as IL
+    assert IL._is_platform_sdk_family_weld(_IL126_SDK_FAMILY_LEAK)
+    assert IL._is_platform_sdk_family_weld(_IL126_SDK_FAMILY_LEAK_OLD)
+
+
+def test_platform_sdk_family_weld_reaches_the_learner_gate():
+    import internet_learner as IL
+    assert IL._is_junk(_IL126_SDK_FAMILY_LEAK)
+    assert IL._is_junk(_IL126_SDK_FAMILY_LEAK_OLD)
+
+
+def test_platform_sdk_family_weld_reaches_the_writer_gate():
+    import buffer_store as BS
+    assert BS._is_platform_sdk_family_weld(_IL126_SDK_FAMILY_LEAK)
+    assert BS.is_junk(_IL126_SDK_FAMILY_LEAK)
+
+
+def test_generic_open_source_sdk_prose_survives_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL126_SDK_CONTROLS:
+        assert not IL._is_platform_sdk_family_weld(ctl), ctl
+        assert not IL._is_junk(ctl), ctl
+        assert not BS._is_platform_sdk_family_weld(ctl), ctl
+        assert not BS.is_junk(ctl), ctl
+
+# ---------------------------------------------------------------------------
+# class 127 (live 21.09.26) -- benchmark-site masthead nav pair (STRIP, not reject)
+#
+# `cycle_c_github` stored
+#   "Aug 10, 2026 See our ethical norms Cite This Benchmark We benchmarked 4
+#    popular open-source agentic frameworks across 2,000 runs (5 tasks, 100
+#    runs each per framework), measuring end-to-end latency, token
+#    consumption, and architectural differences."
+# The nav pair carries no capability token, so the KTA competitor-gap
+# experiment read the LAST matching buffer row and reported `signal NOT
+# mappable` for 46 of its 158 runs -- a CONSUMER defect report that was really
+# an UPSTREAM chrome leak. The lede behind the menu is a real multi-framework
+# benchmark, so it is a STRIP in the same >= 2-labels-in-the-first-80-chars
+# chain form as class 43. Measured: 1 buffer hit (= this leak), 0 prose FPs,
+# 0 longterm_episodes FPs, 0 gate-test-literal FPs.
+# ---------------------------------------------------------------------------
+
+_IL127_BENCH_MASTHEAD_LEAK = (
+    "Aug 10, 2026 See our ethical norms Cite This Benchmark We benchmarked 4 "
+    "popular open-source agentic frameworks across 2,000 runs (5 tasks, 100 "
+    "runs each per framework), measuring end-to-end latency, token "
+    "consumption, and architectural differences."
+)
+
+# Topic-matched controls: a sentence a human would write ABOUT the same
+# feature. A bare label is ordinary English and must stay byte-identical --
+# that is exactly the trap every single-phrase marker died on in class 43.
+_IL127_BENCH_MASTHEAD_CONTROLS = [
+    "The paper cites this benchmark as the strongest evidence for grouped state tracking.",
+    "See our ethical norms page for how we handle user data.",
+    "We benchmark our own agent against four open-source frameworks every quarter.",
+    "Cite This Benchmark in your paper and the leaderboard updates automatically.",
+    "The benchmark measured end-to-end latency and token consumption across runs.",
+]
+
+
+def test_benchmark_masthead_nav_pair_is_stripped_from_the_insight():
+    import internet_learner as IL
+    stripped = IL._strip_masthead_nav_chain(_IL127_BENCH_MASTHEAD_LEAK)
+    assert "See our ethical norms" not in stripped
+    assert "Cite This Benchmark" not in stripped
+    assert stripped.startswith("We benchmarked 4 popular"), stripped
+    # idempotent
+    assert IL._strip_masthead_nav_chain(stripped) == stripped
+    # the whole pipeline must land on the lede, free of the menu
+    cleaned = IL._clean_insight(_IL127_BENCH_MASTHEAD_LEAK, 300)
+    assert cleaned, "the benchmark lede is real prose and must survive"
+    assert not IL._MASTHEAD_NAV_RE.search(cleaned), cleaned
+
+
+def test_benchmark_masthead_controls_stay_byte_identical():
+    import internet_learner as IL
+    for text in _IL127_BENCH_MASTHEAD_CONTROLS:
+        assert IL._strip_masthead_nav_chain(text) == text.strip(), text
+
+# ---------------------------------------------------------------------------
+# class 128 (live 21.09.26) -- AI-agent INDEX landing page nav run (REJECT)
+#
+# The second of the TWO rows that made the KTA competitor-gap experiment report
+# `signal NOT mappable` / map a false capability. The consumer reads the LAST
+# lexicon-matching buffer row, so a nav row appended late poisons every
+# subsequent run. Measured: 1 buffer hit (= this leak), 0 prose FPs,
+# 0 longterm_episodes FPs, 0 gate-test-literal FPs.
+# ---------------------------------------------------------------------------
+
+_IL128_AGENT_INDEX_LEAK = (
+    "AI Agent Index Categories Find Agent + Submit Compare Alternatives Stacks "
+    "Advertise API Home / AI Coding Agents Best AI Coding Agents (2026): IDEs, "
+    "Terminals, Autonomous Updated September 2026 AI coding agents have moved "
+    "well beyond autocomplete."
+)
+
+# Topic-matched controls: each conjunct ALONE is ordinary English and must stay
+# learnable. This is the trap the single-token marker died on.
+_IL128_AGENT_INDEX_CONTROLS = [
+    "When you compare alternatives, look at latency before price.",
+    "The Advertise API lets partners buy placements programmatically.",
+    "Sites often put a Find Agent and a Submit button side by side.",
+    "Compare alternatives across frameworks is what the benchmark does.",
+    "We advertise an API for partners and compare alternatives in our review.",
+]
+
+
+def test_agent_index_nav_run_is_rejected_on_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    assert IL._is_agent_index_nav_run(_IL128_AGENT_INDEX_LEAK)
+    assert IL._is_junk(_IL128_AGENT_INDEX_LEAK)
+    assert BS._is_agent_index_nav_run(_IL128_AGENT_INDEX_LEAK)
+    assert BS.is_junk(_IL128_AGENT_INDEX_LEAK)
+    # a landing page must never become a learned insight
+    assert IL._clean_insight(_IL128_AGENT_INDEX_LEAK, 300) == ""
+
+
+def test_agent_index_single_conjunct_prose_survives_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL128_AGENT_INDEX_CONTROLS:
+        assert not IL._is_agent_index_nav_run(ctl), ctl
+        assert not IL._is_junk(ctl), ctl
+        assert not BS._is_agent_index_nav_run(ctl), ctl
+        assert not BS.is_junk(ctl), ctl
+
 # ---------------------------------------------------------------------------
 # class 129 (live 21.09.26) -- blog badge ribbon welded to a headline stack
 # (REJECT, not strip)
@@ -5055,8 +5329,8 @@ def test_infobox_factrow_tail_is_gated_on_both_paths():
 # ribbon has none.
 #
 # REJECT, not strip: the prose behind the ribbon is a generic RAG lede with no
-# capability token. Measured: 1 buffer hit (= this leak), 0/7,984
-# buffer_junk rows, 0/3,059 longterm_episodes, 0/3 controls.
+# capability token (same call as class 128). Measured: 1 buffer hit (= this
+# leak), 0/7,984 buffer_junk rows, 0/3,059 longterm_episodes, 0/3 controls.
 # ---------------------------------------------------------------------------
 
 _IL129_BADGE_RIBBON_LEAK = (
@@ -5100,13 +5374,13 @@ def test_badge_ribbon_controls_survive_both_gates():
         assert not BS.is_junk(ctl), ctl
 
 
+
 # class 130 (live 22.09.26): the papers cycle stored a search widget's own
 # source tally as a finding. Verbatim from online_buffer.jsonl:
 #   Curated from 71 sources: Anthropic, OpenAI, HN, arXiv, GitHub and more.
 # Both gates passed it, so both must refuse it; the anchored rule keeps real
 # prose that merely mentions a source count.
-_IL130_SOURCE_TALLY_LEAK = ("Curated from 71 sources: Anthropic, OpenAI, HN, "
-                            "arXiv, GitHub and more.")
+_IL130_SOURCE_TALLY_LEAK = "Curated from 71 sources: Anthropic, OpenAI, HN, arXiv, GitHub and more."
 
 _IL130_CONTROLS = [
     "The survey was curated from 71 sources across three labs.",
@@ -5230,4 +5504,522 @@ def test_credit_byline_prose_controls_survive_both_gates():
         assert not IL._is_credit_byline_run(ctl), ctl
         assert not IL._is_junk(ctl), ctl
         assert not BS._is_credit_byline_run(ctl), ctl
+        assert not BS.is_junk(ctl), ctl
+
+
+# --- class 133 (22.09.26): doc-site product nav welded to a vendor SDK label
+# Live leak: cycle_d_docs stored, verbatim from online_buffer.jsonl,
+#   "API, Infinite Possibilities Reference Qualcomm Cloud AI home Qualcomm
+#    Cloud AI SDK download Qualcomm Cloud AI API reference User Guide OCP
+#    Microscaling Formats (MX) Specification efficient-transformers Welcome
+#    to Efficient-Transformers Documentation!"
+# 250 chars of pure sidebar/product nav, zero prose; the >=90 length trust
+# and the digits-free technical-signal gate both let it through.
+_IL133_LEAK = (
+    "API, Infinite Possibilities Reference Qualcomm Cloud AI home "
+    "Qualcomm Cloud AI SDK download Qualcomm Cloud AI API reference User "
+    "Guide OCP Microscaling Formats (MX) Specification efficient-transformers "
+    "Welcome to Efficient-Transformers Documentation!"
+)
+# Counter-cases: each carries ONE of the welded tokens pair, never both --
+# these are the phrases that made the bare forms unusable.
+_IL133_CONTROLS = [
+    "The API reference for the agent runtime lists every tool and its parameters.",
+    "Infinite possibilities in agent design come from composing narrow tools.",
+    "Welcome to Efficient-Transformers Documentation, the reference for CPU inference.",
+    "Efficient-Transformers documentation covers quantization recipes for CPU-only inference.",
+    "Qualcomm Cloud AI SDK download is documented on the vendor portal, with release notes per version.",
+    "The OCP Microscaling Formats (MX) specification defines block-scaled FP8 and FP4 encodings for inference.",
+]
+
+
+def test_docsite_product_nav_weld_rejected_on_both_paths():
+    import internet_learner as IL
+    import buffer_store as BS
+    assert IL._is_junk(_IL133_LEAK), _IL133_LEAK
+    assert BS.is_junk(_IL133_LEAK), _IL133_LEAK
+    assert IL._clean_insight(_IL133_LEAK) == ""
+
+
+def test_docsite_product_nav_weld_prose_controls_survive_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL133_CONTROLS:
+        assert not IL._is_junk(ctl), ctl
+        assert not BS.is_junk(ctl), ctl
+
+# --- class 134 (22.09.26): a NEWSROOM INDEX page is not an article
+# Live leak: cycle_a_technews stored, verbatim from online_buffer.jsonl,
+#   "UK My dream to serve in the UK army was ended by childhood eye surgery
+#    Some 114,000 Army application were rejected on medical grounds in the past
+#    five years, Freedom of Information figures show."
+# The top search result was the truncated URL `https://www.bbc.com/news/articles`
+# (an index, not an article). deep_learn scored a "sentence" that is really
+# CARD[i]'s country tag welded to CARD[i+1]'s headline; the strip's relative
+# stamps sit between the cards and are stripped by `_clean_insight`, so the
+# stored string carries no `ago` and no text-level rule can see the boundary.
+#
+# The fix is PAGE-LEVEL: a newsroom index repeats the site's own relative-stamp
+# unit across its card stream; an article carries at most one. This is the real
+# BBC index window around the leaking card (measured 22.09.26: 10 stamps in the
+# exact 4000-char window deep_learn scores).
+_IL134_INDEX_PAGE = (
+    "More to explore Fat Bear Week: Which bear has put on the most weight? "
+    "The iconic contest run by Katmai National Park in Alaska will run from "
+    "22-29 of September this year and votes can be cast online. 6 hrs ago "
+    "US &amp; Canada What we found in Earl Spencer&#x27;s controversial Diana "
+    "memoir What further revelations are going to appear now the full details "
+    "of his Diana book are published? 8 hrs ago UK My dream to serve in the UK "
+    "army was ended by childhood eye surgery Some 114,000 Army application were "
+    "rejected on medical grounds in the past five years, Freedom of Information "
+    "figures show. 5 hrs ago England The simple skincare routine for teens that "
+    "actually works - and five expert tips From popping spots to getting enough "
+    "sleep, experts share their advice on the best way to look after teenage "
+    "skin. 5 hrs ago Health "
+    "Toxic chemicals from a fire at a battery recycling plant are flowing into "
+    "a nearby river, officials say, prompting a health warning for residents. "
+    "2 days ago Science "
+    "The court heard the defendant had been dismissed from his post three "
+    "months before the incident took place. 12 hours ago UK "
+    "A new study suggests the treatment could help thousands of patients each "
+    "year if regulators approve it for wider use. 3 days ago Health"
+)
+
+# Counter-cases: real ARTICLE prose, each carrying at most ONE relative stamp --
+# these are the sentences that made a bare `<n> hours ago` unusable as a signal.
+_IL134_PROSE_CONTROLS = [
+    # the class-95 rejected control: one stamp inside ordinary prose
+    "It ran 3 hours ago with 12 4 retries recorded in the log.",
+    # a real technical insight with exactly one stamp
+    "The worker restarted 4 hours ago after the GPU driver 535.104.05 was "
+    "upgraded, and quantization recovered 97% of fp16 accuracy afterwards.",
+    # an article body carrying a single dateline stamp
+    "The BBC understands the decision was taken 5 hours ago and that the "
+    "ministry will publish its full response to the consultation next week.",
+]
+
+
+def test_news_index_page_is_rejected_as_a_source_page():
+    import internet_learner as IL
+    assert IL._is_news_index_page(_IL134_INDEX_PAGE), "index page not flagged"
+
+
+def test_article_pages_with_one_or_no_relative_stamp_survive():
+    import internet_learner as IL
+    for ctl in _IL134_PROSE_CONTROLS:
+        assert not IL._is_news_index_page(ctl), ctl
+
+
+def test_short_page_text_never_triggers_the_index_rule():
+    import internet_learner as IL
+    # a SERP snippet is short; it must keep its prose trust even if it repeats
+    # a stamp twice (a snippet has no card stream to weld across).
+    snip = ("First item 2 hours ago and second item 3 hours ago, both from the "
+            "same aggregator listing.")
+    assert not IL._is_news_index_page(snip), snip
+
+
+# class 135 (22.09.26): an arXiv/new-listing row's submitter WELD. Live: the
+# security cycle stored a listing page row -- title, author count, submitter
+# ordinal, submitter HANDLE -- as knowledge. The page is an INDEX, not content.
+_IL135_LEAK = (
+    "VLMs to Robotic Control \u00b7 9 authors 1 Submitted by Williams07 9 One to More, "
+    "More to One: Category-Aware Iterative Expert Training for Software Engineering "
+    "Agents Logics-MLLM 2 Submitted by paulsmith0217 4 Why Do Video Diffusion Models "
+    "Violate Physics?"
+)
+_IL135_CONTROLS = [
+    "The paper has 9 authors and was submitted by researchers at DeepMind in 2024.",
+    "Submitted by the maintainers, the PR adds 4 authors to the contributor list.",
+    "Authors 9 submitted by reviewers: that is the peer-review flow, not a listing.",
+    "arXiv lists 9 authors, 1 submitter and a title per paper on the new-listing page.",
+    "The listing shows authors, a submitter handle and the submission date.",
+]
+
+
+def test_arxiv_submitter_weld_rejected_on_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    assert IL._is_arxiv_submitter_run(_IL135_LEAK), _IL135_LEAK
+    assert IL._is_junk(_IL135_LEAK), _IL135_LEAK
+    assert BS._is_arxiv_submitter_run(_IL135_LEAK), _IL135_LEAK
+    assert BS.is_junk(_IL135_LEAK), _IL135_LEAK
+    assert IL._clean_insight(_IL135_LEAK) == ""
+
+
+def test_arxiv_submitter_weld_prose_controls_survive_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL135_CONTROLS:
+        assert not IL._is_junk(ctl), ctl
+        assert not BS.is_junk(ctl), ctl
+
+
+# class 136 (22.09.26): an aggregator card header (date + category + read-time
+# badge) welded onto the article's own title and lede. The badge ALONE is not
+# the call -- the TitleCase continuation (the article title) is required, which
+# is what keeps a sentence that merely QUOTES such a badge learnable.
+_IL136_LEAK = (
+    "Sep 13, 2026 Read AI Agents 9 min OpenAI Agents API: Managed Infrastructure "
+    "for AI Agents OpenAI launched the Agents API in public beta, putting the Codex "
+    "agent harness behind one managed API call for building production AI agents."
+)
+_IL136_CONTROLS = [
+    "Sep 13, 2026 Read the OWASP report; it documents the top 10 LLM risks for 2026.",
+    "On Sep 13, 2026 Read the docs for 5 min before filing the bug; it saves time.",
+    "Sep 13, 2026 Read AI Agents 9 min is the card badge, not a sentence.",
+    "Sep 13, 2026 Read AI Agents 9 min and then decide whether the API fits.",
+    "Mar 23, 2026 Read OpenClaw vs Other AI Agent Frameworks in 15 min for the TLDR.",
+    "The article is a 9 min read and covers the Agents API harness in depth.",
+    "In 2024 Read AI Agents covered 9 minutes of context on the harness.",
+    "An aggregator renders each row as a date, a title, a category and a read time.",
+]
+
+
+def test_aggregator_card_header_weld_rejected_on_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    assert IL._is_aggregator_card_header_weld(_IL136_LEAK), _IL136_LEAK
+    assert IL._is_junk(_IL136_LEAK), _IL136_LEAK
+    assert BS._is_aggregator_card_header_weld(_IL136_LEAK), _IL136_LEAK
+    assert BS.is_junk(_IL136_LEAK), _IL136_LEAK
+    assert IL._clean_insight(_IL136_LEAK) == ""
+
+
+def test_aggregator_card_header_weld_controls_survive_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL136_CONTROLS:
+        assert not IL._is_aggregator_card_header_weld(ctl), ctl
+        assert not IL._is_junk(ctl), ctl
+        assert not BS.is_junk(ctl), ctl
+
+
+# class 137 (22.09.26): a docs site's breadcrumb run welded to a REPEATED
+# category+title prefix. The crumb run alone is legitimate prose (4 hostile
+# controls start "Home / <section> / ..."); only the weld with the restated
+# opening four words is chrome.
+_IL137_LEAK = (
+    "Home / AI Guides / 12 Best Open-Source AI Agent Frameworks (2026) \U0001f4d6 "
+    "Guide 12 Best Open-Source AI Agent Frameworks (2026) Compare 12 open-source "
+    "AI agent frameworks for production workflows, multi-agent systems, Python "
+    "services, TypeScript apps and RAG."
+)
+_IL137_CONTROLS = [
+    "Home / Docs / Getting started with the agent runtime explains how to configure providers.",
+    "Home / AI Guides / A practical introduction to retrieval augmented generation for engineers.",
+    "Home / Blog / Understanding why language models hallucinate in long contexts.",
+    "Home / Learn / How to detect hallucinations in LLM outputs with hidden-state probes.",
+    "Home / Guides / Building a production multi-agent system with Python and TypeScript.",
+    "Home > Products > The enterprise data platform unifies ingestion, storage and query in one place.",
+    "Home / AI Guides / Quantization cuts memory use; the guide walks through four techniques step by step.",
+]
+
+
+def test_breadcrumb_title_repeat_gated_on_both_paths():
+    import internet_learner as IL
+    import buffer_store as BS
+    assert IL._is_breadcrumb_title_repeat(_IL137_LEAK), _IL137_LEAK
+    assert IL._is_junk(_IL137_LEAK), _IL137_LEAK
+    assert BS._is_breadcrumb_title_repeat(_IL137_LEAK), _IL137_LEAK
+    assert BS.is_junk(_IL137_LEAK), _IL137_LEAK
+    assert IL._clean_insight(_IL137_LEAK) == ""
+
+
+def test_breadcrumb_title_repeat_prose_controls_survive_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL137_CONTROLS:
+        assert not IL._is_breadcrumb_title_repeat(ctl), ctl
+        assert not IL._is_junk(ctl), ctl
+        assert not BS.is_junk(ctl), ctl
+
+
+# class 35 widening (22.09.26): `_FULL_DATE_RE` accepted only FULL month names,
+# so the live leak `Sep 24, 2025 ... Sep 18, 2025 ... ...` (a date-stamped
+# headline listing) read 0 hits under class 35 and passed BOTH gates. The
+# abbreviated form is now accepted; the Title-Case density test is unchanged,
+# which is what keeps ordinary prose that merely CITES two dates learnable.
+_IL35_LEAK = (
+    "Sep 24, 2025 Deep Dive into Context Engineering for Agents Sep 18, 2025 "
+    "Architectures for Multi-Agent Systems Sep 8, 2025 Bringing AI Observability "
+    "Behind the Firewall: Deploying On-Premise AI Sep 8, 2025 Understanding Why "
+    "Language Models Hallucinate?"
+)
+_IL35_CONTROLS = [
+    "The runtime was updated on Sep 24, 2025 and again on Sep 18, 2025 to fix the parser.",
+    "We shipped Sep 24, 2025 builds and compared them with Sep 18, 2025 builds across three machines.",
+    "Our release notes for Sep 24, 2025 mention streaming; the Sep 18, 2025 notes mention pagination.",
+    "On Jan 5, 2026 the team froze the schema, and on Feb 9, 2026 they migrated it.",
+    "GPT-4 (2023) and GPT-5 (2024) were compared on Jan 5, 2026 and Feb 9, 2026 harnesses.",
+    "Twelve open-source frameworks were benchmarked on Sep 24, 2025 and Sep 18, 2025.",
+    "...posts under headings like Insights Jul 17, 2026 and News May 29, 2026, but the agent should parse the article body.",
+]
+
+
+def test_date_heading_listing_accepts_abbreviated_months():
+    import internet_learner as IL
+    assert IL._FULL_DATE_RE.findall("Sep 24, 2025 and Sep 18, 2025"), "abbrev months must match"
+    assert IL._FULL_DATE_RE.findall("Sept 8, 2025 and Jan. 5, 2026"), "Sept/Jan. forms must match"
+    assert not IL._FULL_DATE_RE.findall("The builds were Jan 5 and Feb of 2026"), "must not over-match"
+    assert IL._is_date_heading_listing(_IL35_LEAK), _IL35_LEAK
+
+
+def test_date_heading_listing_abbrev_leak_gated_on_both_paths():
+    import internet_learner as IL
+    import buffer_store as BS
+    assert IL._is_junk(_IL35_LEAK), _IL35_LEAK
+    assert BS.is_junk(_IL35_LEAK), _IL35_LEAK
+    assert IL._clean_insight(_IL35_LEAK) == ""
+    for ctl in _IL35_CONTROLS:
+        assert not IL._is_date_heading_listing(ctl), ctl
+        assert not IL._is_junk(ctl), ctl
+        assert not BS.is_junk(ctl), ctl
+
+
+# class 138 (22.09.26): an ALL-CAPS nav lockup welded to prose AND repeated in
+# Title Case.  Live leak -- a competitor's "Platform Demo" banner stored TWICE
+# in online_buffer.jsonl (241 -> 239 records after the purge):
+#   "Platform Demo SOLACE AGENT MESH Take AI agents from idea to production,
+#    and keep making them better Solace Agent Mesh is an agent development and
+#    runtime platform that lets you build, test, deploy, observe and improve
+#    every agent through one lifecycle."
+# 252 chars, no digits, dense technical nouns -> the >=90 length trust AND the
+# technical-signal gate both passed it.
+# NOTE: every control below was MEASURED (tmp/probe_cls138f.py), never invented;
+# the two that killed the bare forms are marked.
+_IL138_LEAK = (
+    "Platform Demo SOLACE AGENT MESH Take AI agents from idea to production, "
+    "and keep making them better Solace Agent Mesh is an agent development and "
+    "runtime platform that lets you build, test, deploy, observe and improve "
+    "every agent through one lifecycle."
+)
+_IL138_CONTROLS = [
+    # killed the WELD-only form (26 prose FPs without the case-shift conjunct)
+    "Alles erledigt. Hier die Zusammenfassung:",
+    # killed the CASE-SHIFT-only form (2 hits, one of them real prose)
+    "Ich habe nun genug recherchiert. Hier ist die vollstaendige, strukturierte Competitive Analysis fuer OpenAmer.",
+    # the lockup shape reused in an ordinary sentence
+    "Platform Demo AGENT RUNTIME shows how a request is routed to a worker.",
+    "Platform Demo AGENT MESH walks through how teams take AI agents from prototype to production.",
+    # the vendor's own name in prose -- killed the bare-name forms
+    "The Solace Agent Mesh documentation explains how to deploy an agent runtime to production.",
+    "We compared three agent development platforms and Solace Agent Mesh came out on top for throughput.",
+    "The SOLACE benchmark suite measures latency under load.",
+    # the tagline alone -- killed the bare-tagline form
+    "Take AI agents from idea to production is a claim every vendor makes; this one backs it with a lifecycle view.",
+    # the demo label alone -- killed the bare `platform demo` form
+    "Platform Demo: watch a five minute walkthrough of the build pipeline.",
+    "Platform demos are useful, but a demo is not an architecture.",
+    # the lifecycle sentence alone
+    "Our agent platform lets you build, test, deploy, observe and improve every agent through one lifecycle, with 99.9% uptime.",
+    # other ALL-CAPS lockups that are NOT case-shifted
+    "See the product demo VIDEO LIBRARY for recorded sessions from the launch.",
+    "Agent mesh topologies route work between workers; see the ARCHITECTURE NOTES.",
+    "The AGENT SDK exposes tools; the Agent SDK also ships a CLI.",
+]
+
+
+def test_caps_nav_lockup_weld_gated_on_both_paths():
+    import internet_learner as IL
+    import buffer_store as BS
+    assert IL._is_caps_nav_lockup_weld(_IL138_LEAK), _IL138_LEAK
+    assert BS._is_caps_nav_lockup_weld(_IL138_LEAK), _IL138_LEAK
+    assert IL._is_junk(_IL138_LEAK), _IL138_LEAK
+    assert BS.is_junk(_IL138_LEAK), _IL138_LEAK
+    assert IL._clean_insight(_IL138_LEAK) == ""
+
+
+def test_caps_nav_lockup_weld_prose_controls_survive_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL138_CONTROLS:
+        assert not IL._is_caps_nav_lockup_weld(ctl), ctl
+        assert not IL._is_junk(ctl), ctl
+        assert not BS.is_junk(ctl), ctl
+
+
+# class 139 (22.09.26): a landing-page marketing-SLOGAN clause stored as the
+# answer.  Live leak -- first seen and stored 15.09 21:12, REFUSED as duplicate
+# on every cycle since, then stored AGAIN 22.09 09:11 (the buffer rotates ~200
+# rows/day against a 300-row cap, so exact `_is_duplicate` cannot help across a
+# rotation and the row came back):
+#   "Operator prepping for month-end Pull 50+ invoices from 15+ portals in
+#    under 5 minutes - no mental load."     (103 chars, digits present)
+# The digits satisfied the technical-signal gate; the row is a product CLAIM
+# with no technical content.
+# Every control was MEASURED (tmp/probe_post138b.py), never invented.
+_IL139_LEAK = (
+    "Operator prepping for month-end Pull 50+ invoices from 15+ portals "
+    "in under 5 minutes \u2014 no mental load."
+)
+_IL139_CONTROLS = [
+    # the leak's own words reused in ordinary sentences
+    "Operator prepping for month-end pulls invoices from fifteen portals.",
+    "The agent reduced the operator's mental load during month-end close.",
+    "Pull 50 invoices from 15 portals, then reconcile them against the ledger.",
+    "Month-end close needs 50+ invoices pulled from 15+ portals in a batch.",
+    "Batch jobs finish in under 5 minutes when the cache is warm.",
+    "The scheduler completes the sweep in under 10 minutes \u2014 a useful budget.",
+    "The job finishes in under 5 minutes \u2014 the em dash there is just punctuation.",
+    "Inference drops to under 2 minutes \u2014 no change to accuracy.",
+    # killed the structural "in under N minutes + dash" form (4 control FPs)
+    "Reconciliation happens in under 5 minutes \u2014 no mental gymnastics required.",
+    "The agent handles 15+ portals in under 5 minutes \u2014 and logs every action.",
+    "Retries complete in under 5 minutes, and the ledger is updated afterwards.",
+    "The pipeline runs in under 5 minutes, no manual step is needed.",
+    "Under 5 minutes is the target for the whole invoice sweep.",
+]
+
+
+def test_marketing_slogan_clause_gated_on_both_paths():
+    import internet_learner as IL
+    import buffer_store as BS
+    assert IL._is_junk(_IL139_LEAK), _IL139_LEAK
+    assert BS.is_junk(_IL139_LEAK), _IL139_LEAK
+    assert IL._clean_insight(_IL139_LEAK) == ""
+
+
+def test_marketing_slogan_prose_controls_survive_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL139_CONTROLS:
+        assert not IL._is_junk(ctl), ctl
+        assert not BS.is_junk(ctl), ctl
+
+
+# class 140 (22.09.26): a paper/arXiv AUTHOR LIST with affiliation superscripts
+# stored as the answer. Live: cycle_g_security stored a paper landing page's
+# author block TWICE ("Sahar Abdelnabi* 1 , Benjamin Pannell* 1 , ... , and
+# Javier Rando 3 (*: Core contributors)."), 251 chars -> cleared the >=90 "long
+# prose" trust, and the affiliation digits fed the technical-signal gate. The
+# existing arXiv helpers key on DIFFERENT halves: _is_arxiv_abstract_chrome
+# needs page-label markers, class 135 needs the `<N> authors <N> Submitted by`
+# submitter weld. Discriminator = >= 5 name+digit SEGMENTS, rejected when a
+# segment's leading word is a structural label.
+#
+# Controls are lists a HUMAN writes in ordinary word order. A run of
+# STRUCTURAL units ("Section 3, Figure 2, Table 1, ...") is real content and
+# MUST stay learnable -- that is what the struct guard exists for. Every
+# control was MEASURED, never invented.
+_IL140_LEAK = (
+    "Sahar Abdelnabi* 1 , Benjamin Pannell* 1 , Giovanni Cherubin* 1 , "
+    "Ahmed Salem 1 , Andrew Paverd 1 , Conor Mac Amhlaoibh 1 , Joshua Rakita 1 , "
+    "Santiago Zanella-Beguelin 1 , Egor Zverev 2 , Mark Russinovich 1 , "
+    "and Javier Rando 3 (*: Core contributors)."
+)
+
+_IL140_CONTROLS = [
+    "Section 3, Figure 2, Table 1, Appendix 4, Note 5 and Step 6 hold the detail.",
+    "Version 1, Version 2, Version 3, Version 4, Version 5 of the API all shipped.",
+    "Layer 3, Layer 4, Layer 5, Layer 6 and Layer 7 dominate the latency budget.",
+    "Day 1, Day 2, Day 4, Day 8 and Day 15 are the retry schedule.",
+    "Step 1, Step 2, Step 3, Step 4 and Step 5 are all idempotent by design.",
+    "Variant 1, Variant 2, Variant 3, Variant 4 and Variant 5 all failed the test.",
+    "Sahar Abdelnabi, Benjamin Pannell, Giovanni Cherubin and Andrew Paverd wrote it.",
+    "The paper has 3 authors and was submitted by Maria Keller in March 2026.",
+    "The report lists 12 contributors, and Javier Rando is the lead.",
+    "Nine authors signed the open letter about agent safety research.",
+    "PyTorch 2.0 shipped in 2024 with TorchInductor 1 as the default backend.",
+    "We tested GPT-4 1 and Claude 3 2 across five benchmark suites.",
+    "The invoice arrives on day 1, day 15 and day 30 of the month.",
+    "Relevant findings 1 and 2, plus metric 3, contradicted the earlier result.",
+    "The benchmark dataset 4 and the dataset 5 disagree on tokenisation.",
+]
+
+
+def test_affiliation_author_list_gated_on_both_paths():
+    import internet_learner as IL
+    import buffer_store as BS
+    assert IL._is_junk(_IL140_LEAK), _IL140_LEAK
+    assert BS.is_junk(_IL140_LEAK), _IL140_LEAK
+    assert IL._clean_insight(_IL140_LEAK) == ""
+
+
+def test_affiliation_author_list_controls_survive_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL140_CONTROLS:
+        assert not IL._is_junk(ctl), ctl
+        assert not BS.is_junk(ctl), ctl
+
+
+# class 141 (22.09.26): an aggregator CARD AFFORDANCE RAIL welded to the card's
+# own title and lede -- "GAIA - Open-source framework ... Apr 13, 2026 -
+# galaxyLogic - View Original [star] Save TL;DR Highlight AMD has released ...".
+# 246 chars WITH digits -> the >=90 "long prose" trust AND the technical-signal
+# gate both fired. The existing aggregator helpers key on the WRONG half:
+# _AGGREGATOR_AFFORDANCE_MIN_RE needs "read full article"/"try on X" + a
+# "[dot] N min" read-time, and _AGGREGATOR_CARD_HEADER_RE (136) needs a
+# "Read <label> N min" badge. Discriminator = the rail itself: "View Original"
+# ... bookmark star ... "Save" ... "TL;DR" in ONE run (the conjunction, because
+# "View Original" alone and the star alone are ordinary UI words).
+_IL141_LEAK = (
+    "GAIA \u2013 Open-source framework for building AI agents that run on "
+    "local hardware Apr 13, 2026 \u2022 galaxyLogic \u2022 View Original "
+    "\u2606 Save TL;DR Highlight AMD has released GAIA, a Python/C++ framework "
+    "that allows AI Agents to run on local PCs without the cloud."
+)
+
+_IL141_CONTROLS = [
+    "We saved the TL;DR for the end of the paper so readers get the full argument first.",
+    "Click Save Original to keep a copy of the document in your working directory.",
+    "The team wrote a TL;DR Highlight reel summarising the benchmark results.",
+    "View Original files before overwriting them; the agent keeps a backup.",
+    "A user can save an article for later reading without leaving the page.",
+    "The aggregator card shows a title, a date and an author, then the lede follows.",
+    "Open the original document and highlight the section that matters most.",
+    "Saving a bookmark is how the crawler remembers a page between runs.",
+]
+
+
+def test_aggregator_card_affordance_rail_gated_on_both_paths():
+    import internet_learner as IL
+    import buffer_store as BS
+    assert IL._is_junk(_IL141_LEAK), _IL141_LEAK
+    assert BS.is_junk(_IL141_LEAK), _IL141_LEAK
+    assert IL._clean_insight(_IL141_LEAK) == ""
+
+
+def test_aggregator_card_affordance_rail_controls_survive_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL141_CONTROLS:
+        assert not IL._is_junk(ctl), ctl
+        assert not BS.is_junk(ctl), ctl
+
+
+# class 65 WIDENED (22.09.26): the bare form of the learner's own task template.
+# The class-65 rule required the trailing "one sentence" ("Shared underlying
+# pattern one sentence."). The live cycle stored the SHORTER variant --
+# "Shared underlying pattern." -- verbatim, which the old regex missed entirely
+# (the phrase was optional in the prompt, so the model dropped it).
+_IL65_BARE_LEAK = "Shared underlying pattern."
+_IL65_FULL_LEAK = "Shared underlying pattern one sentence."
+
+
+def test_bare_prompt_echo_fragment_is_gated_on_both_paths():
+    import internet_learner as IL
+    import buffer_store as BS
+    for leak in (_IL65_BARE_LEAK, _IL65_FULL_LEAK):
+        assert IL._is_prompt_echo_fragment(leak), leak
+        assert IL._is_junk(leak), leak
+        assert BS.is_junk(leak), leak
+        assert IL._clean_insight(leak) == ""
+
+
+def test_bare_prompt_echo_widening_keeps_real_answers_learnable():
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in (
+        "The shared underlying pattern is a closed-loop feedback system that "
+        "keeps the agent aligned.",
+        "Both systems share an underlying pattern: a feedback loop between "
+        "planning and evaluation.",
+        "Shared underlying patterns across two situations usually reduce to a "
+        "feedback loop.",
+        "The structural connection between tool usage and system failure is a "
+        "missing validation step.",
+    ):
+        assert not IL._is_junk(ctl), ctl
         assert not BS.is_junk(ctl), ctl

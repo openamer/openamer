@@ -19,11 +19,26 @@ Per-class narratives for J–Z, AA–AG (15./16.09.26) live in
 **This SKILL.md is at its 100 KB cap.** New root causes go into
 `references/root-causes-archive.md` -- append **LF** (that file is LF-native;
 a CRLF append flips ~60 lines) -- and only a ONE-LINE pointer is added here.
-AW/AY (77-85), 96/97 (AZ), 98 (MEASURED-AND-REJECTED -> signature-delete),
-102/103 (BB), BE (deliberate non-fix) and 109/110 all live there, as do
-113/114/115 and 118 (20.09.26), BF (raised rate WITHOUT a gate regression:
-deterministic `deep_learn` + a 291/300 buffer) and BC (71 % of junk rejects are
-WRITER-only -- the extractor gate deliberately lacks `_is_serp_snippet`; NON-FIX).
+AW/AY (77-85), 96/97 (AZ), 98, 122 -> MEASURED-AND-REJECTED,
+102/103, 109/110, 113-115, 118, 123/124 (GitHub releases-row + slide-nav
+chrome; leaked into KTA competitor_gap), BF (deterministic `deep_learn`,
+291/300), BC (NON-FIX) and BG/126 (a platform's own client-SDK family: stored
+3x -- the sentence DRIFTS, so exact `_is_duplicate` missed it; same-`u` Jaccard
+MEASURED-AND-REJECTED, 0.24-0.33 vs a legitimate 0.40) in
+`references/root-causes-archive.md`. BE/BC/BF NAMED only, never written.
+**134** (a newsroom INDEX page is not an article — a card's country tag welded
+to the next card's headline; PAGE-level rule, text-level cannot see it) is
+archived there too.
+**138** (an ALL-CAPS nav lockup welded to prose AND repeated in Title Case — a
+competitor's "Platform Demo" banner stored TWICE; the discriminator is the CASE
+SHIFT, not a vendor literal, so the rule generalises. WELD alone = 26 prose FPs,
+CASE-SHIFT alone = 2; the pair = 0 over ~4,600 real texts) is archived there too.
+**139** (a landing-page marketing-SLOGAN clause; the row had already been a
+`duplicate` for a WEEK — the buffer rotates ~200 rows/day vs a 300-row cap so
+exact `_is_duplicate` is a same-window guard, not a permanent one, and the leak
+came back. Also: an EOL normaliser is NOT idempotent on an already-CRLF block —
+guard `\r\r\n == 0`, and `git add` under global `core.autocrlf=true` stores an
+LF blob: `git rm --cached` + `-c core.autocrlf=false add`) is archived there too.
 TWO warnings stay live because they are behavioural, not history:
 
 - run `which_rule_matches.py` BEFORE touching a rule -- the AJ/AQ/AR trap has
@@ -38,19 +53,20 @@ TWO warnings stay live because they are behavioural, not history:
 
 **109/110 (20.09.26)**: own-artifact echo family + 3 harness limits (probe
 false-`SKIP`s mixed-case candidates; scores `a` ONLY, so no pair-rule is
-measurable; `search_files` can NOT read `AppData/Local` → use `grep`).
-Pair-rule MEASURED-AND-REJECTED (2 real vLLM rows + 62/3,059 episodes). In
-`references/root-causes-archive.md`.
+measurable; `search_files` can NOT read `AppData/Local` → `grep`.
+Pair-rule MEASURED-AND-REJECTED (archive).
+
+CF/130-132 (22.09.26): source-tally CTA + date-stamp strip + credit byline; FIXED, refs/.
+133 (22.09.26): doc-site product-nav weld; ALL 4 bare forms REJECTED, 3 two-token welds FIXED, refs/.
+135/136 (22.09.26): arXiv submitter WELD + aggregator card header (needs a TitleCase-continuation test; 1+2 FPs without it), found by eyeballing the buffer tail -- FIXED, refs/.
 
 **116/117 (20.09.26)**: no gate class at all -- step -1 found a whole
-TESTED-BUT-UNCOMMITTED batch (root cause AV again): `dry_run` never reached
-`world_model.prune` (a DRY RUN pruned the live store), the MSYS `OPENAMER_HOME`
-made a phantom tree, `prune()` re-normalised 250M times, and a single 5 s health
-probe burned a rotation slot. NEW TRAP: the repo's `test_no_hardcoded_paths`
-rejects a path LITERAL in a DOCSTRING -- describe the MSYS form in prose. And the
-mirror is TWO-WAY: the LIVE copy was AHEAD (utf-8 on tool_server's PowerShell
-captures, self_improve's `no-proposal` log), so a repo->live copy would have
-DELETED fixes -- union first. See archive.
+TESTED-BUT-UNCOMMITTED batch (AV again): `dry_run` never reached
+`world_model.prune`, MSYS `OPENAMER_HOME` made a phantom tree, `prune()`
+re-normalised 250M times, one 5 s health probe burned a slot. NEW TRAP: the
+repo's `test_no_hardcoded_paths` rejects a path LITERAL in a DOCSTRING --
+describe the MSYS form in prose. The mirror is TWO-WAY (live was AHEAD), so a
+repo->live copy would have DELETED fixes -- union first. See archive.
 
 **111/112 (20.09.26)**: 81 = own-artifact plan THIRD title → WIDEN the class-80
 regex, not a new helper; 82 = German nav WELD + colon headline; the news ticker
@@ -77,17 +93,16 @@ learned`-family echo rows were finally removed by signature (294→292, the 16
 genuine answers asserted intact). See archive.
 
 **121 (20.09.26)**: rotation exhaustion RE-CONFIRMED for the third round --
-`online_buffer` 292/300, the last 60 learner-owned `duplicate` rejects are
-**60/60 the identical `(u, a)` already stored** and 0 carry a novel `u`; 57
-recent `junk` candidates attribute ONLY to pre-existing helpers (serp / nav /
-own-plan / docs-label / date-heading + the `self-critique` marker tuple), zero
-novel shapes -> no gate change. The NEW trap: the `openamer-agent/` checkout
-lags main by 14 commits, so it APPEARS to have lost
-`tests/scripts/test_self_improve_rules.py` (the 119 regression test). It has not
-lost it -- a lagging checkout's missing file means BEHIND, never LOST, and
-hand-copying the blob in creates an untracked file that blocks the next pull.
-Resolve every apparent drift against `git cat-file blob origin/main:<f>` first.
-See archive.
+last 60 `duplicate` rejects 60/60 the identical `(u, a)`, 0 with a novel `u`;
+57 recent `junk` candidates attribute ONLY to pre-existing helpers, zero novel
+shapes -> no gate change. Same trap as 119/120 (see archive).
+
+**128 (21.09.26)**: 121 re-confirmed (0/60 novel `u`) and the MECHANISM measured
+-- `.il_seen_queries` is 800 entries but only **177 distinct**, and the avoid
+window (`_recent_queries`, n=60) is **7.5% of the ledger** while **95% of the 623
+real repeats are >60 entries apart** (median gap 67, mean 96). Widening `avoid`
+to the full ledger is MEASURED-AND-REJECTED: only 2/8 cycle keywords still yield
+a live headline vs 8/8 at n=60. Domain saturated, not broken. See archive.
 
 ## Trigger
 `python internet_learner.py --once` (or the cron) reports
@@ -1578,3 +1593,9 @@ HEAD` → FF_SAFE), pushed `HEAD:main`; verified with `git branch -r --contains`
 Post-fix live: 3 × `--once` → 1 learned (real paper prose) / 2 rejected, both
 rejections honest (`duplicate` at the cap + a documented SERP shape), new row
 `writer=False extract=False`.
+
+137 (22.09.26): a docs-site breadcrumb welded to a REPEATED title prefix, AND
+`_FULL_DATE_RE` (class 35) accepting ABBREVIATED months -- it was wired but had
+a blind spot for `Sep 24, 2025`. Also: the per-FILE merge resolution (HEAD vs
+origin/main measured, not assumed), and `clean_buffer.py` has NO `--help`
+(it just runs). refs/.
