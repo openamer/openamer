@@ -164,9 +164,21 @@ if __name__ == "__main__":
     ablation = extract_training_data(limit=80, drop_role=True)
     abl_acc = _accuracy(train_self(ablation, epochs=300, lr=0.3), ablation)
     print(f"  Ablation (Rollen-Feature genullt): {abl_acc:.3f}")
-    if acc >= 0.999:
-        print("\n⚠️ 1.000/1.000 = Zirkelschluss, NICHT gelernt. Label ist identisch")
-        print("   mit 'tool_name == 0' (alle assistant-Messages haben tool_name=NULL).")
+    # The verdict must key on the DIRECT evidence (a leaking feature was found),
+    # not on `acc`. Live 2026-09-22: leak_findings() had flagged 'tool_name' at
+    # strength 0.966 (inverted) and printed the LEAK-WARNUNG, yet acc landed just
+    # below 0.999 so the else-branch still printed "hat gelernt" — the runner
+    # warned about a leak and claimed learning in the same breath. `acc` is a
+    # weak proxy (it depends on how far the net converged this run); the finding
+    # is the proof. Verified by scripts/verify_self_learning.py.
+    if findings:
+        names = ", ".join(f"'{n}'" for n, _b, _s in findings)
+        print(f"\n⚠️ NICHT gelernt: das Label (role==assistant) ist aus den eigenen")
+        print(f"   Features ablesbar — trennendes Feature: {names}.")
+        print("   Diese Trefferquote misst keinen Lerneffekt, sondern den Zirkelschluss.")
         print("   Aussagekräftig wäre ein Ziel, das NICHT aus den Eingaben folgt.")
+        if acc >= 0.999:
+            print("   (1.000/1.000 = Label identisch mit 'tool_name == 0': alle")
+            print("    assistant-Messages haben tool_name=NULL.)")
     else:
         print("\n✅ Training abgeschlossen — oa_ripple hat gelernt")

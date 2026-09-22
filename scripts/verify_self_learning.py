@@ -13,6 +13,7 @@ import contextlib
 import importlib.util
 import io
 import random
+import subprocess
 import sys
 from pathlib import Path
 
@@ -94,14 +95,20 @@ check("second leak survives ablation", len(sl.leak_findings(abl)) > 0,
       " (empty here would mean the ablation was mistaken for a fix)")
 
 # ── 7. end-to-end: the runner tells the truth on real data ───────────────
-buf = io.StringIO()
-with contextlib.redirect_stdout(buf):
-    try:
-        exec(compile(TARGET.read_text(encoding="utf-8"), "sl", "exec"),
-             {"__name__": "__main__", "__file__": str(TARGET)})
-    except SystemExit as e:
-        check("runner exit code is 0", e.code in (0, None), f"code={e.code}")
-out = buf.getvalue()
+# Run the target as a real SUBPROCESS rather than exec()ing its source. An
+# earlier version did `exec(compile(TARGET.read_text()))`, which is a genuine
+# arbitrary-code-execution shape and made the repo's own code-review cron
+# report [CRITICAL] exec() every hour — a false positive on our own file, but
+# an alarm nobody can triage away while the pattern is there. subprocess is
+# also the truer test: it exercises the real process boundary and lets us
+# assert on the child's exit code, not on a caught SystemExit.
+proc = subprocess.run(
+    [sys.executable, str(TARGET)],
+    capture_output=True, text=True, encoding="utf-8", errors="replace",
+    timeout=300,
+)
+out = (proc.stdout or "") + (proc.stderr or "")
+check("runner exit code is 0", proc.returncode == 0, f"code={proc.returncode}")
 check("runner warns instead of claiming learning",
       "NICHT gelernt" in out and "✅ Training abgeschlossen" not in out)
 check("runner names the leaking feature", "LEAK-WARNUNG" in out)
