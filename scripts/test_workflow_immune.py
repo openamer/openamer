@@ -9,9 +9,9 @@ Offline checks (no browser needed):
 
 Exit 0 = all pass, 1 = any failure.
 """
-import os
 import ast
 import json
+import os
 import re
 import subprocess
 import sys
@@ -42,7 +42,7 @@ print("=" * 50)
 
 # 1. compile
 r = subprocess.run([sys.executable, "-m", "py_compile", str(WIS)],
-                   capture_output=True, text=True)
+                   capture_output=True, text=True, encoding="utf-8", errors="replace")
 check("engine compiles", r.returncode == 0, r.stderr[:200])
 
 # 2. strategy_order validity: exec the module with imports available, main() guarded
@@ -76,12 +76,12 @@ else:
 for organ in ("circadian.py", "senses.py", "second_home.py", "firstborn.py",
               "dream-cron.py"):
     r = subprocess.run([sys.executable, "-m", "py_compile", str(HERE / organ)],
-                       capture_output=True, text=True)
+                       capture_output=True, text=True, encoding="utf-8", errors="replace")
     check(f"organ compiles: {organ}", r.returncode == 0, r.stderr[:150])
 
 # senses output structure + honest levels
 r = subprocess.run([sys.executable, str(HERE / "senses.py")],
-                   capture_output=True, text=True, timeout=120)
+                   capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=120)
 try:
     sn = json.loads(r.stdout)
     check("senses reports pain level",
@@ -96,7 +96,7 @@ except Exception as e:
 
 # circadian phase contract
 r = subprocess.run([sys.executable, str(HERE / "circadian.py"), "status"],
-                   capture_output=True, text=True, timeout=60)
+                   capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=60)
 check("circadian reports a phase", any(
     p in r.stdout for p in ("AWAKE", "WIND_DOWN", "SLEEP")), r.stdout[:80])
 
@@ -124,12 +124,12 @@ if manifest.exists():
 # 6. LEARNED ORGANS: systemic, curriculum, scorecard
 for organ in ("systemic.py", "curriculum.py", "scorecard.py"):
     r = subprocess.run([sys.executable, "-m", "py_compile", str(HERE / organ)],
-                       capture_output=True, text=True)
+                       capture_output=True, text=True, encoding="utf-8", errors="replace")
     check(f"organ compiles: {organ}", r.returncode == 0, r.stderr[:150])
 
 # systemic report structure
 r = subprocess.run([sys.executable, str(HERE / "systemic.py")],
-                   capture_output=True, text=True, timeout=120)
+                   capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=120)
 sysd = json.loads((OA_HOME / "systemic.json").read_text(encoding="utf-8")) \
     if (OA_HOME / "systemic.json").exists() else {}
 check("systemic verdict present", "verdict" in sysd)
@@ -141,7 +141,7 @@ check("systemic report well-formed (clusters + singles + verdict)",
 
 # scorecard structure
 r = subprocess.run([sys.executable, str(HERE / "scorecard.py")],
-                   capture_output=True, text=True, timeout=60)
+                   capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=60)
 sc = json.loads((OA_HOME / "scorecard.json").read_text(encoding="utf-8")) \
     if (OA_HOME / "scorecard.json").exists() else {}
 check("scorecard counts jobs", sc.get("jobs", 0) > 40)
@@ -171,7 +171,7 @@ def _gh_token():
 def _seda_reachable():
     token = _gh_token()
     headers = ["-H", f"Authorization: Bearer {token}"] if token else []
-    for _attempt in range(4):
+    for attempt in range(4):
         try:
             r = subprocess.run(["curl", "-s", "--max-time", "15", *headers,
                                 "https://api.github.com/repos/openamer/seda"],
@@ -185,7 +185,7 @@ def _seda_reachable():
                     r.stdout.strip() == "":
                 break
         except Exception as e:
-            if _attempt == 3:
+            if attempt == 3:
                 return False, e
         time.sleep(3)
     try:
