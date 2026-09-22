@@ -5116,3 +5116,102 @@ credential.helper=store push origin HEAD:main`. Same reason `git commit -F`
 needs the **Windows** path (`C:/Users/.../msg.txt`) while `/c/Users/...` gives
 `fatal: could not read log file`.
 
+## 145 (22.09.26) — the spelled-out read-time WELD and the ORDINAL dateline
+
+**Trigger as usual:** `cycle_h_efficiency: rejected, not trained (shallow + deep
+read both gated)` (230.2 s, the slowest of the run). The rate table said today
+**40.6 %** (84 ok / 123 rej) against the 30-day per-source floor of 61.1 % for
+that cycle — but the per-HOUR table showed no step change, and `_search_urls`
+returned `2/4/6` on a `k=2/4/6` probe while `_fair_share_window` split 5 slices,
+so the U/V signature was intact and the rejection itself was rotation noise.
+**No gate change was warranted for the rejection.** The find came from eyeballing
+the `u`/`a` pairs in `online_buffer.jsonl` — the two rows were STORED, never
+rejected, so they appear in NO junk audit:
+
+| i | u | a |
+|---|---|---|
+| 186 | `Security learning (Prompt engineering is collapsing …)` | `Category Agents Product Claude apps Date November 10, 2025 Reading time 5 min Share https://claude.` (99) |
+| 278 | `Multi-domain learning (LLMs Are Great, but They're Not Everything) …` | `When Models and Chatbots Make Mistakes 🟢 This article is rated easy Reading Time: 5 minutes Last updated on March 6th, 2025 Sander Schulhoff large language models (LLMs) …` (242) |
+
+Both carry digits, so the `>=90` long-prose length trust AND the technical-signal
+gate fired, and neither gate's marker set matched. They are the class-142
+family, invisible for two independent reasons:
+
+1. `_ARTICLE_BYLINE_AFFORDANCE_RE` had `\d{1,3} min read` but **not** the
+   publisher's spelled-out `Reading time 5 min` / `Reading Time: 5 minutes` weld.
+2. `_ARTICLE_DATELINE_RE` had `Mon DD, YYYY`, `YYYY-MM-DD` and `DD Mon YYYY` but
+   **no ORDINAL day suffix**, so `March 6th, 2025` never matched.
+
+### Marker selection — the bare weld is a topic-word trap
+
+The measured-and-rejected candidates (all over buffer + `longterm_episodes` +
+`buffer_junk` + archive + test literals + `scripts/training/*.py`):
+
+| candidate | result |
+|---|---|
+| `\bReading\s+time\s*:?\s*\d{1,3}\s*min(?:ute)?s?\b` | +2 leaks, **1 HAND FP**: `Reading time: 5 min per 1,000 tokens is the budget we target for the summarizer, measured on May 3, 2026` → **REJECTED** |
+| `\bThis article is rated (easy\|moderate\|advanced\|hard)\b` | 0 hits alone — the row needs the DATELINE side too → insufficient alone |
+| `\bDate\s+Mon DD, YYYY\b` | +1 leak, **1 HAND FP** (`Date November 10, 2025 was when we started the int4 eval`) → **REJECTED** |
+| ordinal dateline alone | 0 hits — needs the affordance side → insufficient alone |
+| **weld ANCHORED on a following header label** `(?=Share\|Last updated\|Updated\|Published\|Date\|min read\|$)` | **+2 leaks, 0 FP everywhere** → **SHIPPED** |
+
+The anchor is the class-135/136 TitleCase-continuation doctrine again: the weld
+only counts when another page-label follows it, which is exactly what separates
+`Reading time 5 min Share https://…` from a sentence that opens with the same
+words. Neither half is sufficient alone; the PAIR is 0 FP.
+
+### A tempting red herring: widening the strip window
+
+The class-142 `_strip_article_byline_header` uses `region=100` while
+`_is_article_byline_chrome` judges 200 chars. For row 278 the last marker
+(`March 6th, 2025`) *ends* at 123, so a 100-char cut leaves
+`Reading Time: 5 minutes Last updated on …`. Raising `FORCE_REGION` to 200 makes
+the stored row clean — and it is the WRONG fix: it changes the STRIP, not the
+DETECTOR, so a row the detector still accepts is merely rewritten, and the
+widen-the-window trap the class-142 docstring explicitly forbids gets
+re-introduced through a side door. Fixed detector → both rows are simply
+refused and no strip ever runs. **Left `region=100` alone.**
+
+### Verify (the standard shape, all met)
+
+- Both modules `exec_module`-verified (not just `ast.parse` — the `re`/`_re`
+  alias trap).
+- Both gates refuse BOTH leaks; learner and writer agree.
+- Corpus sweep: buffer 283 → 2 hits (the leaks), `longterm_episodes` 3,064 → 0,
+  `buffer_junk` 8,759 → +4 (already-refused chrome), archive 309 → 0, 1,895 test
+  literals → unchanged, all of `scripts/training/*.py` → 0. **0 new hits in real
+  prose.** 5 hostile controls (incl. the FP that killed the bare form) stay
+  learnable through `store()`.
+- `pytest tests/scripts/test_internet_learner_gate.py -q` → **174 passed** on the
+  live tree, **175 passed** in a clean `origin/main` worktree (the origin/main
+  copy carries one extra pre-existing test).
+- Leak rows removed **by signature** (never by `is_junk`, which would drop the
+  legitimate 283-row baseline): 285 → 283, CRLF census intact, 0 lone-LF.
+- Test file appended as **pure bytes**, CRLF per line, lone-LF 0 → 0.
+
+### PITFALLS confirmed this round
+
+- **The live tree and `origin/main` had diverged 17 ↔ 2 commits**, and
+  `origin/main` carried its OWN class-141/142 implementation (`faf7d3cb6`), so
+  my branch's copies of `internet_learner.py` / `test_internet_learner_gate.py`
+  were NOT supersets. Pushing `HEAD:main` was correctly rejected
+  (non-fast-forward). The fix: `git worktree add --detach <abs-win-path>
+  origin/main`, apply THERE, verify THERE — the patch anchors matched
+  byte-identically on `origin/main`, which is the real proof of
+  source-compatibility. Never force a parallel branch over `main`.
+- **`git worktree add` needs a native Windows path.** In git-bash,
+  `/c/Users/damir/oa145` was silently mangled into the relative literal
+  `C:/c/Users/damir/oa145` → the directory landed at `C:\c\Users\damir\oa145`
+  and the `cd` failed. Use `"$(cygpath -w C:/Users/damir/oa145)"`.
+- **`git commit -F` needs the Windows path**; `-F /c/Users/...` gives
+  `fatal: could not read log file`. Long multi-line messages go into a file
+  first — an inline `-m "…"` with a stray quote is an `unexpected EOF`.
+- **A failing test in a batch run is not necessarily yours.** The scoreboard
+  test failed in `pytest tests/scripts -q` but passed alone AND passed alone
+  WITH this patch present — test-order pollution in a pre-existing suite. Prove
+  attribution by reverting the change and re-running the same command, before
+  you go looking for a bug you did not write.
+- Deleting a pushed commit from a local branch after the content is already on
+  `origin/main` is safe (`git reset --soft HEAD~1`) — but only after the remote
+  blob is verified by LF-normalized md5, or the work vanishes.
+
