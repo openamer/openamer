@@ -30,6 +30,12 @@ sys.path.insert(0, str(TRAINING))
 
 def _load(name, path):
     spec = importlib.util.spec_from_file_location(name, path)
+    # ty: spec_from_file_location returns ModuleSpec | None and its .loader is
+    # Loader | None. The repo-wide importlib idiom skips the guard and ty
+    # reports 3 diagnostics per file for it; this module is new code, so it
+    # carries the guard rather than adding to that backlog.
+    if spec is None or spec.loader is None:
+        raise ImportError(f"cannot load module {name!r} from {path}")
     mod = importlib.util.module_from_spec(spec)
     sys.modules[name] = mod
     spec.loader.exec_module(mod)
