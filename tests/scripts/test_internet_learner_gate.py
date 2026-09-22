@@ -6023,3 +6023,80 @@ def test_bare_prompt_echo_widening_keeps_real_answers_learnable():
     ):
         assert not IL._is_junk(ctl), ctl
         assert not BS.is_junk(ctl), ctl
+# class 141 (22.09.26): a SERP title welded to its own snippet by a YEAR-COLON
+# weld, where a NUMERAL phrase or a >=4-token run from the title RECURS in the
+# snippet. Live: the 260-row buffer tail carried FOUR rows of one family --
+#   "Grok Pricing 2026: $10 Lite, $30 SuperGrok, ... free access, $10 Lite,
+#    $30 SuperGrok, $300 Heavy, and $30/user Business plans."
+#   "Claude Opus 5 Review 2026: $5/$25, 61 Score, Real API Catch Claude Opus 5
+#    launched at $5/$25 per million tokens with 1M context and 128K output."
+#   "AI-Agent Tokens Surge 5% as Market Interest Returns May 3, 2026: Virtuals
+#    Protocol surged 5% as AI-agent tokens roared back, ..."
+#   "Retrieval and Language Systems NER Guide 2026: GLiNER, spaCy, Transformers,
+#    and LLMs NER in 2026 means choosing between GLiNER, spaCy, Transformers,
+#    and LLM extraction for latency, accuracy, and schema control."
+# All four cleared the >=90 "long prose" trust and the technical-signal gate
+# (the year stamp, the price tiers, the counts).
+#
+# NEITHER conjunct separates alone (the AJ/AQ/AR law): the year-colon weld alone
+# matched 6 hand-written prose controls, and a bare repeat matched 201
+# longterm_episodes. The WELD must be a year-colon inside the first 80 chars and
+# the RESTATEMENT must be the same price token, the same `<verb> <n> %` pair, or
+# the same 4-token run (naive plural-stemmed, because the NER row drifts
+# `LLMs` -> `LLM` and no backreference can see that).
+#
+# THE CONTROL THAT DECIDES THE RULE is the China-chip row -- a real article the
+# strip test asserts must survive byte-identical. It repeats a bare `417%`
+# across DIFFERENT verbs, so it is not a pct-pair, and its repeated runs are 2-3
+# tokens, so no 4-token window repeats. Every control below was MEASURED against
+# the live corpora, never invented.
+_IL141_LEAKS = [
+    "Grok Pricing 2026: $10 Lite, $30 SuperGrok, $300 Heavy Grok now spans free "
+    "access, $10 Lite, $30 SuperGrok, $300 Heavy, and $30/user Business plans.",
+    "Claude Opus 5 Review 2026: $5/$25, 61 Score, Real API Catch Claude Opus 5 "
+    "launched at $5/$25 per million tokens with 1M context and 128K output.",
+    "AI-Agent Tokens Surge 5% as Market Interest Returns May 3, 2026: Virtuals "
+    "Protocol surged 5% as AI-agent tokens roared back, fueled by rising volume, "
+    "stronger market momentum, and renewed demand for AI-powered crypto projects.",
+    "Retrieval and Language Systems NER Guide 2026: GLiNER, spaCy, Transformers, "
+    "and LLMs NER in 2026 means choosing between GLiNER, spaCy, Transformers, and "
+    "LLM extraction for latency, accuracy, and schema control.",
+]
+
+_IL141_CONTROLS = [
+    # a real article body that repeats a bare percentage across DIFFERENT verbs:
+    # the discriminator test. It must survive BOTH gates byte-identical.
+    "China AI Chip Boom: CAICT 417% Demand vs 128% Supply 2026 Caixin Sept 15, "
+    "2026: CAICT says China AI compute demand jumped 417% YoY in Q1 vs 128% supply.",
+    # a year-colon opening with a price but NO restatement
+    "In 2026: the API price is $5 per million tokens and it fell 40% over the year.",
+    "Pricing changed in 2026: $10 buys 1M tokens of the small model on the endpoint.",
+    "vLLM 0.9 shipped in 2026: PagedAttention cut peak KV-cache memory by 4x on long contexts.",
+    "Report 2026: revenue grew to $40M and the margin held at 60% for the quarter.",
+    "Training finished on 2026-09-15: 3 epochs, 128 GPUs, and a final loss of 1.82.",
+    # a real tier list, no year weld
+    "The tiers are Lite $10, Pro $30 and Heavy $300 per month for the same agent runtime.",
+    "Cost per token: $5 input, $25 output, which halves at a 90% cache-hit rate.",
+    # real prose that repeats a verb+percent pair but has no year weld
+    "Accuracy surged 5% after the fix, and the same pipeline held the gain over 10 runs.",
+    # real prose naming several tools in a row (the NER row's content twin)
+    "We compared GLiNER, spaCy and Transformers for entity extraction, then benchmarked accuracy.",
+    "Quantization methods such as GPTQ, AWQ, and SmoothQuant trade accuracy for memory.",
+]
+
+
+def test_serp_title_snippet_repeat_gated_on_both_paths():
+    import internet_learner as IL
+    import buffer_store as BS
+    for leak in _IL141_LEAKS:
+        assert IL._is_junk(leak), leak
+        assert BS.is_junk(leak), leak
+        assert IL._clean_insight(leak) == "", leak
+
+
+def test_serp_title_snippet_repeat_controls_survive_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL141_CONTROLS:
+        assert not IL._is_junk(ctl), ctl
+        assert not BS.is_junk(ctl), ctl
