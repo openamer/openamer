@@ -2846,6 +2846,123 @@ def _is_aggregator_row_year_tail(text):
     return bool(_AGGREGATOR_ROW_RE.search(t))
 
 
+# class 143 markers (live 22.09.26) -- see _is_feed_handle_unit_row.
+# A SINGLE (non-repeated) Hacker-News-style feed row, welded onto its own tail:
+#   "DeepLogin 5 hours ago | 20 comments 193 Kev: Tiny Jev-like family of
+#    decision models built on top of Qwen3."
+# = submitter handle + relative time + `| N comments` + points + a SECOND
+# handle + a headline. class 37 (_is_hn_feed_listing_chrome) needs that
+# `<relative-time> | N comments` unit REPEATED (>=2), so a one-item feed row
+# passes it; class 83 (_is_aggregator_row_year_tail) requires an arXiv
+# `(yyyy)` tail; `_is_hn_item_chrome` (49) requires the aggregator's own name
+# or the `New ask Hacker News story` label -- none of them matches.
+#
+# Discriminator (the class-83 precedent: a bare single-unit marker measured
+# 4-9 control FPs, so add a SECOND structural co-occurrence instead of
+# loosening the threshold): the feed row carries TWO handles -- the trailing
+# `<points> <handle>:` is the points/handle pair the renderer emits for the
+# item itself, which the relative-time+comments unit alone does not imply.
+# Measured 22.09.26 over 12,321 rows (online_buffer, buffer_junk,
+# longterm_episodes, world_model): 3 hits -- the live buffer row 149 (the
+# leak) plus its two audit echoes, all the same string -> 0 real-prose FPs on
+# an 11-case hostile battery (prose citing a relative time, a comment count,
+# a points-like number, a named handle, a colon-attributed quote).
+_FEED_HANDLE_TOKEN_RE = r"[A-Za-z][\w.\-]{2,20}"
+_FEED_HANDLE_TAIL_RE = r"(?-i:[A-Z])[\w.\-]{1,20}"
+_FEED_HANDLE_UNIT_RE = re.compile(
+    r"\b" + _FEED_HANDLE_TOKEN_RE + r"\s+\d{1,3}\s+"
+    r"(?:minutes?|hours?|days?|weeks?)\s+ago\s*\|\s*\d{1,5}\s*comments?\b"
+    r"[\s\S]{0,80}?\b\d{1,5}\s+" + _FEED_HANDLE_TAIL_RE + r"\s*:",
+    re.IGNORECASE)
+
+
+def _is_feed_handle_unit_row(text):
+    """True when `text` is a single feed row: handle + time + comments + points + handle (143).
+
+    Live 22.09.26 (class 143): `cycle_e_competitors`/`cycle_b_papers` stored
+
+        DeepLogin 5 hours ago | 20 comments 193 Kev: Tiny Jev-like family of
+        decision models built on top of Qwen3.
+
+    -- the top item of a Hacker-News-style feed, cut off right after the
+    headline's first line. 97 chars WITH digits, so the `>=90` length trust
+    and the technical-signal gate both fired; no existing marker matched,
+    because every sibling rule wants MORE structure than a one-item feed row
+    carries (37: the unit repeated; 49: the aggregator's own name or its item
+    label; 83: an arXiv year tail).
+
+    Deliberately NOT loosening class 37's repetition threshold: its own test
+    pins the single-unit control `The review took 2 days ago | 4 comments per
+    reviewer were recorded.` as learnable. The second co-occurrence used here
+    is the trailing points/handle pair, which is feed chrome and does not
+    appear in prose that merely counts comments.
+    """
+    t = text or ""
+    if len(t) > 1200:
+        return False
+    return bool(_FEED_HANDLE_UNIT_RE.search(t))
+
+
+# class 144 markers (live 22.09.26) -- see _is_de_consultation_contact_chrome.
+# A German shop page's nav lockup + consultation block welded together:
+#   "Produkten PRODUKTBERATUNG Wir beraten Sie persönlich unter 0681
+#    5866-4466 (Mo-Do 9-18 Uhr, Fr 9-17 Uhr)."
+# A hotline number and opening hours are the shop's own furniture, not
+# knowledge. 104 chars WITH digits, so the `>=90` length trust and the
+# technical-signal gate both fired; the `_is_de_*` family covers pricing,
+# double-opt-in newsletters, portal fact boxes and nav-weld headlines -- none
+# of them a consultation/contact block.
+#
+# Discriminator: the CONJUNCTION of a consultation vocabulary term and a
+# contact marker (a German phone form, `Uhr`, `Hotline`, `Telefon`) within 90
+# chars on ONE line. Neither half is unique on its own -- `Uhr` is an ordinary
+# German word and a phone form is ordinary prose -- which is why the pair is
+# required (the AS/AU rule: when a single part cannot be made unique, add the
+# second structural co-occurrence).
+#
+# Measured 22.09.26 over 12,336 rows (online_buffer, buffer_junk,
+# longterm_episodes, world_model): 1 hit and it IS the leaking buffer row -> 0
+# hits in 8,980 buffer_junk rows, 0/3,064 longterm_episodes, 0/1,647 gate-test
+# literals; 0 FPs on 6 hostile prose controls (a bare `Die Beratung erfolgt
+# telefonisch.`, a hotline mention without a number, and English prose carrying
+# `9-18 hours` plus a 4-digit number) and 0/1,730 SKILL.md files.
+_DE_CONSULT_PHRASE_RE = re.compile(
+    r"\b(?:beraten|Beratung|Bestellung|Kaufberatung|Angebot|Hotline|Telefon)\b",
+    re.IGNORECASE)
+_DE_CONTACT_MARK_RE = re.compile(
+    r"\b0\d{2,5}[\s/-]\d{3,8}\b"
+    r"|\b\+49\b"
+    r"|\bUhr\b"
+    r"|\bHotline\b"
+    r"|\bTelefon\b",
+    re.IGNORECASE)
+
+
+def _is_de_consultation_contact_chrome(text):
+    """True when `text` is German consultation/contact chrome (class 144).
+
+    Live 22.09.26: `cycle_f_multi_domain` stored
+
+        Produkten PRODUKTBERATUNG Wir beraten Sie persönlich unter 0681
+        5866-4466 (Mo-Do 9-18 Uhr, Fr 9-17 Uhr).
+
+    -- a German shop's nav lockup welded to its consultation block. Real prose
+    about a consultation or a phone line does not place a phone form or `Uhr`
+    within 90 chars of the vocabulary term on an otherwise content-free line,
+    which is what the conjunction tests.
+    """
+    t = text or ""
+    if len(t) > 1200:
+        return False
+    for m in _DE_CONSULT_PHRASE_RE.finditer(t):
+        tail = t[m.end():m.end() + 90]
+        if "\n" in tail:
+            tail = tail.split("\n", 1)[0]
+        if _DE_CONTACT_MARK_RE.search(tail):
+            return True
+    return False
+
+
 # class 84 markers (live 19.09.26) -- see _is_pipe_byline_shares_header.
 # A portal article header whose byline was welded to a pipe dateline and the
 # site's own `Shares` affordance:
@@ -4173,6 +4290,14 @@ _ARTICLE_BYLINE_AFFORDANCE_RE = re.compile(
     r"|(?:\bReply to this comment\b)"
     r"|(?:\bPosted by\s+[A-Z][\w.\-]*\s*\|)"
     r"|(?:\b\d{1,3} min read\b)"
+    # class 145 (22.09.26): the publisher spells the read time out and welds it
+    # to a following header label.  ANCHORED on that label, because the bare
+    # weld is a topic-word trap -- "Reading time: 5 min per 1,000 tokens is the
+    # budget we target, measured on May 3, 2026" is REAL prose and would be
+    # truncated.  The lookahead is the TitleCase-continuation test of 135/136.
+    r"|(?i:\breading\s+time\s*:?\s*\d{1,3}\s*min(?:ute)?s?)"
+    r"[\s,:\u00b7|\u2013-]*"
+    r"(?=Share\b|Last\s+updated\b|Updated\b|Published\b|Date\b|min\s+read\b|$)"
 )
 _ARTICLE_DATELINE_RE = re.compile(
     r"(?:\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+"
@@ -4180,6 +4305,11 @@ _ARTICLE_DATELINE_RE = re.compile(
     r"|(?:\b20\d\d-\d{2}-\d{2}\b)"
     r"|(?:\b\d{1,2}\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)"
     r"[a-z]*\s+20\d\d\b)"
+    # class 145: an ORDINAL day suffix ("March 6th, 2025").  Live 22.09.26 the
+    # byline predicate had no ordinal form, so an article header carrying
+    # "Last updated on March 6th, 2025" was invisible to BOTH gates.
+    r"|(?:\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)"
+    r"[a-z]*\.?\s+\d{1,2}(?:st|nd|rd|th),?\s+20\d\d\b)"
 )
 
 
@@ -4305,6 +4435,12 @@ def _is_junk(text):
         return True
     # an aggregator row welded to an arXiv year tail (class 83, 19.09.26)
     if _is_aggregator_row_year_tail(t):
+        return True
+    # a single feed row: handle + relative time + comments + points + handle (class 143, 22.09.26)
+    if _is_feed_handle_unit_row(t):
+        return True
+    # German consultation/contact chrome (class 144, 22.09.26)
+    if _is_de_consultation_contact_chrome(t):
         return True
     # a pipe-dateline byline welded to the site's Shares (class 84, 19.09.26)
     if _is_pipe_byline_shares_header(t):

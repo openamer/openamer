@@ -6188,3 +6188,164 @@ def test_article_byline_chrome_controls_survive_both_gates():
     for ctl in _IL142_CONTROLS:
         assert not IL._is_junk(ctl), ctl
         assert not BS.is_junk(ctl), ctl
+
+
+_IL145_LEAKS = [
+    # the two rows STORED in the live buffer on 22.09.26 -- both passed BOTH
+    # gates because the class-142 vocabulary had no spelled-out read-time weld
+    # and the dateline had no ordinal day suffix.
+    "Category Agents Product Claude apps Date November 10, 2025 Reading time "
+    "5 min Share https://claude.",
+    "When Models and Chatbots Make Mistakes \U0001f7e2 This article is rated "
+    "easy Reading Time: 5 minutes Last updated on March 6th, 2025 Sander "
+    "Schulhoff large language models (LLMs) like ChatGPT and GPT-4 have "
+    "transformed how we interact with technology.",
+]
+
+_IL145_CONTROLS = [
+    # REAL prose that opens with the spelled-out read time -- this is the row
+    # that killed the UNANCHORED form. No header label follows the weld, so
+    # the lookahead keeps it learnable.
+    "Reading time: 5 min per 1,000 tokens is the budget we target for the "
+    "summarizer, measured on May 3, 2026.",
+    # prose that MENTIONS a reading time inside a sentence
+    "The team published an article on April 29, 2026 explaining how prompt "
+    "injection bypasses tool sandboxes; the reading time was about 8 minutes.",
+    "We measured the reading time of the pipeline: 8 min for 4,000 tokens, so "
+    "batching cuts it to 2 min.",
+    # prose carrying an ORDINAL dateline, which the widened dateline now sees
+    "The model was evaluated on March 12th, 2026 and reached 0.81 recall at "
+    "5k pairs, a 12% gain over the groupwise INT4 baseline.",
+    # a prose row that carries BOTH the widened affordance vocabulary AND an
+    # ordinal dateline, but opens as a sentence -- must stay learnable
+    "The write-up is dated March 3rd, 2025 and its Reading time 6 min claim "
+    "refers to the vLLM benchmark, which reached 41 tok/s at int4.",
+]
+
+
+def test_ordinal_dateline_and_spelled_read_time_gated_on_both_paths():
+    """Class 145: the spelled-out read-time weld plus an ORDINAL dateline.
+
+    Live 22.09.26 two rows were STORED (not just refused) -- an article header
+    with "Reading time 5 min Share <url>" and one with "This article is rated
+    easy Reading Time: 5 minutes Last updated on March 6th, 2025 <lede>". Both
+    satisfy the long-prose length trust AND the technical-signal gate (digits),
+    so the page's own affordance is the only reliable discriminator.
+
+    Asserted on BOTH gates: `buffer_store.is_junk` must refuse the same rows the
+    learner refuses, or the cycle burns itself on a write the writer drops.
+    """
+    import internet_learner as IL
+    import buffer_store as BS
+    for leak in _IL145_LEAKS:
+        assert IL._is_article_byline_chrome(leak), leak
+        assert IL._is_junk(leak), leak
+        assert BS.is_junk(leak), leak
+
+
+def test_spelled_read_time_controls_survive_both_gates():
+    """The UNANCHORED weld was MEASURED-AND-REJECTED.
+
+    Without the header-label lookahead the pattern truncates real prose that
+    opens with "Reading time: 5 min per 1,000 tokens is the budget ...". The
+    anchor is what makes the weld a page-affordance test instead of a topic word
+    (the class-135/136 TitleCase-continuation doctrine).
+    """
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL145_CONTROLS:
+        assert not IL._is_article_byline_chrome(ctl), ctl
+        assert not IL._is_junk(ctl), ctl
+        assert not BS.is_junk(ctl), ctl
+        assert IL._clean_insight(ctl), ctl
+
+
+# class 143 (22.09.26): a SINGLE Hacker-News-style feed row -- submitter
+# handle + relative time + `| N comments` + points + a capitalized trailing
+# handle + a colon -- is feed chrome, not knowledge. class 37 keys on the
+# unit REPEATED, class 49 on the aggregator's own name, class 83 on an arXiv
+# year tail, so a one-item row passed all three.
+_IL143_LEAKS = (
+    "DeepLogin 5 hours ago | 20 comments 193 Kev: Tiny Jev-like family of "
+    "decision models built on top of Qwen3.",
+)
+
+# `The review took 2 days ago | 4 comments per reviewer were recorded.` is
+# class 37's own pinned clean control -- the new rule must not claim it.
+# The `... and then 193 runs: ...` row pins the SCOPED case-sensitivity: a
+# plain IGNORECASE `[A-Z]` token flagged that prose in the first draft.
+_IL143_CONTROLS = (
+    "The review took 2 days ago | 4 comments per reviewer were recorded.",
+    "The release added 1,200 commits 5 hours ago | 12 comments and 88 "
+    "points per the tracker.",
+    "In this paper the authors report 20 comments and 193 downloads: Tiny "
+    "Jev is a decision model.",
+    "The team logged 5 hours ago | 20 comments and then 193 runs: the "
+    "result held.",
+    "The 193 comments on the tracker were filed by users in the last 5 "
+    "hours ago.",
+    "A model card lists 20 comments: 193 runs of the evaluation.",
+    "Kev: a Tiny Jev-like family of decision models built on top of "
+    "Qwen3 improves accuracy by 9%.",
+    "The migration finished 3 days, 11 hours ago and the report captured "
+    "it.",
+)
+
+
+def test_feed_handle_unit_row_gated_on_both_paths():
+    import internet_learner as IL
+    import buffer_store as BS
+    for leak in _IL143_LEAKS:
+        assert IL._is_feed_handle_unit_row(leak), leak
+        assert IL._is_junk(leak), leak
+        assert BS._is_feed_handle_unit_row(leak), leak
+        assert BS.is_junk(leak), leak
+
+
+def test_feed_handle_unit_row_controls_survive_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL143_CONTROLS:
+        assert not IL._is_feed_handle_unit_row(ctl), ctl
+        assert not BS._is_feed_handle_unit_row(ctl), ctl
+
+
+# class 144 (22.09.26): a German shop's nav lockup welded to its
+# consultation block -- hotline number + opening hours -- is page
+# furniture, not knowledge. 104 chars WITH digits, so the length trust
+# and the technical-signal gate both fired; no `_is_de_*` rule matched.
+_IL144_LEAKS = (
+    "Produkten PRODUKTBERATUNG Wir beraten Sie pers\u00f6nlich unter "
+    "0681 5866-4466 (Mo-Do 9-18 Uhr, Fr 9-17 Uhr).",
+    "Die Beratung erfolgt telefonisch unter der Nummer 0681 5866-4466.",
+)
+
+# Neither half may fire alone: `Uhr` is an ordinary German word and a phone
+# form is ordinary prose, so the conjunction is what the rule tests.
+_IL144_CONTROLS = (
+    "Die Beratung erfolgt telefonisch.",
+    "Der Anbieter nennt eine Hotline und oeffnende Zeiten.",
+    "The evaluation ran for 9-18 hours and produced 0681 samples.",
+    "vLLM prefill throughput improved 40% after enabling prefix caching "
+    "with --max-model-len 32768 in the 2.12.0 release.",
+    "TLS 1.3 removes a handshake round trip, cutting connection latency "
+    "by ~33% on high-RTT links, as measured on Sep 15, 2026.",
+)
+
+
+def test_de_consultation_contact_chrome_gated_on_both_paths():
+    import internet_learner as IL
+    import buffer_store as BS
+    for leak in _IL144_LEAKS:
+        assert IL._is_de_consultation_contact_chrome(leak), leak
+        assert IL._is_junk(leak), leak
+        assert BS._is_de_consultation_contact_chrome(leak), leak
+        assert BS.is_junk(leak), leak
+
+
+def test_de_consultation_contact_controls_survive_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL144_CONTROLS:
+        assert not IL._is_de_consultation_contact_chrome(ctl), ctl
+        assert not BS._is_de_consultation_contact_chrome(ctl), ctl
