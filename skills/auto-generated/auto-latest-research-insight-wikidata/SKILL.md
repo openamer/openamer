@@ -1,6 +1,6 @@
 ---
 name: auto-latest-research-insight-wikidata
-description: Learning Music Helps You Read: Using Transfer to Study Linguistic Structure in Language Models Isabel Papadimitriou and Dan Jurafsky 2020 Empirical Me
+description: "Learning Music Helps You Read: Using Transfer to Study Linguistic Structure in Language Models Isabel Papadimitriou and Dan Jurafsky 2020 Empirical Me"
 auto_generated: true
 created: 2026-09-17
 source_insight: "Latest research insight: Wikidata, with 12B facts, can ground LLMs to improve their factuality"

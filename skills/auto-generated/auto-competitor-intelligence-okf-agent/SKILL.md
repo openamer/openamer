@@ -1,6 +1,6 @@
 ---
 name: auto-competitor-intelligence-okf-agent
-description: F Agent Memory: A Git-Native Persistent Memory Solution for AI Coding Agents and Project Knowledge Management OKF Agent Memory introduces a standardiz
+description: "F Agent Memory: A Git-Native Persistent Memory Solution for AI Coding Agents and Project Knowledge Management OKF Agent Memory introduces a standardiz"
 auto_generated: true
 created: 2026-09-16
 source_insight: "Competitor intelligence: OKF Agent Memory – Git-native persistent memory for AI coding agents"

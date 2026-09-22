@@ -1,6 +1,6 @@
 ---
 name: auto-efficiency-learning-edge-ai
-description: A review of AI edge devices and lightweight CNN and LLM deployment — 21. Jan. 2025 · However, deploy GAP: OpenHands has a modular SDK design — our too
+description: "A review of AI edge devices and lightweight CNN and LLM deployment 21. Jan. 2025 However, deploy GAP: OpenHands has a modular SDK design our too"
 auto_generated: true
 created: 2026-09-09
 source_insight: "Efficiency learning (edge AI deployment low power LLM): How do agents run leaner?"

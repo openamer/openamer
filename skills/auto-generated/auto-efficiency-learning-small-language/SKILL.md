@@ -1,6 +1,6 @@
 ---
 name: auto-efficiency-learning-small-language
-description: Characterizing and Understanding Energy Footprint and … — 7. Nov. 2025 · This study benchmarks four  GAP: OpenHands has a modular SDK design — our too
+description: "Characterizing and Understanding Energy Footprint and 7. Nov. 2025 This study benchmarks four GAP: OpenHands has a modular SDK design our too"
 auto_generated: true
 created: 2026-09-09
 source_insight: "Efficiency learning (small language model energy efficient inference): How do agents run leaner?"

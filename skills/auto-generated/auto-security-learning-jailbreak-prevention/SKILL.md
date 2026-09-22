@@ -1,6 +1,6 @@
 ---
 name: auto-security-learning-jailbreak-prevention
-description: Shaping the Safety Boundaries: Understanding and … — Vor einem Tag · Abstract Jailbreaking in Large
+description: "Shaping the Safety Boundaries: Understanding and Vor einem Tag Abstract Jailbreaking in Large"
 auto_generated: true
 created: 2026-09-11
 source_insight: "Security learning (jailbreak prevention large language models): What should a safe agent know?"

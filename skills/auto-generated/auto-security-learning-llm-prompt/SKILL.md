@@ -1,6 +1,6 @@
 ---
 name: auto-security-learning-llm-prompt
-description: Prompt Injection Defense 2026: 8 Tested Techniques … — 20. Apr. 2026 · Prompt injection is still the
+description: "Prompt Injection Defense 2026: 8 Tested Techniques 20. Apr. 2026 Prompt injection is still the"
 auto_generated: true
 created: 2026-09-09
 source_insight: "Security learning (LLM prompt injection defense techniques 2026): What should a safe agent know?"

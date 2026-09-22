@@ -1,6 +1,6 @@
 ---
 name: auto-internet-learning-mit-researchers
-description: AI agents Home News MIT News Published On: Nov 22 2024 Published on: May 21, 2026 Share Facebook Twitter Bluesky Fields ranging from robotics to medic
+description: "AI agents Home News MIT News Published On: Nov 22 2024 Published on: May 21, 2026 Share Facebook Twitter Bluesky Fields ranging from robotics to medic"
 auto_generated: true
 created: 2026-09-15
 source_insight: "Internet learning (MIT researchers develop an efficient way to train more reliable AI agents): What "

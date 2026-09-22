@@ -1,6 +1,6 @@
 ---
 name: auto-what-are-the-most
-description: [TOOL_RESULT:web_search] {"results": "Why Most AI Systems Fail at Scale: Problem faced with … :: 12. GAP: OpenHands has a modular SDK design — our too
+description: "[TOOL_RESULT:web_search] {\"results\": \"Why Most AI Systems Fail at Scale: Problem faced with :: 12. GAP: OpenHands has a modular SDK design our too"
 auto_generated: true
 created: 2026-09-10
 source_insight: "What are the most common causes of system failures in distributed AI systems?"

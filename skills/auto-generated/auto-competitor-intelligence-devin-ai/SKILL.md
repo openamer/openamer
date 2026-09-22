@@ -1,6 +1,6 @@
 ---
 name: auto-competitor-intelligence-devin-ai
-description: Recent Updates - Devin Docs — Vor 2 Tagen · The latest Devin updates: recently released features, improvements, and bug fixes across the product, upda
+description: "Recent Updates - Devin Docs Vor 2 Tagen The latest Devin updates: recently released features, improvements, and bug fixes across the product, upda"
 auto_generated: true
 created: 2026-09-11
 source_insight: "Competitor intelligence: Devin AI agent new features 2026"

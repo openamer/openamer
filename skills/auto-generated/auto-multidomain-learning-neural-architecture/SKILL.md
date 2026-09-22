@@ -1,6 +1,6 @@
 ---
 name: auto-multidomain-learning-neural-architecture
-description: With this cross-journal Collection, the editors at Nature Communications , Communications Psychology GAP: no mappable capability in latest signal (our
+description: "With this cross-journal Collection, the editors at Nature Communications , Communications Psychology GAP: no mappable capability in latest signal (our"
 auto_generated: true
 created: 2026-09-16
 source_insight: "Multi-domain learning (Neural architecture search for consciousness models): What should an intellig"

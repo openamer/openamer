@@ -1,6 +1,6 @@
 ---
 name: auto-multidomain-learning-education-ai
-description: Artificial intelligence-based personalised learning in education: a ... — 18. Nov. 2025 · Thoroughly
+description: "Artificial intelligence-based personalised learning in education: a ... 18. Nov. 2025 Thoroughly"
 auto_generated: true
 created: 2026-09-05
 source_insight: "Multi-domain learning (education AI personalization): What should an intelligent agent know?"
