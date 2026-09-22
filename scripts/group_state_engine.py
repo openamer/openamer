@@ -28,6 +28,7 @@ Usage:
   python scripts/group_state_engine.py --info
 """
 import argparse
+import glob
 import json
 import math
 import os
@@ -39,11 +40,67 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from group_scaling_lab import build_group, GroupState, _attach, task, accuracy
 
-DEFAULT_DIR = os.path.join(
-    os.environ.get("OPENAMER_HOME",
-                   os.path.join(os.path.expanduser("~"), "AppData", "Local",
-                                "openamer-laptop")),
-    "models")
+# A home is only usable by THIS engine if its models/ dir already holds an
+# artifact. Presence of cron/ or memories/ is NOT enough: a second home can be
+# created and populated by unrelated tooling (measured 23.09.26 -- a leaked
+# OPENAMER_HOME grew cron/ + memories/ at 00:57 with no models/ at all, which
+# silently re-broke artifact lookup). The module reads nothing but models/.
+_ARTIFACT_GLOB = "group_state_*.json"
+
+
+def _has_artifacts(root):
+    models = os.path.join(root, "models")
+    if not os.path.isdir(models):
+        return False
+    try:
+        return bool(glob.glob(os.path.join(models, _ARTIFACT_GLOB)))
+    except OSError:
+        return False
+
+
+def _resolve_home():
+    """Resolve OPENAMER_HOME across shells; only adopt a home that has artifacts.
+
+    A leaked OPENAMER_HOME (C:/Users/damir/_vaultfinal) pointed DEFAULT_DIR at
+    <leak>/models, model_path('Z10') found no artifact, and the KTA rotation
+    reported "no saved model" while the real group_state_z10.json sat in the
+    install root. Measured 22.-23.09.26: 7 of the last 8 experiment_group_state
+    cycles failed exactly this way; the one green cycle had the env unset.
+
+    The test is artifact PRESENCE, not install markers: the sibling modules
+    check for config.yaml/.env/cron/memories, but a second home can acquire
+    cron/ and memories/ without ever gaining models/, so that predicate lets a
+    useless root through. This module reads only models/.
+
+    git-bash additionally exports OPENAMER_HOME in MSYS form (/c/tmp/oa-home),
+    which native Windows Python reads as a RELATIVE path -> phantom C:\\c\\tmp.
+    """
+    local = os.path.join(os.path.expanduser("~"), "AppData", "Local")
+    candidates = [os.path.join(local, "openamer-laptop"),
+                  os.path.join(local, "openamer")]
+    default = next((c for c in candidates if _has_artifacts(c)), candidates[0])
+
+    raw = os.environ.get("OPENAMER_HOME")
+    if not raw:
+        return default
+
+    norm = raw.replace(os.sep, "/") if os.sep != "/" else raw
+    if len(norm) >= 3 and norm[0] == "/" and norm[1].isalpha() and norm[2] == "/":
+        cand = norm[1].upper() + ":/" + norm[3:]
+    elif os.path.isabs(raw):
+        cand = raw
+    else:
+        cand = None
+
+    if cand and _has_artifacts(cand):
+        return cand
+    if cand:
+        print(f"[group_state] WARNING: OPENAMER_HOME={cand} holds no "
+              f"{_ARTIFACT_GLOB} under models/; using {default}.", file=sys.stderr)
+    return default
+
+
+DEFAULT_DIR = os.path.join(_resolve_home(), "models")
 DEFAULT_TAU = 0.1
 FORMAT = "openamer-group-state-v1"   # written by save(), asserted by load()
 
