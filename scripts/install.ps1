@@ -2210,6 +2210,57 @@ print(','.join(scripts))
     # If tier 1 failed (the common case), [web] was still picked up by tiers
     # 2-3; only tier 4 leaves you without it.
     $pythonExe = if (-not $NoVenv) { "$InstallDir\venv\Scripts\python.exe" } else { (& $UvCmd python find $PythonVersion) }
+
+    # --- Local-edit safety net -------------------------------------------
+    # Updating an existing checkout reapplies the user's own uncommitted
+    # edits (autostash) on top of freshly pulled code.  If one of those
+    # edits does not parse, the verification below fails with a misleading
+    # message and the installer dies with no pointer to the culprit -- for
+    # someone installing for the first time that reads as "OpenAmer is
+    # broken".  Parse every locally modified .py file first; when one is
+    # broken, set it aside (never discarded) and restore the pristine copy
+    # so the install can finish.
+    if (Test-Path $pythonExe) {
+        $localPyFiles = @()
+        Push-Location $InstallDir
+        try {
+            $localPyFiles = @(git -c windows.appendAtomically=false diff --name-only HEAD 2>$null) |
+                Where-Object { $_ -and ($_.ToString().Trim().EndsWith(".py")) }
+        } catch { $localPyFiles = @() } finally { Pop-Location }
+        if ($localPyFiles.Count -gt 0) {
+            Write-Info "Checking $($localPyFiles.Count) locally modified Python file(s) for syntax errors..."
+            $syntaxSnippet = "import sys; compile(open(sys.argv[1], encoding='utf-8').read(), sys.argv[1], 'exec')"
+            foreach ($localRel in $localPyFiles) {
+                $localRelPath = $localRel.ToString().Trim()
+                $localAbsPath = Join-Path $InstallDir ($localRelPath -replace '/', '\\')
+                if (-not (Test-Path $localAbsPath)) { continue }
+                $localProbeErr = @()
+                $localProbeOk = $false
+                Push-Location $InstallDir
+                try {
+                    $localProbeErr = @(& $pythonExe -c $syntaxSnippet $localAbsPath 2>&1)
+                    if ($LASTEXITCODE -eq 0) { $localProbeOk = $true }
+                } catch { } finally { Pop-Location }
+                if (-not $localProbeOk) {
+                    $localBackup = "$localAbsPath.local-" + (Get-Date -Format "yyyyMMdd-HHmmss")
+                    Copy-Item -LiteralPath $localAbsPath -Destination $localBackup -Force
+                    Write-Warn "A file you modified locally does not parse -- restoring the pristine copy:"
+                    Write-Host ("  " + $localRelPath)
+                    foreach ($probeLine in $localProbeErr) {
+                        $probeText = $probeLine.ToString().Trim()
+                        if ($probeText) { Write-Host ("    " + $probeText) }
+                    }
+                    Write-Info "Your version was kept at: $localBackup"
+                    Push-Location $InstallDir
+                    try {
+                        git -c windows.appendAtomically=false checkout -- $localRelPath 2>$null | Out-Null
+                    } catch { } finally { Pop-Location }
+                    Write-Success "Pristine $localRelPath restored."
+                }
+            }
+        }
+    }
+
     if (Test-Path $pythonExe) {
         $webOk = $false
         $webServerSyntaxOk = $false
