@@ -278,6 +278,21 @@ def experiment_competitor_gap():
         # runtime", "local LLMs" prose) and never `local model` (0/47 rows, i.e.
         # a token the corpus does not support).
         ("local hardware", "on-device / local-hardware agent runtime"),
+        # Grown from a REAL signal (22.09.26, second one that day): the
+        # competitor-intelligence row
+        #   "Engineers who want an agent to autonomously plan, edit across files
+        #    and run tests on complex real-world work, and will pay for depth"
+        # is a capability description (multi-file agentic execution with a test
+        # loop) the lexicon had no token for. Measured precision over the 44
+        # competitor rows this function actually reads: `edit across files`
+        # matches 1 row and that row IS this signal -> 0 mis-maps.
+        # Rejected alternatives, all measured: `across files` / `run tests` /
+        # `plan, edit` / `autonomously plan` / `real-world work` (each 1/44 but
+        # narrower and more brittle phrasings of the same row), `plan` 3/44 and
+        # `tool` 5/44 (real mis-maps), `tool surface` / `sandbox` / `terminal` /
+        # `multi-file` / `paid tier` / `pricing` 0/44 (corpus does not support
+        # them). Chosen token states the capability, not a generic verb.
+        ("edit across files", "multi-file agentic execution + test loop"),
     )
     low_signal = signal.lower()
     # Longest (most specific) matching token wins: a generic token declared
