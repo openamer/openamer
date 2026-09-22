@@ -406,7 +406,18 @@ async def test_notifier_skips_subscription_owned_by_other_profile(kanban_home):
     finally:
         conn.close()
     assert len(subs) == 1
-    assert int(subs[0]["last_event_id"]) == 0, "wrong profile must not claim the event"
+    # The foreign profile must not DELIVER. ``last_event_id`` is the wrong
+    # indicator for that: add_notify_sub seeds it with
+    # COALESCE((SELECT MAX(id) FROM task_events ...), 0) so a fresh subscription
+    # starts caught-up and never replays history, which is 1 here (the 'created'
+    # event). What matters is that no ping was sent and the cursor did not move
+    # past the completed event.
+    assert int(subs[0]["last_ping_event_id"]) == 0, (
+        "wrong profile must not deliver a ping for another profile's subscription"
+    )
+    assert fake_adapter.send.await_count == 0, (
+        "wrong profile must not send anything"
+    )
 
 
 @pytest.mark.asyncio
