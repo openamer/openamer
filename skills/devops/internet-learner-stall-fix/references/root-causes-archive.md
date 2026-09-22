@@ -5215,3 +5215,64 @@ refused and no strip ever runs. **Left `region=100` alone.**
   `origin/main` is safe (`git reset --soft HEAD~1`) — but only after the remote
   blob is verified by LF-normalized md5, or the work vanishes.
 
+
+## 143/144 (+145) -- the same uncommitted-fix trap, one level deeper (live 22.09.26)
+
+A cron run opened on the documented `cycle_c_github: rejected, not trained` line.
+The rate table said today **25.0 %** (31 ok / 93 rej) against a 30-day floor near
+60 %, so the stall smell was real -- but the rejection itself was rotation noise
+again. The find was the skill's step **-1**: `git status --porcelain
+scripts/training tests/scripts` showed `internet_learner.py`, `buffer_store.py`
+and `test_internet_learner_gate.py` modified, and `git diff --stat` showed
++199 lines. The 30-day rate was a *red herring* against a **dead-end commit
+state**, exactly what step -1 exists to catch.
+
+### What was actually dangling
+
+`git log` showed the last learner-touching commit was `bdc4a7452` (class 141) --
+so neither the committed tree nor the archive mentioned 143/144. The working
+tree carried them; `HEAD` did not. Measured by difflib against the live tree:
+the divergence was **purely additive** (all opcodes `delete`, zero `insert` /
+`replace`), which is the cheap proof that the live file is a strict superset --
+safe to port forward without reading 6 kB of diff.
+
+| file | additive blocks | lines |
+|---|---|---|
+| `scripts/training/internet_learner.py` | 2 (predicate block + `_is_junk` wiring) | 117 + 6 |
+| `scripts/training/buffer_store.py` | 2 (predicate block + `is_junk` wiring) | 117 + 6 |
+
+### The trap that cost the most time: the TEST file was in a THIRD place
+
+The 143/144 **predicates** were in the live tree and in `openamer-repo`; the
+143/144 **tests** were in `openamer-repo` ONLY, and the live test copy had
+140-142 + 145 but NOT 143/144 -- a non-monotonic gap, i.e. it is not a
+"one tree is ahead" problem you can fix with a whole-file copy. Porting must be
+**anchor-insert of the named block**, never a file copy: the live copy's 142
+block is *newer* (it carries `_IL142_STRIPPED`, the strip rescue) than the
+`openamer-repo` one, so a whole-file copy would have reverted it. That is the
+`multi-copy-artifact-sync` rule and it fired for real here.
+
+### CRLF pitfall while inserting (cost one re-stage)
+
+`core.autocrlf=false` on this repo. The anchor-insert wrote LF, and git then saw
+the test file as **6351/6190** (a whole-file rewrite) instead of a 161-line
+addition. Re-encoding the file to CRLF restored `161/0`. Always check
+`git diff --cached --numstat` for a `== -w` pair before committing a ported
+block on an autocrlf=false tree.
+
+### Publishing when local `main` is 74 behind
+
+`main` was `ahead 8, behind 74`, so a push to `main` would be divergent. The
+work was published on `fix/learner-143-144` instead, and the remote blob hash was
+verified with `git ls-remote` (not `git status`).
+
+Amending the message needed `--force-with-lease=<ref>:<oldhash>` with the hash
+**spelled out**: plain `--force-with-lease` failed twice with `stale info`
+because the remote-tracking ref could not be refreshed (fetch needs creds in
+this cron context).
+
+### Verify
+
+`179 passed` in `tests/scripts/test_internet_learner_gate.py` on BOTH the live
+and the repo copy (was 175 before the 143/144 tests landed). Live and repo
+scripts byte-identical; `git status` clean for the three paths.
