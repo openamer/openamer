@@ -393,6 +393,21 @@ _JUNK_RE = re.compile(
     # the >=90 length trust, so it needs its own narrow signature.)
     r"inference providers kernels|lerobot leaderboards|reachy mini|"
     r"openenv optimum|tokenizers trackio|"
+    # Doc-site product nav welded to a vendor SDK label (live 22.09.26:
+    # cycle_d_docs stored "API, Infinite Possibilities Reference Qualcomm
+    # Cloud AI home Qualcomm Cloud AI SDK download Qualcomm Cloud AI API
+    # reference User Guide OCP Microscaling Formats (MX) Specification
+    # efficient-transformers Welcome to Efficient-Transformers
+    # Documentation!" -- 250 chars of pure sidebar/product nav, zero prose,
+    # and BOTH gates passed it. Two WELDED markers, measured over the live
+    # 245-row buffer: 1 hit each and that hit IS the leaking row -> 0
+    # real-prose rows carry them. Both bare forms were MEASURED-AND-REJECTED:
+    # "api reference" and "infinite possibilities" each hit 1 hostile control
+    # ("The API reference for the agent runtime lists every tool and its
+    # parameters.", "Infinite possibilities in agent design come from
+    # composing narrow tools.") -- hence the two-token weld.)
+    r"cloud ai api reference|infinite possibilities reference|"
+    r"efficient-transformers welcome to efficient-transformers"
     # Leaked LLM meta/instruction text (live 14.09.26: the multi-domain cycle
     # stored the model's OWN extraction template verbatim — "Identify the Core
     # Task: Extract ONE technical insight ... No preamble before the insight.

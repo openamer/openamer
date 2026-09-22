@@ -5411,3 +5411,45 @@ def test_source_tally_prose_controls_survive_both_gates():
         assert not IL._is_junk(ctl), ctl
         assert not BS._is_source_tally_cta(ctl), ctl
         assert not BS.is_junk(ctl), ctl
+
+
+# --- class 133 (22.09.26): doc-site product nav welded to a vendor SDK label
+# Live leak: cycle_d_docs stored, verbatim from online_buffer.jsonl,
+#   "API, Infinite Possibilities Reference Qualcomm Cloud AI home Qualcomm
+#    Cloud AI SDK download Qualcomm Cloud AI API reference User Guide OCP
+#    Microscaling Formats (MX) Specification efficient-transformers Welcome
+#    to Efficient-Transformers Documentation!"
+# 250 chars of pure sidebar/product nav, zero prose; the >=90 length trust
+# and the digits-free technical-signal gate both let it through.
+_IL133_LEAK = (
+    "API, Infinite Possibilities Reference Qualcomm Cloud AI home "
+    "Qualcomm Cloud AI SDK download Qualcomm Cloud AI API reference User "
+    "Guide OCP Microscaling Formats (MX) Specification efficient-transformers "
+    "Welcome to Efficient-Transformers Documentation!"
+)
+# Counter-cases: each carries at most ONE of the welded tokens pair. These are
+# the phrases that made the bare forms unusable.
+_IL133_CONTROLS = [
+    "The API reference for the agent runtime lists every tool and its parameters.",
+    "Infinite possibilities in agent design come from composing narrow tools.",
+    "Welcome to Efficient-Transformers Documentation, the reference for CPU inference.",
+    "Efficient-Transformers documentation covers quantization recipes for CPU-only inference.",
+    "Qualcomm Cloud AI SDK download is documented on the vendor portal, with release notes per version.",
+    "The OCP Microscaling Formats (MX) specification defines block-scaled FP8 and FP4 encodings for inference.",
+]
+
+
+def test_docsite_product_nav_weld_rejected_on_both_paths():
+    import internet_learner as IL
+    import buffer_store as BS
+    assert IL._is_junk(_IL133_LEAK), _IL133_LEAK
+    assert BS.is_junk(_IL133_LEAK), _IL133_LEAK
+    assert IL._clean_insight(_IL133_LEAK) == ""
+
+
+def test_docsite_product_nav_weld_prose_controls_survive_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL133_CONTROLS:
+        assert not IL._is_junk(ctl), ctl
+        assert not BS.is_junk(ctl), ctl

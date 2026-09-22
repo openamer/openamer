@@ -421,6 +421,22 @@ _NAV_CHROME = (
     "show original previous slide",
     "previous slide next slide",
     "add free huggingface demo",
+    # Doc-site product nav welded to a vendor SDK label (live 22.09.26:
+    # cycle_d_docs stored "API, Infinite Possibilities Reference Qualcomm
+    # Cloud AI home Qualcomm Cloud AI SDK download Qualcomm Cloud AI API
+    # reference User Guide OCP Microscaling Formats (MX) Specification
+    # efficient-transformers Welcome to Efficient-Transformers
+    # Documentation!" -- 250 chars of pure sidebar/product nav, zero prose.
+    # Same markers as internet_learner._JUNK_RE; keep both files in sync.
+    # Measured over the live 245-row buffer: 1 hit each and that hit IS the
+    # leaking row -> 0 real-prose FPs. The bare forms "api reference" and
+    # "infinite possibilities" were MEASURED-AND-REJECTED (1 hostile control
+    # each), so both markers are two-token WELDS. "sdk download" was likewise
+    # rejected (hostile control: "Qualcomm Cloud AI SDK download is documented
+    # on the vendor portal ...").
+    "cloud ai api reference",
+    "infinite possibilities reference",
+    "efficient-transformers welcome to efficient-transformers",
 )
 
 # A GitHub releases-page ROW shape: a release LABEL followed by the literal
