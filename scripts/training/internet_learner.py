@@ -4156,12 +4156,72 @@ def _is_serp_title_snippet_repeat(text):
         return True
     return _serp_repeated_run(t)
 
+_ARTICLE_BYLINE_AFFORDANCE_RE = re.compile(
+    r"(?:\bKey Takeaways\b)"
+    r"|(?:\bWritten by\s+[A-Z])"
+    r"|(?:\bReply to this comment\b)"
+    r"|(?:\bPosted by\s+[A-Z][\w.\-]*\s*\|)"
+    r"|(?:\b\d{1,3} min read\b)"
+)
+_ARTICLE_DATELINE_RE = re.compile(
+    r"(?:\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+"
+    r"\d{1,2},?\s+20\d\d\b)"
+    r"|(?:\b20\d\d-\d{2}-\d{2}\b)"
+    r"|(?:\b\d{1,2}\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)"
+    r"[a-z]*\s+20\d\d\b)"
+)
+
+
+def _is_article_byline_chrome(text):
+    """True for an article's own byline/dateline header welded to its lede
+    (class 142).
+
+    Live 22.09.26 (cycle_a_technews): the stored insight was
+      "Written by Gus Mallett Published on April 29, 2026 Key Takeaways
+       PocketOS, a company that designs software for car rental businesses,
+       had its entire database mistakenly wiped by an AI agent ."
+    -- a page byline + dateline + "Key Takeaways" affordance with the lede
+    welded on.  4 of 276 online_buffer rows carried this class; the dates
+    and the numeral in "11 min read" satisfy the technical-signal gate, so
+    the VOICE/affordance is the only reliable discriminator.
+
+    ``_is_byline_published_article_header`` (class 40) misses every shape
+    here: it requires a LEADING byline, while these pages lead with a
+    headline ("NVIDIA RTX PRO 5500 Blackwell: ... 11 min read Sep 15,
+    2026"), with the date ("April 29, 2026 Key Takeaways ..."), or with a
+    comment affordance ("OpenClaw Like Like Posted by kim Bruning |
+    February 13, 2026, 5:05 pm Reply to this comment ps.").
+
+    Discriminator = an article affordance AND a full dateline, BOTH inside
+    the first 200 chars (header region), so prose that merely credits an
+    author or cites a date mid-text is untouched.  The affordance regex is
+    CASE-SENSITIVE on purpose: these are rendered page labels, and the
+    case-insensitive form (measured 22.09.26) fired on two genuine prose
+    controls -- "published on April 29, 2026 and updated later that day"
+    and "Published on June 17, 2025 / 5:28 PM EDT and later revised".
+
+    Keyed on the voice/affordance, never on the topic: a genuine
+    "TLS 1.3 removes a handshake round trip" insight still passes
+    (counter-case in the test corpus).  Measured 22.09.26: 5/5 known leaks
+    (incl. "min read" / "Key Takeaways" / "Reply to this comment" shapes);
+    0/5 natural prose controls; 0/1,301 test-corpus string literals that
+    are not chrome; 0/3,064 longterm_episodes; 83/8,836 buffer_junk rows
+    (already-refused chrome).
+    """
+    head = (text or "")[:200]
+    return (bool(_ARTICLE_BYLINE_AFFORDANCE_RE.search(head))
+            and bool(_ARTICLE_DATELINE_RE.search(head)))
+
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
     if len(t) < 25:
         return True
     if _looks_binary(t):
+        return True
+    # an article's own byline + dateline header welded to its lede (class 142, 22.09.26)
+    if _is_article_byline_chrome(t):
         return True
     # a SERP run welded to a docs site's CTA (class 53, 18.09.26)
     if _is_docs_cta_serp_run(t):

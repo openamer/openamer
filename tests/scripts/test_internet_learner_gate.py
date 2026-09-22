@@ -6100,3 +6100,56 @@ def test_serp_title_snippet_repeat_controls_survive_both_gates():
     for ctl in _IL141_CONTROLS:
         assert not IL._is_junk(ctl), ctl
         assert not BS.is_junk(ctl), ctl
+
+_IL142_LEAKS = [
+    # the live 22.09.26 leak: article byline + dateline + "Key Takeaways"
+    "Written by Gus Mallett Published on April 29, 2026 Key Takeaways PocketOS, "
+    "a company that designs software for car rental businesses, had its entire "
+    "database mistakenly wiped by an AI agent .",
+    # a "min read" blog header leading with the headline
+    "NVIDIA RTX PRO 5500 Blackwell: What Actually Fits in 84GB for Local LLMs "
+    "(2026) 11 min read Sep 15, 2026 NVIDIA quietly dropped the memory footprint.",
+    # a forum byline + piped dateline + comment affordance
+    "OpenClaw Like Like Posted by kim Bruning | February 13, 2026, 5:05 pm "
+    "Reply to this comment ps.",
+    # a CVE advisory card: dateline + Key Takeaways + lede
+    "CVE-2026-58138: Orkes Conductor RCE Threatens Agentic Workflows 2026-09-20 "
+    "Key Takeaways CVE-2026-58138 is a critical unauthenticated RCE.",
+    # a byline-first header
+    "Written by Christian Gleitze | Published on June 11, 2026 | 5 min read.",
+]
+
+_IL142_CONTROLS = [
+    # prose that merely reports a publication act (case-insensitive form fired
+    # on this one before the affordance regex was made case-sensitive)
+    "The photo credit reads Getty Images; the article it illustrates was "
+    "published on April 29, 2026 and updated later that day.",
+    "Published on June 17, 2025 / 5:28 PM EDT and later revised, the piece "
+    "covers agentic AI.",
+    # a genuine technical insight carrying a real dateline and a number -- the
+    # topic key is what the gate must NOT react to
+    "TLS 1.3 removes a handshake round trip, cutting connection latency by "
+    "~33% on high-RTT links, as measured on Sep 15, 2026.",
+    # an affordance word in real prose, with no article header shape
+    "vLLM prefill throughput improved 40% after enabling prefix caching with "
+    "--max-model-len 32768 in the 2.12.0 release.",
+    "The paper, published in 2026, shows quantization to 2 bits keeps "
+    "perplexity within 5% of fp16.",
+]
+
+
+def test_article_byline_chrome_gated_on_both_paths():
+    import internet_learner as IL
+    import buffer_store as BS
+    for leak in _IL142_LEAKS:
+        assert IL._is_junk(leak), leak
+        assert IL._clean_insight(leak) == "", leak
+        assert BS.is_junk(leak), leak
+
+
+def test_article_byline_chrome_controls_survive_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL142_CONTROLS:
+        assert not IL._is_junk(ctl), ctl
+        assert not BS.is_junk(ctl), ctl

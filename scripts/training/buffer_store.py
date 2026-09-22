@@ -4335,6 +4335,38 @@ def _is_serp_title_snippet_repeat(text):
         return True
     return _serp_repeated_run(t)
 
+_ARTICLE_BYLINE_AFFORDANCE_RE = _re.compile(
+    r"(?:\bKey Takeaways\b)"
+    r"|(?:\bWritten by\s+[A-Z])"
+    r"|(?:\bReply to this comment\b)"
+    r"|(?:\bPosted by\s+[A-Z][\w.\-]*\s*\|)"
+    r"|(?:\b\d{1,3} min read\b)"
+)
+_ARTICLE_DATELINE_RE = _re.compile(
+    r"(?:\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+"
+    r"\d{1,2},?\s+20\d\d\b)"
+    r"|(?:\b20\d\d-\d{2}-\d{2}\b)"
+    r"|(?:\b\d{1,2}\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)"
+    r"[a-z]*\s+20\d\d\b)"
+)
+
+
+def _is_article_byline_chrome(text):
+    """True for an article's own byline/dateline header welded to its lede
+    (class 142, 22.09.26).  Same predicate as
+    `internet_learner._is_article_byline_chrome` -- both gates must refuse
+    this class or the cycle spends itself on a write the writer drops.
+
+    An article affordance (case-SENSITIVE: these are rendered page labels)
+    AND a full dateline, both inside the first 200 chars.  The
+    case-sensitive form is required: the case-insensitive variant fired on
+    prose such as "published on April 29, 2026 and updated later that day".
+    """
+    head = (text or "")[:200]
+    return (bool(_ARTICLE_BYLINE_AFFORDANCE_RE.search(head))
+            and bool(_ARTICLE_DATELINE_RE.search(head)))
+
+
 def is_junk(text):
     """True when a completion is not trainable signal.
 
@@ -4366,6 +4398,8 @@ def is_junk(text):
     if _is_binary_noise(s):
         return True
     if _is_nav_chrome(s):
+        return True
+    if _is_article_byline_chrome(s):
         return True
     if _is_gh_releases_row(s):
         return True
