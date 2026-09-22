@@ -158,5 +158,19 @@ if __name__ == "__main__":
         print("\n⚠️ 1.000/1.000 = Zirkelschluss, NICHT gelernt. Label ist identisch")
         print("   mit 'tool_name == 0' (alle assistant-Messages haben tool_name=NULL).")
         print("   Aussagekräftig wäre ein Ziel, das NICHT aus den Eingaben folgt.")
+        # The hypothesis below was MEASURED on 2026-09-23 by
+        # scripts/measure_nonderivable_goal.py (temporal 70/30 split over ~4.5k
+        # samples of state.db, target = role of the NEXT message — a label that is
+        # not one of the inputs). Result over 4 runs x 3 configurations: the
+        # held-out accuracy NEVER exceeded the majority-class baseline (edges
+        # observed: +0.000, +0.000, -0.165, -0.222, -0.035, -0.001). The exact
+        # figure moves because state.db grows between runs, so only the stable
+        # direction is asserted here. The net learns nothing on that target
+        # either — the bottleneck is the DATA, not the training loop.
+        print("   gemessen 2026-09-23 (scripts/measure_nonderivable_goal.py):")
+        print("   Ziel 'Rolle der NÄCHSTEN Message', Temporal-Split 70/30, n≈4.5k →")
+        print("   Held-out-Accuracy überschritt die Mehrheitsklassen-Baseline in")
+        print("   KEINEM von 4 Runs (bester Edge +0.000). Der Engpass ist die")
+        print("   DATENLAGE, nicht die Trainingsschleife.")
     else:
         print("\n✅ Training abgeschlossen — oa_ripple hat gelernt")
