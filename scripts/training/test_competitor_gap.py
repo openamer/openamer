@@ -82,9 +82,12 @@ def test_gap_is_derived_not_hardcoded():
         b = kta.experiment_competitor_gap()
 
         assert a["identified_gap"] != b["identified_gap"], (a, b)
-        # lexicon is ordered — 'modular' wins over the later 'sdk' token
+        # token selection became specificity-based on 17.09.26 (longest token
+        # wins, e6e94a191), so 'persistent memory' (17 chars) now outranks
+        # 'sandbox' (7). The contract this test pins is unchanged: two different
+        # signals derive two different, non-hardcoded gaps.
         assert "modular tool packaging" in a["identified_gap"], a["identified_gap"]
-        assert "sandbox" in b["identified_gap"].lower(), b["identified_gap"]
+        assert "persistent memory" in b["identified_gap"].lower(), b["identified_gap"]
         # the canned string from the buggy version must be gone
         assert "modular SDK design — our tool_server.py is monolithic" not in a["identified_gap"]
     finally:
@@ -155,7 +158,14 @@ def test_real_capability_snippet_maps_instead_of_being_called_junk():
         r = kta.experiment_competitor_gap()
         assert r["measurable"] is True, r
         assert "NOT mappable" not in r["result"], r["result"]
-        assert "parallel multi-agent execution" in r["identified_gap"], r["identified_gap"]
+        # Measured token ranking for this snippet under the specificity rule
+        # (17.09.26, e6e94a191): 'code correctness' 16 > 'executable spec' 15 >
+        # 'parallel agent' 14 > 'validate code' 13 > 'unit test' 9. The longest
+        # match wins, so this signal maps to the code-conformance capability.
+        # The test's contract is that a genuine capability description resolves
+        # to *a* capability rather than being called junk; the longest-match
+        # rule is what makes that deterministic.
+        assert "automated code-conformance check" in r["identified_gap"], r["identified_gap"]
     finally:
         kta.T = old
 
