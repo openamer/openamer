@@ -61,6 +61,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
         with:
+          # Build the installer from the commit the release job just tagged,
+          # not from the trigger-time main.  Without this the checkout resolves
+          # to github.sha (main as of the 00:30 UTC trigger), i.e. BEFORE the
+          # version bump + tag exist - so every daily EXE ships one release
+          # behind and never carries the same day's fixes.
+          ref: ${{ needs.daily-release.outputs.tag || github.sha }}
           fetch-depth: 0
 
       - name: Set up Node
