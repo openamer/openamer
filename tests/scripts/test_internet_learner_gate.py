@@ -5617,3 +5617,79 @@ def test_short_page_text_never_triggers_the_index_rule():
     snip = ("First item 2 hours ago and second item 3 hours ago, both from the "
             "same aggregator listing.")
     assert not IL._is_news_index_page(snip), snip
+
+
+# class 135 (22.09.26): an arXiv/new-listing row's submitter WELD. Live: the
+# security cycle stored a listing page row -- title, author count, submitter
+# ordinal, submitter HANDLE -- as knowledge. The page is an INDEX, not content.
+_IL135_LEAK = (
+    "VLMs to Robotic Control \u00b7 9 authors 1 Submitted by Williams07 9 One to More, "
+    "More to One: Category-Aware Iterative Expert Training for Software Engineering "
+    "Agents Logics-MLLM 2 Submitted by paulsmith0217 4 Why Do Video Diffusion Models "
+    "Violate Physics?"
+)
+_IL135_CONTROLS = [
+    "The paper has 9 authors and was submitted by researchers at DeepMind in 2024.",
+    "Submitted by the maintainers, the PR adds 4 authors to the contributor list.",
+    "Authors 9 submitted by reviewers: that is the peer-review flow, not a listing.",
+    "arXiv lists 9 authors, 1 submitter and a title per paper on the new-listing page.",
+    "The listing shows authors, a submitter handle and the submission date.",
+]
+
+
+def test_arxiv_submitter_weld_rejected_on_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    assert IL._is_arxiv_submitter_run(_IL135_LEAK), _IL135_LEAK
+    assert IL._is_junk(_IL135_LEAK), _IL135_LEAK
+    assert BS._is_arxiv_submitter_run(_IL135_LEAK), _IL135_LEAK
+    assert BS.is_junk(_IL135_LEAK), _IL135_LEAK
+    assert IL._clean_insight(_IL135_LEAK) == ""
+
+
+def test_arxiv_submitter_weld_prose_controls_survive_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL135_CONTROLS:
+        assert not IL._is_junk(ctl), ctl
+        assert not BS.is_junk(ctl), ctl
+
+
+# class 136 (22.09.26): an aggregator card header (date + category + read-time
+# badge) welded onto the article's own title and lede. The badge ALONE is not
+# the call -- the TitleCase continuation (the article title) is required, which
+# is what keeps a sentence that merely QUOTES such a badge learnable.
+_IL136_LEAK = (
+    "Sep 13, 2026 Read AI Agents 9 min OpenAI Agents API: Managed Infrastructure "
+    "for AI Agents OpenAI launched the Agents API in public beta, putting the Codex "
+    "agent harness behind one managed API call for building production AI agents."
+)
+_IL136_CONTROLS = [
+    "Sep 13, 2026 Read the OWASP report; it documents the top 10 LLM risks for 2026.",
+    "On Sep 13, 2026 Read the docs for 5 min before filing the bug; it saves time.",
+    "Sep 13, 2026 Read AI Agents 9 min is the card badge, not a sentence.",
+    "Sep 13, 2026 Read AI Agents 9 min and then decide whether the API fits.",
+    "Mar 23, 2026 Read OpenClaw vs Other AI Agent Frameworks in 15 min for the TLDR.",
+    "The article is a 9 min read and covers the Agents API harness in depth.",
+    "In 2024 Read AI Agents covered 9 minutes of context on the harness.",
+    "An aggregator renders each row as a date, a title, a category and a read time.",
+]
+
+
+def test_aggregator_card_header_weld_rejected_on_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    assert IL._is_aggregator_card_header_weld(_IL136_LEAK), _IL136_LEAK
+    assert IL._is_junk(_IL136_LEAK), _IL136_LEAK
+    assert BS._is_aggregator_card_header_weld(_IL136_LEAK), _IL136_LEAK
+    assert BS.is_junk(_IL136_LEAK), _IL136_LEAK
+    assert IL._clean_insight(_IL136_LEAK) == ""
+
+
+def test_aggregator_card_header_weld_controls_survive_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL136_CONTROLS:
+        assert not IL._is_aggregator_card_header_weld(ctl), ctl
+        assert not IL._is_junk(ctl), ctl
+        assert not BS.is_junk(ctl), ctl

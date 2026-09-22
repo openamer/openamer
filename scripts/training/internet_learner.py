@@ -3810,6 +3810,62 @@ def _is_credit_byline_run(text):
                 and _CREDIT_CLOCK_RE.search(t))
 
 
+# A paper/arXiv LISTING submitter run (class 135, 22.09.26). Live: the security
+# cycle STORED, verbatim from online_buffer.jsonl,
+#   "VLMs to Robotic Control . 9 authors 1 Submitted by Williams07 9 One to
+#    More, More to One: Category-Aware Iterative Expert Training for Software
+#    Engineering Agents Logics-MLLM 2 Submitted by paulsmith0217 4 Why Do Video
+#    Diffusion Models Violate Physics?"
+# - an arXiv new-listing page: each row is a title, an author count, a submitter
+# ordinal and a submitter HANDLE. Not knowledge, and the page itself is an index.
+#
+# The discriminator is the WELD `<N> authors <N> Submitted by`, which is what the
+# extractor produces when the listing's row separators are lost. Prose never
+# emits it: a real sentence says "9 authors and was submitted by ..." (the word
+# `authors` is NOT immediately followed by a bare digit) or "Authors 9 submitted
+# by reviewers ..." (no `authors <N>` weld). Measured 22.09.26 over 14,515
+# pair-rows (online_buffer, buffer_junk, kta_log, longterm_episodes, world_model,
+# improvements, sft_openamer, archives): 2 hits and BOTH are the leaking row
+# -> 0 FPs on a 5-case hostile battery, 0 gate-test literals.
+_ARXIV_SUBMITTER_WELD_RE = re.compile(
+    r"\b\d+\s+authors?\s+\d+\s*submitted\s+by\b", re.I)
+
+
+def _is_arxiv_submitter_run(text):
+    """True when `text` is an arXiv listing row's submitter weld (class 135)."""
+    return bool(_ARXIV_SUBMITTER_WELD_RE.search(text or ""))
+
+
+# An aggregator card's date + read-time badge welded to the article TITLE
+# (class 136, 22.09.26). Live: the technews cycle STORED
+#   "Sep 13, 2026 Read AI Agents 9 min OpenAI Agents API: Managed Infrastructure
+#    for AI Agents OpenAI launched the Agents API in public beta, ..."
+# - a blog aggregator's card header (date stamp, category label, read-time badge)
+# welded onto the article's own title and lede. 184 chars, so the >=90 "long
+# prose" trust applied; the digits fed the technical-signal gate and no existing
+# helper matched (`_is_readtime_card_widget` keys on the DOUBLED unit
+# `min min read`, which this renderer does not emit).
+#
+# Two independent parts are required: a `<Month D, YYYY> Read <TitleCase label>
+# <N> min` badge run AND a TitleCase word immediately after it (the article
+# title). The continuation test is the discriminator -- it is the same
+# structural idea class 52 uses, and it is what keeps a sentence that merely
+# QUOTES such a badge learnable ("... Read AI Agents 9 min is the card badge").
+# Measured 22.09.26 over 14,515 pair-rows: 16 hits, ALL the leaking row (2 in
+# the buffer, 13 audit echoes, 1 kta echo) -> 0 FPs on a 4-case hostile battery,
+# 0 gate-test literals.
+_AGG_MONTH_RE = r"(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)"
+_AGG_LABEL_RE = r"[A-Z][A-Za-z&/]*(?:\s+[A-Z][A-Za-z&/]*){0,3}"
+_AGGREGATOR_CARD_HEADER_RE = re.compile(
+    r"\b" + _AGG_MONTH_RE + r"\s+\d{1,2},\s*\d{4}\s+Read\s+"
+    + _AGG_LABEL_RE + r"\s+\d{1,3}\s*min\s+(?=[A-Z])")
+
+
+def _is_aggregator_card_header_weld(text):
+    """True when an aggregator card header is welded onto the article (136)."""
+    return bool(_AGGREGATOR_CARD_HEADER_RE.search(text or ""))
+
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
@@ -3956,6 +4012,12 @@ def _is_junk(text):
         return True
     # a news photo-credit strip + byline + dateline (class 132, 22.09.26)
     if _is_credit_byline_run(t):
+        return True
+# a paper/arXiv listing row's submitter weld (class 135, 22.09.26)
+    if _is_arxiv_submitter_run(t):
+        return True
+# an aggregator card header welded to the article title (class 136, 22.09.26)
+    if _is_aggregator_card_header_weld(t):
         return True
     # a page-meta listing widget (same narrow rule as
     # buffer_store._is_sidebar_listing_chrome)
