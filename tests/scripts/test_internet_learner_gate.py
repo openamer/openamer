@@ -6258,3 +6258,54 @@ def test_spelled_read_time_controls_survive_both_gates():
         assert not IL._is_junk(ctl), ctl
         assert not BS.is_junk(ctl), ctl
         assert IL._clean_insight(ctl), ctl
+
+
+# class 148 (22.09.26): the learner's OWN bare "Need ..." generation plan.
+# `internet_learner._INSTRUCTION_OPENER_RE` refused these at extraction time, so
+# `--once` reported "shallow + deep read both gated" -- yet the WRITER gate had
+# no counterpart and 12 of them were STORED. The asymmetry is the bug: a row the
+# extractor refuses must never reach the buffer. Measured: 12/300 buffer hits,
+# all 12 the leak; 0/3,064 `longterm_episodes`; 0/1,278 asserted-clean literals.
+_IL148_LEAKS = (
+    "Need maybe answer: no single property; safety is multi-layered.",
+    "Need address inner alignment, outer alignment, deceptive alignment.",
+    "Need maybe structure: - No single property guarantees safety.",
+    "Need maybe discuss distributed AI systems = training/inference across many nodes.",
+    "Need structure: intro: memory consolidation is offline processing.",
+    "Need likely from AI safety.",
+    "Need maybe mention no known complete solution.",
+    "Need avoid Goodhart, specification gaming.",
+    "Need root cause analysis: controlled experiments, change management.",
+    "Need maybe",
+    "Need likely comprehensive.",
+    "Need likely discuss distributed AI systems: training/inference across clusters.",
+)
+
+_IL148_CONTROLS = (
+    "The plan needs three properties: determinism, bounded latency and replayability.",
+    "You need to structure the schema so the migration stays backward compatible.",
+    "The router needs a fallback: when the GPU worker is down, the CPU path answers.",
+    "Schedulers need to avoid starvation, so the queue uses weighted fair sharing.",
+    "The compiler needs to mention which pass removed the dead branch.",
+    "Distributed systems need fault tolerance; Raft replicates the log across five nodes.",
+    "The shared underlying pattern is a closed-loop feedback system between agent and environment.",
+)
+
+
+def test_need_plan_echo_gated_on_both_paths():
+    """A bare imperative "Need ..." echo is refused by BOTH gates."""
+    import internet_learner as IL
+    import buffer_store as BS
+    for leak in _IL148_LEAKS:
+        assert IL._INSTRUCTION_OPENER_RE.search(leak), leak
+        assert BS._is_need_plan_echo(leak), leak
+        assert BS.is_junk(leak), leak
+
+
+def test_need_plan_echo_controls_survive_both_gates():
+    """Real prose that embeds a plan verb (never STARTS with it) stays learnable."""
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL148_CONTROLS:
+        assert not BS._is_need_plan_echo(ctl), ctl
+        assert not IL._INSTRUCTION_OPENER_RE.search(ctl), ctl

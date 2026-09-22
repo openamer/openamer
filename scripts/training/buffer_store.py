@@ -1785,6 +1785,44 @@ def _is_generated_plan_echo_fragment(text):
     """
     return bool(_PROMPT_PLAN_ECHO_RE.search(text or ""))
 
+# class 148 markers (live 22.09.26) -- see _is_need_plan_echo.
+# A BARE imperative plan voice: the model answers its own question with what
+# it intends to WRITE ("Need maybe structure: ..."), not world knowledge.
+# START-anchored so the same words inline in real prose stay learnable
+# ("We need to reduce peak memory ...", "The plan needs three properties ...").
+_NEED_PLAN_ECHO_RE = _re.compile(r"^\s*\**\s*need\b", _re.IGNORECASE)
+_NEED_PLAN_ECHO_MAX = 300
+
+
+def _is_need_plan_echo(text):
+    """True when `text` is the learner's own generation PLAN, not an answer.
+
+    Live 22.09.26 (class 148): the reasoning-loop cycles stored 12 completions
+    that open with a dangling plan verb --
+
+        Need maybe structure: intro: memory consolidation is offline ...
+        Need address inner alignment, outer alignment, deceptive alignment ...
+        Need likely comprehensive.
+
+    `internet_learner._INSTRUCTION_OPENER_RE` already refuses these at
+    extraction time (same anchored `need\b` shape), which is why `--once`
+    reports "shallow + deep read both gated" -- but the WRITER gate had no
+    counterpart, so they were STORED. The asymmetry, not the shape, is the
+    bug: a row the extractor refuses must never reach the buffer.
+
+    The discriminator is the ANCHORED opener plus the length cap. Real prose
+    embeds the verb ("We need to reduce peak memory", "The plan needs three
+    properties") and never STARTS with it; the echoes are all <= 300 chars.
+    Measured: 12/300 buffer hits and all 12 ARE the leak -> 0 collateral,
+    0/3,064 `longterm_episodes`, 0/1,278 asserted-clean gate-test literals.
+    """
+    if text is None:
+        return False
+    s = text.strip()
+    if not s or len(s) > _NEED_PLAN_ECHO_MAX:
+        return False
+    return bool(_NEED_PLAN_ECHO_RE.search(s))
+
 # class 51 markers (live 18.09.26) -- see _is_news_byline_share_header.
 _BYLINE_WEEKDAY_SHARE_RE = _re.compile(
     r"\bBy\s+[A-Z][a-z]+\s+[A-Z][a-z]+\s+\w+day,[\s\S]{0,40}?\bShare\b")
@@ -3767,6 +3805,9 @@ def _is_nav_chrome(text):
         return True
     if _is_generated_plan_echo_fragment(text):
 
+        return True
+    # the learner's own bare "Need ..." generation PLAN (class 148, 22.09.26)
+    if _is_need_plan_echo(text):
         return True
 
     # a security-advisory listing row / headline stub / fact box / own plan
