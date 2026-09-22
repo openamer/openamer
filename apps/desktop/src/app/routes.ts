@@ -164,6 +164,21 @@ export function primaryRouteSelectedSessionId(pathname: string, storeSelectedSes
   return routeSessionId(pathname) ?? storeSelectedSessionId
 }
 
+/**
+ * True when a (possibly null) remembered route points at exactly this session.
+ *
+ * The remembered route is replayed verbatim on a cold start, so a route whose
+ * session no longer exists strands the window on repeated 404s — it has to be
+ * retired as soon as we learn that session's resume is exhausted.
+ */
+export function routeTargetsSession(route: null | string, sessionId: null | string): boolean {
+  if (!route || !sessionId) {
+    return false
+  }
+
+  return routeSessionId(route) === sessionId
+}
+
 export function sessionRoute(sessionId: string): string {
   return `${SESSION_ROUTE_PREFIX}${encodeURIComponent(sessionId)}`
 }
