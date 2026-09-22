@@ -267,6 +267,17 @@ def experiment_competitor_gap():
         # matched by its MEASUREMENT noun, never a generic word like `framework`
         # (3/33 rows = real mis-maps onto unrelated framework prose).
         ("benchmark", "comparative evaluation harness / multi-framework benchmark"),
+        # Grown from a REAL signal (22.09.26): the GAIA row
+        #   "GAIA - Open-source framework for building AI agents that run on
+        #    local hardware"
+        # is a capability description (on-device runtime), and the consumer kept
+        # reporting it as an unmappable signal. Measured precision over the 47
+        # competitor rows this function actually reads: `local hardware` matches
+        # 1 row and that row IS this signal -> 0 mis-maps. Deliberately the
+        # two-word phrase, never `local` (6/47 rows -> real mis-maps onto "local
+        # runtime", "local LLMs" prose) and never `local model` (0/47 rows, i.e.
+        # a token the corpus does not support).
+        ("local hardware", "on-device / local-hardware agent runtime"),
     )
     low_signal = signal.lower()
     # Longest (most specific) matching token wins: a generic token declared
