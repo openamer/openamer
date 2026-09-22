@@ -1149,6 +1149,16 @@ class Comment:
     body: str
     created_at: int
 
+    @classmethod
+    def from_row(cls, row: sqlite3.Row) -> "Comment":
+        return cls(
+            id=int(row["id"]),
+            task_id=row["task_id"],
+            author=row["author"],
+            body=row["body"],
+            created_at=int(row["created_at"]),
+        )
+
 
 @dataclass
 class Attachment:
@@ -1172,6 +1182,29 @@ class Event:
     payload: Optional[dict]
     created_at: int
     run_id: Optional[int] = None
+
+    @classmethod
+    def from_row(cls, row: sqlite3.Row) -> "Event":
+        """Hydrate from a ``task_events`` row.
+
+        ``payload`` is stored with ``json.dumps`` by ``_append_event``, so it
+        comes back as text and has to be parsed -- same shape as
+        ``Run.from_row`` does for ``metadata``. A malformed blob yields None
+        rather than raising: event history is diagnostic, and one bad row must
+        not break ``kanban_db_notify``'s read path.
+        """
+        try:
+            payload = json.loads(row["payload"]) if row["payload"] else None
+        except Exception:
+            payload = None
+        return cls(
+            id=int(row["id"]),
+            task_id=row["task_id"],
+            kind=row["kind"],
+            payload=payload,
+            created_at=int(row["created_at"]),
+            run_id=(int(row["run_id"]) if row["run_id"] is not None else None),
+        )
 
 
 # ---------------------------------------------------------------------------
