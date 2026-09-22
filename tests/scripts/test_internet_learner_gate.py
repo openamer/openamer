@@ -5693,3 +5693,85 @@ def test_aggregator_card_header_weld_controls_survive_both_gates():
         assert not IL._is_aggregator_card_header_weld(ctl), ctl
         assert not IL._is_junk(ctl), ctl
         assert not BS.is_junk(ctl), ctl
+
+
+# class 137 (22.09.26): a docs site's breadcrumb run welded to a REPEATED
+# category+title prefix. The crumb run alone is legitimate prose (4 hostile
+# controls start "Home / <section> / ..."); only the weld with the restated
+# opening four words is chrome.
+_IL137_LEAK = (
+    "Home / AI Guides / 12 Best Open-Source AI Agent Frameworks (2026) \U0001f4d6 "
+    "Guide 12 Best Open-Source AI Agent Frameworks (2026) Compare 12 open-source "
+    "AI agent frameworks for production workflows, multi-agent systems, Python "
+    "services, TypeScript apps and RAG."
+)
+_IL137_CONTROLS = [
+    "Home / Docs / Getting started with the agent runtime explains how to configure providers.",
+    "Home / AI Guides / A practical introduction to retrieval augmented generation for engineers.",
+    "Home / Blog / Understanding why language models hallucinate in long contexts.",
+    "Home / Learn / How to detect hallucinations in LLM outputs with hidden-state probes.",
+    "Home / Guides / Building a production multi-agent system with Python and TypeScript.",
+    "Home > Products > The enterprise data platform unifies ingestion, storage and query in one place.",
+    "Home / AI Guides / Quantization cuts memory use; the guide walks through four techniques step by step.",
+]
+
+
+def test_breadcrumb_title_repeat_gated_on_both_paths():
+    import internet_learner as IL
+    import buffer_store as BS
+    assert IL._is_breadcrumb_title_repeat(_IL137_LEAK), _IL137_LEAK
+    assert IL._is_junk(_IL137_LEAK), _IL137_LEAK
+    assert BS._is_breadcrumb_title_repeat(_IL137_LEAK), _IL137_LEAK
+    assert BS.is_junk(_IL137_LEAK), _IL137_LEAK
+    assert IL._clean_insight(_IL137_LEAK) == ""
+
+
+def test_breadcrumb_title_repeat_prose_controls_survive_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL137_CONTROLS:
+        assert not IL._is_breadcrumb_title_repeat(ctl), ctl
+        assert not IL._is_junk(ctl), ctl
+        assert not BS.is_junk(ctl), ctl
+
+
+# class 35 widening (22.09.26): `_FULL_DATE_RE` accepted only FULL month names,
+# so the live leak `Sep 24, 2025 ... Sep 18, 2025 ... ...` (a date-stamped
+# headline listing) read 0 hits under class 35 and passed BOTH gates. The
+# abbreviated form is now accepted; the Title-Case density test is unchanged,
+# which is what keeps ordinary prose that merely CITES two dates learnable.
+_IL35_LEAK = (
+    "Sep 24, 2025 Deep Dive into Context Engineering for Agents Sep 18, 2025 "
+    "Architectures for Multi-Agent Systems Sep 8, 2025 Bringing AI Observability "
+    "Behind the Firewall: Deploying On-Premise AI Sep 8, 2025 Understanding Why "
+    "Language Models Hallucinate?"
+)
+_IL35_CONTROLS = [
+    "The runtime was updated on Sep 24, 2025 and again on Sep 18, 2025 to fix the parser.",
+    "We shipped Sep 24, 2025 builds and compared them with Sep 18, 2025 builds across three machines.",
+    "Our release notes for Sep 24, 2025 mention streaming; the Sep 18, 2025 notes mention pagination.",
+    "On Jan 5, 2026 the team froze the schema, and on Feb 9, 2026 they migrated it.",
+    "GPT-4 (2023) and GPT-5 (2024) were compared on Jan 5, 2026 and Feb 9, 2026 harnesses.",
+    "Twelve open-source frameworks were benchmarked on Sep 24, 2025 and Sep 18, 2025.",
+    "...posts under headings like Insights Jul 17, 2026 and News May 29, 2026, but the agent should parse the article body.",
+]
+
+
+def test_date_heading_listing_accepts_abbreviated_months():
+    import internet_learner as IL
+    assert IL._FULL_DATE_RE.findall("Sep 24, 2025 and Sep 18, 2025"), "abbrev months must match"
+    assert IL._FULL_DATE_RE.findall("Sept 8, 2025 and Jan. 5, 2026"), "Sept/Jan. forms must match"
+    assert not IL._FULL_DATE_RE.findall("The builds were Jan 5 and Feb of 2026"), "must not over-match"
+    assert IL._is_date_heading_listing(_IL35_LEAK), _IL35_LEAK
+
+
+def test_date_heading_listing_abbrev_leak_gated_on_both_paths():
+    import internet_learner as IL
+    import buffer_store as BS
+    assert IL._is_junk(_IL35_LEAK), _IL35_LEAK
+    assert BS.is_junk(_IL35_LEAK), _IL35_LEAK
+    assert IL._clean_insight(_IL35_LEAK) == ""
+    for ctl in _IL35_CONTROLS:
+        assert not IL._is_date_heading_listing(ctl), ctl
+        assert not IL._is_junk(ctl), ctl
+        assert not BS.is_junk(ctl), ctl

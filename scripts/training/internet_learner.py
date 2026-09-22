@@ -1403,9 +1403,15 @@ def _is_relative_time_nav_chain(text):
 
 
 # class 35 markers (live 17.09.26) -- see _is_date_heading_listing.
+# class 137 (22.09.26) widened this from FULL month names to the
+# abbreviated form too: the live leak `Sep 24, 2025 ... Sep 18, 2025 ...`
+# was invisible to class 35, which then read 0 hits on it. Measured: the
+# widened form fires on that row and stays 0/3,059 longterm_episodes and
+# 0/12 hostile prose counter-cases. Single call site, 2 dates minimum.
 _FULL_DATE_RE = re.compile(
     r"\b(?:January|February|March|April|May|June|July|August|September|"
-    r"October|November|December)\s+\d{1,2},\s+\d{4}\b")
+    r"October|November|December|Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Sept|Oct|"
+    r"Nov|Dec)\.?\s+\d{1,2},\s+\d{4}\b")
 _TITLE_WORD_RE = re.compile(r"[A-Za-z][A-Za-z'./-]*")
 
 
@@ -3866,6 +3872,42 @@ def _is_aggregator_card_header_weld(text):
     return bool(_AGGREGATOR_CARD_HEADER_RE.search(text or ""))
 
 
+# class 137 (live 22.09.26): a docs site's breadcrumb run welded to a
+# REPEATED category+title prefix, stored as the answer:
+#   "Home / AI Guides / 12 Best Open-Source AI Agent Frameworks (2026) 📖 Guide
+#    12 Best Open-Source AI Agent Frameworks (2026) Compare 12 open-source AI
+#    agent frameworks for production workflows, multi-agent systems, ..."
+# The crumb run `Home / <section> / ` is followed by the card's own title
+# prefix TWICE (once bare, once again after the card's label badge) -- a real
+# sentence never restates its own opening four words. 252 chars WITH digits,
+# so the >=90 "long prose" trust AND the technical-signal gate both fired and
+# no existing helper matched.
+# The breadcrumb ALONE was measured and REJECTED (4 hostile-control FPs: prose
+# can legitimately start "Home / Docs / Getting started ..."), and a bare
+# repeated-prefix test was rejected too. Only the weld of crumb run + repeated
+# prefix is clean.
+# Measured 22.09.26: 1 buffer hit and it IS the leak -> 0/8,275 buffer_junk,
+# 0/3,059 longterm_episodes, 0/10 hostile prose counter-cases.
+_BREADCRUMB_RE = re.compile(
+    r"^\s*Home\s*(?:/|\u203a|\u00bb|>)\s*[^\n]{1,80}?(?:/|\u203a|\u00bb|>)\s*([^\n]+)$")
+
+
+def _is_breadcrumb_title_repeat(text):
+    """True for a breadcrumb run welded to a repeated title prefix (137)."""
+    t = text or ""
+    if len(t) > 500:
+        return False
+    m = _BREADCRUMB_RE.match(t)
+    if not m:
+        return False
+    seg = m.group(1).strip()
+    words = seg.split()
+    if len(words) < 6:
+        return False
+    prefix = " ".join(words[:4])
+    return len(prefix) >= 15 and seg.count(prefix) >= 2
+
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
@@ -4018,6 +4060,9 @@ def _is_junk(text):
         return True
 # an aggregator card header welded to the article title (class 136, 22.09.26)
     if _is_aggregator_card_header_weld(t):
+        return True
+    # a breadcrumb run welded to a repeated title prefix (class 137, 22.09.26)
+    if _is_breadcrumb_title_repeat(t):
         return True
     # a page-meta listing widget (same narrow rule as
     # buffer_store._is_sidebar_listing_chrome)
