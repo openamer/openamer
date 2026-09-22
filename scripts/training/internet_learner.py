@@ -3597,6 +3597,100 @@ def _is_source_tally_cta(text):
     return bool(_SOURCE_TALLY_CTA_RE.search(text or ""))
 
 
+# A bare date-stamped LISTING STRIP (class 131, 22.09.26).
+# Live: the efficiency cycle stored, verbatim from online_buffer.jsonl,
+#   "Olaewg 2007-09-25 sylvu 2008-02-16 Ave 2008-02-17 Autor: tajger Data:
+#    2006-07-03 12:20:25 Na poczatku tabelka 1-BIALKA, ..."
+# - a foreign-language forum/post listing whose every entry carries its own
+# bare ISO date glued to the entry's author label. Both gates passed it: the
+# date digits fed the technical-signal gate and the length cleared the >=90
+# "long prose" trust.
+#
+# Keyed on the STRUCTURE, never the language or the topic: the row must carry
+# AT LEAST THREE `<word> <ISO date>` pairs inside the first 220 chars, with NO
+# sentence period in that window (a listing concatenates labels and never ends
+# a sentence) and the dates must span at least three DISTINCT YEARS (a
+# listing strip mixes archived years; a changelog or a release cadence uses
+# one or two). Measured 22.09.26 over 20,831 rows (online_buffer 236,
+# buffer_junk 8,062, kta_log 712, internet_learn_log 2,438, longterm_episodes
+# 3,059, world_model 496) + 1,121 asserted gate-test literals:
+# 1 hit, and that hit IS the leaking row -> 0 real-prose FPs on a 15-case
+# hostile battery (release notes, changelogs, migration tables, dated prose,
+# multi-year prose). The bare `>=3 dates` form was REJECTED on measurement
+# (5/15 control FPs); adding the no-period condition alone still left 2/15;
+# only the distinct-year condition removed them.
+_DATE_STRIP_STOPWORDS = frozenset((
+    "the", "and", "then", "or", "for", "with", "from", "vs", "at", "in",
+    "of", "to", "a", "an", "on", "by", "is", "was", "were", "be", "as",
+    "but", "so", "that", "this", "these", "those", "der", "die", "das",
+    "und", "oder", "von", "mit", "im", "am", "den", "dem", "ein", "eine",
+    "auf", "zu", "des", "le", "la", "el", "y", "et", "e",
+))
+_DATE_STRIP_PAIR_RE = re.compile(
+    r"\b([A-Za-z]{2,})\s+((?:19|20)\d\d-\d\d-\d\d)")
+_DATE_STRIP_ISO_RE = re.compile(
+    r"(?:19|20)\d\d-\d\d-\d\d")
+
+
+def _is_date_stamp_listing_strip(text):
+    """True when `text` is a bare date-stamped listing strip (class 131)."""
+    window = (text or "")[:220]
+    if not window or "." in window:
+        return False
+    words = [m.group(1).lower() for m in _DATE_STRIP_PAIR_RE.finditer(window)]
+    content = [w for w in words if w not in _DATE_STRIP_STOPWORDS]
+    if len(content) < 3:
+        return False
+    return len({d[:4] for d in _DATE_STRIP_ISO_RE.findall(window)}) >= 3
+
+
+
+
+
+# A news PHOTO-CREDIT strip welded to the byline + dateline (class 132,
+# 22.09.26). Live: the technews cycle STORED, verbatim from
+# online_buffer.jsonl,
+#   "D3sign/STOCK PHOTO/Getty Images By Mason Leib April 29, 2026,
+#    5:39 PM A software company founder wen..."
+# - an article's image-credit run + byline + dateline + clock, 82 chars, so
+# the >=90 "long prose" trust did NOT apply; the digits and the clock fed
+# the technical-signal gate and no existing helper matched.
+#
+# Keyed on THREE independent parts that only a credit strip co-locates: an
+# image-credit marker ("stock photo", "getty images", "ap photo", ...),
+# a `By First [Last]` byline, a `<Month D, YYYY>` dateline AND a clock.
+# Measured 22.09.26 over 20,845 rows (online_buffer, buffer_junk, kta_log,
+# longterm_episodes, world_model): 1 hit and that hit IS the leaking row
+# -> 0 real-prose FPs on a 7-case hostile battery (prose citing a credit,
+# a caption, a named author, a wire credit with a clock, a byline with a
+# date). Requiring the credit marker is what keeps `By Jane Doe September
+# 3, 2026, 8:00 AM` learnable -- a byline alone is ordinary prose.
+_CREDIT_BYLINE_MARKERS = (
+    "stock photo", "getty images", "ap photo", "afp/getty", "reuters/",
+    "photo by", "photograph by", "/afp", "/epa", "zuma press",
+    "associated press",
+)
+_CREDIT_BYLINE_RE = re.compile(
+    r"\bBy\s+[A-Z][A-Za-z.'-]+(?:\s+[A-Z][A-Za-z.'-]+){1,2}")
+_CREDIT_DATELINE_RE = re.compile(
+    r"\b[A-Z][a-z]{2,8}\s+\d{1,2},\s+(?:19|20)\d\d\b")
+_CREDIT_CLOCK_RE = re.compile(
+    r"\b\d{1,2}:\d{2}\s*(?:AM|PM)\b", re.IGNORECASE)
+
+
+def _is_credit_byline_run(text):
+    """True when `text` is a photo-credit strip + byline + dateline (132)."""
+    low = (text or "").lower()
+    if not low:
+        return False
+    if not any(m in low for m in _CREDIT_BYLINE_MARKERS):
+        return False
+    t = text or ""
+    return bool(_CREDIT_BYLINE_RE.search(t)
+                and _CREDIT_DATELINE_RE.search(t)
+                and _CREDIT_CLOCK_RE.search(t))
+
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
@@ -3723,6 +3817,12 @@ def _is_junk(text):
         return True
     # a widget's "Curated from N sources ... and more" CTA (class 130, 22.09.26)
     if _is_source_tally_cta(t):
+        return True
+    # a news photo-credit strip + byline + dateline (class 132, 22.09.26)
+    if _is_credit_byline_run(t):
+        return True
+    # a bare date-stamped listing strip (class 131, 22.09.26)
+    if _is_date_stamp_listing_strip(t):
         return True
     # the agent's own German glossary line (class 97, 19.09.26)
     if _is_german_glossary_echo(t):
