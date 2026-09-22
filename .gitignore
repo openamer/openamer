@@ -212,3 +212,14 @@ C*:Users*damir*/AppData/Local/Temp/pytest-of-*/
 
 # pytest tmp dirs that get MSYS-mangled into the repo root
 C*/Users*pytest-of-*/
+# --- repo hygiene: stray worktree gitlink + scratch dumps must not be tracked ---
+/oa-v28/
+old_*.txt
+_active_learn_result.txt
+_banner_render.txt
+_banner_render.py
+body18.md
+parent_sha.txt
+update-watcher.log
+python_install_*.log
+C*Users*damir*AppData*Temp*pytest-of-*
