@@ -89,7 +89,15 @@ def test_build_welcome_banner_title_is_hyperlinked_to_release():
         _patch.object(_mcp, "get_mcp_status", return_value=[]),
         _patch.object(_banner, "get_latest_release_tag", return_value=tag_url),
     ):
-        console = Console(file=buf, force_terminal=True, color_system="truecolor", width=160)
+        # legacy_windows=False is required for this assertion to mean anything on
+        # Windows: rich suppresses OSC-8 hyperlinks while legacy_windows is True
+        # (the Windows default), so the escape never appears regardless of the
+        # banner's markup and the test failed here while passing on Linux.
+        # Measured 2026-09-22: with the flag off, `[link=URL]X[/link]` emits
+        # `\x1b]8;id=...;URL\x1b\\X\x1b]8;;\x1b\\`; with it on, the same markup
+        # emits a bare `X`. The banner's own title markup is unchanged.
+        console = Console(file=buf, force_terminal=True, color_system="truecolor",
+                          width=160, legacy_windows=False)
         _banner.build_welcome_banner(
             console=console, model="x", cwd="/tmp",
             session_id="abc123",
