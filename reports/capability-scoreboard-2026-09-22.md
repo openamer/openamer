@@ -1,4 +1,4 @@
-# Capability scoreboard - 2026-09-22T20:18:31+02:00
+# Capability scoreboard - 2026-09-22T20:26:46+02:00
 
 Live-measured. Every row names its source. Unmeasurable rows are marked.
 
@@ -8,12 +8,12 @@ Live-measured. Every row names its source. Unmeasurable rows are marked.
 |---|---:|---:|---:|---|---|
 | **OpenAmer** | **6** | 3 | 25 | 2026-08-16 | GitHub API openamer/openamer |
 | AutoGPT | 187492 | 46002 | 563 | 2023-03-16 | GitHub API Significant-Gravitas/AutoGPT |
-| Claude Code | 147624 | 24128 | 12210 | 2025-02-22 | GitHub API anthropics/claude-code |
+| Claude Code | 147627 | 24128 | 12214 | 2025-02-22 | GitHub API anthropics/claude-code |
 | OpenAI Codex CLI | 125948 | 19597 | 18271 | 2025-04-13 | GitHub API openai/codex |
 | OpenHands | 88846 | 11686 | 882 | 2024-03-13 | GitHub API All-Hands-AI/OpenHands |
-| CrewAI | 58914 | 8543 | 446 | 2023-10-27 | GitHub API crewAIInc/crewAI |
+| CrewAI | 58915 | 8543 | 446 | 2023-10-27 | GitHub API crewAIInc/crewAI |
 | Aider | 49117 | 4984 | 1883 | 2023-05-09 | GitHub API Aider-AI/aider |
-| LangGraph | 42142 | 7123 | 810 | 2023-08-09 | GitHub API langchain-ai/langgraph |
+| LangGraph | 42144 | 7123 | 810 | 2023-08-09 | GitHub API langchain-ai/langgraph |
 
 ## Capability (ours - grep-verified)
 
@@ -27,7 +27,7 @@ Live-measured. Every row names its source. Unmeasurable rows are marked.
 
 ## Learning system (measured, last 24h)
 
-- Learner cycles: **240**, rejected: **145** -> yield **39.6%** (source: internet_learn_log.jsonl)
+- Learner cycles: **240**, rejected: **144** -> yield **40.0%** (source: internet_learn_log.jsonl)
 - Own micro-benchmark: best **0.704**, last run **0.0** (23 questions, 23 errored). NOT a standard benchmark.
 
 ## What this does NOT prove

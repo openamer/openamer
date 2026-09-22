@@ -27,8 +27,6 @@ import argparse
 import datetime
 import json
 import os
-import subprocess
-import sys
 import urllib.request
 from pathlib import Path
 
@@ -92,22 +90,6 @@ def registry_tool_count():
             continue
         names += src.count('"name": "')
     return names, files
-
-
-def core_tools_via_cli():
-    """Ask the CLI itself - the authoritative count. None if it fails."""
-    for py in (REPO / ".venv/Scripts/python.exe", REPO / "venv/Scripts/python.exe"):
-        if not py.exists():
-            continue
-        try:
-            out = subprocess.run([str(py), "-m", "openamer_cli", "tools", "--list"],
-                                 capture_output=True, text=True, timeout=120, cwd=str(REPO))
-            lines = [l for l in (out.stdout or "").splitlines() if l.strip().startswith("-")]
-            if lines:
-                return len(lines)
-        except Exception:
-            pass
-    return None
 
 
 def learner_rate(days=1):
