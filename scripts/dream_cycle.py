@@ -109,8 +109,20 @@ def detect_motifs(frags):
     return dict(hits)
 
 def cross_day_recurrence(dreams, motif):
-    """How many past days saw this motif? Recurrence = true 'nightmare'."""
-    return sum(1 for d in dreams if motif in d.get("_motifs", {}))
+    """How many past days saw this motif? Recurrence = true 'nightmare'.
+
+    Reads the PERSISTED `motifs` field. An earlier version stored the per-day
+    motif map only in an in-memory `_motifs` key that was popped before the
+    file was written, so every past day looked motif-free and
+    `recurrence_days` was structurally pinned to 0 -- the nightmare branch
+    could never fire no matter how often a motif recurred.
+    """
+    def _seen(d):
+        m = d.get("motifs")
+        if m is None:
+            m = d.get("_motifs")
+        return isinstance(m, dict) and motif in m
+    return sum(1 for d in dreams if _seen(d))
 
 def dream(day=None):
     day = day or today()
@@ -145,7 +157,7 @@ def dream(day=None):
         "date": day,
         "replayed_messages": len(msgs),
         "fragments": len(all_frags),
-        "_motifs": motifs,
+        "motifs": motifs,
         "insights": insights,
         "intentions": intentions,
     }
@@ -153,12 +165,11 @@ def dream(day=None):
     # upsert
     dreams = [d for d in dreams if d["date"] != day] + [entry]
     dreams.sort(key=lambda d: d["date"])
+    # drop the legacy in-memory-only field if an old record still carries it
     for d in dreams:
-        d.pop("_motifs", None)  # internal field not persisted
-    # re-add _motifs for recurrence calc (keep in-memory only)
-    dreams_persist = [ {k: v for k, v in d.items()} for d in dreams ]
+        d.pop("_motifs", None)
 
-    DREAMS.write_text(json.dumps(dreams_persist, indent=2, ensure_ascii=False), encoding="utf-8")
+    DREAMS.write_text(json.dumps(dreams, indent=2, ensure_ascii=False), encoding="utf-8")
 
     # morning report
     rep = REPORTS / f"dream-{day}.md"
