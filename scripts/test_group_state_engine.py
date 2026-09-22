@@ -179,6 +179,32 @@ def main():
     finally:
         gse.DEFAULT_DIR = old
 
+    section("6) a leaked OPENAMER_HOME must not redirect the model dir")
+    # The KTA cron inherits a leaked OPENAMER_HOME pointing at a scratch dir
+    # (C:/Users/damir/_vaultfinal). Before the fix, DEFAULT_DIR became
+    # <scratch>/models and every artifact lookup returned "no saved model"
+    # while the real file sat in the install root (7 of 8 cycles, 22.-23.09.26).
+    import subprocess
+    probe = (
+        "import os,sys;"
+        "os.environ['OPENAMER_HOME']=r'{bad}';"
+        "sys.path.insert(0, r'{d}');"
+        "import group_state_engine as e;"
+        "print(e.DEFAULT_DIR)"
+    )
+    scratch = tempfile.mkdtemp()  # exists, but carries no install markers
+    here = os.path.dirname(os.path.abspath(__file__))
+    out = subprocess.run(
+        [sys.executable, "-c", probe.format(bad=scratch, d=here)],
+        capture_output=True, text=True, timeout=60)
+    resolved = (out.stdout or "").strip().replace("\\", "/")
+    check("leaked non-install OPENAMER_HOME is rejected",
+          scratch.replace("\\", "/") not in resolved and resolved != "", resolved)
+    check("model dir falls back to the real install root",
+          resolved.endswith("openamer-laptop/models") or "skills" in resolved
+          or os.path.isdir(os.path.join(os.path.dirname(resolved), "skills")),
+          resolved)
+
     print()
     print("=" * 78)
     if FAIL:
