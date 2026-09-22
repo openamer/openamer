@@ -2835,6 +2835,68 @@ def _is_aggregator_row_year_tail(text):
     return bool(_AGGREGATOR_ROW_RE.search(t))
 
 
+# class 143 markers (live 22.09.26) -- see _is_feed_handle_unit_row.
+# A SINGLE (non-repeated) Hacker-News-style feed row, welded onto its own tail:
+#   "DeepLogin 5 hours ago | 20 comments 193 Kev: Tiny Jev-like family of
+#    decision models built on top of Qwen3."
+# = submitter handle + relative time + `| N comments` + points + a SECOND
+# handle + a headline. class 37 (_is_hn_feed_listing_chrome) needs that
+# `<relative-time> | N comments` unit REPEATED (>=2), so a one-item feed row
+# passes it; class 83 (_is_aggregator_row_year_tail) requires an arXiv
+# `(yyyy)` tail; `_is_hn_item_chrome` (49) requires the aggregator's own name
+# or the `New ask Hacker News story` label -- none of them matches.
+#
+# Discriminator (the class-83 precedent: a bare single-unit marker measured
+# 4-9 control FPs, so add a SECOND structural co-occurrence instead of
+# loosening the threshold): the feed row carries TWO handles -- the trailing
+# `<points> <handle>:` is the points/handle pair the renderer emits for the
+# item itself, which the relative-time+comments unit alone does not imply.
+# Measured 22.09.26 over 12,322 rows (online_buffer, buffer_junk,
+# longterm_episodes, world_model): 3 hits -- the live buffer row 149 (the
+# leak) plus its two audit echoes, all the same string -> 0 real-prose FPs on
+# an 11-case hostile battery (prose citing a relative time, a comment count,
+# a points-like number, a named handle, a colon-attributed quote).
+#
+# The trailing handle is matched CASE-SENSITIVELY via the scoped inline flag
+# `(?-i:...)`: the page emits handles capitalized, while the surrounding row
+# is matched case-insensitively. Without the scope, `[A-Z]` under
+# IGNORECASE re-admits lowercase prose (`... and then 193 runs:`).
+_FEED_HANDLE_TOKEN_RE = r"[A-Za-z][\w.\-]{2,20}"
+_FEED_HANDLE_TAIL_RE = r"(?-i:[A-Z])[\w.\-]{1,20}"
+_FEED_HANDLE_UNIT_RE = re.compile(
+    r"\b" + _FEED_HANDLE_TOKEN_RE + r"\s+\d{1,3}\s+"
+    r"(?:minutes?|hours?|days?|weeks?)\s+ago\s*\|\s*\d{1,5}\s*comments?\b"
+    r"[\s\S]{0,80}?\b\d{1,5}\s+" + _FEED_HANDLE_TAIL_RE + r"\s*:",
+    re.IGNORECASE)
+
+
+def _is_feed_handle_unit_row(text):
+    """True when `text` is a single feed row: handle + time + comments + points + handle (143).
+
+    Live 22.09.26 (class 143): `cycle_e_competitors` stored
+
+        DeepLogin 5 hours ago | 20 comments 193 Kev: Tiny Jev-like family of
+        decision models built on top of Qwen3.
+
+    -- the top item of a Hacker-News-style feed, cut off right after the
+    headline's first line. 97 chars WITH digits, so the `>=90` length trust
+    and the technical-signal gate both fired; no existing marker matched,
+    because every sibling rule wants MORE structure than a one-item feed row
+    carries (37: the unit repeated; 49: the aggregator's own name or its item
+    label; 83: an arXiv year tail).
+
+    Deliberately NOT loosening class 37's repetition threshold: its own test
+    pins the single-unit control `The review took 2 days ago | 4 comments per
+    reviewer were recorded.` as learnable. The second co-occurrence used here
+    is the trailing points/handle pair, which is feed chrome and does not
+    appear in prose that merely counts comments.
+    """
+    t = text or ""
+    if len(t) > 1200:
+        return False
+    return bool(_FEED_HANDLE_UNIT_RE.search(t))
+
+
 # class 84 markers (live 19.09.26) -- see _is_pipe_byline_shares_header.
 # A portal article header whose byline was welded to a pipe dateline and the
 # site's own `Shares` affordance:
@@ -4294,6 +4356,9 @@ def _is_junk(text):
         return True
     # an aggregator row welded to an arXiv year tail (class 83, 19.09.26)
     if _is_aggregator_row_year_tail(t):
+        return True
+    # a single feed row: handle + time + comments + points + handle (class 143, 22.09.26)
+    if _is_feed_handle_unit_row(t):
         return True
     # a pipe-dateline byline welded to the site's Shares (class 84, 19.09.26)
     if _is_pipe_byline_shares_header(t):

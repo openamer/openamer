@@ -6153,3 +6153,53 @@ def test_article_byline_chrome_controls_survive_both_gates():
     for ctl in _IL142_CONTROLS:
         assert not IL._is_junk(ctl), ctl
         assert not BS.is_junk(ctl), ctl
+
+
+# class 143 (22.09.26): a SINGLE Hacker-News-style feed row -- submitter
+# handle + relative time + `| N comments` + points + a capitalized trailing
+# handle + a colon -- is feed chrome, not knowledge. class 37 keys on the
+# unit REPEATED, class 49 on the aggregator's own name, class 83 on an arXiv
+# year tail, so a one-item row passed all three.
+_IL143_LEAKS = (
+    "DeepLogin 5 hours ago | 20 comments 193 Kev: Tiny Jev-like family of "
+    "decision models built on top of Qwen3.",
+)
+
+# `The review took 2 days ago | 4 comments per reviewer were recorded.` is
+# class 37's own pinned clean control -- the new rule must not claim it.
+# The `... and then 193 runs: ...` row pins the SCOPED case-sensitivity: a
+# plain IGNORECASE `[A-Z]` token flagged that prose in the first draft.
+_IL143_CONTROLS = (
+    "The review took 2 days ago | 4 comments per reviewer were recorded.",
+    "The release added 1,200 commits 5 hours ago | 12 comments and 88 "
+    "points per the tracker.",
+    "In this paper the authors report 20 comments and 193 downloads: Tiny "
+    "Jev is a decision model.",
+    "The team logged 5 hours ago | 20 comments and then 193 runs: the "
+    "result held.",
+    "The 193 comments on the tracker were filed by users in the last 5 "
+    "hours ago.",
+    "A model card lists 20 comments: 193 runs of the evaluation.",
+    "Kev: a Tiny Jev-like family of decision models built on top of "
+    "Qwen3 improves accuracy by 9%.",
+    "The migration finished 3 days, 11 hours ago and the report captured "
+    "it.",
+)
+
+
+def test_feed_handle_unit_row_gated_on_both_paths():
+    import internet_learner as IL
+    import buffer_store as BS
+    for leak in _IL143_LEAKS:
+        assert IL._is_feed_handle_unit_row(leak), leak
+        assert IL._is_junk(leak), leak
+        assert BS._is_feed_handle_unit_row(leak), leak
+        assert BS.is_junk(leak), leak
+
+
+def test_feed_handle_unit_row_controls_survive_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL143_CONTROLS:
+        assert not IL._is_feed_handle_unit_row(ctl), ctl
+        assert not BS._is_feed_handle_unit_row(ctl), ctl
