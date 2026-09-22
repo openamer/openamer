@@ -2224,8 +2224,10 @@ print(','.join(scripts))
             & $pythonExe -c "import fastapi, uvicorn" 2>&1 | Out-Null
             if ($LASTEXITCODE -eq 0) { $webOk = $true }
         } catch { }
+        $webServerPath = "$InstallDir\openamer_cli\web_server.py"
+        $webServerSyntaxErr = @()
         try {
-            & $pythonExe -m py_compile "$InstallDir\openamer_cli\web_server.py" 2>&1 | Out-Null
+            $webServerSyntaxErr = @(& $pythonExe -m py_compile $webServerPath 2>&1)
             if ($LASTEXITCODE -eq 0) { $webServerSyntaxOk = $true }
         } catch { }
         $ErrorActionPreference = $prevEAP
@@ -2240,7 +2242,45 @@ print(','.join(scripts))
             }
         }
         if (-not $webServerSyntaxOk) {
-            throw "dashboard backend source failed syntax check: openamer_cli/web_server.py"
+            # Surface the real SyntaxError first -- the old code piped py_compile
+            # to Out-Null, so a local breakage reported nothing but a bare
+            # "failed syntax check" and the installer died with no way forward.
+            Write-Err "openamer_cli/web_server.py failed its Python syntax check:"
+            foreach ($line in $webServerSyntaxErr) {
+                if ($line -and $line.ToString().Trim()) {
+                    Write-Host ("  " + $line.ToString().Trim())
+                }
+            }
+            # The usual cause is a LOCAL edit to this file that the autostash
+            # reapplied on top of the updated codebase (stale customization).
+            # Keep the user's version aside and restore the pristine copy so
+            # the install can finish; never silently discard their work.
+            $serverLocallyModified = $false
+            Push-Location $InstallDir
+            try {
+                $serverDirty = @(git -c windows.appendAtomically=false status --porcelain -- openamer_cli/web_server.py 2>$null)
+                if ($serverDirty.Count -gt 0) { $serverLocallyModified = $true }
+            } catch { } finally { Pop-Location }
+            if ($serverLocallyModified) {
+                $serverBackup = "$webServerPath.local-" + (Get-Date -Format "yyyyMMdd-HHmmss")
+                Copy-Item -LiteralPath $webServerPath -Destination $serverBackup -Force
+                Write-Warn "That file has uncommitted local changes -- restoring the pristine version."
+                Write-Info "Your version was kept at: $serverBackup"
+                Push-Location $InstallDir
+                try {
+                    git -c windows.appendAtomically=false checkout -- openamer_cli/web_server.py 2>$null | Out-Null
+                } catch { } finally { Pop-Location }
+                try {
+                    & $pythonExe -m py_compile $webServerPath 2>&1 | Out-Null
+                    if ($LASTEXITCODE -eq 0) { $webServerSyntaxOk = $true }
+                } catch { }
+                if ($webServerSyntaxOk) {
+                    Write-Success "Pristine openamer_cli/web_server.py restored -- syntax check passes."
+                }
+            }
+        }
+        if (-not $webServerSyntaxOk) {
+            throw "dashboard backend source failed syntax check: openamer_cli/web_server.py (see the SyntaxError above)"
         }
     }
     
