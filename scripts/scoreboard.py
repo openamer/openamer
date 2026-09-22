@@ -69,6 +69,11 @@ def gh(path, tok):
         return {"__error": str(e)}
 
 
+def _num(v):
+    """Stars/forks as a number. A failed API call yields None or a stray str."""
+    return v if isinstance(v, (int, float)) else 0
+
+
 def count_files(root, pattern):
     return len(list(root.rglob(pattern)))
 
@@ -180,13 +185,13 @@ def build():
     rows = []
 
     me = gh("openamer/openamer", tok)
-    mine = {"name": "OpenAmer", "stars": me.get("stargazers_count"),
-            "forks": me.get("forks_count"), "issues": me.get("open_issues_count"),
+    mine = {"name": "OpenAmer", "stars": _num(me.get("stargazers_count")),
+            "forks": _num(me.get("forks_count")), "issues": _num(me.get("open_issues_count")),
             "created": str(me.get("created_at", ""))[:10], "source": "GitHub API openamer/openamer"}
     for slug, label in COMPETITORS:
         d = gh(slug, tok)
-        rows.append({"name": label, "slug": slug, "stars": d.get("stargazers_count"),
-                     "forks": d.get("forks_count"), "issues": d.get("open_issues_count"),
+        rows.append({"name": label, "slug": slug, "stars": _num(d.get("stargazers_count")),
+                     "forks": _num(d.get("forks_count")), "issues": _num(d.get("open_issues_count")),
                      "created": str(d.get("created_at", ""))[:10],
                      "source": f"GitHub API {slug}",
                      "error": d.get("__error")})
@@ -202,7 +207,7 @@ def build():
     return {
         "measured_at": now,
         "ours": mine,
-        "competitors": sorted(rows, key=lambda r: -(r.get("stars") or 0)),
+        "competitors": sorted(rows, key=lambda r: -_num(r.get("stars"))),
         "capability": cap,
         "learner_yield_1d": learner_rate(1),
         "self_benchmark": self_benchmark(),
