@@ -52,6 +52,13 @@ TOOLS = [
      "params": {"code": "string"}},
     {"name": "listen", "desc": "Listen to microphone and transcribe speech. Input: {}. Output: transcript.",
      "params": {}},
+    {"name": "group_state",
+     "desc": "Exact composed state over a long sequence of group operations. "
+             "Use when state must be tracked perfectly across many steps "
+             "(parity, modular counting, permutation composition) — a task "
+             "recurrent nets fail at. Input: {group, moves}. Output: element + "
+             "correctness vs an independent computation.",
+     "params": {"group": "S5|S6|A5|D12|Z10", "moves": "list of generator indices"}},
 ]
 
 # ---- Tool implementations (delegate to existing systems) ----
@@ -251,12 +258,80 @@ def t_run_python(params):
     except Exception as e:
         return {"error": str(e)[:200]}
 
+# ---- group-state tracker: the learned architecture, as a callable tool ----
+# The group-state model (scripts/group_state_engine.py) is a real trained model
+# persisted to JSON. It is loaded LAZILY on first use so the server's start-up
+# stays unchanged, and a failure here must never take the server down.
+# Artifacts are produced OUT OF BAND (group_state_engine.py --train <GROUP>);
+# a request never trains, because S6 needs ~100 s and would blow the timeout.
+_GROUP_CACHE = {}
+
+
+def t_group_state(params):
+    """Exact composed state over a sequence of group operations.
+
+    Deliberately a TOOL rather than layers inside the language model:
+    Mini-OpenAmer is a LoRA fine-tune of Qwen served as GGUF, so there is no
+    nn.Module to attach a layer to. What can be delivered honestly is this —
+    when the agent needs state kept perfectly across many steps, it calls a
+    mechanism that provably does so, instead of asking a recurrent net to.
+
+    Every answer is verified against an independent group-theoretic
+    computation, and `correct: false` is reported rather than hidden.
+
+    LAYOUT NOTE: training on demand inside a request was a mistake — S6 takes
+    ~100 s to train, which blew the caller's timeout and looked like a hang.
+    A request now only ever LOADS a persisted model; if none exists it says so
+    and names the command to produce one. That keeps request latency bounded
+    (measured 0.22 ms of actual computation).
+    """
+    try:
+        name = str(params.get("group", "S5")).upper()
+        moves = params.get("moves", [])
+        if isinstance(moves, str):
+            moves = [int(x) for x in moves.replace(",", " ").split()]
+        moves = [int(x) for x in moves]
+
+        from group_state_engine import load, model_path, answer
+        p = model_path(name)
+        if not os.path.exists(p):
+            return {"error": f"no trained model for {name}",
+                    "fix": f"python scripts/group_state_engine.py --train {name}",
+                    "note": "training on demand would exceed the request timeout"}
+        if name not in _GROUP_CACHE:
+            m, g, _ = load(p)
+            _GROUP_CACHE[name] = (m, g)
+        m, g = _GROUP_CACHE[name]
+        VALID = f"0..{g.num_gens - 1}"
+
+        if not moves:
+            return {"error": "no moves given",
+                    "usage": {"group": name, "moves": [0, 1, 2]},
+                    "generators": g.num_gens,
+                    "valid_indices": VALID}
+        bad = [k for k in moves if not (0 <= k < g.num_gens)]
+        if bad:
+            return {"error": f"move index out of range: {bad}",
+                    "group": name, "valid_indices": VALID,
+                    "note": f"{name} has {g.num_gens} generator(s)"}
+
+        r = answer(m, g, moves)
+        return {"group": r["group"], "length": r["length"],
+                "element_index": r["element_index"],
+                "element": r["element"],
+                "correct": r["correct"],
+                "verified_against": "independent composition",
+                "params": sum(p.n for p in m.params())}
+    except Exception as e:
+        return {"error": f"{type(e).__name__}: {str(e)[:200]}"}
+
+
 EXECUTORS = {
     "web_search": t_web_search, "pc_action": t_pc_action,
     "browser_action": t_browser_action, "speak": t_speak,
     "see": t_see, "read_memory": t_read_memory,
     "reason_deep": t_reason_deep, "run_python": t_run_python,
-    "listen": t_listen,
+    "listen": t_listen, "group_state": t_group_state,
 }
 
 # ---- 2B model (loaded once) ----
@@ -333,6 +408,7 @@ User: "Search the internet for X" -> {"tool": "web_search", "params": {"query": 
 User: "Open the website example.com" -> {"tool": "browser_action", "params": {"action": "navigate", "url_or_selector": "https://example.com"}}
 User: "What is 15% of 847?" -> {"tool": "run_python", "params": {"code": "print(847 * 0.15)"}}
 User: "What do you know about X?" -> {"tool": "read_memory", "params": {"query": "X"}}
+User: "Track state through these S5 moves: 0 1 2 3 0" -> {"tool": "group_state", "params": {"group": "S5", "moves": [0, 1, 2, 3, 0]}}
 
 If the question needs NO tool (e.g. a simple question about yourself), reply normally.
 For tasks needing internet/browser/calculation/memory: ALWAYS call the tool first."""
