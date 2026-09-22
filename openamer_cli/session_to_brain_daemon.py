@@ -59,7 +59,7 @@ def spawn() -> None:
     # Check if already running.
     if pid_file.exists():
         try:
-            old_pid = int(pid_file.read_text().strip())
+            old_pid = int(pid_file.read_text(encoding="utf-8").strip())
             # On Windows os.kill with signal 0 raises SystemError.
             # Use tasklist to check if the process exists.
             if os.name == "nt":
@@ -73,7 +73,7 @@ def spawn() -> None:
                 if str(old_pid) in out:
                     return  # already running
             else:
-                os.kill(old_pid, 0)
+                os.kill(old_pid, 0)  # windows-footgun: ok
                 return  # already running
         except (ValueError, OSError, ProcessLookupError, subprocess.TimeoutExpired):
             # Stale pid file — remove and restart.
@@ -98,7 +98,7 @@ def spawn() -> None:
             stderr=subprocess.DEVNULL,
             creationflags=subprocess.CREATE_NO_WINDOW if os.name == "nt" else 0,
         )
-        pid_file.write_text(str(proc.pid))
+        pid_file.write_text(str(proc.pid), encoding="utf-8")
         logger.debug("session_to_brain daemon started (pid=%d)", proc.pid)
     except Exception as exc:
         logger.debug("session_to_brain daemon failed: %s", exc)

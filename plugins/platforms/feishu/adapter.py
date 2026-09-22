@@ -2856,6 +2856,25 @@ class FeishuAdapter(BasePlatformAdapter):
         """Reset the debounce timer for a pending Feishu text batch."""
         self._reschedule_batch_task(self._pending_text_batch_tasks, key, self._flush_text_batch)
 
+    async def _flush_text_batch(self, key: str) -> None:
+        """Wait out the quiet period, then dispatch the batch.
+
+        Mirrors ``_flush_media_batch``: the delay is adaptive so a chunk that
+        approaches Feishu's ~4096-char client split waits longer, since a
+        continuation is then almost certain.
+        """
+        pending = self._pending_text_batches.get(key)
+        last_len = getattr(pending, "_last_chunk_len", 0) if pending else 0
+        # ``_apply_settings`` mirrors every FeishuAdapterSettings field onto the
+        # adapter as ``self._<field>``, so these two live on self -- the batch
+        # STATE object only holds events/tasks/counts.
+        delay = (self._text_batch_split_delay_seconds
+                 if last_len >= self._SPLIT_THRESHOLD
+                 else self._text_batch_delay_seconds)
+        await self._delayed_flush(
+            self._pending_text_batch_tasks, key, delay, self._flush_text_batch_now,
+        )
+
     @staticmethod
     def _reschedule_batch_task(task_map: Dict[str, asyncio.Task], key: str, flush_fn: Any) -> None:
         prior_task = task_map.get(key)
@@ -3891,6 +3910,55 @@ class FeishuAdapter(BasePlatformAdapter):
         if ext in _FEISHU_DOC_UPLOAD_TYPES:
             return _FEISHU_DOC_UPLOAD_TYPES[ext], "file"
         return _FEISHU_FILE_UPLOAD_TYPE, "file"
+
+
+    def _text_batch_key(self, event: MessageEvent) -> str:
+        """Return the session-scoped key used for Feishu text aggregation."""
+        from gateway.session import build_session_key
+
+        return build_session_key(
+            event.source,
+            group_sessions_per_user=self.config.extra.get("group_sessions_per_user", True),
+            thread_sessions_per_user=self.config.extra.get("thread_sessions_per_user", False),
+        )
+
+
+    async def _flush_text_batch_now(self, key: str) -> None:
+        """Dispatch the current text batch immediately."""
+        event = self._pending_text_batches.pop(key, None)
+        self._pending_text_batch_counts.pop(key, None)
+        if not event:
+            return
+        logger.info(
+            "[Feishu] Flushing text batch %s (%d chars)",
+            key,
+            len(event.text or ""),
+        )
+        await self._handle_message_with_guards(event)
+
+
+    def _build_post_payload(self, content: str) -> str:
+        return _build_markdown_post_payload(content)
+
+
+    def _wire_plugin_handlers(self, client) -> None:
+        """Hook for plugins that attach native event handlers to the client.
+
+        This method has NO definition anywhere in the repo's history
+        (``git log --all -S"def _wire_plugin_handlers"`` is empty) yet two
+        adapters call it -- this one after connect(), and
+        plugins/platforms/homeassistant with ``None``. It is a hook whose
+        implementation was never landed, so the honest base behaviour is to do
+        nothing: both call sites ignore the return value and must not fail.
+
+        Deliberately NOT wired to a guessed API. The plugin manager exposes
+        per-platform getters (e.g. ``get_slack_action_handlers``) but no generic
+        native-handler registry, so inventing one here would be a speculative
+        interface -- exactly what this codebase's contribution rubric rejects.
+        When a plugin needs Feishu native handlers, widen the plugin surface
+        first and implement this against it.
+        """
+        return None
 
 
 # --- QR scan-to-create onboarding (device-code flow; Feishu creates a configured bot app) ---

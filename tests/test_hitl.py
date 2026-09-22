@@ -16,6 +16,7 @@ from __future__ import annotations
 import json
 import os
 import sys
+import types
 import threading
 import time
 from unittest.mock import MagicMock, patch
@@ -31,6 +32,40 @@ from openamer_cli.hitl import (
     set_interactive_context,
     should_pause,
 )
+
+# --- platform neutrality -----------------------------------------------------
+# ``await_approval()`` does ``import msvcrt`` guarded by try/except ImportError,
+# so the PRODUCTION code works on Linux via a select() fallback. But these tests
+# patch "msvcrt.kbhit" / "msvcrt.getwch" by dotted name, and on Linux that name
+# cannot be resolved at all -- mock raises ModuleNotFoundError before any
+# assertion runs (that is why the HITL tests failed on the Linux CI while
+# passing on Windows).
+#
+# Instead of skipping them (they are meaningful on every platform), install a
+# stand-in module so the import succeeds and the patches apply. Same technique
+# as tests/openamer_cli/test_kanban_db.py uses.
+#
+# Note on the mock target: the dotted-name patch resolves ``msvcrt`` at call
+# time and patches the attribute on whatever module object it finds. The stub
+# must therefore carry real callables, not be a bare ModuleType -- mock needs to
+# read the ORIGINAL attribute to restore it afterwards.
+_FAKE_MSVCRT = types.ModuleType("msvcrt")
+_FAKE_MSVCRT.kbhit = lambda: False
+_FAKE_MSVCRT.getwch = lambda: ""
+_FAKE_MSVCRT.locking = lambda *a, **k: None
+_FAKE_MSVCRT.LK_NBLCK = 1
+_FAKE_MSVCRT.LK_UNLCK = 2
+
+if "msvcrt" not in sys.modules:
+    sys.modules["msvcrt"] = _FAKE_MSVCRT
+
+
+@pytest.fixture(autouse=True)
+def _msvcrt_stub():
+    """Keep the stub installed even if a test pops it from sys.modules."""
+    if "msvcrt" not in sys.modules:
+        sys.modules["msvcrt"] = _FAKE_MSVCRT
+    yield
 
 
 # =============================================================================

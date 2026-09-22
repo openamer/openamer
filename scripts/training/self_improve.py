@@ -135,7 +135,8 @@ def apply_and_test(target, proposal, live_path, sandbox_path):
         return False, f"compile failed: {err[:100]}"
 
     # TEST 2: import check (module loads without executing main)
-    r = run([sys.executable, "-c", f"import ast; ast.parse(open(r'{sandbox_path}').read())"])
+    r = run([sys.executable, "-c",
+             f"import ast; ast.parse(open(r'{sandbox_path}', encoding='utf-8').read())"])
     if r.returncode != 0:
         return False, "AST parse failed"
 

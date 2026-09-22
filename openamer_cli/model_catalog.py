@@ -428,3 +428,7 @@ def reset_cache() -> None:
     global _catalog_cache, _catalog_cache_source_mtime
     _catalog_cache = None
     _catalog_cache_source_mtime = 0.0
+
+def get_curated_nous_models() -> list[str] | None:
+    """Nous Portal's curated model ids from the manifest."""
+    return [mid for mid, _ in _block_ids(_get_provider_block("nous"))] or None

@@ -4870,3 +4870,220 @@ def validate_requested_model(
             f"If the service isn't down, this model may not be valid."
         ),
     }
+
+def _configured_custom_provider_ids() -> set[str]:
+    """Return routable custom-provider IDs configured by the user."""
+    ids = {"custom"}
+    try:
+        from openamer_cli.config import load_config
+        from openamer_cli.providers import custom_provider_slug
+
+        config = load_config()
+        providers = config.get("providers", {})
+        if isinstance(providers, dict):
+            ids.update(custom_provider_slug(str(entry.get("name") or key), str(key))
+                       for key, entry in providers.items() if isinstance(entry, dict))
+        legacy = config.get("custom_providers", [])
+        if isinstance(legacy, list):
+            ids.update(
+                custom_provider_slug(str(entry.get("name") or "")) for entry in legacy if isinstance(entry, dict))
+    except _CONFIG_ERRORS:
+        pass
+    return ids
+
+def _get_ollama_base_url() -> str:
+    """Resolve the local Ollama-compatible endpoint URL: explicit ``providers.ollama.base_url``
+    (wires local endpoints without changing the active provider) → active ``model.base_url`` when
+    the active provider is ollama, or custom AND the endpoint actually serves ``/api/tags``
+    (otherwise the picker would probe an unrelated endpoint and hide the local catalog) →
+    ``OLLAMA_HOST`` → Ollama's local default."""
+    from openamer_cli.models import _get_model_config_dict
+    configured = _configured_ollama_base_url()
+    if configured:
+        return configured
+
+    model_cfg = _get_model_config_dict()
+    model_provider = str(model_cfg.get("provider", "") or "").strip().lower()
+    model_base = str(model_cfg.get("base_url", "") or "").strip()
+    if model_provider == "ollama" and model_base:
+        return model_base
+    if model_provider == "custom" and model_base:
+        try:
+            if should_use_ollama_native_catalog("custom", model_base):
+                return model_base
+        except (OSError, RuntimeError, TypeError, ValueError):
+            pass
+    env_host = os.getenv("OLLAMA_HOST", "").strip()
+    return _ollama_host_from_env(env_host) if env_host else "http://localhost:11434"
+
+def _get_ollama_native_headers(base_url: Optional[str], *, api_key: Optional[str] = None) -> dict[str, str]:
+    """Ollama credentials and headers for one endpoint origin. Configured headers apply only when
+    *base_url* shares the configured Ollama root; an explicit *api_key* replaces any configured
+    Authorization variant rather than inheriting it."""
+    configured_base = _configured_ollama_base_url()
+    from agent.command_token_source import materialize_probe_api_key
+    explicit_key = materialize_probe_api_key(api_key)
+    configured_matches = bool(configured_base and base_url and _same_ollama_native_root(base_url, configured_base))
+    if not configured_matches and not explicit_key:
+        return {}
+    headers = _get_ollama_request_headers() if configured_matches else {}
+    if explicit_key or callable(api_key):
+        _drop_authorization(headers)
+    if explicit_key:
+        headers["Authorization"] = f"Bearer {explicit_key}"
+    return headers
+
+def _get_provider_config_dict(provider: str) -> dict[str, Any]:
+    """Return config.yaml providers.<provider>, or an empty dict."""
+    key = str(provider or "").strip()
+    if not key:
+        return {}
+    try:
+        from openamer_cli.config import load_config
+        providers_cfg = load_config().get("providers", {})
+        if isinstance(providers_cfg, dict):
+            entry = providers_cfg.get(key) or providers_cfg.get(key.lower())
+            if isinstance(entry, dict):
+                return entry
+    except _CONFIG_ERRORS:
+        pass
+    return {}
+
+def _model_requires_account_discovery(provider: Optional[str], model: str) -> bool:
+    """Astra names cannot confer API/OAuth entitlement through picker state."""
+    return _normalized_cache_slug(provider) in {"openai", "openai-api", "openai-codex"} and is_astra_model(model)
+
+def _pricing_profile_key() -> str:
+    """Stable profile identity for process-local pricing caches."""
+    from openamer_constants import openamer_home_key
+
+    return openamer_home_key()
+
+def _read_json_cache(path: Path, *, errors=Exception) -> Optional[dict]:
+    """Load a JSON-object cache file; None when missing, unreadable, or not a dict."""
+    try:
+        with open(path, encoding="utf-8") as fh:
+            data = json.load(fh)
+    except errors:
+        return None
+    return data if isinstance(data, dict) else None
+
+def _write_json_cache(path: Path, data: Any, **dump_kwargs: Any) -> None:
+    """Atomically persist a cache file (creating parents). Raises on failure — callers decide
+    whether a failed cache write is worth logging."""
+    from utils import atomic_json_write
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    atomic_json_write(path, data, **dump_kwargs)
+
+def cached_fetch_api_models(
+    api_key: Any, base_url: Optional[str], *, timeout: float = 5.0,
+    api_mode: Optional[str] = None, headers: Optional[dict[str, str]] = None,
+    force_refresh: bool = False, cache_only: bool = False,
+    fetch_models=None,
+    ttl_seconds: int = _PROVIDER_MODELS_CACHE_TTL) -> Optional[list[str]]:
+    """Disk-cached :func:`fetch_api_models` for custom endpoints. ``cache_only`` callers (GUI picker
+    opens that must not block on a stopped local endpoint) still get a warm catalog instead of
+    collapsing to the config-declared subset. ``fetch_models`` supplies native-aware discovery
+    without minting a command token before cache admission."""
+    from openamer_cli.model_switch_providers import _NativePickerModelList
+
+    def _catalog(entry):
+        return (_NativePickerModelList if entry.get("native_catalog") else list)(entry["models"])
+
+    def _entry(live, at=None):
+        return {**_cache_entry(fp, live, at), "native_catalog": isinstance(live, _NativePickerModelList)}
+
+    def _live():
+        if fetch_models is not None:
+            return fetch_models()
+        from agent.command_token_source import materialize_probe_api_key
+        return fetch_api_models(materialize_probe_api_key(api_key), base_url, timeout=timeout, api_mode=api_mode, headers=headers)
+
+    normalized_url = str(base_url or "").strip().rstrip("/").lower()
+    if not normalized_url:  # nothing to key the cache on
+        return None if cache_only else _live()
+
+    # Key on URL AND credential fingerprint: N ``custom_providers`` rows can share one proxy URL
+    # with distinct keys (#106184). A URL-only key let the last probe overwrite its siblings'
+    # slot, so every other same-URL row failed the fingerprint check, got an empty catalog and
+    # vanished from the no-probe pickers.
+    fp = _custom_endpoint_fingerprint(api_key, api_mode, headers)
+    cache_key = f"custom:{normalized_url}#{fp}"
+    cache = _load_provider_models_cache()
+    entry = cache.get(cache_key)
+    now = time.time()
+    valid = not force_refresh and _cache_entry_valid(entry, fp, allow_empty=isinstance(entry, dict) and entry.get("native_catalog") is True)
+
+    if valid:
+        age = now - entry["at"]
+        if age < ttl_seconds:
+            return _catalog(entry)
+        if age < _PROVIDER_MODELS_STALE_SERVE_MAX:
+            # Stale-while-revalidate: serve now, refresh off-thread for the next open. cache_only
+            # opens (GUI pickers that must not block on a stopped local server) take the same
+            # non-blocking refresh: without it a locally loaded model stayed invisible for the
+            # whole 7-day stale window unless the user found "Refresh Models" (#71169 class).
+            def _refresh_custom():
+                live = _live()
+                return _entry(live) if live or isinstance(live, _NativePickerModelList) else None
+
+            _spawn_swr_refresh(cache_key, _refresh_custom)
+            return _catalog(entry)
+
+    if cache_only:
+        return None
+
+    live = _live()
+    if live or isinstance(live, _NativePickerModelList):
+        stored = _entry(live, now)
+        _store_cache_entry(cache_key, stored, cache)
+        return _catalog(stored)
+    # Live returned nothing (offline, timeout, auth hiccup): a stale same-fingerprint entry beats it.
+    if _cache_entry_valid(entry, fp, allow_empty=isinstance(entry, dict) and entry.get("native_catalog") is True):
+        return _catalog(entry)
+    return live
+
+def check_nous_free_tier(*, force_fresh: bool = False, cached_only: bool = False) -> bool:
+    """True only when the Nous Portal user is KNOWN to be free-tier (unknown/error → False so this
+    never blocks users). Cached ``_FREE_TIER_CACHE_TTL`` seconds so an upgrade shows within minutes.
+    ``cached_only`` returns the live cached answer or the fail-open ``False`` without contacting Portal."""
+    now = time.monotonic()
+    profile_key = _pricing_profile_key()
+    if not force_fresh:
+        cached_result = get_cached_nous_free_tier()
+        if cached_result is not None:
+            return cached_result
+    if cached_only:
+        return False
+    try:
+        from openamer_cli.nous_account import get_nous_portal_account_info
+
+        result = get_nous_portal_account_info(force_fresh=force_fresh).is_free_tier
+    except Exception:
+        result = False  # default to paid on error — don't block users
+    _free_tier_cache[profile_key] = (result, now)
+    return result
+
+def get_curated_nous_model_ids() -> list[str]:
+    """Curated Nous Portal model ids: the remote catalog manifest, else the in-repo
+    ``_PROVIDER_MODELS["nous"]`` snapshot. Always a list."""
+    try:
+        from openamer_cli.model_catalog import get_curated_nous_models
+        remote = get_curated_nous_models()
+    except Exception:
+        remote = None
+    return list(remote or _PROVIDER_MODELS.get("nous", []))
+
+def update_provider_cache_entry(provider: str, models: list[str]) -> None:
+    """Thread-safe single-entry update for parallel prefetch workers: load-modify-save under a lock
+    so concurrent fetches don't clobber each other's rows. Best-effort, silent on any error."""
+    try:
+        normalized = normalize_provider(provider) or (provider or "")
+        if not normalized or not models:
+            return
+        fp = _credential_fingerprint(normalized)
+        with _cache_write_lock:
+            _store_cache_entry(normalized, _cache_entry(fp, models))
+    except Exception:
+        pass

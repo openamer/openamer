@@ -1149,6 +1149,16 @@ class Comment:
     body: str
     created_at: int
 
+    @classmethod
+    def from_row(cls, row: sqlite3.Row) -> "Comment":
+        return cls(
+            id=int(row["id"]),
+            task_id=row["task_id"],
+            author=row["author"],
+            body=row["body"],
+            created_at=int(row["created_at"]),
+        )
+
 
 @dataclass
 class Attachment:
@@ -1172,6 +1182,29 @@ class Event:
     payload: Optional[dict]
     created_at: int
     run_id: Optional[int] = None
+
+    @classmethod
+    def from_row(cls, row: sqlite3.Row) -> "Event":
+        """Hydrate from a ``task_events`` row.
+
+        ``payload`` is stored with ``json.dumps`` by ``_append_event``, so it
+        comes back as text and has to be parsed -- same shape as
+        ``Run.from_row`` does for ``metadata``. A malformed blob yields None
+        rather than raising: event history is diagnostic, and one bad row must
+        not break ``kanban_db_notify``'s read path.
+        """
+        try:
+            payload = json.loads(row["payload"]) if row["payload"] else None
+        except Exception:
+            payload = None
+        return cls(
+            id=int(row["id"]),
+            task_id=row["task_id"],
+            kind=row["kind"],
+            payload=payload,
+            created_at=int(row["created_at"]),
+            run_id=(int(row["run_id"]) if row["run_id"] is not None else None),
+        )
 
 
 # ---------------------------------------------------------------------------
@@ -3484,33 +3517,71 @@ def set_model_override(
 # ---------------------------------------------------------------------------
 
 def link_tasks(conn: sqlite3.Connection, parent_id: str, child_id: str) -> None:
+    with write_txn(conn):
+        _link(conn, parent_id, child_id)
+
+
+def _link(conn: sqlite3.Connection, parent_id: str, child_id: str) -> None:
+    """Link parent->child WITHOUT opening a txn. Caller owns the transaction.
+
+    ``kanban_db_graph.decompose_triage_task`` imports this name and calls it
+    inside its own ``write_txn``; the public ``link_tasks`` does the same work
+    but opens (and commits) its own transaction, which would break atomicity of
+    the fan-out. Same validation, no txn.
+
+    The bare name was missing from this module entirely, so importing it raised
+    ``ImportError: cannot import name '_link'`` -- the failure the CI reported
+    for the decompose tests.
+    """
     if parent_id == child_id:
         raise ValueError("a task cannot depend on itself")
-    with write_txn(conn):
-        missing = _find_missing_parents(conn, [parent_id, child_id])
-        if missing:
-            raise ValueError(f"unknown task(s): {', '.join(missing)}")
-        if _would_cycle(conn, parent_id, child_id):
-            raise ValueError(
-                f"linking {parent_id} -> {child_id} would create a cycle"
-            )
+    missing = _find_missing_parents(conn, [parent_id, child_id])
+    if missing:
+        raise ValueError(f"unknown task(s): {', '.join(missing)}")
+    if _would_cycle(conn, parent_id, child_id):
+        raise ValueError(f"linking {parent_id} -> {child_id} would create a cycle")
+    conn.execute(
+        "INSERT OR IGNORE INTO task_links (parent_id, child_id) VALUES (?, ?)",
+        (parent_id, child_id),
+    )
+    parent_status = conn.execute(
+        "SELECT status FROM tasks WHERE id = ?", (parent_id,)
+    ).fetchone()["status"]
+    if parent_status != "done":
         conn.execute(
-            "INSERT OR IGNORE INTO task_links (parent_id, child_id) VALUES (?, ?)",
-            (parent_id, child_id),
+            "UPDATE tasks SET status = 'todo' WHERE id = ? AND status = 'ready'",
+            (child_id,),
         )
-        # If child was ready but parent is not yet done, demote child to todo.
-        parent_status = conn.execute(
-            "SELECT status FROM tasks WHERE id = ?", (parent_id,)
-        ).fetchone()["status"]
-        if parent_status != "done":
-            conn.execute(
-                "UPDATE tasks SET status = 'todo' WHERE id = ? AND status = 'ready'",
-                (child_id,),
-            )
-        _append_event(
-            conn, child_id, "linked",
-            {"parent": parent_id, "child": child_id},
-        )
+    _append_event(conn, child_id, "linked",
+                  {"parent": parent_id, "child": child_id})
+
+
+def _insert_comment(
+    conn: sqlite3.Connection, task_id: str, author: str, body: str, now: int,
+) -> int:
+    """Insert a comment WITHOUT opening a txn; ``now`` is supplied by the caller.
+
+    Companion to ``_link`` for ``kanban_db_graph``: it runs inside a fan-out
+    transaction and passes the timestamp it already computed, so this variant
+    takes ``now`` rather than reading the clock, and does not commit.
+    ``add_comment`` is the public wrapper and owns the transaction.
+    """
+    if not body or not body.strip():
+        raise ValueError("comment body is required")
+    if not author or not author.strip():
+        raise ValueError("comment author is required")
+    if not conn.execute(
+        "SELECT 1 FROM tasks WHERE id = ?", (task_id,)
+    ).fetchone():
+        raise ValueError(f"unknown task {task_id}")
+    cur = conn.execute(
+        "INSERT INTO task_comments (task_id, author, body, created_at) "
+        "VALUES (?, ?, ?, ?)",
+        (task_id, author.strip(), body.strip(), now),
+    )
+    _append_event(conn, task_id, "commented",
+                  {"author": author, "len": len(body)})
+    return int(cur.lastrowid or 0)
 
 
 def _would_cycle(conn: sqlite3.Connection, parent_id: str, child_id: str) -> bool:
@@ -3595,23 +3666,8 @@ def parent_results(conn: sqlite3.Connection, task_id: str) -> list[tuple[str, Op
 def add_comment(
     conn: sqlite3.Connection, task_id: str, author: str, body: str
 ) -> int:
-    if not body or not body.strip():
-        raise ValueError("comment body is required")
-    if not author or not author.strip():
-        raise ValueError("comment author is required")
-    now = int(time.time())
     with write_txn(conn):
-        if not conn.execute(
-            "SELECT 1 FROM tasks WHERE id = ?", (task_id,)
-        ).fetchone():
-            raise ValueError(f"unknown task {task_id}")
-        cur = conn.execute(
-            "INSERT INTO task_comments (task_id, author, body, created_at) "
-            "VALUES (?, ?, ?, ?)",
-            (task_id, author.strip(), body.strip(), now),
-        )
-        _append_event(conn, task_id, "commented", {"author": author, "len": len(body)})
-        return int(cur.lastrowid or 0)
+        return _insert_comment(conn, task_id, author, body, int(time.time()))
 
 
 def list_comments(conn: sqlite3.Connection, task_id: str) -> list[Comment]:

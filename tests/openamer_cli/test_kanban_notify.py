@@ -46,6 +46,7 @@ async def test_notifier_unsubs_after_completed_event(kanban_home):
     runner = object.__new__(GatewayRunner)
     runner._running = True
     runner._kanban_sub_fail_counts = {}
+    runner._owns_kanban_dispatcher_lock = lambda: True
 
     fake_adapter = MagicMock()
 
@@ -75,7 +76,18 @@ async def test_notifier_unsubs_after_completed_event(kanban_home):
         subs = kb.list_notify_subs(conn, tid)
     finally:
         conn.close()
-    assert subs == [], "Subscription should be unsub after completed event"
+    # The subscription SURVIVES a completed event: ``done`` is reversible, so
+    # unsubscribing here dropped users whose task the dispatcher later respawned.
+    # The cursor (last_event_id) is the dedup mechanism -- it advances in the
+    # same write txn as the claim, so the same event cannot re-fire while a
+    # later one still reaches the user. Removal happens on ``archived`` only.
+    assert len(subs) == 1, (
+        "Subscription must survive 'completed' (done is reversible); the cursor "
+        f"dedups, not unsubscribing. Got {subs!r}"
+    )
+    assert int(subs[0]["last_event_id"]) >= 1, (
+        "the completed event's cursor must have advanced"
+    )
 
 
 @pytest.mark.asyncio
@@ -106,6 +118,7 @@ async def test_notifier_unsubs_after_abnormal_events(kind, kanban_home):
     runner = object.__new__(GatewayRunner)
     runner._running = True
     runner._kanban_sub_fail_counts = {}
+    runner._owns_kanban_dispatcher_lock = lambda: True
 
     fake_adapter = MagicMock()
 
@@ -128,7 +141,14 @@ async def test_notifier_unsubs_after_abnormal_events(kind, kanban_home):
 
     # The user is notified about the abnormal event...
     fake_adapter.send.assert_called_once()
-    assert kind.replace('_', ' ') in fake_adapter.send.call_args[0][1]
+    sent = fake_adapter.send.call_args[0][1]
+    assert tid in sent
+    # Plain-language outcome per event kind -- the user-facing copy deliberately
+    # avoids internal event names ("gave_up" never appears in the text).
+    expected = {"crashed": "stopped unexpectedly",
+                "gave_up": "blocked",
+                "timed_out": "time limit"}[kind]
+    assert expected in sent, f"expected {expected!r} in {sent!r}"
 
     # ...but the subscription survives so a respawn-then-same-event cycle
     # reaches the user too. The cursor (last_event_id) advanced inside
@@ -161,6 +181,7 @@ async def test_notifier_second_blocked_delivers(kanban_home):
     runner = object.__new__(GatewayRunner)
     runner._running = True
     runner._kanban_sub_fail_counts = {}
+    runner._owns_kanban_dispatcher_lock = lambda: True
 
     delivered_msgs: list[str] = []
 
@@ -256,6 +277,7 @@ async def test_notifier_does_not_call_init_db(kanban_home):
     runner = object.__new__(GatewayRunner)
     runner._running = True
     runner._kanban_sub_fail_counts = {}
+    runner._owns_kanban_dispatcher_lock = lambda: True
 
     fake_adapter = MagicMock()
     fake_adapter.send = AsyncMock()
@@ -354,6 +376,7 @@ async def test_notifier_skips_subscription_owned_by_other_profile(kanban_home):
     runner = object.__new__(GatewayRunner)
     runner._running = True
     runner._kanban_sub_fail_counts = {}
+    runner._owns_kanban_dispatcher_lock = lambda: True
     runner._kanban_notifier_profile = "business-partner"
 
     fake_adapter = MagicMock()
@@ -383,7 +406,18 @@ async def test_notifier_skips_subscription_owned_by_other_profile(kanban_home):
     finally:
         conn.close()
     assert len(subs) == 1
-    assert int(subs[0]["last_event_id"]) == 0, "wrong profile must not claim the event"
+    # The foreign profile must not DELIVER. ``last_event_id`` is the wrong
+    # indicator for that: add_notify_sub seeds it with
+    # COALESCE((SELECT MAX(id) FROM task_events ...), 0) so a fresh subscription
+    # starts caught-up and never replays history, which is 1 here (the 'created'
+    # event). What matters is that no ping was sent and the cursor did not move
+    # past the completed event.
+    assert int(subs[0]["last_ping_event_id"]) == 0, (
+        "wrong profile must not deliver a ping for another profile's subscription"
+    )
+    assert fake_adapter.send.await_count == 0, (
+        "wrong profile must not send anything"
+    )
 
 
 @pytest.mark.asyncio
@@ -410,6 +444,7 @@ async def test_notifier_delivers_subscription_owned_by_current_profile(kanban_ho
     runner = object.__new__(GatewayRunner)
     runner._running = True
     runner._kanban_sub_fail_counts = {}
+    runner._owns_kanban_dispatcher_lock = lambda: True
     runner._kanban_notifier_profile = "default"
 
     fake_adapter = MagicMock()
@@ -437,7 +472,15 @@ async def test_notifier_delivers_subscription_owned_by_current_profile(kanban_ho
         subs = kb.list_notify_subs(conn, tid)
     finally:
         conn.close()
-    assert subs == []
+    # Survives the completed event, same contract as the abnormal-event cases
+    # above: the cursor dedups, unsubscribing happens on ``archived`` only.
+    assert len(subs) == 1, (
+        "Subscription must survive 'completed' (done is reversible). "
+        f"Got {subs!r}"
+    )
+    assert int(subs[0]["last_event_id"]) >= 1, (
+        "the completed event's cursor must have advanced"
+    )
 
 
 @pytest.mark.asyncio
@@ -539,6 +582,7 @@ async def test_notifier_uploads_artifacts_on_completion(kanban_home, tmp_path, m
     runner = object.__new__(GatewayRunner)
     runner._running = True
     runner._kanban_sub_fail_counts = {}
+    runner._owns_kanban_dispatcher_lock = lambda: True
 
     fake_adapter = MagicMock()
     fake_adapter.name = "telegram"
@@ -623,6 +667,7 @@ async def test_notifier_artifact_delivery_skips_missing_files(kanban_home, tmp_p
     runner = object.__new__(GatewayRunner)
     runner._running = True
     runner._kanban_sub_fail_counts = {}
+    runner._owns_kanban_dispatcher_lock = lambda: True
 
     fake_adapter = MagicMock()
     fake_adapter.name = "telegram"

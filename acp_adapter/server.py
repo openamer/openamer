@@ -31,7 +31,11 @@ from acp_adapter.events import (
     AssistantMessageIdAllocator, _build_plan_update_from_todo_result, make_message_cb, make_step_cb,
     make_thinking_cb, make_tool_progress_cb,
 )
-from acp_adapter.model_catalog import build_model_state, encode_model_choice
+from acp_adapter.model_catalog import (
+    _named_custom_provider_catalogs,
+    build_model_state,
+    encode_model_choice,
+)
 from acp_adapter.permissions import make_approval_callback
 from acp_adapter.provenance import session_provenance_meta
 from acp_adapter.session import SessionManager, SessionState, _expand_acp_enabled_toolsets

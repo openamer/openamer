@@ -14,7 +14,7 @@ LOG = REPO / "reports" / "darwin-autopatch-last.log"
 
 r = subprocess.Popen(
     [sys.executable, str(REPO / "scripts" / "darwin_skill_autopatch.py"), "--apply"],
-    cwd=str(REPO), stdout=open(LOG, "w"), stderr=subprocess.STDOUT,
+    cwd=str(REPO), stdout=open(LOG, "w", encoding="utf-8"), stderr=subprocess.STDOUT,
     creationflags=0x00000008,  # DETACHED_PROCESS
 )
 print(f"autopatch launched pid={r.pid} at {datetime.datetime.now().isoformat(timespec='seconds')}")

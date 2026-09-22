@@ -20,7 +20,7 @@ from __future__ import annotations
 import logging
 import re
 from dataclasses import dataclass
-from typing import Optional
+from typing import Any, Dict, Optional
 
 from openamer_cli import kanban_db as kb
 from openamer_cli.kanban_db_graph import decompose_triage_task
@@ -193,12 +193,26 @@ class _Routing:
     valid_names: set[str]
 
 
-def _load_routing() -> _Routing:
+def _load_config() -> Dict[str, Any]:
+    """Return the resolved config as a plain dict ({} when unreadable).
+
+    Module-level so it is the patch point for tests:
+    ``patch("openamer_cli.kanban_decompose._load_config", return_value={...})``
+    -- tests/openamer_cli/test_kanban_decompose.py relies on exactly that to
+    inject ``{"kanban": {"default_assignee": "fallback"}}``. The sibling
+    ``kanban.*`` readers are fail-open the same way: decompose_task promises
+    ``ok=False``, never a raise, when config is unavailable.
+    """
     from openamer_cli.config import load_config_readonly
     try:
         cfg = load_config_readonly()
-    except Exception:  # decompose_task promises ok=False, never a raise, on config trouble
-        cfg = {}
+    except Exception:
+        return {}
+    return cfg if isinstance(cfg, dict) else {}
+
+
+def _load_routing() -> _Routing:
+    cfg = _load_config()
     kanban_cfg = cfg.get("kanban", {}) if isinstance(cfg, dict) else {}
     roster, valid_names = _build_roster()
     return _Routing(
