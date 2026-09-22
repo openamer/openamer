@@ -12,6 +12,7 @@ Exit 0 = all pass, 1 = any failure.
 import os
 import ast
 import json
+import re
 import subprocess
 import sys
 import time
@@ -141,26 +142,57 @@ check("WIS documents strategy theses", "STRATEGY_THESIS" in wis_src
       and all(s in wis_src for s in ("TOKENS", "TEXT", "ROLE", "CLASSES")))
 check("WIS stamps healed_via_thesis", "healed_via_thesis" in wis_src)
 
-# seda repo exists on GitHub (network check: retry, transient 5xx timeouts are common)
-seda = None
-last_err = None
-for _attempt in range(4):
+# seda repo exists on GitHub (network check: retry; API rate limits are common
+# for unauthenticated requests, so fall back to a token and then to plain HTTP)
+def _gh_token():
+    for p in (os.path.expanduser("~/.git-credentials"),
+              os.path.expanduser("~/.config/gh/hosts.yml")):
+        try:
+            with open(p, encoding="utf-8", errors="replace") as fh:
+                m = re.search(r"gh[a-z]_[A-Za-z0-9_]{20,}", fh.read())
+                if m:
+                    return m.group(0)
+        except Exception:
+            pass
+    return None
+
+
+def _seda_reachable():
+    token = _gh_token()
+    headers = ["-H", f"Authorization: Bearer {token}"] if token else []
+    for _attempt in range(4):
+        try:
+            r = subprocess.run(["curl", "-s", "--max-time", "15", *headers,
+                                "https://api.github.com/repos/openamer/seda"],
+                               capture_output=True, text=True, encoding="utf-8",
+                               errors="replace", timeout=30)
+            data = json.loads(r.stdout)
+            if data.get("full_name") == "openamer/seda":
+                return True, None
+            # rate-limited or otherwise refused -> try the plain web page
+            if "rate limit" in str(data.get("message", "")).lower() or \
+                    r.stdout.strip() == "":
+                break
+        except Exception as e:
+            if _attempt == 3:
+                return False, e
+        time.sleep(3)
     try:
-        r = subprocess.run(["curl", "-s", "--max-time", "15",
-                            "https://api.github.com/repos/openamer/seda"],
+        r = subprocess.run(["curl", "-s", "-o", os.devnull, "-w", "%{http_code}",
+                            "--max-time", "15",
+                            "https://github.com/openamer/seda"],
                            capture_output=True, text=True, encoding="utf-8",
                            errors="replace", timeout=30)
-        seda = json.loads(r.stdout)
-        if seda.get("full_name") == "openamer/seda":
-            break
+        if r.stdout.strip() == "200":
+            return True, None
+        return False, f"HTTP {r.stdout.strip()}"
     except Exception as e:
-        last_err = e
-    time.sleep(3)
-try:
-    check("seda lives at github.com/openamer/seda",
-          seda is not None and seda.get("full_name") == "openamer/seda")
-except Exception as e:
-    check(f"seda repo reachable ({last_err or e})", False)
+        return False, e
+
+
+seda_ok, seda_err = _seda_reachable()
+check("seda lives at github.com/openamer/seda" + (f" ({seda_err})" if seda_err else ""),
+      seda_ok)
 
 print("=" * 50)
 if failures:
