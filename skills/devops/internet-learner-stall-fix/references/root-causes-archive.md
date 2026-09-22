@@ -4875,3 +4875,60 @@ stream -- check the Summary line exists and the exit code.
 the sets of `FAILED <node>`:
 `main` = 8995 passed / 67 failed; branch = 8995 passed / 67 failed; new
 failures = 0. Identical sets beat identical counts.
+
+## Root cause 145 (22.09.26) -- proving a RED CI job is not yours
+
+The repo fails **67 tests on `origin/main`** (Windows/locale: tests/acp, tests/cli,
+tests/cron, tests/agent). Consequence: EVERY CI test slice finishes red on any
+branch, and "the slices are red" says nothing about your change.
+
+**Never argue about a red CI job from the conclusion alone.** Two traps hit in
+one session:
+
+1. `openamer-assist` / `Windows footguns` looked like "my lint failed". The
+   footgun job log showed `120 findings across 1206 files` and **zero** in the
+   files the PR touched, and its timestamp (16:54) PREDATED the commits under
+   review. Always match the job's timestamp against the commit time, and always
+   grep the job log for your own paths before accepting blame.
+2. "5 of 8 slices red" is meaningless here. What matters is whether **your test
+   file** appears in a `FAILED` line.
+
+**The technique that actually settles it** -- find your test inside the red job's
+own log and read its verdict line:
+
+    ID=$(curl -s -H "Authorization: token $TOK"       "https://api.github.com/repos/o/r/commits/<sha>/check-runs?per_page=100"       | python -c "import sys,json;[print(r['id'],r['name']) for r in json.load(sys.stdin)['check_runs'] if 'slice' in r['name'] and r.get('conclusion')=='failure']")
+    while read id name; do
+      curl -sL -H "Authorization: token $TOK"         "https://api.github.com/repos/o/r/actions/jobs/$id/logs" -o "sl_$id.log"
+      grep -acE "writer_gate_agreement|internet_learner_gate" "sl_$id.log"
+      grep -aoE "FAILED [^ ]+" "sl_$id.log" | grep -E "your_paths"   # must be empty
+    done
+
+Result that settles a red CI: the red slice's log contains
+`✓ tests/scripts/test_internet_learner_gate.py (172✓)` -- green INSIDE the red
+job -- and no `FAILED` line references any PR test file. That is proof, and it
+beats "the same paths are also red on main" (main shows no slice checks at all,
+because GitHub only runs them on the PR head).
+
+**Local equivalent (stronger, do this first).** Two clean worktrees, the SAME
+paths, then diff the SETS of `FAILED <node>`:
+`main` = 8995 passed / 67 failed; branch = 8995 passed / 67 failed;
+`new failures = 0` with identical sets. Identical sets beat identical counts.
+
+**PITFALL -- a worktree must live OUTSIDE the repo.** `git worktree add _wt
+origin/main` inside the repo makes repo-wide scanners walk into it: `ty check`
+went from 15527 to 30980 diagnostics and the delta looked like a regression.
+Put the base worktree in a sibling directory (`~/_lintbase`) and remove it after.
+
+**PITFALL -- reproducing lint.yml locally.** `ruff`/`ty` are NOT in the project
+venv: `uv pip install --python .venv/Scripts/python.exe ruff ty` gives exactly
+the CI versions (ruff 0.16.8 / ty 0.0.83). Run the same three commands CI runs
+(`ruff check --output-format json --exit-zero`, `ty check --output-format
+gitlab --exit-zero`, then `scripts/lint_diff.py` with both JSON pairs). Blocking
+`ruff enforcement` is PLW1514-only (`select = ["PLW1514"]`), so it is pass/fail
+on bare `open()`; `ty` is advisory with ~15.5k pre-existing diagnostics -- treat
+only the per-FILE delta as signal. ty is also NOT deterministic run-to-run: a
+file identical to `main` showed +30 in one pass. Verify with
+`git diff --stat origin/main...HEAD -- <file>` before believing any delta.
+
+**Also:** `.lint-reports/` is NOT gitignored in this repo -- delete it after
+reproducing, or it lands in the tree as untracked noise.
