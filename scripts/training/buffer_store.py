@@ -3750,6 +3750,9 @@ def _is_nav_chrome(text):
     # a paper/arXiv author list with affiliation superscripts (class 140, 22.09.26)
     if _is_affiliation_author_list(text):
         return True
+    # a year-welded SERP title restated by its own snippet (class 141, 22.09.26)
+    if _is_serp_title_snippet_repeat(text):
+        return True
     low = text.lower()
     if any(c in low for c in _NAV_CHROME):
         return True
@@ -4242,6 +4245,128 @@ def _is_affiliation_author_list(text):
             hit += 1
     return hit >= _AUTHOR_AFFIL_MIN_SEGMENTS
 
+
+# class 141 (live 22.09.26): a SERP title welded to its own snippet, where a
+# NUMERAL phrase or a >=4-token run from the title recurs in the snippet.
+#
+# Three rows of the SAME family in the 260-row buffer tail (the cron's own
+# rejection was on cycle_b_papers, so this was found the cheap way -- reading
+# the buffer tail, not the printed line):
+#   "Grok Pricing 2026: $10 Lite, $30 SuperGrok, $300 Heavy Grok now spans free
+#    access, $10 Lite, $30 SuperGrok, $300 Heavy, and $30/user Business plans."
+#   "Claude Opus 5 Review 2026: $5/$25, 61 Score, Real API Catch Claude Opus 5
+#    launched at $5/$25 per million tokens with 1M context and 128K output."
+#   "AI-Agent Tokens Surge 5% as Market Interest Returns May 3, 2026: Virtuals
+#    Protocol surged 5% as AI-agent tokens roared back, ..."
+#   "Retrieval and Language Systems NER Guide 2026: GLiNER, spaCy, Transformers,
+#    and LLMs NER in 2026 means choosing between GLiNER, spaCy, Transformers,
+#    and LLM extraction for latency, accuracy, and schema control."
+# Each is a search-result title, a year stamp, then the snippet restating the
+# title -- pure furniture, zero knowledge. All four cleared the >=90 "long
+# prose" trust and the technical-signal gate (the year, the prices, the counts).
+#
+# The WELD is the year-colon inside the first 80 chars; it is the extractor's
+# lost-newline SERP boundary. The DISCRIMINATOR is the RESTATEMENT. Neither half
+# separates on its own (the AJ/AQ/AR law): the weld alone hits 6 prose controls
+# ("In 2026: the API price is $5 ...", "vLLM 0.9 shipped in 2026: ..."), and a
+# bare repeat hits 201 longterm_episodes + a real article body.
+#
+# THE CONTROL THAT DECIDES THE RULE is the China-chip row -- a real article the
+# gate test asserts must survive byte-identical. It repeats a bare `417%` across
+# DIFFERENT verbs, so it is NOT a pct-pair, and its repeated runs are 2-3 tokens,
+# so no 4-token window repeats: it survives by construction, not by a word list.
+#
+# MEASURED 22.09.26 (read-only): 4 buffer hits and all 4 ARE the leak;
+# 0 of 3,063 longterm_episodes; 0 of 1,274 gate-test string literals; 0 of 24
+# packaged prose controls; 0 of 12 topic-matched hostile controls; and 18
+# buffer_junk rows AGREE (already-rejected rows of the same family, incl. the
+# `AutoGPT Review 2026:` / `AI Agent News Today — September 11, 2026 — ...`
+# restatements -- a repeat-detector cannot see those, but the existing classes
+# already gate them, so 18/18 agreement and 0 disagreement is the right reading).
+_SERP_YEAR_WELD_RE = _re.compile(r"^[^\n]{0,80}?(?:19|20)\d\d:\s")
+_SERP_PRICE_REPEAT_RE = _re.compile(
+    r"(\$\s?[1-9][\d,]*(?:\.\d+)?(?:/\$?\s?\d[\d,]*)?)[^\n]{0,160}?\1")
+_SERP_PCT_PAIR_RE = _re.compile(
+    r"\b([A-Za-z]{4,})(?:s|d|ed|ing)?\s+(\d{1,3})\s*%[^\n]{0,160}?"
+    r"\b\1(?:s|d|ed|ing)?\s+\2\s*%", _re.IGNORECASE)
+_SERP_TOKEN_RE = _re.compile(r"[A-Za-z0-9$%./-]+")
+_SERP_REPEAT_WINDOW = 4
+_SERP_MAX_LEN = 500
+
+
+def _serp_norm_token(tok):
+    """Lowercase + naive plural stem so `LLMs` matches `LLM` (a backreference
+    cannot: the NER row repeats the list with `LLMs` -> `LLM` drift)."""
+    t = tok.lower().strip(".,;:")
+    if len(t) > 4 and t.endswith("s"):
+        t = t[:-1]
+    return t
+
+
+def _serp_repeated_run(text):
+    """True when a run of `_SERP_REPEAT_WINDOW` normalised tokens repeats."""
+    toks = [_serp_norm_token(w) for w in _SERP_TOKEN_RE.findall(text)]
+    if len(toks) < 2 * _SERP_REPEAT_WINDOW:
+        return False
+    seen = {}
+    for i in range(len(toks) - _SERP_REPEAT_WINDOW + 1):
+        win = tuple(toks[i:i + _SERP_REPEAT_WINDOW])
+        if win in seen and i - seen[win] >= _SERP_REPEAT_WINDOW:
+            return True
+        seen.setdefault(win, i)
+    return False
+
+
+def _is_serp_title_snippet_repeat(text):
+    """True for a year-welded SERP title restated by its own snippet (class 141).
+
+    Requires BOTH: a year-colon weld in the first 80 chars AND a restatement --
+    an identical price token, an identical `<verb> <n> %` pair, or an identical
+    run of `_SERP_REPEAT_WINDOW` normalised tokens.
+    """
+    t = (text or "").strip()
+    if not t or len(t) > _SERP_MAX_LEN:
+        return False
+    if not _SERP_YEAR_WELD_RE.match(t):
+        return False
+    if _SERP_PRICE_REPEAT_RE.search(t):
+        return True
+    if _SERP_PCT_PAIR_RE.search(t):
+        return True
+    return _serp_repeated_run(t)
+
+_ARTICLE_BYLINE_AFFORDANCE_RE = _re.compile(
+    r"(?:\bKey Takeaways\b)"
+    r"|(?:\bWritten by\s+[A-Z])"
+    r"|(?:\bReply to this comment\b)"
+    r"|(?:\bPosted by\s+[A-Z][\w.\-]*\s*\|)"
+    r"|(?:\b\d{1,3} min read\b)"
+)
+_ARTICLE_DATELINE_RE = _re.compile(
+    r"(?:\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+"
+    r"\d{1,2},?\s+20\d\d\b)"
+    r"|(?:\b20\d\d-\d{2}-\d{2}\b)"
+    r"|(?:\b\d{1,2}\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)"
+    r"[a-z]*\s+20\d\d\b)"
+)
+
+
+def _is_article_byline_chrome(text):
+    """True for an article's own byline/dateline header welded to its lede
+    (class 142, 22.09.26).  Same predicate as
+    `internet_learner._is_article_byline_chrome` -- both gates must refuse
+    this class or the cycle spends itself on a write the writer drops.
+
+    An article affordance (case-SENSITIVE: these are rendered page labels)
+    AND a full dateline, both inside the first 200 chars.  The
+    case-sensitive form is required: the case-insensitive variant fired on
+    prose such as "published on April 29, 2026 and updated later that day".
+    """
+    head = (text or "")[:200]
+    return (bool(_ARTICLE_BYLINE_AFFORDANCE_RE.search(head))
+            and bool(_ARTICLE_DATELINE_RE.search(head)))
+
+
 def is_junk(text):
     """True when a completion is not trainable signal.
 
@@ -4273,6 +4398,8 @@ def is_junk(text):
     if _is_binary_noise(s):
         return True
     if _is_nav_chrome(s):
+        return True
+    if _is_article_byline_chrome(s):
         return True
     if _is_gh_releases_row(s):
         return True

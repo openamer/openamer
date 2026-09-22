@@ -280,6 +280,17 @@ def store(user_text, insight, buffer=None):
     # satisfy the technical-signal gate and let the fragment through (live
     # 13.09.26, efficiency cycle).
     cleaned = _clean_insight(insight, 300)
+    # class 142 follow-up (22.09.26): `_is_junk()` below is evaluated on the RAW
+    # insight, so the strip inside `_clean_insight` is unreachable on its own --
+    # the reject gate still fires first and the rescued prose is never stored.
+    # Strip the header here, at the point the raw text is judged, and only keep
+    # the stripped form when the prose behind it actually survives both gates.
+    if _is_article_byline_chrome(insight):
+        stripped = _strip_article_byline_header(insight, force=True)
+        if (stripped and stripped != insight and not _is_junk(stripped)
+                and _clean_insight(stripped, 300)):
+            insight = stripped
+            cleaned = _clean_insight(insight, 300)
     reason = ""
     if _is_junk(insight):
         reason = "junk"
@@ -288,6 +299,18 @@ def store(user_text, insight, buffer=None):
     if reason:
         try:
             buffer_store._audit(user_text, insight, reason)
+        except Exception:
+            pass
+        return False
+    # 2026-09-22: ask the WRITER before writing. Measured on 600 audited junk
+    # rows: 368 (61%) were SILENT DROPS — this module judged the text learnable,
+    # buffer_store.is_junk() then refused it, and the cycle reported only the
+    # generic "rejected, not trained". Auditing under its own reason makes the
+    # disagreement visible (it was invisible for 8 days) and keeps the two
+    # gates separable when one of them is over-strict.
+    if _writer_gate_refuses(cleaned):
+        try:
+            buffer_store._audit(user_text, cleaned, "writer-gate")
         except Exception:
             pass
         return False
@@ -4054,12 +4077,162 @@ def _is_affiliation_author_list(text):
             hit += 1
     return hit >= _AUTHOR_AFFIL_MIN_SEGMENTS
 
+
+# class 141 (live 22.09.26): a SERP title welded to its own snippet, where a
+# NUMERAL phrase or a >=4-token run from the title recurs in the snippet.
+#
+# Three rows of the SAME family in the 260-row buffer tail (the cron's own
+# rejection was on cycle_b_papers, so this was found the cheap way -- reading
+# the buffer tail, not the printed line):
+#   "Grok Pricing 2026: $10 Lite, $30 SuperGrok, $300 Heavy Grok now spans free
+#    access, $10 Lite, $30 SuperGrok, $300 Heavy, and $30/user Business plans."
+#   "Claude Opus 5 Review 2026: $5/$25, 61 Score, Real API Catch Claude Opus 5
+#    launched at $5/$25 per million tokens with 1M context and 128K output."
+#   "AI-Agent Tokens Surge 5% as Market Interest Returns May 3, 2026: Virtuals
+#    Protocol surged 5% as AI-agent tokens roared back, ..."
+#   "Retrieval and Language Systems NER Guide 2026: GLiNER, spaCy, Transformers,
+#    and LLMs NER in 2026 means choosing between GLiNER, spaCy, Transformers,
+#    and LLM extraction for latency, accuracy, and schema control."
+# Each is a search-result title, a year stamp, then the snippet restating the
+# title -- pure furniture, zero knowledge. All four cleared the >=90 "long
+# prose" trust and the technical-signal gate (the year, the prices, the counts).
+#
+# The WELD is the year-colon inside the first 80 chars; it is the extractor's
+# lost-newline SERP boundary. The DISCRIMINATOR is the RESTATEMENT. Neither half
+# separates on its own (the AJ/AQ/AR law): the weld alone hits 6 prose controls
+# ("In 2026: the API price is $5 ...", "vLLM 0.9 shipped in 2026: ..."), and a
+# bare repeat hits 201 longterm_episodes + a real article body.
+#
+# THE CONTROL THAT DECIDES THE RULE is the China-chip row -- a real article the
+# gate test asserts must survive byte-identical. It repeats a bare `417%` across
+# DIFFERENT verbs, so it is NOT a pct-pair, and its repeated runs are 2-3 tokens,
+# so no 4-token window repeats: it survives by construction, not by a word list.
+#
+# MEASURED 22.09.26 (read-only): 4 buffer hits and all 4 ARE the leak;
+# 0 of 3,063 longterm_episodes; 0 of 1,274 gate-test string literals; 0 of 24
+# packaged prose controls; 0 of 12 topic-matched hostile controls; and 18
+# buffer_junk rows AGREE (already-rejected rows of the same family, incl. the
+# `AutoGPT Review 2026:` / `AI Agent News Today — September 11, 2026 — ...`
+# restatements -- a repeat-detector cannot see those, but the existing classes
+# already gate them, so 18/18 agreement and 0 disagreement is the right reading).
+_SERP_YEAR_WELD_RE = re.compile(r"^[^\n]{0,80}?(?:19|20)\d\d:\s")
+_SERP_PRICE_REPEAT_RE = re.compile(
+    r"(\$\s?[1-9][\d,]*(?:\.\d+)?(?:/\$?\s?\d[\d,]*)?)[^\n]{0,160}?\1")
+_SERP_PCT_PAIR_RE = re.compile(
+    r"\b([A-Za-z]{4,})(?:s|d|ed|ing)?\s+(\d{1,3})\s*%[^\n]{0,160}?"
+    r"\b\1(?:s|d|ed|ing)?\s+\2\s*%", re.IGNORECASE)
+_SERP_TOKEN_RE = re.compile(r"[A-Za-z0-9$%./-]+")
+_SERP_REPEAT_WINDOW = 4
+_SERP_MAX_LEN = 500
+
+
+def _serp_norm_token(tok):
+    """Lowercase + naive plural stem so `LLMs` matches `LLM` (a backreference
+    cannot: the NER row repeats the list with `LLMs` -> `LLM` drift)."""
+    t = tok.lower().strip(".,;:")
+    if len(t) > 4 and t.endswith("s"):
+        t = t[:-1]
+    return t
+
+
+def _serp_repeated_run(text):
+    """True when a run of `_SERP_REPEAT_WINDOW` normalised tokens repeats."""
+    toks = [_serp_norm_token(w) for w in _SERP_TOKEN_RE.findall(text)]
+    if len(toks) < 2 * _SERP_REPEAT_WINDOW:
+        return False
+    seen = {}
+    for i in range(len(toks) - _SERP_REPEAT_WINDOW + 1):
+        win = tuple(toks[i:i + _SERP_REPEAT_WINDOW])
+        if win in seen and i - seen[win] >= _SERP_REPEAT_WINDOW:
+            return True
+        seen.setdefault(win, i)
+    return False
+
+
+def _is_serp_title_snippet_repeat(text):
+    """True for a year-welded SERP title restated by its own snippet (class 141).
+
+    Requires BOTH: a year-colon weld in the first 80 chars AND a restatement --
+    an identical price token, an identical `<verb> <n> %` pair, or an identical
+    run of `_SERP_REPEAT_WINDOW` normalised tokens.
+    """
+    t = (text or "").strip()
+    if not t or len(t) > _SERP_MAX_LEN:
+        return False
+    if not _SERP_YEAR_WELD_RE.match(t):
+        return False
+    if _SERP_PRICE_REPEAT_RE.search(t):
+        return True
+    if _SERP_PCT_PAIR_RE.search(t):
+        return True
+    return _serp_repeated_run(t)
+
+_ARTICLE_BYLINE_AFFORDANCE_RE = re.compile(
+    r"(?:\bKey Takeaways\b)"
+    r"|(?:\bWritten by\s+[A-Z])"
+    r"|(?:\bReply to this comment\b)"
+    r"|(?:\bPosted by\s+[A-Z][\w.\-]*\s*\|)"
+    r"|(?:\b\d{1,3} min read\b)"
+)
+_ARTICLE_DATELINE_RE = re.compile(
+    r"(?:\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+"
+    r"\d{1,2},?\s+20\d\d\b)"
+    r"|(?:\b20\d\d-\d{2}-\d{2}\b)"
+    r"|(?:\b\d{1,2}\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)"
+    r"[a-z]*\s+20\d\d\b)"
+)
+
+
+def _is_article_byline_chrome(text):
+    """True for an article's own byline/dateline header welded to its lede
+    (class 142).
+
+    Live 22.09.26 (cycle_a_technews): the stored insight was
+      "Written by Gus Mallett Published on April 29, 2026 Key Takeaways
+       PocketOS, a company that designs software for car rental businesses,
+       had its entire database mistakenly wiped by an AI agent ."
+    -- a page byline + dateline + "Key Takeaways" affordance with the lede
+    welded on.  4 of 276 online_buffer rows carried this class; the dates
+    and the numeral in "11 min read" satisfy the technical-signal gate, so
+    the VOICE/affordance is the only reliable discriminator.
+
+    ``_is_byline_published_article_header`` (class 40) misses every shape
+    here: it requires a LEADING byline, while these pages lead with a
+    headline ("NVIDIA RTX PRO 5500 Blackwell: ... 11 min read Sep 15,
+    2026"), with the date ("April 29, 2026 Key Takeaways ..."), or with a
+    comment affordance ("OpenClaw Like Like Posted by kim Bruning |
+    February 13, 2026, 5:05 pm Reply to this comment ps.").
+
+    Discriminator = an article affordance AND a full dateline, BOTH inside
+    the first 200 chars (header region), so prose that merely credits an
+    author or cites a date mid-text is untouched.  The affordance regex is
+    CASE-SENSITIVE on purpose: these are rendered page labels, and the
+    case-insensitive form (measured 22.09.26) fired on two genuine prose
+    controls -- "published on April 29, 2026 and updated later that day"
+    and "Published on June 17, 2025 / 5:28 PM EDT and later revised".
+
+    Keyed on the voice/affordance, never on the topic: a genuine
+    "TLS 1.3 removes a handshake round trip" insight still passes
+    (counter-case in the test corpus).  Measured 22.09.26: 5/5 known leaks
+    (incl. "min read" / "Key Takeaways" / "Reply to this comment" shapes);
+    0/5 natural prose controls; 0/1,301 test-corpus string literals that
+    are not chrome; 0/3,064 longterm_episodes; 83/8,836 buffer_junk rows
+    (already-refused chrome).
+    """
+    head = (text or "")[:200]
+    return (bool(_ARTICLE_BYLINE_AFFORDANCE_RE.search(head))
+            and bool(_ARTICLE_DATELINE_RE.search(head)))
+
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
     if len(t) < 25:
         return True
     if _looks_binary(t):
+        return True
+    # an article's own byline + dateline header welded to its lede (class 142, 22.09.26)
+    if _is_article_byline_chrome(t):
         return True
     # a SERP run welded to a docs site's CTA (class 53, 18.09.26)
     if _is_docs_cta_serp_run(t):
@@ -4217,6 +4390,9 @@ def _is_junk(text):
     # (class 138, 22.09.26)
     # a paper/arXiv author list with affiliation superscripts (class 140, 22.09.26)
     if _is_affiliation_author_list(t):
+        return True
+    # a year-welded SERP title restated by its own snippet (class 141, 22.09.26)
+    if _is_serp_title_snippet_repeat(t):
         return True
     if _is_caps_nav_lockup_weld(t):
         return True
@@ -4428,6 +4604,38 @@ def _is_junk(text):
     except Exception:
         return False
     return bool(is_glued_motif(t))
+
+
+def _writer_gate_refuses(text):
+    """True when the WRITER (buffer_store.is_junk) would refuse this text.
+
+    2026-09-22, MEASURED: the extractor gate above (`_is_junk`) keeps 40+
+    single-class chrome detectors, and store_or_deep's fallback chain ends in a
+    buffer write decided by buffer_store.is_junk. Of 600 audited
+    `reason="junk"` rows, 368 (61%) were SILENT DROPS: this module believed it
+    had a learnable insight, the writer refused it, and the cycle logged only
+    the generic "rejected, not trained". Missing detectors: _is_serp_snippet
+    222 (dated SERP titles), the `self-critique` marker 109, _is_nav_chrome 88.
+    That silent disagreement is what the 57% rejection rate is made of.
+
+    Deliberately a SEPARATE predicate, not folded into `_is_junk`: the two
+    gates have intentionally different strictness (the extractor must keep
+    prose that merely *mentions* an ad-wall or a plan, and `_clean_insight`
+    depends on that — measured: folding the writer into `_is_junk` regressed 4
+    gate tests). This is consulted only at the WRITE DECISION in store(), so
+    the refusal becomes explicit and auditable instead of silent.
+    """
+    if not text:
+        return False
+    try:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        from buffer_store import is_junk as _writer_is_junk
+    except Exception:
+        return False
+    try:
+        return bool(_writer_is_junk(text))
+    except Exception:
+        return False
 
 
 def _filter_junk(results):
@@ -5602,6 +5810,44 @@ def _strip_byline_prefix(text):
     return t
 
 
+def _strip_article_byline_header(text, region=100, force=False):
+    """Cut an article's byline/dateline header off the front, keep the prose.
+
+    Class 142 was added 22.09.26 as a REJECT predicate
+    (`_is_article_byline_chrome`), which stopped the "Written by Gus Mallett
+    Published on April 29, 2026 Key Takeaways <lede>" leak.  Measured the same
+    day, over `buffer_junk.jsonl` + `buffer_junk_archive.jsonl`: 59 refused
+    rows carried this shape and 21 of them were REAL prose behind a header
+    stack.  The cycle logged the bare "shallow + deep read both gated" for
+    those, which is the doctrine this repo already applies elsewhere -- the
+    sentence BEHIND a header IS the knowledge, so STRIP instead of reject.
+
+    `region=100` is the guard that keeps it clean.  `_is_article_byline_chrome`
+    accepts an affordance and a dateline anywhere in the first 200 chars; the
+    strip is only allowed when BOTH begin inside the first 100, i.e. the row
+    really opens with the header stack.  Measured 22.09.26 with the guard:
+    21/21 positives recovered, strip fires on 0 of 6,128 real episode rows,
+    0 of 5 prose controls named in the class-142 docstring.  Without the guard
+    (region=200) it fired on 58 episodes and BROKE 36 -- do not widen it.
+
+    `force=True` is for the already-classified path: when the caller knows
+    `_is_article_byline_chrome` is true, the strip is the remedy rather than a
+    detector, so the region guard does not apply.
+    """
+    t = (text or "").strip()
+    if not t:
+        return t
+    head = t[:region]
+    if not force and not (_ARTICLE_BYLINE_AFFORDANCE_RE.search(head)
+                          and _ARTICLE_DATELINE_RE.search(head)):
+        return t
+    ends = [m.end() for m in _ARTICLE_BYLINE_AFFORDANCE_RE.finditer(head)]
+    ends += [m.end() for m in _ARTICLE_DATELINE_RE.finditer(head)]
+    if not ends:
+        return t
+    return t[max(ends):].lstrip(" \u2014-\u00b7|:,\n")
+
+
 def _clean_insight(text, max_len=250):
     """Final gate on a distilled insight. Returns "" for page furniture.
 
@@ -5629,6 +5875,22 @@ def _clean_insight(text, max_len=250):
     t = _strip_blog_header_stack(t)
     t = _strip_masthead_nav_chain(t)
     t = _strip_trailing_read_time_header(t)
+    # class 142 follow-up (22.09.26): an article byline/dateline header stack is
+    # STRIPPED, not rejected -- the lede behind it is the knowledge. The 200-char
+    # predicate stays the reject gate; this only rescues rows whose prose survives.
+    if _is_article_byline_chrome(t):
+        t = _strip_article_byline_header(t, force=True)
+        # The cut can land just before a trailing dateline whose END falls past
+        # the 100-char window ("... 11 min read Sep 15, 2026 <lede>"), leaving a
+        # date-led fragment. Drop a leading full dateline so the stored row opens
+        # with prose, then re-run the fragment strips.
+        m = _ARTICLE_DATELINE_RE.match(t) or _FULL_DATE_RE.match(t)
+        if m:
+            t = t[m.end():].lstrip(" \u2014-\u00b7|:,\n")
+        t = _strip_dateline_fragment(t)
+        t = _strip_clock_fragment(t)
+        t = _strip_leading_clock_fragment(t)
+        t = _strip_trailing_read_time_header(t)
     if len(t) < 20 or _is_junk(t):
         return ""
     if _is_nav_list(t):
