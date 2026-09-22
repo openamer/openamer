@@ -33,6 +33,34 @@ def add_to_buffer(user_text, assistant_text):
     import buffer_store
     return buffer_store.append(user_text, assistant_text, buffer=BUFFER)
 
+def store_if_trainable(user_text, assistant_text):
+    """Write only what the writer gate will actually accept. True on a real append.
+
+    Measured 2026-09-22: active_learn.self_test buffered its OWN reasoning trace
+    (`<answer>\\n\\nSelf-critique: <critique>`). `Self-critique` is a
+    reasoning-trace marker in buffer_store._JUNK_MARKERS, so the writer refused
+    every one of those writes — 167 of 600 audited junk rejections, and because
+    the refusal is silent the action still reported "self-test: good". One third
+    of the whole learner's gate loss came from this single call site.
+
+    The success test mirrors internet_learner.store: a real append can leave the
+    line count unchanged once the buffer is at MAX_BUF (enforce_cap trims it
+    back), so count growth alone is not proof — fall back to a presence check.
+    """
+    import buffer_store
+    txt = (assistant_text or "").strip()
+    if not txt or buffer_store.is_junk(txt):
+        return False
+    n_before = buffer_store.count(BUFFER)
+    add_to_buffer(user_text, txt)
+    if buffer_store.count(BUFFER) > n_before:
+        return True
+    rec = {"u": (user_text or "")[:3000], "a": txt[:4000]}
+    try:
+        return bool(buffer_store._is_duplicate(rec, BUFFER))
+    except Exception:
+        return False
+
 def observe_world(cause, effect):
     """Write through the central world model (single source of truth)."""
     import world_model
@@ -67,13 +95,36 @@ def web_learn():
             {"role": "user", "content": f"Topic: {topic}\nResults: {results}"}],
             max_tokens=100)
         if "[INSIGHT]" in learning:
-            insight = learning.split("[INSIGHT]")[1].strip()
-            add_to_buffer(f"What did you learn about {topic}?",
-                         f"Key insight: {insight}")
+            insight = _strip_reasoning_trace(learning.split("[INSIGHT]")[1].strip())
+            # Report the REAL outcome: a silent REFUSAL of the writer gate must
+            # not be reported as "web-learn: <insight>" (measured 2026-09-22).
+            if not store_if_trainable(f"What did you learn about {topic}?",
+                                      f"Key insight: {insight}"):
+                return f"web-learn: not buffered ({len(insight)} chars gated)"
             return f"web-learn: {insight[:80]}"
         return "no insight extracted"
     except Exception as e:
         return f"error: {str(e)[:100]}"
+
+def _strip_reasoning_trace(text):
+    """Drop the answer's own reasoning-trace tail so the row is trainable.
+
+    2026-09-22: the 2B model appends "Self-critique: ..." / "[GOOD]" /
+    "[NEEDS_IMPROVEMENT] ..." to its answers. Those strings are junk markers in
+    buffer_store, so the whole row was refused. The substance is the ANSWER; the
+    critique is scaffolding. Cut at the first marker so the real prose survives.
+    """
+    t = (text or "").strip()
+    if not t:
+        return ""
+    low = t.lower()
+    cut = len(t)
+    for mk in ("self-critique", "self critique", "[good]", "[needs_improvement]",
+               "[needs improvement]", "analyze user input", "thinking process"):
+        i = low.find(mk)
+        if i != -1:
+            cut = min(cut, i)
+    return t[:cut].strip(" \n\t-—:")
 
 def self_test():
     """Ask itself a question and verify the answer with recursive loop."""
@@ -88,16 +139,22 @@ def self_test():
     try:
         # initial answer
         answer = chat([{"role": "user", "content": q}], max_tokens=150)
-        # self-critique
+        # self-critique — kept for the status signal, NOT written to the buffer:
+        # it is the learner's own reasoning trace, not world knowledge.
         critique = chat([
             {"role": "user", "content":
              f"Question: {q}\nAnswer: {answer}\n\n"
              "Critique this answer: is it accurate? complete? what's missing? "
              "Reply with [GOOD] or [NEEDS_IMPROVEMENT]: <specific issue>."}],
             max_tokens=100)
-        # add both to buffer as learning example
-        add_to_buffer(q, f"{answer}\n\nSelf-critique: {critique}")
+        # Buffer the ANSWER alone (trace stripped). Report honestly: if the
+        # writer still refuses it, say so instead of claiming "good".
+        clean = _strip_reasoning_trace(answer)
+        stored = store_if_trainable(q, clean)
         status = "good" if "[GOOD]" in critique else "needs-improvement"
+        if not stored:
+            return (f"self-test: {status} on '{q[:40]}' — not buffered "
+                    f"(answer untrainable, {len(clean)} chars)")
         return f"self-test: {status} on '{q[:50]}'"
     except Exception as e:
         return f"error: {str(e)[:100]}"
@@ -250,13 +307,16 @@ def cross_connect():
             # buffer (live 16.09.26: 5 empty rows, a 1-char "S" and two stub
             # fragments reached online_buffer.jsonl here, because chat()
             # returns "" on failure and its value was buffered unvalidated).
-            _ins = (insight or "").strip()
+            _ins = _strip_reasoning_trace(insight)
             if (len(_ins) < 25 or _ECHO_OPENER_RE.match(_ins)
                     or _ECHO_TAIL_RE.search(_ins)
                     or _ECHO_TEMPLATE_RE.search(_ins)):
                 return f"cross-connect: discarded stub/echo ({len(_ins)} chars)"
-            add_to_buffer(f"Structural connection between {t1} and {t2}?", insight)
-            return f"cross-connect: {insight[:80]}"
+            # Same honesty rule as web_learn/self_test: the writer gate can
+            # still refuse this row; report the refusal, don't log a success.
+            if not store_if_trainable(f"Structural connection between {t1} and {t2}?", _ins):
+                return f"cross-connect: not buffered (gated, {len(_ins)} chars)"
+            return f"cross-connect: {_ins[:80]}"
         return "cross-connect: not enough memories"
     except Exception as e:
         return f"error: {str(e)[:100]}"

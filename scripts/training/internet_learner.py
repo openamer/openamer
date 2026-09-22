@@ -291,6 +291,18 @@ def store(user_text, insight, buffer=None):
         except Exception:
             pass
         return False
+    # 2026-09-22: ask the WRITER before writing. Measured on 600 audited junk
+    # rows: 368 (61%) were SILENT DROPS — this module judged the text learnable,
+    # buffer_store.is_junk() then refused it, and the cycle reported only the
+    # generic "rejected, not trained". Auditing under its own reason makes the
+    # disagreement visible (it was invisible for 8 days) and keeps the two
+    # gates separable when one of them is over-strict.
+    if _writer_gate_refuses(cleaned):
+        try:
+            buffer_store._audit(user_text, cleaned, "writer-gate")
+        except Exception:
+            pass
+        return False
     rec = {"u": (user_text or "")[:3000], "a": (cleaned or "")[:4000]}
     try:
         if buffer_store._is_duplicate(rec, buf):
@@ -4521,6 +4533,38 @@ def _is_junk(text):
     except Exception:
         return False
     return bool(is_glued_motif(t))
+
+
+def _writer_gate_refuses(text):
+    """True when the WRITER (buffer_store.is_junk) would refuse this text.
+
+    2026-09-22, MEASURED: the extractor gate above (`_is_junk`) keeps 40+
+    single-class chrome detectors, and store_or_deep's fallback chain ends in a
+    buffer write decided by buffer_store.is_junk. Of 600 audited
+    `reason="junk"` rows, 368 (61%) were SILENT DROPS: this module believed it
+    had a learnable insight, the writer refused it, and the cycle logged only
+    the generic "rejected, not trained". Missing detectors: _is_serp_snippet
+    222 (dated SERP titles), the `self-critique` marker 109, _is_nav_chrome 88.
+    That silent disagreement is what the 57% rejection rate is made of.
+
+    Deliberately a SEPARATE predicate, not folded into `_is_junk`: the two
+    gates have intentionally different strictness (the extractor must keep
+    prose that merely *mentions* an ad-wall or a plan, and `_clean_insight`
+    depends on that — measured: folding the writer into `_is_junk` regressed 4
+    gate tests). This is consulted only at the WRITE DECISION in store(), so
+    the refusal becomes explicit and auditable instead of silent.
+    """
+    if not text:
+        return False
+    try:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        from buffer_store import is_junk as _writer_is_junk
+    except Exception:
+        return False
+    try:
+        return bool(_writer_is_junk(text))
+    except Exception:
+        return False
 
 
 def _filter_junk(results):
