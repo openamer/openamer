@@ -4932,3 +4932,165 @@ file identical to `main` showed +30 in one pass. Verify with
 
 **Also:** `.lint-reports/` is NOT gitignored in this repo -- delete it after
 reproducing, or it lands in the tree as untracked noise.
+
+## Root cause 146 -- a SINGLE (non-repeated) aggregator feed row (code class 143, live 22.09.26)
+
+Cron run began on the documented `cycle_e_competitors: rejected` line. Rate
+first: last 10 = 2/10 (20 %), last 20 = 3/20 (15 %), last 80 = 29/80 (36 %),
+all-time 1,767/2,592 (68 %). The U/V signature again, so the rejection itself
+was NOT the deliverable -- and `buffer_junk`'s last 30 rows split
+`17 duplicate / 7 junk / 6 writer-gate`, all documented shapes (rotation noise
+at a ~291/300 cap). No code change was warranted for the rejection.
+
+The find came from the buffer, not the rate -- the skill's own rule. Measured
+`online_buffer.jsonl` row 149:
+
+    u: Latest research insight: AI Regex Scientist: A self-improving regex solver
+    a: DeepLogin 5 hours ago | 20 comments 193 Kev: Tiny Jev-like family of
+       decision models built on top of Qwen3.
+
+Both gates said False (`_is_junk` AND `buffer_store.is_junk`). Every sibling
+rule wants MORE structure than a one-item feed row carries:
+
+| rule | why it missed |
+|---|---|
+| `_is_hn_feed_listing_chrome` (37) | needs the `<relative-time> \| N comments` unit REPEATED (>=2) |
+| `_is_hn_item_chrome` (49) | needs the aggregator's own name or its `New ask Hacker News story` label |
+| `_is_aggregator_row_year_tail` (83) | needs an arXiv `(yyyy)` tail |
+| `_is_gh_listing_row` | needs `Updated <Mon DD, YYYY>` + `Public Forked` |
+
+97 chars WITH digits, so the `>=90` length trust and the technical-signal gate
+both fired. The leak also sat in `buffer_junk` twice (audited as `duplicate`,
+never as `junk`) -- the reason it stayed invisible.
+
+**Do NOT loosen class 37's repetition threshold.** Its own test pins the
+single-unit control `The review took 2 days ago | 4 comments per reviewer were
+recorded.` as learnable, and the skill already records a bare single-unit
+marker measuring 4-9 control FPs. The class-83 precedent applies: add a SECOND
+structural co-occurrence. What works here is the trailing **points/handle
+pair** (`193 Kev:`), which the renderer emits for the item itself.
+
+### The escaping trap that cost the most time this round
+
+Three attempts to write the marker produced a corrupted file:
+
+1. **Shell heredoc** (`python - <<'PY'`) -- even single-quoted, the block that
+   reached the file carried 3 x 0x08 control bytes and CRCRLF, because `\b`
+   survived into a *different* layer than expected. The memory rule is
+   absolute: **regex is NEVER written through a shell heredoc**. Symptom:
+   `_FEED_HANDLE_UNIT_RE.pattern` contains `\x08` and `search(leak)` returns
+   None while the source *looks* right.
+2. **`write_file` + a python script that assembles the block by string
+   concatenation** -- landed CRCRLF (the block's `\r\n` joined against a
+   `CRLF` constant that the shell had already mangled) and a misplaced quote
+   (`...Telefon)"\b"`), i.e. `SyntaxError: unexpected character after line
+   continuation character`.
+3. **What works: a template file + an installer that only substitutes.**
+   `write_file` a `.tpl` (LF-only, backslashes intact, `@MOD@` for the module
+   alias), then in the installer do `raw.replace(b"\n", b"\r\n")` and
+   `block.replace(b"@MOD@", mod)`, insert by ANCHOR, and **`py_compile` the
+   result before trusting it**. The compile step is what caught attempt 2 in
+   one second instead of after a full `--once` run.
+
+`write_file` itself is safe for backslashes (verified: `_fix143b.py` on disk
+carries correct `\w`); it is the *heredoc* and the *concatenated assembly*
+that are not.
+
+### The dual-module trap, again (root cause AR/BG)
+
+`internet_learner.py` uses `re`, `buffer_store.py` uses `re as _re`. The
+template's `@MOD@` makes this explicit and testable -- the first install
+crashed at import with `NameError: name 're' is not defined. Did you mean
+'_re'?` in buffer_store.py. Always compile BOTH modules after an install.
+
+### The scoped-case-sensitivity trap (new)
+
+The pattern compiles with `re.IGNORECASE`, so the variant-B tail token
+`[A-Z][\w.\-]{1,20}` matched LOWERCASE words too -- measured FP:
+`The team logged 5 hours ago | 20 comments and then 193 runs: the result held.`
+Fix: `(?-i:[A-Z])[\w.\-]{1,20}` -- Python's scoped inline flag turns
+case-sensitivity back on for just that group. Without the scope you either
+accept lowercase prose or lose the leak (`193 Kev:`).
+
+### Verify (the standard shape, all met)
+
+- Leak gated on BOTH paths and by the writer gate:
+  `_is_feed_handle_unit_row` True, `_is_junk` True, `buffer_store.is_junk` True
+  in BOTH the laptop and the repo tree (asserted identical regex `pattern`).
+- Full-corpus sweep, 12,322 rows: 3 hits -- the live buffer row plus its two
+  `buffer_junk` audit echoes, all the same string; **0/3,064
+  `longterm_episodes`**; 0 gate-test literals of 1,386.
+- Hostile battery 11 cases: 0 FPs, incl. class 37's pinned control and the
+  class-83 leak literal.
+- The pre-gate buffer row dropped (290 -> 289 rows, CRLF preserved, leak gone).
+- `tests/scripts/test_internet_learner_gate.py`: **174 passed** (172 baseline
+  + 2 new: both paths reject the leak, all 8 controls survive).
+- Commit pushed; remote hash verified against local HEAD.
+
+### Also -- the wholesale-copy trap, paid again
+
+Installing by `cp laptop -> repo` for the two training modules pulled in
+UNRELATED laptop-only uncommitted work and broke a pre-existing class-142 test
+(`test_article_byline_chrome_gated_on_both_paths`: `_clean_insight(leak)` no
+longer returned ""). That failure was NOT this patch's. Diagnose before
+believing: `git checkout --` to HEAD, then install by ANCHORED INSERTS only
+(`_install143.py` shape: assert one def anchor + one wire anchor, insert, diff
+`--numstat` must show only `+` lines). Whole-file copies across diverged trees
+are how unrelated work rides along.
+
+### Also -- the scoreboard failure is pre-existing test-order pollution
+
+`pytest tests/scripts -q` reports
+`test_scoreboard.py::test_every_capability_value_names_its_source` FAILED --
+it passes ALONE and passes alone WITH this patch. Prove attribution by
+stashing your change and re-running the same command (the archive's own
+rule): the failure reproduces without your patch, so it is not yours.
+
+## Root cause 147 -- German consultation/contact chrome (code class 144, live 22.09.26)
+
+Found by the post-fix verification cycles, which is the point: **fixing one
+class creates the next leak**. The 4th `--once` after the class-143 fix stored
+
+    u: Multi-domain learning (legal AI automation 2026 lessons learned postmortem):
+       What should an intelligent agent know?
+    a: Produkten PRODUKTBERATUNG Wir beraten Sie persönlich unter 0681
+       5866-4466 (Mo-Do 9-18 Uhr, Fr 9-17 Uhr).
+
+A German shop's nav lockup welded to its consultation block. 104 chars WITH
+digits; neither gate fired. The `_is_de_*` family covers pricing, double-opt-in
+newsletters, portal fact boxes and nav-weld headlines -- none of them a
+consultation/contact block.
+
+**Discriminator: the CONJUNCTION of a consultation vocabulary term
+(`beraten|Beratung|Bestellung|Kaufberatung|Angebot|Hotline|Telefon`) and a
+contact marker (German phone form, `Uhr`, `Hotline`, `Telefon`) within 90 chars
+on ONE line.** Neither half is unique alone -- `Uhr` is an ordinary German word
+and a phone form is ordinary prose -- so the pair is required (the AU rule).
+
+Implementation note: scan forward from EACH vocabulary match and cut the tail
+at the first newline, rather than a single `re.search` over the whole text.
+A whole-text regex would let a vocabulary word in line 1 match a phone number
+in line 5.
+
+### Verify
+
+- 12,336 rows: 1 hit and it IS the leaking row; 0/8,982 `buffer_junk`;
+  0/3,064 `longterm_episodes`; 0/1,647 gate-test literals; 0/1,730 SKILL.md
+  files.
+- Controls: `Die Beratung erfolgt telefonisch.` and `Der Anbieter nennt eine
+  Hotline und oeffnende Zeiten.` (vocabulary without a contact marker) survive;
+  English prose carrying `9-18 hours` plus `0681` survives. The two near-leak
+  controls (the leak minus its nav prefix, and a bare hotline sentence) ARE
+  flagged -- that is correct, not an FP: they are the same chrome.
+- Buffer row dropped (292 -> 291); `tests/scripts/test_internet_learner_gate.py`
+  **176 passed**; commit pushed, remote hash verified.
+
+### Post-fix live behaviour
+
+5 x `--once` after both fixes: 3 learned / 2 rejected, and all three stored
+rows are real prose (`LinearMethod supports multiple execution paths: Marlin
+kernels ...`, a failure taxonomy, an agent-architecture sentence); the
+multi-domain cycle that produced the German chrome is now correctly rejected.
+Rate last-10 30 %, last-20 25 % vs all-time 68 % -- still the U/V signature, so
+no further gate change is warranted on the rate alone. Two consecutive honest
+rejections are the correct stopping state.

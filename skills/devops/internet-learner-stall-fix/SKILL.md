@@ -1599,3 +1599,15 @@ rejections honest (`duplicate` at the cap + a documented SERP shape), new row
 a blind spot for `Sep 24, 2025`. Also: the per-FILE merge resolution (HEAD vs
 origin/main measured, not assumed), and `clean_buffer.py` has NO `--help`
 (it just runs). refs/.
+
+**146** (22.09.26: a SINGLE aggregator feed row -- handle + relative time +
+`| N comments` + points + a capitalized second handle + headline. class 37
+wants the unit REPEATED, 49 the aggregator's name, 83 an arXiv year tail, so a
+one-item row passed both gates; fix = the trailing points/handle pair. Also:
+`(?-i:[A-Z])` scoped case-sensitivity -- under IGNORECASE a bare `[A-Z]` token
+re-admits lowercase prose. Also: regex NEVER via shell heredoc, and a whole-file
+`cp` across diverged trees pulls unrelated work in) is in refs/.
+**147** (22.09.26: German consultation/contact chrome -- `Wir beraten Sie
+persönlich unter 0681 5866-4466 (Mo-Do 9-18 Uhr)` welded to a nav lockup. The
+conjunction of a consultation term and a contact marker within 90 chars on ONE
+line; scan forward from EACH match and cut at the newline) is in refs/.
