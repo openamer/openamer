@@ -3743,6 +3743,9 @@ def _is_nav_chrome(text):
     # (class 138, 22.09.26)
     if _is_caps_nav_lockup_weld(text):
         return True
+    # a paper/arXiv author list with affiliation superscripts (class 140, 22.09.26)
+    if _is_affiliation_author_list(text):
+        return True
     low = text.lower()
     if any(c in low for c in _NAV_CHROME):
         return True
@@ -4143,6 +4146,68 @@ def _is_breadcrumb_title_repeat(text):
     prefix = " ".join(words[:4])
     return len(prefix) >= 15 and seg.count(prefix) >= 2
 
+
+
+
+# --- a paper/arXiv AUTHOR LIST with affiliation superscripts (class 140, 22.09.26) ---
+# Live: `cycle_g_security` STORED
+#   "Sahar Abdelnabi* 1 , Benjamin Pannell* 1 , ..., and Javier Rando 3
+#    (*: Core contributors)."
+# twice in `online_buffer.jsonl`, and `buffer_junk` carries a second paper of the
+# same shape ("Bochao Wu 1 , Bei Feng 1 , ..."). It is the author block of a paper
+# landing page: pure page furniture, zero knowledge. It passed BOTH gates -- 251
+# chars cleared the "long prose" trust and the affiliation digits fed the
+# technical-signal gate. The existing arXiv helpers key on DIFFERENT halves:
+# `_is_arxiv_abstract_chrome` needs page labels from `_ARXIV_CHROME_MARKERS`, and
+# class 135 `_is_arxiv_submitter_run` needs the `<N> authors <N> Submitted by`
+# submitter WELD -- a clean author block emits neither.
+#
+# Discriminator = the affiliation-superscript SEGMENT repeated. A comma-separated
+# segment that is a person name (1-3 capitalised words, optional `*`, optional
+# `and`) followed by an affiliation digit, repeated >= 5 times. A real sentence
+# about papers does not list five such entries in a row (measured, see below),
+# and the leading-word STRUCT guard keeps a run of structural units learnable:
+# "Section 3, Figure 2, Table 1, Appendix 4, Note 5" must SURVIVE.
+# Measured 22.09.26 over online_buffer + longterm_episodes + world_model + kta_log
+# + outcome_analyses + structures + buffer_junk (11,738 rows): 2 distinct hit
+# strings, BOTH the leak; 0 FPs on 15 human/structural controls; 0 gate-test
+# literals.
+_AUTHOR_AFFIL_SEG_RE = _re.compile(
+    r"^\s*(?:and\s+)?(?:[A-Z][A-Za-z'\-]+\s+){0,3}[A-Z][A-Za-z'\-]+\*?\s+\d{1,2}\s*$"
+)
+_AUTHOR_AFFIL_STRUCT_WORDS = frozenset({
+    "section", "figure", "fig", "table", "appendix", "reference", "ref", "note",
+    "step", "part", "chapter", "listing", "rule", "line", "page", "item", "version",
+    "phase", "class", "type", "model", "stage", "level", "task", "epoch", "layer",
+    "block", "unit", "test", "example", "case", "option", "method", "mode", "group",
+    "batch", "fold", "seed", "run", "index", "row", "column", "file", "path", "port",
+    "host", "node", "core", "thread", "process", "point", "topic", "question",
+    "article", "paper", "authors", "variant", "day", "week", "month", "quarter",
+    "goal", "objective", "claim", "assumption", "risk", "finding", "conclusion",
+    "requirement", "feature", "metric", "result", "experiment", "dataset", "benchmark",
+})
+_AUTHOR_AFFIL_MIN_SEGMENTS = 5
+
+
+def _is_affiliation_author_list(text):
+    """True when `text` is a paper AUTHOR LIST with affiliation superscripts (class 140).
+
+    Requires BOTH: >= `_AUTHOR_AFFIL_MIN_SEGMENTS` name+digit segments AND no
+    segment whose leading word is a structural label (`Section`, `Figure`,
+    `Version`, ...). The struct guard is what keeps a run of structural units --
+    real content -- learnable.
+    """
+    t = (text or "").strip()
+    if not t or len(t) > 2000:
+        return False
+    hit = 0
+    for seg in t.split(","):
+        words = [w.strip("*").lower() for w in seg.strip().split()]
+        if len(words) <= 2 and words and words[0] in _AUTHOR_AFFIL_STRUCT_WORDS:
+            return False
+        if _AUTHOR_AFFIL_SEG_RE.match(seg):
+            hit += 1
+    return hit >= _AUTHOR_AFFIL_MIN_SEGMENTS
 
 def is_junk(text):
     """True when a completion is not trainable signal.

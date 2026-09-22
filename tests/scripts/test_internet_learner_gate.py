@@ -5886,3 +5886,59 @@ def test_marketing_slogan_prose_controls_survive_both_gates():
     for ctl in _IL139_CONTROLS:
         assert not IL._is_junk(ctl), ctl
         assert not BS.is_junk(ctl), ctl
+
+
+# class 140 (22.09.26): a paper/arXiv AUTHOR LIST with affiliation superscripts
+# stored as the answer. Live: cycle_g_security stored a paper landing page's
+# author block TWICE ("Sahar Abdelnabi* 1 , Benjamin Pannell* 1 , ... , and
+# Javier Rando 3 (*: Core contributors)."), 251 chars -> cleared the >=90 "long
+# prose" trust, and the affiliation digits fed the technical-signal gate. The
+# existing arXiv helpers key on DIFFERENT halves: _is_arxiv_abstract_chrome
+# needs page-label markers, class 135 needs the `<N> authors <N> Submitted by`
+# submitter weld. Discriminator = >= 5 name+digit SEGMENTS, rejected when a
+# segment's leading word is a structural label.
+#
+# Controls are lists a HUMAN writes in ordinary word order. A run of
+# STRUCTURAL units ("Section 3, Figure 2, Table 1, ...") is real content and
+# MUST stay learnable -- that is what the struct guard exists for. Every
+# control was MEASURED, never invented.
+_IL140_LEAK = (
+    "Sahar Abdelnabi* 1 , Benjamin Pannell* 1 , Giovanni Cherubin* 1 , "
+    "Ahmed Salem 1 , Andrew Paverd 1 , Conor Mac Amhlaoibh 1 , Joshua Rakita 1 , "
+    "Santiago Zanella-Beguelin 1 , Egor Zverev 2 , Mark Russinovich 1 , "
+    "and Javier Rando 3 (*: Core contributors)."
+)
+
+_IL140_CONTROLS = [
+    "Section 3, Figure 2, Table 1, Appendix 4, Note 5 and Step 6 hold the detail.",
+    "Version 1, Version 2, Version 3, Version 4, Version 5 of the API all shipped.",
+    "Layer 3, Layer 4, Layer 5, Layer 6 and Layer 7 dominate the latency budget.",
+    "Day 1, Day 2, Day 4, Day 8 and Day 15 are the retry schedule.",
+    "Step 1, Step 2, Step 3, Step 4 and Step 5 are all idempotent by design.",
+    "Variant 1, Variant 2, Variant 3, Variant 4 and Variant 5 all failed the test.",
+    "Sahar Abdelnabi, Benjamin Pannell, Giovanni Cherubin and Andrew Paverd wrote it.",
+    "The paper has 3 authors and was submitted by Maria Keller in March 2026.",
+    "The report lists 12 contributors, and Javier Rando is the lead.",
+    "Nine authors signed the open letter about agent safety research.",
+    "PyTorch 2.0 shipped in 2024 with TorchInductor 1 as the default backend.",
+    "We tested GPT-4 1 and Claude 3 2 across five benchmark suites.",
+    "The invoice arrives on day 1, day 15 and day 30 of the month.",
+    "Relevant findings 1 and 2, plus metric 3, contradicted the earlier result.",
+    "The benchmark dataset 4 and the dataset 5 disagree on tokenisation.",
+]
+
+
+def test_affiliation_author_list_gated_on_both_paths():
+    import internet_learner as IL
+    import buffer_store as BS
+    assert IL._is_junk(_IL140_LEAK), _IL140_LEAK
+    assert BS.is_junk(_IL140_LEAK), _IL140_LEAK
+    assert IL._clean_insight(_IL140_LEAK) == ""
+
+
+def test_affiliation_author_list_controls_survive_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL140_CONTROLS:
+        assert not IL._is_junk(ctl), ctl
+        assert not BS.is_junk(ctl), ctl
