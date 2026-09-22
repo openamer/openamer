@@ -3827,3 +3827,457 @@ origin HEAD`, and verified by REMOTE blob, not the exit code:
 `git cat-file blob origin/<branch>:<file> | grep -c <marker>` -> 2/2/8.
 Post-fix live: 3 x `--once` -> 1 learned (real Haystack context-engineering
 prose) / 2 rejected; **no recurrence of the SDK-family row**.
+## Root cause 128 -- 21.09.26: 121 re-confirmed, and the MECHANISM of rotation exhaustion measured
+
+Cron `--once` reported `cycle_d_docs: rejected, not trained (shallow + deep read
+both gated)`. Rates table says NOT a systemic regression: per-source (5d) is a
+flat 36.8-48.9% band with no outlier, and per-day 21.09 = 42.3% is *above*
+20.09's 27.8% (and the final per-day row is a PARTIAL day -- never read it as a
+decline). The last 60 learner `duplicate` rejects: **0/60 carry a novel `u`** --
+every one re-observes a fact already in the buffer; 52/60 are the byte-identical
+`(u, a)`. Last-60 non-duplicate (`junk`) rejects attribute only to pre-existing
+helpers (18 `self-critique` echo rows + SERP/nav shapes), zero novel shapes. So:
+no gate change.
+
+### The new measurement -- why the novelty ledger cannot help (the avoid window is 7.5% of the ledger)
+`.il_seen_queries` holds 800 entries but only **177 distinct** (121 queries were
+issued more than once, 623 repeat slots in total; the top headlines appear
+12-13x each). `_recent_queries()` defaults to `n=60`, i.e. the avoid set is
+**60 of 800 entries = 7.5% of the ledger**. Measured repeat gaps across all 623
+repeats: **median 67 entries, mean 96**, and **95% of repeats sit further apart
+than the 60-entry window** -- so the window structurally cannot see almost every
+repeat it exists to prevent. At one cycle per ~7 min a 13x-per-day headline
+returns every ~2h, long after it has left the window.
+
+### MEASURED-AND-REJECTED: widening the avoid window
+Probed `avoid = last 800 distinct` against the live HN path for all 8 cycle
+keywords: **only 2/8 still yield a headline** (vs 8/8 at `n=60`). Widening would
+push ~6 of 8 cycles off the live-headline path onto the LLM/static-seed fallback
+-- a real behavior change with no measured benefit, and a rejection alone is not
+justification. NOT patched. (The live headline path does honor `avoid` correctly
+when it is given a set it can see -- verified: 4 sequential calls with the
+returned headline appended gave 4 distinct headlines.)
+
+### Verdict
+The domain is saturated after ~2400 cycles (177 distinct headlines consumed), not
+broken. The learner still converts 37-49%; leave the gates and the ledger alone.
+Re-derive this from `diagnose_learn_rates.py --days 5` (per-source band + the
+novel-`u` count on the last 60 duplicates) before touching any gate.
+
+
+## CF / class 130 -- a search widget's own source tally stored as knowledge (live 22.09.26)
+
+`cycle_b_papers` logged a success and wrote this into `online_buffer.jsonl`
+(a LoRA training row):
+
+    Curated from 71 sources: Anthropic, OpenAI, HN, arXiv, GitHub and more.
+
+It is the search surface's own footer, not a finding. It walked through every
+gate: the digit `71` fed `_TECH_HINT_RE`, `OpenAI` satisfied
+`_has_alpha_signal`, and 71 chars cleared the `< 20` floor in `_clean_insight`
+as well as `_looks_like_content` inside `store()`.
+
+### Measure before you touch a rule
+
+Full FP replay of the anchored candidate shape over every store, keyed on the
+candidate bytes only:
+
+    online_buffer              1  <- and that hit IS the leak
+    buffer_junk (8,064 rows)   0
+    longterm_episodes (3,058)  0
+    cross_domain_synthesis     0
+    4 hand-written prose controls 0
+
+The controls matter because the rule is deliberately ANCHORED with a trailing
+`and more`: real prose that merely mentions a count must stay learnable.
+
+    "The survey was curated from 71 sources across three labs."              -> keep
+    "Compiled from 12 sources, the report concludes that quantization
+     recovers 97% of fp16 accuracy."                                         -> keep
+    "Data aggregated from 240 sources and more than 30 benchmarks ..."       -> keep
+
+### The fix -- class 130, in BOTH gates
+
+`_is_source_tally_cta` + `_SOURCE_TALLY_CTA_RE` were added to
+`internet_learner._is_junk` (extraction gate) and `buffer_store.is_junk`
+(writer gate) -- if only the writer refused it, the cycle would burn itself on
+a write that is silently dropped instead of retrying with the wider k.
+
+Measured before/after on the verbatim bytes:
+
+    OLD buffer_store.is_junk(LEAK)             -> False
+    NEW buffer_store.is_junk(LEAK)             -> True
+    OLD internet_learner._clean_insight(LEAK)  -> the CTA text
+    NEW internet_learner._clean_insight(LEAK)  -> ""
+    OLD internet_learner._is_junk(LEAK)        -> False
+    NEW internet_learner._is_junk(LEAK)        -> True
+
+`store()` cannot be used to demo old-vs-new here (both return False, the old
+one via the duplicate gate) -- grade `is_junk` / `_clean_insight` on BOTH
+modules against their back-up copies instead.
+
+### Pitfalls hit this round
+
+- **`_re` vs `re` (AM/AQ/AR, now a FOURTH time).** A parameterised block
+  emitting `_re.compile` into `internet_learner.py` raised
+  `NameError: name '_re' is not defined` at module level -- `ast.parse` was
+  happy. The learner imports `re`, `buffer_store` imports `re as _re`; emit
+  ONE block per file (they differ only in the alias).
+- **`execute_code` is blocked in cron**, so the probes had to run through
+  `terminal` + a heredoc.
+- **The SKILL.md 100 KB cap is real.** The first pointer pushed it to 102,615 B
+  (cap 102,400); it had to be trimmed to one line, with the detail here.
+- **A backup taken next to the tracked file dirties the tree.** `*.bak_cls130`
+  siblings showed as `??`; move them out of the repo before `git add`.
+- **The cherry-pick onto `origin/main` CONFLICTED** because the base already
+  carries classes 123-129 in the same region of both gate files. Do not resolve
+  that merge: re-apply the three insertions byte-safely onto the worktree
+  baseline instead (see below).
+
+### Publish shape that worked
+
+The branch (`fix/28-respawn-test-psutil-hermetic`) sat 43 behind / 35 ahead of
+`origin/main`, with most of those commits FOREIGN. A worktree parked at
+`origin/main` + a byte-safe re-apply published exactly the one change:
+
+    git worktree add --detach "C:/Users/<u>/oa-publish-wt" origin/main
+    # re-apply class 130 onto the origin/main baseline (bytes, not cherry-pick)
+    git -c core.autocrlf=true commit -F <msgfile>
+    # assert the base did not drift, then push
+    test "$(git rev-parse origin/main)" = "$(git rev-parse HEAD^)" && echo FF-BASIS OK
+    git -c credential.helper=store -c credential.interactive=false push origin HEAD:main
+
+Verification chain (all measured, none assumed):
+
+    staged numstat  == staged -w numstat   -> 25/0, 25/0, 39/0 (delete-count 0)
+    stage-blob EOL  == origin/main baseline (CRLF x + bareLF 120 / dblCR 2, unchanged)
+    pytest tests/scripts/test_internet_learner_gate.py -q  -> 131 passed (base), 141 (branch)
+    git ls-remote origin refs/heads/main == git rev-parse HEAD
+    git cat-file blob origin/main:<file> | grep -c _is_source_tally_cta -> 2 / 2
+    test file -> _IL130_SOURCE_TALLY_LEAK present, 2 new tests
+
+## Classes 131/132 (live 22.09.26) -- two leaks from ONE cron tick
+
+Ran the scheduled cycle. Cycle #1 (`cycle_h_efficiency`) STORED a
+foreign-language forum listing; 60 seconds later a second `--once` STORED a
+news photo-credit strip. Two distinct classes, same session.
+
+### The two leaking rows (verbatim from online_buffer.jsonl)
+
+    Olaewg 2007-09-25 sylvu 2008-02-16 Ave 2008-02-17 Autor: tajger Data:
+    2006-07-03 12:20:25 Na poczatek tabelka 1-BIALKA, 2-PRODUKTY NEUTRALNE,
+    3-WEGLOWODANY BIALKA: -- mieso gotowane; nie zaleca sie stosowania
+    wieprzowiny.
+
+    D3sign/STOCK PHOTO/Getty Images By Mason Leib April 29, 2026, 5:39 PM A
+    software company founder wen
+
+Both passed BOTH gates. Both were ever-present in `online_buffer` and had
+never been rejected (they are not in `buffer_junk.jsonl`: `grep -c` -> 0).
+
+### Discrimination (the standard evidence bar)
+
+`which_rule_matches.py --module both` returned `INDIVIDUAL RULES MATCHED:
+none` on both rows -> a genuinely new class, not a regression. Do NOT skip
+this step: it is what distinguishes "new leak" from "documented shape".
+
+**131 -- date-stamped listing strip.** First candidate `>=3 ISO dates` was
+REJECTED on measurement: 5/15 hostile controls. Adding "no sentence period in
+the window" still left 2/15. Only the third condition -- the dates span >=3
+DISTINCT YEARS -- removed them. Final form: >=3 `<word> <ISO date>` pairs in
+the first 220 chars, no period in that window, >=3 distinct years.
+
+**132 -- photo-credit / byline / dateline run.** Keyed on THREE co-located
+parts: an image-credit marker, a `By First [Last]` byline, a `<Month D,
+YYYY>` dateline, and a clock. Requiring the credit marker is what keeps
+`By Jane Doe September 3, 2026, 8:00 AM` learnable.
+
+### Measured evidence
+
+    131: 4527 learnable rows (buffer + kta_log + longterm + world_model)
+         -> 1 hit, and that hit IS the leak; 0/15 hostile FPs
+    132: 20,845 rows -> 1 hit, that hit IS the leak; 0/7 hostile FPs
+    both: 1,121 asserted gate-test string literals -> 0 hits
+    pytest tests/scripts/test_internet_learner_gate.py -> 141 (base) / 145
+
+### The trap that cost the most time: heredoc double-unescaping
+
+Writing the helper through a bash heredoc (`python - <<'PYEOF'`) turned a
+raw-string `\b` into a literal BACKSPACE (0x08) and `\s`/`\d` into
+over-escaped atoms -- the regex compiled fine, `ast.parse` passed, and the
+helper silently matched NOTHING (debug print showed
+`pattern repr: '\x08([A-Za-z]{2,})...'`). **Never generate a regex literal
+through a shell heredoc.** Write the patch script to a FILE (write_file) and
+have it build backslashes as `chr(92)`, or collapse the damage afterwards by
+replacing the doubled forms inside only the new block.
+
+### The other trap: byte-safe insertion into mixed-EOL files
+
+`internet_learner.py` and `buffer_store.py` are CRLF-native; the test file is
+MIXED (5343 CRLF + 120 bare LF + 2 double-CR). Anchor strings written with
+`\n` do not match -- normalise to LF for matching, splice, then re-encode
+CRLF and assert `prefix_unchanged == True` for pure appends. `buffer_store`
+imports `re` as `_re`; a helper copied verbatim from `internet_learner` dies
+with `NameError: name 're' is not defined`.
+
+### Cleanup
+
+Remove the `_fix_cls13*.py` / `_measure_cls132.py` / `_apply_cls132.py`
+scratch scripts from `scripts/training/` -- they are untracked junk in a
+tracked directory.
+
+## Class 133 -- MEASURED, NOT GATED (22.09.26)
+
+Third leak observed in the SAME session, after 131/132 had shipped. The
+`cycle_e_competitors` return line read:
+
+    competitor-learn: Published December 20, 2025 at 11:44 am we asked four ai
+    coding agents to In a r
+
+i.e. a `Published <Month D, YYYY> at <clock>` dateline welded to a headline
+fragment. Measured over 20,873 rows:
+
+    online_buffer    0 hits   <- the TRAINING buffer row of that very cycle was CLEAN
+    buffer_junk      0 hits
+    world_model      4 hits   <- all four are the agent's own derived effect
+                                 strings ("OpenAmer should evaluate: <insight>")
+                                 from that single event
+
+So this did NOT poison training. The chrome reached an agent-owned DERIVED
+store whose text is built in `cycle_e_competitors` (`f"OpenAmer should
+evaluate: {insight[:100]}"`), and the learner's own gates do not run on that
+path -- so a new `_is_junk` rule would be untested against the write that
+actually carried the chrome. A 4-case control battery showed 0 FPs (so the
+rule would be safe), but per the standing rule -- never wire a gate on a
+measurement that does not reproduce on the real path -- this is MEASURED AND
+NOT GATED. Re-open only if a `Published <date> at <clock>` row ever appears in
+`online_buffer.jsonl` or `buffer_junk.jsonl`.
+
+Detection one-liner used:
+
+    grep -c "Published [A-Z][a-z]* [0-9]*, [0-9]* at [0-9]*:[0-9]* [ap]m" online_buffer.jsonl
+
+## Class 133 (22.09.26) — doc-site product nav welded to a vendor SDK label
+
+Started from the documented trigger: cycle after cycle reported
+`rejected, not trained (shallow + deep read both gated)`. Step 0 (the packaged
+rates table) said NORMAL VARIANCE, not a regression -- all-time 69.9 % (1715/2455),
+and the longest reject streak in the whole log is 14 (current run was 4). So no
+gate change was warranted for the rejections themselves.
+
+Then one cycle DID store something, and the stored row was the leak:
+
+  cycle_d_docs -> "API, Infinite Possibilities Reference Qualcomm Cloud AI home
+  Qualcomm Cloud AI SDK download Qualcomm Cloud AI API reference User Guide OCP
+  Microscaling Formats (MX) Specification efficient-transformers Welcome to
+  Efficient-Transformers Documentation!"
+
+250 chars of pure sidebar/product nav, zero prose. It cleared BOTH gates: the
+>=90 length trust (250 chars) and the digits-free technical-signal gate (it is
+full of technical nouns). Same failure shape as root cause AH -- the leak is
+found by reading the TAIL of `online_buffer.jsonl` after a `--once`, NOT by
+reading `buffer_junk.jsonl`, because it was never rejected.
+
+### The novelty test that matters
+
+Do NOT assume `both gated` == the documented rotation exhaustion. Measured this
+run: the last 60 `duplicate` rejects carried **41 distinct `u`** (and 54 distinct
+`(u,a)` pairs) -- novelty is present, so this was NOT root cause 121/128's
+"0/60 novel" signature. `.il_seen_queries` is still 800 entries / 178 distinct,
+but that alone does not licence a gate change; measure the reject-reason mix,
+then read the STORED rows.
+
+### Marker selection (two-token welds, forced by hostile controls)
+
+`which_rule_matches.py --module both` on the FULL 300-char stored string printed
+`INDIVIDUAL RULES MATCHED: none` for both modules -> genuinely novel chrome
+shape, no pre-existing rule to widen. Candidate markers measured over the live
+245-row buffer + 8,310 buffer_junk rows + hostile prose controls:
+
+| candidate | buffer | FP verdict |
+|---|---|---|
+| `qualcomm cloud ai home qualcomm` | 1 (the leak) | 0 FP, but overly literal |
+| `cloud ai api reference` | 1 (the leak) | **KEPT** -- 0 hostile FP |
+| `infinite possibilities reference` | 1 (the leak) | **KEPT** -- 0 hostile FP |
+| `efficient-transformers welcome to efficient-transformers` | 1 (the leak) | **KEPT** -- 0 hostile FP |
+| `api reference` (bare) | many | REJECTED: hostile FP |
+| `infinite possibilities` (bare) | many | REJECTED: hostile FP |
+| `sdk download` (bare) | many | REJECTED: hostile FP |
+| `welcome to efficient-transformers` | 1 | REJECTED: hostile FP ("Welcome to Efficient-Transformers Documentation, the reference for CPU inference.") |
+| `ocp microscaling formats` (bare) | 1 | REJECTED: hostile FP |
+
+The AJ/AQ/AR trap fired AGAIN on the first pass: `welcome to efficient-transformers`
+looked clean against my first control set and only died once the natural-prose
+control "Welcome to Efficient-Transformers Documentation, the reference for
+CPU inference." was added. **Always include a control that reuses the site's own
+name in a sentence** before declaring a marker clean -- and re-run the verifier
+after every marker edit, not just once.
+
+Fix: three markers added to `internet_learner._JUNK_RE` AND
+`buffer_store._NAV_CHROME` (Q/R/S pitfall -- both writer paths must agree);
+leaking row purged 245 -> 244. Commit `620aa1756`, class-133 test in
+`tests/scripts/test_internet_learner_gate.py` (leak gated on both paths, six
+prose controls survive both gates).
+
+### Process traps hit this run
+
+- The purge tool (`purge_buffer_rows.py --sig`) is DRY-RUN by default; the
+  `--apply` flag is required, and its own footer says to RE-RUN the consumer and
+  read its output as the proof.
+- `cp ../../tmp/...` inside `openamer-agent/` resolved against the wrong base
+  under MSYS; use the absolute `C:/...` path.
+- A bash heredoc (`cat >> file <<'EOF'`) appended LF-only lines to the
+  CRLF-native test file (120 uniform lines became mixed). Re-normalise with a
+  byte-level `\r\n` round-trip, and check `CR == LF` afterwards.
+- The repo tree is NOT a superset of the live tree: live `scripts/training/*.py`
+  is ~100 lines AHEAD (carries classes 130-132 the repo lacks) while the live
+  test file carries helpers the repo lacks. Sync SURGICALLY (insert the same
+  marker lines at the same anchor) instead of copying the file over -- a blind
+  live->repo copy would have deleted the repo's independent fixes, and a blind
+  repo->live copy would have deleted the live ones.
+
+
+## Class 134 — a newsroom INDEX page is not an article (22.09.26)
+
+**Symptom.** `cycle_a_technews` logged `learned: UK My dream to serve in the UK
+army was ended by childhood eye surgery Some 114,000 Army application were
+rejected on medical grounds in the past five years, Freedom of Information
+figures show.` — ordinary-looking prose, in the buffer, nothing "chrome-y" about
+it.
+
+**Why every text-level gate missed it.** The query's top result was the
+truncated URL `https://www.bbc.com/news/articles` — a newsroom **index**, not an
+article. `deep_learn` scored an extracted "sentence" that is really `CARD[i]`'s
+country tag welded to `CARD[i+1]`'s headline. The strip's relative stamps
+(`6 hrs ago`, `8 hrs ago`, `5 hrs ago`) sit **between** the cards, so the
+sentence regex `[A-Z][^.!?]{40,250}[.!?]` spans the card boundary; tag +
+headline then read as one grammatical sentence, `_clean_insight`'s clock/byline
+helpers strip the stamps, and the digits (`114,000`) satisfy the
+technical-signal gate. The stored string carries **no `ago` at all** — there is
+nothing left for a text rule to key on.
+
+**The tag shape is not a discriminator.** `^[A-Z]{2,3}\s+[A-Z][a-z]` matched
+**190 rows** across the corpora, almost all genuine prose (`AI Coding Agents Are
+Reshaping...`, `CEO Andy Jassy told...`, `AI Consciousness asks whether...`).
+And the tag is not stable run-to-run: an A/B replay produced `World` where the
+live run had produced `UK`. A tag-keyed rule would be both wrong and flaky.
+
+**The discriminator is PAGE-LEVEL.** A newsroom index repeats the site's own
+relative-stamp unit across its card stream; an article page carries at most one.
+Measured over fetch + the **exact 4000-char window `deep_learn` scores** (the
+window, not the whole page — see the `_fair_share_window` note below):
+
+| page | stamps page / window |
+|---|---|
+| bbc.com/news/articles | 19 / 10 |
+| bbc.co.uk/news | 36 / 24 |
+| techcrunch.com | 23 / 17 |
+| news.ycombinator.com | 30 / 30 |
+| huggingface.co/models | 27 / 21 |
+| bbc.com **article** | 0 / 0 |
+| arxiv.org/abs | 0 / 0 |
+| HF PEFT docs | 0 / 0 |
+| github.com/\<repo\> | 0 / 0 |
+| github.com/trending | 0 / 0 |
+| HN **item** | 0 / 0 |
+| reddit.com/r/... | 0 / 0 |
+| openai.com/index/... | 0 / 0 |
+| blog.langchain.dev | 0 / 0 |
+
+Every real page measured exactly **0**; the lowest flagged page measured **10**.
+`>= 3` sits far inside that gap. Note `hrs?`/`mins?` matter: the BBC strip writes
+`5 hrs ago` and `_REL_TIME_AGO_RE` (which the class-34 nav-chain helper uses)
+does **not** cover those spellings. Use a **separate** regex for the page rule —
+widening the shared one silently changes class 34's measured semantics.
+
+**Where it lives.** `_is_news_index_page()` / `_PAGE_REL_STAMP_RE` in
+`scripts/training/internet_learner.py`, called from `deep_learn`'s per-URL fetch
+loop next to the `%PDF` skip. Consulted **only on the fetched page, never on a
+candidate insight** — a single `<n> hours ago` inside real prose
+(`It ran 3 hours ago with 12 4 retries recorded in the log.`) must stay
+learnable. Guards: `len(t) < 500` returns False (a SERP snippet has no card
+stream to weld across).
+
+**Verification that actually proved it (`tmp_ab_134.py` pattern).** Same live
+module, same query, same pages; only difference is
+`il._is_news_index_page = lambda text: False` for the BEFORE arm. BEFORE:
+leak present. AFTER: absent. A green suite alone would not have shown
+attribution — and the *inconclusive* branch matters: if the leak does not
+reproduce with the rule off, the change cannot be attributed and must be
+reported as inconclusive, not as a fix.
+
+**Corpus check.** 0 of 13,106 stored rows flagged across `online_buffer`,
+`buffer_junk` (+archive), `prejunk_archive`, `longterm_episodes`, `world_model`.
+The page rule cannot be validated by replaying stored rows (they are candidates,
+not pages) — so the positive control is the raw page window, and the negative
+evidence is the corpus scan. Do both.
+
+**Scrubbing the polluted row.** A gate replay cannot attribute it: the stored
+text is ordinary prose and the page rule never sees a stored row. Evict by exact
+stored text into `buffer_junk.jsonl` with reason
+`pre-existing-index-page-leak` + a timestamped backup, then assert the count
+dropped by exactly 1 and the row is gone.
+
+
+**135/136 (22.09.26) -- two live leaks found by EYEBALLING the buffer tail, not by a rejection.**
+
+The cron cycle itself was rotation noise (`cycle_e_competitors: rejected`), and the
+per-day rates said so (42% last 7d, 27-58% per day since the 13.09 tightening --
+the documented regime, not a fresh decline). The two leaks were found the cheap
+way the skill recommends: run `--once`, then read the tail of
+`online_buffer.jsonl` and eyeball the `u`/`a` pairs. **Neither appeared in
+`buffer_junk.jsonl` as a novel shape** -- both were ACCEPTED rows:
+
+| # | cycle | stored `a` | chars |
+|---|---|---|---|
+| 135 | `cycle_g_security` | `VLMs to Robotic Control . 9 authors 1 Submitted by Williams07 9 One to More, More to One: Category-Aware Iterative Expert Training for Software Engineering Agents Logics-MLLM 2 Submitted by paulsmith0217 4 Why Do Video Diffusion Models Violate Physics?` | 243 |
+| 136 | `cycle_a_technews` (stored twice) | `Sep 13, 2026 Read AI Agents 9 min OpenAI Agents API: Managed Infrastructure for AI Agents OpenAI launched the Agents API in public beta, putting the Codex agent harness behind one managed API call for building production AI agents.` | 184 |
+
+Both cleared the `>=90` length trust AND the technical-signal gate (the digits).
+
+**135 -- the discriminator is the WELD.** `<N> authors <N> Submitted by` is what
+the extractor produces when an arXiv new-listing page's row separators are lost.
+Prose never emits it: a real sentence says "9 authors **and was** submitted by ..."
+(`authors` is not followed by a bare digit) or "**Authors 9** submitted by
+reviewers ..." (no `authors <N>` weld). Measured: 2 hits over 14,515 pair-rows,
+BOTH the leaking row; 0 FPs on 5 hostile controls.
+
+**136 -- the discriminator needs a CONTINUATION test.** The badge run is
+`<Month D, YYYY> Read <TitleCase label> <N> min`; the rule adds
+`\s+(?=[A-Z])` so the badge must be followed by the article TITLE (TitleCase),
+not more prose. WITHOUT that lookahead the rule has 2 hostile FPs -- both
+`Sep 13, 2026 Read AI Agents 9 min is the card badge, not a sentence.` and
+`... 9 min and then decide whether the API fits.` (the badge quoted mid-prose).
+Same structural idea as class 52. Measured with it: 16 hits over 14,515
+pair-rows, ALL the leaking row (2 buffer + 13 audit echoes + 1 kta echo); 0 FPs
+on 8 hostile controls. Note the FIRST attempt (bare `<Month D, YYYY> Read <label>
+<N> min` with a lowercase-permitting label class) had 1 FP on
+`On Sep 13, 2026 Read the docs for 5 min ...` -- the TitleCase label class and the
+continuation lookahead each remove one FP class.
+
+**Why `_is_readtime_card_widget` (class 114) does not catch 136:** it keys on the
+DOUBLED unit `min min read`, which this renderer never emits. The two shapes are
+siblings, not the same rule.
+
+**Cleanup.** 3 rows purged by signature (`authors 1 submitted by` -> 1 row;
+`read ai agents 9 min` -> 2 rows): 246 -> 243. The live gate now refuses both at
+`store()` (verified: `store('x', leak) is False`), so a re-write is impossible.
+
+**TWO MEASUREMENT TRAPS re-hit, both already documented:**
+
+1. `re.compile` with `(?=.*A)(?=.*B)` over 14k rows of 4 KB text HANGS (>300 s)
+   and must be killed. Use plain substring tests / bounded windows for the first
+   pass; reserve lookahead for the FINAL rule, measured on ONE candidate string.
+   A `timeout 240 python probe.py` that exits 124 with EMPTY output is this bug,
+   not a missing file.
+2. The `cp` into the repo worktree CLOBBERED three tests: the repo HEAD carried
+   class-134 tests (150) while the install/laptop copy was 3 tests behind (147),
+   so `cp laptop -> repo` silently DELETED them. The reverse-direction check is
+   the guard: `diff <(git show HEAD:<f>) <(laptop copy)` must be EMPTY before
+   copying, and the file-level superset test (`only_other == 0`) has to be run
+   PER FILE, not just for the gate .py files. Recovery is `git checkout HEAD --`.
+
+**Trap this run finally killed: verify BEFORE deleting the worktree.** The suite
+was re-run in the repo tree at the published SHA (`git rev-parse HEAD` == the
+remote SHA), not only inside the throwaway `oa-pub-*` worktree -- so the "154
+passed" claim names a tree that still exists on disk.
