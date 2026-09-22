@@ -4819,3 +4819,59 @@ either. Judge with the writer, at the writer's moment.
 **Environment.** Cron has no `OPENAMER_HOME` here, so the scripts fall back to
 `~/AppData/Local/openamer/...`; set `OPENAMER_HOME=.../openamer-laptop` when
 running them by hand, or you silently test the wrong copy.
+
+## Root cause 143 (22.09.26) -- the silent drops were NOT the rejection rate
+
+**Correction to 142.** Fixing the silent drops removed the INVISIBLE half of the
+loss, not the largest half. Measured honestly after the fix deployed:
+
+| window (22.09.) | cycles | learned | rejected |
+|---|---|---|---|
+| before the fix | 196 | 82 | 114 (58%) |
+| after the fix  | 21  | 7  | 14 (67%) |
+
+The overall rate did not fall. Do not claim it did.
+
+**What 142 did buy (both real, both measurable):**
+
+1. The failure is now AUDITABLE. Before: `store()` was refused by
+   `buffer_store.is_junk()` and nothing was written anywhere -- the cycle could
+   only report the generic "rejected, not trained (shallow + deep read both
+   gated)", which is why the cause stayed invisible for 8 days. After: the
+   refusal lands in `buffer_junk.jsonl` under the new reason `writer-gate`
+   (**23 in the first hours**, each one a previously lost write).
+2. Two leak families shrank measurably in the comparable tail window:
+   `_is_serp_snippet` 222 -> 64, `self-critique` marker 109 -> 66.
+
+**Where the remaining ~60% actually comes from.** Re-measured on the current
+tail (400 rows): `junk` via `_is_nav_chrome` 81, `duplicate` 150,
+`junk` via `_is_serp_snippet` 64. So the residual is a SOURCE-QUALITY /
+QUERY-ROTATION defect:
+
+- The learner still fetches and deep-reads chrome pages (`_is_nav_chrome` is
+  now the single largest junk class).
+- `duplicate` at 150 means the same facts are re-fetched and re-refused; the
+  seed queries rotate over a small set, so the search returns the same pages.
+
+That is a separate root cause and was NOT fixed here.
+
+**PITFALL -- do not read "the gate is correct now" as "the learner learns now".**
+Gate correctness and cycle yield are different metrics. 142 made the gate
+consistent and the loss visible; it did not raise the yield. Always measure the
+window BEFORE and AFTER with the same script before claiming an improvement:
+
+    # per-window yield, not a daily average (an average hides the cut-over hour)
+    python -c "import json; rows=[json.loads(l) for l in open('internet_learn_log.jsonl',encoding='utf-8',errors='replace') if l.strip()];       sel=[r for r in rows if r['ts'][:10]=='YYYY-MM-DD' and r['ts'][11:16]>=CUTOFF];       print(len(sel), sum(1 for r in sel if str(r['result']).startswith('rejected')))"
+
+**Measurement trap (cost an hour).** A `grep`-filtered test run swallowed the
+runner's own fatal error (`error: no virtualenv with pytest found`) and produced
+an EMPTY result file that reads like "no failures". The canonical runner needs a
+venv: pass `OPENAMER_PYTHON=.../\.venv/Scripts/python.exe` when working in a git
+worktree, which has no `.venv` of its own. Never conclude green from a filtered
+stream -- check the Summary line exists and the exit code.
+
+**Baseline technique that worked.** To prove a change causes no regressions:
+`git worktree add <dir> origin/main`, run the SAME paths in both trees, and diff
+the sets of `FAILED <node>`:
+`main` = 8995 passed / 67 failed; branch = 8995 passed / 67 failed; new
+failures = 0. Identical sets beat identical counts.
