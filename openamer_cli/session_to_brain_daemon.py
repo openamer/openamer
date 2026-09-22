@@ -20,6 +20,10 @@ logger = logging.getLogger(__name__)
 
 _DAEMON_PID_FILE: Path | None = None
 
+# A live spawn holds the lock for seconds at most; anything older is debris
+# from an interrupted run (crash / self-update) and may be reclaimed.
+_LOCK_STALE_SECONDS = 300
+
 
 def _pid_file() -> Path:
     global _DAEMON_PID_FILE
@@ -41,6 +45,20 @@ def _acquire_spawn_lock() -> Path | None:
         os.close(fd)
         return lock_file
     except FileExistsError:
+        # Stale-lock reclaim: a live spawn holds the lock for seconds at most.
+        try:
+            age = time.time() - lock_file.stat().st_mtime
+        except OSError:
+            return None
+        if age > _LOCK_STALE_SECONDS:
+            try:
+                lock_file.unlink()
+                fd = os.open(lock_file, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+                os.close(fd)
+                logger.debug("reclaimed stale spawn lock (age %.0fs)", age)
+                return lock_file
+            except (FileExistsError, OSError):
+                return None
         return None
     except OSError:
         return None
