@@ -1518,3 +1518,4 @@ origin/main measured, not assumed), and `clean_buffer.py` has NO `--help`
 ORDINAL dateline (`March 6th, 2025`) -- the class-142 vocabulary had neither, so two
 rows were STORED; the bare weld is a topic-word trap and was MEASURED-AND-REJECTED,
 the ANCHORED form is +2 leaks / 0 FP) is in refs/.
+**148** = the learner's OWN bare `Need ...` generation PLAN, stored 12x -- class 142 MIRRORED (here the WRITER was looser than the learner). LESSON: a predicate on only ONE of the two gates is a hole, either direction. Archived in refs/.

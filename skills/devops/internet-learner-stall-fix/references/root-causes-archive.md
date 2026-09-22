@@ -5215,3 +5215,86 @@ refused and no strip ever runs. **Left `region=100` alone.**
   `origin/main` is safe (`git reset --soft HEAD~1`) — but only after the remote
   blob is verified by LF-normalized md5, or the work vanishes.
 
+**148** (22.09.26: the learner's OWN bare `Need ...` generation PLAN, stored 12x
+-- it is the MIRROR of 142, and the mirror is the lesson). The cron opened on the
+documented `cycle_f_multi_domain: rejected` line. Rates: last-20 **20%** vs
+all-time **67.9%** (n=2609) -- a real drop, not the usual rotation noise, so it
+had to be explained rather than gated around. It was explained twice over:
+
+  (a) the `duplicate` rejects are GENUINE exhaustion. Of the last 30 `duplicate`
+      audit rows, **29 are byte-identical to a row ALREADY in the buffer**
+      (0 had a novel `u`) -- the documented mechanism, re-confirmed for the
+      fourth round. Widening `avoid`/loosening a gate is still the wrong fix.
+  (b) the buffer was NOT clean despite the healthy-looking reason mix
+      (`duplicate` 24 / `junk` 9 / `writer-gate` 7 in the last 40). Running
+      `--once` and eyeballing the `u`/`a` tail was not enough this time: 12 of
+      the 300 rows open with a dangling plan verb.
+
+        Need maybe structure: intro: memory consolidation is offline ...
+        Need address inner alignment, outer alignment, deceptive alignment ...
+        Need likely comprehensive.
+
+**`internet_learner._INSTRUCTION_OPENER_RE` ALREADY REFUSED THESE** -- it is
+START-anchored on `need\b`, which is exactly why `--once` reported "shallow +
+deep read both gated" for the whole day. **The WRITER gate had no counterpart.**
+So the extractor refused them at runtime while `buffer_store.is_junk` happily
+STORED them. That is class 142 upside down: there the learner was LOOSER than the
+writer (368 silent drops); here the WRITER is looser than the learner. **Generalise
+the lesson, not the rule: any predicate that exists on only ONE of the two gates
+is a hole, and the direction does not matter.** Class 42 already wired this shape
+for `_is_prompt_echo_bullet_chain`/`_is_prompt_echo_fragment`; 148 was simply the
+next unpaired one, and `_PROMPT_PLAN_ECHO_RE` (class 66) proves the family exists
+without covering the bare-verb opener.
+
+**Why the `>=90` length trust was irrelevant:** the cap had to work the other way.
+Real prose EMBEDS the verb (`We need to reduce peak memory ...`, `The plan needs
+three properties ...`); the echoes all START with it and are <= 300 chars. So the
+pair is (START-ANCHOR, length cap), not a topic word.
+
+| candidate | buffer | leaks caught | episodes | hand controls |
+|---|---|---|---|---|
+| `^\s*\**\s*(?:need|task\s*:|goal\s*:|interpret)\b` cap 300 | 12/300 | 12/12 | **0/3064** | **1/12** |
+| `need` + plan verb (same set as 148's first draft) | 10/300 | 10/12 | 0/3064 | 0/12 |
+| `need` + (hedge|plan verb|root cause) | 12/300 | 12/12 | 0/3064 | 5/18 |
+| bare `need`, no cap | 12/300 | 12/12 | 0/3064 | 1/12 |
+
+The one hand-control the winner trips (`Need analysis: the ablation showed
+quantization dominates batch size ...`) is **the same echo VOICE**, so it belongs
+in its own `assert ... is True` (the AJ/AN/AQ/AU control-corpus rule), never in
+the false-positive set. The canonical corpus settles it: **0 of 1,278 string
+literals >= 40 chars in the gate test file** (all three candidates).
+
+**Shipped:** `_is_need_plan_echo` (helper + wiring) in `buffer_store`, called from
+`_is_nav_chrome` so `is_junk` shares the one implementation. 12 stale rows removed
+by signature via `purge_buffer_rows.py` (300 -> 288, 0 unparsable, CRLF census
+288/0/0). Post-fix live: 1 learned / 2 rejected, both rejections honest.
+
+**TWO PITFALLS THAT COST A CYCLE HERE**
+
+1. **The heredoc trap fired AGAIN, in the SAME run the skill warns about it.**
+   Writing `_NEED_PLAN_ECHO_RE` through a shell heredoc turned `\b` into a
+   BACKSPACE byte (0x08). `re` compiled fine, the helper returned False for every
+   leak, and the ONLY symptom was one red test. `grep` shows nothing; you must
+   print `repr(pattern)` or count 0x08 bytes. **Regexes go in through a FILE
+   (`write_file`), never a heredoc** -- the file-based apply produced 0x08 = 0 in
+   all copies. Diagnose with a byte scan, repair with `chr(8)`/`chr(92)` in a
+   file, then re-run the test.
+2. **A branch that is BOTH 4 behind and 20 ahead of `origin/main`.** `git`
+   refused the push (non-fast-forward) even though the same branch had pushed
+   cleanly all day. The 4 upstream commits were the SAME class of work (141/142/
+   145) authored from another copy, so the branch and main had each re-derived
+   the neighbours' fixes. A 5-file merge produced conflicts in ALL of them
+   (including the skill + archive) -- **resolving that by hand would have been a
+   judgement call on someone else's in-flight class.** The clean landing was a
+   `git worktree` off `origin/main`, re-apply the ONE class, test, commit, push
+   (`f5d324ba0..9e54e87ac`). The branch keeps its own copy as an ancestor of the
+   later merge -- do NOT force-push a shared `main`, and do NOT whole-file `cp`
+   across diverged trees (the live copy is a SUPERSET of main: it carries the
+   branch-only 143/144 helpers, while main carries 145; neither is "newer").
+
+**A note on reading the rate table:** per-day rows showed 39/12.5/16.7/28.6/16.7 %
+across the evening and the last row is a PARTIAL hour (cut at 23:17). The 20%
+last-20 is real, but the CAUSE was (a) exhaustion + (b) a stored-leak family that
+was invisible in `buffer_junk` because it was never rejected. **A healthy-looking
+reason mix is not a clean buffer -- and a leak that was never rejected leaves NO
+audit row to count.**
