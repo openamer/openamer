@@ -20,10 +20,12 @@ from pathlib import Path
 def _training_dir():
     """Resolve the live training dir, tolerating a wrong/stale OPENAMER_HOME.
 
-    The desktop/cron env can point OPENAMER_HOME at a throwaway test dir
-    (e.g. %TEMP%/repo-ac-test2/home), which made every cycle crash with
-    FileNotFoundError on .si_rotation. Prefer a *valid* env override, then
-    the real install dir, then this file's own directory.
+    A cron/desktop env can hand over OPENAMER_HOME in the MSYS spelling (a
+    forward-slash drive path). Native Python treats that as RELATIVE, so
+    os.path.join builds a phantom tree under the drive root and every run
+    crashed with FileNotFoundError on .si_rotation. Prefer a *valid* env
+    override, then the real install dir, then this file's own directory.
+    Same pattern as internet_learner._training_dir (single convention).
     """
     cands = []
     _env = os.environ.get("OPENAMER_HOME")
@@ -80,6 +82,18 @@ def propose_improvement(target, content):
                           "cycle interval > 300s slows learning"))
 
     # P2: max_tokens too small for richer answers
+    #
+    # The guard MUST test `m2` (the max_tokens match), never `m` (the
+    # CYCLE_SECONDS match from P1). Testing `m` here fired whenever P1 found a
+    # cycle interval under 100s, and the proposal then carried `m.group(0)` --
+    # the CYCLE_SECONDS text -- as the pattern to replace. apply_and_test()
+    # rewrites the live file with src.replace(old, new, 1), so the rule deleted
+    # the assignment it was named after. Measured on this form: for the input
+    # `CYCLE_SECONDS = 60\nmax_tokens = 400\n` it proposed
+    # ('capacity', 'CYCLE_SECONDS = 60', 'max_tokens=200') and the patched file
+    # became `max_tokens=200\nmax_tokens = 400\n` -- the cycle interval gone.
+    # None of the three checks in apply_and_test() catches that: the result still
+    # compiles, still AST-parses, and still defines loop().
     m2 = re.search(r"max_tokens\s*=\s*(\d+)", content)
     if m2 and int(m2.group(1)) < 100:
         proposals.append(("capacity", m2.group(0), "max_tokens=200",
@@ -147,12 +161,14 @@ def improve_once():
     content = open(live_path, encoding="utf-8").read()
     proposals = propose_improvement(target, content)
     if not proposals:
-        entry = {"ts": datetime.datetime.now().isoformat(),
-                 "target": target, "kind": None, "status": "no-proposal",
+        # Log it. Returning silently made a rotation that produced nothing
+        # indistinguishable from a loop that never ran (improvements.jsonl
+        # stopped growing with no trace of why).
+        entry = {"target": target, "status": "no-proposal",
                  "reason": "already optimal or no safe pattern"}
         log(entry)
-        print(f"[self-improve] no-proposal: {target} "
-              f"(no rule pattern matched — code already optimal)", flush=True)
+        print(f"[self-improve] no-proposal: {target} — already optimal or "
+              f"no safe pattern", flush=True)
         return entry
 
     os.makedirs(SANDBOX, exist_ok=True)

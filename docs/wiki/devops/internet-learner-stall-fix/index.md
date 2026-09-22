@@ -6,7 +6,7 @@ description: Use when internet_learner cycles all report rejected.
 # internet-learner-stall-fix
 
 **Description:** Use when internet_learner cycles all report rejected.
-**Lines:** 1568 | **Code:** 31 | **Dir:** `internet-learner-stall-fix`
+**Lines:** 1583 | **Code:** 31 | **Dir:** `internet-learner-stall-fix`
 
 ---
 

@@ -374,11 +374,14 @@ def experiment_group_state():
                 "result": f"load failed: {type(e).__name__}: {e}",
                 "measurable": False}
 
-    lengths = [8, 64, 512, 2048]
-    seeds = [0, 1, 2, 3, 4]
+    # Cost budget: this runs inside a */30 cron with no per-job timeout, so keep
+    # the evaluation to ~30s. Three length decades + three seeds is enough to
+    # catch a collapse; the full curve lives in kta_group_state_eval.py.
+    lengths = [8, 512, 2048]
+    seeds = [0, 1, 2]
     measured = {}
     for L in lengths:
-        accs = [round(lab.accuracy(model, group, L, n=200, seed=s), 4) for s in seeds]
+        accs = [round(lab.accuracy(model, group, L, n=100, seed=s), 4) for s in seeds]
         measured[L] = {"mean": round(sum(accs) / len(accs), 4),
                        "min": min(accs), "max": max(accs)}
     worst = min(v["min"] for v in measured.values())
@@ -392,7 +395,8 @@ def experiment_group_state():
     curve = " ".join(f"L{L}:{measured[L]['mean']:.3f}" for L in lengths)
     return {"action": f"group-state generalization ({group.order}, "
                       f"{payload['stats']['params']} params, tau={payload['tau']})",
-            "result": f"accuracy on unseen lengths {curve}; worst min over 5 seeds = {worst:.4f}",
+            "result": f"accuracy on unseen lengths {curve}; worst min over "
+                      f"{len(seeds)} seeds x {len(lengths)} lengths = {worst:.4f}",
             "exact_lengths": [L for L in lengths if measured[L]["min"] >= 1.0],
             "artifact": out,
             "measurable": True}

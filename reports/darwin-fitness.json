@@ -1,17 +1,17 @@
 {
-  "updated": "2026-09-22T04:45:59.210237+00:00",
+  "updated": "2026-09-22T06:31:09.192433+00:00",
   "skills": {
     "a2a-brain-meshlearn-verify": {
-      "fitness": 363.9,
-      "usage": 354,
+      "fitness": 377.9,
+      "usage": 368,
       "health": 1,
       "age_days": 3,
       "mutations_won": 0,
       "mutations_lost": 0
     },
     "asi-capability-summary": {
-      "fitness": 656.97,
-      "usage": 647,
+      "fitness": 670.97,
+      "usage": 661,
       "health": 1,
       "age_days": 1,
       "mutations_won": 0,
@@ -26,24 +26,24 @@
       "mutations_lost": 0
     },
     "auto-env-checker": {
-      "fitness": 2246.0,
-      "usage": 2272,
+      "fitness": 2250.0,
+      "usage": 2279,
       "health": 1,
       "age_days": 0,
       "mutations_won": 10,
-      "mutations_lost": 56
+      "mutations_lost": 59
     },
     "autonomous-learning-architecture": {
-      "fitness": 2029.0,
-      "usage": 2016,
+      "fitness": 2036.0,
+      "usage": 2023,
       "health": 1,
       "age_days": 0,
       "mutations_won": 0,
       "mutations_lost": 0
     },
     "cdp-social-posting": {
-      "fitness": 1074.0,
-      "usage": 1061,
+      "fitness": 1081.0,
+      "usage": 1068,
       "health": 1,
       "age_days": 0,
       "mutations_won": 0,
@@ -138,8 +138,8 @@
       "mutations_lost": 1
     },
     "darwin-harvested-cpython-3-11-windows-x86-64-none-pyt": {
-      "fitness": 10.0,
-      "usage": 1,
+      "fitness": 11.0,
+      "usage": 2,
       "health": 1,
       "age_days": 0,
       "mutations_won": 0,
@@ -178,10 +178,10 @@
       "mutations_lost": 1
     },
     "darwin-harvested-darwin-lineage-json": {
-      "fitness": 23.87,
+      "fitness": 23.83,
       "usage": 11,
       "health": 1,
-      "age_days": 4,
+      "age_days": 5,
       "mutations_won": 2,
       "mutations_lost": 1
     },
@@ -426,8 +426,8 @@
       "mutations_lost": 3
     },
     "darwin-harvested-openamer-cli-main-py": {
-      "fitness": 99.5,
-      "usage": 49,
+      "fitness": 100.5,
+      "usage": 50,
       "health": 1,
       "age_days": 15,
       "mutations_won": 28,
@@ -450,10 +450,10 @@
       "mutations_lost": 2
     },
     "darwin-harvested-package-lock-json": {
-      "fitness": 106.8,
+      "fitness": 106.77,
       "usage": 59,
       "health": 1,
-      "age_days": 6,
+      "age_days": 7,
       "mutations_won": 27,
       "mutations_lost": 16
     },
@@ -546,8 +546,8 @@
       "mutations_lost": 1
     },
     "darwin-harvested-scripts-autonomous-loop-py": {
-      "fitness": 32.83,
-      "usage": 22,
+      "fitness": 34.83,
+      "usage": 24,
       "health": 1,
       "age_days": 5,
       "mutations_won": 2,
@@ -610,11 +610,11 @@
       "mutations_lost": 0
     },
     "darwin-harvested-scripts-run-tests-sh": {
-      "fitness": 17.0,
-      "usage": 8,
+      "fitness": 20.0,
+      "usage": 9,
       "health": 1,
       "age_days": 0,
-      "mutations_won": 0,
+      "mutations_won": 1,
       "mutations_lost": 1
     },
     "darwin-harvested-scripts-security": {
@@ -706,12 +706,12 @@
       "mutations_lost": 1
     },
     "darwin-harvested-the-phantom": {
-      "fitness": 11.0,
-      "usage": 1,
+      "fitness": 12.0,
+      "usage": 3,
       "health": 1,
       "age_days": 0,
       "mutations_won": 0,
-      "mutations_lost": 0
+      "mutations_lost": 1
     },
     "darwin-harvested-tmp-body-swarm-md": {
       "fitness": 14.0,
@@ -722,10 +722,10 @@
       "mutations_lost": 0
     },
     "darwin-harvested-tmp-body18-md": {
-      "fitness": 38.87,
+      "fitness": 38.83,
       "usage": 25,
       "health": 1,
-      "age_days": 4,
+      "age_days": 5,
       "mutations_won": 4,
       "mutations_lost": 4
     },
@@ -746,16 +746,16 @@
       "mutations_lost": 1
     },
     "darwin-harvested-tmp-deepseek-harness-agents-skills": {
-      "fitness": 91.27,
-      "usage": 43,
+      "fitness": 93.27,
+      "usage": 45,
       "health": 1,
       "age_days": 22,
       "mutations_won": 27,
       "mutations_lost": 15
     },
     "darwin-harvested-tmp-hook-update-md": {
-      "fitness": 14.0,
-      "usage": 2,
+      "fitness": 15.0,
+      "usage": 3,
       "health": 1,
       "age_days": 0,
       "mutations_won": 1,
@@ -826,11 +826,11 @@
       "mutations_lost": 3
     },
     "darwin-harvested-tmp-skillsafety-json": {
-      "fitness": 19.8,
-      "usage": 6,
+      "fitness": 22.8,
+      "usage": 7,
       "health": 1,
       "age_days": 6,
-      "mutations_won": 2,
+      "mutations_won": 3,
       "mutations_lost": 0
     },
     "darwin-harvested-tmp-tmp-learn-rate-table-py": {
@@ -865,14 +865,6 @@
       "mutations_won": 8,
       "mutations_lost": 3
     },
-    "darwin-harvested-training-buffer-junk-jsonl": {
-      "fitness": 11.0,
-      "usage": 1,
-      "health": 1,
-      "age_days": 0,
-      "mutations_won": 0,
-      "mutations_lost": 0
-    },
     "darwin-harvested-training-internet-learn-log-jsonl": {
       "fitness": 64.73,
       "usage": 33,
@@ -890,10 +882,10 @@
       "mutations_lost": 2
     },
     "darwin-harvested-training-knowledge-to-action-py": {
-      "fitness": 19.97,
+      "fitness": 19.93,
       "usage": 9,
       "health": 1,
-      "age_days": 1,
+      "age_days": 2,
       "mutations_won": 1,
       "mutations_lost": 1
     },
@@ -914,11 +906,11 @@
       "mutations_lost": 5
     },
     "darwin-harvested-training-online-buffer-jsonl": {
-      "fitness": 20.83,
-      "usage": 8,
+      "fitness": 24.0,
+      "usage": 9,
       "health": 1,
-      "age_days": 5,
-      "mutations_won": 2,
+      "age_days": 0,
+      "mutations_won": 3,
       "mutations_lost": 1
     },
     "darwin-harvested-training-self-improve-py": {
@@ -994,10 +986,10 @@
       "mutations_lost": 3
     },
     "darwin-harvested-z-b-torch-import-optional-machen-try": {
-      "fitness": 33.7,
+      "fitness": 33.67,
       "usage": 13,
       "health": 1,
-      "age_days": 9,
+      "age_days": 10,
       "mutations_won": 7,
       "mutations_lost": 3
     },
@@ -1074,24 +1066,24 @@
       "mutations_lost": 0
     },
     "plugin-api": {
-      "fitness": 824.97,
-      "usage": 816,
+      "fitness": 831.97,
+      "usage": 823,
       "health": 1,
       "age_days": 31,
       "mutations_won": 0,
       "mutations_lost": 0
     },
     "self-rewriter": {
-      "fitness": 237.27,
-      "usage": 285,
+      "fitness": 240.27,
+      "usage": 288,
       "health": 1,
       "age_days": 22,
       "mutations_won": 7,
       "mutations_lost": 71
     },
     "train-from-usage": {
-      "fitness": 835.97,
-      "usage": 829,
+      "fitness": 842.97,
+      "usage": 836,
       "health": 1,
       "age_days": 1,
       "mutations_won": 0,

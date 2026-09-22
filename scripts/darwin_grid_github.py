@@ -66,14 +66,30 @@ def _api(method: str, path: str, body: dict | None = None) -> tuple[int, dict]:
 
 
 def _git(args: list[str], cwd: str | None = None) -> subprocess.CompletedProcess:
-    return subprocess.run(["git"] + args, cwd=cwd, capture_output=True,
-                          text=True, timeout=60)
+    """Run git with the plain `store` credential helper and no prompting.
+
+    The globally-configured Git Credential Manager can answer a 401 with an
+    interactive prompt and then block, keeping the captured pipe open so the
+    ``timeout=`` never fires and the whole publish hangs forever. Force the
+    non-interactive ``store`` helper (reads ~/.git-credentials) instead.
+    """
+    import os
+    env = {**os.environ, "GIT_TERMINAL_PROMPT": "0",
+           "GCM_INTERACTIVE": "never"}
+    try:
+        return subprocess.run(
+            ["git", "-c", "credential.helper=", "-c", "credential.helper=store"]
+            + args, cwd=cwd, capture_output=True, text=True, timeout=60,
+            env=env)
+    except subprocess.TimeoutExpired:
+        return subprocess.CompletedProcess(["git"] + args, 124, "",
+                                           "git command timed out")
 
 
 def _ensure_grid_clone(clone_dir: Path) -> bool:
     """Clone/update the grid repo locally (auth via stored credentials)."""
     if (clone_dir / ".git").exists():
-        r = _git(["pull", "--rebase"], str(clone_dir))
+        r = _git(["pull", "--rebase", "origin", "main"], str(clone_dir))
         return r.returncode == 0
     r = _git(["clone", f"https://github.com/{GRID_REPO}.git", str(clone_dir)])
     return r.returncode == 0
@@ -99,7 +115,7 @@ def _push_genome(machine_id: str) -> tuple[bool, str]:
               "user.email=darwin@openamer.dev",
               "commit", "-m", f"darwin: genome update from {machine_id}"],
              str(clone))
-        r = _git(["push"], str(clone))
+        r = _git(["push", "origin", "HEAD:main"], str(clone))
         if r.returncode != 0:
             return False, r.stderr.strip()[:200]
     return True, "pushed"
