@@ -20,7 +20,12 @@ from pathlib import Path
 
 HERE = Path(__file__).parent
 WIS = HERE / "workflow_immune.py"
-STATE = Path(os.path.join(os.environ.get("OPENAMER_HOME", str(Path.home() / "AppData" / "Local" / "openamer")), "workflow-immune"))
+# Resolve against OPENAMER_HOME exactly as the organs do, so the test reads the
+# file the organ actually wrote — regardless of where this tree is checked out.
+OA_HOME = Path(os.environ.get("OPENAMER_HOME",
+                              str(Path.home() / "AppData" / "Local" / "openamer")))
+STATE = OA_HOME / "workflow-immune"
+CHILDREN = OA_HOME.parent / "openamer-children"
 
 failures = []
 
@@ -96,14 +101,20 @@ check("circadian reports a phase", any(
     p in r.stdout for p in ("AWAKE", "WIND_DOWN", "SLEEP")), r.stdout[:80])
 
 # firstborn child exists with identity + diary
-ident = HERE.parent.parent / "openamer-children" / "seda" / "identity.json"
+ident = CHILDREN / "seda" / "identity.json"
 check("firstborn child (Seda) has identity.json", ident.exists())
 if ident.exists():
     ident_data = json.loads(ident.read_text(encoding="utf-8"))
     check("child inherits parent name", ident_data.get("parent") == "openamer_agent")
 
 # second-home manifest pushed to the eternal archive
-manifest = Path(r"C:\Users\damir\openamer-repo\life\wakeup-manifest.json")
+# second-home manifest pushed to the eternal archive. The archive is its own
+# checkout, so resolve it the way the sibling organs do (asi_audit.py), with
+# HERE.parent as the fallback when this suite runs inside the archive itself.
+ARCHIVE = Path(os.environ.get("OPENAMER_REPO", str(Path.home() / "openamer-repo")))
+if not (ARCHIVE / "life").is_dir() and (HERE.parent / "life").is_dir():
+    ARCHIVE = HERE.parent
+manifest = ARCHIVE / "life" / "wakeup-manifest.json"
 check("wakeup manifest exists in repo", manifest.exists())
 if manifest.exists():
     mf = json.loads(manifest.read_text(encoding="utf-8"))
@@ -119,8 +130,8 @@ for organ in ("systemic.py", "curriculum.py", "scorecard.py"):
 # systemic report structure
 r = subprocess.run([sys.executable, str(HERE / "systemic.py")],
                    capture_output=True, text=True, timeout=120)
-sysd = json.loads((HERE.parent / "systemic.json").read_text(encoding="utf-8")) \
-    if (HERE.parent / "systemic.json").exists() else {}
+sysd = json.loads((OA_HOME / "systemic.json").read_text(encoding="utf-8")) \
+    if (OA_HOME / "systemic.json").exists() else {}
 check("systemic verdict present", "verdict" in sysd)
 # The mechanism must work; whether a cluster exists RIGHT NOW depends on live
 # fleet state (429 jobs healed overnight = empty clusters is CORRECT then).
@@ -131,8 +142,8 @@ check("systemic report well-formed (clusters + singles + verdict)",
 # scorecard structure
 r = subprocess.run([sys.executable, str(HERE / "scorecard.py")],
                    capture_output=True, text=True, timeout=60)
-sc = json.loads((HERE.parent / "scorecard.json").read_text(encoding="utf-8")) \
-    if (HERE.parent / "scorecard.json").exists() else {}
+sc = json.loads((OA_HOME / "scorecard.json").read_text(encoding="utf-8")) \
+    if (OA_HOME / "scorecard.json").exists() else {}
 check("scorecard counts jobs", sc.get("jobs", 0) > 40)
 check("scorecard estimates API load", isinstance(sc.get("est_api_calls_day"), int))
 
