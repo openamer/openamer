@@ -3484,33 +3484,8 @@ def set_model_override(
 # ---------------------------------------------------------------------------
 
 def link_tasks(conn: sqlite3.Connection, parent_id: str, child_id: str) -> None:
-    if parent_id == child_id:
-        raise ValueError("a task cannot depend on itself")
     with write_txn(conn):
-        missing = _find_missing_parents(conn, [parent_id, child_id])
-        if missing:
-            raise ValueError(f"unknown task(s): {', '.join(missing)}")
-        if _would_cycle(conn, parent_id, child_id):
-            raise ValueError(
-                f"linking {parent_id} -> {child_id} would create a cycle"
-            )
-        conn.execute(
-            "INSERT OR IGNORE INTO task_links (parent_id, child_id) VALUES (?, ?)",
-            (parent_id, child_id),
-        )
-        # If child was ready but parent is not yet done, demote child to todo.
-        parent_status = conn.execute(
-            "SELECT status FROM tasks WHERE id = ?", (parent_id,)
-        ).fetchone()["status"]
-        if parent_status != "done":
-            conn.execute(
-                "UPDATE tasks SET status = 'todo' WHERE id = ? AND status = 'ready'",
-                (child_id,),
-            )
-        _append_event(
-            conn, child_id, "linked",
-            {"parent": parent_id, "child": child_id},
-        )
+        _link(conn, parent_id, child_id)
 
 
 def _link(conn: sqlite3.Connection, parent_id: str, child_id: str) -> None:
@@ -3555,13 +3530,17 @@ def _insert_comment(
 
     Companion to ``_link`` for ``kanban_db_graph``: it runs inside a fan-out
     transaction and passes the timestamp it already computed, so this variant
-    takes ``now`` rather than reading the clock, and does not commit. The public
-    ``add_comment`` wraps the same INSERT but opens its own ``write_txn``.
+    takes ``now`` rather than reading the clock, and does not commit.
+    ``add_comment`` is the public wrapper and owns the transaction.
     """
     if not body or not body.strip():
         raise ValueError("comment body is required")
     if not author or not author.strip():
         raise ValueError("comment author is required")
+    if not conn.execute(
+        "SELECT 1 FROM tasks WHERE id = ?", (task_id,)
+    ).fetchone():
+        raise ValueError(f"unknown task {task_id}")
     cur = conn.execute(
         "INSERT INTO task_comments (task_id, author, body, created_at) "
         "VALUES (?, ?, ?, ?)",
@@ -3654,23 +3633,8 @@ def parent_results(conn: sqlite3.Connection, task_id: str) -> list[tuple[str, Op
 def add_comment(
     conn: sqlite3.Connection, task_id: str, author: str, body: str
 ) -> int:
-    if not body or not body.strip():
-        raise ValueError("comment body is required")
-    if not author or not author.strip():
-        raise ValueError("comment author is required")
-    now = int(time.time())
     with write_txn(conn):
-        if not conn.execute(
-            "SELECT 1 FROM tasks WHERE id = ?", (task_id,)
-        ).fetchone():
-            raise ValueError(f"unknown task {task_id}")
-        cur = conn.execute(
-            "INSERT INTO task_comments (task_id, author, body, created_at) "
-            "VALUES (?, ?, ?, ?)",
-            (task_id, author.strip(), body.strip(), now),
-        )
-        _append_event(conn, task_id, "commented", {"author": author, "len": len(body)})
-        return int(cur.lastrowid or 0)
+        return _insert_comment(conn, task_id, author, body, int(time.time()))
 
 
 def list_comments(conn: sqlite3.Connection, task_id: str) -> list[Comment]:
