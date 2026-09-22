@@ -378,6 +378,14 @@ _JUNK_RE = re.compile(
     # German ad/classified chrome (live 13.09.26: a competitor cycle "learned"
     # "Unsere Werbepartner Einkaufen Ferienwohnungen Freizeit und Reise …")
     r"werbepartner|ferienwohnungen|kleinanzeigen|anzeigenmarkt|"
+    # a landing-page marketing-slogan clause (class 139, 22.09.26: the
+    # multi-domain cycle stored "Operator prepping for month-end Pull 50+
+    # invoices from 15+ portals in under 5 minutes \u2014 no mental load." --
+    # the digits fed the technical-signal gate and the row is a product
+    # CLAIM, not knowledge. Measured over the live corpora + 30 hostile
+    # controls, incl. "Reconciliation happens in under 5 minutes -- no
+    # mental gymnastics required.": 0 real-prose rows carry it.)
+    r"no mental load|"
     # German bank referral/promo chrome (live 16.09.26: cycle_c_github
     # stored "Auch die neue Kundin oder der neue Kunde erhält eine Prämie
     # von 300 €, was eine Gesamtprämie von 600 € ergibt!" — a referral BONUS

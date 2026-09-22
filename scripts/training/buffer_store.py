@@ -204,6 +204,10 @@ _BINARY_MIN_CHARS = 20
 _BINARY_RATIO = 0.08
 _NAV_CHROME = (
     "no thanks", "testimonial", "subscribe", "newsletter", "sign up",
+    # a landing-page marketing-slogan clause at the tail of a 50+/15+ promo
+    # claim (class 139, 22.09.26 -- stored 15.09 and again 22.09)
+    "no mental load",
+
     "all rights reserved", "read more", "click here", "follow us",
     "join our", "share this", "leave a reply", "cookie policy",
     "privacy policy", "welcome to the", "incredible educator",

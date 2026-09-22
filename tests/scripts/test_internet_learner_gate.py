@@ -3792,8 +3792,8 @@ def test_bio_page_furniture_pair_is_gated_on_both_paths():
         assert not buffer_store._is_bio_page_furniture_pair(prose), prose
         assert not IL._is_junk(prose), prose
         assert not buffer_store.is_junk(prose), prose
-
-
+
+
 def test_tag_counter_run_chrome_is_gated_on_both_paths():
     """A tag-cloud counter run is not knowledge (class 76).
 
@@ -5835,5 +5835,54 @@ def test_caps_nav_lockup_weld_prose_controls_survive_both_gates():
     import buffer_store as BS
     for ctl in _IL138_CONTROLS:
         assert not IL._is_caps_nav_lockup_weld(ctl), ctl
+        assert not IL._is_junk(ctl), ctl
+        assert not BS.is_junk(ctl), ctl
+
+
+# class 139 (22.09.26): a landing-page marketing-SLOGAN clause stored as the
+# answer.  Live leak -- first seen and stored 15.09 21:12, REFUSED as duplicate
+# on every cycle since, then stored AGAIN 22.09 09:11 (the buffer rotates ~200
+# rows/day against a 300-row cap, so exact `_is_duplicate` cannot help across a
+# rotation and the row came back):
+#   "Operator prepping for month-end Pull 50+ invoices from 15+ portals in
+#    under 5 minutes - no mental load."     (103 chars, digits present)
+# The digits satisfied the technical-signal gate; the row is a product CLAIM
+# with no technical content.
+# Every control was MEASURED (tmp/probe_post138b.py), never invented.
+_IL139_LEAK = (
+    "Operator prepping for month-end Pull 50+ invoices from 15+ portals "
+    "in under 5 minutes \u2014 no mental load."
+)
+_IL139_CONTROLS = [
+    # the leak's own words reused in ordinary sentences
+    "Operator prepping for month-end pulls invoices from fifteen portals.",
+    "The agent reduced the operator's mental load during month-end close.",
+    "Pull 50 invoices from 15 portals, then reconcile them against the ledger.",
+    "Month-end close needs 50+ invoices pulled from 15+ portals in a batch.",
+    "Batch jobs finish in under 5 minutes when the cache is warm.",
+    "The scheduler completes the sweep in under 10 minutes \u2014 a useful budget.",
+    "The job finishes in under 5 minutes \u2014 the em dash there is just punctuation.",
+    "Inference drops to under 2 minutes \u2014 no change to accuracy.",
+    # killed the structural "in under N minutes + dash" form (4 control FPs)
+    "Reconciliation happens in under 5 minutes \u2014 no mental gymnastics required.",
+    "The agent handles 15+ portals in under 5 minutes \u2014 and logs every action.",
+    "Retries complete in under 5 minutes, and the ledger is updated afterwards.",
+    "The pipeline runs in under 5 minutes, no manual step is needed.",
+    "Under 5 minutes is the target for the whole invoice sweep.",
+]
+
+
+def test_marketing_slogan_clause_gated_on_both_paths():
+    import internet_learner as IL
+    import buffer_store as BS
+    assert IL._is_junk(_IL139_LEAK), _IL139_LEAK
+    assert BS.is_junk(_IL139_LEAK), _IL139_LEAK
+    assert IL._clean_insight(_IL139_LEAK) == ""
+
+
+def test_marketing_slogan_prose_controls_survive_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL139_CONTROLS:
         assert not IL._is_junk(ctl), ctl
         assert not BS.is_junk(ctl), ctl
