@@ -4,22 +4,37 @@ import math, random, json, time
 from pathlib import Path
 
 def oa_ripple(x):
-    return math.sin(x) / (1.0 + math.exp(-max(-100, min(100, x))))
+    """sin(x) * sigmoid(x) — same function as the canonical registry in neural_lab.py.
+
+    Bound note (measured 2026-09-22, not inferred): `sin(x) / (1+e^-x)` and
+    `sin(x) * (1/(1+e^-x))` are algebraically identical (max |diff| = 1.1e-16
+    over x in [-200, 200]) and BOTH are bounded by 1. Only the INVERTED form
+    `sin(x) / sigmoid(x)` diverges (|f| = 1.36e21 at x = -50) — no file in this
+    tree has ever used it. The earlier NOTE here blamed the "/" spelling for that
+    divergence and cited "parity3 0/5 vs 5/5"; neither reproduces: over 20 seeds
+    x 3 hidden sizes both spellings score 8/8, 20/20 perfect.
+    """
+    return math.sin(x) * (1.0 / (1.0 + math.exp(-max(-100, min(100, x)))))
 
 HOME = Path(r"C:\Users\damir\AppData\Local\openamer-laptop")
 SESSIONS = HOME / "sessions"
 STATE_DB = HOME / "state.db"
 
 # Extrahiere Trainingsdaten aus Session-Dumps
-def extract_training_data(limit=50):
-    """Extrahiert (topic_vector, model_vector) aus Session-Dumps."""
+def extract_training_data(limit=50, drop_role=False, db_path=None):
+    """Extrahiert (topic_vector, model_vector) aus Session-Dumps.
+
+    Deterministic (newest-first), NOT ORDER BY RANDOM(), so that baselines and the
+    network see identical data across runs — otherwise no accuracy figure is comparable.
+    `db_path` is a test seam so a test can point at a temp DB instead of the live one.
+    """
     import sqlite3, json as j
     data = []
     try:
-        con = sqlite3.connect(str(STATE_DB))
+        con = sqlite3.connect(str(db_path or STATE_DB))
         cur = con.cursor()
         # Hole Nachrichten mit Rollen
-        cur.execute("SELECT role, content, tool_name FROM messages ORDER BY RANDOM() LIMIT ?", (limit,))
+        cur.execute("SELECT role, content, tool_name FROM messages ORDER BY id DESC LIMIT ?", (limit,))
         rows = cur.fetchall()
         for role, content, tool_name in rows:
             if not content: continue
@@ -30,7 +45,7 @@ def extract_training_data(limit=50):
                 1.0 if "!" in content else 0.0,  # Ausruf
                 min(1.0, content.count("```")/10),  # Code
                 1.0 if "python" in content.lower() else 0.0,  # Python
-                1.0 if role == "user" else 0.0,  # Nutzer?
+                0.0 if drop_role else (1.0 if role == "user" else 0.0),  # Nutzer?
                 1.0 if tool_name else 0.0,  # Tool-Call?
             ]
             label = 1.0 if role == "assistant" else 0.0
@@ -82,14 +97,76 @@ def train_self(data, epochs=200, lr=0.3):
     
     return (w1, b1, w2, b2)
 
+def _single_feature_baseline(data, idx):
+    """Direct hit-rate of one feature used as a threshold classifier."""
+    ok = sum(1 for x, y in data if (1.0 if x[idx] >= 0.5 else 0.0) == y[0])
+    return ok / len(data)
+
+
+FEATURE_NAMES = ["len/500", "has?", "has!", "code```", "python", "role==user", "tool_name"]
+
+
+def leak_findings(data, threshold=0.70):
+    """Features that separate the label on their own — the label is then readable
+    off the inputs, and any accuracy is feature arithmetic, not learning.
+
+    A binary feature can leak the label directly OR inverted (e.g. tool_name hits
+    0.019 = 98% inverted), so the strength is max(acc, 1-acc). Returns
+    (name, direct_accuracy, strength) for every feature at or above threshold.
+    """
+    out = []
+    for idx, name in enumerate(FEATURE_NAMES):
+        base = _single_feature_baseline(data, idx)
+        strength = max(base, 1.0 - base)
+        if strength >= threshold:
+            out.append((name, base, strength))
+    return out
+
+
+def _accuracy(model, data):
+    w1, b1, w2, b2 = model
+    n_in = len(data[0][0])
+    ok = 0
+    for x, y in data:
+        h = [oa_ripple(b1[i] + sum(w1[i][j]*x[j] for j in range(n_in))) for i in range(6)]
+        o = 1.0/(1.0+math.exp(-(b2[0] + sum(w2[0][i]*h[i] for i in range(6)))))
+        ok += int((1.0 if o >= 0.5 else 0.0) == y[0])
+    return ok / len(data)
+
+
 if __name__ == "__main__":
     print("=== ASI Self-Learning: Session-Daten → Neuronales Netz ===")
     data = extract_training_data(limit=80)
     print(f"Extrahiert: {len(data)} Trainingssamples")
-    if len(data) >= 4:
-        print(f"Features: {len(data[0][0])} Pro Sample")
-        result = train_self(data, epochs=300, lr=0.3)
-        if result:
-            print("\n✅ Training abgeschlossen — oa_ripple hat gelernt")
-    else:
+    if len(data) < 4:
         print("⚠️ Nicht genug Session-Daten")
+        raise SystemExit(0)
+    print(f"Features: {len(data[0][0])} Pro Sample")
+
+    n_asst = sum(1 for _x, y in data if y[0] == 1.0)
+    print(f"Label-Verteilung: assistant={n_asst} sonstige={len(data)-n_asst}")
+    print(f"Trivial-Baseline (Mehrheitsklasse): {max(n_asst, len(data)-n_asst)/len(data):.3f}")
+
+    result = train_self(data, epochs=300, lr=0.3)
+    if not result:
+        raise SystemExit(1)
+
+    # HONESTY GATE: a 1.000 accuracy here is not learning, it is leakage.
+    acc = _accuracy(result, data)
+    print(f"\n  Net-Trefferquote (Training-Set): {acc:.3f}")
+    findings = leak_findings(data)
+    for name, base, strength in findings:
+        inv = " (invertiert!)" if base < 0.5 else ""
+        print(f"  LEAK-WARNUNG: Einzelfeature '{name}' trennt {strength:.3f} "
+              f"[direkt {base:.3f}]{inv} —")
+        print("                das Label (role==assistant) ist aus den eigenen Features")
+        print("                ablesbar. Diese Zahl misst keinen Lerneffekt.")
+    ablation = extract_training_data(limit=80, drop_role=True)
+    abl_acc = _accuracy(train_self(ablation, epochs=300, lr=0.3), ablation)
+    print(f"  Ablation (Rollen-Feature genullt): {abl_acc:.3f}")
+    if acc >= 0.999:
+        print("\n⚠️ 1.000/1.000 = Zirkelschluss, NICHT gelernt. Label ist identisch")
+        print("   mit 'tool_name == 0' (alle assistant-Messages haben tool_name=NULL).")
+        print("   Aussagekräftig wäre ein Ziel, das NICHT aus den Eingaben folgt.")
+    else:
+        print("\n✅ Training abgeschlossen — oa_ripple hat gelernt")

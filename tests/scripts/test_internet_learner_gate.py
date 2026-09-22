@@ -5413,6 +5413,100 @@ def test_source_tally_prose_controls_survive_both_gates():
         assert not BS.is_junk(ctl), ctl
 
 
+# class 131 (live 22.09.26): the efficiency cycle stored a foreign-language
+# forum listing strip -- every entry carrying its own bare ISO date glued to an
+# author label. Verbatim from online_buffer.jsonl. Both gates passed it, so
+# both must refuse it.
+_IL131_DATE_STRIP_LEAK = (
+    "Olaewg 2007-09-25 sylvu 2008-02-16 Ave 2008-02-17 Autor: tajger "
+    "Data: 2006-07-03 12:20:25 Na pocz\u0105tek tabelka 1-BIA\u0141KA, "
+    "2-PRODUKTY NEUTRALNE, 3-W\u0118GLOWODANY BIA\u0141KA: -- mi\u0119so "
+    "gotowane; nie zaleca si\u0119 stosowania wieprzowiny."
+)
+
+# Real prose that carries several dates -- must stay learnable.
+_IL131_CONTROLS = [
+    "Version 3.2 (2026-04-01) improved throughput; version 3.3 (2026-05-01) "
+    "cut memory; 3.4 (2026-06-01) fixed a crash.",
+    "We released 2026-01-01 and 2026-02-01, and 2026-03-01 shipped after that.",
+    "The paper (arXiv 2026-01-02) compares 2026-02-03 4-bit and 2026-03-04 "
+    "8-bit inference.",
+    "Migrations 2026-01-15 2026-02-15 2026-03-15 all passed without error; "
+    "the schema is consistent.",
+    "Model A 2026-01-01 and Model B 2026-02-01 and Model C 2026-03-01 were "
+    "each benchmarked on CPU.",
+    "Between alpha 2026-01-01 beta 2026-02-01 gamma 2026-03-01 the numbers "
+    "differ",
+    "The 2025-01-01 release beat the 2026-01-01 build and the 2027-01-01 plan "
+    "is already drafted for review",
+    "A 2026-01-01 B 2026-02-01 only two here",
+]
+
+
+def test_date_stamp_listing_strip_rejected_on_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    assert IL._is_date_stamp_listing_strip(_IL131_DATE_STRIP_LEAK)
+    assert IL._is_junk(_IL131_DATE_STRIP_LEAK)
+    assert BS._is_date_stamp_listing_strip(_IL131_DATE_STRIP_LEAK)
+    assert BS.is_junk(_IL131_DATE_STRIP_LEAK)
+    assert IL._clean_insight(_IL131_DATE_STRIP_LEAK) == ""
+
+
+def test_date_stamp_listing_prose_controls_survive_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL131_CONTROLS:
+        assert not IL._is_date_stamp_listing_strip(ctl), ctl
+        assert not IL._is_junk(ctl), ctl
+        assert not BS._is_date_stamp_listing_strip(ctl), ctl
+        assert not BS.is_junk(ctl), ctl
+
+
+# class 132 (live 22.09.26): the technews cycle stored a news photo-credit
+# strip welded to the article byline and dateline. Verbatim shape from
+# online_buffer.jsonl. Both gates must refuse it.
+_IL132_CREDIT_LEAK = (
+    "D3sign/STOCK PHOTO/Getty Images By Mason Leib April 29, 2026, "
+    "5:39 PM A software company founder wen"
+)
+
+# Real prose that mentions credits, authors, or dates must stay learnable.
+_IL132_CONTROLS = [
+    "The photo credit reads Getty Images; the article it illustrates was "
+    "published on April 29, 2026 and updated later that day.",
+    "A stock photo of a data centre. Caption: the facility went live on "
+    "May 3, 2025 after an 18-month build.",
+    "By Sarah Chen and Mark Ruiz the paper was submitted on June 2, 2026 at "
+    "10:15 AM to the conference.",
+    "AP Photo archives hold thousands of frames; the earliest dates from "
+    "January 4, 1971.",
+    "By Jane Doe September 3, 2026, 8:00 AM the quarterly report landed.",
+    "The report, by Mason Leib, argues that quantization recovers most "
+    "accuracy at 4 bits.",
+]
+
+
+def test_credit_byline_run_rejected_on_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    assert IL._is_credit_byline_run(_IL132_CREDIT_LEAK)
+    assert IL._is_junk(_IL132_CREDIT_LEAK)
+    assert BS._is_credit_byline_run(_IL132_CREDIT_LEAK)
+    assert BS.is_junk(_IL132_CREDIT_LEAK)
+    assert IL._clean_insight(_IL132_CREDIT_LEAK) == ""
+
+
+def test_credit_byline_prose_controls_survive_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL132_CONTROLS:
+        assert not IL._is_credit_byline_run(ctl), ctl
+        assert not IL._is_junk(ctl), ctl
+        assert not BS._is_credit_byline_run(ctl), ctl
+        assert not BS.is_junk(ctl), ctl
+
+
 # --- class 133 (22.09.26): doc-site product nav welded to a vendor SDK label
 # Live leak: cycle_d_docs stored, verbatim from online_buffer.jsonl,
 #   "API, Infinite Possibilities Reference Qualcomm Cloud AI home Qualcomm
@@ -5427,8 +5521,8 @@ _IL133_LEAK = (
     "Guide OCP Microscaling Formats (MX) Specification efficient-transformers "
     "Welcome to Efficient-Transformers Documentation!"
 )
-# Counter-cases: each carries at most ONE of the welded tokens pair. These are
-# the phrases that made the bare forms unusable.
+# Counter-cases: each carries ONE of the welded tokens pair, never both --
+# these are the phrases that made the bare forms unusable.
 _IL133_CONTROLS = [
     "The API reference for the agent runtime lists every tool and its parameters.",
     "Infinite possibilities in agent design come from composing narrow tools.",
