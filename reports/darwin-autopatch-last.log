@@ -1,14 +1,14 @@
-[autopatch] validating population (2026-09-21T04:00:09) ...
-[autopatch] population: 866 skills, avg 38.2
-[autopatch] 10 weak skills: auto-structural-connection-between-tool(21), auto-efficiency-learning-pushing-the(21), auto-internet-learning-amazon-demands(21), auto-internet-learning-an-ai(21), auto-internet-learning-mit-researchers(21), auto-internet-learning-openai-and(21), auto-internet-learning-the-ai(21), auto-latest-research-insight-adaptive(21), auto-latest-research-insight-ai(21), auto-latest-research-insight-an(21)
+[autopatch] validating population (2026-09-22T04:00:19) ...
+[autopatch] population: 578 skills, avg 41.4
+[autopatch] 10 weak skills: auto-structural-connection-between-tool(21), auto-latest-research-insight-bitnet(21), auto-latest-research-insight-deepseekr1(21), auto-latest-research-insight-ladder(21), auto-latest-research-insight-largescale(21), auto-latest-research-insight-llms(21), auto-latest-research-insight-megatrain(21), auto-latest-research-insight-opensourced(21), auto-latest-research-insight-proofofthought(21), auto-latest-research-insight-recursively(21)
 [autopatch] ✅ auto-structural-connection-between-tool: 21 → 31
-[autopatch] ✅ auto-efficiency-learning-pushing-the: 21 → 25
-[autopatch] ✅ auto-internet-learning-amazon-demands: 21 → 25
-[autopatch] ✅ auto-internet-learning-an-ai: 21 → 25
-[autopatch] ✅ auto-internet-learning-mit-researchers: 21 → 25
-[autopatch] ✅ auto-internet-learning-openai-and: 21 → 25
-[autopatch] ✅ auto-internet-learning-the-ai: 21 → 25
-[autopatch] ✅ auto-latest-research-insight-adaptive: 21 → 25
-[autopatch] ✅ auto-latest-research-insight-ai: 21 → 25
-[autopatch] ✅ auto-latest-research-insight-an: 21 → 25
+[autopatch] ✅ auto-latest-research-insight-bitnet: 21 → 25
+[autopatch] ✅ auto-latest-research-insight-deepseekr1: 21 → 25
+[autopatch] ✅ auto-latest-research-insight-ladder: 21 → 25
+[autopatch] ✅ auto-latest-research-insight-largescale: 21 → 25
+[autopatch] ✅ auto-latest-research-insight-llms: 21 → 25
+[autopatch] ✅ auto-latest-research-insight-megatrain: 21 → 25
+[autopatch] ✅ auto-latest-research-insight-opensourced: 21 → 25
+[autopatch] ✅ auto-latest-research-insight-proofofthought: 21 → 25
+[autopatch] ✅ auto-latest-research-insight-recursively: 21 → 25
 [autopatch] report → C:\Users\damir\openamer-repo\reports\darwin-autopatch.md

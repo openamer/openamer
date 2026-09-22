@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-09-21T04:00:09",
+  "timestamp": "2026-09-22T04:00:19",
   "mode": "apply",
-  "population": 866,
-  "avg_score": 38.2,
+  "population": 578,
+  "avg_score": 41.4,
   "kept": [
     {
       "skill": "auto-structural-connection-between-tool",
@@ -12,7 +12,7 @@
       "fixes": []
     },
     {
-      "skill": "auto-efficiency-learning-pushing-the",
+      "skill": "auto-latest-research-insight-bitnet",
       "before": 21,
       "after": 25,
       "delta": 4,
@@ -23,7 +23,7 @@
       ]
     },
     {
-      "skill": "auto-internet-learning-amazon-demands",
+      "skill": "auto-latest-research-insight-deepseekr1",
       "before": 21,
       "after": 25,
       "delta": 4,
@@ -34,7 +34,7 @@
       ]
     },
     {
-      "skill": "auto-internet-learning-an-ai",
+      "skill": "auto-latest-research-insight-ladder",
       "before": 21,
       "after": 25,
       "delta": 4,
@@ -45,7 +45,7 @@
       ]
     },
     {
-      "skill": "auto-internet-learning-mit-researchers",
+      "skill": "auto-latest-research-insight-largescale",
       "before": 21,
       "after": 25,
       "delta": 4,
@@ -56,7 +56,7 @@
       ]
     },
     {
-      "skill": "auto-internet-learning-openai-and",
+      "skill": "auto-latest-research-insight-llms",
       "before": 21,
       "after": 25,
       "delta": 4,
@@ -67,7 +67,7 @@
       ]
     },
     {
-      "skill": "auto-internet-learning-the-ai",
+      "skill": "auto-latest-research-insight-megatrain",
       "before": 21,
       "after": 25,
       "delta": 4,
@@ -78,7 +78,7 @@
       ]
     },
     {
-      "skill": "auto-latest-research-insight-adaptive",
+      "skill": "auto-latest-research-insight-opensourced",
       "before": 21,
       "after": 25,
       "delta": 4,
@@ -89,7 +89,7 @@
       ]
     },
     {
-      "skill": "auto-latest-research-insight-ai",
+      "skill": "auto-latest-research-insight-proofofthought",
       "before": 21,
       "after": 25,
       "delta": 4,
@@ -100,7 +100,7 @@
       ]
     },
     {
-      "skill": "auto-latest-research-insight-an",
+      "skill": "auto-latest-research-insight-recursively",
       "before": 21,
       "after": 25,
       "delta": 4,
