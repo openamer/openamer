@@ -5775,3 +5775,65 @@ def test_date_heading_listing_abbrev_leak_gated_on_both_paths():
         assert not IL._is_date_heading_listing(ctl), ctl
         assert not IL._is_junk(ctl), ctl
         assert not BS.is_junk(ctl), ctl
+
+
+# class 138 (22.09.26): an ALL-CAPS nav lockup welded to prose AND repeated in
+# Title Case.  Live leak -- a competitor's "Platform Demo" banner stored TWICE
+# in online_buffer.jsonl (241 -> 239 records after the purge):
+#   "Platform Demo SOLACE AGENT MESH Take AI agents from idea to production,
+#    and keep making them better Solace Agent Mesh is an agent development and
+#    runtime platform that lets you build, test, deploy, observe and improve
+#    every agent through one lifecycle."
+# 252 chars, no digits, dense technical nouns -> the >=90 length trust AND the
+# technical-signal gate both passed it.
+# NOTE: every control below was MEASURED (tmp/probe_cls138f.py), never invented;
+# the two that killed the bare forms are marked.
+_IL138_LEAK = (
+    "Platform Demo SOLACE AGENT MESH Take AI agents from idea to production, "
+    "and keep making them better Solace Agent Mesh is an agent development and "
+    "runtime platform that lets you build, test, deploy, observe and improve "
+    "every agent through one lifecycle."
+)
+_IL138_CONTROLS = [
+    # killed the WELD-only form (26 prose FPs without the case-shift conjunct)
+    "Alles erledigt. Hier die Zusammenfassung:",
+    # killed the CASE-SHIFT-only form (2 hits, one of them real prose)
+    "Ich habe nun genug recherchiert. Hier ist die vollstaendige, strukturierte Competitive Analysis fuer OpenAmer.",
+    # the lockup shape reused in an ordinary sentence
+    "Platform Demo AGENT RUNTIME shows how a request is routed to a worker.",
+    "Platform Demo AGENT MESH walks through how teams take AI agents from prototype to production.",
+    # the vendor's own name in prose -- killed the bare-name forms
+    "The Solace Agent Mesh documentation explains how to deploy an agent runtime to production.",
+    "We compared three agent development platforms and Solace Agent Mesh came out on top for throughput.",
+    "The SOLACE benchmark suite measures latency under load.",
+    # the tagline alone -- killed the bare-tagline form
+    "Take AI agents from idea to production is a claim every vendor makes; this one backs it with a lifecycle view.",
+    # the demo label alone -- killed the bare `platform demo` form
+    "Platform Demo: watch a five minute walkthrough of the build pipeline.",
+    "Platform demos are useful, but a demo is not an architecture.",
+    # the lifecycle sentence alone
+    "Our agent platform lets you build, test, deploy, observe and improve every agent through one lifecycle, with 99.9% uptime.",
+    # other ALL-CAPS lockups that are NOT case-shifted
+    "See the product demo VIDEO LIBRARY for recorded sessions from the launch.",
+    "Agent mesh topologies route work between workers; see the ARCHITECTURE NOTES.",
+    "The AGENT SDK exposes tools; the Agent SDK also ships a CLI.",
+]
+
+
+def test_caps_nav_lockup_weld_gated_on_both_paths():
+    import internet_learner as IL
+    import buffer_store as BS
+    assert IL._is_caps_nav_lockup_weld(_IL138_LEAK), _IL138_LEAK
+    assert BS._is_caps_nav_lockup_weld(_IL138_LEAK), _IL138_LEAK
+    assert IL._is_junk(_IL138_LEAK), _IL138_LEAK
+    assert BS.is_junk(_IL138_LEAK), _IL138_LEAK
+    assert IL._clean_insight(_IL138_LEAK) == ""
+
+
+def test_caps_nav_lockup_weld_prose_controls_survive_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL138_CONTROLS:
+        assert not IL._is_caps_nav_lockup_weld(ctl), ctl
+        assert not IL._is_junk(ctl), ctl
+        assert not BS.is_junk(ctl), ctl

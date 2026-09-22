@@ -3892,6 +3892,13 @@ _BREADCRUMB_RE = re.compile(
     r"^\s*Home\s*(?:/|\u203a|\u00bb|>)\s*[^\n]{1,80}?(?:/|\u203a|\u00bb|>)\s*([^\n]+)$")
 
 
+# class 138 (live 22.09.26): an ALL-CAPS nav lockup welded to a Title-Case word.
+# The lookahead requires the weld (`SOLACE AGENT MESH Take ...`); the rule body
+# then requires the SAME name in Title Case elsewhere in the string.
+_CAPS_LOCKUP_ANCHOR_RE = re.compile(
+    r"\b[A-Z][A-Z0-9]{2,}(?:\s+[A-Z][A-Z0-9]{2,})+(?=\s+[A-Z][a-z])")
+
+
 def _is_breadcrumb_title_repeat(text):
     """True for a breadcrumb run welded to a repeated title prefix (137)."""
     t = text or ""
@@ -3907,6 +3914,45 @@ def _is_breadcrumb_title_repeat(text):
     prefix = " ".join(words[:4])
     return len(prefix) >= 15 and seg.count(prefix) >= 2
 
+
+def _is_caps_nav_lockup_weld(text):
+    """True for an ALL-CAPS nav lockup welded to prose AND repeated in Title Case (class 138).
+
+    Live 22.09.26 (competitor + github cycles): a vendor's "Platform Demo"
+    banner was stored twice in `online_buffer.jsonl` as
+        "Platform Demo SOLACE AGENT MESH Take AI agents from idea to
+         production, and keep making them better Solace Agent Mesh is an
+         agent development and runtime platform that lets you build, test,
+         deploy, observe and improve every agent through one lifecycle."
+    252 chars with no digits and a heavy technical-noun load, so BOTH the
+    >=90 "long prose" trust and the technical-signal gate passed it.
+
+    Discriminator = a CASE SHIFT inside one extracted string: the nav lockup
+    is ALL CAPS ("SOLACE AGENT MESH") while the sentence repeats the same
+    product name in Title Case ("Solace Agent Mesh"). A real sentence picks
+    one casing. Requires the lockup to be WELDED (followed by a Title-Case
+    word = the lost-newline nav shape).
+
+    Measured over 239 buffer prose rows, 3,059 `longterm_episodes`, 8,541
+    `buffer_junk` answers, 1,813 gate-test string literals, 502 world_model
+    effects and 18 hostile controls: **0 FPs**, and the leaking row is caught.
+    Each conjunct ALONE was measured and REJECTED: the bare weld fires 26x on
+    ordinary prose ("Alles erledigt. Hier die Zusammenfassung:"), the bare
+    case-shift 2x (one real prose row). Both bare forms of the vendor name
+    ("solace agent mesh", "platform demo") were likewise REJECTED on control
+    FPs -- so this rule carries NO vendor literal and generalises.
+    """
+    t = text or ""
+    if len(t) > 600:
+        return False
+    for m in _CAPS_LOCKUP_ANCHOR_RE.finditer(t):
+        run = m.group(0)
+        title = run.title()
+        if title == run:
+            continue
+        if title in t:
+            return True
+    return False
 
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
@@ -4063,6 +4109,10 @@ def _is_junk(text):
         return True
     # a breadcrumb run welded to a repeated title prefix (class 137, 22.09.26)
     if _is_breadcrumb_title_repeat(t):
+        return True
+    # an ALL-CAPS nav lockup welded to prose + repeated in Title Case
+    # (class 138, 22.09.26)
+    if _is_caps_nav_lockup_weld(t):
         return True
     # a page-meta listing widget (same narrow rule as
     # buffer_store._is_sidebar_listing_chrome)
