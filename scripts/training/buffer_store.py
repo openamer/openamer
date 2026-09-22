@@ -1723,7 +1723,8 @@ def _is_de_portal_fact_box_chrome(text):
 
 # class 65 markers (live 18.09.26) -- see _is_prompt_echo_fragment.
 _PROMPT_ECHO_FRAGMENT_RE = _re.compile(
-    r"^\s*(?:The\s+)?shared underlying pattern[^\n]{0,30}?\bone sentence\s*\.?\s*$",
+    r"^\s*(?:The\s+)?shared underlying pattern"
+    r"(?:[^\n]{0,30}?\bone sentence)?\s*\.?\s*$",
     _re.IGNORECASE | _re.MULTILINE)
 
 
@@ -3727,6 +3728,9 @@ def _is_nav_chrome(text):
 # an aggregator card header welded to the article title (class 136, 22.09.26)
     if _is_aggregator_card_header_weld(text):
         return True
+# an aggregator card's affordance rail welded to the card (class 141, 22.09.26)
+    if _is_aggregator_card_affordance_rail(text):
+        return True
     # a breadcrumb run welded to a repeated title prefix (class 137, 22.09.26)
     if _is_breadcrumb_title_repeat(text):
         return True
@@ -4109,6 +4113,35 @@ _AGGREGATOR_CARD_HEADER_RE = _re.compile(
 def _is_aggregator_card_header_weld(text):
     """True when an aggregator card header is welded onto the article (136)."""
     return bool(_AGGREGATOR_CARD_HEADER_RE.search(text or ""))
+
+# class 141 (live 22.09.26): an aggregator CARD AFFORDANCE RAIL welded to the
+# card's own title and lede:
+#   "GAIA - Open-source framework ... Apr 13, 2026 - galaxyLogic - View Original
+#    [star] Save TL;DR Highlight AMD has released GAIA, ..."
+# The rail is the source's own UI furniture (open-original link, bookmark
+# toggle, TL;DR/Highlight affordances), not knowledge. 246 chars WITH digits ->
+# the >=90 "long prose" trust AND the technical-signal gate both fired, and no
+# existing marker matched: `_AGGREGATOR_AFFORDANCE_MIN_RE` keys on
+# "read full article" / "try on X" + a "[dot] N min" read-time, which this
+# renderer does not emit; `_AGGREGATOR_CARD_HEADER_RE` (136) needs a
+# "Read <label> N min" badge.
+#
+# Discriminator: the affordance rail itself -- "View Original" ... a bookmark
+# star ... "Save" ... "TL;DR" in ONE run. "View Original" ALONE and the star
+# ALONE are ordinary UI words, so the CONJUNCTION is required (the AS rule:
+# when a single part cannot be made unique, add the second structural
+# co-occurrence). Measured 22.09.26 over online_buffer + buffer_junk + both junk
+# archives + longterm_episodes + world_model + kta_log + internet_learn_log
+# (22,073 texts): 1 hit and it IS the leak -> 0 FPs on a 9-case hostile battery.
+_AGG_CARD_AFFORDANCE_RE = _re.compile(
+    r"View\s+Original[\s\S]{0,40}?(?:\u2606|\u2b50|\u2605|\u22c6)\s*Save"
+    r"[\s\S]{0,60}?TL;DR",
+    _re.IGNORECASE)
+
+
+def _is_aggregator_card_affordance_rail(text):
+    """True for an aggregator card's affordance rail welded to the card (141)."""
+    return bool(_AGG_CARD_AFFORDANCE_RE.search(text or ""))
 
 
 # class 137 (live 22.09.26): a docs site's breadcrumb run welded to a

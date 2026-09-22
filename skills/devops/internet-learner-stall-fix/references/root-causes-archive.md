@@ -4412,3 +4412,190 @@ learner+store and 6 in the test file.
    exactly like a code bug; re-read the regex against the literal before
    "fixing" code. The write had already landed, so the file was restored from
    the byte backup taken at the START of the apply step. Take that backup.
+
+## class 138 -- an ALL-CAPS nav lockup welded to prose AND repeated in Title Case (live 22.09.26)
+
+The cron opened on the documented `cycle_a_technews: rejected, not trained
+(shallow + deep read both gated)` line. Step -1 (`git status` + `git diff` on
+the REPO worktree) was CLEAN, step 0 (the packaged rates table) said per-day
+rates 26-58 % inside the documented 50-80 % band with the `duplicate`-at-cap +
+documented-junk shapes -> rotation noise, no gate change warranted FOR THE
+REJECTION. All 8 cycles rejected in the run (0 `ok` at 08:47). The find came
+from the prescribed cheapest method: read the BUFFER TAIL `a` strings, not
+just the printed line.
+
+### The leak
+
+`online_buffer.jsonl` carried the SAME 252-char row TWICE (indices 141 and 237):
+
+    Platform Demo SOLACE AGENT MESH Take AI agents from idea to production, and
+    keep making them better Solace Agent Mesh is an agent development and runtime
+    platform that lets you build, test, deploy, observe and improve every agent
+    through one lifecycle.
+
+Zero digits, heavy technical-noun load, 252 chars -> the `>=90` long-prose trust
+AND the technical-signal gate BOTH fired, and `which_rule_matches.py --module
+both` printed `INDIVIDUAL RULES MATCHED: none` on the FULL stored string: a
+genuinely novel chrome shape with no pre-existing rule to widen.
+
+It is not a one-off. `internet_learn_log.jsonl` shows the same banner returned
+on 15.09 08:19 (competitors), 15.09 10:17 (github), 21.09 11:38 (github) and
+22.09 08:31 (competitors) -- 4 stored attempts, 2 rows surviving in the buffer
+and 14 identical `duplicate` rows in `buffer_junk.jsonl`. The SHALLOW row was
+refused every time; the DEEP row is what got through, which is why the reject
+line looked healthy.
+
+### The discriminator is a CASE SHIFT, not a vendor literal
+
+The nav lockup is ALL CAPS (`SOLACE AGENT MESH`) while the sentence repeats the
+same product name in Title Case (`Solace Agent Mesh`). Real prose picks one
+casing. The rule that ships requires BOTH:
+
+  (a) an ALL-CAPS run of >=2 tokens (each >=3 chars) WELDED to a following
+      Title-Case word -- the extractor's lost-newline nav shape, and
+  (b) the same run in Title Case occurring elsewhere in the string.
+
+Measured candidate ladder (probe `tmp/probe_cls138*.py`, corpora = 239 buffer
+prose rows + 3,059 `longterm_episodes` + 8,541 `buffer_junk` answers + 1,813
+gate-test string literals + 502 `world_model` effects + 18 hostile controls):
+
+| candidate | leak | FP verdict |
+|---|---|---|
+| bare `platform demo` | caught | REJECTED: 2 hostile FPs (`Platform Demo: watch a five minute walkthrough ...`) |
+| bare `solace agent mesh` | caught | REJECTED: 2 hostile FPs (the name in prose) |
+| bare `take ai agents from idea to production` | caught | REJECTED: 1 FP |
+| `platform demo` + ALLCAPS lockup | caught | REJECTED: 1 FP (`Platform Demo AGENT RUNTIME shows how ...`) |
+| lockup + tagline weld (3 conjuncts, no case test) | caught | REJECTED: 2 FPs + 14 junk |
+| WELD alone | caught | REJECTED: **26** hits over ordinary prose (`Alles erledigt. Hier die Zusammenfassung:`) |
+| CASE-SHIFT alone | caught | REJECTED: **2** hits, one is real prose |
+| **WELD + CASE-SHIFT** | caught | **KEPT: 0 FP everywhere** |
+
+This is the AJ/AQ/AR law again: the bare form does not separate, so the pattern
+was wrong, not the threshold. The shipped rule contains no vendor literal -- it
+generalises to any product hero.
+
+### Wiring + cleanup
+
+`_CAPS_LOCKUP_ANCHOR_RE` + `_is_caps_nav_lockup_weld` in BOTH
+`internet_learner.py` (which uses `import re`) and `buffer_store.py` (which uses
+`import re as _re`) -- the Q/R/S pitfall, both writer paths must agree. Two
+leaking rows purged 241 -> 239 (`purge_buffer_rows.py --sig`, DRY-RUN by
+default) with 70 structural-connection rows preserved (re-counted, never
+quoted). Tests 158 -> 160 passed; `tests/scripts` **327 passed**; the new test
+asserts the leak on BOTH gates plus 14 MEASURED prose controls and keeps
+fabricated leak strings out (the class-137 lesson).
+
+### Process traps hit this run
+
+- The probe's FIRST version was run through a shell heredoc and died with
+  `re.error: unterminated character set at position 5` -- bash ate `\b`/`\s`.
+  Regex NIE via Shell-Heredoc: write the probe as a FILE.
+- An f-string cannot contain a backslash in its expression part
+  (`f"{x.count(b'\n')}"` is a SyntaxError) -- build the info dict first.
+- The repo worktree carries its OWN copies of both gate modules and the test
+  file: the test that passed in the LIVE tree FAILED in the repo tree. Prove the
+  direction before porting -- `repo -> live` was `+50 -0` lines for BOTH modules
+  and the only live-only symbol was the new helper, i.e. the live tree is a
+  strict superset, so the surgical insert-at-anchor was safe. (A blind copy in
+  either direction would have been wrong.)
+- `Path.read_text(newline="")` does not exist; use `read_bytes().decode()` when
+  a CRLF-native file must be split on `\r\n`.
+- The live `scripts/training/test_internet_learner_gate.py` (5212 lines) is an
+  OLDER tree that carries no test defs the repo lacks -- but it has 120 lone LFs
+  of its own, so the append guard must compare the DELTA, not assert 0.
+
+### Push
+
+Branch `fix/28-respawn-test-psutil-hermetic` (not `main`: local is 0/1 vs
+origin/main and 1 ahead of the branch after the commit; `main` is a long-lived
+fork point). `git fetch` proved FF_SAFE, then
+`git -c credential.helper=store -c credential.interactive=false push
+origin HEAD:refs/heads/fix/28-respawn-test-psutil-hermetic` ->
+`363d667fe..2b776ef8c`. The `fatal: Cannot prompt because user interactivity
+has been disabled.` line is EXPECTED noise from that flag pair -- the non-zero
+exit is not a failure. Verified: `git ls-remote` == `git rev-parse HEAD`
+(`2b776ef8c...`), `git branch -r --contains` lists the branch, and
+`git cat-file blob` marker census -> 2/2/3.
+
+Post-fix live: 3 x `--once` -> 1 `no insight`, 2 gated, **0** leaking rows and
+`SOLACE rows now: 0`.
+
+## class 139 -- a landing-page marketing-SLOGAN clause (live 22.09.26)
+
+Found 3 minutes AFTER class 138 shipped, by re-reading the buffer tail as the
+prescribed post-fix step. The `--once` that ran while :8081 was being restarted
+stored:
+
+    "Operator prepping for month-end Pull 50+ invoices from 15+ portals in under
+     5 minutes \u2014 no mental load."     (103 chars)
+
+### It is a REPEAT, and the duplicate gate structurally cannot catch it
+
+`internet_learn_log.jsonl` shows the same page returned 15.09 21:12 and
+22.09 09:11 -- and `buffer_junk.jsonl` holds **3 `duplicate` audit rows** for it
+in between, i.e. it was refused on every intervening cycle and still got back
+in. The buffer rotates roughly 200 rows/day against a 300-row cap, so by 22.09
+the earlier copy had already been trimmed: **exact `_is_duplicate` is a
+same-window guard, not a permanent one.** That is the generalisable lesson here
+-- a leak that recurs on a page whose cycle is rare will re-enter after ~1.5
+days of buffer rotation, and no duplicate rule can stop it.
+
+### Candidate ladder (probe tmp/probe_post138b.py)
+
+First pass printed 3 `buffer_junk` hits for every candidate and looked like a
+class with FPs. It was not: **all 3 were byte-identical to the leak itself**
+(the duplicate audits). Excluding the leak, the real corpus FPs were 0 -- the
+AJ/AQ/AR rule in its exact form: check whether your "FP" IS the leak before
+believing a rule is too broad.
+
+| candidate | leak | verdict |
+|---|---|---|
+| `prepping for` (bare verb) | caught | REJECTED: 1 control FP |
+| `in under N minutes` + dash | caught | REJECTED: **4** control FPs (`... in under 10 minutes \u2014 a useful budget.`) |
+| `in under N minutes` + dash + `no` | caught | REJECTED: 1 FP (`... no mental gymnastics required.`) |
+| `Pull N+ ... from N+` listing weld | caught | KEPT but structural-only; not wired alone |
+| **dash + `no mental load`** | caught | **KEPT: 0 FP everywhere** |
+
+Wired as: the marker in `internet_learner._JUNK_RE` AND the entry in
+`buffer_store._NAV_CHROME` (the Q/R/S both-paths rule -- this time the store
+side needed a tuple entry, not a regex, so the two files do NOT get the same
+edit shape).
+
+### TRAP: an EOL normaliser is NOT idempotent on an already-CRLF block
+
+The helper built the inserted block with `.replace("\n", "\r\n")` on strings
+that ALREADY carried literal `\r\n`. Python finds `\r\n` inside `\r\r\n` at
+index 1, so the transformation is not a fixed point:
+
+    "\r\r\n".replace("\r\n", "\n")  -> "\r\n"
+              .replace("\n", "\r\n")  -> "\r\r\n"
+
+Result: 2 `\r\r\n` sequences in each of 4 files. The lone-LF guard I ran was
+GREEN throughout (`loneLF 0 -> 0`), because `count("\n") - count("\r\n")` is
+blind to double-CRs. **Add a `assert after.count("\r\r\n") == 0` check** (and
+prefer `crlf()` built as `s.replace("\r\n","\n").replace("\n","\r\n")`,
+which IS a fixed point). Repaired byte-level afterwards; `live == repo` for both
+modules confirmed after the repair.
+
+### TRAP: `git add` under the global `core.autocrlf=true` stores the LF form
+
+`.gitattributes` here only pins `*.sh`/Dockerfile to `eol=lf`; everything else
+follows the global `core.autocrlf=true`. So a plain `git add` on a CRLF-native
+file writes an **LF blob**, and the diff then claims **5,888 vs 5,839** instead
+of the real **49 additions**:
+
+    git diff --cached --numstat          -> 5888  5839   (whole-file rewrite)
+    git diff --cached -w --numstat       ->   49     0   (the truth)
+
+Recovery: `git rm --cached -q <files>` then re-add with
+`git -c core.autocrlf=false add <files>`. The staged blob census then matches
+HEAD's convention (CRLF == line count, loneLF 0) and `--numstat` equals `-w`.
+This is the class-119/120 mirror lesson in its git-index form: the EOL
+divergence is in the INDEX, so the worktree-vs-blob comparison alone misses it.
+
+### Push + verification
+
+`2b776ef8c..a6080bc80` on `fix/28-respawn-test-psutil-hermetic`; `ls-remote`
+== `rev-parse HEAD` (`a6080bc80...`), `branch -r --contains` lists the branch,
+and the REMOTE blob marker census -> learner cls138=2/cls139=2, store 2/1, test
+3/2.

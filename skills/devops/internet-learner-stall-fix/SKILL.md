@@ -29,6 +29,16 @@ MEASURED-AND-REJECTED, 0.24-0.33 vs a legitimate 0.40) in
 **134** (a newsroom INDEX page is not an article — a card's country tag welded
 to the next card's headline; PAGE-level rule, text-level cannot see it) is
 archived there too.
+**138** (an ALL-CAPS nav lockup welded to prose AND repeated in Title Case — a
+competitor's "Platform Demo" banner stored TWICE; the discriminator is the CASE
+SHIFT, not a vendor literal, so the rule generalises. WELD alone = 26 prose FPs,
+CASE-SHIFT alone = 2; the pair = 0 over ~4,600 real texts) is archived there too.
+**139** (a landing-page marketing-SLOGAN clause; the row had already been a
+`duplicate` for a WEEK — the buffer rotates ~200 rows/day vs a 300-row cap so
+exact `_is_duplicate` is a same-window guard, not a permanent one, and the leak
+came back. Also: an EOL normaliser is NOT idempotent on an already-CRLF block —
+guard `\r\r\n == 0`, and `git add` under global `core.autocrlf=true` stores an
+LF blob: `git rm --cached` + `-c core.autocrlf=false add`) is archived there too.
 TWO warnings stay live because they are behavioural, not history:
 
 - run `which_rule_matches.py` BEFORE touching a rule -- the AJ/AQ/AR trap has

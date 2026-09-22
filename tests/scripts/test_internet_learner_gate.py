@@ -5942,3 +5942,84 @@ def test_affiliation_author_list_controls_survive_both_gates():
     for ctl in _IL140_CONTROLS:
         assert not IL._is_junk(ctl), ctl
         assert not BS.is_junk(ctl), ctl
+
+
+# class 141 (22.09.26): an aggregator CARD AFFORDANCE RAIL welded to the card's
+# own title and lede -- "GAIA - Open-source framework ... Apr 13, 2026 -
+# galaxyLogic - View Original [star] Save TL;DR Highlight AMD has released ...".
+# 246 chars WITH digits -> the >=90 "long prose" trust AND the technical-signal
+# gate both fired. The existing aggregator helpers key on the WRONG half:
+# _AGGREGATOR_AFFORDANCE_MIN_RE needs "read full article"/"try on X" + a
+# "[dot] N min" read-time, and _AGGREGATOR_CARD_HEADER_RE (136) needs a
+# "Read <label> N min" badge. Discriminator = the rail itself: "View Original"
+# ... bookmark star ... "Save" ... "TL;DR" in ONE run (the conjunction, because
+# "View Original" alone and the star alone are ordinary UI words).
+_IL141_LEAK = (
+    "GAIA \u2013 Open-source framework for building AI agents that run on "
+    "local hardware Apr 13, 2026 \u2022 galaxyLogic \u2022 View Original "
+    "\u2606 Save TL;DR Highlight AMD has released GAIA, a Python/C++ framework "
+    "that allows AI Agents to run on local PCs without the cloud."
+)
+
+_IL141_CONTROLS = [
+    "We saved the TL;DR for the end of the paper so readers get the full argument first.",
+    "Click Save Original to keep a copy of the document in your working directory.",
+    "The team wrote a TL;DR Highlight reel summarising the benchmark results.",
+    "View Original files before overwriting them; the agent keeps a backup.",
+    "A user can save an article for later reading without leaving the page.",
+    "The aggregator card shows a title, a date and an author, then the lede follows.",
+    "Open the original document and highlight the section that matters most.",
+    "Saving a bookmark is how the crawler remembers a page between runs.",
+]
+
+
+def test_aggregator_card_affordance_rail_gated_on_both_paths():
+    import internet_learner as IL
+    import buffer_store as BS
+    assert IL._is_junk(_IL141_LEAK), _IL141_LEAK
+    assert BS.is_junk(_IL141_LEAK), _IL141_LEAK
+    assert IL._clean_insight(_IL141_LEAK) == ""
+
+
+def test_aggregator_card_affordance_rail_controls_survive_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL141_CONTROLS:
+        assert not IL._is_junk(ctl), ctl
+        assert not BS.is_junk(ctl), ctl
+
+
+# class 65 WIDENED (22.09.26): the bare form of the learner's own task template.
+# The class-65 rule required the trailing "one sentence" ("Shared underlying
+# pattern one sentence."). The live cycle stored the SHORTER variant --
+# "Shared underlying pattern." -- verbatim, which the old regex missed entirely
+# (the phrase was optional in the prompt, so the model dropped it).
+_IL65_BARE_LEAK = "Shared underlying pattern."
+_IL65_FULL_LEAK = "Shared underlying pattern one sentence."
+
+
+def test_bare_prompt_echo_fragment_is_gated_on_both_paths():
+    import internet_learner as IL
+    import buffer_store as BS
+    for leak in (_IL65_BARE_LEAK, _IL65_FULL_LEAK):
+        assert IL._is_prompt_echo_fragment(leak), leak
+        assert IL._is_junk(leak), leak
+        assert BS.is_junk(leak), leak
+        assert IL._clean_insight(leak) == ""
+
+
+def test_bare_prompt_echo_widening_keeps_real_answers_learnable():
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in (
+        "The shared underlying pattern is a closed-loop feedback system that "
+        "keeps the agent aligned.",
+        "Both systems share an underlying pattern: a feedback loop between "
+        "planning and evaluation.",
+        "Shared underlying patterns across two situations usually reduce to a "
+        "feedback loop.",
+        "The structural connection between tool usage and system failure is a "
+        "missing validation step.",
+    ):
+        assert not IL._is_junk(ctl), ctl
+        assert not BS.is_junk(ctl), ctl
