@@ -205,3 +205,7 @@ scripts/_tmp_*.py
 %SystemDrive%/
 lint_*.txt
 ids.txt
+
+# MSYS-mangled pytest tmp paths (unquoted-path class)
+C*/Users*damir*/AppData/Local/Temp/pytest-of-*/
+C*:Users*damir*/AppData/Local/Temp/pytest-of-*/
