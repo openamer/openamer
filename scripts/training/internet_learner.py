@@ -4173,6 +4173,14 @@ _ARTICLE_BYLINE_AFFORDANCE_RE = re.compile(
     r"|(?:\bReply to this comment\b)"
     r"|(?:\bPosted by\s+[A-Z][\w.\-]*\s*\|)"
     r"|(?:\b\d{1,3} min read\b)"
+    # class 145 (22.09.26): the publisher spells the read time out and welds it
+    # to a following header label.  ANCHORED on that label, because the bare
+    # weld is a topic-word trap -- "Reading time: 5 min per 1,000 tokens is the
+    # budget we target, measured on May 3, 2026" is REAL prose and would be
+    # truncated.  The lookahead is the TitleCase-continuation test of 135/136.
+    r"|(?i:\breading\s+time\s*:?\s*\d{1,3}\s*min(?:ute)?s?)"
+    r"[\s,:\u00b7|\u2013-]*"
+    r"(?=Share\b|Last\s+updated\b|Updated\b|Published\b|Date\b|min\s+read\b|$)"
 )
 _ARTICLE_DATELINE_RE = re.compile(
     r"(?:\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+"
@@ -4180,6 +4188,11 @@ _ARTICLE_DATELINE_RE = re.compile(
     r"|(?:\b20\d\d-\d{2}-\d{2}\b)"
     r"|(?:\b\d{1,2}\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)"
     r"[a-z]*\s+20\d\d\b)"
+    # class 145: an ORDINAL day suffix ("March 6th, 2025").  Live 22.09.26 the
+    # byline predicate had no ordinal form, so an article header carrying
+    # "Last updated on March 6th, 2025" was invisible to BOTH gates.
+    r"|(?:\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)"
+    r"[a-z]*\.?\s+\d{1,2}(?:st|nd|rd|th),?\s+20\d\d\b)"
 )
 
 
