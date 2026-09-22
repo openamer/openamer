@@ -293,6 +293,28 @@ def experiment_competitor_gap():
         # `multi-file` / `paid tier` / `pricing` 0/44 (corpus does not support
         # them). Chosen token states the capability, not a generic verb.
         ("edit across files", "multi-file agentic execution + test loop"),
+        # Grown from a REAL signal (23.09.26): the competitor-intelligence row
+        #   "A large language model helps with the reasoning layer, but the LLM
+        #    agent architecture determines whether the agent is useful, safe,
+        #    and reliable in real-world use."
+        # is a capability description (the agent-architecture layer as the
+        # determinant of usefulness/safety/reliability), not a headline: its
+        # echo against its own source question is 0.10, so the headline
+        # discriminator below correctly leaves it on the lexicon path.
+        # Measured precision over the 45 competitor rows this function reads
+        # (scoring `a` only, which is all `signal` ever is):
+        #   `llm agent architecture` 1/45 -> that row IS this signal, 0 mis-maps
+        # Rejected alternatives, all measured: `agent architecture` 1/45 and
+        # `large language model` / `reasoning layer` / `real-world use` /
+        # `reliable in real-world` each 1/45 (same row, but they name the
+        # substrate or an adjacent clause, not the capability), `architecture`
+        # 3/45 -> REAL mis-maps onto unrelated architecture prose (SAGA
+        # decision-making core, ANUS single/multi-agent switching), and
+        # `maintenance cost` / `maintenance costs` / `safe and reliable` /
+        # `reduce your maintenance` 0/45 (corpus does not support them). The
+        # chosen two-word-plus token states the capability layer itself and
+        # wins longest-match selection over the generic `architecture`.
+        ("llm agent architecture", "agent-architecture layer governing reliability"),
     )
     # --- the latest row may be an ARTICLE TITLE, not a capability description ---
     # Grown from a REAL signal (23.09.26): the consumer kept reporting
