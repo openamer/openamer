@@ -183,3 +183,47 @@ def test_missing_runner_alerts_with_paths(wd, monkeypatch, tmp_path, capsys):
 
     assert wd.main() == 1
     assert "missing" in capsys.readouterr().out
+
+
+# --- the interpreter it runs the suite under -------------------------------
+
+def test_bash_is_not_the_windowsapps_wsl_shim(wd):
+    """A bare `bash` on PATH is the WSL shim on Windows and cannot read a
+    /c/... path, so the runner died with exit 127 every night:
+
+        /bin/bash: /c/.../run_tests.sh: No such file or directory
+
+    The file existed. The shim just cannot see it. `_posix_bash()` must pick a
+    bash that can, and must never settle for WindowsApps.
+    """
+    if wd.os.name != "nt":
+        assert wd.BASH == "bash"  # POSIX: plain bash reads POSIX paths
+        return
+
+    assert wd.BASH != "bash", "resolved to the bare name instead of a real binary"
+    assert Path(wd.BASH).exists(), f"BASH does not exist: {wd.BASH}"
+    assert "WindowsApps" not in wd.BASH, "that is the WSL shim — it cannot read /c/... paths"
+    assert Path(wd.BASH).name.lower() == "bash.exe"
+
+
+def test_posix_bash_skips_the_windowsapps_entry(wd, monkeypatch, tmp_path):
+    """Simulate the broken PATH: the shim comes first and nothing else is real,
+    so the only acceptable outcome is that the shim is never returned."""
+    shim_dir = tmp_path / "WindowsApps"
+    shim_dir.mkdir()
+    shim = shim_dir / ("bash.exe" if wd.os.name == "nt" else "bash")
+    shim.write_text("#!/bin/sh\n", encoding="utf-8")
+
+    real_dir = tmp_path / "git" / "usr" / "bin"
+    real_dir.mkdir(parents=True)
+    real = real_dir / shim.name
+    real.write_text("#!/bin/sh\n", encoding="utf-8")
+
+    monkeypatch.setenv("PATH", str(shim_dir) + wd.os.pathsep + str(real_dir))
+    # Neutralise the `git --exec-path` branch so this exercises the PATH walk.
+    monkeypatch.setattr(
+        wd.subprocess, "run",
+        lambda *a, **k: type("R", (), {"returncode": 1, "stdout": ""})(),
+    )
+
+    assert wd._posix_bash() == str(real), "must skip WindowsApps and take the next real bash"
