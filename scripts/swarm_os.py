@@ -39,17 +39,40 @@ darwin = importlib.util.module_from_spec(_spec)
 sys.modules["darwin_engine"] = darwin
 _spec.loader.exec_module(darwin)
 
+_HOME_MARKERS = ("config.yaml", ".env", "cron", "memories", "openamer-agent")
+
+
+def _is_install_root(pth: Path) -> bool:
+    """True when *pth* looks like a real OpenAmer home, not a scratch dir."""
+    try:
+        return any((pth / m).exists() for m in _HOME_MARKERS)
+    except OSError:
+        return False
+
 def _resolve_openamer_home(default: Path) -> Path:
-    """Resolve OPENAMER_HOME robustly across shells (see darwin_engine.py).
+    """Resolve OPENAMER_HOME robustly across shells (single source: darwin_engine.py).
 
     git-bash exports OPENAMER_HOME as an MSYS path ("/c/Users/..."). Native
     Windows Python treats that as relative and lands in a phantom "C:/c/..."
-    tree. Normalise MSYS drive forms and reject doubled-drive artefacts so the
-    script never silently operates on a directory that isn't the real install.
+    tree, so the swarm would operate on a directory that is not the install.
+    Normalise MSYS drive forms and reject doubled-drive artefacts.
+
+    Prefer an installed candidate that actually carries a ``skills`` dir: on this
+    host "openamer-laptop" is the real install while plain "openamer" is only a
+    near-empty upstream default. Choosing the bare default made every sibling
+    script resolve a DIFFERENT home than darwin_engine -- observed live
+    2026-09-22, when the autonomous loop reported "0 tasks, everything clean"
+    while writing its swarm into C:/Users/damir/AppData/Local/openamer (27 skills)
+    instead of the real home (183 skills). A mis-set OPENAMER_HOME pointing at a
+    scratch dir is likewise rejected via the install-root markers.
     """
+    local = default.parent
+    candidates = [local / "openamer-laptop", local / "openamer"]
+    picked = next((c for c in candidates if (c / "skills").is_dir()), default)
+
     raw = os.environ.get("OPENAMER_HOME")
     if not raw:
-        return default
+        return picked
     norm = raw.replace(os.sep, "/") if os.sep != "/" else raw
     cand = None
     if len(norm) >= 3 and norm[0] == "/" and norm[1].isalpha() and norm[2] == "/":
@@ -58,16 +81,19 @@ def _resolve_openamer_home(default: Path) -> Path:
         p = Path(raw)
         if p.is_absolute():
             cand = p
-    if cand is None:
-        return default
+    if cand is None or not cand.exists():
+        return picked
     parts = cand.parts
     drive = parts[0].rstrip("/").rstrip(os.sep)
     if len(drive) == 2 and drive[1] == ":" and len(parts) >= 2:
         head = parts[1].strip("/").strip(os.sep).lower()
         if head and head == drive[0].lower():
-            return default
-    return cand if cand.exists() else default
-
+            return picked
+    if _is_install_root(cand):
+        return cand
+    print(f"[home] WARNING: OPENAMER_HOME={cand} exists but is not an OpenAmer "
+          f"install root; falling back to {picked}.", file=sys.stderr)
+    return picked
 
 HOME = _resolve_openamer_home(Path.home() / "AppData" / "Local" / "openamer")
 SWARM_FILE = HOME / "darwin" / "swarm.json"
