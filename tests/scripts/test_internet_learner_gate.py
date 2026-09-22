@@ -6203,3 +6203,44 @@ def test_feed_handle_unit_row_controls_survive_both_gates():
     for ctl in _IL143_CONTROLS:
         assert not IL._is_feed_handle_unit_row(ctl), ctl
         assert not BS._is_feed_handle_unit_row(ctl), ctl
+
+
+# class 144 (22.09.26): a German shop's nav lockup welded to its
+# consultation block -- hotline number + opening hours -- is page
+# furniture, not knowledge. 104 chars WITH digits, so the length trust
+# and the technical-signal gate both fired; no `_is_de_*` rule matched.
+_IL144_LEAKS = (
+    "Produkten PRODUKTBERATUNG Wir beraten Sie pers\u00f6nlich unter "
+    "0681 5866-4466 (Mo-Do 9-18 Uhr, Fr 9-17 Uhr).",
+    "Die Beratung erfolgt telefonisch unter der Nummer 0681 5866-4466.",
+)
+
+# Neither half may fire alone: `Uhr` is an ordinary German word and a phone
+# form is ordinary prose, so the conjunction is what the rule tests.
+_IL144_CONTROLS = (
+    "Die Beratung erfolgt telefonisch.",
+    "Der Anbieter nennt eine Hotline und oeffnende Zeiten.",
+    "The evaluation ran for 9-18 hours and produced 0681 samples.",
+    "vLLM prefill throughput improved 40% after enabling prefix caching "
+    "with --max-model-len 32768 in the 2.12.0 release.",
+    "TLS 1.3 removes a handshake round trip, cutting connection latency "
+    "by ~33% on high-RTT links, as measured on Sep 15, 2026.",
+)
+
+
+def test_de_consultation_contact_chrome_gated_on_both_paths():
+    import internet_learner as IL
+    import buffer_store as BS
+    for leak in _IL144_LEAKS:
+        assert IL._is_de_consultation_contact_chrome(leak), leak
+        assert IL._is_junk(leak), leak
+        assert BS._is_de_consultation_contact_chrome(leak), leak
+        assert BS.is_junk(leak), leak
+
+
+def test_de_consultation_contact_controls_survive_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL144_CONTROLS:
+        assert not IL._is_de_consultation_contact_chrome(ctl), ctl
+        assert not BS._is_de_consultation_contact_chrome(ctl), ctl
