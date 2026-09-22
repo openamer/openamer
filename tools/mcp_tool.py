@@ -194,6 +194,26 @@ def _write_stderr_log_header(server_name: str) -> None:
     except Exception:
         pass
 
+
+def _ensure_mcp_sdk() -> bool:
+    """True when the optional MCP SDK imported successfully.
+
+    ``tools/mcp_tool_discovery.py`` calls this through the ``_core`` proxy in
+    three places (``register_mcp_servers`` and two discovery paths) to bail out
+    early with a debug log when the SDK is absent:
+
+        if not _core._ensure_mcp_sdk():
+            logger.debug("MCP SDK not available -- skipping ...")
+
+    The proxy resolves attributes against this module at access time, so the
+    function has to live here next to ``_MCP_AVAILABLE``. Without it those three
+    paths raise ``AttributeError: module 'tools.mcp_tool' has no attribute
+    '_ensure_mcp_sdk'`` -- which is what the CI reported. Reporting the flag
+    rather than re-importing keeps the import a one-time, module-level decision.
+    """
+    return _MCP_AVAILABLE
+
+
 # ---------------------------------------------------------------------------
 # Graceful import -- MCP SDK is an optional dependency
 # ---------------------------------------------------------------------------

@@ -3513,6 +3513,65 @@ def link_tasks(conn: sqlite3.Connection, parent_id: str, child_id: str) -> None:
         )
 
 
+def _link(conn: sqlite3.Connection, parent_id: str, child_id: str) -> None:
+    """Link parent->child WITHOUT opening a txn. Caller owns the transaction.
+
+    ``kanban_db_graph.decompose_triage_task`` imports this name and calls it
+    inside its own ``write_txn``; the public ``link_tasks`` does the same work
+    but opens (and commits) its own transaction, which would break atomicity of
+    the fan-out. Same validation, no txn.
+
+    The bare name was missing from this module entirely, so importing it raised
+    ``ImportError: cannot import name '_link'`` -- the failure the CI reported
+    for the decompose tests.
+    """
+    if parent_id == child_id:
+        raise ValueError("a task cannot depend on itself")
+    missing = _find_missing_parents(conn, [parent_id, child_id])
+    if missing:
+        raise ValueError(f"unknown task(s): {', '.join(missing)}")
+    if _would_cycle(conn, parent_id, child_id):
+        raise ValueError(f"linking {parent_id} -> {child_id} would create a cycle")
+    conn.execute(
+        "INSERT OR IGNORE INTO task_links (parent_id, child_id) VALUES (?, ?)",
+        (parent_id, child_id),
+    )
+    parent_status = conn.execute(
+        "SELECT status FROM tasks WHERE id = ?", (parent_id,)
+    ).fetchone()["status"]
+    if parent_status != "done":
+        conn.execute(
+            "UPDATE tasks SET status = 'todo' WHERE id = ? AND status = 'ready'",
+            (child_id,),
+        )
+    _append_event(conn, child_id, "linked",
+                  {"parent": parent_id, "child": child_id})
+
+
+def _insert_comment(
+    conn: sqlite3.Connection, task_id: str, author: str, body: str, now: int,
+) -> int:
+    """Insert a comment WITHOUT opening a txn; ``now`` is supplied by the caller.
+
+    Companion to ``_link`` for ``kanban_db_graph``: it runs inside a fan-out
+    transaction and passes the timestamp it already computed, so this variant
+    takes ``now`` rather than reading the clock, and does not commit. The public
+    ``add_comment`` wraps the same INSERT but opens its own ``write_txn``.
+    """
+    if not body or not body.strip():
+        raise ValueError("comment body is required")
+    if not author or not author.strip():
+        raise ValueError("comment author is required")
+    cur = conn.execute(
+        "INSERT INTO task_comments (task_id, author, body, created_at) "
+        "VALUES (?, ?, ?, ?)",
+        (task_id, author.strip(), body.strip(), now),
+    )
+    _append_event(conn, task_id, "commented",
+                  {"author": author, "len": len(body)})
+    return int(cur.lastrowid or 0)
+
+
 def _would_cycle(conn: sqlite3.Connection, parent_id: str, child_id: str) -> bool:
     """Return True if adding parent->child creates a cycle.
 
