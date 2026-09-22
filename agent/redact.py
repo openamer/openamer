@@ -11,6 +11,8 @@ import logging
 import os
 import re
 import shlex
+import threading
+from typing import Iterable
 from urllib.parse import unquote_plus
 
 logger = logging.getLogger(__name__)
@@ -540,6 +542,83 @@ def _mask_token_nonreusable(token: str) -> str:
     return f"«redacted:{label}…»" if label else "«redacted-secret»"
 
 
+# ---------------------------------------------------------------------------
+# Runtime literal-value redaction
+# ---------------------------------------------------------------------------
+# The pattern-based rules above cannot catch a credential whose shape matches no
+# vendor prefix (a password typed into a vault, an opaque session code). Those
+# values are unknown at import time and only exist once a caller resolves them.
+# A caller that has just handled such a value registers its exact bytes here so
+# every later egress boundary masks it instead of echoing it back.
+#
+# Deliberately narrow, for the same reason the file-level docstring is: this
+# masks values a caller ALREADY holds. It is not a secret store, it does not
+# resolve anything, and it is not persisted. Entries live for the process, and
+# short values are never registered at all because masking a 3-char string
+# would corrupt ordinary prose.
+
+_MIN_LITERAL_LEN = 8
+_LITERAL_MAX = 64
+
+_literal_lock = threading.Lock()
+_literal_values: dict[str, None] = {}
+
+_LITERAL_SENTINEL = "«redacted»"
+
+
+def register_redaction_value(value: str | None) -> bool:
+    """Register one literal value to be masked in all later redaction.
+
+    Returns True when the value is now registered. Values shorter than
+    :data:`_MIN_LITERAL_LEN` are ignored (masking them would corrupt ordinary
+    text), as are non-strings and the empty string. Idempotent; the registry
+    keeps at most :data:`_LITERAL_MAX` values, oldest first out.
+    """
+    if not isinstance(value, str) or len(value) < _MIN_LITERAL_LEN:
+        return False
+    with _literal_lock:
+        if value in _literal_values:
+            return True
+        if len(_literal_values) >= _LITERAL_MAX:
+            _literal_values.pop(next(iter(_literal_values)))
+        _literal_values[value] = None
+    return True
+
+
+def unregister_redaction_value(value: str | None) -> None:
+    """Drop a value previously passed to :func:`register_redaction_value`."""
+    if not isinstance(value, str):
+        return
+    with _literal_lock:
+        _literal_values.pop(value, None)
+
+
+def registered_redaction_count() -> int:
+    """How many literal values are currently masked (for status/tests)."""
+    with _literal_lock:
+        return len(_literal_values)
+
+
+def clear_registered_redaction_values() -> None:
+    """Drop every registered value (test/teardown helper)."""
+    with _literal_lock:
+        _literal_values.clear()
+
+
+def _redact_registered_literals(text: str) -> str:
+    """Replace every registered value in ``text`` with a fixed sentinel.
+
+    Ordered longest-first so that a value which contains another as a substring
+    cannot leave the shorter one's tail behind in the output.
+    """
+    with _literal_lock:
+        values = sorted(_literal_values, key=len, reverse=True)
+    for value in values:
+        if value in text:
+            text = text.replace(value, _LITERAL_SENTINEL)
+    return text
+
+
 def redact_sensitive_text(
     text: str,
     *,
@@ -598,6 +677,11 @@ def redact_sensitive_text(
     # paths either (it's config/data, not log lines).
     if file_read:
         code_file = True
+
+    # Values a caller registered at runtime (vault fills, opaque codes) match no
+    # vendor prefix, so they are masked first — unconditionally, before any
+    # pattern pass can re-expose them.
+    text = _redact_registered_literals(text)
 
     # Known prefixes (sk-, ghp_, etc.) — gate on substring presence
     if _has_known_prefix_substring(text):
