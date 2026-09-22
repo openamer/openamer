@@ -40,6 +40,46 @@ HOME = Path(
 # and this is the one that ships with the checkout.
 PYTHON = REPO / ".venv" / "Scripts" / "python.exe"
 RUNNER = REPO / "scripts" / "run_tests.sh"
+
+
+def _posix_bash() -> str:
+    """A bash that understands a POSIX-style runner path.
+
+    A bare `bash` on PATH is the WSL shim on Windows
+    (AppData/Local/Microsoft/WindowsApps/bash.exe) and it CANNOT read a
+    git-bash path such as /c/Users/... — it dies with
+    "/bin/bash: /c/...: No such file or directory" (exit 127) while the very
+    same runner works under git's own bash. Live 2026-09-22: the nightly
+    watchdog had been failing on exactly this, every night.
+    Prefer git's bash, derived from `git --exec-path` so this stays portable,
+    then any non-WindowsApps bash on PATH.
+    """
+    exe = "bash.exe" if os.name == "nt" else "bash"
+    try:
+        out = subprocess.run(
+            ["git", "--exec-path"],
+            capture_output=True, text=True, errors="replace", timeout=20,
+        )
+        if out.returncode == 0 and out.stdout.strip():
+            core = Path(out.stdout.strip())
+            for cand in (
+                core.parent.parent / "bin" / exe,   # <git>/mingw64/bin/bash.exe
+                core.parent / "bin" / exe,
+            ):
+                if cand.exists():
+                    return str(cand)
+    except Exception:
+        pass
+    for part in os.environ.get("PATH", "").split(os.pathsep):
+        if "WindowsApps" in part:
+            continue  # the WSL shim — cannot read /c/... paths
+        cand = Path(part) / exe
+        if cand.exists():
+            return str(cand)
+    return "bash"
+
+
+BASH = _posix_bash()
 STATE = HOME / "logs" / "test-suite-watchdog.json"
 LOG = HOME / "logs" / "test-suite-watchdog.log"
 
@@ -108,7 +148,7 @@ def main() -> int:
     started = time.time()
     try:
         proc = subprocess.run(
-            ["bash", str(RUNNER), target, "-q"],
+            [BASH, str(RUNNER), target, "-q"],
             cwd=str(REPO),
             env=env,
             capture_output=True,
