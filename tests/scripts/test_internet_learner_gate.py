@@ -5547,3 +5547,73 @@ def test_docsite_product_nav_weld_prose_controls_survive_both_gates():
     for ctl in _IL133_CONTROLS:
         assert not IL._is_junk(ctl), ctl
         assert not BS.is_junk(ctl), ctl
+
+# --- class 134 (22.09.26): a NEWSROOM INDEX page is not an article
+# Live leak: cycle_a_technews stored, verbatim from online_buffer.jsonl,
+#   "UK My dream to serve in the UK army was ended by childhood eye surgery
+#    Some 114,000 Army application were rejected on medical grounds in the past
+#    five years, Freedom of Information figures show."
+# The top search result was the truncated URL `https://www.bbc.com/news/articles`
+# (an index, not an article). deep_learn scored a "sentence" that is really
+# CARD[i]'s country tag welded to CARD[i+1]'s headline; the strip's relative
+# stamps sit between the cards and are stripped by `_clean_insight`, so the
+# stored string carries no `ago` and no text-level rule can see the boundary.
+#
+# The fix is PAGE-LEVEL: a newsroom index repeats the site's own relative-stamp
+# unit across its card stream; an article carries at most one. This is the real
+# BBC index window around the leaking card (measured 22.09.26: 10 stamps in the
+# exact 4000-char window deep_learn scores).
+_IL134_INDEX_PAGE = (
+    "More to explore Fat Bear Week: Which bear has put on the most weight? "
+    "The iconic contest run by Katmai National Park in Alaska will run from "
+    "22-29 of September this year and votes can be cast online. 6 hrs ago "
+    "US &amp; Canada What we found in Earl Spencer&#x27;s controversial Diana "
+    "memoir What further revelations are going to appear now the full details "
+    "of his Diana book are published? 8 hrs ago UK My dream to serve in the UK "
+    "army was ended by childhood eye surgery Some 114,000 Army application were "
+    "rejected on medical grounds in the past five years, Freedom of Information "
+    "figures show. 5 hrs ago England The simple skincare routine for teens that "
+    "actually works - and five expert tips From popping spots to getting enough "
+    "sleep, experts share their advice on the best way to look after teenage "
+    "skin. 5 hrs ago Health "
+    "Toxic chemicals from a fire at a battery recycling plant are flowing into "
+    "a nearby river, officials say, prompting a health warning for residents. "
+    "2 days ago Science "
+    "The court heard the defendant had been dismissed from his post three "
+    "months before the incident took place. 12 hours ago UK "
+    "A new study suggests the treatment could help thousands of patients each "
+    "year if regulators approve it for wider use. 3 days ago Health"
+)
+
+# Counter-cases: real ARTICLE prose, each carrying at most ONE relative stamp --
+# these are the sentences that made a bare `<n> hours ago` unusable as a signal.
+_IL134_PROSE_CONTROLS = [
+    # the class-95 rejected control: one stamp inside ordinary prose
+    "It ran 3 hours ago with 12 4 retries recorded in the log.",
+    # a real technical insight with exactly one stamp
+    "The worker restarted 4 hours ago after the GPU driver 535.104.05 was "
+    "upgraded, and quantization recovered 97% of fp16 accuracy afterwards.",
+    # an article body carrying a single dateline stamp
+    "The BBC understands the decision was taken 5 hours ago and that the "
+    "ministry will publish its full response to the consultation next week.",
+]
+
+
+def test_news_index_page_is_rejected_as_a_source_page():
+    import internet_learner as IL
+    assert IL._is_news_index_page(_IL134_INDEX_PAGE), "index page not flagged"
+
+
+def test_article_pages_with_one_or_no_relative_stamp_survive():
+    import internet_learner as IL
+    for ctl in _IL134_PROSE_CONTROLS:
+        assert not IL._is_news_index_page(ctl), ctl
+
+
+def test_short_page_text_never_triggers_the_index_rule():
+    import internet_learner as IL
+    # a SERP snippet is short; it must keep its prose trust even if it repeats
+    # a stamp twice (a snippet has no card stream to weld across).
+    snip = ("First item 2 hours ago and second item 3 hours ago, both from the "
+            "same aggregator listing.")
+    assert not IL._is_news_index_page(snip), snip

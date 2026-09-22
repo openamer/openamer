@@ -209,3 +209,6 @@ ids.txt
 # MSYS-mangled pytest tmp paths (unquoted-path class)
 C*/Users*damir*/AppData/Local/Temp/pytest-of-*/
 C*:Users*damir*/AppData/Local/Temp/pytest-of-*/
+
+# pytest tmp dirs that get MSYS-mangled into the repo root
+C*/Users*pytest-of-*/
