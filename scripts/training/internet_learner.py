@@ -4192,6 +4192,62 @@ def _is_nav_list(text):
 # cycles (14.09.26) were gated with zero learning because nothing reachable was
 # ever fetched. Rejecting them lets the HTTP ck/a fallback below run.
 _URL_STUB_PATHS = frozenset({"abs", "html", "index.html"})
+# class 134 (22.09.26): a NEWSROOM INDEX page is not an article.
+#
+# Live: cycle_a_technews "learned", verbatim from online_buffer.jsonl,
+#   "UK My dream to serve in the UK army was ended by childhood eye surgery
+#    Some 114,000 Army application were rejected on medical grounds in the past
+#    five years, Freedom of Information figures show."
+#
+# That is a BBC index strip: the query's top result was the truncated URL
+# `https://www.bbc.com/news/articles` (an index, not an article), and
+# deep_learn scored an extracted "sentence" that is really CARD[i]'s country
+# tag (`UK`) welded to CARD[i+1]'s headline. The strip's own relative stamps
+# (`6 hrs ago`, `8 hrs ago`, `5 hrs ago`) sit BETWEEN the cards, so the
+# sentence regex `[A-Z][^.!?]{40,250}[.!?]` spans the boundary; the tag and the
+# headline then read as one grammatical sentence, the stamps are stripped by
+# `_clean_insight`'s clock/byline helpers, and the digits (`114,000`) satisfy
+# the technical-signal gate. Nothing text-level catches this: the stored string
+# carries no `ago` at all, and the tag shape is NOT a discriminator —
+# `^[A-Z]{2,3}\s+[A-Z][a-z]` matched 190 rows across the corpora, almost all
+# genuine prose ("AI Coding Agents Are Reshaping...", "CEO Andy Jassy told...",
+# "AI Consciousness asks whether...").
+#
+# So the discriminator is PAGE-LEVEL, not text-level: a newsroom index/feed
+# repeats the site's own relative-stamp UNIT across its card stream, while an
+# article page carries at most one. Measured 22.09.26 (fetch + the exact
+# 4000-char window deep_learn scores):
+#   index pages   bbc.com/news/articles 19/10 · bbc.co.uk/news 36/24 ·
+#                 techcrunch.com 23/17 · news.ycombinator.com 30/30 ·
+#                 huggingface.co/models 27/21   (>=10 stamps in-window)
+#   prose pages   bbc.com article 0 · arxiv.org/abs 0 · HF PEFT docs 0 ·
+#                 github.com/<repo> 0 · github.com/trending 0 ·
+#                 HN item 0 · reddit.com/r/... 0 · openai.com/index/... 0 ·
+#                 blog.langchain.dev 0                 (all exactly 0)
+# A `>= 3` threshold sits far inside that gap: every real page measured 0, the
+# lowest flagged page measured 10. `hrs?`/`mins?` are included because the
+# BBC strip writes `5 hrs ago` and `_REL_TIME_AGO_RE` (used by the class-34
+# nav-chain helper) does not cover those spellings — this is a separate regex
+# on purpose, so that helper's measured semantics stay untouched.
+_PAGE_REL_STAMP_RE = re.compile(
+    r"\b\d{1,3}\s+(?:minutes?|mins?|hours?|hrs?|days?)\s+ago\b", re.IGNORECASE)
+
+
+def _is_news_index_page(text):
+    """True when a fetched PAGE is a newsroom/feed index, not an article (134).
+
+    Counts the site's own repeated relative-stamp unit over the page text.
+    Only consulted on the fetched page, never on a candidate insight: a single
+    `<n> hours ago` inside real prose is ordinary (`It ran 3 hours ago with 12
+    4 retries recorded in the log.`) and must stay learnable.
+    """
+    t = text or ""
+    if len(t) < 500:
+        return False  # too short to be an index; a snippet keeps prose trust
+    return len(_PAGE_REL_STAMP_RE.findall(t)) >= 3
+
+
+
 
 
 
@@ -4334,6 +4390,13 @@ def deep_learn(query, k=2):
         # and their mis-decoded mojibake has reached the buffer before (root
         # cause P). Skip them so they cannot occupy a fair-share slot.
         if len(t) > 200 and not t.lstrip().startswith("%PDF"):
+            # class 134: a newsroom INDEX page is a card stream, not an article.
+            # Its relative stamps sit between the cards, so the sentence regex
+            # spans card boundaries and welds one card's country tag onto the
+            # next card's headline. Skipping the page lets a later URL (an
+            # actual article) hold the slot instead.
+            if _is_news_index_page(t):
+                continue
             texts.append(t)
     if not texts:
         return ""
