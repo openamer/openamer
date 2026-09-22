@@ -20,10 +20,41 @@ from pathlib import Path
 
 HERE = Path(__file__).parent
 WIS = HERE / "workflow_immune.py"
-# Resolve against OPENAMER_HOME exactly as the organs do, so the test reads the
-# file the organ actually wrote — regardless of where this tree is checked out.
-OA_HOME = Path(os.environ.get("OPENAMER_HOME",
-                              str(Path.home() / "AppData" / "Local" / "openamer")))
+def _resolve_home():
+    """Resolve the home the organs actually write to.
+
+    Same class as ``darwin_gate._resolve_openamer_home``: git-bash exports
+    OPENAMER_HOME as an MSYS path and a stale value can leak into a cron env,
+    so a bare ``os.environ.get("OPENAMER_HOME")`` silently points the test at a
+    scratch dir no organ ever writes. Normalise MSYS forms, reject doubled-drive
+    artefacts, and trust the candidate only when it really is this tree.
+    """
+    canonical = Path(r"C:\Users\damir\AppData\Local\openamer-laptop")
+    raw = os.environ.get("OPENAMER_HOME")
+    if not raw:
+        return canonical
+    norm = raw.replace(os.sep, "/") if os.sep != "/" else raw
+    cand = None
+    if len(norm) >= 3 and norm[0] == "/" and norm[1].isalpha() and norm[2] == "/":
+        cand = Path(norm[1].upper() + ":/" + norm[3:])  # MSYS /c/... -> C:/...
+    else:
+        p = Path(raw)
+        if p.is_absolute():
+            cand = p
+    if cand is None:
+        return canonical
+    parts = cand.parts
+    drive = parts[0].rstrip("/").rstrip(os.sep)
+    if len(drive) == 2 and drive[1] == ":" and len(parts) >= 2:
+        head = parts[1].strip("/").strip(os.sep).lower()
+        if head and head == drive[0].lower():
+            return canonical  # doubled-drive artefact e.g. C:/c/Users/...
+    if (cand / "scripts" / "workflow_immune.py").exists():
+        return cand  # a real checkout of THIS tree
+    return canonical
+
+
+OA_HOME = _resolve_home()
 STATE = OA_HOME / "workflow-immune"
 CHILDREN = OA_HOME.parent / "openamer-children"
 
