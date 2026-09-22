@@ -200,3 +200,8 @@ scripts/_tmp_*.py
 # file it patches. Derived state, regenerated on demand, and only meaningful to
 # the keeper — untracked noise otherwise.
 *.pre-localpatch
+
+# MSYS/Windows artifacts that must never be committed (unquoted-path class)
+%SystemDrive%/
+lint_*.txt
+ids.txt
