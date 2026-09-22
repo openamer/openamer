@@ -847,3 +847,18 @@ def resolve_provider_full(
         pass
 
     return None
+
+def custom_provider_aliases(display_name: str, provider_key: str = "") -> frozenset[str]:
+    """Return every current and legacy identity accepted for one endpoint."""
+    aliases: set[str] = set()
+    for value in (display_name, provider_key):
+        raw = str(value or "").strip().lower()
+        if not raw:
+            continue
+        normalized = raw.replace(" ", "-")
+        aliases.update({raw, normalized, custom_provider_slug(normalized)})
+        if normalized.startswith("custom:"):
+            suffix = normalized.split(":", 1)[1]
+            if suffix:
+                aliases.update({suffix, f"custom:{normalized}"})
+    return frozenset(aliases)

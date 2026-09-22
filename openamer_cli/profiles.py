@@ -2223,3 +2223,11 @@ def resolve_profile_env(profile_name: str) -> str:
         )
 
     return str(profile_dir)
+
+def list_profile_names() -> List[str]:
+    """Cheap name-only listing (``default`` + profile dirs). Unlike :func:`list_profiles` this
+    reads NO per-profile config — safe for hot paths (cron target listings, create validation)."""
+    names = ["default"]
+    with contextlib.suppress(OSError):
+        names.extend(entry.name for entry in _iter_named_profile_dirs(live_only=False))
+    return names

@@ -3426,3 +3426,8 @@ def _run_quick_setup(config: dict, openamer_home):
 
     # Jump to summary
     _print_setup_summary(config, openamer_home)
+
+def _info(*lines: str) -> None:
+    """print_info each line; an empty string prints a bare blank line instead."""
+    for line in lines:
+        print_info(line) if line else print()

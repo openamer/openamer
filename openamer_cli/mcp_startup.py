@@ -164,3 +164,21 @@ def join_mcp_discovery(timeout: "float | None" = None) -> bool:
         return True
     thread.join(timeout=timeout)
     return not thread.is_alive()
+
+def ensure_mcp_discovery_before_agent_build(
+    *,
+    logger,
+    timeout: "float | None" = None,
+    single_query: bool = False,
+    thread_name: str = "cli-mcp-discovery") -> None:
+    """Give configured MCP tools a bounded chance to register before AIAgent.
+
+    Non-interactive first turns (``chat -q``, ``openamer -z``) can construct ``AIAgent`` before any
+    path started discovery, and ``wait_for_mcp_discovery()`` only joins an existing thread — so
+    start discovery if needed, then wait up to the configured bound.
+    """
+    try:
+        start_background_mcp_discovery(logger=logger, thread_name=thread_name)
+        wait_for_mcp_discovery(timeout=timeout, single_query=single_query)
+    except Exception:
+        logger.debug("MCP discovery readiness check failed before agent build", exc_info=True)

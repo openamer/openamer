@@ -514,3 +514,8 @@ def _load_secrets_config(home_path: Path) -> dict:
     except Exception:  # noqa: BLE001
         return {}
     return data.get("secrets") or {}
+
+def secret_source_names() -> tuple[str, ...]:
+    """Every env-var name some profile's external secret source supplied (names only — the map is
+    process-wide, so a value must be resolved through the active profile's secret scope)."""
+    return tuple(_SECRET_SOURCES)

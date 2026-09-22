@@ -8864,3 +8864,166 @@ def logout_command(args) -> None:
             print("Model provider configuration was unchanged.")
     else:
         print(f"No auth state found for {provider_name}.")
+
+DEFAULT_NOUS_PORTAL_URL = "https://portal.nousresearch.com"
+
+def _is_same_auth_store(left: Path, right: Path) -> bool:
+    """True when two auth paths name ONE store rather than two copies.
+    ``_same_path`` resolves symlinks and ``..``; ``samefile`` adds hardlinks and bind-mounts
+    (same inode under two resolved names). Used by the forked-grant heal: a shared store has
+    no "other side" to consolidate.
+
+    See #101356.
+    """
+    if _same_path(left, right):
+        return True
+    try:
+        return left.samefile(right)
+    except OSError:
+        return False
+
+def _nonempty_str(value: Any) -> bool:
+    return isinstance(value, str) and bool(value.strip())
+
+def _nous_inference_env_override() -> Optional[str]:
+    """User-set ``NOUS_INFERENCE_BASE_URL`` override (trailing slash stripped) or None.
+
+    Documented dev/staging escape hatch; the env source is trusted, so unlike Portal-returned URLs
+    it is intentionally NOT gated by the network host allowlist. Read through the profile-aware
+    resolver so a multiplexed profile uses its own override and never inherits the default
+    profile's process-wide value (#65941).
+    """
+    from openamer_cli.auth import _optional_base_url
+    return _optional_base_url(_scoped_operator_override("NOUS_INFERENCE_BASE_URL"))
+
+def _validate_nous_inference_url_from_network(url: Optional[str]) -> Optional[str]:
+    """Validate a Portal-returned inference URL against the host allowlist.
+
+    Defense-in-depth: a compromised refresh response (MITM, response injection) could otherwise
+    redirect every proxy request — bearing the user's inference JWT — to an attacker endpoint.
+    """
+    cleaned = url.strip() if isinstance(url, str) else ""
+    if not cleaned:
+        return None
+    try:
+        parsed = urlparse(cleaned)
+    except Exception:
+        return None
+    if parsed.scheme != "https":
+        logger.warning(
+            "nous: refusing non-https inference URL scheme %r from Portal response", parsed.scheme)
+        return None
+    if not _nous_inference_host_allowed(parsed.hostname):
+        logger.warning(
+            "nous: refusing inference URL host %r from Portal response "
+            "(not in allowlist); falling back to default",
+            parsed.hostname)
+        return None
+    return cleaned.rstrip("/")
+
+def resolve_nous_access_token(
+    *,
+    timeout_seconds: float = 15.0,
+    insecure: Optional[bool] = None,
+    ca_bundle: Optional[str] = None,
+    refresh_skew_seconds: int = ACCESS_TOKEN_REFRESH_SKEW_SECONDS) -> str:
+    """Resolve a refresh-aware Nous Portal access token for managed tool gateways."""
+    # Only a default-TLS resolution is memoised; error paths never populate the memo.
+    memoable = not insecure and ca_bundle is None
+    cache_key = openamer_home_key()
+    if memoable:
+        with _RESOLVE_TOKEN_CACHE_LOCK:
+            cached = _RESOLVE_TOKEN_CACHE.get(cache_key)
+        if cached is not None and (time.monotonic() - cached[0]) < _RESOLVE_TOKEN_CACHE_TTL_S:
+            return cached[1]
+
+    def _memo(token: str) -> str:
+        if memoable:
+            with _RESOLVE_TOKEN_CACHE_LOCK:
+                _RESOLVE_TOKEN_CACHE[cache_key] = (time.monotonic(), token)
+        return token
+
+    with _provider_state_transaction("nous") as (auth_store, state, state_source_path):
+        if not state:
+            raise _nous_err("OpenAmer is not logged into Nous Portal.", relogin=True)
+        portal_base_url = _nous_portal_base_url(state)
+        client_id = str(state.get("client_id") or DEFAULT_NOUS_CLIENT_ID)
+        verify = _resolve_verify(insecure=insecure, ca_bundle=ca_bundle, auth_state=state)
+        persist = lambda: _save_provider_state_to_source(  # noqa: E731
+            auth_store, "nous", state, state_source_path)
+
+        lock_timeout = max(timeout_seconds + 5.0, AUTH_LOCK_TIMEOUT_SECONDS)
+        with _nous_shared_store_lock(timeout_seconds=lock_timeout):
+            from openamer_cli.anon_auth import is_guest_state, refresh_guest_state
+            if is_guest_state(state):
+                # Guest seam: the anon_ credential is the identity; a first use has no access token
+                # yet and an expired one is re-exchanged. No refresh token, no quarantine.
+                access_token = state.get("access_token")
+                if isinstance(access_token, str) and access_token and not _is_expiring(
+                        state.get("expires_at"), refresh_skew_seconds):
+                    return _memo(access_token)
+                with httpx.Client(timeout=httpx.Timeout(timeout_seconds or 15.0),
+                                  headers={"Accept": "application/json"}, verify=verify) as client:
+                    refresh_guest_state(state, client)
+                persist()
+                _write_shared_nous_state(state)
+                return _memo(state["access_token"])
+
+            merged_shared = _merge_shared_nous_oauth_state(state)
+            access_token = state.get("access_token")
+            refresh_token = state.get("refresh_token")
+            if not isinstance(access_token, str) or not access_token:
+                raise _nous_err("No access token found for Nous Portal login.", relogin=True)
+
+            if not _is_expiring(state.get("expires_at"), refresh_skew_seconds):
+                if merged_shared:
+                    persist()
+                # Memoise the valid-token fast path too: each check_fn otherwise pays two
+                # cross-process file locks to get here. The token has >= refresh_skew_seconds (>=
+                # 120s) of life, so a 5s memo can never serve an expired token.
+                return _memo(access_token)
+
+            if not isinstance(refresh_token, str) or not refresh_token:
+                raise _nous_err("Session expired and no refresh token is available.", relogin=True)
+
+            with httpx.Client(timeout=httpx.Timeout(timeout_seconds or 15.0),
+                              headers={"Accept": "application/json"}, verify=verify) as client:
+                refreshed = _refresh_nous_or_quarantine(
+                    client=client, auth_store=auth_store, state=state, portal_base_url=portal_base_url,
+                    client_id=client_id, refresh_token=refresh_token,
+                    reason="managed_access_token_refresh_failure", persist=persist)
+
+            _apply_nous_refreshed_tokens(state, refreshed, refresh_token)
+            state["portal_base_url"] = portal_base_url
+            state["client_id"] = client_id
+            state["tls"] = _tls_state_from_verify(verify)
+            persist()
+            _write_shared_nous_state(state)
+            return _memo(state["access_token"])
+
+def resolve_nous_runtime_credentials(
+    *, timeout_seconds: float = 15.0, insecure: Optional[bool] = None,
+    ca_bundle: Optional[str] = None, force_refresh: bool = False,
+    stale_access_token: Optional[str] = None) -> Dict[str, Any]:
+    """Resolve Nous inference credentials for runtime use (refreshing under the auth-store lock).
+
+    A guest whose ``anon_`` credential NAS no longer knows (reaped or claimed) is retired and a new
+    identity is set up once, transparently -- the one client rule covering both reap and claim.
+    """
+    from openamer_cli.anon_auth import AnonCredentialDead, clear_dead_guest, ensure_portal_identity
+    try:
+        return _resolve_nous_runtime_credentials(
+            timeout_seconds=timeout_seconds, insecure=insecure, ca_bundle=ca_bundle,
+            force_refresh=force_refresh, stale_access_token=stale_access_token)
+    except AnonCredentialDead as dead_exc:
+        from openamer_cli.auth import get_provider_auth_state
+        from openamer_cli.anon_auth import ANON_ACCOUNT_LOCKED
+        dead = get_provider_auth_state("nous") or {}
+        clear_dead_guest(str(dead_exc.code or "anon_credential_dead"), dead_token=dead.get("anon_token"))
+        # A locked account is retired but never silently replaced: the way forward is a sign-in.
+        if dead_exc.code == ANON_ACCOUNT_LOCKED:
+            raise
+        if ensure_portal_identity(explicit=True, timeout_seconds=timeout_seconds) is None:
+            raise
+        return _resolve_nous_runtime_credentials(
+            timeout_seconds=timeout_seconds, insecure=insecure, ca_bundle=ca_bundle)

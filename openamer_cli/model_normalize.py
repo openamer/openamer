@@ -471,3 +471,15 @@ def normalize_model_for_provider(model_input: str, target_provider: str) -> str:
 # Batch / convenience helpers
 # ---------------------------------------------------------------------------
 
+def suggest_prefixed_model_id(provider: str, model_name: str) -> Optional[str]:
+    """Prefixed catalogue id for a bare *model_name* if unambiguous, else ``None`` — the diagnostic
+    counterpart to :func:`_repair_prefix_from_catalogue` for explaining a content-free 404."""
+    name = (model_name or "").strip()
+    if not name or "/" in name:
+        return None
+    try:
+        canonical = _normalize_provider_alias(provider)
+    except Exception:
+        return None
+    repaired = _repair_prefix_from_catalogue(name, canonical)
+    return repaired if repaired != name else None

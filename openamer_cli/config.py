@@ -9552,3 +9552,53 @@ def _inject_platform_plugin_env_vars() -> None:
 
 # Eagerly inject so that platform plugin env vars show up in the setup wizard.
 _inject_platform_plugin_env_vars()
+
+def coerce_provider_id(value: Any) -> str:
+    """Provider identity fields are strings."""
+    if value is None:
+        return ""
+    return str(value).strip()
+
+def read_raw_config_readonly() -> Dict[str, Any]:
+    """``read_raw_config()`` without the per-call deepcopy, for callers that ONLY READ.
+    **Mutating the result corrupts the in-process cache for every subsequent caller.** Meant for
+    per-turn policy checks that were paying a full config deepcopy 2-3x per agent turn."""
+    return _read_raw_config_impl(want_deepcopy=False)
+
+def resolve_turn_limit(raw: Any, default: int = TURN_LIMIT_UNLIMITED) -> int:
+    """Normalize a raw ``agent.max_turns`` value into an int iteration cap (always >= 1)."""
+    # bool is a subclass of int; reject explicitly so True/False don't become 1/0.
+    if raw is None or isinstance(raw, bool):
+        return default
+    if isinstance(raw, (int, float)):
+        n = int(raw)
+    elif isinstance(raw, str):
+        s = raw.strip().lower()
+        if not s:
+            return default
+        if s in _UNLIMITED_SPELLINGS:
+            return TURN_LIMIT_UNLIMITED
+        try:
+            n = int(s)
+        except ValueError:
+            try:
+                n = int(float(s))
+            except ValueError:
+                logger.debug("resolve_turn_limit: unparseable value %r → default %d", raw, default)
+                return default
+    else:
+        # Unknown type (list, dict, …) — don't crash the agent over a bad config.
+        logger.debug("resolve_turn_limit: unsupported type %s (%r) → default %d", type(raw).__name__, raw, default)
+        return default
+    return TURN_LIMIT_UNLIMITED if n <= 0 else n
+
+def stringify_provider_map(providers: Any) -> dict:
+    """Copy a ``providers:`` mapping so keys are strings (unquoted YAML ``2070:`` loads as int)."""
+    if not isinstance(providers, dict):
+        return {}
+    out: Dict[str, Any] = {}
+    for stored, value in providers.items():
+        key = coerce_provider_id(stored)
+        if key:
+            out[key] = value
+    return out

@@ -53,6 +53,44 @@ _UNCAPPED_PICKER_PROVIDERS: frozenset[str] = frozenset({"opencode-zen", "opencod
 logger = logging.getLogger(__name__)
 
 
+def _entry_models_discovered(entry: Any) -> bool:
+    """True when the entry's ``models`` mapping was auto-discovered.
+
+    Current shape: entry-level ``models_discovered: true``. Older versions wrote an in-mapping
+    ``__discovered_model_catalog__: true`` sentinel -- accepted on read (the next save migrates it).
+
+    Ported from upstream ``hermes_cli/model_switch.py``: the ACP model catalog imports this name
+    (openamer_cli/model_switch_providers.py:477) but it never travelled with the port, so the
+    import raised and ``_named_custom_provider_catalogs`` returned [] via its ImportError guard.
+    """
+    if not isinstance(entry, dict):
+        return False
+    models = entry.get("models")
+    return entry.get("models_discovered") is True or (
+        isinstance(models, dict) and models.get("__discovered_model_catalog__") is True)
+
+
+def _models_config_is_allowlist(value: Any, discovered: bool = False) -> bool:
+    """True when ``models:`` is an intentional ID allowlist.
+
+    A mapping like ``{model_id: {context_length: N}}`` is per-model *metadata* written by
+    ``_save_custom_provider`` / the wizard, not a catalog narrow (treating it as one made GUI
+    pickers show only the saved default for keyless Ollama while the CLI live-probed). List and
+    string shapes remain allowlists for no-key endpoints; pin a dict catalog with
+    ``discover_models: false``. A catalog the agent itself persisted (``discovered``) is never a pin.
+
+    Ported from upstream ``hermes_cli/model_switch.py`` -- same missing-name gap as
+    ``_entry_models_discovered`` above.
+    """
+    if discovered:
+        return False
+    if isinstance(value, str):
+        return bool(value.strip())
+    if isinstance(value, (list, tuple)):
+        return bool(_declared_model_ids(value))
+    return False  # None, dict (per-model metadata), or anything else
+
+
 def _declared_model_ids(value: Any) -> list[str]:
     """Return configured model IDs from supported config shapes.
 
@@ -2919,3 +2957,24 @@ def list_picker_providers(
         filtered.append(p)
 
     return filtered
+
+def _scoped_key_env(name: str) -> str:
+    """Read a provider key env var the way the chat path does, honouring the per-profile scope.
+
+    With a secret scope installed (multiplexed gateway turn, dashboard/kanban workers) the scope's
+    verdict is authoritative: a hit is this profile's key, a miss must not borrow another profile's
+    value from the process env or the default ``.env``. Multiplexing on with no scope fails closed
+    (``UnscopedSecretError`` -> ""). Otherwise resolve through ``get_env_prefer_dotenv`` — the
+    chain ``client_lifecycle`` uses for the actual request — so a ``key_env`` that lives only in
+    ``$OPENAMER_HOME/.env`` authenticates the ``/model`` verification probe (#109315) and a rotated
+    ``.env`` beats a stale value inherited from the parent shell."""
+    if not name:
+        return ""
+    try:
+        from agent.secret_scope import current_secret_scope, get_secret, is_multiplex_active
+        if current_secret_scope() is not None or is_multiplex_active():
+            return (get_secret(name, "") or "").strip()
+        from agent.credential_pool import get_env_prefer_dotenv
+        return (get_env_prefer_dotenv(name) or "").strip()
+    except Exception:
+        return ""
