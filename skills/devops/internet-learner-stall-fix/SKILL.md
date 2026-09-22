@@ -104,6 +104,18 @@ real repeats are >60 entries apart** (median gap 67, mean 96). Widening `avoid`
 to the full ledger is MEASURED-AND-REJECTED: only 2/8 cycle keywords still yield
 a live headline vs 8/8 at n=60. Domain saturated, not broken. See archive.
 
+## Counting the rejections — `buffer_junk.jsonl` rows have NO `ts`
+`internet_learn_log.jsonl` rows carry `ts/source/result/elapsed_s`; the audit
+rows in `buffer_junk.jsonl` carry ONLY `reason/u/a`. So a `ts`-prefix filter
+against the audit file silently returns **zero** — live 22.09.26 that made a
+busy day look like "the rejections never reached `store()`", which is wrong.
+Count by **append order** (the file is append-only: the last N audit rows are
+the most recent N rejections), and only then match a rate shift.
+Also: `diagnose_learn_rates.py` counts a row as REJECTED for ANY non-"learned"
+result, so `no insight` (shallow+deep both returned nothing) lands in the
+rejected bucket. A rate drop can be **fewer candidates**, not a stricter gate --
+distinguish the two before designing a rule.
+
 ## Trigger
 `python internet_learner.py --once` (or the cron) reports
 `cycle_x: rejected, not trained (shallow + deep read both gated)` on EVERY cycle,
@@ -1425,112 +1437,11 @@ episode**, and the matches included `announcement Announcement` and
 discriminator exists for "the model broke down mid-generation", so do not gate
 it**: remove by signature only. Same call as root cause AG.
 
-## Root cause AT — THREE chrome classes in ONE cron run (64–66), and "the rejection was NOT the regression" again (live 18.09.26)
-
-Cron run began on the documented `cycle_b_papers: rejected` line. Per-day rate
-**56.0 %** (28 ok / 22 rej) vs the documented 50–80 % band → **no gate change was
-warranted for the rejection itself**; `buffer_junk` last 12 = `duplicate` at the
-296–300 cap + documented `junk` shapes (`Self-critique:` echo, SERP `… — <date>`,
-`Nuxt HN | News …`) = rotation noise. All three finds came from the prescribed
-cheapest method: run `--once`, read the BUFFER TAIL `u`/`a` pairs, repeat after
-each fix. All three rows passed BOTH gates and NONE was ever in
-`buffer_junk.jsonl`. Buffer was clean at entry in the sense that only 4 stale
-pre-gate SERP rows were flagged — re-census after every fix anyway (the AP/AS
-lesson: "clean at entry" does not survive the next cycle).
-
-| class | helper | measured |
-|---|---|---|
-| 64 | `_is_de_portal_fact_box_chrome` — a German portal's own byline label + summary label pair (`\bAutor(?:in)?\s*:\s*[A-Z][A-Za-z]+\b[\s\S]{0,140}?K[üu]rze\s*:`) | 1 hit, IS the leak / 0 FP / 0 le / 0 lit |
-| 65 | `_is_prompt_echo_fragment` — the learner's own task template stored as the answer, whole-segment anchored | 1 hit, IS the leak / 0 FP / 0 le / 0 lit |
-| 66 | `_is_generated_plan_echo_fragment` — own-artifact title + `+`-list + DANGLING list marker | 5 hits, ALL the leak family / 0 FP / 0 le / 0 lit |
-
-**Class 64 — "check whether the existing helper covers the vocabulary but not the
-LANGUAGE".** Three byline helpers already exist (29 `_strip_byline_prefix`, 40
-`_is_byline_published_article_header`, 51 `_is_news_byline_share_header`) and all
-three are English-keyed (`By <First> <Last>`, `Published`, `Share`). A German
-portal's `Autor: <Name> … in Kürze:` pair matches none of them. The discriminator
-is the welded PAIR of the portal's OWN two labels; `in Kürze:` alone AND
-`Autor: <Name>` alone are both ordinary German prose. Sweep note: the
-order-reversed form (`in Kürze: … Autor:`) measured **0 buffer hits** — keep the
-orientation that the live page ships, and prefer the tighter variant
-(`Autor` + name + `Kürze:` = 0/11 controls) over the looser one
-(`in Kürze:` + any of `[Autor|Banff|Alberta]` = 1 control FP, because the control
-`Banff Nationalpark in Kurze: ein Park in Alberta.` contains two of the three
-alternatives).
-
-**Class 65 — a 41-char fragment: the length trust is NOT the only way chrome gets
-in (class-33 precedent, third occurrence).** `Shared underlying pattern one
-sentence.` is the instruction the cycle was given, stored as its answer. Why every
-existing marker missed it: `_INSTRUCTION_OPENER_RE` is **START-anchored on
-imperative verbs** and this is a bare noun-phrase fragment;
-`_is_prompt_echo_bullet_chain` (class 42) needs **>=2 bullets**. The surviving
-form is the **whole-segment anchor** (`^…pattern…one sentence.?$` with `re.M`).
-All non-anchored candidates were REJECTED after measuring: any-context
-`shared underlying pattern` + `one sentence` → 1 control FP; bare
-`shared underlying pattern one sentence` substring → 1 control FP; `Have you
-ever …?` teaser → **2–3 control FPs** (`Have you ever wished you could predict
-the future, especially when it comes to your investments?` IS the leak and IS the
-shape, so no discriminator exists — removed by signature only, like root cause AG
-and the model-hallucination row).
-
-**Class 66 — the leak is the AGENT'S OWN prior output, and it had FIVE copies.**
-The `Structural connection between energy efficiency and …` cycles stored their
-own deliverable list `KI-Performance-Optimierung: Python-Skript für
-RAM/Disk/Cron-Monitoring + Optimierungsvorschläge + Skill + Cron-Job alle 12h` +
-newline + `2.` (four German variants, one English). Tell: title-with-colon +
-`+`-joined feature list + a **DANGLING** list marker, ending abruptly — the model
-enumerated a plan and the extractor kept item 1 plus the marker. **Always group
-the flagged rows before designing the marker** (root-cause-AM class-38 rule):
-here the group was 5 rows of 2 languages, so the title alternation had to include
-both. Threshold/shape sweep that mattered: the bare title alone hit **1 real
-`longterm_episodes` row**, the bare dangling marker alone flagged the control
-`Our toolchain: script + docs + tests + CI.` + newline + `2.`, and a *generic*
-`^<title>: … + …` + dangling-marker form also flagged that same control. Only
-adding the own-artifact title **AND** the `+`-join kept it at 0. The leak being
-the agent's own prior generation is what makes the site-identity anchor
-legitimate here — unlike the "`about scribd` is itself prose" rejection from
-class 50.
-
-### Also — the class-66 family was NOT the rejection's cause, and one variant slipped the first cleanup
-The German signature removed 4 of the 5 copies; the **English** variant
-(`Python script for RAM/Disk/Cron-Monitoring + optimization suggestions …`) had
-to be deleted in a second pass. A signature-based cleanup that only lists the
-language you just looked at is incomplete — after any cleanup, re-run the writer
-census AND look for the same family in the other language.
-
-### Also — always sweep the buffer for stale PRE-GATE leftovers in the same pass
-The entry census read 4 flagged rows (idx 4/6/10/19) that were
-`GitHub - <owner>/<repo>: …` and `<Title> | <Site> — <desc>` SERP shapes. Those
-are gated by `_is_serp_snippet` (class 15, landed **15.09.26**) — the rows
-**predate the rule**, which is exactly the AS precedent ("a stale buffer row is
-not a new class: grep for a rule added that day; if it exists, delete by
-signature, no code change"). The same pass removed them.
-
-Cleanup + verify (standard shape): 297 → 290 → 285 records, every step
-`0 unparsable`, lone LF 0, **structural-connection rows 55 → 49** (the historical
-count keeps drifting — re-count, never quote an old number), writer-gate census
-**4 → 5 → 0** and learner-gate census **0**.
-`pytest tests/scripts/test_internet_learner_gate.py -q` → **82 → 85 passed**
-(3 new tests, each asserting the helper AND `_is_junk` AND `is_junk` on the leak
-plus 5–7 prose counter-cases); `pytest tests/scripts -q` → **241 passed**.
-Tests appended as **pure bytes** (75 added / **0 removed**, repo lone-LF census
-58 → 58), and the repo test file mirrored to the laptop + openamer-agent test
-copies.
-Commit `dc18ae902` on the same foreign branch `fix/28-respawn-test-psutil-hermetic`
-(`merge-base --is-ancestor origin/main HEAD` → FF_SAFE), pushed `HEAD:main`;
-verified with `git branch -r --contains dc18ae902` → `origin/main` **and**
-`git cat-file blob origin/main:<file> | grep -c <marker>` → 3/3/3 + 1 for the new
-test (the push exit code alone is not proof).
-Post-fix live: 3 × `--once` → **3 learned**, all new rows writer-gate clean,
-census **0 of 288**.
-
-### Pitfall — the `-c` options must precede the SUBCOMMAND
-`git push -c credential.helper= -c credential.helper=store origin HEAD:main`
-prints the push `--help` and pushes **nothing** (the `-c` after the subcommand is
-parsed as a push option). Correct: `git -c credential.helper= -c
-credential.helper=store push origin HEAD:main`. Same reason `git commit -F`
-needs the **Windows** path (`C:/Users/.../msg.txt`) while `/c/Users/...` gives
-`fatal: could not read log file`.
+## Root cause AT — moved to references/
+AT (three chrome classes 64-66 in ONE cron run, and "the rejection was NOT
+the regression" again) plus the `-c` options-before-subcommand pitfall and
+the always-sweep-for-stale-PRE-GATE-leftovers rule are in
+`references/root-causes-archive.md`.
 
 ## Root cause AV — TWO classes (75, 76) + the "a previous cron left gate work UNCOMMITTED" trap (live 19.09.26)
 
@@ -1599,4 +1510,7 @@ rejections honest (`duplicate` at the cap + a documented SERP shape), new row
 a blind spot for `Sep 24, 2025`. Also: the per-FILE merge resolution (HEAD vs
 origin/main measured, not assumed), and `clean_buffer.py` has NO `--help`
 (it just runs). refs/.
+**140** (a paper/arXiv AUTHOR LIST with affiliation superscripts -- `cycle_g_security` stored an author block twice; discriminator is the affiliation segment repeated, with a STRUCT-word guard so "Section 3, Figure 2, Table 1, ..." stays learnable; the `_re`/`re` alias fired via `_recompile`, and the guard was red from pre-existing scratch litter) is archived there too.
 **141** (a year-welded SERP TITLE restated by its own SNIPPET -- 4 rows of one family in the buffer tail, incl. `Grok Pricing 2026:` and `Claude Opus 5 Review 2026:`. Neither conjunct separates: the year-colon weld alone hits 6 prose controls, a bare repeat hits 201 real episodes + 35 asserted gate literals; the PAIR is 0 FP everywhere. The restatement is an identical price token, an identical `<verb> <n> %` pair, or an identical 4-token run of PLURAL-STEMMED tokens -- a backreference cannot see the NER row's `LLMs`->`LLM` drift. The China-chip row (real article, bare `417%` across different verbs) survives by construction and is the control that decides the rule. The `_re`/`re` alias returned a THIRD time on a new face: alias `re.IGNORECASE` too, not just `re.compile`; and `open(p,'wb',newline='')` is a TypeError that half-applies a patch BEFORE the census assert) is archived there too.
+**142** (the SILENT-DROP family: `internet_learner._is_junk()` accepted what `buffer_store.is_junk()` refused -- 368 of 600 audited junk rows; missing detectors `_is_serp_snippet` 222 / `self-critique` marker 109 / `_is_nav_chrome` 88. Fix = `_writer_gate_refuses()` consulted at the write decision in `store()`, audited under the new reason `writer-gate`; plus `active_learn.store_if_trainable()` + `_strip_reasoning_trace()`. PITFALL: never fold the writer into `_is_junk` -- `_clean_insight` depends on the extractor's looser rule, 4 tests regress) is in refs/.
+**143/144** (22.09.26: 143 = the silent drops were NOT the rejection rate -- fixing 142 moved the loss from invisible to visible without raising yield; 144 = class 142 shipped as a pure REJECT predicate and over-rejected, 24 of 60 refused rows carry real prose behind the header stack. Fix = `_strip_article_byline_header(region=100)`, applied where `store()` judges the RAW text -- a strip inside `_clean_insight` is UNREACHABLE because `_is_junk(raw)` fires first. `region=200` broke 36/6,128 episodes, `region=100` breaks 0. PITFALL: `write_file` TRUNCATES -- append to this archive with a BINARY `'ab'` write only) is in refs/.
