@@ -5094,3 +5094,62 @@ multi-domain cycle that produced the German chrome is now correctly rejected.
 Rate last-10 30 %, last-20 25 % vs all-time 68 % -- still the U/V signature, so
 no further gate change is warranted on the rate alone. Two consecutive honest
 rejections are the correct stopping state.
+
+## Root cause 148 (22.09.26) -- os.open() writes TEXT on Windows, and the vault lost a key in 8
+
+**The bug.** A 32-byte random key written with `os.open(...)` + `os.write(fd, key)`
+came out as **33 bytes** ~1/8 of the time, and the next process reported
+`vault could not be decrypted (wrong or damaged key)`.
+
+Cause: `os.open()` defaults to **TEXT mode on Windows**. A `0x0A` byte in the
+random key is written as CRLF. P(0x0A in 32 random bytes) = 1-(255/256)^32 =
+**11.8%** -- which matched the observed failure rate exactly, and was the clue
+that cracked it.
+
+**The fix, and the correct idiom for this repo:**
+
+    flags = os.O_WRONLY | os.O_CREAT | os.O_TRUNC | getattr(os, "O_BINARY", 0)
+    fd = os.open(str(path), flags, 0o600)
+    with os.fdopen(fd, "wb") as handle:   # "wb" sets binary mode
+        written = handle.write(key)
+
+`agent/proxy_sources/iron_proxy.py` already did it right for CA key bytes
+(`os.fdopen(fd, "wb")`). Pass `O_BINARY` AND use `"wb"`; a bare `os.write()` on
+that fd honours the text mode. `O_BINARY` needs `getattr(os, "O_BINARY", 0)` --
+it does not exist on POSIX.
+
+**How it was found -- only by RUNNING it.** The unit tests were all green. The
+CLI hung, then failed 1 run in 3, so it was reproduced by looping the real
+command 8x and printing `key.bin`'s size each time: 33 bytes on the failing run.
+No amount of reading would have shown it. **Loop a real command when a symptom
+is intermittent**; a single green run proves nothing about a rate.
+
+**Two diagnostics that hid the cause, both fixed.** `is_unlocked()` wrapped
+`_load()` in a bare `except Exception: return False`, so the real
+`VaultError("could not be decrypted")` never reached anyone -- it now logs the
+exception with its type. And a generic "missing or damaged key" message made an
+11.8% write bug look like user error.
+
+**Three further traps from the same session:**
+
+- **`getpass.getpass()` HANGS on Windows when stdin is a pipe.** It reads the
+  CONSOLE, not stdin, so `printf 'pw
+' | ... add` blocked until timeout. For a
+  non-TTY stream, read the line from stdin directly (`sys.stdin.readline()`) --
+  nothing is echoed either way. Guard the interactive path with `sys.stdin.isatty()`.
+- **A blob format with no recorded nonce length cannot survive a bad nonce.**
+  `_encrypt` wrote `MAGIC + nonce + ct` and `_decrypt` sliced a fixed 12 bytes, so
+  any nonce of another length produced a permanently undecryptable vault. Assert
+  the nonce length at WRITE time, not just at read time.
+- **Monkeypatching `secrets.token_bytes` poisons the nonce too.** A fake that
+  returns a fixed 32-byte value for EVERY length breaks encryption, and the
+  symptom (`could not be decrypted`) points at the key, not at the test. Fakes
+  must be length-aware.
+
+**Before writing a new module, check whether it already exists.** `git status`
+showed `M agent/vault_login_classifier.py` -- a `write_file` had already
+overwritten a file that upstream had ported earlier (with OTP support, richer
+than the version being written). Recovered via `git cat-file -e HEAD:<path>`.
+**Run `git status` before the first write to a path.** It is cheap; the recovery
+is not, and a file that is already tracked is the one case where a blind
+`write_file` destroys someone else's work.
