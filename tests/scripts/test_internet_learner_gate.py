@@ -357,6 +357,45 @@ def test_german_dictionary_serp_chrome_is_gated_on_both_paths():
         assert not IL._is_junk(prose), prose
 
 
+def test_site_nav_chain_is_gated_on_both_paths():
+    """cycle_d_docs stored a TechRadar sidebar label run + its announce line.
+
+    Live 23.09.26 (class 165): the row was "Tech news VPN Deals General Apps AR
+    and VR Business Cameras Cybersecurity Entertainment Reviews and guides Smart
+    home Social media Transportation Wearables Claude AI The latest Claude AI
+    news, updates and announcements Anthropic Drops Claude Opus 5.5 ..." -- 300
+    chars of pure site nav, zero prose, and it cleared BOTH gates. M1 (>=2
+    distinct labels) alone let prose ABOUT those labels through; M2 (the
+    announce line) alone matched 4 ordinary rows. Only the ANDed pair separates.
+
+    Measured on both gates over 3,901 real corpus rows + 9,861 junk rows:
+    1 real hit and it IS this leaking row -> 0 real-prose FPs.
+    """
+    sys.path.insert(0, str(TRAINING))
+    import buffer_store
+    leak = (
+        "Tech news VPN Deals General Apps AR and VR Business Cameras "
+        "Cybersecurity Entertainment Reviews and guides Smart home Social "
+        "media Transportation Wearables Claude AI The latest Claude AI news, "
+        "updates and announcements Anthropic Drops Claude Opus 5.5"
+    )
+    assert buffer_store.is_junk(leak), leak
+    assert IL._is_junk(leak), leak
+    # M1 OR M2 alone must stay clean -- each is ordinary prose on its own
+    for prose in (
+        "Our smart home and cameras cybersecurity coverage is expanding; "
+        "read the latest reviews and guides.",
+        "Anthropic published 'The latest Claude AI news, updates and "
+        "announcements' as a blog headline yesterday.",
+        "The vLLM docs list VPN Deals as a partner section, and AR and VR "
+        "benchmarks live in the appendix.",
+        "Read the latest vLLM updates and announcements for the 2.12 release.",
+        "TechRadar - Upgrades, reviews and guides",
+    ):
+        assert not buffer_store.is_junk(prose), prose
+        assert not IL._is_junk(prose), prose
+
+
 def test_real_insights_survive_the_junk_gate():
     for text in REAL:
         assert not IL._is_junk(text), text
