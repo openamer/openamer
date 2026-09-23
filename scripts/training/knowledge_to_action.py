@@ -398,11 +398,21 @@ def experiment_competitor_gap():
     # row and the 22.09.26 `edit across files` row (4 amounts, "Pro $20/mo"), which
     # is why it is checked AFTER the lexicon: `edit across files` matches that row
     # and must keep winning. Only this row is left, so 0 capability rows are
-    # swallowed. Deliberately requires >= 2 amounts AND a money word: a bare `$` or
+    # swallowed. Requires >= 2 amounts AND a money word: a bare `$` or
     # a bare `cost` is not a datapoint (the Hemmingway-1 row carries the word
     # `costs` in prose and stays an ordinary lexicon gap).
     _CUR = re.compile(r"\$\s?\d[\d,]*(?:\.\d+)?\s*(?:[kmb])?\+?", re.I)
-    _MONEY = re.compile(r"\b(bills?|spend|spent|costs?|pricing|per month|/mo|monthly)\b", re.I)
+    # The money word is deliberately NARROW -- reported spend (`bills`, `spend`,
+    # `spent`), never a general money word. Measured 23.09.26 over the 40
+    # competitor rows: >= 2 amounts + the broad set (cost/pricing/per month) trips
+    # 2/40 -- this row AND the `edit across files` row (4 amounts, "Pro $20/mo
+    # (annual $17); Max $100-$200/mo"), whose prices are an OFFER inside a genuine
+    # capability sentence. The broad predicate only spared that row when the
+    # lexicon happened to match it first, i.e. its precision depended on unrelated
+    # lexicon content, which is not a predicate. The narrow set trips 1/40: this
+    # row, 0 mis-maps, and it spares the `edit across files` row on lexicon content
+    # alone -- verified by the test that pins exactly that ordering.
+    _MONEY = re.compile(r"\b(bills?|spend|spent)\b", re.I)
     is_cost_datapoint = len(_CUR.findall(signal)) >= 2 and bool(_MONEY.search(signal))
     if hint:
         gap = (f"{hint}: competitor signals it; {measured} — monolithic, "

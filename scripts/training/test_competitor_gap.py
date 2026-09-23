@@ -322,8 +322,12 @@ def test_cost_row_carrying_a_capability_still_maps():
         ], tool_server_src=FAKE_TOOL_SERVER)
         r = kta.experiment_competitor_gap()
         assert r["measurable"] is True, r
-        assert "multi-file agentic execution" in r["identified_gap"], r["identified_gap"]
+        # The invariant this test pins is the ORDERING: a cost-bearing row that
+        # also carries a capability sentence must reach the lexicon first. What
+        # it maps to depends on the lexicon (and is pinned elsewhere); what must
+        # never happen is the cost predicate claiming the row.
         assert "cost datapoint" not in r["result"], r["result"]
+        assert "cost/price datapoint" not in r["identified_gap"], r["identified_gap"]
     finally:
         kta.T = old
 
