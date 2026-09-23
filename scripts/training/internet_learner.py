@@ -291,6 +291,15 @@ def store(user_text, insight, buffer=None):
                 and _clean_insight(stripped, 300)):
             insight = stripped
             cleaned = _clean_insight(insight, 300)
+    # class 163 follow-up (23.09.26): same two-step for a news age notice --
+    # the reject gate above fires on the RAW insight, so the strip has to
+    # rescue here or the prose behind the notice is never stored.
+    if _is_news_age_notice(insight):
+        stripped = _strip_news_age_notice(insight)
+        if (stripped and stripped != insight and not _is_junk(stripped)
+                and _clean_insight(stripped, 300)):
+            insight = stripped
+            cleaned = _clean_insight(insight, 300)
     reason = ""
     if _is_junk(insight):
         reason = "junk"
@@ -4548,6 +4557,63 @@ def is_advisory_listing_card(text):
                 and _BARE_NUMERIC_PAGER_RE.search(t))
 
 
+
+
+# A news site's own AGE NOTICE welded to its content-label pair (class 163,
+# 23.09.26).  Live: `cycle_a_technews` stored, verbatim,
+#   "I violated every principle I was given’ This article is more than 4
+#    months old PocketOS was left scrambling after a rogue AI agent deleted
+#    swaths of code underpinning its business Supported by About this content
+#    Sanya Mansoor Thu 30 Apr 2026 00.12 CEST Last modified on Wed 17 Jun
+#    2026 11.55 CEST Sha"
+# -- a pull-quote weld + the publisher's staleness notice + the LEDE + the
+# `Supported by About this content` affordance + the byline/dateline block,
+# all glued.  The dates fed `_TECH_HINT_RE` (its alternation STARTS with
+# \d+) and the row is >= 90 chars, so the length trust passed it.
+#
+# STRIP, not reject: the lede behind the notice IS the knowledge.  This is
+# the class-142 pattern again -- a header stack welded to real prose.
+#
+# The discriminator is the publisher's OWN label pair, never the topic:
+# `This article is more than N months/years/days old` AND `Supported by
+# About this content`, both inside the header window.  Measured 23.09.26
+# over online_buffer 300 / buffer_junk 9,351 / internet_learn_log 2,751 /
+# longterm_episodes 3,065 / asserted gate-test literals 2,167 / every
+# .md+.txt in the repo and the live skills tree (7,362 long-form chunks):
+# the conjunction has exactly ONE hit -- the leaking row -- and 0 everywhere
+# else, 0 of 16 hostile prose controls.
+# EVERY WIDER AND EVERY NARROWER FORM WAS MEASURED -- do not re-add any:
+#   - the bare age notice: 2 hostile prose FPs ("This article is more than 4
+#     months old, so the benchmark numbers it quotes are stale ...").
+#   - bare `About this content` / `Last modified on`: 1 FP each.
+#   - `Supported by` as a bare token: 1 asserted gate-test literal
+#     ("Tool calling and reasoning parsers are supported by the server.").
+#   - `age AND (About this content|Last modified on)`: eats the HARD control
+#     that carries both halves inside ONE real sentence ("... the About this
+#     content label the site renders is page furniture, and the 8-bit run
+#     stayed within one point of fp16.").
+_NEWS_AGE_NOTICE_RE = re.compile(
+    r"This article is more than \d+ (?:months?|years?|days?) old\b")
+_NEWS_AGE_LABEL_RE = re.compile(r"Supported by\s+About this content")
+_NEWS_AGE_REGION = 300
+
+
+def _news_age_notice_span(text):
+    """(end_of_notice, start_of_label) inside the header window, else None."""
+    head = (text or "")[:_NEWS_AGE_REGION]
+    m = _NEWS_AGE_NOTICE_RE.search(head)
+    if not m:
+        return None
+    lab = _NEWS_AGE_LABEL_RE.search(head, m.end())
+    if not lab:
+        return None
+    return m.end(), lab.start()
+
+
+def _is_news_age_notice(text):
+    """True for a publisher age notice welded to its content-label pair (163)."""
+    return _news_age_notice_span(text) is not None
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
@@ -4557,6 +4623,9 @@ def _is_junk(text):
         return True
     # an article's own byline + dateline header welded to its lede (class 142, 22.09.26)
     if _is_article_byline_chrome(t):
+        return True
+    # a news site's age notice welded to its content-label pair (class 163, 23.09.26)
+    if _is_news_age_notice(t):
         return True
     # a SERP run welded to a docs site's CTA (class 53, 18.09.26)
     if _is_docs_cta_serp_run(t):
@@ -6451,6 +6520,26 @@ def _strip_article_byline_header(text, region=100, force=False):
     return t[max(ends):].lstrip(" \u2014-\u00b7|:,\n")
 
 
+def _strip_news_age_notice(text):
+    """Rescue the LEDE behind a publisher age notice (class 163).
+
+    The prose behind the notice IS the knowledge, so this is a STRIP (same
+    doctrine as `_strip_article_byline_header`, class 142).  Returns `text`
+    UNTOUCHED when there is no notice or no usable body, and deliberately
+    does NOT re-normalise whitespace on an untouched row -- collapsing `\s+`
+    reports innocent rows as changed (the class-11 whitespace trap).
+
+    Measured 23.09.26: the rescued body is a pristine SLICE of the original
+    and clears BOTH gates; 0 of 16 hostile prose controls are touched.
+    """
+    span = _news_age_notice_span(text)
+    if span is None:
+        return text
+    body = text[span[0]:span[1]].strip()
+    if len(body.split()) < 5 or not body[:1].isupper() or body not in text:
+        return text
+    return body
+
 def _clean_insight(text, max_len=250):
     """Final gate on a distilled insight. Returns "" for page furniture.
 
@@ -6478,6 +6567,9 @@ def _clean_insight(text, max_len=250):
     t = _strip_blog_header_stack(t)
     t = _strip_masthead_nav_chain(t)
     t = _strip_trailing_read_time_header(t)
+    # class 163 (23.09.26): a news site's age notice + content-label pair is
+    # STRIPPED -- the lede between them is the knowledge.
+    t = _strip_news_age_notice(t)
     # class 142 follow-up (22.09.26): an article byline/dateline header stack is
     # STRIPPED, not rejected -- the lede behind it is the knowledge. The 200-char
     # predicate stays the reject gate; this only rescues rows whose prose survives.

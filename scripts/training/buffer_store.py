@@ -4879,6 +4879,25 @@ def _is_nav_weld_repeat_chrome(text):
             and _has_adjacent_exact_repeat(text))
 
 
+
+
+# class 163 (23.09.26) -- a news site's age notice welded to its content-label
+# pair.  Same predicate as `internet_learner._is_news_age_notice`; the learner
+# STRIPS the notice and stores the lede, so this writer gate must agree on the
+# RAW form or any other writer path lets the chrome through.
+_NEWS_AGE_NOTICE_RE = _re.compile(
+    r"This article is more than \d+ (?:months?|years?|days?) old\b")
+_NEWS_AGE_LABEL_RE = _re.compile(r"Supported by\s+About this content")
+
+
+def _is_news_age_notice(text):
+    """True for a publisher age notice welded to its content-label pair (163)."""
+    head = (text or "")[:300]
+    m = _NEWS_AGE_NOTICE_RE.search(head)
+    if not m:
+        return False
+    return bool(_NEWS_AGE_LABEL_RE.search(head, m.end()))
+
 def is_junk(text):
     """True when a completion is not trainable signal.
 
@@ -4912,6 +4931,8 @@ def is_junk(text):
     if _is_nav_chrome(s):
         return True
     if _is_article_byline_chrome(s):
+        return True
+    if _is_news_age_notice(s):
         return True
     if _is_gh_releases_row(s):
         return True

@@ -6861,3 +6861,72 @@ def test_the_extractor_uses_the_healing_helper():
     assert "for s in _sentences(t):" in src
     # the raw inline regex must no longer head the scoring loop
     assert "re.finditer(r\"([A-Z][^.!?]{40,250}[.!?])\", t)" not in src
+
+
+def test_news_age_notice_is_stripped_not_stored():
+    """A publisher age notice + content label, welded to the LEDE (class 163).
+
+    Live 23.09.26 (`cycle_a_technews`): the stored row was
+      "I violated every principle I was given\u2019 This article is more than 4
+       months old PocketOS was left scrambling after a rogue AI agent deleted
+       swaths of code underpinning its business Supported by About this content
+       Sanya Mansoor Thu 30 Apr 2026 00.12 CEST Last modified on Wed 17 Jun
+       2026 11.55 CEST Sha"
+    -- a pull-quote weld + the publisher's staleness notice + the lede + the
+    site's own `Supported by About this content` affordance + the byline block,
+    all glued into 300 chars.  The dates fed `_TECH_HINT_RE` (whose alternation
+    STARTS with `\\d+`) and the length cleared the >=90 trust, so BOTH gates
+    passed it.  STRIP, not reject: the lede IS the knowledge.
+    """
+    import buffer_store
+    leak = NEWS_AGE_NOTICE_LEAK
+    # the RAW row is refused by BOTH gates ...
+    assert IL._is_junk(leak) is True
+    assert buffer_store.is_junk(leak) is True
+    # ... and the strip rescues the lede as a PRISTINE SLICE of the original.
+    body = IL._strip_news_age_notice(leak)
+    assert body == ("PocketOS was left scrambling after a rogue AI agent deleted "
+                    "swaths of code underpinning its business")
+    assert body in leak
+    # the rescued body is genuinely storable -- refused only if it is not.
+    assert IL._is_junk(body) is False
+    assert buffer_store.is_junk(body) is False
+    assert IL._clean_insight(body, 300) == body
+
+
+def test_news_age_notice_controls_survive_both_gates():
+    """Prose that MENTIONS an age notice or a content label stays learnable.
+
+    The discriminator is the publisher's own label PAIR, never the topic.  The
+    LAST control is the one that killed the wider
+    `age-notice AND (About this content|Last modified on)` form: it carries both
+    halves inside ONE real sentence and must stay learnable.
+    """
+    import buffer_store
+    for c in NEWS_AGE_CONTROLS:
+        assert IL._is_junk(c) is False, c
+        assert buffer_store.is_junk(c) is False, c
+        assert IL._strip_news_age_notice(c) == c, c
+
+
+
+
+# The exact bytes `cycle_a_technews` stored on 23.09.26 (class 163).
+NEWS_AGE_NOTICE_LEAK = (
+    "I violated every principle I was given\u2019 This article is more than 4 "
+    "months old PocketOS was left scrambling after a rogue AI agent deleted "
+    "swaths of code underpinning its business Supported by About this content "
+    "Sanya Mansoor Thu 30 Apr 2026 00.12 CEST Last modified on Wed 17 Jun "
+    "2026 11.55 CEST Sha")
+
+NEWS_AGE_CONTROLS = [
+    "The Guardian article carries an age notice saying the piece is more than 4 months old, so the crawler should skip that label.",
+    "This article is more than 4 months old, so the benchmark numbers it quotes are stale and the 2026 revision should be cited instead.",
+    "About this content policy: the crawler must not treat the site's own label as a fact about the world.",
+    "Supported by a grant from the EU, the team released its weights under Apache 2.0 and published the training script.",
+    "Last modified on the dataset card, the licence field changed to Apache 2.0 while the model weights stayed under MIT.",
+    "This article is more than 4 months old and the author explains why the retriever must re-rank before generation.",
+    "Supported by About this content is the pair of labels the crawler should drop, the sentence behind them is the knowledge we keep.",
+    "This article is more than 4 months old, so we re-measured it; the About this content label the site renders is page furniture, and the 8-bit run stayed within one point of fp16.",
+]
+

@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-09-22T22:12:34.611668+00:00",
+  "snapshot_at": "2026-09-23T10:15:55.814719+00:00",
   "circadian": {
     "phase": "AWAKE",
     "at": "2026-09-17T09:22:18.844281+00:00",
@@ -35,25 +35,25 @@
   "strategies": {
     "TOKENS": {
       "wins": 16,
-      "tries": 64
+      "tries": 66
     },
     "TEXT": {
       "wins": 3,
-      "tries": 50
+      "tries": 52
     },
     "ROLE": {
       "wins": 0,
-      "tries": 49
+      "tries": 51
     },
     "CLASSES": {
       "wins": 6,
-      "tries": 50
+      "tries": 52
     }
   },
   "senses": {
-    "time": "2026-09-23T00:11:03",
+    "time": "2026-09-23T12:14:54",
     "pain": {
-      "score": 6,
+      "score": 5,
       "level": "exhausted"
     },
     "satiety": {
@@ -943,6 +943,27 @@
         },
         {
           "action": "Fix recurring motif 'api-rate' at root (Skill/repo patch)"
+        }
+      ]
+    },
+    {
+      "date": "2026-09-23",
+      "replayed_messages": 648,
+      "fragments": 74,
+      "motifs": {
+        "timeout": 1
+      },
+      "insights": [
+        {
+          "motif": "timeout",
+          "occurrences": 1,
+          "recurrence_days": 24,
+          "nightmare": true
+        }
+      ],
+      "intentions": [
+        {
+          "action": "Fix recurring motif 'timeout' at root (Skill/repo patch)"
         }
       ]
     }
