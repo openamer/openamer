@@ -56,40 +56,33 @@ def run(cmd, timeout=120):
 # ---- Action Library: insight patterns -> concrete experiments ----
 
 def experiment_lora_rank():
-    """Insight: 'start with small rank (4-8)'. Test r=8 vs r=16 effectiveness."""
-    import urllib.request
-    losses = {}
-    # We can't easily change LoRA rank at runtime (needs rebuild).
-    # Instead: measure the CURRENT r=16 performance as baseline, log for later A/B.
-    #
-    # Retry contract (fixed 20.09.2026): a single 5s attempt reported
-    # "server down" whenever the tool server was mid-restart (live evidence:
-    # 2026-09-20T07:46:21, right after the desktop relaunch at 07:39:50 —
-    # a curl seconds later answered {"status":"alive","tools":9}). One refused
-    # connection during a rebind is not "server down"; it is a retry miss, and
-    # it burned a whole rotation slot. Probe a few times with backoff.
-    h = None
-    last_err = None
-    for _attempt in range(3):
-        try:
-            req = urllib.request.Request(LIVE + "/health")
-            h = json.load(urllib.request.urlopen(req, timeout=5))
-            break
-        except Exception as e:
-            last_err = e
-            time.sleep(2 * (_attempt + 1))
+    """Insight: 'start with small rank (4-8)'. Test r=4/8/16 on an equal budget.
+
+    Rewritten 23.09.2026. The previous body only polled /health and returned
+    the fixed string "LoRA rank experiment: baseline recorded (r=16 live)".
+    That string was logged 184 times while no baseline was written anywhere —
+    the claim was untrue. The real A/B now lives in kta_lora_rank_probe.py
+    (locally cached Qwen2.5-0.5B-Instruct, CPU) and this reads what the
+    artifact says, or admits that nothing was measured.
+    """
+    art = os.path.join(T, "kta_artifacts", "lora_rank_result.json")
     try:
-        if h is None:
-            raise last_err
-        return {
-            "action": "LoRA rank experiment: baseline recorded (r=16 live)",
-            "result": f"current server: {h.get('tools')} tools, loss history in meta_state",
-            "measurable": True,
-            "next": "when GPU training runs next, try r=8 variant and compare loss-drop",
-        }
-    except Exception as e:
-        return {"action": "LoRA rank experiment", "result": f"server down: {e}",
+        with open(art, encoding="utf-8") as fh:
+            d = json.load(fh)
+    except (OSError, ValueError) as e:
+        return {"action": "LoRA rank experiment",
+                "result": f"no artifact ({type(e).__name__}) — "
+                          f"run kta_lora_rank_probe.py to measure",
                 "measurable": False}
+    if not d.get("ok"):
+        return {"action": "LoRA rank experiment",
+                "result": f"probe reported: {str(d.get('error'))[:120]}",
+                "measurable": False, "artifact": art}
+    arms = d.get("arms") or []
+    return {"action": f"LoRA rank A/B, arms r={[a['rank'] for a in arms]}",
+            "result": str(d.get("result"))[:160],
+            "measurable": True, "artifact": art}
+
 
 def experiment_predict_world():
     """Insight: 'project future states'. Add a prediction to the world model.
@@ -331,6 +324,27 @@ def experiment_competitor_gap():
         # chosen two-word-plus token states the capability layer itself and
         # wins longest-match selection over the generic `architecture`.
         ("llm agent architecture", "agent-architecture layer governing reliability"),
+        # Grown from a REAL signal (23.09.26, third one that day): the SAGA row
+        #   "The SAGA Framework: The Brains Behind the Agents At the core of each
+        #    character's decision-making process is the SAGA (Simulation Agent
+        #    Generative Architecture) framework ..."
+        # is a capability description (an LLM-driven simulation-agent
+        # framework), not a headline: its echo against its own source question
+        # is 0.25 with len(a) 232, so the headline discriminator above correctly
+        # leaves it on the lexicon path. Worth noting this is the very row the
+        # `architecture` rejection (1 row above) names as a mis-map -- it is
+        # real content that merely had no token, not noise.
+        # Measured precision over the 39 competitor rows this function reads
+        # (scoring `a` only, which is all `signal` ever is):
+        #   `simulation agent` 1/39 -> that row IS this signal, 0 mis-maps
+        # Rejected alternatives, all measured: `saga` 1/39 (same row, but a
+        # proper noun the corpus can only ever support for this one title),
+        # `generative architecture` 1/39 (same row, names the label rather than
+        # the capability), `decision-making` 1/39 and `character` 1/39 (same
+        # row today, but generic nouns that mis-map the moment another row
+        # mentions a decision or a character), `architecture` 3/39 -> REAL
+        # mis-maps. The chosen two-word phrase states the capability.
+        ("simulation agent", "LLM-driven simulation-agent framework"),
     )
     # --- the latest row may be an ARTICLE TITLE, not a capability description ---
     # Grown from a REAL signal (23.09.26): the consumer kept reporting
@@ -414,6 +428,32 @@ def experiment_competitor_gap():
     # alone -- verified by the test that pins exactly that ordering.
     _MONEY = re.compile(r"\b(bills?|spend|spent)\b", re.I)
     is_cost_datapoint = len(_CUR.findall(signal)) >= 2 and bool(_MONEY.search(signal))
+    # --- the latest row may be a PROJECT STATUS LOG, not a capability ---------
+    # Grown from a REAL signal (23.09.26): the competitor pipeline landed
+    #   "Brain -- Desktop AI Agent: The flagship persona running on a i9-13900KF +
+    #    RTX 4080 + 128 GB DDR5 workstation: Phase 1 (2024-2025): QQ group AI on
+    #    NoneBot2 + Volcengine ARK + KLING TTS, co-built with @Herdeny
+    #    Phase 2 (2025-now): OpenClaw Agent OS 2026."
+    # This is neither a headline nor a cost datapoint nor a capability
+    # description: it is a build/status TIMELINE ("Phase 1 (2024-2025) ... Phase 2
+    # (2025-now) ...") whose only capability-shaped nouns (NoneBot2, KLING TTS,
+    # OpenClaw Agent OS) belong to third-party products we do not compete on, and
+    # whose "Desktop AI Agent" is a project NAME, not a capability sentence.
+    # Measured over the 39 competitor rows (scoring `a` only, which is all that
+    # `signal` ever is): the predicate trips 1/39 and that row IS this signal ->
+    # 0 mis-maps. Its echo against its own source question is 0.17 at 251 chars,
+    # so the headline discriminator (echo >= 0.6 AND len(a) < 160) correctly
+    # leaves it alone -- this is a class the lexicon must NOT be grown for.
+    # Rejected, all measured 23.09.26: `desktop ai agent` 1/39, `agent os` 1/39,
+    # `openclaw` 1/39, `workstation` 1/39, `persona` 1/39 -- every one of them is
+    # a proper noun or a project label that would map a status log onto a
+    # capability, i.e. a mis-map, so no token is added for this row.
+    # Checked AFTER the lexicon, exactly like the cost predicate: a capability
+    # row that happens to mention a phase timeline must reach the lexicon first.
+    _PHASE = re.compile(
+        r"\bphase\s*\d+\b[^()]{0,40}\(\s*\d{4}\s*[-\u2013\u2014]\s*(?:\d{4}|now)\s*\)",
+        re.I)
+    is_project_status = bool(_PHASE.search(signal))
     if hint:
         gap = (f"{hint}: competitor signals it; {measured} — monolithic, "
                f"no per-tool module boundary")
@@ -431,9 +471,21 @@ def experiment_competitor_gap():
                   f"datapoint ({len(_CUR.findall(signal))} currency amounts + money "
                   f"word), no capability sentence to map; extraction-side gap, not a "
                   f"lexicon gap")
+    elif is_project_status:
+        gap = (f"no mappable capability in latest signal ({measured}) — "
+               f"signal is a project status log / build timeline (dated phase "
+               f"markers naming third-party stacks), not a product capability "
+               f"description")
+        fix = ("carry a capability sentence alongside the status log in the "
+               "competitor pipeline; a build timeline is not a lexicon gap and no "
+               "token should be invented to map it onto one")
+        result = (f"signal NOT mappable: '{signal[:60]}' | {measured} — "
+                  f"project status log (dated phase markers, third-party stacks), "
+                  f"no capability sentence to map; extraction-side gap, not a "
+                  f"lexicon gap")
     elif is_headline:
         gap = (f"no mappable capability in latest signal ({measured}) — "
-               f"signal is an article headline (echoes {_echo:.0%} of its own "
+               f"signal is an article headline (echo {_echo:.0%} of its own "
                f"source question), not a product capability description")
         fix = ("carry a capability sentence alongside the headline in the "
                "competitor pipeline; no lexicon token should be invented for a "
@@ -630,7 +682,14 @@ def kta_cycle():
         n = int(open(rot_file, encoding="utf-8").read().strip() or 0)
     with open(rot_file, "w", encoding="utf-8") as f:
         f.write(str(n + 1))
-    experiment = EXPERIMENTS[n % len(EXPERIMENTS)][1]
+    # topic hit on the QUESTION wins; the round-robin still
+    # guarantees every arm gets reached (fixed 23.09.26)
+    q = insight["question"].lower()
+    experiment = next((fn for keys, fn in EXPERIMENTS
+                       if any(re.search(r"\b" + re.escape(k) + r"\b", q)
+                              for k in keys)), None)
+    if experiment is None:
+        experiment = EXPERIMENTS[n % len(EXPERIMENTS)][1]
 
     try:
         result = experiment()
