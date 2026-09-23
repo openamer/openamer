@@ -33,10 +33,41 @@ import json
 import os
 from pathlib import Path
 
-_HOME = Path(os.environ.get(
-    "OPENAMER_HOME",
-    Path.home() / "AppData" / "Local" / "openamer-laptop",
-))
+def _resolve_home():
+    """Resolve the install home, tolerating an MSYS-style OPENAMER_HOME.
+
+    2026-09-23: cron exports OPENAMER_HOME as '/c/Users/.../openamer-laptop'
+    (MSYS form). Joined onto 'scripts/training' that string yields the
+    RELATIVE path '\\c\\Users\\...\\scripts\\training', which does not
+    exist -- so DEFAULT_BUFFER/JUNK_LOG pointed nowhere and every rejection
+    audit in _audit() was swallowed by its bare `except Exception: pass`.
+    Measured live: buffer_junk.jsonl frozen at 9461 rows across a cycle that
+    logged "rejected, not trained" -- the gate became unobservable, so the
+    57% reject rate could not be diagnosed from the audit trail at all.
+    Accept any spelling that passes an isdir probe; else fall back to the
+    real install dir. Same resolver shape as internet_learner /
+    auto_skill_creation / knowledge_to_action.
+    """
+    _env = os.environ.get("OPENAMER_HOME")
+    _home = Path.home()
+    cands = []
+    if _env:
+        cands.append(Path(_env))
+    cands.append(_home / "AppData" / "Local" / "openamer-laptop")
+    cands.append(_home / "AppData" / "Local" / "openamer")
+    cands.append(Path(__file__).resolve().parent.parent.parent)
+    for _c in cands:
+        try:
+            if (_c / "scripts" / "training").is_dir():
+                return _c
+        except OSError:
+            continue
+    if _env:
+        return Path(_env)
+    return _home / "AppData" / "Local" / "openamer-laptop"
+
+
+_HOME = _resolve_home()
 DEFAULT_BUFFER = _HOME / "scripts" / "training" / "online_buffer.jsonl"
 MAX_BUF = int(os.environ.get("OPENAMER_BUFFER_MAX", "300"))
 # audit trail of rejected examples — never silent, always inspectable
@@ -3808,6 +3839,125 @@ def is_docs_heading_qweld(text):
     return len(_re.findall(r"[.!?]", t)) <= 1
 
 
+# A BibTeX CITATION RECORD welded to a license footer (class 158, 23.09.26).
+# Live: the papers cycle stored, verbatim:
+#   "Findings of the Association for Computational Linguistics: EMNLP 2025},
+#    pages = {23934-23949}, year = {2025}, publisher = {Association for
+#    Computational Linguistics} } This website is licensed under a Creative
+#    Commons Attribution-ShareAlike 4."
+# -- an ACL Anthology page's BibTeX `pages = {..}, year = {..}, publisher =
+# {..}` chain with the trailing `}` still attached, welded to the site's
+# license footer. The digits and braces fed the technical-signal gate and the
+# 243 chars cleared the >=90 long-prose trust.
+#
+# Keyed on the CONJUNCTION of two independently-insufficient signals:
+#   (1) a `field = {value}` pair whose VALUE reads as a multi-word PHRASE
+#       (>=3 word tokens) -- a citation record's values are prose ("Association
+#       for Computational Linguistics"), while a code/config assignment's value
+#       is a scalar ("{42}", "{0.9}", "{bfloat16}", "{cc-by-4.0}");
+#   (2) a LICENSE FOOTER ("licensed under" / "creative commons" /
+#       "attribution-sharealike").
+# Measured 23.09.26 over 17,905 rows (online_buffer 299, buffer_junk 18,480,
+# internet_learn_log 2,698, longterm_episodes 3,064, asserted gate-test literals
+# 1,897): the conjunction has exactly 1 hit -- the leaking row -- and 0
+# elsewhere, 0 of a 9-case hostile battery.
+# BOTH parts were MEASURED AND REJECTED alone; do not re-add either:
+#   - the license footer alone: 4 asserted gate-test literals + 2 hostile
+#     prose FPs (prose ABOUT a Creative Commons license is real knowledge).
+#   - the prose-valued assignment alone: 3 hostile FPs
+#     (`Set system_prompt = {You are a helpful assistant} and temperature = ...`).
+#   - the bare `field = {value}` pair: 3 hostile config FPs.
+#   - the BibTeX field VOCABULARY (author/title/year/pages/...): 5 hostile FPs,
+#     because prose that merely NAMES those words trips it.
+_CITATION_ASSIGN_RE = _re.compile(
+    r"\b[A-Za-z][A-Za-z0-9_]{1,20}\s*=\s*\{([^{}]{0,160})\}")
+_CITATION_LICENSE_RE = _re.compile(
+    r"licensed under|creative commons|attribution-sharealike", _re.IGNORECASE)
+
+
+def is_citation_record_weld(text):
+    """True for a BibTeX citation record welded to a license footer.
+
+    Structural conjunction, no topic words and no site literals -- see the
+    block comment above `_CITATION_ASSIGN_RE` for the measurement.
+    """
+    t = text or ""
+    if not t:
+        return False
+    if not _CITATION_LICENSE_RE.search(t):
+        return False
+    for m in _CITATION_ASSIGN_RE.finditer(t):
+        value = m.group(1)
+        if len(_re.findall(r"[A-Za-z][A-Za-z'\-]*", value)) >= 3:
+            return True
+    return False
+
+
+
+# A GitHub-advisory / security-portal INDEX-CARD chrome row (class 159,
+# 23.09.26). Live: cycle_d_docs AND cycle_c_github stored, verbatim,
+# twice in the buffer tail:
+#   "Critical Authenticated Arbitrary Data Export Theft via Mass Assignment
+#    in sendFileMessage GHSA-fhc2-x8cp-c5ch published May 14, 2026 by
+#    julio-rocketchat High Previous 1 2 3 Next Learn more about advis"
+# -- an advisories-LIST page: one entry's TITLE welded to its identifier,
+# its publication date, its reporter handle, its severity badge, the
+# list's own `Previous 1 2 3 Next` pager and the trailing CTA, truncated
+# mid-word by the extractor. 235 chars with digits -> the >=90 long-prose
+# trust and the technical-signal gate both let it through.
+#
+# The near-miss that explains WHY it leaked: the SAME page shape WITHOUT
+# the date passes the pre-existing `_is_nav_list` (>=6 TitleCase tokens,
+# no comma). The advisory date brings a COMMA, and one comma is enough to
+# disarm that rule: measured 23.09.26 -- `_is_nav_list` is True on the
+# date-free form and False on the live one. So the discriminator cannot
+# be the nav-list rule; it is the SECURITY-PORTAL CARD, keyed on the
+# conjunction of
+#     (1) a vulnerability advisory ID (GHSA-xxxx-xxxx-xxxx) -- an
+#         identifier shape an advisory listing carries, and
+#     (2) the listing's own BARE numeric pager (`Previous 1 2 3 Next`),
+#         deliberately the numeric form, NOT class 58's
+#         `Previous Page N of M Next`, because that is the form this page
+#         ships.
+#
+# Every PART alone is measured and INSUFFICIENT -- do not re-add any:
+#   - the GHSA-id alone: it is also the standard way prose CITES an
+#     advisory, and 1 asserted gate-test literal carries the shape.
+#   - the bare pager alone: 2 hostile prose FPs
+#     ("The changelog lists Previous 1 2 3 Next links to older releases.")
+#     plus 1 asserted gate-test literal.
+#   - GHSA AND a severity badge: 26 hits, but 2 of 3 real citing-prose
+#     controls trip it ("We tracked GHSA-aaaa-bbbb-cccc as High severity").
+#   - GHSA AND `by <handle>`: 1 asserted gate-test literal.
+#   - the pager AND a published-date: 3 of 4 both-part prose controls.
+#   - the CTA wording alone: ordinary English.
+# Measured with the conjunction (GHSA-id AND bare numeric pager) over
+# online_buffer / buffer_junk / internet_learn_log / longterm_episodes /
+# asserted gate-test literals: 2 / 26 / 0 / 0 / 1. Both buffer hits ARE
+# the leak family; the 1 test literal is the pre-existing GHSA string the
+# test already documents as chrome gated by `_is_nav_list` ("a different
+# gate"), so it is the same shape, not a false positive. 0 hits in 3 real
+# citing-prose controls and 0 in 5 both-part prose controls.
+_ADVISORY_ID_RE = _re.compile(
+    r"\bGHSA-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}\b",
+    _re.IGNORECASE)
+_BARE_NUMERIC_PAGER_RE = _re.compile(r"\bPrevious\s+(?:\d+\s+){1,9}Next\b")
+
+
+def is_advisory_listing_card(text):
+    """True for a security-advisory listing card welded to its pager (159).
+
+    Structural conjunction of an advisory ID and the listing's own bare
+    numeric pager; no topic words and no vendor literals -- see the block
+    comment above `_ADVISORY_ID_RE` for the measurement.
+    """
+    t = text or ""
+    if not t:
+        return False
+    return bool(_ADVISORY_ID_RE.search(t)
+                and _BARE_NUMERIC_PAGER_RE.search(t))
+
+
 def _is_nav_chrome(text):
     """True when text is page chrome (entities, marketing, UI, template leaks)."""
     if _ENTITY.search(text):
@@ -4190,6 +4340,12 @@ def _is_nav_chrome(text):
         return True
     # a docs/TOC heading stack welded to an interrogative heading (class 157, 23.09.26)
     if is_docs_heading_qweld(text):
+        return True
+    # a BibTeX citation record welded to a license footer (class 158, 23.09.26)
+    if is_citation_record_weld(text):
+        return True
+    # a security-advisory listing card welded to its pager (class 159, 23.09.26)
+    if is_advisory_listing_card(text):
         return True
     return False
 
