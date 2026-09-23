@@ -17,6 +17,57 @@ import tempfile
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import buffer_store as bs
 
+try:  # pytest is optional: this file also runs standalone
+    import pytest
+except ImportError:  # pragma: no cover
+    pytest = None
+
+
+def _isolated_audit_log():
+    """Point the module's audit log at a throwaway file, return a restore fn.
+
+    `append()` audits EVERY rejected row to `buffer_store.JUNK_LOG`, whose
+    default is the real `scripts/training/buffer_junk.jsonl` -- the audit log
+    the triage routine reads to decide whether a rejection is a leak. Only
+    `test_append_refuses_junk_and_logs_it` patched it, so the other twelve
+    `bs.append(...)` call sites wrote their own fixtures into the PRODUCTION
+    log. Measured 20.09.26: 206 of 6,970 rows carried the unmistakable test
+    signature `u == "q"`; re-measured 23.09.26 after the helper had been added
+    to the live copy only: 1,376 of 9,599 rows (14.3 %) and STILL GROWING,
+    because origin/main itself has no isolation -- so every suite run from the
+    repo worktree re-appends them.
+
+    `buffer_store._resolve_home()` is the reason origin/main leaks: with
+    `OPENAMER_HOME` unset (the cron case) it falls back to the real install dir,
+    so `JUNK_LOG` points at the live log no matter which checkout the test runs
+    from. Confirmed 23.09.26 by running the un-isolated repo copy: the live log
+    grew by exactly one `{"u": "q", "a": "Eine Woche hat sieben Tage."}` row,
+    while the isolated live copy grew by zero.
+
+    Nothing reached the training buffer (`online_buffer.jsonl`: 0 test fixtures,
+    verified), but the audit log is the file the reject-rate triage reads, so
+    the litter produces the recurring false lead "4 unproven `duplicate` rejects
+    were `q` / `Eine Woche hat sieben Tage.`, not a leak".
+    """
+    orig = bs.JUNK_LOG
+    d = tempfile.mkdtemp(prefix="bufstore_audit_")
+    bs.JUNK_LOG = os.path.join(d, "buffer_junk.jsonl")
+
+    def restore():
+        bs.JUNK_LOG = orig
+
+    return restore
+
+
+if pytest is not None:
+    @pytest.fixture(autouse=True)
+    def _no_write_to_the_live_audit_log():
+        """Keep the whole suite out of the live `buffer_junk.jsonl`."""
+        restore = _isolated_audit_log()
+        try:
+            yield
+        finally:
+            restore()
 
 def _tmp_buf():
     d = tempfile.mkdtemp(prefix="bufstore_test_")
@@ -291,8 +342,37 @@ def test_duplicate_example_is_refused_but_distinct_kept():
     assert bs.append("q", "Ein Jahr hat zwoelf Monate.", buffer=buf) == 2
 
 
+
+
+def test_suite_never_writes_the_live_audit_log():
+    """Class 167: a rejected fixture must not reach the PRODUCTION log.
+
+    `buffer_store._resolve_home()` falls back to the real install dir when
+    `OPENAMER_HOME` is unset -- the cron case -- so without the autouse
+    fixture every `bs.append(...)` call site above audited its own fixture
+    into the live `scripts/training/buffer_junk.jsonl`. Measured 23.09.26:
+    1,376 of 9,599 rows (14.3 %) carried a test-only signature and the count
+    was still growing; removing the fixture (run from origin/main) added
+    exactly one row per run, with it (this file) zero.
+
+    Assert on the RESOLVED default, not on a hardcoded path: the regression
+    is that the default IS the live log, so a test that stubs it out cannot
+    see the bug it guards.
+    """
+    live = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                        "buffer_junk.jsonl")
+    assert os.path.abspath(str(bs.JUNK_LOG)) != os.path.abspath(live), (
+        "JUNK_LOG still points at the live audit log: %s" % bs.JUNK_LOG
+    )
+    before = os.path.getsize(live) if os.path.exists(live) else 0
+    buf = _tmp_buf()
+    bs.append("q", _JUNK_WAVE[0][1], buffer=buf)   # a refusal -> audit
+    after = os.path.getsize(live) if os.path.exists(live) else 0
+    assert after == before, "a rejected fixture leaked into %s" % live
+
 if __name__ == "__main__":
     fails = 0
+    restore_audit = _isolated_audit_log()
     for name, fn in sorted(globals().items()):
         if name.startswith("test_") and callable(fn):
             try:
@@ -301,5 +381,6 @@ if __name__ == "__main__":
             except Exception as e:
                 fails += 1
                 print(f"  [FAIL] {name}: {e}")
+    restore_audit()
     print(f"\n{'FAILED' if fails else 'OK'}: {fails} failure(s)")
     sys.exit(1 if fails else 0)
