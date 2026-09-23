@@ -5839,3 +5839,54 @@ intact, 0 unparsable, and a whole-buffer re-scan now reports **0** rows that
    `b.replace(b'\r\n', b'\n').replace(b'\n', b'\r\n')` and assert
    `loneLF == 0` afterwards. Check the target file's own convention; do not assume
    the sibling's.
+
+## Root cause 153 (22.09.26) -- sys.platform is not platform.system(), and a silent platform fallthrough
+
+**The bug.** `get_chrome_debug_candidates(system)` branches on `system == "Darwin"`
+and `system == "Windows"` -- the values `platform.system()` returns. Called with
+`sys.platform`, which is `"win32"` on Windows and `"darwin"` on macOS, NEITHER
+branch matches, so the call **falls through to the Linux branch**. On this
+Windows host, with Chrome installed at the canonical path, the resolver returned
+**0 candidates** and the whole real-profile feature reported "no supported
+Chromium browser".
+
+**The tell.** `shutil.which("chrome.exe")` was also `None` (Chrome is not on PATH),
+so the ONLY thing that could find it was the install-path branch -- the branch the
+platform mix-up skipped. A pure PATH lookup would have hidden this.
+
+**The fix, and the rule.** Do not change the shared resolver's contract: its own
+callers (which pass `platform.system()`) and its tests already depend on it.
+Normalise at the new call site instead:
+
+    if sys.platform.startswith("win"): return "Windows"
+    if sys.platform == "darwin":       return "Darwin"
+    return platform.system() or "Linux"
+
+**Rule: `sys.platform` and `platform.system()` are different vocabularies.**
+`sys.platform` is `win32` / `darwin` / `linux`; `platform.system()` is
+`Windows` / `Darwin` / `Linux`. When a function takes a `system` STRING, check
+which one its own body compares against before passing either.
+
+**How it was found: by running it, not by reading it.** The unit tests for the
+resolver pass `"Windows"` explicitly and stay green. Only an end-to-end run on
+the real host exposed the mismatch, and only after printing the candidate count
+(0) and the raw environment (`ProgramFiles` set, `which` empty) side by side.
+
+## Root cause 154 (22.09.26) -- an ineffective mutation looks like a weak test
+
+Mutation-checking the new real-profile suite: removing the acknowledgement gate
+and removing the lock check each turned it red. A THIRD mutation -- "also copy the
+Cache directory" -- left all 15 tests green.
+
+The conclusion was nearly "the cache assertion is weak". It was not: the mutation
+was **ineffective**. `_PROFILE_DIRS` did not contain `"Cache"`; the exclusion came
+from the `shutil.ignore_patterns(*_PROFILE_SKIP)` filter, so editing the tuple
+changed nothing at all. Re-running the mutation against the code that actually
+implements the behaviour (`_PROFILE_DIRS + ("Cache",)`) turned the suite red as
+expected.
+
+**Rule: before concluding a test is weak, PROVE the mutation changed behaviour.**
+An edit that does not apply (a no-op substitution, a guard that is not on the
+path taken) reports "tests still pass" and gets misread as a coverage gap. Assert
+the substitution applied (`assert m != s`), and if the suite stays green, verify
+the mutation is on the executed path before touching the test.
