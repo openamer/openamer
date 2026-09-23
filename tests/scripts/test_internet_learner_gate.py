@@ -6260,6 +6260,96 @@ def test_spelled_read_time_controls_survive_both_gates():
         assert IL._clean_insight(ctl), ctl
 
 
+# class 143 (22.09.26): a SINGLE Hacker-News-style feed row -- submitter
+# handle + relative time + `| N comments` + points + a capitalized trailing
+# handle + a colon -- is feed chrome, not knowledge. class 37 keys on the
+# unit REPEATED, class 49 on the aggregator's own name, class 83 on an arXiv
+# year tail, so a one-item row passed all three.
+_IL143_LEAKS = (
+    "DeepLogin 5 hours ago | 20 comments 193 Kev: Tiny Jev-like family of "
+    "decision models built on top of Qwen3.",
+)
+
+# `The review took 2 days ago | 4 comments per reviewer were recorded.` is
+# class 37's own pinned clean control -- the new rule must not claim it.
+# The `... and then 193 runs: ...` row pins the SCOPED case-sensitivity: a
+# plain IGNORECASE `[A-Z]` token flagged that prose in the first draft.
+_IL143_CONTROLS = (
+    "The review took 2 days ago | 4 comments per reviewer were recorded.",
+    "The release added 1,200 commits 5 hours ago | 12 comments and 88 "
+    "points per the tracker.",
+    "In this paper the authors report 20 comments and 193 downloads: Tiny "
+    "Jev is a decision model.",
+    "The team logged 5 hours ago | 20 comments and then 193 runs: the "
+    "result held.",
+    "The 193 comments on the tracker were filed by users in the last 5 "
+    "hours ago.",
+    "A model card lists 20 comments: 193 runs of the evaluation.",
+    "Kev: a Tiny Jev-like family of decision models built on top of "
+    "Qwen3 improves accuracy by 9%.",
+    "The migration finished 3 days, 11 hours ago and the report captured "
+    "it.",
+)
+
+
+def test_feed_handle_unit_row_gated_on_both_paths():
+    import internet_learner as IL
+    import buffer_store as BS
+    for leak in _IL143_LEAKS:
+        assert IL._is_feed_handle_unit_row(leak), leak
+        assert IL._is_junk(leak), leak
+        assert BS._is_feed_handle_unit_row(leak), leak
+        assert BS.is_junk(leak), leak
+
+
+def test_feed_handle_unit_row_controls_survive_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL143_CONTROLS:
+        assert not IL._is_feed_handle_unit_row(ctl), ctl
+        assert not BS._is_feed_handle_unit_row(ctl), ctl
+
+
+# class 144 (22.09.26): a German shop's nav lockup welded to its
+# consultation block -- hotline number + opening hours -- is page
+# furniture, not knowledge. 104 chars WITH digits, so the length trust
+# and the technical-signal gate both fired; no `_is_de_*` rule matched.
+_IL144_LEAKS = (
+    "Produkten PRODUKTBERATUNG Wir beraten Sie pers\u00f6nlich unter "
+    "0681 5866-4466 (Mo-Do 9-18 Uhr, Fr 9-17 Uhr).",
+    "Die Beratung erfolgt telefonisch unter der Nummer 0681 5866-4466.",
+)
+
+# Neither half may fire alone: `Uhr` is an ordinary German word and a phone
+# form is ordinary prose, so the conjunction is what the rule tests.
+_IL144_CONTROLS = (
+    "Die Beratung erfolgt telefonisch.",
+    "Der Anbieter nennt eine Hotline und oeffnende Zeiten.",
+    "The evaluation ran for 9-18 hours and produced 0681 samples.",
+    "vLLM prefill throughput improved 40% after enabling prefix caching "
+    "with --max-model-len 32768 in the 2.12.0 release.",
+    "TLS 1.3 removes a handshake round trip, cutting connection latency "
+    "by ~33% on high-RTT links, as measured on Sep 15, 2026.",
+)
+
+
+def test_de_consultation_contact_chrome_gated_on_both_paths():
+    import internet_learner as IL
+    import buffer_store as BS
+    for leak in _IL144_LEAKS:
+        assert IL._is_de_consultation_contact_chrome(leak), leak
+        assert IL._is_junk(leak), leak
+        assert BS._is_de_consultation_contact_chrome(leak), leak
+        assert BS.is_junk(leak), leak
+
+
+def test_de_consultation_contact_controls_survive_both_gates():
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL144_CONTROLS:
+        assert not IL._is_de_consultation_contact_chrome(ctl), ctl
+        assert not BS._is_de_consultation_contact_chrome(ctl), ctl
+
 # class 148 (22.09.26): the learner's OWN bare "Need ..." generation plan.
 # `internet_learner._INSTRUCTION_OPENER_RE` refused these at extraction time, so
 # `--once` reported "shallow + deep read both gated" -- yet the WRITER gate had
@@ -6309,3 +6399,182 @@ def test_need_plan_echo_controls_survive_both_gates():
     for ctl in _IL148_CONTROLS:
         assert not BS._is_need_plan_echo(ctl), ctl
         assert not IL._INSTRUCTION_OPENER_RE.search(ctl), ctl
+
+
+# --- class 149 (23.09.26): a site's nav-menu WELD run into a card title that is
+# then repeated.  The leak was STORED (252 chars with digits -> the `>=90` length
+# trust AND the technical-signal gate both fired); class 82 is the same family
+# but wants labels welded to EACH OTHER plus a TitleCase colon headline, and
+# this row welds them to a comma headline instead.
+_IL149_LEAKS = (
+    "Start Suche VPS-Rechner Vergleichen Blog Suchen \U0001f319 EN DE Home Blog "
+    "Haystack: The Open-Source AI Orchestration Framework for Production-Ready RAG "
+    "Haystack: The Open-Source AI Orchestration Framework for Production-Ready RAG "
+    "Jun 27, 2026 What Is Haystack?",
+)
+
+_IL149_CONTROLS = (
+    # the topic-word trap: German/English sentences that LIST the same labels
+    "Suche, Blog, Preise, Kontakt, Impressum und Datenschutz sind die Menuepunkte.",
+    "Die Navigation enthaelt Suche, Blog, Preise und Kontakt in der Kopfzeile.",
+    "Der Vergleich der Preise zeigt, dass die Suche im Blog besser funktioniert.",
+    "Wir haben die Preise verglichen und die Suche im Blog getestet.",
+    "The site navigation offers Suche, Blog and Kontakt in the top bar of every page.",
+    "Our crawler skips the navbar: Start, Blog, Suche and Kontakt are all chrome.",
+    "The nav bar shows Home, Docs, Pricing, Careers and About Us on one line.",
+    "Home Docs Pricing Careers About Us is what the markup literally contains.",
+    "The menu labels are Home, Produkte, Preise and Impressum in the German locale.",
+    "Startseite, Preise and Kontakt were the three labels we had to white-list.",
+    "We compared the nav labels used by three documentation portals for consistency.",
+    "The docs and pricing links sit in the footer nav rather than the sidebar.",
+    "Login and Sign up are the only two links the crawler could not resolve.",
+    "The pricing page and the careers page both redirect to the same marketing site.",
+    "A good agent reads the privacy policy and the terms of service before scraping.",
+    "The resources section links to docs, a newsletter and a cookie policy notice.",
+    # a legit repeat / a legit mention of the brand, each ALONE
+    "The pipeline reads docs, then docs again after the cache is cleared, which is fine.",
+    "Haystack is an open-source orchestration framework for RAG pipelines.",
+    "The Haystack docs explain how to build a production-ready RAG pipeline.",
+    "Our slogan is simple: build fast, ship fast, and build fast again tomorrow.",
+)
+
+
+def test_nav_weld_repeat_chrome_gated_on_both_paths():
+    """A nav-menu weld run + adjacent exact repeat is refused by BOTH gates."""
+    import internet_learner as IL
+    import buffer_store as BS
+    for leak in _IL149_LEAKS:
+        assert BS._is_nav_weld_repeat_chrome(leak), leak
+        assert BS.is_junk(leak), leak
+        assert IL._is_nav_weld_repeat_chrome(leak), leak
+        assert IL._writer_gate_refuses(leak), leak
+        assert IL._is_junk(leak), leak
+
+
+def test_nav_weld_repeat_controls_survive_both_gates():
+    """Prose that lists the same nav labels, or repeats a phrase, stays learnable.
+
+    Neither half of the conjunction may fire alone: nav tokens in prose score a
+    run of 3-6 (the trap), and an ordinary repeat is not ADJACENT.
+    """
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL149_CONTROLS:
+        assert not BS._is_nav_weld_repeat_chrome(ctl), ctl
+        assert not IL._is_nav_weld_repeat_chrome(ctl), ctl
+
+
+def test_nav_weld_repeat_neither_half_is_sufficient():
+    """Disjoint halves: the conjunction is the discriminator, not either side."""
+    import buffer_store as BS
+    nav_only = "Suche, Blog, Preise, Kontakt, Impressum und Datenschutz sind die Menuepunkte."
+    assert BS._nav_weld_run(nav_only) >= 3
+    assert not BS._has_adjacent_exact_repeat(nav_only)
+    rep_only = "The pipeline reads docs, then docs again after the cache is cleared, which is fine."
+    assert not BS._nav_weld_run(rep_only) >= 3
+    assert not BS._has_adjacent_exact_repeat(rep_only)
+
+
+def test_vllm_server_log_line_gated_on_both_paths():
+    """A raw vLLM server log line is refused by BOTH gates (class 155).
+
+    Live 23.09.26: the docs cycle stored "Using max model len 98304 (APIServer
+    pid=90) INFO 11-28 11:46:45 [scheduler." -- chrome truncated mid-token; its
+    digits satisfied the technical-signal gate and it cleared the length check.
+    """
+    import internet_learner as IL
+    import buffer_store as BS
+    for leak in _IL155_LEAKS:
+        assert IL._is_junk(leak), leak
+        assert IL._writer_gate_refuses(leak), leak
+        assert BS.is_junk(leak), leak
+
+
+def test_vllm_log_controls_survive_both_gates():
+    """Same-topic PROSE stays learnable: the gate targets the log SHAPE only."""
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL155_CONTROLS:
+        assert not IL._is_junk(ctl), ctl
+        assert not BS.is_junk(ctl), ctl
+
+
+# --- class 155: a raw vLLM server log line is chrome, not knowledge ----------
+_IL155_LEAKS = (
+    "Using max model len 98304 (APIServer pid=90) INFO 11-28 11:46:45 [scheduler.",
+)
+# Same TOPIC as the leak (the classic trap), but real prose -> must survive.
+_IL155_CONTROLS = (
+    "Set max_model_len to your longest served context, then tune "
+    "gpu_memory_utilization so the KV cache still fits.",
+    "vLLM raises max_num_batched_tokens to 98304 so long prompts fit while the "
+    "KV cache footprint stays predictable.",
+    "The scheduler processes waiting and running queues every step; prefill and "
+    "decode are split across them.",
+    "A worker process with pid 90 failed to bind the port; the runbook explains "
+    "how to detect a stale port holder.",
+    "The docs describe the APIServer as an OpenAI-compatible front end for the "
+    "continuous-batching scheduler.",
+    "Reading a raw log line is not learning until it is interpreted in a runbook "
+    "entry that names the symptom and the fix.",
+    "We measured a 31 percent peak-memory reduction from paged attention during "
+    "warmup of the inference server.",
+)
+# --- class 157: a docs/TOC heading stack welded to an interrogative heading ---
+_IL157_LEAKS = (
+    "Evaluate API Compatibility And Integration Needs Plan For Monitoring, "
+    "Scaling, And Maintenance vLLM Alternatives By Deployment Scenario "
+    "Production LLM Inference Needs More Than A Serving Engine FAQs About "
+    "vLLM Alternatives Is SGLang Better Than vLLM?",
+    "Batch Scheduling and Concurrency Tensor Parallelism for Multi-GPU "
+    "Monitoring Memory in Real Time Full Production Configuration How vLLM "
+    "Uses GPU Memory vLLM allocates GPU memory into three pools: model "
+    "weights, KV cache, and activation memory.",
+)
+# Same TOPIC as the leaks (the classic trap), but real prose -> must survive.
+_IL157_CONTROLS = (
+    "Evaluate API compatibility and integration needs before choosing a serving "
+    "stack; plan for monitoring, scaling, and maintenance over the first year.",
+    "Production LLM inference needs more than a serving engine: you also need a "
+    "scheduler with continuous batching and a KV-cache aware router.",
+    "Is SGLang better than vLLM for prefix-heavy workloads? Benchmarks suggest a "
+    "30% throughput gain on shared system prompts.",
+    "Step 2 explains How the scheduler batches requests, and Step 3 covers Why "
+    "the KV cache is pooled.",
+    "The agent must decide Which Tool To Call and How To Recover from a failed call.",
+    "Q: Which model should I use for coding? A: Use the larger variant; it "
+    "handles long contexts better.",
+    "The pipeline has three stages. What happens next is that the scheduler "
+    "reorders the queue and the cache is flushed.",
+    "vLLM allocates GPU memory into three pools: model weights, KV cache, and "
+    "activation memory.",
+)
+
+
+def test_docs_heading_qweld_is_gated_on_both_paths():
+    """A docs heading stack welded to a question is chrome on BOTH gates."""
+    import internet_learner as IL
+    import buffer_store as BS
+    for leak in _IL157_LEAKS:
+        assert IL.is_docs_heading_qweld(leak), leak
+        assert BS.is_docs_heading_qweld(leak), leak
+        assert IL._is_junk(leak), leak
+        assert BS.is_junk(leak), leak
+    for ctl in _IL157_CONTROLS:
+        assert not IL.is_docs_heading_qweld(ctl), ctl
+        assert not BS.is_docs_heading_qweld(ctl), ctl
+        assert not IL._is_junk(ctl), ctl
+        assert not BS.is_junk(ctl), ctl
+
+
+def test_docs_heading_qweld_requires_the_question_weld():
+    """A plain heading stack with no interrogative heading stays learnable."""
+    import buffer_store as BS
+    stack = ("Install The Tool Configure The Proxy Run The Benchmark Check The "
+             "Logs Inspect The Output.")
+    assert not BS.is_docs_heading_qweld(stack), stack
+    # a long lowercase question sentence is prose, not a heading stack
+    prose = ("What is prefix caching, and how does it help a serving stack? It "
+             "reuses the KV blocks of a shared prompt prefix, which cuts the "
+             "prefill cost for every request that repeats the same system prompt.")
+    assert not BS.is_docs_heading_qweld(prose), prose
