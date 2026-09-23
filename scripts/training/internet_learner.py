@@ -4373,6 +4373,62 @@ def _is_article_byline_chrome(text):
             and bool(_ARTICLE_DATELINE_RE.search(head)))
 
 
+
+# A docs/TOC HEADING STACK welded to an interrogative heading (class 157,
+# 23.09.26). Live: the docs cycle stored two rows that had passed BOTH gates --
+#   "Evaluate API Compatibility And Integration Needs Plan For Monitoring,
+#    Scaling, And Maintenance vLLM Alternatives By Deployment Scenario
+#    Production LLM Inference Needs More Than A Serving Engine FAQs About
+#    vLLM Alternatives Is SGLang Better Than vLLM?"
+#   "Batch Scheduling and Concurrency Tensor Parallelism for Multi-GPU
+#    Monitoring Memory in Real Time Full Production Configuration How vLLM
+#    Uses GPU Memory vLLM allocates GPU memory into three pools: ..."
+# -- a docs page's section headings concatenated with the newlines removed,
+# ending in a question heading. The questions and digits fed the
+# technical-signal gate and both rows cleared the >=90 long-prose trust.
+#
+# Keyed on the STRUCTURE, never the topic: the row must carry an interrogative
+# welded straight onto a preceding word (`... Alternatives Is SGLang ...`), be
+# at least 80 chars, have a capitalized-word ratio >= 0.50 (a heading stack is
+# almost all TitleCase; prose is not) and carry at most ONE sentence
+# terminator (a stack concatenates headings and rarely punctuates them).
+# Measured 23.09.26 over 17,064 rows (online_buffer 300, buffer_junk 9,137,
+# internet_learn_log 2,693, longterm_episodes 3,064, gate-test literals 1,870):
+# exactly 2 buffer hits and BOTH are the leaking rows -> 0 of 3,064
+# longterm_episodes, 0 of 1,870 asserted literals, 0 of a 7-case hostile prose
+# battery (prose naming a question mid-sentence, a FAQ pair, a mostly-heading
+# answer with no question). The buffer_junk/log hits are 3 known leak families
+# this rule also catches (docs nav stack, arXiv listing row, news-index stack)
+# plus rows whose audit copy is TRUNCATED -- never a clean prose row.
+# REJECTED on measurement, do not re-add: the bare question-weld (7 buffer + 2
+# episode hits), a TitleCase-run-followed-by-prose rule (215 episodes), the
+# `cap >= 0.55` threshold (misses the live 0.54 row) and a 0-terminator window
+# (misses both live rows).
+_DOC_HEADING_QWELD_RE = re.compile(
+    r"[a-z0-9]\s+(?:Is|Are|Can|Does|Do|Should|Will|Which|Why|How|What)\s+[A-Za-z]")
+_DOC_HEADING_WORD_RE = re.compile(r"[A-Za-z][A-Za-z'\-]*")
+
+
+def is_docs_heading_qweld(text):
+    """True for a docs/TOC heading stack welded to an interrogative heading.
+
+    Structural rule, no topic words and no vendor literals -- see the block
+    comment above `_DOC_HEADING_QWELD_RE` for the measurement.
+    """
+    t = text or ""
+    if len(t) < 80:
+        return False
+    if not _DOC_HEADING_QWELD_RE.search(t):
+        return False
+    words = _DOC_HEADING_WORD_RE.findall(t)
+    if not words:
+        return False
+    caps = sum(1 for w in words if w[:1].isupper())
+    if (caps / len(words)) < 0.50:
+        return False
+    return len(re.findall(r"[.!?]", t)) <= 1
+
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
@@ -4761,6 +4817,9 @@ def _is_junk(text):
         from buffer_store import is_glued_motif
     except Exception:
         return False
+    # a docs/TOC heading stack welded to an interrogative heading (class 157, 23.09.26)
+    if is_docs_heading_qweld(t):
+        return True
     return bool(is_glued_motif(t))
 
 

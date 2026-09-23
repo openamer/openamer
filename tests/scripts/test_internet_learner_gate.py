@@ -6520,3 +6520,61 @@ _IL155_CONTROLS = (
     "We measured a 31 percent peak-memory reduction from paged attention during "
     "warmup of the inference server.",
 )
+# --- class 157: a docs/TOC heading stack welded to an interrogative heading ---
+_IL157_LEAKS = (
+    "Evaluate API Compatibility And Integration Needs Plan For Monitoring, "
+    "Scaling, And Maintenance vLLM Alternatives By Deployment Scenario "
+    "Production LLM Inference Needs More Than A Serving Engine FAQs About "
+    "vLLM Alternatives Is SGLang Better Than vLLM?",
+    "Batch Scheduling and Concurrency Tensor Parallelism for Multi-GPU "
+    "Monitoring Memory in Real Time Full Production Configuration How vLLM "
+    "Uses GPU Memory vLLM allocates GPU memory into three pools: model "
+    "weights, KV cache, and activation memory.",
+)
+# Same TOPIC as the leaks (the classic trap), but real prose -> must survive.
+_IL157_CONTROLS = (
+    "Evaluate API compatibility and integration needs before choosing a serving "
+    "stack; plan for monitoring, scaling, and maintenance over the first year.",
+    "Production LLM inference needs more than a serving engine: you also need a "
+    "scheduler with continuous batching and a KV-cache aware router.",
+    "Is SGLang better than vLLM for prefix-heavy workloads? Benchmarks suggest a "
+    "30% throughput gain on shared system prompts.",
+    "Step 2 explains How the scheduler batches requests, and Step 3 covers Why "
+    "the KV cache is pooled.",
+    "The agent must decide Which Tool To Call and How To Recover from a failed call.",
+    "Q: Which model should I use for coding? A: Use the larger variant; it "
+    "handles long contexts better.",
+    "The pipeline has three stages. What happens next is that the scheduler "
+    "reorders the queue and the cache is flushed.",
+    "vLLM allocates GPU memory into three pools: model weights, KV cache, and "
+    "activation memory.",
+)
+
+
+def test_docs_heading_qweld_is_gated_on_both_paths():
+    """A docs heading stack welded to a question is chrome on BOTH gates."""
+    import internet_learner as IL
+    import buffer_store as BS
+    for leak in _IL157_LEAKS:
+        assert IL.is_docs_heading_qweld(leak), leak
+        assert BS.is_docs_heading_qweld(leak), leak
+        assert IL._is_junk(leak), leak
+        assert BS.is_junk(leak), leak
+    for ctl in _IL157_CONTROLS:
+        assert not IL.is_docs_heading_qweld(ctl), ctl
+        assert not BS.is_docs_heading_qweld(ctl), ctl
+        assert not IL._is_junk(ctl), ctl
+        assert not BS.is_junk(ctl), ctl
+
+
+def test_docs_heading_qweld_requires_the_question_weld():
+    """A plain heading stack with no interrogative heading stays learnable."""
+    import buffer_store as BS
+    stack = ("Install The Tool Configure The Proxy Run The Benchmark Check The "
+             "Logs Inspect The Output.")
+    assert not BS.is_docs_heading_qweld(stack), stack
+    # a long lowercase question sentence is prose, not a heading stack
+    prose = ("What is prefix caching, and how does it help a serving stack? It "
+             "reuses the KV blocks of a shared prompt prefix, which cuts the "
+             "prefill cost for every request that repeats the same system prompt.")
+    assert not BS.is_docs_heading_qweld(prose), prose
