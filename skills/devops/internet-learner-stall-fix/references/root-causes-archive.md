@@ -6010,3 +6010,48 @@ creates the tree at the mangled path `C:/c/Users/...` -- always pass the NATIVE
 `C:/...` form to `git worktree add`.
 
 **158** (23.09.26): a BIBTEX CITATION RECORD welded to a license footer -- `cycle_b_papers` stored an ACL Anthology page's `pages = {23934-23949}, year = {2025}, publisher = {Association for Computational Linguistics} }` chain with the trailing brace still attached, welded to `This website is licensed under a Creative Commons Attribution-ShareAlike 4.` (243 chars, braces+digits fed the technical-signal gate). Fix = `is_citation_record_weld`, the CONJUNCTION of (1) a `field = {value}` pair whose value is a multi-word PHRASE (>=3 word tokens -- a citation's values are prose, a config's are scalars) and (2) a license footer. In BOTH gates. Measured over 17,905 rows: 1 hit, IS the leak -> 0 episodes, 0 gate-test literals, 0 of a 9-case hostile battery. MEASURED-AND-REJECTED alone: the license footer (4 asserted literals + 2 hostile prose FPs -- prose ABOUT a CC license is real knowledge), the prose-valued assignment (3 hostile FPs), the bare `field = {value}` pair (3 hostile config FPs) and the BibTeX field VOCABULARY (5 hostile FPs, because prose that merely NAMES author/title/year trips it). TRAP re-confirmed a THIRD time: buffer_store imports `re as _re`, so a new module-level `re.compile(...)` raises NameError at import while `ast.parse` stays GREEN -- only `exec_module` catches it.
+
+**159** (23.09.26): a SECURITY-ADVISORY LISTING CARD -- one entry's title welded
+to its GHSA identifier, its publication date, its reporter handle, its severity
+badge, the list's own BARE numeric pager (`Previous 1 2 3 Next`) and the
+trailing CTA, truncated mid-word. `cycle_d_docs` AND `cycle_c_github` each
+stored it, twice in the buffer tail; 235 chars with digits cleared the >=90
+long-prose trust and the technical-signal gate. Fix = `is_advisory_listing_card`
+in BOTH gates, keyed on the conjunction of a GHSA-id AND the bare numeric pager.
+
+THE LESSON WORTH KEEPING (a near-miss, not a chrome class): the SAME page shape
+WITHOUT the advisory date PASSES the pre-existing `_is_nav_list` (>=6 TitleCase
+tokens, no comma). The date brings a COMMA -- and ONE comma disarms that rule.
+Measured: `_is_nav_list` True on the date-free form, False on the live one. So
+when a nav-list-shaped row leaks anyway, measure `_is_nav_list` on the row
+BEFORE designing a rule: a single punctuation character can be the whole gap,
+and the fix then belongs in a NEW class, not in `_is_nav_list` (widening it
+would have cost every comma-bearing prose row).
+
+Rejections, all MEASURED-AND-REJECTED (do not re-add): GHSA-id alone (it is also
+how prose CITES an advisory, +1 asserted gate-test literal); the bare pager
+alone (2 hostile prose FPs + 1 asserted literal); GHSA + a severity badge (2 of
+3 real citing-prose controls); GHSA + `by <handle>` (1 asserted literal); the
+pager + a published-date (3 of 4 both-part controls); the CTA wording alone.
+Conjunction census: online_buffer 2 (both the leak), buffer_junk 26 (same
+family), learn_log 0, longterm_episodes 0, asserted gate-test literals 1 (the
+pre-existing GHSA string the test ALREADY documents as chrome gated by
+`_is_nav_list`, "a different gate" -- same shape, not an FP). 0 across 3 real
+citing-prose controls and 5 both-part controls.
+
+Two harness notes from this run:
+- extracting asserted test literals with a REGEX split implicitly-concatenated
+  strings across source lines, so a known 115-char literal was never measured
+  as a whole and the census read 0 where the truth was 1. Fold them with
+  `ast.parse` + `ast.Constant` instead. A regex literal-scan under-counts.
+- an anchor taken from the TAIL of the previous class's helper (`if len(...) >=
+  3: return True / return False` + the next `def`) inserts the new helper
+  INSIDE the old function -> `IndentationError: unexpected indent` at the old
+  function's first line, and the byte-count still looked plausible. Anchor on
+  the `def` line of the container, and restore from the `.bak` the patcher made
+  BEFORE the write (the failed run had already overwritten the file).
+
+Cleanup: 300 -> 298 records by signature, 0 unparsable, 32 structural-connection
+rows intact. Tests 190 -> 193 in the gate file, `tests/scripts` 454 passed.
+Shipped as `5a75bf3b4` via a fresh worktree off origin/main (the live tree was
+DIVERGED 11/55 but a strict content superset -> 198 insertions / 0 deletions).
