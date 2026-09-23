@@ -59,6 +59,9 @@ Pair-rule MEASURED-AND-REJECTED (archive).
 CF/130-132 (22.09.26): source-tally CTA + date-stamp strip + credit byline; FIXED, refs/.
 133 (22.09.26): doc-site product-nav weld; ALL 4 bare forms REJECTED, 3 two-token welds FIXED, refs/.
 135/136 (22.09.26): arXiv submitter WELD + aggregator card header (needs a TitleCase-continuation test; 1+2 FPs without it), found by eyeballing the buffer tail -- FIXED, refs/.
+149 (23.09.26): a nav-menu WELD run into a card title drawn TWICE; the discriminator is nav-run>=3@60 AND an ADJACENT exact repeat (d<=L) -- repeat-alone=88 ep FPs, nav-alone=13 prose FPs, pair=0/0; FIXED, refs/.
+155 (23.09.26): a raw vLLM server LOG LINE stored as knowledge (`apiserver pid=` / `[scheduler.` / `INFO d-d h:mm:ss`); bare `\bpid=\d+` and `max model len` MEASURED-AND-REJECTED; FIXED, refs/. TRAP: `purge_buffer_rows.py` defaults to `--text-key a`, so a signature in `u` reports a false "nothing to drop".
+156 (23.09.26): a HALLUCINATED LLM query (`neural duhmer: ...`) stored OFF-TOPIC tutorial prose -- no chrome gate can catch it, the defect is upstream in `_llm_novel_query`; a lexicon-free rule was MEASURED AND REJECTED (53/800 real headlines), so row purged + COUNT FIRST; refs/.
 
 **116/117 (20.09.26)**: no gate class at all -- step -1 found a whole
 TESTED-BUT-UNCOMMITTED batch (AV again): `dry_run` never reached
@@ -1437,6 +1440,112 @@ episode**, and the matches included `announcement Announcement` and
 discriminator exists for "the model broke down mid-generation", so do not gate
 it**: remove by signature only. Same call as root cause AG.
 
+## Root cause AT — THREE chrome classes in ONE cron run (64–66), and "the rejection was NOT the regression" again (live 18.09.26)
+
+Cron run began on the documented `cycle_b_papers: rejected` line. Per-day rate
+**56.0 %** (28 ok / 22 rej) vs the documented 50–80 % band → **no gate change was
+warranted for the rejection itself**; `buffer_junk` last 12 = `duplicate` at the
+296–300 cap + documented `junk` shapes (`Self-critique:` echo, SERP `… — <date>`,
+`Nuxt HN | News …`) = rotation noise. All three finds came from the prescribed
+cheapest method: run `--once`, read the BUFFER TAIL `u`/`a` pairs, repeat after
+each fix. All three rows passed BOTH gates and NONE was ever in
+`buffer_junk.jsonl`. Buffer was clean at entry in the sense that only 4 stale
+pre-gate SERP rows were flagged — re-census after every fix anyway (the AP/AS
+lesson: "clean at entry" does not survive the next cycle).
+
+| class | helper | measured |
+|---|---|---|
+| 64 | `_is_de_portal_fact_box_chrome` — a German portal's own byline label + summary label pair (`\bAutor(?:in)?\s*:\s*[A-Z][A-Za-z]+\b[\s\S]{0,140}?K[üu]rze\s*:`) | 1 hit, IS the leak / 0 FP / 0 le / 0 lit |
+| 65 | `_is_prompt_echo_fragment` — the learner's own task template stored as the answer, whole-segment anchored | 1 hit, IS the leak / 0 FP / 0 le / 0 lit |
+| 66 | `_is_generated_plan_echo_fragment` — own-artifact title + `+`-list + DANGLING list marker | 5 hits, ALL the leak family / 0 FP / 0 le / 0 lit |
+
+**Class 64 — "check whether the existing helper covers the vocabulary but not the
+LANGUAGE".** Three byline helpers already exist (29 `_strip_byline_prefix`, 40
+`_is_byline_published_article_header`, 51 `_is_news_byline_share_header`) and all
+three are English-keyed (`By <First> <Last>`, `Published`, `Share`). A German
+portal's `Autor: <Name> … in Kürze:` pair matches none of them. The discriminator
+is the welded PAIR of the portal's OWN two labels; `in Kürze:` alone AND
+`Autor: <Name>` alone are both ordinary German prose. Sweep note: the
+order-reversed form (`in Kürze: … Autor:`) measured **0 buffer hits** — keep the
+orientation that the live page ships, and prefer the tighter variant
+(`Autor` + name + `Kürze:` = 0/11 controls) over the looser one
+(`in Kürze:` + any of `[Autor|Banff|Alberta]` = 1 control FP, because the control
+`Banff Nationalpark in Kurze: ein Park in Alberta.` contains two of the three
+alternatives).
+
+**Class 65 — a 41-char fragment: the length trust is NOT the only way chrome gets
+in (class-33 precedent, third occurrence).** `Shared underlying pattern one
+sentence.` is the instruction the cycle was given, stored as its answer. Why every
+existing marker missed it: `_INSTRUCTION_OPENER_RE` is **START-anchored on
+imperative verbs** and this is a bare noun-phrase fragment;
+`_is_prompt_echo_bullet_chain` (class 42) needs **>=2 bullets**. The surviving
+form is the **whole-segment anchor** (`^…pattern…one sentence.?$` with `re.M`).
+All non-anchored candidates were REJECTED after measuring: any-context
+`shared underlying pattern` + `one sentence` → 1 control FP; bare
+`shared underlying pattern one sentence` substring → 1 control FP; `Have you
+ever …?` teaser → **2–3 control FPs** (`Have you ever wished you could predict
+the future, especially when it comes to your investments?` IS the leak and IS the
+shape, so no discriminator exists — removed by signature only, like root cause AG
+and the model-hallucination row).
+
+**Class 66 — the leak is the AGENT'S OWN prior output, and it had FIVE copies.**
+The `Structural connection between energy efficiency and …` cycles stored their
+own deliverable list `KI-Performance-Optimierung: Python-Skript für
+RAM/Disk/Cron-Monitoring + Optimierungsvorschläge + Skill + Cron-Job alle 12h` +
+newline + `2.` (four German variants, one English). Tell: title-with-colon +
+`+`-joined feature list + a **DANGLING** list marker, ending abruptly — the model
+enumerated a plan and the extractor kept item 1 plus the marker. **Always group
+the flagged rows before designing the marker** (root-cause-AM class-38 rule):
+here the group was 5 rows of 2 languages, so the title alternation had to include
+both. Threshold/shape sweep that mattered: the bare title alone hit **1 real
+`longterm_episodes` row**, the bare dangling marker alone flagged the control
+`Our toolchain: script + docs + tests + CI.` + newline + `2.`, and a *generic*
+`^<title>: … + …` + dangling-marker form also flagged that same control. Only
+adding the own-artifact title **AND** the `+`-join kept it at 0. The leak being
+the agent's own prior generation is what makes the site-identity anchor
+legitimate here — unlike the "`about scribd` is itself prose" rejection from
+class 50.
+
+### Also — the class-66 family was NOT the rejection's cause, and one variant slipped the first cleanup
+The German signature removed 4 of the 5 copies; the **English** variant
+(`Python script for RAM/Disk/Cron-Monitoring + optimization suggestions …`) had
+to be deleted in a second pass. A signature-based cleanup that only lists the
+language you just looked at is incomplete — after any cleanup, re-run the writer
+census AND look for the same family in the other language.
+
+### Also — always sweep the buffer for stale PRE-GATE leftovers in the same pass
+The entry census read 4 flagged rows (idx 4/6/10/19) that were
+`GitHub - <owner>/<repo>: …` and `<Title> | <Site> — <desc>` SERP shapes. Those
+are gated by `_is_serp_snippet` (class 15, landed **15.09.26**) — the rows
+**predate the rule**, which is exactly the AS precedent ("a stale buffer row is
+not a new class: grep for a rule added that day; if it exists, delete by
+signature, no code change"). The same pass removed them.
+
+Cleanup + verify (standard shape): 297 → 290 → 285 records, every step
+`0 unparsable`, lone LF 0, **structural-connection rows 55 → 49** (the historical
+count keeps drifting — re-count, never quote an old number), writer-gate census
+**4 → 5 → 0** and learner-gate census **0**.
+`pytest tests/scripts/test_internet_learner_gate.py -q` → **82 → 85 passed**
+(3 new tests, each asserting the helper AND `_is_junk` AND `is_junk` on the leak
+plus 5–7 prose counter-cases); `pytest tests/scripts -q` → **241 passed**.
+Tests appended as **pure bytes** (75 added / **0 removed**, repo lone-LF census
+58 → 58), and the repo test file mirrored to the laptop + openamer-agent test
+copies.
+Commit `dc18ae902` on the same foreign branch `fix/28-respawn-test-psutil-hermetic`
+(`merge-base --is-ancestor origin/main HEAD` → FF_SAFE), pushed `HEAD:main`;
+verified with `git branch -r --contains dc18ae902` → `origin/main` **and**
+`git cat-file blob origin/main:<file> | grep -c <marker>` → 3/3/3 + 1 for the new
+test (the push exit code alone is not proof).
+Post-fix live: 3 × `--once` → **3 learned**, all new rows writer-gate clean,
+census **0 of 288**.
+
+### Pitfall — the `-c` options must precede the SUBCOMMAND
+`git push -c credential.helper= -c credential.helper=store origin HEAD:main`
+prints the push `--help` and pushes **nothing** (the `-c` after the subcommand is
+parsed as a push option). Correct: `git -c credential.helper= -c
+credential.helper=store push origin HEAD:main`. Same reason `git commit -F`
+needs the **Windows** path (`C:/Users/.../msg.txt`) while `/c/Users/...` gives
+`fatal: could not read log file`.
 ## Root cause AT — moved to references/
 AT (three chrome classes 64-66 in ONE cron run, and "the rejection was NOT
 the regression" again) plus the `-c` options-before-subcommand pitfall and
@@ -1518,4 +1627,19 @@ origin/main measured, not assumed), and `clean_buffer.py` has NO `--help`
 ORDINAL dateline (`March 6th, 2025`) -- the class-142 vocabulary had neither, so two
 rows were STORED; the bare weld is a topic-word trap and was MEASURED-AND-REJECTED,
 the ANCHORED form is +2 leaks / 0 FP) is in refs/.
+
+**146** (22.09.26: a SINGLE aggregator feed row -- handle + relative time +
+`| N comments` + points + a capitalized second handle + headline. class 37
+wants the unit REPEATED, 49 the aggregator's name, 83 an arXiv year tail, so a
+one-item row passed both gates; fix = the trailing points/handle pair. Also:
+`(?-i:[A-Z])` scoped case-sensitivity -- under IGNORECASE a bare `[A-Z]` token
+re-admits lowercase prose. Also: regex NEVER via shell heredoc, and a whole-file
+`cp` across diverged trees pulls unrelated work in) is in refs/.
+**147** (22.09.26: German consultation/contact chrome -- `Wir beraten Sie
+persönlich unter 0681 5866-4466 (Mo-Do 9-18 Uhr)` welded to a nav lockup. The
+conjunction of a consultation term and a contact marker within 90 chars on ONE
+line; scan forward from EACH match and cut at the newline) is in refs/.
 **148** = the learner's OWN bare `Need ...` generation PLAN, stored 12x -- class 142 MIRRORED (here the WRITER was looser than the learner). LESSON: a predicate on only ONE of the two gates is a hole, either direction. Archived in refs/.
+**149/150/151** (23.09.26: 149 = the cycle was FINE -- the LIVE tree is a second stale copy, diff it against ~/openamer-repo before any gate fix; traces ONE rejection via a buffer_store._audit spy, 60/70 writer-gate hits are _is_serp_snippet, which the learner has no counterpart for. 150 = a 0-BYTE marker file proves an "install root" in 12 consumers -> _vaultfinal phantom swarm, 781 runs "ok" on 0 tasks; rule: file marker NON-EMPTY, dir marker >=1 NON-EMPTY file. 151 = git push HANGS while ls-remote is fast -> the GCM credential helper, NOT the network:  -> 124; fix , then ls-remote sha == HEAD) in refs/.
+**152** (23.09.26: "the live tree is AHEAD of the repo" is NOT "work is unlanded" -- a pairwise diff against ONE checkout is BRANCH NOISE; measure the content UNION over ALL refs: 0 live-only lines, the 143/144 gaps already published on open PR #47, 0 refs shipping the class-143 gate without the `(?-i:)` scope, and the unscoped `[A-Z]` hazard measured at 0 corpus cost) in refs/.
+**157** (23.09.26: a docs/SECTION-HEADING STACK welded to an interrogative heading -- TWO rows passed BOTH gates; fix = `is_docs_heading_qweld` (question-weld + len>=80 + cap-ratio>=0.50 + <=1 terminator) in both gates; REJECTED: bare question-weld (2 real episode hits), TitleCase-run rule (215 episodes), cap>=0.55; PLUS two live git traps -- a non-FF push on a strict-superset file content needs a fresh worktree off origin/main, never a rebase of the shared live tree, and `git worktree add` under MSYS mangles `/c/...` to `C:/c/...`, so pass the NATIVE path) in refs/.
