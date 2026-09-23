@@ -590,6 +590,20 @@ _JUNK_RE = re.compile(
     # rows. Prose that merely discusses releases or slides stays learnable
     # (counter-cases measured).
     r"released\s+[^\n]{0,60}?\(github releases\)|show original\s+previous slide|"
+
+    # a vLLM server LOG LINE (class 150, 23.09.26): the docs cycle stored
+    # "Using max model len 98304 (APIServer pid=90) INFO 11-28 11:46:45
+    # [scheduler." -- chrome cut mid-token; the digits satisfied the
+    # technical-signal gate and the row cleared the length check. Bare
+    # `\bpid=\d+` was measured and REJECTED (1 longterm_episodes hit), so the
+    # pid fragment requires the APIServer/EngineCore/Worker module tag that
+    # only a log line carries. A `max model len` fragment was ALSO measured and
+    # dropped: real docs prose says "max model len" without underscores
+    # (topic-word trap), and the two concrete markers already cover the leak.
+    # Measured 23.09.26: 1 buffer hit and it IS the leak -> 0 of 7 same-topic
+    # prose controls, 0 episodes, 0 gate-test literals.
+     r"apiserver pid=|\[scheduler\.|"
+     r"\binfo \d{1,2}-\d{1,2} \d{1,2}:\d{2}:\d{2} |"
     # NOTE: every fragment above ends with `|` -- the whole alternation is ONE
     # implicitly-joined literal, so a missing pipe welds two rules together and
     # an EMPTY branch matches every string (both hit on 16.09.26).

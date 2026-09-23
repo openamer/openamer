@@ -63,6 +63,11 @@ _JUNK_MARKERS = (
     "possible angles:",          # planning bullet header
     "first situation:",          # structural-connection reasoning step
     "let me break this down",    # planning voice, mid-text
+    # a vLLM server LOG LINE (class 150, 23.09.26). Substring form --
+    # buffer_store._JUNK_MARKERS has no regex. Kept in sync with
+    # internet_learner._JUNK_RE. Measured: hits only the leaking row.
+    "apiserver pid=",
+    "[scheduler.",
 )
 
 # --- reasoning-trace OPENER: the model's planning voice, not an answer ---

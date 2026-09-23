@@ -6473,3 +6473,50 @@ def test_nav_weld_repeat_neither_half_is_sufficient():
     rep_only = "The pipeline reads docs, then docs again after the cache is cleared, which is fine."
     assert not BS._nav_weld_run(rep_only) >= 3
     assert not BS._has_adjacent_exact_repeat(rep_only)
+
+
+def test_vllm_server_log_line_gated_on_both_paths():
+    """A raw vLLM server log line is refused by BOTH gates (class 150).
+
+    Live 23.09.26: the docs cycle stored "Using max model len 98304 (APIServer
+    pid=90) INFO 11-28 11:46:45 [scheduler." -- chrome truncated mid-token; its
+    digits satisfied the technical-signal gate and it cleared the length check.
+    """
+    import internet_learner as IL
+    import buffer_store as BS
+    for leak in _IL150_LEAKS:
+        assert IL._is_junk(leak), leak
+        assert IL._writer_gate_refuses(leak), leak
+        assert BS.is_junk(leak), leak
+
+
+def test_vllm_log_controls_survive_both_gates():
+    """Same-topic PROSE stays learnable: the gate targets the log SHAPE only."""
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL150_CONTROLS:
+        assert not IL._is_junk(ctl), ctl
+        assert not BS.is_junk(ctl), ctl
+
+
+# --- class 150: a raw vLLM server log line is chrome, not knowledge ----------
+_IL150_LEAKS = (
+    "Using max model len 98304 (APIServer pid=90) INFO 11-28 11:46:45 [scheduler.",
+)
+# Same TOPIC as the leak (the classic trap), but real prose -> must survive.
+_IL150_CONTROLS = (
+    "Set max_model_len to your longest served context, then tune "
+    "gpu_memory_utilization so the KV cache still fits.",
+    "vLLM raises max_num_batched_tokens to 98304 so long prompts fit while the "
+    "KV cache footprint stays predictable.",
+    "The scheduler processes waiting and running queues every step; prefill and "
+    "decode are split across them.",
+    "A worker process with pid 90 failed to bind the port; the runbook explains "
+    "how to detect a stale port holder.",
+    "The docs describe the APIServer as an OpenAI-compatible front end for the "
+    "continuous-batching scheduler.",
+    "Reading a raw log line is not learning until it is interpreted in a runbook "
+    "entry that names the symptom and the fix.",
+    "We measured a 31 percent peak-memory reduction from paged attention during "
+    "warmup of the inference server.",
+)
