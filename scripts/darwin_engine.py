@@ -49,9 +49,34 @@ _HOME_MARKERS = ("config.yaml", ".env", "cron", "memories", "openamer-agent")
 
 
 def _is_install_root(pth: Path) -> bool:
-    """True when *pth* looks like a real OpenAmer home, not a scratch dir."""
+    """True when *pth* looks like a real OpenAmer home, not a scratch dir.
+
+    A marker only counts when it carries real content:
+
+    * file markers (``config.yaml``/``.env``) must be non-empty -- a 0-byte
+      stray ``config.yaml`` proves nothing.
+    * directory markers (``cron``/``memories``/``openamer-agent``) must hold at
+      least one NON-EMPTY file. Emptiness alone was still not enough: the live
+      scratch tree ``OPENAMER_HOME=C:/Users/damir/_vaultfinal`` carries
+      ``cron/executions.db`` at 0 bytes and an empty ``memories/``, and a
+      0-byte ``.db`` satisfied ``any(p.iterdir())``. That tree was therefore
+      adopted over the real 189-skill install and the 15-minute autopilot cron
+      evolved a 3-skill phantom population, appending zero- and two-skill
+      snapshots (#2248, #2251) to the append-only history ledger -- which, since
+      ``fitness_trend()`` compares first vs last, made the whole ecosystem look
+      collapsed and flipped ``auto_tune()`` to "declining".
+    """
     try:
-        return any((pth / m).exists() for m in _HOME_MARKERS)
+        for m in _HOME_MARKERS:
+            p = pth / m
+            if p.is_file():
+                if p.stat().st_size > 0:
+                    return True
+            elif p.is_dir():
+                for child in p.iterdir():
+                    if child.is_file() and child.stat().st_size > 0:
+                        return True
+        return False
     except OSError:
         return False
 

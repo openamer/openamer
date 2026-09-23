@@ -45,8 +45,27 @@ _HOME_MARKERS = ("config.yaml", ".env", "cron", "memories", "openamer-agent")
 
 
 def _is_install_root(pth):
+    """True when *pth* looks like a real OpenAmer home, not a scratch dir.
+
+    A marker only counts when it carries real content: file markers
+    (``config.yaml``/``.env``) must be non-empty, and directory markers
+    (``cron``/``memories``/``openamer-agent``) must hold at least one
+    NON-EMPTY file. Plain ``os.path.exists`` accepted the live scratch tree
+    ``OPENAMER_HOME=C:/Users/damir/_vaultfinal`` (empty ``memories/`` plus a
+    0-byte ``cron/executions.db``) over the real 189-skill install.
+    """
     try:
-        return any(os.path.exists(os.path.join(pth, m)) for m in _HOME_MARKERS)
+        for m in _HOME_MARKERS:
+            p = os.path.join(pth, m)
+            if os.path.isfile(p):
+                if os.path.getsize(p) > 0:
+                    return True
+            elif os.path.isdir(p):
+                for child in os.listdir(p):
+                    cp = os.path.join(p, child)
+                    if os.path.isfile(cp) and os.path.getsize(cp) > 0:
+                        return True
+        return False
     except OSError:
         return False
 
