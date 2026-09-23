@@ -33,10 +33,41 @@ import json
 import os
 from pathlib import Path
 
-_HOME = Path(os.environ.get(
-    "OPENAMER_HOME",
-    Path.home() / "AppData" / "Local" / "openamer-laptop",
-))
+def _resolve_home():
+    """Resolve the install home, tolerating an MSYS-style OPENAMER_HOME.
+
+    2026-09-23: cron exports OPENAMER_HOME as '/c/Users/.../openamer-laptop'
+    (MSYS form). Joined onto 'scripts/training' that string yields the
+    RELATIVE path '\\c\\Users\\...\\scripts\\training', which does not
+    exist -- so DEFAULT_BUFFER/JUNK_LOG pointed nowhere and every rejection
+    audit in _audit() was swallowed by its bare `except Exception: pass`.
+    Measured live: buffer_junk.jsonl frozen at 9461 rows across a cycle that
+    logged "rejected, not trained" -- the gate became unobservable, so the
+    57% reject rate could not be diagnosed from the audit trail at all.
+    Accept any spelling that passes an isdir probe; else fall back to the
+    real install dir. Same resolver shape as internet_learner /
+    auto_skill_creation / knowledge_to_action.
+    """
+    _env = os.environ.get("OPENAMER_HOME")
+    _home = Path.home()
+    cands = []
+    if _env:
+        cands.append(Path(_env))
+    cands.append(_home / "AppData" / "Local" / "openamer-laptop")
+    cands.append(_home / "AppData" / "Local" / "openamer")
+    cands.append(Path(__file__).resolve().parent.parent.parent)
+    for _c in cands:
+        try:
+            if (_c / "scripts" / "training").is_dir():
+                return _c
+        except OSError:
+            continue
+    if _env:
+        return Path(_env)
+    return _home / "AppData" / "Local" / "openamer-laptop"
+
+
+_HOME = _resolve_home()
 DEFAULT_BUFFER = _HOME / "scripts" / "training" / "online_buffer.jsonl"
 MAX_BUF = int(os.environ.get("OPENAMER_BUFFER_MAX", "300"))
 # audit trail of rejected examples — never silent, always inspectable
