@@ -463,23 +463,43 @@ def experiment_competitor_gap():
     }
 
 def experiment_meta_insight():
-    """Insight: Meta-RL (LaMer). Apply a simplified version to meta_learn."""
+    """Insight: Meta-RL (LaMer). Apply a simplified version to meta_learn.
+
+    Fixed 23.09.26: this experiment used to READ meta_state, emit the string
+    "increased exploration on the underused strategy" and write nothing. The
+    claim had no consumer — meta_learn.choose_strategy() had no exploration
+    parameter at all — so the cycle ran for weeks reporting an action it never
+    took. It now writes exploration_bias=1.0 into meta_state.json, which
+    choose_strategy() reads on its next call (and resets, so the boost is
+    one-shot), and reports the use counts it actually acted on.
+    """
     meta_state = os.path.join(T, "meta_state.json")
     if not os.path.exists(meta_state):
-        return {"action": "meta-RL application", "result": "meta_state missing"}
-    s = json.load(open(meta_state, encoding="utf-8"))
-    # LaMer insight: adapt based on EXPLORATION rate, not just exploitation
+        return {"action": "meta-RL application", "result": "meta_state missing",
+                "measurable": False}
+    try:
+        s = json.load(open(meta_state, encoding="utf-8"))
+    except (json.JSONDecodeError, ValueError) as e:
+        return {"action": "meta-RL application",
+                "result": f"meta_state unreadable: {str(e)[:80]}", "measurable": False}
     strategies = s.get("strategy_stats", {})
-    replay = strategies.get("replay", {"uses": 0})
-    fresh = strategies.get("fresh", {"uses": 0})
-    if replay["uses"] < 5 or fresh["uses"] < 5:
-        # increase exploration: force the less-used strategy next time
-        lesson = (f"Meta-RL insight: replay={replay['uses']} vs fresh={fresh['uses']} uses. "
-                  f"Boosting exploration on the underused strategy.")
+    replay_uses = strategies.get("replay", {}).get("uses", 0)
+    fresh_uses = strategies.get("fresh", {}).get("uses", 0)
+    if replay_uses < 5 or fresh_uses < 5:
+        underused = "fresh" if fresh_uses < replay_uses else "replay"
+        s["exploration_bias"] = 1.0
+        _tmp = meta_state + ".kta.tmp"
+        with open(_tmp, "w", encoding="utf-8") as fh:
+            json.dump(s, fh, indent=1)
+        os.replace(_tmp, meta_state)
+        lesson = (f"Meta-RL: replay={replay_uses} vs fresh={fresh_uses} uses; "
+                  f"wrote exploration_bias=1.0 — next meta_learn cycle forces '{underused}'")
         log({"type": "meta_lesson", "lesson": lesson})
-        return {"action": "meta-RL: increased exploration on underused strategy",
+        return {"action": f"meta-RL: wrote exploration_bias=1.0 for '{underused}'",
                 "result": lesson, "measurable": True}
-    return {"action": "meta-RL application", "result": "enough data, no exploration boost needed"}
+    return {"action": "meta-RL application",
+            "result": f"enough data (replay={replay_uses}, fresh={fresh_uses}), no boost needed",
+            "measurable": True}
 
 # ---- Action selector: match insight keywords to experiments ----
 
