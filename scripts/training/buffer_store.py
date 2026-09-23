@@ -4848,6 +4848,19 @@ def _is_nav_weld_repeat_chrome(text):
             and _has_adjacent_exact_repeat(text))
 
 
+
+
+# class 166 (23.09.26) -- a repo-listing row's relative-age badge welded to
+# `release` with no separating space.  Markup prose cannot produce; see
+# `internet_learner._is_ago_release_badge_weld` for the measurement.
+_AGO_RELEASE_WELD_RE = _re.compile(
+    r"\b\d+\s*(?:yrs?|years?|months?|days?|hrs?|hours?|mins?)\s*agorelease\b",
+    _re.IGNORECASE)
+
+
+def _is_ago_release_badge_weld(text):
+    """True for a relative-age badge welded to `release` with no space (166)."""
+    return bool(_AGO_RELEASE_WELD_RE.search(text or ""))
 def is_junk(text):
     """True when a completion is not trainable signal.
 
@@ -4879,6 +4892,8 @@ def is_junk(text):
     if _is_binary_noise(s):
         return True
     if _is_nav_chrome(s):
+        return True
+    if _is_ago_release_badge_weld(s):
         return True
     if _is_article_byline_chrome(s):
         return True

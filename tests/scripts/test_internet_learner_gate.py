@@ -6697,3 +6697,51 @@ def test_the_advisory_date_is_what_disarms_the_nav_list_rule():
     assert not IL._is_nav_list(_IL159_LEAKS[0]), _IL159_LEAKS[0]
     # ... and that is exactly what class 159 covers
     assert IL.is_advisory_listing_card(_IL159_LEAKS[0]), _IL159_LEAKS[0]
+
+
+def test_ago_release_badge_weld_is_gated_on_both_paths():
+    """A repo-listing row's `<N>yrs agorelease` badge weld (class 166).
+
+    Live 23.09.26 (`cycle_c_github`): a GitHub-trending listing row -- the card
+    title restated twice + the `2yrs ago`/`release` badge concatenated + the
+    feed counters + a truncated description.  The discriminator is the BADGE
+    WELD (a missing space), which no human sentence produces.
+    """
+    import buffer_store
+    leak = AGO_RELEASE_LEAK
+    assert IL._is_junk(leak) is True
+    assert buffer_store.is_junk(leak) is True
+    for c in AGO_RELEASE_CONTROLS:
+        assert IL._is_junk(c) is False, c
+        assert buffer_store.is_junk(c) is False, c
+
+
+def test_ago_release_badge_weld_requires_the_missing_space():
+    """The LOOSE form (allowing a space) hits real prose -- do not loosen it."""
+    assert IL._is_ago_release_badge_weld(AGO_RELEASE_LEAK) is True
+    # a human sentence keeps `ago` and `release` apart
+    assert IL._is_ago_release_badge_weld(
+        "2yrs ago release was announced in the changelog, and the 1.4 build "
+        "followed a week later.") is False
+    assert IL._is_ago_release_badge_weld(
+        "Released 3 years ago, the framework still leads on multi-agent "
+        "collaboration benchmarks by 4 points.") is False
+
+
+# The exact bytes `cycle_c_github` stored on 23.09.26 (class 166).
+AGO_RELEASE_LEAK = (
+    "Latest AI Resources - ANUS: An Open Source AI Framework for Task "
+    "Automation and Multi-Agent Collaboration ANUS: An Open Source AI Framework "
+    "for Task Automation and Multi-Agent Collaboration Latest AI Resources 2yrs "
+    "agorelease AI Sharing Circle 101.9K 0 0 General Introduction ANUS "
+    "(Advanced Neural Un")
+
+AGO_RELEASE_CONTROLS = [
+    "The repo was released 2 years ago and the badge on its page says 101.9K stars, 0 issues and 0 forks.",
+    "We released the dataset 2yrs ago and the paper's repository shows 101.9K downloads so far.",
+    "A listing row welds the title, the age badge and the counters together; a crawler should skip all three.",
+    "Released 3 years ago, the framework still leads on multi-agent collaboration benchmarks by 4 points.",
+    "2yrs ago release was announced in the changelog, and the 1.4 build followed a week later.",
+    "The model card was updated 6 months ago release notes say the int4 build lost 0.9 points.",
+    "Our parser strips the relative-age badge from GitHub listing rows before chunking.",
+]
