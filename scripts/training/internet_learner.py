@@ -280,6 +280,17 @@ def store(user_text, insight, buffer=None):
     # satisfy the technical-signal gate and let the fragment through (live
     # 13.09.26, efficiency cycle).
     cleaned = _clean_insight(insight, 300)
+    # class 142 follow-up (22.09.26): `_is_junk()` below is evaluated on the RAW
+    # insight, so the strip inside `_clean_insight` is unreachable on its own --
+    # the reject gate still fires first and the rescued prose is never stored.
+    # Strip the header here, at the point the raw text is judged, and only keep
+    # the stripped form when the prose behind it actually survives both gates.
+    if _is_article_byline_chrome(insight):
+        stripped = _strip_article_byline_header(insight, force=True)
+        if (stripped and stripped != insight and not _is_junk(stripped)
+                and _clean_insight(stripped, 300)):
+            insight = stripped
+            cleaned = _clean_insight(insight, 300)
     reason = ""
     if _is_junk(insight):
         reason = "junk"
@@ -2856,12 +2867,12 @@ def _is_aggregator_row_year_tail(text):
 # leak) plus its two audit echoes, all the same string -> 0 real-prose FPs on
 # an 11-case hostile battery (prose citing a relative time, a comment count,
 # a points-like number, a named handle, a colon-attributed quote).
+_FEED_HANDLE_TOKEN_RE = r"[A-Za-z][\w.\-]{2,20}"
 #
 # The trailing handle is matched CASE-SENSITIVELY via the scoped inline flag
 # `(?-i:...)`: the page emits handles capitalized, while the surrounding row
 # is matched case-insensitively. Without the scope, `[A-Z]` under
 # IGNORECASE re-admits lowercase prose (`... and then 193 runs:`).
-_FEED_HANDLE_TOKEN_RE = r"[A-Za-z][\w.\-]{2,20}"
 _FEED_HANDLE_TAIL_RE = r"(?-i:[A-Z])[\w.\-]{1,20}"
 _FEED_HANDLE_UNIT_RE = re.compile(
     r"\b" + _FEED_HANDLE_TOKEN_RE + r"\s+\d{1,3}\s+"
@@ -2873,7 +2884,7 @@ _FEED_HANDLE_UNIT_RE = re.compile(
 def _is_feed_handle_unit_row(text):
     """True when `text` is a single feed row: handle + time + comments + points + handle (143).
 
-    Live 22.09.26 (class 143): `cycle_e_competitors` stored
+    Live 22.09.26 (class 143): `cycle_e_competitors`/`cycle_b_papers` stored
 
         DeepLogin 5 hours ago | 20 comments 193 Kev: Tiny Jev-like family of
         decision models built on top of Qwen3.
@@ -4284,6 +4295,14 @@ _ARTICLE_BYLINE_AFFORDANCE_RE = re.compile(
     r"|(?:\bReply to this comment\b)"
     r"|(?:\bPosted by\s+[A-Z][\w.\-]*\s*\|)"
     r"|(?:\b\d{1,3} min read\b)"
+    # class 145 (22.09.26): the publisher spells the read time out and welds it
+    # to a following header label.  ANCHORED on that label, because the bare
+    # weld is a topic-word trap -- "Reading time: 5 min per 1,000 tokens is the
+    # budget we target, measured on May 3, 2026" is REAL prose and would be
+    # truncated.  The lookahead is the TitleCase-continuation test of 135/136.
+    r"|(?i:\breading\s+time\s*:?\s*\d{1,3}\s*min(?:ute)?s?)"
+    r"[\s,:\u00b7|\u2013-]*"
+    r"(?=Share\b|Last\s+updated\b|Updated\b|Published\b|Date\b|min\s+read\b|$)"
 )
 _ARTICLE_DATELINE_RE = re.compile(
     r"(?:\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+"
@@ -4291,6 +4310,11 @@ _ARTICLE_DATELINE_RE = re.compile(
     r"|(?:\b20\d\d-\d{2}-\d{2}\b)"
     r"|(?:\b\d{1,2}\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)"
     r"[a-z]*\s+20\d\d\b)"
+    # class 145: an ORDINAL day suffix ("March 6th, 2025").  Live 22.09.26 the
+    # byline predicate had no ordinal form, so an article header carrying
+    # "Last updated on March 6th, 2025" was invisible to BOTH gates.
+    r"|(?:\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)"
+    r"[a-z]*\.?\s+\d{1,2}(?:st|nd|rd|th),?\s+20\d\d\b)"
 )
 
 
@@ -4417,7 +4441,7 @@ def _is_junk(text):
     # an aggregator row welded to an arXiv year tail (class 83, 19.09.26)
     if _is_aggregator_row_year_tail(t):
         return True
-    # a single feed row: handle + time + comments + points + handle (class 143, 22.09.26)
+    # a single feed row: handle + relative time + comments + points + handle (class 143, 22.09.26)
     if _is_feed_handle_unit_row(t):
         return True
     # German consultation/contact chrome (class 144, 22.09.26)
@@ -6037,6 +6061,44 @@ def _strip_byline_prefix(text):
     return t
 
 
+def _strip_article_byline_header(text, region=100, force=False):
+    """Cut an article's byline/dateline header off the front, keep the prose.
+
+    Class 142 was added 22.09.26 as a REJECT predicate
+    (`_is_article_byline_chrome`), which stopped the "Written by Gus Mallett
+    Published on April 29, 2026 Key Takeaways <lede>" leak.  Measured the same
+    day, over `buffer_junk.jsonl` + `buffer_junk_archive.jsonl`: 59 refused
+    rows carried this shape and 21 of them were REAL prose behind a header
+    stack.  The cycle logged the bare "shallow + deep read both gated" for
+    those, which is the doctrine this repo already applies elsewhere -- the
+    sentence BEHIND a header IS the knowledge, so STRIP instead of reject.
+
+    `region=100` is the guard that keeps it clean.  `_is_article_byline_chrome`
+    accepts an affordance and a dateline anywhere in the first 200 chars; the
+    strip is only allowed when BOTH begin inside the first 100, i.e. the row
+    really opens with the header stack.  Measured 22.09.26 with the guard:
+    21/21 positives recovered, strip fires on 0 of 6,128 real episode rows,
+    0 of 5 prose controls named in the class-142 docstring.  Without the guard
+    (region=200) it fired on 58 episodes and BROKE 36 -- do not widen it.
+
+    `force=True` is for the already-classified path: when the caller knows
+    `_is_article_byline_chrome` is true, the strip is the remedy rather than a
+    detector, so the region guard does not apply.
+    """
+    t = (text or "").strip()
+    if not t:
+        return t
+    head = t[:region]
+    if not force and not (_ARTICLE_BYLINE_AFFORDANCE_RE.search(head)
+                          and _ARTICLE_DATELINE_RE.search(head)):
+        return t
+    ends = [m.end() for m in _ARTICLE_BYLINE_AFFORDANCE_RE.finditer(head)]
+    ends += [m.end() for m in _ARTICLE_DATELINE_RE.finditer(head)]
+    if not ends:
+        return t
+    return t[max(ends):].lstrip(" \u2014-\u00b7|:,\n")
+
+
 def _clean_insight(text, max_len=250):
     """Final gate on a distilled insight. Returns "" for page furniture.
 
@@ -6064,6 +6126,22 @@ def _clean_insight(text, max_len=250):
     t = _strip_blog_header_stack(t)
     t = _strip_masthead_nav_chain(t)
     t = _strip_trailing_read_time_header(t)
+    # class 142 follow-up (22.09.26): an article byline/dateline header stack is
+    # STRIPPED, not rejected -- the lede behind it is the knowledge. The 200-char
+    # predicate stays the reject gate; this only rescues rows whose prose survives.
+    if _is_article_byline_chrome(t):
+        t = _strip_article_byline_header(t, force=True)
+        # The cut can land just before a trailing dateline whose END falls past
+        # the 100-char window ("... 11 min read Sep 15, 2026 <lede>"), leaving a
+        # date-led fragment. Drop a leading full dateline so the stored row opens
+        # with prose, then re-run the fragment strips.
+        m = _ARTICLE_DATELINE_RE.match(t) or _FULL_DATE_RE.match(t)
+        if m:
+            t = t[m.end():].lstrip(" \u2014-\u00b7|:,\n")
+        t = _strip_dateline_fragment(t)
+        t = _strip_clock_fragment(t)
+        t = _strip_leading_clock_fragment(t)
+        t = _strip_trailing_read_time_header(t)
     if len(t) < 20 or _is_junk(t):
         return ""
     if _is_nav_list(t):

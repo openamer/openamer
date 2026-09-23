@@ -2717,12 +2717,12 @@ def _is_aggregator_row_year_tail(text):
 # leak) plus its two audit echoes, all the same string -> 0 real-prose FPs on
 # an 11-case hostile battery (prose citing a relative time, a comment count,
 # a points-like number, a named handle, a colon-attributed quote).
+_FEED_HANDLE_TOKEN_RE = r"[A-Za-z][\w.\-]{2,20}"
 #
 # The trailing handle is matched CASE-SENSITIVELY via the scoped inline flag
 # `(?-i:...)`: the page emits handles capitalized, while the surrounding row
 # is matched case-insensitively. Without the scope, `[A-Z]` under
 # IGNORECASE re-admits lowercase prose (`... and then 193 runs:`).
-_FEED_HANDLE_TOKEN_RE = r"[A-Za-z][\w.\-]{2,20}"
 _FEED_HANDLE_TAIL_RE = r"(?-i:[A-Z])[\w.\-]{1,20}"
 _FEED_HANDLE_UNIT_RE = _re.compile(
     r"\b" + _FEED_HANDLE_TOKEN_RE + r"\s+\d{1,3}\s+"
@@ -2734,7 +2734,7 @@ _FEED_HANDLE_UNIT_RE = _re.compile(
 def _is_feed_handle_unit_row(text):
     """True when `text` is a single feed row: handle + time + comments + points + handle (143).
 
-    Live 22.09.26 (class 143): `cycle_e_competitors` stored
+    Live 22.09.26 (class 143): `cycle_e_competitors`/`cycle_b_papers` stored
 
         DeepLogin 5 hours ago | 20 comments 193 Kev: Tiny Jev-like family of
         decision models built on top of Qwen3.
@@ -3823,7 +3823,7 @@ def _is_nav_chrome(text):
     # an aggregator row welded to an arXiv year tail (class 83, 19.09.26)
     if _is_aggregator_row_year_tail(text):
         return True
-    # a single feed row: handle + time + comments + points + handle (class 143, 22.09.26)
+    # a single feed row: handle + relative time + comments + points + handle (class 143, 22.09.26)
     if _is_feed_handle_unit_row(text):
         return True
     # German consultation/contact chrome (class 144, 22.09.26)
@@ -4513,6 +4513,14 @@ _ARTICLE_BYLINE_AFFORDANCE_RE = _re.compile(
     r"|(?:\bReply to this comment\b)"
     r"|(?:\bPosted by\s+[A-Z][\w.\-]*\s*\|)"
     r"|(?:\b\d{1,3} min read\b)"
+    # class 145 (22.09.26): the publisher spells the read time out and welds it
+    # to a following header label.  ANCHORED on that label, because the bare
+    # weld is a topic-word trap -- "Reading time: 5 min per 1,000 tokens is the
+    # budget we target, measured on May 3, 2026" is REAL prose and would be
+    # truncated.  The lookahead is the TitleCase-continuation test of 135/136.
+    r"|(?i:\breading\s+time\s*:?\s*\d{1,3}\s*min(?:ute)?s?)"
+    r"[\s,:\u00b7|\u2013-]*"
+    r"(?=Share\b|Last\s+updated\b|Updated\b|Published\b|Date\b|min\s+read\b|$)"
 )
 _ARTICLE_DATELINE_RE = _re.compile(
     r"(?:\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+"
@@ -4520,6 +4528,11 @@ _ARTICLE_DATELINE_RE = _re.compile(
     r"|(?:\b20\d\d-\d{2}-\d{2}\b)"
     r"|(?:\b\d{1,2}\s+(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)"
     r"[a-z]*\s+20\d\d\b)"
+    # class 145: an ORDINAL day suffix ("March 6th, 2025").  Live 22.09.26 the
+    # byline predicate had no ordinal form, so an article header carrying
+    # "Last updated on March 6th, 2025" was invisible to BOTH gates.
+    r"|(?:\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)"
+    r"[a-z]*\.?\s+\d{1,2}(?:st|nd|rd|th),?\s+20\d\d\b)"
 )
 
 
