@@ -6578,3 +6578,226 @@ def test_docs_heading_qweld_requires_the_question_weld():
              "reuses the KV blocks of a shared prompt prefix, which cuts the "
              "prefill cost for every request that repeats the same system prompt.")
     assert not BS.is_docs_heading_qweld(prose), prose
+# --- class 158: a BibTeX citation record welded to a license footer --------
+_IL158_LEAKS = (
+    "Findings of the Association for Computational Linguistics: EMNLP 2025}, "
+    "pages = {23934-23949}, year = {2025}, publisher = {Association for "
+    "Computational Linguistics} } This website is licensed under a Creative "
+    "Commons Attribution-ShareAlike 4.",
+)
+# Same TOPIC as the leak (the classic trap), but real prose -> must survive.
+_IL158_CONTROLS = (
+    # prose ABOUT a Creative Commons license is real knowledge
+    "This website is licensed under a Creative Commons Attribution-ShareAlike 4.0 "
+    "license; please cite the original paper when you reuse the figures.",
+    "The reference lists pages 23934-23949 for the EMNLP 2025 findings volume, "
+    "published by the ACL and licensed under Creative Commons.",
+    "Add a BibTeX entry with the author, title, journal and year fields so the "
+    "citation renders correctly in the paper.",
+    # a PROSE-VALUED assignment with NO license footer (the rejected one-part rule)
+    "Set system_prompt = {You are a helpful assistant} and temperature = {0.2}.",
+    "Configure persona = {A concise technical writer} and style = {formal} now.",
+    "The template uses greeting = {Hello there friend} and name = {Ada}.",
+    # config chains with SCALAR values (the discriminator's clean side)
+    "The recipe fixes seed = {42}, epochs = {3} and lr = {5e-5} for every run.",
+    "We set batch_size = {32} and learning_rate = {1e-4} before the fine-tune.",
+    "The dataset card sets license = {cc-by-4.0} and language = {en} plus "
+    "size = {1.2M} rows.",
+    "Our serving config pins gpu_memory_utilization = {0.9}, max_model_len = "
+    "{8192} and dtype = {bfloat16} for the production profile.",
+)
+
+
+def test_citation_record_weld_is_gated_on_both_paths():
+    """A BibTeX record welded to a license footer is chrome on BOTH gates."""
+    import internet_learner as IL
+    import buffer_store as BS
+    for leak in _IL158_LEAKS:
+        assert IL.is_citation_record_weld(leak), leak
+        assert BS.is_citation_record_weld(leak), leak
+        assert IL._is_junk(leak), leak
+        assert BS.is_junk(leak), leak
+    for ctl in _IL158_CONTROLS:
+        assert not IL.is_citation_record_weld(ctl), ctl
+        assert not BS.is_citation_record_weld(ctl), ctl
+        assert not IL._is_junk(ctl), ctl
+        assert not BS.is_junk(ctl), ctl
+
+
+def test_citation_record_weld_requires_BOTH_parts():
+    """Each part alone is insufficient -- the rejection is the contract."""
+    import buffer_store as BS
+    license_only = ("This website is licensed under a Creative Commons "
+                    "Attribution-ShareAlike 4.0 license.")
+    assert not BS.is_citation_record_weld(license_only), license_only
+    assignment_only = ("Set system_prompt = {You are a helpful assistant} and "
+                       "temperature = {0.2}.")
+    assert not BS.is_citation_record_weld(assignment_only), assignment_only
+    scalar_only = ("Set pages = {23934-23949} with year = {2025} for the record.")
+    assert not BS.is_citation_record_weld(scalar_only), scalar_only
+
+# --- class 159: a security-advisory listing card welded to its pager --------
+_IL159_LEAKS = (
+    "Critical Authenticated Arbitrary Data Export Theft via Mass Assignment "
+    "in sendFileMessage GHSA-fhc2-x8cp-c5ch published May 14, 2026 by "
+    "julio-rocketchat High Previous 1 2 3 Next Learn more about advis",
+)
+# The SAME page shape WITHOUT the advisory date: `_is_nav_list` catches it.
+_IL159_DATE_FREE = (
+    "Critical Authenticated Arbitrary Data Export Theft via Mass Assignment "
+    "in sendFileMessage GHSA-fhc2-x8cp-c5ch by julio-rocketchat High "
+    "Previous 1 2 3 Next Learn more about advisories."
+)
+# Real knowledge that merely CITES an advisory -> must survive.
+_IL159_CONTROLS = (
+    "The advisory GHSA-fhc2-x8cp-c5ch affects Rocket.Chat sendFileMessage: an "
+    "authenticated user can export arbitrary data through a mass-assignment "
+    "bug, so upgrading to the patched release is required.",
+    "We tracked GHSA-aaaa-bbbb-cccc as High severity and added a regression "
+    "test that reproduces the mass-assignment export before the upgrade.",
+    "Previous 1 2 3 Next is how the docs archive paginates its older releases.",
+    "The changelog lists Previous 1 2 3 Next links to older releases.",
+    "Learn more about advisory boards and their role in governance at the end.",
+    "An advisory published Jan 3, 2025 by GitHub rates this as High severity.",
+)
+
+
+def test_advisory_listing_card_is_gated_on_both_paths():
+    """An advisory listing card welded to its pager is chrome on BOTH gates."""
+    import internet_learner as IL
+    import buffer_store as BS
+    for leak in _IL159_LEAKS:
+        assert IL.is_advisory_listing_card(leak), leak
+        assert BS.is_advisory_listing_card(leak), leak
+        assert IL._is_junk(leak), leak
+        assert BS.is_junk(leak), leak
+    for ctl in _IL159_CONTROLS:
+        assert not IL.is_advisory_listing_card(ctl), ctl
+        assert not BS.is_advisory_listing_card(ctl), ctl
+        assert not IL._is_junk(ctl), ctl
+        assert not BS.is_junk(ctl), ctl
+
+
+def test_advisory_listing_card_requires_BOTH_parts():
+    """Each part alone is insufficient -- the rejection is the contract."""
+    import buffer_store as BS
+    id_only = ("The advisory GHSA-fhc2-x8cp-c5ch was rated High and affects "
+               "the sendFileMessage handler in Rocket.Chat.")
+    assert not BS.is_advisory_listing_card(id_only), id_only
+    pager_only = "Previous 1 2 3 Next links paginate the archive."
+    assert not BS.is_advisory_listing_card(pager_only), pager_only
+
+
+def test_the_advisory_date_is_what_disarms_the_nav_list_rule():
+    """Why class 159 exists: the date's comma beats `_is_nav_list` (159)."""
+    import internet_learner as IL
+    # the date-free page shape IS caught by the pre-existing rule
+    assert IL._is_nav_list(_IL159_DATE_FREE), _IL159_DATE_FREE
+    # the live shape is NOT -- one comma from the advisory date disarms it
+    assert not IL._is_nav_list(_IL159_LEAKS[0]), _IL159_LEAKS[0]
+    # ... and that is exactly what class 159 covers
+    assert IL.is_advisory_listing_card(_IL159_LEAKS[0]), _IL159_LEAKS[0]
+# --- class 160: an OFF-TOPIC result page is not a source for the query -------
+# Live 23.09.26, cycle_a_technews logged
+#   "learned: An unpaid ticket picks up $10 at 30 days, another $20 at 60 ..."
+# for the query "Spain to impose fines for not labelling AI-generated content".
+# _search_urls had returned `https://www.newsbreak.com/news` -- a generic city
+# news FEED, not the article behind the Reuters hit -- and the fetched page
+# contained ZERO of the query's six topic tokens (spain/impose/fines/labelling/
+# ai-generated/content). It is NOT a news index either (0 relative stamps), so
+# the class-134 gate missed it and deep_learn scored other-topic feed furniture.
+#
+# The gate lives at the PAGE, not the insight: 45% of the live 300-row buffer
+# shares zero 4+ char tokens with its question while being legitimate (question
+# "A Visual Guide to LLM Quantization" -> "32-bit float: 4 bytes per parameter
+# (75% memory reduction)"). A page, unlike an answer, must contain the topic's
+# own words to be about that topic at all. Measured over 6 live queries /
+# 12 pages: all 3 relevant pages >=2 topic tokens, every off-topic row's page 0.
+
+_IL160_QUERY = "Spain to impose fines for not labelling AI-generated content"
+
+# The real fetched page shape (newsbreak.com/news, 6000 chars, verb + digits --
+# which is exactly why every text-level gate passed it).
+_IL160_OFF_TOPIC_PAGE = (
+    "New York City, NY Local News and More | NewsBreak Open in NewsBreak | "
+    "Sign in New York City See all locations Customize your news Cloudy 59 F "
+    "Local News Trending Posts Crime Map Gas Events Weather Traffic Transit "
+    "Sports Finance Lifestyle Education Municipal Business Food Drink Arts "
+    "An unpaid ticket picks up $10 at 30 days, another $20 at 60, and another "
+    "$30 at 90, then turns into a court judgment around day 100. "
+) + ("The city council also reviewed parking revenue and meter enforcement "
+     "across all five boroughs during the regular session on Tuesday evening. " * 6)
+
+# A genuinely relevant page: it repeats the topic's own vocabulary.
+_IL160_RELEVANT_PAGE = (
+    "Spain to impose massive fines for not labelling AI-generated content. "
+    "The Spanish government approved a bill on Tuesday imposing fines on "
+    "companies that use content generated by artificial intelligence without "
+    "labelling it, implementing the EU AI Act with penalties of up to 35 "
+    "million euros. "
+) + ("Companies must label AI-generated content under the new Spanish bill. " * 8)
+
+
+def test_off_topic_page_is_dropped():
+    """The live NewsBreak feed page is recognised as off-topic (class 160)."""
+    import internet_learner as IL
+    assert IL.is_off_topic_page(_IL160_QUERY, _IL160_OFF_TOPIC_PAGE)
+
+
+def test_relevant_page_is_kept():
+    """A page carrying the topic's own words is never dropped."""
+    import internet_learner as IL
+    assert not IL.is_off_topic_page(_IL160_QUERY, _IL160_RELEVANT_PAGE)
+
+
+def test_topic_tokens_drop_query_scaffolding():
+    """Scaffolding words must not count as topic vocabulary."""
+    import internet_learner as IL
+    tq = IL.topic_tokens(_IL160_QUERY)
+    assert "spain" in tq and "labelling" in tq and "fines" in tq
+    assert "what" not in tq and "should" not in tq and "know" not in tq
+    assert "learning" not in tq and "insight" not in tq and "agent" not in tq
+
+
+def test_relational_query_is_never_judged():
+    """A relation is answered by phrasing it, not by repeating its nouns.
+
+    Real buffer row for "Structural connection between tool usage and learning
+    process?": "The shared underlying pattern is a recursive, iterative
+    refinement cycle ..." -- on-topic with zero literal overlap.
+    """
+    import internet_learner as IL
+    q = "Structural connection between tool usage and learning process?"
+    page = ("The shared underlying pattern is a recursive, iterative "
+            "refinement cycle where each cycle involves exploration and action "
+            "followed by consolidation of the resulting pattern into memory. " * 8)
+    assert not IL.is_off_topic_page(q, page), q
+    assert not IL.is_off_topic_page(
+        "What is the difference between correlation and causation?", page)
+
+
+def test_thin_and_untopical_queries_are_not_judged():
+    """Partial fetches and non-topical queries keep today's trust.
+
+    A short page is a partial fetch, not evidence of an off-topic source; and
+    a query with fewer than 2 distinctive tokens has nothing to check against.
+    """
+    import internet_learner as IL
+    assert not IL.is_off_topic_page(_IL160_QUERY, "Sign in New York City")
+    assert not IL.is_off_topic_page("news", _IL160_OFF_TOPIC_PAGE)
+
+
+def test_legitimate_answer_without_literal_overlap_is_not_a_page_gate_case():
+    """Pin WHY the gate is at the page and not at the insight.
+
+    This pair is legitimate (it really is in the live buffer) and shares no
+    4+ char token -- an insight-level overlap gate would have destroyed it.
+    """
+    import internet_learner as IL
+    q = "Pushing the Limits of LLM Quantization via the Linearity Theorem"
+    a = ("AM4 300/400/500 and AM5 600/800 Series A specification-level "
+         "comparison of AMD chipsets, covering CPU-die")
+    # the gate WOULD flag the answer text if consulted on an insight ...
+    assert IL.is_off_topic_page(q, a + " " * 900)
+    # ... which is exactly why it is only ever consulted on a fetched PAGE.
+    assert not IL.is_off_topic_page(q, a + " quantization " * 200)

@@ -4429,6 +4429,125 @@ def is_docs_heading_qweld(text):
     return len(re.findall(r"[.!?]", t)) <= 1
 
 
+# A BibTeX CITATION RECORD welded to a license footer (class 158, 23.09.26).
+# Live: the papers cycle stored, verbatim:
+#   "Findings of the Association for Computational Linguistics: EMNLP 2025},
+#    pages = {23934-23949}, year = {2025}, publisher = {Association for
+#    Computational Linguistics} } This website is licensed under a Creative
+#    Commons Attribution-ShareAlike 4."
+# -- an ACL Anthology page's BibTeX `pages = {..}, year = {..}, publisher =
+# {..}` chain with the trailing `}` still attached, welded to the site's
+# license footer. The digits and braces fed the technical-signal gate and the
+# 243 chars cleared the >=90 long-prose trust.
+#
+# Keyed on the CONJUNCTION of two independently-insufficient signals:
+#   (1) a `field = {value}` pair whose VALUE reads as a multi-word PHRASE
+#       (>=3 word tokens) -- a citation record's values are prose ("Association
+#       for Computational Linguistics"), while a code/config assignment's value
+#       is a scalar ("{42}", "{0.9}", "{bfloat16}", "{cc-by-4.0}");
+#   (2) a LICENSE FOOTER ("licensed under" / "creative commons" /
+#       "attribution-sharealike").
+# Measured 23.09.26 over 17,905 rows (online_buffer 299, buffer_junk 18,480,
+# internet_learn_log 2,698, longterm_episodes 3,064, asserted gate-test literals
+# 1,897): the conjunction has exactly 1 hit -- the leaking row -- and 0
+# elsewhere, 0 of a 9-case hostile battery.
+# BOTH parts were MEASURED AND REJECTED alone; do not re-add either:
+#   - the license footer alone: 4 asserted gate-test literals + 2 hostile
+#     prose FPs (prose ABOUT a Creative Commons license is real knowledge).
+#   - the prose-valued assignment alone: 3 hostile FPs
+#     (`Set system_prompt = {You are a helpful assistant} and temperature = ...`).
+#   - the bare `field = {value}` pair: 3 hostile config FPs.
+#   - the BibTeX field VOCABULARY (author/title/year/pages/...): 5 hostile FPs,
+#     because prose that merely NAMES those words trips it.
+_CITATION_ASSIGN_RE = re.compile(
+    r"\b[A-Za-z][A-Za-z0-9_]{1,20}\s*=\s*\{([^{}]{0,160})\}")
+_CITATION_LICENSE_RE = re.compile(
+    r"licensed under|creative commons|attribution-sharealike", re.IGNORECASE)
+
+
+def is_citation_record_weld(text):
+    """True for a BibTeX citation record welded to a license footer.
+
+    Structural conjunction, no topic words and no site literals -- see the
+    block comment above `_CITATION_ASSIGN_RE` for the measurement.
+    """
+    t = text or ""
+    if not t:
+        return False
+    if not _CITATION_LICENSE_RE.search(t):
+        return False
+    for m in _CITATION_ASSIGN_RE.finditer(t):
+        value = m.group(1)
+        if len(re.findall(r"[A-Za-z][A-Za-z'\-]*", value)) >= 3:
+            return True
+    return False
+
+
+
+# A GitHub-advisory / security-portal INDEX-CARD chrome row (class 159,
+# 23.09.26). Live: cycle_d_docs AND cycle_c_github stored, verbatim,
+# twice in the buffer tail:
+#   "Critical Authenticated Arbitrary Data Export Theft via Mass Assignment
+#    in sendFileMessage GHSA-fhc2-x8cp-c5ch published May 14, 2026 by
+#    julio-rocketchat High Previous 1 2 3 Next Learn more about advis"
+# -- an advisories-LIST page: one entry's TITLE welded to its identifier,
+# its publication date, its reporter handle, its severity badge, the
+# list's own `Previous 1 2 3 Next` pager and the trailing CTA, truncated
+# mid-word by the extractor. 235 chars with digits -> the >=90 long-prose
+# trust and the technical-signal gate both let it through.
+#
+# The near-miss that explains WHY it leaked: the SAME page shape WITHOUT
+# the date passes the pre-existing `_is_nav_list` (>=6 TitleCase tokens,
+# no comma). The advisory date brings a COMMA, and one comma is enough to
+# disarm that rule: measured 23.09.26 -- `_is_nav_list` is True on the
+# date-free form and False on the live one. So the discriminator cannot
+# be the nav-list rule; it is the SECURITY-PORTAL CARD, keyed on the
+# conjunction of
+#     (1) a vulnerability advisory ID (GHSA-xxxx-xxxx-xxxx) -- an
+#         identifier shape an advisory listing carries, and
+#     (2) the listing's own BARE numeric pager (`Previous 1 2 3 Next`),
+#         deliberately the numeric form, NOT class 58's
+#         `Previous Page N of M Next`, because that is the form this page
+#         ships.
+#
+# Every PART alone is measured and INSUFFICIENT -- do not re-add any:
+#   - the GHSA-id alone: it is also the standard way prose CITES an
+#     advisory, and 1 asserted gate-test literal carries the shape.
+#   - the bare pager alone: 2 hostile prose FPs
+#     ("The changelog lists Previous 1 2 3 Next links to older releases.")
+#     plus 1 asserted gate-test literal.
+#   - GHSA AND a severity badge: 26 hits, but 2 of 3 real citing-prose
+#     controls trip it ("We tracked GHSA-aaaa-bbbb-cccc as High severity").
+#   - GHSA AND `by <handle>`: 1 asserted gate-test literal.
+#   - the pager AND a published-date: 3 of 4 both-part prose controls.
+#   - the CTA wording alone: ordinary English.
+# Measured with the conjunction (GHSA-id AND bare numeric pager) over
+# online_buffer / buffer_junk / internet_learn_log / longterm_episodes /
+# asserted gate-test literals: 2 / 26 / 0 / 0 / 1. Both buffer hits ARE
+# the leak family; the 1 test literal is the pre-existing GHSA string the
+# test already documents as chrome gated by `_is_nav_list` ("a different
+# gate"), so it is the same shape, not a false positive. 0 hits in 3 real
+# citing-prose controls and 0 in 5 both-part prose controls.
+_ADVISORY_ID_RE = re.compile(
+    r"\bGHSA-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}\b",
+    re.IGNORECASE)
+_BARE_NUMERIC_PAGER_RE = re.compile(r"\bPrevious\s+(?:\d+\s+){1,9}Next\b")
+
+
+def is_advisory_listing_card(text):
+    """True for a security-advisory listing card welded to its pager (159).
+
+    Structural conjunction of an advisory ID and the listing's own bare
+    numeric pager; no topic words and no vendor literals -- see the block
+    comment above `_ADVISORY_ID_RE` for the measurement.
+    """
+    t = text or ""
+    if not t:
+        return False
+    return bool(_ADVISORY_ID_RE.search(t)
+                and _BARE_NUMERIC_PAGER_RE.search(t))
+
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
@@ -4820,6 +4939,12 @@ def _is_junk(text):
     # a docs/TOC heading stack welded to an interrogative heading (class 157, 23.09.26)
     if is_docs_heading_qweld(t):
         return True
+    # a BibTeX citation record welded to a license footer (class 158, 23.09.26)
+    if is_citation_record_weld(t):
+        return True
+    # a security-advisory listing card welded to its pager (class 159, 23.09.26)
+    if is_advisory_listing_card(t):
+        return True
     return bool(is_glued_motif(t))
 
 
@@ -5156,6 +5281,116 @@ _PAGE_REL_STAMP_RE = re.compile(
     r"\b\d{1,3}\s+(?:minutes?|mins?|hours?|hrs?|days?)\s+ago\b", re.IGNORECASE)
 
 
+# ---------------------------------------------------------------------------
+# class 160 (23.09.26): a result page that never mentions the query's topic.
+#
+# Live: cycle_a_technews logged
+#   "learned: An unpaid ticket picks up $10 at 30 days, another $20 at 60, and
+#    another $30 at "
+# for the query "Spain to impose fines for not labelling AI-generated content".
+# The buffer row pairs that parking-ticket sentence with the Spain/AI-labelling
+# question, so the pair teaches noise rather than knowledge.
+#
+# Root cause is the SOURCE, not the extractor. _search_urls returned
+# `https://www.newsbreak.com/news` (a generic city-news FEED, not the article
+# behind the Reuters hit) as the top fetchable URL. Measured on the fetched
+# page: 6000 chars, ZERO of the query's six topic tokens (spain, impose, fines,
+# labelling, ai-generated, content), and _is_news_index_page() does NOT catch
+# it (0 relative stamps -- a nav/feed shell, not a card stream). deep_learn then
+# scored the best sentence-shaped string on that page -- other-topic feed
+# furniture -- and every text-level gate passed it, because the sentence is
+# grammatical prose carrying a verb and digits.
+#
+# Why the gate lives at the PAGE and not at the insight: an insight-level
+# token-overlap gate is a footgun. Measured over the live 300-row buffer, 45%
+# of rows share ZERO 4+ char tokens with their question while being perfectly
+# legitimate (question "A Visual Guide to LLM Quantization" -> insight "32-bit
+# float: 4 bytes per parameter (75% memory reduction)"), because good prose
+# answers a topic in its own vocabulary. A page, by contrast, must contain the
+# topic's own words to be about that topic at all: measured over 6 live
+# queries / 12 fetched pages, all 3 relevant pages showed >=2 topic tokens and
+# every page that produced an off-topic row showed 0.
+#
+# Scope guard: applied only when the query yields >=2 distinctive tokens and
+# the fetched page is >=800 chars, so conversational queries ("Structural
+# connection between tool usage and ...") and thin/partial fetches keep the
+# trust they have today and no page is dropped on the strength of one word.
+_TOPIC_STOPWORDS = frozenset("""
+a an the and or but if then than that this these those there here what which
+who whom whose when where why how is are was were be been being am do does did
+doing have has had having will would shall should can could may might must
+about above after again against all any because before below between both
+during each few for from further into more most other over own same some such
+through under until up very while with without you your yours we our ours they
+them their theirs it its he she his her him me my mine of to in on at by as
+not no nor only just also much many own too don now
+learn learning learned insight insights research latest should know agent
+agents intelligent practice best official docs documentation
+news today new recent towards pushing limits large scale visual understanding
+difference differences explain how does work works using used
+summary overview introduction part example
+structural connection relationship guide
+""".split())
+
+# One distinctive word is not a topic; a query must carry at least this many.
+_OFF_TOPIC_MIN_TOKENS = 2
+# A thin/partial fetch is not judged -- only a page that really loaded.
+_OFF_TOPIC_MIN_PAGE_CHARS = 800
+# A query that asks for a RELATION ("structural connection between X and Y",
+# "difference between correlation and causation") is answered by wording the
+# relation, not by repeating its nouns. Real buffer row for the query
+# "Structural connection between tool usage and learning process?":
+#   "The shared underlying pattern is a recursive, iterative refinement cycle
+#    where each cycle involves exploration/action ..."
+# That is on-topic with ZERO literal overlap, so such queries are never judged.
+_RELATIONAL_QUERY_RE = re.compile(
+    r"\b(structural\s+connection|connection\s+between|difference\s+between|"
+    r"relationship\s+between|correlat\w*|causat\w*|"
+    r"how\s+do(?:es)?\b|what\s+is\s+the\b|explain\b|why\s+do\b|"
+    r"compare|analog\w+)\b",
+    re.IGNORECASE)
+
+_TOPIC_WORD_RE = re.compile(r"[A-Za-z][A-Za-z0-9_\-]+")
+
+
+def _topic_word_tokens(text, min_len=5):
+    """Lowercased tokens of 5+ chars, hyphens/underscores kept (pure)."""
+    out = set()
+    for w in _TOPIC_WORD_RE.findall((text or "").lower()):
+        w = w.strip("-_")
+        if len(w) >= min_len:
+            out.add(w)
+    return out
+
+
+def topic_tokens(query, min_len=5):
+    """The distinctive vocabulary of a query (pure, testable).
+
+    Function words and query scaffolding ("latest research insight", "what
+    should an agent know") are dropped: they appear on every page and would
+    make the overlap test meaningless.
+    """
+    return {w for w in _topic_word_tokens(query, min_len)
+            if w not in _TOPIC_STOPWORDS}
+
+
+def is_off_topic_page(query, page_text):
+    """True when a fetched result page never mentions the query's topic (160).
+
+    Consulted on the FETCHED PAGE only, never on a candidate insight, so no
+    legitimate row can be lost: dropping the page simply lets a later result
+    URL hold the deep-read slot.
+    """
+    tq = topic_tokens(query)
+    if len(tq) < _OFF_TOPIC_MIN_TOKENS:
+        return False  # not a topical query
+    if _RELATIONAL_QUERY_RE.search(query or ""):
+        return False  # a relation is answered by phrasing it -- nothing to check against
+    if len(page_text or "") < _OFF_TOPIC_MIN_PAGE_CHARS:
+        return False  # thin/partial fetch, not a judgment call
+    return not (tq & _topic_word_tokens(page_text))
+
+
 def _is_news_index_page(text):
     """True when a fetched PAGE is a newsroom/feed index, not an article (134).
 
@@ -5316,6 +5551,12 @@ def deep_learn(query, k=2):
             # next card's headline. Skipping the page lets a later URL (an
             # actual article) hold the slot instead.
             if _is_news_index_page(t):
+                continue
+            # class 160: a page that never mentions the query's topic is not a
+            # source for it. Dropping it lets a later result URL hold the slot
+            # (the Reuters article for the Spain query fetched 0 chars, so the
+            # off-topic NewsBreak feed WAS the whole deep read).
+            if is_off_topic_page(query, t):
                 continue
             texts.append(t)
     if not texts:
