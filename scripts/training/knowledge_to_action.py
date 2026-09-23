@@ -278,6 +278,25 @@ def experiment_competitor_gap():
         # runtime", "local LLMs" prose) and never `local model` (0/47 rows, i.e.
         # a token the corpus does not support).
         ("local hardware", "on-device / local-hardware agent runtime"),
+        # Grown from a REAL signal (23.09.26): the SAGA row
+        #   "The SAGA Framework: The Brains Behind the Agents At the core of
+        #    each character's decision-making process is the SAGA (Simulation
+        #    Agent Generative Architecture) framework ..."
+        # is a capability description (an LLM-driven simulation-agent
+        # framework), not a headline: its echo against its own source question
+        # is 0.25 with len(a) 232, so the headline discriminator correctly
+        # leaves it on the lexicon path.
+        # Measured precision over the 39 competitor rows this function reads
+        # (scoring `a` only, which is all `signal` ever is):
+        #   `simulation agent` 1/39 -> that row IS this signal, 0 mis-maps
+        # Rejected alternatives, all measured: `saga` 1/39 (same row, but a
+        # proper noun the corpus can only ever support for this one title),
+        # `generative architecture` 1/39 (same row, names the label rather than
+        # the capability), `decision-making` 1/39 and `character` 1/39 (same
+        # row today, but generic nouns that mis-map the moment another row
+        # mentions a decision or a character), `architecture` 3/39 -> REAL
+        # mis-maps. The chosen two-word phrase states the capability.
+        ("simulation agent", "LLM-driven simulation-agent framework"),
     )
     low_signal = signal.lower()
     # Longest (most specific) matching token wins: a generic token declared
