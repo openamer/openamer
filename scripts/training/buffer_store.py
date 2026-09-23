@@ -3927,6 +3927,46 @@ def is_advisory_listing_card(text):
                 and _BARE_NUMERIC_PAGER_RE.search(t))
 
 
+# Site sidebar nav labels welded to a section announce line (class 165, 23.09.26): cycle_d_docs
+# stored "Tech news VPN Deals General Apps AR and VR Business Cameras Cybersecurity Entertainment
+# Reviews and guides Smart home Social media Transportation Wearables Claude AI The latest Claude AI
+# news, updates and announcements Anthropic Drops Claude Opus 5.5 ..." -- the TechRadar sidebar
+# label run followed by the category's own announce line. 300 chars, zero prose, and BOTH gates
+# passed it: the length cleared the >=90/>=25 floors and the brand names fed the signal gate.
+#
+# TWO STRUCTURAL MARKERS, ANDed -- each alone is ordinary prose:
+#   M1 >= 2 DISTINCT site nav labels (case-folded, so a repeated label cannot
+#      self-satisfy the count) -> a sidebar MENU was listed;
+#   M2 a section ANNOUNCE line ("the latest <topic> news, updates and announcements")
+#      -> the page narrated its own category.
+# Measured over 3,901 real corpus rows (online_buffer 300 + prejunk archive +
+# train.jsonl + longterm_episodes 3,059) and 9,861 junk rows: 1 real hit and
+# that hit IS the leaking row -> 0 real-prose FPs; 0 junk hits. Hostile battery
+# (10 hand-written cases incl. prose ABOUT the sidebar labels, a quoted announce
+# headline, and the bare "TechRadar - Upgrades, reviews and guides" CTA): 0 FPs.
+# M2 alone was MEASURED-AND-REJECTED (4 real hits -> ordinary prose);
+# M1 alone was MEASURED-AND-REJECTED (2 real hits -> prose ABOUT the labels).
+_SITE_NAV_LABELS = (
+    r"vpn deals|ar and vr|reviews and guides|smart home"
+    r"|social media transportation wearables|cameras cybersecurity"
+)
+_SITE_NAV_LABEL_RE = _re.compile(_SITE_NAV_LABELS, _re.IGNORECASE)
+_SITE_NAV_ANNOUNCE_RE = _re.compile(
+    r"the latest [^.]{2,45}(?:news,? updates and announcements"
+    r"|updates and announcements)",
+    _re.IGNORECASE)
+
+
+def _is_site_nav_chain(text):
+    """True when a site's sidebar label run is welded to its announce line (165)."""
+    if not text:
+        return False
+    labels = {m.lower() for m in _SITE_NAV_LABEL_RE.findall(text)}
+    if len(labels) < 2:
+        return False
+    return bool(_SITE_NAV_ANNOUNCE_RE.search(text))
+
+
 def _is_nav_chrome(text):
     """True when text is page chrome (entities, marketing, UI, template leaks)."""
     if _ENTITY.search(text):
@@ -4315,6 +4355,9 @@ def _is_nav_chrome(text):
         return True
     # a security-advisory listing card welded to its pager (class 159, 23.09.26)
     if is_advisory_listing_card(text):
+        return True
+    # a site sidebar label run welded to its announce line (class 165, 23.09.26)
+    if _is_site_nav_chain(text):
         return True
     return False
 
