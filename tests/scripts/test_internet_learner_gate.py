@@ -6697,3 +6697,61 @@ def test_the_advisory_date_is_what_disarms_the_nav_list_rule():
     assert not IL._is_nav_list(_IL159_LEAKS[0]), _IL159_LEAKS[0]
     # ... and that is exactly what class 159 covers
     assert IL.is_advisory_listing_card(_IL159_LEAKS[0]), _IL159_LEAKS[0]
+# --- class 168: a plan-comparison price table with rating widgets ------------
+# Live 23.09.26 (`cycle_e_competitors`): a marketplace SERP row -- a run of
+# `$<n>/mo` tokens with the rating widget (`* 5.0`, `View Review`) welded on.
+# The German twin (class 13, a checkout LABEL CHAIN) is already gated by
+# `_is_de_pricing_chrome`; this is the ENGLISH SERP/rating shape.
+# Discriminator = the WELD: >=2 price tokens AND >=2 rating/CTA widgets.
+# Measured 23.09.26 over 16,068 JSONL rows, 2,049 gate-test literals and 924
+# docs files: 1 hit -- the leaking row -- and 0 everywhere else.
+
+# The exact bytes `cycle_e_competitors` stored on 23.09.26 (class 168).
+PRICE_TABLE_LEAK = (
+    "From $25/mo View Review \u2192 OpenCode Free \u00b7 Anomaly Innovations, Inc "
+    "\u2605 5.0 \u2192 OpenAI Codex $8/mo \u00b7 OpenAI \u2605 4.7 \u2192 Claude Code "
+    "$17/mo annual \u00b7 Anthropic \u2605 4.6 \u2192 Cline $9.99/mo \u00b7 Cline Bot Inc.")
+
+PRICE_TABLE_CONTROLS = [
+    "vLLM 0.9 ships a chunked-prefill scheduler that caps KV cache GPU memory at 90% by default.",
+    "Serving that model costs about 0.002 EUR per 1k tokens, annualised 12 EUR per agent.",
+    "GPT-5 and Claude Opus 4.5 both list at the same tier as Codex; the API price is $5 per 1M input tokens.",
+    "The subscription is $20/mo and includes unlimited code completion in the IDE.",
+    "OpenAI Codex costs $8/mo while Claude Code is $17/mo annually, so the cheaper tier wins for solo devs.",
+    "Prices: the Pro plan is $20/mo annual and the Team plan is $25/mo per seat; both include the agent mode.",
+    "Rated 4.7 stars out of 5 in our own eval; the model is served at 40 tokens/s on 8 CPU threads.",
+    "The Cline extension is $9.99/mo and the OpenCode tier is free, per the vendor page.",
+    "A plan comparison shows codex $8 and claude $17.",
+    "Die Preise: 20 \u20ac / Monat und 25 \u20ac / Monat pro Nutzer, monatlich k\u00fcndbar.",
+]
+
+
+def test_price_table_row_is_gated_on_both_paths():
+    """A plan/vendor COMPARISON price table with rating widgets (class 168)."""
+    import buffer_store
+    leak = PRICE_TABLE_LEAK
+    assert IL._is_price_table_row(leak) is True
+    assert IL._is_junk(leak) is True
+    assert buffer_store.is_junk(leak) is True
+    for c in PRICE_TABLE_CONTROLS:
+        assert IL._is_junk(c) is False, c
+        assert buffer_store.is_junk(c) is False, c
+
+
+def test_price_table_row_requires_both_markers():
+    """Neither marker alone may fire -- each is ordinary prose on its own."""
+    # prices alone: ordinary prose ABOUT pricing
+    prices_only = (
+        "OpenAI Codex costs $8/mo while Claude Code is $17/mo annually, so the "
+        "cheaper tier wins for solo devs.")
+    assert IL._is_price_table_row(prices_only) is False
+    # widgets alone: prose mentioning a rating
+    widgets_only = (
+        "Rated \u2605 4.7 in our own eval; a reader left a View Review note on the "
+        "vendor page.")
+    assert IL._is_price_table_row(widgets_only) is False
+    # both, but only one price token -- a sentence, not a table
+    one_price = (
+        "The Pro plan is $20/mo \u2605 4.7 and users can View Review it on the "
+        "vendor page.")
+    assert IL._is_price_table_row(one_price) is False

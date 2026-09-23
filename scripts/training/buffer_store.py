@@ -4242,6 +4242,10 @@ def _is_nav_chrome(text):
     # internet_learner._is_de_pricing_chrome)
     if _is_de_pricing_chrome(text):
         return True
+    # the ENGLISH twin of class 13, a plan-comparison price
+    # table with rating widgets welded on (class 168, 23.09.26)
+    if _is_price_table_row(text):
+        return True
     # an ad-blocker-off / subscribe notice (same rule as
     # internet_learner._is_adwall_notice)
     if _is_adwall_notice(text):
@@ -4846,6 +4850,36 @@ def _is_nav_weld_repeat_chrome(text):
         return False
     return (_nav_weld_run(text) >= _NAV_WELD_MIN_TOKENS
             and _has_adjacent_exact_repeat(text))
+
+
+# class 168 (23.09.26) -- a plan/vendor COMPARISON price table with rating
+# widgets welded onto the price run (the ENGLISH twin of class 13's German
+# checkout label chain).  Mirror of `internet_learner._is_price_table_row`
+# (this module must not import the learner -- circular).  See the learner's
+# block comment for the 23.09.26 measurement: 1 hit = the leaking row, 0 FPs
+# across 16,068 JSONL rows, 2,049 gate-test literals, 924 docs files and 10
+# hostile prose controls.
+_PRICE_TOKEN_RE = _re.compile(
+    r"(?:\$\s?\d+(?:[.,]\d+)?\s*/\s*(?:mo|month|yr|year|user|seat))"
+    r"|(?:\b\d+(?:[.,]\d+)?\s*(?:\u20ac|EUR|USD|\$)\s*/\s*(?:mo|month|yr|year|jahr|monat))",
+    _re.IGNORECASE)
+_RATING_WIDGET_RE = _re.compile(
+    r"(?:\u2605\s?\d(?:[.,]\d)?)"
+    r"|(?:\bView Review\b)"
+    r"|(?:\bFree\s*(?:\u2192|\u00b7))",
+    _re.IGNORECASE)
+_PRICE_TABLE_MIN_PRICES = 2
+_PRICE_TABLE_MIN_WIDGETS = 2
+
+
+def _is_price_table_row(text):
+    """True for a plan-comparison price table with rating widgets (167)."""
+    t = text or ""
+    if not t:
+        return False
+    if len(_PRICE_TOKEN_RE.findall(t)) < _PRICE_TABLE_MIN_PRICES:
+        return False
+    return len(_RATING_WIDGET_RE.findall(t)) >= _PRICE_TABLE_MIN_WIDGETS
 
 
 def is_junk(text):
