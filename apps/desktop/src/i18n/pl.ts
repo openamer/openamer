@@ -310,8 +310,7 @@ export const pl = defineLocale({
       lastChecked: age => `Ostatnio sprawdzono ${age}`,
       justNowSuffix: ' · przed chwilą',
       automaticUpdates: 'Automatyczne aktualizacje',
-      automaticUpdatesDesc:
-        'OpenAmer automatycznie sprawdza aktualizacje w tle i powiadamia, gdy jedna jest gotowa.',
+      automaticUpdatesDesc: 'OpenAmer automatycznie sprawdza aktualizacje w tle i powiadamia, gdy jedna jest gotowa.',
       branchCommit: (branch, commit) => `Gałąź ${branch} · Zatwierdzenie ${commit}`,
       never: 'nigdy',
       justNow: 'przed chwilą',

@@ -95,7 +95,8 @@ export const es = defineLocale({
       remoteSignInHint: signInLabel =>
         `Cierra la sesión guardada del navegador remoto y abre ${signInLabel}. Usa "Usar pasarela local" para cambiar al backend incluido.`,
       signOutAndSignIn: 'Cerrar sesión e iniciar sesión',
-      remoteFailureHint: 'Comprueba la URL y el inicio de sesión en los ajustes de la pasarela, o cambia a la pasarela local.',
+      remoteFailureHint:
+        'Comprueba la URL y el inicio de sesión en los ajustes de la pasarela, o cambia a la pasarela local.',
       hideRecentLogs: 'Ocultar registros recientes',
       showRecentLogs: 'Mostrar registros recientes',
       signedInTitle: 'Sesión iniciada',
@@ -355,7 +356,8 @@ export const es = defineLocale({
       test: 'Enviar notificación de prueba',
       testTitle: 'OpenAmer',
       testBody: 'Las notificaciones funcionan.',
-      testSent: 'Prueba enviada. Si no aparece nada, revisa los permisos de notificación del sistema y el modo No molestar.',
+      testSent:
+        'Prueba enviada. Si no aparece nada, revisa los permisos de notificación del sistema y el modo No molestar.',
       testUnsupported: 'Este sistema no admite notificaciones nativas.',
       completionSoundTitle: 'Sonido de finalización',
       completionSoundDesc: 'Suena cuando termina un turno del agente. Elige un preset y pruébalo aquí.',

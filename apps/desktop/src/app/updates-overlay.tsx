@@ -424,7 +424,17 @@ function ApplyingView({ apply, isBackend }: { apply: UpdateApplyState; isBackend
   )
 }
 
-function ErrorView({ errorCode, message, onDismiss, onRetry }: { errorCode: string | null; message: string; onDismiss: () => void; onRetry: () => void }) {
+function ErrorView({
+  errorCode,
+  message,
+  onDismiss,
+  onRetry
+}: {
+  errorCode: string | null
+  message: string
+  onDismiss: () => void
+  onRetry: () => void
+}) {
   const { t } = useI18n()
   const u = t.updates
 

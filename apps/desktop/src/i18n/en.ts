@@ -889,7 +889,8 @@ export const en: Translations = {
       needsSetup: 'Needs setup',
       openamerIncluded: 'Included with a OpenAmer subscription — sign in to OpenAmer Portal to activate.',
       openamerAuthNeededTitle: 'Sign in to OpenAmer Portal',
-      openamerAuthNeededMessage: provider => `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
+      openamerAuthNeededMessage: provider =>
+        `${provider} is saved but won't activate until you sign in to OpenAmer Portal.`,
       openamerAuthSignIn: 'Sign in',
       openamerAuthDoneTitle: 'OpenAmer Portal connected',
       openamerAuthDoneMessage: 'Your subscription backends are now active.',
@@ -2099,7 +2100,8 @@ export const en: Translations = {
     maybeLater: 'Maybe later',
     moreChanges: count => `+ ${count} more change${count === 1 ? '' : 's'} included.`,
     manualTitle: 'Update from your terminal',
-    manualBody: 'You installed OpenAmer from the command line, so updates run there too. Paste this into your terminal:',
+    manualBody:
+      'You installed OpenAmer from the command line, so updates run there too. Paste this into your terminal:',
     manualPickedUp: 'OpenAmer will pick up the new version next time you launch it.',
     guiSkewTitle: 'Update the desktop app',
     guiSkewBody:
@@ -2124,7 +2126,8 @@ export const en: Translations = {
       noReturn: 'Backend didn’t come back online. The update may not have completed — check the backend host.'
     },
     appErrors: {
-      updateLocked: 'Update aborted: another OpenAmer window or a terminal running openamer is holding this install open. Close it and retry.',
+      updateLocked:
+        'Update aborted: another OpenAmer window or a terminal running openamer is holding this install open. Close it and retry.',
       updateFailed: 'The update didn’t complete. No worries — nothing was lost. You can try again now.'
     }
   },
@@ -2155,7 +2158,8 @@ export const en: Translations = {
     installLocalDesc: 'Download OpenAmer, create its Python environment, and run the backend on this computer.',
     localStartUnavailable: 'Local installation could not start. Restart OpenAmer Desktop and try again.',
     remoteSetupTitle: 'Connect to existing OpenAmer',
-    remoteSetupDesc: 'Enter your gateway URL. OpenAmer Desktop will detect whether it needs a token or browser sign-in.',
+    remoteSetupDesc:
+      'Enter your gateway URL. OpenAmer Desktop will detect whether it needs a token or browser sign-in.',
     remoteUrlTitle: 'Gateway URL',
     remoteUrlDesc: 'Use the base URL of the OpenAmer gateway, including https:// when remote.',
     remoteUrlPlaceholder: 'https://gateway.example.com/openamer',
@@ -2231,7 +2235,8 @@ export const en: Translations = {
       xai: { short: 'Grok models', description: 'Direct access to xAI Grok models.' },
       local: {
         short: 'self-hosted',
-        description: 'Point OpenAmer at a local or self-hosted OpenAI-compatible endpoint (vLLM, llama.cpp, Ollama, etc).'
+        description:
+          'Point OpenAmer at a local or self-hosted OpenAI-compatible endpoint (vLLM, llama.cpp, Ollama, etc).'
       }
     },
     backToSignIn: 'Back to sign in',
