@@ -5736,3 +5736,106 @@ are individually unrepresentative. Compare content, never a single ref.
     copies byte-IDENTICAL after EOL normalisation, 3 commits pushed, and the
     deliverable cycle learned real content (`cycle_a_technews`: Apple Home
     security-camera pricing, The Verge).
+
+### Class 149 (23.09.26) -- a nav-menu WELD run into a card title drawn TWICE
+
+Cycle started on the documented `cycle_d_docs: rejected` line. The rate table was
+NOT the story: last-30 sat at 12 learned / 18 rejected and the per-hour rows swung
+13%-75%, i.e. rotation noise, not a step change. The finds came from the two cheap
+reads the skill prescribes -- `tail` of `online_buffer.jsonl` (the leak was never
+rejected, so `buffer_junk.jsonl` never mentions it) and the packaged
+`diagnose_gate_rejection.py`.
+
+**The leak** (`cycle_c_github`, u = "What new agent architectures are trending on
+GitHub?"):
+
+    Start Suche VPS-Rechner Vergleichen Blog Suchen <moon> EN DE Home Blog
+    Haystack: The Open-Source AI Orchestration Framework for Production-Ready RAG
+    Haystack: The Open-Source AI Orchestration Framework for Production-Ready RAG
+    Jun 27, 2026 What Is Haystack?
+
+A German VPS-comparison site's menu strip (`Suche` / `VPS-Rechner` / `Vergleichen`
+/ `Blog` / `Suchen`), the language switch, a `Home Blog` trail, then the card's own
+title drawn TWICE. 252 chars WITH digits, so the `>=90` length trust AND the
+technical-signal gate both fired. `diagnose_gate_rejection.py` said it plainly:
+`is_junk = False -- no predicate rejects this text -> it SURVIVES the gate`.
+
+**Why class 82 did not cover it.** `_is_de_nav_weld_headline_chrome` is the same
+FAMILY, but its regex wants the nav labels welded to EACH OTHER plus a TitleCase
+colon headline (`Blogs Karriere Ueber uns X LLM Agent Sandboxing: Wie MCP ...`).
+This row's labels are comma/space joined AND its headline ends in a comma, so
+neither the label-adjacency nor the colon-headline half matched.
+
+**The discriminator is a CONJUNCTION, and the sweep is what found it.** Three
+readings were measured against four corpora (live buffer 300, `longterm_episodes`
+3,064, gate-test literals 1,987, hand controls):
+
+| form | prose FP | buffer | episodes | literals | verdict |
+|---|---|---|---|---|---|
+| exact repeat >= 40 alone | 0 | 2 | **88** | 0 | rejected |
+| nav tokens >= 2 alone | **13** | 1 | 179 | 14 | rejected |
+| nav >= 2 AND repeat >= 40 | 0 | 1 | 18 | 0 | rejected |
+| **nav-run >= 3 @60 AND ADJACENT repeat >= 40** | **0** | **1** | **0** | **0** | SHIPPED |
+
+Two measurements did the work:
+
+1. **`d <= L` (adjacency).** For the leak the repeat's two instances sit 78 chars
+   apart (`frag = Haystack: The Open-Source AI Orchestration Framework for
+   Production-Ready RAG`, `L=79 d=-78`); in a transcript that restates a line the
+   instances are hundreds to thousands of chars apart (`L=219 d=-259`,
+   `L=84 d=-1210`, `L=60 d=-1652`). Requiring the second instance to START inside
+   the first (`d <= L`) removed 18 -> 6 episode hits, i.e. the whole
+   session-transcript class.
+2. **A nav-run, not a nav-count.** A "run" is the max number of DISTINCT nav
+   tokens co-occurring inside a 60-char window. The leak scores 7 (the whole menu
+   is adjacent); a German sentence LISTING the same labels scores 6 but spread over
+   the sentence, so the sliding window is what separates the two.
+
+`window=100/maxL=100` was also clean (ep=0) but 3 prose controls were one token
+away from the threshold, so the 60-char window was kept.
+
+**Full measurement for the shipped form:** 1 buffer hit and it IS the leak; 0 FPs on
+21 hostile EN+DE controls (several of which LIST the same nav vocabulary); 0 of
+3,064 `longterm_episodes`; 0 of 1,987 gate-test literals; and -- the corpus that
+was NOT in the packaged harness -- **0 hits over 11,959 real-prose chunks in 495
+repo `.md`/`.txt` files**. The last scan is worth re-running for any future repeat-
+based candidate: it is the only check that exercises long natural prose.
+
+**Wired in BOTH gates** (the both-files rule): `buffer_store.is_junk` gets
+`_is_nav_weld_repeat_chrome(text)` next to the `_NAV_CHROME` block, and
+`internet_learner._is_junk` gets it next to `_is_serp_title_snippet_repeat(t)`.
+Both modules define their own copy of the three helpers (`_NAV_WELD_TOKENS`,
+`_nav_weld_run`, `_has_adjacent_exact_repeat`) beside `_is_nav_weld_repeat_chrome`,
+mirroring every other class. 3 new tests -> **184 passed** (up from 181).
+The leak row was then DROPPED from the live buffer by SIGNATURE
+(`purge_buffer_rows.py --sig "Suche VPS-Rechner Vergleichen"`): 300 -> 299, CRLF
+intact, 0 unparsable, and a whole-buffer re-scan now reports **0** rows that
+`is_junk` would refuse.
+
+### PITFALL re-confirmed twice in one run -- the trap the skill already names
+
+1. **A pre-existing rule flags your control.** One control
+   (`Suche, Blog, Preise, Kontakt, Impressum und Datenschutz sind die Menuepunkte.`)
+   came back `il._is_junk == True` while `bs.is_junk == False`. The reflex is to
+   loosen the new rule; the measurement says otherwise -- the NEW predicate returns
+   `False` on it (`nav_run=6` but `adj_repeat=False`), so the flag is a
+   **learner-only pre-existing rule**, exactly the one-directional asymmetry this
+   file has recorded before. Diagnose the predicate IN ISOLATION before touching it.
+2. **The two-way tree drift is still live.** `git status` in the repo showed my two
+   modules as UNMODIFIED while the worktree still had them -- because a CONCURRENT
+   agent had already committed class 149. Worse: the repo copy was AHEAD on a
+   class-143 fix (2 `(?-i:...)` scoped flags) and BEHIND on a class-145 ordinal-day
+   form, while live was the exact mirror image. A plain repo->live copy would have
+   DELETED the class-145 fix. The union script took LIVE as canonical (it is the
+   functional superset), re-inserted the repo-only DOC comment block, normalised the
+   stale row-count comment, and then asserted the three copies content-identical
+   (`diff` = 0 lines each way, EOL-normalised). Verify with
+   `git hash-object <f>` vs `git rev-parse HEAD:<f>` -- NOT with `git status`, which
+   lies in both directions here.
+3. **The test file's EOL convention DIFFERS between the copies.** The laptop copy is
+   LF-native (0 CRLF); the repo copy is CRLF-native. Appending one LF block to the
+   repo copy produced a file with 6296 CRLF **and** 74 lone LF, which `git status`
+   then reported as modified forever. Normalise the appended tail with
+   `b.replace(b'\r\n', b'\n').replace(b'\n', b'\r\n')` and assert
+   `loneLF == 0` afterwards. Check the target file's own convention; do not assume
+   the sibling's.

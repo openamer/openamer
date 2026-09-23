@@ -59,6 +59,7 @@ Pair-rule MEASURED-AND-REJECTED (archive).
 CF/130-132 (22.09.26): source-tally CTA + date-stamp strip + credit byline; FIXED, refs/.
 133 (22.09.26): doc-site product-nav weld; ALL 4 bare forms REJECTED, 3 two-token welds FIXED, refs/.
 135/136 (22.09.26): arXiv submitter WELD + aggregator card header (needs a TitleCase-continuation test; 1+2 FPs without it), found by eyeballing the buffer tail -- FIXED, refs/.
+149 (23.09.26): a nav-menu WELD run into a card title drawn TWICE; the discriminator is nav-run>=3@60 AND an ADJACENT exact repeat (d<=L) -- repeat-alone=88 ep FPs, nav-alone=13 prose FPs, pair=0/0; FIXED, refs/.
 
 **116/117 (20.09.26)**: no gate class at all -- step -1 found a whole
 TESTED-BUT-UNCOMMITTED batch (AV again): `dry_run` never reached
@@ -103,6 +104,18 @@ window (`_recent_queries`, n=60) is **7.5% of the ledger** while **95% of the 62
 real repeats are >60 entries apart** (median gap 67, mean 96). Widening `avoid`
 to the full ledger is MEASURED-AND-REJECTED: only 2/8 cycle keywords still yield
 a live headline vs 8/8 at n=60. Domain saturated, not broken. See archive.
+
+## Counting the rejections — `buffer_junk.jsonl` rows have NO `ts`
+`internet_learn_log.jsonl` rows carry `ts/source/result/elapsed_s`; the audit
+rows in `buffer_junk.jsonl` carry ONLY `reason/u/a`. So a `ts`-prefix filter
+against the audit file silently returns **zero** — live 22.09.26 that made a
+busy day look like "the rejections never reached `store()`", which is wrong.
+Count by **append order** (the file is append-only: the last N audit rows are
+the most recent N rejections), and only then match a rate shift.
+Also: `diagnose_learn_rates.py` counts a row as REJECTED for ANY non-"learned"
+result, so `no insight` (shallow+deep both returned nothing) lands in the
+rejected bucket. A rate drop can be **fewer candidates**, not a stricter gate --
+distinguish the two before designing a rule.
 
 ## Trigger
 `python internet_learner.py --once` (or the cron) reports
@@ -1531,6 +1544,11 @@ parsed as a push option). Correct: `git -c credential.helper= -c
 credential.helper=store push origin HEAD:main`. Same reason `git commit -F`
 needs the **Windows** path (`C:/Users/.../msg.txt`) while `/c/Users/...` gives
 `fatal: could not read log file`.
+## Root cause AT — moved to references/
+AT (three chrome classes 64-66 in ONE cron run, and "the rejection was NOT
+the regression" again) plus the `-c` options-before-subcommand pitfall and
+the always-sweep-for-stale-PRE-GATE-leftovers rule are in
+`references/root-causes-archive.md`.
 
 ## Root cause AV — TWO classes (75, 76) + the "a previous cron left gate work UNCOMMITTED" trap (live 19.09.26)
 
@@ -1599,6 +1617,14 @@ rejections honest (`duplicate` at the cap + a documented SERP shape), new row
 a blind spot for `Sep 24, 2025`. Also: the per-FILE merge resolution (HEAD vs
 origin/main measured, not assumed), and `clean_buffer.py` has NO `--help`
 (it just runs). refs/.
+**140** (a paper/arXiv AUTHOR LIST with affiliation superscripts -- `cycle_g_security` stored an author block twice; discriminator is the affiliation segment repeated, with a STRUCT-word guard so "Section 3, Figure 2, Table 1, ..." stays learnable; the `_re`/`re` alias fired via `_recompile`, and the guard was red from pre-existing scratch litter) is archived there too.
+**141** (a year-welded SERP TITLE restated by its own SNIPPET -- 4 rows of one family in the buffer tail, incl. `Grok Pricing 2026:` and `Claude Opus 5 Review 2026:`. Neither conjunct separates: the year-colon weld alone hits 6 prose controls, a bare repeat hits 201 real episodes + 35 asserted gate literals; the PAIR is 0 FP everywhere. The restatement is an identical price token, an identical `<verb> <n> %` pair, or an identical 4-token run of PLURAL-STEMMED tokens -- a backreference cannot see the NER row's `LLMs`->`LLM` drift. The China-chip row (real article, bare `417%` across different verbs) survives by construction and is the control that decides the rule. The `_re`/`re` alias returned a THIRD time on a new face: alias `re.IGNORECASE` too, not just `re.compile`; and `open(p,'wb',newline='')` is a TypeError that half-applies a patch BEFORE the census assert) is archived there too.
+**142** (the SILENT-DROP family: `internet_learner._is_junk()` accepted what `buffer_store.is_junk()` refused -- 368 of 600 audited junk rows; missing detectors `_is_serp_snippet` 222 / `self-critique` marker 109 / `_is_nav_chrome` 88. Fix = `_writer_gate_refuses()` consulted at the write decision in `store()`, audited under the new reason `writer-gate`; plus `active_learn.store_if_trainable()` + `_strip_reasoning_trace()`. PITFALL: never fold the writer into `_is_junk` -- `_clean_insight` depends on the extractor's looser rule, 4 tests regress) is in refs/.
+**143/144** (22.09.26: 143 = the silent drops were NOT the rejection rate -- fixing 142 moved the loss from invisible to visible without raising yield; 144 = class 142 shipped as a pure REJECT predicate and over-rejected, 24 of 60 refused rows carry real prose behind the header stack. Fix = `_strip_article_byline_header(region=100)`, applied where `store()` judges the RAW text -- a strip inside `_clean_insight` is UNREACHABLE because `_is_junk(raw)` fires first. `region=200` broke 36/6,128 episodes, `region=100` breaks 0. PITFALL: `write_file` TRUNCATES -- append to this archive with a BINARY `'ab'` write only) is in refs/.
+**145** (22.09.26: the spelled-out read-time WELD (`Reading time 5 min`) and the
+ORDINAL dateline (`March 6th, 2025`) -- the class-142 vocabulary had neither, so two
+rows were STORED; the bare weld is a topic-word trap and was MEASURED-AND-REJECTED,
+the ANCHORED form is +2 leaks / 0 FP) is in refs/.
 
 **146** (22.09.26: a SINGLE aggregator feed row -- handle + relative time +
 `| N comments` + points + a capitalized second handle + headline. class 37
@@ -1611,3 +1637,6 @@ re-admits lowercase prose. Also: regex NEVER via shell heredoc, and a whole-file
 persönlich unter 0681 5866-4466 (Mo-Do 9-18 Uhr)` welded to a nav lockup. The
 conjunction of a consultation term and a contact marker within 90 chars on ONE
 line; scan forward from EACH match and cut at the newline) is in refs/.
+**148** = the learner's OWN bare `Need ...` generation PLAN, stored 12x -- class 142 MIRRORED (here the WRITER was looser than the learner). LESSON: a predicate on only ONE of the two gates is a hole, either direction. Archived in refs/.
+**149/150/151** (23.09.26: 149 = the cycle was FINE -- the LIVE tree is a second stale copy, diff it against ~/openamer-repo before any gate fix; traces ONE rejection via a buffer_store._audit spy, 60/70 writer-gate hits are _is_serp_snippet, which the learner has no counterpart for. 150 = a 0-BYTE marker file proves an "install root" in 12 consumers -> _vaultfinal phantom swarm, 781 runs "ok" on 0 tasks; rule: file marker NON-EMPTY, dir marker >=1 NON-EMPTY file. 151 = git push HANGS while ls-remote is fast -> the GCM credential helper, NOT the network:  -> 124; fix , then ls-remote sha == HEAD) in refs/.
+**152** (23.09.26: "the live tree is AHEAD of the repo" is NOT "work is unlanded" -- a pairwise diff against ONE checkout is BRANCH NOISE; measure the content UNION over ALL refs: 0 live-only lines, the 143/144 gaps already published on open PR #47, 0 refs shipping the class-143 gate without the `(?-i:)` scope, and the unscoped `[A-Z]` hazard measured at 0 corpus cost) in refs/.
