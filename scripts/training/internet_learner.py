@@ -4729,6 +4729,55 @@ def _is_ago_release_badge_weld(text):
     """True for a relative-age badge welded to `release` with no space (166)."""
     return bool(_AGO_RELEASE_WELD_RE.search(text or ""))
 
+
+# A plan/vendor COMPARISON price table lifted off a SERP or review listing
+# (class 167, 23.09.26).  Live: `cycle_e_competitors` STORED, verbatim,
+#   "From $25/mo View Review -> OpenCode Free - Anomaly Innovations, Inc
+#    * 5.0 -> OpenAI Codex $8/mo - OpenAI * 4.7 -> Claude Code $17/mo annual
+#    - Anthropic * 4.6 -> Cline $9.99/mo - Cline Bot Inc."
+# -- a marketplace price table: the rating widget (`* 5.0`, `View Review`) is
+# welded onto a run of `$<n>/mo` tokens.  200 chars with digits -> the >=90
+# "long prose" trust and the technical-signal gate both let it through.  The
+# German twin of this class (a checkout LABEL CHAIN) is `_is_de_pricing_chrome`;
+# this is the ENGLISH SERP/rating shape, which that predicate cannot see.
+#
+# Discriminator = the RATING WIDGET WELDED ONTO THE PRICE RUN, never a price on
+# its own.  A sentence ABOUT pricing names a vendor and a verb and carries one
+# price; a comparison TABLE yields >=2 `$<n>/mo` tokens AND >=2 widget stamps
+# (a star glyph with a score and/or a `View Review` / `Free ->` CTA).  Same
+# structural argument as class 13/28: judge the checkout's own label chain.
+# Measured 23.09.26 over online_buffer / buffer_junk / buffer_junk_archive /
+# internet_learn_log / longterm_episodes (16,066 JSONL rows), the 2,049 quoted
+# literals of `tests/scripts/test_internet_learner_gate.py` and 924 repo docs
+# files: 1 hit -- the leaking row -- and 0 everywhere else; 0 FPs across 9
+# hostile prose controls that cite prices, tiers and star ratings.
+_PRICE_TOKEN_RE = re.compile(
+    r"(?:\$\s?\d+(?:[.,]\d+)?\s*/\s*(?:mo|month|yr|year|user|seat))"
+    r"|(?:\b\d+(?:[.,]\d+)?\s*(?:\u20ac|EUR|USD|\$)\s*/\s*(?:mo|month|yr|year|jahr|monat))",
+    re.IGNORECASE)
+_RATING_WIDGET_RE = re.compile(
+    r"(?:\u2605\s?\d(?:[.,]\d)?)"
+    r"|(?:\bView Review\b)"
+    r"|(?:\bFree\s*(?:\u2192|\u00b7))",
+    re.IGNORECASE)
+_PRICE_TABLE_MIN_PRICES = 2
+_PRICE_TABLE_MIN_WIDGETS = 2
+
+
+def _is_price_table_row(text):
+    """True for a plan-comparison price table with rating widgets (167).
+
+    Structural, not topical: requires BOTH a run of price tokens and a run of
+    rating/CTA widgets, so prose that merely cites prices or a rating stays
+    learnable.
+    """
+    t = text or ""
+    if not t:
+        return False
+    if len(_PRICE_TOKEN_RE.findall(t)) < _PRICE_TABLE_MIN_PRICES:
+        return False
+    return len(_RATING_WIDGET_RE.findall(t)) >= _PRICE_TABLE_MIN_WIDGETS
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
@@ -5065,6 +5114,10 @@ def _is_junk(text):
     if _is_qa_portal_chrome(t):
         return True
     if _is_de_pricing_chrome(t):
+        return True
+    # the ENGLISH twin of that class: a plan-comparison price table with
+    # rating widgets welded on (class 167, 23.09.26)
+    if _is_price_table_row(t):
         return True
     # an ad-blocker-off / subscribe notice is a CTA chain, not a fact
     # (live 17.09.26, class 28 -- see _ADWALL_NOTICE_RE above)

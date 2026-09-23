@@ -4970,6 +4970,39 @@ def _is_ago_release_badge_weld(text):
     """True for a relative-age badge welded to `release` with no space (166)."""
     return bool(_AGO_RELEASE_WELD_RE.search(text or ""))
 
+
+# class 167 (23.09.26) -- a plan/vendor COMPARISON price table with rating
+# widgets welded onto the price run (the ENGLISH twin of class 13's German
+# checkout label chain above).  Live: `cycle_e_competitors` stored
+#   "From $25/mo View Review -> OpenCode Free - ... * 5.0 -> OpenAI Codex
+#    $8/mo - OpenAI * 4.7 -> Claude Code $17/mo annual - Anthropic * 4.6 ..."
+# Mirror of `internet_learner._is_price_table_row` (this module must not import
+# the learner -- circular).  Structural: >=2 `$<n>/mo` tokens AND >=2 rating/CTA
+# widgets; see the learner's block comment for the 23.09.26 measurement
+# (1 hit = the leaking row, 0 FPs across 16,066 JSONL rows, 2,049 gate-test
+# literals, 924 docs files and 9 hostile prose controls).
+_PRICE_TOKEN_RE = _re.compile(
+    r"(?:\$\s?\d+(?:[.,]\d+)?\s*/\s*(?:mo|month|yr|year|user|seat))"
+    r"|(?:\b\d+(?:[.,]\d+)?\s*(?:\u20ac|EUR|USD|\$)\s*/\s*(?:mo|month|yr|year|jahr|monat))",
+    _re.IGNORECASE)
+_RATING_WIDGET_RE = _re.compile(
+    r"(?:\u2605\s?\d(?:[.,]\d)?)"
+    r"|(?:\bView Review\b)"
+    r"|(?:\bFree\s*(?:\u2192|\u00b7))",
+    _re.IGNORECASE)
+_PRICE_TABLE_MIN_PRICES = 2
+_PRICE_TABLE_MIN_WIDGETS = 2
+
+
+def _is_price_table_row(text):
+    """True for a plan-comparison price table with rating widgets (167)."""
+    t = text or ""
+    if not t:
+        return False
+    if len(_PRICE_TOKEN_RE.findall(t)) < _PRICE_TABLE_MIN_PRICES:
+        return False
+    return len(_RATING_WIDGET_RE.findall(t)) >= _PRICE_TABLE_MIN_WIDGETS
+
 def is_junk(text):
     """True when a completion is not trainable signal.
 
@@ -5009,6 +5042,10 @@ def is_junk(text):
     if _is_section_toc_chain(s):
         return True
     if _is_ago_release_badge_weld(s):
+        return True
+    # the ENGLISH twin of class 13, a plan-comparison price table with rating
+    # widgets welded on (class 167, 23.09.26)
+    if _is_price_table_row(s):
         return True
     if _is_gh_releases_row(s):
         return True
