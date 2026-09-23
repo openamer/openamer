@@ -56,40 +56,34 @@ def run(cmd, timeout=120):
 # ---- Action Library: insight patterns -> concrete experiments ----
 
 def experiment_lora_rank():
-    """Insight: 'start with small rank (4-8)'. Test r=8 vs r=16 effectiveness."""
-    import urllib.request
-    losses = {}
-    # We can't easily change LoRA rank at runtime (needs rebuild).
-    # Instead: measure the CURRENT r=16 performance as baseline, log for later A/B.
-    #
-    # Retry contract (fixed 20.09.2026): a single 5s attempt reported
-    # "server down" whenever the tool server was mid-restart (live evidence:
-    # 2026-09-20T07:46:21, right after the desktop relaunch at 07:39:50 —
-    # a curl seconds later answered {"status":"alive","tools":9}). One refused
-    # connection during a rebind is not "server down"; it is a retry miss, and
-    # it burned a whole rotation slot. Probe a few times with backoff.
-    h = None
-    last_err = None
-    for _attempt in range(3):
-        try:
-            req = urllib.request.Request(LIVE + "/health")
-            h = json.load(urllib.request.urlopen(req, timeout=5))
-            break
-        except Exception as e:
-            last_err = e
-            time.sleep(2 * (_attempt + 1))
+    """Insight: 'start with small rank (4-8)'. Test r=4/8/16 on an equal budget.
+
+    Rewritten 23.09.2026. The previous body only polled /health and returned
+    the fixed string "LoRA rank experiment: baseline recorded (r=16 live)".
+    That string was logged 184 times while no baseline was written anywhere —
+    the claim was untrue, and because the result never varied the rotation
+    looked healthy. The real A/B now lives in kta_lora_rank_probe.py (locally
+    cached Qwen2.5-0.5B-Instruct, CPU) and this reads what that artifact says,
+    or admits that nothing was measured.
+    """
+    art = os.path.join(T, "kta_artifacts", "lora_rank_result.json")
     try:
-        if h is None:
-            raise last_err
-        return {
-            "action": "LoRA rank experiment: baseline recorded (r=16 live)",
-            "result": f"current server: {h.get('tools')} tools, loss history in meta_state",
-            "measurable": True,
-            "next": "when GPU training runs next, try r=8 variant and compare loss-drop",
-        }
-    except Exception as e:
-        return {"action": "LoRA rank experiment", "result": f"server down: {e}",
+        with open(art, encoding="utf-8") as fh:
+            d = json.load(fh)
+    except (OSError, ValueError) as e:
+        return {"action": "LoRA rank experiment",
+                "result": f"no artifact ({type(e).__name__}) — "
+                          f"run kta_lora_rank_probe.py to measure",
                 "measurable": False}
+    if not d.get("ok"):
+        return {"action": "LoRA rank experiment",
+                "result": f"probe reported: {str(d.get('error'))[:120]}",
+                "measurable": False, "artifact": art}
+    arms = d.get("arms") or []
+    return {"action": f"LoRA rank A/B, arms r={[a['rank'] for a in arms]}",
+            "result": str(d.get("result"))[:160],
+            "measurable": True, "artifact": art}
+
 
 def experiment_predict_world():
     """Insight: 'project future states'. Add a prediction to the world model.
@@ -471,7 +465,14 @@ def kta_cycle():
         n = int(open(rot_file, encoding="utf-8").read().strip() or 0)
     with open(rot_file, "w", encoding="utf-8") as f:
         f.write(str(n + 1))
-    experiment = EXPERIMENTS[n % len(EXPERIMENTS)][1]
+    # topic hit on the QUESTION wins; the round-robin still
+    # guarantees every arm gets reached (fixed 23.09.26)
+    q = insight["question"].lower()
+    experiment = next((fn for keys, fn in EXPERIMENTS
+                       if any(re.search(r"\b" + re.escape(k) + r"\b", q)
+                              for k in keys)), None)
+    if experiment is None:
+        experiment = EXPERIMENTS[n % len(EXPERIMENTS)][1]
 
     try:
         result = experiment()
