@@ -15,6 +15,7 @@ Safety rails:
 """
 import os
 import json, os, sys, time, subprocess, shutil, datetime, re
+import ast
 from pathlib import Path
 
 def _training_dir():
@@ -68,6 +69,178 @@ def py_compile_ok(path):
     r = run([sys.executable, "-m", "py_compile", path])
     return r.returncode == 0, r.stderr[:300]
 
+
+# ---- Text I/O that preserves the target's own line endings ----
+#
+# apply_and_test() used to open() in text mode, so on Windows every LF was
+# translated to CRLF on write. Four of the six SAFE_TARGETS are pure LF
+# (online_learning, analogy_engine, reasoning_loop, deep_task), so the FIRST
+# applied proposal would have rewritten the whole file's line endings: a
+# 237-line CRLF diff dressed up as a one-line improvement. Measured, not assumed.
+
+_CR = chr(13)
+_LF = chr(10)
+_CRLF = _CR + _LF
+
+
+def _eol_of(path):
+    """The dominant line ending of a file on disk: CRLF or LF."""
+    try:
+        with open(path, "rb") as f:
+            raw = f.read()
+    except OSError:
+        return _LF
+    crlf = raw.count(_CRLF.encode("utf-8"))
+    lone_lf = raw.count(_LF.encode("utf-8")) - crlf
+    return _CRLF if (crlf and not lone_lf) else _LF
+
+
+def _read_text(path):
+    """Read UTF-8 and normalise to LF. All in-memory text is LF-only."""
+    with open(path, "rb") as f:
+        return f.read().decode("utf-8", errors="replace").replace(_CRLF, _LF)
+
+
+def _write_text(path, text, eol=_LF):
+    """Write UTF-8, expanding LF to `eol`. Untouched lines stay byte-identical,
+    so an applied proposal shows up as a real one-line diff."""
+    norm = text.replace(_CRLF, _LF)
+    if eol != _LF:
+        norm = norm.replace(_LF, eol)
+    with open(path, "wb") as f:
+        f.write(norm.encode("utf-8"))
+
+
+def _module_bindings(text):
+    """Names bound at MODULE scope: imports, assignments, defs, loop targets.
+
+    Input to the binding-survival gate. Function and class bodies are NOT
+    descended into: the gate exists to catch an edit that deletes a module-level
+    symbol the rest of the module depends on, and a rule that legitimately
+    rewrites a function body must not trip it.
+
+    Returns an empty set on a syntax error (the compile test reports that).
+    """
+    names = set()
+    try:
+        tree = ast.parse(text)
+    except SyntaxError:
+        return names
+
+    def targets(t):
+        return {n.id for n in ast.walk(t) if isinstance(n, ast.Name)}
+
+    def walk(body):
+        nonlocal names
+        for node in body:
+            if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef,
+                                 ast.ClassDef)):
+                names.add(node.name)
+            elif isinstance(node, ast.Import):
+                for a in node.names:
+                    names.add(a.asname or a.name.split(".")[0])
+            elif isinstance(node, ast.ImportFrom):
+                for a in node.names:
+                    names.add(a.asname or a.name)
+            elif isinstance(node, ast.Assign):
+                for t in node.targets:
+                    names |= targets(t)
+            elif isinstance(node, (ast.AnnAssign, ast.AugAssign)):
+                names |= targets(node.target)
+            elif isinstance(node, (ast.For, ast.AsyncFor)):
+                names |= targets(node.target)
+                walk(node.body)
+                walk(node.orelse)
+            elif isinstance(node, ast.With):
+                for item in node.items:
+                    if item.optional_vars is not None:
+                        names |= targets(item.optional_vars)
+                walk(node.body)
+            elif isinstance(node, ast.Try):
+                walk(node.body)
+                for h in node.handlers:
+                    if h.name:
+                        names.add(h.name)
+                    walk(h.body)
+                walk(node.orelse)
+                walk(node.finalbody)
+            elif isinstance(node, (ast.If, ast.While)):
+                walk(node.body)
+                walk(node.orelse)
+    walk(tree.body)
+    return names
+
+
+def _import_statements(tree):
+    """Single-line module-level imports as (lineno, alias_texts, bound_names).
+
+    Multi-line (parenthesised) imports are skipped: editing those safely is more
+    than a line rewrite, and the current SAFE_TARGETS contain none.
+    """
+    out = []
+    for node in tree.body:
+        if not isinstance(node, (ast.Import, ast.ImportFrom)):
+            continue
+        if getattr(node, "end_lineno", node.lineno) != node.lineno:
+            continue
+        texts, bound = [], []
+        for a in node.names:
+            texts.append(a.name + (" as " + a.asname if a.asname else ""))
+            if isinstance(node, ast.Import):
+                bound.append(a.asname or a.name.split(".")[0])
+            else:
+                bound.append(a.asname or a.name)
+        out.append((node.lineno, texts, bound))
+    return out
+
+
+def _dedupe_import_proposals(content):
+    """P5: a name imported twice at module level can lose one binding.
+
+    Verified against the real targets first: four of the six bind `os` twice --
+    a bare `import os` line plus `os` inside the comma-import on the next line.
+    Only the LATER occurrence is dropped, and only from a statement that keeps
+    at least one alias, so the name always stays bound.
+    """
+    try:
+        tree = ast.parse(content)
+    except SyntaxError:
+        return []
+    lines = content.split(_LF)
+    stmts = _import_statements(tree)
+    counts = {}
+    for _lineno, _texts, bound in stmts:
+        for b in bound:
+            counts[b] = counts.get(b, 0) + 1
+    dup = {b for b, c in counts.items() if c > 1}
+    if not dup:
+        return []
+
+    proposals = []
+    first_seen = {}
+    for lineno, texts, bound in stmts:
+        line = lines[lineno - 1]
+        if "import" not in line:
+            continue
+        for idx, b in enumerate(bound):
+            if b not in dup:
+                continue
+            if b not in first_seen:
+                first_seen[b] = lineno
+                continue
+            if len(texts) < 2:
+                continue
+            prefix = line[:line.rindex("import") + len("import")]
+            kept = [t for i, t in enumerate(texts) if i != idx]
+            new_line = prefix + " " + ", ".join(kept)
+            if new_line == line:
+                continue
+            proposals.append(("dedupe-import", line, new_line,
+                              b + " imported twice at module level"))
+            break
+    return proposals
+
+
 # ---- Improvement ideas (the 2B model proposes; rules validate) ----
 
 def propose_improvement(target, content):
@@ -99,6 +272,10 @@ def propose_improvement(target, content):
         proposals.append(("capacity", m2.group(0), "max_tokens=200",
                           "small max_tokens limits answer quality"))
 
+    # P5: duplicate module-level import (dead binding, zero behaviour change)
+    if target.endswith(".py"):
+        proposals.extend(_dedupe_import_proposals(content))
+
     # P3: missing error context in exception handlers
     if "except Exception as e:" in content and content.count("print(f\"") < 3:
         proposals.append(("logging", "except Exception as e:",
@@ -120,14 +297,14 @@ def propose_improvement(target, content):
 def apply_and_test(target, proposal, live_path, sandbox_path):
     """Apply proposal to sandbox, run all tests, return (ok, reason)."""
     kind, old, new, reason = proposal
-    src = open(live_path, encoding="utf-8").read()
+    src = _read_text(live_path)
+    eol = _eol_of(live_path)
     if old not in src:
         return False, f"pattern not found: {old[:50]}"
     patched = src.replace(old, new, 1)
     if patched == src:
         return False, "no change made"
-    with open(sandbox_path, "w", encoding="utf-8") as f:
-        f.write(patched)
+    _write_text(sandbox_path, patched, eol)
 
     # TEST 1: compile
     ok, err = py_compile_ok(sandbox_path)
@@ -142,6 +319,15 @@ def apply_and_test(target, proposal, live_path, sandbox_path):
     # TEST 3: functional — for loop scripts, verify the loop() function exists
     if "def loop" in patched and "def loop" not in src:
         return False, "loop function lost"
+
+    # TEST 4: binding survival -- the general form of the historical P2 bug.
+    # All three checks above pass on a rewrite that DELETED CYCLE_SECONDS (the
+    # file still compiled, still parsed, still defined loop()), so the gate has
+    # to test the thing the rule is named after: that the module-level symbols
+    # it edited still exist.
+    lost = _module_bindings(src) - _module_bindings(patched)
+    if lost:
+        return False, "binding lost: " + str(sorted(lost)[:5])
     return True, "all tests passed"
 
 def improve_once():
@@ -158,7 +344,7 @@ def improve_once():
     if not os.path.exists(live_path):
         return {"target": target, "status": "skip", "reason": "file missing"}
 
-    content = open(live_path, encoding="utf-8").read()
+    content = _read_text(live_path)
     proposals = propose_improvement(target, content)
     if not proposals:
         # Log it. Returning silently made a rotation that produced nothing
