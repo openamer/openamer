@@ -6635,3 +6635,65 @@ def test_citation_record_weld_requires_BOTH_parts():
     assert not BS.is_citation_record_weld(assignment_only), assignment_only
     scalar_only = ("Set pages = {23934-23949} with year = {2025} for the record.")
     assert not BS.is_citation_record_weld(scalar_only), scalar_only
+
+# --- class 159: a security-advisory listing card welded to its pager --------
+_IL159_LEAKS = (
+    "Critical Authenticated Arbitrary Data Export Theft via Mass Assignment "
+    "in sendFileMessage GHSA-fhc2-x8cp-c5ch published May 14, 2026 by "
+    "julio-rocketchat High Previous 1 2 3 Next Learn more about advis",
+)
+# The SAME page shape WITHOUT the advisory date: `_is_nav_list` catches it.
+_IL159_DATE_FREE = (
+    "Critical Authenticated Arbitrary Data Export Theft via Mass Assignment "
+    "in sendFileMessage GHSA-fhc2-x8cp-c5ch by julio-rocketchat High "
+    "Previous 1 2 3 Next Learn more about advisories."
+)
+# Real knowledge that merely CITES an advisory -> must survive.
+_IL159_CONTROLS = (
+    "The advisory GHSA-fhc2-x8cp-c5ch affects Rocket.Chat sendFileMessage: an "
+    "authenticated user can export arbitrary data through a mass-assignment "
+    "bug, so upgrading to the patched release is required.",
+    "We tracked GHSA-aaaa-bbbb-cccc as High severity and added a regression "
+    "test that reproduces the mass-assignment export before the upgrade.",
+    "Previous 1 2 3 Next is how the docs archive paginates its older releases.",
+    "The changelog lists Previous 1 2 3 Next links to older releases.",
+    "Learn more about advisory boards and their role in governance at the end.",
+    "An advisory published Jan 3, 2025 by GitHub rates this as High severity.",
+)
+
+
+def test_advisory_listing_card_is_gated_on_both_paths():
+    """An advisory listing card welded to its pager is chrome on BOTH gates."""
+    import internet_learner as IL
+    import buffer_store as BS
+    for leak in _IL159_LEAKS:
+        assert IL.is_advisory_listing_card(leak), leak
+        assert BS.is_advisory_listing_card(leak), leak
+        assert IL._is_junk(leak), leak
+        assert BS.is_junk(leak), leak
+    for ctl in _IL159_CONTROLS:
+        assert not IL.is_advisory_listing_card(ctl), ctl
+        assert not BS.is_advisory_listing_card(ctl), ctl
+        assert not IL._is_junk(ctl), ctl
+        assert not BS.is_junk(ctl), ctl
+
+
+def test_advisory_listing_card_requires_BOTH_parts():
+    """Each part alone is insufficient -- the rejection is the contract."""
+    import buffer_store as BS
+    id_only = ("The advisory GHSA-fhc2-x8cp-c5ch was rated High and affects "
+               "the sendFileMessage handler in Rocket.Chat.")
+    assert not BS.is_advisory_listing_card(id_only), id_only
+    pager_only = "Previous 1 2 3 Next links paginate the archive."
+    assert not BS.is_advisory_listing_card(pager_only), pager_only
+
+
+def test_the_advisory_date_is_what_disarms_the_nav_list_rule():
+    """Why class 159 exists: the date's comma beats `_is_nav_list` (159)."""
+    import internet_learner as IL
+    # the date-free page shape IS caught by the pre-existing rule
+    assert IL._is_nav_list(_IL159_DATE_FREE), _IL159_DATE_FREE
+    # the live shape is NOT -- one comma from the advisory date disarms it
+    assert not IL._is_nav_list(_IL159_LEAKS[0]), _IL159_LEAKS[0]
+    # ... and that is exactly what class 159 covers
+    assert IL.is_advisory_listing_card(_IL159_LEAKS[0]), _IL159_LEAKS[0]

@@ -4483,6 +4483,71 @@ def is_citation_record_weld(text):
     return False
 
 
+
+# A GitHub-advisory / security-portal INDEX-CARD chrome row (class 159,
+# 23.09.26). Live: cycle_d_docs AND cycle_c_github stored, verbatim,
+# twice in the buffer tail:
+#   "Critical Authenticated Arbitrary Data Export Theft via Mass Assignment
+#    in sendFileMessage GHSA-fhc2-x8cp-c5ch published May 14, 2026 by
+#    julio-rocketchat High Previous 1 2 3 Next Learn more about advis"
+# -- an advisories-LIST page: one entry's TITLE welded to its identifier,
+# its publication date, its reporter handle, its severity badge, the
+# list's own `Previous 1 2 3 Next` pager and the trailing CTA, truncated
+# mid-word by the extractor. 235 chars with digits -> the >=90 long-prose
+# trust and the technical-signal gate both let it through.
+#
+# The near-miss that explains WHY it leaked: the SAME page shape WITHOUT
+# the date passes the pre-existing `_is_nav_list` (>=6 TitleCase tokens,
+# no comma). The advisory date brings a COMMA, and one comma is enough to
+# disarm that rule: measured 23.09.26 -- `_is_nav_list` is True on the
+# date-free form and False on the live one. So the discriminator cannot
+# be the nav-list rule; it is the SECURITY-PORTAL CARD, keyed on the
+# conjunction of
+#     (1) a vulnerability advisory ID (GHSA-xxxx-xxxx-xxxx) -- an
+#         identifier shape an advisory listing carries, and
+#     (2) the listing's own BARE numeric pager (`Previous 1 2 3 Next`),
+#         deliberately the numeric form, NOT class 58's
+#         `Previous Page N of M Next`, because that is the form this page
+#         ships.
+#
+# Every PART alone is measured and INSUFFICIENT -- do not re-add any:
+#   - the GHSA-id alone: it is also the standard way prose CITES an
+#     advisory, and 1 asserted gate-test literal carries the shape.
+#   - the bare pager alone: 2 hostile prose FPs
+#     ("The changelog lists Previous 1 2 3 Next links to older releases.")
+#     plus 1 asserted gate-test literal.
+#   - GHSA AND a severity badge: 26 hits, but 2 of 3 real citing-prose
+#     controls trip it ("We tracked GHSA-aaaa-bbbb-cccc as High severity").
+#   - GHSA AND `by <handle>`: 1 asserted gate-test literal.
+#   - the pager AND a published-date: 3 of 4 both-part prose controls.
+#   - the CTA wording alone: ordinary English.
+# Measured with the conjunction (GHSA-id AND bare numeric pager) over
+# online_buffer / buffer_junk / internet_learn_log / longterm_episodes /
+# asserted gate-test literals: 2 / 26 / 0 / 0 / 1. Both buffer hits ARE
+# the leak family; the 1 test literal is the pre-existing GHSA string the
+# test already documents as chrome gated by `_is_nav_list` ("a different
+# gate"), so it is the same shape, not a false positive. 0 hits in 3 real
+# citing-prose controls and 0 in 5 both-part prose controls.
+_ADVISORY_ID_RE = re.compile(
+    r"\bGHSA-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}\b",
+    re.IGNORECASE)
+_BARE_NUMERIC_PAGER_RE = re.compile(r"\bPrevious\s+(?:\d+\s+){1,9}Next\b")
+
+
+def is_advisory_listing_card(text):
+    """True for a security-advisory listing card welded to its pager (159).
+
+    Structural conjunction of an advisory ID and the listing's own bare
+    numeric pager; no topic words and no vendor literals -- see the block
+    comment above `_ADVISORY_ID_RE` for the measurement.
+    """
+    t = text or ""
+    if not t:
+        return False
+    return bool(_ADVISORY_ID_RE.search(t)
+                and _BARE_NUMERIC_PAGER_RE.search(t))
+
+
 def _is_junk(text):
     """True if `text` looks like boilerplate rather than actual content."""
     t = (text or "").strip()
@@ -4876,6 +4941,9 @@ def _is_junk(text):
         return True
     # a BibTeX citation record welded to a license footer (class 158, 23.09.26)
     if is_citation_record_weld(t):
+        return True
+    # a security-advisory listing card welded to its pager (class 159, 23.09.26)
+    if is_advisory_listing_card(t):
         return True
     return bool(is_glued_motif(t))
 
