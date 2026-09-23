@@ -343,6 +343,33 @@ def experiment_competitor_gap():
     # alone -- verified by the test that pins exactly that ordering.
     _MONEY = re.compile(r"\b(bills?|spend|spent)\b", re.I)
     is_cost_datapoint = len(_CUR.findall(signal)) >= 2 and bool(_MONEY.search(signal))
+    # --- the latest row may be a PROJECT STATUS LOG, not a capability ---------
+    # Grown from a REAL signal (23.09.26): the competitor pipeline landed
+    #   "Brain -- Desktop AI Agent: The flagship persona running on a i9-13900KF +
+    #    RTX 4080 + 128 GB DDR5 workstation: Phase 1 (2024-2025): QQ group AI on
+    #    NoneBot2 + Volcengine ARK + KLING TTS, co-built with @Herdeny
+    #    Phase 2 (2025-now): OpenClaw Agent OS 2026."
+    # This is neither a headline nor a cost datapoint nor a capability
+    # description: it is a build/status TIMELINE ("Phase 1 (2024-2025) ... Phase 2
+    # (2025-now) ...") whose only capability-shaped nouns (NoneBot2, KLING TTS,
+    # OpenClaw Agent OS) belong to third-party products we do not compete on, and
+    # whose "Desktop AI Agent" is a project NAME, not a capability sentence.
+    # Measured over the 39 competitor rows this function reads (scoring `a` only,
+    # which is all that `signal` ever is): the predicate trips 1/39 and that row
+    # IS this signal -> 0 mis-maps. Its echo against its own source question is
+    # 0.17 at 251 chars, so the headline discriminator (echo >= 0.6 AND
+    # len(a) < 160) would leave it alone too -- this is a class the lexicon must
+    # NOT be grown for.
+    # Rejected, all measured 23.09.26: `desktop ai agent` 1/39, `agent os` 1/39,
+    # `openclaw` 1/39, `workstation` 1/39, `persona` 1/39 -- every one of them is
+    # a proper noun or a project label that would map a status log onto a
+    # capability, i.e. a mis-map, so no token is added for this row.
+    # Checked AFTER the lexicon, exactly like the cost predicate: a capability
+    # row that happens to mention a phase timeline must reach the lexicon first.
+    _PHASE = re.compile(
+        r"\bphase\s*\d+\b[^()]{0,40}\(\s*\d{4}\s*[-\u2013\u2014]\s*(?:\d{4}|now)\s*\)",
+        re.I)
+    is_project_status = bool(_PHASE.search(signal))
     if hint:
         gap = (f"{hint}: competitor signals it; {measured} — monolithic, "
                f"no per-tool module boundary")
@@ -359,6 +386,18 @@ def experiment_competitor_gap():
         result = (f"signal NOT mappable: '{signal[:60]}' | {measured} — cost "
                   f"datapoint ({len(_CUR.findall(signal))} currency amounts + money "
                   f"word), no capability sentence to map; extraction-side gap, not a "
+                  f"lexicon gap")
+    elif is_project_status:
+        gap = (f"no mappable capability in latest signal ({measured}) — "
+               f"signal is a project status log / build timeline (dated phase "
+               f"markers naming third-party stacks), not a product capability "
+               f"description")
+        fix = ("carry a capability sentence alongside the status log in the "
+               "competitor pipeline; a build timeline is not a lexicon gap and no "
+               "token should be invented to map it onto one")
+        result = (f"signal NOT mappable: '{signal[:60]}' | {measured} — "
+                  f"project status log (dated phase markers, third-party stacks), "
+                  f"no capability sentence to map; extraction-side gap, not a "
                   f"lexicon gap")
     else:
         gap = (f"no mappable capability in latest signal ({measured}) — "
