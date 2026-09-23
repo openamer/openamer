@@ -6138,13 +6138,48 @@ _IL142_CONTROLS = [
 ]
 
 
+_IL142_STRIPPED = {
+    # index -> the prose that must survive once the header stack is cut.
+    # Measured 22.09.26: the strip rescues 24 of the 60 class-142 rows across
+    # buffer_junk.jsonl + buffer_junk_archive.jsonl; the rest keep refusing.
+    0: "PocketOS, a company that designs software for car rental businesses, had "
+       "its entire database mistakenly wiped by an AI agent .",
+    1: "NVIDIA quietly dropped the memory footprint.",
+}
+
+
 def test_article_byline_chrome_gated_on_both_paths():
+    """An article byline/dateline header stack is refused by BOTH gates.
+
+    Class 142 was added 22.09.26 as a pure reject predicate. That over-rejected:
+    24 of 60 refused rows carry REAL prose behind the header, and the cycle only
+    logged the bare "shallow + deep read both gated" for them. The header is now
+    STRIPPED when the prose behind it survives -- the same doctrine this repo
+    already applies to every other header class -- so the raw form is still
+    refused while `_clean_insight` returns the salvaged lede.
+    """
     import internet_learner as IL
     import buffer_store as BS
-    for leak in _IL142_LEAKS:
+    for i, leak in enumerate(_IL142_LEAKS):
         assert IL._is_junk(leak), leak
-        assert IL._clean_insight(leak) == "", leak
-        assert BS.is_junk(leak), leak
+        assert BS.is_junk(leak), leak          # the raw leak is still refused
+        cleaned = IL._clean_insight(leak)
+        if i in _IL142_STRIPPED:
+            assert cleaned == _IL142_STRIPPED[i], cleaned
+        else:
+            assert cleaned == "", leak         # header-only rows stay refused
+
+
+def test_article_byline_chrome_strip_is_precise():
+    """The strip must not fire on prose that merely cites a date or an author.
+
+    `region=100` is the guard: measured on 6,128 real episode rows the strip
+    fires 0 times, and 0 of the 5 prose controls change. Without it (region=200)
+    it fired on 58 rows and broke 36. Do not widen the window.
+    """
+    import internet_learner as IL
+    for ctl in _IL142_CONTROLS:
+        assert IL._strip_article_byline_header(ctl) == ctl, ctl
 
 
 def test_article_byline_chrome_controls_survive_both_gates():
@@ -6153,6 +6188,76 @@ def test_article_byline_chrome_controls_survive_both_gates():
     for ctl in _IL142_CONTROLS:
         assert not IL._is_junk(ctl), ctl
         assert not BS.is_junk(ctl), ctl
+
+
+_IL145_LEAKS = [
+    # the two rows STORED in the live buffer on 22.09.26 -- both passed BOTH
+    # gates because the class-142 vocabulary had no spelled-out read-time weld
+    # and the dateline had no ordinal day suffix.
+    "Category Agents Product Claude apps Date November 10, 2025 Reading time "
+    "5 min Share https://claude.",
+    "When Models and Chatbots Make Mistakes \U0001f7e2 This article is rated "
+    "easy Reading Time: 5 minutes Last updated on March 6th, 2025 Sander "
+    "Schulhoff large language models (LLMs) like ChatGPT and GPT-4 have "
+    "transformed how we interact with technology.",
+]
+
+_IL145_CONTROLS = [
+    # REAL prose that opens with the spelled-out read time -- this is the row
+    # that killed the UNANCHORED form. No header label follows the weld, so
+    # the lookahead keeps it learnable.
+    "Reading time: 5 min per 1,000 tokens is the budget we target for the "
+    "summarizer, measured on May 3, 2026.",
+    # prose that MENTIONS a reading time inside a sentence
+    "The team published an article on April 29, 2026 explaining how prompt "
+    "injection bypasses tool sandboxes; the reading time was about 8 minutes.",
+    "We measured the reading time of the pipeline: 8 min for 4,000 tokens, so "
+    "batching cuts it to 2 min.",
+    # prose carrying an ORDINAL dateline, which the widened dateline now sees
+    "The model was evaluated on March 12th, 2026 and reached 0.81 recall at "
+    "5k pairs, a 12% gain over the groupwise INT4 baseline.",
+    # a prose row that carries BOTH the widened affordance vocabulary AND an
+    # ordinal dateline, but opens as a sentence -- must stay learnable
+    "The write-up is dated March 3rd, 2025 and its Reading time 6 min claim "
+    "refers to the vLLM benchmark, which reached 41 tok/s at int4.",
+]
+
+
+def test_ordinal_dateline_and_spelled_read_time_gated_on_both_paths():
+    """Class 145: the spelled-out read-time weld plus an ORDINAL dateline.
+
+    Live 22.09.26 two rows were STORED (not just refused) -- an article header
+    with "Reading time 5 min Share <url>" and one with "This article is rated
+    easy Reading Time: 5 minutes Last updated on March 6th, 2025 <lede>". Both
+    satisfy the long-prose length trust AND the technical-signal gate (digits),
+    so the page's own affordance is the only reliable discriminator.
+
+    Asserted on BOTH gates: `buffer_store.is_junk` must refuse the same rows the
+    learner refuses, or the cycle burns itself on a write the writer drops.
+    """
+    import internet_learner as IL
+    import buffer_store as BS
+    for leak in _IL145_LEAKS:
+        assert IL._is_article_byline_chrome(leak), leak
+        assert IL._is_junk(leak), leak
+        assert BS.is_junk(leak), leak
+
+
+def test_spelled_read_time_controls_survive_both_gates():
+    """The UNANCHORED weld was MEASURED-AND-REJECTED.
+
+    Without the header-label lookahead the pattern truncates real prose that
+    opens with "Reading time: 5 min per 1,000 tokens is the budget ...". The
+    anchor is what makes the weld a page-affordance test instead of a topic word
+    (the class-135/136 TitleCase-continuation doctrine).
+    """
+    import internet_learner as IL
+    import buffer_store as BS
+    for ctl in _IL145_CONTROLS:
+        assert not IL._is_article_byline_chrome(ctl), ctl
+        assert not IL._is_junk(ctl), ctl
+        assert not BS.is_junk(ctl), ctl
+        assert IL._clean_insight(ctl), ctl
 
 
 # class 143 (22.09.26): a SINGLE Hacker-News-style feed row -- submitter
