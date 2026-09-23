@@ -57,6 +57,53 @@ def test_fixed_job_leaves_report():
            r["failed"][0]["error"], "fixed job must drop out once jobs.json refreshes"
 
 
+def test_home_resolution_rejects_msys_and_scratch_dirs():
+    """A leaked OPENAMER_HOME must not empty the job store.
+
+    Measured 23.09.26: git-bash exports OPENAMER_HOME in MSYS form
+    (/c/Users/<u>/openamer-laptop). Native Windows Python does not treat
+    /c/... as absolute, so Path() kept it relative and JOBS resolved to
+    \\c\\Users\\... — which never exists, so analyze() reported 0 jobs and
+    test_analyze_shape failed with the env var set and passed with it unset.
+    A scratch dir (right shape, no install markers) empties it the same way.
+    Both must fall back to the real install root.
+    """
+    import importlib.util
+    from pathlib import Path as _P
+
+    def resolve(home):
+        old = os.environ.get("OPENAMER_HOME")
+        if home is None:
+            os.environ.pop("OPENAMER_HOME", None)
+        else:
+            os.environ["OPENAMER_HOME"] = home
+        try:
+            spec = importlib.util.spec_from_file_location(
+                "_so_probe", str(_P(__file__).parent / "session_outcome.py"))
+            mod = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(mod)
+            return mod
+        finally:
+            if old is None:
+                os.environ.pop("OPENAMER_HOME", None)
+            else:
+                os.environ["OPENAMER_HOME"] = old
+
+    install = str(so._HOME)  # the real install root, resolved at import
+    for leak in ("/c/Users/damir/AppData/Local/openamer-laptop",  # MSYS form
+                 "C:/Users/damir/AppData/Local/Temp",            # scratch, no markers
+                 "C:/definitely/not/here"):                      # phantom
+        mod = resolve(leak)
+        assert str(mod._HOME) == install, f"{leak} leaked into _HOME={mod._HOME}"
+        assert os.path.isdir(str(mod._HOME)), f"{leak} -> non-existent {mod._HOME}"
+        assert os.path.exists(str(mod.JOBS)), f"{leak} -> missing job store"
+
+    # a REAL install passed explicitly (Windows form) is still honoured
+    mod = resolve(install.replace("/", os.sep))
+    assert str(mod._HOME) == install
+    assert os.path.exists(str(mod.JOBS))
+
+
 def run_all():
     tests = [(n, f) for n, f in sorted(globals().items()) if n.startswith("test_") and callable(f)]
     passed = 0
