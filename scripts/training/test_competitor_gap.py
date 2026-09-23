@@ -82,9 +82,14 @@ def test_gap_is_derived_not_hardcoded():
         b = kta.experiment_competitor_gap()
 
         assert a["identified_gap"] != b["identified_gap"], (a, b)
-        # lexicon is ordered — 'modular' wins over the later 'sdk' token
+        # token selection became specificity-based on 17.09.26 (longest token
+        # wins, e6e94a191). MEASURED on these exact fixtures: Devin snippet
+        # `persistent memory` 17 > `sandbox` 7 > `memory` 6; OpenHands snippet
+        # `modular` 7 > `plugin` 6 > `sdk` 3. The contract this test pins is
+        # unchanged -- two different signals derive two different, non-hardcoded
+        # gaps -- so assert the measured winners, not the old declaration order.
         assert "modular tool packaging" in a["identified_gap"], a["identified_gap"]
-        assert "sandbox" in b["identified_gap"].lower(), b["identified_gap"]
+        assert "persistent memory" in b["identified_gap"].lower(), b["identified_gap"]
         # the canned string from the buggy version must be gone
         assert "modular SDK design — our tool_server.py is monolithic" not in a["identified_gap"]
     finally:
@@ -155,7 +160,12 @@ def test_real_capability_snippet_maps_instead_of_being_called_junk():
         r = kta.experiment_competitor_gap()
         assert r["measurable"] is True, r
         assert "NOT mappable" not in r["result"], r["result"]
-        assert "parallel multi-agent execution" in r["identified_gap"], r["identified_gap"]
+        # MEASURED on this fixture under the specificity rule: `code correctness`
+        # 16 > `executable spec` 15 > `parallel agent` 14 > `validate code` 13 >
+        # `unit test` 9. The contract is that a genuine capability description
+        # resolves to *a* capability rather than being called junk; the
+        # longest-match rule makes that deterministic.
+        assert "automated code-conformance check" in r["identified_gap"], r["identified_gap"]
     finally:
         kta.T = old
 
@@ -194,6 +204,117 @@ def test_latest_signal_wins_and_junk_lines_tolerated():
     finally:
         kta.T = old
 
+def test_bare_multi_agent_no_longer_maps_an_unrelated_row():
+    """Regression guard for the retired token -- FAILS on the pre-fix module.
+
+    Measured 23.09.26 over the 40 competitor rows this function reads (scoring
+    `a` only, which is all `signal` ever is): the bare token `multi-agent`
+    matched 5/40 and 4 were mis-maps. A row that only says "multi-agent" in
+    passing describes no capability the phrase names, so the honest report is a
+    lexicon gap -- not an invented "multi-agent orchestration" gap.
+    """
+    old = kta.T
+    try:
+        kta.T = _tmp_env([
+            ("Competitor intelligence: agent news",
+             "Teams running multi-agent setups report growing operational "
+             "complexity across their toolchains."),
+        ], tool_server_src=FAKE_TOOL_SERVER)
+        r = kta.experiment_competitor_gap()
+        assert r["measurable"] is True, r
+        assert "NOT mappable" in r["result"], r["result"]
+        assert "no mappable capability" in r["identified_gap"], r["identified_gap"]
+        assert "lexicon gap" in r["result"], r["result"]
+    finally:
+        kta.T = old
+
+
+def test_specific_multi_agent_phrases_map_their_own_rows():
+    """The two phrases that replaced the generic `multi-agent` must still map.
+
+    Measured 23.09.26 over the 40 competitor rows: `multi-agent modes` 1/40
+    (the ANUS single/multi-agent switching row) and `multi-agent systems` 1/40
+    (the AgentTool row), each with 0 mis-maps -- versus the bare token's 5/40
+    with 4 mis-maps. Retiring the generic word must not lose these signals.
+    """
+    old = kta.T
+    try:
+        kta.T = _tmp_env([
+            ("Competitor intelligence: agent orchestration",
+             "Context compaction, token counters, and AgentTool for multi-agent "
+             "systems Open-Source AI Orchestration for Production-Grade Agents"),
+        ], tool_server_src=FAKE_TOOL_SERVER)
+        r = kta.experiment_competitor_gap()
+        assert r["measurable"] is True, r
+        assert "multi-agent orchestration" in r["identified_gap"], r["identified_gap"]
+        assert "NOT mappable" not in r["result"], r["result"]
+    finally:
+        kta.T = old
+
+
+def test_cost_datapoint_is_named_not_mapped_to_a_capability():
+    """Live 23.09.26: the latest competitor row was a PRICE observation.
+
+    "The monthly bills developers share on Reddit and GitHub are staggering --
+    $1,600, $2,500, even $5,000+ for teams running multi-agent workflows on
+    frontier models."
+
+    It is not a capability description. Measured over the 40 competitor rows:
+    the cost predicate (>= 2 currency amounts AND a money word) trips 2/40, and
+    after the lexicon runs only this row is left.
+    """
+    old = kta.T
+    try:
+        kta.T = _tmp_env([
+            ("Competitor intelligence: An AI coding agent, used to write code, "
+             "needs to reduce your maintenance costs",
+             "The monthly bills developers share on Reddit and GitHub are "
+             "staggering \u2014 $1,600, $2,500, even $5,000+ for teams running "
+             "multi-agent workflows on frontier models."),
+        ], tool_server_src=FAKE_TOOL_SERVER)
+        r = kta.experiment_competitor_gap()
+        assert r["measurable"] is True, r
+        assert "cost/price datapoint" in r["identified_gap"], r["identified_gap"]
+        assert "cost datapoint" in r["result"], r["result"]
+        # the fix points at the PIPELINE (carry a capability sentence) and does
+        # not ask for a new lexicon token; the result names the extraction side
+        assert "capability sentence" in r["proposed_fix"], r["proposed_fix"]
+        assert "grow the capability lexicon" not in r["proposed_fix"], r["proposed_fix"]
+        assert "not a lexicon gap" in r["result"], r["result"]
+        assert "extraction-side gap" in r["result"], r["result"]
+        # the signal is still quoted verbatim, never silently dropped
+        assert "$1,600" in r["insight_analyzed"], r["insight_analyzed"]
+    finally:
+        kta.T = old
+
+
+def test_cost_row_carrying_a_capability_still_maps():
+    """Guard the OTHER cost row: a capability sentence with prices attached.
+
+    The 22.09.26 `edit across files` row carries 4 currency amounts
+    ("Pro $20/mo (annual $17); Max $100-$200/mo") AND a capability description.
+    It must keep mapping -- which is why the cost predicate is checked AFTER
+    the lexicon, never before. A predicate that swallowed it would lose a real
+    capability signal.
+    """
+    old = kta.T
+    try:
+        kta.T = _tmp_env([
+            ("Competitor intelligence: agent pricing tiers",
+             "Engineers who want an agent to autonomously plan, edit across "
+             "files and run tests on complex real-world work, and will pay for "
+             "depth Pro $20/mo (annual $17); Max $100-$200/mo"),
+        ], tool_server_src=FAKE_TOOL_SERVER)
+        r = kta.experiment_competitor_gap()
+        assert r["measurable"] is True, r
+        # The invariant this test pins is the ORDERING: a cost-bearing row that
+        # also carries a capability sentence must reach the lexicon first. What
+        # it maps to depends on the lexicon (and is pinned elsewhere); what must
+        # never happen is the cost predicate claiming the row.
+        assert "cost datapoint" not in r["result"], r["result"]
+        assert "cost/price datapoint" not in r["identified_gap"], r["identified_gap"]
+    finally:
+        kta.T = old
 
 if __name__ == "__main__":
     fails = 0
