@@ -240,8 +240,8 @@ TOOLSETS = {
     },
     
     "code_execution": {
-        "description": "Run Python scripts that call tools programmatically (reduces LLM round trips)",
-        "tools": ["execute_code"],
+        "description": "Run Python scripts that call tools programmatically (reduces LLM round trips), with an option to keep one interpreter alive across calls",
+        "tools": ["execute_code", "code_kernel"],
         "includes": []
     },
     
