@@ -591,7 +591,7 @@ _JUNK_RE = re.compile(
     # (counter-cases measured).
     r"released\s+[^\n]{0,60}?\(github releases\)|show original\s+previous slide|"
 
-    # a vLLM server LOG LINE (class 150, 23.09.26): the docs cycle stored
+    # a vLLM server LOG LINE (class 155, 23.09.26): the docs cycle stored
     # "Using max model len 98304 (APIServer pid=90) INFO 11-28 11:46:45
     # [scheduler." -- chrome cut mid-token; the digits satisfied the
     # technical-signal gate and the row cleared the length check. Bare

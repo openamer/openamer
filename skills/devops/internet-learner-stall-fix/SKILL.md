@@ -60,6 +60,8 @@ CF/130-132 (22.09.26): source-tally CTA + date-stamp strip + credit byline; FIXE
 133 (22.09.26): doc-site product-nav weld; ALL 4 bare forms REJECTED, 3 two-token welds FIXED, refs/.
 135/136 (22.09.26): arXiv submitter WELD + aggregator card header (needs a TitleCase-continuation test; 1+2 FPs without it), found by eyeballing the buffer tail -- FIXED, refs/.
 149 (23.09.26): a nav-menu WELD run into a card title drawn TWICE; the discriminator is nav-run>=3@60 AND an ADJACENT exact repeat (d<=L) -- repeat-alone=88 ep FPs, nav-alone=13 prose FPs, pair=0/0; FIXED, refs/.
+155 (23.09.26): a raw vLLM server LOG LINE stored as knowledge (`apiserver pid=` / `[scheduler.` / `INFO d-d h:mm:ss`); bare `\bpid=\d+` and `max model len` MEASURED-AND-REJECTED; FIXED, refs/. TRAP: `purge_buffer_rows.py` defaults to `--text-key a`, so a signature in `u` reports a false "nothing to drop".
+156 (23.09.26): a HALLUCINATED LLM query (`neural duhmer: ...`) stored OFF-TOPIC tutorial prose -- no chrome gate can catch it, the defect is upstream in `_llm_novel_query`; a lexicon-free rule was MEASURED AND REJECTED (53/800 real headlines), so row purged + COUNT FIRST; refs/.
 
 **116/117 (20.09.26)**: no gate class at all -- step -1 found a whole
 TESTED-BUT-UNCOMMITTED batch (AV again): `dry_run` never reached

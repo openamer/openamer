@@ -5890,3 +5890,97 @@ An edit that does not apply (a no-op substitution, a guard that is not on the
 path taken) reports "tests still pass" and gets misread as a coverage gap. Assert
 the substitution applied (`assert m != s`), and if the suite stays green, verify
 the mutation is on the executed path before touching the test.
+
+## Root cause 155 (23.09.26) -- a raw vLLM server LOG LINE stored as "knowledge"
+
+(NUMBERING NOTE: this class was first written as 150 and RENUMBERED -- the
+archive already carries a different "Root cause 150", and 151-154 are taken.
+Check `max(nums)` in this file before assigning a number.)
+
+Cron run began with the documented `cycle_a_technews: rejected ... both gated`
+line. Rates said rotation noise, not a regression: last-40 = 19 learned / 21
+rejected (48 %), per-day 45.7 % on both 22.09 and 23.09, per-source rates 37-50 %
+against an older 50-80 % band. No gate change was warranted FOR THE REJECTION.
+The find came from the prescribed cheapest method -- run `--once`, read the
+BUFFER TAIL `u`/`a` pairs, repeat after each fix:
+
+    u: Best practice from official docs: vLLM v2.12.0 kv_cache_prefill_prefetch
+    a: 'Using max model len 98304 (APIServer pid=90) INFO 11-28 11:46:45 [scheduler.'
+
+A server log line is chrome, truncated mid-token. It cleared BOTH gates because
+its digits fed the technical-signal gate and a 76-char row satisfied the length
+check.
+
+**Markers (data-only, BOTH files -- the Q/R/S pitfall):**
+
+| marker | form | measured |
+|---|---|---|
+| `apiserver pid=` | IL regex + BS substring | 1 buffer hit, IS the leak -> 0 FP |
+| `\[scheduler\.` | IL regex + BS substring | 1 buffer hit, IS the leak -> 0 FP |
+| `\binfo \d{1,2}-\d{1,2} \d{1,2}:\d{2}:\d{2} ` | IL regex only | 1 buffer hit -> 0 FP |
+
+**Candidates measured and REJECTED:**
+| candidate | why rejected |
+|---|---|
+| `\bpid=\d+` (bare) | 1 longterm_episodes hit -- a pid is ordinary prose |
+| `max model len` | topic-word trap: real docs prose says `max_model_len` / "max model len" without the log shape |
+
+**Verification that mattered (all four corpora):** 1 buffer hit and it IS the
+leak; **0 of 3,064** longterm_episodes; 0 gate-test literals; 0 of 7 same-topic
+prose controls (they mention max_model_len, scheduler queues, pid 90 and the
+APIServer -- none is a log line). Quote the DELTA, not the absolute: the WHOLE
+`buffer_store.is_junk` flags 422/3,064 episodes, so a raw count proves nothing --
+isolate your own markers before claiming 0 collateral.
+
+`pytest tests/scripts/test_internet_learner_gate.py` -> **186 passed** (+2
+functions: leak refused by IL._is_junk, IL._writer_gate_refuses and BS.is_junk;
+7 same-topic controls survive). Leaking row purged by signature, buffer
+300 -> 299, 0 unparsable, 39 structural-connection rows preserved. Three trees
+content-identical after EOL normalisation.
+
+### TRAP: `purge_buffer_rows.py` defaults to `--text-key a`
+
+The signature lived in the row's `u` field. The default run printed
+`keep 300 / drop 0` with the reassuring "nothing to drop -- if you expected a
+hit, the signature is wrong, not the buffer" message, while the row was still
+there. **That message is a LIE when your signature is in `u`.** Pass
+`--text-key u` (or grep the raw file first). A dry run that disagrees with a
+direct grep means the probe is wrong, not the file.
+
+### TRAP: class numbers collide across the two skill files
+
+`internet_learner.py` uses `class N` in comments; each skill file numbers its own
+sections. 150 was already used here for an unrelated topic while the code
+comment took the same number. Derive the next free number from BOTH sources.
+
+## Root cause 156 (23.09.26) -- a HALLUCINATED LLM query, stored OFF-TOPIC
+
+`cycle_f_multi_domain` learned an unrelated lesson because `_llm_novel_query`
+returned nonsense:
+
+    q = "neural duhmer: how to implement duhmer's duhmer in python"
+    stored a: 'Creating labels y = [[ 1 , 0 , 0 ], ... ] Step 2 : Visualizing the
+               Dataset ... use Matplotlib to plot the images for each letter.'
+
+The STORED sentence is ordinary code-tutorial prose, so **no chrome gate can
+reject it** -- the defect is upstream, in the query generator. The row is
+off-topic poison in the LoRA set.
+
+**Why the obvious marker fails:** the garbled term is not a literal you can list
+(`duhmer` today, anything tomorrow). A *lexicon-free* shape is needed.
+
+**Measured candidate -- REJECTED:** "a long token repeated >= 2x" fires on 53 of
+800 recorded seen-queries, most of them legitimate NEWS HEADLINES
+("AI Regex Scientist: A self-improving regex solver", "Agent Memory in Portia
+AI's Open-Source Agent Framework"). The learner's real headlines repeat common
+words, so the rule is unusable.
+
+**Consequence: do not auto-synthesise the query from the leak.** One leak is not
+enough to fit a rule. The honest state: purged the single row
+(`purge_buffer_rows.py --text-key u --sig duhmer`), documented the defect, and
+left `_llm_novel_query` unchanged until a second instance of the shape appears.
+**Count first, patch second.**
+
+A cheap corroborating check for any future instance: the bad query also landed
+in `.il_seen_queries` (800 rows) -- the query log, not just the buffer, is where
+a generator defect is visible.

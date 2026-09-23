@@ -6476,7 +6476,7 @@ def test_nav_weld_repeat_neither_half_is_sufficient():
 
 
 def test_vllm_server_log_line_gated_on_both_paths():
-    """A raw vLLM server log line is refused by BOTH gates (class 150).
+    """A raw vLLM server log line is refused by BOTH gates (class 155).
 
     Live 23.09.26: the docs cycle stored "Using max model len 98304 (APIServer
     pid=90) INFO 11-28 11:46:45 [scheduler." -- chrome truncated mid-token; its
@@ -6484,7 +6484,7 @@ def test_vllm_server_log_line_gated_on_both_paths():
     """
     import internet_learner as IL
     import buffer_store as BS
-    for leak in _IL150_LEAKS:
+    for leak in _IL155_LEAKS:
         assert IL._is_junk(leak), leak
         assert IL._writer_gate_refuses(leak), leak
         assert BS.is_junk(leak), leak
@@ -6494,17 +6494,17 @@ def test_vllm_log_controls_survive_both_gates():
     """Same-topic PROSE stays learnable: the gate targets the log SHAPE only."""
     import internet_learner as IL
     import buffer_store as BS
-    for ctl in _IL150_CONTROLS:
+    for ctl in _IL155_CONTROLS:
         assert not IL._is_junk(ctl), ctl
         assert not BS.is_junk(ctl), ctl
 
 
-# --- class 150: a raw vLLM server log line is chrome, not knowledge ----------
-_IL150_LEAKS = (
+# --- class 155: a raw vLLM server log line is chrome, not knowledge ----------
+_IL155_LEAKS = (
     "Using max model len 98304 (APIServer pid=90) INFO 11-28 11:46:45 [scheduler.",
 )
 # Same TOPIC as the leak (the classic trap), but real prose -> must survive.
-_IL150_CONTROLS = (
+_IL155_CONTROLS = (
     "Set max_model_len to your longest served context, then tune "
     "gpu_memory_utilization so the KV cache still fits.",
     "vLLM raises max_num_batched_tokens to 98304 so long prompts fit while the "
