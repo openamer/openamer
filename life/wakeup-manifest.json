@@ -1,6 +1,6 @@
 {
   "organism": "OpenAmer",
-  "written_at": "2026-09-23T10:15:55.812598+00:00",
+  "written_at": "2026-09-23T22:48:22.833626+00:00",
   "identity": {
     "name": "openamer_agent",
     "voice": "https://x.com/openamer_agent",
@@ -296,7 +296,7 @@
       "name": "Self-Healing-Code",
       "schedule": "every 360m",
       "script": null,
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "Plugin-Auto-Loader",
@@ -410,13 +410,13 @@
       "name": "Darwin Grid Sync (6h)",
       "schedule": "every 360m",
       "script": null,
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "Swarm OS - Autonomous Loop (30m)",
       "schedule": "every 30m",
       "script": null,
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "Darwin Skill AutoPatch (daily)",
@@ -464,7 +464,7 @@
       "name": "longterm-memory-indexer",
       "schedule": "0 */6 * * *",
       "script": "_cron_longterm_index.py",
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "nightly-outreach-poster",
@@ -488,13 +488,13 @@
       "name": "self-improvement-loop",
       "schedule": "*/30 * * * *",
       "script": null,
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "internet-learner-247",
       "schedule": "every 5m",
       "script": null,
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "knowledge-to-action",
@@ -668,7 +668,7 @@
       "name": "metacognition-loop",
       "schedule": "every 360m",
       "script": "_cron_metacognition_wrapper.py",
-      "last_status": "ok"
+      "last_status": "error"
     },
     {
       "name": "oa-ripple-research",
@@ -680,7 +680,7 @@
       "name": "self-learning-loop",
       "schedule": "0 */6 * * *",
       "script": "_cron_metacognition_wrapper.py",
-      "last_status": "ok"
+      "last_status": "error"
     }
   ]
 }
