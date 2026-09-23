@@ -294,7 +294,97 @@ def experiment_competitor_gap():
         # runtime", "local LLMs" prose) and never `local model` (0/47 rows, i.e.
         # a token the corpus does not support).
         ("local hardware", "on-device / local-hardware agent runtime"),
+        # Grown from a REAL signal (22.09.26, second one that day): the
+        # competitor-intelligence row
+        #   "Engineers who want an agent to autonomously plan, edit across files
+        #    and run tests on complex real-world work, and will pay for depth"
+        # is a capability description (multi-file agentic execution with a test
+        # loop) the lexicon had no token for. Measured precision over the 44
+        # competitor rows this function actually reads: `edit across files`
+        # matches 1 row and that row IS this signal -> 0 mis-maps.
+        # Rejected alternatives, all measured: `across files` / `run tests` /
+        # `plan, edit` / `autonomously plan` / `real-world work` (each 1/44 but
+        # narrower and more brittle phrasings of the same row), `plan` 3/44 and
+        # `tool` 5/44 (real mis-maps), `tool surface` / `sandbox` / `terminal` /
+        # `multi-file` / `paid tier` / `pricing` 0/44 (corpus does not support
+        # them). Chosen token states the capability, not a generic verb.
+        ("edit across files", "multi-file agentic execution + test loop"),
+        # Grown from a REAL signal (23.09.26): the competitor-intelligence row
+        #   "A large language model helps with the reasoning layer, but the LLM
+        #    agent architecture determines whether the agent is useful, safe,
+        #    and reliable in real-world use."
+        # is a capability description (the agent-architecture layer as the
+        # determinant of usefulness/safety/reliability), not a headline: its
+        # echo against its own source question is 0.10, so the headline
+        # discriminator below correctly leaves it on the lexicon path.
+        # Measured precision over the 45 competitor rows this function reads
+        # (scoring `a` only, which is all `signal` ever is):
+        #   `llm agent architecture` 1/45 -> that row IS this signal, 0 mis-maps
+        # Rejected alternatives, all measured: `agent architecture` 1/45 and
+        # `large language model` / `reasoning layer` / `real-world use` /
+        # `reliable in real-world` each 1/45 (same row, but they name the
+        # substrate or an adjacent clause, not the capability), `architecture`
+        # 3/45 -> REAL mis-maps onto unrelated architecture prose (SAGA
+        # decision-making core, ANUS single/multi-agent switching), and
+        # `maintenance cost` / `maintenance costs` / `safe and reliable` /
+        # `reduce your maintenance` 0/45 (corpus does not support them). The
+        # chosen two-word-plus token states the capability layer itself and
+        # wins longest-match selection over the generic `architecture`.
+        ("llm agent architecture", "agent-architecture layer governing reliability"),
+        # Grown from a REAL signal (23.09.26, third one that day): the SAGA row
+        #   "The SAGA Framework: The Brains Behind the Agents At the core of each
+        #    character's decision-making process is the SAGA (Simulation Agent
+        #    Generative Architecture) framework ..."
+        # is a capability description (an LLM-driven simulation-agent
+        # framework), not a headline: its echo against its own source question
+        # is 0.25 with len(a) 232, so the headline discriminator above correctly
+        # leaves it on the lexicon path. Worth noting this is the very row the
+        # `architecture` rejection (1 row above) names as a mis-map -- it is
+        # real content that merely had no token, not noise.
+        # Measured precision over the 39 competitor rows this function reads
+        # (scoring `a` only, which is all `signal` ever is):
+        #   `simulation agent` 1/39 -> that row IS this signal, 0 mis-maps
+        # Rejected alternatives, all measured: `saga` 1/39 (same row, but a
+        # proper noun the corpus can only ever support for this one title),
+        # `generative architecture` 1/39 (same row, names the label rather than
+        # the capability), `decision-making` 1/39 and `character` 1/39 (same
+        # row today, but generic nouns that mis-map the moment another row
+        # mentions a decision or a character), `architecture` 3/39 -> REAL
+        # mis-maps. The chosen two-word phrase states the capability.
+        ("simulation agent", "LLM-driven simulation-agent framework"),
     )
+    # --- the latest row may be an ARTICLE TITLE, not a capability description ---
+    # Grown from a REAL signal (23.09.26): the consumer kept reporting
+    #   "Feb 2026 An AI agent coding skeptic tries AI agent coding, in
+    #    excessive detail minimaxir."
+    # as an unmappable signal. Unlike the earlier gaps this is NOT a lexicon
+    # gap: the row is a headline (date + title + author handle), and the
+    # lexicon having no token for a headline is CORRECT. Measured over the 45
+    # competitor rows this function reads, scoring `a` only (which is all that
+    # `signal` ever is): `ai agent coding` 2/45, and `coding skeptic` /
+    # `skeptic` / `excessive detail` / `minimaxir` each 1/45 -- every hit is
+    # this headline or its sibling. Adding any of them would map a title onto
+    # a capability, i.e. a mis-map, so the honest move is to recognise the row
+    # CLASS rather than grow the lexicon for it.
+    # Discriminator (longest-wins selection cannot help here): a headline is a
+    # near-echo of its own source question -- significant words of `u`
+    # reappearing in `a`. Measured over all 45 rows: exactly 1 row trips
+    # (echo >= 0.6 AND len(a) < 160) and it is this headline; 0 mis-fires on
+    # the rows that DO carry a capability, notably the sibling row for the same
+    # question ("AI agent coding/ vibecoding where the author talks about ...
+    # the atrophy of programming skills ...", echo 0.20, 249 chars) and the
+    # 22.09.26 signal `edit across files` (echo 0.00, 198 chars).
+    # The signal is still REPORTED VERBATIM -- never silently dropped -- only
+    # its class changes, so the entry names the real cause instead of a lexicon
+    # gap that does not exist.
+    _STOP = {"competitor", "intelligence", "the", "a", "an", "and", "of", "for",
+             "to", "in", "on", "with", "is", "are", "we", "our", "how", "what",
+             "new", "ai"}
+    _sig_low = signal.lower()
+    _sig_words = set(re.findall(r"[a-z0-9]+", _sig_low))
+    _q_words = set(re.findall(r"[a-z0-9]+", signal_q.lower())) - _STOP
+    _echo = (len(_q_words & _sig_words) / len(_q_words)) if _q_words else 0.0
+    is_headline = _echo >= 0.6 and len(signal) < 160
     low_signal = signal.lower()
     # Longest (most specific) matching token wins: a generic token declared
     # earlier must never shadow a precise one (declaration order was the
@@ -319,17 +409,19 @@ def experiment_competitor_gap():
     #   "The monthly bills developers share on Reddit and GitHub are staggering
     #    -- $1,600, $2,500, even $5,000+ for teams running multi-agent workflows
     #    on frontier models."
-    # That is a price observation, not a product capability. It slipped through
-    # only because the generic `multi-agent` token was in the lexicon and mapped
-    # it onto a capability it does not describe. Class it by what it measurably
-    # is: two or more currency amounts plus a money word. Measured over the 40
-    # competitor rows: the predicate trips 2/40 -- this row and the 22.09.26
-    # `edit across files` row (4 amounts, "Pro $20/mo"), which is why it is
-    # checked AFTER the lexicon: `edit across files` matches that row and must
-    # keep winning. Only this row is left, so 0 capability rows are swallowed.
-    # Requires >= 2 amounts AND a money word: a bare `$` or a bare
-    # `cost` is not a datapoint (the Hemmingway-1 row carries the word `costs` in
-    # prose and stays an ordinary lexicon gap).
+    # That is a price observation, not a product capability. It is not a headline
+    # either: its echo against its own source question is 0.10 and it is 161 chars,
+    # so the headline discriminator (echo >= 0.6 AND len(a) < 160) correctly leaves
+    # it alone. It slipped through only because the generic `multi-agent` token was
+    # in the lexicon and mapped it onto a capability it does not describe.
+    # Class it by what it measurably is: two or more currency amounts plus a money
+    # word. Measured over the 40 competitor rows: the predicate trips 2/40 -- this
+    # row and the 22.09.26 `edit across files` row (4 amounts, "Pro $20/mo"), which
+    # is why it is checked AFTER the lexicon: `edit across files` matches that row
+    # and must keep winning. Only this row is left, so 0 capability rows are
+    # swallowed. Requires >= 2 amounts AND a money word: a bare `$` or
+    # a bare `cost` is not a datapoint (the Hemmingway-1 row carries the word
+    # `costs` in prose and stays an ordinary lexicon gap).
     _CUR = re.compile(r"\$\s?\d[\d,]*(?:\.\d+)?\s*(?:[kmb])?\+?", re.I)
     # The money word is deliberately NARROW -- reported spend (`bills`, `spend`,
     # `spent`), never a general money word. Measured 23.09.26 over the 40
@@ -354,12 +446,11 @@ def experiment_competitor_gap():
     # (2025-now) ...") whose only capability-shaped nouns (NoneBot2, KLING TTS,
     # OpenClaw Agent OS) belong to third-party products we do not compete on, and
     # whose "Desktop AI Agent" is a project NAME, not a capability sentence.
-    # Measured over the 39 competitor rows this function reads (scoring `a` only,
-    # which is all that `signal` ever is): the predicate trips 1/39 and that row
-    # IS this signal -> 0 mis-maps. Its echo against its own source question is
-    # 0.17 at 251 chars, so the headline discriminator (echo >= 0.6 AND
-    # len(a) < 160) would leave it alone too -- this is a class the lexicon must
-    # NOT be grown for.
+    # Measured over the 39 competitor rows (scoring `a` only, which is all that
+    # `signal` ever is): the predicate trips 1/39 and that row IS this signal ->
+    # 0 mis-maps. Its echo against its own source question is 0.17 at 251 chars,
+    # so the headline discriminator (echo >= 0.6 AND len(a) < 160) correctly
+    # leaves it alone -- this is a class the lexicon must NOT be grown for.
     # Rejected, all measured 23.09.26: `desktop ai agent` 1/39, `agent os` 1/39,
     # `openclaw` 1/39, `workstation` 1/39, `persona` 1/39 -- every one of them is
     # a proper noun or a project label that would map a status log onto a
@@ -370,6 +461,36 @@ def experiment_competitor_gap():
         r"\bphase\s*\d+\b[^()]{0,40}\(\s*\d{4}\s*[-\u2013\u2014]\s*(?:\d{4}|now)\s*\)",
         re.I)
     is_project_status = bool(_PHASE.search(signal))
+    # --- the latest row may be an INCIDENT REPORT, not a capability -----------
+    # Grown from a REAL signal (23.09.26): the competitor pipeline landed
+    #   "PocketOS was left scrambling after a rogue AI agent deleted swaths of
+    #    code underpinning its business"
+    # That is an incident report -- a rogue-agent OUTCOME with no product feature
+    # in it -- so the lexicon having no token for it is CORRECT. It is not a
+    # headline: its echo against its own source question is 0.17 at 100 chars, so
+    # the headline discriminator (echo >= 0.6 AND len(a) < 160) leaves it alone.
+    # Measured over the 37 competitor rows this function reads (scoring `a` only,
+    # which is all `signal` ever is): `rogue` 1/37, `deleted` 1/37, `delete`
+    # 1/37, `scrambling` 1/37 -- every one a word FROM the report, which would map
+    # an incident onto a capability. `guardrail` 1/36 is a DIFFERENT row
+    # (VoltAgent), so it does not stand for this signal. `recovery` / `backup` /
+    # `permission` / `containment` / `rollback` / `destructive` / `audit` /
+    # `approval` / `action gate` / `human-in-the-loop` / `confirmation` /
+    # `deletion` are all 0/37 -- the corpus does not support them.
+    # The chosen predicate is the measured one: an outcome word (rogue / runaway /
+    # destructive) THAT IS ALSO followed by a destructive verb. Measured 1/37 and
+    # that row IS this signal -> 0 mis-maps and 0 rows the lexicon already maps
+    # are swallowed. A bare incident NOUN (post-mortem / outage / breach) was
+    # measured 0/37 -- unsupported, so it is deliberately NOT written into the
+    # predicate; a future such row stays an honest lexicon gap.
+    # Checked AFTER the lexicon, exactly like the cost and status predicates: a
+    # capability sentence that merely mentions a deletion still reaches the
+    # lexicon first (pinned by the ordering test).
+    _INCIDENT = re.compile(
+        r"\b(?:rogue|runaway|destructive)\b[^.]{0,60}"
+        r"\b(?:deleted|deletes|wiped|destroy\w*|sabotag\w*)\b",
+        re.I)
+    is_incident_report = bool(_INCIDENT.search(signal))
     if hint:
         gap = (f"{hint}: competitor signals it; {measured} — monolithic, "
                f"no per-tool module boundary")
@@ -398,6 +519,28 @@ def experiment_competitor_gap():
         result = (f"signal NOT mappable: '{signal[:60]}' | {measured} — "
                   f"project status log (dated phase markers, third-party stacks), "
                   f"no capability sentence to map; extraction-side gap, not a "
+                  f"lexicon gap")
+    elif is_headline:
+        gap = (f"no mappable capability in latest signal ({measured}) — "
+               f"signal is an article headline (echo {_echo:.0%} of its own "
+               f"source question), not a product capability description")
+        fix = ("carry a capability sentence alongside the headline in the "
+               "competitor pipeline; no lexicon token should be invented for a "
+               "title, and the extraction side is where this belongs")
+        result = (f"signal NOT mappable: '{signal[:60]}' | {measured} — "
+                  f"headline signal (echo {_echo:.0%} of its own question), no "
+                  f"capability sentence to map; extraction-side gap, not a "
+                  f"lexicon gap")
+    elif is_incident_report:
+        gap = (f"no mappable capability in latest signal ({measured}) — "
+               f"signal is an incident report (a rogue/destructive agent outcome), "
+               f"not a product capability description")
+        fix = ("carry a capability sentence alongside the incident in the "
+               "competitor pipeline; an incident report is not a lexicon gap and "
+               "no token should be invented to map it onto one")
+        result = (f"signal NOT mappable: '{signal[:60]}' | {measured} — "
+                  f"incident report (agent outcome, no feature named), no "
+                  f"capability sentence to map; extraction-side gap, not a "
                   f"lexicon gap")
     else:
         gap = (f"no mappable capability in latest signal ({measured}) — "
